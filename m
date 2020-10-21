@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A747A294E72
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Oct 2020 16:23:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38813294E79
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Oct 2020 16:23:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA2A96EDB7;
-	Wed, 21 Oct 2020 14:23:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E1C66EDC1;
+	Wed, 21 Oct 2020 14:23:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2073.outbound.protection.outlook.com [40.107.243.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 514606EDBA
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 14:23:05 +0000 (UTC)
+ (mail-dm6nam12on2051.outbound.protection.outlook.com [40.107.243.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADD7C6EDBE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 14:23:13 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I8vkIyqHH9J+KGB4P4sLhoG6iEAwxeRKDiGKlqHphNB4YGOW5j14XoHTzCKJlyXjl7b3byVVnEdbLxA7v4sN/XsXEFmxwMYMp5VkdeWOdNG9HkSsqw1pdFds4gnoZ4+UkeXVd4S2/NCuuVCZFOBNijJfocYPWgbwKmDbI4Lgl1nBgZ7WQos425ca4nxLdLGNE28XXP1OTSJADlIPEuV7aNgxAsCj4XaB68Jo4HLVQQYU604AYCt0LoCOcnYPfvexJsvEePR7BOOuc1eSpkA9JXFm81+hF7efc1gK4c5/xPQppRCC78xIjowcLQQlY/nLvqkSC4jgP+ytAp5F4ZUuew==
+ b=bK6yBVFtItX2n5PY0W4ZkUXKV5v16RJzgAQMSdYgrbSdodE5ueo3HErvZPdpwxDRdi43uu/TDzmjteD7dHmsdL1P3FHCITChdTes6MSEtw7SJkrEqrUyZZw/y4zJII+n2HSF6wUbEqhvVwFMMp69m0ML3iQWcpb/XLXDsnPPASe/dO5Pt6em3nEPCIAmrxIB5RaX/LeqMnIS+RL7e5MF+63nIUXHfhxNn8yOp8eanUxICsiwxFytQxhJuosuwZYHeV8AEbiGIaJcZY2gyYBOmT+81buCKrhO5mMhuq/Wch1+jBvGiU4uTUyTFMyFUWYFZ34b8DulfMnhg1IBo1Z2AA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ty7UZKP96ubL57W8ewm8UWHkGAjuA9gZPhdMVHwqryo=;
- b=VuGBPD53VOvYbjjzeFnKWJaQBtgEh6rI5yK6wrS843ySK9DeRzJuGgMN5wxnFmiconQ9JzwrHXN8XmeEQQzpGs1CTV4NhwryWoC9DuoA4KxkFVuhCih60C9rYdZGaCc7CsrGshEpmbN6FcMd10oRpaU05J6XSwB+PecKemkFYWKj+Xx2CWxlUdOyv1TuwARqNYROOLmbQ3rDFWUciIFProtXb2LNTFzfpD3BOY96LAQIshMz/flk+EwiMG+00pMeL4Eox5oOgXtLwFuVJer0dDNgFEX8OH4UXgOOmH40mn/2iTqo8qXCEskERlRNgYNliNMB21/du/hndt0JQvFYvg==
+ bh=cUN7lzFf4XARSw+VSUvR9PdeBe8s1WmQIuuBDIRhMqU=;
+ b=WJGDeY0mgCWdUi/7UeG9uqmKgGTXaxfharXx/SO+D5Y11FBTIeBJ4pzjiiIgPu47s4RGFNKPVRYcKK+JE3LdkOpwYQJ+wqgqpU/W0d5myxPp6n6et+aaXzRJCExhUEfDjg2MCEZZRsgw5byY6KoD7oA7eSSb/9h7Kj4Oi9dRcM2Rox7fHAQlMYMGNLirHaaMAwWEDLFKmf8p4MJaSc8JKm6vyHZ2fUWn+UW/5LAFlqW3hbn9DPsfTz7Y+7A8gk/1trF4/wCmpf21zjOsFaWv+XVZVCDka2DkITNnaq5YNkxvXNzNnLMi1kh4qzDK13BNbjsiZMHIHb3K3nHegMzEZw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=none action=none header.from=amd.com; dkim=none (message not signed);
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ty7UZKP96ubL57W8ewm8UWHkGAjuA9gZPhdMVHwqryo=;
- b=rWVGIFuVPfwrtKPqkbPDGL0SSymuDfNgzf0HWAKjnSiNUSum9CJXMJLy0FavwM0HGtCoNxTxOdAAKplw9/JphmjxI8Mik+GQURd0SxSU7Ln4Gkxm/eLkoU2Fqh/CHsYSWamtGoEF95GcmGkY8BXJ/nAUDnCKYmVmWlpMqEu75ik=
-Received: from DM3PR08CA0002.namprd08.prod.outlook.com (2603:10b6:0:52::12) by
- MN2PR12MB3152.namprd12.prod.outlook.com (2603:10b6:208:ca::23) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3477.23; Wed, 21 Oct 2020 14:23:03 +0000
-Received: from DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2603:10b6:0:52:cafe::d0) by DM3PR08CA0002.outlook.office365.com
- (2603:10b6:0:52::12) with Microsoft SMTP Server (version=TLS1_2,
+ bh=cUN7lzFf4XARSw+VSUvR9PdeBe8s1WmQIuuBDIRhMqU=;
+ b=TOBC9EpQHYe0oCUtg1UqJSPY0r+LZZCoaQEx8B/WLoEC0u3ho2PQdCyz92CPXctd1YrTjtZn2aBPTEX1e6/lGOxdnnpZcdDaM9DPpS/XP4KXvyogCA3Ru6pLC2FGuKtMr57nYQ6E7R3EnfUoo6XUpCv6MsLyI/c6xmfHaRICEeQ=
+Received: from DM5PR15CA0034.namprd15.prod.outlook.com (2603:10b6:4:4b::20) by
+ BY5PR12MB3971.namprd12.prod.outlook.com (2603:10b6:a03:1a5::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.21; Wed, 21 Oct
+ 2020 14:23:09 +0000
+Received: from DM6NAM11FT014.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:4:4b:cafe::ec) by DM5PR15CA0034.outlook.office365.com
+ (2603:10b6:4:4b::20) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18 via Frontend
- Transport; Wed, 21 Oct 2020 14:23:03 +0000
+ Transport; Wed, 21 Oct 2020 14:23:09 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=none action=none
@@ -46,25 +46,22 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
- DM6NAM11FT067.mail.protection.outlook.com (10.13.172.76) with Microsoft SMTP
+ DM6NAM11FT014.mail.protection.outlook.com (10.13.173.132) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3499.18 via Frontend Transport; Wed, 21 Oct 2020 14:23:03 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB01.amd.com
+ 15.20.3499.18 via Frontend Transport; Wed, 21 Oct 2020 14:23:08 +0000
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 21 Oct
- 2020 09:23:02 -0500
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 21 Oct
- 2020 09:23:01 -0500
+ 2020 09:23:07 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Wed, 21 Oct 2020 09:23:01 -0500
+ Transport; Wed, 21 Oct 2020 09:23:02 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 04/33] drm/amd/display: Source minimum HBlank support
-Date: Wed, 21 Oct 2020 10:22:28 -0400
-Message-ID: <20201021142257.190969-5-aurabindo.pillai@amd.com>
+Subject: [PATCH 05/33] drm/amd/display: Reverting "Add connector to the state
+ if DSC debugfs is set"
+Date: Wed, 21 Oct 2020 10:22:29 -0400
+Message-ID: <20201021142257.190969-6-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201021142257.190969-1-aurabindo.pillai@amd.com>
 References: <20201021142257.190969-1-aurabindo.pillai@amd.com>
@@ -72,27 +69,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e96080d6-2cb1-472c-e56d-08d875ccd229
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3152:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB3152F55A9AE86FE6C716A63F8B1C0@MN2PR12MB3152.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:93;
+X-MS-Office365-Filtering-Correlation-Id: b37e6fce-894b-49e5-3a3d-08d875ccd55b
+X-MS-TrafficTypeDiagnostic: BY5PR12MB3971:
+X-Microsoft-Antispam-PRVS: <BY5PR12MB397176B7B4A741C320AE0E848B1C0@BY5PR12MB3971.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:110;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VU4C1UavvE2tuHR4VdGgZ/gEagHoloopj+D/swXE1UHlVG94p9FFR9LD2gB+0UYydXGRI501WZSl5Hg56hn6pk6HluBqROK1vxvY1UTONY7Jsf5XwM3cQoZig9X6QENjCaqyBLVC/rznNtA61VuuKUX3OMcR1I0OC/FpXRsugiWOGHCnOKGcadF89Vi2t1+Y+Mh75BlxhKfHMjI+HcUUOuIneWQsuJSclrFJkfoWLVtbj/D9bCmuRRxirNgWLaF33qJasXjCkYOmfY8c5zvVQu1rbZZLVYIpfUAz0lXENgG55rGjYu7PMhySvMkbApgUs6uzJVkfJpPY0YsIJ8qdMIF1LmJKAbtZElrm7u4Phnjv4cpo/XrJArXieP/xSQVJoNMLglnvKo8WA7I6utABsA==
+X-Microsoft-Antispam-Message-Info: SXC/wpEL5KpOW3jylLWYMM7LjgzSDYltVN0uA/LcchIUYqbiWr1LhvqBeLDS9eDCtw1sBwvs8ETApTPNU2YV/TuRHdvsCop0tUtPhriso8yaaHAG1qAm3mMjD10zRoFHCvGytFK65qh/wu2vRgPjuaQoC9eL0hTZHTLrVg9qlcGxFQSbjHbwknbdzGWt+lpkWY5tnvd/DgoojDvB7qq7aeCIZD1FfESB/BcJyRlCvPTp0iZF4YTX9OWOAZMgdSzysBAsYt7dJDkxK05bA8MrQyzK0zhmD/NLOhdy/LgsNo5M9EkUmYOkhgbA4cGaoAWYwEf5UlWu4arkWhMGkS/zAwldjdMBQu9LsyzhoLPEpJYtYNxpHk6HoGghJpH9xRw5L0E4xsbBiSE9crVjIIgAiA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(136003)(396003)(346002)(376002)(39860400002)(46966005)(86362001)(81166007)(186003)(5660300002)(44832011)(6666004)(8936002)(8676002)(1076003)(30864003)(83380400001)(36756003)(2616005)(426003)(316002)(478600001)(4326008)(2906002)(356005)(7696005)(54906003)(70586007)(6916009)(19627235002)(336012)(70206006)(82310400003)(47076004)(82740400003)(26005);
+ SFS:(4636009)(136003)(39860400002)(396003)(346002)(376002)(46966005)(7696005)(54906003)(5660300002)(86362001)(356005)(81166007)(336012)(8676002)(8936002)(6666004)(478600001)(4326008)(83380400001)(36756003)(1076003)(2616005)(82310400003)(2906002)(186003)(70586007)(26005)(6916009)(82740400003)(426003)(47076004)(316002)(44832011)(70206006);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2020 14:23:03.1724 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e96080d6-2cb1-472c-e56d-08d875ccd229
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2020 14:23:08.5229 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b37e6fce-894b-49e5-3a3d-08d875ccd55b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT014.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3152
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3971
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,283 +101,94 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ashley Thomas <Ashley.Thomas2@amd.com>, Eryk.Brol@amd.com,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com
+Cc: Eryk Brol <eryk.brol@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
+ Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Ashley Thomas <Ashley.Thomas2@amd.com>
+From: Eryk Brol <eryk.brol@amd.com>
 
-[Why]
-Some sink devices wish to have access to the minimum
-HBlank supported by the ASIC.
+This reverts commit 39edb76689b8c9e41b1b9e2557da4897a405221b.
 
-[How]
-Make the ASIC minimum HBlank available in Source
-Device information address 0x340.
+Reason for revert: Patch introduces performance issues and might
+cause memory consistency problems with multiple connectors.
 
-Signed-off-by: Ashley Thomas <Ashley.Thomas2@amd.com>
+Signed-off-by: Eryk Brol <eryk.brol@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_debug.c    |  2 +
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 39 +++++++++++++++----
- drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
- .../amd/display/dc/dce100/dce100_resource.c   |  1 +
- .../amd/display/dc/dce110/dce110_resource.c   |  1 +
- .../amd/display/dc/dce112/dce112_resource.c   |  1 +
- .../amd/display/dc/dce120/dce120_resource.c   |  1 +
- .../drm/amd/display/dc/dce80/dce80_resource.c |  3 ++
- .../drm/amd/display/dc/dcn10/dcn10_resource.c |  1 +
- .../drm/amd/display/dc/dcn20/dcn20_resource.c |  1 +
- .../drm/amd/display/dc/dcn21/dcn21_resource.c |  1 +
- .../drm/amd/display/dc/dcn30/dcn30_resource.c |  1 +
- .../gpu/drm/amd/display/dc/inc/core_status.h  |  2 +
- .../gpu/drm/amd/display/include/dpcd_defs.h   |  1 +
- 14 files changed, 49 insertions(+), 7 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 42 -------------------
+ 1 file changed, 42 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_debug.c b/drivers/gpu/drm/amd/display/dc/core/dc_debug.c
-index 87d89449b9af..7977e2839065 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_debug.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_debug.c
-@@ -418,6 +418,8 @@ char *dc_status_to_str(enum dc_status status)
- 		return "Fail clk below minimum";
- 	case DC_FAIL_CLK_BELOW_CFG_REQUIRED:
- 		return "Fail clk below required CFG (hard_min in PPLIB)";
-+	case DC_NOT_SUPPORTED:
-+		return "The operation is not supported.";
- 	case DC_ERROR_UNEXPECTED:
- 		return "Unexpected error";
- 	}
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index ff1e9963ec7a..2114c280895a 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -17,16 +17,16 @@
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 71ecd963759e..71d21cf09f4e 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -856,45 +856,6 @@ static int dm_dmub_hw_init(struct amdgpu_device *adev)
+ 	return 0;
+ }
  
- #define DC_LOGGER \
- 	link->ctx->logger
+-static void amdgpu_check_debugfs_connector_property_change(struct amdgpu_device *adev,
+-							   struct drm_atomic_state *state)
+-{
+-	struct drm_connector *connector;
+-	struct drm_crtc *crtc;
+-	struct amdgpu_dm_connector *amdgpu_dm_connector;
+-	struct drm_connector_state *conn_state;
+-	struct dm_crtc_state *acrtc_state;
+-	struct drm_crtc_state *crtc_state;
+-	struct dc_stream_state *stream;
+-	struct drm_device *dev = adev_to_drm(adev);
 -
-+#define DC_TRACE_LEVEL_MESSAGE(...) /* do nothing */
- 
- #define DP_REPEATER_CONFIGURATION_AND_STATUS_SIZE   0x50
- 
--/* maximum pre emphasis level allowed for each voltage swing level*/
--static const enum dc_pre_emphasis voltage_swing_to_pre_emphasis[] = {
--		PRE_EMPHASIS_LEVEL3,
--		PRE_EMPHASIS_LEVEL2,
--		PRE_EMPHASIS_LEVEL1,
--		PRE_EMPHASIS_DISABLED };
-+	/* maximum pre emphasis level allowed for each voltage swing level*/
-+	static const enum dc_pre_emphasis
-+	voltage_swing_to_pre_emphasis[] = { PRE_EMPHASIS_LEVEL3,
-+					    PRE_EMPHASIS_LEVEL2,
-+					    PRE_EMPHASIS_LEVEL1,
-+					    PRE_EMPHASIS_DISABLED };
- 
- enum {
- 	POST_LT_ADJ_REQ_LIMIT = 6,
-@@ -4372,6 +4372,7 @@ void dp_set_fec_enable(struct dc_link *link, bool enable)
- void dpcd_set_source_specific_data(struct dc_link *link)
+-	list_for_each_entry(connector, &dev->mode_config.connector_list, head) {
+-
+-		amdgpu_dm_connector = to_amdgpu_dm_connector(connector);
+-		conn_state = connector->state;
+-
+-		if (!(conn_state && conn_state->crtc))
+-			continue;
+-
+-		crtc = conn_state->crtc;
+-		acrtc_state = to_dm_crtc_state(crtc->state);
+-
+-		if (!(acrtc_state && acrtc_state->stream))
+-			continue;
+-
+-		stream = acrtc_state->stream;
+-
+-		if (amdgpu_dm_connector->dsc_settings.dsc_force_enable ||
+-		    amdgpu_dm_connector->dsc_settings.dsc_num_slices_v ||
+-		    amdgpu_dm_connector->dsc_settings.dsc_num_slices_h ||
+-		    amdgpu_dm_connector->dsc_settings.dsc_bits_per_pixel) {
+-			conn_state = drm_atomic_get_connector_state(state, connector);
+-			crtc_state = drm_atomic_get_crtc_state(state, crtc);
+-			crtc_state->mode_changed = true;
+-		}
+-	}
+-}
+-
+ static void mmhub_read_system_context(struct amdgpu_device *adev, struct dc_phy_addr_space_config *pa_config)
  {
- 	if (!link->dc->vendor_signature.is_valid) {
-+		enum dc_status result_write_min_hblank = DC_NOT_SUPPORTED;
- 		struct dpcd_amd_signature amd_signature;
- 		amd_signature.AMD_IEEE_TxSignature_byte1 = 0x0;
- 		amd_signature.AMD_IEEE_TxSignature_byte2 = 0x0;
-@@ -4390,6 +4391,30 @@ void dpcd_set_source_specific_data(struct dc_link *link)
- 				(uint8_t *)(&amd_signature),
- 				sizeof(amd_signature));
+ 	uint64_t pt_base;
+@@ -948,7 +909,6 @@ static void mmhub_read_system_context(struct amdgpu_device *adev, struct dc_phy_
  
-+		if (link->ctx->dce_version >= DCN_VERSION_2_0 &&
-+			link->dc->caps.min_horizontal_blanking_period != 0) {
-+
-+			uint8_t hblank_size = (uint8_t)link->dc->caps.min_horizontal_blanking_period;
-+
-+			result_write_min_hblank = core_link_write_dpcd(link,
-+				DP_SOURCE_MINIMUM_HBLANK_SUPPORTED, (uint8_t *)(&hblank_size),
-+				sizeof(hblank_size));
-+		}
-+		DC_TRACE_LEVEL_MESSAGE(DAL_TRACE_LEVEL_INFORMATION,
-+							WPP_BIT_FLAG_DC_DETECTION_DP_CAPS,
-+							"result=%u link_index=%u enum dce_version=%d DPCD=0x%04X min_hblank=%u branch_dev_id=0x%x branch_dev_name='%c%c%c%c%c%c'",
-+							result_write_min_hblank,
-+							link->link_index,
-+							link->ctx->dce_version,
-+							DP_SOURCE_MINIMUM_HBLANK_SUPPORTED,
-+							link->dc->caps.min_horizontal_blanking_period,
-+							link->dpcd_caps.branch_dev_id,
-+							link->dpcd_caps.branch_dev_name[0],
-+							link->dpcd_caps.branch_dev_name[1],
-+							link->dpcd_caps.branch_dev_name[2],
-+							link->dpcd_caps.branch_dev_name[3],
-+							link->dpcd_caps.branch_dev_name[4],
-+							link->dpcd_caps.branch_dev_name[5]);
- 	} else {
- 		core_link_write_dpcd(link, DP_SOURCE_OUI,
- 				link->dc->vendor_signature.data.raw,
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 024fd4b17f3a..3f888570ffad 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -156,6 +156,7 @@ struct dc_caps {
- 	uint32_t dmdata_alloc_size;
- 	unsigned int max_cursor_size;
- 	unsigned int max_video_width;
-+	unsigned int min_horizontal_blanking_period;
- 	int linear_pitch_alignment;
- 	bool dcc_const_color;
- 	bool dynamic_audio;
-diff --git a/drivers/gpu/drm/amd/display/dc/dce100/dce100_resource.c b/drivers/gpu/drm/amd/display/dc/dce100/dce100_resource.c
-index d741787f75dc..1f08fc1de132 100644
---- a/drivers/gpu/drm/amd/display/dc/dce100/dce100_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce100/dce100_resource.c
-@@ -1073,6 +1073,7 @@ static bool dce100_resource_construct(
- 	dc->caps.i2c_speed_in_khz = 40;
- 	dc->caps.i2c_speed_in_khz = 40;
- 	dc->caps.max_cursor_size = 128;
-+	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.dual_link_dvi = true;
- 	dc->caps.disable_dp_clk_share = true;
- 	dc->caps.extended_aux_timeout_support = false;
-diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_resource.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_resource.c
-index 2bbfa2e176a9..d389efc5bf47 100644
---- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_resource.c
-@@ -1375,6 +1375,7 @@ static bool dce110_resource_construct(
- 	dc->caps.i2c_speed_in_khz = 40;
- 	dc->caps.i2c_speed_in_khz_hdcp = 40;
- 	dc->caps.max_cursor_size = 128;
-+	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.is_apu = true;
- 	dc->caps.extended_aux_timeout_support = false;
+ }
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dce112/dce112_resource.c b/drivers/gpu/drm/amd/display/dc/dce112/dce112_resource.c
-index b622b4b1dac3..2dc6df43d9db 100644
---- a/drivers/gpu/drm/amd/display/dc/dce112/dce112_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce112/dce112_resource.c
-@@ -1242,6 +1242,7 @@ static bool dce112_resource_construct(
- 	dc->caps.i2c_speed_in_khz = 100;
- 	dc->caps.i2c_speed_in_khz_hdcp = 100; /*1.4 w/a not applied by default*/
- 	dc->caps.max_cursor_size = 128;
-+	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.dual_link_dvi = true;
- 	dc->caps.extended_aux_timeout_support = false;
+-
+ static int amdgpu_dm_init(struct amdgpu_device *adev)
+ {
+ 	struct dc_init_data init_data;
+@@ -8759,8 +8719,6 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
+ 	int ret, i;
+ 	bool lock_and_validation_needed = false;
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dce120/dce120_resource.c b/drivers/gpu/drm/amd/display/dc/dce120/dce120_resource.c
-index 16fe7344702f..b34d9ee5840e 100644
---- a/drivers/gpu/drm/amd/display/dc/dce120/dce120_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce120/dce120_resource.c
-@@ -1082,6 +1082,7 @@ static bool dce120_resource_construct(
- 	dc->caps.i2c_speed_in_khz = 100;
- 	dc->caps.i2c_speed_in_khz_hdcp = 100; /*1.4 w/a not applied by default*/
- 	dc->caps.max_cursor_size = 128;
-+	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.dual_link_dvi = true;
- 	dc->caps.psp_setup_panel_mode = true;
- 	dc->caps.extended_aux_timeout_support = false;
-diff --git a/drivers/gpu/drm/amd/display/dc/dce80/dce80_resource.c b/drivers/gpu/drm/amd/display/dc/dce80/dce80_resource.c
-index 0eae8cd35f9a..e1326791711b 100644
---- a/drivers/gpu/drm/amd/display/dc/dce80/dce80_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce80/dce80_resource.c
-@@ -972,6 +972,7 @@ static bool dce80_construct(
- 	dc->caps.i2c_speed_in_khz = 40;
- 	dc->caps.i2c_speed_in_khz_hdcp = 40;
- 	dc->caps.max_cursor_size = 128;
-+	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.dual_link_dvi = true;
- 	dc->caps.extended_aux_timeout_support = false;
- 
-@@ -1171,6 +1172,7 @@ static bool dce81_construct(
- 	dc->caps.i2c_speed_in_khz = 40;
- 	dc->caps.i2c_speed_in_khz_hdcp = 40;
- 	dc->caps.max_cursor_size = 128;
-+	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.is_apu = true;
- 
- 	/*************************************************
-@@ -1369,6 +1371,7 @@ static bool dce83_construct(
- 	dc->caps.i2c_speed_in_khz = 40;
- 	dc->caps.i2c_speed_in_khz_hdcp = 40;
- 	dc->caps.max_cursor_size = 128;
-+	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.is_apu = true;
- 
- 	/*************************************************
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
-index 634171f63a2f..e74bb2735885 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
-@@ -1418,6 +1418,7 @@ static bool dcn10_resource_construct(
- 	dc->caps.i2c_speed_in_khz = 100;
- 	dc->caps.i2c_speed_in_khz_hdcp = 100; /*1.4 w/a not applied by default*/
- 	dc->caps.max_cursor_size = 256;
-+	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.max_slave_planes = 1;
- 	dc->caps.is_apu = true;
- 	dc->caps.post_blend_color_processing = false;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index 2e613960516a..3e425d554f09 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -3813,6 +3813,7 @@ static bool dcn20_resource_construct(
- 	dc->caps.i2c_speed_in_khz = 100;
- 	dc->caps.i2c_speed_in_khz_hdcp = 100; /*1.4 w/a not applied by default*/
- 	dc->caps.max_cursor_size = 256;
-+	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.dmdata_alloc_size = 2048;
- 
- 	dc->caps.max_slave_planes = 1;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-index 8a85e07935b2..70a18271bd2d 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-@@ -1930,6 +1930,7 @@ static bool dcn21_resource_construct(
- 	dc->caps.i2c_speed_in_khz = 100;
- 	dc->caps.i2c_speed_in_khz_hdcp = 5; /*1.4 w/a applied by default*/
- 	dc->caps.max_cursor_size = 256;
-+	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.dmdata_alloc_size = 2048;
- 
- 	dc->caps.max_slave_planes = 1;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index 060c2e65718a..beaa6b9ae752 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -2606,6 +2606,7 @@ static bool dcn30_resource_construct(
- 	dc->caps.i2c_speed_in_khz = 100;
- 	dc->caps.i2c_speed_in_khz_hdcp = 100; /*1.4 w/a not applied by default*/
- 	dc->caps.max_cursor_size = 256;
-+	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.dmdata_alloc_size = 2048;
- 
- 	dc->caps.max_slave_planes = 1;
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_status.h b/drivers/gpu/drm/amd/display/dc/inc/core_status.h
-index f932801235c6..714593a15590 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/core_status.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/core_status.h
-@@ -50,6 +50,8 @@ enum dc_status {
- 	DC_FAIL_CLK_BELOW_MIN = 22, /*THIS IS MIN PER IP*/
- 	DC_FAIL_CLK_BELOW_CFG_REQUIRED = 23, /*THIS IS hard_min in PPLIB*/
- 
-+	DC_NOT_SUPPORTED = 24,
-+
- 	DC_ERROR_UNEXPECTED = -1
- };
- 
-diff --git a/drivers/gpu/drm/amd/display/include/dpcd_defs.h b/drivers/gpu/drm/amd/display/include/dpcd_defs.h
-index 3d29646c7cb4..aec7389aff37 100644
---- a/drivers/gpu/drm/amd/display/include/dpcd_defs.h
-+++ b/drivers/gpu/drm/amd/display/include/dpcd_defs.h
-@@ -156,5 +156,6 @@ enum dpcd_psr_sink_states {
- #define DP_SOURCE_BACKLIGHT_CURRENT_PEAK    0x326
- #define DP_SOURCE_BACKLIGHT_CONTROL	    0x32E
- #define DP_SOURCE_BACKLIGHT_ENABLE	    0x32F
-+#define DP_SOURCE_MINIMUM_HBLANK_SUPPORTED	0x340
- 
- #endif /* __DAL_DPCD_DEFS_H__ */
+-	amdgpu_check_debugfs_connector_property_change(adev, state);
+-
+ 	ret = drm_atomic_helper_check_modeset(dev, state);
+ 	if (ret)
+ 		goto fail;
 -- 
 2.25.1
 
