@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1EFB294E93
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Oct 2020 16:23:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5C0C294E90
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Oct 2020 16:23:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B78DF6EDDC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09EC96EDD9;
 	Wed, 21 Oct 2020 14:23:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2081.outbound.protection.outlook.com [40.107.220.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34B356EDBD
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2058.outbound.protection.outlook.com [40.107.94.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CA546EDD9
  for <amd-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 14:23:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jypIDdNJDKWkLQu2O4B/YL1yAO63zoD2Y4TdLMvmt6jGvn9IWqAMNLAxKkLdq25XmlYlgVx88cVCJP34qdivq59iXovfvBfsKr3I3FZ1RyqJrUCPNSyDGJURkcRHkTa62J2WdrYhmZJ95KXW66tSD3FsLNO47PG2luVxydFZHSYNqbrCCkPzpI21RPVuoF6RTNJ4rGdEBzTeHFEkvNEBKIQALTL1icjcNHAEA4pHbklaCAoVatxk8KniGsbYzzk2iPQS6EFKx+GK352UuQ1SuJploEIIuVcQ98x01M+uqC4yyDUt+DUifdTKt7R6xQhBv7N2t4UmPrT8fXfDF93v7g==
+ b=CBnJlMEaEJJp7N2JJji6Xuf0RHk+WJSYB0Y3H/C6tBk9Vu2dBPAvEVE9BvauV5hfIQWwy4sujkYaJLISpj4V+/VFLkCn5ck7Q39tTGFnS/TcZEu70qVh2V+1jOufBbPHIUl1x2K1s2LRIes0qsT/oPbuO+Noawm1DdStfXyI7n1Z2/vI73qtmYZVhAGZOReVXey6UnQ3Zzq+iZVbej9Q3f3Tx5NooWkHs10m88jjByAeCa6i0+PGPtGEmHOPMG0OJJTWZHIYm7RgdmJzxsqURVsN9xS9AXeBhOxRV9hehzKgwkKQrAx7V0RJ4xhhyrudY2kQk77yHuXr1wtb4qgVCQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=awqdYuhTv0jIQDhd0psF+cIMqKVIE118AV4mgpQcLig=;
- b=W9don3IDAC6U4lU/xOsHhHoXRpskPyBzvumV99Ake+F5HMeLazZOdlhXlZg/7Pkj3nA9aXk9jp7582pFF9HJFiIQrcgcjhjxOirr7wCzyYhUWj/iQH1IcHgHBN7ydXHtRtrOE/ZV0U/AbbMtTkwWxFa5lkEhkFMOU52Fj+QybxVobwGJGNxq3HJCXIFMEB3Sz5x0N/7REuwsVMxzSP9Zai5gw9do9BKmv7sYYe4QgTCFUq+rJjpduSsp6TRGFITD1gTyvkK8fKw3Z/QkLUhnEDyLGEWJGg2ChyYb0+wueGWnjbFjvtMFF/jL9KjiIeWWIW0vsOR7rrD9UtS3F94QHQ==
+ bh=HGghzOGdgV4ifdId+qAkg6JwqNyWUwNtJiSFx9tvTrA=;
+ b=eoqxA+u67Lu6ta5ql0VDt5tX+mT/o+MT1M5kQtsaH8XwO0hlLb5yHKQHSxlaXFfAQekTynwM3PqcUcRXjt22VCh6tQPEpC4fTroLhvv2Cp0B0n5PUhQoU8F4zz5HDK7SIJ0vBL/uuPVhnliY6dEJe3/Rjdr/1+mJck33aLJxXBvHmLl597g6kM7iqUbeLQwisgNLDq0G30cWrbSW1TU2VJZLXgqy3ek2sGMCn8G8KDIdjUlJhPzM7OdA8L8OHE+neJ91K2h/5rve/V2EYTrFRsDZ37R09wM8vcEWintydBz5YwOO46CWCy/0I8C3ECAIq+Wknar+ew3AKov3tkEMOA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=none action=none header.from=amd.com; dkim=none (message not signed);
@@ -27,45 +27,44 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=awqdYuhTv0jIQDhd0psF+cIMqKVIE118AV4mgpQcLig=;
- b=f4ui4dp6sw2ZzqOFTwP/bGtEHFfSa3H4FgW8qFDSaZNgkixxd3DHoSFdCkL/auRsKXmZr7M/cYtSMQv7zU3X8LM/wrMJfW6d7QrD19sVcrDlTqQHO2ca5xIcl4k/gAlUbJ4vszre9N1y7swlpTNaLEsS31/pADQ28H3TRtPedZU=
-Received: from BN4PR11CA0023.namprd11.prod.outlook.com (2603:10b6:403:1::33)
- by MN2PR12MB3247.namprd12.prod.outlook.com (2603:10b6:208:ad::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.20; Wed, 21 Oct
- 2020 14:23:28 +0000
-Received: from BN8NAM11FT025.eop-nam11.prod.protection.outlook.com
- (2603:10b6:403:1:cafe::7e) by BN4PR11CA0023.outlook.office365.com
- (2603:10b6:403:1::33) with Microsoft SMTP Server (version=TLS1_2,
+ bh=HGghzOGdgV4ifdId+qAkg6JwqNyWUwNtJiSFx9tvTrA=;
+ b=K0zAz1osNXqbFiktdcuOmwPRwKMUm5+UiKhpcw0n+HfoKEvgEwU1jQQkKcgA3yH5/4eVRFa40BWcavuJn74cI3oiAiPv2M7QtQE8+UScxneM5RzjPjNR7NFwtDwEeNP+Ni9eQvc/LEKivc7FBr790P0DAhmBmRC+Je/LmL/C7Cg=
+Received: from DM5PR16CA0043.namprd16.prod.outlook.com (2603:10b6:4:15::29) by
+ SA0PR12MB4349.namprd12.prod.outlook.com (2603:10b6:806:98::21) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3477.20; Wed, 21 Oct 2020 14:23:30 +0000
+Received: from DM6NAM11FT047.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:4:15:cafe::29) by DM5PR16CA0043.outlook.office365.com
+ (2603:10b6:4:15::29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18 via Frontend
- Transport; Wed, 21 Oct 2020 14:23:28 +0000
+ Transport; Wed, 21 Oct 2020 14:23:30 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=none action=none
  header.from=amd.com;
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- BN8NAM11FT025.mail.protection.outlook.com (10.13.177.136) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ DM6NAM11FT047.mail.protection.outlook.com (10.13.172.139) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3499.18 via Frontend Transport; Wed, 21 Oct 2020 14:23:28 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3499.18 via Frontend Transport; Wed, 21 Oct 2020 14:23:29 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 21 Oct
  2020 09:23:28 -0500
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Wed, 21 Oct
- 2020 09:23:27 -0500
+ 2020 09:23:28 -0500
 Received: from aj-EliteDesk.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
  Transport; Wed, 21 Oct 2020 09:23:27 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 29/33] drm/amd/display: Add tracepoint for capturing clocks
- state
-Date: Wed, 21 Oct 2020 10:22:53 -0400
-Message-ID: <20201021142257.190969-30-aurabindo.pillai@amd.com>
+Subject: [PATCH 30/33] drm/amd/display: prevent null pointer access
+Date: Wed, 21 Oct 2020 10:22:54 -0400
+Message-ID: <20201021142257.190969-31-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201021142257.190969-1-aurabindo.pillai@amd.com>
 References: <20201021142257.190969-1-aurabindo.pillai@amd.com>
@@ -73,27 +72,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 867b8e7e-7bf5-48a1-4634-08d875cce139
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3247:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB324722FE98D6A68208DA068B8B1C0@MN2PR12MB3247.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:639;
+X-MS-Office365-Filtering-Correlation-Id: 3e0a2a03-8498-436e-a927-08d875cce225
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4349:
+X-Microsoft-Antispam-PRVS: <SA0PR12MB4349D3D985C807A2B428A8838B1C0@SA0PR12MB4349.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:288;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7XZ5lkQ6X2DAMgF7jEzK2aXRkRie8JfsnTU1kVhvKgy7aGRoVrOYCzgsAEfcw8rtvApMIrDUiA4v9NK6IUAtfxd7hKlMAnMCP9PtaY/HcJ0o41itKXoDQI7ABdBGSmryWBgiIv9OvrPAJeSTWy+Yhon+Nj9mKMfYq4qlLlYjBfeBoShaYDyuarV/HauzHo546u3VNomRjHxApoYSnkhpSCE2tzamnMpEHYQafHlGnUvuJ2KRFIUAS7tkEdQ8mobAzZc7E+0ph72193rCXipVaLy1meH184PMrCXPbJVqe2GVSRXWmT6MExX38dKwoXjR30jzZ8fPWT06S2qWiW/1YjrSNWfje8svPfJ6A/YRSqwjKjBtE+Otm/bCHP2v/QWlBznErikN+dQfQ0gEY61iuA==
+X-Microsoft-Antispam-Message-Info: LZoGEq/QiPpQg8lB+/LCbejo8R2OfckkSttgML8i1/UcV163SSfrvc2JWMsQHhEvHj0Bqsb+/akH4+GYYosBVQqpDw6CiyjltzFpW5iuwOYtfHQ+DpNzmE5V37uzevaO4piAPWYj47dypyANcd6CCk0E5IfwcxROQ9jG2oUkCVr2oFFmytqB6n8Ryg/iG42QP+50x87FeegXFXP0WsTJnm4/o4tuO6Y3dvvVJyBr+zfO8hj5ioy/FUWI8a6IG6lDNTvUSzKPX+Fh101EiF11X0gMjrzTc2LmVRxP+jELsSwUw02NA8ZbKuVRo7cm1ism5gaVXDcw4a909SrK2NVcBiGB2FiaSlVOLxwmacq+jVBr9oAeYGcibYDaXiikrnHdhxz1QIjTTMEYVevDKZTrGw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(396003)(346002)(376002)(136003)(46966005)(316002)(82740400003)(70206006)(47076004)(86362001)(478600001)(26005)(1076003)(6916009)(2906002)(44832011)(7696005)(36756003)(356005)(70586007)(8936002)(2616005)(4326008)(54906003)(8676002)(336012)(83380400001)(81166007)(426003)(186003)(82310400003)(5660300002)(6666004);
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(376002)(136003)(346002)(396003)(39860400002)(46966005)(6916009)(2616005)(82310400003)(26005)(186003)(5660300002)(86362001)(478600001)(70206006)(1076003)(336012)(4326008)(2906002)(36756003)(70586007)(356005)(81166007)(44832011)(8676002)(426003)(47076004)(7696005)(316002)(6666004)(82740400003)(54906003)(8936002)(83380400001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2020 14:23:28.4890 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 867b8e7e-7bf5-48a1-4634-08d875cce139
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2020 14:23:29.9832 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e0a2a03-8498-436e-a927-08d875cce225
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT025.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT047.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3247
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4349
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,200 +104,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
+Cc: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Eryk.Brol@amd.com,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, stable@vger.kernel.org, Aurabindo.Pillai@amd.com,
  Bhawanpreet.Lakha@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 
-The clock state update is the source of many problems, and capturing
-this sort of information helps debug. This commit introduces tracepoints
-for capturing clock values and also add traces in DCE, DCN1, DCN2x, and
-DCN3.
+Prevent null pointer access when checking odm tree.
 
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Cc: <stable@vger.kernel.org>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_trace.h   | 113 ++++++++++++++++++
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  13 +-
- drivers/gpu/drm/amd/display/dc/dc_trace.h     |   6 +
- 3 files changed, 131 insertions(+), 1 deletion(-)
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_resource.c    | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
-index dd7a879c0ec6..86960476823c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
-@@ -484,6 +484,119 @@ TRACE_EVENT(amdgpu_dm_dc_pipe_state,
- 	)
- );
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+index f227f4653a71..ed222a3d76c7 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+@@ -2120,12 +2120,12 @@ static bool dcn30_internal_validate_bw(
  
-+TRACE_EVENT(amdgpu_dm_dc_clocks_state,
-+	    TP_PROTO(const struct dc_clocks *clk),
-+	    TP_ARGS(clk),
-+
-+	    TP_STRUCT__entry(
-+			     __field(int, dispclk_khz)
-+			     __field(int, dppclk_khz)
-+			     __field(int, disp_dpp_voltage_level_khz)
-+			     __field(int, dcfclk_khz)
-+			     __field(int, socclk_khz)
-+			     __field(int, dcfclk_deep_sleep_khz)
-+			     __field(int, fclk_khz)
-+			     __field(int, phyclk_khz)
-+			     __field(int, dramclk_khz)
-+			     __field(int, p_state_change_support)
-+			     __field(int, prev_p_state_change_support)
-+			     __field(int, pwr_state)
-+			     __field(int, dtm_level)
-+			     __field(int, max_supported_dppclk_khz)
-+			     __field(int, max_supported_dispclk_khz)
-+			     __field(int, bw_dppclk_khz)
-+			     __field(int, bw_dispclk_khz)
-+	    ),
-+	    TP_fast_assign(
-+			   __entry->dispclk_khz = clk->dispclk_khz;
-+			   __entry->dppclk_khz = clk->dppclk_khz;
-+			   __entry->dcfclk_khz = clk->dcfclk_khz;
-+			   __entry->socclk_khz = clk->socclk_khz;
-+			   __entry->dcfclk_deep_sleep_khz = clk->dcfclk_deep_sleep_khz;
-+			   __entry->fclk_khz = clk->fclk_khz;
-+			   __entry->phyclk_khz = clk->phyclk_khz;
-+			   __entry->dramclk_khz = clk->dramclk_khz;
-+			   __entry->p_state_change_support = clk->p_state_change_support;
-+			   __entry->prev_p_state_change_support = clk->prev_p_state_change_support;
-+			   __entry->pwr_state = clk->pwr_state;
-+			   __entry->prev_p_state_change_support = clk->prev_p_state_change_support;
-+			   __entry->dtm_level = clk->dtm_level;
-+			   __entry->max_supported_dppclk_khz = clk->max_supported_dppclk_khz;
-+			   __entry->max_supported_dispclk_khz = clk->max_supported_dispclk_khz;
-+			   __entry->bw_dppclk_khz = clk->bw_dppclk_khz;
-+			   __entry->bw_dispclk_khz = clk->bw_dispclk_khz;
-+	    ),
-+	    TP_printk("dispclk_khz=%d dppclk_khz=%d disp_dpp_voltage_level_khz=%d dcfclk_khz=%d socclk_khz=%d "
-+		      "dcfclk_deep_sleep_khz=%d fclk_khz=%d phyclk_khz=%d "
-+		      "dramclk_khz=%d p_state_change_support=%d "
-+		      "prev_p_state_change_support=%d pwr_state=%d prev_p_state_change_support=%d "
-+		      "dtm_level=%d max_supported_dppclk_khz=%d max_supported_dispclk_khz=%d "
-+		      "bw_dppclk_khz=%d bw_dispclk_khz=%d ",
-+		      __entry->dispclk_khz,
-+		      __entry->dppclk_khz,
-+		      __entry->disp_dpp_voltage_level_khz,
-+		      __entry->dcfclk_khz,
-+		      __entry->socclk_khz,
-+		      __entry->dcfclk_deep_sleep_khz,
-+		      __entry->fclk_khz,
-+		      __entry->phyclk_khz,
-+		      __entry->dramclk_khz,
-+		      __entry->p_state_change_support,
-+		      __entry->prev_p_state_change_support,
-+		      __entry->pwr_state,
-+		      __entry->prev_p_state_change_support,
-+		      __entry->dtm_level,
-+		      __entry->max_supported_dppclk_khz,
-+		      __entry->max_supported_dispclk_khz,
-+		      __entry->bw_dppclk_khz,
-+		      __entry->bw_dispclk_khz
-+	    )
-+);
-+
-+TRACE_EVENT(amdgpu_dm_dce_clocks_state,
-+	    TP_PROTO(const struct dce_bw_output *clk),
-+	    TP_ARGS(clk),
-+
-+	    TP_STRUCT__entry(
-+			     __field(bool, cpuc_state_change_enable)
-+			     __field(bool, cpup_state_change_enable)
-+			     __field(bool, stutter_mode_enable)
-+			     __field(bool, nbp_state_change_enable)
-+			     __field(bool, all_displays_in_sync)
-+			     __field(int, sclk_khz)
-+			     __field(int, sclk_deep_sleep_khz)
-+			     __field(int, yclk_khz)
-+			     __field(int, dispclk_khz)
-+			     __field(int, blackout_recovery_time_us)
-+	    ),
-+	    TP_fast_assign(
-+			   __entry->cpuc_state_change_enable = clk->cpuc_state_change_enable;
-+			   __entry->cpup_state_change_enable = clk->cpup_state_change_enable;
-+			   __entry->stutter_mode_enable = clk->stutter_mode_enable;
-+			   __entry->nbp_state_change_enable = clk->nbp_state_change_enable;
-+			   __entry->all_displays_in_sync = clk->all_displays_in_sync;
-+			   __entry->sclk_khz = clk->sclk_khz;
-+			   __entry->sclk_deep_sleep_khz = clk->sclk_deep_sleep_khz;
-+			   __entry->yclk_khz = clk->yclk_khz;
-+			   __entry->dispclk_khz = clk->dispclk_khz;
-+			   __entry->blackout_recovery_time_us = clk->blackout_recovery_time_us;
-+	    ),
-+	    TP_printk("cpuc_state_change_enable=%d cpup_state_change_enable=%d stutter_mode_enable=%d "
-+		      "nbp_state_change_enable=%d all_displays_in_sync=%d sclk_khz=%d sclk_deep_sleep_khz=%d "
-+		      "yclk_khz=%d dispclk_khz=%d blackout_recovery_time_us=%d",
-+		      __entry->cpuc_state_change_enable,
-+		      __entry->cpup_state_change_enable,
-+		      __entry->stutter_mode_enable,
-+		      __entry->nbp_state_change_enable,
-+		      __entry->all_displays_in_sync,
-+		      __entry->sclk_khz,
-+		      __entry->sclk_deep_sleep_khz,
-+		      __entry->yclk_khz,
-+		      __entry->dispclk_khz,
-+		      __entry->blackout_recovery_time_us
-+	    )
-+);
-+
- #endif /* _AMDGPU_DM_TRACE_H_ */
+ 		if (split[i]) {
+ 			if (odm) {
+-				if (split[i] == 4 && old_pipe->next_odm_pipe->next_odm_pipe)
++				if (split[i] == 4 && old_pipe->next_odm_pipe && old_pipe->next_odm_pipe->next_odm_pipe)
+ 					old_index = old_pipe->next_odm_pipe->next_odm_pipe->pipe_idx;
+ 				else if (old_pipe->next_odm_pipe)
+ 					old_index = old_pipe->next_odm_pipe->pipe_idx;
+ 			} else {
+-				if (split[i] == 4 && old_pipe->bottom_pipe->bottom_pipe &&
++				if (split[i] == 4 && old_pipe->bottom_pipe && old_pipe->bottom_pipe->bottom_pipe &&
+ 						old_pipe->bottom_pipe->bottom_pipe->plane_state == old_pipe->plane_state)
+ 					old_index = old_pipe->bottom_pipe->bottom_pipe->pipe_idx;
+ 				else if (old_pipe->bottom_pipe &&
+@@ -2165,10 +2165,12 @@ static bool dcn30_internal_validate_bw(
+ 				goto validate_fail;
+ 			newly_split[pipe_4to1->pipe_idx] = true;
  
- #undef TRACE_INCLUDE_PATH
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 764cae604203..36f9bba4a321 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -1435,6 +1435,11 @@ static enum dc_status dc_commit_state_no_check(struct dc *dc, struct dc_state *c
- 		dc->hwss.optimize_bandwidth(dc, context);
- 	}
- 
-+	if (dc->ctx->dce_version >= DCE_VERSION_MAX)
-+		TRACE_DCN_CLOCK_STATE(&context->bw_ctx.bw.dcn.clk);
-+	else
-+		TRACE_DCE_CLOCK_STATE(&context->bw_ctx.bw.dce);
-+
- 	context->stream_mask = get_stream_mask(dc, context);
- 
- 	if (context->stream_mask != dc->current_state->stream_mask)
-@@ -2737,9 +2742,15 @@ void dc_commit_updates_for_stream(struct dc *dc,
- 		}
- 	}
- 	/*let's use current_state to update watermark etc*/
--	if (update_type >= UPDATE_TYPE_FULL)
-+	if (update_type >= UPDATE_TYPE_FULL) {
- 		dc_post_update_surfaces_to_stream(dc);
- 
-+		if (dc_ctx->dce_version >= DCE_VERSION_MAX)
-+			TRACE_DCN_CLOCK_STATE(&context->bw_ctx.bw.dcn.clk);
-+		else
-+			TRACE_DCE_CLOCK_STATE(&context->bw_ctx.bw.dce);
-+	}
-+
- 	return;
- 
- }
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_trace.h b/drivers/gpu/drm/amd/display/dc/dc_trace.h
-index 783256914596..d2615357269b 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_trace.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_trace.h
-@@ -31,3 +31,9 @@
- 						      pipe_ctx->stream, &pipe_ctx->plane_res, \
- 						      pipe_ctx->update_flags.raw); \
- 	}
-+
-+#define TRACE_DCE_CLOCK_STATE(dce_clocks) \
-+	trace_amdgpu_dm_dce_clocks_state(dce_clocks)
-+
-+#define TRACE_DCN_CLOCK_STATE(dcn_clocks) \
-+	trace_amdgpu_dm_dc_clocks_state(dcn_clocks)
+-			if (odm && old_pipe->next_odm_pipe->next_odm_pipe->next_odm_pipe)
++			if (odm && old_pipe->next_odm_pipe && old_pipe->next_odm_pipe->next_odm_pipe
++					&& old_pipe->next_odm_pipe->next_odm_pipe->next_odm_pipe)
+ 				old_index = old_pipe->next_odm_pipe->next_odm_pipe->next_odm_pipe->pipe_idx;
+-			else if (!odm && old_pipe->bottom_pipe->bottom_pipe->bottom_pipe &&
+-						old_pipe->bottom_pipe->bottom_pipe->bottom_pipe->plane_state == old_pipe->plane_state)
++			else if (!odm && old_pipe->bottom_pipe && old_pipe->bottom_pipe->bottom_pipe &&
++					old_pipe->bottom_pipe->bottom_pipe->bottom_pipe &&
++					old_pipe->bottom_pipe->bottom_pipe->bottom_pipe->plane_state == old_pipe->plane_state)
+ 				old_index = old_pipe->bottom_pipe->bottom_pipe->bottom_pipe->pipe_idx;
+ 			else
+ 				old_index = -1;
 -- 
 2.25.1
 
