@@ -1,58 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AFA9295526
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Oct 2020 01:31:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74EE7295528
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Oct 2020 01:31:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FF7A6EEB7;
-	Wed, 21 Oct 2020 23:31:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 049B56EEB5;
+	Wed, 21 Oct 2020 23:31:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com
  [IPv6:2a00:1450:4864:20::641])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B0CF6EEB7
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 23:31:45 +0000 (UTC)
-Received: by mail-ej1-x641.google.com with SMTP id dt13so5627049ejb.12
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 16:31:45 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71DA96EEBB
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 23:31:47 +0000 (UTC)
+Received: by mail-ej1-x641.google.com with SMTP id k3so17016ejj.10
+ for <amd-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 16:31:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=basnieuwenhuizen.nl; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=ryen1cCa8xw+mhpBaXSWR/l1v7+984S2xUGDSKOKJCk=;
- b=W7Im4iiENn3ADzTAb5BSxF9zVWTcZFLDKMWMsaP1CfmOWjlz/2lZAum7K69h/YW5Cd
- DjOr0MIX6PGULnaWPzW/IrgYyFYn8ibuTrOCl41N3aLIeaj63C0JJ1SLCTFcg0hf7Aww
- blpU3psXvK8cpU+BBc2FLFiGL07Bdxfg85Lh326uNNhmNx64TZl+4Om0bl4I9M9GN33G
- Gu2hQ50I2SlV/GcArf9M1ZRWbX21Sx0zdffg7CjgdX1mjlq2Tou7Jmz0shCq2EWLiQha
- 7wfZ7Hkxz3D7knbxcBPeUe5jSYEDBwLNhgzinxx0+iTepjAHiOpOFPc7lqMW/y6SNQ7+
- bcRg==
+ bh=oWNb2QVtPoIG0nRnDDQMH3KsHOSLrCx63mIY3MC3Z6E=;
+ b=i5llHd5AyGCCR0K6nP1x1s2p6c614WNMWc9M+oKPLtoIOYVY+knnGbOW8Aq2aly5SW
+ xxMLpB9dC+teOczss95cVUOMXr1fs5qDI6uFBbd9ekYWulWz4FqbRaedh3VN8suziLY/
+ vo8jx/v+FSukVyBXR/unMF9waOKrgWfrvVIRtZ7CinhrwBJewALjhvloOogJO4kCBAqP
+ wlDI3ddAHVUXovSuVzGYazXglP6syqRl2NGcrgxobHfJe+pwO+MwM67V5/CokeB57V3u
+ cbgmOO5QS96yHN6ac4tM6vKze5n577Dv4qXfg26h7Ln0pCalLx+hng9d1a72V7XJW8xq
+ lglw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ryen1cCa8xw+mhpBaXSWR/l1v7+984S2xUGDSKOKJCk=;
- b=JTMMUfXmek6nyl41qFanYSMA1kgZSJ7mDFAZJbIqxU13gG2lgjGd/riMYuSM4rlz9X
- 8ENYEh9Cezt8Fu1lIbhXLr28jWuwf16HndX/D7yLYbmKWIEXK78PsEKiwSXSTrVq7GAB
- yccMlo3+SkcOxaPPgR9a6ozGaEe0oASWTqQDMhtkV2nyde/j59W1VgSF0n/cFig5KrBE
- IPUa8OJt2XQlfmInC3l5aUZskzEPvbJUTnXnvPCsgE0dgcMWEyCuM5NIuKDHmtjQ/yGK
- zdCmOIpbpjK0uidrn2tLZDbaEt/AHePpkh4nyyCVURo7WSyAjCW7WAJoDCbA/NznBMyR
- ty8g==
-X-Gm-Message-State: AOAM530mvcStdBy6rMbtHVdDrXdULCIfOa+T8MrqOJag/T7LWM44NvR5
- NUa8A3O0Gdk9ekKWgNyrO61Ov6LraKe7WeJ4
-X-Google-Smtp-Source: ABdhPJxr1FwaUDBqQC7hVG78bmkVfxUk6rh3aHI//4CIBLFk9vuaBHQAuWj3obDOSnZ43HR7OokB+Q==
-X-Received: by 2002:a17:906:284f:: with SMTP id
- s15mr5913870ejc.336.1603323103587; 
- Wed, 21 Oct 2020 16:31:43 -0700 (PDT)
+ bh=oWNb2QVtPoIG0nRnDDQMH3KsHOSLrCx63mIY3MC3Z6E=;
+ b=YzjVeQa8RRIPlb0AplYIUf0+j4/9wUWhuVclTsWfMJ+LP8HmcPBTCLpC8GPHcYNcSl
+ RfbkcOWAwkMutwniZzNTQpjuamCMDpyRwMRkCyXeDThk7pcNkRQhGuCaNpwVLbwG1KIB
+ BZpZbuyhVj8pSrVLK9gQ9tDZ6RN0X4uybsX2yhlSVdpa/lvYSun9P42Cb3JH46mAvlOO
+ jJmYFusPalIq6XqpscC6ffVqSACsnc4iEnynfj1fZS82Jhev2X2ZJGMkvXAAdROehQKh
+ Gd0iqijNV87dQkX1YjOcQvwVz+mGCQKVGInyZ+ZO/ksHC3PVOeB29ds4MOyMZLg08qaZ
+ GpRg==
+X-Gm-Message-State: AOAM531rAM0WfijfLEtay/huEFbVChWfwAsg1kYPatIe32Le4xbg9uuN
+ 8XDoeKrdDXsWwhdwDb8J+WJhb67xQgqiULnv
+X-Google-Smtp-Source: ABdhPJyrasmGGaAxJPRXfw4LKMA5PPYyBNWl263Ii6r0639nRKMm4Z2AiiOsTyjyOrQcUwGFajgUrQ==
+X-Received: by 2002:a17:906:7e0e:: with SMTP id
+ e14mr5767452ejr.238.1603323105763; 
+ Wed, 21 Oct 2020 16:31:45 -0700 (PDT)
 Received: from localhost.localdomain
  ([2a02:aa12:a77f:2000:4cea:81e7:5fd4:93f7])
- by smtp.gmail.com with ESMTPSA id k23sm2845236ejs.100.2020.10.21.16.31.42
+ by smtp.gmail.com with ESMTPSA id k23sm2845236ejs.100.2020.10.21.16.31.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Oct 2020 16:31:42 -0700 (PDT)
+ Wed, 21 Oct 2020 16:31:44 -0700 (PDT)
 From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 08/11] drm/amd/display: Set DC options from modifiers.
-Date: Thu, 22 Oct 2020 01:31:27 +0200
-Message-Id: <20201021233130.874615-9-bas@basnieuwenhuizen.nl>
+Subject: [PATCH v3 09/11] drm/amd/display: Add formats for DCC with 2/3 planes.
+Date: Thu, 22 Oct 2020 01:31:28 +0200
+Message-Id: <20201021233130.874615-10-bas@basnieuwenhuizen.nl>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201021233130.874615-1-bas@basnieuwenhuizen.nl>
 References: <20201021233130.874615-1-bas@basnieuwenhuizen.nl>
@@ -76,148 +76,139 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This sets the DC tiling options from the modifier, if modifiers
-are used for the FB. This patch by itself does not expose the
-support yet though.
+For DCC we will use 2/3 planes to avoid X rendering to the frontbuffer
+with DCC compressed images. To make this work with the core KMS
+validation we need to add extra formats with the extra planes.
 
-There is not much validation yet to limit the scope of this
-patch, but the current validation is at the same level as
-the BO metadata path.
-
-v2: Add modifier check to should_reset_plane.
+However, due to flexibility we set bpp = 0 for the extra planes and
+do the validation ourselves.
 
 Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 102 ++++++++++++++++--
- 1 file changed, 95 insertions(+), 7 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 96 +++++++++++++++++++
+ 1 file changed, 96 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 479c886816d9..034397c1f2b1 100644
+index 034397c1f2b1..6b33e030fe20 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3995,6 +3995,83 @@ fill_gfx9_plane_attributes_from_flags(struct amdgpu_device *adev,
- 	return 0;
+@@ -185,6 +185,9 @@ static bool amdgpu_dm_link_setup_psr(struct dc_stream_state *stream);
+ static bool amdgpu_dm_psr_disable(struct dc_stream_state *stream);
+ static bool amdgpu_dm_psr_disable_all(struct amdgpu_display_manager *dm);
+ 
++static const struct drm_format_info *
++amd_get_format_info(const struct drm_mode_fb_cmd2 *cmd);
++
+ /*
+  * dm_vblank_get_counter
+  *
+@@ -2160,6 +2163,7 @@ const struct amdgpu_ip_block_version dm_ip_block =
+ 
+ static const struct drm_mode_config_funcs amdgpu_dm_mode_funcs = {
+ 	.fb_create = amdgpu_display_user_framebuffer_create,
++	.get_format_info = amd_get_format_info,
+ 	.output_poll_changed = drm_fb_helper_output_poll_changed,
+ 	.atomic_check = amdgpu_dm_atomic_check,
+ 	.atomic_commit = amdgpu_dm_atomic_commit,
+@@ -4010,6 +4014,98 @@ modifier_gfx9_swizzle_mode(uint64_t modifier)
+ 	return AMD_FMT_MOD_GET(TILE, modifier);
  }
  
-+static bool
-+modifier_has_dcc(uint64_t modifier)
++static const struct drm_format_info dcc_formats[] = {
++	{ .format = DRM_FORMAT_XRGB8888, .depth = 24, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	 { .format = DRM_FORMAT_XBGR8888, .depth = 24, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_ARGB8888, .depth = 32, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	   .has_alpha = true, },
++	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_BGRA8888, .depth = 32, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_ARGB2101010, .depth = 30, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_ABGR2101010, .depth = 30, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_RGB565, .depth = 16, .num_planes = 2,
++	  .cpp = { 2, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++};
++
++static const struct drm_format_info dcc_retile_formats[] = {
++	{ .format = DRM_FORMAT_XRGB8888, .depth = 24, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	 { .format = DRM_FORMAT_XBGR8888, .depth = 24, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_ARGB8888, .depth = 32, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	   .has_alpha = true, },
++	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_BGRA8888, .depth = 32, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_ARGB2101010, .depth = 30, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_ABGR2101010, .depth = 30, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_RGB565, .depth = 16, .num_planes = 3,
++	  .cpp = { 2, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++};
++
++
++static const struct drm_format_info *
++lookup_format_info(const struct drm_format_info formats[],
++		  int num_formats, u32 format)
 +{
-+	return IS_AMD_FMT_MOD(modifier) && AMD_FMT_MOD_GET(DCC, modifier);
++	int i;
++
++	for (i = 0; i < num_formats; i++) {
++		if (formats[i].format == format)
++			return &formats[i];
++	}
++
++	return NULL;
 +}
 +
-+static unsigned
-+modifier_gfx9_swizzle_mode(uint64_t modifier)
++static const struct drm_format_info *
++amd_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
 +{
-+	if (modifier == DRM_FORMAT_MOD_LINEAR)
-+		return 0;
-+
-+	return AMD_FMT_MOD_GET(TILE, modifier);
-+}
-+
-+static void
-+fill_gfx9_tiling_info_from_modifier(const struct amdgpu_device *adev,
-+				    union dc_tiling_info *tiling_info,
-+				    uint64_t modifier)
-+{
-+	unsigned int mod_bank_xor_bits = AMD_FMT_MOD_GET(BANK_XOR_BITS, modifier);
-+	unsigned int mod_pipe_xor_bits = AMD_FMT_MOD_GET(PIPE_XOR_BITS, modifier);
-+	unsigned int pkrs_log2 = AMD_FMT_MOD_GET(PACKERS, modifier);
-+	unsigned int pipes_log2 = min(4u, mod_pipe_xor_bits);
-+
-+	fill_gfx9_tiling_info_from_device(adev, tiling_info);
++	uint64_t modifier = cmd->modifier[0];
 +
 +	if (!IS_AMD_FMT_MOD(modifier))
-+		return;
++		return NULL;
 +
-+	tiling_info->gfx9.num_pipes = 1u << pipes_log2;
-+	tiling_info->gfx9.num_shader_engines = 1u << (mod_pipe_xor_bits - pipes_log2);
++	if (AMD_FMT_MOD_GET(DCC_RETILE, modifier))
++		return lookup_format_info(dcc_retile_formats,
++					  ARRAY_SIZE(dcc_retile_formats),
++					  cmd->pixel_format);
 +
-+	if (adev->family >= AMDGPU_FAMILY_NV) {
-+		tiling_info->gfx9.num_pkrs = 1u << pkrs_log2;
-+	} else {
-+		tiling_info->gfx9.num_banks = 1u << mod_bank_xor_bits;
++	if (AMD_FMT_MOD_GET(DCC, modifier))
++		return lookup_format_info(dcc_formats, ARRAY_SIZE(dcc_formats),
++					  cmd->pixel_format);
 +
-+		/* for DCC we know it isn't rb aligned, so rb_per_se doesn't matter. */
-+	}
++	/* returning NULL will cause the default format structs to be used. */
++	return NULL;
 +}
 +
-+static int
-+fill_gfx9_plane_attributes_from_modifiers(struct amdgpu_device *adev,
-+					  const struct amdgpu_framebuffer *afb,
-+					  const enum surface_pixel_format format,
-+					  const enum dc_rotation_angle rotation,
-+					  const struct plane_size *plane_size,
-+					  union dc_tiling_info *tiling_info,
-+					  struct dc_plane_dcc_param *dcc,
-+					  struct dc_plane_address *address,
-+					  const bool force_disable_dcc)
-+{
-+	const uint64_t modifier = afb->base.modifier;
-+	int ret;
-+
-+	fill_gfx9_tiling_info_from_modifier(adev, tiling_info, modifier);
-+	tiling_info->gfx9.swizzle = modifier_gfx9_swizzle_mode(modifier);
-+
-+	if (modifier_has_dcc(modifier) && !force_disable_dcc) {
-+		uint64_t dcc_address = afb->address + afb->base.offsets[1];
-+
-+		dcc->enable = 1;
-+		dcc->meta_pitch = afb->base.pitches[1];
-+		dcc->independent_64b_blks = AMD_FMT_MOD_GET(DCC_INDEPENDENT_64B, modifier);
-+
-+		address->grph.meta_addr.low_part = lower_32_bits(dcc_address);
-+		address->grph.meta_addr.high_part = upper_32_bits(dcc_address);
-+	}
-+
-+	ret = validate_dcc(adev, format, rotation, tiling_info, dcc, address, plane_size);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
- static int
- fill_plane_buffer_attributes(struct amdgpu_device *adev,
- 			     const struct amdgpu_framebuffer *afb,
-@@ -4063,12 +4140,22 @@ fill_plane_buffer_attributes(struct amdgpu_device *adev,
- 	}
- 
- 	if (adev->family >= AMDGPU_FAMILY_AI) {
--		ret = fill_gfx9_plane_attributes_from_flags(adev, afb, format, rotation,
--							    plane_size, tiling_info, dcc,
--							    address, tiling_flags,
--							    force_disable_dcc);
--		if (ret)
--			return ret;
-+		if (afb->base.flags & DRM_MODE_FB_MODIFIERS) {
-+			ret = fill_gfx9_plane_attributes_from_modifiers(adev, afb, format,
-+									rotation, plane_size,
-+									tiling_info, dcc,
-+									address,
-+									force_disable_dcc);
-+			if (ret)
-+				return ret;
-+		} else {
-+			ret = fill_gfx9_plane_attributes_from_flags(adev, afb, format, rotation,
-+								    plane_size, tiling_info, dcc,
-+								    address, tiling_flags,
-+								    force_disable_dcc);
-+			if (ret)
-+				return ret;
-+		}
- 	} else {
- 		fill_gfx8_tiling_info_from_flags(tiling_info, tiling_flags);
- 	}
-@@ -8511,7 +8598,8 @@ static bool should_reset_plane(struct drm_atomic_state *state,
- 		new_afb = (struct amdgpu_framebuffer *)new_other_state->fb;
- 
- 		/* Tiling and DCC changes also require bandwidth updates. */
--		if (old_afb->tiling_flags != new_afb->tiling_flags)
-+		if (old_afb->tiling_flags != new_afb->tiling_flags ||
-+		    old_afb->base.modifier != new_afb->base.modifier)
- 			return true;
- 	}
- 
+ static void
+ fill_gfx9_tiling_info_from_modifier(const struct amdgpu_device *adev,
+ 				    union dc_tiling_info *tiling_info,
 -- 
 2.28.0
 
