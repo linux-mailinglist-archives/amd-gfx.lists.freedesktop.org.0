@@ -1,41 +1,65 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6D3B29608A
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Oct 2020 15:59:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A4B22960BE
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Oct 2020 16:13:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC2196F550;
-	Thu, 22 Oct 2020 13:59:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EBD36F585;
+	Thu, 22 Oct 2020 14:13:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D9486F554;
- Thu, 22 Oct 2020 13:54:20 +0000 (UTC)
-Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
- bits)) (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 7D64E22275;
- Thu, 22 Oct 2020 13:54:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1603374859;
- bh=k/96McXBUQrMgM4y/fJNrw43hXeNtSxVU6BUe2aasrQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=JfhNMyMoeo79vFKGh2kPdEK6Z9KBVoCnHEiWkZoBbSOYVIyDiVjzohSe9tyINoAEu
- oQ0dY0PKFot074Qy8U0+2w1ZtMNyp1HRdU4TTmBWVu4+9DC+f2dCt3amempuKh7ErT
- xcK5tj42W5UNWipPg8217GvuzCo3QQf1TRVGoBfQ=
-Date: Thu, 22 Oct 2020 15:54:55 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D667A6F581
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 14:13:51 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id q5so2441668wmq.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 07:13:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=enF/NQ78UlHZi0kpjlRMqO+lesxBNMFNnWEi966YlwU=;
+ b=lcgl8RehFALlBvKW+2WEqI6hL3DQCvnayUx386YFYdIACL6eZdDekWSge6wl0xau/P
+ OurS80PGFdE+uCz2ywydsXe1KEcW2OKxZnMZUyxNDMbbrQ0IMr0SI/JTRmyVAXaE9J1O
+ hmmezb9rcO1k/LRCAp+BJe5NUZwtKmz2hdtkk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=enF/NQ78UlHZi0kpjlRMqO+lesxBNMFNnWEi966YlwU=;
+ b=Z3yzlFuwd1aXw8OqngtKHZyTriGH9gWzskxz7qFzdLIrr42XxmC3yRHXG+JwzZnp7K
+ q/joI76nc14qQDpkUPNyxyRwT45mXjrOx6O2bYesDgebhcAnTYJZiq0+EVnOKqSIYDpd
+ TxKPswe5kYz6n5lFBAout5wmnZApaaptHbD0Ugu/Dsn4YBR7HbxDohehT/6HkpQ+e6cv
+ mJpChuhih366jx5x2qAsvCBlbhumYqLQloAa1684sDhvOSwo0g2x1l8EEhyI0kNuPlHP
+ Xpr9KnK/cDBW6QVdIv4GFv8QJbFRt0GyBkr0jsjpVw6iZ3bVfLNodzbehal6FTpjRLXT
+ w7QA==
+X-Gm-Message-State: AOAM530e/8b34NzT3CpJ1og7bG7xBh+AIMy/H1YRSI2Uj+d7KDu7maqI
+ vNJ16IF70UOpACENWp10FVYmAQ==
+X-Google-Smtp-Source: ABdhPJwHYDGIRoRMV1tiPrqE+G8DvABiHKwtdx9svGn7vK4QZAvd1J5pyjsiQ/shrV+Vnd5qklpZ6Q==
+X-Received: by 2002:a1c:4604:: with SMTP id t4mr2863073wma.95.1603376030491;
+ Thu, 22 Oct 2020 07:13:50 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id y4sm3726390wmj.2.2020.10.22.07.13.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 22 Oct 2020 07:13:49 -0700 (PDT)
+Date: Thu, 22 Oct 2020 16:13:47 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
 To: Sumera Priyadarsini <sylphrenadin@gmail.com>
-Subject: Re: [Outreachy kernel] [PATCH 4/5] gpu: drm: amdgpu: Replace
- snprintf() with sysfs_emit()
-Message-ID: <20201022135455.GA1788090@kroah.com>
+Subject: Re: [Outreachy kernel][PATCH 0/5] drm/amdgpu: Replace snprintf()
+ with sysfs_emit
+Message-ID: <20201022141347.GZ401619@phenom.ffwll.local>
+Mail-Followup-To: Sumera Priyadarsini <sylphrenadin@gmail.com>,
+ dri-devel@lists.freedesktop.org, outreachy-kernel@googlegroups.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com,
+ airlied@linux.ie, melissa.srw@gmail.com,
+ linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 References: <cover.1603371258.git.sylphrenadin@gmail.com>
- <f6107f3e467f1906abdcc33d35f13cf54f7e5a96.1603371258.git.sylphrenadin@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <f6107f3e467f1906abdcc33d35f13cf54f7e5a96.1603371258.git.sylphrenadin@gmail.com>
-X-Mailman-Approved-At: Thu, 22 Oct 2020 13:59:31 +0000
+In-Reply-To: <cover.1603371258.git.sylphrenadin@gmail.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,37 +81,41 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 22, 2020 at 07:17:56PM +0530, Sumera Priyadarsini wrote:
+On Thu, Oct 22, 2020 at 07:07:50PM +0530, Sumera Priyadarsini wrote:
 > Using snprintf() for show() methods holds the risk of buffer overrun
 > as snprintf() does not know the PAGE_SIZE maximum of the temporary
 > buffer used to output sysfs content.
 > 
-> Modify amdgpu_psp.c to use sysfs_emit() instead which knows the
-> size of the temporary buffer.
-> 
-> Issue found with Coccinelle.
-> 
-> Signed-off-by: Sumera Priyadarsini <sylphrenadin@gmail.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> index d6c38e24f130..4d1d1e1b005d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> @@ -2621,7 +2621,7 @@ static ssize_t psp_usbc_pd_fw_sysfs_read(struct device *dev,
->  		return ret;
->  	}
->  
-> -	return snprintf(buf, PAGE_SIZE, "%x\n", fw_ver);
-> +	return sysfs_emit(buf, PAGE_SIZE, "%x\n", fw_ver);
+> This patchset is a series of Coccinelle cleanups across the staging
+> directory to convert snprintf with scnprintf in the relevant files.
 
-Did you build this code?  I don't think it is correct...
+I think you need to edit your template here since this is now drivers/gpu,
+not staging :-)
+-Daniel
 
-thanks,
+> 
+> Sumera Priyadarsini (5):
+>   gpu: drm: amdgpu: Replace snprintf() with sysfs_emit()
+>   gpu: drm: amdgpu: Replace snprintf() with sysfs_emit()
+>   gpu: drm: amdgpu: Replace snprintf() with sysfs_emit()
+>   gpu: drm: amdgpu: Replace snprintf() with sysfs_emit()
+>   gpu: drm: amdgpu: Replace snprintf() with sysfs_emit()
+> 
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c | 2 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c   | 8 ++++----
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c  | 4 ++--
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c      | 2 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c      | 4 ++--
+>  5 files changed, 10 insertions(+), 10 deletions(-)
+> 
+> -- 
+> 2.25.1
+> 
 
-greg k-h
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
