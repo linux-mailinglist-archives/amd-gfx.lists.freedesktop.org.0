@@ -1,65 +1,54 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A4B22960BE
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Oct 2020 16:13:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CD022961BD
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Oct 2020 17:36:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EBD36F585;
-	Thu, 22 Oct 2020 14:13:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA78F6F5B5;
+	Thu, 22 Oct 2020 15:36:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
  [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D667A6F581
- for <amd-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 14:13:51 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id q5so2441668wmq.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 07:13:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=enF/NQ78UlHZi0kpjlRMqO+lesxBNMFNnWEi966YlwU=;
- b=lcgl8RehFALlBvKW+2WEqI6hL3DQCvnayUx386YFYdIACL6eZdDekWSge6wl0xau/P
- OurS80PGFdE+uCz2ywydsXe1KEcW2OKxZnMZUyxNDMbbrQ0IMr0SI/JTRmyVAXaE9J1O
- hmmezb9rcO1k/LRCAp+BJe5NUZwtKmz2hdtkk=
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F42236F5B5
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 15:36:24 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id c16so2777725wmd.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 08:36:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=BrreVJl3/iBumAL6z8lLKkGOkw/StiamIps+ryVt3+4=;
+ b=HwZycMuBV77o/VutGHIL0MRWfGFoCVQmIC2zJDD+E46Trj4tdbLbMcH3JsVtmEJ3Kc
+ SGUBd5jG18O41F4wyw80dD3JBnnVgDOaXEmtci+EtpwJC0foln1RZNT4TqUPPbnMXTSw
+ HI5kIhMtA5O3jE6dxSdVeINcm6kKlw1TbnxADClmSeeqB8/ImIMNSa8vjfmYijA1nYpJ
+ /TixVoTcxOiUa7sUueAJ/0ENK6EU7GSnpzKIkCzqPXiSiTQbV/MjyKasOPjsXwBKV2tQ
+ Bt6sA5MVg3H65aYDlK4RZBPNJoQeHRW3Wjd52pPPoJMf4jmjEE7z1cNlI6nl1lcXl7F6
+ sOVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=enF/NQ78UlHZi0kpjlRMqO+lesxBNMFNnWEi966YlwU=;
- b=Z3yzlFuwd1aXw8OqngtKHZyTriGH9gWzskxz7qFzdLIrr42XxmC3yRHXG+JwzZnp7K
- q/joI76nc14qQDpkUPNyxyRwT45mXjrOx6O2bYesDgebhcAnTYJZiq0+EVnOKqSIYDpd
- TxKPswe5kYz6n5lFBAout5wmnZApaaptHbD0Ugu/Dsn4YBR7HbxDohehT/6HkpQ+e6cv
- mJpChuhih366jx5x2qAsvCBlbhumYqLQloAa1684sDhvOSwo0g2x1l8EEhyI0kNuPlHP
- Xpr9KnK/cDBW6QVdIv4GFv8QJbFRt0GyBkr0jsjpVw6iZ3bVfLNodzbehal6FTpjRLXT
- w7QA==
-X-Gm-Message-State: AOAM530e/8b34NzT3CpJ1og7bG7xBh+AIMy/H1YRSI2Uj+d7KDu7maqI
- vNJ16IF70UOpACENWp10FVYmAQ==
-X-Google-Smtp-Source: ABdhPJwHYDGIRoRMV1tiPrqE+G8DvABiHKwtdx9svGn7vK4QZAvd1J5pyjsiQ/shrV+Vnd5qklpZ6Q==
-X-Received: by 2002:a1c:4604:: with SMTP id t4mr2863073wma.95.1603376030491;
- Thu, 22 Oct 2020 07:13:50 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id y4sm3726390wmj.2.2020.10.22.07.13.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 22 Oct 2020 07:13:49 -0700 (PDT)
-Date: Thu, 22 Oct 2020 16:13:47 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Sumera Priyadarsini <sylphrenadin@gmail.com>
-Subject: Re: [Outreachy kernel][PATCH 0/5] drm/amdgpu: Replace snprintf()
- with sysfs_emit
-Message-ID: <20201022141347.GZ401619@phenom.ffwll.local>
-Mail-Followup-To: Sumera Priyadarsini <sylphrenadin@gmail.com>,
- dri-devel@lists.freedesktop.org, outreachy-kernel@googlegroups.com,
- alexander.deucher@amd.com, christian.koenig@amd.com,
- airlied@linux.ie, melissa.srw@gmail.com,
- linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <cover.1603371258.git.sylphrenadin@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=BrreVJl3/iBumAL6z8lLKkGOkw/StiamIps+ryVt3+4=;
+ b=rtLSc79OXA0AR+pbAbHEFVuh9FGi+84iBgRDyYwTIOAh/tbXjDEONTXXP4evXqC9wC
+ o5HDSiGydsNRsYyARzN8RB0mOvSGlMQGGoJGvE7ndCqBLuLKiok97m+R+d7XQ8yqQtxS
+ TbKCK2sIEb1Bn+JoHZeacAJ764w3pFcmBE7WGOan6MlER40ZxPToqNr9xwaSaW17tZ+G
+ /vpY92xvS5gfEwXFAvhq8m+4DJl32t0gKSoeAJY9t4lexs+lNQ0GMSXGSQlu5myYHUhz
+ Fhv16wAcQwmA5H29aq7f1P9tidwMJHIZ5rqmK+x5eQ1RMco3rEDQI/ZXeIgKAgtsOSNg
+ HzyA==
+X-Gm-Message-State: AOAM5338KzpaWJd1bx+e0TMilZS/nS+W+zpKpdiMOeRGqi6Y3GNC9FcW
+ foYDkGAOxHcYuVm3su6it5wE/jVcV7H+hfLD5J0=
+X-Google-Smtp-Source: ABdhPJwZOOriV4DCDPfkQUcTs/26ae61TdmKmffKBOk4l2Z/XuPB8k706JMyDHQ/s9HMnB9UFr1Z5EYaxtsn+xd7zW8=
+X-Received: by 2002:a1c:c915:: with SMTP id f21mr3091644wmb.73.1603380983697; 
+ Thu, 22 Oct 2020 08:36:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <cover.1603371258.git.sylphrenadin@gmail.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
+References: <20201021233130.874615-1-bas@basnieuwenhuizen.nl>
+ <20201021233130.874615-4-bas@basnieuwenhuizen.nl>
+In-Reply-To: <20201021233130.874615-4-bas@basnieuwenhuizen.nl>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 22 Oct 2020 11:36:12 -0400
+Message-ID: <CADnq5_OuXhN-2Raie9V452KrG4ChaguY1q6+Gk19mR86A=Fkog@mail.gmail.com>
+Subject: Re: [PATCH v3 03/11] drm/amd/display: Honor the offset for plane 0.
+To: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,51 +60,92 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, melissa.srw@gmail.com,
- outreachy-kernel@googlegroups.com, amd-gfx@lists.freedesktop.org,
- daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com,
- linux-media@vger.kernel.org
+Cc: Marek Olsak <maraeo@gmail.com>, "Leo \(Sunpeng\) Li" <sunpeng.li@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ "for 3.8" <stable@vger.kernel.org>, Daniel Vetter <daniel@ffwll.ch>, "Wentland,
+ Harry" <harry.wentland@amd.com>, "Kazlauskas,
+ Nicholas" <nicholas.kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 22, 2020 at 07:07:50PM +0530, Sumera Priyadarsini wrote:
-> Using snprintf() for show() methods holds the risk of buffer overrun
-> as snprintf() does not know the PAGE_SIZE maximum of the temporary
-> buffer used to output sysfs content.
-> 
-> This patchset is a series of Coccinelle cleanups across the staging
-> directory to convert snprintf with scnprintf in the relevant files.
+On Wed, Oct 21, 2020 at 7:31 PM Bas Nieuwenhuizen
+<bas@basnieuwenhuizen.nl> wrote:
+>
+> With modifiers I'd like to support non-dedicated buffers for
+> images.
+>
+> Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+> Cc: stable@vger.kernel.org # 5.1.0
 
-I think you need to edit your template here since this is now drivers/gpu,
-not staging :-)
--Daniel
+I think you need # 5.1.x- for it to be applied to all stable kernels
+since 5.1 otherwise it will just apply to 5.1.x
 
-> 
-> Sumera Priyadarsini (5):
->   gpu: drm: amdgpu: Replace snprintf() with sysfs_emit()
->   gpu: drm: amdgpu: Replace snprintf() with sysfs_emit()
->   gpu: drm: amdgpu: Replace snprintf() with sysfs_emit()
->   gpu: drm: amdgpu: Replace snprintf() with sysfs_emit()
->   gpu: drm: amdgpu: Replace snprintf() with sysfs_emit()
-> 
->  drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c | 2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c   | 8 ++++----
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c  | 4 ++--
->  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c      | 2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c      | 4 ++--
->  5 files changed, 10 insertions(+), 10 deletions(-)
-> 
-> -- 
-> 2.25.1
-> 
+Alex
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 14 +++++++++-----
+>  1 file changed, 9 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 73987fdb6a09..833887b9b0ad 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -3894,6 +3894,7 @@ fill_plane_dcc_attributes(struct amdgpu_device *adev,
+>         struct dc *dc = adev->dm.dc;
+>         struct dc_dcc_surface_param input;
+>         struct dc_surface_dcc_cap output;
+> +       uint64_t plane_address = afb->address + afb->base.offsets[0];
+>         uint32_t offset = AMDGPU_TILING_GET(info, DCC_OFFSET_256B);
+>         uint32_t i64b = AMDGPU_TILING_GET(info, DCC_INDEPENDENT_64B) != 0;
+>         uint64_t dcc_address;
+> @@ -3937,7 +3938,7 @@ fill_plane_dcc_attributes(struct amdgpu_device *adev,
+>                 AMDGPU_TILING_GET(info, DCC_PITCH_MAX) + 1;
+>         dcc->independent_64b_blks = i64b;
+>
+> -       dcc_address = get_dcc_address(afb->address, info);
+> +       dcc_address = get_dcc_address(plane_address, info);
+>         address->grph.meta_addr.low_part = lower_32_bits(dcc_address);
+>         address->grph.meta_addr.high_part = upper_32_bits(dcc_address);
+>
+> @@ -3968,6 +3969,8 @@ fill_plane_buffer_attributes(struct amdgpu_device *adev,
+>         address->tmz_surface = tmz_surface;
+>
+>         if (format < SURFACE_PIXEL_FORMAT_VIDEO_BEGIN) {
+> +               uint64_t addr = afb->address + fb->offsets[0];
+> +
+>                 plane_size->surface_size.x = 0;
+>                 plane_size->surface_size.y = 0;
+>                 plane_size->surface_size.width = fb->width;
+> @@ -3976,9 +3979,10 @@ fill_plane_buffer_attributes(struct amdgpu_device *adev,
+>                         fb->pitches[0] / fb->format->cpp[0];
+>
+>                 address->type = PLN_ADDR_TYPE_GRAPHICS;
+> -               address->grph.addr.low_part = lower_32_bits(afb->address);
+> -               address->grph.addr.high_part = upper_32_bits(afb->address);
+> +               address->grph.addr.low_part = lower_32_bits(addr);
+> +               address->grph.addr.high_part = upper_32_bits(addr);
+>         } else if (format < SURFACE_PIXEL_FORMAT_INVALID) {
+> +               uint64_t luma_addr = afb->address + fb->offsets[0];
+>                 uint64_t chroma_addr = afb->address + fb->offsets[1];
+>
+>                 plane_size->surface_size.x = 0;
+> @@ -3999,9 +4003,9 @@ fill_plane_buffer_attributes(struct amdgpu_device *adev,
+>
+>                 address->type = PLN_ADDR_TYPE_VIDEO_PROGRESSIVE;
+>                 address->video_progressive.luma_addr.low_part =
+> -                       lower_32_bits(afb->address);
+> +                       lower_32_bits(luma_addr);
+>                 address->video_progressive.luma_addr.high_part =
+> -                       upper_32_bits(afb->address);
+> +                       upper_32_bits(luma_addr);
+>                 address->video_progressive.chroma_addr.low_part =
+>                         lower_32_bits(chroma_addr);
+>                 address->video_progressive.chroma_addr.high_part =
+> --
+> 2.28.0
+>
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
