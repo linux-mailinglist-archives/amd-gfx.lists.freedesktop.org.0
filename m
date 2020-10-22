@@ -1,62 +1,105 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53C6C295529
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Oct 2020 01:31:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A42CA2955F2
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Oct 2020 03:10:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD06D6EEBD;
-	Wed, 21 Oct 2020 23:31:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8036E849;
+	Thu, 22 Oct 2020 01:10:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com
- [IPv6:2a00:1450:4864:20::542])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0711B6EEBD
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 23:31:50 +0000 (UTC)
-Received: by mail-ed1-x542.google.com with SMTP id bc23so1638072edb.5
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Oct 2020 16:31:49 -0700 (PDT)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2062.outbound.protection.outlook.com [40.107.236.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 301EA6E849
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 01:10:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=A+XZLktdx6+HeJ76FR70gi4u9IlRJiJ5wnaQLULDLhI9Xi/00U3k2P0AdUXGLtN97g/P9dbbfChHCHeohpmimAcAgQ4QVPNdajRR1yhDqbF3+j2lj4WbqgnUUO5WuSFQ+tNWgZu2/xzKE5QbXOVr9C2Fby6KNDbHOk5VKNeAKdgLa3g5Lb39q1AUjHH2V8f34HAGvV4YYLLW7wDQwq7vkv/rrcjxHZasp9C4ryaxC0St3h6NYwh/NOKIpo2AaDa/sLRRPqw+kssMbPdfkg5H0xj107jQRA7/Ceb70+2IWIcHkIs69dT3o9KzU1p86tOqcDU8Qz192vZBKrUoiedWbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NICPMr/LPao6S1bYgH4vODDkWkn+E8EJ2uZNJ5mt/dw=;
+ b=FOGmjtgMKlHQcHUlimzrkhdBCQUmQk4Sc3a/BEPgj5pLTnJm50YjBkJxOGNf5J0GhkxCuYHRHwXtwDOZmeLV7IZp9945UYWAPv6cGDhode7fllw3nC9KLSfVHQICeSkNJOmh0jSO/APZXeCKdfryHwyMk9HgDqJV6WN2fUJwRNrD8J9APAZI4xZdxCf64aXXSns0jw5d5kA6qb9SaPxT1CR1R64AN6PDDM5p0pAif5vU1KAgrllUm++ZyAlPg2VNRz8SECVaEQ7FkVtKiCHUeQ4dkwORYxxUoQNX0fk/CZKJ9UktmCh5UAUaiCVHvzBRDWijMbL0AzZ+9jLvyfwtuA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=basnieuwenhuizen.nl; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=ocFLR7/CfV3yazDzjhMujnIzbhVcb+AZrxt+eWLVcz8=;
- b=QHAXfQtNS86OdwIEK8c0bjC9Bq4jr+3B3X3lJgrjMgfCH43wDgO0hHPNofvmXxya7z
- JWd5CMWB9k6h0PlRG5lHTXGy8xiL7DybD5Y89BN6RCDUFkKD9M9zWEWsSNKsCSNk+cTi
- va5Iv10+tT2Fvf/lTNoB/EaRiadtWXYkTU3t+g9p2eQTcEibze69XXUCMAi8BlFwSjbi
- GAeuVHoqQoCOUn9rdy9zG+5Y1EZwe3tN0LzKSZ/ebdVUcsXSjwXd2vcR8wiAY5RyAzbm
- hd48XPaY2qKKQCsxfdbAzDggbUoOcu0F7+OPYQZ3dXmXdYeu3ct7UOR25bGd3GTBItH2
- rhww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=ocFLR7/CfV3yazDzjhMujnIzbhVcb+AZrxt+eWLVcz8=;
- b=bnKH2wWj/FMqslY4BuYkzhJHvx4yCGJI1Omwr3jO8t8j2cdr1Yq6i3C4LQW/xtzRBk
- lvQrnkhzgKOpkwhQB2PKejdZq/pGO6F/rXUwDIb5Dz4Iv/218X7Dtw/VkuDj7STB9Ax8
- C9QZyehw2dLmWIHNC2Tf1MrMIBw9Nseo7SYZHAehYHikAOuosQeDQy0QJLA64t647xsX
- 3Nz5vZJOOhh2RncxKKfxSSbSRnlXIM1H6Frf6CpoTLg4xlg3U2MNwlyThd/D/EpWT4ig
- 5dzO+1MhfKXXCp2DVd9AzGIpGccSTg7P+sGj2OO/BS/ARh629/lRuRjz32pSeWyZV/MN
- 5pRw==
-X-Gm-Message-State: AOAM532FBpi4IWzFNzatc+kN+KEQcTGjMyd0HdO8ckNjtGPXA8InzICp
- YjluiaeXqKZDQJ21SJQQy69Gn6uhaoi/I0BX
-X-Google-Smtp-Source: ABdhPJzHwWTpmPUWwHO5DqYeJaocevSYCXw/CKqkrIB+Mx47kxzqg++o46QRZZopurGT1Ej85kgk5Q==
-X-Received: by 2002:a05:6402:c6:: with SMTP id
- i6mr5410780edu.363.1603323108114; 
- Wed, 21 Oct 2020 16:31:48 -0700 (PDT)
-Received: from localhost.localdomain
- ([2a02:aa12:a77f:2000:4cea:81e7:5fd4:93f7])
- by smtp.gmail.com with ESMTPSA id k23sm2845236ejs.100.2020.10.21.16.31.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Oct 2020 16:31:47 -0700 (PDT)
-From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 11/11] drm/amd/display: Clean up GFX9 tiling_flags path.
-Date: Thu, 22 Oct 2020 01:31:30 +0200
-Message-Id: <20201021233130.874615-12-bas@basnieuwenhuizen.nl>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201021233130.874615-1-bas@basnieuwenhuizen.nl>
-References: <20201021233130.874615-1-bas@basnieuwenhuizen.nl>
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NICPMr/LPao6S1bYgH4vODDkWkn+E8EJ2uZNJ5mt/dw=;
+ b=x5/0NVN+uXTzEnR9GXjfiqsB3IUDaFP4vpG8TYLC8CE17iNT7BmkF4l2Bn7nVQQowt0669dsMFDp/2g0HYqaM8u7hMvZvIvPBEtGAzsJxMGWl9oxr84nqv2GtDcobLHPn03jhq/4uvUTZelnYX7RgkssPGnTN1KVtb4QCnRcYn0=
+Received: from DM5PR12MB1657.namprd12.prod.outlook.com (2603:10b6:4:d::21) by
+ DM6PR12MB3017.namprd12.prod.outlook.com (2603:10b6:5:3e::13) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3477.28; Thu, 22 Oct 2020 01:10:44 +0000
+Received: from DM5PR12MB1657.namprd12.prod.outlook.com
+ ([fe80::c166:6167:91e7:bdaf]) by DM5PR12MB1657.namprd12.prod.outlook.com
+ ([fe80::c166:6167:91e7:bdaf%6]) with mapi id 15.20.3477.028; Thu, 22 Oct 2020
+ 01:10:44 +0000
+From: "Feng, Kenneth" <Kenneth.Feng@amd.com>
+To: Alex Deucher <alexdeucher@gmail.com>
+Subject: RE: [PATCH] drm/amd/pm: fix the wrong fan speed in fan1_input
+Thread-Topic: [PATCH] drm/amd/pm: fix the wrong fan speed in fan1_input
+Thread-Index: AQHWp3W2tpMmU4s9tUCXALqpnAXt8qmiBbyAgAAKuICAAFWsgIAAZKRg
+Date: Thu, 22 Oct 2020 01:10:44 +0000
+Message-ID: <DM5PR12MB16579B5849FB6719ADFE7C2D8E1D0@DM5PR12MB1657.namprd12.prod.outlook.com>
+References: <20201021064455.14935-1-kenneth.feng@amd.com>
+ <CADnq5_PdS8M3i9uQ3JTUE-idGJxVCk_k5N=Sgvsj4VJGFKn_vA@mail.gmail.com>
+ <CADnq5_NLyQ2jOW0ZkYMXcAX-snqHvUzNRYtrDRZbhN7qe0_5Zg@mail.gmail.com>
+ <CADnq5_M_ry9EHp2b1ycBzD4oTsfVJxFtSGoRvq2EfJiN6Qczmg@mail.gmail.com>
+In-Reply-To: <CADnq5_M_ry9EHp2b1ycBzD4oTsfVJxFtSGoRvq2EfJiN6Qczmg@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-10-22T01:10:37Z; 
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal Use Only -
+ Unrestricted;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=fe1b1728-1b86-4958-9e26-00002e741fc6;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=1
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_enabled: true
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_setdate: 2020-10-22T01:10:37Z
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_method: Standard
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_name: Internal Use Only -
+ Unrestricted
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_actionid: c6c7429a-1550-4404-9058-000064048e7f
+msip_label_76546daa-41b6-470c-bb85-f6f40f044d7f_contentbits: 0
+msip_justification: I confirm the recipients are approved for sharing this
+ content
+authentication-results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [58.247.170.242]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 0400f14c-3130-4662-9fa7-08d876274d3b
+x-ms-traffictypediagnostic: DM6PR12MB3017:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR12MB301735AD684602CF514C89478E1D0@DM6PR12MB3017.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: CsXUImRpoHkxcFujPO6VvibN7C2/OzK+jLp29Mn8aGOGFNokgusdKiT4b99w4+qQDj1JZKlcCTfyW/sDu2y4fwGmfIdefWqrBjAXRPLseAJh2vWrZGw1b3gPsCA7xKFojzudDTwBQFTJLcxVT1yCSRhwYVf1sXcDOR0emTVo7wAw9sGaCAeHxAa8qKbU95ChoQDRP2pogV6tI4+vEGYKjyhFagRxIrniTsMxiSCCoELBf96bCdDqU8axOGjObpfBG25sZBAmLx/OZpZNDggI6GZeUBPt0SVkQ7xKD+wshzHC+AXBnN+ieAYRIVAmkOnigB0FYQpPXUnYDZ4A1YjQPQOAwvStwD72Bfx0+Eu/wRmNCsk4ST8agNXsJeustddI6UaTyreJWZMMpQ8BR41w9mlk5pkKKCyPmfRDlbdwgJVZk7hggQT2CHFU5qXtaitq8f5Ykjwgs8ebZ/BoFTW4tw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB1657.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(366004)(346002)(376002)(39860400002)(136003)(86362001)(4326008)(316002)(8676002)(66446008)(5660300002)(66476007)(64756008)(33656002)(66556008)(966005)(66946007)(6506007)(53546011)(76116006)(2906002)(55016002)(83380400001)(52536014)(45080400002)(26005)(6916009)(8936002)(478600001)(9686003)(7696005)(186003)(71200400001)(54906003)(357404004);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: HXXd40U3V1pG3dVRBI3w0N46t1c4MN7CMcjY15tgFZgAg83WWuYfUlYR9M18p+iLaMVOiNEr+cpYYeFeQ1GTijOFlNcuXOeqgsIXTFjVZlxtcy8QDgXozrbR64aUIN0BSOXBdlBQ8t4CF7T4DMEK196u7gzZgRgFm/d6G3PjhIhVVUJ17WBLO9oWAJlz+ryAA+8pQCKr0Z9XE2Iq9yUgHSLjc+pHUBYtLlt+qhN9cAtQj0kDIphcoICdVWyMcdEPdXvICvBNyTPXExwPCJ0YhyUdU9u6YVVARSDPmw4Wo5Mn1B+PGvraSftCcB4NS8KJONawQlC438GR3HY+UMYhSE89MssRrHMtVjWxvJIOIV88YMuQA/KvzdvGd/fZMpNg7SG5G+dr42w+XA0mlK+9jiFNAoPInxxHVIk4sRAGbD5JEwDZL3t83JVlkQbAaJ3ZMzOKYZijCmbm+hzVgnJeSsHMEW8QYwfNx8FG1FIwkgzzZ65/xXYQU0AsnjZukEKBN1zixiEXwpPdg2so+pRUfJBkO2itfSmQHjjEFNNfUE2y8A1+c2G/MZZrk0gH2svgq3ZP6T8Ie51l4zPalWqL7QEvxNvKybK7gRR5RcE9IWpYxuoSmNaVk32Z5cN8RPq93et1H1cbXqLoUhob/9Pk8w==
 MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1657.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0400f14c-3130-4662-9fa7-08d876274d3b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2020 01:10:44.3460 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: zXzREGIDovA65LT3dvIzM4nmXmHl4ErMmME8PlNXsue+zXAirqZD8AwKMeHRYqte
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3017
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,116 +111,107 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: maraeo@gmail.com, sunpeng.li@amd.com, daniel@ffwll.ch,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>, alexdeucher@gmail.com,
- harry.wentland@amd.com, nicholas.kazlauskas@amd.com
+Cc: "Gao, Likun" <Likun.Gao@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We're unconditionally using modifiers internally for GFX9+ now.
+[AMD Official Use Only - Internal Distribution Only]
 
-Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 74 ++-----------------
- 1 file changed, 7 insertions(+), 67 deletions(-)
+Hi Alex,
+Right, smu_v11_0_get_fan_speed_rpm() is not correct for sienna cichlid when it's in manual mode.
+An example is that in my system, the rpm is about 1800 in manual mode, confirmed with AGM and the internal smu fw scoreboard.
+But the fan1_input shows about 180000, which is way more than the real value.
+If you see the value from the metrics table is 0 on navi10, maybe it's the real rpm since we still have 0 rpm feature.
+I can double check the navi10.
+Thanks.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index a1ce325f2fd1..ed7215737b22 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3948,57 +3948,6 @@ validate_dcc(struct amdgpu_device *adev,
- 	return 0;
- }
- 
--static void
--fill_dcc_params_from_flags(const struct amdgpu_framebuffer *afb,
--			   struct dc_plane_dcc_param *dcc,
--			   struct dc_plane_address *address,
--			   const uint64_t flags, bool force_disable_dcc)
--{
--	uint64_t dcc_address;
--	uint64_t plane_address = afb->address + afb->base.offsets[0];
--	uint32_t offset = AMDGPU_TILING_GET(flags, DCC_OFFSET_256B);
--	uint32_t i64b = AMDGPU_TILING_GET(flags, DCC_INDEPENDENT_64B) != 0;
--
--	if (!offset || force_disable_dcc)
--		return;
--
--	dcc->enable = 1;
--	dcc->meta_pitch = AMDGPU_TILING_GET(flags, DCC_PITCH_MAX) + 1;
--	dcc->independent_64b_blks = i64b;
--
--	dcc_address = plane_address + (uint64_t)offset * 256;
--	address->grph.meta_addr.low_part = lower_32_bits(dcc_address);
--	address->grph.meta_addr.high_part = upper_32_bits(dcc_address);
--}
--
--
--static int
--fill_gfx9_plane_attributes_from_flags(struct amdgpu_device *adev,
--				      const struct amdgpu_framebuffer *afb,
--				      const enum surface_pixel_format format,
--				      const enum dc_rotation_angle rotation,
--				      const struct plane_size *plane_size,
--				      union dc_tiling_info *tiling_info,
--				      struct dc_plane_dcc_param *dcc,
--				      struct dc_plane_address *address,
--				      uint64_t tiling_flags,
--				      bool force_disable_dcc)
--{
--	int ret;
--
--	fill_gfx9_tiling_info_from_device(adev, tiling_info);
--
--	tiling_info->gfx9.swizzle =
--		AMDGPU_TILING_GET(tiling_flags, SWIZZLE_MODE);
--
--	fill_dcc_params_from_flags(afb, dcc, address, tiling_flags, force_disable_dcc);
--	ret = validate_dcc(adev, format, rotation, tiling_info, dcc, address, plane_size);
--	if (ret)
--		return ret;
--
--	return 0;
--}
--
- static bool
- modifier_has_dcc(uint64_t modifier)
- {
-@@ -4565,22 +4514,13 @@ fill_plane_buffer_attributes(struct amdgpu_device *adev,
- 	}
- 
- 	if (adev->family >= AMDGPU_FAMILY_AI) {
--		if (afb->base.flags & DRM_MODE_FB_MODIFIERS) {
--			ret = fill_gfx9_plane_attributes_from_modifiers(adev, afb, format,
--									rotation, plane_size,
--									tiling_info, dcc,
--									address,
--									force_disable_dcc);
--			if (ret)
--				return ret;
--		} else {
--			ret = fill_gfx9_plane_attributes_from_flags(adev, afb, format, rotation,
--								    plane_size, tiling_info, dcc,
--								    address, tiling_flags,
--								    force_disable_dcc);
--			if (ret)
--				return ret;
--		}
-+		ret = fill_gfx9_plane_attributes_from_modifiers(adev, afb, format,
-+								rotation, plane_size,
-+								tiling_info, dcc,
-+								address,
-+								force_disable_dcc);
-+		if (ret)
-+			return ret;
- 	} else {
- 		fill_gfx8_tiling_info_from_flags(tiling_info, tiling_flags);
- 	}
--- 
-2.28.0
 
+-----Original Message-----
+From: Alex Deucher <alexdeucher@gmail.com> 
+Sent: Thursday, October 22, 2020 2:47 AM
+To: Feng, Kenneth <Kenneth.Feng@amd.com>
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>; Gao, Likun <Likun.Gao@amd.com>
+Subject: Re: [PATCH] drm/amd/pm: fix the wrong fan speed in fan1_input
+
+[CAUTION: External Email]
+
+On Wed, Oct 21, 2020 at 9:40 AM Alex Deucher <alexdeucher@gmail.com> wrote:
+>
+> On Wed, Oct 21, 2020 at 9:01 AM Alex Deucher <alexdeucher@gmail.com> wrote:
+> >
+> > On Wed, Oct 21, 2020 at 2:45 AM Kenneth Feng <kenneth.feng@amd.com> wrote:
+> > >
+> > > fix the wrong fan speed in fan1_input when the fan control mode is manual.
+> > > the fan speed value is not correct when we set manual mode to fan1_enalbe - 1.
+> > > since the fan speed in the metrics table always reflects the real 
+> > > fan speed,we can fetch the fan speed for both auto and manual mode.
+> > >
+> > > Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
+> >
+> > NACK.  At least on the navi boards I have, the metrics table fan 
+> > speed reads back 0 when the fan is in manual mode.  That's why I 
+> > changed this in the first place.
+>
+> Nevermind, I was thinking about navi1x.  If this is working correctly 
+> on sienna cichlid, please ignore me.
+
+That said, I don't see why the current code should not work.  Maybe a bug elsewhere?  Is smu_v11_0_get_fan_speed_rpm() incorrect for sienna cichlid?
+
+Alex
+
+>
+> Alex
+>
+>
+> >
+> > Alex
+> >
+> >
+> > > ---
+> > >  .../gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   | 11 +++--------
+> > >  1 file changed, 3 insertions(+), 8 deletions(-)
+> > >
+> > > diff --git 
+> > > a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c 
+> > > b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+> > > index 496abc31b07e..27b6cade9ade 100644
+> > > --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+> > > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+> > > @@ -1171,14 +1171,9 @@ static int sienna_cichlid_get_fan_speed_rpm(struct smu_context *smu,
+> > >         if (!speed)
+> > >                 return -EINVAL;
+> > >
+> > > -       switch (smu_v11_0_get_fan_control_mode(smu)) {
+> > > -       case AMD_FAN_CTRL_AUTO:
+> > > -               return sienna_cichlid_get_smu_metrics_data(smu,
+> > > -                                                          METRICS_CURR_FANSPEED,
+> > > -                                                          speed);
+> > > -       default:
+> > > -               return smu_v11_0_get_fan_speed_rpm(smu, speed);
+> > > -       }
+> > > +       return sienna_cichlid_get_smu_metrics_data(smu,
+> > > +                                               METRICS_CURR_FANSPEED,
+> > > +                                               speed);
+> > >  }
+> > >
+> > >  static int sienna_cichlid_get_fan_parameters(struct smu_context 
+> > > *smu)
+> > > --
+> > > 2.17.1
+> > >
+> > > _______________________________________________
+> > > amd-gfx mailing list
+> > > amd-gfx@lists.freedesktop.org
+> > > https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2F
+> > > lists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=04%7
+> > > C01%7Ckenneth.feng%40amd.com%7Cd8e969f4b63e4897a3df08d875f1b050%7C
+> > > 3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637389028190609906%7CUn
+> > > known%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik
+> > > 1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=KomP2H%2FadKJChDbNvNPQlTotmE
+> > > WrhutsQCHfiRIjNUY%3D&amp;reserved=0
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
