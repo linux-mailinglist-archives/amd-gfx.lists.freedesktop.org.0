@@ -1,54 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFD6F2961CA
-	for <lists+amd-gfx@lfdr.de>; Thu, 22 Oct 2020 17:41:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C6C12962EF
+	for <lists+amd-gfx@lfdr.de>; Thu, 22 Oct 2020 18:41:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 471036F5CC;
-	Thu, 22 Oct 2020 15:41:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E82FE6F5EB;
+	Thu, 22 Oct 2020 16:41:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF1866F5D8
- for <amd-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 15:41:16 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id h7so3025608wre.4
- for <amd-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 08:41:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=1J0XufsX2MZllCrSO5uGCgSrCqSS1ucrt7Ut0F9oXpQ=;
- b=KNgJSRiwu5SrtOmrptMG2s/dq6HCXrs5EcUhKZqbdvM/wnnuReeBvAUMxItpM+qr41
- APW7pgaOdBbtMmZHOA34c29YaEAYYMQs0CBjvjXy1q338BpL6GxMHaJxuYreaPLLnc6P
- UN/TdM678RROfH9bxc6iV4Acv59mP+HddmyPY1jjkOimGcwjTdMnxuIkdEZ+oS9OFxGl
- 4KOxB5Isv3Qi/Ov84EvTUfZuL8GW79p1EK267+ETlXCfc04xtXRHAdFw8fe0fFaLKm28
- YJKcT4fs5JzRfc6LynLO25V8Utdvm6b2gCMesIPfztGMZlRmzzg9TAUVXP5Hk9w2QKSm
- h0Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=1J0XufsX2MZllCrSO5uGCgSrCqSS1ucrt7Ut0F9oXpQ=;
- b=PGmjx3CLwLNHFLFixD3MxSrtmPrIABQ3dK5kly8veP5mqPpK3PbEHPIe/9mgENdwnY
- 4+4EKvDhglXHM9bXM+uzaSrALu807Qh0xoF9/x8M1zzbPqYmiJmJio/S1ioEegZqiKn1
- 53p6WRbwMP0bcqSHZglgsYi4zy2DJO1P/HlItFlBNEHMzokhtQsLK8pquyonSHLubpTs
- 4X3kSmP1+SBbV7I4OpVr7LjxhBDzN0tSnQpYzW1KH5GGMv3PX4vv0JMwshuKfCx5u6oU
- xhBoozQZPBqYOfqVxa5mbaGm5mvVpN5EcrUQn5o4faZhWGYerloGddt5YsykPwfIOuPb
- 7gWQ==
-X-Gm-Message-State: AOAM533ubvsuMtaK/wTUjxzGf7fWCG8Xql9PjmmgQq66jwiHpO+f038h
- t1+e/H7UxxXvuMiaXlUbXb6GBamDYfCKqIeeAAEsmGK0
-X-Google-Smtp-Source: ABdhPJxUuJGUKFM5xlqbWvqZvhBp5J2pQTDfzfuNO9tkGqJ7hDVjMvSczKEtkyfoR2Kz8ZUZY8UcJQm6MZk+0rU//9A=
-X-Received: by 2002:adf:f246:: with SMTP id b6mr3377572wrp.111.1603381275522; 
- Thu, 22 Oct 2020 08:41:15 -0700 (PDT)
-MIME-Version: 1.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A9746E1D6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 22 Oct 2020 16:09:52 +0000 (UTC)
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
+ bits)) (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 2F28324182;
+ Thu, 22 Oct 2020 16:09:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1603382991;
+ bh=TmqdKEDpzokkSYBf6Olofb6ooIl6uJH+k5K1oSNqZM4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=HIOV8EvPe2pW2/o3i3ejjqBhurg00S5aYWhvZGtMiF5NFfGSZRLpxAO1UZ5uVRYpw
+ rD+qYb9o3RX1ZBOcNiT7cY8FPobLmy6gWSR931g9f239/iKOmrIs8gzEXlC0tyWsL/
+ p3wEZNxxZ9phcMbxHMOeX/QWrIYM5IR8sZHs4cgQ=
+Date: Thu, 22 Oct 2020 18:10:29 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH v3 03/11] drm/amd/display: Honor the offset for plane 0.
+Message-ID: <20201022161029.GA1979067@kroah.com>
 References: <20201021233130.874615-1-bas@basnieuwenhuizen.nl>
- <20201021233130.874615-5-bas@basnieuwenhuizen.nl>
-In-Reply-To: <20201021233130.874615-5-bas@basnieuwenhuizen.nl>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 22 Oct 2020 11:41:03 -0400
-Message-ID: <CADnq5_PUhQkB+FEi53koM7=E1sLmn2dbwV7ku3YOhEm6GHbiyQ@mail.gmail.com>
-Subject: Re: [PATCH v3 04/11] drm/fourcc: Add AMD DRM modifiers.
-To: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+ <20201021233130.874615-4-bas@basnieuwenhuizen.nl>
+ <CADnq5_OuXhN-2Raie9V452KrG4ChaguY1q6+Gk19mR86A=Fkog@mail.gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CADnq5_OuXhN-2Raie9V452KrG4ChaguY1q6+Gk19mR86A=Fkog@mail.gmail.com>
+X-Mailman-Approved-At: Thu, 22 Oct 2020 16:41:32 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,207 +48,35 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Marek Olsak <maraeo@gmail.com>, "Leo \(Sunpeng\) Li" <sunpeng.li@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
- "Wentland, Harry" <harry.wentland@amd.com>, "Kazlauskas,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ "for 3.8" <stable@vger.kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>, "Wentland,
+ Harry" <harry.wentland@amd.com>, "Kazlauskas,
  Nicholas" <nicholas.kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 21, 2020 at 7:31 PM Bas Nieuwenhuizen
-<bas@basnieuwenhuizen.nl> wrote:
->
-> This adds modifiers for GFX9+ AMD GPUs.
->
-> As the modifiers need a lot of parameters I split things out in
-> getters and setters.
->   - Advantage: simplifies the code a lot
->   - Disadvantage: Makes it harder to check that you're setting all
->                   the required fields.
->
-> The tiling modes seem to change every generation, but the structure
-> of what each tiling mode is good for stays really similar. As such
-> the core of the modifier is
->  - the tiling mode
->  - a version. Not explicitly a GPU generation, but splitting out
->    a new set of tiling equations.
->
-> Sometimes one or two tiling modes stay the same and for those we
-> specify a canonical version.
->
-> Then we have a bunch of parameters on how the compression works.
-> Different HW units have different requirements for these and we
-> actually have some conflicts here.
->
-> e.g. the render backends need a specific alignment but the display
-> unit only works with unaligned compression surfaces. To work around
-> that we have a DCC_RETILE option where both an aligned and unaligned
-> compression surface are allocated and a writer has to sync the
-> aligned surface to the unaligned surface on handoff.
->
-> Finally there are some GPU parameters that participate in the tiling
-> equations. These are constant for each GPU on the rendering/texturing
-> side. The display unit is very flexible however and supports all
-> of them :|
+On Thu, Oct 22, 2020 at 11:36:12AM -0400, Alex Deucher wrote:
+> On Wed, Oct 21, 2020 at 7:31 PM Bas Nieuwenhuizen
+> <bas@basnieuwenhuizen.nl> wrote:
+> >
+> > With modifiers I'd like to support non-dedicated buffers for
+> > images.
+> >
+> > Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+> > Cc: stable@vger.kernel.org # 5.1.0
+> 
+> I think you need # 5.1.x- for it to be applied to all stable kernels
+> since 5.1 otherwise it will just apply to 5.1.x
 
-I think the idea is that the display engine can scanout just about
-anything thrown at it (e.g., if you have multiple GPUs in a system).
-E.g., you may have a laptop with a navi14 dGPU and a renoir APU.
-You'd want the APU to be able to scanout from whatever format the dGPU
-gave you.
+Not true, I will try from the number up to the latest version.  So all
+should be fine here.
 
-Alex
+thanks,
 
-
->
-> Some estimates:
->  - Single GPU, render+texture: ~10 modifiers
->  - All possible configs in a gen, display: ~1000 modifiers
->  - Configs of actually existing GPUs in a gen: ~100 modifiers
->
-> For formats with a single plane everything gets put in a separate
-> DRM plane. However, this doesn't fit for some YUV formats, so if
-> the format has >1 plane, we let the driver pack the surfaces into
-> 1 DRM plane per format plane.
->
-> This way we avoid X11 rendering onto the frontbuffer with DCC, but
-> still fit into 4 DRM planes.
->
-> Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-> ---
->  include/uapi/drm/drm_fourcc.h | 115 ++++++++++++++++++++++++++++++++++
->  1 file changed, 115 insertions(+)
->
-> diff --git a/include/uapi/drm/drm_fourcc.h b/include/uapi/drm/drm_fourcc.h
-> index 82f327801267..df56e71a7380 100644
-> --- a/include/uapi/drm/drm_fourcc.h
-> +++ b/include/uapi/drm/drm_fourcc.h
-> @@ -1056,6 +1056,121 @@ drm_fourcc_canonicalize_nvidia_format_mod(__u64 modifier)
->   */
->  #define AMLOGIC_FBC_OPTION_MEM_SAVING          (1ULL << 0)
->
-> +/*
-> + * AMD modifiers
-> + *
-> + * Memory layout:
-> + *
-> + * without DCC:
-> + *   - main surface
-> + *
-> + * with DCC & without DCC_RETILE:
-> + *   - main surface in plane 0
-> + *   - DCC surface in plane 1 (RB-aligned, pipe-aligned if DCC_PIPE_ALIGN is set)
-> + *
-> + * with DCC & DCC_RETILE:
-> + *   - main surface in plane 0
-> + *   - displayable DCC surface in plane 1 (not RB-aligned & not pipe-aligned)
-> + *   - pipe-aligned DCC surface in plane 2 (RB-aligned & pipe-aligned)
-> + *
-> + * For multi-plane formats the above surfaces get merged into one plane for
-> + * each format plane, based on the required alignment only.
-> + */
-> +#define AMD_FMT_MOD fourcc_mod_code(AMD, 0)
-> +
-> +#define IS_AMD_FMT_MOD(val) (((val) >> 56) == DRM_FORMAT_MOD_VENDOR_AMD)
-> +
-> +/* Reserve 0 for GFX8 and older */
-> +#define AMD_FMT_MOD_TILE_VER_GFX9 1
-> +#define AMD_FMT_MOD_TILE_VER_GFX10 2
-> +#define AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS 3
-> +
-> +/*
-> + * 64K_S is the same for GFX9/GFX10/GFX10_RBPLUS and hence has GFX9 as canonical
-> + * version.
-> + */
-> +#define AMD_FMT_MOD_TILE_GFX9_64K_S 9
-> +
-> +/*
-> + * 64K_D for non-32 bpp is the same for GFX9/GFX10/GFX10_RBPLUS and hence has
-> + * GFX9 as canonical version.
-> + */
-> +#define AMD_FMT_MOD_TILE_GFX9_64K_D 10
-> +#define AMD_FMT_MOD_TILE_GFX9_64K_S_X 25
-> +#define AMD_FMT_MOD_TILE_GFX9_64K_D_X 26
-> +#define AMD_FMT_MOD_TILE_GFX9_64K_R_X 27
-> +
-> +#define AMD_FMT_MOD_DCC_BLOCK_64B 0
-> +#define AMD_FMT_MOD_DCC_BLOCK_128B 1
-> +#define AMD_FMT_MOD_DCC_BLOCK_256B 2
-> +
-> +#define AMD_FMT_MOD_TILE_VERSION_SHIFT 0
-> +#define AMD_FMT_MOD_TILE_VERSION_MASK 0xFF
-> +#define AMD_FMT_MOD_TILE_SHIFT 8
-> +#define AMD_FMT_MOD_TILE_MASK 0x1F
-> +
-> +/* Whether DCC compression is enabled. */
-> +#define AMD_FMT_MOD_DCC_SHIFT 13
-> +#define AMD_FMT_MOD_DCC_MASK 0x1
-> +
-> +/*
-> + * Whether to include two DCC surfaces, one which is rb & pipe aligned, and
-> + * one which is not-aligned.
-> + */
-> +#define AMD_FMT_MOD_DCC_RETILE_SHIFT 14
-> +#define AMD_FMT_MOD_DCC_RETILE_MASK 0x1
-> +
-> +/* Only set if DCC_RETILE = false */
-> +#define AMD_FMT_MOD_DCC_PIPE_ALIGN_SHIFT 15
-> +#define AMD_FMT_MOD_DCC_PIPE_ALIGN_MASK 0x1
-> +
-> +#define AMD_FMT_MOD_DCC_INDEPENDENT_64B_SHIFT 16
-> +#define AMD_FMT_MOD_DCC_INDEPENDENT_64B_MASK 0x1
-> +#define AMD_FMT_MOD_DCC_INDEPENDENT_128B_SHIFT 17
-> +#define AMD_FMT_MOD_DCC_INDEPENDENT_128B_MASK 0x1
-> +#define AMD_FMT_MOD_DCC_MAX_COMPRESSED_BLOCK_SHIFT 18
-> +#define AMD_FMT_MOD_DCC_MAX_COMPRESSED_BLOCK_MASK 0x1
-> +
-> +/*
-> + * DCC supports embedding some clear colors directly in the DCC surface.
-> + * However, on older GPUs the rendering HW ignores the embedded clear color
-> + * and prefers the driver provided color. This necessitates doing a fastclear
-> + * eliminate operation before a process transfers control.
-> + *
-> + * If this bit is set that means the fastclear eliminate is not needed for these
-> + * embeddable colors.
-> + */
-> +#define AMD_FMT_MOD_DCC_CONSTANT_ENCODE_SHIFT 19
-> +#define AMD_FMT_MOD_DCC_CONSTANT_ENCODE_MASK 0x1
-> +
-> +/*
-> + * The below fields are for accounting for per GPU differences. These are only
-> + * relevant for GFX9 and later and if the tile field is *_X/_T.
-> + *
-> + * PIPE_XOR_BITS = always needed
-> + * BANK_XOR_BITS = only for TILE_VER_GFX9
-> + * PACKERS = only for TILE_VER_GFX10_RBPLUS
-> + * RB = only for TILE_VER_GFX9 & DCC
-> + * PIPE = only for TILE_VER_GFX9 & DCC & (DCC_RETILE | DCC_PIPE_ALIGN)
-> + */
-> +#define AMD_FMT_MOD_PIPE_XOR_BITS_SHIFT 20
-> +#define AMD_FMT_MOD_PIPE_XOR_BITS_MASK 0x7
-> +#define AMD_FMT_MOD_BANK_XOR_BITS_SHIFT 23
-> +#define AMD_FMT_MOD_BANK_XOR_BITS_MASK 0x7
-> +#define AMD_FMT_MOD_PACKERS_SHIFT 26 /* aliases with BANK_XOR_BITS */
-> +#define AMD_FMT_MOD_PACKERS_MASK 0x7
-> +#define AMD_FMT_MOD_RB_SHIFT 29
-> +#define AMD_FMT_MOD_RB_MASK 0x7
-> +#define AMD_FMT_MOD_PIPE_SHIFT 32
-> +#define AMD_FMT_MOD_PIPE_MASK 0x7
-> +
-> +#define AMD_FMT_MOD_SET(field, value) \
-> +       ((uint64_t)(value) << AMD_FMT_MOD_##field##_SHIFT)
-> +#define AMD_FMT_MOD_GET(field, value) \
-> +       (((value) >> AMD_FMT_MOD_##field##_SHIFT) & AMD_FMT_MOD_##field##_MASK)
-> +#define AMD_FMT_MOD_CLEAR(field) \
-> +       (~((uint64_t)AMD_FMT_MOD_##field##_MASK << AMD_FMT_MOD_##field##_SHIFT))
-> +
->  #if defined(__cplusplus)
->  }
->  #endif
-> --
-> 2.28.0
->
+greg k-h
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
