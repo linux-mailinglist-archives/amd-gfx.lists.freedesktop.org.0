@@ -2,91 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 862E02968AF
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Oct 2020 05:16:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 824E92968F2
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Oct 2020 06:04:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81BF96E03E;
-	Fri, 23 Oct 2020 03:16:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7ADF89FF9;
+	Fri, 23 Oct 2020 04:04:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2088.outbound.protection.outlook.com [40.107.236.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 634E76E03E
- for <amd-gfx@lists.freedesktop.org>; Fri, 23 Oct 2020 03:16:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YWcGa+Uhvg1Ru37B0j+Qtezf4py5LF2AJxQUtMvFVr7skUIqIKlg0hdXjTkDsRewP7zQtWA56DWJjH0xeKhAl4o38/11/J0k9Y+8AmnaFOD5rhCnln/UtJsK67xLY0+vZUlT+EToy+X7XqvtiNVbJPGjJBHCBrsbhOBL7RWo++TAETLbkzCeEPKO0IDhWtUtOjAJC04wAJZZGEIon1dm94UqzCS3Q1nR1nigZQ87/g73g8UmM32+mT8xecOx0crYh/d88GrEcrHeId+qNLWgiRgTGs72u06WXFkJT9dvRlvDyy6X4JF+DE3VBL9z8KGssX0Zn9OhD6t/DF2AKyBdIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NQnXAjaRjhPBx91VuY7iK2JdKd53Q0rsmAjH6nmgmtk=;
- b=OQHRlyZSLxbUq2h+UtpzWFwxJhVAwkNJsjAcAdqtS4ItCAryO8uMZFU7MbeUYMptqfW9lPe1Fj6Oqg8L3fIvN20XEN1tEfLA2gwbXSsEe/zQ1uS/V67su9Atoh6xU3yb3o+BQS4C0PWjdmNTkJ8edSE7VRy/3y9JgrqYJ6u1Ie0H23y5tem4Floh+LKseZ0rWK2W5Oh0Vgt5IUA001MVOoXnBHFrRh6exSoPmJ7krrK99Ekf2YALWl5Wum3TqnySPHhkGzH1fIbVqOd3D6XylFW/1dc3+u7aqKFScMVDaRnznXPS41rLd0XUQPUem5Yl1AcKO+rMXyUYMu/Ph63buw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NQnXAjaRjhPBx91VuY7iK2JdKd53Q0rsmAjH6nmgmtk=;
- b=v/l2mR7HSflan5kKJaFOs506fmVTmSsmP/6Fw4JOWvCAs3QTQ2zVZiTTuUiJmkfcq+HudwHjU9bDPPkGsQlz3vMRLUPP8nybqDF9BIu082NB3b8VWLQiR73ekuVt/haAXIWBHkJQ+mY8SQS1peQMAvFVG8NCF01JvyGIprledWw=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from CH2PR12MB3957.namprd12.prod.outlook.com (2603:10b6:610:2c::17)
- by CH2PR12MB4858.namprd12.prod.outlook.com (2603:10b6:610:67::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Fri, 23 Oct
- 2020 03:16:06 +0000
-Received: from CH2PR12MB3957.namprd12.prod.outlook.com
- ([fe80::5c2a:30e:80ec:36bf]) by CH2PR12MB3957.namprd12.prod.outlook.com
- ([fe80::5c2a:30e:80ec:36bf%3]) with mapi id 15.20.3499.019; Fri, 23 Oct 2020
- 03:16:06 +0000
-Subject: Re: [PATCH 2/2] drm/amdgpu: disable DCN and VCN for navi10 blockchain
- SKU(v3)
-To: Alex Deucher <alexdeucher@gmail.com>, Tianci Yin <tianci.yin@amd.com>
-References: <20201022034309.7568-1-tianci.yin@amd.com>
- <20201022034309.7568-2-tianci.yin@amd.com>
- <CADnq5_MeJxe5VO1o-+x7rL-UvJGEKy3PrE7zrNzb4hxZ30Rkmg@mail.gmail.com>
-From: Luben Tuikov <luben.tuikov@amd.com>
-Message-ID: <64937339-912e-ee16-4071-846b465cedc2@amd.com>
-Date: Thu, 22 Oct 2020 23:16:02 -0400
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
-In-Reply-To: <CADnq5_MeJxe5VO1o-+x7rL-UvJGEKy3PrE7zrNzb4hxZ30Rkmg@mail.gmail.com>
-Content-Language: en-CA
-X-Originating-IP: [165.204.54.211]
-X-ClientProxiedBy: YT1PR01CA0088.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:2d::27) To CH2PR12MB3957.namprd12.prod.outlook.com
- (2603:10b6:610:2c::17)
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com
+ [IPv6:2a00:1450:4864:20::543])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 270526E255;
+ Thu, 22 Oct 2020 21:40:16 +0000 (UTC)
+Received: by mail-ed1-x543.google.com with SMTP id bc23so3249222edb.5;
+ Thu, 22 Oct 2020 14:40:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ye8Oo0//hYvczhAGt6KHG9OzkSrSCdlWjnUP+NDCwEE=;
+ b=r4ZSa7IGg+H9TNC4t7vxsFpbVF4K4dAQ2e9Rmp+xCVpml5fAlLufoVlNprevyUwEiA
+ xpjsc2ESKkyRXWY4AgsEQpEO8u5dPEvMiZhw8MKRBmjE4mksbZ+03B7z9CgMMLnw6cDL
+ Utt4veTsHmOHtBkr1P5RPWBfzcDk+68Xe75BzAjPQU6iVv0CWUsjWmQ/g9nbOYbOQvxW
+ 3mOBHWLSrSKDQ+22gOwn6tPQPTIp1gliq8IXfIqUlb9oMzUiFWkRS9Bd025zr0rrn6Y4
+ wN98WqMiKP3cpf5e2HmberlrxHeMgvN0ObayE5YYKOo0O+Izt46T9RQKcDZauirPeHBx
+ LfDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ye8Oo0//hYvczhAGt6KHG9OzkSrSCdlWjnUP+NDCwEE=;
+ b=VT0one7D9K4NeoFr1osVFcZMEe2qM8pqdzlX8EMGUVW/IBKQKrbQcWqG0cx/vIvhX0
+ RB3pD7772aFjDvI6HuQHs2FQXn2kzSdDqh0qrOkAz+g2kpexbZb7qrvnt8vWvTZ0St0K
+ LlH5iiIIAt/EKnXZ/R44HpXYN+dGxzZvsa6aVe0/7rQbRGFipfxB7Im20oDVryfbTCGt
+ YTQij6Gr/In/JHhYnPKXJGOfOiydcwRWBoPHWFNd6SzzRxfTO/rIgIMLY9Y6bGQM/MXa
+ x/W0IAZC9hr7P/aMLiXvuvRu8L17xuchaLO4Q2E3lfreKW6bVQ0e+emJB2TzeLWr95Lq
+ lOzw==
+X-Gm-Message-State: AOAM531baKNne/9qpKWANDPCJTTjZIdRTy34DFcXSMZ9TaUSeq6kKg46
+ R4PZqj0dC+MPTq8xat8dyhWMGExjUFevsOT60Z8=
+X-Google-Smtp-Source: ABdhPJytEh/rhw8O8I7wCP27WT69OW91BrvYNyj3dqUwjwOdIi1rvDsToagDf5iPxny0hZ5jGmMyM+kPSFe8bJnusj0=
+X-Received: by 2002:a05:6402:151a:: with SMTP id
+ f26mr4316057edw.386.1603402814831; 
+ Thu, 22 Oct 2020 14:40:14 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [10.252.35.64] (165.204.54.211) by
- YT1PR01CA0088.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2d::27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3499.18 via Frontend Transport; Fri, 23 Oct 2020 03:16:04 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 86e634d6-ea41-4dd6-7a2a-08d87701fa97
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4858:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB485828C27C7CD4A0A399431B991A0@CH2PR12MB4858.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2512;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hRm0vYn2zWbjk/0VaWxlbVPwksjj1SygxlucDHIWeG4h412yQ23Ln076fKaSRcb+wbHpjrGExSzawadjSUW+6XwxN5mCh7IOKmhJZwooxAtvlTLCWuOXxRQNbQpcUS22xz1qLH/ds70uh3YbetAz2kZG6ix0x0SD4YZ9C2m6kpUJoouOtfdRwPruJUBDfOW2H6ZL/j9SO/ihVIIJw/zfJALRg4o3Io4At6Edj+PxlPQFXi0kaQn23qBQ0AF7iQRJTA16N6e+H5p8+sdDpaDf7IGHKJ0coviyFLNMjjtVMRcBbadh/ZpT0I+g+cgv9VdclX52KPpfzcZ+4sqAqyNxAhHjdv+MIYFFoW139oOI+kplBmzqR9K//MeDWnlC42NQ0LhZe5ndj8GjwzeRiQ+br19lKstN+oiSwLfe1qfuqBU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH2PR12MB3957.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(366004)(39860400002)(396003)(376002)(346002)(316002)(966005)(5660300002)(478600001)(31686004)(8936002)(31696002)(4001150100001)(2616005)(66556008)(66946007)(66476007)(4326008)(54906003)(956004)(26005)(36756003)(110136005)(45080400002)(44832011)(16576012)(52116002)(186003)(2906002)(53546011)(16526019)(83380400001)(86362001)(8676002)(6486002)(6636002)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: dwA0ZQAuCT2xVzsg3ZyMhIuq0WtSng3b8hnYv/zWqDMroTJTNSdBR/BQ8DHkQ6AJNeLpik23iyeCDnvBDsZodAg49iY5ogqMSfILTaNU7zjaa0BHFQTZw6oLL5YzKVTNFeNuXWu2drY8XeItlCN0Q/5HiL5C/fso1oDCt90cHp1thFYDvmCGgYo4VBOEI/mhDSAKpchpHZFE6+U85NQ3DUmKTd6b+9jmk/HbFXxBajux011E67T1rk1C0d5xw9cyncsOm+SjQ2IgnnJowM7qZe1PO3wZGxbPLIOExDcOnXXl0/EPoWFSLKsZsU6cdF/hD+fX5c8Ev/tzZUrgJouDIm3nRbwMVVpLglcSN9IQkB61+FZs1gYO9aBF2d28yXfztKOmZMB8PgK/CJoeaYTkQiuc6FG7TfVkkV5kaNhMUFaNko1uD2h7gRdDOI+rmuu2lyFEADEXfXi3SLPlqxYuELTlCRHYNFfCmARYeSxShBTSW+8vn8ZQb2ag4njWc+VwmbhZSBS7T3AQrTZxl0qPiqLxV7bK4V8BDLMf9dXVAL8exen0bSSK+nlwpi9hiN15eB6kom0iWhpKIn9Ck4NbAJ3qrFEsFUZgscFvZ1otSspnIdePbhy9V2UCJMoXtDd5Y/BWnJEdQlxJvI73IVS45w==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86e634d6-ea41-4dd6-7a2a-08d87701fa97
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3957.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2020 03:16:05.7847 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eDfHvZ88BAZgSWf+lf9stYN4+Sv4GDpbtJn6xATeKT+18PlFiBsmuKlUwQ55nnSw
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4858
+References: <cover.1603371258.git.sylphrenadin@gmail.com>
+ <f6107f3e467f1906abdcc33d35f13cf54f7e5a96.1603371258.git.sylphrenadin@gmail.com>
+ <20201022135455.GA1788090@kroah.com>
+In-Reply-To: <20201022135455.GA1788090@kroah.com>
+From: Sumera Priyadarsini <sylphrenadin@gmail.com>
+Date: Fri, 23 Oct 2020 03:10:03 +0530
+Message-ID: <CACAkLuoR=w-=t-tQWH1-3i_nVZggbLjY8eQVzb412Br4ctqBmQ@mail.gmail.com>
+Subject: Re: [Outreachy kernel] [PATCH 4/5] gpu: drm: amdgpu: Replace
+ snprintf() with sysfs_emit()
+To: Greg KH <gregkh@linuxfoundation.org>
+X-Mailman-Approved-At: Fri, 23 Oct 2020 04:04:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,94 +64,136 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Long Gang <Gang.Long@amd.com>, Guchun Chen <guchun.chen@amd.com>,
- Feifei Xu <Feifei.Xu@amd.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Deucher Alexander <Alexander.Deucher@amd.com>, Flora Cui <flora.cui@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: airlied@linux.ie, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Melissa Wen <melissa.srw@gmail.com>,
+ Outreachy <outreachy-kernel@googlegroups.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, alexander.deucher@amd.com,
+ christian.koenig@amd.com, linux-media@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============1420680396=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2020-10-21 23:45, Alex Deucher wrote:
-> On Wed, Oct 21, 2020 at 11:43 PM Tianci Yin <tianci.yin@amd.com> wrote:
->>
->> From: "Tianci.Yin" <tianci.yin@amd.com>
->>
->> The blockchain SKU has no display and video support, remove them.
->>
->> Change-Id: I419cfae8b00125f3bff18c0a8cd92f3266d5f04a
->> Signed-off-by: Tianci.Yin <tianci.yin@amd.com>
->> ---
->>  drivers/gpu/drm/amd/amdgpu/nv.c | 14 ++++++++++++--
->>  1 file changed, 12 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
->> index ce787489aaeb..26702c85caf8 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/nv.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/nv.c
->> @@ -497,6 +497,14 @@ void nv_set_virt_ops(struct amdgpu_device *adev)
->>         adev->virt.ops = &xgpu_nv_virt_ops;
->>  }
->>
->> +bool nv_is_blockchain_sku(struct pci_dev *pdev)
-> 
-> This can be static.  With that fixed, the series is:
-> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-> 
->> +{
->> +       if (pdev->device == 0x731E &&
->> +           (pdev->revision == 0xC6 || pdev->revision == 0xC7))
->> +               return true;
->> +       return false;
->> +}
+--===============1420680396==
+Content-Type: multipart/alternative; boundary="00000000000035becb05b2494fda"
 
-Not only can this function be static, but this function
-can simply be
+--00000000000035becb05b2494fda
+Content-Type: text/plain; charset="UTF-8"
 
-{
-	return pdev->device == 0x731E &&
-		(pdev->revision == 0xC6 || pdev->revision == 0xC7);
-}
+On Thu, Oct 22, 2020 at 7:24 PM Greg KH <gregkh@linuxfoundation.org> wrote:
 
-:-)
+> On Thu, Oct 22, 2020 at 07:17:56PM +0530, Sumera Priyadarsini wrote:
+> > Using snprintf() for show() methods holds the risk of buffer overrun
+> > as snprintf() does not know the PAGE_SIZE maximum of the temporary
+> > buffer used to output sysfs content.
+> >
+> > Modify amdgpu_psp.c to use sysfs_emit() instead which knows the
+> > size of the temporary buffer.
+> >
+> > Issue found with Coccinelle.
+> >
+> > Signed-off-by: Sumera Priyadarsini <sylphrenadin@gmail.com>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> > index d6c38e24f130..4d1d1e1b005d 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+> > @@ -2621,7 +2621,7 @@ static ssize_t psp_usbc_pd_fw_sysfs_read(struct
+> device *dev,
+> >               return ret;
+> >       }
+> >
+> > -     return snprintf(buf, PAGE_SIZE, "%x\n", fw_ver);
+> > +     return sysfs_emit(buf, PAGE_SIZE, "%x\n", fw_ver);
+>
+> Did you build this code?  I don't think it is correct...
+>
 
-Regards,
-Luben
+Yes, you are right. I compiled all of them again separately. I had based
+them off the usual drm tree
+but that is wrong because sysfs_emit has been added only in the 5.10. I
+will send a v2 with the proper
+corrections.
 
->> +
->>  int nv_set_ip_blocks(struct amdgpu_device *adev)
->>  {
->>         int r;
->> @@ -530,7 +538,8 @@ int nv_set_ip_blocks(struct amdgpu_device *adev)
->>                 if (adev->enable_virtual_display || amdgpu_sriov_vf(adev))
->>                         amdgpu_device_ip_block_add(adev, &dce_virtual_ip_block);
->>  #if defined(CONFIG_DRM_AMD_DC)
->> -               else if (amdgpu_device_has_dc_support(adev))
->> +               else if (amdgpu_device_has_dc_support(adev) &&
->> +                        !nv_is_blockchain_sku(adev->pdev))
->>                         amdgpu_device_ip_block_add(adev, &dm_ip_block);
->>  #endif
->>                 amdgpu_device_ip_block_add(adev, &gfx_v10_0_ip_block);
->> @@ -538,7 +547,8 @@ int nv_set_ip_blocks(struct amdgpu_device *adev)
->>                 if (adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT &&
->>                     !amdgpu_sriov_vf(adev))
->>                         amdgpu_device_ip_block_add(adev, &smu_v11_0_ip_block);
->> -               amdgpu_device_ip_block_add(adev, &vcn_v2_0_ip_block);
->> +               if (!nv_is_blockchain_sku(adev->pdev))
->> +                       amdgpu_device_ip_block_add(adev, &vcn_v2_0_ip_block);
->>                 amdgpu_device_ip_block_add(adev, &jpeg_v2_0_ip_block);
->>                 if (adev->enable_mes)
->>                         amdgpu_device_ip_block_add(adev, &mes_v10_1_ip_block);
->> --
->> 2.17.1
->>
->> _______________________________________________
->> amd-gfx mailing list
->> amd-gfx@lists.freedesktop.org
->> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=04%7C01%7CLuben.Tuikov%40amd.com%7C69a8d879c10a4a95df8408d8763d00da%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637389351678043728%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=rW2Fz1NGYDoUQ3TlHAXmoDC9zDhBrBmxMtKtrsK0Fhk%3D&amp;reserved=0
+regards,
+sumera
+
+
+> thanks,
+>
+> greg k-h
+>
+
+--00000000000035becb05b2494fda
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 22, 2020 at 7:24 PM Greg =
+KH &lt;<a href=3D"mailto:gregkh@linuxfoundation.org">gregkh@linuxfoundation=
+.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
+ex">On Thu, Oct 22, 2020 at 07:17:56PM +0530, Sumera Priyadarsini wrote:<br=
+>
+&gt; Using snprintf() for show() methods holds the risk of buffer overrun<b=
+r>
+&gt; as snprintf() does not know the PAGE_SIZE maximum of the temporary<br>
+&gt; buffer used to output sysfs content.<br>
+&gt; <br>
+&gt; Modify amdgpu_psp.c to use sysfs_emit() instead which knows the<br>
+&gt; size of the temporary buffer.<br>
+&gt; <br>
+&gt; Issue found with Coccinelle.<br>
+&gt; <br>
+&gt; Signed-off-by: Sumera Priyadarsini &lt;<a href=3D"mailto:sylphrenadin@=
+gmail.com" target=3D"_blank">sylphrenadin@gmail.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 2 +-<br>
+&gt;=C2=A0 1 file changed, 1 insertion(+), 1 deletion(-)<br>
+&gt; <br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm=
+/amd/amdgpu/amdgpu_psp.c<br>
+&gt; index d6c38e24f130..4d1d1e1b005d 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c<br>
+&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c<br>
+&gt; @@ -2621,7 +2621,7 @@ static ssize_t psp_usbc_pd_fw_sysfs_read(struct =
+device *dev,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return ret;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;=C2=A0 <br>
+&gt; -=C2=A0 =C2=A0 =C2=A0return snprintf(buf, PAGE_SIZE, &quot;%x\n&quot;,=
+ fw_ver);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0return sysfs_emit(buf, PAGE_SIZE, &quot;%x\n&quot=
+;, fw_ver);<br>
+<br>
+Did you build this code?=C2=A0 I don&#39;t think it is correct...<br></bloc=
+kquote><div><br></div><div>Yes, you are right. I compiled all of them again=
+ separately. I had based them off the usual drm tree<br></div><div>but that=
+ is wrong because sysfs_emit has been added only in the 5.10. I will send a=
+ v2 with the proper</div><div>corrections.<br><br></div><div>regards,<br></=
+div><div>sumera</div><div><br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex">
+<br>
+thanks,<br>
+<br>
+greg k-h<br>
+</blockquote></div></div>
+
+--00000000000035becb05b2494fda--
+
+--===============1420680396==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============1420680396==--
