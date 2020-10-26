@@ -2,81 +2,88 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74E9D298823
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Oct 2020 09:19:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B0F029884E
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Oct 2020 09:29:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9107F6E87E;
-	Mon, 26 Oct 2020 08:19:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 910AF6E87E;
+	Mon, 26 Oct 2020 08:29:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from sonic303-23.consmr.mail.gq1.yahoo.com
- (sonic303-23.consmr.mail.gq1.yahoo.com [98.137.64.204])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD88E6E18F
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Oct 2020 04:29:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.ca; s=s2048;
- t=1603686550; bh=Ec0o3sOEszY2eGhyJjVpQa883vnHjbcvEnzaYM+SLms=;
- h=Date:From:Subject:To:Cc:References:From:Subject;
- b=r1sUzoU9X/EqJJSAah3dvDKhyW3qjjE2gSneDsimHmvIgHbL7T8fTZ2W1rZRUJJeIfdE+HgXeYIbybBF9eXVUh59iKdskUT10I28YZk+18DptCqYnFE50lGgytOJHafIUotYEciHgndIQqXV/2QbGZdPAl6weU+WjR+sySGB3yVfhhPe/3vDJL2FXvUi/95cFDXHFHr98Q8bE2cj+vZTP0fehJvguoRruzQ1705EJw9HlZoh0zNmQIcbRAL/33ZuTq+p0MnhjsxRIsbxUDfR9Ly1g4RcpJUZs2l8A8ejTu4M5XAq4aCi9D6AVR8f1E4sXuKdASBeQUwnWI17JUF0tg==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1603686550; bh=wVqlNBio//oZFVJv3jbjVUrOm5tGZUfYPC1LBOZF/vc=;
- h=Date:From:Subject:To;
- b=M2yOKKkfjBtDzIJvrCMmfQH9YSSHVLYoVA8JGkX2FdycYeLN+1yj0D7xgwbBkLsQBz04qNWBE3WLy6w381t9CPwJcHCOG9yxxawyhqlfWAFCalNAOHFAW+2XxsGvQyRm9XKnmqxpNeAh8gxV5Kd1LVDANGjvmacJARqcIFCCobHLn4ZFarRN0A7mB8IxwKja4CWq0TEsClVHYrezf2MO7HSRiqmsHwBZRS/YoYfhZQyw7s6W56bOcxbpQ86n5e4hQWS4rYBBxWWUB0mUC+W3/KZuIVD4GW8AcOdnjif/Ttj+agFHacED/1t/lBF7el16fowXTXu2Dp2rTF5UIcDYEg==
-X-YMail-OSG: iLdTl9sVM1nhVlX2udGG.kdDn_5rEVY3GIdINw1ITRwm3glyTJBtgXtLftZQ8pM
- y7s2K8JCAm5KdaQhRYnx2mqc8rK3e6.tx0CglXuv.gtacRU0ocw2lXjqufgLRiHlbfstkrIZ.NgS
- JkKMJp6CSOk1y2sG5BWvyldD3tR4HsinTwl2Uru4R2mrRH2eg46ozT5FurNnWa1YZIL9PimLTo1n
- DBCFBCHklDgDchPorjOaI0rtT6jyZVkHvb3cRI6.NNw8_FVP_X1JBJno_PR8jv5tJDlilkukkVta
- JNDdv36TYVmrZzAMRkqvgldrdBdP.jFhBFPoWgqLYOC0COnSn8hQObMF.ZOLbu_IlMJre90vYO3N
- 2Kao28dAZ4UF.MVrKSPvW4AQPwkyTlJdBUm4oQfL1zsU47DlpnHCmP2Ec408bro0hBB70SBpzxzg
- hCDJrMYmieSbOUNyb_tgEE49N5eGKy9iSqfG45xg2CTn.MrmoqelMsGeJU45WsaNDzYIz9TJDpJ9
- Kui6PYkx2K9bDCxugFlcJZo78K44yuRRCvtUZq_WWczKlqXi5djhI5Hakxs_BYMFbdoGFBdH9kDH
- jTqiRO1J_taVb4VoFdjFLPO7mmVVGrtNnSgfSJ0KoC.3t3x1c8RxbbD_9b_6jcuK1htDFGVF8mP6
- ls4aqtknZGSPV0jKvZpkXOcLwOyjIoQ7T2tXHoI_gNI68QOJhO3mAGIkcP1Y8aeCybhgEN_RD7N2
- w4jGexBPrrZ3bAhNzMGOjPLatRDG26Cay1ZWpmfY.5njNSGlSCvRwh08R.m1NyNUASIIx1rBcCYJ
- pHDodjfG2qYlh9yNQ_qMqewrgxOizo1cSa8MgifhwkBh1QUb9R4JPAM72xRa9HNPG6uZ86hNoMQB
- UTFYUKDKZ6kY2uGtcjdUaLdPIJIBfgSBtf6kfb_0_4mwZFyXpGGV8bPZZM4gBgZitNlPefZ8Lyip
- iAXbrRBES8cCmtrebpkP6f0KDmlkV9iLbfEAVeFR1ia.jEXBr1K7coiVky634GDL.UKc4b2URBUU
- bHBiLLlq1JH2TVxuVw51rv9sKTNbScQ2XKoas5KqBUawl.bpfcj8ff6BrAK7gu6RYlDTaC9PyGKC
- gFpn7INmhbt8hFNJefDeNALHGEHYNP.GGNTA968oy7CByWVKkURiU74QwOySXjr4Wa5m04KRyi0N
- vfyxzBXN4bOAkozR7J9O6zmBAXIDc4r9FWeMEo_INHye_0TwqAOP5ngusO3dT9jyXHKH4XT.KeDX
- VDoLwGyrkY7_QWEQmjsY48sogTUfWxTFdR6OE8Dyqf_7qTBbOAf86HM9qhl6c6ImYJGBX2P8ey8b
- Ng_LDVjH0w7YDJgNPXnxQPcpL8kZfrjjpSgBJZKFXVE9tXn07RboXdnMvJc_ZF63bsvN0z0ciIGW
- QZZrWAd0Zb0_YWY7aCEOhYXMnvfwYD8UDZvPvuxhq8LLFlO2JcI9n3Abd3FkcGHzXM3d6Keq97eH
- bKNpPpsYGUZ83Gn9R5cvaAE.q13OwFS75XppUfalT6mY0J9EGdkNoqgBK2qMzxmhZ7sYVYESGFrb
- bSz3GuIyqPlQ2kmZGrj1Bb6JNvgz3_tnGHh84YFNqFdu9VIMR4tI4re8I7PAwFV83_150WleFulA
- qbSkoWssnk7QuNC0KSLAMrR3IDDh5hYsTsH1rwDdlgsSapCQIVKspRXOvWqriCWnrTPc7PID6VYt
- cF.YaHRFg2Ut5vTT9Vw1_ZLt9gTHr2Qvpt0LPrPgtNUsVT07JD9THic.CEXyxNVtFNi3_98GLlGQ
- fKMCY8tkbhpmmHIMD8lwP9xT7bY1AhNA0.drtrpZj0li1Qb9jlVCkGQcR10s.qS6.FQ9lliFuUrh
- fmuS2EiYrQ_pNrsU.sOizo4v81IMnQ64IgVvEfOmKGzGWktfAklLacedwcGoGD2bCQgViRZxABOo
- rsLTpzaBs.YClM..iqE4JTubnXth5qKafdwPkrVZQe3a4wHwC3Jo8WHDKHhtQsRaQVjdr61BEACI
- sU3p.UBUJ6nAvl5K5qkWbVv1OECiurO6zYUPtaI6TzuHkxcluGb0_SwaZzOgOmVLS7zrkH94HeP2
- pPb9xuMRCX8tssCKYbCtFjJWklplShIISlgiVBstddQfItEKig6xwRSxKtAxEBfbHzOLATLKnM28
- Fx5YcLGucZT_skPMyYwD37FtgNA0O8FpHh_ECOaH3DQrkpvnUgwX6KaOMnftPbO.Pf.KSnf205a7
- q8r.K4gGGFk.QnaRq5dhUxl.FR8HhmsM5JUZTXItEr7PSwjxJG5bxBTUWrBMeUgKYOM8OQwWHQH.
- _ECGz8Y.pdOa.3QgOyT7PC13Aq0ICZ3RKIivyUbycQjOdtLN2ybwV1MFemgHe0YnsGKcARIkGJR6
- iUnwQxtFQfVuqqRjxVLPFO.ql6pKCdW9YsNNhL9QsrlLX.HgXIjiaCPKFbvrPiZM3E87U9CEfxJl
- im4iinkhhE0S6.nioTzmGillMU0oy.6hqFGEhLhUkhLH3N1xQCV4.Ok6PYiNMmOtLrcf4naW0pKn
- RlNPu4PfIs4uqGqztVENpPemBK28ctHpl8VH6wYs9jzoILtgaI5AkQDaLLs10_b0f8h8WbTwT1JM
- qJTKgJ_immptCM3fx1r8.O_YfqPU8VPJD.StLGO5j1iiYDwLwNEb4yAPuP0ZO3GvMJwH9xDdNYQX
- IuSIkdGaRkodSS7Ht6TkTTC4feF.Azuz_RQf_dl734WcMh.eDgBTQF5wApZFxRm5t1ejujC7CX3k
- ToU7xqfYNVkqxm4LgbQ5ho2NBOBCRN8Zj
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic303.consmr.mail.gq1.yahoo.com with HTTP; Mon, 26 Oct 2020 04:29:10 +0000
-Received: by smtp401.mail.ne1.yahoo.com (VZM Hermes SMTP Server) with ESMTPA
- ID 6a7b32f6e8bbe21d3dc245690167a96c; 
- Mon, 26 Oct 2020 04:29:05 +0000 (UTC)
-Date: Mon, 26 Oct 2020 00:29:00 -0400
-From: "Alex Xu (Hello71)" <alex_y_xu@yahoo.ca>
-Subject: amdgpu crashes on OOM
-To: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- alexander.deucher@amd.com, Harry Wentland <harry.wentland@amd.com>, Leo Li
- <sunpeng.li@amd.com>, amd-gfx@lists.freedesktop.org
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2074.outbound.protection.outlook.com [40.107.243.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 042F56E87E
+ for <amd-gfx@lists.freedesktop.org>; Mon, 26 Oct 2020 08:29:11 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fwtt8CYJ7BemMJcKVzSMvV7Owwv+krt4QKYgo5YQv/MjTSimsIqQQiKA1jlEThkZSyXFVPpCVtRSDBLyXGe5GIqUCdS02mN1urRgx17/gctbUpBYOHhEBhUx3LpMFOMFMyTTEEV18sI0kEkE/18zicgMy29rtRhS+LVyeroezm9r3jttQJ+X6a/v7pFzgQmgyVIdWj6mVf1rgg+0lwJlytlKz4aw+TROabWfMku5LOkwdsjhHHaET5caPJX186z/oxXpZojZc781DH1NvQ13xwA+NDHrENKoInyaZ91DsMS/Zu1LZwBAPgZmWpkMaL+W3oYMN3pT2qExxMx5kXekow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1LO+3M/dYvGGQvT5oD68186yvQ9qGbC3jU8P4XF3nko=;
+ b=ZC/X9ETH2qRALAZJhqJtMeMqjEo1JDXEbgS0O5PfC4+KLAEOgfmhcAxJyNDVzdEgsKu+eelh6e7XfTByLg2jrXI2xu7vK/hoQJd/0C+ayMhmgrdp97WHz9NRvcLoplKnN/9vEswDsCr5ajXDTkLOvYzwC10R6Z4//ut3V80HYOUgWaS2lrhkWnNxzmHyZiEbS6wtgDefqFCrATKBO622DfQv4BpuBktjqOtgb40k9tZDfoBxvJzQMYv4/yfwaua98IsQXfPY2E5yuFeT5DcrkwrGcxYpzn9B2bewQK9kq6EmWYXOMLZ9JfrKOtxfWQzZMEUNV7e1FMq8dKcXf4zWuQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1LO+3M/dYvGGQvT5oD68186yvQ9qGbC3jU8P4XF3nko=;
+ b=FbJV7iseoaHllFnUUQ/yrM9WsQS78K2ifjsLkgw1ElpohZiOIdq7mG/oOZO4fcCqLMpYzmIDLzUJqzTtFOR3x1Sj7B5neYfb15OnMXDwk6Za1Exe6wfUoOkM4FIHR5LbyGRKufXPLfNpF8Vy8fRGNkEgkMTyeMaK4vYbrHz/Noc=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from DM5PR12MB1753.namprd12.prod.outlook.com (2603:10b6:3:10d::16)
+ by DM6PR12MB4483.namprd12.prod.outlook.com (2603:10b6:5:2a2::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3477.20; Mon, 26 Oct
+ 2020 08:29:09 +0000
+Received: from DM5PR12MB1753.namprd12.prod.outlook.com
+ ([fe80::b007:cabd:9ff8:bf78]) by DM5PR12MB1753.namprd12.prod.outlook.com
+ ([fe80::b007:cabd:9ff8:bf78%4]) with mapi id 15.20.3477.028; Mon, 26 Oct 2020
+ 08:29:09 +0000
+Subject: Re: [PATCH v3 00/11] amd/display: Add GFX9+ modifier support.
+To: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>, amd-gfx@lists.freedesktop.org
+References: <20201021233130.874615-1-bas@basnieuwenhuizen.nl>
+From: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+Message-ID: <a64cc203-b57f-115b-92db-7a2f95665bf5@amd.com>
+Date: Mon, 26 Oct 2020 09:28:44 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+In-Reply-To: <20201021233130.874615-1-bas@basnieuwenhuizen.nl>
+Content-Language: fr
+X-Originating-IP: [109.190.135.109]
+X-ClientProxiedBy: PR0P264CA0054.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:100:1d::18) To DM5PR12MB1753.namprd12.prod.outlook.com
+ (2603:10b6:3:10d::16)
 MIME-Version: 1.0
-Message-Id: <1603684905.h43s1t0y05.none@localhost>
-References: <1603684905.h43s1t0y05.none.ref@localhost>
-X-Mailer: WebService/1.1.16868
- mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
- Apache-HttpAsyncClient/4.1.4 (Java/11.0.7)
-X-Mailman-Approved-At: Mon, 26 Oct 2020 08:19:03 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.100.219] (109.190.135.109) by
+ PR0P264CA0054.FRAP264.PROD.OUTLOOK.COM (2603:10a6:100:1d::18) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3499.18 via Frontend Transport; Mon, 26 Oct 2020 08:29:07 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: fe111c85-8265-41a5-7575-08d8798935b3
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4483:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4483BF22DCE374BA2D0F79E18D190@DM6PR12MB4483.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: UsdPngRddBr9y2Cl7diJ0INABAvDvhjWXBzm0u3O1NIDOdJK+zVVe0s7cs3SM7xzUEVO1z/vsGlgfs2MvhvPtjSBntaSJwuDFBpzMQhzzGjbq1be6GpkfpmVEz0dFUoWVNFsQ06/i/lnd5iRP1oLfXEEj8rrZs0rhoqnuQvUyqmbkgwOdINX4pNUI8BAD9t3gdEKP/hFJC6wLo1Na9j6mWLln5YXtr2oJDENGKF/dBdFqRrXq0MbKDKy+F4vyHAJMOuzLNgV6EmLUabbLDxc4lQ7iROsztf2jqx2x9u/aB42uLjxL5FCWF916Vl8rl5BcH7Dh4surJloxwDLEiNsUJD5CxXNi0UJI5Sipb8IL30eBmxJIPI+SvNOEPdm3BkZaZApF8zgAixOQxU/YiaV+AmKKnbhZRvFQRUApG7HB6IQwBa+OYCyaJHfmqZ5Gqq/s6Fn5eGjvuuTBcYzxQZt+Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB1753.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(136003)(396003)(39860400002)(376002)(346002)(53546011)(966005)(4326008)(66476007)(316002)(186003)(26005)(6666004)(8676002)(2906002)(66556008)(16526019)(66946007)(83380400001)(6486002)(2616005)(31686004)(36756003)(52116002)(86362001)(956004)(31696002)(5660300002)(478600001)(8936002)(55236004)(16576012)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: j+W0vPeX3XsQgJBxhGSK/x/Bpo4hvjlQHxHKag/TYZAkp6pn/GCOu5zoPlFD1/VxEXNYCkj5zYuAdhNm3zU1k/CsVTCZsynbb5/6/9xftzwQjrqkgdz7PEvVvy/1G1u+JJrYa55gPGdaFnmJrTYVFKrFQ3s+IanomjQCD3chStJzbOPtDjOfarvzijLkgiULA03ad7rxE24Y/AQ/7iUStdpyhW7ZPWy5MxLut+pmUWDJrdgCq3vFb9IyF7O/H6aSoRZjibhvsAzfZBYtOxGletHUWx1RlQslDB4abEqIde86vDl5SEc0YFV2VSBfm2SydZB1CfwLV7duVcb4k03Mw49+g/YKjv7JiCdozVjgIEfm7K4Q2BLU8eTy/pnRA9ZRD6u5bx+SyEY/Hl+K3wNwUXMLiXSQCkURJmv3X/w6OeSu6cjRZXMjMKcvPVrV8ah9sBIM34X7YgwUdCFOMnHC0OCrPfzsLyONqo5saAKX7XC6ZxDJ1ZnERNK5lpEO7nTBXtAJU1lIUeDnP/IrjpzcH75zvP1Vc7UFH68s877EVkxwLIncxdoVGpkyjaDgMDFzpt1/yX3lsrBkm5CNue7j+wNEUnig/0fPW+BF0oz5mLtQEU0XlZ1hcGtuGuWMH8FlBOaWdLOtloK2nUSAxb9qtA==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fe111c85-8265-41a5-7575-08d8798935b3
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1753.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2020 08:29:09.5737 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jDfpoiPLEbGBK0+ZD/CmoGKE6FHg5EPnYorQK2ohcjX0uSCrJ1YKUTJ24KETfC6L59ybDObrKMnSC/RZrNwoVw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4483
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,69 +95,97 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org
+Cc: maraeo@gmail.com, sunpeng.li@amd.com, daniel@ffwll.ch,
+ alexdeucher@gmail.com, harry.wentland@amd.com, nicholas.kazlauskas@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Bas,
 
-I frequently encounter OOM on my system, mostly due to my own fault. 
-Recently, I noticed that not only does a swap storm happen and OOM 
-killer gets invoked, but the graphics output freezes permanently. 
-Checking the kernel messages, I see:
+I've been using v2 for a while so you can tag the series as:
+Tested-by: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
 
-kworker/u24:4: page allocation failure: order:5, mode:0x40dc0(GFP_KERNEL|__GFP_COMP|__GFP_ZERO), nodemask=(null)
-CPU: 6 PID: 279469 Comm: kworker/u24:4 Tainted: G        W         5.9.0-14732-g20b1adb60cf6 #2
-Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./B450 Pro4, BIOS P4.20 06/18/2020
-Workqueue: events_unbound commit_work
-Call Trace:
- ? dump_stack+0x57/0x6a
- ? warn_alloc.cold+0x69/0xcd
- ? __alloc_pages_direct_compact+0xfb/0x116
- ? __alloc_pages_slowpath.constprop.0+0x9c2/0xc14
- ? __alloc_pages_nodemask+0x143/0x167
- ? kmalloc_order+0x24/0x64
- ? dc_create_state+0x1a/0x4d
- ? amdgpu_dm_atomic_commit_tail+0x1b19/0x227d
 
-followed by:
 
-WARNING: CPU: 6 PID: 279469 at drivers/gpu/drm/amd/amdgpu/../display/amdgpu_dm/amdgpu_dm.c:7511 amdgpu_dm_atomic_commit_tail+0x217c/0x227d
-
-followed by:
-
-BUG: unable to handle page fault for address: 0000000000012480
-#PF: supervisor read access in kernel mode
-#PF: error_code(0x0000) - not-present page
-[ ... ]
-RIP: 0010:dc_resource_state_copy_construct+0x10/0x455
-[ ... ]
-Call Trace:
- ? amdgpu_dm_atomic_commit_tail+0x2193/0x227
-
-This area of code is quite odd:
-
-dc_state_temp = dc_create_state(dm->dc);
-ASSERT(dc_state_temp);
-dc_state = dc_state_temp;
-dc_resource_state_copy_construct_current(dm->dc, dc_state);
-
-This ASSERT macro is misleading: unless CONFIG_DEBUG_KERNEL_DC is set, 
-it is actually WARN_ON_ONCE(!(expr)). Therefore, this code fails to 
-allocate memory (causing a warning to be printed), prints another 
-warning that it failed, then proceeds to immediately dereference it, 
-crashing the thread (and the kernel if panic_on_oops is set).
-
-While I am not by any means a graphics or kernel expert, it seems to me 
-like there should be a better solution than crashing. If nothing else, 
-the OOM killer should be invoked and the operation retried. We may lose 
-some frames or see some corruption, but that's far better than totally 
-breaking.
-
-Thanks,
-Alex.
+On 22/10/2020 01:31, Bas Nieuwenhuizen wrote:
+> This adds modifier support to the amdgpu kernel drivers for GFX9 and
+> later GPUs. It has been tested on
+> 
+> - VEGA10, RAVEN, NAVI14
+> - weston, sway, X with xf86-video-amdgpu (i.e. legacy path still works)
+> 
+> and includes some basic testing of the layout code.
+> 
+> The main goal is to keep it somewhat simple and regression free, so
+> on the display side this series only exposes what the current GPU
+> can render to. While we could expose more I think that is more
+> suitable for follow-up work as the benefit would be minimal and
+> there are some more design discussion there to discuss that are
+> orthogonal from the initial implementation.
+> 
+> Similarly this series only exposes 32-bpp displayable DCC in the cases
+> that radeonsi would use it and any extra capabilities here should be
+> future work.
+> 
+> I believe these are by far the most complicated modifiers we've seen
+> up till now, mostly related to
+> 
+> - GPU identification for cases where it matters wrt tiling.
+> - Every generation having tiling layout changes
+> - Compression settings.
+> 
+> I believe the complexity is necessary as every layout should be different
+> and all layouts should be the best in some situation (though not all
+> combinations of GPU parameters will actually have an existing GPU).
+> 
+> That said, on the render side the number of modifiers actually listed for
+> a given GPU is ~10, and in the current implementation that is the same
+> for the display side. (we could expose more actually differing layouts
+> on the display side for cross-GPU compatibility, but I consider that
+> out of scope for this initial work).
+> 
+> This series can be found on
+> https://github.com/BNieuwenhuizen/linux/tree/modifiers
+> 
+> An userspace implementation in radeonsi can be found on
+> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/6176
+> 
+> which has been reviewed and is ready for submission once these kernel
+> patches land.
+> 
+> v2:
+> 
+> Per suggestion from Daniel Vetter I added logic to get the tiling_flags at
+> addfb2 time and convert them into modifiers for GFX9+.  Furthermore, the DCC
+> constant econding modifers only get exposed on RAVEN2 and newer.
+> 
+> v3:
+> 
+> Fixed some typos, rebased and CCing more people to actually get a review.
+> 
+> Bas Nieuwenhuizen (11):
+>   drm/amd/display: Do not silently accept DCC for multiplane formats.
+>   drm/amd: Init modifier field of helper fb.
+>   drm/amd/display: Honor the offset for plane 0.
+>   drm/fourcc:  Add AMD DRM modifiers.
+>   drm/amd/display: Store tiling_flags in the framebuffer.
+>   drm/amd/display: Convert tiling_flags to modifiers.
+>   drm/amd/display: Refactor surface tiling setup.
+>   drm/amd/display: Set DC options from modifiers.
+>   drm/amd/display: Add formats for DCC with 2/3 planes.
+>   drm/amd/display: Expose modifiers.
+>   drm/amd/display: Clean up GFX9 tiling_flags path.
+> 
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   | 169 +++-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c        |   2 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h      |   3 +
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 754 ++++++++++++++----
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   2 -
+>  include/uapi/drm/drm_fourcc.h                 | 115 +++
+>  6 files changed, 880 insertions(+), 165 deletions(-)
+> 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
