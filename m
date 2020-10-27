@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 434BA29CAA8
-	for <lists+amd-gfx@lfdr.de>; Tue, 27 Oct 2020 21:53:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E6D029CAA6
+	for <lists+amd-gfx@lfdr.de>; Tue, 27 Oct 2020 21:53:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CA586EC53;
-	Tue, 27 Oct 2020 20:53:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B54F06EC5B;
+	Tue, 27 Oct 2020 20:53:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM04-SN1-obe.outbound.protection.outlook.com
  (mail-eopbgr700069.outbound.protection.outlook.com [40.107.70.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EE896EC54
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 676B66EC55
  for <amd-gfx@lists.freedesktop.org>; Tue, 27 Oct 2020 20:52:56 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iplA0M9KHQwIH97JZuNnxsnFyh2rXyBlZqX4EJqXDR1z+5LCMZr6zmUfaSmFzMxbY8h16/aqOOSgJrvqIcb5W6TKleqqgxVfhVYs25fAzBovU6CRAiS4OygeVTWvBEgmD0ioRUH+yd5iJmCM+PYi1g8mGVOrnY+KRoskjAoBWZhRhSpACzAldsHSkEPn0D4gCGC0N+fwuux2cCJ4b+r1y8wc0SGQ0a/GOltgHHu+pXCNRMneIrKjwXtL0n8zdWw7wkmiFLRjFSuxgVsnVjcZlDCRml55Gdo1Gd6QDH7RubJ+NeLjNyMHCXJr6rZc+r3dZNHMCnKQSkmrkmj0zk5b/A==
+ b=Suv8C5CroFtZxkTJ9NCaWk2d7vtcHDzlxsH8Itm+LlOTOiv4N4MQFGyj6tArNX5MBcCQvdCK0nvCSZnwZkag9qZOY0pLyeBDdAFPF8U5NHW76dicSrrMHQ9LGE5ZpfejZSnRmiKB1CcC0OLSuaucQaNsNudkY2eZJyzCuq88E1B/RGb64+Sit1wtZeD3u34KwhN5O/82a0qDAdNd5PYzIWhpGmeqxZod3yRPHhw0G9BGrhzK6URcUwPKuFlGPW7j1tz2QXHaopGqOqeww3mgHHe6xjAv8MQrYgqdtBdYoQU8sMBNmg0qvT/bD2ahCk/x87AeuWCn03OhJzRPZEFMTQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wTruIe7xydY2qx3RRpUsAEnaFKMyWb19wkmZSRIGeDk=;
- b=fogqxR1hVHnogWxWofa2f5XEhyCMXclK1WVpdJLiyZgoJK3wqvGqqyooXiuux27/t46tBmEAAdim0sVMtJq55or7+OcV7daMHs7oUjjZKkUn+qUmLSAmeMEHasO+SFHQ+HirI5TVw2Rz8UXy2rRE1hqyZ0G3xcNPjw1NkEtyaYdpMpOy5/PjMJZNLQ87GuQilOgtDDed2XwoYdk8YwIrhAnVCJSGeWUtzzw+S9d+uZtJ8DZIkVy64+A6hvrkJx9+xyUtSsAFHIxaLiwpp9UinTluzl7e0qpurpvNZMfMGV/yUNOhjEvrsCBhxov9QvZ1GAPy38/QVRdBYLPokrGcRw==
+ bh=kZn4FW9gJV/xGuRWVZGS+2pQsI+HHKpQGkdEkP0YMrM=;
+ b=Z7Ed6D+AI8uWFJZqZWN/e+kpjyXzFtXo9zFHsr5fULIzIeTn0I6tAFfWwko5sQttdLO/WTOuOzNhw9efid9/aGv7sgn4wyHDpxriTTip9Ktu/OaRjxvxe2mkcrkCAtmjsLGJaxx1e+ytZraCAC2LHfAd8zdKLWVjJ1dVlNld853FB403enDi1kXmFhqzf4gwzwPUjpRQJbag+RR+H5SA4EmZDCnzzzvprpAE3+pJBqCJS6yMKkX6+IUDMSnwfPZ09qHV5XpvRc4bexDTQiv0yuWU6bphxXIXbiGtuF+MsopM+BXfQZO5aUQVqUFtB/TBYJT4vmB/es5YZ+oc3ou1TA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wTruIe7xydY2qx3RRpUsAEnaFKMyWb19wkmZSRIGeDk=;
- b=qBPU48ymPqONTKIWwa8AdBxwCJRg7M8TO/UFPRsq18U0dsqEynrhkr1cZPBDvEmAVnVtOsbGcVES8GG8KofKtiffK+bsZuwxWd3bKO3q0NCMD7uTlXYxWzHF/Z9Cu2JUva9HhggW6EE8uKTANeVvRQsJI8cxvMUJyBgclvdWFhk=
+ bh=kZn4FW9gJV/xGuRWVZGS+2pQsI+HHKpQGkdEkP0YMrM=;
+ b=d7rJUr03mrPMN4/zPZ3luKzC48zr0/DSvdILY6D8fnROPD77Euncx3aChTgM6w9c4PJFpB3qBHGtSta7aTvH8VZZqVEsxWeEUezSZWODc/HdudL8N2eHvnbN88vq/auio+r6h7+0dp7QZvFVZO2DYZw9yjW2T6jjdBLbWmUXI0A=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -42,10 +42,9 @@ Received: from DM5PR12MB1884.namprd12.prod.outlook.com
  20:52:55 +0000
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 05/25] drm/amd/display: Keep GSL for full updates with planes
- that flip VSYNC
-Date: Tue, 27 Oct 2020 16:52:14 -0400
-Message-Id: <20201027205234.8239-6-qingqing.zhuo@amd.com>
+Subject: [PATCH 06/25] drm/amd/display: [FW Promotion] Release 0.0.39
+Date: Tue, 27 Oct 2020 16:52:15 -0400
+Message-Id: <20201027205234.8239-7-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201027205234.8239-1-qingqing.zhuo@amd.com>
 References: <20201027205234.8239-1-qingqing.zhuo@amd.com>
@@ -61,28 +60,28 @@ Received: from localhost.localdomain (165.204.55.250) by
  15.20.3499.18 via Frontend Transport; Tue, 27 Oct 2020 20:52:48 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 25814af5-c7ca-47a7-a592-08d87aba433c
+X-MS-Office365-Filtering-Correlation-Id: a0312edb-684d-462d-05c1-08d87aba439f
 X-MS-TrafficTypeDiagnostic: DM6PR12MB3595:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB35952816FD5EE7A5C833F657FB160@DM6PR12MB3595.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3595F92671195D993EAE752CFB160@DM6PR12MB3595.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:296;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5TrDJWaiaRu6yhCNbEoW/wVxjzmbPngwSH9T4HhLR3b/qOMS9HduID5Bl1vivbI25O8zjKi4zc5SDnizdtCLfnwmPq2w2Fk6Z0KkM14d3FqINyXWfOXR74ydlCkCynBy28nu+VyZmzY1fyVL3bq2OJPl1nNEsCpLK5fojw5jcCwa7J19wdg8TxYRHF3sVD+YzXgoxrVXoMkQ31OjdGxeyQ414g356iE4DWqesisyFTBO179KbzzMMYf/mAoBMMMOLXi/8U4LZdAaqMADtlJkeMBJCn5r1jynif2LsIwWwQ1iKUpPcTOeubyMk20Kcf+Pdpf8bcFxTBt9xcTNPmsOVi2mLXx7OgwPzpgc7D6HBpzD8/Xw/RXogXBsd073a9LC
+X-Microsoft-Antispam-Message-Info: zOeu2J2HAG6diAInsIca8C8be0c/jm+YW+pEjHBTEdkP5V0KyEcHtzn+4HIjiTPi/Qk/HyRrlD03TPzZSXvmihQ/+kuh9sys+RDPJrvE55wwh5X0m7opSlKgYT694azYHMHdUxeLnS4QoDLBlgT7cd+xD6eRszKz1dYt22IlIw/YvEsbNsyMAD6tMpTQCN5LxXIgRZGju6qsrNN9EkVcJrq0JSoJfC9PHoUygyen0h4DJ/cltTC+Q/phVhUXea1wEXjvh3+cDzIyv4CYGmfPcHCE3De+3oys6TXWULJ++xVLaaLGSQWM9jxS9z+3v9E9EMAjA2A8esSd2iLQAt+HgeNwKivjf6Ky6jKZgFnqv23mTs99hBR729FOFTOnBAyV
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM5PR12MB1884.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(39860400002)(346002)(376002)(396003)(136003)(15650500001)(6486002)(6506007)(2906002)(26005)(66556008)(16526019)(186003)(6666004)(2616005)(6916009)(52116002)(956004)(66946007)(316002)(1076003)(69590400008)(44832011)(8676002)(478600001)(66476007)(5660300002)(4326008)(86362001)(36756003)(6512007)(8936002)(83380400001);
+ SFS:(4636009)(366004)(39860400002)(346002)(376002)(396003)(136003)(6486002)(6506007)(2906002)(26005)(66556008)(16526019)(186003)(6666004)(2616005)(6916009)(52116002)(956004)(4744005)(66946007)(316002)(1076003)(69590400008)(44832011)(8676002)(478600001)(66476007)(5660300002)(4326008)(86362001)(36756003)(6512007)(8936002)(83380400001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: mbY35ekSUBnNldtUzg07bCGBqc5mykamZczH/0OCchvR/iH2jwsDbzADJ7tzf42qirvG8/2LYNquL/IvZH4p0eGiGKsDLz4aW/tSoSDbqlw6tQtCOA18y98pBYk8BITzReVbJqhphXdJrc6RqDvIXnEj/Xwgv3Tcoa3PC0YUm3QKvPZvwDYHJu9L9VbZV3PZJQgeqQvDZrSEuqgSHMfCNHrQKX9xmPTcMbZBg8NiMtszrQjDBOuFZNRJCGpBwj1DQloAlBPoFw1Gsvr6pagcwX0AlCy1nIaPP/N8DqCAcbPV8ZlZ6bR2O4LRPm7tz5nemqb9bkABcqMHj84Ly/11TYAHMG3t46aK3kzQnZP5c2Bfkqvi3rEEPEiPSaaI7A2R+EZJgL0vO7YipKOIkMne1+xkDD1vGqqYTEcMAUCnBmvZdGoQ+InIxGN8U66VtT8nPjIWE6tl1HW1kBNnmwda76A+/aqk0rnVjROL28ves/QviU9WlIo5vOj3hl3jkJKppG3EsmsqVUv/y27nP8GMcBRzk+rX94teCI+Bw91jZzdmgcrBXfKzOaYWgzHL0Jp6Rbhaa3FIiKC2h87erMSATqGRlWhJBD8d0fRKQ06qiVFpS8OxoHajciz/T+URNe6UcIjLjJcvtHX/4DPa6GReyA==
+X-MS-Exchange-AntiSpam-MessageData: jJq7ofyHBLtD9vZDzqlglPjvIeypuD09o4XmS8TUerRTSSRqYf6zfUTwqvwZbreLFGUgf9jtqD/0BrAq4ppjsGgtqoNPJFucyTcZFNzYu+oobiYlKp2megvr30h/x1CdLsFO3T08570/1hDPvlQ3Es0tVn2ptcFFe5MrPVaHS0EmnL5cLle8JmpPizddjMpwAZOMipbz69uNuFah+grLWcFD7o7RJKJC/OmwCSJxCnWtgs6uV4uX/RW8d5yU1sEtJRcpjzptwttbkSb7ljNnmUsAMobV7vJdq9GP5d3yNnKA4RZ/CBDhOG8JcAJ6hs2a1neMLRuxEVH8I01fVz8B0kzPBXZv4hTDjBOXsqJDn0gJp0TYBaJM7pJEDdIZ8F/5TkQHqG9ZhR4dsBlULJ0U6R4R7mC4zjATw1VMr81olODFD+nNc4KZ+n5g+36bgLOM9V823tisC/hUPWwKAujTEtxfyaCTg4dO+0qaTqSBY992kPO8kseP8s00gQkmvkixh1z6azSDSpCg8r48GCPoSGYrR6y1ndrSse2hnWFy9Kwja/WYWl9sLwhXIR4RGmktW8k6sczLu09Ckh4ow26yG5LSZFPSHJ+s7BU9JLkf8kgP2n3qgOfcHBtNPMmuUZUui9tqgk81DXvM3tsoWKnOaw==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 25814af5-c7ca-47a7-a592-08d87aba433c
+X-MS-Exchange-CrossTenant-Network-Message-Id: a0312edb-684d-462d-05c1-08d87aba439f
 X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1884.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2020 20:52:48.5578 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2020 20:52:49.2255 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xN3hMCf74QlhNM9sheA2Y77MbvtdF68B0I67+8t2RN/CJ9b0GjtyUsYV9mm5Vfq7
+X-MS-Exchange-CrossTenant-UserPrincipalName: AKrqmcsjzxKRuGo2HKNHYPdJaljZ418F9W8nqfQje19Jdvp6mEEq4NZkiEZFAERw
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3595
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,81 +95,39 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Alvin Lee <alvin.lee2@amd.com>, Bhawanpreet.Lakha@amd.com
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Bhawanpreet.Lakha@amd.com,
+ Anthony Koo <Anthony.Koo@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alvin Lee <alvin.lee2@amd.com>
+From: Anthony Koo <Anthony.Koo@amd.com>
 
-[Why]
-When enabling PIP in Heaven, the PIP planes are VSYNC
-flip and is also the top-most pipe. In this case GSL
-will be disabled because we only check immediate flip
-for the top pipe. However, the desktop planes are still
-flip immediate so we should at least keep GSL on until
-the full update.
-
-[How]
-Check each pipe in the tree to see if any planes
-are flip immediate. Maintain the GSL lock if yes,
-and take it down after when unlocking if any planes
-are flipping VSYNC. Keeping GSL on with VSYNC +
-flip immediate planes causes corruption.
-
-Signed-off-by: Alvin Lee <alvin.lee2@amd.com>
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
+Signed-off-by: Anthony Koo <Anthony.Koo@amd.com>
+Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-index 71499c131947..3b26396cbc5c 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-@@ -1158,6 +1158,7 @@ void dcn20_pipe_control_lock(
- 	struct pipe_ctx *pipe,
- 	bool lock)
- {
-+	struct pipe_ctx *temp_pipe;
- 	bool flip_immediate = false;
+diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+index a4c3f078887d..221bb2d65c1c 100644
+--- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
++++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
+@@ -36,10 +36,10 @@
  
- 	/* use TG master update lock to lock everything on the TG
-@@ -1169,6 +1170,13 @@ void dcn20_pipe_control_lock(
- 	if (pipe->plane_state != NULL)
- 		flip_immediate = pipe->plane_state->flip_immediate;
- 
-+	temp_pipe = pipe->bottom_pipe;
-+	while (!flip_immediate && temp_pipe) {
-+	    if (temp_pipe->plane_state != NULL)
-+		flip_immediate = temp_pipe->plane_state->flip_immediate;
-+	    temp_pipe = temp_pipe->bottom_pipe;
-+	}
-+
- 	if (flip_immediate && lock) {
- 		const int TIMEOUT_FOR_FLIP_PENDING = 100000;
- 		int i;
-@@ -1196,6 +1204,17 @@ void dcn20_pipe_control_lock(
- 		    (!flip_immediate && pipe->stream_res.gsl_group > 0))
- 			dcn20_setup_gsl_group_as_lock(dc, pipe, flip_immediate);
- 
-+	temp_pipe = pipe->bottom_pipe;
-+	while (flip_immediate && temp_pipe) {
-+	    if (temp_pipe->plane_state != NULL)
-+		flip_immediate = temp_pipe->plane_state->flip_immediate;
-+	    temp_pipe = temp_pipe->bottom_pipe;
-+	}
-+
-+	if (!lock && pipe->stream_res.gsl_group > 0 && pipe->plane_state &&
-+		!flip_immediate)
-+	    dcn20_setup_gsl_group_as_lock(dc, pipe, false);
-+
- 	if (pipe->stream && should_use_dmub_lock(pipe->stream->link)) {
- 		union dmub_hw_lock_flags hw_locks = { 0 };
- 		struct dmub_hw_lock_inst_flags inst_flags = { 0 };
+ /* Firmware versioning. */
+ #ifdef DMUB_EXPOSE_VERSION
+-#define DMUB_FW_VERSION_GIT_HASH 0x8aafc9acc
++#define DMUB_FW_VERSION_GIT_HASH 0x26ad601d9
+ #define DMUB_FW_VERSION_MAJOR 0
+ #define DMUB_FW_VERSION_MINOR 0
+-#define DMUB_FW_VERSION_REVISION 38
++#define DMUB_FW_VERSION_REVISION 39
+ #define DMUB_FW_VERSION_TEST 0
+ #define DMUB_FW_VERSION_VBIOS 0
+ #define DMUB_FW_VERSION_HOTFIX 0
 -- 
 2.17.1
 
