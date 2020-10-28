@@ -1,35 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C42FA29D195
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Oct 2020 19:56:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 859AD29D193
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Oct 2020 19:56:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 078676E30D;
-	Wed, 28 Oct 2020 18:56:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 929E06E2ED;
+	Wed, 28 Oct 2020 18:56:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA2D06E512;
- Wed, 28 Oct 2020 12:43:18 +0000 (UTC)
-Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
- by youngberry.canonical.com with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <colin.king@canonical.com>)
- id 1kXknM-0007Ge-DT; Wed, 28 Oct 2020 12:43:16 +0000
-From: Colin King <colin.king@canonical.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Hawking Zhang <Hawking.Zhang@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH][next] drm/amd/pm: fix out-of-bound read on
- pptable->SkuReserved
-Date: Wed, 28 Oct 2020 12:43:16 +0000
-Message-Id: <20201028124316.109886-1-colin.king@canonical.com>
-X-Mailer: git-send-email 2.27.0
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com
+ [IPv6:2a00:1450:4864:20::141])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2FD589DA3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 17:39:36 +0000 (UTC)
+Received: by mail-lf1-x141.google.com with SMTP id a9so8577515lfc.7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 10:39:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=RKvFws6HfpayWjnGJqPTr7zKSrMSUXziDI6GGcjGPJI=;
+ b=McNA8GLtS75smrZzUGhbGvWFLjl+daUBR01yFBrKISKO78TSgBqiDkq/lSimlLona0
+ tm0VCRcX+8/O0PlVNY90/IlIFto1cauZhf72FmtNX8nYz8ChL8d0LI1KXGlY15xROPMw
+ dJhtlbtHcZYC1tThhDTgaIpHySwqgbq9aG3m/HBIcjswXlJVGI37enObLeTfCHKhqASg
+ 6h1KUO5mfUWHNOAIkWSjt3/aG551AXr2LdjYdnWimZK9oI8sjoSE2EvZNuyKNKhLI6Bf
+ 1LvYN729ALyjsipXp4rHPD3xS+f2mBGMBSoyum6hlN27NrTGZQXvvokGc+u3V6HdlEzu
+ Zt/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=RKvFws6HfpayWjnGJqPTr7zKSrMSUXziDI6GGcjGPJI=;
+ b=Xa2lQRL+B5HbpE32KZxfdB9Uwtsb2B7TGpV9J28UJ0LPKEE76/quO/i33x5i1dS2qz
+ 0P1++tyI3Bz+RVGKyVVX7spKgom5hbYV+SJ4HeUtqqNdRRrAaXwU+3LBmSFux3SFD342
+ H6MTySWIBUi/6sZG7Lf0lFU7fSdJNlutdDruhZICHYYJedTjm8fEkkBjAC3744LBau5h
+ cCH1J+vw6ZaX4dn3V21iFkDTwshqiwaWvdKNsc3XqOu+C1cjdcj7NJwxoeMC4InsUG6a
+ B5dPGiBiBvaIWCogcABZ7fUyUGRXzqJtiQ/h+OXY39veFtV82GGPNvuJPea+E55D/OtI
+ NImw==
+X-Gm-Message-State: AOAM533JNFZ7ZPHg+FPUysvl7Gu3oWU6ibPdCm0JdkJOIFdR3ImP0rC5
+ Z1Qm5hLZ4SG295Gs7em9DpdgJeQQm/5H9TmOqD1I1tEqzFcOTA==
+X-Google-Smtp-Source: ABdhPJzCwzWq1eXpgQIlR9F+xQ3ryyDxe75pZwYS2QpKqrDzgOyZ7DDCG30k96BNSOH7HoltrQheioC8e2QddzinxuU=
+X-Received: by 2002:a19:8353:: with SMTP id f80mr86276lfd.348.1603906775130;
+ Wed, 28 Oct 2020 10:39:35 -0700 (PDT)
 MIME-Version: 1.0
+From: Bryan Angelo <bangelo@gmail.com>
+Date: Wed, 28 Oct 2020 10:39:24 -0700
+Message-ID: <CAOvTWHuRNXyUNm1H_vz40iAE2-3Z3zGZO8=-7OJGu1wMMWYiUQ@mail.gmail.com>
+Subject: Potential freesync Arithmetic Issue
+To: amd-gfx@lists.freedesktop.org
 X-Mailman-Approved-At: Wed, 28 Oct 2020 18:56:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -42,43 +57,100 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0621224803=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Colin Ian King <colin.king@canonical.com>
+--===============0621224803==
+Content-Type: multipart/alternative; boundary="00000000000095a5d605b2bea535"
 
-A recent change added two uint16_t elements to PPTable_t and reduced the
-uint32_t array down to 8 elements. This results in the dev_info printing
-of pptable->SkuReserved[8] accessing a value that is out-of-range on
-array SkuReserved.  The array has been shrunk by 1 element, so remove
-this extraneous dev_info message.
+--00000000000095a5d605b2bea535
+Content-Type: text/plain; charset="UTF-8"
 
-Addresses-Coverity: ("Out-of-bounds read")
-Fixes: 1dc3c5a95b08 ("drm/amd/pm: update driver if file for sienna cichlid")
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
----
- drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 1 -
- 1 file changed, 1 deletion(-)
+While looking at the following commit, I noticed what might be an
+arithmetic issue potentially stemming from some merge/patch conflict
+resolution.
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-index fa3842f460fc..0600befc6e4c 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-@@ -2279,7 +2279,6 @@ static void sienna_cichlid_dump_pptable(struct smu_context *smu)
- 	dev_info(smu->adev->dev, "SkuReserved[5] = 0x%x\n", pptable->SkuReserved[5]);
- 	dev_info(smu->adev->dev, "SkuReserved[6] = 0x%x\n", pptable->SkuReserved[6]);
- 	dev_info(smu->adev->dev, "SkuReserved[7] = 0x%x\n", pptable->SkuReserved[7]);
--	dev_info(smu->adev->dev, "SkuReserved[8] = 0x%x\n", pptable->SkuReserved[8]);
- 
- 	dev_info(smu->adev->dev, "GamingClk[0] = 0x%x\n", pptable->GamingClk[0]);
- 	dev_info(smu->adev->dev, "GamingClk[1] = 0x%x\n", pptable->GamingClk[1]);
--- 
-2.27.0
+commit ad339f69114a6a145fc94d44376851c53dee3475
+Author: Jaehyun Chung <jaehyun.chung@amd.com>
+Date:   Thu Jun 18 15:27:35 2020 -0400
+
+    drm/amd/display: Fix incorrect rounding for 10Hz refresh range
+
+    [Why]
+    In cases where refresh range is slightly below 10, FreeSync is not
+    active or supported. Need to round values before checking refresh range
+    in order to have FreeSync supported in these cases.
+
+    [How]
+    Remove redundant values and round values before checking valid refresh
+range.
+
+    Signed-off-by: Jaehyun Chung <jaehyun.chung@amd.com>
+    Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
+    Acked-by: Anthony Koo <Anthony.Koo@amd.com>
+    Acked-by: Eryk Brol <eryk.brol@amd.com>
+    Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+
+There appears to be an errant plus sign when calculating the refresh_range
+-
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/amd/display/modules/freesync/freesync.c?h=v5.10-rc1#n948
+
+  refresh_range = div_u64(in_out_vrr->max_refresh_in_uhz + 500000, 1000000)
+-
++ div_u64(in_out_vrr->min_refresh_in_uhz + 500000, 1000000);
+
+I am unfamiliar with the freesync codebase so I opted to present the
+potential issue here as opposed to preparing a patch.
+
+Thanks.
+
+--00000000000095a5d605b2bea535
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">While looking at the following commit, I noticed what migh=
+t be an arithmetic issue potentially stemming from some merge/patch conflic=
+t resolution.<br><br>commit ad339f69114a6a145fc94d44376851c53dee3475<br>Aut=
+hor: Jaehyun Chung &lt;<a href=3D"mailto:jaehyun.chung@amd.com">jaehyun.chu=
+ng@amd.com</a>&gt;<br>Date: =C2=A0 Thu Jun 18 15:27:35 2020 -0400<br><br>=
+=C2=A0 =C2=A0 drm/amd/display: Fix incorrect rounding for 10Hz refresh rang=
+e<br>=C2=A0 =C2=A0 <br>=C2=A0 =C2=A0 [Why]<br>=C2=A0 =C2=A0 In cases where =
+refresh range is slightly below 10, FreeSync is not<br>=C2=A0 =C2=A0 active=
+ or supported. Need to round values before checking refresh range<br>=C2=A0=
+ =C2=A0 in order to have FreeSync supported in these cases.<br>=C2=A0 =C2=
+=A0 <br>=C2=A0 =C2=A0 [How]<br>=C2=A0 =C2=A0 Remove redundant values and ro=
+und values before checking valid refresh range.<br>=C2=A0 =C2=A0 <br>=C2=A0=
+ =C2=A0 Signed-off-by: Jaehyun Chung &lt;<a href=3D"mailto:jaehyun.chung@am=
+d.com">jaehyun.chung@amd.com</a>&gt;<br>=C2=A0 =C2=A0 Reviewed-by: Aric Cyr=
+ &lt;<a href=3D"mailto:Aric.Cyr@amd.com">Aric.Cyr@amd.com</a>&gt;<br>=C2=A0=
+ =C2=A0 Acked-by: Anthony Koo &lt;<a href=3D"mailto:Anthony.Koo@amd.com">An=
+thony.Koo@amd.com</a>&gt;<br>=C2=A0 =C2=A0 Acked-by: Eryk Brol &lt;<a href=
+=3D"mailto:eryk.brol@amd.com">eryk.brol@amd.com</a>&gt;<br>=C2=A0 =C2=A0 Si=
+gned-off-by: Alex Deucher &lt;<a href=3D"mailto:alexander.deucher@amd.com">=
+alexander.deucher@amd.com</a>&gt;<br><br>There appears to be an errant plus=
+ sign when calculating the refresh_range - <a href=3D"https://git.kernel.or=
+g/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/amd/disp=
+lay/modules/freesync/freesync.c?h=3Dv5.10-rc1#n948">https://git.kernel.org/=
+pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/amd/displa=
+y/modules/freesync/freesync.c?h=3Dv5.10-rc1#n948</a><div><br></div><div><di=
+v>=C2=A0 refresh_range =3D div_u64(in_out_vrr-&gt;max_refresh_in_uhz + 5000=
+00, 1000000) -</div><div>+ div_u64(in_out_vrr-&gt;min_refresh_in_uhz + 5000=
+00, 1000000);</div><div><br></div>I am unfamiliar with the freesync codebas=
+e so I opted to present the potential issue here as opposed to preparing a =
+patch.<br><br>Thanks.<br></div></div>
+
+--00000000000095a5d605b2bea535--
+
+--===============0621224803==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0621224803==--
