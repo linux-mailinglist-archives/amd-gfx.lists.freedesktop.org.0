@@ -2,57 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA10B29DB5A
-	for <lists+amd-gfx@lfdr.de>; Thu, 29 Oct 2020 00:52:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2537E29DB5D
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Oct 2020 00:52:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 553C26E81D;
-	Wed, 28 Oct 2020 23:52:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EC4A6E81F;
+	Wed, 28 Oct 2020 23:52:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com
- [IPv6:2a00:1450:4864:20::643])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A8336E81B
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 23:52:43 +0000 (UTC)
-Received: by mail-ej1-x643.google.com with SMTP id h24so1341496ejg.9
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 16:52:42 -0700 (PDT)
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com
+ [IPv6:2a00:1450:4864:20::541])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3594C6E81B
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 23:52:44 +0000 (UTC)
+Received: by mail-ed1-x541.google.com with SMTP id v4so1346956edi.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 16:52:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=basnieuwenhuizen.nl; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=yPo+60UVEmq7wnU64xnzp4zkOl9t3nvBhPeTg/67dHo=;
- b=WuiWQChdBZ1KSWxVDRQrV2BlvUBq5tAL084GeQyGGw+IVSFf6CZSu2I2dcqff+Bonk
- EZUpu4Sxg8ioY7Q6x2+Lrkrn6hd98tJoNvj36VbEUU4Gh57zB8gP454cU7gL9sDM9bMg
- TI9t9Rs/MhaGOYKtByYd4WuQ1om9y+8DCpKMI/1qWYHKBSgWscjYNo6PT0RdjQ7dv2vR
- ebXtoPnd5sxYNbgVSX356WFY1SJ0UEnjUZe7oSU9rrKf1tFQo9CdftflJpQgMzla6Mgj
- Dr8Zg29zJZtI9bt3i7P5N+344WSsFQ7uceKjZdB6fBaaFL8Ud2c8YaA4GUKBqM0/bPTd
- w7Yg==
+ bh=DGSEKASS/bd8TuE/KrHjD98p0JJoKSSs8WsMzHa7qJg=;
+ b=gQfm91glFvnLHCE77A7mxjK94GjUmr1p6ovSPgN2UOvOBqDxTpNbF3gQHGsbVkph+y
+ xzRteosujQg2MYEqILin4sjdlXhEikOdqxovvyAxmY2S50JP4D+tGL/vBiEGeHjiiPh/
+ JtE0bqKY9iXhO1UMYGKYpEJF5rfG+Tirfnn8PKnZv/gXyhz1EKiyNBrfI3iUpICH2ma6
+ 7cpkHiFM5mDUysJkx1ew0ynCxXrAXiX2bQOPUGEL/CxBGaHcjnV5xWo6VRCaCDLNjrK3
+ lJNHPdyWMcYISX9tTh105Ex+4C/VDT4xUrw1SRCsI9wsFzr70AYeCHOKkFpOb4/gS6ub
+ NSdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=yPo+60UVEmq7wnU64xnzp4zkOl9t3nvBhPeTg/67dHo=;
- b=pWbQN+uFo+yr+BRv6bd6N8qjYvNrbZK8gpc7+yOI4uHWrLQQRRSDqcm3lZkdzurIFd
- y5HJJFOEOMP4RE6x5enXQjxyoso2gnBEgx0S5br9YngKRg7JzWKthUTWiAgsZguIpSHa
- jAC9Yu4omhkc5AsQiQGrG6ONhw4IuOF6c2Ji7QZfONQQpQ+N3TagnHAKmC+r4ztXusPa
- rF/iBhw+EdTfIiHJXi4c1sCGD6GT5fYWfHT978ZJnkaePXyW/zTX62aPtgGkTF1hrwBG
- 7VXUsyplDpClmibhB5KOUp0pnNA5E6wgNOlDSkC7rJSVbp8dZYrelxpiZnvWMKZwPdsc
- 2Fag==
-X-Gm-Message-State: AOAM530lijhBQH3py9hA8MgcTZD5wg0qcNmmdj3EtuMy+rDPAGb2hL8R
- CJxRBNLARkXQ3Jtxa/Ta7fyEzNf3uIs8AQ==
-X-Google-Smtp-Source: ABdhPJyJwX68lebJ/3ICM4x6xRQ+D2/lf0oFu/DQ0/BeIBd5zG/OwsXOojdsIW9I2OdlPwb2IxYE9Q==
-X-Received: by 2002:a17:906:6a07:: with SMTP id
- o7mr1493021ejr.454.1603929161474; 
- Wed, 28 Oct 2020 16:52:41 -0700 (PDT)
+ bh=DGSEKASS/bd8TuE/KrHjD98p0JJoKSSs8WsMzHa7qJg=;
+ b=EMzRTa9BNroCxrKTPGXwkc3hp9rn39PECoNx9y6ayDD1YV3De8nA1ObMu0TBr8iiMc
+ Ho08UAx8l0jinF9mQmXvBT6iillgK8T5Xmx4VGsTXXGIRexFBG9ow7S6RZDr9/uqeSng
+ W9eZPlPPkT4X4BTVoYTf22a5l2yiL4C6cwvm1tIkFilSLG1OuDfRnLEYiRX/7/d2O5Ii
+ iPfwTkNCOpO/tf9Ost+Wiy7eCR9BvYWB++gLKpMI3M88I0VhggWqXSqWloHwvbwawHRY
+ Chj4NkMExOhscwpigdNU8aqxDIusdhp+C7EyLz7FpTT9VL+TzDFWe60/rb1+Y+gXIIHF
+ cvjA==
+X-Gm-Message-State: AOAM533SUgnNCqnYxwuRezskiRUiTxN+mFX4u9jwEzo0S0aff5r8kjc3
+ a1NFNGLQqsljG6Fv24US3TCp2BUnNh7+xg==
+X-Google-Smtp-Source: ABdhPJyJ9WG/DfcFLhThKPqpbAG2IQWkS6UMWpOU7x8oVaRhOcjFrvFo6JK40wMy8fRNhlp+Wec2eg==
+X-Received: by 2002:aa7:c98f:: with SMTP id c15mr1455564edt.200.1603929162684; 
+ Wed, 28 Oct 2020 16:52:42 -0700 (PDT)
 Received: from localhost.localdomain
  ([2a02:aa12:a77f:2000:4cea:81e7:5fd4:93f7])
- by smtp.gmail.com with ESMTPSA id o13sm479174ejr.120.2020.10.28.16.52.40
+ by smtp.gmail.com with ESMTPSA id o13sm479174ejr.120.2020.10.28.16.52.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 28 Oct 2020 16:52:40 -0700 (PDT)
+ Wed, 28 Oct 2020 16:52:41 -0700 (PDT)
 From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v4 02/11] drm/amd: Init modifier field of helper fb.
-Date: Thu, 29 Oct 2020 00:52:32 +0100
-Message-Id: <20201028235241.3299-3-bas@basnieuwenhuizen.nl>
+Subject: [PATCH v4 03/11] drm/amd/display: Honor the offset for plane 0.
+Date: Thu, 29 Oct 2020 00:52:33 +0100
+Message-Id: <20201028235241.3299-4-bas@basnieuwenhuizen.nl>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201028235241.3299-1-bas@basnieuwenhuizen.nl>
 References: <20201028235241.3299-1-bas@basnieuwenhuizen.nl>
@@ -68,38 +67,80 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexdeucher@gmail.com, Alex Deucher <alexander.deucher@amd.com>,
- harry.wentland@amd.com, nicholas.kazlauskas@amd.com,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+Cc: stable@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>, alexdeucher@gmail.com,
+ harry.wentland@amd.com, nicholas.kazlauskas@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Otherwise the field ends up being used uninitialized when
-enabling modifiers, failing validation with high likelyhood.
-
-v4: Use memset
+With modifiers I'd like to support non-dedicated buffers for
+images.
 
 Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-(for v1)
+Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: stable@vger.kernel.org # 5.1.0
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
-index e2c2eb45a793..0bf7d36c6686 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
-@@ -207,6 +207,7 @@ static int amdgpufb_create(struct drm_fb_helper *helper,
- 	int ret;
- 	unsigned long tmp;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 73987fdb6a09..833887b9b0ad 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -3894,6 +3894,7 @@ fill_plane_dcc_attributes(struct amdgpu_device *adev,
+ 	struct dc *dc = adev->dm.dc;
+ 	struct dc_dcc_surface_param input;
+ 	struct dc_surface_dcc_cap output;
++	uint64_t plane_address = afb->address + afb->base.offsets[0];
+ 	uint32_t offset = AMDGPU_TILING_GET(info, DCC_OFFSET_256B);
+ 	uint32_t i64b = AMDGPU_TILING_GET(info, DCC_INDEPENDENT_64B) != 0;
+ 	uint64_t dcc_address;
+@@ -3937,7 +3938,7 @@ fill_plane_dcc_attributes(struct amdgpu_device *adev,
+ 		AMDGPU_TILING_GET(info, DCC_PITCH_MAX) + 1;
+ 	dcc->independent_64b_blks = i64b;
  
-+	memset(&mode_cmd, 0, sizeof(mode_cmd));
- 	mode_cmd.width = sizes->surface_width;
- 	mode_cmd.height = sizes->surface_height;
+-	dcc_address = get_dcc_address(afb->address, info);
++	dcc_address = get_dcc_address(plane_address, info);
+ 	address->grph.meta_addr.low_part = lower_32_bits(dcc_address);
+ 	address->grph.meta_addr.high_part = upper_32_bits(dcc_address);
  
+@@ -3968,6 +3969,8 @@ fill_plane_buffer_attributes(struct amdgpu_device *adev,
+ 	address->tmz_surface = tmz_surface;
+ 
+ 	if (format < SURFACE_PIXEL_FORMAT_VIDEO_BEGIN) {
++		uint64_t addr = afb->address + fb->offsets[0];
++
+ 		plane_size->surface_size.x = 0;
+ 		plane_size->surface_size.y = 0;
+ 		plane_size->surface_size.width = fb->width;
+@@ -3976,9 +3979,10 @@ fill_plane_buffer_attributes(struct amdgpu_device *adev,
+ 			fb->pitches[0] / fb->format->cpp[0];
+ 
+ 		address->type = PLN_ADDR_TYPE_GRAPHICS;
+-		address->grph.addr.low_part = lower_32_bits(afb->address);
+-		address->grph.addr.high_part = upper_32_bits(afb->address);
++		address->grph.addr.low_part = lower_32_bits(addr);
++		address->grph.addr.high_part = upper_32_bits(addr);
+ 	} else if (format < SURFACE_PIXEL_FORMAT_INVALID) {
++		uint64_t luma_addr = afb->address + fb->offsets[0];
+ 		uint64_t chroma_addr = afb->address + fb->offsets[1];
+ 
+ 		plane_size->surface_size.x = 0;
+@@ -3999,9 +4003,9 @@ fill_plane_buffer_attributes(struct amdgpu_device *adev,
+ 
+ 		address->type = PLN_ADDR_TYPE_VIDEO_PROGRESSIVE;
+ 		address->video_progressive.luma_addr.low_part =
+-			lower_32_bits(afb->address);
++			lower_32_bits(luma_addr);
+ 		address->video_progressive.luma_addr.high_part =
+-			upper_32_bits(afb->address);
++			upper_32_bits(luma_addr);
+ 		address->video_progressive.chroma_addr.low_part =
+ 			lower_32_bits(chroma_addr);
+ 		address->video_progressive.chroma_addr.high_part =
 -- 
 2.28.0
 
