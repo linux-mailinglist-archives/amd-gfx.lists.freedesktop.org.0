@@ -2,56 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 065B829DB61
-	for <lists+amd-gfx@lfdr.de>; Thu, 29 Oct 2020 00:52:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21B0029DB64
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Oct 2020 00:52:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2456F6E824;
-	Wed, 28 Oct 2020 23:52:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84AAE6E827;
+	Wed, 28 Oct 2020 23:52:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
- [IPv6:2a00:1450:4864:20::544])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EBA66E821
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 23:52:51 +0000 (UTC)
-Received: by mail-ed1-x544.google.com with SMTP id o18so1318797edq.4
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 16:52:51 -0700 (PDT)
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com
+ [IPv6:2a00:1450:4864:20::642])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 707FA6E825
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 23:52:52 +0000 (UTC)
+Received: by mail-ej1-x642.google.com with SMTP id t25so1307647ejd.13
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Oct 2020 16:52:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=basnieuwenhuizen.nl; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=O2N9O3n6+L17j5THWWWkV1ATup8ChB/kUrsStBpwHAo=;
- b=RRlw79XMVu2cq5aFN/YdFk7UTtQ7BBOXLCgYp4SjtGb9j8q+MMOyv5LSQlk65XEvVF
- 2sC9Lk2JsFsh4NwMNB8pfx1+GEPJzwK9qO9UuSoXPTaCSU0EKGsTx6MW1Xl33qC4GDUB
- n1NdhU1pI7ottVNkeGraQPdmeSG+C+A4jXceVjEIxZtYtv/3p/dv/pZon2jdaAxa+P+R
- pWqAq7ruEUWcWP5bnVTnoJwQjTcxQm1WoqcgNzrfvfT1iLrtUvsUSWBikIqDMT2f6DEp
- ZCd+DrayYzR970IGZMPlwWmUQ+V+lH/vcg/Yh1WrGxXQ0Xelzm5HXnzbdGRiWUtk3wB4
- RNyQ==
+ bh=XVTOkg4+BLN7V0cBeIwZdtbXHcggV7XrEfFjZQrJ8EY=;
+ b=FeOfjIDzu8K29bnep3MEYzl7UbSxD/gVEg6QkWih+Sv7z4/Gr5+VOEFkB4vqkTCJdz
+ yC2nC5nLn56lzb6dMhBEwTDSjmSJT7r7fExcOnf/mVxW6BxGdI6ix9CxvWI6q5colc+0
+ 9SdVnrbupM29ze1K7NaUZxNd52RUTws7GbivsUsmvRmsNwSQD+WjobYTlzVagsLeFS4X
+ fOnPdW69MBWiRkdeABajBtK3d7jJD+BJiHoKhLrxnTofeFWYsXmKt9eSXE21aIcIasdJ
+ oRsOqI3hjdp+PjvZYAnZh5p2ckO3qgZ5vuG+zfBORB5nu/U5pLOGLNcWqG33mdHwHLVW
+ h4pA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=O2N9O3n6+L17j5THWWWkV1ATup8ChB/kUrsStBpwHAo=;
- b=K59yo+OfgV9lGNTcElLSkq12/+MTCEFjXoRS5EPC5LbCiLc9LOW/tc3rLbI+9GcOXe
- iwF7bek4ZzVQtqo9HqE7X4N20PQWWF9vp4Y4l1eYihbUn+j/2MoaX+nQZLnlqOZzdC0A
- jycYOu/ro4wmI2Cn5SMuzUjKmvM7TMk+M81XHYe6A0/q7ddq/i+gNgszfSh5zZSePlhz
- TFaoKFIXxLk/MJ2LIQmmYc/t4MeOcQHufDiMIL0RhloECdjNvjIItPiRB3oRRiXaw5o0
- ydCYnmlQP8mlyy9n3C3Vb1h/bCG1+Z2bVsqlvxZubTJttLlAMqMPiNS2pedc9wZUFtq0
- OzrA==
-X-Gm-Message-State: AOAM531oHnfFr062NQ+o3oyINsNkW0qitZEWaO0jpKHwDkJ9C1DUSrY9
- CDHR+bc4z+jVvCMN1KttsagX1V3yw/bUfg==
-X-Google-Smtp-Source: ABdhPJyA7E1i7qhIRsV1Ep8WVNfW3LndKpuRjiOzaXZkMSjTMEm1w5gcaITi/SnTtO0HvEfVSHS5uw==
-X-Received: by 2002:aa7:d4c6:: with SMTP id t6mr1347245edr.372.1603929169613; 
- Wed, 28 Oct 2020 16:52:49 -0700 (PDT)
+ bh=XVTOkg4+BLN7V0cBeIwZdtbXHcggV7XrEfFjZQrJ8EY=;
+ b=eV3q+5WhdifZRVg9+WYPs7Xwgtb7+dIlbpWuPrMHMjXesrYymMIItkGV3144cLGCV8
+ TNhmUdGlTg6+ZL7B/dUO35q413lr5yJbfabN7wIMakbddQsb5vNaO5rI1sIOwG0oy0ef
+ SQ+tyeRdp5qbtGjpN/Oqg7NLZMiwXd8XiIeogw8TeCqpNi1N0uqznrbmtaLu76b5ayYu
+ bqf7+D1XM6cgrw1XYozvcm9cSVtdbdblxvSYz7pRLuNHLF1QDUlnHEsTfTmJfQynqOrP
+ BlYbwlghMpK6wWOlQE2SEr0A71MpFSScFTYJrIi0r0RCEX8MReh8Wf7r/MIK6Z57L4tE
+ QUFA==
+X-Gm-Message-State: AOAM530O4ozIZmtAfVUv5nKKj4HKO2nvL2sLxwwx+rxdMV7vpxObq7qr
+ 4phoUCYTrgjye2G4fwt4UrWAXTZ+NdPhww==
+X-Google-Smtp-Source: ABdhPJwPvjhd3g6bXBZFmpvOw7fLtKAIQ4nJMFJ6InFdqstEQBXB8rQiZQDZ+RM3EvW4XR7pZE/JaQ==
+X-Received: by 2002:a17:906:38d8:: with SMTP id
+ r24mr1596286ejd.32.1603929170671; 
+ Wed, 28 Oct 2020 16:52:50 -0700 (PDT)
 Received: from localhost.localdomain
  ([2a02:aa12:a77f:2000:4cea:81e7:5fd4:93f7])
- by smtp.gmail.com with ESMTPSA id o13sm479174ejr.120.2020.10.28.16.52.48
+ by smtp.gmail.com with ESMTPSA id o13sm479174ejr.120.2020.10.28.16.52.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 28 Oct 2020 16:52:48 -0700 (PDT)
+ Wed, 28 Oct 2020 16:52:50 -0700 (PDT)
 From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v4 09/11] drm/amd/display: Add formats for DCC with 2/3 planes.
-Date: Thu, 29 Oct 2020 00:52:39 +0100
-Message-Id: <20201028235241.3299-10-bas@basnieuwenhuizen.nl>
+Subject: [PATCH v4 10/11] drm/amd/display: Expose modifiers.
+Date: Thu, 29 Oct 2020 00:52:40 +0100
+Message-Id: <20201028235241.3299-11-bas@basnieuwenhuizen.nl>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201028235241.3299-1-bas@basnieuwenhuizen.nl>
 References: <20201028235241.3299-1-bas@basnieuwenhuizen.nl>
@@ -75,140 +76,401 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-For DCC we will use 2/3 planes to avoid X rendering to the frontbuffer
-with DCC compressed images. To make this work with the core KMS
-validation we need to add extra formats with the extra planes.
+This expose modifier support on GFX9+.
 
-However, due to flexibility we set bpp = 0 for the extra planes and
-do the validation ourselves.
+Only modifiers that can be rendered on the current GPU are
+added. This is to reduce the number of modifiers exposed.
+
+The HW could expose more, but the best mechanism to decide
+what to expose without an explosion in modifiers is still
+to be decided, and in the meantime this should not regress
+things from pre-modifiers and does not risk regressions as
+we make up our mind in the future.
+
+v2:
+  - Added comment that D on Raven is only valid for 64bpp
+    and will be filtered based on format later.
+  - Removed D tiling modes that weren't useful for 64bpp
+    on GFX10+.
+
+v4: Add AMDGPU_FAMILY_VGH case.
 
 Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 96 +++++++++++++++++++
- 1 file changed, 96 insertions(+)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 339 +++++++++++++++++-
+ 1 file changed, 338 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 034397c1f2b1..6b33e030fe20 100644
+index 6b33e030fe20..2202c0060b5c 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -185,6 +185,9 @@ static bool amdgpu_dm_link_setup_psr(struct dc_stream_state *stream);
- static bool amdgpu_dm_psr_disable(struct dc_stream_state *stream);
- static bool amdgpu_dm_psr_disable_all(struct amdgpu_display_manager *dm);
- 
-+static const struct drm_format_info *
-+amd_get_format_info(const struct drm_mode_fb_cmd2 *cmd);
-+
- /*
-  * dm_vblank_get_counter
-  *
-@@ -2160,6 +2163,7 @@ const struct amdgpu_ip_block_version dm_ip_block =
- 
- static const struct drm_mode_config_funcs amdgpu_dm_mode_funcs = {
- 	.fb_create = amdgpu_display_user_framebuffer_create,
-+	.get_format_info = amd_get_format_info,
- 	.output_poll_changed = drm_fb_helper_output_poll_changed,
- 	.atomic_check = amdgpu_dm_atomic_check,
- 	.atomic_commit = amdgpu_dm_atomic_commit,
-@@ -4010,6 +4014,98 @@ modifier_gfx9_swizzle_mode(uint64_t modifier)
- 	return AMD_FMT_MOD_GET(TILE, modifier);
+@@ -4133,6 +4133,336 @@ fill_gfx9_tiling_info_from_modifier(const struct amdgpu_device *adev,
+ 	}
  }
  
-+static const struct drm_format_info dcc_formats[] = {
-+	{ .format = DRM_FORMAT_XRGB8888, .depth = 24, .num_planes = 2,
-+	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
-+	 { .format = DRM_FORMAT_XBGR8888, .depth = 24, .num_planes = 2,
-+	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
-+	{ .format = DRM_FORMAT_ARGB8888, .depth = 32, .num_planes = 2,
-+	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
-+	   .has_alpha = true, },
-+	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 2,
-+	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
-+	  .has_alpha = true, },
-+	{ .format = DRM_FORMAT_BGRA8888, .depth = 32, .num_planes = 2,
-+	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
-+	  .has_alpha = true, },
-+	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 2,
-+	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
-+	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 2,
-+	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
-+	{ .format = DRM_FORMAT_ARGB2101010, .depth = 30, .num_planes = 2,
-+	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
-+	  .has_alpha = true, },
-+	{ .format = DRM_FORMAT_ABGR2101010, .depth = 30, .num_planes = 2,
-+	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
-+	  .has_alpha = true, },
-+	{ .format = DRM_FORMAT_RGB565, .depth = 16, .num_planes = 2,
-+	  .cpp = { 2, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++enum dm_micro_swizzle {
++	MICRO_SWIZZLE_Z = 0,
++	MICRO_SWIZZLE_S = 1,
++	MICRO_SWIZZLE_D = 2,
++	MICRO_SWIZZLE_R = 3
 +};
 +
-+static const struct drm_format_info dcc_retile_formats[] = {
-+	{ .format = DRM_FORMAT_XRGB8888, .depth = 24, .num_planes = 3,
-+	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
-+	 { .format = DRM_FORMAT_XBGR8888, .depth = 24, .num_planes = 3,
-+	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
-+	{ .format = DRM_FORMAT_ARGB8888, .depth = 32, .num_planes = 3,
-+	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
-+	   .has_alpha = true, },
-+	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 3,
-+	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
-+	  .has_alpha = true, },
-+	{ .format = DRM_FORMAT_BGRA8888, .depth = 32, .num_planes = 3,
-+	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
-+	  .has_alpha = true, },
-+	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 3,
-+	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
-+	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 3,
-+	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
-+	{ .format = DRM_FORMAT_ARGB2101010, .depth = 30, .num_planes = 3,
-+	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
-+	  .has_alpha = true, },
-+	{ .format = DRM_FORMAT_ABGR2101010, .depth = 30, .num_planes = 3,
-+	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
-+	  .has_alpha = true, },
-+	{ .format = DRM_FORMAT_RGB565, .depth = 16, .num_planes = 3,
-+	  .cpp = { 2, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
-+};
-+
-+
-+static const struct drm_format_info *
-+lookup_format_info(const struct drm_format_info formats[],
-+		  int num_formats, u32 format)
++static bool dm_plane_format_mod_supported(struct drm_plane *plane,
++					  uint32_t format,
++					  uint64_t modifier)
 +{
-+	int i;
++	struct amdgpu_device *adev = drm_to_adev(plane->dev);
++	const struct drm_format_info *info = drm_format_info(format);
 +
-+	for (i = 0; i < num_formats; i++) {
-+		if (formats[i].format == format)
-+			return &formats[i];
++	enum dm_micro_swizzle microtile = modifier_gfx9_swizzle_mode(modifier) & 3;
++
++	if (!info)
++		return false;
++
++	/*
++	 * We always have to allow this modifier, because core DRM still
++	 * checks LINEAR support if userspace does not provide modifers.
++	 */
++	if (modifier == DRM_FORMAT_MOD_LINEAR)
++		return true;
++
++	/*
++	 * The arbitrary tiling support for multiplane formats has not been hooked
++	 * up.
++	 */
++	if (info->num_planes > 1)
++		return false;
++
++	/*
++	 * For D swizzle the canonical modifier depends on the bpp, so check
++	 * it here.
++	 */
++	if (AMD_FMT_MOD_GET(TILE_VERSION, modifier) == AMD_FMT_MOD_TILE_VER_GFX9 &&
++	    adev->family >= AMDGPU_FAMILY_NV) {
++		if (microtile == MICRO_SWIZZLE_D && info->cpp[0] == 4)
++			return false;
 +	}
 +
-+	return NULL;
++	if (adev->family >= AMDGPU_FAMILY_RV && microtile == MICRO_SWIZZLE_D &&
++	    info->cpp[0] < 8)
++		return false;
++
++	if (modifier_has_dcc(modifier)) {
++		/* Per radeonsi comments 16/64 bpp are more complicated. */
++		if (info->cpp[0] != 4)
++			return false;
++	}
++
++	return true;
 +}
 +
-+static const struct drm_format_info *
-+amd_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
++static void
++add_modifier(uint64_t **mods, uint64_t *size, uint64_t *cap, uint64_t mod)
 +{
-+	uint64_t modifier = cmd->modifier[0];
++	if (!*mods)
++		return;
 +
-+	if (!IS_AMD_FMT_MOD(modifier))
-+		return NULL;
++	if (*cap - *size < 1) {
++		uint64_t new_cap = *cap * 2;
++		uint64_t *new_mods = kmalloc(new_cap * sizeof(uint64_t), GFP_KERNEL);
 +
-+	if (AMD_FMT_MOD_GET(DCC_RETILE, modifier))
-+		return lookup_format_info(dcc_retile_formats,
-+					  ARRAY_SIZE(dcc_retile_formats),
-+					  cmd->pixel_format);
++		if (!new_mods) {
++			kfree(*mods);
++			*mods = NULL;
++			return;
++		}
 +
-+	if (AMD_FMT_MOD_GET(DCC, modifier))
-+		return lookup_format_info(dcc_formats, ARRAY_SIZE(dcc_formats),
-+					  cmd->pixel_format);
++		memcpy(new_mods, *mods, sizeof(uint64_t) * *size);
++		kfree(*mods);
++		*mods = new_mods;
++		*cap = new_cap;
++	}
 +
-+	/* returning NULL will cause the default format structs to be used. */
-+	return NULL;
++	(*mods)[*size] = mod;
++	*size += 1;
 +}
 +
- static void
- fill_gfx9_tiling_info_from_modifier(const struct amdgpu_device *adev,
- 				    union dc_tiling_info *tiling_info,
++static void
++add_gfx9_modifiers(const struct amdgpu_device *adev,
++		   uint64_t **mods, uint64_t *size, uint64_t *capacity)
++{
++	int pipes = ilog2(adev->gfx.config.gb_addr_config_fields.num_pipes);
++	int pipe_xor_bits = min(8, pipes +
++				ilog2(adev->gfx.config.gb_addr_config_fields.num_se));
++	int bank_xor_bits = min(8 - pipe_xor_bits,
++				ilog2(adev->gfx.config.gb_addr_config_fields.num_banks));
++	int rb = ilog2(adev->gfx.config.gb_addr_config_fields.num_se) +
++		 ilog2(adev->gfx.config.gb_addr_config_fields.num_rb_per_se);
++
++
++	if (adev->family == AMDGPU_FAMILY_RV) {
++		/* Raven2 and later */
++		bool has_constant_encode = adev->asic_type > CHIP_RAVEN || adev->external_rev_id >= 0x81;
++
++		/*
++		 * No _D DCC swizzles yet because we only allow 32bpp, which
++		 * doesn't support _D on DCN
++		 */
++
++		if (has_constant_encode) {
++			add_modifier(mods, size, capacity, AMD_FMT_MOD |
++				    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_S_X) |
++				    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9) |
++				    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits) |
++				    AMD_FMT_MOD_SET(BANK_XOR_BITS, bank_xor_bits) |
++				    AMD_FMT_MOD_SET(DCC, 1) |
++				    AMD_FMT_MOD_SET(DCC_INDEPENDENT_64B, 1) |
++				    AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, AMD_FMT_MOD_DCC_BLOCK_64B) |
++				    AMD_FMT_MOD_SET(DCC_CONSTANT_ENCODE, 1));
++		}
++
++		add_modifier(mods, size, capacity, AMD_FMT_MOD |
++			    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_S_X) |
++			    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9) |
++			    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits) |
++			    AMD_FMT_MOD_SET(BANK_XOR_BITS, bank_xor_bits) |
++			    AMD_FMT_MOD_SET(DCC, 1) |
++			    AMD_FMT_MOD_SET(DCC_INDEPENDENT_64B, 1) |
++			    AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, AMD_FMT_MOD_DCC_BLOCK_64B) |
++			    AMD_FMT_MOD_SET(DCC_CONSTANT_ENCODE, 0));
++
++		if (has_constant_encode) {
++			add_modifier(mods, size, capacity, AMD_FMT_MOD |
++				    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_S_X) |
++				    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9) |
++				    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits) |
++				    AMD_FMT_MOD_SET(BANK_XOR_BITS, bank_xor_bits) |
++				    AMD_FMT_MOD_SET(DCC, 1) |
++				    AMD_FMT_MOD_SET(DCC_RETILE, 1) |
++				    AMD_FMT_MOD_SET(DCC_INDEPENDENT_64B, 1) |
++				    AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, AMD_FMT_MOD_DCC_BLOCK_64B) |
++
++				    AMD_FMT_MOD_SET(DCC_CONSTANT_ENCODE, 1) |
++				    AMD_FMT_MOD_SET(RB, rb) |
++				    AMD_FMT_MOD_SET(PIPE, pipes));
++		}
++
++		add_modifier(mods, size, capacity, AMD_FMT_MOD |
++			    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_S_X) |
++			    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9) |
++			    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits) |
++			    AMD_FMT_MOD_SET(BANK_XOR_BITS, bank_xor_bits) |
++			    AMD_FMT_MOD_SET(DCC, 1) |
++			    AMD_FMT_MOD_SET(DCC_RETILE, 1) |
++			    AMD_FMT_MOD_SET(DCC_INDEPENDENT_64B, 1) |
++			    AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, AMD_FMT_MOD_DCC_BLOCK_64B) |
++			    AMD_FMT_MOD_SET(DCC_CONSTANT_ENCODE, 0) |
++			    AMD_FMT_MOD_SET(RB, rb) |
++			    AMD_FMT_MOD_SET(PIPE, pipes));
++	}
++
++	/*
++	 * Only supported for 64bpp on Raven, will be filtered on format in
++	 * dm_plane_format_mod_supported.
++	 */
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_D_X) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9) |
++		    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits) |
++		    AMD_FMT_MOD_SET(BANK_XOR_BITS, bank_xor_bits));
++
++	if (adev->family == AMDGPU_FAMILY_RV) {
++		add_modifier(mods, size, capacity, AMD_FMT_MOD |
++			    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_S_X) |
++			    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9) |
++			    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits) |
++			    AMD_FMT_MOD_SET(BANK_XOR_BITS, bank_xor_bits));
++	}
++
++	/*
++	 * Only supported for 64bpp on Raven, will be filtered on format in
++	 * dm_plane_format_mod_supported.
++	 */
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_D) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9));
++
++	if (adev->family == AMDGPU_FAMILY_RV) {
++		add_modifier(mods, size, capacity, AMD_FMT_MOD |
++			    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_S) |
++			    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9));
++	}
++}
++
++static void
++add_gfx10_1_modifiers(const struct amdgpu_device *adev,
++		      uint64_t **mods, uint64_t *size, uint64_t *capacity)
++{
++	int pipe_xor_bits = ilog2(adev->gfx.config.gb_addr_config_fields.num_pipes);
++
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_R_X) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX10) |
++		    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits) |
++		    AMD_FMT_MOD_SET(DCC, 1) |
++		    AMD_FMT_MOD_SET(DCC_CONSTANT_ENCODE, 1) |
++		    AMD_FMT_MOD_SET(DCC_INDEPENDENT_64B, 1) |
++		    AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, AMD_FMT_MOD_DCC_BLOCK_64B));
++
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_R_X) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX10) |
++		    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits) |
++		    AMD_FMT_MOD_SET(DCC, 1) |
++		    AMD_FMT_MOD_SET(DCC_RETILE, 1) |
++		    AMD_FMT_MOD_SET(DCC_CONSTANT_ENCODE, 1) |
++		    AMD_FMT_MOD_SET(DCC_INDEPENDENT_64B, 1) |
++		    AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, AMD_FMT_MOD_DCC_BLOCK_64B));
++
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_R_X) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX10) |
++		    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits));
++
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_S_X) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX10) |
++		    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits));
++
++
++	/* Only supported for 64bpp, will be filtered in dm_plane_format_mod_supported */
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_D) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9));
++
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_S) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9));
++}
++
++static void
++add_gfx10_3_modifiers(const struct amdgpu_device *adev,
++		      uint64_t **mods, uint64_t *size, uint64_t *capacity)
++{
++	int pipe_xor_bits = ilog2(adev->gfx.config.gb_addr_config_fields.num_pipes);
++	int pkrs = ilog2(adev->gfx.config.gb_addr_config_fields.num_pkrs);
++
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_R_X) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS) |
++		    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits) |
++		    AMD_FMT_MOD_SET(PACKERS, pkrs) |
++		    AMD_FMT_MOD_SET(DCC, 1) |
++		    AMD_FMT_MOD_SET(DCC_CONSTANT_ENCODE, 1) |
++		    AMD_FMT_MOD_SET(DCC_INDEPENDENT_64B, 1) |
++		    AMD_FMT_MOD_SET(DCC_INDEPENDENT_128B, 1) |
++		    AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, AMD_FMT_MOD_DCC_BLOCK_128B));
++
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_R_X) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS) |
++		    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits) |
++		    AMD_FMT_MOD_SET(PACKERS, pkrs) |
++		    AMD_FMT_MOD_SET(DCC, 1) |
++		    AMD_FMT_MOD_SET(DCC_RETILE, 1) |
++		    AMD_FMT_MOD_SET(DCC_CONSTANT_ENCODE, 1) |
++		    AMD_FMT_MOD_SET(DCC_INDEPENDENT_64B, 1) |
++		    AMD_FMT_MOD_SET(DCC_INDEPENDENT_128B, 1) |
++		    AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, AMD_FMT_MOD_DCC_BLOCK_128B));
++
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_R_X) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS) |
++		    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits) |
++		    AMD_FMT_MOD_SET(PACKERS, pkrs));
++
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_S_X) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS) |
++		    AMD_FMT_MOD_SET(PIPE_XOR_BITS, pipe_xor_bits) |
++		    AMD_FMT_MOD_SET(PACKERS, pkrs));
++
++	/* Only supported for 64bpp, will be filtered in dm_plane_format_mod_supported */
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_D) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9));
++
++	add_modifier(mods, size, capacity, AMD_FMT_MOD |
++		    AMD_FMT_MOD_SET(TILE, AMD_FMT_MOD_TILE_GFX9_64K_S) |
++		    AMD_FMT_MOD_SET(TILE_VERSION, AMD_FMT_MOD_TILE_VER_GFX9));
++}
++
++static int
++get_plane_modifiers(const struct amdgpu_device *adev, unsigned int plane_type, uint64_t **mods)
++{
++	uint64_t size = 0, capacity = 128;
++	*mods = NULL;
++
++	/* We have not hooked up any pre-GFX9 modifiers. */
++	if (adev->family < AMDGPU_FAMILY_AI)
++		return 0;
++
++	*mods = kmalloc(capacity * sizeof(uint64_t), GFP_KERNEL);
++
++	if (plane_type == DRM_PLANE_TYPE_CURSOR) {
++		add_modifier(mods, &size, &capacity, DRM_FORMAT_MOD_LINEAR);
++		add_modifier(mods, &size, &capacity, DRM_FORMAT_MOD_INVALID);
++		return *mods ? 0 : -ENOMEM;
++	}
++
++	switch (adev->family) {
++	case AMDGPU_FAMILY_AI:
++	case AMDGPU_FAMILY_RV:
++		add_gfx9_modifiers(adev, mods, &size, &capacity);
++		break;
++	case AMDGPU_FAMILY_NV:
++	case AMDGPU_FAMILY_VGH:
++		if (adev->asic_type >= CHIP_SIENNA_CICHLID)
++			add_gfx10_3_modifiers(adev, mods, &size, &capacity);
++		else
++			add_gfx10_1_modifiers(adev, mods, &size, &capacity);
++		break;
++	}
++
++	add_modifier(mods, &size, &capacity, DRM_FORMAT_MOD_LINEAR);
++
++	/* INVALID marks the end of the list. */
++	add_modifier(mods, &size, &capacity, DRM_FORMAT_MOD_INVALID);
++
++	if (!*mods)
++		return -ENOMEM;
++
++	return 0;
++}
++
+ static int
+ fill_gfx9_plane_attributes_from_modifiers(struct amdgpu_device *adev,
+ 					  const struct amdgpu_framebuffer *afb,
+@@ -6100,6 +6430,7 @@ static const struct drm_plane_funcs dm_plane_funcs = {
+ 	.reset = dm_drm_plane_reset,
+ 	.atomic_duplicate_state = dm_drm_plane_duplicate_state,
+ 	.atomic_destroy_state = dm_drm_plane_destroy_state,
++	.format_mod_supported = dm_plane_format_mod_supported,
+ };
+ 
+ static int dm_plane_helper_prepare_fb(struct drm_plane *plane,
+@@ -6392,13 +6723,19 @@ static int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
+ 	int num_formats;
+ 	int res = -EPERM;
+ 	unsigned int supported_rotations;
++	uint64_t *modifiers = NULL;
+ 
+ 	num_formats = get_plane_formats(plane, plane_cap, formats,
+ 					ARRAY_SIZE(formats));
+ 
++	res = get_plane_modifiers(dm->adev, plane->type, &modifiers);
++	if (res)
++		return res;
++
+ 	res = drm_universal_plane_init(adev_to_drm(dm->adev), plane, possible_crtcs,
+ 				       &dm_plane_funcs, formats, num_formats,
+-				       NULL, plane->type, NULL);
++				       modifiers, plane->type, NULL);
++	kfree(modifiers);
+ 	if (res)
+ 		return res;
+ 
 -- 
 2.28.0
 
