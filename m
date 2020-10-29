@@ -1,95 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC0029FC6F
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Oct 2020 04:59:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A08529FC9F
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Oct 2020 05:12:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0823E6E94C;
-	Fri, 30 Oct 2020 03:59:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 429D36E94F;
+	Fri, 30 Oct 2020 04:12:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2069.outbound.protection.outlook.com [40.107.220.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 288706E94C
- for <amd-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 03:59:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BDHfSLes6HSeyF2L+G7hFSNoFUJYUXn6R+GwhUEANSw2xCBiq86g7QeoPpIzaMrB/MeeoyIelf1c9NLLCnFvOpu2iL1NlyXv4Ku5L+j3f4OJpwaoO1UNczOAqf5XsMRx0YcYx3jvKSHTVVBcJeH6kBcLj7LWQovx9S3hWBQAcs5/814WTrpj35jPFqeOX/mBazX2k4I2TfDVkrghD81645tJ5d/N2Lv/z/l7VBXpzCRlp5QghED+CexCIqQMttaGEqOb5Kd/BAdGB5bxIqSeCHP9jOHlNNWXp5sdeU42+TMhidCX9MpeG779YAOkAO7AGQD1v0tHd+GFDgNDomLh1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9aLD2/8VxQKmVo75LucexQBMbzsgrqMx86cV2xIOsfM=;
- b=bDyofaF3uVBE0ToSV/5yEWKhwQrPplK8hSNREHShjUVmXuLOCA/lnpdhpCkhDw1vSbp4GxQIq2adgmpb761MSNHh7A7Tpb58n8Xzk21jvJRA1XWq0BR9k21ZqzYl4lLkDmlcXna7ZCq7+soN80om0K/VlNejrXOlms1D5h7kS39/G011/km4NNHXlhUqy5MqmARE+xI8Xb6OmYhC/gxWBWI2FvlLJPkAsPiMM23mGVhPco9YmfnHoYCo5W8f0dDhHHJn/IogEtUM3SVw5jO8xZfS8uW1+Fh5s3D0RYHnOcl5Qp5M/YMDZETROQNhERF5rH/+R1OOONThChK2KGHy8A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9aLD2/8VxQKmVo75LucexQBMbzsgrqMx86cV2xIOsfM=;
- b=JIXqxJhbshk+Lzbc4x0FiJ+1Byb95ftbGykoudA/mn/f5zIlo8Q1+Xt3AY/xX3CWKylw8bQv3rhmUDfdTnojnYOXTbkhOF3wATeeWgxrSEycslJGQsAOZ1lO+cV1MLojEGTKslr4A2XC/29rqZcJCFvNw4npay5J4rkNZ+Lfl4c=
-Received: from DM6PR12MB2619.namprd12.prod.outlook.com (2603:10b6:5:45::18) by
- DM6PR12MB4155.namprd12.prod.outlook.com (2603:10b6:5:221::15) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3477.20; Fri, 30 Oct 2020 03:59:13 +0000
-Received: from DM6PR12MB2619.namprd12.prod.outlook.com
- ([fe80::5a6:dfb2:fdfd:2d91]) by DM6PR12MB2619.namprd12.prod.outlook.com
- ([fe80::5a6:dfb2:fdfd:2d91%6]) with mapi id 15.20.3499.028; Fri, 30 Oct 2020
- 03:59:13 +0000
-From: "Quan, Evan" <Evan.Quan@amd.com>
-To: Alex Deucher <alexdeucher@gmail.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdgpu/powerplay: Only apply optimized mclk dpm
- policy on polaris
-Thread-Topic: [PATCH] drm/amdgpu/powerplay: Only apply optimized mclk dpm
- policy on polaris
-Thread-Index: AQHWrTwt4St9kaCN2USHsVbVpofpQKmvh3gQ
-Date: Fri, 30 Oct 2020 03:59:13 +0000
-Message-ID: <DM6PR12MB2619D9D854859594BCFCBF40E4150@DM6PR12MB2619.namprd12.prod.outlook.com>
-References: <20201028150805.2400403-1-alexander.deucher@amd.com>
-In-Reply-To: <20201028150805.2400403-1-alexander.deucher@amd.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=65e85e74-80b6-40fd-9822-f7cfb33463ed;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Use Only - Unrestricted;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-10-30T03:58:49Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [58.247.170.242]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 8121ecaf-c9b2-4441-3bf1-08d87c8829d7
-x-ms-traffictypediagnostic: DM6PR12MB4155:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR12MB4155B1B4ED0E5588410A472CE4150@DM6PR12MB4155.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1186;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: j1Xl/NC4XsEb7lKr1R/LEwuF2s7acSizbGEbSGukVV/Vt5QYY5U9dse23ur10RyyKuZyq0PuuVM7RkNWnnUlqPQjzY58g0Q8ecZqVwfj9coQp8zQISVo4XVQqX4xdfAnEoG5Kn7HK+dg8K+EWCltNvtsRB5tNGR2oxY58OAl9nzmDn5eRsfnZ2i64H+5+qkXlL9rLoIqBipYib+5Pgh6SqSErF/pA2AXfh6F/1i80csvqGKAi/Vw7K9iqsm/3JroI2hY90dKhs8zCwhSQ/XUIKiHIuDjrPVhlaHHmUKWC70IiA+FkLOORIxR6P449ral4jJp6EzYPSNeJ899RPR+63eUdfqTtVbu0LDra/Dp2n4=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB2619.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(346002)(366004)(376002)(396003)(39860400002)(8936002)(64756008)(186003)(76116006)(26005)(66946007)(316002)(6506007)(53546011)(110136005)(7696005)(55016002)(83380400001)(66476007)(52536014)(66556008)(66446008)(478600001)(33656002)(9686003)(966005)(8676002)(5660300002)(86362001)(71200400001)(4326008)(2906002)(45080400002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: DIN++CyBzzASNMj0KlaSaOWVvAWWSG3vd2i8ltOlWl9PRvMLZbaMlcA7DaMGzJHoisD6q+lqLMLbjbrJwqxRVOnmszIbKwgyeNmyJFXZ+mTMcJvrq9hV0+2u+ge4YuudZClVBQfGu0sOSQDo9NuMT9Fm8ffNtk8vwC+WGGWFW/0Mzv3RI6+AzY1WjS/TlHpbRL2I1J027pHayFdCPI0xe9+lV3rPm9DVK3OTo0Ymw257ivumH0YnylYNZ35sO9RrkDXrAnuO7eHcwBu9Ohfj//YvxJeuIU5SUvXgVZU9IVBs0kYeScU5i/9lEE2oUJZbkzz/qmwINkbZ/bxjZjN6VHESqytx8TDpW3I+ybJqVR1HhSlzxBx+/8vD2+g+SPFruJUwIQDho6ukSFVG9GMruAYjzsrQUppRDqSbY+P/YhRKB/r0WEMJ/D8ZcGiT/iwQLhRNbk7K1tXIV/7xKsowHNJHI4pNZeLyyh4etfZZNNJvaSWJsQU+MiIIAULnbg0u0QbOH3UUdxYgmA+hlqoy61M+657UkKQcxx2Zq+Ehg2/hGYkzJcC1p4/B282Xs2rmfGIctBXwM0lE2UBK4EsLwV/P71v4nfEUNzawVrjLBcbOpCHjM0ofRm7CAoOemqaE//qGbb26y2v9gkiXTmpvaA==
+Received: from mail-il1-x141.google.com (mail-il1-x141.google.com
+ [IPv6:2607:f8b0:4864:20::141])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFE2F6E914
+ for <amd-gfx@lists.freedesktop.org>; Thu, 29 Oct 2020 22:14:14 +0000 (UTC)
+Received: by mail-il1-x141.google.com with SMTP id p10so4725989ile.3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 29 Oct 2020 15:14:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=BU1E7k0peh2jCd9qr3mdn1YGzNw3V6El06MX66g8Ub4=;
+ b=Kvn7xK86xCehkeDZWIXA6qXBIQHj/dZX7EdN/blVTwzZsvr9MjTL7Q1C+Ypl0VUdAH
+ MKYsEntyG+cQMF9DeIr4a+0+sAh6SbWcu5Wa47g4mKzvluXOE2qMx9458tmCv8a59hPk
+ j/GG/98UR9nAWOzxQ7iW0hCyGG+4z73o5XoDZS4HFEkgjdQfIYenwakdcb1601+1Buyu
+ cr9o+GrcaBn1y5Kj1rhWTm6qFJZGC2waDkt7EhqHWu0+WZa3o5cCSOJhY/qzZfv0uCh6
+ KXsrKVaIcqGmmcn0y/Ctt+SrYZMuvamy92kscHqr6qF8F7cmUd7Oaiw1TejhFe+p/8fC
+ dAYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=BU1E7k0peh2jCd9qr3mdn1YGzNw3V6El06MX66g8Ub4=;
+ b=WlWbWfvc9gpk/68tMaVb7RT2Ic+bZt/v8i0QPxq2l+ITq6z9dcfn8qGbKgHj/XnXP0
+ JJXKG3qAvg4jJoG+Z6r6bJGW53JITgLTqERMHJ8P+E2KPeXd/AIUmajJEIf52JlUfIAA
+ LWJTiu96GZaODHjbUepH7Un20EBGmb6WOyVI+fat2nvcwb+zPauFBo99ec5w6SKHOx/F
+ JKh3BeSu5uzEjYzaDXgrk2ccT2z3JT9fMesnazalhNOoKOQachlToWgq6QPWFNXS9stM
+ TflhMleQdVE3GcOhenfhkaxQJH1oKQIKpzsg24XdPfLr96JAL/ezAWT1pLt8NU72JUC7
+ L9rQ==
+X-Gm-Message-State: AOAM532BNNAcbHn8313usk4KHiDevShbftyUQTO79avBG05WKbGdUvVo
+ 9TJgUw5G5xPa6qCuEirLDgY=
+X-Google-Smtp-Source: ABdhPJy6LWcSjQ7EAgp07nEA++rEQ2ZarXubI82p/VJTdGCeM1wsHZNwHtnctAxI3Przw+y5DU4HBQ==
+X-Received: by 2002:a92:a008:: with SMTP id e8mr5356088ili.83.1604009653276;
+ Thu, 29 Oct 2020 15:14:13 -0700 (PDT)
+Received: from ubuntu-m3-large-x86 ([2604:1380:45f1:1d00::1])
+ by smtp.gmail.com with ESMTPSA id s85sm4051278ilk.41.2020.10.29.15.14.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 29 Oct 2020 15:14:12 -0700 (PDT)
+Date: Thu, 29 Oct 2020 15:14:10 -0700
+From: Nathan Chancellor <natechancellor@gmail.com>
+To: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH 4/4] drm/amdgpu: fold CONFIG_DRM_AMD_DC_DCN3* into
+ CONFIG_DRM_AMD_DC_DCN
+Message-ID: <20201029221410.GA1982624@ubuntu-m3-large-x86>
+References: <20201016165004.1218352-1-alexander.deucher@amd.com>
+ <20201016165004.1218352-4-alexander.deucher@amd.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2619.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8121ecaf-c9b2-4441-3bf1-08d87c8829d7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Oct 2020 03:59:13.1053 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: MqCMEkmvoR5qtcbhV25hqrUdVVzpovfW1Wk2HM7kuSGr9pSffXXARPQslfqT5g9k
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4155
+Content-Disposition: inline
+In-Reply-To: <20201016165004.1218352-4-alexander.deucher@amd.com>
+X-Mailman-Approved-At: Fri, 30 Oct 2020 04:12:14 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,80 +68,1417 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - Internal Distribution Only]
+On Fri, Oct 16, 2020 at 12:50:04PM -0400, Alex Deucher wrote:
+> Avoids confusion in configurations.
+> 
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 
-Reviewed-by: Evan Quan <evan.quan@amd.com>
+This patch causes a build failure with Fedora's aarch64 config (at
+commit 2e3a5bc5feeab1ed21f0105f1440a2ff0aef62f9):
 
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex Deucher
-Sent: Wednesday, October 28, 2020 11:08 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
-Subject: [PATCH] drm/amdgpu/powerplay: Only apply optimized mclk dpm policy on polaris
+$ git bisect log
+# bad: [3f267ec60b922eff2a5c90d532357a39f155b730] Add linux-next specific files for 20201029
+# good: [23859ae44402f4d935b9ee548135dd1e65e2cbf4] Merge tag 'trace-v5.10-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/rostedt/linux-trace
+git bisect start '3f267ec60b922eff2a5c90d532357a39f155b730' '23859ae44402f4d935b9ee548135dd1e65e2cbf4'
+# good: [bfa70a4ea4bfa6f87b58cf8b90b88297389c92b7] Merge remote-tracking branch 'mtd/mtd/next' into master
+git bisect good bfa70a4ea4bfa6f87b58cf8b90b88297389c92b7
+# bad: [14870a06b100ecb99cdd4c5034c250d418748481] Merge remote-tracking branch 'drm-misc/for-linux-next' into master
+git bisect bad 14870a06b100ecb99cdd4c5034c250d418748481
+# bad: [09a7bb5dfcf41dfe259c2fc2b47c226ea25ecfb8] Merge remote-tracking branch 'amdgpu/drm-next' into master
+git bisect bad 09a7bb5dfcf41dfe259c2fc2b47c226ea25ecfb8
+# good: [7d92c1fd11e247f4b9200c45ad810204e34872a8] drm/amd/pm: populate the bootup LCLK frequency
+git bisect good 7d92c1fd11e247f4b9200c45ad810204e34872a8
+# good: [35a4644c935ee8263b1d99a0fe4d5370deb4f606] drm/amd/display: Don't trigger flip twice when ODM combine in use
+git bisect good 35a4644c935ee8263b1d99a0fe4d5370deb4f606
+# good: [f6638d0e6f93501dae110d66445c159309aa366a] drm/amd/pm: correct the checks for sclk/mclk SS support
+git bisect good f6638d0e6f93501dae110d66445c159309aa366a
+# good: [191a3c04799e4d1c1153442647629669bbf6c882] drm/amdgpu: enable MULTI_MON_PP_MCLK_SWITCH DC feature at default
+git bisect good 191a3c04799e4d1c1153442647629669bbf6c882
+# good: [b889e62cdb3b47cf2b4c373a110fd2814011c4bb] drm/amdgpu: add another raven1 gfxoff quirk
+git bisect good b889e62cdb3b47cf2b4c373a110fd2814011c4bb
+# bad: [3a357c0ba7a84c708e2990deb3b6664f8d36f74a] drm/amd/display: Fix incorrect dsc force enable logic
+git bisect bad 3a357c0ba7a84c708e2990deb3b6664f8d36f74a
+# good: [2b6f5e8426d6dbeb0b6e8e95964309ea046fa43d] drm/amdgpu/display: remove dal_cmd_tbl_helper_dcn2_get_table2
+git bisect good 2b6f5e8426d6dbeb0b6e8e95964309ea046fa43d
+# bad: [5d7dd14d6bdc2d44f07cec98be65b6edbff2e51c] drm/amdgpu: fold CONFIG_DRM_AMD_DC_DCN3* into CONFIG_DRM_AMD_DC_DCN (v2)
+git bisect bad 5d7dd14d6bdc2d44f07cec98be65b6edbff2e51c
+# good: [98b30b31b28c2477ff7248e1a01627b2c83a711f] drm/amdgpu: drop CONFIG_DRM_AMD_DC_DCN3_01 from atomfirmware.h
+git bisect good 98b30b31b28c2477ff7248e1a01627b2c83a711f
+# first bad commit: [5d7dd14d6bdc2d44f07cec98be65b6edbff2e51c] drm/amdgpu: fold CONFIG_DRM_AMD_DC_DCN3* into CONFIG_DRM_AMD_DC_DCN (v2)
 
-Leads to improper dpm on older parts.
+$ curl -LSso .config 'https://git.kernel.org/pub/scm/linux/kernel/git/jwboyer/fedora.git/plain/fedora/configs/kernel-5.9.1-aarch64.config?h=kernel-5.9.1-300.fc33'
 
-Bug: https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.freedesktop.org%2Fdrm%2Famd%2F-%2Fissues%2F1353&amp;data=04%7C01%7Cevan.quan%40amd.com%7C67c0a0638f9c4e316c5e08d87b534d94%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637394945031668072%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=vukW5jlFbTqB26IiUU7xljpRNf8muMWwh4sPQCB0IsA%3D&amp;reserved=0
-Fixes: 8d89b96fe797 ("drm/amd/powerplay: optimize the mclk dpm policy settings")
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- .../drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c   | 30 +++++++++++--------
- 1 file changed, 18 insertions(+), 12 deletions(-)
+$ make -skj"$(nproc)" ARCH=arm64 CROSS_COMPILE=aarch64-linux- olddefconfig drivers/gpu/drm/amd/amdgpu/amdgpu.ko
+...
+drivers/gpu/drm/amd/amdgpu/../display/dc/calcs/dcn_calcs.c: In function 'dcn_bw_calc_rq_dlg_ttu':
+drivers/gpu/drm/amd/amdgpu/../display/dc/calcs/dcn_calcs.c:516:1: warning: the frame size of 1600 bytes is larger than 1024 bytes [-Wframe-larger-than=]
+  516 | }
+      | ^
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn301/vg_clk_mgr.c: In function 'vg_clk_mgr_helper_populate_bw_params.isra':
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn301/vg_clk_mgr.c:689:55: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  689 |   bw_params->wm_table.entries[WM_D].pstate_latency_us = LPDDR_MEM_RETRAIN_LATENCY;
+      |                                                       ^
+make[5]: *** [scripts/Makefile.build:283: drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn301/vg_clk_mgr.o] Error 1
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c: In function 'dcn3_build_wm_range_table':
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c:110:9: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  110 |  double pstate_latency_us = clk_mgr->base.ctx->dc->dml.soc.dram_clock_change_latency_us;
+      |         ^~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c:111:9: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  111 |  double sr_exit_time_us = clk_mgr->base.ctx->dc->dml.soc.sr_exit_time_us;
+      |         ^~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c:112:9: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  112 |  double sr_enter_plus_exit_time_us = clk_mgr->base.ctx->dc->dml.soc.sr_enter_plus_exit_time_us;
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c:117:81: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  117 |  clk_mgr->base.bw_params->wm_table.nv_entries[WM_A].dml_input.pstate_latency_us = pstate_latency_us;
+      |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c:118:79: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  118 |  clk_mgr->base.bw_params->wm_table.nv_entries[WM_A].dml_input.sr_exit_time_us = sr_exit_time_us;
+      |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c:119:90: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  119 |  clk_mgr->base.bw_params->wm_table.nv_entries[WM_A].dml_input.sr_enter_plus_exit_time_us = sr_enter_plus_exit_time_us;
+      |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c:139:113: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  139 |  clk_mgr->base.bw_params->wm_table.nv_entries[WM_C].dml_input.pstate_latency_us = clk_mgr->base.ctx->dc->dml.soc.dummy_pstate_latency_us;
+      |                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c:139:81: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  139 |  clk_mgr->base.bw_params->wm_table.nv_entries[WM_C].dml_input.pstate_latency_us = clk_mgr->base.ctx->dc->dml.soc.dummy_pstate_latency_us;
+      |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c:140:79: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  140 |  clk_mgr->base.bw_params->wm_table.nv_entries[WM_C].dml_input.sr_exit_time_us = sr_exit_time_us;
+      |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c:141:90: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  141 |  clk_mgr->base.bw_params->wm_table.nv_entries[WM_C].dml_input.sr_enter_plus_exit_time_us = sr_enter_plus_exit_time_us;
+      |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+make[5]: *** [scripts/Makefile.build:283: drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.o] Error 1
+aarch64-linux-gcc: error: unrecognized command-line option '-msse2'
+make[5]: *** [scripts/Makefile.build:283: drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_optc.o] Error 1
+aarch64-linux-gcc: error: unrecognized command-line option '-msse2'
+make[5]: *** [scripts/Makefile.build:283: drivers/gpu/drm/amd/amdgpu/../display/dc/dcn30/dcn30_resource.o] Error 1
+In file included from ./include/linux/printk.h:405,
+                 from ./include/linux/kernel.h:15,
+                 from ./include/linux/list.h:9,
+                 from ./include/linux/rculist.h:10,
+                 from ./include/linux/pid.h:5,
+                 from ./include/linux/sched.h:14,
+                 from ./include/linux/ptrace.h:6,
+                 from ./arch/arm64/include/asm/kgdb.h:14,
+                 from ./include/linux/kgdb.h:20,
+                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/os_types.h:30,
+                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services_types.h:29,
+                 from ./drivers/gpu/drm/amd/amdgpu/../display/dc/dm_services.h:35,
+                 from drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.h:28,
+                 from drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:26:
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c: In function 'dml_log_pipe_params':
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:200:3: note: in expansion of macro 'dml_print'
+  200 |   dml_print("DML PARAMS:     pixel_rate_mhz             = %3.2f\n", pipe_dest->pixel_rate_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:200:3: note: in expansion of macro 'dml_print'
+  200 |   dml_print("DML PARAMS:     pixel_rate_mhz             = %3.2f\n", pipe_dest->pixel_rate_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:200:3: note: in expansion of macro 'dml_print'
+  200 |   dml_print("DML PARAMS:     pixel_rate_mhz             = %3.2f\n", pipe_dest->pixel_rate_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:210:3: note: in expansion of macro 'dml_print'
+  210 |   dml_print("DML PARAMS:     hscl_ratio                 = %3.4f\n", scale_ratio_depth->hscl_ratio);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:210:3: note: in expansion of macro 'dml_print'
+  210 |   dml_print("DML PARAMS:     hscl_ratio                 = %3.4f\n", scale_ratio_depth->hscl_ratio);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:210:3: note: in expansion of macro 'dml_print'
+  210 |   dml_print("DML PARAMS:     hscl_ratio                 = %3.4f\n", scale_ratio_depth->hscl_ratio);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:211:3: note: in expansion of macro 'dml_print'
+  211 |   dml_print("DML PARAMS:     vscl_ratio                 = %3.4f\n", scale_ratio_depth->vscl_ratio);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:211:3: note: in expansion of macro 'dml_print'
+  211 |   dml_print("DML PARAMS:     vscl_ratio                 = %3.4f\n", scale_ratio_depth->vscl_ratio);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:211:3: note: in expansion of macro 'dml_print'
+  211 |   dml_print("DML PARAMS:     vscl_ratio                 = %3.4f\n", scale_ratio_depth->vscl_ratio);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:212:3: note: in expansion of macro 'dml_print'
+  212 |   dml_print("DML PARAMS:     hscl_ratio_c               = %3.4f\n", scale_ratio_depth->hscl_ratio_c);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:212:3: note: in expansion of macro 'dml_print'
+  212 |   dml_print("DML PARAMS:     hscl_ratio_c               = %3.4f\n", scale_ratio_depth->hscl_ratio_c);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:212:3: note: in expansion of macro 'dml_print'
+  212 |   dml_print("DML PARAMS:     hscl_ratio_c               = %3.4f\n", scale_ratio_depth->hscl_ratio_c);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:213:3: note: in expansion of macro 'dml_print'
+  213 |   dml_print("DML PARAMS:     vscl_ratio_c               = %3.4f\n", scale_ratio_depth->vscl_ratio_c);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:213:3: note: in expansion of macro 'dml_print'
+  213 |   dml_print("DML PARAMS:     vscl_ratio_c               = %3.4f\n", scale_ratio_depth->vscl_ratio_c);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:213:3: note: in expansion of macro 'dml_print'
+  213 |   dml_print("DML PARAMS:     vscl_ratio_c               = %3.4f\n", scale_ratio_depth->vscl_ratio_c);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:214:3: note: in expansion of macro 'dml_print'
+  214 |   dml_print("DML PARAMS:     vinit                      = %3.4f\n", scale_ratio_depth->vinit);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:214:3: note: in expansion of macro 'dml_print'
+  214 |   dml_print("DML PARAMS:     vinit                      = %3.4f\n", scale_ratio_depth->vinit);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:214:3: note: in expansion of macro 'dml_print'
+  214 |   dml_print("DML PARAMS:     vinit                      = %3.4f\n", scale_ratio_depth->vinit);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:215:3: note: in expansion of macro 'dml_print'
+  215 |   dml_print("DML PARAMS:     vinit_c                    = %3.4f\n", scale_ratio_depth->vinit_c);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:215:3: note: in expansion of macro 'dml_print'
+  215 |   dml_print("DML PARAMS:     vinit_c                    = %3.4f\n", scale_ratio_depth->vinit_c);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:215:3: note: in expansion of macro 'dml_print'
+  215 |   dml_print("DML PARAMS:     vinit_c                    = %3.4f\n", scale_ratio_depth->vinit_c);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:216:3: note: in expansion of macro 'dml_print'
+  216 |   dml_print("DML PARAMS:     vinit_bot                  = %3.4f\n", scale_ratio_depth->vinit_bot);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:216:3: note: in expansion of macro 'dml_print'
+  216 |   dml_print("DML PARAMS:     vinit_bot                  = %3.4f\n", scale_ratio_depth->vinit_bot);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:216:3: note: in expansion of macro 'dml_print'
+  216 |   dml_print("DML PARAMS:     vinit_bot                  = %3.4f\n", scale_ratio_depth->vinit_bot);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:217:3: note: in expansion of macro 'dml_print'
+  217 |   dml_print("DML PARAMS:     vinit_bot_c                = %3.4f\n", scale_ratio_depth->vinit_bot_c);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:217:3: note: in expansion of macro 'dml_print'
+  217 |   dml_print("DML PARAMS:     vinit_bot_c                = %3.4f\n", scale_ratio_depth->vinit_bot_c);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:217:3: note: in expansion of macro 'dml_print'
+  217 |   dml_print("DML PARAMS:     vinit_bot_c                = %3.4f\n", scale_ratio_depth->vinit_bot_c);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:230:3: note: in expansion of macro 'dml_print'
+  230 |   dml_print("DML PARAMS:     output_bpp                 = %3.4f\n", dout->output_bpp);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:230:3: note: in expansion of macro 'dml_print'
+  230 |   dml_print("DML PARAMS:     output_bpp                 = %3.4f\n", dout->output_bpp);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:230:3: note: in expansion of macro 'dml_print'
+  230 |   dml_print("DML PARAMS:     output_bpp                 = %3.4f\n", dout->output_bpp);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:240:3: note: in expansion of macro 'dml_print'
+  240 |   dml_print("DML PARAMS:     dppclk_mhz                 = %3.2f\n", clks_cfg->dppclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:240:3: note: in expansion of macro 'dml_print'
+  240 |   dml_print("DML PARAMS:     dppclk_mhz                 = %3.2f\n", clks_cfg->dppclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:240:3: note: in expansion of macro 'dml_print'
+  240 |   dml_print("DML PARAMS:     dppclk_mhz                 = %3.2f\n", clks_cfg->dppclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:241:3: note: in expansion of macro 'dml_print'
+  241 |   dml_print("DML PARAMS:     refclk_mhz                 = %3.2f\n", clks_cfg->refclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:241:3: note: in expansion of macro 'dml_print'
+  241 |   dml_print("DML PARAMS:     refclk_mhz                 = %3.2f\n", clks_cfg->refclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:241:3: note: in expansion of macro 'dml_print'
+  241 |   dml_print("DML PARAMS:     refclk_mhz                 = %3.2f\n", clks_cfg->refclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:242:3: note: in expansion of macro 'dml_print'
+  242 |   dml_print("DML PARAMS:     dispclk_mhz                = %3.2f\n", clks_cfg->dispclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:242:3: note: in expansion of macro 'dml_print'
+  242 |   dml_print("DML PARAMS:     dispclk_mhz                = %3.2f\n", clks_cfg->dispclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:242:3: note: in expansion of macro 'dml_print'
+  242 |   dml_print("DML PARAMS:     dispclk_mhz                = %3.2f\n", clks_cfg->dispclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:243:3: note: in expansion of macro 'dml_print'
+  243 |   dml_print("DML PARAMS:     dcfclk_mhz                 = %3.2f\n", clks_cfg->dcfclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:243:3: note: in expansion of macro 'dml_print'
+  243 |   dml_print("DML PARAMS:     dcfclk_mhz                 = %3.2f\n", clks_cfg->dcfclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:243:3: note: in expansion of macro 'dml_print'
+  243 |   dml_print("DML PARAMS:     dcfclk_mhz                 = %3.2f\n", clks_cfg->dcfclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:244:3: note: in expansion of macro 'dml_print'
+  244 |   dml_print("DML PARAMS:     socclk_mhz                 = %3.2f\n", clks_cfg->socclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:244:3: note: in expansion of macro 'dml_print'
+  244 |   dml_print("DML PARAMS:     socclk_mhz                 = %3.2f\n", clks_cfg->socclk_mhz);
+      |   ^~~~~~~~~
+./include/linux/dynamic_debug.h:157:26: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |                          ^
+./include/linux/dynamic_debug.h:129:3: note: in definition of macro '__dynamic_func_call'
+  129 |   func(&id, ##__VA_ARGS__);  \
+      |   ^~~~
+./include/linux/dynamic_debug.h:157:2: note: in expansion of macro '_dynamic_func_call'
+  157 |  _dynamic_func_call(fmt, __dynamic_pr_debug,  \
+      |  ^~~~~~~~~~~~~~~~~~
+./include/linux/printk.h:420:2: note: in expansion of macro 'dynamic_pr_debug'
+  420 |  dynamic_pr_debug(fmt, ##__VA_ARGS__)
+      |  ^~~~~~~~~~~~~~~~
+./drivers/gpu/drm/amd/amdgpu/../display/include/logger_types.h:57:25: note: in expansion of macro 'pr_debug'
+   57 | #define DC_LOG_DML(...) pr_debug("[DML]:"__VA_ARGS__)
+      |                         ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_logger.h:33:30: note: in expansion of macro 'DC_LOG_DML'
+   33 | #define dml_print(str, ...) {DC_LOG_DML(str, ##__VA_ARGS__); }
+      |                              ^~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.c:244:3: note: in expansion of macro 'dml_print'
+  244 |   dml_print("DML PARAMS:     socclk_mhz                 = %3.2f\n", clks_cfg->socclk_mhz);
+      |   ^~~~~~~~~
+make[5]: *** [scripts/Makefile.build:283: drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.o] Error 1
+In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c:30:
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_min':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:32:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   32 | static inline double dml_min(double a, double b)
+      |                      ^~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:32:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_floor':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:72:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   72 | static inline double dml_floor(double a, double granularity)
+      |                      ^~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:72:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_log2':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:98:19: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   98 | static inline int dml_log2(double x)
+      |                   ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_ceil':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:67:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   67 | static inline double dml_ceil(double a, double granularity)
+      |                      ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:67:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_max':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:47:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   47 | static inline double dml_max(double a, double b)
+      |                      ^~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:47:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c: In function 'get_refcyc_per_delivery':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c:43:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   43 | static double get_refcyc_per_delivery(struct display_mode_lib *mode_lib,
+      |               ^~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c:43:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c:43:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c:43:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c: In function 'calculate_ttu_cursor':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c:873:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  873 | static void calculate_ttu_cursor(struct display_mode_lib *mode_lib,
+      |             ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c:873:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c:873:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c:873:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c:873:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c:873:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.c:30:
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_pow':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:105:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  105 | static inline double dml_pow(double a, int exp)
+      |                      ^~~~~~~
+In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:31:
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_round':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:77:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   77 | static inline double dml_round(double a)
+      |                      ^~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_floor':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:72:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   72 | static inline double dml_floor(double a, double granularity)
+      |                      ^~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:72:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_min':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:32:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   32 | static inline double dml_min(double a, double b)
+      |                      ^~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:32:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_ceil':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:67:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   67 | static inline double dml_ceil(double a, double granularity)
+      |                      ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:67:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+make[5]: *** [scripts/Makefile.build:283: drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_rq_dlg_calc_30.o] Error 1
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_min3':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:37:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   37 | static inline double dml_min3(double a, double b, double c)
+      |                      ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:37:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:37:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'RoundToDFSGranularityDown':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:1371:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 1371 | static double RoundToDFSGranularityDown(double Clock, double VCOSpeed)
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:1371:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'RoundToDFSGranularityUp':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:1366:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 1366 | static double RoundToDFSGranularityUp(double Clock, double VCOSpeed)
+      |               ^~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:1366:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'dscceComputeDelay':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:734:21: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  734 | static unsigned int dscceComputeDelay(
+      |                     ^~~~~~~~~~~~~~~~~
+In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:31:
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_log2':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:98:19: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   98 | static inline int dml_log2(double x)
+      |                   ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculatePrefetchSourceLines':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:1678:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 1678 | static double CalculatePrefetchSourceLines(
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:1678:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculateRowBandwidth':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3397:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 3397 | static void CalculateRowBandwidth(
+      |             ^~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3397:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3397:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculateExtraLatency':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6575:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 6575 | static double CalculateExtraLatency(
+      |               ^~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6575:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6575:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6575:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6575:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculateExtraLatencyBytes':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6614:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 6614 | static double CalculateExtraLatencyBytes(
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6614:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6614:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculateWriteBackDelay':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3344:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 3344 | static double CalculateWriteBackDelay(
+      |               ^~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3344:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculateUrgentLatency':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6660:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 6660 | static double CalculateUrgentLatency(
+      |               ^~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6660:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6660:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6660:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6660:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6660:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculateTWait':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3308:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 3308 | static double CalculateTWait(
+      |               ^~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3308:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3308:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculatePrefetchSchedule':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+  879 | static bool CalculatePrefetchSchedule(
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:879:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculateDynamicMetadataParameters':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3371:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 3371 | static void CalculateDynamicMetadataParameters(int MaxInterDCNTileRepeaters, double DPPCLK, double DISPCLK,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3371:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3371:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3371:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:31:
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_max4':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:57:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   57 | static inline double dml_max4(double a, double b, double c, double d)
+      |                      ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:57:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:57:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:57:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculateUrgentBurstFactor':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5646:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 5646 | static void CalculateUrgentBurstFactor(
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5646:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5646:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5646:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5646:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5646:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5646:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5646:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5646:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculateFlipSchedule':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3436:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 3436 | static void CalculateFlipSchedule(
+      |             ^~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3436:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3436:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3436:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3436:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3436:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3436:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3436:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3436:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3436:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3436:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3436:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3436:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:31:
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_min4':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:42:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   42 | static inline double dml_min4(double a, double b, double c, double d)
+      |                      ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:42:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:42:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:42:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_max3':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:52:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   52 | static inline double dml_max3(double a, double b, double c)
+      |                      ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:52:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:52:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculateWatermarksAndDRAMSpeedChangeSupport':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5365:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 5365 | static void CalculateWatermarksAndDRAMSpeedChangeSupport(
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5365:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5365:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5365:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5365:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5365:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5365:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5365:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5365:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5365:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5365:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:5365:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculateDCCConfiguration':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:1376:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 1376 | static void CalculateDCCConfiguration(
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:1376:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:1376:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:31:
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_max':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:47:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   47 | static inline double dml_max(double a, double b)
+      |                      ^~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:47:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'CalculateStutterEfficiency':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6120:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 6120 | static void CalculateStutterEfficiency(
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6120:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6120:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6120:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'dml30_CalculateWriteBackDISPCLK':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3324:8: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 3324 | double dml30_CalculateWriteBackDISPCLK(
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3324:8: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3324:8: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3324:8: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+In file included from drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:31:
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h: In function 'dml_max5':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:62:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+   62 | static inline double dml_max5(double a, double b, double c, double d, double e)
+      |                      ^~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:62:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:62:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:62:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/../dml_inline_defs.h:62:22: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'TruncToValidBPP':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3540:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 3540 | static double TruncToValidBPP(
+      |               ^~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3540:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3540:15: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c: In function 'UseMinimumDCFCLK':
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6679:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+ 6679 | static void UseMinimumDCFCLK(
+      |             ^~~~~~~~~~~~~~~~
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6679:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6679:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6679:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6679:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6679:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:6679:13: error: '-mgeneral-regs-only' is incompatible with the use of floating-point types
+make[5]: *** [scripts/Makefile.build:283: drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.o] Error 1
+make[5]: Target '__build' not remade because of errors.
+make[4]: *** [scripts/Makefile.build:500: drivers/gpu/drm/amd/amdgpu] Error 2
+make[4]: Target '__build' not remade because of errors.
+make[3]: *** [scripts/Makefile.build:500: drivers/gpu/drm] Error 2
+make[3]: Target '__build' not remade because of errors.
+make[2]: *** [scripts/Makefile.build:500: drivers/gpu] Error 2
+make[2]: Target '__build' not remade because of errors.
+make[1]: *** [Makefile:1784: drivers] Error 2
+make[1]: Target 'drivers/gpu/drm/amd/amdgpu/amdgpu.ko' not remade because of errors.
+make: *** [Makefile:335: __build_one_by_one] Error 2
+make: Target 'olddefconfig' not remade because of errors.
+make: Target 'drivers/gpu/drm/amd/amdgpu/amdgpu.ko' not remade because of errors.
 
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-index 49db61a89505..d642dc95e9ea 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-@@ -1713,18 +1713,24 @@ static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
- data->current_profile_setting.sclk_down_hyst = 100;
- data->current_profile_setting.sclk_activity = SMU7_SCLK_TARGETACTIVITY_DFLT;
- data->current_profile_setting.bupdate_mclk = 1;
--if (adev->gmc.vram_width == 256) {
--data->current_profile_setting.mclk_up_hyst = 10;
--data->current_profile_setting.mclk_down_hyst = 60;
--data->current_profile_setting.mclk_activity = 25;
--} else if (adev->gmc.vram_width == 128) {
--data->current_profile_setting.mclk_up_hyst = 5;
--data->current_profile_setting.mclk_down_hyst = 16;
--data->current_profile_setting.mclk_activity = 20;
--} else if (adev->gmc.vram_width == 64) {
--data->current_profile_setting.mclk_up_hyst = 3;
--data->current_profile_setting.mclk_down_hyst = 16;
--data->current_profile_setting.mclk_activity = 20;
-+if (hwmgr->chip_id >= CHIP_POLARIS10) {
-+if (adev->gmc.vram_width == 256) {
-+data->current_profile_setting.mclk_up_hyst = 10;
-+data->current_profile_setting.mclk_down_hyst = 60;
-+data->current_profile_setting.mclk_activity = 25;
-+} else if (adev->gmc.vram_width == 128) {
-+data->current_profile_setting.mclk_up_hyst = 5;
-+data->current_profile_setting.mclk_down_hyst = 16;
-+data->current_profile_setting.mclk_activity = 20;
-+} else if (adev->gmc.vram_width == 64) {
-+data->current_profile_setting.mclk_up_hyst = 3;
-+data->current_profile_setting.mclk_down_hyst = 16;
-+data->current_profile_setting.mclk_activity = 20;
-+}
-+} else {
-+data->current_profile_setting.mclk_up_hyst = 0;
-+data->current_profile_setting.mclk_down_hyst = 100;
-+data->current_profile_setting.mclk_activity = SMU7_MCLK_TARGETACTIVITY_DFLT;
- }
- hwmgr->workload_mask = 1 << hwmgr->workload_prority[PP_SMC_POWER_PROFILE_FULLSCREEN3D];
- hwmgr->power_profile_mode = PP_SMC_POWER_PROFILE_FULLSCREEN3D;
---
-2.25.4
+LLVM also sees a build failure but it is at modpost:
 
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=04%7C01%7Cevan.quan%40amd.com%7C67c0a0638f9c4e316c5e08d87b534d94%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637394945031668072%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=y0Q%2B5wPg9PnCLtSLMp8i5RdDSB6OH7WvRTRzi%2Bkx0E8%3D&amp;reserved=0
+
+
+$ make -skj"$(nproc)" ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- LLVM=1 olddefconfig all
+...
+ERROR: modpost: "__gtsf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__floatdisf" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__addsf3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__gedf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__fixsfdi" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__floatsisf" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__fixsfsi" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__nesf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__ledf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__floatunsisf" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__subdf3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__floatdidf" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__fixunssfsi" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__eqdf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__fixdfsi" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__floatsidf" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__nedf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__ltdf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__adddf3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__floatunsidf" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__gtdf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__fixunsdfsi" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__divdf3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__extendsfdf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__truncdfsf2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__muldf3" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+ERROR: modpost: "__fixdfdi" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko] undefined!
+...
+
+$ readelf -s drivers/gpu/drm/amd/amdgpu/amdgpu.ko |& grep UND |& grep __
+...
+ 19448: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __fixdfdi
+ 19449: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __muldf3
+ 19450: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __truncdfsf2
+ 19451: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __extendsfdf2
+ 19452: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __divdf3
+ 19453: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __fixunsdfsi
+ 19455: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __gtdf2
+ 19456: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __floatunsidf
+ 19457: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __adddf3
+ 19458: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __ltdf2
+ 19459: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __nedf2
+ 19460: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __floatsidf
+ 19461: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __fixdfsi
+ 19462: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __eqdf2
+ 19463: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __fixunssfsi
+ 19464: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __floatdidf
+ 19465: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __subdf3
+ 19466: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __floatunsisf
+ 19467: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __ledf2
+ 19468: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __nesf2
+ 19469: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __fixsfsi
+ 19470: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __floatsisf
+ 19471: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __fixsfdi
+ 19472: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __gedf2
+ 19473: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __addsf3
+ 19474: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __floatdisf
+ 19475: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND __gtsf2
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
