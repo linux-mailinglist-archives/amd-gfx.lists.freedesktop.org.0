@@ -1,53 +1,86 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EAA529FCD6
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Oct 2020 05:49:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89E6029FE22
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Oct 2020 07:55:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C49516E951;
-	Fri, 30 Oct 2020 04:49:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C6206E957;
+	Fri, 30 Oct 2020 06:55:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 088C76E951
- for <amd-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 04:49:02 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id k125so1763554wmf.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 29 Oct 2020 21:49:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=79RD2S2sqcqqjZSBIiuWXoOSrGXzs5hov/s45ugFqxo=;
- b=KP11B+4FDDvCA9Lj346sRbc0X0aUz60GQNeTDa9Nx8yaT206nd0YDZazSC6JinXj8p
- JOfd0ws9n6QnAMrqQvHAfDJURm3T9u3q0GSgLzbnmVICzPaCiXt1Iotu1Pobb5ZD4nmR
- nSHuTNzsDaBMU6f60z2A/T7LDqfs5h914ks6lhM7r6ZpQhYMKE9ZY+9sj71+8SMEZV5D
- gVW4ykjycRpE8cdPyvKix6EUq5WnRcYKZO6bvOj4s13uDwBX3eqSmrfuFodiOBVzaNji
- 5r/arp1yU95ArkYrZfrys/j0LNWRCRJPC9sfbLz1N3/tUdXlnEAHV4URifcDAEgWJdVl
- Nqkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=79RD2S2sqcqqjZSBIiuWXoOSrGXzs5hov/s45ugFqxo=;
- b=D3xBmJicwthWhOven0ruZ6rjp548gFcriwJr+Tv3XdUfVqTmMVLJroyIlm6Q48S8b5
- Ex43d9EQBJ2NsVQM4beBh/zI5Rj0iCInH0/4Xn6gdBkH5sCLIq8qogUIOQHkxglGw69v
- 1AMGe7w7zQhpZ+xyxXDMeY8nMditWix5AsrzAP6xMhKONDolYgFgxc+lcNZSm1i4VVbh
- oRv378FHkZEVA8m170lHWu3yUVCNexcqwFTTZ4pAUfr6Hbnat0iD4kFjHIo4lYgAaDp9
- i3sHd3zpx6Uma5f+90OpNKvLEFhZragie6Y6eK+CRINRRPJqS5qw2odq+Ve4b+ClKYHT
- lYcQ==
-X-Gm-Message-State: AOAM5306MnDiJ83J0DVzkCKm3NStIrF7NQ6sYG3+hzNhwifViw/V0kdX
- EL/OemM8GzHc1H7/pYbqDGDy9AZPE1N6P88eir9C07hOJUQ=
-X-Google-Smtp-Source: ABdhPJwVvqncd4SfKBO8lEt9MJc+jrOjcTt2w++r4Be+JzFVqImBiHKp6M/FqvzT13CAI8XUGlA7GO0T+FqXt1camgg=
-X-Received: by 2002:a05:600c:25a:: with SMTP id 26mr427744wmj.39.1604033341668; 
- Thu, 29 Oct 2020 21:49:01 -0700 (PDT)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2062.outbound.protection.outlook.com [40.107.237.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63FE76E957
+ for <amd-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 06:55:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bDc57e0FGEXznA+HNUtfpaZaAm1UguJtcLyePutio0ZElBYJsNXRZjUoiHZLTpG7OIxOhieUto5pkByax7FPOLuMvyWZyxEcny+l+3/FWjEOjSeQ+Fbw08gd+Djlaht8U3iBPlAmv+wmqoUUljHKXgpjIQTuo4JdbWfQ3bK0nh0TM4VW0PwLS9dSwIJVXSYEY6u0JIMCArt9Ppr0LCPIlV1akYvb9MlsIdkkpN5OYCyUCsckhuArAbMle8B+8RyKqKBS+HDTmHR0M3YI/k1MpHuE9uHC+mUG73W8D0JKK8zfT20aerB3IeF3s17dIzYiW6fG5jNcUpRhKkCTBk3adg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Iy7y24k9kAFS6kwqFi9d+lEVp5eISFTa0EclF0/HfRQ=;
+ b=Y23ISi4XyLSX7+mHpRQLFnHUDxgivm9taedq9Qdg2zq4bzG9sg8XSQDJvtF1oSWrABDKQOdlPsI3Oo20ZSB4mQCUyZO2F2nr30WzW4GOJ+6lgnSopx28pLU5/jELF+ajXCQuC2oH7Rkm963psOhCxFCtjph/N2Trnl5MENpOS4XanhU0hj0yr2b4jU1nC48mIbGd+1pJtQ8P6T4tklM/VdviSIMDenOsh2+yTARv4eMeJaKgOCkcCCog0IciZQJn6xdOo27Oq/n07U67bpe/bJoA/nMSZGSfYcYS7bw+FwTfA8+b4LAHEx8S+//Y+Qyk7yads8blzAVvUhs+BuEHWg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Iy7y24k9kAFS6kwqFi9d+lEVp5eISFTa0EclF0/HfRQ=;
+ b=olujm7CDVjIZxZ46eGF16j34KPeSFjZqxXOt+sDLJDz5+gL3oe2m/TZDwW8wY/qEiOCxOuKmfAXG7cyfSQ0SyQlwkDIkjGZT27vb4Pjick5Ic+Kc6+Ol5M2G0kKrZZmLQ2/KGXNOaiOLP4xIrXeDD+OhpKoBF9WFL3MgwwDAG3M=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from DM6PR12MB3467.namprd12.prod.outlook.com (2603:10b6:5:3c::10) by
+ DM6PR12MB2618.namprd12.prod.outlook.com (2603:10b6:5:49::24) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3499.19; Fri, 30 Oct 2020 06:55:52 +0000
+Received: from DM6PR12MB3467.namprd12.prod.outlook.com
+ ([fe80::791c:a3f1:47ad:902e]) by DM6PR12MB3467.namprd12.prod.outlook.com
+ ([fe80::791c:a3f1:47ad:902e%4]) with mapi id 15.20.3499.029; Fri, 30 Oct 2020
+ 06:55:52 +0000
+From: "Jinzhou.Su" <Jinzhou.Su@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] amdgpu: Add mmhub MGCG and MGLS for vangogh
+Date: Fri, 30 Oct 2020 14:54:56 +0800
+Message-Id: <20201030065456.23396-1-Jinzhou.Su@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [58.247.170.242]
+X-ClientProxiedBy: HK2PR06CA0007.apcprd06.prod.outlook.com
+ (2603:1096:202:2e::19) To DM6PR12MB3467.namprd12.prod.outlook.com
+ (2603:10b6:5:3c::10)
 MIME-Version: 1.0
-References: <20201030043306.1557713-1-likun.gao@amd.com>
-In-Reply-To: <20201030043306.1557713-1-likun.gao@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 30 Oct 2020 00:48:49 -0400
-Message-ID: <CADnq5_N2hnxPXc+xR815219po5gHggciN-WYvTZn_9RBQqAt0g@mail.gmail.com>
-Subject: Re: [PATCH xf86-video-amdgpu] Fix drmmode_crtc_scanout_create logic
-To: Likun Gao <likun.gao@amd.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from jinzhosu-System-Product-Name.amd.com (58.247.170.242) by
+ HK2PR06CA0007.apcprd06.prod.outlook.com (2603:1096:202:2e::19) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3499.18 via Frontend Transport; Fri, 30 Oct 2020 06:55:50 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 224bd29c-4644-4840-3768-08d87ca0d754
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2618:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB261835ADFF085F217DC73C4790150@DM6PR12MB2618.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:296;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: EnYZkUdCgOZl0LEUiG+j6M9KVTW4Mg2gB11yxtZCeBMpCZXsvmMB6KGtlLmpI24QnblO9naw1tu3eUo6/TRWobxoxzI8a95EmCpR/DledtMy+8wBDgR6sRukR9vfi/BqSPkJDrgDwxn6NF/nFriltUYU6bklAR6zBqq2xxOzs/OR8F//24wIH+TkDcd+XNZg4VWGYITplA8bW4K74DT2EXNUELJe4yhCb5AF1sGvqSqSodNGDyq7WoeDRhTwgOxGkVV1eeKYoHiVxc8Vnmb5g8PrPfSBQftWU9yl33NsIlwUg0+KBpkAzKuPFywQMkUfhPC/+c+tanqk58O5sYWaVw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3467.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(346002)(39860400002)(396003)(366004)(376002)(316002)(6486002)(8936002)(478600001)(86362001)(36756003)(4744005)(52116002)(7696005)(66476007)(66946007)(5660300002)(2906002)(66556008)(8676002)(26005)(186003)(1076003)(6916009)(16526019)(4326008)(956004)(2616005);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: vT7fZgnAzBVRN/lRLtLF/AjK6LEN44jTLISYir2Q08P78LPwqmLGkTKCLMK8UGdVRRPwpOXaQhvDNoMrBYLqxpsqXlMXoPc4aLRMHldgCEUwdYhtEifVJYZ+SyMB1mxv/RXWG/uQwRhjrzz5sl4cU6hsb/CzP3T+xoyNzbxCFfx0CMked300VDmtoJMT1RmfsHhfv0jdxCcwYIcBS2Rw5p1EcbppEUQdM2rm7spWju6U606X2QR8iIe7jh7uAaoKA516Myc0mFFDeEavq8Q+iTBa0HX+H35NZ5k5HWHBfOf855cJNvhN50JCArEqySPQKBtQYUXNvq85VLYWatT6LfRF01shYsRbhHbn8chvVbK6z4lDHy9j6KdYD+D3mUMVS8GdgYZferz7WFL9qFqZFKvzvTP5IpRpbPykP90ZXPQzKYWeHg7EOTEe7ntoXt90we8hjt7vWodMNbSVIjburV3NuPNdl4Bi+K6sbYiuMpk0nmgePmkDdYDbMM9mvB+6ZrJkin4c8ErixuUukIqfrjcKmFrB5S73SbAlAiTSdRtum3fGAy8XqEv1ZEw3vfx+2nwasfDTFnf1h5eSFGzTtXtSXnLqP55eHB6zJ8rlie9fo8ZICtqX6r3kKEQWBjNHkN+wb2k6zgm1i2MHD64I5w==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 224bd29c-4644-4840-3768-08d87ca0d754
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3467.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2020 06:55:52.5915 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KoS4fEUdssOhT4xeOc40nLUHhzjpAegy9yVEVmOeQ4SJ2pvLIWNDi1sodQOQs30mzgLg90DYrKAgSlUDnw/2xA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2618
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,56 +92,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Guchun Chen <Guchun.Chen@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Hawking Zhang <hawking.zhang@amd.com>
+Cc: "Jinzhou.Su" <Jinzhou.Su@amd.com>, ray.huang@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 30, 2020 at 12:33 AM Likun Gao <likun.gao@amd.com> wrote:
->
-> From: Likun Gao <Likun.Gao@amd.com>
->
-> If crtc scanout create successfully, the function of
-> drmmode_crtc_scanout_create should return TURE.
->
-> Signed-off-by: Likun Gao <Likun.Gao@amd.com>
-> Change-Id: I4b7540b0d128c2d55f2b8491569004741435f343
+Add AMD_CG_SUPPORT_MC_MGCG and AMD_CG_SUPPORT_MC_LS
 
-Please create a gitlab MR for xf86-video-amdgpu updates:
-https://gitlab.freedesktop.org/xorg/driver/xf86-video-amdgpu/-/merge_requests
+Change-Id: If58cc127a5b5b2449253af6d0f7f2522628639a3
+Signed-off-by: Jinzhou.Su <Jinzhou.Su@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/nv.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Alex
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 026e0a8fd526..1f8659a1a4cf 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -951,6 +951,8 @@ static int nv_common_early_init(void *handle)
+ 			AMD_CG_SUPPORT_GFX_CGLS |
+ 			AMD_CG_SUPPORT_GFX_3D_CGCG |
+ 			AMD_CG_SUPPORT_GFX_3D_CGLS |
++			AMD_CG_SUPPORT_MC_MGCG |
++			AMD_CG_SUPPORT_MC_LS |
+ 			AMD_CG_SUPPORT_VCN_MGCG |
+ 			AMD_CG_SUPPORT_JPEG_MGCG;
+ 		adev->pg_flags = AMD_PG_SUPPORT_GFX_PG |
+-- 
+2.17.1
 
-> ---
->  src/drmmode_display.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/src/drmmode_display.c b/src/drmmode_display.c
-> index f74106e..465915f 100644
-> --- a/src/drmmode_display.c
-> +++ b/src/drmmode_display.c
-> @@ -513,9 +513,10 @@ drmmode_crtc_scanout_create(xf86CrtcPtr crtc, PixmapPtr *scanout,
->                 ErrorF("failed to create CRTC scanout FB\n");
->  error:
->                 drmmode_crtc_scanout_destroy(scanout);
-> +               return FALSE;
->         }
->
-> -       return FALSE;
-> +       return TRUE;
->  }
->
->  static void
-> --
-> 2.25.1
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
