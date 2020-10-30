@@ -1,75 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082292A07F3
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Oct 2020 15:34:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEED32A0893
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Oct 2020 15:57:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC9A6EDE8;
-	Fri, 30 Oct 2020 14:33:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 451B86EDC6;
+	Fri, 30 Oct 2020 14:57:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com
- [IPv6:2607:f8b0:4864:20::541])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C6616E9A3;
- Fri, 30 Oct 2020 12:55:53 +0000 (UTC)
-Received: by mail-pg1-x541.google.com with SMTP id f38so5139567pgm.2;
- Fri, 30 Oct 2020 05:55:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=EY5jmWEppGIZD3OkVY+PrUIlVBuLQJBSLFzS0cv2zkM=;
- b=WgQp7Qjiipq8bte2F1/XmxDPy678VMaI9Ka5i4CJlLM1plIBKrrKgJM3nLT34PINBr
- WQqbuvEeg3MK45EaLtALAiEFpwYzprg/RILN3PrXmHXJw+muwSjEQb96/fU5VB4f2aIx
- F5Dc0u6qNHTOwdeyVq4EuGaO311NqjR1yN4CzUH9vwhcJ1i8BWtCyMTDFAAku5fV0+AR
- ohvpHctMTeVrBOpe6ZOnao1AWQCz9Wxl64XuYx1ivWMi6e/weY8eQ38/voa3ATTB7w5v
- i4RqN64uuTgCOCNOQYLDNr6/g4Tz8x6axhvES1vtSHJfiabDIELHfktcq8S/dEad9nlV
- rY5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=EY5jmWEppGIZD3OkVY+PrUIlVBuLQJBSLFzS0cv2zkM=;
- b=Sgqwn8n/FlyRMMbKApdlOQN+oZV9ZDmvzcaL0GQrs5MtakMuIzmXOUP7/cf35/D2xV
- 054G6xy4LhX8w88JOU6Btfi2as9QwVCedYPiTcUGhYOo3+DVIFsjWpbyNzIVxvfPE7xL
- +dsuuB74aTOITfl0URAYPK76Ux294ABDo8mf8QiCm38dhMDKheRemTnc46G7AvwRhrDQ
- LX3PzE1McG4TlTfwS1bqbJw7rq6lVujnnqVfE/Q60jLudzyxsTozvGlIZmV8aoEtyj/w
- MFIhfiWBNokCum7GC+C7PAG+8abu4RJJBlAcoS5fBFxN2DCFxXH41ezGB+Zu/hlaLQtR
- wzFg==
-X-Gm-Message-State: AOAM532V3oNZNqlBawBKtZIyYoDsoOz/M++el2OMTi6GOhAMdvLtubOy
- p4JZfdkCgIz6thjM0+bkGMU=
-X-Google-Smtp-Source: ABdhPJzoSJ653ZkGK6/QfvAF19ZEAnwk6sJbWIaUpunnUSpAkaJGC9hruc/dZwTt/I6cHpg1CdQcOA==
-X-Received: by 2002:a17:90a:fa09:: with SMTP id
- cm9mr2840218pjb.162.1604062552599; 
- Fri, 30 Oct 2020 05:55:52 -0700 (PDT)
-Received: from my--box ([103.98.79.70])
- by smtp.gmail.com with ESMTPSA id w19sm6220886pff.6.2020.10.30.05.55.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 30 Oct 2020 05:55:52 -0700 (PDT)
-Date: Fri, 30 Oct 2020 18:25:45 +0530
-From: Deepak R Varma <mh12gx2825@gmail.com>
-To: Greg KH <gregkh@linuxfoundation.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- outreachy-kernel@googlegroups.com,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@linux.ie>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- melissa.srw@gmail.com
-Subject: Re: [Outreachy kernel] [PATCH] drm/amdgpu: use
- DEFINE_DEBUGFS_ATTRIBUTE with debugfs_create_file_unsafe()
-Message-ID: <20201030125545.GA12671@my--box>
-References: <20201030032245.GA274478@my--box>
- <20201030071120.GA1493629@kroah.com>
- <20201030075716.GA6976@my--box>
- <5a7d8e8d-8db5-ff56-6448-3f1cefc11ef8@amd.com>
- <20201030082518.GB1619669@kroah.com>
- <20201030091521.GH401619@phenom.ffwll.local>
- <20201030092457.GI401619@phenom.ffwll.local>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2083.outbound.protection.outlook.com [40.107.93.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82AC36EDC6
+ for <amd-gfx@lists.freedesktop.org>; Fri, 30 Oct 2020 14:57:44 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=P0KQK6MXO78MOXJ2ZTtVuFRxYHgVRyeWXjEKK2KTphE957VZEbRuA8/KQIo8Ovc19D50CpDAiVqAZn0B0oVlCSiiflTM3zro9eWxhjCdnRD05/6eWJ3+H5oLPVR3L70pC67DhpKib2Q1ukVF5hZf6CX3t1L/xrA2DYGigR0cDRjEIlf+U9BqiGsKHsAsHniC7pMQEeiPMoXa06/eZv+WuES4oDhiqUmXvw3RH6OOAJn4PjZVVe9QA8x4mVGNQYNqFRlLflFzyWldtgNw4+66JpCOCqFYqLHfgZxmjs5xyUyd0Ps2N/07zwxMK3EZWm5EFhlGQd7/0JmGVi4GWpzDBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CHtw5AQ27/MLHiJwjTXTYjfilP2Rc1/Mw4GRTxN+WWs=;
+ b=Fg6cX1ZbyPkHXWgk/XOmL+Vwgw84AARD12vQW+6E3s7J7mqXTCofsBE5uN4/soHsfu2/I9cp5tbJLKl5ukjrVjgcy8f0ETO5Dow/CWlVBxvKCr2sA7+R6LB3wTbrelK/uOWBdxMNtLp0qigiUnDHt41tVHxYcP3WfckSiYCd4sTBXkxdhjftLofRwE53XO4lPV5EmjF0gvUpOM1IkIL/AqmH+erAc3/6MJniFeR1qymo30vHbKjTGt86dKKgT30s/pXHyRNrM2YdQauVeciPaHt1g/rVrOgLqHxnzoPk0hLOpwXUXKN9DgDDBYCL0DKd2SMuJqzLmF5nkBPOL3n37w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=none action=none header.from=amd.com; dkim=none (message not signed);
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CHtw5AQ27/MLHiJwjTXTYjfilP2Rc1/Mw4GRTxN+WWs=;
+ b=hERVcKVS2ZKeqPELTKdEqBp5yz1ku1qWGpO5DlDCd4NYjwfMIBr4BAwOiW0mq30Mngde4JiHZVpe1WIidvEJmaGshDgbRpEe05hc+x0l8o0r73xRJxKr4iHIMxrVj5S6xCtSB6YeFQgBNbD8QGe8BmD6tVdHgP7pZI+Rmm8Ne2A=
+Received: from DM5PR06CA0040.namprd06.prod.outlook.com (2603:10b6:3:5d::26) by
+ BN7PR12MB2801.namprd12.prod.outlook.com (2603:10b6:408:2d::33) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3499.28; Fri, 30 Oct 2020 14:57:41 +0000
+Received: from DM6NAM11FT062.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:5d:cafe::62) by DM5PR06CA0040.outlook.office365.com
+ (2603:10b6:3:5d::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18 via Frontend
+ Transport; Fri, 30 Oct 2020 14:57:41 +0000
+X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=none action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ DM6NAM11FT062.mail.protection.outlook.com (10.13.173.40) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3520.17 via Frontend Transport; Fri, 30 Oct 2020 14:57:40 +0000
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 30 Oct
+ 2020 09:57:40 -0500
+Received: from navi10-sut.amd.com (10.180.168.240) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3 via Frontend
+ Transport; Fri, 30 Oct 2020 09:57:38 -0500
+From: Jiansong Chen <Jiansong.Chen@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH v2] drm/amdgpu: disable gfxoff if VCN is busy
+Date: Fri, 30 Oct 2020 22:57:22 +0800
+Message-ID: <20201030145722.132135-1-Jiansong.Chen@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201030092457.GI401619@phenom.ffwll.local>
-X-Mailman-Approved-At: Fri, 30 Oct 2020 14:33:56 +0000
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ae5cd64d-0ed8-46bd-7cb1-08d87ce42654
+X-MS-TrafficTypeDiagnostic: BN7PR12MB2801:
+X-Microsoft-Antispam-PRVS: <BN7PR12MB280180EF562D4D861E3C90D7EA150@BN7PR12MB2801.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:660;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RhgaetNa5gt1zeJMvnewaRv3l89I+Eaba9DP1TwhNBfZVkzF64HEtdqEShXc2ccHJz4hcGdi3DAUNu9TKEhdWjRXuPNPB9MF7w58G68UvJT/D/REyVkXUH9lzNwrfcAEXVurQlMwlh93twtQnNXAOr7xK2HZ8fglBDnPsSuF5n9odOFhgzuJi5d98safOK8Bwf1JlvjROwyMKObkZWc11FQutPKME9/4k/rHFEngEcJcyXXCYpIGZjRcSV0PVGYpfeGSbuO3jO589Kr2yTTEtZTCL/ftAmE1b+VlZ3+CxG0N5vyvjyeHoC8SU4/Zjc+wxckCiaXu97NZIkMhELGsMa/Oqvq20c9QnSyPCrcevII7CY2fiD6CKu67qMyLNeX4HsTLxuO463S6Vf+QIydSCA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(39860400002)(346002)(136003)(396003)(376002)(46966005)(36756003)(2616005)(356005)(47076004)(82740400003)(478600001)(81166007)(336012)(6916009)(82310400003)(7696005)(316002)(83380400001)(86362001)(70586007)(70206006)(426003)(4326008)(8676002)(5660300002)(8936002)(6666004)(186003)(2906002)(26005)(1076003)(54906003);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2020 14:57:40.9394 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae5cd64d-0ed8-46bd-7cb1-08d87ce42654
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT062.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR12MB2801
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,173 +99,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mh12gx2825@gmail.com
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: tao.zhou1@amd.com, Jiansong Chen <Jiansong.Chen@amd.com>, james.zhu@amd.com,
+ leo.liu@amd.com, hawking.zhang@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 30, 2020 at 10:24:57AM +0100, Daniel Vetter wrote:
-> On Fri, Oct 30, 2020 at 10:15:21AM +0100, Daniel Vetter wrote:
-> > On Fri, Oct 30, 2020 at 09:25:18AM +0100, Greg KH wrote:
-> > > On Fri, Oct 30, 2020 at 09:00:04AM +0100, Christian K=F6nig wrote:
-> > > > Am 30.10.20 um 08:57 schrieb Deepak R Varma:
-> > > > > On Fri, Oct 30, 2020 at 08:11:20AM +0100, Greg KH wrote:
-> > > > > > On Fri, Oct 30, 2020 at 08:52:45AM +0530, Deepak R Varma wrote:
-> > > > > > > Using DEFINE_DEBUGFS_ATTRIBUTE macro with debugfs_create_file=
-_unsafe()
-> > > > > > > function in place of the debugfs_create_file() function will =
-make the
-> > > > > > > file operation struct "reset" aware of the file's lifetime. A=
-dditional
-> > > > > > > details here: https://nam11.safelinks.protection.outlook.com/=
-?url=3Dhttps%3A%2F%2Flists.archive.carbon60.com%2Flinux%2Fkernel%2F2369498&=
-amp;data=3D04%7C01%7Cchristian.koenig%40amd.com%7Cddd7a6ac8164415a639708d87=
-ca97004%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637396414464384011%7CU=
-nknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLC=
-JXVCI6Mn0%3D%7C1000&amp;sdata=3Do6GOHvMxNMuOPlC4nhDyURCHBLqfQZhYQq%2BiIMt3D=
-3s%3D&amp;reserved=3D0
-> > > > > > > =
+Toggle on/off gfxoff during video playback to fix gpu hang.
 
-> > > > > > > Issue reported by Coccinelle script:
-> > > > > > > scripts/coccinelle/api/debugfs/debugfs_simple_attr.cocci
-> > > > > > > =
+v2: change sequence to be more compatible with original code.
 
-> > > > > > > Signed-off-by: Deepak R Varma <mh12gx2825@gmail.com>
-> > > > > > > ---
-> > > > > > > Please Note: This is a Outreachy project task patch.
-> > > > > > > =
+Signed-off-by: Jiansong Chen <Jiansong.Chen@amd.com>
+Change-Id: I5b938c446884268c2cda0801121a53da980e603a
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-> > > > > > >   drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 20 ++++++++++=
-----------
-> > > > > > >   1 file changed, 10 insertions(+), 10 deletions(-)
-> > > > > > > =
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+index 277a8435dd06..ef0878e848de 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+@@ -358,6 +358,7 @@ static void amdgpu_vcn_idle_work_handler(struct work_struct *work)
+ 	}
+ 
+ 	if (!fences && !atomic_read(&adev->vcn.total_submission_cnt)) {
++		amdgpu_gfx_off_ctrl(adev, true);
+ 		amdgpu_device_ip_set_powergating_state(adev, AMD_IP_BLOCK_TYPE_VCN,
+ 		       AMD_PG_STATE_GATE);
+ 	} else {
+@@ -370,7 +371,9 @@ void amdgpu_vcn_ring_begin_use(struct amdgpu_ring *ring)
+ 	struct amdgpu_device *adev = ring->adev;
+ 
+ 	atomic_inc(&adev->vcn.total_submission_cnt);
+-	cancel_delayed_work_sync(&adev->vcn.idle_work);
++
++	if (!cancel_delayed_work_sync(&adev->vcn.idle_work);)
++		amdgpu_gfx_off_ctrl(adev, false);
+ 
+ 	mutex_lock(&adev->vcn.vcn_pg_lock);
+ 	amdgpu_device_ip_set_powergating_state(adev, AMD_IP_BLOCK_TYPE_VCN,
+-- 
+2.25.1
 
-> > > > > > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/dr=
-ivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> > > > > > > index 2d125b8b15ee..f076b1ba7319 100644
-> > > > > > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> > > > > > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> > > > > > > @@ -1551,29 +1551,29 @@ static int amdgpu_debugfs_sclk_set(vo=
-id *data, u64 val)
-> > > > > > >   	return 0;
-> > > > > > >   }
-> > > > > > > -DEFINE_SIMPLE_ATTRIBUTE(fops_ib_preempt, NULL,
-> > > > > > > -			amdgpu_debugfs_ib_preempt, "%llu\n");
-> > > > > > > +DEFINE_DEBUGFS_ATTRIBUTE(fops_ib_preempt, NULL,
-> > > > > > > +			 amdgpu_debugfs_ib_preempt, "%llu\n");
-> > > > > > Are you sure this is ok?  Do these devices need this additional
-> > > > > > "protection"?  Do they have the problem that these macros were =
-written
-> > > > > > for?
-> > > > > > =
-
-> > > > > > Same for the other patches you just submitted here, I think you=
- need to
-> > > > > > somehow "prove" that these changes are necessary, checkpatch is=
-n't able
-> > > > > > to determine this all the time.
-> > > > > Hi Greg,
-> > > > > Based on my understanding, the current function debugfs_create_fi=
-le()
-> > > > > adds an overhead of lifetime managing proxy for such fop structs.=
- This
-> > > > > should be applicable to these set of drivers as well. Hence I thi=
-nk this
-> > > > > change will be useful.
-> > > > =
-
-> > > > Well since this is only created once per device instance I don't re=
-ally care
-> > > > about this little overhead.
-> > > > =
-
-> > > > But what exactly is debugfs doing or not doing here?
-> > > =
-
-> > > It is trying to save drivers from having debugfs files open that point
-> > > to memory that can go away at any time.  For graphics devices, I doubt
-> > > that is the case.
-> > =
-
-> > So for anything we add/remove we have two-stage cleanup
-> > =
-
-> > 1. drm_dev_unregister (or drm_connector_unregisters, those are the only
-> > two hotunpluggable things we have) unregister all the uapi interfaces.
-> > This deletes all the sysfs and debugfs files.
-> > =
-
-> > 2. Once all the references to the underlying object disappear from the
-> > kernel, we free up the data structure.
-> > =
-
-> > Now for chardev and similar uapi, we hold full references for open file=
-s.
-> > But for sysfs and debugfs we assume that those uapi layers will make su=
-re
-> > that after we deleted the files in step 1 all access through these
-> > functions are guaranteed to have finished. If that's not the case, then=
- we
-> > need to rework our refcounting and also refcount the underlying drm
-> > structure (drm_device or drm_connector) from sysfs/debugfs files.
-> > =
-
-> > Now I tried to look at the patch Deepak references, and I'm not really
-> > clear what changes. Or whether we made a wrong assumption previously ab=
-out
-> > what debugfs/sysfs guarantee when we delete the files.
-> =
-
-> I read some more code and kerneldoc, and I still have no idea what this
-> new _unsafe variant is used for. Only ones I've found seem to use
-> debugfs_file_get/put like the normal variant, to protect against
-> concurrently removed files due to hotunplug. Which is kinda what we've
-> been expecting debugfs to do for us.
-> =
-
-> What's a use-case for _unsafe _without_ debugfs_file_get/put?
-> =
-
-> Decently confused me over here doesn't get this.
-> -Daniel
-
-Hi All,
-Thank you for your comments. I was not anticipating this to be such a
-offbeat patch. Pardon my growing understanding.
-
-Please suggest if I can evaluate the change proposed  to confirm if this is
-a meaningful change.
-
-Thank you again!
-./drv
-
-
-> =
-
-> > -Daniel
-> > =
-
-> > > =
-
-> > > thanks,
-> > > =
-
-> > > greg k-h
-> > =
-
-> > -- =
-
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
-> =
-
-> -- =
-
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
