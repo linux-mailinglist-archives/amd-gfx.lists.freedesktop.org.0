@@ -1,61 +1,64 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 598332A31DD
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Nov 2020 18:44:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 033742A31DF
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Nov 2020 18:44:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 155B56E145;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AE7F6E47E;
 	Mon,  2 Nov 2020 17:44:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com
- [IPv6:2607:f8b0:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45F2D6E093;
- Mon,  2 Nov 2020 17:16:11 +0000 (UTC)
-Received: by mail-pf1-x444.google.com with SMTP id w65so11678597pfd.3;
- Mon, 02 Nov 2020 09:16:11 -0800 (PST)
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com
+ [IPv6:2607:f8b0:4864:20::642])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40C0E6E0DC;
+ Mon,  2 Nov 2020 17:17:05 +0000 (UTC)
+Received: by mail-pl1-x642.google.com with SMTP id b19so7151234pld.0;
+ Mon, 02 Nov 2020 09:17:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
- bh=FiaA239A2PQwcQasT6cnNh3FC/zYFdQwcuNqSx9+MnE=;
- b=JMqav19onHdxHgN0cN+/6LBFGp1c/lYlCJS0cCzcGMtYJOMAqFmeF7FBbWDmMxzIqf
- BHCCtcEmTUg0SMmeX/vprtLJcU5+/hPf6PqySAqR+jVXVr9otFhM0rcbvEOV2EM3Aque
- FJf/yYrsRybLIkZ9wOEuTMi/8PFbNdzqKz9GPA/GWxh7XHUgErIA3q+pS2kNon+HtGw7
- WVXYyRd/vyn8GDD6u2Da1jYDOEDQjTTgU3Jn0M798NGuuM1YFfV71pKu651Elg1SyUrE
- jWtRs250nOXAgQTOXHEgzhfbmLpCV9jlOqII7p63G2NKFF68SkyX7f2TMg50o4m2HTP2
- amfg==
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=a0jYTmrFpdw95OyIRLlDuQeZ5xit+fHnq5W5rVj7juA=;
+ b=VpLkXv3FGasnw6RWFjbzBHclWI38P4gsSsNqXgS6d11F7eDNPz8jieDqz1GfhXrowq
+ VG9eE9esFFmJ1hqZ6b/YDr3U1xF9lwwlNX03ZM0LRJyTPg09csiv/4n07l5bHGiecQr/
+ lDPamuHlPhk8Kxjz7rrWg5y2doc0SFZzJM0XaXt1kAtJs5TXYVUn0zShcNE9GaQIyIm9
+ Nrkcae3MkVppfjUk35bRCgiL1+Cx+a9rjiYxtwhNnTadoRHNxWt3+KwJTWhjBWU2r0oV
+ 7zOhUX01tvJDluzsQi9AE7UOyk4GpLRYG9LXpmcXrMLm91yuPPozaXppA0q944QRTFdE
+ zGtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
- :content-disposition;
- bh=FiaA239A2PQwcQasT6cnNh3FC/zYFdQwcuNqSx9+MnE=;
- b=PYi4UQ/rxnDre2SRS5b9w6wErxah1JSSUWrE8T1pLnR9e4zfl0s6xDvtcnF0F3h9UJ
- jVsLorC8NRpNyikjoecsU11aSs95/R2ZMu7DdCJ8DFKdg/RYwXlaV60dCuBdZRHZBd4f
- LoFhLOveVADciHfi4yx6ad9S1lMo6DzGTxiQsIpL5lbcHgJZLEDbItA0K3JjU9RvCB+G
- /ZczV1iVwh/Wq81JioU3Pox/g+GOCaTj6ayEDIYJ/6Ly13LJXnlR7y/Ufkg2u+2pkYgG
- Rn8YP9UBk+aqGfIXFpJC8gzW6ChJ1sb/leUAnqpueGr2/hHAqyVjPOkWqWf1+IsnGvfj
- BmKw==
-X-Gm-Message-State: AOAM531zePHIwGHgEDeNLD7/COeHLcbV/aS4clv8Ftfc6TKrTP+3nzs0
- i/H+Op16M3T0RFxIDwrWkHM=
-X-Google-Smtp-Source: ABdhPJzWUXbXlsx2BdAw8cQo90IiH2be5wSFJGPhmOzuExBRvWBjzU1BWzYb/P9d2vappgwJgNm96A==
-X-Received: by 2002:a17:90a:2e07:: with SMTP id
- q7mr6193549pjd.103.1604337370937; 
- Mon, 02 Nov 2020 09:16:10 -0800 (PST)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=a0jYTmrFpdw95OyIRLlDuQeZ5xit+fHnq5W5rVj7juA=;
+ b=HoJJY1DItHBhLR90ubcRvX75fH3d8hO0YUyXvALEulPY70hOUUqCZpDSPXxpcyOopB
+ YSx33mbH0yJ8yDUezODRBcjokdnJlrpItwtiTAd2Ye+uVPj29tjh0fzqAMLwuHnmmwc3
+ t5tokAO2JRqmTHOosaL0xFQtijh7SKWKaykNEQuTUkPtXjudZPV8UiJRXodEWgquhSuF
+ GaZk0f7tB8UZ7/Qu5XR1QAOdO7sFBpw1Bz0Jr5MfeolSByig7JtsbrrsdhPjcwYNPYeY
+ fsTefqXvqYnQP8f1jOsoMWTYao4YR8GNWU9wP+U43tDTWXUi/p8fnaK+QW+HP6CBLvnu
+ vSeQ==
+X-Gm-Message-State: AOAM533WFgiE7pELVM4gFLfQCEcK+qYEYvN8nTfWD7ZhUkS2ln5fp3AN
+ kZSsWwFWhqerjEBcEHm/9ss=
+X-Google-Smtp-Source: ABdhPJzBvEf8/a8mYK9gWC2o0GG6EkLwG/D1jjlRP3lTFRhwncusiDCdB/RROZx1ly3sBcCr6BQDqQ==
+X-Received: by 2002:a17:902:a589:b029:d6:856a:2978 with SMTP id
+ az9-20020a170902a589b02900d6856a2978mr21413557plb.67.1604337424893; 
+ Mon, 02 Nov 2020 09:17:04 -0800 (PST)
 Received: from localhost ([160.202.157.3])
- by smtp.gmail.com with ESMTPSA id q16sm4199061pff.114.2020.11.02.09.16.06
+ by smtp.gmail.com with ESMTPSA id j11sm13951700pfc.64.2020.11.02.09.17.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Nov 2020 09:16:10 -0800 (PST)
-Date: Mon, 2 Nov 2020 22:46:03 +0530
+ Mon, 02 Nov 2020 09:17:04 -0800 (PST)
+Date: Mon, 2 Nov 2020 22:46:58 +0530
 From: Deepak R Varma <mh12gx2825@gmail.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
  David Airlie <airlied@linux.ie>, gregkh@linuxfoundation.org,
  Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/6] drm/amdgpu/dce: improve code indentation and alignment
-Message-ID: <d644879c4cac32a7cbdbbeebc97c98efd421e17f.1604336791.git.mh12gx2825@gmail.com>
+Subject: [PATCH 2/6] drm/amdgpu/gfx: improve code indentation and alignment
+Message-ID: <8a81ed33f995301350742aff6cce0463e37c8bb0.1604336791.git.mh12gx2825@gmail.com>
+References: <d644879c4cac32a7cbdbbeebc97c98efd421e17f.1604336791.git.mh12gx2825@gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
+In-Reply-To: <d644879c4cac32a7cbdbbeebc97c98efd421e17f.1604336791.git.mh12gx2825@gmail.com>
 X-Mailman-Approved-At: Mon, 02 Nov 2020 17:44:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -80,73 +83,65 @@ guidelines. Issue reported by checkpatch script.
 
 Signed-off-by: Deepak R Varma <mh12gx2825@gmail.com>
 ---
- drivers/gpu/drm/amd/amdgpu/dce_v10_0.c | 2 +-
- drivers/gpu/drm/amd/amdgpu/dce_v11_0.c | 2 +-
- drivers/gpu/drm/amd/amdgpu/dce_v6_0.c  | 2 +-
- drivers/gpu/drm/amd/amdgpu/dce_v8_0.c  | 4 ++--
- 4 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 10 +++++-----
+ drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c  |  2 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c  |  2 +-
+ 3 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-index 5963cbe0d455..00f8e60909b2 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
-@@ -2677,7 +2677,7 @@ static int dce_v10_0_crtc_set_base_atomic(struct drm_crtc *crtc,
- 					 struct drm_framebuffer *fb,
- 					 int x, int y, enum mode_set_atomic state)
- {
--       return dce_v10_0_crtc_do_set_base(crtc, fb, x, y, 1);
-+	return dce_v10_0_crtc_do_set_base(crtc, fb, x, y, 1);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 56fdbe626d30..987f9b6dbc3f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -3192,7 +3192,7 @@ static void gfx_v10_0_set_irq_funcs(struct amdgpu_device *adev);
+ static void gfx_v10_0_set_gds_init(struct amdgpu_device *adev);
+ static void gfx_v10_0_set_rlc_funcs(struct amdgpu_device *adev);
+ static int gfx_v10_0_get_cu_info(struct amdgpu_device *adev,
+-                                 struct amdgpu_cu_info *cu_info);
++				 struct amdgpu_cu_info *cu_info);
+ static uint64_t gfx_v10_0_get_gpu_clock_counter(struct amdgpu_device *adev);
+ static void gfx_v10_0_select_se_sh(struct amdgpu_device *adev, u32 se_num,
+ 				   u32 sh_num, u32 instance);
+@@ -4200,10 +4200,10 @@ static void gfx_v10_0_read_wave_vgprs(struct amdgpu_device *adev, uint32_t simd,
  }
  
- static const struct drm_crtc_helper_funcs dce_v10_0_crtc_helper_funcs = {
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-index 1954472c8e8f..80036f7ce560 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v11_0.c
-@@ -2785,7 +2785,7 @@ static int dce_v11_0_crtc_set_base_atomic(struct drm_crtc *crtc,
- 					 struct drm_framebuffer *fb,
- 					 int x, int y, enum mode_set_atomic state)
- {
--       return dce_v11_0_crtc_do_set_base(crtc, fb, x, y, 1);
-+	return dce_v11_0_crtc_do_set_base(crtc, fb, x, y, 1);
+ static void gfx_v10_0_select_me_pipe_q(struct amdgpu_device *adev,
+-									  u32 me, u32 pipe, u32 q, u32 vm)
+- {
+-       nv_grbm_select(adev, me, pipe, q, vm);
+- }
++				       u32 me, u32 pipe, u32 q, u32 vm)
++{
++	nv_grbm_select(adev, me, pipe, q, vm);
++}
+ 
+ 
+ static const struct amdgpu_gfx_funcs gfx_v10_0_gfx_funcs = {
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+index 94b7e0531d09..3e9a230f84df 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+@@ -5058,7 +5058,7 @@ static int gfx_v8_0_pre_soft_reset(void *handle)
+ 		gfx_v8_0_cp_compute_enable(adev, false);
+ 	}
+ 
+-       return 0;
++	return 0;
  }
  
- static const struct drm_crtc_helper_funcs dce_v11_0_crtc_helper_funcs = {
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-index 3a44753a80d1..943976349346 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
-@@ -2567,7 +2567,7 @@ static int dce_v6_0_crtc_set_base_atomic(struct drm_crtc *crtc,
- 					 struct drm_framebuffer *fb,
- 					 int x, int y, enum mode_set_atomic state)
- {
--       return dce_v6_0_crtc_do_set_base(crtc, fb, x, y, 1);
-+	return dce_v6_0_crtc_do_set_base(crtc, fb, x, y, 1);
- }
- 
- static const struct drm_crtc_helper_funcs dce_v6_0_crtc_helper_funcs = {
-diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-index 3603e5f13077..7973183fa335 100644
---- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
-@@ -2498,7 +2498,7 @@ static void dce_v8_0_crtc_disable(struct drm_crtc *crtc)
- 	case ATOM_PPLL2:
- 		/* disable the ppll */
- 		amdgpu_atombios_crtc_program_pll(crtc, amdgpu_crtc->crtc_id, amdgpu_crtc->pll_id,
--                                                 0, 0, ATOM_DISABLE, 0, 0, 0, 0, 0, false, &ss);
-+						 0, 0, ATOM_DISABLE, 0, 0, 0, 0, 0, false, &ss);
- 		break;
- 	case ATOM_PPLL0:
- 		/* disable the ppll */
-@@ -2585,7 +2585,7 @@ static int dce_v8_0_crtc_set_base_atomic(struct drm_crtc *crtc,
- 					 struct drm_framebuffer *fb,
- 					 int x, int y, enum mode_set_atomic state)
- {
--       return dce_v8_0_crtc_do_set_base(crtc, fb, x, y, 1);
-+	return dce_v8_0_crtc_do_set_base(crtc, fb, x, y, 1);
- }
- 
- static const struct drm_crtc_helper_funcs dce_v8_0_crtc_helper_funcs = {
+ static int gfx_v8_0_soft_reset(void *handle)
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index 6959aebae6d4..48f98c750956 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -787,7 +787,7 @@ static void gfx_v9_0_set_irq_funcs(struct amdgpu_device *adev);
+ static void gfx_v9_0_set_gds_init(struct amdgpu_device *adev);
+ static void gfx_v9_0_set_rlc_funcs(struct amdgpu_device *adev);
+ static int gfx_v9_0_get_cu_info(struct amdgpu_device *adev,
+-                                 struct amdgpu_cu_info *cu_info);
++				struct amdgpu_cu_info *cu_info);
+ static uint64_t gfx_v9_0_get_gpu_clock_counter(struct amdgpu_device *adev);
+ static void gfx_v9_0_ring_emit_de_meta(struct amdgpu_ring *ring);
+ static u64 gfx_v9_0_ring_get_rptr_compute(struct amdgpu_ring *ring);
 -- 
 2.25.1
 
