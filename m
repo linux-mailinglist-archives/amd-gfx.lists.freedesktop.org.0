@@ -2,63 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CDD72A346E
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Nov 2020 20:41:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCD942A3466
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Nov 2020 20:41:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0968D6EB9A;
-	Mon,  2 Nov 2020 19:41:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 339046E12C;
+	Mon,  2 Nov 2020 19:41:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com
- [IPv6:2607:f8b0:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCAA46EB87;
- Mon,  2 Nov 2020 19:38:29 +0000 (UTC)
-Received: by mail-pf1-x441.google.com with SMTP id o129so12040574pfb.1;
- Mon, 02 Nov 2020 11:38:29 -0800 (PST)
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 019F46E12C;
+ Mon,  2 Nov 2020 19:41:14 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id c9so9014207wml.5;
+ Mon, 02 Nov 2020 11:41:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=0j6o5IOXi9QCY4rzpYV2c+ym2ifBD5NBqGCfA07Vm74=;
- b=L+AjpdoGoATYswlcQZhH4mqTxzzmDQvbcl+DXWmCC3hNnZMM+5uhN9ZB7j2A9gBxct
- SvlaNuQKR2lVpeFNyVAF0KnG3UZTlAjwOs/aCsxyCWUjqf5vvxJOPOXkbLC8ysSLyA0c
- aoY2nQkuizoHzMasFTP/0WustlerkjlON5jj6neaMmbxYc1Pyh70xUsTHC/K0iy5+MSu
- mY7aI4BnxhtYak5yK7AFJcJf8sNBdE9JU5b888xr7DAvZpkrC0Ht6C/dQBacZvgRg8pv
- rIerePPn6aUVFuFWFvOyEmcSQcqWXCk7Pyu60+APYH8adIG4ZHCkGH6IlyEtmzgBPaaV
- Y5Pw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=LqcHdLzSA2qQc1X68Vq82MBenpv7Ybc4DNUy5zNwiWw=;
+ b=JHHV7/BsfOVqboob+IF/ztIUe6EPp4aKvN3PSgKuQH0mmfKvqGLjPLZ7wT+M2qfJGt
+ Xhva+tJfn32hK1CMU1A3DtF2tmRhuT+vrNVkLIsQVnv1tmilaJ4J9596N97C8QBM14+P
+ kicjmFdbg/Z1JA+d0q+buW8tJk5/a1T+Wj5OZdQqkVvlSSpPigIKjCafSQ6V53VeQU1W
+ OC50CR22lT/WyZ0tWaERaJheZVqhD5ubOYEDgA1Up8XiOpYi+j8PkTr74Nr53+i669AH
+ SRBLUbWZsMgAcL9BBewar+L//33a1Pu3oKv2Om5V+9jz/y6J6zr3+JT6uqALMgAEt2Ng
+ jIRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=0j6o5IOXi9QCY4rzpYV2c+ym2ifBD5NBqGCfA07Vm74=;
- b=Z7dj2v9HzrQOrJph+ySm7rstK9afWVt4cFJCskm9BeLqLkgO2u60m23eS9eL3K0Ojx
- WhkeiKSdyaMRyUitL1c7etyVvb+wEOWUe9focU0zCMVftVbUO6tTBGUix9g6DNdfRO0m
- NPJOwSCokfe4ZHmkGVmA1YRisSifaMrD7Xjua5VyRzjs5uBxGZ0W17pAVsu7LKnW2HKb
- P9KBFGyVSRnfJSnxCC9ipcGAbRnMkT2AvxA7zLIKfNRtA2UTu1XIOEvHqp8W0iFK8Vwq
- usnXi/6V5APE5LmNHN9g9gKubg/FacRZseaL+9/aR9EYxfV7YU6KH5x4NRoCw3/qsN8W
- Ne0g==
-X-Gm-Message-State: AOAM533ktZBjQmO4oaH/CsCT42madMweYFmy8+ZaS8r6676Oh1RxG2rN
- aKL7WLDm/gHI+naYMcAUf8s=
-X-Google-Smtp-Source: ABdhPJzv9XHaWF7iKhvLYB3sajkHQCPPJDccyaXCoDOLYSCHbFivdvNuvOqFfpiT3T1VA25ibfNArg==
-X-Received: by 2002:a63:160b:: with SMTP id w11mr14557370pgl.110.1604345909343; 
- Mon, 02 Nov 2020 11:38:29 -0800 (PST)
-Received: from localhost ([160.202.157.3])
- by smtp.gmail.com with ESMTPSA id q5sm267634pjj.26.2020.11.02.11.38.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Nov 2020 11:38:29 -0800 (PST)
-Date: Tue, 3 Nov 2020 01:08:23 +0530
-From: Deepak R Varma <mh12gx2825@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] drm/amdgpu: use "*" adjacent to data name
-Message-ID: <59ffb58ca0d30ababc611ebc414e816902cc1b77.1604345594.git.mh12gx2825@gmail.com>
-References: <6ad41a97d7805124d2e31c70d96c846cf0d21524.1604345594.git.mh12gx2825@gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=LqcHdLzSA2qQc1X68Vq82MBenpv7Ybc4DNUy5zNwiWw=;
+ b=LHgQBPbcPdLIz+NS+5izpPG2rga5AoKGCyJo5uqjVW8Yb1yYhwdnApUlft0spEx5ZQ
+ RjNUvmPG1gbLeSwlNbHr////DzPtIsnAu7vNawpVP/4gFcLr22tdMvw0W+p+eO6uRfWv
+ GtAJjvRKelArQDc+G0shjZvwyQmjht6XMSzePC45til7TrBfRz3CB/ZJF7ekdcqpLLUg
+ 55p7mizcn6s53MR+LwzJSBYp5JXCX86GHNASkASv8kxRGukYpR9cvfxFLimTssfi2VyB
+ JID3slrAWpOOQN47pkexlwno+mWX43onvBooig/aU2Eq2ykpMVlOtHwkR11YFI5lgeg1
+ gBgQ==
+X-Gm-Message-State: AOAM532lrDgK6BE43I5kBKNC5hOZI+CqZFcwmnGj1EomRt8MUtEGjbXn
+ 9HOnPG3f5GFDSAwY33l/pquqpVltMIVT0Pwfr20=
+X-Google-Smtp-Source: ABdhPJwEMsA9LUizLq1KnAxynGdGw8Wz3csy+RlZ4tFBiRy0/zUCkfy3t0G4+5NIJwpVYuky3hphvTmJO+SvILqygT4=
+X-Received: by 2002:a7b:c157:: with SMTP id z23mr19059635wmi.70.1604346073573; 
+ Mon, 02 Nov 2020 11:41:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <6ad41a97d7805124d2e31c70d96c846cf0d21524.1604345594.git.mh12gx2825@gmail.com>
-X-Mailman-Approved-At: Mon, 02 Nov 2020 19:41:38 +0000
+References: <d644879c4cac32a7cbdbbeebc97c98efd421e17f.1604336791.git.mh12gx2825@gmail.com>
+ <1b15f176289a7829c644dc9b7770f654eaee0efb.1604336791.git.mh12gx2825@gmail.com>
+In-Reply-To: <1b15f176289a7829c644dc9b7770f654eaee0efb.1604336791.git.mh12gx2825@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 2 Nov 2020 14:41:01 -0500
+Message-ID: <CADnq5_NdngaOKN4xSj1a-R7+ZnGxkqvpQsLOj-KnAqnB9WJ2oQ@mail.gmail.com>
+Subject: Re: [PATCH 6/6] drm/amdgpu: improve code indentation and alignment
+To: Deepak R Varma <mh12gx2825@gmail.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,149 +60,193 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: melissa.srw@gmail.com, gregkh@linuxfoundation.org, mh12gx2825@gmail.com,
- daniel.vetter@ffwll.ch
+Cc: David Airlie <airlied@linux.ie>, Greg KH <gregkh@linuxfoundation.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Melissa Wen <melissa.srw@gmail.com>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When declaring pointer data, the "*" symbol should be used adjacent to
-the data name as per the coding standards. This resolves following
-issues reported by checkpatch script:
-	ERROR: "foo *   bar" should be "foo *bar"
-	ERROR: "foo * bar" should be "foo *bar"
-	ERROR: "foo*            bar" should be "foo *bar"
-	ERROR: "(foo*)" should be "(foo *)"
+Applied the series.  Thanks!
 
-Signed-off-by: Deepak R Varma <mh12gx2825@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/atom.c         | 16 ++++++++--------
- drivers/gpu/drm/amd/amdgpu/atombios_i2c.c |  2 +-
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c     |  4 ++--
- drivers/gpu/drm/amd/amdgpu/mes_v10_1.c    |  2 +-
- drivers/gpu/drm/amd/amdgpu/psp_v11_0.c    |  2 +-
- 5 files changed, 13 insertions(+), 13 deletions(-)
+Alex
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/atom.c b/drivers/gpu/drm/amd/amdgpu/atom.c
-index 46c00ee580b1..515890f4f5a0 100644
---- a/drivers/gpu/drm/amd/amdgpu/atom.c
-+++ b/drivers/gpu/drm/amd/amdgpu/atom.c
-@@ -67,8 +67,8 @@ typedef struct {
- } atom_exec_context;
- 
- int amdgpu_atom_debug;
--static int amdgpu_atom_execute_table_locked(struct atom_context *ctx, int index, uint32_t * params);
--int amdgpu_atom_execute_table(struct atom_context *ctx, int index, uint32_t * params);
-+static int amdgpu_atom_execute_table_locked(struct atom_context *ctx, int index, uint32_t *params);
-+int amdgpu_atom_execute_table(struct atom_context *ctx, int index, uint32_t *params);
- 
- static uint32_t atom_arg_mask[8] =
- 	{ 0xFFFFFFFF, 0xFFFF, 0xFFFF00, 0xFFFF0000, 0xFF, 0xFF00, 0xFF0000,
-@@ -1201,7 +1201,7 @@ static struct {
- 	atom_op_div32, ATOM_ARG_WS},
- };
- 
--static int amdgpu_atom_execute_table_locked(struct atom_context *ctx, int index, uint32_t * params)
-+static int amdgpu_atom_execute_table_locked(struct atom_context *ctx, int index, uint32_t *params)
- {
- 	int base = CU16(ctx->cmd_table + 4 + 2 * index);
- 	int len, ws, ps, ptr;
-@@ -1262,7 +1262,7 @@ static int amdgpu_atom_execute_table_locked(struct atom_context *ctx, int index,
- 	return ret;
- }
- 
--int amdgpu_atom_execute_table(struct atom_context *ctx, int index, uint32_t * params)
-+int amdgpu_atom_execute_table(struct atom_context *ctx, int index, uint32_t *params)
- {
- 	int r;
- 
-@@ -1388,8 +1388,8 @@ void amdgpu_atom_destroy(struct atom_context *ctx)
- }
- 
- bool amdgpu_atom_parse_data_header(struct atom_context *ctx, int index,
--			    uint16_t * size, uint8_t * frev, uint8_t * crev,
--			    uint16_t * data_start)
-+			    uint16_t *size, uint8_t *frev, uint8_t *crev,
-+			    uint16_t *data_start)
- {
- 	int offset = index * 2 + 4;
- 	int idx = CU16(ctx->data_table + offset);
-@@ -1408,8 +1408,8 @@ bool amdgpu_atom_parse_data_header(struct atom_context *ctx, int index,
- 	return true;
- }
- 
--bool amdgpu_atom_parse_cmd_header(struct atom_context *ctx, int index, uint8_t * frev,
--			   uint8_t * crev)
-+bool amdgpu_atom_parse_cmd_header(struct atom_context *ctx, int index, uint8_t *frev,
-+			   uint8_t *crev)
- {
- 	int offset = index * 2 + 4;
- 	int idx = CU16(ctx->cmd_table + offset);
-diff --git a/drivers/gpu/drm/amd/amdgpu/atombios_i2c.c b/drivers/gpu/drm/amd/amdgpu/atombios_i2c.c
-index 09a538465ffd..af0335535f82 100644
---- a/drivers/gpu/drm/amd/amdgpu/atombios_i2c.c
-+++ b/drivers/gpu/drm/amd/amdgpu/atombios_i2c.c
-@@ -159,7 +159,7 @@ u32 amdgpu_atombios_i2c_func(struct i2c_adapter *adap)
- 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
- }
- 
--void amdgpu_atombios_i2c_channel_trans(struct amdgpu_device* adev, u8 slave_addr, u8 line_number, u8 offset, u8 data)
-+void amdgpu_atombios_i2c_channel_trans(struct amdgpu_device *adev, u8 slave_addr, u8 line_number, u8 offset, u8 data)
- {
- 	PROCESS_I2C_CHANNEL_TRANSACTION_PS_ALLOCATION args;
- 	int index = GetIndexIntoMasterTable(COMMAND, ProcessI2cChannelTransaction);
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 48f98c750956..e96ab5325af5 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -5167,7 +5167,7 @@ static void gfx_v9_0_ring_set_wptr_gfx(struct amdgpu_ring *ring)
- 
- 	if (ring->use_doorbell) {
- 		/* XXX check if swapping is necessary on BE */
--		atomic64_set((atomic64_t*)&adev->wb.wb[ring->wptr_offs], ring->wptr);
-+		atomic64_set((atomic64_t *)&adev->wb.wb[ring->wptr_offs], ring->wptr);
- 		WDOORBELL64(ring->doorbell_index, ring->wptr);
- 	} else {
- 		WREG32_SOC15(GC, 0, mmCP_RB0_WPTR, lower_32_bits(ring->wptr));
-@@ -5353,7 +5353,7 @@ static void gfx_v9_0_ring_set_wptr_compute(struct amdgpu_ring *ring)
- 
- 	/* XXX check if swapping is necessary on BE */
- 	if (ring->use_doorbell) {
--		atomic64_set((atomic64_t*)&adev->wb.wb[ring->wptr_offs], ring->wptr);
-+		atomic64_set((atomic64_t *)&adev->wb.wb[ring->wptr_offs], ring->wptr);
- 		WDOORBELL64(ring->doorbell_index, ring->wptr);
- 	} else{
- 		BUG(); /* only DOORBELL method supported on gfx9 now */
-diff --git a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-index 1c22d8393b21..985e454463e1 100644
---- a/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mes_v10_1.c
-@@ -46,7 +46,7 @@ static void mes_v10_1_ring_set_wptr(struct amdgpu_ring *ring)
- 	struct amdgpu_device *adev = ring->adev;
- 
- 	if (ring->use_doorbell) {
--		atomic64_set((atomic64_t*)&adev->wb.wb[ring->wptr_offs],
-+		atomic64_set((atomic64_t *)&adev->wb.wb[ring->wptr_offs],
- 			     ring->wptr);
- 		WDOORBELL64(ring->doorbell_index, ring->wptr);
- 	} else {
-diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-index 6c5d9612abcb..d521ca0f3afa 100644
---- a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-@@ -615,7 +615,7 @@ static int psp_v11_0_memory_training_send_msg(struct psp_context *psp, int msg)
- static int psp_v11_0_memory_training(struct psp_context *psp, uint32_t ops)
- {
- 	struct psp_memory_training_context *ctx = &psp->mem_train_ctx;
--	uint32_t *pcache = (uint32_t*)ctx->sys_cache;
-+	uint32_t *pcache = (uint32_t *)ctx->sys_cache;
- 	struct amdgpu_device *adev = psp->adev;
- 	uint32_t p2c_header[4];
- 	uint32_t sz;
--- 
-2.25.1
-
+On Mon, Nov 2, 2020 at 12:44 PM Deepak R Varma <mh12gx2825@gmail.com> wrote:
+>
+> General code indentation and alignment changes such as replace spaces
+> by tabs or align function arguments as per the coding style
+> guidelines. The patch covers various .c files for this driver.
+> Issue reported by checkpatch script.
+>
+> Signed-off-by: Deepak R Varma <mh12gx2825@gmail.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/atom.c       | 4 ++--
+>  drivers/gpu/drm/amd/amdgpu/cik_sdma.c   | 2 +-
+>  drivers/gpu/drm/amd/amdgpu/df_v1_7.c    | 2 +-
+>  drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  | 2 +-
+>  drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c  | 8 ++++----
+>  drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c | 4 ++--
+>  drivers/gpu/drm/amd/amdgpu/si.c         | 2 +-
+>  drivers/gpu/drm/amd/amdgpu/si_ih.c      | 2 +-
+>  drivers/gpu/drm/amd/amdgpu/soc15.c      | 2 +-
+>  9 files changed, 14 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/atom.c b/drivers/gpu/drm/amd/amdgpu/atom.c
+> index 4cfc786699c7..696e97ab77eb 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/atom.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/atom.c
+> @@ -71,8 +71,8 @@ static int amdgpu_atom_execute_table_locked(struct atom_context *ctx, int index,
+>  int amdgpu_atom_execute_table(struct atom_context *ctx, int index, uint32_t * params);
+>
+>  static uint32_t atom_arg_mask[8] =
+> -    { 0xFFFFFFFF, 0xFFFF, 0xFFFF00, 0xFFFF0000, 0xFF, 0xFF00, 0xFF0000,
+> -0xFF000000 };
+> +       { 0xFFFFFFFF, 0xFFFF, 0xFFFF00, 0xFFFF0000, 0xFF, 0xFF00, 0xFF0000,
+> +         0xFF000000 };
+>  static int atom_arg_shift[8] = { 0, 0, 8, 16, 0, 8, 16, 24 };
+>
+>  static int atom_dst_to_src[8][4] = {
+> diff --git a/drivers/gpu/drm/amd/amdgpu/cik_sdma.c b/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
+> index 20f108818b2b..52f05d2f5ed9 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/cik_sdma.c
+> @@ -195,7 +195,7 @@ static void cik_sdma_ring_set_wptr(struct amdgpu_ring *ring)
+>         struct amdgpu_device *adev = ring->adev;
+>
+>         WREG32(mmSDMA0_GFX_RB_WPTR + sdma_offsets[ring->me],
+> -                       (lower_32_bits(ring->wptr) << 2) & 0x3fffc);
+> +              (lower_32_bits(ring->wptr) << 2) & 0x3fffc);
+>  }
+>
+>  static void cik_sdma_ring_insert_nop(struct amdgpu_ring *ring, uint32_t count)
+> diff --git a/drivers/gpu/drm/amd/amdgpu/df_v1_7.c b/drivers/gpu/drm/amd/amdgpu/df_v1_7.c
+> index d6aca1c08068..2d01ac0d4c11 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/df_v1_7.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/df_v1_7.c
+> @@ -41,7 +41,7 @@ static void df_v1_7_sw_fini(struct amdgpu_device *adev)
+>  }
+>
+>  static void df_v1_7_enable_broadcast_mode(struct amdgpu_device *adev,
+> -                                          bool enable)
+> +                                         bool enable)
+>  {
+>         u32 tmp;
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+> index dbc8b76b9b78..6b04729d8fec 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+> @@ -145,7 +145,7 @@ static const struct amdgpu_irq_src_funcs gmc_v10_0_ecc_funcs = {
+>         .process = amdgpu_umc_process_ecc_irq,
+>  };
+>
+> - static void gmc_v10_0_set_irq_funcs(struct amdgpu_device *adev)
+> +static void gmc_v10_0_set_irq_funcs(struct amdgpu_device *adev)
+>  {
+>         adev->gmc.vm_fault.num_types = 1;
+>         adev->gmc.vm_fault.funcs = &gmc_v10_0_irq_funcs;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
+> index 94caf5204c8b..7b1a18cbafc4 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v2_0.c
+> @@ -32,19 +32,19 @@
+>  #include "vcn/vcn_2_0_0_sh_mask.h"
+>  #include "ivsrcid/vcn/irqsrcs_vcn_2_0.h"
+>
+> -#define mmUVD_JRBC_EXTERNAL_REG_INTERNAL_OFFSET                        0x1bfff
+> +#define mmUVD_JRBC_EXTERNAL_REG_INTERNAL_OFFSET                                0x1bfff
+>  #define mmUVD_JPEG_GPCOM_CMD_INTERNAL_OFFSET                           0x4029
+>  #define mmUVD_JPEG_GPCOM_DATA0_INTERNAL_OFFSET                         0x402a
+>  #define mmUVD_JPEG_GPCOM_DATA1_INTERNAL_OFFSET                         0x402b
+>  #define mmUVD_LMI_JRBC_RB_MEM_WR_64BIT_BAR_LOW_INTERNAL_OFFSET         0x40ea
+> -#define mmUVD_LMI_JRBC_RB_MEM_WR_64BIT_BAR_HIGH_INTERNAL_OFFSET        0x40eb
+> +#define mmUVD_LMI_JRBC_RB_MEM_WR_64BIT_BAR_HIGH_INTERNAL_OFFSET                0x40eb
+>  #define mmUVD_LMI_JRBC_IB_VMID_INTERNAL_OFFSET                         0x40cf
+>  #define mmUVD_LMI_JPEG_VMID_INTERNAL_OFFSET                            0x40d1
+> -#define mmUVD_LMI_JRBC_IB_64BIT_BAR_LOW_INTERNAL_OFFSET                0x40e8
+> +#define mmUVD_LMI_JRBC_IB_64BIT_BAR_LOW_INTERNAL_OFFSET                        0x40e8
+>  #define mmUVD_LMI_JRBC_IB_64BIT_BAR_HIGH_INTERNAL_OFFSET               0x40e9
+>  #define mmUVD_JRBC_IB_SIZE_INTERNAL_OFFSET                             0x4082
+>  #define mmUVD_LMI_JRBC_RB_MEM_RD_64BIT_BAR_LOW_INTERNAL_OFFSET         0x40ec
+> -#define mmUVD_LMI_JRBC_RB_MEM_RD_64BIT_BAR_HIGH_INTERNAL_OFFSET        0x40ed
+> +#define mmUVD_LMI_JRBC_RB_MEM_RD_64BIT_BAR_HIGH_INTERNAL_OFFSET                0x40ed
+>  #define mmUVD_JRBC_RB_COND_RD_TIMER_INTERNAL_OFFSET                    0x4085
+>  #define mmUVD_JRBC_RB_REF_DATA_INTERNAL_OFFSET                         0x4084
+>  #define mmUVD_JRBC_STATUS_INTERNAL_OFFSET                              0x4089
+> diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c
+> index f84701c562bf..0309d84c887d 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c
+> @@ -409,7 +409,7 @@ static void mmhub_v1_0_set_fault_enable_default(struct amdgpu_device *adev, bool
+>                                 CRASH_ON_NO_RETRY_FAULT, 1);
+>                 tmp = REG_SET_FIELD(tmp, VM_L2_PROTECTION_FAULT_CNTL,
+>                                 CRASH_ON_RETRY_FAULT, 1);
+> -    }
+> +       }
+>
+>         WREG32_SOC15(MMHUB, 0, mmVM_L2_PROTECTION_FAULT_CNTL, tmp);
+>  }
+> @@ -712,7 +712,7 @@ static int mmhub_v1_0_get_ras_error_count(struct amdgpu_device *adev,
+>         uint32_t sec_cnt, ded_cnt;
+>
+>         for (i = 0; i < ARRAY_SIZE(mmhub_v1_0_ras_fields); i++) {
+> -               if(mmhub_v1_0_ras_fields[i].reg_offset != reg->reg_offset)
+> +               if (mmhub_v1_0_ras_fields[i].reg_offset != reg->reg_offset)
+>                         continue;
+>
+>                 sec_cnt = (value &
+> diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
+> index e5e336fd9e94..3cf0589bfea5 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/si.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/si.c
+> @@ -1350,7 +1350,7 @@ static void si_vga_set_state(struct amdgpu_device *adev, bool state)
+>
+>  static u32 si_get_xclk(struct amdgpu_device *adev)
+>  {
+> -        u32 reference_clock = adev->clock.spll.reference_freq;
+> +       u32 reference_clock = adev->clock.spll.reference_freq;
+>         u32 tmp;
+>
+>         tmp = RREG32(CG_CLKPIN_CNTL_2);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/si_ih.c b/drivers/gpu/drm/amd/amdgpu/si_ih.c
+> index 621727d7fd18..51880f6ef634 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/si_ih.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/si_ih.c
+> @@ -43,7 +43,7 @@ static void si_ih_enable_interrupts(struct amdgpu_device *adev)
+>         WREG32(IH_RB_CNTL, ih_rb_cntl);
+>         adev->irq.ih.enabled = true;
+>  }
+> -
+> +
+>  static void si_ih_disable_interrupts(struct amdgpu_device *adev)
+>  {
+>         u32 ih_rb_cntl = RREG32(IH_RB_CNTL);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
+> index afcccc6c0fc6..b4e6ff78ddd0 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/soc15.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+> @@ -822,7 +822,7 @@ int soc15_set_ip_blocks(struct amdgpu_device *adev)
+>                         amdgpu_device_ip_block_add(adev, &dce_virtual_ip_block);
+>  #if defined(CONFIG_DRM_AMD_DC)
+>                  else if (amdgpu_device_has_dc_support(adev))
+> -                        amdgpu_device_ip_block_add(adev, &dm_ip_block);
+> +                       amdgpu_device_ip_block_add(adev, &dm_ip_block);
+>  #endif
+>                 amdgpu_device_ip_block_add(adev, &vcn_v2_0_ip_block);
+>                 amdgpu_device_ip_block_add(adev, &jpeg_v2_0_ip_block);
+> --
+> 2.25.1
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
