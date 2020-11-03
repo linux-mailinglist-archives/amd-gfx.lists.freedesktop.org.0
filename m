@@ -2,40 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35FF22A3EB1
-	for <lists+amd-gfx@lfdr.de>; Tue,  3 Nov 2020 09:16:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60D9F2A3EAF
+	for <lists+amd-gfx@lfdr.de>; Tue,  3 Nov 2020 09:16:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F5E36EC0F;
-	Tue,  3 Nov 2020 08:15:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F6836EC08;
+	Tue,  3 Nov 2020 08:15:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EA626E81D;
- Tue,  3 Nov 2020 06:53:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0EFA6E822;
+ Tue,  3 Nov 2020 07:53:02 +0000 (UTC)
 Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
  bits)) (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 81D5A22277;
- Tue,  3 Nov 2020 06:53:28 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 0333822384;
+ Tue,  3 Nov 2020 07:53:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1604386409;
- bh=TfTsp0RPNPigr6kqn9/KXeoueVtBPJk6nmaLCIv3buU=;
+ s=default; t=1604389982;
+ bh=jBeI1ygIVS761aJfvPTmZQO2j6AowLY8HbQheRGPKH4=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=tJwodHqjl5xkJspnrbJh3L94/b9mRMREC14xTIPNjm+UwCSTT83lYlgdeK1P509Wz
- THEWJ8ZtO4FPRjXo1f2lYpJ345v7R9LJdEY6EawOUMQsPVGXTLm5Yz1sZgIk45xB4h
- FyNDSlk31i83v/Ggk1kCPgQ9R5ZjH+8lc2BpemN0=
-Date: Tue, 3 Nov 2020 07:53:24 +0100
+ b=q/kuG9HX3HDi8eIRstpuhogWBJrsS0dSsm9WMzEUw0Kz4GKe0toWL2dAv2lADkT5m
+ dubEJIG44fQxQLMCO4Dd51mouK6PaIWQ5VCr4yfxSJ2/EgaKcOgytIi4LXRhC8jv41
+ M4wnvs4BYPyxq24/8OYf7KKCYw4HXdFg6n/8fHvs=
+Date: Tue, 3 Nov 2020 08:53:55 +0100
 From: Greg KH <gregkh@linuxfoundation.org>
-To: christian.koenig@amd.com
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Subject: Re: [PATCH] drm/amdgpu: do not initialise global variables to 0 or
  NULL
-Message-ID: <20201103065324.GD75930@kroah.com>
+Message-ID: <20201103075355.GA2505796@kroah.com>
 References: <20201102184147.GA42288@localhost>
  <CADnq5_OnA3T_p4pTEOpoqQ=NZyso2VFoDiOHu=+h7dKOeKHq-A@mail.gmail.com>
  <c916ae88-5933-ab06-ad32-d87f00cac21f@gmail.com>
+ <20201103065324.GD75930@kroah.com>
+ <c6292ea5-4559-f8e5-d10a-9acb884b2ce8@amd.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <c916ae88-5933-ab06-ad32-d87f00cac21f@gmail.com>
+In-Reply-To: <c6292ea5-4559-f8e5-d10a-9acb884b2ce8@amd.com>
 X-Mailman-Approved-At: Tue, 03 Nov 2020 08:15:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,34 +61,63 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 02, 2020 at 09:06:21PM +0100, Christian K=F6nig wrote:
-> Am 02.11.20 um 20:43 schrieb Alex Deucher:
-> > On Mon, Nov 2, 2020 at 1:42 PM Deepak R Varma <mh12gx2825@gmail.com> wr=
-ote:
-> > > Initializing global variable to 0 or NULL is not necessary and should
-> > > be avoided. Issue reported by checkpatch script as:
-> > > ERROR: do not initialise globals to 0 (or NULL).
-> > I agree that this is technically correct, but a lot of people don't
-> > seem to know that so we get a lot of comments about this code for the
-> > variables that are not explicitly set.  Seems less confusing to
-> > initialize them even if it not necessary.  I don't have a particularly
-> > strong opinion on it however.
+On Mon, Nov 02, 2020 at 09:48:25PM +0100, Christian K=F6nig wrote:
+> Am 03.11.20 um 07:53 schrieb Greg KH:
+> > On Mon, Nov 02, 2020 at 09:06:21PM +0100, Christian K=F6nig wrote:
+> > > Am 02.11.20 um 20:43 schrieb Alex Deucher:
+> > > > On Mon, Nov 2, 2020 at 1:42 PM Deepak R Varma <mh12gx2825@gmail.com=
+> wrote:
+> > > > > Initializing global variable to 0 or NULL is not necessary and sh=
+ould
+> > > > > be avoided. Issue reported by checkpatch script as:
+> > > > > ERROR: do not initialise globals to 0 (or NULL).
+> > > > I agree that this is technically correct, but a lot of people don't
+> > > > seem to know that so we get a lot of comments about this code for t=
+he
+> > > > variables that are not explicitly set.  Seems less confusing to
+> > > > initialize them even if it not necessary.  I don't have a particula=
+rly
+> > > > strong opinion on it however.
+> > > Agree with Alex.
+> > > =
+
+> > > Especially for the module parameters we should have a explicit init v=
+alue
+> > > for documentation purposes, even when it is 0.
+> > Why is this one tiny driver somehow special compared to the entire rest
+> > of the kernel?  (hint, it isn't...)
 > =
 
-> Agree with Alex.
+> And it certainly shouldn't :)
 > =
 
-> Especially for the module parameters we should have a explicit init value
-> for documentation purposes, even when it is 0.
+> > Please follow the normal coding style rules, there's no reason to ignore
+> > them unless you like to constantly reject patches like this that get
+> > sent to you.
+> =
 
-Why is this one tiny driver somehow special compared to the entire rest
-of the kernel?  (hint, it isn't...)
+> Yeah, that's a rather good point.
+> =
 
-Please follow the normal coding style rules, there's no reason to ignore
-them unless you like to constantly reject patches like this that get
-sent to you.
+> Not a particular strong opinion on this either, but when something global=
+ is
+> set to 0 people usually do this to emphases that it is important that it =
+is
+> zero.
 
-thnaks,
+Again, no, that's not what we have been doing in the kernel for the past
+20+ years.  If you do not set it to anything, we all know it is
+important for it to be set to 0.  Otherwise we would explicitly set it
+to something else.  And if we don't care, then that too doesn't matter
+so we let it be 0 by not initializing it, it doesn't matter.
+
+I think this very change is what started the whole "kernel janitor"
+movement all those years ago, because it was easily proven that this
+simple change saved both time and memory.
+
+This shouldn't even be an argument we are having anymore...
+
+thanks,
 
 greg k-h
 _______________________________________________
