@@ -2,39 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA1E32A3883
-	for <lists+amd-gfx@lfdr.de>; Tue,  3 Nov 2020 02:19:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 424052A38A6
+	for <lists+amd-gfx@lfdr.de>; Tue,  3 Nov 2020 02:20:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67BF96E802;
-	Tue,  3 Nov 2020 01:19:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A7086E827;
+	Tue,  3 Nov 2020 01:20:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FEF66E802;
- Tue,  3 Nov 2020 01:19:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 005846E81C;
+ Tue,  3 Nov 2020 01:20:26 +0000 (UTC)
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 4FA44222B9;
- Tue,  3 Nov 2020 01:19:53 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id B0E3522450;
+ Tue,  3 Nov 2020 01:20:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1604366394;
- bh=f1GRbt55qiif67QZPihpz2cm6/Q8TPfTlQf37UMm5B8=;
+ s=default; t=1604366426;
+ bh=w3XSLbQKJ+HIL3jkeZ8JuUVfadS9KyAHq1LR8TcQRkU=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=dK579iD4jNTPmpEGs9qwZT3x+LX4uyF1TFvTlFGEz41vD1fzHWI6jevgr2yMYV4tv
- 0LtplW5GNLnulrtXNDBJH6IDxG4M9sLnAVzjilJzTKV97qLHzloA99tbTWcMuwYMlY
- mcXe+5x2fEz7Pulb9FjPgg27W/J1wM93OdIhcyY4=
+ b=niLL1ujX8yUHr/cyu+j7P2xoRZijWG51zwCVU3+3+V+Tsc3EEyIPWCjNzT9f8Q6yf
+ 1J/yCTKmF+xAa5/DSnRfkcJEI4trNT95z7Nzi7tHUQotx0pkYqJzDBYrTBBQh0b56G
+ JOK9cV2vOjgKJjTqkZfl5clEFeg6ltLs/hGxMfEg=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.8 19/29] drm/amdgpu: add DID for navi10 blockchain
+Subject: [PATCH AUTOSEL 5.4 14/24] drm/amdgpu: add DID for navi10 blockchain
  SKU
-Date: Mon,  2 Nov 2020 20:19:18 -0500
-Message-Id: <20201103011928.183145-19-sashal@kernel.org>
+Date: Mon,  2 Nov 2020 20:19:57 -0500
+Message-Id: <20201103012007.183429-14-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20201103011928.183145-1-sashal@kernel.org>
-References: <20201103011928.183145-1-sashal@kernel.org>
+In-Reply-To: <20201103012007.183429-1-sashal@kernel.org>
+References: <20201103012007.183429-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -71,10 +71,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index d73924e35a57e..92844ba2c9c4e 100644
+index fa2c0f29ad4de..e8e1720104160 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1016,6 +1016,7 @@ static const struct pci_device_id pciidlist[] = {
+@@ -1011,6 +1011,7 @@ static const struct pci_device_id pciidlist[] = {
  	{0x1002, 0x7319, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_NAVI10},
  	{0x1002, 0x731A, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_NAVI10},
  	{0x1002, 0x731B, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_NAVI10},
