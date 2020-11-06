@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BEF02AA0E6
-	for <lists+amd-gfx@lfdr.de>; Sat,  7 Nov 2020 00:19:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2A312AA0E9
+	for <lists+amd-gfx@lfdr.de>; Sat,  7 Nov 2020 00:19:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15F4C6EB55;
-	Fri,  6 Nov 2020 23:19:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 194E26EB59;
+	Fri,  6 Nov 2020 23:19:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2057.outbound.protection.outlook.com [40.107.243.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 969FD6EB55
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Nov 2020 23:19:27 +0000 (UTC)
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-eopbgr760072.outbound.protection.outlook.com [40.107.76.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E33276EB59
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Nov 2020 23:19:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ECvk1fQsFKIqf8/kZeJhd4m1HZjqezC8/1vDOHQhGVmtRw0GuiAY+RT0BFsbI76/j+k8DTg53i9wu7lbi7zRiCO6vBZnJoQNu9j7DhB60jgmQKGgrlXlMbCyEdtY2DaVqjQOroNL/Wlutzzd3Xd9vPPM/i/fBrpsWRWB67mXDuTqzcpVt1OjZzm2gsyAxWeajq8IYfar1HB50saVKQwKc8GwU+QQ+A3OWPhq2kKCd+qIUZ+ilSyoNFhm4ddw3LEaBOs5cORS0rOoGjc/gxgLcgmGbUfVhtJA9Rg5g1az18Qw80HZMc8jcrHjaRr6+NQ0aNyEqokf+4xavZDjBg75QQ==
+ b=FhGfMsPJ8r1/Cp1/8eKq/Rrsg5Vf3hCXPreIiXvEN/hc86DZKazLu+AonUWxQbgCqk4RQOtO2NsOgHzCG3Cc3v1cAndYspe4UUiuTDQyknAtTZTt2r2i39D8XbEkfXQLQVx0cqF42I64EsOiVeB9q7UobCurwi5i133Na0Z9MjJBzJB8i/8YYWL620+Q0kx7IC+JOzk91cJxCPlgK9SsIqU2n2iv5P9qwVuRhElyfZS8dHVCog4UK+5kOVVQKuxSqclu/gPyFSsC8Cs5gDilMnoOVAclLVTSPwdAWp1DiNhBacx1kddQeC3I8ZsnKeyAYHy56NWXoAf4GEQQBLkXfg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=edjImWX0HxMYvhEZWyiDPt1c4gLIKE347Plh9JrRjbQ=;
- b=GKkSgJ4reCYKFuYXJvV7765CYy2wgtRytO7fmPNztzNz7bcs3fXvlKpiBPwIyMKJiNiykWup2v0kZKBGhyyYj3zwQTO7Nns1jdSv5z1cYz28D3WTbEWRtMhhl2LySM7B9Fl7A6CMxxtThYegrfIRdhciSSrUlbsBdro2JokGr1/YjJsVSo0eyjDG4XPCdnq8Fo+aGjXV74iQSfLGxAioVCwFICg7NCxBqcN3fHtQiHDofQlsClL/fzaSyHjBh7h5VCu3onh9Ih2/X05Wcporcla/tuENF/nv2zXUyk2M+GAIDMiXKh4MVoEzOjTA8BggrGbvuLtpf8gp1+/9RkWWdw==
+ bh=QpfWswT8k2J1gwkroFeOYmum7Crm6QHtWaCZwB8Fgec=;
+ b=EmFId5WN1ezXxcPz7rk2J2S0FOXJRY5zXwT9gYStMcctE7pTva7HQjafSqQh28QZrCCpvNAGaj6kT8Mu7k3rH7pQdyX8kOc2pQwcTvywwiQ5t3GFN86ir7bu4bzvwoMigQU/YbcI680dczgZIacr77lqp+W0oZFIY5Vhk2b3/xaTEmKUf7l2P/lvuGrEfeT+/gbjBUpSv7P6ANAhFNSVqzLnvORvr8VjASwjE6062coN1F/KaFw2lEk+tElyXSfTLi3qEstAObqG2/7ulm9yPzkI4HZBG2PQKpsdWR14Ru4OnaQzVGtUfQFzkzS2dbDg9n8AIpuvG7zBR1euRqi4+w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=none action=none header.from=amd.com; dkim=none (message not signed);
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=edjImWX0HxMYvhEZWyiDPt1c4gLIKE347Plh9JrRjbQ=;
- b=T20boaCa+nG7YgpIMLpLpNRth9Mi4f8iNAchM8vZC31Gst7TT2XOxGggvln9t8Yz83HDN1S4UMdn5xn20NWSsQNYkS+K8mIsfWf8O28DXboS5va/3QhQjbsXtB1AVWiOpDJplc8HHDxXutbRfDrcQ+H3g2aA6p8UVTh8TYcOv0s=
-Received: from CO1PR15CA0094.namprd15.prod.outlook.com (2603:10b6:101:21::14)
- by BYAPR12MB3048.namprd12.prod.outlook.com (2603:10b6:a03:ad::33)
+ bh=QpfWswT8k2J1gwkroFeOYmum7Crm6QHtWaCZwB8Fgec=;
+ b=Ywir0fNC/8s/OUBPeSyVUFQVZhKhDQl6/5mwd6zt6UKbCC/dvNcf/zlxnQgv4svx9VFvHynvj3q0euQscgsT5hgyMyjKo0DwIi4t9aY64OyTcibDQQiAca/c6W2u0kmR5vrry7fcJlN7Qnx9HJrqROMRQom/pYwqNso3gXv8ng8=
+Received: from MW2PR2101CA0011.namprd21.prod.outlook.com (2603:10b6:302:1::24)
+ by MWHPR12MB1390.namprd12.prod.outlook.com (2603:10b6:300:12::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.29; Fri, 6 Nov
- 2020 23:19:25 +0000
-Received: from CO1NAM11FT044.eop-nam11.prod.protection.outlook.com
- (2603:10b6:101:21:cafe::13) by CO1PR15CA0094.outlook.office365.com
- (2603:10b6:101:21::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21 via Frontend
- Transport; Fri, 6 Nov 2020 23:19:25 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Fri, 6 Nov
+ 2020 23:19:29 +0000
+Received: from CO1NAM11FT013.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:302:1:cafe::86) by MW2PR2101CA0011.outlook.office365.com
+ (2603:10b6:302:1::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.6 via Frontend
+ Transport; Fri, 6 Nov 2020 23:19:29 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=none action=none
@@ -46,26 +46,26 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
- CO1NAM11FT044.mail.protection.outlook.com (10.13.175.188) with Microsoft SMTP
+ CO1NAM11FT013.mail.protection.outlook.com (10.13.174.227) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3541.22 via Frontend Transport; Fri, 6 Nov 2020 23:19:24 +0000
+ 15.20.3541.22 via Frontend Transport; Fri, 6 Nov 2020 23:19:29 +0000
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 6 Nov 2020
- 17:19:22 -0600
+ 17:19:28 -0600
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 6 Nov 2020
- 17:19:21 -0600
+ 17:19:28 -0600
 Received: from bindu-HP-EliteDesk-705-G4-MT.amd.com (10.180.168.240) by
  SATLEXMB02.amd.com (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3
- via Frontend Transport; Fri, 6 Nov 2020 17:19:21 -0600
+ via Frontend Transport; Fri, 6 Nov 2020 17:19:22 -0600
 From: Bindu R <bindu.r@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 06/14] drm/amd/display: Only wait for flip pending on
- immediate flips
-Date: Fri, 6 Nov 2020 18:17:02 -0500
-Message-ID: <20201106231710.1290392-7-bindu.r@amd.com>
+Subject: [PATCH 07/14] drm/amd/display: force use sRGB for video TF is sRGB or
+ BT709
+Date: Fri, 6 Nov 2020 18:17:03 -0500
+Message-ID: <20201106231710.1290392-8-bindu.r@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201106231710.1290392-1-bindu.r@amd.com>
 References: <20201106231710.1290392-1-bindu.r@amd.com>
@@ -73,27 +73,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 420d5ccc-fb2a-4bfc-cb6b-08d882aa669a
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3048:
-X-Microsoft-Antispam-PRVS: <BYAPR12MB3048EBC976DB2A6DBA05893EF5ED0@BYAPR12MB3048.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Office365-Filtering-Correlation-Id: 68baa071-c21a-43be-07ca-08d882aa6942
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1390:
+X-Microsoft-Antispam-PRVS: <MWHPR12MB13901B8C19611633875CEEADF5ED0@MWHPR12MB1390.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:146;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0aknSxwQMaybP1taCx+Xf9ZILUlbSYHU8MuVhgSwUk1mm4CO/r3sOWKV2cb48vOuySEtnicndYbrCnXLPT1fYERoKYRdq59GDZSRlMoJIMjSx/ADnpBNGs4TleeORFDqmgAqSv0r/V/uFOHJ2QWjE8CRbSimvnNlVSbkIeYW5UWudPCR0ns8wKioCTjAjsNWJpO7WxeQrxiryO6ranfpkRP5cly3PRfRDA5DFw2p0xHjBwmDaHWFcom2jdW3EananjnUjuWPaY8efph7WUw1R9jENWGrItMMY90c3KWqMISE94L4DCiEDM8TqOlrYmrhycXkuely2AKdIaCllTFeJhnWwF5X+Qx4rbGiEbWmSCfV3nneRiTxnkT9XxliIoPlDgoEl7ADrST6YOPSn+NEfySMiXq5750aoIGtxvrQMKA=
+X-Microsoft-Antispam-Message-Info: sa+r6M6s5VahfO20phcGx27zX2M/J1UpIoCFF2uxoVJ++/byI/MWfsDfB0OoMyRgPafUGbJ7WH8zw5ecpYd2RUgjQbmd7L/NRNBqW/WxHb6xXk5vdeHecEIDlrUyjI06CYjR7bjdCEBsUVjPRP3Bcnpqrcvm8cWTR4ysphTuHNFnR3P5n9HcB19d6S+DA1ZYrAWeshVmTCNKT0GTo3yqKQxO8ca5t85cVexhfCCcWHeyzAKjEeaAyKCG0XqoEljrZM68irc76qfy6FlSZNDIJkjj5mXtR20OCpBFhnP3ytmGusFpmwDdRuZHsh5uZ9PogCjZw+b/QVX930jF3LWHKQvPDl5TqIxJhVzwPOFIJH0jD2BUUoLD8K1qnWT7attamTJ1oAKdSCCYf+mlFecy6w==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(396003)(136003)(39860400002)(346002)(376002)(46966005)(186003)(336012)(426003)(1076003)(2616005)(7696005)(26005)(6916009)(83380400001)(86362001)(4326008)(6666004)(8676002)(82310400003)(5660300002)(2906002)(70206006)(36756003)(8936002)(47076004)(54906003)(70586007)(478600001)(81166007)(82740400003)(316002)(356005)(14773001);
+ SFS:(4636009)(136003)(396003)(39860400002)(346002)(376002)(46966005)(7696005)(70586007)(70206006)(336012)(86362001)(426003)(186003)(82310400003)(6666004)(1076003)(54906003)(36756003)(83380400001)(82740400003)(5660300002)(8936002)(478600001)(316002)(356005)(26005)(6916009)(81166007)(8676002)(4326008)(2906002)(2616005)(47076004);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2020 23:19:24.8618 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 420d5ccc-fb2a-4bfc-cb6b-08d882aa669a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2020 23:19:29.2642 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 68baa071-c21a-43be-07ca-08d882aa6942
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT044.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT013.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3048
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1390
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,78 +105,124 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aric Cyr <aric.cyr@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
- Bindu Ramamurthy <bindu.r@amd.com>
+Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Jing Zhou <Jing.Zhou@amd.com>,
+ Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com, Bindu
+ Ramamurthy <bindu.r@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+From: Jing Zhou <Jing.Zhou@amd.com>
 
 [Why]
-We want to make sure all immediate flips are completed before locking
-the pipes, but not pipes that are not flip immediate as they will be
-locked by the OTG
+When mpo enabled, video comes is 709. Desktop use sRGB.
+So color change easily noticeable especially when switch between
+mpo/non-mpo.
 
 [How]
-Skip non flip immediate pipes when checking for flip pending.
+Force use sRGB for video TF is sRGB or BT709.
+DCN1/DCN2 use predefined type with YUV.
+DCN3 use distributed points type with YUV.
 
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+Signed-off-by: Jing Zhou <Jing.Zhou@amd.com>
+Acked-by: Bindu Ramamurthy<Bindu.R@amd.com>
 Acked-by: Bindu Ramamurthy <bindu.r@amd.com>
 ---
- .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    | 29 ++++++++++---------
- 1 file changed, 15 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc.h                     | 1 +
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c   | 1 +
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c   | 1 +
+ drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c   | 1 +
+ drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c   | 1 +
+ drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c | 1 +
+ drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c | 1 +
+ 7 files changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-index 62788ad28230..da776de1dd1d 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-@@ -1172,27 +1172,28 @@ void dcn20_pipe_control_lock(
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index e6b92683dc5b..c368de08969b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -125,6 +125,7 @@ struct dpp_color_caps {
+ 	uint16_t hw_3d_lut : 1;
+ 	uint16_t ogam_ram : 1; // blnd gam
+ 	uint16_t ocsc : 1;
++	uint16_t dgam_rom_for_yuv : 1;
+ 	struct rom_curve_caps dgam_rom_caps;
+ 	struct rom_curve_caps ogam_rom_caps;
+ };
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
+index e74bb2735885..bdc37831535e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c
+@@ -1439,6 +1439,7 @@ static bool dcn10_resource_construct(
+ 	dc->caps.color.dpp.dgam_rom_caps.hlg = 0;
+ 	dc->caps.color.dpp.post_csc = 0;
+ 	dc->caps.color.dpp.gamma_corr = 0;
++	dc->caps.color.dpp.dgam_rom_for_yuv = 1;
  
- 	temp_pipe = pipe->bottom_pipe;
- 	while (!flip_immediate && temp_pipe) {
--	    if (temp_pipe->plane_state != NULL)
--		flip_immediate = temp_pipe->plane_state->flip_immediate;
--	    temp_pipe = temp_pipe->bottom_pipe;
-+		if (temp_pipe->plane_state != NULL)
-+			flip_immediate = temp_pipe->plane_state->flip_immediate;
-+		temp_pipe = temp_pipe->bottom_pipe;
- 	}
+ 	dc->caps.color.dpp.hw_3d_lut = 0;
+ 	dc->caps.color.dpp.ogam_ram = 1; // RGAM on DCN1
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index 86c21e463640..576a8f5e6f87 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -3839,6 +3839,7 @@ static bool dcn20_resource_construct(
+ 	dc->caps.color.dpp.dgam_rom_caps.hlg = 0;
+ 	dc->caps.color.dpp.post_csc = 0;
+ 	dc->caps.color.dpp.gamma_corr = 0;
++	dc->caps.color.dpp.dgam_rom_for_yuv = 1;
  
- 	if (flip_immediate && lock) {
- 		const int TIMEOUT_FOR_FLIP_PENDING = 100000;
- 		int i;
+ 	dc->caps.color.dpp.hw_3d_lut = 1;
+ 	dc->caps.color.dpp.ogam_ram = 1;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+index 5eedc19662a3..abc8af0ef141 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+@@ -1978,6 +1978,7 @@ static bool dcn21_resource_construct(
+ 	dc->caps.color.dpp.dgam_rom_caps.hlg = 0;
+ 	dc->caps.color.dpp.post_csc = 0;
+ 	dc->caps.color.dpp.gamma_corr = 0;
++	dc->caps.color.dpp.dgam_rom_for_yuv = 1;
  
--		for (i = 0; i < TIMEOUT_FOR_FLIP_PENDING; ++i) {
--			if (!pipe->plane_res.hubp->funcs->hubp_is_flip_pending(pipe->plane_res.hubp))
--				break;
--			udelay(1);
--		}
--
--		if (pipe->bottom_pipe != NULL) {
--			for (i = 0; i < TIMEOUT_FOR_FLIP_PENDING; ++i) {
--				if (!pipe->bottom_pipe->plane_res.hubp->funcs->hubp_is_flip_pending(pipe->bottom_pipe->plane_res.hubp))
--					break;
--				udelay(1);
-+		temp_pipe = pipe;
-+		while (temp_pipe) {
-+			if (temp_pipe->plane_state && temp_pipe->plane_state->flip_immediate) {
-+				for (i = 0; i < TIMEOUT_FOR_FLIP_PENDING; ++i) {
-+					if (!temp_pipe->plane_res.hubp->funcs->hubp_is_flip_pending(temp_pipe->plane_res.hubp))
-+						break;
-+					udelay(1);
-+				}
-+
-+				/* no reason it should take this long for immediate flips */
-+				ASSERT(i != TIMEOUT_FOR_FLIP_PENDING);
- 			}
-+			temp_pipe = temp_pipe->bottom_pipe;
- 		}
- 	}
+ 	dc->caps.color.dpp.hw_3d_lut = 1;
+ 	dc->caps.color.dpp.ogam_ram = 1;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+index deeeab53ac87..a1edb829dc05 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+@@ -2621,6 +2621,7 @@ static bool dcn30_resource_construct(
+ 	dc->caps.color.dpp.dgam_rom_caps.hlg = 1;
+ 	dc->caps.color.dpp.post_csc = 1;
+ 	dc->caps.color.dpp.gamma_corr = 1;
++	dc->caps.color.dpp.dgam_rom_for_yuv = 0;
  
+ 	dc->caps.color.dpp.hw_3d_lut = 1;
+ 	dc->caps.color.dpp.ogam_ram = 1;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
+index 5a47b4106b7b..8824dbce6f4a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
+@@ -1748,6 +1748,7 @@ static bool dcn301_resource_construct(
+ 	dc->caps.color.dpp.dgam_rom_caps.hlg = 1;
+ 	dc->caps.color.dpp.post_csc = 1;
+ 	dc->caps.color.dpp.gamma_corr = 1;
++	dc->caps.color.dpp.dgam_rom_for_yuv = 0;
+ 
+ 	dc->caps.color.dpp.hw_3d_lut = 1;
+ 	dc->caps.color.dpp.ogam_ram = 1;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
+index 2345f12ceab3..7a83a85d2c69 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
+@@ -1327,6 +1327,7 @@ static bool dcn302_resource_construct(
+ 	dc->caps.color.dpp.dgam_rom_caps.hlg = 1;
+ 	dc->caps.color.dpp.post_csc = 1;
+ 	dc->caps.color.dpp.gamma_corr = 1;
++	dc->caps.color.dpp.dgam_rom_for_yuv = 0;
+ 
+ 	dc->caps.color.dpp.hw_3d_lut = 1;
+ 	dc->caps.color.dpp.ogam_ram = 1;
 -- 
 2.25.1
 
