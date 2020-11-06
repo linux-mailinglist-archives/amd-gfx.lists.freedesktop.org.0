@@ -2,60 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE4942A9F93
-	for <lists+amd-gfx@lfdr.de>; Fri,  6 Nov 2020 22:52:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 159FF2AA059
+	for <lists+amd-gfx@lfdr.de>; Fri,  6 Nov 2020 23:26:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D622A6EB3C;
-	Fri,  6 Nov 2020 21:52:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 494436EB3C;
+	Fri,  6 Nov 2020 22:26:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7066A6EB36
- for <amd-gfx@lists.freedesktop.org>; Fri,  6 Nov 2020 21:50:17 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id g12so2772606wrp.10
- for <amd-gfx@lists.freedesktop.org>; Fri, 06 Nov 2020 13:50:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=H95rA0QKKaL3+FIhv21U45aIyhbFkd+FiaPq5zaa4zk=;
- b=ccFvN7q5RxD4CM0NZ+0NxOOG6O0PgSIXE+amCe86rCTSBZLuWX37GhNGsshfXsaMgJ
- iJ+m8coKTU8tmP8qge3HwIuTlw6dRtNHcwYQoDi0f2+qc7AJiR+nGeV09VYcqv3176Ps
- Z4rIW0Ek+Ibod01RSdTTLjdionhBuOzof//ifUqw8gtS7OVpCBHufYnY7iISAOwDON89
- 8xox35G1GiJLy2sNXn3sNnHV8RbvddMWz/MEVUR8Lekn7rI/ELHoZ3UWfBQdxqeSpqyX
- 4Z0EBLkLyasPaxfUW9RF1jPxDJT4MtCVhxwJV7ziZHtyfaZlgC6YN1pEUtBZ0X+ZzIJj
- +nTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=H95rA0QKKaL3+FIhv21U45aIyhbFkd+FiaPq5zaa4zk=;
- b=T+sxvIKfULbEUrTH2vlPUITgzLh4c2aeizvzC2KGzGG0ydomyX3bFMQSzfN5f1rZVB
- hrzbIX34AECJPGwQODDzaT1bcfeXGGqWUJL6QZCdz+893aMcuzS/kyB5Jz35LBS93Iy4
- 6zkH5hQH80LysH03PJauogSn9UbQUlsV9eNh/oscndxBmlWFjH1Kv0ReWICrbJoIJy5+
- xB21hQcURzDMiKHmi++BgSEA3X7sWZAg2Rn1rA6CRRCb3C52GnL+uVp9inIqxj0jSRYO
- 1k8azHFH64t0/dwZwUbqV8DMPmrA1iABkCU5hX4GjGKbTUTOQOVgxTw0MhpiQNrR6yzC
- 3nzw==
-X-Gm-Message-State: AOAM532wnF0Uz1BcVoc+W2ZuziiaygZ311TEJVOmX7VJQhUrUOMx8t7l
- wwxUzEQLFOMlcwjTiIKDjBwtfw==
-X-Google-Smtp-Source: ABdhPJz9AWUMB39aA8Da4lz3LdJLIZWfCG0guHXHUnmy1PklBu/Fnl293iGu8GFZZ/mVR1JdkoPY7g==
-X-Received: by 2002:adf:cd0d:: with SMTP id w13mr2494726wrm.382.1604699416188; 
- Fri, 06 Nov 2020 13:50:16 -0800 (PST)
-Received: from dell.default ([91.110.221.236])
- by smtp.gmail.com with ESMTPSA id t199sm3981084wmt.46.2020.11.06.13.50.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 06 Nov 2020 13:50:15 -0800 (PST)
-From: Lee Jones <lee.jones@linaro.org>
-To: lee.jones@linaro.org
-Subject: [PATCH 18/19] drm/radeon/atombios_crtc: Remove description of
- non-existent function param 'encoder'
-Date: Fri,  6 Nov 2020 21:49:48 +0000
-Message-Id: <20201106214949.2042120-19-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201106214949.2042120-1-lee.jones@linaro.org>
+Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5304F6EB3C;
+ Fri,  6 Nov 2020 22:26:34 +0000 (UTC)
+Received: from ravnborg.org (unknown [188.228.123.71])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk3.altibox.net (Postfix) with ESMTPS id 89B9520068;
+ Fri,  6 Nov 2020 23:26:31 +0100 (CET)
+Date: Fri, 6 Nov 2020 23:26:30 +0100
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH 00/19] [Set 2] Rid W=1 warnings from GPU
+Message-ID: <20201106222630.GD826715@ravnborg.org>
 References: <20201106214949.2042120-1-lee.jones@linaro.org>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 06 Nov 2020 21:52:20 +0000
+Content-Disposition: inline
+In-Reply-To: <20201106214949.2042120-1-lee.jones@linaro.org>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VbvZwmh9 c=1 sm=1 tr=0
+ a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+ a=kj9zAlcOel0A:10 a=jxsCkVyRRZrjTV7aRhQA:9 a=CjuIK1q_8ugA:10
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,35 +41,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Faith <faith@valinux.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Andy Gross <andy.gross@ti.com>, David Airlie <airlied@linux.ie>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Rob Clark <rob.clark@linaro.org>,
+ linaro-mm-sig@lists.linaro.org, Leo Li <sunpeng.li@amd.com>,
+ Huang Rui <ray.huang@amd.com>, dri-devel@lists.freedesktop.org,
+ Keith Whitwell <keith@tungstengraphics.com>,
+ Jeff Hartmann <jhartmann@valinux.com>, Rob Clark <rob@ti.com>,
+ Gareth Hughes <gareth@valinux.com>,
+ Christian Koenig <christian.koenig@amd.com>,
+ by <jhartmann@precisioninsight.com>, linux-media@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rml4ZXMgdGhlIGZvbGxvd2luZyBXPTEga2VybmVsIGJ1aWxkIHdhcm5pbmcocyk6CgogZHJpdmVy
-cy9ncHUvZHJtL3JhZGVvbi9hdG9tYmlvc19jcnRjLmM6MTc5Njogd2FybmluZzogRXhjZXNzIGZ1
-bmN0aW9uIHBhcmFtZXRlciAnZW5jb2RlcicgZGVzY3JpcHRpb24gaW4gJ3JhZGVvbl9nZXRfc2hh
-cmVkX25vbmRwX3BwbGwnCgpDYzogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQu
-Y29tPgpDYzogIkNocmlzdGlhbiBLw7ZuaWciIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+CkNj
-OiBEYXZpZCBBaXJsaWUgPGFpcmxpZWRAbGludXguaWU+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5p
-ZWxAZmZ3bGwuY2g+CkNjOiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpDYzogZHJpLWRl
-dmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpTaWduZWQtb2ZmLWJ5OiBMZWUgSm9uZXMgPGxlZS5q
-b25lc0BsaW5hcm8ub3JnPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vYXRvbWJpb3NfY3J0
-Yy5jIHwgMSAtCiAxIGZpbGUgY2hhbmdlZCwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9yYWRlb24vYXRvbWJpb3NfY3J0Yy5jIGIvZHJpdmVycy9ncHUvZHJtL3Jh
-ZGVvbi9hdG9tYmlvc19jcnRjLmMKaW5kZXggOTE4MTE3NTcxMDRjMC4uMTk3OWVkM2Q2NTQ3MiAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9hdG9tYmlvc19jcnRjLmMKKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9hdG9tYmlvc19jcnRjLmMKQEAgLTE3ODcsNyArMTc4Nyw2
-IEBAIHN0YXRpYyBpbnQgcmFkZW9uX2dldF9zaGFyZWRfZHBfcHBsbChzdHJ1Y3QgZHJtX2NydGMg
-KmNydGMpCiAgKiByYWRlb25fZ2V0X3NoYXJlZF9ub25kcF9wcGxsIC0gcmV0dXJuIHRoZSBQUExM
-IHVzZWQgYnkgYW5vdGhlciBub24tRFAgY3J0YwogICoKICAqIEBjcnRjOiBkcm0gY3J0YwotICog
-QGVuY29kZXI6IGRybSBlbmNvZGVyCiAgKgogICogUmV0dXJucyB0aGUgUFBMTCAoUGl4ZWwgUExM
-KSB1c2VkIGJ5IGFub3RoZXIgbm9uLURQIGNydGMvZW5jb2RlciB3aGljaCBjYW4KICAqIGJlIHNo
-YXJlZCAoaS5lLiwgc2FtZSBjbG9jaykuCi0tIAoyLjI1LjEKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vYW1kLWdmeAo=
+Hi Lee and DRM folks.
+
+On Fri, Nov 06, 2020 at 09:49:30PM +0000, Lee Jones wrote:
+> This set is part of a larger effort attempting to clean-up W=1
+> kernel builds, which are currently overwhelmingly riddled with
+> niggly little warnings.
+> 
+> There are 5000 warnings to work through.  It will take a couple more
+> sets.  Although, ("drm/amd/display/dc/basics/fixpt31_32: Move
+> variables to where they're used") does take care of 2000 of them!
+> 
+> Lee Jones (19):
+>   drm/ttm/ttm_range_manager: Demote non-conformant kernel-doc header
+>   drm/r128/ati_pcigart: Source file headers are not good candidates for
+>     kernel-doc
+Applied
+
+>   drm/selftests/test-drm_dp_mst_helper: Move
+>     'sideband_msg_req_encode_decode' onto the heap
+>   drm/mga/mga_dma: Demote kernel-doc abusers to standard comment blocks
+>   drm/mga/mga_state: Remove unused variable 'buf_priv'
+Applied x2
+
+>   drm/radeon/atom: Move prototype into shared location
+>   drm/radeon/radeon_kms: Include header containing our own prototypes
+>   drm/omapdrm/omap_gem: Fix misnamed and missing parameter descriptions
+>   drm/omapdrm/omap_dmm_tiler: Demote abusive use of kernel-doc format
+>   drm/radeon/radeon: Move prototype into shared header
+>   drm/radeon/radeon_drv: Source file headers are not good candidates for
+>     kernel-doc
+>   drm/amd/display/dc/basics/fixpt31_32: Move variables to where they're
+>     used
+>   drm/radeon/radeon_drv: Move prototypes to a shared headerfile
+>   drm/amd/amdgpu/amdgpu_device: Provide documentation for 'reg_addr'
+>     params
+>   drm/radeon: Move prototypes to shared header
+>   drm/amd/amdgpu/amdgpu_kms: Remove 'struct drm_amdgpu_info_device
+>     dev_info' from the stack
+>   drm/radeon/radeon_kms: Fix misnaming of 'radeon_info_ioctl's dev param
+>   drm/radeon/atombios_crtc: Remove description of non-existent function
+>     param 'encoder'
+>   drm/v3d/v3d_drv: Remove unused static variable 'v3d_v3d_pm_ops'
+
+I have applied the three patches that has no obvious maintainer as indicated
+above. I assume the respective maintaines to pick radeon, omapdrm, ttm,
+amd, v3d and selftest patches.
+
+	Sam
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
