@@ -1,59 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2169D2AB2F9
-	for <lists+amd-gfx@lfdr.de>; Mon,  9 Nov 2020 09:59:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B19BC2AB2F4
+	for <lists+amd-gfx@lfdr.de>; Mon,  9 Nov 2020 09:59:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 443A189791;
-	Mon,  9 Nov 2020 08:59:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 590DD89715;
+	Mon,  9 Nov 2020 08:59:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 308 seconds by postgrey-1.36 at gabe;
- Mon, 09 Nov 2020 06:04:58 UTC
-Received: from metis.canned-death.us (metis.canned-death.us
- [IPv6:2604:180:f1::e7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76735893A8
- for <amd-gfx@lists.freedesktop.org>; Mon,  9 Nov 2020 06:04:58 +0000 (UTC)
-Received: from theia.canned-death.us (metis.canned-death.us
- [IPv6:2604:180:f1::e7])
- by metis.canned-death.us (Postfix) with ESMTPSA id 2D1F1C0071;
- Sun,  8 Nov 2020 23:59:47 -0600 (CST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canned-death.us;
- s=metis; t=1604901587; h=from:from:sender:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:
- content-type:content-type:content-transfer-encoding:in-reply-to:
- references; bh=+DJUMlx20YneqOku7rjfBa/DCPfE9P0rZzAzITILXCE=;
- b=auoMC9LuzmKmKkqfkkreERJ0qNjyPZ3aT0Gq217+z7nruO1F5O+iJC3+FqL8Ef7TU6bkc8
- dN59mVhMG7agL15N2xnM4whxj3RVFUTPiviWSms4L8blAVYOC/+sOnNYGkpvMk77GxFjJO
- nt36nKhYOrXYwli6JuUO0d1FZHA7bZj8SFamirfpYH5WIGshYTwK2qmQHllRkDrj0mtFKO
- mj7PC6R5dCJ94OS49jEKlVpAO0g/Wk5RFBzxlbNcSU2A1eRDe7iYwhn0cNVfCf1akq8QOZ
- gDE9pUV3Z1PvbY91dpRS6iBLXNT+zWcs3Nw/zcZqV2TSfpH7Qaa+3ZGl9f2MEQ==
-Date: Sun, 8 Nov 2020 23:59:42 -0600
-From: Lee Starnes <lee@canned-death.us>
-To: amd-gfx@lists.freedesktop.org, alexander.deucher@amd.com,
- christian.koenig@amd.com, stylon.wang@amd.com
-Subject: [PATCH] drm/amdgpu: update connector num_modes
-Message-ID: <20201109055942.GA23784@theia.canned-death.us>
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com
+ [IPv6:2607:f8b0:4864:20::d42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E4308957D;
+ Mon,  9 Nov 2020 08:41:26 +0000 (UTC)
+Received: by mail-io1-xd42.google.com with SMTP id j12so8980070iow.0;
+ Mon, 09 Nov 2020 00:41:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=7btXjqBRuinpD7KiP3l3qzjmEFoY9IFXHxyguH0t/3M=;
+ b=vE+TwcYjMnjl7AwZgEbE4ExgYLtEzLZ9W1b12PN/XLNI4hdFVJEqSNaLrYq4mSUvL7
+ UgKnP1i5dxJ3kDif5t4HQiE0FPwh1LxyLOx5fSx4In0KbMRsn+MZrDNjHTLfwr7dotcO
+ xXnXq8aGkjCMBOgz0PlJtjzZr/TwmZNrMcBTYHOy9nZgJH14mNG8Tj6hAaeNd5t40X7U
+ BLyC9irvrGwNBIeXDt3+A8yyTUVjQD5lRDXq9wcMPMmIP5IOOQJX/nh3qUy7SoKkfV39
+ d83cJyDyCveUE/SmLpStqBViRd5GPJ0FNASEEORHcEgKogLCV5J6Vs0w+9QitwI20Swe
+ +x9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=7btXjqBRuinpD7KiP3l3qzjmEFoY9IFXHxyguH0t/3M=;
+ b=iEGU1FFYfCVG3OOrgBpvdcUAUP9linV5JM4S45xr5uFCzt2JXQjPbjSZPPSyJicN5w
+ Zf3f1l/8tI2I/QTgjVOuR9SF6GQsKces3H3CvmnWUPs8TWB4xSi5Kw/k5izkJ5UYJ9Q4
+ HVG3QrlcvbQzVl12YC6LhtXv9tIlEJbrkQtNKwemWvmSnXuDnfNIo3F6ps+vgmSwhd/R
+ +tljCNueBLP6wGI4mAwo3H3NFUDNiztvP0La2+onBp9U/mLMGbuGThu+5jhqnSWreX4T
+ /1gsB82TrpzoJheDDooucgOkW4ewSTYAUTDMfKad3GqQFWdUOnKAM2NuZgOxKYwcM+OY
+ yC1Q==
+X-Gm-Message-State: AOAM532ceOZWzQ6SwAyB5Eu5YuBWv7q7Jqv+wTEwUv2mMJE63QyxstgI
+ /LTs7g7ZGYBQryG2Clzs6NA=
+X-Google-Smtp-Source: ABdhPJw6hiS0UuWmPf3RDP3SsSRa2LK8tkwaoyxOfK5zCkid0TToP32VMAetRrUoPeVzj38GlOn+CA==
+X-Received: by 2002:a5d:9a19:: with SMTP id s25mr4307991iol.94.1604911285982; 
+ Mon, 09 Nov 2020 00:41:25 -0800 (PST)
+Received: from localhost.localdomain ([156.146.54.75])
+ by smtp.gmail.com with ESMTPSA id t15sm5475191ili.64.2020.11.09.00.41.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 09 Nov 2020 00:41:25 -0800 (PST)
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie,
+ daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+ ray.huang@amd.com, nicholas.kazlauskas@amd.com, jdelvare@suse.de
+Subject: [PATCH] drivers: amdgpu: amdgpu_display.c: Fix a spelling doens\'t to
+ doesn\'t
+Date: Mon,  9 Nov 2020 14:08:24 +0530
+Message-Id: <20201109083824.14664-1-unixbhaskar@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=canned-death.us;
- s=metis; t=1604901589; h=from:from:sender:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:mime-version:mime-version:
- content-type:content-type:content-transfer-encoding:in-reply-to:
- references; bh=+DJUMlx20YneqOku7rjfBa/DCPfE9P0rZzAzITILXCE=;
- b=7EmhOiGqF0R2KGeYO9z5Eupw61P8afut/3MSkZnwdkZwVzSuZQKu4WePo81phh315Z68dJ
- 1OiXiqMfenzt/lioPOyTXn+OKltozOr+oTSFr59FvQL+S7yYBT/bbGfCMNdZOzft04nzf8
- gq3x5Rkw2DL3yyP0jINB1MqNSZ1jZmfY9MoKgVu+7+pvGdR/A53t8vz3dL97e/AEomE2p3
- TCb50+xUxYFJ9KF0LPgnXENycnghtiIQcepE/c0eNZTFsuVK52ZgwQLY/GcyR8SxPUBJEr
- unf0hofgeXKMwVSh7DVSaJZq2HcVy7W5YLMHFE8ltEZylQMRSJ/YUK7E+IxoKg==
-ARC-Seal: i=1; s=metis; d=canned-death.us; t=1604901589; a=rsa-sha256; cv=none;
- b=tpaDbhHKlSEn0C5R464cHBVX1B/D/ntWi6ywOPSsVQXvaVpvR2ozYwcFGnXOc8Vt6KmS+57dyZ8NitCxcuLuBTM/JmVQh6m0vo5sob9Z/Utq6TiBhMlr89ABejeYMlAvCToB1gNL1sLW1K9lApycBxwVwxCKB8qMIF5ZH9x4avcF3NF/NxcxfBTdyvrGL36ExaBMtqd0sXTLH3A4RK5N3MzsvDB5GsDw83sviuuj5m/xAs1zaRykUpWg+GptxCQcRAJakbgRIf81pzed56zz+Y9izBS20xk2sFAj6To3QDZRnh7ZFCJcUXuA1xRED2tO3z4rpn7A4x+OUZxn3DpZfg==
-ARC-Authentication-Results: i=1; metis.canned-death.us;
- auth=pass smtp.auth=lee smtp.mailfrom=lee@canned-death.us
-Authentication-Results: metis.canned-death.us;
- auth=pass smtp.auth=lee smtp.mailfrom=lee@canned-death.us
 X-Mailman-Approved-At: Mon, 09 Nov 2020 08:59:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,44 +69,34 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: gregkh@linuxfoundation.org, Bhaskar Chowdhury <unixbhaskar@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In amdgpu_dm.c, amdgpu_dm_update_connector_after_detect calls
-drm_add_edid_modes, but it doesn't update the struct
-amdgpu_dm_connector's num_modes like other places that call
-drm_add_edid_modes do, so drm_display_modes allocated by
-drm_add_edid_modes will never get freed. This causes a memleak which was
-reported as https://bugzilla.kernel.org/show_bug.cgi?id=209987. It's
-severe enough that it caused my system to OOM and have to be rebooted
-several times.
+s/doens't/doesn't/p
 
-The commit that causes this was backported to 5.9 and 5.4.
-
-Fixes: b24bdc37d03a ("drm/amd/display: Fix EDID parsing after resume from suspend")
-Cc: stable@vger.kernel.org
-Signed-off-by: Lee Starnes <lee@canned-death.us>
+Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index e93e18c06..06fe24a9d 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -2281,7 +2281,7 @@ void amdgpu_dm_update_connector_after_detect(
- 
- 			drm_connector_update_edid_property(connector,
- 							   aconnector->edid);
--			drm_add_edid_modes(connector, aconnector->edid);
-+			aconnector->num_modes = drm_add_edid_modes(connector, aconnector->edid);
- 
- 			if (aconnector->dc_link->aux_mode)
- 				drm_dp_cec_set_edid(&aconnector->dm_dp_aux.aux,
--- 
-2.29.2
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+index 7cc7af2a6822..a92cb137293a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+@@ -512,7 +512,7 @@ uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev,
+ 	 * to avoid hang caused by placement of scanout BO in GTT on certain
+ 	 * APUs. So force the BO placement to VRAM in case this architecture
+ 	 * will not allow USWC mappings.
+-	 * Also, don't allow GTT domain if the BO doens't have USWC falg set.
++	 * Also, don't allow GTT domain if the BO doesn't have USWC falg set.
+ 	 */
+ 	if ((bo_flags & AMDGPU_GEM_CREATE_CPU_GTT_USWC) &&
+ 	    amdgpu_bo_support_uswc(bo_flags) &&
+--
+2.26.2
 
 _______________________________________________
 amd-gfx mailing list
