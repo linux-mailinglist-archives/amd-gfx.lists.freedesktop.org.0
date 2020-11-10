@@ -1,47 +1,39 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BDB12AD13E
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Nov 2020 09:25:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A10362AD1FA
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Nov 2020 10:02:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C89F0898C7;
-	Tue, 10 Nov 2020 08:25:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11EBC897F0;
+	Tue, 10 Nov 2020 09:02:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from m176115.mail.qiye.163.com (m176115.mail.qiye.163.com
- [59.111.176.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82794898C2
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Nov 2020 08:03:30 +0000 (UTC)
-Received: from ubuntu.localdomain (unknown [157.0.31.124])
- by m176115.mail.qiye.163.com (Hmail) with ESMTPA id 287A8667105;
- Tue, 10 Nov 2020 16:03:25 +0800 (CST)
-From: Bernard Zhao <bernard@vivo.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Mikita Lipski <mikita.lipski@amd.com>, Stylon Wang <stylon.wang@amd.com>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, Roman Li <Roman.Li@amd.com>,
- hersen wu <hersenxs.wu@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Alexander Monakov <amonakov@ispras.ru>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] amd/display/amdgpu_dm: delete same check in if condition
-Date: Tue, 10 Nov 2020 00:03:13 -0800
-Message-Id: <20201110080318.36305-1-bernard@vivo.com>
-X-Mailer: git-send-email 2.29.0
+Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF7FB897F0;
+ Tue, 10 Nov 2020 09:02:50 +0000 (UTC)
+Received: from ravnborg.org (unknown [188.228.123.71])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk3.altibox.net (Postfix) with ESMTPS id B0E9C2003B;
+ Tue, 10 Nov 2020 10:02:48 +0100 (CET)
+Date: Tue, 10 Nov 2020 10:02:47 +0100
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH 15/20] drm/radeon/r600d: Move 'rc600_*' prototypes into
+ shared header
+Message-ID: <20201110090247.GB2027451@ravnborg.org>
+References: <20201109211855.3340030-1-lee.jones@linaro.org>
+ <20201109211855.3340030-16-lee.jones@linaro.org>
+ <CADnq5_NvitEQWH3Z+5EgOH3zJn=P5YTqwHQo4LLQLi0Hj0Dpww@mail.gmail.com>
+ <20201110072242.GF2063125@dell>
 MIME-Version: 1.0
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
- oVCBIfWUFZGENJSkJMSE9LGh5DVkpNS09CQk5PS05OS0tVEwETFhoSFyQUDg9ZV1kWGg8SFR0UWU
- FZT0tIVUpKS09ISFVLWQY+
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NE06Vgw*MD8tShEKDi0eEh8M
- IRAKCRZVSlVKTUtPQkJOT0tNS01JVTMWGhIXVRkeCRUaCR87DRINFFUYFBZFWVdZEgtZQVlKTkxV
- S1VISlVKSU9ZV1kIAVlBSUJNQjcG
-X-HM-Tid: 0a75b12e56aa9373kuws287a8667105
-X-Mailman-Approved-At: Tue, 10 Nov 2020 08:25:45 +0000
+Content-Disposition: inline
+In-Reply-To: <20201110072242.GF2063125@dell>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VbvZwmh9 c=1 sm=1 tr=0
+ a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+ a=kj9zAlcOel0A:10 a=m2FF2UwdyuouuLPjHqMA:9 a=CjuIK1q_8ugA:10
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,37 +45,31 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: opensource.kernel@vivo.com, Bernard Zhao <bernard@vivo.com>
+Cc: David Airlie <airlied@linux.ie>, LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Alex Deucher <alexdeucher@gmail.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In function amdgpu_dm_connector_get_modes, drm_edid_is_valid
-will check weather (!edid), no need to check again in the if
-branch.
+Hi Lee,
 
-Signed-off-by: Bernard Zhao <bernard@vivo.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> > the *d.h headers are supposed to just be hardware definitions.  I'd
+> > prefer to keep driver stuff out of them.
+> 
+> That's fine (I did wonder if that were the case).
+> 
+> I need an answer from you and Sam whether I can create new headers.
+> 
+> For me, it is the right thing to do.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index e93e18c06c0e..0a283d07fe10 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6352,7 +6352,7 @@ static int amdgpu_dm_connector_get_modes(struct drm_connector *connector)
- 
- 	encoder = amdgpu_dm_connector_to_encoder(connector);
- 
--	if (!edid || !drm_edid_is_valid(edid)) {
-+	if (!drm_edid_is_valid(edid)) {
- 		amdgpu_dm_connector->num_modes =
- 				drm_add_modes_noedid(connector, 640, 480);
- 	} else {
--- 
-2.29.0
+Please follow the advice of Alex for the radeon driver.
 
+	Sam
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
