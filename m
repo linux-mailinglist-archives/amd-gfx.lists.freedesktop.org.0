@@ -1,86 +1,51 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E4B52AD0A3
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Nov 2020 08:50:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F4772AD13D
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Nov 2020 09:25:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F6348984F;
-	Tue, 10 Nov 2020 07:50:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCE3E898CC;
+	Tue, 10 Nov 2020 08:25:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2080.outbound.protection.outlook.com [40.107.236.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 865F28984F
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Nov 2020 07:50:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J8LXwPr0AHsKZsk8+gNG1BHH19lskdJR6t0fLTA+If8wZOA6k8kishbFsnVD5OJl9dOhrIHddkRj7BCLIQgUG7oG7nBtynuTc58/fiHQEvAhd+g4edS+JeTcSDDiSfWsC29IUa2uSePAKseysbV7FLk2i7eJJNgeiucCvvpfE681TsDYL2cZlnljwsSj1zKeYO4BfAsHbQdsi4FmVxkB5pD2K0lav2/P2uB3by2cDLoY4YHGxZGruaowK2DQJRRdRxTQVHIEaLzTIoemW4mJASQDQwQNvp2zptBnIN1wc1kTSM+DypvX0a0PBslRsFKX8D7cMegMeIOd+I9Bg2DokA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JxzoKaM4r6suO7Y++i4mydhKLRu9Q7pf9eVytEho6Ds=;
- b=AQ4Ko2SNKRlvlSsilTFM5f4SAw8c92O/Srtf3r2h3//qeDEcRIgxlQpkU9f/I788bwkZHUT2qkZvBPEIXQAItZJ7yGRybe+osESbzgEdSeD6/siEL3B8xq16PMHVWCzGh/gMaYcNGHqNvVT1kVnsZO/R5wlL0HN8Xc2BWfSG3MccvecQV223PkY49wmBJWf4nPDYMk1IBNXkHZ8gqrOk4Q1/eVORn3sh9wFJHsl8VyhXrAPC4hjy3UlC6KJEsNOabGU2ZmhR91uf1RBbG7Zr4UDXqKw5MR6H8BglF7QzM9IET+zj3ODxxAVTNZotH+sitYbrqvaJsoqyJNwJGC7jqQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JxzoKaM4r6suO7Y++i4mydhKLRu9Q7pf9eVytEho6Ds=;
- b=EgdiZB/8TrSRfFRsW6VaYGW7bgGsfjhlRDZNk7R3LBEa/B+anEUAMvOhhy2PmeePFbg6LfwQpaKHbRqosdKEahHZfWhJdDRFnuPa0xDqQSempIFz5gnU2HDSnkSk5scEnZtoEDOnEqBtcwWl2wdlKXxJipxRRemeNQVrMMeP1rA=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from DM5PR12MB1226.namprd12.prod.outlook.com (2603:10b6:3:75::7) by
- DM5PR1201MB0172.namprd12.prod.outlook.com (2603:10b6:4:51::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3499.18; Tue, 10 Nov 2020 07:50:17 +0000
-Received: from DM5PR12MB1226.namprd12.prod.outlook.com
- ([fe80::8874:6c82:5323:923c]) by DM5PR12MB1226.namprd12.prod.outlook.com
- ([fe80::8874:6c82:5323:923c%6]) with mapi id 15.20.3541.025; Tue, 10 Nov 2020
- 07:50:11 +0000
-From: Stylon Wang <stylon.wang@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amd/display: Fix memory leaks in S3 resume
-Date: Tue, 10 Nov 2020 15:49:13 +0800
-Message-Id: <20201110074912.54097-1-stylon.wang@amd.com>
-X-Mailer: git-send-email 2.25.1
-X-Originating-IP: [165.204.134.251]
-X-ClientProxiedBy: HKAPR03CA0018.apcprd03.prod.outlook.com
- (2603:1096:203:c8::23) To DM5PR12MB1226.namprd12.prod.outlook.com
- (2603:10b6:3:75::7)
+X-Greylist: delayed 578 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Nov 2020 01:23:39 UTC
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7591E893E8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Nov 2020 01:23:39 +0000 (UTC)
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1604970836;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=UkwosGD4CNwpr5O4mn7FToWEjHCGounmVIqa5vjwzhQ=;
+ b=DRjXCHfaWTV+37wSriT1BjBgrVPE6jdQ5QSgYOIapfxJkFIwaFOAyxB9axkmnF7jwFoYyj
+ IwVALzvZ0PuA7RxNph9leDCS6B9rTa4rL3nKcIBy/Am24PTMh01e/A2SQWp6LTkOQfBaj6
+ TPNYDFf29DCqNiv3sgD8nE6enYeIlsYkCGyKDzwB1FGN01/Y3vKoJQtpchwkYWrvNb9W70
+ 4PCnBA8S0oYM/XwkwwZotKzR9vmT9oC6FdGvh5lMI1bLUaS0qdB+ZPTGprUeJSBjnvH0Xv
+ xyRk7zOTS6b0OUuDBNt+X1xYcMB1KSB7gGowiPoSA5hPR5omsqQ5g20Kt4+uKg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1604970836;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=UkwosGD4CNwpr5O4mn7FToWEjHCGounmVIqa5vjwzhQ=;
+ b=acv/dHWHYYmtT1/z0brDNSAmBtlvEk8c07ItXmS/RUDap25yEm8biO9jTMWItRsTlNRTeF
+ x/KI3sqvslL8SkDg==
+To: ira.weiny@intel.com, Andrew Morton <akpm@linux-foundation.org>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>
+Subject: Re: [PATCH RFC PKS/PMEM 05/58] kmap: Introduce k[un]map_thread
+In-Reply-To: <20201009195033.3208459-6-ira.weiny@intel.com>
+References: <20201009195033.3208459-1-ira.weiny@intel.com>
+ <20201009195033.3208459-6-ira.weiny@intel.com>
+Date: Tue, 10 Nov 2020 02:13:56 +0100
+Message-ID: <87h7pyhv3f.fsf@nanos.tec.linutronix.de>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from stylon-T495.amd.com (165.204.134.251) by
- HKAPR03CA0018.apcprd03.prod.outlook.com (2603:1096:203:c8::23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3564.21 via Frontend Transport; Tue, 10 Nov 2020 07:50:08 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 74f6345d-7dc6-465e-2119-08d8854d4025
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB0172:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB01729AF2D2B40A84DD8A9813FFE90@DM5PR1201MB0172.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QpFcfH8L6lJ73EehLYnpTOhvhkPbEg9ySkRvm1bjRV2vLmA+lFagxKUCsqiqWTfeekLWSKSWIf4CaX00L0hZo+ejoC3+k2FBEJfXD/kKOoaFfG2SgiM35/WG10cqpNE8t8vYwtuufC+xUX9FyWPJNd79OmeBtXgQ4N4H2mfRXuQaSpOtAbdk4e60J5AjI9hQooXRqRtQulNGv4y7LzrRK10cd4UoQCsUUcMYfvS/w//5A8uEX3J29TSShu+A93Ce1/5vb9DK3xtE84ySERvb0rrKLQeJj8tykPm2opvmHLCYMt3IPAJH605mPlmoWg5PaHsmB3U30mM3X/95Q/E+Eg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB1226.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(366004)(39860400002)(396003)(346002)(376002)(2906002)(478600001)(186003)(316002)(6666004)(8676002)(4326008)(7696005)(16526019)(8936002)(26005)(6486002)(83380400001)(5660300002)(86362001)(6916009)(66476007)(44832011)(2616005)(956004)(52116002)(1076003)(66556008)(66946007)(36756003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: yJO+gkqk47mHKAMZAyteN1qj9Jw2C8WaNvzPhc2mLkGbBlZSPQT44MwPN0+gR7OpK5QWrbsH+EA7PukpcmizPNdDr/EnjcnQdlY7RbEM//k+qGGdTevsgbPqK/g51jCKX48yXBhHH5Es0WsoDwUk5RialknB6oDoQ71lE7kFQ2Y3MtNmmvqk3DbIKqV4wAK0Iuh/ogZ7MflcCw53+z3w4wgQY7HzOSB6i45hKsQJxTD4i1GR56HUDcAlY2gq2LZJBMrpUGv6CmbyirNUjIZs8awa1vm2wlCyo/rOOTd9J6J3MuYoeaJ/UoVSnjW8XacFcA+Fm76nhT7bN1VX6FwLPXc9KT3KImmlUT6IVgj+miruhRBwSdzbpyrAHGr2uzkzY0URccSGvVOtftPk/Vftpf2V07oO405MMwGzt8KAhkmABlYll9dUv2SvG/1mOJ666RPGMkoPs4CuKXBIhq39FsfNEspgOUy0Uyv55jumUDq1m6KPWiOxawTh6TnFPsz6WiKxJA4UcdUPtkkRlLP3mizrYaxpi4ndgoR3MEGahdCPw1wAY2n/vix3nSkJMhyNZAK8vSlh4lwhKPwlxJe/N+OYIHZz1vw/REjLu+dcXej/amx15nhzJIU6S25H8wEZf9o62ZGfz3X+VMuOJcqVtxJCkO/Og0VfQFCiKX0xa7mTqfIy7mmblYg3AAPZTcxJiBkjaZciozpotTXQq3jDcLGOWlovl2UzN6/pQBbt7tvY7e+PIoJKmBumCSUWKfKHtpuRpvmORarYXLZOVjUE91C6ObbqYdupN0fDOHuhigYZA4BJP31AdZzofZOTzIumtJhQstFOVGT/ZhEbmly13CEf3cTct5j3VNMtNafD1eQjzDyvmb//ZjwJBpnxi5ptGEQ1MrQvRx+WTCAhGNHhnw==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 74f6345d-7dc6-465e-2119-08d8854d4025
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1226.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2020 07:50:11.1864 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Jmyz29SmRyUG5/C9fz4w+bQH5JRQLmUmLUK3010wgXFVQ9QpG8MsbiEEsn53U0b410G2JzID4Ta8KX1MRqwgLQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0172
+X-Mailman-Approved-At: Tue, 10 Nov 2020 08:25:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,40 +57,106 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stylon Wang <stylon.wang@amd.com>, Alexander.Deucher@amd.com,
- harry.wentland@amd.com, Nicholas.Kazlauskas@amd.com
+Cc: linux-aio@kvack.org, linux-efi@vger.kernel.org, kvm@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-mmc@vger.kernel.org,
+ Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, target-devel@vger.kernel.org,
+ linux-mtd@lists.infradead.org, linux-kselftest@vger.kernel.org,
+ samba-technical@lists.samba.org, Ira Weiny <ira.weiny@intel.com>,
+ ceph-devel@vger.kernel.org, drbd-dev@lists.linbit.com,
+ devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
+ linux-nilfs@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-nvdimm@lists.01.org, linux-rdma@vger.kernel.org, x86@kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-afs@lists.infradead.org,
+ cluster-devel@redhat.com, linux-cachefs@redhat.com,
+ intel-wired-lan@lists.osuosl.org, xen-devel@lists.xenproject.org,
+ linux-ext4@vger.kernel.org, Fenghua Yu <fenghua.yu@intel.com>,
+ linux-um@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ ecryptfs@vger.kernel.org, linux-erofs@lists.ozlabs.org,
+ reiserfs-devel@vger.kernel.org, linux-block@vger.kernel.org,
+ linux-bcache@vger.kernel.org, Dan Williams <dan.j.williams@intel.com>,
+ io-uring@vger.kernel.org, linux-nfs@vger.kernel.org,
+ linux-ntfs-dev@lists.sourceforge.net, netdev@vger.kernel.org,
+ Randy Dunlap <rdunlap@infradead.org>, kexec@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ linux-fsdevel@vger.kernel.org, bpf@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-btrfs@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-EDID parsing in S3 resume pushes new display modes
-to probed_modes list but doesn't consolidate to actual
-mode list. This creates a race condition when
-amdgpu_dm_connector_ddc_get_modes() re-initializes the
-list head without walking the list and results in  memory leak.
+Ira,
 
-Signed-off-by: Stylon Wang <stylon.wang@amd.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On Fri, Oct 09 2020 at 12:49, ira weiny wrote:
+> From: Ira Weiny <ira.weiny@intel.com>
+>
+> To correctly support the semantics of kmap() with Kernel protection keys
+> (PKS), kmap() may be required to set the protections on multiple
+> processors (globally).  Enabling PKS globally can be very expensive
+> depending on the requested operation.  Furthermore, enabling a domain
+> globally reduces the protection afforded by PKS.
+>
+> Most kmap() (Aprox 209 of 229) callers use the map within a single thread and
+> have no need for the protection domain to be enabled globally.  However, the
+> remaining callers do not follow this pattern and, as best I can tell, expect
+> the mapping to be 'global' and available to any thread who may access the
+> mapping.[1]
+>
+> We don't anticipate global mappings to pmem, however in general there is a
+> danger in changing the semantics of kmap().  Effectively, this would cause an
+> unresolved page fault with little to no information about why the failure
+> occurred.
+>
+> To resolve this a number of options were considered.
+>
+> 1) Attempt to change all the thread local kmap() calls to kmap_atomic()[2]
+> 2) Introduce a flags parameter to kmap() to indicate if the mapping should be
+>    global or not
+> 3) Change ~20 call sites to 'kmap_global()' to indicate that they require a
+>    global enablement of the pages.
+> 4) Change ~209 call sites to 'kmap_thread()' to indicate that the mapping is to
+>    be used within that thread of execution only
+>
+> Option 1 is simply not feasible.  Option 2 would require all of the call sites
+> of kmap() to change.  Option 3 seems like a good minimal change but there is a
+> danger that new code may miss the semantic change of kmap() and not get the
+> behavior the developer intended.  Therefore, #4 was chosen.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 0b6adf23d316..715e0bd489f8 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -2337,7 +2337,8 @@ void amdgpu_dm_update_connector_after_detect(
- 
- 			drm_connector_update_edid_property(connector,
- 							   aconnector->edid);
--			drm_add_edid_modes(connector, aconnector->edid);
-+			aconnector->num_modes = drm_add_edid_modes(connector, aconnector->edid);
-+			drm_connector_list_update(connector);
- 
- 			if (aconnector->dc_link->aux_mode)
- 				drm_dp_cec_set_edid(&aconnector->dm_dp_aux.aux,
--- 
-2.25.1
+There is Option #5:
+
+Convert the thread local kmap() invocations to the proposed kmap_local()
+interface which is coming along [1].
+
+That solves a couple of issues:
+
+ 1) It relieves the current kmap_atomic() usage sites from the implict
+    pagefault/preempt disable semantics which apply even when
+    CONFIG_HIGHMEM is disabled. kmap_local() still can be invoked from
+    atomic context.
+
+ 2) Due to #1 it allows to replace the conditional usage of kmap() and
+    kmap_atomic() for purely thread local mappings.
+
+ 3) It puts the burden on the HIGHMEM inflicted systems
+
+ 4) It is actually more efficient for most of the pure thread local use
+    cases on HIGHMEM inflicted systems because it avoids the overhead of
+    the global lock and the potential kmap slot exhaustion. A potential
+    preemption will be more expensive, but that's not really the case we
+    want to optimize for.
+
+ 5) It solves the RT issue vs. kmap_atomic()
+
+So instead of creating yet another variety of kmap() which is just
+scratching the particular PKRS itch, can we please consolidate all of
+that on the wider reaching kmap_local() approach?
+
+Thanks,
+
+        tglx
+     
+[1] https://lore.kernel.org/lkml/20201103092712.714480842@linutronix.de/
 
 _______________________________________________
 amd-gfx mailing list
