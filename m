@@ -2,43 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F14392AD13C
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Nov 2020 09:25:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D7742AD13F
+	for <lists+amd-gfx@lfdr.de>; Tue, 10 Nov 2020 09:25:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81FB7898A8;
-	Tue, 10 Nov 2020 08:25:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 112B1898F3;
+	Tue, 10 Nov 2020 08:25:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtprelay.hostedemail.com (smtprelay0179.hostedemail.com
- [216.40.44.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1783E89533;
- Tue, 10 Nov 2020 02:52:14 +0000 (UTC)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay02.hostedemail.com (Postfix) with ESMTP id F008012CB;
- Tue, 10 Nov 2020 02:52:13 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
- RULES_HIT:41:355:379:599:800:960:973:982:988:989:1260:1261:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1540:1593:1594:1711:1730:1747:1777:1792:2194:2199:2393:2559:2562:2693:2828:3138:3139:3140:3141:3142:3352:3622:3865:3866:3867:3870:4321:4605:5007:6117:6119:6742:6743:7652:7875:7903:8660:10004:10400:10848:11232:11658:11783:11914:12043:12048:12297:12679:12740:12895:13019:13069:13148:13230:13311:13357:13439:13894:14181:14659:14721:21080:21451:21627:21939:30054:30091,
- 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
- DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
- LFtime:1, LUA_SUMMARY:none
-X-HE-Tag: ink22_1714ef1272f1
-X-Filterd-Recvd-Size: 2439
-Received: from [192.168.0.160] (cpe-72-134-80-165.natsow.res.rr.com
- [72.134.80.165]) (Authenticated sender: joe@perches.com)
- by omf07.hostedemail.com (Postfix) with ESMTPA;
- Tue, 10 Nov 2020 02:52:09 +0000 (UTC)
-Message-ID: <3c39c363690d0b46069afddc3ad09213011e5cd4.camel@perches.com>
-Subject: Re: Subject: [RFC] clang tooling cleanups
-From: Joe Perches <joe@perches.com>
-To: trix@redhat.com, linux-kernel@vger.kernel.org, 
- clang-built-linux@googlegroups.com, cocci <cocci@systeme.lip6.fr>
-Date: Mon, 09 Nov 2020 18:52:08 -0800
-In-Reply-To: <20201027164255.1573301-1-trix@redhat.com>
-References: <20201027164255.1573301-1-trix@redhat.com>
-User-Agent: Evolution 3.38.1-1 
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE8CB89740;
+ Tue, 10 Nov 2020 04:59:56 +0000 (UTC)
+IronPort-SDR: Y87PMkHJGPm4LmRP0+auqaXBCiWy5Kew5eE+YBiBdPiFUk6OoJ1Onzxz60aryx1o3eQ33fBIhB
+ bnPCVSENUUjA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9800"; a="167334703"
+X-IronPort-AV: E=Sophos;i="5.77,465,1596524400"; d="scan'208";a="167334703"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2020 20:59:55 -0800
+IronPort-SDR: hhtGbVHiYEduO62f/jUORNlQE29+PA61IlKuvPXTtZvvOlHxHT75TW+y4i0J9B1O2lrgZ7K2Sp
+ gskiAxl5TCew==
+X-IronPort-AV: E=Sophos;i="5.77,465,1596524400"; d="scan'208";a="531063331"
+Received: from iweiny-desk2.sc.intel.com (HELO localhost) ([10.3.52.147])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2020 20:59:54 -0800
+Date: Mon, 9 Nov 2020 20:59:54 -0800
+From: Ira Weiny <ira.weiny@intel.com>
+To: Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH RFC PKS/PMEM 05/58] kmap: Introduce k[un]map_thread
+Message-ID: <20201110045954.GL3976735@iweiny-DESK2.sc.intel.com>
+References: <20201009195033.3208459-1-ira.weiny@intel.com>
+ <20201009195033.3208459-6-ira.weiny@intel.com>
+ <87h7pyhv3f.fsf@nanos.tec.linutronix.de>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <87h7pyhv3f.fsf@nanos.tec.linutronix.de>
+User-Agent: Mutt/1.11.1 (2018-12-01)
 X-Mailman-Approved-At: Tue, 10 Nov 2020 08:25:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -51,55 +51,138 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, linux-aspeed@lists.ozlabs.org,
- linux-iio@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-rtc@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-rdma@vger.kernel.org, qat-linux@intel.com, amd-gfx@lists.freedesktop.org,
- linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-nfs@vger.kernel.org,
- netdev@vger.kernel.org, linux-mmc@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, linux-crypto@vger.kernel.org,
+Cc: linux-aio@kvack.org, linux-efi@vger.kernel.org, kvm@vger.kernel.org,
+ linux-doc@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
+ linux-mmc@vger.kernel.org, Dave Hansen <dave.hansen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ target-devel@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-kselftest@vger.kernel.org, samba-technical@lists.samba.org,
+ ceph-devel@vger.kernel.org, drbd-dev@lists.linbit.com,
+ devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
+ linux-nilfs@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-nvdimm@lists.01.org, linux-rdma@vger.kernel.org, x86@kernel.org,
+ amd-gfx@lists.freedesktop.org, io-uring@vger.kernel.org,
+ cluster-devel@redhat.com, Ingo Molnar <mingo@redhat.com>,
+ intel-wired-lan@lists.osuosl.org, xen-devel@lists.xenproject.org,
+ linux-ext4@vger.kernel.org, Fenghua Yu <fenghua.yu@intel.com>,
+ linux-afs@lists.infradead.org, linux-um@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, ecryptfs@vger.kernel.org,
+ linux-erofs@lists.ozlabs.org, reiserfs-devel@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-bcache@vger.kernel.org,
+ Borislav Petkov <bp@alien8.de>, Andy Lutomirski <luto@kernel.org>,
+ Dan Williams <dan.j.williams@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>, linux-cachefs@redhat.com,
+ linux-nfs@vger.kernel.org, linux-ntfs-dev@lists.sourceforge.net,
+ netdev@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+ kexec@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-f2fs-devel@lists.sourceforge.net, linux-fsdevel@vger.kernel.org,
+ bpf@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
  linux-btrfs@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2020-10-27 at 09:42 -0700, trix@redhat.com wrote:
-> This rfc will describe
-> An upcoming treewide cleanup.
-> How clang tooling was used to programatically do the clean up.
-> Solicit opinions on how to generally use clang tooling.
-> =
+On Tue, Nov 10, 2020 at 02:13:56AM +0100, Thomas Gleixner wrote:
+> Ira,
+> 
+> On Fri, Oct 09 2020 at 12:49, ira weiny wrote:
+> > From: Ira Weiny <ira.weiny@intel.com>
+> >
+> > To correctly support the semantics of kmap() with Kernel protection keys
+> > (PKS), kmap() may be required to set the protections on multiple
+> > processors (globally).  Enabling PKS globally can be very expensive
+> > depending on the requested operation.  Furthermore, enabling a domain
+> > globally reduces the protection afforded by PKS.
+> >
+> > Most kmap() (Aprox 209 of 229) callers use the map within a single thread and
+> > have no need for the protection domain to be enabled globally.  However, the
+> > remaining callers do not follow this pattern and, as best I can tell, expect
+> > the mapping to be 'global' and available to any thread who may access the
+> > mapping.[1]
+> >
+> > We don't anticipate global mappings to pmem, however in general there is a
+> > danger in changing the semantics of kmap().  Effectively, this would cause an
+> > unresolved page fault with little to no information about why the failure
+> > occurred.
+> >
+> > To resolve this a number of options were considered.
+> >
+> > 1) Attempt to change all the thread local kmap() calls to kmap_atomic()[2]
+> > 2) Introduce a flags parameter to kmap() to indicate if the mapping should be
+> >    global or not
+> > 3) Change ~20 call sites to 'kmap_global()' to indicate that they require a
+> >    global enablement of the pages.
+> > 4) Change ~209 call sites to 'kmap_thread()' to indicate that the mapping is to
+> >    be used within that thread of execution only
+> >
+> > Option 1 is simply not feasible.  Option 2 would require all of the call sites
+> > of kmap() to change.  Option 3 seems like a good minimal change but there is a
+> > danger that new code may miss the semantic change of kmap() and not get the
+> > behavior the developer intended.  Therefore, #4 was chosen.
+> 
+> There is Option #5:
 
-> The clang warning -Wextra-semi-stmt produces about 10k warnings.
-> Reviewing these, a subset of semicolon after a switch looks safe to
-> fix all the time.  An example problem
-> =
+There is now yes.  :-D
 
-> void foo(int a) {
-> =A0=A0=A0=A0=A0switch(a) {
-> =A0=A0=A0=A0=A0	       case 1:
-> 	       ...
-> =A0=A0=A0=A0=A0}; <--- extra semicolon
-> }
-> =
+> 
+> Convert the thread local kmap() invocations to the proposed kmap_local()
+> interface which is coming along [1].
 
-> Treewide, there are about 100 problems in 50 files for x86_64 allyesconfi=
-g.
-> These fixes will be the upcoming cleanup.
+I've been trying to follow that thread.
 
-coccinelle already does some of these.
+> 
+> That solves a couple of issues:
+> 
+>  1) It relieves the current kmap_atomic() usage sites from the implict
+>     pagefault/preempt disable semantics which apply even when
+>     CONFIG_HIGHMEM is disabled. kmap_local() still can be invoked from
+>     atomic context.
+> 
+>  2) Due to #1 it allows to replace the conditional usage of kmap() and
+>     kmap_atomic() for purely thread local mappings.
+> 
+>  3) It puts the burden on the HIGHMEM inflicted systems
+> 
+>  4) It is actually more efficient for most of the pure thread local use
+>     cases on HIGHMEM inflicted systems because it avoids the overhead of
+>     the global lock and the potential kmap slot exhaustion. A potential
+>     preemption will be more expensive, but that's not really the case we
+>     want to optimize for.
+> 
+>  5) It solves the RT issue vs. kmap_atomic()
+> 
+> So instead of creating yet another variety of kmap() which is just
+> scratching the particular PKRS itch, can we please consolidate all of
+> that on the wider reaching kmap_local() approach?
 
-For instance: scripts/coccinelle/misc/semicolon.cocci
+Yes I agree.  We absolutely don't want more kmap*() calls and I was hoping to
+dovetail into your kmap_local() work.[2]
 
-Perhaps some tool coordination can be done here as
-coccinelle/checkpatch/clang/Lindent call all be used
-to do some facet or another of these cleanup issues.
+I've pivoted away from this work a bit to clean up all the
+kmap()/memcpy*()/kunmaps() as discussed elsewhere in the thread first.[3]  I
+was hoping your work would land and then I could s/kmap_thread()/kmap_local()/
+on all of these patches.
 
+Also, we can convert the new memcpy_*_page() calls to kmap_local() as well.
+[For now my patch just uses kmap_atomic().]
 
+I've not looked at all of the patches in your latest version.  Have you
+included converting any of the kmap() call sites?  I thought you were more
+focused on converting the kmap_atomic() to kmap_local()?
+
+Ira
+
+> 
+> Thanks,
+> 
+>         tglx
+>      
+> [1] https://lore.kernel.org/lkml/20201103092712.714480842@linutronix.de/
+
+[2] https://lore.kernel.org/lkml/20201012195354.GC2046448@iweiny-DESK2.sc.intel.com/
+[3] https://lore.kernel.org/lkml/20201009213434.GA839@sol.localdomain/
+    https://lore.kernel.org/lkml/20201013200149.GI3576660@ZenIV.linux.org.uk/
 
 _______________________________________________
 amd-gfx mailing list
