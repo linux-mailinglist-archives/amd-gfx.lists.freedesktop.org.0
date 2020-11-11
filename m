@@ -1,61 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B54C22AE68A
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Nov 2020 03:48:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 568A62AE68C
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Nov 2020 03:49:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4476589D83;
-	Wed, 11 Nov 2020 02:48:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3B3E89803;
+	Wed, 11 Nov 2020 02:49:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
- [IPv6:2a00:1450:4864:20::332])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA2C89D7F
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 02:48:41 +0000 (UTC)
-Received: by mail-wm1-x332.google.com with SMTP id s13so860120wmh.4
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Nov 2020 18:48:41 -0800 (PST)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2053.outbound.protection.outlook.com [40.107.220.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BFA989803
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 02:49:45 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HwmTEzMRNig0dNBAMYqMit8kHug82a1B3JDgdRFiyVs+Kpr8pvQUrKfgtZUbBxj8poYFl6K6sxtyS5Ist2L3QOXzIQaI8vXmcVKleTvm5kSEBR9eIiSapKpW+wa1xQZvGnmBlyTn63kdFvlwFlDmW/h3UYBCEAWGZlp2Nys5E7WuEkkxiqRnpgeES5LdJ8Icy7681znB4ehuQUnORIu9a0yVkd62X7CXQ+6MQ2k/rwp/8YYsSyxaytE8B9LNF6M1WdIY+WX/iMFM8HDF0P5Rba06XStHcq+GAl6XVKVLtH9VcavMFtuvGSqTeF61ALloVJOH8PeuBNCG6okLmTrQhg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Myo33pxlwvEeavhxrXaHf294KjevmlUFQu8yc3ePImM=;
+ b=QDfS7y/q4ioe8nmubUOd8tRQe5bds93CaGc+hCEvrZVR26mBaXazg8IKBzE2tF7ps0yWHx3aKMa4nRx2TNIMfHDeh8DnuQoCPOtCAXOEdbA/jvQupAN0CFk10uK7n4e9LbV5pDGuPn1I3IRa45z3/dj8aaS03opHvC9ifFmZDbRjJBAc5CGu7ewOO5N9EzHauBwDplN2o0XMoJtfMXBE7MSFqU5PNxpRaiH3TaGk9Q2IVlXfc8ys3ukEOOIQavtGCTmZp5WkqXWJnQ6ymnPddhIXB0+ea8tDeuxGh2p3SUzeogwPwjf1KufHT03jcUh+AgfO5Wcu0HRolPKesgzIIw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=basnieuwenhuizen.nl; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=DuRch8EIkzmam697JxWX88zdYw1WM3fhArYjfh8a6Oc=;
- b=Q12PtefNBshq06Oc2dauhGVwAPCcSQX+D2r1IeCs5iyose12rQqZltW2b3qR7D5pAe
- Pn7qNO0GHGBqLQb9O5AABhL54xjtgfYyFrgb8rIHYKZvwU65p4AUe2KwgBwKDDXa0vzs
- S4E7qErx62t3jnJpplfvzPSZGn9PB3zgO+xvX2vJRlKEXwrpIVgZdfIWWUYaYDI3d5eJ
- wuWA7PGX72IXRaJH/ytJknBshho5Fg5cLmjlT9Pj5x5gHqleFihdBDNIj+8fp/Ma4jsc
- +ruKBGPjjKBuFNR/Y+5Yl6RLDO1J1p+EqPEWYdnhnPZ9Zjf3C61U0nOJi6+Sc5u+AWy8
- Pqbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=DuRch8EIkzmam697JxWX88zdYw1WM3fhArYjfh8a6Oc=;
- b=Y2P25kQ9qg7xPCsv3fA54I0kEJ/o5wpw4k6PDn1cINYDstzROJn7q4FYRUWUZNIRE2
- ljg5Pv+owjfe/2yL6Qe1W1KqVRsa2nEMbZ9gq6HHMfgVXz6cKFdA80bP8rOlXCcqGdlB
- RARxDYPKxrejg1ruv/KQjG5SL9kpNB82y9/osMNlzdu3gMtywIPrQMZRTnokT8YHijH4
- iKLTIsPpjOCl+bbdb9pwrXMGe6CoIpAKmRKlrlrl71BwX1tXXwqvsqiplOhvFF+Y60Sk
- hR7zuNr0FB8ykMQmh2L8y8FJ4EvcBpUQ1bp9NlqeNYhVbLKYY6RE4n2AehcRBKu+CSsp
- t8yg==
-X-Gm-Message-State: AOAM533UAaoNyHeplTO07lxWOTeQdN5agFfP/vDVLmxAMubBQKSzNgSU
- 0Q9JlnD5+parh41SUVdBJnsYCtqt5qD5W6Cs
-X-Google-Smtp-Source: ABdhPJw/jmx9QK3NHSxPJG7hpmiYUVEJC3QokBX2LiewIuK8xIVhllxZ/cT6PxoBMzaaIjrVtUszBQ==
-X-Received: by 2002:a7b:c099:: with SMTP id r25mr1311007wmh.189.1605062919745; 
- Tue, 10 Nov 2020 18:48:39 -0800 (PST)
-Received: from localhost.localdomain
- ([2a02:aa12:a77f:2000:4cea:81e7:5fd4:93f7])
- by smtp.gmail.com with ESMTPSA id c185sm724498wma.44.2020.11.10.18.48.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Nov 2020 18:48:39 -0800 (PST)
-From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/amd/display: Extract 3rd plane from metadata
-Date: Wed, 11 Nov 2020 03:48:40 +0100
-Message-Id: <20201111024840.496679-4-bas@basnieuwenhuizen.nl>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201111024840.496679-1-bas@basnieuwenhuizen.nl>
-References: <20201111024840.496679-1-bas@basnieuwenhuizen.nl>
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Myo33pxlwvEeavhxrXaHf294KjevmlUFQu8yc3ePImM=;
+ b=e2+Uu9xbtNbn8KJnwSMy5LpFHHVPuQAGN0m13SMtNufCwtHA4zBCq48yTNDdvT/tK74LDtYeYUwI2k3YL3OKk5kTiUhcy87hhjqGTKztaqvhldJI4U/PUJR8pQzLUgxI9YsVaAkZw+OKvgnwvKcYOIJUROlY2no0kOUfCPnqqw0=
+Received: from DM5PR12MB1708.namprd12.prod.outlook.com (2603:10b6:3:10e::22)
+ by DM6PR12MB4941.namprd12.prod.outlook.com (2603:10b6:5:1b8::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Wed, 11 Nov
+ 2020 02:49:37 +0000
+Received: from DM5PR12MB1708.namprd12.prod.outlook.com
+ ([fe80::61a5:a549:4cac:37e3]) by DM5PR12MB1708.namprd12.prod.outlook.com
+ ([fe80::61a5:a549:4cac:37e3%7]) with mapi id 15.20.3541.025; Wed, 11 Nov 2020
+ 02:49:37 +0000
+From: "Liu, Monk" <Monk.Liu@amd.com>
+To: "Zhang, Bokun" <Bokun.Zhang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE:R [PATCH] drm/amd/amdgpu: Update VCN initizalization behvaior
+Thread-Topic: R [PATCH] drm/amd/amdgpu: Update VCN initizalization behvaior
+Thread-Index: Ada31UDJVr9t95u1Q/q42juVjtthLA==
+Date: Wed, 11 Nov 2020 02:49:37 +0000
+Message-ID: <DM5PR12MB170878F2AE7166EA729AA12084E80@DM5PR12MB1708.namprd12.prod.outlook.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=8a11647d-1053-4b39-8d74-0000c4fce06e;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
+ Use Only - Unrestricted;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-11-11T02:49:16Z;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [58.247.170.242]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 02815078-eac8-4695-2a3b-08d885ec6dd8
+x-ms-traffictypediagnostic: DM6PR12MB4941:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR12MB49417CB2DE9E7CBE9BF3BBBB84E80@DM6PR12MB4941.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: qQQ34Rc719H8XTAmaMFEApgZQlB1tGe76Ep4stqTwD6rGiVYD7qxDfSHHemblBb9Akl+1qpSu1oWvhUFK1N5RClZqAue7GBVuLWqke3mtsQ7SUXAcieR21QsJVeXqH/jEqMNfj+U7G8XRm12VrnHjLgizhAYxKfDGZ6/hBxzCmGU7JFu2l13Ftk06+YGgPzXjQj2X7md0ZOfbm+aj7pVYcUyEo6Lia4rngYRTeYGJY3ma8OH2+PxJIi9NChvO5TzgtpYuHZifMHCKaib+UMwTw6xdKT+XSqDqLWyQNACH5aytWA59/Gc9SLTXVD55jKaBCbsYsDb0ih8/2VVyA9NnvIs67tclPyZ2qfczc0PSBE=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB1708.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(39860400002)(346002)(396003)(136003)(366004)(4326008)(2906002)(316002)(86362001)(478600001)(83380400001)(5660300002)(66476007)(966005)(33656002)(66946007)(64756008)(66446008)(76116006)(15650500001)(66556008)(8676002)(7696005)(6506007)(53546011)(71200400001)(45080400002)(52536014)(8936002)(110136005)(55016002)(186003)(9686003)(26005);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: 5AK9/S/rfkSeLvl1IWB7Uhfmf3nNB6DXi1RaG+A30Wh4bWBV/C7fAgOWMiAeBqO9JMstfNWFBzmdAfOYr4Wb6b1sikeFadBEFrQTCfAV6jrTbqRbfuU6Xp+KoKm+QPZIHt+z6tALhwvew6SvxrhXhIEwHbkXm5i3H+CBJOarg59m7py+b+BXHQZMuYo7LB5F642LGFLTGZOVjKQW8eOY6vJoVdmVaL4EIDJKimSEUdTw5g8l13+dyK7t9Bt/fEPmpH/IxfPWJNYvRIpes/ib//NQBqgexsiFjX+/hccV1wg35Kd5jfuTuPKlo3hq8JcYe0D/MmHSnAp+q6bGHuJ4MaMr9al9nW9L+KzvWbNA+3kY0BP6NIcTAblMkw7iT8LipNAkJq52EfHB5OE/RFreePRQ6pHPwMpX+su4B6IRatGksYEugTMpAq9tprBhXjnQ9WUGiB2UHFyT7HopepO/SvO2ECeCsoc7aqymXBQ9BdLGH2tfF6gZ+JSNCrSi/miDGzTtnjWlM/7hjnDfpX7A5oFi+QUjen6uY2gYR4jBQxWnRQUXlQ+n/m3nDx7l+KPSubcIIbuUqClVFhfFPvtDJP6kbcpjqDY7wpWdUQF6AGgc6Yq9g0S48lkD8tAboWSYEKucqxHdr6BPgMSVfFLtnyZFUF6eREStVbCD7X9W01hETCU28guWqV3qyrOBYDD3Ci+rQUAYvM4Ek1QYOcEeqiE9EwZfZC848D5c7TMDMuQCJGAx+u/dLpOYPRb8oXGG6xs0Ana2vbfTbG2w7O+qQNlRfaQ01n/XzWYZqIz0xXUGMsZCHZ03WKiLju2bwYOt0oaJ5IfXLez2bt4pk9p6N3Kq7zZzn+gJxVtmOr/abL8TwEYj3GQ9bOdSWHd1MXrKisnlHJSv8LxIeLtEk7739A==
 MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1708.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 02815078-eac8-4695-2a3b-08d885ec6dd8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2020 02:49:37.3744 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2ePr0VtsdayKAMid9AbSitFblkO8+v9nQxgtkj05rY2stMnuPL+BxE3U9fGt7iek
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4941
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,183 +97,135 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexdeucher@gmail.com, harry.wentland@amd.com,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+Cc: "Zhang, Bokun" <Bokun.Zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Now that we actually expose the right number of planes we get
-problems with modifier aware libva if we use an unsupported modifier.
+[AMD Official Use Only - Internal Distribution Only]
 
-So this ensures that we as much as possible use a modifier that
-radeonsi can actually render to without going to extreme difficulty
-to synchronize an extra DCC metadata plane with implicit sync.
+Reviewed-by: Monk Liu <monk.liu@amd.com>
 
-Looking into the opaque metadata isn't ideal but this converts to
-something mainly for the purpose of the userspace driver and falls
-back properly if it isn't what we expect.
+_____________________________________
+Monk Liu|GPU Virtualization Team |AMD
 
-Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+
+-----Original Message-----
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Bokun Zhang
+Sent: Wednesday, November 11, 2020 4:17 AM
+To: amd-gfx@lists.freedesktop.org
+Cc: Zhang, Bokun <Bokun.Zhang@amd.com>
+Subject: [PATCH] drm/amd/amdgpu: Update VCN initizalization behvaior
+
+- Issue:
+  In the original vcn3.0 code, it assumes that the VCN's
+  init_status is always 1, even after the MMSCH
+  updates the header.
+
+  This is incorrect since by default, it should be set to 0,
+  and MMSCH will update it to 1 if VCN is ready.
+
+- Fix:
+  We need to read back the table header after send it to MMSCH.
+  After that, if a VCN instance is not ready (host disabled it),
+  we needs to disable the ring buffer as well.
+
+Change-Id: I2c5dc4344c5919044370dfe606bf5980a202c662
+
+Signed-off-by: Bokun Zhang <Bokun.Zhang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 106 ++++++++++++++++++--
- 1 file changed, 98 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c | 46 +++++++++++++++++++++------
+ 1 file changed, 37 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index f66ce6ec4843..c9e98499b8a4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -631,6 +631,57 @@ amdgpu_lookup_format_info(u32 format, uint64_t modifier)
- 	return NULL;
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+index 3970a0ccb6a5..c5e0a531caba 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+@@ -294,17 +294,19 @@ static int vcn_v3_0_hw_init(void *handle)
+ continue;
+
+ ring = &adev->vcn.inst[i].ring_dec;
+-ring->wptr = 0;
+-ring->wptr_old = 0;
+-vcn_v3_0_dec_ring_set_wptr(ring);
+-ring->sched.ready = true;
++if (ring->sched.ready) {
++ring->wptr = 0;
++ring->wptr_old = 0;
++vcn_v3_0_dec_ring_set_wptr(ring);
++}
+
+ for (j = 0; j < adev->vcn.num_enc_rings; ++j) {
+ ring = &adev->vcn.inst[i].ring_enc[j];
+-ring->wptr = 0;
+-ring->wptr_old = 0;
+-vcn_v3_0_enc_ring_set_wptr(ring);
+-ring->sched.ready = true;
++if (ring->sched.ready) {
++ring->wptr = 0;
++ring->wptr_old = 0;
++vcn_v3_0_enc_ring_set_wptr(ring);
++}
  }
- 
+ }
+ } else {
+@@ -1230,6 +1232,8 @@ static int vcn_v3_0_start_sriov(struct amdgpu_device *adev)
+ uint32_t table_size;
+ uint32_t size, size_dw;
+
++bool is_vcn_ready;
 +
-+/*
-+ * Tries to extract the renderable DCC offset from the opaque metadata attached
-+ * to the buffer.
+ struct mmsch_v3_0_cmd_direct_write
+ direct_wt = { {0} };
+ struct mmsch_v3_0_cmd_direct_read_modify_write
+@@ -1367,7 +1371,7 @@ static int vcn_v3_0_start_sriov(struct amdgpu_device *adev)
+ MMSCH_V3_0_INSERT_END();
+
+ /* refine header */
+-header.inst[i].init_status = 1;
++header.inst[i].init_status = 0;
+ header.inst[i].table_offset = header.total_size;
+ header.inst[i].table_size = table_size;
+ header.total_size += table_size;
+@@ -1425,6 +1429,30 @@ static int vcn_v3_0_start_sriov(struct amdgpu_device *adev)
+ }
+ }
+
++/* 6, check each VCN's init_status
++ * if it remains as 0, then this VCN is not assigned to current VF
++ * do not start ring for this VCN
 + */
-+static int
-+extract_render_dcc_offset(struct amdgpu_device *adev,
-+			  struct drm_gem_object *obj,
-+			  uint64_t *offset)
-+{
-+	struct amdgpu_bo *rbo;
-+	int r = 0;
-+	uint32_t metadata[10]; /* Something that fits a descriptor + header. */
-+	uint32_t size;
++size = sizeof(struct mmsch_v3_0_init_header);
++table_loc = (uint32_t *)table->cpu_addr;
++memcpy(&header, (void *)table_loc, size);
 +
-+	rbo = gem_to_amdgpu_bo(obj);
-+	r = amdgpu_bo_reserve(rbo, false);
++for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
++if (adev->vcn.harvest_config & (1 << i))
++continue;
 +
-+	if (unlikely(r)) {
-+		/* Don't show error message when returning -ERESTARTSYS */
-+		if (r != -ERESTARTSYS)
-+			DRM_ERROR("Unable to reserve buffer: %d\n", r);
-+		return r;
-+	}
++is_vcn_ready = (header.inst[i].init_status == 1);
++if (!is_vcn_ready)
++DRM_INFO("VCN(%d) engine is disabled by hypervisor\n", i);
 +
-+	r = amdgpu_bo_get_metadata(rbo, metadata, sizeof(metadata), &size, NULL);
-+	amdgpu_bo_unreserve(rbo);
-+
-+	if (r)
-+		return r;
-+
-+	/*
-+	 * The first word is the metadata version, and we need space for at least
-+	 * the version + pci vendor+device id + 8 words for a descriptor.
-+	 */
-+	if (size < 40  || metadata[0] != 1)
-+		return -EINVAL;
-+
-+	if (adev->family >= AMDGPU_FAMILY_NV) {
-+		/* resource word 6/7 META_DATA_ADDRESS{_LO} */
-+		*offset = ((u64)metadata[9] << 16u) |
-+			  ((metadata[8] & 0xFF000000u) >> 16);
-+	} else {
-+		/* resource word 5/7 META_DATA_ADDRESS */
-+		*offset = ((u64)metadata[9] << 8u) |
-+			  ((u64)(metadata[7] & 0x1FE0000u) << 23);
-+	}
-+
-+	return 0;
++ring = &adev->vcn.inst[i].ring_dec;
++ring->sched.ready = is_vcn_ready;
++for (j = 0; j < adev->vcn.num_enc_rings; ++j) {
++ring = &adev->vcn.inst[i].ring_enc[j];
++ring->sched.ready = is_vcn_ready;
++}
 +}
 +
- static int convert_tiling_flags_to_modifier(struct amdgpu_framebuffer *afb)
- {
- 	struct amdgpu_device *adev = drm_to_adev(afb->base.dev);
-@@ -646,6 +697,8 @@ static int convert_tiling_flags_to_modifier(struct amdgpu_framebuffer *afb)
- 		int pipe_xor_bits = 0;
- 		int bank_xor_bits = 0;
- 		int packers = 0;
-+		int rb = 0;
-+		int pipes = ilog2(adev->gfx.config.gb_addr_config_fields.num_pipes);
- 		uint32_t dcc_offset = AMDGPU_TILING_GET(afb->tiling_flags, DCC_OFFSET_256B);
- 
- 		switch (swizzle >> 2) {
-@@ -691,18 +744,17 @@ static int convert_tiling_flags_to_modifier(struct amdgpu_framebuffer *afb)
- 		if (has_xor) {
- 			switch (version) {
- 			case AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS:
--				pipe_xor_bits = min(block_size_bits - 8,
--						    ilog2(adev->gfx.config.gb_addr_config_fields.num_pipes));
-+				pipe_xor_bits = min(block_size_bits - 8, pipes);
- 				packers = min(block_size_bits - 8 - pipe_xor_bits,
- 					      ilog2(adev->gfx.config.gb_addr_config_fields.num_pkrs));
- 				break;
- 			case AMD_FMT_MOD_TILE_VER_GFX10:
--				pipe_xor_bits = min(block_size_bits - 8,
--						    ilog2(adev->gfx.config.gb_addr_config_fields.num_pipes));
-+				pipe_xor_bits = min(block_size_bits - 8, pipes);
- 				break;
- 			case AMD_FMT_MOD_TILE_VER_GFX9:
--				pipe_xor_bits = min(block_size_bits - 8,
--						    ilog2(adev->gfx.config.gb_addr_config_fields.num_pipes) +
-+				rb = ilog2(adev->gfx.config.gb_addr_config_fields.num_se) +
-+				     ilog2(adev->gfx.config.gb_addr_config_fields.num_rb_per_se);
-+				pipe_xor_bits = min(block_size_bits - 8, pipes +
- 						    ilog2(adev->gfx.config.gb_addr_config_fields.num_se));
- 				bank_xor_bits = min(block_size_bits - 8 - pipe_xor_bits,
- 						    ilog2(adev->gfx.config.gb_addr_config_fields.num_banks));
-@@ -721,6 +773,7 @@ static int convert_tiling_flags_to_modifier(struct amdgpu_framebuffer *afb)
- 			bool dcc_i64b = AMDGPU_TILING_GET(afb->tiling_flags, DCC_INDEPENDENT_64B) != 0;
- 			bool dcc_i128b = version >= AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS;
- 			const struct drm_format_info *format_info;
-+			u64 render_dcc_offset;
- 
- 			/* Enable constant encode on RAVEN2 and later. */
- 			bool dcc_constant_encode = adev->asic_type > CHIP_RAVEN ||
-@@ -738,8 +791,45 @@ static int convert_tiling_flags_to_modifier(struct amdgpu_framebuffer *afb)
- 				    AMD_FMT_MOD_SET(DCC_MAX_COMPRESSED_BLOCK, max_cblock_size);
- 
- 			afb->base.offsets[1] = dcc_offset * 256 + afb->base.offsets[0];
--			afb->base.pitches[1] = AMDGPU_TILING_GET(afb->tiling_flags, DCC_PITCH_MAX) + 1;
--
-+			afb->base.pitches[1] =
-+				AMDGPU_TILING_GET(afb->tiling_flags, DCC_PITCH_MAX) + 1;
-+
-+			/*
-+			 * If the userspace driver uses retiling the tiling flags do not contain
-+			 * info on the renderable DCC buffer. Luckily the opaque metadata contains
-+			 * the info so we can try to extract it. The kernel does not use this info
-+			 * but we should convert it to a modifier plane for getfb2, so the
-+			 * userspace driver that gets it doesn't have to juggle around another DCC
-+			 * plane internally.
-+			 */
-+			if (extract_render_dcc_offset(adev, afb->base.obj[0],
-+						      &render_dcc_offset) == 0 &&
-+			    render_dcc_offset != 0 &&
-+			    render_dcc_offset != afb->base.offsets[1] &&
-+			    render_dcc_offset < UINT_MAX) {
-+				uint32_t dcc_block_bits;  /* of base surface data */
-+
-+				modifier |= AMD_FMT_MOD_SET(DCC_RETILE, 1);
-+				afb->base.offsets[2] = render_dcc_offset;
-+
-+				if (adev->family >= AMDGPU_FAMILY_NV) {
-+					int extra_pipe = 0;
-+
-+					if (adev->asic_type >= CHIP_SIENNA_CICHLID &&
-+					    pipes == packers && pipes > 1)
-+						extra_pipe = 1;
-+
-+					dcc_block_bits = max(20, 16 + pipes + extra_pipe);
-+				} else {
-+					modifier |= AMD_FMT_MOD_SET(RB, rb) |
-+						    AMD_FMT_MOD_SET(PIPE, pipes);
-+					dcc_block_bits = max(20, 18 + rb);
-+				}
-+
-+				dcc_block_bits -= ilog2(afb->base.format->cpp[0]);
-+				afb->base.pitches[2] = ALIGN(afb->base.width,
-+							     1u << ((dcc_block_bits + 1) / 2));
-+			}
- 			format_info = amdgpu_lookup_format_info(afb->base.format->format,
- 								modifier);
- 			if (!format_info)
--- 
-2.29.2
+ return 0;
+ }
 
+--
+2.20.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=04%7C01%7Cmonk.liu%40amd.com%7Ccb49c2c170054afa706808d885b5aabb%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637406362602342785%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=gyfneg3amwv16LJD6tjP6hoo%2F615ODNCOsOU%2BJ6JbuQ%3D&amp;reserved=0
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
