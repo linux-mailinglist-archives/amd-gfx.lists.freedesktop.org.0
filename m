@@ -1,57 +1,59 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFA892AE689
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Nov 2020 03:48:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D15D12AE68B
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Nov 2020 03:48:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA95889D7F;
-	Wed, 11 Nov 2020 02:48:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 998A389DE5;
+	Wed, 11 Nov 2020 02:48:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96E8689D7F
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 02:48:39 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id s13so860057wmh.4
- for <amd-gfx@lists.freedesktop.org>; Tue, 10 Nov 2020 18:48:39 -0800 (PST)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0E4589D7F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 02:48:40 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id h2so838268wmm.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Nov 2020 18:48:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=basnieuwenhuizen.nl; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=ucHE0s+1GqoJzBFyor2rhj0xDvMhT39kyBkD1tfm0V0=;
- b=Ia7VUJyTe9goMrjNT1Rskr+9ZjxCHTawTijihzYf/XV7Eq420RZy610WGZOqgwjLWU
- 5Jd/c8I7U8shGvJIVRpdWWr44HJzQOQK3M88CXv9nRc7AfGPSqLZprDH0kHiBW0cMv5M
- d0YTltPwOcobLMqt/zIfDhUaRgjOytvIiIO/gjR4T1Fssuuos6GM4eRJHd4W9mvpe6wH
- IitcJ72j6tng7UBUefREWGcid7JDi9GSHIT8I6G5HCGMCbCGwBskvKdjmymMm9DgArmS
- d/Jbk4jwoZc2cjfbdJxEI1YLBs5P7aNVD2QDyKbOolauguCPih0Jcdd8L2txojr3OiI+
- 39mQ==
+ bh=aVutieMHr3I/FM1nXj1UhKk5PBnPC4fRfmnuQO+0amY=;
+ b=FfvHXMNXt7TSq0w4X1ddw81+j6SUeMwdzXxLtotuASYgCCSSakIPWaRP1FBoqrGFyq
+ 0CgFcMN8vavIIre53mFMTVowNsc5BGKtNl4yrt4qekvhbDyZbYMm2e0hLJidYNh5kdcE
+ 9inOzmO1ozwoSxfeQ7axlwzCSWP2RzblUnC9DiEmmkS5tvzJa6pV+uxjk/WeJ9tLlveq
+ 5KxjZ4vN0mdlTCCU+LYVMioVIPTV2TkHh5xLc6oPJtbR7GXTxP57MYFBpiZJAxYNwku5
+ pEB6zuDdfUUOO6PbUa/fkJmYl1qTr0jY3xE0oM1pGFDliOkFuQ89vpItTTJYDe30M70L
+ Hg6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ucHE0s+1GqoJzBFyor2rhj0xDvMhT39kyBkD1tfm0V0=;
- b=e+l/dyq9HkkpqECvSoL+Ty6IZ6WPjojZ8VGKGMeBzHwNAVWH7SCa5tmB/Mznpmn1Q7
- yorMKorw8XhZOojIYmXGT4EWcX3AT+Gxbe3b48LiD2knc/v194cdC58Cn6i73HTrx0j7
- 2ubodzK18rih/Ae22+AuGP34qt8S2tGVqT7nzvvMVDw388KoAYuG7A3dHPU0I17xhXDn
- YqEsRh7E52DAvqO0OpNV3Fi2EQxFT51HmaeEf+EnKDboTnSN8ei31bc/Thxh0AWtukYF
- VQWk+b8gp7Hfsxnoc9qnkW472xfCZUn4nX38nS4FI2x008Hogmf8cieYw3vokZMRdFoY
- V1pw==
-X-Gm-Message-State: AOAM533rjwcRg+TXlIovTIGKUKhFQX/tZN32o1wcYX/+PYr8YUqCxrkA
- n+gmLbU08gYlBK8CB3XPJyPlVjEXhrx6A+LO
-X-Google-Smtp-Source: ABdhPJwOBkYVLnYN8ETZeC/kmI8MSArLaQ3tIh9uW2lBle4Smhvj8Vja4z5dKws9b5iM+lJsf7Lgkg==
-X-Received: by 2002:a1c:2803:: with SMTP id o3mr1199214wmo.97.1605062918020;
+ bh=aVutieMHr3I/FM1nXj1UhKk5PBnPC4fRfmnuQO+0amY=;
+ b=R2E13rFcz+P2eZNqUR9Am7Ep8O9lhO/+jy47ZsJzkGZeeEsYaegMMZ6Jq/cb5ev9Ky
+ aPS5SmhjaPk1kn2IDYuxlwv9QzQkscGvQ+47Q/VW6jdr+j13NVSMOCv85k5sAw0yegUt
+ o+itVYdA++RlvH0deS0ZVK++EqmD8ZWdCiEbyrdvaLu6qdyKHYRjO1TR2zKJimLKt4+M
+ W+Irp//2GgiHGRk71LhacfZne+WopknZPTuEeAMePsWZJaDMHwUwXcI0jsBvvpazI75X
+ KbQ/j7aGi5x3iUppwAbV6G0gurBPAPXEXndbZrOprKdmMF4xEl2fuUlNHws8fP/6StBM
+ 2z1Q==
+X-Gm-Message-State: AOAM530SZ4hAzquEr+tBR6vPy2W/fPKRuJCEaVcg4nX983yAlgBg9Ust
+ M6gPUmNM8t79J9B8xWchmsYkNktq4AqcwVdW
+X-Google-Smtp-Source: ABdhPJwPiUScmzS7T/ONZ6B5licuiDeGFCam751m8jHpraxB2lG5H6Rxt3eF+x6uIZrQonX8GmhjAw==
+X-Received: by 2002:a05:600c:22d3:: with SMTP id
+ 19mr1257397wmg.21.1605062918899; 
  Tue, 10 Nov 2020 18:48:38 -0800 (PST)
 Received: from localhost.localdomain
  ([2a02:aa12:a77f:2000:4cea:81e7:5fd4:93f7])
- by smtp.gmail.com with ESMTPSA id c185sm724498wma.44.2020.11.10.18.48.37
+ by smtp.gmail.com with ESMTPSA id c185sm724498wma.44.2020.11.10.18.48.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Nov 2020 18:48:37 -0800 (PST)
+ Tue, 10 Nov 2020 18:48:38 -0800 (PST)
 From: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/3] drm/amd/display: Store gem objects for planes 1-3
-Date: Wed, 11 Nov 2020 03:48:38 +0100
-Message-Id: <20201111024840.496679-2-bas@basnieuwenhuizen.nl>
+Subject: [PATCH 2/3] drm/amd/display: Set new format info for converted
+ metadata.
+Date: Wed, 11 Nov 2020 03:48:39 +0100
+Message-Id: <20201111024840.496679-3-bas@basnieuwenhuizen.nl>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20201111024840.496679-1-bas@basnieuwenhuizen.nl>
 References: <20201111024840.496679-1-bas@basnieuwenhuizen.nl>
@@ -74,63 +76,259 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Also do the proper validation which was missed.
+If we use DCC modifiers this can increase the number of planes from
+the initial 1 plane with metadata, so that we get a valid modifier
+from getfb2.
 
-Besides the missing validation, not storing the objects in the
-framebuffer led to wrong results in the getfb2 ioctl.
+Since the code didn't update the format_info getfb2 would only ever
+return 1 plane with a modifier for which userspace expects > 1.
 
-Note that this should really have been done for multi-plane
-formats like NV12 already before modifiers landed.
+This moves the format lookup to amdgpu_display.c so we do not have
+issues when DC is not compiled.
 
 Signed-off-by: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 20 +++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   | 97 +++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.h   |  2 +
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 88 +----------------
+ 3 files changed, 100 insertions(+), 87 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index 89c3ead36501..e33acc3de286 100644
+index e33acc3de286..f66ce6ec4843 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -695,13 +695,26 @@ int amdgpu_display_framebuffer_init(struct drm_device *dev,
- 				    const struct drm_mode_fb_cmd2 *mode_cmd,
- 				    struct drm_gem_object *obj)
- {
--	int ret;
-+	int ret, i;
- 	rfb->base.obj[0] = obj;
- 	drm_helper_mode_fill_fb_struct(dev, &rfb->base, mode_cmd);
- 	ret = drm_framebuffer_init(dev, &rfb->base, &amdgpu_fb_funcs);
- 	if (ret)
- 		goto fail;
+@@ -542,6 +542,95 @@ uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev,
+ 	return domain;
+ }
  
-+	/*
-+	 * This needs to happen before modifier conversion as that might change
-+	 * the number of planes.
-+	 */
-+	for (i = 1; i < rfb->base.format->num_planes; ++i) {
-+		if (mode_cmd->handles[i] != mode_cmd->handles[0]) {
-+			dev_err(&dev->pdev->dev, "Plane 0 and %d have different BOs: %u vs. %u\n",
-+				i, mode_cmd->handles[0], mode_cmd->handles[i]);
-+			ret = -EINVAL;
-+			goto fail;
-+		}
++static const struct drm_format_info dcc_formats[] = {
++	{ .format = DRM_FORMAT_XRGB8888, .depth = 24, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	 { .format = DRM_FORMAT_XBGR8888, .depth = 24, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_ARGB8888, .depth = 32, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	   .has_alpha = true, },
++	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_BGRA8888, .depth = 32, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_ARGB2101010, .depth = 30, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_ABGR2101010, .depth = 30, .num_planes = 2,
++	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_RGB565, .depth = 16, .num_planes = 2,
++	  .cpp = { 2, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++};
++
++static const struct drm_format_info dcc_retile_formats[] = {
++	{ .format = DRM_FORMAT_XRGB8888, .depth = 24, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	 { .format = DRM_FORMAT_XBGR8888, .depth = 24, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_ARGB8888, .depth = 32, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	   .has_alpha = true, },
++	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_BGRA8888, .depth = 32, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++	{ .format = DRM_FORMAT_ARGB2101010, .depth = 30, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_ABGR2101010, .depth = 30, .num_planes = 3,
++	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
++	  .has_alpha = true, },
++	{ .format = DRM_FORMAT_RGB565, .depth = 16, .num_planes = 3,
++	  .cpp = { 2, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
++};
++
++static const struct drm_format_info *
++lookup_format_info(const struct drm_format_info formats[],
++		  int num_formats, u32 format)
++{
++	int i;
++
++	for (i = 0; i < num_formats; i++) {
++		if (formats[i].format == format)
++			return &formats[i];
 +	}
 +
- 	ret = amdgpu_display_get_fb_info(rfb, &rfb->tiling_flags, &rfb->tmz_surface);
- 	if (ret)
- 		goto fail;
-@@ -713,6 +726,11 @@ int amdgpu_display_framebuffer_init(struct drm_device *dev,
- 			goto fail;
++	return NULL;
++}
++
++const struct drm_format_info *
++amdgpu_lookup_format_info(u32 format, uint64_t modifier)
++{
++	if (!IS_AMD_FMT_MOD(modifier))
++		return NULL;
++
++	if (AMD_FMT_MOD_GET(DCC_RETILE, modifier))
++		return lookup_format_info(dcc_retile_formats,
++					  ARRAY_SIZE(dcc_retile_formats),
++					  format);
++
++	if (AMD_FMT_MOD_GET(DCC, modifier))
++		return lookup_format_info(dcc_formats, ARRAY_SIZE(dcc_formats),
++					  format);
++
++	/* returning NULL will cause the default format structs to be used. */
++	return NULL;
++}
++
+ static int convert_tiling_flags_to_modifier(struct amdgpu_framebuffer *afb)
+ {
+ 	struct amdgpu_device *adev = drm_to_adev(afb->base.dev);
+@@ -631,6 +720,7 @@ static int convert_tiling_flags_to_modifier(struct amdgpu_framebuffer *afb)
+ 		if (dcc_offset != 0) {
+ 			bool dcc_i64b = AMDGPU_TILING_GET(afb->tiling_flags, DCC_INDEPENDENT_64B) != 0;
+ 			bool dcc_i128b = version >= AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS;
++			const struct drm_format_info *format_info;
+ 
+ 			/* Enable constant encode on RAVEN2 and later. */
+ 			bool dcc_constant_encode = adev->asic_type > CHIP_RAVEN ||
+@@ -649,6 +739,13 @@ static int convert_tiling_flags_to_modifier(struct amdgpu_framebuffer *afb)
+ 
+ 			afb->base.offsets[1] = dcc_offset * 256 + afb->base.offsets[0];
+ 			afb->base.pitches[1] = AMDGPU_TILING_GET(afb->tiling_flags, DCC_PITCH_MAX) + 1;
++
++			format_info = amdgpu_lookup_format_info(afb->base.format->format,
++								modifier);
++			if (!format_info)
++				return -EINVAL;
++
++			afb->base.format = format_info;
+ 		}
  	}
  
-+	for (i = 1; i < rfb->base.format->num_planes; ++i) {
-+		rfb->base.obj[i] = rfb->base.obj[0];
-+		drm_gem_object_get(rfb->base.obj[i]);
-+	}
-+
- 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h
+index 3620b24785e1..dc7b7d116549 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h
+@@ -44,5 +44,7 @@ struct drm_framebuffer *
+ amdgpu_display_user_framebuffer_create(struct drm_device *dev,
+ 				       struct drm_file *file_priv,
+ 				       const struct drm_mode_fb_cmd2 *mode_cmd);
++const struct drm_format_info *
++amdgpu_lookup_format_info(u32 format, uint64_t modifier);
  
- fail:
+ #endif
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 423f6f07a070..234a04043a86 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -3963,96 +3963,10 @@ modifier_gfx9_swizzle_mode(uint64_t modifier)
+ 	return AMD_FMT_MOD_GET(TILE, modifier);
+ }
+ 
+-static const struct drm_format_info dcc_formats[] = {
+-	{ .format = DRM_FORMAT_XRGB8888, .depth = 24, .num_planes = 2,
+-	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
+-	 { .format = DRM_FORMAT_XBGR8888, .depth = 24, .num_planes = 2,
+-	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
+-	{ .format = DRM_FORMAT_ARGB8888, .depth = 32, .num_planes = 2,
+-	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
+-	   .has_alpha = true, },
+-	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 2,
+-	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
+-	  .has_alpha = true, },
+-	{ .format = DRM_FORMAT_BGRA8888, .depth = 32, .num_planes = 2,
+-	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
+-	  .has_alpha = true, },
+-	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 2,
+-	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
+-	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 2,
+-	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
+-	{ .format = DRM_FORMAT_ARGB2101010, .depth = 30, .num_planes = 2,
+-	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
+-	  .has_alpha = true, },
+-	{ .format = DRM_FORMAT_ABGR2101010, .depth = 30, .num_planes = 2,
+-	  .cpp = { 4, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
+-	  .has_alpha = true, },
+-	{ .format = DRM_FORMAT_RGB565, .depth = 16, .num_planes = 2,
+-	  .cpp = { 2, 0, }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
+-};
+-
+-static const struct drm_format_info dcc_retile_formats[] = {
+-	{ .format = DRM_FORMAT_XRGB8888, .depth = 24, .num_planes = 3,
+-	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
+-	 { .format = DRM_FORMAT_XBGR8888, .depth = 24, .num_planes = 3,
+-	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
+-	{ .format = DRM_FORMAT_ARGB8888, .depth = 32, .num_planes = 3,
+-	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
+-	   .has_alpha = true, },
+-	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 3,
+-	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
+-	  .has_alpha = true, },
+-	{ .format = DRM_FORMAT_BGRA8888, .depth = 32, .num_planes = 3,
+-	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
+-	  .has_alpha = true, },
+-	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 3,
+-	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
+-	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 3,
+-	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
+-	{ .format = DRM_FORMAT_ARGB2101010, .depth = 30, .num_planes = 3,
+-	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
+-	  .has_alpha = true, },
+-	{ .format = DRM_FORMAT_ABGR2101010, .depth = 30, .num_planes = 3,
+-	  .cpp = { 4, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1,
+-	  .has_alpha = true, },
+-	{ .format = DRM_FORMAT_RGB565, .depth = 16, .num_planes = 3,
+-	  .cpp = { 2, 0, 0 }, .block_w = {1, 1, 1}, .block_h = {1, 1, 1}, .hsub = 1, .vsub = 1, },
+-};
+-
+-
+-static const struct drm_format_info *
+-lookup_format_info(const struct drm_format_info formats[],
+-		  int num_formats, u32 format)
+-{
+-	int i;
+-
+-	for (i = 0; i < num_formats; i++) {
+-		if (formats[i].format == format)
+-			return &formats[i];
+-	}
+-
+-	return NULL;
+-}
+-
+ static const struct drm_format_info *
+ amd_get_format_info(const struct drm_mode_fb_cmd2 *cmd)
+ {
+-	uint64_t modifier = cmd->modifier[0];
+-
+-	if (!IS_AMD_FMT_MOD(modifier))
+-		return NULL;
+-
+-	if (AMD_FMT_MOD_GET(DCC_RETILE, modifier))
+-		return lookup_format_info(dcc_retile_formats,
+-					  ARRAY_SIZE(dcc_retile_formats),
+-					  cmd->pixel_format);
+-
+-	if (AMD_FMT_MOD_GET(DCC, modifier))
+-		return lookup_format_info(dcc_formats, ARRAY_SIZE(dcc_formats),
+-					  cmd->pixel_format);
+-
+-	/* returning NULL will cause the default format structs to be used. */
+-	return NULL;
++	return amdgpu_lookup_format_info(cmd->pixel_format, cmd->modifier[0]);
+ }
+ 
+ static void
 -- 
 2.29.2
 
