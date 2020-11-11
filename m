@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A90842AFB59
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Nov 2020 23:28:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FD9A2AFB5B
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Nov 2020 23:28:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE85B6E0AF;
-	Wed, 11 Nov 2020 22:28:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62ED26E0C4;
+	Wed, 11 Nov 2020 22:28:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2040.outbound.protection.outlook.com [40.107.92.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B37B46E0AF
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 22:28:03 +0000 (UTC)
+ (mail-bn7nam10on2065.outbound.protection.outlook.com [40.107.92.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A43116E0C2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 22:28:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nJMFXvcCiC1tarLLmTcyUznqBJLPhJ6+SoZwmVqtRXfq8+AMiVhqmFqqDbjwcl4dUBzqZNvex2uXLHylm471ySLtSZ+Uks1GQ1gllJZHBqCNPY3cxb/MZeVAtNZ5YjPMB6eVpxgkPlWfNILav7BVugtEMN587zsV87gMuRDI7IUu9BCPooQqgUru1q8UI/Kj9VPx4X7EPK9qQ4i5d4I4X055dV/wBIpGscuAS/NMDgdowPZM5IiEwhlIwn/0uUB1QX+jPOP5sqqjomGFg+AqFU6DdLKu1hR6utLD9vbECvHsdf9cfP6Kj3ksGn4HIz2XOJUS//wIE7oKHtEAH3Pdcg==
+ b=FVFtJrgkUFFuD/zqJxnQGBLTTv1qizdP3Pg4xhsgBHtn7F+lMQuRtvkX7J4iRiUXoCWXdt67IvneiYWRsjX5CG4asK6IdFyUz9ohFgzWOTaVPi9953YKl+UevUs3U2kPn3AQBdmZ7I31pMUdJ1aq8L/N9E5dYdDm89Oh8D9gMF3h+ynX9fNxPL29GktliE6hYmXuKV27hHwEZJO0zA2vECmEf3OEiftFVIwpITwn26cMrmc08ApjktIlVwL+VS1WAKQDACSkY9LpB4h3kgqoeCTmfDDDR7F2fJpzw3d40ZoM+XhTZoscA6h2Nx4QCiw8wIYb2Zztp/3gXS92OB9FEg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vr8Ni7OXR21kTRgmEGALTu2xH522TBf0+HRFD5pItiA=;
- b=HiUlJQb+RQ4ZLB1R9qcPHGOglBp3jml04Gf+u5LBBK6+xtfvkkB868/ktObLkZT6GPzFApYg/urbAP33Ds6BKekIyQEi3+zRO23q7fhqWMefITR/u7HV/LoyuSokm29iOIu/1F3N+Or4bhYp/DUp23WqeU+a/GDeR9DxVRXPZK5d27L1LT+z5Ei94kJ9Zt5n72JjzRDodLkmREPIoCQkt/TxK/R7NNYeZtVe0t6kHJDHfxOfhc2kQ0QFyvXlWbe3HXl6X6w6o5ZYywbG8OmCJmFFwS1PMawWqkGmkwfq1HkN8U3ZU/s7c0PY9GKFXOUiulLJtUoU3F/ytHbdIHSD9Q==
+ bh=mJEGkuVOtTPM7B2YRUrh53vHoTrR7HScYciWIthoAVI=;
+ b=Own7H6t/pjXVa4S7swJd8t6fqSLHlB9rs3Pa81ypLVaNWcn6+YxRAxf3F4QljfbK1Y6GnGcCxVrRuzitbHqFzjOU+D0NncV7QierYcx3cl0cEj2SHcphu6cCWZgvQdkdbWIJnxMbPJrONOikcKvk8xnbbGDviyGuAyelFqJxE54e0ClRBMCKKbolCsOXyCAujGP2rQGf9URg2UbUfsbemeFpKNZP30kqQcwGOYXzlcj+K2raCXa8b3M5uwNGMbveokorNRUiDE56t5Gv+h1n/RnczXctfI+tp1cmoccE3YhCE52rBhG1lukBbcXvGFpQPpfHk2Pua3hfCt6JyRgP2w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vr8Ni7OXR21kTRgmEGALTu2xH522TBf0+HRFD5pItiA=;
- b=VMzBjfyDVRE5p6TkJaNuXB8l3x2nLGOJsZYvGCL6+tNhymIKWsmjIRVqWyUX3VBiDrx75wgFBqrQ5dmuIbFUTfuzXfecD23gZFaRb6zJPfDbezzDm+5u0aXK8li6zrALjUCUJuT+bNDQnzy/3+42b7s32yergD5stX0YHT2+DTk=
+ bh=mJEGkuVOtTPM7B2YRUrh53vHoTrR7HScYciWIthoAVI=;
+ b=GFU1+fJHXy6ljsqhGZXuhOgN0LK0ijzg+F8JtwH2x0jSeM9cT9JNfXOuqjxzmGdvDRkcjfP7ACBHITu4ypnGMKV5h1oeR20qE0znL8bq3FZgsyf1fNGRJ7z5VH7rXb/dfUvQ+8Y5zbUTxX4vzTT6pPuYnvjldwE+IZmR2Kexhnw=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,16 +35,17 @@ Received: from DM5PR12MB2517.namprd12.prod.outlook.com (2603:10b6:4:bb::13) by
  DM6PR12MB2746.namprd12.prod.outlook.com (2603:10b6:5:41::24) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3541.21; Wed, 11 Nov 2020 22:28:02 +0000
+ 15.20.3541.21; Wed, 11 Nov 2020 22:28:03 +0000
 Received: from DM5PR12MB2517.namprd12.prod.outlook.com
  ([fe80::1059:3b25:8f54:5e5a]) by DM5PR12MB2517.namprd12.prod.outlook.com
  ([fe80::1059:3b25:8f54:5e5a%7]) with mapi id 15.20.3541.025; Wed, 11 Nov 2020
- 22:28:02 +0000
+ 22:28:03 +0000
 From: James Zhu <James.Zhu@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 3/5] drm/amdgpu/vcn: add test for dec vcn software ring
-Date: Wed, 11 Nov 2020 17:27:52 -0500
-Message-Id: <1605133674-21093-3-git-send-email-James.Zhu@amd.com>
+Subject: [PATCH 4/5] drm/amdgpu/vcn3.0: add dec software ring vm functions to
+ support
+Date: Wed, 11 Nov 2020 17:27:53 -0500
+Message-Id: <1605133674-21093-4-git-send-email-James.Zhu@amd.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1605133674-21093-1-git-send-email-James.Zhu@amd.com>
 References: <1605133674-21093-1-git-send-email-James.Zhu@amd.com>
@@ -61,27 +62,27 @@ Received: from work_495456.amd.com (165.204.55.251) by
  Transport; Wed, 11 Nov 2020 22:28:02 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 3b6592f3-b589-49ed-2bd9-08d886910d4a
+X-MS-Office365-Filtering-Correlation-Id: ac403d0a-3993-40d9-7336-08d886910da4
 X-MS-TrafficTypeDiagnostic: DM6PR12MB2746:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB2746DF0940C699024E002874E4E80@DM6PR12MB2746.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:83;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB2746A8BAC9B3D2680CAE5676E4E80@DM6PR12MB2746.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3DWLxhqJbjzvPb/CXOpY9rbw9sRfTsePVk6wEM3vx6Tat3lZuDYhPVRrtcaxshOfgYvOIOobnrgQEhMabwFGoTl44+7cu+v2QM67GA/6mytR5I3zsGuLGCSARG5ZobXWyfuaMZI5S0WFx2tA3HJeGcW8G9igPouVjatpGdDOj8QoesjzwZb7wdmsXsp+8vxuJkn5RYoWTzNaSnsQi6B9pthBA8ZpCESSjKrQZx2ssMhUJhzgdNH9ccGMSXXoAQGrZjb8EdaYT/dnaJrOd2FSlwAXHUq+RnBjNw7ToHpGD5U0C+J47Scs7NxTM3rn58Lv5L5ks4BIcKipUeXzna65pg==
+X-Microsoft-Antispam-Message-Info: r7f9+tZYmTD53ogVjW0IVo9hy+bxpXGhwU8cWaPP8MTESkKVOm7kfXTDAhpe/EdwMf+ah6b5VukQjDpOPj/s2BETAr1MPVSLD+nkhjKhE8NoszoIgukASWNj/SZfHW/m/DKE3wdXR3Y4wmoYO8cbHKHtvuEzDbsngtzN9Cpp9pH5Fz9DZW46m0mhNkVjrzDElbVMV5eyn4gisXRMLXtJtIs4p+ZBw5CSJYG8G0Mu2qTpSxf9FPL0VY2pfQBXiKTuQVNWprW5NPlXaZJ2xZY1xVKMKFuf6ukBC7tFo2BZHXiA4ZGe+Lqn7ttmL4qusd3PlJ9uOi7rRkOrV6j/tZ04U30XlxE21J+CgaaIc3Pc0BuiB9XWbqCWHwWJUlPMdz49
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM5PR12MB2517.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(366004)(396003)(39860400002)(346002)(136003)(66476007)(66946007)(8676002)(6666004)(8936002)(2906002)(316002)(83380400001)(52116002)(478600001)(86362001)(6486002)(26005)(7696005)(66556008)(2616005)(186003)(956004)(6916009)(16526019)(36756003)(5660300002);
+ SFS:(4636009)(376002)(366004)(396003)(39860400002)(346002)(136003)(66476007)(66946007)(8676002)(6666004)(8936002)(2906002)(316002)(83380400001)(52116002)(478600001)(86362001)(6486002)(26005)(7696005)(66556008)(2616005)(186003)(956004)(6916009)(16526019)(36756003)(5660300002)(309714004);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: EUNqDq1RCO9VOBJNDx2rJxspt2YBfZ4R4NGSeB/mSMkfitD5uWCsyxdLqB91XtA3PdnkYVfwj2eHrtD1eI+hKogUDEvN7z6xU6MLtEUYkdWHD0oBMTv+GaDszN3Gq/nlU9dF9059i1sZhroA3fQyHYGnz8Yr8gx4ckx9HO5c7soXWLq40X5rq4fJ4hRJNirtZDN3K/rPOTT5kVyThtt6OXwiUoHOBVR5QZO7POVjt8g5yPCrqKT8DutImu7r59uD11EI4zvlg2VybzsmkdyuCWwiXWtE6YZNcfoSke/W7bpVIZn5UjlnDpQRb3jPBcJouerBuY6QceTPRgxZYfd7i7RP+PcONVqdJc4G9bdN/j1cLwQ2WGBnm0K7iSbutTSHvN1pKxVGcJMWspRXTMvh9lPiApF9xqz95wdBWJFQC0d2I4ekEZYW83L35JXCrNW68pdqGQ61DPd6RuLpTOasQPUU9vBHo6nR/gMSzdkzgz0pgwFrA50POSYIo+nKwUhHOz6Qo3hDMxRBBbrMsGdz1IRg/Db+uV6GE1sl2nbRCm4+no6Sjhehq6rPz8ZCsYB9//oy84jthkelzh7980KX6HlfbJPo9QZZueUWJec5uRKieai5C6rkxiodI+MoL470fpw/LPhuBQN4MCsmwmO2/xZvfwzMTXcESNFyyRe2ehNTtHpe5dQYHmyYmPGAuHMWXd2o/gBu+kJutfK0m7IOSoiQKXcM8JNlBDG7+uE1QS1P4wsgdhZR8cfQsxnE7KC5Rb0rG4J7ItKv0j5KwwH9qL6nq6fiZllnQJWD0nkIj4M2X9und7Dksn+FEbJrWUXbxC+veWsBs68+OBfuRVSlFvabl46xfySJ16ZzJtMZpQmbqeyKfYCvwjN9gvYRIFJBGLCkteUyjz14zgXRhrsDFg==
+X-MS-Exchange-AntiSpam-MessageData: 5FYk6DInP0ThjVymtkMwzY1oOOh8Tsn5YvTYhvPrEYgo8QB8JRLvRy6gtYyhzPIVGAV5eB7fdArfDAewf6f5lfD7adhPBqLfgZyr1En3xGmOvpkxCAabciA0Lre9bTx96oTjmNLoymSRrE/3j5ROYIsWOjeUYjt1QC9YxIVPVTKzF6fkwRQAlFYi4e/s3lpDNLtTrciTshlPM6MspNyHDuuCDVOo2MP2B6u51YH9dAz85eD07aX5AKhPCU/R7aEZgKRNvO6C3DSNlLYcZYeMI8ytG4mVjjq7FTgAisYPJDsNgOh7abhhgmQWBLiNBdpxlgLIArqYXtsIUL+WH9JkLwt8NZKdIFGJF5lbFLiwjkcMFrbmkRPKRZWq0TWd2GGeks9PpUNiNanhwaR0d3bh49KW9KNW+mdJyvYWczIeO1aHOyjuwg3+ziY7JrsRvM1QITxt7UOvT39nLBLJ/NHmmtP999JJub7fmYVMBPVKdYA4IqNMNKeSXnszwmTrIpS5Jvl1Xy9w5duJDX3MBzONrlU2xIfzfpu1gtdchG7vh6AiH47kUchxpSWU0viJNmizMWSOUqvo393rOx/c+7Sm1mKYpYro0zG8Yumip0Vsz6hgVDO7oSLAe+l5Jk1cZ5rOx/8YeC07yd12DkC/aFx8kW0IYs2P0TE5odubuQD1Q+z4ejAGq0mApS0RgDVw78z6LCwmf5E8JsGMRudCDHyVH9mWVIaweNUD7XtFsQ9I/0YJfemPsa5gbDG+JmW/5qWQ4SGCEPTkfOQMoRpyZ9yHsrQkWDDsAEje+Zd12/Pp9Jx00uzLH0xxHEYHBIsEt/HFSqI3PAeehEf4mpGsmz94K/PW3H/xG2akySbSv+ttjwMy8uVLwwjsepcXZAi8IQrFKMbvYH8ppiFJoPk071SXCQ==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b6592f3-b589-49ed-2bd9-08d886910d4a
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac403d0a-3993-40d9-7336-08d886910da4
 X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB2517.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2020 22:28:02.6188 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2020 22:28:03.1915 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 44f2Qh+XCiCSo6RUGpgybuAbRcRO+Q4sbivcdZDNmjCFJZ7bwDzrybmBnq4/xp7F
+X-MS-Exchange-CrossTenant-UserPrincipalName: mn9EdVddI5m12UUwk5q+gMfc4dv2VsLeOU5Vd4F7rj8+RlmibMgnJOkHnTzg5oX/
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2746
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -99,198 +100,132 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add vcn software ring decode ring test and decode ib test.
+Add dec software ring vm functions to support.
 
 Signed-off-by: James Zhu <James.Zhu@amd.com>
 Reviewed-by: Leo Liu <leo.liu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 138 ++++++++++++++++++++++++++++++--
- 1 file changed, 132 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c | 100 +++++++++++++++++++++++++++++++++-
+ 1 file changed, 98 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-index 7e19a66..e3d54fa 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-@@ -456,6 +456,37 @@ int amdgpu_vcn_dec_ring_test_ring(struct amdgpu_ring *ring)
- 	return r;
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+index c5e0a53..9d3c902 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+@@ -1673,6 +1673,98 @@ static void vcn_v3_0_dec_ring_set_wptr(struct amdgpu_ring *ring)
+ 	}
  }
  
-+int amdgpu_vcn_dec_sw_ring_test_ring(struct amdgpu_ring *ring)
++void vcn_v3_0_dec_sw_ring_emit_fence(struct amdgpu_ring *ring, u64 addr,
++				u64 seq, uint32_t flags)
 +{
-+	struct amdgpu_device *adev = ring->adev;
-+	uint32_t rptr;
-+	unsigned int i;
-+	int r;
++	WARN_ON(flags & AMDGPU_FENCE_FLAG_64BIT);
 +
-+	if (amdgpu_sriov_vf(adev))
-+		return 0;
++	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_FENCE);
++	amdgpu_ring_write(ring, addr);
++	amdgpu_ring_write(ring, upper_32_bits(addr));
++	amdgpu_ring_write(ring, seq);
++	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_TRAP);
++}
 +
-+	r = amdgpu_ring_alloc(ring, 16);
-+	if (r)
-+		return r;
-+
-+	rptr = amdgpu_ring_get_rptr(ring);
-+
++void vcn_v3_0_dec_sw_ring_insert_end(struct amdgpu_ring *ring)
++{
 +	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_END);
-+	amdgpu_ring_commit(ring);
-+
-+	for (i = 0; i < adev->usec_timeout; i++) {
-+		if (amdgpu_ring_get_rptr(ring) != rptr)
-+			break;
-+		udelay(1);
-+	}
-+
-+	if (i >= adev->usec_timeout)
-+		r = -ETIMEDOUT;
-+
-+	return r;
 +}
 +
- static int amdgpu_vcn_dec_send_msg(struct amdgpu_ring *ring,
- 				   struct amdgpu_bo *bo,
- 				   struct dma_fence **fence)
-@@ -510,7 +541,10 @@ static int amdgpu_vcn_dec_send_msg(struct amdgpu_ring *ring,
- }
- 
- static int amdgpu_vcn_dec_get_create_msg(struct amdgpu_ring *ring, uint32_t handle,
--			      struct dma_fence **fence)
-+			      struct dma_fence **fence,
-+			      int (*send_msg)(struct amdgpu_ring *,
-+	                              struct amdgpu_bo *,
-+	                              struct dma_fence **))
- {
- 	struct amdgpu_device *adev = ring->adev;
- 	struct amdgpu_bo *bo = NULL;
-@@ -540,13 +574,17 @@ static int amdgpu_vcn_dec_get_create_msg(struct amdgpu_ring *ring, uint32_t hand
- 	for (i = 14; i < 1024; ++i)
- 		msg[i] = cpu_to_le32(0x0);
- 
--	return amdgpu_vcn_dec_send_msg(ring, bo, fence);
-+	return send_msg(ring, bo, fence);
- }
- 
- static int amdgpu_vcn_dec_get_destroy_msg(struct amdgpu_ring *ring, uint32_t handle,
--			       struct dma_fence **fence)
-+			      struct dma_fence **fence,
-+			      int (*send_msg)(struct amdgpu_ring *,
-+	                              struct amdgpu_bo *,
-+	                              struct dma_fence **))
- {
- 	struct amdgpu_device *adev = ring->adev;
-+	struct amdgpu_send_msg *dec;
- 	struct amdgpu_bo *bo = NULL;
- 	uint32_t *msg;
- 	int r, i;
-@@ -566,19 +604,107 @@ static int amdgpu_vcn_dec_get_destroy_msg(struct amdgpu_ring *ring, uint32_t han
- 	for (i = 6; i < 1024; ++i)
- 		msg[i] = cpu_to_le32(0x0);
- 
--	return amdgpu_vcn_dec_send_msg(ring, bo, fence);
-+	return send_msg(ring, bo, fence);
- }
- 
- int amdgpu_vcn_dec_ring_test_ib(struct amdgpu_ring *ring, long timeout)
- {
-+	struct amdgpu_device *adev = ring->adev;
- 	struct dma_fence *fence;
- 	long r;
- 
--	r = amdgpu_vcn_dec_get_create_msg(ring, 1, NULL);
-+	r = amdgpu_vcn_dec_get_create_msg(ring, 1, NULL,
-+				amdgpu_vcn_dec_send_msg);
-+	if (r)
-+		goto error;
-+
-+	r = amdgpu_vcn_dec_get_destroy_msg(ring, 1, &fence,
-+				amdgpu_vcn_dec_send_msg);
-+	if (r)
-+		goto error;
-+
-+	r = dma_fence_wait_timeout(fence, false, timeout);
-+	if (r == 0)
-+		r = -ETIMEDOUT;
-+	else if (r > 0)
-+		r = 0;
-+
-+	dma_fence_put(fence);
-+error:
-+	return r;
-+}
-+
-+static int amdgpu_vcn_dec_sw_send_msg(struct amdgpu_ring *ring,
-+				   struct amdgpu_bo *bo,
-+				   struct dma_fence **fence)
++void vcn_v3_0_dec_sw_ring_emit_ib(struct amdgpu_ring *ring,
++			       struct amdgpu_job *job,
++			       struct amdgpu_ib *ib,
++			       uint32_t flags)
 +{
-+	struct amdgpu_vcn_decode_buffer *decode_buffer = NULL;
-+	const unsigned int ib_size_dw = 64;
-+	struct amdgpu_device *adev = ring->adev;
-+	struct dma_fence *f = NULL;
-+	struct amdgpu_job *job;
-+	struct amdgpu_ib *ib;
-+	uint64_t addr;
-+	int i, r;
++	uint32_t vmid = AMDGPU_JOB_GET_VMID(job);
 +
-+	r = amdgpu_job_alloc_with_ib(adev, ib_size_dw * 4,
-+				AMDGPU_IB_POOL_DIRECT, &job);
-+	if (r)
-+		goto err;
-+
-+	ib = &job->ibs[0];
-+	addr = amdgpu_bo_gpu_offset(bo);
-+	ib->length_dw = 0;
-+
-+	ib->ptr[ib->length_dw++] = sizeof(struct amdgpu_vcn_decode_buffer) + 8;
-+	ib->ptr[ib->length_dw++] = cpu_to_le32(AMDGPU_VCN_IB_FLAG_DECODE_BUFFER);
-+	decode_buffer = (struct amdgpu_vcn_decode_buffer *)&(ib->ptr[ib->length_dw]);
-+	ib->length_dw += sizeof(struct amdgpu_vcn_decode_buffer) / 4;
-+	memset(decode_buffer, 0, sizeof(struct amdgpu_vcn_decode_buffer));
-+
-+	decode_buffer->valid_buf_flag |= cpu_to_le32(AMDGPU_VCN_CMD_FLAG_MSG_BUFFER);
-+	decode_buffer->msg_buffer_address_hi = cpu_to_le32(addr >> 32);
-+	decode_buffer->msg_buffer_address_lo = cpu_to_le32(addr);
-+
-+	for (i = ib->length_dw; i < ib_size_dw; ++i)
-+		ib->ptr[i] = 0x0;
-+
-+	r = amdgpu_job_submit_direct(job, ring, &f);
-+	if (r)
-+		goto err_free;
-+
-+	amdgpu_bo_fence(bo, f, false);
-+	amdgpu_bo_unreserve(bo);
-+	amdgpu_bo_unref(&bo);
-+
-+	if (fence)
-+		*fence = dma_fence_get(f);
-+	dma_fence_put(f);
-+
-+	return 0;
-+
-+err_free:
-+	amdgpu_job_free(job);
-+
-+err:
-+	amdgpu_bo_unreserve(bo);
-+	amdgpu_bo_unref(&bo);
-+	return r;
++	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_IB);
++	amdgpu_ring_write(ring, vmid);
++	amdgpu_ring_write(ring, lower_32_bits(ib->gpu_addr));
++	amdgpu_ring_write(ring, upper_32_bits(ib->gpu_addr));
++	amdgpu_ring_write(ring, ib->length_dw);
 +}
 +
-+int amdgpu_vcn_dec_sw_ring_test_ib(struct amdgpu_ring *ring, long timeout)
++void vcn_v3_0_dec_sw_ring_emit_reg_wait(struct amdgpu_ring *ring, uint32_t reg,
++				uint32_t val, uint32_t mask)
 +{
-+	struct amdgpu_device *adev = ring->adev;
-+	struct dma_fence *fence = NULL;
-+	long r;
++	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_REG_WAIT);
++	amdgpu_ring_write(ring, reg << 2);
++	amdgpu_ring_write(ring, mask);
++	amdgpu_ring_write(ring, val);
++}
 +
-+	r = amdgpu_vcn_dec_get_create_msg(ring, 1, NULL,
-+				amdgpu_vcn_dec_sw_send_msg);
- 	if (r)
- 		goto error;
++void vcn_v3_0_dec_sw_ring_emit_vm_flush(struct amdgpu_ring *ring,
++				uint32_t vmid, uint64_t pd_addr)
++{
++	struct amdgpu_vmhub *hub = &ring->adev->vmhub[ring->funcs->vmhub];
++	uint32_t data0, data1, mask;
++
++	pd_addr = amdgpu_gmc_emit_flush_gpu_tlb(ring, vmid, pd_addr);
++
++	/* wait for register write */
++	data0 = hub->ctx0_ptb_addr_lo32 + vmid * hub->ctx_addr_distance;
++	data1 = lower_32_bits(pd_addr);
++	mask = 0xffffffff;
++	vcn_v3_0_dec_sw_ring_emit_reg_wait(ring, data0, data1, mask);
++}
++
++void vcn_v3_0_dec_sw_ring_emit_wreg(struct amdgpu_ring *ring, uint32_t reg, uint32_t val)
++{
++	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_REG_WRITE);
++	amdgpu_ring_write(ring,	reg << 2);
++	amdgpu_ring_write(ring, val);
++}
++
++static const struct amdgpu_ring_funcs vcn_v3_0_dec_sw_ring_vm_funcs = {
++	.type = AMDGPU_RING_TYPE_VCN_DEC,
++	.align_mask = 0x3f,
++	.nop = VCN_DEC_SW_CMD_NO_OP,
++	.vmhub = AMDGPU_MMHUB_0,
++	.get_rptr = vcn_v3_0_dec_ring_get_rptr,
++	.get_wptr = vcn_v3_0_dec_ring_get_wptr,
++	.set_wptr = vcn_v3_0_dec_ring_set_wptr,
++	.emit_frame_size =
++		SOC15_FLUSH_GPU_TLB_NUM_WREG * 3 +
++		SOC15_FLUSH_GPU_TLB_NUM_REG_WAIT * 4 +
++		4 + /* vcn_v3_0_dec_sw_ring_emit_vm_flush */
++		5 + 5 + /* vcn_v3_0_dec_sw_ring_emit_fdec_swe x2 vm fdec_swe */
++		1, /* vcn_v3_0_dec_sw_ring_insert_end */
++	.emit_ib_size = 5, /* vcn_v3_0_dec_sw_ring_emit_ib */
++	.emit_ib = vcn_v3_0_dec_sw_ring_emit_ib,
++	.emit_fence = vcn_v3_0_dec_sw_ring_emit_fence,
++	.emit_vm_flush = vcn_v3_0_dec_sw_ring_emit_vm_flush,
++	.test_ring = amdgpu_vcn_dec_sw_ring_test_ring,
++	.test_ib = NULL,//amdgpu_vcn_dec_sw_ring_test_ib,
++	.insert_nop = amdgpu_ring_insert_nop,
++	.insert_end = vcn_v3_0_dec_sw_ring_insert_end,
++	.pad_ib = amdgpu_ring_generic_pad_ib,
++	.begin_use = amdgpu_vcn_ring_begin_use,
++	.end_use = amdgpu_vcn_ring_end_use,
++	.emit_wreg = vcn_v3_0_dec_sw_ring_emit_wreg,
++	.emit_reg_wait = vcn_v3_0_dec_sw_ring_emit_reg_wait,
++	.emit_reg_write_reg_wait = amdgpu_ring_emit_reg_write_reg_wait_helper,
++};
++
+ static const struct amdgpu_ring_funcs vcn_v3_0_dec_ring_vm_funcs = {
+ 	.type = AMDGPU_RING_TYPE_VCN_DEC,
+ 	.align_mask = 0xf,
+@@ -1810,9 +1902,13 @@ static void vcn_v3_0_set_dec_ring_funcs(struct amdgpu_device *adev)
+ 		if (adev->vcn.harvest_config & (1 << i))
+ 			continue;
  
--	r = amdgpu_vcn_dec_get_destroy_msg(ring, 1, &fence);
-+	r = amdgpu_vcn_dec_get_destroy_msg(ring, 1, &fence,
-+				amdgpu_vcn_dec_sw_send_msg);
- 	if (r)
- 		goto error;
+-		adev->vcn.inst[i].ring_dec.funcs = &vcn_v3_0_dec_ring_vm_funcs;
++		if (!amdgpu_dec_sw_ring_enabled)
++			adev->vcn.inst[i].ring_dec.funcs = &vcn_v3_0_dec_ring_vm_funcs;
++		else
++			adev->vcn.inst[i].ring_dec.funcs = &vcn_v3_0_dec_sw_ring_vm_funcs;
+ 		adev->vcn.inst[i].ring_dec.me = i;
+-		DRM_INFO("VCN(%d) decode is enabled in VM mode\n", i);
++		DRM_INFO("VCN(%d) decode%s is enabled in VM mode\n", i,
++			  !!amdgpu_dec_sw_ring_enabled?"(Software Ring)":"");
+ 	}
+ }
  
 -- 
 2.7.4
