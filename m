@@ -2,60 +2,85 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CB9F2AF870
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Nov 2020 19:45:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB3E12AFB58
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Nov 2020 23:28:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A49216E0E5;
-	Wed, 11 Nov 2020 18:45:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F6486E0BC;
+	Wed, 11 Nov 2020 22:28:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B7E36E0BF
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 18:36:17 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id b6so3519951wrt.4
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 10:36:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=1BMpKgrGRaaFsrowXlZeUlkXnTCJQ5S+7+zF8aRI5RM=;
- b=gv9rARHr4D0R1XbUNjjQpIHG+8Ukz+VROemjmN9deTxOLLwa57CGwe7Yw2nPVD5LkI
- x7sBA5S4Izl8Y+DLOybIvelf93pnTPj30GwSDjNqThbgY52WPq9pGugtalPjo4Me6wOi
- v3Wf9SH9nuttFyN/EE8mWWiXT3JxVUq06ieJknk5W231WtKu0+8a6uSy7vdh1HVUK8ea
- 2AC/M3H/iD7QdDK/feCxSxKB0ScDF6vwy8oQrAZTdgXy/8X1ALdG+Vxo9y/csOsWa8Qz
- txo6oqrG/NN9rdWgI6GsC3//RR1aBRg7CpXQRIiN8lqFXulSkUJ5ArqmT2m75r2FCIsu
- /yXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=1BMpKgrGRaaFsrowXlZeUlkXnTCJQ5S+7+zF8aRI5RM=;
- b=ZkVe9JBaOKeFmyZViLc7nX5w5CIju6PhGap4kswUqA09GfmtdHl8SzqXv913k9j3eV
- +WF9ZiqFP5eBZq3YH3gnHxj+f3zLQJggAmTkiqkZQu/X88A90Bo7DwAiVPVfI+aVLzs+
- 09mfYdiajcW0CYTyuoFtBsdP8CM6aB28uPp3Kj1ScEAs2JTWmE29ja4FAFk2hWQxM+4B
- TEufFeNjmuE9lIuCpOv9z/rivXcd83jjKL9S7EA2amysELp9xmixylZiS2IzOCISh56u
- cWNcdPgugjwJpjGYkiuYdCxhv9ALgrLi2rf3LKeBxYSiv7l/oeXHiu2fGqVhhqmkZ/Fq
- aAZg==
-X-Gm-Message-State: AOAM5306iJ5Yg7LzUMBMP7OihpX0NctMX96jpUvEYhh2BAvf7qzb4nrO
- Day0WjPIWHoaSgrwAFys45OmTg==
-X-Google-Smtp-Source: ABdhPJyUfP02CiM21bckjb6v/8zvCckUDUA51nDOma7tQN+Oa6OdUY9rQNKYPeBoyCSxr/LkFz5tnQ==
-X-Received: by 2002:a5d:474d:: with SMTP id o13mr33192388wrs.178.1605119775741; 
- Wed, 11 Nov 2020 10:36:15 -0800 (PST)
-Received: from dell.default ([91.110.221.159])
- by smtp.gmail.com with ESMTPSA id k84sm3558311wmf.42.2020.11.11.10.36.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 11 Nov 2020 10:36:15 -0800 (PST)
-From: Lee Jones <lee.jones@linaro.org>
-To: lee.jones@linaro.org
-Subject: [PATCH 19/19] drm/radeon/evergreen_cs: Move
- 'r600_dma_cs_next_reloc()'s prototype to shared header
-Date: Wed, 11 Nov 2020 18:35:45 +0000
-Message-Id: <20201111183545.1756994-20-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201111183545.1756994-1-lee.jones@linaro.org>
-References: <20201111183545.1756994-1-lee.jones@linaro.org>
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2040.outbound.protection.outlook.com [40.107.92.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42C2D6E0AF
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Nov 2020 22:28:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IILuyVd1VyuJCceZzAnOi3zwoeJSX1oEu4DMwwLeRz0LUgK+uuEu+klA3lmFml2TuCT72qCVJGiiFu26210EDdaG9OWwMaYPbHett5c8eJWAq0Pf0G0/Wan5B7krHDy9yey/QVRqDG6ik+P7WJrA9oDYjCmJDAQdiaJ4J7DJ4secAomVuvfSVO9QOjTIHlTwaPUNAfBPW6Vz7hnrU/c0KgQRGNSY84gFH+uTfdQp9188wyy9HRSUzvB+4oeMq++v/u09+Pr5vfe+WU2WWg4qVpAtB9og47+pPeIfi5zo3rS8/Jdaa6Nbva6hBKH5Rb9IQQ8qD7/+PzfhmEip7lVUlg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1A6dsWJMz2XUNSte0EOQAapEHDngLHZF3UB2tf1ZGY4=;
+ b=Anss8KKJn+YR7z2FKy8+Zl3n3RE7AxQ3Z+/hUToD70Czm4bnXPvJCmelvR9rhcJwQaerWndgMjMMueodJjA8cFYNsyFdjqibWDrr6/uxE6rz+CMZrANngKSSCuh7UfLaUMHsI8W68FhoYqchmZcWsgJKSSHCvCedwlKX+skjB2ehM7D7e22rENGsxnoVyGZNmMT6bNLw38SCrFZIhDAekOqVmsj3m2+STo9AETEMURsB/yVTm5oCtLLTO1Eql+T35PWgNDpJyRxN/fHEAARIsdWVQsl/4upwjFJdiQ9SlzzR42dV3XCwcXiEdDG+FpvZon3sKzdjLc55BcnJUwHDyg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1A6dsWJMz2XUNSte0EOQAapEHDngLHZF3UB2tf1ZGY4=;
+ b=CRZ5yB6jjO9uPyvUaNnKc0qXplXWcuFl5Y09kWt7HpGVwLn+KW/i3uHT7+31jtVOX/lhHa7j26N7R4jcqTHIiaBuJdOhW5q66IuOfT5r4PizfzLPbGAHfAa6XYrTfhOjM3u+R9SL4/IfHdN2IZWfyb38ASkY9bYXCTCyub6YSxE=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from DM5PR12MB2517.namprd12.prod.outlook.com (2603:10b6:4:bb::13) by
+ DM6PR12MB2746.namprd12.prod.outlook.com (2603:10b6:5:41::24) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3541.21; Wed, 11 Nov 2020 22:28:01 +0000
+Received: from DM5PR12MB2517.namprd12.prod.outlook.com
+ ([fe80::1059:3b25:8f54:5e5a]) by DM5PR12MB2517.namprd12.prod.outlook.com
+ ([fe80::1059:3b25:8f54:5e5a%7]) with mapi id 15.20.3541.025; Wed, 11 Nov 2020
+ 22:28:01 +0000
+From: James Zhu <James.Zhu@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/5] drm/amdgpu: add vcn dec software ring enabled parameter
+Date: Wed, 11 Nov 2020 17:27:50 -0500
+Message-Id: <1605133674-21093-1-git-send-email-James.Zhu@amd.com>
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [165.204.55.251]
+X-ClientProxiedBy: YTXPR0101CA0040.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:1::17) To DM5PR12MB2517.namprd12.prod.outlook.com
+ (2603:10b6:4:bb::13)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 11 Nov 2020 18:45:15 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from work_495456.amd.com (165.204.55.251) by
+ YTXPR0101CA0040.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3541.21 via Frontend
+ Transport; Wed, 11 Nov 2020 22:28:01 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: e1c405b0-9dcc-4e23-77e1-08d886910cb7
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2746:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB274694E9CFC56480B1C57A14E4E80@DM6PR12MB2746.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ++2fAGVrsL/zodOB43gw+IOsteyDSjhPlMpv0x0DBrM/m3RZA2GYjyQWLwPTz/8iFNGGXBE09hjDyFw9tTc1awBW+YaVREVUWwbv+D86LhuEsvwF8/rE7dnyvgX34NwZBcKlEWQ12K1xeGO//GzPupjlK69QrYg/nSJoW36cqG3CvEvgq6Hu01E4HHKwsCxN1o8kqK6+TJD/RHICW0fboZH6WhISZ/EUsJZ3VowXuP6WiQHrcGDljfdrFOVsC+soMxdFExaZpvKrpUPuZ5mik6y1RPpkob1JI2elCPErDPnfFrFOWXYsZoEPC3lgSCnlZUqPaWfk8k6dp4Yh2glIug==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB2517.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(366004)(396003)(39860400002)(346002)(136003)(66476007)(66946007)(8676002)(6666004)(8936002)(2906002)(316002)(52116002)(478600001)(86362001)(6486002)(26005)(7696005)(66556008)(2616005)(186003)(956004)(6916009)(16526019)(36756003)(5660300002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: S0knc2kEpYfvVdYXl/w+HbE1eAsUU8l+K13n7wQZkV2olgorf5qjR+E9ZtnHQSujghmsMh/UMcPHZzh20nkJvAUbdJaHUq9ycZUUOiKJ8mTuTStPrkiwRLM6233maXZ0i8AYDKthXQVjkZ5GAfMfW7zw8Un9u7RZDC6+Y1IYn657uUvsLF+nAgHNDAwc0U/hgfO15GzKAWLrQEbNoEfDXBiT98Qh47narPQQqVbSsf6kQGKRCXGVlwfLQ3ZWNCaGboRZvwczLJoNfc5o9zwAQomcOL3iomVpBRH6BFnavfvw8yG+Pw5nV7Su6M2OKE6bxq0wf2Vc/qHTiNBeeb0nJREBaTEHNmW2vRGu1o87VZwhBwuW5q1BG5TxLsZtzPtY8fi1rldM62DrfY6kMceEA0l4+7KOOUCOTGG7n3bxl/bN/pPqYv99u1NnDpL/NLA7CjPeIrAxrcH5rSpi8yP/SJYH+FRQyu65LKHPYD3ioLwNQeZJllMtgpR4UVlhCt7uBtXfJCfOGNGRcwUMpWaKceV9huMn2E7CjX88LS6HtQSQJlEdxvExtVcBCTCDnpIkDJHc7nnYGaDa7Ik1RgX63GMxMoLnGAyv8eEfJwelxnNGidiEfZDwZH/8lKJNqsjWVFEV3pXPCbf84bHSj6cBbu6/F9C+o8X5JuQOraB9Myr9C71U43Y2lWrznjWxb3DjEJeWP5QQU+SdWr28I+20v8x6eu63o88MP8FbHx5jja/rv1m46A1kGTkvPSGR0CX5pnyC6krhUoRqbU284Np+gnrIwYGIH0xlFZt0nvfDh14GMJ2kU+Vo9P90rvfWN27F8FAhXqiWMOaxD58h/z5fkw4/yfB3+J+H2KH9iDDPXMpBvA1W0niZ2niAZ5ALl331+jkNu0JL65zVLi60IAiWnQ==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1c405b0-9dcc-4e23-77e1-08d886910cb7
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB2517.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2020 22:28:01.5934 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NvRo8ESdwUZML62wkYPdHjJrkcCc9KwuM2wj/4y9WRampzjndzeuItwBoDHbn5o4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2746
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,58 +92,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rml4ZXMgdGhlIGZvbGxvd2luZyBXPTEga2VybmVsIGJ1aWxkIHdhcm5pbmcocyk6CgogZHJpdmVy
-cy9ncHUvZHJtL3JhZGVvbi9yNjAwX2NzLmM6MjM0Mzo1OiB3YXJuaW5nOiBubyBwcmV2aW91cyBw
-cm90b3R5cGUgZm9yIOKAmHI2MDBfZG1hX2NzX25leHRfcmVsb2PigJkgWy1XbWlzc2luZy1wcm90
-b3R5cGVzXQogMjM0MyB8IGludCByNjAwX2RtYV9jc19uZXh0X3JlbG9jKHN0cnVjdCByYWRlb25f
-Y3NfcGFyc2VyICpwLAogfCBefn5+fn5+fn5+fn5+fn5+fn5+fn5+CgpDYzogQWxleCBEZXVjaGVy
-IDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgpDYzogIkNocmlzdGlhbiBLw7ZuaWciIDxjaHJp
-c3RpYW4ua29lbmlnQGFtZC5jb20+CkNjOiBEYXZpZCBBaXJsaWUgPGFpcmxpZWRAbGludXguaWU+
-CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+CkNjOiBhbWQtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpDYzogZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpTaWduZWQt
-b2ZmLWJ5OiBMZWUgSm9uZXMgPGxlZS5qb25lc0BsaW5hcm8ub3JnPgotLS0KIGRyaXZlcnMvZ3B1
-L2RybS9yYWRlb24vZXZlcmdyZWVuX2NzLmMgfCAzICstLQogZHJpdmVycy9ncHUvZHJtL3JhZGVv
-bi9yNjAwLmggICAgICAgICB8IDQgKysrKwogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yNjAwX2Nz
-LmMgICAgICB8IDEgKwogMyBmaWxlcyBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDIgZGVsZXRp
-b25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9ldmVyZ3JlZW5fY3Mu
-YyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vZXZlcmdyZWVuX2NzLmMKaW5kZXggNTNiNzVjZjIw
-MTk1OC4uMGRlNzlmM2E3ZTNmZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9l
-dmVyZ3JlZW5fY3MuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2V2ZXJncmVlbl9jcy5j
-CkBAIC0yOCw2ICsyOCw3IEBACiAKICNpbmNsdWRlICJyYWRlb24uaCIKICNpbmNsdWRlICJyYWRl
-b25fYXNpYy5oIgorI2luY2x1ZGUgInI2MDAuaCIKICNpbmNsdWRlICJldmVyZ3JlZW5kLmgiCiAj
-aW5jbHVkZSAiZXZlcmdyZWVuX3JlZ19zYWZlLmgiCiAjaW5jbHVkZSAiY2F5bWFuX3JlZ19zYWZl
-LmgiCkBAIC0zNyw4ICszOCw2IEBACiAKICNkZWZpbmUgUkVHX1NBRkVfQk1fU0laRSBBUlJBWV9T
-SVpFKGV2ZXJncmVlbl9yZWdfc2FmZV9ibSkKIAotaW50IHI2MDBfZG1hX2NzX25leHRfcmVsb2Mo
-c3RydWN0IHJhZGVvbl9jc19wYXJzZXIgKnAsCi0JCQkgICBzdHJ1Y3QgcmFkZW9uX2JvX2xpc3Qg
-Kipjc19yZWxvYyk7CiBzdHJ1Y3QgZXZlcmdyZWVuX2NzX3RyYWNrIHsKIAl1MzIJCQlncm91cF9z
-aXplOwogCXUzMgkJCW5iYW5rczsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24v
-cjYwMC5oIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yNjAwLmgKaW5kZXggYTI1OTk3NmE5NTkx
-My4uMjFmZTQ0MTk4YTk2NiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yNjAw
-LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yNjAwLmgKQEAgLTI5LDcgKzI5LDkgQEAK
-ICNkZWZpbmUgX19SNjAwX0hfXwogCiBzdHJ1Y3QgcjYwMF9hdWRpb19waW47CitzdHJ1Y3QgcmFk
-ZW9uX2JvX2xpc3Q7CiBzdHJ1Y3QgcmFkZW9uX2NydGM7CitzdHJ1Y3QgcmFkZW9uX2NzX3BhcnNl
-cjsKIHN0cnVjdCByYWRlb25fZGV2aWNlOwogc3RydWN0IHJhZGVvbl9oZG1pX2FjcjsKIApAQCAt
-NTAsNCArNTIsNiBAQCB2b2lkIHI2MDBfaGRtaV91cGRhdGVfYWNyKHN0cnVjdCBkcm1fZW5jb2Rl
-ciAqZW5jb2RlciwgbG9uZyBvZmZzZXQsCiB2b2lkIHI2MDBfc2V0X3ZiaV9wYWNrZXQoc3RydWN0
-IGRybV9lbmNvZGVyICplbmNvZGVyLCB1MzIgb2Zmc2V0KTsKIHZvaWQgcjYwMF9oZG1pX2VuYWJs
-ZShzdHJ1Y3QgZHJtX2VuY29kZXIgKmVuY29kZXIsIGJvb2wgZW5hYmxlKTsKIAoraW50IHI2MDBf
-ZG1hX2NzX25leHRfcmVsb2Moc3RydWN0IHJhZGVvbl9jc19wYXJzZXIgKnAsCisJCQkgICBzdHJ1
-Y3QgcmFkZW9uX2JvX2xpc3QgKipjc19yZWxvYyk7CiAjZW5kaWYJCQkJLyogX19SNjAwX0hfXyAq
-LwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yNjAwX2NzLmMgYi9kcml2ZXJz
-L2dwdS9kcm0vcmFkZW9uL3I2MDBfY3MuYwppbmRleCBmMjBiNjE5NDY2ODE2Li5kYzY4ZTUzOGQ1
-YTk3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3I2MDBfY3MuYworKysgYi9k
-cml2ZXJzL2dwdS9kcm0vcmFkZW9uL3I2MDBfY3MuYwpAQCAtMjksNiArMjksNyBAQAogCiAjaW5j
-bHVkZSAicmFkZW9uLmgiCiAjaW5jbHVkZSAicmFkZW9uX2FzaWMuaCIKKyNpbmNsdWRlICJyNjAw
-LmgiCiAjaW5jbHVkZSAicjYwMGQuaCIKICNpbmNsdWRlICJyNjAwX3JlZ19zYWZlLmgiCiAKLS0g
-CjIuMjUuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-YW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+This allows us to enable dec software ring feature on VCN.
+The default is 0 for all asics, and it is only valid for
+asics with vcn3.0 and above.
+
+Signed-off-by: James Zhu <James.Zhu@amd.com>
+Reviewed-by: Leo Liu <leo.liu@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h     | 1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 8 ++++++++
+ 2 files changed, 9 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 20400ec..cc47da6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -209,6 +209,7 @@ extern int amdgpu_si_support;
+ extern int amdgpu_cik_support;
+ #endif
+ extern int amdgpu_num_kcq;
++extern int amdgpu_dec_sw_ring_enabled;
+ 
+ #define AMDGPU_VM_MAX_NUM_CTX			4096
+ #define AMDGPU_SG_THRESHOLD			(256*1024*1024)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 999f84d..570088f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -160,6 +160,7 @@ int amdgpu_force_asic_type = -1;
+ int amdgpu_tmz;
+ int amdgpu_reset_method = -1; /* auto */
+ int amdgpu_num_kcq = -1;
++int amdgpu_dec_sw_ring_enabled;
+ 
+ struct amdgpu_mgpu_info mgpu_info = {
+ 	.mutex = __MUTEX_INITIALIZER(mgpu_info.mutex),
+@@ -806,6 +807,13 @@ module_param_named(bad_page_threshold, amdgpu_bad_page_threshold, int, 0444);
+ MODULE_PARM_DESC(num_kcq, "number of kernel compute queue user want to setup (8 if set to greater than 8 or less than 0, only affect gfx 8+)");
+ module_param_named(num_kcq, amdgpu_num_kcq, int, 0444);
+ 
++/**
++ * DOC: dec_sw_ring_enabled (uint)
++ * Override vcn decode software ring features enabled.
++ */
++MODULE_PARM_DESC(dec_sw_ring_enabled, "vcn dec sw ring support (1 = enable, 0 = disable (default))");
++module_param_named(dec_sw_ring_enabled, amdgpu_dec_sw_ring_enabled, int, 0444);
++
+ static const struct pci_device_id pciidlist[] = {
+ #ifdef  CONFIG_DRM_AMDGPU_SI
+ 	{0x1002, 0x6780, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI},
+-- 
+2.7.4
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
