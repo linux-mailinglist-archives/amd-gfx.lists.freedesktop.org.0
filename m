@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A9EF2B0005
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Nov 2020 08:06:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C72D22B0007
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Nov 2020 08:06:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A03F46E134;
-	Thu, 12 Nov 2020 07:06:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADB796E138;
+	Thu, 12 Nov 2020 07:06:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
  (mail-bn8nam11on2053.outbound.protection.outlook.com [40.107.236.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4FEA6E118
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Nov 2020 07:06:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 352EE6E118
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Nov 2020 07:06:47 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Tkwsl0b4SHObwT9bA2zGn9mKpVwGnLkbmEBTl7khg6cVT0iZTLa/vcg4OMcIvSSr+p7XabduJlciTvOcm6CMJ1JD0HNEDgfR0xuLRS5ovQTb0nS9O84BPVup2T73TSliho6cZXcoGGDmqYr5egsqoJUUUjoLRHjcdfPPJ3iA8Q8SreqAD4KDui1pjbi6+B60On5qh+gmQ3B3dSYpPJz8Bcz5+kg5iSeJwG9zgVNJWVB6jl6dGCsFCgT3qFKvL4SIbNBKTnlqsSN6zFI4uceY6vreWsYzhe1GIFwrm7yQhsR1cQ3ebkk9Nj4QGVonvVUIM0+vbeSpN+WrF73GEygnqA==
+ b=gKdEhUsVDKYO0Uxns2y5oSAMX+WABkUoEZPbnaDCGYtFmPdlauHNy9jEpP1aj24VSc73bOynR/RmAvAGplnrsk2qb/x7KYScNwLVhP4aRaGO6CZFMB36ALWHXIWhOWlQgj5GySKwPJb4q1TTyPuxhyN++MNmORrLiF8Dp62nufrPRW84P42ZQ3hL4yPRFdtLjriR5vM0t0teVcQ5UbIUk3cxgrWkLXIYKQ0VOXtUKYCC3wXpWi8Py2FN2DbmBhGhLxA6hlWjslN9+69o3avCsCu6iPxdIj3wiKU9Q0CtC5nzulry9jOAElXxHYX+Z0VO1oAvCC6vw3sodvqNCCPjoQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=y+W+tuwaZyyK9Ra2FBXhmUcMm5GhIeENj5WyTloAAbc=;
- b=cgTMX056x0zATCZNCbz0i98+C6C07ETYGK26IIl8brDt//ck4ahjQThwa4QVtcEfFh2F3lLKuB18zyPMfOg+fhkVgcbR6nGUB32rdX68H2lkfCkzreFTzOCkU3fUVPs25Js/sNJInkD5UItG5bGK8B3V5p+ON4aBNR+viZCFOB+iTFjDPMeOxUrEA5Gb8EzM90cck4S0Sn3b3afV/8qXN9UaPaN+D3YHCsQ+M768eAtJVI2DA5SFOAT6TgVj1490Z4a+Mrgl2CGfY2uMx57ATGDMcT5woDjVsyg61wLxaImW56CQ4oAg++jh/6dUbW+aXzmbbykNKSXC5UfsTNavrQ==
+ bh=swL7Nkr6Piq1mdjukxHSTi6E7SDNukqbfaiooKUnIIk=;
+ b=Vbv9bTSnm7YfVZXocEMZKLUkTxQxivJVmJBumbeRTtZgw/J6XhbhH84pAEMcFPL17yQ+fa0xjt39jK+Y41ez0IRtR5vR3brGa1ha0xmJ/IqBAayAqZyTPRGxlKfbMDlb8XGaGAfzRH7ri67xkyYPRo9rI/Vd/PoctnAhMJRlK3nBxQ7B6q2bwMD8RVLayCs1P7lfZNqqLbC2n8kqnsFqlE5qY1NRIxWVd3D8gcT/iDDkbJRwopYQbIbsmcp4/zGVfwsKAImRkvrTVt28+11V0RAIWYXQqrk+NqlA3Pki//cFpWWJo02Cvk0ZKAV5lkfGW2GZGxAac6yWRO6SRbL0Dg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=y+W+tuwaZyyK9Ra2FBXhmUcMm5GhIeENj5WyTloAAbc=;
- b=UhS6ZDno4v1ZG+8tZjHcEM4j/6fJg9OrqLD9Z24eY9NiJ/xQWynKK/i8y5sXrl/L7QITeudsDyeaXTPmGF8yMg8kPDrmCryZzQJdRb6lkmZbVngotb9fZ38dTKQ+DsKxhycV2soB85n15mUjD4sfgebKce1EOXhF4VVfUyV7nRQ=
+ bh=swL7Nkr6Piq1mdjukxHSTi6E7SDNukqbfaiooKUnIIk=;
+ b=uycDaErIS5t1T0TBFPbTZu/5QcdaOvMm/PwGtj0IW7OyG23n5YvYiP34CFG6ELT4CEazlJA4/TIX4cgUYNxeHJ++j12e2Se8fHMHschspn0jfI5lXwcqiwUZO0zi3eBYI69rEa/ZxUCxNQniX83ugLC9qm1443nKErHwvfyqKOk=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,17 +35,20 @@ Received: from BYAPR12MB3238.namprd12.prod.outlook.com (2603:10b6:a03:13b::20)
  by BYAPR12MB4789.namprd12.prod.outlook.com (2603:10b6:a03:111::33)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Thu, 12 Nov
- 2020 07:06:43 +0000
+ 2020 07:06:45 +0000
 Received: from BYAPR12MB3238.namprd12.prod.outlook.com
  ([fe80::9866:32dc:79cb:d695]) by BYAPR12MB3238.namprd12.prod.outlook.com
  ([fe80::9866:32dc:79cb:d695%7]) with mapi id 15.20.3541.025; Thu, 12 Nov 2020
- 07:06:43 +0000
+ 07:06:45 +0000
 From: Prike Liang <Prike.Liang@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/5] drm/amdgpu: add s0i3 capacity check for s0i3 routine
-Date: Thu, 12 Nov 2020 15:06:32 +0800
-Message-Id: <1605164796-22215-1-git-send-email-Prike.Liang@amd.com>
+Subject: [PATCH 2/5] drm/amdgpu: add amdgpu_gfx_state_change_set() set gfx
+ power change entry
+Date: Thu, 12 Nov 2020 15:06:33 +0800
+Message-Id: <1605164796-22215-2-git-send-email-Prike.Liang@amd.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1605164796-22215-1-git-send-email-Prike.Liang@amd.com>
+References: <1605164796-22215-1-git-send-email-Prike.Liang@amd.com>
 X-Originating-IP: [58.247.170.242]
 X-ClientProxiedBy: HK2PR02CA0187.apcprd02.prod.outlook.com
  (2603:1096:201:21::23) To BYAPR12MB3238.namprd12.prod.outlook.com
@@ -55,31 +58,31 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from prike.amd.com (58.247.170.242) by
  HK2PR02CA0187.apcprd02.prod.outlook.com (2603:1096:201:21::23) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.20.3541.21 via Frontend Transport; Thu, 12 Nov 2020 07:06:42 +0000
+ 15.20.3541.21 via Frontend Transport; Thu, 12 Nov 2020 07:06:44 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 0b39ec9e-83c2-4bb1-dc6a-08d886d982fa
+X-MS-Office365-Filtering-Correlation-Id: 36e2f69c-8fdf-40fc-5fcb-08d886d983f2
 X-MS-TrafficTypeDiagnostic: BYAPR12MB4789:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR12MB4789D057EA71A1B5ADAFC08DFBE70@BYAPR12MB4789.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1201;
+X-Microsoft-Antispam-PRVS: <BYAPR12MB47891AF41ADE313F4D4C5A0DFBE70@BYAPR12MB4789.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:538;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fEikJCHaT5MchVOXNMXp0UTIhErVAa5a/8bhJQiEG3Vfe49zdv1iRGQVlTyAH5NB9D+XUBwXiXI13HmTbDv9yQb2YB/tmSrKJOMBvG3ujqCiRFFX17H72ubiNS9pBtEmpIK+umJ8RPWjCSEDN7v0xZ6/1t5Uh9T1eOvKBpfTkc1jWBO4fpNo0X4eNKL//gFQsHXYTigrIj/zixlnLTxCa3zEx/c1wXqaWjpgcjZWE02BX85xZhBOnSKK0rewTnPErHx2qyaBHNENhHcZWTHt2dl8u4OByOiWcLsoklFFh6Hpd+HNJIPHaKrYaRf8IzuMNx7xaxIG2t6XikDy0PyjXA==
+X-Microsoft-Antispam-Message-Info: /UgCGMg7sn7LwTTd8XNyBFaRpmWdVy6w4LCHaP+hRYYGWU2ztEi/UGCgfBtu7GjIYtTDkEBF0dPxZ9fPPAvldgVJ2J7z7HYxwhc2go9dp8TRsAPjfdWe+8JVx8pBAmrJZA0oQWntpg93CXWazv4+XAAj7LHPfXgrDeXfGnVV8eWxelduS7ahTFg/6EQOEo3y7CE/3rmHvYNkvIaMXNGHExUz1gmRseUXo7UkgxQf6zMUMoGrZM6p8VHG4NK6H6yMrFl1euFlBQLivUVmU+niSLR60aT6AeBFgEmdi1RX3ZDGSzBx9PbIOHTcV5K8d4dK5XaRUQNgHNvlLJ5yOX8fHQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR12MB3238.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(39860400002)(346002)(396003)(376002)(366004)(7696005)(478600001)(316002)(86362001)(6916009)(6486002)(66476007)(4326008)(66946007)(66556008)(5660300002)(52116002)(36756003)(2616005)(2906002)(6666004)(8676002)(16526019)(186003)(956004)(8936002)(26005);
+ SFS:(4636009)(136003)(39860400002)(346002)(396003)(376002)(366004)(7696005)(478600001)(316002)(86362001)(6916009)(6486002)(66476007)(4326008)(66946007)(66556008)(5660300002)(52116002)(83380400001)(36756003)(2616005)(2906002)(6666004)(8676002)(16526019)(186003)(956004)(8936002)(26005)(19627235002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: jyUgY/PvFWoq1tOCJuiX8tYGQKoEC/Rr+CRp9ZRbsQocm+Lpp5LKQ/d3N6ehIW8JDFyIRev5PyYBYP1UES+pb2zSqSRnlCyeGjetF0kf1ZVg+jbjyogb52NQGi7zjKVRMSwknbOI9QUyElx2+XF0B+m2QEle2434S9uvZxDup2A6VFuxHPtJQ1St7JbnkUPeDCi2ZcX6BqxwRSZiilkR5swAPwwL3UCaXzwxwDfv8L7MqYLNEkql/JPgbMC07NQFHZSPI3OqgYzygHgFLnxGw+HrlCsG3yqd+Q07qdCOEceEbu0Q/YgKkhafL6fo1LhTUAxsLOlVGsN4cQCeiDt7gJhBjRvP4Za2sxEIJyX8nN9RWoUZ3wqifnYOlatOBHXBz8x8CM0d20kIMSrgAcffEpawkXGFKMdE2UMsH4NYxjBGXrWrt+84Jb+MNHEGES8mgF2vzh5C54uBywILU6gbZZzbVScmujZLdmrthVJOyrZIZwliJttqTfwZ291x4XuY5D5ErwpdXiipPO6FJiK3DQ9rLmVONnHQ7FSkqwpGXud1iC940ZKS8HKeld6pX5ZjKrLvCRzMtnQWHGTtepp1gFl0264EW4ZkucyBgQxuTh50PRgF8uhTy9IV+djzW5guO6+t71Ky53fCuW/n24YxTwDGoF4USlUqcA3LyBySCnA0DYMViDHpzZfkV7kOnRKDzoh4oGsx5ec9OiCf/uPGQ756nInArx3vwUqU0R907tLVYgQINgdpZwBcPf0L3TEjw4f9FhE04rQXno69IEU0mlCUwuMs6s+Ni2nY3895+ZmruCa62PAsbDPaze4VxEtYr2MSuchKY+2nQQpOAkyBytoH/6w1rUIfQ33a5fQu/Mqoy3++B9p6ukdY++IwOlUBrw2rh532QLUsS/5/fe/gow==
+X-MS-Exchange-AntiSpam-MessageData: xluHd7Bgn9nTvy5FCCpilKDlAuZeb5XSTEZZFJ5/Z4v0xhdMIsSmy4Z4VxZLpCrgRaQRrUiLP6e5DhMpNEVcX0S3AHOVM90rTtX8vR/HItOhU5yq/p79O6z8qWmoY8+E9MWwWeAeZnr2+0S3wdC4Wi/3gMIILh3UpaT46ylRZmGwE4npGK/8J+QELa/pTO2Xskl5hFjRK99lJB/vKGW9+oOKhCs5cvq2fkZC7b24J/J8V+Tz3QV4YScNaQVBgvOtDdw44yjud5h+22sabu/VcKfQIescZFAzdhA2410sh0KPpcZ4fLEid08WDOLA9RFGrMkVmmSX5XfA6WW0RPhLpMA7PqOPI35Zdc5orDgN+9fKYgDPp8RBHO/9WpdRL8UWP5S2a8Y9K2uG1KgetRPhBHg1ZctWIVd0zzEqOinUBg7k3p16yW7Gw8FkshlS7I9XI+jl0qa16ByhHJOdiFVTIp31kxs8UWjZogbKQGyCCaQQc5zD7YxAQ26CnsoVXfDiewJioa+D9PeHwfg0icHIJUftnMuy6eR13aJWGtu99XvkSOBmmrnWFcRGwqvwENKzBbRDYkz03Y4HewTWBTkVBIf6aCjjFP353A//Jc8LfYCzYsCRVXcVfgNEKi8e080GU5tX+ZgzDEDxU8CwCs6WhBTco7BNDx7p/rb9ZaKi47zjR7j/Fs82f0o1npumf2IhS644XBAPm9Uae9ElBcEZisVWF6EeCfR6z798oD+b9uZb959fSY6xYFt+tCQTPf9BtbOrsEdDLLDKgvHvvH6LyD0yC2nrQ4k3fqZ7rIjD4OJZzTpeJk4036C89IXq453YeCW5/P2RBx+nf3kTynu2LtAtG9kzS200srk/qZSsU8xnRtSzE0In0kSQngbx7eL39PywiY/QlAtAx8ROVV9o/w==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b39ec9e-83c2-4bb1-dc6a-08d886d982fa
+X-MS-Exchange-CrossTenant-Network-Message-Id: 36e2f69c-8fdf-40fc-5fcb-08d886d983f2
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3238.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2020 07:06:43.8287 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2020 07:06:45.4848 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DJMSSss3JnnmhWENfIv7MULyahx4DGmb9phxbaEDn3jNA1B+nENfudXos48oMse3
+X-MS-Exchange-CrossTenant-UserPrincipalName: tC7DKWhNRyQEsHLMBMq37rqCJcznhENzYPSiqrfzaXAGchNPIV1wdQYZsgG6NsNS
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB4789
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -99,62 +102,174 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-add amdgpu_acpi_is_s0ix_supported() to check the platform
-whether support s0i3.
+The new amdgpu_gfx_state_change_set() funtion can support set GFX power
+change status to D0/D3.
 
 Signed-off-by: Prike Liang <Prike.Liang@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 Acked-by: Huang Rui <ray.huang@amd.com>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h      |  2 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 14 ++++++++++++++
- 2 files changed, 16 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c              | 20 ++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h              |  7 +++++++
+ drivers/gpu/drm/amd/include/kgd_pp_interface.h       |  1 +
+ drivers/gpu/drm/amd/pm/inc/hwmgr.h                   |  1 +
+ drivers/gpu/drm/amd/pm/inc/rv_ppsmc.h                |  3 ++-
+ drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c     | 19 +++++++++++++++++++
+ drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c | 10 ++++++++++
+ 7 files changed, 60 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 20400ec..83ac06a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -1314,9 +1314,11 @@ int amdgpu_acpi_pcie_notify_device_ready(struct amdgpu_device *adev);
- 
- void amdgpu_acpi_get_backlight_caps(struct amdgpu_device *adev,
- 		struct amdgpu_dm_backlight_caps *caps);
-+bool amdgpu_acpi_is_s0ix_supported(void);
- #else
- static inline int amdgpu_acpi_init(struct amdgpu_device *adev) { return 0; }
- static inline void amdgpu_acpi_fini(struct amdgpu_device *adev) { }
-+static inline bool amdgpu_acpi_is_s0ix_supported(void) { return false; }
- #endif
- 
- int amdgpu_cs_find_mapping(struct amdgpu_cs_parser *parser,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-index 165b02e..fd66ac0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
-@@ -27,6 +27,7 @@
- #include <linux/power_supply.h>
- #include <linux/pm_runtime.h>
- #include <acpi/video.h>
-+#include <acpi/actbl.h>
- 
- #include <drm/drm_crtc_helper.h>
- #include "amdgpu.h"
-@@ -894,3 +895,16 @@ void amdgpu_acpi_fini(struct amdgpu_device *adev)
- 	unregister_acpi_notifier(&adev->acpi_nb);
- 	kfree(adev->atif);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+index 97a8f78..380dd3a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
+@@ -819,3 +819,23 @@ int amdgpu_gfx_get_num_kcq(struct amdgpu_device *adev)
+ 	}
+ 	return amdgpu_num_kcq;
  }
 +
-+/**
-+ * amdgpu_acpi_is_s0ix_supported
++/* amdgpu_gfx_state_change_set - Handle gfx power state change set
++ * @adev: amdgpu_device pointer
++ * @state: gfx power state(1 -sGpuChangeState_D0Entry and 2 -sGpuChangeState_D3Entry)
 + *
-+ * returns true if supported, false if not.
 + */
-+bool amdgpu_acpi_is_s0ix_supported()
-+{
-+	if (acpi_gbl_FADT.flags & ACPI_FADT_LOW_POWER_S0)
-+		return true;
 +
-+	return false;
++void amdgpu_gfx_state_change_set(struct amdgpu_device *adev, enum gfx_change_state state)
++{
++
++	mutex_lock(&adev->pm.mutex);
++
++	if (adev->powerplay.pp_funcs &&
++	    adev->powerplay.pp_funcs->gfx_state_change_set)
++			((adev)->powerplay.pp_funcs->gfx_state_change_set(
++					(adev)->powerplay.pp_handle, state));
++
++	mutex_unlock(&adev->pm.mutex);
++
 +}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+index 671d4b3..6b5a8f4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+@@ -47,6 +47,12 @@ enum gfx_pipe_priority {
+ 	AMDGPU_GFX_PIPE_PRIO_MAX
+ };
+ 
++/* Argument for PPSMC_MSG_GpuChangeState */
++enum gfx_change_state {
++	sGpuChangeState_D0Entry = 1,
++	sGpuChangeState_D3Entry,
++};
++
+ #define AMDGPU_GFX_QUEUE_PRIORITY_MINIMUM  0
+ #define AMDGPU_GFX_QUEUE_PRIORITY_MAXIMUM  15
+ 
+@@ -394,4 +400,5 @@ int amdgpu_gfx_cp_ecc_error_irq(struct amdgpu_device *adev,
+ uint32_t amdgpu_kiq_rreg(struct amdgpu_device *adev, uint32_t reg);
+ void amdgpu_kiq_wreg(struct amdgpu_device *adev, uint32_t reg, uint32_t v);
+ int amdgpu_gfx_get_num_kcq(struct amdgpu_device *adev);
++void amdgpu_gfx_state_change_set(struct amdgpu_device *adev, enum gfx_change_state state);
+ #endif
+diff --git a/drivers/gpu/drm/amd/include/kgd_pp_interface.h b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
+index 94132c7..f775aac 100644
+--- a/drivers/gpu/drm/amd/include/kgd_pp_interface.h
++++ b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
+@@ -285,6 +285,7 @@ struct amd_pm_funcs {
+ 	int (*odn_edit_dpm_table)(void *handle, uint32_t type, long *input, uint32_t size);
+ 	int (*set_mp1_state)(void *handle, enum pp_mp1_state mp1_state);
+ 	int (*smu_i2c_bus_access)(void *handle, bool acquire);
++	int (*gfx_state_change_set)(void *handle, uint32_t state);
+ /* export to DC */
+ 	u32 (*get_sclk)(void *handle, bool low);
+ 	u32 (*get_mclk)(void *handle, bool low);
+diff --git a/drivers/gpu/drm/amd/pm/inc/hwmgr.h b/drivers/gpu/drm/amd/pm/inc/hwmgr.h
+index 7e29ec2..1bb3794 100644
+--- a/drivers/gpu/drm/amd/pm/inc/hwmgr.h
++++ b/drivers/gpu/drm/amd/pm/inc/hwmgr.h
+@@ -366,6 +366,7 @@ struct pp_hwmgr_func {
+ 	int (*disable_power_features_for_compute_performance)(struct pp_hwmgr *hwmgr,
+ 					bool disable);
+ 	ssize_t (*get_gpu_metrics)(struct pp_hwmgr *hwmgr, void **table);
++	int (*gfx_state_change)(struct pp_hwmgr *hwmgr, uint32_t state);
+ };
+ 
+ struct pp_table_func {
+diff --git a/drivers/gpu/drm/amd/pm/inc/rv_ppsmc.h b/drivers/gpu/drm/amd/pm/inc/rv_ppsmc.h
+index df4677d..4c7e08b 100644
+--- a/drivers/gpu/drm/amd/pm/inc/rv_ppsmc.h
++++ b/drivers/gpu/drm/amd/pm/inc/rv_ppsmc.h
+@@ -83,7 +83,8 @@
+ #define PPSMC_MSG_SetSoftMaxVcn                 0x34
+ #define PPSMC_MSG_PowerGateMmHub                0x35
+ #define PPSMC_MSG_SetRccPfcPmeRestoreRegister   0x36
+-#define PPSMC_Message_Count                     0x37
++#define PPSMC_MSG_GpuChangeState                0x37
++#define PPSMC_Message_Count                     0x42
+ 
+ typedef uint16_t PPSMC_Result;
+ typedef int      PPSMC_Msg;
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
+index eab9768..e0d2882 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
+@@ -1629,6 +1629,24 @@ static ssize_t pp_get_gpu_metrics(void *handle, void **table)
+ 	return size;
+ }
+ 
++static int pp_gfx_state_change_set(void *handle, uint32_t state)
++{
++	struct pp_hwmgr *hwmgr = handle;
++
++	if (!hwmgr || !hwmgr->pm_en)
++		return -EINVAL;
++
++	if (hwmgr->hwmgr_func->gfx_state_change == NULL) {
++		pr_info_ratelimited("%s was not implemented.\n", __func__);
++		return -EINVAL;
++	}
++
++	mutex_lock(&hwmgr->smu_lock);
++	hwmgr->hwmgr_func->gfx_state_change(hwmgr, state);
++	mutex_unlock(&hwmgr->smu_lock);
++	return 0;
++}
++
+ static const struct amd_pm_funcs pp_dpm_funcs = {
+ 	.load_firmware = pp_dpm_load_fw,
+ 	.wait_for_fw_loading_complete = pp_dpm_fw_loading_complete,
+@@ -1691,4 +1709,5 @@ static const struct amd_pm_funcs pp_dpm_funcs = {
+ 	.set_df_cstate = pp_set_df_cstate,
+ 	.set_xgmi_pstate = pp_set_xgmi_pstate,
+ 	.get_gpu_metrics = pp_get_gpu_metrics,
++	.gfx_state_change_set = pp_gfx_state_change_set,
+ };
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
+index 133a084..50308a5 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
+@@ -1439,6 +1439,15 @@ static int smu10_set_fine_grain_clk_vol(struct pp_hwmgr *hwmgr,
+ 	return 0;
+ }
+ 
++static int smu10_gfx_state_change(struct pp_hwmgr *hwmgr, uint32_t state)
++{
++	struct amdgpu_device *adev = hwmgr->adev;
++
++	smum_send_msg_to_smc_with_parameter(hwmgr, PPSMC_MSG_GpuChangeState, state, NULL);
++
++	return 0;
++}
++
+ static const struct pp_hwmgr_func smu10_hwmgr_funcs = {
+ 	.backend_init = smu10_hwmgr_backend_init,
+ 	.backend_fini = smu10_hwmgr_backend_fini,
+@@ -1485,6 +1494,7 @@ static const struct pp_hwmgr_func smu10_hwmgr_funcs = {
+ 	.set_power_profile_mode = smu10_set_power_profile_mode,
+ 	.asic_reset = smu10_asic_reset,
+ 	.set_fine_grain_clk_vol = smu10_set_fine_grain_clk_vol,
++	.gfx_state_change = smu10_gfx_state_change,
+ };
+ 
+ int smu10_init_function_pointers(struct pp_hwmgr *hwmgr)
 -- 
 2.7.4
 
