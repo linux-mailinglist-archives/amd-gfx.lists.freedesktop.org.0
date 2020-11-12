@@ -1,55 +1,90 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 511EB2B0E88
-	for <lists+amd-gfx@lfdr.de>; Thu, 12 Nov 2020 20:55:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E33072B0E94
+	for <lists+amd-gfx@lfdr.de>; Thu, 12 Nov 2020 20:56:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C38876E113;
-	Thu, 12 Nov 2020 19:55:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 708DD6E416;
+	Thu, 12 Nov 2020 19:56:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F47A6E113
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Nov 2020 19:55:07 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id r17so7340937wrw.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Nov 2020 11:55:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=uwv27WR/HKlsEgtnafOe7d4aznmQgFFA5xbywdCBbfc=;
- b=SOPw2PN0dzeYLYyLkE8mXSZ43+PjRKXw9jdSgiHaKoEudBv46vNzr+ud5vcI74c6Nb
- YEwQT6aUzMDBcbF9Mj7Zh2ns5JTLsPg3Cbu/Bd1Y71DRuUnbgx1VF14BHjiq7wmRhQ4p
- 3OcC+IAOdVue67HyVSLq1kvweArC+PISL39rq2OU9/Qk9zXHbSAtzDZJ5lZBJm1X66Wm
- JyEu3phWEE8z5djUCKJoWbaurlixUqLqqkefJ6AXfj9+XjLAgR6UewJJMNjAStlXdDUt
- lFI1+hZV83Cetj9YDnpTigAkAnkMqNlloOrNLihODf+sCTnIZWA0tM+609Q1u2fFTh/N
- vMDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=uwv27WR/HKlsEgtnafOe7d4aznmQgFFA5xbywdCBbfc=;
- b=YWOoa5irtGDiAaLsUEF5LX97GKgJdevwc9eUtJqpw0gGAdQfpVSJvEAWxJsabovClb
- hetYWn+Vod6RoGSl+0/4ROb8wChbRNrRDJIkiaI6EKzsncgavGCVU5dosPJELZmD8x3J
- kqGtq9gvklgEsKqIiiUPR2L8Xta8gE96IYYtRpo5VDvhbmlCbl4K/pskyOSpixhg3gjn
- jRBKHuCyJzDoFHiT/5r8Y5wExmD7CgkRPJai1rk7jN1vxhBSJnnzgNs/cbLSadXZbxKq
- znlaIvbNI7sgICDDZU7m12pZnO3VxNC3Z2dfvG9hvdoYAdv0SFuSW2yBLh/R4Xx+BPmN
- xf5g==
-X-Gm-Message-State: AOAM530bYMmBr1bcOamNqmul9nuplKaE4JdoCdhFbuKnc49JZxsLWx3Q
- t5d1k1Woga5Bf+YZGJaJJXk9GOpx41r9sMF0+5A=
-X-Google-Smtp-Source: ABdhPJzSFHeS99pfl2SfHwQIQBFQQANkfpJIp9nA19hNgEMpqYyUl6jGOeBr/Whjeg2uitCcStkNe6r6mzRWa6na5lw=
-X-Received: by 2002:a5d:6a83:: with SMTP id s3mr1286714wru.397.1605210905756; 
- Thu, 12 Nov 2020 11:55:05 -0800 (PST)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2080.outbound.protection.outlook.com [40.107.237.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 127EA6E416
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Nov 2020 19:56:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FG76Dmm8UElrwLL0GjpUQ8cm/32rftIu6ch0PLp7K49ATU5z2F+0Up5A40moDN1BaQ4xmYWq8jI0pgwR2F7gBLSiHppPitNnhb5L1bLVHUMWU/PRpN4wjfutqX9artmuiYwIlFTAHPVteF7bYn01lw5aspZiLmgi3RDWog0AmDOEBgyBtZPG9/V/qR5wvjtssPnKyBM5fbyannV3aBhA+hqGz95SVQEJPyeZYcQmRDm4JPR0xXTvZ1j19SNpyBXkxGSxNTU7AAN1C6griMwFVAE8alD8I+vxdZS/BhpYqHNsZwlAbsFvOJfxGiKTOsqTg7fk/mHiLfdDwqyfK2f1vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6E532OIYO9I0WogaeKCAmEnKFjeYNoGA5zzFZFGQHso=;
+ b=NGEoFvxG5y0cqVkuezCV//RM0XUvoNpG3rY2wU8lPeg5A7w8cvEKurwjAClhM0EWOQhxMjUzIkj6qt93MDzkVp9ZamZUcQTUlPInIEjcAROsClWqYBh+Re/oq8BEaseQlqnc1SRLP+u08izoz1empW+aECaWBgLOSw8CiPyowX1IOzgK2Zqs/YZnjm/MSXSHm6g7eo2jj5oNBinuUqjZ1ModVBcDFTFjlw1mLLcw/WYAgtV0rKvj+b6r24uBP/uYO2LVVI/whvgUv8C4LO8EWxo/gWikI9el29dM7dUzQlhFUR5sBMfircD6FIY4IWgsZPpKLBl7ioVJne1g6bS41g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6E532OIYO9I0WogaeKCAmEnKFjeYNoGA5zzFZFGQHso=;
+ b=rxKKf6Bhl+wqi6/IqG9bcg84EdDiTibQ82ml38Fji9Q8XxWBsIpgJuJg6wtREZfrJWkNGI0U2lmid8YqEqC/og6iNWtrAnuU1FSSRAqjimfFt8J+u3GotG6FzGC3/1eDTWdoAO3KsVckWrfiJLG0GyNykbPWp1VtBmxLQyX/Ij0=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from BYAPR12MB3560.namprd12.prod.outlook.com (2603:10b6:a03:ae::10)
+ by BYAPR12MB3288.namprd12.prod.outlook.com (2603:10b6:a03:130::33)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.25; Thu, 12 Nov
+ 2020 19:56:45 +0000
+Received: from BYAPR12MB3560.namprd12.prod.outlook.com
+ ([fe80::b46f:9253:b0d8:7999]) by BYAPR12MB3560.namprd12.prod.outlook.com
+ ([fe80::b46f:9253:b0d8:7999%7]) with mapi id 15.20.3477.037; Thu, 12 Nov 2020
+ 19:56:45 +0000
+Subject: Re: [PATCH] drm/amd/display: add cursor pitch check
+To: Simon Ser <contact@emersion.fr>, amd-gfx@lists.freedesktop.org
+References: <dM9UpdTNt3rJxagA8swvzv6sXdjID2x67yd3tJg6A@cp4-web-030.plabs.ch>
+From: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
+Message-ID: <d791cc9f-7aa5-b453-992d-1f0cf0f2a905@amd.com>
+Date: Thu, 12 Nov 2020 14:56:39 -0500
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.3
+In-Reply-To: <dM9UpdTNt3rJxagA8swvzv6sXdjID2x67yd3tJg6A@cp4-web-030.plabs.ch>
+Content-Language: en-US
+X-Originating-IP: [165.204.54.211]
+X-ClientProxiedBy: YTOPR0101CA0018.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:15::31) To BYAPR12MB3560.namprd12.prod.outlook.com
+ (2603:10b6:a03:ae::10)
 MIME-Version: 1.0
-References: <1605164796-22215-1-git-send-email-Prike.Liang@amd.com>
- <1605164796-22215-5-git-send-email-Prike.Liang@amd.com>
-In-Reply-To: <1605164796-22215-5-git-send-email-Prike.Liang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 12 Nov 2020 14:54:54 -0500
-Message-ID: <CADnq5_PqsJf9hJjYoTzUzaFKT-MXvDOARH8dxHT74=GwCEdNEA@mail.gmail.com>
-Subject: Re: [PATCH 5/5] drm/amd/pm: add gfx_state_change_set() for rn gfx
- power switch
-To: Prike Liang <Prike.Liang@amd.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.31.19.251] (165.204.54.211) by
+ YTOPR0101CA0018.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::31) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21 via Frontend
+ Transport; Thu, 12 Nov 2020 19:56:43 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 167c5149-6a8f-4979-45df-08d8874514e2
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3288:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BYAPR12MB3288634DB3575FFEEFE6960CECE70@BYAPR12MB3288.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +x01LKCuhWaxhGPubzQJVXh3ZufwTLKIB3W+EO6fQ+Mll7PvMcsq98EVTEf77fJaTAQZWH7OK1hyaSC6oQqGeVox8wlukmGbHkeaROxkCWAdPnq0Un7lqXV5tW/gK37vJzkgQmgNZdDrTtTUQ24pZaEPM7zQ2RP4A+gzlK9ufv77fIaFjMoSBaWQqQwZwl/1O++oByRn4cpQY3aCaRecKipyU7giQoQsXGiveVA6ybkEhtyPYau/na0lflTpR2IaS4Wqo7D4+8XETLigEgBdwWHK2kpQo09O+br4qHFEQxkyfDP9bKxJUsUuvvK6/UJBZwIpJhuQCA814Rj6pcdvqpBGzr5pUBG7fvzXk6LEN5nZCSM9QmCT0Zyv/9plgGUA
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR12MB3560.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(346002)(366004)(376002)(136003)(39860400002)(2906002)(8676002)(16576012)(5660300002)(86362001)(478600001)(6666004)(16526019)(186003)(66946007)(83380400001)(66476007)(36756003)(316002)(26005)(52116002)(956004)(53546011)(31696002)(4001150100001)(2616005)(8936002)(66556008)(6486002)(54906003)(4326008)(31686004)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: RgAMQ81WkNWULJDy6UJA8CTaf5Zm74DhusQg8mScwnIh9b9y7I6L7NEEBG4uNa5bepyacwU9PEq3o4jaXSJi+rjO/GyFexoUQPS93Y+sDfr5Ao5wXFnPngFw5Jxeq066BcXOH7ZIkBqjgWnFeiXwvtKSn943LlHV7NnruacJ8BJM68BLHpvLDFu7mUlN9K59HQNphF3rtvaiQerNVwlu/tG997pmcrKY1NmeF/yUbvCtqyL/nxzvq48fNHO99XrcvE0evQY5Z/QRu2AFQgqby3thgdBgF1YISupzXfRPKkZxqe14YTwdI0Q5f1Uy5ZSNaxnKPtYzDpNSU7Pbqc1Qq7UmemIzxa/pD6aQfyIDOggAmw7Mxs5JaUswlCYXkpZYx/h0DOj9PbpBYs0cMCGRg9S9aS+sAOCCiwjaOjz+kzxQAGLQTlFnh712xCHAJoOdHYl12BODiBiD7WNlN8owJG3nlriYa1CxK8TcY6O2JbtJSeVSJ0tsnHCN0UAUcs6KwfBU/xEuNytljaaGczOeQyEWJOvzrhmkEs9FMBO/vYUlel2mZahhfIhIQuF+tn7k60ZTjB62kosalAtDNw2g02gWgMDTavUVfUw2Wbx2Cg2QFtd8LpswpzbNxftUv/ahVfFXqHT5Xnoxlky32WUi+A==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 167c5149-6a8f-4979-45df-08d8874514e2
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3560.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2020 19:56:44.9489 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UakGp2738GPc/jRJqlU1k8oWkVMuE9JFy43mXrFGmOwWrLSE1enwJzOfs1dWPGh/VZ44WdecDQJSLoNl03MZlA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3288
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,109 +96,91 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- Huang Rui <ray.huang@amd.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Alex Deucher <alexander.deucher@amd.com>, Harry Wentland <hwentlan@amd.com>,
+ "Pierre-Loup A . Griffais" <pgriffais@valvesoftware.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Nov 12, 2020 at 2:06 AM Prike Liang <Prike.Liang@amd.com> wrote:
->
-> The gfx_state_change_set() funtion can support set GFX power
-> change status to D0/D3.
->
-> Signed-off-by: Prike Liang <Prike.Liang@amd.com>
+On 2020-11-12 12:37 p.m., Simon Ser wrote:
+> This patch expands the cursor checks added in "drm/amd/display: add basic
+> atomic check for cursor plane" to also include a pitch check. Without
+> this patch, setting a FB smaller than max_cursor_size with an invalid
+> pitch would result in amdgpu error messages and a fallback to a 64-byte
+> pitch:
+> 
+>      [drm:hubp1_cursor_set_attributes [amdgpu]] *ERROR* Invalid cursor pitch of 100. Only 64/128/256 is supported on DCN.
+> 
+> Signed-off-by: Simon Ser <contact@emersion.fr>
+> Reported-by: Pierre-Loup A. Griffais <pgriffais@valvesoftware.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Harry Wentland <hwentlan@amd.com>
+> Cc: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+
+Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+
+But with some comments below:
+
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c         |  3 +++
->  drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h         |  2 ++
->  drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c       | 10 ++++++++++
->  drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c |  7 +++++++
->  4 files changed, 22 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> index 380dd3a..60c0a6d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> @@ -838,4 +838,7 @@ void amdgpu_gfx_state_change_set(struct amdgpu_device *adev, enum gfx_change_sta
->
->         mutex_unlock(&adev->pm.mutex);
->
-> +       if (is_support_sw_smu(adev))
-> +               smu_gfx_state_change_set(&adev->smu, state);
+> 
+> Couple questions:
+> 
+> - This implements a single check for all GPU generations. Is my
+>    assumption correct here? It seems like this check is OK for at least
+>    DCN 1.0 and DCN 2.0.
+> - We should really implement better checks. What features are supported
+>    on the cursor plane? Is scaling supported? Is cropping supported? Is
+>    rotation always supported?
 
-maybe move this up with the powerplay code for consistency?
+On DCE and DCN there is no dedicated hardware cursor plane. You get a 
+cursor per pipe but it's going to inherit the scaling and positioning 
+from the underlying pipe.
 
-> +
->  }
-> diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
-> index 9724d6f..ae8ff7b 100644
-> --- a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
-> +++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
-> @@ -576,6 +576,7 @@ struct pptable_funcs {
->         int (*post_init)(struct smu_context *smu);
->         void (*interrupt_work)(struct smu_context *smu);
->         int (*gpo_control)(struct smu_context *smu, bool enablement);
-> +       int (*gfx_state_change_set)(struct smu_context *smu, uint32_t state);
->  };
->
->  typedef enum {
-> @@ -764,6 +765,7 @@ int smu_get_status_gfxoff(struct amdgpu_device *adev, uint32_t *value);
->  ssize_t smu_sys_get_gpu_metrics(struct smu_context *smu, void **table);
->
->  int smu_enable_mgpu_fan_boost(struct smu_context *smu);
-> +int smu_gfx_state_change_set(struct smu_context *smu, uint32_t state);
->
->  #endif
->  #endif
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-> index 3999079..35465a6 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-> @@ -2529,3 +2529,13 @@ int smu_enable_mgpu_fan_boost(struct smu_context *smu)
->
->         return ret;
->  }
-> +
-> +int smu_gfx_state_change_set(struct smu_context *smu, uint32_t state)
-> +{
-> +       int ret = 0;
-> +
+There's software logic to ensure we position the cursor in the correct 
+location in CRTC space independent on the underlying DRM plane's scaling 
+and positioning but there's no way for us to correct the scaling. Cursor 
+will always be 64, 128, or 256 in the pipe's destination space.
 
-I think we need to lock the smu->mutex here?
+Cursor can be independently rotated in hardware but this isn't something 
+we expose support for to userspace.
 
-Alex
+The pitch check of 64/128/256 is OK but we don't support 256 on DCE.
 
-> +       if (smu->ppt_funcs->gfx_state_change_set)
-> +               ret = smu->ppt_funcs->gfx_state_change_set(smu, state);
+Regards,
+Nicholas Kazlauskas
+
+> 
+>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 14 ++++++++++++++
+>   1 file changed, 14 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 2855bb918535..42b0ade7de39 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -8902,6 +8902,20 @@ static int dm_update_plane_state(struct dc *dc,
+>   			return -EINVAL;
+>   		}
+>   
+> +		if (new_plane_state->fb) {
+> +			switch (new_plane_state->fb->pitches[0]) {
+> +			case 64:
+> +			case 128:
+> +			case 256:
+> +				/* Pitch is supported by cursor plane */
+> +				break;
+> +			default:
+> +				DRM_DEBUG_ATOMIC("Bad cursor pitch %d\n",
+> +						 new_plane_state->fb->pitches[0]);
+> +				return -EINVAL;
+> +			}
+> +		}
 > +
-> +       return ret;
-> +}
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-> index 66c1026..9423f36 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-> @@ -1136,6 +1136,13 @@ static ssize_t renoir_get_gpu_metrics(struct smu_context *smu,
->         return sizeof(struct gpu_metrics_v2_0);
->  }
->
-> +static int renoir_gfx_state_change_set(struct smu_context *smu, uint32_t state)
-> +{
-> +       struct amdgpu_device *adev = smu->adev;
-> +
-> +       return smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_GpuChangeState, state, NULL);
-> +}
-> +
->  static const struct pptable_funcs renoir_ppt_funcs = {
->         .set_power_state = NULL,
->         .print_clk_levels = renoir_print_clk_levels,
-> --
-> 2.7.4
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+>   		return 0;
+>   	}
+>   
+> 
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
