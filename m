@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC7002B2609
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Nov 2020 21:58:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4EB92B260D
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Nov 2020 21:58:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24D3B6E840;
-	Fri, 13 Nov 2020 20:58:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83BAB6E847;
+	Fri, 13 Nov 2020 20:58:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2044.outbound.protection.outlook.com [40.107.244.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7F626E842
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 20:58:09 +0000 (UTC)
+Received: from NAM04-BN3-obe.outbound.protection.outlook.com
+ (mail-eopbgr680084.outbound.protection.outlook.com [40.107.68.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EBA56E844
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 20:58:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QFS9+EaJRvwf5CDLLcAAp4vDMY+yheLNmzlWvoD9Qp4Ho6X6WcWRSECV3Jf2d7rB2Q7vw2+umDEBXp44a6zJK/qT/1hc6x3gJ4oD6e15nGlnQtWf/YtycPDWR8I/DA00bo3zimeceqJIufNqtRWLAb/1jh8G6Fw9idPNh1Cw5C8Smn3Ubh/UGuH2KckFwQNsmsjI7QXjHB5YTNNKY1otUIUXC3lYEmQU5Z3eFHrodAl9xdjyZKsTshpwjXDLj0eJNDYb2gJtzaOmJGF2GZPtaNoO13vQDiK1NPbzdHhJaio4YSAGm8TgozKo3/U27cmX83gNvNC/0uDjsbLg1mk5YQ==
+ b=BQ4nr8t3ksU1YfZaMQQutaMUcR1BGbXbIxfjpWyubvz6Vgn8SzssW92zcI14CmB+nBdDa6nA7f67cQ7jmYpkouyLrPvVGNKKhHzYF8xOcuQ9flJsoalg6U7SezxAl8wT0hWuHb4iOTvs8r1abg3hbJ3WEw4Gyq2/YVzk6QNy9ADlYlm+Ye7aopZnYsvlnJUifCUZPC2XT/LHO/2dC4nH0yZBy101dw0P+OyHZr0CCnB9FypxwCUOJxeG0vuUch304s3di/edWYoZdw0oQ3Bh8jdo74bqbW02bsp8yhV6WlUeuDh3VsS12xNFAkqYzDDeWoKTLI0Y223yxWRTE99RJQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IoASKyw7HzSp82b2diC0Qv89ku955b5vgi11+NDQp1Y=;
- b=H6sTXIy0dqqtzsGXQnsmJHmaqS17d+p9ooyhMqiYSiVeraU9QBsaVNEIi0SOG9MJ4mIn5lGw4xgXZikf2ocYlglugYbEFFk9gisRVp7LvwglSefx2TRbHUQde2LYZNTTt9kLxm94aqkoB0R9ZCDdk921h2Mt3i+MYFH5pY2GA6UlJAi9w9m5Bvyk81+WzqMlZ9zv7eFF4f3258jQepwYoO2NhFiCQj2wFhR97zvn3LkXde2J+Pmg5DvPh6ke0iC0wtsXFfu6vZEwneTnHkmjWqdL1Hb0qEgmlDVpWJF1BJt/546g3NqlaV3Xqdz8vBuKuSa/FRlAasv9qxCvPAxh0Q==
+ bh=dbTOKK7PywtY7J1yG4daMYhPmzBGVjyzuNTX9Brpjms=;
+ b=fTkmiWOHCXeQPJzRugl0dJzUpDUoAJuN5smLOVwlhtkVYrrbuhG/UmsQXiAPnDjaNCVoy6VPkyeXWtm+pWEgLHJctsfk8DKzMoxY9WuoIX4WgjatUXhMD73UoFRKMEdB8pmwVytkwEuFX40o2EDPF7aiOiggUmYVP6jOgo6Agv82cjFdB9KOUsBwtITk+0yM0w/Y6IDVB9HeRDjLCvqnU8YGZH4s/4fbU3RE3NYxrgmNI8yuotYdf8dgnJabRXoYGPm3+btkAql4mtQ8wvkd3PAeyfbjBWoTQuqF5TaZhr1EbTVaVooiR1z4T68aVbShbETmsEBKE/NXw3wREr2Qfw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=none action=none header.from=amd.com; dkim=none (message not signed);
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IoASKyw7HzSp82b2diC0Qv89ku955b5vgi11+NDQp1Y=;
- b=LKqL7U09QhTuE2zmpwxQpEq5HnukSUCIF9KmpjmpUvXv+ZPclFbxQC7MNesfUySeM1KxrP/hFwqy3V8rL8iG9eElemwuD2blnKdNBgKE3LPnB1+WN3rIBlropuH/ZqedCNnWHsBvh6c4/QMLYQdAXyci5nmowJqNSaLN42Nuj08=
-Received: from DM5PR2201CA0007.namprd22.prod.outlook.com (2603:10b6:4:14::17)
- by MN2PR12MB3277.namprd12.prod.outlook.com (2603:10b6:208:103::28)
+ bh=dbTOKK7PywtY7J1yG4daMYhPmzBGVjyzuNTX9Brpjms=;
+ b=W7OW6TWoh75RDiOPfF9dmkQrlTfSSJT/xltf+NBkbsRMfVT6y34k7nOXks4G7EnYtsSifW5LasmesAxRMOqQhU3SMN1X/wQUeJw2GF0Y1U5BeO/wBrZ/JERKcDNG2oVzEgeJjgVy6NCfRkGA0X+x/bsv8t/z2xSYEVd6n2idH6s=
+Received: from DM5PR2201CA0011.namprd22.prod.outlook.com (2603:10b6:4:14::21)
+ by BYAPR12MB3160.namprd12.prod.outlook.com (2603:10b6:a03:132::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.22; Fri, 13 Nov
- 2020 20:58:07 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.25; Fri, 13 Nov
+ 2020 20:58:08 +0000
 Received: from DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:14:cafe::f0) by DM5PR2201CA0007.outlook.office365.com
- (2603:10b6:4:14::17) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:4:14:cafe::66) by DM5PR2201CA0011.outlook.office365.com
+ (2603:10b6:4:14::21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.25 via Frontend
- Transport; Fri, 13 Nov 2020 20:58:07 +0000
+ Transport; Fri, 13 Nov 2020 20:58:08 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=none action=none
@@ -48,23 +48,24 @@ Received-SPF: None (protection.outlook.com: amd.com does not designate
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
  DM6NAM11FT067.mail.protection.outlook.com (10.13.172.76) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3541.22 via Frontend Transport; Fri, 13 Nov 2020 20:58:05 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB01.amd.com
+ 15.20.3541.22 via Frontend Transport; Fri, 13 Nov 2020 20:58:08 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 13 Nov
- 2020 14:58:03 -0600
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ 2020 14:58:05 -0600
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 13 Nov
- 2020 14:58:03 -0600
+ 2020 14:58:04 -0600
 Received: from bindu-HP-EliteDesk-705-G4-MT.amd.com (10.180.168.240) by
  SATLEXMB02.amd.com (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3
- via Frontend Transport; Fri, 13 Nov 2020 14:58:02 -0600
+ via Frontend Transport; Fri, 13 Nov 2020 14:58:03 -0600
 From: Bindu Ramamurthy <bindu.r@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 09/17] drm/amd/display: Add I2C memory low power support
-Date: Fri, 13 Nov 2020 15:56:37 -0500
-Message-ID: <20201113205645.640981-10-bindu.r@amd.com>
+Subject: [PATCH 10/17] drm/amd/display: set dpp dto as per requested clk for
+ lower case.
+Date: Fri, 13 Nov 2020 15:56:38 -0500
+Message-ID: <20201113205645.640981-11-bindu.r@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201113205645.640981-1-bindu.r@amd.com>
 References: <20201113205645.640981-1-bindu.r@amd.com>
@@ -72,27 +73,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 805c487e-133b-41bf-62c3-08d88816d1a2
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3277:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB32777733C60F2534D516126AF5E60@MN2PR12MB3277.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Office365-Filtering-Correlation-Id: 6dba3a45-1702-4691-7ec7-08d88816d30d
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3160:
+X-Microsoft-Antispam-PRVS: <BYAPR12MB3160346AF762720E578D0D30F5E60@BYAPR12MB3160.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vtq/mAVBfu6WRPcJCpnPxDj4pueLnHSbFDDyf5vji1yCK/QXgS2f4hNYWKlXXObSq3UMMNkdvj9kyqje/OffIbx47v6gK3PpbgTJ3lpWVcgfBldHHYV0oMeVKzZeUjam8RMTYBGQV6WkFFfEhyjX5rM/aOPs4+VaB/R2JXmZox6z1CXcV/4h78JN6msoPohl7CvoP3cMZvJZ+b33FHM/7GEyN995zWTI/q7olQl4h4EuR62kbupR+PJ5pQOLb/9dmZKHeEyB0O4WzmimKFyziss7fx6Skb6VSodqgaVKzyefKSshtiliqu+eEGOOFIXrr1bOfVoXKYz18w1KhtkKb5KmmIiNnVct3E9Em9GdkL3k5uJpVXtoGPnrupH8M2KgzOo77dYU41z+zeLaptlMOg==
+X-Microsoft-Antispam-Message-Info: QE23bhEUeCRxrAuMRRXNWXTWjxtOs4XR669lHabbc6XkfEx8H2oQFVkqfMt4rbW3ZuolBbDwr/SN2vcfCGMD0TMi63tOrr9aH9qk5NDg1wvOG/fYsHeoL/m5LxVEXUaBU7ByJZioSMkVVj2zoHjYacjG1xgDOPyHTtUEXWENmyMPb6rT9oWvcGtNR/FYITojNxRwPoyol0uQ87ROJG1h7NgAnxM1s0oDrxIJEkZ2Tg/W+x2Ak+7oQxjEqzsrfpBju/UAqrTPrddRAR6Q3YXEgUXxttGCFx4WQax6akh+EwRg+cCswZLDZOlqgruQZQxf+FP51MEdvWUM2RkwD+rKlFSZ3+3jyKTQPQnEvX8MkYrNSGVJyDhohaHJDaeyyk0UsvCFscOUAcNpbxifb7T48Q==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(136003)(39860400002)(396003)(346002)(376002)(46966005)(26005)(5660300002)(6916009)(1076003)(2906002)(81166007)(316002)(8936002)(8676002)(86362001)(336012)(83380400001)(36756003)(82310400003)(186003)(82740400003)(6666004)(356005)(47076004)(54906003)(478600001)(2616005)(4326008)(70586007)(426003)(70206006)(7696005);
+ SFS:(4636009)(396003)(346002)(136003)(376002)(39860400002)(46966005)(86362001)(8676002)(82310400003)(2906002)(82740400003)(478600001)(6666004)(186003)(6916009)(336012)(26005)(316002)(5660300002)(36756003)(54906003)(7696005)(83380400001)(4326008)(8936002)(1076003)(356005)(2616005)(70206006)(70586007)(47076004)(81166007)(426003);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2020 20:58:05.9684 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 805c487e-133b-41bf-62c3-08d88816d1a2
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2020 20:58:08.3480 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6dba3a45-1702-4691-7ec7-08d88816d30d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3277
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3160
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,156 +107,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Aurabindo.Pillai@amd.com, Jacky Liao <ziyu.liao@amd.com>,
+ Aurabindo.Pillai@amd.com, Yongqiang Sun <yongqiang.sun@amd.com>,
  Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jacky Liao <ziyu.liao@amd.com>
+From: Yongqiang Sun <yongqiang.sun@amd.com>
 
 [Why]
-The I2C memory blocks should be powered down when they are not in use.
-This will reduce power consumption.
+Blue screen when PNP with multiple monitor or hotplug external monitor when playing video
+due to dpp dto isn't programmed properly.
+If lower dpp clock, dpp dto need to be programmed first, and actual dpp clk not avalable yet.
 
 [How]
-1. Write to I2C_LIGHT_SLEEP_FORCE to put memory in light sleep when
-   released
-2. Added a debug option to allow this behaviour to be turned off
+set dpp dto as per request clk for lower case before dpp clk update, and after dpp clk updated
+set dpp dto again with actual dpp clk.
 
-Signed-off-by: Jacky Liao <ziyu.liao@amd.com>
+Signed-off-by: Yongqiang Sun <yongqiang.sun@amd.com>
 Acked-by: Bindu Ramamurthy <bindu.r@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h              |  1 +
- drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c  | 12 ++++++++++++
- drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.h  | 16 ++++++++++++++++
- .../drm/amd/display/dc/dcn30/dcn30_resource.c    |  6 +++---
- 4 files changed, 32 insertions(+), 3 deletions(-)
+ .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 28 +++++++++++++++----
+ 1 file changed, 23 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 52e819678ecd..e282c2211f42 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -419,6 +419,7 @@ struct dc_bw_validation_profile {
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+index 9e3d8af3895f..8d8ee4b9fee1 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+@@ -104,11 +104,12 @@ void rn_set_low_power_state(struct clk_mgr *clk_mgr_base)
+ }
  
- union mem_low_power_enable_options {
- 	struct {
-+		bool i2c: 1;
- 		bool mpc: 1;
- 		bool optc: 1;
- 	} bits;
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
-index 3e34afe8c504..7fbd92fbc63a 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
-@@ -293,6 +293,14 @@ static bool setup_engine(
+ static void rn_update_clocks_update_dpp_dto(struct clk_mgr_internal *clk_mgr,
+-		struct dc_state *context, bool safe_to_lower)
++		struct dc_state *context, int ref_dpp_clk, bool safe_to_lower)
  {
- 	uint32_t i2c_setup_limit = I2C_SETUP_TIME_LIMIT_DCE;
- 	uint32_t  reset_length = 0;
+ 	int i;
+ 
+-	clk_mgr->dccg->ref_dppclk = clk_mgr->base.clks.actual_dppclk_khz;
++	clk_mgr->dccg->ref_dppclk = ref_dpp_clk;
 +
-+        if (dce_i2c_hw->ctx->dc->debug.enable_mem_low_power.bits.i2c) {
-+	     if (dce_i2c_hw->regs->DIO_MEM_PWR_CTRL) {
-+		     REG_UPDATE(DIO_MEM_PWR_CTRL, I2C_LIGHT_SLEEP_FORCE, 0);
-+		     REG_WAIT(DIO_MEM_PWR_STATUS, I2C_MEM_PWR_STATE, 0, 0, 5);
-+		     }
-+	     }
+ 	for (i = 0; i < clk_mgr->base.ctx->dc->res_pool->pipe_count; i++) {
+ 		int dpp_inst, dppclk_khz, prev_dppclk_khz;
+ 
+@@ -200,19 +201,36 @@ void rn_update_clocks(struct clk_mgr *clk_mgr_base,
+ 	}
+ 
+ 	if (dpp_clock_lowered) {
+-		// increase per DPP DTO before lowering global dppclk
+-		rn_update_clocks_update_dpp_dto(clk_mgr, context, safe_to_lower);
++		// increase per DPP DTO before lowering global dppclk with requested dppclk
++		rn_update_clocks_update_dpp_dto(
++				clk_mgr,
++				context,
++				clk_mgr_base->clks.dppclk_khz,
++				safe_to_lower);
 +
- 	/* we have checked I2c not used by DMCU, set SW use I2C REQ to 1 to indicate SW using it*/
- 	REG_UPDATE(DC_I2C_ARBITRATION, DC_I2C_SW_USE_I2C_REG_REQ, 1);
+ 		clk_mgr_base->clks.actual_dppclk_khz =
+ 				rn_vbios_smu_set_dppclk(clk_mgr, clk_mgr_base->clks.dppclk_khz);
  
-@@ -369,6 +377,10 @@ static void release_engine(
- 	REG_UPDATE_2(DC_I2C_ARBITRATION, DC_I2C_SW_DONE_USING_I2C_REG, 1,
- 		DC_I2C_SW_USE_I2C_REG_REQ, 0);
- 
-+	if (dce_i2c_hw->ctx->dc->debug.enable_mem_low_power.bits.i2c) {
-+		if (dce_i2c_hw->regs->DIO_MEM_PWR_CTRL)
-+			REG_UPDATE(DIO_MEM_PWR_CTRL, I2C_LIGHT_SLEEP_FORCE, 1);
-+	}
- }
- 
- struct dce_i2c_hw *acquire_i2c_hw_engine(
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.h b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.h
-index fb055e6883c0..2309f2bb162c 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.h
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.h
-@@ -95,6 +95,11 @@ enum {
- 	SR(DC_I2C_DATA),\
- 	SR(MICROSECOND_TIME_BASE_DIV)
- 
-+#define I2C_HW_ENGINE_COMMON_REG_LIST_DCN30(id)\
-+	I2C_HW_ENGINE_COMMON_REG_LIST(id),\
-+	SR(DIO_MEM_PWR_CTRL),\
-+	SR(DIO_MEM_PWR_STATUS)
++		//update dpp dto with actual dpp clk.
++		rn_update_clocks_update_dpp_dto(
++				clk_mgr,
++				context,
++				clk_mgr_base->clks.actual_dppclk_khz,
++				safe_to_lower);
 +
- #define I2C_SF(reg_name, field_name, post_fix)\
- 	.field_name = reg_name ## __ ## field_name ## post_fix
- 
-@@ -179,6 +184,8 @@ struct dce_i2c_shift {
- 	uint8_t XTAL_REF_DIV;
- 	uint8_t DC_I2C_DDC1_SEND_RESET_LENGTH;
- 	uint8_t DC_I2C_REG_RW_CNTL_STATUS;
-+	uint8_t I2C_LIGHT_SLEEP_FORCE;
-+	uint8_t I2C_MEM_PWR_STATE;
- };
- 
- struct dce_i2c_mask {
-@@ -220,12 +227,19 @@ struct dce_i2c_mask {
- 	uint32_t XTAL_REF_DIV;
- 	uint32_t DC_I2C_DDC1_SEND_RESET_LENGTH;
- 	uint32_t DC_I2C_REG_RW_CNTL_STATUS;
-+	uint32_t I2C_LIGHT_SLEEP_FORCE;
-+	uint32_t I2C_MEM_PWR_STATE;
- };
- 
- #define I2C_COMMON_MASK_SH_LIST_DCN2(mask_sh)\
- 	I2C_COMMON_MASK_SH_LIST_DCE110(mask_sh),\
- 	I2C_SF(DC_I2C_DDC1_SETUP, DC_I2C_DDC1_SEND_RESET_LENGTH, mask_sh)
- 
-+#define I2C_COMMON_MASK_SH_LIST_DCN30(mask_sh)\
-+	I2C_COMMON_MASK_SH_LIST_DCN2(mask_sh),\
-+	I2C_SF(DIO_MEM_PWR_CTRL, I2C_LIGHT_SLEEP_FORCE, mask_sh),\
-+	I2C_SF(DIO_MEM_PWR_STATUS, I2C_MEM_PWR_STATE, mask_sh)
+ 	} else {
+ 		// increase global DPPCLK before lowering per DPP DTO
+ 		if (update_dppclk || update_dispclk)
+ 			clk_mgr_base->clks.actual_dppclk_khz =
+ 					rn_vbios_smu_set_dppclk(clk_mgr, clk_mgr_base->clks.dppclk_khz);
 +
- struct dce_i2c_registers {
- 	uint32_t SETUP;
- 	uint32_t SPEED;
-@@ -239,6 +253,8 @@ struct dce_i2c_registers {
- 	uint32_t DC_I2C_TRANSACTION3;
- 	uint32_t DC_I2C_DATA;
- 	uint32_t MICROSECOND_TIME_BASE_DIV;
-+	uint32_t DIO_MEM_PWR_CTRL;
-+	uint32_t DIO_MEM_PWR_STATUS;
- };
+ 		// always update dtos unless clock is lowered and not safe to lower
+ 		if (new_clocks->dppclk_khz >= dc->current_state->bw_ctx.bw.dcn.clk.dppclk_khz)
+-			rn_update_clocks_update_dpp_dto(clk_mgr, context, safe_to_lower);
++			rn_update_clocks_update_dpp_dto(
++					clk_mgr,
++					context,
++					clk_mgr_base->clks.actual_dppclk_khz,
++					safe_to_lower);
+ 	}
  
- enum dce_i2c_transaction_address_space {
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index b379057e669c..eb067034ad45 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -933,7 +933,7 @@ static struct dce_aux *dcn30_aux_engine_create(
- 	return &aux_engine->base;
- }
- 
--#define i2c_inst_regs(id) { I2C_HW_ENGINE_COMMON_REG_LIST(id) }
-+#define i2c_inst_regs(id) { I2C_HW_ENGINE_COMMON_REG_LIST_DCN30(id) }
- 
- static const struct dce_i2c_registers i2c_hw_regs[] = {
- 		i2c_inst_regs(1),
-@@ -945,11 +945,11 @@ static const struct dce_i2c_registers i2c_hw_regs[] = {
- };
- 
- static const struct dce_i2c_shift i2c_shifts = {
--		I2C_COMMON_MASK_SH_LIST_DCN2(__SHIFT)
-+		I2C_COMMON_MASK_SH_LIST_DCN30(__SHIFT)
- };
- 
- static const struct dce_i2c_mask i2c_masks = {
--		I2C_COMMON_MASK_SH_LIST_DCN2(_MASK)
-+		I2C_COMMON_MASK_SH_LIST_DCN30(_MASK)
- };
- 
- static struct dce_i2c_hw *dcn30_i2c_hw_create(
+ 	if (update_dispclk &&
 -- 
 2.25.1
 
