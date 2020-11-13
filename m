@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4A9D2B25FE
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Nov 2020 21:57:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8256E2B2602
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Nov 2020 21:58:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C21AC6E82C;
-	Fri, 13 Nov 2020 20:57:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CADFB6E83A;
+	Fri, 13 Nov 2020 20:58:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2067.outbound.protection.outlook.com [40.107.223.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C7ED6E82C
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 20:57:42 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2049.outbound.protection.outlook.com [40.107.243.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15A6A6E83A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 20:58:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Xxeev9ytIbuwclW5/NQL/wrBs1BthFzqDoXplkPM71l/XSN1cVsLBiAmy9usDBuU17c1sSViRZhw0A6ybIkbeCtrtVwKf+1aDZEt4Gy5A+uogzvLNCZ6gZLyxIB4useFTDESYR7pkws6dvFJG6841YlkFoAG5C2QlWPdZ5WjdNlqyvdtx9WOg3G+zzAIRfemFX/yA4b6xJfwgr6Vn11WNPXA7h8f41xj9AA6TcIEjqPOVENlanfl76qtBkAuiEREzO07Cgkm1J/1A75LoDCYJVciXjfy98C+t5wsH6xocL5mUeQYFjJQNXRK7WAm7ZpJLwZRJwjyvpJzG2lEyE3h8g==
+ b=d0GlQYKg47yRsncfVLxBYNNhsBDdm2H+PiIe3KYcpbbGx73L4gmn0vjLXZJqnnadGxEosgVS+Fk/Wbavw0kzCWLfDP0K8Rl3fM+z8ZW0iE/vrtNUWmbHoMvnMCr5l3vCJ0A9afDfJ1HdXLsLEXzqDi21p1Re4G2r4I7D3dJZPCfe3WSWekI9zqKexwHylEKBnQbplzpHy7EULBuh8ZbsV0zMRzM0D9FMOp8/UltWwkrzcCXCSjYXf6jTpIjsTbh1dZv3s9UtJ4GN39M6tW4AUyloW6xwXDUmox8DIhZwGrydMaI+oGmPLcNRgRAivL15dY+Ta2lADU78q8zUQNsRdw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7HZ9+BWwxpclkupkVLMDBA0CohhKyNBrLgUnnbqCzGA=;
- b=Fmj60z7MQCn7VX5nKfYdFHyc1/Y1D6qKScIPuyZXoJNrVLvY0LBY/Jy1uRFz2A/rb6EqCAIgWkQLyUREciRgBRjokzlXYOps5tdTofCHDEL2YtaH5Ijj4/rvDHMZlrlBEtsKyOsVVPOKvLn8Y+qqBIYOBl/JZF5MyAXzl8GC49lDWkQkV7rR75whIlxpNU1dXSLEccfbO8gEHGMRXbwriSGZC5SHcV9bKy16AaIT0z/gyOVyb8JKM1mYvmhMB2q1yQj9r8riIR97z5+CmpvQpUjCrFS7cn7AtcJOZLeCivwXd19H9w6BFIh8eL9FLfH0B26fSFUb3JH92IHWOticAg==
+ bh=P/4wuOYzG5OFf2bzACKoXp0Z53VlLKjgh4+91oDITq8=;
+ b=d5M3y+5LIIUQQKu2s/rZ4DUIKEFcFEpYZ1mN/HzU9sIqLN0tWJTuef+DZ7TmhlRCgF3JiDA4BPMIyvbSpv+XO5QhE2sw987sdKtKZDO74+VzE+UZc1mzHaxzsDO184h3DAS+Q4WR1Or+6moxPoqnBfMNGwSQtbulfypIA+bwpcpGdJquLaKZ0ODEDAzIYFoKf7xpTHp+6ioi/QlptNg4Kx8a4R4olRSaKnuu+KzYtRUJ5mA5C0o9G2mhfvowjhpwFmyBYc8NECX8ufcFf52kqpG9IUFjmaGNAQufryFvBU3VQ49zlFuhsr1u/aHZNCUrhXZUFLIVDMiqJGJD8cWUuA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=none action=none header.from=amd.com; dkim=none (message not signed);
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7HZ9+BWwxpclkupkVLMDBA0CohhKyNBrLgUnnbqCzGA=;
- b=YVi/qp08m51a3xmtFXEo53g6eUO1r8rykO3AruStOY2uzkQbMaBLAlDwqcrfUD2tNzgZDlB6nJ6VoPrj3kzNta75lLsztvlEiWhzrTaZm1GzeLf7S1QydGdqonIdQkwT5sO0IhFgHLGpguyB2i32XNOIez0xiGz1kQSr1b2kJ2o=
-Received: from CO2PR04CA0100.namprd04.prod.outlook.com (2603:10b6:104:6::26)
- by CY4PR12MB1480.namprd12.prod.outlook.com (2603:10b6:910:f::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.23; Fri, 13 Nov
- 2020 20:57:36 +0000
-Received: from CO1NAM11FT026.eop-nam11.prod.protection.outlook.com
- (2603:10b6:104:6:cafe::ff) by CO2PR04CA0100.outlook.office365.com
- (2603:10b6:104:6::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.25 via Frontend
- Transport; Fri, 13 Nov 2020 20:57:36 +0000
+ bh=P/4wuOYzG5OFf2bzACKoXp0Z53VlLKjgh4+91oDITq8=;
+ b=f/2Z3JloiaRYzbc2jj9t6hEpGiHnrilj7QQ2wC3rftZMOXVFO2s7scJ9VDcFnLlmk5oq2rb8ojfMMuf7k+EdOfANRQFM/lDVRtawdkZ1YV1UqW0ieFVI4u/8CoP7MDTYhS3Pveo3jhK3eOrntqHQjyzUG1pk7Ggb3nwpnSKqvdY=
+Received: from MWHPR19CA0078.namprd19.prod.outlook.com (2603:10b6:320:1f::16)
+ by BN6PR12MB1332.namprd12.prod.outlook.com (2603:10b6:404:15::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.22; Fri, 13 Nov
+ 2020 20:57:56 +0000
+Received: from CO1NAM11FT063.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:320:1f:cafe::c5) by MWHPR19CA0078.outlook.office365.com
+ (2603:10b6:320:1f::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.25 via Frontend
+ Transport; Fri, 13 Nov 2020 20:57:55 +0000
 X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=none action=none
@@ -46,47 +46,53 @@ X-MS-Exchange-Authentication-Results: spf=none (sender IP is 165.204.84.17)
 Received-SPF: None (protection.outlook.com: amd.com does not designate
  permitted sender hosts)
 Received: from SATLEXMB02.amd.com (165.204.84.17) by
- CO1NAM11FT026.mail.protection.outlook.com (10.13.175.67) with Microsoft SMTP
+ CO1NAM11FT063.mail.protection.outlook.com (10.13.175.37) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3541.22 via Frontend Transport; Fri, 13 Nov 2020 20:57:34 +0000
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB02.amd.com
+ 15.20.3541.22 via Frontend Transport; Fri, 13 Nov 2020 20:57:55 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 13 Nov
- 2020 14:57:33 -0600
+ 2020 14:57:54 -0600
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 13 Nov
+ 2020 14:57:53 -0600
 Received: from bindu-HP-EliteDesk-705-G4-MT.amd.com (10.180.168.240) by
  SATLEXMB02.amd.com (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3
- via Frontend Transport; Fri, 13 Nov 2020 14:57:32 -0600
+ via Frontend Transport; Fri, 13 Nov 2020 14:57:52 -0600
 From: Bindu Ramamurthy <bindu.r@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 00/17] DC Patches November 16, 2020
-Date: Fri, 13 Nov 2020 15:56:28 -0500
-Message-ID: <20201113205645.640981-1-bindu.r@amd.com>
+Subject: [PATCH 01/17] drm/amd/display: Program dpp dto based on actual dpp clk
+Date: Fri, 13 Nov 2020 15:56:29 -0500
+Message-ID: <20201113205645.640981-2-bindu.r@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201113205645.640981-1-bindu.r@amd.com>
+References: <20201113205645.640981-1-bindu.r@amd.com>
 MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 89975ba5-61d9-4f28-01d8-08d88816bed3
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1480:
-X-Microsoft-Antispam-PRVS: <CY4PR12MB1480155E3BD1B6684F4A7508F5E60@CY4PR12MB1480.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Office365-Filtering-Correlation-Id: 7e7b19fa-a7bb-4011-e652-08d88816cb30
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1332:
+X-Microsoft-Antispam-PRVS: <BN6PR12MB13321A087392A650DDACD83EF5E60@BN6PR12MB1332.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 73UgqXMah3K6kt8iwyi1UT8Ds14ErbuFzStvB8GJ5CSKiITNsQNqQ/TNtIfTOCv3JnqbATFvK25aMJmOcdqVQg6J4wy73YP5oSMUhnUPpkKasOsrrVO1FnvGmdX6PETbIdytblOUyvYzs7T+KhiEPsjRzfKCRYGo9qovcplyZLP79jc4ATSlOxAJtSHGi5EjGLODca/uFuGpEvFA64LUPHHhFb2eGdt5Q9vBVTyEMZLwYp6t9wQZDLSN66PwinGDE7xpgbt2xHvuP0/Wji4bPNyKj6xFqv04YWBQ/ayYQQTq6Ts9J53UoCu4ViitmQdRv26gPnYAqLMiEf6ckR9QeIcSQwxXsSAQHVv468rISEAVRZa4X+/k33oRQk49MVTCK8TiS3WevgkKR7f4k2cJtg==
+X-Microsoft-Antispam-Message-Info: nlbIsGfRgbNFvMZN7LvC+SZSZj7KBfhsgKgH8XV+jRlBZJipgM0lpjAtYQhGDbwU2Qi7OTlnFssg0oA+/l6I0lKE0N7w/JWNl0BaaUiclZSVfv1UOScdbALslS3hD3saJSkcH2tGfG85O7qBoA4ma4Bny+ZcmAWP2YI30HuHkpsE4QBKU8n9Vv3X+UFAofniC85q62qWyGjL8udDL2U7ToNZK0gp+CVbczJO3xOG5q9avmspBaUvRfwdkvfOtrOijIFejBUyGBtgIyiEoZYtt+DUYCbevEyjN0odfvJzoRi+Qc1+/EYto6awtFKlhyQJs8IZejbgCL5WNNkm/nhtLjF1EroRsepmpS+JR292X74cu+zxw/U9/BhtyemXACmemWn8+txoT48svU3vnuTW4w==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(396003)(376002)(136003)(39860400002)(346002)(46966005)(86362001)(8936002)(36756003)(2616005)(426003)(6666004)(54906003)(83380400001)(70206006)(478600001)(70586007)(4326008)(82310400003)(7696005)(82740400003)(47076004)(26005)(2906002)(356005)(186003)(336012)(5660300002)(316002)(8676002)(1076003)(6916009)(81166007);
+ SFS:(4636009)(346002)(376002)(136003)(396003)(39860400002)(46966005)(70586007)(70206006)(356005)(8936002)(2616005)(36756003)(316002)(26005)(5660300002)(86362001)(82310400003)(81166007)(82740400003)(478600001)(426003)(8676002)(2906002)(186003)(54906003)(336012)(47076004)(4326008)(6666004)(6916009)(7696005)(83380400001)(1076003);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2020 20:57:34.3343 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 89975ba5-61d9-4f28-01d8-08d88816bed3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2020 20:57:55.0893 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e7b19fa-a7bb-4011-e652-08d88816cb30
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT026.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT063.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1480
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1332
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,90 +106,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+ Aurabindo.Pillai@amd.com, Yongqiang Sun <yongqiang.sun@amd.com>,
+ Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+From: Yongqiang Sun <yongqiang.sun@amd.com>
 
-This DC patchset brings improvements in multiple areas. In summary, we have:
+[Why]
+dpp dto phase and modulo are programmed with actual dpp global clk
+and pipe clk. Need to use actual dpp clk to prgoram dpp dto modulo
+to get more accuracy ratio.
 
-Anthony Koo (1):
-  drm/amd/display: [FW Promotion] Release 0.0.42
+[How]
+assign actual dpp clk to dccg for dpp modulo programming.
 
-Aric Cyr (1):
-  drm/amd/display: 3.2.112
+Signed-off-by: Yongqiang Sun <yongqiang.sun@amd.com>
+Acked-by: Bindu Ramamurthy <bindu.r@amd.com>
+---
+ .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 29 +++++++++++++++++--
+ 1 file changed, 26 insertions(+), 3 deletions(-)
 
-Dmytro Laktyushkin (1):
-  drm/amd/display: remove unused dml variables
-
-Jacky Liao (1):
-  drm/amd/display: Add I2C memory low power support
-
-Raymond Yang (1):
-  drm/amd/display: correct data type
-
-Roy Chan (1):
-  drm/amd/display: Detect dynamic backlight support in eDP sink
-
-Samson Tam (1):
-  drm/amd/display: fix cursor calculation for 1xnY rotated display
-    groups
-
-Sung Lee (2):
-  drm/amd/display: Populate hostvm parameter before DML calculation
-  drm/amd/display: Handle Unknown Result for SMU Periodic Retraining on
-    DCN2.1
-
-Wayne Lin (1):
-  drm/amd/display: Expose new CRC window property
-
-Wenjing Liu (1):
-  drm/amd/display: minor restructuring of pbn calculation functions
-
-Wyatt Wood (2):
-  drm/amd/display: Hook up PSR residency command to DSAT
-  drm/amd/display: Increase sr enter/exit in rn ddr4 watermark table
-
-Yongqiang Sun (4):
-  drm/amd/display: Program dpp dto based on actual dpp clk
-  drm/amd/display: set dpp dto as per requested clk for lower case.
-  drm/amd/display: Add dual edp optimization flag.
-  drm/amd/display: update vgh bounding box
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 142 +++++++++++++++++-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  19 +++
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_crc.c |  43 +++++-
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_crc.h |   3 +
- .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c |  53 ++++++-
- .../dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c   |   3 +-
- drivers/gpu/drm/amd/display/dc/core/dc_link.c |  30 +++-
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  |   7 +
- drivers/gpu/drm/amd/display/dc/dc.h           |   6 +-
- drivers/gpu/drm/amd/display/dc/dc_link.h      |   2 +
- drivers/gpu/drm/amd/display/dc/dc_types.h     |   2 +
- .../gpu/drm/amd/display/dc/dce/dce_i2c_hw.c   |  12 ++
- .../gpu/drm/amd/display/dc/dce/dce_i2c_hw.h   |  16 ++
- drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c |  15 ++
- drivers/gpu/drm/amd/display/dc/dce/dmub_psr.h |   1 +
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |  64 +++++++-
- .../drm/amd/display/dc/dcn21/dcn21_hubbub.c   |   2 +
- .../drm/amd/display/dc/dcn21/dcn21_resource.c |   2 +-
- .../drm/amd/display/dc/dcn30/dcn30_resource.c |   6 +-
- .../amd/display/dc/dcn301/dcn301_resource.c   |  60 ++++++--
- .../amd/display/dc/dml/display_mode_structs.h |   2 -
- .../drm/amd/display/dc/dml/display_mode_vba.c |   2 -
- .../drm/amd/display/dc/dml/display_mode_vba.h |   1 -
- .../gpu/drm/amd/display/dc/inc/hw/dchubbub.h  |   1 +
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |   7 +-
- 25 files changed, 448 insertions(+), 53 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+index ec394e3d8367..9e3d8af3895f 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+@@ -103,6 +103,30 @@ void rn_set_low_power_state(struct clk_mgr *clk_mgr_base)
+ 	clk_mgr_base->clks.pwr_state = DCN_PWR_STATE_LOW_POWER;
+ }
+ 
++static void rn_update_clocks_update_dpp_dto(struct clk_mgr_internal *clk_mgr,
++		struct dc_state *context, bool safe_to_lower)
++{
++	int i;
++
++	clk_mgr->dccg->ref_dppclk = clk_mgr->base.clks.actual_dppclk_khz;
++	for (i = 0; i < clk_mgr->base.ctx->dc->res_pool->pipe_count; i++) {
++		int dpp_inst, dppclk_khz, prev_dppclk_khz;
++
++		/* Loop index will match dpp->inst if resource exists,
++		 * and we want to avoid dependency on dpp object
++		 */
++		dpp_inst = i;
++		dppclk_khz = context->res_ctx.pipe_ctx[i].plane_res.bw.dppclk_khz;
++
++		prev_dppclk_khz = clk_mgr->dccg->pipe_dppclk_khz[i];
++
++		if (safe_to_lower || prev_dppclk_khz < dppclk_khz)
++			clk_mgr->dccg->funcs->update_dpp_dto(
++							clk_mgr->dccg, dpp_inst, dppclk_khz);
++	}
++}
++
++
+ void rn_update_clocks(struct clk_mgr *clk_mgr_base,
+ 			struct dc_state *context,
+ 			bool safe_to_lower)
+@@ -177,7 +201,7 @@ void rn_update_clocks(struct clk_mgr *clk_mgr_base,
+ 
+ 	if (dpp_clock_lowered) {
+ 		// increase per DPP DTO before lowering global dppclk
+-		dcn20_update_clocks_update_dpp_dto(clk_mgr, context, safe_to_lower);
++		rn_update_clocks_update_dpp_dto(clk_mgr, context, safe_to_lower);
+ 		clk_mgr_base->clks.actual_dppclk_khz =
+ 				rn_vbios_smu_set_dppclk(clk_mgr, clk_mgr_base->clks.dppclk_khz);
+ 
+@@ -188,7 +212,7 @@ void rn_update_clocks(struct clk_mgr *clk_mgr_base,
+ 					rn_vbios_smu_set_dppclk(clk_mgr, clk_mgr_base->clks.dppclk_khz);
+ 		// always update dtos unless clock is lowered and not safe to lower
+ 		if (new_clocks->dppclk_khz >= dc->current_state->bw_ctx.bw.dcn.clk.dppclk_khz)
+-			dcn20_update_clocks_update_dpp_dto(clk_mgr, context, safe_to_lower);
++			rn_update_clocks_update_dpp_dto(clk_mgr, context, safe_to_lower);
+ 	}
+ 
+ 	if (update_dispclk &&
+@@ -199,7 +223,6 @@ void rn_update_clocks(struct clk_mgr *clk_mgr_base,
+ 	}
+ }
+ 
+-
+ static int get_vco_frequency_from_reg(struct clk_mgr_internal *clk_mgr)
+ {
+ 	/* get FbMult value */
 -- 
 2.25.1
-
-Thanks,
-Bindu R 
 
 _______________________________________________
 amd-gfx mailing list
