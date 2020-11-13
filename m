@@ -1,55 +1,75 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 837D82B1618
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Nov 2020 07:58:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7CAF2B1671
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Nov 2020 08:28:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E6686E3C6;
-	Fri, 13 Nov 2020 06:58:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 500616E424;
+	Fri, 13 Nov 2020 07:28:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 923636E3C6
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 06:58:54 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id d142so7146890wmd.4
- for <amd-gfx@lists.freedesktop.org>; Thu, 12 Nov 2020 22:58:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=GI4gYUEpNBNzu1RshxDcy92zgzF7IaeVv68jb2PLM+Y=;
- b=LZ7GvHYgrfbKdt3JbHRBAIofOhcgir4yD0Fs3I0ncrJ4rZF1GtUedg6CIaj0/SLczL
- NI5LSmz5REiiPu3iEkOfr4eXRBxTWJOjQf+REmnvGgDyGyalpwEBfT3dcTBr403y1GEX
- m7SgttRBnnDAOnK41Prdwf2I4QZ+PxFNGl4X6cE2uJq0qbPxQrXdFDIfXmXIe+zV3Q0+
- bfQN9BHn2l31Ij7fxOV6g3j15+juRpNhDqutFL5gjypjdRknc3oYjwHtJ7ftXg4xlphN
- lijbZJBfDAjA6UvK3MaDByA0ezM0eWaYEXgs8AgiO2I6jBDeI6Fe9EAcdFNvpfnA8NwY
- Jb3w==
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21DF96E405
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 07:19:36 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id r17so8604932wrw.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 12 Nov 2020 23:19:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=bnJYl7E+i8htBIliisICLU3QBRLhtKX5V6IRkESXblI=;
+ b=k2FznTBmuBtIdb9vmIsFnefvjPAL49o04oAcgtmRfuhjCi1voMK9DNvTeL35Q98Bhu
+ Fnf3X2PwBuYGCK20FoLEl2g44owGkYJtgK/wfjvrWCE7wV4vO3Qzj4WQmEzejwEMA6Yb
+ kviwwk3HRP1j8xVxthJ+mlkPqqOhNp5S+8BTy3cRjICoDu8VhF+Bou9AyoksJLEbjn9k
+ v4kqsqfHj+s9oOvojGisAZTtWXB0ZNtFBTsgmnUeVXgSUm62p/yO6OThk/S2tB0lfgeL
+ 9L7cp5IzV1+lAmgYnDOL0xxue73LP/tMrLwEdt0vAeEv6ZMPSnp/Rtxgq7P0ICuqI0gv
+ 2/fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=GI4gYUEpNBNzu1RshxDcy92zgzF7IaeVv68jb2PLM+Y=;
- b=Dm5GwdU6QPDkpUV9P9w5oSxLU0Vuhf51VhQhRhcA1dAE9hUa3NbAA9s3Df/qch5Eeu
- 0+nkFSXvQdByPHWA3c3OylJVgbekyCzK20+fhg0VQfu/0vTmhpJ76zFvf8xb0cA0sWG9
- XqMG1RVD9G4PWJMxIEDHPqQcFVl2jAh93nbMuUjqjWdxVu5wmNW459fzlZ3Xum3R2b0l
- wjv/eZB2EimPxwODuJauO2NzVQlocGmHaUdLqYfVdZNXRVrTZM2UU4GBZFzMgaXXHoYJ
- gETL2R4V997Pvq++8ifpMOJlWLFz7QWM5ImKxROefXDGxEhLv0ReZRBJl1VVoZB7q3jb
- qZXA==
-X-Gm-Message-State: AOAM532JekdcPw/BWtadEwhyL6faaA3f1BBesW2JZgiL2WP6i4wa7M1R
- pjqPX7JsBdINEERKS55Z8foiRstj+onBYwlwmR4=
-X-Google-Smtp-Source: ABdhPJx6J+N8uYmaNZSPQN8+aLMzivIS2J4HaeHwFvJA4/6cmIKkhzEqnx48tIljHouOUxmFd1RbUqvXTeO+LUH6Se8=
-X-Received: by 2002:a1c:80cb:: with SMTP id b194mr949363wmd.73.1605250733257; 
- Thu, 12 Nov 2020 22:58:53 -0800 (PST)
+ h=x-gm-message-state:date:from:to:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=bnJYl7E+i8htBIliisICLU3QBRLhtKX5V6IRkESXblI=;
+ b=US9+tz6SjWtEYoedKLzgPhn3Lft5eB/xcC7JaxNb/QdW046Fuh/R4UWO61Uq9tict8
+ Zz0EUwRDHhInyohwpOJjcm2Lz/XMMJS9jb7KQ3QuxQmxtGDQHPvupk/b7wmjUqxFqDwd
+ pmoCFxqHljFvm6VsAnNLh4CFE9a3NBadPz7GnwXd4zeXK0xsPNGh7MeQmNzRNI+X2IeU
+ GVEsyXKTPFXt1R2pVswnGEQ5ip5XgAwNYIrETHzAZGfa+8ATAjbFAbaS5RkjOMAykWo5
+ cWM0LPl/rXOCaHIyVPVWfDELJBDf8OpBirzhu+BCbkgoSIEkAztiVNZ6u3ps8yBzs5OQ
+ UTmQ==
+X-Gm-Message-State: AOAM530DLAwnSOy89KbDZylDiEtpcZpT91B+q+Xgp97wnU8KoKGKrIHw
+ TUubnqfm308z5ts3iM3eeJob+Q==
+X-Google-Smtp-Source: ABdhPJwyloqmRo9bTH+UlgyIYTE0cdzl4YZHqxc71/L1xDZmUoB+GN0sXlank69DctPsSMAdjz0T1Q==
+X-Received: by 2002:adf:fd03:: with SMTP id e3mr1494073wrr.303.1605251974761; 
+ Thu, 12 Nov 2020 23:19:34 -0800 (PST)
+Received: from dell ([91.110.221.159])
+ by smtp.gmail.com with ESMTPSA id t4sm9631123wmb.20.2020.11.12.23.19.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 12 Nov 2020 23:19:34 -0800 (PST)
+Date: Fri, 13 Nov 2020 07:19:32 +0000
+From: Lee Jones <lee.jones@linaro.org>
+To: linux-kernel@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx@lists.freedesktop.org, Andy Gross <andy.gross@ti.com>,
+ by <jhartmann@precisioninsight.com>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, Eric Anholt <eric@anholt.net>,
+ Faith <faith@valinux.com>, Gareth Hughes <gareth@valinux.com>,
+ Harry Wentland <harry.wentland@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Jeff Hartmann <jhartmann@valinux.com>,
+ Keith Whitwell <keith@tungstengraphics.com>,
+ Leo Li <sunpeng.li@amd.com>, linaro-mm-sig@lists.linaro.org,
+ linux-media@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+ Rob Clark <rob.clark@linaro.org>, Rob Clark <rob@ti.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>
+Subject: Re: [PATCH 00/19] [Set 2] Rid W=1 warnings from GPU
+Message-ID: <20201113071932.GF2787115@dell>
+References: <20201106214949.2042120-1-lee.jones@linaro.org>
 MIME-Version: 1.0
-References: <1605250397-15043-1-git-send-email-Prike.Liang@amd.com>
- <1605250397-15043-4-git-send-email-Prike.Liang@amd.com>
-In-Reply-To: <1605250397-15043-4-git-send-email-Prike.Liang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 13 Nov 2020 01:58:42 -0500
-Message-ID: <CADnq5_N-R5k+7iGaPamxGQWpnCcOMCdoJ-H1E3xRxMS27zKvBw@mail.gmail.com>
-Subject: Re: [PATCH 4/4] drm/amd/pm: add gfx_state_change_set() for rn gfx
- power switch
-To: Prike Liang <Prike.Liang@amd.com>
+Content-Disposition: inline
+In-Reply-To: <20201106214949.2042120-1-lee.jones@linaro.org>
+X-Mailman-Approved-At: Fri, 13 Nov 2020 07:28:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,131 +81,74 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- Huang Rui <ray.huang@amd.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 13, 2020 at 1:53 AM Prike Liang <Prike.Liang@amd.com> wrote:
->
-> The gfx_state_change_set() funtion can support set GFX power
-> change status to D0/D3.
->
-> Signed-off-by: Prike Liang <Prike.Liang@amd.com>
-
-Series is:
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c         | 18 +++++++++---------
->  drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h         |  2 ++
->  drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c       | 12 ++++++++++++
->  drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c |  7 +++++++
->  4 files changed, 30 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> index 380dd3a..cd2c676 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c
-> @@ -828,14 +828,14 @@ int amdgpu_gfx_get_num_kcq(struct amdgpu_device *adev)
->
->  void amdgpu_gfx_state_change_set(struct amdgpu_device *adev, enum gfx_change_state state)
->  {
-> -
-> -       mutex_lock(&adev->pm.mutex);
-> -
-> -       if (adev->powerplay.pp_funcs &&
-> -           adev->powerplay.pp_funcs->gfx_state_change_set)
-> +       if (is_support_sw_smu(adev)) {
-> +               smu_gfx_state_change_set(&adev->smu, state);
-> +       } else {
-> +               mutex_lock(&adev->pm.mutex);
-> +               if (adev->powerplay.pp_funcs &&
-> +                   adev->powerplay.pp_funcs->gfx_state_change_set)
->                         ((adev)->powerplay.pp_funcs->gfx_state_change_set(
-> -                                       (adev)->powerplay.pp_handle, state));
-> -
-> -       mutex_unlock(&adev->pm.mutex);
-> -
-> +                               (adev)->powerplay.pp_handle, state));
-> +               mutex_unlock(&adev->pm.mutex);
-> +       }
->  }
-> diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
-> index 9724d6f..ae8ff7b 100644
-> --- a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
-> +++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
-> @@ -576,6 +576,7 @@ struct pptable_funcs {
->         int (*post_init)(struct smu_context *smu);
->         void (*interrupt_work)(struct smu_context *smu);
->         int (*gpo_control)(struct smu_context *smu, bool enablement);
-> +       int (*gfx_state_change_set)(struct smu_context *smu, uint32_t state);
->  };
->
->  typedef enum {
-> @@ -764,6 +765,7 @@ int smu_get_status_gfxoff(struct amdgpu_device *adev, uint32_t *value);
->  ssize_t smu_sys_get_gpu_metrics(struct smu_context *smu, void **table);
->
->  int smu_enable_mgpu_fan_boost(struct smu_context *smu);
-> +int smu_gfx_state_change_set(struct smu_context *smu, uint32_t state);
->
->  #endif
->  #endif
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-> index 3999079..7b698c5 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-> @@ -2529,3 +2529,15 @@ int smu_enable_mgpu_fan_boost(struct smu_context *smu)
->
->         return ret;
->  }
-> +
-> +int smu_gfx_state_change_set(struct smu_context *smu, uint32_t state)
-> +{
-> +       int ret = 0;
-> +
-> +       mutex_lock(&smu->mutex);
-> +       if (smu->ppt_funcs->gfx_state_change_set)
-> +               ret = smu->ppt_funcs->gfx_state_change_set(smu, state);
-> +       mutex_unlock(&smu->mutex);
-> +
-> +       return ret;
-> +}
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-> index 66c1026..46c44f0 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-> @@ -1136,6 +1136,12 @@ static ssize_t renoir_get_gpu_metrics(struct smu_context *smu,
->         return sizeof(struct gpu_metrics_v2_0);
->  }
->
-> +static int renoir_gfx_state_change_set(struct smu_context *smu, uint32_t state)
-> +{
-> +
-> +       return smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_GpuChangeState, state, NULL);
-> +}
-> +
->  static const struct pptable_funcs renoir_ppt_funcs = {
->         .set_power_state = NULL,
->         .print_clk_levels = renoir_print_clk_levels,
-> @@ -1171,6 +1177,7 @@ static const struct pptable_funcs renoir_ppt_funcs = {
->         .get_pp_feature_mask = smu_cmn_get_pp_feature_mask,
->         .set_pp_feature_mask = smu_cmn_set_pp_feature_mask,
->         .get_gpu_metrics = renoir_get_gpu_metrics,
-> +       .gfx_state_change_set = renoir_gfx_state_change_set,
->  };
->
->  void renoir_set_ppt_funcs(struct smu_context *smu)
-> --
-> 2.7.4
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+T24gRnJpLCAwNiBOb3YgMjAyMCwgTGVlIEpvbmVzIHdyb3RlOgoKPiBUaGlzIHNldCBpcyBwYXJ0
+IG9mIGEgbGFyZ2VyIGVmZm9ydCBhdHRlbXB0aW5nIHRvIGNsZWFuLXVwIFc9MQo+IGtlcm5lbCBi
+dWlsZHMsIHdoaWNoIGFyZSBjdXJyZW50bHkgb3ZlcndoZWxtaW5nbHkgcmlkZGxlZCB3aXRoCj4g
+bmlnZ2x5IGxpdHRsZSB3YXJuaW5ncy4KPiAKPiBUaGVyZSBhcmUgNTAwMCB3YXJuaW5ncyB0byB3
+b3JrIHRocm91Z2guICBJdCB3aWxsIHRha2UgYSBjb3VwbGUgbW9yZQo+IHNldHMuICBBbHRob3Vn
+aCwgKCJkcm0vYW1kL2Rpc3BsYXkvZGMvYmFzaWNzL2ZpeHB0MzFfMzI6IE1vdmUKPiB2YXJpYWJs
+ZXMgdG8gd2hlcmUgdGhleSdyZSB1c2VkIikgZG9lcyB0YWtlIGNhcmUgb2YgMjAwMCBvZiB0aGVt
+IQo+IAo+IExlZSBKb25lcyAoMTkpOgo+ICAgZHJtL3R0bS90dG1fcmFuZ2VfbWFuYWdlcjogRGVt
+b3RlIG5vbi1jb25mb3JtYW50IGtlcm5lbC1kb2MgaGVhZGVyCj4gICBkcm0vcjEyOC9hdGlfcGNp
+Z2FydDogU291cmNlIGZpbGUgaGVhZGVycyBhcmUgbm90IGdvb2QgY2FuZGlkYXRlcyBmb3IKPiAg
+ICAga2VybmVsLWRvYwo+ICAgZHJtL3NlbGZ0ZXN0cy90ZXN0LWRybV9kcF9tc3RfaGVscGVyOiBN
+b3ZlCj4gICAgICdzaWRlYmFuZF9tc2dfcmVxX2VuY29kZV9kZWNvZGUnIG9udG8gdGhlIGhlYXAK
+PiAgIGRybS9tZ2EvbWdhX2RtYTogRGVtb3RlIGtlcm5lbC1kb2MgYWJ1c2VycyB0byBzdGFuZGFy
+ZCBjb21tZW50IGJsb2Nrcwo+ICAgZHJtL21nYS9tZ2Ffc3RhdGU6IFJlbW92ZSB1bnVzZWQgdmFy
+aWFibGUgJ2J1Zl9wcml2Jwo+ICAgZHJtL3JhZGVvbi9hdG9tOiBNb3ZlIHByb3RvdHlwZSBpbnRv
+IHNoYXJlZCBsb2NhdGlvbgo+ICAgZHJtL3JhZGVvbi9yYWRlb25fa21zOiBJbmNsdWRlIGhlYWRl
+ciBjb250YWluaW5nIG91ciBvd24gcHJvdG90eXBlcwo+ICAgZHJtL29tYXBkcm0vb21hcF9nZW06
+IEZpeCBtaXNuYW1lZCBhbmQgbWlzc2luZyBwYXJhbWV0ZXIgZGVzY3JpcHRpb25zCj4gICBkcm0v
+b21hcGRybS9vbWFwX2RtbV90aWxlcjogRGVtb3RlIGFidXNpdmUgdXNlIG9mIGtlcm5lbC1kb2Mg
+Zm9ybWF0Cj4gICBkcm0vcmFkZW9uL3JhZGVvbjogTW92ZSBwcm90b3R5cGUgaW50byBzaGFyZWQg
+aGVhZGVyCj4gICBkcm0vcmFkZW9uL3JhZGVvbl9kcnY6IFNvdXJjZSBmaWxlIGhlYWRlcnMgYXJl
+IG5vdCBnb29kIGNhbmRpZGF0ZXMgZm9yCj4gICAgIGtlcm5lbC1kb2MKPiAgIGRybS9hbWQvZGlz
+cGxheS9kYy9iYXNpY3MvZml4cHQzMV8zMjogTW92ZSB2YXJpYWJsZXMgdG8gd2hlcmUgdGhleSdy
+ZQo+ICAgICB1c2VkCj4gICBkcm0vcmFkZW9uL3JhZGVvbl9kcnY6IE1vdmUgcHJvdG90eXBlcyB0
+byBhIHNoYXJlZCBoZWFkZXJmaWxlCj4gICBkcm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlOiBQ
+cm92aWRlIGRvY3VtZW50YXRpb24gZm9yICdyZWdfYWRkcicKPiAgICAgcGFyYW1zCj4gICBkcm0v
+cmFkZW9uOiBNb3ZlIHByb3RvdHlwZXMgdG8gc2hhcmVkIGhlYWRlcgo+ICAgZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X2ttczogUmVtb3ZlICdzdHJ1Y3QgZHJtX2FtZGdwdV9pbmZvX2RldmljZQo+ICAg
+ICBkZXZfaW5mbycgZnJvbSB0aGUgc3RhY2sKPiAgIGRybS9yYWRlb24vcmFkZW9uX2ttczogRml4
+IG1pc25hbWluZyBvZiAncmFkZW9uX2luZm9faW9jdGwncyBkZXYgcGFyYW0KPiAgIGRybS9yYWRl
+b24vYXRvbWJpb3NfY3J0YzogUmVtb3ZlIGRlc2NyaXB0aW9uIG9mIG5vbi1leGlzdGVudCBmdW5j
+dGlvbgo+ICAgICBwYXJhbSAnZW5jb2RlcicKPiAgIGRybS92M2QvdjNkX2RydjogUmVtb3ZlIHVu
+dXNlZCBzdGF0aWMgdmFyaWFibGUgJ3YzZF92M2RfcG1fb3BzJwo+IAo+ICBkcml2ZXJzL2dwdS9k
+cm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMgICAgfCAgIDIgKwo+ICBkcml2ZXJzL2dwdS9k
+cm0vYW1kL2FtZGdwdS9hbWRncHVfa21zLmMgICAgICAgfCAxMDQgKysrKysrKysrLS0tLS0tLS0t
+Cj4gIC4uLi9kcm0vYW1kL2Rpc3BsYXkvZGMvYmFzaWNzL2ZpeHB0MzFfMzIuYyAgICB8ICAgNSAr
+Cj4gIC4uLi9ncHUvZHJtL2FtZC9kaXNwbGF5L2luY2x1ZGUvZml4ZWQzMV8zMi5oICB8ICAgNiAt
+Cj4gIGRyaXZlcnMvZ3B1L2RybS9tZ2EvbWdhX2RtYS5jICAgICAgICAgICAgICAgICB8ICAxMCAr
+LQo+ICBkcml2ZXJzL2dwdS9kcm0vbWdhL21nYV9zdGF0ZS5jICAgICAgICAgICAgICAgfCAgIDIg
+LQo+ICBkcml2ZXJzL2dwdS9kcm0vb21hcGRybS9vbWFwX2RtbV90aWxlci5jICAgICAgfCAgIDYg
+Ky0KPiAgZHJpdmVycy9ncHUvZHJtL29tYXBkcm0vb21hcF9nZW0uYyAgICAgICAgICAgIHwgICAz
+ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9yMTI4L2F0aV9wY2lnYXJ0LmMgICAgICAgICAgICB8ICAg
+MiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2F0b20uaCAgICAgICAgICAgICAgICAgfCAg
+IDYgKwo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2F0b21iaW9zX2NydGMuYyAgICAgICAgfCAg
+IDEgLQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2F0b21iaW9zX2VuY29kZXJzLmMgICAgfCAg
+IDQgLQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbi5oICAgICAgICAgICAgICAgfCAg
+IDYgKwo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9kZXZpY2UuYyAgICAgICAgfCAg
+IDEgKwo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9kZXZpY2UuaCAgICAgICAgfCAg
+MzIgKysrKysrCj4gIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Rpc3BsYXkuYyAgICAg
+ICB8ICAgNCAtCj4gIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Rydi5jICAgICAgICAg
+ICB8ICAxMSArLQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9kcnYuaCAgICAgICAg
+ICAgfCAgIDcgKysKPiAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fa21zLmMgICAgICAg
+ICAgIHwgICAzICstCj4gIC4uLi9kcm0vc2VsZnRlc3RzL3Rlc3QtZHJtX2RwX21zdF9oZWxwZXIu
+YyAgICB8ICAxMSArLQo+ICBkcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9yYW5nZV9tYW5hZ2VyLmMg
+ICAgICAgfCAgIDIgKy0KPiAgZHJpdmVycy9ncHUvZHJtL3YzZC92M2RfZHJ2LmMgICAgICAgICAg
+ICAgICAgIHwgIDM2IC0tLS0tLQo+ICAyMiBmaWxlcyBjaGFuZ2VkLCAxMzggaW5zZXJ0aW9ucygr
+KSwgMTI2IGRlbGV0aW9ucygtKQo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJt
+L3JhZGVvbi9yYWRlb25fZGV2aWNlLmgKClN0aWxsIG5vIFJhZGVvbiBwYXRjaGVzIGluIHRvZGF5
+J3MgLW5leHQuCgpJIHJlYWxseSB3YW50ZWQgdG8gaGF2ZSBoYWQgdGhpcyBzZXQgcmViYXNlZCBi
+eSBub3cuCgpIb3cgbG9uZyBkbyB0aGV5IHRha2UgdG8gcGVjdWxhdGUgdGhyb3VnaD8KCi0tIApM
+ZWUgSm9uZXMgW+adjueQvOaWr10KU2VuaW9yIFRlY2huaWNhbCBMZWFkIC0gRGV2ZWxvcGVyIFNl
+cnZpY2VzCkxpbmFyby5vcmcg4pSCIE9wZW4gc291cmNlIHNvZnR3YXJlIGZvciBBcm0gU29DcwpG
+b2xsb3cgTGluYXJvOiBGYWNlYm9vayB8IFR3aXR0ZXIgfCBCbG9nCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
