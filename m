@@ -1,53 +1,66 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C53E2B1F3A
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Nov 2020 16:52:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6429D2B1EB6
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Nov 2020 16:31:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A68C6E4EC;
-	Fri, 13 Nov 2020 15:52:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2A206E520;
+	Fri, 13 Nov 2020 15:31:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com
- [IPv6:2607:f8b0:4864:20::32c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF5FB6E4F9
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 15:52:48 +0000 (UTC)
-Received: by mail-ot1-x32c.google.com with SMTP id a15so9328000otf.5
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 07:52:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=a2dKCMvDmQsRobe1p8uXtNfJj0W2AQadcxx+rEFBKog=;
- b=HxBZqQ1mYxd4UriyAX61UOJjsAJ6kqHTjC+3vogLGsWuZpiwY2coFWdW8tPEXkoNp9
- biaP01io1cS1zs90Bi/x2dOE5z98HGDbquHm5kYpCbh/rKZEO/ZLG7pM7Oy4HnOw6EPc
- LIj1XVcgFROC+3nYns6T8EUH8U4fBeQ0rjVU8=
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com
+ [IPv6:2a00:1450:4864:20::542])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 770E36E520
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 15:31:25 +0000 (UTC)
+Received: by mail-ed1-x542.google.com with SMTP id v4so11169931edi.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 13 Nov 2020 07:31:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=dmHwV8jGyqavOn9yOmghQFbgE92fWOlXz+zm+qg1xSw=;
+ b=SvXaDLPnqeKOIDu82Jn56vIgIYSacJL1lt7bY+SgNJNOgz5BWOYdLh4IKyWYKZ9zhW
+ LWhjNb0vh9j9laN1ibex093ehNYCbC4c+VqeTqzCvjJ0Iqf2bSxMvZM3I2XK7tqPiuIT
+ Dd76ry+hdWa0BJCZV/nYgu1I33BFUhM5v27OZ+mwU8inIauLLiqhu7MZm1kkIOMSsg/g
+ 1qkNLOMYd5HE/HVj2zyfvo8JknT4LjKzFSCoa2eTz2xQWsDMORlHeiY4Lf2piD1FY1py
+ d1wMn/FM11jI1PbAJtHGp9VRPWtb8ALOi/UkktI2R19zwJTRV89m+KDxvxJbGO7uM4LI
+ O8Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=a2dKCMvDmQsRobe1p8uXtNfJj0W2AQadcxx+rEFBKog=;
- b=anewp1U8HLWF2LbqEEXkBwpCmm5XRp53S4dQYYWlUdxYckqyDb3qIRrobnXaDeH4oJ
- vqHTnhWJ/toJ2iRNHLvvHo9+LVr0yBR/1RgjbX3HQTK8k8UF/xJ1N3NXtQFdWT2uiHpO
- qO1CFnAlN1p98wopZkm/8yl9dCzD0Kdo3wLsaXXnCU4JSJnefHbcmQYWXS30zbdx/1rS
- rIrCyzDU+Z7PL1TkhYXo3QGCuWYlf16KRQRVnIv5Po3uGRdXunhYpqQT/69Qb4BDWRyf
- uLEkGe+YfkGZ3n0i2jmKYkGnyfOL3I2AUzl3KHleodHKoUzXY1IXsrYuRUOXgofsphRc
- Ze1A==
-X-Gm-Message-State: AOAM532d+EYNgSwdrSm1Vg/LzaeG5oEoCYt4+XcA8AnvCSkeLdTLBKm2
- 6/pUd3i7tnnumHRIhgQU90Qa88KLzpEwQnE45gq6qA==
-X-Google-Smtp-Source: ABdhPJxzojzozC2r5NeJAI/QaCtfc+rxdofOgMfUcHW7SGnA1+rVbmkM4dmKHHW00sJMNag/VxbcPrfqBwUpFyZDw+M=
-X-Received: by 2002:a9d:27a5:: with SMTP id c34mr1880560otb.303.1605282763152; 
- Fri, 13 Nov 2020 07:52:43 -0800 (PST)
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-transfer-encoding:content-language;
+ bh=dmHwV8jGyqavOn9yOmghQFbgE92fWOlXz+zm+qg1xSw=;
+ b=rI/D20awdf0TEl1hCFz2aiCGR7Nhg+iBE4Mp2LTuFqV5UaZe9KI/JiB5zNN0Xu9f0W
+ 1XcbMuFTGI2NP8RPdkUFmmk6gL+KkAZk4Pmw5PVjn2gPO0hzAUeHPp2mIGY+YousqoLT
+ oZWnDKd7p30/q6T8akwmdBN+mSe8Y85x+bx6wTM8PTjb0C2zhtdAQAANzL4qU9YvjpmH
+ QANv2vVOxpFTDpHT/mOFQa2vI3n3Vi4BsNO5fsk/f+NPSfFlBoTvJp0WM9FwkCpZYdOm
+ Q/4oQ46T6WWltkGVZx6iQLS0TgnDKoo05iz4fFX2y0YyiLt2r6YfLyVviwuPQeahZkzg
+ hYpg==
+X-Gm-Message-State: AOAM532JoBbdREtS6I4pG2MU0kEvT1KXS7K+NJqreMuiaBUsnlFN63Ja
+ dZbygBdeSOU4HwVdFCdXRzlqMhUOggA=
+X-Google-Smtp-Source: ABdhPJyPytOAs9d0rS2xxvfKLRHfCF5MWp2eemPX5BmVQrD+shfAZH3p/D5ZlWVQ/SIyewdLjo2fLg==
+X-Received: by 2002:a50:cf82:: with SMTP id h2mr3003119edk.142.1605281481960; 
+ Fri, 13 Nov 2020 07:31:21 -0800 (PST)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id dn16sm4297129edb.19.2020.11.13.07.31.21
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 13 Nov 2020 07:31:21 -0800 (PST)
+Subject: Re: [PATCH] drm/amdgpu: enable 48-bit IH timestamp counter
+To: "Sierra Guiza, Alejandro (Alex)" <Alex.Sierra@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>
+References: <20201110175519.21308-1-alex.sierra@amd.com>
+ <SA0PR12MB4430DF99234F8097DE57FBF5FDE90@SA0PR12MB4430.namprd12.prod.outlook.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <288f55c4-62a4-0249-7a9c-9dc417caa462@gmail.com>
+Date: Mon, 16 Nov 2020 12:31:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <dM9UpdTNt3rJxagA8swvzv6sXdjID2x67yd3tJg6A@cp4-web-030.plabs.ch>
- <d791cc9f-7aa5-b453-992d-1f0cf0f2a905@amd.com>
- <VvOH2mNsO3Zn9gYXOa0Vn7kKqb2MvC0MKJXONCsmsnVcPaN6dJdxoGIboXdhy4oIf147mLuUC6KejFj5TOgDisty73bUPnvds0sXL-Fp52s=@emersion.fr>
-In-Reply-To: <VvOH2mNsO3Zn9gYXOa0Vn7kKqb2MvC0MKJXONCsmsnVcPaN6dJdxoGIboXdhy4oIf147mLuUC6KejFj5TOgDisty73bUPnvds0sXL-Fp52s=@emersion.fr>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Fri, 13 Nov 2020 16:52:32 +0100
-Message-ID: <CAKMK7uE=O1Xu1y3MFT3ZOHPTjTov6fVZTEFQFFu59D3_QdjnEQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: add cursor pitch check
-To: Simon Ser <contact@emersion.fr>
+In-Reply-To: <SA0PR12MB4430DF99234F8097DE57FBF5FDE90@SA0PR12MB4430.namprd12.prod.outlook.com>
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,61 +72,140 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- Alex Deucher <alexander.deucher@amd.com>, Harry Wentland <hwentlan@amd.com>,
- "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>,
- "Pierre-Loup A . Griffais" <pgriffais@valvesoftware.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: christian.koenig@amd.com
+Cc: "Kuehling, Felix" <Felix.Kuehling@amd.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBOb3YgMTIsIDIwMjAgYXQgOTowNyBQTSBTaW1vbiBTZXIgPGNvbnRhY3RAZW1lcnNp
-b24uZnI+IHdyb3RlOgo+Cj4gQ0MgRGFuaWVsIFZldHRlciBhbmQgQmFzLCBzZWUgYmVsb3figKYK
-Pgo+IE9uIFRodXJzZGF5LCBOb3ZlbWJlciAxMiwgMjAyMCA4OjU2IFBNLCBLYXpsYXVza2FzLCBO
-aWNob2xhcyA8bmljaG9sYXMua2F6bGF1c2thc0BhbWQuY29tPiB3cm90ZToKPgo+ID4gUmV2aWV3
-ZWQtYnk6IE5pY2hvbGFzIEthemxhdXNrYXNuaWNob2xhcy5rYXpsYXVza2FzQGFtZC5jb20KPgo+
-IFRoYW5rcyBmb3IgdGhlIHJldmlldyEKPgo+ID4gPiBDb3VwbGUgcXVlc3Rpb25zOgo+ID4gPgo+
-ID4gPiAtIFRoaXMgaW1wbGVtZW50cyBhIHNpbmdsZSBjaGVjayBmb3IgYWxsIEdQVSBnZW5lcmF0
-aW9ucy4gSXMgbXkKPiA+ID4gICBhc3N1bXB0aW9uIGNvcnJlY3QgaGVyZT8gSXQgc2VlbXMgbGlr
-ZSB0aGlzIGNoZWNrIGlzIE9LIGZvciBhdCBsZWFzdAo+ID4gPiAgIERDTiAxLjAgYW5kIERDTiAy
-LjAuCj4gPiA+Cj4gPiA+IC0gV2Ugc2hvdWxkIHJlYWxseSBpbXBsZW1lbnQgYmV0dGVyIGNoZWNr
-cy4gV2hhdCBmZWF0dXJlcyBhcmUgc3VwcG9ydGVkCj4gPiA+ICAgb24gdGhlIGN1cnNvciBwbGFu
-ZT8gSXMgc2NhbGluZyBzdXBwb3J0ZWQ/IElzIGNyb3BwaW5nIHN1cHBvcnRlZD8gSXMKPiA+ID4g
-ICByb3RhdGlvbiBhbHdheXMgc3VwcG9ydGVkPwo+ID4gPgo+ID4KPiA+IE9uIERDRSBhbmQgRENO
-IHRoZXJlIGlzIG5vIGRlZGljYXRlZCBoYXJkd2FyZSBjdXJzb3IgcGxhbmUuIFlvdSBnZXQgYQo+
-ID4gY3Vyc29yIHBlciBwaXBlIGJ1dCBpdCdzIGdvaW5nIHRvIGluaGVyaXQgdGhlIHNjYWxpbmcg
-YW5kIHBvc2l0aW9uaW5nCj4gPiBmcm9tIHRoZSB1bmRlcmx5aW5nIHBpcGUuCj4gPgo+ID4gVGhl
-cmUncyBzb2Z0d2FyZSBsb2dpYyB0byBlbnN1cmUgd2UgcG9zaXRpb24gdGhlIGN1cnNvciBpbiB0
-aGUgY29ycmVjdAo+ID4gbG9jYXRpb24gaW4gQ1JUQyBzcGFjZSBpbmRlcGVuZGVudCBvbiB0aGUg
-dW5kZXJseWluZyBEUk0gcGxhbmUncyBzY2FsaW5nCj4gPiBhbmQgcG9zaXRpb25pbmcgYnV0IHRo
-ZXJlJ3Mgbm8gd2F5IGZvciB1cyB0byBjb3JyZWN0IHRoZSBzY2FsaW5nLiBDdXJzb3IKPiA+IHdp
-bGwgYWx3YXlzIGJlIDY0LCAxMjgsIG9yIDI1NiBpbiB0aGUgcGlwZSdzIGRlc3RpbmF0aW9uIHNw
-YWNlLgo+Cj4gSW50ZXJlc3RpbmcuCj4KPiBEYW5pZWwgVmV0dGVyOiB3aGF0IHdvdWxkIGJlIHRo
-ZSBiZXN0IHdheSB0byBleHBvc2UgdGhpcyB0byB1c2VyLXNwYWNlPwo+IE1heWJlIHdlIHNob3Vs
-ZCBqdXN0IG1ha2UgYXRvbWljIGNvbW1pdHMgd2l0aCBhIGN1cnNvciBwbGFuZSBmYWlsIHdoZW4K
-PiBzY2FsaW5nIGlzIHVzZWQgb24gdGhlIHByaW1hcnkgcGxhbmU/CgpJIHRoaW5rIHRoZXJlJ3Mg
-YmVlbiBkaXNjdXNzaW9uIGZvciBhIHBpcGUgc2NhbGluZyBwcm9wZXJ0eSBvbiB0aGUKY3J0Yy4g
-QXMgbG9uZyBhcyB3ZSBkb24ndCBoYXZlIHRoYXQsIGFuZCB5b3UncmUgdXNpbmcgdGhlIHBpcGUg
-c2NhbGluZwp0byBzY2FsZSB0aGUgcHJpbWFyeSBwbGFuZSwgdGhlbiBJIGd1ZXNzIHlvdSBoYXZl
-IHRvIHJlamVjdCB0aGUgY3Vyc29yCmlmIGl0J3MgZW5hYmxlZC4gRXhjZXB0IG1heWJlIGlmIHRo
-ZSBzY2FsaW5nIGlzIHRoZSBzYW1lIG9uZSwgZHVubm8Kd2hldGhlciB0aGF0IGV2ZXIgaGFwcGVu
-cy4KLURhbmllbAoKCj4gRGlzYWJsaW5nIHRoZSBjdXJzb3IgcGxhbmUgc291bmRzIGJldHRlciB0
-aGFuIGRpc3BsYXlpbmcgdGhlIHdyb25nCj4gaW1hZ2UuCj4KPiA+IEN1cnNvciBjYW4gYmUgaW5k
-ZXBlbmRlbnRseSByb3RhdGVkIGluIGhhcmR3YXJlIGJ1dCB0aGlzIGlzbid0IHNvbWV0aGluZwo+
-ID4gd2UgZXhwb3NlIHN1cHBvcnQgZm9yIHRvIHVzZXJzcGFjZS4KPgo+IEhtbSwgSSBzZWUgdGhh
-dCBjdXJzb3IgcGxhbmVzIGhhdmUgdGhlICJyb3RhdGlvbiIgcHJvcGVydHkgZXhwb3NlZDoKPgo+
-ICAgICAicm90YXRpb24iOiBiaXRtYXNrIHtyb3RhdGUtMCwgcm90YXRlLTkwLCByb3RhdGUtMTgw
-LCByb3RhdGUtMjcwfQo+Cj4gSW4gZmFjdCBhbGwgcGxhbmVzIGhhdmUgaXQuIEl0J3MgZG9uZSBp
-biBhbWRncHVfZG1fcGxhbmVfaW5pdCAoYmVoaW5kIGEKPiBgZG0tPmFkZXYtPmFzaWNfdHlwZSA+
-PSBDSElQX0JPTkFJUkVgIGNvbmRpdGlvbikuCj4KPiBJcyB0aGlzIGFuIG92ZXJzaWdodD8KPgo+
-ID4gVGhlIHBpdGNoIGNoZWNrIG9mIDY0LzEyOC8yNTYgaXMgT0sgYnV0IHdlIGRvbid0IHN1cHBv
-cnQgMjU2IG9uIERDRS4KPgo+IFllYWgsIEkndmUgbm90aWNlZCB0aGF0LiBUaGUgc2l6ZSBjaGVj
-ayByaWdodCBhYm92ZSBzaG91bGQgY2F0Y2ggaXQKPiBpbiBtb3N0IGNhc2VzIEkgdGhpbmssIGJl
-Y2F1c2UgbWF4X2N1cnNvcl9zaXplIGlzIDEyOCBvbiBEQ0UuIFNpZGUKPiBub3RlLCBtYXhfY3Vy
-c29yX3NpemUgaXMgNjQgb24gRENFIDYuMC4KCgoKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUg
-RW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBs
-aXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
+Feel free to keep my rb for this, but is 455 days enough in general or 
+should we add wrap around handling?
+
+Christian.
+
+Am 10.11.20 um 18:57 schrieb Sierra Guiza, Alejandro (Alex):
+> [AMD Public Use]
+>
+> I just added support for vega10_ih too.
+>
+> Regards,
+> Alex
+>
+>> -----Original Message-----
+>> From: Sierra Guiza, Alejandro (Alex) <Alex.Sierra@amd.com>
+>> Sent: Tuesday, November 10, 2020 11:55 AM
+>> To: amd-gfx@lists.freedesktop.org
+>> Cc: Koenig, Christian <Christian.Koenig@amd.com>; Kuehling, Felix
+>> <Felix.Kuehling@amd.com>; Sierra Guiza, Alejandro (Alex)
+>> <Alex.Sierra@amd.com>
+>> Subject: [PATCH] drm/amdgpu: enable 48-bit IH timestamp counter
+>>
+>> By default this timestamp is based on a 32 bit counter.
+>> This is used by the amdgpu_gmc_filter_faults, to avoid process the same
+>> interrupt in retry configuration.
+>> Apparently there's a problem when the timestamp coming from IH overflows
+>> and compares against timestamp coming from the the hash table.
+>> This patch only extends the time overflow from 10 minutes to aprx 455 days.
+>>
+>> Signed-off-by: Alex Sierra <alex.sierra@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/navi10_ih.c | 6 ++++++
+>> drivers/gpu/drm/amd/amdgpu/vega10_ih.c | 6 ++++++
+>>   2 files changed, 12 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
+>> b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
+>> index 837769fcb35b..bda916f33805 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
+>> @@ -94,6 +94,8 @@ static void navi10_ih_enable_interrupts(struct
+>> amdgpu_device *adev)
+>>
+>>   	ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, RB_ENABLE, 1);
+>>   	ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, ENABLE_INTR,
+>> 1);
+>> +	ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL,
+>> +				   RB_GPU_TS_ENABLE, 1);
+>>   	if (amdgpu_sriov_vf(adev) && adev->asic_type < CHIP_NAVI10) {
+>>   		if (psp_reg_program(&adev->psp, PSP_REG_IH_RB_CNTL,
+>> ih_rb_cntl)) {
+>>   			DRM_ERROR("PSP program IH_RB_CNTL failed!\n");
+>> @@ -109,6 +111,8 @@ static void navi10_ih_enable_interrupts(struct
+>> amdgpu_device *adev)
+>>   		ih_rb_cntl = RREG32_SOC15(OSSSYS, 0,
+>> mmIH_RB_CNTL_RING1);
+>>   		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL_RING1,
+>>   					   RB_ENABLE, 1);
+>> +		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL_RING1,
+>> +					   RB_GPU_TS_ENABLE, 1);
+>>   		if (amdgpu_sriov_vf(adev) && adev->asic_type <
+>> CHIP_NAVI10) {
+>>   			if (psp_reg_program(&adev->psp,
+>> PSP_REG_IH_RB_CNTL_RING1,
+>>   						ih_rb_cntl)) {
+>> @@ -125,6 +129,8 @@ static void navi10_ih_enable_interrupts(struct
+>> amdgpu_device *adev)
+>>   		ih_rb_cntl = RREG32_SOC15(OSSSYS, 0,
+>> mmIH_RB_CNTL_RING2);
+>>   		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL_RING2,
+>>   					   RB_ENABLE, 1);
+>> +		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL_RING2,
+>> +					   RB_GPU_TS_ENABLE, 1);
+>>   		if (amdgpu_sriov_vf(adev) && adev->asic_type <
+>> CHIP_NAVI10) {
+>>   			if (psp_reg_program(&adev->psp,
+>> PSP_REG_IH_RB_CNTL_RING2,
+>>   						ih_rb_cntl)) {
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
+>> b/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
+>> index 407c6093c2ec..35d68bc5d95e 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/vega10_ih.c
+>> @@ -50,6 +50,8 @@ static void vega10_ih_enable_interrupts(struct
+>> amdgpu_device *adev)
+>>
+>>   	ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, RB_ENABLE, 1);
+>>   	ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL, ENABLE_INTR,
+>> 1);
+>> +	ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL,
+>> +				   RB_GPU_TS_ENABLE, 1);
+>>   	if (amdgpu_sriov_vf(adev)) {
+>>   		if (psp_reg_program(&adev->psp, PSP_REG_IH_RB_CNTL,
+>> ih_rb_cntl)) {
+>>   			DRM_ERROR("PSP program IH_RB_CNTL failed!\n");
+>> @@ -64,6 +66,8 @@ static void vega10_ih_enable_interrupts(struct
+>> amdgpu_device *adev)
+>>   		ih_rb_cntl = RREG32_SOC15(OSSSYS, 0,
+>> mmIH_RB_CNTL_RING1);
+>>   		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL_RING1,
+>>   					   RB_ENABLE, 1);
+>> +		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL_RING1,
+>> +					   RB_GPU_TS_ENABLE, 1);
+>>   		if (amdgpu_sriov_vf(adev)) {
+>>   			if (psp_reg_program(&adev->psp,
+>> PSP_REG_IH_RB_CNTL_RING1,
+>>   						ih_rb_cntl)) {
+>> @@ -80,6 +84,8 @@ static void vega10_ih_enable_interrupts(struct
+>> amdgpu_device *adev)
+>>   		ih_rb_cntl = RREG32_SOC15(OSSSYS, 0,
+>> mmIH_RB_CNTL_RING2);
+>>   		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL_RING2,
+>>   					   RB_ENABLE, 1);
+>> +		ih_rb_cntl = REG_SET_FIELD(ih_rb_cntl, IH_RB_CNTL_RING2,
+>> +					   RB_GPU_TS_ENABLE, 1);
+>>   		if (amdgpu_sriov_vf(adev)) {
+>>   			if (psp_reg_program(&adev->psp,
+>> PSP_REG_IH_RB_CNTL_RING2,
+>>   						ih_rb_cntl)) {
+>> --
+>> 2.17.1
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
