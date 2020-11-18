@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDBA92B81AF
-	for <lists+amd-gfx@lfdr.de>; Wed, 18 Nov 2020 17:24:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E71B52B81B2
+	for <lists+amd-gfx@lfdr.de>; Wed, 18 Nov 2020 17:24:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CE666E450;
-	Wed, 18 Nov 2020 16:24:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BA096E455;
+	Wed, 18 Nov 2020 16:24:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2073.outbound.protection.outlook.com [40.107.220.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A5E16E44D
- for <amd-gfx@lists.freedesktop.org>; Wed, 18 Nov 2020 16:24:12 +0000 (UTC)
+ (mail-co1nam11on2052.outbound.protection.outlook.com [40.107.220.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33AB76E452
+ for <amd-gfx@lists.freedesktop.org>; Wed, 18 Nov 2020 16:24:13 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cWX3fXimI5+Lu3jOnJo5V8Jhmb2IRAICp4piCAfMkG5/OwU9qH4lkqTUGBHo8p4p/Rhdyn28VzMU5ghUO70vjP4H79LW0AaWsBHqcsjN0dBfqe+euTZ4ZkbkXJpXeImvK/ncIq03uDlQYWUST/DwRAZ8tOnqC4NXRxbrCCZPCvCZJht7ibTHwNpsX6acaMtEBTu6seFt8XyzEMh0OVVa5pYDW8nwOivbX/xuaQPYcNcUmmH9j+Uxn9nnEUTFZQSTXQItkhjxEpGb0ajeMtY7ANLKYEC6SkHxbwPEGxgMa6Wf/1iGFqWDdTupOEQ/jJF0WRBdDX6AIxfAvtbQoXhnpg==
+ b=aES5NpeRaVa41Ty1Ggu1eNSPI8GcraxIZBK1k+QLr7UaKW/U5wtmrBtKe0h9aXwjsrgELnjleX5+dukWcMclcTut+c0MDu8AKt7rdcyzIDWbH/WWqBSbGNxr8j0NxEZqRDjz4cNrRCvnn2S2mxH2Th/9on+oFeFTVQ40dRMB5ykx6Ll+NOb/LmM6ZHxe3VT5vLjxFcNKa5Q0n2p0dy5PgP5WOLNDzTdj2aYXVzG0/TOoaE9RCtL4ntabZCTjunghEZlaN64jMdZAKzjI4hR7AcEQ8XJw61a/6NCMKxOPfQd1M9klCsYrhpHM8TvTqmo54fkzcNKtj9WxDgmrLNwZ/Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ISJRqPJnrWlFfPkxhzaG5BaQP6+0Dt3Cx0bi40MJ+4w=;
- b=c4diCpcExFwfqRpDAG5TL8bncbT5+6F4o8grxx5BfbXXfO8no6xSIJ9XjWo+IXYK6I3zK3JjKkc4YbQkEO2pK3hbTikRLJas6Z7m9UYQ5rTkueomZhdmQVHd/+tGEgYrejQQB9NG5aR5KAvNevgpbAOr8NQ9D52hsiBq/1h7Nwf3klgK9SjVX+NqAUsnkM4Bmo9e6czi/KIi6dqWrRmoyeBoU0iOnUf2WqMo225oO81ZrOM0bXF/vZQTKjhdXNY7JCcCQI3kN+PCiXTpmhRg0xg63OTBFLxkozQSjf2ZGD/aed0GgE1AMPaoRTC35e5AQH3zW6ulR5boCZe4d9wpqg==
+ bh=cMnOfi3o/lKBbZ38QsHTUh1PGnD2GBg8IeFa6ypzU/g=;
+ b=VpvbJo15TL3LT5z8tSCJ0ZY6gthZ5zwgnDcQ6nDcF7y8h5KcZh7EypZYRQYVZWCHNCiiDL2lyinXrAFIU88zxKjUbLyuEMecYRYyWPAiu+3qGF9CmFK9ssZbCpZW5JMp4kZHl+E/pcdle6wseW6gBoKqnbU6K2nLmA4URP4aIwGtdBE0dsIzDWVJmPaPyhMUe5x8gb38LNv4rzuzSC4BLLLZfN/2NIpXtx191WQ0YugEzGoKvM4v7Q6n0ZLPUdJLelbBn8Uv8JG/5ZVtBdanzq2a2L7Vg7EZd6dw951JpMPd6GIInpNrG/xbGNcnkvSYWjM/Zf+ysETXcRIOa7FbtA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ISJRqPJnrWlFfPkxhzaG5BaQP6+0Dt3Cx0bi40MJ+4w=;
- b=XvEsoPkxGkVXuYJZ+GADWqYZOjW7/O32zMFx7xmZ7df0LEpZiVCMZnnNE+vQrX1X5t6bxsKWG+06E771kOGjPTbhhBm3l4GUfhoFSSB1IubVOTLH0NANBgyijP07gaBgCE1Xi5KGUBoYt2SXrcvSY5+fWUtrSaIjyl10jRHlh9Y=
+ bh=cMnOfi3o/lKBbZ38QsHTUh1PGnD2GBg8IeFa6ypzU/g=;
+ b=atA8SYKY0TOFeb+lip6AdpeQJXnaIds5s+zMBwxhBTxBvCWkY2qa2wTvEg9msTqGzorJuKj3Eg+wSLzt8JgvO6kpm31IAHHZpoDYOVGQxxkTVxLQvpFaKErHpP7rp70XEEpluJOJ4t06aZ6FOrUACta8j6XiLVubuX369Sfve8U=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,17 +35,17 @@ Received: from DM5PR12MB2517.namprd12.prod.outlook.com (2603:10b6:4:bb::13) by
  DM6PR12MB4314.namprd12.prod.outlook.com (2603:10b6:5:211::22) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3541.21; Wed, 18 Nov 2020 16:24:11 +0000
+ 15.20.3541.21; Wed, 18 Nov 2020 16:24:12 +0000
 Received: from DM5PR12MB2517.namprd12.prod.outlook.com
  ([fe80::1059:3b25:8f54:5e5a]) by DM5PR12MB2517.namprd12.prod.outlook.com
  ([fe80::1059:3b25:8f54:5e5a%7]) with mapi id 15.20.3564.026; Wed, 18 Nov 2020
- 16:24:11 +0000
+ 16:24:12 +0000
 From: James Zhu <James.Zhu@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 4/5] drm/amdgpu/vcn3.0: add dec software ring vm functions
- to support
-Date: Wed, 18 Nov 2020 11:24:00 -0500
-Message-Id: <1605716641-22176-5-git-send-email-James.Zhu@amd.com>
+Subject: [PATCH v3 5/5] drm/amdgpu/vcn3.0: add software ring share memory
+ support
+Date: Wed, 18 Nov 2020 11:24:01 -0500
+Message-Id: <1605716641-22176-6-git-send-email-James.Zhu@amd.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1605716641-22176-1-git-send-email-James.Zhu@amd.com>
 References: <1605716641-22176-1-git-send-email-James.Zhu@amd.com>
@@ -61,28 +61,28 @@ Received: from work_495456.amd.com (165.204.55.251) by
  15.20.3589.20 via Frontend Transport; Wed, 18 Nov 2020 16:24:11 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 45a5d2e4-d7cf-46cb-916d-08d88bde61d3
+X-MS-Office365-Filtering-Correlation-Id: a01c23f2-5c8b-4502-75b1-08d88bde6225
 X-MS-TrafficTypeDiagnostic: DM6PR12MB4314:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB43148FC0AC5127F288D6C43BE4E10@DM6PR12MB4314.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4314C2758BDF6F5D369AAEC6E4E10@DM6PR12MB4314.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1332;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rxtFLjrPp/JAMjVhd1ZPdnafxM+7lMI0A6F3GM1eymcuOBCV2bmKSpSVcy/80ogXN7jr4OycOLH5a/djb5wCM9sjAD1SemecaLc5ToYYEzjMbQyKvds/Hu7rnZfEsB+pVUMmysT1s6PAQ6VrUYh1PAy8LuFpVN/rIazP6YwAYI61KiY50ja+j093UCtyUlbqOrXrPHNl/K2oKKPEMrAWipyYAlv/WeNwCt951mU/Wq5z5XKveXMzLewQVrgTZwIJtJgJ/UNz2EvXrs4p/w3b42pdeaWX0aEvvk76Tl57OdBKCTOBeWwkV+n5fz/W1yb3snHTwmqBCBYR+SryrJKd5Q==
+X-Microsoft-Antispam-Message-Info: rMqd7vcbm1I4CyXINqvS25FEjqzxvf3UjFJeFn2CGiYM61l3SilKd2l3Qy0Mjm1dgm19fBrf+07cFJ6ysw2zQ+hq3LBJ5iUBIVLjvdG56daojgzU0xuqGObb2unr2QAohCyGXWYYjD8mh4n+wtp4PLY3YofeSMkOHPG8QdXuwkkoI60aqsEc/slQrcf9CtSJQYehD1nH/BeTImJKzXXQQ7qAA52w1SGkcZYRbYlSR3RXC9xu0lGbeLhR1rvhZVVmyNyJ36fA/7NwR+ARDtFdJrUJ+hgVDD+vvCkm8FKT/d8rM8sao13jEgECEMMTK/jC
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM5PR12MB2517.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(366004)(396003)(39860400002)(136003)(376002)(346002)(6666004)(478600001)(36756003)(6486002)(26005)(16526019)(52116002)(83380400001)(86362001)(186003)(316002)(7696005)(2906002)(2616005)(4326008)(956004)(8676002)(66476007)(66946007)(66556008)(8936002)(5660300002)(6916009);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: xzKu+qruztYLa2hmKcV5nQNloPsGtYp2fu6h7ifk8oouQ5D/VtaKb51PtDbXGephDWj7U3TrshCafxtOQNz/+wNvdxjHWvix2Hsf2z5uBXcZxYIwHyjcmoXjB/UoIm5gI2Yzpps3LCE4W1CQkGuion3yzKDZZrubrUVa6QHnnxy51DoGwq03KBoy3XE2unIOYF36FMHJFV4Ei0nE7Vwds9ylOlAIJO4Je29WvgzTDPgis17oeyvK5oP9DgfMiUfjrPdZDNpip21NYu77J6WX6qlYkDAOaPBaQK+y0w1q3KrCSZYI+SxHsoT8YYVDmFCg+p1gsO4tQARPIGnMlEqB8Ru/xiV7Cnu42fqQiUI18Y6f7rJPyvmYyws8jBaDcsW325lIqAt2XxursIWVcJZkSmdJRD0a67ONh5z6uyMz9JD4cry/hKzdfD0xXXfbxqyoGQ9cNrxsPsxCGH5GwN1oym7tgl3F3GzVt6hVuOFgU78EN5wRt5Bfcu7RG2nUIjw7vMugP48mMNkivXoOFtyfSdds6wPOKgNO573lKAOO+0TqKHV7bkrn3EDIsn7YXt27GOYadqlIwKZ6jDOr9BZoTDR9mRCzS4aTrdwO9k80V0rFw05gPCp+oaZWvCq3XIqPsxWPe3oB2c4e+2vVSJz0onTwWnzdY2cIDTuSt70naF7K7QpReZz39XmZKznVUHyA3NgLRui3Cu7bhbN8aslIh+5CtRNvEZqO7JW5JCeYE30YH1D2wJGr09OV3PjhfVCl3TsIhg46mlCc89mXMEIHE+Q//ROYar4qV/CoywVOloLhfsm+6rQYKHWWiKabDMJ4NxnFwvmdJ7lVcowDHVj5DwC5OQhFRvKWqlzsfb7YrILDG+4hJbZ+z6lQr2TrccEo1mY9xpiZmDK202KMWYZxuQ==
+X-MS-Exchange-AntiSpam-MessageData: +gFhzO1AJQDiqIruqPB+pQLWcSd1EgXxyBEXD5KkeBGC4OP1EgXpATLd7Mt6L+N5TUNToyspr/BV5hs1Hf+rtnG00N3XjkboY9Od9hDg6W9cykPLN1fVzGzXgrWszy9yAq2Qyk5xuZLRFY2AEhWBmXAkZcUhINJGvEeO5fS9IrD1k2BUXZByI4M5eJIPA4XrVFUbzndf/qQf5bRX13dkzq2aJ6p1vog09zWxBHOvxp8u3SLXxF3WsHRE+hwAPAmsS2e9eK+oTMHvj2Wq9Qlj7Y5EzeIBocLVAT3v27VaFP9ckHY4twtQjYQJZ4UftXrs3gjbILqKXVjPepqmQ6ejVnqm15rnCDawBnfk+98EIRwB4rfjWcDzHrlUPD/U1EhihpZNPWzfwo1yOauhS5fKTZbBYl9byAS7BSkPmLAthtSuKuSQxgipJa8FRiSHQ4PLqlMXEl7+FByED4wJCDVym10wYbfuwWRi4tD17VOH0X/iSp21uNOxy9jqiZWAsarn1yJvMb74vo8s1ObYu0UdYyeFjn6RMO06NREDwwp8NI+fX8seAze0UKbA/b/Ra2iMMdVYf0Fi8Wzm4CC9sNxHyGF8s/wkzMaHG0ufJqPAfy6DJBK8k+UezESOS13/v24pyzWSrnqNzFacS2A6QOfkqpisc6BjOOwdFFBxFEZgL/P17jR2q4bGdo+v6h3GmxAru0/HepKXg4sNfrDVmZ0xgqJGgSvQWeYlYs+IdWVWvaZpgjLkMV+uPRqEM5NGZEAAIghqv9sz+GAp6dznLbPlTvlu0QGxp8NFxtceI5Kd7b0NRkkmeeSsNq2cfZkTXiAReAO6sYd6LmeNxypV7pZul+kTy1LKayTvaQiw80vj7dVxh5R/ICoB9BmwH6SQmCFpKIWNXEWa/iDJ69SoUtr8TA==
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45a5d2e4-d7cf-46cb-916d-08d88bde61d3
+X-MS-Exchange-CrossTenant-Network-Message-Id: a01c23f2-5c8b-4502-75b1-08d88bde6225
 X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB2517.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2020 16:24:11.5219 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2020 16:24:12.2605 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9Env7PyBsdUV5pXF9vrqdK7iaUDwHKckO/gMISAIWU01Rk0XMWF7sMZRsFuzl3V7
+X-MS-Exchange-CrossTenant-UserPrincipalName: Q6gPQ8YtMmiF09AoAhTH6rEBo0FNFXvG9QliZXeo4CgJ+6le/VpV7KGWFKMBijcm
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4314
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -101,141 +101,92 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add dec software ring vm functions to support.
+Support software ring share memory with vcn firmware.
 
 Signed-off-by: James Zhu <James.Zhu@amd.com>
 Reviewed-by: Leo Liu <leo.liu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c | 101 +++++++++++++++++++++++++++++++++-
- 1 file changed, 99 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c | 35 +++++++++++++++++++++++++++++++----
+ 1 file changed, 31 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-index c5e0a53..a94dce4 100644
+index a94dce4..71e10bf 100644
 --- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
-@@ -48,6 +48,7 @@
- #define mmUVD_RBC_IB_SIZE_INTERNAL_OFFSET			0x25c
- 
- #define VCN_INSTANCES_SIENNA_CICHLID				2
-+#define DEC_SW_RING_ENABLED					FALSE
- 
- static int amdgpu_ih_clientid_vcns[] = {
- 	SOC15_IH_CLIENTID_VCN,
-@@ -1673,6 +1674,98 @@ static void vcn_v3_0_dec_ring_set_wptr(struct amdgpu_ring *ring)
+@@ -170,6 +170,7 @@ static int vcn_v3_0_sw_init(void *handle)
  	}
- }
  
-+void vcn_v3_0_dec_sw_ring_emit_fence(struct amdgpu_ring *ring, u64 addr,
-+				u64 seq, uint32_t flags)
-+{
-+	WARN_ON(flags & AMDGPU_FENCE_FLAG_64BIT);
-+
-+	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_FENCE);
-+	amdgpu_ring_write(ring, addr);
-+	amdgpu_ring_write(ring, upper_32_bits(addr));
-+	amdgpu_ring_write(ring, seq);
-+	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_TRAP);
-+}
-+
-+void vcn_v3_0_dec_sw_ring_insert_end(struct amdgpu_ring *ring)
-+{
-+	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_END);
-+}
-+
-+void vcn_v3_0_dec_sw_ring_emit_ib(struct amdgpu_ring *ring,
-+			       struct amdgpu_job *job,
-+			       struct amdgpu_ib *ib,
-+			       uint32_t flags)
-+{
-+	uint32_t vmid = AMDGPU_JOB_GET_VMID(job);
-+
-+	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_IB);
-+	amdgpu_ring_write(ring, vmid);
-+	amdgpu_ring_write(ring, lower_32_bits(ib->gpu_addr));
-+	amdgpu_ring_write(ring, upper_32_bits(ib->gpu_addr));
-+	amdgpu_ring_write(ring, ib->length_dw);
-+}
-+
-+void vcn_v3_0_dec_sw_ring_emit_reg_wait(struct amdgpu_ring *ring, uint32_t reg,
-+				uint32_t val, uint32_t mask)
-+{
-+	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_REG_WAIT);
-+	amdgpu_ring_write(ring, reg << 2);
-+	amdgpu_ring_write(ring, mask);
-+	amdgpu_ring_write(ring, val);
-+}
-+
-+void vcn_v3_0_dec_sw_ring_emit_vm_flush(struct amdgpu_ring *ring,
-+				uint32_t vmid, uint64_t pd_addr)
-+{
-+	struct amdgpu_vmhub *hub = &ring->adev->vmhub[ring->funcs->vmhub];
-+	uint32_t data0, data1, mask;
-+
-+	pd_addr = amdgpu_gmc_emit_flush_gpu_tlb(ring, vmid, pd_addr);
-+
-+	/* wait for register write */
-+	data0 = hub->ctx0_ptb_addr_lo32 + vmid * hub->ctx_addr_distance;
-+	data1 = lower_32_bits(pd_addr);
-+	mask = 0xffffffff;
-+	vcn_v3_0_dec_sw_ring_emit_reg_wait(ring, data0, data1, mask);
-+}
-+
-+void vcn_v3_0_dec_sw_ring_emit_wreg(struct amdgpu_ring *ring, uint32_t reg, uint32_t val)
-+{
-+	amdgpu_ring_write(ring, VCN_DEC_SW_CMD_REG_WRITE);
-+	amdgpu_ring_write(ring,	reg << 2);
-+	amdgpu_ring_write(ring, val);
-+}
-+
-+static const struct amdgpu_ring_funcs vcn_v3_0_dec_sw_ring_vm_funcs = {
-+	.type = AMDGPU_RING_TYPE_VCN_DEC,
-+	.align_mask = 0x3f,
-+	.nop = VCN_DEC_SW_CMD_NO_OP,
-+	.vmhub = AMDGPU_MMHUB_0,
-+	.get_rptr = vcn_v3_0_dec_ring_get_rptr,
-+	.get_wptr = vcn_v3_0_dec_ring_get_wptr,
-+	.set_wptr = vcn_v3_0_dec_ring_set_wptr,
-+	.emit_frame_size =
-+		SOC15_FLUSH_GPU_TLB_NUM_WREG * 3 +
-+		SOC15_FLUSH_GPU_TLB_NUM_REG_WAIT * 4 +
-+		4 + /* vcn_v3_0_dec_sw_ring_emit_vm_flush */
-+		5 + 5 + /* vcn_v3_0_dec_sw_ring_emit_fdec_swe x2 vm fdec_swe */
-+		1, /* vcn_v3_0_dec_sw_ring_insert_end */
-+	.emit_ib_size = 5, /* vcn_v3_0_dec_sw_ring_emit_ib */
-+	.emit_ib = vcn_v3_0_dec_sw_ring_emit_ib,
-+	.emit_fence = vcn_v3_0_dec_sw_ring_emit_fence,
-+	.emit_vm_flush = vcn_v3_0_dec_sw_ring_emit_vm_flush,
-+	.test_ring = amdgpu_vcn_dec_sw_ring_test_ring,
-+	.test_ib = NULL,//amdgpu_vcn_dec_sw_ring_test_ib,
-+	.insert_nop = amdgpu_ring_insert_nop,
-+	.insert_end = vcn_v3_0_dec_sw_ring_insert_end,
-+	.pad_ib = amdgpu_ring_generic_pad_ib,
-+	.begin_use = amdgpu_vcn_ring_begin_use,
-+	.end_use = amdgpu_vcn_ring_end_use,
-+	.emit_wreg = vcn_v3_0_dec_sw_ring_emit_wreg,
-+	.emit_reg_wait = vcn_v3_0_dec_sw_ring_emit_reg_wait,
-+	.emit_reg_write_reg_wait = amdgpu_ring_emit_reg_write_reg_wait_helper,
-+};
-+
- static const struct amdgpu_ring_funcs vcn_v3_0_dec_ring_vm_funcs = {
- 	.type = AMDGPU_RING_TYPE_VCN_DEC,
- 	.align_mask = 0xf,
-@@ -1810,9 +1903,13 @@ static void vcn_v3_0_set_dec_ring_funcs(struct amdgpu_device *adev)
+ 	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
++		volatile struct amdgpu_fw_shared *fw_shared;
  		if (adev->vcn.harvest_config & (1 << i))
  			continue;
  
--		adev->vcn.inst[i].ring_dec.funcs = &vcn_v3_0_dec_ring_vm_funcs;
-+		if (!DEC_SW_RING_ENABLED)
-+			adev->vcn.inst[i].ring_dec.funcs = &vcn_v3_0_dec_ring_vm_funcs;
-+		else
-+			adev->vcn.inst[i].ring_dec.funcs = &vcn_v3_0_dec_sw_ring_vm_funcs;
- 		adev->vcn.inst[i].ring_dec.me = i;
--		DRM_INFO("VCN(%d) decode is enabled in VM mode\n", i);
-+		DRM_INFO("VCN(%d) decode%s is enabled in VM mode\n", i,
-+			  DEC_SW_RING_ENABLED?"(Software Ring)":"");
+@@ -234,6 +235,10 @@ static int vcn_v3_0_sw_init(void *handle)
+ 			if (r)
+ 				return r;
+ 		}
++
++		fw_shared = adev->vcn.inst[i].fw_shared_cpu_addr;
++		fw_shared->present_flag_0 |= cpu_to_le32(AMDGPU_VCN_SW_RING_FLAG);
++		fw_shared->sw_ring.is_enabled = cpu_to_le32(DEC_SW_RING_ENABLED);
  	}
+ 
+ 	if (amdgpu_sriov_vf(adev)) {
+@@ -257,7 +262,17 @@ static int vcn_v3_0_sw_init(void *handle)
+ static int vcn_v3_0_sw_fini(void *handle)
+ {
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+-	int r;
++	int i, r;
++
++	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
++		volatile struct amdgpu_fw_shared *fw_shared;
++
++		if (adev->vcn.harvest_config & (1 << i))
++			continue;
++		fw_shared = adev->vcn.inst[i].fw_shared_cpu_addr;
++		fw_shared->present_flag_0 = 0;
++		fw_shared->sw_ring.is_enabled = false;
++	}
+ 
+ 	if (amdgpu_sriov_vf(adev))
+ 		amdgpu_virt_free_mm_table(adev);
+@@ -467,6 +482,15 @@ static void vcn_v3_0_mc_resume(struct amdgpu_device *adev, int inst)
+ 		upper_32_bits(adev->vcn.inst[inst].gpu_addr + offset + AMDGPU_VCN_STACK_SIZE));
+ 	WREG32_SOC15(VCN, inst, mmUVD_VCPU_CACHE_OFFSET2, 0);
+ 	WREG32_SOC15(VCN, inst, mmUVD_VCPU_CACHE_SIZE2, AMDGPU_VCN_CONTEXT_SIZE);
++
++	/* non-cache window */
++	WREG32_SOC15(VCN, inst, mmUVD_LMI_VCPU_NC0_64BIT_BAR_LOW,
++		lower_32_bits(adev->vcn.inst[inst].fw_shared_gpu_addr));
++	WREG32_SOC15(VCN, inst, mmUVD_LMI_VCPU_NC0_64BIT_BAR_HIGH,
++		upper_32_bits(adev->vcn.inst[inst].fw_shared_gpu_addr));
++	WREG32_SOC15(VCN, inst, mmUVD_VCPU_NONCACHE_OFFSET0, 0);
++	WREG32_SOC15(VCN, inst, mmUVD_VCPU_NONCACHE_SIZE0,
++		AMDGPU_GPU_PAGE_ALIGN(sizeof(struct amdgpu_fw_shared)));
  }
  
+ static void vcn_v3_0_mc_resume_dpg_mode(struct amdgpu_device *adev, int inst_idx, bool indirect)
+@@ -549,13 +573,16 @@ static void vcn_v3_0_mc_resume_dpg_mode(struct amdgpu_device *adev, int inst_idx
+ 
+ 	/* non-cache window */
+ 	WREG32_SOC15_DPG_MODE(inst_idx, SOC15_DPG_MODE_OFFSET(
+-			VCN, inst_idx, mmUVD_LMI_VCPU_NC0_64BIT_BAR_LOW), 0, 0, indirect);
++			VCN, inst_idx, mmUVD_LMI_VCPU_NC0_64BIT_BAR_LOW),
++			lower_32_bits(adev->vcn.inst[inst_idx].fw_shared_gpu_addr), 0, indirect);
+ 	WREG32_SOC15_DPG_MODE(inst_idx, SOC15_DPG_MODE_OFFSET(
+-			VCN, inst_idx, mmUVD_LMI_VCPU_NC0_64BIT_BAR_HIGH), 0, 0, indirect);
++			VCN, inst_idx, mmUVD_LMI_VCPU_NC0_64BIT_BAR_HIGH),
++			upper_32_bits(adev->vcn.inst[inst_idx].fw_shared_gpu_addr), 0, indirect);
+ 	WREG32_SOC15_DPG_MODE(inst_idx, SOC15_DPG_MODE_OFFSET(
+ 			VCN, inst_idx, mmUVD_VCPU_NONCACHE_OFFSET0), 0, 0, indirect);
+ 	WREG32_SOC15_DPG_MODE(inst_idx, SOC15_DPG_MODE_OFFSET(
+-			VCN, inst_idx, mmUVD_VCPU_NONCACHE_SIZE0), 0, 0, indirect);
++			VCN, inst_idx, mmUVD_VCPU_NONCACHE_SIZE0),
++			AMDGPU_GPU_PAGE_ALIGN(sizeof(struct amdgpu_fw_shared)), 0, indirect);
+ }
+ 
+ static void vcn_v3_0_disable_static_power_gating(struct amdgpu_device *adev, int inst)
 -- 
 2.7.4
 
