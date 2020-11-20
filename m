@@ -2,87 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C6C42BB68C
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:20:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2160C2BB7EE
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:54:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77BF66E925;
-	Fri, 20 Nov 2020 20:20:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 915006E92C;
+	Fri, 20 Nov 2020 20:54:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr680083.outbound.protection.outlook.com [40.107.68.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F4586E92C
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:20:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DOzTIvP8QFnbgUhbfCKkPS3jfEQGvKVh5BxvYVTddiAkoIVuC5odbcWv4UYr2LQIlE/6JAJ8GqU8qghTIw9kjKAjxIdo+OoIDDXJVuYb6nhXwZZsxm4wwiaUFimT4tVAqEDh2UjobFWQnsCXHHFPDVXND/WkNnVknELLDj8X0k10fOorvTmRDJMvp9giP44Et50r+Tkv4jCbLAIro5DeZqzd9WBhyW+x+2nW4LCyS6IQu85oCIccFQWvJW9itLwHv2dtZgG1ijkzgc3/TEcXHYOg3a6ijX8/8+EDX+4yqiQ8W7HdcBA7bDihmp/OH6CD3jHiKfeDVNlXVe6LY+gWlg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lDOfaR4Uh+pEf1mbGOkEnlgaVtnUsG7VBOKWCiBEdV8=;
- b=jwwQ1GZ5qoyZvhvgwcYRHCyTEmittnVv0WeCQAeBIMYvwkRdd0XcVTR1PUH56mTjTmNECt06A/y+TcN6nrkvTcvfohEJMCvv7U0puGcm4slzpt2E2i0fwcj7dPBNXslD+GE6D0zgtKFRgXqYKVhVxagjz6C0vd5vS6Ldv9BKeYJjRSFGMifNs6wH6ZJwyyOBNFnhHhfIQwAqYXWD+y3CyI2GME9uu4vBXMD5TyJVvvQbizCcbE+dYsgBqG/52RhGSKd4v9OTZLt4em368oC7ZnNHNYRPHU0I87XJRqeoOqwr9+6hc+OhHH9fjiYWy5qq6We0PiHmbCVq9JHkIrD2Qg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lDOfaR4Uh+pEf1mbGOkEnlgaVtnUsG7VBOKWCiBEdV8=;
- b=Dx/V93lmqEBSwkGrBqYzkKyVxkImpQc82DizWmc25MU6mKptsMvbveHxlKq6DviW0Njh8dEbnIHggg8KuzLYAEvPdYwwdNHWpjweCMdiHsG/HgdgPAUjqx27SVCh7B8XbGCkfOaMBdc1iR92TDmOxkJhzt05t/FvA6QlneMbJsI=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from CH2PR12MB3781.namprd12.prod.outlook.com (2603:10b6:610:27::11)
- by CH2PR12MB3717.namprd12.prod.outlook.com (2603:10b6:610:24::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.28; Fri, 20 Nov
- 2020 20:20:35 +0000
-Received: from CH2PR12MB3781.namprd12.prod.outlook.com
- ([fe80::9d:35d6:ff59:1cfa]) by CH2PR12MB3781.namprd12.prod.outlook.com
- ([fe80::9d:35d6:ff59:1cfa%4]) with mapi id 15.20.3589.024; Fri, 20 Nov 2020
- 20:20:35 +0000
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 18/18] drm/amd/display: init soc bounding box for dcn3.01.
-Date: Fri, 20 Nov 2020 15:19:58 -0500
-Message-Id: <20201120201958.2455002-19-Rodrigo.Siqueira@amd.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
-References: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
-X-Originating-IP: [2607:fea8:56e0:6d60::c908]
-X-ClientProxiedBy: CH2PR16CA0025.namprd16.prod.outlook.com
- (2603:10b6:610:50::35) To CH2PR12MB3781.namprd12.prod.outlook.com
- (2603:10b6:610:27::11)
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com
+ [IPv6:2607:f8b0:4864:20::641])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D7C06E928
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:48:03 +0000 (UTC)
+Received: by mail-pl1-x641.google.com with SMTP id 5so5468026plj.8
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 12:48:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=v0uQ3+ZvQ790GJbfbb1ESqfRrqQ38XoL7hho1t1Gb0k=;
+ b=avd4TaFUM+Ab56B8iWTc3giej2JyPXQeNqj8Vqwh4pMfYMm6E7ROZ43KbUMGq3c2kN
+ Y7wgImiWtwhH33QCuhXwX5xfYnbd8ZoAoymaiVLMsflRM4OrtMTi7raBVieCeB5e9/kv
+ qCr4nXKui27aGXF6t1ziK2ispJ9UlbNRnpYGc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=v0uQ3+ZvQ790GJbfbb1ESqfRrqQ38XoL7hho1t1Gb0k=;
+ b=EamooUBygnxElpDSfuosroeyJ9MSSKAYco9xOjp2O+tmYuhoXoIkgWWS13957wnM8S
+ 7qA0P/TB+/oXKmc7lrX+8sprWGed3PboH3RH6eEer5awpUMRm5LpIqcFWYytXj2j/qPT
+ 6odEDyN9ShzIJtCFETiszPA5rCZI3kySyvdZjR+VuFqdZ7nhwsXiam02huKA7tAUd7WI
+ TrKErdYr0ZDUMKkqlDnbUmnCIOvuDkuSPzdS5Yod5RnUSZJJhFNaERuKZ/0oueSvJA7l
+ GPl0jeyJXnWmgfgBmctyN8mwXDCSI4iMjiPe1f9jcFLizeCDPV+TeITou64Qx+nqB0fl
+ 365A==
+X-Gm-Message-State: AOAM531D6X1tZxnDvoY6Vgl0uV+UzCqNuE0YYHvAqaI69VPQt4l1VJU/
+ wT9Y8vwbNH0tYbpwrvyfR/Vs4A==
+X-Google-Smtp-Source: ABdhPJwusp2Lb+4OqT162rurUKkT/e5T3DAOLIduq4rICrKRG7vcFewdIWNkE66BLMZ+8SMrIPoLqA==
+X-Received: by 2002:a17:902:7890:b029:d8:bb20:518e with SMTP id
+ q16-20020a1709027890b02900d8bb20518emr15184915pll.66.1605905283037; 
+ Fri, 20 Nov 2020 12:48:03 -0800 (PST)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+ by smtp.gmail.com with ESMTPSA id w11sm565810pfi.162.2020.11.20.12.48.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 20 Nov 2020 12:48:02 -0800 (PST)
+Date: Fri, 20 Nov 2020 12:48:01 -0800
+From: Kees Cook <keescook@chromium.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Subject: Re: [PATCH 000/141] Fix fall-through warnings for Clang
+Message-ID: <202011201244.78E002D5@keescook>
+References: <cover.1605896059.git.gustavoars@kernel.org>
+ <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011201129.B13FDB3C@keescook>
+ <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60::c908) by
- CH2PR16CA0025.namprd16.prod.outlook.com (2603:10b6:610:50::35) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 20:20:34 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 86e6f383-9cba-4200-58ad-08d88d91bcee
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3717:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB371701E42A3E2DEFD87ADA6E98FF0@CH2PR12MB3717.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:256;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UjC1eqldhySpEopjadrkvNSpL+nLSG39nv/b/iNMP1+o1Kw2I5cDb+gNbQW4Ro1QT4AXXN3s/4HjcYFnT3JEwsaV67BjWnvsYKwwX2A3qE+yaKVPvDlAdPyXXNYbeYN6Jmf70k0+T0hu5KMAAxqVZ6gGaxlTfWm8yv6FckODYy11sBhyn4jvmrWQMyziPlSaeqsMXIJ/pI1NvTU2QEWTdpiM+ZWtUJ9L0n9JGdu7WW108GMeAPtKNxUqgLbsgrCHJEdlD5OFf0UfPhASH/n7fYWTpy6e2jcj8WGLzqAQury3+mcHuKfLwO8k6Grx7DHIVI70LxGxX+6OaERPuisEIg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH2PR12MB3781.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(346002)(366004)(39860400002)(376002)(136003)(86362001)(66476007)(6916009)(8676002)(54906003)(6512007)(8936002)(66946007)(52116002)(6506007)(16526019)(83380400001)(5660300002)(2616005)(186003)(1076003)(6486002)(36756003)(478600001)(66556008)(316002)(4326008)(2906002)(6666004);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: BW7Vivk449zWXHvytyAhTq9vdxskPtEhABxOpi4OvAsg6XDWZV065Yr+owUYWrLcmFuK6UqjGfS5eGDDJlYT7WK+ne7RGXfl7Ncoidi8Wmskjlc+6SjvaDbqTbzVC3mub51e10MDdspLUz/tgvRl+B3WkEFq9oHIzL+LDZgQ4kvhU5amTgmYXqDu6FFkql1pZa9VYNkSI5h+wn8jYU5gLyTPlRJpTOsshf+cjWdmagL/FFmoGfTRjzcUH55BxiS9iJN7/6ng3PtlyZO8YzaUNXY08s9PcJTk+c38DTAEjlxITJ6lXa1R5P9fUkovYx+OVz2pSkIAnRMNSOoDAtV+KnwF1CYcNZKonXrdCOyAojkiq+skdr1h9LstZlyULD4ATi5BzTIsj+ojLXz7GO+kd6PUN+pnAQpONlm71B1qGv+XPx7bzPWBKqm76O3mkB7NSbq1vA5BftRCzFNyD+RGdhzB/ydOWmpKHUAYRA/GF4B9y+hN/hH/vBpDGfuQL81jF8Y3n6hDdsopXAC1Z/klM5auN4sGWvthpxfb0pyqGpcQrvQfGJ3yHvULCSpaFB0UVeIVzgcP8dVGorSD9ZKH6TtKodbgnujC/jrgIa6Tx0n0WUBW+NhxFpU+W+zCJXgEzvvAM/NkcIO9uUFUPo92NsI21dvtP6nfuDTmvYAtE/8rGshn4liOkjrjkiYWhAVir86MpcMRfrcerT8qEcM2ANdLzJFXkn33NjmwHosrMpBwweX1B+4QAs4p36+XlxzGjZUUM8Jw6OmonPNvzbzCm6mywOI+7uCjjSGFFOMA3zL8942LcxIC1EaehAWxTBFn2h73PbYR6+LlksY9YmXSFtfoVQEcOE7s2Bk/ea5jnKMlk/rC/XiLIaIZ6cjLBIvMVbW/L8e23VoqDq51A8Sw9h5nSa/UJLnrylF330PXiaVC5cQdYtHpzctfsSixoww+
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86e6f383-9cba-4200-58ad-08d88d91bcee
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3781.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 20:20:35.4415 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Dv/2YtrFGKXwoh/T61FexXNG7Fx8cX0QuZbcoAf8aBB3uITtr0oCOIRERWY4tRI7p/28/MZaLSAf4LrxO9ZUIA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3717
+Content-Disposition: inline
+In-Reply-To: <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+X-Mailman-Approved-At: Fri, 20 Nov 2020 20:54:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,195 +67,100 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Aurabindo.Pillai@amd.com, Tony Cheng <Tony.Cheng@amd.com>,
- Yongqiang Sun <yongqiang.sun@amd.com>, Bhawanpreet.Lakha@amd.com,
- bindu.r@amd.com
+Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
+ reiserfs-devel@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Nathan Chancellor <natechancellor@gmail.com>, linux-ide@vger.kernel.org,
+ dm-devel@redhat.com, keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
+ GR-everest-linux-l2@marvell.com, wcn36xx@lists.infradead.org,
+ samba-technical@lists.samba.org, linux-i3c@lists.infradead.org,
+ linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
+ usb-storage@lists.one-eyed-alien.net, drbd-dev@lists.linbit.com,
+ devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
+ rds-devel@oss.oracle.com, Nick Desaulniers <ndesaulniers@google.com>,
+ linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ oss-drivers@netronome.com, bridge@lists.linux-foundation.org,
+ linux-security-module@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
+ linux-acpi@vger.kernel.org, coreteam@netfilter.org,
+ intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
+ Miguel Ojeda <ojeda@kernel.org>, tipc-discussion@lists.sourceforge.net,
+ linux-ext4@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, selinux@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-geode@lists.infradead.org, linux-can@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
+ op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
+ xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
+ linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
+ virtualization@lists.linux-foundation.org, target-devel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+ x86@kernel.org, linux-nfs@vger.kernel.org, GR-Linux-NIC-Dev@marvell.com,
+ linux-mm@kvack.org, netdev@vger.kernel.org,
+ linux-decnet-user@lists.sourceforge.net, linux-mmc@vger.kernel.org,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ linux-renesas-soc@vger.kernel.org, linux-sctp@vger.kernel.org,
+ linux-usb@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, patches@opensource.cirrus.com,
+ Joe Perches <joe@perches.com>, linux-integrity@vger.kernel.org,
+ linux-hardening@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Yongqiang Sun <yongqiang.sun@amd.com>
+On Fri, Nov 20, 2020 at 11:51:42AM -0800, Jakub Kicinski wrote:
+> On Fri, 20 Nov 2020 11:30:40 -0800 Kees Cook wrote:
+> > On Fri, Nov 20, 2020 at 10:53:44AM -0800, Jakub Kicinski wrote:
+> > > On Fri, 20 Nov 2020 12:21:39 -0600 Gustavo A. R. Silva wrote:  
+> > > > This series aims to fix almost all remaining fall-through warnings in
+> > > > order to enable -Wimplicit-fallthrough for Clang.
+> > > > 
+> > > > In preparation to enable -Wimplicit-fallthrough for Clang, explicitly
+> > > > add multiple break/goto/return/fallthrough statements instead of just
+> > > > letting the code fall through to the next case.
+> > > > 
+> > > > Notice that in order to enable -Wimplicit-fallthrough for Clang, this
+> > > > change[1] is meant to be reverted at some point. So, this patch helps
+> > > > to move in that direction.
+> > > > 
+> > > > Something important to mention is that there is currently a discrepancy
+> > > > between GCC and Clang when dealing with switch fall-through to empty case
+> > > > statements or to cases that only contain a break/continue/return
+> > > > statement[2][3][4].  
+> > > 
+> > > Are we sure we want to make this change? Was it discussed before?
+> > > 
+> > > Are there any bugs Clangs puritanical definition of fallthrough helped
+> > > find?
+> > > 
+> > > IMVHO compiler warnings are supposed to warn about issues that could
+> > > be bugs. Falling through to default: break; can hardly be a bug?!  
+> > 
+> > It's certainly a place where the intent is not always clear. I think
+> > this makes all the cases unambiguous, and doesn't impact the machine
+> > code, since the compiler will happily optimize away any behavioral
+> > redundancy.
+> 
+> If none of the 140 patches here fix a real bug, and there is no change
+> to machine code then it sounds to me like a W=2 kind of a warning.
 
-[Why & How]
-Update init soc bounding box and bw bounding box for DCN3.01.
-Remove pp smu interface which isn't used.
+I'd like to avoid splitting common -W options between default and W=2
+just based on the compiler. Getting -Wimplicit-fallthrough enabled found
+plenty of bugs, so making sure it works correctly for both compilers
+feels justified to me. (This is just a subset of the same C language
+short-coming.)
 
-Signed-off-by: Yongqiang Sun <yongqiang.sun@amd.com>
-Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
-Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
----
- .../amd/display/dc/dcn301/dcn301_resource.c   | 118 +++++++++---------
- 1 file changed, 60 insertions(+), 58 deletions(-)
+> I think clang is just being annoying here, but if I'm the only one who
+> feels this way chances are I'm wrong :)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-index 4b029631a22c..124ae5253d4b 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-@@ -1345,9 +1345,6 @@ static void dcn301_destruct(struct dcn301_resource_pool *pool)
- 
- 	if (pool->base.dccg != NULL)
- 		dcn_dccg_destroy(&pool->base.dccg);
--
--	if (pool->base.pp_smu != NULL)
--		dcn301_pp_smu_destroy(&pool->base.pp_smu);
- }
- 
- struct hubp *dcn301_hubp_create(
-@@ -1600,41 +1597,25 @@ static bool init_soc_bounding_box(struct dc *dc,
- 		}
- 	}
- 
--	if (pool->base.pp_smu) {
--		struct pp_smu_nv_clock_table max_clocks = {0};
--		unsigned int uclk_states[8] = {0};
--		unsigned int num_states = 0;
--		enum pp_smu_status status;
--		bool clock_limits_available = false;
--		bool uclk_states_available = false;
-+	loaded_ip->max_num_otg = pool->base.res_cap->num_timing_generator;
-+	loaded_ip->max_num_dpp = pool->base.pipe_count;
-+	dcn20_patch_bounding_box(dc, loaded_bb);
- 
--		if (pool->base.pp_smu->nv_funcs.get_uclk_dpm_states) {
--			status = (pool->base.pp_smu->nv_funcs.get_uclk_dpm_states)
--				(&pool->base.pp_smu->nv_funcs.pp_smu, uclk_states, &num_states);
-+	if (!bb && dc->ctx->dc_bios->funcs->get_soc_bb_info) {
-+		struct bp_soc_bb_info bb_info = {0};
- 
--			uclk_states_available = (status == PP_SMU_RESULT_OK);
--		}
-+		if (dc->ctx->dc_bios->funcs->get_soc_bb_info(dc->ctx->dc_bios, &bb_info) == BP_RESULT_OK) {
-+			if (bb_info.dram_clock_change_latency_100ns > 0)
-+				dcn3_01_soc.dram_clock_change_latency_us = bb_info.dram_clock_change_latency_100ns * 10;
- 
--		if (pool->base.pp_smu->nv_funcs.get_maximum_sustainable_clocks) {
--			status = (*pool->base.pp_smu->nv_funcs.get_maximum_sustainable_clocks)
--					(&pool->base.pp_smu->nv_funcs.pp_smu, &max_clocks);
--			/* SMU cannot set DCF clock to anything equal to or higher than SOC clock
--			 */
--			if (max_clocks.dcfClockInKhz >= max_clocks.socClockInKhz)
--				max_clocks.dcfClockInKhz = max_clocks.socClockInKhz - 1000;
--			clock_limits_available = (status == PP_SMU_RESULT_OK);
--		}
-+			if (bb_info.dram_sr_enter_exit_latency_100ns > 0)
-+				dcn3_01_soc.sr_enter_plus_exit_time_us = bb_info.dram_sr_enter_exit_latency_100ns * 10;
- 
--		if (clock_limits_available && uclk_states_available && num_states)
--			dcn20_update_bounding_box(dc, loaded_bb, &max_clocks, uclk_states, num_states);
--		else if (clock_limits_available)
--			dcn20_cap_soc_clocks(loaded_bb, max_clocks);
-+			if (bb_info.dram_sr_exit_latency_100ns > 0)
-+				dcn3_01_soc.sr_exit_time_us = bb_info.dram_sr_exit_latency_100ns * 10;
-+		}
- 	}
- 
--	loaded_ip->max_num_otg = pool->base.res_cap->num_timing_generator;
--	loaded_ip->max_num_dpp = pool->base.pipe_count;
--	dcn20_patch_bounding_box(dc, loaded_bb);
--
- 	return true;
- }
- 
-@@ -1682,36 +1663,58 @@ static void set_wm_ranges(
- 	pp_smu->nv_funcs.set_wm_ranges(&pp_smu->nv_funcs.pp_smu, &ranges);
- }
- 
--static struct pp_smu_funcs *dcn301_pp_smu_create(struct dc_context *ctx)
-+static void dcn301_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params)
- {
--	struct pp_smu_funcs *pp_smu = kzalloc(sizeof(*pp_smu), GFP_KERNEL);
--
--	if (!pp_smu)
--		return pp_smu;
--
--	if (!IS_FPGA_MAXIMUS_DC(ctx->dce_environment) && !IS_DIAG_DC(ctx->dce_environment)) {
--		dm_pp_get_funcs(ctx, pp_smu);
--
--		/* TODO: update once we have n21 smu*/
--		if (pp_smu->ctx.ver != PP_SMU_VER_NV)
--			pp_smu = memset(pp_smu, 0, sizeof(struct pp_smu_funcs));
--	}
--
--	return pp_smu;
--}
-+	struct dcn301_resource_pool *pool = TO_DCN301_RES_POOL(dc->res_pool);
-+	struct clk_limit_table *clk_table = &bw_params->clk_table;
-+	struct _vcs_dpi_voltage_scaling_st clock_limits[DC__VOLTAGE_STATES];
-+	unsigned int i, closest_clk_lvl;
-+	int j;
-+
-+	// Default clock levels are used for diags, which may lead to overclocking.
-+	if (!IS_DIAG_DC(dc->ctx->dce_environment)) {
-+		dcn3_01_ip.max_num_otg = pool->base.res_cap->num_timing_generator;
-+		dcn3_01_ip.max_num_dpp = pool->base.pipe_count;
-+		dcn3_01_soc.num_chans = bw_params->num_channels;
-+
-+		ASSERT(clk_table->num_entries);
-+		for (i = 0; i < clk_table->num_entries; i++) {
-+			/* loop backwards*/
-+			for (closest_clk_lvl = 0, j = dcn3_01_soc.num_states - 1; j >= 0; j--) {
-+				if ((unsigned int) dcn3_01_soc.clock_limits[j].dcfclk_mhz <= clk_table->entries[i].dcfclk_mhz) {
-+					closest_clk_lvl = j;
-+					break;
-+				}
-+			}
- 
--static void dcn301_pp_smu_destroy(struct pp_smu_funcs **pp_smu)
--{
--	if (pp_smu && *pp_smu) {
--		kfree(*pp_smu);
--		*pp_smu = NULL;
-+			clock_limits[i].state = i;
-+			clock_limits[i].dcfclk_mhz = clk_table->entries[i].dcfclk_mhz;
-+			clock_limits[i].fabricclk_mhz = clk_table->entries[i].fclk_mhz;
-+			clock_limits[i].socclk_mhz = clk_table->entries[i].socclk_mhz;
-+			clock_limits[i].dram_speed_mts = clk_table->entries[i].memclk_mhz * 2;
-+
-+			clock_limits[i].dispclk_mhz = dcn3_01_soc.clock_limits[closest_clk_lvl].dispclk_mhz;
-+			clock_limits[i].dppclk_mhz = dcn3_01_soc.clock_limits[closest_clk_lvl].dppclk_mhz;
-+			clock_limits[i].dram_bw_per_chan_gbps = dcn3_01_soc.clock_limits[closest_clk_lvl].dram_bw_per_chan_gbps;
-+			clock_limits[i].dscclk_mhz = dcn3_01_soc.clock_limits[closest_clk_lvl].dscclk_mhz;
-+			clock_limits[i].dtbclk_mhz = dcn3_01_soc.clock_limits[closest_clk_lvl].dtbclk_mhz;
-+			clock_limits[i].phyclk_d18_mhz = dcn3_01_soc.clock_limits[closest_clk_lvl].phyclk_d18_mhz;
-+			clock_limits[i].phyclk_mhz = dcn3_01_soc.clock_limits[closest_clk_lvl].phyclk_mhz;
-+		}
-+		for (i = 0; i < clk_table->num_entries; i++)
-+			dcn3_01_soc.clock_limits[i] = clock_limits[i];
-+		if (clk_table->num_entries) {
-+			dcn3_01_soc.num_states = clk_table->num_entries;
-+			/* duplicate last level */
-+			dcn3_01_soc.clock_limits[dcn3_01_soc.num_states] = dcn3_01_soc.clock_limits[dcn3_01_soc.num_states - 1];
-+			dcn3_01_soc.clock_limits[dcn3_01_soc.num_states].state = dcn3_01_soc.num_states;
-+		}
- 	}
--}
- 
--static void dcn301_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params)
--{
- 	dcn3_01_soc.dispclk_dppclk_vco_speed_mhz = dc->clk_mgr->dentist_vco_freq_khz / 1000.0;
- 	dc->dml.soc.dispclk_dppclk_vco_speed_mhz = dc->clk_mgr->dentist_vco_freq_khz / 1000.0;
-+
-+	dml_init_instance(&dc->dml, &dcn3_01_soc, &dcn3_01_ip, DML_PROJECT_DCN30);
- }
- 
- static struct resource_funcs dcn301_res_pool_funcs = {
-@@ -1862,9 +1865,8 @@ static bool dcn301_resource_construct(
- 		goto create_fail;
- 	}
- 
--	/* PP Lib and SMU interfaces */
--	pool->base.pp_smu = dcn301_pp_smu_create(ctx);
- 	init_soc_bounding_box(dc, pool);
-+
- 	if (!dc->debug.disable_pplib_wm_range && pool->base.pp_smu->nv_funcs.set_wm_ranges)
- 		set_wm_ranges(pool->base.pp_smu, &dcn3_01_soc);
- 
+It's being pretty pedantic, but I don't think it's unreasonable to
+explicitly state how every case ends. GCC's silence for the case of
+"fall through to a break" doesn't really seem justified.
+
 -- 
-2.29.2
-
+Kees Cook
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
