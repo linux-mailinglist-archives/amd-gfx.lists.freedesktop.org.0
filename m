@@ -2,39 +2,39 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11AD52BB682
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:20:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DEB32BB67E
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:20:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 392BD6E920;
-	Fri, 20 Nov 2020 20:20:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2939C6E916;
+	Fri, 20 Nov 2020 20:20:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2089.outbound.protection.outlook.com [40.107.236.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB6096E918
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:20:26 +0000 (UTC)
+ (mail-bn8nam11on2068.outbound.protection.outlook.com [40.107.236.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2061B89A08
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:20:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hFHhMJe7gI2bLnYzIu1SbDkZqRD6vSVHvvbEATBhHDK3xWEmUSw6NyF8fflHnl/jRa9fuMIZyNlhQx1fPNGwFCbCpu5ldlbWR6gUqaU4WOcYRUsVs9IakfdreLksgxzxTM7AhAyFuRkAyZs4dPclwwH54qL+olm49WZ3LRFc8c4SNiyY26kNL3M+cMzhhlc9levpU0QzgD9FI+ATHviF9Ut7TnMCVhmTrUN7XsPIxQtSfwJFCCS4L0blzy+BU3I3gdm42vAaDwRO383bYswG9jZvh1OsBlMay8Hf56K0xdNEmVJjm0C9foQlkLmlQtw1cUt5CKUR3E5claine+zh7Q==
+ b=UWiQ6ZLjbzvu0StwFmf2wS4yfxwtafl/sDgTt8wTSL2BTSvnsZh76YDabDpbsH65HUr+rOQUtxKShvMHYXJGAovNXK6oAGHSNmRme3S6hZNZp8ULCqpV3nM3Ylf0zB8I1f3s9yGrZG66XLxUIG/fBPSikD17Xbx+kl6NENCQYETrUogB2Q4oUT/Uhby/mmnE+cHO1yff0TZJXJ4yAEcebPDgmpw0RSwuDpvovZfiJ4OeG2G3jsbGR+nCuZUTrLZfIS67/BkFGBybtLBIMUYWE5BbD5cut/f66zZg3o+zXAq8YEsOMZN4h+n/XT9f4wuD8AYyTHv1rNQ9yA8flYustg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oH9dTtHIjah7nXuKaf0hDRqbgl2pPuI5LXD55PjZaRA=;
- b=i9NbTqhhzIutj77p5bbZ8P+E3302JI/kyLQ5lYoIIQLIkMJ7J9u7zRZ/yHcu9J9KVOmBwqzVDjrvs5IyBc0Fxxx6/9UFMH0LDYNnEGJZqZhAMBBQSKhyfK0o2gBCyLGZO7oGcsdXy5in9ocu5xcmarnFjZWZVVBj+QmyokX+qVXb3DoY6SWVumTjVTvj8njXgQo11K5vNa+NmMUUqfZ5TRm3Ub86/vnrOnU5lB9t6Ewgs6n7sd8fzy74IcRHuCr0ijVbcUUuvq8MLno6Ryc5Zg7aGiWhgJYl50a+W9yxFtj2A1E1A8UcC1R1cLpo4WC74Pz3/jjkWw9gu2883hunTA==
+ bh=E7nC8eGY9L03a6mNG83zc/1zyfaNuKX7CPRR7NbWZm0=;
+ b=Qa+mclXp72eWs2TDDS6L1Z0S5uBnkpcH2f1Lhlu+3fQ8kjXO2wk+RDoecP2Gm4M+p42uz4kYQzEvLbx6Xd61ZuOL/Z/FEYhElwISqSQfoWjYh8Ad3q5EqTr1hjkA7dfUwqjEJeNOCJ97UtlCvos6+SNW3d83VXl6FtckegANT+JDEmC06Iy8Wi0ErOP9+8bReCEsJuK6ts9BoRAC+M+w8+hTmz+KtK5BuC9TGeif28upvER/Px+AdtN5qRASzbHPpCU0P2dqwVbMTyViH4WPblFvtdcuIKz363QPKOAqUrgEC/DJl6ss1vpSWaO19LWvRhXnfEAwl3j4wkNBE561fA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oH9dTtHIjah7nXuKaf0hDRqbgl2pPuI5LXD55PjZaRA=;
- b=cwaNIrfL60YFuYG38IGJEt+kYtSwbHNWSOlD57SiSWEI0CWKtbXFpRDse4xi/VjSvKRcNdoPiRez67ckxa6EEpC9KatAcJ9+5oDj16c6NbXW61LtI8XvKI0Dc9mQTXn0d9i9l5ErZMo7b3Xoo11ajzeOelE/Mlk5qtQV/j+mr8s=
+ bh=E7nC8eGY9L03a6mNG83zc/1zyfaNuKX7CPRR7NbWZm0=;
+ b=PVJ3qk0nligURMreyeK1myyamkI2EzHb0nbm45YG5+eLTTFlR3Rik8j3yQcBTSyWhMnTOO94ubTlRzc7AnUraVN+9OIGd+OV3hdYZ4K93tgvu2OKJKEb37hzhkVsxp96ndEO2JjPHAlLftQhKc8+4DM1uPjqmm6gz1KefKLqGM0=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from CH2PR12MB3781.namprd12.prod.outlook.com (2603:10b6:610:27::11)
- by CH2PR12MB4261.namprd12.prod.outlook.com (2603:10b6:610:a9::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.24; Fri, 20 Nov
+ by CH2PR12MB4216.namprd12.prod.outlook.com (2603:10b6:610:a8::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20; Fri, 20 Nov
  2020 20:20:23 +0000
 Received: from CH2PR12MB3781.namprd12.prod.outlook.com
  ([fe80::9d:35d6:ff59:1cfa]) by CH2PR12MB3781.namprd12.prod.outlook.com
@@ -42,9 +42,9 @@ Received: from CH2PR12MB3781.namprd12.prod.outlook.com
  20:20:23 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 02/18] drm/amd/display: Source minimum HBlank support
-Date: Fri, 20 Nov 2020 15:19:42 -0500
-Message-Id: <20201120201958.2455002-3-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 03/18] drm/amd/display: Update panel register
+Date: Fri, 20 Nov 2020 15:19:43 -0500
+Message-Id: <20201120201958.2455002-4-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
 References: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
@@ -57,32 +57,32 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60::c908) by
  CH2PR16CA0025.namprd16.prod.outlook.com (2603:10b6:610:50::35) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 20:20:22 +0000
+ 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 20:20:23 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: f19157ee-18a2-4710-0b43-08d88d91b575
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4261:
+X-MS-Office365-Filtering-Correlation-Id: 97202453-e994-46d4-6a40-08d88d91b5de
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4216:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB4261031DFEAAFEDB7096BF9498FF0@CH2PR12MB4261.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB42167DF64EEBF9663FEB41B498FF0@CH2PR12MB4216.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2582;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8WWBU6jIzXBCrvrrNQpaA+SRnJ2Y/f7JiR31rIVDb3tYguumfF1MQsDJXzsmTj4rArfE+x5I1+FU9O59v7+oq26ShF66UNyTSOA0mPvTXOoK7IeYhcwBPh/dGP9pgxfi0JrFaDAucBNTAyH2yytJO7qJqGv97VdEH3s5ReYHFHFIubRzPMHDU6GlCAH8947/Usj3t29uZZZUtrZaaWrk/8WnllKLYdx8+7TbKA8rEti+EaWBA//3UH9yjWXuvp48Ul8e37OEEq9iRuhrosQGRlmkEPnJm+eQzWEiz5Cf8IM9ykhHVR39QFdgH0dtnUGMc9EToT0h1J+v2FZM7vCmrA==
+X-Microsoft-Antispam-Message-Info: 1T4w/FIDIKT7daMxzGx3wHb7BJ6qUsVpGzpWwi1ymSsB2U9xSdLTkdWQCciZKExY9fB0INiv7yU884MU46QykteebR8+VjgBjCuVRM59wruTYndXKeokokdscfSiCrsjIYtnnKeMYOiyxdL+Kcul5zhONCh8GYoObCUKzRwJBooIkA50xCs1t6SbFbTYGg7eyGL4UkKMLJAc3C2F4PPUzJCs7fRh7HbX34BLrLRnaVPyHS/NVgg7GjS+bBsDUbdCX0mWJwMnmUtMlcD6HH8gpy0iLbjrIb6XNVO15066n12Djt4SHp7atjBOd9yWl6eAdK2mxITdEAvHO1CDCz1yUw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB3781.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(376002)(136003)(39860400002)(346002)(396003)(5660300002)(83380400001)(1076003)(6512007)(66476007)(66556008)(186003)(6486002)(66946007)(4326008)(2906002)(16526019)(86362001)(6916009)(316002)(8936002)(36756003)(6506007)(8676002)(54906003)(52116002)(6666004)(478600001)(2616005);
+ SFS:(4636009)(396003)(376002)(366004)(346002)(136003)(39860400002)(8676002)(2616005)(66556008)(66476007)(16526019)(66946007)(6486002)(186003)(6666004)(316002)(54906003)(478600001)(6512007)(8936002)(86362001)(6916009)(36756003)(4326008)(5660300002)(6506007)(52116002)(2906002)(1076003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: MXPFB5L2OYHWbc/h0G7pzDN757N0OF0GM0sr8V9v234lsOS50w6z15Fw+LxsNJ1y3w4urp26kYbcjzIe+v0QfDTIQt+rftlmzf6fbIuIxZZ5W2+jYX2JoADbjM3N/Xwfd3eebyskwnsi9KacRqLQyn+DzI0KqrpSB/kNeWqcHHMjczEfY5lXA60JjlFpTJOii2V3rjSEtC5Rxxg6rhHUjp7GbKNXJI52IeUgjaXhjhrgXm+pSyzZwa3og0zpoF3Ij2ERl0s6/yDjVAQz7GwesRFUxxsC9LnXg3YIofm+7Wr6Uqh4ohPxRNol1Ae18by9f9NFCz9VGi05fyFIxAvseTEcj2Ctx+72bZXugeeKbR++8CorF7tW8NBDd/RBPQDTEEkX6SLekRrlzwhP9IBNgGrJS1rwV17wrU3W0AScT8ZaRAEhvnM8W90d4PuX3oYJEQcLPsg5jSXnOOFjz5jlF+V71WpGkoA9yuK19i3UfegkMFsNTEuNNNia8BcL9RsJZA+GkRoUq4PzfrkXgM1nZNWW+uVMoeMZbFpAbj8cxUkJcuLMGNZk278VEIhQSjNdblrvVLrktMvZ+z1A6pM12WTrKL7X7U1DsMFnjwuuUQ+X6HBh6Y0s1ZAqxSOr5GXvriC/KPA+IvR6k8T60oZOt+j1ROqMxBN4stoows2cLff6QqHjsJd/trpI9VQ5iah5eXvsZO/5Yy0GE7U85vTvVipEbiLg4RbBy2pkcFQzUorjyGfuMHkWARzgmiJTTQGMqf5Xv3tapX8WZMvL+Ez4u7GquXFNGE4HG5iC6t30n6tZRgEH8cyUVOIoCmt2I2OnUsD6+zpdwfNBTuhpvvlgxAVDwRkREyjYh7KhBkXLyxUDsefFZJM+AHs3BnXChD/Jq8Df4CMVMlvmVQVQ/p84RXMbXzQIOm9vWECJMzUqOJMtxRyKdq3V7t057S61XWkE
+X-MS-Exchange-AntiSpam-MessageData: 3d16tBbVDeXsrEmJNiVIdXkTpLk/yEJPxF0xJ4MigEFU8TKC+eb4ZcZYUD1vGkFGBdYPQvVZr1LQMRVNIXMyq2pPcPNS6dVHuXVSWYc5TdZoJaflZL4Vd5rUTmv3wvd+VD5yrewqIfV0QeOsnzQfhWrHgwsK+kUnEsZYddq82oVWab32SyJaPyRqCM6YXSF7lFJ60DF5KVJ7VUd1uuvwJsnwV3Eua1cUXQAMZg41LMZy3YawuXJPdfE47ulxufi9HbV0qw3GMM1Xz7Sfp68WeG8MZ8gi/WYjsDRMcOuugR633RPTUvuK5kZL1ujfUk/W/6VThjHnDK7cqjzTWJHb/ekU3TZNKlPAU+Uri9QYGtLJKFjisGPDX3+dchHgNeMHe217MD6QogaBr5xr42KJaKqjCB8qKKVDcX8HrQ984CLSzvfNtfMhpt7gmafg90MFEiIVYGfL7TM11zm3UoPjlVX6mP/asRR9HDlCim8tLfyjyeR8N7ZTV7moagq+f8nc0NWG5GksLDb5CSo4+AsJuJ9YoW18FSxQUFuf+cMjzKwl6JRh/rQrDMNwz8aTp3LdAeoae1UPcAKD4dgelkNCOU1cLu+gdKaqlZV2JRp+sp3pc66y/cqGzembFi8MAqTvagS/SpowK1uTtpHIa5OjZfs+2lhEmzh8+ZgfdcZ35GOVqXq2zRuVR5BnwMbT/CU1ngYAZdFqjWpcdGoW9M8G7lSZhSpYsGv14VjDmNObseVe4I8OpL2hH9QHm9+jRe4K+L4uPNLGC6UMr/j4ox5f5CGmZEjDs0IbWAR2GxIlkhUJpryz9obH9Es/Pe0DssylnqRd3yoAVbsqrsDRV8KDR1FcegWW25Qo8H5XiTA/vFsiOFQ49l9WZjrUIP8vTtJ2RTj2j0tBZPcktz0I/MbAtXffrliryPjT9U9JUs17ebyk+HvmTxvw+UAOfzAJo9SX
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f19157ee-18a2-4710-0b43-08d88d91b575
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97202453-e994-46d4-6a40-08d88d91b5de
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3781.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 20:20:22.8964 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 20:20:23.5790 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xLZG98YCpj2apP5Ap4QRgW6guQxBH8Pkp8/P7RxDj6LXuP6/UQHggDSeOvaF6g+dckrm0IU676MB825PPCfLMA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4261
+X-MS-Exchange-CrossTenant-UserPrincipalName: btELfGjX6bgz7YFBDQ0WWG+n0uhOVM3Idx8Yx5E9tzlS1/ZFNfNC2rV6n0Ao/0ygkI2UmiH1B9AOcLsAioQLww==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4216
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,59 +94,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ashley Thomas <Ashley.Thomas2@amd.com>, Anthony Koo <Anthony.Koo@amd.com>,
+Cc: Joshua Aberback <Joshua.Aberback@amd.com>, Chris Park <Chris.Park@amd.com>,
  Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Wenjing Liu <Wenjing.Liu@amd.com>, Aurabindo.Pillai@amd.com,
- Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+ Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Ashley Thomas <Ashley.Thomas2@amd.com>
+From: Chris Park <Chris.Park@amd.com>
 
 [Why]
-Some sink devices wish to have access to the minimum HBlank supported by
-the ASIC.
+Incorrect panel register settings are applied for power sequence because
+the register macro is not defined in resource.
 
 [How]
-Make the ASIC minimum HBlank available in Source Device information
-address 0x340.
+Implement same register space to future resource files.
 
-Signed-off-by: Ashley Thomas <Ashley.Thomas2@amd.com>
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
-Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
+Signed-off-by: Chris Park <Chris.Park@amd.com>
+Reviewed-by: Joshua Aberback <Joshua.Aberback@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
  drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c | 1 +
- drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c | 1 +
- 2 files changed, 2 insertions(+)
+ 1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-index d15220a4eeb6..be58134a7954 100644
+index be58134a7954..9ce9d9603942 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-@@ -1761,6 +1761,7 @@ static bool dcn301_resource_construct(
- 	dc->caps.i2c_speed_in_khz = 100;
- 	dc->caps.i2c_speed_in_khz_hdcp = 5; /*1.4 w/a enabled by default*/
- 	dc->caps.max_cursor_size = 256;
-+	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.dmdata_alloc_size = 2048;
- 	dc->caps.max_slave_planes = 1;
- 	dc->caps.is_apu = true;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-index 15ffd8a21e4e..87fe84a06301 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-@@ -1308,6 +1308,7 @@ static bool dcn302_resource_construct(
- 	dc->caps.i2c_speed_in_khz = 100;
- 	dc->caps.i2c_speed_in_khz_hdcp = 5; /*1.4 w/a applied by derfault*/
- 	dc->caps.max_cursor_size = 256;
-+	dc->caps.min_horizontal_blanking_period = 80;
- 	dc->caps.dmdata_alloc_size = 2048;
+@@ -521,6 +521,7 @@ static const struct dcn10_link_enc_hpd_registers link_enc_hpd_regs[] = {
+ [id] = {\
+ 	LE_DCN301_REG_LIST(id), \
+ 	UNIPHY_DCN2_REG_LIST(phyid), \
++	SRI(DP_DPHY_INTERNAL_CTRL, DP, id) \
+ }
  
- 	dc->caps.max_slave_planes = 1;
+ static const struct dce110_aux_registers_shift aux_shift = {
 -- 
 2.29.2
 
