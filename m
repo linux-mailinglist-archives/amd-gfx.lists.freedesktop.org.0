@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 459352BB689
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:20:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BB032BB681
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:20:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7CBC6E92D;
-	Fri, 20 Nov 2020 20:20:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEA296E919;
+	Fri, 20 Nov 2020 20:20:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM04-BN3-obe.outbound.protection.outlook.com
  (mail-eopbgr680047.outbound.protection.outlook.com [40.107.68.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4242A6E91A
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:20:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27C086E91D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:20:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F/Gl+uRGdKCBD/1ZljYqJz+KuMlDjc510zvAT0zv6fPgr77+7heYdblHEnuxSeA9y8NGM80ESEf33huoXNSOQYQBg3+7niBcA3JOfMfo+VhEszHxsoswKrN+CPU/S/8E9VyeNZXaDf6EeWB2fM1lrZCMuOmDQf6bxwohRWhHQu9f/MqmiXXSAd6yEp0XQ9832DWhgkIvvLgCJvAtKPffJrfDpGovE/NXblIkFAplVa+FcbW007Ws0FNWGqm4EGFcSQftQ/zh7gyG18wSy+BWGNHNRHjPTghdogYOJiP0ihjypQuWQmROgrGD4koocf0TmVupRsBhtmFKPeQzm1hkQQ==
+ b=ONd7rYvwrHImdgHUn4BH4Czo3QXHmrAYSYSoG2gIjAf9h+bmFnaRRM1BRe1wiIOdwu9HqDZTF/CMUZil8f0oZjMUzMXsRKKo03q2I6AZNT7PTFWEfHKi1c1TIyfzSpiAbFNGHC6XkqfwGlNPVR7npsS6qoQUguRCLtr+7F2MkgevjeQEr6VqP1y9/Z7u0XTm4FK2OlW3WL8AW8EP4Mq7SYzo3GjZr9Y4AvU6SFPMe4n5BfoWZa0N9ysyJ83U7i/RNu1mC5R9bmLTpzVqIHDIfsZ7tVH36GYLJptAeA6jll4yicOt7EVXRF7+YJ1lWrXtgS3mL+69Lpif1Pc1rm25Vw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F/1MyXYEsc4/XVkzgGl76oUgNG6tdhP0zall2UksNOk=;
- b=N86GGsz++BgUcZx5zr2erDemALYzgHbk4qhCSNIaOe5MeI+y/qJZy3eytXJoe5HTZajH3fIi7Ek6IF8gdnAP56/ceEj+NQHMz6ta57pMvLkVsOBETMuhGsxeMRQRPKRaxi3U2O6BjZGYTLXLbqRJSoV8+RWXAohezcX+SYOhQEZ817QdMdmSZBaGtfsSngHS0EjtgmpkQE0XRVY6Xqb0rYgHfBNmCNpQxKfiRrtQKPtg+aQGyuHs3kS8dTjh3Lq17dhXnlGZXZcsg7KqdfVPvwNIRpfruStNSS1Z+zSIt1l4jdRrv5OwvylWHIDkM5AOveTqmhLWAYoGZzPbNoOIeA==
+ bh=E69F5vwmur5Vh+mRRhGPeVzNLY47JiX4a+DWrpNRoK8=;
+ b=lg65bEWrXxfaiYvzwuqPfvapInJkSwCdLHMvgMc4Lhw7RIL2mnbmI4w2BoOJekIufX6arGlwLSI8ZwGBbqmClYWV1K53e0a/ti2EVhLjrtt3dKXF5cW+YtHqbpj5JBapQzfIhqxxpLDrTT8Fla8dj7tA4v7C42J5oinac+WhuqM36Srd8GZXk2/e/5R1Ij52/pvMnLI8EYFM3ri1wyMMIwBznktmMzwKM+N5O3S7jvpiu3o61GIugP+FoQjCY2CwBA77Pce7/cWTvh23jt4eb0FRo5mQWUxGQcIyJZuQGucMtzWL0KCWWU47KXVg9By0j1qRc4rHDN+FTmXvc1kdnw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F/1MyXYEsc4/XVkzgGl76oUgNG6tdhP0zall2UksNOk=;
- b=xhLt3z0X/FbEKayBD21U8y7iS0tgFTn9zSzdkYuyIxPFOcGplkirkucLqjilf84ABsakLGTSeVaD0TlkLbbqKsq8RJXLQz2TS71F0E4/NEdXpplgQOFIl0Xy3GJT1UENyCFXBMcJF0H/8rStPUCPvvCO7djRq27mZZxIt2LOPIg=
+ bh=E69F5vwmur5Vh+mRRhGPeVzNLY47JiX4a+DWrpNRoK8=;
+ b=oWhZ9X5f0zBYnkCBof8GZo20+DPV3jPY57YjWmL2FfE6REO1RUfAanwyOA3TZ+1SNWpoSxEkZvD2A3PuObH1cjCdyCdoxVz2WOqkxGPLzi/jciiP4LBWjUYkoRqtPcp0kAEyp8e9lGrzXM6Rgv8X/Jq/FslQSmfAE2ir0f1z8+k=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,16 +35,16 @@ Received: from CH2PR12MB3781.namprd12.prod.outlook.com (2603:10b6:610:27::11)
  by CH2PR12MB3717.namprd12.prod.outlook.com (2603:10b6:610:24::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.28; Fri, 20 Nov
- 2020 20:20:29 +0000
+ 2020 20:20:30 +0000
 Received: from CH2PR12MB3781.namprd12.prod.outlook.com
  ([fe80::9d:35d6:ff59:1cfa]) by CH2PR12MB3781.namprd12.prod.outlook.com
  ([fe80::9d:35d6:ff59:1cfa%4]) with mapi id 15.20.3589.024; Fri, 20 Nov 2020
- 20:20:29 +0000
+ 20:20:30 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 10/18] drm/amd/display: Add BLNDGAM memory shutdown support
-Date: Fri, 20 Nov 2020 15:19:50 -0500
-Message-Id: <20201120201958.2455002-11-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 11/18] drm/amd/display: Add internal display info
+Date: Fri, 20 Nov 2020 15:19:51 -0500
+Message-Id: <20201120201958.2455002-12-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
 References: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
@@ -57,31 +57,31 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60::c908) by
  CH2PR16CA0025.namprd16.prod.outlook.com (2603:10b6:610:50::35) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 20:20:28 +0000
+ 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 20:20:29 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 46e32eb4-29e1-4ac2-c5eb-08d88d91b95c
+X-MS-Office365-Filtering-Correlation-Id: ffc558e5-5959-41f0-5c7e-08d88d91b9d0
 X-MS-TrafficTypeDiagnostic: CH2PR12MB3717:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB371757FD14DEFDD8D0CDFE1998FF0@CH2PR12MB3717.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB37171F46FEC6B7E5988967D098FF0@CH2PR12MB3717.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:125;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XaJrOcdnFExxYfQ85CqInZdlgyz6xHujJ2xKK6lMZnUEHclZsekSPlVK/Su+mwhIONeHJ7/pv8e1m5Y12iLTwdhGj6xYjrMmF0HvhS8Tr/FHV8m58GH7k1rjnBB/s5nx/51GrT96tHkMGfDyK+Y4yUUWlBOYoaupBXKPr35ubu6TTkSRgKh3jYGJiH3koNVFqCYNunrYe9U4ZZqOTZ9luDDIA4SDjnPnsukJBMJStkct3PVjrsewXr43Cl66oV+kfV7vtGeSDsPOXs9YiDyDQ7VNXx5Ygkr/4UAv79dw5MxeUCniWY0lIMtbrnMAedJZ1QjloUQO3CjW+4SyzVK6dQ==
+X-Microsoft-Antispam-Message-Info: PqNbGQ/FF4zu25BSESfZb1kyoyF2QUna72QAsaUd/Jk3SCezQmZ+vIRsC+82vgNtpc//iBPeYsoHmCVjWKKtGjTY18BuQi0llYp+UqpuZVDQSX+2q/CNp+9F34kiq5+hqKtupZJIa365nTTwehfb1+2hZz8/yKGf6DWauHt+nhKBgqUoUAvak8q9+8sZ0NNPGkLNzaD/ykgE9SLDbNuE25kWenqrHzVEpwVowbBmkAt7BFz7+aXwP8JMeSzZfPLHWbKKe+uhdXWnUMnpFNHE35g2Andkeen8/JX+yC4NL0Iv47JGBpTvoKvGFlotovI9lt9CwF2PTVfQaGXrCv/5dg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB3781.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(396003)(346002)(366004)(39860400002)(376002)(136003)(86362001)(66476007)(6916009)(8676002)(54906003)(6512007)(8936002)(66946007)(52116002)(6506007)(16526019)(83380400001)(5660300002)(2616005)(186003)(1076003)(6486002)(36756003)(478600001)(66556008)(316002)(4326008)(2906002)(6666004);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: H6HAMofT4YLaKEE8adPMPL7SRqsqTJw9CrZEOQal/cYGvLAcflKozF6t9nHTjijJTzbOB7d+CZOn/lmPqsPOgNMmTBVxHTzZeibcSfpqa6iatYIfEku88lvD6tlqVN8dO3q0sQJua59XgEKKa9IGGXffb4lT+ocB1PHWhXlblLC2gNKoe3ECOT8QTU1lXiHWEgyr7tToTebUslzBSmZgB7GutwOIx/L4njMOVkHORWsojuxMzrxBxmfNRDErv/eRyzvS4YL5glpyldQJBC8abi+T+tFGflnTHXmEtnleelVf6i2537K7IBMmVhMb5yhdrtr6UYdfF1jt9+viDAB2tmAm2nfx8oGhhrIQZHFrPXum5M3DooS1fXsWSHno4pONXpPC0kziiQhrKMWwnQoytZyI2GS8DHcFeHbySu8e8SuwN9jRDxwWOMrkl60woOGxW1TpPr1vHhe1DZbVDzygKVXFPncp/ji8yG22Ph2jKOye5UTfJcd7Rh6lx2S5LMFWQyIPw8B6RDoDNYTtNWioxc1xm7EZcpK84ApjdLkgOaay25ErXGsFronnSKY17EahJMaTlD8DJbQ2f2zdEDSzM/B/I1ZIWcgKpCTIeuItrXprQWy7euiknG4BDfI8ibCJ4MKhnwtEFISVziKysXfpUdQsuXqMEgAoftAFZfZ3RfCiLddV8jfDXvZDtZemGj/cp2grFySOrAbjuWAS+bxGdHwzr030JcWRzybMLpLBBSdDV7IwqpQFjp8WvYVaHoIH2schRAuw/ZFXdVCPWgpBzZRW7Mg0ITT0G31+tHyN4ctma9Ik899QnsvoK0Znxpw4VSkiLaOgnPIYauHa46cRfFdhUBdxbU3dElE4SJLOXQz4dO388Wlj1D2C3VPHpsd2X+zrVhPSU68xcVIogKji5tw+LiO96O4rja1eq5dQyK89BqKFnffbo+SbqAzk/vtU
+X-MS-Exchange-AntiSpam-MessageData: M8zGMaFxhApOBBW93WRdL0EulFY91qhwqa4DTuBbYtvWcmDLQ8XH8yz3lwKQOgOBTE00HNwUpMcNIIyi4mTdhUzIKx+b9kLcEN1Ujjg+tlPM7uTbSU/KckOmvDlWYKX8cnAtXciwi1GPB9tXsLFA6rwxQpF7MrZuecqjo5Nn4mxYB0ziPHtK0vp0oclwrJItgnbmrlEj5Kgn275M9rDrpvdaGdJLc1bxw0jZUrytKu2J2WgDTHKvOM7mOJGrk/Q92AD1zyyUPDNsC8VDDym0hjaxGOCJMHR7JtQHVhO5l+T9SGp9p2Q75fbT/dm33CvE4CiciIvusQ10+1mWFUiKyWWlg+fooBr3xVis6Y541SvSnrA1istSUy40lZD6SPcMN9YxSKhxaRv7ob9NCabs1UO+kFsAZ3azNTpnwVECpyZn6eE80FPAlV/c7c8W41/0q5PRJsGRDlbAhK9zOvEeVSR0wbLRQIvYGnnGOkxsPaCJB0haTKEWV3mesec3jX5l4oQb2ns6lt9KqRUwjjV1gXW7buMmUbZBhK+L9gFnf2i3lEvsj5E9tIjDjkXgpSrBTkirkd+SjRMaCViCow+BgtunB289IOmVNz0YgbvksZ5b3ZjM0Q9aY6/JM/dGqXEVtYtXS0+DctqMxgrRfD9eJ52TgH2pc6TBKjwlFiy1qUHUiMuDmmEUbSwFFCHzMm9f/uJR/0XKDQjwZislYmzMUANl6KA3WgLaIW/kBWj2wSFWD2KQOLz612+ddzzqwO7+JArm6IAST6YA3sMbYGDzxziSuMVMjd10EnU7ft2wGSZig+uojmgsqJOMUiWP+aIi368RtQcKsRr27xJuE/RAQ6dTvtRv6pU8NcIy5tTdD5/tg3RPjSeY5sP/QFFQrSUt8ezgn9y8TDb5OJ8sAvJI72klwb5JlHTVsGSXRFY8nhRaAif7GCjOS1vN8EJefpVX
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46e32eb4-29e1-4ac2-c5eb-08d88d91b95c
+X-MS-Exchange-CrossTenant-Network-Message-Id: ffc558e5-5959-41f0-5c7e-08d88d91b9d0
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3781.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 20:20:29.4183 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 20:20:30.2118 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hnuOYkOKEEHe21GGZoPrLBRbu1IZBta9w1WgjahMNWMhBE3E7WFaWZv5wJaDYdUYAdO5VfYk3jwfv+MZhI+2ag==
+X-MS-Exchange-CrossTenant-UserPrincipalName: T/GOqH+Z0xpBb/TRbx8k0HHV9MYu+Nr6EAGDloMPfeyuqiM+etlMHhozkVigG0xOqRNKEw13aj7roL+eH3t6KA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3717
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,87 +94,216 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eric Yang <eric.yang2@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, Aurabindo.Pillai@amd.com, Jacky Liao <ziyu.liao@amd.com>,
- Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+Cc: Aric Cyr <Aric.Cyr@amd.com>, Anthony Koo <Anthony.Koo@amd.com>,
+ Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ Aurabindo.Pillai@amd.com, Tony Cheng <Tony.Cheng@amd.com>,
+ Yongqiang Sun <yongqiang.sun@amd.com>, Bhawanpreet.Lakha@amd.com,
+ bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jacky Liao <ziyu.liao@amd.com>
+From: Yongqiang Sun <yongqiang.sun@amd.com>
 
-[Why]
-The BLNDGAM memory blocks should be powered down when they're not in
-use. This will reduce power consumption.
+[Why & How]
+Get internal display info from vbios and pass it to dmub fw to determine
+if multiple display optmization is needed.
 
-[How]
-1. Write to BLNDGAM_MEM_PWR_FORCE to put memory to shutdown when BLNDGAM
-   is not used.
-2. Added a debug option to allow this behaviour to be turned off
-
-Signed-off-by: Jacky Liao <ziyu.liao@amd.com>
-Reviewed-by: Eric Yang <eric.yang2@amd.com>
+Signed-off-by: Yongqiang Sun <yongqiang.sun@amd.com>
+Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
+Acked-by: Anthony Koo <Anthony.Koo@amd.com>
+Acked-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c | 13 ++++++++++---
- drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.h |  4 +++-
- 2 files changed, 13 insertions(+), 4 deletions(-)
+ .../drm/amd/display/dc/bios/bios_parser2.c    | 73 +++++++++++++++++++
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c |  7 ++
+ .../gpu/drm/amd/display/dc/dc_bios_types.h    |  5 ++
+ drivers/gpu/drm/amd/display/dc/dc_link.h      |  1 +
+ .../amd/display/include/bios_parser_types.h   |  5 ++
+ drivers/gpu/drm/amd/include/atomfirmware.h    |  1 +
+ 6 files changed, 92 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c
-index 29231528f052..052bab3e5e8e 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c
-@@ -500,9 +500,14 @@ static void dpp3_power_on_blnd_lut(
- {
- 	struct dcn3_dpp *dpp = TO_DCN30_DPP(dpp_base);
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+index 43922fa358a9..bb6b546ec6d9 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+@@ -65,6 +65,11 @@
+ 	GENERIC_OBJECT_ID_BRACKET_LAYOUT << OBJECT_ID_SHIFT)
+ #endif /* GENERICOBJECT_BRACKET_LAYOUT_ENUM_ID2 */
  
--	REG_SET(CM_MEM_PWR_CTRL, 0,
--			BLNDGAM_MEM_PWR_FORCE, power_on == true ? 0:1);
--
-+	if (dpp_base->ctx->dc->debug.enable_mem_low_power.bits.cm) {
-+		REG_UPDATE(CM_MEM_PWR_CTRL, BLNDGAM_MEM_PWR_FORCE, power_on ? 0 : 3);
-+		if (power_on)
-+			REG_WAIT(CM_MEM_PWR_STATUS, BLNDGAM_MEM_PWR_STATE, 0, 1, 5);
-+	} else {
-+		REG_SET(CM_MEM_PWR_CTRL, 0,
-+				BLNDGAM_MEM_PWR_FORCE, power_on == true ? 0 : 1);
-+	}
++
++//TODO: Remove this temp define after atomfirmware.h is updated.
++#define  ATOM_DISP_CONNECTOR_CAPS_RECORD_TYPE 23
++
++
+ #define DC_LOGGER \
+ 	bp->base.ctx->logger
+ 
+@@ -1453,6 +1458,72 @@ static struct atom_encoder_caps_record *get_encoder_cap_record(
+ 	return NULL;
  }
  
- static void dpp3_configure_blnd_lut(
-@@ -675,6 +680,8 @@ bool dpp3_program_blnd_lut(
++static struct atom_disp_connector_caps_record *get_disp_connector_caps_record(
++	struct bios_parser *bp,
++	struct atom_display_object_path_v2 *object)
++{
++	struct atom_common_record_header *header;
++	uint32_t offset;
++
++	if (!object) {
++		BREAK_TO_DEBUGGER(); /* Invalid object */
++		return NULL;
++	}
++
++	offset = object->disp_recordoffset + bp->object_info_tbl_offset;
++
++	for (;;) {
++		header = GET_IMAGE(struct atom_common_record_header, offset);
++
++		if (!header)
++			return NULL;
++
++		offset += header->record_size;
++
++		if (header->record_type == LAST_RECORD_TYPE ||
++				!header->record_size)
++			break;
++
++		if (header->record_type != ATOM_DISP_CONNECTOR_CAPS_RECORD_TYPE)
++			continue;
++
++		if (sizeof(struct atom_disp_connector_caps_record) <=
++							header->record_size)
++			return (struct atom_disp_connector_caps_record *)header;
++	}
++
++	return NULL;
++}
++
++static enum bp_result bios_parser_get_disp_connector_caps_info(
++	struct dc_bios *dcb,
++	struct graphics_object_id object_id,
++	struct bp_disp_connector_caps_info *info)
++{
++	struct bios_parser *bp = BP_FROM_DCB(dcb);
++	struct atom_display_object_path_v2 *object;
++	struct atom_disp_connector_caps_record *record = NULL;
++
++	if (!info)
++		return BP_RESULT_BADINPUT;
++
++	object = get_bios_object(bp, object_id);
++
++	if (!object)
++		return BP_RESULT_BADINPUT;
++
++	record = get_disp_connector_caps_record(bp, object);
++	if (!record)
++		return BP_RESULT_NORECORD;
++
++	info->INTERNAL_DISPLAY = (record->connectcaps & ATOM_CONNECTOR_CAP_INTERNAL_DISPLAY)
++									? 1 : 0;
++	info->INTERNAL_DISPLAY_BL = (record->connectcaps & ATOM_CONNECTOR_CAP_INTERNAL_DISPLAY_BL)
++											? 1 : 0;
++
++	return BP_RESULT_OK;
++}
++
+ static enum bp_result get_vram_info_v23(
+ 	struct bios_parser *bp,
+ 	struct dc_vram_info *info)
+@@ -2461,6 +2532,8 @@ static const struct dc_vbios_funcs vbios_funcs = {
+ 	.enable_lvtma_control = bios_parser_enable_lvtma_control,
  
- 	if (params == NULL) {
- 		REG_SET(CM_BLNDGAM_CONTROL, 0, CM_BLNDGAM_MODE, 0);
-+		if (dpp_base->ctx->dc->debug.enable_mem_low_power.bits.cm)
-+			dpp3_power_on_blnd_lut(dpp_base, false);
- 		return false;
- 	}
+ 	.get_soc_bb_info = bios_parser_get_soc_bb_info,
++
++	.get_disp_connector_caps_info = bios_parser_get_disp_connector_caps_info,
+ };
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.h
-index 81bf2ecc2831..2ae5e1f93dd4 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.h
-@@ -343,6 +343,7 @@
- 	TF_SF(DSCL0_DSCL_MEM_PWR_CTRL, LUT_MEM_PWR_FORCE, mask_sh)
+ static bool bios_parser2_construct(
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index 5790affc7d61..311a0decd005 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -1368,6 +1368,7 @@ static bool dc_link_construct(struct dc_link *link,
+ 	struct integrated_info info = {{{ 0 }}};
+ 	struct dc_bios *bios = init_params->dc->ctx->dc_bios;
+ 	const struct dc_vbios_funcs *bp_funcs = bios->funcs;
++	struct bp_disp_connector_caps_info disp_connect_caps_info = { 0 };
  
- #define DPP_REG_LIST_SH_MASK_DCN30_UPDATED(mask_sh)\
-+	TF_SF(CM0_CM_MEM_PWR_STATUS, BLNDGAM_MEM_PWR_STATE, mask_sh), \
- 	TF_SF(CM0_CM_BLNDGAM_CONTROL, CM_BLNDGAM_MODE, mask_sh), \
- 	TF_SF(CM0_CM_BLNDGAM_CONTROL, CM_BLNDGAM_MODE_CURRENT, mask_sh), \
- 	TF_SF(CM0_CM_BLNDGAM_CONTROL, CM_BLNDGAM_SELECT_CURRENT, mask_sh), \
-@@ -446,7 +447,8 @@
- 	type CM_BLNDGAM_MODE_CURRENT; \
- 	type CM_BLNDGAM_SELECT_CURRENT; \
- 	type CM_BLNDGAM_SELECT; \
--	type GAMCOR_MEM_PWR_STATE
-+	type GAMCOR_MEM_PWR_STATE; \
-+	type BLNDGAM_MEM_PWR_STATE
+ 	DC_LOGGER_INIT(dc_ctx->logger);
  
- struct dcn3_dpp_shift {
- 	DPP_REG_FIELD_LIST_DCN3(uint8_t);
+@@ -1388,6 +1389,12 @@ static bool dc_link_construct(struct dc_link *link,
+ 	link->link_id =
+ 		bios->funcs->get_connector_id(bios, init_params->connector_index);
+ 
++
++	if (bios->funcs->get_disp_connector_caps_info) {
++		bios->funcs->get_disp_connector_caps_info(bios, link->link_id, &disp_connect_caps_info);
++		link->is_internal_display = disp_connect_caps_info.INTERNAL_DISPLAY;
++	}
++
+ 	if (link->link_id.type != OBJECT_TYPE_CONNECTOR) {
+ 		dm_output_to_console("%s: Invalid Connector ObjectID from Adapter Service for connector index:%d! type %d expected %d\n",
+ 				     __func__, init_params->connector_index,
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
+index e146e3cba8eb..509d23fdd3c9 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
+@@ -144,6 +144,11 @@ struct dc_vbios_funcs {
+ 	enum bp_result (*get_soc_bb_info)(
+ 		struct dc_bios *dcb,
+ 		struct bp_soc_bb_info *soc_bb_info);
++
++	enum bp_result (*get_disp_connector_caps_info)(
++			struct dc_bios *dcb,
++			struct graphics_object_id object_id,
++			struct bp_disp_connector_caps_info *info);
+ };
+ 
+ struct bios_registers {
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
+index 65b083e64131..66445e34fd37 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_link.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
+@@ -101,6 +101,7 @@ struct dc_link {
+ 	bool aux_access_disabled;
+ 	bool sync_lt_in_progress;
+ 	bool lttpr_non_transparent_mode;
++	bool is_internal_display;
+ 
+ 	/* caps is the same as reported_link_cap. link_traing use
+ 	 * reported_link_cap. Will clean up.  TODO
+diff --git a/drivers/gpu/drm/amd/display/include/bios_parser_types.h b/drivers/gpu/drm/amd/display/include/bios_parser_types.h
+index 7c782924c941..76a87b682883 100644
+--- a/drivers/gpu/drm/amd/display/include/bios_parser_types.h
++++ b/drivers/gpu/drm/amd/display/include/bios_parser_types.h
+@@ -309,6 +309,11 @@ struct bp_spread_spectrum_parameters {
+ 	struct spread_spectrum_flags flags;
+ };
+ 
++struct bp_disp_connector_caps_info {
++	uint32_t INTERNAL_DISPLAY    : 1;
++	uint32_t INTERNAL_DISPLAY_BL : 1;
++};
++
+ struct bp_encoder_cap_info {
+ 	uint32_t DP_HBR2_CAP:1;
+ 	uint32_t DP_HBR2_EN:1;
+diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h b/drivers/gpu/drm/amd/include/atomfirmware.h
+index 6139d10f4289..c38635992101 100644
+--- a/drivers/gpu/drm/amd/include/atomfirmware.h
++++ b/drivers/gpu/drm/amd/include/atomfirmware.h
+@@ -725,6 +725,7 @@ enum atom_object_record_type_id
+   ATOM_ENCODER_CAP_RECORD_TYPE=20,
+   ATOM_BRACKET_LAYOUT_RECORD_TYPE=21,
+   ATOM_CONNECTOR_FORCED_TMDS_CAP_RECORD_TYPE=22,
++  ATOM_DISP_CONNECTOR_CAPS_RECORD_TYPE=23,
+   ATOM_RECORD_END_TYPE  =0xFF,
+ };
+ 
 -- 
 2.29.2
 
