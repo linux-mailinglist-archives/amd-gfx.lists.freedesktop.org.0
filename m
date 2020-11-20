@@ -1,51 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1C052BB684
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:20:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8E5E2BB687
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:20:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87EB26E91C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C42DA6E929;
 	Fri, 20 Nov 2020 20:20:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2042.outbound.protection.outlook.com [40.107.236.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 847B589A08
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:20:28 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2056.outbound.protection.outlook.com [40.107.220.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C28EA6E920
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:20:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kc2rBYSQIwcdX9OK97aHipoEDq7F7JXSuOJ9bOuAxhZ1P0ZRbx0c9YVCWZoJIh9JmOgfzMB8GNnzozwE8vNfDNd6WBlPvF1IZhlBKdoWJ4BPHDEdLVHPgGD4/6Rfnh9suYz6tBINZlfr7WQgaE1rC2CLFRl2B3YjbFNwuWdYgYRjcs7m8qOP2RozFrPv/jAN10kpBbjq6qHSLXOGe5yjWpqT89iTEdNr2IngCshbY3HW5SB0TRi66VDPdNIGc86cnyp02wDEI5mEfSpniuu06jinApBVS3ptVW5adcW1yl4F4CAkl11jlO26eIH71yGiWMzAekj0pE8rKJsJgz5IIw==
+ b=jDGkk90gzGYrQguhM+lQNsm8sETHBkaYAFYBnPgB2f4dD3wvwevYARFeHp83z7f2yWr47xPQgbeTH/tSsMPe4tLSP4n5nZvqi5ovDgR06or8di6wB1pbHUdberqOyAV4lZ9Vkm5WoNfiYwFiloo/IAnGSibUGG56AaFZhXzZcO8QIqwAJhuUZuwXrz+2VvApGvdv0SMmcm3uIWUUEhUbmDmo7OMnXXRKWyBhJWN581z8bOK1QHQu/U0ZeoBWa74BOauGFluAi2hx2Hjlladm0ckzq5lSx34Xh8tI4DeCuh3OCO5JzV7VPQVx9dcGLbCV0n58vBlo7CkZmBQRIirfXQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I3+aGnJyGIgUbyVB2GLMn2MbGf979TPPr9261thzuvc=;
- b=l1j/64uUJMOHJ0B/Pg5nP8lTPtH4dmVeOYSkX5jnLG8t3fITkHvtGpfCxTPHZbiE+2bo/7Nf40Sk8dzhY5pUOk28mENdKpfJocsJoCajMqHVgl4ufNiOh2+7BR4/Sq25kP2U9CjboCvuNT4+URnJQzEXqwHW4D2QKsCcqjR9N/oHdtYm88DDrQA0pngvb4heh9qox1snUyPjzo7hLLt7RtlaikOJDaZhlE46jMa6MdoCi19rUXYH7brS3As0RI0NXJkBugQ5pu68PVeEUrwKxochC00GdAYi5k2BroxGd6KGYa/HxSYn3FwphTu5od+Ao2JGXAvGW9E17EycKWISlQ==
+ bh=sQMJ85Ny9myWQF3xqfkB6YQ60WQ5/hMKZ+REm3u08BY=;
+ b=AH/6p+ipDxOTNf+1nej8ii+qnJF0iFkl3eHo+fs9ptTv13/1kI37Kr8POW7nyY6cxHloblQQpt9Yjl5J8zA4I46YF4SGkS3Da7D2udm2Y6JwEgfTlfvPWQZ8W3SRm+ZW5l+8Wie+hutXLicOmzgMwcm+vDkPjYU3UB6BHw8LCT3Sso8/J+MFr3VeJEg2BL6NBUl3mPSzrQrMZ5UNw2frCY24XV745wZyVOkXRrIQhj9TwxOG9eHsEKWqxrvQxPB9s4QpYD8lhMImCVR/2by0L/4hEufsLKO2DGfSEZ/HhIHYB5GPfGC8eMRx2AmFKIQx7jd+su+gihfILDo3+FaT5g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I3+aGnJyGIgUbyVB2GLMn2MbGf979TPPr9261thzuvc=;
- b=V0vsJuVMphhf1Mi/YVqT6kbGO0zU+6NYb6bIOxwknytL1I0Q93sOlGKwGKr//jABKP/V4VaIj3tGv+X97eC9mxqGHBddeCkcoVS8/q2yba7MW6DoMOxXyaMTMRYdw6omitwexRviGDtavokwZmiv1B28utrJ9Q0jPpQfuBHsKcM=
+ bh=sQMJ85Ny9myWQF3xqfkB6YQ60WQ5/hMKZ+REm3u08BY=;
+ b=cEAOPYIrjYZD2DBo8+PF/nW/FuqedVwGXkw8ploh4yoRlqWo+CeZnWqGJgjkrym7CaDUzJdA3pPid6TXCr3PbEh6gom6WqW4tVH8tyUV54fss6xqsKLUciwW90BiHq0n3Bd8BMVLyt7P05HX7vKe46kVSq3WP/QS5tHtX3xYAnA=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from CH2PR12MB3781.namprd12.prod.outlook.com (2603:10b6:610:27::11)
- by CH2PR12MB4216.namprd12.prod.outlook.com (2603:10b6:610:a8::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20; Fri, 20 Nov
- 2020 20:20:26 +0000
+ by CH2PR12MB4261.namprd12.prod.outlook.com (2603:10b6:610:a9::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.24; Fri, 20 Nov
+ 2020 20:20:27 +0000
 Received: from CH2PR12MB3781.namprd12.prod.outlook.com
  ([fe80::9d:35d6:ff59:1cfa]) by CH2PR12MB3781.namprd12.prod.outlook.com
  ([fe80::9d:35d6:ff59:1cfa%4]) with mapi id 15.20.3589.024; Fri, 20 Nov 2020
- 20:20:26 +0000
+ 20:20:27 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 06/18] drm/amd/display: intermittent underflow observed when
- PIP is toggled in Full screen
-Date: Fri, 20 Nov 2020 15:19:46 -0500
-Message-Id: <20201120201958.2455002-7-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 07/18] drm/amd/display: expose clk_mgr functions for reuse
+Date: Fri, 20 Nov 2020 15:19:47 -0500
+Message-Id: <20201120201958.2455002-8-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
 References: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
@@ -58,32 +57,32 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60::c908) by
  CH2PR16CA0025.namprd16.prod.outlook.com (2603:10b6:610:50::35) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 20:20:25 +0000
+ 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 20:20:26 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: b413b58c-415f-4663-0753-08d88d91b764
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4216:
+X-MS-Office365-Filtering-Correlation-Id: 05d828ed-ccd6-482e-1fbc-08d88d91b7db
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4261:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB421611050DDC5EA0B0063B9C98FF0@CH2PR12MB4216.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB426146CC5538A4C4CD8CE39F98FF0@CH2PR12MB4261.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:78;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jm0vAGpbVAo7LPzhc+aCCC7SmEwoCEX5Tb7xoP73QLrE1OE5WDlVgeNFxfig0sMTQ34HwBD57DbrAs+yWoIvRBFYwEl+TxViEwOC+g4EQdfmTqhB9uqP+Cw4BqHJlypO52kYvDk4ltbTTs60mAkcbMx9IoklosP4idLhCh0DDBpz14mCbOc2hInEzKEaiSOifbOuUGb1L5XqdhRVR2XjND8Iv5xD4QXazVN2PO9ZMEYXCDvECZAB8IlYRINIFXcdFNKTqMRday72EqH3LtiBbHYIGKS9108aBfnO/kMOyqepYbXiHbsu8fHyZgFEbZmPeDIQ1kvZibk6HRCmHqQ+pA==
+X-Microsoft-Antispam-Message-Info: 4DP5qrFmo9em7rGr3u0rc747kWlhQ4pZ9ndqDLk0gZcS3c0tgRXQccZ2qqU6r7qSVRLKb9/FauSjwsvgAYdq0jKliNjlvl/l2yrULDyHbG1X1FL8iFwHPuAVzIragALb4xSMWlb1qbuRKRkMO1+ONv9SeWfozF+c+nMfIeFXThiPiPpdLlaiUfgtV8QC+M/9EOJfLOpABNhTugNIh3k5L7+ohFWsI53N8eTm+5qHdBnSFrA+hVyWNdiyntfAMTTLjol6M/hY9p2pNQGEGFFn3ioZAHmaVWXUw3YjJOjfF+AWMFb07NORv9APSFfybJ+toff6UVi7FRJuUVMGGLeYZA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB3781.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(376002)(366004)(346002)(136003)(39860400002)(8676002)(2616005)(66556008)(66476007)(16526019)(66946007)(6486002)(186003)(6666004)(316002)(54906003)(478600001)(6512007)(83380400001)(8936002)(86362001)(6916009)(36756003)(4326008)(5660300002)(6506007)(52116002)(2906002)(1076003);
+ SFS:(4636009)(366004)(376002)(136003)(39860400002)(346002)(396003)(5660300002)(83380400001)(1076003)(6512007)(66476007)(66556008)(186003)(6486002)(66946007)(4326008)(2906002)(16526019)(86362001)(6916009)(316002)(8936002)(36756003)(6506007)(8676002)(54906003)(52116002)(6666004)(478600001)(2616005);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: oNpQtU/AR3qJL54RgT/sm+S2Mcuk7y6ch7FqDMDspf2lu9dAmZgXaM5BwPbGHtvhtBZmNiYJs9zkXJr3ApSooXYBH/RSC3Ebwo7lSOIlon6GN9IbuuNgLVJuIkdHayTP/ArySLKWVfNn7UYb9yoK2yFTF3JofYGzXPjWQx1vugIJptY1+nG2XOQrzaQEHVk1Z91+bUPYDmNWSmQ+1N/D4OtiPlz3nnTKnQnboBwo0kQrpenDdk0Wu8heEfNvDq6Rz2zlKUL68CeQb0pRbTH6Dm58Qe4L+umomQOW9M3T1YQKHMfvr+kMCFFDaV3c5wSsq8IW0wvMrFt/9wF/jzceQN4hAEOiq9SDNCfKr+0sPIhhhG5vZ7wQu3bJ8XywCMpKFZAzE0mNnrJJsXoj1sbR9etsK33XPeUp/m4tut0Z0FiyJcUiMisZAYeFTFjAtUTxatSo2zO1MYIOUpIkz0pWr0VpVtE0oOwaLguaRHIanj0zgpzST8Vn4ubepPM3Gyhp4oA91FRoVkQIC2cw73SLtQ9I9V0xq54Zn+ADeAYskDySXiloVoP/fU2ealWKlfgjWCynmCw6zbL3ZnW2lMyZISX1OfiQLn5GufIbwLHv8wcxRxRaY2fwK3wVBNe6xnqnz0Y15nSFAEG+xmqyNSt/7lJFteBGvBj9obb076B4KGoNRdX4on+DEFMWPb9zh/ucbR5i+gLGxiXxDqdvHYw5oZHQ03wbzvz0HJlMjN7jLEnSzDbuEAPtijm3FBgfNYLy+7bahBsvDVCUBti+I83JHyKrLyG3HP2icROanDDHSz4FG7+uOBd6wxFWyfXWUNmEcn5yxYaVm3T7mnyHZ4fKA680rdpfB64srmP5Hx5V6otfYdPp/m+SBRu9XVtu2/eK8p8UFyKgt53I8zxYrhRfbZ2Fd9IDw2YDl4R5DPOAnPZrk3U7ytdtOY1AgBEX7gr6
+X-MS-Exchange-AntiSpam-MessageData: IXkw914lj+k5yLNGLKPcgaZNyb27UlvT9dR1vZil332ER77R02C9NzvndDgz1jqQ/S3xqoe97BDMtksZR0gHjvfwFEGxUOLww0Zvun/DzWMVg1IG5HP0vuNVuf4qiBuVhj7CJvDctrvn56U/mt8mNWhIFLLoG3I0R9i+snp4bt/SmsHmoF+eN76G5Vy4tpemN4kXvZQAEnjBJ8uftN4LUnaj/F+5/CGNl/uheLpFDbXRYRao1c4T/jA6X+86gzN0JnSqCK70XOiok4/3l2wqyQyX1XOdao97KQWW19PO0XRRCwb64a9MjGVu2PZQLwLHwrsq5bLoDIdTkjBHH3ekMddULG1BECztIbLBUAtQKhSuveXAkry5en2p8QEto72hWna7Pmfw1TEnOPqW28t9YUK7AUnR15h4voLoXO1KKWdkavIKmrt1iWUQ9VEF7UugU1r5G0JlxDyDZ04WAyNlx/lqCGHcTKnI6UYobT03JofaekgWxNIG2+uLMfiu62lhgESxfBBXq8Vaxh0jAmQEZeCGW2DYNi0/kMFlWHVqeSCTC0fP/6JRt92jSl3KxK/NBGXzLMV6lAv9MyvoMMGORyvz6IXKPHRDYkpGXSGLWKRHFQ0b6PYiJizbFuhn006Qp1y9S5WFCxXnM2g+Rtc2naaXs1LdG/edreCb+E7CzEHiwuSV94SHOREIKBPOQ5hptNiq4lv3l0XaByjTwzApRnMYt/xg/6U7lEdbquSLnzmenD2YDEuHahSqlUiU4VnlDjr8pFUkmwVg5cpfoF18lucrn5cLWXF4Wr4wGihK/tWXsh+qJvrdapb+KenDSSp9/uCJwTWx0N1cBSgKd7wyJzg6dz+JqXWUYw2F7q+muJpQDdDdl2Yf2U1uY2eJw5XvLYz8QNviN8wzO+663wSO8vMlcPDJNHo3odE3KX6WdNDiE0+XGzxK4aPE+wcedutQ
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b413b58c-415f-4663-0753-08d88d91b764
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05d828ed-ccd6-482e-1fbc-08d88d91b7db
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3781.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 20:20:26.1364 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 20:20:26.9209 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Oqtzm69teu4XgM5VrGKIf2LvFq4hjz2f5kFiegQEkG+q+hr48a3S6yps98kiQMPkHBPTxVjAfau5RPdhhAavvQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4216
+X-MS-Exchange-CrossTenant-UserPrincipalName: k15gvfvx778YdKCXsmp6QWXhAVFQCK3x14JtahuG95OsjbD7ktxUsLKmouXaQZivj3AVJsnsh3OJwlCRF9ZfZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4261
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,55 +94,80 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aric Cyr <Aric.Cyr@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
+Cc: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
+ Eric Yang <Eric.Yang2@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
  Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, Tashfique Abdullah <Tashfique.Abdullah@amd.com>,
- Aurabindo.Pillai@amd.com, Tashfique Abdullah <tabdullah@amd.com>,
- Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+ roman.li@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
+ bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Tashfique Abdullah <tabdullah@amd.com>
+From: Eric Yang <Eric.Yang2@amd.com>
 
-[Why]
-The MPCC may change and request data when the pipes are switching from 2
-to 1 or 1 to 2. During the switch there is a possibility of underflow
-and flicker/missing data.
-
-[How]
-During VBlank the MPCC won't request data. The trick is to delay and
-wait on VBlank, ONLY when pipes are either turning on or off, right
-before MPCC is reset for the pipes.
-
-Signed-off-by: Tashfique Abdullah <Tashfique.Abdullah@amd.com>
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
+Signed-off-by: Eric Yang <Eric.Yang2@amd.com>
+Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ .../gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c |  8 ++++----
+ .../gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.h | 10 ++++++++++
+ 2 files changed, 14 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-index b9c20e30d99d..abcb06044e6e 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-@@ -1695,6 +1695,15 @@ void dcn20_program_front_end_for_ctx(
- 				&& context->res_ctx.pipe_ctx[i].stream)
- 			hws->funcs.blank_pixel_data(dc, &context->res_ctx.pipe_ctx[i], true);
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c
+index 98cbb0ac095c..9a8e66bba9c0 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c
+@@ -32,9 +32,9 @@
+ // For dcn20_update_clocks_update_dpp_dto
+ #include "dcn20/dcn20_clk_mgr.h"
  
-+	/* wait for outstanding pending changes before adding or removing planes */
-+	for (i = 0; i < dc->res_pool->pipe_count; i++) {
-+		if (context->res_ctx.pipe_ctx[i].update_flags.bits.disable ||
-+				context->res_ctx.pipe_ctx[i].update_flags.bits.enable) {
-+			dc->hwss.wait_for_pending_cleared(dc, context);
-+			break;
-+		}
-+	}
+-#include "vg_clk_mgr.h"
+ 
+-#include "dcn301_smu.h"
 +
- 	/* Disconnect mpcc */
- 	for (i = 0; i < dc->res_pool->pipe_count; i++)
- 		if (context->res_ctx.pipe_ctx[i].update_flags.bits.disable
++#include "vg_clk_mgr.h"
+ #include "reg_helper.h"
+ #include "core_types.h"
+ #include "dm_helpers.h"
+@@ -631,7 +631,7 @@ static unsigned int find_dcfclk_for_voltage(const struct vg_dpm_clocks *clock_ta
+ 	return 0;
+ }
+ 
+-static void vg_clk_mgr_helper_populate_bw_params(
++void vg_clk_mgr_helper_populate_bw_params(
+ 		struct clk_mgr_internal *clk_mgr,
+ 		struct integrated_info *bios_info,
+ 		const struct vg_dpm_clocks *clock_table)
+@@ -709,7 +709,7 @@ static struct vg_dpm_clocks dummy_clocks = {
+ 
+ static struct watermarks dummy_wms = { 0 };
+ 
+-static void vg_get_dpm_table_from_smu(struct clk_mgr_internal *clk_mgr,
++void vg_get_dpm_table_from_smu(struct clk_mgr_internal *clk_mgr,
+ 		struct smu_dpm_clks *smu_dpm_clks)
+ {
+ 	struct vg_dpm_clocks *table = smu_dpm_clks->dpm_clks;
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.h
+index 80497df20ba7..b5115b3123a1 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.h
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.h
+@@ -39,5 +39,15 @@ void vg_clk_mgr_construct(struct dc_context *ctx,
+ 
+ void vg_clk_mgr_destroy(struct clk_mgr_internal *clk_mgr);
+ 
++#include "dcn301_smu.h"
+ void vg_notify_wm_ranges(struct clk_mgr *clk_mgr_base);
++
++void vg_get_dpm_table_from_smu(struct clk_mgr_internal *clk_mgr,
++		struct smu_dpm_clks *smu_dpm_clks);
++
++void vg_clk_mgr_helper_populate_bw_params(
++		struct clk_mgr_internal *clk_mgr,
++		struct integrated_info *bios_info,
++		const struct vg_dpm_clocks *clock_table);
++
+ #endif //__VG_CLK_MGR_H__
 -- 
 2.29.2
 
