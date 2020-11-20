@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8E5E2BB687
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:20:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DDCA2BB685
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:20:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C42DA6E929;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BDAB6E918;
 	Fri, 20 Nov 2020 20:20:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
  (mail-co1nam11on2056.outbound.protection.outlook.com [40.107.220.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C28EA6E920
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E33DA6E921
  for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:20:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jDGkk90gzGYrQguhM+lQNsm8sETHBkaYAFYBnPgB2f4dD3wvwevYARFeHp83z7f2yWr47xPQgbeTH/tSsMPe4tLSP4n5nZvqi5ovDgR06or8di6wB1pbHUdberqOyAV4lZ9Vkm5WoNfiYwFiloo/IAnGSibUGG56AaFZhXzZcO8QIqwAJhuUZuwXrz+2VvApGvdv0SMmcm3uIWUUEhUbmDmo7OMnXXRKWyBhJWN581z8bOK1QHQu/U0ZeoBWa74BOauGFluAi2hx2Hjlladm0ckzq5lSx34Xh8tI4DeCuh3OCO5JzV7VPQVx9dcGLbCV0n58vBlo7CkZmBQRIirfXQ==
+ b=bA0TIEkkbu4GQcRdff8j71lvz0OPODkdjOdOuiyEWimv4Odj4tr2o9385y1r9CfVvBfTdWjF5yb5hf5t1hf5NxK8VV4J8VhlZ8nzpQsxI1GaPEGkTs7lWKa8KvY/SRzh5q5eB+RTpfAD2Kiy7Eo+Jfdwomg7zxtsQu5l+hRi3aLaoPNsKRBKwqB93AaPR2ze4Lj6s/VdMx33UXqN4AzAEVayWZfTbWbsVEQH3ydzDd6Gn9bSbbf+aAz9bqA4uKBCo8bypiF4HKEo/RCde45RmYzq1i6TXHWyYosqk8XJsxzW32D4udM6ZlLK3Do+cpjEv4l5pDGr1PxFCwsp7heVSA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sQMJ85Ny9myWQF3xqfkB6YQ60WQ5/hMKZ+REm3u08BY=;
- b=AH/6p+ipDxOTNf+1nej8ii+qnJF0iFkl3eHo+fs9ptTv13/1kI37Kr8POW7nyY6cxHloblQQpt9Yjl5J8zA4I46YF4SGkS3Da7D2udm2Y6JwEgfTlfvPWQZ8W3SRm+ZW5l+8Wie+hutXLicOmzgMwcm+vDkPjYU3UB6BHw8LCT3Sso8/J+MFr3VeJEg2BL6NBUl3mPSzrQrMZ5UNw2frCY24XV745wZyVOkXRrIQhj9TwxOG9eHsEKWqxrvQxPB9s4QpYD8lhMImCVR/2by0L/4hEufsLKO2DGfSEZ/HhIHYB5GPfGC8eMRx2AmFKIQx7jd+su+gihfILDo3+FaT5g==
+ bh=sN0d/m4UOX91qcyWBvShlDmDV8dhlxW01laXLCDycZk=;
+ b=SbwII0Mqy2/+vAVZLa5QjGnhtQVsdAiIAsv0DZYrjKr8MmwudDXkG6CGaxeXZIIF/S3qh3l7PnkraIP9+UOGTTJPjjWSWKDjymCBiAp0A35VCppi/JqXqquiHHhXcDg6fpTlseNSH7OLJNiGwX2E7Uyqy6jqCGjZ8FAyzY1ZDHiJSdsDVwiVzrAFbBdhVv76f3nXds2tM7W7uPss4dB9GwwXiMhkE9kV/BXXULPcerP/QDbLJoMhXX+qG0MaH7h4lM9FDC3X/b/1ZYrC3abmjdV0CcaFAewWQINCF+bmUcTF2uhWbufYucxWvV6b95qxbU4ie9pAdAKxeONDHd8sUw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sQMJ85Ny9myWQF3xqfkB6YQ60WQ5/hMKZ+REm3u08BY=;
- b=cEAOPYIrjYZD2DBo8+PF/nW/FuqedVwGXkw8ploh4yoRlqWo+CeZnWqGJgjkrym7CaDUzJdA3pPid6TXCr3PbEh6gom6WqW4tVH8tyUV54fss6xqsKLUciwW90BiHq0n3Bd8BMVLyt7P05HX7vKe46kVSq3WP/QS5tHtX3xYAnA=
+ bh=sN0d/m4UOX91qcyWBvShlDmDV8dhlxW01laXLCDycZk=;
+ b=Qnkbowllg5X+383jAAS3BjAG2wr/bdk8mYOP+sziacl5i/Ksh2n4+Nqv8yWuMp/hWcuOzM+GebBh0aqH5JFZT1CAWukWa1DMTYohRhyoX203BWnKFeSJCb3BZcXa8F3HBnm90o/3rnQoZZy/mo4iha4d+GuOkrW9rFxyG+owiKU=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -42,9 +42,9 @@ Received: from CH2PR12MB3781.namprd12.prod.outlook.com
  20:20:27 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 07/18] drm/amd/display: expose clk_mgr functions for reuse
-Date: Fri, 20 Nov 2020 15:19:47 -0500
-Message-Id: <20201120201958.2455002-8-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 08/18] drm/amd/display: change hw sequence
+Date: Fri, 20 Nov 2020 15:19:48 -0500
+Message-Id: <20201120201958.2455002-9-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
 References: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
@@ -57,31 +57,31 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60::c908) by
  CH2PR16CA0025.namprd16.prod.outlook.com (2603:10b6:610:50::35) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 20:20:26 +0000
+ 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 20:20:27 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 05d828ed-ccd6-482e-1fbc-08d88d91b7db
+X-MS-Office365-Filtering-Correlation-Id: a442fba8-1eba-4f1b-0e1b-08d88d91b842
 X-MS-TrafficTypeDiagnostic: CH2PR12MB4261:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB426146CC5538A4C4CD8CE39F98FF0@CH2PR12MB4261.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:78;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4261612C3275155ECB7D60BC98FF0@CH2PR12MB4261.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:862;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4DP5qrFmo9em7rGr3u0rc747kWlhQ4pZ9ndqDLk0gZcS3c0tgRXQccZ2qqU6r7qSVRLKb9/FauSjwsvgAYdq0jKliNjlvl/l2yrULDyHbG1X1FL8iFwHPuAVzIragALb4xSMWlb1qbuRKRkMO1+ONv9SeWfozF+c+nMfIeFXThiPiPpdLlaiUfgtV8QC+M/9EOJfLOpABNhTugNIh3k5L7+ohFWsI53N8eTm+5qHdBnSFrA+hVyWNdiyntfAMTTLjol6M/hY9p2pNQGEGFFn3ioZAHmaVWXUw3YjJOjfF+AWMFb07NORv9APSFfybJ+toff6UVi7FRJuUVMGGLeYZA==
+X-Microsoft-Antispam-Message-Info: gkClhRAPI+BoLAC56N9d3hFWBs/ID903xfZ/HAPpD5BB9MjIA8aMpBRDKG/dLJEawHx3EEbupIrXxJcpNNZXdCF+wXqvbWNlftR0e6ETuf2VZXUqD3lzvVEM4AHN+NAKYvBGILHibutWXlTFBPCf+78ufTpSN4m36oebYKKZEV/HWg6bhyux57ZzRHuutkMUz1TQLYV0Zz8ORGIb/C9mN+qDaWbUDTMgS72nWdwFcd4x2QXbJhM0WIJ+xgvaeV7ngT/6OrkqQlXGap9+l+sXECfrvfUmgMw9dT/RczDvtcl3I2jD/Vkv0V0WCzpeHPiF5I5kizgoDTwwv4q27mj1UA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB3781.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(366004)(376002)(136003)(39860400002)(346002)(396003)(5660300002)(83380400001)(1076003)(6512007)(66476007)(66556008)(186003)(6486002)(66946007)(4326008)(2906002)(16526019)(86362001)(6916009)(316002)(8936002)(36756003)(6506007)(8676002)(54906003)(52116002)(6666004)(478600001)(2616005);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: IXkw914lj+k5yLNGLKPcgaZNyb27UlvT9dR1vZil332ER77R02C9NzvndDgz1jqQ/S3xqoe97BDMtksZR0gHjvfwFEGxUOLww0Zvun/DzWMVg1IG5HP0vuNVuf4qiBuVhj7CJvDctrvn56U/mt8mNWhIFLLoG3I0R9i+snp4bt/SmsHmoF+eN76G5Vy4tpemN4kXvZQAEnjBJ8uftN4LUnaj/F+5/CGNl/uheLpFDbXRYRao1c4T/jA6X+86gzN0JnSqCK70XOiok4/3l2wqyQyX1XOdao97KQWW19PO0XRRCwb64a9MjGVu2PZQLwLHwrsq5bLoDIdTkjBHH3ekMddULG1BECztIbLBUAtQKhSuveXAkry5en2p8QEto72hWna7Pmfw1TEnOPqW28t9YUK7AUnR15h4voLoXO1KKWdkavIKmrt1iWUQ9VEF7UugU1r5G0JlxDyDZ04WAyNlx/lqCGHcTKnI6UYobT03JofaekgWxNIG2+uLMfiu62lhgESxfBBXq8Vaxh0jAmQEZeCGW2DYNi0/kMFlWHVqeSCTC0fP/6JRt92jSl3KxK/NBGXzLMV6lAv9MyvoMMGORyvz6IXKPHRDYkpGXSGLWKRHFQ0b6PYiJizbFuhn006Qp1y9S5WFCxXnM2g+Rtc2naaXs1LdG/edreCb+E7CzEHiwuSV94SHOREIKBPOQ5hptNiq4lv3l0XaByjTwzApRnMYt/xg/6U7lEdbquSLnzmenD2YDEuHahSqlUiU4VnlDjr8pFUkmwVg5cpfoF18lucrn5cLWXF4Wr4wGihK/tWXsh+qJvrdapb+KenDSSp9/uCJwTWx0N1cBSgKd7wyJzg6dz+JqXWUYw2F7q+muJpQDdDdl2Yf2U1uY2eJw5XvLYz8QNviN8wzO+663wSO8vMlcPDJNHo3odE3KX6WdNDiE0+XGzxK4aPE+wcedutQ
+X-MS-Exchange-AntiSpam-MessageData: U31HyAtk2P+1u+o8c4dhSXJMrBOq67JtrqC11S7FostWScFSswQUQb9Go2YBQM07HQ7EqYhMydRvQOD0Lh+9yP7MUtNAC1eEl7sT+Jy6TyDGxQ1P2ndmPbI8uiCWJktvUX0KbyYBV0QfWWyoDKk1RY91M45eqnbtrpAzKO4GnaW1RJkW5MKiWxOOABFo48bfx4OAtq3VfySkyXqsZhdi4Vq5HuMCf5QjjKyUsaky4hn2/my5rLWot8UwAvik2Yt87Hprt+W1Xg1HOpJAEwEUBF2XTZ2X2Ijs8GOPJlgSV2ZVbO7hxrod1zruL4fyRvDHe+rMBaFpyxTJTCRFCgNpAkmg/cVXFFncvx/5TMmMv/D6qnB8Ami8jeAXB/SIUyhNtjri4vkaR+QjqzQxOTZU2QPs63AbMIPNAOUfkvgFffHqEG+eRsLfAGT0MBxXaSWl9S3rUtruFBj71/YkCUGzpTMqe60jC9fbMwO+Gsz7oc1LA+ulpMjhCUnjnrZfe52Bl/GJhsADD9NqH7CEUKtbX4joIK5PgJ0c6OMAHNyl4a9JWVOZvPNZl6WsdslgaUqDwkNAFe4usuvDJebTYaVz+nEtixhgj+M/hJ95H+aOmNn48pI1JfdkgQf8pVanhH5O4WDrQNyRI1iCwuD8tbZGh94B7WGc/69y5iPe814ZKPll0pXBrHYQB9RVm9j+Tf3/SyYujFLEXey+jIuna1tCLMKVV6P/bprHkzj8QuCBi4SnA+1hsAZMUq6gpdQ9uvHcI3Ixn4oAkBKLh6U+aut+4HJsFrdyZ1ABzYIBlart9CDRuk9S8HTlR3Hb3iIoJLDg4kIhq7a38vZLp8xQL63jXJaWOBvAsQiE2vOSY23Vb2eC7obzK7GZn+4VXxyM2tdeEkA1FKD1KICZ+iRb3s5pKJx6slZIRQyfes9jEQ7eej2w2vxSiD5Y8sgs3AFk62Ee
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 05d828ed-ccd6-482e-1fbc-08d88d91b7db
+X-MS-Exchange-CrossTenant-Network-Message-Id: a442fba8-1eba-4f1b-0e1b-08d88d91b842
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3781.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 20:20:26.9209 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 20:20:27.5815 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: k15gvfvx778YdKCXsmp6QWXhAVFQCK3x14JtahuG95OsjbD7ktxUsLKmouXaQZivj3AVJsnsh3OJwlCRF9ZfZQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: SWaJ7Di3oxJqZ1Wb1fL3rKjg/IbPLeaNZUEJLIkKwI8AGgvdrsB0VUs3nrPUXUUfll+5aLGQK2QwFoUlBHOyJg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4261
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,80 +94,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
- Eric Yang <Eric.Yang2@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
- bindu.r@amd.com
+Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ Aurabindo.Pillai@amd.com, Tony Cheng <Tony.Cheng@amd.com>,
+ Bhawanpreet.Lakha@amd.com, Sherry <Yao.Wang1@amd.com>, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Eric Yang <Eric.Yang2@amd.com>
+From: Sherry <Yao.Wang1@amd.com>
 
-Signed-off-by: Eric Yang <Eric.Yang2@amd.com>
-Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+[Why]
+t9 delay func is called twice after setting power off, the unexpected
+action results in a doubling of the added 140ms t9 delay
+
+[How]
+If the backlight has been turned off, does not turn it off again
+
+Signed-off-by: Sherry <Yao.Wang1@amd.com>
+Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c |  8 ++++----
- .../gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.h | 10 ++++++++++
- 2 files changed, 14 insertions(+), 4 deletions(-)
+ .../drm/amd/display/dc/dce110/dce110_hw_sequencer.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c
-index 98cbb0ac095c..9a8e66bba9c0 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c
-@@ -32,9 +32,9 @@
- // For dcn20_update_clocks_update_dpp_dto
- #include "dcn20/dcn20_clk_mgr.h"
+diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
+index 9f56887029ca..90c85b3e859b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
++++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
+@@ -939,12 +939,15 @@ void dce110_edp_backlight_control(
+ 		return;
+ 	}
  
--#include "vg_clk_mgr.h"
- 
--#include "dcn301_smu.h"
+-	if (enable && link->panel_cntl &&
+-		link->panel_cntl->funcs->is_panel_backlight_on(link->panel_cntl)) {
+-		DC_LOG_HW_RESUME_S3(
+-				"%s: panel already powered up. Do nothing.\n",
++	if (link->panel_cntl) {
++		bool is_backlight_on = link->panel_cntl->funcs->is_panel_backlight_on(link->panel_cntl);
 +
-+#include "vg_clk_mgr.h"
- #include "reg_helper.h"
- #include "core_types.h"
- #include "dm_helpers.h"
-@@ -631,7 +631,7 @@ static unsigned int find_dcfclk_for_voltage(const struct vg_dpm_clocks *clock_ta
- 	return 0;
- }
++		if ((enable && is_backlight_on) || (!enable && !is_backlight_on)) {
++			DC_LOG_HW_RESUME_S3(
++				"%s: panel already powered up/off. Do nothing.\n",
+ 				__func__);
+-		return;
++			return;
++		}
+ 	}
  
--static void vg_clk_mgr_helper_populate_bw_params(
-+void vg_clk_mgr_helper_populate_bw_params(
- 		struct clk_mgr_internal *clk_mgr,
- 		struct integrated_info *bios_info,
- 		const struct vg_dpm_clocks *clock_table)
-@@ -709,7 +709,7 @@ static struct vg_dpm_clocks dummy_clocks = {
- 
- static struct watermarks dummy_wms = { 0 };
- 
--static void vg_get_dpm_table_from_smu(struct clk_mgr_internal *clk_mgr,
-+void vg_get_dpm_table_from_smu(struct clk_mgr_internal *clk_mgr,
- 		struct smu_dpm_clks *smu_dpm_clks)
- {
- 	struct vg_dpm_clocks *table = smu_dpm_clks->dpm_clks;
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.h
-index 80497df20ba7..b5115b3123a1 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.h
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.h
-@@ -39,5 +39,15 @@ void vg_clk_mgr_construct(struct dc_context *ctx,
- 
- void vg_clk_mgr_destroy(struct clk_mgr_internal *clk_mgr);
- 
-+#include "dcn301_smu.h"
- void vg_notify_wm_ranges(struct clk_mgr *clk_mgr_base);
-+
-+void vg_get_dpm_table_from_smu(struct clk_mgr_internal *clk_mgr,
-+		struct smu_dpm_clks *smu_dpm_clks);
-+
-+void vg_clk_mgr_helper_populate_bw_params(
-+		struct clk_mgr_internal *clk_mgr,
-+		struct integrated_info *bios_info,
-+		const struct vg_dpm_clocks *clock_table);
-+
- #endif //__VG_CLK_MGR_H__
+ 	/* Send VBIOS command to control eDP panel backlight */
 -- 
 2.29.2
 
