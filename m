@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EDC72BB688
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:20:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60C8A2BB68B
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:20:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE3236E92E;
-	Fri, 20 Nov 2020 20:20:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59B7F6E934;
+	Fri, 20 Nov 2020 20:20:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2055.outbound.protection.outlook.com [40.107.220.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35E986E91A
+ (mail-co1nam11on2071.outbound.protection.outlook.com [40.107.220.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC5C36E91D
  for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:20:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GEjvqRhH1Hmh72flrKoV05bjR1RDAR7rus94yevctWNrmf++pVm06CILE4ODZuH+xdCuihEurtj1cOwtbGw/XYHFNbu9l1fyvT53vmImtti/3Lvyf9EUjW8EMxTPERPtfF/JfbnMpCL0pEuDbaILTJDZouUwTMBZRbr+ADldZVCQRH2xex7GcRQ/zJiWl8yW7GGsXz7SJ9VgQEPCpQoAxkZTTU/hIKg/DfF1LWI/vi5k82iCzhtoTrwW1go35FOiMc7N5T1dFz24uvXKVaa6ymljZ+VQUNSxJuIDTAHm3Uv6qWak7sqwOZ1Zz3wX/wLEgR8qJpLfqpo2x3nwB/8FEQ==
+ b=E4Sf8UadInV8gkYMMrO5qFxpMpZm8YwiLHT5puLSDVEfZebVOrHMXu1Qkni9CfOQq0Jgz0UbwpE6i1PmQ3i400YFPyRwQPhInNKIW2AT3wUDZ17BbCerCsdTt3luwE5ul7rhnTDx9OCVvTZC1SwUGlrtrb5iMVO6AEOJ0JmH6nOIUYDlZ9PUm5OcekQFp2/Jgt8tuGwUpoAD+PLt3SgcTwmWxw9PnGzztcGwoefick5Nz1KwWAtX4TLyrwaQDhUQED5ST8POVegAZ3g0tgqBPnEkcqlbq3nWfEed7jIeKw2vvKkZSnxnF12ndERthSpEtLLSG5l5TuQYmGJnyiK/pQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3oJH/DfweUZDd1xrYt5lMc8CR/H2ASIgakIgJpd9yq4=;
- b=B1T4h8DtDT0H8UN0ROBsAhXTZoZZaw+SqSRGgmUshtyO0e0xOz2Bc/d+L8KAqZXoqAIcGGp4sCXxs2xLSB6kzBKh7kv/4Fno1UiOY+9v1lVsSa6Fo+4nwpC+aw4eJDeGDsVig0QOsYS1vWPhYLCL3cPt644kC3/FpmrkZRX0EvPrP0nHGJBDWao6W2wQtLn9NRPViREm1sFgwskG3B/YSy7h5LSVfLXko//iuYZM1tmebIIrJE+fB1P6BYR8TS0OyBwQXa5/1yJET5DerTMg7h0Yj/2GUlM3ZCkOOaNryNXI1M/5935SORJZKfV14/JZeDWouIvmoAB3OHw7SCE5Ig==
+ bh=sy245w/AGYQvqjqG/VAajhkVr1B/JwSzmy8PilGh31k=;
+ b=hHjaAwMZkve+d6OA7Ev3BX/+luFflZ2fhhRvdPeuQupvC3x8yI5j2UTu9UEK476AuX2LmJ/SaC8KtPTasXD3cHdgRBVWNaTPWOiZ/XDe1Z1/gLbM3XUq8hbmi+dBFWzuw/KEunHxJGZVGHj1IV0wvc4ZusGZYdTig8/AJWPUXNUy3DvwFuHUzh1n0JXzYkAV+YC5W7lKOQEnkz6jiza+misCGVHidPAeVF9ZK+QgDwHrlhB1c1+ek8CwkvmwENvW9wDKoRKb13AoXtMTeVjoOhMWaepirz0kzMFjofCkvgsSI2kiu0NFL7RKpRDrzTCVTKABf1mrxboNYl/KZeasnQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3oJH/DfweUZDd1xrYt5lMc8CR/H2ASIgakIgJpd9yq4=;
- b=d13BOgLnTWl8o0ZTCoMIfjDglvNmdUfo90GfLfw38pQmChXew3xc3kEm34ooqX0r4E47Plx8X2WoW8cEyBBjB45qn7hD45J0im+W+abjCry9aXMv08yhHl90BBBtuUIssOGHsykGbg0ba3cf785V8/dWQtrKyQSO7occJX4d//w=
+ bh=sy245w/AGYQvqjqG/VAajhkVr1B/JwSzmy8PilGh31k=;
+ b=l3BO9gucIOJji7tOn0MaOlJcldvuSUkRwgvkW9+j6bFglv8rMgRGRgCL5mOLRiNeYuSzeKmkoJaTFIv+9yqn0o9YiIv/VfZShssdTc4DmoJzM1WfWn8jQ0jdOCWSUZeT74/RkAZo5ii22pi5nQCwaFh5ar7fg2RG/TKWctas4I4=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -42,10 +42,9 @@ Received: from CH2PR12MB3781.namprd12.prod.outlook.com
  20:20:31 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 12/18] drm/amd/display: Check multiple internal displays for
- power optimization.
-Date: Fri, 20 Nov 2020 15:19:52 -0500
-Message-Id: <20201120201958.2455002-13-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 13/18] drm/amd/display: remove macro which is in header already
+Date: Fri, 20 Nov 2020 15:19:53 -0500
+Message-Id: <20201120201958.2455002-14-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
 References: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
@@ -58,31 +57,31 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60::c908) by
  CH2PR16CA0025.namprd16.prod.outlook.com (2603:10b6:610:50::35) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 20:20:30 +0000
+ 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 20:20:31 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: e3234f07-9cec-4538-e1bf-08d88d91ba42
+X-MS-Office365-Filtering-Correlation-Id: 57e67f84-22ab-4459-5692-08d88d91baab
 X-MS-TrafficTypeDiagnostic: CH2PR12MB4261:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB42611E153E66D0770A80E2DD98FF0@CH2PR12MB4261.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:56;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4261E2C425B5CB014913F0B498FF0@CH2PR12MB4261.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: l+rajiDl7oggP81isXrXN+1/oYahozRTKouQz3g1K1eQBldKkNwzp8MLqDq9j3+9GFV0a28sbTZA+8y554BlqD0S5Z383gnufOCh6ASvktA4CnlXUIDgspYJVaITg15kzOSvKmZSg5UgyseeUuWuLP1oUQKvnzCgX+MMzWSor9DjQgPTm1yKMs5kpefNkSkxSUwpGx6zC+3gm1VVOrHCTR44cHoe+kNw4JPtHwUnfRjZKbJ9vlQo2tLwCO5KuvsuPAzdnxzVCSK7NBW9Tu6+44eHwvsxjXCZ3Oabu+NZD8EbGRJL98fnKbYsBdh5JW33QOLdG2gaganR+Ty8tb1jKQ==
+X-Microsoft-Antispam-Message-Info: wTZr13dqSLVy9Ub6hI2XW+bVtFvBFUQk016NEL4sl9G6O8YouENtaUAnKIiVcFQEFanV+qrUB8OFWJxL3XTHYl9yjwWrQcq9Lce4G1cn79gvnUYRxOLv3V14Xq2myYnDaePc3gFWlI9NqsHy8Rw4vF2DgHQrh0ljhWhjWXv5T1EowO/y+fMszQj0ikVvZZ16z0uhmwa0HjXolos7bx5Jw+kbtZqvEN28B7rNyo1u40iSgjV3zoaJhDy8j4wStgVVVxPRJDhJIHmjSIsAhhUrcSQ5Xv9mt9ieeAneEAxqWXzlqESREwp9fVkbN02eV2kqidr+ZAdcxzMO/QhWhHPksg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB3781.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(376002)(136003)(39860400002)(346002)(396003)(5660300002)(1076003)(6512007)(66476007)(66556008)(186003)(6486002)(66946007)(4326008)(2906002)(16526019)(86362001)(6916009)(316002)(8936002)(36756003)(6506007)(8676002)(54906003)(52116002)(6666004)(478600001)(2616005);
+ SFS:(4636009)(366004)(376002)(136003)(39860400002)(346002)(396003)(5660300002)(83380400001)(1076003)(6512007)(66476007)(66556008)(186003)(6486002)(66946007)(4326008)(4744005)(2906002)(16526019)(86362001)(6916009)(316002)(8936002)(36756003)(6506007)(8676002)(52116002)(6666004)(478600001)(2616005);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: gIGn5Q7EiHIXGRaFQFNpQhnC9MAbb3/N2F1kdbZuRZUxe1OoOX7+VmXQfw/o6++m9KM9PgDHvC+eBS4poR/7JP/N5XiUNCqw2jbcChEt4vQVn0IZacJ+ykzq41tIfFYD4te9e8IUmOC4BC9qwPM3S+FB/oMrhf6aikXLgMX9IVOZ+YjFUBDsw4D8bgXwAAh7zKc8KV+9mr+XYLb9JPRCb8tHEYfLeg6p/ZYA+LIqarWqHKDLv+WRkos5oIRnQ2bA6DbfKvxC+Bkwj821V2Q2u/tiM2OyR5FXaP9hUqqF4wTNU8TFmC5RCwBZnY80TAgoHxt59r0EtfII80HknzOgj/hiTzbod2CxRRUbpK/uCFq4SrLp0bKdV0h8adlqSdVYJTlRMNLt8v8cN9Znzf6Spyp1J1fBnAfRG8w7TtmAkFrydphsH0cDoBL3vtaHpKNFvqdGkcegEOCOtxH6d86ZkV0MuuFPEl4XeWASiNDizXpvZdrX7Vc8ULAvsnKqVvtv1JvXT2/gqrH//uAU4VGBfq9DbDXY735TbGLV1GQtcSVNliyua31vsdUNzC5trz8lGicagt3bOopQUV/9poKFMORbhfJccpHNLrw/0mXWJTJiiL8tuTXkMT0kL+SnEwcutIWRbhLHxk8xHnrjNxQf0GCRj2Ec9mi6QlKl4uJnEGJjMo7Z1l1Bhw5n/IIF6rvhNe0f1M7fZB3EsfBrLcTo3zLcJCWKRlvCiFx84xZvjP+fMLa5JbzIne/JRa7Su2ShAEJNefLUtK6lFS68MGzqsFG2JQtJa3neQqAipMr+IH+1WExqcrvHO1iUn2ZE1DUGtPuwMYkCCDhan5GE3apvPxoth8rdz+/x4lhWbniV8GN3ZphrcBdb5z32oGpTjZFXGEhOZAYlp12rnKa5dVzTdJYihIGHNf1TXZZzC0Rz0jNWWrQiwujchw3Ld3cci1h/
+X-MS-Exchange-AntiSpam-MessageData: cVTw4z8l5srYVhgfnDiVyH6uSqf89nAmRKeku5edpefrJVX3yBw/YnKcc/AbcFQbFRktu521qnLpX0Ckz00ScSgQQBxl8YZOsCZoE8x5+l5Af5mKqJWQOfpdn68g/3kDTVNC62ALhdnElFN4Nl5jcREA+njOG2EH/63NvBVuCaTXb9APSI90L/ClXzEBqqNnQy1cHmoKpgFM23e1gybFeHfwLvbe9kZuugSs3duWBhFHvSgIZIEe/x+Uh9ZGARr051UOvV+yk/spyUlXLh7OZwNSgZ8r86Zq5ilXZBtYo3e4QKYtIa60CGd1s+eQfBRgxCF7F6fyzqnRJAzuHfZ/MOcz/JNcaU4uzVRI3v40tWUh4RRN2qtYrRHC14Uj6w7JGRsVoJni2gh1UgOnOdGX+jxIs1hO9WrY0D+kYHff7VJ/rGucFHLSTA6ZcdQAqBk3uivGzvCYcuCoPsHA3tJ71chZy073z0P+wnME0PpDZGh1OUZHDvrCxeCv4VHKoPbAMaEMG/QgPoz/szsHMH9AgoKwXPOllUisIebWCitKyI86lulf+2N/ful0hoW0n35RQsBX6J9MXOQh6Dwp8Sk81Mt1rZcZ00oyYTKyS0B0FnbveBQcSzKqUJ1OudIkWWbw0XvggWPQre4lLGAix7GfIjDiisBLwmqxbfzRe2I074uie+DmNITxuOPGY4Lyb2tHxsyjS4X+P01v78tjVPViibliIU8rBnx8W5VuTPBYC2i73pnqQUOrvVsATbdvdHGDCYZhOM3rXjgRTJWFSXNYzSz23uf9X+aaKBlhX6sb97CIeENgbBeNUMhB7KVQdI678fxWGasdY4miAARZ4l8scDTdqr/9mCRC88N9OdVDkNHF0hqv1tpmshq79rYy1/FoRxnEG/FViiIXpoZjZcbSoMPTOhJy/gHsl6R2ZD8ZdfPgAE3KFUsNit7tRmtR2P79
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e3234f07-9cec-4538-e1bf-08d88d91ba42
+X-MS-Exchange-CrossTenant-Network-Message-Id: 57e67f84-22ab-4459-5692-08d88d91baab
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3781.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 20:20:30.9803 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 20:20:31.6189 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /KUMODzmLRAn/ux0mQAgb/II08DGuvZhd2wsMY7AHFYuin/LcKMyRKkEsAhY9ZqHxed/7ewPYLcED4Ne7CvX7w==
+X-MS-Exchange-CrossTenant-UserPrincipalName: i0SSa8SfapIBVQWXZAkeDgecXV6XYNd5faPo28IbAh/EPi6UpnGHFuyyJraw5lpQhY5vgD8RybX96iq6SF0mCw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4261
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,12 +94,10 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aric Cyr <Aric.Cyr@amd.com>, Anthony Koo <Anthony.Koo@amd.com>,
- Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Aurabindo.Pillai@amd.com, Tony Cheng <Tony.Cheng@amd.com>,
- Yongqiang Sun <yongqiang.sun@amd.com>, Bhawanpreet.Lakha@amd.com,
- bindu.r@amd.com
+ Aurabindo.Pillai@amd.com, Yongqiang Sun <yongqiang.sun@amd.com>,
+ Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
@@ -109,65 +106,30 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Yongqiang Sun <yongqiang.sun@amd.com>
 
 [Why & How]
-only apply multiple display power optimization in case there are more
-than one internal display.
+Remove temp macro since the enum is in header file already.
 
 Signed-off-by: Yongqiang Sun <yongqiang.sun@amd.com>
-Reviewed-by: Tony Cheng <Tony.Cheng@amd.com>
-Acked-by: Anthony Koo <Anthony.Koo@amd.com>
-Acked-by: Aric Cyr <Aric.Cyr@amd.com>
-Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c | 16 ++++++++++++++++
- drivers/gpu/drm/amd/display/dc/dc.h      |  1 +
- 2 files changed, 17 insertions(+)
+ drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c | 5 -----
+ 1 file changed, 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 28b856e2686d..903353389edb 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -149,6 +149,20 @@ static void destroy_links(struct dc *dc)
- 	}
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+index bb6b546ec6d9..b2a712c7e469 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+@@ -65,11 +65,6 @@
+ 	GENERIC_OBJECT_ID_BRACKET_LAYOUT << OBJECT_ID_SHIFT)
+ #endif /* GENERICOBJECT_BRACKET_LAYOUT_ENUM_ID2 */
  
-+static uint32_t get_num_of_internal_disp(struct dc_link **links, uint32_t num_links)
-+{
-+	int i;
-+	uint32_t count = 0;
-+
-+	for (i = 0; i < num_links; i++) {
-+		if (links[i]->connector_signal == SIGNAL_TYPE_EDP ||
-+				links[i]->is_internal_display)
-+			count++;
-+	}
-+
-+	return count;
-+}
-+
- static bool create_links(
- 		struct dc *dc,
- 		uint32_t num_virtual_links)
-@@ -250,6 +264,8 @@ static bool create_links(
- 		virtual_link_encoder_construct(link->link_enc, &enc_init);
- 	}
+-
+-//TODO: Remove this temp define after atomfirmware.h is updated.
+-#define  ATOM_DISP_CONNECTOR_CAPS_RECORD_TYPE 23
+-
+-
+ #define DC_LOGGER \
+ 	bp->base.ctx->logger
  
-+	dc->caps.num_of_internal_disp = get_num_of_internal_disp(dc->links, dc->link_count);
-+
- 	return true;
- 
- failed_alloc:
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index b170e653febc..115468d3f793 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -169,6 +169,7 @@ struct dc_caps {
- 	bool psp_setup_panel_mode;
- 	bool extended_aux_timeout_support;
- 	bool dmcub_support;
-+	uint32_t num_of_internal_disp;
- 	enum dp_protocol_version max_dp_protocol_version;
- 	struct dc_plane_cap planes[MAX_PLANES];
- 	struct dc_color_caps color;
 -- 
 2.29.2
 
