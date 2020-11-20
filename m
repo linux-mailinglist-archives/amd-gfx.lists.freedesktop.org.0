@@ -1,53 +1,54 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98DA32BB7ED
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:54:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF1892BB91B
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 23:39:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 554626E92A;
-	Fri, 20 Nov 2020 20:54:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 863F36E935;
+	Fri, 20 Nov 2020 22:38:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB15C6E92A
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:54:10 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id c198so9838319wmd.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 12:54:10 -0800 (PST)
+Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com
+ [IPv6:2607:f8b0:4864:20::b42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DAB96E936;
+ Fri, 20 Nov 2020 22:21:29 +0000 (UTC)
+Received: by mail-yb1-xb42.google.com with SMTP id k65so9977249ybk.5;
+ Fri, 20 Nov 2020 14:21:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=6gtitu9hIZ1DFGP7fDRCeTGfDZpqX7LgGrx/EZ06lno=;
- b=C8sdl3KRfmU5GiRLAZLalVtoHi1d5SGJkb3yBLo2005oUawmEJNoES0gWEB2Yt21xV
- uVVNBI/nFz6ryF7qkYnckokJuuMYI3PIyf54c9qr28YiTw4IBQFAaqq1YU3F39Wn0bno
- AbI9jtLSPujRVfNFvbEPkg0N+99VGReJLfZHNERXubrHxoOJ46hknFQtdg77it+nV6Ml
- 2RHKKMJr+z66MHaKw5wkzLy+aV1QTbg8X46bFC5uPPuy1vYMQ0RcenuH0DR4uXjHxc9U
- X6J0r807nKzgCYW295P2RKAX7ZOGmf44j/624Rv1DjKLl9H8lBK2koD+9AHKKubnS9bk
- yz3Q==
+ :cc; bh=29/AaAKKWIjlxKBDiu42mXe16/c3LUzQvTdn0Wctw9g=;
+ b=th/UjqVcversiy9gEUr46cKRrhHywr0iTgf9mzUejm+T3/Jtu2c6ftjob7N1dnOe2S
+ rGVMit/4Gqy7ZDqW+do8x9wI8RCPt/cmuWncILsoBuux3CBAtfG8gT+eTL8wiBVSM5EH
+ rDgxqkIvK+vUXnfhgj71GxYIUQH1hInVNMbCl5+3prik9RGhi+hsmul85xXuf9uJVr2L
+ NGLQGWDmOXXHg4l9XujW0HrVyacbE3Q1QSLAkLJ0BjE5AdFqhLyeU3T8/6+nJ9hH0JSR
+ o1vAVeqr6Bt+/W6rGIwrn7PuvAvMGRmk1Avx4k6vjCg8etglRiDTMnimrqKcX/KEsNCP
+ 0CAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=6gtitu9hIZ1DFGP7fDRCeTGfDZpqX7LgGrx/EZ06lno=;
- b=b/F1rDGNUjHPRTQ/NAJQV+Y0lpgQQJFqhi7cFVaG3+NqUlrgsRSu2sUa+kO51wn0+u
- 0AhnUp3Pv/54RXf8sCJhYkYCVTz49n+1J3XS0y02ShTYne9arNfMS4RWg9J5YN1eHHmi
- L8Ot/3/JfCIIWvlsq273kg/lAiwCLLK43l8LwLjruZJOviFadLJZL7EcYD4Pmv4R4OO/
- B6owsYL5ptWl0OphOKdFvjN61YxMOZqP5Y76PhMA1UWy33CGH7WDreoejPOBCo/hxQNv
- j3JynL7MUJWnLbvGEfhWEdL/vKyqG1bh4ZKAcP7VcMi2kyRglY4XQ8pnw8gcrQmawhOI
- DVIw==
-X-Gm-Message-State: AOAM531v6yhNz9dMGPF+FvQPRiPMwkzyKwG4tF7XvVnvtFXE/wrKZAKl
- lsatLbOcMTggiqEE/rBtOWaJjr+VDFNQXKT2wJfNPYNM
-X-Google-Smtp-Source: ABdhPJysh3W/P3vTGP3f876oDKAW5yJAD2qdwVUs8f3UdiJVJLVocrHjYawCYhkN1SXbr69YJHm14eQbaj+SQTqsQzE=
-X-Received: by 2002:a1c:1c3:: with SMTP id 186mr11751193wmb.39.1605905649546; 
- Fri, 20 Nov 2020 12:54:09 -0800 (PST)
+ bh=29/AaAKKWIjlxKBDiu42mXe16/c3LUzQvTdn0Wctw9g=;
+ b=kO4WXw2k7yX3i/6mbZRfhrDQz6eo7Nk2hWgVooFrL5huUn0rMBbBasopYT/GmEyCob
+ UDAqYr6DbAGyYHwWwX/+xsbLe7s8A5B3VkfJwJBVWZ8wRp3dc9VG3RKrSbxahciY6bs/
+ IbR52U4FfF/6CAEBNszzn7tGJheutBlOSyf9gCdIc3PvWdaXma+of0GJfCJGnNxSAr7y
+ NYx9trz/FHUCy2UD4g+b//sjqVkejzZ/tSFV+1BorYpnFUC063Vmp6fypjls6cSQ6X+Y
+ i+rpYYXklAk4YOszrHOH6U1UzDrLC/DRfDjxVl3MSRlolaNd00ZcIjVYaTbFBnxoaAEZ
+ mDdQ==
+X-Gm-Message-State: AOAM530X448hIOvooZXAP4EtK+rRiNU+vNQiSckr8zdY/0tck9v8/Ce3
+ CL9uqi4jP71bGYm0gb+WTuA/OdIZ0rrTkc0wkyw=
+X-Google-Smtp-Source: ABdhPJzYUhkcjTyH5GIcOV5fWMsl+OUdzem471zLY9usW3RhV8izQIRbyESMTmZwFikqgbfOQQqVvSSQCZzBPJX4q90=
+X-Received: by 2002:a5b:40e:: with SMTP id m14mr22113400ybp.33.1605910888617; 
+ Fri, 20 Nov 2020 14:21:28 -0800 (PST)
 MIME-Version: 1.0
-References: <WTGdykXJRzSbZ9WqH7JBxEOBb6zx3t3iR1ujC8S8DmY@cp3-web-020.plabs.ch>
-In-Reply-To: <WTGdykXJRzSbZ9WqH7JBxEOBb6zx3t3iR1ujC8S8DmY@cp3-web-020.plabs.ch>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Fri, 20 Nov 2020 15:53:58 -0500
-Message-ID: <CADnq5_Mj3=mcNhvA08bfdoTEBJiEbWaetXv4TDzYivimE3TT9Q@mail.gmail.com>
-Subject: Re: [PATCH 0/4] drm/amd/display: add cursor plane checks
-To: Simon Ser <contact@emersion.fr>
+References: <cover.1605896059.git.gustavoars@kernel.org>
+In-Reply-To: <cover.1605896059.git.gustavoars@kernel.org>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Fri, 20 Nov 2020 23:21:17 +0100
+Message-ID: <CANiq72=E_gEVvqUUTSqU4zegC2=yZSTM4b=4G-iofp6d3=UgWQ@mail.gmail.com>
+Subject: Re: [PATCH 000/141] Fix fall-through warnings for Clang
+To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+X-Mailman-Approved-At: Fri, 20 Nov 2020 22:38:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,43 +60,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
+ reiserfs-devel@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-wireless <linux-wireless@vger.kernel.org>, linux-fbdev@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ Nathan Chancellor <natechancellor@gmail.com>, linux-ide@vger.kernel.org,
+ dm-devel@redhat.com, keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
+ GR-everest-linux-l2@marvell.com, wcn36xx@lists.infradead.org,
+ samba-technical@lists.samba.org, linux-i3c@lists.infradead.org,
+ linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
+ usb-storage@lists.one-eyed-alien.net, drbd-dev@lists.linbit.com,
+ devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
+ rds-devel@oss.oracle.com, Nick Desaulniers <ndesaulniers@google.com>,
+ linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
+ oss-drivers@netronome.com, bridge@lists.linux-foundation.org,
+ linux-security-module@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
+ linux-acpi@vger.kernel.org, coreteam@netfilter.org,
+ intel-wired-lan@lists.osuosl.org, linux-input <linux-input@vger.kernel.org>,
+ Miguel Ojeda <ojeda@kernel.org>, tipc-discussion@lists.sourceforge.net,
+ Ext4 Developers List <linux-ext4@vger.kernel.org>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>,
+ linux-watchdog@vger.kernel.org, selinux@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-geode@lists.infradead.org, linux-can@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
+ op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
+ xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
+ linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
+ target-devel@vger.kernel.org, Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ linux-hwmon@vger.kernel.org,
+ "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
+ linux-nfs@vger.kernel.org, GR-Linux-NIC-Dev@marvell.com,
+ Kees Cook <keescook@chromium.org>, Linux-MM <linux-mm@kvack.org>,
+ Network Development <netdev@vger.kernel.org>,
+ linux-decnet-user@lists.sourceforge.net, linux-mmc@vger.kernel.org,
+ linux-kernel <linux-kernel@vger.kernel.org>, linux-renesas-soc@vger.kernel.org,
+ linux-sctp@vger.kernel.org, linux-usb@vger.kernel.org,
+ netfilter-devel@vger.kernel.org,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ patches@opensource.cirrus.com, Joe Perches <joe@perches.com>,
+ linux-integrity@vger.kernel.org, linux-hardening@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 20, 2020 at 3:19 PM Simon Ser <contact@emersion.fr> wrote:
->
-> This series adds checks for all cursor plane properties. This avoids
-> accepting configurations that we won't be able to display.
->
-> I've tested this series against various scenarios using a hacked up
-> wlroots [1].
->
-> [1]: https://github.com/emersion/wlroots/commits/amdgpu-cursor-invalid
+Hi Gustavo,
 
-Series is:
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+On Fri, Nov 20, 2020 at 7:21 PM Gustavo A. R. Silva
+<gustavoars@kernel.org> wrote:
+>
+> Hi all,
+>
+> This series aims to fix almost all remaining fall-through warnings in
+> order to enable -Wimplicit-fallthrough for Clang.
 
->
-> Simon Ser (4):
->   drm/amd/display: add cursor FB size check
->   drm/amd/display: disallow cropping for cursor plane
->   drm/amd/display: check cursor scaling
->   drm/amd/display: don't expose rotation prop for cursor plane
->
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 81 +++++++++++++++++--
->  1 file changed, 75 insertions(+), 6 deletions(-)
->
-> --
-> 2.29.2
->
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+Thanks for this.
+
+Since this warning is reliable in both/all compilers and we are
+eventually getting rid of all the cases, what about going even further
+and making it an error right after?
+
+Cheers,
+Miguel
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
