@@ -1,51 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 697692BB676
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:20:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11AD52BB682
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:20:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBB7789C54;
-	Fri, 20 Nov 2020 20:20:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 392BD6E920;
+	Fri, 20 Nov 2020 20:20:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2085.outbound.protection.outlook.com [40.107.236.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33E3089C54
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:20:23 +0000 (UTC)
+ (mail-bn8nam11on2089.outbound.protection.outlook.com [40.107.236.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB6096E918
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:20:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MohzAOzDG8vh+FMajy9Wr5NDdzgfsC/TKhqGW+mHtoEk57JlYVYQg7NFrXSc5qMEHly5LyBwicFB1QhhwMjDgAaRoVZO5Ub5/t2EOzF91INmszoeu4Hq6fG/LV5qI8mRUaA5rDOx6jF4lAdqIvbUKUNA2oQspmjVJWiRmESL9S7hO8GB5iVSiJdp44911POXIyix4zyZUG2xeAco4d2IyQ3cMPPcaCRsqQkm//g4mPChTRYmAGHp9puqb/eaZpPDqdc1Vl4UmEV9hKxF4ODRdWf/+5UKBESEtBoX0BqULyulA6rHdnNHuSTB0B+q1iGz5/+yOqssdEQqL9DvXCoN6w==
+ b=hFHhMJe7gI2bLnYzIu1SbDkZqRD6vSVHvvbEATBhHDK3xWEmUSw6NyF8fflHnl/jRa9fuMIZyNlhQx1fPNGwFCbCpu5ldlbWR6gUqaU4WOcYRUsVs9IakfdreLksgxzxTM7AhAyFuRkAyZs4dPclwwH54qL+olm49WZ3LRFc8c4SNiyY26kNL3M+cMzhhlc9levpU0QzgD9FI+ATHviF9Ut7TnMCVhmTrUN7XsPIxQtSfwJFCCS4L0blzy+BU3I3gdm42vAaDwRO383bYswG9jZvh1OsBlMay8Hf56K0xdNEmVJjm0C9foQlkLmlQtw1cUt5CKUR3E5claine+zh7Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cGCs7WQ0YsdZwxwgZXyjhOzlKwLbdHk/1aijOCZ5hNg=;
- b=KOUqLcrXguynwdFnb3cX+4R7tLqxQtxXbwnSoB+q4r30bggMF8STQzi8P/SjWIopRHEXE6K676wDxAoKet4gdk0VLnLNZI2OaPfldAnrT+ZI/mAy7ignugzAMqn4hysJBcnn4xjx8EvVCTkONIZUuFNVeO03HaMihhhH3sDwnd8UpFvCmbIvCY2Cc8L73CW+AQU8ggMbkMuFDDPObZe3Wb0wgkt3aVL9zvzUzhzD0VtfMWyZoc0+uRxLt1W5Ebt6KctGj2lB4zCEleig9IR6zLjiTq8Y2Ma9sj4JT5kQS0DukrbejoylvZD1gzy6COngZuaTpTXRMzBerX2v8lPBCg==
+ bh=oH9dTtHIjah7nXuKaf0hDRqbgl2pPuI5LXD55PjZaRA=;
+ b=i9NbTqhhzIutj77p5bbZ8P+E3302JI/kyLQ5lYoIIQLIkMJ7J9u7zRZ/yHcu9J9KVOmBwqzVDjrvs5IyBc0Fxxx6/9UFMH0LDYNnEGJZqZhAMBBQSKhyfK0o2gBCyLGZO7oGcsdXy5in9ocu5xcmarnFjZWZVVBj+QmyokX+qVXb3DoY6SWVumTjVTvj8njXgQo11K5vNa+NmMUUqfZ5TRm3Ub86/vnrOnU5lB9t6Ewgs6n7sd8fzy74IcRHuCr0ijVbcUUuvq8MLno6Ryc5Zg7aGiWhgJYl50a+W9yxFtj2A1E1A8UcC1R1cLpo4WC74Pz3/jjkWw9gu2883hunTA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cGCs7WQ0YsdZwxwgZXyjhOzlKwLbdHk/1aijOCZ5hNg=;
- b=3cU8b8ofZYCUWYvwWrLflm/KlSRvOBTYi/ScKinCoW5PccE5X7V3ixz/WCDd2/4Grmi/pEx2PVE+uF9RmuPyYa63mGklR+48wdTkU/LNq+1da6fRor+IBAe2kwU1PLQOZzyvKfV2nnXwKZ5SDhVXYCmjxlDG0uG9ieCyPNs8i4E=
+ bh=oH9dTtHIjah7nXuKaf0hDRqbgl2pPuI5LXD55PjZaRA=;
+ b=cwaNIrfL60YFuYG38IGJEt+kYtSwbHNWSOlD57SiSWEI0CWKtbXFpRDse4xi/VjSvKRcNdoPiRez67ckxa6EEpC9KatAcJ9+5oDj16c6NbXW61LtI8XvKI0Dc9mQTXn0d9i9l5ErZMo7b3Xoo11ajzeOelE/Mlk5qtQV/j+mr8s=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from CH2PR12MB3781.namprd12.prod.outlook.com (2603:10b6:610:27::11)
- by CH2PR12MB4216.namprd12.prod.outlook.com (2603:10b6:610:a8::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20; Fri, 20 Nov
- 2020 20:20:22 +0000
+ by CH2PR12MB4261.namprd12.prod.outlook.com (2603:10b6:610:a9::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.24; Fri, 20 Nov
+ 2020 20:20:23 +0000
 Received: from CH2PR12MB3781.namprd12.prod.outlook.com
  ([fe80::9d:35d6:ff59:1cfa]) by CH2PR12MB3781.namprd12.prod.outlook.com
  ([fe80::9d:35d6:ff59:1cfa%4]) with mapi id 15.20.3589.024; Fri, 20 Nov 2020
- 20:20:22 +0000
+ 20:20:23 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 01/18] drm/amd/display: add i2c speed arbitration for dc_i2c
- and hdcp_i2c
-Date: Fri, 20 Nov 2020 15:19:41 -0500
-Message-Id: <20201120201958.2455002-2-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 02/18] drm/amd/display: Source minimum HBlank support
+Date: Fri, 20 Nov 2020 15:19:42 -0500
+Message-Id: <20201120201958.2455002-3-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
 References: <20201120201958.2455002-1-Rodrigo.Siqueira@amd.com>
@@ -58,32 +57,32 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60::c908) by
  CH2PR16CA0025.namprd16.prod.outlook.com (2603:10b6:610:50::35) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 20:20:21 +0000
+ 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 20:20:22 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 6cfcc271-974e-48db-222c-08d88d91b503
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4216:
+X-MS-Office365-Filtering-Correlation-Id: f19157ee-18a2-4710-0b43-08d88d91b575
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4261:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CH2PR12MB4216258FA86CA6ED9A57A2EB98FF0@CH2PR12MB4216.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4261031DFEAAFEDB7096BF9498FF0@CH2PR12MB4261.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Z94L9Wqcc3rSRuVwlGfmK5OliDEY0jV3g43OUHSRKyoHtBgMXHbuDorJS05KZT9PDTf3FeWCS+wNVNCz/vjnF1X2hCs3Zr1fY5pBOUP0WRqOZKa83UGbAcQR0pR0lBCVCb8LJymMM/7o7fPKsZqpAIy70lrngFlkPm1Ung72wA7EBuPpCP8cFKIL1nClsJCWyhiXZEsT0uqNkOA1lfUJvXdL1vWQ1nrKecAWe/Z1Wwob0+PtKP55tAyRqvgCSX6rUN5QFpX13+qohm7AjWsU1rEo4NE5gjrtL174fmDKw1LL4lAjL0UCAHZ1d9TMaqMV/9kNuoMhITK6NAN0E+gpag==
+X-Microsoft-Antispam-Message-Info: 8WWBU6jIzXBCrvrrNQpaA+SRnJ2Y/f7JiR31rIVDb3tYguumfF1MQsDJXzsmTj4rArfE+x5I1+FU9O59v7+oq26ShF66UNyTSOA0mPvTXOoK7IeYhcwBPh/dGP9pgxfi0JrFaDAucBNTAyH2yytJO7qJqGv97VdEH3s5ReYHFHFIubRzPMHDU6GlCAH8947/Usj3t29uZZZUtrZaaWrk/8WnllKLYdx8+7TbKA8rEti+EaWBA//3UH9yjWXuvp48Ul8e37OEEq9iRuhrosQGRlmkEPnJm+eQzWEiz5Cf8IM9ykhHVR39QFdgH0dtnUGMc9EToT0h1J+v2FZM7vCmrA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB3781.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(376002)(366004)(346002)(136003)(39860400002)(8676002)(2616005)(66556008)(66476007)(16526019)(66946007)(6486002)(186003)(6666004)(316002)(54906003)(478600001)(6512007)(83380400001)(8936002)(86362001)(6916009)(36756003)(4326008)(5660300002)(6506007)(52116002)(2906002)(1076003);
+ SFS:(4636009)(366004)(376002)(136003)(39860400002)(346002)(396003)(5660300002)(83380400001)(1076003)(6512007)(66476007)(66556008)(186003)(6486002)(66946007)(4326008)(2906002)(16526019)(86362001)(6916009)(316002)(8936002)(36756003)(6506007)(8676002)(54906003)(52116002)(6666004)(478600001)(2616005);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: dz8e0dt9QP18L4Xf32iafJAgYCahN0WpVuziqft7AqJMKbP/jayG5syURN5nufcUuglXIddB+Rho8LsZs+Ed+hEAxdiPN4YuzroVJ9o7MEOkTCTuChH2J7gb1Z+xCClcpsuPoPrYwitlVdSb07JDJxhfnDB0oWYQ+8RAByGZJP4wndg+plznTkpq0YotMCFW3GkJP+r7lCH5g9R+3wrPbS3M2uijco2bcrxZLb2lCOcD42vKWfRsG6/TkCaHuCte80e7bSW/WXhR0v6Btl1+QI3px8vCBkxMV3CzZOqHeHlTbEEElpkIYDup5QVeRxEqWFpMQmHn+wDvQDvtA6Z/NoNjNqtjMg+dkiZXUecR+vgGmRB13ivKiHkGtPUwMWhAfq8Oh2I2bJghVzjDvlAwiipSm2qmQBfyynQGfa9vP7IZYv+6L89Aecx7vndKXgbnX7wAgCgsAM9jlCsSBE0vUXr5StqDZE6SLhNZuH3SCf78bgLWwnjA8ZsRqoxCv9ZutG1ud8YMAwN4Kxwjyzcxu6B/DRNAdzQ2EVUiE4ota7e5hcqPji6IkQViiNaAYLMkYoeLsRfYlAdLjN+CocK7HfnQSwx5dV1gjMIXF7/9cf6nyHQMLY2ugcdAtgQwr63xbpYcmhW47yCiK/ClyvOomJjg/wy+IUW8Cb2jKhgATrBp/z3d16W0p+YCp1Fp7UVNr14Dkmb6V/Ldr0kMy5v5jvrqLY7P00Tf1xXSyxKmjXKjrmTgl4sJnMyReafAkFzd22rLEMoyhMKcbRo1W/XYQB70JgjO2uIbMz4tyKNfCzTz5QvrXMj2BQN2D0iF5t8anIOkakRpRuiG8xxMYYnEf29e65eKyFhcMyO4tm59lC+Whhl2eAvSnAISfbE90wT1eYvX7CnXpO8QSGIhswa/7E7C/Ow8Rn2KwM3bmk744RZC0pn0OKux68iyeuvb8xYe
+X-MS-Exchange-AntiSpam-MessageData: MXPFB5L2OYHWbc/h0G7pzDN757N0OF0GM0sr8V9v234lsOS50w6z15Fw+LxsNJ1y3w4urp26kYbcjzIe+v0QfDTIQt+rftlmzf6fbIuIxZZ5W2+jYX2JoADbjM3N/Xwfd3eebyskwnsi9KacRqLQyn+DzI0KqrpSB/kNeWqcHHMjczEfY5lXA60JjlFpTJOii2V3rjSEtC5Rxxg6rhHUjp7GbKNXJI52IeUgjaXhjhrgXm+pSyzZwa3og0zpoF3Ij2ERl0s6/yDjVAQz7GwesRFUxxsC9LnXg3YIofm+7Wr6Uqh4ohPxRNol1Ae18by9f9NFCz9VGi05fyFIxAvseTEcj2Ctx+72bZXugeeKbR++8CorF7tW8NBDd/RBPQDTEEkX6SLekRrlzwhP9IBNgGrJS1rwV17wrU3W0AScT8ZaRAEhvnM8W90d4PuX3oYJEQcLPsg5jSXnOOFjz5jlF+V71WpGkoA9yuK19i3UfegkMFsNTEuNNNia8BcL9RsJZA+GkRoUq4PzfrkXgM1nZNWW+uVMoeMZbFpAbj8cxUkJcuLMGNZk278VEIhQSjNdblrvVLrktMvZ+z1A6pM12WTrKL7X7U1DsMFnjwuuUQ+X6HBh6Y0s1ZAqxSOr5GXvriC/KPA+IvR6k8T60oZOt+j1ROqMxBN4stoows2cLff6QqHjsJd/trpI9VQ5iah5eXvsZO/5Yy0GE7U85vTvVipEbiLg4RbBy2pkcFQzUorjyGfuMHkWARzgmiJTTQGMqf5Xv3tapX8WZMvL+Ez4u7GquXFNGE4HG5iC6t30n6tZRgEH8cyUVOIoCmt2I2OnUsD6+zpdwfNBTuhpvvlgxAVDwRkREyjYh7KhBkXLyxUDsefFZJM+AHs3BnXChD/Jq8Df4CMVMlvmVQVQ/p84RXMbXzQIOm9vWECJMzUqOJMtxRyKdq3V7t057S61XWkE
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6cfcc271-974e-48db-222c-08d88d91b503
+X-MS-Exchange-CrossTenant-Network-Message-Id: f19157ee-18a2-4710-0b43-08d88d91b575
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3781.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 20:20:22.1789 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 20:20:22.8964 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: e1Epo/d1iIhey/T6+eqfDiaY6TjfAYaCGoxhSd90Lzh28BE7UEDNz6qZ7YZLioac1gK/JHXWd38WQU6f4stAgw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4216
+X-MS-Exchange-CrossTenant-UserPrincipalName: xLZG98YCpj2apP5Ap4QRgW6guQxBH8Pkp8/P7RxDj6LXuP6/UQHggDSeOvaF6g+dckrm0IU676MB825PPCfLMA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4261
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,30 +94,29 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Charlene Liu <Charlene.Liu@amd.com>, Chris Park <Chris.Park@amd.com>,
+Cc: Ashley Thomas <Ashley.Thomas2@amd.com>, Anthony Koo <Anthony.Koo@amd.com>,
  Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+ Wenjing Liu <Wenjing.Liu@amd.com>, Aurabindo.Pillai@amd.com,
+ Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Charlene Liu <Charlene.Liu@amd.com>
+From: Ashley Thomas <Ashley.Thomas2@amd.com>
 
-[why]
-HDCP 1.4 failed on SL8800 SW w/a test driver use.
+[Why]
+Some sink devices wish to have access to the minimum HBlank supported by
+the ASIC.
 
-[how]
-slower down the HW i2c speed when used by HW i2c.
-this request: each acquired_i2c_engine setup the i2c speed needed.
-and set the I2c engine for HDCP use at release_engine.
+[How]
+Make the ASIC minimum HBlank available in Source Device information
+address 0x340.
 
-this covers SW using HW I2c engine and HDCP using HW I2c engine. for
-dmcu using HW I2c engine, needs add similar logic in dmcufw.
-
-Signed-off-by: Charlene Liu <Charlene.Liu@amd.com>
-Reviewed-by: Chris Park <Chris.Park@amd.com>
+Signed-off-by: Ashley Thomas <Ashley.Thomas2@amd.com>
+Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
  drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c | 1 +
@@ -126,29 +124,29 @@ Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
  2 files changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-index 0006d805b3b2..d15220a4eeb6 100644
+index d15220a4eeb6..be58134a7954 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-@@ -1759,6 +1759,7 @@ static bool dcn301_resource_construct(
- 	pool->base.mpcc_count = pool->base.res_cap->num_timing_generator;
- 	dc->caps.max_downscale_ratio = 600;
+@@ -1761,6 +1761,7 @@ static bool dcn301_resource_construct(
  	dc->caps.i2c_speed_in_khz = 100;
-+	dc->caps.i2c_speed_in_khz_hdcp = 5; /*1.4 w/a enabled by default*/
+ 	dc->caps.i2c_speed_in_khz_hdcp = 5; /*1.4 w/a enabled by default*/
  	dc->caps.max_cursor_size = 256;
++	dc->caps.min_horizontal_blanking_period = 80;
  	dc->caps.dmdata_alloc_size = 2048;
  	dc->caps.max_slave_planes = 1;
+ 	dc->caps.is_apu = true;
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-index 765002e0ff93..15ffd8a21e4e 100644
+index 15ffd8a21e4e..87fe84a06301 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-@@ -1306,6 +1306,7 @@ static bool dcn302_resource_construct(
- 	pool->mpcc_count = pool->res_cap->num_timing_generator;
- 	dc->caps.max_downscale_ratio = 600;
+@@ -1308,6 +1308,7 @@ static bool dcn302_resource_construct(
  	dc->caps.i2c_speed_in_khz = 100;
-+	dc->caps.i2c_speed_in_khz_hdcp = 5; /*1.4 w/a applied by derfault*/
+ 	dc->caps.i2c_speed_in_khz_hdcp = 5; /*1.4 w/a applied by derfault*/
  	dc->caps.max_cursor_size = 256;
++	dc->caps.min_horizontal_blanking_period = 80;
  	dc->caps.dmdata_alloc_size = 2048;
  
+ 	dc->caps.max_slave_planes = 1;
 -- 
 2.29.2
 
