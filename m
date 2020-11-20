@@ -2,60 +2,52 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2160C2BB7EE
-	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:54:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC9C2BB7E9
+	for <lists+amd-gfx@lfdr.de>; Fri, 20 Nov 2020 21:51:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 915006E92C;
-	Fri, 20 Nov 2020 20:54:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A1556E923;
+	Fri, 20 Nov 2020 20:51:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com
- [IPv6:2607:f8b0:4864:20::641])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D7C06E928
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:48:03 +0000 (UTC)
-Received: by mail-pl1-x641.google.com with SMTP id 5so5468026plj.8
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 12:48:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=v0uQ3+ZvQ790GJbfbb1ESqfRrqQ38XoL7hho1t1Gb0k=;
- b=avd4TaFUM+Ab56B8iWTc3giej2JyPXQeNqj8Vqwh4pMfYMm6E7ROZ43KbUMGq3c2kN
- Y7wgImiWtwhH33QCuhXwX5xfYnbd8ZoAoymaiVLMsflRM4OrtMTi7raBVieCeB5e9/kv
- qCr4nXKui27aGXF6t1ziK2ispJ9UlbNRnpYGc=
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E6DE6E923
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 20:51:10 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id c9so11715216wml.5
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Nov 2020 12:51:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=hp1beRzvggAjg6DNfEJAvxavmdQAqyj8G1QOi3nTVdI=;
+ b=S33g00KXZ/twyZnJUhkM5hLl2o/4M+aZaI8450J//KMADRP/Sr4hEFDhKNN+spSqAL
+ AqGvNGuvIpIbu5t484uRynA5xLuKSMCM0J3LAAp2HrsSU9Okej/zxXB+0FEPNks6qqZf
+ DJjusuO65sqosV4W35J/B3gjApH+fRZRfxiLbE2W7qmjlVZwYm/AxqrDn/9b6l0b1OAU
+ j1O5n561haIyFANOEPB3cpwlQCI4HxcsUFuRe4+LllsaU8A+GQm1Aaa9lU39smrdUUE1
+ oJusJQsK6AKzQEGmGBrclhrs3o0oRlNv8TlDuO8ixAgLaMWM5C1w08pQKNSrFxaqUWbo
+ 9YEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=v0uQ3+ZvQ790GJbfbb1ESqfRrqQ38XoL7hho1t1Gb0k=;
- b=EamooUBygnxElpDSfuosroeyJ9MSSKAYco9xOjp2O+tmYuhoXoIkgWWS13957wnM8S
- 7qA0P/TB+/oXKmc7lrX+8sprWGed3PboH3RH6eEer5awpUMRm5LpIqcFWYytXj2j/qPT
- 6odEDyN9ShzIJtCFETiszPA5rCZI3kySyvdZjR+VuFqdZ7nhwsXiam02huKA7tAUd7WI
- TrKErdYr0ZDUMKkqlDnbUmnCIOvuDkuSPzdS5Yod5RnUSZJJhFNaERuKZ/0oueSvJA7l
- GPl0jeyJXnWmgfgBmctyN8mwXDCSI4iMjiPe1f9jcFLizeCDPV+TeITou64Qx+nqB0fl
- 365A==
-X-Gm-Message-State: AOAM531D6X1tZxnDvoY6Vgl0uV+UzCqNuE0YYHvAqaI69VPQt4l1VJU/
- wT9Y8vwbNH0tYbpwrvyfR/Vs4A==
-X-Google-Smtp-Source: ABdhPJwusp2Lb+4OqT162rurUKkT/e5T3DAOLIduq4rICrKRG7vcFewdIWNkE66BLMZ+8SMrIPoLqA==
-X-Received: by 2002:a17:902:7890:b029:d8:bb20:518e with SMTP id
- q16-20020a1709027890b02900d8bb20518emr15184915pll.66.1605905283037; 
- Fri, 20 Nov 2020 12:48:03 -0800 (PST)
-Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
- by smtp.gmail.com with ESMTPSA id w11sm565810pfi.162.2020.11.20.12.48.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 20 Nov 2020 12:48:02 -0800 (PST)
-Date: Fri, 20 Nov 2020 12:48:01 -0800
-From: Kees Cook <keescook@chromium.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Subject: Re: [PATCH 000/141] Fix fall-through warnings for Clang
-Message-ID: <202011201244.78E002D5@keescook>
-References: <cover.1605896059.git.gustavoars@kernel.org>
- <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <202011201129.B13FDB3C@keescook>
- <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=hp1beRzvggAjg6DNfEJAvxavmdQAqyj8G1QOi3nTVdI=;
+ b=DlNxlHn0DkzsiJ3lq9DhsR33t9Nf7MG3DE4nkghVsfPOmyc2OVdv517XSt7X6L/VtM
+ pzQO3x+5/7LfQSTi+NRn1jPyXCh3h58P33ukYJMRurDIj2/+aA8iNXDMWpPWKwsr7cv/
+ 63UWFhJxLMvOCQ6rcF2zykcxUDOzIzG4nRP6N9rD0565x8lHkJZ8Jvs4GafMeArJzIXQ
+ XkW+90VGNDoS2tk9MCHSt0Cb3i/gcAKk2iUniMgmbuvWETw2YHUOoI5xTM0oPzR+4Gy7
+ dp9YAXYu0L/zBKptbErH9Qx08zd5NsIovQhJEOi+vs7qDRajwU9q3Si0DqX7vdy0+vDN
+ 7AWw==
+X-Gm-Message-State: AOAM5300eaChDvTMz8RIdqsEPflrb8yhfsAnxddEMzbjvHrUnxiiJ4sF
+ 3FtWCLIFK31CVxZ6PRpx2ODLQ3rSFNgUo5eyg0I=
+X-Google-Smtp-Source: ABdhPJxfyZPnlHNZ9aGuvVNplbB+1FpUlCJTcI1P1UTu3zVeqv7p8zoTi78X+GRTZwDJQYzgwvOgVfl0FYN9DtIRqDY=
+X-Received: by 2002:a7b:c157:: with SMTP id z23mr11632329wmi.70.1605905469116; 
+ Fri, 20 Nov 2020 12:51:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-X-Mailman-Approved-At: Fri, 20 Nov 2020 20:54:51 +0000
+References: <P5iZhKB1vEj9b6kWD41KhDPb7BvvEr72fMg2Kke4PI@cp7-web-039.plabs.ch>
+In-Reply-To: <P5iZhKB1vEj9b6kWD41KhDPb7BvvEr72fMg2Kke4PI@cp7-web-039.plabs.ch>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 20 Nov 2020 15:50:57 -0500
+Message-ID: <CADnq5_NjZB=1t_MpYN7mx39UFiFaM2gDVmfZy0gNKDm-+TyGHw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] drm/amd/display: add cursor FB size check
+To: Simon Ser <contact@emersion.fr>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,100 +59,90 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
- reiserfs-devel@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-fbdev@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Nathan Chancellor <natechancellor@gmail.com>, linux-ide@vger.kernel.org,
- dm-devel@redhat.com, keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
- GR-everest-linux-l2@marvell.com, wcn36xx@lists.infradead.org,
- samba-technical@lists.samba.org, linux-i3c@lists.infradead.org,
- linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
- usb-storage@lists.one-eyed-alien.net, drbd-dev@lists.linbit.com,
- devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
- rds-devel@oss.oracle.com, Nick Desaulniers <ndesaulniers@google.com>,
- linux-scsi@vger.kernel.org, linux-rdma@vger.kernel.org,
- oss-drivers@netronome.com, bridge@lists.linux-foundation.org,
- linux-security-module@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
- linux-acpi@vger.kernel.org, coreteam@netfilter.org,
- intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
- Miguel Ojeda <ojeda@kernel.org>, tipc-discussion@lists.sourceforge.net,
- linux-ext4@vger.kernel.org, linux-media@vger.kernel.org,
- linux-watchdog@vger.kernel.org, selinux@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-geode@lists.infradead.org, linux-can@vger.kernel.org,
- linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
- op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
- xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
- linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
- virtualization@lists.linux-foundation.org, target-devel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
- x86@kernel.org, linux-nfs@vger.kernel.org, GR-Linux-NIC-Dev@marvell.com,
- linux-mm@kvack.org, netdev@vger.kernel.org,
- linux-decnet-user@lists.sourceforge.net, linux-mmc@vger.kernel.org,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- linux-renesas-soc@vger.kernel.org, linux-sctp@vger.kernel.org,
- linux-usb@vger.kernel.org, netfilter-devel@vger.kernel.org,
- linux-crypto@vger.kernel.org, patches@opensource.cirrus.com,
- Joe Perches <joe@perches.com>, linux-integrity@vger.kernel.org,
- linux-hardening@vger.kernel.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ "Pierre-Loup A . Griffais" <pgriffais@valvesoftware.com>,
+ Harry Wentland <hwentlan@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 20, 2020 at 11:51:42AM -0800, Jakub Kicinski wrote:
-> On Fri, 20 Nov 2020 11:30:40 -0800 Kees Cook wrote:
-> > On Fri, Nov 20, 2020 at 10:53:44AM -0800, Jakub Kicinski wrote:
-> > > On Fri, 20 Nov 2020 12:21:39 -0600 Gustavo A. R. Silva wrote:  
-> > > > This series aims to fix almost all remaining fall-through warnings in
-> > > > order to enable -Wimplicit-fallthrough for Clang.
-> > > > 
-> > > > In preparation to enable -Wimplicit-fallthrough for Clang, explicitly
-> > > > add multiple break/goto/return/fallthrough statements instead of just
-> > > > letting the code fall through to the next case.
-> > > > 
-> > > > Notice that in order to enable -Wimplicit-fallthrough for Clang, this
-> > > > change[1] is meant to be reverted at some point. So, this patch helps
-> > > > to move in that direction.
-> > > > 
-> > > > Something important to mention is that there is currently a discrepancy
-> > > > between GCC and Clang when dealing with switch fall-through to empty case
-> > > > statements or to cases that only contain a break/continue/return
-> > > > statement[2][3][4].  
-> > > 
-> > > Are we sure we want to make this change? Was it discussed before?
-> > > 
-> > > Are there any bugs Clangs puritanical definition of fallthrough helped
-> > > find?
-> > > 
-> > > IMVHO compiler warnings are supposed to warn about issues that could
-> > > be bugs. Falling through to default: break; can hardly be a bug?!  
-> > 
-> > It's certainly a place where the intent is not always clear. I think
-> > this makes all the cases unambiguous, and doesn't impact the machine
-> > code, since the compiler will happily optimize away any behavioral
-> > redundancy.
-> 
-> If none of the 140 patches here fix a real bug, and there is no change
-> to machine code then it sounds to me like a W=2 kind of a warning.
+On Fri, Nov 20, 2020 at 3:19 PM Simon Ser <contact@emersion.fr> wrote:
+>
+> This patch expands the cursor checks added in "drm/amd/display: add basic
+> atomic check for cursor plane" to also include a FB size check. Without
+> this patch, setting a FB smaller than max_cursor_size with an invalid
+> width would result in amdgpu error messages and a fallback to a 64-byte
+> width:
+>
+>     [drm:hubp1_cursor_set_attributes [amdgpu]] *ERROR* Invalid cursor pitch of 100. Only 64/128/256 is supported on DCN.
+>
+> Note that DC uses the word "pitch" when actually checking the FB width.
+> Indeed, the function handle_cursor_update does this:
+>
+>     attributes.pitch = attributes.width;
+>
+> In my tests, the cursor FB actually had a pitch of 512 bytes.
+>
+> Signed-off-by: Simon Ser <contact@emersion.fr>
+> Reported-by: Pierre-Loup A. Griffais <pgriffais@valvesoftware.com>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Harry Wentland <hwentlan@amd.com>
+> Cc: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+> ---
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 2855bb918535..bd63f1c4ae79 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -8902,6 +8902,28 @@ static int dm_update_plane_state(struct dc *dc,
+>                         return -EINVAL;
+>                 }
+>
+> +               if (new_plane_state->fb) {
+> +                       if (new_plane_state->fb->width > new_acrtc->max_cursor_width ||
+> +                           new_plane_state->fb->height > new_acrtc->max_cursor_height) {
+> +                               DRM_DEBUG_ATOMIC("Bad cursor FB size %dx%d\n",
+> +                                                new_plane_state->fb->width,
+> +                                                new_plane_state->fb->height);
+> +                               return -EINVAL;
+> +                       }
+> +
+> +                       switch (new_plane_state->fb->width) {
+> +                       case 64:
+> +                       case 128:
+> +                       case 256:
+> +                               /* FB width is supported by cursor plane */
 
-I'd like to avoid splitting common -W options between default and W=2
-just based on the compiler. Getting -Wimplicit-fallthrough enabled found
-plenty of bugs, so making sure it works correctly for both compilers
-feels justified to me. (This is just a subset of the same C language
-short-coming.)
+I'm pretty sure DCE6.x only supports 64 and DCE8-12 only supports 128.
+I think only DCN supports 256.
 
-> I think clang is just being annoying here, but if I'm the only one who
-> feels this way chances are I'm wrong :)
+Alex
 
-It's being pretty pedantic, but I don't think it's unreasonable to
-explicitly state how every case ends. GCC's silence for the case of
-"fall through to a break" doesn't really seem justified.
 
--- 
-Kees Cook
+> +                               break;
+> +                       default:
+> +                               DRM_DEBUG_ATOMIC("Bad cursor FB width %d\n",
+> +                                                new_plane_state->fb->width);
+> +                               return -EINVAL;
+> +                       }
+> +               }
+> +
+>                 return 0;
+>         }
+>
+> --
+> 2.29.2
+>
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
