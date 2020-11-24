@@ -2,55 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15EB52C3AE8
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Nov 2020 09:23:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 691B42C3AEB
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Nov 2020 09:23:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C3096E92E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E32166E93E;
 	Wed, 25 Nov 2020 08:23:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 200BF6E558
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 19:44:13 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id l1so23522636wrb.9
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 11:44:13 -0800 (PST)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CA796E554
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 19:44:15 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id a65so99999wme.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 11:44:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=ZMRPM9I1lRNzH88FtoqbWHR6lT2TOJ7GT2PZsC4P/7E=;
- b=Pv1nAl+XofxDOZMywxILqcP4qIfKofxo/gaSMnaL6TNvz2rt53Q/joRSKnqpI7b53o
- +mFQmg+10YbgQAqbu6F/cdCzPBL58XI60OMwNhhOmGOdPuoWXcqr88wOld6btC+12xTf
- vHOZo7K8jnHhrisjkOZOwcL8kDhmTh9ZMP4QGo3QnFq1KxzD84c366EnPZGiWBR1rvXX
- hlQ9n+fPeXMkpACeuYr0J69YEKM3NGMCv/LM9NFvZZ/IzMjhZRGShhD9/7VZmk25Gm2f
- VqeMCMauBULX0332aSWQFCo5DEL0tMUuX4zfbsqua/L0qPD8eIEnuUlEv//H5f+tcSu5
- 8v2Q==
+ bh=FS9YPeBS7kCrSPbUVkxYBE/KfGD+0TCEKMjrGKoj90U=;
+ b=uPKMUh800nKfHaIh28pUF8SIocH8o+qrfL+QGuLUqd1kge/4Pl3XBpgRH2vT7ZMJSY
+ uakHIOVbvrsrVX5vocCdEfXc4nhCqiXticos1FPTvuuwGD74+vEUTrQ77bG4krExi0Yj
+ 2KOTD2uvcR+0wE7EYSaX/7PE4vNy/XMZk7JBoQ3k2lzhwIXBqDY3oO1lQEHVNB8Wvi1f
+ zjkWjrssK0ni8EdeoVN989g5UCWkHIWXrwwwUSka5WH7gYX5ThWerASjzmLoXGqX8QaJ
+ C5CTqEy+zxMcqZWmfi/+uP+kU1QkfLIH1Cw2NQUv3dNg3u/52dC+0Jtm/hB8C6eS0Q3K
+ hpOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ZMRPM9I1lRNzH88FtoqbWHR6lT2TOJ7GT2PZsC4P/7E=;
- b=UgcCsCy3i2PTj6MPKQEnfpixQlS/Cin8Fp149Et46venNaIX56x8/yAlHOkKSmnWME
- C8NcIXIFTxqfknspYVMOYfL5oEU7Ydme0M2PbYtRG7CyaQ8z3gYSVK1CaUlcH6n+GTzW
- Plh8EBaMy6QulGfsXG82E17tN0h+4j6odYetVK4O705B7etFqPC5E9waxgL1ck8FtHW3
- qA7q419coFizfUVxLVLIFW4GC4SwSphM50lOeZ86iHo4qXyYrpWn4v9YugHaI0hjhamN
- YjYLuAPLJJOrzUvV1yHBUagU9bJNdI0NURWb67F4ZNcqozf90qJRXG2fJFNC8YAAvrJr
- zWFA==
-X-Gm-Message-State: AOAM532KLVHgQo+CPCB2yoYJI9oI+v6PXOmAeHmnMruwIwGml1Tv9Xky
- nC3YCgcc7UwGN6htd1WInYhpzg==
-X-Google-Smtp-Source: ABdhPJxtPeOQq1Pn1Ae5Xv1UPMN/ILKfgZPrpa0CptICuNWu7dvVV2HkVJwgEEZQcuPZyY8YjfDuGA==
-X-Received: by 2002:adf:f7c2:: with SMTP id a2mr78636wrq.11.1606247052702;
- Tue, 24 Nov 2020 11:44:12 -0800 (PST)
+ bh=FS9YPeBS7kCrSPbUVkxYBE/KfGD+0TCEKMjrGKoj90U=;
+ b=BtR7OTLW0IrVl1XMv9KUkYCtow6SHNo4IK+2QpX7mDisz25AzF8pCxKftD2uVi+4Fw
+ ZNFvamlF9cc9CwVznLWvp7n267qykgWWnixuR+F55NcZYf5oP5vl2LIlCNZn3eypx7Go
+ HVV9zo8mu/y/nZLO2m78NCF/fufO1TSdisHuOM9zKH9sgobmARkcq9/fyH75wV0FPqQ4
+ gotKecHgi+xL/ex9l/BrTU3yN2Gwgw6h4iXMDP2bzUrHc8VExbT6bI26zQqBgKadJI/n
+ i3ah8hhgowUKNb67J1FLQ7YVKwF1mS5zg8xvDE0HdWl/X6K3qMNY5AAxfwD4ZGhS7A1L
+ mesg==
+X-Gm-Message-State: AOAM532oVb9g1k0VHVAIILsOfaTk0VVTMIVe3edLuydZiULmqPRYYQTb
+ 9/3AuCHx3+v9G1KE4uWJ2CZHQA==
+X-Google-Smtp-Source: ABdhPJzsE7Vx9UXN4W0umVdESe5TbA5OW0VFsT+YDpvTZyofmmt2DJ2JzZ4s9n8DupjG43ptWoyjKw==
+X-Received: by 2002:a7b:cb0c:: with SMTP id u12mr166411wmj.11.1606247053955;
+ Tue, 24 Nov 2020 11:44:13 -0800 (PST)
 Received: from dell.default ([91.110.221.235])
- by smtp.gmail.com with ESMTPSA id d134sm200511wmd.8.2020.11.24.11.44.11
+ by smtp.gmail.com with ESMTPSA id d134sm200511wmd.8.2020.11.24.11.44.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 24 Nov 2020 11:44:12 -0800 (PST)
+ Tue, 24 Nov 2020 11:44:13 -0800 (PST)
 From: Lee Jones <lee.jones@linaro.org>
 To: lee.jones@linaro.org
-Subject: [PATCH 11/40] drm/amd/amdgpu/psp_v11_0: Make local function
- 'psp_v11_0_wait_for_bootloader()' static
-Date: Tue, 24 Nov 2020 19:37:55 +0000
-Message-Id: <20201124193824.1118741-12-lee.jones@linaro.org>
+Subject: [PATCH 12/40] drm/amd/amdgpu/dce_v10_0: Supply description for
+ function param 'async'
+Date: Tue, 24 Nov 2020 19:37:56 +0000
+Message-Id: <20201124193824.1118741-13-lee.jones@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201124193824.1118741-1-lee.jones@linaro.org>
 References: <20201124193824.1118741-1-lee.jones@linaro.org>
@@ -68,35 +68,36 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+ amd-gfx@lists.freedesktop.org, Luben Tuikov <luben.tuikov@amd.com>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Rml4ZXMgdGhlIGZvbGxvd2luZyBXPTEga2VybmVsIGJ1aWxkIHdhcm5pbmcocyk6CgogZHJpdmVy
-cy9ncHUvZHJtL2FtZC9hbWRncHUvcHNwX3YxMV8wLmM6MjIzOjU6IHdhcm5pbmc6IG5vIHByZXZp
-b3VzIHByb3RvdHlwZSBmb3Ig4oCYcHNwX3YxMV8wX3dhaXRfZm9yX2Jvb3Rsb2FkZXLigJkgWy1X
-bWlzc2luZy1wcm90b3R5cGVzXQoKQ2M6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJA
-YW1kLmNvbT4KQ2M6ICJDaHJpc3RpYW4gS8O2bmlnIiA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29t
-PgpDYzogRGF2aWQgQWlybGllIDxhaXJsaWVkQGxpbnV4LmllPgpDYzogRGFuaWVsIFZldHRlciA8
-ZGFuaWVsQGZmd2xsLmNoPgpDYzogSGF3a2luZyBaaGFuZyA8SGF3a2luZy5aaGFuZ0BhbWQuY29t
-PgpDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6IGRyaS1kZXZlbEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKU2lnbmVkLW9mZi1ieTogTGVlIEpvbmVzIDxsZWUuam9uZXNAbGluYXJv
-Lm9yZz4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9wc3BfdjExXzAuYyB8IDIgKy0K
-IDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L3BzcF92MTFfMC5jIGIvZHJpdmVycy9ncHUv
-ZHJtL2FtZC9hbWRncHUvcHNwX3YxMV8wLmMKaW5kZXggZWRkMmQ2YmQxZDg2YS4uYmQ0MjQ4Yzkz
-YzQ5ZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvcHNwX3YxMV8wLmMK
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvcHNwX3YxMV8wLmMKQEAgLTIyMCw3ICsy
-MjAsNyBAQCBzdGF0aWMgaW50IHBzcF92MTFfMF9pbml0X21pY3JvY29kZShzdHJ1Y3QgcHNwX2Nv
-bnRleHQgKnBzcCkKIAlyZXR1cm4gZXJyOwogfQogCi1pbnQgcHNwX3YxMV8wX3dhaXRfZm9yX2Jv
-b3Rsb2FkZXIoc3RydWN0IHBzcF9jb250ZXh0ICpwc3ApCitzdGF0aWMgaW50IHBzcF92MTFfMF93
-YWl0X2Zvcl9ib290bG9hZGVyKHN0cnVjdCBwc3BfY29udGV4dCAqcHNwKQogewogCXN0cnVjdCBh
-bWRncHVfZGV2aWNlICphZGV2ID0gcHNwLT5hZGV2OwogCi0tIAoyLjI1LjEKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0
-CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
+cy9ncHUvZHJtL2FtZC9hbWRncHUvZGNlX3YxMF8wLmM6MjM3OiB3YXJuaW5nOiBGdW5jdGlvbiBw
+YXJhbWV0ZXIgb3IgbWVtYmVyICdhc3luYycgbm90IGRlc2NyaWJlZCBpbiAnZGNlX3YxMF8wX3Bh
+Z2VfZmxpcCcKCkNjOiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+CkNj
+OiAiQ2hyaXN0aWFuIEvDtm5pZyIgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KQ2M6IERhdmlk
+IEFpcmxpZSA8YWlybGllZEBsaW51eC5pZT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZnds
+bC5jaD4KQ2M6IEx1YmVuIFR1aWtvdiA8bHViZW4udHVpa292QGFtZC5jb20+CkNjOiBhbWQtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpDYzogZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpTaWduZWQtb2ZmLWJ5OiBMZWUgSm9uZXMgPGxlZS5qb25lc0BsaW5hcm8ub3JnPgotLS0KIGRy
+aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2RjZV92MTBfMC5jIHwgMSArCiAxIGZpbGUgY2hhbmdl
+ZCwgMSBpbnNlcnRpb24oKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS9kY2VfdjEwXzAuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2RjZV92MTBfMC5jCmlu
+ZGV4IGRhMjQwZjhmYWZjZjguLjc5NDQ3ODFlMTA4NmIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9hbWQvYW1kZ3B1L2RjZV92MTBfMC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L2RjZV92MTBfMC5jCkBAIC0yMjgsNiArMjI4LDcgQEAgc3RhdGljIHZvaWQgZGNlX3YxMF8w
+X3BhZ2VmbGlwX2ludGVycnVwdF9maW5pKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQogICog
+QGFkZXY6IGFtZGdwdV9kZXZpY2UgcG9pbnRlcgogICogQGNydGNfaWQ6IGNydGMgdG8gY2xlYW51
+cCBwYWdlZmxpcCBvbgogICogQGNydGNfYmFzZTogbmV3IGFkZHJlc3Mgb2YgdGhlIGNydGMgKEdQ
+VSBNQyBhZGRyZXNzKQorICogQGFzeW5jOiBhc3luY2hyb25vdXMgZmxpcAogICoKICAqIFRyaWdn
+ZXJzIHRoZSBhY3R1YWwgcGFnZWZsaXAgYnkgdXBkYXRpbmcgdGhlIHByaW1hcnkKICAqIHN1cmZh
+Y2UgYmFzZSBhZGRyZXNzLgotLSAKMi4yNS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2FtZC1nZngK
