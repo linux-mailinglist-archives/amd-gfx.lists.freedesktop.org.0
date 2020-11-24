@@ -1,30 +1,37 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED5F02C1FAD
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Nov 2020 09:16:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 480FD2C1FAF
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Nov 2020 09:16:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 323BA6E23F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BC8F6E2B8;
 	Tue, 24 Nov 2020 08:16:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail1.protonmail.ch (mail1.protonmail.ch [185.70.40.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3414D6E0DC
- for <amd-gfx@lists.freedesktop.org>; Mon, 23 Nov 2020 21:41:11 +0000 (UTC)
-Date: Mon, 23 Nov 2020 21:40:58 +0000
-Authentication-Results: mail1.protonmail.ch; dkim=none
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-From: Wolf <wolf@lovehindpa.ws>
-Subject: Patch for omitted register.
-Message-ID: <PkbXNt15p4QVXrLbfU2zPIGAfaKY8MTX8-Fa2xBqZ5V-5LuPkU8XaVtv_p1EUhJBhVOiPIZj4ODK9mnuJkwLMwuLZdk57TcpOQJnRkY6p1Y=@lovehindpa.ws>
+Received: from kvm5.telegraphics.com.au (kvm5.telegraphics.com.au
+ [98.124.60.144])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A5D506E162;
+ Tue, 24 Nov 2020 00:58:45 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by kvm5.telegraphics.com.au (Postfix) with ESMTP id 0EF842A8E0;
+ Mon, 23 Nov 2020 19:58:39 -0500 (EST)
+Date: Tue, 24 Nov 2020 11:58:37 +1100 (AEDT)
+From: Finn Thain <fthain@telegraphics.com.au>
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Subject: Re: [PATCH 000/141] Fix fall-through warnings for Clang
+In-Reply-To: <CANiq72=z+tmuey9wj3Kk7wX5s0hTHpsQdLhAqcOVNrHon6xn5Q@mail.gmail.com>
+Message-ID: <alpine.LNX.2.23.453.2011241036520.7@nippy.intranet>
+References: <cover.1605896059.git.gustavoars@kernel.org>
+ <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011201129.B13FDB3C@keescook>
+ <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011220816.8B6591A@keescook>
+ <9b57fd4914b46f38d54087d75e072d6e947cb56d.camel@HansenPartnership.com>
+ <CANiq72nZrHWTA4_Msg6MP9snTyenC6-eGfD27CyfNSu7QoVZbw@mail.gmail.com>
+ <alpine.LNX.2.23.453.2011230938390.7@nippy.intranet>
+ <CANiq72=z+tmuey9wj3Kk7wX5s0hTHpsQdLhAqcOVNrHon6xn5Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="b1_cIFKpgb14N8RFfqLVkemw0uJ2iu25pzgdG1e7cuQ"
-X-Spam-Status: No, score=-1.0 required=10.0 tests=ALL_TRUSTED,HTML_MESSAGE
- shortcircuit=no autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
- mailout.protonmail.ch
 X-Mailman-Approved-At: Tue, 24 Nov 2020 08:16:35 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -37,95 +44,158 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Wolf <wolf@lovehindpa.ws>
+Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
+ reiserfs-devel@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-wireless <linux-wireless@vger.kernel.org>, linux-fbdev@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ James Bottomley <James.Bottomley@hansenpartnership.com>,
+ linux-ide@vger.kernel.org, dm-devel@redhat.com, keyrings@vger.kernel.org,
+ linux-mtd@lists.infradead.org, GR-everest-linux-l2@marvell.com,
+ wcn36xx@lists.infradead.org, samba-technical@lists.samba.org,
+ linux-i3c@lists.infradead.org, linux1394-devel@lists.sourceforge.net,
+ linux-afs@lists.infradead.org, usb-storage@lists.one-eyed-alien.net,
+ drbd-dev@lists.linbit.com, devel@driverdev.osuosl.org,
+ linux-cifs@vger.kernel.org, rds-devel@oss.oracle.com,
+ Nick Desaulniers <ndesaulniers@google.com>, linux-scsi@vger.kernel.org,
+ Nathan Chancellor <natechancellor@gmail.com>, linux-rdma@vger.kernel.org,
+ oss-drivers@netronome.com, bridge@lists.linux-foundation.org,
+ linux-security-module@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
+ linux-acpi@vger.kernel.org, coreteam@netfilter.org,
+ intel-wired-lan@lists.osuosl.org, linux-input <linux-input@vger.kernel.org>,
+ Miguel Ojeda <ojeda@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ Ext4 Developers List <linux-ext4@vger.kernel.org>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>,
+ Kees Cook <keescook@chromium.org>, selinux@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-geode@lists.infradead.org, linux-can@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
+ op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
+ xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
+ linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
+ virtualization@lists.linux-foundation.org, target-devel@vger.kernel.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-hwmon@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-nfs@vger.kernel.org,
+ GR-Linux-NIC-Dev@marvell.com, tipc-discussion@lists.sourceforge.net,
+ Linux-MM <linux-mm@kvack.org>, Network Development <netdev@vger.kernel.org>,
+ linux-decnet-user@lists.sourceforge.net, linux-mmc@vger.kernel.org,
+ linux-kernel <linux-kernel@vger.kernel.org>, linux-renesas-soc@vger.kernel.org,
+ linux-sctp@vger.kernel.org, linux-usb@vger.kernel.org,
+ netfilter-devel@vger.kernel.org,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ patches@opensource.cirrus.com, Joe Perches <joe@perches.com>,
+ linux-integrity@vger.kernel.org,
+ "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
+ linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
 
---b1_cIFKpgb14N8RFfqLVkemw0uJ2iu25pzgdG1e7cuQ
-Content-Type: multipart/alternative;
- boundary="b2_cIFKpgb14N8RFfqLVkemw0uJ2iu25pzgdG1e7cuQ"
+On Mon, 23 Nov 2020, Miguel Ojeda wrote:
 
---b2_cIFKpgb14N8RFfqLVkemw0uJ2iu25pzgdG1e7cuQ
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+> On Mon, 23 Nov 2020, Finn Thain wrote:
+> 
+> > On Sun, 22 Nov 2020, Miguel Ojeda wrote:
+> > 
+> > > 
+> > > It isn't that much effort, isn't it? Plus we need to take into 
+> > > account the future mistakes that it might prevent, too.
+> > 
+> > We should also take into account optimisim about future improvements 
+> > in tooling.
+> > 
+> Not sure what you mean here. There is no reliable way to guess what the 
+> intention was with a missing fallthrough, even if you parsed whitespace 
+> and indentation.
+> 
 
-U21hbGwgcmVnaXN0ZXIgb3Zlcmxvb2tlZC4=
+What I meant was that you've used pessimism as if it was fact.
 
---b2_cIFKpgb14N8RFfqLVkemw0uJ2iu25pzgdG1e7cuQ
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+For example, "There is no way to guess what the effect would be if the 
+compiler trained programmers to add a knee-jerk 'break' statement to avoid 
+a warning".
 
-PGRpdj5TbWFsbCByZWdpc3RlciBvdmVybG9va2VkLjxicj48L2Rpdj4=
+Moreover, what I meant was that preventing programmer mistakes is a 
+problem to be solved by development tools. The idea that retro-fitting new 
+language constructs onto mature code is somehow necessary to "prevent 
+future mistakes" is entirely questionable.
 
+> > > So even if there were zero problems found so far, it is still a 
+> > > positive change.
+> > > 
+> > 
+> > It is if you want to spin it that way.
+> > 
+> How is that a "spin"? It is a fact that we won't get *implicit* 
+> fallthrough mistakes anymore (in particular if we make it a hard error).
+> 
 
---b2_cIFKpgb14N8RFfqLVkemw0uJ2iu25pzgdG1e7cuQ--
+Perhaps "handwaving" is a better term?
 
---b1_cIFKpgb14N8RFfqLVkemw0uJ2iu25pzgdG1e7cuQ
-Content-Type: application/octet-stream; name=0001-Added-omitted-SMUIO-v11.0.0-register-ROM_SW_SECURE.patch
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename=0001-Added-omitted-SMUIO-v11.0.0-register-ROM_SW_SECURE.patch
+> > > I would agree if these changes were high risk, though; but they are 
+> > > almost trivial.
+> > > 
+> > 
+> > This is trivial:
+> > 
+> >  case 1:
+> >         this();
+> > +       fallthrough;
+> >  case 2:
+> >         that();
+> > 
+> > But what we inevitably get is changes like this:
+> > 
+> >  case 3:
+> >         this();
+> > +       break;
+> >  case 4:
+> >         hmmm();
+> > 
+> > Why? Mainly to silence the compiler. Also because the patch author 
+> > argued successfully that they had found a theoretical bug, often in 
+> > mature code.
+> > 
+> If someone changes control flow, that is on them. Every kernel developer 
+> knows what `break` does.
+> 
 
-RnJvbSA4ZWUyYjllNjJmNDM2Y2VlMzZmZTgyOTVhMDg0OTA4MTgxN2I3MTJmIE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBBYXJvbiBSaWNlIDx3b2xmQGxvdmVoaW5kcGEud3M+CkRhdGU6
-IE1vbiwgMjMgTm92IDIwMjAgMTU6NDg6MTMgLTA2MDAKU3ViamVjdDogW1BBVENIXSBBZGRlZCBv
-bWl0dGVkIFNNVUlPIHYxMS4wLjAgcmVnaXN0ZXIsIFJPTV9TV19TRUNVUkUuCgotLS0KIC4uLi9n
-cHUvZHJtL2FtZC9pbmNsdWRlL2FzaWNfcmVnL3NtdWlvL3NtdWlvXzExXzBfMF9vZmZzZXQuaCAg
-IHwgMiArKwogLi4uL2dwdS9kcm0vYW1kL2luY2x1ZGUvYXNpY19yZWcvc211aW8vc211aW9fMTFf
-MF8wX3NoX21hc2suaCAgfCAzICsrKwogMiBmaWxlcyBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKykK
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2luY2x1ZGUvYXNpY19yZWcvc211aW8v
-c211aW9fMTFfMF8wX29mZnNldC5oIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9pbmNsdWRlL2FzaWNf
-cmVnL3NtdWlvL3NtdWlvXzExXzBfMF9vZmZzZXQuaAppbmRleCA2ODdkNjg0M2MyNTguLjlmNjcy
-YTUyZDQ5MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9pbmNsdWRlL2FzaWNfcmVn
-L3NtdWlvL3NtdWlvXzExXzBfMF9vZmZzZXQuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2lu
-Y2x1ZGUvYXNpY19yZWcvc211aW8vc211aW9fMTFfMF8wX29mZnNldC5oCkBAIC00MzksNiArNDM5
-LDggQEAKICNkZWZpbmUgbW1PUEVOX0RSQUlOX1NFTEVDVF9CQVNFX0lEWCAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwCiAj
-ZGVmaW5lIG1tU01JT19FTkFCTEUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMTYzCiAjZGVm
-aW5lIG1tU01JT19FTkFCTEVfQkFTRV9JRFggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMAorI2RlZmluZSBtbVJP
-TV9TV19TRUNVUkUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDE2NQorI2RlZmluZSBtbVJPTV9T
-V19TRUNVUkVfQkFTRV9JRFggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAKICNkZWZpbmUgbW1TTVVfR1BJT1BBRF9T
-MCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAweDAxNjYKICNkZWZpbmUgbW1TTVVfR1BJT1BBRF9TMF9C
-QVNFX0lEWCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAwCiAjZGVmaW5lIG1tU01VX0dQSU9QQURfUzEgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgMHgwMTY3CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2luY2x1
-ZGUvYXNpY19yZWcvc211aW8vc211aW9fMTFfMF8wX3NoX21hc2suaCBiL2RyaXZlcnMvZ3B1L2Ry
-bS9hbWQvaW5jbHVkZS9hc2ljX3JlZy9zbXVpby9zbXVpb18xMV8wXzBfc2hfbWFzay5oCmluZGV4
-IDY5MDVhOTYxODEyNy4uNTA2Nzc5YTYyNTY0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2luY2x1ZGUvYXNpY19yZWcvc211aW8vc211aW9fMTFfMF8wX3NoX21hc2suaAorKysgYi9k
-cml2ZXJzL2dwdS9kcm0vYW1kL2luY2x1ZGUvYXNpY19yZWcvc211aW8vc211aW9fMTFfMF8wX3No
-X21hc2suaApAQCAtOTY1LDYgKzk2NSw5IEBACiAvL1NNSU9fRU5BQkxFCiAjZGVmaW5lIFNNSU9f
-RU5BQkxFX19TTUlPX0VOQUJMRV9fU0hJRlQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MAogI2RlZmluZSBTTUlP
-X0VOQUJMRV9fU01JT19FTkFCTEVfTUFTSyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweEZGRkZGRkZGTAorLy9S
-T01fU1dfU0VDVVJFCisjZGVmaW5lIFJPTV9TV19TRUNVUkVfX1JPTV9XUl9BQ0NFU1NfRElTQUJM
-RV9fU0hJRlQgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIDB4MAorI2RlZmluZSBST01fU1dfU0VDVVJFX19ST01fV1JfQUNDRVNTX0RJU0FC
-TEVfTUFTSyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAweDEKIC8vU01VX0dQSU9QQURfUzAKICNkZWZpbmUgU01VX0dQSU9QQURfUzBf
-X0dQSU9fUzBfX1NISUZUICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwCiAjZGVmaW5lIFNNVV9HUElPUEFEX1Mw
-X19HUElPX1MwX01BU0sgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4N0ZGRkZGRkZMCi0tIAoyLjI1LjAKCg==
+Sure. And if you put -Wimplicit-fallthrough into the Makefile and if that 
+leads to well-intentioned patches that cause regressions, it is partly on 
+you.
 
---b1_cIFKpgb14N8RFfqLVkemw0uJ2iu25pzgdG1e7cuQ
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Have you ever considered the overall cost of the countless 
+-Wpresume-incompetence flags?
 
+Perhaps you pay the power bill for a build farm that produces logs that 
+no-one reads? Perhaps you've run git bisect, knowing that the compiler 
+messages are not interesting? Or compiled software in using a language 
+that generates impenetrable messages? If so, here's a tip:
+
+# grep CFLAGS /etc/portage/make.conf 
+CFLAGS="... -Wno-all -Wno-extra ..."
+CXXFLAGS="${CFLAGS}"
+
+Now allow me some pessimism: the hardware upgrades, gigawatt hours and 
+wait time attributable to obligatory static analyses are a net loss.
+
+> > But is anyone keeping score of the regressions? If unreported bugs 
+> > count, what about unreported regressions?
+> > 
+> Introducing `fallthrough` does not change semantics. If you are really 
+> keen, you can always compare the objects because the generated code 
+> shouldn't change.
+> 
+
+No, it's not for me to prove that such patches don't affect code 
+generation. That's for the patch author and (unfortunately) for reviewers.
+
+> Cheers,
+> Miguel
+> 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---b1_cIFKpgb14N8RFfqLVkemw0uJ2iu25pzgdG1e7cuQ--
-
