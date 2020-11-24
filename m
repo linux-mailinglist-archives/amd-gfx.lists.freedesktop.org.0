@@ -1,60 +1,62 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B9EE2C3ADE
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Nov 2020 09:23:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECF9F2C3AEA
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Nov 2020 09:23:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38FA06E92B;
-	Wed, 25 Nov 2020 08:23:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8BE76E996;
+	Wed, 25 Nov 2020 08:23:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 404596E5A0
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 19:44:50 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id t4so10609046wrr.12
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 11:44:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=LAMUF0M+5e5QxYGdyHTIO/CIT9L6gglBGUvPq+MzHBg=;
- b=jzIcHL0eMMZm6DtlZ9fd+0W/Qjf5OD3r//36xPdi8sot0v4hYcjWBJGo5JsdiMAylp
- 59cVzB0oYdEJPt6mdkziyQpaCf9SGy3mSSb/GS6zD2UgphuNsEksk+mdbzN58DTfIKHq
- EAOM2xRHO5Peg/72jxA8+vV69v1RYabIKSnergZZ0ZMBcl+60CIl9Iq3i0vVOQ24h4iG
- GvSC+Xkk8n07CN7qKU+XEd44EJWCpmiRlNYWrlWHzqAYUhnJHcFSBkYV+/Ut8MP8+xxf
- pr0QrRWs6YAUEhSh5t8ghtWxnO/bqpAlEyi4IUA21Oj2pQc67sOd7YpbMJx2fSqqXAju
- XxXw==
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com
+ [IPv6:2607:f8b0:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29B6D6E0A5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 21:25:44 +0000 (UTC)
+Received: by mail-pf1-x444.google.com with SMTP id x24so282251pfn.6
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Nov 2020 13:25:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=Hc7xHQdcWqcI1RL6yWHK3qM7+D3PcB+9wJ1f+Y4kOZ8=;
+ b=oKmDT/E0BiqfYtxGd9S8VgvaixpTRLnYMRrsUV9kaRuJo3R/5oNlOHAboaJA72rvz5
+ cPy+dYNpKpp/tW1abpWiBH/rmtZxXE/MLGj7m5uMt/n+RU1YTE1Rw6QIxNLzAajuHLbW
+ OV/WWZm28UqOigi5ggHh0BMVZishCwQGNb1Ns=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=LAMUF0M+5e5QxYGdyHTIO/CIT9L6gglBGUvPq+MzHBg=;
- b=LIBcs8AnJrFDnK/uqNoOJz0nEIsYDj7iwnF+nBnrpjeDy/Nf5lloeQLwJvHbRc0AEH
- bYgZ3J80I5cnt7XXwLpjfiuAXpIqFieBGzoj/kLfStrPArMt0mZn4fFnzuxxOOLOspZx
- q9+zrRBKZsxZtj6HXHXtlnLKO+jdDxZyqT7HB2XzexYWbHVvLG8hg2OtOUq+DtwoI+Vs
- +xNZFN+Sm1l9NymRjrr1O4eRBXjOTBU6sdGwIDD2MjwmWZgo1N5KvTFMrpZouyJa+3Fo
- rTnP26j0xOXoFU7EEsJ3CqSxAE/FN7oyiE8O2Ym7+cwoWDLy5Imk0GLSXugVHO10IFVu
- TU9Q==
-X-Gm-Message-State: AOAM532/NzfnMZCKbOW/veKys/YTMC1R2YfoLUooK2jvLGyU6aDs7+vy
- Unfq7XWfdvbRzYIvxNpXqxTYGw==
-X-Google-Smtp-Source: ABdhPJwGpjx8U/47ZgWVIMjepZQiRgQQJIP/hnzr40LeSboZi3EXQzjARjAY1rA2rTYNNnVeMWqbpA==
-X-Received: by 2002:a5d:690c:: with SMTP id t12mr44599wru.405.1606247088972;
- Tue, 24 Nov 2020 11:44:48 -0800 (PST)
-Received: from dell.default ([91.110.221.235])
- by smtp.gmail.com with ESMTPSA id d134sm200511wmd.8.2020.11.24.11.44.47
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=Hc7xHQdcWqcI1RL6yWHK3qM7+D3PcB+9wJ1f+Y4kOZ8=;
+ b=bpmxIuSFUhAOsrQ6PfKnor8KFy1J4oyI8UYpqrJPcVaxKSFt3bybJdOpgi/4wW83qt
+ Qkkbnb8A9u50w5UWRv6HdspLf0l5ZMfu3PUoqMN82yR7i6JvM76IWgJzZqx4lzyAppOo
+ Vv7ayMV/t7z8RYqxj/3dMgjhShstDb/9RplOHQW+8sV8IM53DVdGLyNOboVtg89vL+c7
+ SL+KaN2bqOWixJSi+zpeLMBhwVYuKsU1BmPGtCeSg9y7zlX7G6fOcJfGs7d+GKVIysqT
+ on/wmKqX5rOcKHCgHhnmrsYbsCn5k7Ax0k1BEkzm9zSsEBpyjdQr7mJcKO2+SXgfVFoi
+ DoFw==
+X-Gm-Message-State: AOAM530HKD+07W4JAsHjJTpG+Y1ngBEdiybgUuYbtUNnBhnaPEiYOYWR
+ CUbGXbdtAcwRcF/FIN6OfZpzXg==
+X-Google-Smtp-Source: ABdhPJwtm7ki1o3tlMghBzBMLVUzEcZQN+PDIoPgB8WI7uCPSXlOMvf7LiH3SXaewZBRcFltugq6wg==
+X-Received: by 2002:a17:90b:3505:: with SMTP id
+ ls5mr176054pjb.55.1606253143764; 
+ Tue, 24 Nov 2020 13:25:43 -0800 (PST)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+ by smtp.gmail.com with ESMTPSA id z68sm129381pgb.37.2020.11.24.13.25.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 24 Nov 2020 11:44:48 -0800 (PST)
-From: Lee Jones <lee.jones@linaro.org>
-To: lee.jones@linaro.org
-Subject: [PATCH 40/40] drm/amd/amdgpu/amdgpu_uvd: Add description for
- amdgpu_uvd_cs_msg_decode()'s 'buf_sizes' param
-Date: Tue, 24 Nov 2020 19:38:24 +0000
-Message-Id: <20201124193824.1118741-41-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201124193824.1118741-1-lee.jones@linaro.org>
-References: <20201124193824.1118741-1-lee.jones@linaro.org>
+ Tue, 24 Nov 2020 13:25:41 -0800 (PST)
+Date: Tue, 24 Nov 2020 13:25:40 -0800
+From: Kees Cook <keescook@chromium.org>
+To: Nick Desaulniers <ndesaulniers@google.com>
+Subject: Re: [PATCH 000/141] Fix fall-through warnings for Clang
+Message-ID: <202011241324.B3439A2@keescook>
+References: <cover.1605896059.git.gustavoars@kernel.org>
+ <20201120105344.4345c14e@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011201129.B13FDB3C@keescook>
+ <20201120115142.292999b2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <202011220816.8B6591A@keescook>
+ <CAKwvOdntVfXj2WRR5n6Kw7BfG7FdKpTeHeh5nPu5AzwVMhOHTg@mail.gmail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAKwvOdntVfXj2WRR5n6Kw7BfG7FdKpTeHeh5nPu5AzwVMhOHTg@mail.gmail.com>
 X-Mailman-Approved-At: Wed, 25 Nov 2020 08:22:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,39 +69,82 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: alsa-devel@alsa-project.org, linux-atm-general@lists.sourceforge.net,
+ reiserfs-devel@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-wireless <linux-wireless@vger.kernel.org>, linux-fbdev@vger.kernel.org,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
+ Nathan Chancellor <natechancellor@gmail.com>, linux-ide@vger.kernel.org,
+ dm-devel@redhat.com, keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
+ GR-everest-linux-l2@marvell.com, wcn36xx@lists.infradead.org,
+ samba-technical@lists.samba.org, linux-i3c@lists.infradead.org,
+ linux1394-devel@lists.sourceforge.net, linux-afs@lists.infradead.org,
+ usb-storage@lists.one-eyed-alien.net, drbd-dev@lists.linbit.com,
+ devel@driverdev.osuosl.org, linux-cifs@vger.kernel.org,
+ rds-devel@oss.oracle.com, linux-scsi@vger.kernel.org,
+ linux-rdma@vger.kernel.org, oss-drivers@netronome.com,
+ bridge@lists.linux-foundation.org, linux-security-module@vger.kernel.org,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ linux-stm32@st-md-mailman.stormreply.com, cluster-devel@redhat.com,
+ linux-acpi@vger.kernel.org, coreteam@netfilter.org,
+ intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
+ Miguel Ojeda <ojeda@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ linux-ext4@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, selinux@vger.kernel.org,
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>, intel-gfx@lists.freedesktop.org,
+ linux-geode@lists.infradead.org, linux-can@vger.kernel.org,
+ linux-block@vger.kernel.org, linux-gpio@vger.kernel.org,
+ op-tee@lists.trustedfirmware.org, linux-mediatek@lists.infradead.org,
+ xen-devel@lists.xenproject.org, nouveau@lists.freedesktop.org,
+ linux-hams@vger.kernel.org, ceph-devel@vger.kernel.org,
+ virtualization@lists.linux-foundation.org, target-devel@vger.kernel.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-hwmon@vger.kernel.org,
+ "maintainer:X86 ARCHITECTURE \(32-BIT AND 64-BIT\)" <x86@kernel.org>,
+ linux-nfs@vger.kernel.org, GR-Linux-NIC-Dev@marvell.com,
+ tipc-discussion@lists.sourceforge.net,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ Network Development <netdev@vger.kernel.org>,
+ linux-decnet-user@lists.sourceforge.net, linux-mmc@vger.kernel.org,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>, linux-sctp@vger.kernel.org,
+ linux-usb@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ "open list:HARDWARE RANDOM NUMBER GENERATOR CORE"
+ <linux-crypto@vger.kernel.org>, patches@opensource.cirrus.com,
+ Joe Perches <joe@perches.com>, linux-integrity@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rml4ZXMgdGhlIGZvbGxvd2luZyBXPTEga2VybmVsIGJ1aWxkIHdhcm5pbmcocyk6CgogZHJpdmVy
-cy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3V2ZC5jOjU1NTogd2FybmluZzogRnVuY3Rpb24g
-cGFyYW1ldGVyIG9yIG1lbWJlciAnYnVmX3NpemVzJyBub3QgZGVzY3JpYmVkIGluICdhbWRncHVf
-dXZkX2NzX21zZ19kZWNvZGUnCgpDYzogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBh
-bWQuY29tPgpDYzogIkNocmlzdGlhbiBLw7ZuaWciIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+
-CkNjOiBEYXZpZCBBaXJsaWUgPGFpcmxpZWRAbGludXguaWU+CkNjOiBEYW5pZWwgVmV0dGVyIDxk
-YW5pZWxAZmZ3bGwuY2g+CkNjOiBTdW1pdCBTZW13YWwgPHN1bWl0LnNlbXdhbEBsaW5hcm8ub3Jn
-PgpDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6IGRyaS1kZXZlbEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKQ2M6IGxpbnV4LW1lZGlhQHZnZXIua2VybmVsLm9yZwpDYzogbGluYXJv
-LW1tLXNpZ0BsaXN0cy5saW5hcm8ub3JnClNpZ25lZC1vZmYtYnk6IExlZSBKb25lcyA8bGVlLmpv
-bmVzQGxpbmFyby5vcmc+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3V2
-ZC5jIHwgMSArCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykKCmRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdXZkLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfdXZkLmMKaW5kZXggZjhmMDM4NGE4ZDlhZC4uN2M1YjYwZTUzNDgy
-MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3V2ZC5jCisr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV91dmQuYwpAQCAtNTQ3LDYgKzU0
-Nyw3IEBAIHN0YXRpYyBpbnQgYW1kZ3B1X3V2ZF9jc19wYXNzMShzdHJ1Y3QgYW1kZ3B1X3V2ZF9j
-c19jdHggKmN0eCkKICAqCiAgKiBAYWRldjogYW1kZ3B1X2RldmljZSBwb2ludGVyCiAgKiBAbXNn
-OiBwb2ludGVyIHRvIG1lc3NhZ2Ugc3RydWN0dXJlCisgKiBAYnVmX3NpemVzOiBwbGFjZWhvbGRl
-ciB0byBwdXQgdGhlIGRpZmZlcmVudCBidWZmZXIgbGVuZ3RocwogICoKICAqIFBlZWsgaW50byB0
-aGUgZGVjb2RlIG1lc3NhZ2UgYW5kIGNhbGN1bGF0ZSB0aGUgbmVjZXNzYXJ5IGJ1ZmZlciBzaXpl
-cy4KICAqLwotLSAKMi4yNS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1n
-ZngK
+On Mon, Nov 23, 2020 at 05:32:51PM -0800, Nick Desaulniers wrote:
+> On Sun, Nov 22, 2020 at 8:17 AM Kees Cook <keescook@chromium.org> wrote:
+> >
+> > On Fri, Nov 20, 2020 at 11:51:42AM -0800, Jakub Kicinski wrote:
+> > > If none of the 140 patches here fix a real bug, and there is no change
+> > > to machine code then it sounds to me like a W=2 kind of a warning.
+> >
+> > FWIW, this series has found at least one bug so far:
+> > https://lore.kernel.org/lkml/CAFCwf11izHF=g1mGry1fE5kvFFFrxzhPSM6qKAO8gxSp=Kr_CQ@mail.gmail.com/
+> 
+> So looks like the bulk of these are:
+> switch (x) {
+>   case 0:
+>     ++x;
+>   default:
+>     break;
+> }
+> 
+> I have a patch that fixes those up for clang:
+> https://reviews.llvm.org/D91895
+
+I still think this isn't right -- it's a case statement that runs off
+the end without an explicit flow control determination. I think Clang is
+right to warn for these, and GCC should also warn.
+
+-- 
+Kees Cook
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
