@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52EC72CDF9C
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Dec 2020 21:19:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 413C22CDFB2
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Dec 2020 21:28:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1AD66E03D;
-	Thu,  3 Dec 2020 20:19:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94ADE6E038;
+	Thu,  3 Dec 2020 20:28:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail2.protonmail.ch (mail2.protonmail.ch [185.70.40.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 538C96E03D
- for <amd-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 20:19:51 +0000 (UTC)
-Date: Thu, 03 Dec 2020 20:19:41 +0000
+Received: from mail1.protonmail.ch (mail1.protonmail.ch [185.70.40.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFEC66E038
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Dec 2020 20:28:39 +0000 (UTC)
+Date: Thu, 03 Dec 2020 20:28:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail2; t=1607026789;
- bh=/LgdJvHC0qi73sVZWTR1w8NxS5Zjvc9fARLcbDg0AW8=;
+ s=protonmail2; t=1607027317;
+ bh=D0gu4gLaYdgM5VrPtQab+8eLHfH9iaHV6EMeZxjk8eM=;
  h=Date:To:From:Cc:Reply-To:Subject:From;
- b=Ewk7dK1KthzwITBZxZQCtBq3hL3wXmFyDIsPItjIc5XtLf0d1L7wXeSpe8lu52X7/
- sRneKwvW9fxYmx95OD3AKqiYoC+VYdxaHMN5WhWk9ADE3ob5CF1iojmsaV8zA99Y9k
- cXpQLwn608laxuHN8gwe9wyoKHnN7kHSGLO0aK/AiLTBssnHeWE2q7MyrWG/rfcWvT
- 2w6uKwQ6Afm7R9l5j7vg2dwAaNZgL+MHWmrR5G2WcckFBoieEeF4Jq4PceAqCYwl8t
- Hc6Fi9MOS3SfzmfoP9envP7/RIwuuBNkrCZp8388bhrNTImyuBheASagnXwO48h4JG
- z5lwuecJ8ZQfQ==
-To: amd-gfx@lists.freedesktop.org
+ b=QY8bsNPMKDRjDDyLZFLbfNni3RVyj2xa6v82ezykPcrvDA0x4rdOLW28F2SjXUtWD
+ 0scjDHwwYXikxlwA9LOB4nCiuwaSc53gaQmHafvngM2h7wGMYkm1THSvL5RgVPDOdG
+ 98ooIGdiaeGWK4yjpA/aF9fnD/LswGK78nbdbis43Nw1J0LJ5vSUT7roDPTYJAM1DN
+ f4bBX5+9ohLS5jBPv2OdLK/m4MuRt/akaFouMfkq/7IxMEdO/mpwlQKbxBuma5D6u8
+ O5KQKwfswoO0aplVUnUOm8BfPVpl19gYe8yT5mqUEjHK5CCUXlBS/yF41uNnoGgL+l
+ wa+rOMErm7KSA==
+To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 From: Simon Ser <contact@emersion.fr>
-Subject: [PATCH 2/2] drm/amd/display: check cursor FB is linear
-Message-ID: <JrpTBOVYpzRt8W1KDK3aNwqf6dwNpfPQKZOEnJgND0@cp3-web-020.plabs.ch>
+Subject: Re: [PATCH 2/2] drm/amd/display: check cursor FB is linear
+Message-ID: <dXWjBvTa1TVgePFCm7EW_zG2cykVljoxePhdVUd38fXrdi7kwWUyH6wer0-_ogpZmbzx3xFZaPYqt4cqUvvmajdhr54WZwgDv3Xvubswwsw=@emersion.fr>
 MIME-Version: 1.0
 X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
  DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
@@ -53,66 +53,12 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Previously we accepted non-linear buffers for the cursor plane. This
-results in bad output, DC validation failures and oops.
+As a side note, here is the hw I used for testing:
 
-Make sure the FB uses a linear layout in the atomic check function.
+- GFX8: AMD RX580
+- GFX9: AMD Ryzen 5 3500U APU
 
-The GFX8- check is inspired from ac_surface_set_bo_metadata in Mesa.
-The GFX9+ check comes from convert_tiling_flags_to_modifier.
-
-Signed-off-by: Simon Ser <contact@emersion.fr>
-References: https://gitlab.freedesktop.org/drm/amd/-/issues/1390
-Cc: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Harry Wentland <hwentlan@amd.com>
-Cc: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 070bb55ec4e1..b46b188588b4 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -8978,7 +8978,10 @@ static int dm_check_cursor_fb(struct amdgpu_crtc *new_acrtc,
- 			      struct drm_plane_state *new_plane_state,
- 			      struct drm_framebuffer *fb)
- {
-+	struct amdgpu_device *adev = drm_to_adev(new_acrtc->base.dev);
-+	struct amdgpu_framebuffer *afb = to_amdgpu_framebuffer(fb);
- 	unsigned int pitch;
-+	bool linear;
- 
- 	if (fb->width > new_acrtc->max_cursor_width ||
- 	    fb->height > new_acrtc->max_cursor_height) {
-@@ -9013,6 +9016,22 @@ static int dm_check_cursor_fb(struct amdgpu_crtc *new_acrtc,
- 		return -EINVAL;
- 	}
- 
-+	/* Core DRM takes care of checking FB modifiers, so we only need to
-+	 * check tiling flags when the FB doesn't have a modifier. */
-+	if (!(fb->flags & DRM_MODE_FB_MODIFIERS)) {
-+		if (adev->family < AMDGPU_FAMILY_AI) {
-+			linear = AMDGPU_TILING_GET(afb->tiling_flags, ARRAY_MODE) != DC_ARRAY_2D_TILED_THIN1 &&
-+			         AMDGPU_TILING_GET(afb->tiling_flags, ARRAY_MODE) != DC_ARRAY_1D_TILED_THIN1 &&
-+				 AMDGPU_TILING_GET(afb->tiling_flags, MICRO_TILE_MODE) == 0;
-+		} else {
-+			linear = AMDGPU_TILING_GET(afb->tiling_flags, SWIZZLE_MODE) == 0;
-+		}
-+		if (!linear) {
-+			DRM_DEBUG_ATOMIC("Cursor FB not linear");
-+			return -EINVAL;
-+		}
-+	}
-+
- 	return 0;
- }
- 
--- 
-2.29.2
-
-
+Tried both Sway (modifier-aware) and gamescope (not modifier-aware).
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
