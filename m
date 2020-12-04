@@ -2,24 +2,24 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9322C2CF62B
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Dec 2020 22:30:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AA6E2CF636
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Dec 2020 22:30:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EF376EC7B;
-	Fri,  4 Dec 2020 21:30:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A27396EC7D;
+	Fri,  4 Dec 2020 21:30:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2083.outbound.protection.outlook.com [40.107.236.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9946C6EC7B
- for <amd-gfx@lists.freedesktop.org>; Fri,  4 Dec 2020 21:30:16 +0000 (UTC)
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-eopbgr760057.outbound.protection.outlook.com [40.107.76.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55A0A6EC7D
+ for <amd-gfx@lists.freedesktop.org>; Fri,  4 Dec 2020 21:30:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=D0tZDDbW0/jL1p1ThuQ0IBHn2ciqV9bcF8kWM/linY5IWoQMSx+lIEKUsuDboG1zA/HBIDBExaaa0QnJx/JQ0wwfYf3HD4yO7gsVV12iP/QBCACfV7XVuDqPAGsPzHI1edSdL8kHnMOtLPP/eq5CVi4/o/C4U2G8ZJ/cWtGNvA12j29Zf9z/7yyytQASMepX7g4B/uag7GeGziXok8/NzLjFqhUg3GuRr5C3yrpA7vHXLyxUQQ0M8Be1E5hBbrnciCBgtG9PahjyY3RIiHYWCxo/72S7f45bR1lLGjtqQRJEoBdP3C9m7JWzQOO1Jc7HVz4VwcHUmSS5RClXtJsgYg==
+ b=h2Q4Tp5WLpzvAa4Vh3Qt7/SLzgGJXkes0nPMjOaGIZFik2bRg4GOBE7+D3NisyGRebWF5Fwj3ZsJNOThCnjq7R/nplohhc7iakHZqa8F6pLH+hXrwMGVbwyDBI+0G9GqYLtAjsW1EIgzh0o19l0aVm429j5lBVZ13J8ZI8+78J9y0cNSCmQ3UjBP74cpg/2CAgiOzYiq+OC72k+6WE8n5elQMqSwLiI57BRkO3oGQtHqx5f8vLNUMMPbYKjopYO8GS0UjOMrxvDqgG2JGv2bdxuNFKY2Dxw7PXHaorF+bXYXlutcen+jkUWSe2S6YJCU+BZi/rUWOe5zcJNnT0pTKg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WnQjUatgOLsSWyaW0VmHYYJtA23uQnD4Ywr++u/ODS4=;
- b=ec1ouhTGzwc7/OE9zC8cdIr4T9XkAHI2lpJes4pu6IStS0iKWIMm1gh1FmHjeaHv782+a7Kta5szqs9TQhMdr/pUoMThYZptK60LCoC16Jw1zn7IWDAROCx8/32vYLiS7Cg3AFdtoHVX+jowNr2n98XaMPXJ9d1NJZR2DYpvPv/wjkbQ673nAeIZrmObvj/I9Y/1a7Dqi3TqdiKAjQBZIzoXYoXBlr/kA2quM7eFFKpL4YaI6rzEQ/qiTGwvhNrgd2JHgirBz+TP5ODwx+2G8c3qg1hfefRLPU0J1tynKG2Lo/tSIajIbX0wIeFz12ZPZHXjMCPBZGV7NF5jIwkl+A==
+ bh=DwA1SOO4tyE6ivyrAuf3FrxQ00WhuW23HZR+Kl1d2YY=;
+ b=fLcnrtvZi46wXJzzSVZO4nc9Ayl3PVdfVJ3hmJi4LBqebYxCEf8mv0y9IbZRLMoWCSpDJ3/jnqudgySWvuQqbBdnLuz9msFShHrCMbw+KVyL6cz+Fdx0LKjzINIEvG5hr9CKU3xe7Ohq1dxaY1xIsrd4dKPt9KaydQFb0puZevxDOMve8FeCKALZeS/6L1Ral7+l92wVTVRoDAnxID10VcCeyg27AubN1PrX0d+0pCrEemfwol2g3MvYWl3YgXE4lv8Y8IQCEYZ8ovtE1xZ1K2O8Fv7IEZy3u1mcI/Ic0Y0UaSOMUddjUDrDF1ZyoPL7Wl/bANhrzf+hFn2o7wVfeA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
  is 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=amd.com; dmarc=fail (p=none sp=none pct=100) action=none
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WnQjUatgOLsSWyaW0VmHYYJtA23uQnD4Ywr++u/ODS4=;
- b=RrmRyoAPX1tgDGAfz6i9WxqVUeJ/hTO7hTqQ2dv4HpyNDd2Lq1i898RFYorw5244X/9R/EvxLnFZy0A35vwp6oFXaDDZyEGMnv4nkmEADh7Xcwoq6w7UgLhcXyWzow7DbNeOLBGdE8Um+oS3zWkhX6nZFaC5LoZZ+DgxbupkUy0=
-Received: from BN0PR03CA0043.namprd03.prod.outlook.com (2603:10b6:408:e7::18)
- by DM5PR12MB1449.namprd12.prod.outlook.com (2603:10b6:4:10::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.25; Fri, 4 Dec
- 2020 21:30:14 +0000
-Received: from BN8NAM11FT049.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e7:cafe::28) by BN0PR03CA0043.outlook.office365.com
- (2603:10b6:408:e7::18) with Microsoft SMTP Server (version=TLS1_2,
+ bh=DwA1SOO4tyE6ivyrAuf3FrxQ00WhuW23HZR+Kl1d2YY=;
+ b=obJgZw6G1PwPM+8yqsaTZ/01Kwxl04C9/LkVvfwnt2AYdR9yWr07m3RTi14cVH5Hzu1xj66gU55//conxRoESahqz+M3S+4taPUJ0bzpa8Dk3WwCOM9POYrYnKsknTtGuYrNqVsSGuq5UMEs0R1Wzq80Jy2Ag277bhH2FVjrgBQ=
+Received: from BN7PR06CA0064.namprd06.prod.outlook.com (2603:10b6:408:34::41)
+ by CY4PR12MB1398.namprd12.prod.outlook.com (2603:10b6:903:40::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.18; Fri, 4 Dec
+ 2020 21:30:20 +0000
+Received: from BN8NAM11FT038.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:34:cafe::60) by BN7PR06CA0064.outlook.office365.com
+ (2603:10b6:408:34::41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.18 via Frontend
- Transport; Fri, 4 Dec 2020 21:30:14 +0000
+ Transport; Fri, 4 Dec 2020 21:30:20 +0000
 X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
  165.204.84.17) smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none
  (message not signed) header.d=none;lists.freedesktop.org; dmarc=fail
@@ -46,26 +46,25 @@ X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
 Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
  amd.com discourages use of 165.204.84.17 as permitted sender)
 Received: from SATLEXMB02.amd.com (165.204.84.17) by
- BN8NAM11FT049.mail.protection.outlook.com (10.13.177.157) with Microsoft SMTP
+ BN8NAM11FT038.mail.protection.outlook.com (10.13.176.246) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3632.17 via Frontend Transport; Fri, 4 Dec 2020 21:30:13 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
+ 15.20.3632.17 via Frontend Transport; Fri, 4 Dec 2020 21:30:19 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 4 Dec 2020
- 15:30:13 -0600
-Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ 15:30:19 -0600
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 4 Dec 2020
- 15:30:13 -0600
+ 15:30:18 -0600
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Fri, 4 Dec 2020 15:30:07 -0600
+ Transport; Fri, 4 Dec 2020 15:30:13 -0600
 From: Eryk Brol <eryk.brol@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 05/17] drm/amd/display: Add support for runtime feature
- detection command
-Date: Fri, 4 Dec 2020 16:28:38 -0500
-Message-ID: <20201204212850.224596-6-eryk.brol@amd.com>
+Subject: [PATCH 06/17] drm/amd/display: Set default bits per channel
+Date: Fri, 4 Dec 2020 16:28:39 -0500
+Message-ID: <20201204212850.224596-7-eryk.brol@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201204212850.224596-1-eryk.brol@amd.com>
 References: <20201204212850.224596-1-eryk.brol@amd.com>
@@ -73,27 +72,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 45f20f86-c966-4991-e611-08d8989bc978
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1449:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1449D6178AC5D4E756FAA899E5F10@DM5PR12MB1449.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2657;
+X-MS-Office365-Filtering-Correlation-Id: dcd26cb0-057b-4d09-5368-08d8989bccf0
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1398:
+X-Microsoft-Antispam-PRVS: <CY4PR12MB13982883D28EE846602A541BE5F10@CY4PR12MB1398.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1824;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 23+pri2cmYaXCjiRv48SczWR9HnujuxZHcU0Zoluzp9xl7eyih2vdqRxm+DvOTQoDq1U+/JKAvC2m9Uht2YujNbsZmuL9NtiJBbI0mZjlYO0D9qKq8FQVnz57HDrto/oWNPB+T6G45XHIfYs257Lx/t9yAUVJhZeja60looclAfNlkmInOEBgKMwVCbCMsvJvuKfl63xSbXxIx3zvgn/KWVoJ65vLSRPb6RY/D9tSbQ+pi+Yc0B4oPt7UvFhu2igBKMyFsdzCQxMJKyoaPUe2Zppj8LJcWIkI1lGAshVhkseWK5hpAmnvI++q3bPVP5UZ5sY51IrnSRfv7hVk/qROGk7t42d/16PsBe7nFprhiA8cHUGEr8rmZBxEHFqzpYqcGRUbZdX0yTtTJa5IkYk9w==
+X-Microsoft-Antispam-Message-Info: lNxQncOjoEmLxg1Yrk7dcO2/35k+2Rg+nO3Tpk0k9lITWKDlyL81M66C4RxZrOASeIxH3GiviMQIebZzeRFEiktq/C0ZFNLIhJBfPn+QaMtcOLELyKY2xQeIhH0i1uzkb0ukQGZ4/FnmTefb1cg7LYeot+6c9A0jsfTf/tam+Yo41/IK6GwzfjFVVCwSuLU8teB0wM7IWWPHEXJsn5meOlNPFzU75faQMj0O/cdNOff2uPqvD+cfLYPjY2Qo3Y5ttGRTbmfBMeL8WdWDLqTVHhH8i8Cr6YvwGizsGT2X9LsvhYihezGyUqAWkRofxX1fMYSXkOpqFVEbjpspYqvtRy735Q7BFrcwCceGEaThSGZdBB9m4r6TuPfnSNmNN/Z+wQaIZGndUHFLeHw62qtkHw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(136003)(39860400002)(396003)(346002)(376002)(46966005)(44832011)(336012)(426003)(83380400001)(5660300002)(86362001)(8936002)(8676002)(54906003)(6916009)(70206006)(70586007)(26005)(2616005)(82740400003)(36756003)(478600001)(81166007)(82310400003)(186003)(4326008)(316002)(6666004)(1076003)(356005)(2906002)(47076004);
+ SFS:(4636009)(136003)(39860400002)(396003)(346002)(376002)(46966005)(426003)(70206006)(186003)(44832011)(70586007)(2616005)(478600001)(82740400003)(36756003)(336012)(2906002)(82310400003)(47076004)(8936002)(8676002)(6666004)(83380400001)(316002)(54906003)(4326008)(5660300002)(356005)(1076003)(26005)(6916009)(86362001)(81166007);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2020 21:30:13.9991 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45f20f86-c966-4991-e611-08d8989bc978
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2020 21:30:19.8130 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dcd26cb0-057b-4d09-5368-08d8989bccf0
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT049.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT038.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1449
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1398
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,93 +104,85 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk Brol <eryk.brol@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
- Wyatt Wood <wyatt.wood@amd.com>, Jun Lei <Jun.Lei@amd.com>,
- Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+Cc: Aric Cyr <Aric.Cyr@amd.com>, Eryk Brol <eryk.brol@amd.com>,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, Jing Zhou <Jing.Zhou@amd.com>,
+ Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wyatt Wood <wyatt.wood@amd.com>
+From: Jing Zhou <Jing.Zhou@amd.com>
 
 [Why]
-Add support for new fw command for runtime feature detection.
+Bump into calcReducedBlankingTiming because of mode query failed.
+In this function,
+timing.displayColorDepth == DISPLAY_COLOR_DEPTH_UNDEFINED.
+Then req_bw == 0 because of bits_per_channel == 0.
+So decide edp link settings, use default RBRx1 for special timing.
 
 [How]
-Driver sends command through ring buffer, and fw returns data back
-through this command.
+Set default bits_per_channel is 8.
 
-Signed-off-by: Wyatt Wood <wyatt.wood@amd.com>
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Signed-off-by: Jing Zhou <Jing.Zhou@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Eryk Brol <eryk.brol@amd.com>
 ---
- drivers/gpu/drm/amd/display/dmub/dmub_srv.h   |  6 ++++
- .../gpu/drm/amd/display/dmub/src/dmub_srv.c   | 29 +++++++++++++++++++
- 2 files changed, 35 insertions(+)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c    |  4 ++--
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 15 ++++++++++++---
+ 2 files changed, 14 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
-index b82a46890846..863cd9cc93ff 100644
---- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
-+++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
-@@ -345,6 +345,9 @@ struct dmub_srv {
- 	uint64_t fb_base;
- 	uint64_t fb_offset;
- 	uint32_t psp_version;
-+
-+	/* Feature capabilities reported by fw */
-+	struct dmub_feature_caps feature_caps;
- };
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index a9c52657eb4b..bd004de107b7 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -3471,11 +3471,11 @@ uint32_t dc_bandwidth_in_kbps_from_timing(
+ 		bits_per_channel = 16;
+ 		break;
+ 	default:
++		ASSERT(bits_per_channel != 0);
++		bits_per_channel = 8;
+ 		break;
+ 	}
  
- /**
-@@ -608,6 +611,9 @@ void dmub_flush_buffer_mem(const struct dmub_fb *fb);
- enum dmub_status dmub_srv_get_fw_boot_status(struct dmub_srv *dmub,
- 					     union dmub_fw_boot_status *status);
+-	ASSERT(bits_per_channel != 0);
+-
+ 	kbps = timing->pix_clk_100hz / 10;
+ 	kbps *= bits_per_channel;
  
-+enum dmub_status dmub_srv_cmd_with_reply_data(struct dmub_srv *dmub,
-+					      union dmub_rb_cmd *cmd);
-+
- #if defined(__cplusplus)
- }
- #endif
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-index ba8494cf005f..f388d36af0b6 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-@@ -648,3 +648,32 @@ enum dmub_status dmub_srv_get_fw_boot_status(struct dmub_srv *dmub,
- 
- 	return DMUB_STATUS_OK;
- }
-+
-+enum dmub_status dmub_srv_cmd_with_reply_data(struct dmub_srv *dmub,
-+					      union dmub_rb_cmd *cmd)
-+{
-+	enum dmub_status status = DMUB_STATUS_OK;
-+
-+	// Queue command
-+	status = dmub_srv_cmd_queue(dmub, cmd);
-+
-+	if (status != DMUB_STATUS_OK)
-+		return status;
-+
-+	// Execute command
-+	status = dmub_srv_cmd_execute(dmub);
-+
-+	if (status != DMUB_STATUS_OK)
-+		return status;
-+
-+	// Wait for DMUB to process command
-+	status = dmub_srv_wait_for_idle(dmub, 100000);
-+
-+	if (status != DMUB_STATUS_OK)
-+		return status;
-+
-+	// Copy data back from ring buffer into command
-+	dmub_rb_get_return_data(&dmub->inbox1_rb, cmd);
-+
-+	return status;
-+}
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 93fbc646f53b..dbbc0ec0b699 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -1410,15 +1410,24 @@ static void print_status_message(
+ 	case LINK_RATE_LOW:
+ 		link_rate = "RBR";
+ 		break;
++	case LINK_RATE_RATE_2:
++		link_rate = "R2";
++		break;
++	case LINK_RATE_RATE_3:
++		link_rate = "R3";
++		break;
+ 	case LINK_RATE_HIGH:
+ 		link_rate = "HBR";
+ 		break;
+-	case LINK_RATE_HIGH2:
+-		link_rate = "HBR2";
+-		break;
+ 	case LINK_RATE_RBR2:
+ 		link_rate = "RBR2";
+ 		break;
++	case LINK_RATE_RATE_6:
++		link_rate = "R6";
++		break;
++	case LINK_RATE_HIGH2:
++		link_rate = "HBR2";
++		break;
+ 	case LINK_RATE_HIGH3:
+ 		link_rate = "HBR3";
+ 		break;
 -- 
 2.25.1
 
