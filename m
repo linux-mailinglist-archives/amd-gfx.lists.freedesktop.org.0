@@ -1,40 +1,30 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71CD62CF22A
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Dec 2020 17:49:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF5292CF243
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Dec 2020 17:51:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC3666E1B1;
-	Fri,  4 Dec 2020 16:49:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C5D96E1A7;
+	Fri,  4 Dec 2020 16:51:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-40133.protonmail.ch (mail-40133.protonmail.ch
- [185.70.40.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A40616E1B1
- for <amd-gfx@lists.freedesktop.org>; Fri,  4 Dec 2020 16:49:08 +0000 (UTC)
-Date: Fri, 04 Dec 2020 16:49:03 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail2; t=1607100546;
- bh=21iEPpxY+78E8uT+3OzBIEINyf+wuXIJUmpgfBbI62Y=;
- h=Date:To:From:Cc:Reply-To:Subject:From;
- b=Zu2evajfoeVTVRBoOoSRdOf8BcZdDvCf67luNfLJclPUx7hL8QzVCxZCQrh4GSLyh
- FoVjJr9qXjslcHS04AIVhTP5sPWJZ1pmiVUcRI8CJJQZ+UaSAF6L1rvyOf+0RW4XDZ
- AfCbiZHZMO5RRCQAKFZfhFwOE4B+G9OmfxT53ikC2YdgszY259N+iJlqy/R7LX220j
- wGIFrxbArTc9nX0xPTnEsM+Pv33o7jJ1vzIck+bLCuaINglnyBIe2ZE1o2RY9iMj39
- TxhT+HfREdUyvDrNU5BKGsnVxATGmfO+CUvKlx3hiqrOLI580UR2nCSqI8Fo6izbEJ
- gbgYAIrMGPvLw==
-To: amd-gfx@lists.freedesktop.org
-From: Simon Ser <contact@emersion.fr>
-Subject: [PATCH 2/2] drm/amd: print error on convert_tiling_flags_to_modifier
- failure
-Message-ID: <VzE0LPxcEehXwGUjgu3nUHOAd2MMYp2hKFqOo4BSJY@cp3-web-021.plabs.ch>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F6DF6E19C;
+ Fri,  4 Dec 2020 16:51:33 +0000 (UTC)
+From: Arnd Bergmann <arnd@kernel.org>
+Authentication-Results: mail.kernel.org;
+ dkim=permerror (bad message/signature format)
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Hawking Zhang <Hawking.Zhang@amd.com>,
+ John Clements <john.clements@amd.com>
+Subject: [PATCH] drm/amdgpu: fw_attestation: fix unused function warning
+Date: Fri,  4 Dec 2020 17:51:20 +0100
+Message-Id: <20201204165128.3747878-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
- DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
- autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
- mailout.protonmail.ch
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,39 +36,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Simon Ser <contact@emersion.fr>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- =?utf-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>,
- Harry Wentland <hwentlan@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dri-devel@lists.freedesktop.org, Lee Jones <lee.jones@linaro.org>,
+ amd-gfx@lists.freedesktop.org, Arnd Bergmann <arnd@arndb.de>,
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SWYgdGhpcyBmdW5jdGlvbiBmYWlscywgaXQgbWVhbnMgdGhlIHRpbGluZyBmbGFncyBkaWRuJ3Qg
-bWFrZSBzZW5zZS4KVGhpcyBsaWtlbHkgaW5kaWNhdGVzIGEgdXNlci1zcGFjZSBidWcuIExvZyB0
-aGUgZXJyb3IgYWxvbmdzaWRlIHdpdGggdGhlCnByb3ZpZGVkIHRpbGluZyBmbGFncyB0byBtYWtl
-IGRlYnVnZ2luZyBlYXNpZXIuCgpTaWduZWQtb2ZmLWJ5OiBTaW1vbiBTZXIgPGNvbnRhY3RAZW1l
-cnNpb24uZnI+CkNjOiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+CkNj
-OiBIYXJyeSBXZW50bGFuZCA8aHdlbnRsYW5AYW1kLmNvbT4KQ2M6IE5pY2hvbGFzIEthemxhdXNr
-YXMgPG5pY2hvbGFzLmthemxhdXNrYXNAYW1kLmNvbT4KQ2M6IEJhcyBOaWV1d2VuaHVpemVuIDxi
-YXNAYmFzbmlldXdlbmh1aXplbi5ubD4KQ2M6IE1pY2hlbCBEw6RuemVyIDxtaWNoZWxAZGFlbnpl
-ci5uZXQ+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rpc3BsYXkuYyB8
-IDUgKysrKy0KIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkK
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGlzcGxheS5j
-IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rpc3BsYXkuYwppbmRleCA3M2I4
-NWRhMmNjYmYuLmU5MGJlMmU4ZWIyYSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvYW1kZ3B1X2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
-bWRncHVfZGlzcGxheS5jCkBAIC05MDEsOCArOTAxLDExIEBAIGludCBhbWRncHVfZGlzcGxheV9m
-cmFtZWJ1ZmZlcl9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCiAJaWYgKGRldi0+bW9kZV9j
-b25maWcuYWxsb3dfZmJfbW9kaWZpZXJzICYmCiAJICAgICEocmZiLT5iYXNlLmZsYWdzICYgRFJN
-X01PREVfRkJfTU9ESUZJRVJTKSkgewogCQlyZXQgPSBjb252ZXJ0X3RpbGluZ19mbGFnc190b19t
-b2RpZmllcihyZmIpOwotCQlpZiAocmV0KQorCQlpZiAocmV0KSB7CisJCQlkcm1fZGJnX2ttcyhk
-ZXYsICJGYWlsZWQgdG8gY29udmVydCB0aWxpbmcgZmxhZ3MgMHglbGxYIHRvIGEgbW9kaWZpZXIi
-LAorCQkJCSAgICByZmItPnRpbGluZ19mbGFncyk7CiAJCQlnb3RvIGZhaWw7CisJCX0KIAl9CiAK
-IAlmb3IgKGkgPSAxOyBpIDwgcmZiLT5iYXNlLmZvcm1hdC0+bnVtX3BsYW5lczsgKytpKSB7Ci0t
-IAoyLjI5LjIKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+From: Arnd Bergmann <arnd@arndb.de>
+
+Without debugfs, the compiler notices one function that is not used at
+all:
+
+drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c:123:12: error: unused function 'amdgpu_is_fw_attestation_supported' [-Werror,-Wunused-function]
+
+In fact the static const amdgpu_fw_attestation_debugfs_ops structure is
+also unused here, but that warning is currently disabled.
+
+Removing the #ifdef check does the right thing and leads to all of this
+code to be dropped without warning.
+
+Fixes: 19ae333001b3 ("drm/amdgpu: added support for psp fw attestation")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c
+index e47bca1c7635..7c6e02e35573 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fw_attestation.c
+@@ -130,7 +130,6 @@ static int amdgpu_is_fw_attestation_supported(struct amdgpu_device *adev)
+ 
+ void amdgpu_fw_attestation_debugfs_init(struct amdgpu_device *adev)
+ {
+-#if defined(CONFIG_DEBUG_FS)
+ 	if (!amdgpu_is_fw_attestation_supported(adev))
+ 		return;
+ 
+@@ -139,5 +138,4 @@ void amdgpu_fw_attestation_debugfs_init(struct amdgpu_device *adev)
+ 			    adev_to_drm(adev)->primary->debugfs_root,
+ 			    adev,
+ 			    &amdgpu_fw_attestation_debugfs_ops);
+-#endif
+ }
+-- 
+2.27.0
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
