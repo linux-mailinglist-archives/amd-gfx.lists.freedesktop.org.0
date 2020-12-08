@@ -2,71 +2,102 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3A452D263E
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Dec 2020 09:34:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 976852D28A3
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Dec 2020 11:17:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F6866E9A3;
-	Tue,  8 Dec 2020 08:33:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C1316E0C1;
+	Tue,  8 Dec 2020 10:17:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from aserp2120.oracle.com (aserp2120.oracle.com [141.146.126.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A5CF6E949;
- Tue,  8 Dec 2020 04:52:41 +0000 (UTC)
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
- by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0B84nPNV064006;
- Tue, 8 Dec 2020 04:52:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type : content-transfer-encoding; s=corp-2020-01-29;
- bh=1e3cV7XKyt5cBPHNeWYhYMHu3W87CKppja6U1Jvw5F4=;
- b=V+G180Fh0lHbcmydQJqS5i+cerb42SoRrRI9QCXlQMjyWKKfj0acXqExTQUiK+7OEtft
- OuMy/8L57grCegXY4FPi2mfpdUD9NETOrjU6XyLEGnB6yCKU9e30d2WSgQTsYBxq/cMN
- 5junVfgiRpfFB5rc1EfDtZHP43anCs3FIrUtz16u4yPsKG0NCInMT5yeMTaPCX1MMJeq
- qZ1GHIcbwNatFRQ/tELhwJDJybfqjlIskC/pDoCLpTPJ2KTrod7PX9rst5aaRTC3xIQA
- veh/+mbPHLjYXfePq5oiUCHv2+7Gowf8M2KKiHFzojpZKSSSQD2meZy2nTRpI8CVh6TQ Yg== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
- by aserp2120.oracle.com with ESMTP id 35825m0srq-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
- Tue, 08 Dec 2020 04:52:35 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
- by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0B84ocw5155469;
- Tue, 8 Dec 2020 04:52:34 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
- by userp3020.oracle.com with ESMTP id 358kys9m8s-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
- Tue, 08 Dec 2020 04:52:34 +0000
-Received: from userp3020.oracle.com (userp3020.oracle.com [127.0.0.1])
- by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 0B84qX4M159553;
- Tue, 8 Dec 2020 04:52:33 GMT
-Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
- by userp3020.oracle.com with ESMTP id 358kys9m7s-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 08 Dec 2020 04:52:33 +0000
-Received: from abhmp0013.oracle.com (abhmp0013.oracle.com [141.146.116.19])
- by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 0B84qDZf015901;
- Tue, 8 Dec 2020 04:52:15 GMT
-Received: from ca-mkp.ca.oracle.com (/10.156.108.201)
- by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Mon, 07 Dec 2020 20:52:13 -0800
-From: "Martin K. Petersen" <martin.petersen@oracle.com>
-To: linux-kernel@vger.kernel.org, "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Subject: Re: (subset) [PATCH 000/141] Fix fall-through warnings for Clang
-Date: Mon,  7 Dec 2020 23:52:01 -0500
-Message-Id: <160740299787.710.4201881220590518200.b4-ty@oracle.com>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2063.outbound.protection.outlook.com [40.107.93.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D6146E0C1
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Dec 2020 10:17:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oWJ3jpnQU9iaoshjKfczDxNRt23591r9kyyteCxvCZKFsSXpXCIsuKZPMt/iBOfa6d1xayOR5ak2OhaJpsfo5CDP501wQZ2eA5C95OaPP7as9/p/CUGkx/lGAKcu5r6CFZYLAOdz6mfr7alhlM9LbcB/B0DyVUS8SfDaRgbVAMsmuOQEWos35gwqPqjuCtivczErzUPKkn+wD64yISvIw4c5f4sb2h75aGYeIf3cIbx3hvPDJxp6S4yIJnd/jr3NHf50RFkKWktF9ZOISgUZjeOM41COS30kczNwEAaZrLo5wBRFJNDg+uIQ2HHV5+g2MHApNOEzyUEcrLT5EEiXQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6nm6DLqHn2frhZUX6VdZQo98lhVu4KZ6i6TJlPjEpWo=;
+ b=hHGAeK6jdztc5aC8DrtJWMLzZdrzi1SJXvZfBNvwJMatQ7Y2JASPaxEfwmXCibV5/lXm//Y1SYQSRL9/CIJ+86ev91/S/9M9BIzpzwk0wLMqQqtMYD70urUa9sowILKsjgFjOAOxs6ckr8TF0pDwIn3i3n9NVEIkWeIyisz8LHnfKJItlP+xdDWZnUVKJg8sV1rJ9Z9DsxjRFBJ8NrIoAuMtXVZzK7soFI9DdzhQgnkFOx6x8O5FyNPa4TtkK+9v7vKQBH7nvLQsK9r6dpeuO8dv7M7ICrac/7o1zWX079pDsi1Z323g8/HtmgFpf6pc1yKkmcoBvzZEFdA0JORzQw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6nm6DLqHn2frhZUX6VdZQo98lhVu4KZ6i6TJlPjEpWo=;
+ b=tGo3ajrwaeOTI2gwtSRgGbAYVpvSBuIexZ18ES1qhj45eoYXuqbMYEA87MkEE4VGQfvEKYzM7moGc3ChEl5rD7gqKYhxcD2fwRcrbj+YgU7+XGvZJLHg8/xD1WT42IDluziXsNQPlo93LSjdcAdhXdSpEzW21FvKQlk32UG7y4U=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from DM6PR12MB3916.namprd12.prod.outlook.com (2603:10b6:5:1ca::21)
+ by DM6PR12MB4843.namprd12.prod.outlook.com (2603:10b6:5:1d1::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12; Tue, 8 Dec
+ 2020 10:17:54 +0000
+Received: from DM6PR12MB3916.namprd12.prod.outlook.com
+ ([fe80::7080:fa49:2223:5f4e]) by DM6PR12MB3916.namprd12.prod.outlook.com
+ ([fe80::7080:fa49:2223:5f4e%7]) with mapi id 15.20.3632.023; Tue, 8 Dec 2020
+ 10:17:54 +0000
+From: Nirmoy Das <nirmoy.das@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/1] drm/amdgpu: use AMDGPU_NUM_VMID when possible
+Date: Tue,  8 Dec 2020 11:17:36 +0100
+Message-Id: <20201208101736.22352-1-nirmoy.das@amd.com>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <cover.1605896059.git.gustavoars@kernel.org>
-References: <cover.1605896059.git.gustavoars@kernel.org>
+X-Originating-IP: [217.86.115.138]
+X-ClientProxiedBy: AM8P190CA0030.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:219::35) To DM6PR12MB3916.namprd12.prod.outlook.com
+ (2603:10b6:5:1ca::21)
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9828
- signatures=668682
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- adultscore=0 bulkscore=0
- phishscore=0 mlxlogscore=380 clxscore=1015 priorityscore=1501 mlxscore=0
- spamscore=0 lowpriorityscore=0 malwarescore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2012080029
-X-Mailman-Approved-At: Tue, 08 Dec 2020 08:33:03 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from brihaspati.fritz.box (217.86.115.138) by
+ AM8P190CA0030.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:219::35) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3654.12 via Frontend Transport; Tue, 8 Dec 2020 10:17:53 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: b2dfe83d-fc99-4d0b-8bfe-08d89b6286f8
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4843:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4843FC4ADBA90C34171CEBBC8BCD0@DM6PR12MB4843.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: q/GyiYzy42Dgxl9cFZ4KZvFm4FIa70Ati+yrhLyLbbva8dMuQtSzr+tVjuHX8gWOrfadPW5f6ueOwfX11MfBq+LvF1RaCshWS+KCljNPjOGgYV8tX5q+maBF+1MvzTHyAVbFrnVwfOZf9Pm8G5xhqFSKnCisesvOeOATn9/VDOBzDefvQsdx7Gy7GW/orN/YWscVr3iOb7KVxJ7GFMw8LoGWdBPOuboUlzwfv7AjqkNm1fLwYMLSGVJEKBQfk835wyaqVsq7pSdTEpOZEra9B33HRg6uUDnQv27QANjDATX4A/t4ggn5TNwP1dnmYOQk0xtT6/xb1f2TKVG3anJCfg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3916.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(366004)(136003)(376002)(39860400002)(396003)(6916009)(8936002)(2616005)(6512007)(44832011)(956004)(36756003)(5660300002)(6666004)(478600001)(86362001)(2906002)(8676002)(1076003)(316002)(83380400001)(66946007)(4326008)(66476007)(6486002)(66556008)(6506007)(26005)(52116002)(16526019)(186003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?dKzjFiZQ8rvQ9l1UFCVFZfhR20T1SDIv34DPED8XExPtY3JwCJig0buJueTN?=
+ =?us-ascii?Q?SG9M3/P9n73QtonyzMA11144FQG7//5OK8J35e7HrtCSjDLfiVKh/Wmvav/I?=
+ =?us-ascii?Q?414+nZ5Y6Iz24CG7vj1z/1523EyOdQlCYAvrmYphVO1yJ8NMpmIaH7Y53xID?=
+ =?us-ascii?Q?nv14Mt26WSAh+4xmY0k4GFvhP2OmsyKgI3qXHWbvIYgW3eC1TEMBKKY72xuH?=
+ =?us-ascii?Q?tzVbuzaz7UR7EwlAKgnPi1+nTCXaIU8AMK75F29QAsVnbUwrcG9yCiA7zev6?=
+ =?us-ascii?Q?1DJz5MF7HHjB43FmoAY7oMaIrLukrMxiif0U/oR8QhN71XUGcQilDeZ1pZJU?=
+ =?us-ascii?Q?/agCSrLjS/6iHPgQdZG8uGAs61Y3v1DV11NRnszzqjRElPUnoaEYHeW+pYEk?=
+ =?us-ascii?Q?ob7sa7fxDzHRLmfuwK/KHdgi8rSTspacwiayzOrgJIsFfGoThC2oR8Q+dFhn?=
+ =?us-ascii?Q?s0WN8E7RPINwM1C43bveDRTkl0j3i2j6fCchk0qa3caRFFCBqKwl3B83eHnz?=
+ =?us-ascii?Q?n1BczNZQ5MYjKy8lQBAzFHj0O/soWF1G5vkgQdHpkxbTHaA8OIx/uBN71ddd?=
+ =?us-ascii?Q?1eEb7zKr8+W1Us6w41EuTPjs2J1W9pxT+QBwbPhCYUQKqMWZI7OFrQgE9mnr?=
+ =?us-ascii?Q?rJIXCcChurvC0G5uAcGKLRHm6lmcEgy+rm/Wjm2BqTzKTQ/xPqK2YoEqp26J?=
+ =?us-ascii?Q?EkR+rbYc+n2pspuE8/Q8QlMqpvtk6I5yKrVH3ABeCj2i9wU0Zy+GnkxXLkFB?=
+ =?us-ascii?Q?V+ULwUmEmANgXQVmhNH4FJYbXkVItW5HsMu6pfvi7BRsIwwEBpbjna7eXYDA?=
+ =?us-ascii?Q?2IS513to5LRFvJ9JpagcY31m6mnDia3Dgl8X8qNKyrbU4VjD9F9JnfehbuTa?=
+ =?us-ascii?Q?OJM4XpRw0rpCdeB6HXWvPK8TLCCncq0pViB324XFknZPz7o98YVyETsg3LLS?=
+ =?us-ascii?Q?DVuOTmJdfDofMjMhbnBV6uoS+AqsLXVabML1H3augkCcUGanKoIPS4wpj6Nz?=
+ =?us-ascii?Q?6rRp?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3916.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2020 10:17:54.5181 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Network-Message-Id: b2dfe83d-fc99-4d0b-8bfe-08d89b6286f8
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UQui3xa4umrnf2YR1VCGiMNHLJPCeivhf9iYxKjKeZ/SpVO5iz4VP9BfADDB3A/uoM6Diq4U0dvxQjzoEp870w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4843
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,66 +109,189 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, linux-atm-general@lists.sourceforge.net,
- linux-stm32@st-md-mailman.stormreply.com, linux-iio@vger.kernel.org,
- linux-wireless@vger.kernel.org, alsa-devel@alsa-project.org,
- dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linux-mm@kvack.org, linux-ide@vger.kernel.org, dm-devel@redhat.com,
- keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-hardening@vger.kernel.org, wcn36xx@lists.infradead.org,
- linux-i3c@lists.infradead.org, linux-decnet-user@lists.sourceforge.net,
- ceph-devel@vger.kernel.org, usb-storage@lists.one-eyed-alien.net,
- Kees Cook <keescook@chromium.org>, devel@driverdev.osuosl.org,
- linux-cifs@vger.kernel.org, rds-devel@oss.oracle.com,
- linux1394-devel@lists.sourceforge.net, linux-scsi@vger.kernel.org,
- linux-rdma@vger.kernel.org, oss-drivers@netronome.com, x86@kernel.org,
- amd-gfx@lists.freedesktop.org, linux-afs@lists.infradead.org,
- cluster-devel@redhat.com, linux-acpi@vger.kernel.org, coreteam@netfilter.org,
- intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
- Miguel Ojeda <ojeda@kernel.org>, xen-devel@lists.xenproject.org,
- linux-ext4@vger.kernel.org, linux-media@vger.kernel.org,
- bridge@lists.linux-foundation.org, linux-watchdog@vger.kernel.org,
- selinux@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, reiserfs-devel@vger.kernel.org,
- linux-geode@lists.infradead.org, linux-block@vger.kernel.org,
- linux-gpio@vger.kernel.org, op-tee@lists.trustedfirmware.org,
- linux-mediatek@lists.infradead.org, samba-technical@lists.samba.org,
- drbd-dev@tron.linbit.com, linux-hams@vger.kernel.org,
- Nathan Chancellor <natechancellor@gmail.com>, linux-can@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
- linux-mmc@vger.kernel.org, linux-nfs@vger.kernel.org,
- GR-Linux-NIC-Dev@marvell.com, tipc-discussion@lists.sourceforge.net,
- "Martin K . Petersen" <martin.petersen@oracle.com>,
- nouveau@lists.freedesktop.org, patches@opensource.cirrus.com,
- linux-usb@vger.kernel.org, Nick Desaulniers <ndesaulniers@google.com>,
- linux-sctp@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-security-module@vger.kernel.org, target-devel@vger.kernel.org,
- netfilter-devel@vger.kernel.org, linux-crypto@vger.kernel.org,
- netdev@vger.kernel.org, Joe Perches <joe@perches.com>,
- linux-integrity@vger.kernel.org, GR-everest-linux-l2@marvell.com
+Cc: Nirmoy Das <nirmoy.das@amd.com>, Christian.Koenig@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 20 Nov 2020 12:21:39 -0600, Gustavo A. R. Silva wrote:
+Replace hardcoded vmid number with AMDGPU_NUM_VMID macro.
 
-> This series aims to fix almost all remaining fall-through warnings in
-> order to enable -Wimplicit-fallthrough for Clang.
-> 
-> In preparation to enable -Wimplicit-fallthrough for Clang, explicitly
-> add multiple break/goto/return/fallthrough statements instead of just
-> letting the code fall through to the next case.
-> 
-> [...]
+Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c  | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c   | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c   | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c   | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c   | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c   | 2 +-
+ drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c   | 2 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c | 2 +-
+ 12 files changed, 12 insertions(+), 12 deletions(-)
 
-Applied to 5.11/scsi-queue, thanks!
-
-[054/141] target: Fix fall-through warnings for Clang
-          https://git.kernel.org/mkp/scsi/c/492096ecfa39
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 157ae3004cc2..ba1086784525 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -4844,7 +4844,7 @@ static void gfx_v10_0_init_gds_vmid(struct amdgpu_device *adev)
+ 	 * the driver can enable them for graphics. VMID0 should maintain
+ 	 * access so that HWS firmware can save/restore entries.
+ 	 */
+-	for (vmid = 1; vmid < 16; vmid++) {
++	for (vmid = 1; vmid < AMDGPU_NUM_VMID; vmid++) {
+ 		WREG32_SOC15_OFFSET(GC, 0, mmGDS_VMID0_BASE, 2 * vmid, 0);
+ 		WREG32_SOC15_OFFSET(GC, 0, mmGDS_VMID0_SIZE, 2 * vmid, 0);
+ 		WREG32_SOC15_OFFSET(GC, 0, mmGDS_GWS_VMID0, vmid, 0);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
+index f2490f915a8b..a368724c3dfc 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v7_0.c
+@@ -1896,7 +1896,7 @@ static void gfx_v7_0_init_gds_vmid(struct amdgpu_device *adev)
+ 	 * the driver can enable them for graphics. VMID0 should maintain
+ 	 * access so that HWS firmware can save/restore entries.
+ 	 */
+-	for (vmid = 1; vmid < 16; vmid++) {
++	for (vmid = 1; vmid < AMDGPU_NUM_VMID; vmid++) {
+ 		WREG32(amdgpu_gds_reg_offset[vmid].mem_base, 0);
+ 		WREG32(amdgpu_gds_reg_offset[vmid].mem_size, 0);
+ 		WREG32(amdgpu_gds_reg_offset[vmid].gws, 0);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+index 9a905531f837..37639214cbbb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
+@@ -3749,7 +3749,7 @@ static void gfx_v8_0_init_gds_vmid(struct amdgpu_device *adev)
+ 	 * the driver can enable them for graphics. VMID0 should maintain
+ 	 * access so that HWS firmware can save/restore entries.
+ 	 */
+-	for (vmid = 1; vmid < 16; vmid++) {
++	for (vmid = 1; vmid < AMDGPU_NUM_VMID; vmid++) {
+ 		WREG32(amdgpu_gds_reg_offset[vmid].mem_base, 0);
+ 		WREG32(amdgpu_gds_reg_offset[vmid].mem_size, 0);
+ 		WREG32(amdgpu_gds_reg_offset[vmid].gws, 0);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+index 60519431ed91..fc9bb94eaaf4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+@@ -2520,7 +2520,7 @@ static void gfx_v9_0_init_gds_vmid(struct amdgpu_device *adev)
+ 	 * the driver can enable them for graphics. VMID0 should maintain
+ 	 * access so that HWS firmware can save/restore entries.
+ 	 */
+-	for (vmid = 1; vmid < 16; vmid++) {
++	for (vmid = 1; vmid < AMDGPU_NUM_VMID; vmid++) {
+ 		WREG32_SOC15_OFFSET(GC, 0, mmGDS_VMID0_BASE, 2 * vmid, 0);
+ 		WREG32_SOC15_OFFSET(GC, 0, mmGDS_VMID0_SIZE, 2 * vmid, 0);
+ 		WREG32_SOC15_OFFSET(GC, 0, mmGDS_GWS_VMID0, vmid, 0);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+index 5317efc942a4..11fedcf86fae 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
+@@ -432,7 +432,7 @@ static int gmc_v10_0_flush_gpu_tlb_pasid(struct amdgpu_device *adev,
+ 		return 0;
+ 	}
+ 
+-	for (vmid = 1; vmid < 16; vmid++) {
++	for (vmid = 1; vmid < AMDGPU_NUM_VMID; vmid++) {
+ 
+ 		ret = gmc_v10_0_get_atc_vmid_pasid_mapping_info(adev, vmid,
+ 				&queried_pasid);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
+index 95a9117e9564..998d6c8fde79 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v6_0.c
+@@ -530,7 +530,7 @@ static int gmc_v6_0_gart_enable(struct amdgpu_device *adev)
+ 	 * the VMs are determined by the application and setup and assigned
+ 	 * on the fly in the vm part of radeon_gart.c
+ 	 */
+-	for (i = 1; i < 16; i++) {
++	for (i = 1; i < AMDGPU_NUM_VMID; i++) {
+ 		if (i < 8)
+ 			WREG32(mmVM_CONTEXT0_PAGE_TABLE_BASE_ADDR + i,
+ 			       table_addr >> 12);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+index d9cb887b3a91..d06e3f5e38ae 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v7_0.c
+@@ -677,7 +677,7 @@ static int gmc_v7_0_gart_enable(struct amdgpu_device *adev)
+ 	/* set vm size, must be a multiple of 4 */
+ 	WREG32(mmVM_CONTEXT1_PAGE_TABLE_START_ADDR, 0);
+ 	WREG32(mmVM_CONTEXT1_PAGE_TABLE_END_ADDR, adev->vm_manager.max_pfn - 1);
+-	for (i = 1; i < 16; i++) {
++	for (i = 1; i < AMDGPU_NUM_VMID; i++) {
+ 		if (i < 8)
+ 			WREG32(mmVM_CONTEXT0_PAGE_TABLE_BASE_ADDR + i,
+ 			       table_addr >> 12);
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+index 65d7bc108151..e8d07109c628 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
+@@ -903,7 +903,7 @@ static int gmc_v8_0_gart_enable(struct amdgpu_device *adev)
+ 	/* set vm size, must be a multiple of 4 */
+ 	WREG32(mmVM_CONTEXT1_PAGE_TABLE_START_ADDR, 0);
+ 	WREG32(mmVM_CONTEXT1_PAGE_TABLE_END_ADDR, adev->vm_manager.max_pfn - 1);
+-	for (i = 1; i < 16; i++) {
++	for (i = 1; i < AMDGPU_NUM_VMID; i++) {
+ 		if (i < 8)
+ 			WREG32(mmVM_CONTEXT0_PAGE_TABLE_BASE_ADDR + i,
+ 			       table_addr >> 12);
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c
+index 0309d84c887d..d7b39c07de20 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c
+@@ -344,7 +344,7 @@ static void mmhub_v1_0_gart_disable(struct amdgpu_device *adev)
+ 	u32 i;
+ 
+ 	/* Disable all tables */
+-	for (i = 0; i < 16; i++)
++	for (i = 0; i < AMDGPU_NUM_VMID; i++)
+ 		WREG32_SOC15_OFFSET(MMHUB, 0, mmVM_CONTEXT0_CNTL,
+ 				    i * hub->ctx_distance, 0);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
+index 57d5f8ffb764..092ff2c43658 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
+@@ -421,7 +421,7 @@ static void mmhub_v2_0_gart_disable(struct amdgpu_device *adev)
+ 	u32 i;
+ 
+ 	/* Disable all tables */
+-	for (i = 0; i < 16; i++)
++	for (i = 0; i < AMDGPU_NUM_VMID; i++)
+ 		WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT0_CNTL,
+ 				    i * hub->ctx_distance, 0);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
+index fa77eae6cf47..b72c8e4ca36b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
+@@ -376,7 +376,7 @@ static void mmhub_v2_3_gart_disable(struct amdgpu_device *adev)
+ 	u32 i;
+ 
+ 	/* Disable all tables */
+-	for (i = 0; i < 16; i++)
++	for (i = 0; i < AMDGPU_NUM_VMID; i++)
+ 		WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT0_CNTL,
+ 				    i * hub->ctx_distance, 0);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+index 66748bb01b52..4a31737b6bb0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+@@ -405,7 +405,7 @@ static void mmhub_v9_4_gart_disable(struct amdgpu_device *adev)
+ 
+ 	for (j = 0; j < MMHUB_NUM_INSTANCES; j++) {
+ 		/* Disable all tables */
+-		for (i = 0; i < 16; i++)
++		for (i = 0; i < AMDGPU_NUM_VMID; i++)
+ 			WREG32_SOC15_OFFSET(MMHUB, 0,
+ 					    mmVML2VC0_VM_CONTEXT0_CNTL,
+ 					    j * MMHUB_INSTANCE_REGISTER_OFFSET +
 -- 
-Martin K. Petersen	Oracle Linux Engineering
+2.29.2
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
