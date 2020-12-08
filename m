@@ -1,33 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 358602D32A1
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Dec 2020 20:29:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 265062D32A3
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Dec 2020 20:29:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 755E96E9BA;
-	Tue,  8 Dec 2020 19:28:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EFE96E9BB;
+	Tue,  8 Dec 2020 19:29:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760058.outbound.protection.outlook.com [40.107.76.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CC8B6E055
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Dec 2020 19:28:57 +0000 (UTC)
+ (mail-eopbgr760054.outbound.protection.outlook.com [40.107.76.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E6D56E92D
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Dec 2020 19:28:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Mi6jtzv1W/N92Mtc56Mq+MTm7tbkIbeWbZxH9zRiqjR1y2MLXsOO+44RRxweujRCvri0X1MlwnvSaW2jeV2ks7tIu00XU5Jrvv6FVui1kdRoQiYeJRPI9PSLxe8A9aWQ8S6lZerX2K2PKRz8I1rA/yTtKi/hw75MAGKQnYdbo8taoUm7hsF3A/jbT7G9tqPpDIn0kh9tYvYvytfqgdlW0msivhp962spa3XjDfp1WL7n/HsE+6tTApsXM0A5bAUC9U4LKNAsVf8B9Ht1qla8PIPLtXOVcAvUtU1SesiIS8hFfL+YoFCKugi6sE/Ti9KrjHzXZ6WQD7WfKEAEIJuM+A==
+ b=UHiy9bD2X4LEKctm+OeNousue6UPSLp7fesZ2K3thdbrcbhcZu1+d0nMb+zdo/TnGiy5HZALb/Yp3bQCXYxRg9eINDBcuEWIt00W3zhIqH18slNkXtElLzVCrQ6K138kBwDv3WMY/7klpLkU12+rMer8c1hvrZFknM57HMztKI5uoDr8eTxa5nmX4M5mu2BSgwrRS7OcDIS3+ErWPrstrsWc5JxfulnbzJVuKTGt10GUdSbf93ujOIvDdpAVi4N8/7xNutpmLPuD+o2NC8FOWm4eYA6hdSqA32ps4wrOxlLw4X6oYmh1tUJEyjlYXxAUTNo1TVSTj2Qba2S+NtP8og==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QMU8JZgzqUz7//BTUM7egmUQdGZoidwbK1Xnjh9Epco=;
- b=BXgh3O/eEJT/cAYP9nEZg9ma7Dcv9Pj9U4mYHtgYFIzBsXtS0+kKbxWBD+e+qxeGXTG7uV+bGgwnu3DQI0YgyGDb0W8eOPxwNWLo3ICmNT9Su9P+CTSiooC3G+Es9CotqUmqAT/xOMCd4wXyt1/6FktymHKX2aWw4qc9Gr+YwZ7PhyhRFuhtWKr6o4WtXD5FaoQJZqpG0qvZSM0IcQ5hPskokWD2wj+Ur3Rk/3RLbzHmCRFoOOiqbq/wJupLIgtdQV7Lo6uFNnanvDDOdbvPRG1+oILqjajRzNAoIwAnX759eROB1pdtGGIef4kDXEx/LUm8x2umQbSHBJyMitCaMQ==
+ bh=7czM/qSUIR0jS4l7aYOJLO3t5dGEcnGKlD7tPHKS8JI=;
+ b=mdI0KkjMpdYacUFQVGVQat5hcJRObu7WzfXaHlInilNXw2kp2I1uK7j0sPBTTXZN+mQ1U7X972TMFu16ij/AwWbjpK8bhlOivVUHhq8tdQWZsgecRvJG6X/fecvGPa5iA4PNadU8yrtYCwUeyLiaPVgZgXFdmn00nm4siRKerKhclOu0e5JlrrKCfGIzw+r8fPIQLWfi1eVN4bFFSKbjDcaN8XuI6vAmUVWy9G3oKtV6wFsapTqTD7Srmq9pkV06WlMUqTQd9RITRSpvkokP+MOm9/jNjDLVhEB1y05kfJEox2dnYTHpg/lvH9UxfwgBRgDXm7py+Mfw2RqJxAgHyg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QMU8JZgzqUz7//BTUM7egmUQdGZoidwbK1Xnjh9Epco=;
- b=SblmB5bHi7tOtLdzoj497rIERIgFUAi58sn8IZnBgsrrZ9krnM+r4ojM+VqVPhyIUYDzBIkvRpdh/I/9+ovUaYoC9RqiBdPxyKasvsQlYPf/3ZICVW7beiJ1PRQ+F+oucWeuMrXZRdbLylWEC1jDneNV7w97Cg2JFijW7g9HqdM=
+ bh=7czM/qSUIR0jS4l7aYOJLO3t5dGEcnGKlD7tPHKS8JI=;
+ b=rD7BZ3AKro2Dv3pra5z9+XcBqqGquQTZxhy1SKTk/BdV0/DtyGGMdujZK1rd+OJNv+RXkRoKuHaG/1eepkBEQUi5qcK/LYATxniHhzRuaMuwefaKpqC6aqBks6nsjWio90mJsRX8pxZ8I4F+S9oBGC1vCV7Lcw7R1SAaE/kfYLY=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -35,17 +35,16 @@ Received: from DM6PR12MB2939.namprd12.prod.outlook.com (2603:10b6:5:18b::24)
  by DM6PR12MB4388.namprd12.prod.outlook.com (2603:10b6:5:2a9::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3632.17; Tue, 8 Dec
- 2020 19:28:57 +0000
+ 2020 19:28:58 +0000
 Received: from DM6PR12MB2939.namprd12.prod.outlook.com
  ([fe80::3893:44ae:a31:6853]) by DM6PR12MB2939.namprd12.prod.outlook.com
  ([fe80::3893:44ae:a31:6853%6]) with mapi id 15.20.3632.023; Tue, 8 Dec 2020
- 19:28:57 +0000
+ 19:28:58 +0000
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 02/13] drm/amd/display: Add missing DP_SEC register
- definitions and masks
-Date: Tue,  8 Dec 2020 14:28:33 -0500
-Message-Id: <20201208192844.23580-3-qingqing.zhuo@amd.com>
+Subject: [PATCH 03/13] drm/amd/display: HP Reverb G2 VR fails to light up
+Date: Tue,  8 Dec 2020 14:28:34 -0500
+Message-Id: <20201208192844.23580-4-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201208192844.23580-1-qingqing.zhuo@amd.com>
 References: <20201208192844.23580-1-qingqing.zhuo@amd.com>
@@ -58,48 +57,48 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from localhost.localdomain (165.204.55.250) by
  YT1PR01CA0123.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2c::32) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3654.12 via Frontend Transport; Tue, 8 Dec 2020 19:28:56 +0000
+ 15.20.3654.12 via Frontend Transport; Tue, 8 Dec 2020 19:28:57 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: da723c83-ad09-4120-9bde-08d89baf81c0
+X-MS-Office365-Filtering-Correlation-Id: 0902b0c7-a2da-4c54-2c02-08d89baf8263
 X-MS-TrafficTypeDiagnostic: DM6PR12MB4388:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB438882E49D0671497DEF81AAFBCD0@DM6PR12MB4388.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:400;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB43884D71B2AAA1CE987E7CAAFBCD0@DM6PR12MB4388.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2150;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Q+cf7QXRK8cwayqqWi0z7PicplalDEQkYsgVFBeFif9rKNta1gE/9iltsLVNXHD6OhIVn9MxUX86Yul1kN1ujNmzLzOLYMdJg+WiXTRGXRzq6qmEO3//NXK3Jsh1LAN8gMkqp7PcR5bpJlYE7BTz9JURxsuzzG17N3f3UTI4tepUdiuoNH01hIgM8I/JWwyy8fV7iUB/ckmDQwG1mT0BdjjFoMf8a94dMgnBfNO51+jbwF+t9yC1UsGzDpB4Jg05wKH2cOeH+/YoMJJ4bvT1OiEhsNhAZQdxaVmm20EcnhhYKF/7W+lCt2ODlL7tFafEZfSLHMIbHTdvB/1qI+vziXdo2IzMgY3MgdAgub+Lq3sfvdAx6pSk+1qa6bWbFWdh3woW0E53zYlZQBY6VcTr6gedSPRcH/WblBjR3jKFyTc=
+X-Microsoft-Antispam-Message-Info: 679H1iAByEgFDk4LbCevTLFtMf9Ks6qVSrBCfnAhre8N7sz5SWyqlGPYys8MjTAYJi+01rY5Lo/pWugvjmMEJbRKBMWfVwL6/vAObBb1RoyH35+68FP8SCw9AcY9D+BpvktG+LFNWA9w+oH+Za489QlReAwiI742nC2Nkt8bKn0K5KIiqjUum5m/N7Cb0U+UNruGRGn+taecREyx/ReaqItPA/Mhlr7hz2Z8JvQnIYgvqi/TH+loGz/1fDmIskwFiN1UIHtG9EzaodYYoOxOP2CBKVKK/+Izz56/Z4Dgm/Nb8HLcBtahlsK/4UdjDFfhVgGN7D5ZmAApP9Ug/6ZZL9+mnwlyjAUqGpljtZW2H1k0/W0f9ZiOSZ5Jxj1mD+4oFmS7QH7ifx4fRTyGr+m/hdb+LXN8oqKmRy24TPzqHo8=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB2939.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(346002)(366004)(136003)(376002)(6666004)(86362001)(83380400001)(34490700003)(6916009)(44832011)(8936002)(956004)(2616005)(186003)(6506007)(36756003)(52116002)(66556008)(26005)(6486002)(5660300002)(16526019)(66946007)(4326008)(2906002)(66476007)(8676002)(1076003)(6512007)(508600001)(69590400008);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?Oq1z6nItOPV7jvwOn3PCCgFTnWi1OjdZbItkWShNgm7s9DmnCpUwJVoK6d1m?=
- =?us-ascii?Q?dGGefXOicFnVJvRVgxlQDu7GqzaIlowsI58bAmlMLi+Rwy5LVLjrvXGJgvsW?=
- =?us-ascii?Q?6MUMAlMeErIhwELCUUApddcp8zTZGwk+hF5iEvd9TtNdrhI2kvPrv2e1vta0?=
- =?us-ascii?Q?AIl4qVOM6pvOMCmXAxCPmn99zkPw7woTTYXNkCdO0+P26omzSOIxruDuWC1t?=
- =?us-ascii?Q?xETfDUQp9EZwAt2BBvIo99GPtKn90+zYWBuc3dZpzekte3az8yE0O2yF96BL?=
- =?us-ascii?Q?t0opYNEdVVuvUWPNi4SKtmzLBc9HdOGdIv+aVEfVgbDhVKnrURoVIiIPBMMR?=
- =?us-ascii?Q?fjUw/jdfD+2j4mMe5aVWFg6HJGZJlbDrdWC/kVipFzUIPd4q0O3OS54pkJYw?=
- =?us-ascii?Q?B1epi/efsEcI3R1NDfSl5GelmrnANMA++i6RghhwmG52uiU1G6hKLoJGQUNm?=
- =?us-ascii?Q?9yW0O0/sZZo32NJrAXe+KA2fRw2IG1VgnFDMiWsFrsYBM0v4/crfY9cBlUcJ?=
- =?us-ascii?Q?lHzbVMiOvhk7byH/eEHjlSX77M4uCaoyGZas+Jw6igWVWh5H+vIJTF/D7bt4?=
- =?us-ascii?Q?CxpVkyhGgNymwcMs0u6vdz+Vy8xhr/vq4/H/EuOROIf1iWJ4gZyHU/dJUmR6?=
- =?us-ascii?Q?rIcmmarXBiw49UlY6IVmIJvU+fCHTLQqEbkpwEoBr7NejuSc+oDb/+TYQvdI?=
- =?us-ascii?Q?t+n3Cwod1W0L2TQ7Ao6U79qaZEGcmI7TNIGMUNKo4yFGEJ8uUC9YsF2whlqF?=
- =?us-ascii?Q?fboyEpOB6J98+4KQsDQk/44vzGYUmIrz5NvIBJZoEvriN+ZYyfJOz198112Q?=
- =?us-ascii?Q?f2EsLNXIF1X3e0ULf6yNcEjla63VrU+6og2/CWsWIFPSaDF4X82USsq0+pI8?=
- =?us-ascii?Q?mRXh6l7VNjcmraNMtw8objDHRGFXe5t0+XxigiIcGiYZ9/C+KdTy6DKEqP+W?=
- =?us-ascii?Q?vXd8YVbT+QBpnQY4dV8O+J7EoAIjycL1r6yMC4BFmY1ct/z4owN59f5Ow3DC?=
- =?us-ascii?Q?bDPK?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?S0Rhm8tLAvdvFzAivLonFq2rHv9+IFNMf1h2GpH1mcZZu1n3My7mR8uSKXjr?=
+ =?us-ascii?Q?fXOaLaH8rEHnPNgdh+bbNhjPHKRj8cmdW9t+Jey/dR1x8aqgaq5d0bMEuyWs?=
+ =?us-ascii?Q?9hjry32+yyFyo26DAhWMsqRLlruUrLb3gSA70U42hhQoI8OoiRFbnORGcuf8?=
+ =?us-ascii?Q?JSni4iKv0E0cY2reN01jjGjT/0XYuA73VZpaf5hTrPifwOerf0bfQ3bkKI+M?=
+ =?us-ascii?Q?9JiwkZ5wV0iRj2wshBskTriGKHlj84s/lRBEiI/PKcdtI3E4CIWRlkSQF0Pf?=
+ =?us-ascii?Q?CbUPd+cew3r3joz7Tc5jDQFWsxWWVBW5WIN8jkvE18jIbgfwCJ8t8gdt7zD3?=
+ =?us-ascii?Q?dr1ijmmaERhMamSce8UYlY/2NeSf33DIxq+2zctqC8C5mhZ4nEuQg3hf0Svr?=
+ =?us-ascii?Q?4NJDN39jrmqzLzalHsmcgRYl3CxWVl4BoDW9/VVqwbReHSPU9fQ8j4dJIBkk?=
+ =?us-ascii?Q?rqjbdIo20Jst6kFDt8nBb6SccqrP75jamXrGk4/x43udzp8tH4HoZkEMl9mB?=
+ =?us-ascii?Q?JqFyo33VOY29myB88hAIa0u2TvqvLjmAZGz03GB+FSN8oyF+KDT7pWTAQLlu?=
+ =?us-ascii?Q?rzYxWjeWJ333Kfs4sPeGnoVrI+KoGCTdbV6ZcuGsHcMRoZ9s26ykTWGMRxWl?=
+ =?us-ascii?Q?IX8DNBfXGN8sEChW5/+g+Xq6/v/P8I+sFTY3b27dFP479QQEI4HAdRG/7tul?=
+ =?us-ascii?Q?xB1/EXCUA77RkZQ3098SOQ44Y5p3gR/EIFhNLdoTnVCVkUedLZKpfVHXVvDy?=
+ =?us-ascii?Q?OU05q7wcjQX+Ap6cbGYmnMtSMJwOmcibCI/bRoptqU70fkiX01Iw1iaesGij?=
+ =?us-ascii?Q?nbCkgn9zq1n0ZiatoMc9wen+8n1K6fzh4VmKve+/mLm0V4cyDgTSDr/sIqyc?=
+ =?us-ascii?Q?EbdOv2UD8a+IktTkqTpqd2xOKJEi+hNrCCIgC+wt1LE1WzevZnpJ8A+hVcab?=
+ =?us-ascii?Q?fytY7xZFmu9BfLmSc3PkFOE0FI13nAue+N3iJ+UcsmZJg9FtZOM6Y76oc573?=
+ =?us-ascii?Q?q7ha?=
 X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2939.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2020 19:28:57.0221 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2020 19:28:58.0415 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-Network-Message-Id: da723c83-ad09-4120-9bde-08d89baf81c0
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0902b0c7-a2da-4c54-2c02-08d89baf8263
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ETsNZ7Otg9ktXMIt2JtTmZdFgwSQljH8LKFT5qRCwGiEwtFSEZ9PnoFkYGyV+4co
+X-MS-Exchange-CrossTenant-UserPrincipalName: sfVrgDOmwtEq5AyFJn/BZXrSOk6hbri3vCp0tmNpHROaljmUL1irq4jGpbqTadIj
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4388
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -112,76 +111,73 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Bhawanpreet.Lakha@amd.com,
- bindu.r@amd.com, Max Tseng <chuan-yu.tseng@amd.com>
+Cc: Aric Cyr <aric.cyr@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Max Tseng <chuan-yu.tseng@amd.com>
+From: Aric Cyr <aric.cyr@amd.com>
 
 [Why]
-some DP_SEC register defs and masks are missing.
+Many VR headsets require a HSYNC width of 4, but DCN
+has default minimum of 8.
 
 [How]
-add the missing defs and masks.
+Change the arbitrary minimum HSYNC width to 4 to match
+DCN20.
 
-Signed-off-by: Max Tseng <chuan-yu.tseng@amd.com>
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+Reviewed-by: Charlene Liu <Charlene.Liu@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h | 6 ++++++
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.h | 2 ++
- 2 files changed, 8 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dce120/dce120_timing_generator.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c               | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c               | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h
-index 9e38c37c1d73..76b334644f9e 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h
-@@ -81,7 +81,9 @@
- 	SRI(DP_MSE_RATE_UPDATE, DP, id), \
- 	SRI(DP_PIXEL_FORMAT, DP, id), \
- 	SRI(DP_SEC_CNTL, DP, id), \
-+	SRI(DP_SEC_CNTL1, DP, id), \
- 	SRI(DP_SEC_CNTL2, DP, id), \
-+	SRI(DP_SEC_CNTL5, DP, id), \
- 	SRI(DP_SEC_CNTL6, DP, id), \
- 	SRI(DP_STEER_FIFO, DP, id), \
- 	SRI(DP_VID_M, DP, id), \
-@@ -126,7 +128,9 @@ struct dcn10_stream_enc_registers {
- 	uint32_t DP_MSE_RATE_UPDATE;
- 	uint32_t DP_PIXEL_FORMAT;
- 	uint32_t DP_SEC_CNTL;
-+	uint32_t DP_SEC_CNTL1;
- 	uint32_t DP_SEC_CNTL2;
-+	uint32_t DP_SEC_CNTL5;
- 	uint32_t DP_SEC_CNTL6;
- 	uint32_t DP_STEER_FIFO;
- 	uint32_t DP_VID_M;
-@@ -411,6 +415,8 @@ struct dcn10_stream_enc_registers {
- 	type DP_SEC_GSP3_ENABLE;\
- 	type DP_SEC_GSP4_ENABLE;\
- 	type DP_SEC_GSP5_ENABLE;\
-+	type DP_SEC_GSP5_LINE_NUM;\
-+	type DP_SEC_GSP5_LINE_REFERENCE;\
- 	type DP_SEC_GSP6_ENABLE;\
- 	type DP_SEC_GSP7_ENABLE;\
- 	type DP_SEC_GSP7_PPS;\
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.h
-index d2a805bd4573..9a881e639709 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.h
-@@ -83,6 +83,8 @@
- 	SE_SF(DIG0_HDMI_METADATA_PACKET_CONTROL, HDMI_METADATA_PACKET_LINE, mask_sh),\
- 	SE_SF(DIG0_DIG_FE_CNTL, DOLBY_VISION_EN, mask_sh),\
- 	SE_SF(DP0_DP_PIXEL_FORMAT, DP_PIXEL_COMBINE, mask_sh),\
-+	SE_SF(DP0_DP_SEC_CNTL1, DP_SEC_GSP5_LINE_REFERENCE, mask_sh),\
-+	SE_SF(DP0_DP_SEC_CNTL5, DP_SEC_GSP5_LINE_NUM, mask_sh),\
- 	SE_SF(DP0_DP_SEC_FRAMING4, DP_SST_SDP_SPLITTING, mask_sh)
+diff --git a/drivers/gpu/drm/amd/display/dc/dce120/dce120_timing_generator.c b/drivers/gpu/drm/amd/display/dc/dce120/dce120_timing_generator.c
+index 82bc4e192bbf..915fbb8e8168 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce120/dce120_timing_generator.c
++++ b/drivers/gpu/drm/amd/display/dc/dce120/dce120_timing_generator.c
+@@ -1268,7 +1268,7 @@ void dce120_timing_generator_construct(
+ 	tg110->min_h_front_porch = 0;
+ 	tg110->min_h_back_porch = 0;
  
- void dcn20_stream_encoder_construct(
+-	tg110->min_h_sync_width = 8;
++	tg110->min_h_sync_width = 4;
+ 	tg110->min_v_sync_width = 1;
+ 	tg110->min_v_blank = 3;
+ }
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
+index a125d3f05c81..48ccdcc17ede 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
+@@ -1540,7 +1540,7 @@ void dcn10_timing_generator_init(struct optc *optc1)
+ 	optc1->min_h_blank = 32;
+ 	optc1->min_v_blank = 3;
+ 	optc1->min_v_blank_interlace = 5;
+-	optc1->min_h_sync_width = 8;
++	optc1->min_h_sync_width = 4;
+ 	optc1->min_v_sync_width = 1;
+ }
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
+index b1f228fc119a..3ba3991ee612 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c
+@@ -350,7 +350,7 @@ void dcn30_timing_generator_init(struct optc *optc1)
+ 	optc1->min_h_blank = 32;
+ 	optc1->min_v_blank = 3;
+ 	optc1->min_v_blank_interlace = 5;
+-	optc1->min_h_sync_width = 8;
++	optc1->min_h_sync_width = 4;
+ 	optc1->min_v_sync_width = 1;
+ }
+ 
 -- 
 2.17.1
 
