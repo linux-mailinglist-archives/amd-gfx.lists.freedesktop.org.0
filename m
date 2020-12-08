@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C4712D32A7
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Dec 2020 20:29:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 072F32D32AA
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Dec 2020 20:29:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3BE56E9C0;
-	Tue,  8 Dec 2020 19:29:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A262D6E9C2;
+	Tue,  8 Dec 2020 19:29:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-CY1-obe.outbound.protection.outlook.com
  (mail-eopbgr760045.outbound.protection.outlook.com [40.107.76.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 451086E9BD
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F4D16E9BE
  for <amd-gfx@lists.freedesktop.org>; Tue,  8 Dec 2020 19:29:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GoWokFlb0Xf2MlFdOqAdq0P+63IFwBJXR965XimPoIGApsrVJzW7pTxMu/TYkuJlMXrY9OfZmeFlMetmUJHbx+2xU4k0/B9weev9lDKiXDiLuCj6/GJU6lkVa+3uTp9RTtHZ97HiXRTS9GIXoSGv+U6dLRMOcebRgMFS7kHuzELGWXc7c2lTdAtoemVxlnQ305iUvgkx1BpaVEbqsddw3eOYjIguc6boNt/UEaWhMPrZxzdEPLIALVduntB4G3djP8pRn6ZYVvg/aST5Ra+5vTuE3FvOxuaHAIIwOP4nq0pp+DJn0RWmhsZOU6R+/nZhA4qLTgRVgh/GqQaSTrFDxg==
+ b=ArdVjz2VSJmvRKN56287j2ulf0QxmR71I4VDm0qL09mSW2vClUN+SaVizpeVTp4cwhWiDMvfYUpdeBLGKzwF9BtF5KzMe7+wJoIkRyP9EzbWgLM8JFAjxmu3sxBs6r2h0WLEQJG2E4AhxgFyrbt2mEP0+AlXzX5WKfAj4sJsmU7w71qkBX+oBIUiVx7wyPoMNj4C/NK77viBUMOy7ZPe2ouuLTcVGfN+ZHp4X5yDXEHAeBMabEbYPtoQDpSw8H8aLdB/FtTNliEsixFnzxG5ikjYL+2vtI00N1ea9m2HKVoJbfSQgYiWOQQqppS2Zo4X+g/EuqTFoz5eUxg5sWrceg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JPq4rwR67nx8Pwbzt1mkNo4aBgcslX8ppsStOI9ToTI=;
- b=fg93+bBBjPjdfYuDNtMgx90zeQng/GvT1HviSZdGWBzufqLSDuyjflCXYOJVRivgr1zbskmlMxHNLBlvjvwVGfRldXNMVKzEDxjV24j9+ZIA2GCqjdMA9tF48QpBw4hmMpzQjpKuVD3UDKLjp5KGlUcZFs5pDvA79grlh0IG3AGVbK1J6Tu7w60j9/Kh22ObS123dO6rr5tvWGBZ0wJNAY4PGeMbhZqxyt/INbhg6Iue5USrEl+Ed4vns3OlxduQcm+q4Cq8XqW1/w41HUJZj8V37V2VkuUbmAXQ14TsmPlNgBQOHrOcRRQaKm5L6wwVRbRFGvNljy8APjoz6ZNobw==
+ bh=vYsk9NwzFdIyeydOqt1eAWT9gMLLpZtqMZhrereASi4=;
+ b=e1UGFMqoC7ltw2uzkvubpLMKGbJXBgq62Xc0ZCdWnjj2Ejr7cJaa22PByWt4xpit8my+/G8PuJfHfmForP2aQeaDcSUlq5FTCoNb28k885b7cahFzj+KBbc2P2qhb38+SgL4lV4dJlUdKV60zLdw8OsfOVD+qEPNRECCPKXr7xJduZoOKuWjRR1KNFxalxioikBlCfKREoVsh5a69+5S63errmZ4e2UOxiQOVPiRYr+UNaue2J6L+2C+4a8t8j1EYUudgwMi4EUX6RhQvJrI1WxzilQJIG02NIVDM2DTYK4+BQxmSpcSafQQ6VJPoEM03qOa8yWS7Kxzx5mqcqDhpA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JPq4rwR67nx8Pwbzt1mkNo4aBgcslX8ppsStOI9ToTI=;
- b=OIyAdD1qGxDQ1zLFY/94E/fH/FspUx2AyZoRJe4C6Gtz288skZw5kQQ4Emf0IjpQhn4vidpDo0AgGLVmyRxkniGXhpH/U+v6aCt+LiGUMorvKUpsomxI3lyWwNKvCB+buBgI0DEckiBT20V0k5SxAOis1coz9Y24+Fhn4SZlPEw=
+ bh=vYsk9NwzFdIyeydOqt1eAWT9gMLLpZtqMZhrereASi4=;
+ b=lI489mGcc79kEDcYk8w3b44qPBSzhj3ihcvBNwNxeJJeZkn0KEVbp7U/xhfcqUomEXKTKf6Ovo90ws6wukoz2NYUlOZfjl8iweXy/yeNkuMB0u2Jh7AWWkar2B7UwbKpzLPEGx0HR+88DjkI3GDT0NKkN5LdhV6JXBiVoyLPh9s=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -42,9 +42,9 @@ Received: from DM6PR12MB2939.namprd12.prod.outlook.com
  19:29:02 +0000
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 08/13] drm/amd/display: updated wm table for Renoir
-Date: Tue,  8 Dec 2020 14:28:39 -0500
-Message-Id: <20201208192844.23580-9-qingqing.zhuo@amd.com>
+Subject: [PATCH 09/13] drm/amd/display: Only update FP2 for full updates
+Date: Tue,  8 Dec 2020 14:28:40 -0500
+Message-Id: <20201208192844.23580-10-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20201208192844.23580-1-qingqing.zhuo@amd.com>
 References: <20201208192844.23580-1-qingqing.zhuo@amd.com>
@@ -60,45 +60,45 @@ Received: from localhost.localdomain (165.204.55.250) by
  15.20.3654.12 via Frontend Transport; Tue, 8 Dec 2020 19:29:01 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 26b2ec68-1ecb-43da-8fa7-08d89baf84e6
+X-MS-Office365-Filtering-Correlation-Id: 2cd96c06-27ee-4a6f-de3c-08d89baf851a
 X-MS-TrafficTypeDiagnostic: DM6PR12MB4388:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB43880BF6F1ED5AB29DAF8287FBCD0@DM6PR12MB4388.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1388;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB43883E3DDCC0CFD394FB146AFBCD0@DM6PR12MB4388.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:580;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TBViP+ZrfcNj2vCZWnEtgD4BPld08tN2fs48i7XcgFE4/G0S56bGzNGqeXZEYcQ5bk57Q8G+hywEf88RyKgjCUjsdbilXbkooWbNmecEwOK+Bq/7dHTnnUm1DkwmT2fj9nucA1jGQavRZY/i8vicSJgFmAWtZ8ZFckgN5CHJ5B9nCbpsjDuTT/kJW48fhD4gZXfRPAQ7Kebksn30wN++r7Shp58jbZZEJYIdSB0OROA9XmEF640nCCY1o4eyuL5/ZL7KzEA0Y3R56h/3F6ICo3PiUYOVXihvPNj3hfNcVjjo2LsGFe2cowtX/v07PiC+F8mZFCzInCOhhM2Y7P4cJ05Qth7F21Hx+0srpSdbEN3bomA4qoi4z9D/DaoL2au4XvcAfZiZK914ybloOHyaWG/Aezb0RQQZUohK3O3OUFE=
+X-Microsoft-Antispam-Message-Info: zWJ3jyhEELtPwt+YGFhTjERkO2cmax31Q95TfEiIlBLHDzQlrdQASFXxAJkPUUmK73wy0l+ZF7LfosHcHHgUyn21Umay7rJAx1nUjvEpmBZRQ7+S8QcLXh6e85AJbyi86OyP577sT/y0nLWZTnZOXHW9yMWuvTK9mRe2b/pkjRukD9iYyrcOv2vRtXtJ8D64H9YFoM2aVQNzRPp/46m+D76kmARocYORpgUKZluKFKpOLT9QpuEqOyr2x9LpOFDSPJXxAFTev4RCcvlLYTdH+SU68fuBbIMzeS/N/mePkzIMpdhMG9e98ag+gIboDrv61sxiQ/Mev7+67MJ2eMMUrzKK6g+EZM6mY3icRPM+n+voY55xqYHFJao0m8vufiNH9VGG2Xyez4CBJWywaSl7X2kjetBcqn6jWOiftNWe5Ec=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB2939.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(346002)(366004)(136003)(376002)(6666004)(86362001)(83380400001)(34490700003)(6916009)(44832011)(8936002)(956004)(2616005)(186003)(6506007)(36756003)(52116002)(66556008)(26005)(6486002)(5660300002)(16526019)(66946007)(4326008)(15650500001)(2906002)(66476007)(8676002)(1076003)(6512007)(508600001)(69590400008);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?GeudywbSG2h7w6DYUrGuC4H3veKmoBXMiLhiILyCpmD4SvebUx3XcZC2Fmtm?=
- =?us-ascii?Q?5oPMsSs1NWRY7V2GC91LfWpj0iso6Bu/AVFeirv9HmX9zB9/zujcgCSy4gld?=
- =?us-ascii?Q?AvpqIOmATB4zyAMsvdgNFhoo+EiW+AftwUn2Xwau0eIzKnty4AnbWVjQwAT9?=
- =?us-ascii?Q?qBYnfe9tJq/wKz5f3HgBCHjVSUpwJMHc7YPJWcrep4QMHEwAusZSMcYbC+oD?=
- =?us-ascii?Q?+8rtwiCEVwbLvkIDIfP56IjKP86IO28iOaY5RNeLUn0zMLveRC78eIa6obq3?=
- =?us-ascii?Q?Qq52ZCp5f3tQFqqHGVr2lVorJBybW5g9WfZQ6Upc1LYNFAXvddwlWy6g5JM+?=
- =?us-ascii?Q?b/sf5iH+d5kWuYi4aD0ysSncOhrgOAGDXpZ55FS19R5QYlmfpb8C2AzI4vya?=
- =?us-ascii?Q?YUrAOhIzI7ferBI3VKHSk5tBzavG1l+lLCyNVIkHby5waD4LcE3nHExWCxed?=
- =?us-ascii?Q?mlMf7MngHeT4JawCPUkWSn/LTpM6Iq0jzo8e3N3PJMA/ELuI4OhV7Yqhndoy?=
- =?us-ascii?Q?oqzZD6BdOvaLXNtk0Y3/WV9tJpWolSEYF88ZWipPssNgTs1UcqiYcWlbkqxP?=
- =?us-ascii?Q?Ks+1biZykYj4vGTYEcugUDsdLyHmL5z8zr4xmaobtVCMcGWK+tQezc/ZGJ14?=
- =?us-ascii?Q?NZS3gFLu/nzkTC/74fxkvd5Msjmyx1OEnQlRk8EDNBICGsur0eA6NuyNNpnf?=
- =?us-ascii?Q?lV4WOGPg0tQO+DAqRKJDiFH6jZsx80zm9rS6kBFpLmhhVdECOe+QQC7dzJlL?=
- =?us-ascii?Q?TTazfcub1xD7sT9/k/SmOc6MqnGAUJWui8Y1JzCzs614wiHosjm2iAKySmYP?=
- =?us-ascii?Q?5Zgg0LSEkqizuxirQGX51M6WytyPdOcUi30fcVyYnQtdqJCXLgp5jkvHuR2K?=
- =?us-ascii?Q?TK8sRzkX/6pkuaKPluz920jYp5Hz3SgpdiPTBvBMVWrvjHfaOygUjrc6qly7?=
- =?us-ascii?Q?mzOkFeIxmXYhbgENYdDOvIqWySOLBxFPKF1iDSJF5RC4HFFMJIm5vqanw10F?=
- =?us-ascii?Q?kzAG?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?Q7C2CrDCudo6Z2K9Ef0SyVA+9YowIKBleTvZhsepJehtAVpvDhDqtePZEmeH?=
+ =?us-ascii?Q?DWRlnEKtgRFPVcUjqkR0a8KYE0+2vM6zqBdIGIFVoYR/QGVTBhCZIcFuUhyY?=
+ =?us-ascii?Q?JvuLS0ky2G9wlgljUZn7f7iQEibxjpEqm5vngfj97OczVpGlW4DIIdaKul8c?=
+ =?us-ascii?Q?hzryU7/abOR5dUchFfqsEoQhqSXTCBld1ZkCck21th8CjUYt6w2nmOiLc1fg?=
+ =?us-ascii?Q?/nNYVrXr8dUdws+T7dqTtc8XHVPrRncq1sBSAVonj9FlCs8+QU/nymzlVUE2?=
+ =?us-ascii?Q?0h7meJbxv5T1HO5/9vzmEhFGJm75owFaevGKBooUGYzo/eRtP5PyE2jkMBoB?=
+ =?us-ascii?Q?NFxkDZa5ZxIauevQnK109oRJWqPAELvDVJXTKQySupsrFgTSYLb6q+d8Iujh?=
+ =?us-ascii?Q?fKYVi6N3ER5JVnjNSOgnnaI7mCU1xt51jKj5MW5+AMn1hqtWFwD8QFOn0fmC?=
+ =?us-ascii?Q?RByHMOS+HG8aA8H8O/H+0Q3OcPHX3sG1v7CTo6o1JZ96F1S6L/KI6YN0qAGc?=
+ =?us-ascii?Q?0SUU3qGoR8aiaantOiYrnLo2xQtOhJlpejkRbj/F8J3BNJEDGi5+ZwYB+Gyk?=
+ =?us-ascii?Q?+xXumupCLvROPOwpePHofk86pH6UjlsPACHH577tp2ze8PO4DzoDcMBH+Gzv?=
+ =?us-ascii?Q?q/BSF2xigfbQDiCYukCEij2RjFzr6wdBAtOzowGJtSpm9ZbNQ/0gF1nopULQ?=
+ =?us-ascii?Q?wOkrMzvOAFEekFkkKb/vr5Q+5lmK+qXZrekEBRY49TZ+k7YovCSBbBWXh/2+?=
+ =?us-ascii?Q?mlUDSx27HFMEbAcrfTa0RuTdg6fz1MOi6Cc41VAd7t19+PpIOM6Ut95+k4SR?=
+ =?us-ascii?Q?bMQDy0jNA8kHpe2T6+MdDLov/OfhGXhzvRE9LIFgiTky85hPwejgQ2DV1acq?=
+ =?us-ascii?Q?bOdRLzbq/VEHfwJDkesjiupQtpugZ3NrfCmVUHzVmoKHmKYAKc4EDAH5QsJq?=
+ =?us-ascii?Q?WRBPepDIaO2MOgQFNPJVIF7gunMhCZt4kJNyfZe7LGnuC2j+i1W2d3Nr+wae?=
+ =?us-ascii?Q?WKku?=
 X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2939.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2020 19:29:01.6144 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2020 19:29:02.4209 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-Network-Message-Id: 26b2ec68-1ecb-43da-8fa7-08d89baf84e6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2cd96c06-27ee-4a6f-de3c-08d89baf851a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OQa+hVUcOzVClykSn8g6xbiImj3v7vxVcke4ISY96pjnSovg2TWCGTJyryGt0jc/
+X-MS-Exchange-CrossTenant-UserPrincipalName: SMd4NvwvVPVwVFz68q8ggURlAJ1jsZ/DteKDJkTcpM59L3rHzJhmnoAj094X+o5o
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4388
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -111,7 +111,7 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Jake Wang <haonan.wang2@amd.com>, Sunpeng.Li@amd.com,
+Cc: Aric Cyr <aric.cyr@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
  Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
  Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
@@ -119,57 +119,77 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jake Wang <haonan.wang2@amd.com>
+From: Aric Cyr <aric.cyr@amd.com>
 
 [Why]
-For certain timings, Renoir may underflow due to sr exit
-latency being too slow.
+FP2 is not double buffered and must wait for VACTIVE
+before programming.
 
 [How]
-Updated wm table for renoir.
+Only update when there is a full update we should
+change FP2 to avoid delay every flip.
 
-Signed-off-by: Jake Wang <haonan.wang2@amd.com>
-Reviewed-by: Yongqiang Sun <yongqiang.sun@amd.com>
+Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- .../drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c    | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 20 +++++++++++++++++++
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    | 11 ----------
+ 2 files changed, 20 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-index 6f4fe8fce6b7..d00b02553d62 100644
---- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-@@ -746,24 +746,24 @@ static struct wm_table ddr4_wm_table_rn = {
- 			.wm_inst = WM_B,
- 			.wm_type = WM_TYPE_PSTATE_CHG,
- 			.pstate_latency_us = 11.72,
--			.sr_exit_time_us = 10.12,
--			.sr_enter_plus_exit_time_us = 11.48,
-+			.sr_exit_time_us = 11.12,
-+			.sr_enter_plus_exit_time_us = 12.48,
- 			.valid = true,
- 		},
- 		{
- 			.wm_inst = WM_C,
- 			.wm_type = WM_TYPE_PSTATE_CHG,
- 			.pstate_latency_us = 11.72,
--			.sr_exit_time_us = 10.12,
--			.sr_enter_plus_exit_time_us = 11.48,
-+			.sr_exit_time_us = 11.12,
-+			.sr_enter_plus_exit_time_us = 12.48,
- 			.valid = true,
- 		},
- 		{
- 			.wm_inst = WM_D,
- 			.wm_type = WM_TYPE_PSTATE_CHG,
- 			.pstate_latency_us = 11.72,
--			.sr_exit_time_us = 10.12,
--			.sr_enter_plus_exit_time_us = 11.48,
-+			.sr_exit_time_us = 11.12,
-+			.sr_enter_plus_exit_time_us = 12.48,
- 			.valid = true,
- 		},
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 58eb0d69873a..7339d9855ec8 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -2625,6 +2625,26 @@ static void commit_planes_for_stream(struct dc *dc,
+ 		}
  	}
+ 
++	if (update_type != UPDATE_TYPE_FAST) {
++		// If changing VTG FP2: wait until back in vactive to program FP2
++		// Need to ensure that pipe unlock happens soon after to minimize race condition
++		for (i = 0; i < dc->res_pool->pipe_count; i++) {
++			struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[i];
++
++			if (pipe_ctx->top_pipe || pipe_ctx->stream != stream)
++				continue;
++
++			if (!pipe_ctx->update_flags.bits.global_sync)
++				continue;
++
++			pipe_ctx->stream_res.tg->funcs->wait_for_state(pipe_ctx->stream_res.tg, CRTC_STATE_VBLANK);
++			pipe_ctx->stream_res.tg->funcs->wait_for_state(pipe_ctx->stream_res.tg, CRTC_STATE_VACTIVE);
++
++			pipe_ctx->stream_res.tg->funcs->set_vtg_params(
++					pipe_ctx->stream_res.tg, &pipe_ctx->stream->timing, true);
++		}
++	}
++
+ 	if ((update_type != UPDATE_TYPE_FAST) && dc->hwss.interdependent_update_lock)
+ 		dc->hwss.interdependent_update_lock(dc, context, false);
+ 	else
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+index 52bdbf2d50f5..cba3c8cd12a1 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+@@ -1214,17 +1214,6 @@ void dcn20_pipe_control_lock(
+ 		!flip_immediate)
+ 	    dcn20_setup_gsl_group_as_lock(dc, pipe, false);
+ 
+-
+-	// If changing VTG FP2: wait until back in vactive to program FP2
+-	// Need to ensure that pipe unlock happens soon after to minimize race condition
+-	if (!lock && pipe->update_flags.bits.global_sync) {
+-		pipe->stream_res.tg->funcs->wait_for_state(pipe->stream_res.tg, CRTC_STATE_VBLANK);
+-		pipe->stream_res.tg->funcs->wait_for_state(pipe->stream_res.tg, CRTC_STATE_VACTIVE);
+-
+-		pipe->stream_res.tg->funcs->set_vtg_params(
+-				pipe->stream_res.tg, &pipe->stream->timing, true);
+-	}
+-
+ 	if (pipe->stream && should_use_dmub_lock(pipe->stream->link)) {
+ 		union dmub_hw_lock_flags hw_locks = { 0 };
+ 		struct dmub_hw_lock_inst_flags inst_flags = { 0 };
 -- 
 2.17.1
 
