@@ -1,43 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B41DC2D6C8F
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Dec 2020 01:55:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F18C52D6DED
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Dec 2020 03:03:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB44C6E5C6;
-	Fri, 11 Dec 2020 00:55:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD4FB6E7E5;
+	Fri, 11 Dec 2020 02:03:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from spam.moreofthesa.me.uk (moreofthesa.me.uk
  [IPv6:2001:8b0:897:1651::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAE476E5BB
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 00:55:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D6ED6E7E5
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 02:03:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=moreofthesa.me.uk; s=201708; h=Content-Transfer-Encoding:MIME-Version:
- References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+ d=moreofthesa.me.uk; s=201708; h=Content-Transfer-Encoding:Content-Type:
+ MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
  Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
  List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=7jndlwWIKP7EvUGwAsUTh7JQ88xwDpYkxWkGLObl+5s=; b=it2BWO1T/IMq7NHG7Y1alrG6a9
- I7KurOvr0uUCIBanqCcmsAhEotMIDyObzBdqAeOwQhPTBJFhu6NwJ6W+8RuWqLLTYJDUzMsxwt7rj
- 1y93w3v79D3g8Pr6Blx4d9pkAPHnRZkyStglJSrkHjeeor/8XmrnZO4V7quuGuGpJ1hPC+zsctzvZ
- ZitQW07OD1Pf3gixesSPoYHEJcSdwtC2d1jPKm7nL8zuFTKN6DbeubWALnpvItWIvhoOEBV0jlDOe
- QzZ52+51EJAuMqxkIUJcuke9PDh+ZP30VBfGpuF82uF35mFzughlg6cWhtceKYGpNnECdG3d3cWmK
- FU4cGh/w==;
-Received: from [2001:8b0:897:1650::2] (helo=flibble.moreofthesa.me.uk)
+ bh=NtkXN1Pgk+cPekklFFUHblZpoRAvy46jbEWZIVUHrAA=; b=Yb+eVABcvjTY8eXTmyuDi2S7mI
+ 8DIWOT9NvLsb3wABU91I4aWYecErPvjKxlXEs34ddzcHupcficxonubU8iTk63MItAkM5EAt3DHe2
+ JxtXMZo9V1nEohkPlnQRCxSrC0NDMUkTxuR+cZt1uImjHrzm3/zyJ/iJJvyKUP/ENHOz5QNKM6R39
+ t2zp8jI2WrqqxxKFkB5irKkocJsG2SnlNi8tv+wlTjrBFK0EouSV8+s9CMHbkXsgTGk2uYaOcv18H
+ B3hgbdGl1UsZKMpbXv+3ZU9SlDsnCAVL4gfTGFCc6eWrP80S6Dyz/8KKWra5qp35SNBJHZJQUY3Bz
+ eSrW5Hmw==;
+Received: from [2001:8b0:897:1650::2]
  by spam.moreofthesa.me.uk with esmtp (Exim 4.92)
  (envelope-from <devspam@moreofthesa.me.uk>)
- id 1knWiB-0002lw-NC; Fri, 11 Dec 2020 00:55:07 +0000
+ id 1knXmO-0003So-NH; Fri, 11 Dec 2020 02:03:32 +0000
+Date: Fri, 11 Dec 2020 01:42:02 +0000
 From: Darren Salt <devspam@moreofthesa.me.uk>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 7/7] amdgpu: allow overriding of the GPU's list of supported
- BAR sizes
-Date: Fri, 11 Dec 2020 00:55:06 +0000
-Message-Id: <20201211005506.4554-8-devspam@moreofthesa.me.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201211005506.4554-1-devspam@moreofthesa.me.uk>
-References: <20201211005506.4554-1-devspam@moreofthesa.me.uk>
+To: christian.koenig@amd.com
+Subject: Re: [PATCH] amdgpu: resize BAR0 to the maximum available size,
+ even if it doesn't cover VRAM
+Message-ID: <58E26045D8%devspam@moreofthesa.me.uk>
+In-Reply-To: <9d3cee7f-366e-4e7e-9f63-b0a51af7436c@gmail.com>
+References: <20201210005744.5877-1-devspam@moreofthesa.me.uk> 
+ <621ae252-ab39-383e-61a9-746fb47c6e01@gmail.com> 
+ <58E21FF244%devspam@moreofthesa.me.uk> 
+ <9d3cee7f-366e-4e7e-9f63-b0a51af7436c@gmail.com>
+Mail-Followup-To: christian.koenig@amd.com, amd-gfx@lists.freedesktop.org, 
+ Darren Salt <devspam@moreofthesa.me.uk>
+User-Agent: Messenger-Pro/2.73.6.4250 (Qt/5.11.3) (Linux-x86_64)
+X-No-Archive: no
+X-Orwell-Date: Fri, 13160 Dec 1984 01:42:02 +0000
 MIME-Version: 1.0
 X-SA-Exim-Connect-IP: 2001:8b0:897:1650::2
 X-SA-Exim-Mail-From: devspam@moreofthesa.me.uk
@@ -54,93 +61,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Darren Salt <devspam@moreofthesa.me.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Some cards don't advertise a BAR size which covers all of the VRAM.
-
-Mine, a Sapphire RX 5600 XT Pulse, advertises only 256MB, 512MB and 1GB.
-Despite this, it works fine with the full 6GB visible via an 8GB BAR.
----
- drivers/gpu/drm/amd/amdgpu/amdgpu.h        | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 5 +++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 8 ++++----
- 3 files changed, 8 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index c844e2a8500a..a64a9ac92ac1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -201,7 +201,7 @@ static const bool __maybe_unused no_system_mem_limit;
- 
- extern int amdgpu_tmz;
- extern int amdgpu_reset_method;
--extern bool amdgpu_resize_bar;
-+extern int amdgpu_resize_bar;
- extern int amdgpu_max_bar_size;
- 
- #ifdef CONFIG_DRM_AMDGPU_SI
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index b6c5ee490cbf..0f04686ed6c0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -1114,6 +1114,7 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
- 	u16 cmd;
- 	int r;
- 	bool nospc = false;
-+	const bool force = amdgpu_resize_bar == 2;
- 
- 	if (!amdgpu_resize_bar)
- 		return 0;
-@@ -1175,10 +1176,10 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
- 		/* Skip this size if it isn't advertised.
- 		 * This avoids pci_resize_resources returning -EINVAL for that reason.
- 		 */
--		if (!(available_sizes & BIT(rbar_size)))
-+		if (!force && !(available_sizes & BIT(rbar_size)))
- 			continue;
- 
--		r = pci_resize_resource(adev->pdev, 0, rbar_size);
-+		r = pci_resize_resource(adev->pdev, 0, rbar_size, force);
- 		if (r == 0) {
- 			dev_dbg(adev->dev, "Succeeded in resizing to %lluMB.",
- 			        pci_rebar_size_to_bytes(rbar_size) >> 20);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 0542843c7d63..468ca3725890 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -161,7 +161,7 @@ int amdgpu_force_asic_type = -1;
- int amdgpu_tmz;
- int amdgpu_reset_method = -1; /* auto */
- int amdgpu_num_kcq = -1;
--bool amdgpu_resize_bar = true;
-+int amdgpu_resize_bar = 1;
- int amdgpu_max_bar_size = -1;
- 
- struct amdgpu_mgpu_info mgpu_info = {
-@@ -810,12 +810,12 @@ MODULE_PARM_DESC(num_kcq, "number of kernel compute queue user want to setup (8
- module_param_named(num_kcq, amdgpu_num_kcq, int, 0444);
- 
- /**
-- * DOC: resize_bar (bool)
-+ * DOC: resize_bar (int)
-  * Control whether FB BAR should be resized.
-  * Enabled by default.
-  */
--module_param_named(resize_bar, amdgpu_resize_bar, bool, 0444);
--MODULE_PARM_DESC(resize_bar, "Controls whether the FB BAR should be resized (default = true).");
-+module_param_named(resize_bar, amdgpu_resize_bar, int, 0444);
-+MODULE_PARM_DESC(resize_bar, "Controls whether the FB BAR should be resized (0 = off, 1 = on (default), 2 = override the GPU's supported sizes).");
- 
- /**
-  * DOC: max_bar_size (int)
--- 
-2.20.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+SSBkZW1hbmQgdGhhdCBDaHJpc3RpYW4gS8O2bmlnIG1heSBvciBtYXkgbm90IGhhdmUgd3JpdHRl
+bi4uLgoKPiBBbSAxMC4xMi4yMCB1bSAxNDo1OSBzY2hyaWViIERhcnJlbiBTYWx0Ogo+ID4gSSBk
+ZW1hbmQgdGhhdCBDaHJpc3RpYW4gS8O2bmlnIG1heSBvciBtYXkgbm90IGhhdmUgd3JpdHRlbi4u
+Lgo+ID4KW3NuaXBdCj4+IE15IGN1cnJlbnQga2VybmVsIGhhcyBhbm90aGVyIHBhdGNoLCBhcHBs
+aWVkIG9uIHRvcCBvZiB0aGlzIHBhdGNoLCB3aGljaAo+PiBhbGxvd3MgaWdub3JpbmcgdGhlIHNp
+emUgbGlzdC4gQXMgc3VjaCwgdGhhdCBCQVIgaXMgY3VycmVudGx5IDhHQiBpbnN0ZWFkCj4+IG9m
+IHRoZSAxR0Igd2hpY2ggaXQgc2hvdWxkIGJlLiBJJ3ZlIG5vdCBub3RpY2VkIGFueSBzaWduaWZp
+Y2FudCBwcm9ibGVtcwo+PiBhcyB5ZXQuCgo+IFBsZWFzZSBncmFiIHVtciwgdGFrZSBhIGxvb2sg
+YXQgdGhlIGFtZGdwdV92cmFtX21tIGRlYnVnZnMgZmlsZSBhbmQgc2VlIGlmCj4geW91IGNhbiBn
+ZXQgc29tZSBieXRlcyBmcm9tIGEgYnVmZmVyIGF0IHRoZSBlbmQgb2YgVlJBTS4KCj4gSWYgdGhh
+dCBkb2Vzbid0IHJldHVybiAweDAgb3IgMHhmZmZmZmZmZiB0aGVuIGl0IGlzIHByb2JhYmx5IHdv
+cmtpbmcgCj4gcXVpdGUgZmluZS4KCkkgdXNlZCBkZDoKCiAgIyBkZCBpZj0vc3lzL2tlcm5lbC9k
+ZWJ1Zy9kcmkvMC9hbWRncHVfdnJhbSBicz0xMDQ4NTc2IGNvdW50PTEgc2tpcD02MTI3IHwgaGV4
+ZHVtcCAtQyB8dGFpbAogIDErMCByZWNvcmRzIGluCiAgMSswIHJlY29yZHMgb3V0CiAgMTA0ODU3
+NiBieXRlcyAoMS4wIE1CLCAxLjAgTWlCKSBjb3BpZWQsIDAuMDY5NjAzNyBzLCAxNS4xIE1CL3MK
+ICAqCiAgMDAwZmY4MDAgIGNhIDUzIGNhIDUzIGNhIDUzIGNhIDUzICBjYSA1MyBjYSA1MyBjYSA1
+MyBjYSA1MyAgfC5TLlMuUy5TLlMuUy5TLlN8CiAgKgogIDAwMGZmYTAwICBjNiA2MyBjNiA2MyBj
+NiA2MyBjNiA2MyAgYzYgNjMgYzYgNjMgYzYgNjMgYzYgNjMgIHwuYy5jLmMuYy5jLmMuYy5jfAog
+ICoKICAwMDBmZmUwMCAgY2EgNTkgY2EgNTkgY2EgNTkgY2EgNTkgIGNhIDU5IGNhIDU5IGNhIDU5
+IGNhIDU5ICB8LlkuWS5ZLlkuWS5ZLlkuWXwKICAqCiAgMDAwZmZmMDAgIDlhIDUzIDlhIDUzIDlh
+IDUzIDlhIDUzICA5YSA1MyA5YSA1MyA5YSA1MyA5YSA1MyAgfC5TLlMuUy5TLlMuUy5TLlN8CiAg
+KgogIDAwMTAwMDAwCgpbc25pcDsgVkJJT1MgQkFSIHNpemUgbGltaXQgb2YgMUdCXQo+IEFueXdh
+eSBJIGFncmVlIHRoYXQgYSBQQ0kgc3Vic3lzdGVtIHF1aXJrIG1pZ2h0IGJlIGFwcHJvcHJpYXRl
+ZC4KCk15IGN1cnJlbnQgcGF0Y2ggc2V0IGltcGxlbWVudHMgYW4gb3ZlcnJpZGUsIHdoaWNoIGlz
+IGRlZmluaXRlbHkgdXNlZnVsIGZvcgp0ZXN0aW5nLiBBcyBmb3IgYWRkaW5nIGEgcXVpcmsg4oCT
+IEkndmUgbm90IGxvb2tlZCBpbnRvIGhvdyBiZXN0IHRvIGRvIHRoaXMgeWV0LgoKW3NuaXBdCj4+
+IEl0J2xsIGFsc28gcmVxdWlyZSBzb21lIHBhdGNoaW5nIGluIHRoZSBQQ0kgc3Vic3lzdGVtIHRv
+IGV4cG9zZSByZWxldmFudAo+PiBmdW5jdGlvbnMuCgo+IEp1c3Qgc2VuZCB0aGF0IHRvIG1lIGFz
+IGEgY29tcGxldGUgYW5kIGNsZWFuIHBhdGNoc2V0LgoKRG9uZSwgdGhvdWdoIG9ubHkgdG8gdGhl
+IGxpc3QuCgo+IEknbSB0aGUgb25lIHdobyBhZGRlZCB0aGUgY29kZSBpbiB0aGUgZmlyc3QgcGxh
+Y2UgYW5kIEkgaGF2ZSBubyBwcm9ibGVtIAo+IGFyZ3Vpbmcgd2l0aCBCam9ybiB3aHkgd2UgbmVl
+ZCB0aGF0IGluIGEgZHJpdmVyIG5vdy4KClRoYXQncyBkZWZpbml0ZWx5IGhlbHBmdWwhIOKYugpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1h
+aWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
