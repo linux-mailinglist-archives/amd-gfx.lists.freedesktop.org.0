@@ -1,40 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AB8D2D6A6D
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Dec 2020 23:01:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65A132D6C8D
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Dec 2020 01:55:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19DE86EB71;
-	Thu, 10 Dec 2020 22:01:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E3246E5C5;
+	Fri, 11 Dec 2020 00:55:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail1.protonmail.ch (mail1.protonmail.ch [185.70.40.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A08966EB6F;
- Thu, 10 Dec 2020 22:01:12 +0000 (UTC)
-Date: Thu, 10 Dec 2020 22:01:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail2; t=1607637670;
- bh=FmTLQjfSj2V4sIkgLBfO1ZQUi/M+NWkIe67YWDNBQuo=;
- h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
- b=A23OApJGdY2kZ3w4Qq6w+IYE9/5+sfej7hEwUoUWHx7Pi+QSrN90KmqEnQeQ27UMo
- WD6+jdepWn3l8gKv/e10t3gGzYHMk8ddmJVq7BpmmfHh9UnSVEg9TxabVoFbu4NdcG
- RssK30ZMipm/RI0N7h0mh+pz1fVLzlc5BF3RkrOmosrq2fPNV28fmmHJWjsZFbupkJ
- WXcY+6WPl6qSq2ISyMwJEGXXHTq/s8Ad1+SR12TsNoGRmuJEdIhi0xfqJcmTlcnaCZ
- O/5ENDxCwSXUal6Oauar+7j2yf3NzLIBDqcHcNEr5ZLe5rKmMT9HTEkdV4lS1cD2uD
- EGVDsRhieFAOA==
-To: Aurabindo Pillai <aurabindo.pillai@amd.com>
-From: Simon Ser <contact@emersion.fr>
-Subject: Re: [PATCH v2 0/3] Experimental freesync video mode optimization
-Message-ID: <MC46k2jDYAeDTZaSlv6T5iIq5ibkh2yYwW3KZ-XLXLwoRByjkWsEr6-6eQM4iZqmkiLoleyh84S290ytAub0bK-esJje1OGKIEilcz_iikY=@emersion.fr>
-In-Reply-To: <20201210184823.285415-1-aurabindo.pillai@amd.com>
-References: <20201210184823.285415-1-aurabindo.pillai@amd.com>
+Received: from spam.moreofthesa.me.uk (moreofthesa.me.uk
+ [IPv6:2001:8b0:897:1651::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F7DE6E5BF
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 00:55:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=moreofthesa.me.uk; s=201708; h=Content-Transfer-Encoding:MIME-Version:
+ Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=szzs9vzu+lntns0aac9bpwGBwdtC4TaMQmn94BF4Lkg=; b=AjZGay8OQ19hA6adsmdzk07e+1
+ 3ogPQXaUD3u1Ze9boURByt059gIqK5NyBRJBdEGFX1mQl5GPnVRSaWCRcw2QHDYVn+cdl9Qq2s084
+ Jf+IbmZVz9WJL5L9aMS0GDCDuX3dYZcHz6GyaI2s8Jd22lGZgwzy3hQcJxtg/7cY/sUVdyfVDv28P
+ CgW5gP0+KnphVYcWMC1ZQjt9olci+i+oMhlq5AznefUcYCyww6Rbn7XMRAuR2KaoZueU77isRm+/x
+ ZASrNXBh1HeZRNVfmtFH5uL/fH0MtKHzr6oEJ4T8xR+keByRzlwf0FbWO54YymwXYhHCFLoIuVtSe
+ 4RLf6Qjw==;
+Received: from [2001:8b0:897:1650::2] (helo=flibble.moreofthesa.me.uk)
+ by spam.moreofthesa.me.uk with esmtp (Exim 4.92)
+ (envelope-from <devspam@moreofthesa.me.uk>)
+ id 1knWiA-0002lw-M3; Fri, 11 Dec 2020 00:55:06 +0000
+From: Darren Salt <devspam@moreofthesa.me.uk>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 0/7] amdgpu, pci: improved BAR resizing support
+Date: Fri, 11 Dec 2020 00:54:59 +0000
+Message-Id: <20201211005506.4554-1-devspam@moreofthesa.me.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
- DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
- autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
- mailout.protonmail.ch
+X-SA-Exim-Connect-IP: 2001:8b0:897:1650::2
+X-SA-Exim-Mail-From: devspam@moreofthesa.me.uk
+X-SA-Exim-Scanned: No (on spam.moreofthesa.me.uk);
+ SAEximRunCond expanded to false
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,54 +51,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Simon Ser <contact@emersion.fr>
-Cc: stylon.wang@amd.com, thong.thai@amd.com, shashank.sharma@amd.com,
- Martin Peres <martin.peres@free.fr>, amd-gfx@lists.freedesktop.org,
- Pekka Paalanen <ppaalanen@gmail.com>,
- DRI Development <dri-devel@lists.freedesktop.org>, wayne.lin@amd.com,
- alexander.deucher@amd.com, Harry.Wentland@amd.com, nicholas.kazlauskas@amd.com
+Cc: Darren Salt <devspam@moreofthesa.me.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+This patch series improves the existing BAR resizing support in amdgpu. By
+default, it will attempt to resize BAR0 for each dGPU present to cover the
+VRAM, falling back to smaller sizes if necessary, e.g. if there's not enough
+address space remaining or support for the size is not advertised.
 
-(CC dri-devel, Pekka and Martin who might be interested in this as well.)
+Basic boot-time (or module load time) options to control this resizing are
+implemented: one to control whether resizing is done (and whether the
+advertised BAR sizes are ignored) and one to control the maximum BAR size
+(where the size would be increased). At present, these are coarse; they
+apply to all dGPUs driven by amdgpu.
 
-On Thursday, December 10th, 2020 at 7:48 PM, Aurabindo Pillai <aurabindo.pillai@amd.com> wrote:
+The override is to cope with GPU VBIOSes which don't properly advertise
+supported BAR sizes. This should be quirked somehow; I have yet to determine
+how this should be arranged.
 
-> This patchset enables freesync video mode usecase where the userspace
-> can request a freesync compatible video mode such that switching to this
-> mode does not trigger blanking.
->
-> This feature is guarded by a module parameter which is disabled by
-> default. Enabling this paramters adds additional modes to the driver
-> modelist, and also enables the optimization to skip modeset when using
-> one of these modes.
+Darren Salt (7):
+  pci: export PCI BAR size-reading functions
+  pci: add BAR bytes->size helper & expose size->bytes helper
+  amdgpu: resize BAR0 to the maximum available size, even if it doesn't
+    cover VRAM (v2)
+  amdgpu: module option controlling whether BAR0 resizing is done
+  amdgpu: limit maximum FB BAR size when attempting to enlarge
+  pci: allow for overriding the list of advertised BAR sizes
+  amdgpu: allow overriding of the GPU's list of supported BAR sizes
 
-Thanks for working on this, it's an interesting feature! However I'd like to
-take some time to think about the user-space API for this.
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 63 ++++++++++++++++++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 18 +++++++
+ drivers/pci/pci.c                          |  2 +
+ drivers/pci/pci.h                          |  6 ---
+ drivers/pci/setup-res.c                    |  4 +-
+ include/linux/pci.h                        | 15 +++++-
+ 7 files changed, 91 insertions(+), 19 deletions(-)
 
-As I understand it, some new synthetic modes are added, and user-space can
-perform a test-only atomic *without* ALLOW_MODESET to figure out whether it can
-switch to a mode without blanking the screen.
+-- 
+2.20.1
 
-However the exact modes amdgpu adds are just some guesses. I think it would be
-great if user-space could control the min/max refresh rate values directly.
-Not only this would remove the need for the kernel to hard-code "well-known
-video refresh rates", but this would also enable more use-cases. For instance
-some users might want to mitigate flickering on their screen by reducing the
-VRR range. Some users might want to lower their screen refresh rate for power
-savings.
-
-What do you think? Would you be fine with adding min/max VRR range properties?
-
-If you're scared about the user-space code requirement, I can provide that.
-
-Thanks,
-
-Simon Ser
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
