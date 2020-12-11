@@ -1,107 +1,117 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 558442D7847
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Dec 2020 15:55:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D56A12D797F
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Dec 2020 16:36:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D92956E0CA;
-	Fri, 11 Dec 2020 14:55:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4ED676E29D;
+	Fri, 11 Dec 2020 15:36:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2042.outbound.protection.outlook.com [40.107.220.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BCCC6E03A
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 14:55:12 +0000 (UTC)
+Received: from NAM04-BN3-obe.outbound.protection.outlook.com
+ (mail-eopbgr680073.outbound.protection.outlook.com [40.107.68.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69FD86E29D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 15:36:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TLnQ4uXocCfOz/RnCLYbnRR7ItS2OZYo5M93xmbMvtEJsC8ebGKqd+t3nYA3UR82Bo76dh8AN85cc6UbvY70RVSRVIv0j+1D259E+njG4LbZtSNznFIU3n7xGnzBAXDNF2lJTwUETFZ2uJM6Ry4helQLg737tLFwj0SLtpZOKRpbVccLnUvYPVIms2/Ugy9e5dDkPBqquVYcyatXkPk1gKUOAC8RIYJilLUrXRCzGqI7eekURkxP5Q17AlkfcdwJFjy8cVo+k3lRiZqtTXaEB30QthsLb0uLMTAYBfzjemObl/jgyR5OxqTz/vRA/Xz/EGNxQ6RN/mHsY+2Q6yrMTQ==
+ b=GQ0HLwaXkouzVlNZot0VpTYhaEnCc49YsK3cN0gW3/wDecXRaHxCzR9Ap8//dThpdJtVP4EqHt9r7Fk1/It8OByQvkdLbTPPHjZWuiP+9cm1Blluo9vWt62vMHydoX4+eI2yATXcmNFMuU0vt8SBq2SbUEno6Jg4DMGJsLYYy90Ctc2XtY3TPXf4FgTAZ8VEQUPS1+7pXDDbj7FDKUEXLEC33BCRFD2gSnrL2XX+MN+l/jYbiQ/V5LZ29KCQg+SZUgmDJIai9wGQIo4zVTH76Pc9WZf1C/Y8/ZRLfv7zFqkYWaehuImBpbKrfWvnIC9uIaJ4pD7Ocl+OmJgceQQzBQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b36/SiVlYuW4V5cisuPOh+a3IMZ3pjOb1KomL1AEb3M=;
- b=afLpdMo3umqklsEu0VzfL/5BpYbXaWZdqGqhwuuRSr4V1ZBaXH66lKq01CTe871wweAPCWVaItE1Ddn56SlljfCVdM5+jhrstf+QLGijFdstdRPyUnhsqLZaaodtkCRes3jua+Bs3zt4rZpwTja9MijfWUw5uPLPm8CP5bQonyPVMA6QwJzsaPKKWCKNYrvcapYiMFhF3+e1ZIsOWVbVp0Fa/m+2TJdhGg5nlfYLFcjSBlxOVlmM9nR4SLsxt1V+YlXTr7UFZBNAON0znDnF+JDgIXxAsZmgoT75hhHl0jTT8MDTOfdCLPJTdzvebRE9qXfDorOiZYypMzThCzDsKw==
+ bh=1IsQYu7xVRzLRa7j3yAV3OA0jdHQCV8aihW2T3L1Ccc=;
+ b=jdnHvAmV5gQcyUeJ0+WZxWyyH7Hs31sO33AcOjk+wanXwvJcPQ7O+ehjtvbqVE6hovBofS8i0AMfJVcJ00TIO9LN8lCh71ZWNtqmxhae1w9OH+80SPibW88Xl5qs6jmHU8QKaaQQuPAPW86Li8ikkpmf3+Ft+Q5wS/fmlUiD+eWbN7q25zzTwyE6J5DhYWnKDv/xqdbgAEKktqPZ7pet0GKFj/Ik/9/6/qYUFuKD0x6TtLrLq/uuwwAB1eKAiDi85/l9aLXhXdxdZVxkw5aUWyVZBNaUYBWm/qtnss9GMX5CBw1g27yEs30LJgr8CKs6Af/gVDG5fE1TTTGXS7z3aw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b36/SiVlYuW4V5cisuPOh+a3IMZ3pjOb1KomL1AEb3M=;
- b=s+eRtfFIBFYsT7J+F8H/r6YqmdVCnYWjVZf9O9DMWfSpTITj8uAzZLhyxomup2uiEdLCXhY3B2XSMHkwwPJEz0BNZ2RZ9VAQOoypC/KLPWBMPlThsf5rOugq69ZVTiY1n4+P6t23VBcO8z4wYNZxKo5qrn/N3ZbwCSnBRkPUIcc=
-Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
- by MN2PR12MB4991.namprd12.prod.outlook.com (2603:10b6:208:a4::15)
+ bh=1IsQYu7xVRzLRa7j3yAV3OA0jdHQCV8aihW2T3L1Ccc=;
+ b=gfuKBvqMJHlZkervDE/0ZA0SMJCqbk4mCeX591x8qlcjfm+gm9Bqt4YVRD8nCs2vdOg0Wd29RPpGWgycpu3Co9wstvRss3Ss+MFm+rfTp05X7WEwNxPz8bTsIGQObz+uNGPxKzGnKGV072hCTqQ6teOOkRDjUIsgYI1c68vTgRM=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from BYAPR12MB3126.namprd12.prod.outlook.com (2603:10b6:a03:df::28)
+ by BY5PR12MB4965.namprd12.prod.outlook.com (2603:10b6:a03:1c4::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.13; Fri, 11 Dec
- 2020 14:55:10 +0000
-Received: from MN2PR12MB4488.namprd12.prod.outlook.com
- ([fe80::fca3:155c:bf43:94af]) by MN2PR12MB4488.namprd12.prod.outlook.com
- ([fe80::fca3:155c:bf43:94af%5]) with mapi id 15.20.3632.019; Fri, 11 Dec 2020
- 14:55:10 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Gao, Likun" <Likun.Gao@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu: skip vram operation for BAMACO runtime
-Thread-Topic: [PATCH] drm/amdgpu: skip vram operation for BAMACO runtime
-Thread-Index: AQHWz5zh2kPlnWBTnUGUMznu3ZuO1anx+1rG
-Date: Fri, 11 Dec 2020 14:55:10 +0000
-Message-ID: <MN2PR12MB4488786228BE12ADC2765418F7CA0@MN2PR12MB4488.namprd12.prod.outlook.com>
-References: <20201211090448.113278-1-likun.gao@amd.com>
-In-Reply-To: <20201211090448.113278-1-likun.gao@amd.com>
-Accept-Language: en-US
+ 2020 15:36:07 +0000
+Received: from BYAPR12MB3126.namprd12.prod.outlook.com
+ ([fe80::45a1:6d50:60d6:9d68]) by BYAPR12MB3126.namprd12.prod.outlook.com
+ ([fe80::45a1:6d50:60d6:9d68%7]) with mapi id 15.20.3654.017; Fri, 11 Dec 2020
+ 15:36:07 +0000
+Subject: Re: [PATCH 3/3] drm/amd/display: Skip modeset for front porch change
+To: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20201210024526.1151447-1-aurabindo.pillai@amd.com>
+ <20201210024526.1151447-4-aurabindo.pillai@amd.com>
+ <9cc10157-d533-95fd-0f20-8bbc2db75a79@amd.com>
+ <f102763220b62e64e377e84a2e8d354bb8d89173.camel@amd.com>
+ <af16a352-6bd5-0836-50b0-a05194fb1764@amd.com>
+ <41c0996b-4bbf-902d-2039-7c7015804dfa@amd.com>
+From: Shashank Sharma <shashank.sharma@amd.com>
+Message-ID: <3efa6961-544a-3f27-361e-c0d03d6355df@amd.com>
+Date: Fri, 11 Dec 2020 21:05:55 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.1
+In-Reply-To: <41c0996b-4bbf-902d-2039-7c7015804dfa@amd.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=True;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2020-12-11T14:55:09.943Z;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=AMD
- Public; MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=0;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged; 
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [192.161.78.5]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 0743e1b6-927a-45ee-e553-08d89de4c20a
-x-ms-traffictypediagnostic: MN2PR12MB4991:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB49914F7D029E7FFA0103B18DF7CA0@MN2PR12MB4991.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: tpR3EB/8z8nZdvRbod9tg3T8nNp2/s6tFqpiDCyuuuDhUthN0ewhEzYldbwEXjA1MIzBuRde+rFzOz62Gwmf8srOOHsFzrxuqYLhtMpKgXCU1BXWzqZSppJrOQixlj2SUdSEemoV4US1oZT5mhfMff6Th/f+JJpernv0J0JYeotZvXKn25qLES1wOzW8sEM3Fx4l41o/2vH1f7mW0sHyCAYxXzDjFuyngHIPoqP8qh3pjPdR+/8fBEUPG868agP8HMOV9pbLkP3J5Lwt2HU8E1Vmo1kATK9PKPViyGt1dv8QGcNAbI+/VchBr/7PBbnKDg2z4NP8VcPhodIyGCk6EanrLJbzU240xWEXu1Vmzb4=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(346002)(376002)(366004)(83380400001)(6506007)(71200400001)(966005)(66946007)(508600001)(7696005)(66446008)(86362001)(166002)(33656002)(66556008)(53546011)(64756008)(76116006)(52536014)(66476007)(186003)(55016002)(54906003)(4326008)(2906002)(19627405001)(45080400002)(8676002)(110136005)(5660300002)(26005)(8936002)(9686003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?tIy0lyOeP7J/YxuaqiNxPRblpFU0YMthUJDc0ca2wSt8Qrohy0Y2bnCGMuGs?=
- =?us-ascii?Q?bXWTec68bGd7Y+S9fgEabf891RwkqVLt4P6Ts2ac079K+IMNyF5uHFdOoKJm?=
- =?us-ascii?Q?tf6dLNIZoJ/fje/RDAih5tfUjnYDEBuuimGM8Xh56KkLXeE/nY2vI1ucXuSy?=
- =?us-ascii?Q?JCBW0TjGIQ7LhlzRSr/Hh7YFcCSmdvF/+m1vcxjMMdaBhGnAQrg0ZGA4zI9D?=
- =?us-ascii?Q?adpQDIFuIoOmt/gMdHeYGOzcFchQBolg/9UmmUjxUKUIafIR/eohMxUj82S7?=
- =?us-ascii?Q?0exAikz4Z126uqNF02OgrY7nk89RPmFfwWT1o59urqF+QI1g18Q7DX/IJ/Sq?=
- =?us-ascii?Q?VWSZmLlw92X8yFcfMf7W7/qPOxoPuSQ0yDFWEnPbq/8sviW9eV778aj3ren4?=
- =?us-ascii?Q?GKtZVP5CV1pSJJIRgJRxrLrZ5cNkN7JnDjTf+MkUqwZvf1wgmeemCqy/lgxf?=
- =?us-ascii?Q?Khl0VUPfI5wjwWqvZG1kG8r4awaqdE3GbSjIqA80393Dcs+o42h1KSO4V3Fd?=
- =?us-ascii?Q?X8Di/3KGjIM0hrGICuUvVOwYL3jNKJhxG/mCa0t/jTfC+vXvwIASpW6ZT3FS?=
- =?us-ascii?Q?S8aCuPSp6SICuswGSXrep0Hk6mSqqIviG49RO1+iKmIb2+EmBtHqNesIFz7I?=
- =?us-ascii?Q?q94wINXpnpCC5TPNdqfLu3lJieb+hPK3cy5Tkp0CxizuHeo8dYoUlU1G11bd?=
- =?us-ascii?Q?gaftZQGRuVEdpWK8qk/UAsbRXOGkfXtc8lAjoz339cXkJu8X5Pfi1tZ+zSnX?=
- =?us-ascii?Q?KUZaflR8PdjepDoeXx0JFIlewcXMjW26M33Skamp0AJHLS6htFxs8aTerJtY?=
- =?us-ascii?Q?Z/hU/13FaGiyAH12Gv/4TJJVzihzxQPGzExAWB6hOP+xOUyKkO3E4FKgruhk?=
- =?us-ascii?Q?PkDoGBo9TZ80oUiUVgwL4XisWzMn2DPUcBOV/TmwvT0ytLXRnVpyDrtKa8//?=
- =?us-ascii?Q?yLeJtniympAHbZ6UGaHpu7uMYQoTjBEFcuUa9wd3aJ4=3D?=
+X-Originating-IP: [106.51.105.40]
+X-ClientProxiedBy: MA1PR01CA0131.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:35::25) To BYAPR12MB3126.namprd12.prod.outlook.com
+ (2603:10b6:a03:df::28)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.0.113] (106.51.105.40) by
+ MA1PR01CA0131.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:35::25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3654.12 via Frontend Transport; Fri, 11 Dec 2020 15:36:04 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 8a3b7941-31b3-4bd5-c669-08d89dea7a5c
+X-MS-TrafficTypeDiagnostic: BY5PR12MB4965:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BY5PR12MB49652FC701E58DAF6DDA0834F2CA0@BY5PR12MB4965.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HMPfUGjRo12HlFNq40/AgWQpFLoAAcfrgW3XqLqZJelXzsXZ4BW/1YHRBb2uLG8vad+Kaj9ZUGRfQzVOslQeUgqyUmzmKd5rCiqi5/ykkTjj8Vcf1s7EBr+1zNsWlFBC1T9SenOhcLOYQjbXg0l4YF/tM2OlDAEhhOJU4CjYGes1clB39JkXRKYW88O90OvkZTpC8LDDAxrs1nQPaGSiPUZdjfdH+lln+FWv1ZZyiqNdhN9ZBqebGyDW+R2sOfrQAG0v56NNmfMu7TA7RzFs5B1mBAuCqiaC17mCJPmHwDxu0vXRANCouEwG/D4cUNvhPrBvmqBYk3mDuhqedDYby3GkgAanKLqvouXAQ6zsrze1Swa+o9dN7GZ/zICuv6ONlPSg34FKmKQfAL9e8tOA28KQRqeLUb3A9KpgUSbGwRDRx6o6v1WVxrrqN+lR0Ikd
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR12MB3126.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(366004)(376002)(346002)(52116002)(4326008)(55236004)(53546011)(31686004)(8676002)(31696002)(508600001)(26005)(86362001)(186003)(956004)(2616005)(8936002)(66476007)(6666004)(1006002)(44832011)(16526019)(5660300002)(66946007)(66556008)(4001150100001)(16576012)(36756003)(34490700003)(110136005)(6486002)(2906002)(83380400001)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?VVFSTm80T0l6Wmxmdmtlc1lHdVk4U1BvNzB6TkVMUGFDbHVWSU5tWkQ3S1oy?=
+ =?utf-8?B?TjJuSFBISFVhSXQ0dDA4QzRpYUJ0WllTS2RHZk10QUdZdzdWRGJTSWxFVnRp?=
+ =?utf-8?B?NStDS0dmVWNpSFRmRVN4andUZkRQcS9taXFGb1MydzdrR0l3WlByN2RLOERZ?=
+ =?utf-8?B?R3RMa2JTdlJlSUxueCsreFAvcU1BMmFoSXROMHA0Rjlpa2RKRWpoQ29qU0g2?=
+ =?utf-8?B?U1NkNVlrSWVjNU1EY2hVVEZWNlBBWDBScGNwaUhtUXdDL0JaRnVRdDlrcUNV?=
+ =?utf-8?B?WUlFWnBKZlRmeFY1RkI3WVk1QUREand6QmFVWnd3VHBhVmVoWWNrREpUOTNK?=
+ =?utf-8?B?UGFlRnZDaDFtUlBsZmcwbEZ6dWxQTThwU3YvVjJIL24rYnRBalZYN25zMDFO?=
+ =?utf-8?B?K3FrY3dlN0hqNEVaV25iVTR4bUZKN0NINWc4ZzM4SlNMRlZyQjNReFlmK2RT?=
+ =?utf-8?B?dzR2Tm83S2kvL2tvdXRPdWlsdkd3dzRrQVQ2SGJMUE5JcHpBQzg3NFR6dnpj?=
+ =?utf-8?B?bHpBOVh1TmVnWituU2Y1Rm16Njc2cVBzUUg1QkVnSno5bjk3OEtmZE1BWDBI?=
+ =?utf-8?B?c0RHaXYrcS9qNEh4RUZtWEhWM1ZnL0UxVld2T1ZsVEdOb2xaUzZoMjhidWFz?=
+ =?utf-8?B?QVV5NTh2YmtsRWsrWGsyVmJySnlYaEtxQnZuQWZySHAxTmVXdEJDYUFrRDVD?=
+ =?utf-8?B?cUlJMDBNeWhjMVprbGsxZ1JLQm9BMFJNUzFqRDhrNGwxWXRoZmtNQnp3ZDRU?=
+ =?utf-8?B?cStCeWFvdDhIa1pOUTd2cllUclNteHlUakFjcjBsbjBYelcyMHp0b2h0OEVN?=
+ =?utf-8?B?YUhnVk1HSGNnVS9VQWJDRlFzMjZoQWRZMWVicTQ3N2dGbXN5M3RLZGdSOWZP?=
+ =?utf-8?B?VDlJQ0RxS08zaWJ0SEdDeGFqcU4rNHhlSXJyT3lPaWhKVGRmNkcwOGJ6ZGRx?=
+ =?utf-8?B?MU0vUUVhWExidFcyMHhXd1NoeUpadnNjbkx6Uzc5NVlGeFZSTjhESTJCM0kx?=
+ =?utf-8?B?WmZLL2tWT0tHUkdhb2hUc3owdlErQzNjNStmdXBqcjluTFd1bGpKME5Hc2Ex?=
+ =?utf-8?B?dCtNN3dNMmhIUG9ZOGtFSWNyVmhMd0JFaDQ1b2c4K1piSVFYclViMStOWkVE?=
+ =?utf-8?B?dzZqaE5NNHRRc1hsV3p2OE5GeHJXeGlMUll2blhGU0hmVDN2WTVZOVRaT2xD?=
+ =?utf-8?B?a1ZvK0hwRDRCNkJpSTcvNzl0Q1NtYW5NOG44Q0YwUU5zYTlzbzg5aS9SVjhq?=
+ =?utf-8?B?eXQ0YUd2REpTMU9INVYyTFRWdjdaZ3BRZXEzTmY4Z29xZUNFWUhFS2tnVGU2?=
+ =?utf-8?Q?IOxJoPEz4aZMsHsPpoiH0P4tuan+ScWTQ6?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3126.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0743e1b6-927a-45ee-e553-08d89de4c20a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Dec 2020 14:55:10.5129 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mxZ+4ib4d+72Gfg31IEG3yYmGpawYrufMtT0JFmJD0kuhyrm613VNW/JBhuoig5yf1SrnFeSYIKomdHy6S/t/w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4991
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2020 15:36:07.1614 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a3b7941-31b3-4bd5-c669-08d89dea7a5c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QKCr+RYKDQzTb4r1P4dges7LbeqYrnVSzhozow4UZ+9WqC02ls6UX4sTWtRzZjMxaEmOcnUvsMhIIAy9sgz10g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4965
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,771 +123,176 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Feng, Kenneth" <Kenneth.Feng@amd.com>, "Zhang,
- Hawking" <Hawking.Zhang@amd.com>
-Content-Type: multipart/mixed; boundary="===============0901901151=="
+Cc: alexander.deucher@amd.com, stylon.wang@amd.com, thong.thai@amd.com,
+ Harry.Wentland@amd.com, wayne.lin@amd.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0901901151==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB4488786228BE12ADC2765418F7CA0MN2PR12MB4488namp_"
-
---_000_MN2PR12MB4488786228BE12ADC2765418F7CA0MN2PR12MB4488namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-[AMD Public Use]
-
-Instead of checking the global parameters everywhere, let's check the runti=
-me pm parameter and then set a local adev variable per device.  That way we=
- can have a mix of devices that support different runtime pm modes in the s=
-ame system and everything works.
-
-Alex
-
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Likun Ga=
-o <likun.gao@amd.com>
-Sent: Friday, December 11, 2020 4:04 AM
-To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
-Cc: Gao, Likun <Likun.Gao@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>; Z=
-hang, Hawking <Hawking.Zhang@amd.com>
-Subject: [PATCH] drm/amdgpu: skip vram operation for BAMACO runtime
-
-From: Likun Gao <Likun.Gao@amd.com>
-
-Skip vram related operation for bamaco rumtime suspend and resume as
-vram is alive when BAMACO.
-It can save about 32ms when suspend and about 15ms when resume.
-
-Signed-off-by: Likun Gao <Likun.Gao@amd.com>
-Change-Id: I6ad39765de5ed1aac2dc51e96ed7a21a727272cd
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  9 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c    | 72 +++++++++++++---------
- 2 files changed, 50 insertions(+), 31 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_device.c
-index 0ec7c28c4d5a..66b790dfb151 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2464,7 +2464,8 @@ static int amdgpu_device_ip_late_init(struct amdgpu_d=
-evice *adev)
-         amdgpu_device_set_cg_state(adev, AMD_CG_STATE_GATE);
-         amdgpu_device_set_pg_state(adev, AMD_PG_STATE_GATE);
-
--       amdgpu_device_fill_reset_magic(adev);
-+       if ((amdgpu_runtime_pm !=3D 2) || !adev->in_runpm)
-+               amdgpu_device_fill_reset_magic(adev);
-
-         r =3D amdgpu_device_enable_mgpu_fan_boost();
-         if (r)
-@@ -3706,7 +3707,8 @@ int amdgpu_device_suspend(struct drm_device *dev, boo=
-l fbcon)
-         amdgpu_amdkfd_suspend(adev, !fbcon);
-
-         /* evict vram memory */
--       amdgpu_bo_evict_vram(adev);
-+       if ((amdgpu_runtime_pm !=3D 2) || !adev->in_runpm)
-+               amdgpu_bo_evict_vram(adev);
-
-         amdgpu_fence_driver_suspend(adev);
-
-@@ -3718,7 +3720,8 @@ int amdgpu_device_suspend(struct drm_device *dev, boo=
-l fbcon)
-          * This second call to evict vram is to evict the gart page table
-          * using the CPU.
-          */
--       amdgpu_bo_evict_vram(adev);
-+       if ((amdgpu_runtime_pm !=3D 2) || !adev->in_runpm)
-+               amdgpu_bo_evict_vram(adev);
-
-         return 0;
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_psp.c
-index 523d22db094b..67e74b43a1ab 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -397,10 +397,12 @@ static int psp_tmr_init(struct psp_context *psp)
-                 }
-         }
-
--       pptr =3D amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
--       ret =3D amdgpu_bo_create_kernel(psp->adev, tmr_size, PSP_TMR_SIZE,
-+       if ((amdgpu_runtime_pm !=3D 2) || !psp->adev->in_runpm) {
-+               pptr =3D amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
-+               ret =3D amdgpu_bo_create_kernel(psp->adev, tmr_size, PSP_TM=
-R_SIZE,
-                                       AMDGPU_GEM_DOMAIN_VRAM,
-                                       &psp->tmr_bo, &psp->tmr_mc_addr, ppt=
-r);
-+       }
-
-         return ret;
- }
-@@ -504,8 +506,10 @@ static int psp_tmr_terminate(struct psp_context *psp)
-                 return ret;
-
-         /* free TMR memory buffer */
--       pptr =3D amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
--       amdgpu_bo_free_kernel(&psp->tmr_bo, &psp->tmr_mc_addr, pptr);
-+       if ((amdgpu_runtime_pm !=3D 2) || !psp->adev->in_runpm) {
-+               pptr =3D amdgpu_sriov_vf(psp->adev) ? &tmr_buf : NULL;
-+               amdgpu_bo_free_kernel(&psp->tmr_bo, &psp->tmr_mc_addr, pptr=
-);
-+       }
-
-         return 0;
- }
-@@ -795,9 +799,10 @@ int psp_xgmi_terminate(struct psp_context *psp)
-         psp->xgmi_context.initialized =3D 0;
-
-         /* free xgmi shared memory */
--       amdgpu_bo_free_kernel(&psp->xgmi_context.xgmi_shared_bo,
--                       &psp->xgmi_context.xgmi_shared_mc_addr,
--                       &psp->xgmi_context.xgmi_shared_buf);
-+       if ((amdgpu_runtime_pm !=3D 2) || !psp->adev->in_runpm)
-+               amdgpu_bo_free_kernel(&psp->xgmi_context.xgmi_shared_bo,
-+                               &psp->xgmi_context.xgmi_shared_mc_addr,
-+                               &psp->xgmi_context.xgmi_shared_buf);
-
-         return 0;
- }
-@@ -812,7 +817,8 @@ int psp_xgmi_initialize(struct psp_context *psp)
-             !psp->adev->psp.ta_xgmi_start_addr)
-                 return -ENOENT;
-
--       if (!psp->xgmi_context.initialized) {
-+       if (!psp->xgmi_context.initialized &&
-+           ((amdgpu_runtime_pm !=3D 2) || !psp->adev->in_runpm)) {
-                 ret =3D psp_xgmi_init_shared_buf(psp);
-                 if (ret)
-                         return ret;
-@@ -1122,9 +1128,10 @@ static int psp_ras_terminate(struct psp_context *psp=
-)
-         psp->ras.ras_initialized =3D false;
-
-         /* free ras shared memory */
--       amdgpu_bo_free_kernel(&psp->ras.ras_shared_bo,
--                       &psp->ras.ras_shared_mc_addr,
--                       &psp->ras.ras_shared_buf);
-+       if ((amdgpu_runtime_pm !=3D 2) || !psp->adev->in_runpm)
-+               amdgpu_bo_free_kernel(&psp->ras.ras_shared_bo,
-+                               &psp->ras.ras_shared_mc_addr,
-+                               &psp->ras.ras_shared_buf);
-
-         return 0;
- }
-@@ -1145,7 +1152,8 @@ static int psp_ras_initialize(struct psp_context *psp=
-)
-                 return 0;
-         }
-
--       if (!psp->ras.ras_initialized) {
-+       if (!psp->ras.ras_initialized &&
-+           ((amdgpu_runtime_pm !=3D 2) || !psp->adev->in_runpm)) {
-                 ret =3D psp_ras_init_shared_buf(psp);
-                 if (ret)
-                         return ret;
-@@ -1257,7 +1265,8 @@ static int psp_hdcp_initialize(struct psp_context *ps=
-p)
-                 return 0;
-         }
-
--       if (!psp->hdcp_context.hdcp_initialized) {
-+       if (!psp->hdcp_context.hdcp_initialized &&
-+           ((amdgpu_runtime_pm !=3D 2) || !psp->adev->in_runpm)) {
-                 ret =3D psp_hdcp_init_shared_buf(psp);
-                 if (ret)
-                         return ret;
-@@ -1325,9 +1334,10 @@ static int psp_hdcp_terminate(struct psp_context *ps=
-p)
-         psp->hdcp_context.hdcp_initialized =3D false;
-
-         /* free hdcp shared memory */
--       amdgpu_bo_free_kernel(&psp->hdcp_context.hdcp_shared_bo,
--                             &psp->hdcp_context.hdcp_shared_mc_addr,
--                             &psp->hdcp_context.hdcp_shared_buf);
-+       if ((amdgpu_runtime_pm !=3D 2) || !psp->adev->in_runpm)
-+               amdgpu_bo_free_kernel(&psp->hdcp_context.hdcp_shared_bo,
-+                                     &psp->hdcp_context.hdcp_shared_mc_add=
-r,
-+                                     &psp->hdcp_context.hdcp_shared_buf);
-
-         return 0;
- }
-@@ -1404,7 +1414,8 @@ static int psp_dtm_initialize(struct psp_context *psp=
-)
-                 return 0;
-         }
-
--       if (!psp->dtm_context.dtm_initialized) {
-+       if (!psp->dtm_context.dtm_initialized &&
-+           ((amdgpu_runtime_pm !=3D 2) || !psp->adev->in_runpm)) {
-                 ret =3D psp_dtm_init_shared_buf(psp);
-                 if (ret)
-                         return ret;
-@@ -1472,9 +1483,10 @@ static int psp_dtm_terminate(struct psp_context *psp=
-)
-         psp->dtm_context.dtm_initialized =3D false;
-
-         /* free hdcp shared memory */
--       amdgpu_bo_free_kernel(&psp->dtm_context.dtm_shared_bo,
--                             &psp->dtm_context.dtm_shared_mc_addr,
--                             &psp->dtm_context.dtm_shared_buf);
-+       if ((amdgpu_runtime_pm !=3D 2) || !psp->adev->in_runpm)
-+               amdgpu_bo_free_kernel(&psp->dtm_context.dtm_shared_bo,
-+                                     &psp->dtm_context.dtm_shared_mc_addr,
-+                                     &psp->dtm_context.dtm_shared_buf);
-
-         return 0;
- }
-@@ -1563,7 +1575,8 @@ static int psp_rap_initialize(struct psp_context *psp=
-)
-                 return 0;
-         }
-
--       if (!psp->rap_context.rap_initialized) {
-+       if (!psp->rap_context.rap_initialized &&
-+           ((amdgpu_runtime_pm !=3D 2) || !psp->adev->in_runpm)) {
-                 ret =3D psp_rap_init_shared_buf(psp);
-                 if (ret)
-                         return ret;
-@@ -1602,9 +1615,10 @@ static int psp_rap_terminate(struct psp_context *psp=
-)
-         psp->rap_context.rap_initialized =3D false;
-
-         /* free rap shared memory */
--       amdgpu_bo_free_kernel(&psp->rap_context.rap_shared_bo,
--                             &psp->rap_context.rap_shared_mc_addr,
--                             &psp->rap_context.rap_shared_buf);
-+       if ((amdgpu_runtime_pm !=3D2) || !psp->adev->in_runpm)
-+               amdgpu_bo_free_kernel(&psp->rap_context.rap_shared_bo,
-+                                     &psp->rap_context.rap_shared_mc_addr,
-+                                     &psp->rap_context.rap_shared_buf);
-
-         return ret;
- }
-@@ -2261,10 +2275,12 @@ static int psp_resume(void *handle)
-
-         DRM_INFO("PSP is resuming...\n");
-
--       ret =3D psp_mem_training(psp, PSP_MEM_TRAIN_RESUME);
--       if (ret) {
--               DRM_ERROR("Failed to process memory training!\n");
--               return ret;
-+       if ((amdgpu_runtime_pm !=3D 2) || !psp->adev->in_runpm) {
-+               ret =3D psp_mem_training(psp, PSP_MEM_TRAIN_RESUME);
-+               if (ret) {
-+                       DRM_ERROR("Failed to process memory training!\n");
-+                       return ret;
-+               }
-         }
-
-         mutex_lock(&adev->firmware.mutex);
---
-2.25.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
-reedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D04%7C01%7Calexande=
-r.deucher%40amd.com%7C0bee5882ad6142eb967c08d89db4018b%7C3dd8961fe4884e608e=
-11a82d994e183d%7C0%7C0%7C637432743751698480%7CUnknown%7CTWFpbGZsb3d8eyJWIjo=
-iMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdat=
-a=3D1AU6gN6Yqp8yZT%2BHDWfAwFh9UuWh7XoJg2kD%2F%2BbwZjA%3D&amp;reserved=3D0
-
---_000_MN2PR12MB4488786228BE12ADC2765418F7CA0MN2PR12MB4488namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#317100;margin:15pt;" al=
-ign=3D"Left">
-[AMD Public Use]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Instead of checking the global parameters everywhere, let's check the runti=
-me pm parameter and then set a local adev variable per device.&nbsp; That w=
-ay we can have a mix of devices that support different runtime pm modes in =
-the same system and everything works.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Alex</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Likun Gao &lt;likun.gao@amd.c=
-om&gt;<br>
-<b>Sent:</b> Friday, December 11, 2020 4:04 AM<br>
-<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;<br>
-<b>Cc:</b> Gao, Likun &lt;Likun.Gao@amd.com&gt;; Feng, Kenneth &lt;Kenneth.=
-Feng@amd.com&gt;; Zhang, Hawking &lt;Hawking.Zhang@amd.com&gt;<br>
-<b>Subject:</b> [PATCH] drm/amdgpu: skip vram operation for BAMACO runtime<=
-/font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">From: Likun Gao &lt;Likun.Gao@amd.com&gt;<br>
-<br>
-Skip vram related operation for bamaco rumtime suspend and resume as<br>
-vram is alive when BAMACO.<br>
-It can save about 32ms when suspend and about 15ms when resume.<br>
-<br>
-Signed-off-by: Likun Gao &lt;Likun.Gao@amd.com&gt;<br>
-Change-Id: I6ad39765de5ed1aac2dc51e96ed7a21a727272cd<br>
----<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |&nbsp; 9 ++-<br>
-&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c&nbsp;&nbsp;&nbsp; | 72 ++++++=
-+++++++---------<br>
-&nbsp;2 files changed, 50 insertions(+), 31 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_device.c<br>
-index 0ec7c28c4d5a..66b790dfb151 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c<br>
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c<br>
-@@ -2464,7 +2464,8 @@ static int amdgpu_device_ip_late_init(struct amdgpu_d=
-evice *adev)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_device_set_cg_state=
-(adev, AMD_CG_STATE_GATE);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_device_set_pg_state=
-(adev, AMD_PG_STATE_GATE);<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_device_fill_reset_magic(adev);=
-<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((amdgpu_runtime_pm !=3D 2) || !ad=
-ev-&gt;in_runpm)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; amdgpu_device_fill_reset_magic(adev);<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_device_enable=
-_mgpu_fan_boost();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r)<br>
-@@ -3706,7 +3707,8 @@ int amdgpu_device_suspend(struct drm_device *dev, boo=
-l fbcon)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_amdkfd_suspend(adev=
-, !fbcon);<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* evict vram memory */<br=
->
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo_evict_vram(adev);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((amdgpu_runtime_pm !=3D 2) || !ad=
-ev-&gt;in_runpm)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; amdgpu_bo_evict_vram(adev);<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_fence_driver_suspen=
-d(adev);<br>
-&nbsp;<br>
-@@ -3718,7 +3720,8 @@ int amdgpu_device_suspend(struct drm_device *dev, boo=
-l fbcon)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * This second call t=
-o evict vram is to evict the gart page table<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * using the CPU.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo_evict_vram(adev);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((amdgpu_runtime_pm !=3D 2) || !ad=
-ev-&gt;in_runpm)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; amdgpu_bo_evict_vram(adev);<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;}<br>
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_psp.c<br>
-index 523d22db094b..67e74b43a1ab 100644<br>
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c<br>
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c<br>
-@@ -397,10 +397,12 @@ static int psp_tmr_init(struct psp_context *psp)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pptr =3D amdgpu_sriov_vf(psp-&gt;adev=
-) ? &amp;tmr_buf : NULL;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D amdgpu_bo_create_kernel(psp-&=
-gt;adev, tmr_size, PSP_TMR_SIZE,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((amdgpu_runtime_pm !=3D 2) || !ps=
-p-&gt;adev-&gt;in_runpm) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; pptr =3D amdgpu_sriov_vf(psp-&gt;adev) ? &amp;tmr_buf : NULL;<br=
->
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; ret =3D amdgpu_bo_create_kernel(psp-&gt;adev, tmr_size, PSP_TMR_=
-SIZE,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; AMDGPU_GEM_DOMAIN_VRAM,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; &amp;psp-&gt;tmr_bo, &amp;psp-&gt;tmr_mc_addr, pptr);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&nbsp;}<br>
-@@ -504,8 +506,10 @@ static int psp_tmr_terminate(struct psp_context *psp)<=
-br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* free TMR memory buffer =
-*/<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pptr =3D amdgpu_sriov_vf(psp-&gt;adev=
-) ? &amp;tmr_buf : NULL;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;tm=
-r_bo, &amp;psp-&gt;tmr_mc_addr, pptr);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((amdgpu_runtime_pm !=3D 2) || !ps=
-p-&gt;adev-&gt;in_runpm) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; pptr =3D amdgpu_sriov_vf(psp-&gt;adev) ? &amp;tmr_buf : NULL;<br=
->
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;tmr_bo, &amp;psp-&gt;tmr_mc_a=
-ddr, pptr);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;}<br>
-@@ -795,9 +799,10 @@ int psp_xgmi_terminate(struct psp_context *psp)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; psp-&gt;xgmi_context.initi=
-alized =3D 0;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* free xgmi shared memory=
- */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;xg=
-mi_context.xgmi_shared_bo,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;xgm=
-i_context.xgmi_shared_mc_addr,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;xgm=
-i_context.xgmi_shared_buf);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((amdgpu_runtime_pm !=3D 2) || !ps=
-p-&gt;adev-&gt;in_runpm)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;xgmi_context.xgmi_shared_bo,<=
-br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;xgmi_context.xgmi_shared_mc_ad=
-dr,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;xgmi_context.xgmi_shared_buf);=
-<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;}<br>
-@@ -812,7 +817,8 @@ int psp_xgmi_initialize(struct psp_context *psp)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; !p=
-sp-&gt;adev-&gt;psp.ta_xgmi_start_addr)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return -ENOENT;<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!psp-&gt;xgmi_context.initialized=
-) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!psp-&gt;xgmi_context.initialized=
- &amp;&amp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((amdgpu_runt=
-ime_pm !=3D 2) || !psp-&gt;adev-&gt;in_runpm)) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; ret =3D psp_xgmi_init_shared_buf(psp);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
-n ret;<br>
-@@ -1122,9 +1128,10 @@ static int psp_ras_terminate(struct psp_context *psp=
-)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; psp-&gt;ras.ras_initialize=
-d =3D false;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* free ras shared memory =
-*/<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;ra=
-s.ras_shared_bo,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;ras=
-.ras_shared_mc_addr,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;ras=
-.ras_shared_buf);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((amdgpu_runtime_pm !=3D 2) || !ps=
-p-&gt;adev-&gt;in_runpm)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;ras.ras_shared_bo,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;ras.ras_shared_mc_addr,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;ras.ras_shared_buf);<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;}<br>
-@@ -1145,7 +1152,8 @@ static int psp_ras_initialize(struct psp_context *psp=
-)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!psp-&gt;ras.ras_initialized) {<b=
-r>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!psp-&gt;ras.ras_initialized &amp=
-;&amp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((amdgpu_runt=
-ime_pm !=3D 2) || !psp-&gt;adev-&gt;in_runpm)) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; ret =3D psp_ras_init_shared_buf(psp);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
-n ret;<br>
-@@ -1257,7 +1265,8 @@ static int psp_hdcp_initialize(struct psp_context *ps=
-p)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!psp-&gt;hdcp_context.hdcp_initia=
-lized) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!psp-&gt;hdcp_context.hdcp_initia=
-lized &amp;&amp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((amdgpu_runt=
-ime_pm !=3D 2) || !psp-&gt;adev-&gt;in_runpm)) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; ret =3D psp_hdcp_init_shared_buf(psp);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
-n ret;<br>
-@@ -1325,9 +1334,10 @@ static int psp_hdcp_terminate(struct psp_context *ps=
-p)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; psp-&gt;hdcp_context.hdcp_=
-initialized =3D false;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* free hdcp shared memory=
- */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;hd=
-cp_context.hdcp_shared_bo,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;hdcp_context.hdcp_shared_mc_addr,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;hdcp_context.hdcp_shared_buf);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((amdgpu_runtime_pm !=3D 2) || !ps=
-p-&gt;adev-&gt;in_runpm)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;hdcp_context.hdcp_shared_bo,<=
-br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;ps=
-p-&gt;hdcp_context.hdcp_shared_mc_addr,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;ps=
-p-&gt;hdcp_context.hdcp_shared_buf);<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;}<br>
-@@ -1404,7 +1414,8 @@ static int psp_dtm_initialize(struct psp_context *psp=
-)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!psp-&gt;dtm_context.dtm_initiali=
-zed) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!psp-&gt;dtm_context.dtm_initiali=
-zed &amp;&amp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((amdgpu_runt=
-ime_pm !=3D 2) || !psp-&gt;adev-&gt;in_runpm)) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; ret =3D psp_dtm_init_shared_buf(psp);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
-n ret;<br>
-@@ -1472,9 +1483,10 @@ static int psp_dtm_terminate(struct psp_context *psp=
-)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; psp-&gt;dtm_context.dtm_in=
-itialized =3D false;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* free hdcp shared memory=
- */<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;dt=
-m_context.dtm_shared_bo,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;dtm_context.dtm_shared_mc_addr,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;dtm_context.dtm_shared_buf);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((amdgpu_runtime_pm !=3D 2) || !ps=
-p-&gt;adev-&gt;in_runpm)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;dtm_context.dtm_shared_bo,<br=
->
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;ps=
-p-&gt;dtm_context.dtm_shared_mc_addr,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;ps=
-p-&gt;dtm_context.dtm_shared_buf);<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;}<br>
-@@ -1563,7 +1575,8 @@ static int psp_rap_initialize(struct psp_context *psp=
-)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!psp-&gt;rap_context.rap_initiali=
-zed) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!psp-&gt;rap_context.rap_initiali=
-zed &amp;&amp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((amdgpu_runt=
-ime_pm !=3D 2) || !psp-&gt;adev-&gt;in_runpm)) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; ret =3D psp_rap_init_shared_buf(psp);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retur=
-n ret;<br>
-@@ -1602,9 +1615,10 @@ static int psp_rap_terminate(struct psp_context *psp=
-)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; psp-&gt;rap_context.rap_in=
-itialized =3D false;<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* free rap shared memory =
-*/<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;ra=
-p_context.rap_shared_bo,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;rap_context.rap_shared_mc_addr,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; &amp;psp-&gt;rap_context.rap_shared_buf);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((amdgpu_runtime_pm !=3D2) || !psp=
--&gt;adev-&gt;in_runpm)<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; amdgpu_bo_free_kernel(&amp;psp-&gt;rap_context.rap_shared_bo,<br=
->
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;ps=
-p-&gt;rap_context.rap_shared_mc_addr,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;ps=
-p-&gt;rap_context.rap_shared_buf);<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&nbsp;}<br>
-@@ -2261,10 +2275,12 @@ static int psp_resume(void *handle)<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_INFO(&quot;PSP is resu=
-ming...\n&quot;);<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D psp_mem_training(psp, PSP_MEM=
-_TRAIN_RESUME);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; DRM_ERROR(&quot;Failed to process memory training!\n&quot;);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; return ret;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if ((amdgpu_runtime_pm !=3D 2) || !ps=
-p-&gt;adev-&gt;in_runpm) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; ret =3D psp_mem_training(psp, PSP_MEM_TRAIN_RESUME);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; if (ret) {<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DRM_ERROR(&quot;=
-Failed to process memory training!\n&quot;);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;adev-&gt;f=
-irmware.mutex);<br>
--- <br>
-2.25.1<br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2=
-F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D04%=
-7C01%7Calexander.deucher%40amd.com%7C0bee5882ad6142eb967c08d89db4018b%7C3dd=
-8961fe4884e608e11a82d994e183d%7C0%7C0%7C637432743751698480%7CUnknown%7CTWFp=
-bGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%=
-7C1000&amp;amp;sdata=3D1AU6gN6Yqp8yZT%2BHDWfAwFh9UuWh7XoJg2kD%2F%2BbwZjA%3D=
-&amp;amp;reserved=3D0">https://nam11.safelinks.protection.outlook.com/?url=
-=3Dhttps%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;a=
-mp;data=3D04%7C01%7Calexander.deucher%40amd.com%7C0bee5882ad6142eb967c08d89=
-db4018b%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637432743751698480%7CU=
-nknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLC=
-JXVCI6Mn0%3D%7C1000&amp;amp;sdata=3D1AU6gN6Yqp8yZT%2BHDWfAwFh9UuWh7XoJg2kD%=
-2F%2BbwZjA%3D&amp;amp;reserved=3D0</a><br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_MN2PR12MB4488786228BE12ADC2765418F7CA0MN2PR12MB4488namp_--
-
---===============0901901151==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0901901151==--
+Ck9uIDExLzEyLzIwIDg6MTkgcG0sIEthemxhdXNrYXMsIE5pY2hvbGFzIHdyb3RlOgo+IE9uIDIw
+MjAtMTItMTEgMTI6MDggYS5tLiwgU2hhc2hhbmsgU2hhcm1hIHdyb3RlOgo+PiBPbiAxMC8xMi8y
+MCAxMToyMCBwbSwgQXVyYWJpbmRvIFBpbGxhaSB3cm90ZToKPj4+IE9uIFRodSwgMjAyMC0xMi0x
+MCBhdCAxODoyOSArMDUzMCwgU2hhc2hhbmsgU2hhcm1hIHdyb3RlOgo+Pj4+IE9uIDEwLzEyLzIw
+IDg6MTUgYW0sIEF1cmFiaW5kbyBQaWxsYWkgd3JvdGU6Cj4+Pj4+IFtXaHkmSG93XQo+Pj4+PiBJ
+bm9yZGVyIHRvIGVuYWJsZSBmcmVlc3luYyB2aWRlbyBtb2RlLCBkcml2ZXIgYWRkcyBleHRyYQo+
+Pj4+PiBtb2RlcyBiYXNlZCBvbiBwcmVmZXJyZWQgbW9kZXMgZm9yIGNvbW1vbiBmcmVlc3luYyBm
+cmFtZSByYXRlcy4KPj4+Pj4gV2hlbiBjb21taXRpbmcgdGhlc2UgbW9kZSBjaGFuZ2VzLCBhIGZ1
+bGwgbW9kZXNldCBpcyBub3QgbmVlZGVkLgo+Pj4+PiBJZiB0aGUgY2hhbmdlIGluIG9ubHkgaW4g
+dGhlIGZyb250IHBvcmNoIHRpbWluZyB2YWx1ZSwgc2tpcCBmdWxsCj4+Pj4+IG1vZGVzZXQgYW5k
+IGNvbnRpbnVlIHVzaW5nIHRoZSBzYW1lIHN0cmVhbS4KPj4+Pj4KPj4+Pj4gU2lnbmVkLW9mZi1i
+eTogQXVyYWJpbmRvIFBpbGxhaSA8Cj4+Pj4+IGF1cmFiaW5kby5waWxsYWlAYW1kLmNvbQo+Pj4+
+PiAtLS0KPj4+Pj4gICAuLi4vZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2Rt
+LmMgfCAxNjkKPj4+Pj4gKysrKysrKysrKysrKysrKy0tCj4+Pj4+ICAgLi4uL2dwdS9kcm0vYW1k
+L2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5oIHwgICAxICsKPj4+Pj4gICAyIGZpbGVzIGNo
+YW5nZWQsIDE1MyBpbnNlcnRpb25zKCspLCAxNyBkZWxldGlvbnMoLSkKPj4+Pj4KPj4+Pj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2Rt
+LmMKPj4+Pj4gYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9k
+bS5jCj4+Pj4+IGluZGV4IGY2OTlhM2Q0MWNhZC4uYzhjNzI4ODc5MDZhIDEwMDY0NAo+Pj4+PiAt
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jCj4+
+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2Rt
+LmMKPj4+Pj4gQEAgLTIxNyw2ICsyMTcsOSBAQCBzdGF0aWMgYm9vbCBhbWRncHVfZG1fcHNyX2Rp
+c2FibGVfYWxsKHN0cnVjdAo+Pj4+PiBhbWRncHVfZGlzcGxheV9tYW5hZ2VyICpkbSk7Cj4+Pj4+
+ICAgc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fZm9ybWF0X2luZm8gKgo+Pj4+PiAgIGFtZF9nZXRf
+Zm9ybWF0X2luZm8oY29uc3Qgc3RydWN0IGRybV9tb2RlX2ZiX2NtZDIgKmNtZCk7Cj4+Pj4+ICAg
+Cj4+Pj4+ICtzdGF0aWMgYm9vbAo+Pj4+PiAraXNfdGltaW5nX3VuY2hhbmdlZF9mb3JfZnJlZXN5
+bmMoc3RydWN0IGRybV9jcnRjX3N0YXRlCj4+Pj4+ICpvbGRfY3J0Y19zdGF0ZSwKPj4+Pj4gKwkJ
+CQkgc3RydWN0IGRybV9jcnRjX3N0YXRlCj4+Pj4+ICpuZXdfY3J0Y19zdGF0ZSk7Cj4+Pj4+ICAg
+LyoKPj4+Pj4gICAgKiBkbV92YmxhbmtfZ2V0X2NvdW50ZXIKPj4+Pj4gICAgKgo+Pj4+PiBAQCAt
+NTA5Niw4ICs1MDk5LDExIEBAIGNvcHlfY3J0Y190aW1pbmdfZm9yX2RybV9kaXNwbGF5X21vZGUo
+Y29uc3QKPj4+Pj4gc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKnNyY19tb2RlLAo+Pj4+PiAgIHN0
+YXRpYyB2b2lkCj4+Pj4+ICAgZGVjaWRlX2NydGNfdGltaW5nX2Zvcl9kcm1fZGlzcGxheV9tb2Rl
+KHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlCj4+Pj4+ICpkcm1fbW9kZSwKPj4+Pj4gICAJCQkJCWNv
+bnN0IHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlCj4+Pj4+ICpuYXRpdmVfbW9kZSwKPj4+Pj4gLQkJ
+CQkJYm9vbCBzY2FsZV9lbmFibGVkKQo+Pj4+PiArCQkJCQlib29sIHNjYWxlX2VuYWJsZWQsIGJv
+b2wKPj4+Pj4gZnNfbW9kZSkKPj4+Pj4gICB7Cj4+Pj4+ICsJaWYgKGZzX21vZGUpCj4+Pj4+ICsJ
+CXJldHVybjsKPj4+PiBzbyB3ZSBhcmUgYWRkaW5nIGFuIGlucHV0IGZsYWcganVzdCBzbyB0aGF0
+IHdlIGNhbiByZXR1cm4gZnJvbSB0aGUKPj4+PiBmdW5jdGlvbiBhdCB0b3AgPyBIb3cgYWJvdXQg
+YWRkaW5nIHRoaXMgY2hlY2sgYXQgdGhlIGNhbGxlciB3aXRob3V0Cj4+Pj4gY2hhbmdpbmcgdGhl
+IGZ1bmN0aW9uIHBhcmFtZXRlcnMgPwo+Pj4gV2lsbCBmaXggdGhpcy4KPj4+Cj4+Pj4+ICsKPj4+
+Pj4gICAJaWYgKHNjYWxlX2VuYWJsZWQpIHsKPj4+Pj4gICAJCWNvcHlfY3J0Y190aW1pbmdfZm9y
+X2RybV9kaXNwbGF5X21vZGUobmF0aXZlX21vZGUsCj4+Pj4+IGRybV9tb2RlKTsKPj4+Pj4gICAJ
+fSBlbHNlIGlmIChuYXRpdmVfbW9kZS0+Y2xvY2sgPT0gZHJtX21vZGUtPmNsb2NrICYmCj4+Pj4+
+IEBAIC01MjQxLDYgKzUyNDcsMjQgQEAgZ2V0X2hpZ2hlc3RfZnJlZXN5bmNfbW9kZShzdHJ1Y3QK
+Pj4+Pj4gYW1kZ3B1X2RtX2Nvbm5lY3RvciAqYWNvbm5lY3RvciwKPj4+Pj4gICAJcmV0dXJuIG1f
+aGlnaDsKPj4+Pj4gICB9Cj4+Pj4+ICAgCj4+Pj4+ICtzdGF0aWMgYm9vbCBpc19mcmVlc3luY192
+aWRlb19tb2RlKHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICptb2RlLAo+Pj4+PiArCQkJCSAgIHN0
+cnVjdCBhbWRncHVfZG1fY29ubmVjdG9yCj4+Pj4+ICphY29ubmVjdG9yKQo+Pj4+PiArewo+Pj4+
+PiArCXN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICpoaWdoX21vZGU7Cj4+Pj4+ICsKPj4+PiBJIHRo
+b3VnaHQgd2Ugd2VyZSBhZGRpbmcgYSBzdHJpbmcgIl9GU1YiIGluIHRoZSBlbmQgZm9yIHRoZSBt
+b2RlLQo+Pj4+PiBuYW1lLCB3aHkgY2FuJ3Qgd2UgY2hlY2sgdGhhdCBpbnN0ZWFkIG9mIGdvaW5n
+IHRocm91Z2ggdGhlIHdob2xlCj4+Pj4gbGlzdCBvZiBtb2RlcyBhZ2FpbiA/Cj4+PiBBY3R1YWxs
+eSBJIG9ubHkgYWRkZWQgX0ZTViB0byBkaXN0aW5ndWlzaCB0aGUgbmV3bHkgYWRkZWQgbW9kZXMg
+ZWFzaWx5Lgo+Pj4gT24gc2Vjb25kIHRob3VnaHRzLCBJJ20gbm90IHN1cmUgaWYgdGhlcmUgYXJl
+IGFueSB1c2Vyc3BhY2UKPj4+IGFwcGxpY2F0aW9ucyB0aGF0IG1pZ2h0IGRlcGVuZCBvbiBwYXJz
+aW5nIHRoZSBtb2RlIG5hbWUsIGZvciBtYXliZSB0bwo+Pj4gcHJpbnQgdGhlIHJlc29sdXRpb24u
+IEkgdGhpbmsgaXRzIGJldHRlciBub3QgdG8gYnJlYWsgYW55IHN1Y2gKPj4+IGFzc3VtcHRpb25z
+IGlmIHRoZXkgZG8gZXhpc3QgYnkgYW55IGNoYW5jZS4gSSB0aGluayBJJ2xsIGp1c3QgcmVtb3Zl
+Cj4+PiBfRlNWIGZyb20gdGhlIG1vZGUgbmFtZS4gV2UgYWxyZWFkeSBzZXQgRFJNX01PREVfVFlQ
+RV9EUklWRVIgZm9yCj4+PiB1c2Vyc3BhY2UgdG8gcmVjb2duaXplIHRoZXNlIGFkZGl0aW9uYWwg
+bW9kZXMsIHNvIGl0IHNob3VsZG50IGJlIGEKPj4+IHByb2JsZW0uCj4+IEFjdHVhbGx5LCBJIGFt
+IHJhdGhlciBoYXBweSB3aXRoIHRoaXMsIGFzIGluIHdoZW4gd2Ugd2FudCB0byB0ZXN0IG91dCB0
+aGlzIGZlYXR1cmUgd2l0aCBhIElHVCB0eXBlIHN0dWZmLCBvciBpZiBhIHVzZXJzcGFjZSB3YW50
+cyB0byB1dGlsaXplIHRoaXMgb3B0aW9uIGluIGFueSB3YXksIHRoaXMgbWV0aG9kIG9mIGRpZmZl
+cmVudGlhdGlvbiB3b3VsZCBiZSB1c2VmdWwuIERSTV9NT0RFX0RSSVZFUiBpcyBiZWluZyB1c2Vk
+IGJ5IHNvbWUgb3RoZXIgcGxhY2VzIGFwYXJ0IGZyb20gZnJlZXN5bmMsIHNvIGl0IG1pZ2h0IG5v
+dCBiZSBhIHVuaXF1ZSBpZGVudGlmaWVyLiBTbyBteSByZWNvbW1lbmRhdGlvbiB3b3VsZCBiZSB0
+byBrZWVwIHRoaXMuCj4+Cj4+IE15IGNvbW1lbnQgd2FzLCBpZiB3ZSBoYXZlIGFscmVhZHkgcGFy
+c2VkIHRoZSB3aG9sZSBjb25uZWN0b3IgbGlzdCBvbmNlLCBhbmQgYWRkZWQgdGhlIG1vZGUsIHRo
+ZXJlIHNob3VsZCBiZSBhIGJldHRlciB3YXkgb2YgZG9pbmcgaXQgaW5zdGVhZCBvZiBjaGVja2lu
+ZyBpdCBhZ2FpbiBieSBjYWxsaW5nICJnZXRfaGlnaGVzdF9mcmVlc3luY19tb2QiCj4+Cj4+IFNv
+bWUgdGhpbmdzIEkgY2FuIHRoaW5rIG9uIHRvcCBvZiBteSBtaW5kIHdvdWxkIGJlOgo+Pgo+PiAt
+IEFkZCBhIHJlYWQtb25seSBhbWRncHUgZHJpdmVyIHByaXZhdGUgZmxhZyAobm90IERSTSBmbGFn
+KSwgd2hpbGUgYWRkaW5nIGEgbmV3IGZyZWVzeW5jIG1vZGUsIHdoaWNoIHdpbGwgdW5pcXVlbHkg
+aWRlbnRpZnkgaWYgYSBtb2RlIGlzIEZTIG1vZGUuIE9uIG1vZGVzZXQsIHlvdSBoYXZlIHRvIGp1
+c3QgY2hlY2sgdGhhdCBmbGFnLgo+Pgo+PiAtIEFzIHdlIGFyZSBub3QgaGFuZGxpbmcgYSBsb3Qg
+b2YgbW9kZXMsIGNhY2hlIHRoZSBGUyBtb2RlcyBsb2NhbGx5IGFuZCBjaGVjayBvbmx5IGZyb20g
+dGhhdCBEQiAoaW5zdGVhZCBvZiB0aGUgd2hvbGUgbW9kZWxpc3QpCj4+Cj4+IC0gQ2FjaGUgdGhl
+IFZJQyBvZiB0aGUgbW9kZSAoaWYgYXZhaWxhYmxlKSBhbmQgdGhlbiBsb29rIGludG8gdGhlIFZJ
+QyB0YWJsZSAobm90IHN1cmUgaWYgZGV0YWlsZWQgbW9kZXMgcHJvdmlkZSBWSUMsIGxpa2UgQ0VB
+LTg2MSBtb2RlcykKPj4KPj4gb3Igc29tZXRoaW5nIGJldHRlciB0aGFuIHRoaXMuCj4+Cj4+IC0g
+U2hhc2hhbmsKPiBJJ2QgcmF0aGVyIHdlIG5vdCBtYWtlIG1vZGUgbmFtZSBwYXJ0IG9mIGEgVUFQ
+SSBvciB0byBpZGVudGlmeSBhIAo+ICJGcmVlU3luYyBtb2RlIi4gVGhpcyBpcyBhbHJlYWR5IGJl
+aGluZCBhIG1vZHVsZSBvcHRpb24gYW5kIGZyb20gdGhlIAo+IGRyaXZlcidzIHBlcnNwZWN0aXZl
+IHdlIG9ubHkgbmVlZCB0aGUgdGltaW5nIHRvIHVuZGVyc3RhbmQgd2hldGhlciBvciAKPiBub3Qg
+d2UgY2FuIGRvIGFuIG9wdGltaXplZCBtb2Rlc2V0IHVzaW5nIEZyZWVTeW5jIGludG8gaXQuIERy
+aXZlciAKPiBwcml2YXRlIGZsYWdzIGNhbiBvcHRpbWl6ZSB0aGUgY2hlY2sgYXdheSBidXQgaXQn
+cyBvbmx5IGEgZmV3IAo+IGNvbXBhcmlzb25zIHNvIEkgZG9uJ3Qgc2VlIG11Y2ggYmVuZWZpdC4K
+VGhlIG1vZHVsZSBwYXJhbWV0ZXIgaXMganVzdCB0byBjb250cm9sIHRoZSBhZGRpdGlvbiBvZiBm
+cmVlc3luYyBtb2RlcyBvciBub3QsIGJ1dCB0aGF0IGRvZXNuJ3QgbGV0IHlvdSBkaWZmZXJlbnRp
+YXRlIGJldHdlZW4gYSBnZW51aW5lIEVESUQgbW9kZSBvciBGcmVlc3luYyBtb2RlcyBhZGRlZCBi
+eSB1cywgdG8gYWNjb21tb2RhdGUgZnJlZXN5bmMgc29sdXRpb24uIMKgCj4KPiBXZSB3aWxsIGFs
+d2F5cyBuZWVkIHRvIHJlZmVyZW5jZSB0aGUgb3JpZ2luYWwgcHJlZmVycmVkIG1vZGUgcmVnYXJk
+bGVzcyAKPiBvZiBob3cgdGhlIEZyZWVTeW5jIG1vZGUgaXMgaWRlbnRpZmllZCBzaW5jZSB0aGVy
+ZSBjb3VsZCBiZSBhIGNhc2Ugd2hlcmUgCj4gd2UncmUgZW5hYmxpbmcgdGhlIENSVEMgZnJvbSBk
+aXNhYmxlZCAtPiBlbmFibGVkLiBUaGUgZGlzcGxheSB3YXMgCj4gcHJldmlvdXNseSBibGFuayBh
+bmQgd2UgbmVlZCB0byByZXByb2dyYW0gdGhlIE9URyB0aW1pbmcgdG8gdGhlIG1vZGUgCj4gdGhh
+dCBkb2Vzbid0IGhhdmUgYW4gZXh0ZW5kZWQgZnJvbnQgcG9yY2guCgpJIHRoaW5rIHRoZXJlIGlz
+IGEgZ2FwIGluIHVuZGVyc3RhbmRpbmcgbXkgY29tbWVudCBoZXJlLiBJZiB5b3Ugc2VlIHRoZSBj
+dXJyZW50IGltcGxlbWVudCBvZiBmdW5jdGlvbiAiaXNfZnJlZXN5bmNfdmlkZW9fbW9kZSIsIHdo
+YXQgaXQgZG9lcyBpcyBpdCBleHBsb3JlcyBhbGwgdGhlIG1vZGVzIGZyb20gdGhlIGNvbm5lY3Rv
+cidzIHByb2JlZF9tb2RlcyBsaXN0LCBhbmQgY29tcGFyZXMgdGhlbSB3aXRoIHBvc3NpYmxlX2Zz
+X21vZGVzLCBhbmQgZGVjaWRlcyBpZiB0aGlzIG1vZGUgaXMgYSBmcmVlc3luYyBtb2RlIG9yIG5v
+dC4gTXkgcG9pbnQgaXMsIHdlIGhhdmUgYWxyZWFkeSBkb25lIHRoaXMgZXhlcmNpc2Ugb25jZSwg
+d2hpbGUgd2Ugd2VyZSBhZGRpbmcgdGhlIGZyZWVzeW5jIG1vZGVzIGluIHRoZSBtb2RlIGxpc3Qg
+YWxyZWFkeS4KCk5vdyBpZiB3ZSBjYW4gYWRkIGEgZHJpdmVyX3ByaXZhdGUgZmxhZywgb3Igc29t
+ZSBpZGVudGlmaWNhdGlvbiBpbiB0aGUgbW9kZSwgd2UgZG9uJ3QgaGF2ZSB0byBkbyB0aGlzIHdo
+b2xlIHRoaW5nIGFnYWluLgoKSXRzIGxpa2U6CgpXaGlsZSBhZGRpbmcgZnJlZXN5bmMgbW9kZXM6
+CgotIGFkZF9mcmVlc3luY19tb2RlcyAoKQoKewoKwqDCoMKgIGdldF9wcmVmZXJyZWRfbW9kZSgp
+CgrCoMKgwqAgcHJlcGFyZV9mcmVlc3luY19tb2RlX2Zyb21fcHJlZmVycmVkX21vZGVzKCkKCsKg
+wqDCoCBhZGRfbmV3X2ZyZWVzeW5jX21vZGVfaW5fY29ubmVjdG9yX21vZGVsaXN0KCnCoCAvL0Fk
+ZCBhIGRyaXZlciBwcml2YXRlIGZsYWcgaW4gdGhpcyBuZXcgZnJlZXN5bmMgbW9kZQoKfQoKCk5v
+dywgYXMgdGhlIGRyaXZlciBpcyB0aGUgb25seSBzb3VyY2Ugb2YgdGhlIGZyZWVzeW5jIG1vZGVz
+LCB3ZSBjYW4gbWFrZSB0aGUgaWRlbnRpZmllciBmdW5jdGlvbiBkdXJpbmcgdGhlIG1vZGVzZXQo
+KSBjYW4gYmUgYXMgc21hbGwgYXM6CgotIGlzX2ZyZWVzeW5jX3ZpZGVvX21vZGUgKG1vZGUpCgp7
+CgrCoMKgwqAgcmV0cnVuIChtb2RlLT5mbGFncyAmIGRyaXZlcl9wcml2YXRlX2ZsYWcpOwoKfQoK
+ClBvaW50IGJlaW5nLCB0aGVyZSBpcyBubyBuZWVkIHRvIGRvIHRoZSBzYW1lIHRoaW5nIGFnYWlu
+LCBpbiBvcmRlciB0byBpZGVudGlmeSwgaWYgYSBtb2RlIGlzIGZyZWVzeW5jIG1vZGUgb3Igbm90
+LCBhcyB0aGUgZHJpdmVyIG9ubHkgaGFzIGFkZGVkIHRoZXNlIG1vZGVzLCBhbmQgaXQgc2hvdWxk
+IGtub3cgd2hpY2ggYXJlIHRoZXNlIGZyZWVzeW5jIG1vZGVzLiDCoAoKLSBTaGFzaGFuawoKPiBS
+ZWdhcmRzLAo+IE5pY2hvbGFzIEthemxhdXNrYXMKPgo+Pj4+PiArCWhpZ2hfbW9kZSA9IGdldF9o
+aWdoZXN0X2ZyZWVzeW5jX21vZGUoYWNvbm5lY3RvciwgZmFsc2UpOwo+Pj4+PiArCWlmICghaGln
+aF9tb2RlKQo+Pj4+PiArCQlyZXR1cm4gZmFsc2U7Cj4+Pj4+ICsKPj4+Pj4gKwlpZiAoaGlnaF9t
+b2RlLT5jbG9jayA9PSAwIHx8Cj4+Pj4+ICsJICAgIGhpZ2hfbW9kZS0+aGRpc3BsYXkgIT0gbW9k
+ZS0+aGRpc3BsYXkgfHwKPj4+Pj4gKwkgICAgaGlnaF9tb2RlLT5jbG9jayAhPSBtb2RlLT5jbG9j
+ayB8fAo+Pj4+PiArCSAgICAhbW9kZSkKPj4+Pj4gKwkJcmV0dXJuIGZhbHNlOwo+Pj4+PiArCWVs
+c2UKPj4+Pj4gKwkJcmV0dXJuIHRydWU7Cj4+Pj4+ICt9Cj4+Pj4+ICsKPj4+Pj4gICBzdGF0aWMg
+c3RydWN0IGRjX3N0cmVhbV9zdGF0ZSAqCj4+Pj4+ICAgY3JlYXRlX3N0cmVhbV9mb3Jfc2luayhz
+dHJ1Y3QgYW1kZ3B1X2RtX2Nvbm5lY3RvciAqYWNvbm5lY3RvciwKPj4+Pj4gICAJCSAgICAgICBj
+b25zdCBzdHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSAqZHJtX21vZGUsCj4+Pj4+IEBAIC01MjUzLDE3
+ICs1Mjc3LDIxIEBAIGNyZWF0ZV9zdHJlYW1fZm9yX3Npbmsoc3RydWN0Cj4+Pj4+IGFtZGdwdV9k
+bV9jb25uZWN0b3IgKmFjb25uZWN0b3IsCj4+Pj4+ICAgCWNvbnN0IHN0cnVjdCBkcm1fY29ubmVj
+dG9yX3N0YXRlICpjb25fc3RhdGUgPQo+Pj4+PiAgIAkJZG1fc3RhdGUgPyAmZG1fc3RhdGUtPmJh
+c2UgOiBOVUxMOwo+Pj4+PiAgIAlzdHJ1Y3QgZGNfc3RyZWFtX3N0YXRlICpzdHJlYW0gPSBOVUxM
+Owo+Pj4+PiAtCXN0cnVjdCBkcm1fZGlzcGxheV9tb2RlIG1vZGUgPSAqZHJtX21vZGU7Cj4+Pj4+
+ICsJc3RydWN0IGRybV9kaXNwbGF5X21vZGUgc2F2ZWRfbW9kZSwgbW9kZSA9ICpkcm1fbW9kZTsK
+Pj4+PiBIb3cgYWJvdXQgc2hpZnRpbmcgdGhpcyBkZWZpbml0aW9uIHRvIG5ldyBsaW5lIHRvIGZv
+bGxvdyB0aGUgZXhpc3RpbmcKPj4+PiBjb252ZW50aW9uID8KPj4+IFN1cmUuCj4+Pgo+Pj4+PiAr
+CXN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICpmcmVlc3luY19tb2RlID0gTlVMTDsKPj4+Pj4gICAJ
+Ym9vbCBuYXRpdmVfbW9kZV9mb3VuZCA9IGZhbHNlOwo+Pj4+PiAgIAlib29sIHNjYWxlID0gZG1f
+c3RhdGUgPyAoZG1fc3RhdGUtPnNjYWxpbmcgIT0gUk1YX09GRikgOiBmYWxzZTsKPj4+Pj4gICAJ
+aW50IG1vZGVfcmVmcmVzaDsKPj4+Pj4gICAJaW50IHByZWZlcnJlZF9yZWZyZXNoID0gMDsKPj4+
+Pj4gKwlib29sIGlzX2ZzX3ZpZF9tb2RlID0gMDsKPj4+Pj4gICAjaWYgZGVmaW5lZChDT05GSUdf
+RFJNX0FNRF9EQ19EQ04pCj4+Pj4+ICAgCXN0cnVjdCBkc2NfZGVjX2RwY2RfY2FwcyBkc2NfY2Fw
+czsKPj4+Pj4gICAjZW5kaWYKPj4+Pj4gICAJdWludDMyX3QgbGlua19iYW5kd2lkdGhfa2JwczsK
+Pj4+Pj4gLQo+Pj4+PiAgIAlzdHJ1Y3QgZGNfc2luayAqc2luayA9IE5VTEw7Cj4+Pj4+ICsKPj4+
+Pj4gKwltZW1zZXQoJnNhdmVkX21vZGUsIDAsIHNpemVvZihzdHJ1Y3QgZHJtX2Rpc3BsYXlfbW9k
+ZSkpOwo+Pj4+PiArCj4+Pj4+ICAgCWlmIChhY29ubmVjdG9yID09IE5VTEwpIHsKPj4+Pj4gICAJ
+CURSTV9FUlJPUigiYWNvbm5lY3RvciBpcyBOVUxMIVxuIik7Cj4+Pj4+ICAgCQlyZXR1cm4gc3Ry
+ZWFtOwo+Pj4+PiBAQCAtNTMxNiwyMCArNTM0NCwzMyBAQCBjcmVhdGVfc3RyZWFtX2Zvcl9zaW5r
+KHN0cnVjdAo+Pj4+PiBhbWRncHVfZG1fY29ubmVjdG9yICphY29ubmVjdG9yLAo+Pj4+PiAgIAkJ
+ICovCj4+Pj4+ICAgCQlEUk1fREVCVUdfRFJJVkVSKCJObyBwcmVmZXJyZWQgbW9kZSBmb3VuZFxu
+Iik7Cj4+Pj4+ICAgCX0gZWxzZSB7Cj4+Pj4+ICsJCWlzX2ZzX3ZpZF9tb2RlID0gaXNfZnJlZXN5
+bmNfdmlkZW9fbW9kZSgmbW9kZSwKPj4+Pj4gYWNvbm5lY3Rvcik7Cj4+Pj4+ICsJCWlmIChpc19m
+c192aWRfbW9kZSkgewo+Pj4+PiArCQkJZnJlZXN5bmNfbW9kZSA9Cj4+Pj4+IGdldF9oaWdoZXN0
+X2ZyZWVzeW5jX21vZGUoYWNvbm5lY3RvciwgZmFsc2UpOwo+Pj4+PiArCQkJaWYgKGZyZWVzeW5j
+X21vZGUpIHsKPj4+PiBBcyB0aGUgZnJlZXN5bmMgbW9kZXMgYXJlIGJlaW5nIGFkZGVkIGJ5IHRo
+ZSBkcml2ZXIsIGFuZCB3ZSBoYXZlCj4+Pj4gcGFzc2VkIG9uZSBjaGVjayB3aGljaCBzYXlzIGlz
+X2ZzX3ZpZF9tb2RlLCB3aWxsIGl0IGV2ZXIgYmUgdGhlIGNhc2UKPj4+PiB3aGVyZSBmcmVlc3lu
+Y19tb2RlID09IE5VTEwgPyBJZGVhbGx5IHdlIHNob3VsZCBnZXQgYXRsZWFzdCBvbmUgbW9kZQo+
+Pj4+IGVxdWFsIHRvIHRoaXMgaXNuJ3QgaXQgPyBpbiB0aGF0IGNhc2Ugd2UgY2FuIGRyb3Agb25l
+IGlmICgpIGNoZWNrLgo+Pj4gWWVzLCB0aGFua3MgZm9yIGNhdGNoaW5nIHRoaXMuIFdpbGwgZml4
+Lgo+Pj4KPj4+Cj4+PiAtLQo+Pj4KPj4+IFJlZ2FyZHMsCj4+PiBBdXJhYmluZG8gUGlsbGFpCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFp
+bGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
