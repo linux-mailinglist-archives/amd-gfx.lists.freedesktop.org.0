@@ -1,17 +1,17 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29FFF2D6C8A
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Dec 2020 01:55:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EE3F2D6C90
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Dec 2020 01:55:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 804406E5B0;
-	Fri, 11 Dec 2020 00:55:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 934716E5CD;
+	Fri, 11 Dec 2020 00:55:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from spam.moreofthesa.me.uk (moreofthesa.me.uk
  [IPv6:2001:8b0:897:1651::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 682526E506
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BD3E6E506
  for <amd-gfx@lists.freedesktop.org>; Fri, 11 Dec 2020 00:55:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=moreofthesa.me.uk; s=201708; h=Content-Transfer-Encoding:MIME-Version:
@@ -19,22 +19,21 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
  Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
  List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=lfhXLULDdWgypQDXXNLKFRpea8zxbY3sfKs531fHUKE=; b=RbCFz920gfFKrOEnikuCtfos71
- 7+mMSExYIWhUj4GIYXVB3HQaWX9Vdm3V4odWrEFddHOQKj5os4A3qeCLdvwJLYQMRazcGgi032frB
- n0mMzztU6GQEBv8w5J4gKQDJ6FKfygp7EiL46eHzqlSEYA7p1zb2DyRAohaLet1NBLBfI/HtC7Aia
- MGOAQN5mHDguUUqxHB4duNnZBrb0Jm0YK2qisO1ouctZhTn0+z+QV779RG+6EZ1MBT/68FrxWkQ1H
- 19+fDzDxqFGNhqqJztmyczxWRqIc65xNwqAH8PXiUOF9FdGMf6BMcjcX1GuL5jGGAwIgXvfckli4p
- DMhHEZqA==;
+ bh=PljTzuNFtjsFgYgx3zr/6ki0gwe38T6MiYc1BUyz9Ao=; b=NX/WDQKI78tYPtZdqeiPep+rKb
+ FI6/n4l1Rel23XVX7BqvVeoTl/6cyw+PtP3Ly32/+BKP8cSijCkqt9GqbkMhTgOU2OmVHDkIrtrn/
+ yFBudCUS5v0TmKeK43xbdSxMtdHSpy8oaHP80w5Lq10SGl0hgHqvAT0blBvjQ7IUyU1MRVsiV6yDj
+ D01F29kUi//HKT1zwqapc/W0UYDDE5d8/aiorASDmi4J6X6uvP3ay/+yYKuRJlYtCTrC0RDLN5yo9
+ KF6aQiTKHom7rFlFHc40kQN37S2wLCiEzw11EBPmUrBYfwDvGbiRMMbrfxbYOUNArpo/m0CGJRcaX
+ 5E0WO/MA==;
 Received: from [2001:8b0:897:1650::2] (helo=flibble.moreofthesa.me.uk)
  by spam.moreofthesa.me.uk with esmtp (Exim 4.92)
  (envelope-from <devspam@moreofthesa.me.uk>)
- id 1knWiB-0002lw-DD; Fri, 11 Dec 2020 00:55:07 +0000
+ id 1knWiB-0002lw-Ib; Fri, 11 Dec 2020 00:55:07 +0000
 From: Darren Salt <devspam@moreofthesa.me.uk>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 5/7] amdgpu: limit maximum FB BAR size when attempting to
- enlarge
-Date: Fri, 11 Dec 2020 00:55:04 +0000
-Message-Id: <20201211005506.4554-6-devspam@moreofthesa.me.uk>
+Subject: [PATCH 6/7] pci: allow for overriding the list of advertised BAR sizes
+Date: Fri, 11 Dec 2020 00:55:05 +0000
+Message-Id: <20201211005506.4554-7-devspam@moreofthesa.me.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201211005506.4554-1-devspam@moreofthesa.me.uk>
 References: <20201211005506.4554-1-devspam@moreofthesa.me.uk>
@@ -60,71 +59,48 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is coarse, applying to all dGPUs.
+This is intended for devices which are known to work with BAR sizes other
+than those which they advertise; usually larger.
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h        | 1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 +++++++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 9 +++++++++
- 3 files changed, 17 insertions(+), 1 deletion(-)
+ drivers/pci/setup-res.c | 4 ++--
+ include/linux/pci.h     | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 2efce7fa6a4b..c844e2a8500a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -202,6 +202,7 @@ static const bool __maybe_unused no_system_mem_limit;
- extern int amdgpu_tmz;
- extern int amdgpu_reset_method;
- extern bool amdgpu_resize_bar;
-+extern int amdgpu_max_bar_size;
+diff --git a/drivers/pci/setup-res.c b/drivers/pci/setup-res.c
+index 43eda101fcf4..3651754de433 100644
+--- a/drivers/pci/setup-res.c
++++ b/drivers/pci/setup-res.c
+@@ -407,7 +407,7 @@ void pci_release_resource(struct pci_dev *dev, int resno)
+ }
+ EXPORT_SYMBOL(pci_release_resource);
  
- #ifdef CONFIG_DRM_AMDGPU_SI
- extern int amdgpu_si_support;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 292796e9f83d..b6c5ee490cbf 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -1125,7 +1125,13 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
- 	rbar_size = pci_rebar_bytes_to_size(adev->gmc.real_vram_size);
- 	current_size = pci_rebar_get_current_size(adev->pdev, 0);
+-int pci_resize_resource(struct pci_dev *dev, int resno, int size)
++int pci_resize_resource(struct pci_dev *dev, int resno, int size, bool forced)
+ {
+ 	struct resource *res = dev->resource + resno;
+ 	int old, ret;
+@@ -426,7 +426,7 @@ int pci_resize_resource(struct pci_dev *dev, int resno, int size)
+ 	if (!sizes)
+ 		return -ENOTSUPP;
  
--	/* Skip if the BIOS has already enabled large BAR, covering the VRAM */
-+	/* Skip if the BIOS has already enabled large BAR, covering the VRAM (or >= limit, if set) */
-+	if (amdgpu_max_bar_size >= 0) {
-+		const u32 max_size = max(amdgpu_max_bar_size, 8); /* clamp to min. 256MB */
-+
-+		if (rbar_size > max_size)
-+			rbar_size = max_size;
-+	}
- 	if (current_size >= rbar_size)
- 		return 0;
+-	if (!(sizes & BIT(size)))
++	if (!forced && !(sizes & BIT(size)))
+ 		return -EINVAL;
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 6df33df74775..0542843c7d63 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -162,6 +162,7 @@ int amdgpu_tmz;
- int amdgpu_reset_method = -1; /* auto */
- int amdgpu_num_kcq = -1;
- bool amdgpu_resize_bar = true;
-+int amdgpu_max_bar_size = -1;
+ 	old = pci_rebar_get_current_size(dev, resno);
+diff --git a/include/linux/pci.h b/include/linux/pci.h
+index 5eee18969fe8..f33494d92512 100644
+--- a/include/linux/pci.h
++++ b/include/linux/pci.h
+@@ -1238,7 +1238,7 @@ static __always_inline u64 pci_rebar_size_to_bytes(int size)
+ }
+ u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
+ int pci_rebar_get_current_size(struct pci_dev *pdev, int bar);
+-int __must_check pci_resize_resource(struct pci_dev *dev, int i, int size);
++int __must_check pci_resize_resource(struct pci_dev *dev, int i, int size, bool forced);
  
- struct amdgpu_mgpu_info mgpu_info = {
- 	.mutex = __MUTEX_INITIALIZER(mgpu_info.mutex),
-@@ -816,6 +817,14 @@ module_param_named(num_kcq, amdgpu_num_kcq, int, 0444);
- module_param_named(resize_bar, amdgpu_resize_bar, bool, 0444);
- MODULE_PARM_DESC(resize_bar, "Controls whether the FB BAR should be resized (default = true).");
- 
-+/**
-+ * DOC: max_bar_size (int)
-+ * The maximum BAR size, in megabytes. Only affects BARs which the BIOS hasn't already made larger.
-+ * Unlimited by default.
-+ */
-+module_param_named(max_bar_size, amdgpu_max_bar_size, int, 0444);
-+MODULE_PARM_DESC(max_bar_size, "Maximum FB BAR size, log2(megabytes) (default = -1, meaning unlimited; minimum is 8 for 256MB).");
-+
- static const struct pci_device_id pciidlist[] = {
- #ifdef  CONFIG_DRM_AMDGPU_SI
- 	{0x1002, 0x6780, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI},
+ int pci_select_bars(struct pci_dev *dev, unsigned long flags);
+ bool pci_device_is_present(struct pci_dev *pdev);
 -- 
 2.20.1
 
