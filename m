@@ -1,40 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38FDC2D9107
-	for <lists+amd-gfx@lfdr.de>; Sun, 13 Dec 2020 23:53:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D36E2D9103
+	for <lists+amd-gfx@lfdr.de>; Sun, 13 Dec 2020 23:53:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1821589E38;
-	Sun, 13 Dec 2020 22:53:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBA8889E1B;
+	Sun, 13 Dec 2020 22:53:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from spam.moreofthesa.me.uk (moreofthesa.me.uk
  [IPv6:2001:8b0:897:1651::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2374A89DEA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F63489E2B
  for <amd-gfx@lists.freedesktop.org>; Sun, 13 Dec 2020 22:53:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=moreofthesa.me.uk; s=201708; h=Content-Transfer-Encoding:MIME-Version:
- Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=fPEfzuoIeSEW1sIKNgymloS92uHnZvlhZ1LWJzNxEiE=; b=QJ5mO9UtBTMaLL4HX1DdzDDN4w
- 5luRDVBsPu00TA23hkZ8SLmQ0eJpLN0WnvDm0FKmw5Z4u0Zm23rbVidOzAsvZs6wiUA6mvgQjyE4o
- BrzwPaIhtAU/NybvjOiaxy1tMhag18Sy/DO5eiAoU2rznZfSsXbFy9Ise2BKGsA03Xe6RIEMZfbCo
- Xql9vAyhugQ38CNLdiCALdpC1MtE/FKL2e8wTT9rhv6Sj2InaUjMiI4Wt7H2mzucml2XMIVUrl7Sg
- WAFAV1PseAa0IwflkItpRv9sUSeg40wM1hKch1XiRBb3QZHXKWgx3lzVofaKQ0UGXJq1lJ7QaNPBP
- WnFtFPFg==;
+ References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=jNrKpjJZWbzF7loCGZREB6bax9OAOjlTuRT/ogxnl/E=; b=K0Gck/175MCpsOeyJH60AuSbuL
+ FUFn7hPQfWRKz4amg97pLNbe6gcM/xxa67iUEXB9fUUxne7e9p6NfuiHbljYOERGoeVN0Z6ccb5oW
+ GUo1pz7Qr1/inggnn7xzApnMnwrwCQppAYEEGZjtppFadnVzSpQDDANqzoqO+LcWomqPtgThfPwm/
+ t8/4AQmcZ2LnECfsqzjJ0kgFtb0R4eeO2R5WaA6ZQubNajKiHShj9aJtpUg/hHGhxqdmPQ2QoXIUX
+ 9oQ9yzyesevzTCefC4US8cZlYm8yBSP19FK3Kplv/1ZPjjF2yU0WtEFwaqy0Qw4FZirb0AbFtxGmz
+ pQD+x0Qg==;
 Received: from [2001:8b0:897:1650::2] (helo=flibble.moreofthesa.me.uk)
  by spam.moreofthesa.me.uk with esmtp (Exim 4.92)
  (envelope-from <devspam@moreofthesa.me.uk>)
- id 1koaF1-0004Qu-P0; Sun, 13 Dec 2020 22:53:23 +0000
+ id 1koaF1-0004Qu-Sl; Sun, 13 Dec 2020 22:53:23 +0000
 From: Darren Salt <devspam@moreofthesa.me.uk>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 0/8] amdgpu, pci: improved BAR resizing support
-Date: Sun, 13 Dec 2020 22:53:15 +0000
-Message-Id: <20201213225323.6752-1-devspam@moreofthesa.me.uk>
+Subject: [PATCH 1/8] pci: export pci_rebar_get_possible_sizes
+Date: Sun, 13 Dec 2020 22:53:16 +0000
+Message-Id: <20201213225323.6752-2-devspam@moreofthesa.me.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201213225323.6752-1-devspam@moreofthesa.me.uk>
+References: <20201213225323.6752-1-devspam@moreofthesa.me.uk>
 MIME-Version: 1.0
 X-SA-Exim-Connect-IP: 2001:8b0:897:1650::2
 X-SA-Exim-Mail-From: devspam@moreofthesa.me.uk
@@ -57,41 +59,51 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patch series improves the existing BAR resizing support in amdgpu. By
-default, it will attempt to resize BAR0 for each dGPU present to cover the
-VRAM, falling back to smaller sizes if necessary, e.g. if there's not enough
-address space remaining or support for the size is not advertised.
+This is to assist driver modules which do BAR resizing.
 
-Basic boot-time (or module load time) options to control this resizing are
-implemented: one to control whether resizing is done (and whether the
-advertised BAR sizes are ignored) and one to control the maximum BAR size
-(where the size would be increased). At present, these are coarse; there is
-no support for applying limits to specific GPUs in multi-GPU systems.
+Signed-off-by: Darren Salt <devspam@moreofthesa.me.uk>
+---
+ drivers/pci/pci.c   | 1 +
+ drivers/pci/pci.h   | 1 -
+ include/linux/pci.h | 1 +
+ 3 files changed, 2 insertions(+), 1 deletion(-)
 
-The override and the quirks list (which uses it) are to cope with GPU
-VBIOSes which don't properly advertise supported BAR sizes. Mine appears to
-be one such.
-
-Darren Salt (8):
-  pci: export pci_rebar_get_possible_sizes
-  pci: add BAR bytes->size helper & expose size->bytes helper
-  amdgpu: resize BAR0 to the maximum available size, even if it doesn't
-    cover VRAM (v4)
-  amdgpu: limit maximum BAR0 size when attempting to enlarge (v2)
-  pci: allow for overriding the list of advertised BAR sizes
-  amdgpu: allow overriding of the GPU's list of supported BAR sizes (v3)
-  amdgpu: implement a BAR size quirks list
-  amdgpu: add a BAR size quirk for Sapphire RX 5600 XT Pulse.
-
- drivers/gpu/drm/amd/amdgpu/amdgpu.h        |   2 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 115 +++++++++++++++++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  19 ++++
- drivers/pci/pci.c                          |   1 +
- drivers/pci/pci.h                          |   5 -
- drivers/pci/setup-res.c                    |   4 +-
- include/linux/pci.h                        |  12 ++-
- 7 files changed, 140 insertions(+), 18 deletions(-)
-
+diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+index b2fed944903e..2fd88af5e4da 100644
+--- a/drivers/pci/pci.c
++++ b/drivers/pci/pci.c
+@@ -3566,6 +3566,7 @@ u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
+ 	pci_read_config_dword(pdev, pos + PCI_REBAR_CAP, &cap);
+ 	return (cap & PCI_REBAR_CAP_SIZES) >> 4;
+ }
++EXPORT_SYMBOL(pci_rebar_get_possible_sizes);
+ 
+ /**
+  * pci_rebar_get_current_size - get the current size of a BAR
+diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+index fa12f7cbc1a0..dd1398aec6c8 100644
+--- a/drivers/pci/pci.h
++++ b/drivers/pci/pci.h
+@@ -609,7 +609,6 @@ int acpi_get_rc_resources(struct device *dev, const char *hid, u16 segment,
+ 			  struct resource *res);
+ #endif
+ 
+-u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
+ int pci_rebar_get_current_size(struct pci_dev *pdev, int bar);
+ int pci_rebar_set_size(struct pci_dev *pdev, int bar, int size);
+ static inline u64 pci_rebar_size_to_bytes(int size)
+diff --git a/include/linux/pci.h b/include/linux/pci.h
+index 3ff723124ca7..78a03e2c066f 100644
+--- a/include/linux/pci.h
++++ b/include/linux/pci.h
+@@ -1224,6 +1224,7 @@ void pci_update_resource(struct pci_dev *dev, int resno);
+ int __must_check pci_assign_resource(struct pci_dev *dev, int i);
+ int __must_check pci_reassign_resource(struct pci_dev *dev, int i, resource_size_t add_size, resource_size_t align);
+ void pci_release_resource(struct pci_dev *dev, int resno);
++u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
+ int __must_check pci_resize_resource(struct pci_dev *dev, int i, int size);
+ int pci_select_bars(struct pci_dev *dev, unsigned long flags);
+ bool pci_device_is_present(struct pci_dev *pdev);
 -- 
 2.20.1
 
