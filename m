@@ -2,16 +2,16 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E35392D9109
-	for <lists+amd-gfx@lfdr.de>; Sun, 13 Dec 2020 23:53:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4F7A2D9105
+	for <lists+amd-gfx@lfdr.de>; Sun, 13 Dec 2020 23:53:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5DBE89E41;
-	Sun, 13 Dec 2020 22:53:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2BC189E2B;
+	Sun, 13 Dec 2020 22:53:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from spam.moreofthesa.me.uk (moreofthesa.me.uk
  [IPv6:2001:8b0:897:1651::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 508D989E33
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6E7E89E38
  for <amd-gfx@lists.freedesktop.org>; Sun, 13 Dec 2020 22:53:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=moreofthesa.me.uk; s=201708; h=Content-Transfer-Encoding:MIME-Version:
@@ -19,22 +19,21 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
  Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
  List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=i4CPKv5xq7/wVWtsN63gPBLqDuRRkbr27E2cxqgLST0=; b=AhAr8z9fipYoYLJ6V3UeldT8v1
- sytwwOq+fsarC0g/wD85vp3VBaY/oIcfoNm5SoeTv66OmxnTAZqdw6WUlmlAu3N8jNinwVa8Ok3Ue
- bJx7rv67/DQ6YEEMmvvraVSWwpDEkaw8eBot7wRmxHgDKK732x64SnH1uSehRd7TZ+lz4rbmsu4st
- wLKDOPIeXCz6QzOZLHFmQYYjciWBy7QrLxUwUtrx5EwlVS9rh0lDyWcty0S1X9ypwHWIYkw31upG7
- FGdcCD8CeeHS2fasSdBVIPrqLuTSOdIYjVL9lDEyPZbbT3KL5cI7xGncLXjTa9K3E8DnRLuszdcqF
- 52YD2c/w==;
+ bh=uQ8fK930B+jaBjA3cmT4gmsgM95LRL09TjhMN9sB9Us=; b=DlJhc7mbm+7ntBfyDyN0tCvMcG
+ QM1mQgP+4JD11bHLkqdR4iZO8C/LaOv1bB77jr5vVgBZw1+ssN/8XuPTFtMBLWOE2YCEfrpEys7dO
+ g6WLnvJ2IgH1D4tZihCu4kCO73W2ZcCVBhfKMdtvdKYyIN2xslaTo5QDctv7G13SDG1l8bCmZBv/E
+ pqzG1WNzqg9ooVLWzt/CyN+gnDik97cRhl+bF5zy2NF0CpMISLcn+n9Fla3tdoU35TCRDvyRAodBO
+ q0FYflSsRqIATcLSQW5M/pQVVCviEJAdlBgsfa858kvRYlU/PmEFUU+R1W+DgzoEQvYOTyb9J8xlx
+ HLZux1Ww==;
 Received: from [2001:8b0:897:1650::2] (helo=flibble.moreofthesa.me.uk)
  by spam.moreofthesa.me.uk with esmtp (Exim 4.92)
  (envelope-from <devspam@moreofthesa.me.uk>)
- id 1koaF2-0004Qu-M7; Sun, 13 Dec 2020 22:53:24 +0000
+ id 1koaF2-0004Qu-Rl; Sun, 13 Dec 2020 22:53:24 +0000
 From: Darren Salt <devspam@moreofthesa.me.uk>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 6/8] amdgpu: allow overriding of the GPU's list of supported
- BAR sizes (v3)
-Date: Sun, 13 Dec 2020 22:53:21 +0000
-Message-Id: <20201213225323.6752-7-devspam@moreofthesa.me.uk>
+Subject: [PATCH 7/8] amdgpu: implement a BAR size quirks list
+Date: Sun, 13 Dec 2020 22:53:22 +0000
+Message-Id: <20201213225323.6752-8-devspam@moreofthesa.me.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201213225323.6752-1-devspam@moreofthesa.me.uk>
 References: <20201213225323.6752-1-devspam@moreofthesa.me.uk>
@@ -60,87 +59,90 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Some cards don't advertise a BAR size which covers all of the VRAM.
+Intended for devices which are misreporting available/supported BAR sizes.
 
-Mine, a Sapphire RX 5600 XT Pulse, advertises only 256MB, 512MB and 1GB.
-Despite this, it appears to work fine with the full 6GB visible via an 8GB
-BAR.
-
-v3: changed implementation due to changes in preceding patches.
-
-v2: different option controlling this due to a dropped patch.
+This may be insufficient to identify some devices. The inclusion of the
+reported BAR sizes bitmap is to assist with identification.
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  8 ++++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 10 ++++++++++
- 3 files changed, 17 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 43 ++++++++++++++++++++--
+ 1 file changed, 39 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index c0e3e402023e..1bf21231a628 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -195,6 +195,7 @@ static const bool debug_evictions; /* = false */
- extern int amdgpu_tmz;
- extern int amdgpu_reset_method;
- extern int amdgpu_max_bar_size;
-+extern bool amdgpu_override_bar_sizes;
- 
- #ifdef CONFIG_DRM_AMDGPU_SI
- extern int amdgpu_si_support;
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index ce3b8f8fea0c..0f05a75be34e 100644
+index 0f05a75be34e..442eca5fc6a4 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -954,7 +954,11 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
+@@ -897,6 +897,34 @@ void amdgpu_device_wb_free(struct amdgpu_device *adev, u32 wb)
+ 		__clear_bit(wb, adev->wb.used);
+ }
+ 
++static const struct amdgpu_rebar_quirk {
++	u32 chip_vendor, chip_device;
++	u32 subsys_vendor, subsys_device;
++	int reported_sizes;	/* 0, or as reported by pci_rebar_get_possible_sizes */
++	int available_sizes;	/* bitmap (-256 for anything >= 256MB, effectively automatic) */
++} amdgpu_rebar_quirk_list[] = {
++	{ 0, 0, 0, 0, 0, 0 }
++};
++
++static int amdgpu_rebar_quirk_check(struct amdgpu_device *adev, int reported_sizes)
++{
++	const struct pci_dev *pdev = adev->pdev;
++	const struct amdgpu_rebar_quirk *p = amdgpu_rebar_quirk_list;
++
++	while (p && p->chip_device != 0) {
++		if (pdev->vendor == p->chip_vendor &&
++		    pdev->device == p->chip_device &&
++		    pdev->subsystem_vendor == p->subsys_vendor &&
++		    pdev->subsystem_device == p->subsys_device &&
++		    (!reported_sizes || !p->available_sizes || reported_sizes == p->reported_sizes)) {
++			dev_info(adev->dev, "quirk: overriding BAR possible sizes list.");
++			return p->available_sizes;
++		}
++		++p;
++	}
++	return 0;
++}
++
+ /**
+  * amdgpu_device_resize_fb_bar - try to resize FB BAR
+  *
+@@ -918,6 +946,7 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
+ 	u16 cmd;
+ 	int r;
+ 	bool nospc = false;
++	bool override_bar_sizes = amdgpu_override_bar_sizes;
+ 
+ 	/* Bypass for VF */
+ 	if (amdgpu_sriov_vf(adev))
+@@ -954,10 +983,16 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
  	if (!res)
  		return 0;
  
--	available_sizes = pci_rebar_get_possible_sizes(adev->pdev, 0);
-+	if (amdgpu_override_bar_sizes)
-+		available_sizes = ~(-1 << rbar_size) & ~0xFF;
-+	else
-+		available_sizes = pci_rebar_get_possible_sizes(adev->pdev, 0);
-+
+-	if (amdgpu_override_bar_sizes)
++	if (override_bar_sizes)
+ 		available_sizes = ~(-1 << rbar_size) & ~0xFF;
+-	else
+-		available_sizes = pci_rebar_get_possible_sizes(adev->pdev, 0);
++	else {
++		int q = amdgpu_rebar_quirk_check(adev, available_sizes);
++		if (q)
++			override_bar_sizes = true;
++		else
++			q = pci_rebar_get_possible_sizes(adev->pdev, 0);
++		available_sizes = q;
++	}
+ 
  	if (max_size >= 0) {
  		/* Cause larger sizes to be ignored unless that would leave
- 		 * no advertised sizes (which shouldn't happen).
-@@ -995,7 +999,7 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
+@@ -999,7 +1034,7 @@ int amdgpu_device_resize_fb_bar(struct amdgpu_device *adev)
  	     rbar_size >= 0;
  	     rbar_size = fls(available_sizes & ~(-1 << rbar_size)) - 1
  	    ) {
--		r = pci_resize_resource(adev->pdev, 0, rbar_size, false);
-+		r = pci_resize_resource(adev->pdev, 0, rbar_size, amdgpu_override_bar_sizes);
+-		r = pci_resize_resource(adev->pdev, 0, rbar_size, amdgpu_override_bar_sizes);
++		r = pci_resize_resource(adev->pdev, 0, rbar_size, override_bar_sizes);
  		if (r == 0) {
  			break;
  		} else if (r == -ENOTSUPP) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 74baa8dafa5f..983f80bbe49b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -151,6 +151,7 @@ int amdgpu_force_asic_type = -1;
- int amdgpu_tmz = 0;
- int amdgpu_reset_method = -1; /* auto */
- int amdgpu_max_bar_size = -1;
-+bool amdgpu_override_bar_sizes = false;
- 
- struct amdgpu_mgpu_info mgpu_info = {
- 	.mutex = __MUTEX_INITIALIZER(mgpu_info.mutex),
-@@ -774,6 +775,15 @@ module_param_named(reset_method, amdgpu_reset_method, int, 0444);
- module_param_named(max_bar_size, amdgpu_max_bar_size, int, 0444);
- MODULE_PARM_DESC(max_bar_size, "Maximum FB BAR size, log2(megabytes) (default = -1, meaning unlimited; minimum is 8 for 256MB).");
- 
-+/**
-+ * DOC: amdgpu_override_bar_sizes (int)
-+ * A blunt instrument for ignoring the listed BAR sizes.
-+ * This is intended to handle VBIOSes which list the wrong set of sizes but which aren't recognised as such by the kernel.
-+ * Disabled by default.
-+ */
-+module_param_named(override_bar_sizes, amdgpu_override_bar_sizes, bool, 0444);
-+MODULE_PARM_DESC(override_bar_sizes, "Ignore VBIOS supported BAR sizes, for where the list is wrong. (Disabled by default.)");
-+
- static const struct pci_device_id pciidlist[] = {
- #ifdef  CONFIG_DRM_AMDGPU_SI
- 	{0x1002, 0x6780, PCI_ANY_ID, PCI_ANY_ID, 0, 0, CHIP_TAHITI},
 -- 
 2.20.1
 
