@@ -2,16 +2,16 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21FE22DA554
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Dec 2020 02:09:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12A4E2DA548
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Dec 2020 02:09:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B8026E190;
-	Tue, 15 Dec 2020 01:09:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89A266E0C6;
+	Tue, 15 Dec 2020 01:09:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from spam.moreofthesa.me.uk (moreofthesa.me.uk
  [IPv6:2001:8b0:897:1651::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 971B06E0D5
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 919D46E0C6
  for <amd-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 01:09:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=moreofthesa.me.uk; s=201708; h=Content-Transfer-Encoding:MIME-Version:
@@ -19,21 +19,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
  Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
  List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=B5NGdE5P52oEkJr4NzozPQYah+8IGqMvZFhyyXfzm0E=; b=k/ABYz1FPuWYhn46AYTzfHBU4C
- RHEeRifCi9TwS2kHV8bXw7vx4pcng6eYQbBn/1mzeMeKrBLE2DUPKb5A0+ZZ9nMWXw2tgCqzwFofS
- zK08jjxodyD0D7kBaWQtuSgWNtmbisv2chIcweGZBbZ4bb+bAyDQngXfHZ56Vo6iR2gfOUe6K9VNt
- 0fAaAV+UoFK4l6MT2/POdSw4iCKXr1vZzjQUwyy/S/XsScPpBiRVLBZjdsLG9ezFtNRHMkAecAuSr
- E+a2psozRAD+bdrkf6vV1dAiCnUHAdJWWcqYIVjcaKyybk4l3B09MUpLP2QdaUseqNyF1n9HR9CP+
- Tr2y1J+w==;
+ bh=LYAKmIxtrK+kH2QeM0Im/tjE/RBuc9fpbJsNF/EBqr8=; b=eQLXM4A1Lw8phM9z0LtrEXqS27
+ 3zZt+wgjEzAjaOUkTd3LxAif9pO9SDGAUft9tRFDySNr/Nu4G8PUR12FRvEh4StPSDZmxV9ayBz3X
+ InAqAncOu6H1lfL+XtY8ZfCmL3YcpUCCiB+W09MKnm3XhAaOuQzEsQBwkQqM1slZZ0UT1l6NcPIuQ
+ 2rFI294FtPFYDGwRPHkBsLPopdQ1zaG9ZPYi7HBUG8/PDHy5X5EzfEFqglM3VW8mo9EiSEpS7XCGu
+ iNtKQm8vlKq8gDYXYrzuxFrcAjKxwjXzhFBm5IHfUNN2ADvRuDZQMVkykjy4plEKJokaSbGTVOA2p
+ hFC/q0MQ==;
 Received: from [2001:8b0:897:1650::2] (helo=flibble.moreofthesa.me.uk)
  by spam.moreofthesa.me.uk with esmtp (Exim 4.92)
  (envelope-from <devspam@moreofthesa.me.uk>)
- id 1koypr-000334-5J; Tue, 15 Dec 2020 01:09:03 +0000
+ id 1koypr-000334-95; Tue, 15 Dec 2020 01:09:03 +0000
 From: Darren Salt <devspam@moreofthesa.me.uk>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/8] pci: export pci_rebar_get_possible_sizes
-Date: Tue, 15 Dec 2020 01:08:55 +0000
-Message-Id: <20201215010902.18945-2-devspam@moreofthesa.me.uk>
+Subject: [PATCH 2/8] pci: add BAR bytes->size helper & expose size->bytes
+ helper
+Date: Tue, 15 Dec 2020 01:08:56 +0000
+Message-Id: <20201215010902.18945-3-devspam@moreofthesa.me.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201215010902.18945-1-devspam@moreofthesa.me.uk>
 References: <20201215010902.18945-1-devspam@moreofthesa.me.uk>
@@ -63,47 +64,45 @@ This is to assist driver modules which do BAR resizing.
 
 Signed-off-by: Darren Salt <devspam@moreofthesa.me.uk>
 ---
- drivers/pci/pci.c   | 1 +
- drivers/pci/pci.h   | 1 -
- include/linux/pci.h | 1 +
- 3 files changed, 2 insertions(+), 1 deletion(-)
+ drivers/pci/pci.h   | 4 ----
+ include/linux/pci.h | 9 +++++++++
+ 2 files changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-index e578d34095e9..ef80ed451415 100644
---- a/drivers/pci/pci.c
-+++ b/drivers/pci/pci.c
-@@ -3579,6 +3579,7 @@ u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar)
- 	pci_read_config_dword(pdev, pos + PCI_REBAR_CAP, &cap);
- 	return (cap & PCI_REBAR_CAP_SIZES) >> 4;
- }
-+EXPORT_SYMBOL(pci_rebar_get_possible_sizes);
- 
- /**
-  * pci_rebar_get_current_size - get the current size of a BAR
 diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-index f86cae9aa1f4..640ae7d74fc3 100644
+index 640ae7d74fc3..0fa31ff3d4e4 100644
 --- a/drivers/pci/pci.h
 +++ b/drivers/pci/pci.h
-@@ -608,7 +608,6 @@ int acpi_get_rc_resources(struct device *dev, const char *hid, u16 segment,
- 			  struct resource *res);
- #endif
+@@ -610,10 +610,6 @@ int acpi_get_rc_resources(struct device *dev, const char *hid, u16 segment,
  
--u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
  int pci_rebar_get_current_size(struct pci_dev *pdev, int bar);
  int pci_rebar_set_size(struct pci_dev *pdev, int bar, int size);
- static inline u64 pci_rebar_size_to_bytes(int size)
+-static inline u64 pci_rebar_size_to_bytes(int size)
+-{
+-	return 1ULL << (size + 20);
+-}
+ 
+ struct device_node;
+ 
 diff --git a/include/linux/pci.h b/include/linux/pci.h
-index 22207a79762c..9999040cfad9 100644
+index 9999040cfad9..41e93ea9756b 100644
 --- a/include/linux/pci.h
 +++ b/include/linux/pci.h
-@@ -1226,6 +1226,7 @@ void pci_update_resource(struct pci_dev *dev, int resno);
+@@ -1226,6 +1226,15 @@ void pci_update_resource(struct pci_dev *dev, int resno);
  int __must_check pci_assign_resource(struct pci_dev *dev, int i);
  int __must_check pci_reassign_resource(struct pci_dev *dev, int i, resource_size_t add_size, resource_size_t align);
  void pci_release_resource(struct pci_dev *dev, int resno);
-+u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
++static __always_inline int pci_rebar_bytes_to_size(u64 bytes)
++{
++	bytes = roundup_pow_of_two(bytes);
++	return order_base_2(((bytes >> 20) | 1)) - 1;
++}
++static __always_inline u64 pci_rebar_size_to_bytes(int size)
++{
++	return 1ULL << (size + 20);
++}
+ u32 pci_rebar_get_possible_sizes(struct pci_dev *pdev, int bar);
  int __must_check pci_resize_resource(struct pci_dev *dev, int i, int size);
  int pci_select_bars(struct pci_dev *dev, unsigned long flags);
- bool pci_device_is_present(struct pci_dev *pdev);
 -- 
 2.20.1
 
