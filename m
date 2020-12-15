@@ -1,37 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21A202DA463
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Dec 2020 00:50:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ABF22DA549
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Dec 2020 02:09:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE7D689EB4;
-	Mon, 14 Dec 2020 23:50:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35EC36E0D5;
+	Tue, 15 Dec 2020 01:09:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D95B89EB4;
- Mon, 14 Dec 2020 23:50:30 +0000 (UTC)
-Date: Mon, 14 Dec 2020 23:50:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1607989830;
- bh=SJV+58ZVFlykR+8LRz85SA+mdMX5Zhf60lyRr0nr08Q=;
- h=From:To:Cc:Subject:References:In-Reply-To:From;
- b=noYICguQ2NPaSUjL8UbaTSj/fY6r5/rKVdP3h/Al4d6IRimcNzEwCphdZ7W0hnMVJ
- JbYUASrm8lG1k2c0p4w3Euoye4WedxrhjF6Mo7oS36wKTu49cqe50Eju+YVToOJsPD
- 8JPpfKkmvyYeWnrhvNegQ4GBFpPdivp24+r9MhUiY2ogVuA30uL47yVMYeDwvqqgTd
- szMVAuBqHFKc7f0ng+7AAVaSfC7qD4l1oA7Ewf/bdXDVapj9BzmlxjWZy1jctH0425
- Ro/lNuCmbpco19I2MJbL4M2QigLTTX6sngbKyaLBLHe/HtxPlLfvwLl5UVJBa6SYoi
- duhngK04mmI2Q==
-From: Will Deacon <will@kernel.org>
-To: Ard Biesheuvel <ardb@kernel.org>
-Subject: Re: [PATCH] drm/amd/display: Revert "add DCN support for aarch64"
-Message-ID: <20201214235024.GB14575@willie-the-truck>
-References: <20201214175225.38975-1-ardb@kernel.org>
+Received: from spam.moreofthesa.me.uk (moreofthesa.me.uk
+ [IPv6:2001:8b0:897:1651::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97B5C6E150
+ for <amd-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 01:09:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=moreofthesa.me.uk; s=201708; h=Content-Transfer-Encoding:Content-Type:
+ MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=7eDH+Fc+/bxqyb9yXeGUuu3pQ8Ejm9h4VjS6r6pn3HM=; b=AzynfzEkNhRCb8d7udGybYttEY
+ eI4pYF40zLyKdIJzaH0JAVqNgZno4psTo0bu8Vx7wDBi2rW/5eo5iSd+P+ZTLSYajzXocRQxB1qg6
+ Z2kpPEnAbsx0yigiXov7iHXDsMA4k7y45ynN/nvShVQ0WqeRRidNcjFU9TSfU0i9XLgTMH1BwIXct
+ XHttJ4HYZbkYsbYow3Bpm5H8WpGHoI6jx5zWR6UTNzT7nUdOOX3vFSsyfj51sAjZz3vX4h8GeQg6d
+ i6Y1j/4hRiG6aAMHOTGirBpAWWGQoLxrhR67ST/8rOvjBQUqw0a9ZjadMmjja/8HKcUvX3s6TAAve
+ 2Exg6wqA==;
+Received: from [2001:8b0:897:1650::2] (helo=flibble.moreofthesa.me.uk)
+ by spam.moreofthesa.me.uk with esmtp (Exim 4.92)
+ (envelope-from <devspam@moreofthesa.me.uk>)
+ id 1koypr-000334-1C; Tue, 15 Dec 2020 01:09:03 +0000
+From: Darren Salt <devspam@moreofthesa.me.uk>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 0/8] amdgpu, pci: improved BAR resizing support
+Date: Tue, 15 Dec 2020 01:08:54 +0000
+Message-Id: <20201215010902.18945-1-devspam@moreofthesa.me.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201214175225.38975-1-ardb@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:8b0:897:1650::2
+X-SA-Exim-Mail-From: devspam@moreofthesa.me.uk
+X-SA-Exim-Scanned: No (on spam.moreofthesa.me.uk);
+ SAEximRunCond expanded to false
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,74 +51,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Leo Li <sunpeng.li@amd.com>,
- Catalin Marinas <catalin.marinas@arm.com>, amd-gfx@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Daniel Kolesa <daniel@octaforge.org>,
- Alex Deucher <alexander.deucher@amd.com>, Dave Martin <dave.martin@arm.com>,
- linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Darren Salt <devspam@moreofthesa.me.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 14, 2020 at 06:52:25PM +0100, Ard Biesheuvel wrote:
-> This reverts commit c38d444e44badc557cf29fdfdfb823604890ccfa.
-> =
+This patch series improves the existing BAR resizing support in amdgpu.  By
+default, it will attempt to resize BAR0 for each supported dGPU present to
+cover the VRAM.
 
-> Simply disabling -mgeneral-regs-only left and right is risky, given that
-> the standard AArch64 ABI permits the use of FP/SIMD registers anywhere,
-> and GCC is known to use SIMD registers for spilling, and may invent
-> other uses of the FP/SIMD register file that have nothing to do with the
-> floating point code in question. Note that putting kernel_neon_begin()
-> and kernel_neon_end() around the code that does use FP is not sufficient
-> here, the problem is in all the other code that may be emitted with
-> references to SIMD registers in it.
-> =
+Basic boot-time (or module load time) options to control this resizing are
+implemented: one to control the maximum BAR size (may extend, may shrink)
+and one to control whether the sizes advertised as supported by the VBIOS
+are ignored. At present, these are coarse; there is no support for applying
+limits to specific GPUs in multi-GPU systems.
 
-> So the only way to do this properly is to put all floating point code in
-> a separate compilation unit, and only compile that unit with
-> -mgeneral-regs-only. But perhaps the use of floating point here is
-> something that should be reconsidered entirely.
-> =
+The override and the quirks list (which uses it) are to cope with GPU
+VBIOSes which don't properly advertise supported BAR sizes. Mine appears to
+be one such.
 
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Dave Martin <dave.martin@arm.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Leo Li <sunpeng.li@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: "Christian K=F6nig" <christian.koenig@amd.com>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Daniel Kolesa <daniel@octaforge.org>
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
-> ---
->  drivers/gpu/drm/amd/display/Kconfig                   |  2 +-
->  drivers/gpu/drm/amd/display/dc/calcs/Makefile         |  7 --
->  drivers/gpu/drm/amd/display/dc/clk_mgr/Makefile       |  7 --
->  drivers/gpu/drm/amd/display/dc/dcn10/Makefile         |  7 --
->  drivers/gpu/drm/amd/display/dc/dcn10/dcn10_resource.c | 81 ++++++++-----=
--------
->  drivers/gpu/drm/amd/display/dc/dcn20/Makefile         |  4 -
->  drivers/gpu/drm/amd/display/dc/dcn21/Makefile         |  4 -
->  drivers/gpu/drm/amd/display/dc/dml/Makefile           | 13 ----
->  drivers/gpu/drm/amd/display/dc/dsc/Makefile           |  5 --
->  drivers/gpu/drm/amd/display/dc/os_types.h             |  4 -
->  10 files changed, 32 insertions(+), 102 deletions(-)
+Darren Salt (8):
+  pci: export pci_rebar_get_possible_sizes
+  pci: add BAR bytes->size helper & expose size->bytes helper
+  amdgpu: resize BAR0 to the maximum available size, even if it doesn't
+    cover VRAM (v5)
+  amdgpu: limit maximum BAR0 size when attempting to enlarge (v3)
+  pci: allow for overriding the list of advertised BAR sizes
+  amdgpu: allow overriding of the GPU's list of supported BAR sizes (v3)
+  amdgpu: implement a BAR size quirks list
+  amdgpu: add a BAR size quirk for Sapphire RX 5600 XT Pulse.
 
-I didn't notice we'd enabled this for arm64, but I agree with the reasoning
-in the commit message, so:
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |   2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 102 +++++++++++++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  19 ++++
+ drivers/pci/pci.c                          |   1 +
+ drivers/pci/pci.h                          |   5 -
+ drivers/pci/setup-res.c                    |   4 +-
+ include/linux/pci.h                        |  12 ++-
+ 7 files changed, 127 insertions(+), 18 deletions(-)
 
-Acked-by: Will Deacon <will@kernel.org>
+-- 
+2.20.1
 
-The long and short of it is that it is not safe to compile kernel C code
-without -mgeneral-regs-only on arm64.
-
-Will
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
