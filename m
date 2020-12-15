@@ -1,58 +1,54 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E9892DB121
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Dec 2020 17:19:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 963C72DB142
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Dec 2020 17:24:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 132656E40B;
-	Tue, 15 Dec 2020 16:19:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BA6B89A5D;
+	Tue, 15 Dec 2020 16:24:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com
- [IPv6:2607:f8b0:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE6D6E3FE
- for <amd-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 16:19:00 +0000 (UTC)
-Received: by mail-ot1-x329.google.com with SMTP id d8so19905388otq.6
- for <amd-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 08:19:00 -0800 (PST)
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
+ [IPv6:2607:f8b0:4864:20::244])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85D2E89A5D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 16:24:52 +0000 (UTC)
+Received: by mail-oi1-x244.google.com with SMTP id d189so23915046oig.11
+ for <amd-gfx@lists.freedesktop.org>; Tue, 15 Dec 2020 08:24:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=aCkVEQ4DfY7UEiZxhpJyqTIgP64jvnjvzg8WB3+ib4Q=;
- b=fDYN9e7tBQaSyAPOS4Fv588nJRsMBJ9TiTm431rZ2LeTIWgt+LVC7SiKsZe6OfQQ+s
- g6SBv92kZMlmJdD34d0nQZySHoxykZzGUf20FpANe+XRyIVQi6QxAKDhlaDNqSRZEbXk
- aVUioDMG+8hTyrhhMNFRRLlQmmU4jI4AX2LDfAP9Zg7AgUZC6IMRcVYVqdvISDwC4j7Q
- Xjw98qo7liSZKcVvxx7QC+r1D3/5hcNSzoufc5vdGwc3gM5NDGkgss903JSrvmXu4oIO
- U+nEezyydUZ3RDaRpnt4ulTngIiryjyF7UfxVJ684hotdALHK6aQQPvrm3sR980sdwSN
- P7/w==
+ :cc; bh=eZA98qM4LA+REqsJd4W5mtcGO9Sf84DDmOhcLUlEJm0=;
+ b=UBTLekXH466G1Ywn0xDpqq8Yg9CUEsZnMF0hzyrov1Bbs7ScbRQtzi4iNRfEBcCQzx
+ Zjz4q6TnvRiS/IBk+gb7siGPU6RoUCcBHBfRamQwdjw97/JeR1yLIwgS3UiYJMjzbLkD
+ XS1rWF/glehPzKSewY0K1lT8dYyv5PYs7S9r2yrP/eBWhc4bVG/aSyEes9Q3CqNRt/PG
+ IDLlsVyOowRPxAIDikmUciW7E0cLBRt69cxfMPs/9UEbTWf+LT4L+2dRfteXZCx/GNph
+ g667iI0bPyov7RzWgGPc6Yjxcn7883NvKamtzeMxmCoGxcGtSop3Y3JkBl0Hpx0YVKQi
+ N96g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=aCkVEQ4DfY7UEiZxhpJyqTIgP64jvnjvzg8WB3+ib4Q=;
- b=DeJE+S4nqF19ntO9s8A+vub62thDZKvxs+cdXADwfn9M6RuPzbqr8rgdYM8twU0bR2
- rwRKIrmnp9k4Vi2nsQktXDE2nQmo1QBBP2iBtiki/fPYyQbLYevfrRyMFDn7I20q8C94
- jRTd+VyIHBFfZyzuZitCbfkNXCTRj0q75cz/DHi8d9FgPSDbfIH4QER8D9IdBvOFrsME
- t2Hy2aTJbpBo/CBtqpSH8+C8aecrcG5dWggLKGqbEAuI9S3D52mHSCArVZfC5R7eGrvj
- CL42r9Ju7AFlry/OJSi5ZBv5vTiuY93k89iXU7J4ccEp8NJHKgjDU4HnsORZWrknmPN3
- Fhwg==
-X-Gm-Message-State: AOAM533nddUxMSHLy8LHNFQktZTYkYi9oR3UWcexGP9rnn2kaM4wXh3S
- AerWeu7tnonECST2UWJ/+xocuxa2nHkIlYeHUCawD7LU
-X-Google-Smtp-Source: ABdhPJz0OCQxpufG1tSCB+YfaAwzuotWyePhGP+Neea8fyEu5pwz26NwbvPMEuMpzUrTScWLakssk8wPCu3bud2UyCM=
-X-Received: by 2002:a05:6830:1b7b:: with SMTP id
- d27mr24460356ote.132.1608049139341; 
- Tue, 15 Dec 2020 08:18:59 -0800 (PST)
+ :message-id:subject:to:cc;
+ bh=eZA98qM4LA+REqsJd4W5mtcGO9Sf84DDmOhcLUlEJm0=;
+ b=dEyeZbktDoAmj+BQpGeFRkMiB90mDnYWLr2x4jFdqeaIqcpQ+rTTa50n0ZNMG0qbuj
+ Dv/Bx0bBQogNC1Mw5oj035K3hFDHWS8UhKDIPAde4poKj2MmKfraMVsch8uTWB6ck4Dm
+ lQJW5NfzLoRMlm+ReTn+zYfhuEzUM6BbwjeKClN+1mWxaJNRxA9W4wZzDpRcaO9Pdx3N
+ Dq7tSZwOaT1/HGf1WERUGLqaiDcO78TIsCmKBYEDICwuvnPLYSe/+IFLYMP9GqhL1GZx
+ rAoTFV6mL1ZgfXWHEMFjE8Zem5UOgPgPShNocksrHz7Ny4PBiJlTR8f7IFOZcSBXAg2r
+ v1/w==
+X-Gm-Message-State: AOAM531JwN4V9IIPSXopYBriGcXoIVdvk6FrddHqZ0vgBcZTVVIVcPx4
+ MyFXWxQoQ7M0lFT0d3ntEfPNsyt7ZqNkXYHcfmM=
+X-Google-Smtp-Source: ABdhPJzKHR1Jwj0xeeoztomjiQrthHOOwKv1i9ImhKYOi9zU7NqAtsaPv+UiqZKPJbMabrSYzgP4v3Q4ETWND+0iLwA=
+X-Received: by 2002:aca:4f97:: with SMTP id
+ d145mr21833982oib.123.1608049491900; 
+ Tue, 15 Dec 2020 08:24:51 -0800 (PST)
 MIME-Version: 1.0
-References: <20201211155553.GC25974@zn.tnic>
- <20201215154703.6gwm2ew337pqysq4@outlook.office365.com>
- <20201215155622.GC9817@zn.tnic>
- <20201215160720.ewce4usgb53pzt2j@outlook.office365.com>
-In-Reply-To: <20201215160720.ewce4usgb53pzt2j@outlook.office365.com>
+References: <20201215154505.1321860-1-Rodrigo.Siqueira@amd.com>
+In-Reply-To: <20201215154505.1321860-1-Rodrigo.Siqueira@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 15 Dec 2020 11:18:48 -0500
-Message-ID: <CADnq5_MSJdrmxNW9jhdQPOZLUdkJtZMyA6FmqjyZsgGHBWoXVg@mail.gmail.com>
-Subject: Re: 8353d30e747f ("drm/amd/display: disable stream if pixel clock
- changed with link active")
+Date: Tue, 15 Dec 2020 11:24:40 -0500
+Message-ID: <CADnq5_PAgSNLO2zfALLXm_1PkBp5uCz=nGCNaPLV-cVP+m_t5Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: Add get_dig_frontend implementation for
+ DCEx
 To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,82 +61,123 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chiawen Huang <chiawen.huang@amd.com>, LKML <linux-kernel@vger.kernel.org>,
+Cc: Chiawen Huang <chiawen.huang@amd.com>,
  amd-gfx list <amd-gfx@lists.freedesktop.org>, Borislav Petkov <bp@alien8.de>,
- Alex Deucher <alexander.deucher@amd.com>, Tony Cheng <Tony.Cheng@amd.com>
+ Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <Harry.Wentland@amd.com>,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Dec 15, 2020 at 11:07 AM Rodrigo Siqueira
+On Tue, Dec 15, 2020 at 10:45 AM Rodrigo Siqueira
 <Rodrigo.Siqueira@amd.com> wrote:
 >
-> Hi,
+> Some old ASICs might not implement/require get_dig_frontend helper; in
+> this scenario, we can have a NULL pointer exception when we try to call
+> it inside vbios disable operation. For example, this situation might
+> happen when using Polaris12 with an eDP panel. This commit avoids this
+> situation by adding a specific get_dig_frontend implementation for DCEx.
 >
-> Could you try on Alex's repo?
->
->  git://people.freedesktop.org/~agd5f/linux
->  branch: amd-staging-drm-next
->
-> My patch should apply without any issue on top of this branch.
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Borislav Petkov <bp@alien8.de>
+> Cc: Harry Wentland <Harry.Wentland@amd.com>
+> Cc: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+> Cc: Chiawen Huang <chiawen.huang@amd.com>
+> Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 
-Can you help me identify what patches we need to backport to 5.10?
-Depending on the patches, it might be easier to just revert this for
-5.10 and apply the proper fix for 5.11.
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-Alex
-
-
+> ---
+>  .../drm/amd/display/dc/dce/dce_link_encoder.c | 43 ++++++++++++++++++-
+>  .../drm/amd/display/dc/dce/dce_link_encoder.h |  2 +
+>  2 files changed, 44 insertions(+), 1 deletion(-)
 >
-> Thanks
+> diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c
+> index 4592ccdfa9b0..f355cd1e9090 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c
+> @@ -120,6 +120,7 @@ static const struct link_encoder_funcs dce110_lnk_enc_funcs = {
+>         .is_dig_enabled = dce110_is_dig_enabled,
+>         .destroy = dce110_link_encoder_destroy,
+>         .get_max_link_cap = dce110_link_encoder_get_max_link_cap,
+> +       .get_dig_frontend = dce110_get_dig_frontend,
+>  };
 >
-> On 12/15, Borislav Petkov wrote:
-> > On Tue, Dec 15, 2020 at 10:47:03AM -0500, Rodrigo Siqueira wrote:
-> > > Hi Boris,
-> > >
-> > > Could you check if your branch has this commit:
-> > >
-> > >  drm/amd/display: Fix module load hangs when connected to an eDP
-> > >
-> > > If so, could you try this patch:
-> > >
-> > >  https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatchwork.freedesktop.org%2Fseries%2F84965%2F&amp;data=04%7C01%7CRodrigo.Siqueira%40amd.com%7C1f7ff595746543f597a708d8a111fbdd%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637436445910587407%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=PESE3uBZeNjdWtIFRP6l07AyfhASpXCfaZa03l%2FFi6s%3D&amp;reserved=0
-> >
-> > So I did a bisection between
-> >
-> > git bisect start
-> > # bad: [3650b228f83adda7e5ee532e2b90429c03f7b9ec] Linux 5.10-rc1
-> > git bisect bad 3650b228f83adda7e5ee532e2b90429c03f7b9ec
-> > # good: [bbf5c979011a099af5dc76498918ed7df445635b] Linux 5.9
-> >
-> > and the patch in $Subject came in in 5.10-rc1.
-> >
-> > I can test any tree you want me to so just tell me on which tree to
-> > apply this patch and I'll run it.
-> >
-> > In any case, it doesn't apply on v5.10 though:
-> >
-> > $ test-apply.sh /tmp/rodrigo.siqueira
-> > checking file drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.c
-> > Hunk #1 FAILED at 120
-> >
-> > You can push a tree of yours somewhere which I can try directly,
-> > alternatively.
-> >
-> > Lemme know.
-> >
-> > Thx.
-> >
-> > --
-> > Regards/Gruss,
-> >     Boris.
-> >
-> > https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpeople.kernel.org%2Ftglx%2Fnotes-about-netiquette&amp;data=04%7C01%7CRodrigo.Siqueira%40amd.com%7C1f7ff595746543f597a708d8a111fbdd%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637436445910587407%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=kiGm0%2B2d2nXiEwUs0omOYv3ZtyfwTtoD9OhrT59Dv5c%3D&amp;reserved=0
+>  static enum bp_result link_transmitter_control(
+> @@ -235,6 +236,45 @@ static void set_link_training_complete(
 >
+>  }
+>
+> +unsigned int dce110_get_dig_frontend(struct link_encoder *enc)
+> +{
+> +       struct dce110_link_encoder *enc110 = TO_DCE110_LINK_ENC(enc);
+> +       u32 value;
+> +       enum engine_id result;
+> +
+> +       REG_GET(DIG_BE_CNTL, DIG_FE_SOURCE_SELECT, &value);
+> +
+> +       switch (value) {
+> +       case DCE110_DIG_FE_SOURCE_SELECT_DIGA:
+> +               result = ENGINE_ID_DIGA;
+> +               break;
+> +       case DCE110_DIG_FE_SOURCE_SELECT_DIGB:
+> +               result = ENGINE_ID_DIGB;
+> +               break;
+> +       case DCE110_DIG_FE_SOURCE_SELECT_DIGC:
+> +               result = ENGINE_ID_DIGC;
+> +               break;
+> +       case DCE110_DIG_FE_SOURCE_SELECT_DIGD:
+> +               result = ENGINE_ID_DIGD;
+> +               break;
+> +       case DCE110_DIG_FE_SOURCE_SELECT_DIGE:
+> +               result = ENGINE_ID_DIGE;
+> +               break;
+> +       case DCE110_DIG_FE_SOURCE_SELECT_DIGF:
+> +               result = ENGINE_ID_DIGF;
+> +               break;
+> +       case DCE110_DIG_FE_SOURCE_SELECT_DIGG:
+> +               result = ENGINE_ID_DIGG;
+> +               break;
+> +       default:
+> +               // invalid source select DIG
+> +               ASSERT(false);
+> +               result = ENGINE_ID_UNKNOWN;
+> +       }
+> +
+> +       return result;
+> +}
+> +
+>  void dce110_link_encoder_set_dp_phy_pattern_training_pattern(
+>         struct link_encoder *enc,
+>         uint32_t index)
+> @@ -1665,7 +1705,8 @@ static const struct link_encoder_funcs dce60_lnk_enc_funcs = {
+>         .disable_hpd = dce110_link_encoder_disable_hpd,
+>         .is_dig_enabled = dce110_is_dig_enabled,
+>         .destroy = dce110_link_encoder_destroy,
+> -       .get_max_link_cap = dce110_link_encoder_get_max_link_cap
+> +       .get_max_link_cap = dce110_link_encoder_get_max_link_cap,
+> +       .get_dig_frontend = dce110_get_dig_frontend
+>  };
+>
+>  void dce60_link_encoder_construct(
+> diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.h
+> index cb714a48b171..fc6ade824c23 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.h
+> +++ b/drivers/gpu/drm/amd/display/dc/dce/dce_link_encoder.h
+> @@ -295,6 +295,8 @@ void dce110_link_encoder_connect_dig_be_to_fe(
+>         enum engine_id engine,
+>         bool connect);
+>
+> +unsigned int dce110_get_dig_frontend(struct link_encoder *enc);
+> +
+>  void dce110_link_encoder_set_dp_phy_pattern_training_pattern(
+>         struct link_encoder *enc,
+>         uint32_t index);
 > --
-> Rodrigo Siqueira
-> https://siqueira.tech
+> 2.29.2
+>
 > _______________________________________________
 > amd-gfx mailing list
 > amd-gfx@lists.freedesktop.org
