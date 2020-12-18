@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DE402DEB92
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Dec 2020 23:30:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D26542DEB8D
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Dec 2020 23:30:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9949E899C7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 411FD89453;
 	Fri, 18 Dec 2020 22:29:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam08on2059.outbound.protection.outlook.com [40.107.100.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D743C89453
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 22:29:58 +0000 (UTC)
+ (mail-bn8nam08on2083.outbound.protection.outlook.com [40.107.100.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 014BF89453
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 22:29:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P8272TSnWJpT8+GXI5w7o/mVUwz3DDF1rvrpK4rGwldE6gmJA68ZmrwMORQU7SxuTySYfMuwCiKfr9rJoIFxwEBOFKvmz6UVurc5UlcncQfQfbptv9vtltCM+e6zpqg27iqb0YSxZqSJeWi2mR3L2+nGZKyDf8BafhodznSSxDA3BT0nqfAgj1LGpUq4Qc5FEceVbf/qmklRPB70S2xrSrbf9lJD+M5QSNc4bRlqJJq36FVUwkwQjVxh6J0Gjm4dTE3tKQdB2Mzj2+8R9xNk/aJwYlOxPE0U2thMX/iK32Bk0jSPw4XGwJoZxOHImvh4x/xTkwAAmXUMHqW1o/0pxg==
+ b=F9fq5aNaEJezw0h0KRoeFcv5BEomx/sL7D674CDSPnqMWMJBnjtQ3hRi6871Nrtim4xeFT06eZ+gQIwYGPuVuaM1/A0Q8QppGZ4Fozh8ANcLbroCZhB5L/Y7OssiPY71Fp6z5//WwE9olqLRRJyUQ4/N9KgtJLaDVhC3TpYOB9Js/xvkRat1M2HPuGVDkUhQX+zTWID6vXzsHva/jDaAjzy9XYtKGpaf44eeYNbX0qQuunJfTkGTYQKS05S30nzwuHijSkEonhSUBDKFrhAYnr8rG0me7xXhFVxFb5siI2wiOY4sM3rnPyc7abCUfjciwUoGBLeHT46bEgwPrnULhg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HxRWUuUXpsTnb2WPW68Gzqzgf7XWrgYU8HJva/mzPNI=;
- b=fsos7H+KCT4eg4iI6oYF1vQgg8GjY58HVJDA3BMzPF2k9F5uKMANfg0xTagL3dqPMrhn6siTACGHvDWUm/13+s9kq9Yr3ivsn8rNe5jq84+Tvw/f8T9bXS9uDn0epL3r8fr9k9xvDOaDCIKB4I0NVJQEZ6qIDwQiPm1KPB3CTWjCiQ0emUz+o9cTZvvjkYCVOe4YJlpzJEiLZiHFly+amZMasVmBkz46qcNJX5OTC96nLLgNybmQimj7JOf1RCLVbCRb4QjGgBERUorAkbMm6kBCfOX+593bXr4Tbb2rblysdfs4CrtHClcZItEBFP8bI4EaOlcqd1A9vlka4/FynQ==
+ bh=ecYnjrVhVzMh1Yp2MOc5gdhyJCyG+DpMNhDV++0l0L4=;
+ b=FDSUMufNFUKASwHukde8LCKFhl+pAuluFzeSj88Oyxn0UbaQ+v/4RTtuU0oqFQdR+mmV1xFbQi+yK7aLCOmdlSAAhgcpsW3sQJUcaffj5IwigNE3JuXmkDjJiSInpPvIWwmE4ODltDaXj8cw++POpg+ak0QnxNlSMte9A3o/f4sgKJ2xx6wKnghfxu41vWP/oWoNS8GeaVaBjXT8C2X5iARvbKrsAhYD1p75aUh57B03TQuPcZujvpX2PZtfo7weNCiiovjybSfjp9lvmm84cxgYNGZSdNPNuvdeMmeh7F7MUapj+Nx+UdzQMw0yA8RfYe6vnfey4/wWW3ZrCSy9AA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
  is 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=amd.com; dmarc=fail (p=none sp=none pct=100) action=none
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HxRWUuUXpsTnb2WPW68Gzqzgf7XWrgYU8HJva/mzPNI=;
- b=ZKfQnEf01Y86uF6EMrpeyj78i+b71dtGKcxn1+mC5RVXrZbcUicpxb9pC7PdWYXNhkJfRzBNTvDrCdd5qi7j5wQDg6WernJWqFEfMREeQodQk1zKjvjqI8FhQAhGhaj/2/hLYO36O8wyI6OmxqSFmzG0YT+s/4ho6dTWHxqBRcU=
-Received: from BN6PR02CA0029.namprd02.prod.outlook.com (2603:10b6:404:5f::15)
- by MWHPR1201MB0223.namprd12.prod.outlook.com (2603:10b6:301:58::14)
+ bh=ecYnjrVhVzMh1Yp2MOc5gdhyJCyG+DpMNhDV++0l0L4=;
+ b=apBef6kRAM0tcvQIIhh9uyCXlfYLORAn5ogSi4+hREM0K3JqyhA+gubSNz2y0vWVijdRxmATO3HdMd8RWuRxlpLembPo1EjdDBeY3UMmn5LVvA8/sUnt54Ww2KLNwDGk9RMxQ0r3RTjpKYlXZutIahrHiKoUjs6CvX5OXww996Y=
+Received: from BN6PR02CA0037.namprd02.prod.outlook.com (2603:10b6:404:5f::23)
+ by SA0PR12MB4480.namprd12.prod.outlook.com (2603:10b6:806:99::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12; Fri, 18 Dec
- 2020 22:29:54 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.17; Fri, 18 Dec
+ 2020 22:29:55 +0000
 Received: from BN8NAM11FT031.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:5f:cafe::84) by BN6PR02CA0029.outlook.office365.com
- (2603:10b6:404:5f::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3676.28 via Frontend
- Transport; Fri, 18 Dec 2020 22:29:53 +0000
+ (2603:10b6:404:5f:cafe::c3) by BN6PR02CA0037.outlook.office365.com
+ (2603:10b6:404:5f::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12 via Frontend
+ Transport; Fri, 18 Dec 2020 22:29:55 +0000
 X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
  165.204.84.17) smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none
  (message not signed) header.d=none;lists.freedesktop.org; dmarc=fail
@@ -48,24 +48,24 @@ Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
 Received: from SATLEXMB02.amd.com (165.204.84.17) by
  BN8NAM11FT031.mail.protection.outlook.com (10.13.177.25) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3676.25 via Frontend Transport; Fri, 18 Dec 2020 22:29:52 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB02.amd.com
+ 15.20.3676.25 via Frontend Transport; Fri, 18 Dec 2020 22:29:54 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 18 Dec
- 2020 16:29:51 -0600
-Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 2020 16:29:52 -0600
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 18 Dec
- 2020 16:29:51 -0600
+ 2020 16:29:52 -0600
 Received: from bindu-HP-EliteDesk-705-G4-MT.amd.com (10.180.168.240) by
  SATLEXMB01.amd.com (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3
- via Frontend Transport; Fri, 18 Dec 2020 16:29:50 -0600
+ via Frontend Transport; Fri, 18 Dec 2020 16:29:51 -0600
 From: Bindu Ramamurthy <bindu.r@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 03/14] drm/amd/display: Modify the hdcp device count check
- condition
-Date: Fri, 18 Dec 2020 17:28:53 -0500
-Message-ID: <20201218222904.393785-4-bindu.r@amd.com>
+Subject: [PATCH 04/14] drm/amd/display: To modify the condition in indicating
+ branch device
+Date: Fri, 18 Dec 2020 17:28:54 -0500
+Message-ID: <20201218222904.393785-5-bindu.r@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201218222904.393785-1-bindu.r@amd.com>
 References: <20201218222904.393785-1-bindu.r@amd.com>
@@ -73,27 +73,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 525bde8e-93cb-484c-20d6-08d8a3a47039
-X-MS-TrafficTypeDiagnostic: MWHPR1201MB0223:
-X-Microsoft-Antispam-PRVS: <MWHPR1201MB022386C3EBD3EF8B94C7B053F5C30@MWHPR1201MB0223.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Office365-Filtering-Correlation-Id: 9b37b753-f97c-479f-43b1-08d8a3a47163
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4480:
+X-Microsoft-Antispam-PRVS: <SA0PR12MB44807516312EAEA167120342F5C30@SA0PR12MB4480.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1923;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hDqiiiqWkGn+zTcNZgelxP7GhAHUJndEKQBLoX5TyRnappFEDqT8sW7kNQh2UUWKTHb6QygdCWNIXWdgviwG1ekvQR7hi6iL3CWbsIfcH1N06nqu9P6e4lGRjuGDi5O9BeiTrXGDDat/Z2/Km8c/ykexaPsTFJ/TNGGvg8QJfER3TADvSpH7jH74Gc/YA2eWFM4MjRiKfzh4vk927Q6+rk/ekRQUDac6JEcF7RfEMfk2HeSiTsqOr0UREMV1/rnjWy4vB38qCCeT9y/lcFWlokLAKm8lhTW9yDhE60Nqqug2PMOfySEuqUUBYWDeSMkVwJ1Ggwfv8GKR5mZC4qHBS4ITrAZRLp6Ht6B9tIvlrQ6MWowqPDm6ZwiLaGrEdykHFdp/gHLYIb9/h+Jx3Tbg0w==
+X-Microsoft-Antispam-Message-Info: 5Fwwvhb17zvaA6Bhy4D5fuYfe85D2y1inV5BHZoc6ezU4V2vwI1P8CK8smcP9BXW5G+RCOhnaUoY7x75GvzIVhRGrpXJHktFb4Q1Re27y5twU7v8fb4ReoqGg0XPLatr5jdRzIFpMQUPoWtFtChMbQr/K8UoE+U0NPIJr6f4jYtMxYg3M3cj+GIDI2LdsYimq48u+h12R9qVGIuMRBf1jfbFy2yyCbMEzeg2T7y0iOQ3DLH3RhxmeF799Da7Pgm/HqNfxCPxYWoYBDukDDrrzmlCJI/pdFIEmSAO9xhRjqkLEQKHP5Kc1q1o+kWy55JpSiXVRW0Ol03IHasI96TlkOGFkYNKCBm+dciO7kt7ZctcFme2P0suLM4uxv/O9KcY7gHkdnyamctSRmKz9FZ8xw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:ErrorRetry; CAT:NONE;
- SFS:(4636009)(39860400002)(346002)(376002)(396003)(136003)(46966005)(2616005)(356005)(316002)(2906002)(4326008)(186003)(70586007)(82740400003)(8936002)(1076003)(8676002)(82310400003)(26005)(6916009)(81166007)(47076004)(36756003)(54906003)(83380400001)(426003)(336012)(70206006)(86362001)(7696005)(478600001)(5660300002);
+ SFS:(4636009)(346002)(396003)(376002)(39860400002)(136003)(46966005)(7696005)(316002)(2616005)(426003)(4326008)(8936002)(86362001)(356005)(5660300002)(8676002)(26005)(83380400001)(478600001)(70206006)(70586007)(6916009)(1076003)(54906003)(82310400003)(81166007)(2906002)(186003)(82740400003)(336012)(36756003)(47076004);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2020 22:29:52.5241 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 525bde8e-93cb-484c-20d6-08d8a3a47039
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2020 22:29:54.4780 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b37b753-f97c-479f-43b1-08d8a3a47163
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT031.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0223
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4480
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,58 +116,37 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Martin Tsai <martin.tsai@amd.com>
 
 [why]
-Some MST display may not report the internal panel to DEVICE_COUNT,
-that makes the check condition always failed.
+The sink count change HPD_IRQ will be ignored if the branch device has only
+DP DFP.
 
 [how]
-To update this condition with the reported device count + 1
-(because the immediate repeater's internal panel is possibly
-not included in DEVICE_COUNT)
+To remove the port type restriction.
 
 Signed-off-by: Martin Tsai <martin.tsai@amd.com>
 Acked-by: Bindu Ramamurthy <bindu.r@amd.com>
 ---
- .../gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c    | 8 ++++++--
- .../gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c    | 7 +++++--
- 2 files changed, 11 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
-index f244b72e74e0..73ca49f05bd3 100644
---- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
-+++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
-@@ -128,8 +128,12 @@ static inline uint8_t get_device_count(struct mod_hdcp *hdcp)
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 6b11d4af54af..2fc12239b22c 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -3173,13 +3173,7 @@ static void get_active_converter_info(
+ 	}
  
- static inline enum mod_hdcp_status check_device_count(struct mod_hdcp *hdcp)
- {
--	/* device count must be greater than or equal to tracked hdcp displays */
--	return (get_device_count(hdcp) < get_active_display_count(hdcp)) ?
-+	/* Some MST display may choose to report the internal panel as an HDCP RX.
-+	 * To update this condition with 1(because the immediate repeater's internal
-+	 * panel is possibly not included in DEVICE_COUNT) + get_device_count(hdcp).
-+	 * Device count must be greater than or equal to tracked hdcp displays.
-+	 */
-+	return ((1 + get_device_count(hdcp)) < get_active_display_count(hdcp)) ?
- 			MOD_HDCP_STATUS_HDCP1_DEVICE_COUNT_MISMATCH_FAILURE :
- 			MOD_HDCP_STATUS_SUCCESS;
- }
-diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
-index 549c113abcf7..a0895a7efda2 100644
---- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
-+++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
-@@ -207,8 +207,11 @@ static inline uint8_t get_device_count(struct mod_hdcp *hdcp)
+ 	/* DPCD 0x5 bit 0 = 1, it indicate it's branch device */
+-	if (ds_port.fields.PORT_TYPE == DOWNSTREAM_DP) {
+-		link->dpcd_caps.is_branch_dev = false;
+-	}
+-
+-	else {
+-		link->dpcd_caps.is_branch_dev = ds_port.fields.PORT_PRESENT;
+-	}
++	link->dpcd_caps.is_branch_dev = ds_port.fields.PORT_PRESENT;
  
- static enum mod_hdcp_status check_device_count(struct mod_hdcp *hdcp)
- {
--	/* device count must be greater than or equal to tracked hdcp displays */
--	return (get_device_count(hdcp) < get_active_display_count(hdcp)) ?
-+	/* Some MST display may choose to report the internal panel as an HDCP RX.   */
-+	/* To update this condition with 1(because the immediate repeater's internal */
-+	/* panel is possibly not included in DEVICE_COUNT) + get_device_count(hdcp). */
-+	/* Device count must be greater than or equal to tracked hdcp displays.      */
-+	return ((1 + get_device_count(hdcp)) < get_active_display_count(hdcp)) ?
- 			MOD_HDCP_STATUS_HDCP2_DEVICE_COUNT_MISMATCH_FAILURE :
- 			MOD_HDCP_STATUS_SUCCESS;
- }
+ 	switch (ds_port.fields.PORT_TYPE) {
+ 	case DOWNSTREAM_VGA:
 -- 
 2.25.1
 
