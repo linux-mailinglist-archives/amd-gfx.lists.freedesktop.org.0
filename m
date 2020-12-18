@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FE502DEB95
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Dec 2020 23:30:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 044422DEB98
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Dec 2020 23:30:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09BDD899BB;
-	Fri, 18 Dec 2020 22:30:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FD5689BF3;
+	Fri, 18 Dec 2020 22:30:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2080.outbound.protection.outlook.com [40.107.244.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DCB4899D6
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 22:30:05 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2075.outbound.protection.outlook.com [40.107.236.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6CE489BB2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Dec 2020 22:30:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R5jq4bjDi0964jb9dGLCciMc2s58aOdbLhKLJGSb8dBkIC9aLSzjriypXoul01b/1RBOHcrN5sIt7qFX6jHLBmqtsGsyZojYogxBO7C9eozJS5ALnjmJmDUervJd6DRhYUFHHR3ykzwCXHcSHB6mdlWpxvI8Xg7K8WyU8EaG8jXYhlvBUBPeZMLNqMG78CzVOZa+OMKeg2qaWXv8t5RmOLH1boc6T2LQZX2u4JGywUHSu1Z2iKgWSEcvacbq3zzbDsIafqnTBURmNZXMgHYPuPlym0a8pN2ZAlLqXeNa1eQzEB8K3S5RHt3nBbkVhMoAcDJyFHAax2H8EyjqWQ46Ww==
+ b=oWe0eewd4E3QVFrhN+QidHyQLbtf4+xezn+94C6N3ReAQBgkDklE6g9+e8BB5jQxYgCxBF6iD+4BiRADJ3TTpjqYYaNuHBX3xNNLVcQiCdPBAFpoIz/Z9xBMNcg0xTC0erQGVNcCem6yAIvaEeGSKt/VGt/1noGySrYNaNX1baWBiyTo3h67Mso9mwskWtDWGRZRGXsTBTrp5CY4XMO4AtflShIbRG1H1emq8cP8JlIu86ghThySt+o9vMTNMzseRYDdfQTLfjcwR76sqEUTb69tgoPSzS86IrmNQ+AFu2ZLfWspNazbm0vHNWFTlHplIrkM+mDdTwjCrvjawH1noA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=POuHKrBRysvKjFQIj67RTfMqMYfCRMmYXRwvkWViUXQ=;
- b=h907qIMkwITzA4rgsGUHeIdGyqcNRyUgasK1sFITsi6fS+f77UOUFkAyZnHOXUnSvpksrg94Inz2sCiZMQW2nqk0Ahc1XgDJ7IT9bUsVYmGkZo8x5AF7gcOY3diKdWIh/OynNsu/BcqFteKx69ruEFLR940aZSnkWP+CLpMooXTBsjrTcWNkSxDUgexpATKzSHbGTtNGxXIygiTm0G+LcLkghqWbzHqurkIRWkKIhD0ovRygmz+P7Yjuj1lsGC28d6uBZEPybCbP+vj6mOchSu3btq12Fx6v8jt7MWo7CfBzoVBXLmXF5Id1zqW9bcsadwO1iUvgirvLxSFJu8gWfg==
+ bh=e6eVujQTBvyloqcrlczK2U/N7+Vz3o80Pb+uE04ZSNU=;
+ b=nyPN21tOgCSiqpnn6UVEauhcJToSe5K0EJJl6s7IH+Taok/wjQxSllaQ2nWoCiM15fNt8GpwX0AuGC8KVJ5e8oz3oKLJTY3nJGBV8wm5iyj7AvioLm7hAXoHr5Nq0HZZE6vfxHqP2hzNTWl1gmTVHbl4qenQnUhh+I1kO+suJQZXzfJBCfGfhK1MrFGBcBDDgZIISbAz3RxTKOsXEfoz6gw9FJv3AQ1uXRG6ZlxUG1Le2jQIaPogY9tPt4KU9M6OYweRnjmOvxBJSMM8lQE9hgUjequJzcqpzhHfi8gpuqa+op56eM2Mzv0yuJyy9m194y7Fmw/Yd8NEV0VbM6v2wA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
  is 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=amd.com; dmarc=fail (p=none sp=none pct=100) action=none
@@ -27,18 +27,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=POuHKrBRysvKjFQIj67RTfMqMYfCRMmYXRwvkWViUXQ=;
- b=kfV/bkCgQP1FTX7LsV5as1JYEFE67LojiWiE3qpb8jCzhg0lROFnUehBd3UMWU171/JDHzhZk3cytHvKC5leb5MQ80bgATJYgQgOxms8Xz2amHgZqY8p8ZTNVqkdGvOzJqAirSisgc5+zM/p7Wdbir3u2vDouK4jfd3xNdXcuCI=
-Received: from BN1PR13CA0003.namprd13.prod.outlook.com (2603:10b6:408:e2::8)
- by DM6PR12MB3900.namprd12.prod.outlook.com (2603:10b6:5:1c9::29) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3654.12; Fri, 18 Dec
- 2020 22:30:04 +0000
+ bh=e6eVujQTBvyloqcrlczK2U/N7+Vz3o80Pb+uE04ZSNU=;
+ b=kWlzWKRH87WG/kW33oUgNLBLwsqHVd0qv0IXkgC4MfFzNw9ByYnFoCqr2cg0U0iFCJNXACBksry8y4eyrt73zaN6AOfsWTEzgsXdRHn0SuPu7nEoUFb1maEu8YX1wqBp9psM2XDYMDSdB9C51iv2eHGuIyesLNblMb6JBqRRe50=
+Received: from BN1PR13CA0015.namprd13.prod.outlook.com (2603:10b6:408:e2::20)
+ by BN7PR12MB2690.namprd12.prod.outlook.com (2603:10b6:408:32::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3676.25; Fri, 18 Dec
+ 2020 22:30:06 +0000
 Received: from BN8NAM11FT013.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e2:cafe::8e) by BN1PR13CA0003.outlook.office365.com
- (2603:10b6:408:e2::8) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:408:e2:cafe::b) by BN1PR13CA0015.outlook.office365.com
+ (2603:10b6:408:e2::20) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3700.21 via Frontend
- Transport; Fri, 18 Dec 2020 22:30:04 +0000
+ Transport; Fri, 18 Dec 2020 22:30:06 +0000
 X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
  165.204.84.17) smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none
  (message not signed) header.d=none;lists.freedesktop.org; dmarc=fail
@@ -48,23 +48,23 @@ Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
 Received: from SATLEXMB02.amd.com (165.204.84.17) by
  BN8NAM11FT013.mail.protection.outlook.com (10.13.176.182) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3676.25 via Frontend Transport; Fri, 18 Dec 2020 22:30:02 +0000
+ 15.20.3676.25 via Frontend Transport; Fri, 18 Dec 2020 22:30:05 +0000
 Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 18 Dec
- 2020 16:30:02 -0600
+ 2020 16:30:03 -0600
 Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 18 Dec
- 2020 16:30:01 -0600
+ 2020 16:30:03 -0600
 Received: from bindu-HP-EliteDesk-705-G4-MT.amd.com (10.180.168.240) by
  SATLEXMB01.amd.com (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3
- via Frontend Transport; Fri, 18 Dec 2020 16:29:56 -0600
+ via Frontend Transport; Fri, 18 Dec 2020 16:30:02 -0600
 From: Bindu Ramamurthy <bindu.r@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/14] drm/amd/display: Remove unnecessary NULL check
-Date: Fri, 18 Dec 2020 17:28:58 -0500
-Message-ID: <20201218222904.393785-9-bindu.r@amd.com>
+Subject: [PATCH 09/14] drm/amd/display: Multi-display underflow observed
+Date: Fri, 18 Dec 2020 17:28:59 -0500
+Message-ID: <20201218222904.393785-10-bindu.r@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201218222904.393785-1-bindu.r@amd.com>
 References: <20201218222904.393785-1-bindu.r@amd.com>
@@ -72,27 +72,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d9fca74c-9f9c-4cc3-3dd8-08d8a3a47631
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3900:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB390070B49CD82DA720BE090FF5C30@DM6PR12MB3900.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
+X-MS-Office365-Filtering-Correlation-Id: e76758cb-225d-43f1-f211-08d8a3a477ae
+X-MS-TrafficTypeDiagnostic: BN7PR12MB2690:
+X-Microsoft-Antispam-PRVS: <BN7PR12MB26905F2BA11C683395E2A7DEF5C30@BN7PR12MB2690.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:663;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CweeLqqyMCgGALBR/nq+DLtYwFiThFIUs4p2sBNpt/N2CUTOkDY0KuF4105DpnNJ6mqPUCVK2cDk0YjykiQgYxqHKjmbmUeNxtX5SvQO2My/LdZX/Fag7/k0Q7CooyB9+hDGuQUiDcsuN9WBEsiFTfIpa8ebBuLVfQs+tdQsN/mfT7xa4hChsidjvk4Jo9Qx1wdqkDZ9s9cAmZzdy9zxJ2Y/9K5//n1VdSwqI+XjpTUJrIHGKbji1QIHANj/fBAJGgAXBT7lucIG9a3HC4rQR0z5eFeo46bNAYLTL5R/z6gJLGPCuFL8cVISPYw1PFnNjqEAf3rkTgjbGeC3gldfMAj17nc5gdQOMEma0rvyQaxi1nnSSUqE5oYUeoQ0AKQ7vJ+FKA8jVi15JeBEhoRnBA==
+X-Microsoft-Antispam-Message-Info: P5xe0FMbQtB59ZgbNfokFhW7G5D3T9Es+STtveIIKcGPuVfpY53z1eqBSHFkjZ1JRGf7yTGRJIIwInY6IIxbMt4i8ugAkSOaUEoEKoD8bXtyw57WRnYSIZCdOswRqBB+KZ6jD3ANOb6JSrwX4kXF5FudOwJBcNJjVBG2FNHz+p4gnvul7D67PpvatQiDNxH9FXIIDPs/mDBx4MQt75Rx+/sbEUvDCnwSCOlcELa/Nxownlmoa2tpYZGvJqJOA9HLZmZwwHcDydfrwyh81u17a6aUI5kbalJHN7JXoCHu/473tNRXtfKOzWLmlVTF5lMqWR9mgeffVNzcogYA3BFZRfLI1Pc2ckSsLhmRimSal4uEM5bJGTdAfNORgY2pAQStfUUA/QsGeeJqngVTAZPWRUdSF8E/gFaxE6ytu6heokp7Luv8YPU0v4vDtkW5jxirOWYVoQc/HPiGOfLAP8xDvQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:ErrorRetry; CAT:NONE;
- SFS:(4636009)(396003)(136003)(39860400002)(376002)(346002)(46966005)(356005)(81166007)(86362001)(47076004)(4744005)(70206006)(7696005)(82310400003)(426003)(186003)(26005)(54906003)(5660300002)(1076003)(70586007)(2616005)(478600001)(8936002)(82740400003)(2906002)(8676002)(83380400001)(316002)(4326008)(6916009)(36756003)(336012);
+ SFS:(4636009)(346002)(376002)(39860400002)(396003)(136003)(46966005)(54906003)(6916009)(186003)(5660300002)(36756003)(8936002)(86362001)(82310400003)(2906002)(26005)(1076003)(83380400001)(478600001)(82740400003)(81166007)(2616005)(336012)(316002)(47076004)(6666004)(426003)(356005)(8676002)(70586007)(70206006)(4326008)(7696005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2020 22:30:02.5388 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d9fca74c-9f9c-4cc3-3dd8-08d8a3a47631
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2020 22:30:05.0333 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e76758cb-225d-43f1-f211-08d8a3a477ae
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT013.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3900
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR12MB2690
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,41 +104,98 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk Brol <eryk.brol@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com,
- Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+Cc: Aric Cyr <aric.cyr@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Eryk Brol <eryk.brol@amd.com>
+From: Aric Cyr <aric.cyr@amd.com>
 
 [Why]
-new_crtc_state is already dereferenced earlier in the function
+FP2 programming not happening when topology changes occur with multiple
+displays.
 
 [How]
-Remove the check
+Ensure FP2 is programmed whenever global sync changes occur but wait for
+VACTIVE first to avoid underflow.
 
-Signed-off-by: Eryk Brol <eryk.brol@amd.com>
+Signed-off-by: Aric Cyr <aric.cyr@amd.com>
 Acked-by: Bindu Ramamurthy <bindu.r@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c      | 20 -------------------
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    | 12 ++++++++---
+ 2 files changed, 9 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 245bd1284e5f..ff4776877e1f 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -9455,7 +9455,7 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
- 		if (ret)
- 			goto fail;
- 
--		if (dm_old_crtc_state->dsc_force_changed && new_crtc_state)
-+		if (dm_old_crtc_state->dsc_force_changed)
- 			new_crtc_state->mode_changed = true;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 7339d9855ec8..58eb0d69873a 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -2625,26 +2625,6 @@ static void commit_planes_for_stream(struct dc *dc,
+ 		}
  	}
  
+-	if (update_type != UPDATE_TYPE_FAST) {
+-		// If changing VTG FP2: wait until back in vactive to program FP2
+-		// Need to ensure that pipe unlock happens soon after to minimize race condition
+-		for (i = 0; i < dc->res_pool->pipe_count; i++) {
+-			struct pipe_ctx *pipe_ctx = &context->res_ctx.pipe_ctx[i];
+-
+-			if (pipe_ctx->top_pipe || pipe_ctx->stream != stream)
+-				continue;
+-
+-			if (!pipe_ctx->update_flags.bits.global_sync)
+-				continue;
+-
+-			pipe_ctx->stream_res.tg->funcs->wait_for_state(pipe_ctx->stream_res.tg, CRTC_STATE_VBLANK);
+-			pipe_ctx->stream_res.tg->funcs->wait_for_state(pipe_ctx->stream_res.tg, CRTC_STATE_VACTIVE);
+-
+-			pipe_ctx->stream_res.tg->funcs->set_vtg_params(
+-					pipe_ctx->stream_res.tg, &pipe_ctx->stream->timing, true);
+-		}
+-	}
+-
+ 	if ((update_type != UPDATE_TYPE_FAST) && dc->hwss.interdependent_update_lock)
+ 		dc->hwss.interdependent_update_lock(dc, context, false);
+ 	else
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+index 31a477194d3b..cb822df21b7c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+@@ -1586,7 +1586,10 @@ static void dcn20_program_pipe(
+ 			&& !pipe_ctx->top_pipe && !pipe_ctx->prev_odm_pipe)
+ 		hws->funcs.blank_pixel_data(dc, pipe_ctx, !pipe_ctx->plane_state->visible);
+ 
+-	if (pipe_ctx->update_flags.bits.global_sync) {
++	/* Only update TG on top pipe */
++	if (pipe_ctx->update_flags.bits.global_sync && !pipe_ctx->top_pipe
++			&& !pipe_ctx->prev_odm_pipe) {
++
+ 		pipe_ctx->stream_res.tg->funcs->program_global_sync(
+ 				pipe_ctx->stream_res.tg,
+ 				pipe_ctx->pipe_dlg_param.vready_offset,
+@@ -1594,8 +1597,11 @@ static void dcn20_program_pipe(
+ 				pipe_ctx->pipe_dlg_param.vupdate_offset,
+ 				pipe_ctx->pipe_dlg_param.vupdate_width);
+ 
++		pipe_ctx->stream_res.tg->funcs->wait_for_state(pipe_ctx->stream_res.tg, CRTC_STATE_VBLANK);
++		pipe_ctx->stream_res.tg->funcs->wait_for_state(pipe_ctx->stream_res.tg, CRTC_STATE_VACTIVE);
++
+ 		pipe_ctx->stream_res.tg->funcs->set_vtg_params(
+-				pipe_ctx->stream_res.tg, &pipe_ctx->stream->timing, false);
++				pipe_ctx->stream_res.tg, &pipe_ctx->stream->timing, true);
+ 
+ 		if (hws->funcs.setup_vupdate_interrupt)
+ 			hws->funcs.setup_vupdate_interrupt(dc, pipe_ctx);
+@@ -2570,4 +2576,4 @@ void dcn20_set_disp_pattern_generator(const struct dc *dc,
+ {
+ 	pipe_ctx->stream_res.opp->funcs->opp_set_disp_pattern_generator(pipe_ctx->stream_res.opp, test_pattern,
+ 			color_space, color_depth, solid_color, width, height, offset);
+-}
+\ No newline at end of file
++}
 -- 
 2.25.1
 
