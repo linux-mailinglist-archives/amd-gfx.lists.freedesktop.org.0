@@ -1,48 +1,109 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6A192E1940
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Dec 2020 08:06:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0B6C2E195B
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Dec 2020 08:28:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5961C6E8C6;
-	Wed, 23 Dec 2020 07:06:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EED166E8C9;
+	Wed, 23 Dec 2020 07:28:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 377 seconds by postgrey-1.36 at gabe;
- Wed, 23 Dec 2020 01:25:47 UTC
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
- by gabe.freedesktop.org (Postfix) with ESMTP id CF6E56E249;
- Wed, 23 Dec 2020 01:25:47 +0000 (UTC)
-Received: from li-pc.loongson.cn (unknown [10.20.41.71])
- by mail.loongson.cn (Coremail) with SMTP id AQAAf9DxX8sem+JfpMQDAA--.9040S2;
- Wed, 23 Dec 2020 09:19:26 +0800 (CST)
-From: Chenyang Li <lichenyang@loongson.cn>
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu:Fixed the wrong macro definition in amdgpu_trace.h
-Date: Wed, 23 Dec 2020 09:19:25 +0800
-Message-Id: <20201223011926.15924-1-lichenyang@loongson.cn>
-X-Mailer: git-send-email 2.29.2
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2078.outbound.protection.outlook.com [40.107.94.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7F816E8C9
+ for <amd-gfx@lists.freedesktop.org>; Wed, 23 Dec 2020 07:28:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QGedEyAjBt8+zzABh7WXwXRnFSmaaGH1+qa/fmTggzK8Yxjle0bsE2j2U0ebVygKZYGdcqpy9uJxf+VJOkQ3xy8C8PBNq2Wo6iGPmCkTXpalx6Jf9TXiaVNnL8M08WPqk6ZQEYUaPhXONSbnZcuZ0lyo1kjUDvWnqrNncHJRAAEQ4Pn8+mgu4el7I8SDopqlO1CApl3ylhS065pqtVA3bJLfPnrOklIxBJGeeLXWbJyrQ6aS4+Gkgx7nJHi9IwPLZizUDm7Y2qmHa2OlLcVDfGaBnpUyMYL45f7OevENYmO6GcN4uplakbsXTRiMKR+K55Wl1zf481zywqXqjxpWgg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xK4glaFKHdEuBNus/RCWCaxhOKeXtEmIhCVXf9dwc94=;
+ b=G8XALFRwyRThf820NyieyzrKwpcJf7/0dSembju7ainOZwQKJyh45pNeL9iXHNOJoyORirXL2GsY0+OaeiTUbbcLzpaY/Te9wJadSALhYgu2WNvEVFaOnzXUPFs4vRf2CVzmbKtLH6c9zaWOp57ACYJfbdaM6Bxo2euvHcvPLeqeU7RXxQKu7FnLC3CsXz9qLEGr8k6u/PpVifM20sF2/2BZtMm8wJ2BL3CQwQvuuWvUFn1YSG2BTiT3tUPZNCRt4QSP15BWvbJugRF8LiO/9MAiNl+MMaCW647UdB7fD+CjiK5+Fmi4xWSM7pstI0R5LyjjtGF7wgzPC6QQDO/meQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xK4glaFKHdEuBNus/RCWCaxhOKeXtEmIhCVXf9dwc94=;
+ b=AnRcKfHxo/Ct7i4Mein6q7tXuTT1LjRrW/m7voRjONJtPz/BmluWwjxzRGjjKOWpCgkT7zcc3Z/dMYbQMvcj/bnTqDe59cAw8yIKn0cUlFqeVqrpWvpp2HpglzjGvXE3Jvlb2QUffzG2DZwcTwtONQ9Pb1mh2RUuBa30EA0a4uc=
+Received: from DM6PR12MB2619.namprd12.prod.outlook.com (2603:10b6:5:45::18) by
+ DM6PR12MB2892.namprd12.prod.outlook.com (2603:10b6:5:182::22) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3676.29; Wed, 23 Dec 2020 07:28:19 +0000
+Received: from DM6PR12MB2619.namprd12.prod.outlook.com
+ ([fe80::5a6:dfb2:fdfd:2d91]) by DM6PR12MB2619.namprd12.prod.outlook.com
+ ([fe80::5a6:dfb2:fdfd:2d91%6]) with mapi id 15.20.3676.029; Wed, 23 Dec 2020
+ 07:28:19 +0000
+From: "Quan, Evan" <Evan.Quan@amd.com>
+To: "Huang, Ray" <Ray.Huang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amdgpu: revise the mode2 reset for vangogh
+Thread-Topic: [PATCH] drm/amdgpu: revise the mode2 reset for vangogh
+Thread-Index: AQHW2NCCyJMVH+F4/kelakw2Y3yFLqoERztQ
+Date: Wed, 23 Dec 2020 07:28:18 +0000
+Message-ID: <DM6PR12MB26190A8D4E35A9FEFF93D431E4DE0@DM6PR12MB2619.namprd12.prod.outlook.com>
+References: <20201223020739.2383191-1-ray.huang@amd.com>
+In-Reply-To: <20201223020739.2383191-1-ray.huang@amd.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=140420de-7e72-46d4-ae1b-cfd60c431a9d;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
+ Use Only - Unrestricted;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-12-23T07:22:54Z;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+authentication-results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [180.167.199.189]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 818f873b-5ec5-4833-a2a3-08d8a7145215
+x-ms-traffictypediagnostic: DM6PR12MB2892:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR12MB2892A948D33CCD32DDD8FED6E4DE0@DM6PR12MB2892.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: VLmklr7rDk8hmdglyPi+FT6EjYI8Z7DBSSLBCYgS2qFcJb6J3o9SZSnSyCadS5yk4ATnbnRPGp26cLIPHRfKfYjs8BG5fcUdbKH7XQ08WmVEMhll75ePFFvO/ksr9ZbIt5kIRwkbFH7+eUrO8busRUzUPun2VfOmvTbtOpZ5ZA8/DgrrpbPC3ZL7M2UuHG2lOBSQ6nGOpQrvWq/B6ne9b3LWQq/5JUdUXU3S+ihrN/K2n3v3X3fTMSloycnFp89AQFyJL5uZNyqSGP0fRv9WY/vLtTvCnq2DooKFAdz9ydm8VOmqN3sOfTpshnJI5XD+5PDqzDuNB7BqHIMzv2Hjm16ufTHiomPbLzAY35FEipfhkYZPz7BtPJc2sn/MHge9ftMJ39LdzzELRPlR13R8APFl9o1MtPYdLaF00j7aK+c=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB2619.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(366004)(136003)(346002)(39860400002)(376002)(9686003)(66946007)(966005)(66446008)(55016002)(66476007)(2906002)(7696005)(76116006)(64756008)(5660300002)(478600001)(66556008)(53546011)(186003)(52536014)(26005)(6506007)(8676002)(86362001)(33656002)(4326008)(45080400002)(83380400001)(54906003)(316002)(8936002)(71200400001)(110136005);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?8Q3wnDk7F7nDPTfPBa/agyMJW/0QbcIxg85w0eLUwC3hTAtI1BuAPvbo7iMf?=
+ =?us-ascii?Q?6Ry6FNghFZNC4ABkaeXhaVi85poFFZnxgIQ3HB1B0hqS54mEk7CilDeGZhr0?=
+ =?us-ascii?Q?FS+ImaeVpav2bCIN7b5uBrrkxsJHO5gKBvUbqWne/6OKAFSV0ztSD/kZo+5P?=
+ =?us-ascii?Q?fxfaC/QUVoylA9gx/OWqd1ocvBeB1CD34oNCBTBIiG/f5Lgc8DU3e7C6iZww?=
+ =?us-ascii?Q?LvD3JiI/V3oOk9uL72eXUzfhX8mqPRYNArFZtLoQpFsruYsCNpz5QAAm3UFJ?=
+ =?us-ascii?Q?qHe4dknZDVT6QA9RTwYAMoxLoS1vAe6P43SY8tWd8nfz7GIqf2BOWNWrZ18w?=
+ =?us-ascii?Q?GG9fi0kOVvG7mS08/E4HfYlvQ8r0Nw4jYrprCNfaCmnMgJ4g96SNFHV5Yoe2?=
+ =?us-ascii?Q?mlPfGENJctQCB80u0N3s9SFmpQXbJYT6XWi3dvycFstVWzHM4ynMbGs4vDiN?=
+ =?us-ascii?Q?HeH3YvCexIRg9zQQlpBX6HKZxMFG4TdrQJha1k3sRoOYGvLm4y74QQZN1H9q?=
+ =?us-ascii?Q?50KY3lJjcPvyjDH9GdUVtw6sgAnz/zlNgIDJvS/5pq+biepe6knbENHRZ7TV?=
+ =?us-ascii?Q?AWCliP2sGv/Gtpl3RjhCCHZabpOdjrRAl8tZcd69OPPTLirkiA8KTHbucPlb?=
+ =?us-ascii?Q?Y7DSi/mwK448v41pdvHp/dnM7usDPTH9gQ8aZsyyvbcESk7Q8WQv79ruu1L0?=
+ =?us-ascii?Q?JXjLqk6jesiNALDrBbCEdsD9GV9qrVKjy993CcJ2R33hKZVixRMyYWQga+bY?=
+ =?us-ascii?Q?Wjnn1F0+g0pc92DemREYSYXy1iMvv4u0c/wyz2Oyvhavw73jlEVIT1enMTTo?=
+ =?us-ascii?Q?fNug+X7B04NMpmHs4+5/UN7OhU2UxskiXIoDT+mJwmd/2mtdOXLiL/Vl2FMC?=
+ =?us-ascii?Q?0qCCXTAzw1dcXHzFabKoC409Guz9lr7Okq3iAMnEpzOCMa4tMo1XVzPYwqdo?=
+ =?us-ascii?Q?jMw3lnWV09E/2n+bKVKIhn+L3rfDgRsZbAosnRQRmtg=3D?=
 MIME-Version: 1.0
-X-CM-TRANSID: AQAAf9DxX8sem+JfpMQDAA--.9040S2
-X-Coremail-Antispam: 1UD129KBjvdXoW7Xr17Zr4UArW7ZF1xXw1DKFg_yoW3Jwb_CF
- W5ZFs3Xr13AFnFv3Wavw15Zw12yrW5Zr4kur1FgF9ayryj93yUXFy7Wr97Xan3uFs7uFnr
- Xw40gr13AwnxCjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUb28YjsxI4VWDJwAYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I
- 6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
- 8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0
- cI8IcVCY1x0267AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_Cr0_Gr1UM28EF7xvwV
- C2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
- Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJV
- W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc2xSY4AK6svPMxAIw28I
- cxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2
- IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUXVWUAwCIc40Y0x0EwIxGrwCI
- 42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42
- IY6xAIw20EY4v20xvaj40_WFyUJVCq3wCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E
- 87Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07jY6wZUUUUU=
-X-CM-SenderInfo: xolfxvxq1d0wo6or00hjvr0hdfq/1tbiAQASA13QvMxc7gAEsb
-X-Mailman-Approved-At: Wed, 23 Dec 2020 07:06:23 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2619.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 818f873b-5ec5-4833-a2a3-08d8a7145215
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Dec 2020 07:28:18.9810 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: an6fp7aD+rhdpGLMF/YOr+J66W4kwyqbjDyARNxLkJpXRD47Im3MWzBd/hzbsGG8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2892
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,34 +115,159 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Su,
+ Jinzhou \(Joe\)" <Jinzhou.Su@amd.com>, "Huang, Ray" <Ray.Huang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In line 24 "_AMDGPU_TRACE_H" is missing an underscore.
+[AMD Official Use Only - Internal Distribution Only]
 
-Signed-off-by: Chenyang Li <lichenyang@loongson.cn>
+Acked-by: Evan Quan <evan.quan@amd.com>
+
+-----Original Message-----
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Huang Rui
+Sent: Wednesday, December 23, 2020 10:08 AM
+To: amd-gfx@lists.freedesktop.org
+Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Su, Jinzhou (Joe) <Jinzhou.Su@amd.com>; Huang, Ray <Ray.Huang@amd.com>
+Subject: [PATCH] drm/amdgpu: revise the mode2 reset for vangogh
+
+PCIE MMIO bar needs to be restored firstly after the reset event
+triggers. So it's unable to access the registers to wait for response
+from SMU. Becasue the value of mmMP1_SMN_C2PMSG_90 is invalid at that
+moment.
+
+Signed-off-by: Huang Rui <ray.huang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c  | 22 +++++++++-
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c        | 42 ++++++++++---------
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h        |  2 +
+ 3 files changed, 46 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-index ee9480d14cbc..86cfb3d55477 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
-@@ -21,7 +21,7 @@
-  *
-  */
- 
--#if !defined(_AMDGPU_TRACE_H) || defined(TRACE_HEADER_MULTI_READ)
-+#if !defined(_AMDGPU_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
- #define _AMDGPU_TRACE_H_
- 
- #include <linux/stringify.h>
--- 
-2.29.2
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+index 49864efdeffe..93328eaec0da 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+@@ -888,9 +888,29 @@ static int vangogh_set_fine_grain_gfx_freq_parameters(struct smu_context *smu)
+ return 0;
+ }
 
++static int vangogh_mode_reset(struct smu_context *smu, int type)
++{
++int ret = 0, index = 0;
++
++index = smu_cmn_to_asic_specific_index(smu, CMN2ASIC_MAPPING_MSG,
++       SMU_MSG_GfxDeviceDriverReset);
++if (index < 0)
++return index == -EACCES ? 0 : index;
++
++mutex_lock(&smu->message_lock);
++
++ret = smu_cmn_send_msg_without_waiting(smu, (uint16_t)index, type);
++
++mutex_unlock(&smu->message_lock);
++
++mdelay(10);
++
++return ret;
++}
++
+ static int vangogh_mode2_reset(struct smu_context *smu)
+ {
+-return smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_GfxDeviceDriverReset, SMU_RESET_MODE_2, NULL);
++return vangogh_mode_reset(smu, SMU_RESET_MODE_2);
+ }
+
+ static const struct pptable_funcs vangogh_ppt_funcs = {
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+index 76ca41653354..39d5edb8c16b 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+@@ -68,14 +68,6 @@ static const char *smu_get_message_name(struct smu_context *smu,
+ return __smu_message_names[type];
+ }
+
+-static void smu_cmn_send_msg_without_waiting(struct smu_context *smu,
+-     uint16_t msg)
+-{
+-struct amdgpu_device *adev = smu->adev;
+-
+-WREG32_SOC15_NO_KIQ(MP1, 0, mmMP1_SMN_C2PMSG_66, msg);
+-}
+-
+ static void smu_cmn_read_arg(struct smu_context *smu,
+      uint32_t *arg)
+ {
+@@ -104,6 +96,26 @@ static int smu_cmn_wait_for_response(struct smu_context *smu)
+ return RREG32_SOC15_NO_KIQ(MP1, 0, mmMP1_SMN_C2PMSG_90) == 0x1 ? 0 : -EIO;
+ }
+
++int smu_cmn_send_msg_without_waiting(struct smu_context *smu,
++     uint16_t msg, uint32_t param)
++{
++struct amdgpu_device *adev = smu->adev;
++int ret;
++
++ret = smu_cmn_wait_for_response(smu);
++if (ret) {
++dev_err(adev->dev, "Msg issuing pre-check failed and "
++       "SMU may be not in the right state!\n");
++return ret;
++}
++
++WREG32_SOC15_NO_KIQ(MP1, 0, mmMP1_SMN_C2PMSG_90, 0);
++WREG32_SOC15_NO_KIQ(MP1, 0, mmMP1_SMN_C2PMSG_82, param);
++WREG32_SOC15_NO_KIQ(MP1, 0, mmMP1_SMN_C2PMSG_66, msg);
++
++return 0;
++}
++
+ int smu_cmn_send_smc_msg_with_param(struct smu_context *smu,
+     enum smu_message_type msg,
+     uint32_t param,
+@@ -122,18 +134,10 @@ int smu_cmn_send_smc_msg_with_param(struct smu_context *smu,
+ return index == -EACCES ? 0 : index;
+
+ mutex_lock(&smu->message_lock);
+-ret = smu_cmn_wait_for_response(smu);
+-if (ret) {
+-dev_err(adev->dev, "Msg issuing pre-check failed and "
+-       "SMU may be not in the right state!\n");
+-goto out;
+-}
+-
+-WREG32_SOC15_NO_KIQ(MP1, 0, mmMP1_SMN_C2PMSG_90, 0);
+
+-WREG32_SOC15_NO_KIQ(MP1, 0, mmMP1_SMN_C2PMSG_82, param);
+-
+-smu_cmn_send_msg_without_waiting(smu, (uint16_t)index);
++ret = smu_cmn_send_msg_without_waiting(smu, (uint16_t)index, param);
++if (ret)
++goto out;
+
+ ret = smu_cmn_wait_for_response(smu);
+ if (ret) {
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
+index 01e825d83d8d..08ccf2d3257c 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
+@@ -26,6 +26,8 @@
+ #include "amdgpu_smu.h"
+
+ #if defined(SWSMU_CODE_LAYER_L2) || defined(SWSMU_CODE_LAYER_L3) || defined(SWSMU_CODE_LAYER_L4)
++int smu_cmn_send_msg_without_waiting(struct smu_context *smu,
++     uint16_t msg, uint32_t param);
+ int smu_cmn_send_smc_msg_with_param(struct smu_context *smu,
+     enum smu_message_type msg,
+     uint32_t param,
+--
+2.25.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=04%7C01%7Cevan.quan%40amd.com%7C7f292c1025234e6c2d2b08d8a6e7a3d5%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637442861103766873%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=6qYjw519hhNI77EiaBSgDskyt%2BOoHyoD9KOQW6on0aw%3D&amp;reserved=0
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
