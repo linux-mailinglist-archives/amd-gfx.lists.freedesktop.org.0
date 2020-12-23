@@ -1,33 +1,47 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 118C52E1941
-	for <lists+amd-gfx@lfdr.de>; Wed, 23 Dec 2020 08:06:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6A192E1940
+	for <lists+amd-gfx@lfdr.de>; Wed, 23 Dec 2020 08:06:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C8DE6E8CB;
-	Wed, 23 Dec 2020 07:06:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5961C6E8C6;
+	Wed, 23 Dec 2020 07:06:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from szxga04-in.huawei.com (szxga04-in.huawei.com [45.249.212.190])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CE486E2ED;
- Tue, 22 Dec 2020 13:30:51 +0000 (UTC)
-Received: from DGGEMS408-HUB.china.huawei.com (unknown [172.30.72.58])
- by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4D0cdS3dhXzkv1G;
- Tue, 22 Dec 2020 21:29:48 +0800 (CST)
-Received: from ubuntu.network (10.175.138.68) by
- DGGEMS408-HUB.china.huawei.com (10.3.19.208) with Microsoft SMTP Server id
- 14.3.498.0; Tue, 22 Dec 2020 21:30:34 +0800
-From: Zheng Yongjun <zhengyongjun3@huawei.com>
-To: <airlied@linux.ie>, <daniel@ffwll.ch>, <amd-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH -next] gpu/drm/radeon: use DIV_ROUND_UP macro to do calculation
-Date: Tue, 22 Dec 2020 21:31:00 +0800
-Message-ID: <20201222133100.19470-1-zhengyongjun3@huawei.com>
-X-Mailer: git-send-email 2.22.0
+X-Greylist: delayed 377 seconds by postgrey-1.36 at gabe;
+ Wed, 23 Dec 2020 01:25:47 UTC
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CF6E56E249;
+ Wed, 23 Dec 2020 01:25:47 +0000 (UTC)
+Received: from li-pc.loongson.cn (unknown [10.20.41.71])
+ by mail.loongson.cn (Coremail) with SMTP id AQAAf9DxX8sem+JfpMQDAA--.9040S2;
+ Wed, 23 Dec 2020 09:19:26 +0800 (CST)
+From: Chenyang Li <lichenyang@loongson.cn>
+To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu:Fixed the wrong macro definition in amdgpu_trace.h
+Date: Wed, 23 Dec 2020 09:19:25 +0800
+Message-Id: <20201223011926.15924-1-lichenyang@loongson.cn>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-X-Originating-IP: [10.175.138.68]
-X-CFilter-Loop: Reflected
+X-CM-TRANSID: AQAAf9DxX8sem+JfpMQDAA--.9040S2
+X-Coremail-Antispam: 1UD129KBjvdXoW7Xr17Zr4UArW7ZF1xXw1DKFg_yoW3Jwb_CF
+ W5ZFs3Xr13AFnFv3Wavw15Zw12yrW5Zr4kur1FgF9ayryj93yUXFy7Wr97Xan3uFs7uFnr
+ Xw40gr13AwnxCjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUIcSsGvfJTRUUUb28YjsxI4VWDJwAYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I
+ 6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
+ 8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0
+ cI8IcVCY1x0267AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_Cr0_Gr1UM28EF7xvwV
+ C2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
+ Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJV
+ W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc2xSY4AK6svPMxAIw28I
+ cxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2
+ IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUXVWUAwCIc40Y0x0EwIxGrwCI
+ 42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42
+ IY6xAIw20EY4v20xvaj40_WFyUJVCq3wCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E
+ 87Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07jY6wZUUUUU=
+X-CM-SenderInfo: xolfxvxq1d0wo6or00hjvr0hdfq/1tbiAQASA13QvMxc7gAEsb
 X-Mailman-Approved-At: Wed, 23 Dec 2020 07:06:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -40,43 +54,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Zheng Yongjun <zhengyongjun3@huawei.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Don't open-code DIV_ROUND_UP() kernel macro.
+In line 24 "_AMDGPU_TRACE_H" is missing an underscore.
 
-Signed-off-by: Zheng Yongjun <zhengyongjun3@huawei.com>
+Signed-off-by: Chenyang Li <lichenyang@loongson.cn>
 ---
- drivers/gpu/drm/radeon/r600_cs.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/radeon/r600_cs.c b/drivers/gpu/drm/radeon/r600_cs.c
-index 390a9621604a..a3aea5329712 100644
---- a/drivers/gpu/drm/radeon/r600_cs.c
-+++ b/drivers/gpu/drm/radeon/r600_cs.c
-@@ -219,7 +219,7 @@ int r600_fmt_get_nblocksx(u32 format, u32 w)
- 	if (bw == 0)
- 		return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
+index ee9480d14cbc..86cfb3d55477 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
+@@ -21,7 +21,7 @@
+  *
+  */
  
--	return (w + bw - 1) / bw;
-+	return DIV_ROUND_UP(w, bw);
- }
+-#if !defined(_AMDGPU_TRACE_H) || defined(TRACE_HEADER_MULTI_READ)
++#if !defined(_AMDGPU_TRACE_H_) || defined(TRACE_HEADER_MULTI_READ)
+ #define _AMDGPU_TRACE_H_
  
- int r600_fmt_get_nblocksy(u32 format, u32 h)
-@@ -233,7 +233,7 @@ int r600_fmt_get_nblocksy(u32 format, u32 h)
- 	if (bh == 0)
- 		return 0;
- 
--	return (h + bh - 1) / bh;
-+	return DIV_ROUND_UP(h, bh);
- }
- 
- struct array_mode_checker {
+ #include <linux/stringify.h>
 -- 
-2.22.0
+2.29.2
 
 _______________________________________________
 amd-gfx mailing list
