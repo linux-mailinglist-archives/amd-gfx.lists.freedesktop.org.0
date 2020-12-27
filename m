@@ -2,34 +2,43 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE02E2E2E3C
-	for <lists+amd-gfx@lfdr.de>; Sat, 26 Dec 2020 14:16:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13D282E32B8
+	for <lists+amd-gfx@lfdr.de>; Sun, 27 Dec 2020 21:56:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89CA489834;
-	Sat, 26 Dec 2020 13:16:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 515E1897EB;
+	Sun, 27 Dec 2020 20:56:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9620A89834
- for <amd-gfx@lists.freedesktop.org>; Sat, 26 Dec 2020 13:16:38 +0000 (UTC)
-Received: from [192.168.1.11]
- (dynamic-077-013-170-023.77.13.pool.telefonica.de [77.13.170.23])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id 6C9C620646219;
- Sat, 26 Dec 2020 14:16:35 +0100 (CET)
-Subject: Re: [PATCH] drm/amdgpu: Fix macro name _AMDGPU_TRACE_H_ in
- preprocessor if condition
-To: Chenyang Li <lichenyang@loongson.cn>
-References: <20201226085607.155289-1-lichenyang@loongson.cn>
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-Message-ID: <1898b3da-9958-ebd9-dc58-26168ee67653@molgen.mpg.de>
-Date: Sat, 26 Dec 2020 14:16:34 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.0
-MIME-Version: 1.0
-In-Reply-To: <20201226085607.155289-1-lichenyang@loongson.cn>
-Content-Language: en-US
+X-Greylist: delayed 1948 seconds by postgrey-1.36 at gabe;
+ Sun, 27 Dec 2020 08:57:26 UTC
+Received: from m15114.mail.126.com (m15114.mail.126.com [220.181.15.114])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F2D8893E8;
+ Sun, 27 Dec 2020 08:57:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+ s=s110527; h=From:Subject:Date:Message-Id; bh=m5oVi0TtWHQkthGZkb
+ SLeLd7sFG2BGbk2xXapv0duR4=; b=eL7TScYOee7UjWzkvmx0DdVX31cX73QcLX
+ 9oZZVrlz9cccRKGpRZ0az7Jn4lulbkJuDoUQKzlpdegPmo/ehwTqSZhLto6gRLzj
+ +chCXQ4zUAu3vBLFacn/EGx54FjlPGWQ10OQjqjPlT5r0oW9xy5Mn8FMu0nS+mWz
+ I1I8cdDhk=
+Received: from localhost.localdomain (unknown [36.112.86.14])
+ by smtp7 (Coremail) with SMTP id DsmowADX32_DROhf0ypiMg--.29381S2;
+ Sun, 27 Dec 2020 16:24:37 +0800 (CST)
+From: Defang Bo <bodefang@126.com>
+To: airlied@linux.ie,
+	daniel@ffwll.ch
+Subject: [PATCH] drm/radeon:avoid null pointer dereference when dev is not
+ bound
+Date: Sun, 27 Dec 2020 16:24:29 +0800
+Message-Id: <1609057469-3844200-1-git-send-email-bodefang@126.com>
+X-Mailer: git-send-email 2.7.4
+X-CM-TRANSID: DsmowADX32_DROhf0ypiMg--.29381S2
+X-Coremail-Antispam: 1Uf129KBjvdXoWrKryxurWxZFWUKw45ur47XFb_yoWkuwc_uw
+ 10va4xWaykZwnYqF1Y9F1Ivr9rtFsY9rZ5WFn7ta4fXry7X348ZayUXFyUWr47Wa1UAF90
+ vF4vq3ySyrsFgjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUUgTmDUUUUU==
+X-Originating-IP: [36.112.86.14]
+X-CM-SenderInfo: pergvwxdqjqiyswou0bp/1tbi6wUI11pD9bQS2AAAsj
+X-Mailman-Approved-At: Sun, 27 Dec 2020 20:56:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,33 +50,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, Chen Guchun <Guchun.Chen@amd.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: alexander.deucher@amd.com, Defang Bo <bodefang@126.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-RGVhciDmnY7mmajpmLMsCgoKQW0gMjYuMTIuMjAgdW0gMDk6NTYgc2NocmllYiBDaGVueWFuZyBM
-aToKPiBBZGQgYW4gdW5kZXJzY29yZSBpbiBhbWRncHVfdHJhY2UuaCBsaW5lIDI0ICJfQU1ER1BV
-X1RSQUNFX0giLgo+IAo+IEZpeGVzOiBkMzhjZWFmOTllZDAgKCJkcm0vYW1kZ3B1OiBhZGQgY29y
-ZSBkcml2ZXIgKHY0KSIpCj4gU2lnbmVkLW9mZi1ieTogQ2hlbnlhbmcgTGkgPGxpY2hlbnlhbmdA
-bG9vbmdzb24uY24+Cj4gLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
-dHJhY2UuaCB8IDIgKy0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxl
-dGlvbigtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
-cHVfdHJhY2UuaCBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90cmFjZS5oCj4g
-aW5kZXggZWU5NDgwZDE0Y2JjLi44NmNmYjNkNTU0NzcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3RyYWNlLmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfdHJhY2UuaAo+IEBAIC0yMSw3ICsyMSw3IEBACj4gICAgKgo+ICAg
-ICovCj4gICAKPiAtI2lmICFkZWZpbmVkKF9BTURHUFVfVFJBQ0VfSCkgfHwgZGVmaW5lZChUUkFD
-RV9IRUFERVJfTVVMVElfUkVBRCkKPiArI2lmICFkZWZpbmVkKF9BTURHUFVfVFJBQ0VfSF8pIHx8
-IGRlZmluZWQoVFJBQ0VfSEVBREVSX01VTFRJX1JFQUQpCj4gICAjZGVmaW5lIF9BTURHUFVfVFJB
-Q0VfSF8KPiAgIAo+ICAgI2luY2x1ZGUgPGxpbnV4L3N0cmluZ2lmeS5oPgoKUmV2aWV3ZWQtYnk6
-IFBhdWwgTWVuemVsIDxwbWVuemVsQG1vbGdlbi5tcGcuZGU+CgoKS2luZCByZWdhcmRzLAoKUGF1
-bAoKClBTOiBOZXh0IHRpbWUsIGZvciBwYXRjaCBpdGVyYXRpb25zLCB5b3Ugc2hvdWxkIGluY2x1
-ZGUgdGhlIHZlcnNpb24gaW4gCnRoZSB0YWc6IFBBVENIIHYyLiBUaGUgc3dpdGNoIGAtdmAgKGAt
-LXJlcm9sbC1jb3VudGApIGhlbHBzIHdpdGggdGhhdDoKCiAgICAgZ2l0IGZvcm1hdC1wYXRjaCAt
-MSAtdiAyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFt
-ZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
+[Why]
+Similar to commit<0fa375e6>. If the set_state/can_switch code access the drm_device when dev is not bound,
+a null pointer dereference can happen.
+
+[How]
+Add sanity checks to prevent it.
+
+Signed-off-by: Defang Bo <bodefang@126.com>
+---
+ drivers/gpu/drm/radeon/radeon_device.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
+index 266e3cb..50a1a60 100644
+--- a/drivers/gpu/drm/radeon/radeon_device.c
++++ b/drivers/gpu/drm/radeon/radeon_device.c
+@@ -1224,6 +1224,9 @@ static void radeon_switcheroo_set_state(struct pci_dev *pdev, enum vga_switchero
+ {
+ 	struct drm_device *dev = pci_get_drvdata(pdev);
+ 
++	if (!dev)
++		return;
++
+ 	if (radeon_is_px(dev) && state == VGA_SWITCHEROO_OFF)
+ 		return;
+ 
+@@ -1257,6 +1260,9 @@ static void radeon_switcheroo_set_state(struct pci_dev *pdev, enum vga_switchero
+ static bool radeon_switcheroo_can_switch(struct pci_dev *pdev)
+ {
+ 	struct drm_device *dev = pci_get_drvdata(pdev);
++
++	if (!dev)
++		return false;
+ 
+ 	/*
+ 	 * FIXME: open_count is protected by drm_global_mutex but that would lead to
+-- 
+2.7.4
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
