@@ -2,24 +2,26 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 269F22EB5A4
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Jan 2021 00:00:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F9802EB5AA
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Jan 2021 00:00:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6B9F89F2A;
-	Tue,  5 Jan 2021 23:00:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 222C689F45;
+	Tue,  5 Jan 2021 23:00:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
+X-Greylist: delayed 354 seconds by postgrey-1.36 at gabe;
+ Tue, 05 Jan 2021 23:00:26 UTC
 Received: from svt-ETHLX-2.amd.com (unknown [165.204.54.251])
- by gabe.freedesktop.org (Postfix) with ESMTP id B56C989F31
+ by gabe.freedesktop.org (Postfix) with ESMTP id B50A489F2A
  for <amd-gfx@lists.freedesktop.org>; Tue,  5 Jan 2021 23:00:26 +0000 (UTC)
 Received: by svt-ETHLX-2.amd.com (Postfix, from userid 0)
- id 5B5DC184013A; Tue,  5 Jan 2021 17:54:21 -0500 (EST)
+ id 3ABCF1840172; Tue,  5 Jan 2021 17:54:29 -0500 (EST)
 From: Bokun Zhang <Bokun.Zhang@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/2] drm/amd/amdgpu: add instance_number check in
- amdgpu_discovery_get_ip_version
-Date: Tue,  5 Jan 2021 17:54:08 -0500
-Message-Id: <20210105225408.19511-1-Bokun.Zhang@amd.com>
+Subject: [PATCH 2/2] drm/amd/amdgpu: Use IP discovery data to determine VCN
+ enablement instead of MMSCH
+Date: Tue,  5 Jan 2021 17:54:27 -0500
+Message-Id: <20210105225427.19570-1-Bokun.Zhang@amd.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -39,70 +41,145 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The original code returns IP version of instantce_0 for every IP.
-This implementation may be correct for most of IPs.
+In the past, we use MMSCH to determine whether a VCN is enabled or not.
+This is not reliable since after a FLR, MMSCH may report junk data.
 
-However, for certain IP block (VCN for example), it may have 2 instances and
-both of them have the same hw_id, BUT they have different revision number (0 and 1).
+It is better to use IP discovery data.
 
-In this case, the original amdgpu_discovery_get_ip_version cannot correct reflects
-the result and returns false information
-
-Change-Id: I6d2e5a10cd2ee61874012598b9662b544f63e455
+Change-Id: I8b6c32c34017b20dcaebffdaa78bb07178e9d03c
 Signed-off-by: Bokun Zhang <Bokun.Zhang@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c    | 4 ++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h    | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c | 73 +++++++++++++++++----------
+ 1 file changed, 45 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
-index 306077884a67..141ea0d28fb2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c
-@@ -536,7 +536,7 @@ int amdgpu_mem_train_support(struct amdgpu_device *adev)
- 	uint32_t major, minor, revision, hw_v;
+diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+index def583916294..02cac6e33219 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+@@ -27,6 +27,7 @@
+ #include "amdgpu_pm.h"
+ #include "soc15.h"
+ #include "soc15d.h"
++#include "soc15_hw_ip.h"
+ #include "vcn_v2_0.h"
+ #include "mmsch_v3_0.h"
  
- 	if (gddr6_mem_train_vbios_support(adev)) {
--		amdgpu_discovery_get_ip_version(adev, MP0_HWID, &major, &minor, &revision);
-+		amdgpu_discovery_get_ip_version(adev, MP0_HWID, 0, &major, &minor, &revision);
- 		hw_v = HW_REV(major, minor, revision);
- 		/*
- 		 * treat 0 revision as a special case since register for MP0 and MMHUB is missing
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index b2dbcb4df020..073c35884641 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -325,7 +325,7 @@ int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
+@@ -60,6 +61,17 @@ static int amdgpu_ucode_id_vcns[] = {
+ 	AMDGPU_UCODE_ID_VCN1
+ };
+ 
++#define VCN_BLOCK_ENCODE_DISABLE_MASK 0x80
++#define VCN_BLOCK_DECODE_DISABLE_MASK 0x40
++#define VCN_BLOCK_QUEUE_DISABLE_MASK 0xC0
++
++enum vcn_ring_type {
++	VCN_ENCODE_RING,
++	VCN_DECODE_RING,
++	VCN_UNIFIED_RING,
++};
++
++static bool vcn_v3_0_is_disabled_vcn(struct amdgpu_device *adev, enum vcn_ring_type type, uint32_t vcn_instance);
+ static int vcn_v3_0_start_sriov(struct amdgpu_device *adev);
+ static void vcn_v3_0_set_dec_ring_funcs(struct amdgpu_device *adev);
+ static void vcn_v3_0_set_enc_ring_funcs(struct amdgpu_device *adev);
+@@ -311,18 +323,26 @@ static int vcn_v3_0_hw_init(void *handle)
+ 				continue;
+ 
+ 			ring = &adev->vcn.inst[i].ring_dec;
+-			if (ring->sched.ready) {
++			if (vcn_v3_0_is_disabled_vcn(adev, VCN_DECODE_RING, i)) {
++				ring->sched.ready = false;
++				dev_info(adev->dev, "ring %s is disabled by hypervisor\n", ring->name);
++			} else {
+ 				ring->wptr = 0;
+ 				ring->wptr_old = 0;
+ 				vcn_v3_0_dec_ring_set_wptr(ring);
++				ring->sched.ready = true;
+ 			}
+ 
+ 			for (j = 0; j < adev->vcn.num_enc_rings; ++j) {
+ 				ring = &adev->vcn.inst[i].ring_enc[j];
+-				if (ring->sched.ready) {
++				if (vcn_v3_0_is_disabled_vcn(adev, VCN_ENCODE_RING, i)) {
++					ring->sched.ready = false;
++					dev_info(adev->dev, "ring %s is disabled by hypervisor\n", ring->name);
++				} else {
+ 					ring->wptr = 0;
+ 					ring->wptr_old = 0;
+ 					vcn_v3_0_enc_ring_set_wptr(ring);
++					ring->sched.ready = true;
+ 				}
+ 			}
+ 		}
+@@ -1266,6 +1286,29 @@ static int vcn_v3_0_start(struct amdgpu_device *adev)
  	return 0;
  }
  
--int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int hw_id,
-+int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int hw_id, int number_instance,
- 				    int *major, int *minor, int *revision)
++static bool vcn_v3_0_is_disabled_vcn(struct amdgpu_device *adev, enum vcn_ring_type type, uint32_t vcn_instance)
++{
++	bool ret = false;
++
++	int major;
++	int minor;
++	int revision;
++
++	/* if cannot find IP data, then this VCN does not exist */
++	if (amdgpu_discovery_get_ip_version(adev, VCN_HWID, vcn_instance, &major, &minor, &revision) != 0)
++		return true;
++
++	if ((type == VCN_ENCODE_RING) && (revision & VCN_BLOCK_ENCODE_DISABLE_MASK)) {
++		ret = true;
++	} else if ((type == VCN_DECODE_RING) && (revision & VCN_BLOCK_DECODE_DISABLE_MASK)) {
++		ret = true;
++	} else if ((type == VCN_UNIFIED_RING) && (revision & VCN_BLOCK_QUEUE_DISABLE_MASK)) {
++		ret = true;
++	}
++
++	return ret;
++}
++
+ static int vcn_v3_0_start_sriov(struct amdgpu_device *adev)
  {
- 	struct binary_header *bhdr;
-@@ -357,7 +357,7 @@ int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int hw_id,
- 		for (j = 0; j < num_ips; j++) {
- 			ip = (struct ip *)(adev->mman.discovery_bin + ip_offset);
+ 	int i, j;
+@@ -1283,8 +1326,6 @@ static int vcn_v3_0_start_sriov(struct amdgpu_device *adev)
+ 	uint32_t table_size;
+ 	uint32_t size, size_dw;
  
--			if (le16_to_cpu(ip->hw_id) == hw_id) {
-+			if ((le16_to_cpu(ip->hw_id) == hw_id) && (ip->number_instance == number_instance)) {
- 				if (major)
- 					*major = ip->major;
- 				if (minor)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
-index 8f6183801cb3..c8c9c33fe4bc 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
-@@ -29,7 +29,7 @@
+-	bool is_vcn_ready;
+-
+ 	struct mmsch_v3_0_cmd_direct_write
+ 		direct_wt = { {0} };
+ 	struct mmsch_v3_0_cmd_direct_read_modify_write
+@@ -1476,30 +1517,6 @@ static int vcn_v3_0_start_sriov(struct amdgpu_device *adev)
+ 		}
+ 	}
  
- void amdgpu_discovery_fini(struct amdgpu_device *adev);
- int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev);
--int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int hw_id,
-+int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int hw_id, int number_instance,
-                                     int *major, int *minor, int *revision);
- int amdgpu_discovery_get_gfx_info(struct amdgpu_device *adev);
+-	/* 6, check each VCN's init_status
+-	 * if it remains as 0, then this VCN is not assigned to current VF
+-	 * do not start ring for this VCN
+-	 */
+-	size = sizeof(struct mmsch_v3_0_init_header);
+-	table_loc = (uint32_t *)table->cpu_addr;
+-	memcpy(&header, (void *)table_loc, size);
+-
+-	for (i = 0; i < adev->vcn.num_vcn_inst; i++) {
+-		if (adev->vcn.harvest_config & (1 << i))
+-			continue;
+-
+-		is_vcn_ready = (header.inst[i].init_status == 1);
+-		if (!is_vcn_ready)
+-			DRM_INFO("VCN(%d) engine is disabled by hypervisor\n", i);
+-
+-		ring = &adev->vcn.inst[i].ring_dec;
+-		ring->sched.ready = is_vcn_ready;
+-		for (j = 0; j < adev->vcn.num_enc_rings; ++j) {
+-			ring = &adev->vcn.inst[i].ring_enc[j];
+-			ring->sched.ready = is_vcn_ready;
+-		}
+-	}
+-
+ 	return 0;
+ }
  
 -- 
 2.25.1
