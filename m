@@ -1,36 +1,36 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08D4E2EC1C2
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Jan 2021 18:08:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66F612EC1C3
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Jan 2021 18:08:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9099B89C52;
-	Wed,  6 Jan 2021 17:08:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 003D889C61;
+	Wed,  6 Jan 2021 17:08:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06FF389C19
- for <amd-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 16:57:01 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5A4AD23137;
- Wed,  6 Jan 2021 16:57:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C42189C19
+ for <amd-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 16:57:15 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DCB952313C;
+ Wed,  6 Jan 2021 16:57:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1609952221;
- bh=WvzulPCfl4OvSPlT3PJkpE9WM+heraZbDKTzB0kCHgM=;
+ s=korg; t=1609952235;
+ bh=4PX6W2mqUAfXWy3/KbzYQpq3RELQl7lz4i7Y8Q/7+3g=;
  h=Subject:To:Cc:From:Date:In-Reply-To:From;
- b=jcqz5jY55DFtsUMLD29xLz+MsKgj0Ncvf6NigrSNZaoXkCS5EgqfimKUE/G9VzXJE
- 7iLIRJ6xolRghugWsHzxkyO7CaP9jU2k2MCRUCA7jLrxvxWAfKI/jNTl8f+krBqZBf
- ls5uipqCUd6xWH1Osdk3MlQjtZsk5ttm+F46gCaU=
+ b=nn8CM+aMdDChxCxWIWvU8Xd/l6exkmj8bDUtS4jYp+dfdXuncEeWKagP5xB3CxKh4
+ N6P6DKu7wzEjKUGuQQtDudiguAZUkKuzU4KZ0V3wNNSs4MyX09S2DrZwtLz5q4rlmX
+ T+NpFOBEAJdNvWl/rhYcuYjA3eeNCCkU1aWzo9OA=
 Subject: Patch "Revert "drm/amd/display: Fix memory leaks in S3 resume"" has
- been added to the 5.4-stable tree
+ been added to the 5.10-stable tree
 To: alexander.deucher@amd.com, alexdeucher@gmail.com,
  amd-gfx@lists.freedesktop.org, andre@tomt.net, gregkh@linuxfoundation.org,
  harry.wentland@amd.com, nicholas.kazlauskas@amd.com, oleksandr@natalenko.name,
  stylon.wang@amd.com
 From: <gregkh@linuxfoundation.org>
-Date: Wed, 06 Jan 2021 17:58:05 +0100
+Date: Wed, 06 Jan 2021 17:58:22 +0100
 In-Reply-To: <20210105164545.963036-1-alexander.deucher@amd.com>
-Message-ID: <1609952285148253@kroah.com>
+Message-ID: <160995230257135@kroah.com>
 MIME-Version: 1.0
 X-stable: commit
 X-Patchwork-Hint: ignore 
@@ -57,12 +57,12 @@ This is a note to let you know that I've just added the patch titled
 
     Revert "drm/amd/display: Fix memory leaks in S3 resume"
 
-to the 5.4-stable tree which can be found at:
+to the 5.10-stable tree which can be found at:
     http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
 The filename of the patch is:
      revert-drm-amd-display-fix-memory-leaks-in-s3-resume.patch
-and it can be found in the queue-5.4 subdirectory.
+and it can be found in the queue-5.10 subdirectory.
 
 If you, or anyone else, feels it should not be added to the stable tree,
 please let <stable@vger.kernel.org> know about it.
@@ -98,7 +98,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1434,8 +1434,7 @@ amdgpu_dm_update_connector_after_detect(
+@@ -2278,8 +2278,7 @@ void amdgpu_dm_update_connector_after_de
  
  			drm_connector_update_edid_property(connector,
  							   aconnector->edid);
@@ -112,7 +112,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 Patches currently in stable-queue which might be from alexdeucher@gmail.com are
 
-queue-5.4/revert-drm-amd-display-fix-memory-leaks-in-s3-resume.patch
+queue-5.10/revert-drm-amd-display-fix-memory-leaks-in-s3-resume.patch
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
