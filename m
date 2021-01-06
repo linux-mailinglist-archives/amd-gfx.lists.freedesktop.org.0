@@ -1,51 +1,53 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 762FD2EC1B9
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Jan 2021 18:07:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 628BA2EC3F5
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Jan 2021 20:34:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E117C89C52;
-	Wed,  6 Jan 2021 17:07:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 423BB89D8D;
+	Wed,  6 Jan 2021 19:34:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com
- [IPv6:2607:f8b0:4864:20::332])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C13D889C52
- for <amd-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 17:07:36 +0000 (UTC)
-Received: by mail-ot1-x332.google.com with SMTP id j20so3614962otq.5
- for <amd-gfx@lists.freedesktop.org>; Wed, 06 Jan 2021 09:07:36 -0800 (PST)
+Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com
+ [IPv6:2607:f8b0:4864:20::c2b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1649789D8D
+ for <amd-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 19:34:01 +0000 (UTC)
+Received: by mail-oo1-xc2b.google.com with SMTP id y14so1013150oom.10
+ for <amd-gfx@lists.freedesktop.org>; Wed, 06 Jan 2021 11:34:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=sDoltfIOxtlIx0Ni88ZJjl0kKguMKHLFWh5+N1yKsWM=;
- b=ODl7Wzypz9CAfKEDCXEnn5c2ayStsQcg8ba9muW0HNJ0I5/r18Hpp8Wl+IXTe35BqN
- JluRNK5EM0WCkean6Iu+8Y79D6n4pMymTKxHtphFLHtfaKwyFJ6Zfuqepx+kqZGyz24q
- 7eoTUAL4XLa4e2zpQo6MdxpJ11gr0VulwYjtqm0cWCrppuzrs/EfwCcDYpNk4+iDawZ4
- 0yYv8gslV5YQ4qZRUukbFKJNWb8+813wXw+xYVA86BQAUdvgplNIufbRuu8SGZrizY7t
- 4aDZX9fsLJxQYSJ6mC17AzKaSTXx0FwJgR9uSypgUDpFw1YHCCku+aNYgZ2y3KpfzWyx
- gKHg==
+ :cc; bh=322V9nmZI1wLwIIV2oOW6C2k/YvaB+zTEY9xPtRMxFY=;
+ b=cArMsU2FZhh22Qm61NggczaQVrQ89r3k33/evBsThPXziGPjgfknN0qUR22jxhcWOt
+ CcmfSvo2tTt2T+PrEZ8tmc0jkGhxfGRVD6ePO+cO/kalJzAuTtoqpCK/FmjLJaOuzZJZ
+ Joz/u6iufqrTSJbhKvxzzn1kDmxFUqdgNO/0T+cEnlmnV39EHHm3SpBbe5DfbPvZl+yp
+ eMcuby2pWrOpNW7cjlqQ3IUbezR3YdqhxS3KCq3NVAhjOojsGzaTueJERPhXCv9S05HF
+ TkgMl0mILO6X2nWn4E8Uu6FBECLEg5oo6vKlvwT1/eAvpKcc5O6CyRx3tLmkR+0fY2oj
+ KFWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=sDoltfIOxtlIx0Ni88ZJjl0kKguMKHLFWh5+N1yKsWM=;
- b=L7Yu6ugJaxq8h6Bep7/UkbqucHLa5W0FqQgna2P26Y7Ch6da9CRRGRtIQpA+1bgNZ9
- 3pl7axAjfDHeZK4luGU8Rb5iFVGAJCku3YxPjQ/TG5C1Rf3rFpraYcCQr+CXtr1p6wA6
- XPyms1wrJZT6uQxsVsMevVCn4mwhm0vGHe7Bp47+jyu0h3/CVIRebBeTBcKk+9wtKA3p
- DQ9evHV0ouoKxgJTvoCHrnet4iMSLC8kqGJzmboD360UqORdmL35Uhq2ORWLOc0xta4k
- UFSZ8hDUIxaOnvbmogvrvEjrsp8ib3S29VwtPCfwXEz9f1qnGWtrL0oW3oMxXwyTKtOG
- HC8Q==
-X-Gm-Message-State: AOAM530iDIAjQOlKSNBZI+T+RjBhZqEisSo1xG/wqEAX4RTJXcGfUjq8
- NOJAm6wkQTzFWwlRNqfYbwtHW66JDkPM/9uG8V4=
-X-Google-Smtp-Source: ABdhPJzIBbVfMMyE9fVtCxoqjYaAvI+vpd3ZSBOv3MBSxKuwOCdoa14a6SNwDRYYjxNg3/92tPPTZfPOKgx688ZrhRE=
-X-Received: by 2002:a9d:75d4:: with SMTP id c20mr3838806otl.311.1609952856137; 
- Wed, 06 Jan 2021 09:07:36 -0800 (PST)
+ bh=322V9nmZI1wLwIIV2oOW6C2k/YvaB+zTEY9xPtRMxFY=;
+ b=St2ZXPehex2lubTxfeXwyoPohQ1GSzBCfV5HYX+5ME8kduxgumfyDSQh24GmQ8nD6s
+ fr0g5rxh1QAM3ahFhASvn8RPBzovInufz0tJmuw8pphJsM2CjBP4kCQEYzX8sRfIP3UP
+ xLe/wF7Kx+OCgFM2rvYtLHPRRnyoabIPEc0MoJaNJQyGkcwYNpEA+fmHI0DcftoxETQy
+ 23KBv37J+huukFvt5YHMXNVxz4btqqSuRZag5yOBhMwtMkp/PKEqKpRRyjQAyw1vXgjP
+ yrvCypMfRMN/b/tLRjEav2IV1k98gbFFZdmVmIzXlsJpT7zZHRjA5bXd7U1/QvKpaE6Q
+ BGLg==
+X-Gm-Message-State: AOAM531oXOWh5iKbbbmKKTdpTj1q/KLOYT3g+VDN8AIC5xLv+rDC3Ilw
+ caN4PZ9wg7E0vgp2/O3BM6GHZk6rwN+YEr9bS/4=
+X-Google-Smtp-Source: ABdhPJyS35vIQpyJKOun5xrsP+5KLIqsTXp19dNPis8mvXV1c5Z1sSrPToNMQQ2a3emmdgqXWmw2Gelldo2gp/nPuB4=
+X-Received: by 2002:a4a:6c45:: with SMTP id u5mr3861565oof.61.1609961640243;
+ Wed, 06 Jan 2021 11:34:00 -0800 (PST)
 MIME-Version: 1.0
 References: <ed5b59f0-cfbf-57e8-2cdf-2d0e2c0c45bf@redhat.com>
-In-Reply-To: <ed5b59f0-cfbf-57e8-2cdf-2d0e2c0c45bf@redhat.com>
+ <CADnq5_NSBBP+c+7aGpBkUSx6h4_7zz8o-yUW3ffW0Jn2GFD1AQ@mail.gmail.com>
+ <c11f3b78-a100-4657-7c07-1c3894296a5d@redhat.com>
+In-Reply-To: <c11f3b78-a100-4657-7c07-1c3894296a5d@redhat.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 6 Jan 2021 12:07:25 -0500
-Message-ID: <CADnq5_NSBBP+c+7aGpBkUSx6h4_7zz8o-yUW3ffW0Jn2GFD1AQ@mail.gmail.com>
+Date: Wed, 6 Jan 2021 14:33:48 -0500
+Message-ID: <CADnq5_PrbSaof8bub7t=vS_w0LxQ7RpAPDxKMci-hJvSJD=GJA@mail.gmail.com>
 Subject: Re: radeon kernel driver not suppressing ACPI_VIDEO_NOTIFY_PROBE
  events when it should
 To: Hans de Goede <hdegoede@redhat.com>
@@ -67,68 +69,90 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 6, 2021 at 11:25 AM Hans de Goede <hdegoede@redhat.com> wrote:
+On Wed, Jan 6, 2021 at 1:10 PM Hans de Goede <hdegoede@redhat.com> wrote:
 >
-> Hi All,
+> Hi,
 >
-> I get Cc-ed on all Fedora kernel bugs and this one stood out to me:
+> On 1/6/21 6:07 PM, Alex Deucher wrote:
+> > On Wed, Jan 6, 2021 at 11:25 AM Hans de Goede <hdegoede@redhat.com> wrote:
+> >>
+> >> Hi All,
+> >>
+> >> I get Cc-ed on all Fedora kernel bugs and this one stood out to me:
+> >>
+> >> https://bugzilla.redhat.com/show_bug.cgi?id=1911763
+> >>
+> >> Since I've done a lot of work on the acpi-video code I thought I should
+> >> take a look. I've managed to help the user with a kernel-commandline
+> >> option which stops video.ko (the acpi-video kernel module) from emitting
+> >> key-press events for ACPI_VIDEO_NOTIFY_PROBE events.
+> >>
+> >> This is on a Dell Vostro laptop with i915/radeon hybrid gfx.
+> >>
+> >> I was thinking about adding a DMI quirk for this, but from the brief time
+> >> that I worked on nouveau (and specifically hybrid gfx setups) I know that
+> >> these events get fired on hybrid gfx setups when the discrete GPU is
+> >> powered down and something happens which requires the discrete GPUs drivers
+> >> attention, like an external monitor being plugged into a connector handled
+> >> by the dGPU (note that is not the case here).
+> >>
+> >> So I took a quick look at the radeon code and the radeon_atif_handler()
+> >> function from drivers/gpu/drm/radeon/radeon_acpi.c. When successful that
+> >> returns NOTIFY_BAD which suppresses the key-press.
+> >>
+> >> But in various cases it returns NOTIFY_DONE instead which does not
+> >> suppress the key-press event. So I think that the spurious key-press events
+> >> which the user is seeing should be avoided by this function returning
+> >> NOTIFY_BAD.
+> >>
+> >> Specifically I'm wondering if we should not return
+> >> NOTIFY_BAD when count == 0?   I guess this can cause problems if there
+> >> are multiple GPUs, but we could check if the acpi-event is for the
+> >> pci-device the radeon driver is bound to. This would require changing the
+> >> acpi-notify code to also pass the acpi_device pointer as part of the
+> >> acpi_bus_event but that should not be a problem.
+> >>
+> >
+> > For A+A PX/HG systems, we'd want the notifications for both the dGPU
+> > and the APU since some of the events are relevant to one or the other.
+> > ATIF_DGPU_DISPLAY_EVENT is only relevant to the dGPU, while
+> > ATIF_PANEL_BRIGHTNESS_CHANGE_REQUEST would be possibly relevant to
+> > both (if there was a mux), but mainly the APU.
+> > ATIF_SYSTEM_POWER_SOURCE_CHANGE_REQUEST would be relevant to both.
+> > The other events have extended bits to determine which GPU the event
+> > is targeted at.
 >
-> https://bugzilla.redhat.com/show_bug.cgi?id=1911763
->
-> Since I've done a lot of work on the acpi-video code I thought I should
-> take a look. I've managed to help the user with a kernel-commandline
-> option which stops video.ko (the acpi-video kernel module) from emitting
-> key-press events for ACPI_VIDEO_NOTIFY_PROBE events.
->
-> This is on a Dell Vostro laptop with i915/radeon hybrid gfx.
->
-> I was thinking about adding a DMI quirk for this, but from the brief time
-> that I worked on nouveau (and specifically hybrid gfx setups) I know that
-> these events get fired on hybrid gfx setups when the discrete GPU is
-> powered down and something happens which requires the discrete GPUs drivers
-> attention, like an external monitor being plugged into a connector handled
-> by the dGPU (note that is not the case here).
->
-> So I took a quick look at the radeon code and the radeon_atif_handler()
-> function from drivers/gpu/drm/radeon/radeon_acpi.c. When successful that
-> returns NOTIFY_BAD which suppresses the key-press.
->
-> But in various cases it returns NOTIFY_DONE instead which does not
-> suppress the key-press event. So I think that the spurious key-press events
-> which the user is seeing should be avoided by this function returning
-> NOTIFY_BAD.
->
-> Specifically I'm wondering if we should not return
-> NOTIFY_BAD when count == 0?   I guess this can cause problems if there
-> are multiple GPUs, but we could check if the acpi-event is for the
-> pci-device the radeon driver is bound to. This would require changing the
-> acpi-notify code to also pass the acpi_device pointer as part of the
-> acpi_bus_event but that should not be a problem.
->
+> Right, but AFAIK on hybrid systems there are 2 ACPI video-bus devices,
+> one for each of the iGPU and dGPU which is why I suggested passing
+> the video-bus acpi_device as extra data in acpi_bus_event and then
+> radeon_atif_handler() could check if the acpi_device is the companion
+> device of the GPU. This assumes that events for GPU# will also
+> originate from (through an ACPI ASL notify call) the ACPI video-bus
+> which belongs to that GPU.
 
-For A+A PX/HG systems, we'd want the notifications for both the dGPU
-and the APU since some of the events are relevant to one or the other.
-ATIF_DGPU_DISPLAY_EVENT is only relevant to the dGPU, while
-ATIF_PANEL_BRIGHTNESS_CHANGE_REQUEST would be possibly relevant to
-both (if there was a mux), but mainly the APU.
-ATIF_SYSTEM_POWER_SOURCE_CHANGE_REQUEST would be relevant to both.
-The other events have extended bits to determine which GPU the event
-is targeted at.
+That's not the case.  For PX/HG systems, ATIF is in the iGPU's
+namespace, on dGPU only systems, ATIF is in the dGPU's namespace.
 
 Alex
 
-
-> Anyways I'm hoping you all have some ideas. If necessary I can build
-> a Fedora test-kernel with some patches for the reporter to test.
+>
+> This all assumes though that the problem is that radeon_atif_handler()
+> does not return NOTIFY_BAD when the event count being 0 (in other words
+> a spurious event). It is also possibly that one of the earlier checks in
+> radeon_atif_handler() is failing...
+>
+> I guess that a first step in debugging this would be to ask the reporter
+> to run a kernel with some debugging printk-s added to radeon_atif_handler(),
+> to see which code-path in radeon_atif_handler we end up in
+> (assuming that radeon_atif_handler() gets called at all).
+>
+> Any suggestions for other debugging printk-s, before I prepare a Fedora
+> kernel for the reporter to test?
 >
 > Regards,
 >
 > Hans
 >
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
