@@ -2,83 +2,103 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC7DD2EC8D3
-	for <lists+amd-gfx@lfdr.de>; Thu,  7 Jan 2021 04:06:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BEF62EC87E
+	for <lists+amd-gfx@lfdr.de>; Thu,  7 Jan 2021 04:02:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C0B96E3DA;
-	Thu,  7 Jan 2021 03:06:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7680F6E3EB;
+	Thu,  7 Jan 2021 03:02:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C37836E250
- for <amd-gfx@lists.freedesktop.org>; Wed,  6 Jan 2021 22:33:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1609972380;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=E1uCuRMPwY6rbQaS9q5J5lgxaRKnhXyzQCScUQ0wlnI=;
- b=C/27krOB6PHQ1F6ZlHdlgcWZiLR2E63K/XnqUWfgHo50ilgvzo2tmwDiCHMyEZX1sHX1Lt
- HD07a7MoheQpVyoxflnZ5Z52bubPRSYV30XfYqzz5dG6nUOQc/Dt7xCfzxakelvewRx+Ke
- jSmi5pQl/Kjnv/tUzlUW6RHmlrb9kS4=
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
- [209.85.208.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-258-5KqQf9eXPeCtDRi5kDwRYA-1; Wed, 06 Jan 2021 17:32:58 -0500
-X-MC-Unique: 5KqQf9eXPeCtDRi5kDwRYA-1
-Received: by mail-ed1-f71.google.com with SMTP id k5so2435143edk.15
- for <amd-gfx@lists.freedesktop.org>; Wed, 06 Jan 2021 14:32:58 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=E1uCuRMPwY6rbQaS9q5J5lgxaRKnhXyzQCScUQ0wlnI=;
- b=mcundqYmgXr5yd0sbOWHw0E2l2ARyJqk8bXAfynDND+hRWEGdEvwXaXEWdpBaNciVl
- dBIgmI07/YDcLOYDHd4IzgA5gTIHrs2nogp/tjyno6YO+Et3Dm9qN6lzcH/VNz+jmerZ
- +qVux9eXuvx2Fz9XeH+8WPY4dPFnFGu9lWF3KoEHptdTvgguWn7M3Wiy/bZZ/OQQu6SM
- Z43lgKyAR2rDfmYP/ES+WS9q02a2pL624ngbQdRJDhbNsOpqOgPHkmnemT0q+vkfW1Fs
- +L5w+7MS3KvPYde2W2QxDMpLEMA2lI+2sPT+Q1/X4iOJi+EBDATkvgwDiDGaqicsPqcK
- u+Pw==
-X-Gm-Message-State: AOAM530s3SQA/TIHVq1v7v45YeveTsZ0mXMYtksbKi8a7erWTTbr4mQS
- JToxoftG5N7Oy/zQ9lpHxJIFVsR1sFOhlfrA0QuGudEVN9CAk1SCfdLu1Fb3jbIZ1bnl6d419nv
- u2Jhe5toYDtHAVoxe3H/e0MSgEw==
-X-Received: by 2002:a17:906:94cf:: with SMTP id
- d15mr4175698ejy.271.1609972376967; 
- Wed, 06 Jan 2021 14:32:56 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzpeeYhzEzjRmUbsHQtGiTtaJvgCwRSwnjIHdFmIv23Gxw4gg79SFLt5Pe6N3jFFdyTuN0PzA==
-X-Received: by 2002:a17:906:94cf:: with SMTP id
- d15mr4175680ejy.271.1609972376674; 
- Wed, 06 Jan 2021 14:32:56 -0800 (PST)
-Received: from x1.localdomain
- (2001-1c00-0c1e-bf00-37a3-353b-be90-1238.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:37a3:353b:be90:1238])
- by smtp.gmail.com with ESMTPSA id ho12sm1768077ejc.45.2021.01.06.14.32.56
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 06 Jan 2021 14:32:56 -0800 (PST)
-Subject: Re: radeon kernel driver not suppressing ACPI_VIDEO_NOTIFY_PROBE
- events when it should
-To: Alex Deucher <alexdeucher@gmail.com>
-References: <ed5b59f0-cfbf-57e8-2cdf-2d0e2c0c45bf@redhat.com>
- <CADnq5_NSBBP+c+7aGpBkUSx6h4_7zz8o-yUW3ffW0Jn2GFD1AQ@mail.gmail.com>
- <c11f3b78-a100-4657-7c07-1c3894296a5d@redhat.com>
- <CADnq5_PrbSaof8bub7t=vS_w0LxQ7RpAPDxKMci-hJvSJD=GJA@mail.gmail.com>
- <e7b9e416-634a-9dc2-8b1d-56224fead017@redhat.com>
- <CADnq5_OtViYP+6+s8kdQLhKsCwatcsnGqjXxrS5bpyKMk2a2pg@mail.gmail.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <1070409a-8d67-9d67-83fc-03365b65541b@redhat.com>
-Date: Wed, 6 Jan 2021 23:32:55 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2069.outbound.protection.outlook.com [40.107.223.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5345E6E3DA;
+ Thu,  7 Jan 2021 03:02:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eIZIhHZqPRzwpa3xtR1hrf5tkTmEPRpq3UFqxid9x+DLZZJoK1/KHef1U/wOD6QK1fP6OuRYMIumKFfQrXE18G4N962CDUcwWmczgxK2CureJLWoWVoEtXmtzOlw1ITBDbD3wnapZZO6rS6L9mbJg7I9XDi93Ey49nfiFfqP9vB5PdcDR/DdfaDT8tRKazt63Ee+DQL4SORoMzhlgKKxWW61p3+M31J+cnMclcreVbK2GO0+hJFJFeqhy54pbK4Gsi755hg/EzzNa6XCnw/A2YclCnnuXuHbNCtq94/VOTIscO4zgerNmziOo5RFYxgSISxIHKgqC+pojpbjV3/M9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AqfDOA/KMWkzpMB4Wt3Ze+smbT4tG/dPR4/rH+Mp4Ps=;
+ b=XBB0BoTfujMLn6GC/lHaLtghUXWH2M0a7os9Wo3oJ9C1IAlOBbgDRel8/nAMn+rjHPj8oo/m30Du5rw++ExUx4HQ3oRFCHxlYJCU9XM46+PAf8r5GGX1wB8KoG2vrkzo/kK8+sd6AkHoPjpIDrr+f1HRB0972ILu1hK5J12sJI1UbzAL+3Uff6L9II8HGhNcnyOmzFCrQ5kzhC50Pd1fKUax0Ql974pUSHxSdUph1dY1K/tWF+KBC63hGly+KpXFgnY5Qyfv3OKkrwsmgiFVoH6oGajWwQH1y03a6EhRItNeXGSzrteIc9UBR6owUtiLozU6sDtdBHkDskpE+vsBOQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AqfDOA/KMWkzpMB4Wt3Ze+smbT4tG/dPR4/rH+Mp4Ps=;
+ b=MnztciLffRbn4wRQ8iHerqQljl1OKevReFBdWj9Uy5szfSVLEyMM3818QYLRu9Hi9cxXem+hy6KMioEGqgo5XA8VKjvlBdwxOuuaPxJjLT39FnlNKlj5i9AUA+InBdrmPNX+opKXoe0zg4C/dB6DEpeAPugksp4cdfg4OX5tX/k=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from BL0PR12MB4948.namprd12.prod.outlook.com (2603:10b6:208:1cc::20)
+ by MN2PR12MB3999.namprd12.prod.outlook.com (2603:10b6:208:158::27)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3721.24; Thu, 7 Jan
+ 2021 03:02:45 +0000
+Received: from BL0PR12MB4948.namprd12.prod.outlook.com
+ ([fe80::9425:559:83c0:991b]) by BL0PR12MB4948.namprd12.prod.outlook.com
+ ([fe80::9425:559:83c0:991b%9]) with mapi id 15.20.3742.006; Thu, 7 Jan 2021
+ 03:02:45 +0000
+From: Felix Kuehling <Felix.Kuehling@amd.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH 00/35] Add HMM-based SVM memory manager to KFD
+Date: Wed,  6 Jan 2021 22:00:52 -0500
+Message-Id: <20210107030127.20393-1-Felix.Kuehling@amd.com>
+X-Mailer: git-send-email 2.29.2
+X-Originating-IP: [165.204.55.251]
+X-ClientProxiedBy: YT1PR01CA0048.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2e::17) To BL0PR12MB4948.namprd12.prod.outlook.com
+ (2603:10b6:208:1cc::20)
 MIME-Version: 1.0
-In-Reply-To: <CADnq5_OtViYP+6+s8kdQLhKsCwatcsnGqjXxrS5bpyKMk2a2pg@mail.gmail.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-X-Mailman-Approved-At: Thu, 07 Jan 2021 03:06:28 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from Harpoon.amd.com (165.204.55.251) by
+ YT1PR01CA0048.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2e::17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3742.6 via Frontend Transport; Thu, 7 Jan 2021 03:02:45 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 15171c73-8b3b-4845-ecd3-08d8b2b8b538
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3999:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MN2PR12MB39993B91E16F794BC9EBFBE592AF0@MN2PR12MB3999.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: TvUuiEDJJg/fsjNZUXlfouvKWkcXVFynQNA7JajpuiAmt0Gidk81C2kHI0i4O7HsK6aMOTwTYPhL+jD4v8FNlujfFFkujwc9tDECSrPXPNNmT7inDu1DJjGVx3G09fzNJ1lq1E1DhlmL4AYlU40LXesFV1aXNC+laz6r8P2UAif9Dp45OtLrn6lgx7SDpoQ2im7yOVCs7SeFsq2Du4kk7pC7TO4ieVWyJslbN8joOxKKSCIVf5ByX6rJwNoFiSfWP2HAq5efG+SdcBXDosPJpsmSwdI/rvUJ1ljnnc9GxS8Uw2ggLca2IRVA7/ibdymgCT88i1vuAOGmDi/szqPlZ8sZ8xdWsPQu+FvFFNTy1Tru21IVq83KHBDlrE6Jn+k0FfWtcX1Sbyq5JWGEzaRXE9BQXsz41zDuwRLIYpLCaBVUM+YxtaQC9fbsQ0Sb1/DNdBzhuO6shWhHyIbkuxhxtA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB4948.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(396003)(376002)(366004)(136003)(39860400002)(316002)(6666004)(7696005)(966005)(2616005)(956004)(8936002)(4326008)(66476007)(8676002)(478600001)(5660300002)(26005)(52116002)(1076003)(86362001)(16526019)(66946007)(450100002)(186003)(6486002)(36756003)(83380400001)(2906002)(66556008);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?3Ia0oSx7Ji1RDaL5Z/Z9bz0XSpaYH+ZO7u0YhIJWNlzGFr4qXo5JNbjdJtWx?=
+ =?us-ascii?Q?LJMClNEndDNvdL0Ne0m3XfPTkIjTmvcATIIMJhQnrht0vWCZFKtdVlk+uxsG?=
+ =?us-ascii?Q?HAgQVzkw5e5k5nAOoKQrb2cFSETCQB/5xSRUBGtoAIEcjbnc8f1aLCkVrRNd?=
+ =?us-ascii?Q?IU0hua+p60DJ5uVduezHa1pRYuvJegXmJlsPYE5wUbYjRs6pIF4PMCRD1PGg?=
+ =?us-ascii?Q?cIEwTkC9z3U9tsDeDiwtVfSdXTAV2WPigj9UNhMkXMlE8KPPCAMkbJMiI/wx?=
+ =?us-ascii?Q?DMPOGu4LpO+fkUWb8Go8L1uyH62OC31x7Ib1BeqD/EyWpVJw732/BFY85QGw?=
+ =?us-ascii?Q?dRcyXzplXw83mEucaFsQz0zEbLaj17bOeGZus8EBrKP2cSycCNRg8vuXHzuY?=
+ =?us-ascii?Q?eDiAEyrHNSrbZp48lXo+x2UADq6Lr1P0AyeATS2MMUXC9Z++NiFg69YLEHaK?=
+ =?us-ascii?Q?4aGgWn0hGNsei1Y5xCZyIKvF/KnNkUV2RtPMUrGisJtKw6sjJkBIyIjfPFsS?=
+ =?us-ascii?Q?mg8vwmEDKIN0KnB/NdNAQxg8XyKyL6jrOnqp220RnZC2y9hvoEb+9Idut38t?=
+ =?us-ascii?Q?rBon/nY9UABAwgqBxCKaf9uDNPK+FmOrhBDZtlh6DNataQlaAEEiG5ADx6D4?=
+ =?us-ascii?Q?sJ3DHaPFt9PQFR6IS2CsiDoij8THW89C/nC/x3aiOF3v9hTh4G0jxHiXnZuZ?=
+ =?us-ascii?Q?+iCwlibexUo3zY3z1qSIXZXHTFvyuqpt5NeSqyRycBUi1zx8t7zNFkqv8N8F?=
+ =?us-ascii?Q?DIOE7hnMKg1fyIzw6WvI7wrxtSb2yu6uE5Lj0l1tmLlh1BtSCyU8dUB0oTyV?=
+ =?us-ascii?Q?C8Nyg6FRIflSTsGwLlGIRcUesvh37/hbH/WNMMrO2SKfSKPe0L5awLCzxTW8?=
+ =?us-ascii?Q?uXi4uIGxQGxPlCZa7DxROPgC/dVOjDmIDFdkKd1t3DxeRT1l6HHAp8j2Mz9j?=
+ =?us-ascii?Q?YrisyESS6BymulwJalFa8c6KVVtuV1bgm7y2pB3xbAYPNI3+DiLUIOzFGtGw?=
+ =?us-ascii?Q?bhkr?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB4948.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2021 03:02:45.6142 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15171c73-8b3b-4845-ecd3-08d8b2b8b538
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kIlW1rTWIv1AAjl4uzth1cVpj/0Mlrg3vLtasY2vgvw5wp6tftc4nI1wJP6YOvBwobBurA3lTXJK0EzMLq3xpA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3999
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,124 +110,106 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Michel_D=c3=a4nzer?= <mdaenzer@redhat.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: alex.sierra@amd.com, philip.yang@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+This is the first version of our HMM based shared virtual memory manager
+for KFD. There are still a number of known issues that we're working through
+(see below). This will likely lead to some pretty significant changes in
+MMU notifier handling and locking on the migration code paths. So don't
+get hung up on those details yet.
 
-On 1/6/21 9:38 PM, Alex Deucher wrote:
-> On Wed, Jan 6, 2021 at 3:04 PM Hans de Goede <hdegoede@redhat.com> wrote:
->>
->> Hi,
->>
->> On 1/6/21 8:33 PM, Alex Deucher wrote:
->>> On Wed, Jan 6, 2021 at 1:10 PM Hans de Goede <hdegoede@redhat.com> wrote:
->>>>
->>>> Hi,
->>>>
->>>> On 1/6/21 6:07 PM, Alex Deucher wrote:
->>>>> On Wed, Jan 6, 2021 at 11:25 AM Hans de Goede <hdegoede@redhat.com> wrote:
->>>>>>
->>>>>> Hi All,
->>>>>>
->>>>>> I get Cc-ed on all Fedora kernel bugs and this one stood out to me:
->>>>>>
->>>>>> https://bugzilla.redhat.com/show_bug.cgi?id=1911763
->>>>>>
->>>>>> Since I've done a lot of work on the acpi-video code I thought I should
->>>>>> take a look. I've managed to help the user with a kernel-commandline
->>>>>> option which stops video.ko (the acpi-video kernel module) from emitting
->>>>>> key-press events for ACPI_VIDEO_NOTIFY_PROBE events.
->>>>>>
->>>>>> This is on a Dell Vostro laptop with i915/radeon hybrid gfx.
->>>>>>
->>>>>> I was thinking about adding a DMI quirk for this, but from the brief time
->>>>>> that I worked on nouveau (and specifically hybrid gfx setups) I know that
->>>>>> these events get fired on hybrid gfx setups when the discrete GPU is
->>>>>> powered down and something happens which requires the discrete GPUs drivers
->>>>>> attention, like an external monitor being plugged into a connector handled
->>>>>> by the dGPU (note that is not the case here).
->>>>>>
->>>>>> So I took a quick look at the radeon code and the radeon_atif_handler()
->>>>>> function from drivers/gpu/drm/radeon/radeon_acpi.c. When successful that
->>>>>> returns NOTIFY_BAD which suppresses the key-press.
->>>>>>
->>>>>> But in various cases it returns NOTIFY_DONE instead which does not
->>>>>> suppress the key-press event. So I think that the spurious key-press events
->>>>>> which the user is seeing should be avoided by this function returning
->>>>>> NOTIFY_BAD.
->>>>>>
->>>>>> Specifically I'm wondering if we should not return
->>>>>> NOTIFY_BAD when count == 0?   I guess this can cause problems if there
->>>>>> are multiple GPUs, but we could check if the acpi-event is for the
->>>>>> pci-device the radeon driver is bound to. This would require changing the
->>>>>> acpi-notify code to also pass the acpi_device pointer as part of the
->>>>>> acpi_bus_event but that should not be a problem.
->>>>>>
->>>>>
->>>>> For A+A PX/HG systems, we'd want the notifications for both the dGPU
->>>>> and the APU since some of the events are relevant to one or the other.
->>>>> ATIF_DGPU_DISPLAY_EVENT is only relevant to the dGPU, while
->>>>> ATIF_PANEL_BRIGHTNESS_CHANGE_REQUEST would be possibly relevant to
->>>>> both (if there was a mux), but mainly the APU.
->>>>> ATIF_SYSTEM_POWER_SOURCE_CHANGE_REQUEST would be relevant to both.
->>>>> The other events have extended bits to determine which GPU the event
->>>>> is targeted at.
->>>>
->>>> Right, but AFAIK on hybrid systems there are 2 ACPI video-bus devices,
->>>> one for each of the iGPU and dGPU which is why I suggested passing
->>>> the video-bus acpi_device as extra data in acpi_bus_event and then
->>>> radeon_atif_handler() could check if the acpi_device is the companion
->>>> device of the GPU. This assumes that events for GPU# will also
->>>> originate from (through an ACPI ASL notify call) the ACPI video-bus
->>>> which belongs to that GPU.
->>>
->>> That's not the case.  For PX/HG systems, ATIF is in the iGPU's
->>> namespace, on dGPU only systems, ATIF is in the dGPU's namespace.
->>
->> That assumes and AMD iGPU + AMD dGPU I believe ?  The system on
->> which the spurious ACPI_VIDEO_NOTIFY_PROBE events lead to spurious
->> KEY_SWITCHVIDEOMODE key-presses being reported uses an Intel iGPU
->> with an AMD dGPU. I don't have any hybrid gfx systems available for
->> testing atm, but I believe that in this case there will be 2 ACPI
->> video-busses, one for each GPU.
-> 
-> I think the ATIF method will be on the iGPU regardless of whether it's
-> intel or AMD.
+But I think this is a good time to start getting feedback. We're pretty
+confident about the ioctl API, which is both simple and extensible for the
+future. (see patches 4,16) The user mode side of the API can be found here:
+https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface/blob/fxkamd/hmm-wip/src/svm.c
 
-Ok.
+I'd also like another pair of eyes on how we're interfacing with the GPU VM
+code in amdgpu_vm.c (see patches 12,13), retry page fault handling (24,25),
+and some retry IRQ handling changes (32).
 
->> Note I'm not saying that that means that checking the originating
->> ACPI device is the companion of the GPUs PCI-device is the solution
->> here. But so far all I've heard from you is that that is not the
->> solution, without you offering any alternative ideas / possible
->> solutions to try for filtering out these spurious key-presses.
-> 
-> Sorry, I'm not really an ACPI expert.  I think returning NOTIFY_BAD is
-> fine for this specific case, but I don't know if it will break other
-> platforms.
 
-Yes, I'm worried too that it might break other platforms, so that
-option is of the table then.
+Known issues:
+* won't work with IOMMU enabled, we need to dma_map all pages properly
+* still working on some race conditions and random bugs
+* performance is not great yet
 
-> That said, I don't recall seeing any other similar bugs,
-> so maybe this is something specific to this particular laptop.
+Alex Sierra (12):
+  drm/amdgpu: replace per_device_list by array
+  drm/amdkfd: helper to convert gpu id and idx
+  drm/amdkfd: add xnack enabled flag to kfd_process
+  drm/amdkfd: add ioctl to configure and query xnack retries
+  drm/amdkfd: invalidate tables on page retry fault
+  drm/amdkfd: page table restore through svm API
+  drm/amdkfd: SVM API call to restore page tables
+  drm/amdkfd: add svm_bo reference for eviction fence
+  drm/amdgpu: add param bit flag to create SVM BOs
+  drm/amdkfd: add svm_bo eviction mechanism support
+  drm/amdgpu: svm bo enable_signal call condition
+  drm/amdgpu: add svm_bo eviction to enable_signal cb
 
-Ok, the acpi_video.c code already has the option to suppress
-key-press reporting based on either a cmdline option, or
-a DMI quirk and the reporter of the issue has already confirmed that
-the kernel cmdline option works around this. So I will submit a patch
-for acpi_video.c to add a DMI quirk for this then. This seems more
-of a workaround then a real solution, but it looks like this is
-the best which we can do atm.
+Philip Yang (23):
+  drm/amdkfd: select kernel DEVICE_PRIVATE option
+  drm/amdkfd: add svm ioctl API
+  drm/amdkfd: Add SVM API support capability bits
+  drm/amdkfd: register svm range
+  drm/amdkfd: add svm ioctl GET_ATTR op
+  drm/amdgpu: add common HMM get pages function
+  drm/amdkfd: validate svm range system memory
+  drm/amdkfd: register overlap system memory range
+  drm/amdkfd: deregister svm range
+  drm/amdgpu: export vm update mapping interface
+  drm/amdkfd: map svm range to GPUs
+  drm/amdkfd: svm range eviction and restore
+  drm/amdkfd: register HMM device private zone
+  drm/amdkfd: validate vram svm range from TTM
+  drm/amdkfd: support xgmi same hive mapping
+  drm/amdkfd: copy memory through gart table
+  drm/amdkfd: HMM migrate ram to vram
+  drm/amdkfd: HMM migrate vram to ram
+  drm/amdgpu: reserve fence slot to update page table
+  drm/amdgpu: enable retry fault wptr overflow
+  drm/amdkfd: refine migration policy with xnack on
+  drm/amdkfd: add svm range validate timestamp
+  drm/amdkfd: multiple gpu migrate vram to vram
 
-Regards,
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c    |    3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |    4 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c  |   16 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  |   13 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c        |   83 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mn.h        |    7 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.h    |    5 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |   90 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |   47 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |   10 +
+ drivers/gpu/drm/amd/amdgpu/vega10_ih.c        |   32 +-
+ drivers/gpu/drm/amd/amdgpu/vega20_ih.c        |   32 +-
+ drivers/gpu/drm/amd/amdkfd/Kconfig            |    1 +
+ drivers/gpu/drm/amd/amdkfd/Makefile           |    4 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c      |  170 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_iommu.c        |    8 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_migrate.c      |  866 ++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_migrate.h      |   59 +
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |   52 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      |  200 +-
+ .../amd/amdkfd/kfd_process_queue_manager.c    |    6 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c          | 2564 +++++++++++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.h          |  135 +
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c     |    1 +
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.h     |   10 +-
+ include/uapi/linux/kfd_ioctl.h                |  169 +-
+ 26 files changed, 4296 insertions(+), 291 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+ create mode 100644 drivers/gpu/drm/amd/amdkfd/kfd_migrate.h
+ create mode 100644 drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+ create mode 100644 drivers/gpu/drm/amd/amdkfd/kfd_svm.h
 
-Hans
+-- 
+2.29.2
 
 _______________________________________________
 amd-gfx mailing list
