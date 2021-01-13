@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B89FF2F4275
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Jan 2021 04:28:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC5CA2F427B
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Jan 2021 04:28:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D26F89B4D;
-	Wed, 13 Jan 2021 03:28:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6224089C56;
+	Wed, 13 Jan 2021 03:28:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
  (mail-bn8nam11on2060.outbound.protection.outlook.com [40.107.236.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2015E89B22
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69FEA89B22
  for <amd-gfx@lists.freedesktop.org>; Wed, 13 Jan 2021 03:28:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TlfMr5Uose4O+2TYDiGkXPVbPOn6HjYM6RAjqNlPwuZNCt9WtxQCq2rUyM0XOPWZrhLgmgJFms4d6DBoab8FCOOpVsf0qaZxQBs6Wxa1udbeIfOqk5l7oH8A0kTWCNVBY48w/rS5VUfj9emykNdC4lnwL0uce777jGBxRhatQLyhKCtb917KLZDZNl5yskszd0AkIESFXS68/q8hZTi9Hp3nEaKiASJOXf0dhzKO4jvrqD9YSYS7e+Lq7H+0IROnrQ/ZDz4wRycJNLFKAFT6gtE+gTg8Gc4rO3xoMwXo7sGTcSzoAdq5C0PGC6fifUvhjyD60hR9SrCKfV/lvTUJDQ==
+ b=VBmecjJ3TYWOgTLcHtSPqzRZzD39lznZKYglRFamIyYvQ5VL9GGp+o/JmQaYivo7epjsdWB1IyAQvEn+/oivZYgTWTOyAN0k2jZ+tZSWQF59CbwQlGeocVz4ASHTHM41amjU2OJKP6avE2MihjmZbx737IYHF5jit+w06BzXpHw0IiQt58L8f7jKE6/9eTtShNkGeFA4HnPzpISxjArddOqiFfklwIaqgYr9Oc36hzIsIu/AdCQj6J+u8dfXLS01RMm5xwEIfbMp5JsskZ/rK9yesjTwhIMK2tRz69bvPDp0ycj2p9ifjcKi2sMoBjFCWiEkgx/sL3ztbOH9Ahqe1w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qa0pt5EK3ZjBjOiSn1YhfSMXs0IIKsDmjrzQoUNXIXg=;
- b=k3oNVcviqstrNM8mDU8PWhM4gys+4xroRkvmdijV0DGh3FBpftXTrocwYN9+M5oD7R9+ljWbRrF3sRNnVHEHFYL9lBcvMtIwiFYksyANMp28OqAQJFU8mrGBMVOBgusz4PX9FYFxjvys3HEcG0Qw4ljPMUOVlucqt8LYTgAvXxFZKupx7U3GITFtwW29qhziQLabqYEO51abiQkcUefvBmsxbYR1+0huiT1v0/233nHGRGMotybXaAJsA5F0FR1LBqm+buNE8v3SVKSLdIArPR1OOIFNg1RqMEs1d3KM7imyNXbsadWE7wErTh/K6KjiG3xSM8l74SJpfiC2/Fyn4g==
+ bh=Q8eCSOZLmjE4METjun+wGpHLKppvr/N/4ACcqThvQFo=;
+ b=muN3pfYUyqMJfSGNkq/HYz+DHJvFyCnC/v3i0/D81ClDFENEYoldNsV7+zKOtlmIp2XtVyIBchUf8xC2F0xjzkz8O/foDj7Z+kmzAG0FTqBvhMQD3ErkC1Auo1sgQtaRDWHsLGEGPh4aTjP3Ad5yhq9cimBECzNQQJirK+N/Y2rESgirWAtiSG7HmGLpR4GMtBGL6KmHGYL7rEl+Cqb6dWK1XXeIefGJoa2Enq/CMUBfD8XlJKOFq+/hDsPeVasuY+KBUENHZsA/QkbXYL945cdtcO0DCTZ0vr5AJj3rZQTEvpoO94cu+LbuqVa7+jgWBbm0ZXCm0aIyqS02gR+FbA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qa0pt5EK3ZjBjOiSn1YhfSMXs0IIKsDmjrzQoUNXIXg=;
- b=laYTEv1sT8Fga8RZ7IsNR4O/KZCt/fDIwkP4VQ762juNxjt3dHcNNUps7lkcecUvPemSDXj9aoeoV37df0iqG4v24gPw3WB3v/PWrcRgKOD4YeMAWLDDxGrdiKA/PO8vCm20zRawRA8Q1AkqZM1m7Z0qtlC9Efq4tNZa/12lEkE=
+ bh=Q8eCSOZLmjE4METjun+wGpHLKppvr/N/4ACcqThvQFo=;
+ b=w63yl4PvX2klYhdYIWX2hjSWH4kqGFst/0xVHxih1N7LgPXUTrKizf8hg3HnImW696GAYx6rAOXroAN9zVXMiDamem9uQwUqBiSePnZ8YPf+dx5G7VmFAVCmuc/iJXjFKcvmicRU+Rmc5qi4JbFfF78iqnQhRD+fPrYI1l62l3s=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -41,10 +41,13 @@ Received: from DM6PR12MB2954.namprd12.prod.outlook.com
  03:28:03 +0000
 From: Darren Powell <darren.powell@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 0/8] amdgpu/pm: Powerplay API for smu
-Date: Tue, 12 Jan 2021 22:27:18 -0500
-Message-Id: <20210113032726.2475-1-darren.powell@amd.com>
+Subject: [PATCH 1/8] amdgpu/pm: Powerplay API for smu ,
+ added get_performance_level
+Date: Tue, 12 Jan 2021 22:27:19 -0500
+Message-Id: <20210113032726.2475-2-darren.powell@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210113032726.2475-1-darren.powell@amd.com>
+References: <20210113032726.2475-1-darren.powell@amd.com>
 X-Originating-IP: [142.126.168.115]
 X-ClientProxiedBy: YT1PR01CA0155.CANPRD01.PROD.OUTLOOK.COM
  (2603:10b6:b01:2f::34) To DM6PR12MB2954.namprd12.prod.outlook.com
@@ -54,48 +57,48 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from localhost.localdomain (142.126.168.115) by
  YT1PR01CA0155.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2f::34) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3763.9 via Frontend Transport; Wed, 13 Jan 2021 03:28:02 +0000
+ 15.20.3763.9 via Frontend Transport; Wed, 13 Jan 2021 03:28:03 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 82efc2ea-7cb0-43a2-57a4-08d8b7733c1c
+X-MS-Office365-Filtering-Correlation-Id: c719d0f4-369b-4608-13c2-08d8b7733c80
 X-MS-TrafficTypeDiagnostic: DM6PR12MB3817:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB3817933D53BD75A86DA3F3F6F0A90@DM6PR12MB3817.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3817990A56DCF654640C7B4FF0A90@DM6PR12MB3817.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: m74kRnutTujMN3mBDrI4KnCdFLm1alZCWypAHTYSZ1KdoTO43vGjNl7xJaXxuYrQXcKchIJ5VgTpFWFSBF3PazYsKspSlUh3rsdJA+PIEQ7GKP14LOPg+sRQav6ZgY/igDk9FGOuLuvezTPBRiY1fe+Sv550sk6U1AJx6/J0zphHEmM+KnBe2Y0NSzEj4q315BIQ21siR5zffWq0zb2gZheE3VaVXMy2fT6ZXrZaHjQ0HHRlK2stuvA9bJAc4VWLIW+X75C5duYap8Jnzd25LG4S4mCEZPMxhdQXq7VTDyRTW4mRl6hFAhKs4luAh0AJPBXvC50Pf9lziBs1jbNi6XgXICBc5LzK1xedRN2Q6PR9rN0nG4AA8crK5Xt6lZmjdFvbC3jJEPEY8d9k3181P07pBEyOEc5rTipUO2dXUWEpXfzTG+/RtsnD0lUhLxc76Y2KW/peRwi6bqzHlockPA==
+X-Microsoft-Antispam-Message-Info: OA7ro3V7Ji6MLV/EaEGlvToxMOF61GBeCYhz++6eHQTacPldt6KTYIRmvlFSJVjAOSSZyonWFG4fBIOaPX+0Q7FqQ7Dw7DRrcwhvB1M4MaOBKiUlAC4tpJSuv+OmKuPRIJv4RbHGhYIL+qvXWygLnUSabXtYWVAGXV3i0u9c3ZE3K36SDalNh8TNpK0jEmTqxrLKqhFTgUOq579Gp5fJrFs3yVjkTo3phBvVyzKbJy8WZFhbLNe61sTli+jTsKpxrSgUm9PIGEo/AjN4MISn+T/TtYoWHWGOLD6NkuYgvI3f6ddTqQFhWEgEOcDTr+JY7Py1eNbFX7gaBsHOP7m+cuB3t6oYseA4S+coU1Z94ZAJ96XH5TIJpP1OGwVWSMj+CgNRa65G/Y0G6GIWGTQP5thCSBDP0I+3pBIhPxm0SNeDRf+NHGi5vwiHDa+FYrAg
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB2954.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(396003)(346002)(366004)(39860400002)(376002)(136003)(5660300002)(69590400011)(66556008)(4326008)(6506007)(8936002)(36756003)(8676002)(6512007)(6486002)(6916009)(66476007)(186003)(44832011)(66946007)(86362001)(1076003)(26005)(956004)(52116002)(478600001)(16526019)(316002)(2616005)(6666004)(2906002)(83380400001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?J5Lg1T8L1aSNl16nivycZrQiCq0wCp61/YFlOs8J9zKquMw6IDMyGZUsJtHc?=
- =?us-ascii?Q?CsM0fqAOM5Q9W2k7AVsnUgTGFeboY3qZy/ffmRvyjNhMqjyHmoojAb7Hj0Yv?=
- =?us-ascii?Q?wHgTx4RZnVwaeqgZg0NdgToH/L+QM4dHl6kzl96COs0WcoKYnSX2nVLl7s0t?=
- =?us-ascii?Q?TwgbB/H+yyuGIXL4ZE4u7e1JNKdVtJxZl6CZkOax9qttu3cinU2xlBoY/LxJ?=
- =?us-ascii?Q?79/BbTZGa9ihLMjwX2sZ3nUJehghOS37DfV3usnFTbtyLUrX5p5tYGDy+XbI?=
- =?us-ascii?Q?AV6Am8JFxISpMKIR2r/3PB26n9ozELvRAu2bJTQLfbLJ/ZoITB4KxLFKLVQN?=
- =?us-ascii?Q?2ObiNnruyUhU5uYNH5nwmT73lC73VX8YeqJOUys0qtm8lFU3T8WEAK7Hi+fB?=
- =?us-ascii?Q?3Q/BsTIvaObp524I/1+mb4KaaCGyR1Gg1OBSj6+mFv/gOlXshG262u57JZqS?=
- =?us-ascii?Q?iXIFHOMFS5oWEjv8CDB/FyjDqPIFTClL5doyLhkhKRf2cXj4HTM6LAZkjeRi?=
- =?us-ascii?Q?v+k7GgmXULN+fpIyyIfP87hkzY+V03Uy1FE3j/5bcwTbOMSYlSTl7atuanGN?=
- =?us-ascii?Q?4Sk1VjB7hLxW+pLk9eCAdiKDEFJmcIwcJhrXjnnWX2RKYRbRzeQoutcaiB6y?=
- =?us-ascii?Q?2p17Z3CHcEdY2DX3NOAagSA985uzWjGW5CKhTkjIQ5RA8QSIcD+fdqbGuKnM?=
- =?us-ascii?Q?Lvp81mx22qPBwphLWKk//PntEmfRjoQlt4sT5tGboNDwhsJ2PuQ+03eiI5Fj?=
- =?us-ascii?Q?F64aamztPdky7oUuJd6uHhRHJdNTxrMA7lXmalVPTsL/v9d88wV6yIJ8g1Ud?=
- =?us-ascii?Q?aG73h2Es0n3T1ST9LFSQ4G50T2Nup1A6sQLrFyUm4CPQTM/qBDrgv2KEY2qG?=
- =?us-ascii?Q?ag/wXupq3rfsz4taWAKC+i3Qpk7kXDENx85I/S7y131YBjCNHYRekOTrkSwI?=
- =?us-ascii?Q?upUUdlaUd8BQ+sb1SdXXw+FLxHd4DVpbVBxNY8z/o7T3jd0LYdb5BOb8DMeb?=
- =?us-ascii?Q?zSTf?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?wLmy0RPA533pvJFEF6oXwboip4qTHc98J22QmFIcE4QFbBMuwCsxlWQh8NBW?=
+ =?us-ascii?Q?fLuj3M5x4szhcpBpvZeRwm0ogtcU3ATVsr4u38uorYwx9m/IGny0KmhkOxa5?=
+ =?us-ascii?Q?usi4WrOt5CA10yGeDQEalxdlPkQ89Nt5RfIsAeoNOonSMVBjbmhrMZpO+qhQ?=
+ =?us-ascii?Q?29wtyt5H+kcZ3qdun893qB/nGTlqCRjlcYVzXq5htQSazhLOHDv4YVwc0/og?=
+ =?us-ascii?Q?F9Lgn8b7zG0cvNQfgz9r2QjmxeoRPjs1zjL4MbOADEeFrXpam7bNZtIBFV73?=
+ =?us-ascii?Q?tadGq3vlJ/69eswfxBfTNMfFrfLkLBCBfw4SvyxhRIa74xlmgU/vBH7NeXt3?=
+ =?us-ascii?Q?0cnDjAMAweuRnAPLqW1p8nlpciO70INWSjHG5ep2q90W7tEUlY+LJLXk38sm?=
+ =?us-ascii?Q?H30ZNtZrLD7VgJdkl0j6GsMlMA8u4A0s0z8NexBaxzcI2CQDQ3VtxhnCMUWa?=
+ =?us-ascii?Q?dhK7Xx6dMefYhECvm26Lv2m0oZIyhkvjoXXmlrOVxUKWgJx8vvLr3sdpK9kv?=
+ =?us-ascii?Q?WFjeFpU+xiSsMhP2oxfI8BQFTISDCP3lRpyHg6/5Y3gnI+Y3TtdHnfyDMQ48?=
+ =?us-ascii?Q?NFJ0bw/1RBtnuOJQU6b0sPfNuigaanIaYoKNJYYy4iq+WEQfXdFuACsdg61q?=
+ =?us-ascii?Q?twomxVSYM1EMK9VmoSUbjT14YodDWyslsY4XFoa8SBLVI2FMjwqgrJgUNYmt?=
+ =?us-ascii?Q?Yz94kCATHDduYTFfx9bAbaY7INrnLikSkytJMPutNtMV3jsspn6A65UbyziN?=
+ =?us-ascii?Q?go5aJRyBr8AtdheQ1GLk9zgHQ1lcrGeb80riBefgvfjOD6gN2jVrNNgXHkGj?=
+ =?us-ascii?Q?LFlzKY6xb7BdyMA8D/2PSHg255P8orq4rT27j/fP4T4PcimDflwyo31e8sKl?=
+ =?us-ascii?Q?lqDgGaQH0bBR6lLtLIthFODt6Ep97sKxVY8V75Z+0Obfc9oMj8BjO7I/8CO5?=
+ =?us-ascii?Q?Ewp7INsopsAYmG4K9mM7Ck30I+bvpVYf6ThwQN9HqBnReBeskfXeeSMihMoa?=
+ =?us-ascii?Q?I+v+?=
 X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2954.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2021 03:28:02.9708 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2021 03:28:03.6574 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82efc2ea-7cb0-43a2-57a4-08d8b7733c1c
+X-MS-Exchange-CrossTenant-Network-Message-Id: c719d0f4-369b-4608-13c2-08d8b7733c80
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fYm9Ko62HEp6ZtcATfrtiPFxnDz2gaMlQIYWO+QmnUxh/7b0nsuiE3QJ0vKFGnEHZqJ2An5Ms13re5pRVY0ddA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 26gEhCXsxgl9XMuvhTfpOVqiId8Kji3fQs1Cf4OgDYYq8qZmJZGvwPRV2UdslUp9vSHLrVbU/OdJv4UoONpTDA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3817
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -114,145 +117,92 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-=== Description ===
-Patches to add the Powerplay API to smu and simplify dpm/pm calling code
+v2: updated the structure name to swsmu_pm_funcs
 
-* Version 2 Updates 
- 0001: updated the structure name to swsmu_pm_funcs
- 0002: No Changes
- 0003: changed error return value of smu_get_fan_control_mode to AMD_FAN_CTRL_NONE
-       fixed type in amdgpu_hwmon_get_pwm1_enable() print statement
-       fixed indent flagged by checkpatch.pl
- 0004: remove check for error during swsmu amdgpu_dpm_get_pp_num_states() call to match previous powerplay behaviour
- 0005: add comment to highlight assignment that changes uint32_t value to int
-       fix errors flagged by checkpatch.pl
- 0006: fix errors flagged by checkpatch
- 0007: fix errors and warnings flagged by checkpatch
- 0008: No Changes
+Modified Functions
+  smu_get_performance_level() - modifed arg0 to match Powerplay API get_performance_level
 
-=== Test System ===
-* DESKTOP(AMD FX-8350 + NAVI10(731F/ca), BIOS: F2)
- + ISO(Ubuntu 20.04.1 LTS)
- + Kernel(5.9.0-rc5-custom-pmcallback-00865-gd3b9ec1a13c9)
+Other Changes
+  added a new structure swsmu_dpm_funcs to hold smu functions for Powerplay API
+  removed special smu handling from amdgpu_get_power_dpm_force_performance_level
 
-=== Patch Summary ===
-   linux: (git://people.freedesktop.org/~agd5f/linux) origin/amd-staging-drm-next @ d3b9ec1a13c9 
-    + b401b8ff07ca amdgpu/pm: Powerplay API for smu , added get_performance_level
-    + 924fb45c2fc9 amdgpu/pm: Powerplay API for smu , changed 6 dpm reset functions to use API
-    + 22459821a119 amdgpu/pm: Powerplay API for smu , changed 6 pm hwmon fan functions to use API
-    + 9a1dff6ed4a4 amdgpu/pm: Powerplay API for smu , changed 9 pm power functions to use API
-    + eeaf9dad054a amdgpu/pm: Powerplay API for smu , changed 5 dpm powergating & sensor functions to use API
-    + c10bf38a4250 amdgpu/pm: Powerplay API for smu , changes to clock and profile mode functions
-    + 73c150926ef3 amdgpu/pm: Powerplay API for smu , changed 4 dpm functions to use API
-    + f840fb27c965 amdgpu/pm: Powerplay API for smu , updates to some pm functions
+Signed-off-by: Darren Powell <darren.powell@amd.com>
+---
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c        |  4 +---
+ drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h   |  2 +-
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 12 +++++++++++-
+ 3 files changed, 13 insertions(+), 5 deletions(-)
 
-=== Tests ===
-** 0001
- amdgpu_get_power_dpm_force_performance_level()    <- /sys/class/drm/card0/device/power_dpm_force_performance_level
-** 0002
- amdgpu_dpm_set_mp1_state              <- systemctl suspend
- amdgpu_dpm_mode2_reset                <- untested: needs Arctic Islands Hardware (VEGAx, RAVEN)
- amdgpu_dpm_switch_power_profile       <- untested
- amdgpu_dpm_set_xgmi_pstate            <- untested: amdgpu_xgmi_set_pstate():411 pstate switching disabled
- amdgpu_dpm_set_df_cstate              <- untested: needs ras enabled hardware
- amdgpu_dpm_enable_mgpu_fan_boost      <- untested: needs multi-gpu hardware
-** 0003
- amdgpu_hwmon_get_pwm1_enable                    <- /sys/class/drm/card0/device/hwmon/hwmon?/pwm1_enable
- amdgpu_hwmon_set_pwm1_enable                    <- /sys/class/drm/card0/device/hwmon/hwmon?/pwm1_enable
- amdgpu_hwmon_set_pwm1                           <- /sys/class/drm/card0/device/hwmon/hwmon?/pwm1
- amdgpu_hwmon_get_pwm1                           <- /sys/class/drm/card0/device/hwmon/hwmon?/pwm1
- amdgpu_hwmon_get_fan1_input                     <- /sys/class/drm/card0/device/hwmon/hwmon?/fan1_input
- amdgpu_hwmon_get_fan1_target                    <- /sys/class/drm/card0/device/hwmon/hwmon?/fan1_target
- amdgpu_hwmon_set_fan1_target                    <- /sys/class/drm/card0/device/hwmon/hwmon?/fan1_target
- amdgpu_hwmon_get_fan1_enable                    <- /sys/class/drm/card0/device/hwmon/hwmon?/fan1_enable
- amdgpu_hwmon_set_fan1_enable                    <- /sys/class/drm/card0/device/hwmon/hwmon?/fan1_enable
-** 0004
- amdgpu_get_power_dpm_state                      <- /sys/class/drm/card0/device/power_dpm_state
- amdgpu_set_power_dpm_force_performance_level    <- /sys/class/drm/card0/device/power_dpm_force_performance_level
- amdgpu_get_pp_num_states                        <- /sys/class/drm/card0/device/pp_num_states
- amdgpu_get_pp_cur_state                         <- /sys/class/drm/card0/device/pp_cur_state
- amdgpu_get_pp_table                             <- /sys/class/drm/card0/device/pp_table
- amdgpu_get_pp_features                          <- /sys/class/drm/card0/device/pp_features
- amdgpu_hwmon_show_power_cap_max                 <- /sys/class/drm/card0/device/hwmon/hwmon?/power1_cap_max
- amdgpu_hwmon_show_power_cap                     <- /sys/class/drm/card0/device/hwmon/hwmon?/power1_cap
- amdgpu_hwmon_set_power_cap                      <- /sys/class/drm/card0/device/hwmon/hwmon?/power1_cap
-** 0005
- amdgpu_dpm_baco_enter                  <- untested: called from runtime.pm 
- amdgpu_dpm_baco_exit                   <- untested: called from runtime.pm 
- amdgpu_dpm_is_baco_supported           <- untested: needs other Hardware(cik, vi, soc15)
- amdgpu_dpm_baco_reset                  <- untested: needs other Hardware(cik, vi, soc15)
-** 0006
- amdgpu_get_pp_dpm_sclk              <- /sys/class/drm/card0/device/pp_dpm_sclk
- amdgpu_set_pp_dpm_sclk              <- /sys/class/drm/card0/device/pp_dpm_sclk
- amdgpu_get_pp_dpm_mclk              <- /sys/class/drm/card0/device/pp_dpm_mclk
- amdgpu_set_pp_dpm_mclk              <- /sys/class/drm/card0/device/pp_dpm_mclk
- amdgpu_get_pp_dpm_socclk            <- /sys/class/drm/card0/device/pp_dpm_socclk
- amdgpu_set_pp_dpm_socclk            <- /sys/class/drm/card0/device/pp_dpm_socclk
- amdgpu_get_pp_dpm_fclk              <- /sys/class/drm/card0/device/pp_dpm_fclk
- amdgpu_set_pp_dpm_fclk              <- /sys/class/drm/card0/device/pp_dpm_fclk
- amdgpu_get_pp_dpm_dcefclk           <- /sys/class/drm/card0/device/pp_dpm_dcefclk
- amdgpu_set_pp_dpm_dcefclk           <- /sys/class/drm/card0/device/pp_dpm_dcefclk
- amdgpu_get_pp_dpm_pcie              <- /sys/class/drm/card0/device/pp_dpm_pcie
- amdgpu_set_pp_dpm_pcie              <- /sys/class/drm/card0/device/pp_dpm_pcie
- amdgpu_get_pp_power_profile_mode    <- /sys/class/drm/card0/device/pp_power_profile_mode
- amdgpu_set_pp_power_profile_mode    <- /sys/class/drm/card0/device/pp_power_profile_mode
- amdgpu_get_gpu_metrics              <- /sys/class/drm/card0/device/gpu_metrics
-** 0007
- amdgpu_pm_compute_clocks            <- untested
- amdgpu_dpm_set_powergating_by_smu   <- untested
- amdgpu_dpm_get_mclk                 <- untested
- amdgpu_dpm_get_sclk                 <- untested
-** 0008
- amdgpu_get_pp_od_clk_voltage                 <- /sys/class/drm/card0/device/pp_od_clk_voltage
- amdgpu_set_pp_od_clk_voltage                 <- /sys/class/drm/card0/device/pp_od_clk_voltage
- amdgpu_set_pp_table                          <- /sys/class/drm/card0/device/pp_table
- amdgpu_set_power_dpm_force_performance_level <- /sys/class/drm/card0/device/power_dpm_force_performance_level
-
-=== Summary of Untested Functions ===
-** 0002
- amdgpu_dpm_mode2_reset                <- untested: needs Arctic Islands Hardware (VEGAx, RAVEN)
- amdgpu_dpm_switch_power_profile       <- untested: called during initialization
- amdgpu_dpm_set_xgmi_pstate            <- untested: amdgpu_xgmi_set_pstate():411 pstate switching disabled
- amdgpu_dpm_set_df_cstate              <- untested: needs ras enabled hardware
- amdgpu_dpm_enable_mgpu_fan_boost      <- untested: needs multi-gpu hardware
-** 0005
- amdgpu_dpm_baco_enter                  <- untested: called from runtime.pm 
- amdgpu_dpm_baco_exit                   <- untested: called from runtime.pm 
- amdgpu_dpm_is_baco_supported           <- untested: needs other Hardware(cik, vi, soc15)
- amdgpu_dpm_baco_reset                  <- untested: needs other Hardware(cik, vi, soc15)
-** 0007
- amdgpu_pm_compute_clocks            <- untested
- amdgpu_dpm_set_powergating_by_smu   <- untested
- amdgpu_dpm_get_mclk                 <- untested
- amdgpu_dpm_get_sclk                 <- untested
-** 0008
- amdgpu_get_pp_od_clk_voltage                 <- file not found
- amdgpu_set_pp_od_clk_voltage                 <- file not found
- amdgpu_set_pp_table                          <- no binary data to test with
-
-
-=== Cover Letter ===
-Darren Powell (8):
-  amdgpu/pm: Powerplay API for smu , added get_performance_level
-  amdgpu/pm: Powerplay API for smu , changed 6 dpm reset functions to
-    use API
-  amdgpu/pm: Powerplay API for smu , changed 6 pm hwmon fan functions to
-    use API
-  amdgpu/pm: Powerplay API for smu , changed 9 pm power functions to use
-    API
-  amdgpu/pm: Powerplay API for smu , changed 5 dpm powergating & sensor
-    functions to use API
-  amdgpu/pm: Powerplay API for smu , changes to clock and profile mode
-    functions
-  amdgpu/pm: Powerplay API for smu , changed 4 dpm functions to use API
-  amdgpu/pm: Powerplay API for smu , updates to some pm functions
-
- drivers/gpu/drm/amd/pm/amdgpu_dpm.c       | 228 +++------
- drivers/gpu/drm/amd/pm/amdgpu_pm.c        | 597 +++++-----------------
- drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h   |  79 ++-
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 358 ++++++++++---
- 4 files changed, 534 insertions(+), 728 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+index 7b6ef05a1d35..0008bbe971d6 100644
+--- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
++++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+@@ -280,9 +280,7 @@ static ssize_t amdgpu_get_power_dpm_force_performance_level(struct device *dev,
+ 		return ret;
+ 	}
+ 
+-	if (is_support_sw_smu(adev))
+-		level = smu_get_performance_level(&adev->smu);
+-	else if (adev->powerplay.pp_funcs->get_performance_level)
++	if (adev->powerplay.pp_funcs->get_performance_level)
+ 		level = amdgpu_dpm_get_performance_level(adev);
+ 	else
+ 		level = adev->pm.dpm.forced_level;
+diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
+index 89be49a43500..10914f3438ac 100644
+--- a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
++++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
+@@ -743,7 +743,7 @@ int smu_get_dpm_freq_range(struct smu_context *smu, enum smu_clk_type clk_type,
+ 			   uint32_t *min, uint32_t *max);
+ int smu_set_soft_freq_range(struct smu_context *smu, enum smu_clk_type clk_type,
+ 			    uint32_t min, uint32_t max);
+-enum amd_dpm_forced_level smu_get_performance_level(struct smu_context *smu);
++enum amd_dpm_forced_level smu_get_performance_level(void *handle);
+ int smu_force_performance_level(struct smu_context *smu, enum amd_dpm_forced_level level);
+ int smu_set_display_count(struct smu_context *smu, uint32_t count);
+ int smu_set_ac_dc(struct smu_context *smu);
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index cf999b7a2164..d86535016b23 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -46,6 +46,8 @@
+ #undef pr_info
+ #undef pr_debug
+ 
++static const struct amd_pm_funcs swsmu_pm_funcs;
++
+ size_t smu_sys_get_pp_feature_mask(struct smu_context *smu, char *buf)
+ {
+ 	size_t size = 0;
+@@ -428,6 +430,9 @@ static int smu_early_init(void *handle)
+ 	smu->smu_baco.state = SMU_BACO_STATE_EXIT;
+ 	smu->smu_baco.platform_support = false;
+ 
++	adev->powerplay.pp_handle = smu;
++	adev->powerplay.pp_funcs = &swsmu_pm_funcs;
++
+ 	return smu_set_funcs(adev);
+ }
+ 
+@@ -1569,8 +1574,9 @@ int smu_switch_power_profile(struct smu_context *smu,
+ 	return 0;
+ }
+ 
+-enum amd_dpm_forced_level smu_get_performance_level(struct smu_context *smu)
++enum amd_dpm_forced_level smu_get_performance_level(void *handle)
+ {
++	struct smu_context *smu = handle;
+ 	struct smu_dpm_context *smu_dpm_ctx = &(smu->smu_dpm);
+ 	enum amd_dpm_forced_level level;
+ 
+@@ -2549,3 +2555,7 @@ int smu_gfx_state_change_set(struct smu_context *smu, uint32_t state)
+ 
+ 	return ret;
+ }
++
++static const struct amd_pm_funcs swsmu_pm_funcs = {
++	.get_performance_level = smu_get_performance_level,
++};
 -- 
 2.25.1
 
