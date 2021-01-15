@@ -2,72 +2,111 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 520762F7EFD
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Jan 2021 16:08:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A2C72F7ECA
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Jan 2021 16:01:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DB356E480;
-	Fri, 15 Jan 2021 15:08:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D252389D52;
+	Fri, 15 Jan 2021 15:01:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
- [66.111.4.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DEA46E418;
- Fri, 15 Jan 2021 14:13:58 +0000 (UTC)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
- by mailnew.nyi.internal (Postfix) with ESMTP id EBAC758073A;
- Fri, 15 Jan 2021 09:13:55 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute6.internal (MEProxy); Fri, 15 Jan 2021 09:13:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm1; bh=tj2SxXoSa96FfDtLrh9IpSrjSWA
- c9uYGz+Dn9iyVoAo=; b=B7b719RQYKeJsatdvoMfftPaZ7yza1XeB2tdCt+EfXJ
- lyEobF8ynRrdN7pxtUoPCNN3dfilyUknC7aTjyaF4oJihyfecKY12lq6IgiU5Cz1
- Vra/Uwe7W13TjbG6KqN24oHHPrC1/88iYYfOg2wCPjrXLB0GDaNS3PDyATP1pXej
- 5HHLRWc0r29gZRdE1uLJv6pc5aMOPi8ZjLC6JAnQxX87d99PTR+kZ/k9Z6nQNm9V
- x0WGFJchuLQni4XDfFsGtGRZ9mYyCjTdEq5nOBG8T+RIbswMnhUDy8bhLPUdPJvI
- Ni7wAgdzO3zMr5uZO/F7sboexu5D3QU0T8Ed3vI5MfA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=tj2SxX
- oSa96FfDtLrh9IpSrjSWAc9uYGz+Dn9iyVoAo=; b=DTqsOZTgs9er9+yzawQmVO
- EOeS6CKr4HyuLl1Yw82EDZwnh0QHN5cjBgpXqnYBdSbWrNbwkp9N2XMK7EYX8r47
- C9HpReELYzpXVluMpuKyw3ejZ8pmHfhNErU8JqDJKz1nvBhuTMozZybUfLkRlKFy
- u2E2sWQ6Hxicg8XS8nbDcE/Gh051JO+KFaMy4eUJ+RcFWpumsnC/RfTUndRQIQ2s
- 5xaHQOvXcstvWyD6/WxLpHKrjF6/I3gBVrpytWckvlOIAglOredeUiQELEYTy5zG
- +exHNkvTbt7stB1+rpKVkYMYIrThkTZfSiww74c9ZUcBd2e3p0ecO1+CynzXS5eg
- ==
-X-ME-Sender: <xms:H6MBYOphsPeraZvMbHHV6sLX5m-JNpn4N51-5cOKmFM8gMm2xAOY-g>
- <xme:H6MBYMoIwGXMdtT-Fsl9-KrgVARKtOi_kXKLYdcxBmnFZjJ58f8hrFq1ckqpq6FE8
- mQPdpg_0m4q8_-tvhQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrtddvgdefjecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
- ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
- gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
- udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
- grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:H6MBYDOSQRizwP04l9Nf6wzq-zGR4MatK7JR6FJEsLhumsMXksPkcA>
- <xmx:H6MBYN59LINByHvjPYVhqDg7R7cpfkKcmkhFOGEVIJGkFNwicaJ64Q>
- <xmx:H6MBYN7P8pv9yOTCe00vHPLOHR1qcvl-XR7wdurFxKpteNJ_AQYgUw>
- <xmx:I6MBYNDAKvlsHXR02UWThVa9nKgwADq3hUf0BbgvTdaNMMntJSZNLA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
- [90.89.68.76])
- by mail.messagingengine.com (Postfix) with ESMTPA id 869AA1080059;
- Fri, 15 Jan 2021 09:13:51 -0500 (EST)
-Date: Fri, 15 Jan 2021 15:13:49 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH 02/10] drm: Rename plane atomic_check state names
-Message-ID: <20210115141349.7oq5hwsj37qcpk5j@gilmour>
-References: <20210115125703.1315064-1-maxime@cerno.tech>
- <20210115125703.1315064-2-maxime@cerno.tech>
- <221e5626-d97c-9d4e-07cc-e696c92ceb65@suse.de>
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2068.outbound.protection.outlook.com [40.107.223.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DB0289D52
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Jan 2021 15:01:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iGv8KV4LtcxGXgG84cMHghHcz3/iKn6R4b7qC5AiO9cyu+u87UT5hVBnN1M84tejUWWX39st7ufVL3TyA9ZvN0xB2vJDPybGD8h33wegWhX0F2JXwN3Uv7+eZVzH5fjUplk5YNzpC267XJKSjgAWoC5go8NueipvKV1HIfCcnNzzi2LJ9QKaSnlvkH6tgs99MZhQiTSwG9XI+tt4fWJ8yJUlonBT0KLHr86COb8hbHd9Z1H5DIMZOn6UZwOaDvhmK7vi2tEuvYx15HxDo5z+d4kccv7DUq1qyZtZz79IBfJ0UqcFjIQi9OdJKEYmjlZOyPJrm6NJlZHpRZeFvx6Esg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AuJdPyf01sV80cIQr8AgoCrU8mVP3xXM0GQ9Sgvhqc8=;
+ b=RC8mxRyvLT81dllRBqTJdDOHsiCNDbhZMXTTglddMiA6C7CrcTveubOiddknPB7d4HaBvvogvWFUKtE1QJ2KzagSgkXEJGlyt1yJ8XzzxtqMqajeUszyLQ4oj/Wuwrm5bRJm6UMeqHqKweta+Cd9OfDg4IuLheJziGH4N+arzWjzBrgAeu/C70dB/NpF/xxRzZ35d0dUqmPRZFEIWHO8pXKuvkasLxMzjfkgm38JeAIbr/A0aF3jUjyjrlmp5vuFn7qGM0pLDN/et80W7NoYOudJ3r8yvuW4nALfg6aKioRCsgPPuRYZHmJmcuvNFUVD4OybVdLsXY4ZUtqSPigsUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AuJdPyf01sV80cIQr8AgoCrU8mVP3xXM0GQ9Sgvhqc8=;
+ b=JGxN2659/xhd/dloRiZ1IRqVBcMRsPoyCiT04B3EfrXYuKo61WOPs/34NDA/59Dd1Dnu6N85YTWZCEe+BL68C7AJ9dJ5Pht+nFFLShbfJH6Ar84lngsPdCV+0kNOuzlTYbBQmmzjl2QjFFR+qoQXyyVaHkHp1qtjlhRi3TpQUqU=
+Received: from BY5PR12MB4885.namprd12.prod.outlook.com (2603:10b6:a03:1de::20)
+ by BY5PR12MB4306.namprd12.prod.outlook.com (2603:10b6:a03:206::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3763.10; Fri, 15 Jan
+ 2021 15:01:13 +0000
+Received: from BY5PR12MB4885.namprd12.prod.outlook.com
+ ([fe80::74ae:d6e0:a9c3:1e6c]) by BY5PR12MB4885.namprd12.prod.outlook.com
+ ([fe80::74ae:d6e0:a9c3:1e6c%8]) with mapi id 15.20.3763.011; Fri, 15 Jan 2021
+ 15:01:13 +0000
+From: "Chen, Jiansong (Simon)" <Jiansong.Chen@amd.com>
+To: "Quan, Evan" <Evan.Quan@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH 1/2] drm/amd/pm: fulfill the API for navi1x gfxoff state
+ retrieving
+Thread-Topic: [PATCH 1/2] drm/amd/pm: fulfill the API for navi1x gfxoff state
+ retrieving
+Thread-Index: AQHW6yGmvP0XSqoS5kKa7GbMqKXoS6oowlBQ
+Date: Fri, 15 Jan 2021 15:01:13 +0000
+Message-ID: <BY5PR12MB4885E2F10BADE35CE3B0FA39EAA70@BY5PR12MB4885.namprd12.prod.outlook.com>
+References: <20210115093406.389563-1-evan.quan@amd.com>
+In-Reply-To: <20210115093406.389563-1-evan.quan@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ActionId=7c310fcf-a3e9-4e89-bbb8-c090dd58d7c4;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=0;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=true;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=Public_0;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2021-01-15T14:40:32Z;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+dlp-product: dlpe-windows
+dlp-version: 11.5.0.60
+dlp-reaction: no-action
+authentication-results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [183.195.14.230]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: cfbbc944-8b43-4278-5ecb-08d8b96666fc
+x-ms-traffictypediagnostic: BY5PR12MB4306:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BY5PR12MB43062F259298E2E2B02A65D2EAA70@BY5PR12MB4306.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4502;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: EfdzBd4JuPPdQDbEUswGVcbJwMqo8ZSKh48uzk06YJW4NA+dF3coYoJnNEM9seFL75qZos/vnqZbGQzXLUzJqVynOd6wqQKCRD2v2bfon5iwWt5KdTho+go/2hYCVSJBX7KLX2QDdK3JH+LkEVsaCjMCi2V9u+0gBPt5FKDBqVn2IJwi8/Dz1Boo+ZbYpafUzTpKspoyIUBNNmoob97KNMqQwEJkUrMeWpYbpL9DI/2wQIUKqSUM8TdQIsiCo6TwiX3gjwVNGDAjpDgwSgL4/ZGOFi+63cK6uCEvWov/IDLcmIRDeAuNHLulHewFlcvU8Yrf9mNG5yHIQiFpWf0OgsaMRYBz0wHJNe8gY/2uQTNr3JUzfVZW1ZZk3vds/Nh5e85qWZt6VJOLnIikzSQkkkDHAjNwdq/VV3djrBjbZ6imGdnbWJj67I5jsORn8cZ2rrsmZQi5g5KZN5DPob3b/QslXHhatvvXDx+Ff8COGYMNn2LDovRLOA5Y3URgUHBt
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR12MB4885.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(39860400002)(396003)(136003)(376002)(346002)(55016002)(9686003)(45080400002)(478600001)(26005)(52536014)(966005)(66556008)(83380400001)(66446008)(86362001)(8676002)(110136005)(71200400001)(7696005)(5660300002)(64756008)(186003)(66946007)(66476007)(54906003)(2906002)(6506007)(8936002)(53546011)(76116006)(33656002)(316002)(4326008)(32563001)(357404004);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?Ns1glhkNUoxlYdQyHiabQ82wYf2zLzSEIoqJmdKkVOYeo2Ntky1p2R5DN1VX?=
+ =?us-ascii?Q?k4qiw/UCwfdQAfV+WVki1D6+1XQpW98c43sNO2J3nzLQkTUduRZWOsreCi8X?=
+ =?us-ascii?Q?5V4O7dT+ruocQAugHO0hbdlBKGkfJjT/UqFsX0VRD0ijp0LZI3TfsoHBu2c7?=
+ =?us-ascii?Q?BopuZo2T9DgBTtM+xvdVJp8PI7yHrTt9U2LM+Iv9uVRh0ZtkQbu0uCAYCK2o?=
+ =?us-ascii?Q?SQ5KgmVqM2tR/qquQ5yjbUNIma8ktYLPN5BoCsuly7BEiBI+VD/BWJj4DJdH?=
+ =?us-ascii?Q?my4yWJwqrNLf1utJGMlR3wmtfrUK5X+3sZE5LvFg5AnVX1AmUVSNyN5qq27Y?=
+ =?us-ascii?Q?LaaWMbyFzEUwt57ZuBPRb+Z1gOahIw8C1YqxxCh3mMSx4tQUexGi4wWv81gU?=
+ =?us-ascii?Q?xwTX/2GpwQQzGPQK/o9Rkfq3/J4E8GuOozUAP/T9VUN6nMZnYzS/J9qciOeJ?=
+ =?us-ascii?Q?iKt45Wwuwa0jljqrarrwhAmjgDBFSoQo7nJpgHRDak4DZLdITz7COD2AqZUi?=
+ =?us-ascii?Q?mM5nAmureJkXry4QSl8NeOQAJRftfqQxZ6ITIbjoxg3nV4IVc5PJYkBTuRuX?=
+ =?us-ascii?Q?ew+D0hXdOJaysqFNPJb80e7tyERc6yuT4F7ej44Xv/mBZ2oRCgeLODMMOP7P?=
+ =?us-ascii?Q?1+vASqoxMYvqptgnEbqm+C7N9FaNPLb+Zu8zP/jDr5mi5/g7FoY8aaONILjT?=
+ =?us-ascii?Q?tRmG7Amb4XZ/FlakX6FI0t7LomJ+thgPSD8saxkLTW4K2HUNtEPrUBdKHQ6W?=
+ =?us-ascii?Q?TLE8mipbCsLlv7sRikImaU9a22c+5h08NDvZYdSoC/dTsPTIwT3k0PGNYfXo?=
+ =?us-ascii?Q?gIXA2IKIa7Dxi6Ta0BhS6d4whyrVlAHx2lWpTjwPniKk6xgVNZcepS86Vshi?=
+ =?us-ascii?Q?qU08vx8cPFZ61I+Hwar6wzm3Rt61O0579W6yMfqA6UZ95ZBDpzrDTZRQJiE2?=
+ =?us-ascii?Q?frbV8DCr1lxBqOC+6uDUSZHh6SPuSj8It60uG8sCpTQ=3D?=
 MIME-Version: 1.0
-In-Reply-To: <221e5626-d97c-9d4e-07cc-e696c92ceb65@suse.de>
-X-Mailman-Approved-At: Fri, 15 Jan 2021 15:08:45 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB4885.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cfbbc944-8b43-4278-5ecb-08d8b96666fc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2021 15:01:13.7627 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VqiZhOgm0bP6tdjpOQVXXxixKsEcQjf5nsDyjoGgjDvJ5budfAHEgppaFwr8a8BIR+dGAuIoLNA3JBuAmFvPkw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4306
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,132 +118,99 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Xinliang Liu <xinliang.liu@linaro.org>, dri-devel@lists.freedesktop.org,
- Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
- linux-stm32@st-md-mailman.stormreply.com, Jerome Brunet <jbrunet@baylibre.com>,
- linux-samsung-soc@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- Michal Simek <michal.simek@xilinx.com>, NXP Linux Team <linux-imx@nxp.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Leo Li <sunpeng.li@amd.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Roland Scheidegger <sroland@vmware.com>, Inki Dae <inki.dae@samsung.com>,
- Sean Paul <sean@poorly.run>, Hyun Kwon <hyun.kwon@xilinx.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>, linux-kernel@vger.kernel.org,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- Edmund Dea <edmund.j.dea@intel.com>, virtualization@lists.linux-foundation.org,
- Eric Anholt <eric@anholt.net>, Thierry Reding <thierry.reding@gmail.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- linux-rockchip@lists.infradead.org,
- "James \(Qian\) Wang" <james.qian.wang@arm.com>,
- Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>,
- Alexandre Torgue <alexandre.torgue@st.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-msm@vger.kernel.org, John Stultz <john.stultz@linaro.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>, Yannick Fertre <yannick.fertre@st.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Brian Starkey <brian.starkey@arm.com>,
- Haneen Mohammed <hamohammed.sa@gmail.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Stefan Agner <stefan@agner.ch>,
- Melissa Wen <melissa.srw@gmail.com>, linux-tegra@vger.kernel.org,
- Gerd Hoffmann <kraxel@redhat.com>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Fabio Estevam <festevam@gmail.com>,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>, amd-gfx@lists.freedesktop.org,
- Chen-Yu Tsai <wens@csie.org>, Harry Wentland <harry.wentland@amd.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Chen Feng <puck.chen@hisilicon.com>,
- Alison Wang <alison.wang@nxp.com>, spice-devel@lists.freedesktop.org,
- Tomi Valkeinen <tomba@kernel.org>, Philippe Cornu <philippe.cornu@st.com>,
- Vincent Abriou <vincent.abriou@st.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Tian Tao <tiantao6@hisilicon.com>, Shawn Guo <shawnguo@kernel.org>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Paul Cercueil <paul@crapouillou.net>,
- linux-renesas-soc@vger.kernel.org, Joonyoung Shim <jy0922.shim@samsung.com>,
- Russell King <linux@armlinux.org.uk>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- linux-mediatek@lists.infradead.org,
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Jernej Skrabec <jernej.skrabec@siol.net>, Rob Clark <robdclark@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Jyri Sarha <jyri.sarha@iki.fi>,
- Lucas Stach <l.stach@pengutronix.de>
-Content-Type: multipart/mixed; boundary="===============2142705138=="
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Quan,
+ Evan" <Evan.Quan@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+[AMD Public Use]
 
---===============2142705138==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="pc7g53zcvckyysz5"
-Content-Disposition: inline
+Can you help explain why we need introduce such a callback?  Seems it has presupposed pmfw's internal
+Implementation.
 
+Regards,
+Jiansong
+-----Original Message-----
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Evan Quan
+Sent: Friday, January 15, 2021 5:34 PM
+To: amd-gfx@lists.freedesktop.org
+Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Quan, Evan <Evan.Quan@amd.com>
+Subject: [PATCH 1/2] drm/amd/pm: fulfill the API for navi1x gfxoff state retrieving
 
---pc7g53zcvckyysz5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Support Navi1x gfxoff state retrieving.
 
-Hi,
+Change-Id: I57aa506b82dc122bbead708c580a4720e536cfce
+Signed-off-by: Evan Quan <evan.quan@amd.com>
+---
+ drivers/gpu/drm/amd/pm/inc/smu_v11_0.h        |  2 ++
+ .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   |  1 +
+ .../gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c    | 24 +++++++++++++++++++
+ 3 files changed, 27 insertions(+)
 
-On Fri, Jan 15, 2021 at 02:46:36PM +0100, Thomas Zimmermann wrote:
-> Hi
->=20
-> Am 15.01.21 um 13:56 schrieb Maxime Ripard:
-> > diff --git a/drivers/gpu/drm/imx/ipuv3-plane.c b/drivers/gpu/drm/imx/ip=
-uv3-plane.c
-> > index 8a4235d9d9f1..2cb09e9d9306 100644
-> > --- a/drivers/gpu/drm/imx/ipuv3-plane.c
-> > +++ b/drivers/gpu/drm/imx/ipuv3-plane.c
-> > @@ -344,12 +344,12 @@ static const struct drm_plane_funcs ipu_plane_fun=
-cs =3D {
-> >   };
-> >   static int ipu_plane_atomic_check(struct drm_plane *plane,
-> > -				  struct drm_plane_state *state)
-> > +				  struct drm_plane_state *new_state)
->=20
-> It's not 'new_plane_state' ?
+diff --git a/drivers/gpu/drm/amd/pm/inc/smu_v11_0.h b/drivers/gpu/drm/amd/pm/inc/smu_v11_0.h
+index 13de692a4213..2857f1bf4e9a 100644
+--- a/drivers/gpu/drm/amd/pm/inc/smu_v11_0.h
++++ b/drivers/gpu/drm/amd/pm/inc/smu_v11_0.h
+@@ -287,5 +287,7 @@ int smu_v11_0_deep_sleep_control(struct smu_context *smu,
 
-That function is using old_state for plane->state:
+ void smu_v11_0_interrupt_work(struct smu_context *smu);
 
-> >   {
-> >   	struct drm_plane_state *old_state =3D plane->state;
++uint32_t smu_v11_0_get_gfxoff_status(struct smu_context *smu);
++
+ #endif
+ #endif
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+index 7ebf9588983f..93a3b6b60c8f 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+@@ -2482,6 +2482,7 @@ static const struct pptable_funcs navi10_ppt_funcs = {
+ .get_fan_parameters = navi10_get_fan_parameters,
+ .post_init = navi10_post_smu_init,
+ .interrupt_work = smu_v11_0_interrupt_work,
++.get_gfx_off_status = smu_v11_0_get_gfxoff_status,
+ };
 
-Here ^
+ void navi10_set_ppt_funcs(struct smu_context *smu) diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
+index 147efe12973c..50566c613971 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
+@@ -2127,3 +2127,27 @@ int smu_v11_0_deep_sleep_control(struct smu_context *smu,
 
-So it felt more natural to keep the convention in use in that driver
-
-Maxime
-
---pc7g53zcvckyysz5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYAGjHQAKCRDj7w1vZxhR
-xRyQAP9z6jgYoVLN5O08Gfa2bipU5kwBoAnOqoWm5tZt0atb8QEA9iY4poTgz6cv
-u2lw2ErmnQLG6Rt10lvZcTmjIdOF5QI=
-=AOj1
------END PGP SIGNATURE-----
-
---pc7g53zcvckyysz5--
-
---===============2142705138==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+ return ret;
+ }
++
++/**
++ * smu_v11_0_get_gfxoff_status - get gfxoff status
++ *
++ * @smu: amdgpu_device pointer
++ *
++ * This function will be used to get gfxoff status
++ *
++ * Returns 0=GFXOFF(default).
++ * Returns 1=Transition out of GFX State.
++ * Returns 2=Not in GFXOFF.
++ * Returns 3=Transition into GFXOFF.
++ */
++uint32_t smu_v11_0_get_gfxoff_status(struct smu_context *smu) {
++struct amdgpu_device *adev = smu->adev;
++uint32_t gfxOff_Status = 0;
++uint32_t reg;
++
++reg = RREG32_SOC15(MP1, 0, mmMP1_SMN_EXT_SCRATCH0);
++gfxOff_Status = reg & 0x3;
++
++return gfxOff_Status;
++}
+--
+2.29.0
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
+https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=04%7C01%7CJiansong.Chen%40amd.com%7C72d2ceab33474d94460908d8b938c75a%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637463000820920597%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3WeEJ8EjgUYyA%2FAF7r30%2BOCEPNkfLwsPWuFhEIfRkU0%3D&amp;reserved=0
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============2142705138==--
