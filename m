@@ -1,114 +1,118 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4404E2FBBF9
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Jan 2021 17:09:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEF0A2FBC8C
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Jan 2021 17:36:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B1336E87A;
-	Tue, 19 Jan 2021 16:08:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27A5189C2C;
+	Tue, 19 Jan 2021 16:36:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2054.outbound.protection.outlook.com [40.107.236.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C30D66E422;
- Tue, 19 Jan 2021 16:08:56 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2062.outbound.protection.outlook.com [40.107.93.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7A4889C2C;
+ Tue, 19 Jan 2021 16:36:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=htAftEFOuUfoSu4G3i5+RoDQVntuAsEJM7vK6rp2z8ZlKzzQo6gwxTo+IYgXqrFueEj8RJFb6TwBUMDKo8LFpb/BwIIKOF5WdW52IG7ntU7pNKO5mnnYc/iiO7HYxDXY4uJqGLra8gY+x+n/GFVXmTEheHKFBARRP/7/Z63la3AUQGbAwA2gNOlao4RYxS4SSXyLKjC+3LFkt82Cc0X+e940+3AuY04WTAribSPM0ZWVBZ6221jLexnyAAHGMzblFv1GXmGl+mzVi4XbvGenJ5etagdpzwPFtf0uUVSA9rzLpUEpAYVieydyip4riEexse+Y0XhDYKAdG3z5oQ9vog==
+ b=iVXfXgZO5Zhmq3L/ncrw5zQD0KQq5AjkWnAcezst8LZa1H7iWDrKb9WDmu0/7TLMVg7QX9xMChShIRFmfrlfNgdXJF4FA1zE/PBdHPJnlEcXN6T31KL8yGjq2WdnmqqI0QcWN6WbvkDFdYyeR4ZkC4IYgjbLaAdovIIznsm0+ZvygBILJ+RqGdybCRapbJnAc1+yN0U//iR8oPZjV4biEdHL3Z1q/9VBsgXSyvGUrrEFFlKXRMjmq2xkm+na7i4XfWkGvJ0N0KiT9YwvtgoLlTtGhbI526EUbnqUd7oq3GjdUbw5gsp2f+t2flyjIAdnUYLhJL+LFAlTxDtHUwc3Qg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZxB6ghpZX9iqb/+iUeJF+fQG4z1tHQte/Uc4TW1t7tM=;
- b=c7vDS+xIHB44dE2MpLp6FTyhKM07sJM7UkDG/AQhmx+b+PeEppZFN3tem7B9XaycH5e96ZtT5WDXEK0tam4IYp9opBKZwBubC6i5Ll5H0lNulX4suPmnl6aYa1oMGaPOzgIaMfEbjeuIAyUkPZUoTKJE5vrErvmCMxkYXqAkd2H7XXXOtBncRn6knZ0qJ1Zqiuv+Dt4dKxNhAFAelzgbyPg5TPf0OyH0vmaIXThwDT5q8R03JYJjQH7aVVxfZM1zGfJaR2P5cnE9MQFiDI668HgSmhLUsELbF8UQ3LN3f1ESChj+sNRfbLfxlcVtt9hD3l6KEB1uKp5iXnz6NcY3cQ==
+ bh=Tq46SyrdjTEDqvIs++GzpcouHyTyAr3tpRcJYPj2GKA=;
+ b=KvqpEPdAmBS13b37IpWZNSgK6iDcbggpDplDePfDjwp/ngSt9yHVt4PmWAWpzAmhxICzGMtvqPWH8VGCQ8Nvemz1VzX8s7bpP0wvmO9lqcuvJP9fH9MfzeDcELLRLv+qd1FPhF8xRQSYSw9xsFzofEeaFMqbCWgwyF6CzSmCc9dP6R/xnafqL4H1mWlOMfUbj+RRdiNowoZ3G02y12aSN+57s2+fzg97qHr4IsgAHblacWietrgEgLAkYdpARcUdeWrflwOCe1fFA4VftfMvsRMSXxwQ37+DPTHAEjA2dtmlpuBTd+U2/G2x2X+I/oXxN3Dtdp65bgCvNEloQd534w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZxB6ghpZX9iqb/+iUeJF+fQG4z1tHQte/Uc4TW1t7tM=;
- b=ejMZnzVQMJzFU03oJfgBhLHkDUPRCADiDZ0pzOgOH+/n2lWgI+VxlSTGpbGHlG06WH2POXAmSoOBirT8wO7eH+CEy2jnb1YhlYzxLdUD++/sb3LzJehfI6Z8HjagYgufR2cEqCx6eqsL1jdQe5ZNCV6E1/e68sVC+r8ChSHLuNk=
-Received: from BN6PR12MB1939.namprd12.prod.outlook.com (2603:10b6:404:107::12)
- by BN6PR1201MB0083.namprd12.prod.outlook.com (2603:10b6:405:54::21)
+ bh=Tq46SyrdjTEDqvIs++GzpcouHyTyAr3tpRcJYPj2GKA=;
+ b=zk8c7J9ZawW2a0e/japZR73ULwxJNWUnvmAfjlC4HnwaJGIqeSssduZmAL4ON3qHANa4LgEhZDH7AfhQZIaH1JUAceP8ARDz8aIp+W/3OIxXaKd51yINiT/gD2AlfQN3mqDy/mgVzRaYq77yH3N++9ArD5CQZ10aUMiUOV+/HqY=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from SN6PR12MB4623.namprd12.prod.outlook.com (2603:10b6:805:e9::17)
+ by SA0PR12MB4591.namprd12.prod.outlook.com (2603:10b6:806:9d::23)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3742.11; Tue, 19 Jan
- 2021 16:08:55 +0000
-Received: from BN6PR12MB1939.namprd12.prod.outlook.com
- ([fe80::584b:493b:4126:e042]) by BN6PR12MB1939.namprd12.prod.outlook.com
- ([fe80::584b:493b:4126:e042%7]) with mapi id 15.20.3763.014; Tue, 19 Jan 2021
- 16:08:55 +0000
-From: "Pillai, Aurabindo" <Aurabindo.Pillai@amd.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v3 1/3] drm/amd/display: Add module parameter for freesync
- video mode
-Thread-Topic: [PATCH v3 1/3] drm/amd/display: Add module parameter for
- freesync video mode
-Thread-Index: AQHW4t3Am/FXYHcVBUunOo4xmFRk4qom5aqAgAajTYCAAS1MAIAATReAgAAxWEc=
-Date: Tue, 19 Jan 2021 16:08:54 +0000
-Message-ID: <BN6PR12MB1939001BFDF87A88748163498BA30@BN6PR12MB1939.namprd12.prod.outlook.com>
-References: <20210104210800.789944-1-aurabindo.pillai@amd.com>
- <20210104210800.789944-2-aurabindo.pillai@amd.com>
- <20210114111445.1d2bbf62@eldfell>
- <b38e46b7707ba9a899384baedc7efe4e70c439bf.camel@amd.com>
- <20210119103510.01f55ee4@eldfell>,
- <CAKMK7uGKqA7mMorSBtV255pPxA=adPEP0Bcwot8OMmBVCKV_uQ@mail.gmail.com>
-In-Reply-To: <CAKMK7uGKqA7mMorSBtV255pPxA=adPEP0Bcwot8OMmBVCKV_uQ@mail.gmail.com>
-Accept-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11; Tue, 19 Jan
+ 2021 16:36:05 +0000
+Received: from SN6PR12MB4623.namprd12.prod.outlook.com
+ ([fe80::5d30:b29d:5f5b:6921]) by SN6PR12MB4623.namprd12.prod.outlook.com
+ ([fe80::5d30:b29d:5f5b:6921%5]) with mapi id 15.20.3763.014; Tue, 19 Jan 2021
+ 16:36:05 +0000
+Subject: Re: [PATCH v4 10/14] dmr/amdgpu: Move some sysfs attrs creation to
+ default_attr
+To: Greg KH <gregkh@linuxfoundation.org>
+References: <1611003683-3534-1-git-send-email-andrey.grodzovsky@amd.com>
+ <1611003683-3534-11-git-send-email-andrey.grodzovsky@amd.com>
+ <YAaLmBMlDRr56erH@kroah.com>
+From: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
+Message-ID: <3650d98a-2d73-06b8-7f06-ca7728b5c4b5@amd.com>
+Date: Tue, 19 Jan 2021 11:36:01 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <YAaLmBMlDRr56erH@kroah.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2021-01-19T16:08:54.233Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Distribution
- Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
-authentication-results: ffwll.ch; dkim=none (message not signed)
- header.d=none;ffwll.ch; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [165.204.84.11]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 6c76b943-cdc6-4f34-8d9c-08d8bc94854d
-x-ms-traffictypediagnostic: BN6PR1201MB0083:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BN6PR1201MB0083D7ABAB0D9A9D8D3AE5E38BA30@BN6PR1201MB0083.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: F07MeMEWnQ8VjI2kKJJr7n80OfOB1aVBA8Pe3cSRaxhbLBDhhOKy2AfZUhewYEsh1a8Ns8zKIjze9DDXKj+/zuca4RGnpriZu9GEt1Wu8N7rLy847/TwpPfPBFveh+sUClL48BpzzB4/ODc/9jH16wuyV3+M9bkzywTC3aob3svp4moKCWxQ9PTPvIAqYMXvXPctrpLgYFN290TdOoK5rSlq6bhyEHZ6vZqLSa7h6/NrsJiBgMXiEpto0Z0GCC1i3udw/pdzmcmt7kpxmGOc3aunpjkwMRJDgoox+ZSWbE+0l9tOm0bKXmhM3cSFCKgzJvEG6QAhIUUDOvr0Wqrt5SMNhAUV4zBlmXrCS7Dz5K3INUIwIuQbAwPCKf+CenAdjPScaowaBMp1aCs4+ZA0l0EjDAinh9wCf8n6G7vBs95yhEexs5gzPwwr8Gwn7LC/sTrq8CfDeE6CbcB9MyZgJFEBnqVX7n3EUPOadIbb0wbQNCyBXXok3PYKDYFu+LNVtWxcZtgSejGmB2aKiDHmnMnny+NGNqO7SSsPilOfAM2zaxyYhT6m5efhcuX24NPPiZFPme/0Uuqj6VqzXmFoXKh6VSmLs47uKbNqGTjadEu53s74f4ktq/EtukI16ZKOjo8PSk7csrqBCtzZc9gQLw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN6PR12MB1939.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(366004)(396003)(346002)(39860400002)(136003)(54906003)(6506007)(53546011)(316002)(8936002)(2906002)(66574015)(55016002)(966005)(86362001)(6916009)(8676002)(186003)(478600001)(9686003)(83380400001)(45080400002)(4326008)(7696005)(166002)(83080400002)(76116006)(66446008)(66946007)(66476007)(71200400001)(64756008)(26005)(5660300002)(33656002)(52536014)(19627405001)(66556008);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?92CaubuPc6ECaHhz9eFpKsmxtdZ5JGyG+ucfdq+TtjZFsdc2Jn3Nh6XT0S?=
- =?iso-8859-1?Q?oYaVOp7JIGJpm97KNuNwVbvQ567XCYTRdoi+3urLwzqP9Hdr4fqYfVI8lk?=
- =?iso-8859-1?Q?EK/frrOsUfn4qXIWY36G9nUW6hXrcMwIVWkA4APEOs4iIlhPvzrZuMetPG?=
- =?iso-8859-1?Q?3RanGPIKxGDAUffrOAAHeBFvR6HyPljSX7UJZ3iFGbnW9AaZ9Z4uIIQf71?=
- =?iso-8859-1?Q?XBflhVG6hBfuxQ6ZzswgR5ZSPcGfiHba3WrwT7V691IB5yNmLphjgQ4CFK?=
- =?iso-8859-1?Q?+dOkzVH1GrHgpqSw2xvp18+FqGHIJFmBpE87u13kRKi3XrCXXFwl+VtHhI?=
- =?iso-8859-1?Q?PPJwbcNuCxICkhOaebWxNjvBpIWNiAkTijHs1ozicCetQ0f3D7C6yUQ0iY?=
- =?iso-8859-1?Q?VPAofuHgIqk8iEMhjkJ9oIenTrvFnOoryRLY6Vrsfvhg5KSksVI7Yf2p8k?=
- =?iso-8859-1?Q?a9JeIJopP1uDacRGCCkDeE1+TjOczoRJGpqP/TLtgGskw9+0HayRujQFoN?=
- =?iso-8859-1?Q?AogsEZdnqaxTJjvsKKEdQKvgswborFVwDfb/iakonGOz/1qCb1VwqZZSwd?=
- =?iso-8859-1?Q?hO8ijVRypiQyBUbk9ahl/pcWCI/aWXiXFZ3js6iiUenygV7xyP2rQKfu0V?=
- =?iso-8859-1?Q?ZEe7lbvdUdBuadys/MlnHVwQ03AKX6jkFp4nuKaygF9SrCMz0lUQBCz7MX?=
- =?iso-8859-1?Q?dv6O5W2BtyAH8s9A7fSd2iPX44z+3UmQ1Uq/2O7YyVrKhy0sokj27zpt/J?=
- =?iso-8859-1?Q?lIIjSr8E4L1VDJdJhTFHtMQi/iTwZFAgh9yv25uTcHBFasQlQDT7WLIioo?=
- =?iso-8859-1?Q?cicFBC5kq7nKPfyl0ylU4OwuttsBMru48lAiUmcmNqd/r9ff29f9n3mhHr?=
- =?iso-8859-1?Q?uj+sUz76oAu/7MJdaggsI8G4uJmdvVj2ien6WFpzMu3Ag3DOYbvQqyEEKV?=
- =?iso-8859-1?Q?0ayLNblczarrn/L05XRI/JbhIGUz8U0MdmZwXEHvsSi6GGJxvx5uUfWs5V?=
- =?iso-8859-1?Q?yFxap/ROK1PNWA2QY=3D?=
+X-Originating-IP: [2607:fea8:3edf:49b0:c1b5:6dec:d289:5430]
+X-ClientProxiedBy: YT1PR01CA0125.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2c::34) To SN6PR12MB4623.namprd12.prod.outlook.com
+ (2603:10b6:805:e9::17)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2607:fea8:3edf:49b0:c1b5:6dec:d289:5430]
+ (2607:fea8:3edf:49b0:c1b5:6dec:d289:5430) by
+ YT1PR01CA0125.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2c::34) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3784.11 via Frontend Transport; Tue, 19 Jan 2021 16:36:03 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 83338fc0-bbb5-4fbc-0701-08d8bc9850b2
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4591:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SA0PR12MB45913779D9DE3988D38B0BCFEAA39@SA0PR12MB4591.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Expih3PI83xriH1zvOWzynfbZV3Osa1b6Z36t16bGpNZxTRTE7S9vw45UsX/cQT5VZTU3y+kz1ftlYKuy75bp71NkgvQBHN3uiQs6DSYwvM6yVulQ/lc9H354s5BM5qjVOKCI387+gLIqJgUKO9OKS7G0io0V/8PwGyGpsSRdH/NgcdFVVBHP7PMWcZQiDK1kAj8A1MGo9WcoJ/VIKx/HJy+fciQE63Z+ykpieQwAO33HgCQPkF4u6Fdo599OLFW7awNd+tGuLTnMvz1/cksfkiiUgs3HVTHB64GkGWQi6Csb3IsMTE6HjyadJMgch8HZG65dL/5Ru2pzuktKSA5GMiUn2pfUAazQ+E+xvbkrPL3HA8bVHZYnOG6VMz1S57k1Jc1wCBhlqxTLyTMkycDLAzLB/DAc1ABNjOy1pgovqvEeYOenvTY5IeCZkY/7XRiRxWtlfF89LCgg7vqE7EetaG9UBuMBTX6Y+21dWRFDtw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN6PR12MB4623.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(396003)(136003)(376002)(346002)(39850400004)(8676002)(53546011)(2906002)(6486002)(7416002)(52116002)(31686004)(86362001)(5660300002)(2616005)(66556008)(478600001)(66476007)(66946007)(186003)(16526019)(36756003)(316002)(6916009)(4744005)(8936002)(31696002)(4326008)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?SFEwc2xRblN4L3ZtM3QvWDRrVGZxY05VOE00bWVXUTlkTWUzN3dCY050L001?=
+ =?utf-8?B?ZVFNN1FlcDlBbkpaZVZHOXh6NGp1b1E1VU84Nk9UU0NMQjQvUWNGaHFlaC9o?=
+ =?utf-8?B?SUxvSXd4UjZPcW1Kam5WeVA0eWZnZm83Y3VNUFFSYjlLOEdWcSs1blVTUDd6?=
+ =?utf-8?B?dWo4MTVsTi9XYlFKbSt5a0ZZb052b0hMTWJldC9NNXM3RTZ0SDdYK3ZMTjRU?=
+ =?utf-8?B?OVQ4czhxOWt4OE1TWWFhZTNNQlBIQzdVMVdkOUFGN3d6QW9GRTBqQmV5Q0l6?=
+ =?utf-8?B?QXVvOEt0cHNKaXhkcE5LeTFVRklFcnVmaHh2S1BUaDRFdGQraG5ITXpNdERO?=
+ =?utf-8?B?TE9qMzBucy91SmdINlQ1SURTdkFTUzdYakhsSWJiT2FQQ3hjN0RXelFMSVNj?=
+ =?utf-8?B?ajRucURPWEhnMnJQd2x5TFFlNkZzUTljUXJTYUtob2EzWWpRRjEzOEkybm9C?=
+ =?utf-8?B?bDJ4bmVtUXRXeFJPalVTQ1lDUVczT25yMlBrSHRpaG94T2crMFFhRWcrdkFX?=
+ =?utf-8?B?bjVqWVQ2cXFvMUV5RXF5MUFtYlh1UDRyZWhDT1JDcmJmRUxnOHZWd2FHNmtl?=
+ =?utf-8?B?OENvaW15R1F5SjMzL0t2Q0JuK0s2QTU1MVlXdzhWWWZOTk15UnQxanQ3Rnh1?=
+ =?utf-8?B?R1BHcUNoZDNyR1RsZFlzbUhORlJ0L1VrT2pJS3pVQzhZKzdad3JzQytaLzN2?=
+ =?utf-8?B?TFZuWUI0QXdlRnVGbGlqU0htVE5GWDNKU3dGeVAzYk5iV1cyV1RVZnprbmsy?=
+ =?utf-8?B?UE1yTnpoZnVnaWYyMDdUZFRWQ0NZSE52RGVxbnZXZ0pqZVNGYmV0b01Kam0w?=
+ =?utf-8?B?Nko4a294RUVDV2JhUmlieEpSS0hsZmZDYnF2SkNacTJET0lKMzNSbjJzQWtT?=
+ =?utf-8?B?dlBGQXg3Z1NITVFEU0xjZC9OS1piVzh1QUxLVWdGZkhoVVpmL3hGMGtiYTVw?=
+ =?utf-8?B?ZjJCVjR5K3dGU1NCVjBxWVh3a01sVFptYzBkYTlJWFVablVLQ25DbDU0d3RI?=
+ =?utf-8?B?aVEwZHJYRG1oNWJZc1gwcWI5L1E3bmoxUVJBRjBKVXNYWEMyRm94Rm4vZTdi?=
+ =?utf-8?B?U0U0dlh6VmxkcFI1eWw1cTJlVlp3cW84UkhUOGtXU1JGalFBdXhFaEhMY2Er?=
+ =?utf-8?B?Y3RlNHAxdExHMkxyVjdjYitTMnVuN2NVSDEzZkNkVEdSdUNHbW5ZT0RaSlJM?=
+ =?utf-8?B?Nkl2Y21IODdyMHU4dUJHNDB2eWJwd0VubWVSUmQ2dytSZ1FhTGpoUTM3T0tT?=
+ =?utf-8?B?NzRNdHJXckxnTFpwMTRrVUxCSE5zdHZONVJ2dDUrakNldytNMVR2ZHN2OGFV?=
+ =?utf-8?B?SlZodmFMTUx4cnp6Z2N1UWQvVTRLcmJJZTJhOW8xUUc3NCtzVUVBaERtVFkx?=
+ =?utf-8?B?ZnR3Q3pvN0JRMFF0M3lOcWJrSnVYWEIrL1pzaWVnclZEbGw5cVpReWVWdW1h?=
+ =?utf-8?B?UkVSaWdqOGlITUl1OEV1UktDYW9Rd2lYc2syVjBqK2lDb3N0dXAralcrMHBB?=
+ =?utf-8?B?VU1kOFpkRzlTdTZsY0N2TEJ2MTNjeG9VdWRJS3BBZ2dlZENOV3J5eHBqVGNX?=
+ =?utf-8?B?aGNidz09?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83338fc0-bbb5-4fbc-0701-08d8bc9850b2
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR12MB4623.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN6PR12MB1939.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c76b943-cdc6-4f34-8d9c-08d8bc94854d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2021 16:08:54.9729 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: BjQzZz+sFNOR6T0whewxM01lEcd8fNd+fPKz94ZeZOZYzPBiGXsnYIARYvhSugtqXvZBiWFkjwEY/hnIO2pmAA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1201MB0083
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2021 16:36:05.0628 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OBJpZeE54H/KRygWeUxzsaSZoE9KnDI+H03fKPJTyyD1szigmSu5Nw6xx1yX7fBjQdVhpKLAiG1oA5btKyi16Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4591
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,379 +124,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Wang, Chao-kai
- \(Stylon\)" <Stylon.Wang@amd.com>, "Thai, Thong" <Thong.Thai@amd.com>, "Sharma,
- Shashank" <Shashank.Sharma@amd.com>,
- dri-devel <dri-devel@lists.freedesktop.org>, "Koenig,
- Christian" <Christian.Koenig@amd.com>, Pekka Paalanen <ppaalanen@gmail.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, "Lin, Wayne" <Wayne.Lin@amd.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Kazlauskas,
- Nicholas" <Nicholas.Kazlauskas@amd.com>
-Content-Type: multipart/mixed; boundary="===============0512950440=="
+Cc: robh@kernel.org, ckoenig.leichtzumerken@gmail.com,
+ dri-devel@lists.freedesktop.org, eric@anholt.net, ppaalanen@gmail.com,
+ amd-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch,
+ Alexander.Deucher@amd.com, yuq825@gmail.com, Harry.Wentland@amd.com,
+ l.stach@pengutronix.de
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0512950440==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR12MB1939001BFDF87A88748163498BA30BN6PR12MB1939namp_"
 
---_000_BN6PR12MB1939001BFDF87A88748163498BA30BN6PR12MB1939namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-[AMD Official Use Only - Internal Distribution Only]
-
-Hi Daniel,
-
-Could you please be more specific about the _unsafe API options you mention=
-ed ?
-
---
-
-Thanks & Regards,
-Aurabindo Pillai
-________________________________
-From: Daniel Vetter <daniel@ffwll.ch>
-Sent: Tuesday, January 19, 2021 8:11 AM
-To: Pekka Paalanen <ppaalanen@gmail.com>
-Cc: Pillai, Aurabindo <Aurabindo.Pillai@amd.com>; amd-gfx list <amd-gfx@lis=
-ts.freedesktop.org>; dri-devel <dri-devel@lists.freedesktop.org>; Kazlauska=
-s, Nicholas <Nicholas.Kazlauskas@amd.com>; Wang, Chao-kai (Stylon) <Stylon.=
-Wang@amd.com>; Thai, Thong <Thong.Thai@amd.com>; Sharma, Shashank <Shashank=
-.Sharma@amd.com>; Lin, Wayne <Wayne.Lin@amd.com>; Deucher, Alexander <Alexa=
-nder.Deucher@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>
-Subject: Re: [PATCH v3 1/3] drm/amd/display: Add module parameter for frees=
-ync video mode
-
-On Tue, Jan 19, 2021 at 9:35 AM Pekka Paalanen <ppaalanen@gmail.com> wrote:
+On 1/19/21 2:34 AM, Greg KH wrote:
+> On Mon, Jan 18, 2021 at 04:01:19PM -0500, Andrey Grodzovsky wrote:
+>>   static struct pci_driver amdgpu_kms_pci_driver = {
+>>   	.name = DRIVER_NAME,
+>>   	.id_table = pciidlist,
+>> @@ -1595,6 +1607,7 @@ static struct pci_driver amdgpu_kms_pci_driver = {
+>>   	.shutdown = amdgpu_pci_shutdown,
+>>   	.driver.pm = &amdgpu_pm_ops,
+>>   	.err_handler = &amdgpu_pci_err_handler,
+>> +	.driver.dev_groups = amdgpu_sysfs_groups,
+> Shouldn't this just be:
+> 	groups - amdgpu_sysfs_groups,
 >
-> On Mon, 18 Jan 2021 09:36:47 -0500
-> Aurabindo Pillai <aurabindo.pillai@amd.com> wrote:
+> Why go to the "driver root" here?
+
+
+Because I still didn't get to your suggestion to propose a patch to add groups to
+pci_driver, it's located in 'base' driver struct.
+
+Andrey
+
+
 >
-> > On Thu, 2021-01-14 at 11:14 +0200, Pekka Paalanen wrote:
-> > >
-> > > Hi,
-> > >
-> > > please document somewhere that ends up in git history (commit
-> > > message,
-> > > code comments, description of the parameter would be the best but
-> > > maybe
-> > > there isn't enough space?) what Christian K=F6nig explained in
-> > >
-> > >
-> > > https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fl=
-ists.freedesktop.org%2Farchives%2Fdri-devel%2F2020-December%2F291254.html&a=
-mp;data=3D04%7C01%7Caurabindo.pillai%40amd.com%7C56ba07934c5c48e7ad7b08d8bc=
-7bb4a9%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637466586800649481%7CUn=
-known%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJ=
-XVCI6Mn0%3D%7C1000&amp;sdata=3DGM0ZEM9JeFM5os13E1zlVy8Bn3D8Kxmo%2FajSG02WsG=
-I%3D&amp;reserved=3D0
-> > >
-> > > that this is a stop-gap feature intended to be removed as soon as
-> > > possible (when a better solution comes up, which could be years).
-> > >
-> > > So far I have not seen a single mention of this intention in your
-> > > patch
-> > > submissions, and I think it is very important to make known.
-> >
-> > Hi,
-> >
-> > Thanks for the headsup, I shall add the relevant info in the next
-> > verison.
-> >
-> > >
-> > > I also did not see an explanation of why this instead of
-> > > manufacturing
-> > > these video modes in userspace (an idea mentioned by Christian in the
-> > > referenced email). I think that too should be part of a commit
-> > > message.
-> >
-> > This is an opt-in feature, which shall be superseded by a better
-> > solution. We also add a set of common modes for scaling similarly.
-> > Userspace can still add whatever mode they want. So I dont see a reason
-> > why this cant be in the kernel.
+> Other than that tiny thing, looks good to me, nice cleanup!
 >
-> Hi,
->
-> sorry, I think that kind of thinking is backwards. There needs to be a
-> reason to put something in the kernel, and if there is no reason, then
-> it remains in userspace. So what's the reason to put this in the kernel?
->
-> One example reason why this should not be in the kernel is that the set
-> of video modes to manufacture is a kind of policy, which modes to add
-> and which not. Userspace knows what modes it needs, and establishing
-> the modes in the kernel instead is second-guessing what the userspace
-> would want. So if userspace needs to manufacture modes in userspace
-> anyway as some modes might be missed by the kernel, then why bother in
-> the kernel to begin with? Why should the kernel play catch-up with what
-> modes userspace wants when we already have everything userspace needs
-> to make its own modes, even to add them to the kernel mode list?
->
-> Does manufacturing these extra video modes to achieve fast timing
-> changes require AMD hardware-specific knowledge, as opposed to the
-> general VRR approach of simply adjusting the front porch?
->
-> Something like this should also be documented in a commit message. Or
-> if you insist that "no reason to not put this in the kernel" is reason
-> enough, then write that down, because it does not seem obvious to me or
-> others that this feature needs to be in the kernel.
-
-One reason might be debugging, if a feature is known to cause issues.
-But imo in that case the knob should be using the _unsafe variants so
-it taints the kernel, since otherwise we get stuck in this very cozy
-place where kernel maintainers don't have to care much for bugs
-"because it's off by default", but also not really care about
-polishing the feature "since users can just enable it if they want
-it". Just a slightly different flavour of what you're explaining above
-already.
--Daniel
-
-> Thanks,
-> pq
-
-
-
---
-Daniel Vetter
-Software Engineer, Intel Corporation
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fblog.ffw=
-ll.ch%2F&amp;data=3D04%7C01%7Caurabindo.pillai%40amd.com%7C56ba07934c5c48e7=
-ad7b08d8bc7bb4a9%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C6374665868006=
-49481%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6I=
-k1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3D2isCpwa3V92TnO4njhe9cQjdWVdsV1GQMo=
-7WP7buVZI%3D&amp;reserved=3D0
-
---_000_BN6PR12MB1939001BFDF87A88748163498BA30BN6PR12MB1939namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:11pt;color:#0078D7;margin:5pt;" ali=
-gn=3D"Left">
-[AMD Official Use Only - Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Hi Daniel,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Could you please be more specific about the _unsafe API options you mention=
-ed ?<br>
-</div>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div id=3D"Signature">
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
---</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Thanks &amp; Regards,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Aurabindo Pillai<br>
-</div>
-</div>
-</div>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Daniel Vetter &lt;dan=
-iel@ffwll.ch&gt;<br>
-<b>Sent:</b> Tuesday, January 19, 2021 8:11 AM<br>
-<b>To:</b> Pekka Paalanen &lt;ppaalanen@gmail.com&gt;<br>
-<b>Cc:</b> Pillai, Aurabindo &lt;Aurabindo.Pillai@amd.com&gt;; amd-gfx list=
- &lt;amd-gfx@lists.freedesktop.org&gt;; dri-devel &lt;dri-devel@lists.freed=
-esktop.org&gt;; Kazlauskas, Nicholas &lt;Nicholas.Kazlauskas@amd.com&gt;; W=
-ang, Chao-kai (Stylon) &lt;Stylon.Wang@amd.com&gt;; Thai, Thong
- &lt;Thong.Thai@amd.com&gt;; Sharma, Shashank &lt;Shashank.Sharma@amd.com&g=
-t;; Lin, Wayne &lt;Wayne.Lin@amd.com&gt;; Deucher, Alexander &lt;Alexander.=
-Deucher@amd.com&gt;; Koenig, Christian &lt;Christian.Koenig@amd.com&gt;<br>
-<b>Subject:</b> Re: [PATCH v3 1/3] drm/amd/display: Add module parameter fo=
-r freesync video mode</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">On Tue, Jan 19, 2021 at 9:35 AM Pekka Paalanen &lt=
-;ppaalanen@gmail.com&gt; wrote:<br>
-&gt;<br>
-&gt; On Mon, 18 Jan 2021 09:36:47 -0500<br>
-&gt; Aurabindo Pillai &lt;aurabindo.pillai@amd.com&gt; wrote:<br>
-&gt;<br>
-&gt; &gt; On Thu, 2021-01-14 at 11:14 +0200, Pekka Paalanen wrote:<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Hi,<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; please document somewhere that ends up in git history (commi=
-t<br>
-&gt; &gt; &gt; message,<br>
-&gt; &gt; &gt; code comments, description of the parameter would be the bes=
-t but<br>
-&gt; &gt; &gt; maybe<br>
-&gt; &gt; &gt; there isn't enough space?) what Christian K=F6nig explained =
-in<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; <a href=3D"https://nam11.safelinks.protection.outlook.com/?u=
-rl=3Dhttps%3A%2F%2Flists.freedesktop.org%2Farchives%2Fdri-devel%2F2020-Dece=
-mber%2F291254.html&amp;amp;data=3D04%7C01%7Caurabindo.pillai%40amd.com%7C56=
-ba07934c5c48e7ad7b08d8bc7bb4a9%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7=
-C637466586800649481%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2l=
-uMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;amp;sdata=3DGM0ZEM9JeFM5os13=
-E1zlVy8Bn3D8Kxmo%2FajSG02WsGI%3D&amp;amp;reserved=3D0">
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
-reedesktop.org%2Farchives%2Fdri-devel%2F2020-December%2F291254.html&amp;amp=
-;data=3D04%7C01%7Caurabindo.pillai%40amd.com%7C56ba07934c5c48e7ad7b08d8bc7b=
-b4a9%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637466586800649481%7CUnkn=
-own%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXV=
-CI6Mn0%3D%7C1000&amp;amp;sdata=3DGM0ZEM9JeFM5os13E1zlVy8Bn3D8Kxmo%2FajSG02W=
-sGI%3D&amp;amp;reserved=3D0</a><br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; that this is a stop-gap feature intended to be removed as so=
-on as<br>
-&gt; &gt; &gt; possible (when a better solution comes up, which could be ye=
-ars).<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; So far I have not seen a single mention of this intention in=
- your<br>
-&gt; &gt; &gt; patch<br>
-&gt; &gt; &gt; submissions, and I think it is very important to make known.=
-<br>
-&gt; &gt;<br>
-&gt; &gt; Hi,<br>
-&gt; &gt;<br>
-&gt; &gt; Thanks for the headsup, I shall add the relevant info in the next=
-<br>
-&gt; &gt; verison.<br>
-&gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; I also did not see an explanation of why this instead of<br>
-&gt; &gt; &gt; manufacturing<br>
-&gt; &gt; &gt; these video modes in userspace (an idea mentioned by Christi=
-an in the<br>
-&gt; &gt; &gt; referenced email). I think that too should be part of a comm=
-it<br>
-&gt; &gt; &gt; message.<br>
-&gt; &gt;<br>
-&gt; &gt; This is an opt-in feature, which shall be superseded by a better<=
-br>
-&gt; &gt; solution. We also add a set of common modes for scaling similarly=
-.<br>
-&gt; &gt; Userspace can still add whatever mode they want. So I dont see a =
-reason<br>
-&gt; &gt; why this cant be in the kernel.<br>
-&gt;<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; sorry, I think that kind of thinking is backwards. There needs to be a=
-<br>
-&gt; reason to put something in the kernel, and if there is no reason, then=
-<br>
-&gt; it remains in userspace. So what's the reason to put this in the kerne=
-l?<br>
-&gt;<br>
-&gt; One example reason why this should not be in the kernel is that the se=
-t<br>
-&gt; of video modes to manufacture is a kind of policy, which modes to add<=
-br>
-&gt; and which not. Userspace knows what modes it needs, and establishing<b=
-r>
-&gt; the modes in the kernel instead is second-guessing what the userspace<=
-br>
-&gt; would want. So if userspace needs to manufacture modes in userspace<br=
->
-&gt; anyway as some modes might be missed by the kernel, then why bother in=
-<br>
-&gt; the kernel to begin with? Why should the kernel play catch-up with wha=
-t<br>
-&gt; modes userspace wants when we already have everything userspace needs<=
-br>
-&gt; to make its own modes, even to add them to the kernel mode list?<br>
-&gt;<br>
-&gt; Does manufacturing these extra video modes to achieve fast timing<br>
-&gt; changes require AMD hardware-specific knowledge, as opposed to the<br>
-&gt; general VRR approach of simply adjusting the front porch?<br>
-&gt;<br>
-&gt; Something like this should also be documented in a commit message. Or<=
-br>
-&gt; if you insist that &quot;no reason to not put this in the kernel&quot;=
- is reason<br>
-&gt; enough, then write that down, because it does not seem obvious to me o=
-r<br>
-&gt; others that this feature needs to be in the kernel.<br>
-<br>
-One reason might be debugging, if a feature is known to cause issues.<br>
-But imo in that case the knob should be using the _unsafe variants so<br>
-it taints the kernel, since otherwise we get stuck in this very cozy<br>
-place where kernel maintainers don't have to care much for bugs<br>
-&quot;because it's off by default&quot;, but also not really care about<br>
-polishing the feature &quot;since users can just enable it if they want<br>
-it&quot;. Just a slightly different flavour of what you're explaining above=
-<br>
-already.<br>
--Daniel<br>
-<br>
-&gt; Thanks,<br>
-&gt; pq<br>
-<br>
-<br>
-<br>
--- <br>
-Daniel Vetter<br>
-Software Engineer, Intel Corporation<br>
-<a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F=
-%2Fblog.ffwll.ch%2F&amp;amp;data=3D04%7C01%7Caurabindo.pillai%40amd.com%7C5=
-6ba07934c5c48e7ad7b08d8bc7bb4a9%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%=
-7C637466586800649481%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2=
-luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;amp;sdata=3D2isCpwa3V92TnO4=
-njhe9cQjdWVdsV1GQMo7WP7buVZI%3D&amp;amp;reserved=3D0">https://nam11.safelin=
-ks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fblog.ffwll.ch%2F&amp;amp;data=
-=3D04%7C01%7Caurabindo.pillai%40amd.com%7C56ba07934c5c48e7ad7b08d8bc7bb4a9%=
-7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637466586800649481%7CUnknown%7=
-CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn=
-0%3D%7C1000&amp;amp;sdata=3D2isCpwa3V92TnO4njhe9cQjdWVdsV1GQMo7WP7buVZI%3D&=
-amp;amp;reserved=3D0</a><br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_BN6PR12MB1939001BFDF87A88748163498BA30BN6PR12MB1939namp_--
-
---===============0512950440==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> greg k-h
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0512950440==--
