@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54F6330259A
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jan 2021 14:44:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84A4830259B
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jan 2021 14:44:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E0D389F75;
-	Mon, 25 Jan 2021 13:44:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1565389FD4;
+	Mon, 25 Jan 2021 13:44:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
  (mail-bn7nam10on2081.outbound.protection.outlook.com [40.107.92.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7666689F0A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB6BD89E86
  for <amd-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 13:44:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OpUV+oyar7cojiKxWKTzzD1E7iIHNQvINdz+LiojPdsdYJYC+YkS0+igp4nmTJB97q8DZGdxsFxc3fK8FAknEcoAu385dlmHgAos4ehqjjz1fsVOX2jiZquKcN/W6IQ0c/DVx48CFI5NCzmEaUEfCwoIxgVzK091BQe+fmx7OdeUnHbD7z5b3SOuLgWs7K5rHBKPoFmLaomx2viFxCFHcf1u/aX+Uvkeu2aedIpHvbeBAYfviuiDmFH/bSi3Cne734bAJfD+dsbC+1WIi/JJXCwxUGzgzfrZ8XWGQZ9WCPSRH3HyOlmFI0rj2oWl6GCeX6rhwCBIfh1BKn5IQc6wFg==
+ b=KtmrfGgzo6FuwS8pctMSofykwWaqeST7lrgWv68FwiIrCMkanmPhVk7PNju6uU1Un+4BZ6N9lka4Rd0fYYirJvn/BSDnCs/ciQrDAwmS1+0goRL6ivobZNVc6jMenwL2DX3J+V2NJsAlWjOgqphNREQS5m1WlFiq2YgQI8QxRlxpUJejuqk6GQirrYnk8tvoN7BZy2TvIi8bhpVl4XRty/1z7/cIntyk/fjb6AD2yn7Gmrfa9Vt2fk2uXxCLzHYmUzRLKtOj7IqzOIbcuQwzNHdJ2X7Qwd8diXcpZ0dETvCVYqmexc/+J0N1Sv/JE7PVyomi2uKVQqic890ikHumyw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Va6RxLEABGgFSB8DDDQXXH5Wh/I3tUxpO/V4s+FbJsg=;
- b=O9Rw+YPpxZ5OjVD5gYvayw1dlfhbzfNh+KoCXwugoXk7OjsYgOjbqUnKWoJ3j+jurlAvIe6fmc4k7QyaN3JvdxO+Zkfa7T49NlCAChw5/Jv57ntMJHf8DERSs+nF34vE6fO3Vw2pCKnORudwxSvYCc5hVDzv1YHt6tYuGcGw+91CjeThzlhaan1Fj6QTucV3ih0TfzLbo/L6tU3kQzvGM//s7Xk3VPDQPcfe1qFSvNejTKQeqn+Mn45fIwjr6F1UpRf1GzCjKtuaJ8xCV8/xvSbMHU2HGTuBdHj2DIkV4QyF4vEM+5EHEufLHJgifJplqqA9eG/GC7+zIDB+REna2Q==
+ bh=H19om+50dVwNsHFOBnS4ofRU/YtkT5ASpcWaFImfVbQ=;
+ b=GaOD1toD4zmWywr+FjrnSnkqv/Nnx7v7dtbDdULA37PAJbsG785Mr9knuFh85FS/JoNWXvIcfMskU8CcxaiuCOt20TAHTYmXU3i2W1qq6pOfTZhoSOIeEtD7facWKa+Ykf7TQxUgVnCg9OJ9ygFp+tuo+UW3XXExsmAOS4SDqK3VWenPVdKHNNWN43zRWRpNR3a9ocwhBPXeeZ+vl5/cz91zA7nybN0qovY90+iBbgvb13K2N5/RrZEHMo9e+AmUP9pOWisArjYl2si7h8TnD+RDu+TM6UTwSqmMQN/VYihiEOWFUrsYs+NWjXQPm2PNYf2jS29plt4X0bc7y0ngrA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Va6RxLEABGgFSB8DDDQXXH5Wh/I3tUxpO/V4s+FbJsg=;
- b=wAl6JWWSPr6R3MU3coF7Pg42yCn8iFmJxT+7/Ci9rC6qGQ6miVl29SgJpp8N24Vs7n9GddkVvXvmmj5sYDuQyH74pC3KB/6wsVw9hzyzJoEClRXi2PQSKBjr4Vawlyy81G17GBqIpfMoRL77kJ5HTXJHNbVYXpkycgOQSyJdLGk=
+ bh=H19om+50dVwNsHFOBnS4ofRU/YtkT5ASpcWaFImfVbQ=;
+ b=guOP5M3AMFyUNkkDCt6qV8v/26AOH99diblki3adBvzKMWy2NL5fWxVzqiuOX7DSGbDccXc0WFu+9r9+tK62Kj37G33i7xQodn+1q2G52dMdGY8IZ6W/WjILb1T/Ny8Py24gVjtRyRdqq9P2KI0sFichhmWyuuN8ZgYj9RCqZE8=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,17 +34,17 @@ Received: from DM6PR12MB2601.namprd12.prod.outlook.com (2603:10b6:5:45::27) by
  DM6PR12MB4041.namprd12.prod.outlook.com (2603:10b6:5:210::18) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3784.15; Mon, 25 Jan 2021 13:44:17 +0000
+ 15.20.3784.15; Mon, 25 Jan 2021 13:44:18 +0000
 Received: from DM6PR12MB2601.namprd12.prod.outlook.com
  ([fe80::e887:3273:c806:d089]) by DM6PR12MB2601.namprd12.prod.outlook.com
  ([fe80::e887:3273:c806:d089%6]) with mapi id 15.20.3784.017; Mon, 25 Jan 2021
- 13:44:17 +0000
+ 13:44:18 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [RFC 2/7] drm/amd/display: Moves dcn30_set_mcif_arb_params to FPU
- folder
-Date: Mon, 25 Jan 2021 08:43:08 -0500
-Message-Id: <20210125134313.305184-3-Rodrigo.Siqueira@amd.com>
+Subject: [RFC 3/7] drm/amd/display: Add FPU file for functions shared across
+ ASICs
+Date: Mon, 25 Jan 2021 08:43:09 -0500
+Message-Id: <20210125134313.305184-4-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210125134313.305184-1-Rodrigo.Siqueira@amd.com>
 References: <20210125134313.305184-1-Rodrigo.Siqueira@amd.com>
@@ -61,47 +61,47 @@ Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60:7f86:f3af:1efb:628a)
  Transport; Mon, 25 Jan 2021 13:44:17 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 3dbe6239-663d-40e6-3aa0-08d8c1374f7c
+X-MS-Office365-Filtering-Correlation-Id: 82e9016e-df09-4578-ff4c-08d8c1374fe4
 X-MS-TrafficTypeDiagnostic: DM6PR12MB4041:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4041B0FC2A7D5815F0E459D598BD9@DM6PR12MB4041.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:972;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4041DF8F7652EC775D1EC04698BD9@DM6PR12MB4041.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1417;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0Ev8Y96BDv8HJT+d9L/oZefHQT/pu5Q/9WQVEnGKMmLlmL+B92MG8g3NmhKjHzh8sq7cCPZuQuGocuiH2qge+c7LMvJgGn2qi01/GHKAGgr8dhnapT1v+ZiV99jKTWGYnMQ3JLHg85nr44PIDnvAYFI73OuaNMDtzgd2JK1JLpe5/ZdAaMXEUVk0DLumtVdt2qc8vwXYiXr0gJ+ninSepD95v+wIYeJRAv7C0BDRBQH/6rEbIfYWyxB0hv1i7MThh3wnVoI+KN2jlJkjRc03hKpEXFQrZFcCp/dSIF6eTbc5psp/7lupk8ICv4WrPb7i788gDZForWG199Qi9LLfPrp0Q8oG5mzH7s06xgngiC+ZW0B9AnUv5Rw81Zh1myur7/6/aOe4JMnH8I0cLBWTSw==
+X-Microsoft-Antispam-Message-Info: 6yOaI6yRWLDleps9isQVybWFOasdHFHbqoPQwAMK9xFbDJ5A7SunIPLzprONB6EyLB1eLeCuwaF0tRgWQL7NoJFywWf3g77l7rvN4T7DAWRyWQkd3QnSDsvlUjen/JWBcZBgufR/PajDISA1ryambEVTVOEviztruM5PhXBraKIrotTrb8ww8zuKqtN2WoGbQnWlv84sbZErpAyz189Ti7Q3z7pXRQuKhqAP9NhP479SUiwxqnxqKNPYTWvuizqMfTHrGoWOolmTHMqPNGCRY8WwLncOyQ63jH96RXYW6NU1An8RM5Hx/ndUlSP442j6X/4S3eVEBVESYADSFuJHdKl7k6CLOt0n8dDqzDa4bLG/uFY7vzwhJih7XOVsEvZ2ZAwM6Ya3GW0LdQE0X2VnnA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB2601.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(376002)(136003)(396003)(366004)(39860400002)(346002)(2616005)(316002)(16526019)(4326008)(6916009)(1076003)(30864003)(66946007)(5660300002)(66556008)(478600001)(66476007)(54906003)(6506007)(6666004)(52116002)(36756003)(8936002)(6512007)(83380400001)(8676002)(2906002)(86362001)(6486002)(186003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?tposJGVtNNmrQfq1p95+n1vsnDMXXAcgRVlHECk/lgQX5+O4ldAWy2o6O5dS?=
- =?us-ascii?Q?xYaAfJwSjT3MYfHaOKlnTDH5eGB/IqicPFSMPViYZeum2n01BrbGCGMMUeXZ?=
- =?us-ascii?Q?gbMZo1gy06gF/zOiHjrtW9PrWm72ApDwE6oYPMrEmx5qf060rpvbixb0r++D?=
- =?us-ascii?Q?i1c57SkvvvJitc9QNnj0j9oP1HWr6q7Ri0uIAwNuqi+ea9oqrqbF3CBj4lIc?=
- =?us-ascii?Q?lDggWq7jsjCec3Z5vgQVDcCEU/GnmUzc32QJCeh0AczRdysdANXLQRUubSDO?=
- =?us-ascii?Q?kWNwEFY3g3dAKfGzcH7F2mAG621dU3wfruJ7CH7xZJHf3vfayWDFO7v9ucA/?=
- =?us-ascii?Q?SyNJwXlSFm+i/FrGwaKiHbS8YEMcXgSh+yinn0xSwwrQyspJqDAq3aDc9GEc?=
- =?us-ascii?Q?yqRvbyf/FvZLK8DBFw5K6iPpG3WigfpsuyHNm3PFCoEmqwqwkcN43mIgbrwl?=
- =?us-ascii?Q?1r41hLl+c3ghLhmUyZgKUo6K7zPBLsnhMievMUH4afQZnjHT3JQBX7SP87rm?=
- =?us-ascii?Q?gB3wlOS+Qbzl86VTtMI0hIyy2Eo8UYEZi+QDmwzGfP6G5hBK8TF6ltGm/1mf?=
- =?us-ascii?Q?x+w6WImIEAHvqDYoofYMnlYWwrchA9Wcl5ck4qJE/L1nAfsIWbNpU0HNiEyW?=
- =?us-ascii?Q?xyV7UOuFTp7k4t7/jlzEkmychch3UVmAAwWLNmNAj17zugz7RkSmxrvfS/i/?=
- =?us-ascii?Q?7T1pBIyMPaSypjfjeUarw6MXnOB1x5v878bjoN4F35TUFy9GhhbctwlM20x4?=
- =?us-ascii?Q?N95h5zUdaaQbbsYlSJjktpAxbkjAckgGybkVD652Z/+q4xd/xkiBFra+38UU?=
- =?us-ascii?Q?RFmjUjJcYWyo7l5PdB7fRLUCFwK2gkeUy5liNVDDnFIcQGuaDYG7eVnx+nP1?=
- =?us-ascii?Q?jXVc3CSTngzcb2uV0Zssc1ad8fyAiV3yjV0C+1WwJcpTZfLucfKKtWCep2vZ?=
- =?us-ascii?Q?BDwlgApECHMiqaofH2Ussx95m8FLTldcOlphpaYXFCR9InBh4XCkU8Cw0X8o?=
- =?us-ascii?Q?S0Z29S2x65M06Ppfu4juh7V/V25iZh/dHMm3Z8ccdkMttDZHw2u7T5lIBdvL?=
- =?us-ascii?Q?WGD7PmjNeryWjZ7N3qjAzs5XsqvWTq91Spcvi3ZjAqhaHnG5NGJR74IaTpRW?=
- =?us-ascii?Q?iHDE/uwceNNo9+0kPO0wZCPFDwADZ1Lt+Q=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?FJYer9d++9lrYek7Cy1T/Drvdv3Qrelc6UYGubJUX81A6Y3QYvdFmnkSR4q6?=
+ =?us-ascii?Q?yUKczZFoTVu1Xh9CvYJInzraX+Bgky1WrJ4IM2G2iajz+AGzZdvOTIVTBjeL?=
+ =?us-ascii?Q?19yUezTQxDK/6383yaRlp/+L/RE4G92c++uwyZtqyhUAH6lk8dPmWVisvXV/?=
+ =?us-ascii?Q?Yh1gMCGB861jiqAglO4yWoUTRacIX/yxYw/jkg/OrOh/rOYm0C2Vol+9rPSC?=
+ =?us-ascii?Q?UwR8b7I0SOUcsV/sWXqNpibYUKchcjlP8EUkf84h1JSULWDEr2jCJhwgAPSn?=
+ =?us-ascii?Q?HViVu8OaH1OWecmqAVVyhcSp+RL3T6fIgZXpEMpRo7sme55813GLfMPc0YkF?=
+ =?us-ascii?Q?3foCT/NDyOf8d1GSpbos2/eFSXPwD8ANkOxsljVEnl/vn8AOnqld4AqCb/79?=
+ =?us-ascii?Q?lNGh9PQcESIeMvbUqy6g01I3FnmC6jPUr+vFFexQKnZuakzvV4KwlgDDbiXV?=
+ =?us-ascii?Q?XrQM8XCals3CUAvB2eu2/YCX1ziQr2+RWH3YZ2P0mjyO1zesR0RA9DqNVOXc?=
+ =?us-ascii?Q?q5ot+94jbD/wXWYiI0a9MuYGb/IL8mZU/irE3D5pIRqgNnF7l57LoTK1O0Ki?=
+ =?us-ascii?Q?jiLls2qwfJbee3V4XkaUXNzHgHA6kz2WKNL+EmiwanYSHTbu39NqmDbEVkol?=
+ =?us-ascii?Q?Knnc3OXfNX/b+38LYMI9yjlrpSJcky3PJjbCSwEY3g14SfO8rz3r7qiJ/pvk?=
+ =?us-ascii?Q?9G+W9iCNosqjOhr8HDfehICu+Y7PzABcJZEiy7h33HcpTBBHMicaJLe5Wsms?=
+ =?us-ascii?Q?eqNxj0kLgWRkqd5OfVIAffgYHHXC47n+QSMX+jqYwqzP1A1y/Sz+9guoJyQp?=
+ =?us-ascii?Q?UOYORGIVtwLtTcTmdey6WOP4y9x6CgptwNFYi1UDvz4Cuu7rzbJhP7vylun9?=
+ =?us-ascii?Q?i/p04zVTCE0uNfk5/q1DY4eONGiqBs/KSidZH1KuB1Q3eDsO5PNyC9PQ/+CZ?=
+ =?us-ascii?Q?3KMzNIC0cDuQnGZWRn5Hl6mLwIl0FuJMU3siJX6XWOw186bMQWJ6kttsn30J?=
+ =?us-ascii?Q?uL5zyeznhi4t7zI5ap6Bwq4LGTy7+4Iq5ebBjq+P1szdnRV8oSHjxvnAPH11?=
+ =?us-ascii?Q?K4leUaduuixd4En/J8WktAdnhqIkbBlgBedlV2KvQdAjUTovEVfubEbX/8VZ?=
+ =?us-ascii?Q?DSAe6XFEMWK7q8Q9P7oBKL6I1AvfLMf97Q=3D=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3dbe6239-663d-40e6-3aa0-08d8c1374f7c
+X-MS-Exchange-CrossTenant-Network-Message-Id: 82e9016e-df09-4578-ff4c-08d8c1374fe4
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2601.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2021 13:44:17.5827 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2021 13:44:18.3423 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: d3eiWsr4K5qr6prhHLbBPK9GlyM36D4WNEBh3OIZMGok8qOKsGKbn/TeW8LD32i0SZxs2n7EZZ/UBmd7GMCaTw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: RLjMBpTernX9ZlByxUMc6y/BE0ce6MVCm/xvAuztAtraKBiiEH6yb3EKycF+tlfVn2f3PT5f+dFtpyvWhfjy4g==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4041
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -123,274 +123,337 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The function dcn30_set_mcif_arb_params uses some double-precision
-operation; for this reason, this commit moves this function to the
-directory fpu_operation, where all FPU operations should be centralized.
+In our DC code, we have a couple of functions that use FPU and are
+shared between multiples ASICs; this situation complicates the work of
+centralizing FPU functions in a single place. This commit tries to
+alleviate this problem by creating a file named fpu_commons to
+centralize shared functions that use FPU operation in a single file. As
+a start point, we move dcn20_calculate_dlg_params to this file.
 
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../drm/amd/display/dc/dcn30/dcn30_resource.c | 81 +-----------------
- .../drm/amd/display/dc/dcn30/dcn30_resource.h | 11 ---
- .../amd/display/dc/dcn301/dcn301_resource.c   |  2 +-
- .../amd/display/dc/dcn302/dcn302_resource.c   |  2 +-
- .../display/dc/fpu_operation/dcn3x_commons.c  | 84 +++++++++++++++++++
- .../display/dc/fpu_operation/dcn3x_commons.h  |  3 +
- 6 files changed, 90 insertions(+), 93 deletions(-)
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c |  70 +-----------
+ .../drm/amd/display/dc/dcn20/dcn20_resource.h |   5 -
+ .../drm/amd/display/dc/dcn21/dcn21_resource.c |   2 +
+ .../drm/amd/display/dc/dcn30/dcn30_resource.c |   1 +
+ .../drm/amd/display/dc/fpu_operation/Makefile |   3 +-
+ .../display/dc/fpu_operation/dcn3x_commons.c  |   1 +
+ .../display/dc/fpu_operation/fpu_commons.c    | 102 ++++++++++++++++++
+ .../display/dc/fpu_operation/fpu_commons.h    |  34 ++++++
+ 8 files changed, 144 insertions(+), 74 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.h
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index 02e3107f04ee..b82d616f8a21 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -1471,85 +1471,6 @@ int dcn30_populate_dml_pipes_from_context(
- 	return pipe_cnt;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index 064f158ce671..d5bf740b408c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -87,6 +87,8 @@
+ 
+ #include "amdgpu_socbb.h"
+ 
++#include "fpu_operation/fpu_commons.h"
++
+ #define DC_LOGGER_INIT(logger)
+ 
+ struct _vcs_dpi_ip_params_st dcn2_0_ip = {
+@@ -3060,74 +3062,6 @@ static void dcn20_calculate_wm(
+ 	context->bw_ctx.bw.dcn.watermarks.a.frac_urg_bw_flip = get_fraction_of_urgent_bandwidth_imm_flip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
  }
  
--unsigned int dcn30_calc_max_scaled_time(
--		unsigned int time_per_pixel,
--		enum mmhubbub_wbif_mode mode,
--		unsigned int urgent_watermark)
--{
--	unsigned int time_per_byte = 0;
--	unsigned int total_free_entry = 0xb40;
--	unsigned int buf_lh_capability;
--	unsigned int max_scaled_time;
--
--	if (mode == PACKED_444) /* packed mode 32 bpp */
--		time_per_byte = time_per_pixel/4;
--	else if (mode == PACKED_444_FP16) /* packed mode 64 bpp */
--		time_per_byte = time_per_pixel/8;
--
--	if (time_per_byte == 0)
--		time_per_byte = 1;
--
--	buf_lh_capability = (total_free_entry*time_per_byte*32) >> 6; /* time_per_byte is in u6.6*/
--	max_scaled_time   = buf_lh_capability - urgent_watermark;
--	return max_scaled_time;
--}
--
--void dcn30_set_mcif_arb_params(
--		struct dc *dc,
--		struct dc_state *context,
+-void dcn20_calculate_dlg_params(
+-		struct dc *dc, struct dc_state *context,
 -		display_e2e_pipe_params_st *pipes,
--		int pipe_cnt)
+-		int pipe_cnt,
+-		int vlevel)
 -{
--	enum mmhubbub_wbif_mode wbif_mode;
--	struct display_mode_lib *dml = &context->bw_ctx.dml;
--	struct mcif_arb_params *wb_arb_params;
--	int i, j, k, dwb_pipe;
+-	int i, pipe_idx;
 -
 -	/* Writeback MCIF_WB arbitration parameters */
--	dwb_pipe = 0;
--	for (i = 0; i < dc->res_pool->pipe_count; i++) {
+-	dc->res_pool->funcs->set_mcif_arb_params(dc, context, pipes, pipe_cnt);
+-
+-	context->bw_ctx.bw.dcn.clk.dispclk_khz = context->bw_ctx.dml.vba.DISPCLK * 1000;
+-	context->bw_ctx.bw.dcn.clk.dcfclk_khz = context->bw_ctx.dml.vba.DCFCLK * 1000;
+-	context->bw_ctx.bw.dcn.clk.socclk_khz = context->bw_ctx.dml.vba.SOCCLK * 1000;
+-	context->bw_ctx.bw.dcn.clk.dramclk_khz = context->bw_ctx.dml.vba.DRAMSpeed * 1000 / 16;
+-	context->bw_ctx.bw.dcn.clk.dcfclk_deep_sleep_khz = context->bw_ctx.dml.vba.DCFCLKDeepSleep * 1000;
+-	context->bw_ctx.bw.dcn.clk.fclk_khz = context->bw_ctx.dml.vba.FabricClock * 1000;
+-	context->bw_ctx.bw.dcn.clk.p_state_change_support =
+-		context->bw_ctx.dml.vba.DRAMClockChangeSupport[vlevel][context->bw_ctx.dml.vba.maxMpcComb]
+-							!= dm_dram_clock_change_unsupported;
+-	context->bw_ctx.bw.dcn.clk.dppclk_khz = 0;
+-
+-	if (context->bw_ctx.bw.dcn.clk.dispclk_khz < dc->debug.min_disp_clk_khz)
+-		context->bw_ctx.bw.dcn.clk.dispclk_khz = dc->debug.min_disp_clk_khz;
+-
+-	for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
+-		if (!context->res_ctx.pipe_ctx[i].stream)
+-			continue;
+-		pipes[pipe_idx].pipe.dest.vstartup_start = get_vstartup(&context->bw_ctx.dml, pipes, pipe_cnt, pipe_idx);
+-		pipes[pipe_idx].pipe.dest.vupdate_offset = get_vupdate_offset(&context->bw_ctx.dml, pipes, pipe_cnt, pipe_idx);
+-		pipes[pipe_idx].pipe.dest.vupdate_width = get_vupdate_width(&context->bw_ctx.dml, pipes, pipe_cnt, pipe_idx);
+-		pipes[pipe_idx].pipe.dest.vready_offset = get_vready_offset(&context->bw_ctx.dml, pipes, pipe_cnt, pipe_idx);
+-		if (context->bw_ctx.bw.dcn.clk.dppclk_khz < pipes[pipe_idx].clks_cfg.dppclk_mhz * 1000)
+-			context->bw_ctx.bw.dcn.clk.dppclk_khz = pipes[pipe_idx].clks_cfg.dppclk_mhz * 1000;
+-		context->res_ctx.pipe_ctx[i].plane_res.bw.dppclk_khz =
+-						pipes[pipe_idx].clks_cfg.dppclk_mhz * 1000;
+-		context->res_ctx.pipe_ctx[i].pipe_dlg_param = pipes[pipe_idx].pipe.dest;
+-		pipe_idx++;
+-	}
+-	/*save a original dppclock copy*/
+-	context->bw_ctx.bw.dcn.clk.bw_dppclk_khz = context->bw_ctx.bw.dcn.clk.dppclk_khz;
+-	context->bw_ctx.bw.dcn.clk.bw_dispclk_khz = context->bw_ctx.bw.dcn.clk.dispclk_khz;
+-	context->bw_ctx.bw.dcn.clk.max_supported_dppclk_khz = context->bw_ctx.dml.soc.clock_limits[vlevel].dppclk_mhz * 1000;
+-	context->bw_ctx.bw.dcn.clk.max_supported_dispclk_khz = context->bw_ctx.dml.soc.clock_limits[vlevel].dispclk_mhz * 1000;
+-
+-	for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
+-		bool cstate_en = context->bw_ctx.dml.vba.PrefetchMode[vlevel][context->bw_ctx.dml.vba.maxMpcComb] != 2;
 -
 -		if (!context->res_ctx.pipe_ctx[i].stream)
 -			continue;
 -
--		for (j = 0; j < MAX_DWB_PIPES; j++) {
--			struct dc_writeback_info *writeback_info = &context->res_ctx.pipe_ctx[i].stream->writeback_info[j];
+-		context->bw_ctx.dml.funcs.rq_dlg_get_dlg_reg(&context->bw_ctx.dml,
+-				&context->res_ctx.pipe_ctx[i].dlg_regs,
+-				&context->res_ctx.pipe_ctx[i].ttu_regs,
+-				pipes,
+-				pipe_cnt,
+-				pipe_idx,
+-				cstate_en,
+-				context->bw_ctx.bw.dcn.clk.p_state_change_support,
+-				false, false, true);
 -
--			if (writeback_info->wb_enabled == false)
--				continue;
--
--			//wb_arb_params = &context->res_ctx.pipe_ctx[i].stream->writeback_info[j].mcif_arb_params;
--			wb_arb_params = &context->bw_ctx.bw.dcn.bw_writeback.mcif_wb_arb[dwb_pipe];
--
--			if (writeback_info->dwb_params.cnv_params.fc_out_format == DWB_OUT_FORMAT_64BPP_ARGB ||
--				writeback_info->dwb_params.cnv_params.fc_out_format == DWB_OUT_FORMAT_64BPP_RGBA)
--				wbif_mode = PACKED_444_FP16;
--			else
--				wbif_mode = PACKED_444;
--
--			for (k = 0; k < sizeof(wb_arb_params->cli_watermark)/sizeof(wb_arb_params->cli_watermark[0]); k++) {
--				wb_arb_params->cli_watermark[k] = get_wm_writeback_urgent(dml, pipes, pipe_cnt) * 1000;
--				wb_arb_params->pstate_watermark[k] = get_wm_writeback_dram_clock_change(dml, pipes, pipe_cnt) * 1000;
--			}
--			wb_arb_params->time_per_pixel = (1000000 << 6) / context->res_ctx.pipe_ctx[i].stream->phy_pix_clk; /* time_per_pixel should be in u6.6 format */
--			wb_arb_params->slice_lines = 32;
--			wb_arb_params->arbitration_slice = 2; /* irrelevant since there is no YUV output */
--			wb_arb_params->max_scaled_time = dcn30_calc_max_scaled_time(wb_arb_params->time_per_pixel,
--					wbif_mode,
--					wb_arb_params->cli_watermark[0]); /* assume 4 watermark sets have the same value */
--			wb_arb_params->dram_speed_change_duration = dml->vba.WritebackAllowDRAMClockChangeEndPosition[j] * pipes[0].clks_cfg.refclk_mhz; /* num_clock_cycles = us * MHz */
--
--			dwb_pipe++;
--
--			if (dwb_pipe >= MAX_DWB_PIPES)
--				return;
--		}
--		if (dwb_pipe >= MAX_DWB_PIPES)
--			return;
+-		context->bw_ctx.dml.funcs.rq_dlg_get_rq_reg(&context->bw_ctx.dml,
+-				&context->res_ctx.pipe_ctx[i].rq_regs,
+-				pipes[pipe_idx].pipe);
+-		pipe_idx++;
 -	}
--
 -}
 -
- static struct dc_cap_funcs cap_funcs = {
- 	.get_dcc_compression_cap = dcn20_get_dcc_compression_cap
- };
-@@ -2402,7 +2323,7 @@ static const struct resource_funcs dcn30_res_pool_funcs = {
- 	.add_dsc_to_stream_resource = dcn20_add_dsc_to_stream_resource,
- 	.remove_stream_from_ctx = dcn20_remove_stream_from_ctx,
- 	.populate_dml_writeback_from_context = dcn3x_populate_dml_writeback_from_context,
--	.set_mcif_arb_params = dcn30_set_mcif_arb_params,
-+	.set_mcif_arb_params = dcn3x_set_mcif_arb_params,
- 	.find_first_free_match_stream_enc_for_link = dcn10_find_first_free_match_stream_enc_for_link,
- 	.acquire_post_bldn_3dlut = dcn30_acquire_post_bldn_3dlut,
- 	.release_post_bldn_3dlut = dcn30_release_post_bldn_3dlut,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
-index b91e2856097f..42960574cce9 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
-@@ -42,17 +42,6 @@ struct resource_pool *dcn30_create_resource_pool(
- 		const struct dc_init_data *init_data,
- 		struct dc *dc);
- 
--void dcn30_set_mcif_arb_params(
--		struct dc *dc,
--		struct dc_state *context,
--		display_e2e_pipe_params_st *pipes,
--		int pipe_cnt);
--
--unsigned int dcn30_calc_max_scaled_time(
--		unsigned int time_per_pixel,
--		enum mmhubbub_wbif_mode mode,
--		unsigned int urgent_watermark);
--
- bool dcn30_validate_bandwidth(struct dc *dc, struct dc_state *context,
+ static bool dcn20_validate_bandwidth_internal(struct dc *dc, struct dc_state *context,
+ 		bool fast_validate)
+ {
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
+index c8f3127bbcdf..11ec655a18e3 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
+@@ -160,11 +160,6 @@ bool dcn20_fast_validate_bw(
+ 		int *pipe_split_from,
+ 		int *vlevel_out,
  		bool fast_validate);
- void dcn30_calculate_wm_and_dlg(
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-index e57f365aef95..8369b009a853 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-@@ -1632,7 +1632,7 @@ static struct resource_funcs dcn301_res_pool_funcs = {
- 	.add_dsc_to_stream_resource = dcn20_add_dsc_to_stream_resource,
- 	.remove_stream_from_ctx = dcn20_remove_stream_from_ctx,
- 	.populate_dml_writeback_from_context = dcn3x_populate_dml_writeback_from_context,
--	.set_mcif_arb_params = dcn30_set_mcif_arb_params,
-+	.set_mcif_arb_params = dcn3x_set_mcif_arb_params,
- 	.find_first_free_match_stream_enc_for_link = dcn10_find_first_free_match_stream_enc_for_link,
- 	.acquire_post_bldn_3dlut = dcn30_acquire_post_bldn_3dlut,
- 	.release_post_bldn_3dlut = dcn30_release_post_bldn_3dlut,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-index c0f4a6d10cb6..0554a3dd3214 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-@@ -1242,7 +1242,7 @@ static struct resource_funcs dcn302_res_pool_funcs = {
- 		.add_dsc_to_stream_resource = dcn20_add_dsc_to_stream_resource,
- 		.remove_stream_from_ctx = dcn20_remove_stream_from_ctx,
- 		.populate_dml_writeback_from_context = dcn3x_populate_dml_writeback_from_context,
--		.set_mcif_arb_params = dcn30_set_mcif_arb_params,
-+		.set_mcif_arb_params = dcn3x_set_mcif_arb_params,
- 		.find_first_free_match_stream_enc_for_link = dcn10_find_first_free_match_stream_enc_for_link,
- 		.acquire_post_bldn_3dlut = dcn30_acquire_post_bldn_3dlut,
- 		.release_post_bldn_3dlut = dcn30_release_post_bldn_3dlut,
+-void dcn20_calculate_dlg_params(
+-		struct dc *dc, struct dc_state *context,
+-		display_e2e_pipe_params_st *pipes,
+-		int pipe_cnt,
+-		int vlevel);
+ 
+ enum dc_status dcn20_build_mapped_resource(const struct dc *dc, struct dc_state *context, struct dc_stream_state *stream);
+ enum dc_status dcn20_add_stream_to_ctx(struct dc *dc, struct dc_state *new_ctx, struct dc_stream_state *dc_stream);
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+index b000b43a820d..b1e97caf56c7 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
+@@ -89,6 +89,8 @@
+ #include "dce/dmub_psr.h"
+ #include "dce/dmub_abm.h"
+ 
++#include "fpu_operation/fpu_commons.h"
++
+ #define DC_LOGGER_INIT(logger)
+ 
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+index b82d616f8a21..c97533b4ad09 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+@@ -34,6 +34,7 @@
+ #include "dcn20/dcn20_resource.h"
+ 
+ #include "dcn30_resource.h"
++#include "fpu_operation/fpu_commons.h"
+ #include "fpu_operation/dcn3x_commons.h"
+ 
+ #include "dcn10/dcn10_ipp.h"
+diff --git a/drivers/gpu/drm/amd/display/dc/fpu_operation/Makefile b/drivers/gpu/drm/amd/display/dc/fpu_operation/Makefile
+index 8a0957bfa8ba..e68536c2e225 100644
+--- a/drivers/gpu/drm/amd/display/dc/fpu_operation/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/fpu_operation/Makefile
+@@ -23,7 +23,7 @@
+ # 
+ # 
+ 
+-DCN3X_COMMONS = dcn3x_commons.o
++DCN3X_COMMONS = dcn3x_commons.o fpu_commons.o
+ 
+ ifdef CONFIG_X86
+ dcn3x_commons_ccflags := -mhard-float -msse
+@@ -51,6 +51,7 @@ endif
+ endif
+ 
+ CFLAGS_$(AMDDALPATH)/dc/fpu_operation/dcn3x_commons.o += $(dcn3x_commons_ccflags)
++CFLAGS_$(AMDDALPATH)/dc/fpu_operation/fpu_commons.o += $(dcn3x_commons_ccflags)
+ 
+ AMD_DAL_DCN3X_COMMONS = $(addprefix $(AMDDALPATH)/dc/fpu_operation/,$(DCN3X_COMMONS))
+ 
 diff --git a/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.c b/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.c
-index 767ca59551c1..707f782127a7 100644
+index 707f782127a7..06e9bd6d4d28 100644
 --- a/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.c
 +++ b/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.c
-@@ -137,6 +137,90 @@ static void _dcn3x_populate_dml_writeback_from_context(struct dc *dc,
+@@ -45,6 +45,7 @@
+ #include "resource.h"
+ #include "dml/dcn30/display_mode_vba_30.h"
  
- }
++#include "fpu_operation/fpu_commons.h"
+ #include "fpu_operation/dcn3x_commons.h"
  
-+static unsigned int dcn3x_calc_max_scaled_time(unsigned int time_per_pixel,
-+	enum mmhubbub_wbif_mode mode, unsigned int urgent_watermark)
+ static void _dcn3x_populate_dml_writeback_from_context(struct dc *dc,
+diff --git a/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.c b/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.c
+new file mode 100644
+index 000000000000..d2089a1dc630
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.c
+@@ -0,0 +1,102 @@
++/*
++ * Copyright 2021 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ * Authors: AMD
++ *
++ */
++
++#include "resource.h"
++#include "dml/dcn30/display_mode_vba_30.h"
++
++#include "fpu_operation/fpu_commons.h"
++
++static void _dcn20_calculate_dlg_params(struct dc *dc, struct dc_state *context,
++		display_e2e_pipe_params_st *pipes, int pipe_cnt, int vlevel)
 +{
-+	unsigned int time_per_byte = 0;
-+	unsigned int total_free_entry = 0xb40;
-+	unsigned int buf_lh_capability;
-+	unsigned int max_scaled_time;
-+
-+	if (mode == PACKED_444) /* packed mode 32 bpp */
-+		time_per_byte = time_per_pixel/4;
-+	else if (mode == PACKED_444_FP16) /* packed mode 64 bpp */
-+		time_per_byte = time_per_pixel/8;
-+
-+	if (time_per_byte == 0)
-+		time_per_byte = 1;
-+
-+	buf_lh_capability = (total_free_entry*time_per_byte*32) >> 6; /* time_per_byte is in u6.6*/
-+	max_scaled_time   = buf_lh_capability - urgent_watermark;
-+	return max_scaled_time;
-+}
-+
-+static void _dcn3x_set_mcif_arb_params(struct dc *dc, struct dc_state *context,
-+		display_e2e_pipe_params_st *pipes,
-+		int pipe_cnt)
-+{
-+	enum mmhubbub_wbif_mode wbif_mode;
-+	struct display_mode_lib *dml = &context->bw_ctx.dml;
-+	struct mcif_arb_params *wb_arb_params;
-+	int i, j, k, dwb_pipe;
++	int i, pipe_idx;
 +
 +	/* Writeback MCIF_WB arbitration parameters */
-+	dwb_pipe = 0;
-+	for (i = 0; i < dc->res_pool->pipe_count; i++) {
++	dc->res_pool->funcs->set_mcif_arb_params(dc, context, pipes, pipe_cnt);
++
++	context->bw_ctx.bw.dcn.clk.dispclk_khz = context->bw_ctx.dml.vba.DISPCLK * 1000;
++	context->bw_ctx.bw.dcn.clk.dcfclk_khz = context->bw_ctx.dml.vba.DCFCLK * 1000;
++	context->bw_ctx.bw.dcn.clk.socclk_khz = context->bw_ctx.dml.vba.SOCCLK * 1000;
++	context->bw_ctx.bw.dcn.clk.dramclk_khz = context->bw_ctx.dml.vba.DRAMSpeed * 1000 / 16;
++	context->bw_ctx.bw.dcn.clk.dcfclk_deep_sleep_khz = context->bw_ctx.dml.vba.DCFCLKDeepSleep * 1000;
++	context->bw_ctx.bw.dcn.clk.fclk_khz = context->bw_ctx.dml.vba.FabricClock * 1000;
++	context->bw_ctx.bw.dcn.clk.p_state_change_support =
++		context->bw_ctx.dml.vba.DRAMClockChangeSupport[vlevel][context->bw_ctx.dml.vba.maxMpcComb]
++							!= dm_dram_clock_change_unsupported;
++	context->bw_ctx.bw.dcn.clk.dppclk_khz = 0;
++
++	if (context->bw_ctx.bw.dcn.clk.dispclk_khz < dc->debug.min_disp_clk_khz)
++		context->bw_ctx.bw.dcn.clk.dispclk_khz = dc->debug.min_disp_clk_khz;
++
++	for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
++		if (!context->res_ctx.pipe_ctx[i].stream)
++			continue;
++		pipes[pipe_idx].pipe.dest.vstartup_start = get_vstartup(&context->bw_ctx.dml, pipes, pipe_cnt, pipe_idx);
++		pipes[pipe_idx].pipe.dest.vupdate_offset = get_vupdate_offset(&context->bw_ctx.dml, pipes, pipe_cnt, pipe_idx);
++		pipes[pipe_idx].pipe.dest.vupdate_width = get_vupdate_width(&context->bw_ctx.dml, pipes, pipe_cnt, pipe_idx);
++		pipes[pipe_idx].pipe.dest.vready_offset = get_vready_offset(&context->bw_ctx.dml, pipes, pipe_cnt, pipe_idx);
++		if (context->bw_ctx.bw.dcn.clk.dppclk_khz < pipes[pipe_idx].clks_cfg.dppclk_mhz * 1000)
++			context->bw_ctx.bw.dcn.clk.dppclk_khz = pipes[pipe_idx].clks_cfg.dppclk_mhz * 1000;
++		context->res_ctx.pipe_ctx[i].plane_res.bw.dppclk_khz =
++						pipes[pipe_idx].clks_cfg.dppclk_mhz * 1000;
++		context->res_ctx.pipe_ctx[i].pipe_dlg_param = pipes[pipe_idx].pipe.dest;
++		pipe_idx++;
++	}
++	/*save a original dppclock copy*/
++	context->bw_ctx.bw.dcn.clk.bw_dppclk_khz = context->bw_ctx.bw.dcn.clk.dppclk_khz;
++	context->bw_ctx.bw.dcn.clk.bw_dispclk_khz = context->bw_ctx.bw.dcn.clk.dispclk_khz;
++	context->bw_ctx.bw.dcn.clk.max_supported_dppclk_khz = context->bw_ctx.dml.soc.clock_limits[vlevel].dppclk_mhz * 1000;
++	context->bw_ctx.bw.dcn.clk.max_supported_dispclk_khz = context->bw_ctx.dml.soc.clock_limits[vlevel].dispclk_mhz * 1000;
++
++	for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
++		bool cstate_en = context->bw_ctx.dml.vba.PrefetchMode[vlevel][context->bw_ctx.dml.vba.maxMpcComb] != 2;
 +
 +		if (!context->res_ctx.pipe_ctx[i].stream)
 +			continue;
 +
-+		for (j = 0; j < MAX_DWB_PIPES; j++) {
-+			struct dc_writeback_info *writeback_info = &context->res_ctx.pipe_ctx[i].stream->writeback_info[j];
++		context->bw_ctx.dml.funcs.rq_dlg_get_dlg_reg(&context->bw_ctx.dml,
++				&context->res_ctx.pipe_ctx[i].dlg_regs,
++				&context->res_ctx.pipe_ctx[i].ttu_regs,
++				pipes,
++				pipe_cnt,
++				pipe_idx,
++				cstate_en,
++				context->bw_ctx.bw.dcn.clk.p_state_change_support,
++				false, false, true);
 +
-+			if (writeback_info->wb_enabled == false)
-+				continue;
-+
-+			//wb_arb_params = &context->res_ctx.pipe_ctx[i].stream->writeback_info[j].mcif_arb_params;
-+			wb_arb_params = &context->bw_ctx.bw.dcn.bw_writeback.mcif_wb_arb[dwb_pipe];
-+
-+			if (writeback_info->dwb_params.cnv_params.fc_out_format == DWB_OUT_FORMAT_64BPP_ARGB ||
-+				writeback_info->dwb_params.cnv_params.fc_out_format == DWB_OUT_FORMAT_64BPP_RGBA)
-+				wbif_mode = PACKED_444_FP16;
-+			else
-+				wbif_mode = PACKED_444;
-+
-+			for (k = 0; k < sizeof(wb_arb_params->cli_watermark)/sizeof(wb_arb_params->cli_watermark[0]); k++) {
-+				wb_arb_params->cli_watermark[k] = get_wm_writeback_urgent(dml, pipes, pipe_cnt) * 1000;
-+				wb_arb_params->pstate_watermark[k] = get_wm_writeback_dram_clock_change(dml, pipes, pipe_cnt) * 1000;
-+			}
-+			wb_arb_params->time_per_pixel = (1000000 << 6) / context->res_ctx.pipe_ctx[i].stream->phy_pix_clk; /* time_per_pixel should be in u6.6 format */
-+			wb_arb_params->slice_lines = 32;
-+			wb_arb_params->arbitration_slice = 2; /* irrelevant since there is no YUV output */
-+			wb_arb_params->max_scaled_time = dcn3x_calc_max_scaled_time(wb_arb_params->time_per_pixel,
-+					wbif_mode,
-+					wb_arb_params->cli_watermark[0]); /* assume 4 watermark sets have the same value */
-+			wb_arb_params->dram_speed_change_duration = dml->vba.WritebackAllowDRAMClockChangeEndPosition[j] * pipes[0].clks_cfg.refclk_mhz; /* num_clock_cycles = us * MHz */
-+
-+			dwb_pipe++;
-+
-+			if (dwb_pipe >= MAX_DWB_PIPES)
-+				return;
-+		}
-+		if (dwb_pipe >= MAX_DWB_PIPES)
-+			return;
++		context->bw_ctx.dml.funcs.rq_dlg_get_rq_reg(&context->bw_ctx.dml,
++				&context->res_ctx.pipe_ctx[i].rq_regs,
++				pipes[pipe_idx].pipe);
++		pipe_idx++;
 +	}
-+
 +}
 +
-+void dcn3x_set_mcif_arb_params(struct dc *dc, struct dc_state *context,
-+		display_e2e_pipe_params_st *pipes,
-+		int pipe_cnt)
++void dcn20_calculate_dlg_params(struct dc *dc, struct dc_state *context,
++		display_e2e_pipe_params_st *pipes, int pipe_cnt, int vlevel)
 +{
 +	DC_FP_START();
-+	_dcn3x_set_mcif_arb_params(dc, context, pipes, pipe_cnt);
++	_dcn20_calculate_dlg_params(dc, context, pipes, pipe_cnt, vlevel);
 +	DC_FP_END();
 +}
+diff --git a/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.h b/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.h
+new file mode 100644
+index 000000000000..8d23fa8e87ee
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.h
+@@ -0,0 +1,34 @@
++/*
++ * Copyright 2021 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ * Authors: AMD
++ *
++ */
 +
- void dcn3x_populate_dml_writeback_from_context(struct dc *dc,
- 	struct resource_context *res_ctx, display_e2e_pipe_params_st *pipes)
- {
-diff --git a/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.h b/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.h
-index c3d6297d3585..b3b6d8a66c28 100644
---- a/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.h
-+++ b/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.h
-@@ -29,4 +29,7 @@
- void dcn3x_populate_dml_writeback_from_context(struct dc *dc,
- 	struct resource_context *res_ctx, display_e2e_pipe_params_st *pipes);
- 
-+void dcn3x_set_mcif_arb_params(struct dc *dc, struct dc_state *context,
-+	display_e2e_pipe_params_st *pipes, int pipe_cnt);
++#ifndef _FPU_COMMONS_H_
++#define _FPU_COMMONS_H_
 +
- #endif /* _DCN3X_COMMONS_H_ */
++void dcn20_calculate_dlg_params(struct dc *dc, struct dc_state *context,
++		display_e2e_pipe_params_st *pipes,
++		int pipe_cnt,
++		int vlevel);
++
++#endif
 -- 
 2.25.1
 
