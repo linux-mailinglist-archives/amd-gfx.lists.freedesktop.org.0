@@ -1,49 +1,49 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D63330259F
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jan 2021 14:44:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96FA230259C
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jan 2021 14:44:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18D7C6E11C;
-	Mon, 25 Jan 2021 13:44:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71E226E113;
+	Mon, 25 Jan 2021 13:44:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com
- (mail-eopbgr760070.outbound.protection.outlook.com [40.107.76.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C633D89F0A
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 13:44:20 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2052.outbound.protection.outlook.com [40.107.92.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B44E089FD4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 13:44:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VFLaDrUdmX1XrYB9A/ErNLFef0anneNwAC5HTVlwR57hjuWfNZr2V/9eHBQ5ahKlphEDIZ99/y04c8BUeirFgXKVbsiuZt7lmcPCUBAcUNoN9/2dAtqf/3V5rpIc3EqkCsWs6re7nFhoz0axKv93Thy0hwrw0wkJLhhbXi9o3SzY5zW0HogOFaXZGG/CUDPGvhPZ6JkTV9o0qGvwx+oTF3X6H9lBqPxjpH3k/o8JK9Op0ruoP6kuEQfyQn9TlGuhRQ8fK+LwL1pOWMfUshK4FPlO0BlpAxiSX/SEGobiqq5MM2Lv74Fkvo9gDn8bBF2MNoQT1z83GADoDvHc4VuetA==
+ b=MmeUCwupf2Q6ABtGXseC4Z278fK3TvpngClVs4rDXdpilekpVWrrG537D3rrPgv+0PrFboS7NyiXifVzux2ttqsR0K2CQjmWJgp4a1fxcsfuk1MS6ZNX11JZx1TEWIkNaaSuj3ju4CLpZ7j6/sq3FLrl/9ubJYqAZeT1uy3hjUt4BUdYutO+9KoN/G2LdvSf0T94MmYhLLrqIOv6dIP3+H+Tdfw/e34hgQWtUv5ttvxfFfSHLdXRSOvNuzpN3kJq3GuH0opkc6mglnVmbSogvNLJd7EFx+oiv0XjQeS/C/ljgP0Y5R2+S8EHBIvIaiBhLyTtwXrvCkN4cG5NDFdEdg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=042DyyY+E5i0W038hYsMp7iZ/BYonQmOsKy5Oa/YLSU=;
- b=mghJaZnNv1sWihwYfJNrKJByP86eh3Z67ydfUzD53W+S3LtWV9oUlRLm80JlDi70sCd8sluhvTP2dlHAKugsTmN41p8StWls2JZMkjPy5VOtuEHp/icdmdhxUnDUyoIWBFmv77lcGBzNLFJGRUAS6w00SEpI0HzUcAbzL1i6hLCnuolYSRmHwozpJvZWz1ofg/pq7DdhjQbmFBWEZkKeeWtjdNz3S1rHEh+aZ1eBCs6JshE/cP+0wDyra20z6TS2QEZccG95x7ZF+lj2XJT4YiCiOdtE5aBDkV4opMYaKDLcnz81HoOn3Q7rJeqN0Lsty3s2WWiwYi8J6Y3+DnqcYQ==
+ bh=wHQbIRKXIY36C6Ohu9bLpKTVYiuKr1DnkhYT081/oM8=;
+ b=TWY9tqZ+XLKZ6Mdz9TMry74Uh4V5j1Cmhtdrs5qQChCm1+I1Vu8Acr5Vhp6lpBwWC5uT0F0ZC+Xvg1ThJ1PgcOccPOtHw3SetG5ymaNrlzcjzUpKhYeV+cTNPk2wAXhrcXd2utcmT8xIVS5zv3oddroCZA8f+W5Tl3Dd4CRp+LNtooq0T7go/2sqzoLxqPY8RevGczBlAALY0JfAW9C4iJLg3O1Xc/1eS581XiMD/Bpr79t84zmH+xFIyLwnMSsbc9Z5pd921xpvltR55VKi6SG4o+UCQTUEpjl4RY+R4Xm7RkV6jINdGvWLLtMEfXTgZbEyfA1M+FRbjdCRj3GSbA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=042DyyY+E5i0W038hYsMp7iZ/BYonQmOsKy5Oa/YLSU=;
- b=a53I14ZdIBRPPkMVHUx2eoK4ZmvnRiQZjUH6D1cRf/mbCdHDjGTJSCwm88GPdh/m64C95Jl3Q+sPh+9i0Nypqwjm0hWH4lzC6ZaGeH4hGte2vRZDdVVKakJn7Hx7Fltpp3ZnlGY6AXQMdf9acAsP5S8OE2xUHz+VfMTi6JoIR+k=
+ bh=wHQbIRKXIY36C6Ohu9bLpKTVYiuKr1DnkhYT081/oM8=;
+ b=KKKrNtaMSLM/DGBo86FjSzWeU8v0wAE/rPjfertqT46qoNYTldHFItlQt1GprpFY/XKXXeSjB04+lhwx/IGfyeCvXNx0Rli4GHk79dxJ3TvuOXZs0dYDBmdEDkndfsQ5dglbVZOuCJ7kL4x481IJ5/sHH/QileXeMtJSMmeM2NU=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from DM6PR12MB2601.namprd12.prod.outlook.com (2603:10b6:5:45::27) by
- DM6PR12MB4041.namprd12.prod.outlook.com (2603:10b6:5:210::18) with
+ DM6PR12MB4340.namprd12.prod.outlook.com (2603:10b6:5:2a8::7) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3784.15; Mon, 25 Jan 2021 13:44:19 +0000
+ 15.20.3784.13; Mon, 25 Jan 2021 13:44:19 +0000
 Received: from DM6PR12MB2601.namprd12.prod.outlook.com
  ([fe80::e887:3273:c806:d089]) by DM6PR12MB2601.namprd12.prod.outlook.com
  ([fe80::e887:3273:c806:d089%6]) with mapi id 15.20.3784.017; Mon, 25 Jan 2021
  13:44:19 +0000
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [RFC 4/7] drm/amd/display: Move calculate_wm_and_dlg to FPU folder
-Date: Mon, 25 Jan 2021 08:43:10 -0500
-Message-Id: <20210125134313.305184-5-Rodrigo.Siqueira@amd.com>
+Subject: [RFC 5/7] drm/amd/display: Move patch bounding box to FPU folder
+Date: Mon, 25 Jan 2021 08:43:11 -0500
+Message-Id: <20210125134313.305184-6-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210125134313.305184-1-Rodrigo.Siqueira@amd.com>
 References: <20210125134313.305184-1-Rodrigo.Siqueira@amd.com>
@@ -57,51 +57,51 @@ Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60:7f86:f3af:1efb:628a)
  by YTXPR0101CA0024.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::37) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.12 via Frontend
- Transport; Mon, 25 Jan 2021 13:44:18 +0000
+ Transport; Mon, 25 Jan 2021 13:44:19 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: d18b0f9a-1b35-4827-b929-08d8c137506c
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4041:
+X-MS-Office365-Filtering-Correlation-Id: 1a428c5b-07cc-4bc1-ea9f-08d8c13750d0
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4340:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4041795C7D1177288D845EBF98BD9@DM6PR12MB4041.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB43408E283BAEED90791B13B598BD9@DM6PR12MB4340.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:43;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WjNvPLsF1XgawpyNuV8IUbjODvqGoQAj6xiu32rbL+NhmtiZdayHDnMiwLtYfOSMDfsldMPFF9WEzGLO4CHjUo+61rZjmBbafZrnjTQvpe+D9QIWR8aZZjAA/K7WLFh6UtSXaqMnJDGt2sLHLrsovi52i04QHLtDa5BxREfizc5G4fB4ulgrBJFg7iY/U+vxTZri0t40kcGMectHFwFcAOuFbpnPN0guL4oFLHqH9WRca/ynmVxDgZxzL/7p1TT2l+FJRH8k5dk8hhgtHYL4LKJPOJTM3pqUIhZ1XeqY+xt4RaNlt2mBfSF6s/BSio+8dfG9vvq1kGvJ6Rtxc6TUa1yLuznNJPP3gdLeE6QLVaoIyxpSKQHYefXoKQMlaKT1b8wPfMH4+KjRxEam6RVUBQ==
+X-Microsoft-Antispam-Message-Info: pA7YMOQ2mLMMrl+WV1oyuKtlQguQE3RuBo5O21wl4brwtXn/efvZT/HYENzor38R1fkgTxXPIR67PjFpzCeDpCNZmaxk22BIUDfaibPl5Pq1JncOb2T8OQeZMuc8PMtC3mc9tgRq0viKotDxI7++BQ1opPkzL38kFmEU1PJcnUYeiqqgcEOgS5MMRJC/UlD0K+LuAsolzNrCU0mXPeYrgxBl21/1366e68M+HQDIjZLka0iKB/9CIx09NwrJngCIgioEYVVNejN3UFNcZKH62wxYxgvlpStz/662NNXHz+F0gb+XQxhEyQW6dhm/bihPIyd0NlPLzmpl5kWkLwxbGtiXaOA6DHi3C3QC5X26xfrq5PzFDoedDL/HdMKZfL9TnK62ckzvWthUb15xu1AIXw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB2601.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(136003)(396003)(366004)(39860400002)(346002)(2616005)(316002)(16526019)(4326008)(6916009)(1076003)(30864003)(66946007)(5660300002)(66556008)(478600001)(66476007)(54906003)(6506007)(6666004)(52116002)(36756003)(8936002)(6512007)(83380400001)(8676002)(2906002)(86362001)(6486002)(186003);
+ SFS:(4636009)(396003)(346002)(366004)(39860400002)(136003)(376002)(52116002)(54906003)(6512007)(16526019)(6506007)(5660300002)(4326008)(8936002)(316002)(83380400001)(186003)(2906002)(66556008)(66946007)(66476007)(478600001)(6486002)(86362001)(2616005)(8676002)(6666004)(6916009)(1076003)(36756003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?TWsCHAV/L/vNN2lOajwmhp6Rw9VPNj6qJvNQ28dQH+zWu23+Hzs8efr4rJ8F?=
- =?us-ascii?Q?r7G2Yk/wF9TYFInj3vWRWyypYz9qEA7ekINUkbqr/4Lk+0cgdZcU1F9oSuoq?=
- =?us-ascii?Q?Wycl3YeenS5VaJNwfShmx7vIyw6iYiIZmnQGms3ZzSkc/+v55aygc2+xJI/O?=
- =?us-ascii?Q?Vwx5Es/uBWdwso3Yl4gagIGHEaygZQQc361Q7MZCN+Md6H5MDj5ZgDRhVwMw?=
- =?us-ascii?Q?vTSGMv7jEnntLdfLecux0v8TloTG9/1xXeWdzTzGy46XzH2zMAFUh4G04PXS?=
- =?us-ascii?Q?Jo32r2WGJRu7NQgs0PquWMJB6uRXzMsI/rDvvJ/th9J4OVSdPO26l2OnYdfH?=
- =?us-ascii?Q?5TooOaDQRi0aOCwdGw9KbmoASXcIi5deDlgwyK0kdlcnfUx/WRi6HQYzKk2B?=
- =?us-ascii?Q?0127TxKfy6C/CkcobjMOAiwibihCYW713Zkd6L2LIXE6ardghlWiUBOeDtkD?=
- =?us-ascii?Q?Gr9in0K5D85VKT82bbXs7R8SEW5hj2wLNobI/tbY+rLGyVDgoDKhSwuBKG3u?=
- =?us-ascii?Q?WNzWacp9mK4dnP5ULvXBlf0biGl2t0r+he/HOQjGmCMWPCCSExSbCjVhru/s?=
- =?us-ascii?Q?oi9gcsUNQAFZVlCRyXz9vcWIuLPqY/EL/cdlbSmoDNLSdgcB05C3QMzUBzVH?=
- =?us-ascii?Q?V+wUtiLtmjbxarQ6ZQZBqNyTBJDouNEDKb8TsZUUJMamovfULSn/9TDS26dL?=
- =?us-ascii?Q?qC89PjOwLYyZzwLPDQOi6GlzwrsjN3gfOghQMKNKCPXciWKk+PwuZHN1obuc?=
- =?us-ascii?Q?2mKXWvuI28zN/15p7TR7Y2KZYRLSsZjiwwty/FkuK90umW9Q9gVlWEWqCIit?=
- =?us-ascii?Q?jQpQIq9K6SxmCv0A03Q8wGMj6G7lmUHwRJxdebjotyQ/dKxvH9AunRZCOok1?=
- =?us-ascii?Q?2NTkbtmzFRrAaYGHYap5ymAtbAqgw7fokHhf+NEFWmtiQm+U6kFCvUkm3IMb?=
- =?us-ascii?Q?ip+dljc97Ehlxhj383d1FkYSvRQ+GZQ8cz0dITVnLBj00v4AGeEum4ImHjpi?=
- =?us-ascii?Q?NCFpz78T8LOTDs/qjDzAsdMKFerDgvO/Qr+cHtHCmdgTdfPmn++jlhI/OwH1?=
- =?us-ascii?Q?qkxL1u5m0IStZm5s7dqLbLQKHXWGGnGvUmtkkSokEMYU872JIsKZ7WxbdyUH?=
- =?us-ascii?Q?eA5iYR+HUTJLYCn8I9eGxrzbVyMs+FSo2Q=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?ia4/RfOApdEaqYMxMw+57iviiqFanWAoNamwL6g5KoQHE+FyyyQE2jJ3lX2D?=
+ =?us-ascii?Q?kneTxYnz3PLoSVrSkD/ThKV3YES9bbDjt8Jvv1woGrURkGPYSTTG0sDdlsCI?=
+ =?us-ascii?Q?rAgYEDOjj8VCEbScDVEMxfsmJ46YtfXvS8vq8yxS9deNm+I89FoovmVAxeaQ?=
+ =?us-ascii?Q?JSmAv3Pj3otw6OMPvSBxr0dnyPrK6s5/rcSD0bjEa5S/oI0mzUz3qedZdX7j?=
+ =?us-ascii?Q?Eudqm6sgEmlsN4teYZUXr6GfMQBWpEWenwmKyTt+jcm29jpHYggfO5m96cIB?=
+ =?us-ascii?Q?CVUiWswAog8mJErjjf0O8kYjNnfKv6eESMnWOmUlDnqVnl02gcC3aoXJcS3S?=
+ =?us-ascii?Q?qn/KIQfasFwmAAxkj5kMpGHLwneTzuTFtSRqmXjkop4QCt2ls6mZzrHNRSiU?=
+ =?us-ascii?Q?PFvTq4udUEdqbHZE4FAX3apsHDNg93QNn2O6p5gXfrZ8ZHm6vT9q9dWGjICm?=
+ =?us-ascii?Q?j2i7TZbz/BD//bpy5GxOf752USC+ms/RsuL150sqUommlOrb2BCo1GT6w3G1?=
+ =?us-ascii?Q?4hdqBf28qIRJi5he+3hERN4VADuXHJG9/T31jDuQ+GpRbhgzJSvUA/obdeNn?=
+ =?us-ascii?Q?Y9BMd3NIo6ZrckfmO/LN3oZzTgDK/hPfKsemMGtctJW2ra9SLZcv7VB7higo?=
+ =?us-ascii?Q?QXmbJBzh45gy815uiKN3sj9b8OkDXitWL12FvVEM9hIEcy/BXmMeCuqhOVzp?=
+ =?us-ascii?Q?GAX2F/pBTP9kX2ixsvNMd8Bf0aUYCaR47Bz8wy8hOsIzivmqiJRuNISWvWEG?=
+ =?us-ascii?Q?7dwiSdYCis/SXV1Cgryj9hTq2KqdoBnp2Pb7lO3q6DkYZ2fQ5so38+Imp6OI?=
+ =?us-ascii?Q?RaP1AKV/38ex1Gpq79I4cOLv+B1cvvX5wf7C/rnB6zkGMbpGNBVuKvrbZ6an?=
+ =?us-ascii?Q?0AgcNlI+ZVNtHVm74RHGIxFfSJsygdOSVBouPdX5I9Yr/64pNAX8aSXnS8mG?=
+ =?us-ascii?Q?InXQ7NibGLksSTaa79tUFRUvkoN1tuDWCo+mCIP6slynIy/69hVnfQm1lzll?=
+ =?us-ascii?Q?MQVUkr9OhXhvyOlRm2/laetOmf9SyEAVsBq7a+buY3sBp3V1iChSgmni3F4z?=
+ =?us-ascii?Q?CjXYQVQemIt0u2shDM6rkk70XrC7TK4VgOoc7ggPXihIkMnGNykNCl3/v1us?=
+ =?us-ascii?Q?znFM2NNOlxZ1yrSucrI1ZdexpkJqoTErQg=3D=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d18b0f9a-1b35-4827-b929-08d8c137506c
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a428c5b-07cc-4bc1-ea9f-08d8c13750d0
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2601.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2021 13:44:19.1378 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2021 13:44:19.7485 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FzFOWxuXvF2mhdXjgmReF4btZV8IjJQAlPs7fOI4LQj5ahAY445FjEEmngSYqzryF2HpMoffbkQYghFfkM2ddg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4041
+X-MS-Exchange-CrossTenant-UserPrincipalName: PruZh6z6B1QKqmecA9ZVl/47PXSwS4wrecg/2zU7kMlHyVATO/pdW9THfV0JNXb1u+wPIqwMFQO+TPBJnvQ/Dw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4340
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,468 +122,214 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The function dcn3x_calculate_wm_and_dlg and
-dcn30_calculate_wm_and_dlg_fp require access to FPU operation; for this
-reason, this commit moves this function to the fpu directory.
+The function dcn20_patch_bounding_box is shared from DCN2 to DCN3 and
+uses FPU operations. For this reason, this commit moves this function to
+the fpu_commons file.
 
 Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../drm/amd/display/dc/dcn30/dcn30_resource.c | 181 +-----------------
- .../drm/amd/display/dc/dcn30/dcn30_resource.h |   5 -
- .../amd/display/dc/dcn301/dcn301_resource.c   |   2 +-
- .../amd/display/dc/dcn302/dcn302_resource.c   |   2 +-
- .../display/dc/fpu_operation/dcn3x_commons.c  | 177 +++++++++++++++++
- .../display/dc/fpu_operation/dcn3x_commons.h  |   3 +
- 6 files changed, 183 insertions(+), 187 deletions(-)
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c | 36 +---------------
+ .../drm/amd/display/dc/dcn20/dcn20_resource.h |  3 --
+ .../drm/amd/display/dc/dcn30/dcn30_resource.c |  2 +-
+ .../amd/display/dc/dcn301/dcn301_resource.c   |  3 +-
+ .../amd/display/dc/dcn302/dcn302_resource.c   |  3 +-
+ .../display/dc/fpu_operation/fpu_commons.c    | 43 +++++++++++++++++++
+ .../display/dc/fpu_operation/fpu_commons.h    |  3 ++
+ 7 files changed, 52 insertions(+), 41 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index d5bf740b408c..e9257999148e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -3472,40 +3472,6 @@ void dcn20_update_bounding_box(struct dc *dc, struct _vcs_dpi_soc_bounding_box_s
+ 	bb->clock_limits[num_calculated_states].state = bb->num_states;
+ }
+ 
+-void dcn20_patch_bounding_box(struct dc *dc, struct _vcs_dpi_soc_bounding_box_st *bb)
+-{
+-	if ((int)(bb->sr_exit_time_us * 1000) != dc->bb_overrides.sr_exit_time_ns
+-			&& dc->bb_overrides.sr_exit_time_ns) {
+-		bb->sr_exit_time_us = dc->bb_overrides.sr_exit_time_ns / 1000.0;
+-	}
+-
+-	if ((int)(bb->sr_enter_plus_exit_time_us * 1000)
+-				!= dc->bb_overrides.sr_enter_plus_exit_time_ns
+-			&& dc->bb_overrides.sr_enter_plus_exit_time_ns) {
+-		bb->sr_enter_plus_exit_time_us =
+-				dc->bb_overrides.sr_enter_plus_exit_time_ns / 1000.0;
+-	}
+-
+-	if ((int)(bb->urgent_latency_us * 1000) != dc->bb_overrides.urgent_latency_ns
+-			&& dc->bb_overrides.urgent_latency_ns) {
+-		bb->urgent_latency_us = dc->bb_overrides.urgent_latency_ns / 1000.0;
+-	}
+-
+-	if ((int)(bb->dram_clock_change_latency_us * 1000)
+-				!= dc->bb_overrides.dram_clock_change_latency_ns
+-			&& dc->bb_overrides.dram_clock_change_latency_ns) {
+-		bb->dram_clock_change_latency_us =
+-				dc->bb_overrides.dram_clock_change_latency_ns / 1000.0;
+-	}
+-
+-	if ((int)(bb->dummy_pstate_latency_us * 1000)
+-				!= dc->bb_overrides.dummy_clock_change_latency_ns
+-			&& dc->bb_overrides.dummy_clock_change_latency_ns) {
+-		bb->dummy_pstate_latency_us =
+-				dc->bb_overrides.dummy_clock_change_latency_ns / 1000.0;
+-	}
+-}
+-
+ static struct _vcs_dpi_soc_bounding_box_st *get_asic_rev_soc_bb(
+ 	uint32_t hw_internal_rev)
+ {
+@@ -3580,7 +3546,7 @@ static bool init_soc_bounding_box(struct dc *dc,
+ 
+ 	loaded_ip->max_num_otg = pool->base.res_cap->num_timing_generator;
+ 	loaded_ip->max_num_dpp = pool->base.pipe_count;
+-	dcn20_patch_bounding_box(dc, loaded_bb);
++	dcn_patch_bounding_box(dc, loaded_bb);
+ 
+ 	return true;
+ }
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
+index 11ec655a18e3..4e6fda59ec29 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.h
+@@ -167,9 +167,6 @@ enum dc_status dcn20_add_dsc_to_stream_resource(struct dc *dc, struct dc_state *
+ enum dc_status dcn20_remove_stream_from_ctx(struct dc *dc, struct dc_state *new_ctx, struct dc_stream_state *dc_stream);
+ enum dc_status dcn20_patch_unknown_plane_state(struct dc_plane_state *plane_state);
+ 
+-void dcn20_patch_bounding_box(
+-		struct dc *dc,
+-		struct _vcs_dpi_soc_bounding_box_st *bb);
+ void dcn20_cap_soc_clocks(
+ 		struct _vcs_dpi_soc_bounding_box_st *bb,
+ 		struct pp_smu_nv_clock_table max_clocks);
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index c97533b4ad09..4edebee00095 100644
+index 4edebee00095..98acc8be698f 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -1938,185 +1938,6 @@ static noinline bool dcn30_internal_validate_bw(
- 	return out;
- }
+@@ -1563,7 +1563,7 @@ static bool init_soc_bounding_box(struct dc *dc,
+ 	loaded_ip->max_num_otg = pool->base.res_cap->num_timing_generator;
+ 	loaded_ip->max_num_dpp = pool->base.pipe_count;
+ 	loaded_ip->clamp_min_dcfclk = dc->config.clamp_min_dcfclk;
+-	dcn20_patch_bounding_box(dc, loaded_bb);
++	dcn_patch_bounding_box(dc, loaded_bb);
  
--/*
-- * This must be noinline to ensure anything that deals with FP registers
-- * is contained within this call; previously our compiling with hard-float
-- * would result in fp instructions being emitted outside of the boundaries
-- * of the DC_FP_START/END macros, which makes sense as the compiler has no
-- * idea about what is wrapped and what is not
-- *
-- * This is largely just a workaround to avoid breakage introduced with 5.6,
-- * ideally all fp-using code should be moved into its own file, only that
-- * should be compiled with hard-float, and all code exported from there
-- * should be strictly wrapped with DC_FP_START/END
-- */
--static noinline void dcn30_calculate_wm_and_dlg_fp(
--		struct dc *dc, struct dc_state *context,
--		display_e2e_pipe_params_st *pipes,
--		int pipe_cnt,
--		int vlevel)
--{
--	int i, pipe_idx;
--	double dcfclk = context->bw_ctx.dml.vba.DCFCLKState[vlevel][context->bw_ctx.dml.vba.maxMpcComb];
--	bool pstate_en = context->bw_ctx.dml.vba.DRAMClockChangeSupport[vlevel][context->bw_ctx.dml.vba.maxMpcComb] !=
--			dm_dram_clock_change_unsupported;
--
--	if (context->bw_ctx.dml.soc.min_dcfclk > dcfclk)
--		dcfclk = context->bw_ctx.dml.soc.min_dcfclk;
--
--	pipes[0].clks_cfg.voltage = vlevel;
--	pipes[0].clks_cfg.dcfclk_mhz = dcfclk;
--	pipes[0].clks_cfg.socclk_mhz = context->bw_ctx.dml.soc.clock_limits[vlevel].socclk_mhz;
--
--	/* Set B:
--	 * DCFCLK: 1GHz or min required above 1GHz
--	 * FCLK/UCLK: Max
--	 */
--	if (dc->clk_mgr->bw_params->wm_table.nv_entries[WM_B].valid) {
--		if (vlevel == 0) {
--			pipes[0].clks_cfg.voltage = 1;
--			pipes[0].clks_cfg.dcfclk_mhz = context->bw_ctx.dml.soc.clock_limits[0].dcfclk_mhz;
--		}
--		context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_B].dml_input.pstate_latency_us;
--		context->bw_ctx.dml.soc.sr_enter_plus_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_B].dml_input.sr_enter_plus_exit_time_us;
--		context->bw_ctx.dml.soc.sr_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_B].dml_input.sr_exit_time_us;
--	}
--	context->bw_ctx.bw.dcn.watermarks.b.urgent_ns = get_wm_urgent(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.b.cstate_pstate.cstate_enter_plus_exit_ns = get_wm_stutter_enter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.b.cstate_pstate.cstate_exit_ns = get_wm_stutter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.b.cstate_pstate.pstate_change_ns = get_wm_dram_clock_change(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.b.pte_meta_urgent_ns = get_wm_memory_trip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.b.frac_urg_bw_nom = get_fraction_of_urgent_bandwidth(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.b.frac_urg_bw_flip = get_fraction_of_urgent_bandwidth_imm_flip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.b.urgent_latency_ns = get_urgent_latency(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--
--	pipes[0].clks_cfg.voltage = vlevel;
--	pipes[0].clks_cfg.dcfclk_mhz = dcfclk;
--
--	/* Set D:
--	 * DCFCLK: Min Required
--	 * FCLK(proportional to UCLK): 1GHz or Max
--	 * MALL stutter, sr_enter_exit = 4, sr_exit = 2us
--	 */
--	/*
--	if (dc->clk_mgr->bw_params->wm_table.nv_entries[WM_D].valid) {
--		context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_D].dml_input.pstate_latency_us;
--		context->bw_ctx.dml.soc.sr_enter_plus_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_D].dml_input.sr_enter_plus_exit_time_us;
--		context->bw_ctx.dml.soc.sr_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_D].dml_input.sr_exit_time_us;
--	}
--	context->bw_ctx.bw.dcn.watermarks.d.urgent_ns = get_wm_urgent(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.d.cstate_pstate.cstate_enter_plus_exit_ns = get_wm_stutter_enter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.d.cstate_pstate.cstate_exit_ns = get_wm_stutter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.d.cstate_pstate.pstate_change_ns = get_wm_dram_clock_change(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.d.pte_meta_urgent_ns = get_wm_memory_trip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.d.frac_urg_bw_nom = get_fraction_of_urgent_bandwidth(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.d.frac_urg_bw_flip = get_fraction_of_urgent_bandwidth_imm_flip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.d.urgent_latency_ns = get_urgent_latency(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	*/
--
--	/* Set C:
--	 * DCFCLK: Min Required
--	 * FCLK(proportional to UCLK): 1GHz or Max
--	 * pstate latency overridden to 5us
--	 */
--	if (dc->clk_mgr->bw_params->wm_table.nv_entries[WM_C].valid) {
--		unsigned int min_dram_speed_mts = context->bw_ctx.dml.vba.DRAMSpeed;
--		unsigned int min_dram_speed_mts_margin = 160;
--
--		context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->dummy_pstate_table[0].dummy_pstate_latency_us;
--
--		if (context->bw_ctx.dml.vba.DRAMClockChangeSupport[vlevel][context->bw_ctx.dml.vba.maxMpcComb] == dm_dram_clock_change_unsupported)
--			min_dram_speed_mts = dc->clk_mgr->bw_params->clk_table.entries[dc->clk_mgr->bw_params->clk_table.num_entries - 1].memclk_mhz * 16;
--
--		for (i = 3; i > 0; i--) {
--			if ((min_dram_speed_mts + min_dram_speed_mts_margin > dc->clk_mgr->bw_params->dummy_pstate_table[i].dram_speed_mts) &&
--					(min_dram_speed_mts - min_dram_speed_mts_margin < dc->clk_mgr->bw_params->dummy_pstate_table[i].dram_speed_mts))
--				context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->dummy_pstate_table[i].dummy_pstate_latency_us;
--		}
--
--		context->bw_ctx.dml.soc.sr_enter_plus_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_C].dml_input.sr_enter_plus_exit_time_us;
--		context->bw_ctx.dml.soc.sr_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_C].dml_input.sr_exit_time_us;
--	}
--	context->bw_ctx.bw.dcn.watermarks.c.urgent_ns = get_wm_urgent(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.c.cstate_pstate.cstate_enter_plus_exit_ns = get_wm_stutter_enter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.c.cstate_pstate.cstate_exit_ns = get_wm_stutter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.c.cstate_pstate.pstate_change_ns = get_wm_dram_clock_change(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.c.pte_meta_urgent_ns = get_wm_memory_trip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.c.frac_urg_bw_nom = get_fraction_of_urgent_bandwidth(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.c.frac_urg_bw_flip = get_fraction_of_urgent_bandwidth_imm_flip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	context->bw_ctx.bw.dcn.watermarks.c.urgent_latency_ns = get_urgent_latency(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--
--	if (!pstate_en) {
--		/* The only difference between A and C is p-state latency, if p-state is not supported we want to
--		 * calculate DLG based on dummy p-state latency, and max out the set A p-state watermark
--		 */
--		context->bw_ctx.bw.dcn.watermarks.a = context->bw_ctx.bw.dcn.watermarks.c;
--		context->bw_ctx.bw.dcn.watermarks.a.cstate_pstate.pstate_change_ns = 0;
--	} else {
--		/* Set A:
--		 * DCFCLK: Min Required
--		 * FCLK(proportional to UCLK): 1GHz or Max
--		 *
--		 * Set A calculated last so that following calculations are based on Set A
--		 */
--		if (dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].valid) {
--			context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].dml_input.pstate_latency_us;
--			context->bw_ctx.dml.soc.sr_enter_plus_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].dml_input.sr_enter_plus_exit_time_us;
--			context->bw_ctx.dml.soc.sr_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].dml_input.sr_exit_time_us;
--		}
--		context->bw_ctx.bw.dcn.watermarks.a.urgent_ns = get_wm_urgent(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--		context->bw_ctx.bw.dcn.watermarks.a.cstate_pstate.cstate_enter_plus_exit_ns = get_wm_stutter_enter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--		context->bw_ctx.bw.dcn.watermarks.a.cstate_pstate.cstate_exit_ns = get_wm_stutter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--		context->bw_ctx.bw.dcn.watermarks.a.cstate_pstate.pstate_change_ns = get_wm_dram_clock_change(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--		context->bw_ctx.bw.dcn.watermarks.a.pte_meta_urgent_ns = get_wm_memory_trip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--		context->bw_ctx.bw.dcn.watermarks.a.frac_urg_bw_nom = get_fraction_of_urgent_bandwidth(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--		context->bw_ctx.bw.dcn.watermarks.a.frac_urg_bw_flip = get_fraction_of_urgent_bandwidth_imm_flip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--		context->bw_ctx.bw.dcn.watermarks.a.urgent_latency_ns = get_urgent_latency(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
--	}
--
--	context->perf_params.stutter_period_us = context->bw_ctx.dml.vba.StutterPeriod;
--
--	/* Make set D = set A until set D is enabled */
--	context->bw_ctx.bw.dcn.watermarks.d = context->bw_ctx.bw.dcn.watermarks.a;
--
--	for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
--		if (!context->res_ctx.pipe_ctx[i].stream)
--			continue;
--
--		pipes[pipe_idx].clks_cfg.dispclk_mhz = get_dispclk_calculated(&context->bw_ctx.dml, pipes, pipe_cnt);
--		pipes[pipe_idx].clks_cfg.dppclk_mhz = get_dppclk_calculated(&context->bw_ctx.dml, pipes, pipe_cnt, pipe_idx);
--
--		if (dc->config.forced_clocks) {
--			pipes[pipe_idx].clks_cfg.dispclk_mhz = context->bw_ctx.dml.soc.clock_limits[0].dispclk_mhz;
--			pipes[pipe_idx].clks_cfg.dppclk_mhz = context->bw_ctx.dml.soc.clock_limits[0].dppclk_mhz;
--		}
--		if (dc->debug.min_disp_clk_khz > pipes[pipe_idx].clks_cfg.dispclk_mhz * 1000)
--			pipes[pipe_idx].clks_cfg.dispclk_mhz = dc->debug.min_disp_clk_khz / 1000.0;
--		if (dc->debug.min_dpp_clk_khz > pipes[pipe_idx].clks_cfg.dppclk_mhz * 1000)
--			pipes[pipe_idx].clks_cfg.dppclk_mhz = dc->debug.min_dpp_clk_khz / 1000.0;
--
--		pipe_idx++;
--	}
--
--	dcn20_calculate_dlg_params(dc, context, pipes, pipe_cnt, vlevel);
--
--	if (!pstate_en)
--		/* Restore full p-state latency */
--		context->bw_ctx.dml.soc.dram_clock_change_latency_us =
--				dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].dml_input.pstate_latency_us;
--}
--
--void dcn30_calculate_wm_and_dlg(
--		struct dc *dc, struct dc_state *context,
--		display_e2e_pipe_params_st *pipes,
--		int pipe_cnt,
--		int vlevel)
--{
--	DC_FP_START();
--	dcn30_calculate_wm_and_dlg_fp(dc, context, pipes, pipe_cnt, vlevel);
--	DC_FP_END();
--}
--
- bool dcn30_validate_bandwidth(struct dc *dc,
- 		struct dc_state *context,
- 		bool fast_validate)
-@@ -2317,7 +2138,7 @@ static const struct resource_funcs dcn30_res_pool_funcs = {
- 	.link_enc_create = dcn30_link_encoder_create,
- 	.panel_cntl_create = dcn30_panel_cntl_create,
- 	.validate_bandwidth = dcn30_validate_bandwidth,
--	.calculate_wm_and_dlg = dcn30_calculate_wm_and_dlg,
-+	.calculate_wm_and_dlg = dcn3x_calculate_wm_and_dlg,
- 	.populate_dml_pipes = dcn30_populate_dml_pipes_from_context,
- 	.acquire_idle_pipe_for_layer = dcn20_acquire_idle_pipe_for_layer,
- 	.add_stream_to_ctx = dcn30_add_stream_to_ctx,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
-index 42960574cce9..694ae4e4e88e 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
-@@ -44,11 +44,6 @@ struct resource_pool *dcn30_create_resource_pool(
- 
- bool dcn30_validate_bandwidth(struct dc *dc, struct dc_state *context,
- 		bool fast_validate);
--void dcn30_calculate_wm_and_dlg(
--		struct dc *dc, struct dc_state *context,
--		display_e2e_pipe_params_st *pipes,
--		int pipe_cnt,
--		int vlevel);
- 
- int dcn30_populate_dml_pipes_from_context(
- 	struct dc *dc, struct dc_state *context,
+ 	if (dc->ctx->dc_bios->funcs->get_soc_bb_info) {
+ 		struct bp_soc_bb_info bb_info = {0};
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-index 8369b009a853..934df194db38 100644
+index 934df194db38..e56925a89e4a 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn301/dcn301_resource.c
-@@ -1625,7 +1625,7 @@ static struct resource_funcs dcn301_res_pool_funcs = {
- 	.link_enc_create = dcn301_link_encoder_create,
- 	.panel_cntl_create = dcn301_panel_cntl_create,
- 	.validate_bandwidth = dcn30_validate_bandwidth,
--	.calculate_wm_and_dlg = dcn30_calculate_wm_and_dlg,
-+	.calculate_wm_and_dlg = dcn3x_calculate_wm_and_dlg,
- 	.populate_dml_pipes = dcn30_populate_dml_pipes_from_context,
- 	.acquire_idle_pipe_for_layer = dcn20_acquire_idle_pipe_for_layer,
- 	.add_stream_to_ctx = dcn30_add_stream_to_ctx,
+@@ -36,6 +36,7 @@
+ 
+ #include "dcn20/dcn20_resource.h"
+ #include "fpu_operation/dcn3x_commons.h"
++#include "fpu_operation/fpu_commons.h"
+ 
+ #include "dcn10/dcn10_ipp.h"
+ #include "dcn301/dcn301_hubbub.h"
+@@ -1502,7 +1503,7 @@ static bool init_soc_bounding_box(struct dc *dc,
+ 
+ 	loaded_ip->max_num_otg = pool->base.res_cap->num_timing_generator;
+ 	loaded_ip->max_num_dpp = pool->base.pipe_count;
+-	dcn20_patch_bounding_box(dc, loaded_bb);
++	dcn_patch_bounding_box(dc, loaded_bb);
+ 
+ 	if (dc->ctx->dc_bios->funcs->get_soc_bb_info) {
+ 		struct bp_soc_bb_info bb_info = {0};
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-index 0554a3dd3214..539757ec3348 100644
+index 539757ec3348..8a62ff16347a 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-@@ -1235,7 +1235,7 @@ static struct resource_funcs dcn302_res_pool_funcs = {
- 		.link_enc_create = dcn302_link_encoder_create,
- 		.panel_cntl_create = dcn302_panel_cntl_create,
- 		.validate_bandwidth = dcn30_validate_bandwidth,
--		.calculate_wm_and_dlg = dcn30_calculate_wm_and_dlg,
-+		.calculate_wm_and_dlg = dcn3x_calculate_wm_and_dlg,
- 		.populate_dml_pipes = dcn30_populate_dml_pipes_from_context,
- 		.acquire_idle_pipe_for_layer = dcn20_acquire_idle_pipe_for_layer,
- 		.add_stream_to_ctx = dcn30_add_stream_to_ctx,
-diff --git a/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.c b/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.c
-index 06e9bd6d4d28..c3b06a8cf765 100644
---- a/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.c
-+++ b/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.c
-@@ -42,6 +42,7 @@
-  *   kernel_fpu_begin/end macros.
-  */
+@@ -43,6 +43,7 @@
+ #include "dcn20/dcn20_dsc.h"
+ #include "dcn20/dcn20_resource.h"
+ #include "fpu_operation/dcn3x_commons.h"
++#include "fpu_operation/fpu_commons.h"
  
-+#include "clk_mgr.h"
- #include "resource.h"
- #include "dml/dcn30/display_mode_vba_30.h"
+ #include "dcn10/dcn10_resource.h"
  
-@@ -213,6 +214,182 @@ static void _dcn3x_set_mcif_arb_params(struct dc *dc, struct dc_state *context,
- 
+@@ -1098,7 +1099,7 @@ static bool init_soc_bounding_box(struct dc *dc,  struct resource_pool *pool)
+ 	loaded_ip->max_num_otg = pool->pipe_count;
+ 	loaded_ip->max_num_dpp = pool->pipe_count;
+ 	loaded_ip->clamp_min_dcfclk = dc->config.clamp_min_dcfclk;
+-	dcn20_patch_bounding_box(dc, loaded_bb);
++	dcn_patch_bounding_box(dc, loaded_bb);
+ 	return true;
  }
  
-+/*
-+ * This must be noinline to ensure anything that deals with FP registers
-+ * is contained within this call; previously our compiling with hard-float
-+ * would result in fp instructions being emitted outside of the boundaries
-+ * of the DC_FP_START/END macros, which makes sense as the compiler has no
-+ * idea about what is wrapped and what is not
-+ *
-+ * This is largely just a workaround to avoid breakage introduced with 5.6,
-+ * ideally all fp-using code should be moved into its own file, only that
-+ * should be compiled with hard-float, and all code exported from there
-+ * should be strictly wrapped with DC_FP_START/END
-+ */
-+static noinline void _dcn30_calculate_wm_and_dlg_fp(struct dc *dc,
-+		struct dc_state *context, display_e2e_pipe_params_st *pipes,
-+		int pipe_cnt, int vlevel)
+diff --git a/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.c b/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.c
+index d2089a1dc630..5ffab6715085 100644
+--- a/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.c
++++ b/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.c
+@@ -93,6 +93,41 @@ static void _dcn20_calculate_dlg_params(struct dc *dc, struct dc_state *context,
+ 	}
+ }
+ 
++static void _dcn_patch_bounding_box(struct dc *dc,
++				     struct _vcs_dpi_soc_bounding_box_st *bb)
 +{
-+	int i, pipe_idx;
-+	double dcfclk = context->bw_ctx.dml.vba.DCFCLKState[vlevel][context->bw_ctx.dml.vba.maxMpcComb];
-+	bool pstate_en = context->bw_ctx.dml.vba.DRAMClockChangeSupport[vlevel][context->bw_ctx.dml.vba.maxMpcComb] !=
-+			dm_dram_clock_change_unsupported;
-+
-+	if (context->bw_ctx.dml.soc.min_dcfclk > dcfclk)
-+		dcfclk = context->bw_ctx.dml.soc.min_dcfclk;
-+
-+	pipes[0].clks_cfg.voltage = vlevel;
-+	pipes[0].clks_cfg.dcfclk_mhz = dcfclk;
-+	pipes[0].clks_cfg.socclk_mhz = context->bw_ctx.dml.soc.clock_limits[vlevel].socclk_mhz;
-+
-+	/* Set B:
-+	 * DCFCLK: 1GHz or min required above 1GHz
-+	 * FCLK/UCLK: Max
-+	 */
-+	if (dc->clk_mgr->bw_params->wm_table.nv_entries[WM_B].valid) {
-+		if (vlevel == 0) {
-+			pipes[0].clks_cfg.voltage = 1;
-+			pipes[0].clks_cfg.dcfclk_mhz = context->bw_ctx.dml.soc.clock_limits[0].dcfclk_mhz;
-+		}
-+		context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_B].dml_input.pstate_latency_us;
-+		context->bw_ctx.dml.soc.sr_enter_plus_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_B].dml_input.sr_enter_plus_exit_time_us;
-+		context->bw_ctx.dml.soc.sr_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_B].dml_input.sr_exit_time_us;
-+	}
-+	context->bw_ctx.bw.dcn.watermarks.b.urgent_ns = get_wm_urgent(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.b.cstate_pstate.cstate_enter_plus_exit_ns = get_wm_stutter_enter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.b.cstate_pstate.cstate_exit_ns = get_wm_stutter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.b.cstate_pstate.pstate_change_ns = get_wm_dram_clock_change(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.b.pte_meta_urgent_ns = get_wm_memory_trip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.b.frac_urg_bw_nom = get_fraction_of_urgent_bandwidth(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.b.frac_urg_bw_flip = get_fraction_of_urgent_bandwidth_imm_flip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.b.urgent_latency_ns = get_urgent_latency(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+
-+	pipes[0].clks_cfg.voltage = vlevel;
-+	pipes[0].clks_cfg.dcfclk_mhz = dcfclk;
-+
-+	/* Set D:
-+	 * DCFCLK: Min Required
-+	 * FCLK(proportional to UCLK): 1GHz or Max
-+	 * MALL stutter, sr_enter_exit = 4, sr_exit = 2us
-+	 */
-+	/*
-+	if (dc->clk_mgr->bw_params->wm_table.nv_entries[WM_D].valid) {
-+		context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_D].dml_input.pstate_latency_us;
-+		context->bw_ctx.dml.soc.sr_enter_plus_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_D].dml_input.sr_enter_plus_exit_time_us;
-+		context->bw_ctx.dml.soc.sr_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_D].dml_input.sr_exit_time_us;
-+	}
-+	context->bw_ctx.bw.dcn.watermarks.d.urgent_ns = get_wm_urgent(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.d.cstate_pstate.cstate_enter_plus_exit_ns = get_wm_stutter_enter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.d.cstate_pstate.cstate_exit_ns = get_wm_stutter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.d.cstate_pstate.pstate_change_ns = get_wm_dram_clock_change(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.d.pte_meta_urgent_ns = get_wm_memory_trip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.d.frac_urg_bw_nom = get_fraction_of_urgent_bandwidth(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.d.frac_urg_bw_flip = get_fraction_of_urgent_bandwidth_imm_flip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.d.urgent_latency_ns = get_urgent_latency(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	*/
-+
-+	/* Set C:
-+	 * DCFCLK: Min Required
-+	 * FCLK(proportional to UCLK): 1GHz or Max
-+	 * pstate latency overridden to 5us
-+	 */
-+	if (dc->clk_mgr->bw_params->wm_table.nv_entries[WM_C].valid) {
-+		unsigned int min_dram_speed_mts = context->bw_ctx.dml.vba.DRAMSpeed;
-+		unsigned int min_dram_speed_mts_margin = 160;
-+
-+		context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->dummy_pstate_table[0].dummy_pstate_latency_us;
-+
-+		if (context->bw_ctx.dml.vba.DRAMClockChangeSupport[vlevel][context->bw_ctx.dml.vba.maxMpcComb] == dm_dram_clock_change_unsupported)
-+			min_dram_speed_mts = dc->clk_mgr->bw_params->clk_table.entries[dc->clk_mgr->bw_params->clk_table.num_entries - 1].memclk_mhz * 16;
-+
-+		for (i = 3; i > 0; i--) {
-+			if ((min_dram_speed_mts + min_dram_speed_mts_margin > dc->clk_mgr->bw_params->dummy_pstate_table[i].dram_speed_mts) &&
-+					(min_dram_speed_mts - min_dram_speed_mts_margin < dc->clk_mgr->bw_params->dummy_pstate_table[i].dram_speed_mts))
-+				context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->dummy_pstate_table[i].dummy_pstate_latency_us;
-+		}
-+
-+		context->bw_ctx.dml.soc.sr_enter_plus_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_C].dml_input.sr_enter_plus_exit_time_us;
-+		context->bw_ctx.dml.soc.sr_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_C].dml_input.sr_exit_time_us;
-+	}
-+	context->bw_ctx.bw.dcn.watermarks.c.urgent_ns = get_wm_urgent(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.c.cstate_pstate.cstate_enter_plus_exit_ns = get_wm_stutter_enter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.c.cstate_pstate.cstate_exit_ns = get_wm_stutter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.c.cstate_pstate.pstate_change_ns = get_wm_dram_clock_change(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.c.pte_meta_urgent_ns = get_wm_memory_trip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.c.frac_urg_bw_nom = get_fraction_of_urgent_bandwidth(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.c.frac_urg_bw_flip = get_fraction_of_urgent_bandwidth_imm_flip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+	context->bw_ctx.bw.dcn.watermarks.c.urgent_latency_ns = get_urgent_latency(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+
-+	if (!pstate_en) {
-+		/* The only difference between A and C is p-state latency, if p-state is not supported we want to
-+		 * calculate DLG based on dummy p-state latency, and max out the set A p-state watermark
-+		 */
-+		context->bw_ctx.bw.dcn.watermarks.a = context->bw_ctx.bw.dcn.watermarks.c;
-+		context->bw_ctx.bw.dcn.watermarks.a.cstate_pstate.pstate_change_ns = 0;
-+	} else {
-+		/* Set A:
-+		 * DCFCLK: Min Required
-+		 * FCLK(proportional to UCLK): 1GHz or Max
-+		 *
-+		 * Set A calculated last so that following calculations are based on Set A
-+		 */
-+		if (dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].valid) {
-+			context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].dml_input.pstate_latency_us;
-+			context->bw_ctx.dml.soc.sr_enter_plus_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].dml_input.sr_enter_plus_exit_time_us;
-+			context->bw_ctx.dml.soc.sr_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].dml_input.sr_exit_time_us;
-+		}
-+		context->bw_ctx.bw.dcn.watermarks.a.urgent_ns = get_wm_urgent(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+		context->bw_ctx.bw.dcn.watermarks.a.cstate_pstate.cstate_enter_plus_exit_ns = get_wm_stutter_enter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+		context->bw_ctx.bw.dcn.watermarks.a.cstate_pstate.cstate_exit_ns = get_wm_stutter_exit(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+		context->bw_ctx.bw.dcn.watermarks.a.cstate_pstate.pstate_change_ns = get_wm_dram_clock_change(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+		context->bw_ctx.bw.dcn.watermarks.a.pte_meta_urgent_ns = get_wm_memory_trip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+		context->bw_ctx.bw.dcn.watermarks.a.frac_urg_bw_nom = get_fraction_of_urgent_bandwidth(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+		context->bw_ctx.bw.dcn.watermarks.a.frac_urg_bw_flip = get_fraction_of_urgent_bandwidth_imm_flip(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
-+		context->bw_ctx.bw.dcn.watermarks.a.urgent_latency_ns = get_urgent_latency(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
++	if ((int)(bb->sr_exit_time_us * 1000) != dc->bb_overrides.sr_exit_time_ns
++			&& dc->bb_overrides.sr_exit_time_ns) {
++		bb->sr_exit_time_us = dc->bb_overrides.sr_exit_time_ns / 1000.0;
 +	}
 +
-+	context->perf_params.stutter_period_us = context->bw_ctx.dml.vba.StutterPeriod;
-+
-+	/* Make set D = set A until set D is enabled */
-+	context->bw_ctx.bw.dcn.watermarks.d = context->bw_ctx.bw.dcn.watermarks.a;
-+
-+	for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
-+		if (!context->res_ctx.pipe_ctx[i].stream)
-+			continue;
-+
-+		pipes[pipe_idx].clks_cfg.dispclk_mhz = get_dispclk_calculated(&context->bw_ctx.dml, pipes, pipe_cnt);
-+		pipes[pipe_idx].clks_cfg.dppclk_mhz = get_dppclk_calculated(&context->bw_ctx.dml, pipes, pipe_cnt, pipe_idx);
-+
-+		if (dc->config.forced_clocks) {
-+			pipes[pipe_idx].clks_cfg.dispclk_mhz = context->bw_ctx.dml.soc.clock_limits[0].dispclk_mhz;
-+			pipes[pipe_idx].clks_cfg.dppclk_mhz = context->bw_ctx.dml.soc.clock_limits[0].dppclk_mhz;
-+		}
-+		if (dc->debug.min_disp_clk_khz > pipes[pipe_idx].clks_cfg.dispclk_mhz * 1000)
-+			pipes[pipe_idx].clks_cfg.dispclk_mhz = dc->debug.min_disp_clk_khz / 1000.0;
-+		if (dc->debug.min_dpp_clk_khz > pipes[pipe_idx].clks_cfg.dppclk_mhz * 1000)
-+			pipes[pipe_idx].clks_cfg.dppclk_mhz = dc->debug.min_dpp_clk_khz / 1000.0;
-+
-+		pipe_idx++;
++	if ((int)(bb->sr_enter_plus_exit_time_us * 1000)
++				!= dc->bb_overrides.sr_enter_plus_exit_time_ns
++			&& dc->bb_overrides.sr_enter_plus_exit_time_ns) {
++		bb->sr_enter_plus_exit_time_us =
++				dc->bb_overrides.sr_enter_plus_exit_time_ns / 1000.0;
 +	}
 +
-+	dcn20_calculate_dlg_params(dc, context, pipes, pipe_cnt, vlevel);
++	if ((int)(bb->urgent_latency_us * 1000) != dc->bb_overrides.urgent_latency_ns
++			&& dc->bb_overrides.urgent_latency_ns) {
++		bb->urgent_latency_us = dc->bb_overrides.urgent_latency_ns / 1000.0;
++	}
 +
-+	if (!pstate_en)
-+		/* Restore full p-state latency */
-+		context->bw_ctx.dml.soc.dram_clock_change_latency_us =
-+				dc->clk_mgr->bw_params->wm_table.nv_entries[WM_A].dml_input.pstate_latency_us;
++	if ((int)(bb->dram_clock_change_latency_us * 1000)
++				!= dc->bb_overrides.dram_clock_change_latency_ns
++			&& dc->bb_overrides.dram_clock_change_latency_ns) {
++		bb->dram_clock_change_latency_us =
++				dc->bb_overrides.dram_clock_change_latency_ns / 1000.0;
++	}
++
++	if ((int)(bb->dummy_pstate_latency_us * 1000)
++				!= dc->bb_overrides.dummy_clock_change_latency_ns
++			&& dc->bb_overrides.dummy_clock_change_latency_ns) {
++		bb->dummy_pstate_latency_us =
++				dc->bb_overrides.dummy_clock_change_latency_ns / 1000.0;
++	}
 +}
 +
-+void dcn3x_calculate_wm_and_dlg(struct dc *dc, struct dc_state *context,
-+				display_e2e_pipe_params_st *pipes,
-+				int pipe_cnt,
-+				int vlevel)
+ void dcn20_calculate_dlg_params(struct dc *dc, struct dc_state *context,
+ 		display_e2e_pipe_params_st *pipes, int pipe_cnt, int vlevel)
+ {
+@@ -100,3 +135,11 @@ void dcn20_calculate_dlg_params(struct dc *dc, struct dc_state *context,
+ 	_dcn20_calculate_dlg_params(dc, context, pipes, pipe_cnt, vlevel);
+ 	DC_FP_END();
+ }
++
++void dcn_patch_bounding_box(struct dc *dc,
++			      struct _vcs_dpi_soc_bounding_box_st *bb)
 +{
 +	DC_FP_START();
-+	_dcn30_calculate_wm_and_dlg_fp(dc, context, pipes, pipe_cnt, vlevel);
++	_dcn_patch_bounding_box(dc, bb);
 +	DC_FP_END();
 +}
-+
- void dcn3x_set_mcif_arb_params(struct dc *dc, struct dc_state *context,
- 		display_e2e_pipe_params_st *pipes,
- 		int pipe_cnt)
-diff --git a/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.h b/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.h
-index b3b6d8a66c28..7521498bbd3b 100644
---- a/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.h
-+++ b/drivers/gpu/drm/amd/display/dc/fpu_operation/dcn3x_commons.h
-@@ -32,4 +32,7 @@ void dcn3x_populate_dml_writeback_from_context(struct dc *dc,
- void dcn3x_set_mcif_arb_params(struct dc *dc, struct dc_state *context,
- 	display_e2e_pipe_params_st *pipes, int pipe_cnt);
+diff --git a/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.h b/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.h
+index 8d23fa8e87ee..1eda6a4399a4 100644
+--- a/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.h
++++ b/drivers/gpu/drm/amd/display/dc/fpu_operation/fpu_commons.h
+@@ -31,4 +31,7 @@ void dcn20_calculate_dlg_params(struct dc *dc, struct dc_state *context,
+ 		int pipe_cnt,
+ 		int vlevel);
  
-+void dcn3x_calculate_wm_and_dlg(struct dc *dc, struct dc_state *context,
-+	display_e2e_pipe_params_st *pipes, int pipe_cnt, int vlevel);
++void dcn_patch_bounding_box(struct dc *dc,
++			    struct _vcs_dpi_soc_bounding_box_st *bb);
 +
- #endif /* _DCN3X_COMMONS_H_ */
+ #endif
 -- 
 2.25.1
 
