@@ -2,112 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5944A3022B4
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jan 2021 09:16:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 163FC3022F8
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jan 2021 09:47:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5437689F61;
-	Mon, 25 Jan 2021 08:16:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7974589BBD;
+	Mon, 25 Jan 2021 08:47:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2061.outbound.protection.outlook.com [40.107.243.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0690389CC9
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 08:16:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YdgsC1nMRuoE/aEGrOXKcderzbmCrkGQS4Vnd2L3TQGRGeDrApW26e9ieaMzXUiUYMmYtr59hrbZIgRltAsnypWWbdBB+WV9gg3IuQVYqeSDWqIpHDPjuZDFjLfdoYhuvMWuN/ItnruGxLJp3W2Ld4J63q9UnXZxepywCJmngs4dtj81PLGu1moa3fcOJLFfbr5OjlpVHxRxxa3w0+QlmxSVBvb3IJaAAJoMbeQ1iwoGnrxCP3U2GZ6GLeX9GsQOYKyHc+j5yBsLKzOOaX0DCd1vrx/QhmVs3O0fyNYVAXrrnbAXt8PdUWUZL6Zj4RovwdzezU0WLwMQeOlaoh17tw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3UHVY1/sZywh85Yrjp4VmGhIJwJc/rWgqiKqi3iijgQ=;
- b=WKEUu+3ftW2+nieGdOezkLibXEwBT4dVeOKhtrOaBRy0IHpOQXdeXu8eOrMx8IlUFe1mNOocms4tu44iouLtjSU8ZHjL/Weh7sH9t/lAFvjytpp0aP9ZmViY/23Z4i8ox6dLJ3lEYdG0pFZnPZrqkSe4Q2SfJI98KFYzBUXEMHJMt3iOXt/HvTh5FrZK+0wvWn12T47JLl6+JtQbDVeeJee5IKeCZA6TSmlLx+D091I2z4OqmYsXdnja8xPcmeM3QUfmuTJs3n4GgvXflIG4KnLlUCasKqf56dq8svClseSc7RXnDAMsr6BJvK8sotiDsoYkyWh2zVhk3b4wtr3/cg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3UHVY1/sZywh85Yrjp4VmGhIJwJc/rWgqiKqi3iijgQ=;
- b=f/EwK+Fv/lBGyNYvImG4pe+Z0kqjDIKWbMuDlXYP68o4sFCrRy+o+H75dGr1wIw0ZaF5H5fssWI3kP95deXd7TcZKPFL2GMhgl/aWg8aem8eOTADUKwNH8eRxojc7LK0ip8MN/j3QR0AaCgaTyzKIBEKCvflGArRsl53xr6rg/Y=
-Received: from DM5PR12MB1708.namprd12.prod.outlook.com (2603:10b6:3:10e::22)
- by DM6PR12MB3771.namprd12.prod.outlook.com (2603:10b6:5:1ca::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.12; Mon, 25 Jan
- 2021 08:16:28 +0000
-Received: from DM5PR12MB1708.namprd12.prod.outlook.com
- ([fe80::44aa:dfd4:9:1590]) by DM5PR12MB1708.namprd12.prod.outlook.com
- ([fe80::44aa:dfd4:9:1590%6]) with mapi id 15.20.3784.017; Mon, 25 Jan 2021
- 08:16:28 +0000
-From: "Liu, Monk" <Monk.Liu@amd.com>
-To: "Chen, JingWen" <JingWen.Chen2@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amd/amdgpu: add error handling to
- amdgpu_virt_read_pf2vf_data
-Thread-Topic: [PATCH] drm/amd/amdgpu: add error handling to
- amdgpu_virt_read_pf2vf_data
-Thread-Index: AQHW7kJ0Ne5PHvuq10qsWLFev8QVIqoxah+AgAaeDlA=
-Date: Mon, 25 Jan 2021 08:16:28 +0000
-Message-ID: <DM5PR12MB170803B760404274A6B331AB84BD9@DM5PR12MB1708.namprd12.prod.outlook.com>
-References: <20210119090642.3311634-1-Jingwen.Chen2@amd.com>
- <MWHPR12MB1359E8FE1E6334C9B0F5A497B7A19@MWHPR12MB1359.namprd12.prod.outlook.com>
-In-Reply-To: <MWHPR12MB1359E8FE1E6334C9B0F5A497B7A19@MWHPR12MB1359.namprd12.prod.outlook.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_Enabled=true;
- MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_SetDate=2021-01-25T08:16:26Z; 
- MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_Method=Privileged;
- MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_Name=Internal Use Only -
- Restricted;
- MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_ActionId=14be5a6d-e73b-4a79-9061-0000c71ba901;
- MSIP_Label_c3918902-4ff3-42f6-8eb5-e5d9c71daf16_ContentBits=1
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [180.167.199.189]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: e2ab198d-92d8-49db-e9b4-08d8c10983c8
-x-ms-traffictypediagnostic: DM6PR12MB3771:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR12MB3771A68016D715BC6B552C1F84BD9@DM6PR12MB3771.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3173;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 9wfaWLmq/B88C5+wOneC1taBIDfqkB3khEC03Q9/B8yAl1gDiZBu2MDgd7Em2JbDIiApKTgllGi+eTg1DWd3Gzw6ELfvT8qnG3S2dH+LUe1MRqo+jMCO0jHatuHo8C82Vs5qF1eFx89pTjVA4xN7CFNXKDyUukujCuer3mbrIcAKuI2C9YosCrN+9ZPdKV1NETeL5pYOT/hyWHzUiwVI4AzuhzaIf8sXzouk8mqUFY217iPHFDS7xpeSLry8iBVAviYmYOVDCV+msCO2sRdV/lrYKW0dIr3vbt1eq3e/uOFnT5DDLGQImaPTUHmXfgfif4rhsCMIVbx/cdvL5DNOXut0A9W2hP8YdbkyVj/ZSOa6m5TS+HcxgLpwz0wwD7eX+WEMCq2M0bbZ42R2T9Kq/VzIHsfFoAR+kNDrR+QqK0YmOzBmYD98Fp+ocN+ngemS2JRvg82Ukq9d411kKikkYdDWgViWRMLFjO1rQ+f24wxAGTzMAOQmmLZJCJpwtkWw5NxuIqqd3wm2MTt7D639kw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB1708.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(376002)(136003)(346002)(396003)(366004)(76116006)(66946007)(66476007)(66556008)(83380400001)(64756008)(66446008)(2906002)(86362001)(9686003)(186003)(8676002)(33656002)(478600001)(7696005)(110136005)(6506007)(53546011)(26005)(5660300002)(8936002)(316002)(71200400001)(52536014)(55016002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?r/r9CDyE9UssjqEmHq3XAVXqfQRv7bniLvoFMBSPsa1EulJDRYfK97wWSADV?=
- =?us-ascii?Q?XjdPsHG9K7NoKlAEwRyfEht6ulivi/a1xkfmw4K8IZ0eTsJuuaphs2fv30gu?=
- =?us-ascii?Q?u2Yrpb/4A3fZ8liUoNESnfh9tQJkKMBi0AdjmjhrJMFoksZ6hXy4IvI8nPyg?=
- =?us-ascii?Q?elZ50ImWyUgY+buvhKwtmHNmZn+zoGAi5MwIsDPYjr8C1vCWA0a/rDI0et01?=
- =?us-ascii?Q?zjuC8hmrbk5Y8G69sktD6skqiZW4bUki56PDbdsuYBBKX8lVGRoatTqFVoWW?=
- =?us-ascii?Q?A6m386ZOrSXTiJFDdQOJ6Ska4mXeT3h4FKRoSMeEQImrtPBtQvAu5666vaA3?=
- =?us-ascii?Q?g6AInQ0dt8lmbFLh3Lna2EwWDdAxUERuOSn2v430H4PnXL9taAOL70xToN0D?=
- =?us-ascii?Q?sCE1kBW5WnnSAYUJBuQ+CbPBAeA9xbEcQYXIY3lIJv1mPhcjXhf6UlEaTRXL?=
- =?us-ascii?Q?b2D2/yI8JJQvPrFYZyfFxB+n1njGXwk+vGX/pGYAzvnB/o6QZMooyg1gmLid?=
- =?us-ascii?Q?1FQUz5LWGfxyl2gx18+mUj4sMZAUkfJIl28LPeSSmd+jS1F8GTcV3pgPgy5a?=
- =?us-ascii?Q?d9xD6PnY7/Wcy+gBfB69Bxs8i2fGy0+ui1UOBIKat3yNyRNvnomY4ZieCgto?=
- =?us-ascii?Q?STQRa570lrMSYfplnbWQ3Yr2r1iedG8GwGfTd2vQMsDocBFNirDMJcgJEzGj?=
- =?us-ascii?Q?vnrWRtHFkalAGKtnLnqHSLqEPQ8kfbXS2L52IjQvWJfgr/EYFVkYPzKSLokp?=
- =?us-ascii?Q?bB/52Dqh1euJSinGZpy1RF+m65SpRrOF2igpTxuwWsp1exvp1IDiuWpJG2Ia?=
- =?us-ascii?Q?N67s+W63F79hIJxN5dFwiq/FaUUFqeKApPnUrIJAYhVY4Cn/CktidC0Ncbrc?=
- =?us-ascii?Q?ljcyEX8xKKPbEtS17ZfTYWFRFkxgEtg0aWiEKX0hlVuNWfgEAT0eHkk7a0F7?=
- =?us-ascii?Q?TDOZcp6g7Qt7d+pOnl6mueyrviUANWBb8T8nY28BxzCb0qG4Y8J3H5Fzmn5o?=
- =?us-ascii?Q?g+K1GdrVHVM56+W1eYlqH8hRe5GC3zQtS3ZsN/J/V+Xyqy4ZKko1lAHUjQyl?=
- =?us-ascii?Q?Rjqr++of?=
+Received: from userp2130.oracle.com (userp2130.oracle.com [156.151.31.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8330289FAC
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 08:47:35 +0000 (UTC)
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+ by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10P8hmJU031918;
+ Mon, 25 Jan 2021 08:47:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
+ bh=F8WaLsNJWUQI+LXTocUPFqCAXty0gR2e0Bt3bTfUCi4=;
+ b=yncWZh3xVNc3zqhUZCKA9kU4XtMJesr+hFUclqnzzOlRohYzX5gMQ/idqbbM+09pe8xq
+ iscYvDh1ha4w+WcGHCW6y/ilAyV0qZrOTjJ0+aB4AYEUKcMlxPerRBgEiusjJKtYUfL8
+ vqFXdwMIAOqETwEeBXUNhOAq/dsb1cfHnehr9tbUW8CgR9pdfsJmAywmIdX4zQ7AtyK8
+ xPwMVzSleam3ZpYWTbht/2s3a5Ue0OGRy/8uGjPJ6ox0PYAdOtITJekVZrTbAiFHOeQO
+ CrMlJWAfZPQU6HmEEEtOVKFVfhlNxG97xNPAOIICjo9mNd1/M6+i8mihG8WiCJ7Sit0H rQ== 
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
+ by userp2130.oracle.com with ESMTP id 368b7qm5hu-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 25 Jan 2021 08:47:30 +0000
+Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
+ by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 10P8aQcS081072;
+ Mon, 25 Jan 2021 08:45:28 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+ by aserp3020.oracle.com with ESMTP id 368wpw9njv-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 25 Jan 2021 08:45:28 +0000
+Received: from abhmp0008.oracle.com (abhmp0008.oracle.com [141.146.116.14])
+ by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 10P8jJe4020882;
+ Mon, 25 Jan 2021 08:45:19 GMT
+Received: from mwanda (/102.36.221.92) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Mon, 25 Jan 2021 00:45:18 -0800
+Date: Mon, 25 Jan 2021 11:45:08 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: Harry Wentland <harry.wentland@amd.com>, George Shen <george.shen@amd.com>
+Subject: [PATCH] drm/amd/display: Fix a potential NULL dereference
+Message-ID: <YA6FFK+F1XbGbYVJ@mwanda>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1708.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e2ab198d-92d8-49db-e9b4-08d8c10983c8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jan 2021 08:16:28.1844 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9SAjXhKDg4fVpztAbUaWW4YGzC5cf1ANjpWa9NPzWE6gFIsEG+hvbkB4lX4PUUrL
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3771
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9874
+ signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
+ mlxscore=0 spamscore=0
+ adultscore=0 bulkscore=0 phishscore=0 suspectscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2101250051
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9874
+ signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ spamscore=0 phishscore=0
+ adultscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0
+ priorityscore=1501 mlxscore=0 clxscore=1011 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2101250052
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,73 +74,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: kernel-janitors@vger.kernel.org, Anson Jacob <anson.jacob@amd.com>,
+ Yongqiang Sun <yongqiang.sun@amd.com>, Jaehyun Chung <jaehyun.chung@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Wenjing Liu <wenjing.liu@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Melissa Wen <melissa.srw@gmail.com>, David Airlie <airlied@linux.ie>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Wyatt Wood <wyatt.wood@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Anthony Koo <Anthony.Koo@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - Approved for External Use]
+The debug printk dereferences "link->link_enc" before we have ensured
+that it is non-NULL.  Fix this potential NULL derefence by moving the
+printk after the check.
 
-Reviewed-by: Monk Liu<monk.liu@amd.com>
-
-Thanks 
-
-------------------------------------------
-Monk Liu | Cloud-GPU Core team
-------------------------------------------
-
------Original Message-----
-From: Chen, JingWen <JingWen.Chen2@amd.com> 
-Sent: Thursday, January 21, 2021 11:13 AM
-To: amd-gfx@lists.freedesktop.org; Liu, Monk <Monk.Liu@amd.com>
-Cc: Chen, JingWen <JingWen.Chen2@amd.com>
-Subject: RE: [PATCH] drm/amd/amdgpu: add error handling to amdgpu_virt_read_pf2vf_data
-
-[AMD Official Use Only - Approved for External Use]
-
-Ping
-
-Best Regards,
-JingWen Chen
-
------Original Message-----
-From: Jingwen Chen <Jingwen.Chen2@amd.com> 
-Sent: Tuesday, January 19, 2021 5:07 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Chen, JingWen <JingWen.Chen2@amd.com>; Chen, JingWen <JingWen.Chen2@amd.com>
-Subject: [PATCH] drm/amd/amdgpu: add error handling to amdgpu_virt_read_pf2vf_data
-
-[Why]
-when vram lost happened in guest, try to write vram can lead to kernel stuck.
-
-[How]
-When the readback data is invalid, don't do write work, directly reschedule a new work.
-
-Signed-off-by: Jingwen Chen <Jingwen.Chen2@amd.com>
+Fixes: 1975b95ad4e7 ("drm/amd/display: Log link/connector info provided in BIOS object table")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-index c649944e49da..3dd7eec52344 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-@@ -558,10 +558,14 @@ static int amdgpu_virt_write_vf2pf_data(struct amdgpu_device *adev)  static void amdgpu_virt_update_vf2pf_work_item(struct work_struct *work)  {
- 	struct amdgpu_device *adev = container_of(work, struct amdgpu_device, virt.vf2pf_work.work);
-+	int ret;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index c16af3983fdb..4d31b2fae1f9 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -1525,13 +1525,13 @@ static bool dc_link_construct(struct dc_link *link,
+ 	link->link_enc =
+ 		link->dc->res_pool->funcs->link_enc_create(&enc_init_data);
  
--	amdgpu_virt_read_pf2vf_data(adev);
-+	ret = amdgpu_virt_read_pf2vf_data(adev);
-+	if (ret)
-+		goto out;
- 	amdgpu_virt_write_vf2pf_data(adev);
+-	DC_LOG_DC("BIOS object table - DP_IS_USB_C: %d", link->link_enc->features.flags.bits.DP_IS_USB_C);
+-
+ 	if (!link->link_enc) {
+ 		DC_ERROR("Failed to create link encoder!\n");
+ 		goto link_enc_create_fail;
+ 	}
  
-+out:
- 	schedule_delayed_work(&(adev->virt.vf2pf_work), adev->virt.vf2pf_update_interval_ms);
- }
++	DC_LOG_DC("BIOS object table - DP_IS_USB_C: %d", link->link_enc->features.flags.bits.DP_IS_USB_C);
++
+ 	link->link_enc_hw_inst = link->link_enc->transmitter;
  
---
-2.25.1
+ 	for (i = 0; i < 4; i++) {
+-- 
+2.29.2
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
