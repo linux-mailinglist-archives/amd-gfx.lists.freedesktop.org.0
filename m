@@ -2,106 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DCBB30259E
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jan 2021 14:44:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49F483026AD
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Jan 2021 16:07:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F6E86E0FE;
-	Mon, 25 Jan 2021 13:44:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F05A89AFF;
+	Mon, 25 Jan 2021 15:07:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2052.outbound.protection.outlook.com [40.107.92.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59C0B6E0FE
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Jan 2021 13:44:22 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EIieEjdKPXnzeT4WaHJbhUHHL+JrWze1uhYJPIRb5TzpCwirEAGPfPraeCVhYXlPLPI7B6sLg7YvcwTw3gEYr3uGDilgO4L+u7tQ1JVXosODk41BKSXzy8qza2wPbL/PWO+6xGh7CIeh3EGAT3+qaFJ6NJSNRiav+M/7JI9DgdtsmRhBre9gkleuk6vZgQy27rBHj+2vGslpOjYEQLDNkqwZCKiSATMVi0xIowtZtnM3x47ac97FeDAAT/mk+VouwobHsasijma879cUDqDLScALDGMTCYhir7hj8FaJQ5Ttrw0nz99oh8SEQ3wGbzTVW/UrEDyPKrVof3TT/gfOdA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NQp7qMo3iQPQKxIF8wy3U7Y/4SJJ1eRhFUEcYT9BXus=;
- b=DFTuwG8yYk9gDYlw1j7NwEyI8olMGYRATLdzBkz1HdfwhNRICAJBep3q0XkimWg78TdnYd0h60h/aO/TSgU955RncMp4r7E17LwOKVAg+auSBJSY9aan+FTcG9lw8r++lKKGAfqFo26AZ0ZwzVW4yd913uVsjAIBEyiiGw17awHYVGDdwWVGI+LVsSAIu8QZfd444C7xIR9sit95x5yKGrGrLME3oYoBqwbOXtxSykp6J0Ui3eCOlSErEDgzLqsbnaYISHcPsZZXrrfZ4b2S7rh/xwRY19OgYH0XxjlGl5LQZoprjZeZNFpo1pdDZgVNraqNrp/j97tzSHNXfth97g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NQp7qMo3iQPQKxIF8wy3U7Y/4SJJ1eRhFUEcYT9BXus=;
- b=blPqUT1Huq4UYDJuaWpDON4OxjCVjAFsQOUp65lU5p6/2cWm5VF98qXQB0gZSmsNZyJcRZP4lHfqCsjjrTJm44RhdKnFVtpstZ1LMWZFILNqoCweLOgcPoiPo9IXoifFyPP3jmCPn4oPbxN+w8fvhgyXNMNl3xu0oZO4BRnc1bM=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB2601.namprd12.prod.outlook.com (2603:10b6:5:45::27) by
- DM6PR12MB4340.namprd12.prod.outlook.com (2603:10b6:5:2a8::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3784.13; Mon, 25 Jan 2021 13:44:21 +0000
-Received: from DM6PR12MB2601.namprd12.prod.outlook.com
- ([fe80::e887:3273:c806:d089]) by DM6PR12MB2601.namprd12.prod.outlook.com
- ([fe80::e887:3273:c806:d089%6]) with mapi id 15.20.3784.017; Mon, 25 Jan 2021
- 13:44:21 +0000
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [RFC 7/7] drm/amd/display: Drop float flages from DCN30 files
-Date: Mon, 25 Jan 2021 08:43:13 -0500
-Message-Id: <20210125134313.305184-8-Rodrigo.Siqueira@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210125134313.305184-1-Rodrigo.Siqueira@amd.com>
-References: <20210125134313.305184-1-Rodrigo.Siqueira@amd.com>
-X-Originating-IP: [2607:fea8:56e0:6d60:7f86:f3af:1efb:628a]
-X-ClientProxiedBy: YTXPR0101CA0024.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00::37) To DM6PR12MB2601.namprd12.prod.outlook.com
- (2603:10b6:5:45::27)
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com
+ [IPv6:2607:f8b0:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20D5F89AAD;
+ Mon, 25 Jan 2021 15:07:11 +0000 (UTC)
+Received: by mail-ot1-x329.google.com with SMTP id h14so12998034otr.4;
+ Mon, 25 Jan 2021 07:07:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=o+tF4kaBNHVUeLz+neiR9EKFSH0RfBoOkuSe1R44I6w=;
+ b=Hwq67MQmYVPMYCZWKjORrY407ayyGMAmuweF5bGKJREWfqd/R8Ho/W3mHhkxOLOlGX
+ 1O5S4cg5i+y1RKR41/AMivqX7Z3HDLSHKPOOyjXA25qfSm/GSGnJbe4YAyrky3nLLOrC
+ eNd1d1HRJBKjJqbAXfaYM/8knALrtXO6suGrMIxnJ0XORv6p41Dksgh4wOQ1pFXC3gyR
+ 4TPE9WNGXbowkiHp05fB9CNkTuEiXcnoLwLaQkNFcA5hNSbndfXnmiCMpy9AE5nk1TOI
+ 23FkgL6bSWXk5vvS+HbTxZzShPWFwMwt8cFrZeL20/fiaBcB9Fkj+3qG0+KAH+TS1jSU
+ 5JlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=o+tF4kaBNHVUeLz+neiR9EKFSH0RfBoOkuSe1R44I6w=;
+ b=kZwVO9BeW/RM1iAD/AzrfDqIkIOZASzJzIcpP9DxeE0mFmawhkGPEigkXLkZMEGzuL
+ kPL8evB8HvaeGinChoT+jN3BUnFtOkVhHbkXyiq7fEiEfYbGZa7WLRtDf8mQvPEXx5uR
+ Iyq+eNYHt6XohvDIwvigS45wJy0K0QAzA3Z8k1h2+OLdhH83+RU1HfDkXumVGjG/CbtE
+ Ivr75KS3fGv5tPnLsHNQ4yNvEeZO1/YG6RA+Jbk/tL27fM9rNhE0jeME5h0GHQryEr9c
+ 0HTY7ytYooqAD0W4PRwOJgwCVt2B4R7jXsDm+XTIgSWS376BgHm2CVdxjKMEa6qV7Stz
+ 4waQ==
+X-Gm-Message-State: AOAM533x4IJQdlr7joPSlnWj/cSqt+03ssVT4g0HHob651g/PKkL3SWb
+ ccSlgfC+ToQIOOG7i6GmJ7iK0xluT6S3pSibnUg=
+X-Google-Smtp-Source: ABdhPJzLpiv5vCtKZgABLpe2a/nPpQqwY8M2+LbN3ZUR6u0pvsBbsKxXgCt2lRyPmJ3UDvMbTjbKzB9PzckuZRUW6tQ=
+X-Received: by 2002:a9d:784a:: with SMTP id c10mr796878otm.132.1611587230413; 
+ Mon, 25 Jan 2021 07:07:10 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60:7f86:f3af:1efb:628a)
- by YTXPR0101CA0024.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::37) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.12 via Frontend
- Transport; Mon, 25 Jan 2021 13:44:20 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: badc74c7-aca6-46d1-cc3a-08d8c137518c
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4340:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB434057B188A01E95C156B1D398BD9@DM6PR12MB4340.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GfNfaInxNO5meC31bwLoX7W7RteN+OHFgXXYKgp1IScVZVpUk6Jcc61adHhJSR1sCo/U3S+LizhR7DyblInF7fJM8//MTILujfSAGQL401I+B45aaIMLQEz5yZZ+tXOkRYnofiQBuZrrxAIse0jyd5XV8wdHW85A+MVg+JJgDaHOqMwN7MjAn6UvEhMNIlxAEp+hqli8X8s+a1uknpLFKTGKq7j+jzQV58W3m4U02BmMjte+Uwl34H8pevoXB2umGD35WFcH5KER68iqeFUXE8Q7oEvkJ9AQQvXzlBNkUPvAyqVqm1V7NhZ8wKSTU4hRtSZUkV7keayYIrZmPCyDsyHmoRZOSCKD3D0OWQFLPaIZDallCAUsUTL4Y/ujHlARaVQQEJ6d4XzLqQv2CZ0yoQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB2601.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(346002)(366004)(39860400002)(136003)(376002)(52116002)(54906003)(6512007)(16526019)(6506007)(5660300002)(4326008)(8936002)(316002)(83380400001)(186003)(2906002)(66556008)(66946007)(66476007)(478600001)(6486002)(86362001)(2616005)(8676002)(6666004)(6916009)(1076003)(36756003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?48GYE4VqovPWUdRfIXbWV94S8uqab/a1UKGoAXuabgHN+DITOD8hyAglOs28?=
- =?us-ascii?Q?Rv8uHmcfcjzD0z7A2+FQwIgFTJBwCw+0ylVUAU3vpJKaiaecskz2gV1h9cfd?=
- =?us-ascii?Q?1TUqQNillxtK9EvY38/ChLHrwKR9fhaLeSeRX6ZJAEXR/V1+eAnAsasymhIV?=
- =?us-ascii?Q?SEG1gDI0O2hAPr+UOsgR7K7cIeVkV2TFqSVlr1l4jGv6ChcAuD9ILuFsetjm?=
- =?us-ascii?Q?SlQeSIXaq9enwJ5fTYxQkC02uFwMHabB379Vjhr8fhWtRQXLwAFeoJkZTPs6?=
- =?us-ascii?Q?CUqcYSgNwwozfthuVn3LeDBeA96ZdmgKd1o6758DtiOrR//cCnQi3ypEQLVN?=
- =?us-ascii?Q?huRYHn6giysb3UNAbR8gmN6OIzBH9WKS7Wmbk01YPnAYGZ0fWvc7otXddcAi?=
- =?us-ascii?Q?F/1ygrY24iFq9KCcb7VL7uQ/gHEeVs7w8On08NGsxL/8yqHU0t/+howFZhNo?=
- =?us-ascii?Q?YH9/zmjrnf2EgjIbP0HRMuwd/TffNDOj3ms6F7TedN/9n0mN8SCdUeexHd+j?=
- =?us-ascii?Q?C65rLK6gfboa7ne27+u9e6xz0+STsDcnfw0Mhdwg8mPl8effou+loI6PxGOM?=
- =?us-ascii?Q?8ZuabTl24KsV28nM7tNw2z9LJJ/rBYXuXJVEXFNZ1YgzkS19QQOmW2D7LLvg?=
- =?us-ascii?Q?w8JGuFLKJRJwSmVt8gmmXKea6sK5iijKEvM8T6HqhxQm+Gz9vEvcU3M2DzNY?=
- =?us-ascii?Q?ZMnfKYTmVlJTWZjiCtbp+99z8KrBODtqSGOeyS+hEZr0C8Yvm7Pq3Umi80BH?=
- =?us-ascii?Q?K3KM0uxIP/JG6n09ppqHHPFqlTwyB/gk/yBzX9thXtPQJFx0koNDzDrXjbZ5?=
- =?us-ascii?Q?4dK4vohnz4kzBiy+a0BsISxO8xWkYXj1iV1a9jgW1k0kn94RjyBdHeDV3i6L?=
- =?us-ascii?Q?lWWrsadfK2DksGjDSpP5J7o1hWlzkbVIX9UWfBTrGq6jJEubMgrN3eu/FaUs?=
- =?us-ascii?Q?TqosBm/hEFD4/V9VZNW7j9ccqSMHi/o13SObJiFgGQ5m6OgK9z45CAm5j82q?=
- =?us-ascii?Q?Jj8UqDyfBfWfLVxV3xXO3M1U/wOzbRGxmTXKLqCnTbLlnimQKrslmXv5Wrxp?=
- =?us-ascii?Q?+AgR2WquOs3SOsB081lgKUDdtEhL0mkYiSmGzkRr3EtYscVd54cZO0EM5G85?=
- =?us-ascii?Q?Jd4t8Xk5eOSz+sK0iKzutzMlifWFovBIww=3D=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: badc74c7-aca6-46d1-cc3a-08d8c137518c
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2601.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2021 13:44:20.9678 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dJZVzruJm80ihMbYx7aECm55CbRLuWu+AFS/8FqYWnJykJmUhVRCKXz6yx3Sy/iUCuQ7nedkJK/ZIomGB39D7g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4340
+References: <20210122150022.209454-1-colin.king@canonical.com>
+ <20210125043623.GD610615@hr-amd>
+In-Reply-To: <20210125043623.GD610615@hr-amd>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 25 Jan 2021 10:06:58 -0500
+Message-ID: <CADnq5_PgXRv5LKO=yhx6NnYE4Et_PHa45JArAjorJ6W-GiDG2A@mail.gmail.com>
+Subject: Re: [PATCH][next] drm/amdgpu: Fix masking binary not operator on two
+ mask operations
+To: Huang Rui <ray.huang@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,122 +61,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: David Airlie <airlied@linux.ie>,
+ "kernel-janitors@vger.kernel.org" <kernel-janitors@vger.kernel.org>, "Liu,
+ Aaron" <Aaron.Liu@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, Colin King <colin.king@canonical.com>,
+ "Koenig, Christian" <Christian.Koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-All functions that require FPU access associated with DCN30 were moved
-to the specific file inside the FPU directory. For this reason, we don't
-need to use the `-mhard-float -msse` flags for any DCN30 file directly,
-which means that we can safely drop those flags from the Makefile and
-any other unrelated FPU code.
+Applied.  Thanks!
 
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dcn30/Makefile | 30 -------------------
- .../drm/amd/display/dc/dcn30/dcn30_resource.c |  3 --
- .../gpu/drm/amd/display/dc/dcn302/Makefile    | 25 ----------------
- 3 files changed, 58 deletions(-)
+Alex
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/Makefile b/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
-index c20331eb62e0..b7c2ae9ddfda 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/Makefile
-@@ -30,36 +30,6 @@ DCN30 = dcn30_init.o dcn30_hubbub.o dcn30_hubp.o dcn30_dpp.o dcn30_optc.o \
- 	dcn30_dpp_cm.o dcn30_dwb_cm.o dcn30_cm_common.o dcn30_mmhubbub.o \
- 	dcn30_dio_link_encoder.o dcn30_resource.o
- 
--
--ifdef CONFIG_X86
--CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o := -mhard-float -msse
--CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o := -mhard-float -msse
--endif
--
--ifdef CONFIG_PPC64
--CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o := -mhard-float -maltivec
--CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o := -mhard-float -maltivec
--endif
--
--ifdef CONFIG_CC_IS_GCC
--ifeq ($(call cc-ifversion, -lt, 0701, y), y)
--IS_OLD_GCC = 1
--endif
--endif
--
--ifdef CONFIG_X86
--ifdef IS_OLD_GCC
--# Stack alignment mismatch, proceed with caution.
--# GCC < 7.1 cannot compile code using `double` and -mpreferred-stack-boundary=3
--# (8B stack alignment).
--CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o += -mpreferred-stack-boundary=4
--CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o += -mpreferred-stack-boundary=4
--else
--CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_resource.o += -msse2
--CFLAGS_$(AMDDALPATH)/dc/dcn30/dcn30_optc.o += -msse2
--endif
--endif
--
- AMD_DAL_DCN30 = $(addprefix $(AMDDALPATH)/dc/dcn30/,$(DCN30))
- 
- AMD_DISPLAY_FILES += $(AMD_DAL_DCN30)
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index cd2598bd193f..d00f98174f21 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -1403,9 +1403,6 @@ bool dcn30_release_post_bldn_3dlut(
- 	return ret;
- }
- 
--#define fixed16_to_double(x) (((double) x) / ((double) (1 << 16)))
--#define fixed16_to_double_to_cpu(x) fixed16_to_double(le32_to_cpu(x))
--
- static bool dcn30_split_stream_for_mpc_or_odm(
- 		const struct dc *dc,
- 		struct resource_context *res_ctx,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/Makefile b/drivers/gpu/drm/amd/display/dc/dcn302/Makefile
-index 8d4924b7dc22..3ea9bff27912 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn302/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dcn302/Makefile
-@@ -12,31 +12,6 @@
- 
- DCN3_02 = dcn302_init.o dcn302_hwseq.o dcn302_resource.o
- 
--ifdef CONFIG_X86
--CFLAGS_$(AMDDALPATH)/dc/dcn302/dcn302_resource.o := -mhard-float -msse
--endif
--
--ifdef CONFIG_PPC64
--CFLAGS_$(AMDDALPATH)/dc/dcn302/dcn302_resource.o := -mhard-float -maltivec
--endif
--
--ifdef CONFIG_CC_IS_GCC
--ifeq ($(call cc-ifversion, -lt, 0701, y), y)
--IS_OLD_GCC = 1
--endif
--endif
--
--ifdef CONFIG_X86
--ifdef IS_OLD_GCC
--# Stack alignment mismatch, proceed with caution.
--# GCC < 7.1 cannot compile code using `double` and -mpreferred-stack-boundary=3
--# (8B stack alignment).
--CFLAGS_$(AMDDALPATH)/dc/dcn302/dcn302_resource.o += -mpreferred-stack-boundary=4
--else
--CFLAGS_$(AMDDALPATH)/dc/dcn302/dcn302_resource.o += -msse2
--endif
--endif
--
- AMD_DAL_DCN3_02 = $(addprefix $(AMDDALPATH)/dc/dcn302/,$(DCN3_02))
- 
- AMD_DISPLAY_FILES += $(AMD_DAL_DCN3_02)
--- 
-2.25.1
-
+On Sun, Jan 24, 2021 at 11:36 PM Huang Rui <ray.huang@amd.com> wrote:
+>
+> On Fri, Jan 22, 2021 at 11:00:22PM +0800, Colin King wrote:
+> > From: Colin Ian King <colin.king@canonical.com>
+> >
+> > Currently the ! operator is incorrectly being used to flip bits on
+> > mask values. Fix this by using the bit-wise ~ operator instead.
+> >
+> > Addresses-Coverity: ("Logical vs. bitwise operator")
+> > Fixes: 3c9a7b7d6e75 ("drm/amdgpu: update mmhub mgcg&ls for mmhub_v2_3")
+> > Signed-off-by: Colin Ian King <colin.king@canonical.com>
+>
+> Thanks.
+>
+> Reviewed-by: Huang Rui <ray.huang@amd.com>
+>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
+> > index 1961745e89c7..ab9be5ad5a5f 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
+> > @@ -531,12 +531,12 @@ mmhub_v2_3_update_medium_grain_light_sleep(struct amdgpu_device *adev,
+> >
+> >       if (enable && (adev->cg_flags & AMD_CG_SUPPORT_MC_LS)) {
+> >               data &= ~MM_ATC_L2_CGTT_CLK_CTRL__MGLS_OVERRIDE_MASK;
+> > -             data1 &= !(DAGB0_WR_CGTT_CLK_CTRL__LS_OVERRIDE_MASK |
+> > +             data1 &= ~(DAGB0_WR_CGTT_CLK_CTRL__LS_OVERRIDE_MASK |
+> >                       DAGB0_WR_CGTT_CLK_CTRL__LS_OVERRIDE_WRITE_MASK |
+> >                       DAGB0_WR_CGTT_CLK_CTRL__LS_OVERRIDE_READ_MASK |
+> >                       DAGB0_WR_CGTT_CLK_CTRL__LS_OVERRIDE_RETURN_MASK |
+> >                       DAGB0_WR_CGTT_CLK_CTRL__LS_OVERRIDE_REGISTER_MASK);
+> > -             data2 &= !(DAGB0_RD_CGTT_CLK_CTRL__LS_OVERRIDE_MASK |
+> > +             data2 &= ~(DAGB0_RD_CGTT_CLK_CTRL__LS_OVERRIDE_MASK |
+> >                       DAGB0_RD_CGTT_CLK_CTRL__LS_OVERRIDE_WRITE_MASK |
+> >                       DAGB0_RD_CGTT_CLK_CTRL__LS_OVERRIDE_READ_MASK |
+> >                       DAGB0_RD_CGTT_CLK_CTRL__LS_OVERRIDE_RETURN_MASK |
+> > --
+> > 2.29.2
+> >
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
