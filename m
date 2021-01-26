@@ -1,40 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 275F73049FD
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 Jan 2021 21:23:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9907304BA3
+	for <lists+amd-gfx@lfdr.de>; Tue, 26 Jan 2021 22:44:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A033E6E1B6;
-	Tue, 26 Jan 2021 20:23:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6412A6E491;
+	Tue, 26 Jan 2021 21:44:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57E346E1B6
- for <amd-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 20:23:23 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2F2B122241;
- Tue, 26 Jan 2021 20:23:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1611692602;
- bh=+EsghCNbKfoMSubSdhekrk7Lexni+2yNl926lkdHUas=;
- h=From:To:Cc:Subject:Date:From;
- b=qwRjUfaK417oQM28DFY8h3Ud1rcErIYR4T7Bmp0ZdAgKa8w/gXoTZIhygR/b+QPRG
- ThnmNkLq6RievbT9icGV7yrwEj9kslvhrvzHMBIAe+3azHatZ+o54YYVY/VFvQvBG1
- 2gntQ3GiBy8pF00YTQQcx72bZ9S7TkTNnBSvI0+t+3R2q4faV0Vu9DS2TNjfCIy/sl
- BN+RCQ+4b7QG2hM1TNlRmNed7E7oQyQNG8sJnffJFrhym128OmaPciCSTCDWH32zBb
- eAWcDx0UiTtUizZXKQiyM8Yvcav5WB15Ojw/VbEQ8Gjnt6a25MtgXar7j9Ql1PQyCB
- tvzORGfjCd4Jg==
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: "Rafael J . Wysocki" <rjw@rjwysocki.net>, Len Brown <lenb@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AA036E441;
+ Tue, 26 Jan 2021 21:44:38 +0000 (UTC)
+IronPort-SDR: 276D3R91aoDuLzhUyiJfRUdmY6V5DERd5YgwREUr52dyvOTF3Of4jZ4FUHXHl6LsynZH78bc7S
+ j48Chhexu1tw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="198770825"
+X-IronPort-AV: E=Sophos;i="5.79,377,1602572400"; d="scan'208";a="198770825"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 13:44:36 -0800
+IronPort-SDR: pxx/maiC2y8TN8v4a9MNIpLQaukuEIO7m6+F+beuK12x15k/ghwB9/i8eJB1vT2jFY5rzFHq4M
+ l0e928oDl2bA==
+X-IronPort-AV: E=Sophos;i="5.79,377,1602572400"; d="scan'208";a="362139880"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 26 Jan 2021 13:44:36 -0800
+From: Brian Welty <brian.welty@intel.com>
+To: Brian Welty <brian.welty@intel.com>, cgroups@vger.kernel.org,
+ Tejun Heo <tj@kernel.org>, dri-devel@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Corentin Chary <corentin.chary@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Subject: [PATCH] ACPI: Test for ACPI_SUCCESS rather than !ACPI_FAILURE
-Date: Tue, 26 Jan 2021 14:23:17 -0600
-Message-Id: <20210126202317.2914080-1-helgaas@kernel.org>
-X-Mailer: git-send-email 2.25.1
+ Kenny Ho <Kenny.Ho@amd.com>, amd-gfx@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Eero Tamminen <eero.t.tamminen@intel.com>
+Subject: [RFC PATCH 0/9] cgroup support for GPU devices 
+Date: Tue, 26 Jan 2021 13:46:17 -0800
+Message-Id: <20210126214626.16260-1-brian.welty@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -47,170 +52,87 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hwmon@vger.kernel.org, alsa-devel@alsa-project.org,
- acpi4asus-user@lists.sourceforge.net, amd-gfx@lists.freedesktop.org,
- linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org,
- Bjorn Helgaas <bhelgaas@google.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Bjorn Helgaas <bhelgaas@google.com>
+We'd like to revisit the proposal of a GPU cgroup controller for managing
+GPU devices but with just a basic set of controls.  This series is based on 
+the prior patch series from Kenny Ho [1].  We take Kenny's base patches
+which implement the basic framework for the controller, but we propose an
+alternate set of control files.  Here we've taken a subset of the controls
+proposed in earlier discussion on ML here [2]. 
 
-The double negative makes it hard to read "if (!ACPI_FAILURE(status))".
-Replace it with "if (ACPI_SUCCESS(status))".
+This series proposes a set of device memory controls (gpu.memory.current,
+gpu.memory.max, and gpu.memory.total) and accounting of GPU time usage
+(gpu.sched.runtime).  GPU time sharing controls are left as future work.
+These are implemented within the GPU controller along with integration/usage
+of the device memory controls by the i915 device driver.
 
-Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
----
+As an accelerator or GPU device is similar in many respects to a CPU with
+(or without) attached system memory, the basic principle here is try to
+copy the semantics of existing controls from other controllers when possible
+and where these controls serve the same underlying purpose.
+For example, the memory.max and memory.current controls are based on
+same controls from MEMCG controller.
 
-This isn't really an ACPI patch, but I'm sending it to you, Rafael, since
-it seems easier to just apply these all at once.  But I'd be happy to split
-them up into individual patches if you'd rather.
+Following with the implementation used by the existing RDMA controller,
+here we introduce a general purpose drm_cgroup_try_charge and uncharge
+pair of exported functions. These functions are to be used for
+charging and uncharging all current and future DRM resource controls.
 
+Patches 1 - 4 are part original work and part refactoring of the prior
+work from Kenny Ho from his series for GPU / DRM controller v2 [1].
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c | 4 ++--
- drivers/gpu/drm/radeon/radeon_bios.c     | 4 ++--
- drivers/hwmon/acpi_power_meter.c         | 4 ++--
- drivers/platform/x86/asus-laptop.c       | 6 +++---
- drivers/spi/spi.c                        | 2 +-
- sound/pci/hda/hda_intel.c                | 4 ++--
- 6 files changed, 12 insertions(+), 12 deletions(-)
+Patches 5 - 7 introduce new controls to the GPU / DRM controller for device
+memory accounting and GPU time tracking.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-index 6333cada1e09..055f600eeed8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_bios.c
-@@ -291,7 +291,7 @@ static bool amdgpu_atrm_get_bios(struct amdgpu_device *adev)
- 			continue;
- 
- 		status = acpi_get_handle(dhandle, "ATRM", &atrm_handle);
--		if (!ACPI_FAILURE(status)) {
-+		if (ACPI_SUCCESS(status)) {
- 			found = true;
- 			break;
- 		}
-@@ -304,7 +304,7 @@ static bool amdgpu_atrm_get_bios(struct amdgpu_device *adev)
- 				continue;
- 
- 			status = acpi_get_handle(dhandle, "ATRM", &atrm_handle);
--			if (!ACPI_FAILURE(status)) {
-+			if (ACPI_SUCCESS(status)) {
- 				found = true;
- 				break;
- 			}
-diff --git a/drivers/gpu/drm/radeon/radeon_bios.c b/drivers/gpu/drm/radeon/radeon_bios.c
-index bb29cf02974d..43bbbfd6ade8 100644
---- a/drivers/gpu/drm/radeon/radeon_bios.c
-+++ b/drivers/gpu/drm/radeon/radeon_bios.c
-@@ -205,7 +205,7 @@ static bool radeon_atrm_get_bios(struct radeon_device *rdev)
- 			continue;
- 
- 		status = acpi_get_handle(dhandle, "ATRM", &atrm_handle);
--		if (!ACPI_FAILURE(status)) {
-+		if (ACPI_SUCCESS(status)) {
- 			found = true;
- 			break;
- 		}
-@@ -218,7 +218,7 @@ static bool radeon_atrm_get_bios(struct radeon_device *rdev)
- 				continue;
- 
- 			status = acpi_get_handle(dhandle, "ATRM", &atrm_handle);
--			if (!ACPI_FAILURE(status)) {
-+			if (ACPI_SUCCESS(status)) {
- 				found = true;
- 				break;
- 			}
-diff --git a/drivers/hwmon/acpi_power_meter.c b/drivers/hwmon/acpi_power_meter.c
-index 848718ab7312..7d3ddcba34ce 100644
---- a/drivers/hwmon/acpi_power_meter.c
-+++ b/drivers/hwmon/acpi_power_meter.c
-@@ -161,7 +161,7 @@ static ssize_t set_avg_interval(struct device *dev,
- 	mutex_lock(&resource->lock);
- 	status = acpi_evaluate_integer(resource->acpi_dev->handle, "_PAI",
- 				       &args, &data);
--	if (!ACPI_FAILURE(status))
-+	if (ACPI_SUCCESS(status))
- 		resource->avg_interval = temp;
- 	mutex_unlock(&resource->lock);
- 
-@@ -232,7 +232,7 @@ static ssize_t set_cap(struct device *dev, struct device_attribute *devattr,
- 	mutex_lock(&resource->lock);
- 	status = acpi_evaluate_integer(resource->acpi_dev->handle, "_SHL",
- 				       &args, &data);
--	if (!ACPI_FAILURE(status))
-+	if (ACPI_SUCCESS(status))
- 		resource->cap = temp;
- 	mutex_unlock(&resource->lock);
- 
-diff --git a/drivers/platform/x86/asus-laptop.c b/drivers/platform/x86/asus-laptop.c
-index 0edafe687fa9..bfea656e910c 100644
---- a/drivers/platform/x86/asus-laptop.c
-+++ b/drivers/platform/x86/asus-laptop.c
-@@ -861,7 +861,7 @@ static ssize_t infos_show(struct device *dev, struct device_attribute *attr,
- 	 * The significance of others is yet to be found.
- 	 */
- 	rv = acpi_evaluate_integer(asus->handle, "SFUN", NULL, &temp);
--	if (!ACPI_FAILURE(rv))
-+	if (ACPI_SUCCESS(rv))
- 		len += sprintf(page + len, "SFUN value         : %#x\n",
- 			       (uint) temp);
- 	/*
-@@ -873,7 +873,7 @@ static ssize_t infos_show(struct device *dev, struct device_attribute *attr,
- 	 * takes several seconds to run on some systems.
- 	 */
- 	rv = acpi_evaluate_integer(asus->handle, "HWRS", NULL, &temp);
--	if (!ACPI_FAILURE(rv))
-+	if (ACPI_SUCCESS(rv))
- 		len += sprintf(page + len, "HWRS value         : %#x\n",
- 			       (uint) temp);
- 	/*
-@@ -884,7 +884,7 @@ static ssize_t infos_show(struct device *dev, struct device_attribute *attr,
- 	 * silently ignored.
- 	 */
- 	rv = acpi_evaluate_integer(asus->handle, "ASYM", NULL, &temp);
--	if (!ACPI_FAILURE(rv))
-+	if (ACPI_SUCCESS(rv))
- 		len += sprintf(page + len, "ASYM value         : %#x\n",
- 			       (uint) temp);
- 	if (asus->dsdt_info) {
-diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-index 720ab34784c1..801d8b499788 100644
---- a/drivers/spi/spi.c
-+++ b/drivers/spi/spi.c
-@@ -2210,7 +2210,7 @@ static acpi_status acpi_register_spi_device(struct spi_controller *ctlr,
- 		return AE_OK;
- 
- 	if (!lookup.max_speed_hz &&
--	    !ACPI_FAILURE(acpi_get_parent(adev->handle, &parent_handle)) &&
-+	    ACPI_SUCCESS(acpi_get_parent(adev->handle, &parent_handle)) &&
- 	    ACPI_HANDLE(ctlr->dev.parent) == parent_handle) {
- 		/* Apple does not use _CRS but nested devices for SPI slaves */
- 		acpi_spi_parse_apple_properties(adev, &lookup);
-diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
-index 770ad25f1907..fe8049cd2765 100644
---- a/sound/pci/hda/hda_intel.c
-+++ b/sound/pci/hda/hda_intel.c
-@@ -1444,7 +1444,7 @@ static bool atpx_present(void)
- 		dhandle = ACPI_HANDLE(&pdev->dev);
- 		if (dhandle) {
- 			status = acpi_get_handle(dhandle, "ATPX", &atpx_handle);
--			if (!ACPI_FAILURE(status)) {
-+			if (ACPI_SUCCESS(status)) {
- 				pci_dev_put(pdev);
- 				return true;
- 			}
-@@ -1454,7 +1454,7 @@ static bool atpx_present(void)
- 		dhandle = ACPI_HANDLE(&pdev->dev);
- 		if (dhandle) {
- 			status = acpi_get_handle(dhandle, "ATPX", &atpx_handle);
--			if (!ACPI_FAILURE(status)) {
-+			if (ACPI_SUCCESS(status)) {
- 				pci_dev_put(pdev);
- 				return true;
- 			}
+Patch 8 introduces DRM support for associating GEM objects with a cgroup.
+
+Patch 9 implements i915 changes to use cgroups for device memory charging
+and enforcing device memory allocation limit.
+
+[1] https://lists.freedesktop.org/archives/dri-devel/2020-February/257052.html
+[2] https://lists.freedesktop.org/archives/dri-devel/2019-November/242599.html
+
+Brian Welty (6):
+  drmcg: Add skeleton seq_show and write for drmcg files
+  drmcg: Add support for device memory accounting via page counter
+  drmcg: Add memory.total file
+  drmcg: Add initial support for tracking gpu time usage
+  drm/gem: Associate GEM objects with drm cgroup
+  drm/i915: Use memory cgroup for enforcing device memory limit
+
+Kenny Ho (3):
+  cgroup: Introduce cgroup for drm subsystem
+  drm, cgroup: Bind drm and cgroup subsystem
+  drm, cgroup: Initialize drmcg properties
+
+ Documentation/admin-guide/cgroup-v2.rst    |  58 ++-
+ Documentation/cgroup-v1/drm.rst            |   1 +
+ drivers/gpu/drm/drm_drv.c                  |  11 +
+ drivers/gpu/drm/drm_gem.c                  |  89 ++++
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c   |   1 +
+ drivers/gpu/drm/i915/gem/i915_gem_region.c |  23 +-
+ drivers/gpu/drm/i915/intel_memory_region.c |  13 +-
+ drivers/gpu/drm/i915/intel_memory_region.h |   2 +-
+ include/drm/drm_cgroup.h                   |  85 ++++
+ include/drm/drm_device.h                   |   7 +
+ include/drm/drm_gem.h                      |  17 +
+ include/linux/cgroup_drm.h                 | 113 +++++
+ include/linux/cgroup_subsys.h              |   4 +
+ init/Kconfig                               |   5 +
+ kernel/cgroup/Makefile                     |   1 +
+ kernel/cgroup/drm.c                        | 533 +++++++++++++++++++++
+ 16 files changed, 954 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/cgroup-v1/drm.rst
+ create mode 100644 include/drm/drm_cgroup.h
+ create mode 100644 include/linux/cgroup_drm.h
+ create mode 100644 kernel/cgroup/drm.c
+
 -- 
-2.25.1
+2.20.1
 
 _______________________________________________
 amd-gfx mailing list
