@@ -1,45 +1,37 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A5C4305FE3
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 Jan 2021 16:44:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE7D130608B
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 Jan 2021 17:06:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92E806E848;
-	Wed, 27 Jan 2021 15:44:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6915A89C7F;
+	Wed, 27 Jan 2021 16:06:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com
- [209.85.167.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60A246E848
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 15:44:14 +0000 (UTC)
-Received: by mail-oi1-f174.google.com with SMTP id h192so2601508oib.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 07:44:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=mKSsdWM+4/PJcslQINc+CYwOklvwIWIB07uvc/J/vlk=;
- b=AqSFz4PSmYRzKrm+A9xI51S2s2sY8RD0ugtL4Yiza6V2qKcT891XVKx8ZFccIbJDi3
- Xg6+EZ4ZFayNrrkwbbKt1glUWmbiG/gWvhl+tY7mI4nAHYHs2gCENS3+I9FutHO60p36
- d8v1WIUo+3TWDwpECKLTas4z742F4TM5Owpd5giA3s2pU9/+yQEczfQnOMArVfvlrWUe
- JFmY3gXvV6fJOdOazoHtyebL88WecCYkCFxAgXKelVwZy3Zi0gGzfynVlJ9Fr6cMunkP
- hstZ+8hu3jjbcUEuCwA0zFsi0JBvnsKFGZZLv41QPrAXUGeg07+x04o+9vUkeSDCB6Sr
- 34VA==
-X-Gm-Message-State: AOAM533xDc3yIWwBr8tj54qZPV+mWXwLKJ0ScOxRFejPiyCPT0uIcrFd
- pptKSOR1L8OcrGTkTrZqLFxLVzRibetG7SCZ2yc=
-X-Google-Smtp-Source: ABdhPJyGYnzCLCgmUpX6BZg27NxRlq7hf3IvEKBXZL0LTkdyV6wPNtwJmSJGeCPint6S81BushRMZF17XVyz6Aa3ljk=
-X-Received: by 2002:aca:308a:: with SMTP id w132mr3432211oiw.69.1611762253600; 
- Wed, 27 Jan 2021 07:44:13 -0800 (PST)
-MIME-Version: 1.0
-References: <20210126202317.2914080-1-helgaas@kernel.org>
- <20210127151426.GA2984275@bjorn-Precision-5520>
-In-Reply-To: <20210127151426.GA2984275@bjorn-Precision-5520>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Wed, 27 Jan 2021 16:44:02 +0100
-Message-ID: <CAJZ5v0ir4=urUviCR_4N96revWZkHVDyNNUiaJ3jjGzpX8zLVQ@mail.gmail.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6423F89ABE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 16:06:53 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CB390207CC;
+ Wed, 27 Jan 2021 16:06:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1611763613;
+ bh=TBiVdWNTKBxGL5C6wtlgzd2GcCfyPi02KPshb6e+jeM=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:From;
+ b=SwdW0TktI9sBGvj6wz48I+buvaYvvjBOEypEw/ZV2ww9FFDfZxnAGUAOYBsHJaQxp
+ uDCXnm7Y+Jlrlc7jPCntfC2SL8P8hVVBCnQoM4Ofm7akEEs7sCb8FDdwizdwt/ZMKk
+ mJ5JOz+P/5vXPVkMmhmarNNeAC0/beYCn+jrKBH2g3ywi5AjgVSPW6yiEmS14yEXXF
+ e+FcRZYhqDtVorRN4HUjqYEwhBD/3XLdd/3foTCO8RcZevxQOPEG+oI1kzwI9MQneg
+ /fw7BNKdhDJQJHg19ZxYWSFIvMzaWoSrEZNtzkkXXfgBoAlg74ErtyHhaKqOvFRoEW
+ CT9VTuVNEoEFQ==
+Date: Wed, 27 Jan 2021 10:06:50 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: "Rafael J. Wysocki" <rafael@kernel.org>
 Subject: Re: [PATCH] ACPI: Test for ACPI_SUCCESS rather than !ACPI_FAILURE
-To: Bjorn Helgaas <helgaas@kernel.org>
+Message-ID: <20210127160650.GA2991034@bjorn-Precision-5520>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAJZ5v0ir4=urUviCR_4N96revWZkHVDyNNUiaJ3jjGzpX8zLVQ@mail.gmail.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,36 +53,39 @@ Cc: linux-hwmon@vger.kernel.org,
  Mark Brown <broonie@kernel.org>, Corentin Chary <corentin.chary@gmail.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  linux-spi <linux-spi@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
  Guenter Roeck <linux@roeck-us.net>, Len Brown <lenb@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 27, 2021 at 4:16 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
->
-> On Tue, Jan 26, 2021 at 02:23:17PM -0600, Bjorn Helgaas wrote:
-> > From: Bjorn Helgaas <bhelgaas@google.com>
+On Wed, Jan 27, 2021 at 04:44:02PM +0100, Rafael J. Wysocki wrote:
+> On Wed, Jan 27, 2021 at 4:16 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
 > >
-> > The double negative makes it hard to read "if (!ACPI_FAILURE(status))".
-> > Replace it with "if (ACPI_SUCCESS(status))".
+> > On Tue, Jan 26, 2021 at 02:23:17PM -0600, Bjorn Helgaas wrote:
+> > > From: Bjorn Helgaas <bhelgaas@google.com>
+> > >
+> > > The double negative makes it hard to read "if (!ACPI_FAILURE(status))".
+> > > Replace it with "if (ACPI_SUCCESS(status))".
+> > >
+> > > Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
+> > > ---
+> > >
+> > > This isn't really an ACPI patch, but I'm sending it to you, Rafael, since
+> > > it seems easier to just apply these all at once.  But I'd be happy to split
+> > > them up into individual patches if you'd rather.
 > >
-> > Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
-> > ---
-> >
-> > This isn't really an ACPI patch, but I'm sending it to you, Rafael, since
-> > it seems easier to just apply these all at once.  But I'd be happy to split
-> > them up into individual patches if you'd rather.
->
-> Thanks, everybody.  Rafael, I'll just merge this via my tree to avoid
-> burdening you.
+> > Thanks, everybody.  Rafael, I'll just merge this via my tree to avoid
+> > burdening you.
+> 
+> It may conflict with some janitorial stuff I'm doing, though, so
+> unless you've already applied it, I'd prefer to take it via the ACPI
+> tree.
 
-It may conflict with some janitorial stuff I'm doing, though, so
-unless you've already applied it, I'd prefer to take it via the ACPI
-tree.
+No problem, it's all yours!
 
-Cheers!
+Bjorn
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
