@@ -1,49 +1,95 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48FA2304BAC
-	for <lists+amd-gfx@lfdr.de>; Tue, 26 Jan 2021 22:45:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55181304F06
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 Jan 2021 02:42:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69A226E4B1;
-	Tue, 26 Jan 2021 21:44:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5E8B8967A;
+	Wed, 27 Jan 2021 01:42:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14CE46E466;
- Tue, 26 Jan 2021 21:44:39 +0000 (UTC)
-IronPort-SDR: kRyTBmGzx4AWPKJyjIR+6tuiXjgXmJkWLMiTV+xyW2gNawMBHaGP3xdNcxgaYk4RsjKI4IEGhI
- w5VTmpF73WVg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="198770835"
-X-IronPort-AV: E=Sophos;i="5.79,377,1602572400"; d="scan'208";a="198770835"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 13:44:38 -0800
-IronPort-SDR: zc66kQ1JtSLeYK+wt641PVVb/HET+nEaDxne1KFIOAlpQAAsXthG14gnFUqzJrerD6iJkLIOGH
- +M/naXge3Lrw==
-X-IronPort-AV: E=Sophos;i="5.79,377,1602572400"; d="scan'208";a="362139908"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
- 26 Jan 2021 13:44:37 -0800
-From: Brian Welty <brian.welty@intel.com>
-To: Brian Welty <brian.welty@intel.com>, cgroups@vger.kernel.org,
- Tejun Heo <tj@kernel.org>, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Kenny Ho <Kenny.Ho@amd.com>, amd-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Eero Tamminen <eero.t.tamminen@intel.com>
-Subject: [RFC PATCH 9/9] drm/i915: Use memory cgroup for enforcing device
- memory limit
-Date: Tue, 26 Jan 2021 13:46:26 -0800
-Message-Id: <20210126214626.16260-10-brian.welty@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210126214626.16260-1-brian.welty@intel.com>
-References: <20210126214626.16260-1-brian.welty@intel.com>
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2047.outbound.protection.outlook.com [40.107.220.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 327BE8967A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 01:42:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MTf5id5RM9jpB8b5cEAklN/MbpGPPaQ74KtZ7TBFJWP0BBOFC4BkfeAM6L6fQb7G/tZrnzt10BPiCgptoe8byfr1CGRLeTiYrS9HG5u2+vXympJBMDsoryTEGSMSXYkbHyTyGbfSKIeEweUQa/wr5PbFkzJAhumEi/I+t3NC4VjzQYtca9IGl98QIAyUcJREuLrlNYx9CyaklfWUMSx6YimLsvR+9jXZ2KPScARTXyGcRtpaSDsW4LDVzy5fI3rzNd2tsKDtbjOO64ycq5O/y4zircgo1f6ZILA6JfYAxcs5VPs0c49/mKWx0FiZMt6CfoVao9K8MY9fpyEqan4SWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RVffawLyB2yKjEmJ1QknKtvkHxto4f8eZmrF5E1hhS4=;
+ b=fyBk3j65kH5e8PtrlmGYKLuO37TkZrs174hZcP8xDlTXs5sDH7u/Wh3XsxBRaGpqUIRXvXGIcpOL9xnFPli9GVztPsNIZoqmyL4qN+bFfGtjD+ka49RHDdADwC0Y3gUv0KdAbU9jPkiT2gmb3Sajdyd73n5YcKHZ5bRHORxFJeN+d4js/3o4tX8aDhiSt6EnOAiNrAzRdgLK2E3tMmbCsmyZinkEUGu/wNkeFgVBFEUj0EGaecsn20iVsbvuWSRfAFHuv2vsiB7yLdR/7aTygcXfbKYMRkH3F1RaO5TlpOkccDW6WksZuh/q/Jb+MY+u03FHK7WpKt5QM4AqAmvxUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org
+ smtp.mailfrom=amd.com; dmarc=fail (p=none sp=none pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RVffawLyB2yKjEmJ1QknKtvkHxto4f8eZmrF5E1hhS4=;
+ b=ua8Hs1rUHKWORV/mgB/OELuthXDxHgGAYlbjqg/Omo8FkntHUKPx9Y1qxdcN6JFLAyZG49Upmds7Zvo9lp7JdJGvhKpHn9PqzidIWf5HBe5m55R3GnAY2HH/WuJj8cWyyAaC3KrM6zagWSanhqwsPz2d05J/txAmw50sGNy710Y=
+Received: from MWHPR04CA0041.namprd04.prod.outlook.com (2603:10b6:300:ee::27)
+ by MW2PR12MB2459.namprd12.prod.outlook.com (2603:10b6:907:c::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11; Wed, 27 Jan
+ 2021 01:42:19 +0000
+Received: from CO1NAM11FT009.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:ee:cafe::a5) by MWHPR04CA0041.outlook.office365.com
+ (2603:10b6:300:ee::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.14 via Frontend
+ Transport; Wed, 27 Jan 2021 01:42:19 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
+ 165.204.84.17) smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none
+ (message not signed) header.d=none;lists.freedesktop.org; dmarc=fail
+ action=none header.from=amd.com;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ amd.com discourages use of 165.204.84.17 as permitted sender)
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ CO1NAM11FT009.mail.protection.outlook.com (10.13.175.61) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3784.12 via Frontend Transport; Wed, 27 Jan 2021 01:42:17 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Tue, 26 Jan
+ 2021 19:42:16 -0600
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Tue, 26 Jan
+ 2021 19:42:16 -0600
+Received: from kenneth-u1804-kvm.amd.com (10.180.168.240) by
+ SATLEXMB02.amd.com (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3
+ via Frontend Transport; Tue, 26 Jan 2021 19:42:15 -0600
+From: Kenneth Feng <kenneth.feng@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amd/pm: Enable gfx DCS feature
+Date: Wed, 27 Jan 2021 09:41:46 +0800
+Message-ID: <20210127014146.10902-1-kenneth.feng@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8d247587-115c-47a5-c758-08d8c264c7ad
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2459:
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2459B9F7D4D9796AB7658F288EBB9@MW2PR12MB2459.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: yLCY+cYdP6J/oItYFDNKwzb5CqPN1FuI5CfXIRCRZ53sZOFJVsDm1xs4IvKATVjguLeH0aXMovJw95YGzXJ97m1oOoYVnPVCLSH+w056do8ASB79teTFn7egJOUwIMV2mbEQca9ebK0b+ASvxjto6sw19JCH1ki7QZNkiDHMb09L5tHT4IGC3NCokp6KfCo/KCmtk1mry/szmf3gcKu0hOgKpsYKfSlRInsotYKKMBudUZvNPg8cPSyRlnYr1fsnkT4fSKjsLt5Jn98pVmjLwhjVBIasgeZgi/zfRtFviagWOmlIDkrUqWh2+4hm0Qrsjm5BvMsN5vyPbvej+02iUHq3M2twl4g5QJu7F8rmBTLHxkRrzOi2fH5XbQQm5MCrdyyXtUScyGBSSrZbwR/yvtTcIsJPqaaBTq5rcRHDxT+G1T3id2LO4KSM5raf30Wy5SbLMDMD1kBONcU5+aEALYccipeDnvtiP0Q22ookRg7vR5EXPvIHakDES2lwwMaLX1slRzx/kpccxVa4IaYqhMjlwdsOxDyeSRmYA7W6BEw+ign83ez41WWOUqyljwxinoySHfZOjh/21/XCd9viMTkSsYPI2WRKSLmR3VHPuZrdgZOrrLD2XkBzkrujceB6
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:ErrorRetry; CAT:NONE;
+ SFS:(4636009)(396003)(136003)(376002)(346002)(39860400002)(46966006)(6666004)(47076005)(81166007)(82310400003)(356005)(54906003)(336012)(86362001)(83380400001)(26005)(478600001)(44832011)(2906002)(1076003)(186003)(7696005)(6916009)(426003)(8936002)(70586007)(8676002)(70206006)(36756003)(316002)(2616005)(5660300002)(4326008)(82740400003)(36610700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2021 01:42:17.3789 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d247587-115c-47a5-c758-08d8c264c7ad
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT009.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2459
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,179 +101,66 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: tao.zhou1@amd.com, Kenneth Feng <kenneth.feng@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-To charge device memory allocations, we need to (1) identify appropriate
-cgroup to charge (currently decided at object creation time), and (2)
-make the charging call at the time that memory pages are being allocated.
+Background:
+Gfx Duty Cycle Scaling(DCS) is applied on the small power limit skus.
+When the current/power/temperature exceeds the limit with the heavy workload,
+the gfx core can be shut off and powered on back and forth.
+The ON time and OFF time is determined by the firmware according to
+the accumulated power credits.
+This feature is different from gfxoff.Gfxoff is applied in the idle case
+and DCS is applied in the case with heavey workload.There are two types of DCS:
+Async DCS and Frame-aligned DCS.Frame-aligned DCS is applied on 3D fullscreen
+and VR workload.
+Since we only supports Async DCS now,disalbe DCS when the 3D fullscreen or
+the VR workload type is chosen.
 
-For (1), see prior DRM patch which associates current task's cgroup with
-GEM objects as they are created.  That cgroup will be charged/uncharged
-for all paging activity against the GEM object.
+Verification:
+The power is lowerer or the perf/watt is increased in the throttling case.
+To be simplified, the entry/exit counter can be observed from the firmware.
 
-For (2), we call drm_get_object_charge_mem() in .get_pages callback
-for the GEM object type.  Uncharging is done in .put_pages when the
-memory is marked such that it can be evicted.  The try_charge() call will
-fail with -ENOMEM if the current memory allocation will exceed the cgroup
-device memory maximum, and allow for driver to perform memory reclaim.
-
-We also set the total device memory reported by DRM cgroup by storing
-in drm_device.drmcg_props after initializing LMEM memory regions.
-
-FIXME: to release drm cgroup reference requires this additional patch:
-  https://patchwork.freedesktop.org/patch/349029
-
-Signed-off-by: Brian Welty <brian.welty@intel.com>
+Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_mman.c   |  1 +
- drivers/gpu/drm/i915/gem/i915_gem_region.c | 23 ++++++++++++++++++----
- drivers/gpu/drm/i915/intel_memory_region.c | 13 ++++++++++--
- drivers/gpu/drm/i915/intel_memory_region.h |  2 +-
- 4 files changed, 32 insertions(+), 7 deletions(-)
+ .../gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c  | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index ec28a6cde49b..9fbe91d4d2f1 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -16,6 +16,7 @@
- #include "i915_gem_gtt.h"
- #include "i915_gem_ioctls.h"
- #include "i915_gem_object.h"
-+#include "i915_gem_lmem.h"
- #include "i915_gem_mman.h"
- #include "i915_trace.h"
- #include "i915_user_extensions.h"
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm/i915/gem/i915_gem_region.c
-index 3e3dad22a683..690b36b25984 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
-@@ -12,11 +12,14 @@ void
- i915_gem_object_put_pages_buddy(struct drm_i915_gem_object *obj,
- 				struct sg_table *pages)
- {
--	__intel_memory_region_put_pages_buddy(obj->mm.region, &obj->mm.blocks);
-+	u64 freed;
- 
-+	freed = __intel_memory_region_put_pages_buddy(obj->mm.region,
-+						      &obj->mm.blocks);
- 	obj->mm.dirty = false;
- 	sg_free_table(pages);
- 	kfree(pages);
-+	drm_gem_object_uncharge_mem(&obj->base, freed);
- }
- 
- int
-@@ -25,7 +28,7 @@ i915_gem_object_get_pages_buddy(struct drm_i915_gem_object *obj)
- 	const u64 max_segment = i915_sg_segment_size();
- 	struct intel_memory_region *mem = obj->mm.region;
- 	struct list_head *blocks = &obj->mm.blocks;
--	resource_size_t size = obj->base.size;
-+	resource_size_t charged, size = obj->base.size;
- 	resource_size_t prev_end;
- 	struct i915_buddy_block *block;
- 	unsigned int flags;
-@@ -44,12 +47,22 @@ i915_gem_object_get_pages_buddy(struct drm_i915_gem_object *obj)
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+index 24f3c96a5e5e..436d94cbb166 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+@@ -261,6 +261,9 @@ sienna_cichlid_get_allowed_feature_mask(struct smu_context *smu,
+ 		*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_DPM_GFX_GPO_BIT);
  	}
  
- 	flags = I915_ALLOC_MIN_PAGE_SIZE;
--	if (obj->flags & I915_BO_ALLOC_CONTIGUOUS)
-+	if (obj->flags & I915_BO_ALLOC_CONTIGUOUS) {
- 		flags |= I915_ALLOC_CONTIGUOUS;
-+		charged = roundup_pow_of_two(size);
-+	} else {
-+		charged = size;
++	if (adev->asic_type == CHIP_NAVY_FLOUNDER || adev->asic_type == CHIP_DIMGREY_CAVEFISH)
++		*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_GFX_DCS_BIT);
++
+ 	if (adev->pm.pp_feature & PP_MCLK_DPM_MASK)
+ 		*(uint64_t *)feature_mask |= FEATURE_MASK(FEATURE_DPM_UCLK_BIT)
+ 					| FEATURE_MASK(FEATURE_MEM_VDDCI_SCALING_BIT)
+@@ -1437,6 +1440,15 @@ static int sienna_cichlid_set_power_profile_mode(struct smu_context *smu, long *
+ 	smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_SetWorkloadMask,
+ 				    1 << workload_type, NULL);
+ 
++	/* have to disable dcs if it's the 3D fullscreen or VR workload type */
++	if (smu->adev->asic_type == CHIP_NAVY_FLOUNDER ||
++		smu->adev->asic_type == CHIP_DIMGREY_CAVEFISH) {
++		ret = smu_cmn_feature_set_enabled(smu, SMU_FEATURE_GFX_DCS_BIT, (workload_type ==
++			WORKLOAD_PPLIB_FULL_SCREEN_3D_BIT || workload_type == WORKLOAD_PPLIB_VR_BIT) ? 0 : 1);
++		if (ret)
++			return ret;
 +	}
 +
-+	ret = drm_gem_object_charge_mem(&obj->base, charged);
-+	if (ret) {
-+		DRM_DEBUG("DRMCG: charge_mem failed for %lld\n", charged);
-+		goto err_free_sg;
-+	}
- 
- 	ret = __intel_memory_region_get_pages_buddy(mem, size, flags, blocks);
- 	if (ret)
--		goto err_free_sg;
-+		goto err_uncharge;
- 
- 	GEM_BUG_ON(list_empty(blocks));
- 
-@@ -99,6 +112,8 @@ i915_gem_object_get_pages_buddy(struct drm_i915_gem_object *obj)
- 
- 	return 0;
- 
-+err_uncharge:
-+	drm_gem_object_uncharge_mem(&obj->base, charged);
- err_free_sg:
- 	sg_free_table(st);
- 	kfree(st);
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.c b/drivers/gpu/drm/i915/intel_memory_region.c
-index 1bfcdd89b241..9b1edbf4361c 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.c
-+++ b/drivers/gpu/drm/i915/intel_memory_region.c
-@@ -46,13 +46,18 @@ intel_memory_region_free_pages(struct intel_memory_region *mem,
- 	return size;
+ 	return ret;
  }
- 
--void
-+u64
- __intel_memory_region_put_pages_buddy(struct intel_memory_region *mem,
- 				      struct list_head *blocks)
- {
-+	u64 freed;
-+
- 	mutex_lock(&mem->mm_lock);
--	mem->avail += intel_memory_region_free_pages(mem, blocks);
-+	freed = intel_memory_region_free_pages(mem, blocks);
-+	mem->avail += freed;
- 	mutex_unlock(&mem->mm_lock);
-+
-+	return freed;
- }
- 
- void
-@@ -241,6 +246,7 @@ void intel_memory_region_put(struct intel_memory_region *mem)
- 
- int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
- {
-+	u64 lmem_total = 0;
- 	int err, i;
- 
- 	for (i = 0; i < ARRAY_SIZE(i915->mm.regions); i++) {
-@@ -260,6 +266,7 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
- 			break;
- 		case INTEL_MEMORY_LOCAL:
- 			mem = intel_setup_fake_lmem(i915);
-+			lmem_total += mem->total;
- 			break;
- 		}
- 
-@@ -278,6 +285,8 @@ int intel_memory_regions_hw_probe(struct drm_i915_private *i915)
- 		i915->mm.regions[i] = mem;
- 	}
- 
-+	i915->drm.drmcg_props.memory_total = lmem_total;
-+
- 	return 0;
- 
- out_cleanup:
-diff --git a/drivers/gpu/drm/i915/intel_memory_region.h b/drivers/gpu/drm/i915/intel_memory_region.h
-index 6ffc0673f005..c9fca951a372 100644
---- a/drivers/gpu/drm/i915/intel_memory_region.h
-+++ b/drivers/gpu/drm/i915/intel_memory_region.h
-@@ -109,7 +109,7 @@ struct i915_buddy_block *
- __intel_memory_region_get_block_buddy(struct intel_memory_region *mem,
- 				      resource_size_t size,
- 				      unsigned int flags);
--void __intel_memory_region_put_pages_buddy(struct intel_memory_region *mem,
-+u64 __intel_memory_region_put_pages_buddy(struct intel_memory_region *mem,
- 					   struct list_head *blocks);
- void __intel_memory_region_put_block_buddy(struct i915_buddy_block *block);
  
 -- 
-2.20.1
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
