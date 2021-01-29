@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CB69308F5D
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Jan 2021 22:28:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56360308F5A
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Jan 2021 22:28:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6D8C6EC33;
-	Fri, 29 Jan 2021 21:28:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80B286EC2F;
+	Fri, 29 Jan 2021 21:28:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2058.outbound.protection.outlook.com [40.107.237.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F18A6EC32
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Jan 2021 21:28:38 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2077.outbound.protection.outlook.com [40.107.236.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA2C86EC2F
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 Jan 2021 21:28:35 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g9ByG7etmvzWKInF/Y1VNVljXNOGrnXdq4VT70mmDNmSVIlycDGsfyJwwJrFbzmoFlWZtRinfwVDLLbY8PkfpwWu5nZ9+vJQ+npop9EWMq+d554DgFfN5Ymg09Zfi7Uddf+brrV/HUQzZNOdoZ3cpjsQJVlRWGdsv8+T3BtOyJpylpJE6y+o3Z68IiOOfWn4tpoWjHANwSxAuHhVJbA2l81wWCpWvhCi4Sqa9VEWDXIZBf2fxOQx24Rm5ExulDbI6RpOuu9YYi/RUAXPKUf+Pk2oLdS/goHucn0VyePixAo6wYNX/rLvz/oUokO12bsyzVIBXHH6cArwNuvH5AeBSw==
+ b=jEuMX7o52WauEO5hgOSTWqlFRtaECsupUJmO7D2lacyxnUrAPCQ3hGsLwJhv824E8FRGSpCMgXIczI23uGfK8UTT/boIjqr7xAGKdufykjIgb2LskXkVfxyPMxveCbWh6am4at+8DuywtbEuPoTsB1JNwYEyAOCM/qVX+EDQ+biw+I3XEF6YcJFs1s1hW6Dc8SCbhJnPXcSqiPs5Uq1icvQTY9bMfEvusKM/Qf09Fpu7JuJ7t8+adiDJJCMY3VR7EbyF2Vsrlf3SunNYlRmyisehP1RW8+dI4283216XGWVmaIUsVn49LQIBiP1WfNPawIvtCF++hRNWziihzSb1sw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ydsamllrf5fU4+TZe33HQJ7xuoDcg5KpCL9qu2nb9B4=;
- b=DGv0VZ62UHclb0N95yvo3fYwJnnf3Sf/F8SdYYEs2moD1ULEoihZSGetTXwpEwjEx4mt6+ERfXhF4ZXV6pCgCrbsAoWSdhy1uBprewhr7/mzj/vqxCRe1ZwPGv64rHaGqDTn+IGbU49IS+dVSeWN3llBKVUb7ACq64soymqL7F8OHWohxMxy8Q56N7IKX0Fp9gWmPmK5HFjeOzhIbQmr5mNFcNrjUW1Dm72WuH0KVzNMXh1YsTBQdkq6DF9AhizJeV57WeNEm5bhqM1gCl8X4pLZP01C+lD4lGt59F8LJwBz2NY+yRv5GzZF4bmo+QKqHjt4LjCI33cI84TYpmkJ3w==
+ bh=JbdbbZ7DYH79SchU4AdZqecTbu9Y41+f5ghfiVZrErI=;
+ b=SFbUFrqQH8/bP5DWFt5jRjFfeJBGZrxKel4nMR/Reg0tdKjYm1XfbQvcqlf6+UP97Qq1m4+wpchCCyK/ANV9vn/N2iiQNWUrX/2HCxtAtqjj0Ar3pmDOUtq38FjsPbG4hulWWAsULj9fTWOlF5JC/2V0zc5Iyv2e8B8YzaS6XJjnETEAhuaTPKntD6vM489e8TMYJfpwuiW0fgeMqyOSbnAI6fVvSYmBlqJ6GK2MBt/Zk1VxkAh3J+LU696GmpqqYgp4jw3frbZeAWeIOtHHo7Glnx34EBf/m0hbCKNygRiY3EKGxLRavteXknAo7UVXVralbHGMMB1t18L1lztZQg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
  is 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=amd.com; dmarc=fail (p=none sp=none pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ydsamllrf5fU4+TZe33HQJ7xuoDcg5KpCL9qu2nb9B4=;
- b=0g4M37J38oSVeKe3PP2VoSTd6qKdXxiHGL196WZQquN0LUCmqXgHd2LnXY/giplCegcgwx1iCMHudQA6VjDAO80M6qvOVItBB+4WHS8PAMUd/TyB7XPwgozpC9Z8jlx0rCptf0T+7A65pkLy4NM0DwKJj0+SZnpeTCgUTHoo2o0=
-Received: from BN9PR03CA0469.namprd03.prod.outlook.com (2603:10b6:408:139::24)
- by BY5PR12MB4130.namprd12.prod.outlook.com (2603:10b6:a03:20b::16)
+ bh=JbdbbZ7DYH79SchU4AdZqecTbu9Y41+f5ghfiVZrErI=;
+ b=rvpQ6vATcDXFgy1v58BHyh8wOCrI/IRuJ2P05UsNOG4czoSwWCReM1tTs4RTT2TK3U7Que6RFMq1feVYrIY69iudXPZM90Re5Mygj6KpYx8bbbqiFvbhlNIugD50dSMdPBtkcSXK7FqIPXSVuAe+8m4FD0hJMqmZWT0aR8QXv64=
+Received: from BN9PR03CA0467.namprd03.prod.outlook.com (2603:10b6:408:139::22)
+ by CH2PR12MB4874.namprd12.prod.outlook.com (2603:10b6:610:64::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.17; Fri, 29 Jan
- 2021 21:28:31 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.13; Fri, 29 Jan
+ 2021 21:28:33 +0000
 Received: from BN8NAM11FT040.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:139:cafe::d9) by BN9PR03CA0469.outlook.office365.com
- (2603:10b6:408:139::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.17 via Frontend
- Transport; Fri, 29 Jan 2021 21:28:31 +0000
+ (2603:10b6:408:139:cafe::e4) by BN9PR03CA0467.outlook.office365.com
+ (2603:10b6:408:139::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.16 via Frontend
+ Transport; Fri, 29 Jan 2021 21:28:33 +0000
 X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
  165.204.84.17) smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none
  (message not signed) header.d=none;lists.freedesktop.org; dmarc=fail
@@ -47,20 +47,20 @@ Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
  BN8NAM11FT040.mail.protection.outlook.com (10.13.177.166) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3784.12 via Frontend Transport; Fri, 29 Jan 2021 21:28:29 +0000
+ 15.20.3784.12 via Frontend Transport; Fri, 29 Jan 2021 21:28:32 +0000
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 29 Jan
- 2021 15:28:19 -0600
+ 2021 15:28:20 -0600
 Received: from Bumblebee.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Fri, 29 Jan 2021 15:28:18 -0600
+ Transport; Fri, 29 Jan 2021 15:28:19 -0600
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 16/27] drm/amd/display: fix initial bounding box values for
- dcn3.02
-Date: Fri, 29 Jan 2021 16:27:41 -0500
-Message-ID: <20210129212752.38865-17-Anson.Jacob@amd.com>
+Subject: [PATCH 17/27] drm/amd/display: Fix CW4 programming for dmub30 cached
+ inbox
+Date: Fri, 29 Jan 2021 16:27:42 -0500
+Message-ID: <20210129212752.38865-18-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210129212752.38865-1-Anson.Jacob@amd.com>
 References: <20210129212752.38865-1-Anson.Jacob@amd.com>
@@ -68,27 +68,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6380a047-782e-475c-5c62-08d8c49cd28d
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4130:
-X-Microsoft-Antispam-PRVS: <BY5PR12MB41309EB5CDFDC5D7D07AC357EBB99@BY5PR12MB4130.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Office365-Filtering-Correlation-Id: 1d55385a-3b2d-40ee-5dee-08d8c49cd3e9
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4874:
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4874E27D28906993E218AF12EBB99@CH2PR12MB4874.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pnv3TpYhS+8OY209QeYwmNByBjgFAocGqz+UsSemA98yfcop3qrhnScdKAgYYZdSl7ZW2cp4ag6x+fkDQWIx4PM04IwqYVGMchib+hIv9sBolEupgzDhBlI5jIqQ+iSn5q9M9+gq+rIKRV0XdbBXhCtijzqAUKsnBHCuHIBpDGjUZldDBEExczyDU3y/xS+QjdCW4XWQmpyYDJahpvulSM44YY3ywJgb4FZQ3oIHemOSsU8lUJsui77ZHw+qy8pFZ8MENmPNFdhJ30pHRGcxFfrW/MG3m9YMhoAn0y36/B6ci0ysR24kuhpYAmtujCplMJGp4Jm7bcyNzKBJr6kvhFwfpVIgWJ+gfj5AXWNZyYFUotWx2vD9EyoAzbPEXZyX1/6gMnrGjkgofyukhmLdNg1JCZTaef5aNVxc6sXGwbVdC7vkyCVcrn2wj8QUQOJFNO4Y6VFfKE8GYzCnK1yUXVXXmWHWZibiDP0+6dNS0Mb+MP/Q1GqS6P/7fZEVtla02goS8sEn0Wwg3q0wOi32xDzaCYXm1G2uAeBzgo3u6AjiEiBegLJXU8vkjP+tjjwvlTSuNLKRHnxvMSWOeGUAyx/RDga+tKtsdkXXVEbm9Ek=
+X-Microsoft-Antispam-Message-Info: 50BqZk7gR4KgvFI/XbiwYhokXZswn/nL/wHSg/niiFGDA8vndgX3lDvxr896c2g2C1Wm3oam4s8ufvg4fhdg7uKO00qNR1qOxCFO03+767g0xForcFf+u+xT4vyIDYtOgWrM5nQ6tpcd1BW4thGZIDeAJxnzWhMbtzPZ2ltWGwLFQq25Pudzx6CGUA+vg+uw2K5GMABbG0+nDq+uBbrQzOiXUbxnfaASp1TZvS3ASjW1vjjNNLJLUW+FAD1Ji6GUvTtphpt7lITYmho9HLZBx+APChes8vMLJlED44fpAKfs4ioX9NY1hOARHb8epHKWXqDfSJgZm1NhrdTt3iMnNiKxnzCIXpTycuUAXV976k9sGFcE6a4bboH6Sih+1j0F4fJHmNbMY2EEVHnJlyEAI6ZGljzrbU4YQM3ayC+Ocxy6YfCV9mTGC1y4kOV7edIV2ZUF3K7ip7kViczKfFWvuM8F3sUpCqooK8I7TTKA/2nRsz8GSbke67RsXZkk6VD+pdKFphChDfyVpbgnn4mohr+2C3UjPf/DZ1IkrEN4mKyEUoJAeSTKawFtVOo8V6i6ets6vjMLrZxB2QmlMwcZyvBLg51VgVKF5js2P6XMGoc=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:ErrorRetry; CAT:NONE;
- SFS:(4636009)(346002)(376002)(39860400002)(396003)(136003)(46966006)(8676002)(336012)(82310400003)(7696005)(83380400001)(6666004)(1076003)(478600001)(36756003)(54906003)(8936002)(316002)(5660300002)(81166007)(426003)(6916009)(82740400003)(30864003)(4326008)(86362001)(47076005)(2616005)(26005)(186003)(2906002)(70206006)(356005)(70586007);
+ SFS:(4636009)(136003)(346002)(39860400002)(376002)(396003)(46966006)(186003)(316002)(8676002)(336012)(36756003)(4326008)(6666004)(70586007)(5660300002)(82740400003)(70206006)(82310400003)(7696005)(478600001)(54906003)(1076003)(356005)(2906002)(6916009)(426003)(47076005)(83380400001)(2616005)(8936002)(81166007)(26005)(86362001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2021 21:28:29.8827 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6380a047-782e-475c-5c62-08d8c49cd28d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2021 21:28:32.1714 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d55385a-3b2d-40ee-5dee-08d8c49cd3e9
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT040.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4130
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4874
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,304 +100,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Joshua Aberback <Joshua.Aberback@amd.com>, Eryk.Brol@amd.com,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, Samson Tam <Samson.Tam@amd.com>, Anson.Jacob@amd.com,
- Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com,
+ Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Samson Tam <Samson.Tam@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
 [Why]
-Initial bounding box values are updated in dcn30_update_bw_bounding_box
- but they use dcn3_0_soc and dcn3_0_ip instead of dcn3_02_soc and
- dcn3_02_ip
+The conditions for whether we used cached vs non-cached inbox1 depend
+on a version check that mismatches what the shared helpers in dmub20
+implement.
 
 [How]
-Add dcn302_update_bw_bounding_box and
- dcn302_get_optimal_dcfclk_fclk_for_uclk so it uses
- dcn3_02_soc and dcn3_02_ip.
-Use sr_exit_time_us, sr_enter_plus_exit_time_us,
- from dcn30 on dcn302 to fix flicker on eDP.
- Also use dram_clock_change_latency_us from dcn30.
+Use the dmub_dcn20_use_cached_inbox check for dmub_dcn30 as well.
 
-Signed-off-by: Samson Tam <Samson.Tam@amd.com>
-Reviewed-by: Joshua Aberback <Joshua.Aberback@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
 ---
- .../drm/amd/display/dc/dcn30/dcn30_resource.c |  24 ++-
- .../amd/display/dc/dcn302/dcn302_resource.c   | 168 +++++++++++++++++-
- .../amd/display/dc/dcn302/dcn302_resource.h   |   2 +
- 3 files changed, 184 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c | 2 +-
+ drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h | 2 ++
+ drivers/gpu/drm/amd/display/dmub/src/dmub_dcn30.c | 2 +-
+ 3 files changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index dcf848f747a5..22ae6a547cd3 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -2334,16 +2334,28 @@ bool dcn30_validate_bandwidth(struct dc *dc,
- 	return out;
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
+index 26716c41786a..8e8e65fa83c0 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
+@@ -81,7 +81,7 @@ static inline void dmub_dcn20_translate_addr(const union dmub_addr *addr_in,
+ 	addr_out->quad_part = addr_in->quad_part - fb_base + fb_offset;
  }
  
--static noinline void get_optimal_dcfclk_fclk_for_uclk(unsigned int uclk_mts,
--                                                       unsigned int *optimal_dcfclk,
--                                                       unsigned int *optimal_fclk)
-+/*
-+ * This must be noinline to ensure anything that deals with FP registers
-+ * is contained within this call; previously our compiling with hard-float
-+ * would result in fp instructions being emitted outside of the boundaries
-+ * of the DC_FP_START/END macros, which makes sense as the compiler has no
-+ * idea about what is wrapped and what is not
-+ *
-+ * This is largely just a workaround to avoid breakage introduced with 5.6,
-+ * ideally all fp-using code should be moved into its own file, only that
-+ * should be compiled with hard-float, and all code exported from there
-+ * should be strictly wrapped with DC_FP_START/END
-+ */
-+static noinline void dcn30_get_optimal_dcfclk_fclk_for_uclk(unsigned int uclk_mts,
-+		unsigned int *optimal_dcfclk,
-+		unsigned int *optimal_fclk)
+-static inline bool dmub_dcn20_use_cached_inbox(struct dmub_srv *dmub)
++bool dmub_dcn20_use_cached_inbox(struct dmub_srv *dmub)
  {
-        double bw_from_dram, bw_from_dram1, bw_from_dram2;
+ 	/* Cached inbox is not supported in this fw version range */
+ 	return !(dmub->fw_version >= DMUB_FW_VERSION(1, 0, 0) &&
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
+index d438f365cbb0..a62be9c0652e 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
+@@ -198,4 +198,6 @@ void dmub_dcn20_skip_dmub_panel_power_sequence(struct dmub_srv *dmub, bool skip)
  
-        bw_from_dram1 = uclk_mts * dcn3_0_soc.num_chans *
--                       dcn3_0_soc.dram_channel_width_bytes * (dcn3_0_soc.max_avg_dram_bw_use_normal_percent / 100);
-+		dcn3_0_soc.dram_channel_width_bytes * (dcn3_0_soc.max_avg_dram_bw_use_normal_percent / 100);
-        bw_from_dram2 = uclk_mts * dcn3_0_soc.num_chans *
--                       dcn3_0_soc.dram_channel_width_bytes * (dcn3_0_soc.max_avg_sdp_bw_use_normal_percent / 100);
-+		dcn3_0_soc.dram_channel_width_bytes * (dcn3_0_soc.max_avg_sdp_bw_use_normal_percent / 100);
+ union dmub_fw_boot_status dmub_dcn20_get_fw_boot_status(struct dmub_srv *dmub);
  
-        bw_from_dram = (bw_from_dram1 < bw_from_dram2) ? bw_from_dram1 : bw_from_dram2;
++bool dmub_dcn20_use_cached_inbox(struct dmub_srv *dmub);
++
+ #endif /* _DMUB_DCN20_H_ */
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn30.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn30.c
+index 7e6f4dbabe45..b4bc0df2f14a 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn30.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn30.c
+@@ -155,7 +155,7 @@ void dmub_dcn30_setup_windows(struct dmub_srv *dmub,
+ 	offset = cw4->offset;
  
-@@ -2402,7 +2414,7 @@ void dcn30_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params
- 		// Calculate optimal dcfclk for each uclk
- 		for (i = 0; i < num_uclk_states; i++) {
- 			DC_FP_START();
--			get_optimal_dcfclk_fclk_for_uclk(bw_params->clk_table.entries[i].memclk_mhz * 16,
-+			dcn30_get_optimal_dcfclk_fclk_for_uclk(bw_params->clk_table.entries[i].memclk_mhz * 16,
- 					&optimal_dcfclk_for_uclk[i], NULL);
- 			DC_FP_END();
- 			if (optimal_dcfclk_for_uclk[i] < bw_params->clk_table.entries[0].dcfclk_mhz) {
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-index b4ff73e32279..4b659b63f75b 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-@@ -54,6 +54,7 @@
- #include "dce/dce_panel_cntl.h"
- #include "dce/dmub_abm.h"
- #include "dce/dmub_psr.h"
-+#include "clk_mgr.h"
- 
- #include "hw_sequencer_private.h"
- #include "reg_helper.h"
-@@ -163,8 +164,8 @@ struct _vcs_dpi_soc_bounding_box_st dcn3_02_soc = {
- 
- 		.min_dcfclk = 500.0, /* TODO: set this to actual min DCFCLK */
- 		.num_states = 1,
--		.sr_exit_time_us = 5.20,
--		.sr_enter_plus_exit_time_us = 9.60,
-+		.sr_exit_time_us = 12,
-+		.sr_enter_plus_exit_time_us = 20,
- 		.urgent_latency_us = 4.0,
- 		.urgent_latency_pixel_data_only_us = 4.0,
- 		.urgent_latency_pixel_mixed_with_vm_data_us = 4.0,
-@@ -191,7 +192,7 @@ struct _vcs_dpi_soc_bounding_box_st dcn3_02_soc = {
- 		.num_banks = 8,
- 		.gpuvm_min_page_size_bytes = 4096,
- 		.hostvm_min_page_size_bytes = 4096,
--		.dram_clock_change_latency_us = 350,
-+		.dram_clock_change_latency_us = 404,
- 		.dummy_pstate_latency_us = 5,
- 		.writeback_dram_clock_change_latency_us = 23.0,
- 		.return_bus_width_bytes = 64,
-@@ -1229,6 +1230,165 @@ static void dcn302_destroy_resource_pool(struct resource_pool **pool)
- 	*pool = NULL;
- }
- 
-+static void dcn302_get_optimal_dcfclk_fclk_for_uclk(unsigned int uclk_mts,
-+		unsigned int *optimal_dcfclk,
-+		unsigned int *optimal_fclk)
-+{
-+	double bw_from_dram, bw_from_dram1, bw_from_dram2;
-+
-+	bw_from_dram1 = uclk_mts * dcn3_02_soc.num_chans *
-+		dcn3_02_soc.dram_channel_width_bytes * (dcn3_02_soc.max_avg_dram_bw_use_normal_percent / 100);
-+	bw_from_dram2 = uclk_mts * dcn3_02_soc.num_chans *
-+		dcn3_02_soc.dram_channel_width_bytes * (dcn3_02_soc.max_avg_sdp_bw_use_normal_percent / 100);
-+
-+	bw_from_dram = (bw_from_dram1 < bw_from_dram2) ? bw_from_dram1 : bw_from_dram2;
-+
-+	if (optimal_fclk)
-+		*optimal_fclk = bw_from_dram /
-+		(dcn3_02_soc.fabric_datapath_to_dcn_data_return_bytes * (dcn3_02_soc.max_avg_sdp_bw_use_normal_percent / 100));
-+
-+	if (optimal_dcfclk)
-+		*optimal_dcfclk =  bw_from_dram /
-+		(dcn3_02_soc.return_bus_width_bytes * (dcn3_02_soc.max_avg_sdp_bw_use_normal_percent / 100));
-+}
-+
-+void dcn302_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params)
-+{
-+	unsigned int i, j;
-+	unsigned int num_states = 0;
-+
-+	unsigned int dcfclk_mhz[DC__VOLTAGE_STATES] = {0};
-+	unsigned int dram_speed_mts[DC__VOLTAGE_STATES] = {0};
-+	unsigned int optimal_uclk_for_dcfclk_sta_targets[DC__VOLTAGE_STATES] = {0};
-+	unsigned int optimal_dcfclk_for_uclk[DC__VOLTAGE_STATES] = {0};
-+
-+	unsigned int dcfclk_sta_targets[DC__VOLTAGE_STATES] = {694, 875, 1000, 1200};
-+	unsigned int num_dcfclk_sta_targets = 4;
-+	unsigned int num_uclk_states;
-+
-+
-+	if (dc->ctx->dc_bios->vram_info.num_chans)
-+		dcn3_02_soc.num_chans = dc->ctx->dc_bios->vram_info.num_chans;
-+
-+	if (dc->ctx->dc_bios->vram_info.dram_channel_width_bytes)
-+		dcn3_02_soc.dram_channel_width_bytes = dc->ctx->dc_bios->vram_info.dram_channel_width_bytes;
-+
-+	dcn3_02_soc.dispclk_dppclk_vco_speed_mhz = dc->clk_mgr->dentist_vco_freq_khz / 1000.0;
-+	dc->dml.soc.dispclk_dppclk_vco_speed_mhz = dc->clk_mgr->dentist_vco_freq_khz / 1000.0;
-+
-+	if (bw_params->clk_table.entries[0].memclk_mhz) {
-+		int max_dcfclk_mhz = 0, max_dispclk_mhz = 0, max_dppclk_mhz = 0, max_phyclk_mhz = 0;
-+
-+		for (i = 0; i < MAX_NUM_DPM_LVL; i++) {
-+			if (bw_params->clk_table.entries[i].dcfclk_mhz > max_dcfclk_mhz)
-+				max_dcfclk_mhz = bw_params->clk_table.entries[i].dcfclk_mhz;
-+			if (bw_params->clk_table.entries[i].dispclk_mhz > max_dispclk_mhz)
-+				max_dispclk_mhz = bw_params->clk_table.entries[i].dispclk_mhz;
-+			if (bw_params->clk_table.entries[i].dppclk_mhz > max_dppclk_mhz)
-+				max_dppclk_mhz = bw_params->clk_table.entries[i].dppclk_mhz;
-+			if (bw_params->clk_table.entries[i].phyclk_mhz > max_phyclk_mhz)
-+				max_phyclk_mhz = bw_params->clk_table.entries[i].phyclk_mhz;
-+		}
-+		if (!max_dcfclk_mhz)
-+			max_dcfclk_mhz = dcn3_02_soc.clock_limits[0].dcfclk_mhz;
-+		if (!max_dispclk_mhz)
-+			max_dispclk_mhz = dcn3_02_soc.clock_limits[0].dispclk_mhz;
-+		if (!max_dppclk_mhz)
-+			max_dppclk_mhz = dcn3_02_soc.clock_limits[0].dppclk_mhz;
-+		if (!max_phyclk_mhz)
-+			max_phyclk_mhz = dcn3_02_soc.clock_limits[0].phyclk_mhz;
-+
-+		if (max_dcfclk_mhz > dcfclk_sta_targets[num_dcfclk_sta_targets-1]) {
-+			/* If max DCFCLK is greater than the max DCFCLK STA target, insert into the DCFCLK STA target array */
-+			dcfclk_sta_targets[num_dcfclk_sta_targets] = max_dcfclk_mhz;
-+			num_dcfclk_sta_targets++;
-+		} else if (max_dcfclk_mhz < dcfclk_sta_targets[num_dcfclk_sta_targets-1]) {
-+			/* If max DCFCLK is less than the max DCFCLK STA target, cap values and remove duplicates */
-+			for (i = 0; i < num_dcfclk_sta_targets; i++) {
-+				if (dcfclk_sta_targets[i] > max_dcfclk_mhz) {
-+					dcfclk_sta_targets[i] = max_dcfclk_mhz;
-+					break;
-+				}
-+			}
-+			/* Update size of array since we "removed" duplicates */
-+			num_dcfclk_sta_targets = i + 1;
-+		}
-+
-+		num_uclk_states = bw_params->clk_table.num_entries;
-+
-+		/* Calculate optimal dcfclk for each uclk */
-+		for (i = 0; i < num_uclk_states; i++) {
-+			dcn302_get_optimal_dcfclk_fclk_for_uclk(bw_params->clk_table.entries[i].memclk_mhz * 16,
-+					&optimal_dcfclk_for_uclk[i], NULL);
-+			if (optimal_dcfclk_for_uclk[i] < bw_params->clk_table.entries[0].dcfclk_mhz) {
-+				optimal_dcfclk_for_uclk[i] = bw_params->clk_table.entries[0].dcfclk_mhz;
-+			}
-+		}
-+
-+		/* Calculate optimal uclk for each dcfclk sta target */
-+		for (i = 0; i < num_dcfclk_sta_targets; i++) {
-+			for (j = 0; j < num_uclk_states; j++) {
-+				if (dcfclk_sta_targets[i] < optimal_dcfclk_for_uclk[j]) {
-+					optimal_uclk_for_dcfclk_sta_targets[i] =
-+							bw_params->clk_table.entries[j].memclk_mhz * 16;
-+					break;
-+				}
-+			}
-+		}
-+
-+		i = 0;
-+		j = 0;
-+		/* create the final dcfclk and uclk table */
-+		while (i < num_dcfclk_sta_targets && j < num_uclk_states && num_states < DC__VOLTAGE_STATES) {
-+			if (dcfclk_sta_targets[i] < optimal_dcfclk_for_uclk[j] && i < num_dcfclk_sta_targets) {
-+				dcfclk_mhz[num_states] = dcfclk_sta_targets[i];
-+				dram_speed_mts[num_states++] = optimal_uclk_for_dcfclk_sta_targets[i++];
-+			} else {
-+				if (j < num_uclk_states && optimal_dcfclk_for_uclk[j] <= max_dcfclk_mhz) {
-+					dcfclk_mhz[num_states] = optimal_dcfclk_for_uclk[j];
-+					dram_speed_mts[num_states++] = bw_params->clk_table.entries[j++].memclk_mhz * 16;
-+				} else {
-+					j = num_uclk_states;
-+				}
-+			}
-+		}
-+
-+		while (i < num_dcfclk_sta_targets && num_states < DC__VOLTAGE_STATES) {
-+			dcfclk_mhz[num_states] = dcfclk_sta_targets[i];
-+			dram_speed_mts[num_states++] = optimal_uclk_for_dcfclk_sta_targets[i++];
-+		}
-+
-+		while (j < num_uclk_states && num_states < DC__VOLTAGE_STATES &&
-+				optimal_dcfclk_for_uclk[j] <= max_dcfclk_mhz) {
-+			dcfclk_mhz[num_states] = optimal_dcfclk_for_uclk[j];
-+			dram_speed_mts[num_states++] = bw_params->clk_table.entries[j++].memclk_mhz * 16;
-+		}
-+
-+		dcn3_02_soc.num_states = num_states;
-+		for (i = 0; i < dcn3_02_soc.num_states; i++) {
-+			dcn3_02_soc.clock_limits[i].state = i;
-+			dcn3_02_soc.clock_limits[i].dcfclk_mhz = dcfclk_mhz[i];
-+			dcn3_02_soc.clock_limits[i].fabricclk_mhz = dcfclk_mhz[i];
-+			dcn3_02_soc.clock_limits[i].dram_speed_mts = dram_speed_mts[i];
-+
-+			/* Fill all states with max values of all other clocks */
-+			dcn3_02_soc.clock_limits[i].dispclk_mhz = max_dispclk_mhz;
-+			dcn3_02_soc.clock_limits[i].dppclk_mhz  = max_dppclk_mhz;
-+			dcn3_02_soc.clock_limits[i].phyclk_mhz  = max_phyclk_mhz;
-+			dcn3_02_soc.clock_limits[i].dtbclk_mhz = dcn3_02_soc.clock_limits[0].dtbclk_mhz;
-+			/* These clocks cannot come from bw_params, always fill from dcn3_02_soc[1] */
-+			/* FCLK, PHYCLK_D18, SOCCLK, DSCCLK */
-+			dcn3_02_soc.clock_limits[i].phyclk_d18_mhz = dcn3_02_soc.clock_limits[0].phyclk_d18_mhz;
-+			dcn3_02_soc.clock_limits[i].socclk_mhz = dcn3_02_soc.clock_limits[0].socclk_mhz;
-+			dcn3_02_soc.clock_limits[i].dscclk_mhz = dcn3_02_soc.clock_limits[0].dscclk_mhz;
-+		}
-+		/* re-init DML with updated bb */
-+		dml_init_instance(&dc->dml, &dcn3_02_soc, &dcn3_02_ip, DML_PROJECT_DCN30);
-+		if (dc->current_state)
-+			dml_init_instance(&dc->current_state->bw_ctx.dml, &dcn3_02_soc, &dcn3_02_ip, DML_PROJECT_DCN30);
-+	}
-+}
-+
- static struct resource_funcs dcn302_res_pool_funcs = {
- 		.destroy = dcn302_destroy_resource_pool,
- 		.link_enc_create = dcn302_link_encoder_create,
-@@ -1245,7 +1405,7 @@ static struct resource_funcs dcn302_res_pool_funcs = {
- 		.find_first_free_match_stream_enc_for_link = dcn10_find_first_free_match_stream_enc_for_link,
- 		.acquire_post_bldn_3dlut = dcn30_acquire_post_bldn_3dlut,
- 		.release_post_bldn_3dlut = dcn30_release_post_bldn_3dlut,
--		.update_bw_bounding_box = dcn30_update_bw_bounding_box,
-+		.update_bw_bounding_box = dcn302_update_bw_bounding_box,
- 		.patch_unknown_plane_state = dcn20_patch_unknown_plane_state,
- };
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.h b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.h
-index 71f7deed18e3..42d2c73e30bc 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.h
-@@ -30,4 +30,6 @@
- 
- struct resource_pool *dcn302_create_resource_pool(const struct dc_init_data *init_data, struct dc *dc);
- 
-+void dcn302_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params);
-+
- #endif /* _DCN302_RESOURCE_H_ */
+ 	/* New firmware can support CW4. */
+-	if (dmub->fw_version > DMUB_FW_VERSION(1, 0, 10)) {
++	if (dmub_dcn20_use_cached_inbox(dmub)) {
+ 		REG_WRITE(DMCUB_REGION3_CW4_OFFSET, offset.u.low_part);
+ 		REG_WRITE(DMCUB_REGION3_CW4_OFFSET_HIGH, offset.u.high_part);
+ 		REG_WRITE(DMCUB_REGION3_CW4_BASE_ADDRESS, cw4->region.base);
 -- 
 2.25.1
 
