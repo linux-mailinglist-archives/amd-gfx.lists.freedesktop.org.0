@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56360308F5A
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Jan 2021 22:28:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37508308F5C
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Jan 2021 22:28:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80B286EC2F;
-	Fri, 29 Jan 2021 21:28:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F6906EC32;
+	Fri, 29 Jan 2021 21:28:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2077.outbound.protection.outlook.com [40.107.236.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA2C86EC2F
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Jan 2021 21:28:35 +0000 (UTC)
+ (mail-bn8nam11on2046.outbound.protection.outlook.com [40.107.236.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A53CE6EC32
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 Jan 2021 21:28:37 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jEuMX7o52WauEO5hgOSTWqlFRtaECsupUJmO7D2lacyxnUrAPCQ3hGsLwJhv824E8FRGSpCMgXIczI23uGfK8UTT/boIjqr7xAGKdufykjIgb2LskXkVfxyPMxveCbWh6am4at+8DuywtbEuPoTsB1JNwYEyAOCM/qVX+EDQ+biw+I3XEF6YcJFs1s1hW6Dc8SCbhJnPXcSqiPs5Uq1icvQTY9bMfEvusKM/Qf09Fpu7JuJ7t8+adiDJJCMY3VR7EbyF2Vsrlf3SunNYlRmyisehP1RW8+dI4283216XGWVmaIUsVn49LQIBiP1WfNPawIvtCF++hRNWziihzSb1sw==
+ b=CvKh8wlY1eE9V7mwUhNN7vYyjb+F0fCDu0bF2pN+Nqm86S/HFfqz2aZ3F+9ceF3zyHsUp9TuSwqzbtiLXUKB60qzxRpRzWVFTQ1JgByIiojjtHkrQamLOLiSiafZDrff2MNotZURpcENYwP7Y1dfIixbm0fpTRr4LJ+RgSAEM3IRqpVDO3sOhYRhqr1PUx2ay2Bpb8go6/K2zs74UOKMZXjngOOvcKrGP55pDe406Fs72c+klbgkBxRaxn1mUGqCKPOCjeTZyK90wR3ACaYNilLgtPiSvvrSX2JqQNwJapbw3kpUnPCzpLvngXDJPTwQH1bpBXi8LTlzFuXaTvd7Rg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JbdbbZ7DYH79SchU4AdZqecTbu9Y41+f5ghfiVZrErI=;
- b=SFbUFrqQH8/bP5DWFt5jRjFfeJBGZrxKel4nMR/Reg0tdKjYm1XfbQvcqlf6+UP97Qq1m4+wpchCCyK/ANV9vn/N2iiQNWUrX/2HCxtAtqjj0Ar3pmDOUtq38FjsPbG4hulWWAsULj9fTWOlF5JC/2V0zc5Iyv2e8B8YzaS6XJjnETEAhuaTPKntD6vM489e8TMYJfpwuiW0fgeMqyOSbnAI6fVvSYmBlqJ6GK2MBt/Zk1VxkAh3J+LU696GmpqqYgp4jw3frbZeAWeIOtHHo7Glnx34EBf/m0hbCKNygRiY3EKGxLRavteXknAo7UVXVralbHGMMB1t18L1lztZQg==
+ bh=mOHqpPtRwvoOt1zNS11w7CyJ4POn6Yltd6k1Lcj32Ro=;
+ b=VIyJZyxVPbzz5jBQCoTYw2fBeHglLGvKLkTGUDkvQkAEfUzsP4yS/51Qr4qjqYxbOpZA48nQwXwYGhv3PL5bj4Xw5ZUOs1NwreWUiVitdrrAU9AMV+vzwcmSiNDrQmAhVych0g78+0YJEw2rV35pGYciQ/3i4FS74tOGFnVzihlmTgmBp4yXnk6aL1rlNM03P6KkzJNaqpVe5HTkodlY+cJQ+J0pIIyJ31es2fMTtDVJWquxWQ6NsmTp5Yv7zK1cWmDe4/aw2rjEkm0if8MwAIsKC7csHfLDZEHGcnQe3IPqvsXDzVvB3dgpkd0wpTB8FfQ564GR4F6QSjXkord82w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
  is 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=amd.com; dmarc=fail (p=none sp=none pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JbdbbZ7DYH79SchU4AdZqecTbu9Y41+f5ghfiVZrErI=;
- b=rvpQ6vATcDXFgy1v58BHyh8wOCrI/IRuJ2P05UsNOG4czoSwWCReM1tTs4RTT2TK3U7Que6RFMq1feVYrIY69iudXPZM90Re5Mygj6KpYx8bbbqiFvbhlNIugD50dSMdPBtkcSXK7FqIPXSVuAe+8m4FD0hJMqmZWT0aR8QXv64=
-Received: from BN9PR03CA0467.namprd03.prod.outlook.com (2603:10b6:408:139::22)
- by CH2PR12MB4874.namprd12.prod.outlook.com (2603:10b6:610:64::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.13; Fri, 29 Jan
- 2021 21:28:33 +0000
+ bh=mOHqpPtRwvoOt1zNS11w7CyJ4POn6Yltd6k1Lcj32Ro=;
+ b=e8NQdV83gvLB+yV+9MI5nrk840obM6Jt96B9Q5zGn/5+Cs5PqEonWLp9kqacbWFmdZnQJ7JXZzeQrnb6dQCuxkGTdF8GRwWt92DP70hiGjhdb7qxSAVrZXM8PpF562VkL2NibMzATwxTdyv66YWZ7PzkmKJInDb1FoLjCA34H6M=
+Received: from BN9PR03CA0473.namprd03.prod.outlook.com (2603:10b6:408:139::28)
+ by DM6PR12MB4418.namprd12.prod.outlook.com (2603:10b6:5:28e::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.19; Fri, 29 Jan
+ 2021 21:28:35 +0000
 Received: from BN8NAM11FT040.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:139:cafe::e4) by BN9PR03CA0467.outlook.office365.com
- (2603:10b6:408:139::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.16 via Frontend
- Transport; Fri, 29 Jan 2021 21:28:33 +0000
+ (2603:10b6:408:139:cafe::67) by BN9PR03CA0473.outlook.office365.com
+ (2603:10b6:408:139::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.17 via Frontend
+ Transport; Fri, 29 Jan 2021 21:28:35 +0000
 X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
  165.204.84.17) smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none
  (message not signed) header.d=none;lists.freedesktop.org; dmarc=fail
@@ -47,20 +47,20 @@ Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
 Received: from SATLEXMB01.amd.com (165.204.84.17) by
  BN8NAM11FT040.mail.protection.outlook.com (10.13.177.166) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3784.12 via Frontend Transport; Fri, 29 Jan 2021 21:28:32 +0000
+ 15.20.3784.12 via Frontend Transport; Fri, 29 Jan 2021 21:28:34 +0000
 Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 29 Jan
- 2021 15:28:20 -0600
+ 2021 15:28:21 -0600
 Received: from Bumblebee.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Fri, 29 Jan 2021 15:28:19 -0600
+ Transport; Fri, 29 Jan 2021 15:28:20 -0600
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 17/27] drm/amd/display: Fix CW4 programming for dmub30 cached
- inbox
-Date: Fri, 29 Jan 2021 16:27:42 -0500
-Message-ID: <20210129212752.38865-18-Anson.Jacob@amd.com>
+Subject: [PATCH 18/27] drm/amd/display: Enable "trigger_hotplug" debugfs on
+ all outputs
+Date: Fri, 29 Jan 2021 16:27:43 -0500
+Message-ID: <20210129212752.38865-19-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210129212752.38865-1-Anson.Jacob@amd.com>
 References: <20210129212752.38865-1-Anson.Jacob@amd.com>
@@ -68,27 +68,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1d55385a-3b2d-40ee-5dee-08d8c49cd3e9
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4874:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB4874E27D28906993E218AF12EBB99@CH2PR12MB4874.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
+X-MS-Office365-Filtering-Correlation-Id: 94825d1e-e6a4-4da8-33ea-08d8c49cd50a
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4418:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4418C0C9BDC257CE2E334F2CEBB99@DM6PR12MB4418.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:345;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 50BqZk7gR4KgvFI/XbiwYhokXZswn/nL/wHSg/niiFGDA8vndgX3lDvxr896c2g2C1Wm3oam4s8ufvg4fhdg7uKO00qNR1qOxCFO03+767g0xForcFf+u+xT4vyIDYtOgWrM5nQ6tpcd1BW4thGZIDeAJxnzWhMbtzPZ2ltWGwLFQq25Pudzx6CGUA+vg+uw2K5GMABbG0+nDq+uBbrQzOiXUbxnfaASp1TZvS3ASjW1vjjNNLJLUW+FAD1Ji6GUvTtphpt7lITYmho9HLZBx+APChes8vMLJlED44fpAKfs4ioX9NY1hOARHb8epHKWXqDfSJgZm1NhrdTt3iMnNiKxnzCIXpTycuUAXV976k9sGFcE6a4bboH6Sih+1j0F4fJHmNbMY2EEVHnJlyEAI6ZGljzrbU4YQM3ayC+Ocxy6YfCV9mTGC1y4kOV7edIV2ZUF3K7ip7kViczKfFWvuM8F3sUpCqooK8I7TTKA/2nRsz8GSbke67RsXZkk6VD+pdKFphChDfyVpbgnn4mohr+2C3UjPf/DZ1IkrEN4mKyEUoJAeSTKawFtVOo8V6i6ets6vjMLrZxB2QmlMwcZyvBLg51VgVKF5js2P6XMGoc=
+X-Microsoft-Antispam-Message-Info: SRiHUzRPJt6DzAwOzXocT7QwjpWEVWcwifQmAVXtZkFP9ai3pjAPFDKnRy1qEJFuLOqHmX46e+Rcebfh4EFrFtpX7GUGB2l1LRHy1p0MqDV6i+hvuUn/QkWRJsQ6AVIdnaOoljj/ZJdgdSccQ+NF4TnlFibyXuwdGLNfA1TzlkMjU4RsQD7gnJaQeAJlc9eSA7nu1qfTthrwYHViaUR3RuBfls7D1Mw7jqV+sRCjle8/kcpqJHbCGCfAXMsUk5AdA114o8ADtS5+mUZuzkeCANgXoGkQ+X8qGe8njq1ejgqcNRLPMg3TiyzI2c4SpVT9rPWgjwpamRRjqp2c5GO/NGZvZ2HEVCVFMO3etRABDpL3xtSzD/16TQgXF69dLSvlWEQT+4oOkFVOE7bVw+d0rg9t1RAQT6o8XjvRYxlKDlUjULA8XvhJpbXcuT6Gzp2Gb3+mlziv3ysRkO2xt999oMczp6WziB/JIFFB0WH8MNTLS5kRoCiC9zXwmMRazcp87LJD28WR4066bW9ZQcMlJpZXChHeBVPxAzSrMubTBats8DAgtj9mZEpxE8ioV5jir9eDXKAyyl4LO+QJmeeWzg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:ErrorRetry; CAT:NONE;
- SFS:(4636009)(136003)(346002)(39860400002)(376002)(396003)(46966006)(186003)(316002)(8676002)(336012)(36756003)(4326008)(6666004)(70586007)(5660300002)(82740400003)(70206006)(82310400003)(7696005)(478600001)(54906003)(1076003)(356005)(2906002)(6916009)(426003)(47076005)(83380400001)(2616005)(8936002)(81166007)(26005)(86362001);
+ SFS:(4636009)(376002)(396003)(39860400002)(136003)(346002)(46966006)(478600001)(26005)(8936002)(7696005)(8676002)(1076003)(2906002)(426003)(5660300002)(4326008)(6916009)(316002)(83380400001)(70206006)(70586007)(86362001)(82310400003)(82740400003)(356005)(6666004)(36756003)(47076005)(81166007)(2616005)(336012)(54906003)(186003);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2021 21:28:32.1714 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1d55385a-3b2d-40ee-5dee-08d8c49cd3e9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2021 21:28:34.0633 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94825d1e-e6a4-4da8-33ea-08d8c49cd50a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB01.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT040.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4874
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4418
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,70 +100,75 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com,
- Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, bindu.r@amd.com
+Cc: Stylon Wang <stylon.wang@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
+ Mikita Lipski <Mikita.Lipski@amd.com>, Bhawanpreet.Lakha@amd.com,
+ bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+From: Stylon Wang <stylon.wang@amd.com>
 
 [Why]
-The conditions for whether we used cached vs non-cached inbox1 depend
-on a version check that mismatches what the shared helpers in dmub20
-implement.
+Per-connector debugfs entry "trigger_hotplug" is available on DP/eDP only.
+New IGT tests need this entry to test other outputs.
 
 [How]
-Use the dmub_dcn20_use_cached_inbox check for dmub_dcn30 as well.
+Enable this debugfs entry on all types of connectors
 
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Signed-off-by: Stylon Wang <stylon.wang@amd.com>
+Reviewed-by: Mikita Lipski <Mikita.Lipski@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
 ---
- drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c | 2 +-
- drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h | 2 ++
- drivers/gpu/drm/amd/display/dmub/src/dmub_dcn30.c | 2 +-
- 3 files changed, 4 insertions(+), 2 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c  | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
-index 26716c41786a..8e8e65fa83c0 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
-@@ -81,7 +81,7 @@ static inline void dmub_dcn20_translate_addr(const union dmub_addr *addr_in,
- 	addr_out->quad_part = addr_in->quad_part - fb_base + fb_offset;
- }
- 
--static inline bool dmub_dcn20_use_cached_inbox(struct dmub_srv *dmub)
-+bool dmub_dcn20_use_cached_inbox(struct dmub_srv *dmub)
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index d645f3e4610e..360952129b6d 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -1063,7 +1063,7 @@ static int dp_dsc_fec_support_show(struct seq_file *m, void *data)
+  *	echo 0 > /sys/kernel/debug/dri/0/DP-X/trigger_hotplug
+  *
+  */
+-static ssize_t dp_trigger_hotplug(struct file *f, const char __user *buf,
++static ssize_t trigger_hotplug(struct file *f, const char __user *buf,
+ 							size_t size, loff_t *pos)
  {
- 	/* Cached inbox is not supported in this fw version range */
- 	return !(dmub->fw_version >= DMUB_FW_VERSION(1, 0, 0) &&
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
-index d438f365cbb0..a62be9c0652e 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
-@@ -198,4 +198,6 @@ void dmub_dcn20_skip_dmub_panel_power_sequence(struct dmub_srv *dmub, bool skip)
+ 	struct amdgpu_dm_connector *aconnector = file_inode(f)->i_private;
+@@ -2214,9 +2214,9 @@ static const struct file_operations dp_dsc_slice_bpg_offset_debugfs_fops = {
+ 	.llseek = default_llseek
+ };
  
- union dmub_fw_boot_status dmub_dcn20_get_fw_boot_status(struct dmub_srv *dmub);
+-static const struct file_operations dp_trigger_hotplug_debugfs_fops = {
++static const struct file_operations trigger_hotplug_debugfs_fops = {
+ 	.owner = THIS_MODULE,
+-	.write = dp_trigger_hotplug,
++	.write = trigger_hotplug,
+ 	.llseek = default_llseek
+ };
  
-+bool dmub_dcn20_use_cached_inbox(struct dmub_srv *dmub);
+@@ -2270,7 +2270,6 @@ static const struct {
+ 	const struct file_operations *fops;
+ } dp_debugfs_entries[] = {
+ 		{"link_settings", &dp_link_settings_debugfs_fops},
+-		{"trigger_hotplug", &dp_trigger_hotplug_debugfs_fops},
+ 		{"phy_settings", &dp_phy_settings_debugfs_fop},
+ 		{"test_pattern", &dp_phy_test_pattern_fops},
+ #ifdef CONFIG_DRM_AMD_DC_HDCP
+@@ -2367,6 +2366,9 @@ void connector_debugfs_init(struct amdgpu_dm_connector *connector)
+ 	debugfs_create_file("output_bpc", 0644, dir, connector,
+ 			    &output_bpc_fops);
+ 
++	debugfs_create_file("trigger_hotplug", 0644, dir, connector,
++			    &trigger_hotplug_debugfs_fops);
 +
- #endif /* _DMUB_DCN20_H_ */
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn30.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn30.c
-index 7e6f4dbabe45..b4bc0df2f14a 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn30.c
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn30.c
-@@ -155,7 +155,7 @@ void dmub_dcn30_setup_windows(struct dmub_srv *dmub,
- 	offset = cw4->offset;
+ 	connector->debugfs_dpcd_address = 0;
+ 	connector->debugfs_dpcd_size = 0;
  
- 	/* New firmware can support CW4. */
--	if (dmub->fw_version > DMUB_FW_VERSION(1, 0, 10)) {
-+	if (dmub_dcn20_use_cached_inbox(dmub)) {
- 		REG_WRITE(DMCUB_REGION3_CW4_OFFSET, offset.u.low_part);
- 		REG_WRITE(DMCUB_REGION3_CW4_OFFSET_HIGH, offset.u.high_part);
- 		REG_WRITE(DMCUB_REGION3_CW4_BASE_ADDRESS, cw4->region.base);
 -- 
 2.25.1
 
