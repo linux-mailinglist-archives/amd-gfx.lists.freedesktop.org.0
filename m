@@ -2,58 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0071307E98
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Jan 2021 20:16:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48F873083F1
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Jan 2021 03:52:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 456376E9B8;
-	Thu, 28 Jan 2021 19:16:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D02B6E3EB;
+	Fri, 29 Jan 2021 02:52:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com
- [IPv6:2607:f8b0:4864:20::72d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 317CB6E9B8;
- Thu, 28 Jan 2021 19:16:12 +0000 (UTC)
-Received: by mail-qk1-x72d.google.com with SMTP id 19so6406241qkh.3;
- Thu, 28 Jan 2021 11:16:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=uKWppjoyPlKvDPCM4nZgYRlU6HkJoizZjnD/VkClUGg=;
- b=uWTKE8oGboFk26+37k1DBX9S6S/ANxtTjOXcYorIn34Abv5PYNhYPNccJDOZvZaI6+
- mN9MRTABnbL8w1aNh112u2m/h770MkcTcH/W0uC9jyXWnrXngdh7XIDtpuBm5n7MBokB
- PPs7h82Fsq7xQubGbJQ8lUL9MSRWKwqQ1XgekD/lv4l/A5k750rqr72JDVZZcKB0oo/a
- haVNvXjRIWROlOrm1sVn3HwIW6LxtxKHGKpONQlch4m5p4SyopJ3rLkaoQ7zZnB0p3MW
- Bc7oDNeNNfFYE7Ij4HukkSwjSaQ1bGkQlH/PMzWTyHtxXgr708OZ5McCGwxV4jgVK65y
- lp/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=uKWppjoyPlKvDPCM4nZgYRlU6HkJoizZjnD/VkClUGg=;
- b=hXDw6Uix2ljDFXSUXwSyO5dF7O3HjnEDqFOF5leid+puUd79HMYidgCkVhNRFdgiqT
- GAgMi88IkTlOziiNFMLmhDcv6wUdIuEM2zqwIgTgysIKFlmWu79BDN/0nd3061iamgvi
- W/E+WWjhcLRl+fPwYR7h5kVo5hrLuwC6olzmnwS9Kpm6uhaEZ4V01vXyTklO1ds8qYag
- qahkVybzFOIit45cu67Xx1wXkiqeukGfOwEdOsC8CeGxwd+g9C1Q9RO52gPySPGLARd9
- HQUAaIbSsTuaO+sSxg9P1u08nLTWMV1rnicGyeT6zfc/BKQ8DssvujXysZ+bEZzyBuOJ
- b99w==
-X-Gm-Message-State: AOAM531cKi37HWBypPcXVwwExU8dQNKfaaCSKdgOC1PZQMoqAK8vVF4w
- tQCcfRQSw379WeDR4whOUBwMYjJUGME=
-X-Google-Smtp-Source: ABdhPJybyzTvD/I9LqJ0Gv5DTRWc6yEa075sLMNpLkvSyUjwBvPGSXLDnqnTFtm2jTkg2I1K6qARtA==
-X-Received: by 2002:ae9:e602:: with SMTP id z2mr713948qkf.403.1611861371279;
- Thu, 28 Jan 2021 11:16:11 -0800 (PST)
-Received: from localhost.localdomain ([192.161.78.237])
- by smtp.gmail.com with ESMTPSA id c12sm4064284qkg.118.2021.01.28.11.16.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 Jan 2021 11:16:10 -0800 (PST)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- airlied@gmail.com, daniel.vetter@ffwll.ch
-Subject: [pull] amdgpu drm-fixes-5.11
-Date: Thu, 28 Jan 2021 14:15:58 -0500
-Message-Id: <20210128191558.3821-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.29.2
+X-Greylist: delayed 411 seconds by postgrey-1.36 at gabe;
+ Fri, 29 Jan 2021 02:52:50 UTC
+Received: from rockwork.org (unknown [45.32.92.205])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E9306E3AC;
+ Fri, 29 Jan 2021 02:52:50 +0000 (UTC)
+Received: from [192.168.43.200] (unknown [36.19.57.1])
+ by rockwork.org (Postfix) with ESMTPSA id 30EF5FBC2E;
+ Fri, 29 Jan 2021 02:45:52 +0000 (UTC)
+From: Xingyou Chen <rockrush@rockwork.org>
+Subject: Re: [RFC PATCH 0/9] cgroup support for GPU devices
+To: Brian Welty <brian.welty@intel.com>, cgroups@vger.kernel.org,
+ Tejun Heo <tj@kernel.org>, dri-devel@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Kenny Ho <Kenny.Ho@amd.com>, amd-gfx@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Eero Tamminen <eero.t.tamminen@intel.com>
+References: <20210126214626.16260-1-brian.welty@intel.com>
+Message-ID: <293ecfcc-50f7-1c43-bc1b-f96dc04d976a@rockwork.org>
+Date: Fri, 29 Jan 2021 10:45:49 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.0
 MIME-Version: 1.0
+In-Reply-To: <20210126214626.16260-1-brian.welty@intel.com>
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,54 +48,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
-
-A couple of fixes for 5.11.
-
-The following changes since commit 06ee38dc2aab3b5a09feb74128cf7326a490b788:
-
-  Merge tag 'amd-drm-fixes-5.11-2021-01-21' of https://gitlab.freedesktop.org/agd5f/linux into drm-fixes (2021-01-22 09:43:21 +1000)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/agd5f/linux.git tags/amd-drm-fixes-5.11-2021-01-28
-
-for you to fetch changes up to 00190bc087e795290502dc51c5d32de85cb2c2b8:
-
-  amdgpu: fix clang build warning (2021-01-28 13:40:48 -0500)
-
-----------------------------------------------------------------
-amd-drm-fixes-5.11-2021-01-28:
-
-amdgpu:
-- Fix a fan control regression on some boards
-- Fix clang warning
-
-----------------------------------------------------------------
-Alex Deucher (1):
-      Revert "drm/amdgpu/swsmu: drop set_fan_speed_percent (v2)"
-
-Arnd Bergmann (1):
-      amdgpu: fix clang build warning
-
- drivers/gpu/drm/amd/display/dc/dcn30/Makefile      |  6 +++--
- drivers/gpu/drm/amd/display/dc/dcn301/Makefile     |  3 ++-
- drivers/gpu/drm/amd/display/dc/dcn302/Makefile     |  3 ++-
- drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h            |  1 +
- drivers/gpu/drm/amd/pm/inc/smu_v11_0.h             |  3 +++
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c          |  9 ++-----
- drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c  |  1 +
- drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c    |  1 +
- .../drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c    |  1 +
- drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c     | 31 +++++++++++++++++++++-
- 10 files changed, 47 insertions(+), 12 deletions(-)
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+Ck9uIDIwMjEvMS8yNyDkuIrljYg1OjQ2LCBCcmlhbiBXZWx0eSB3cm90ZToKPiBXZSdkIGxpa2Ug
+dG8gcmV2aXNpdCB0aGUgcHJvcG9zYWwgb2YgYSBHUFUgY2dyb3VwIGNvbnRyb2xsZXIgZm9yIG1h
+bmFnaW5nCj4gR1BVIGRldmljZXMgYnV0IHdpdGgganVzdCBhIGJhc2ljIHNldCBvZiBjb250cm9s
+cy4gIFRoaXMgc2VyaWVzIGlzIGJhc2VkIG9uIAo+IHRoZSBwcmlvciBwYXRjaCBzZXJpZXMgZnJv
+bSBLZW5ueSBIbyBbMV0uICBXZSB0YWtlIEtlbm55J3MgYmFzZSBwYXRjaGVzCj4gd2hpY2ggaW1w
+bGVtZW50IHRoZSBiYXNpYyBmcmFtZXdvcmsgZm9yIHRoZSBjb250cm9sbGVyLCBidXQgd2UgcHJv
+cG9zZSBhbgo+IGFsdGVybmF0ZSBzZXQgb2YgY29udHJvbCBmaWxlcy4gIEhlcmUgd2UndmUgdGFr
+ZW4gYSBzdWJzZXQgb2YgdGhlIGNvbnRyb2xzCj4gcHJvcG9zZWQgaW4gZWFybGllciBkaXNjdXNz
+aW9uIG9uIE1MIGhlcmUgWzJdLiAKPgo+IFRoaXMgc2VyaWVzIHByb3Bvc2VzIGEgc2V0IG9mIGRl
+dmljZSBtZW1vcnkgY29udHJvbHMgKGdwdS5tZW1vcnkuY3VycmVudCwKPiBncHUubWVtb3J5Lm1h
+eCwgYW5kIGdwdS5tZW1vcnkudG90YWwpIGFuZCBhY2NvdW50aW5nIG9mIEdQVSB0aW1lIHVzYWdl
+Cj4gKGdwdS5zY2hlZC5ydW50aW1lKS4gIEdQVSB0aW1lIHNoYXJpbmcgY29udHJvbHMgYXJlIGxl
+ZnQgYXMgZnV0dXJlIHdvcmsuCj4gVGhlc2UgYXJlIGltcGxlbWVudGVkIHdpdGhpbiB0aGUgR1BV
+IGNvbnRyb2xsZXIgYWxvbmcgd2l0aCBpbnRlZ3JhdGlvbi91c2FnZQo+IG9mIHRoZSBkZXZpY2Ug
+bWVtb3J5IGNvbnRyb2xzIGJ5IHRoZSBpOTE1IGRldmljZSBkcml2ZXIuCj4KPiBBcyBhbiBhY2Nl
+bGVyYXRvciBvciBHUFUgZGV2aWNlIGlzIHNpbWlsYXIgaW4gbWFueSByZXNwZWN0cyB0byBhIENQ
+VSB3aXRoCj4gKG9yIHdpdGhvdXQpIGF0dGFjaGVkIHN5c3RlbSBtZW1vcnksIHRoZSBiYXNpYyBw
+cmluY2lwbGUgaGVyZSBpcyB0cnkgdG8KPiBjb3B5IHRoZSBzZW1hbnRpY3Mgb2YgZXhpc3Rpbmcg
+Y29udHJvbHMgZnJvbSBvdGhlciBjb250cm9sbGVycyB3aGVuIHBvc3NpYmxlCj4gYW5kIHdoZXJl
+IHRoZXNlIGNvbnRyb2xzIHNlcnZlIHRoZSBzYW1lIHVuZGVybHlpbmcgcHVycG9zZS4KPiBGb3Ig
+ZXhhbXBsZSwgdGhlIG1lbW9yeS5tYXggYW5kIG1lbW9yeS5jdXJyZW50IGNvbnRyb2xzIGFyZSBi
+YXNlZCBvbgo+IHNhbWUgY29udHJvbHMgZnJvbSBNRU1DRyBjb250cm9sbGVyLgoKSXQgc2VlbXMg
+bm90IHRvIGJlIERSTSBzcGVjaWZpYywgb3IgZXZlbiBHUFUgc3BlY2lmaWMuIFdvdWxkIHdlIGhh
+dmUgYW4gdW5pdmVyc2FsIGNvbnRyb2wgZ3JvdXAgZm9yCgphbnkgYWNjZWxlcmF0b3IsIEdQR1BV
+IGRldmljZSBldGMsIHRoYXQgaG9sZCBzaGFyYWJsZSByZXNvdXJjZXMgbGlrZSBkZXZpY2UgbWVt
+b3J5LCBjb21wdXRlIHV0aWxpdHksCgpiYW5kd2lkdGgsIHdpdGggZXh0cmEgY29udHJvbCBmaWxl
+IHRvIHNlbGVjdCBiZXR3ZWVuIGRldmljZXMob3IgdmVuZG9ycyk/CgplLmcuIC9jZ25hbWUuZGV2
+aWNlIHRoYXQgc3RvcmVzIFBDSSBCREbvvIwgb3IgZW51bShpbnRlbCwgYW1kZ3B1LCBudmlkaWEs
+IC4uLiksIGRlZmF1bHRzIHRvIG5vbmUsCgptZWFucyBub3QgZW5hYmxlZC4KCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0
+CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
