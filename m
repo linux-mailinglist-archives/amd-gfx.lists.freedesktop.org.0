@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3434B308F59
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Jan 2021 22:28:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65F55308F61
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Jan 2021 22:28:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84AA66EC30;
-	Fri, 29 Jan 2021 21:28:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1AAA6EC2C;
+	Fri, 29 Jan 2021 21:28:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2084.outbound.protection.outlook.com [40.107.220.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1E9D6EC2F
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Jan 2021 21:28:32 +0000 (UTC)
+ (mail-co1nam11on2077.outbound.protection.outlook.com [40.107.220.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FB7C6EC36
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 Jan 2021 21:28:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZrTGz7hado/ORdAU0BkfTRqh6VnT3WugO8tO8jCvQsh6RXi6gxLpxxMgWczNBMQTdMkGtJBorm+xxcqmJeJu0kcvgN7rsDJ9L/L9/zA74CsM4RBmtJLfPglPC3ova8mKEF4oRax9hCSO2ZdARWsMLICr693+LuoLAce/OVNlEuFpNw8qDjjT8A+VirpxRmZKut0yrDUQA4dmoa7d8Xqb8sIypzjyqV9KSUEJPu/WrnVis7cQ+OT2AsKSTKNHnrUyroXcpNh5wC0xRPJqDy9PYbdfwcKKM8rygrZnl1AbzLO/WhiIRC1yRVp15YoDz6JjMWguCdJvwpJ2mMbaL1tN2A==
+ b=Qy8A3XQn2rk+A2kgpupMby2BQLWr5yqtyP8MCjbGtYnX1MVawYRwpBSq8tg71zemlFfr9MxRHJBVE4C0jlKcRHeHPxsHCpPm/wwddSiqEqFwJw9s4o+e8PtioUVyW2be3sbVO9iK8JaRQdwNR9BWPs/NtAsuQzzS9gdQLeOsFOGOEI2OPTrrRwUz/sTLLRux7K0KwuHAtKUv02LH13CaA0PC9iDBDny4tyhkEpKO8MgV1famYaPlWftMebjSIxzlOePn5eZ3FTUO1Bv3D3GwgiaxPePa5a1CaaxBHlHex7T7IgIL+Gl5j+cFhRHvfo6ZGmxLLy/0N23sIDNgDrNTcA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=clJs+vBaVfMzrA8MtVqQe2sherGU2DHPmaPOY4v91xQ=;
- b=ca5r98/julvb9IjoSX6YcsT9vnmBeMj/HTPyj9kQvXnmEdePoCwINvaFp5WptWnNsV3RKbf0yHTqBYbUE/xPAaB+fi8mbkwPq8S0eT/MgH9LeaK6wpEuwkiGXfJzK9JZKICdDYS4tNSFQ7DYl4kwYWfkjf6UYOFUph4XyyZ584IF3g82xJ4UheDc0nhPL3gVsvBiEKu+gcrDOeHNgTikz1LQIG2T2bgnEs6y0kn8Mgrvi0IjSQoLFwO2r7ECud8q3Xr4S6GF1TGeHTttD4r6bMWRaPV8aa9KxbyDAoOODu3Q74MreHOkRvD81oTmG9keLHAnd4BYXUX2E+8/Yhu4Iw==
+ bh=vbqDB6lLjmP+w0mR3fMg6hApxUvvrXfUuqxevqAUfZM=;
+ b=VIOKZ9JmvwguiClB0Su2Ll/TdTgFVHRNI1a19MyLTXo5MsmHUnugOaVPnZ/dUlGvbXgZ1sxDdDZdYxylXjLS/zemb3xhOsbop6U1qM+D491Bw7n+NoHjtooXPI7hzyVhsGPWjYurlUpHzCS/3yt/tjS93K1Pd8mhKvyiyO5ikg+zg7hYfxBBr1g7Cv9YwhAfi/o8QGCh7fY/+ggR09ouv9PDeshjLY4LqK0lMDF5EeCCdc+ctby/bO5CN78+3LLRyrQp/p0R/rxlaiCTASpx8EyADNHiNrRd4DDnWMCw06pY0jrUHbrQNGHRDyT+YJNH+zvU8A5sZlYe258l/xEJ6Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
  is 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=amd.com; dmarc=fail (p=none sp=none pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=clJs+vBaVfMzrA8MtVqQe2sherGU2DHPmaPOY4v91xQ=;
- b=W+I6YKGcozHTbjEYhYN50jdBh5RhVyBBtj3gg0IQecQ5X25JzvcGmofnMMe3qmJPSWl88kI+sKRSMxggMwnE1XPftYYlsPefAXEIDS+76Ia8bsBoYTf23gHvy9ooK76MFXUs1y+FF2QVChG/S8qlQCvdqkEAFUuH64wCOknf8Z4=
-Received: from MW4PR03CA0250.namprd03.prod.outlook.com (2603:10b6:303:b4::15)
- by DM6PR12MB2940.namprd12.prod.outlook.com (2603:10b6:5:15f::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.15; Fri, 29 Jan
- 2021 21:28:28 +0000
+ bh=vbqDB6lLjmP+w0mR3fMg6hApxUvvrXfUuqxevqAUfZM=;
+ b=n1SojXKTJi1k19BGuPO9eysts5ZaI2rcYpRmF8BNB3pjAuHxMG7zqVLKf2ZhJ1/jaFA9i97MKkBoZxjoeqHdfIUJijQYTELV6Zcv5g7oyyot3aEL+LGvZpl3DotP/byDBuSN+mtiP6mRepYk23crEn6fRJVmbfy8Augb3XTnLms=
+Received: from MW4PR03CA0247.namprd03.prod.outlook.com (2603:10b6:303:b4::12)
+ by CY4PR1201MB2550.namprd12.prod.outlook.com (2603:10b6:903:ce::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3784.11; Fri, 29 Jan
+ 2021 21:28:40 +0000
 Received: from CO1NAM11FT005.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:b4:cafe::9b) by MW4PR03CA0250.outlook.office365.com
- (2603:10b6:303:b4::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.16 via Frontend
- Transport; Fri, 29 Jan 2021 21:28:28 +0000
+ (2603:10b6:303:b4:cafe::54) by MW4PR03CA0247.outlook.office365.com
+ (2603:10b6:303:b4::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.17 via Frontend
+ Transport; Fri, 29 Jan 2021 21:28:40 +0000
 X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
  165.204.84.17) smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none
  (message not signed) header.d=none;lists.freedesktop.org; dmarc=fail
@@ -47,24 +47,23 @@ Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
 Received: from SATLEXMB02.amd.com (165.204.84.17) by
  CO1NAM11FT005.mail.protection.outlook.com (10.13.174.147) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3784.12 via Frontend Transport; Fri, 29 Jan 2021 21:28:27 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB02.amd.com
+ 15.20.3784.12 via Frontend Transport; Fri, 29 Jan 2021 21:28:39 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 29 Jan
- 2021 15:28:26 -0600
-Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 15:28:27 -0600
+Received: from SATLEXMB02.amd.com (10.181.40.143) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 29 Jan
- 2021 15:28:26 -0600
+ 2021 15:28:27 -0600
 Received: from Bumblebee.amd.com (10.180.168.240) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Fri, 29 Jan 2021 15:28:25 -0600
+ Transport; Fri, 29 Jan 2021 15:28:26 -0600
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 23/27] drm/amd/display: Workaround for some legacy DP-VGA
- dongles
-Date: Fri, 29 Jan 2021 16:27:48 -0500
-Message-ID: <20210129212752.38865-24-Anson.Jacob@amd.com>
+Subject: [PATCH 24/27] drm/amd/display: Better handling of dummy p-state table
+Date: Fri, 29 Jan 2021 16:27:49 -0500
+Message-ID: <20210129212752.38865-25-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210129212752.38865-1-Anson.Jacob@amd.com>
 References: <20210129212752.38865-1-Anson.Jacob@amd.com>
@@ -72,27 +71,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d3f74036-411c-4190-f82a-08d8c49cd12d
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2940:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB29401C627F8BB824EEAA76A4EBB99@DM6PR12MB2940.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
+X-MS-Office365-Filtering-Correlation-Id: a6ef2269-5eab-4474-ffce-08d8c49cd824
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB2550:
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB255045FE2826BF7D166D81FBEBB99@CY4PR1201MB2550.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7fi1Z+h2aCuCNqhBr0eZouZMUkTLcsGhfsScRtxI4l1I6CiIbJslfYdHrofeX7rgXKoqvfjuMbIDTNdA/MvuefTV77SDfektkB8wptsFsUJl6TjFax9Go4twTyVNk3kO596f77dMqDaMWmGGffT2f47feaehqtbXhQbIm9ZmxhU+m0QtxeAzyittrfIqV09zWB/wBNnIpc4KiOFspH9dMAa6CbR5ku6ZBt/MvGFVNCw6RI7jJNijUNXv4Rmd7dqHE+Rts6d7F1ePuiG8HaJblFdnQqHSGjO2s8TQUFL8rp1+V1IqvxVkxOvbgIWMHt2faY9OQFusIMkR+ILvJz8Gyxb7O6OfqWVzXLUTTSA9R2xJgUFCmhAHqDjUwLxpRe84rbkd856szQJfsn4YRNI+JxCmZ2snNXqk/l6zotxAHO7N2K/T3Vfy5bBFOYERKMs8aDNFYzdlnitcUOn0lugvv5bXOifZeMJHXtVCFy2Inw3CUaYlTOx0JhSzI7wIAqEdpx7EJYhJ/Uz84wE/ueK+vfB4KWh/kHAk+pwtM4hWrGDyvKJ7ifg0WAZWFweeM/QhS2JJ68ulUjBvFvcOor67ZQ==
+X-Microsoft-Antispam-Message-Info: LGcwo2Y5Sdu5GB8n9MpVn5wVWYsqWb4FWb2LlG1d6qwkicwpLbBShFJqZNYXbNmAEl9DaGAXs/MlqVvMpzeLiUVzuun5NEUCpXDmJagCcKypZGgzEZ80b41kc/uFTSGzx4ANa2JQPfhPFfp/9QOMJzvGtcpcotmaUH3qdqMdr41IabhAsaJH4Znt28Uz57Nl7SRmyURUjgUkd887FymR6PDi7oCN07KlSQySV/iSkkPVMvLc72z1FTtEA8BzJ8rBaknsEJ2DDmEyhQJScDFmU3DH1eq2JElxPGVqYV31qFk3NYKjTS+y9/nllpADpdg1Mj4H2FT0M5wta8R6K9QBGisBe5MOC4/jR6izaTbfdwNPyARbmO2fPvBnTpuxbhU4wFMAiRq1TvBpzByRGZnJzw1DjqmpfM1Z92npF7ROseN9LmU01PTehO9ZLhTwsU4PYNyShg1FNEO87lOSy6+IRpQ3oqRheV0DjYOLs2C0Zn5avRB7jhSXOO/VgpJ+xkoi4cExlePett5pvzo/yxcYM8V5i3eROFYvGPvSo3FILmhma9mYWZuPFrNfzFpb1Twx10dxh95Jleg8oVolWmjYoUmzo5xZNTtFfu8k4a9sTs8=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:ErrorRetry; CAT:NONE;
- SFS:(4636009)(376002)(346002)(396003)(136003)(39860400002)(46966006)(81166007)(336012)(47076005)(2906002)(316002)(426003)(6666004)(86362001)(478600001)(1076003)(8936002)(83380400001)(8676002)(36756003)(70586007)(356005)(70206006)(26005)(82310400003)(54906003)(5660300002)(82740400003)(2616005)(7696005)(6916009)(186003)(4326008);
+ SFS:(4636009)(396003)(136003)(39860400002)(346002)(376002)(46966006)(478600001)(7696005)(2906002)(186003)(36756003)(316002)(81166007)(356005)(54906003)(6666004)(70206006)(86362001)(1076003)(82310400003)(6916009)(82740400003)(426003)(8676002)(8936002)(336012)(2616005)(47076005)(26005)(70586007)(4326008)(83380400001)(5660300002);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2021 21:28:27.4689 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d3f74036-411c-4190-f82a-08d8c49cd12d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2021 21:28:39.1541 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a6ef2269-5eab-4474-ffce-08d8c49cd824
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB02.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT005.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2940
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB2550
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,69 +103,62 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Taimur Hassan <syed.hassan@amd.com>, Wenjing Liu <Wenjing.Liu@amd.com>,
- Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
- bindu.r@amd.com
+Cc: Joshua Aberback <joshua.aberback@amd.com>, Eryk.Brol@amd.com,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
+ Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Taimur Hassan <syed.hassan@amd.com>
+From: Joshua Aberback <joshua.aberback@amd.com>
 
 [Why]
-Maximum resolution is 1440*900 when connecting to FHD monitor via some DP-VGA
-dongles. The display EDID reading fails over AUX/I2C via DP->VGA dongle, and
-this leads to the maximum resolution 1920*1080 cannot be obtained from EDID.
+Some scenarios where we use a UCLK frequency in between dummy p-state table
+entries result in a p-state hang, due to the table not having a close
+enough match, so the default DPM0 latency is used, which can be too long to
+support dummy p-state switching in these scenarios.
 
 [How]
-Provide a workaround for some legacy DP-VGA dongles with a longer aux delay.
+ - old: match if current freq is within +- margin of table entry
+ - new: find largest table entry that is lower than current freq + margin
+   - lower than DPM0 will still use DPM0
 
-Signed-off-by: Taimur Hassan <syed.hassan@amd.com>
-Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
+Signed-off-by: Joshua Aberback <joshua.aberback@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_resource.c    | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
-index 26f3d5dd0453..ae6484ab567b 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
-@@ -39,12 +39,14 @@
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+index 22ae6a547cd3..8d0f663489ac 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+@@ -2189,17 +2189,15 @@ static noinline void dcn30_calculate_wm_and_dlg_fp(
+ 		unsigned int min_dram_speed_mts = context->bw_ctx.dml.vba.DRAMSpeed;
+ 		unsigned int min_dram_speed_mts_margin = 160;
  
- #define DC_LOGGER_INIT(logger)
+-		context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->dummy_pstate_table[0].dummy_pstate_latency_us;
+-
+ 		if (context->bw_ctx.dml.vba.DRAMClockChangeSupport[vlevel][context->bw_ctx.dml.vba.maxMpcComb] == dm_dram_clock_change_unsupported)
+ 			min_dram_speed_mts = dc->clk_mgr->bw_params->clk_table.entries[dc->clk_mgr->bw_params->clk_table.num_entries - 1].memclk_mhz * 16;
  
--/*DP to Dual link DVI converter*/
-+static const uint8_t DP_VGA_DONGLE_BRANCH_DEV_NAME[] = "DpVga";
-+/* DP to Dual link DVI converter */
- static const uint8_t DP_DVI_CONVERTER_ID_4[] = "m2DVIa";
- static const uint8_t DP_DVI_CONVERTER_ID_5[] = "3393N2";
+-		for (i = 3; i > 0; i--) {
+-			if ((min_dram_speed_mts + min_dram_speed_mts_margin > dc->clk_mgr->bw_params->dummy_pstate_table[i].dram_speed_mts) &&
+-					(min_dram_speed_mts - min_dram_speed_mts_margin < dc->clk_mgr->bw_params->dummy_pstate_table[i].dram_speed_mts))
+-				context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->dummy_pstate_table[i].dummy_pstate_latency_us;
+-		}
++		/* find largest table entry that is lower than dram speed, but lower than DPM0 still uses DPM0 */
++		for (i = 3; i > 0; i--)
++			if (min_dram_speed_mts + min_dram_speed_mts_margin > dc->clk_mgr->bw_params->dummy_pstate_table[i].dram_speed_mts)
++				break;
  
- #define AUX_POWER_UP_WA_DELAY 500
- #define I2C_OVER_AUX_DEFER_WA_DELAY 70
-+#define DPVGA_DONGLE_AUX_DEFER_WA_DELAY 40
- #define I2C_OVER_AUX_DEFER_WA_DELAY_1MS 1
- 
- /* CV smart dongle slave address for retrieving supported HDTV modes*/
-@@ -292,6 +294,15 @@ static uint32_t defer_delay_converter_wa(
- {
- 	struct dc_link *link = ddc->link;
- 
-+	if (link->dpcd_caps.dongle_type == DISPLAY_DONGLE_DP_VGA_CONVERTER &&
-+		link->dpcd_caps.branch_dev_id == DP_BRANCH_DEVICE_ID_0080E1 &&
-+		!memcmp(link->dpcd_caps.branch_dev_name,
-+		    DP_VGA_DONGLE_BRANCH_DEV_NAME,
-+			sizeof(link->dpcd_caps.branch_dev_name)))
-+
-+		return defer_delay > DPVGA_DONGLE_AUX_DEFER_WA_DELAY ?
-+			defer_delay : DPVGA_DONGLE_AUX_DEFER_WA_DELAY;
-+
- 	if (link->dpcd_caps.branch_dev_id == DP_BRANCH_DEVICE_ID_0080E1 &&
- 	    !memcmp(link->dpcd_caps.branch_dev_name,
- 		    DP_DVI_CONVERTER_ID_4,
++		context->bw_ctx.dml.soc.dram_clock_change_latency_us = dc->clk_mgr->bw_params->dummy_pstate_table[i].dummy_pstate_latency_us;
+ 		context->bw_ctx.dml.soc.sr_enter_plus_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_C].dml_input.sr_enter_plus_exit_time_us;
+ 		context->bw_ctx.dml.soc.sr_exit_time_us = dc->clk_mgr->bw_params->wm_table.nv_entries[WM_C].dml_input.sr_exit_time_us;
+ 	}
 -- 
 2.25.1
 
