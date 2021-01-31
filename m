@@ -2,33 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3D16309BB9
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 Jan 2021 12:50:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A266309BB7
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 Jan 2021 12:50:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB58C6E2D5;
-	Sun, 31 Jan 2021 11:50:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B51C76E2C0;
+	Sun, 31 Jan 2021 11:50:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 324 seconds by postgrey-1.36 at gabe;
- Sun, 31 Jan 2021 00:49:31 UTC
-Received: from mail3-162.sinamail.sina.com.cn (mail3-162.sinamail.sina.com.cn
- [202.108.3.162])
- by gabe.freedesktop.org (Postfix) with SMTP id 870C16E156
- for <amd-gfx@lists.freedesktop.org>; Sun, 31 Jan 2021 00:49:31 +0000 (UTC)
-Received: from unknown (HELO localhost.localdomain)([114.244.163.219])
- by sina.com (172.16.97.27) with ESMTP
- id 6015FD520001CAB3; Sun, 31 Jan 2021 08:44:04 +0800 (CST)
-X-Sender: hdanton@sina.com
-X-Auth-ID: hdanton@sina.com
-X-SMAIL-MID: 42533349283228
-From: Hillf Danton <hdanton@sina.com>
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com
+ [IPv6:2607:f8b0:4864:20::629])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57A156E114
+ for <amd-gfx@lists.freedesktop.org>; Sun, 31 Jan 2021 01:01:15 +0000 (UTC)
+Received: by mail-pl1-x629.google.com with SMTP id s15so7944167plr.9
+ for <amd-gfx@lists.freedesktop.org>; Sat, 30 Jan 2021 17:01:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=date:from:to:cc:subject:in-reply-to:message-id:references
+ :mime-version; bh=lodb+ht9BR+Z7IAwV21RAKzFam+8lcDMU8RhLDk/c/I=;
+ b=GDyXA6rd2tIUOjVP8BMEixrV10K/0p1Te2ahfCjg4PtIoi9w54+06zGyOCg8UK2PSJ
+ YqbXooLG2ERe8atuIfJpKVX6lytKCu7CJU+FVAs1U3sR7rntIAh4bX5GIS/s2sNipYB0
+ jxnxOmBVonBbxMYEwoTzHFyG4cWygHOv9XAgUC9n9tU8o22TT6ataZy1Tzd0JvjXCX3o
+ eKgna0+G1d9p3fO/KpaF2KwQKG28R2Pp4lEpAkyZSS+yKDDq86N1bn3kXCtdP9XadsPy
+ q4JvyV6QaoSzyAobdxb95sAwbSfq9GRCuMBW2Y88G5rloFoFpyFKrotNROWuGe4GqB+k
+ cOQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+ :references:mime-version;
+ bh=lodb+ht9BR+Z7IAwV21RAKzFam+8lcDMU8RhLDk/c/I=;
+ b=QVkgf4yMsn2PPtOmpb44Ue8K2nX3OqzkFaAHl7PFLVl42yNDlNxrpZnLUmfuCmEsKq
+ Dz/uUIZdFU6ANayXgww9zP4We2l2sghpN2mAQyXq14i6iBUrF1BjFF7qIrdlZCIrYuxK
+ ihfMBO4TznH0tUYvM/vTB95sR+ZNEsHP6jTbHJJzCJ08nSK+71+1TS9GR1WdHqaS5fN0
+ 0ibx/hQMbP3x4byu4InUEhPgGMy1Hq573W3WT13zY8JBV5syhYqwUOiN7w/PS0sw69Gr
+ AX5CCf+73FGwvDcDGY7WVdxreFIScaP9kFbmmFhCauBZuhZYdvceHq0RzW6j87w4qoqG
+ 9AbA==
+X-Gm-Message-State: AOAM531S4Zkvwdr678cD47zHKvdg2k2IxZ7oI5nhPTnXD+7NzWs/a8m2
+ lWc7P2IhhTmlaCl7wv19Vyq7n6ZEKCiZQg==
+X-Google-Smtp-Source: ABdhPJxaYlEuaNa9YFIS6XiaWngEVUvBpS98dh/MIqh6NgLoXG0PdLBvytlpgPVtBc6T9JMdheK4Hw==
+X-Received: by 2002:a17:902:9044:b029:df:fa69:1ed1 with SMTP id
+ w4-20020a1709029044b02900dffa691ed1mr11631079plz.11.1612054874676; 
+ Sat, 30 Jan 2021 17:01:14 -0800 (PST)
+Received: from [2620:15c:17:3:4a0f:cfff:fe51:6667]
+ ([2620:15c:17:3:4a0f:cfff:fe51:6667])
+ by smtp.gmail.com with ESMTPSA id r9sm3533359pfq.8.2021.01.30.17.01.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 30 Jan 2021 17:01:13 -0800 (PST)
+Date: Sat, 30 Jan 2021 17:01:13 -0800 (PST)
+From: David Rientjes <rientjes@google.com>
 To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
 Subject: Re: [bug] 5.11-rc5 brought page allocation failure issue [ttm][amdgpu]
-Date: Sun, 31 Jan 2021 08:43:52 +0800
-Message-Id: <20210131004353.12764-1-hdanton@sina.com>
 In-Reply-To: <CABXGCsNazWZQGfSnFgQ_K5_H9uBQ=8gBdFORXrU1FEMGMohO2w@mail.gmail.com>
+Message-ID: <4ce29a7e-f58a-aeb4-bef-34a7eada70d0@google.com>
 References: <CABXGCsNazWZQGfSnFgQ_K5_H9uBQ=8gBdFORXrU1FEMGMohO2w@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="1482994552-881750204-1612054873=:606041"
 X-Mailman-Approved-At: Sun, 31 Jan 2021 11:50:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -41,26 +68,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hillf Danton <hdanton@sina.com>, ckoenig.leichtzumerken@gmail.com,
- LKML <linux-kernel@vger.kernel.org>, amd-gfx <amd-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Christian Konig <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: ckoenig.leichtzumerken@gmail.com,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Linux List Kernel Mailing <linux-kernel@vger.kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 31 Jan 2021 04:17:46 +0500 Mikhail Gavrilov wrote:
-> 
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+--1482994552-881750204-1612054873=:606041
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+
+On Sun, 31 Jan 2021, Mikhail Gavrilov wrote:
+
 > The 5.11-rc5 (git 76c057c84d28) brought a new issue.
 > Now the kernel log is flooded with the message "page allocation failure".
-
-Thanks for your report.
 > 
 > Trace:
 > msedge:cs0: page allocation failure: order:10,
 
-This order is prone to failure even without NORETRY.
+Order-10, wow!
+
+ttm_pool_alloc() will start at order-10 and back off trying smaller orders 
+if necessary.  This is a regression introduced in
+
+commit bf9eee249ac2032521677dd74e31ede5429afbc0
+Author: Christian König <christian.koenig@amd.com>
+Date:   Wed Jan 13 14:02:04 2021 +0100
+
+    drm/ttm: stop using GFP_TRANSHUGE_LIGHT
+
+Namely, it removed the __GFP_NOWARN that we otherwise require.  I'll send 
+a patch in reply.
 
 > mode:0x190cc2(GFP_HIGHUSER|__GFP_NORETRY|__GFP_NOMEMALLOC),
 > nodemask=(null),cpuset=/,mems_allowed=0
@@ -184,24 +226,16 @@ This order is prone to failure even without NORETRY.
 > -- 
 > Best Regards,
 > Mike Gavrilov.
+> 
+--1482994552-881750204-1612054873=:606041
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Fix bf9eee249ac2 ("drm/ttm: stop using GFP_TRANSHUGE_LIGHT") by
-restoring __GFP_NOWARN to cut the risk of page allocation failure
-flooding to kernel log.
-
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -85,7 +85,7 @@ static struct page *ttm_pool_alloc_page(
- 	 */
- 	if (order)
- 		gfp_flags |= __GFP_NOMEMALLOC | __GFP_NORETRY |
--			__GFP_KSWAPD_RECLAIM;
-+				__GFP_NOWARN | __GFP_KSWAPD_RECLAIM;
- 
- 	if (!pool->use_dma_alloc) {
- 		p = alloc_pages(gfp_flags, order);
---
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--1482994552-881750204-1612054873=:606041--
