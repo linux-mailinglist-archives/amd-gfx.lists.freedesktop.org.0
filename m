@@ -2,65 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94139309DFD
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 Jan 2021 18:22:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11B8630A95F
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Feb 2021 15:10:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACD346E09E;
-	Sun, 31 Jan 2021 17:22:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 830036E5A9;
+	Mon,  1 Feb 2021 14:10:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
- [IPv6:2a00:1450:4864:20::52c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5ED016E09E
- for <amd-gfx@lists.freedesktop.org>; Sun, 31 Jan 2021 17:22:47 +0000 (UTC)
-Received: by mail-ed1-x52c.google.com with SMTP id dj23so16193470edb.13
- for <amd-gfx@lists.freedesktop.org>; Sun, 31 Jan 2021 09:22:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=RbOAw9iCiWf3vmIBB9AiaSewZnK8UfYjYbdl5JtZIlU=;
- b=I5Wcmj0UAC6wdR3DY92+88WJi1/9uiSMxxSlG9RelNfX805mewkB7cDRME4hvjQrnh
- krIRCOREWZpvch2cizO57Y600GiafsWMxdpdx+W/eVbGsjD86yydzaD9HwYjMUalw1dz
- 6RDPmgCrhq9ddPjiOvdm5klP9Tj/siWGoLhb6hjWVMhKAW8GyMYmZ13xRDIzYcHhv2q6
- lcpZ2tdUQUc0wSHJuGLDOgCHyYCyzfD77emu6ZAyqZmd9k7i7kZlIHnfFqhLF40ykSXV
- OK5pPvM2tSOfiR4rBex91N5Io80/ocombyF02+gw4jIgWYoOUegmwZ1+7u1z5Xpl6Fpv
- 08GA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=RbOAw9iCiWf3vmIBB9AiaSewZnK8UfYjYbdl5JtZIlU=;
- b=Hbt4Jx5sjJw2cagqRYD+RbL/MRohlz9AH6RUmwdu9XDkXn20opDqFmzVHDzL8alTHG
- wicBDNNaIFnmmvMVg2t+iI+dSS/I1LCXEO1QhKEd92w5IfNdhv9/bwvvjw5ozalg1Rup
- tUrlXz2RnuMLSnCE7Jc2bDVQKFByKfVTObg3AJL985MlplgeVF4SWMtP79W+892nw1p7
- FrYN8FifFaEUV5gCo3j2U3nSo0nBGf69BKSWInqkAxv2pTildfjHnY+lF6O+U8Q1ZlE0
- oE5YF98LwqZZZjb+kA79fFGcYK2RwEKwUzknJNiBjYCjBDUvTFDFK4XCjKhlWUHj3u9P
- B8pQ==
-X-Gm-Message-State: AOAM530jbwBw/TZJnbBuc1xcmjvO9hpcM/q/kjtQNownBvEW4zDCkqrB
- yd8Nby7j4CNaRPi1q3QsuVd6UcgZkpE=
-X-Google-Smtp-Source: ABdhPJyxGbRH/z5GOJ5Doybkfw1rnXoP6pLt1cG2awWcU3nF6e6ZKQ6evlW3bcBukvSlhs8Zvpgn/A==
-X-Received: by 2002:aa7:d0d4:: with SMTP id u20mr14407950edo.203.1612113765833; 
- Sun, 31 Jan 2021 09:22:45 -0800 (PST)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id j4sm7493834edt.18.2021.01.31.09.22.44
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 31 Jan 2021 09:22:45 -0800 (PST)
-Subject: Re: [bug] 5.11-rc5 brought page allocation failure issue [ttm][amdgpu]
-To: David Rientjes <rientjes@google.com>,
- Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
-References: <CABXGCsNazWZQGfSnFgQ_K5_H9uBQ=8gBdFORXrU1FEMGMohO2w@mail.gmail.com>
- <4ce29a7e-f58a-aeb4-bef-34a7eada70d0@google.com>
- <e0c2c823-5f-efe8-cd87-6dd6cc33a33@google.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <7a677c89-1974-0676-ba7d-b057ad2cab3f@gmail.com>
-Date: Wed, 3 Feb 2021 14:22:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <e0c2c823-5f-efe8-cd87-6dd6cc33a33@google.com>
-Content-Language: en-US
+X-Greylist: delayed 304 seconds by postgrey-1.36 at gabe;
+ Mon, 01 Feb 2021 08:11:22 UTC
+Received: from out30-42.freemail.mail.aliyun.com
+ (out30-42.freemail.mail.aliyun.com [115.124.30.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FD636E452;
+ Mon,  1 Feb 2021 08:11:21 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R301e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04400;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=11; SR=0;
+ TI=SMTPD_---0UNW.pLl_1612166765; 
+Received: from
+ j63c13417.sqa.eu95.tbsite.net(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0UNW.pLl_1612166765) by smtp.aliyun-inc.com(127.0.0.1);
+ Mon, 01 Feb 2021 16:06:12 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH] drm/amd/amdgpu/amdgpu_debugfs: Replace
+ DEFINE_SIMPLE_ATTRIBUTE with DEFINE_DEBUGFS_ATTRIBUTE
+Date: Mon,  1 Feb 2021 16:06:03 +0800
+Message-Id: <1612166763-126885-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 1.8.3.1
+X-Mailman-Approved-At: Mon, 01 Feb 2021 14:10:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,35 +42,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Linux List Kernel Mailing <linux-kernel@vger.kernel.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, airlied@linux.ie,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ sumit.semwal@linaro.org, linaro-mm-sig@lists.linaro.org,
+ amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, christian.koenig@amd.com,
+ linux-media@vger.kernel.org
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMzEuMDEuMjEgdW0gMDI6MDMgc2NocmllYiBEYXZpZCBSaWVudGplczoKPiBPbiBTYXQsIDMw
-IEphbiAyMDIxLCBEYXZpZCBSaWVudGplcyB3cm90ZToKPgo+PiBPbiBTdW4sIDMxIEphbiAyMDIx
-LCBNaWtoYWlsIEdhdnJpbG92IHdyb3RlOgo+Pgo+Pj4gVGhlIDUuMTEtcmM1IChnaXQgNzZjMDU3
-Yzg0ZDI4KSBicm91Z2h0IGEgbmV3IGlzc3VlLgo+Pj4gTm93IHRoZSBrZXJuZWwgbG9nIGlzIGZs
-b29kZWQgd2l0aCB0aGUgbWVzc2FnZSAicGFnZSBhbGxvY2F0aW9uIGZhaWx1cmUiLgo+Pj4KPj4+
-IFRyYWNlOgo+Pj4gbXNlZGdlOmNzMDogcGFnZSBhbGxvY2F0aW9uIGZhaWx1cmU6IG9yZGVyOjEw
-LAo+PiBPcmRlci0xMCwgd293IQo+Pgo+PiB0dG1fcG9vbF9hbGxvYygpIHdpbGwgc3RhcnQgYXQg
-b3JkZXItMTAgYW5kIGJhY2sgb2ZmIHRyeWluZyBzbWFsbGVyIG9yZGVycwo+PiBpZiBuZWNlc3Nh
-cnkuICBUaGlzIGlzIGEgcmVncmVzc2lvbiBpbnRyb2R1Y2VkIGluCj4+Cj4+IGNvbW1pdCBiZjll
-ZWUyNDlhYzIwMzI1MjE2NzdkZDc0ZTMxZWRlNTQyOWFmYmMwCj4+IEF1dGhvcjogQ2hyaXN0aWFu
-IEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+PiBEYXRlOiAgIFdlZCBKYW4gMTMg
-MTQ6MDI6MDQgMjAyMSArMDEwMAo+Pgo+PiAgICAgIGRybS90dG06IHN0b3AgdXNpbmcgR0ZQX1RS
-QU5TSFVHRV9MSUdIVAo+Pgo+PiBOYW1lbHksIGl0IHJlbW92ZWQgdGhlIF9fR0ZQX05PV0FSTiB0
-aGF0IHdlIG90aGVyd2lzZSByZXF1aXJlLiAgSSdsbCBzZW5kCj4+IGEgcGF0Y2ggaW4gcmVwbHku
-Cj4+Cj4gTG9va3MgbGlrZSBNaWNoZWwgRMOkbnplciA8bWljaGVsQGRhZW56ZXIubmV0PiBhbHJl
-YWR5IHNlbnQgYSBwYXRjaCB0aGF0Cj4gc2hvdWxkIGZpeCB0aGlzOgo+IGh0dHBzOi8vbG9yZS5r
-ZXJuZWwub3JnL2xrbWwvMjAyMTAxMjgwOTUzNDYuMjQyMS0xLW1pY2hlbEBkYWVuemVyLm5ldC8K
-ClllYWgsIGtub3duIGlzc3VlLiBJIGFscmVhZHkgcHVzaGVkIE1pY2hlbCdzIGZpeCB0byBkcm0t
-bWlzYy1maXhlcy4gClNob3VsZCBsYW5kIGluIHRoZSBuZXh0IC1yYyBieSB0aGUgd2Vla2VuZC4K
-ClJlZ2FyZHMsCkNocmlzdGlhbi4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQt
-Z2Z4Cg==
+Fix the following coccicheck warning:
+
+./drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1591:0-23: WARNING:
+fops_sclk_set should be defined with DEFINE_DEBUGFS_ATTRIBUTE.
+
+./drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1588:0-23: WARNING:
+fops_ib_preempt should be defined with DEFINE_DEBUGFS_ATTRIBUTE.
+
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+index a6667a2..54f3f68 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+@@ -1585,11 +1585,8 @@ static int amdgpu_debugfs_sclk_set(void *data, u64 val)
+ 	return 0;
+ }
+ 
+-DEFINE_SIMPLE_ATTRIBUTE(fops_ib_preempt, NULL,
+-			amdgpu_debugfs_ib_preempt, "%llu\n");
+-
+-DEFINE_SIMPLE_ATTRIBUTE(fops_sclk_set, NULL,
+-			amdgpu_debugfs_sclk_set, "%llu\n");
++DEFINE_DEBUGFS_ATTRIBUTE(fops_ib_preempt, NULL, amdgpu_debugfs_ib_preempt, "%llu\n");
++DEFINE_DEBUGFS_ATTRIBUTE(fops_sclk_set, NULL, amdgpu_debugfs_sclk_set, "%llu\n");
+ 
+ int amdgpu_debugfs_init(struct amdgpu_device *adev)
+ {
+-- 
+1.8.3.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
