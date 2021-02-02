@@ -1,65 +1,34 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D05A30B9EA
-	for <lists+amd-gfx@lfdr.de>; Tue,  2 Feb 2021 09:30:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33DF030BF69
+	for <lists+amd-gfx@lfdr.de>; Tue,  2 Feb 2021 14:31:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C9EA89C56;
-	Tue,  2 Feb 2021 08:30:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A24046E480;
+	Tue,  2 Feb 2021 13:31:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
- [IPv6:2a00:1450:4864:20::52c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 484AE89C56
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 08:30:51 +0000 (UTC)
-Received: by mail-ed1-x52c.google.com with SMTP id n6so21880337edt.10
- for <amd-gfx@lists.freedesktop.org>; Tue, 02 Feb 2021 00:30:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=FJt+qAB2XWx9woURbUYNHoJMIdrJLTBBR34+RfewwPw=;
- b=oQ2ie4C2Us/q4V/YXNIVKDEULfvPDXZ9py1IVCWFHsPxWj9PBR9nXxGeiE71ek/DfB
- E/EnQtebIM28eVt/D4xEMvaKyYvySNrjhpdbH02pq6VYP2P1gkQoR83dz2p+FYCGt1Vp
- 8XhVu20BiYbB6drvLT7jtM2X0vQnYqEZooIcud11n48m+G/7EQa1NSffv5LJFcbVWnqE
- o40aUGzJj38fel5rnm68bmFEpUdlCqSbKp6U9vDeymxunETZzuIAXmPXYCYX57J1qL+j
- lmzcTabZaQ1vVmjwJhDOngokQgMy75gSQL0B1V3ttFiehm65rF85rhMZkiK4B/Tgfggj
- UkXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=FJt+qAB2XWx9woURbUYNHoJMIdrJLTBBR34+RfewwPw=;
- b=X15d14IVSbheZ282e67c8JvdqD/MIH6Md9+38AbFTer5lRBfOEi6CRneDkhdUghRzZ
- pNhYlzM5SEGoPpaeBFFk0jGlGEVrzLRLRg4QSt8jb4mW8QUqEaTXRh/c/KwzFKcBOTZw
- JPuxjq6lAbD5VrYRs1T8xVG4JemDeVsI6VNN4cTiOhyqj/RXoOE3Xe5TCPD7I5MG2jfz
- Mv2kXLGh6dJBkRth13hAfid+0UT7ck2NugZ9WHTyNn/OBjlKdt1+quNNNwNElIjQs9gY
- YtXi7k3DXtVnL8UU7rJ0gVL3kotO04dMmirTy9e9NK/vPoddRX30nQtjp/A34Hw3uK4T
- GovA==
-X-Gm-Message-State: AOAM533bevLuieG9TmMNBWd4N1yyZu92kXO4k6QWLGHiNbGGww3au/29
- 3KnnHb+M0nsBMzou7QoySZU=
-X-Google-Smtp-Source: ABdhPJwDf55efGfqzYmrZCENTmQqSJAwnWnLHbX69yqhuyksnh8uZqXlo2EwPG4g8F2eTabXXJBuXQ==
-X-Received: by 2002:a50:f19a:: with SMTP id x26mr13457861edl.354.1612254649789; 
- Tue, 02 Feb 2021 00:30:49 -0800 (PST)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id x14sm4539896ejb.0.2021.02.02.00.30.49
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 02 Feb 2021 00:30:49 -0800 (PST)
-Subject: Re: [PATCH 3/4] drm/amdgpu: add INFO ioctl support for querying video
- caps (v3)
-To: Alex Deucher <alexdeucher@gmail.com>, amd-gfx@lists.freedesktop.org
-References: <20210201165605.465228-1-alexander.deucher@amd.com>
- <20210201165605.465228-3-alexander.deucher@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <5bebcb9f-0606-d226-0856-ad3169bc99fb@gmail.com>
-Date: Tue, 2 Feb 2021 09:30:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210201165605.465228-3-alexander.deucher@amd.com>
-Content-Language: en-US
+Received: from out30-45.freemail.mail.aliyun.com
+ (out30-45.freemail.mail.aliyun.com [115.124.30.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 398B56E917;
+ Tue,  2 Feb 2021 09:06:27 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R261e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=alimailimapcm10staff010182156082;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=9; SR=0;
+ TI=SMTPD_---0UNfe6ce_1612256773; 
+Received: from
+ j63c13417.sqa.eu95.tbsite.net(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0UNfe6ce_1612256773) by smtp.aliyun-inc.com(127.0.0.1);
+ Tue, 02 Feb 2021 17:06:24 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH] drm/amdgpu: convert sysfs sprintf/snprintf family to
+ sysfs_emit
+Date: Tue,  2 Feb 2021 17:06:12 +0800
+Message-Id: <1612256772-70147-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 1.8.3.1
+X-Mailman-Approved-At: Tue, 02 Feb 2021 13:31:35 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,170 +40,63 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: Alex Deucher <alexander.deucher@amd.com>, Leo Liu <leo.liu@amd.com>
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, airlied@linux.ie,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, john.clements@amd.com,
+ christian.koenig@amd.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 01.02.21 um 17:56 schrieb Alex Deucher:
-> We currently hardcode these in mesa, but querying them from
-> the kernel makes more sense since there may be board specific
-> limitations that the kernel driver is better suited to
-> determining.
->
-> Userpace patches that use this interface:
-> https://gitlab.freedesktop.org/leoliu/drm/-/commits/info_video_caps
-> https://gitlab.freedesktop.org/leoliu/mesa/-/commits/info_video_caps
->
-> v2: reorder the codecs to better align with mesa
-> v3: add max_pixels_per_frame to handle the portrait case, squash in
->      memory leak fix
->
-> Reviewed-by: Leo Liu <leo.liu@amd.com> (v2)
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 58 +++++++++++++++++++++++++
->   include/uapi/drm/amdgpu_drm.h           | 34 +++++++++++++++
->   2 files changed, 92 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> index 3c37cf1ae8b7..390362beda0e 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> @@ -983,6 +983,64 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
->   				min_t(u64, size, sizeof(ras_mask))) ?
->   			-EFAULT : 0;
->   	}
-> +	case AMDGPU_INFO_VIDEO_CAPS: {
-> +		const struct amdgpu_video_codecs *codecs;
-> +		struct drm_amdgpu_info_video_caps *caps;
-> +		int r;
-> +
-> +		switch (info->video_cap.type) {
-> +		case AMDGPU_INFO_VIDEO_CAPS_DECODE:
-> +			r = amdgpu_asic_query_video_codecs(adev, false, &codecs);
-> +			if (r)
-> +				return -EINVAL;
-> +			break;
-> +		case AMDGPU_INFO_VIDEO_CAPS_ENCODE:
-> +			r = amdgpu_asic_query_video_codecs(adev, true, &codecs);
-> +			if (r)
-> +				return -EINVAL;
-> +			break;
-> +			break;
-> +		default:
-> +			DRM_DEBUG_KMS("Invalid request %d\n",
-> +				      info->video_cap.type);
-> +			return -EINVAL;
-> +		}
-> +
-> +		caps = kzalloc(sizeof(*caps), GFP_KERNEL);
-> +		if (!caps)
-> +			return -ENOMEM;
-> +
-> +		for (i = 0; i < codecs->codec_count; i++) {
-> +			int idx = codecs->codec_array[i].codec_type;
-> +
-> +			switch (idx) {
-> +			case AMDGPU_VIDEO_CODEC_TYPE_MPEG2:
-> +			case AMDGPU_VIDEO_CODEC_TYPE_MPEG4:
-> +			case AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC:
-> +			case AMDGPU_VIDEO_CODEC_TYPE_VC1:
-> +			case AMDGPU_VIDEO_CODEC_TYPE_HEVC:
-> +			case AMDGPU_VIDEO_CODEC_TYPE_JPEG:
-> +			case AMDGPU_VIDEO_CODEC_TYPE_VP9:
-> +			case AMDGPU_VIDEO_CODEC_TYPE_AV1:
-> +				caps->codec_info[idx].valid = 1;
-> +				caps->codec_info[idx].max_width =
-> +					codecs->codec_array[i].max_width;
-> +				caps->codec_info[idx].max_height =
-> +					codecs->codec_array[i].max_height;
-> +				caps->codec_info[idx].max_pixels_per_frame =
-> +					codecs->codec_array[i].max_pixels_per_frame;
-> +				caps->codec_info[idx].max_level =
-> +					codecs->codec_array[i].max_level;
-> +				break;
-> +			default:
-> +				break;
-> +			}
-> +		}
-> +		r = copy_to_user(out, caps,
-> +				 min((size_t)size, sizeof(*caps))) ? -EFAULT : 0;
-> +		kfree(caps);
-> +		return r;
-> +	}
->   	default:
->   		DRM_DEBUG_KMS("Invalid request %d\n", info->query);
->   		return -EINVAL;
-> diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
-> index 7fb9c09ee93f..728566542f8a 100644
-> --- a/include/uapi/drm/amdgpu_drm.h
-> +++ b/include/uapi/drm/amdgpu_drm.h
-> @@ -782,6 +782,12 @@ struct drm_amdgpu_cs_chunk_data {
->   #define AMDGPU_INFO_VRAM_LOST_COUNTER		0x1F
->   /* query ras mask of enabled features*/
->   #define AMDGPU_INFO_RAS_ENABLED_FEATURES	0x20
-> +/* query video encode/decode caps */
-> +#define AMDGPU_INFO_VIDEO_CAPS			0x21
-> +	/* Subquery id: Decode */
-> +	#define AMDGPU_INFO_VIDEO_CAPS_DECODE		0
-> +	/* Subquery id: Encode */
-> +	#define AMDGPU_INFO_VIDEO_CAPS_ENCODE		1
->   
->   /* RAS MASK: UMC (VRAM) */
->   #define AMDGPU_INFO_RAS_ENABLED_UMC			(1 << 0)
-> @@ -878,6 +884,10 @@ struct drm_amdgpu_info {
->   		struct {
->   			__u32 type;
->   		} sensor_info;
-> +
-> +		struct {
-> +			__u32 type;
-> +		} video_cap;
->   	};
->   };
->   
-> @@ -1074,6 +1084,30 @@ struct drm_amdgpu_info_vce_clock_table {
->   	__u32 pad;
->   };
->   
-> +/* query video encode/decode caps */
-> +#define AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG2			0
-> +#define AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4			1
-> +#define AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VC1			2
-> +#define AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC		3
-> +#define AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC			4
-> +#define AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_JPEG			5
-> +#define AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VP9			6
-> +#define AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_AV1			7
-> +#define AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_COUNT			8
+Fix the following coccicheck warning:
 
-If I'm not completely mistaken this needs to be kept identical to the 
-defines in amdgpu.h.
+./drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c:220:8-16: WARNING: use
+scnprintf or sprintf.
 
-I think it might be better to have only one define for this.
+./drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c:249:8-16: WARNING: use
+scnprintf or sprintf.
 
-Christian.
+Reported-by: Abaci Robot<abaci@linux.alibaba.com>
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-> +
-> +struct drm_amdgpu_info_video_codec_info {
-> +	__u32 valid;
-> +	__u32 max_width;
-> +	__u32 max_height;
-> +	__u32 max_pixels_per_frame;
-> +	__u32 max_level;
-> +	__u32 pad;
-> +};
-> +
-> +struct drm_amdgpu_info_video_caps {
-> +	struct drm_amdgpu_info_video_codec_info codec_info[AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_COUNT];
-> +};
-> +
->   /*
->    * Supported GPU families
->    */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+index 541ef6b..2913d57 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+@@ -186,7 +186,7 @@ static ssize_t amdgpu_xgmi_show_attrs(struct kobject *kobj,
+ 		kobj, struct amdgpu_hive_info, kobj);
+ 
+ 	if (attr == &amdgpu_xgmi_hive_id)
+-		return snprintf(buf, PAGE_SIZE, "%llu\n", hive->hive_id);
++		return sysfs_emit(buf, "%llu\n", hive->hive_id);
+ 
+ 	return 0;
+ }
+@@ -217,7 +217,7 @@ static ssize_t amdgpu_xgmi_show_device_id(struct device *dev,
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+ 
+-	return snprintf(buf, PAGE_SIZE, "%llu\n", adev->gmc.xgmi.node_id);
++	return sysfs_emit(buf, "%llu\n", adev->gmc.xgmi.node_id);
+ 
+ }
+ 
+@@ -246,7 +246,7 @@ static ssize_t amdgpu_xgmi_show_error(struct device *dev,
+ 
+ 	adev->df.funcs->set_fica(adev, ficaa_pie_status_in, 0, 0);
+ 
+-	return snprintf(buf, PAGE_SIZE, "%u\n", error_count);
++	return sysfs_emit(buf, "%u\n", error_count);
+ }
+ 
+ 
+-- 
+1.8.3.1
 
 _______________________________________________
 amd-gfx mailing list
