@@ -1,58 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CD1230C518
-	for <lists+amd-gfx@lfdr.de>; Tue,  2 Feb 2021 17:13:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA3F30C51A
+	for <lists+amd-gfx@lfdr.de>; Tue,  2 Feb 2021 17:13:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4F2B6E954;
-	Tue,  2 Feb 2021 16:13:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAAEB6E957;
+	Tue,  2 Feb 2021 16:13:18 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com
- [IPv6:2607:f8b0:4864:20::731])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E67116E94E
- for <amd-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 16:13:16 +0000 (UTC)
-Received: by mail-qk1-x731.google.com with SMTP id r77so20259516qka.12
- for <amd-gfx@lists.freedesktop.org>; Tue, 02 Feb 2021 08:13:16 -0800 (PST)
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com
+ [IPv6:2607:f8b0:4864:20::72a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 384A16E95B
+ for <amd-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 16:13:18 +0000 (UTC)
+Received: by mail-qk1-x72a.google.com with SMTP id d85so20284718qkg.5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 02 Feb 2021 08:13:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=3fv/JN/sOPk9V9t9Sz0RlacA/Qg11mObrn166eOSDWI=;
- b=C59FVkCwwGLyU91I3u471JnZqIJZLR0KbFO+s6ASouhpuXYY/N1CBrSjZlFN4Q5sOe
- xEa2EZ1/En/6hr6bjVGoZQBhJmfZAsmEHLBYM9YcNT7vmzVxdR6viY96xZxvpu/B0Hfu
- yRWhAT+uGQcBqrM+1+ghd0p5F1bxrfz+FBm+ymY/SRpOigIq/Xqgf+3FeEHDBHQofAFa
- 2dUMIPQEGo3WdyQL8U3iannRkPx19V9pDnx2rln/IBHp6vP2J/xeiaUe56vtAuHYbgt2
- rJPvn8upj2foE5NNVzjOksq+t2/HNHyIJ5FiwmVD4i4I4QGxqHWtyBhM34aCoEIlwPmW
- 4f7g==
+ bh=hOTvOf8PqgbUZeUELojgoTxK6WOkZ+CmmKShZCeJTIg=;
+ b=ZrvBDULocotncbefjvUIN8051yifptGght3i6rvCh8GlKEwAUmZai/vW4PJPDekbkZ
+ uhF+SSpAUg0uEbPcQFzahVTDf+2yArss4oJbCj/6m0vg9w6IeaE8QSe9Xggb+RjyHcSp
+ Qz7xzwCFWl36rgkF6Y7zUr2YJ/nc+UJ8Z5idovcnQgxmvR1Eag7IKOD3pdk9jDxyoFPp
+ gFywiW68uXD0++n+HN1lhmiM3x5gs7i2tcFOfXvWMmQ6CUuq2oIkSdjcVq4ACxZV8UE7
+ B8qAm68YbAYSVtYQ+D9co3TEUqMfiDYsYLCHmVYEyYyB2mt9s1AXIOxkYmBZLXeJbrPR
+ M9Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=3fv/JN/sOPk9V9t9Sz0RlacA/Qg11mObrn166eOSDWI=;
- b=f8hGKDxvKUKydu+ZuKoa2J8D9HFHZUg43kWlbG5k8qzhIRCFpcVXVcKgBXphDstY74
- 3AxyudVznPYF7yn5L61QPRmA0/QGH6jcFpzYpn96qyJE9FwlJAZWL28wj1cknJ2lPH9n
- Ku+7fRAEHtExs44iesHRzCjjrsVogJSJc+EhXE4fioy84xk6npOssvC7FBPZcVcANxOS
- maAgx1QyRQN5z4/fD7pXstW+NZF6iBB0jTA4a1A//PQnt2lUFRDxefR2Q/T4RLC8NEQ0
- zVvIo73CRWqMU8HVyvBtOWLFPEqXb5/g5zhd/cKfe6WRwS3niLBPg4IV41798oN0Cr68
- bjwQ==
-X-Gm-Message-State: AOAM5311Gok4cDKottaCc3Dnh2rd3WVX6559MZ94daKhpx66fBOn51S1
- 246LmPt2Dt/1X09jS6jpygr9YPpoEk4=
-X-Google-Smtp-Source: ABdhPJw4/900qyU5SQfekNTXoo+ONGEuCOgt43zCHBWmHFgfzdnOfNjPwIio16vx53L0hYq+zLNjUQ==
-X-Received: by 2002:a05:620a:124d:: with SMTP id
- a13mr22202935qkl.14.1612282396011; 
- Tue, 02 Feb 2021 08:13:16 -0800 (PST)
+ bh=hOTvOf8PqgbUZeUELojgoTxK6WOkZ+CmmKShZCeJTIg=;
+ b=JfjUDMaL2a46STVT/JvN26qpI11ePGal6lgkAVECmNWgfRn+6eqZBW2SMt2FelGhr5
+ IxxOVnho0pXBVR+x5xmRhHSRolN+ozLgqG+8xDw8Se7JHkrH+q8Jd7TSyOeecLrlXyMc
+ wnMxbyFoHzjxnjjb/CkaTr+XG3zHPGPMeYb4fd03JnaLyTs+xd6+Vlbj7GOLVSFWagje
+ K6+lxzc2AO/C5Y0ZnbD3FhayYV2AOICIFOtmHdACPmVELMdMmkHhXFOHnjTcR9PZjavg
+ Iq6BBLmIFI1U3+rQHjztN04w7OeZ8lI42EmPUJYm+GwaS77164rW1GNcV+KLMi1OsLVF
+ v1YQ==
+X-Gm-Message-State: AOAM532M0Oe3VHemc8KG8y9Q0peDEldmbW8rZdM6kAab2JWhAmotcL1O
+ bpMsAwk16ut0iHHkQ6jlHtxkWwJaSDM=
+X-Google-Smtp-Source: ABdhPJxEXC/q7G0Sjso3yt0qCVoSfS0tXvm2+YxFZSKKRpJIRNKVhsOPWnqjqLworqScbovjq8Nw/Q==
+X-Received: by 2002:a37:ac10:: with SMTP id e16mr21959884qkm.465.1612282397037; 
+ Tue, 02 Feb 2021 08:13:17 -0800 (PST)
 Received: from localhost.localdomain ([192.161.78.237])
- by smtp.gmail.com with ESMTPSA id z128sm14539078qke.70.2021.02.02.08.13.15
+ by smtp.gmail.com with ESMTPSA id z128sm14539078qke.70.2021.02.02.08.13.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 02 Feb 2021 08:13:15 -0800 (PST)
+ Tue, 02 Feb 2021 08:13:16 -0800 (PST)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 4/5] drm/amdgpu: bump driver version for new video codec INFO
- ioctl query
-Date: Tue,  2 Feb 2021 11:13:02 -0500
-Message-Id: <20210202161303.538281-4-alexander.deucher@amd.com>
+Subject: [PATCH 5/5] drm/amdgpu/codec: drop the internal codec index
+Date: Tue,  2 Feb 2021 11:13:03 -0500
+Message-Id: <20210202161303.538281-5-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210202161303.538281-1-alexander.deucher@amd.com>
 References: <20210202161303.538281-1-alexander.deucher@amd.com>
@@ -68,37 +66,648 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Leo Liu <leo.liu@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-So mesa can check when to query the kernel vs use hardcoded
-codec bandwidth data.
+And just use the ioctl index.  They are the same.
 
-Reviewed-by: Leo Liu <leo.liu@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  9 -----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 16 ++++-----
+ drivers/gpu/drm/amd/amdgpu/cik.c        | 12 ++++---
+ drivers/gpu/drm/amd/amdgpu/nv.c         | 36 ++++++++++---------
+ drivers/gpu/drm/amd/amdgpu/si.c         | 12 ++++---
+ drivers/gpu/drm/amd/amdgpu/soc15.c      | 46 +++++++++++++------------
+ drivers/gpu/drm/amd/amdgpu/vi.c         | 28 ++++++++-------
+ 7 files changed, 80 insertions(+), 79 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index e855da764275..05ed82e4d805 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -91,9 +91,10 @@
-  * - 3.38.0 - Add AMDGPU_IB_FLAG_EMIT_MEM_SYNC
-  * - 3.39.0 - DMABUF implicit sync does a full pipeline sync
-  * - 3.40.0 - Add AMDGPU_IDS_FLAGS_TMZ
-+ * - 3.41.0 - Add video codec query
-  */
- #define KMS_DRIVER_MAJOR	3
--#define KMS_DRIVER_MINOR	40
-+#define KMS_DRIVER_MINOR	41
- #define KMS_DRIVER_PATCHLEVEL	0
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 4e4da872273f..fdfa88c7b171 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -582,15 +582,6 @@ enum amd_reset_method {
+ 	AMD_RESET_METHOD_BACO
+ };
  
- int amdgpu_vram_limit;
+-#define AMDGPU_VIDEO_CODEC_TYPE_MPEG2			0
+-#define AMDGPU_VIDEO_CODEC_TYPE_MPEG4			1
+-#define AMDGPU_VIDEO_CODEC_TYPE_VC1			2
+-#define AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC		3
+-#define AMDGPU_VIDEO_CODEC_TYPE_HEVC			4
+-#define AMDGPU_VIDEO_CODEC_TYPE_JPEG			5
+-#define AMDGPU_VIDEO_CODEC_TYPE_VP9			6
+-#define AMDGPU_VIDEO_CODEC_TYPE_AV1			7
+-
+ struct amdgpu_video_codec_info {
+ 	u32 codec_type;
+ 	u32 max_width;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index 04b9cd75f7b4..b78847fa769b 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -1019,14 +1019,14 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+ 			int idx = codecs->codec_array[i].codec_type;
+ 
+ 			switch (idx) {
+-			case AMDGPU_VIDEO_CODEC_TYPE_MPEG2:
+-			case AMDGPU_VIDEO_CODEC_TYPE_MPEG4:
+-			case AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC:
+-			case AMDGPU_VIDEO_CODEC_TYPE_VC1:
+-			case AMDGPU_VIDEO_CODEC_TYPE_HEVC:
+-			case AMDGPU_VIDEO_CODEC_TYPE_JPEG:
+-			case AMDGPU_VIDEO_CODEC_TYPE_VP9:
+-			case AMDGPU_VIDEO_CODEC_TYPE_AV1:
++			case AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG2:
++			case AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4:
++			case AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VC1:
++			case AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC:
++			case AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC:
++			case AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_JPEG:
++			case AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VP9:
++			case AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_AV1:
+ 				caps->codec_info[idx].valid = 1;
+ 				caps->codec_info[idx].max_width =
+ 					codecs->codec_array[i].max_width;
+diff --git a/drivers/gpu/drm/amd/amdgpu/cik.c b/drivers/gpu/drm/amd/amdgpu/cik.c
+index 12ed86deaa84..6ee2c0e3ea50 100644
+--- a/drivers/gpu/drm/amd/amdgpu/cik.c
++++ b/drivers/gpu/drm/amd/amdgpu/cik.c
+@@ -26,6 +26,8 @@
+ #include <linux/module.h>
+ #include <linux/pci.h>
+ 
++#include <drm/amdgpu_drm.h>
++
+ #include "amdgpu.h"
+ #include "amdgpu_atombios.h"
+ #include "amdgpu_ih.h"
+@@ -73,7 +75,7 @@
+ static const struct amdgpu_video_codec_info cik_video_codecs_encode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 2048,
+ 		.max_height = 1152,
+ 		.max_pixels_per_frame = 2048 * 1152,
+@@ -90,28 +92,28 @@ static const struct amdgpu_video_codecs cik_video_codecs_encode =
+ static const struct amdgpu_video_codec_info cik_video_codecs_decode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG2,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG2,
+ 		.max_width = 2048,
+ 		.max_height = 1152,
+ 		.max_pixels_per_frame = 2048 * 1152,
+ 		.max_level = 3,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4,
+ 		.max_width = 2048,
+ 		.max_height = 1152,
+ 		.max_pixels_per_frame = 2048 * 1152,
+ 		.max_level = 5,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 2048,
+ 		.max_height = 1152,
+ 		.max_pixels_per_frame = 2048 * 1152,
+ 		.max_level = 41,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_VC1,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VC1,
+ 		.max_width = 2048,
+ 		.max_height = 1152,
+ 		.max_pixels_per_frame = 2048 * 1152,
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 64c973cd9088..e6878645df93 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -25,6 +25,8 @@
+ #include <linux/module.h>
+ #include <linux/pci.h>
+ 
++#include <drm/amdgpu_drm.h>
++
+ #include "amdgpu.h"
+ #include "amdgpu_atombios.h"
+ #include "amdgpu_ih.h"
+@@ -68,14 +70,14 @@ static const struct amd_ip_funcs nv_common_ip_funcs;
+ static const struct amdgpu_video_codec_info nv_video_codecs_encode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 4096,
+ 		.max_height = 2304,
+ 		.max_pixels_per_frame = 4096 * 2304,
+ 		.max_level = 0,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_HEVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC,
+ 		.max_width = 4096,
+ 		.max_height = 2304,
+ 		.max_pixels_per_frame = 4096 * 2304,
+@@ -93,49 +95,49 @@ static const struct amdgpu_video_codecs nv_video_codecs_encode =
+ static const struct amdgpu_video_codec_info nv_video_codecs_decode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG2,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG2,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 3,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 5,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 52,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_VC1,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VC1,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 4,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_HEVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC,
+ 		.max_width = 8192,
+ 		.max_height = 4352,
+ 		.max_pixels_per_frame = 8192 * 4352,
+ 		.max_level = 186,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_JPEG,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_JPEG,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 0,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_VP9,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VP9,
+ 		.max_width = 8192,
+ 		.max_height = 4352,
+ 		.max_pixels_per_frame = 8192 * 4352,
+@@ -153,56 +155,56 @@ static const struct amdgpu_video_codecs nv_video_codecs_decode =
+ static const struct amdgpu_video_codec_info sc_video_codecs_decode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG2,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG2,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 3,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 5,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 52,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_VC1,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VC1,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 4,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_HEVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC,
+ 		.max_width = 8192,
+ 		.max_height = 4352,
+ 		.max_pixels_per_frame = 8192 * 4352,
+ 		.max_level = 186,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_JPEG,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_JPEG,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 0,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_VP9,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VP9,
+ 		.max_width = 8192,
+ 		.max_height = 4352,
+ 		.max_pixels_per_frame = 8192 * 4352,
+ 		.max_level = 0,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_AV1,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_AV1,
+ 		.max_width = 8192,
+ 		.max_height = 4352,
+ 		.max_pixels_per_frame = 8192 * 4352,
+diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
+index da258ff75042..7817e5156cb5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/si.c
++++ b/drivers/gpu/drm/amd/amdgpu/si.c
+@@ -26,6 +26,8 @@
+ #include <linux/module.h>
+ #include <linux/pci.h>
+ 
++#include <drm/amdgpu_drm.h>
++
+ #include "amdgpu.h"
+ #include "amdgpu_atombios.h"
+ #include "amdgpu_ih.h"
+@@ -911,7 +913,7 @@ static const u32 hainan_mgcg_cgcg_init[] =
+ static const struct amdgpu_video_codec_info tahiti_video_codecs_encode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 2048,
+ 		.max_height = 1152,
+ 		.max_pixels_per_frame = 2048 * 1152,
+@@ -942,28 +944,28 @@ static const struct amdgpu_video_codecs hainan_video_codecs_encode =
+ static const struct amdgpu_video_codec_info tahiti_video_codecs_decode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG2,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG2,
+ 		.max_width = 2048,
+ 		.max_height = 1152,
+ 		.max_pixels_per_frame = 2048 * 1152,
+ 		.max_level = 3,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4,
+ 		.max_width = 2048,
+ 		.max_height = 1152,
+ 		.max_pixels_per_frame = 2048 * 1152,
+ 		.max_level = 5,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 2048,
+ 		.max_height = 1152,
+ 		.max_pixels_per_frame = 2048 * 1152,
+ 		.max_level = 41,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_VC1,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VC1,
+ 		.max_width = 2048,
+ 		.max_height = 1152,
+ 		.max_pixels_per_frame = 2048 * 1152,
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
+index a81fd7de72b7..5ef2e2707754 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -25,6 +25,8 @@
+ #include <linux/module.h>
+ #include <linux/pci.h>
+ 
++#include <drm/amdgpu_drm.h>
++
+ #include "amdgpu.h"
+ #include "amdgpu_atombios.h"
+ #include "amdgpu_ih.h"
+@@ -87,14 +89,14 @@
+ static const struct amdgpu_video_codec_info vega_video_codecs_encode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 4096,
+ 		.max_height = 2304,
+ 		.max_pixels_per_frame = 4096 * 2304,
+ 		.max_level = 0,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_HEVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC,
+ 		.max_width = 4096,
+ 		.max_height = 2304,
+ 		.max_pixels_per_frame = 4096 * 2304,
+@@ -112,42 +114,42 @@ static const struct amdgpu_video_codecs vega_video_codecs_encode =
+ static const struct amdgpu_video_codec_info vega_video_codecs_decode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG2,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG2,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 3,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 5,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 52,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_VC1,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VC1,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 4,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_HEVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 186,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_JPEG,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_JPEG,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+@@ -165,49 +167,49 @@ static const struct amdgpu_video_codecs vega_video_codecs_decode =
+ static const struct amdgpu_video_codec_info rv_video_codecs_decode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG2,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG2,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 3,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 5,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 52,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_VC1,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VC1,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 4,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_HEVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 186,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_JPEG,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_JPEG,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 0,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_VP9,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VP9,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+@@ -225,49 +227,49 @@ static const struct amdgpu_video_codecs rv_video_codecs_decode =
+ static const struct amdgpu_video_codec_info rn_video_codecs_decode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG2,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG2,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 3,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 5,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 52,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_VC1,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VC1,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 4,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_HEVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC,
+ 		.max_width = 8192,
+ 		.max_height = 4352,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 186,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_JPEG,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_JPEG,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 0,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_VP9,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VP9,
+ 		.max_width = 8192,
+ 		.max_height = 4352,
+ 		.max_pixels_per_frame = 4096 * 4096,
+diff --git a/drivers/gpu/drm/amd/amdgpu/vi.c b/drivers/gpu/drm/amd/amdgpu/vi.c
+index 462368d2804b..2bfead243335 100644
+--- a/drivers/gpu/drm/amd/amdgpu/vi.c
++++ b/drivers/gpu/drm/amd/amdgpu/vi.c
+@@ -24,6 +24,8 @@
+ #include <linux/pci.h>
+ #include <linux/slab.h>
+ 
++#include <drm/amdgpu_drm.h>
++
+ #include "amdgpu.h"
+ #include "amdgpu_atombios.h"
+ #include "amdgpu_ih.h"
+@@ -90,7 +92,7 @@ static const struct amdgpu_video_codecs topaz_video_codecs_encode =
+ static const struct amdgpu_video_codec_info tonga_video_codecs_encode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 4096,
+ 		.max_height = 2304,
+ 		.max_pixels_per_frame = 4096 * 2304,
+@@ -108,14 +110,14 @@ static const struct amdgpu_video_codecs tonga_video_codecs_encode =
+ static const struct amdgpu_video_codec_info polaris_video_codecs_encode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 4096,
+ 		.max_height = 2304,
+ 		.max_pixels_per_frame = 4096 * 2304,
+ 		.max_level = 0,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_HEVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC,
+ 		.max_width = 4096,
+ 		.max_height = 2304,
+ 		.max_pixels_per_frame = 4096 * 2304,
+@@ -140,28 +142,28 @@ static const struct amdgpu_video_codecs topaz_video_codecs_decode =
+ static const struct amdgpu_video_codec_info tonga_video_codecs_decode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG2,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG2,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 3,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 5,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 52,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_VC1,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VC1,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+@@ -179,42 +181,42 @@ static const struct amdgpu_video_codecs tonga_video_codecs_decode =
+ static const struct amdgpu_video_codec_info cz_video_codecs_decode_array[] =
+ {
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG2,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG2,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 3,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 5,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_MPEG4_AVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 52,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_VC1,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VC1,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 4,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_HEVC,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
+ 		.max_level = 186,
+ 	},
+ 	{
+-		.codec_type = AMDGPU_VIDEO_CODEC_TYPE_JPEG,
++		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_JPEG,
+ 		.max_width = 4096,
+ 		.max_height = 4096,
+ 		.max_pixels_per_frame = 4096 * 4096,
 -- 
 2.29.2
 
