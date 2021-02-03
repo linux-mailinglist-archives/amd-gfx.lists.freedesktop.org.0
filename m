@@ -1,58 +1,54 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60E3730E30C
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 Feb 2021 20:07:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F70330E775
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Feb 2021 00:37:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A62D89DA8;
-	Wed,  3 Feb 2021 19:06:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F0C16E128;
+	Wed,  3 Feb 2021 23:37:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com
- [IPv6:2607:f8b0:4864:20::733])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 119AD89D9B
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 19:06:58 +0000 (UTC)
-Received: by mail-qk1-x733.google.com with SMTP id v126so779987qkd.11
- for <amd-gfx@lists.freedesktop.org>; Wed, 03 Feb 2021 11:06:58 -0800 (PST)
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com
+ [IPv6:2607:f8b0:4864:20::232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58D156E128
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 23:37:16 +0000 (UTC)
+Received: by mail-oi1-x232.google.com with SMTP id m7so1762759oiw.12
+ for <amd-gfx@lists.freedesktop.org>; Wed, 03 Feb 2021 15:37:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=5urpi0LjW7Q9lIHXXG0E4+9xyGMjh7EkegNI6AqlSBY=;
- b=AwsZ7JaZhq7wfl3naaAlEhAoedv6Fd7Kk5/PaKhgWROmsH9P+MOFtE6CL27Nq/8u8g
- +4i48zLmy5QCGvwRohSK1lonfI59W73SP2Ph83jrFRfksY5Kvlupq7zZOlj66xXFgp44
- tc7yGfrG09IuURmzBfO/wmRZQO8VKgQ/rFsihojTXmnDt9LEFlHPfb1Y/4HaOGoRnF8M
- cK2Pm0hwcVWqJ1vvnRpGh+G6uc88Rwhr9wfg+kbhCvArn08dAl6zEZdHUZUjYQTEhtV3
- pJBAy3Bpn/OF/O6mZvyKoP1lSmZ54ZyN0F9DPFnCkxyFOVyUSajakPIFLLv9IdW7Knjv
- sohA==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=vniWOCs9+IhD06HcPsgaYIYWSeyhgkmaCmaIpk1ZMAo=;
+ b=sm7synINi2dMTDq/nNNipQKnXwOG2irSKQUb69lFAM5pIg/Hak9YrnMQctbdaaogV4
+ PYjxtwGme8qVWD063+SCuLk7I1beNOaRYEnRua/3e9UXhxrt/vEGR+Q/t1DeC+wxP7TT
+ byz5Rk2ZJi7VEZjGV0C9+u/KMF0r2FFF0Mguvf2W+P4DM9ByX08tfHo04bh9BPpKKtfE
+ yQV2Zx8HIZBHxnBxwPE/vPOTMNRyl010Vo6MAurov2FCqYHX089jEdosc70epZLNwV7y
+ e9joSzwm9UB63YUtcHKHrUFCleKApJEXgK278ADWpg47VtqVv9zeik8e9oZ/YrzMrdzS
+ +cfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=5urpi0LjW7Q9lIHXXG0E4+9xyGMjh7EkegNI6AqlSBY=;
- b=K1nONp1U3loWtQAA6n0yfZ3rL89mRhDZHcQv2BklvWMciS7a+Naeu9u2bDBkMTcFPQ
- nKxBkl0qrO2/VHioudljXmLmHB9xWckScRosrmSKEJTSDh4Ig2Qj8kbivicoxG3zkdyR
- 7V1Nj/8DqSvfTCckn33xZTM2jMiHcrFaB9Mwtvf+HgVQbx6jy457I3qtlsNf43iBhfNS
- 0YCc1YWh2PglmiSSU0gwsPUna15RcvyWVmCRF0qlsmevBFjCWrhfWrdvp/rYmUVIYeea
- 6gllAuYw/2ujlcBqM6kRzrxSDQbN7Dmv1k4so7K8wvLWnvQu4PO/i0U/QBEg7BxfjMOo
- flUg==
-X-Gm-Message-State: AOAM530givZCF8cstJXS1xp/gv7rzsBkNsmwbmi4iGGGzeFUzev6wjIU
- iz5/iUX7YhXfx8dvsDoFmbGGK30MNvM=
-X-Google-Smtp-Source: ABdhPJx80MTiKvj1zei8dCUdrYDYWtDsxIVC8u4wqqZuK2dl604i5xGZnGsDXfCXLkt0d5kvVnywRQ==
-X-Received: by 2002:a37:c03:: with SMTP id 3mr4145471qkm.367.1612379217125;
- Wed, 03 Feb 2021 11:06:57 -0800 (PST)
-Received: from localhost.localdomain ([192.161.78.237])
- by smtp.gmail.com with ESMTPSA id r4sm2530434qkf.112.2021.02.03.11.06.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 03 Feb 2021 11:06:56 -0800 (PST)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] Revert "drm/amd/display: Update NV1x SR latency values"
-Date: Wed,  3 Feb 2021 14:06:46 -0500
-Message-Id: <20210203190646.2024787-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.29.2
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=vniWOCs9+IhD06HcPsgaYIYWSeyhgkmaCmaIpk1ZMAo=;
+ b=hl7Gyb+m1sPPhtdq0g57raDiODhcultmVWuhwv3lkbfB+4GY2EATwGiUMZLW/UXabS
+ cL3IP7AAaocgiooDSTqkDj/HEINp664KoUO6XsrmoVkie3r7aMkFSU417Ou6qvBVZuRA
+ fA7Qrhi1yh2H+B8HbfgImJDbrsQSWS37h7vjvevhaEHYqwbJjKvZTbc2dCVgib5736BO
+ fGsflNsxZsQL4g6NH5tcX9As38VNvpjFvomhzxUKZLAXFfaHwmwvBJ54dPi1FKQUnx3D
+ 1UuqQ4VT7LvbkaWEB9ZQ6gqDqfe7oF6Rnfzqx9L9uBLoZYoIOyPCQMh+Eam2/1osfElU
+ RaEg==
+X-Gm-Message-State: AOAM530DJc0YatXPS2+j301bySJbNUh+9VTmb9SHWg15kFbT24UFgMu+
+ ong1yrAl1EGkoiWIEy5utU6K/KarU8tKJgCBZnw=
+X-Google-Smtp-Source: ABdhPJwHKjLQM8w+jdlMj2NZaO4FWly2OySe4+p0EQKIcEqfqoPe9xiNH/VrIKOAvXByQXI76HNJ4DTKErVK+VfYnYk=
+X-Received: by 2002:aca:1a17:: with SMTP id a23mr3519207oia.120.1612395435678; 
+ Wed, 03 Feb 2021 15:37:15 -0800 (PST)
 MIME-Version: 1.0
+References: <1612341030-13679-1-git-send-email-curry.gong@amd.com>
+In-Reply-To: <1612341030-13679-1-git-send-email-curry.gong@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 3 Feb 2021 18:37:04 -0500
+Message-ID: <CADnq5_OepyTSMCPzjgdP+BuCcvY8LFzSMm6ijvfk0ehm2oSYEA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu/gfx10: update register offsets for VGH in the
+ gfx_v10_0_setup_grbm_cam_remapping function
+To: chen gong <curry.gong@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,44 +60,107 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Jun Lei <Jun.Lei@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Alvin Lee <alvin.lee2@amd.com>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 4a3dea8932d3b1199680d2056dd91d31d94d70b7.
+On Wed, Feb 3, 2021 at 3:30 AM chen gong <curry.gong@amd.com> wrote:
+>
+> For Vangogh, the offset values of some GC registers used in the
+> gfx_v10_0_setup_grbm_cam_remapping() function are not the same as those
+> of Sienna_Cichlid, so cannot be reused.
+>
+> Although gfx_v10_0_setup_grbm_cam_remapping() is not called now for
+> Vangogh, it is necessary to implement this patch in case we enable this
+> code in the future.
+>
+> Signed-off-by: chen gong <curry.gong@amd.com>
 
-This causes blank screens for some users.
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1388
-Cc: Alvin Lee <alvin.lee2@amd.com>
-Cc: Jun Lei <Jun.Lei@amd.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index 064f158ce671..d94a1b3ac1fb 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -297,8 +297,8 @@ static struct _vcs_dpi_soc_bounding_box_st dcn2_0_soc = {
- 			},
- 		},
- 	.num_states = 5,
--	.sr_exit_time_us = 11.6,
--	.sr_enter_plus_exit_time_us = 13.9,
-+	.sr_exit_time_us = 8.6,
-+	.sr_enter_plus_exit_time_us = 10.9,
- 	.urgent_latency_us = 4.0,
- 	.urgent_latency_pixel_data_only_us = 4.0,
- 	.urgent_latency_pixel_mixed_with_vm_data_us = 4.0,
--- 
-2.29.2
-
+> ---
+>  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 56 +++++++++++++++++++++++++++++++++-
+>  1 file changed, 55 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> index 8ac2af2..a9ce2a0 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> @@ -7029,9 +7029,63 @@ static void gfx_v10_0_setup_grbm_cam_remapping(struct amdgpu_device *adev)
+>         WREG32_SOC15(GC, 0, mmGRBM_CAM_INDEX, 0);
+>
+>         switch (adev->asic_type) {
+> +       case CHIP_VANGOGH:
+> +               /* mmVGT_TF_RING_SIZE_UMD -> mmVGT_TF_RING_SIZE */
+> +               data = (SOC15_REG_OFFSET(GC, 0, mmVGT_TF_RING_SIZE_UMD) <<
+> +                       GRBM_CAM_DATA__CAM_ADDR__SHIFT) |
+> +                      (SOC15_REG_OFFSET(GC, 0, mmVGT_TF_RING_SIZE_Vangogh) <<
+> +                       GRBM_CAM_DATA__CAM_REMAPADDR__SHIFT);
+> +               WREG32_SOC15(GC, 0, mmGRBM_CAM_DATA_UPPER, 0);
+> +               WREG32_SOC15(GC, 0, mmGRBM_CAM_DATA, data);
+> +
+> +               /* mmVGT_TF_MEMORY_BASE_UMD -> mmVGT_TF_MEMORY_BASE */
+> +               data = (SOC15_REG_OFFSET(GC, 0, mmVGT_TF_MEMORY_BASE_UMD) <<
+> +                       GRBM_CAM_DATA__CAM_ADDR__SHIFT) |
+> +                      (SOC15_REG_OFFSET(GC, 0, mmVGT_TF_MEMORY_BASE_Vangogh) <<
+> +                       GRBM_CAM_DATA__CAM_REMAPADDR__SHIFT);
+> +               WREG32_SOC15(GC, 0, mmGRBM_CAM_DATA_UPPER, 0);
+> +               WREG32_SOC15(GC, 0, mmGRBM_CAM_DATA, data);
+> +
+> +               /* mmVGT_TF_MEMORY_BASE_HI_UMD -> mmVGT_TF_MEMORY_BASE_HI */
+> +               data = (SOC15_REG_OFFSET(GC, 0, mmVGT_TF_MEMORY_BASE_HI_UMD) <<
+> +                       GRBM_CAM_DATA__CAM_ADDR__SHIFT) |
+> +                      (SOC15_REG_OFFSET(GC, 0, mmVGT_TF_MEMORY_BASE_HI_Vangogh) <<
+> +                       GRBM_CAM_DATA__CAM_REMAPADDR__SHIFT);
+> +               WREG32_SOC15(GC, 0, mmGRBM_CAM_DATA_UPPER, 0);
+> +               WREG32_SOC15(GC, 0, mmGRBM_CAM_DATA, data);
+> +
+> +               /* mmVGT_HS_OFFCHIP_PARAM_UMD -> mmVGT_HS_OFFCHIP_PARAM */
+> +               data = (SOC15_REG_OFFSET(GC, 0, mmVGT_HS_OFFCHIP_PARAM_UMD) <<
+> +                       GRBM_CAM_DATA__CAM_ADDR__SHIFT) |
+> +                      (SOC15_REG_OFFSET(GC, 0, mmVGT_HS_OFFCHIP_PARAM_Vangogh) <<
+> +                       GRBM_CAM_DATA__CAM_REMAPADDR__SHIFT);
+> +               WREG32_SOC15(GC, 0, mmGRBM_CAM_DATA_UPPER, 0);
+> +               WREG32_SOC15(GC, 0, mmGRBM_CAM_DATA, data);
+> +
+> +               /* mmVGT_ESGS_RING_SIZE_UMD -> mmVGT_ESGS_RING_SIZE */
+> +               data = (SOC15_REG_OFFSET(GC, 0, mmVGT_ESGS_RING_SIZE_UMD) <<
+> +                       GRBM_CAM_DATA__CAM_ADDR__SHIFT) |
+> +                      (SOC15_REG_OFFSET(GC, 0, mmVGT_ESGS_RING_SIZE_Vangogh) <<
+> +                       GRBM_CAM_DATA__CAM_REMAPADDR__SHIFT);
+> +               WREG32_SOC15(GC, 0, mmGRBM_CAM_DATA_UPPER, 0);
+> +               WREG32_SOC15(GC, 0, mmGRBM_CAM_DATA, data);
+> +
+> +               /* mmVGT_GSVS_RING_SIZE_UMD -> mmVGT_GSVS_RING_SIZE */
+> +               data = (SOC15_REG_OFFSET(GC, 0, mmVGT_GSVS_RING_SIZE_UMD) <<
+> +                       GRBM_CAM_DATA__CAM_ADDR__SHIFT) |
+> +                      (SOC15_REG_OFFSET(GC, 0, mmVGT_GSVS_RING_SIZE_Vangogh) <<
+> +                       GRBM_CAM_DATA__CAM_REMAPADDR__SHIFT);
+> +               WREG32_SOC15(GC, 0, mmGRBM_CAM_DATA_UPPER, 0);
+> +               WREG32_SOC15(GC, 0, mmGRBM_CAM_DATA, data);
+> +
+> +               /* mmSPI_CONFIG_CNTL_REMAP -> mmSPI_CONFIG_CNTL */
+> +               data = (SOC15_REG_OFFSET(GC, 0, mmSPI_CONFIG_CNTL_REMAP) <<
+> +                       GRBM_CAM_DATA__CAM_ADDR__SHIFT) |
+> +                      (SOC15_REG_OFFSET(GC, 0, mmSPI_CONFIG_CNTL_Vangogh) <<
+> +                       GRBM_CAM_DATA__CAM_REMAPADDR__SHIFT);
+> +               break;
+>         case CHIP_SIENNA_CICHLID:
+>         case CHIP_NAVY_FLOUNDER:
+> -       case CHIP_VANGOGH:
+>         case CHIP_DIMGREY_CAVEFISH:
+>                 /* mmVGT_TF_RING_SIZE_UMD -> mmVGT_TF_RING_SIZE */
+>                 data = (SOC15_REG_OFFSET(GC, 0, mmVGT_TF_RING_SIZE_UMD) <<
+> --
+> 2.7.4
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
