@@ -2,61 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFACE309BB8
-	for <lists+amd-gfx@lfdr.de>; Sun, 31 Jan 2021 12:50:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94139309DFD
+	for <lists+amd-gfx@lfdr.de>; Sun, 31 Jan 2021 18:22:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 759316E2C8;
-	Sun, 31 Jan 2021 11:50:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACD346E09E;
+	Sun, 31 Jan 2021 17:22:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
- [IPv6:2607:f8b0:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A6CE6E114
- for <amd-gfx@lists.freedesktop.org>; Sun, 31 Jan 2021 01:03:39 +0000 (UTC)
-Received: by mail-pf1-x435.google.com with SMTP id q20so9108377pfu.8
- for <amd-gfx@lists.freedesktop.org>; Sat, 30 Jan 2021 17:03:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=date:from:to:cc:subject:in-reply-to:message-id:references
- :mime-version; bh=hSBYDxZn5/M7G0OS88+UqBJx7yJ7nHUBiYaAGSX3hI4=;
- b=iIYzfLNBZl/AqmiCioUXu8Aq2eCpRcgawdqxPP3HhSm9qyMyUCW11GBzrbEQ2bssVX
- JwkXwi9kfHMn/aTu5H4E/pDS6rG/XF61pGtW9wMV9g0BPRx9ATjERfIKPMI6RvND1npU
- IfNVXj+f+9SN6WB7j/PjFXHALpAh4NGbEzy2u2UdGlJ3KGNmX0wyCbvigqcXonbW1GwR
- nuzVqItsOzZEaGEhCLUDNMH1KPJuEzgAv4RhMBpJNPJh+YsFmt9KCa/af4gVEL1DJYCP
- n38VX/FIx+r8MyKvfQt99Nu7h7bl/F8hHBxDTnLRPb/SYZsuvwqztuPqvj8bJjnH8g2V
- DT+Q==
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
+ [IPv6:2a00:1450:4864:20::52c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5ED016E09E
+ for <amd-gfx@lists.freedesktop.org>; Sun, 31 Jan 2021 17:22:47 +0000 (UTC)
+Received: by mail-ed1-x52c.google.com with SMTP id dj23so16193470edb.13
+ for <amd-gfx@lists.freedesktop.org>; Sun, 31 Jan 2021 09:22:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=RbOAw9iCiWf3vmIBB9AiaSewZnK8UfYjYbdl5JtZIlU=;
+ b=I5Wcmj0UAC6wdR3DY92+88WJi1/9uiSMxxSlG9RelNfX805mewkB7cDRME4hvjQrnh
+ krIRCOREWZpvch2cizO57Y600GiafsWMxdpdx+W/eVbGsjD86yydzaD9HwYjMUalw1dz
+ 6RDPmgCrhq9ddPjiOvdm5klP9Tj/siWGoLhb6hjWVMhKAW8GyMYmZ13xRDIzYcHhv2q6
+ lcpZ2tdUQUc0wSHJuGLDOgCHyYCyzfD77emu6ZAyqZmd9k7i7kZlIHnfFqhLF40ykSXV
+ OK5pPvM2tSOfiR4rBex91N5Io80/ocombyF02+gw4jIgWYoOUegmwZ1+7u1z5Xpl6Fpv
+ 08GA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
- :references:mime-version;
- bh=hSBYDxZn5/M7G0OS88+UqBJx7yJ7nHUBiYaAGSX3hI4=;
- b=HdWRfPGak6VTEmw8MyISYX8DciwqRwj/2tGnrj2xNtk2KPWMFt1QlBo2HlvkRq2m1i
- Kulcd13YR4m6xD3dWau2iL9DMYmyBrL9HgfqVDAnB/TTtlMS6wA5IJjAswHXqOHd4kI4
- aXgjc0ghf98wFfpzuNCOdEcqLUfJtEh8QNHdTyLV2vaoBmHpj1XNfEm4ziztE4e9NnQc
- MdW2cwhNvtH0jckuNOFIAIMGX2acKhx9chq15r8q4mFERfVX5icwYNCk7UXqiWQfRpad
- R3RjogKwvjysbqZoNerRya1G9+R8DNiqmXoc7JMLKSaoxkMbA/2qeiDvu6eqRwqdABme
- bjtQ==
-X-Gm-Message-State: AOAM531b40KJMnv7aj5nOsEf/hmlYVo5GeFiz7GhFl82S4TIVifbBeql
- BSxMGaskrT8ul/pO5hDa5p0I0w==
-X-Google-Smtp-Source: ABdhPJy+R/8tuQgdgWpNSHa2PErQxpdaxVaI2dnWesYu836FngbTUWRUj1PTnBOFY/744Cgi5LQNSw==
-X-Received: by 2002:a63:7e10:: with SMTP id z16mr10880619pgc.263.1612055018549; 
- Sat, 30 Jan 2021 17:03:38 -0800 (PST)
-Received: from [2620:15c:17:3:4a0f:cfff:fe51:6667]
- ([2620:15c:17:3:4a0f:cfff:fe51:6667])
- by smtp.gmail.com with ESMTPSA id 14sm3081438pgp.83.2021.01.30.17.03.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 30 Jan 2021 17:03:37 -0800 (PST)
-Date: Sat, 30 Jan 2021 17:03:37 -0800 (PST)
-From: David Rientjes <rientjes@google.com>
-To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-transfer-encoding:content-language;
+ bh=RbOAw9iCiWf3vmIBB9AiaSewZnK8UfYjYbdl5JtZIlU=;
+ b=Hbt4Jx5sjJw2cagqRYD+RbL/MRohlz9AH6RUmwdu9XDkXn20opDqFmzVHDzL8alTHG
+ wicBDNNaIFnmmvMVg2t+iI+dSS/I1LCXEO1QhKEd92w5IfNdhv9/bwvvjw5ozalg1Rup
+ tUrlXz2RnuMLSnCE7Jc2bDVQKFByKfVTObg3AJL985MlplgeVF4SWMtP79W+892nw1p7
+ FrYN8FifFaEUV5gCo3j2U3nSo0nBGf69BKSWInqkAxv2pTildfjHnY+lF6O+U8Q1ZlE0
+ oE5YF98LwqZZZjb+kA79fFGcYK2RwEKwUzknJNiBjYCjBDUvTFDFK4XCjKhlWUHj3u9P
+ B8pQ==
+X-Gm-Message-State: AOAM530jbwBw/TZJnbBuc1xcmjvO9hpcM/q/kjtQNownBvEW4zDCkqrB
+ yd8Nby7j4CNaRPi1q3QsuVd6UcgZkpE=
+X-Google-Smtp-Source: ABdhPJyxGbRH/z5GOJ5Doybkfw1rnXoP6pLt1cG2awWcU3nF6e6ZKQ6evlW3bcBukvSlhs8Zvpgn/A==
+X-Received: by 2002:aa7:d0d4:: with SMTP id u20mr14407950edo.203.1612113765833; 
+ Sun, 31 Jan 2021 09:22:45 -0800 (PST)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id j4sm7493834edt.18.2021.01.31.09.22.44
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 31 Jan 2021 09:22:45 -0800 (PST)
 Subject: Re: [bug] 5.11-rc5 brought page allocation failure issue [ttm][amdgpu]
-In-Reply-To: <4ce29a7e-f58a-aeb4-bef-34a7eada70d0@google.com>
-Message-ID: <e0c2c823-5f-efe8-cd87-6dd6cc33a33@google.com>
+To: David Rientjes <rientjes@google.com>,
+ Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
 References: <CABXGCsNazWZQGfSnFgQ_K5_H9uBQ=8gBdFORXrU1FEMGMohO2w@mail.gmail.com>
  <4ce29a7e-f58a-aeb4-bef-34a7eada70d0@google.com>
+ <e0c2c823-5f-efe8-cd87-6dd6cc33a33@google.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <7a677c89-1974-0676-ba7d-b057ad2cab3f@gmail.com>
+Date: Wed, 3 Feb 2021 14:22:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="1482994552-1916433268-1612055017=:606041"
-X-Mailman-Approved-At: Sun, 31 Jan 2021 11:50:13 +0000
+In-Reply-To: <e0c2c823-5f-efe8-cd87-6dd6cc33a33@google.com>
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,57 +72,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ckoenig.leichtzumerken@gmail.com,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+Reply-To: christian.koenig@amd.com
+Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
  amd-gfx list <amd-gfx@lists.freedesktop.org>,
  Linux List Kernel Mailing <linux-kernel@vger.kernel.org>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---1482994552-1916433268-1612055017=:606041
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-
-On Sat, 30 Jan 2021, David Rientjes wrote:
-
-> On Sun, 31 Jan 2021, Mikhail Gavrilov wrote:
-> 
-> > The 5.11-rc5 (git 76c057c84d28) brought a new issue.
-> > Now the kernel log is flooded with the message "page allocation failure".
-> > 
-> > Trace:
-> > msedge:cs0: page allocation failure: order:10,
-> 
-> Order-10, wow!
-> 
-> ttm_pool_alloc() will start at order-10 and back off trying smaller orders 
-> if necessary.  This is a regression introduced in
-> 
-> commit bf9eee249ac2032521677dd74e31ede5429afbc0
-> Author: Christian König <christian.koenig@amd.com>
-> Date:   Wed Jan 13 14:02:04 2021 +0100
-> 
->     drm/ttm: stop using GFP_TRANSHUGE_LIGHT
-> 
-> Namely, it removed the __GFP_NOWARN that we otherwise require.  I'll send 
-> a patch in reply.
-> 
-
-Looks like Michel Dänzer <michel@daenzer.net> already sent a patch that 
-should fix this:
-https://lore.kernel.org/lkml/20210128095346.2421-1-michel@daenzer.net/
---1482994552-1916433268-1612055017=:606041
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---1482994552-1916433268-1612055017=:606041--
+QW0gMzEuMDEuMjEgdW0gMDI6MDMgc2NocmllYiBEYXZpZCBSaWVudGplczoKPiBPbiBTYXQsIDMw
+IEphbiAyMDIxLCBEYXZpZCBSaWVudGplcyB3cm90ZToKPgo+PiBPbiBTdW4sIDMxIEphbiAyMDIx
+LCBNaWtoYWlsIEdhdnJpbG92IHdyb3RlOgo+Pgo+Pj4gVGhlIDUuMTEtcmM1IChnaXQgNzZjMDU3
+Yzg0ZDI4KSBicm91Z2h0IGEgbmV3IGlzc3VlLgo+Pj4gTm93IHRoZSBrZXJuZWwgbG9nIGlzIGZs
+b29kZWQgd2l0aCB0aGUgbWVzc2FnZSAicGFnZSBhbGxvY2F0aW9uIGZhaWx1cmUiLgo+Pj4KPj4+
+IFRyYWNlOgo+Pj4gbXNlZGdlOmNzMDogcGFnZSBhbGxvY2F0aW9uIGZhaWx1cmU6IG9yZGVyOjEw
+LAo+PiBPcmRlci0xMCwgd293IQo+Pgo+PiB0dG1fcG9vbF9hbGxvYygpIHdpbGwgc3RhcnQgYXQg
+b3JkZXItMTAgYW5kIGJhY2sgb2ZmIHRyeWluZyBzbWFsbGVyIG9yZGVycwo+PiBpZiBuZWNlc3Nh
+cnkuICBUaGlzIGlzIGEgcmVncmVzc2lvbiBpbnRyb2R1Y2VkIGluCj4+Cj4+IGNvbW1pdCBiZjll
+ZWUyNDlhYzIwMzI1MjE2NzdkZDc0ZTMxZWRlNTQyOWFmYmMwCj4+IEF1dGhvcjogQ2hyaXN0aWFu
+IEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+PiBEYXRlOiAgIFdlZCBKYW4gMTMg
+MTQ6MDI6MDQgMjAyMSArMDEwMAo+Pgo+PiAgICAgIGRybS90dG06IHN0b3AgdXNpbmcgR0ZQX1RS
+QU5TSFVHRV9MSUdIVAo+Pgo+PiBOYW1lbHksIGl0IHJlbW92ZWQgdGhlIF9fR0ZQX05PV0FSTiB0
+aGF0IHdlIG90aGVyd2lzZSByZXF1aXJlLiAgSSdsbCBzZW5kCj4+IGEgcGF0Y2ggaW4gcmVwbHku
+Cj4+Cj4gTG9va3MgbGlrZSBNaWNoZWwgRMOkbnplciA8bWljaGVsQGRhZW56ZXIubmV0PiBhbHJl
+YWR5IHNlbnQgYSBwYXRjaCB0aGF0Cj4gc2hvdWxkIGZpeCB0aGlzOgo+IGh0dHBzOi8vbG9yZS5r
+ZXJuZWwub3JnL2xrbWwvMjAyMTAxMjgwOTUzNDYuMjQyMS0xLW1pY2hlbEBkYWVuemVyLm5ldC8K
+ClllYWgsIGtub3duIGlzc3VlLiBJIGFscmVhZHkgcHVzaGVkIE1pY2hlbCdzIGZpeCB0byBkcm0t
+bWlzYy1maXhlcy4gClNob3VsZCBsYW5kIGluIHRoZSBuZXh0IC1yYyBieSB0aGUgd2Vla2VuZC4K
+ClJlZ2FyZHMsCkNocmlzdGlhbi4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQt
+Z2Z4Cg==
