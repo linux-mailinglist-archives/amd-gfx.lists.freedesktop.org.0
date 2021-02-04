@@ -1,59 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B377C30F53E
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Feb 2021 15:43:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 303F230F540
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Feb 2021 15:43:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 329446ED95;
-	Thu,  4 Feb 2021 14:43:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 445A86ED9B;
+	Thu,  4 Feb 2021 14:43:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com
- [IPv6:2607:f8b0:4864:20::72e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF7026ED95
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 14:43:51 +0000 (UTC)
-Received: by mail-qk1-x72e.google.com with SMTP id 19so3496094qkh.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 04 Feb 2021 06:43:51 -0800 (PST)
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com
+ [IPv6:2607:f8b0:4864:20::735])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 632DF6ED95
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 14:43:52 +0000 (UTC)
+Received: by mail-qk1-x735.google.com with SMTP id d85so3480372qkg.5
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Feb 2021 06:43:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=k/jq3u5pryQAh0FbWyA3E5PXywOXFP85ge8eXWpoZs0=;
- b=kMDoo5NRcA1t96O4DxXnoyx2JBz12kjnkPrEbAG9VrnUfjHgaY/tu1X/rOHEk1W7RS
- UksczNeNfvInHn4JBf2BksJVSodsG69dGymrgOP2xCbifXmif1tLqmGcaG+i23qc0Uxo
- MaLeUF/9K9Sr2IgK0OS5ZRKg+aqLWiuALgdnPMXFjC2B0CHYE55XM4BwIwlxVwt2z/+m
- n2NBQ9zs9MXzfMBx6qpvcK8M5wiXTQPuHySMykGKY7lb2zDoE2TZ7rCKaI1n3vfUnE2l
- L6Kgol5CEASWNtPiyMXH6vHm7Rncu/cdV4r0nLUhsb1I+Ud8OgoztYbx8LenR26ryuGj
- 3EHQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=HbOlD/F7aTWBmjH1vy/QgZw5JmbopbNkzaT2mp9v68g=;
+ b=BjNHJ9D3skcU73bGslGkdfzlHsvg8osYjAefoOrnUhdrZ1Ex1sr2xeUTUZKvjbfPq4
+ NDsYfRFVIMK/8RIathhuFxr/n+hSuhmnQEJ2BkDgOAI8qoPBc0JRdKs2hBb04cBVilUS
+ WOMnOEZ8uhrDUCZZgQ4HQnOcLwntOB0l8I9HeaYFmofUh4AFpfnvsZ6otqXKcLN7J+eq
+ COFgzpM2teJkxSsZNDhjAKNHjf+E8W6jtUtls9Xhzlj1j2hRqxu04MUCPf6n1Fu5AVJX
+ o/VyBepAPUzzD6qIIyKO7CrE1WLaURcb6oswaD+wKuPEWVfmc4rj43oRJ0VFHv1dyfyZ
+ dUZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=k/jq3u5pryQAh0FbWyA3E5PXywOXFP85ge8eXWpoZs0=;
- b=oHLn3VBOfShNd1cuVe2iQtUhrUE1wh8vfYMwhpYplMwfBLuh4+pfvmmwKwXcphGc0j
- gQGPEOerX8Ki9rHtW7s6RWFcywNufjwwsCNndlWqkGoQll9s8Is9GPrjiaJ2A2Z+XvRI
- JFYCdrrgRg2EJ/n8KbCt34mG4y4bZZB1IpyD3p9uojOoNDb3E5sik9yi5syMlTvoaS2T
- FKCADx6JB+7BVAowhKWbVzokAXLdNcmD08ZVslINWSwXmbnnjkZSkH0+tfBTd/uBGsEW
- rpP0hQYEI4ekpl5MsDbkJbowvrjxMYOz/1n2mNsiijihVxMhmKF/A46Ddf9gAuL1ujmU
- IwEA==
-X-Gm-Message-State: AOAM533wz/bFSIoiWLsB97ZiJsrgu112RrDPG35scfcNIAZRXxG9MK40
- wGjS0ea+ns3WEqHyxKaENB9H/v0Mho0=
-X-Google-Smtp-Source: ABdhPJxlcW3hVHMEUuRZBH1T6gpg2xdh57Y9CxFbqi4FMAY7qYI8kTELu/481nHOjvT8RLFd1OttVA==
-X-Received: by 2002:a05:620a:cf5:: with SMTP id
- c21mr7991067qkj.207.1612449830687; 
- Thu, 04 Feb 2021 06:43:50 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=HbOlD/F7aTWBmjH1vy/QgZw5JmbopbNkzaT2mp9v68g=;
+ b=MvYEeUT7H9MJ+nBnD25MyAtOKuA93GZhUrS7SMy3shUnFS7VIk8Csa4C6L3SfVQaDa
+ ytlKdunLmJGe+iWLZqqRiQK1rYosegHIfBGi5d53M1zfJBbrHmB/hFc+lLprFzJwpmju
+ zMd+FqKgzrTLtPPop2+0YpmlPWx5IGQrmZ2PTSPxj6Y41TJaEJekMlW2ErTD5F4F3y51
+ wQx7wbtlETX5jOBxZJrd1eQqfrqzeKqjMcfj6hN7S2udcEOgnshNWm929RcoPnCGQ0Ef
+ QByUqrt2BhD2elzj8A6b6dF1f997OkiG7wdZOa0/GHxgOOUAttsGrJI51bUZ2MExBCFu
+ 3New==
+X-Gm-Message-State: AOAM533v5XuOaFFz3m68ROA2fuWXHuiwanfDhlt/PFgC2SYwoPFl/nPE
+ 3B1okO2IMQmTXEX4WgwrlsOB9mxDGNc=
+X-Google-Smtp-Source: ABdhPJwf573VBRaX9LEq55/h53KaQr6lh1yhng5Yu8QTxAxWJYFmI5JLylSlxMYIAXTK1fifSH+QgA==
+X-Received: by 2002:a37:644e:: with SMTP id y75mr7684348qkb.134.1612449831475; 
+ Thu, 04 Feb 2021 06:43:51 -0800 (PST)
 Received: from localhost.localdomain ([192.161.78.237])
- by smtp.gmail.com with ESMTPSA id q18sm4735488qtr.74.2021.02.04.06.43.49
+ by smtp.gmail.com with ESMTPSA id q18sm4735488qtr.74.2021.02.04.06.43.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 04 Feb 2021 06:43:49 -0800 (PST)
+ Thu, 04 Feb 2021 06:43:51 -0800 (PST)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/3] drm/amdgpu: drop extra drm_kms_helper_poll_enable/disable
- calls
-Date: Thu,  4 Feb 2021 09:43:27 -0500
-Message-Id: <20210204144329.52506-1-alexander.deucher@amd.com>
+Subject: [PATCH 2/3] drm/amdgpu: use runpm flag rather than fbcon for kfd
+ runtime suspend
+Date: Thu,  4 Feb 2021 09:43:28 -0500
+Message-Id: <20210204144329.52506-2-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210204144329.52506-1-alexander.deucher@amd.com>
+References: <20210204144329.52506-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,50 +73,28 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-These are already called in amdgpu_device_suspend/resume which
-are already called in the same functions.
+the flag used by kfd is not actually related to fbcon, it just happens
+to align.  Use the runpm flag instead so that we can decouple it from
+the fbcon flag.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 --
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 2 --
- 2 files changed, 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 51bea409e513..151c649e4d11 100644
+index 151c649e4d11..053e134b1245 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -1433,10 +1433,8 @@ static void amdgpu_switcheroo_set_state(struct pci_dev *pdev,
- 		amdgpu_device_resume(dev, true);
+@@ -3722,7 +3722,7 @@ int amdgpu_device_suspend(struct drm_device *dev, bool fbcon)
  
- 		dev->switch_power_state = DRM_SWITCH_POWER_ON;
--		drm_kms_helper_poll_enable(dev);
- 	} else {
- 		pr_info("switched off\n");
--		drm_kms_helper_poll_disable(dev);
- 		dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
- 		amdgpu_device_suspend(dev, true);
- 		amdgpu_device_cache_pci_state(pdev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 05ed82e4d805..c9821f1dc357 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1367,7 +1367,6 @@ static int amdgpu_pmops_runtime_suspend(struct device *dev)
- 	adev->in_runpm = true;
- 	if (amdgpu_device_supports_atpx(drm_dev))
- 		drm_dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
--	drm_kms_helper_poll_disable(drm_dev);
+ 	r = amdgpu_device_ip_suspend_phase1(adev);
  
- 	ret = amdgpu_device_suspend(drm_dev, false);
- 	if (ret)
-@@ -1424,7 +1423,6 @@ static int amdgpu_pmops_runtime_resume(struct device *dev)
- 		amdgpu_device_baco_exit(drm_dev);
- 	}
- 	ret = amdgpu_device_resume(drm_dev, false);
--	drm_kms_helper_poll_enable(drm_dev);
- 	if (amdgpu_device_supports_atpx(drm_dev))
- 		drm_dev->switch_power_state = DRM_SWITCH_POWER_ON;
- 	adev->in_runpm = false;
+-	amdgpu_amdkfd_suspend(adev, !fbcon);
++	amdgpu_amdkfd_suspend(adev, adev->in_runpm);
+ 
+ 	/* evict vram memory */
+ 	amdgpu_bo_evict_vram(adev);
 -- 
 2.29.2
 
