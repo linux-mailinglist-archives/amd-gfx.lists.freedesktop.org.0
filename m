@@ -2,52 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72A5330F3FA
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Feb 2021 14:38:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74D9430F51A
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Feb 2021 15:37:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5FA46E07B;
-	Thu,  4 Feb 2021 13:38:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9F776ED88;
+	Thu,  4 Feb 2021 14:37:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com
- [IPv6:2607:f8b0:4864:20::22e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A7456E07B
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 13:38:03 +0000 (UTC)
-Received: by mail-oi1-x22e.google.com with SMTP id y199so1701580oia.4
- for <amd-gfx@lists.freedesktop.org>; Thu, 04 Feb 2021 05:38:02 -0800 (PST)
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com
+ [IPv6:2607:f8b0:4864:20::32d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B0096ED88
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 14:37:34 +0000 (UTC)
+Received: by mail-ot1-x32d.google.com with SMTP id d7so1319562otq.6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Feb 2021 06:37:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=s/tmISbzv2R76TuPIVJY7IODXZ3yBkl0a0jPPEbsSyQ=;
- b=M3LZxQvH/F4XlJMJ0oeSTDINfXhcX6+Q7JQK+9bis+qlqdLZELvo7iztUBVFG8QdmY
- Q7Abs44W7oYvluuA+3JxPAszYDZPQR6/tESLEMT+2DedM1NgQilsNS3hTGuJ3Ie0r9bS
- IluHwozMeqw2YCpewnvapNI7O4BIsjcSPja4luEr44VzJFs4aH5dLEFY1fH7NIyxyOig
- Bim2C9Q2purYXbKXPNe7hIIRLR16DzrktuH7H0OwHUu7NOPLN9xJiHhk3Bdcnodk3hFV
- 3kYAk39u3pu5po3795fIo8M23nWcPNL8fBtJZXz33xxhaaiokMNDc1YXw4q3TyIJpMHj
- rwlQ==
+ :cc:content-transfer-encoding;
+ bh=iA8xk1w0OGmBpNpknetdotXKM9VURZ0GtcGGiqCSDBY=;
+ b=aZmm2SLSEKBialZNvxayOKluGv+Ic2krO0tdA08ixgkNK02jIHqnGu6cXNLfOIjC14
+ M7v/JY3tHcgk/TpFMctqLCIR5yzlon4hBROCpc0hJH8Y3PBS/i7kBo+lOjHjRAvELOHY
+ otR2s+YHhu6Gt4fYZkouXh0dKpTdyaBQo9qtbNa+U5jLr1rFLTBzCYzMTjHnb2am0k1V
+ 7X9xpXsJCF8jw2oC2k+3j9JHAl1AfFtPOi85gHd4D6FH7uPUCk6s9jmNE4J/GfR9A4IP
+ 8QyuEpjXrxKxTZNqQ3G/W1xFOHcwlCSO4UE6nPtUTQ6befpVNr1DXidsBp64pWnjzUcb
+ 7nLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=s/tmISbzv2R76TuPIVJY7IODXZ3yBkl0a0jPPEbsSyQ=;
- b=F5Y2nGTZHjCvBLmEN62PyADNdQLRPiK5i16DPa+G213Q09ywmupe2E2OZJsoZlnYPS
- X/xUtgNtZ+M/Yl43RkB7gU3ZgwH6izbl0LFDueakrCt1GZk0B5xF7oYFOWtcH1Y1r+uO
- 6Rq9Fa6WOkqatPoNku4xhZ/yndxEetq0QpfYIysRlSFdWNTG4iGob2fcMnBaJrDHhhNW
- cnaRxKXqE+61sgNVEHnSeTYbeHE1h9o2xTARk0WbddiVyBcwDGxPshX2WRVtGGzO/7Ej
- hyGfB6T9qAaBfsYSB9nw4NWB5Ul47W9MFGqmsqYMzJspLtv9e9UJMba6CFOm8z/+1oCC
- pdAA==
-X-Gm-Message-State: AOAM532I6CkZ0LqDikQ1QGKpc2Vk5+A8DO2xGXyZozb/4Rws4b5QH/OB
- QS/WLJPtNRXkRDncOLdEyi469f8D2WHt+MOUSqM=
-X-Google-Smtp-Source: ABdhPJytSBvUWX23SCOG2g17OmdhWxk6jVx5YtXbmQlkqWo8QRK5L55Nlqp2uBEv5wP8L0dpo80v7fuAZaec4n/VYtg=
-X-Received: by 2002:aca:f5d1:: with SMTP id t200mr5040210oih.123.1612445882366; 
- Thu, 04 Feb 2021 05:38:02 -0800 (PST)
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=iA8xk1w0OGmBpNpknetdotXKM9VURZ0GtcGGiqCSDBY=;
+ b=bFjxtwGtlI64veziQA7owYsxaTlAuNccZNY+uQg1AQvWQ32jIyZV4K0pZxMvTkE0zs
+ d5GhYFUE2c2ErssDAIjlKjPbdMzji1R0LjqS6yjQdTr7EtDfoIdvva1VncwR6qKB8mGJ
+ pZRYa1P0obfCC3hi1q0dwBNpuhFrFxXNpxoYfqSZZf7dWkXpAYR+bvSZrZtfMrK7GdH1
+ y2HH/LDUFcXidU59h8TQcqJ0orTQg/xSYFnynX+dir+VqZytSDJRgmIp2nxnGpP+Ur3e
+ gIx4OhyCAIPGA37LYBn5kPjZz9j1myxjDe+vuzOo56tv6oapBBrj53WKN7kDB1AgX745
+ D7Kw==
+X-Gm-Message-State: AOAM531AOCA10D2PGggI92FtNuT9WXE+xFPos8I0pBNpbGWDwufIM+Z2
+ 95d9cIfKBZLOTHnSIwL+qT0EOCYaPWloRa+0nj4=
+X-Google-Smtp-Source: ABdhPJwH5IQ8UtDiBHaAzv0Zodu8zevLFlFWDIwwmesSPyrawxxijNYxSe8LnuSHueK24DcAP5QEC+PBOXxJR7wsJ14=
+X-Received: by 2002:a9d:ec7:: with SMTP id 65mr5873288otj.311.1612449453908;
+ Thu, 04 Feb 2021 06:37:33 -0800 (PST)
 MIME-Version: 1.0
-References: <20210202061555.5731-1-Wayne.Lin@amd.com>
-In-Reply-To: <20210202061555.5731-1-Wayne.Lin@amd.com>
+References: <20210202171748.1062530-1-alexander.deucher@amd.com>
+ <20210202171748.1062530-2-alexander.deucher@amd.com>
+ <MN2PR12MB454926B93FE2B67447AF46A197B49@MN2PR12MB4549.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB454926B93FE2B67447AF46A197B49@MN2PR12MB4549.namprd12.prod.outlook.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 4 Feb 2021 08:37:51 -0500
-Message-ID: <CADnq5_P=q6u7j4RMW4jerZsJi2iLa2wCcfQYxtOFoygSJm07jw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm/amdgpu: Add otg vertical IRQ Source
-To: Wayne Lin <Wayne.Lin@amd.com>
+Date: Thu, 4 Feb 2021 09:37:22 -0500
+Message-ID: <CADnq5_NH0ezDtVhOE-teJZBZNdDV22is1jVkaKxe7pcof8-qbg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/amdgpu: enable DPM_FLAG_MAY_SKIP_RESUME and
+ DPM_FLAG_SMART_SUSPEND flags
+To: "Lazar, Lijo" <Lijo.Lazar@amd.com>,
+ Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,49 +64,76 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <alexander.deucher@amd.com>, "Wentland,
- Harry" <harry.wentland@amd.com>, "Kazlauskas,
- Nicholas" <Nicholas.Kazlauskas@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Series is:
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-
-On Tue, Feb 2, 2021 at 1:17 AM Wayne Lin <Wayne.Lin@amd.com> wrote:
+On Wed, Feb 3, 2021 at 2:56 AM Lazar, Lijo <Lijo.Lazar@amd.com> wrote:
 >
-> [Why & How]
-> In order to get appropriate timing for registers which
-> read/write is vertical line sensitive, add new IRQ source variable.
-> This interrupt is triggered by specific vertical line,
+> [AMD Public Use]
 >
-> Signed-off-by: Wayne Lin <Wayne.Lin@amd.com>
+>
+> -----Original Message-----
+> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex Deucher
+> Sent: Tuesday, February 2, 2021 10:48 PM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
+> Subject: [PATCH 2/2] drm/amdgpu: enable DPM_FLAG_MAY_SKIP_RESUME and DPM_FLAG_SMART_SUSPEND flags
+>
+> Once the device has runtime suspended, we don't need to power it back up again for system suspend.  Likewise for resume, we don't to power up the device again on resume only to power it back off again via runtime pm because it's still idle.
+>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> index ece1b41a31f9..3777f18fb1d0 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -852,6 +852,7 @@ struct amdgpu_device {
->         /* For pre-DCE11. DCE11 and later are in "struct amdgpu_device->dm" */
->         struct work_struct              hotplug_work;
->         struct amdgpu_irq_src           crtc_irq;
-> +       struct amdgpu_irq_src           vline0_irq;
->         struct amdgpu_irq_src           vupdate_irq;
->         struct amdgpu_irq_src           pageflip_irq;
->         struct amdgpu_irq_src           hpd_irq;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> index b4780182f990..b78847fa769b 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> @@ -206,6 +206,12 @@ int amdgpu_driver_load_kms(struct amdgpu_device *adev, unsigned long flags)
+>                 if (amdgpu_device_supports_atpx(dev) &&
+>                     !amdgpu_is_atpx_hybrid())
+>                         dev_pm_set_driver_flags(dev->dev, DPM_FLAG_NO_DIRECT_COMPLETE);
+> +               /* we want direct complete for BOCO */
+> +               if ((amdgpu_device_supports_atpx(dev) &&
+> +                   amdgpu_is_atpx_hybrid()) ||
+> +                   amdgpu_device_supports_boco(dev))
+> +                       dev_pm_set_driver_flags(dev->dev, DPM_FLAG_SMART_SUSPEND |
+> +                                               DPM_FLAG_MAY_SKIP_RESUME);
+>
+> Device runtime suspend callback does -
+>         amdgpu_device_suspend(drm_dev, false)
+>
+> System suspend callback does -
+>         amdgpu_device_suspend(drm_dev, true)
+>
+> One of the effects of this flag is for KFD to decide whether to evict all processes. It is done during system suspend but not during runtime device suspend. Will that have an impact if  the system suspend routine is skipped in this way?
+
++ Rajneesh
+
+Can you comment on this?  Idea of this patch is to not wake the device
+for system suspend and resume if it's already in runtime suspend.
+
+Alex
+
+>
+> Thanks,
+> Lijo
+>
+>                 pm_runtime_use_autosuspend(dev->dev);
+>                 pm_runtime_set_autosuspend_delay(dev->dev, 5000);
+>                 pm_runtime_allow(dev->dev);
 > --
-> 2.17.1
+> 2.29.2
 >
 > _______________________________________________
 > amd-gfx mailing list
 > amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=04%7C01%7Clijo.lazar%40amd.com%7C8a6f7c5bbab84c6e71c408d8c79e7edd%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637478830856688013%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=55Rfj9pO3cnGBiB1DkJ9yuyMMrKOvxhgYDajhIeUNkI%3D&amp;reserved=0
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
