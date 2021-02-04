@@ -2,56 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27BA130FBD3
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Feb 2021 19:47:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3D5B30FBD5
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Feb 2021 19:47:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6BAC6EE19;
-	Thu,  4 Feb 2021 18:47:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B3DE6EE21;
+	Thu,  4 Feb 2021 18:47:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com
- [IPv6:2607:f8b0:4864:20::f31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0663989F55
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com
+ [IPv6:2607:f8b0:4864:20::f34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FF3189F55
  for <amd-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 18:47:19 +0000 (UTC)
-Received: by mail-qv1-xf31.google.com with SMTP id l14so2228193qvp.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 04 Feb 2021 10:47:18 -0800 (PST)
+Received: by mail-qv1-xf34.google.com with SMTP id a1so2191289qvd.13
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Feb 2021 10:47:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=GVR21d61Wyd732ar7PbASShYNL5wc7RxJ73yhaJfXZA=;
- b=EbhNOTzSOqM5sI3vuSlgJavfnNVZ3JM8mEsAtgilVeY1twXJc99eob234KOWNF72fn
- BCnZ9BJRtTCK2OIUHd9h/fCQX0jprOp3/pTmuv2QqjPgD+L2SPzlcWGRnG8KvRLsnQ+m
- Xl97ofJwaFJup1ZMEYl1CjEg9FMbwycaQhLeZB/JjNrmoAcVX9c8LI7/W+qYnmKpwrnW
- aJAA+Rlu6nr1MSfscyVdD8ejdzdAKApgbD/mAw+uQrQN9cMZ/132LOURVYvcx1InGF52
- h9uw9uo6R/ZxpeHNh+cAsoEez3qEctW3sJ5gYdIxCREe05SkVbASzy1bRNhkj0a0jyiI
- QzZw==
+ bh=lZwbJZeyzLrOgTgiYRox70ItrZURhKdHO2FuTS7Zpxw=;
+ b=iZqMO6P/D/Pc7kshMvnp59kXQQk4uQi3ygODe0WRuosWfjGVdrzsq/sFk7f1nm8sHy
+ qEF47l7EaCpKSexJP1LDOVtRlbaNIl3vNuDXLA4F8vVu/yrQP8JXenwLhD7XFezZCuCx
+ ITTyXEZpdq4XF1k6mzG1/xZYcNDD8jxzIQECpdAi3ap1gWPhUki1Y5fq+R5IH9iJPMwu
+ cpuzcwPP3Yl19xTmV9dDA3wQ/mgdsOf+GjbWWXbUW/HZ71Q2UFU+ijlL7uadWoiwio8G
+ 8kEVMvLamCjeXUl5KH6Uy01skCvOOgVVMKfjWXUYXwztUpMFkT7iAI9eKGsf5znOj7JY
+ BUKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=GVR21d61Wyd732ar7PbASShYNL5wc7RxJ73yhaJfXZA=;
- b=e5P44BCNLbxWWuOSdEX8efinNlHk16Gdf7Cw2XH8FfMbw1pQxrL32EDeDPZBJ2iwpi
- 7HFlmPwgjtGbaO7t6hHDor0RJFzGQZS8nCF6B8oofUq3SXUihFKjAE+IARjzwn2WrKOY
- uyAhu5Ic5IGTTf9qwBcg+fu9Cw5o+slFYOK0b7UMAvdI7pKrci0Tj1AhAtPWA+/T/AGn
- mmbzQPDZt5bFp7YvFCPJR3kM6acgyfXdelmZmlLfdXTeI/FJirnVbCImVGkyP3jsOIr6
- 1ygsa3O3W1hWU7d1k/lUrnMv/Zmvxd7/daK1ptI+8MhKcSHIBmwMyp3v2eLSitt2n6pi
- 4y+Q==
-X-Gm-Message-State: AOAM5332OWz2NCkCyUIcClVXgXucpMl88jtjoiUD6rt6fsCREEosjSf0
- HJIfyHrnAHRuWElVXkjItkehXrNIAWM=
-X-Google-Smtp-Source: ABdhPJxREIto6YCwteaW7zWIfv7C6qh2J6733zHnx3EQcgQWQTQqT33MG6fWeI/F7n/sJycHu/RkSA==
-X-Received: by 2002:a05:6214:b2c:: with SMTP id
- w12mr604336qvj.54.1612464438011; 
+ bh=lZwbJZeyzLrOgTgiYRox70ItrZURhKdHO2FuTS7Zpxw=;
+ b=R6A4q/3M5rJxYdB6gpd2H+2TrEVvFNXP3u6J1scVqSKKWT2eHDrDyuwmw5ecxPChBB
+ F3tTpI/a5oWFSdeMI+hJ4lmzs4LQGHAEnoSq2qhqAqmikjGghs0xrt+tmhb7ox4thmWu
+ iT8ri4RUyOnsOjGZ5sKOnIuJlUg7GrUoZiPMUKvJueweijnymDHqGWxpQMOyIoJ4FELY
+ +A01xhcrlzMr1Yl17dwD0ghHFo+6o+Jx6BT/7pxI3dgKL096JXQq7BYLkQKfzF1kEPig
+ GphZw4lAVZRvk9rF9RiiOmmOGyqWf6D9gXTEqtmr00X6IIwgAh3kxODXNlyxcRA+hWSY
+ LLSA==
+X-Gm-Message-State: AOAM533z0HJvja2j5bf7X2wMUpL/Leep9iefxza49uRZF/VsbddOdmVl
+ +4ahByYpNMchkvCnzdwEajctnUvwSHg=
+X-Google-Smtp-Source: ABdhPJwkFxETipDgF/dERFgPCnnY+cAy3Fi4LJr/sZWf0fqlCPZsKs4AWVZ5dWGJaKHvS7+ad0mlQg==
+X-Received: by 2002:ad4:40c5:: with SMTP id x5mr807942qvp.15.1612464438729;
  Thu, 04 Feb 2021 10:47:18 -0800 (PST)
 Received: from localhost.localdomain ([192.161.78.237])
- by smtp.gmail.com with ESMTPSA id j188sm5833644qke.67.2021.02.04.10.47.17
+ by smtp.gmail.com with ESMTPSA id j188sm5833644qke.67.2021.02.04.10.47.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 04 Feb 2021 10:47:17 -0800 (PST)
+ Thu, 04 Feb 2021 10:47:18 -0800 (PST)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 5/7] drm/amdgpu/si: add PCI reset support
-Date: Thu,  4 Feb 2021 13:47:04 -0500
-Message-Id: <20210204184706.168934-5-alexander.deucher@amd.com>
+Subject: [PATCH 6/7] drm/amdgpu/soc15: add PCI reset support
+Date: Thu,  4 Feb 2021 13:47:05 -0500
+Message-Id: <20210204184706.168934-6-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210204184706.168934-1-alexander.deucher@amd.com>
 References: <20210204184706.168934-1-alexander.deucher@amd.com>
@@ -79,69 +78,51 @@ only be used for validation.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/si.c | 37 ++++++++++++++++++++-------------
- 1 file changed, 23 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/soc15.c | 24 ++++++++++++++----------
+ 1 file changed, 14 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/si.c b/drivers/gpu/drm/amd/amdgpu/si.c
-index 668dd6dfe6a3..7cbc2bb03bc6 100644
---- a/drivers/gpu/drm/amd/amdgpu/si.c
-+++ b/drivers/gpu/drm/amd/amdgpu/si.c
-@@ -1409,17 +1409,6 @@ static int si_gpu_pci_config_reset(struct amdgpu_device *adev)
- 	return r;
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
+index 5ef2e2707754..c7d0e0e98391 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -709,7 +709,8 @@ soc15_asic_reset_method(struct amdgpu_device *adev)
  
--static int si_asic_reset(struct amdgpu_device *adev)
--{
--	int r;
--
--	dev_info(adev->dev, "PCI CONFIG reset\n");
--
--	r = si_gpu_pci_config_reset(adev);
--
--	return r;
--}
--
- static bool si_asic_supports_baco(struct amdgpu_device *adev)
- {
- 	return false;
-@@ -1428,14 +1417,34 @@ static bool si_asic_supports_baco(struct amdgpu_device *adev)
- static enum amd_reset_method
- si_asic_reset_method(struct amdgpu_device *adev)
- {
--	if (amdgpu_reset_method != AMD_RESET_METHOD_LEGACY &&
--	    amdgpu_reset_method != -1)
-+	if (amdgpu_reset_method == AMD_RESET_METHOD_PCI)
-+		return amdgpu_reset_method;
-+	else if (amdgpu_reset_method != AMD_RESET_METHOD_LEGACY &&
-+		 amdgpu_reset_method != -1)
- 		dev_warn(adev->dev, "Specified reset method:%d isn't supported, using AUTO instead.\n",
--				  amdgpu_reset_method);
-+			 amdgpu_reset_method);
+ 	if (amdgpu_reset_method == AMD_RESET_METHOD_MODE1 ||
+ 	    amdgpu_reset_method == AMD_RESET_METHOD_MODE2 ||
+-		amdgpu_reset_method == AMD_RESET_METHOD_BACO)
++	    amdgpu_reset_method == AMD_RESET_METHOD_BACO ||
++	    amdgpu_reset_method == AMD_RESET_METHOD_PCI)
+ 		return amdgpu_reset_method;
  
- 	return AMD_RESET_METHOD_LEGACY;
- }
+ 	if (amdgpu_reset_method != -1)
+@@ -754,15 +755,18 @@ static int soc15_asic_reset(struct amdgpu_device *adev)
+ 		return 0;
  
-+static int si_asic_reset(struct amdgpu_device *adev)
-+{
-+	int r;
-+
-+	switch (si_asic_reset_method(adev)) {
+ 	switch (soc15_asic_reset_method(adev)) {
+-		case AMD_RESET_METHOD_BACO:
+-			dev_info(adev->dev, "BACO reset\n");
+-			return soc15_asic_baco_reset(adev);
+-		case AMD_RESET_METHOD_MODE2:
+-			dev_info(adev->dev, "MODE2 reset\n");
+-			return amdgpu_dpm_mode2_reset(adev);
+-		default:
+-			dev_info(adev->dev, "MODE1 reset\n");
+-			return soc15_asic_mode1_reset(adev);
 +	case AMD_RESET_METHOD_PCI:
 +		dev_info(adev->dev, "PCI reset\n");
-+		r = amdgpu_device_pci_reset(adev);
-+		break;
++		return amdgpu_device_pci_reset(adev);
++	case AMD_RESET_METHOD_BACO:
++		dev_info(adev->dev, "BACO reset\n");
++		return soc15_asic_baco_reset(adev);
++	case AMD_RESET_METHOD_MODE2:
++		dev_info(adev->dev, "MODE2 reset\n");
++		return amdgpu_dpm_mode2_reset(adev);
 +	default:
-+		dev_info(adev->dev, "PCI CONFIG reset\n");
-+		r = si_gpu_pci_config_reset(adev);
-+		break;
-+	}
-+
-+	return r;
-+}
-+
- static u32 si_get_config_memsize(struct amdgpu_device *adev)
- {
- 	return RREG32(mmCONFIG_MEMSIZE);
++		dev_info(adev->dev, "MODE1 reset\n");
++		return soc15_asic_mode1_reset(adev);
+ 	}
+ }
+ 
 -- 
 2.29.2
 
