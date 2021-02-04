@@ -1,59 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A99E930F53F
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Feb 2021 15:43:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25D8930F53D
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Feb 2021 15:43:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 295016ED9A;
-	Thu,  4 Feb 2021 14:43:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14DC76ED99;
+	Thu,  4 Feb 2021 14:43:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com
- [IPv6:2607:f8b0:4864:20::834])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 851536ED9A
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 14:43:53 +0000 (UTC)
-Received: by mail-qt1-x834.google.com with SMTP id v3so2512062qtw.4
- for <amd-gfx@lists.freedesktop.org>; Thu, 04 Feb 2021 06:43:53 -0800 (PST)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
+ [IPv6:2a00:1450:4864:20::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F23A6ED93;
+ Thu,  4 Feb 2021 14:43:46 +0000 (UTC)
+Received: by mail-ej1-x62f.google.com with SMTP id i8so5684111ejc.7;
+ Thu, 04 Feb 2021 06:43:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=YWJHwVpnJVRsMd8IXhHR5vRQAi8Jzs5bhvOM79XPe8E=;
- b=e/RkJi54evFzN9NRdVpsOEz3UALoB3/TDZYEkD/lCJoa9pGTa0hlZ97WKnGnB0UzZF
- AXeRKIixLbFhCNVk9VQ6w0yU+nfW18pvWs1zOVdoLKtRNeouCpWmpI2hXNBp9ImsDuJv
- eJe2m/D6uqH31EjODeht8EHH9feKbC+Zluh0+g2fq5vDWylcGIjsywKd4GP7fJiaJkFh
- rPomaV8eQb+T6SH0mya4JJ/Q6NP1OzWEXxHWMuQAzeXcMfNTFG9AEvfrJP53VCMecxrd
- WMH945HZgT2qBPN8xq6kSNbbvCWbOuzfKZeYWKY5kXN+/AgcmGXf4lrYTna74Qg26NAT
- iiFg==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=wedMKLv5Ufk/tyydKR+pTpkzFwgHy/gV4E2x3/ps7VM=;
+ b=eccZnehSVsG5Gc85Co868CRoSHs2yjSsTEMdR8g51N6+ZKgjGGZjTb7lYbTaBcyxWi
+ JWD8ji2wn1pRAX0ig2qvTMfI1lYsjhayrLJC8WM8Yc3dcRqEzA3Eeq04zZcHzcIIwC/3
+ KKaMRIB/2uRbYMRzx3SMMp68vzJ+BlsgJqqTAX7rp8dONrkpcjfsLsq7JqaUHYxw3GJt
+ ykV9mG+HnZMrQdVI1auF4uYPlZWnXwWydidkiBzb+J042KmTFoU9wn5gLPx63vG4Zdwf
+ jui5QNItnwdR8o9MwsIczE8onXNlsKoGJ5izSPXNwLBFStws4xjYan51nGpKFkS2jbmy
+ HVmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=YWJHwVpnJVRsMd8IXhHR5vRQAi8Jzs5bhvOM79XPe8E=;
- b=RCn8vdZ5V6oo8uk7CuUrbL3PEgyvWyCB5YKaZ1Vi1EJzaW0U+PI26pZmGkAkYbXeEA
- EE2s9f+OusBn35ZsQ+mpY0gtnqDju0LYbecwPGxCkUetXsIi1u81mmWNIKOxJ8YSlK+h
- fy3JNQQ7cFpd/fvYDCXXraL6c3uy1UKcLWNUUXbhu3xfnmc8aq6qqIwRdosx+1XV+Fhy
- tkwe3AH5ut8ArG8z6eDpTmP6VByc/Rus9fdZlJzfha8apRnWqQ4mGizZmlN3nzioAwsr
- ZvIwKyvTHRa/94x19IXmHriXfAoSE6vA274ZfzaFG2+RXwu9b0y0miJtixTDG1hjQcUO
- g+JQ==
-X-Gm-Message-State: AOAM530M1ZLPt2Mv3y8cBLBedL6m+53+S/SdD8xG4DB2MKFuUBrPodJo
- QP7Rmfvtz0MGNE7/KBQcnQxWpAl9e0g=
-X-Google-Smtp-Source: ABdhPJxTx0gAdbYpYx7H7TnROED6HmZgD5KyMnc0FHKuwGCj/4I62OJmPlKhicZumAuKlmQgf3LAcA==
-X-Received: by 2002:ac8:550a:: with SMTP id j10mr7286932qtq.193.1612449832577; 
- Thu, 04 Feb 2021 06:43:52 -0800 (PST)
-Received: from localhost.localdomain ([192.161.78.237])
- by smtp.gmail.com with ESMTPSA id q18sm4735488qtr.74.2021.02.04.06.43.51
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=wedMKLv5Ufk/tyydKR+pTpkzFwgHy/gV4E2x3/ps7VM=;
+ b=L5BbRpWrSmuP23WPvi9JzIQHKnOVOhWx4mLJf+5VP8fFS6wH+00k2iaLOjrulnBAgW
+ zYDyNO1HH8Iy10ifcVhfDMoUZi2dTDY67HP9Z1F4AfmJ/MCZ//GdZi3ls3WpAU9KdgaZ
+ 7YOJ1cOBvfNPX3zWEhi0IkwzqzjoR//AzPpgkh0be/vcqgKbW3nD3+wcugIjDJzzJp+c
+ yK2F2iN2jb2LxUHhPdwUSewn+bptkhrOR4YmYJf7dKztHqk57N+3wz+9N8T3hUIY+U6Y
+ VmZLk1+vUfOnIwkWTabnaxVPHKQE2hTQmQ4vWniPU4EcZmqyTzW+59SILLDCQUJqniMF
+ ZMbA==
+X-Gm-Message-State: AOAM533yBbh5NKv4Q6jIoLW5TwsxqfFnu87bTIsdPYMEOwnYIjAbBnIM
+ /XCmnVwyrZNlFyG5EXa11bKHX5jzV00=
+X-Google-Smtp-Source: ABdhPJxi1BZiobcRDGw/jHByFvcLpXoGaiIfXGbh6qbCqVpgbGQIvPG8fglsOx6Abe/N7Ky1tjvLLA==
+X-Received: by 2002:a17:906:154d:: with SMTP id
+ c13mr8394976ejd.471.1612449824860; 
+ Thu, 04 Feb 2021 06:43:44 -0800 (PST)
+Received: from abel.fritz.box ([2a02:908:1252:fb60:db9a:1ee8:e47:9603])
+ by smtp.gmail.com with ESMTPSA id u5sm2734472edc.29.2021.02.04.06.43.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 04 Feb 2021 06:43:52 -0800 (PST)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/amdgpu: reset runpm flag if device suspend fails
-Date: Thu,  4 Feb 2021 09:43:29 -0500
-Message-Id: <20210204144329.52506-3-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210204144329.52506-1-alexander.deucher@amd.com>
-References: <20210204144329.52506-1-alexander.deucher@amd.com>
+ Thu, 04 Feb 2021 06:43:43 -0800 (PST)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH 01/14] drm/amdkfd: Get unique_id dynamically v2
+Date: Thu,  4 Feb 2021 15:43:30 +0100
+Message-Id: <20210204144343.2679-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,38 +67,80 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Leo.Liu@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-If device suspend fails when we attempt to runtime suspend,
-reset the runpm flag.
+From: Kent Russell <kent.russell@amd.com>
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Instead of caching the value during amdgpu_device_init, just call the
+function directly. This avoids issues where the unique_id hasn't been
+saved by the time that KFD's topology snapshot is done (e.g. Arcturus).
+
+KFD's topology information from the amdgpu_device was initially cached
+at KFD initialization due to amdkfd and amdgpu being separate modules.
+Now that they are combined together, we can directly call the functions
+that we need and avoid this unnecessary duplication and complexity.
+
+As a side-effect of this change, we also remove unique_id=0 for CPUs,
+which is obviously not unique.
+
+v2: Drop previous patch printing unique_id in hex
+
+Signed-off-by: Kent Russell <kent.russell@amd.com>
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 6 +++---
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.h | 1 -
+ 2 files changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index c9821f1dc357..e5c2377a54f8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1369,8 +1369,10 @@ static int amdgpu_pmops_runtime_suspend(struct device *dev)
- 		drm_dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+index a3fc23873819..0be72789ccbc 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+@@ -497,8 +497,6 @@ static ssize_t node_show(struct kobject *kobj, struct attribute *attr,
+ 			      dev->node_props.num_sdma_queues_per_engine);
+ 	sysfs_show_32bit_prop(buffer, offs, "num_cp_queues",
+ 			      dev->node_props.num_cp_queues);
+-	sysfs_show_64bit_prop(buffer, offs, "unique_id",
+-			      dev->node_props.unique_id);
  
- 	ret = amdgpu_device_suspend(drm_dev, false);
--	if (ret)
-+	if (ret) {
-+		adev->in_runpm = false;
- 		return ret;
-+	}
+ 	if (dev->gpu) {
+ 		log_max_watch_addr =
+@@ -529,6 +527,9 @@ static ssize_t node_show(struct kobject *kobj, struct attribute *attr,
+ 				      dev->node_props.capability);
+ 		sysfs_show_32bit_prop(buffer, offs, "sdma_fw_version",
+ 				      dev->gpu->sdma_fw_version);
++		sysfs_show_64bit_prop(buffer, offs, "unique_id",
++				      amdgpu_amdkfd_get_unique_id(dev->gpu->kgd));
++
+ 	}
  
- 	if (amdgpu_device_supports_atpx(drm_dev)) {
- 		/* Only need to handle PCI state in the driver for ATPX
+ 	return sysfs_show_32bit_prop(buffer, offs, "max_engine_clk_ccompute",
+@@ -1340,7 +1341,6 @@ int kfd_topology_add_device(struct kfd_dev *gpu)
+ 		dev->gpu->dqm->sched_policy != KFD_SCHED_POLICY_NO_HWS) ?
+ 		amdgpu_amdkfd_get_num_gws(dev->gpu->kgd) : 0;
+ 	dev->node_props.num_cp_queues = get_cp_queues_num(dev->gpu->dqm);
+-	dev->node_props.unique_id = amdgpu_amdkfd_get_unique_id(dev->gpu->kgd);
+ 
+ 	kfd_fill_mem_clk_max_info(dev);
+ 	kfd_fill_iolink_non_crat_info(dev);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.h b/drivers/gpu/drm/amd/amdkfd/kfd_topology.h
+index 326d9b26b7aa..416fd910e12e 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.h
+@@ -57,7 +57,6 @@
+ 
+ struct kfd_node_properties {
+ 	uint64_t hive_id;
+-	uint64_t unique_id;
+ 	uint32_t cpu_cores_count;
+ 	uint32_t simd_count;
+ 	uint32_t mem_banks_count;
 -- 
-2.29.2
+2.25.1
 
 _______________________________________________
 amd-gfx mailing list
