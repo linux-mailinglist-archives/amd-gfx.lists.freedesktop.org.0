@@ -2,40 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 648A1311424
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Feb 2021 23:03:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C15A31142C
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Feb 2021 23:03:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9E396F500;
-	Fri,  5 Feb 2021 22:03:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5B276F508;
+	Fri,  5 Feb 2021 22:03:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2052.outbound.protection.outlook.com [40.107.237.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC3D76F500
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 22:03:15 +0000 (UTC)
+ (mail-bn8nam12on2087.outbound.protection.outlook.com [40.107.237.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B50B26F508
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 22:03:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=izXG/p3P64iAQagXqd/s5T0KrIsVbUfViJBwZPYtLyxA71+T0q0R5ebDk91ghuE/DUbndY0LnXtRc1tKBiTlrIFu66VyJXRq631/W7ij0CHK9OGZ1jQGzNIkyLRJ9D7YdRmo9dKJJIVKSCLyNUbw4r3JZ1poh7h4RQBwMVef5JUAbFvtkGf+vjsuCbpe8DFVTA0jTSbrQhoV2+vCS3K3Mvss0ImXtkxFTXJ56wZdRqxu8Ao/sdIMsbLAFii6u7c8KYUzuN2YYhjkrdLfrKrBPDEbWezgPBaCtv/bYj1acTlFbnlxpmdyXgVOLtlGvuJB14e35x5muUabeJbdHmXiwQ==
+ b=Tw0tU0VKy9xOXS2txLXQDD3/3PJ6ctNQ3ReRD8RGiKjr31oECkahUisI2sinDgTH3OsV0XRaItpRF4EpGIdq16Ldaxqt48YTcEfoIsrrXB4WPCCgSrXQvWgPsaAYI6qdCMX+WhPmoGVJh0rm2/A0zTrsYjORa4d4L/aQBxKBsKNOyfgxvzooGorPHrKGBdXLhw2lhlW6s+2Z/RN9179XybeVwdiUSQwzMPcKQhXJyMBrPF9V4FPw19QD//etwd3LHSQQA64SCcpY2TVt6sFsG/L9od9kt8SyqKkwW8nn0K9EOewqJq3EWhp5m/rd1GVw+y6IB4fd7IGg7E060QkukQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y16/VdbPM/Km4ng+FuCG2cpL0yCCOOoAAZwd7lWiVnM=;
- b=DWqUrv8luxpRFgPUAff7oM5vTNdraHEqxEOfcXwZkA4iACl3ILQL/IOVJfNY60uMLN+dxaN0FMt5oHQAeAZvpvr52xt4PxhW8JFChXtJjbm9dlQf8nMk2dyd53/wdNYeAAfs6jpeVrcsnyM+OcyIaqHSj/cLZmTavZM0pL53XioBk1O0W1WmEYCNNQKwMGFxo9NHWXBI7BHanRSQhZlv9yemDrOmyk/IlW3y6OzobRzTpjWKT17vYRzpFB3oT2twbU5fnYsYX7UFP4v+FWMRciBUznw7OiRZlpliAnTujuqxufE9t5KEocD0aQ61lnkqlregtvRyaB5k2dbcoJ9D5w==
+ bh=4RLcoIPRQOFjDi3On0PYsc2V5JN6y1pbDhuZ8HPbY20=;
+ b=UfRvzIXMTf5lGKosrVU87jdLWR6S2JtfxPkbSSQZaN/pDX3pDWN+47yQmF4AAAaROHI2E6ziOj6vaTXRkajPmGOWsA8KU3+9I33Zeydbh0bDNLHtNedpbwuYuOL1HvGP4Iu7CaIGiL2ItzOPCICmwag6UidiuAwhlgYUclReRYEMmTBYb45wISvIlgPtES4pycgpfXxFTCdlL9Ps/YAkmrii3XwPmZgbB3fZm/o7ERtkSlewLbEBzINluXHtlBKRWmhndJOD+o1LeoL1xuFZu1eBw9fbhC6zdb4uPl2wto035R+DbGXaJwE6EC54+xSTEDjYmFbby18CZhDrbhjKPg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
  is 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=amd.com; dmarc=fail (p=none sp=none pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y16/VdbPM/Km4ng+FuCG2cpL0yCCOOoAAZwd7lWiVnM=;
- b=DWIrIT/QnCAg9NLwx2BTESC5d8Q7X1hmydwr6fnxyaAOhghBGgwTfO8+mzA3XKdh2OtcSxdzg8fShtcNJms/O9l2XdYrYqE/OmfNArpaqlfcT7NpadxI5cmzFjRfnUdtW6Lp3T8HArqxIPeNxN64oXu2CgmURWvmonDF/439cHw=
-Received: from MW4PR03CA0029.namprd03.prod.outlook.com (2603:10b6:303:8f::34)
- by DM5PR12MB1930.namprd12.prod.outlook.com (2603:10b6:3:10d::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.19; Fri, 5 Feb
+ bh=4RLcoIPRQOFjDi3On0PYsc2V5JN6y1pbDhuZ8HPbY20=;
+ b=4BVpvBvvliHdkUVOGJmAqFrtOSrZHhr0nYFYRuR8YitEXH2xgM8Go5iIM+Aj/VrWmT76Y1PpHo/Y/M9VCLl4HxVUt+9vsfkcW+Zet61D7npq5ouknpXIRN0SskcOESjeiEK69b5dK+P4e4q7iwq7s6iI/sW5NkTS8ekL3UixH6Q=
+Received: from MWHPR2001CA0013.namprd20.prod.outlook.com
+ (2603:10b6:301:15::23) by MN2PR12MB3903.namprd12.prod.outlook.com
+ (2603:10b6:208:15a::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.24; Fri, 5 Feb
  2021 22:03:13 +0000
-Received: from CO1NAM11FT018.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8f:cafe::ec) by MW4PR03CA0029.outlook.office365.com
- (2603:10b6:303:8f::34) with Microsoft SMTP Server (version=TLS1_2,
+Received: from CO1NAM11FT010.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:301:15:cafe::c3) by MWHPR2001CA0013.outlook.office365.com
+ (2603:10b6:301:15::23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.20 via Frontend
  Transport; Fri, 5 Feb 2021 22:03:13 +0000
 X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
@@ -45,22 +45,22 @@ X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
 Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
  amd.com discourages use of 165.204.84.17 as permitted sender)
 Received: from SATLEXMB02.amd.com (165.204.84.17) by
- CO1NAM11FT018.mail.protection.outlook.com (10.13.175.16) with Microsoft SMTP
+ CO1NAM11FT010.mail.protection.outlook.com (10.13.175.88) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3784.12 via Frontend Transport; Fri, 5 Feb 2021 22:03:10 +0000
+ 15.20.3784.12 via Frontend Transport; Fri, 5 Feb 2021 22:03:11 +0000
 Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB02.amd.com
  (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 5 Feb 2021
- 16:03:08 -0600
+ 16:03:09 -0600
 Received: from Bumblebee.amd.com (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Fri, 5 Feb 2021 16:03:08 -0600
+ Transport; Fri, 5 Feb 2021 16:03:09 -0600
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 04/11] drm/amd/display: revert support for DID2.0 dsc
- passthrough
-Date: Fri, 5 Feb 2021 17:02:43 -0500
-Message-ID: <20210205220250.1871069-5-Anson.Jacob@amd.com>
+Subject: [PATCH 05/11] drm/amd/display: move edp sink present detection to hw
+ init
+Date: Fri, 5 Feb 2021 17:02:44 -0500
+Message-ID: <20210205220250.1871069-6-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210205220250.1871069-1-Anson.Jacob@amd.com>
 References: <20210205220250.1871069-1-Anson.Jacob@amd.com>
@@ -68,27 +68,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 827b71c5-fa66-44e9-3d2e-08d8ca21d3ea
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1930:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB193009D19746C7BAEACD15EEEBB29@DM5PR12MB1930.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:626;
+X-MS-Office365-Filtering-Correlation-Id: 06cd87af-6f5c-470a-55ab-08d8ca21d44a
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3903:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3903827C13B0F4ABEA8562BEEBB29@MN2PR12MB3903.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:439;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qtdfvXeUbpxkpxF4KJ8JL0vh+v+iR5km/EjtD9DLtTmw8s/X5P6sYCRx0yz6R2s2sxJa8BAuT/hHV5Wy0TcZeLE3SV9Fz0iGnx6+9AqCtQVhb1CSWW/5BEX07Ubp72iOXwCI0pTtfXEXvt3wZVuWtsyvAS3HOIprYn0GjM534/6HweYxCq3e73gDgIrmOQetA+Hd/0Crtil2IhIGK1ur95RfeuE8yuzxjf62p/Lq3Ot1tR/jjkfoPHBnSVhF0ZTrZc2VqEqvlHtSwlmiu5VxHeRaweIntCSHVdt4C4OC1qjSFi0n+V6gx6pocPx2Om1Jcuj4eeLbdhJlXiNaEIz4UO0Yzl+98pAQp1HCQug81RCN/75kxJALR23bpQYzo4XwZ/0oP5xMkemeQr+pMY1r0+bk/7uYKmUKDHhK8oaXbSM2emTtc8GpPpVv32N++NlAi6G5hyrYvKYT/64BWbHhdfLYuJZpgz+b9nkS3suOQNC8GSr3MWAAB3kglCJ74onTqrBG7+gN0ueQIJrzLpZUtbTBjQqxgm2onl1idnXfyEqv0HqXsZzDcrH1XFcToMZSVBuieqe47VK/9xsT0VeLPPmcM/vwYQUy5v/aK3Id9mUePBK6mlydoXzOczLKBY3SS/wu74g06XZRu01nMpRcyTLU+HLNULB9WmokRELvPqO/s4gWgQoxDsSZQojL7Keb
+X-Microsoft-Antispam-Message-Info: sVxb4Mj9rxaWrbKJyBa3HdHytjMyo3Z68LTYAAfeZbgzKHiVv70moFFFjZMkH4LhKICYlJm6xSvZXReOmTl11564/yFHKupyszDiXdWvDBwgLijxr7DyIMiPHu1rocxSag50A5coZcsJbdJ6cKO89o+YRbYaPICWW23vhkwEwO71u8hXyAUNFAKwKRiyCq047IkOY7iQE3w+ut9f3/FgYh1ueyD0cjPDCEpDbOXMMkgo3Pu/lOjnWAA4du9uazqjfabB6jCHFN+uRULQ7BPietF03bWFdTTEgn4c9rP71ZuYJiyPVR5FqazqB1AD4Ra6OxYa/eKVssYp1sjafw4Xh0faU5kXAxqfOa3AWBYlPCD89rKrThSWGF3ZMDf2d85Vx2Zk8/iGAa3ss00Sajp89IPczwFKXnzYqyuYGXazjn/XGL9Xb+fNv95fDr/oT9oxT7cKGbpAfwNjZfE87tynPNfw4ccDSW1HXhW7I/C02SiLtKGfwVT+6dp6WX5BVB6vq2O9juqdXHHyTRextEY2Va8lguliPcGxd15+eSzcf8BiGC7eGpX9FM9efLrcvbSdzXaPTB0ra4uFCOr2cE/9cQ8hVfnBtbj2npWELYwEbw9Mko6nNBF6qCvYheXv7s30MzLmVdbWv8z2Pf0pn0KfYSclYkvlnUbfaDhn3xap0/iu2NZ2FLD2GqthPPT5hzaw
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:ErrorRetry; CAT:NONE;
- SFS:(4636009)(39860400002)(396003)(376002)(346002)(136003)(46966006)(36840700001)(478600001)(26005)(426003)(1076003)(8676002)(8936002)(70586007)(7696005)(47076005)(36756003)(186003)(316002)(5660300002)(36860700001)(70206006)(356005)(54906003)(336012)(4326008)(83380400001)(2906002)(2616005)(6666004)(81166007)(86362001)(6916009)(82310400003)(82740400003)(36900700001);
+ SFS:(4636009)(376002)(396003)(39860400002)(136003)(346002)(36840700001)(46966006)(86362001)(6916009)(1076003)(81166007)(4326008)(5660300002)(316002)(54906003)(47076005)(82740400003)(356005)(36860700001)(83380400001)(82310400003)(7696005)(70206006)(478600001)(70586007)(36756003)(8676002)(8936002)(186003)(426003)(336012)(6666004)(26005)(2906002)(2616005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2021 22:03:10.9311 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 827b71c5-fa66-44e9-3d2e-08d8ca21d3ea
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2021 22:03:11.5668 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06cd87af-6f5c-470a-55ab-08d8ca21d44a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT018.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT010.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1930
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3903
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,175 +100,104 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Anthony Koo <Anthony.Koo@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
+Cc: Eric Yang <Eric.Yang2@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
  Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Jun Lei <jun.lei@amd.com>,
+ Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Jun Lei <Jun.Lei@amd.com>,
  Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jun Lei <jun.lei@amd.com>
+From: Eric Yang <Eric.Yang2@amd.com>
 
-revert commit 6777c3863cdacdce84347483015db10dcdd61607
-"drm/amd/display: implement support for DID2.0 dsc passthrough"
+[Why]
+At SW init, we may not be ready to do detect eDP sink.
 
-3x4K60 displays over MST with DSC enabled was not able to light up
-due to this patch.
-
-Signed-off-by: Jun Lei <jun.lei@amd.com>
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Signed-off-by: Eric Yang <Eric.Yang2@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc_dsc.h      |  7 ++---
- drivers/gpu/drm/amd/display/dc/dc_hw_types.h |  1 -
- drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c  | 29 ++++++++------------
- 3 files changed, 14 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc.c | 40 +++++++++++++-----------
+ drivers/gpu/drm/amd/display/dc/dc_link.h |  2 ++
+ 2 files changed, 24 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_dsc.h b/drivers/gpu/drm/amd/display/dc/dc_dsc.h
-index e99273bff46d..ec55b77727d5 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_dsc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_dsc.h
-@@ -51,7 +51,6 @@ struct dc_dsc_policy {
- 	int min_slice_height; // Must not be less than 8
- 	uint32_t max_target_bpp;
- 	uint32_t min_target_bpp;
--	uint32_t preferred_bpp_x16;
- 	bool enable_dsc_when_not_needed;
- };
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 8d5378f53243..c9aede2f783d 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -205,27 +205,9 @@ static bool create_links(
+ 		link = link_create(&link_init_params);
  
-@@ -63,8 +62,8 @@ bool dc_dsc_parse_dsc_dpcd(const struct dc *dc,
- bool dc_dsc_compute_bandwidth_range(
- 		const struct display_stream_compressor *dsc,
- 		uint32_t dsc_min_slice_height_override,
--		uint32_t min_bpp_x16,
--		uint32_t max_bpp_x16,
-+		uint32_t min_bpp,
-+		uint32_t max_bpp,
- 		const struct dsc_dec_dpcd_caps *dsc_sink_caps,
- 		const struct dc_crtc_timing *timing,
- 		struct dc_dsc_bw_range *range);
-@@ -79,7 +78,7 @@ bool dc_dsc_compute_config(
- 		struct dc_dsc_config *dsc_cfg);
- 
- void dc_dsc_get_policy_for_timing(const struct dc_crtc_timing *timing,
--		uint32_t max_target_bpp_limit_override_x16,
-+		uint32_t max_target_bpp_limit_override,
- 		struct dc_dsc_policy *policy);
- 
- void dc_dsc_policy_set_max_target_bpp_limit(uint32_t limit);
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
-index 09e8be5f7a1e..b41e6367b15e 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_hw_types.h
-@@ -769,7 +769,6 @@ struct dc_crtc_timing {
- #endif
- 
- 	struct dc_crtc_timing_flags flags;
--	uint32_t dsc_fixed_bits_per_pixel_x16; /* DSC target bitrate in 1/16 of bpp (e.g. 128 -> 8bpp) */
- 	struct dc_dsc_config dsc_cfg;
- };
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
-index 82a805088204..c62d0eddc9c6 100644
---- a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
-@@ -369,11 +369,6 @@ static bool decide_dsc_target_bpp_x16(
- 		/* enough bandwidth without dsc */
- 		*target_bpp_x16 = 0;
- 		should_use_dsc = false;
--	} else if (policy->preferred_bpp_x16 > 0 &&
--			policy->preferred_bpp_x16 <= range.max_target_bpp_x16 &&
--			policy->preferred_bpp_x16 >= range.min_target_bpp_x16) {
--		*target_bpp_x16 = policy->preferred_bpp_x16;
--		should_use_dsc = true;
- 	} else if (target_bandwidth_kbps >= range.max_kbps) {
- 		/* use max target bpp allowed */
- 		*target_bpp_x16 = range.max_target_bpp_x16;
-@@ -550,7 +545,7 @@ static bool setup_dsc_config(
- 		int target_bandwidth_kbps,
- 		const struct dc_crtc_timing *timing,
- 		int min_slice_height_override,
--		int max_dsc_target_bpp_limit_override_x16,
-+		int max_dsc_target_bpp_limit_override,
- 		struct dc_dsc_config *dsc_cfg)
- {
- 	struct dsc_enc_caps dsc_common_caps;
-@@ -569,7 +564,7 @@ static bool setup_dsc_config(
- 
- 	memset(dsc_cfg, 0, sizeof(struct dc_dsc_config));
- 
--	dc_dsc_get_policy_for_timing(timing, max_dsc_target_bpp_limit_override_x16, &policy);
-+	dc_dsc_get_policy_for_timing(timing, max_dsc_target_bpp_limit_override, &policy);
- 	pic_width = timing->h_addressable + timing->h_border_left + timing->h_border_right;
- 	pic_height = timing->v_addressable + timing->v_border_top + timing->v_border_bottom;
- 
-@@ -870,8 +865,8 @@ bool dc_dsc_parse_dsc_dpcd(const struct dc *dc, const uint8_t *dpcd_dsc_basic_da
- bool dc_dsc_compute_bandwidth_range(
- 		const struct display_stream_compressor *dsc,
- 		uint32_t dsc_min_slice_height_override,
--		uint32_t min_bpp_x16,
--		uint32_t max_bpp_x16,
-+		uint32_t min_bpp,
-+		uint32_t max_bpp,
- 		const struct dsc_dec_dpcd_caps *dsc_sink_caps,
- 		const struct dc_crtc_timing *timing,
- 		struct dc_dsc_bw_range *range)
-@@ -888,10 +883,10 @@ bool dc_dsc_compute_bandwidth_range(
- 
- 	if (is_dsc_possible)
- 		is_dsc_possible = setup_dsc_config(dsc_sink_caps, &dsc_enc_caps, 0, timing,
--				dsc_min_slice_height_override, max_bpp_x16, &config);
-+				dsc_min_slice_height_override, max_bpp, &config);
- 
- 	if (is_dsc_possible)
--		get_dsc_bandwidth_range(min_bpp_x16, max_bpp_x16, &dsc_common_caps, timing, range);
-+		get_dsc_bandwidth_range(min_bpp, max_bpp, &dsc_common_caps, timing, range);
- 
- 	return is_dsc_possible;
- }
-@@ -900,7 +895,7 @@ bool dc_dsc_compute_config(
- 		const struct display_stream_compressor *dsc,
- 		const struct dsc_dec_dpcd_caps *dsc_sink_caps,
- 		uint32_t dsc_min_slice_height_override,
--		uint32_t max_target_bpp_limit_override_x16,
-+		uint32_t max_target_bpp_limit_override,
- 		uint32_t target_bandwidth_kbps,
- 		const struct dc_crtc_timing *timing,
- 		struct dc_dsc_config *dsc_cfg)
-@@ -913,11 +908,11 @@ bool dc_dsc_compute_config(
- 			&dsc_enc_caps,
- 			target_bandwidth_kbps,
- 			timing, dsc_min_slice_height_override,
--			max_target_bpp_limit_override_x16, dsc_cfg);
-+			max_target_bpp_limit_override, dsc_cfg);
- 	return is_dsc_possible;
- }
- 
--void dc_dsc_get_policy_for_timing(const struct dc_crtc_timing *timing, uint32_t max_target_bpp_limit_override_x16, struct dc_dsc_policy *policy)
-+void dc_dsc_get_policy_for_timing(const struct dc_crtc_timing *timing, uint32_t max_target_bpp_limit_override, struct dc_dsc_policy *policy)
- {
- 	uint32_t bpc = 0;
- 
-@@ -972,15 +967,13 @@ void dc_dsc_get_policy_for_timing(const struct dc_crtc_timing *timing, uint32_t
- 		return;
+ 		if (link) {
+-			bool should_destory_link = false;
+-
+-			if (link->connector_signal == SIGNAL_TYPE_EDP) {
+-				if (dc->config.edp_not_connected) {
+-					if (!IS_DIAG_DC(dc->ctx->dce_environment))
+-						should_destory_link = true;
+-				} else {
+-					enum dc_connection_type type;
+-					dc_link_detect_sink(link, &type);
+-					if (type == dc_connection_none)
+-						should_destory_link = true;
+-				}
+-			}
+-
+-			if (dc->config.force_enum_edp || !should_destory_link) {
+ 				dc->links[dc->link_count] = link;
+ 				link->dc = dc;
+ 				++dc->link_count;
+-			} else {
+-				link_destroy(&link);
+-			}
+ 		}
  	}
  
--	policy->preferred_bpp_x16 = timing->dsc_fixed_bits_per_pixel_x16;
--
- 	/* internal upper limit, default 16 bpp */
- 	if (policy->max_target_bpp > dsc_policy_max_target_bpp_limit)
- 		policy->max_target_bpp = dsc_policy_max_target_bpp_limit;
+@@ -1016,8 +998,30 @@ struct dc *dc_create(const struct dc_init_data *init_params)
+ 	return NULL;
+ }
  
- 	/* apply override */
--	if (max_target_bpp_limit_override_x16 && policy->max_target_bpp > max_target_bpp_limit_override_x16 / 16)
--		policy->max_target_bpp = max_target_bpp_limit_override_x16 / 16;
-+	if (max_target_bpp_limit_override && policy->max_target_bpp > max_target_bpp_limit_override)
-+		policy->max_target_bpp = max_target_bpp_limit_override;
++static void detect_edp_presence(struct dc *dc)
++{
++	struct dc_link *edp_link = get_edp_link(dc);
++	bool edp_sink_present = true;
++
++	if (!edp_link)
++		return;
++
++	if (dc->config.edp_not_connected) {
++			edp_sink_present = false;
++	} else {
++		enum dc_connection_type type;
++		dc_link_detect_sink(edp_link, &type);
++		if (type == dc_connection_none)
++			edp_sink_present = false;
++	}
++
++	edp_link->edp_sink_present = edp_sink_present;
++}
++
+ void dc_hardware_init(struct dc *dc)
+ {
++
++	detect_edp_presence(dc);
+ 	if (dc->ctx->dce_environment != DCE_ENV_VIRTUAL_HW)
+ 		dc->hwss.init_hw(dc);
+ }
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
+index d5d8f0ad9233..e189f16bc026 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_link.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
+@@ -103,6 +103,8 @@ struct dc_link {
+ 	bool lttpr_non_transparent_mode;
+ 	bool is_internal_display;
  
- 	/* enable DSC when not needed, default false */
- 	if (dsc_policy_enable_dsc_when_not_needed)
++	bool edp_sink_present;
++
+ 	/* caps is the same as reported_link_cap. link_traing use
+ 	 * reported_link_cap. Will clean up.  TODO
+ 	 */
 -- 
 2.25.1
 
