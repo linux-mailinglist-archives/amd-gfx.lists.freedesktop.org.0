@@ -2,68 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0530F311427
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Feb 2021 23:03:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4951311428
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Feb 2021 23:03:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 773406F501;
-	Fri,  5 Feb 2021 22:03:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EDD76F509;
+	Fri,  5 Feb 2021 22:03:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2063.outbound.protection.outlook.com [40.107.223.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E33ED6F501
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 22:03:19 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2060.outbound.protection.outlook.com [40.107.220.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9D9E6F507
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 22:03:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ogjNeyMpkbKbYCtzT5LED3RCxjbg6vqN4mKGReribEGAO/GlKrnlLxMyrHW6rAZZ9aGL62d3XgZP80a4noO6nnlZBm4d/fWSka9LCRhnI3tAr/gAT3KpEvXNoKSfip2cJB40vu+Us0coLGlyg0ttYhqE+jjqgiVW/4BQ2MP1zjEdZhi3Q2roVEdkU9LMgEPBli1kCwGwBk2//Xx0+YvolQlp5kYOu84MJVeGLZ5rulEMdZ7EE1OCWYkeavkbtkq9EZxCo4M1Zr6MFm/vJmocMhRwuKvTTkhtcUpuyMXP5j3Z6j3hiK50O6+3fnOE/n34HHX34VolIuH4KB+A1JFXww==
+ b=Cm+U9xtgBVG4H7OAWDy5MOBkvzeqmuLbrznbGM6S7zUWY62ZIQ7OKkdrLm9dBIRrzJzD6NP4/7vkZmIeLyeC9Cl0R4G/Bx+jyTzkcr75lBj40n7dntX/SPM6cP9CA48EkER9nxPHaBnis05bgARgUUv845FKHnhcXjcQOmP+zLWd8OUNjwgQuUc7sE4J4DXoqBZ22vSzLO/v2Jea4sD+pN1wG8Fs1HtXKScQK8VATrrztz+hwL+vp8KhkIJyQVUdGv+EKQ4BHQlOTR0UMuiLErUfZgp40+Rpgflx4sxvusr6hBPcgGdrH+VKu/UuNA2HlH6tRaIfQs+1Otazyag1uw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kcIyuchzhvpjtnZas+lNWbYs8khWlC7RlEBFLkWX1k8=;
- b=G6YnHNnTMuZC0o5d6A8a6xYYESndmKn56Y2zzQS0rNwN7PWPgN1jVxf0EuNSbg1sIgy5DhSWWnrPEKjJNYhPelZtbM0kf+LRb9QV5cdm6CBOgSbRw74m23jZbGMMPVyMIZXyNTCrRyLTpdcWPVOvDvAK94Es0av7lOQZGcKfjFnYYMn79dAsSm2faItq/268QabCBPnACUja+HyXIC+0r9gLKDL478v4NflU7T5AcTju2em5iMvDDhIND36mnubTrc4kOUz5VTtwgR29uyg1wPbMCO2C9JhHUJKsYW05F5DjluA0CT432PhHORbT5qsq6aVInhIsMwjq6J+YXbocBw==
+ bh=E6SEXR1HPq1cLPccz1IAjtqxtiXFptLRTOntI0MA4i4=;
+ b=R79t1BvHYJ19YVkDtAKIAF84ylPXBLNW7z8/ea4kx4552JhgEDM+PMdElxhbnKXFC0/WXb9Pd61quXe8VsL9yX8XOCEffyh0uLa+2Q3sAnMDqwNeklknKLWmDqIpBYMTVPztjrzAa8SAiFxtFdwknNbhNuHVdhKTBADshFPooze/CCWZTqA+EXYO3ABZSEVEkuG9ZWZN2wnCjQ+R4hlPxmOdlozxs/WPyuYc1FkfFkuC774Q5irPA8xZX7Hh9hwohPUOu7BetVDOnvQTtifAghPhto94r54nyT6r3d01DE6cAAzTM7htmzyg0VSayh1CMit5xZMSHOFDowrV/wbd0Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
  is 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=amd.com; dmarc=fail (p=none sp=none pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kcIyuchzhvpjtnZas+lNWbYs8khWlC7RlEBFLkWX1k8=;
- b=U05JWUbvfrPHFSv1fhNqrj7lgiwYN2gCmtLOgEjRmHLFBGQuhsG1UULuLDSg+Zxvi4mG0MUGwFlvIDR96G7SQE+6rh5zG5vycYT63t38o1L73r3IAJ2vq9vsQYaBiXaALkg1XM6LDf3M5x5X6XpDhv5uI3WN16gQBH9+dWmmST8=
-Received: from MW4PR03CA0012.namprd03.prod.outlook.com (2603:10b6:303:8f::17)
- by BN7PR12MB2610.namprd12.prod.outlook.com (2603:10b6:408:22::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3805.24; Fri, 5 Feb
- 2021 22:03:17 +0000
-Received: from CO1NAM11FT018.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8f:cafe::7f) by MW4PR03CA0012.outlook.office365.com
- (2603:10b6:303:8f::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.17 via Frontend
- Transport; Fri, 5 Feb 2021 22:03:17 +0000
+ bh=E6SEXR1HPq1cLPccz1IAjtqxtiXFptLRTOntI0MA4i4=;
+ b=oOxoT8ZoCtULuhadwzP81MHxUsdKT6uUWELcYPuKTssLdK1t/JVm5NMZLuoskNn77LQ7LLArDITzi+vC6PUK5inwFGViM7wq5FKfcfaFsKZ3+XXegF0pqzcwmQvVSNdikQ6iA1eFEHZ4iyspNluLHfZS3RcXdx9j3z/yDbsWDsE=
+Received: from CO2PR05CA0092.namprd05.prod.outlook.com (2603:10b6:104:1::18)
+ by CH2PR12MB4840.namprd12.prod.outlook.com (2603:10b6:610:c::33) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.23; Fri, 5 Feb
+ 2021 22:03:19 +0000
+Received: from CO1NAM11FT040.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:104:1:cafe::ee) by CO2PR05CA0092.outlook.office365.com
+ (2603:10b6:104:1::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.11 via Frontend
+ Transport; Fri, 5 Feb 2021 22:03:19 +0000
 X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
  165.204.84.17) smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none
  (message not signed) header.d=none;lists.freedesktop.org; dmarc=fail
  action=none header.from=amd.com;
 Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
  amd.com discourages use of 165.204.84.17 as permitted sender)
-Received: from SATLEXMB02.amd.com (165.204.84.17) by
- CO1NAM11FT018.mail.protection.outlook.com (10.13.175.16) with Microsoft SMTP
+Received: from SATLEXMB01.amd.com (165.204.84.17) by
+ CO1NAM11FT040.mail.protection.outlook.com (10.13.174.140) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3784.12 via Frontend Transport; Fri, 5 Feb 2021 22:03:15 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB02.amd.com
- (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3784.12 via Frontend Transport; Fri, 5 Feb 2021 22:03:17 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 5 Feb 2021
- 16:03:12 -0600
+ 16:03:13 -0600
 Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Fri, 5 Feb 2021
- 16:03:11 -0600
+ 16:03:12 -0600
 Received: from Bumblebee.amd.com (10.180.168.240) by SATLEXMB01.amd.com
  (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
  Transport; Fri, 5 Feb 2021 16:03:11 -0600
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 07/11] drm/amd/display: Initialize dmub_rb_cmd unions to 0
-Date: Fri, 5 Feb 2021 17:02:46 -0500
-Message-ID: <20210205220250.1871069-8-Anson.Jacob@amd.com>
+Subject: [PATCH 08/11] drm/amd/display: DIO Supported for virtual displays
+Date: Fri, 5 Feb 2021 17:02:47 -0500
+Message-ID: <20210205220250.1871069-9-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210205220250.1871069-1-Anson.Jacob@amd.com>
 References: <20210205220250.1871069-1-Anson.Jacob@amd.com>
@@ -71,27 +71,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ae176a40-5199-4053-3c28-08d8ca21d6bf
-X-MS-TrafficTypeDiagnostic: BN7PR12MB2610:
-X-Microsoft-Antispam-PRVS: <BN7PR12MB26102C046C0CF33D5FA32B7EEBB29@BN7PR12MB2610.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3173;
+X-MS-Office365-Filtering-Correlation-Id: db293937-c6c0-48ad-16fd-08d8ca21d7fa
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4840:
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4840EDCFD29F2110B13C7830EBB29@CH2PR12MB4840.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1mjhmUhvh6WJiepQLcjs5DTQR/hB1YvBWlmj/fri4UxGHi8ArPzGvV4b53CcEnYfvj4o3e5BeeZm7LhJ9oTx17IJTcd2EMG+fZOb/+h3LAimdBrL8lVrovPA5YqtZD2Yt0Jz1WlnmfCjourhYaXZzqS+RIgHJYPeZgO7iobM/JkndEDqp6PFMdT3uBd/rOalu0gCQnSGzFs55ot74sqlcIMndeqDVRt0YX+cMe/32Y0yWJPI9R33FfFGldubyuMU3xqUM+MGRKLArbtCAJofJxJAk5Ps0ph4JnE7qTxeZr6HmPhELJcR49yscpvu5zBz2QAK962lseQyY50UK3KLXFCy35qD76hJ3DqoTQeWJ8nylilpnDUc0G1m0lT6iCea2soRYCYxrP7Ayjj4sm0kTAbFOXrf75+btFKn+rHOHjV47G31VjKGrtnZuqvaT+VvsjZ65gP0/DCFCYFG6w7GRycfZfK3crpW2b8z7rf9XpxdL0hlaZa70Ik/LBzm9jLUDgEfN1k7MqU2Gpm9d6KzcrGQMw0dnxfmzjLwlDc8rqE/Hx+YS1XeRS63HPERzyLpBGVYXEFJ2YQElSKmiVA95XQMOfBlMs2txzl5w71mr/ynR1bAZpzhKCFExPmoqzx8HQR4VTCJfJ2x3OsAsx9Y5DRCIOzGUn+WHLwx1uSPRG0D/GI9G8nM+uRL6sjMd/dK
+X-Microsoft-Antispam-Message-Info: FTN4EzYJxLUtUYLPPnsmDYgHDBQ1v9jZe5uau1VkYtcJtklyWjGo/Ic24epkzZhNZMTZ9lAl6HEplUugzDX/QqzsmrC1Vh89WjI4p0vIAwt/j1GdBQfra6nSYjqohPqaURIW3AWZZq/BmgXIVBdyr0oxqRpDJlNzd2npxo3H1GjuGWefUUY72clZCAYlW155BDAvcr8kaGOr1g+TOCx7cJ5U74fsGoUg2yQHW14pDJOf7OikNhp3TeUUFBERoNfcBthn58LzFqauVjCfJUbIW8VCpMFcuiCoSS5+X62crlesrhOI3pZ29dyT68g8/7wP17ksXMp+OrU4BQEQbffvlIcWBE3OCWmaWYen0ye1id/nNqKJtkR0EvBOJiFAfCT6XOvSJ93gxrGf9EquLvYKTYtPsBdSxQJfEkDmeVUBob8oDSVG+467DrPikzUQ2TfWAfFZrjYY9zq1P5jkTLrPLaevr2fD50IoBgvINQOO8aZCqGLEuB9ChU9gTttI9fV3T9gUrpGLfN/vWbKJb6kYtK1twiPD/P3bIXLF2q3Jdki3Vk4ozCIY3vx8VCl1hbgY+vqADGRGhYiDrgAn/FavttPAnS098kqxUVDuLZ/9eJd9GsaoSegiombpRxrx09ECWJKqcHbpliG0g6MLBUIBYaCYj0bmpog98EJc+LMmcd/5vwmk/qoO268lydCei8YoR5DumghhA8z0JBecsM42Mw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:ErrorRetry; CAT:NONE;
- SFS:(4636009)(376002)(39860400002)(396003)(346002)(136003)(36840700001)(46966006)(82310400003)(8936002)(356005)(54906003)(7696005)(82740400003)(6916009)(70586007)(316002)(81166007)(70206006)(36756003)(26005)(47076005)(86362001)(426003)(186003)(478600001)(336012)(83380400001)(8676002)(4326008)(6666004)(1076003)(2906002)(2616005)(36860700001)(5660300002)(36900700001);
+ IPV:NLI; SFV:NSPM; H:SATLEXMB01.amd.com; PTR:ErrorRetry; CAT:NONE;
+ SFS:(4636009)(346002)(376002)(396003)(39860400002)(136003)(36840700001)(46966006)(8676002)(2906002)(5660300002)(36756003)(81166007)(70206006)(186003)(70586007)(36860700001)(83380400001)(4326008)(54906003)(8936002)(6666004)(82740400003)(356005)(316002)(86362001)(26005)(478600001)(7696005)(1076003)(47076005)(336012)(2616005)(426003)(6916009)(82310400003)(36900700001)(44824005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2021 22:03:15.6844 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae176a40-5199-4053-3c28-08d8ca21d6bf
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2021 22:03:17.7498 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: db293937-c6c0-48ad-16fd-08d8ca21d7fa
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB02.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT018.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB01.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT040.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR12MB2610
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4840
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,168 +103,172 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Josip Pavic <Josip.Pavic@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Wyatt Wood <wyatt.wood@amd.com>,
- Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
-Content-Type: multipart/mixed; boundary="===============0051559887=="
+Cc: Chris Park <Chris.Park@amd.com>, Wesley Chalmers <Wesley.Chalmers@amd.com>,
+ Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com,
+ Aurabindo.Pillai@amd.com, Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com,
+ bindu.r@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0051559887==
-Content-Type: text/plain; charset="y"
-Content-Transfer-Encoding: 8bit
+From: Wesley Chalmers <Wesley.Chalmers@amd.com>
 
-From: Wyatt Wood <wyatt.wood@amd.com>
+[WHY]
+Virtual displays do not use the backend of the pipe, and so have
+infinite backend bandwidth.
 
-[Why]
-Since dmub_rb_cmds are not initialized to 0,
-the header is filled with invalid data.
-This is causing issues on the fw side.
+[HOW]
+Add a skip_dio_check bool to the VBA struct, which is used to override
+the DIOSupport calculations.
 
-[How]
-Initialize dmub_rb_cmd unions to 0.
-
-Signed-off-by: Wyatt Wood <wyatt.wood@amd.com>
-Reviewed-by: Josip Pavic <Josip.Pavic@amd.com>
+Signed-off-by: Wesley Chalmers <Wesley.Chalmers@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
+Acked-by: Chris Park <Chris.Park@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c         | 3 +++
- drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c | 3 ++-
- drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c         | 6 +++++-
- drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c    | 4 +++-
- 4 files changed, 13 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c      | 2 ++
+ .../gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c | 7 ++++---
+ .../drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c   | 7 ++++---
+ .../gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c | 7 ++++---
+ .../gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h  | 1 +
+ drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c      | 2 ++
+ drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h      | 1 +
+ 8 files changed, 19 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c
-index 0cf130dc4e52..453aaa5757bd 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c
-@@ -57,6 +57,7 @@ static void dmub_abm_enable_fractional_pwm(struct dc_context *dc)
- 	union dmub_rb_cmd cmd;
- 	uint32_t fractional_pwm = (dc->dc->config.disable_fractional_pwm == false) ? 1 : 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index 6505373483bb..a0a4ab47a1c0 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -2097,6 +2097,7 @@ int dcn20_populate_dml_pipes_from_context(
+ 			pipes[pipe_cnt].pipe.dest.pixel_rate_mhz *= 2;
+ 		pipes[pipe_cnt].pipe.dest.otg_inst = res_ctx->pipe_ctx[i].stream_res.tg->inst;
+ 		pipes[pipe_cnt].dout.dp_lanes = 4;
++		pipes[pipe_cnt].dout.is_virtual = 0;
+ 		pipes[pipe_cnt].pipe.dest.vtotal_min = res_ctx->pipe_ctx[i].stream->adjust.v_total_min;
+ 		pipes[pipe_cnt].pipe.dest.vtotal_max = res_ctx->pipe_ctx[i].stream->adjust.v_total_max;
+ 		switch (get_num_odm_splits(&res_ctx->pipe_ctx[i])) {
+@@ -2150,6 +2151,7 @@ int dcn20_populate_dml_pipes_from_context(
+ 			break;
+ 		default:
+ 			/* In case there is no signal, set dp with 4 lanes to allow max config */
++			pipes[pipe_cnt].dout.is_virtual = 1;
+ 			pipes[pipe_cnt].dout.output_type = dm_dp;
+ 			pipes[pipe_cnt].dout.dp_lanes = 4;
+ 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c
+index f33e3de08176..0f3f510fd83b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c
+@@ -4168,10 +4168,11 @@ void dml20_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 	for (i = 0; i <= mode_lib->vba.soc.num_states; i++) {
+ 		locals->DIOSupport[i] = true;
+ 		for (k = 0; k <= mode_lib->vba.NumberOfActivePlanes - 1; k++) {
+-			if (locals->OutputBppPerState[i][k] == BPP_INVALID
+-					|| (mode_lib->vba.OutputFormat[k] == dm_420
++			if (!mode_lib->vba.skip_dio_check[k]
++					&& (locals->OutputBppPerState[i][k] == BPP_INVALID
++						|| (mode_lib->vba.OutputFormat[k] == dm_420
+ 							&& mode_lib->vba.Interlace[k] == true
+-							&& mode_lib->vba.ProgressiveToInterlaceUnitInOPP == true)) {
++							&& mode_lib->vba.ProgressiveToInterlaceUnitInOPP == true))) {
+ 				locals->DIOSupport[i] = false;
+ 			}
+ 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
+index 47e8e71113ee..210c96cd5b03 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
+@@ -4289,10 +4289,11 @@ void dml20v2_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode
+ 	for (i = 0; i <= mode_lib->vba.soc.num_states; i++) {
+ 		locals->DIOSupport[i] = true;
+ 		for (k = 0; k <= mode_lib->vba.NumberOfActivePlanes - 1; k++) {
+-			if (locals->OutputBppPerState[i][k] == BPP_INVALID
+-					|| (mode_lib->vba.OutputFormat[k] == dm_420
++			if (!mode_lib->vba.skip_dio_check[k]
++					&& (locals->OutputBppPerState[i][k] == BPP_INVALID
++						|| (mode_lib->vba.OutputFormat[k] == dm_420
+ 							&& mode_lib->vba.Interlace[k] == true
+-							&& mode_lib->vba.ProgressiveToInterlaceUnitInOPP == true)) {
++							&& mode_lib->vba.ProgressiveToInterlaceUnitInOPP == true))) {
+ 				locals->DIOSupport[i] = false;
+ 			}
+ 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c
+index 0bcec113ecac..398210d1af34 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c
+@@ -4257,10 +4257,11 @@ void dml21_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 	for (i = 0; i <= mode_lib->vba.soc.num_states; i++) {
+ 		locals->DIOSupport[i] = true;
+ 		for (k = 0; k <= mode_lib->vba.NumberOfActivePlanes - 1; k++) {
+-			if (locals->OutputBppPerState[i][k] == BPP_INVALID
+-					|| (mode_lib->vba.OutputFormat[k] == dm_420
++			if (!mode_lib->vba.skip_dio_check[k]
++					&& (locals->OutputBppPerState[i][k] == BPP_INVALID
++						|| (mode_lib->vba.OutputFormat[k] == dm_420
+ 							&& mode_lib->vba.Interlace[k] == true
+-							&& mode_lib->vba.ProgressiveToInterlaceUnitInOPP == true)) {
++							&& mode_lib->vba.ProgressiveToInterlaceUnitInOPP == true))) {
+ 				locals->DIOSupport[i] = false;
+ 			}
+ 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
+index 8fdb34aa70ff..bc07082c1357 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_mode_vba_30.c
+@@ -4263,7 +4263,7 @@ void dml30_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 	for (i = 0; i < v->soc.num_states; i++) {
+ 		v->DIOSupport[i] = true;
+ 		for (k = 0; k <= v->NumberOfActivePlanes - 1; k++) {
+-			if (v->BlendingAndTiming[k] == k && (v->Output[k] == dm_dp || v->Output[k] == dm_edp || v->Output[k] == dm_hdmi)
++			if (!v->skip_dio_check[k] && v->BlendingAndTiming[k] == k && (v->Output[k] == dm_dp || v->Output[k] == dm_edp || v->Output[k] == dm_hdmi)
+ 					&& (v->OutputBppPerState[i][k] == 0
+ 							|| (v->OutputFormat[k] == dm_420 && v->Interlace[k] == true && v->ProgressiveToInterlaceUnitInOPP == true))) {
+ 				v->DIOSupport[i] = false;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
+index dd0c3b1780d7..0c5128187e08 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
++++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_structs.h
+@@ -297,6 +297,7 @@ struct _vcs_dpi_display_output_params_st {
+ 	int num_active_wb;
+ 	int output_bpc;
+ 	int output_type;
++	int is_virtual;
+ 	int output_format;
+ 	int dsc_slices;
+ 	int max_audio_sample_rate;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
+index c9fbb33f05a3..bc0485a59018 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.c
+@@ -451,6 +451,8 @@ static void fetch_pipe_params(struct display_mode_lib *mode_lib)
+ 				dout->output_bpp;
+ 		mode_lib->vba.Output[mode_lib->vba.NumberOfActivePlanes] =
+ 				(enum output_encoder_class) (dout->output_type);
++		mode_lib->vba.skip_dio_check[mode_lib->vba.NumberOfActivePlanes] =
++				dout->is_virtual;
  
-+	memset(&cmd, 0, sizeof(cmd));
- 	cmd.abm_set_pwm_frac.header.type = DMUB_CMD__ABM;
- 	cmd.abm_set_pwm_frac.header.sub_type = DMUB_CMD__ABM_SET_PWM_FRAC;
- 	cmd.abm_set_pwm_frac.abm_set_pwm_frac_data.fractional_pwm = fractional_pwm;
-@@ -135,6 +136,7 @@ static bool dmub_abm_set_level(struct abm *abm, uint32_t level)
- 	union dmub_rb_cmd cmd;
- 	struct dc_context *dc = abm->ctx;
- 
-+	memset(&cmd, 0, sizeof(cmd));
- 	cmd.abm_set_level.header.type = DMUB_CMD__ABM;
- 	cmd.abm_set_level.header.sub_type = DMUB_CMD__ABM_SET_LEVEL;
- 	cmd.abm_set_level.abm_set_level_data.level = level;
-@@ -160,6 +162,7 @@ static bool dmub_abm_init_config(struct abm *abm,
- 	// Copy iramtable into cw7
- 	memcpy(dc->dmub_srv->dmub->scratch_mem_fb.cpu_addr, (void *)src, bytes);
- 
-+	memset(&cmd, 0, sizeof(cmd));
- 	// Fw will copy from cw7 to fw_state
- 	cmd.abm_init_config.header.type = DMUB_CMD__ABM;
- 	cmd.abm_init_config.header.sub_type = DMUB_CMD__ABM_INIT_CONFIG;
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c
-index d399270fd17e..c97ee5abc0ef 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c
-@@ -33,8 +33,9 @@ void dmub_hw_lock_mgr_cmd(struct dc_dmub_srv *dmub_srv,
- 				union dmub_hw_lock_flags *hw_locks,
- 				struct dmub_hw_lock_inst_flags *inst_flags)
- {
--	union dmub_rb_cmd cmd = { 0 };
-+	union dmub_rb_cmd cmd;
- 
-+	memset(&cmd, 0, sizeof(cmd));
- 	cmd.lock_hw.header.type = DMUB_CMD__HW_LOCK;
- 	cmd.lock_hw.header.sub_type = 0;
- 	cmd.lock_hw.header.payload_bytes = sizeof(struct dmub_cmd_lock_hw_data);
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
-index 4228caa74119..69e34bef274c 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
-@@ -101,6 +101,7 @@ static bool dmub_psr_set_version(struct dmub_psr *dmub, struct dc_stream_state *
- 	if (stream->link->psr_settings.psr_version == DC_PSR_VERSION_UNSUPPORTED)
- 		return false;
- 
-+	memset(&cmd, 0, sizeof(cmd));
- 	cmd.psr_set_version.header.type = DMUB_CMD__PSR;
- 	cmd.psr_set_version.header.sub_type = DMUB_CMD__PSR_SET_VERSION;
- 	switch (stream->link->psr_settings.psr_version) {
-@@ -131,7 +132,7 @@ static void dmub_psr_enable(struct dmub_psr *dmub, bool enable, bool wait)
- 	uint32_t retry_count;
- 	enum dc_psr_state state = PSR_STATE0;
- 
--
-+	memset(&cmd, 0, sizeof(cmd));
- 	cmd.psr_enable.header.type = DMUB_CMD__PSR;
- 
- 	if (enable)
-@@ -184,6 +185,7 @@ static void dmub_psr_set_level(struct dmub_psr *dmub, uint16_t psr_level)
- 	if (state == PSR_STATE0)
- 		return;
- 
-+	memset(&cmd, 0, sizeof(cmd));
- 	cmd.psr_set_level.header.type = DMUB_CMD__PSR;
- 	cmd.psr_set_level.header.sub_type = DMUB_CMD__PSR_SET_LEVEL;
- 	cmd.psr_set_level.header.payload_bytes = sizeof(struct dmub_cmd_psr_set_level_data);
-@@ -233,6 +235,7 @@ static bool dmub_psr_copy_settings(struct dmub_psr *dmub,
- 	link->link_enc->funcs->psr_program_secondary_packet(link->link_enc,
- 			psr_context->sdpTransmitLineNumDeadline);
- 
-+	memset(&cmd, 0, sizeof(cmd));
- 	cmd.psr_copy_settings.header.type = DMUB_CMD__PSR;
- 	cmd.psr_copy_settings.header.sub_type = DMUB_CMD__PSR_COPY_SETTINGS;
- 	cmd.psr_copy_settings.header.payload_bytes = sizeof(struct dmub_cmd_psr_copy_settings_data);
-@@ -285,6 +288,7 @@ static void dmub_psr_force_static(struct dmub_psr *dmub)
- 	union dmub_rb_cmd cmd;
- 	struct dc_context *dc = dmub->ctx;
- 
-+	memset(&cmd, 0, sizeof(cmd));
- 	cmd.psr_force_static.header.type = DMUB_CMD__PSR;
- 	cmd.psr_force_static.header.sub_type = DMUB_CMD__PSR_FORCE_STATIC;
- 	cmd.psr_enable.header.payload_bytes = 0;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c
-index 96ee0b82f458..d3b643089603 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_hwseq.c
-@@ -123,7 +123,7 @@ void dcn21_optimize_pwr_state(
-  * PHY will hang on the next mode set attempt.
-  * if enable PLL follow by disable PLL (without executing lane enable/disable),
-  * RDPCS_PHY_DP_MPLLB_STATE remains 1,
-- * which indicate that PLL disable attempt actually didn’t go through.
-+ * which indicate that PLL disable attempt actually didn't go through.
-  * As a workaround, insert PHY lane enable/disable before PLL disable.
-  */
- void dcn21_PLAT_58856_wa(struct dc_state *context, struct pipe_ctx *pipe_ctx)
-@@ -143,6 +143,7 @@ static bool dmub_abm_set_pipe(struct abm *abm, uint32_t otg_inst, uint32_t optio
- 	struct dc_context *dc = abm->ctx;
- 	uint32_t ramping_boundary = 0xFFFF;
- 
-+	memset(&cmd, 0, sizeof(cmd));
- 	cmd.abm_set_pipe.header.type = DMUB_CMD__ABM;
- 	cmd.abm_set_pipe.header.sub_type = DMUB_CMD__ABM_SET_PIPE;
- 	cmd.abm_set_pipe.abm_set_pipe_data.otg_inst = otg_inst;
-@@ -212,6 +213,7 @@ bool dcn21_set_backlight_level(struct pipe_ctx *pipe_ctx,
- 	if (abm && panel_cntl)
- 		dmub_abm_set_pipe(abm, otg_inst, SET_ABM_PIPE_NORMAL, panel_cntl->inst);
- 
-+	memset(&cmd, 0, sizeof(cmd));
- 	cmd.abm_set_backlight.header.type = DMUB_CMD__ABM;
- 	cmd.abm_set_backlight.header.sub_type = DMUB_CMD__ABM_SET_BACKLIGHT;
- 	cmd.abm_set_backlight.abm_set_backlight_data.frame_ramp = frame_ramp;
+ 		if (!dout->dsc_enable)
+ 			mode_lib->vba.ForcedOutputLinkBPP[mode_lib->vba.NumberOfActivePlanes] = dout->output_bpp;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
+index 3529fedc4c52..025aa5bd8ea0 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
++++ b/drivers/gpu/drm/amd/display/dc/dml/display_mode_vba.h
+@@ -340,6 +340,7 @@ struct vba_vars_st {
+ 	unsigned int DSCInputBitPerComponent[DC__NUM_DPP__MAX];
+ 	enum output_format_class OutputFormat[DC__NUM_DPP__MAX];
+ 	enum output_encoder_class Output[DC__NUM_DPP__MAX];
++	bool skip_dio_check[DC__NUM_DPP__MAX];
+ 	unsigned int BlendingAndTiming[DC__NUM_DPP__MAX];
+ 	bool SynchronizedVBlank;
+ 	unsigned int NumberOfCursors[DC__NUM_DPP__MAX];
 -- 
 2.25.1
-
-
---===============0051559887==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0051559887==--
