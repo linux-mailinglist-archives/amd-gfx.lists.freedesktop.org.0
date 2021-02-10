@@ -2,62 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38729315CD9
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Feb 2021 03:06:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41239315DFC
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Feb 2021 05:02:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C70B96EC1E;
-	Wed, 10 Feb 2021 02:06:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67C2A6EC24;
+	Wed, 10 Feb 2021 04:02:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com
- [IPv6:2a00:1450:4864:20::136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F28926E120;
- Tue,  9 Feb 2021 23:48:27 +0000 (UTC)
-Received: by mail-lf1-x136.google.com with SMTP id p21so113189lfu.11;
- Tue, 09 Feb 2021 15:48:27 -0800 (PST)
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com
+ [IPv6:2607:f8b0:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EB236E114
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 02:58:15 +0000 (UTC)
+Received: by mail-pf1-x433.google.com with SMTP id j12so320075pfj.12
+ for <amd-gfx@lists.freedesktop.org>; Tue, 09 Feb 2021 18:58:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=yNEcY+k1I/sPxeT89v0RbvERaYcFC6w0nk6p7Ga+k7o=;
- b=H55GtJ+kFJow/fff1SlxkWECW/MsUAGzpc1ycWI29ms7aU5BsoRoN6PI5KmdemYb3e
- lsdW1od8WBmJt4SLC9o5lqjwSPxX5fs7DCAZpvaLduFlvDn0up50izcE3A9sh684r1Og
- AhVM1o29PNIjDIv62v++595uWT8LWfgYSbHvAmGTVt0NNlWp/zT9kPJy/3lc7X7qUdyh
- 6NMylHkFQ3VWjNHgUOKUdvqqwyiD3KqKSvPNVer+dV9SfmSbV2ZsJ4mldWqSnD3KeayA
- +L+czvtUTNzU2kIljMobA1Gwxet4fjA7apw9SRYaj+eX9RlWpXij60MQw53QCFt3jD9o
- 3KpQ==
+ bh=3bu6rhwPlAhXegz5ya/guGHb9ivWaiNn90hlHhoqWy0=;
+ b=Xsr0lRZF/BxZR/Lnaa2h58X9BEJqoiTpCd762yZRztYN2xz7yL3FnfCE20L908tMC1
+ Fed20YfnFmQiO+6KtAa4b5KficcxRGgIuBOLEYensnppsl42DCHHLpajA7wjV3T1H9Mz
+ 0EzsnGCOv9pBuxyg0qfqEOFpk3Ia0lx2iNjJuGMTais+6sZipPcT0CUqTw+T2SY71RhH
+ hItXm+902F5vVT6pJoEy5PneIE96DvDgm79KFVjX4uof+AHA6esPQzW9isF3cnM/ctyU
+ 6OkRJSbTEUsfs4T1C5lSMldcZ/rF3w5Et+zV4fIVSM7EiYZBM89V2A271KRMxTK2SyXp
+ Ma+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=yNEcY+k1I/sPxeT89v0RbvERaYcFC6w0nk6p7Ga+k7o=;
- b=aWa+c4Bv2S9JWLdHKD80NvxG3gbCUu8SPXvhDYwUln5RoaRiaEtjEqf4Vhgo7olOWr
- SIj4M8raorAZMmZacil0N0W+4c7Tta8bTrbfJyOo0VoyZtMaijjmqffpfMFuFDHaoHl8
- W5RRRXzh7b7SV7YKTRvu9VYdL9cTs50XAte+JSKXYBvbRrc19z1fykooGNEPZ0rJWBdk
- 3KJ8kqe2NQ+PW8vqAxZF1n/5Qtt5BhkOad5UT8RdP+z6Jn+QGtQtHUb4Y9K/mbA7dT7H
- H8JGrVz5Y8tYLlYF0OqaQ3pq9RNFaYSQGuO260qcvov/JMzEv21g0wcZwDfuel5fGfLo
- /Yig==
-X-Gm-Message-State: AOAM5315RZ7mWjCo4BDz3Ps7KsT5sywT1FaUaUb++9anZy3jfBEYWBOS
- 2YbpFCaAw1ZLFnRHLZq20Rc=
-X-Google-Smtp-Source: ABdhPJwEgfMGoJUtU5l1trR++7LWKZ1G/cGIubNiHZdjGVjhcKjS3G5FyPiBakSx7jaYCAYohVN/Yw==
-X-Received: by 2002:a05:6512:39ce:: with SMTP id
- k14mr195590lfu.169.1612914506449; 
- Tue, 09 Feb 2021 15:48:26 -0800 (PST)
-Received: from localhost.localdomain (h-158-174-22-164.NA.cust.bahnhof.se.
- [158.174.22.164])
- by smtp.gmail.com with ESMTPSA id c25sm23779lja.131.2021.02.09.15.48.25
+ bh=3bu6rhwPlAhXegz5ya/guGHb9ivWaiNn90hlHhoqWy0=;
+ b=nOrVJIV4HtCZBjxVZkIiObTWkUy9iDjggkaISSKH/IYYzyeC1CS26UM2t1mp6kd928
+ d5U/jCJMNAwvxwJ2M5s5iutW9HF8EauHpL3hoI6hbxH66DimtZeJ1lqvWw78Ib6LcBFW
+ fXa+8SAK+VABwm87JdyHQmsSJCUbSeH6t8Tlg4LU+p1yGw6jjHpkew4uQPZZPZzyz+PA
+ I1jAxvP2ROv55hXXxTkXqSP1zETz0lVydXJph/Pz7xpoPs//SDGMfBVkjMNilMV8baDo
+ ZxwJOIjEBDsDCKwiHLJ83AL58UJ2L2m9R01apYkjvrehlR1gNNC6tIGh3hODl3Sx7g2Z
+ FZRA==
+X-Gm-Message-State: AOAM531Q+/O8SeaHXnxhtvO6wVu3NxgPAVWBbQ8qZ7l6SFDpJ7FgYNiS
+ OQ6dWP1YSWzEy1Yv5tMcEaw=
+X-Google-Smtp-Source: ABdhPJzM9PtJ9CtWTbz5/pSQBQY3dfquX5xB+znW9NW1QZTx1aSnElHCtXS7y8S+6XtcNmP6sOIRow==
+X-Received: by 2002:a63:1e4b:: with SMTP id p11mr1055543pgm.301.1612925895311; 
+ Tue, 09 Feb 2021 18:58:15 -0800 (PST)
+Received: from localhost.localdomain ([103.114.162.148])
+ by smtp.gmail.com with ESMTPSA id r68sm279189pfc.49.2021.02.09.18.58.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 09 Feb 2021 15:48:25 -0800 (PST)
-From: Rikard Falkeborn <rikard.falkeborn@gmail.com>
-To: David Airlie <airlied@linux.ie>,
-	Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH 3/3] drm/nouveau/ttm: constify static vm_operations_struct
-Date: Wed, 10 Feb 2021 00:48:17 +0100
-Message-Id: <20210209234817.55112-4-rikard.falkeborn@gmail.com>
+ Tue, 09 Feb 2021 18:58:14 -0800 (PST)
+From: youling257 <youling257@gmail.com>
+To: Bhawanpreet.Lakha@amd.com
+Subject: Re: [PATCH 05/27] drm/amd/display: reuse current context instead of
+ recreating one
+Date: Wed, 10 Feb 2021 10:57:42 +0800
+Message-Id: <20210210025742.7855-1-youling257@gmail.com>
 X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210209234817.55112-1-rikard.falkeborn@gmail.com>
-References: <20210209234817.55112-1-rikard.falkeborn@gmail.com>
+In-Reply-To: <20210129212752.38865-6-Anson.Jacob@amd.com>
+References: <20210129212752.38865-6-Anson.Jacob@amd.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 10 Feb 2021 02:06:04 +0000
+X-Mailman-Approved-At: Wed, 10 Feb 2021 04:02:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,42 +67,18 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Felix Kuehling <Felix.Kuehling@amd.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, Rikard Falkeborn <rikard.falkeborn@gmail.com>,
- Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
- Likun Gao <Likun.Gao@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: youling 257 <youling257@gmail.com>, Eryk.Brol@amd.com, Anson.Jacob@amd.com,
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, amd-gfx@lists.freedesktop.org,
+ Sunpeng.Li@amd.com, Aurabindo.Pillai@amd.com, Harry.Wentland@amd.com,
+ Nicholas.Kazlauskas@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The only usage of nouveau_ttm_vm_ops is to assign its address to the
-vm_ops field in the vm_area_struct struct. Make it const to allow the
-compiler to put it in read-only memory
+From: youling 257 <youling257@gmail.com>
 
-Signed-off-by: Rikard Falkeborn <rikard.falkeborn@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_ttm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-index 495288182c2d..b81ae90b8449 100644
---- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-@@ -154,7 +154,7 @@ static vm_fault_t nouveau_ttm_fault(struct vm_fault *vmf)
- 	return ret;
- }
- 
--static struct vm_operations_struct nouveau_ttm_vm_ops = {
-+static const struct vm_operations_struct nouveau_ttm_vm_ops = {
- 	.fault = nouveau_ttm_fault,
- 	.open = ttm_bo_vm_open,
- 	.close = ttm_bo_vm_close,
--- 
-2.30.0
-
+This patch cause replug hdmi blackscreen, https://bugzilla.kernel.org/show_bug.cgi?id=211649
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
