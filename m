@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E51B331954C
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Feb 2021 22:45:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAC4B31954D
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Feb 2021 22:45:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A09B96E428;
-	Thu, 11 Feb 2021 21:45:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E94B96E41A;
+	Thu, 11 Feb 2021 21:45:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2063.outbound.protection.outlook.com [40.107.237.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3CF36E428
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 21:45:01 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2089.outbound.protection.outlook.com [40.107.92.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 879F76E41A
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 21:45:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n8ktH2VoX7gGSZmgbIi46J711qS1naYjk9TywgfXPxUItiim8/hozqvUKcNlJVXddFqm/SoXBLZgbfM12bwMBf6iIvc8eXaT++EFXjmOLHPNER5cY4uLELgiPyePx3/uivTpqGpc81Va2YD5lnMZ8/SF6WzleQC8NFuCzRRSB793VsJKvA3QGBL8Fyd1YckPdJ5udBOi6f+8y0FsTMZBi9dmM//8/TkIItEwz2mggc1ExdBjtBVOBkov1AeizB41G1PCLD0uUqX+JVtPezZGghHBsrRV7Fhe9hp8iNleZCMssBGK+bsX8xQDlP/b55TjJEjml5pHdQzTQkyitW/tRA==
+ b=LxSZo/ny1rPturaRJeqd1hfHKBNBpmha/YGh/kejsaYszXd4YRk/jpPOmP/XBE22DsRDkGRqmEcwTYWDVYiZTCG+pSclBJ16PsVzVIvlhWq/q70u2qFCQ8FE7OO5McvM+a7DDnusAFl5D0cMpI55YkqHPSO/kK16j5dj+Ew+3S+kT6bB8aVUmuSsHR1/6ZBJfmKP8SR5pVDrClsjXmi1BknhLXgI3O7BoGU5ZvAex7ttOOyz4xk49WwEaC2xP1+8ZRUh6vMRjNMjDGz+mEMr9Jz8qxx2K3o+RNx8UNw8MzxuQW5j8D1qq0K7cqC65zK14reYZ31OMLpJOLDLSyyFKQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8LBeez2lErt8fsnBbXj/KI7iaM69UPNmQxLDntsypR0=;
- b=Ik19v/SvZ6b1ZN7Ol/jWjdVZolPDlfjHDm+ehZqU1Af//cE4MZAPTM89E2hvq3ngL0DLsP33Ux80Wzc1UKLcTrgaHMM2gU9X9FKW6kD+NDMOt+SNIWtk++NuDamCIeuKpOOOQoXqWblTSTXVU/mp6PAICGw7eC/EgxahNv48e029qIAGVo0jt8Um0tVVySbUgW4vrAmb5feg6DEWzeOZO6vEtnd3ts2OAEseQF6WFVi0KprPBL8iy73R/YXei59JkE8LhMuDkfOp8Fs6o96kUWJ0M9yfEhVv/GfSYjvwmSEE/3UI9U/stLw/DQPcWPBWfvNS54bZnFFbitLwWNahVQ==
+ bh=8XdYO1pPyX+C0x2RJcXWk76/KXYsLC4BbOnLrIxx18s=;
+ b=cfe06sygWThM3KHp1ix9NiwqCdYCvfPOvnKErbaLqxbnHDOeTG37S5bjAvIEzlJUfsV/uUQ8fr9/6VT6mGzs4lCHGojJ6O42W6ZB8aCwuJHhVWgSi2gJp12Dm6xmtwXCIdDYYFmBtqMCZa3FTzaTgEtVhsJUlARvIZBswtNBUIDs34S8aLb4TgSoSDaR60u+D15CQQxdirRMq+CsSacEWl7t5Ge2HQcrrDHfiUV8VkeEQ0xYiHiGQ5qX7jI1GkZuuPjX7zqMvPg9w85pSJh2qHQSItnJP6YVTZe4PiigKP41Vn+2y5tv/4uaiZWLJC2RCyixWy6F2bH1xMf6XJcIUw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8LBeez2lErt8fsnBbXj/KI7iaM69UPNmQxLDntsypR0=;
- b=HiUDxbdMs8vxTx0hlaqKTd4LGfAo7iE2qaM2M5DKb+RxNG8+pKr6VJH/wQ5vHaftfXM5hZVIAas0dlzrtZj1AtSM0Esm0ZhogOQp1LfOOd/+0R0e6bgM2Jbvagta+ZcOmyKzrBsuc517X32YX0+xJN0KBVL9/lofGgbmacZMl8w=
+ bh=8XdYO1pPyX+C0x2RJcXWk76/KXYsLC4BbOnLrIxx18s=;
+ b=0qUIzohV6DYqUI2OyVrBDMjiYIX9qLFnkq4tKGN1QxCt+ZjdWGbtVavsasimRhCHR3QAgyJP9sXXHLpKCCieFOMd0qMSVxVlX3nZBW++n/8Fi1u9OXHfoP2LpvdonAnUPjzO25Cwzk9mJib/M7gLSI0hIrViilKX8sjdnbusfGk=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,16 +34,16 @@ Received: from DM6PR12MB2939.namprd12.prod.outlook.com (2603:10b6:5:18b::24)
  by DM6PR12MB4235.namprd12.prod.outlook.com (2603:10b6:5:220::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.29; Thu, 11 Feb
- 2021 21:45:00 +0000
+ 2021 21:45:01 +0000
 Received: from DM6PR12MB2939.namprd12.prod.outlook.com
  ([fe80::bcb5:dc9f:c49c:9faf]) by DM6PR12MB2939.namprd12.prod.outlook.com
  ([fe80::bcb5:dc9f:c49c:9faf%2]) with mapi id 15.20.3846.027; Thu, 11 Feb 2021
- 21:45:00 +0000
+ 21:45:01 +0000
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 03/14] drm/amd/display: Old path for enabling DPG
-Date: Thu, 11 Feb 2021 16:44:33 -0500
-Message-Id: <20210211214444.8348-4-qingqing.zhuo@amd.com>
+Subject: [PATCH 04/14] drm/amd/display: Unblank hubp based on plane enable
+Date: Thu, 11 Feb 2021 16:44:34 -0500
+Message-Id: <20210211214444.8348-5-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210211214444.8348-1-qingqing.zhuo@amd.com>
 References: <20210211214444.8348-1-qingqing.zhuo@amd.com>
@@ -56,53 +56,53 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from localhost.localdomain (165.204.55.250) by
  YTBPR01CA0026.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::39) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3825.17 via Frontend Transport; Thu, 11 Feb 2021 21:44:59 +0000
+ 15.20.3825.17 via Frontend Transport; Thu, 11 Feb 2021 21:45:00 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 3936101a-eca9-4f31-d8e9-08d8ced647cd
+X-MS-Office365-Filtering-Correlation-Id: 07b1751f-cef5-427a-b334-08d8ced648a6
 X-MS-TrafficTypeDiagnostic: DM6PR12MB4235:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4235692CFC4E895B0F4F5AC6FB8C9@DM6PR12MB4235.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:249;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB423507736FBAF8A77BB9FC76FB8C9@DM6PR12MB4235.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:393;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iV7afk4p3R5NhY/vFlsB+gW6tJQ1DrCv439q6qzCuCGRqzTj2PfUkI5bAF7vy1UNjT5NYIpSjd4y7liBEdSdokKAKtozw8Ts6RZl48QI6gH+fsdMhzYcRyhpyAmHRnSKaFXUbpNLlO1P9mzTPXzqol7KU+OJVa280OuqJzmurYj5S2WHrQ+0SbucJo7rWtsPYXr3xBbNovoL/Sk8aKGnVt2a5BemfmdFCArj2OssYMDosLxtffXs0EjxwjtgzfIS0NUCXc5O7cK68o5cdQ3j0SfX3xJJVZ766Il//4PBGv2X7UIcvw1ufTDqpZefdxEzlUnhObZcZtXxOTXrQvY1xg60NSq0k/LPIj6bOqfWhrFa6FSJOWGZJLcEa1TsSVbcJ0bMPQQgqQVJu7HayUuQPpMXLA3WCVHONSoq70E52sloTy90A7Swkyx3d/HXL/h+4mbrcwNptyUqeNnAY6c7mtbtMoAgUg+FcicEsWM9fbfkzdpNlfS3Dutfik6B2x6LjoYjs/g1w4qlA02xt1vG6zA9jWpkUkK6nplTfWf0qenNY5d+tBMltMKNhxWXLaedy5AVg+X/QF9eX3DG5mxL0Q==
+X-Microsoft-Antispam-Message-Info: 7KfzGV8QKAkzUHJw6ApniXjZl3TYpMdQVWY29SrNBXi3bneGjDvl5YVVnc4c9skBQRx5AgwkIt7wJCE7YMrIxah74sSzfGJRjYsDBGDVDzpd1EbwwQ+aF6exLUS9ipBJjxRtNTGe+zb0HOlGrV3FY5npDXOi+pd7rpoMrMvHcWelfc6R2nUxvBilvSGBx9iNkHFxgYenMsocp+eXAprKahVGApo8apCgcZ+ko9kbWg6ALk2o5dXwopVcfjS3FVSHGJI1Dh/zHFfemOytZdCcrgHo+GsKOV6uf4Ck2pbCv0WoNK+bpvEdB0v+2ki4D6t0G+rrfMVgGVb94OBghev1lS9Xoy3cCm+qPI+tKaDfVrb2OAZIx1b9kvN9q0jrh44KHBJzLG8cL6ahLLLmvaCiliG2fFQn1K6cqZTzmg5woGP3aVes4w2gsLkyO1GE58KHOf3drUHs6K7KCpnQRK3W38vsL60f6oPscqSn6hh/brs0luL+lRMEqouJCgfmXEDiDks0WO+KCmtpVu6kzSefdzOEs/zzWGJlwU8L+EQt71MNkvRvfWT4OuyoJgk7LmAHOFYJJ5bTuQt/L4Cj14/RFA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB2939.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(366004)(136003)(346002)(39860400002)(396003)(376002)(83380400001)(16526019)(8936002)(8676002)(478600001)(86362001)(6916009)(6506007)(66946007)(6486002)(6666004)(1076003)(52116002)(186003)(36756003)(4326008)(956004)(44832011)(69590400011)(6512007)(5660300002)(66556008)(2906002)(316002)(66476007)(2616005)(26005);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?mQ2y/N7JGHYnq5iBIlE7Uy0T2pSGXYD9iv7qoEk9hSH09ekY4hUywA7KtTDe?=
- =?us-ascii?Q?J7DYOkEV4idr93VteNh2PV8ot3izxcJMqtNdg3NZZt3lzxiiHe0BcJY3aMzl?=
- =?us-ascii?Q?r7790P0SXbb59SEUo9BJgFddR+PLOI6SkayMaBcIiw7m2D5JVJ4RoZCnV4st?=
- =?us-ascii?Q?PlpVdXtTBEzj+6Mbm36tsWSZcwIA2jX1WJOB81lNlsDOssU9MM0MUled6qQi?=
- =?us-ascii?Q?nJX9n4dpv4/JLWRceQ2Nk4+gfJpFsERa0qu+zz9qCImtlvI8OhwdcfRJ60d+?=
- =?us-ascii?Q?cCy7+xMnrCBZ88xSEvfAYgi41XtpV+cgdmke3veFgF0ODDu8BJTS7oHMUBHf?=
- =?us-ascii?Q?6n/TxqT7rMj6T/EZl6gCPAAlV2r8nu3ggARsNk2X5xHiTkv1gAwY924ZGt3C?=
- =?us-ascii?Q?Fo622yKU9WsPaXqP3YbQiHwpri4XzJLBbphyQtK8SP/0/DYKPcueqlwW/fGr?=
- =?us-ascii?Q?u+2Nd5AcwJb0oX1a6V4xSvEuiOv2OP7i39F4+m9oKi9w7xytLuxGhUTgiREE?=
- =?us-ascii?Q?U8QhH4WudYwipMxgbRzvP9YGe3EMqHRlz/lK0tDD6o9n7vjDMe4YbVYVpg9N?=
- =?us-ascii?Q?MmYntRqoROAYYRbMEpKM5Q2lOgjZABvWPwwU/b9YAGMakr+VvMOxxAlMIcfP?=
- =?us-ascii?Q?fOYJ1MUiAA4es+phswrCfjqPgtGjdcbHh/UNYjBgR+cRyIYSAr4468nRn3HE?=
- =?us-ascii?Q?HKUkgoWPQJKJcjgN6Xs9jFgl3OsaAXPieLGiLZbZILcG8ABi0AKbWHavG+1C?=
- =?us-ascii?Q?kvshDyiCq1aDpLbz2vI+Crei5Hi5bhZLCO9UwdVayFbZ/NGhClwBmmZNQgdX?=
- =?us-ascii?Q?WJLIO//4qajWyqrlxwFPRv8agfxvjTWi7Omv7T4P11nKadrhm95yyxGYr7oO?=
- =?us-ascii?Q?ROY28l15xhjtMQ+LisPOC/BSV0dIfYB8nM6NRC/qGZVyvcce09ZbCUilmnPJ?=
- =?us-ascii?Q?dyHz32cUfe7YsSEdLsoqIdJEm33Z4CzJqCtDilBq5JwkHhGzjsz7mTFDp+jf?=
- =?us-ascii?Q?h9FmNoIqFJgwSafJy+kGQGisT+lyIQ/gmetmKvtUoAKE7G3/ODZLQ1bul+Yo?=
- =?us-ascii?Q?NQEF+4w8W+qxC41FBTTYh9k+GLggzFB22FbybnN+vCDShIBQqmPpozbvq7Sd?=
- =?us-ascii?Q?OaWTk5dB4nPzEuhsD0c4jix6xAeh1tk+JTdfg+3Sja3y6LX6ECNZa9xlzzSw?=
- =?us-ascii?Q?aF/Q5H+vSjLlts5gaYapsWW4G9Yv4tHZJrd7ButerP/5XJQOKgJOFt+KkpUl?=
- =?us-ascii?Q?npUa0HvA1VrEolswLiBSeUxNTR2d1BOjkE3Tr/AyjR8VVUch2el9jYOfthRc?=
- =?us-ascii?Q?fwevhdESxcFtEv0xOGUWt6x9?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?vXQPdebFqgT4SPd7SVNkGOe4vFYfrc0KoViB0XzehXZnPwmsDsGGFq+LQ1k/?=
+ =?us-ascii?Q?DMVxwbv5tJO1XqkCFEbh/fHNM2HwvVIbzunfqhlys1aKz/uriyPL0xlJhqas?=
+ =?us-ascii?Q?gJ/+QRRpNkcN6hhFrJivR8sIiJ1hj+016I8SBJAUv0ftYmvnG33k1Gz+oW/E?=
+ =?us-ascii?Q?/gInZt8UH/DQyQaGYj4IDMrWbeY7Rryw+nznkivKK75ZJ64vpbHQZ//PswI7?=
+ =?us-ascii?Q?Bncfy7HDPsGqDu4FiB9Vnt9PV9eApJ9QkZMu7Dzaz/EAL2NOJg03qRfw+l/G?=
+ =?us-ascii?Q?+tjfyl7UeBCdNj4VV8sa6Bno8CN06wKmhOC1wEyh5sJFnrChJZ6FvohVcLJ/?=
+ =?us-ascii?Q?dhfiVigJvTk2Gc1yhdjO7Z3yw/XPfPIRm6ix9YMqYO6iABhJDl/F1b1UTKGP?=
+ =?us-ascii?Q?HZCxT52XW8uZ59DG1qL2xxKF58ekD2QmWndebrrYstcLhANo07PfJUf0bPfW?=
+ =?us-ascii?Q?Ey2bpbvf9h/iNfh1YrLoth6fDLiMFs5H/IoGcbZukF3nfvRXUAThsxLzy60x?=
+ =?us-ascii?Q?EOpWx/zil/fkrUO6Q1M3+D71OIkrBTlDkipuBbMIvz0w4WEuKA4qXKSmYSBs?=
+ =?us-ascii?Q?LrIGfR9fY6xlyiNgTRT0jEqMKnQnd4mLmh1IOcfqG2fm0jeElJg7Oi6xWxOd?=
+ =?us-ascii?Q?BabCgCHdEaHg1rd0eWWkm47dVGwudcexp+Piu6lJ/J8RjcQMn6fdEnWobdfG?=
+ =?us-ascii?Q?sOo1swv0bAGiqDGkP+izx4DEoOanAnQThUd7OWEw4qmQHDC+PUQG+QTTQKSD?=
+ =?us-ascii?Q?wubuper8g0SNZTGihf0b6UgV8WROESFyyrknou7nttMAw+552jjSV5GGoEWR?=
+ =?us-ascii?Q?YWpPAAiuK+xKi3UPKMFqK0nlw4BuqL6P4cc/pOWD3StcpS9YRD/M2cJeBjBf?=
+ =?us-ascii?Q?XWcXxnWZaeJHMMfYDuX+RhQe9LthRHOTeCnWM/GNl/0CdWf9amx3mePZHlhI?=
+ =?us-ascii?Q?MGyt5lINUQCpRWCFs/CIYz6FWFfXOftcexTDEBnIldCPMDKbShSZV+7CADTn?=
+ =?us-ascii?Q?EQx/Z49sg/BtQ8MAl9AsaHV/L8RCs/mv1W0HG+gCT/yuK6xaqTIZLrSq3LrY?=
+ =?us-ascii?Q?TYptGT7YyoWXtflUZ6a8IsL5ZIJo6dHF52TYUca0xqjUK6HykL7cJOSGr6Xh?=
+ =?us-ascii?Q?CEQB9+Q1monZ9OlHfOcBU0BRunjtz1BwdDVhrJM/cpKMxzsT+eOCovDvab1l?=
+ =?us-ascii?Q?OoREFdgQFD+oS3oEvdepamG5sb7yFpy18EhWKNhKxkLMdYi4SMm1plQvAZTH?=
+ =?us-ascii?Q?LggBelF6kpM0Rs9gm4G4fodq4WH7TIFfpOAPmzytXW0Ru40QjYlUyffsGNE+?=
+ =?us-ascii?Q?9mFC5a2ydmiXSeDKgaKFrpGN?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3936101a-eca9-4f31-d8e9-08d8ced647cd
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07b1751f-cef5-427a-b334-08d8ced648a6
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2939.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2021 21:45:00.0108 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2021 21:45:01.2961 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sE66YRmwsWpNvgaci+qZGsKbirFfXu+p276hUyJrUGD2KaXJvAHV85nxZk+9W4gt
+X-MS-Exchange-CrossTenant-UserPrincipalName: EI5qhEaEZlBDkTdJ9HEM/c4BWS9CXVwiOlbFTdZP4VMN47ibbWGMMLFuMr6dv0ip
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4235
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -127,85 +127,100 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Wesley Chalmers <Wesley.Chalmers@amd.com>
 
 [Why]
-We are not implementing the planned new HW
-sequence for HUBP disable.
+We are not implementing the planned new HW sequence
+to disable HUBP.
 
 [How]
-Revert most related changes to minimize regressions.
+Revert most related changes to minimize possibility
+of regression.
 
 Signed-off-by: Wesley Chalmers <Wesley.Chalmers@amd.com>
 Reviewed-by: Martin Leung <Martin.Leung@amd.com>
 Acked-by: Qingqing Zhuo <Qingqing.Zhuo@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c   | 11 -----------
- drivers/gpu/drm/amd/display/dc/dc_stream.h | 11 -----------
- 2 files changed, 22 deletions(-)
+ .../gpu/drm/amd/display/dc/basics/dc_common.c | 20 ++++++-------------
+ .../gpu/drm/amd/display/dc/basics/dc_common.h |  4 ++--
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  2 +-
+ 3 files changed, 9 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 2d8c6e63166f..e2cc1a141131 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -2284,8 +2284,6 @@ static void copy_stream_update_to_stream(struct dc *dc,
- 	if (update->dither_option)
- 		stream->dither_option = *update->dither_option;
+diff --git a/drivers/gpu/drm/amd/display/dc/basics/dc_common.c b/drivers/gpu/drm/amd/display/dc/basics/dc_common.c
+index ad04ef98e652..b2fc4f8e6482 100644
+--- a/drivers/gpu/drm/amd/display/dc/basics/dc_common.c
++++ b/drivers/gpu/drm/amd/display/dc/basics/dc_common.c
+@@ -49,24 +49,20 @@ bool is_rgb_cspace(enum dc_color_space output_color_space)
+ 	}
+ }
  
--	if (update->pending_test_pattern)
--		stream->test_pattern = *update->pending_test_pattern;
- 	/* update current stream with writeback info */
- 	if (update->wb_update) {
- 		int i;
-@@ -2382,15 +2380,6 @@ static void commit_planes_do_stream_update(struct dc *dc,
- 				}
- 			}
+-bool is_child_pipe_tree_visible(struct pipe_ctx *pipe_ctx)
++bool is_lower_pipe_tree_visible(struct pipe_ctx *pipe_ctx)
+ {
+ 	if (pipe_ctx->plane_state && pipe_ctx->plane_state->visible)
+ 		return true;
+-	if (pipe_ctx->bottom_pipe && is_child_pipe_tree_visible(pipe_ctx->bottom_pipe))
+-		return true;
+-	if (pipe_ctx->next_odm_pipe && is_child_pipe_tree_visible(pipe_ctx->next_odm_pipe))
++	if (pipe_ctx->bottom_pipe && is_lower_pipe_tree_visible(pipe_ctx->bottom_pipe))
+ 		return true;
+ 	return false;
+ }
  
--			if (stream_update->pending_test_pattern) {
--				dc_link_dp_set_test_pattern(stream->link,
--					stream->test_pattern.type,
--					stream->test_pattern.color_space,
--					stream->test_pattern.p_link_settings,
--					stream->test_pattern.p_custom_pattern,
--					stream->test_pattern.cust_pattern_size);
--			}
--
- 			/* Full fe update*/
- 			if (update_type == UPDATE_TYPE_FAST)
- 				continue;
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_stream.h b/drivers/gpu/drm/amd/display/dc/dc_stream.h
-index a4f7ec888c67..e243c01b9672 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_stream.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_stream.h
-@@ -130,14 +130,6 @@ union stream_update_flags {
- 	uint32_t raw;
- };
+-bool is_parent_pipe_tree_visible(struct pipe_ctx *pipe_ctx)
++bool is_upper_pipe_tree_visible(struct pipe_ctx *pipe_ctx)
+ {
+ 	if (pipe_ctx->plane_state && pipe_ctx->plane_state->visible)
+ 		return true;
+-	if (pipe_ctx->top_pipe && is_parent_pipe_tree_visible(pipe_ctx->top_pipe))
+-		return true;
+-	if (pipe_ctx->prev_odm_pipe && is_parent_pipe_tree_visible(pipe_ctx->prev_odm_pipe))
++	if (pipe_ctx->top_pipe && is_upper_pipe_tree_visible(pipe_ctx->top_pipe))
+ 		return true;
+ 	return false;
+ }
+@@ -75,13 +71,9 @@ bool is_pipe_tree_visible(struct pipe_ctx *pipe_ctx)
+ {
+ 	if (pipe_ctx->plane_state && pipe_ctx->plane_state->visible)
+ 		return true;
+-	if (pipe_ctx->top_pipe && is_parent_pipe_tree_visible(pipe_ctx->top_pipe))
+-		return true;
+-	if (pipe_ctx->bottom_pipe && is_child_pipe_tree_visible(pipe_ctx->bottom_pipe))
+-		return true;
+-	if (pipe_ctx->prev_odm_pipe && is_parent_pipe_tree_visible(pipe_ctx->prev_odm_pipe))
++	if (pipe_ctx->top_pipe && is_upper_pipe_tree_visible(pipe_ctx->top_pipe))
+ 		return true;
+-	if (pipe_ctx->next_odm_pipe && is_child_pipe_tree_visible(pipe_ctx->next_odm_pipe))
++	if (pipe_ctx->bottom_pipe && is_lower_pipe_tree_visible(pipe_ctx->bottom_pipe))
+ 		return true;
+ 	return false;
+ }
+diff --git a/drivers/gpu/drm/amd/display/dc/basics/dc_common.h b/drivers/gpu/drm/amd/display/dc/basics/dc_common.h
+index b061497480b8..7c0cbf47e8ce 100644
+--- a/drivers/gpu/drm/amd/display/dc/basics/dc_common.h
++++ b/drivers/gpu/drm/amd/display/dc/basics/dc_common.h
+@@ -30,9 +30,9 @@
  
--struct test_pattern {
--	enum dp_test_pattern type;
--	enum dp_test_pattern_color_space color_space;
--	struct link_training_settings const *p_link_settings;
--	unsigned char const *p_custom_pattern;
--	unsigned int cust_pattern_size;
--};
--
- struct dc_stream_state {
- 	// sink is deprecated, new code should not reference
- 	// this pointer
-@@ -235,8 +227,6 @@ struct dc_stream_state {
+ bool is_rgb_cspace(enum dc_color_space output_color_space);
  
- 	uint32_t stream_id;
- 	bool is_dsc_enabled;
--
--	struct test_pattern test_pattern;
- 	union stream_update_flags update_flags;
- };
+-bool is_child_pipe_tree_visible(struct pipe_ctx *pipe_ctx);
++bool is_lower_pipe_tree_visible(struct pipe_ctx *pipe_ctx);
  
-@@ -271,7 +261,6 @@ struct dc_stream_update {
- 	struct dc_dsc_config *dsc_config;
- 	struct dc_transfer_func *func_shaper;
- 	struct dc_3dlut *lut3d_func;
--	struct test_pattern *pending_test_pattern;
- };
+-bool is_parent_pipe_tree_visible(struct pipe_ctx *pipe_ctx);
++bool is_upper_pipe_tree_visible(struct pipe_ctx *pipe_ctx);
  
- bool dc_is_stream_unchanged(
+ bool is_pipe_tree_visible(struct pipe_ctx *pipe_ctx);
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+index 0726fb435e2a..b79a17f6a9cc 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+@@ -1575,7 +1575,7 @@ static void dcn20_update_dchubp_dpp(
+ 
+ 
+ 
+-	if (is_pipe_tree_visible(pipe_ctx))
++	if (pipe_ctx->update_flags.bits.enable)
+ 		dc->hwss.set_hubp_blank(dc, pipe_ctx, false);
+ }
+ 
 -- 
 2.17.1
 
