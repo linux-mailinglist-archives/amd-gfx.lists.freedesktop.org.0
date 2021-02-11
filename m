@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D49731954F
-	for <lists+amd-gfx@lfdr.de>; Thu, 11 Feb 2021 22:45:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05C5231954E
+	for <lists+amd-gfx@lfdr.de>; Thu, 11 Feb 2021 22:45:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B9B46EE6A;
-	Thu, 11 Feb 2021 21:45:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A52416EE67;
+	Thu, 11 Feb 2021 21:45:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2089.outbound.protection.outlook.com [40.107.92.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C64406EB9C
- for <amd-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 21:45:03 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2069.outbound.protection.outlook.com [40.107.237.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CFBD6EB9C
+ for <amd-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 21:45:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jDOcWyU83GSsvdCaVhOvD8NFoQbce7hUqXfxD/zKIR9DFnZYKG9L/JR2ivnKcF+9gICrOPZe4vV2gzeafkwkrgpOzFG0nzKW9uyZKra8EVOlpMDwPA9LsUXTo97m7U75dMHpiOo6Rbz63h9ubEqrIwiq0WqXAToF3lnPCGTWBjwQAlD/0ljeinNH+WiggFLBvflYRXQzqlESmlRQV9musjEQ1Q1vnmEuawSFB3YxGpdKSHESw/96zgWsGclx3klacLhEMBaa2jf/P3D4x3JHbLzbt1zgUARwGayJJIZqEkLY0dnEQdx9AC9I8173B3sUd9FwyXQqmh0hLyy1UMmzBQ==
+ b=Dsc6iEjhOEimW2sB7wGRm3/nH3AGow6/Yo3Hu3PQyhUXAfEhU/wSYKlFIMSsFuJ9Q0I2YrUftyxzpGg1K+4KFcuriexa+ypB0aJ3s5YP5lm5+/txXb8pToQoPOQ2fsXBniYvnSDawseMbJnq4WsFZVfniATNCFixLqK3adEEAYR2DTiaHLzCdd8YAVOM5dEHkGx70ORikKMGCZ9kwzj7zXxZx/CDm8bYCiGepk92ksKMiMHmU0UiMmD3h/dN4sv5l5I2OfCC1LD/+UyJat/iXEA/ykOCcxLLer8tORbDoDkD+jQheU2QnF8SXnJkFUDZg4T/7tP48JUFtdopzRBWQg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QqRDFq40N3P+87bAZ9bH/SJMUGL4RqpXsp/NXPmDZkU=;
- b=a16VxRHVrN54MeU/X9qoW3p3F7Bj+FBuyGe0iGoKCViFDPfVGuUNZ/xbLLG5eRD/iKAwv4VencTjHi0J4Ke5Hv7x7tx6yovgaBCL3oP24khYWfrCPJix1phEKtNWHsA6W/ysunWype3YSJBYQRegYcals1QfiGkr/4sMOXVUR3KPMGFq0odpzwtE+OZX0ix//qhJoJyH0SmajRIWkhi6NCGXQ5S4Dl6+yr7yVW2H5aYhKem6JUJi0dtLKHMauejQsy8nKZ3j1JY6ReFT/9kG7ja5bh7b6bjAvv2n4AmlHd5mCn18+CB5a3nvS/wqH/IBivfPqoxp0ZLBWOhvGtpfWA==
+ bh=ZIixiVQXpRaKujiQYK7+4ImZ7WEmN4Aj8A1ll4RdUag=;
+ b=g9haWVULV7FQbJBAp4IM+9j/jcXUjlpVe9wu19ijT2LztLX3FG9oJYboTxU+fGQkSzwqo+2UEvxsCLWBI70t9a0ACWYBryOqp9nGaOQQyG2VPX9toGjCX8Xo+FRohWyI8uGy982OWgdJ+VIfbcLVxiQgedLKGiwC0xYvwxyoUgSxNw/0sIPK4IGJcrpt2Nec3KKNMncRBAY8rkoYyTC9fGHdBeB20ezQT9fk3o6q9Po7inHgeG4xKkqaeQ0WOVOuS94N3XLrj1wlIKP0HktSoiAbuFIzfOZGoyxsj7wQ0WMi0PgB0AUpZTlOxe9gW/80OKw0pRBSlQENEjCp7sHpPQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QqRDFq40N3P+87bAZ9bH/SJMUGL4RqpXsp/NXPmDZkU=;
- b=R6z/fwtLCqiYHW2pnCG4/Z7visT44/Watlq0uMWKcuCN+ElIyD7yI1Vx27bpCw0Q8eXFQ6mV78LTwcmceWSwkXYlLVIh7NMJ4/wIpinfN9/n6j3Ra/XLQQSdp+OPGWEPcu/TKco9jZlDvLnsquevQWLl03JhATz3nJXPCCVTFOM=
+ bh=ZIixiVQXpRaKujiQYK7+4ImZ7WEmN4Aj8A1ll4RdUag=;
+ b=lFeSmcYM9AB0s5hEcwPmB+ZW89bwnXEYt4whlXWNdIFuTQox6N2OC79e3dtsHuHzPvnH7LqfYAZZyWTwYhMBOy5Fizl2Z75hOMkMPvnT8va18nkvChPn+k6TuwZ7DxxMvsixzF9JZBZ00UPq1VqtkW6M8LbHaEuVxz/GVWeeLi0=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,16 +34,17 @@ Received: from DM6PR12MB2939.namprd12.prod.outlook.com (2603:10b6:5:18b::24)
  by DM6PR12MB4235.namprd12.prod.outlook.com (2603:10b6:5:220::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.29; Thu, 11 Feb
- 2021 21:45:02 +0000
+ 2021 21:45:03 +0000
 Received: from DM6PR12MB2939.namprd12.prod.outlook.com
  ([fe80::bcb5:dc9f:c49c:9faf]) by DM6PR12MB2939.namprd12.prod.outlook.com
  ([fe80::bcb5:dc9f:c49c:9faf%2]) with mapi id 15.20.3846.027; Thu, 11 Feb 2021
- 21:45:02 +0000
+ 21:45:03 +0000
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 05/14] drm/amd/display: changing sr exit latency
-Date: Thu, 11 Feb 2021 16:44:35 -0500
-Message-Id: <20210211214444.8348-6-qingqing.zhuo@amd.com>
+Subject: [PATCH 06/14] drm/amd/display: Add dc_dmub_srv helpers for in/out
+ DMCUB commands
+Date: Thu, 11 Feb 2021 16:44:36 -0500
+Message-Id: <20210211214444.8348-7-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210211214444.8348-1-qingqing.zhuo@amd.com>
 References: <20210211214444.8348-1-qingqing.zhuo@amd.com>
@@ -56,53 +57,53 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from localhost.localdomain (165.204.55.250) by
  YTBPR01CA0026.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::39) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3825.17 via Frontend Transport; Thu, 11 Feb 2021 21:45:01 +0000
+ 15.20.3825.17 via Frontend Transport; Thu, 11 Feb 2021 21:45:02 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: bfabe728-566d-4c4d-3f8d-08d8ced64942
+X-MS-Office365-Filtering-Correlation-Id: 09c3f1e8-e787-404c-bd29-08d8ced649f5
 X-MS-TrafficTypeDiagnostic: DM6PR12MB4235:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB42353DDD7F761CC38770B42FFB8C9@DM6PR12MB4235.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:475;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB42356126F583BD3924FE236EFB8C9@DM6PR12MB4235.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2582;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2pbYMjz85LVYsIkkFoDOT9+YiLOY6KoTz3CaqI1hLADASB/+zn6nWRqE7zwtShm3Sfqem8xGOf0AfTa1sU7E7M9NDlLGFmtvJKVyJ8+aCnk/N0wCT+8iaQco1v+1T/LPpNn+BrI9sQQNdIhwGmrJ0p65Qe0yYei3qjRSWDyu7mUz0Spce8g2ZrLkHpKXzQyOzjDppHYgeLMff3oexIu0P4pQgtI7iF40mUmB5xKfb7wAZrg7g22yGlkZSm+T308cgyyQ65o8hVEZ4NAYiippVr8iRRNEBcEeaAwsTAsCbIhGf1G9+qK9cFiiX501P/imqmzkbynaKNIgi115aZQCIPpENf/xqkdYmRt7jJexcS23uGpzXcjDoP6Gp5MjmHore9o0mx2RCLxzASKHeqWeLHpzRCa/zVH93aOE94xVfw0QXK1VjOXLk8GJ7xyRE24usNbD9JDKLIa/PLdL8smA1b/A71+C0wIXhPBDxQ6UeneAgTjH8LBh5qhblw1nyIz/7tRrjoWl3swwP8k68WtoPwaxXID4UdV8iaMZFClfy3EWv8RsRVH0cHFJAZHakAG7Ju3gn7ggk0KnehL7qSk9YA==
+X-Microsoft-Antispam-Message-Info: bjEqyXVl5kc4BpPgnPaCPtZuC4u+gU2pyUtJJfOBT/iNZKzBhonnd5k/XOa0e19FI5F+hzzO4PSQNiUoJGYCovMQ+SbUyFYK11xYGPCTSTD3Zh+SLskkRtVEyiPffaAYEExIG1EJxBxiQadegZexnMYQE39AKoGiUHh0yAdDbOQ/xsOjNtJZF/0pdsQM2PRQ+CCuBFMEE0ERJGKhnaKwqvQqBxpERSMQCe3FQOEtOzNTnfXMfDe3+YTNKJfGIygf8oP6QDY1u2UQD8EVNzT3fvGMhtULN2HRk8tPa+iJHvaoHRpUqvRPYF9iFDUe7ScnnZr8sYYID7fo3UfSBrjWqS/hkMoCQ2IzE9S1Xy4o9y6EyY14UjzdNYN7gUsVrUmzZJV7mnhwGclIYZbaLtzNpHA4bStnyAND/Lc5tJVU+d+xXC0wsapx3Np2VnT1fRFsjZeacxgBupipVeepmFcidRGGJUi8Ms3+AzdtqErirHu5rffrNhnPtpZjdCFblrECWIIzvNc6n/ESCQK6kGB3x0pvOUMiF0o2SQg0rFh2N4LXNSvd7m4wCjDcbyotFRKgE55OCjlWZXaFHxB1TnL+8g==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB2939.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(366004)(136003)(346002)(39860400002)(396003)(376002)(83380400001)(16526019)(8936002)(8676002)(478600001)(86362001)(6916009)(6506007)(66946007)(6486002)(6666004)(1076003)(52116002)(186003)(36756003)(4326008)(956004)(44832011)(69590400011)(6512007)(5660300002)(66556008)(2906002)(316002)(66476007)(2616005)(26005);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?+xataz7/8zlDSwGdo8HwWfv+zb9xum1EeFr+YjmuBU7wJ+mFE/NJcqhSIGAC?=
- =?us-ascii?Q?yYQvsBQ/+PGrlQ0WoBe5dmnapa6uI7GNJBUAz03HrtUy04polOQTM+dsftEZ?=
- =?us-ascii?Q?nWoci1fknP714qSwwmkzw32k041E4c64OTWhE8udGxwpqnVcxldHTXSAuGgg?=
- =?us-ascii?Q?Hwbj5f6e+tR/PK4BE/OkhsTOFrFc7kg6M66pVc0XUf1VfgzwUfvO/ZybnCKW?=
- =?us-ascii?Q?8qWhchi6Vvlq8eAimPCpk285GR2Ly3DiyPFGdTSpXrWhJNh1CJODZTkwTuoo?=
- =?us-ascii?Q?lnhybqjb74a7JezTZ4cw1OlaouMVPBw1IO3n5wU3P7LFfGvcVKm2PBV4VI9M?=
- =?us-ascii?Q?Pc8XlqDpJgobnGZtVUS9KYKcUQwlYiWApN6ZQwcqURtJ1pXcVx7uc5S3NMBA?=
- =?us-ascii?Q?Q3Wh+h9py/Jr9BprS5AQVzYcNOAn9/37ZFemcTUBHW/gmkVdZr0oT8EodCF6?=
- =?us-ascii?Q?6fb6sa7+RnfiM/Er/DFNN8ZMmiUmnry0JbzDKU9k1z2Y669b/fU1tpd8xR1h?=
- =?us-ascii?Q?s/42/2ods+LoH7CN+7l27P0dxRXXEcVBg+ZuGm9e5E440Bcr6/h04/rIMrKi?=
- =?us-ascii?Q?uUKVYIHiCvbxAJtIgxsdOYmJ6PDbJ9tv949hXqWRBOaL3P3XN2hjTbLuXW1T?=
- =?us-ascii?Q?eEA5Ej9fUQr1JHZkjMAlTCD5FGmeGGAOxvn7sQHj7Na7oUxPfx/C51fD8nMo?=
- =?us-ascii?Q?uILp9oYlqd9zf+kTUxxL6zll7P7eU5ofUZgsbMbKRqnTGOJZs9m3s3tr8dtL?=
- =?us-ascii?Q?UfvMJynAbX60e1PuUIl3X3dSXKaO5fn3z3e/qcI1OgIOCm32vGYbPMWWDQwr?=
- =?us-ascii?Q?JabCjjCZNXnt6CfC9TyD42SgQzSVuqfY+DMv/S82AD5yR2kjBzLCElkjf1nu?=
- =?us-ascii?Q?nR7iwTwwdEn3fi7YnPJZTb4PLs9OOAlLxmuwS+WAYQFoZETV0f2s4ox5rjO1?=
- =?us-ascii?Q?3XjgNcT1eiwNelO/mVxSobE9YpcnxU3MAIPrD5WkcMGAJXieCaksUqTfJ2yR?=
- =?us-ascii?Q?4uX4zfapBjm9QpH3kA4kkpjbBK+i3fEogRFvX7BQ8XTXEOyzxevvp2aotiOJ?=
- =?us-ascii?Q?/Tz2qKFAeO5Gp4XiwHeErR//0kL40bwC8q0/cPb3j/boLSeatsXWyJ35HBmC?=
- =?us-ascii?Q?s2xrLolY4WR+F87ECzoyFp7mW6IzhCi8QWBGwtZRLFyDFAgt01qfQfbwsjeT?=
- =?us-ascii?Q?QxDZUk+rrCfYCYRoKKOHn/L58CM7VQI3/kD19G4Oq3Ec5DGEqKe8xbh1xOY9?=
- =?us-ascii?Q?aSSjEieLXiJ+qpYCRgfUvxTeCu5Zl3rvZY3SBqhaoEkL78+UYU+XAP9Q1hXe?=
- =?us-ascii?Q?IjZ2KduLCTMp2yqkA0gQXqOf?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?x91RbKBLLYhaD3TZ148SbA2JWAcp31OLkCBf/IRcAGSNyj6FIRuOwrWffUUQ?=
+ =?us-ascii?Q?2ZeFQoZJjK8Um5uy1lxl9yMI+0crbMaL1Jx206TF7o3iMCKF76Q1WrTuvvRj?=
+ =?us-ascii?Q?luN0H/Kspu3xrjevcD3zrII9eGofEqYkgHYJ3eHx7TU76wmQkI343Jq8b0L0?=
+ =?us-ascii?Q?FvCbGhZxUNprOdJhAWTzGsI4/Cpoih9LJzjZ7+HIbcE8HCOcs25SGyKc4xDB?=
+ =?us-ascii?Q?w8tubg6objzMKWTg9/iT2MYt1Nu2+E75gRzWZ5dDz68EKWG7Fcd8WZxvp8Tx?=
+ =?us-ascii?Q?WlcJ+JZnlpC9kqE/GU/ZNp9bK0ZjIfzC8IvKlYcxgFG/yeEGgAtcyYpCep6q?=
+ =?us-ascii?Q?yGikblE28iagI1uzJfWgsvwvBodwF3NjfMMyVwYDZPJIgzHC5RW3XhbH8tYB?=
+ =?us-ascii?Q?wLie3SwUhpJfRb0uxrLFkKWezeEp5+tYyT8WRGbqOwaTfCPTfLmnFDUC8d8D?=
+ =?us-ascii?Q?WQkUZbZkNK5YcseeYALSJQSsbOGwD6dJi41EQdeyfuFV0Wpi7sFumd0jzipa?=
+ =?us-ascii?Q?ukyvSH2iBdbQ6rUeCpiMH02DxO+DegIfhqPMLAEATlQHSGI+1TdMC6QLeOia?=
+ =?us-ascii?Q?+WVSjscB/ZWrK3da2wkNuQAY+epM48ZjMG+6et18pAPBjLqbKehuTbjz7cNm?=
+ =?us-ascii?Q?sPQddYe3NtnrABIA98jTYUuz77ngOmzFfflKCOhCL6Cju3ofbUIVdloZyb19?=
+ =?us-ascii?Q?faFLRoAFDgDwZkAJA7a7ybzSaCzYDyGsEynV9j2BXtN8VwBFDRnYP75sZjVR?=
+ =?us-ascii?Q?ef6pr2UgxcxqOtGYCM8tyXNdAYV4fb+RvCrZrXWOmA321BdQna8FWf6QeefC?=
+ =?us-ascii?Q?gawQRYoDykFtG/sUa6PXs6mRdLGXWktXlINffMr5mK6xXJBIjihMphOf4ZjW?=
+ =?us-ascii?Q?WBmnFOLr6zevZq/JZazAPaqXo6QYqMARnPPySdVFxmTf59IGm6Cg8stT2Dbu?=
+ =?us-ascii?Q?aeNjNxdsfGfp+YOVsvQ3RanC3cSpBBgLyDzt4L98RYYPy3oZEUlyY7n11Ays?=
+ =?us-ascii?Q?oJdYviw3QqQeKC8m3ALfMlae+SS56mhNrbNsq0SW3o9VkoorlzpjVrc5WB2U?=
+ =?us-ascii?Q?xyIgVcT5XBy7cAYbIXCDDOsESxhoWj78PPF2/RxCQst+k7jxRVfVBc6Gv9CE?=
+ =?us-ascii?Q?c58xTwt9YmW1FhxE4TlW11M0Xk3ElDbY2SqkEndrDZiNTqC9ChL5d+0pSL6w?=
+ =?us-ascii?Q?qwhsHQf04v1L91JUudFMqZ7QFUg4TngUPG/1J3oG8haKZgZFC2yPE9Ex/GIn?=
+ =?us-ascii?Q?iB5l/AndnbagjvOv0Gj+6clt6y0NedCHyEZ5RcY0beLU7KU6cS6P31eHlNBj?=
+ =?us-ascii?Q?vdJEhB969YnL1NQ52rAsq9wx?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bfabe728-566d-4c4d-3f8d-08d8ced64942
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09c3f1e8-e787-404c-bd29-08d8ced649f5
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2939.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2021 21:45:02.2905 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2021 21:45:03.5238 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /vprqE2ruueEHks2kpZ15KD0k4ybz3GLCfFu3PHpe8oLQ91O9zFfAlACw6q96z3U
+X-MS-Exchange-CrossTenant-UserPrincipalName: DCz4zEYWYCgdjGsjP1sE1NBeAK3q8BfQcOJFjMbhqiRRA4UgSdv39Xu+P9kIE+ks
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4235
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -117,44 +118,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
- Martin Leung <martin.leung@amd.com>, Bhawanpreet.Lakha@amd.com,
- bindu.r@amd.com
+ Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Martin Leung <martin.leung@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
 [Why]
-Hardware team remeasured, need to update timings
-to increase latency slightly and avoid intermittent
-underflows.
+We added these in DMCUB for runtime feature detection
+but we didn't have helpers to call these with DC error
+handling/logging.
 
 [How]
-sr exit latency update.
+Add helpers.
 
-Signed-off-by: Martin Leung <martin.leung@amd.com>
-Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Reviewed-by: Eric Yang <eric.yang2@amd.com>
 Acked-by: Qingqing Zhuo <Qingqing.Zhuo@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c | 22 ++++++++++++++++++++
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h |  2 ++
+ 2 files changed, 24 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index 8d0f663489ac..f85765cc73f4 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -181,7 +181,7 @@ struct _vcs_dpi_soc_bounding_box_st dcn3_0_soc = {
- 		},
- 	.min_dcfclk = 500.0, /* TODO: set this to actual min DCFCLK */
- 	.num_states = 1,
--	.sr_exit_time_us = 12,
-+	.sr_exit_time_us = 15.5,
- 	.sr_enter_plus_exit_time_us = 20,
- 	.urgent_latency_us = 4.0,
- 	.urgent_latency_pixel_data_only_us = 4.0,
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+index b98754811977..421af1a19dfa 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+@@ -27,6 +27,9 @@
+ #include "dc_dmub_srv.h"
+ #include "../dmub/dmub_srv.h"
+ 
++#define CTX dc_dmub_srv->ctx
++#define DC_LOGGER CTX->logger
++
+ static void dc_dmub_srv_construct(struct dc_dmub_srv *dc_srv, struct dc *dc,
+ 				  struct dmub_srv *dmub)
+ {
+@@ -106,6 +109,25 @@ void dc_dmub_srv_wait_idle(struct dc_dmub_srv *dc_dmub_srv)
+ 		DC_ERROR("Error waiting for DMUB idle: status=%d\n", status);
+ }
+ 
++bool dc_dmub_srv_cmd_with_reply_data(struct dc_dmub_srv *dc_dmub_srv, union dmub_rb_cmd *cmd)
++{
++	struct dmub_srv *dmub;
++	enum dmub_status status;
++
++	if (!dc_dmub_srv || !dc_dmub_srv->dmub)
++		return false;
++
++	dmub = dc_dmub_srv->dmub;
++
++	status = dmub_srv_cmd_with_reply_data(dmub, cmd);
++	if (status != DMUB_STATUS_OK) {
++		DC_LOG_DEBUG("No reply for DMUB command: status=%d\n", status);
++		return false;
++	}
++
++	return true;
++}
++
+ void dc_dmub_srv_wait_phy_init(struct dc_dmub_srv *dc_dmub_srv)
+ {
+ 	struct dmub_srv *dmub = dc_dmub_srv->dmub;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
+index bb4ab61887e4..d76f9f2410cb 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
+@@ -56,6 +56,8 @@ void dc_dmub_srv_wait_idle(struct dc_dmub_srv *dc_dmub_srv);
+ 
+ void dc_dmub_srv_wait_phy_init(struct dc_dmub_srv *dc_dmub_srv);
+ 
++bool dc_dmub_srv_cmd_with_reply_data(struct dc_dmub_srv *dc_dmub_srv, union dmub_rb_cmd *cmd);
++
+ bool dc_dmub_srv_notify_stream_mask(struct dc_dmub_srv *dc_dmub_srv,
+ 				    unsigned int stream_mask);
+ #endif /* _DMUB_DC_SRV_H_ */
 -- 
 2.17.1
 
