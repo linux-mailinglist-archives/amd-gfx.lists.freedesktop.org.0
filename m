@@ -2,57 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AD3F31C189
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Feb 2021 19:32:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C84631C18B
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Feb 2021 19:32:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 857FA89F89;
-	Mon, 15 Feb 2021 18:32:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39A136E0DB;
+	Mon, 15 Feb 2021 18:32:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com
- [IPv6:2607:f8b0:4864:20::735])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D34789F89
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com
+ [IPv6:2607:f8b0:4864:20::82d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDB6489F89
  for <amd-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 18:32:47 +0000 (UTC)
-Received: by mail-qk1-x735.google.com with SMTP id 81so7246306qkf.4
+Received: by mail-qt1-x82d.google.com with SMTP id d3so5443753qtr.10
  for <amd-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 10:32:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=isuYxfNsk8oGtU+WDDf+1/u1gtADpqTiHiYwDUUnUYg=;
- b=JiPJJGq4iBZgW9AMNXZ9aQBb0cZp+XnW5ccT6oEr5uO7fLNibPjmkhYCLx6Kkabzcg
- jUKppMiDRWyrsCK4wT5vTsYD4F1KS/RRq5p4i16a67ermDkpm8o1GOuX4xo9QhcV33oF
- Y5U0Pq/B1SH1pNe5D05grJ8jYzgG5ALC9PxKdyrd/EKFveNi0wG8rCNrp07ozSlHCRO0
- RHSoY0fGPbbF9h1Jox8AjKpajwjsGQz2O3eEbwtgzTkrxM3ksqJvUEmf6hf0chAJPX/l
- uIJOEaZAJWqWX+oOXUKpUlBbzp7nmUSHL088ViH+KTMjMitiAVPxkpR+f5rzYMs8afzc
- ingg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=3Jk11fxXfaNOmZ4FItu7OonkV1OM1LGAjwjFQ1i1HbA=;
+ b=PALPAuaevF1UKbPNyYpBEDVt15jn8ia2mVMnZSFTLtI15Iabd6KjAJLjARbf+PWSTk
+ ugWkpCpfr6IhpoUsN4tb6LiCEd3u6rZeJHdFsgqyF8EOFxSJIaGf+cQUT5yUOqxhwSfg
+ L8211q6XGQzaW3miLJXqxwu+GuqPTftAM8rFYo1Wrvok7ce0DZijKNVdBG2YNyKymITw
+ wG6k7tkwA+L/zj7GSg+nT8rl83YRnPv0NrH//of6BlbbxD18ZjOfeb8yOwmOy9wuCHCc
+ 7f1SzxA6AbEYkB/CGctWEbnaqlpEDE9CNtA3SxsphXh22B0vvhU3Ff+mzXfmQY89D96a
+ MPgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=isuYxfNsk8oGtU+WDDf+1/u1gtADpqTiHiYwDUUnUYg=;
- b=AUDheJtBV7dqTsVw5bmIf+QGa1O5jDXqe1OueVdHGlygUJBJ7/C8GEmWeZaAFeUWLv
- 3We/KwnBWans96cu2kQj+kF8cWZoRqUnv2IJr/ZrCb2zQBAsZxpX2f00SpHkfFgUssQR
- 8+m2OueZWgotpdEMi9SpP672wG9iMkhh9p6kDquFeaApA26FGYcWLBYEe/ED4RacWmYH
- 2Lc/YWatKzV5JMe9lBWjysxZqKW+dossNrM/wgN4jmEogLu81jx6fgzx9P9DSj7Qu5Gw
- G1gpPyDKxf4AezokRyT6Dk6ZSk5opf7MPLcsBO9J6ujwrb5J4rgTruCpX1YB69VC/fbc
- qviA==
-X-Gm-Message-State: AOAM5338FXmYreCChZn538RnTY1M0cMB7XDu+RaDKJqtDKIfJYJWJMpP
- SMiZK4IKV8dUi8FkFgHON8yTowrI8Bo=
-X-Google-Smtp-Source: ABdhPJwv1/A7rMiVtRmdGgkxc7bm0RMvqvuGfDPn0ZNRg2nCvgvYhTf93snCEuP63h7S9V4T6ob/bw==
-X-Received: by 2002:a37:63c7:: with SMTP id
- x190mr16003810qkb.189.1613413966254; 
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=3Jk11fxXfaNOmZ4FItu7OonkV1OM1LGAjwjFQ1i1HbA=;
+ b=Z8FAXNc+EIVv0AcueR3zUEn3yktL5QLGYPKN2POjRfsHmLCdD3nz2QcnQsqAxiEL5L
+ lLa0JJewYRFWjQIOQxPI+uQ7PKSHS/ZqU9FL7mFqA38dvGD1JKy+dhyizEHAeO2+sDEo
+ tUqxUWsHaL4gcjjVQqX1CNxEErX3guiHGo/FpkfaMimGakxExc/yY6wlAQL6/xPZy8wf
+ 6BPM3gcHpr/GFJSlwe6RRomt2T0oDy9MoWBBT64/uLV58iaJdvOdKChnz3Cy9AX2U6AN
+ 7yF2HU3SOotYEtbRuRjDoZuRpL7uewqtsF5nbsKbOEmFrtrSeT1i8j/KIyPJ1papfs0y
+ sYvQ==
+X-Gm-Message-State: AOAM533+KgyIYMwb8HWtohXnII49cj4EqV1X6mXK6usy9qWEMx2ovL1Q
+ ANqzymCXrdAu8wy+7XHkNCa+cUPcO6M=
+X-Google-Smtp-Source: ABdhPJzmICj53hk4U3PBCd/Q7VMRfMCYgJytY2CpwWfZnZMStx1bm/ix8tI793vXYXSIv+cU+fpM8A==
+X-Received: by 2002:ac8:d44:: with SMTP id r4mr15249707qti.7.1613413966779;
  Mon, 15 Feb 2021 10:32:46 -0800 (PST)
 Received: from localhost.localdomain ([192.161.79.229])
- by smtp.gmail.com with ESMTPSA id 76sm12859275qke.95.2021.02.15.10.32.45
+ by smtp.gmail.com with ESMTPSA id 76sm12859275qke.95.2021.02.15.10.32.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
  Mon, 15 Feb 2021 10:32:46 -0800 (PST)
 From: Alex Deucher <alexdeucher@gmail.com>
 X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 1/3] drm/amdgpu/display: simplify backlight setting
-Date: Mon, 15 Feb 2021 13:32:28 -0500
-Message-Id: <20210215183230.911939-1-alexander.deucher@amd.com>
+Subject: [PATCH 2/3] drm/amdgpu/display: don't assert in set backlight function
+Date: Mon, 15 Feb 2021 13:32:29 -0500
+Message-Id: <20210215183230.911939-2-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210215183230.911939-1-alexander.deucher@amd.com>
+References: <20210215183230.911939-1-alexander.deucher@amd.com>
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,51 +72,25 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Avoid the extra wrapper function.
+It just spams the logs.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 20 ++++---------------
- 1 file changed, 4 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 8a44b6ba8595..92d6577f8f20 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3128,19 +3128,6 @@ static void amdgpu_dm_update_backlight_caps(struct amdgpu_display_manager *dm)
- #endif
- }
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index fa5059f71727..bd0101013ec8 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -2602,7 +2602,6 @@ bool dc_link_set_backlight_level(const struct dc_link *link,
+ 			if (pipe_ctx->plane_state == NULL)
+ 				frame_ramp = 0;
+ 		} else {
+-			ASSERT(false);
+ 			return false;
+ 		}
  
--static int set_backlight_via_aux(struct dc_link *link, uint32_t brightness)
--{
--	bool rc;
--
--	if (!link)
--		return 1;
--
--	rc = dc_link_set_backlight_level_nits(link, true, brightness,
--					      AUX_BL_DEFAULT_TRANSITION_TIME_MS);
--
--	return rc ? 0 : 1;
--}
--
- static int get_brightness_range(const struct amdgpu_dm_backlight_caps *caps,
- 				unsigned *min, unsigned *max)
- {
-@@ -3203,9 +3190,10 @@ static int amdgpu_dm_backlight_update_status(struct backlight_device *bd)
- 	brightness = convert_brightness_from_user(&caps, bd->props.brightness);
- 	// Change brightness based on AUX property
- 	if (caps.aux_support)
--		return set_backlight_via_aux(link, brightness);
--
--	rc = dc_link_set_backlight_level(dm->backlight_link, brightness, 0);
-+		rc = dc_link_set_backlight_level_nits(link, true, brightness,
-+						      AUX_BL_DEFAULT_TRANSITION_TIME_MS);
-+	else
-+		rc = dc_link_set_backlight_level(dm->backlight_link, brightness, 0);
- 
- 	return rc ? 0 : 1;
- }
 -- 
 2.29.2
 
