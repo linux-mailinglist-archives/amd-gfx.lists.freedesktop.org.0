@@ -2,33 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92AEF31BB6D
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Feb 2021 15:54:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8443F31BB3C
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Feb 2021 15:38:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C716E6E364;
-	Mon, 15 Feb 2021 14:54:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 046156E2B4;
+	Mon, 15 Feb 2021 14:38:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5516689EAC;
- Mon, 15 Feb 2021 14:22:07 +0000 (UTC)
-IronPort-SDR: OHQNEM6hotWdAAvjJZWBqrRKaGCYxUkNwO517xwDP05GGg7ME+KyACsuQfW42s8BK/qEWl5fsH
- UkGWLrcuGLQg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9895"; a="180134246"
-X-IronPort-AV: E=Sophos;i="5.81,180,1610438400"; d="scan'208";a="180134246"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2021 06:22:06 -0800
-IronPort-SDR: gjS+uCy1RooYV8N9lYHIdqLJT2peNhOwkX157krPVoc1icBBrMwSRfcbzevRHxh9+vpd1sj8YJ
- veRJtpYMOhPw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,180,1610438400"; d="scan'208";a="580191385"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orsmga005.jf.intel.com with ESMTP; 15 Feb 2021 06:21:56 -0800
-Received: by black.fi.intel.com (Postfix, from userid 1003)
- id 9E9A8220; Mon, 15 Feb 2021 16:21:55 +0200 (EET)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B15AE6E28A;
+ Mon, 15 Feb 2021 14:38:01 +0000 (UTC)
+IronPort-SDR: 13IZZUA3BJ9Jg4t9XHS9sFeRjkOG861cRbVHjhQDovy6Ww5uSDgMhEJYpTz/hdT4bIxB5HFs2J
+ 3rEze9yGYo5g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9895"; a="161832766"
+X-IronPort-AV: E=Sophos;i="5.81,180,1610438400"; d="scan'208";a="161832766"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2021 06:38:00 -0800
+IronPort-SDR: 5G8UVXefhcghHCN5eZ/Jau7JxqKQnqEhDlAhzJFDDDqpdGCxOwiDwXnHQUq21bhQHRB6bO3MsA
+ uHOLp8d45o9Q==
+X-IronPort-AV: E=Sophos;i="5.81,180,1610438400"; d="scan'208";a="399097442"
+Received: from martincl-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.34.223])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2021 06:37:53 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
  Mikita Lipski <mikita.lipski@amd.com>, Eryk Brol <eryk.brol@amd.com>,
  Chris Wilson <chris@chris-wilson.co.uk>,
  "David S. Miller" <davem@davemloft.net>,
@@ -37,15 +37,14 @@ To: Alex Deucher <alexander.deucher@amd.com>,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  netdev@vger.kernel.org
-Subject: [PATCH v1 3/3] string: Move enableddisabled() helper under string.h
+Subject: Re: [PATCH v1 1/3] string: Consolidate yesno() helpers under string.h
  hood
-Date: Mon, 15 Feb 2021 16:21:37 +0200
-Message-Id: <20210215142137.64476-3-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.30.0
 In-Reply-To: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
+Date: Mon, 15 Feb 2021 16:37:50 +0200
+Message-ID: <87y2fpbdmp.fsf@intel.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 15 Feb 2021 14:54:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,59 +58,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Raju Rangoju <rajur@chelsio.com>, Leo Li <sunpeng.li@amd.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jakub Kicinski <kuba@kernel.org>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Jakub Kicinski <kuba@kernel.org>,
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We have already an implementation and a lot of code that can benefit
-of the enableddisabled() helper. Move it under string.h hood.
+On Mon, 15 Feb 2021, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> We have already few similar implementation and a lot of code that can benefit
+> of the yesno() helper.  Consolidate yesno() helpers under string.h hood.
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_utils.h | 5 -----
- include/linux/string.h            | 5 +++++
- 2 files changed, 5 insertions(+), 5 deletions(-)
+Good luck. I gave up after just four versions. [1]
 
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index d2ac357896d4..b05d72b4dd93 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -409,11 +409,6 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
- #define MBps(x) KBps(1000 * (x))
- #define GBps(x) ((u64)1000 * MBps((x)))
- 
--static inline const char *enableddisabled(bool v)
--{
--	return v ? "enabled" : "disabled";
--}
--
- void add_taint_for_CI(struct drm_i915_private *i915, unsigned int taint);
- static inline void __add_taint_for_CI(unsigned int taint)
- {
-diff --git a/include/linux/string.h b/include/linux/string.h
-index 2a0589e945d9..25f055aa4c31 100644
---- a/include/linux/string.h
-+++ b/include/linux/string.h
-@@ -318,4 +318,9 @@ static inline const char *onoff(bool on)
- 	return on ? "on" : "off";
- }
- 
-+static inline const char *enableddisabled(bool enabled)
-+{
-+	return enabled ? "enabled" : "disabled";
-+}
-+
- #endif /* _LINUX_STRING_H_ */
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+
+BR,
+Jani.
+
+
+[1] http://lore.kernel.org/r/20191023131308.9420-1-jani.nikula@intel.com
+
+
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+>  .../drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c    |  6 +-----
+>  drivers/gpu/drm/i915/i915_utils.h                    |  6 +-----
+>  drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c   | 12 +-----------
+>  include/linux/string.h                               |  5 +++++
+>  4 files changed, 8 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> index 360952129b6d..7fde4f90e513 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> @@ -23,6 +23,7 @@
+>   *
+>   */
+>  
+> +#include <linux/string.h>
+>  #include <linux/uaccess.h>
+>  
+>  #include <drm/drm_debugfs.h>
+> @@ -49,11 +50,6 @@ struct dmub_debugfs_trace_entry {
+>  	uint32_t param1;
+>  };
+>  
+> -static inline const char *yesno(bool v)
+> -{
+> -	return v ? "yes" : "no";
+> -}
+> -
+>  /* parse_write_buffer_into_params - Helper function to parse debugfs write buffer into an array
+>   *
+>   * Function takes in attributes passed to debugfs write entry
+> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+> index abd4dcd9f79c..e6da5a951132 100644
+> --- a/drivers/gpu/drm/i915/i915_utils.h
+> +++ b/drivers/gpu/drm/i915/i915_utils.h
+> @@ -27,6 +27,7 @@
+>  
+>  #include <linux/list.h>
+>  #include <linux/overflow.h>
+> +#include <linux/string.h>
+>  #include <linux/sched.h>
+>  #include <linux/types.h>
+>  #include <linux/workqueue.h>
+> @@ -408,11 +409,6 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
+>  #define MBps(x) KBps(1000 * (x))
+>  #define GBps(x) ((u64)1000 * MBps((x)))
+>  
+> -static inline const char *yesno(bool v)
+> -{
+> -	return v ? "yes" : "no";
+> -}
+> -
+>  static inline const char *onoff(bool v)
+>  {
+>  	return v ? "on" : "off";
+> diff --git a/drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c b/drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c
+> index 7d49fd4edc9e..c857d73abbd7 100644
+> --- a/drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c
+> +++ b/drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c
+> @@ -34,6 +34,7 @@
+>  
+>  #include <linux/seq_file.h>
+>  #include <linux/debugfs.h>
+> +#include <linux/string.h>
+>  #include <linux/string_helpers.h>
+>  #include <linux/sort.h>
+>  #include <linux/ctype.h>
+> @@ -2015,17 +2016,6 @@ static const struct file_operations rss_debugfs_fops = {
+>  /* RSS Configuration.
+>   */
+>  
+> -/* Small utility function to return the strings "yes" or "no" if the supplied
+> - * argument is non-zero.
+> - */
+> -static const char *yesno(int x)
+> -{
+> -	static const char *yes = "yes";
+> -	static const char *no = "no";
+> -
+> -	return x ? yes : no;
+> -}
+> -
+>  static int rss_config_show(struct seq_file *seq, void *v)
+>  {
+>  	struct adapter *adapter = seq->private;
+> diff --git a/include/linux/string.h b/include/linux/string.h
+> index 9521d8cab18e..fd946a5e18c8 100644
+> --- a/include/linux/string.h
+> +++ b/include/linux/string.h
+> @@ -308,4 +308,9 @@ static __always_inline size_t str_has_prefix(const char *str, const char *prefix
+>  	return strncmp(str, prefix, len) == 0 ? len : 0;
+>  }
+>  
+> +static inline const char *yesno(bool yes)
+> +{
+> +	return yes ? "yes" : "no";
+> +}
+> +
+>  #endif /* _LINUX_STRING_H_ */
+
 -- 
-2.30.0
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
