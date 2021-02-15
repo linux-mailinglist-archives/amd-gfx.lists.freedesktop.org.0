@@ -2,60 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAB2F31C18A
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Feb 2021 19:32:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E40D031C1EA
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Feb 2021 19:49:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC06389FD3;
-	Mon, 15 Feb 2021 18:32:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B34C96E910;
+	Mon, 15 Feb 2021 18:49:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com
- [IPv6:2607:f8b0:4864:20::82c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4477F89F89
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 18:32:48 +0000 (UTC)
-Received: by mail-qt1-x82c.google.com with SMTP id x3so5463162qti.5
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 10:32:48 -0800 (PST)
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com
+ [IPv6:2607:f8b0:4864:20::236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 720FD6E910;
+ Mon, 15 Feb 2021 18:49:31 +0000 (UTC)
+Received: by mail-oi1-x236.google.com with SMTP id r75so8697479oie.11;
+ Mon, 15 Feb 2021 10:49:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=LRrOwpeO//GhEGlud54XrTr+C8eEcl3usUMtjyJMGTI=;
- b=SJ/MxxZawltqijn0QTDwsalRifOK+irSO8hPbIYC7pNO9xZ795QrZb/7Ll9cZBdNKo
- yq5fHVjC+GXTws4u3bMzIU6ajaISOPQyTs5x95mmc4O2HaoBgquwWpHHCT38N+8v5qO9
- sqlbkq/+SWeiMeAQ7bm+q1buAUszHFl4o4eE9dQqsoG4J4PdqeZhXfs9Rlkppi1rVQPA
- BnKWIJYJEvFYli8JxjJ6Zk4Y0VKR8qc7s89V6pdVY6r5iZHRTqjESz7GrbWDvO9UW/OZ
- gGJPYkn66g95Q4OJ98DctEaxXPiE6aHZ8X/d8+/Y/u4i7PFsDzzwMIbS0dUo5xbIXXXp
- B0cQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=DB2e39wmNlyzoYXIMSc69EsNZtZJAfxV8F103w5KYGI=;
+ b=oXYEVDu4uTGML/zfEiarbYcXKEQcPNMwtPPdMJWa4jXS30e2OU6f48biZk7RQwqezn
+ 99bmlupbkxFnjs1aK+hmbuDi5sgbHqikxMjQuhR3nlbWMQZrHGQXO5B7nUbN5CN+y761
+ OcZBPECUbFKAjQu/gRUi8gaLlNr0mQQeMDv/AHfHGDll26NYz7i31vmUqzFXeSn1M/d8
+ 9H0NZQVdCFuK29XYKlKDPSHbpZI/IBWB21DvxEJvSaKew3bEFNhPEFWBY9bsWQMYP8H4
+ tLb8MiNcg+rw7Xa7SL0rDxpLM/IIfUTwqQra1hwYVEFfDTslvHgYosDGhWxaBUJstbPQ
+ FgLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=LRrOwpeO//GhEGlud54XrTr+C8eEcl3usUMtjyJMGTI=;
- b=FjJD5bSa++LbcahLl76O3vlEPPc4lkTP7xIgwEOXA6ZsDkHcIYMGGK7rzIV6pEKVQx
- /klMMP9BFr0hWoB0+1mq1dx6Q2fyqQeg4of2PH46SrA6nCGrioxJnm7357wyKMWeuTTH
- R5NhijCd8X/WBgXRZAEZkb84VC8nq1S+u8P380CmDJShrWtIwgArfO0Up8dFH86LQKRD
- zdJ/H1qatvTPBsmAqe+x/DdkVVTJHo9N1zqW2xlnZ5WPBV383dzfwafHgbbrEAT7HHDv
- 77ty/AWWRUbZk5hgpIBd9KoZmTqwtqg2qIofLHyDGGl1/LXPASg26U/GB0z9wsrh7WlJ
- xDGg==
-X-Gm-Message-State: AOAM533SmXeUbsVYOYnArgPpzsEF1kZfiNCTVzROQLIeDqCFX68MVWSK
- MpxpFBwLQBrVVjZ9vxvWhgZ+UAmdwZY=
-X-Google-Smtp-Source: ABdhPJw8wgsH9mHO+q3LJ/CoHjSFN8weFXGLcX/FJiwMer9L/iz1feGCVR6DhJeemPP8n2hCy7Zchg==
-X-Received: by 2002:ac8:745a:: with SMTP id h26mr14745437qtr.278.1613413967386; 
- Mon, 15 Feb 2021 10:32:47 -0800 (PST)
-Received: from localhost.localdomain ([192.161.79.229])
- by smtp.gmail.com with ESMTPSA id 76sm12859275qke.95.2021.02.15.10.32.46
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Feb 2021 10:32:47 -0800 (PST)
-From: Alex Deucher <alexdeucher@gmail.com>
-X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/amdgpu/display: handle aux backlight in
- backlight_get_brightness
-Date: Mon, 15 Feb 2021 13:32:30 -0500
-Message-Id: <20210215183230.911939-3-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210215183230.911939-1-alexander.deucher@amd.com>
-References: <20210215183230.911939-1-alexander.deucher@amd.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=DB2e39wmNlyzoYXIMSc69EsNZtZJAfxV8F103w5KYGI=;
+ b=AVYtsenqzi3CkVwyRnGzsztZTFgdmdO+udXV5o5XLwdRiKvuyibL23VDTIPNtdVRAl
+ YmUDrlFJ2cuGg/MLpzzio6S2aqXpS3g/AOIwEd0uYQDBjxRPLE/zTcKtpOJDlCJ8ppMx
+ 53ANopI7T5Tj6cUGV8+mk81R2L8d9U2f5zvzE5YuNpwcXYf8gqhAF8le/cgRLDJFph0i
+ ob0h7uAaDljCDBsgVb2IzHauJc/PImbRHtkHkv//mc+K+yBY+vkehFWxuHDR0I2KCGvO
+ 9kZ0m0ZIUkcsdHmFWfzkPWjPIhcMHc0rwgA4M37E7Lha4ShRKFGXSjuzq7/jPziZn/nj
+ fkKg==
+X-Gm-Message-State: AOAM533tAssz599JUObfUw+bD7H7xTxfnIXW/bzAC8P4s76UzQhwgGV6
+ MoYYuVY9IVGAEBO8fO4GO/V04gX/FFjL3BdDJAm2kLb9
+X-Google-Smtp-Source: ABdhPJwtNcR+iy1OFkd46IBqezbb6PuDuK3CNJ9h15rAjsTAG8bDhXVe9+Ue5E0HqMfp7H7iOOiO4n6Ukn2d+9HXkyM=
+X-Received: by 2002:aca:c786:: with SMTP id x128mr208317oif.120.1613414970760; 
+ Mon, 15 Feb 2021 10:49:30 -0800 (PST)
 MIME-Version: 1.0
+References: <20210210120330.54066-1-colin.king@canonical.com>
+In-Reply-To: <20210210120330.54066-1-colin.king@canonical.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 15 Feb 2021 13:49:19 -0500
+Message-ID: <CADnq5_NHvHgUzd=3xS0VTKVTWyQx2uQn5d2cMrDMso_o0UiUOA@mail.gmail.com>
+Subject: Re: [PATCH][next] drm/amd/pm: fix spelling mistake in various
+ messages "power_dpm_force_perfomance_level"
+To: Colin King <colin.king@canonical.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,58 +60,85 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: David Airlie <airlied@linux.ie>, kernel-janitors@vger.kernel.org,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Evan Quan <evan.quan@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Need to fetch it via aux.
+On Wed, Feb 10, 2021 at 7:03 AM Colin King <colin.king@canonical.com> wrote:
+>
+> From: Colin Ian King <colin.king@canonical.com>
+>
+> There are spelling mistakes in error and warning messages, the text
+> power_dpm_force_perfomance_level is missing a letter r and should be
+> power_dpm_force_performance_level.  Fix them.
+>
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 24 +++++++++++++++----
- 1 file changed, 20 insertions(+), 4 deletions(-)
+Applied.  Thanks!
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 92d6577f8f20..16020ff4b52f 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -3201,11 +3201,27 @@ static int amdgpu_dm_backlight_update_status(struct backlight_device *bd)
- static int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd)
- {
- 	struct amdgpu_display_manager *dm = bl_get_data(bd);
--	int ret = dc_link_get_backlight_level(dm->backlight_link);
-+	struct amdgpu_dm_backlight_caps caps;
-+
-+	amdgpu_dm_update_backlight_caps(dm);
-+	caps = dm->backlight_caps;
- 
--	if (ret == DC_ERROR_UNEXPECTED)
--		return bd->props.brightness;
--	return convert_brightness_to_user(&dm->backlight_caps, ret);
-+	if (caps.aux_support) {
-+		struct dc_link *link = (struct dc_link *)dm->backlight_link;
-+		u32 avg, peak;
-+		bool rc;
-+
-+		rc = dc_link_get_backlight_level_nits(link, &avg, &peak);
-+		if (!rc)
-+			return bd->props.brightness;
-+		return convert_brightness_to_user(&caps, avg);
-+	} else {
-+		int ret = dc_link_get_backlight_level(dm->backlight_link);
-+
-+		if (ret == DC_ERROR_UNEXPECTED)
-+			return bd->props.brightness;
-+		return convert_brightness_to_user(&caps, ret);
-+	}
- }
- 
- static const struct backlight_ops amdgpu_dm_backlight_ops = {
--- 
-2.29.2
+Alex
 
+
+> ---
+>  drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c | 2 +-
+>  drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c     | 2 +-
+>  drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c      | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
+> index ed05a30d1139..d1358a6dd2c8 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
+> @@ -1487,7 +1487,7 @@ static int smu10_set_fine_grain_clk_vol(struct pp_hwmgr *hwmgr,
+>         }
+>
+>         if (!smu10_data->fine_grain_enabled) {
+> -               pr_err("pp_od_clk_voltage is not accessible if power_dpm_force_perfomance_level is not in manual mode!\n");
+> +               pr_err("pp_od_clk_voltage is not accessible if power_dpm_force_performance_level is not in manual mode!\n");
+>                 return -EINVAL;
+>         }
+>
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+> index 093b01159408..8abb25a28117 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
+> @@ -1462,7 +1462,7 @@ static int vangogh_od_edit_dpm_table(struct smu_context *smu, enum PP_OD_DPM_TAB
+>
+>         if (!(smu_dpm_ctx->dpm_level == AMD_DPM_FORCED_LEVEL_MANUAL)) {
+>                 dev_warn(smu->adev->dev,
+> -                       "pp_od_clk_voltage is not accessible if power_dpm_force_perfomance_level is not in manual mode!\n");
+> +                       "pp_od_clk_voltage is not accessible if power_dpm_force_performance_level is not in manual mode!\n");
+>                 return -EINVAL;
+>         }
+>
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
+> index 5faa509f0dba..b59156dfca19 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
+> @@ -351,7 +351,7 @@ static int renoir_od_edit_dpm_table(struct smu_context *smu,
+>
+>         if (!(smu_dpm_ctx->dpm_level == AMD_DPM_FORCED_LEVEL_MANUAL)) {
+>                 dev_warn(smu->adev->dev,
+> -                       "pp_od_clk_voltage is not accessible if power_dpm_force_perfomance_level is not in manual mode!\n");
+> +                       "pp_od_clk_voltage is not accessible if power_dpm_force_performance_level is not in manual mode!\n");
+>                 return -EINVAL;
+>         }
+>
+> --
+> 2.30.0
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
