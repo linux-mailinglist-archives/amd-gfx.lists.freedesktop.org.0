@@ -2,60 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB23C31DF55
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Feb 2021 20:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 110D231E029
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Feb 2021 21:26:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5EB86E5D2;
-	Wed, 17 Feb 2021 19:00:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80B446E9D9;
+	Wed, 17 Feb 2021 20:26:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
- [IPv6:2a00:1450:4864:20::532])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E3C56E5CE
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 19:00:36 +0000 (UTC)
-Received: by mail-ed1-x532.google.com with SMTP id v9so13494188edw.8
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 11:00:36 -0800 (PST)
+Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com
+ [IPv6:2607:f8b0:4864:20::72f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AD856E9D9
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 20:26:15 +0000 (UTC)
+Received: by mail-qk1-x72f.google.com with SMTP id w19so14088168qki.13
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 12:26:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=qDZWBieA0yPQF0mskI0/oIAm6DS0wisxXWw3sv4OtRE=;
- b=PGKGp9Z54HnJgXdaZvJcgJkKBT52dfbRLUGxnkhmt6LuXLrjQRajRec0P2XxwAnkfH
- OmlbwoeMu1a9ZMN/kO2BTPSvkFKJvYcS3SsvVWV3e4RrFwqnp2k4Tvx8I4g2sOaL6L+t
- kOwAzh296RvuWfOi3w3QzuEQEYGopET1JZDdUYeWA4Vn0jHA2tFZKXN8BHbHMMIQIJiu
- movEin1kwJezuzxST//OO7KY+aJsjUjfz5Ptl5Ldrq1PZKI/8ybTtULQWQLF9ypTUV8/
- oH4bML/jg0kqoBbO1LNnJif4HCRSh0SqOcKT2Gu1otR72pCUzWfTLt9ySeAkjSzAnN8g
- 7Mww==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=afrO7CI3SPXzdOt7BE1MnB2xbiq7Yctx0axL9xV7bBg=;
+ b=L83c+TZ8hGBtMlqnbJGbwTlvpxaSf+NLCIzIJWXkIJUYHjwKarMPJoKJDj18Ajt8aM
+ 2359piIlCmlzaynrM3OhP7LG1G66kDBHQpggvbRc5vpympRpuK+BJd/x94V335260MzA
+ 3g5+EL0xt3wCTlMyowHcS5sFWnHIbWjrKRSCfpoC2FIKZ/VxLum3nu9xK39C6FLnENgZ
+ ihgbcSlnYfODoRl4DhflcT4UsD39bZyvZmfbMDyqk6qeO8QZQIJU50taCeTMNYCEEYoV
+ SJp/wgoJZIgh1RqyhPP1KtTqNM3Kcp2chL0H+NqNRgNr5KAh2NaAmp9akswL/gB6sB7j
+ 9kSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=qDZWBieA0yPQF0mskI0/oIAm6DS0wisxXWw3sv4OtRE=;
- b=m5dpg0tE7oRrM/sp/Algk61uaABTJYrQaTqFlQzOl8vpS0DkgvelrlsnPokwvjVp/N
- syiAoTRokEdehR1F0st2a7UdLqEA6FNuwLez8fnxt/OyGLSQB+n/ZILfjyeJhdGTkk7b
- +p12cf07taCJYkTtXE3zrbWSE7z5y0izFRSp4CtPjpRTVUaAsbu7qXO4FB9nbAfEziMX
- Iv7vHwKR+UHB5NSIbNg0r7aEc9nLfZx0FAfAD5Zpp7ZDaa+omtQWwiYeY+Vo+byVmjY8
- be7dh6pgegxHbKlzRiyFuuBfizr/nxK8dAXBAKJi17CaTihex2UY0JigLxgjtn6/i0qM
- Ff2g==
-X-Gm-Message-State: AOAM530kfUg6rkBM2pmTln9S+zK1ohi96hlWGof41RCNll2u0195rm+M
- 0+iektlhhAzSkj4fovRJvmO9jT8Tl9R+xw==
-X-Google-Smtp-Source: ABdhPJxq6ylLPmg9d4TlUuCs+PIunQsDMK0EBLs3DtKhdjzofnWwjVadZ5DQzxWSUbLRC6bnjhz/9w==
-X-Received: by 2002:aa7:db53:: with SMTP id n19mr218914edt.359.1613588434910; 
- Wed, 17 Feb 2021 11:00:34 -0800 (PST)
-Received: from abel.fritz.box ([2a02:908:1252:fb60:b7c6:d2d7:631c:11b7])
- by smtp.gmail.com with ESMTPSA id r4sm1562710edv.27.2021.02.17.11.00.34
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=afrO7CI3SPXzdOt7BE1MnB2xbiq7Yctx0axL9xV7bBg=;
+ b=ZiF7RQbLzDqgNeKsUjiP8a+WbadkvLVkhRT8ibbqQIN62WEQHuDOzCR0aMpeMkZVr9
+ 8ojZBt04QvLqKH9IsFKH13iZSEnAjvnnaiIV/ogcpE7p9NWe05kkbBNLnl5w59mps1Kx
+ pPQmxMoq/VRNgJFpTTs9Hc3QCnz6mKuaAVJF6GQnY3DmPC0UIEzNPTBMp62K262KCDL0
+ vfy07EhrZp+OLnBZ5dJx/YyJDo7CChfojaAh7pO2Uhp8wabKsEliRGbANkmF4lZurmM/
+ ercA1tDhecakvOV1pHrkOwmBjSNmCZdqz9WoCtB5/LroWy0vV+zvTR2QjMRpBGfV+AOD
+ XV1w==
+X-Gm-Message-State: AOAM530bgGqrJd2nN0IrYDC0mjCu/7MfYfzNwKsX7Fb+5vQ2lG8D5gZx
+ fEylP1hKE+rWWmkX7yBoiFmiNA9ZNKc=
+X-Google-Smtp-Source: ABdhPJyGjwyBYQZvAhblYRzo7AXoPijV4pk05Od7f2JgGgZ8itaPO4RR4AwTiNZkGQac6n3w8nILeg==
+X-Received: by 2002:a37:e20b:: with SMTP id g11mr1000867qki.292.1613593574634; 
+ Wed, 17 Feb 2021 12:26:14 -0800 (PST)
+Received: from localhost.localdomain ([192.161.79.229])
+ by smtp.gmail.com with ESMTPSA id h186sm2348004qke.129.2021.02.17.12.26.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 17 Feb 2021 11:00:34 -0800 (PST)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: Ramesh.Errabolu@amd.com,
-	amd-gfx@lists.freedesktop.org
-Subject: [PATCH 8/8] drm/amdgpu: use the new cursor in the VM code
-Date: Wed, 17 Feb 2021 20:00:28 +0100
-Message-Id: <20210217190028.16409-8-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210217190028.16409-1-christian.koenig@amd.com>
-References: <20210217190028.16409-1-christian.koenig@amd.com>
+ Wed, 17 Feb 2021 12:26:14 -0800 (PST)
+From: Alex Deucher <alexdeucher@gmail.com>
+X-Google-Original-From: Alex Deucher <alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/admgpu: Set reference clock to 100Mhz on Renoir
+Date: Wed, 17 Feb 2021 15:26:06 -0500
+Message-Id: <20210217202606.2100403-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,99 +64,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arunpravin.PaneerSelvam@amd.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-U2VwYXJhdGUgdGhlIGRybV9tbV9ub2RlIHdhbGtpbmcgZnJvbSB0aGUgYWN0dWFsIGhhbmRsaW5n
-LgoKU2lnbmVkLW9mZi1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQu
-Y29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5jIHwgNTUgKysr
-KysrKysrLS0tLS0tLS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxOCBpbnNlcnRpb25zKCsp
-LCAzNyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS9hbWRncHVfdm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5jCmlu
-ZGV4IGZkYmU3ZDRlOGI4Yi4uNGE5NmE5NjE0NmY3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
-dS9hbWRncHVfdm0uYwpAQCAtMzcsNiArMzcsNyBAQAogI2luY2x1ZGUgImFtZGdwdV9nbWMuaCIK
-ICNpbmNsdWRlICJhbWRncHVfeGdtaS5oIgogI2luY2x1ZGUgImFtZGdwdV9kbWFfYnVmLmgiCisj
-aW5jbHVkZSAiYW1kZ3B1X3Jlc19jdXJzb3IuaCIKIAogLyoqCiAgKiBET0M6IEdQVVZNCkBAIC0x
-NTgwLDcgKzE1ODEsNyBAQCBzdGF0aWMgaW50IGFtZGdwdV92bV91cGRhdGVfcHRlcyhzdHJ1Y3Qg
-YW1kZ3B1X3ZtX3VwZGF0ZV9wYXJhbXMgKnBhcmFtcywKICAqIEBsYXN0OiBsYXN0IG1hcHBlZCBl
-bnRyeQogICogQGZsYWdzOiBmbGFncyBmb3IgdGhlIGVudHJpZXMKICAqIEBvZmZzZXQ6IG9mZnNl
-dCBpbnRvIG5vZGVzIGFuZCBwYWdlc19hZGRyCi0gKiBAbm9kZXM6IGFycmF5IG9mIGRybV9tbV9u
-b2RlcyB3aXRoIHRoZSBNQyBhZGRyZXNzZXMKKyAqIEByZXM6IHR0bV9yZXNvdXJjZSB0byBtYXAK
-ICAqIEBwYWdlc19hZGRyOiBETUEgYWRkcmVzc2VzIHRvIHVzZSBmb3IgbWFwcGluZwogICogQGZl
-bmNlOiBvcHRpb25hbCByZXN1bHRpbmcgZmVuY2UKICAqCkBAIC0xNTk1LDEzICsxNTk2LDEzIEBA
-IHN0YXRpYyBpbnQgYW1kZ3B1X3ZtX2JvX3VwZGF0ZV9tYXBwaW5nKHN0cnVjdCBhbWRncHVfZGV2
-aWNlICphZGV2LAogCQkJCSAgICAgICBib29sIHVubG9ja2VkLCBzdHJ1Y3QgZG1hX3Jlc3YgKnJl
-c3YsCiAJCQkJICAgICAgIHVpbnQ2NF90IHN0YXJ0LCB1aW50NjRfdCBsYXN0LAogCQkJCSAgICAg
-ICB1aW50NjRfdCBmbGFncywgdWludDY0X3Qgb2Zmc2V0LAotCQkJCSAgICAgICBzdHJ1Y3QgZHJt
-X21tX25vZGUgKm5vZGVzLAorCQkJCSAgICAgICBzdHJ1Y3QgdHRtX3Jlc291cmNlICpyZXMsCiAJ
-CQkJICAgICAgIGRtYV9hZGRyX3QgKnBhZ2VzX2FkZHIsCiAJCQkJICAgICAgIHN0cnVjdCBkbWFf
-ZmVuY2UgKipmZW5jZSkKIHsKIAlzdHJ1Y3QgYW1kZ3B1X3ZtX3VwZGF0ZV9wYXJhbXMgcGFyYW1z
-OworCXN0cnVjdCBhbWRncHVfcmVzX2N1cnNvciBjdXJzb3I7CiAJZW51bSBhbWRncHVfc3luY19t
-b2RlIHN5bmNfbW9kZTsKLQl1aW50NjRfdCBwZm47CiAJaW50IHI7CiAKIAltZW1zZXQoJnBhcmFt
-cywgMCwgc2l6ZW9mKHBhcmFtcykpOwpAQCAtMTYxOSwxNCArMTYyMCw2IEBAIHN0YXRpYyBpbnQg
-YW1kZ3B1X3ZtX2JvX3VwZGF0ZV9tYXBwaW5nKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LAog
-CWVsc2UKIAkJc3luY19tb2RlID0gQU1ER1BVX1NZTkNfRVhQTElDSVQ7CiAKLQlwZm4gPSBvZmZz
-ZXQgPj4gUEFHRV9TSElGVDsKLQlpZiAobm9kZXMpIHsKLQkJd2hpbGUgKHBmbiA+PSBub2Rlcy0+
-c2l6ZSkgewotCQkJcGZuIC09IG5vZGVzLT5zaXplOwotCQkJKytub2RlczsKLQkJfQotCX0KLQog
-CWFtZGdwdV92bV9ldmljdGlvbl9sb2NrKHZtKTsKIAlpZiAodm0tPmV2aWN0aW5nKSB7CiAJCXIg
-PSAtRUJVU1k7CkBAIC0xNjQ1LDIzICsxNjM4LDE3IEBAIHN0YXRpYyBpbnQgYW1kZ3B1X3ZtX2Jv
-X3VwZGF0ZV9tYXBwaW5nKHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LAogCWlmIChyKQogCQln
-b3RvIGVycm9yX3VubG9jazsKIAotCWRvIHsKKwlhbWRncHVfcmVzX2ZpcnN0KHJlcywgb2Zmc2V0
-LCAobGFzdCAtIHN0YXJ0ICsgMSkgKiBBTURHUFVfR1BVX1BBR0VfU0laRSwKKwkJCSAmY3Vyc29y
-KTsKKwl3aGlsZSAoY3Vyc29yLnJlbWFpbmluZykgewogCQl1aW50NjRfdCB0bXAsIG51bV9lbnRy
-aWVzLCBhZGRyOwogCi0KLQkJbnVtX2VudHJpZXMgPSBsYXN0IC0gc3RhcnQgKyAxOwotCQlpZiAo
-bm9kZXMpIHsKLQkJCWFkZHIgPSBub2Rlcy0+c3RhcnQgPDwgUEFHRV9TSElGVDsKLQkJCW51bV9l
-bnRyaWVzID0gbWluKChub2Rlcy0+c2l6ZSAtIHBmbikgKgotCQkJCUFNREdQVV9HUFVfUEFHRVNf
-SU5fQ1BVX1BBR0UsIG51bV9lbnRyaWVzKTsKLQkJfSBlbHNlIHsKLQkJCWFkZHIgPSAwOwotCQl9
-Ci0KKwkJbnVtX2VudHJpZXMgPSBjdXJzb3Iuc2l6ZSA+PiBBTURHUFVfR1BVX1BBR0VfU0hJRlQ7
-CiAJCWlmIChwYWdlc19hZGRyKSB7CiAJCQlib29sIGNvbnRpZ3VvdXMgPSB0cnVlOwogCiAJCQlp
-ZiAobnVtX2VudHJpZXMgPiBBTURHUFVfR1BVX1BBR0VTX0lOX0NQVV9QQUdFKSB7CisJCQkJdWlu
-dDY0X3QgcGZuID0gY3Vyc29yLnN0YXJ0ID4+IFBBR0VfU0hJRlQ7CiAJCQkJdWludDY0X3QgY291
-bnQ7CiAKIAkJCQljb250aWd1b3VzID0gcGFnZXNfYWRkcltwZm4gKyAxXSA9PQpAQCAtMTY4MSwx
-NiArMTY2OCwxOCBAQCBzdGF0aWMgaW50IGFtZGdwdV92bV9ib191cGRhdGVfbWFwcGluZyhzdHJ1
-Y3QgYW1kZ3B1X2RldmljZSAqYWRldiwKIAkJCX0KIAogCQkJaWYgKCFjb250aWd1b3VzKSB7Ci0J
-CQkJYWRkciA9IHBmbiA8PCBQQUdFX1NISUZUOworCQkJCWFkZHIgPSBjdXJzb3Iuc3RhcnQ7CiAJ
-CQkJcGFyYW1zLnBhZ2VzX2FkZHIgPSBwYWdlc19hZGRyOwogCQkJfSBlbHNlIHsKLQkJCQlhZGRy
-ID0gcGFnZXNfYWRkcltwZm5dOworCQkJCWFkZHIgPSBwYWdlc19hZGRyW2N1cnNvci5zdGFydCA+
-PiBQQUdFX1NISUZUXTsKIAkJCQlwYXJhbXMucGFnZXNfYWRkciA9IE5VTEw7CiAJCQl9CiAKIAkJ
-fSBlbHNlIGlmIChmbGFncyAmIChBTURHUFVfUFRFX1ZBTElEIHwgQU1ER1BVX1BURV9QUlQpKSB7
-Ci0JCQlhZGRyICs9IGJvX2FkZXYtPnZtX21hbmFnZXIudnJhbV9iYXNlX29mZnNldDsKLQkJCWFk
-ZHIgKz0gcGZuIDw8IFBBR0VfU0hJRlQ7CisJCQlhZGRyID0gYm9fYWRldi0+dm1fbWFuYWdlci52
-cmFtX2Jhc2Vfb2Zmc2V0ICsKKwkJCQljdXJzb3Iuc3RhcnQ7CisJCX0gZWxzZSB7CisJCQlhZGRy
-ID0gMDsKIAkJfQogCiAJCXRtcCA9IHN0YXJ0ICsgbnVtX2VudHJpZXM7CkBAIC0xNjk4LDE0ICsx
-Njg3LDkgQEAgc3RhdGljIGludCBhbWRncHVfdm1fYm9fdXBkYXRlX21hcHBpbmcoc3RydWN0IGFt
-ZGdwdV9kZXZpY2UgKmFkZXYsCiAJCWlmIChyKQogCQkJZ290byBlcnJvcl91bmxvY2s7CiAKLQkJ
-cGZuICs9IG51bV9lbnRyaWVzIC8gQU1ER1BVX0dQVV9QQUdFU19JTl9DUFVfUEFHRTsKLQkJaWYg
-KG5vZGVzICYmIG5vZGVzLT5zaXplID09IHBmbikgewotCQkJcGZuID0gMDsKLQkJCSsrbm9kZXM7
-Ci0JCX0KKwkJYW1kZ3B1X3Jlc19uZXh0KCZjdXJzb3IsIG51bV9lbnRyaWVzICogQU1ER1BVX0dQ
-VV9QQUdFX1NJWkUpOwogCQlzdGFydCA9IHRtcDsKLQotCX0gd2hpbGUgKHVubGlrZWx5KHN0YXJ0
-ICE9IGxhc3QgKyAxKSk7CisJfTsKIAogCXIgPSB2bS0+dXBkYXRlX2Z1bmNzLT5jb21taXQoJnBh
-cmFtcywgZmVuY2UpOwogCkBAIC0xNzM0LDcgKzE3MTgsNiBAQCBpbnQgYW1kZ3B1X3ZtX2JvX3Vw
-ZGF0ZShzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiwgc3RydWN0IGFtZGdwdV9ib192YSAqYm9f
-dmEsCiAJc3RydWN0IGFtZGdwdV9ib192YV9tYXBwaW5nICptYXBwaW5nOwogCWRtYV9hZGRyX3Qg
-KnBhZ2VzX2FkZHIgPSBOVUxMOwogCXN0cnVjdCB0dG1fcmVzb3VyY2UgKm1lbTsKLQlzdHJ1Y3Qg
-ZHJtX21tX25vZGUgKm5vZGVzOwogCXN0cnVjdCBkbWFfZmVuY2UgKipsYXN0X3VwZGF0ZTsKIAlz
-dHJ1Y3QgZG1hX3Jlc3YgKnJlc3Y7CiAJdWludDY0X3QgZmxhZ3M7CkBAIC0xNzQzLDcgKzE3MjYs
-NiBAQCBpbnQgYW1kZ3B1X3ZtX2JvX3VwZGF0ZShzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiwg
-c3RydWN0IGFtZGdwdV9ib192YSAqYm9fdmEsCiAKIAlpZiAoY2xlYXIgfHwgIWJvKSB7CiAJCW1l
-bSA9IE5VTEw7Ci0JCW5vZGVzID0gTlVMTDsKIAkJcmVzdiA9IHZtLT5yb290LmJhc2UuYm8tPnRi
-by5iYXNlLnJlc3Y7CiAJfSBlbHNlIHsKIAkJc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmogPSAm
-Ym8tPnRiby5iYXNlOwpAQCAtMTc1OSw3ICsxNzQxLDYgQEAgaW50IGFtZGdwdV92bV9ib191cGRh
-dGUoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYsIHN0cnVjdCBhbWRncHVfYm9fdmEgKmJvX3Zh
-LAogCQkJCWJvID0gZ2VtX3RvX2FtZGdwdV9ibyhnb2JqKTsKIAkJfQogCQltZW0gPSAmYm8tPnRi
-by5tZW07Ci0JCW5vZGVzID0gbWVtLT5tbV9ub2RlOwogCQlpZiAobWVtLT5tZW1fdHlwZSA9PSBU
-VE1fUExfVFQpIHsKIAkJCXR0bSA9IGNvbnRhaW5lcl9vZihiby0+dGJvLnR0bSwgc3RydWN0IHR0
-bV9kbWFfdHQsIHR0bSk7CiAJCQlwYWdlc19hZGRyID0gdHRtLT5kbWFfYWRkcmVzczsKQEAgLTE4
-MTAsNyArMTc5MSw3IEBAIGludCBhbWRncHVfdm1fYm9fdXBkYXRlKHN0cnVjdCBhbWRncHVfZGV2
-aWNlICphZGV2LCBzdHJ1Y3QgYW1kZ3B1X2JvX3ZhICpib192YSwKIAkJciA9IGFtZGdwdV92bV9i
-b191cGRhdGVfbWFwcGluZyhhZGV2LCBib19hZGV2LCB2bSwgZmFsc2UsIGZhbHNlLAogCQkJCQkJ
-cmVzdiwgbWFwcGluZy0+c3RhcnQsCiAJCQkJCQltYXBwaW5nLT5sYXN0LCB1cGRhdGVfZmxhZ3Ms
-Ci0JCQkJCQltYXBwaW5nLT5vZmZzZXQsIG5vZGVzLAorCQkJCQkJbWFwcGluZy0+b2Zmc2V0LCBt
-ZW0sCiAJCQkJCQlwYWdlc19hZGRyLCBsYXN0X3VwZGF0ZSk7CiAJCWlmIChyKQogCQkJcmV0dXJu
-IHI7Ci0tIAoyLjI1LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
+Fixes the rlc reference clock used for GPU timestamps.
+Hardcode for now.  The proper fix would be to look up
+the values from the proper vbios table.  This will be
+in a follow up patch.
+
+Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1480
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/soc15.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
+index c7d0e0e98391..230caaa3513f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -463,6 +463,8 @@ static u32 soc15_get_xclk(struct amdgpu_device *adev)
+ {
+ 	u32 reference_clock = adev->clock.spll.reference_freq;
+ 
++	if (adev->asic_type == CHIP_RENOIR)
++		return 10000;
+ 	if (adev->asic_type == CHIP_RAVEN)
+ 		return reference_clock / 4;
+ 
+-- 
+2.29.2
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
