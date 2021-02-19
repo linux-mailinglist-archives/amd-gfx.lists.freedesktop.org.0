@@ -1,44 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FD6E320045
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Feb 2021 22:22:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91CA73200AE
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Feb 2021 22:55:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB56B6EC13;
-	Fri, 19 Feb 2021 21:22:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1C786EC59;
+	Fri, 19 Feb 2021 21:55:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-40136.protonmail.ch (mail-40136.protonmail.ch
- [185.70.40.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B8276EC13
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Feb 2021 21:22:17 +0000 (UTC)
-Date: Fri, 19 Feb 2021 21:21:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail3; t=1613769734;
- bh=5uzKZTRCNRBGtVIqUMAHNOxMRvWLFGGQ1xRiMRikaJw=;
- h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
- b=Mf/tDvyHdBpz7HX3xmRcdssIXSHK/G+UupHh3t5+H/Nup0MAfQymrWTF8ZMHUHYiK
- Ujj9IrsFQeHON65qeEpwnuoFyyQmpAssJ2FeaPqZf2XeI4V3/5t/3qc0mzeFAqNqmG
- OHEt9jRv/z7otQXGUoJEiVFTMpkTnxtzEiVi+Opy0kk/JJ28RZ48ny6/Zz48stoUg4
- Sto62IlHyBQ41Wx0S+4eEh5oupLMzciaN17zLIDELnmFpbR9PwPPI7JtoyiwWW2kyB
- ni/hOvOpnKV3c85EHb8tibhl7hGQ751VBajsrHyqypYDMkglhf1ClLMojTHXBjTw93
- dJ+AjkMjahPPw==
-To: "Cornij, Nikola" <Nikola.Cornij@amd.com>
-From: Simon Ser <contact@emersion.fr>
-Subject: RE: Overlay issues
-Message-ID: <Zq5awE32--JJaePI-8O0Rd-2AYVUPYgIn1PspErRR_qpQeTlX_L0M_8iQMyN6rGZPJRuBmkf6OGmeQFLYkzB9cswAhdyWbAzEXqT-0ZjFC4=@emersion.fr>
-In-Reply-To: <DM5PR12MB46792E5F8DF0F128FF01D79EEEDE0@DM5PR12MB4679.namprd12.prod.outlook.com>
-References: <DM5PR12MB4679C807DB8DB502AC4793DCEEC60@DM5PR12MB4679.namprd12.prod.outlook.com>
- <05FNtjCma79AawCUxH3mqJ8sWHmoIXFXhQWW0N_b-mpl7QvuW3JN3AbtPUiR0y1LOf3tLhWFWv8YjuIEvJ3dci9y1EHk_D9a9L1BAyWyxRs=@emersion.fr>
- <DM5PR12MB4679F2B26887B76BC025161AEEC60@DM5PR12MB4679.namprd12.prod.outlook.com>
- <DM5PR12MB46792E5F8DF0F128FF01D79EEEDE0@DM5PR12MB4679.namprd12.prod.outlook.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [63.128.21.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA0F66EC46
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Feb 2021 21:55:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1613771701;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=ydQt9bOzXrkqFFLyK4f02Flw50Vo0F3loXTZ4Nkq7DU=;
+ b=K+PhpbbeZMyXNGPb45yot7r1Y9ZFlNeryP77QxFPwJHf5i8ZzbC+rULiEuiR+/FqoAFllu
+ HCrDqn+KFa7ipUqzrAI6QnYz6gDHWy9eKkYlfxBDd4JG/w1Z8keeV2M+5tyIvYDPocJ+JN
+ f5B+asnhubfe5fe6/tIru7iHtl9S6zI=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-42-cRo0MMBqPaCksACQFnTo6A-1; Fri, 19 Feb 2021 16:53:54 -0500
+X-MC-Unique: cRo0MMBqPaCksACQFnTo6A-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 469FA107ACED;
+ Fri, 19 Feb 2021 21:53:43 +0000 (UTC)
+Received: from Whitewolf.redhat.com (ovpn-118-5.rdu2.redhat.com [10.10.118.5])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 163C16EF55;
+ Fri, 19 Feb 2021 21:53:42 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 00/30] drm: Use new DRM printk funcs (like drm_dbg_*()) in DP
+ helpers
+Date: Fri, 19 Feb 2021 16:52:56 -0500
+Message-Id: <20210219215326.2227596-1-lyude@redhat.com>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
- DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
- autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
- mailout.protonmail.ch
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,35 +63,110 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Simon Ser <contact@emersion.fr>
-Cc: Alex Deucher <alexdeucher@gmail.com>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>, "Wentland,
- Harry" <Harry.Wentland@amd.com>, "Kazlauskas,
- Nicholas" <Nicholas.Kazlauskas@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Since it's been asked quite a few times on some of the various DP
+related patch series I've submitted to use the new DRM printk helpers,
+and it technically wasn't really trivial to do this before due to the
+lack of a consistent way to find a drm_device for an AUX channel, this
+patch series aims to address this. In this series we:
 
-On Wednesday, December 23rd, 2020 at 6:48 AM, Cornij, Nikola <Nikola.Cornij@amd.com> wrote:
+* Clean-up potentially erroneous usages of drm_dp_aux_init() and
+  drm_dp_aux_register() so that actual AUX registration doesn't happen
+  until we have an associated DRM device
+* Clean-up any obvious errors in drivers we find along the way
+* Add a backpointer to the respective drm_device for an AUX channel in
+  drm_dp_aux.drm_dev, and hook it up in every driver with an AUX channel
+  across the tree
+* Add a new ratelimited print helper we'll need for converting the DP
+  helpers over to using the new DRM printk helpers
+* Fix any inconsistencies with logging in drm_dp_helper.c so we always
+  have the aux channel name printed
+* Prepare the various DP helpers so they can find the correct drm_device
+  to use for logging
+* And finally, convert all of the DP helpers over to using drm_dbg_*()
+  and drm_err().
 
-> Another interim update: so far to me it looks like this is an issue if there's
-> fewer than 24 pixels left on the screen when moving the FB outside of the left
-> edge (e.g. with 300x300 FB size, it repros with X = -280). When this happens,
-> what looks like a boundary condition in our driver is hit and destination
-> rectangle update is skipped.
->
-> I need to do some more digging to fully understand why is this condition in
-> place and how to avoid it.
+Lyude Paul (30):
+  drm/dp: Rewrap kdocs for struct drm_dp_aux
+  drm/dp: Fixup kernel docs for struct drm_dp_aux
+  drm/tegra: Don't register DP AUX channels before connectors
+  drm/bridge/tc358767: Don't register DP AUX channel until bridge is
+    attached
+  drm/bridge/cdns-mhdp8546: Register DP aux channel with userspace
+  drm/bridge/ti-sn65dsi86: (Un)register aux device on bridge
+    attach/detach
+  drm/bridge/analogix/anx78xx: Add missing drm_dp_aux_unregister() call
+  drm/bridge/analogix/anx78xx: Setup encoder before registering
+    connector
+  drm/bridge/analogix/anx78xx: Cleanup on error in
+    anx78xx_bridge_attach()
+  drm/bridge/analogix/anx6345: Add missing drm_dp_aux_unregister() call
+  drm/bridge/analogix/anx6345: Don't link encoder until after connector
+    registration
+  drm/bridge/analogix/anx6345: Cleanup on errors in
+    anx6345_bridge_attach()
+  drm/bridge/analogix/dp_core: Unregister DP AUX channel on error in
+    analogix_dp_probe()
+  drm/nouveau/kms/nv50-: Move AUX adapter reg to connector late
+    register/early unregister
+  drm/dp: Add backpointer to drm_device in drm_dp_aux
+  drm/dp: Rewrap drm_dp_aux_register()/drm_dp_aux_init() kdocs
+  drm/dp: Clarify DP AUX registration time
+  drm/print: Fixup DRM_DEBUG_KMS_RATELIMITED()
+  drm/dp: Pass drm_dp_aux to drm_dp_link_train_clock_recovery_delay()
+  drm/dp: Pass drm_dp_aux to drm_dp*_link_train_channel_eq_delay()
+  drm/dp: Always print aux channel name in logs
+  drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_detect()
+  drm/dp_dual_mode: Pass drm_device to
+    drm_dp_dual_mode_set_tmds_output()
+  drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_max_tmds_clock()
+  drm/dp_dual_mode: Pass drm_device to
+    drm_dp_dual_mode_get_tmds_output()
+  drm/dp_dual_mode: Pass drm_device to drm_lspcon_(get|set)_mode()
+  drm/dp_mst: Pass drm_dp_mst_topology_mgr to drm_dp_get_vc_payload_bw()
+  drm/dp: Convert drm_dp_helper.c to using drm_err/drm_dbg_*()
+  drm/dp_dual_mode: Convert drm_dp_dual_mode_helper.c to using
+    drm_err/drm_dbg_kms()
+  drm/dp_mst: Convert drm_dp_mst_topology.c to drm_err()/drm_dbg*()
 
-Did you have the chance to continue working on this?
+ drivers/gpu/drm/amd/amdgpu/atombios_dp.c      |   5 +-
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |   1 +
+ .../drm/bridge/analogix/analogix-anx6345.c    |  28 +-
+ .../drm/bridge/analogix/analogix-anx78xx.c    |  28 +-
+ .../drm/bridge/analogix/analogix_dp_core.c    |   2 +
+ .../drm/bridge/cadence/cdns-mhdp8546-core.c   |  12 +-
+ drivers/gpu/drm/bridge/tc358767.c             |  21 +-
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c         |  19 +-
+ drivers/gpu/drm/drm_dp_aux_dev.c              |   6 +
+ drivers/gpu/drm/drm_dp_dual_mode_helper.c     |  68 ++--
+ drivers/gpu/drm/drm_dp_helper.c               | 175 ++++----
+ drivers/gpu/drm/drm_dp_mst_topology.c         | 377 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |   1 +
+ .../drm/i915/display/intel_dp_link_training.c |   6 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   7 +-
+ drivers/gpu/drm/i915/display/intel_lspcon.c   |  17 +-
+ drivers/gpu/drm/msm/dp/dp_ctrl.c              |   6 +-
+ drivers/gpu/drm/msm/edp/edp.h                 |   3 +-
+ drivers/gpu/drm/msm/edp/edp_aux.c             |   5 +-
+ drivers/gpu/drm/msm/edp/edp_ctrl.c            |   8 +-
+ drivers/gpu/drm/nouveau/nouveau_connector.c   |  27 +-
+ drivers/gpu/drm/radeon/atombios_dp.c          |   5 +-
+ drivers/gpu/drm/tegra/dpaux.c                 |  12 +-
+ drivers/gpu/drm/xlnx/zynqmp_dp.c              |   5 +-
+ include/drm/drm_dp_dual_mode_helper.h         |  14 +-
+ include/drm/drm_dp_helper.h                   |  59 +--
+ include/drm/drm_dp_mst_helper.h               |   3 +-
+ include/drm/drm_print.h                       |  20 +-
+ 29 files changed, 537 insertions(+), 406 deletions(-)
 
-Thanks,
+-- 
+2.29.2
 
-Simon
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
