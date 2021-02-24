@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 392153246A4
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 23:22:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED5043246A0
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 23:22:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 963556EB90;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2411B6EB8A;
 	Wed, 24 Feb 2021 22:22:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM04-BN3-obe.outbound.protection.outlook.com
  (mail-eopbgr680058.outbound.protection.outlook.com [40.107.68.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF3F36EB7D
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Feb 2021 22:21:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 073716EB7E
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Feb 2021 22:21:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ez8dy48a/E/Mqv4cNGnrKpqvYn7z8Y7Ppzc8vbvWVJGwSd7cJp2tRLy6R5ilF5s0fRL4dB8wqo4Tz0KlABehAOPm07KU8I8kZXfdB5ibxoEVEl7ah7zUDKwrxJImdoNvDR8BDUCeKusK59WjnyWtTJL4keRRDHzgs2M52Vu6rpnmrBAogeObJ52araijH+yN5MGTSQa67eBsF0gyBD88AkSgwG3g/pOjPl+kSiBnabwc/IU8KGdn129ftsiuIVkl7SO3fDLMsRuE7BEQ5PW4GIdPNHN69qk3+r4iaVC23O1EL6zsh3Y7kjNkot5vhOyn0+aIiZIP9Rgv9FUu0gjXcg==
+ b=XXjFS4mdCe+VKBDrO/azG/0zGpGBVEtH7vs/D3WfT9JT2pQWvs5Ckm1FYrVzN27za0XNnJSWzbTkxx6gfYTJTemN7RZyyUtzuDIpG0/eFw+dXDHCAhv36ASbdhUw6f+ufLtpAH8LLJOsBpUYYiBxD5wRqrQnDWEYdF/qzH7uxl87lg5QikeghcwqUp4oXlhePByTXGPb7UH4U3KnbB+7HFVB37NiChPKKg22zvefb3LEN8fFGSGxxHv3tAcZQ0L7uTJ9mOUPt5p7OBsy0K1fgc20T5tUd4HK3RVNvIcuog5nSdG58DK8K3m8gu8B8HMXqaQNPpsD2zbDzTDuNnQgkQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TOLmOpZI0V65urz2cHoQmmKGmJ0Vd1SyYjjyaubrhkU=;
- b=dcmtoYf8iDwXGUm74tv2Ml0W5yS3CtEr+96j1XTaUdZSekKWGjDszC8OvT8y8Ek/alSO6WL7gpZW0iknbh/uPZrCRDUOegTECPms/y3MKTEzay6gSCwbiUKnCCCECIOutOsePGHPPuN5vi8SO4E5ZVlV9Q+SVOCETHqKFiZSqKHBngF+EciR7bGbcN3HhoBvx2DlEc2XUA2W9+qQToD6hyOPDoLbQPImT4Yc4OouLRzAX+1bler0oE+orualhmAsH/NYbsF/PfS2UaCTVDSaj8RaiSSFA19v9nJEHqOydzRQG2OzYm7AwYOpgBbs0VTOvf1YRkzTghD+6ASJmLoaUQ==
+ bh=uPc0b+GgE/Oye8Z0F3YqRmQU1bbXQOqD2qIc+Ztp7LU=;
+ b=jpIJSMYL7VVqb2G7favWA0kxOQ1TlNFJtUcfEPkwc9WF971o9yp4mzQS83KcbySkd6tnXvtpGa8d7KDzN5wBUlw+wFcWBytchWsrYensA4UmC6dqx/taz9nge4UuIE235Ep95GXcHmPWiOLj2FM+PQcpR8ox6aeIcUDZW2hZhMhkF3+DvLNF/RwrcYCFLJyRcHp3Nsea2K1pYHo0Z/RIFXRwX6mP9F2QYUZPjwKoAe5/NmB6E1ghn0QtDpmWqZtleZsSbDyvJaM3n7hCm3G2Tvmyr222Sr6I7Nk9YVZwCckFHdnCt1m0qg5i4d6ly3/7OPaw/TveRSNArxnoFIV4hg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TOLmOpZI0V65urz2cHoQmmKGmJ0Vd1SyYjjyaubrhkU=;
- b=4Rfuof15fJJBsRLM8nhbGErgRMoqBi3ZkFJuAgQphcmZAwA7PCpvZboGCgrROCA9uePbqgv9rISPMrm6g7pPH/Y9oho7WhUTZmYg0OdKaevcV8UDE5qGTl192ZGPib7X9E90QoK4G9pTJl4yqWbrIhtKYNcJdKFuF7DGMxmcVCs=
+ bh=uPc0b+GgE/Oye8Z0F3YqRmQU1bbXQOqD2qIc+Ztp7LU=;
+ b=CBPi9CJe3VLifjXSjD2hIMjPMiTt5pE2acpFYFcWXqNDt5S9SDiqMoXZZo9PkU38SD62QWQD7Ic5GZyC5ZCzgdWdhr5XVDIhh9wXC8MH1XnA+KQSG3R80sXDdp+fFtSBnHtyXGq/XkbGReo9fQHIdsnjw7tXxHVfqsNHB9B8h5Y=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -41,10 +41,10 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  22:21:48 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 117/159] drm/amdgpu: Don't change CPU mapping of on-chip
- memory pools
-Date: Wed, 24 Feb 2021 17:18:17 -0500
-Message-Id: <20210224221859.3068810-110-alexander.deucher@amd.com>
+Subject: [PATCH 118/159] drm/amdgpu: Use free system memory size for kfd
+ memory accounting
+Date: Wed, 24 Feb 2021 17:18:18 -0500
+Message-Id: <20210224221859.3068810-111-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210224221859.3068810-1-alexander.deucher@amd.com>
 References: <20210224221859.3068810-1-alexander.deucher@amd.com>
@@ -61,50 +61,50 @@ Received: from localhost.localdomain (192.161.79.246) by
  Transport; Wed, 24 Feb 2021 22:20:43 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: e535e4b8-ab3a-4db2-be9e-08d8d9126cfb
+X-MS-Office365-Filtering-Correlation-Id: 7d989972-9aa1-471b-f2e8-08d8d9126d5e
 X-MS-TrafficTypeDiagnostic: MN2PR12MB4503:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB450336A597C6E0C7AE10A7FDF79F9@MN2PR12MB4503.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:644;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB450343625FC5301FA889084EF79F9@MN2PR12MB4503.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 65dVP6pH81RQvw5KCAX2k4eBag/2rak+UKBlu1WYzGTdrzf2tYhXFusjcbcfX5jkE9wheYI4n3UsRhh6VCUFWIVkmapXZS8ov1gVtKYNM7TkN9nkMiNPctaG7iwj79Nw99bbHVeJGvmG3WrVsmm5vACHpJ64aX4kyHWOvh1nzkrHAPbxUqlhKh5n29DNBwIH2H3JPjwibz31QWZ1cmuMbbo+Lssa2nBKzortd1eNFgvN9TURPXvWWbNndtJmPDAzlPghe2IZ9hJav1BeMOpa9w/phkayRwT1lUQpH386IzVTL47GH/G8q04wpH2C6U7yS7tDtFAIcLvLpV6c2e3wKGICOim2DoxVoRPhdh0qvXEZLedWToNUKYn1Orvl2TvxmhwLHhYN6efsnxOQGkgn2Hd2buveuR7z5I0gTIN/7HBRm4xwHGY5MdfeeLzyuXdFoj7witPqbVtglTr+yGXL3kGdhgXwSjiE8l/QuMkYAubxLRm3yp5l++K920mVavXPfXxAMXEM80dZ9x9ZDIrzcvgIC0DVgjR/VxhlDsUVzffusp04ToySQBTVbBNkmyd/dWMYIH0/u45OGhQC7mBv6g==
+X-Microsoft-Antispam-Message-Info: hrxnsdceXVC1RHlc2Q+8j6xQ9kKKSu+8kxbGWORJaicr5/wfnE51tfzlPKvPSSykkWHnl5/mrxwOHl24b8HGEoWIa6CGrlDpIQa8qnVdnN6xKG72UGSVuHuaiAOHuSH3XBrM4MMOB7SlQS8qyQE9OtR6vAlP1b9G05wo38llk7SoRKyGGVCNlvgbgcpuo1kFHc3eJlUTIMkOewm2VMzjBc4ExqPrloX8NjZu2s9805HohR5k+3y8t2t8kKpXl2wV3NKBGJqc5ZslXIPOxS4EqtkYKgy2qpEgtG0fTSg7CFAE/Ap8JwuumezmhuANbJjwJxq/dFGgE8JS2AkFlxeWs0n8o7d+ZzprSTHhOrqTFdBVOizUEfFQBK/Y9x0RGC6AAlFzsecT3Snxh1gNzRDBBxmfhPqJcNpdj+cW7ru0Sy12+VotjI+4D8kHYGyWVZeAi0gbgcgV5PpNeh6AQVg+rjn4XnDav5AmG3Cna/uUXkssoGPMW3AVxq1fhqH/Qvkp2G4xlVXlQeBbDyhdBVt7ISM1ikGI3dog2lH6Qx7AVo7eVr4ucSnq2f/+b21X8IoHCI86I+qBL8ESCFDRHaEmNw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(136003)(376002)(39860400002)(396003)(346002)(6916009)(52116002)(478600001)(5660300002)(1076003)(4326008)(36756003)(54906003)(6506007)(6486002)(6512007)(66556008)(6666004)(83380400001)(186003)(26005)(66476007)(8676002)(8936002)(2616005)(316002)(956004)(2906002)(86362001)(66946007)(69590400012)(16526019);
+ SFS:(4636009)(366004)(136003)(376002)(39860400002)(396003)(346002)(6916009)(52116002)(478600001)(5660300002)(1076003)(4326008)(36756003)(54906003)(6506007)(6486002)(6512007)(66556008)(6666004)(83380400001)(186003)(26005)(66476007)(8676002)(8936002)(2616005)(316002)(956004)(15650500001)(2906002)(86362001)(66946007)(69590400012)(16526019);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?/xuKhDSRzeRZhB0nCGaKMOpeIzmloPuNuSYiBrfmAyq7XZLm6E9/gZeLLjbO?=
- =?us-ascii?Q?8Hvgf1nLfSUQU1FJvut751+b2CLH7srQguUh5DJLeeWq/xfupUp1cPoBRTN4?=
- =?us-ascii?Q?OMVjh3mYDeWMW+RulCi0aZbCUYjS6S5Li27aiWoJJB7Cdev2pnzcASyFxp/H?=
- =?us-ascii?Q?IyXIWFOvBodctR7hge6Ui7feXf201wftjIUwVqdOFOw8YRUQRJi7iAD1iPW6?=
- =?us-ascii?Q?z/rbtA9CAJDKLckVSu6kR9BTRUl/GsVaeyEJvDrZRAGHEExf3ku7HNBVaQ7H?=
- =?us-ascii?Q?wu0ntP3lFUgwzRgwkmS8RHQLjNFR9rAwXvXVi+2DmxEl7gUgRQsKqRmpqTKr?=
- =?us-ascii?Q?bmUJKKBCHfyEkHd3ByA+crpljK3vwuc6xHtxdtnya23eDqCVIdmYEHC9J+TH?=
- =?us-ascii?Q?2TQR5zAQCIQRvWMfN0VUtNNK9aIDgxxigiBouJV+mjyksgb1BOwgMDGj84Yg?=
- =?us-ascii?Q?GV6iky40dlTjc3BVwX42/fXNAv/M9OUgm2D+zsmia3RamFdxwHIiV6GxmCoC?=
- =?us-ascii?Q?mQW35lR2SiYe/qYcUgEynfO/u/jK6NolV4RrNOFws3Hmx1gSLlcpQ4ymxN3v?=
- =?us-ascii?Q?qv/0dulKENFqtYSEhUnUKqsKS/rCeEGiv7Um7DOB5lT9bBlzqnsezcaKSmw1?=
- =?us-ascii?Q?ATa0uua7RmTVP870horkkLZulrlMU+ivrBQ7xRb+DKRxOaS6FeD9xjcDdtlx?=
- =?us-ascii?Q?7fq2qbCF4F/BsncyboOdYXF2xbZPsjhYDcyNwdSd3yS06mD7k8izCnMd2sWO?=
- =?us-ascii?Q?AmZlW4oiiSsfZ6Zn1AMEOB6QZV8hngV2t+79cNgUxg4yREnnPY690b9uYBpy?=
- =?us-ascii?Q?vVNBcworZp+TUBxVmVFyGwmEsAn4q8B7+WgzX9yQC++0U10I+ZNwpuSEtU2S?=
- =?us-ascii?Q?3I7vvgC92ae6LKSyAqyXY15ry8HWGC+8GrRY3IqQHBUoEeH0r1Z0lnawkEtB?=
- =?us-ascii?Q?j/szGUR/Bf+rR922H5O9yXYulngX/RJvjjyneNTWePeo/HHnd8fmBI1RQWEK?=
- =?us-ascii?Q?A13YOv7S0dojI0DQZuY6pA+JhTJM+YT0onTDFrjlI/DtcEF3NT2prtdE+/+Q?=
- =?us-ascii?Q?kp9fXFvuDdMoCfDix1v106vb49YPYLNnGNDH0LQOEAtBBsYIEk7zSncs+V/V?=
- =?us-ascii?Q?ixmidqDbacfrmyAqOPf67lhsH+dxUsblRbqN4Zq1mMC8MiRSZWWd1z59rCo9?=
- =?us-ascii?Q?IPJ4tbCRC1IFwieM98t2GFxtL3tr4fP/RFUjvCksPFVSBtxWoUDkOedV6OFd?=
- =?us-ascii?Q?C72rDmo8f5LiTWGr7nybBDCc/FC6vL2Rc6CEHxXTLJf72THUj35eKo7pXLwm?=
- =?us-ascii?Q?EVPDJeKfO4BTMfn4/CG/hqe2?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?mN98WiMGTo52VdtBc1dN7xSM1p03bC9a9QrfcdZUshcJJMKLSgCC4NiTMJnl?=
+ =?us-ascii?Q?k38TXEd5VEJdsTojVFTCO2YHcsk7DGlZfJEZ6q5yi2N/+krCCKjxdskL6Svs?=
+ =?us-ascii?Q?iSbeMFWHyYiErDpDDgmYjrHIYZFULj3VwPhgrTuFlb4NDmaKARMUQTSUPiGg?=
+ =?us-ascii?Q?MLkPq+tsVYV7utAEvh9XxFvxznzIJ+pWnfhW33vbPWUPOAExyzOvBTKGvzLX?=
+ =?us-ascii?Q?PzDh3jT2fl2P6AIuaUpSbBUYaehESKDmADUnbhT046iTdFK2UdUVD8MHazed?=
+ =?us-ascii?Q?VHEnhOBOukaa8g6dWNWGhOl/c+x5VdjG0AAx1uvO88rtVcguUySny5H3DwFG?=
+ =?us-ascii?Q?pKhTUTx30TR9/juCVaxX2EuEFqKoBuCimbEGeQzO0qMhAlsHcDMcnmFA6HdO?=
+ =?us-ascii?Q?Bxs56iSb0QIOLO4g9FJCa73aUOv5BOmx183cJIW/LjAIev0SsZmuPQi4ZcCE?=
+ =?us-ascii?Q?EdqDdbuDixTa5nF+xFfyVvulwAEnpxU/IIjiCr8GwHxfRXjUnphfYe0va52p?=
+ =?us-ascii?Q?QZYru5e1g3zpEh9rRjiZJpFuCb1nfLON/x7gteo2rlM6aXf9ntuZQKkEKBde?=
+ =?us-ascii?Q?TNq0aPS965azq4NL60vM6pFgr0O2uvpnzK8rxjfXs24/P/4cQr5cHKzPMeP1?=
+ =?us-ascii?Q?Tm6lKoUr1TBzPoDNnd6kSbFw//KOiPcIpthGT0+1iwW8PC0f4fJpKmHtoPnX?=
+ =?us-ascii?Q?kbdr/s3EN798xvbRqNTxJm+NbulzUODTKZUiO1X3f3YY8ltRXbsS4jrSA0b0?=
+ =?us-ascii?Q?Vjs7tA03BZP/z8Qn3gW9x7RBZbl4IrzauHoACKOflKTabFwAj3KRkWSc0xRI?=
+ =?us-ascii?Q?8N086Ut31jBcI+C1xGPlXRrYBooYLPqFjr38/pa8oY+MyMR5mOkE3d6tGmE/?=
+ =?us-ascii?Q?ypz7jak13g161RmHgcg3Sm8+eADugcpVJ8uA/H28eIsvh58IfHd4G3Ki7j1h?=
+ =?us-ascii?Q?YKH3gMwVGD2aDHlobzZSr3MBKlowlStXQ/e40xXH+yjcTc9Lh5QI/c8/+zFj?=
+ =?us-ascii?Q?snwGOku3PtoAgNzduo/jfyB485KtMpRk3EWIt3RwdWqP5OGnFyycHJDZsuVF?=
+ =?us-ascii?Q?JuQl0yAKv1y5LyECfDgr4WTShcwQKO5LIt0JQp6kHX20g+inM7B6EfLOmPE5?=
+ =?us-ascii?Q?ddb7rbtzFt+kGAR390c0P1O48YdtPl+vU0rEI3akV8yRNyk7Wrs20+ltQo19?=
+ =?us-ascii?Q?S6COKc8fNaE+E7GRm9gTkrURFU1OHTg4h1aee7V/bX7ut235iBf27mle+Xtc?=
+ =?us-ascii?Q?gGyUCFCspKVB5iXe6uhlrqIwUTR6v8mr7jyPi9JNGLUjVpbNKHDnFC6ZgCiY?=
+ =?us-ascii?Q?HxzqllGSqBhxQT1qiYtFi+/k?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e535e4b8-ab3a-4db2-be9e-08d8d9126cfb
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d989972-9aa1-471b-f2e8-08d8d9126d5e
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 22:20:43.6271 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 22:20:44.2613 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /90kmtoG+2v7rjR4VKLa2QLI8J6xih5w28hn+BVqMJUGjjWKmdqnQjjI/TGWuezjLUBLMQKP83Oo03tTcQ/dpA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: OjPi0wZyeGRwHymLBEKLs1ia15DCoVy+XEU+3jGzraEW7pA+haAe6xnYcBewxCWb4JkP7eD7wYFFMcXkH8gDoQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4503
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -117,56 +117,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Oak Zeng <Oak.Zeng@amd.com>,
- Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>,
- Joseph Greathouse <Joseph.Greathouse@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Philip Yang <Philip.Yang@amd.com>,
+ Oak Zeng <Oak.Zeng@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
+From: Oak Zeng <Oak.Zeng@amd.com>
 
-This change does a partial revert of this commit
+With the current kfd memory accounting scheme, kfd applications
+can use up to 15/16 of total system memory. For system which
+has small total system memory size it leaves small system memory
+for OS. For example, if the system has totally 16GB of system
+memory, this scheme leave OS and non-kfd applications only 1GB
+of system memory. In many cases, this leads to OOM killer.
 
-'drm/amdgpu: set CPU mapping of vram as cached for A+A mode (v2)'
+This patch changed the KFD system memory accounting scheme.
+15/16 of free system memory when kfd driver load. This deduct
+the system memory that OS already use.
 
-The on-chip memory pools are not accessed by CPU so the previous change
-is not necessary
-
-Acked-by: Joseph Greathouse <Joseph.Greathouse@amd.com>
-Signed-off-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
-Reviewed-by: Oak Zeng <Oak.Zeng@amd.com>
+Signed-off-by: Oak Zeng <Oak.Zeng@amd.com>
+Suggested-by: Philip Yang <Philip.Yang@amd.com>
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 13 +------------
- 1 file changed, 1 insertion(+), 12 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c       | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 3a2a922c6c1b..1118142f783a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -66,19 +66,8 @@ static int amdgpu_ttm_init_on_chip(struct amdgpu_device *adev,
- 				    unsigned int type,
- 				    uint64_t size_in_page)
- {
--	uint32_t available_caching;
--	uint32_t default_caching;
--
--	if (adev->gmc.xgmi.connected_to_cpu) {
--		available_caching = TTM_PL_FLAG_CACHED;
--		default_caching = TTM_PL_FLAG_CACHED;
--	} else {
--		available_caching = TTM_PL_FLAG_UNCACHED;
--		default_caching = TTM_PL_FLAG_UNCACHED;
--	}
--
- 	return ttm_range_man_init(&adev->mman.bdev, type,
--				  available_caching, default_caching,
-+				  TTM_PL_FLAG_UNCACHED, TTM_PL_FLAG_UNCACHED,
- 				  false, size_in_page);
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+index c5343a5eecbe..f44185f512de 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+@@ -44,7 +44,7 @@ int amdgpu_amdkfd_init(void)
+ 	int ret;
  
+ 	si_meminfo(&si);
+-	amdgpu_amdkfd_total_mem_size = si.totalram - si.totalhigh;
++	amdgpu_amdkfd_total_mem_size = si.freeram - si.freehigh;
+ 	amdgpu_amdkfd_total_mem_size *= si.mem_unit;
+ 
+ 	ret = kgd2kfd_init();
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index 30e41d1b3256..a74f21889f48 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -96,7 +96,7 @@ void amdgpu_amdkfd_gpuvm_init_mem_limits(void)
+ 	uint64_t mem;
+ 
+ 	si_meminfo(&si);
+-	mem = si.totalram - si.totalhigh;
++	mem = si.freeram - si.freehigh;
+ 	mem *= si.mem_unit;
+ 
+ 	spin_lock_init(&kfd_mem_limit.mem_limit_lock);
 -- 
 2.29.2
 
