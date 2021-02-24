@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21DBC3246A1
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 23:22:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6265C3246A5
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 23:22:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39A0C6EB8B;
-	Wed, 24 Feb 2021 22:22:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94BD26EB8E;
+	Wed, 24 Feb 2021 22:22:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-SN1-obe.outbound.protection.outlook.com
  (mail-eopbgr770058.outbound.protection.outlook.com [40.107.77.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 870B26EB84
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF5056EB8B
  for <amd-gfx@lists.freedesktop.org>; Wed, 24 Feb 2021 22:21:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SE3nxCyjEBSkFfr4UCggVNBj3oAKG0rK2rvVVgXxLChQtN9SigO/ZRIBMzH1vENXv7/RDDh8R25wZieGcDr+yss3cTd6LYsJESAimxe8HOYzEKnY+K5Sw+Aqd17/zzRTc/+KsSL6hK8vvq3q2PxUFz6+qv5hxyUUwwcFleT58k7Mx7B+BJ6e8tiFAJJRbNZeFRQRQEVPwiOfCKKsfyaMEgCEdVqMgmQgq3SnekHGBO/ERisuXJiWpxb215Qi6ThtqYdVFx2aD8EQxA+h8PyShsbdwjwqIju0ccsBOhNqwuFsKdxnoXwfRcaWKFAXvnH8ba0Rx0IN0zNGBys/yRKxwQ==
+ b=nnZScq4E7CZ76eY+y+TjTGsNgeBhXke5z+cwDQQiVU43LnD/qe+KFDkEWUHEbRdY/NQUhksB3VgAieUQDThfNq14+QmeNjFTdjD1HSyxQdpZOHajeQT5fLz+btJclp7Jo6E+f4Y7JqcCADXTBuTDEsNgnpi6cBKggNgSKkeexqNWUIrsBrtX5ji+a3yFJxQvjWLrLk5XiRA0BodluLZroPnHbEz2okrV1/6br6sI8d11pPjfwopOCTv1WK2H+BeXoijnW/cxGPdAsEU+SRWENbnJeOFbRVeWpaKc0+rOsSQrxgVN7aBTP6O6fgzUx3lk/DKcu7U/EJh5eVLsrdplSA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K5DIoaU0SK/TnHIuIQuCZbdBGv4P5ykzNms71upPQKo=;
- b=ZnTnM7ovw8O+WrzF2bd/CfhaYDV5oIajjNXZhU7PkEUAtWBPH8gsn8FRoPO70OabX4bFeXHRIuaqTqShIO2C6Yrd2Urn41gLPC79vV9Xe1aH/54TozNC/8B0v835VuLRSc17lSAGH9HGvJSGKRbIwuULz43925WHzziY+MpoY2hndVU0jkvSdTCvhLxC4GhDxhjWMbMpOATKnrVR2x/i5qXdBM/NAXRmc8p1Mfe2LovJ/AABW08OxzCUFNhZzMUtPZX9ZTQkCIlLZqt9LomIBjQqchWOMZFESU6ZBg3oNprAvpUBfJ8HbFu1KJ6hnGoplMFQBsgSgMnl3DjQCTCLWA==
+ bh=Spnqb1rcif9vhwdvN9H2rqIvkIvEmRVEwgOlyfvnMyE=;
+ b=jf4MEfv06frbtMU1mub/ojzJNUsHh3U/vniz6Ty6DG9mlQfupFAsdxr1WoSzSW4S44qIVW10Q8i91YmfvtWLRTcWn43ImrWy1e4BT/Hm413WyJxdC+0J7leh6i+FBQYncnS/0+ESPabcxWHPl8XVl1tUpZX4blJq9JwIrjtMGLDTxpOFZThjl4YRFJorhZLgZA7pBQyECbDfg5MNKqjfbwI5kxVwzw/N8e1XYSVpPS50WkdH/hT41Ca9GJsuOQQOSVg3iy7TCNQ58Wm/LNmmfNFdjW1aIel86PTCNhXjq8Dz8ufoqhg+IyGFnFm0TQ0xEk44YdBf5kvPIxGSwLnqFw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K5DIoaU0SK/TnHIuIQuCZbdBGv4P5ykzNms71upPQKo=;
- b=r573bgpdRlRwEmoFezFZxbef2cDSTbDWTlkGMKhieZVoTC55OiyweYaixJ5d++GqE2bIo7jTBPHo51jUpN+TP18kfJA77F5g8HMk4YuZ0/yAK6UZK70Z+U4waEnelVNpMWFEyvot2XgqDFqD2D7loDrxIOrLbmh11YBMhYL/5Ec=
+ bh=Spnqb1rcif9vhwdvN9H2rqIvkIvEmRVEwgOlyfvnMyE=;
+ b=bfDDXCNgjBgKAGbupDF7u0/YnUuWnEXVxIRnc9ovGGtXyZY1N/HwYBx5w19LxNl2NqXyvNdOMNT85RDh/sFNNvmYfw+qj2DJEtDH3JpBo0zgfY0th2PTdsHbM6HENZaxKaMJx78CWq39FGvzrcEAGeLNVIWO37UouTV1VWp5zTk=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -41,10 +41,9 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  22:21:53 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 124/159] drm/amd/pm: Enable performance determinism on
- aldebaran
-Date: Wed, 24 Feb 2021 17:18:24 -0500
-Message-Id: <20210224221859.3068810-117-alexander.deucher@amd.com>
+Subject: [PATCH 125/159] drm/amd/pm: Correct msg status check for powerlimit
+Date: Wed, 24 Feb 2021 17:18:25 -0500
+Message-Id: <20210224221859.3068810-118-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210224221859.3068810-1-alexander.deucher@amd.com>
 References: <20210224221859.3068810-1-alexander.deucher@amd.com>
@@ -58,53 +57,53 @@ Received: from localhost.localdomain (192.161.79.246) by
  BLAPR03CA0027.namprd03.prod.outlook.com (2603:10b6:208:32b::32) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19 via Frontend
- Transport; Wed, 24 Feb 2021 22:20:47 +0000
+ Transport; Wed, 24 Feb 2021 22:20:48 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: b728e155-b68b-4d0e-2486-08d8d9126f84
+X-MS-Office365-Filtering-Correlation-Id: e7feb384-0163-4b32-c70f-08d8d9126fe9
 X-MS-TrafficTypeDiagnostic: MN2PR12MB3807:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB3807367A8D24C373CA545E39F79F9@MN2PR12MB3807.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:773;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3807B549A2870161545A38CAF79F9@MN2PR12MB3807.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1850;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8CTS7AtNTS2GfrjypkcwYvhtKg3tqlP9pfs6SQPqlFUmM3wdQFEwgJH9I/w5+zcX2P4hI02OwMgesfDUJQPcTyan6SndPLQiNWj0qpL70ra7n7PqauywjHO3Qa0Zy4KCneo8xTg2IYWZdaGE+XOf4HGGbXvcnLD85JmKlFPTcUpKhm9uF7aieo4+ajJCuWZ8YyyvasZxgpKB8bGK1rf4deZ96TkQo5CKWIF7wFs378KswO6uKewoLTLJyHhP1UkCqgrC+twbKDMUiNTOpxYyFAXNiOm8LmMN+AwCUzhQaR5Lpmd28HgMUYiUXum8FFm/rAsmpawqogR/N0cRPZPsoQlXlz4SWugGm0YobyeVZ/uZnS8NxJVC22L7aLcNWAgT60sAltU1Oazungo/2nocZroDOhjKc/EM4+KGRrwAJ86YEAMkiW8arL56GDGNgTcnOoKBLx4hGQXtbjDvZzHQu4vmAML11wlMVqB8+r79XDiwLlyj7NiuaePVgeCCvHIWMlTQQwvE+uQInXzDDCT14QigVpCuJbJ2+qbVu21AkhXC5rAGjPlVQZQ20i0w+oxtO7iZPGEBRayi9/Fc6CQLRA==
+X-Microsoft-Antispam-Message-Info: QEDd8xNTNd/sAMxNiaXxEUzKRISKaNcQohTW2hrDwYgn0n9U6RfQ1FvU1oCg1vOmW6cyuN+Zl7857MhWO5HPlnN7d4NIA1LiljBtiTgq5ABrRskbjIeVTZ3HoJA+I+Y1TL0q/ROrV4yFWccztKMkFZFPPTpKe9pqrbgwRfq1d89mlMIBs4G6ARFxuu0sLxRcOSHnqHQwzsbAPPW+8wDEGOEhG9ncjgYEi+MV2BglReiywlGz4fScLJE7oTWXnHjg6OX9hHt7CAbWPrAu7qo9SNXf4qGbkUl+ZDTHCh4r+ewwXk35SwulqyTLwr1Kceuj6gByCF2RbKNg9z1vWOcL6zCc+QbPOH718lUcf2Bkc3YhJ1EkoeKfUsMJq+AzwEEn0ivey86kyrNYOEKssH7rNF6Vved0WbOitncR/80fUuO1o8elB1R98RWZleK6N+wa9OUds/FfZ0sH/V8tTIym2J3J6bY4IMmZ5xb/ay9aSehVnLOn/1sYK67P/vNO1qehmrVBbI/j2C9ItMXQ1v3/ksnXkvlY30sIwa89cYgdCh9rIKW3Xrb875CYqR/zBw6laBtxjzLzXPsyU9sw5vsX6w==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(376002)(39860400002)(136003)(366004)(346002)(396003)(54906003)(478600001)(4326008)(86362001)(83380400001)(16526019)(2616005)(186003)(36756003)(66476007)(1076003)(6506007)(6666004)(66946007)(69590400012)(6916009)(8936002)(6486002)(6512007)(52116002)(5660300002)(956004)(316002)(2906002)(26005)(66556008)(8676002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?XWNaeQvZZPSgdcn+kVeLdQeoIYF6VPZpnoJpSJKLtPgfiUoCBOjZt2L0kIMI?=
- =?us-ascii?Q?lWml4k8oVIOz5/ghCbZ5Ybffdy6x+fUV2DGK3/3dqJuZwAcLOZka5ZswgwDh?=
- =?us-ascii?Q?5JTPy054B/yqwO7CQE87Moyc5IBTxb+ChYLLwVr6Bzgl0chlqKtTHT6Gfe3T?=
- =?us-ascii?Q?HgSRgn/20hmmUcACIY9SAZ7RiE08ov3Iwqlo4/5CtN9fIWpCelrYVfG4dahu?=
- =?us-ascii?Q?tObWK5k3VK1FaiK9eU16XG3YCmw0jAEbRPffBD6iAKGJYihE/dCDjyXK3fXq?=
- =?us-ascii?Q?ha/xJXLoWPVnQthJY/Y32+w8kxoYaUJV4WO0Lnij//VHCFx1z4hXDkBZwHNX?=
- =?us-ascii?Q?IzlBzcA/VxsktVDoHfquZuP7psTclH4Ri9+bAskJWRXRfT2DTTXoL7s3ujcP?=
- =?us-ascii?Q?KXnfclMm0vfiva4kpAx0/vE+VFORgzDgehU0GZBej4O1KV7BF5oar3yzSjAA?=
- =?us-ascii?Q?su+TciyJyrDYcpUIkvOFmjt1c1THakXmAyz0oVF4BIUsl8q/cmagYzqaBtWe?=
- =?us-ascii?Q?WeEnHTwygJV6krb7WHoa3q+mAX1B65tZ24AhuVrTIyynB/NkRCfT4W+JPp2I?=
- =?us-ascii?Q?nsgRnkpJgBgW+fbykeFS+jlBOKN/6KZ/YU8AUxiuyDdWJTH5yMarHZsWv/n/?=
- =?us-ascii?Q?NKf6WhdhtppKR5s+/V0FQuDWQKIXO96412uQrATsNvDrUm79R0jZiqPnez54?=
- =?us-ascii?Q?og/fR+n+7CVfs2U9q2dapVQ32Ke4y632Qybjw3PO9wGNWi8fOlS0iR7UNG5c?=
- =?us-ascii?Q?ZFZGbjBeRHBn+ron9f8Lit5OFUEU9yvZeaqyD2AoHlBN4m/iKA/7XTetWcqT?=
- =?us-ascii?Q?c1M0ENkyGuI0KDTbMg8YdVF1/rafUPiCfRHT8ZILy4h8yWF7A7mNpK+YtvI+?=
- =?us-ascii?Q?JrHOSPy4ajxLzA24l62aWBai3v5dfTfdxfwnI9XiX5+dCN9CMt9HcAdOFXdT?=
- =?us-ascii?Q?h4APJfoLbFt1jHjoaBMc+A1yc4/fNXwFHAp6hHEsvCN/qt1urBAxcN5TQfOh?=
- =?us-ascii?Q?nYFoRad7yQKJSyUsip0s97Fbzr6K2VIJGoPiUpL/xFTl83Gz62j5Y6cag5pT?=
- =?us-ascii?Q?l21DD6lHjGXJkHNVL3oK66fdimmvDWeA+jv4IoG4RfhnDV2IcR0A5ZThFo/f?=
- =?us-ascii?Q?Dr50quOjQydBb7+FWQaQQeCtClQiDZiA5BBf4dgnxMv8Zh2LIgh0PllDtPGY?=
- =?us-ascii?Q?eDH9/FfudlKqveAnNVDnWNujNfqd7UANqHb0TiwCaZlmJlgLKRZqZTgPXWEg?=
- =?us-ascii?Q?2cBQMqG+baMxGPmwG91Gv9xmPlabKCZ6p3vn5RigQlv7cALD4JgyUv2qu23O?=
- =?us-ascii?Q?fRBHwGZcaMRtOMKJBGUM5r9V?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?H9Y3k1HGQPutym435a1pAcXKz+aSDFICJ8DwTYXuXWc7bztU8blh0CKJ79+L?=
+ =?us-ascii?Q?7+XJQpv8RgRkh3ZJrv0s60rddcD2MPUR8ijUpib8DX15Sx7Vrb0vMmYYSrrG?=
+ =?us-ascii?Q?+nNqzlaDQ4f+jjSP679ey5m2NpvAipVHoC0mLwTMVUKql60yHEOxSh8NrdiA?=
+ =?us-ascii?Q?s4N4n3/UpvK04r66SOisrkvUx2GP1YxOAjEVVyWbck4Ez5zioTtgG6XJoUe9?=
+ =?us-ascii?Q?jr4Cg5yhS6QB/t5Cpq0BjiNqk6JDkg5eWeUBkJ7hYXOP7hDj/3KjP0p6QN1M?=
+ =?us-ascii?Q?w7GuKXhDLE+yYIM8Jez2Lw3os5dxD2uNiqB/AkSiFmXR4AjpJVN1B/G6O4vX?=
+ =?us-ascii?Q?AH6Dp+ewzsG3Na8Iyy4ryuKuYtHnhqJWfIlpeV+Lqw4wDlLHusADBWVI+8FW?=
+ =?us-ascii?Q?6rGfrFY4Cj0En/h4SRBRhmCFshX7QT7SwIqhP+rSxMRX+yIoW+tcNI9FtgWd?=
+ =?us-ascii?Q?OqmctD/fshWApyM4yeR920Q/261gceqpbGPzvJmTUC3n/Sor0oOYdx5DoVnG?=
+ =?us-ascii?Q?jrlbgEBdaFS63RIDLc0kRLti3JJiVquCXYMnL7UF8p1sYR4UFFqVGnMeCiff?=
+ =?us-ascii?Q?cFtEeyhWmyl0uT7/Qr8t382OaOQT4iXZby1bzB2nGyr94NujOucWMfTRZlSz?=
+ =?us-ascii?Q?S30FCnkJ0rL5E1EPbMajHsZsGB+cs7EK72HFxyq/2rpPIt25O1O4Q8kQfUTg?=
+ =?us-ascii?Q?ibkAit2gzgdFOhEBbr6Y8JY5AJg19HkMtiBlZBI+XLQv8WWn+qJkgCDWQ/vh?=
+ =?us-ascii?Q?LGJ6pHShWUsdquSs3zoC2H2JGUHppCVXlv59y3WQGgatb6S6QdAtB7C3j5oE?=
+ =?us-ascii?Q?mQseEJNfmEDVNRQ2wh0ygDy/dTMnoMfAmnXE9n+kpq7yJHjQ1qNZhlPSXBO9?=
+ =?us-ascii?Q?XTo02NtGWgWH26Tq0u+AhdPK7TQ8/r7Y+xnrWfmCxarW24cVGaOLiJDplpXc?=
+ =?us-ascii?Q?lIwiU2NL3rIymSRrbp3FjN03PAnugLWpX2q98GSsU8opfPStPvTqemMSabKa?=
+ =?us-ascii?Q?mLJgrd+IDOp77Pt80KoUlAyGdvguRCsZml7OBe2MugmDtzM799l4RyAfRFf1?=
+ =?us-ascii?Q?DRXsRrI744PuoXnUipKGjmcJ0T/gXBPmM4mlMdOP5yRGPwSsewSaCGfH8HC6?=
+ =?us-ascii?Q?LMQ8go1KXC2SE/W1K8720yo++febPMmFSxTUOvHnfDl+0yulJI1MiWxwM3/c?=
+ =?us-ascii?Q?jTsF+SrPd7w1SJuOW2bHHlyv9LOspX8drzXI21klDC64jln8UGsS+VenKyhz?=
+ =?us-ascii?Q?Ys3xmmoP/rXe44hbgy8V3YrubVN+ZTxGBxmlwVpIVp2sDF323SIon0R5n2oo?=
+ =?us-ascii?Q?7VUP3qLZTcrrep+QZABoG7OV?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b728e155-b68b-4d0e-2486-08d8d9126f84
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7feb384-0163-4b32-c70f-08d8d9126fe9
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 22:20:47.8416 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 22:20:48.4987 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4XU4ulWsrC6FlErxYhCYxP94SmNM01yw2U/I12j11GWGL/Q6s0zaDS0AA1nCHO/QUNyQWUmGZQTP1KgI+mTVCA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: H9KHAnZR4I9lWPXLRtZ3BT1DyJU/z6l6RHyJEykG5TUrr4m0squ8dQoqaAkUsNBS6kAbaet5aWsy0Uzrev0xpA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3807
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -117,8 +116,8 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Kenneth Feng <kenneth.feng@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Kevin Wang <kevin1.wang@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Evan Quan <evan.quan@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
@@ -126,282 +125,29 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Lijo Lazar <lijo.lazar@amd.com>
 
-Performance Determinism is a new mode in Aldebaran where PMFW tries to
-maintain sustained performance level. It can be enabled on a per-die
-basis on aldebaran. To guarantee that it remains within the power cap,
-a max GFX frequency needs to be specified in this mode. A new
-power_dpm_force_performance_level, "perf_determinism", is defined to enable
-this mode in amdgpu. The max frequency (in MHz) can be specified through
-pp_dpm_sclk. The mode will be disabled once any other performance level
-is chosen.
-
-Ex: To enable perf determinism at 900Mhz max gfx clock
-
-echo perf_determinism > /sys/bus/pci/devices/.../power_dpm_force_performance_level
-echo max 900 > /sys/bus/pci/devices/.../pp_dpm_sclk
+Status 0 indicates success, fix the check before using PPTable limit
 
 Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-Reviewed-by: Kenneth Feng <kenneth.feng@amd.com>
+Reviewed-by: Evan Quan <evan.quan@amd.com>
+Reviewed-by: Kevin Wang <kevin1.wang@amd.com>`
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../gpu/drm/amd/include/kgd_pp_interface.h    |  1 +
- drivers/gpu/drm/amd/pm/amdgpu_pm.c            | 88 +++++++++++++++++++
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     |  6 +-
- .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    | 59 ++++++++++++-
- 4 files changed, 150 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/include/kgd_pp_interface.h b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-index a41875ac5dfb..c6b5c789abf0 100644
---- a/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-+++ b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-@@ -48,6 +48,7 @@ enum amd_dpm_forced_level {
- 	AMD_DPM_FORCED_LEVEL_PROFILE_MIN_MCLK = 0x40,
- 	AMD_DPM_FORCED_LEVEL_PROFILE_PEAK = 0x80,
- 	AMD_DPM_FORCED_LEVEL_PROFILE_EXIT = 0x100,
-+	AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM = 0x200,
- };
- 
- enum amd_pm_state_type {
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index b770dd634ab6..309ee950b073 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -298,6 +298,7 @@ static ssize_t amdgpu_get_power_dpm_force_performance_level(struct device *dev,
- 			(level == AMD_DPM_FORCED_LEVEL_PROFILE_MIN_SCLK) ? "profile_min_sclk" :
- 			(level == AMD_DPM_FORCED_LEVEL_PROFILE_MIN_MCLK) ? "profile_min_mclk" :
- 			(level == AMD_DPM_FORCED_LEVEL_PROFILE_PEAK) ? "profile_peak" :
-+			(level == AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM) ? "perf_determinism" :
- 			"unknown");
- }
- 
-@@ -333,6 +334,8 @@ static ssize_t amdgpu_set_power_dpm_force_performance_level(struct device *dev,
- 		level = AMD_DPM_FORCED_LEVEL_PROFILE_MIN_MCLK;
- 	} else if (strncmp("profile_peak", buf, strlen("profile_peak")) == 0) {
- 		level = AMD_DPM_FORCED_LEVEL_PROFILE_PEAK;
-+	} else if (strncmp("perf_determinism", buf, strlen("perf_determinism")) == 0) {
-+		level = AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM;
- 	}  else {
- 		return -EINVAL;
- 	}
-@@ -1090,6 +1093,83 @@ static ssize_t amdgpu_get_pp_dpm_sclk(struct device *dev,
-  */
- #define AMDGPU_MASK_BUF_MAX	(32 * 13)
- 
-+static int amdgpu_read_clk(const char *buf,
-+		size_t count,
-+		uint32_t *min,
-+		uint32_t *max)
-+{
-+	int ret;
-+	char *tmp;
-+	char *token = NULL;
-+	char *tag;
-+	char *value;
-+	char buf_cpy[AMDGPU_MASK_BUF_MAX + 1];
-+	const char delimiter[3] = {' ', '\n', '\0'};
-+	size_t bytes;
-+	int i = 0;
-+
-+	bytes = min(count, sizeof(buf_cpy) - 1);
-+	memcpy(buf_cpy, buf, bytes);
-+	buf_cpy[bytes] = '\0';
-+	tmp = buf_cpy;
-+
-+	*min = *max = 0;
-+	while (i < 2) {
-+		ret = -EINVAL;
-+		token = strsep(&tmp, delimiter);
-+		if (!token || !*token)
-+			break;
-+		tag = token;
-+
-+		token = strsep(&tmp, delimiter);
-+		if (!token || !*token)
-+			break;
-+		value = token;
-+
-+		if (!strncmp(tag, "min", strlen("min")))
-+			ret = kstrtou32(value, 0, min);
-+		else if (!strncmp(tag, "max", strlen("max")))
-+			ret = kstrtou32(value, 0, max);
-+
-+		if (ret)
-+			break;
-+		++i;
-+	}
-+
-+	/* should get a non-zero value for min or max */
-+	if (!*min && !*max)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static int amdgpu_set_clk_minmax(struct amdgpu_device *adev,
-+		uint32_t clk_type,
-+		uint32_t min,
-+		uint32_t max)
-+{
-+	int ret;
-+
-+	if (!is_support_sw_smu(adev) || amdgpu_sriov_vf(adev))
-+		return -EINVAL;
-+
-+	ret = pm_runtime_get_sync(adev_to_drm(adev)->dev);
-+	if (ret < 0) {
-+		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		return ret;
-+	}
-+
-+	ret = smu_set_soft_freq_range(&adev->smu, clk_type, min, max);
-+
-+	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
-+	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+
-+	if (ret)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
- static ssize_t amdgpu_read_mask(const char *buf, size_t count, uint32_t *mask)
- {
- 	int ret;
-@@ -1128,10 +1208,18 @@ static ssize_t amdgpu_set_pp_dpm_sclk(struct device *dev,
- 	struct amdgpu_device *adev = drm_to_adev(ddev);
- 	int ret;
- 	uint32_t mask = 0;
-+	uint32_t min;
-+	uint32_t max;
- 
- 	if (amdgpu_in_reset(adev))
- 		return -EPERM;
- 
-+	ret = amdgpu_read_clk(buf, count, &min, &max);
-+	if (!ret) {
-+		ret = amdgpu_set_clk_minmax(adev, SMU_GFXCLK, min, max);
-+		return ret ? ret:count;
-+	}
-+
- 	ret = amdgpu_read_mask(buf, count, &mask);
- 	if (ret)
- 		return ret;
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-index 474a5dd04c43..affe091587d3 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-@@ -1618,7 +1618,8 @@ static int smu_adjust_power_state_dynamic(struct smu_context *smu,
- 		smu_dpm_ctx->dpm_level = level;
- 	}
- 
--	if (smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_MANUAL) {
-+	if (smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_MANUAL &&
-+		smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM) {
- 		index = fls(smu->workload_mask);
- 		index = index > 0 && index <= WORKLOAD_POLICY_MAX ? index - 1 : 0;
- 		workload = smu->workload_setting[index];
-@@ -1693,7 +1694,8 @@ int smu_switch_power_profile(struct smu_context *smu,
- 		workload = smu->workload_setting[index];
- 	}
- 
--	if (smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_MANUAL)
-+	if (smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_MANUAL &&
-+		smu_dpm_ctx->dpm_level != AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM)
- 		smu_set_power_profile_mode(smu, &workload, 0, false);
- 
- 	mutex_unlock(&smu->mutex);
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-index 2427681fab8a..629523858660 100644
+index 629523858660..df94604edd97 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-@@ -1078,7 +1078,6 @@ static int aldebaran_get_power_limit(struct smu_context *smu)
+@@ -1072,7 +1072,7 @@ static int aldebaran_get_power_limit(struct smu_context *smu)
+ 
+ 	ret = smu_cmn_send_smc_msg(smu, SMU_MSG_GetPptLimit, &power_limit);
+ 
+-	if (!ret) {
++	if (ret) {
+ 		/* the last hope to figure out the ppt limit */
+ 		if (!pptable) {
  			dev_err(smu->adev->dev, "Cannot get PPT limit due to pptable missing!");
- 			return -EINVAL;
- 		}
--
- 		power_limit = pptable->PptLimit;
- 	}
- 
-@@ -1103,7 +1102,19 @@ static int aldebaran_system_features_control(struct  smu_context *smu, bool enab
- static int aldebaran_set_performance_level(struct smu_context *smu,
- 					   enum amd_dpm_forced_level level)
- {
-+	struct smu_dpm_context *smu_dpm = &(smu->smu_dpm);
-+
-+	/* Disable determinism if switching to another mode */
-+	if ((smu_dpm->dpm_level == AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM)
-+			&& (level != AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM))
-+		smu_cmn_send_smc_msg(smu, SMU_MSG_DisableDeterminism, NULL);
-+
-+
- 	switch (level) {
-+
-+	case AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM:
-+		return 0;
-+
- 	case AMD_DPM_FORCED_LEVEL_HIGH:
- 	case AMD_DPM_FORCED_LEVEL_LOW:
- 	case AMD_DPM_FORCED_LEVEL_PROFILE_STANDARD:
-@@ -1117,6 +1128,50 @@ static int aldebaran_set_performance_level(struct smu_context *smu,
- 	return smu_v13_0_set_performance_level(smu, level);
- }
- 
-+static int aldebaran_set_soft_freq_limited_range(struct smu_context *smu,
-+					  enum smu_clk_type clk_type,
-+					  uint32_t min,
-+					  uint32_t max)
-+{
-+	struct smu_dpm_context *smu_dpm = &(smu->smu_dpm);
-+	struct smu_13_0_dpm_context *dpm_context = smu_dpm->dpm_context;
-+	struct amdgpu_device *adev = smu->adev;
-+	uint32_t min_clk;
-+	uint32_t max_clk;
-+	int ret = 0;
-+
-+	if (clk_type != SMU_GFXCLK && clk_type != SMU_SCLK)
-+		return -EINVAL;
-+
-+	if (smu_dpm->dpm_level != AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM)
-+		return -EINVAL;
-+
-+	if (smu_dpm->dpm_level == AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM) {
-+		if (!max || (max < dpm_context->dpm_tables.gfx_table.min) ||
-+			(max > dpm_context->dpm_tables.gfx_table.max)) {
-+			dev_warn(adev->dev,
-+					"Invalid max frequency %d MHz specified for determinism\n", max);
-+			return -EINVAL;
-+		}
-+
-+		/* Restore default min/max clocks and enable determinism */
-+		min_clk = dpm_context->dpm_tables.gfx_table.min;
-+		max_clk = dpm_context->dpm_tables.gfx_table.max;
-+		ret = smu_v13_0_set_soft_freq_limited_range(smu, SMU_GFXCLK, min_clk, max_clk);
-+		if (!ret) {
-+			usleep_range(500, 1000);
-+			ret = smu_cmn_send_smc_msg_with_param(smu,
-+					SMU_MSG_EnableDeterminism,
-+					max, NULL);
-+			if (ret)
-+				dev_err(adev->dev,
-+						"Failed to enable determinism at GFX clock %d MHz\n", max);
-+		}
-+	}
-+
-+	return ret;
-+}
-+
- static bool aldebaran_is_dpm_running(struct smu_context *smu)
- {
- 	int ret = 0;
-@@ -1351,7 +1406,7 @@ static const struct pptable_funcs aldebaran_ppt_funcs = {
- 	.get_max_sustainable_clocks_by_dc = smu_v13_0_get_max_sustainable_clocks_by_dc,
- 	.baco_is_support= aldebaran_is_baco_supported,
- 	.get_dpm_ultimate_freq = smu_v13_0_get_dpm_ultimate_freq,
--	.set_soft_freq_limited_range = smu_v13_0_set_soft_freq_limited_range,
-+	.set_soft_freq_limited_range = aldebaran_set_soft_freq_limited_range,
- 	.set_df_cstate = aldebaran_set_df_cstate,
- 	.allow_xgmi_power_down = aldebaran_allow_xgmi_power_down,
- 	.log_thermal_throttling_event = aldebaran_log_thermal_throttling_event,
 -- 
 2.29.2
 
