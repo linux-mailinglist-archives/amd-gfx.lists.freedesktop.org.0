@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E824C3246AB
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 23:22:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B912A3246AC
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 23:22:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51BBB6EB94;
-	Wed, 24 Feb 2021 22:22:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E2A46EB92;
+	Wed, 24 Feb 2021 22:22:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2052.outbound.protection.outlook.com [40.107.94.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D63CC6EB91
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Feb 2021 22:22:27 +0000 (UTC)
+ (mail-mw2nam10on2079.outbound.protection.outlook.com [40.107.94.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93A756EB94
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Feb 2021 22:22:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RnUrx/YjNrBvVgRZC6fj7OXQ394rMah0KMAdQl6L4uMFgoFwWzC+bf3//NLhgtDkMK+N8WX/zwwZr1nNOICet2V38VBNcDiGFK5i3xuLhaxk1lUsIg4lwfAcry4JRJ+l2Y46TzmyiMb2sn5iSzYG/NFKtu4GmsnOXyKu9V5haAYWHoPOanuWPbUyRkO1SitCYZQTF5utvoFAjWrVQqS+vQRoWiGtaK7JTgDbAG3q+TX4cgZ2oa3j2rW8okaqgE3z12Tmmq0H53tO9Jbj6WJqZaSzT7oBk7nbGNikrpCT5HfNwYrHmZpGi54LWDVvpGEH0JGQ6RzEuN0tO/2jTpM44w==
+ b=k8hkGcCwMhp9jhE35B2QL8dnBs2HZ4gwNY66Pb8BoRuID6kIaLIirA1UMIhzwxYbYDdEfHJm9sf5BrfT7Fc4H/Fh4bzDJwJBaguRpDmp4sVFGhl5ooUuVTROQ8UwknLCsRFLZ4y96YsE69huqaWJoUf8frRGMbr80I8yFSd2Qf28OyuvtzdDI96Fb9bkWFyDHPeH8GmTuKKAPgFrgSMFxxDmI0Y/KC/HY2I6s+R+N9N5tu7wyu4Xyn8EpvD/zDkgS5eDmlpRgdzpLrcETXYOkgF6wYI16kWd3botPcYoBEmIEYu/f1RgVDd5PbHFVJzhmhTI3TxpG5xzKfJqqWxJdw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9aKMDFUJY0Gv6qXUYqw2x4glGvE/Rj9YSr2L36/kEYY=;
- b=fsiA/sCwuNxCqeeh+RUp4W9mYeKt7Xg2Kz+FT1LuX6YoVPaQAOPl9a9AhxJSU094Mg1rXI18jtB3nVfHjrBKylj20TrBS34JF1Eq1K41kMP8nIhn8IELcvcPTOsEowB4MsDnbkNDGVJmmznNKdWEN4fQB3xlmUtVmOyf/Hw0kocEaUm7BOFZUC2UnbSy001zU3lt1d3FStPy7vfKMpjd+l459jRubZSZ/Y7VoMdgmd9Mo0a22Wl7ULI9wMJOxFMmeOlCf2IWCWR2zR5QvZKXaO32Elsa/O3g+ARhHJ7xzXtQZh85pNlDmsrnBADe4YOaIXBx6gjRsmbdjovgJbz/rg==
+ bh=Ja4QhjqrKSndAYxkir4qogWANryxyQLsO6sH757ybxo=;
+ b=YHSDQRrxiUkn0i2i4oQ3hNNniLXcvdyvwgE53qbjcTahXFyaCLhE+hysd/KuNTfGxUOx0vUE3bZEui0f1Wr49oPOknoHEySGPoytDRLK8svQsjEV55ZxM9Cy9bp05lKiRKzhVQVC4pmizfV3s4fCnMaXrZhpHFyV/VEYhGCvgncXa/pI2SFVcjudCueQ7L9mN2qCtPX1LA7c7xf6SMnlOL02M2tRjUqW1lh55k/ZJDaf73UjHyn89WQbptRcbaIoW1LuRH9ZjLUQ1c7xgZPypq2oNnq4i8mKjD/4GcNoblxfzofqaOZKBIOVxQZGqanASFrwnMUQrWnt/wP7yTbSMw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9aKMDFUJY0Gv6qXUYqw2x4glGvE/Rj9YSr2L36/kEYY=;
- b=fvzVxnMisQ7376AtxkxqzbAtBVgm+YwpkJBEbKCAdi0nGlvH0vfWhiBHQPIt2LzfThWzs9DOVauahXi7rr0Ads44hd500NTK4GhVumpV8SpIR1DWCsyn5p42N7mEvyj2xbdnKiKgujaGWEy94rykzjOtIGBIImfeCF1uo2iRj2g=
+ bh=Ja4QhjqrKSndAYxkir4qogWANryxyQLsO6sH757ybxo=;
+ b=j/30gRov+z0kkVHLb4IYqQ470tEwmTsdbxAkixfxmGgQuIxYsMKGeUIVMbTFwmd0FaktnuRpxMNMx+MGB90YN/zif3z5QMCV42VrFt/gwy7pNV+D3CE+vOPF588jIR/ocIPjr3KkNyQox3zZK68DYtmQKbkB8rwxzRtwCBTQxtA=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -41,9 +41,10 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  22:22:25 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 129/159] drm/amdgpu: Modify comments of vram_start/end
-Date: Wed, 24 Feb 2021 17:18:29 -0500
-Message-Id: <20210224221859.3068810-122-alexander.deucher@amd.com>
+Subject: [PATCH 130/159] drm/amdgpu: Placement of gart and vram in sysvm
+ aperture
+Date: Wed, 24 Feb 2021 17:18:30 -0500
+Message-Id: <20210224221859.3068810-123-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210224221859.3068810-1-alexander.deucher@amd.com>
 References: <20210224221859.3068810-1-alexander.deucher@amd.com>
@@ -57,53 +58,53 @@ Received: from localhost.localdomain (192.161.79.246) by
  BLAPR03CA0027.namprd03.prod.outlook.com (2603:10b6:208:32b::32) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19 via Frontend
- Transport; Wed, 24 Feb 2021 22:20:50 +0000
+ Transport; Wed, 24 Feb 2021 22:20:51 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 514d8942-abd8-4996-fe54-08d8d912714a
+X-MS-Office365-Filtering-Correlation-Id: fd5e0757-9df2-42e5-adb9-08d8d91271ac
 X-MS-TrafficTypeDiagnostic: MN2PR12MB4503:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB450375B3D5F9DE6A291F5C62F79F9@MN2PR12MB4503.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4503DDF6756E13146387C285F79F9@MN2PR12MB4503.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: i8f36brYGn6SOW3/SSfmQU7qusoXsd+qOUOOs1hFcOm8gpA5929sRR64lHbrbtyLRtUVZwSiorkMr0+C3n+FXKBsYNuPgnjuHPtWLrBe+yLvJuRUO0eS4u9Bl7Icy7/jiUFm2K/9WHWpxJ5Yl2GKdlO13D/VJ7ZzFB4PISd0Cc0jfgwiNushb/oOC8NaVWUGJYyidtAQhCAgHS/v/bGGV0kbm2laqzG2+ET+V0fvWDDpGVLphxMCFx+JPiJJRyz7xwg8oE5lcdniTtswX/nDPEZlhN4XEe1CwTasOIMpidb2SI8XVa92wr+0VbhL4Sj0oLktQ8nTSlE9bZhRpW2Q3nGb+SZCUNEBIQNGOmq+hrPA2+woNpAoFnYmzNZ5Pym5IaGee9fXCPMvMW+A7MhRJyu+0+Q76x9cYUs6iB+sQlYuqLW66U6qc4CeI6/wCV8YMoOivujyDE55qmQIbUvgtP+eaw29HmRzbm+Jr0cnCgEoaXm/XCkAI0NXMiquKJ2VlYZz/78AdkyQ6Jt3+pLoRtXpcWMI4kjOEDOaWdaUf/6uY7Hs7D7Q2CTS6WSjNAGyHnPUAIUgHW9TY1TU/cGkng==
+X-Microsoft-Antispam-Message-Info: hk+lPFPgNn+3DoDl2jpeBvs2d410HQusiqO/z3eBoR9mMbE/lDv37l2/Ler+2BjykQbIFloF91GcjZrkxZprMSE0W3HTxAD7wQXmHi53jf+dX9uwTxPvur8d3WyUJC74BxBZZuuaNLK4AelBlD7ev68mtflQymaTYA39yDK+6bnWOoxvkxOK4ACTcLWyKFKG3UQNhMYTgx4xXyy60KtmB7Yne2zdBTc2mfQ2MpsLhHJyXK//tj3SK5v8H7Kld52mLRYkll3oZGcmDUX0+4jsl2TE6pVCY5j8gp17xegZ9e4wEIgaSS59DXZ68tVUKk73MwEqyZr5zRHG9trVRXyXhxlpZvjQ0uY3FB/w3CZ/nxXLlZ3qNjCxxtTBmi+llo7O29q4/MWqzLXlP0m1Qow6Ucbp5uv9NH9SoywTyTfEoauxHS6v6eNV095Ttwb40hhrhUhI3o2stDk+pn6GRKalWWlnWB1qrsvfVBufdVOY+H6Giut8nz7JYWFrsQEO12fKXIyEubgOEPhqHSj/NNrfnAdTmhO0gmrItr4WBLuIAlkLUlD6q13+mlei4KYi6qTRgtigmKoqPuu+wIivj1S5Ow==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(366004)(136003)(376002)(39860400002)(396003)(346002)(6916009)(52116002)(478600001)(5660300002)(1076003)(4326008)(36756003)(54906003)(6506007)(6486002)(6512007)(66556008)(6666004)(83380400001)(186003)(26005)(66476007)(8676002)(8936002)(2616005)(316002)(956004)(2906002)(86362001)(66946007)(69590400012)(16526019);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?ZBPe8UWPAHGqCxsaTu1pd6o5Cms2na6nq8BVFRKImUfdofDWt7u1OlwTOzMh?=
- =?us-ascii?Q?F6Em5TbEsXh2osKYpsQEd5cPAHYuTyD3D/d+16vJ5xUBzWbgfM3w8Z2l5AO8?=
- =?us-ascii?Q?Z8NKhfqp5qJbCjcnxwqUEJ+XgrxeG/Swh5nhFLE1LUaLwIH5ibOWHNtKiDpq?=
- =?us-ascii?Q?/ZqkIdR7smahbXCpDn3gJ28pbmxcvnG3LMgBIscu4omzwx9djFFEaQaovKoM?=
- =?us-ascii?Q?YIP+V2CJMdk9HloqXq69BXwa/Pd/S8pfkB+q6O4HVzt51Q5bZGyf7uHOYrbs?=
- =?us-ascii?Q?G6Yt99Txc117vL4RuQG55bZUbXQb3ZwevxEp+PPN9+jqW2oQGZ8b6wyNrwi0?=
- =?us-ascii?Q?x2lSYXeDawoqFgvPDIIy5ngUuLLB9HVaGMMFkPZF/KwUYQFYbhcgXSzSibBj?=
- =?us-ascii?Q?Y1UaC3auOWSTscCPipSmnoLOreA56Wrlbuthnd/7tvoU4WFprm9VvW50XiGo?=
- =?us-ascii?Q?/zXWcp09nqOMaTSoKB9F2gkTK0i9a6iS7+SzYxHNpDPMHrxwSxNtNKG2QR5M?=
- =?us-ascii?Q?HOjhdtqRmKnoXOmmNDClJXGamgukNBmUoTuhOHpOrQ/UwMIET/x0q4QeW6zT?=
- =?us-ascii?Q?f/IPUmwVMP8Y1qqb6brdRsIcj/HRhMyfEvF+Vv2ZfcU6bMDydg7UzzEovAHf?=
- =?us-ascii?Q?27ZPmZalvjJ5aA/fhH/sv40NxjtFMy7y/1xpSjqla2yPTLF4iSbob+n63JYh?=
- =?us-ascii?Q?ev3Y+h5ma++ehhHzJgYdPbM3nVj/+GroQOxOPDk0yrB2mHt6uKpXlL8uirX+?=
- =?us-ascii?Q?gB29mbMQmzvxNUgLZHP0qC4wwwC4wCeHodAtnSRdSY0Ewz3/mdww87MtUmCM?=
- =?us-ascii?Q?yiEpto1QXEUPvXz+vNpA4kcVqn/nBYzy4uIpqwuCJYtwpCrNhfvQoF5yznA7?=
- =?us-ascii?Q?anB5FRIgEhDmCTkPr+nFua0j1WvjrffOHyuI2JQXvsSKVpWH28xKAhvl3pgq?=
- =?us-ascii?Q?/O929Wqd+a5aFh7XpfUjeFK5w1HeG2dEA5lkKOv2gx/6gPHhJletKp8vDyA6?=
- =?us-ascii?Q?IBaLTl+OHbHOHrgp1AjaG5A1whiDltpY/DkFCfiZ0eCuPBndvdsnI2xCmNO+?=
- =?us-ascii?Q?8Ora3rxsPPhJOZ2kfLxPA/pnpRI+mdu9rLJcZhDCify7M2/AuK++aSEr4Bqx?=
- =?us-ascii?Q?+NcxFF/Ji54kxA1MnPHNfoSAQPCov2te1jq462XfytRo97gaazISd2e/Tcoa?=
- =?us-ascii?Q?23w0nTs4cmVzChLk7HGhdSFZApYKfAinrBSvSuxS0Ew9Hba2ZH8wkjZGrMWO?=
- =?us-ascii?Q?TralqHStaE1fh79/6ohBWgYsdCfKXC658y4xHO9fMP950bz0A14QONrJ1MTO?=
- =?us-ascii?Q?DADZOtkA7KQ/HzFLb4+hdwgI?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?gVS6Ix2RJXlIq2uVtZ4jSM3Ozy43as1x6yzgKrePh4+wwe6Xr8asxXSmzY14?=
+ =?us-ascii?Q?wRJogtJO62CLNxFA4DIBkvBzZtW/lqQmLbbo9sTjgjYXKYfvLgCg2ihLRi8l?=
+ =?us-ascii?Q?ngjN74437jE95eP0H1CuDlTNn2Vy26TJ2sUFut6ezRtPLzE7C8jPJ7xgPNTx?=
+ =?us-ascii?Q?0dwRgM+PvNtfHJUicKp2PxHlLgxrksWM2MKK0W16h0c6+6eawwGP0v0RE5A5?=
+ =?us-ascii?Q?2nMI3THOTYXZvyYvCIiKgKAo1lemmeXebxOboYWJhhdN/eFs3vYTB+wKnk6k?=
+ =?us-ascii?Q?x1E33/9ezDhJvkppaX8eLJNnVdoIJS7bZLVhNbhlvwNmQsnymEUX0DmcgTLr?=
+ =?us-ascii?Q?HoH8J28mkDuIiEHo14UcgZMCmvOFhbpnL5jOABJCM4y/3zD+dCRMUAaPHjN7?=
+ =?us-ascii?Q?uAL1lLgXCC6nBw2cBdTPdGACaNa1ptY7dokkvu/72Wp9mvyoUerPUHfxqIrX?=
+ =?us-ascii?Q?npItCPcO3W9g5qEbAIeCJhMk/RsQ9uUmydzSBrVbIiR16zsxDjomIa2CY0oB?=
+ =?us-ascii?Q?7yw5ttuNDXs4gjgCrzQC9fYY6BffCxFqkgReixNYi2Xw4HDNqpBW0P+0x0Yh?=
+ =?us-ascii?Q?maHMZ9qaI1FdebutNeR0Fb/Ldgg8Z8Z3U79bysrdwSR4mGM2mWVMSOyyNWE9?=
+ =?us-ascii?Q?wRGlFDvAWEhl0Y39mI2zfRRzHlDl2gKo+3+7/JCF3DvgQTm5Y4FYhDVyBjHZ?=
+ =?us-ascii?Q?mDrzuBiscKyh0/5t58RHZlayBFoJPrGHmozvUXAIOEZJU/PedhjyKxdfHvbc?=
+ =?us-ascii?Q?1Q+iDlKFmB6IE+AUH5aSj7X6kAqoGxL0XM/3vw82t8dpR7oZK1FjC3mNjyzP?=
+ =?us-ascii?Q?6DaQg9sFYBY9O5lRjWw0M+DQChJihgbWBriH+UKktkkWE2diHDLze2pORGVH?=
+ =?us-ascii?Q?7gffa/JQD142q4Sc1j5AUtL9hzVS92Ew3TreJflu/xgZYyj9ZxiZG05+PuG/?=
+ =?us-ascii?Q?HVm82zJpjZITTTMNuXpwO9oJx2lvokCYYLSkSA0fIxb40TDuWsb7FGhwHfVB?=
+ =?us-ascii?Q?mLXu85x4KfMUlC1l/AVTIGulnGRQSVTFOFLUiB7Yd4Ht7OgRi17FLcjtT1Fh?=
+ =?us-ascii?Q?pzcOQaxjdgRNILSbl3kJUqfvPjXSF8mDdBraQ8r45hl0jjNUV1mztu5G8WBA?=
+ =?us-ascii?Q?BOguborDoipxuIGXno18dWVpcPYf1ZfOhsgfaOzrU6lL1cEkF0VNMRYyjVcz?=
+ =?us-ascii?Q?MOKEyjdZhSdfekHVRvStQn4zWhiRNhAf/9pHyuTGiizToeXSbBiziHrmtcMs?=
+ =?us-ascii?Q?9vGNdF6b69xP4XL1kLWYx4Mrc5a5a9MnzqhJmDPSGn3puPEup4Tkdu9dBUlA?=
+ =?us-ascii?Q?LumMSH9z5Ajwih3cIiAXmPJv?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 514d8942-abd8-4996-fe54-08d8d912714a
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd5e0757-9df2-42e5-adb9-08d8d91271ac
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 22:20:50.8394 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 22:20:51.4547 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ItGMI5/pZRH7dsnsuzKsa41VTklGBPQ0IodQ3TfTSyaNgxDXLT2ZM9xCYe4zqEmPZ8ZT3A4Stx37WIFsB8tqUw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: Uc+kxjPnnbFkrBdz8lvph+FBRZfxkOhMine8mqRNHXUijNOhOwCaWw/wH56VdBM8y7jEdvQ/AyUOZvB1GzO86w==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4503
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -126,41 +127,105 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Oak Zeng <Oak.Zeng@amd.com>
 
-Modify the comment to reflect the fact that, if
-use GART for vram address translation for vmid0,
-[vram_start, vram_end] will be placed inside SYSVM
-aperture, together with GART.
+If use GART for FB translation, place both vram and gart to sysvm
+aperture. AGP aperture is not set up in this case because it
+is not used
 
 Signed-off-by: Oak Zeng <Oak.Zeng@amd.com>
 Reviewed-by: Christian Konig <christian.koenig@amd.com>
 Reviewed-by: Felix Kuehling <felix.kuehling@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 34 ++++++++++++++++++++++++-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h |  1 +
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c   | 10 +++++---
+ 3 files changed, 41 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+index ab1c2b85695d..f492ff8facd3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+@@ -162,6 +162,39 @@ void amdgpu_gmc_vram_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc,
+ 			mc->vram_end, mc->real_vram_size >> 20);
+ }
+ 
++/** amdgpu_gmc_sysvm_location - place vram and gart in sysvm aperture
++ *
++ * @adev: amdgpu device structure holding all necessary information
++ * @mc: memory controller structure holding memory information
++ *
++ * This function is only used if use GART for FB translation. In such
++ * case, we use sysvm aperture (vmid0 page tables) for both vram
++ * and gart (aka system memory) access.
++ *
++ * GPUVM (and our organization of vmid0 page tables) require sysvm
++ * aperture to be placed at a location aligned with 8 times of native
++ * page size. For example, if vm_context0_cntl.page_table_block_size
++ * is 12, then native page size is 8G (2M*2^12), sysvm should start
++ * with a 64G aligned address. For simplicity, we just put sysvm at
++ * address 0. So vram start at address 0 and gart is right after vram.
++ */
++void amdgpu_gmc_sysvm_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc)
++{
++	u64 hive_vram_start = 0;
++	u64 hive_vram_end = mc->xgmi.node_segment_size * mc->xgmi.num_physical_nodes - 1;
++	mc->vram_start = mc->xgmi.node_segment_size * mc->xgmi.physical_node_id;
++	mc->vram_end = mc->vram_start + mc->xgmi.node_segment_size - 1;
++	mc->gart_start = hive_vram_end + 1;
++	mc->gart_end = mc->gart_start + mc->gart_size - 1;
++	mc->fb_start = hive_vram_start;
++	mc->fb_end = hive_vram_end;
++	dev_info(adev->dev, "VRAM: %lluM 0x%016llX - 0x%016llX (%lluM used)\n",
++			mc->mc_vram_size >> 20, mc->vram_start,
++			mc->vram_end, mc->real_vram_size >> 20);
++	dev_info(adev->dev, "GART: %lluM 0x%016llX - 0x%016llX\n",
++			mc->gart_size >> 20, mc->gart_start, mc->gart_end);
++}
++
+ /**
+  * amdgpu_gmc_gart_location - try to find GART location
+  *
+@@ -169,7 +202,6 @@ void amdgpu_gmc_vram_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc,
+  * @mc: memory controller structure holding memory information
+  *
+  * Function will place try to place GART before or after VRAM.
+- *
+  * If GART size is bigger than space left then we ajust GART size.
+  * Thus function will never fails.
+  */
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-index 11c6977c0b35..f1a21e110610 100644
+index f1a21e110610..a061a5632445 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-@@ -190,10 +190,13 @@ struct amdgpu_gmc {
- 	u64			gart_end;
- 	/* Frame buffer aperture of this GPU device. Different from
- 	 * fb_start (see below), this only covers the local GPU device.
--	 * Driver get fb_start from MC_VM_FB_LOCATION_BASE (set by vbios)
--	 * and calculate vram_start of this local device by adding an
--	 * offset inside the XGMI hive.
--	 * Under VMID0, logical address == MC address
-+	 * If use FB aperture to access FB, driver get fb_start from
-+	 * MC_VM_FB_LOCATION_BASE (set by vbios) and calculate vram_start
-+	 * of this local device by adding an offset inside the XGMI hive.
-+	 * If use GART table for VMID0 FB access, driver finds a hole in
-+	 * VMID0's virtual address space to place the SYSVM aperture inside
-+	 * which the first part is vram and the second part is gart (covering
-+	 * sram)
- 	 */
- 	u64			vram_start;
- 	u64			vram_end;
+@@ -292,6 +292,7 @@ int amdgpu_gmc_set_pte_pde(struct amdgpu_device *adev, void *cpu_pt_addr,
+ 				uint64_t flags);
+ uint64_t amdgpu_gmc_pd_addr(struct amdgpu_bo *bo);
+ uint64_t amdgpu_gmc_agp_addr(struct ttm_buffer_object *bo);
++void amdgpu_gmc_sysvm_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc);
+ void amdgpu_gmc_vram_location(struct amdgpu_device *adev, struct amdgpu_gmc *mc,
+ 			      u64 base);
+ void amdgpu_gmc_gart_location(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+index 563a8bc478c9..0fce8506fc0d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -1257,9 +1257,13 @@ static void gmc_v9_0_vram_gtt_location(struct amdgpu_device *adev,
+ 
+ 	/* add the xgmi offset of the physical node */
+ 	base += adev->gmc.xgmi.physical_node_id * adev->gmc.xgmi.node_segment_size;
+-	amdgpu_gmc_vram_location(adev, mc, base);
+-	amdgpu_gmc_gart_location(adev, mc);
+-	amdgpu_gmc_agp_location(adev, mc);
++	if (adev->gmc.xgmi.connected_to_cpu) {
++		amdgpu_gmc_sysvm_location(adev, mc);
++	} else {
++		amdgpu_gmc_vram_location(adev, mc, base);
++		amdgpu_gmc_gart_location(adev, mc);
++		amdgpu_gmc_agp_location(adev, mc);
++	}
+ 	/* base offset of vram pages */
+ 	adev->vm_manager.vram_base_offset = adev->gfxhub.funcs->get_mc_fb_offset(adev);
+ 
 -- 
 2.29.2
 
