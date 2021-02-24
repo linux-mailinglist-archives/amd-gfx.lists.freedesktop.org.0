@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7C2732468E
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 23:21:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 973E032468B
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 23:21:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF9536EB73;
-	Wed, 24 Feb 2021 22:21:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D278C6EB71;
+	Wed, 24 Feb 2021 22:21:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-BN8-obe.outbound.protection.outlook.com
  (mail-bn8nam12on2075.outbound.protection.outlook.com [40.107.237.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D5396EB65
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 384776EB71
  for <amd-gfx@lists.freedesktop.org>; Wed, 24 Feb 2021 22:21:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HRY8MOJMCPxBEnlNuXtHLGe+z2J6BQPIAqYvGoPr7NnZ/+4TXh4KQ5ZUOwK22kf+kHfArFgtHToqIeDymmZn2PV4qprdFyM5QVKA3E5oKUBV8q0pjEAxZwtu+Q4ZWQ4UooSV3SrVISsJqovOZu1ZCBo8GM04GkZE3SuSH3DvnSlivjatHvWLIzb9+4fUhjPTT1SlbVPfErVK3pB8ORw0nREw/W9nRg/+DEfqCd4qyl7TLYfx4jZ4RDmiZvYgYf6+rbBVf1ocMMZXWTZ2rQXza3YxYVaDuls9wRzc7InrfsjngNoM4nr8V/jVOpAdyqmegxKoOYEXMwuETaR7xrTtHg==
+ b=GFZ3tOOsEZz3iXQm7k+13Se+6P9wtV0g8mmWELi9iHO6Mw779dLVqgi2f+z3MpGMWehBgRk67B0BxOsI4xy+GQY6MFWX8KiVRm9KIJxuA92y4mCrwgUDncWKle9LoBf8f0zjqQaEsZkWiDAQRTrmHCS8TRH2UAxun0G1hNwTIABl43SW4b+TRu2C6R+axlkPIKvR3snD5RZxvS/Z67q0W/USQKMPDxPF8blv5e3J/DkHI9GdG0DUYkkK1nqNRs239N4LZQ1os+gPF6eDQQ/koig5X7yKcM7rjs2sJlHReFNk03VW3M1Pzi2aaeYzh3pl0NW4dJjTu0HVCmTL3/Z4ug==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h8cBARCNipn2MBYSihOaZSAD+zh6l5k/NmKPKTstAeg=;
- b=JN4edJIpD/2N+zgWUmJk7yBP5UA+O8k+YCRV62tjMAheI99wJrQ8CL7jdotY3tyjyG5H0XzMd01or/CUrn4YDKbuQvRLg3DbJ0Ukkp43Z2RUOBG+yvWEoM9LJRu4MEvM4l6gTslTUnTf/lwKufb2EI4yOETzwGtGyMaC2keg22PsXW/98g1Bq4HfMwDUdhCHewi2ZnQdDDdXVxEAHEd4Eqb8LjNLA86oUF2e/BWQwfy7kaiYBeeqcrIt+oef2T6MpCcqeKFUSqZRPevOMdI58Sj4K/Pg04TUww47MAiqxLXf25R/4TkIY36A3YGRbCn9UnIWkb3NT6ZJ69XtlI0kAA==
+ bh=Nc7wUElQ4l1Q/OBeFO+HeKi3aZSEZgruGcb3qGGQ9gc=;
+ b=BSXZxLhCcM6suS0GdzY8dOllSn4RJ1rh+BvFynAT9qzWoJViKNseW5f4yjrbvG0CBUvxjmdhIHY0504sfZdEX4d4dW3x/+gnCpbaHpertyRvilLG2N+9ZoW3ZhtXbP697N5bRdJ4MeUnBtWnDAfXt4T5XC6cMzvEDnyRN3cDlujH+i7teDufEiwyh8S9W8irgqTL8ya6PbNkMPpTaDNdpzfyvrr2ZxUKe4Ig4RfmG5TO+B/t2pC4TMbYHgS3sueuFsVXuR4PWGcHQTqQU9MBm7Zioph6cPmlibUBOj1XOS0EWXwv0/gw79iSP6bmdqTIF1i/J7Qr0/RO6XBIlipm5A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h8cBARCNipn2MBYSihOaZSAD+zh6l5k/NmKPKTstAeg=;
- b=CcDqKUG4zIFStIaH9wvHppjTKShRXACMcvbjk5dYf/WO6NZPToBhWGKVnqLEeuSsRdCiwSjfoPir3eghFPdHev9+HE+2DJJRvL9rqy8SdtiNwwVtSie2/k05a4NdZc7Jzk/dW5ELxiGpAO7aKiBE05vbI5TrPcfW8dTdZ3v9HrM=
+ bh=Nc7wUElQ4l1Q/OBeFO+HeKi3aZSEZgruGcb3qGGQ9gc=;
+ b=fW1jJjBw8NSUBkrZ8lNx+gFpQZkLcuQtmJToTJ4DkOt0i0xG4Inbd8Hzc6ko0/sYLRAlEj3UPLx3rCZmEzhJagndE8rBmSZdMx5Cdlt8xwzXUFWxxd273xoO8PF+kuEGm7iotYj2FVtZnUfIFUHNhIqDi/66WypU5ruTXUjDkys=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -41,9 +41,9 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  22:21:42 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 098/159] drm/amdgpu: UTLC1 RB SDMA timeout on Aldebaran
-Date: Wed, 24 Feb 2021 17:17:58 -0500
-Message-Id: <20210224221859.3068810-91-alexander.deucher@amd.com>
+Subject: [PATCH 099/159] drm/amdgpu: Aldebaran doesn't use semaphore
+Date: Wed, 24 Feb 2021 17:17:59 -0500
+Message-Id: <20210224221859.3068810-92-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210224221859.3068810-1-alexander.deucher@amd.com>
 References: <20210224221859.3068810-1-alexander.deucher@amd.com>
@@ -57,53 +57,53 @@ Received: from localhost.localdomain (192.161.79.246) by
  BLAPR03CA0027.namprd03.prod.outlook.com (2603:10b6:208:32b::32) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19 via Frontend
- Transport; Wed, 24 Feb 2021 22:20:30 +0000
+ Transport; Wed, 24 Feb 2021 22:20:31 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 0f436dee-b409-4e01-3542-08d8d912655f
+X-MS-Office365-Filtering-Correlation-Id: 5cee6d2a-b747-47a9-1d1f-08d8d91265e6
 X-MS-TrafficTypeDiagnostic: MN2PR12MB4798:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB47989240152AE22A486F7F21F79F9@MN2PR12MB4798.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4798EBA34ED2A47B5226C4B4F79F9@MN2PR12MB4798.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:346;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1ZJ81qcDhFC/1MwucWZ4cqXH/C7A1dAAVq5xJJTI9nFtu/cOZBgvFOB9jwEL4lsZQo2FEZ4A+QarRt1efHQnX2Hi3TvbV6DGnuJXuiPVmQRrCQ80YfFtRMmj7POPcHhpBUvVFv32KN1V+4QWOoCMJMAjVQE7iN66PtRjq+hz/d7/zjM89wqO9T+H2ZvNT+0yfQ2fVwAtxgYRFDmXgYvngX9zX2mxL8R5GoVHF7quMXc+LfoqrJRWDB1aVKkMydHK0KLtiBLqC5l58K/BQqvhnq950OS51e/fpEw4qrTHcBjoJKTY2iDHnCD+HI7PdEvvCyLEBkJejNm3/dXsRjgxyZL/8TXwU/dlBpot+vAwZtbCls09H1w5ShFJPVH9CDlsgWXPY3ADqL01cxSOyFX5oZ6qseQKc4gLzxXg5mJpDg9/ThaunvrAwI+igWGJD1I/g7c/AtmZ2tEZU3GjSB5C5OQS/6aWPKB18/OnY1PoojUwVK9iAbMbGF0KPtg+ED3ZAwKptq6Mjfvff5g+uGgyvn8sB/gGTxKrmslDEP98xcOCdaV5XdEtF6JZZzihyDi4hRGRWbn2Gz+sdFbvhtyBDA==
+X-Microsoft-Antispam-Message-Info: rMYbVRxLMD5WkCuJ9oHFXFyCZFNvypfHBtHnQqHY3XdywuENHvRP4Wdjwb1v+Y11ly9CTgOyX7z0eDD6xOHhAFw+YAtOVqieAhP2q7ebiYxfrIcwbLhsEofpj1BXses6Di2H1JYI9yxnDVM31lbiKR/mUFc+Rvy9gg7A7ddw9rqaYBJ0944Sd7yZNcwkE8P1SJ7/ToKE56ZZI5S9sjeRzd9ZTGdLraa7OMWLIBvR/a4ZcAIspet7SJGurgQgrkm8u1svvuNEONTFUiIghWiayYAVt6dBKhFrH9Tk3A8BiBZ42rmnwkUapRd76BVbaO6kG0AjXfPpLyJiqiIlvDkqD6G34+WZdKbW/3T+E02Yko3c1yMd/GKe4eKyWBN/iGhyAW8EDV5xgH6H7nXD/ApWlN/+dZCy5GDfIrM7/AVn+M5b7QmqLo1k3WUJ+CuF41fj2LuF/+mJUtxoyNFwnPXxneZjkvvOOvg+VoAk6GsmELB/IWNamGJo1Zp1oF+Lm4MIX+KQ+WGfUKJ9HzJvlrhxFI/80OqETAa5u04dLCchPlm8W9ojIR9pX0dsVK4Jnz3bEKjlAqxh5yaNITGqcTxn5w==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(396003)(366004)(136003)(39860400002)(376002)(1076003)(8676002)(8936002)(186003)(16526019)(6486002)(69590400012)(66476007)(66946007)(6506007)(2906002)(54906003)(86362001)(316002)(6916009)(66556008)(6512007)(26005)(2616005)(6666004)(956004)(4326008)(36756003)(52116002)(5660300002)(478600001);
+ SFS:(4636009)(346002)(396003)(366004)(136003)(39860400002)(376002)(1076003)(83380400001)(8676002)(8936002)(186003)(16526019)(6486002)(69590400012)(66476007)(66946007)(6506007)(2906002)(54906003)(86362001)(316002)(6916009)(66556008)(6512007)(26005)(2616005)(6666004)(4744005)(956004)(4326008)(36756003)(52116002)(5660300002)(478600001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?dLZNPc7eLxC9jcRkPohc2NEgYUwb0XPsUDpkNGBqdioYALOXHb12HDQfpILC?=
- =?us-ascii?Q?w2D/J8TUm/i02LymOiA81LQhLzLON387Kmu5vqxcM8eFtYplzyDVoNHQQl98?=
- =?us-ascii?Q?BvV+mb3qlhUMccEt+4tIE+I68MRoMySAmgs/ilT/AgAFkBuD/c+P8kY0R1fH?=
- =?us-ascii?Q?0RvIQ6+PIdrqaZ4xJlIQ7Tkgtufos3s/EySs2i3XeJ/b+NybjWw5CymwLuGc?=
- =?us-ascii?Q?tzeIY22DRjVuoTMCBAv/cEbIEZPlPZWmT0KbN2zjwR6AGaR+iE2RRhNIDkvG?=
- =?us-ascii?Q?b5RbTgCFtWns0SmkgRlIZxvOYDfqEq88ZQv7VoDXo6u/Iu7eKgT8bHe3U+yJ?=
- =?us-ascii?Q?SlWn0nWzPzKHNVUXnPObZFg/jR/a7moZoFoQWD6+C1/inzzfY624AkH2rC6i?=
- =?us-ascii?Q?83OCrP6Y+/D5jH0SF7zt9ewIKPsxY64AuCB+4Ri0UO7oI4UB9egijiaUx6i1?=
- =?us-ascii?Q?Qzjsre3fLWvEyj9m+ePquDj7FEgt/5xRHTc7+we1HzZ6Hh/ZftR+mpKdR6CM?=
- =?us-ascii?Q?YT1k+V9oOi5HWbeOLqLRgv3pph+ngkkZ6HGY0cHI46a8NOVd6mEBujo3WE+7?=
- =?us-ascii?Q?nYBnNIyrdV8EAiHW6tNKqKIDvTncvRDitvK9gEZ5pX2uimRugZJ4WkVDbA3q?=
- =?us-ascii?Q?15ufEQlLhOdeIUEYFKgVPtl/OaFpuY8cZdXxXZ4phQB4w8sMUqia9Lu6ZP3t?=
- =?us-ascii?Q?+ae/rNuXBlK3FoatLdd4+YV5nGFErpzddLBaTpWm8hvx4BtZK5iKVO1CrYHt?=
- =?us-ascii?Q?kKsqwd1u4TWCgAdwWy5HZ//SLEAyOhKLo4bHgEMq5TB/fVqyZbsjAybdx1F4?=
- =?us-ascii?Q?AzbCsTF3Pk7VAoOtuyRb0GUB/mv3wnu5d8jZYi/MPxQmlDwJ4HbCuctyWu2i?=
- =?us-ascii?Q?nVq9eclUCPjt8cxntx0SpyBggntgpgf3ebE91VA6Ks8LbgecIQWE4T0DBMFu?=
- =?us-ascii?Q?guneJI+w3WZvRQHg+FargUkqNu35QJM6KC+2R3QtLDlnJpoLysAAhsUHngX9?=
- =?us-ascii?Q?LZb2CIMOfcVZQ0L+1HkOcG2sQsrZq6q5QBkEu0bIDrX9gzyL6SCm6oWqx9JK?=
- =?us-ascii?Q?kPq8HvC9NbkRwiXeylAyZJT7XUuxJ0cBt6yvjxPzpDpXxTOujWsRpNn4yJZ3?=
- =?us-ascii?Q?DiqCJKNA/ZQmX++Nqd/ncQxliPPlXwjTLfPO0HsdX0sf8xSnwL4eXTlt2coW?=
- =?us-ascii?Q?+IW2p1CQ4O05YySOcgiqPMQcaPbD7WZyaYY66AC9YeetIfBjd76KXAAoHp1Y?=
- =?us-ascii?Q?9RPRhFrnSyY0uyNk9pmEIfdcphjVIKRvJj7vPPaIktOXKil8gojNau8gGx01?=
- =?us-ascii?Q?a2Jg4GXNi5573kBNwsBk9ET6?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?2aWaCbBDkQB+WRkrw575pF8pY0hyeclQhOhfQNWSTpfBEqK0tgZ852uRns+e?=
+ =?us-ascii?Q?erecRMUpsC8S7DGP9A6o9272Y0JXJpblOPJ3UjMNOnUS/paJo/b20U4fikwl?=
+ =?us-ascii?Q?XUgd6KiT1OgBNLmwBeK0R//RECjUHq7ex252p6C/z94RMae+hgSugYMCzmX3?=
+ =?us-ascii?Q?0NyscVvxAiv4m5+PFSwjLJaKSdFsNql9KMFfC0BgDZh+wWIffWq5zaLQ2oMc?=
+ =?us-ascii?Q?DhY3vNqTmW4u2I6i15T54UqGTEH3/HutGPlUdL7Si09ZvaJtterZEozGNaBg?=
+ =?us-ascii?Q?oC7x6VMi8F7jbAHtrbqTSWtFIGlAVyXTeZtOyES2SkS2T4ykex0c0x5x2fzR?=
+ =?us-ascii?Q?7kqsejvNjWfLBos6Aw6vfbSy7LvldYReW5zPzF9OHO+EBbXz7R1Y2JBJ3oze?=
+ =?us-ascii?Q?PBt/+IXrXR0t1bV5HUAmslYd4idQgapfpQOA/Si6kGI5PnedVL1EUE6zg5a2?=
+ =?us-ascii?Q?OhXDG/CzVcwGgT3Dhx/+OcDW4IrKuVeSzJjnIgTBZufxWQQbZimgAHAhnEVd?=
+ =?us-ascii?Q?Ohk82/6nsYOVRPm+YQM4rpwCRrYiCyMnLp5fHxmvj8+/8wNiPL6FCZdurP8R?=
+ =?us-ascii?Q?GOckryYaUgpjWABYNIl47pSyLJR/7dDclJ3yjVn6a+F9jPlk8qJ5Wbvq9ZFc?=
+ =?us-ascii?Q?DVYaxISG6h90X7BOyL4m4HdP83IoB6/jr60aQmapn1AWaXVs+UXoyTwQC8dG?=
+ =?us-ascii?Q?t8UBzsxkOfhHj6Q9dMIS1RWM+YNYZ3VeBp++POqPXzhJ5xqZRyw7rf+1oepb?=
+ =?us-ascii?Q?PhC/1cPyD1NrN7iabueHK7z7tOSse85mNPVPXluCwu+1Fo+WIjLVp0i7rK6y?=
+ =?us-ascii?Q?Umr5PsW613SBDmhB7R7HvLs8SN7dihxEHWzcjPwXsXIdOI10R5+ZaaU2K9qG?=
+ =?us-ascii?Q?EddlFHbq4y5gHAMjStrnbC1p4BO9dxmirm08b5X2so3VMVH6Aj50N+StPd+b?=
+ =?us-ascii?Q?JDt0P6NwXoK3F99m2pDBwtN/dTi2jUPTcFRWN2BpQ4Rcq0uUgMNVTqJR2J0H?=
+ =?us-ascii?Q?DPenIDkplMVUu2pSWLaDNQlFx+PNRr8HCNSJeW+8PqHJRmKRHabvruJXwV+I?=
+ =?us-ascii?Q?n7SMI/gevBI3PXVWDCvIjN+82FPQohCEGAJs3fm084Ce8j+6Smg5Fy2fZEpf?=
+ =?us-ascii?Q?MkJAY3mTdpjrIV3EW5lcJBucpWFzLRalPbuJ2vzEOkSAHiLn071EYqIwqF/9?=
+ =?us-ascii?Q?LJsgPi5ytT8nRJ6pm8cpapUM9XjjNs1OQL8P7dy/t8pKKC8HKPqs4Y+rh7+7?=
+ =?us-ascii?Q?OUtyDXfachZOu381GbdRLc0CnfrrpxGWUZXe84jU6SsnAhImhQo9xYWKNDPd?=
+ =?us-ascii?Q?yrXY3ZsY7Nlu3VK5hXVWB7va?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f436dee-b409-4e01-3542-08d8d912655f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5cee6d2a-b747-47a9-1d1f-08d8d91265e6
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 22:20:30.9169 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 22:20:31.7602 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pMnEsUYp0lpZpaOrrfHeoACORJZXxTWGFPDbgWlpdKaNZzNOMJXZJba1WaQsdAwgOyPHaseVkOiU7jrSXqaDpA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: SeIgamtM2xOacuiExFAz0EkcKsjNaQAR8Uhp/LzKLlFvNSvkLflBOVcl0vL/PEFtYNMEErVJmgTRcC7QSjn1GQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4798
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -116,54 +116,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Sierra <alex.sierra@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Amber Lin <Amber.Lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Kevin Wang <kevin1.wang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Alex Sierra <alex.sierra@amd.com>
+From: Amber Lin <Amber.Lin@amd.com>
 
-[Why]
-This causes infinite retries on the UTCL1 RB, preventing
-higher priority RB such as paging RB.
+Simplify all Aldebaran DIDs into one ASIC type.
 
-[How]
-Set to one the SDMAx_UTLC1_TIMEOUT registers for all SDMAs.
-
-Signed-off-by: Alex Sierra <alex.sierra@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Signed-off-by: Amber Lin <Amber.Lin@amd.com>
+Reviewed-by: Kevin Wang <kevin1.wang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-index b2146b4a7682..8e3bcdfe191c 100644
---- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-@@ -264,14 +264,19 @@ static const struct soc15_reg_golden golden_settings_sdma_arct[] =
- static const struct soc15_reg_golden golden_settings_sdma_aldebaran[] = {
- 	SOC15_REG_GOLDEN_VALUE(SDMA0, 0, mmSDMA0_GB_ADDR_CONFIG, 0x0018773f, 0x00104002),
- 	SOC15_REG_GOLDEN_VALUE(SDMA0, 0, mmSDMA0_GB_ADDR_CONFIG_READ, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA0, 0, mmSDMA0_UTCL1_TIMEOUT, 0xffffffff, 0x00010001),
- 	SOC15_REG_GOLDEN_VALUE(SDMA1, 0, mmSDMA1_GB_ADDR_CONFIG, 0x0018773f, 0x00104002),
- 	SOC15_REG_GOLDEN_VALUE(SDMA1, 0, mmSDMA1_GB_ADDR_CONFIG_READ, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA1, 0, mmSDMA1_UTCL1_TIMEOUT, 0xffffffff, 0x00010001),
- 	SOC15_REG_GOLDEN_VALUE(SDMA2, 0, mmSDMA2_GB_ADDR_CONFIG, 0x0018773f, 0x00104002),
- 	SOC15_REG_GOLDEN_VALUE(SDMA2, 0, mmSDMA2_GB_ADDR_CONFIG_READ, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA3, 0, mmSDMA2_UTCL1_TIMEOUT, 0xffffffff, 0x00010001),
- 	SOC15_REG_GOLDEN_VALUE(SDMA3, 0, mmSDMA3_GB_ADDR_CONFIG, 0x0018773f, 0x00104002),
- 	SOC15_REG_GOLDEN_VALUE(SDMA3, 0, mmSDMA3_GB_ADDR_CONFIG_READ, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA3, 0, mmSDMA3_UTCL1_TIMEOUT, 0xffffffff, 0x00010001),
- 	SOC15_REG_GOLDEN_VALUE(SDMA4, 0, mmSDMA4_GB_ADDR_CONFIG, 0x0018773f, 0x00104002),
- 	SOC15_REG_GOLDEN_VALUE(SDMA4, 0, mmSDMA4_GB_ADDR_CONFIG_READ, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA4, 0, mmSDMA4_UTCL1_TIMEOUT, 0xffffffff, 0x00010001),
- };
+diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+index 53c09aa4e159..b25ed18a1fed 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
+@@ -644,12 +644,8 @@ static uint32_t gmc_v9_0_get_invalidate_req(unsigned int vmid,
+ static bool gmc_v9_0_use_invalidate_semaphore(struct amdgpu_device *adev,
+ 				       uint32_t vmhub)
+ {
+-	switch (adev->pdev->device) {
+-	case 0x740c:
++	if (adev->asic_type == CHIP_ALDEBARAN)
+ 		return false;
+-	default:
+-		break;
+-	}
  
- static const struct soc15_reg_golden golden_settings_sdma_4_3[] = {
+ 	return ((vmhub == AMDGPU_MMHUB_0 ||
+ 		 vmhub == AMDGPU_MMHUB_1) &&
 -- 
 2.29.2
 
