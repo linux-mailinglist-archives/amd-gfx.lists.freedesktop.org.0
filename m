@@ -1,39 +1,39 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89FF23246B4
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 23:22:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8962E3246BD
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 23:22:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D4B06EBA2;
-	Wed, 24 Feb 2021 22:22:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EBDC6EBA3;
+	Wed, 24 Feb 2021 22:22:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770078.outbound.protection.outlook.com [40.107.77.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57AE16EBA2
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Feb 2021 22:22:34 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2068.outbound.protection.outlook.com [40.107.243.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24FD36EBAA
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Feb 2021 22:22:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Pbd4j9yatTjN4E4CrMj40psLOzFTneqmx/06QQsbZdcYDVzsxkg6jZCpZmnFo0AZsMRZ2iTFGe6tpSV7vinRvqGk8kA+CXQoKudowzIVfKXRWv2E5djKCa+Y4Kob69aoHh9ulfF1rKlrNzegt7z0UkJTSgR3PeXhN8cdC0gjA8LrJn06E1gXIFGYnoY9O6nFca1mv5d+1xjd15uf6iiRqHmp/IWEHCDp2IDW2tnnT1Rvl/bqBk8Ead2dTL+CEH9g9PctbeODttzXZRsEn6Ftmq1v7mlDmCAEoCHYgVKjE3h1qBqF2SQOUu8F5tuIDfwK2GLL+JyIp3mEofjtRXEoJA==
+ b=leNP1U4b+z5xALBJd8sDF/Fcrk7+IU0hqtoQVhbiTXC+gaM2B2QNfO5ZbWXA/F901Lrr65GR9n/cSpP+bpc8QO+WKZx670VZKrAF2i8zA2dzBz9egYSr9NLvbEPs953J6TszBZRimr9hqmQccH0qex8UiBugKzodlqxzS4jxl5cPw0YtG+k6uvHQLCTWL5QuXvw8QK3FBDBWCxQ0u8sunVyAcrdrwWKY4gHggLGEvAjbdTu6vK3PxYAilv+C+zkVnOR4QnyqI515dSBp+Ypoqxtv7kqy4GtQJIybVBNee3lmzILRm4o8pqtX3bzhT7IY/Hqya25/w3yq8vOjOsMuUw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eARVWH9TQtGt9kUK6WRrBPC8/T8jiE+uJcYFVmzcR6A=;
- b=d1olDAkNguZvPDQDQ1wDIeuMcuQc5jDEB22JsbLSmcXYD3B55Nj3m3J3WcmuEak4pfBYHjA/pmJv9mHgxcZF7WlhcNbZn6m5VlR4F5PoA90zNiNe+vL/ED6H7VUPvhCN7+f4saswueNpJA+xNCLnh6RfKqhxibrKOIQeD328Rbc68Dc+Nk/rvA/ZpOsdwGNioakJe1DHkdfb3kB1w2qZj4UPAWHkqMtLx/SSx9Qt+s012wYbdfSe4fU9YO7SEftf3NzK2KFOyFMm3JHd9iUrpXvAd4NMbQfDXA+ESgfuCVyHfyxMsBXg3m+NGg2aeBBjAuZPJarlZG2vcyC5FgHSdA==
+ bh=wMaqVydup8R93Y0PxtBDzKcsOtabJcsJ7UBTiCQ3RPQ=;
+ b=IeNkDCtPnWcdML8WLEW0uxYNczrH0EpLb+I5rXaDEZaEjzRGnDXoubnZzN2m6CpID+Hh22NG2nYgRjDLRtkIMP5FMxdfxnnTiBFWz5GBWunqxKkHGZxTYf1vwtyNrtKC9dDCfQwAZ1hxxoxuu6pNKprZmg0+zlA6QlnRlFwqyj4AGtIIfljOgc75wzegsFjhzwqJzoxa0kjvaD7ZHwV1cUTD6jvSnn4Q45ShykH8ShH8+Oy9Ls5xvF4TY26OfSTT/iUSlwMs1Xt0Jj8vZ4MIR1NVzSgA3Zu57TXv19ksQ4qOdEEHjP44bo9HeUIiW04FzJwR9SYMu8uczmBrL/dgNg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eARVWH9TQtGt9kUK6WRrBPC8/T8jiE+uJcYFVmzcR6A=;
- b=n7YaUL1nuv981fVDkLrvAjRBFj+NVweyFYhJhdaUa1ctzMUkKBNbgG16b0/zQrHuijjTrMWP1d3H/uwu1NPoxVAqkUKmxFWPyqTqVvgADOuj2d8wmnMSz09Jrzr44A8gZGQnHWAOBw8ybBSizMsHhBgkT6LXgCSCihMQo4ZQYh0=
+ bh=wMaqVydup8R93Y0PxtBDzKcsOtabJcsJ7UBTiCQ3RPQ=;
+ b=b7nhwTl4JUz0e85hOXahW8gAa1UP0oz0Gzdibb9FSH0MtZC1hIgrzfa+TiMZYjhprciEe8uRUOpl660lqfLQAi65AuWSu4EO9VwS7ww/oOmztkw7MajQ+HMZ6GAtUm7w7+c8e5v850aaj30oSqIQtzwdUNZdUY8AyVAz7e/9Tyw=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
- by MN2PR12MB3807.namprd12.prod.outlook.com (2603:10b6:208:16c::30)
+ by MN2PR12MB4831.namprd12.prod.outlook.com (2603:10b6:208:1b9::32)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.32; Wed, 24 Feb
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.31; Wed, 24 Feb
  2021 22:22:33 +0000
 Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  ([fe80::b0c4:9a8b:4c4c:76af]) by MN2PR12MB4488.namprd12.prod.outlook.com
@@ -41,9 +41,9 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  22:22:33 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 141/159] drm/amd/pm: remove aldebaran serial number support
-Date: Wed, 24 Feb 2021 17:18:41 -0500
-Message-Id: <20210224221859.3068810-134-alexander.deucher@amd.com>
+Subject: [PATCH 142/159] drm/amd/pm: Enable user min/max gfxclk on aldebaran
+Date: Wed, 24 Feb 2021 17:18:42 -0500
+Message-Id: <20210224221859.3068810-135-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210224221859.3068810-1-alexander.deucher@amd.com>
 References: <20210224221859.3068810-1-alexander.deucher@amd.com>
@@ -57,54 +57,54 @@ Received: from localhost.localdomain (192.161.79.246) by
  BLAPR03CA0027.namprd03.prod.outlook.com (2603:10b6:208:32b::32) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.19 via Frontend
- Transport; Wed, 24 Feb 2021 22:20:57 +0000
+ Transport; Wed, 24 Feb 2021 22:20:58 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: f3d56317-def2-403f-fdff-08d8d91275ad
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3807:
+X-MS-Office365-Filtering-Correlation-Id: 15e4be27-1f1a-4c63-c105-08d8d9127615
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4831:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB38070EEA3F9B541E3AE3CCF0F79F9@MN2PR12MB3807.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1417;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4831321C6A4A15058AA607B9F79F9@MN2PR12MB4831.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JUeErPqs1zXTSNh9XbWrBnL+285lo84xmfghkNDlsulZrBSFZH88k5dOgiUjBANHrcf8xXHo6UhIx5LXm58C+i3myaplBlZUuZM95DkoqhfLoWP0u/IMHtredjcv3qaOSpXfGHBzYbAISIxl5XwizYMHYIZsjTtiJLmxvNctAcUPBMa0txH8cxnOuHUgnqaXS7iLUNIHTaGmHidofapQb6XjWWhq6E10fcvJyJuhHYQzafXZtM8SK3+27qhpjq/lOy+fQHt2jUAcrtw2WIUPSMFAXEoxqLHpMQpjGwgH1HM/FuvPHkJUck2P0Kgua2pOfwGGYKstYGRNLGGaEubKhXq31Jhub1y/fsxE/G6wtgkXBtfhMwXcad+SJEwa+JQLRnbipFJhRBJQrNKkIcI53FqrdD1OKDSt3305Yyy67hA+ILBXK0W8EG0ZZ8pcQpWk60qA/9FKHTChFUtUNHIs0vNIcP2ghK3KF6cRwoSpxkh7KO24jxDeyRZBHSTToxP1Dlp25yM2iqD0kR5RhKImZVfjfwDOgeyzu3bBZ70hUKNBgfT3MzztfMYsxwuUReqVg+HdefOVLK+StFmNHBAR4Q==
+X-Microsoft-Antispam-Message-Info: vIcY8tLvbqa72wULLFdAtJGAxNuww1r+cBemFu7T1EJD/gVjBylUTfsJ43T7wivmnFWMd8PffVlNVaT3f+OlTvSA54XqkrIAZCkUlW6OhQ1XyYdwfxpiHscfrb4r/FmX3RWj4mHN1IbZgREVHZNyUDXMtUNfwxwpmVIAX4ZwtAvnwI0JHXqKVALc6zHgYy1Js211b6QkhEs7t7YEYRhWdV39kyzgo4aeX2sQtCg9EV5w++7ES6dsBwBHc3AFq6gZbgtQrXBnV2TvLgtlpTdcLhoelHptBznGu41Z1gH0+ktxTpMCsqCyFzpHXQWigmdtAZg8z1RcbCHA/SZhsBKYU3yBPlisGI5fyphLwHPHeDrbJpjFYLB4D3gBLhVm5kCkWvE/tYmg7Sb19BHrmbfteismhVlwXHjyxgX70DNqeyRLdLWOL5l8opuM2rp0aXAFihPShEOsqUmoUKe536x8Eu7Oa82VHw1gkcTDnTxSaQ6fXy9I+gTTVOoR83oqrF+eKx4hbiRD0o+ULgjD4Cqvg3p6YAsj7KkVGsErqNm6wd6PdMJ59GcbvW9eYRTPQtjc87SG+44mdkaeEPyWwQ2wKg4WkGvO5BvMFCscxMmj7GM=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(39860400002)(136003)(366004)(346002)(396003)(54906003)(478600001)(4326008)(19627235002)(86362001)(83380400001)(16526019)(2616005)(186003)(36756003)(66476007)(1076003)(6506007)(6666004)(66946007)(69590400012)(6916009)(8936002)(6486002)(6512007)(52116002)(5660300002)(956004)(316002)(2906002)(26005)(66556008)(8676002);
+ SFS:(4636009)(136003)(396003)(346002)(39860400002)(366004)(376002)(5660300002)(6506007)(6486002)(83380400001)(316002)(6666004)(1076003)(52116002)(86362001)(478600001)(54906003)(6916009)(36756003)(8936002)(6512007)(4326008)(8676002)(69590400012)(66946007)(66556008)(956004)(2616005)(26005)(2906002)(16526019)(186003)(66476007)(40753002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?z+osdqcKYOklbe3618aT+o6gBFuVbP1ycrivRWvo6mkEUyvZ7U8f4dwGz9jI?=
- =?us-ascii?Q?JJgpk3dCnBSbWln5Fr/J5ZX83HqUrKu01g02eYmrox3n8QyZzWa1bEtFjT3k?=
- =?us-ascii?Q?Gqy2fY/UgYiIwYYyLvFDW2zx8lQ8e1hsYdnEBzX/9h/mWMriwySYP2KNTeZ6?=
- =?us-ascii?Q?guyuPlCUXNzjDY7XtWLq5kq/kwytyUzbNpM/oHBgCSrXNY01gEfyWbLBIWGx?=
- =?us-ascii?Q?b/hG6qcA5FAycdsVMbGrd1DPj2qii47E0fWWR4nebwhKpOR+QxQbBRbfw87u?=
- =?us-ascii?Q?ltV4p/YR/r2xWvXNiMWc5fBFQYsVC0mIMFUqXWIiPUO5wy5gexFvZ1QU77/x?=
- =?us-ascii?Q?Hx98OphK59ffOe+GWsOBml+bKe8UrBuP386Gtw24lL9DQoQD3it/iwKT3DgD?=
- =?us-ascii?Q?4yaO4zQqwn3GCqQreUjqkCQ1GPIAHZSC1+OmhUwcN79u/kqW6YmPCWNA2mew?=
- =?us-ascii?Q?kvW3gGDLLH5ibmbvvA9RTsaZLhG+yoWPKPEZt8HELypyacN5xYSf/mLOmtEK?=
- =?us-ascii?Q?xuY4D9s/3zVtc1x+92Odhv+fnp+6dO9cU5URTvsgYMKLG3tvYPSZ6N7vM1/W?=
- =?us-ascii?Q?b0BEA/S0wT1jbvbeo+ioa1ZeOROg1kh3yi9x4/2rXAoE9S55W5YMNOrzuVBr?=
- =?us-ascii?Q?qG0oRneQ7TBkznfNwI7OkrALVVZPtgVg7juuB7wt0yis5j9e1RtiA/eVdZiP?=
- =?us-ascii?Q?jIgKwrknhelWkDI1FI8JAK94pgG2iyVLpjogkZii24Go7s5AMr3Fl6nvZsZf?=
- =?us-ascii?Q?VXEnOEFa9fuRrFVTagSbAeHNWk+L/GmXgYjvR6+7JoTJ5V4IDSQyE3nFOyQF?=
- =?us-ascii?Q?bHj+3w+DVJrkLTDeGadjnL0d8RNx1NYUaKnRyqBUEkvX4XABIupNUoetgZeU?=
- =?us-ascii?Q?VeGOl9ht/hlq1jX49ljcDSyQ17w3ZeMBc+9TyTQgDfa1Z6PeAsgJo6zHanmK?=
- =?us-ascii?Q?dZK0H4JIFv4qoDlKIlzQzhf2CM2jMVXNRmEmKY70DzQRs8TxRfmzJjsC7I76?=
- =?us-ascii?Q?y0S1ZhmmEg3GuRI+WY2RGvqGH2Yb5P3ZkAqxuqXDTksSq8sxiXR1Iig9f1Dy?=
- =?us-ascii?Q?COCiHetd5Tr1n83g3HXrqo/rrTdfR34NOijkJGU7GLKuvGef5RY4TOrsKqjn?=
- =?us-ascii?Q?HAcyKisS+HyNfLCUigad1xChLnqsVmyLgEoSpbXNZPzNVW8swM8uIZcOD9tH?=
- =?us-ascii?Q?1gd7iS75JaWJLeLJVpPpmNYzWiZtNe3h6S60ajzyAE2w+wuohEVbgcbBss1T?=
- =?us-ascii?Q?+2qdJpvzPYEI4mI2PLLlM1b+yt7U9r4uHu58aAF1xlPacGFwBGcbAWUBxkq9?=
- =?us-ascii?Q?T9ytKwDxmSXi4I46Cafov1dd?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?flciOKJARoBloQdvWGXAjaSzAQoT1CrtpEEf6KJv4iudir2iY9Ay7jU7CMeh?=
+ =?us-ascii?Q?q2/zHIgT+x0AVMYG9kUtk/YBAs+C/yVu6XGbUOGk/KbPxkRxwiAvkUbJmWuQ?=
+ =?us-ascii?Q?JpW8F2SIwE4aosiK/OVbXbYnHnvjbYIDmXJpWGY3LwwqEfkLiIsDOIHJvcfG?=
+ =?us-ascii?Q?6TFr7xgep8YFMIBqm2Z7cEKA6OkZs6s0oUNTeA/5ft80YnFCpVyw1qtshQbG?=
+ =?us-ascii?Q?dXuejatiIcNBwCg26p9adz93Y5IDxAUL9FjHC6EEvAiBrRsTHQFwO/2HSx/d?=
+ =?us-ascii?Q?X5eHbbl2LS8gDUt6uYgl3xMgBl8XK5wlOANh11DsEiHTzRfQ7TRgooe7u4qI?=
+ =?us-ascii?Q?3akipZA2Ghj1FsloIbIow6dkeD5wRkQfPn5DCXIXeAHcApd/WAhtTRJlS8o4?=
+ =?us-ascii?Q?kYi0TeCMQD6tua2dBfbdZY460iOmIGZUQjBnJiNQ+TYomPR6xzpd8UUa2+qC?=
+ =?us-ascii?Q?M7guk6rsyAm7bBTkG7vLezcFLjTK4gYNODIiSPfSxfgklZ68cGvGH5WcBJn4?=
+ =?us-ascii?Q?kuMoovhZMUbMjobO/i5i6B6qxwuUfkp0+PjezWAitlwObhvJN3SRLwv1W3pV?=
+ =?us-ascii?Q?+fDauHi9R1SA+pgAITFPhbCnZyqm1SaKVcmeDY7pxCiAqIGLMGzEJaF3ZRg3?=
+ =?us-ascii?Q?QE3DC6lAx6Sq3rRXAgekU34qkBvEAgh1n1veXJUwF8rCIJWI9n6SY7q6CrYI?=
+ =?us-ascii?Q?ls417BcwjngEG8sGC7C+4rdU29WI9LZVKZty5afHXNLbliN4LFiJdT/QEZ1g?=
+ =?us-ascii?Q?hZ3wTUXk06IoB/R2T6DZZ9xpFJObna+M2ZScC7PIY/6OnDCOiGFb+jRGL1K0?=
+ =?us-ascii?Q?3k+Z0qQ6COn9Yoy/BgcmIIIfPzE7Fsc3QaG014k/4r8PTQPeRHVo0gdc1w1O?=
+ =?us-ascii?Q?hqc1R2HX7vLqzrxTdt1MliEp/s3lZ1lCBloW8QrLyMaNOSv1P06AobZWq8GY?=
+ =?us-ascii?Q?+ABTObeouZbnQu7OqAWB3y1cDjUUOBT3pQmTLQQAfp+9MzO81+fs4MDHYfvL?=
+ =?us-ascii?Q?FHDwoW6sS4MFz2M6JgbcWjbAZsd2L+1N/iDvudytyM9PUfyctJ5GzopgCkLS?=
+ =?us-ascii?Q?IuF1BzCuFMSteBrlf0vM0/Ff7qlCF0QXLlzA2uHq2BZUMIioeLw4zmLPt/bo?=
+ =?us-ascii?Q?YW+MCFH+PhKNICCfb18gY7RKZtlBpmq1rr/gZTUmMWy6365JIxnDXS23eYO0?=
+ =?us-ascii?Q?7nSyU+zpOWn/sYA1WE2H0smIjIfq2RqcvtEgUcub2l3NECiufxZSj+z22g7D?=
+ =?us-ascii?Q?etyTOwKknb2Fe7yGtntGxB+4E/LjQgHgfvIkAGi5i5mFL/g4TByh0gq8+2/p?=
+ =?us-ascii?Q?1wRWPyMeCJzsCfeUasYExZQu?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3d56317-def2-403f-fdff-08d8d91275ad
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15e4be27-1f1a-4c63-c105-08d8d9127615
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 22:20:58.1693 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 22:20:58.8294 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DRklto0oXpIs3iW7FarOoWMx+wwUNji3JoUv4i3yMupxSI/jzh0W66JWMUi8i7VSQzBpF4HMtqFWyc8mDWs4jQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3807
+X-MS-Exchange-CrossTenant-UserPrincipalName: EDovaonlT5TDYGu6Mc6b4uvgzHTGVFp8DfXghQUT9Ucbh8ggpnWvTeYeJHyqQBjL94nkAKt6fgUir+7thK/hIQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4831
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,64 +116,57 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Kevin Wang <kevin1.wang@amd.com>,
- Kenneth Feng <kenneth.feng@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Kevin Wang <kevin1.wang@amd.com>
+From: Lijo Lazar <lijo.lazar@amd.com>
 
-the following message is not supported.
+Aldebaran has fine grained DPM for GFXCLK. Instead of a discrete level,
+user can specify a min/max range of GFXCLK for any profiling/tuning
+purpose.This option is available only in manual performance level mode.
+Select "manual" as power_dpm_force_performance_level and specify the
+min/max range using pp_dpm_sclk sysfs node. User cannot specify a min/max
+range outside of the default min/max range of the ASIC. If specified
+outside the range, values will be bound by the default min/max range.
 
-PPSMC_MSG_ReadSerialNumTop32
-PPSMC_MSG_ReadSerialNumBottom32
+Ex: To use gfxclk min = 600MHz and max = 900MHz
 
-Signed-off-by: Kevin Wang <kevin1.wang@amd.com>
-Reviewed-by: Kenneth Feng <kenneth.feng@amd.com>
+echo manual > /sys/bus/pci/devices/.../power_dpm_force_performance_level
+echo min 600 max 900 > /sys/bus/pci/devices/.../pp_dpm_sclk
+
+Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
+Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    | 19 -------------------
- 1 file changed, 19 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-index df94604edd97..7bf8316b9816 100644
+index 7bf8316b9816..befc117a25ef 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-@@ -1183,24 +1183,6 @@ static bool aldebaran_is_dpm_running(struct smu_context *smu)
- 	return !!(feature_enabled & SMC_DPM_FEATURE);
- }
+@@ -1143,9 +1143,16 @@ static int aldebaran_set_soft_freq_limited_range(struct smu_context *smu,
+ 	if (clk_type != SMU_GFXCLK && clk_type != SMU_SCLK)
+ 		return -EINVAL;
  
--static void aldebaran_get_unique_id(struct smu_context *smu)
--{
--	struct amdgpu_device *adev = smu->adev;
--	uint32_t top32 = 0, bottom32 = 0;
--	uint64_t id;
--
--	/* Get the SN to turn into a Unique ID */
--	smu_cmn_send_smc_msg(smu, SMU_MSG_ReadSerialNumTop32, &top32);
--	smu_cmn_send_smc_msg(smu, SMU_MSG_ReadSerialNumBottom32, &bottom32);
--
--	id = ((uint64_t)bottom32 << 32) | top32;
--	adev->unique_id = id;
--	/* For aldebaran-and-later, unique_id == serial_number, so convert it to a
--	 * 16-digit HEX string for convenience and backwards-compatibility
--	 */
--	sprintf(adev->serial, "%llx", id);
--}
--
- static bool aldebaran_is_baco_supported(struct smu_context *smu)
- {
- 	/* aldebaran is not support baco */
-@@ -1373,7 +1355,6 @@ static const struct pptable_funcs aldebaran_ppt_funcs = {
- 	.set_performance_level = aldebaran_set_performance_level,
- 	.get_power_limit = aldebaran_get_power_limit,
- 	.is_dpm_running = aldebaran_is_dpm_running,
--	.get_unique_id = aldebaran_get_unique_id,
- 	.init_microcode = smu_v13_0_init_microcode,
- 	.load_microcode = smu_v13_0_load_microcode,
- 	.fini_microcode = smu_v13_0_fini_microcode,
+-	if (smu_dpm->dpm_level != AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM)
++	if ((smu_dpm->dpm_level != AMD_DPM_FORCED_LEVEL_MANUAL)
++			&& (smu_dpm->dpm_level != AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM))
+ 		return -EINVAL;
+ 
++	if (smu_dpm->dpm_level == AMD_DPM_FORCED_LEVEL_MANUAL) {
++		min_clk = max(min, dpm_context->dpm_tables.gfx_table.min);
++		max_clk = min(max, dpm_context->dpm_tables.gfx_table.max);
++		return smu_v13_0_set_soft_freq_limited_range(smu, SMU_GFXCLK, min_clk, max_clk);
++	}
++
+ 	if (smu_dpm->dpm_level == AMD_DPM_FORCED_LEVEL_PERF_DETERMINISM) {
+ 		if (!max || (max < dpm_context->dpm_tables.gfx_table.min) ||
+ 			(max > dpm_context->dpm_tables.gfx_table.max)) {
 -- 
 2.29.2
 
