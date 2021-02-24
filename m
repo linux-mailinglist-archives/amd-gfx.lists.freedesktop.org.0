@@ -2,38 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC39E323C53
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 13:54:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECEDA323C60
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 13:54:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 604E06EABD;
-	Wed, 24 Feb 2021 12:54:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44EDA6EAB0;
+	Wed, 24 Feb 2021 12:54:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0220F6EAB4;
- Wed, 24 Feb 2021 12:54:07 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8E5F664F80;
- Wed, 24 Feb 2021 12:54:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 250706EAB0;
+ Wed, 24 Feb 2021 12:54:54 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C3D9E64FA1;
+ Wed, 24 Feb 2021 12:54:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1614171246;
- bh=EomfylCSApmaTvl+siIcJT0taEri7bkI5Dnz8wQmmE0=;
+ s=k20201202; t=1614171293;
+ bh=1jNlxEy8lwJt8einyl+TyR4jYcw2sx3SQc6GezmFQmY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=mABoQ9uNJ4N1RkJUm7MSqbpT1ohqu+G7EokN9qpijd+lIwK2rLisUIPHV4cx5wuHR
- zTHOfX/MQ8YeLGlvwBjqk2nG2gwUsMwRUFvPUiFyvaWFIdMZny/vZHUtxESmXhv+uS
- 7ELQlrwLMLxaiwT4Flo0iGZYjDyHg0Lnl+sqE+clpDygF00BYUB2gCmUJFQX4TWDcB
- rYwQ6nPVdwgnmW/PeQ+QPIAsBW+IGLYyxLvU0zZMBZGf0XGeo3leTyWhOHgkgG0fNQ
- CieAK8TAo+fE/SCEPkxXq14jfpVPpfRgH9Azh3gL9W9NNl4dQpo/vW6nb/EjaG+fkC
- bVLNqDKFyNe4Q==
+ b=Q4vZA7wz9mG1rfEuXkQNOips0jsn+84++GFlHWbTLUerFOdg5kSuW91QQ/PHZTL6I
+ YQlOQVXAKU4xM8NM6pFmjdUetleHimvEkVRkDRnus7ghPvYNcBBu13LG2Ifuk8KCxa
+ xEkSu+7XYTC3pUtd30nNPCUaK9oVda8ruB68z6pLYfgY5PEd1xuvNzJF9jcV0NBMQT
+ m+Z3oYqo+KVR2cF7zaBvkcDb3VMFdEY4xqyQNMopBpKB2lubj7SmD8/sm2abOP1LUU
+ +nu4+yDsgTOgypXROZM0WPvcnROJCfhhSnr8BR1w/ilcCQwh1qqEwK4DpB0dn8NvGq
+ X/odeumGeg35A==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 19/40] drm/amd/display: Guard against NULL pointer
- deref when get_i2c_info fails
-Date: Wed, 24 Feb 2021 07:53:19 -0500
-Message-Id: <20210224125340.483162-19-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 14/26] drm/amd/display: Guard against NULL
+ pointer deref when get_i2c_info fails
+Date: Wed, 24 Feb 2021 07:54:22 -0500
+Message-Id: <20210224125435.483539-14-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210224125340.483162-1-sashal@kernel.org>
-References: <20210224125340.483162-1-sashal@kernel.org>
+In-Reply-To: <20210224125435.483539-1-sashal@kernel.org>
+References: <20210224125435.483539-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -81,10 +81,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 5 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index fa92b88bc5a13..40041c61a100e 100644
+index fa0e6c8e2447c..e3bedf4cc9c03 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -1303,6 +1303,11 @@ static bool construct(
+@@ -1124,6 +1124,11 @@ static bool construct(
  		goto ddc_create_fail;
  	}
  
