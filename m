@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967D4324670
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 23:21:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55710324673
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Feb 2021 23:21:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0301F6EB54;
-	Wed, 24 Feb 2021 22:21:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 386746EB5D;
+	Wed, 24 Feb 2021 22:21:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-DM6-obe.outbound.protection.outlook.com
  (mail-dm6nam10on2077.outbound.protection.outlook.com [40.107.93.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6889A6EB54
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C3976EB58
  for <amd-gfx@lists.freedesktop.org>; Wed, 24 Feb 2021 22:21:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AKJafLGJ/qLUvxf/gc3nJP2hjztvJZyHAmJIcJOaEhd8uEvj6W7y6r91MEIbc2+2HRBJYPenIyQAU/cd07O/6BnT7IDeyoVGC9qoJb5ODvgnk89n3iuh62iJZnBf3ED6GTRdA0B53kugNQ5cxxXbzr21cUjURTWHrm42PUYC+I4AKHbWiuSwFYLYdGHO7MT7UHqRLhstXOpsf/REI0F1i1iMT/sMFs+hrVZdpMk3bGj3REDuu7KL5kqw4Y5wiS6130mIymnIf1GGOMmVWogR/fseMQcXdLyqBIUO2Rzq8gHft7IgUWblaXw8Bd3dmplyVZKSNECwKZyKJ+HVIDapIQ==
+ b=Jvc3xUsdF9hY5axqbYD4aFcyrXhhNRu9HnsAnpsgBMgUEVBMoVPUDKHvhzVx6nQRsRpShSf2xp2+W0NhoYXY/cVVCl2cNSrgBVw3Mnuevu39kSAqRgYOM6EERTDtSxWmEk2OA4pXmkCb5+fRdqdgXz0X8Jzl9T9iEnXVlfrIYH4U1Z8olwpkc0oSW6eXOxrsfKwMyqOYo2xdYm/iZnOwpttLhzFlSK0Bh8hJh8IAh9qjaG1+gt7CqGHuzIs9oIChqhGR7kDp/STTJkIOg1zlgQtfD/pKejYALbRNkeCyGKOM9NfQ6UMcZP7iMq327YiM1Op2KerqDvx0bZAW28vTCA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LMEsnAqvDHzbx/93gS9qPltI1HuCEk0oRExe6o6uGds=;
- b=KPxicuMfthD2UC6coXRmM/2TxHjsMw/Pt94Mux2tNhoQmdryZ9Kjv5RdxyLu+2lst7t81QmtJ8zcwb3FKSSHreAW2zELdIVPqEzmdqDgz/io7HkO+HJwIODR5Z1j4pe2Xecq7UaL9YSgQHbLhYGrgG/UvVqV1B1reWFagD5N39f35e32itbbBU+WeEQUld05LDkAXUEJmB8xhy4axe7YQPetfdxQ55G3wqkRtEu3OX5KdsBq0Cau+7/Ng04CNk9FSs2dBR7TeL/2wmF/EAEwc1NV9dgMFCGtFstQ8b5T/idwyJjZGF9djl/x3zDrdSIFDOyxBHUaFZYs73qVa9RvTQ==
+ bh=TS9jI/2mvCWlDsrflGtx6+VUiCTKmruKlQMNHyYeA2c=;
+ b=CFjfNxhgYOtCMvRgsAomE25Ocgj7iwarJ/CTKAvZhm/3GYXiKcV1IMTyQALFd1AHuLZYjrY2MB2mHqWg/t3wD+1AHze7nMQMj8XW51FAcHftk4lvgJT67h+R5naKvtpb/CSAs2+9eviiqHMssZiPZsBrbDa+ksrOYDMxYe1TG/qwUZXzU1M9DsjPqczhV6VBLfFAf7FzZY4Km4L336SxIFQLcRqrVFSElz1WS+fADurhLOKsoDEVHNxbcpmnzfW546wXfF7L6p4Fpoke+FK7kAFSkqYiuGDlePJCp0gWvJudALNGB1yFklINyX+JrKvaRYgF3Ja99kLJ6G+7L+6KgQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LMEsnAqvDHzbx/93gS9qPltI1HuCEk0oRExe6o6uGds=;
- b=UNd7VKYUwo2TpfxCnbgYyvM4d1iOPNcMUzCeoiu4CctDr2MzwaZGRhdto+j4WXBDEjVvMFNvhtIsHVV/ic265bYc1SicYY5InV0CQNvl/XHcUN7gKIPJx0LsyS4UOl4YxQEYKzQzNrhTFb58C4fo9nXPJFVp/8O9s6sLz6D6ReA=
+ bh=TS9jI/2mvCWlDsrflGtx6+VUiCTKmruKlQMNHyYeA2c=;
+ b=RA/C2wGxVFusdQPKO1j0PEYXT1som226YWkSnYnRkv/Dx17LHlJL0nxcFZ9x5cYIXI/8BwhuApjKqJHrA/2WoDzDz4wCxZsA1UkYBjPFx40ehFpHKDlweATHEa6x4ynlQdGkPyv5lTpMWG4FEDPFJcjPXblZS6yp7xCWxdJnor8=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -41,9 +41,9 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  22:21:04 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 075/159] drm/amdgpu: apply sdma golden settings for aldebaran
-Date: Wed, 24 Feb 2021 17:17:35 -0500
-Message-Id: <20210224221859.3068810-68-alexander.deucher@amd.com>
+Subject: [PATCH 076/159] drm/amdgpu: add sdma v4_4 ras function
+Date: Wed, 24 Feb 2021 17:17:36 -0500
+Message-Id: <20210224221859.3068810-69-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210224221859.3068810-1-alexander.deucher@amd.com>
 References: <20210224221859.3068810-1-alexander.deucher@amd.com>
@@ -60,50 +60,50 @@ Received: from localhost.localdomain (192.161.79.246) by
  Transport; Wed, 24 Feb 2021 22:20:11 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 08f01ad2-04b7-4f18-32f2-08d8d91259ec
+X-MS-Office365-Filtering-Correlation-Id: 30256d7e-ba86-45a2-2cb2-08d8d9125a49
 X-MS-TrafficTypeDiagnostic: BL0PR12MB2497:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BL0PR12MB2497DE1058794B2DE4200319F79F9@BL0PR12MB2497.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
+X-Microsoft-Antispam-PRVS: <BL0PR12MB249740504D493AEF7C3BFD14F79F9@BL0PR12MB2497.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: i/1Z1IXBhWzfViJOc9wxJ1zrnWUv5CYoXBDZw29Wve2oiawHsX1J3JVYD8iE2EmwW0OtrpL0Mg1Feg66m6rR30KAf6jxUkzQcS3z0Q5C5aAkPfO2eGstGdd67VDAqT6OWxih4Isx5l6DRaT8kMaf+46BaR4Vb14kAMbTtcEwJsDo9UU2a0Wkfk4gqc0nmGS3YxgA8Mo3EnguILBiJ+zSUFAcUVPGOV28Mg9fwwBGLp6YYSbf7up5p4ck0Ax7MYViHUhCmhbx5fYOcDsb2GbNM+U1ZC+l99OtHSVvz6qTbeXH24aHEl2jx5EUuh24g7Eas5UkP5PqQnGz6KZk0QMJ5hGxokxMGLMQxk+8S6LCv0RLXVgxZW9MyxTNfrsTEhGMwfw4or0d9WlcwSCwFQcaLlKy2LO2jqWWUw8BDdLPj2Km0NW1xgrhY+Lb3JZX3mTgt9Z3TmfoAgAJ9dGC72X2w1RIKgi8XEEyTIcAQLjwCG9pgz1x34x0yhCfp4uUAladcy8AiuesfDTI3+9pL7EmRTap9xp1Rsn4ZyuT+smMYE4z5nUlYe9E4GBiC+th6oaQp/sjBqynX8oXQkbfPipl/A==
+X-Microsoft-Antispam-Message-Info: CLGzIDzMymbrNyfKkJSD7GJ4Fa65+/sE2IfkYZrMFPQguFEG0qkq3gMIhi+ig2CA78STUEQqwty5LEZanM18ZUKCPRym7LwQuP3YzvPC71O3VqZE5sX8h4ecSAtbYIGX3DIwlmuQ77PqZS4fQJINnpyjDYrYX3uY3xH55Jyn1jsfT345PUj2HjLCuFoho9DgE4M5euNtA4Z21UovZC73ceez6ijQKSHP29uXA7DH75d7RQRbQuJFUGSOSTE8tW0THRRHM/K3IfjfdDZ/vgu4rYH7nCp0fujjbrhT4pcKp+JXDs9cuE1wDV+MW81QYR5HDW4rXphd7d/Gw1ftdZ2ekNlI1QpiWTr3FsiRXPtHI3TmIuvWQhLVQjedNnuQsId2Z7g7pb/3dy2dtvZTWfpJov9n3XCzPEryfwluNdwALIkyojnJ+vA2wkFhv8k5nUeJiTzflKyjA/ueQp5A3NvJimf9QUaOjvaB71AnrPpyza0oBYy6Sr4t2En9UMojLybPk9CuRkL72ZlVn5r5DNIU6u3g90rRzkkHzKVmrwuWtJngxW7ZQ9nTIiIZy59FH03r0zqOSLFcWmcj0npvrcvygg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(366004)(346002)(396003)(39860400002)(136003)(4326008)(69590400012)(8936002)(6512007)(54906003)(6916009)(26005)(956004)(6486002)(316002)(2616005)(52116002)(8676002)(6506007)(2906002)(86362001)(186003)(16526019)(36756003)(6666004)(478600001)(66946007)(66556008)(66476007)(1076003)(5660300002);
+ SFS:(4636009)(376002)(366004)(346002)(396003)(39860400002)(136003)(4326008)(69590400012)(8936002)(6512007)(54906003)(6916009)(26005)(956004)(6486002)(316002)(2616005)(52116002)(8676002)(6506007)(2906002)(86362001)(186003)(16526019)(36756003)(6666004)(478600001)(83380400001)(66946007)(66556008)(66476007)(1076003)(5660300002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?EbwSGbrU/OTumNgP9z2yC08Na6hnpq9UnsZYl51atpJuKd8vjgje+W/VEi3i?=
- =?us-ascii?Q?RlKZmYFhA0Ou3pKiE9iv6qJwGpaV0rQ5G4cjF74mpIhu4KfDWqMCVATKzuM5?=
- =?us-ascii?Q?bn6xliIcYt/60L5dVtw2YcXpcWbBCBPBnaFPqE4bcMS46Gl3Zvso4Wol8Gsy?=
- =?us-ascii?Q?dard7FFg9VBj+5wyq9BZwY9wb5+jAiItrKQRhOiePg8ilAmuh9bFqf1Z3dWG?=
- =?us-ascii?Q?Bs3e09HX+u4xY4IoSq6kV2xceLkRJHT2cnpS9x+s+0j5Fan97lpWGvFCdIcd?=
- =?us-ascii?Q?GkhFSUzHGCOiAqIR4pWjxNxUg3WRt7YGlsPhlQBwes6KY3LkL0SUZpoMpXeo?=
- =?us-ascii?Q?xtNRrc2C2oqwcf4gcxgWs1LwqcmRPWCw0CHeYuM3I1wmhXeDbj4jTZR9XCCu?=
- =?us-ascii?Q?XYeQkTzNlH5R6ExIJhOk1SeL1P+U4iXxkX5y9GOyS8TO2OAEdeXvs3cmOG8D?=
- =?us-ascii?Q?CK2Y1oBhLVBs3R85ELTWXTZv5skuJMS9Q6B3IbAAe+WfI847apjdiudfg98I?=
- =?us-ascii?Q?O21h+YP5j3ChLXZs5frtf82HyMeAxVRgqlwdIWA8Wd0Cw/9/yOWFMWFb/YUg?=
- =?us-ascii?Q?fQOpgh+TpceuQWMrZC790NgfwqHNe19Dai7k5zLkf8+96y652kZl/z8qcyTo?=
- =?us-ascii?Q?nX/BD690tqemgfJZ72Tmh09mO54qXA7dOyrHXvlOIg8nGY1YIFgVawGacMcK?=
- =?us-ascii?Q?72OoWSLE2sXyn/s27vDJcOjG14/aaABZAugV+fh3SHLDeC4atSfMnjVkpP5K?=
- =?us-ascii?Q?/CZRchuB0Zlqz3J6BuQT5ExXSuCXYmDMF30ziBZ+n0rLyFUVRzSWhcj4hvFV?=
- =?us-ascii?Q?dgJFVvx4st5E+nYdSaWreR+Fp/uxGEukKjNVoBYkfo/lTj/+mB3gd/mFqRfK?=
- =?us-ascii?Q?ALBlJpRGRbjBJk9PgO96Ci+711FQAHyqOQmzjj6uXndAv5CI8d6t/SHXTlku?=
- =?us-ascii?Q?MN5FWTZ4NpGyVrjutFQk+VsdWkiM0PYxKndIjhAOwFLoAq5ekllI7byt0GOg?=
- =?us-ascii?Q?MIYV79cQ/QhFedo7PmQNJ0n4zdVGLsyng945gOCOBqf0eA/ayiO1FAQOE/US?=
- =?us-ascii?Q?ABllPrWe9S6WBoprzmRq76BerR0W7M5dXMSsw8IhpMQPx/jR3wwZzYVttjjI?=
- =?us-ascii?Q?fiv6wyrjO4i4+Ipmqz5t6DwK+jz4g+6rJAQOJrwrjMrgYgU7o+xWNsSdjH0W?=
- =?us-ascii?Q?BMr6OhdPTlcqDXLn7HjJllegQuyTL95cSHmCsq8ziuWOx0XNqc99Q5y9IV8n?=
- =?us-ascii?Q?QiaubBk2huEJozqerMgr9VBXa8fC75jUkxmyXexwmNoL8kSaNs8JOjHAF3ng?=
- =?us-ascii?Q?6swuLqkUUyyS5uAgqYlSTGuD?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?Xvfog0AozJD560GDAI+emTFBJACEHXVYjuElIQAW+gJC5wacfvuFf9gubI46?=
+ =?us-ascii?Q?jWoKLNMZleC/SJlTKAxHAGOW55msdIUdVT7huDIQ2oKRLnWI6UsnjCnCxS97?=
+ =?us-ascii?Q?MKGbZTbuHsb44c7tZKtP4NSTukgBP1SXI99eeaJSjtb8BiaTGsyXf87+LVP5?=
+ =?us-ascii?Q?6iL2opLNnJFgRhTyAupaEuAYHgsZplrjrLnDmvyo7dsZppf57j/9UDAIfACG?=
+ =?us-ascii?Q?jDF/3T5/Dpsh4gBV7cuhUXcJu456RMCx6o4/bPBwJbr5c3Gjzj35+ZDFypHS?=
+ =?us-ascii?Q?7jdkn/VdKcGZcVzJ6c7oSakdxDYFVzfSwiNVd5ddYdzT2k2HRmSISF6pNU8P?=
+ =?us-ascii?Q?2hinkBuYZjdLvdvZVvdKzyk4bz8RvYXUrI8bPQcBCktX2fjln0tnhdWRNWp3?=
+ =?us-ascii?Q?OvYXWWU+PJkwwlxY1d9yxDlRchU7kllrjspU7kEpOkdn0sEQFKMehLD98NwD?=
+ =?us-ascii?Q?n2wVQQVF7OiN+mej5IVFHlmVdhjzsQEZL0kE6IpDVCnkS2DraXYPdSJYGkPq?=
+ =?us-ascii?Q?q03hBOoE/g44HsjdahzTe15a+C8Q7Z4oARMHp7XWARPu6yyMop5fyVGLxjcM?=
+ =?us-ascii?Q?akiV+IZdrGVH8LucJkZvCnidnRC2pgHFnMwzHvzf06aY80OCDp0754+g9mQs?=
+ =?us-ascii?Q?PtgPrHsVyamFuskSb+WdMtsNwg4OVWf34U4jxgT9EPF6N3kPfv8VVxgw/KgE?=
+ =?us-ascii?Q?6GZ1Tw6DMvafxhzzPR0ufOPRMrS6kUCiHy4yYF5X0o6wX5wsbFDDy0mD2o3V?=
+ =?us-ascii?Q?HMQSyjZcfkV8oEC2MOqFY1uaFO4jKQaHHI5lKzLxZgOXzCsDbnMuyWz204ZN?=
+ =?us-ascii?Q?NvYhK6M0PHFfEPSzybixIguK94lo4tgYiRORQmeiEVExNiP0a3G5f9jjuDwA?=
+ =?us-ascii?Q?Db1eX/WweIsCgx5oOY0XHE7fJtwgL6BMwh6hYc54mSz5Yo5vWQcGps0SCVqC?=
+ =?us-ascii?Q?5NVTJI4fQ+elZz8Q7GDt6WnH3o2HeCIJVGjUC46jwOZT0uU42oKYvkBrxc98?=
+ =?us-ascii?Q?xPnQNPaZgJXbejVFNG82J8I6jzcj2vJhbFHya63zqEHZwgSh2Ht0H0IrSHeV?=
+ =?us-ascii?Q?hKb9jn/Ypqgj5RxA/2I9rY1UsXeQ4B6VkIQvAlCnYKv9/kLe1u+mSmADBln7?=
+ =?us-ascii?Q?XjvYlRE7RMZB90nSF6I0+Uhmznl2oqEspGiRfzSMdiKZy3UNsZUQHkKj1+3Y?=
+ =?us-ascii?Q?/+5ThseSTwYdKZuGT5Y2PGkBo2jzzLJSmmcU9QzhYcse1p+J4UqjcD5mU5h9?=
+ =?us-ascii?Q?HXVOEXbp23sr8+QZINz0TGd1IicxoFdRFVsAilsq9QXaPi58h49Uo8MS+mAQ?=
+ =?us-ascii?Q?BvlSMpan6bzgxyMQlha9OVvo?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08f01ad2-04b7-4f18-32f2-08d8d91259ec
+X-MS-Exchange-CrossTenant-Network-Message-Id: 30256d7e-ba86-45a2-2cb2-08d8d9125a49
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 22:20:11.5888 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2021 22:20:12.2180 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tiBxmg1HkOKLgeZYsCYlfESn8joRWgAmXrqrMhBQY4f+Q/a1W++maVacrVMsTOztM4TBVrL+U2CwzQ3VwQAGDw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: D70hFR8W1PO8AkRG+m5/9HLzoqxBZO1KudxnYl61moqqxTgkHynw9J9hpEUOMuLmqaA2Wzk6UzCfzYaGH6N+5g==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2497
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -116,7 +116,7 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Kevin Wang <kevin1.wang@amd.com>,
+Cc: Alex Deucher <alexander.deucher@amd.com>, Dennis Li <Dennis.Li@amd.com>,
  Hawking Zhang <Hawking.Zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -125,51 +125,124 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Hawking Zhang <Hawking.Zhang@amd.com>
 
-perform one-time initialization for sdma registers
+sdma ras function is the main structure to support
+sdma ras on aldebaran. the patch initializes late_init
+late_fini callbacks.
 
 Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Reviewed-by: Kevin Wang <kevin1.wang@amd.com>
+Reviewed-by: Dennis Li<Dennis.Li@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/Makefile    |  1 +
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c |  4 ++++
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4.c | 28 ++++++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/sdma_v4_4.h | 28 ++++++++++++++++++++++++++
+ 4 files changed, 61 insertions(+)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/sdma_v4_4.c
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/sdma_v4_4.h
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
+index 82a99dd2df4b..17d9a3e798e2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/Makefile
++++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+@@ -131,6 +131,7 @@ amdgpu-y += \
+ 	sdma_v2_4.o \
+ 	sdma_v3_0.o \
+ 	sdma_v4_0.o \
++	sdma_v4_4.o \
+ 	sdma_v5_0.o \
+ 	sdma_v5_2.o
+ 
 diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-index 17f6e59ea96a..783f8dba085a 100644
+index 783f8dba085a..b2146b4a7682 100644
 --- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
-@@ -260,6 +260,19 @@ static const struct soc15_reg_golden golden_settings_sdma_arct[] =
- 	SOC15_REG_GOLDEN_VALUE(SDMA7, 0, mmSDMA7_UTCL1_TIMEOUT, 0xffffffff, 0x00010001)
- };
+@@ -56,6 +56,7 @@
+ #include "ivsrcid/sdma1/irqsrcs_sdma1_4_0.h"
  
-+static const struct soc15_reg_golden golden_settings_sdma_aldebaran[] = {
-+	SOC15_REG_GOLDEN_VALUE(SDMA0, 0, mmSDMA0_GB_ADDR_CONFIG, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA0, 0, mmSDMA0_GB_ADDR_CONFIG_READ, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA1, 0, mmSDMA1_GB_ADDR_CONFIG, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA1, 0, mmSDMA1_GB_ADDR_CONFIG_READ, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA2, 0, mmSDMA2_GB_ADDR_CONFIG, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA2, 0, mmSDMA2_GB_ADDR_CONFIG_READ, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA3, 0, mmSDMA3_GB_ADDR_CONFIG, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA3, 0, mmSDMA3_GB_ADDR_CONFIG_READ, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA4, 0, mmSDMA4_GB_ADDR_CONFIG, 0x0018773f, 0x00104002),
-+	SOC15_REG_GOLDEN_VALUE(SDMA4, 0, mmSDMA4_GB_ADDR_CONFIG_READ, 0x0018773f, 0x00104002),
-+};
-+
- static const struct soc15_reg_golden golden_settings_sdma_4_3[] = {
- 	SOC15_REG_GOLDEN_VALUE(SDMA0, 0, mmSDMA0_CHICKEN_BITS, 0xfe931f07, 0x02831f07),
- 	SOC15_REG_GOLDEN_VALUE(SDMA0, 0, mmSDMA0_CLK_CTRL, 0xffffffff, 0x3f000100),
-@@ -483,6 +496,11 @@ static void sdma_v4_0_init_golden_registers(struct amdgpu_device *adev)
- 						golden_settings_sdma_arct,
- 						ARRAY_SIZE(golden_settings_sdma_arct));
+ #include "amdgpu_ras.h"
++#include "sdma_v4_4.h"
+ 
+ MODULE_FIRMWARE("amdgpu/vega10_sdma.bin");
+ MODULE_FIRMWARE("amdgpu/vega10_sdma1.bin");
+@@ -2685,6 +2686,9 @@ static void sdma_v4_0_set_ras_funcs(struct amdgpu_device *adev)
+ 	case CHIP_ARCTURUS:
+ 		adev->sdma.funcs = &sdma_v4_0_ras_funcs;
  		break;
 +	case CHIP_ALDEBARAN:
-+		soc15_program_register_sequence(adev,
-+						golden_settings_sdma_aldebaran,
-+						ARRAY_SIZE(golden_settings_sdma_aldebaran));
++		adev->sdma.funcs = &sdma_v4_4_ras_funcs;
 +		break;
- 	case CHIP_RAVEN:
- 		soc15_program_register_sequence(adev,
- 						golden_settings_sdma_4_1,
+ 	default:
+ 		break;
+ 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4.c b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4.c
+new file mode 100644
+index 000000000000..8f5bbc0d6630
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4.c
+@@ -0,0 +1,28 @@
++/*
++ * Copyright 2020 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++#include "amdgpu.h"
++
++const struct amdgpu_sdma_ras_funcs sdma_v4_4_ras_funcs = {
++	.ras_late_init = amdgpu_sdma_ras_late_init,
++	.ras_fini = amdgpu_sdma_ras_fini,
++};
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4.h b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4.h
+new file mode 100644
+index 000000000000..74a6e5b5e949
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4.h
+@@ -0,0 +1,28 @@
++/*
++ * Copyright 2020 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++#ifndef __SDMA_V4_4_H__
++#define __SDMA_V4_4_H__
++
++extern const struct amdgpu_sdma_ras_funcs sdma_v4_4_ras_funcs;
++
++#endif
 -- 
 2.29.2
 
