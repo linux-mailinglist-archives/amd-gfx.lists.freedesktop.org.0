@@ -1,69 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 646083250E9
-	for <lists+amd-gfx@lfdr.de>; Thu, 25 Feb 2021 14:53:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1925B325184
+	for <lists+amd-gfx@lfdr.de>; Thu, 25 Feb 2021 15:33:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC9EF6E17F;
-	Thu, 25 Feb 2021 13:53:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 835616E161;
+	Thu, 25 Feb 2021 14:33:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
- [IPv6:2a00:1450:4864:20::536])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 221CC6E17F
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Feb 2021 13:53:35 +0000 (UTC)
-Received: by mail-ed1-x536.google.com with SMTP id p1so2441118edy.2
- for <amd-gfx@lists.freedesktop.org>; Thu, 25 Feb 2021 05:53:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=DXRtmxwiDxxr4obS1w0N6wgFyld7u3Gly8opVfiWLpk=;
- b=JGm6SeT8Jm6mVDESTrWFq82FKbJVAwepTNPcb/vVxoN/9pPTTEqIQuAxYy/h4gi6O1
- pWDjcX7sUwNBtmwlAcDyAPHIYd7+ka5xF9HRlq9RXyn2DQFWdYChXva0CtWtXYWw4bZ8
- Ayz3KYwslN9gkHj+5o+BUUrSsmGej+2vYXVRgxQwiXmVjEEF1bvWWndrnGp8SMtBhGKx
- Jsb28H0baIpHu6jhURvOmDHjT0fpd/IoVKRrxLZ9f25s50APrUyGdCHxR7gCe++Anj4S
- JuVZCkqv8yy8OK4wOUSg5TABvE7QmQmTrJj13nRrdXvmmBLiFSTtMg0THwqIKbxGDt+n
- bkdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=DXRtmxwiDxxr4obS1w0N6wgFyld7u3Gly8opVfiWLpk=;
- b=Z9Ned1P7v80XmNj4Ep4DorFlxOPvxzhtmYyA9Fme0wZyfBnplbL+sZN7tMeds5n4Iw
- snTJfv8ZXedzsdCaJzS3oeCYH1YnKNJug/s3YO/z4XQO/ZjRKw8WXkQ+sAn3/lUpsjtc
- 3gike26FtNgI81jwKlPx7jXapXzQvtT5eI16YRNja8ODBCwKJzl8rNNTD2iCXz23KutK
- 5UxaKZEUHopHmZWNPLmPdYm5pPhaFeNosf9ioVzmgCGMxMnnv6mAQZvBQI8YnLi0uXa1
- glVYP5lOiTdW5dQpn3zvvhNfZSotUF3jJv44upW2EKmInizS2sF+gMK7ofdljdkEjFwU
- vVKg==
-X-Gm-Message-State: AOAM530xjv4AcT2RdYC7Fen1NQvdEoPB1O9+iUK2Jg+964rt4dbP+A6m
- +1fw3kl1l9dj3RzCZFD1NuhjFQvytNKbLg==
-X-Google-Smtp-Source: ABdhPJy6Zkr9+YBKgcri+1eseOjyUdXMEswk57Pu8URWzS2ZCj8SW7cBPXdZHhaH2BuYlzVX6JSDLQ==
-X-Received: by 2002:a50:fe89:: with SMTP id d9mr3049347edt.57.1614261213803;
- Thu, 25 Feb 2021 05:53:33 -0800 (PST)
-Received: from ?IPv6:2a02:908:1252:fb60:fc8:43:f4c0:95af?
- ([2a02:908:1252:fb60:fc8:43:f4c0:95af])
- by smtp.gmail.com with ESMTPSA id d5sm3564961edu.12.2021.02.25.05.53.32
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 25 Feb 2021 05:53:33 -0800 (PST)
-Subject: Re: [PATCH] drm/amdgpu: add ih call to process until checkpoint
-To: Felix Kuehling <felix.kuehling@amd.com>,
- "Kim, Jonathan" <Jonathan.Kim@amd.com>,
- "Koenig, Christian" <Christian.Koenig@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <20210223211026.116403-1-jonathan.kim@amd.com>
- <6d30f52e-7a7a-5662-a66f-db832b8386ae@amd.com>
- <DM5PR12MB4680F60D6590680E40A90AF5859F9@DM5PR12MB4680.namprd12.prod.outlook.com>
- <92ddf2b3-3ee7-d481-2794-b57daed40ef9@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <8650a46f-f40d-d627-42a5-d9d760400086@gmail.com>
-Date: Thu, 25 Feb 2021 14:53:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 103C06E0C2;
+ Thu, 25 Feb 2021 14:33:48 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 01B5A64F06;
+ Thu, 25 Feb 2021 14:33:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1614263626;
+ bh=Z2omBoic64a0PUjdoMoaR0OyACh47HBLzcZeuDlhik8=;
+ h=From:To:Cc:Subject:Date:From;
+ b=t3TA/rm0jyHEsX+ESwjyhby/pDRYG3VklwLyJpX0uy51tUHf2D1aAk3gFhefN5AmN
+ bP40IIn9Xx242Od2pE3asN7aDZUH4QNpY29v9tmXGvJhaFUkGDNdRngzXXoJwZn/d/
+ wyjYp/IuzPKbI/AZ4ejInh1oPSKcKx4zpreV6UFKgW5JIV2NyA5eXwlxpj1d5ye6gv
+ QeI/8E9ClzOrLxqMWAVWpLTdisDpKvehJ8gIdeyLWxnyPVCFGsiHX10MqE2zJ1Wagv
+ DAHTSLBQGsYkfnNyggAxWFNuO67gIgl/17ZV/jewll5cdSmd05VjUsJWomko8ZeBWt
+ FPOY8rKDhWuVQ==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Bindu Ramamurthy <bindu.r@amd.com>,
+ Vladimir Stempen <vladimir.stempen@amd.com>
+Subject: [PATCH] drm/amd/display: fix 64-bit integer division
+Date: Thu, 25 Feb 2021 15:33:10 +0100
+Message-Id: <20210225143339.3693838-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <92ddf2b3-3ee7-d481-2794-b57daed40ef9@amd.com>
-Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,108 +47,90 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Yang, Philip" <Philip.Yang@amd.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Arnd Bergmann <arnd@arndb.de>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-CgpBbSAyNS4wMi4yMSB1bSAwNDoxNSBzY2hyaWViIEZlbGl4IEt1ZWhsaW5nOgo+IE9uIDIwMjEt
-MDItMjQgMTA6NTQgYS5tLiwgS2ltLCBKb25hdGhhbiB3cm90ZToKPj4gW0FNRCBPZmZpY2lhbCBV
-c2UgT25seSAtIEludGVybmFsIERpc3RyaWJ1dGlvbiBPbmx5XQo+Pgo+Pj4gLS0tLS1PcmlnaW5h
-bCBNZXNzYWdlLS0tLS0KPj4+IEZyb206IEtvZW5pZywgQ2hyaXN0aWFuIDxDaHJpc3RpYW4uS29l
-bmlnQGFtZC5jb20+Cj4+PiBTZW50OiBXZWRuZXNkYXksIEZlYnJ1YXJ5IDI0LCAyMDIxIDQ6MTcg
-QU0KPj4+IFRvOiBLaW0sIEpvbmF0aGFuIDxKb25hdGhhbi5LaW1AYW1kLmNvbT47IGFtZC0KPj4+
-IGdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4+IENjOiBZYW5nLCBQaGlsaXAgPFBoaWxpcC5Z
-YW5nQGFtZC5jb20+OyBLdWVobGluZywgRmVsaXgKPj4+IDxGZWxpeC5LdWVobGluZ0BhbWQuY29t
-Pgo+Pj4gU3ViamVjdDogUmU6IFtQQVRDSF0gZHJtL2FtZGdwdTogYWRkIGloIGNhbGwgdG8gcHJv
-Y2VzcyB1bnRpbCAKPj4+IGNoZWNrcG9pbnQKPj4+Cj4+PiBBbSAyMy4wMi4yMSB1bSAyMjoxMCBz
-Y2hyaWViIEpvbmF0aGFuIEtpbToKPj4+PiBBZGQgSUggZnVuY3Rpb24gdG8gYWxsb3cgY2FsbGVy
-IHRvIHByb2Nlc3MgcmluZyBlbnRyaWVzIHVudGlsIHRoZQo+Pj4+IGNoZWNrcG9pbnQgd3JpdGUg
-cG9pbnRlci4KPj4+IFRoaXMgbmVlZHMgYSBiZXR0ZXIgZGVzY3JpcHRpb24gb2Ygd2hhdCB0aGlz
-IHdpbGwgYmUgdXNlZCBmb3IuCj4+IEZlbGl4IG9yIFBoaWxpcCBjb3VsZCBlbGFib3JhdGUgYmV0
-dGVyIGZvciBITU0gbmVlZHMuCj4+IERlYnVnZ2luZyB0b29scyByZXF1aXJlcyB0aGlzIGJ1dCBp
-dCdzIGluIGV4cGVyaW1lbnRhbCBtb2RlIGF0IHRoZSAKPj4gbW9tZW50IHNvIHByb2JhYmx5IG5v
-dCB0aGUgYmVzdCBwbGFjZSB0byBkZXNjcmliZSBoZXJlLgo+Cj4gT24gdGhlIEhNTSBzaWRlIHdl
-J3JlIHBsYW5uaW5nIHRvIHVzZSB0aGlzIHRvIGRyYWluIHBlbmRpbmcgcGFnZSBmYXVsdCAKPiBp
-bnRlcnJ1cHRzIGJlZm9yZSB3ZSB1bm1hcCBtZW1vcnkuIFRoYXQgc2hvdWxkIGFkZHJlc3MgcGhh
-bnRvbSBWTSAKPiBmYXVsdHMgYWZ0ZXIgbWVtb3J5IGlzIHVubWFwcGVkLgoKVGhvdWdodCBzby4g
-SSBzdWdnZXN0IHRvIHVzZSBhIHdhaXRfZXZlbnQoKSBoZXJlIHdoaWNoIG9uIHRoZSB3YWl0ZXIg
-CnNpZGUgY2hlY2tzIGloLT5sb2NrIGFuZCBhZGQgYSB3YWtlX3VwX2FsbCgpIGF0IHRoZSBlbmQg
-b2YgCmFtZGdwdV9paF9wcm9jZXNzLiBJIHdvbid0IHRvdWNoIHJwdHIgb3Igd3B0ciBhdCBhbGwg
-Zm9yIHRoaXMuCgpSZWdhcmRzLApDaHJpc3RpYW4uCgo+Cj4gUmVnYXJkcywKPiDCoCBGZWxpeAo+
-Cj4KPj4KPj4+PiBTdWdnZXN0ZWQtYnk6IEZlbGl4IEt1ZWhsaW5nIDxmZWxpeC5rdWVobGluZ0Bh
-bWQuY29tPgo+Pj4+IFNpZ25lZC1vZmYtYnk6IEpvbmF0aGFuIEtpbSA8am9uYXRoYW4ua2ltQGFt
-ZC5jb20+Cj4+Pj4gLS0tCj4+Pj4gwqDCoCBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
-cHVfaWguYyB8IDQ2Cj4+PiArKysrKysrKysrKysrKysrKysrKysrKysrLQo+Pj4+IGRyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9paC5oIHzCoCAyICsrCj4+Pj4gwqDCoCAyIGZpbGVz
-IGNoYW5nZWQsIDQ3IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPj4+Pgo+Pj4+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfaWguYwo+Pj4+IGIvZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2loLmMKPj4+PiBpbmRleCBkYzg1MmFmNGYz
-YjcuLmNhZTUwYWY5NTU5ZCAxMDA2NDQKPj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
-ZGdwdS9hbWRncHVfaWguYwo+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
-ZGdwdV9paC5jCj4+Pj4gQEAgLTIyLDcgKzIyLDcgQEAKPj4+PiDCoMKgwqAgKi8KPj4+Pgo+Pj4+
-IMKgwqAgI2luY2x1ZGUgPGxpbnV4L2RtYS1tYXBwaW5nLmg+Cj4+Pj4gLQo+Pj4+ICsjaW5jbHVk
-ZSA8bGludXgvcHJvY2Vzc29yLmg+Cj4+Pj4gwqDCoCAjaW5jbHVkZSAiYW1kZ3B1LmgiCj4+Pj4g
-wqDCoCAjaW5jbHVkZSAiYW1kZ3B1X2loLmgiCj4+Pj4KPj4+PiBAQCAtMTYwLDYgKzE2MCw1MCBA
-QCB2b2lkIGFtZGdwdV9paF9yaW5nX3dyaXRlKHN0cnVjdAo+Pj4gYW1kZ3B1X2loX3JpbmcgKmlo
-LCBjb25zdCB1aW50MzJfdCAqaXYsCj4+Pj4gwqDCoCB9Cj4+Pj4gwqDCoCB9Cj4+Pj4KPj4+PiAr
-LyoqCj4+Pj4gKyAqIGFtZGdwdV9paF93YWl0X29uX2NoZWNrcG9pbnRfcHJvY2VzcyAtIHdhaXQg
-dG8gcHJvY2VzcyBJVnMgdXAgdG8KPj4+PiArY2hlY2twb2ludAo+Pj4+ICsgKgo+Pj4+ICsgKiBA
-YWRldjogYW1kZ3B1X2RldmljZSBwb2ludGVyCj4+Pj4gKyAqIEBpaDogaWggcmluZyB0byBwcm9j
-ZXNzCj4+Pj4gKyAqCj4+Pj4gKyAqIFVzZWQgdG8gZW5zdXJlIHJpbmcgaGFzIHByb2Nlc3NlZCBJ
-VnMgdXAgdG8gdGhlIGNoZWNrcG9pbnQgd3JpdGUKPj4+IHBvaW50ZXIuCj4+Pj4gKyAqLwo+Pj4+
-ICtpbnQgYW1kZ3B1X2loX3dhaXRfb25fY2hlY2twb2ludF9wcm9jZXNzKHN0cnVjdCBhbWRncHVf
-ZGV2aWNlCj4+PiAqYWRldiwKPj4+PiArc3RydWN0IGFtZGdwdV9paF9yaW5nICppaCkKPj4+PiAr
-ewo+Pj4+ICt1MzIgcHJldl9ycHRyLCBjdXJfcnB0ciwgY2hlY2twb2ludF93cHRyOwo+Pj4+ICsK
-Pj4+PiAraWYgKCFpaC0+ZW5hYmxlZCB8fCBhZGV2LT5zaHV0ZG93bikKPj4+PiArcmV0dXJuIC1F
-Tk9ERVY7Cj4+Pj4gKwo+Pj4+ICtjdXJfcnB0ciA9IFJFQURfT05DRShpaC0+cnB0cik7Cj4+Pj4g
-Ky8qIE9yZGVyIHJlYWQgb2YgY3VycmVudCBycHRyIHdpdGggY2hlY2t0cG9pbnQgd3B0ci4gKi8K
-Pj4+PiArbWIoKTsKPj4+PiArY2hlY2twb2ludF93cHRyID0gYW1kZ3B1X2loX2dldF93cHRyKGFk
-ZXYsIGloKTsKPj4+PiArCj4+Pj4gKy8qIGFsbG93IHJwdHIgdG8gd3JhcCBhcm91bmTCoCAqLwo+
-Pj4+ICtpZiAoY3VyX3JwdHIgPiBjaGVja3BvaW50X3dwdHIpIHsKPj4+PiArc3Bpbl9iZWdpbigp
-Owo+Pj4+ICtkbyB7Cj4+Pj4gK3NwaW5fY3B1X3JlbGF4KCk7Cj4+Pj4gK3ByZXZfcnB0ciA9IGN1
-cl9ycHRyOwo+Pj4+ICtjdXJfcnB0ciA9IFJFQURfT05DRShpaC0+cnB0cik7Cj4+Pj4gK30gd2hp
-bGUgKGN1cl9ycHRyID49IHByZXZfcnB0cik7Cj4+Pj4gK3NwaW5fZW5kKCk7Cj4+PiBUaGF0J3Mg
-YSBjZXJ0YWluIE5BSyBzaW5jZSBpdCBidXN5IHdhaXRzIGZvciBJSCBwcm9jZXNzaW5nLiBXZSBu
-ZWVkIAo+Pj4gc29tZQo+Pj4gZXZlbnQgdG8gdHJpZ2dlciBoZXJlLgo+PiBUaGUgZnVuY3Rpb24g
-aXMgbWVhbnQgdG8gYmUganVzdCBhIHdhaXRlciB1cCB0byB0aGUgY2hlY2twb2ludC4KPj4gVGhl
-cmUncyBhIG5lZWQgdG8gZ3VhcmFudGVlIHRoYXQgInN0YWxlIiBpbnRlcnJ1cHRzIGhhdmUgYmVl
-biAKPj4gcHJvY2Vzc2VkIG9uIGNoZWNrIGJlZm9yZSBkb2luZyBvdGhlciBzdHVmZiBhZnRlciBj
-YWxsLgo+PiBUaGUgZGVzY3JpcHRpb24gY291bGQgYmUgaW1wcm92ZWQgdG8gY2xhcmlmeSB0aGF0
-Lgo+Pgo+PiBXb3VsZCBidXN5IHdhaXRpbmcgb25seSBvbiBhIGxvY2tlZCByaW5nIGhlbHA/wqAg
-SSBhc3N1bWUgYW4gdW5sb2NrZWQgCj4+IHJpbmcgbWVhbnMgbm90aGluZyB0byBwcm9jZXNzIHNv
-IG5vIG5lZWQgdG8gd2FpdCBhbmQgd2UgY2FuIGV4aXQgCj4+IGVhcmx5LsKgIE9yIGlzIGl0IGJl
-dHRlciB0byBqdXN0IHRvIHByb2Nlc3MgdGhlIGVudHJpZXMgdXAgdG8gdGhlIAo+PiBjaGVja3Bv
-aW50IChtYXliZSBhZGp1c3QgYW1kZ3B1X2loX3Byb2Nlc3MgZm9yIHRoaXMgbmVlZCBsaWtlIGFk
-ZGluZyAKPj4gYSBib29sIGFyZyB0byBza2lwIHJlc3RhcnQgb3Igc29tZXRoaW5nKT8KPj4KPj4g
-VGhhbmtzLAo+Pgo+PiBKb24KPj4KPj4+PiArfQo+Pj4+ICsKPj4+PiArLyogd2FpdCBmb3IgcnB0
-ciB0byBjYXRjaCB1cCB0byBvciBwYXNzIGNoZWNrcG9pbnQuICovCj4+Pj4gK3NwaW5fYmVnaW4o
-KTsKPj4+PiArZG8gewo+Pj4+ICtzcGluX2NwdV9yZWxheCgpOwo+Pj4+ICtwcmV2X3JwdHIgPSBj
-dXJfcnB0cjsKPj4+PiArY3VyX3JwdHIgPSBSRUFEX09OQ0UoaWgtPnJwdHIpOwo+Pj4+ICt9IHdo
-aWxlIChjdXJfcnB0ciA+PSBwcmV2X3JwdHIgJiYgY3VyX3JwdHIgPCBjaGVja3BvaW50X3dwdHIp
-Owo+Pj4gU2FtZSBvZiBjb3Vyc2UgaGVyZS4KPj4+Cj4+PiBDaHJpc3RpYW4uCj4+Pgo+Pj4+ICtz
-cGluX2VuZCgpOwo+Pj4+ICsKPj4+PiArcmV0dXJuIDA7Cj4+Pj4gK30KPj4+PiArCj4+Pj4gwqDC
-oCAvKioKPj4+PiDCoMKgwqAgKiBhbWRncHVfaWhfcHJvY2VzcyAtIGludGVycnVwdCBoYW5kbGVy
-Cj4+Pj4gwqDCoMKgICoKPj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvYW1kZ3B1X2loLmgKPj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9p
-aC5oCj4+Pj4gaW5kZXggNmVkNGE4NWZjN2MzLi42ODE3ZjBhODEyZDIgMTAwNjQ0Cj4+Pj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2loLmgKPj4+PiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfaWguaAo+Pj4+IEBAIC04Nyw2ICs4Nyw4IEBA
-IGludCBhbWRncHVfaWhfcmluZ19pbml0KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LAo+Pj4g
-c3RydWN0IGFtZGdwdV9paF9yaW5nICppaCwKPj4+PiDCoMKgIHZvaWQgYW1kZ3B1X2loX3Jpbmdf
-ZmluaShzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiwgc3RydWN0Cj4+PiBhbWRncHVfaWhfcmlu
-ZyAqaWgpOwo+Pj4+IMKgwqAgdm9pZCBhbWRncHVfaWhfcmluZ193cml0ZShzdHJ1Y3QgYW1kZ3B1
-X2loX3JpbmcgKmloLCBjb25zdCAKPj4+PiB1aW50MzJfdCAqaXYsCj4+Pj4gwqDCoMKgwqAgdW5z
-aWduZWQgaW50IG51bV9kdyk7Cj4+Pj4gK2ludCBhbWRncHVfaWhfd2FpdF9vbl9jaGVja3BvaW50
-X3Byb2Nlc3Moc3RydWN0IGFtZGdwdV9kZXZpY2UKPj4+ICphZGV2LAo+Pj4+ICtzdHJ1Y3QgYW1k
-Z3B1X2loX3JpbmcgKmloKTsKPj4+PiDCoMKgIGludCBhbWRncHVfaWhfcHJvY2VzcyhzdHJ1Y3Qg
-YW1kZ3B1X2RldmljZSAqYWRldiwgc3RydWN0Cj4+PiBhbWRncHVfaWhfcmluZyAqaWgpOwo+Pj4+
-IMKgwqAgdm9pZCBhbWRncHVfaWhfZGVjb2RlX2l2X2hlbHBlcihzdHJ1Y3QgYW1kZ3B1X2Rldmlj
-ZSAqYWRldiwKPj4+PiDCoMKgIHN0cnVjdCBhbWRncHVfaWhfcmluZyAqaWgsCj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBhbWQtZ2Z4IG1haWxpbmcg
-bGlzdAo+IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4CgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2FtZC1nZngK
+From: Arnd Bergmann <arnd@arndb.de>
+
+The new display synchronization code caused a regression
+on all 32-bit architectures:
+
+ld.lld: error: undefined symbol: __aeabi_uldivmod
+>>> referenced by dce_clock_source.c
+>>>               gpu/drm/amd/display/dc/dce/dce_clock_source.o:(get_pixel_clk_frequency_100hz) in archive drivers/built-in.a
+
+ld.lld: error: undefined symbol: __aeabi_ldivmod
+>>> referenced by dc_resource.c
+>>>               gpu/drm/amd/display/dc/core/dc_resource.o:(resource_are_vblanks_synchronizable) in archive drivers/built-in.a
+>>> referenced by dc_resource.c
+>>>               gpu/drm/amd/display/dc/core/dc_resource.o:(resource_are_vblanks_synchronizable) in archive drivers/built-in.a
+>>> referenced by dc_resource.c
+>>>               gpu/drm/amd/display/dc/core/dc_resource.o:(resource_are_vblanks_synchronizable) in archive drivers/built-in.a
+
+This is not a fast path, so the use of an explicit div_u64/div_s64
+seems appropriate.
+
+Fixes: 77a2b7265f20 ("drm/amd/display: Synchronize displays with different timings")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c    | 12 ++++++------
+ .../gpu/drm/amd/display/dc/dce/dce_clock_source.c    |  6 +++---
+ 2 files changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 0241c9d96d7a..49214c59c836 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -441,15 +441,15 @@ bool resource_are_vblanks_synchronizable(
+ 		if (stream2->timing.pix_clk_100hz*100/stream2->timing.h_total/
+ 				stream2->timing.v_total > 60)
+ 			return false;
+-		frame_time_diff = (int64_t)10000 *
++		frame_time_diff = div_s64(10000ll *
+ 			stream1->timing.h_total *
+ 			stream1->timing.v_total *
+-			stream2->timing.pix_clk_100hz /
+-			stream1->timing.pix_clk_100hz /
+-			stream2->timing.h_total /
+-			stream2->timing.v_total;
++			stream2->timing.pix_clk_100hz,
++			stream1->timing.pix_clk_100hz *
++			stream2->timing.h_total *
++			stream2->timing.v_total);
+ 		for (i = 0; i < rr_count; i++) {
+-			int64_t diff = (frame_time_diff * base60_refresh_rates[i]) / 10 - 10000;
++			int64_t diff = div_s64(frame_time_diff * base60_refresh_rates[i], 10) - 10000;
+ 
+ 			if (diff < 0)
+ 				diff = -diff;
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
+index 6f47f9bab5ee..85ed6f2c9647 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dce_clock_source.c
+@@ -1013,9 +1013,9 @@ static bool get_pixel_clk_frequency_100hz(
+ 			 * not be programmed equal to DPREFCLK
+ 			 */
+ 			modulo_hz = REG_READ(MODULO[inst]);
+-			*pixel_clk_khz = ((uint64_t)clock_hz*
+-				clock_source->ctx->dc->clk_mgr->dprefclk_khz*10)/
+-				modulo_hz;
++			*pixel_clk_khz = div_u64((uint64_t)clock_hz * 10 *
++				clock_source->ctx->dc->clk_mgr->dprefclk_khz,
++				modulo_hz);
+ 		} else {
+ 			/* NOTE: There is agreement with VBIOS here that MODULO is
+ 			 * programmed equal to DPREFCLK, in which case PHASE will be
+-- 
+2.29.2
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
