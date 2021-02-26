@@ -1,65 +1,46 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C22B325E9A
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Feb 2021 09:05:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64F1A32606E
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Feb 2021 10:48:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF6786EDB0;
-	Fri, 26 Feb 2021 08:05:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBF2C6E869;
+	Fri, 26 Feb 2021 09:48:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
- [IPv6:2a00:1450:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E409E6EDB0
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Feb 2021 08:05:15 +0000 (UTC)
-Received: by mail-ej1-x62d.google.com with SMTP id gt32so1711603ejc.6
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Feb 2021 00:05:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-transfer-encoding:content-language;
- bh=Rw2M2TheVedB6Uf9AdtMUVRz3p9t66k+nXw+8PNBiu8=;
- b=saIkrlKFklWBRrfmxPOEZIzrZJm2NUSDuFxJ4XltYobFC5geSXJmRfmCNB+2A3mJl9
- miV5ZfDQUIodSNq44V7UPwLWULEd2zFQ4RMTes/6HxJ6WMljajul4MbmyIQHnAGl1sqA
- qP1DN6dWCVcev4L+XqKoqSWA6kItwjHNzLXgf93x9N9nyhG/GqugQTnJhVScaIAoE7a4
- SAQQSWoH/tNsqTWN1Va/gpl5fjzIapm1zBxmzp3gL6rnVoaujFEbrISziOHVzoI+2Z9h
- VdZGyy6lDKQZyP5h83DIiNRZvrreBz+R91pKXu4qOZmEjtnhheGmSxxW4vwCUflcP9d+
- zQEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=Rw2M2TheVedB6Uf9AdtMUVRz3p9t66k+nXw+8PNBiu8=;
- b=fBzkE+X/jdFuDp78Z7GHF2tJ8dEMHalimgaUwdYd7S9yUC7Q+zR22fnpBwq5QxufdG
- z9uN6cuh0PMZjbXb1/lhvk/W7Iz4MYF3O+w1brNSHkvy7FzLkhNF+SiwkNo1mDdZmNld
- sxw/a+s2awENtZc+o3SPhyU5ydLrRawp8YRlTZ2Yx4+2Ry/tBy9PAZM6Yqv6vDpOZA5z
- aTaGHDp/64fu83eu/tYifICez3vDPXN+q1lvFZWzAOOoW1zgY5XE1/83wqBjoj4fozCx
- zRIACvYhow2+oKj753i+ObOoQYph2OYzYIGJ3Ahrze8HIXJMxycjTRma7FqGZlO0dyMK
- xf5w==
-X-Gm-Message-State: AOAM533pMrbzN9N6i4gO/Nul3HrTBJb3QC9ew+pMwmJL3fUXa24FjunH
- qKKTr1etsaBaTT5/vsH6+hC4s6DUaJbOPg==
-X-Google-Smtp-Source: ABdhPJyrJWH4DSsMSbZNOG8ofw4nC/FcEEsxtUNt5AVVGnvkdRcNKUYy6IaDk1KL/VAW1JEyHIgnDw==
-X-Received: by 2002:a17:906:4c51:: with SMTP id
- d17mr1916054ejw.533.1614326714651; 
- Fri, 26 Feb 2021 00:05:14 -0800 (PST)
-Received: from ?IPv6:2a02:908:1252:fb60:bcf6:4057:c09:be71?
- ([2a02:908:1252:fb60:bcf6:4057:c09:be71])
- by smtp.gmail.com with ESMTPSA id bm10sm2477381edb.2.2021.02.26.00.05.13
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 26 Feb 2021 00:05:14 -0800 (PST)
-Subject: Re: [PATCH] drm/amdgpu: remove unused variable in
- amdgpu_dma_buf_unmap()
-To: Kevin Wang <kevin1.wang@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20210226042447.39296-1-kevin1.wang@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <ea44a01c-2b8c-bb9a-2be0-56e98cf8b587@gmail.com>
-Date: Fri, 26 Feb 2021 09:05:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210226042447.39296-1-kevin1.wang@amd.com>
-Content-Language: en-US
+Received: from lucky1.263xmail.com (lucky1.263xmail.com [211.157.147.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC4C66E8ED;
+ Fri, 26 Feb 2021 06:05:37 +0000 (UTC)
+Received: from localhost (unknown [192.168.167.16])
+ by lucky1.263xmail.com (Postfix) with ESMTP id 8C2E6D0590;
+ Fri, 26 Feb 2021 14:05:32 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED: 0
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [124.126.19.250])
+ by smtp.263.net (postfix) whith ESMTP id
+ P32473T140679506294528S1614319533098420_; 
+ Fri, 26 Feb 2021 14:05:33 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <a77edb68d092f3f6d269c21c0bccd56a>
+X-RL-SENDER: wangjingyu@uniontech.com
+X-SENDER: wangjingyu@uniontech.com
+X-LOGIN-NAME: wangjingyu@uniontech.com
+X-FST-TO: airlied@linux.ie
+X-SENDER-IP: 124.126.19.250
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From: wangjingyu <wangjingyu@uniontech.com>
+To: airlied@linux.ie,
+	daniel@ffwll.ch
+Subject: [PATCH] radeon: ERROR: space prohibited before that ','
+Date: Fri, 26 Feb 2021 14:05:28 +0800
+Message-Id: <20210226060528.12964-1-wangjingyu@uniontech.com>
+X-Mailer: git-send-email 2.11.0
+X-Mailman-Approved-At: Fri, 26 Feb 2021 09:48:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,30 +52,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ wangjingyu <wangjingyu@uniontech.com>, amd-gfx@lists.freedesktop.org,
+ alexander.deucher@amd.com, christian.koenig@amd.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMjYuMDIuMjEgdW0gMDU6MjQgc2NocmllYiBLZXZpbiBXYW5nOgo+IGNsZWFuIHVwIHVuc3Vl
-ZCB2YXJpYWJsZSBpbiBhbWRncHVfZG1hX2J1Zl91bm1hcCgpLgo+Cj4gRml4ZXM6Cj4gZHJtL2Ft
-ZGdwdTogUmVtb3ZlIGFtZGdwdV9kZXZpY2UgYXJnIGZyb20gZnJlZV9zZ3QgYXBpCj4KPiBTaWdu
-ZWQtb2ZmLWJ5OiBLZXZpbiBXYW5nIDxrZXZpbjEud2FuZ0BhbWQuY29tPgoKUmV2aWV3ZWQtYnk6
-IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KCj4gLS0tCj4gICBk
-cml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZG1hX2J1Zi5jIHwgNCAtLS0tCj4gICAx
-IGZpbGUgY2hhbmdlZCwgNCBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZG1hX2J1Zi5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvYW1kZ3B1X2RtYV9idWYuYwo+IGluZGV4IGU4M2Q3M2VjMGU5ZC4uNWVjNjU1NmViZjdh
-IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kbWFfYnVm
-LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZG1hX2J1Zi5jCj4g
-QEAgLTM1NiwxMCArMzU2LDYgQEAgc3RhdGljIHZvaWQgYW1kZ3B1X2RtYV9idWZfdW5tYXAoc3Ry
-dWN0IGRtYV9idWZfYXR0YWNobWVudCAqYXR0YWNoLAo+ICAgCQkJCSBzdHJ1Y3Qgc2dfdGFibGUg
-KnNndCwKPiAgIAkJCQkgZW51bSBkbWFfZGF0YV9kaXJlY3Rpb24gZGlyKQo+ICAgewo+IC0Jc3Ry
-dWN0IGRtYV9idWYgKmRtYV9idWYgPSBhdHRhY2gtPmRtYWJ1ZjsKPiAtCXN0cnVjdCBkcm1fZ2Vt
-X29iamVjdCAqb2JqID0gZG1hX2J1Zi0+cHJpdjsKPiAtCXN0cnVjdCBhbWRncHVfYm8gKmJvID0g
-Z2VtX3RvX2FtZGdwdV9ibyhvYmopOwo+IC0KPiAgIAlpZiAoc2d0LT5zZ2wtPnBhZ2VfbGluaykg
-ewo+ICAgCQlkbWFfdW5tYXBfc2d0YWJsZShhdHRhY2gtPmRldiwgc2d0LCBkaXIsIDApOwo+ICAg
-CQlzZ19mcmVlX3RhYmxlKHNndCk7CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2Ft
-ZC1nZngK
+drm_property_create_range(rdev->ddev, 0 , "coherent", 0, 1);
+
+Signed-off-by: wangjingyu <wangjingyu@uniontech.com>
+---
+ drivers/gpu/drm/radeon/radeon_display.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
+index 3a6fedad002d..439d1b3e87d8 100644
+--- a/drivers/gpu/drm/radeon/radeon_display.c
++++ b/drivers/gpu/drm/radeon/radeon_display.c
+@@ -1396,7 +1396,7 @@ static int radeon_modeset_create_props(struct radeon_device *rdev)
+ 
+ 	if (rdev->is_atom_bios) {
+ 		rdev->mode_info.coherent_mode_property =
+-			drm_property_create_range(rdev->ddev, 0 , "coherent", 0, 1);
++			drm_property_create_range(rdev->ddev, 0, "coherent", 0, 1);
+ 		if (!rdev->mode_info.coherent_mode_property)
+ 			return -ENOMEM;
+ 	}
+-- 
+2.11.0
+
+
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
