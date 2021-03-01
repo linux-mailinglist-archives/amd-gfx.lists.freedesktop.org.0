@@ -2,56 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF3D328671
-	for <lists+amd-gfx@lfdr.de>; Mon,  1 Mar 2021 18:11:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 477A132862B
+	for <lists+amd-gfx@lfdr.de>; Mon,  1 Mar 2021 18:06:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4979E6E84D;
-	Mon,  1 Mar 2021 17:11:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1ED2D89DB7;
+	Mon,  1 Mar 2021 17:06:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com
- [IPv6:2607:f8b0:4864:20::82a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0875898C8
- for <amd-gfx@lists.freedesktop.org>; Mon,  1 Mar 2021 16:59:15 +0000 (UTC)
-Received: by mail-qt1-x82a.google.com with SMTP id o34so12477193qtd.11
- for <amd-gfx@lists.freedesktop.org>; Mon, 01 Mar 2021 08:59:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=x0j36itVEu9pJWcfNSA2nYtI2hPWzcnt/Y/nnKwvNoo=;
- b=lblEvkqzL7BhGIa+3SFbXgcsKO/D0zAGdCF3OaBf13QjC1B173F17FzKaKEcNAKOyM
- 9iasy6KX7wcpLc+BDQh4iRrwUy/keOKAwSgunyDmsY0Bwzca6ljCsmLHLjcN+Z5c6ISK
- En9MJDbxuZECNVMPrXVXgm5xwgABPl9dhs/24=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=x0j36itVEu9pJWcfNSA2nYtI2hPWzcnt/Y/nnKwvNoo=;
- b=simQIvab1Kdc7R9lnU0kJkIuxbsyFv7uHxfL83/ezmPnHnRXHWIHA4WWE9wmMS7+RE
- bVuXQNMsPENDTdr+FuyZv5t2ec2e3PBBl+2zCjSnLVI9pnJujJwl2UPeYGqsgCWDL2FM
- B7HH+tO+UbYk1bJQ50c8pLe7l1I7BzsLZYmiDMSJhq8pdsDo6neBUhKlYCCnIMYt8w60
- WVE3jzae0YUiUOYerG5DFfJWakg0/rSznOXgqdEz8BhD2ZmYlnEZxqXbAASRGIVFkkt4
- WOJJ7W6RKwLE3KGtU+DAV48LD9Qxe2UADm6f0tHv002NuBn+hw84ScgDU5Y6lL0Gd99s
- YloA==
-X-Gm-Message-State: AOAM533zy2A2+LKOq21hyWxbJT0Csij2Un+0IufoF4AVoHW6LHNDzodZ
- E6klg0dDnz6YFIMJw2I1lhPvxCfpRREZ2g==
-X-Google-Smtp-Source: ABdhPJx/Ze9O5+4BJy1M/rfHx1DtCuRRUqv69pUA63rIygQxf1lxp3WrO84RsUa4y38iT8+GyBHNOg==
-X-Received: by 2002:ac8:4e8f:: with SMTP id 15mr6170863qtp.317.1614617954768; 
- Mon, 01 Mar 2021 08:59:14 -0800 (PST)
-Received: from markyacoub.nyc.corp.google.com
- ([2620:0:1003:513:91e3:3df6:3ae:d219])
- by smtp.gmail.com with ESMTPSA id c22sm4882733qtn.74.2021.03.01.08.59.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Mar 2021 08:59:14 -0800 (PST)
-From: Mark Yacoub <markyacoub@chromium.org>
-To: amd-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: Verify bo size can fit framebuffer size
-Date: Mon,  1 Mar 2021 11:59:08 -0500
-Message-Id: <20210301165908.3846489-1-markyacoub@chromium.org>
-X-Mailer: git-send-email 2.30.1.766.gb4fecdf3b7-goog
+Received: from NAM04-CO1-obe.outbound.protection.outlook.com
+ (mail-eopbgr690047.outbound.protection.outlook.com [40.107.69.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAA9E89DB7
+ for <amd-gfx@lists.freedesktop.org>; Mon,  1 Mar 2021 17:06:45 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kCb2KIfINq9NP6XemrZjRV4V5fPFIMPiHtUvbrEJs1FCdayYQmGJtooxfx+r0WfsKJ3Fy99x2JzdF20YKaMTtKClf2JNWQn0a58eRpg3vvs004EC6KNKdmIUc6ORaIliec6+rAXP/gD4CC5hA/OmXWfUROb4Xqm+WmQhdYNyV1Ud7KpdpoCL8Qcj1PYbHckvHBLz2o4uqFkTejWyiYhkBvM+QEAE+kvKJaBsYKasaaefJrSlTgWgcdAcSGzajuupH6CZiHdbZQ1Eq9YmzdE4DSTFZoNYMcTAR+G+0LlGIMC/KLWFcQa7yERh3ffOiZuXJoZHNG7WJfSlyoHT8+cXbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8+5h3FHdneL/b0Lzp1rTszedOvRPC1BxXFvEsrsNoWA=;
+ b=TZN2JJg2ezQI2oaTnKlSPUVID2LXFbTW5NR4y3D2vk4KhlNKAoVjhCyqNG5mi/KvdLZhdHEiGSyxFZRWTdnSDru0ZhSIhfXP/mKnbBUXdV5LSvxMKu+I7MdCkURU0EU/zTeKrgPzkc33cQk8JmdpkA13dF5DMOmMwJpF+6vubBVq9cRXD8B9eOLfQIdvqlnmoNYU13GishYfonevptWareQBoLYwjQ1eOunADnrkzRbCoucA9nnweTlmaahJnJ0XjXx7mGEeaLmt8J8OVEXv4LRxaUwZgYbTinUnghvlbpFJA0Y/ZxLFq5IVVNZjgZEM/RJYBuxJ2Pw93zDQuiU7IQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8+5h3FHdneL/b0Lzp1rTszedOvRPC1BxXFvEsrsNoWA=;
+ b=UqgY0twNUtGDQZmy3jVYvDt2Wzo/fD5whoP3Lxf6x5Or/9OHgHzMMmWGvqdSlcf6nUip92b9pZp02QIL4urhS/VfjJoDv+UsZzmr3PdUxFo+aamdDaslXl3Fdnq/WnRUKog8xYpMZK4apL6CIPIOTlu1ZUXPar8uOh+BOoHDSkY=
+Received: from BN8PR07CA0018.namprd07.prod.outlook.com (2603:10b6:408:ac::31)
+ by DM6PR12MB3580.namprd12.prod.outlook.com (2603:10b6:5:11e::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.23; Mon, 1 Mar
+ 2021 17:06:44 +0000
+Received: from BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:ac:cafe::38) by BN8PR07CA0018.outlook.office365.com
+ (2603:10b6:408:ac::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.20 via Frontend
+ Transport; Mon, 1 Mar 2021 17:06:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB02.amd.com;
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ BN8NAM11FT066.mail.protection.outlook.com (10.13.177.138) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3890.19 via Frontend Transport; Mon, 1 Mar 2021 17:06:43 +0000
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3; Mon, 1 Mar 2021
+ 11:06:42 -0600
+Received: from bindu-HP-EliteDesk-705-G4-MT.amd.com (10.180.168.240) by
+ SATLEXMB01.amd.com (10.181.40.142) with Microsoft SMTP Server id 15.1.1979.3
+ via Frontend Transport; Mon, 1 Mar 2021 11:06:42 -0600
+From: Bindu Ramamurthy <bindu.r@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 0/2] Fix for 64 bit divisions on 32-bit platform.
+Date: Mon, 1 Mar 2021 12:06:29 -0500
+Message-ID: <20210301170631.94988-1-bindu.r@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 01 Mar 2021 17:11:20 +0000
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 30b3dc75-ca39-4c51-3766-08d8dcd463b7
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3580:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB358085C35AA4FD072E9F64B9F59A9@DM6PR12MB3580.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /cOoVP2WI5nqIpyhYNksmxnRBNNMrR1g7AEOcOSnHBfhp3Eg/vKaudz41cN4KAmbR71UTyMY/fcEa1Y686xrfVjKbww+mNUJOyxT41aCRODzimRiXjkYQQ7qxXS9hCDa5tMV/D2d34VFx32IMfOU+xMJ9wbZBiNbwMZu9zI1H1yWNCk3HS8gMfNhBrYAOg2RjImPETg4TPRv+NU4/SvGmxsUUU7pM5OvndKthGonGHHMkZ3mR5RiDp0hERlzIOtdu8vLH1iOFOqXachWtvV2RSOcRv/lrXLi5D5mNeEXclLV5rFepg+I/hwA5szN7xanAKsx+pYq/0l7efsbUqldfvVJwh5E6PeGVYkKkZJqS5R9sAFeUARuIhSiTwBEBbVsuwrZtEIVkVgyZzAKGn0HsyX9KpoFxpSLiFmCUVp5S8zmYUjn7l51Zzx2AyJmu8ZY5bROJ4lLz8QV0ogDTdc2yLn5+PUQcpBJwXacvGXGEutJsMl9RE1L/GVnMCxLNoZBOf8GbGXucUvkpApsgzEoeZz/Jisd0nR44I/mNCNhsU0r1Ruou4tBkaWSrbgLMfxcd0nNKzxcf6e+fUO/BLbRdwbDmfRwQr9cM8z3oJNWHTCkfdxne4RY1Cs/A5IikLHplYkB8YSIm1DYHmlRFBgoASJz06QdKp0vpYkXAQBAGGi962V55pEMYMEWKqPe8izi
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SATLEXMB02.amd.com; PTR:ErrorRetry; CAT:NONE;
+ SFS:(4636009)(136003)(346002)(39860400002)(396003)(376002)(36840700001)(46966006)(26005)(36756003)(7696005)(36860700001)(6916009)(316002)(4326008)(186003)(54906003)(2906002)(70206006)(47076005)(70586007)(82740400003)(86362001)(2616005)(478600001)(1076003)(83380400001)(336012)(426003)(8936002)(82310400003)(356005)(8676002)(81166007)(4744005)(6666004)(5660300002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2021 17:06:43.5844 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 30b3dc75-ca39-4c51-3766-08d8dcd463b7
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3580
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,92 +98,29 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, Mark Yacoub <markyacoub@chromium.org>,
- seanpaul@chromium.org, Mark Yacoub <markyacoub@google.com>
+Cc: alexander.deucher@amd.com, Rodrigo.Siqueira@amd.com,
+ Bindu Ramamurthy <bindu.r@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When creating a new framebuffer, verify that the bo size associated with
-it can handle the fb size.
-drm_gem_fb_init_with_funcs implements this check by calculating the
-minimum expected size of each plane. amdgpu now uses this function to
-initialize its fb as it performs the required checks.
+This patch set fixes 64 bit divisions for the display
+synchronization code that caused a regression on 32-bit platform.
 
-The bug was caught using igt-gpu-tools test: kms_addfb_basic.too-high
-and kms_addfb_basic.bo-too-small
+Vladimir Stempen (2):
+  SWDEV-266369 - dc: Fix 64 bit divisions on 32 bit platforms by using
+    div64 API
+  SWDEV-266369 - dc: Fix 64 bit modulus operation using div64 API
 
-Suggested-by: Sean Paul <seanpaul@chromium.org>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Signed-off-by: Mark Yacoub <markyacoub@google.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 8 +++++---
- drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c      | 3 ++-
- drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h    | 1 +
- 3 files changed, 8 insertions(+), 4 deletions(-)
+ .../gpu/drm/amd/display/dc/core/dc_resource.c | 14 +++++++-------
+ .../drm/amd/display/dc/dce/dce_clock_source.c |  6 +++---
+ .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 19 ++++++++++++-------
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_optc.c | 13 +++++++------
+ 4 files changed, 29 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index 48cb33e5b3826..61684d543b8ef 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -872,13 +872,14 @@ static int amdgpu_display_get_fb_info(const struct amdgpu_framebuffer *amdgpu_fb
- 
- int amdgpu_display_framebuffer_init(struct drm_device *dev,
- 				    struct amdgpu_framebuffer *rfb,
-+				    struct drm_file *file,
- 				    const struct drm_mode_fb_cmd2 *mode_cmd,
- 				    struct drm_gem_object *obj)
- {
- 	int ret, i;
- 	rfb->base.obj[0] = obj;
--	drm_helper_mode_fill_fb_struct(dev, &rfb->base, mode_cmd);
--	ret = drm_framebuffer_init(dev, &rfb->base, &amdgpu_fb_funcs);
-+	ret = drm_gem_fb_init_with_funcs(dev, &rfb->base, file, mode_cmd,
-+					 &amdgpu_fb_funcs);
- 	if (ret)
- 		goto fail;
- 
-@@ -953,7 +954,8 @@ amdgpu_display_user_framebuffer_create(struct drm_device *dev,
- 		return ERR_PTR(-ENOMEM);
- 	}
- 
--	ret = amdgpu_display_framebuffer_init(dev, amdgpu_fb, mode_cmd, obj);
-+	ret = amdgpu_display_framebuffer_init(dev, amdgpu_fb, file_priv,
-+					      mode_cmd, obj);
- 	if (ret) {
- 		kfree(amdgpu_fb);
- 		drm_gem_object_put(obj);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
-index 0bf7d36c6686d..2b9c9a621c437 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
-@@ -233,7 +233,8 @@ static int amdgpufb_create(struct drm_fb_helper *helper,
- 	}
- 
- 	ret = amdgpu_display_framebuffer_init(adev_to_drm(adev), &rfbdev->rfb,
--					      &mode_cmd, gobj);
-+					      helper->client.file, &mode_cmd,
-+					      gobj);
- 	if (ret) {
- 		DRM_ERROR("failed to initialize framebuffer %d\n", ret);
- 		goto out;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-index 319cb19e1b99f..997b93674955e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
-@@ -604,6 +604,7 @@ int amdgpu_display_get_crtc_scanoutpos(struct drm_device *dev,
- 
- int amdgpu_display_framebuffer_init(struct drm_device *dev,
- 				    struct amdgpu_framebuffer *rfb,
-+				    struct drm_file *file,
- 				    const struct drm_mode_fb_cmd2 *mode_cmd,
- 				    struct drm_gem_object *obj);
- 
 -- 
-2.30.1.766.gb4fecdf3b7-goog
+2.25.1
 
 _______________________________________________
 amd-gfx mailing list
