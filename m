@@ -1,52 +1,46 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7658B32AD58
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 Mar 2021 03:16:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 598F632AD4C
+	for <lists+amd-gfx@lfdr.de>; Wed,  3 Mar 2021 03:16:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21BAB6E334;
-	Wed,  3 Mar 2021 02:16:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9C7989FC0;
+	Wed,  3 Mar 2021 02:16:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 369 seconds by postgrey-1.36 at gabe;
- Wed, 03 Mar 2021 01:10:03 UTC
-Received: from lucky1.263xmail.com (lucky1.263xmail.com [211.157.147.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03FFD6E0DF
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 01:10:03 +0000 (UTC)
-Received: from localhost (unknown [192.168.167.235])
- by lucky1.263xmail.com (Postfix) with ESMTP id B3510D04BC;
- Wed,  3 Mar 2021 09:03:50 +0800 (CST)
+X-Greylist: delayed 69766 seconds by postgrey-1.36 at gabe;
+ Wed, 03 Mar 2021 02:05:25 UTC
+Received: from regular1.263xmail.com (regular1.263xmail.com [211.150.70.202])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F2196E328
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 02:05:25 +0000 (UTC)
+Received: from localhost (unknown [192.168.167.32])
+ by regular1.263xmail.com (Postfix) with ESMTP id BCF2271A;
+ Wed,  3 Mar 2021 10:05:20 +0800 (CST)
 X-MAIL-GRAY: 0
 X-MAIL-DELIVERY: 1
 X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 0
-X-SPAM-CHECKED: 5
 X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
 Received: from chenli.uniontech.com (unknown [58.246.122.242])
  by smtp.263.net (postfix) whith ESMTP id
- P19727T140184681170688S1614733429764178_; 
- Wed, 03 Mar 2021 09:03:50 +0800 (CST)
+ P27940T140460556089088S1614737119617034_; 
+ Wed, 03 Mar 2021 10:05:20 +0800 (CST)
 X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <4d78f2900f207958c323ccbb2d5af5a0>
+X-UNIQUE-TAG: <9887e772dd8caf221d618ba11a37a75b>
 X-RL-SENDER: chenli@uniontech.com
 X-SENDER: chenli@uniontech.com
 X-LOGIN-NAME: chenli@uniontech.com
-X-FST-TO: ckoenig.leichtzumerken@gmail.com
+X-FST-TO: amd-gfx@lists.freedesktop.org
 X-SENDER-IP: 58.246.122.242
 X-ATTACHMENT-NUM: 0
 X-System-Flag: 0
-Date: Wed, 03 Mar 2021 09:03:49 +0800
-Message-ID: <87v9a9t5e2.wl-chenli@uniontech.com>
+Date: Wed, 03 Mar 2021 10:05:19 +0800
+Message-ID: <87tuptt2jk.wl-chenli@uniontech.com>
 From: Chen Li <chenli@uniontech.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-Subject: Re: [PATCH] drm/radeon: Use kvmalloc for CS =?ISO-2022-JP?B?Y2h1?=
- =?ISO-2022-JP?B?bmtzGyRCIVobKEJTdXNwZWN0ZWQ=?= phishing email, please pay
- attention to password =?ISO-2022-JP?B?c2VjdXJpdHkbJEIhWxsoQg==?=
-In-Reply-To: <91acb410-2060-fee7-0791-f7585ab7a1d8@gmail.com>
-References: <87wnuqt5tn.wl-chenli@uniontech.com>
- <91acb410-2060-fee7-0791-f7585ab7a1d8@gmail.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH v2 0/3] Use kvmalloc_array for radeon and amdgpu CS chunks
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/27.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -63,150 +57,34 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?ISO-8859-1?Q?=22Christian_K=F6nig=22?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 02 Mar 2021 22:13:11 +0800,
-Christian K=F6nig wrote:
->
-> Am 02.03.21 um 07:42 schrieb Chen Li:
-> > The number of chunks/chunks_array may be passed in
-> > by userspace and can be large.
->
-> I'm wondering if we shouldn't rather restrict the number of chunks.
 
-If the number is restrict, will there be any risk and what's the proper num=
-ber here?
->
-> > It has been observed to cause kcalloc failures from trinity fuzzy test:
-> >
-> > ```
-> >   WARNING: CPU: 0 PID: 5487 at mm/page_alloc.c:4385
-> >   __alloc_pages_nodemask+0x2d8/0x14d0
-> >
-> > ......
-> >
-> > Trace:
-> > __warn.part.4+0x11c/0x174
-> > __alloc_pages_nodemask+0x2d8/0x14d0
-> > warn_slowpath_null+0x84/0xb0
-> > __alloc_pages_nodemask+0x2d8/0x14d0
-> > __alloc_pages_nodemask+0x2d8/0x14d0
-> > alloc_pages_current+0xf0/0x1b0
-> > free_buffer_head+0x88/0xf0
-> > jbd2_journal_try_to_free_buffers+0x1e0/0x2a0
-> > ext4_releasepage+0x84/0x140
-> > release_pages+0x414/0x4c0
-> > release_pages+0x42c/0x4c0
-> > __find_get_block+0x1a4/0x5b0
-> > alloc_pages_current+0xcc/0x1b0
-> > kmalloc_order+0x30/0xb0
-> > __kmalloc+0x300/0x390
-> > kmalloc_order_trace+0x48/0x110
-> > __kmalloc+0x300/0x390
-> > radeon_cs_parser_init.part.1+0x74/0x670 [radeon]
-> > crypto_shash_update+0x5c/0x1c0
-> > radeon_cs_parser_init.part.1+0x74/0x670 [radeon]
-> > __wake_up_common_lock+0xb8/0x210
-> > radeon_cs_ioctl+0xc8/0xb80 [radeon]
-> > radeon_cs_ioctl+0x50/0xb80 [radeon]
-> > drm_ioctl_kernel+0xf4/0x160
-> > radeon_cs_ioctl+0x0/0xb80 [radeon]
-> > drm_ioctl_kernel+0xa0/0x160
-> > drm_ioctl+0x2dc/0x4f0
-> > radeon_drm_ioctl+0x80/0xf0 [radeon]
-> > new_sync_write+0x120/0x1c0
-> > timerqueue_add+0x88/0x140
-> > do_vfs_ioctl+0xe4/0x990
-> > ksys_ioctl+0xdc/0x110
-> > ksys_ioctl+0x78/0x110
-> > sys_ioctl+0x2c/0x50
-> > entSys+0xa0/0xc0
->
-> Please drop the backtrace, it doesn't add any value to the commit log.
+When testing kernel with trinity, the kernel turned to tainted in that radeon CS require large memory and order is over MAX_ORDER.
 
-Ok, will drop it in v2.
->
-> > ```
-> >
-> > Obviously, the required order in this case is larger than MAX_ORDER.
-> > So, just use kvmalloc instead.
-> >
-> > Signed-off-by: Chen Li <chenli@uniontech.com>
->
-> Reviewed-by: Christian K=F6nig <christian.koenig@amd.com>
->
-> The same patch should probably applied to amdgpu as well if we don't alre=
-ady use
-> kvmalloc there as well.
->
+kvmalloc/kvmalloc_array should be used here in that it will fallback to vmalloc if necessary.
 
-Fair enough, will add it into a v2 as a series with this patch.
-> Regards,
-> Christian.
->
-> > ---
-> >   drivers/gpu/drm/radeon/radeon_cs.c | 8 ++++----
-> >   1 file changed, 4 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/radeon/radeon_cs.c b/drivers/gpu/drm/radeo=
-n/radeon_cs.c
-> > index 35e937d39b51..fb736ef9f9aa 100644
-> > --- a/drivers/gpu/drm/radeon/radeon_cs.c
-> > +++ b/drivers/gpu/drm/radeon/radeon_cs.c
-> > @@ -288,7 +288,7 @@ int radeon_cs_parser_init(struct radeon_cs_parser *=
-p, void *data)
-> >   	p->chunk_relocs =3D NULL;
-> >   	p->chunk_flags =3D NULL;
-> >   	p->chunk_const_ib =3D NULL;
-> > -	p->chunks_array =3D kcalloc(cs->num_chunks, sizeof(uint64_t), GFP_KER=
-NEL);
-> > +	p->chunks_array =3D kvmalloc_array(cs->num_chunks, sizeof(uint64_t), =
-GFP_KERNEL);
-> >   	if (p->chunks_array =3D=3D NULL) {
-> >   		return -ENOMEM;
-> >   	}
-> > @@ -299,7 +299,7 @@ int radeon_cs_parser_init(struct radeon_cs_parser *=
-p, void *data)
-> >   	}
-> >   	p->cs_flags =3D 0;
-> >   	p->nchunks =3D cs->num_chunks;
-> > -	p->chunks =3D kcalloc(p->nchunks, sizeof(struct radeon_cs_chunk), GFP=
-_KERNEL);
-> > +	p->chunks =3D kvmalloc_array(p->nchunks, sizeof(struct radeon_cs_chun=
-k), GFP_KERNEL);
-> >   	if (p->chunks =3D=3D NULL) {
-> >   		return -ENOMEM;
-> >   	}
-> > @@ -452,8 +452,8 @@ static void radeon_cs_parser_fini(struct radeon_cs_=
-parser *parser, int error, bo
-> >   	kvfree(parser->vm_bos);
-> >   	for (i =3D 0; i < parser->nchunks; i++)
-> >   		kvfree(parser->chunks[i].kdata);
-> > -	kfree(parser->chunks);
-> > -	kfree(parser->chunks_array);
-> > +	kvfree(parser->chunks);
-> > +	kvfree(parser->chunks_array);
-> >   	radeon_ib_free(parser->rdev, &parser->ib);
-> >   	radeon_ib_free(parser->rdev, &parser->const_ib);
-> >   }
-> > --
-> > 2.30.0
-> >
-> >
-> > _______________________________________________
-> > amd-gfx mailing list
-> > amd-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/amd-gfx
->
->
->
+Chen Li (3):
+  drm/radeon: Use kvmalloc for CS chunks
+  drm/amdgpu: Use kvmalloc for CS chunks
+  drm/amdgpu: correct DRM_ERROR for kvmalloc_array
 
-Regards,
-Chen Li.
+Changelog:
+  v1->v2:
+    * also use kvmalloc in amdgpu
+    * fix a DRM_ERROR message for kvmalloc_array.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 6 +++---
+ drivers/gpu/drm/radeon/radeon_cs.c     | 8 ++++----
+ 2 files changed, 7 insertions(+), 7 deletions(-)
+
+-- 
+2.30.0
+
 
 
 _______________________________________________
