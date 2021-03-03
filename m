@@ -2,58 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96C6832AC84
-	for <lists+amd-gfx@lfdr.de>; Tue,  2 Mar 2021 23:53:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9897B32AD55
+	for <lists+amd-gfx@lfdr.de>; Wed,  3 Mar 2021 03:16:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7BA06E28A;
-	Tue,  2 Mar 2021 22:53:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA6876E328;
+	Wed,  3 Mar 2021 02:16:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
- [IPv6:2a00:1450:4864:20::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 545846E28A;
- Tue,  2 Mar 2021 22:53:25 +0000 (UTC)
-Received: by mail-ej1-x631.google.com with SMTP id mm21so38158426ejb.12;
- Tue, 02 Mar 2021 14:53:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=SBf1AJb9EdpD1tLxm/hr0d4X6asZC8lvXwuuUxwzI0k=;
- b=SFCvXSfDnXKmDiBntDQ3HhhjDv1BUT1f49sz3EtWcxdmAJWqUHza3f+nojyfSdReAE
- 1OWF13UIkReZvm6D2LggNEX0y1Adg2s7Jw0Soc88PKJTxM76hUxudjmWkDUw91WaEjrJ
- t1efgzZOmkFIAMybduHqTzRRdCT0DJy0GyKhPdACsoaXah3MBkXQhh+RRGYoHCkMlYbF
- Y5LJL9oX+gfTXrMgWih1Lx4DR9zu9f7UwsqqK1wh+0UVOaKohtO+nDfUXjRlUs5m/Pgs
- vB811RNQw1RtjzYBnIN0AbFdqGFC2g+l3K/lxzSwHWpXz6BubsSDC1lzniVH6829ohcR
- +cKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=SBf1AJb9EdpD1tLxm/hr0d4X6asZC8lvXwuuUxwzI0k=;
- b=LCVQLDQJl0BsHThuLgLTIWLUpNSw6ZZpzC0bfNXh+VgtVjOLrYpW/ZGVXZ8Vb/NN3D
- 5Fo+AzRY7XRmjeGZCQ/grST+24F0RVzWSLJs3oByoMlaEUX8RIu8a8+DRZNDFzCQxF9N
- z0m/TT1o4QqipHXU3VOJNmRmqUlEGC6PQWz64vPv3j0/c8XM9S02MHJzeaOUQxzqkvPT
- Qk+ZzW85gnIgQeHx4C7Z9deav9IHuw3l3r80DyUziQ9VkyjuoQFCDDZLWb8shrqO25Y+
- Jr/9I3lueNCx2MK/1MsbqkUG+30+6VjHc3osOhaAPcHoeQ1kPP0pG4QmeXxeM0+B/nSI
- Hnjg==
-X-Gm-Message-State: AOAM533E72/qpk2Kb4/HQjRI6fP8JVk6HDsGb2UTIuA2dMMx0pFywIeA
- lFzGjNEPYpFrvp0wZMOBLIpLQghZwymJntCqmXE=
-X-Google-Smtp-Source: ABdhPJx+ooDsadMSwgD7IHVdZfg8CXVNw8i+etr8HqoS2H2q4MN9Mj5b5LLD8WE/oq+rVom/2mDkSYlaOlQS/VqLGKs=
-X-Received: by 2002:a17:906:ad96:: with SMTP id
- la22mr23902401ejb.237.1614725603988; 
- Tue, 02 Mar 2021 14:53:23 -0800 (PST)
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1697F89CBE;
+ Wed,  3 Mar 2021 00:28:02 +0000 (UTC)
+Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
+ by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <colin.king@canonical.com>)
+ id 1lHFMt-0005Cd-En; Wed, 03 Mar 2021 00:27:59 +0000
+From: Colin King <colin.king@canonical.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?q?Marek=20Ol=C5=A1=C3=A1k?= <marek.olsak@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/radeon: fix copy of uninitialized variable back to
+ userspace
+Date: Wed,  3 Mar 2021 00:27:59 +0000
+Message-Id: <20210303002759.28752-1-colin.king@canonical.com>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-References: <1614638628-10508-1-git-send-email-Oak.Zeng@amd.com>
- <202103021104.NudsKKei-lkp@intel.com>
- <34b706ca-d15f-223f-e1a3-2ec071d578a2@gmail.com>
- <DM6PR12MB4732C8CF2FE2642A44B32C9C80999@DM6PR12MB4732.namprd12.prod.outlook.com>
-In-Reply-To: <DM6PR12MB4732C8CF2FE2642A44B32C9C80999@DM6PR12MB4732.namprd12.prod.outlook.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Wed, 3 Mar 2021 08:53:12 +1000
-Message-ID: <CAPM=9txN_i922jP1CB1tQepBoK7qNfLq-q-nRzV6yMYP9r6xSg@mail.gmail.com>
-Subject: Re: [PATCH] drm/ttm: ioremap buffer according to TTM mem caching
- setting
-To: "Zeng, Oak" <Oak.Zeng@amd.com>
+X-Mailman-Approved-At: Wed, 03 Mar 2021 02:16:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,37 +42,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m_=28Intel=29?= <thomas_os@shipmail.org>,
- "Kasiviswanathan, Harish" <Harish.Kasiviswanathan@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Koenig,
- Christian" <Christian.Koenig@amd.com>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, "Huang,
- JinHuiEric" <JinHuiEric.Huang@amd.com>, Dave Airlie <airlied@redhat.com>,
- "dan.j.williams@intel.com" <dan.j.williams@intel.com>, "Kuehling,
- Felix" <Felix.Kuehling@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAzIE1hciAyMDIxIGF0IDA4OjQ1LCBaZW5nLCBPYWsgPE9hay5aZW5nQGFtZC5jb20+
-IHdyb3RlOgo+Cj4gW0FNRCBPZmZpY2lhbCBVc2UgT25seSAtIEludGVybmFsIERpc3RyaWJ1dGlv
-biBPbmx5XQo+Cj4KPiBIaSBEYW5pZWwsIFRob21hcywgRGFuLAo+Cj4KPgo+IERvZXMgYmVsb3cg
-bWVzc2FnZSBtZWFuIHRoZSBjYWxsaW5nIGlvcmVtYXBfY2FjaGUgZmFpbGVkIGludGVs4oCZcyBk
-cml2ZXIgYnVpbGQ/IEkgY2FuIHNlZSBib3RoIGlvcmVtYXBfY2FjaGUgYW5kIGlvcmVtYXBfd2Mg
-YXJlIGRlZmluZWQgaW4gYXJjaC94ODYvbW0vaW9yZW1hcC5jIOKAkyB3aHkgaW9yZW1hcF93YyBk
-b2VzbuKAmXQgYnJlYWsgaW50ZWwgZHJpdmVy4oCZcyBidWlsZD8KCkp1c3QgdG8gY2xlYXIgdXAg
-Y29uZnVzaW9uIGhlcmUsIHRoZSBsaW51eCBrZXJuZWwgcm9ib3QgaXMgaG9zdGVkIGJ5CkludGVs
-IGl0IGRvZXMgbm90IHRlc3QgaW50ZWwgZHJpdmVyIGJ1aWxkcyBleGNsdXNpdmVseSwgaXQgdGVz
-dHMgYSBsb3QKb2YgZGlmZmVyZW50IGJ1aWxkcyBhY3Jvc3MgbG90cyBvZiBkaWZmZXJlbnQgYXJj
-aGl0ZWN0dXJlcywuCgpJZiB0aGUgcm9ib3QgY29tcGxhaW5zIGl0J3MgYmVjYXVzZSB5b3VyIHBh
-dGNoIGJyZWFrcyBpbiB0aGUKY29uZmlndXJhdGlvbiBpdCBkZXNjcmliZXMsIHRha2UgdGhlIHRp
-bWUgdG8gcmVhZCB0aGF0IGNvbmZpZ3VyYXRpb24KaW5mbyBhbmQgcmVhbGlzZSBpdCdzIG5vdGhp
-bmcgdG8gZG8gd2l0aCBJbnRlbCBhdCBhbGwuCgpEYXZlLgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2FtZC1nZngK
+From: Colin Ian King <colin.king@canonical.com>
+
+Currently the ioctl command RADEON_INFO_SI_BACKEND_ENABLED_MASK can
+copy back uninitialised data in value_tmp that pointer *value points
+to. This can occur when rdev->family is less than CHIP_BONAIRE and
+less than CHIP_TAHITI.  Fix this by adding in a missing -EINVAL
+so that no invalid value is copied back to userspace.
+
+Addresses-Coverity: ("Uninitialized scalar variable)
+Cc: stable@vger.kernel.org # 3.13+
+Fixes: 439a1cfffe2c ("drm/radeon: expose render backend mask to the userspace")
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/radeon/radeon_kms.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/radeon/radeon_kms.c b/drivers/gpu/drm/radeon/radeon_kms.c
+index 2479d6ab7a36..58876bb4ef2a 100644
+--- a/drivers/gpu/drm/radeon/radeon_kms.c
++++ b/drivers/gpu/drm/radeon/radeon_kms.c
+@@ -518,6 +518,7 @@ int radeon_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+ 			*value = rdev->config.si.backend_enable_mask;
+ 		} else {
+ 			DRM_DEBUG_KMS("BACKEND_ENABLED_MASK is si+ only!\n");
++			return -EINVAL;
+ 		}
+ 		break;
+ 	case RADEON_INFO_MAX_SCLK:
+-- 
+2.30.0
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
