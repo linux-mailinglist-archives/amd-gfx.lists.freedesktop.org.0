@@ -2,19 +2,19 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A2732AD52
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 Mar 2021 03:16:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5287632AD5B
+	for <lists+amd-gfx@lfdr.de>; Wed,  3 Mar 2021 03:16:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAD156E332;
-	Wed,  3 Mar 2021 02:16:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA196E33F;
+	Wed,  3 Mar 2021 02:16:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from regular1.263xmail.com (regular1.263xmail.com [211.150.70.201])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AE9A6E328
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 02:07:51 +0000 (UTC)
-Received: from localhost (unknown [192.168.167.130])
- by regular1.263xmail.com (Postfix) with ESMTP id 64C89EAC;
- Wed,  3 Mar 2021 10:07:48 +0800 (CST)
+Received: from regular1.263xmail.com (regular1.263xmail.com [211.150.70.203])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FC196E328
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 02:08:53 +0000 (UTC)
+Received: from localhost (unknown [192.168.167.69])
+ by regular1.263xmail.com (Postfix) with ESMTP id 523FC855;
+ Wed,  3 Mar 2021 10:08:50 +0800 (CST)
 X-MAIL-GRAY: 0
 X-MAIL-DELIVERY: 1
 X-ADDR-CHECKED4: 1
@@ -23,10 +23,10 @@ X-SKE-CHECKED: 1
 X-ABS-CHECKED: 1
 Received: from chenli.uniontech.com (unknown [58.246.122.242])
  by smtp.263.net (postfix) whith ESMTP id
- P21321T140438574982912S1614737267546791_; 
- Wed, 03 Mar 2021 10:07:48 +0800 (CST)
+ P17138T139833622415104S1614737329055708_; 
+ Wed, 03 Mar 2021 10:08:49 +0800 (CST)
 X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <949d579e4a085444d22fa2faba886909>
+X-UNIQUE-TAG: <7bd4a32d1f4a5a3eebeeb2b79a47acaa>
 X-RL-SENDER: chenli@uniontech.com
 X-SENDER: chenli@uniontech.com
 X-LOGIN-NAME: chenli@uniontech.com
@@ -34,11 +34,11 @@ X-FST-TO: amd-gfx@lists.freedesktop.org
 X-SENDER-IP: 58.246.122.242
 X-ATTACHMENT-NUM: 0
 X-System-Flag: 0
-Date: Wed, 03 Mar 2021 10:07:47 +0800
-Message-ID: <87r1kxt2fg.wl-chenli@uniontech.com>
+Date: Wed, 03 Mar 2021 10:08:49 +0800
+Message-ID: <87pn0ht2dq.wl-chenli@uniontech.com>
 From: Chen Li <chenli@uniontech.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v2 2/3] drm/amdgpu: Use kvmalloc for CS chunks
+Subject: [PATCH v2 3/3] drm/amdgpu: correct DRM_ERROR for kvmalloc_array
 In-Reply-To: <87tuptt2jk.wl-chenli@uniontech.com>
 References: <87tuptt2jk.wl-chenli@uniontech.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
@@ -65,36 +65,25 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
-The number of chunks/chunks_array may be passed in
-by userspace and can be large.
-
+This may avoid debug confusion.
 Signed-off-by: Chen Li <chenli@uniontech.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-index 3e240b952e79..aefb7e68977d 100644
+index aefb7e68977d..a1df980864a6 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-@@ -117,7 +117,7 @@ static int amdgpu_cs_parser_init(struct amdgpu_cs_parser *p, union drm_amdgpu_cs
- 	if (cs->in.num_chunks == 0)
- 		return 0;
+@@ -559,7 +559,7 @@ static int amdgpu_cs_parser_bos(struct amdgpu_cs_parser *p,
+ 					sizeof(struct page *),
+ 					GFP_KERNEL | __GFP_ZERO);
+ 		if (!e->user_pages) {
+-			DRM_ERROR("calloc failure\n");
++			DRM_ERROR("kvmalloc_array failure\n");
+ 			return -ENOMEM;
+ 		}
  
--	chunk_array = kmalloc_array(cs->in.num_chunks, sizeof(uint64_t), GFP_KERNEL);
-+	chunk_array = kvmalloc_array(cs->in.num_chunks, sizeof(uint64_t), GFP_KERNEL);
- 	if (!chunk_array)
- 		return -ENOMEM;
- 
-@@ -144,7 +144,7 @@ static int amdgpu_cs_parser_init(struct amdgpu_cs_parser *p, union drm_amdgpu_cs
- 	}
- 
- 	p->nchunks = cs->in.num_chunks;
--	p->chunks = kmalloc_array(p->nchunks, sizeof(struct amdgpu_cs_chunk),
-+	p->chunks = kvmalloc_array(p->nchunks, sizeof(struct amdgpu_cs_chunk),
- 			    GFP_KERNEL);
- 	if (!p->chunks) {
- 		ret = -ENOMEM;
 -- 
 2.30.0
 
