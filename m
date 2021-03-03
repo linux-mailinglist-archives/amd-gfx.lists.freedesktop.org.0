@@ -1,60 +1,31 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5228F32B860
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 Mar 2021 14:52:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6BAF32B85E
+	for <lists+amd-gfx@lfdr.de>; Wed,  3 Mar 2021 14:52:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44C0F6E993;
-	Wed,  3 Mar 2021 13:52:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D06166E990;
+	Wed,  3 Mar 2021 13:52:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
- [IPv6:2a00:1450:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16C106E8D9
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 13:43:43 +0000 (UTC)
-Received: by mail-wm1-x32e.google.com with SMTP id l22so5229758wme.1
- for <amd-gfx@lists.freedesktop.org>; Wed, 03 Mar 2021 05:43:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=aMrUqo0YqYh2lLrOaeq1NIAU7nPi5AK4ygCC5+IgXJs=;
- b=Dc9uXvQ6IBRfw4ce1lVqSawXu+pLRKluVs3NeIhk9HbiXv7ZEZLMHhwykMsSZ7IZe5
- hDaVIqxDvaDCGIyMHQU3NWzDcGkqIr96ToZwHbGuyAOUaI7DL138T5FGV7diH8RM9BN5
- s7Jz3B+/AzzGjx7XyUrPMciF/UdCBHouYNNjEXpJLz9WVrXXDLFkwCAe8rjW4II/WpdZ
- 1pj/XOigS2sPnqxeoazfG2juwZXaJfVOWKHeY595SOaQRFeE84S+fmgARWcB3UPgdaSz
- EJKxdB9Je6nPqXTLbqhz3AQGNO9sC+dI7uBUmD/+IEf2MU9+kxpb0PI+owSB8pqu+sKh
- UyQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=aMrUqo0YqYh2lLrOaeq1NIAU7nPi5AK4ygCC5+IgXJs=;
- b=bNeY4k46f/WqsPFL/g8g61fWyKHhgZ1rNH02esoIWx6Jfu8mfUdW1aqSfo1yK132k5
- +YiBdiNW4sw+t1qp2Fk49E98JRJPMZnRHb+kOrSLG2aev1mmB3auF6GVJ8WSC1ghS2/w
- 7Kif3UrUzRr6OWId78QOKxllC1Kettpt1xNmarZHLIwKi/S/4SR7Yt2XW3VX4a8EyY1m
- x1W0f//WuZaHIXBpqrJH65dVfPa0a5y1CkQOu6ARN0tmO3Sl8zzaNuGPokpU0ezEOBv3
- qsH+x/edju7Cv6qqtfO+uKGOF6NLOiAjw1ORiEuUQgiMPnGZ155qKkA9xQo3sP/4uOT6
- rlRw==
-X-Gm-Message-State: AOAM532KLgmSxpdj+N2OfI9HdsI/AEohkd/4IZcguhBjx0qoQHWjvWX7
- 253B9sE/HkuNv1F+OZNMvQO2MA==
-X-Google-Smtp-Source: ABdhPJyUsmM1IO4EwYI0BEIkTbyo3YB12LxzbU6D8L4Te30JrMCh1N+sS9upjnpmcZ3RLlKbfP6Gpw==
-X-Received: by 2002:a1c:2c05:: with SMTP id s5mr9141285wms.70.1614779021825;
- Wed, 03 Mar 2021 05:43:41 -0800 (PST)
-Received: from dell.default ([91.110.221.155])
- by smtp.gmail.com with ESMTPSA id w18sm6109524wrr.7.2021.03.03.05.43.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 03 Mar 2021 05:43:41 -0800 (PST)
-From: Lee Jones <lee.jones@linaro.org>
-To: lee.jones@linaro.org
-Subject: [PATCH 11/53] drm/amd/display/dc/dce80/dce80_resource: Make local
- functions static
-Date: Wed,  3 Mar 2021 13:42:37 +0000
-Message-Id: <20210303134319.3160762-12-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210303134319.3160762-1-lee.jones@linaro.org>
-References: <20210303134319.3160762-1-lee.jones@linaro.org>
+X-Greylist: delayed 319 seconds by postgrey-1.36 at gabe;
+ Wed, 03 Mar 2021 13:48:20 UTC
+Received: from node0.talpidae.net (mail.talpidae.net [176.9.32.230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F88289EB1
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 13:48:20 +0000 (UTC)
+Received: from talpidae.net (localhost [127.0.0.1])
+ by node0.talpidae.net (mail.talpidae.net) with ESMTP id 7C9441475C3
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 14:42:59 +0100 (CET)
 MIME-Version: 1.0
+Date: Wed, 03 Mar 2021 14:42:57 +0100
+From: Jonas Zeiger <jonas.zeiger@talpidae.net>
+To: amd-gfx@lists.freedesktop.org
+Subject: AMDGPU Linux 5.11.0 freezes (divide error)
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <84c1be4bb2e60dd8e19256dd51945ca2@talpidae.net>
+X-Sender: jonas.zeiger@talpidae.net
+Organization: talpidae.net
 X-Mailman-Approved-At: Wed, 03 Mar 2021 13:52:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,92 +38,174 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, Anthony Koo <Anthony.Koo@amd.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rml4ZXMgdGhlIGZvbGxvd2luZyBXPTEga2VybmVsIGJ1aWxkIHdhcm5pbmcocyk6CgogZHJpdmVy
-cy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9kYy9kY2U4MC9kY2U4MF9yZXNvdXJjZS5j
-OjUyNzoxNzogd2FybmluZzogbm8gcHJldmlvdXMgcHJvdG90eXBlIGZvciDigJhkY2U4MF9hdXhf
-ZW5naW5lX2NyZWF0ZeKAmSBbLVdtaXNzaW5nLXByb3RvdHlwZXNdCiBkcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL2RjZTgwL2RjZTgwX3Jlc291cmNlLmM6NTY1OjIwOiB3
-YXJuaW5nOiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9yIOKAmGRjZTgwX2kyY19od19jcmVhdGXi
-gJkgWy1XbWlzc2luZy1wcm90b3R5cGVzXQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4v
-ZGlzcGxheS9kYy9kY2U4MC9kY2U4MF9yZXNvdXJjZS5jOjU4MToyMDogd2FybmluZzogbm8gcHJl
-dmlvdXMgcHJvdG90eXBlIGZvciDigJhkY2U4MF9pMmNfc3dfY3JlYXRl4oCZIFstV21pc3Npbmct
-cHJvdG90eXBlc10KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvZGNl
-ODAvZGNlODBfcmVzb3VyY2UuYzo3MTU6MjI6IHdhcm5pbmc6IG5vIHByZXZpb3VzIHByb3RvdHlw
-ZSBmb3Ig4oCYZGNlODBfbGlua19lbmNvZGVyX2NyZWF0ZeKAmSBbLVdtaXNzaW5nLXByb3RvdHlw
-ZXNdCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS8uLi9kaXNwbGF5L2RjL2RjZTgwL2RjZTgw
-X3Jlc291cmNlLmM6NzU0OjIyOiB3YXJuaW5nOiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9yIOKA
-mGRjZTgwX2Nsb2NrX3NvdXJjZV9jcmVhdGXigJkgWy1XbWlzc2luZy1wcm90b3R5cGVzXQogZHJp
-dmVycy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9kYy9kY2U4MC9kY2U4MF9yZXNvdXJj
-ZS5jOjc3ODo2OiB3YXJuaW5nOiBubyBwcmV2aW91cyBwcm90b3R5cGUgZm9yIOKAmGRjZTgwX2Ns
-b2NrX3NvdXJjZV9kZXN0cm954oCZIFstV21pc3NpbmctcHJvdG90eXBlc10KIGRyaXZlcnMvZ3B1
-L2RybS9hbWQvYW1kZ3B1Ly4uL2Rpc3BsYXkvZGMvZGNlODAvZGNlODBfcmVzb3VyY2UuYzo4Njg6
-Njogd2FybmluZzogbm8gcHJldmlvdXMgcHJvdG90eXBlIGZvciDigJhkY2U4MF92YWxpZGF0ZV9i
-YW5kd2lkdGjigJkgWy1XbWlzc2luZy1wcm90b3R5cGVzXQogZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvLi4vZGlzcGxheS9kYy9kY2U4MC9kY2U4MF9yZXNvdXJjZS5jOjkxMzoxNjogd2Fybmlu
-Zzogbm8gcHJldmlvdXMgcHJvdG90eXBlIGZvciDigJhkY2U4MF92YWxpZGF0ZV9nbG9iYWzigJkg
-Wy1XbWlzc2luZy1wcm90b3R5cGVzXQoKQ2M6IEhhcnJ5IFdlbnRsYW5kIDxoYXJyeS53ZW50bGFu
-ZEBhbWQuY29tPgpDYzogTGVvIExpIDxzdW5wZW5nLmxpQGFtZC5jb20+CkNjOiBBbGV4IERldWNo
-ZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+CkNjOiAiQ2hyaXN0aWFuIEvDtm5pZyIgPGNo
-cmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KQ2M6IERhdmlkIEFpcmxpZSA8YWlybGllZEBsaW51eC5p
-ZT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KQ2M6IEFudGhvbnkgS29vIDxB
-bnRob255Lktvb0BhbWQuY29tPgpDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6
-IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKU2lnbmVkLW9mZi1ieTogTGVlIEpvbmVz
-IDxsZWUuam9uZXNAbGluYXJvLm9yZz4KLS0tCiAuLi4vZHJtL2FtZC9kaXNwbGF5L2RjL2RjZTgw
-L2RjZTgwX3Jlc291cmNlLmMgICAgfCAxNiArKysrKysrKy0tLS0tLS0tCiAxIGZpbGUgY2hhbmdl
-ZCwgOCBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9hbWQvZGlzcGxheS9kYy9kY2U4MC9kY2U4MF9yZXNvdXJjZS5jIGIvZHJpdmVycy9n
-cHUvZHJtL2FtZC9kaXNwbGF5L2RjL2RjZTgwL2RjZTgwX3Jlc291cmNlLmMKaW5kZXggNjEyNDUw
-Zjk5Mjc4Mi4uNzI1ZDkyZTQwY2QzMCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9k
-aXNwbGF5L2RjL2RjZTgwL2RjZTgwX3Jlc291cmNlLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9kaXNwbGF5L2RjL2RjZTgwL2RjZTgwX3Jlc291cmNlLmMKQEAgLTUyNiw3ICs1MjYsNyBAQCBz
-dGF0aWMgc3RydWN0IG91dHB1dF9waXhlbF9wcm9jZXNzb3IgKmRjZTgwX29wcF9jcmVhdGUoCiAJ
-cmV0dXJuICZvcHAtPmJhc2U7CiB9CiAKLXN0cnVjdCBkY2VfYXV4ICpkY2U4MF9hdXhfZW5naW5l
-X2NyZWF0ZSgKK3N0YXRpYyBzdHJ1Y3QgZGNlX2F1eCAqZGNlODBfYXV4X2VuZ2luZV9jcmVhdGUo
-CiAJc3RydWN0IGRjX2NvbnRleHQgKmN0eCwKIAl1aW50MzJfdCBpbnN0KQogewpAQCAtNTY0LDcg
-KzU2NCw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZGNlX2kyY19tYXNrIGkyY19tYXNrcyA9IHsK
-IAkJSTJDX0NPTU1PTl9NQVNLX1NIX0xJU1RfRENFX0NPTU1PTl9CQVNFKF9NQVNLKQogfTsKIAot
-c3RydWN0IGRjZV9pMmNfaHcgKmRjZTgwX2kyY19od19jcmVhdGUoCitzdGF0aWMgc3RydWN0IGRj
-ZV9pMmNfaHcgKmRjZTgwX2kyY19od19jcmVhdGUoCiAJc3RydWN0IGRjX2NvbnRleHQgKmN0eCwK
-IAl1aW50MzJfdCBpbnN0KQogewpAQCAtNTgwLDcgKzU4MCw3IEBAIHN0cnVjdCBkY2VfaTJjX2h3
-ICpkY2U4MF9pMmNfaHdfY3JlYXRlKAogCXJldHVybiBkY2VfaTJjX2h3OwogfQogCi1zdHJ1Y3Qg
-ZGNlX2kyY19zdyAqZGNlODBfaTJjX3N3X2NyZWF0ZSgKK3N0YXRpYyBzdHJ1Y3QgZGNlX2kyY19z
-dyAqZGNlODBfaTJjX3N3X2NyZWF0ZSgKIAlzdHJ1Y3QgZGNfY29udGV4dCAqY3R4KQogewogCXN0
-cnVjdCBkY2VfaTJjX3N3ICpkY2VfaTJjX3N3ID0KQEAgLTcxNCw3ICs3MTQsNyBAQCBzdGF0aWMg
-Y29uc3Qgc3RydWN0IGVuY29kZXJfZmVhdHVyZV9zdXBwb3J0IGxpbmtfZW5jX2ZlYXR1cmUgPSB7
-CiAJCS5mbGFncy5iaXRzLklTX1RQUzNfQ0FQQUJMRSA9IHRydWUKIH07CiAKLXN0cnVjdCBsaW5r
-X2VuY29kZXIgKmRjZTgwX2xpbmtfZW5jb2Rlcl9jcmVhdGUoCitzdGF0aWMgc3RydWN0IGxpbmtf
-ZW5jb2RlciAqZGNlODBfbGlua19lbmNvZGVyX2NyZWF0ZSgKIAljb25zdCBzdHJ1Y3QgZW5jb2Rl
-cl9pbml0X2RhdGEgKmVuY19pbml0X2RhdGEpCiB7CiAJc3RydWN0IGRjZTExMF9saW5rX2VuY29k
-ZXIgKmVuYzExMCA9CkBAIC03NTMsNyArNzUzLDcgQEAgc3RhdGljIHN0cnVjdCBwYW5lbF9jbnRs
-ICpkY2U4MF9wYW5lbF9jbnRsX2NyZWF0ZShjb25zdCBzdHJ1Y3QgcGFuZWxfY250bF9pbml0X2QK
-IAlyZXR1cm4gJnBhbmVsX2NudGwtPmJhc2U7CiB9CiAKLXN0cnVjdCBjbG9ja19zb3VyY2UgKmRj
-ZTgwX2Nsb2NrX3NvdXJjZV9jcmVhdGUoCitzdGF0aWMgc3RydWN0IGNsb2NrX3NvdXJjZSAqZGNl
-ODBfY2xvY2tfc291cmNlX2NyZWF0ZSgKIAlzdHJ1Y3QgZGNfY29udGV4dCAqY3R4LAogCXN0cnVj
-dCBkY19iaW9zICpiaW9zLAogCWVudW0gY2xvY2tfc291cmNlX2lkIGlkLApAQCAtNzc3LDcgKzc3
-Nyw3IEBAIHN0cnVjdCBjbG9ja19zb3VyY2UgKmRjZTgwX2Nsb2NrX3NvdXJjZV9jcmVhdGUoCiAJ
-cmV0dXJuIE5VTEw7CiB9CiAKLXZvaWQgZGNlODBfY2xvY2tfc291cmNlX2Rlc3Ryb3koc3RydWN0
-IGNsb2NrX3NvdXJjZSAqKmNsa19zcmMpCitzdGF0aWMgdm9pZCBkY2U4MF9jbG9ja19zb3VyY2Vf
-ZGVzdHJveShzdHJ1Y3QgY2xvY2tfc291cmNlICoqY2xrX3NyYykKIHsKIAlrZnJlZShUT19EQ0Ux
-MTBfQ0xLX1NSQygqY2xrX3NyYykpOwogCSpjbGtfc3JjID0gTlVMTDsKQEAgLTg2Nyw3ICs4Njcs
-NyBAQCBzdGF0aWMgdm9pZCBkY2U4MF9yZXNvdXJjZV9kZXN0cnVjdChzdHJ1Y3QgZGNlMTEwX3Jl
-c291cmNlX3Bvb2wgKnBvb2wpCiAJfQogfQogCi1ib29sIGRjZTgwX3ZhbGlkYXRlX2JhbmR3aWR0
-aCgKK3N0YXRpYyBib29sIGRjZTgwX3ZhbGlkYXRlX2JhbmR3aWR0aCgKIAlzdHJ1Y3QgZGMgKmRj
-LAogCXN0cnVjdCBkY19zdGF0ZSAqY29udGV4dCwKIAlib29sIGZhc3RfdmFsaWRhdGUpCkBAIC05
-MTIsNyArOTEyLDcgQEAgc3RhdGljIGJvb2wgZGNlODBfdmFsaWRhdGVfc3VyZmFjZV9zZXRzKAog
-CXJldHVybiB0cnVlOwogfQogCi1lbnVtIGRjX3N0YXR1cyBkY2U4MF92YWxpZGF0ZV9nbG9iYWwo
-CitzdGF0aWMgZW51bSBkY19zdGF0dXMgZGNlODBfdmFsaWRhdGVfZ2xvYmFsKAogCQlzdHJ1Y3Qg
-ZGMgKmRjLAogCQlzdHJ1Y3QgZGNfc3RhdGUgKmNvbnRleHQpCiB7Ci0tIAoyLjI3LjAKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGlu
-ZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
+Hi all,
+
+I am experiencing random system freezes (about once per day) after updating to Linux 5.11 (vanilla kernel).
+
+Only a manual power-cycle makes the system usable again afterwards.
+
+These freezes didn't occur on 5.10.x but I hadn't assigned "nohz_full=2-16" and "cpuidle.governor=teo" back then.
+
+Hardware:
+
+ThinkPad T14 (gen1)
+CPU: AMD Ryzen 7 PRO 4750U with Radeon Graphics
+
+Kernel cmdline:
+
+BOOT_IMAGE=/vmlinuz-5.11.0zlinux-svr-docker-wg root=/dev/nvme0n1p2 ro nohz_full=2-16 cpuidle.governor=teo rootfstype=ext4 rootwait ivrs_ioapic[4]=00:14.0 ivrs_ioapic[5]=00:00.2
+
+This is logged to the journal:
+
+kernel: divide error: 0000 [#1] PREEMPT SMP
+kernel: CPU: 8 PID: 2914 Comm: Xorg Not tainted 5.11.0zlinux-svr-docker-wg #8
+kernel: Hardware name: LENOVO 20UD0013GE/20UD0013GE, BIOS R1BET58W(1.27 ) 10/20/2020
+kernel: RIP: 0010:Calculate256BBlockSizes+0x50/0xc1 [amdgpu]
+kernel: Code: 83 ff 02 75 09 41 c7 00 04 00 00 00 eb 15 83 ff 08 75 09 41 c7 00 10 00 00 00 eb 07 4>
+kernel: RSP: 0018:ffffa35e815fb688 EFLAGS: 00010246
+kernel: RAX: 0000000000000100 RBX: ffff98afc1debaf8 RCX: 0000000000000000
+kernel: RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000001
+kernel: RBP: ffff98afc1de2090 R08: ffff98afc1debab8 R09: ffff98afc1debad8
+kernel: R10: 0000000000000002 R11: ffff98afc1debb18 R12: ffff98a8d9ddd000
+kernel: R13: 0000000000000000 R14: ffff98afc1de31c8 R15: ffff98afc1de2090
+kernel: FS:  00007f41f3ff0a40(0000) GS:ffff98b35fa00000(0000) knlGS:0000000000000000
+kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+kernel: CR2: 00007f0486175000 CR3: 0000000116542000 CR4: 0000000000350ee0
+kernel: Call Trace:
+kernel:  DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCalculation+0xdb8/0x>
+kernel:  ? ModeSupportAndSystemConfiguration+0x77/0xe7 [amdgpu]
+kernel:  ? dcn_bw_ceil2+0x19/0x3b [amdgpu]
+kernel:  ? dml21_recalculate+0x59c/0x5b3 [amdgpu]
+kernel:  get_wm_urgent+0x9/0x13 [amdgpu]
+kernel:  dml21_rq_dlg_get_dlg_reg+0x6c/0x1804 [amdgpu]
+kernel:  ? dcn_bw_ceil2+0x19/0x3b [amdgpu]
+kernel:  ? DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCalculation+0x3e06>
+kernel:  dcn20_calculate_dlg_params+0x333/0x3af [amdgpu]
+kernel:  dcn21_validate_bandwidth+0x4cd/0x581 [amdgpu]
+kernel:  dc_validate_global_state+0x1a7/0x1c5 [amdgpu]
+kernel:  amdgpu_dm_atomic_check+0x84c/0xa00 [amdgpu]
+kernel:  ? __radix_tree_lookup+0x2a/0x91
+kernel:  drm_atomic_check_only+0x5bb/0x6b7
+kernel:  ? drm_mode_object_put+0x21/0x2d
+kernel:  ? drm_atomic_set_property+0x7b3/0x7c5
+kernel:  drm_atomic_commit+0xe/0x44
+kernel:  drm_mode_obj_set_property_ioctl+0x112/0x268
+kernel:  ? __fpu__restore_sig+0x21e/0x46d
+kernel:  ? drm_mode_obj_find_prop_id+0x23/0x23
+kernel:  drm_ioctl_kernel+0x7d/0xbc
+kernel:  drm_ioctl+0x1f2/0x2c9
+kernel:  ? drm_mode_obj_find_prop_id+0x23/0x23
+kernel:  ? rpm_resume+0x43e/0x450
+kernel:  amdgpu_drm_ioctl+0x45/0x71 [amdgpu]
+kernel:  vfs_ioctl+0x1a/0x28
+kernel:  __do_sys_ioctl+0x51/0x74
+kernel:  do_syscall_64+0x33/0x40
+kernel:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+kernel: RIP: 0033:0x7f41f445bcc7
+kernel: Code: 00 00 00 48 8b 05 c9 91 0c 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 2e 0f 1>
+kernel: RSP: 002b:00007ffd7b9f4db8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+kernel: RAX: ffffffffffffffda RBX: 00007ffd7b9f4df0 RCX: 00007f41f445bcc7
+kernel: RDX: 00007ffd7b9f4df0 RSI: 00000000c01864ba RDI: 000000000000000f
+kernel: RBP: 00000000c01864ba R08: 0000000000000073 R09: 00000000cccccccc
+kernel: R10: 0000000000000fff R11: 0000000000000246 R12: 0000561f30685480
+kernel: R13: 000000000000000f R14: 0000000000000000 R15: 0000000000000003
+kernel: Modules linked in: iwlmvm iwlwifi amdgpu drm_ttm_helper ttm mfd_core gpu_sched r8169
+kernel: ---[ end trace 7e898fd18a4b26cd ]---
+kernel: ------------[ cut here ]------------
+kernel: WARNING: CPU: 8 PID: 2914 at rcu_note_context_switch+0x3a/0x2d5
+kernel: Modules linked in: iwlmvm iwlwifi amdgpu drm_ttm_helper ttm mfd_core gpu_sched r8169
+kernel: CPU: 8 PID: 2914 Comm: Xorg Tainted: G      D           5.11.0zlinux-svr-docker-wg #8
+kernel: Hardware name: LENOVO 20UD0013GE/20UD0013GE, BIOS R1BET58W(1.27 ) 10/20/2020
+kernel: RIP: 0010:rcu_note_context_switch+0x3a/0x2d5
+kernel: Code: 40 65 02 00 55 53 89 fb 65 4c 03 25 ff cb ed 68 48 8b 3d c8 af b0 01 e8 3d cd ff ff 8>
+kernel: RSP: 0018:ffffa35e815fb160 EFLAGS: 00010002
+kernel: RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000002
+kernel: RDX: 0000000000000002 RSI: ffffa35e815fb230 RDI: ffffffff9884fce6
+kernel: RBP: ffffa35e815fb1c0 R08: ffffffff9884fce6 R09: ffff98a880060020
+kernel: R10: ffff98a880060000 R11: ffffa35e815fb37b R12: ffff98b35fa26540
+kernel: R13: ffff98a884cf6900 R14: 0000000000000000 R15: ffffffff97ac8616
+kernel: FS:  00007f41f3ff0a40(0000) GS:ffff98b35fa00000(0000) knlGS:0000000000000000
+kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+kernel: CR2: 00007f0486175000 CR3: 0000000116542000 CR4: 0000000000350ee0
+kernel: Call Trace:
+kernel:  __schedule+0x87/0x522
+kernel:  ? __default_send_IPI_dest_field+0x1c/0x44
+kernel:  ? usleep_range+0x4f/0x4f
+kernel:  schedule+0x81/0xa7
+kernel:  schedule_timeout+0x1c/0xb4
+kernel:  ? try_to_wake_up+0x1ba/0x1e8
+kernel:  __wait_for_common+0xaa/0x10a
+kernel:  virt_efi_query_variable_info+0xff/0x135
+kernel:  efi_query_variable_store+0x7e/0x166
+kernel:  efivar_entry_set_safe+0x148/0x1b5
+kernel:  efi_pstore_write+0xdc/0x10c
+kernel:  pstore_dump+0x1f5/0x239
+kernel:  kmsg_dump+0x8b/0xa0
+kernel:  oops_end+0x3d/0x8d
+kernel:  do_trap+0x77/0xf6
+kernel:  ? Calculate256BBlockSizes+0x50/0xc1 [amdgpu]
+kernel:  ? Calculate256BBlockSizes+0x50/0xc1 [amdgpu]
+kernel:  do_error_trap+0x6a/0x90
+kernel:  ? dcn_bw_ceil2+0x19/0x3b [amdgpu]
+kernel:  ? dml21_recalculate+0x59c/0x5b3 [amdgpu]
+kernel:  get_wm_urgent+0x9/0x13 [amdgpu]
+kernel:  dml21_rq_dlg_get_dlg_reg+0x6c/0x1804 [amdgpu]
+kernel:  ? dcn_bw_ceil2+0x19/0x3b [amdgpu]
+kernel:  ? DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerformanceCalculation+0x3e06/0x3eba [amdgpu]
+kernel:  dcn20_calculate_dlg_params+0x333/0x3af [amdgpu]
+kernel:  dcn21_validate_bandwidth+0x4cd/0x581 [amdgpu]
+kernel:  dc_validate_global_state+0x1a7/0x1c5 [amdgpu]
+kernel:  amdgpu_dm_atomic_check+0x84c/0xa00 [amdgpu]
+kernel:  ? __radix_tree_lookup+0x2a/0x91
+kernel:  drm_atomic_check_only+0x5bb/0x6b7
+kernel:  ? drm_mode_object_put+0x21/0x2d
+kernel:  ? drm_atomic_set_property+0x7b3/0x7c5
+kernel:  drm_atomic_commit+0xe/0x44
+kernel:  drm_mode_obj_set_property_ioctl+0x112/0x268
+kernel:  ? __fpu__restore_sig+0x21e/0x46d
+kernel:  ? drm_mode_obj_find_prop_id+0x23/0x23
+kernel:  drm_ioctl_kernel+0x7d/0xbc
+kernel:  drm_ioctl+0x1f2/0x2c9
+kernel:  ? drm_mode_obj_find_prop_id+0x23/0x23
+kernel:  ? rpm_resume+0x43e/0x450
+kernel:  amdgpu_drm_ioctl+0x45/0x71 [amdgpu]
+kernel:  vfs_ioctl+0x1a/0x28
+kernel:  __do_sys_ioctl+0x51/0x74
+kernel:  do_syscall_64+0x33/0x40
+kernel:  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+kernel: RIP: 0033:0x7f41f445bcc7
+kernel: Code: 00 00 00 48 8b 05 c9 91 0c 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 99 91 0c 00 f7 d8 64 89 01 48
+kernel: RSP: 002b:00007ffd7b9f4db8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+kernel: RAX: ffffffffffffffda RBX: 00007ffd7b9f4df0 RCX: 00007f41f445bcc7
+kernel: RDX: 00007ffd7b9f4df0 RSI: 00000000c01864ba RDI: 000000000000000f
+kernel: RBP: 00000000c01864ba R08: 0000000000000073 R09: 00000000cccccccc
+kernel: R10: 0000000000000fff R11: 0000000000000246 R12: 0000561f30685480
+kernel: R13: 000000000000000f R14: 0000000000000000 R15: 0000000000000003
+kernel: ---[ end trace 7e898fd18a4b26ce ]---
+kernel: RIP: 0010:Calculate256BBlockSizes+0x50/0xc1 [amdgpu]
+kernel: Code: 83 ff 02 75 09 41 c7 00 04 00 00 00 eb 15 83 ff 08 75 09 41 c7 00 10 00 00 00 eb 07 41 c7 00 08 00 00 00 b8 00 01 00 00 31 d2 <f7> f6 31 d2 41 f7 30 89 03 41 c7 01 00 00 00 00 41 c7 03 00 00 00
+kernel: RSP: 0018:ffffa35e815fb688 EFLAGS: 00010246
+kernel: RAX: 0000000000000100 RBX: ffff98afc1debaf8 RCX: 0000000000000000
+kernel: RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000001
+kernel: RBP: ffff98afc1de2090 R08: ffff98afc1debab8 R09: ffff98afc1debad8
+kernel: R10: 0000000000000002 R11: ffff98afc1debb18 R12: ffff98a8d9ddd000
+kernel: R13: 0000000000000000 R14: ffff98afc1de31c8 R15: ffff98afc1de2090
+kernel: FS:  00007f41f3ff0a40(0000) GS:ffff98b35fb80000(0000) knlGS:0000000000000000
+kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+kernel: CR2: 00007f79e14ed000 CR3: 0000000116542000 CR4: 0000000000350ee0
+
+Feel free to contact me if you think I can help narrow down this issue.
+
+Thank you for your great work on the AMDGPU driver and Linux kernel.
+
+Kind regards,
+Jonas Zeiger
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
