@@ -2,110 +2,120 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FDB132D75F
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Mar 2021 17:07:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 178F432D84E
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Mar 2021 18:06:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A8876EA27;
-	Thu,  4 Mar 2021 16:06:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86FDB6EA3B;
+	Thu,  4 Mar 2021 17:06:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr700045.outbound.protection.outlook.com [40.107.70.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95A476E4C5;
- Thu,  4 Mar 2021 16:05:21 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr770053.outbound.protection.outlook.com [40.107.77.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FADD6E0C6;
+ Thu,  4 Mar 2021 17:02:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=InENAle+SjD/pCnOvN4gNo2scB1dXRk45CpvuA3eyMVLnk9BFkLxq2ysbOmwUgcYK4ny3WFGhL4KiLab+vu+YDPWclkwWsaHDt4RmotmRLkMoDpHZIUUeWBnPo9hx3gy96/z1UTYYSVSUMr8fJA+jQ33M9SZrjz8ayRjS+wCADJoTPxGecZ1JBIHWOsU8Fik13d9RCr5si6nv7t08euHXDRDMs3rYbbx4l0iFrx8apcetmbPHJaFfI//oxM1ZP9HtT47aZDf+du+5T1wR6mMkJis7sjJP5k5/f68dQnkQ2p1LlSh6AUuAbIKk/OTzkqxD+FdYE+U3VRV5zPcJ1FjbQ==
+ b=mvkiroMs5MIwGSEeIH09ZUNFaelPxMTflKC3hQSIBbc5AYiDl//BVzIg8esPFSoL/d/xoE5ojvUkgnyp0E1Xc4HoI/oqp1UmSLnYIt/w+fefnj5q4tjpxqfSN6/rHk5pqLnYeiA/LNgmtULXLTPBOeypErwL2tZ7fU8zM0HJAAG3tfl8JvC69UeCt2/RQshYVSZGxWI09n4DnUcZhjp6A2DtTjmc5duGYGiW+VdU0AUfNg0/s87fq69eVbD0bJM+9NxC+p21Bsos2OGeh1tdtlSPJcqRkLByGIiZn4BpUmakyisjww9pwCJ0bXu/j7WYkRu8w/S6Mm7AWEZ/gmcVyg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CaQmUdi+/33j/VOjtfYbIDG3+8YrBouXLD3Ap94/+rI=;
- b=eQy03LdpVP3z40zJczQevK3Zeo02+0LzZwLWJp0X/faI995sE8vcX/apYMG49ku9LZjD4WHAfLBH+/cGj0RVdxL5KDe8KJ7Qde9AP5UeCYpa903vn45Bk2XmDchUXM3vlSNNg7q8FNUAIB8/FVwE5TUsqRKsUy0ftwQlNcRcZ5cTTSIt4kbQ24LnMbtisEIiNte0X0GIzbtUgnUsTaiM0CXyTcnYPp0A8wgGL0o+Xi6Ce6D7AriI/hfBrzJ0rFWZpGDN1COtFX1YZDGrNFfjpwh7gcBsWH4yhNKT61gUOZBNoMoQmxqn/ntqIpsmXrKMjD6HjAPsaDYpQf7Zn9rM2w==
+ bh=gVHNXAxP/pRrBWajF6+vnnhaL5HNFJ/CCpj5PVGYkLU=;
+ b=Ra4iuXdLwIOF23zmo1CQ61jG4KTwxOcCJ3uvcGy+gm2omlB5ekgw3Pq31QgwT2vmGNMelgl9apQrzyxuJwSpkS9iBVe1uaLNAWpg+/X4ZigeOaQpT46o9SCb1+ZVcffHsL4M9pBzcYefanhOWM2CvvwoEGTfk0D7XZXUQuQ9eomzDT1rlITs+/6sTzpqwoWVxoieOj8nQ2r+b+lPhoHbKAaNWNBcxa77nEZ6rXbGzKQzJmm/8k8k1GEMAI4Ue81JBaxTqOc6bsh1I1iPTk24dc2S7c01yaYdxvMzfsJ542o+eR9DglfVn+6a+NYB9CnILDKFXf3tFM3mdmzT3rYYVQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CaQmUdi+/33j/VOjtfYbIDG3+8YrBouXLD3Ap94/+rI=;
- b=UONp3WTVnQLgrLwiY+98YxIGJvYq2dId1OtrjHRNIXt0eZCasDvHcvrZEWDl2MUfqS0G4ZRnTeGKEGMoYa1GnJ9FW9BheqzSM0Y3tOec3pz3HcLzNUePeRRRbhY4R6UBFtbpvahq5cfWfChms/yv/c+KdjRMY6nEBrPPysfYM90=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from SN6PR12MB4734.namprd12.prod.outlook.com (2603:10b6:805:e2::20)
- by SN6PR12MB4736.namprd12.prod.outlook.com (2603:10b6:805:e0::22)
+ bh=gVHNXAxP/pRrBWajF6+vnnhaL5HNFJ/CCpj5PVGYkLU=;
+ b=X+PrIrRVue+yHEkVNbK7IP0AR9qR+Kn6yt8ldI7zcadpRxEu1JN1rAw7zlzsOj1FsmgrmORme/4MHBx145tFYra1l/XOQIBNrOQ3Ic38kuBqRNCUax2dZbqtOLWjZhZgsLtmYWfEM9c7n30LgePBU2zUCkVMqdv2+8mTY6OrGJo=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from BY5PR12MB4097.namprd12.prod.outlook.com (2603:10b6:a03:213::20)
+ by BYAPR12MB2952.namprd12.prod.outlook.com (2603:10b6:a03:13b::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.17; Thu, 4 Mar
- 2021 16:05:05 +0000
-Received: from SN6PR12MB4734.namprd12.prod.outlook.com
- ([fe80::2984:fa58:6c16:469e]) by SN6PR12MB4734.namprd12.prod.outlook.com
- ([fe80::2984:fa58:6c16:469e%3]) with mapi id 15.20.3912.018; Thu, 4 Mar 2021
- 16:05:05 +0000
-From: Oak Zeng <Oak.Zeng@amd.com>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- brahma_sw_dev@amd.com
-Subject: [PATCH] drm/ttm: ioremap buffer according to TTM mem caching setting
-Date: Thu,  4 Mar 2021 10:04:51 -0600
-Message-Id: <1614873891-5836-1-git-send-email-Oak.Zeng@amd.com>
-X-Mailer: git-send-email 2.7.4
-X-Originating-IP: [165.204.55.250]
-X-ClientProxiedBy: YTXPR0101CA0065.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:1::42) To SN6PR12MB4734.namprd12.prod.outlook.com
- (2603:10b6:805:e2::20)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3890.20; Thu, 4 Mar
+ 2021 17:01:58 +0000
+Received: from BY5PR12MB4097.namprd12.prod.outlook.com
+ ([fe80::a8bd:e678:1c74:94f1]) by BY5PR12MB4097.namprd12.prod.outlook.com
+ ([fe80::a8bd:e678:1c74:94f1%8]) with mapi id 15.20.3890.032; Thu, 4 Mar 2021
+ 17:01:58 +0000
+Subject: Re: [PATCH] drm/ttm: ioremap buffer according to TTM mem caching
+ setting
+To: Oak Zeng <Oak.Zeng@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, brahma_sw_dev@amd.com
+References: <1614873891-5836-1-git-send-email-Oak.Zeng@amd.com>
+From: "Bhardwaj, Rajneesh" <rajneesh.bhardwaj@amd.com>
+Message-ID: <69501a46-ffbe-437c-3651-03400b3455a5@amd.com>
+Date: Thu, 4 Mar 2021 12:01:55 -0500
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+In-Reply-To: <1614873891-5836-1-git-send-email-Oak.Zeng@amd.com>
+Content-Language: en-US
+X-Originating-IP: [165.204.55.251]
+X-ClientProxiedBy: YT1PR01CA0080.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2d::19) To BY5PR12MB4097.namprd12.prod.outlook.com
+ (2603:10b6:a03:213::20)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from ozeng-develop.amd.com (165.204.55.250) by
- YTXPR0101CA0065.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::42) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3890.26 via Frontend
- Transport; Thu, 4 Mar 2021 16:05:03 +0000
+Received: from [10.4.42.239] (165.204.55.251) by
+ YT1PR01CA0080.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2d::19) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3890.26 via Frontend Transport; Thu, 4 Mar 2021 17:01:57 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: c275cafc-948f-4851-bc54-08d8df274626
-X-MS-TrafficTypeDiagnostic: SN6PR12MB4736:
+X-MS-Office365-Filtering-Correlation-Id: 36bebacf-e8d3-4d80-cdd7-08d8df2f38ed
+X-MS-TrafficTypeDiagnostic: BYAPR12MB2952:
 X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SN6PR12MB47364549C83F2ED35BA98BA780979@SN6PR12MB4736.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
+X-Microsoft-Antispam-PRVS: <BYAPR12MB295257B5588C12A6AEA425A0FE979@BYAPR12MB2952.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nuAMQQ0yRiOqBev4LDp/7zICl7QF0NTjYPdbrbIhn4/fr3HbBq9qx7GBIK4RKdhMp2xOEwuu3r7CIuKQbYzeNf/c1T/qETFWA1WjyLlENLwHPGv/Edu1023+Vko04c3FlRGlVUPFbLgO64sYBKk+0VtlvStauP3HnM+39ueWFdvOnPlwQWCejtWuo4TwlaogIEHSfYwQHZlb4+ABb7VnUxhRi5MK/LiX2JCVu/3QVtV4HT1th7J2m+iCliiDcVyl2aBT1kMRM71PmeqgJaaltWTcyJUUyYPoxNwxV1h06AbozeYwK8LvlYNTcny2lV/aIR0zPiDp3FM0W7h/TDSCVkhj1zd/4BOy1U7L5q7fqBzdOxvcLdZzBF1awDeRHTysKlIvaKBJzbid7NKZ4o0R6iAD2qt1u27A6g5GzHQukFzrbYbRL0OvdkOe2C9soRU8DPXP/2NDkSsa5E6akAIUcjEWSmUdJOnji2zgRvmbumgF24jBSxdWJo66INTE0la+Br02DzPsh6h0QZtYJZ9N6g==
+X-Microsoft-Antispam-Message-Info: zbZy/pab2IX4yGls1gETplHhdlZI1JDce85vYGa2H1JwpzX4oqWPbCfz4uXypHg20LEOTnoPZdUVYdXFGWDf7HOj/RU5CxpDY4wfKIs+urwnMXWbT24g86WSNEomPfyhfxrYAJ+dNTVq3vzI1VcI2Wk809uJLEvDAuAEcyzV1wYFewic4CAOUE1CeuCCZQxIrXYrQucxEtUUydzwlu/HhQKZDjyS28XORK3oRAUf0GfJLb8KtnOtmQILoABpn0dSsFAwsqB8Ut2dUwTeMDskVKBY8IkMAL5PlC089FPNgAFJIPNA5JPyj2HZcBe/R8sApCFYkS/94RZ/+CD0FmOnXYfml5rYYz31JhG/JL7tTKLDDydNalOk4vSgulDKi2XI31MAp1dZ6hUqVqS84JDk2dJy+jRMYwmT5kjlvjhKVbsK8u7ccV6yzI1mVOHPZy5KYrRgl9VeRY11ZX1K2Tau/5PiW6Mk5y5hW9atOakPKsGFoF+Exiz6OSsAhJmjq62vOJJQ2qwNQTYozCd8VhVR+55E9MKQvcR5Bp3D6bVeqqq9OT6F+roDn5vIV+d4QKdkmevAlCPNrH+ZatXs/aDzl+ekOq52QJA4+A35ombR9QQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN6PR12MB4734.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(136003)(396003)(39860400002)(346002)(366004)(8676002)(66556008)(66476007)(26005)(66946007)(36756003)(186003)(8936002)(478600001)(6666004)(16526019)(450100002)(86362001)(2616005)(5660300002)(956004)(52116002)(7696005)(316002)(2906002)(6636002)(6486002)(4326008);
+ IPV:NLI; SFV:NSPM; H:BY5PR12MB4097.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(376002)(39860400002)(346002)(366004)(396003)(450100002)(6486002)(66476007)(66946007)(66556008)(5660300002)(2616005)(8676002)(186003)(53546011)(16576012)(956004)(8936002)(36756003)(26005)(2906002)(316002)(31696002)(31686004)(478600001)(16526019)(4326008)(6636002)(52116002)(86362001)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?m/em8CNRWZRtjX59XDsNocS2ipNhu0UgqiSDkgC54DAzuiwUL3ePc7AP5bNi?=
- =?us-ascii?Q?fikihq7r423cojKJ94MFN1V7eSzFHfViUHxB/DIYaZQxnY0mme7c4xK/UVMo?=
- =?us-ascii?Q?Kf2VL22okGCOA/xZ0kq9C0Ts1S2WvpaJhRHw5XsjdL+iNftj66ewsIHasvxD?=
- =?us-ascii?Q?EDw78KxEpMIpVwX80130nNAXGyqPRlEZVCd13lNl9GUUI5a+V7g0w61Yw45A?=
- =?us-ascii?Q?9kPFYcUuQ+2MNWOY1iiUgCspOjJlQDJpLFINDBdHuKuuncn6bmcqMezjSmuK?=
- =?us-ascii?Q?ZO5HpLhFZVYX/f6eilON6Aox13dWyVyaDFzhXC+9QGzhuOT2rFkViC1rxuJb?=
- =?us-ascii?Q?048ZEhTrTJ5ZofDgOm7eoH/DNwBwaqOWrkCGbDGf7shXKqkNoGOtRK7mfbZT?=
- =?us-ascii?Q?GvIymmPbzuoLzrP6nq+4B/dMb5T6IPgheApnqXPhBkNGn3vcpcbxkbXu/wkv?=
- =?us-ascii?Q?U5m6pJ21xfKSzJOPt6HpKPBv1gpGOmF6gjWc293TorTq2T5XfXfRXMDHOXGl?=
- =?us-ascii?Q?zfYVxdQb1ufqzoyHMrTjj7YqfiBFAoQ1eJEFe9b2Qn9GGZk/bDFhD4VE7s0H?=
- =?us-ascii?Q?CDyp66xn1okRwg4zYXKQpi2PiDFwJdYlBREMNLcBxwHEABnE1DdpYhGN59O4?=
- =?us-ascii?Q?s5ZZd/9jtbce4rZOB0R/hXqpa/YEhLxPQC/ZFQUSkNb4jNSGp6QfJA5P9f5z?=
- =?us-ascii?Q?ecRqdn/1EZuB2J0EKvq9yYu8Bvi5Rmff6ybJrxNkWFpragVE509KsVIo8Inz?=
- =?us-ascii?Q?VJt6yO1mw0n1/HHYGJL2pyLTMoaWfhptUyJzYmuqOup4YaRHOmE8Yqmzo8eR?=
- =?us-ascii?Q?vTxzBtU6tegv3tauh0lsXEa8382+m/7vQnerkoQWI/+rdmgqW4B3SP5Qe4LY?=
- =?us-ascii?Q?FaNrFqjeRF5FEbWpCDKLFdiQndOPkVsn/JyS/+yi7HlrGaFTKR+p7P803nrc?=
- =?us-ascii?Q?kow6lYE6rk5YEB8hg607lzwE3BGOzFJ/WEwwseqSVVZeY3nRpb6TC7muYOKl?=
- =?us-ascii?Q?yvgy4QgNXyoVnazVZndYGfDVSjoJGZhakphV4to21bjOjqRSkCgvh1/01JX/?=
- =?us-ascii?Q?9BUvy17v/zAi7wKOINGWVGtnPRYCfLVrn/aZFD7/HHOB0msIVVFziw6g3esq?=
- =?us-ascii?Q?hLK+Kg3736Gsy3HBwjjJyCQM1rkFjTBmDq4iXO4CvcTmrP30Ts+wHl0WVpwW?=
- =?us-ascii?Q?UUuN9a3tXEEbvsnXd3zqHoTlRTDjY/z0Hu4dxuMuJy4jZBZ4B3lPx4tqHpdc?=
- =?us-ascii?Q?AHUqxEeKo4qR8CVmN0D0CA4OBZbvkdWGap3lH4f2D6DP2Yts8MKNoS19JARV?=
- =?us-ascii?Q?4KSjL7ozDaJ4Lgfe5e1t6TQf?=
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?M2plRGZYSU90ZDJDRXhub2pSMDlNTVlmYVc0WlNUYUV6MDdTV3BlVWFkLzVW?=
+ =?utf-8?B?L2dWMzlYczN4NEo5c3k1WGJMWXJiYVlVMXNJYjZjSzBuR1BCWTNmV1ZzbXYv?=
+ =?utf-8?B?bVRyeXRrNGFnK3JOQmtVMzhhVHl0NXh0YUhwRFBiVnhsTlRrSjYzdTRsK3JK?=
+ =?utf-8?B?V3RDeExmZXZkSkswOXdsdEprODZVY1lYTlovYktoQ2ZtWmk0ZjhOditlMzV2?=
+ =?utf-8?B?YktBY1dOdHVZM1Zmamd6UXR1K1NwNjlYV3l2djlnck1NOGNvMU56MlJMcEJv?=
+ =?utf-8?B?Z1pGVENud2FvczN1OTk2QVRZM29xWHBUSGVzUjBxRUVSaTE4QzFha21NSlgx?=
+ =?utf-8?B?aVRQMjRhK0drRW9UdTcrVHRJQWk0YkpkYXNNOVY1bHBYeTVHNENobTM3V2xm?=
+ =?utf-8?B?Y1FMMjJkdWFmbEN4eGJyKzFKaGVXSnN0bnVyUlRUL1J1eFlLT3RPbzMyeE43?=
+ =?utf-8?B?aUVMeW5sbk1sR2RpdUV1b3NVd3hmYStEZ3BiZnBLekJiVEtZNXl2MXRpWFBu?=
+ =?utf-8?B?TnJjZHUvanl5ZjVkR3U2OW5nZjBPUVA1dFVTelYrNXlURkwwdFlwcnZOZzZw?=
+ =?utf-8?B?MUtITjd1S3liREVVN1o5T3Exazd5M2FoUVpheUFqMzJYNUVESG9mSVNadnRQ?=
+ =?utf-8?B?b2RZWWdscmoyV2FvZXRhY0lEcVZHNE9wRS9IKzJCak1MWmFkNUw5U2s1NjZL?=
+ =?utf-8?B?WVp0bHlBV1k0TUk3MHFJVVBMcmVvQnlBdXJySEkvVTI2Rk0zMFMyM3FuTDVG?=
+ =?utf-8?B?MkVPVUsyTTkvZTUzV1VSTitocEJpalg3Ri9Lcmd6MHQrM1BLR2p5REVXMXpn?=
+ =?utf-8?B?TmxhclBDYWpSdHNNRE12cG5kMU9nRjVRc0MvL0dBbnl6cjREVmVLeHdqc0d5?=
+ =?utf-8?B?K2dPcjVFUGRsSnFPUDlpSHV6U3FreXZtYzUzSWNwQ3M5YXd4UnZpVTlqQ2N2?=
+ =?utf-8?B?UVg0R1o3YXhVT3ZSd1RYUFR6aWtKamlaVnhkc29OSi9BTG45Sm8xZGFtTFlx?=
+ =?utf-8?B?Tk1MVWRtOGI2Q2t1R2Z0UXgvNWxRSG5tNkVueWNKY21kQUVoTTh1ei9lMURv?=
+ =?utf-8?B?eEdIY2RJOWloN29HZDYxSWNFdS9EeDJHNTBoamxNRm92R2J1c3NiMXVqWi9x?=
+ =?utf-8?B?eTVnK0lXMUtOUGwzVXZnNHdQUlhqUWlLOXVYdWMxUC9RQnFxMUhrbmVMR1lm?=
+ =?utf-8?B?azR6dm9pZW5ZM1BVazRLSXl1WTZGNmFwQzY2SG5MVkE4dm5kK2paNGY3eERi?=
+ =?utf-8?B?MEY5a3dnOFltR3ZTWExLclRDTFVqbWhLSzMzQWFqNktMWEd5WVZVWjhtM0JS?=
+ =?utf-8?B?K2cwYVppZlM4cjBFT3hvT1Mzd1ZjZTFYcFI4S2E1ZktEKy9LVnc2L09DaDJy?=
+ =?utf-8?B?SXNWRmNZeXFUTFRjVXdBdXN6bmJPUWtmOWRVZUxHRHB3RFB2WThGaTQyb3JM?=
+ =?utf-8?B?Q3ZJWDA0aDhMN2hHRVNtcW1CMGNyZllMV0NOVGtrQ1RwTEZxYktzZzQ2M0o5?=
+ =?utf-8?B?YkVVUmVWcWFucmtaWjlaMzIvNk0zYkRyVE1IV09hUXcrRk9ldGFFeWZTUHBq?=
+ =?utf-8?B?bk5qUmVwanhtTmNwY1JLRHAzcWx1OXBGUGhWbVdYLzBYbUwvVjdHWkk1blNQ?=
+ =?utf-8?B?ZlQvWERGaWpuSUFzNDZMVFY5eDIwMDBubCtuNG04TVNVSTVRek5nVFBUN21n?=
+ =?utf-8?B?VVVIbFh1SG5zaXl3YStyM0puelhxemNHUzVPdmM4aFdHU3g3ekpjVlN2Mmdj?=
+ =?utf-8?Q?V8Gb8jcfG+omrfCtjmTNzeMJQ1rgjAjKfnCDUqm?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c275cafc-948f-4851-bc54-08d8df274626
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR12MB4734.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 36bebacf-e8d3-4d80-cdd7-08d8df2f38ed
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB4097.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2021 16:05:04.8876 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2021 17:01:58.7308 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lOG83LdKH1yZIh1Qcd0uDWSLT5224LTXBsRUqPPRSBKla8ZKvAf2WybPgdsW50k2
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB4736
-X-Mailman-Approved-At: Thu, 04 Mar 2021 16:06:58 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: 56xSLd2Vk9xiegV2pK69r4LWADG6QtI1CR1BPAjkVux24N2iYFP8J6kkHhPrCtfcTH5iURuRrv4FHnqTh2ueIA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2952
+X-Mailman-Approved-At: Thu, 04 Mar 2021 17:06:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,69 +127,78 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix.Kuehling@amd.com, harish.kasiviswanathan@amd.com,
- christian.koenig@amd.com, jinhuieric.huang@amd.com, Alexander.Deucher@amd.com,
- Oak Zeng <Oak.Zeng@amd.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Alexander.Deucher@amd.com, jinhuieric.huang@amd.com, Felix.Kuehling@amd.com,
+ harish.kasiviswanathan@amd.com, christian.koenig@amd.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-If tbo.mem.bus.caching is cached, buffer is intended to be mapped
-as cached from CPU. Map it with ioremap_cache.
+I was wondering if a managed version of such API exists but looks like 
+none. We only have devm_ioremap_wc but that is valid only for 
+PAGE_CACHE_MODE_WC whereas ioremap_cache uses _WB. One more small 
+comment below.
 
-This wasn't necessary before as device memory was never mapped
-as cached from CPU side. It becomes necessary for aldebaran as
-device memory is mapped cached from CPU.
 
-Signed-off-by: Oak Zeng <Oak.Zeng@amd.com>
-Reviewed-by: Christian Konig <Christian.Koenig@amd.com>
----
- drivers/gpu/drm/ttm/ttm_bo_util.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Acked-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index 031e581..7429464 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -91,6 +91,10 @@ static int ttm_resource_ioremap(struct ttm_device *bdev,
- 
- 		if (mem->bus.caching == ttm_write_combined)
- 			addr = ioremap_wc(mem->bus.offset, bus_size);
-+#ifdef CONFIG_X86
-+		else if (mem->bus.caching == ttm_cached)
-+			addr = ioremap_cache(mem->bus.offset, bus_size);
-+#endif
- 		else
- 			addr = ioremap(mem->bus.offset, bus_size);
- 		if (!addr) {
-@@ -372,6 +376,11 @@ static int ttm_bo_ioremap(struct ttm_buffer_object *bo,
- 		if (mem->bus.caching == ttm_write_combined)
- 			map->virtual = ioremap_wc(bo->mem.bus.offset + offset,
- 						  size);
-+#ifdef CONFIG_X86
-+		else if (mem->bus.caching == ttm_cached)
-+			map->virtual = ioremap_cache(bo->mem.bus.offset + offset,
-+						  size);
-+#endif
- 		else
- 			map->virtual = ioremap(bo->mem.bus.offset + offset,
- 					       size);
-@@ -490,6 +499,11 @@ int ttm_bo_vmap(struct ttm_buffer_object *bo, struct dma_buf_map *map)
- 		else if (mem->bus.caching == ttm_write_combined)
- 			vaddr_iomem = ioremap_wc(mem->bus.offset,
- 						 bo->base.size);
-+		else if (mem->bus.caching == ttm_cached)
-+#ifdef CONFIG_X86
-+			vaddr_iomem = ioremap_cache(mem->bus.offset,
-+						  bo->base.size);
-+#endif
- 		else
- 			vaddr_iomem = ioremap(mem->bus.offset, bo->base.size);
- 
--- 
-2.7.4
+On 3/4/2021 11:04 AM, Oak Zeng wrote:
+> If tbo.mem.bus.caching is cached, buffer is intended to be mapped
+> as cached from CPU. Map it with ioremap_cache.
+>
+> This wasn't necessary before as device memory was never mapped
+> as cached from CPU side. It becomes necessary for aldebaran as
+> device memory is mapped cached from CPU.
+>
+> Signed-off-by: Oak Zeng <Oak.Zeng@amd.com>
+> Reviewed-by: Christian Konig <Christian.Koenig@amd.com>
+> ---
+>   drivers/gpu/drm/ttm/ttm_bo_util.c | 14 ++++++++++++++
+>   1 file changed, 14 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> index 031e581..7429464 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> @@ -91,6 +91,10 @@ static int ttm_resource_ioremap(struct ttm_device *bdev,
+>   
+>   		if (mem->bus.caching == ttm_write_combined)
+>   			addr = ioremap_wc(mem->bus.offset, bus_size);
+> +#ifdef CONFIG_X86
 
+
+Please use #if defined (CONFIG_X86)
+
+> +		else if (mem->bus.caching == ttm_cached)
+> +			addr = ioremap_cache(mem->bus.offset, bus_size);
+> +#endif
+>   		else
+>   			addr = ioremap(mem->bus.offset, bus_size);
+>   		if (!addr) {
+> @@ -372,6 +376,11 @@ static int ttm_bo_ioremap(struct ttm_buffer_object *bo,
+>   		if (mem->bus.caching == ttm_write_combined)
+>   			map->virtual = ioremap_wc(bo->mem.bus.offset + offset,
+>   						  size);
+> +#ifdef CONFIG_X86
+> +		else if (mem->bus.caching == ttm_cached)
+> +			map->virtual = ioremap_cache(bo->mem.bus.offset + offset,
+> +						  size);
+> +#endif
+>   		else
+>   			map->virtual = ioremap(bo->mem.bus.offset + offset,
+>   					       size);
+> @@ -490,6 +499,11 @@ int ttm_bo_vmap(struct ttm_buffer_object *bo, struct dma_buf_map *map)
+>   		else if (mem->bus.caching == ttm_write_combined)
+>   			vaddr_iomem = ioremap_wc(mem->bus.offset,
+>   						 bo->base.size);
+> +		else if (mem->bus.caching == ttm_cached)
+> +#ifdef CONFIG_X86
+> +			vaddr_iomem = ioremap_cache(mem->bus.offset,
+> +						  bo->base.size);
+> +#endif
+>   		else
+>   			vaddr_iomem = ioremap(mem->bus.offset, bo->base.size);
+>   
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
