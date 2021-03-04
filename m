@@ -1,54 +1,53 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 427E132D847
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Mar 2021 18:04:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B11832D84F
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Mar 2021 18:06:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8D0A6EA36;
-	Thu,  4 Mar 2021 17:04:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F3D06EA2F;
+	Thu,  4 Mar 2021 17:06:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com
- [IPv6:2607:f8b0:4864:20::232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E1016EA36
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Mar 2021 17:04:50 +0000 (UTC)
-Received: by mail-oi1-x232.google.com with SMTP id l64so30833739oig.9
- for <amd-gfx@lists.freedesktop.org>; Thu, 04 Mar 2021 09:04:50 -0800 (PST)
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com
+ [IPv6:2607:f8b0:4864:20::22d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5EDB6EA2F
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Mar 2021 17:06:46 +0000 (UTC)
+Received: by mail-oi1-x22d.google.com with SMTP id m25so17834058oie.12
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Mar 2021 09:06:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=5Ldogr5dyPLmtZ1jcyRzKVIuLPxB5lUWwXnIg3N7f0c=;
- b=j1RQqzo/3l0iFGuShbvPaLk7JErYfCThRZFkUPehO0vqO7v5akVcj9NW6tmkkOzvgK
- 6a6zRYxVvYO6NN05wxu1p1Qjd3XDrTT3bUsGsK+ogltIcb/aZP+VCffAq7a9gMBtywlH
- aP0KpHUq+efFks1ojIzhf/wwzc+2WxRGnGY/bEVgT8ckyAtShqq2RDxG3gqBHQxh+yyI
- N5kIx7hr6A5bviYarunRCdjTbkvqpYguOtIsTruKBNz/ZXea2t5cBSDSIAhfR67PJUTK
- izRmdt268kA2qn+lGhW2e/i5oRPkO20wid5phPCCocaAjewfhy6K770PCykRuNuJOGrM
- nUdQ==
+ :cc; bh=AQvT70tfnN2ximMfEkwqJJnZ1pWj5bO/BRxDZfKW2O0=;
+ b=iQkLHpPr/diKbNLrI3TA0GNMhqfDAcmLqHm5T6ONIVpVZgPBykpxp+Jw3x+2ymMZeT
+ 83rfUc4eX7m2mieVdDkNpt6Om2Z8SaiVtUHHKtBc3gweFT9IHhdIuwmzhPHDw0dEBlB2
+ WxjHGF8+Av0mL0NQBxMKlqOzTs8TsjqmS0mW4FByZmVD65xS5rzqWtSPxj7ZY3ehnEmg
+ MPaEp6ghi5JKh3cMeqEI4S82mL+99ITCo1Eo5h+8Aiss25hJBDO2EfR6YyIQ5ttEZn8Q
+ 0MvCr+fVfG20MEVPtPuQ7sumY8pPqTMdRxfNDm1J2iqQeYm28Xj/c9VGpeEWoZDor/dA
+ DPxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=5Ldogr5dyPLmtZ1jcyRzKVIuLPxB5lUWwXnIg3N7f0c=;
- b=OuR4FyQfSiMfVuYM7vFSeEcxkJ7T9CxktwZq8F1LS4Ofi7Ips6bJpDJcy671Lq2LKR
- /zIsjO46NZAh11MWfT0q1LfDb8XJWlHxLMommqPTpmAd/GD81VdmTf3MdvZc5LGIOD7h
- SyfJkYDYkAqy5jcCV+0+eX4VDSbj/eIZeMSRKY6/A0psQ4/iuCFhICO1qIWsEOUBBvNZ
- hG7YWL8GfH/Dp8lua74EhduIc+Datr4mpNeKlK4gf23OebNuKCOBKICSDrjJ77eoTPfT
- 3XVAmMZ6RJeHVai1mS5mfR5roysTMJBAJWttAz1cULdPUR56la7xjBVqaiD//sI67uuH
- Q8Og==
-X-Gm-Message-State: AOAM531+oY2FGfsmd0AKgU2BOecfP5RqKsuvMpg5gFzLak7uQJsuN3zl
- 25SdanPI3yX1eE+1Ltemq3OHZ/0I41ZEBCEOPoc=
-X-Google-Smtp-Source: ABdhPJw6stHtOFs8z4ZlY/MbYGeVuX4ffwH0g/X43GSTjAOmRGDtf48rFjY8OJA93bukrZgv5HKizVH6cXspl0OYpRI=
-X-Received: by 2002:aca:af10:: with SMTP id y16mr673696oie.120.1614877489911; 
- Thu, 04 Mar 2021 09:04:49 -0800 (PST)
+ bh=AQvT70tfnN2ximMfEkwqJJnZ1pWj5bO/BRxDZfKW2O0=;
+ b=CqNQI/1DxX3svrOXBrMkjqI3uDK8OU+zo/icn54iPgnDW0cUagluirQ2iQiPbp5uKH
+ DxaGL3wg/9e/FMSjZ6RcxGG7gKkQFGZibf2Q78VSq9m3gbyy3E3qbA8N4obSkbchZ2B7
+ K+GU9ln07RX/scsa5TuD5sXvVpcUZRIXf02j6NWl4TYEPdeEwq3Gv7oujwshihRfogbm
+ RlEd6n4emZHsfMn6f4LRJ+NauV4mlzwxvfQDK0nR8nc73HgNxOJpTkUpenLnIoOwcGQM
+ 8L81YbwyIJ0SBtsHSQjVOyba4YXVDgrsEO7TPSb/px/g9CPZoCJ6o3NuJyb33Hp6sFDQ
+ /63g==
+X-Gm-Message-State: AOAM5311JdmdCpb69LgHae73SRLtB83LWv21OxJhXhUbIBJbH2kFuGaI
+ K9gMWwnjwzwI2GFoW/jQh021nfZyGjcOzNmuorMFcMoW
+X-Google-Smtp-Source: ABdhPJwDCdwwBCrpWNA+jVCCnWqBNrt3g0m/j9mEZeBYSIhXvhK1wmfFqO+uUfnDN2Uipt6mVgPmkiD0i9xwd6jhihM=
+X-Received: by 2002:aca:fccb:: with SMTP id a194mr3478257oii.5.1614877606123; 
+ Thu, 04 Mar 2021 09:06:46 -0800 (PST)
 MIME-Version: 1.0
-References: <20210216172854.1738806-1-alexander.deucher@amd.com>
- <16e82f38-f1af-ce47-96a2-1464eee519c8@amd.com>
-In-Reply-To: <16e82f38-f1af-ce47-96a2-1464eee519c8@amd.com>
+References: <20210225164403.444369-1-alexander.deucher@amd.com>
+In-Reply-To: <20210225164403.444369-1-alexander.deucher@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 4 Mar 2021 12:04:27 -0500
-Message-ID: <CADnq5_N1EM6a9K-gK3g-7MVF7t6LVS=T_LYNG+GgQ9uNpoDi+g@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu/display: restore AUX_DPHY_TX_CONTROL for DCN2.x
-To: Harry Wentland <harry.wentland@amd.com>
+Date: Thu, 4 Mar 2021 12:06:21 -0500
+Message-ID: <CADnq5_N8WQhLqaNs4eh5-qqzuSQ8pebcXsMfmwhKXjer38h0XQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: enable TMZ by default on Raven asics
+To: Alex Deucher <alexander.deucher@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,68 +59,76 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Aric Cyr <Aric.Cyr@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Igor Kravchenko <Igor.Kravchenko@amd.com>
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 17, 2021 at 11:53 AM Harry Wentland <harry.wentland@amd.com> wrote:
->
-> On 2021-02-16 12:28 p.m., Alex Deucher wrote:
-> > Commit 098214999c8f added fetching of the AUX_DPHY register
-> > values from the vbios, but it also changed the default values
-> > in the case when there are no values in the vbios.  This causes
-> > problems with displays with high refresh rates.  To fix this,
-> > switch back to the original default value for AUX_DPHY_TX_CONTROL.
->
-> I don't see how this impacts displays with high refresh rates
-> specifically. This is a change that only affects our AUX pre-charge time
-> and was provided to us by the HW team. It does depend on another
-> register being programmed by the VBIOS/DMCUBFW at boot.
->
-> Before we revert this I would like confirmation that this is the root of
-> the problem.
-
-Hi Harry, any progress on this?
-
-Thanks,
+Ping?
 
 Alex
 
-
+On Thu, Feb 25, 2021 at 11:44 AM Alex Deucher <alexander.deucher@amd.com> wrote:
 >
-> Harry
+> This has been stable for a while.
 >
-> >
-> > Fixes: 098214999c8f ("drm/amd/display: Read VBIOS Golden Settings Tbl")
-> > Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1426
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > Cc: Igor Kravchenko <Igor.Kravchenko@amd.com>
-> > Cc: Aric Cyr <Aric.Cyr@amd.com>
-> > Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-> > ---
-> >   drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.c | 3 +--
-> >   1 file changed, 1 insertion(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.c
-> > index fa013496e26b..2f9bfaeaba8d 100644
-> > --- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.c
-> > +++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_link_encoder.c
-> > @@ -341,8 +341,7 @@ void enc2_hw_init(struct link_encoder *enc)
-> >       } else {
-> >               AUX_REG_WRITE(AUX_DPHY_RX_CONTROL0, 0x103d1110);
-> >
-> > -             AUX_REG_WRITE(AUX_DPHY_TX_CONTROL, 0x21c4d);
-> > -
-> > +             AUX_REG_WRITE(AUX_DPHY_TX_CONTROL, 0x21c7a);
-> >       }
-> >
-> >       //AUX_DPHY_TX_REF_CONTROL'AUX_TX_REF_DIV HW default is 0x32;
-> >
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  4 ++--
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 10 ++++++++++
+>  2 files changed, 12 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> index 2f71d36d2856..21504ea9085f 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> @@ -164,7 +164,7 @@ int amdgpu_discovery = -1;
+>  int amdgpu_mes;
+>  int amdgpu_noretry = -1;
+>  int amdgpu_force_asic_type = -1;
+> -int amdgpu_tmz;
+> +int amdgpu_tmz = -1; /* auto */
+>  int amdgpu_reset_method = -1; /* auto */
+>  int amdgpu_num_kcq = -1;
+>
+> @@ -790,7 +790,7 @@ module_param_named(abmlevel, amdgpu_dm_abm_level, uint, 0444);
+>   *
+>   * The default value: 0 (off).  TODO: change to auto till it is completed.
+>   */
+> -MODULE_PARM_DESC(tmz, "Enable TMZ feature (-1 = auto, 0 = off (default), 1 = on)");
+> +MODULE_PARM_DESC(tmz, "Enable TMZ feature (-1 = auto (default), 0 = off, 1 = on)");
+>  module_param_named(tmz, amdgpu_tmz, int, 0444);
+>
+>  /**
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+> index fe1a39ffda72..1a892526d020 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
+> @@ -384,6 +384,16 @@ void amdgpu_gmc_tmz_set(struct amdgpu_device *adev)
+>  {
+>         switch (adev->asic_type) {
+>         case CHIP_RAVEN:
+> +               if (amdgpu_tmz == 0) {
+> +                       adev->gmc.tmz_enabled = false;
+> +                       dev_info(adev->dev,
+> +                                "Trusted Memory Zone (TMZ) feature disabled (cmd line)\n");
+> +               } else {
+> +                       adev->gmc.tmz_enabled = true;
+> +                       dev_info(adev->dev,
+> +                                "Trusted Memory Zone (TMZ) feature enabled\n");
+> +               }
+> +               break;
+>         case CHIP_RENOIR:
+>         case CHIP_NAVI10:
+>         case CHIP_NAVI14:
+> --
+> 2.29.2
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
