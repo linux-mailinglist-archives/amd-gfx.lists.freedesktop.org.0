@@ -1,54 +1,54 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 744D3331982
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Mar 2021 22:45:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30EAE3319C2
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Mar 2021 22:56:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAB3D6E87E;
-	Mon,  8 Mar 2021 21:45:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A198C6E88E;
+	Mon,  8 Mar 2021 21:56:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com
- [IPv6:2607:f8b0:4864:20::c2b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA0386E87E;
- Mon,  8 Mar 2021 21:45:44 +0000 (UTC)
-Received: by mail-oo1-xc2b.google.com with SMTP id z22so2558858oop.0;
- Mon, 08 Mar 2021 13:45:44 -0800 (PST)
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com
+ [IPv6:2607:f8b0:4864:20::231])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C21676E88D;
+ Mon,  8 Mar 2021 21:56:26 +0000 (UTC)
+Received: by mail-oi1-x231.google.com with SMTP id x135so8161831oia.9;
+ Mon, 08 Mar 2021 13:56:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=98cBjcjhuYHRPD7k85MY8DSxP3E150dqHIpXKr7a8vo=;
- b=HTNVHer2R1dsIR8ja17XwqWKWkEQRomuKKAFZBtej5KqVJPPaJjh28B5dI+v3ASXR2
- Aiv4Df+7C9OYzaNZHFfEV7OyVLMD/GCAKrX2XgeBkZR8XhdUlLMUBp1m+JAxlex/3Iqn
- oVw1bJsQ9Yz92eDMa0jL0yO5FGrSR+AKD8XtJ8dZs8q4lm0v+/hWFc0ppMpgXCSsvwaF
- Q7SjKCYgtt+P+wLA8P1GpH9pVEL8H9ghqHDUuZG23dE2RdsbT155L/w/tS2dS71I8N47
- poEQCJUjZPp6EtDjiCw9e1lfpinSouLeV//1U6NZBIfOsY8SU3W9o0tZchFSv9wzX21M
- spDg==
+ :cc; bh=uyJ0PeO5KwJeqSfUyZWIUqn/iwMU0KWoLqv+BcNnnbs=;
+ b=UQ10zTspdmlb5BBImKzv93z4b8rcgHoxxMXyDAGirJ6ZgQdlU3oCoy3/VlIySTVQ9G
+ vKjr/FqjR7o+Yu8UECfsO2tAxBqkl1dd9NRaiC7d+XVJKftt981D7j+5kv4r9JGR6wb/
+ djLRjS5HT8gaALDGwT9XPp9wVxCKhh+4Pfex+porGxTetWm7f8cRKHM3jCVTrKFKv6sN
+ ii2+saA/94KALMXo3L3S2sp749DJ7nxT9UAcXTSxmDiXrORdg20/aDFnjDEmIvsO73m5
+ kBEhlJw7H7aZ+W/xTqkG7te3ufg/mLpWyCpOTQ+BogUV6x80+Xosfo9US/SbB0xMwzHK
+ BVQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=98cBjcjhuYHRPD7k85MY8DSxP3E150dqHIpXKr7a8vo=;
- b=Gj/JSF2+mPO1DehgjjMCwJwH3PZVWujNm9X+zdbtSdgHGJ9SjVYyVV7R7jIc7VkC2b
- FMkwi2k7KjF68DApoW0KeGNtPSw+xVP4LwDbx1J8TswnR/gqULK1Ydz6tEdaK1r/MVhe
- birC6yMXRJdW0yNmzZ9vfgJE/332daZcckixJHgdgTy9qojlVb27p7XXRrDESGIuReok
- qrQ2kHmv9V2mXLO2rIErRSCzO5I0/3/NRwXuFml1wftrpFR3XcOrRmvIckALa/2arG5I
- aXxhMz3jtz0MyT/4psqD9HLTpIlsVQyVBfrQAgf0oa7Xpby5n9qIxoIAzRJD3ARNX4kL
- sR/A==
-X-Gm-Message-State: AOAM5310JSek5ZMrV/PJx1LlPAKpcTq2I+Ot8NDdwNBTOo5kjrDGryZl
- GuMAsYSObZohd4okcX5eQ8ISK179FlqBfLDUr83XwTmR
-X-Google-Smtp-Source: ABdhPJwpsHutLCgDMpdVA+x2+rqBtCCg/0khVtNykRTxJz6fzAakSBg9LGgIAsGNhNJObjtkA57rNQ/RQJlxHyshSQQ=
-X-Received: by 2002:a4a:d155:: with SMTP id o21mr19817235oor.72.1615239944232; 
- Mon, 08 Mar 2021 13:45:44 -0800 (PST)
+ bh=uyJ0PeO5KwJeqSfUyZWIUqn/iwMU0KWoLqv+BcNnnbs=;
+ b=elWXriS57u+OKyh5J4/hE8n233zc15KzQMuNFZdE43ukzm9iy676IR/hpk3E0SO3td
+ 8b/zyGNCaVAHpuQHwnfVJYiTj9jJOD9G7c6Ht/sZd0XsH6OhveSSxs7TEznPuhOTF8S2
+ xNU2l5g8WxT1p6jiqnwgTzTnaD7hA9dSRzae55wYvDo/hGGVGKAo83CxXMVYjuevZxzD
+ P17zABEJMc7Vo5dtvWB+u7KDOAF1lgeLx4oTxTa+z/D1uu79ifEiYjrItp/qDmBIJBnm
+ /PVcqhRSQJ5gwArsijUnV9nPkVbsmQUmpkn99uGR5tpy4/Byx+lOmGMThDgdA2/484Fe
+ KEsQ==
+X-Gm-Message-State: AOAM532At8Vn+fIdZZEogwHCMTIE/A+VFw1CGkzIubao/sZ2rB/JSmGv
+ Hqmgjk3TMscVKjbWfPIafwkiPpvGGfZaA1p5Cdbs8gGs
+X-Google-Smtp-Source: ABdhPJwvMOnqnL13dlmqm4xKkeu24C2hDW1SuZzKmy+7NNx45hQ5X4pEQJAaSTv0pujQzQGXry/q0jZd1nNyYv+sFf8=
+X-Received: by 2002:a05:6808:f15:: with SMTP id
+ m21mr696521oiw.123.1615240586175; 
+ Mon, 08 Mar 2021 13:56:26 -0800 (PST)
 MIME-Version: 1.0
-References: <20210306110525.216316-1-zhang.yunkai@zte.com.cn>
-In-Reply-To: <20210306110525.216316-1-zhang.yunkai@zte.com.cn>
+References: <1615172407-4847-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+In-Reply-To: <1615172407-4847-1-git-send-email-jiapeng.chong@linux.alibaba.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 8 Mar 2021 16:45:33 -0500
-Message-ID: <CADnq5_Mxeg2jpzPkQ1f8ugEyB7j9U1hp6+_3xsY-0LuA7yTwaw@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: remove duplicate include in dcn21 and
- gpio
-To: menglong8.dong@gmail.com
+Date: Mon, 8 Mar 2021 16:56:15 -0500
+Message-ID: <CADnq5_NEybY3puwnBs_OUHPWD_16OvbF-sCQ7Mj5gx9PtCd4+A@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: Remove unnecessary conversion to bool
+To: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,68 +60,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: isabel.zhang@amd.com, Sung Lee <sung.lee@amd.com>,
- Zhang Yunkai <zhang.yunkai@zte.com.cn>,
- "Leo \(Sunpeng\) Li" <sunpeng.li@amd.com>, Anthony Koo <Anthony.Koo@amd.com>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>, "Siqueira,
- Rodrigo" <Rodrigo.Siqueira@amd.com>, LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Dave Airlie <airlied@linux.ie>,
- Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>, Wyatt Wood <wyatt.wood@amd.com>,
- "Deucher, Alexander" <alexander.deucher@amd.com>,
- Krunoslav Kovac <Krunoslav.Kovac@amd.com>, "Cheng, Tony" <Tony.Cheng@amd.com>,
- Christian Koenig <christian.koenig@amd.com>
+Cc: "Leo \(Sunpeng\) Li" <sunpeng.li@amd.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Dave Airlie <airlied@linux.ie>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ "Deucher, Alexander" <alexander.deucher@amd.com>, "Wentland,
+ Harry" <harry.wentland@amd.com>, Christian Koenig <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied.  Thanks!
+On Sun, Mar 7, 2021 at 10:00 PM Jiapeng Chong
+<jiapeng.chong@linux.alibaba.com> wrote:
+>
+> Fix the following coccicheck warnings:
+>
+> ./drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c:561:34-39: WARNING:
+> conversion to bool not needed here.
+>
+> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+> Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+
+This patch was already applied.
 
 Alex
 
-On Sat, Mar 6, 2021 at 6:05 AM <menglong8.dong@gmail.com> wrote:
->
-> From: Zhang Yunkai <zhang.yunkai@zte.com.cn>
->
-> 'dce110_resource.h' included in 'dcn21_resource.c' is duplicated.
-> 'hw_gpio.h' included in 'hw_factory_dce110.c' is duplicated.
->
-> Signed-off-by: Zhang Yunkai <zhang.yunkai@zte.com.cn>
 > ---
->  drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c         | 1 -
->  .../gpu/drm/amd/display/dc/gpio/dce110/hw_factory_dce110.c    | 4 ----
->  2 files changed, 5 deletions(-)
+>  drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-> index 072f8c880924..8a6a965751e8 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dcn21/dcn21_resource.c
-> @@ -61,7 +61,6 @@
->  #include "dcn21/dcn21_dccg.h"
->  #include "dcn21_hubbub.h"
->  #include "dcn10/dcn10_resource.h"
-> -#include "dce110/dce110_resource.h"
->  #include "dce/dce_panel_cntl.h"
->
->  #include "dcn20/dcn20_dwb.h"
-> diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dce110/hw_factory_dce110.c b/drivers/gpu/drm/amd/display/dc/gpio/dce110/hw_factory_dce110.c
-> index 66e4841f41e4..ca335ea60412 100644
-> --- a/drivers/gpu/drm/amd/display/dc/gpio/dce110/hw_factory_dce110.c
-> +++ b/drivers/gpu/drm/amd/display/dc/gpio/dce110/hw_factory_dce110.c
-> @@ -48,10 +48,6 @@
->  #define REGI(reg_name, block, id)\
->         mm ## block ## id ## _ ## reg_name
->
-> -#include "../hw_gpio.h"
-> -#include "../hw_ddc.h"
-> -#include "../hw_hpd.h"
-> -
->  #include "reg_helper.h"
->  #include "../hpd_regs.h"
+> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
+> index ae6484a..42a4177 100644
+> --- a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
+> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
+> @@ -558,7 +558,7 @@ bool dal_ddc_service_query_ddc_data(
+>                         /* should not set mot (middle of transaction) to 0
+>                          * if there are pending read payloads
+>                          */
+> -                       payload.mot = read_size == 0 ? false : true;
+> +                       payload.mot = !(read_size == 0);
+>                         payload.length = write_size;
+>                         payload.data = write_buf;
 >
 > --
-> 2.25.1
+> 1.8.3.1
 >
 > _______________________________________________
 > dri-devel mailing list
