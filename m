@@ -2,30 +2,30 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DEF133094F
-	for <lists+amd-gfx@lfdr.de>; Mon,  8 Mar 2021 09:22:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74808330952
+	for <lists+amd-gfx@lfdr.de>; Mon,  8 Mar 2021 09:22:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF5E56E826;
-	Mon,  8 Mar 2021 08:22:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A89EB89DB5;
+	Mon,  8 Mar 2021 08:22:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out30-43.freemail.mail.aliyun.com
- (out30-43.freemail.mail.aliyun.com [115.124.30.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EAAF6E28A;
- Mon,  8 Mar 2021 03:00:30 +0000 (UTC)
-X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R191e4; CH=green; DM=||false|;
+Received: from out30-45.freemail.mail.aliyun.com
+ (out30-45.freemail.mail.aliyun.com [115.124.30.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD3BE89E14;
+ Mon,  8 Mar 2021 03:14:28 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R231e4; CH=green; DM=||false|;
  DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e01424;
- MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=10; SR=0;
- TI=SMTPD_---0UQoFBD6_1615172408; 
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=11; SR=0;
+ TI=SMTPD_---0UQp.mbY_1615173259; 
 Received: from
  j63c13417.sqa.eu95.tbsite.net(mailfrom:jiapeng.chong@linux.alibaba.com
- fp:SMTPD_---0UQoFBD6_1615172408) by smtp.aliyun-inc.com(127.0.0.1);
- Mon, 08 Mar 2021 11:00:24 +0800
+ fp:SMTPD_---0UQp.mbY_1615173259) by smtp.aliyun-inc.com(127.0.0.1);
+ Mon, 08 Mar 2021 11:14:25 +0800
 From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-To: harry.wentland@amd.com
-Subject: [PATCH] drm/amd/display: Remove unnecessary conversion to bool
-Date: Mon,  8 Mar 2021 11:00:07 +0800
-Message-Id: <1615172407-4847-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH] drm/amdgpu: Remove unnecessary conversion to bool
+Date: Mon,  8 Mar 2021 11:14:14 +0800
+Message-Id: <1615173254-22078-1-git-send-email-jiapeng.chong@linux.alibaba.com>
 X-Mailer: git-send-email 1.8.3.1
 X-Mailman-Approved-At: Mon, 08 Mar 2021 08:22:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -39,10 +39,11 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, sunpeng.li@amd.com,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, airlied@linux.ie,
- dri-devel@lists.freedesktop.org, daniel@ffwll.ch, alexander.deucher@amd.com,
- christian.koenig@amd.com
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, airlied@linux.ie,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ sumit.semwal@linaro.org, linaro-mm-sig@lists.linaro.org,
+ amd-gfx@lists.freedesktop.org, daniel@ffwll.ch, christian.koenig@amd.com,
+ linux-media@vger.kernel.org
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -51,28 +52,34 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Fix the following coccicheck warnings:
 
-./drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c:561:34-39: WARNING:
-conversion to bool not needed here.
+./drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c:1600:40-45: WARNING: conversion
+to bool not needed here.
+
+./drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c:1598:40-45: WARNING: conversion
+to bool not needed here.
 
 Reported-by: Abaci Robot <abaci@linux.alibaba.com>
 Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
-index ae6484a..42a4177 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
-@@ -558,7 +558,7 @@ bool dal_ddc_service_query_ddc_data(
- 			/* should not set mot (middle of transaction) to 0
- 			 * if there are pending read payloads
- 			 */
--			payload.mot = read_size == 0 ? false : true;
-+			payload.mot = !(read_size == 0);
- 			payload.length = write_size;
- 			payload.data = write_buf;
- 
+diff --git a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
+index 690a509..b39e7db 100644
+--- a/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c
+@@ -1595,9 +1595,9 @@ static int sdma_v5_2_set_clockgating_state(void *handle,
+ 	case CHIP_VANGOGH:
+ 	case CHIP_DIMGREY_CAVEFISH:
+ 		sdma_v5_2_update_medium_grain_clock_gating(adev,
+-				state == AMD_CG_STATE_GATE ? true : false);
++				state == AMD_CG_STATE_GATE);
+ 		sdma_v5_2_update_medium_grain_light_sleep(adev,
+-				state == AMD_CG_STATE_GATE ? true : false);
++				state == AMD_CG_STATE_GATE);
+ 		break;
+ 	default:
+ 		break;
 -- 
 1.8.3.1
 
