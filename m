@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C64F331DCB
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Mar 2021 05:10:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19CDB331DCD
+	for <lists+amd-gfx@lfdr.de>; Tue,  9 Mar 2021 05:10:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D0CF6E456;
-	Tue,  9 Mar 2021 04:10:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1764F6E44D;
+	Tue,  9 Mar 2021 04:10:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2069.outbound.protection.outlook.com [40.107.93.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E91E16E44E
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Mar 2021 04:10:34 +0000 (UTC)
+ (mail-dm6nam10on2076.outbound.protection.outlook.com [40.107.93.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5D206E44E
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Mar 2021 04:10:35 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fqoqPng2WVJTrpQ4GewiG37OfLrNW1yZ9nBZfi2eA6YVkfxMuJrDh0QnNoTys26nDELIvzXdip0IDr/ZINXC4rbzMuX+zd5QIQHTbPo94TV1SQDwBOOI3NfVTk+I0EZZosiJ83zINL9xAXQBxjouO/1YL9Lal5hABWCtiBMlGnTm9ggRdbsJLdaybRQWswfKJyBc/pK1ter4WdLG5T1/r+sdzC25sFsCcMEU/IbTzqoCIo7Qt3Uv0yOkggP5Fzz7peaazQ4ISs0zxqGrevYVbWaI4JE0hmo6TuDzV8sAOyHHnE5Me/f4sXACGWGVAlfBo1v1ccdLOr2iLmnr57Ci3g==
+ b=FuzabbVyQTii1VEesVBJMKlkTy1LWr69Pmo3ggwKhYYfj9iBJnkecPe57JTs2YFk0/cc2vh2WOCCGU3CXEZVzhNij0IEzSE/RsYP+VGRNBEKU04OGZM3TJvfFp/DI0iCyrnNC07B7vjgTxVBWr0PaZ4ZyTum99RfGA+sFGsyDH+EVINEIzN1PlVVCUxzQiN2PBO1nTHeBFxr+nHfqj22N8x6CEpKnecxzGmdJxs9WCc1+ougGs68nX2Kdom2VkFrVqwHXdcWrJFEYXt6WxFEHmdvMJh3jIoyPI6Ru3JkP6lYRQ9dZRPIYWwwUvq9/uQHTNb/VAOOtlDK6zZwsk/ZMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S0eqEOo2xdrfOVMOch1HT67Vc5G2CxfF+PIhC23vTI4=;
- b=DFNXYUNzOBKnGianHs8wexFr3etqpKcfCwbyPLJ+jMyWer5PmAcXpIMhAsZEhSq4ZatDAnSLKeFc4+xcl8i5PV+ldnyNUWkFteLlkG4rdTTf3m7E/hzTwiZjFv6nRLtwBfyMXyum1h8oRZ/ba4dAxmKQbVhMAFib4+RoPV3qWk69J1U9lmF9Id+7Y/zMhEdY0A4Kb5RTcqNYi6BIeIlv9Ur/kiTUAe5HSKZ+PM6HFtKe3uVRFrShcK6uvyIGXxiwjzCTDniE0irhDGj9/YqyfE08sJAWCyp1L1Im5c8itHCim+sM9F4h0+8svm+ZQfO11idqM4t2rxlG6baLPCZKGQ==
+ bh=Iy+cpXyb4ZPiMj/D9mYNllNs7fw/rVhFaO3k5uMumx8=;
+ b=LRlR4sK2BGvEOYoxGFhgIDnXlQIQk4EyBN9zaZ4wrezGMCytvORJUGwsKo/zAsIWViFGX0oiGKlL3m7Jag4p6d32cC2NiNpIn9X92JMM8NXFB2uM2RRrTOKuLTy01+CyZu19sJ0ECyljGIcztyqse4tN0Zziomt4IIfguCtxJG8XSAXEZ0SCacF4GXmdwzmqg4+FAO5GtjqogG0Sx0MZZitfV4FwraIzz9q/DEo8VzkZ1e/X+S3WEPX08cLdMEkz/rhOOYg2VBcXAJNfZJC+7iZ9fJqNXAf7XR4kZL0comk6bLYfPkPXaySJVD2tgtxKgHz2MsY0/D4VjpO4tJD/NQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S0eqEOo2xdrfOVMOch1HT67Vc5G2CxfF+PIhC23vTI4=;
- b=zkDBG3St7IcY3Iv9UeM3CVR5/4plwJntZoDh6+pHicI1KzhHVBv6qRifRIVXqaNuX5lIuZxQnJl4HserGFR5jdydPKGRMcSGyS7IFClFyKx+s/0q2Z5IZWlaiGZR8tRfynCqkp97Lmdliq99liP0zNiGeJVN2IlzV5CP+BtuA5M=
+ bh=Iy+cpXyb4ZPiMj/D9mYNllNs7fw/rVhFaO3k5uMumx8=;
+ b=5gpZO1j3Rm9ydr1BXJOQUYYjWGW/mTSuUldoyIS1mKv3RnrQIctDd1bpmWeEhBbUpHoCuP804QLD9CJKXQD2vMi84M4Zne0VtFBB+TFjWr34jPolMVc0u1xrHY/+8Y6ea5hIXuREPeE8tiErxqbwLnEsXJIbDb7azd843AwMwUg=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,16 +34,16 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
  by MN2PR12MB4486.namprd12.prod.outlook.com (2603:10b6:208:263::23)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.19; Tue, 9 Mar
- 2021 04:10:33 +0000
+ 2021 04:10:34 +0000
 Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  ([fe80::5deb:dba7:1bd4:f39c]) by MN2PR12MB4488.namprd12.prod.outlook.com
  ([fe80::5deb:dba7:1bd4:f39c%4]) with mapi id 15.20.3912.027; Tue, 9 Mar 2021
- 04:10:33 +0000
+ 04:10:34 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 5/7] drm/amdgpu: don't evict vram on APUs for suspend to ram
-Date: Mon,  8 Mar 2021 23:10:10 -0500
-Message-Id: <20210309041012.23367-5-alexander.deucher@amd.com>
+Subject: [PATCH 6/7] drm/amdgpu: clean up S0ix logic
+Date: Mon,  8 Mar 2021 23:10:11 -0500
+Message-Id: <20210309041012.23367-6-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210309041012.23367-1-alexander.deucher@amd.com>
 References: <20210309041012.23367-1-alexander.deucher@amd.com>
@@ -57,53 +57,53 @@ Received: from tr4.amd.com (165.204.84.11) by
  BL1PR13CA0389.namprd13.prod.outlook.com (2603:10b6:208:2c0::34) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.13 via Frontend
- Transport; Tue, 9 Mar 2021 04:10:33 +0000
+ Transport; Tue, 9 Mar 2021 04:10:34 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 0432ee3b-37f4-4604-6c3e-08d8e2b14914
+X-MS-Office365-Filtering-Correlation-Id: 07d767c2-1f31-4ea5-9471-08d8e2b14993
 X-MS-TrafficTypeDiagnostic: MN2PR12MB4486:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB44861C039327C48DE0A7040EF7929@MN2PR12MB4486.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2201;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB448601E4033F409632BCC50CF7929@MN2PR12MB4486.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1751;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ujKM96Lfda+Z8TUuR5dVj9UScSbX6ZzxlJkj4exLmtvksryr7c5nTTTrlbfsu38J7zpql1IyPYM6Ga5zz18tG6ekWSpk/kX7xrnEu/OUd8Zyh0d78Hiftnrlu8vSdmEjs+6pfIpepiKTisyUuk1Bobsk+K/q1Y3zJ+go/Lsovbawwl+c5j5TxIEF2vnea7L5U9vXYymCei/rEpO3pahj/HIGqmtMMEnqZdScMe0NndM/WE356VagaKEcr4Wuv3uPtD8m0a5zEEtooxwkc9s+Qd/qPwzmWPQFgny8ndOu7zJcjLOldDTMq5ZFQr8iNxZAjeIChTF6Gcj5KuLv8A+XQzxbzaS/1O0hMCtjIohJYGwRDhQ7MsIVAqPF4FLLyN0nu3pzWAva7qBNDvopPPm4hFeifosND6Y/KzeDrdbirLRZ/yAtiX0gq7R/JjysxQlIe36cJmGB2NHnpbgP1+flzN/HTKYZsj47dFVfG985UEn1F9XQaFgCEkTORv2vhzaroe/X/+NwddGX2BuHf7y5Tg==
+X-Microsoft-Antispam-Message-Info: 1Tzuu8Xj2AecEXfEraTI3iV8/qfn635rkX30xP3Is1o3ZlL/VgMow+AYra7/r/9gKV7vP0eh7SQsdy874DuU3epC8dIIwtlJKwLQDFHsZuzxEHDAE20o5fuESBqPjT6aNE2BTK6oqjF3Tp6Qw5hhWFURvfbLtdE+b3p4iuJw+MMjCZR1o/6wA1ucwPxSXZWVifRoU3dJcuCgihy4nr2WtTKRoeLzEidMk7hIAsRxBcARG/++rtvTaztzYHKDqKQeex5HeWuYGgt+/pJnMa+Q32Biz/2VPA/n2OgzmwiqD5z3uPF+OqLWGUp7ppr+V6FYCJzdKxicIKXGK6VrmT1nLnvlxirKp6ceuAyU/UaPl2Lt+s2iApDhzxARvj887DULRpOwlSmg6Rne8ZznPHrzqRN1yzGTG+8dTW2qmBTB5RRfVPrZdG5PNbeSEm+54ZUSQpxuiuxi185/By+DcUH5Z3w1UwvsJSvoM2ITB3nfNZT8GI+ji5iX+ZyV7WOgMlh+t/DdstaGf3yF4g3A3gDkh2S0PpD3aHE2HyQg55A+otuybjSVb0e7cRRu+rBWBAuQ
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(346002)(366004)(39860400002)(396003)(136003)(478600001)(316002)(66476007)(5660300002)(16526019)(6916009)(8936002)(26005)(83380400001)(2616005)(15650500001)(8676002)(186003)(36756003)(66556008)(66946007)(956004)(86362001)(2906002)(4326008)(6486002)(1076003)(6666004)(7696005)(52116002);
+ SFS:(4636009)(376002)(346002)(366004)(39860400002)(396003)(136003)(478600001)(316002)(66476007)(5660300002)(16526019)(6916009)(8936002)(26005)(83380400001)(2616005)(8676002)(186003)(36756003)(66556008)(66946007)(956004)(86362001)(2906002)(4326008)(6486002)(1076003)(6666004)(7696005)(52116002)(32563001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?vhz6NRaqxNICBY4MZuUc0AlpFqAtd+SqNU5IMqv9VXhg93ENhfp22ou8ZAOl?=
- =?us-ascii?Q?1xkbe7G7/0g/D0/ciXEg6ONkLmWWgA/yANjcUpH5qH+tHhsBjAcWqdPt8HsH?=
- =?us-ascii?Q?hwcV6nDtUvBB4PQ4l20dXt7SIdQ9gta18EmY4mg5qsYGG27zjcYBSYvpZdoM?=
- =?us-ascii?Q?FN/L7s03njyEa55xvsYa726cwim4jDvcerCkTHCETQUHRVsrQAr6bEUABprr?=
- =?us-ascii?Q?33qHRWRtVpZ5Svoa7bCANpcdxKUY9t8ZIIXbHmwH31Xx4bS++VoC6U3NsO52?=
- =?us-ascii?Q?JUYzYrcH3PQR9x3BwRzBvM3rSgEuYPRx6wklFrIpPoHiMO5yeImpHU5lNjuw?=
- =?us-ascii?Q?j7BqDa96XkdGxfs64IQ45AWgTfbrn6agj0UQpUAuLeazFSFD48x4BRJ05tKA?=
- =?us-ascii?Q?DGoG4PDbpX+XM+zPBaL/klAnDniF5tXhOkoIZuGpvf8QF5wYhZMqz9Qma4b4?=
- =?us-ascii?Q?+5+wd3bfkIgI4pBkV9p4qTQzcxvYdP7YyO3ZWd/hEZWp69GDMDYqzIARYvKH?=
- =?us-ascii?Q?qQHZfKLuiLtiPB8dhB85qYHANsv5UISfa3PrdanIvR9Dc1FzznzVocpArmyd?=
- =?us-ascii?Q?uaoAbBZvbN+ljb47UGTVG9a5l9LAnipWrHB7T4722Z3NommSZUL5bFJAEkX0?=
- =?us-ascii?Q?XfcEJ3HOaHJJHb8b+VKk1LhtmoPRi/uqFlOfohps6VntcWuRpwDPYngi+EnK?=
- =?us-ascii?Q?RkzY+ZDnbO4FS9d5e5L1sWKDUa/UqoCMc8cn4gfMIdUITXHzeaOCIJxjY09N?=
- =?us-ascii?Q?Ma9DjYcyR63MYt7KD4VSaG3hVMqIWCseWHiGm6FiyiNb2SWMhQ2W6pmO1y43?=
- =?us-ascii?Q?nSUrgBhqe64aAvEJj13PwKxSCvqRB9y3MJ2GMv0TKZTC5/fEd/mdfbu2sVw0?=
- =?us-ascii?Q?NGLbJ5s54WuhU2Ng4qcQksOUww++ahH8C4lHo4PGsudKNNTADp3q/MAy4uuP?=
- =?us-ascii?Q?2y+8S9McM/PDr7sAT1W5pc5pRW5XZMTSWhd2OIHIr0P56sKYxzSo7v6Ua64m?=
- =?us-ascii?Q?SaaeSIjCiwX9UOAcy3SEGwGKt3bKg4Bj/x/V+TyvlFn4T/R72BLDE2l03wzZ?=
- =?us-ascii?Q?GwurcMx92LK6O8hi4BZ/2T445NQL3zIvRbyXI6h0eJI+jMgul23sacCEbsMQ?=
- =?us-ascii?Q?EdMMNwFRkcXuwIi2OBUcNe+KoQESzv47KRwYtbAFrYiolinQ//NdMqQpqyP2?=
- =?us-ascii?Q?894tbBnjTrRk9KttzyF3gib6L9wiHi8nSuX0mTb4Bykz80hVRsSRRr5LeAqu?=
- =?us-ascii?Q?apXrrDyWm4yvIJMISh9jfAk5wzwvHYYTieeMVZvCCOD4M+9OvpJ+522if53x?=
- =?us-ascii?Q?TJW8zsSBh3bTLoUWqdHIRjfN?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?K9nSFUqUbThLWVX+22pA7ZijnHn94vza3k/KmAYNkkyIm8nsQUKCrrwPrk4i?=
+ =?us-ascii?Q?PxTvdDinw/QTpUAHmn/uasDhiismqEPliI6MQVbvwJfp+qH9b+mSEoNBIu/L?=
+ =?us-ascii?Q?sFC22tXkzWEo+qOUb+qjjCvilvNkh1xNsFer5i1+W1wGdA8Y6W42ocLBPw6A?=
+ =?us-ascii?Q?d5SU275CP0ImbglPzUjnCehICyg7fsCkROBXbqCSZkjIpqOooeSoVWxHNCkn?=
+ =?us-ascii?Q?1uGKsBX7GiT63wsc1o9G5SX9k+R6ARCk2qCebcmVLdSLu85h5xMccGbHcpXm?=
+ =?us-ascii?Q?1AFhcTDjPk3wPo+Eb6HCB5/iMIj8qHT3AbkQuVvjJgmBSXKRIx8tCuFoMheO?=
+ =?us-ascii?Q?oWUoxz3E28ORtRIWBj+Ay9MqaABR6MuH77j4mVzpjTudGBUwCvTpD0amdmmQ?=
+ =?us-ascii?Q?NXcxboag4hY55S4ZZTxDJeLNZ5PrgAFldWEvbIH6lHfm7Q6WCVYQmu4DpixE?=
+ =?us-ascii?Q?IBlRT8L2nbWgxyaHrqF06ajOHGukAteHz2peKsWEhu5CkifubTl9+0ggwInz?=
+ =?us-ascii?Q?0nYAqbwWilUa1ZXlqwLmCKFizku47RnaxFlxW5szZFD6qTq6ycozBlaCCfoP?=
+ =?us-ascii?Q?W+i9iteSTT29Yh1NJPD/FivT19hrENda3dIibynAKT4lp6u3M240Pfaxy/R8?=
+ =?us-ascii?Q?+9rwaQqgT0v1g0U2eRhUKkVw0Y3SPriod000t1I8VcVJBCZ10Wj3x+IYA5+s?=
+ =?us-ascii?Q?7YLLyWwLX3Pjo8l9DiKnykNKrBJZUsmZ3sKscpJ6+4G9mT1NzAUAedZmBvHK?=
+ =?us-ascii?Q?tRG5AMglUROaU9kxhmqq0adq6XmpXviUmi9E+/ul+03ZZtHouDORsG0CfI+Y?=
+ =?us-ascii?Q?XRsBMcBJaMZdL6CEnfMAgDOVGh6HC77OOQMj+FknFuyq9OkF0x+9MbxomDMa?=
+ =?us-ascii?Q?cGT88jWvDE/ZxcR0w+DNTG5AWaYz9XQ7KYaWkOairZVRsc10BgF6UstLg+I1?=
+ =?us-ascii?Q?TBF9tKLgvGCBJ0bnq1HauAynqjcpfnFwzCazX/pBVRapyWFEH5KtYdYbAgsI?=
+ =?us-ascii?Q?WUaq/l/fbyJe4eAisaqaZx2uDLscDTqvIl/W9d2ScSXN/1dkpB6VKfCatOCq?=
+ =?us-ascii?Q?CtdMF+6XEPHvJKaSkAAqOBdLWukk1hZNcrftKPh7wheJhUCxd67cth4RsTNt?=
+ =?us-ascii?Q?jjzvat9gGzGXvsKF+iBmb4Js+tefKONvRNx/QO8qIZR7Z8aQjAzb7s7n0eL1?=
+ =?us-ascii?Q?pWOXqAHHyJffgKj61vvXfJno9Gn1HpnKewTzeXO92+gCon83fhztbdHSxzUz?=
+ =?us-ascii?Q?zKRJPiEN9Q4xT2tNTihRpFbuOas5fgUnGr+/YWthe4YGzmq4NTQfajx1fKiJ?=
+ =?us-ascii?Q?vf6WBIHUBABstjOUd17cEWdj?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0432ee3b-37f4-4604-6c3e-08d8e2b14914
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07d767c2-1f31-4ea5-9471-08d8e2b14993
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2021 04:10:33.8249 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2021 04:10:34.6204 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mG+ghdZAY6n6lSpLJ/k3XLnnItizdMHNetH6ydKTmRKA3yIxXamXoHDmO0f14+6Xppq+X6MFzp5WjI1vOCi8dg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: qEnN+K7MJ5vfTIEhGFKt3bu03nh7iaaSnhRevYfsj8cSgcsvaenoypaSFQN0DL/1q29cmu3+TIW56dgYUu95UA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4486
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -122,34 +122,123 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Vram is system memory, so no need to evict.
+We only need special handling for the S0ix suspend and resume
+cases, legacy S3/S4/shutdown/reboot/reset should use the
+standard code pathes.  This should fix systems with S0ix
+plus legacy S4.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  6 ------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 22 ++++++++++++----------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  4 ----
+ 3 files changed, 12 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 4b29b8205442..2da3a3480863 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -1028,13 +1028,11 @@ int amdgpu_bo_evict_vram(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 4ddc5cc983c7..bf9359ccf3da 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1040,12 +1040,6 @@ struct amdgpu_device {
+ 	enum amdgpu_pmops_state         pmops_state;
+ 	bool                            in_suspend;
+ 
+-	/*
+-	 * The combination flag in_poweroff_reboot_com used to identify the poweroff
+-	 * and reboot opt in the s0i3 system-wide suspend.
+-	 */
+-	bool 				in_poweroff_reboot_com;
+-
+ 	atomic_t 			in_gpu_reset;
+ 	enum pp_mp1_state               mp1_state;
+ 	struct rw_semaphore reset_sem;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index ac5f7837285b..2b6e483259f1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -2680,9 +2680,10 @@ static void amdgpu_device_delay_enable_gfx_off(struct work_struct *work)
+ static int amdgpu_device_ip_suspend_phase1(struct amdgpu_device *adev)
  {
- 	struct ttm_resource_manager *man;
+ 	int i, r;
++	bool s0ix_suspend = amdgpu_acpi_is_s0ix_supported(adev) &&
++		(adev->pmops_state == AMDGPU_PMOPS_SUSPEND);
  
--	/* late 2.6.33 fix IGP hibernate - we need pm ops to do this correct */
--#ifndef CONFIG_HIBERNATION
--	if (adev->flags & AMD_IS_APU) {
--		/* Useless to evict on IGP chips */
-+	if ((adev->flags & AMD_IS_APU) &&
-+	    (adev->pmops_state == AMDGPU_PMOPS_SUSPEND)) {
-+		/* Useless to evict vram on APUs for suspend to ram */
- 		return 0;
+-	if (adev->in_poweroff_reboot_com ||
+-	    !amdgpu_acpi_is_s0ix_supported(adev) || amdgpu_in_reset(adev)) {
++	if (!s0ix_suspend) {
+ 		amdgpu_device_set_pg_state(adev, AMD_PG_STATE_UNGATE);
+ 		amdgpu_device_set_cg_state(adev, AMD_CG_STATE_UNGATE);
  	}
--#endif
+@@ -3672,13 +3673,13 @@ void amdgpu_device_fini(struct amdgpu_device *adev)
+  */
+ int amdgpu_device_suspend(struct drm_device *dev, bool fbcon)
+ {
+-	struct amdgpu_device *adev;
++	struct amdgpu_device *adev = drm_to_adev(dev);
+ 	struct drm_crtc *crtc;
+ 	struct drm_connector *connector;
+ 	struct drm_connector_list_iter iter;
+ 	int r;
+-
+-	adev = drm_to_adev(dev);
++	bool s0ix_suspend = amdgpu_acpi_is_s0ix_supported(adev) &&
++		(adev->pmops_state == AMDGPU_PMOPS_SUSPEND);
  
- 	man = ttm_manager_type(&adev->mman.bdev, TTM_PL_VRAM);
- 	return ttm_resource_manager_evict_all(&adev->mman.bdev, man);
+ 	if (dev->switch_power_state == DRM_SWITCH_POWER_OFF)
+ 		return 0;
+@@ -3741,11 +3742,10 @@ int amdgpu_device_suspend(struct drm_device *dev, bool fbcon)
+ 
+ 	amdgpu_fence_driver_suspend(adev);
+ 
+-	if (adev->in_poweroff_reboot_com ||
+-	    !amdgpu_acpi_is_s0ix_supported(adev) || amdgpu_in_reset(adev))
+-		r = amdgpu_device_ip_suspend_phase2(adev);
+-	else
++	if (s0ix_suspend)
+ 		amdgpu_gfx_state_change_set(adev, sGpuChangeState_D3Entry);
++	else
++		r = amdgpu_device_ip_suspend_phase2(adev);
+ 	/* evict remaining vram memory
+ 	 * This second call to evict vram is to evict the gart page table
+ 	 * using the CPU.
+@@ -3772,11 +3772,13 @@ int amdgpu_device_resume(struct drm_device *dev, bool fbcon)
+ 	struct amdgpu_device *adev = drm_to_adev(dev);
+ 	struct drm_crtc *crtc;
+ 	int r = 0;
++	bool s0ix_resume = amdgpu_acpi_is_s0ix_supported(adev) &&
++		(adev->pmops_state == AMDGPU_PMOPS_RESUME);
+ 
+ 	if (dev->switch_power_state == DRM_SWITCH_POWER_OFF)
+ 		return 0;
+ 
+-	if (amdgpu_acpi_is_s0ix_supported(adev))
++	if (s0ix_resume)
+ 		amdgpu_gfx_state_change_set(adev, sGpuChangeState_D0Entry);
+ 
+ 	/* post card */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 0312c52bd39d..dd6d24305b16 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -1288,9 +1288,7 @@ amdgpu_pci_shutdown(struct pci_dev *pdev)
+ 	 */
+ 	if (!amdgpu_passthrough(adev))
+ 		adev->mp1_state = PP_MP1_STATE_UNLOAD;
+-	adev->in_poweroff_reboot_com = true;
+ 	amdgpu_device_ip_suspend(adev);
+-	adev->in_poweroff_reboot_com = false;
+ 	adev->mp1_state = PP_MP1_STATE_NONE;
+ }
+ 
+@@ -1380,9 +1378,7 @@ static int amdgpu_pmops_poweroff(struct device *dev)
+ 	int r;
+ 
+ 	adev->pmops_state = AMDGPU_PMOPS_POWEROFF;
+-	adev->in_poweroff_reboot_com = true;
+ 	r =  amdgpu_device_suspend(drm_dev, true);
+-	adev->in_poweroff_reboot_com = false;
+ 	adev->pmops_state = AMDGPU_PMOPS_NONE;
+ 	return r;
+ }
 -- 
 2.29.2
 
