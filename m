@@ -2,66 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A42823329BA
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Mar 2021 16:08:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC4E332A29
+	for <lists+amd-gfx@lfdr.de>; Tue,  9 Mar 2021 16:19:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4D9C6E0C4;
-	Tue,  9 Mar 2021 15:08:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5321A6E907;
+	Tue,  9 Mar 2021 15:19:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
- [IPv6:2a00:1450:4864:20::52c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FF206E0C4
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Mar 2021 15:08:18 +0000 (UTC)
-Received: by mail-ed1-x52c.google.com with SMTP id p1so20817618edy.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 09 Mar 2021 07:08:17 -0800 (PST)
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com
+ [IPv6:2607:f8b0:4864:20::330])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0BC46E0CF
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Mar 2021 15:19:26 +0000 (UTC)
+Received: by mail-ot1-x330.google.com with SMTP id n23so7515349otq.1
+ for <amd-gfx@lists.freedesktop.org>; Tue, 09 Mar 2021 07:19:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=uesIaQEIwUjG9BenvJ9QRVgsunjDgLYT6Q3fk0EGeyY=;
- b=uJTNZeM4loLeYhsiZ1ogOGRrd7R/Bc0YzM0rcxon/c8RcB2/MAYIE2EB4RaSHm/4/r
- mIIBzeVjsL80/eMiwq26ysxgvRbA+Ccc6EoeMRCmKq4/tahkcQkO1XWJ2P9O2fYGgzta
- a5tXySSIwPl8BmmeLIBUisfmtkaCsu6Duv3fnJxydyy4KDbIavsUngI+oAih/2WRNwoi
- hyKMqv3hB+i2kzXENgjRrtaZDZlSUi0Tq1XAIh8/+drtMJgjqfGizSOP7SMEVyTvvS70
- Qh82QJv+OL3392xBV8w6WKBaq5qo8RfgyxcR9LOmcscYPvFyFLAXie7JOq/yv5nikAnh
- SDNA==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=I28s0ILr6N+iOsrHWWL1o89r47JqRWI3X+Y/3A4oiWM=;
+ b=AiEBHGbTkhxdftiBmyXq9tj7mMSiWnREZ4TbzXinmpQt8+cftQsJG0KSLINmgQplGt
+ 2pXR9waDCSfcoNLSVi9iGDj//JdLlKOVapMjX/C44rfSDZ6W1LiuQd6oit7SA1SJredp
+ 4SNHJ1yf6BhF7GXyHPbFK3NzcQXptuoHp2wOG2G3XL48LhkrK9NUnNIiZKLaEiPaaDcx
+ w37D7+31k7v+2tXw6xKXOOHbQMR62bPFvgWro2u5xvYR/yJ47ysiV1CMEjo4md+xd4Jm
+ M220jqazul1YTWQBXDQ46f0xhYPrWxgcD1ePHj/zZhNV2uvas7ZOY02StdmkIIN0rqdn
+ EdyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=uesIaQEIwUjG9BenvJ9QRVgsunjDgLYT6Q3fk0EGeyY=;
- b=jSmtT2OxILfRJWQ4weu6LZQ2M9vXyxHI+4oRnMISAZJrh9wxoRUv0/xvflaSlwee/j
- AIPWpq0OELa6ch95x+1orb2uY1eWsdgboIsVAdvPLvXst0/CEoUW6RI5Z47LFm2TMoez
- DQmfbHPKKRlHeTQh2FwBEHgJiZ/SGK0xoMc7Ob7dsNjAWTkcqqmFDVMarpR37Lyk+Tcj
- QDAJ0G1rn2QyHy8t1TDqtIynRXMgkyuCK33YlHGOoQR+ajRk6mMXGjzJ9OtcBJ0rO0HH
- Z+sadzz4rO9e3zcUAf3F1iGTNdAvkqwdQ/Gcv+8glOUcH9k9gQDaBMwctbEtTMSyxG31
- ndAg==
-X-Gm-Message-State: AOAM531azi6dEpiaJSXjSDontVxnWJuEpq4pzaiKcwxOIF+vKhbvFvn9
- VAz/ofMod7nV5rAqBgBQFuoCvctEgOKeNw==
-X-Google-Smtp-Source: ABdhPJzIry/sgNHnOxbWNW8ZgdqFxENDH49O8xtHVK5pqVTakDhrK/K2GUz85AJ3VFUkP01YP2Oisg==
-X-Received: by 2002:aa7:ce1a:: with SMTP id d26mr4622179edv.206.1615302496747; 
- Tue, 09 Mar 2021 07:08:16 -0800 (PST)
-Received: from ?IPv6:2a02:908:1252:fb60:7f9b:4f7c:c70d:c3fe?
- ([2a02:908:1252:fb60:7f9b:4f7c:c70d:c3fe])
- by smtp.gmail.com with ESMTPSA id t12sm3606799edy.56.2021.03.09.07.08.15
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 09 Mar 2021 07:08:16 -0800 (PST)
-Subject: Re: [PATCH 3/5] drm/amdgpu: fb BO should be ttm_bo_type_device
-To: Nirmoy <nirmodas@amd.com>, Nirmoy Das <nirmoy.das@amd.com>,
- Christian.Koenig@amd.com
-References: <20210309084659.37649-1-nirmoy.das@amd.com>
- <20210309084659.37649-3-nirmoy.das@amd.com>
- <03c65172-7b17-7b80-7b15-cc687fb45fa0@gmail.com>
- <889d26bb-4281-f9be-6f72-a96f7359b572@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <c9c9d0cc-b970-c1e0-e158-eaf8177ff1f1@gmail.com>
-Date: Tue, 9 Mar 2021 16:08:15 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=I28s0ILr6N+iOsrHWWL1o89r47JqRWI3X+Y/3A4oiWM=;
+ b=DMiJvEXlg31jIDcyDROyo3ZIYKCY+6HMMhizIEgCNb6IIPiyZOcxx3CMF1OHicEAYx
+ tRvHcypdB2IcZyjXS1jnIfZQ7xLi4nOIy9Ci8qRFYSatT424ZqVERhrJch0rqdaase72
+ zV3RVhr6ZkpYkz+YI4m02fa2FSkEva59w8LAXedq9JXzceK5rXhJ0pu//zKegq83BRkf
+ DIO3wTyCWxKpSTIsabCukz80ukSxRU/Zsfk6eDniyl83q1lJuZCPvZ0ygbvY2Ea510rz
+ 8oK8BgCWp/XMDHybgR8sUpBPzo4tzgI10WKmOpE9v4LMG09NHgrVR8TZrSi4cs8OVBta
+ C5mQ==
+X-Gm-Message-State: AOAM530XwJRMChcWfKC53GMywHds+84p2oQ38Y8CJyY20+iW78t+XK7c
+ VLxGNct+JqSnMyYw3X1rk3g0+59Ccdwpm5Aw32E=
+X-Google-Smtp-Source: ABdhPJwsDq51NAGF/xMugui2lhY2HoKB4RBT+j3RXd56bACgJGeibFkHjTu/T+0DAckMiscEHXlNK0WGFH8akxZ+g5A=
+X-Received: by 2002:a05:6830:408f:: with SMTP id
+ x15mr25361208ott.132.1615303166013; 
+ Tue, 09 Mar 2021 07:19:26 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <889d26bb-4281-f9be-6f72-a96f7359b572@amd.com>
-Content-Language: en-US
+References: <20210309131745.3866-1-kenneth.feng@amd.com>
+In-Reply-To: <20210309131745.3866-1-kenneth.feng@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 9 Mar 2021 10:19:15 -0500
+Message-ID: <CADnq5_PJ=Ot9-M3EBv7KewHobHTS6GTBiB+rqcAB1X95y4X8jQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/pm: bug fix for pcie dpm
+To: Kenneth Feng <kenneth.feng@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,46 +60,276 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-CgpBbSAwOS4wMy4yMSB1bSAxNTozMyBzY2hyaWViIE5pcm1veToKPgo+IE9uIDMvOS8yMSAxOjM5
-IFBNLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3RlOgo+PiBBbSAwOS4wMy4yMSB1bSAwOTo0NiBzY2hy
-aWViIE5pcm1veSBEYXM6Cj4+PiBGQiBCTyBzaG91bGQgbm90IGJlIHR0bV9ib190eXBlX2tlcm5l
-bCB0eXBlIGFuZAo+Pj4gYW1kZ3B1ZmJfY3JlYXRlX3Bpbm5lZF9vYmplY3QoKSBwaW5zIHRoZSBG
-QiBCTyBhbnl3YXkuCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogTmlybW95IERhcyA8bmlybW95LmRh
-c0BhbWQuY29tPgo+Pj4gQWNrZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2Vu
-aWdAYW1kLmNvbT4KPj4+IC0tLQo+Pj4gwqAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
-Z3B1X2ZiLmMgfCAyICstCj4+PiDCoCAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEg
-ZGVsZXRpb24oLSkKPj4+Cj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvYW1kZ3B1X2ZiLmMgCj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9m
-Yi5jCj4+PiBpbmRleCA1MWNkNDljNmYzOGYuLjI0MDEwY2FjZjdkMCAxMDA2NDQKPj4+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9mYi5jCj4+PiArKysgYi9kcml2ZXJz
-L2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZmIuYwo+Pj4gQEAgLTE0Niw3ICsxNDYsNyBAQCBz
-dGF0aWMgaW50IGFtZGdwdWZiX2NyZWF0ZV9waW5uZWRfb2JqZWN0KHN0cnVjdCAKPj4+IGFtZGdw
-dV9mYmRldiAqcmZiZGV2LAo+Pj4gwqDCoMKgwqDCoCBzaXplID0gbW9kZV9jbWQtPnBpdGNoZXNb
-MF0gKiBoZWlnaHQ7Cj4+PiDCoMKgwqDCoMKgIGFsaWduZWRfc2l6ZSA9IEFMSUdOKHNpemUsIFBB
-R0VfU0laRSk7Cj4+PiDCoMKgwqDCoMKgIHJldCA9IGFtZGdwdV9nZW1fb2JqZWN0X2NyZWF0ZShh
-ZGV2LCBhbGlnbmVkX3NpemUsIDAsIGRvbWFpbiwgCj4+PiBmbGFncywKPj4+IC3CoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB0dG1fYm9fdHlwZV9rZXJuZWwsIE5V
-TEwsICZnb2JqKTsKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCB0dG1fYm9fdHlwZV9kZXZpY2UsIE5VTEwsICZnb2JqKTsKPj4KPj4gQ2FuIHlvdSBkb3Vi
-bGUgY2hlY2sgaWYgd2Ugc3RpbGwgbmVlZCB0aGUgdHRtX2JvX3R5cGVfKiBwYXJhbWV0ZXIgdG8g
-Cj4+IGFtZGdwdV9nZW1fb2JqZWN0X2NyZWF0ZSgpIGFmdGVyIGFsaWduaW5nIHRoaXM/Cj4KPgo+
-IFdlIG5lZWQgdGhhdCBpbiBvbmx5IG9uZSBwbGFjZToKPgo+IGRyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2FtZGdwdV9kbWFfYnVmLmMgLS0+IAo+IGFtZGdwdV9kbWFfYnVmX2NyZWF0ZV9vYmoo
-KQo+Cj4gNDQ1OiByZXQgPSBhbWRncHVfZ2VtX29iamVjdF9jcmVhdGUoYWRldiwgZG1hX2J1Zi0+
-c2l6ZSwgUEFHRV9TSVpFLAo+Cj4gNDQ2LSDCoMKgwqAgwqDCoMKgIMKgwqDCoCDCoMKgwqAgwqDC
-oMKgIMKgwqDCoCDCoMKgwqAgwqDCoMKgIEFNREdQVV9HRU1fRE9NQUlOX0NQVSwgZmxhZ3MsCj4K
-PiA0NDctIMKgwqDCoCDCoMKgwqAgwqDCoMKgIMKgwqDCoCDCoMKgwqAgwqDCoMKgIMKgwqDCoCDC
-oMKgwqAgdHRtX2JvX3R5cGVfc2csIHJlc3YsICZnb2JqKTsKCkFoLCBvZiBjb3Vyc2UgdGhhdCBt
-YWtlc2Ugc2Vuc2UuCgpUaGFua3MsCkNocmlzdGlhbi4KCj4KPgo+Cj4gTmlybW95Cj4KPj4KPj4g
-VGhhbmtzLAo+PiBDaHJpc3RpYW4uCj4+Cj4+PiDCoMKgwqDCoMKgIGlmIChyZXQpIHsKPj4+IMKg
-wqDCoMKgwqDCoMKgwqDCoCBwcl9lcnIoImZhaWxlZCB0byBhbGxvY2F0ZSBmcmFtZWJ1ZmZlciAo
-JWQpXG4iLCAKPj4+IGFsaWduZWRfc2l6ZSk7Cj4+PiDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJu
-IC1FTk9NRU07Cj4+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+On Tue, Mar 9, 2021 at 8:17 AM Kenneth Feng <kenneth.feng@amd.com> wrote:
+>
+> Currently the pcie dpm has two problems.
+> 1. Only the high dpm level speed/width can be overrided
+> if the requested values are out of the pcie capability.
+> 2. The high dpm level is always overrided though sometimes
+> it's not necesarry.
+>
+> Signed-off-by: Kenneth Feng <kenneth.feng@amd.com>
+
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+
+> ---
+>  .../drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c | 48 ++++++++++++++
+>  .../drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c | 66 +++++++++++++++++++
+>  .../drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c | 48 ++++++++------
+>  3 files changed, 141 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
+> index 5e875ad8d633..408b35866704 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega10_hwmgr.c
+> @@ -1505,6 +1505,48 @@ static int vega10_populate_single_lclk_level(struct pp_hwmgr *hwmgr,
+>         return 0;
+>  }
+>
+> +static int vega10_override_pcie_parameters(struct pp_hwmgr *hwmgr)
+> +{
+> +       struct amdgpu_device *adev = (struct amdgpu_device *)(hwmgr->adev);
+> +       struct vega10_hwmgr *data =
+> +                       (struct vega10_hwmgr *)(hwmgr->backend);
+> +       uint32_t pcie_gen = 0, pcie_width = 0;
+> +       PPTable_t *pp_table = &(data->smc_state_table.pp_table);
+> +       int i;
+> +
+> +       if (adev->pm.pcie_gen_mask & CAIL_PCIE_LINK_SPEED_SUPPORT_GEN4)
+> +               pcie_gen = 3;
+> +       else if (adev->pm.pcie_gen_mask & CAIL_PCIE_LINK_SPEED_SUPPORT_GEN3)
+> +               pcie_gen = 2;
+> +       else if (adev->pm.pcie_gen_mask & CAIL_PCIE_LINK_SPEED_SUPPORT_GEN2)
+> +               pcie_gen = 1;
+> +       else if (adev->pm.pcie_gen_mask & CAIL_PCIE_LINK_SPEED_SUPPORT_GEN1)
+> +               pcie_gen = 0;
+> +
+> +       if (adev->pm.pcie_mlw_mask & CAIL_PCIE_LINK_WIDTH_SUPPORT_X16)
+> +               pcie_width = 6;
+> +       else if (adev->pm.pcie_mlw_mask & CAIL_PCIE_LINK_WIDTH_SUPPORT_X12)
+> +               pcie_width = 5;
+> +       else if (adev->pm.pcie_mlw_mask & CAIL_PCIE_LINK_WIDTH_SUPPORT_X8)
+> +               pcie_width = 4;
+> +       else if (adev->pm.pcie_mlw_mask & CAIL_PCIE_LINK_WIDTH_SUPPORT_X4)
+> +               pcie_width = 3;
+> +       else if (adev->pm.pcie_mlw_mask & CAIL_PCIE_LINK_WIDTH_SUPPORT_X2)
+> +               pcie_width = 2;
+> +       else if (adev->pm.pcie_mlw_mask & CAIL_PCIE_LINK_WIDTH_SUPPORT_X1)
+> +               pcie_width = 1;
+> +
+> +       for (i = 0; i < NUM_LINK_LEVELS; i++) {
+> +               if (pp_table->PcieGenSpeed[i] > pcie_gen)
+> +                       pp_table->PcieGenSpeed[i] = pcie_gen;
+> +
+> +               if (pp_table->PcieLaneCount[i] > pcie_width)
+> +                       pp_table->PcieLaneCount[i] = pcie_width;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  static int vega10_populate_smc_link_levels(struct pp_hwmgr *hwmgr)
+>  {
+>         int result = -1;
+> @@ -2556,6 +2598,11 @@ static int vega10_init_smc_table(struct pp_hwmgr *hwmgr)
+>                         "Failed to initialize Link Level!",
+>                         return result);
+>
+> +       result = vega10_override_pcie_parameters(hwmgr);
+> +       PP_ASSERT_WITH_CODE(!result,
+> +                       "Failed to override pcie parameters!",
+> +                       return result);
+> +
+>         result = vega10_populate_all_graphic_levels(hwmgr);
+>         PP_ASSERT_WITH_CODE(!result,
+>                         "Failed to initialize Graphics Level!",
+> @@ -2922,6 +2969,7 @@ static int vega10_start_dpm(struct pp_hwmgr *hwmgr, uint32_t bitmap)
+>         return 0;
+>  }
+>
+> +
+>  static int vega10_enable_disable_PCC_limit_feature(struct pp_hwmgr *hwmgr, bool enable)
+>  {
+>         struct vega10_hwmgr *data = hwmgr->backend;
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c
+> index a827f2bc7904..196ac2a4d145 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega12_hwmgr.c
+> @@ -481,6 +481,67 @@ static void vega12_init_dpm_state(struct vega12_dpm_state *dpm_state)
+>         dpm_state->hard_max_level = 0xffff;
+>  }
+>
+> +static int vega12_override_pcie_parameters(struct pp_hwmgr *hwmgr)
+> +{
+> +       struct amdgpu_device *adev = (struct amdgpu_device *)(hwmgr->adev);
+> +       struct vega12_hwmgr *data =
+> +                       (struct vega12_hwmgr *)(hwmgr->backend);
+> +       uint32_t pcie_gen = 0, pcie_width = 0, smu_pcie_arg, pcie_gen_arg, pcie_width_arg;
+> +       PPTable_t *pp_table = &(data->smc_state_table.pp_table);
+> +       int i;
+> +       int ret;
+> +
+> +       if (adev->pm.pcie_gen_mask & CAIL_PCIE_LINK_SPEED_SUPPORT_GEN4)
+> +               pcie_gen = 3;
+> +       else if (adev->pm.pcie_gen_mask & CAIL_PCIE_LINK_SPEED_SUPPORT_GEN3)
+> +               pcie_gen = 2;
+> +       else if (adev->pm.pcie_gen_mask & CAIL_PCIE_LINK_SPEED_SUPPORT_GEN2)
+> +               pcie_gen = 1;
+> +       else if (adev->pm.pcie_gen_mask & CAIL_PCIE_LINK_SPEED_SUPPORT_GEN1)
+> +               pcie_gen = 0;
+> +
+> +       if (adev->pm.pcie_mlw_mask & CAIL_PCIE_LINK_WIDTH_SUPPORT_X16)
+> +               pcie_width = 6;
+> +       else if (adev->pm.pcie_mlw_mask & CAIL_PCIE_LINK_WIDTH_SUPPORT_X12)
+> +               pcie_width = 5;
+> +       else if (adev->pm.pcie_mlw_mask & CAIL_PCIE_LINK_WIDTH_SUPPORT_X8)
+> +               pcie_width = 4;
+> +       else if (adev->pm.pcie_mlw_mask & CAIL_PCIE_LINK_WIDTH_SUPPORT_X4)
+> +               pcie_width = 3;
+> +       else if (adev->pm.pcie_mlw_mask & CAIL_PCIE_LINK_WIDTH_SUPPORT_X2)
+> +               pcie_width = 2;
+> +       else if (adev->pm.pcie_mlw_mask & CAIL_PCIE_LINK_WIDTH_SUPPORT_X1)
+> +               pcie_width = 1;
+> +
+> +       /* Bit 31:16: LCLK DPM level. 0 is DPM0, and 1 is DPM1
+> +        * Bit 15:8:  PCIE GEN, 0 to 3 corresponds to GEN1 to GEN4
+> +        * Bit 7:0:   PCIE lane width, 1 to 7 corresponds is x1 to x32
+> +        */
+> +       for (i = 0; i < NUM_LINK_LEVELS; i++) {
+> +               pcie_gen_arg = (pp_table->PcieGenSpeed[i] > pcie_gen) ? pcie_gen :
+> +                       pp_table->PcieGenSpeed[i];
+> +               pcie_width_arg = (pp_table->PcieLaneCount[i] > pcie_width) ? pcie_width :
+> +                       pp_table->PcieLaneCount[i];
+> +
+> +               if (pcie_gen_arg != pp_table->PcieGenSpeed[i] || pcie_width_arg !=
+> +                   pp_table->PcieLaneCount[i]) {
+> +                       smu_pcie_arg = (i << 16) | (pcie_gen_arg << 8) | pcie_width_arg;
+> +                       ret = smum_send_msg_to_smc_with_parameter(hwmgr,
+> +                               PPSMC_MSG_OverridePcieParameters, smu_pcie_arg,
+> +                               NULL);
+> +                       PP_ASSERT_WITH_CODE(!ret,
+> +                               "[OverridePcieParameters] Attempt to override pcie params failed!",
+> +                               return ret);
+> +               }
+> +
+> +               /* update the pptable */
+> +               pp_table->PcieGenSpeed[i] = pcie_gen_arg;
+> +               pp_table->PcieLaneCount[i] = pcie_width_arg;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  static int vega12_get_number_of_dpm_level(struct pp_hwmgr *hwmgr,
+>                 PPCLK_e clk_id, uint32_t *num_of_levels)
+>  {
+> @@ -968,6 +1029,11 @@ static int vega12_enable_dpm_tasks(struct pp_hwmgr *hwmgr)
+>                         "Failed to enable all smu features!",
+>                         return result);
+>
+> +       result = vega12_override_pcie_parameters(hwmgr);
+> +       PP_ASSERT_WITH_CODE(!result,
+> +                       "[EnableDPMTasks] Failed to override pcie parameters!",
+> +                       return result);
+> +
+>         tmp_result = vega12_power_control_set_level(hwmgr);
+>         PP_ASSERT_WITH_CODE(!tmp_result,
+>                         "Failed to power control set level!",
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c
+> index e8eec2539c17..78bbd4d666f2 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/vega20_hwmgr.c
+> @@ -831,7 +831,9 @@ static int vega20_override_pcie_parameters(struct pp_hwmgr *hwmgr)
+>         struct amdgpu_device *adev = (struct amdgpu_device *)(hwmgr->adev);
+>         struct vega20_hwmgr *data =
+>                         (struct vega20_hwmgr *)(hwmgr->backend);
+> -       uint32_t pcie_gen = 0, pcie_width = 0, smu_pcie_arg;
+> +       uint32_t pcie_gen = 0, pcie_width = 0, smu_pcie_arg, pcie_gen_arg, pcie_width_arg;
+> +       PPTable_t *pp_table = &(data->smc_state_table.pp_table);
+> +       int i;
+>         int ret;
+>
+>         if (adev->pm.pcie_gen_mask & CAIL_PCIE_LINK_SPEED_SUPPORT_GEN4)
+> @@ -860,17 +862,27 @@ static int vega20_override_pcie_parameters(struct pp_hwmgr *hwmgr)
+>          * Bit 15:8:  PCIE GEN, 0 to 3 corresponds to GEN1 to GEN4
+>          * Bit 7:0:   PCIE lane width, 1 to 7 corresponds is x1 to x32
+>          */
+> -       smu_pcie_arg = (1 << 16) | (pcie_gen << 8) | pcie_width;
+> -       ret = smum_send_msg_to_smc_with_parameter(hwmgr,
+> -                       PPSMC_MSG_OverridePcieParameters, smu_pcie_arg,
+> -                       NULL);
+> -       PP_ASSERT_WITH_CODE(!ret,
+> -               "[OverridePcieParameters] Attempt to override pcie params failed!",
+> -               return ret);
+> +       for (i = 0; i < NUM_LINK_LEVELS; i++) {
+> +               pcie_gen_arg = (pp_table->PcieGenSpeed[i] > pcie_gen) ? pcie_gen :
+> +                       pp_table->PcieGenSpeed[i];
+> +               pcie_width_arg = (pp_table->PcieLaneCount[i] > pcie_width) ? pcie_width :
+> +                       pp_table->PcieLaneCount[i];
+> +
+> +               if (pcie_gen_arg != pp_table->PcieGenSpeed[i] || pcie_width_arg !=
+> +                   pp_table->PcieLaneCount[i]) {
+> +                       smu_pcie_arg = (i << 16) | (pcie_gen_arg << 8) | pcie_width_arg;
+> +                       ret = smum_send_msg_to_smc_with_parameter(hwmgr,
+> +                               PPSMC_MSG_OverridePcieParameters, smu_pcie_arg,
+> +                               NULL);
+> +                       PP_ASSERT_WITH_CODE(!ret,
+> +                               "[OverridePcieParameters] Attempt to override pcie params failed!",
+> +                               return ret);
+> +               }
+>
+> -       data->pcie_parameters_override = true;
+> -       data->pcie_gen_level1 = pcie_gen;
+> -       data->pcie_width_level1 = pcie_width;
+> +               /* update the pptable */
+> +               pp_table->PcieGenSpeed[i] = pcie_gen_arg;
+> +               pp_table->PcieLaneCount[i] = pcie_width_arg;
+> +       }
+>
+>         return 0;
+>  }
+> @@ -3319,9 +3331,7 @@ static int vega20_print_clock_levels(struct pp_hwmgr *hwmgr,
+>                         data->od8_settings.od8_settings_array;
+>         OverDriveTable_t *od_table =
+>                         &(data->smc_state_table.overdrive_table);
+> -       struct phm_ppt_v3_information *pptable_information =
+> -               (struct phm_ppt_v3_information *)hwmgr->pptable;
+> -       PPTable_t *pptable = (PPTable_t *)pptable_information->smc_pptable;
+> +       PPTable_t *pptable = &(data->smc_state_table.pp_table);
+>         struct pp_clock_levels_with_latency clocks;
+>         struct vega20_single_dpm_table *fclk_dpm_table =
+>                         &(data->dpm_table.fclk_table);
+> @@ -3420,13 +3430,9 @@ static int vega20_print_clock_levels(struct pp_hwmgr *hwmgr,
+>                 current_lane_width =
+>                         vega20_get_current_pcie_link_width_level(hwmgr);
+>                 for (i = 0; i < NUM_LINK_LEVELS; i++) {
+> -                       if (i == 1 && data->pcie_parameters_override) {
+> -                               gen_speed = data->pcie_gen_level1;
+> -                               lane_width = data->pcie_width_level1;
+> -                       } else {
+> -                               gen_speed = pptable->PcieGenSpeed[i];
+> -                               lane_width = pptable->PcieLaneCount[i];
+> -                       }
+> +                       gen_speed = pptable->PcieGenSpeed[i];
+> +                       lane_width = pptable->PcieLaneCount[i];
+> +
+>                         size += sprintf(buf + size, "%d: %s %s %dMhz %s\n", i,
+>                                         (gen_speed == 0) ? "2.5GT/s," :
+>                                         (gen_speed == 1) ? "5.0GT/s," :
+> --
+> 2.17.1
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
