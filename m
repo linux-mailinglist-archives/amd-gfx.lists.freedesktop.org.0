@@ -1,86 +1,81 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 422FE33AD01
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Mar 2021 09:04:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0387633ACFD
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Mar 2021 09:04:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E411589D8A;
-	Mon, 15 Mar 2021 08:04:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2E7889D6C;
+	Mon, 15 Mar 2021 08:04:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1145 seconds by postgrey-1.36 at gabe;
- Sat, 13 Mar 2021 14:07:28 UTC
-Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
- [148.163.158.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 990846E0CD
- for <amd-gfx@lists.freedesktop.org>; Sat, 13 Mar 2021 14:07:28 +0000 (UTC)
-Received: from pps.filterd (m0098414.ppops.net [127.0.0.1])
- by mx0b-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
- 12DDXxmI190261; Sat, 13 Mar 2021 08:48:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=date : from : to : cc :
- subject : message-id : references : mime-version : content-type :
- content-transfer-encoding : in-reply-to; s=pp1;
- bh=Aezt22k7nI1/dEk1EZX87rLj6hGzbx2k2MzYvcp7d6E=;
- b=U6NR5DsIOySWOYxJ5kWVnhMpLY6JDrqTH78/y5DEo3KDFtLiIA9wlbaCJekJsqRfFhLy
- c+IZSahFN1vniZpFss9oKcoANj+YZuI96A1WikVa91sDhQQzUH5z6khOHkz3aPKWXRz7
- /vvUAu3qKXhdb1nWdAuvtlmEFyPzTVjS1riK1H3VDeW2X6cHoBE0kTmJ/6s+HZSRN9pk
- 4SlVzZy/38/Po1tRiyiuC7nKEY3fxSZAYa9MV4PQJAMOnMHAl7BuXSPm76AinoIVvUX7
- 6Zx1GJ9HYifxTz8Q2mz2cgrXjMExI7HeKZEa7wSsipCs7bVE1+/bvSBARXn/a28TVGM4 pw== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0b-001b2d01.pphosted.com with ESMTP id 378te0byyw-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sat, 13 Mar 2021 08:48:18 -0500
-Received: from m0098414.ppops.net (m0098414.ppops.net [127.0.0.1])
- by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 12DDmINx032872;
- Sat, 13 Mar 2021 08:48:18 -0500
-Received: from ppma03ams.nl.ibm.com (62.31.33a9.ip4.static.sl-reverse.com
- [169.51.49.98])
- by mx0b-001b2d01.pphosted.com with ESMTP id 378te0byyf-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sat, 13 Mar 2021 08:48:18 -0500
-Received: from pps.filterd (ppma03ams.nl.ibm.com [127.0.0.1])
- by ppma03ams.nl.ibm.com (8.16.0.43/8.16.0.43) with SMTP id 12DDlnqa013157;
- Sat, 13 Mar 2021 13:48:16 GMT
-Received: from b06cxnps3074.portsmouth.uk.ibm.com
- (d06relay09.portsmouth.uk.ibm.com [9.149.109.194])
- by ppma03ams.nl.ibm.com with ESMTP id 378n18gacm-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Sat, 13 Mar 2021 13:48:16 +0000
-Received: from d06av21.portsmouth.uk.ibm.com (d06av21.portsmouth.uk.ibm.com
- [9.149.105.232])
- by b06cxnps3074.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 12DDmEro22086114
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Sat, 13 Mar 2021 13:48:14 GMT
-Received: from d06av21.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 294B152054;
- Sat, 13 Mar 2021 13:48:14 +0000 (GMT)
-Received: from linux.ibm.com (unknown [9.145.23.212])
- by d06av21.portsmouth.uk.ibm.com (Postfix) with ESMTPS id 12E6C5204E;
- Sat, 13 Mar 2021 13:48:12 +0000 (GMT)
-Date: Sat, 13 Mar 2021 15:48:11 +0200
-From: Mike Rapoport <rppt@linux.ibm.com>
-To: David Hildenbrand <david@redhat.com>
-Subject: Re: slow boot with 7fef431be9c9 ("mm/page_alloc: place pages to tail
- in __free_pages_core()")
-Message-ID: <YEzCm/Uwvw7kKpd7@linux.ibm.com>
-References: <MW3PR12MB4537B49678884A1EB1F75AB5F36E9@MW3PR12MB4537.namprd12.prod.outlook.com>
- <0AE49D98-171A-42B9-9CFC-9193A9BD3346@redhat.com>
-MIME-Version: 1.0
+Received: from APC01-HK2-obe.outbound.protection.outlook.com
+ (mail-oln040092255059.outbound.protection.outlook.com [40.92.255.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D603E6E209
+ for <amd-gfx@lists.freedesktop.org>; Sun, 14 Mar 2021 06:08:14 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Y9P7cuyJVqJBm7Q5mmyWZK2V84aQjarfbQT86zV3x485EfbsglO/rG6G9fwCrtNTpt55m9o385avH1Mnk3Xq5F+QxnmfpEKfDZpXlNKiv8NY0+hrRL+NyVCbwRcPpt5jnwxT3VNPhr3gKlWhuIpmcISVsksQOlo+/A7nstjIc01Tym9+Etg9zLBPC3dzuJOsFd0OSOfma4l2antXeyxdcXNT8/KD53IuXiOIuGjmPOXuhead3wSSDr0lHEZt8pbNhYSONPd/Ti4a8peKfAsoT8Dyrt4DdoA9kU4S0bYpqEX5Mepp/yXW9Pf/eRMgX7kD877PmJDX76rePratsXdREQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xFLl76OXzu0Jzn+5i4LnqUwLOxxmSpYV1AumIAOIVEI=;
+ b=a/Ng0uqXyWlbKNfBZoVZJq4rJXhy89+/YnPafXZndmWqEbiANMSGdPoa5yoQ5qQMCwqu20B47y5zY9DX2pS/BpavxNCJWbNgLAp67FcbPmMk/ie1A7QKBBiH8AJPmi5FCnTX5SbS4S9i61Vt3QxQWSCsi91Ro4emVoUCP3ZQmU3LCIs83w9g2A4Aky06qqh+Bojp07uwm6KC2+v9oqbDqQM6dux/39jwsUk5gP62d/OvWx1Oa5Ps73zj0erspyB7traaeZ7grB3YhxyqX4BDjSKxob5Q9CG93+6Ml345ahOZK5N39pMLQvoRCDMeoFet2OXtCltvRLuW7+Ch9YYc+Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from SG2APC01FT043.eop-APC01.prod.protection.outlook.com
+ (2a01:111:e400:7ebd::4c) by
+ SG2APC01HT037.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebd::388)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.31; Sun, 14 Mar
+ 2021 06:08:07 +0000
+Received: from PSXP216MB0438.KORP216.PROD.OUTLOOK.COM (2a01:111:e400:7ebd::40)
+ by SG2APC01FT043.mail.protection.outlook.com
+ (2a01:111:e400:7ebd::285) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.30 via Frontend
+ Transport; Sun, 14 Mar 2021 06:08:07 +0000
+X-IncomingTopHeaderMarker: OriginalChecksum:39C259FE5A352F14B4F90E9CCB7FA2F8F7C7777EE64474FF5C6A5023171A6FE1;
+ UpperCasedChecksum:95508F51B7664242AB8CD115166DA12BE4B51D1A72837CE4D215B65869FFCCBC;
+ SizeAsReceived:7545; Count:44
+Received: from PSXP216MB0438.KORP216.PROD.OUTLOOK.COM
+ ([fe80::415f:2d37:68bd:23eb]) by PSXP216MB0438.KORP216.PROD.OUTLOOK.COM
+ ([fe80::415f:2d37:68bd:23eb%10]) with mapi id 15.20.3933.032; Sun, 14 Mar
+ 2021 06:08:07 +0000
+Date: Sun, 14 Mar 2021 14:07:59 +0800
+From: Nicholas Johnson <nicholas.johnson-opensource@outlook.com.au>
+To: linux-kernel@vger.kernel.org
+Subject: [PATCH 0/1] Init atombios timeout when amdgpu is Thunderbolt / USB4
+ when IO BAR is assigned
+Message-ID: <PSXP216MB04381375699870BA7E39B7D4806D9@PSXP216MB0438.KORP216.PROD.OUTLOOK.COM>
 Content-Disposition: inline
-In-Reply-To: <0AE49D98-171A-42B9-9CFC-9193A9BD3346@redhat.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369, 18.0.761
- definitions=2021-03-13_05:2021-03-12,
- 2021-03-13 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0
- phishscore=0 spamscore=0 bulkscore=0 mlxscore=0 adultscore=0
- mlxlogscore=999 priorityscore=1501 suspectscore=0 impostorscore=0
- malwarescore=0 clxscore=1011 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2009150000 definitions=main-2103130104
+X-TMN: [qzika/1Wl1kRI7bl6FcuhgjFcdonB3fY0tHfPrYhdmyy47T5cEbZOlGm8qJOxaJr]
+X-ClientProxiedBy: SY3PR01CA0079.ausprd01.prod.outlook.com
+ (2603:10c6:0:19::12) To PSXP216MB0438.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:300:d::20)
+X-Microsoft-Original-Message-ID: <YE2oKkRvBNNxzxoM@nicholas-dell-linux>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from nicholas-dell-linux (2001:4479:c200:d00:be34:878c:be91:5d31) by
+ SY3PR01CA0079.ausprd01.prod.outlook.com (2603:10c6:0:19::12) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3933.31 via Frontend Transport; Sun, 14 Mar 2021 06:08:05 +0000
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 44
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-Correlation-Id: 24010f98-346f-47a1-67ab-08d8e6af88d9
+X-MS-TrafficTypeDiagnostic: SG2APC01HT037:
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: By0OF3fzekiNoOmYuqZv+kSzA3O7gowIVBe/Q4/UIXoI8bigxHDZbsv9ZkCUf72GMC1et7gOtxQ/u5NGhyTeDmT48jQXXwPwf6z8l+g5rdeK41p89h5O29wLaTOSy/orWGSdvix57RjwCtInb3aFvSmfkRCsXqxjvx0Mky34wWxw8Byq2XG525V2IKBc17/s9pIolhIesSaey2LhHYlfhrd1VyPV9afJRV7UjdUvrd4y5ekSij/DUtQqJRDiSvyIB76ityTQNBlahAAiM/k/mWEjflHLMlzkZvD/gxwN2KiicV/kSugr5M+Gw9i0NSXcRgjZCO4DOD4ktdLgtFS5nzpBY5u1XsvazfWc60FYGu/vn7uIuLQhdD9bBK5+g+XF
+X-MS-Exchange-AntiSpam-MessageData: yLm1N6zrcwjDoSoNRMDOa3Ba7Xzz7xl0E1MlqDUR5yPdOGFqrOUxepmMIjcTk+vVcWvGtSoyMoQlbWElCL+bMZUfkkjS/86aL04hncRxmaBsAReZtA0ezkU6xiH2Q+dtnFCOcl/s5hISVUlGhCxC0Kso9PV/pWyvH5YhPC5NMib7n1DMc7IKjHK++PUV4DQVrskbl6oKuU5I13uPTn0s3g==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24010f98-346f-47a1-67ab-08d8e6af88d9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2021 06:08:07.1775 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-AuthSource: SG2APC01FT043.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2APC01HT037
 X-Mailman-Approved-At: Mon, 15 Mar 2021 08:04:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,32 +88,50 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Liang, Liang \(Leo\)" <Liang.Liang@amd.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, linux-kernel@vger.kernel.org,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- George Kennedy <george.kennedy@oracle.com>, "Huang, Ray" <Ray.Huang@amd.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>, "Koenig,
- Christian" <Christian.Koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SGksCgpPbiBTYXQsIE1hciAxMywgMjAyMSBhdCAxMDowNToyM0FNICswMTAwLCBEYXZpZCBIaWxk
-ZW5icmFuZCB3cm90ZToKPiA+IEFtIDEzLjAzLjIwMjEgdW0gMDU6MDQgc2NocmllYiBMaWFuZywg
-TGlhbmcgKExlbykgPExpYW5nLkxpYW5nQGFtZC5jb20+Ogo+ID4gCj4gPiBIaSBEYXZpZCwKPiA+
-IAo+ID4gV2hpY2ggYmVuY2htYXJrIHRvb2wgeW91IHByZWZlcj8gTWVtdGVzdDg2KyBvciBlbHNl
-Pwo+IAo+IEhpIExlbywKPiAKPiBJIHRoaW5rIHlvdSB3YW50IHNvbWV0aGluZyB0aGF0IHJ1bnMg
-dW5kZXIgTGludXggbmF0aXZlbHkuCj4gCj4gSeKAmG0gcGxhbm5pbmcgb24gY29kaW5nIHVwIGEg
-a2VybmVsIG1vZHVsZSB0byB3YWxrIGFsbCA0TUIgcGFnZXMgaW4gdGhlCj4gZnJlZWxpc3RzIGFu
-ZCBwZXJmb3JtIGEgc3RyZWFtIGJlbmNobWFyayBpbmRpdmlkdWFsbHkuIFRoZW4gd2UgbWlnaHQg
-YmUKPiBhYmxlIHRvIGlkZW50aWZ5IHRoZSBwcm9ibGVtYXRpYyByYW5nZSAtIGlmIHRoZXJlIGlz
-IGEgcHJvYmxlbWF0aWMgcmFuZ2UgOikKCk15IHdpbGQgZ3Vlc3Mgd291bGQgYmUgdGhhdCB0aGUg
-cGFnZXMgdGhhdCBhcmUgbm93IGF0IHRoZSBoZWFkIG9mIGZyZWUKbGlzdHMgaGF2ZSB3cm9uZyBj
-YWNoaW5nIGVuYWJsZWQuIE1pZ2h0IGJlIHdvcnRoIGNoZWNraW5nIGluIHlvdXIgdGVzdAptb2R1
-bGUuCgo+IEd1ZXNzIEnigJhsbCBoYXZlIGl0IHJ1bm5pbmcgYnkgTW9uZGF5IGFuZCBsZXQgeW91
-IGtub3cuCj4gCj4gQ2hlZXJzIQoKLS0gClNpbmNlcmVseSB5b3VycywKTWlrZS4KX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxp
-c3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+Hi all,
+
+I am not certain why this happens, but when IO bar is assigned on 
+Thunderbolt, the amdgpu init fails:
+
+[drm:atom_op_jump [amdgpu]] *ERROR* atombios stuck in loop for more than 20secs aborting
+[drm:amdgpu_atom_execute_table_locked [amdgpu]] *ERROR* atombios stuck executing B456 (len 304, WS 4, PS 0) @ 0xB51B
+[drm:amdgpu_atom_execute_table_locked [amdgpu]] *ERROR* atombios stuck executing B104 (len 183, WS 0, PS 8) @ 0xB17E
+amdgpu 0000:08:00.0: amdgpu: gpu post error!
+amdgpu 0000:08:00.0: amdgpu: Fatal error during GPU init
+amdgpu: probe of 0000:08:00.0 failed with error -22
+
+It seems to happen mostly when BIOS-assisted PCI enumeration is used 
+(older Thunderbolt systems). I cannot rule it out with native 
+enumeration, but generally native enumeration works, as the IO BAR is 
+not assigned, due to limited IO resources.
+
+This patch is a simple fix against v5.12-rc2. I have experienced this 
+issue for a long time, and have finally decided to do something about 
+it. I do not see a downside to using MMIO, which is required to be 
+assigned.
+
+Kind regards,
+Nicholas Johnson
+
+Nicholas Johnson (1):
+  amdgpu: use MMIO to init atombios if device is Thunderbolt / USB4
+    attached
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+-- 
+2.30.2
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
