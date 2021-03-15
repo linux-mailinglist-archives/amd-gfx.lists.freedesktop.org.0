@@ -2,60 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE62433ACFE
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Mar 2021 09:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D47733ACFF
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Mar 2021 09:04:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1384C89D83;
-	Mon, 15 Mar 2021 08:04:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB5E789D87;
+	Mon, 15 Mar 2021 08:04:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com
- [IPv6:2607:f8b0:4864:20::f33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D96B989BF5;
- Mon, 15 Mar 2021 03:22:03 +0000 (UTC)
-Received: by mail-qv1-xf33.google.com with SMTP id cx5so7126295qvb.10;
- Sun, 14 Mar 2021 20:22:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=eQcMG5LLxTg6nVFwEd1izOqUkx+QGUyBmxbcMRP29T4=;
- b=lK3AtlER+6LnsHJB5aMPze3Ua1gnhBGD44EnvsvH9T4gnS9qP9a7gPthBvg4Obzkgv
- 2Wffxwga3H2+qhbIqKMizVdeWMPZ1OSugoaZP/nT4iJfX+0TDChHhX0H0+LUI0zZFYk6
- O1PPwcGEJgk4f5R+sgS9SxkzUZG7tlsTUasCEFF+nw7mGNklsNolsVq4iBYFP6MJX7MM
- pk21sMrglcsqqqto6J4uU94WzAUuR3O2yx+HTkwOz9OB8VzG/oOvW+HBti+EFTGVMVF/
- KhHbjwKi6jm45cRByW1XRnYSvJPWGzW88FK4/391k0Zk3lU2XMoA37DpGOSKSXxJSga2
- Zpyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=eQcMG5LLxTg6nVFwEd1izOqUkx+QGUyBmxbcMRP29T4=;
- b=lef8O24eWezSi6asJgUN0qfTiCKxGww0QZ1re1vWOb05D7ahYjIRyUC2gZHLtkfadN
- 9H9xvv/7W7zQ5341ls+Skfpol8qcUz83lKlS71ej/VPx7dYUeFm90s0Mk7pzDqGeWGd9
- FVk3xRRE+ZnV2JMFVD8YaUWvsd/2oL+xSAwHd/rWT4AZzSOMq3PvMZXcBm5NqI4HH6Kh
- vVcmz4sdJYFv2pC3eY3dNWQrJ4NJZlwfG/rMJETZ4ylXStg4weo80OU3BzcxbAQmsaMv
- ClWBU4HmoBFM2PnYybaLzdp5H4xsOz0vVvqHyCFOrzLpi4z186Jzh5CtWy1Eow1bXhc2
- cDRw==
-X-Gm-Message-State: AOAM532m/bLZEQ980YWYgcwcyzfdVoMmmsrL6kjVXxytVmnwgSn0jyfa
- jJUgD5S7NCYbPMBdZ8gWC8I=
-X-Google-Smtp-Source: ABdhPJyFJI/FWkYaSq+EV0B1lGJ/91vBmhZsHYT1zGgcWinemhjAv4EbeXzw9sNtw+NTbcnBf9J53A==
-X-Received: by 2002:ad4:4d92:: with SMTP id cv18mr8704294qvb.5.1615778522920; 
- Sun, 14 Mar 2021 20:22:02 -0700 (PDT)
-Received: from localhost.localdomain ([156.146.55.217])
- by smtp.gmail.com with ESMTPSA id t2sm10098763qtd.13.2021.03.14.20.21.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 14 Mar 2021 20:22:02 -0700 (PDT)
-From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie,
- daniel@ffwll.ch, evan.quan@amd.com, nirmoy.das@amd.com,
- kevin1.wang@amd.com, ray.huang@amd.com, Xiaojian.Du@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH V2] drm: amd: pm: Mundane typo fixes in the file amdgpu_pm.c
-Date: Mon, 15 Mar 2021 08:51:36 +0530
-Message-Id: <20210315032136.3669883-1-unixbhaskar@gmail.com>
-X-Mailer: git-send-email 2.30.2
+X-Greylist: delayed 6890 seconds by postgrey-1.36 at gabe;
+ Mon, 15 Mar 2021 04:18:20 UTC
+Received: from merlin.infradead.org (merlin.infradead.org
+ [IPv6:2001:8b0:10b:1234::107])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73F8B89BBD;
+ Mon, 15 Mar 2021 04:18:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:
+ Reply-To:Cc:Content-ID:Content-Description;
+ bh=UftIN6fE1u0QhqqkA/YhCC1AeNi+dCOkMNl2dhD5GNg=; b=aQapfMbog4owcKpXxlZ7YGkg+K
+ 0Msw/DBt2m2T0TVBUnrA4OIk/ys0sVnZFehXPuJNhk4pE7PqfEPKE4ftpwvApZQvF+8GkieJecFHE
+ bMr5OZVz0ygqjN4hxg/90EmPfD6/e6f68L4/zDbPy1tTPWI4ZfiuC0OlH10qGiOHg5KrzrAVmikQc
+ FdRjA0l0KYwuzud+PC91htKGs0AWjV+VUK0CzakYtk3aZT7nSSL7hp+KHV3wPY+gvZ7imFcsgVDC4
+ Trs5ZWZn+ONibXi9nE5vFhtA++JJUXr/eJZSwLYscHYYScdfILQVvTiEZ8rTfDyzJzz2hZZY/lXun
+ vmN7bq/g==;
+Received: from [2601:1c0:6280:3f0::9757]
+ by merlin.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+ id 1lLegK-001Fuv-Ii; Mon, 15 Mar 2021 04:18:17 +0000
+Subject: Re: [PATCH V2] drm: amd: pm: Mundane typo fixes in the file
+ amdgpu_pm.c
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>, alexander.deucher@amd.com,
+ christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch,
+ evan.quan@amd.com, nirmoy.das@amd.com, kevin1.wang@amd.com,
+ ray.huang@amd.com, Xiaojian.Du@amd.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20210315032136.3669883-1-unixbhaskar@gmail.com>
+From: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <64472479-0f70-3875-d09a-29417cd8b48e@infradead.org>
+Date: Sun, 14 Mar 2021 21:18:11 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
+In-Reply-To: <20210315032136.3669883-1-unixbhaskar@gmail.com>
+Content-Language: en-US
 X-Mailman-Approved-At: Mon, 15 Mar 2021 08:04:21 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,43 +56,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rdunlap@infradead.org, Bhaskar Chowdhury <unixbhaskar@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On 3/14/21 8:21 PM, Bhaskar Chowdhury wrote:
+> 
+> s/"an minimum"/"a minimum"/
+> s/"an maxmum"/"a maximum"/
+> 
+> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
 
-s/"an minimum"/"a minimum"/
-s/"an maxmum"/"a maximum"/
+Acked-by: Randy Dunlap <rdunlap@infradead.org>
 
-Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
----
- Changes from V1:
-  Randy's suggestion to adjust the subject line text
-  And missed out a spell too,which now included
+> ---
+>  Changes from V1:
+>   Randy's suggestion to adjust the subject line text
+>   And missed out a spell too,which now included
+> 
+>  drivers/gpu/drm/amd/pm/amdgpu_pm.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> index 5fa65f191a37..308249ae1a22 100644
+> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> @@ -3315,9 +3315,9 @@ static ssize_t amdgpu_hwmon_show_mclk_label(struct device *dev,
+>   *
+>   * - pwm1_max: pulse width modulation fan control maximum level (255)
+>   *
+> - * - fan1_min: an minimum value Unit: revolution/min (RPM)
+> + * - fan1_min: a minimum value Unit: revolution/min (RPM)
+>   *
+> - * - fan1_max: an maxmum value Unit: revolution/max (RPM)
+> + * - fan1_max: a maximum value Unit: revolution/max (RPM)
+>   *
+>   * - fan1_input: fan speed in RPM
+>   *
+> --
 
- drivers/gpu/drm/amd/pm/amdgpu_pm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index 5fa65f191a37..308249ae1a22 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -3315,9 +3315,9 @@ static ssize_t amdgpu_hwmon_show_mclk_label(struct device *dev,
-  *
-  * - pwm1_max: pulse width modulation fan control maximum level (255)
-  *
-- * - fan1_min: an minimum value Unit: revolution/min (RPM)
-+ * - fan1_min: a minimum value Unit: revolution/min (RPM)
-  *
-- * - fan1_max: an maxmum value Unit: revolution/max (RPM)
-+ * - fan1_max: a maximum value Unit: revolution/max (RPM)
-  *
-  * - fan1_input: fan speed in RPM
-  *
---
-2.30.2
+-- 
+~Randy
 
 _______________________________________________
 amd-gfx mailing list
