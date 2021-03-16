@@ -1,119 +1,85 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C072933CF19
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Mar 2021 09:00:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BA5833CF6B
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Mar 2021 09:14:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 393C66E213;
-	Tue, 16 Mar 2021 08:00:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16D6D6E237;
+	Tue, 16 Mar 2021 08:14:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-eopbgr770071.outbound.protection.outlook.com [40.107.77.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC7D96E213
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 08:00:53 +0000 (UTC)
+Received: from APC01-PU1-obe.outbound.protection.outlook.com
+ (mail-oln040092254082.outbound.protection.outlook.com [40.92.254.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CDEB89F3B
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 03:01:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oWIX0PI2tMXs+76C4RgvPIQKK1tRUevP9tuzu67zyNoFfeLXmF8qlAqEoG/8YUBeXrt2PN1nSf+qIqaclENo9a18mSqLEp0FG/B2w3V05oYCPfOQHP4xNicYZKaLjy5tx65sSkmiHq8FLwnvdOE/OQ0zBl7/7dVQQs60QXxu77yTGfnGxj3kPK9ORU9pvgKzBMZ+MRyAs0AkGC6AldgA4wLFsAcMPtIGwBqgAKht55MPYm2w57ZaTOQBV5XDSjfpiNFkFbKOjMimq96/3t9oQdcRwwBaOZ0eg1uxAZMROU2JZCIxW3A9ziH32vpaGY60eHjozwYp1VyirOZA2BSYWA==
+ b=GaWWHHZDywqdhdKudIMFB9Di59+jpAorJYvwFOfh3MfY9STascKn/Z8Fwt3MKxPM7SpUc/1Hd8I03OMPi7TnVN7X/+C2/lFvcS85XW/cTFIj0DwB1snu99YXChjR3h0KGQwlyPA/bh0jZiGlX4+v6rDidYLisySNOIeQ3+PRXF51jLh3OuOpF0DIg5RtKXODm6QyDMOK3Dr/YvmKIky8TC9xGMhrlpx5kAOyLN4nG9/koGMrCtkQ+s+BqvIjarKUWPD6Y9yFQygzx4lormPelzNzpDCZddUX3izBAKWI1tDi0JjAJlup3OGaylxq4mOmcUJn8MYMpdaZfFMPIZqQDQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p673QYQMOUAKRurUQLQ1I1csTZBXJMuf8Di91xe67NE=;
- b=IUdf3K4vOY8eDk/oGKdiUUjmW/N0mjP/FS18169Xf/DHsVjK1K7xB+pIpEUCbzrapved+7J4HKlP5ZO/4mx7gDtZs+d7Xd7tVAFabjFzWWSJdrEgWPcm5xAruEbsdI7BSiNSm0imqL2F3HyIU4N86esd7ENWUxkz8LR31UMQe6OyyPs5+qUG60hgz0POtWiA13MNVkrs/n8+Ye62PN9wFHhVm4h05jN8O77cGn47OGDz4et4ZfOnrx204Y3DIrxSHESBuw0J9MFYDpU2dH8ayDvOB7KZO/qYn4KeW6VJCi2CSn7yGmV0Txmxc93+hvW4tYXkAx5KX8BeGbT5Ln+bWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p673QYQMOUAKRurUQLQ1I1csTZBXJMuf8Di91xe67NE=;
- b=Qun23Aof61Hlad4K4/UU0vpKL/Yp5Kud4zIV7Cx59OxKTJYpGoClCnCXBEqaDX0KgCjcss+jI+KJf5jFxCEqbBgz/X8QR2/OWLzMbnx+hD1VDgYa4RHGVhfyrLtkV3azKhO/mMYP4QecS95asGSArGNgU9W2+KRvifIzomkl13U=
-Received: from MW3PR12MB4537.namprd12.prod.outlook.com (2603:10b6:303:5b::22)
- by MWHPR12MB1885.namprd12.prod.outlook.com (2603:10b6:300:114::9)
+ bh=Tyl2hoYLel169cE/+mDQDd0Lt5fJA9qZWU4FnGNXbJI=;
+ b=dTmjfzJHZa/dJL81Iw1Rj2Qi/Vy5VN978P+bRDG/fcIa/51cjhnKsga2xhwsc/tsbPrtW0NsdSmi265Ok7GO7mlWNPKcaQ8WF6ZVZW2L2QnME74gc+1SHqDg7rWZgrxMcZvNdDfjapqmSqegluXSmlT9KQ7dGNsagsYTpdgqtpw4TiFJLv4y2QXHky1oy2bSlTj5dj0Pb2MwVKPEd0XYwIkJDyvoJ3LtfmS6KzRC4/SRtx39c8NXVQi8Y6y93AMfJpDdD5Xyv+jI6GLtN4JnWyhqnk0Aif1Jju47dKUlalBG/Gg0+CZR+TZRdBj6wfH9oe0Yvc6HUsVCw81ddvC4kw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from PU1APC01FT112.eop-APC01.prod.protection.outlook.com
+ (2a01:111:e400:7ebe::48) by
+ PU1APC01HT107.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebe::294)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.32; Tue, 16 Mar
- 2021 08:00:48 +0000
-Received: from MW3PR12MB4537.namprd12.prod.outlook.com
- ([fe80::89a6:6618:7616:30d3]) by MW3PR12MB4537.namprd12.prod.outlook.com
- ([fe80::89a6:6618:7616:30d3%4]) with mapi id 15.20.3933.032; Tue, 16 Mar 2021
- 08:00:48 +0000
-From: "Liang, Liang (Leo)" <Liang.Liang@amd.com>
-To: Mike Rapoport <rppt@linux.ibm.com>
-Subject: RE: slow boot with 7fef431be9c9 ("mm/page_alloc: place pages to tail
- in __free_pages_core()")
-Thread-Topic: slow boot with 7fef431be9c9 ("mm/page_alloc: place pages to tail
- in __free_pages_core()")
-Thread-Index: AdcWgujrowoM8ON/Tmy0Tmhi9senVQABLLQAADBH9CAAADxQgAACUAfQAAIipgAAAPKqgAAXm64wAAqTxoAACeBtgABjC4WAABfyzTAADUrQAAACW6Iw
-Date: Tue, 16 Mar 2021 08:00:48 +0000
-Message-ID: <MW3PR12MB453781F0AD49AF3787DE4230F36B9@MW3PR12MB4537.namprd12.prod.outlook.com>
-References: <MW3PR12MB4537B49678884A1EB1F75AB5F36E9@MW3PR12MB4537.namprd12.prod.outlook.com>
- <0AE49D98-171A-42B9-9CFC-9193A9BD3346@redhat.com>
- <YEzCm/Uwvw7kKpd7@linux.ibm.com>
- <22437770-956e-f7b4-a8f6-3f1cc28c3ec2@redhat.com>
- <MW3PR12MB45371072D7C3FDA6986C6318F36B9@MW3PR12MB4537.namprd12.prod.outlook.com>
- <YFBVNEC7jMZxwleL@linux.ibm.com>
-In-Reply-To: <YFBVNEC7jMZxwleL@linux.ibm.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=true;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2021-03-16T08:00:45Z; 
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=Public_0;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ActionId=76faeda7-2a9f-422e-b183-43150b7b4171;
- MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=1
-authentication-results: linux.ibm.com; dkim=none (message not signed)
- header.d=none;linux.ibm.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [180.167.199.189]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: c63c4bdf-61be-4eba-751b-08d8e8519c69
-x-ms-traffictypediagnostic: MWHPR12MB1885:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MWHPR12MB1885296135016693584BF592F36B9@MWHPR12MB1885.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5516;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: RxNCNO82JnXhZRhwb9WRyKXvSpSynQVSTREWU9a7/QxeL+X/l4dVNX3/OY53iPj3qxBVZQfUprxMVPjI2TFAJesapjxlOIaO2M2sHRf5/VvkSVQWLB7JUIWqCpRaO3zBAzgC9hveMOAGc4l+wNsCCEg3TOObYJrJGRbLr5Gctmtt0ru2POwCJM38zAnswN5dfIPhc0KdeWaPAYRkQfz/EoAwDCz12T5/mtK25hJxGEGq9Q287P93XfpjRo3gdhSmP6Kp4z8H502i8nopqaEOYVaoGC0ZITQsBppbmCSBsoFaS92SyeRqg0QTzEpXAAUvWlLCxft9V9WtDpyNfo+lx961FpXnahTUcEsWl6LK1wIsGEbFvlasK22RPJyCtzKYB+RD46uBZkgXmf9xZ8EVEUmWw3VLWGxwEdVk1NOgxpe7sNjT9mzwM2S4NGjDUz/lqv/87vfS2Yva+1gXyYG6vfAh7gGgRICPXVn0VNkrJOIQ2i8HrqRh+bvBl8ZCBHmMEZuMPx9afkEP3CoDZ86Uaa3JGL6DfPQxC7uCZSpybl6dco7WU+fmft9rE7pZbjHoHgPHED+5LHIS9qkPbXoyFRW3RMZrfT/AOmjyUwkgQPEGgWNj7GBzHZuLudZfTR72JWZ+bclhUNguT0z9Wf33oQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW3PR12MB4537.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(366004)(376002)(346002)(136003)(39860400002)(8676002)(52536014)(7696005)(5660300002)(66476007)(66946007)(66556008)(54906003)(86362001)(76116006)(66446008)(478600001)(4326008)(53546011)(64756008)(45080400002)(316002)(26005)(6916009)(186003)(71200400001)(33656002)(55016002)(9686003)(8936002)(83380400001)(6506007)(2906002)(966005);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?wE6DvVGzhOXfqzexi8YQ3z35d+JGdMP0tlc3JHZlirq6lD9wDYw8rr61SB4I?=
- =?us-ascii?Q?DAFka3e0BgcG2DiCGPfQHRD2iDnO/xDc5kaNyzjmFl5MOBY6jTCHT3uXHuYt?=
- =?us-ascii?Q?4OZcPmYdLe3YGv928DVArYn5D39prLg/91sWyVj2vI7j4wCdIM3O9WUrsjxJ?=
- =?us-ascii?Q?oQEEvzIadBCi6ihryu40Mq24Cgs8wUvrAyrAL0pka2EKlj8V6J0wgLWsbrEr?=
- =?us-ascii?Q?JLP3Es9Z229KPL51CC0lgVuvo1pZV+GEjM0oJGRXCot/3O7LfpE6l55SHDy6?=
- =?us-ascii?Q?fvfn0Wj4+srKFHaK9dPJ6o2BYvoqCf5x2RxTHOSm8G/CGVVhrRKCpkF/Hh5D?=
- =?us-ascii?Q?kYVl4ld0L3ynLbUG49TRQXDbJKEQ/B3sW2t0ybDq2kdb+fMmbhpybducqrBb?=
- =?us-ascii?Q?mZ6S2dKJt4Bog9bc4+dkMgPevvRw3UKe8Twu2ixc98PpILv7jmUk5KFRLXZ+?=
- =?us-ascii?Q?LQayivT2u9f24NTX5pnK48eTIPVRn30XhF4lCKSMg8EYRLe+7E6kc5euVX70?=
- =?us-ascii?Q?5NxvEpArJJ3WQvN7Doy7VgGx3F+t26Xg7V1yjFyx852rGrIVK/YNFZz2osnB?=
- =?us-ascii?Q?uMiyIXYiNVkN5/KNqI+cMDhxNM6KKFTXTmYUHlONCQ1MOW+DqcXxNwgleGKj?=
- =?us-ascii?Q?26u5zoel4MG9gWxSJ4BOu2u/ahjUjcBqLTHk0+OiJwR4if/j4ObPXnAXwfDh?=
- =?us-ascii?Q?CPZguZ+DVC0tV/p5+6fUL53RxnDg8RRs8i3sXDKiQM3uWQEQQrB+9Z+abYPg?=
- =?us-ascii?Q?aqrZkgA2zfpDyxHWAzS5+reHOSssdAPxpbRk1iCaLmr4AzJu+8vX1wX4oiBQ?=
- =?us-ascii?Q?nTT2mqBmH0zyPj8VW79EE+uvB1y1ACd/9959uEjQN4c8HJ9p/lJaHtegL1U9?=
- =?us-ascii?Q?33553yuB1J33ShDa4y/cWl8UYoxSHp7j+F9WMDnbk8T9m75ajptMauQdVobY?=
- =?us-ascii?Q?eWZ00+X2hO35/WqR8Xj8RvlBXLYF1QUeB2gdE1dUicHIKh46PI9Wd4J/lVR7?=
- =?us-ascii?Q?x8QBrnoFvHlPBMhyUGrJnDFqLtO95hsejxWWlNVWa5CXFT0a42a2o41fNvXk?=
- =?us-ascii?Q?o/hpP0QSgEIh1fHJp107AcfecYQAUQcrl9EGktb7LXLgW+O8BY1NLTIQA4km?=
- =?us-ascii?Q?KS93gqgoFWca3c9xWxjcx9ahtXha0FMjD1JayCAmFnDfyZky9c44CyeZFDZ3?=
- =?us-ascii?Q?csVxm4evIf3/X7VaJojIynZ6M5amE2w1ECwartJlnsePHDx/88ths4rkk0Ve?=
- =?us-ascii?Q?maNZgQ1ubGBeywgYTHIY+C9vwocjnRbRDNI4oa48xCS/1YPKocS3Yz013yxT?=
- =?us-ascii?Q?eajptrMVGza4BK8DutkMcSJy?=
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.31; Tue, 16 Mar
+ 2021 03:01:31 +0000
+Received: from PSXP216MB0438.KORP216.PROD.OUTLOOK.COM (2a01:111:e400:7ebe::4f)
+ by PU1APC01FT112.mail.protection.outlook.com
+ (2a01:111:e400:7ebe::234) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.31 via Frontend
+ Transport; Tue, 16 Mar 2021 03:01:31 +0000
+X-IncomingTopHeaderMarker: OriginalChecksum:A71994C38A722B276A6B0B8151E5A819E574EF0A32B29142B8B4D00A3D82D83C;
+ UpperCasedChecksum:E54319A6D39A535BD78296725950F8AC6D09223ED29BCB43D242B4A308D4BBEB;
+ SizeAsReceived:7862; Count:46
+Received: from PSXP216MB0438.KORP216.PROD.OUTLOOK.COM
+ ([fe80::415f:2d37:68bd:23eb]) by PSXP216MB0438.KORP216.PROD.OUTLOOK.COM
+ ([fe80::415f:2d37:68bd:23eb%10]) with mapi id 15.20.3933.032; Tue, 16 Mar
+ 2021 03:01:31 +0000
+Date: Tue, 16 Mar 2021 11:01:23 +0800
+From: Nicholas Johnson <nicholas.johnson-opensource@outlook.com.au>
+To: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH 1/1] amdgpu: use MMIO to init atombios if device is
+ Thunderbolt / USB4 attached
+Message-ID: <PSXP216MB043819E5E33ECCDBBAB490BC806B9@PSXP216MB0438.KORP216.PROD.OUTLOOK.COM>
+References: <PSXP216MB0438E23D0F4C2DFF2D9B8686806D9@PSXP216MB0438.KORP216.PROD.OUTLOOK.COM>
+ <CADnq5_Mqc3H07BtJbaGpt8XGnpXgaZvxDsS_e0cnZ++kWdQR-g@mail.gmail.com>
+Content-Disposition: inline
+In-Reply-To: <CADnq5_Mqc3H07BtJbaGpt8XGnpXgaZvxDsS_e0cnZ++kWdQR-g@mail.gmail.com>
+X-TMN: [r9NpVUoPQFThsq+AuTNDAXK0OZRmt7olp+BGynrQ3uFCKDPdYNfh2/P2oG1kuMHj]
+X-ClientProxiedBy: ME2PR01CA0097.ausprd01.prod.outlook.com
+ (2603:10c6:201:2c::13) To PSXP216MB0438.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:300:d::20)
+X-Microsoft-Original-Message-ID: <YFAfg8ATzQZ6E9d0@nicholas-dell-linux>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW3PR12MB4537.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c63c4bdf-61be-4eba-751b-08d8e8519c69
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2021 08:00:48.5663 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gerXc8lZzX2h/o88cv/kXXBTH1pKGyEdAVPKc9KyygOoADtkRsYLHFbZvO4p0Pu71m4QclYNCgSdLFBzT6yi6Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1885
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from nicholas-dell-linux (2001:4479:c200:d00:bf6a:7b68:e41d:33a3) by
+ ME2PR01CA0097.ausprd01.prod.outlook.com (2603:10c6:201:2c::13) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3933.31 via Frontend Transport; Tue, 16 Mar 2021 03:01:29 +0000
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 46
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-Correlation-Id: cc5dffa9-f035-455d-caa7-08d8e827cc66
+X-MS-TrafficTypeDiagnostic: PU1APC01HT107:
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: u47nhmnikYiAwuQ2lgOV2/7biV6MObewTFipuxQCp6BHyz1/UDz2QlQnYNUBVIYAvE0ZX2e3U1YF02IuFpymNTS30RYCrOzs1SUKbfNyF6Z0NoLFO2T1u7tiPglCve2nzrhC2OjTfdqfrLyCas4ejudOr8yt6pe+CMkh3WMW/Vq1NMLD7tpRqwU1GVMVab2gIB74OQTxFqyQK2gcLZN1CeniTyj905DuNCtqUyV+gK+/FzWLqsuNc1UHYhWFK8UhHyOEv4A1T2atiTMQb13TihbBTs67xTpjHdsk+OMgplTWtzUi2ZSDILnSzd1Lj39hA/eWAGRFy6RzKsiETjX4unr5XGgE8+DgoUq3jdEvv4JCP7yKM0mGMnKR6h3KJvmQfgoyF9tClgKlFTYowYqoZWCcL0/cxH+CvEVmSDPvpwY=
+X-MS-Exchange-AntiSpam-MessageData: AfF/7hTzchJA5XiyLc1IhaaxmnrL9it/Bcdu+g9wC++YHlaiBPcNrQ8qqFvGpj8j7le+z0XKMY3o5e4dFMiduM1dmS8640KzShsHoKaUwvirVlQvZ2idFbfd94uLz4vif4D8cmD1AEN/etm2nUfhkttQgfiPTFNx9ZkcHb6O7PkWmYlz0IrWRaH9PAkD6fyKpLd8wSp3oDQJ3VNkDT7c2A==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cc5dffa9-f035-455d-caa7-08d8e827cc66
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2021 03:01:31.4437 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-AuthSource: PU1APC01FT112.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT107
+X-Mailman-Approved-At: Tue, 16 Mar 2021 08:13:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,157 +91,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Hildenbrand <david@redhat.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ LKML <linux-kernel@vger.kernel.org>,
  amd-gfx list <amd-gfx@lists.freedesktop.org>,
- George Kennedy <george.kennedy@oracle.com>, "Huang, Ray" <Ray.Huang@amd.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>, "Koenig,
- Christian" <Christian.Koenig@amd.com>
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Public Use]
-
-Hi Mike,
-
-Thanks for help. The patch works for me and boot time back to normal. So it's a fix, or just WA?
-
-BRs,
-Leo
------Original Message-----
-From: Mike Rapoport <rppt@linux.ibm.com> 
-Sent: Tuesday, March 16, 2021 2:50 PM
-To: Liang, Liang (Leo) <Liang.Liang@amd.com>
-Cc: David Hildenbrand <david@redhat.com>; Deucher, Alexander <Alexander.Deucher@amd.com>; linux-kernel@vger.kernel.org; amd-gfx list <amd-gfx@lists.freedesktop.org>; Andrew Morton <akpm@linux-foundation.org>; Huang, Ray <Ray.Huang@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>; Rafael J. Wysocki <rafael@kernel.org>; George Kennedy <george.kennedy@oracle.com>
-Subject: Re: slow boot with 7fef431be9c9 ("mm/page_alloc: place pages to tail in __free_pages_core()")
-
-Hi Leo,
-
-On Tue, Mar 16, 2021 at 12:36:29AM +0000, Liang, Liang (Leo) wrote:
+On Mon, Mar 15, 2021 at 11:05:21AM -0400, Alex Deucher wrote:
+> On Mon, Mar 15, 2021 at 4:04 AM Nicholas Johnson
+> <nicholas.johnson-opensource@outlook.com.au> wrote:
+> >
+> > When using some Thunderbolt hosts using BIOS-assisted PCI enumeration
+> > with IO BAR assigned, we get an atombios timeout, such as:
+> >
+> > [drm:atom_op_jump [amdgpu]] *ERROR* atombios stuck in loop for more than 20secs aborting
+> > [drm:amdgpu_atom_execute_table_locked [amdgpu]] *ERROR* atombios stuck executing B456 (len 304, WS 4, PS 0) @ 0xB51B
+> > [drm:amdgpu_atom_execute_table_locked [amdgpu]] *ERROR* atombios stuck executing B104 (len 183, WS 0, PS 8) @ 0xB17E
+> > amdgpu 0000:08:00.0: amdgpu: gpu post error!
+> > amdgpu 0000:08:00.0: amdgpu: Fatal error during GPU init
+> > amdgpu: probe of 0000:08:00.0 failed with error -22
+> >
+> > A workaround is to use MMIO to access ATOMBIOS when device is
+> > Thunderbolt / USB4 attached.
 > 
-> Hi David,
-> 
-> Sorry for late. If revert 7fef431be9c9 (without 7fef431be9c9), the dmesg attached. And looks the exception as below:
-> [  +0.027833] [0x0000000078000000 - 0x00000000783fffff] 20925 MB/s / 
-> 25405 MB/s [  +1.363596] [0x0000000100000000 - 0x00000001003fffff] 222 
-> MB/s / 222 MB/s [  +1.562192] [0x0000000100400000 - 
-> 0x00000001007fffff] 222 MB/s / 222 MB/s [  +1.881332] 
-> [0x0000000100800000 - 0x0000000100bfffff] 195 MB/s / 159 MB/s [  
-> +1.383388] [0x0000000100c00000 - 0x0000000100ffffff] 219 MB/s / 221 
-> MB/s [  +0.029342] [0x0000000101000000 - 0x00000001013fffff] 19807 
-> MB/s / 24125 MB/s
-> 
-> What is the problem here? Do you want to check the acpi tables?
+> Missing your signed-off-by.  Also, we can just remove the legacy IO
+> callbacks altogether.  They are leftover from radeon and not required
+> at all on amdgpu.
+Sorry, it's been a while; I forgot "-s". And I like your patch much 
+better. I look forward to the day when all new PCIe devices only have 
+64-bit MMIO_PREF BARs.
 
-As it seems the first 16M at 0x0000000100000000 are two orders of magnitude slower than the rest of the memory as if there is a different memory device there.
+Thanks for looking at this! If you are still doing work on surprise 
+removal / driver unloading for Thunderbolt, then I am happy to do 
+testing for you. Removal of DRM devices in Linux is the main sore point 
+for me, and I would love to see it through.
 
-This would explain why with 7fef431be9c9 everything gets slower as we allocate the first (and probably quite critical) data from those 16M.
-
-No idea how this could be related to ACPI and why ACPI initialization causes the huge slowdown on its own.
-
-Can you please try booting with 7fef431be9c9 still applied and with this patch (not even compile tested):
-
-diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c index d883176ef2ce..780f11ca14c9 100644
---- a/arch/x86/kernel/setup.c
-+++ b/arch/x86/kernel/setup.c
-@@ -778,6 +778,7 @@ void __init setup_arch(char **cmdline_p)
- 	 * L1TF its contents can be leaked to user processes.
- 	 */
- 	memblock_reserve(0, PAGE_SIZE);
-+	memblock_reserve(0x0000000100000000, SZ_16M);
- 
- 	early_reserve_initrd();
- 
- 
-> BRs,
-> Leo
-> -----Original Message-----
-> From: David Hildenbrand <david@redhat.com>
-> Sent: Monday, March 15, 2021 9:04 PM
-> To: Mike Rapoport <rppt@linux.ibm.com>
-> Cc: Liang, Liang (Leo) <Liang.Liang@amd.com>; Deucher, Alexander 
-> <Alexander.Deucher@amd.com>; linux-kernel@vger.kernel.org; amd-gfx 
-> list <amd-gfx@lists.freedesktop.org>; Andrew Morton 
-> <akpm@linux-foundation.org>; Huang, Ray <Ray.Huang@amd.com>; Koenig, 
-> Christian <Christian.Koenig@amd.com>; Rafael J. Wysocki 
-> <rafael@kernel.org>; George Kennedy <george.kennedy@oracle.com>
-> Subject: Re: slow boot with 7fef431be9c9 ("mm/page_alloc: place pages 
-> to tail in __free_pages_core()")
+Regards,
+Nicholas Johnson
 > 
-> On 13.03.21 14:48, Mike Rapoport wrote:
-> > Hi,
-> > 
-> > On Sat, Mar 13, 2021 at 10:05:23AM +0100, David Hildenbrand wrote:
-> >>> Am 13.03.2021 um 05:04 schrieb Liang, Liang (Leo) <Liang.Liang@amd.com>:
-> >>>
-> >>> Hi David,
-> >>>
-> >>> Which benchmark tool you prefer? Memtest86+ or else?
-> >>
-> >> Hi Leo,
-> >>
-> >> I think you want something that runs under Linux natively.
-> >>
-> >> I'm planning on coding up a kernel module to walk all 4MB pages in 
-> >> the freelists and perform a stream benchmark individually. Then we 
-> >> might be able to identify the problematic range - if there is a 
-> >> problematic range :)
-> > 
-> > My wild guess would be that the pages that are now at the head of 
-> > free lists have wrong caching enabled. Might be worth checking in 
-> > your test module.
+> Alex
 > 
-> I hacked something up real quick:
 > 
-> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgith
-> ub.com%2Fdavidhildenbrand%2Fkstream&amp;data=04%7C01%7CLiang.Liang%40a
-> md.com%7Cb569c2890cd14a555dcd08d8e847cea6%7C3dd8961fe4884e608e11a82d99
-> 4e183d%7C0%7C0%7C637514742399803857%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC
-> 4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sd
-> ata=7Mj%2BBlp%2BDZNg3grEYMnDyx%2FLGkZYu0YPfstiByD6UCk%3D&amp;reserved=
-> 0
-> 
-> Only briefly tested inside a VM. The output looks something like
-> 
-> [...]
-> [ 8396.432225] [0x0000000045800000 - 0x0000000045bfffff] 25322 MB/s /
-> 38948 MB/s
-> [ 8396.448749] [0x0000000045c00000 - 0x0000000045ffffff] 24481 MB/s /
-> 38946 MB/s
-> [ 8396.465197] [0x0000000046000000 - 0x00000000463fffff] 24892 MB/s /
-> 39170 MB/s
-> [ 8396.481552] [0x0000000046400000 - 0x00000000467fffff] 25222 MB/s /
-> 39156 MB/s
-> [ 8396.498012] [0x0000000046800000 - 0x0000000046bfffff] 24416 MB/s /
-> 39159 MB/s
-> [ 8396.514397] [0x0000000046c00000 - 0x0000000046ffffff] 25469 MB/s /
-> 38940 MB/s
-> [ 8396.530849] [0x0000000047000000 - 0x00000000473fffff] 24885 MB/s /
-> 38734 MB/s
-> [ 8396.547195] [0x0000000047400000 - 0x00000000477fffff] 25458 MB/s /
-> 38941 MB/s
-> [...]
-> 
-> The benchmark allocates one 4 MiB chunk at a time and runs a simplified STREAM benchmark a) without flushing caches b) flushing caches before every memory access.
-> 
-> It would be great if you could run that with the *old behavior* kernel (IOW, without 7fef431be9c9), so we might still be lucky to catch the problematic area in the freelist.
-> 
-> Let's see if that will indicate anything.
-> 
-> --
-> Thanks,
-> 
-> David / dhildenb
-
-
-
---
-Sincerely yours,
-Mike.
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c | 8 ++++++--
+> >  1 file changed, 6 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
+> > index 86add0f4e..5d16ec10d 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
+> > @@ -1999,11 +1999,15 @@ int amdgpu_atombios_init(struct amdgpu_device *adev)
+> >         atom_card_info->reg_read = cail_reg_read;
+> >         atom_card_info->reg_write = cail_reg_write;
+> >         /* needed for iio ops */
+> > -       if (adev->rio_mem) {
+> > +       if (adev->rio_mem && !pci_is_thunderbolt_attached(adev->pdev)) {
+> >                 atom_card_info->ioreg_read = cail_ioreg_read;
+> >                 atom_card_info->ioreg_write = cail_ioreg_write;
+> >         } else {
+> > -               DRM_DEBUG("PCI I/O BAR is not found. Using MMIO to access ATOM BIOS\n");
+> > +               if (pci_is_thunderbolt_attached(adev->pdev))
+> > +                       DRM_DEBUG("Device is attached via Thunderbolt / USB4. Using MMIO to access ATOM BIOS\n");
+> > +               else
+> > +                       DRM_DEBUG("PCI I/O BAR is not found. Using MMIO to access ATOM BIOS\n");
+> > +
+> >                 atom_card_info->ioreg_read = cail_reg_read;
+> >                 atom_card_info->ioreg_write = cail_reg_write;
+> >         }
+> > --
+> > 2.30.2
+> >
+> > _______________________________________________
+> > amd-gfx mailing list
+> > amd-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
