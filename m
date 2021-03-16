@@ -1,41 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3657E33D534
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Mar 2021 14:53:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5581133D536
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Mar 2021 14:53:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60B2789F8B;
-	Tue, 16 Mar 2021 13:53:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14F8D6E3C1;
+	Tue, 16 Mar 2021 13:53:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [63.128.21.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F23016E239
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 08:37:58 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B621B89C96
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 08:54:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1615883878;
+ s=mimecast20190719; t=1615884859;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=ZwYMPkghKSi78ypCL3Mf4zRzURyEmjf0Bxk8gD4fMyM=;
- b=MtHquEMpqAuAJfFG4Jo4q8PLCK1keAWIfwcUA8Ihku6pqEAJmyDMWZ2bzp209YrLnksfO9
- CY0aZSxOVWFLE14fEJPKr35h20ddX5SNIcDh13UZtFEajYwLIsWdrZAo30K/ZZMgafxiav
- tgnH6HIzK9elUlf4/4bdjobuCrX9zQs=
+ bh=wWL8TXDgSITEncLOH2wDWqKpeFdlpFDWceFXFRX5TOQ=;
+ b=UISOYXPHNIc7Jo5YfvZvfLbwB1UUrJDziKpwLb030TEtsyg/1d/thPcN4EDam2bpdrqySK
+ 0UPRs1NFuZAiXqoGyLu77Ud/kmQ9S9RS7ljvhHqOsER7xTO2VNOguJ5yiTDA59oD2bi7LT
+ bDJR8gcw7gxJBxohKViFYkUge6ewiPc=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-496-dlWIF-f9MoiE1W-ClZevFw-1; Tue, 16 Mar 2021 04:37:52 -0400
-X-MC-Unique: dlWIF-f9MoiE1W-ClZevFw-1
+ us-mta-219-qUXa6Pn7PayX9LbBOCiMZA-1; Tue, 16 Mar 2021 04:54:16 -0400
+X-MC-Unique: qUXa6Pn7PayX9LbBOCiMZA-1
 Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
  [10.5.11.12])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 3E845192D78C;
- Tue, 16 Mar 2021 08:37:51 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 05C48801597;
+ Tue, 16 Mar 2021 08:54:15 +0000 (UTC)
 Received: from [10.36.114.203] (ovpn-114-203.ams2.redhat.com [10.36.114.203])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 0E63460C13;
- Tue, 16 Mar 2021 08:37:48 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 69C1F60C0F;
+ Tue, 16 Mar 2021 08:54:12 +0000 (UTC)
 Subject: Re: slow boot with 7fef431be9c9 ("mm/page_alloc: place pages to tail
  in __free_pages_core()")
 To: "Liang, Liang (Leo)" <Liang.Liang@amd.com>,
@@ -47,14 +47,16 @@ References: <MW3PR12MB4537B49678884A1EB1F75AB5F36E9@MW3PR12MB4537.namprd12.prod.
  <MW3PR12MB45371072D7C3FDA6986C6318F36B9@MW3PR12MB4537.namprd12.prod.outlook.com>
  <YFBVNEC7jMZxwleL@linux.ibm.com>
  <MW3PR12MB453781F0AD49AF3787DE4230F36B9@MW3PR12MB4537.namprd12.prod.outlook.com>
+ <0cc972a1-5b40-3017-33f8-b2610489ee18@redhat.com>
+ <MW3PR12MB453771424C9B2866BBBAE036F36B9@MW3PR12MB4537.namprd12.prod.outlook.com>
 From: David Hildenbrand <david@redhat.com>
 Organization: Red Hat GmbH
-Message-ID: <0cc972a1-5b40-3017-33f8-b2610489ee18@redhat.com>
-Date: Tue, 16 Mar 2021 09:37:48 +0100
+Message-ID: <b9b324e4-4c98-b81d-ddae-52e4feb33064@redhat.com>
+Date: Tue, 16 Mar 2021 09:54:11 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.0
 MIME-Version: 1.0
-In-Reply-To: <MW3PR12MB453781F0AD49AF3787DE4230F36B9@MW3PR12MB4537.namprd12.prod.outlook.com>
+In-Reply-To: <MW3PR12MB453771424C9B2866BBBAE036F36B9@MW3PR12MB4537.namprd12.prod.outlook.com>
 Content-Language: en-US
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
 X-Mailman-Approved-At: Tue, 16 Mar 2021 13:53:10 +0000
@@ -81,30 +83,34 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 16.03.21 09:00, Liang, Liang (Leo) wrote:
+On 16.03.21 09:43, Liang, Liang (Leo) wrote:
 > [AMD Public Use]
 > 
-> Hi Mike,
+> Hi David,
 > 
-> Thanks for help. The patch works for me and boot time back to normal. So it's a fix, or just WA?
+> Thanks for your explanation. We saw slow boot issue on our farm/QA's machines and mine. All of machines are same SoC/board.
 
-Hi Leo,
+I cannot spot anything really special in the logs -- it's just ordinary 
+system ram -- except:
 
-excluding up to 16 MiB of memory on every system just because that 
-single platform is weird is not acceptable.
+[    0.000027] MTRR fixed ranges enabled:
+[    0.000028]   00000-9FFFF write-back
+[    0.000029]   A0000-BFFFF uncachable
+[    0.000030]   C0000-FFFFF write-through
+[    0.000031] MTRR variable ranges enabled:
+[    0.000032]   0 base 000000000000 mask FFFF80000000 write-back
+[    0.000034]   1 base 0000FFE00000 mask FFFFFFE00000 write-protect
+[    0.000035]   2 base 000100000000 mask FFFFFF000000 write-protect
+[    0.000036]   3 base 0000FFDE0000 mask FFFFFFFE0000 write-protect
+[    0.000038]   4 base 0000FF000000 mask FFFFFFF80000 write-protect
+[    0.000039]   5 disabled
+[    0.000039]   6 disabled
+[    0.000040]   7 disabled
 
-I think we have to figure out
+Not sure if "2 base 000100000000" indicates something nasty. Not sure 
+how to interpret the masks.
 
-a) why that memory is so special. This is weird.
-b) why the platform doesn't indicate it in a special way. Why is it 
-ordinary system RAM but still *that* slow?
-c) how we can reliably identify such memory and exclude it.
-
-I'll have a peek at the memory layout of that machine from boot logs 
-next to figure out if we can answer any of these questions.
-
-Just to verify: this does happen on multiple machines, not just a single 
-one? (i.e., we're not dealing with faulty RAM)
+Can you provide the output of "cat /proc/mtrr" ?
 
 -- 
 Thanks,
