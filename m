@@ -2,91 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFAA933CF6C
-	for <lists+amd-gfx@lfdr.de>; Tue, 16 Mar 2021 09:14:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D975A33D00C
+	for <lists+amd-gfx@lfdr.de>; Tue, 16 Mar 2021 09:43:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AF586E231;
-	Tue, 16 Mar 2021 08:14:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E1756E239;
+	Tue, 16 Mar 2021 08:43:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 3249 seconds by postgrey-1.36 at gabe;
- Tue, 16 Mar 2021 07:44:49 UTC
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9ECB989C56
- for <amd-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 07:44:49 +0000 (UTC)
-Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
- 12G6XpJh038572; Tue, 16 Mar 2021 02:50:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=date : from : to : cc :
- subject : message-id : references : mime-version : content-type :
- in-reply-to; s=pp1; bh=U0D9FMetb/d4p0qzlAnQOYDqTF4rYE7A0MPACixrYJw=;
- b=kbFL+0pnRc3qdo+rd/RBfMx/oT1ykn3bwjOwah6KYEo60PgYrJT2T3LyOQmdBQvZ74Et
- tWXkMSUCi4jNGkUwSkxhsJ7qqAUaTs5GHxgCYuL+xC9CoDuCQeiRkWynhIlfKFJY+odK
- Y6uVr0AOonsvlkG9VaO7Jdg5ZeLD6wC6FSoD5EPUlduS/1sytOfrcCuwyqZnx8Sb8XVi
- H+cYKvUQfwrPP78JoguUn9ndA55TqGcYMbRmD+LD0ifr8FbMUecyHs2dgpgc/NIf3v8X
- IWxG3Am7FZ3efNqYKl9rM/VoqRU0gxsj96XTrbhnWSjeEHTOjTgsoIA2YnzGEw1dkwUq KQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com with ESMTP id 37abvarcgj-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 16 Mar 2021 02:50:37 -0400
-Received: from m0098410.ppops.net (m0098410.ppops.net [127.0.0.1])
- by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 12G6XvLf038798;
- Tue, 16 Mar 2021 02:50:36 -0400
-Received: from ppma02fra.de.ibm.com (47.49.7a9f.ip4.static.sl-reverse.com
- [159.122.73.71])
- by mx0a-001b2d01.pphosted.com with ESMTP id 37abvarcg3-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 16 Mar 2021 02:50:36 -0400
-Received: from pps.filterd (ppma02fra.de.ibm.com [127.0.0.1])
- by ppma02fra.de.ibm.com (8.16.0.43/8.16.0.43) with SMTP id 12G6g0qP016936;
- Tue, 16 Mar 2021 06:50:34 GMT
-Received: from b06cxnps3075.portsmouth.uk.ibm.com
- (d06relay10.portsmouth.uk.ibm.com [9.149.109.195])
- by ppma02fra.de.ibm.com with ESMTP id 378n181b7c-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 16 Mar 2021 06:50:34 +0000
-Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com
- [9.149.105.58])
- by b06cxnps3075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 12G6oVQW17629524
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 16 Mar 2021 06:50:31 GMT
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id B89DB4C052;
- Tue, 16 Mar 2021 06:50:31 +0000 (GMT)
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id AD35A4C050;
- Tue, 16 Mar 2021 06:50:30 +0000 (GMT)
-Received: from linux.ibm.com (unknown [9.145.58.148])
- by d06av22.portsmouth.uk.ibm.com (Postfix) with ESMTPS;
- Tue, 16 Mar 2021 06:50:30 +0000 (GMT)
-Date: Tue, 16 Mar 2021 08:50:28 +0200
-From: Mike Rapoport <rppt@linux.ibm.com>
-To: "Liang, Liang (Leo)" <Liang.Liang@amd.com>
-Subject: Re: slow boot with 7fef431be9c9 ("mm/page_alloc: place pages to tail
- in __free_pages_core()")
-Message-ID: <YFBVNEC7jMZxwleL@linux.ibm.com>
-References: <MW3PR12MB4537B49678884A1EB1F75AB5F36E9@MW3PR12MB4537.namprd12.prod.outlook.com>
- <0AE49D98-171A-42B9-9CFC-9193A9BD3346@redhat.com>
- <YEzCm/Uwvw7kKpd7@linux.ibm.com>
- <22437770-956e-f7b4-a8f6-3f1cc28c3ec2@redhat.com>
- <MW3PR12MB45371072D7C3FDA6986C6318F36B9@MW3PR12MB4537.namprd12.prod.outlook.com>
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2057.outbound.protection.outlook.com [40.107.244.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA296E239
+ for <amd-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 08:43:01 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Om1oyM+etOtJIrnPpRDx/ObCbPlxm8SqA1Q2HHusHXUY0PA3KuTCxwFIoQuWhkmtSGpYY/jUwU5MIvM66qwrSR4vqCwKsYX9G3dQfWTV4s/4Uz1svcOjB3k3rG2TxMd0j3idUvB2EJmXGGoljKBXVs91DtIScSv2fwvryQlR6bwu/m2lCOBDgFstyksYGniEoSYTKsQ0gsowfSqfAjkiZOPCJbUv0Fdko0+q4v/kacrMo3M8SCspvU1F9yGPafqSS34r+qrg4VouJDTRiekuMWirxsyswYeJPRZPDTBrQf509WW7cbFV4yl+LbJFf6JQPJy5FxIPPEV7/p0dp7pFZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eE2Z6wgAtd6C6Q3SP1CgbG7oRVSeZzqXDNPpILbqLfI=;
+ b=EKaVpRgkobYnUiZKmCusJ0talpwE8/JD8yDQr4hVmun81YCiArvtPyAGTrUUeIvu5MahH5naObSDIxKbNCw9aQDi9jgq/y6pLE5NMucq5+gOwrjLv22sMl19mrCwKgLzqtBUs5n2rSBs89FEi9FPQxc6xwNCMyR/k2dXN1vPQvwYSHUpVq+jg8v/q43rPfHf1D0di4lF4xE4YaCryFOuqfCaEp24XUC8+ynDR8AyHk2VXiFIiptvLW8K/YI0J/PaNOpPAjXTzuYjSEeBq1gev38kYNIbAqWiPNdNJJCWaE+4VpwcSZML+TF6xaGuiyF9C1mGiGan3W50x+wCvqbozQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eE2Z6wgAtd6C6Q3SP1CgbG7oRVSeZzqXDNPpILbqLfI=;
+ b=XM68yB2UOwkYfU6eEuCSrzkmH8y8TfDTF3OjJg0898n0Vx/dFlRLshPHfWGOlVjpq37RJvgxLW+vAXDEPGpq6/sdRWKuiwYNfcvGvgEwaUlXF200hKvpRMUV0Ih8CWgjgEE5DHNgca88dcN0I4v7tMyVB4I97nTJu/exY+2lF/8=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3117.namprd12.prod.outlook.com (2603:10b6:208:d1::22)
+ by MN2PR12MB3040.namprd12.prod.outlook.com (2603:10b6:208:ce::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.32; Tue, 16 Mar
+ 2021 08:42:56 +0000
+Received: from MN2PR12MB3117.namprd12.prod.outlook.com
+ ([fe80::b5bf:5e99:292d:87d4]) by MN2PR12MB3117.namprd12.prod.outlook.com
+ ([fe80::b5bf:5e99:292d:87d4%7]) with mapi id 15.20.3933.032; Tue, 16 Mar 2021
+ 08:42:56 +0000
+From: Pratik Vishwakarma <Pratik.Vishwakarma@amd.com>
+To: Alexander.Deucher@amd.com, Prike.Liang@amd.com,
+ amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amd/amdgpu: Skip GFX CG/PG state change during S0i3 resume
+Date: Tue, 16 Mar 2021 14:12:28 +0530
+Message-Id: <20210316084228.471863-1-Pratik.Vishwakarma@amd.com>
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [165.204.156.251]
+X-ClientProxiedBy: MAXPR0101CA0006.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:c::16) To MN2PR12MB3117.namprd12.prod.outlook.com
+ (2603:10b6:208:d1::22)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <MW3PR12MB45371072D7C3FDA6986C6318F36B9@MW3PR12MB4537.namprd12.prod.outlook.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.369, 18.0.761
- definitions=2021-03-15_15:2021-03-15,
- 2021-03-15 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 impostorscore=0
- lowpriorityscore=0 mlxscore=0 malwarescore=0 spamscore=0
- priorityscore=1501 clxscore=1015 phishscore=0 adultscore=0 mlxlogscore=999
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2103160044
-X-Mailman-Approved-At: Tue, 16 Mar 2021 08:13:59 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from ETHANOL.amd.com (165.204.156.251) by
+ MAXPR0101CA0006.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:c::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.31 via Frontend
+ Transport; Tue, 16 Mar 2021 08:42:54 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 5c001cff-00c0-47d4-2472-08d8e8577f05
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3040:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3040E5BA9E4BA5FED1CF2004806B9@MN2PR12MB3040.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1824;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Hk3yC7/Cur7F1P6Pojq2eZB0U517VzYYhMd9M6v/HluR7rBe4e7CmDOt/UcZyF+SDShxJ2AUzA7wVfmQU1YaiJ+RLCEFmSgE5uEBhnmPNvLW0BE39p1p0PTVAKxm/EGiB5Aq4a+cwA++D9rkFmpSD20ZVJeNkoTbjF/A1xl0AUyQVpHsSY62/Q12CmPNfvGqkeOlzrcebZg6rbakUVoFlBbdRbKTAFYm8rqP478sS8NvJ4ExolKx5LIkzNs2qmv3lBXxQqPl6rU+Eua1DPa77vuZHQjiIG3F0925dyO/kQnbFwthGNvMAy5eg47N3xw5ZRcn0u3g8dtlKdY32xYtwEGDR8xqFFgeqAhRzKaXThR9ih5Jvt3dZ7BI/U0hlGJiGgFal/1AfXeuvYB9TnkeB6azos6en3iSui8sWzxqR8dzpJv2J71/Dj0nkca6ek85oPXx6L6uoGst0RWNAbjKx0QdMYY/wM7fIiSpHtYG+7cyDBDDNHaRyII8GXrufGO2t6Y5KR2Mw2jD/E3qKZV27ZJCBqj7H43p9KBrSa7gwqbM8j2ez3OJsN25MbJldVta
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3117.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(136003)(39860400002)(376002)(396003)(366004)(16526019)(66556008)(6486002)(52116002)(7696005)(66476007)(1076003)(66946007)(4326008)(86362001)(2906002)(8676002)(478600001)(186003)(2616005)(956004)(8936002)(83380400001)(26005)(6666004)(5660300002)(316002)(36756003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?+EOw3ZMKHI2s1eQsJ6DwZu8FRSaPy6z/J0m3n+nuKKdt/4LKRoe4dxKu0GWx?=
+ =?us-ascii?Q?nroeaG9xN5R1RQ0u9IbUmoGVUi5bxCJsvAVzgXFK2ysMSMWUtfoFfphNJ5P3?=
+ =?us-ascii?Q?gV3c/arfyt+HhhawtZjiLM6gZ/0mmMygQPEQUPYnrwd+eCyteDFoQvL/2CsY?=
+ =?us-ascii?Q?YTR+SKC/gYr9E6rqEnAQB+k8mFz4faW7pQZxzYLJz/oPAp6LlFrp06FVHMHS?=
+ =?us-ascii?Q?qYhPjJS9T2x/SRkkxloowZIOLGGFvj86DbKyy+imp+on0sk2/DyeYuRXvYzX?=
+ =?us-ascii?Q?b5nAxlExBNnP2mxtmnuLjq1ORwygAlPsTr0a78gFAS18zG9R4idx6SYkDwW1?=
+ =?us-ascii?Q?0mHI32BbCl/pQ2yCZax8NWeSZCxSstT+9pOCrunUnGB9QBgTsWYN05HCvTe0?=
+ =?us-ascii?Q?aFF3Bc5wNF1xj2VuzXnPfXKgePZez5b4BVfSZLWFwDZMUVqDycgV/khx29FB?=
+ =?us-ascii?Q?dIZyGYB6XGw7brrdtF9yij2Vs2qRY3pEOsSBT3Y6qdv44NxnTFLD80eHRrag?=
+ =?us-ascii?Q?xvTfKhmY9nwSGNbzfW796O3aUqlOYd+izuPC55je7mj4yab15dv+gu9yBFKe?=
+ =?us-ascii?Q?23C2Jdm3lNiEIbptoSFlFumkQzt2ac2HBO2sN9mrgdpsEk9K8X/nICZySDDo?=
+ =?us-ascii?Q?FWARPtfu2+rs8Wu2L8h05Mwaio/j9+kLV/R8R7VjYyhzcvbZzTD7yLch57fn?=
+ =?us-ascii?Q?PrXv64M9TXKNZ2BRLKqCRcrpWAJLigjlQmXf6XD5GhykUGhCnmjJQF1oIzmE?=
+ =?us-ascii?Q?uZy4fF+t8/keBXQrwymFYXqmLaItOaf6Z6wzAymX1CVcAYgmNhkmI7agqc9f?=
+ =?us-ascii?Q?YzWCNIdVJKrrrpEbh46uK4QACZsVp3gbQ946he6TNuiUCTQFGEwLVIUpRvMY?=
+ =?us-ascii?Q?RI9QbMDUdE290JbJvWo8Pa1mvErQU97cRl9Z2spKTQIR2ArVlLAZ7pbYVO++?=
+ =?us-ascii?Q?+RF1+aQOR10A1DtLvDbolD+uqxoYF+74MtD2lqR3K0lxnQEpLAfa4OXlSOVF?=
+ =?us-ascii?Q?2EOEC8T5lAzp3pllKYq7YPGyd/LxgItX98kvwPRLV9u776aRJcwuerA8y+PB?=
+ =?us-ascii?Q?OoQ7RsduHxattCBHsvXOw8cqEacm6KTg2q69pIoBU93PFCgddyyIfCrmLdTi?=
+ =?us-ascii?Q?b5rpmUCbJN1VOmE41AHMdOq5AtHJA/f6EA3TfhExQi7s8mIdVEIDf0J5+on5?=
+ =?us-ascii?Q?1AP/a3IR5d9AtWy3x+kQ4A3PyuOvw6OT5BNFdXejCNQIAjyxrpwNdeDXc1mR?=
+ =?us-ascii?Q?ChoHpigOMaTi/UYKw+0NhYDS1qE3u/CpsfMDZBTTLoNTK6VB3+hxHp6YdErj?=
+ =?us-ascii?Q?4Yxuo/fO6kykL3fpvKERYAt8?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c001cff-00c0-47d4-2472-08d8e8577f05
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3117.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2021 08:42:56.7665 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PSbbTq7SspSp9YQhGE4kh/G8B1O7N9+Mo1ybMbzaZdb5+s/YjdkvD6m46df7ZYahyOHsB++2xa4F7O1tY3/uNg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3040
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,134 +114,91 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Hildenbrand <david@redhat.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- George Kennedy <george.kennedy@oracle.com>, "Huang, Ray" <Ray.Huang@amd.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>, "Koenig,
- Christian" <Christian.Koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Leo,
+[Why]
+amdgpu resume time is over 1 sec.
 
-On Tue, Mar 16, 2021 at 12:36:29AM +0000, Liang, Liang (Leo) wrote:
-> 
-> Hi David,
-> 
-> Sorry for late. If revert 7fef431be9c9 (without 7fef431be9c9), the dmesg attached. And looks the exception as below:
-> [  +0.027833] [0x0000000078000000 - 0x00000000783fffff] 20925 MB/s / 25405 MB/s
-> [  +1.363596] [0x0000000100000000 - 0x00000001003fffff] 222 MB/s / 222 MB/s
-> [  +1.562192] [0x0000000100400000 - 0x00000001007fffff] 222 MB/s / 222 MB/s
-> [  +1.881332] [0x0000000100800000 - 0x0000000100bfffff] 195 MB/s / 159 MB/s
-> [  +1.383388] [0x0000000100c00000 - 0x0000000100ffffff] 219 MB/s / 221 MB/s
-> [  +0.029342] [0x0000000101000000 - 0x00000001013fffff] 19807 MB/s / 24125 MB/s
-> 
-> What is the problem here? Do you want to check the acpi tables?
+[How]
+GFX CG/PG state change is skipped for S0ix suspend.
+Skip CG/PG state chage for GFX during S0ix resume too.
+This reduces resume time to under 150msec.
 
-As it seems the first 16M at 0x0000000100000000 are two orders of magnitude
-slower than the rest of the memory as if there is a different memory device
-there.
+Signed-off-by: Pratik Vishwakarma <Pratik.Vishwakarma@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  3 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 11 +++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  7 ++++++-
+ 3 files changed, 20 insertions(+), 1 deletion(-)
 
-This would explain why with 7fef431be9c9 everything gets slower as we
-allocate the first (and probably quite critical) data from those 16M.
-
-No idea how this could be related to ACPI and why ACPI initialization
-causes the huge slowdown on its own.
-
-Can you please try booting with 7fef431be9c9 still applied and with this
-patch (not even compile tested):
-
-diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
-index d883176ef2ce..780f11ca14c9 100644
---- a/arch/x86/kernel/setup.c
-+++ b/arch/x86/kernel/setup.c
-@@ -778,6 +778,7 @@ void __init setup_arch(char **cmdline_p)
- 	 * L1TF its contents can be leaked to user processes.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 5da112b3feb0..036ca9f0c739 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1040,6 +1040,9 @@ struct amdgpu_device {
  	 */
- 	memblock_reserve(0, PAGE_SIZE);
-+	memblock_reserve(0x0000000100000000, SZ_16M);
+ 	bool 				in_poweroff_reboot_com;
  
- 	early_reserve_initrd();
++	/* Flag used to identify system is in resume sequence */
++	bool				in_resume;
++
+ 	atomic_t 			in_gpu_reset;
+ 	enum pp_mp1_state               mp1_state;
+ 	struct rw_semaphore reset_sem;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 3dbee9671d59..4089135b6493 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -2349,6 +2349,11 @@ static int amdgpu_device_set_cg_state(struct amdgpu_device *adev,
+ 		    adev->ip_blocks[i].version->type != AMD_IP_BLOCK_TYPE_VCN &&
+ 		    adev->ip_blocks[i].version->type != AMD_IP_BLOCK_TYPE_JPEG &&
+ 		    adev->ip_blocks[i].version->funcs->set_clockgating_state) {
++			/* Skip GFX gating for S0ix during resume */
++			if (adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_GFX) {
++				if (amdgpu_acpi_is_s0ix_supported(adev) && adev->in_resume)
++					continue;
++			}
+ 			/* enable clockgating to save power */
+ 			r = adev->ip_blocks[i].version->funcs->set_clockgating_state((void *)adev,
+ 										     state);
+@@ -2380,6 +2385,12 @@ static int amdgpu_device_set_pg_state(struct amdgpu_device *adev, enum amd_power
+ 		    adev->ip_blocks[i].version->type != AMD_IP_BLOCK_TYPE_VCN &&
+ 		    adev->ip_blocks[i].version->type != AMD_IP_BLOCK_TYPE_JPEG &&
+ 		    adev->ip_blocks[i].version->funcs->set_powergating_state) {
++			/* Skip GFX gating for S0ix during resume */
++			if (adev->ip_blocks[i].version->type == AMD_IP_BLOCK_TYPE_GFX) {
++				if (amdgpu_acpi_is_s0ix_supported(adev) && adev->in_resume)
++					continue;
++			}
++
+ 			/* enable powergating to save power */
+ 			r = adev->ip_blocks[i].version->funcs->set_powergating_state((void *)adev,
+ 											state);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index f98843eeb084..693ad3b3e6a0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -1400,8 +1400,13 @@ static int amdgpu_pmops_suspend(struct device *dev)
+ static int amdgpu_pmops_resume(struct device *dev)
+ {
+ 	struct drm_device *drm_dev = dev_get_drvdata(dev);
++	struct amdgpu_device *adev = drm_to_adev(drm_dev);
++	int r;
  
+-	return amdgpu_device_resume(drm_dev, true);
++	adev->in_resume = true;
++	r = amdgpu_device_resume(drm_dev, true);
++	adev->in_resume = false;
++	return r;
+ }
  
-> BRs,
-> Leo
-> -----Original Message-----
-> From: David Hildenbrand <david@redhat.com> 
-> Sent: Monday, March 15, 2021 9:04 PM
-> To: Mike Rapoport <rppt@linux.ibm.com>
-> Cc: Liang, Liang (Leo) <Liang.Liang@amd.com>; Deucher, Alexander <Alexander.Deucher@amd.com>; linux-kernel@vger.kernel.org; amd-gfx list <amd-gfx@lists.freedesktop.org>; Andrew Morton <akpm@linux-foundation.org>; Huang, Ray <Ray.Huang@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>; Rafael J. Wysocki <rafael@kernel.org>; George Kennedy <george.kennedy@oracle.com>
-> Subject: Re: slow boot with 7fef431be9c9 ("mm/page_alloc: place pages to tail in __free_pages_core()")
-> 
-> On 13.03.21 14:48, Mike Rapoport wrote:
-> > Hi,
-> > 
-> > On Sat, Mar 13, 2021 at 10:05:23AM +0100, David Hildenbrand wrote:
-> >>> Am 13.03.2021 um 05:04 schrieb Liang, Liang (Leo) <Liang.Liang@amd.com>:
-> >>>
-> >>> Hi David,
-> >>>
-> >>> Which benchmark tool you prefer? Memtest86+ or else?
-> >>
-> >> Hi Leo,
-> >>
-> >> I think you want something that runs under Linux natively.
-> >>
-> >> I'm planning on coding up a kernel module to walk all 4MB pages in 
-> >> the freelists and perform a stream benchmark individually. Then we 
-> >> might be able to identify the problematic range - if there is a 
-> >> problematic range :)
-> > 
-> > My wild guess would be that the pages that are now at the head of free 
-> > lists have wrong caching enabled. Might be worth checking in your test 
-> > module.
-> 
-> I hacked something up real quick:
-> 
-> https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgithub.com%2Fdavidhildenbrand%2Fkstream&amp;data=04%7C01%7Cliang.liang%40amd.com%7C61fb103eeb7647f5228408d8e7b2d7d3%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637514102622932303%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=ufUYQRtdSHvEkR61LiJZtsVdYZbtdGbKlzZHOQdct78%3D&amp;reserved=0
-> 
-> Only briefly tested inside a VM. The output looks something like
-> 
-> [...]
-> [ 8396.432225] [0x0000000045800000 - 0x0000000045bfffff] 25322 MB/s /
-> 38948 MB/s
-> [ 8396.448749] [0x0000000045c00000 - 0x0000000045ffffff] 24481 MB/s /
-> 38946 MB/s
-> [ 8396.465197] [0x0000000046000000 - 0x00000000463fffff] 24892 MB/s /
-> 39170 MB/s
-> [ 8396.481552] [0x0000000046400000 - 0x00000000467fffff] 25222 MB/s /
-> 39156 MB/s
-> [ 8396.498012] [0x0000000046800000 - 0x0000000046bfffff] 24416 MB/s /
-> 39159 MB/s
-> [ 8396.514397] [0x0000000046c00000 - 0x0000000046ffffff] 25469 MB/s /
-> 38940 MB/s
-> [ 8396.530849] [0x0000000047000000 - 0x00000000473fffff] 24885 MB/s /
-> 38734 MB/s
-> [ 8396.547195] [0x0000000047400000 - 0x00000000477fffff] 25458 MB/s /
-> 38941 MB/s
-> [...]
-> 
-> The benchmark allocates one 4 MiB chunk at a time and runs a simplified STREAM benchmark a) without flushing caches b) flushing caches before every memory access.
-> 
-> It would be great if you could run that with the *old behavior* kernel (IOW, without 7fef431be9c9), so we might still be lucky to catch the problematic area in the freelist.
-> 
-> Let's see if that will indicate anything.
-> 
-> --
-> Thanks,
-> 
-> David / dhildenb
-
-
-
+ static int amdgpu_pmops_freeze(struct device *dev)
 -- 
-Sincerely yours,
-Mike.
+2.25.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
