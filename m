@@ -1,20 +1,20 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0220C33F0AD
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Mar 2021 13:50:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5966533F0AE
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Mar 2021 13:50:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D0406E57A;
-	Wed, 17 Mar 2021 12:50:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 185936E544;
+	Wed, 17 Mar 2021 12:50:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from regular1.263xmail.com (regular1.263xmail.com [211.150.70.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75CD56E506
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 09:19:16 +0000 (UTC)
-Received: from localhost (unknown [192.168.167.32])
- by regular1.263xmail.com (Postfix) with ESMTP id 873CD1CD1;
- Wed, 17 Mar 2021 17:19:12 +0800 (CST)
+Received: from regular1.263xmail.com (regular1.263xmail.com [211.150.70.206])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B0B66E506
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 09:40:12 +0000 (UTC)
+Received: from localhost (unknown [192.168.167.223])
+ by regular1.263xmail.com (Postfix) with ESMTP id 888711B16;
+ Wed, 17 Mar 2021 17:40:08 +0800 (CST)
 X-MAIL-GRAY: 0
 X-MAIL-DELIVERY: 1
 X-ADDR-CHECKED4: 1
@@ -23,10 +23,10 @@ X-SKE-CHECKED: 1
 X-ABS-CHECKED: 1
 Received: from chenli.uniontech.com (unknown [58.246.122.242])
  by smtp.263.net (postfix) whith ESMTP id
- P27338T140203174360832S1615972751696843_; 
- Wed, 17 Mar 2021 17:19:12 +0800 (CST)
+ P23503T140626660148992S1615974007679374_; 
+ Wed, 17 Mar 2021 17:40:08 +0800 (CST)
 X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <80d595a771cbbfef5a6834a3899fc2e0>
+X-UNIQUE-TAG: <8115e9390a58bcd688ebc548180d7fc3>
 X-RL-SENDER: chenli@uniontech.com
 X-SENDER: chenli@uniontech.com
 X-LOGIN-NAME: chenli@uniontech.com
@@ -34,14 +34,15 @@ X-FST-TO: christian.koenig@amd.com
 X-SENDER-IP: 58.246.122.242
 X-ATTACHMENT-NUM: 0
 X-System-Flag: 0
-Date: Wed, 17 Mar 2021 17:19:11 +0800
-Message-ID: <87blbiyw6o.wl-chenli@uniontech.com>
+Date: Wed, 17 Mar 2021 17:40:07 +0800
+Message-ID: <87a6r2yv7s.wl-chenli@uniontech.com>
 From: Chen Li <chenli@uniontech.com>
 To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Subject: Re: [PATCH] radeon: use kvcalloc for relocs and chunks
-In-Reply-To: <03eefbb1-4d33-8a96-a53c-df1654a7d3f6@amd.com>
+In-Reply-To: <87blbiyw6o.wl-chenli@uniontech.com>
 References: <87czvyz4dd.wl-chenli@uniontech.com>
  <03eefbb1-4d33-8a96-a53c-df1654a7d3f6@amd.com>
+ <87blbiyw6o.wl-chenli@uniontech.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/27.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -65,110 +66,133 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 17 Mar 2021 15:55:47 +0800,
-Christian K=F6nig wrote:
+On Wed, 17 Mar 2021 17:19:11 +0800,
+Chen Li wrote:
 > =
 
-> Am 17.03.21 um 07:22 schrieb Chen Li:
-> > kvmalloc_array + __GFP_ZERO is the same with kvcalloc.
+> On Wed, 17 Mar 2021 15:55:47 +0800,
+> Christian K=F6nig wrote:
 > > =
 
-> > As for p->chunks, it will be used in:
-> > ```
-> > if (ib_chunk->kdata)
-> > 		memcpy(parser->ib.ptr, ib_chunk->kdata, ib_chunk->length_dw * 4);
-> > ```
+> > Am 17.03.21 um 07:22 schrieb Chen Li:
+> > > kvmalloc_array + __GFP_ZERO is the same with kvcalloc.
+> > > =
+
+> > > As for p->chunks, it will be used in:
+> > > ```
+> > > if (ib_chunk->kdata)
+> > > 		memcpy(parser->ib.ptr, ib_chunk->kdata, ib_chunk->length_dw * 4);
+> > > ```
+> > > =
+
+> > > If chunks doesn't zero out with __GFP_ZERO, it may point to somewhere=
+ else, e.g.,
+> > > ```
+> > > Unable to handle kernel paging request at virtual address 00000000000=
+10000
+> > > ...
+> > > pc is at memcpy+0x84/0x250
+> > > ra is at radeon_cs_ioctl+0x368/0xb90 [radeon]
+> > > ```
+> > > =
+
+> > > after allocating chunks with __GFP_KERNEL/kvcalloc, this bug is fixed.
 > > =
 
-> > If chunks doesn't zero out with __GFP_ZERO, it may point to somewhere e=
-lse, e.g.,
-> > ```
-> > Unable to handle kernel paging request at virtual address 0000000000010=
-000
-> > ...
-> > pc is at memcpy+0x84/0x250
-> > ra is at radeon_cs_ioctl+0x368/0xb90 [radeon]
-> > ```
+> > NAK to zeroing the chunks array.
 > > =
 
-> > after allocating chunks with __GFP_KERNEL/kvcalloc, this bug is fixed.
-> =
-
-> NAK to zeroing the chunks array.
-> =
-
-> That array should be fully initialized with data before using it, otherwi=
-se we
-> have a much more serious bug and zeroing it out only papers over the real=
- issue.
-> =
-
-> How did you trigger the NULL pointer deref above?
-
-Hi, Christian, thanks for reply! From radeon_cs_parser_init:
-```
-	if (user_chunk.chunk_id =3D=3D RADEON_CHUNK_ID_IB) {
-			if (!p->rdev || !(p->rdev->flags & RADEON_IS_AGP))
-
-            /****** chenli: chunks[0] come here and continue! ******/
-
-				continue;
-		}
-
-		p->chunks[i].kdata =3D kvmalloc_array(size, sizeof(uint32_t), GFP_KERNEL);
-```
-In my case, chunks[0] is not allocated because it is just get continued, so=
- it's not
-wired that kdata in "memcpy(parser->ib.ptr, ib_chunk->kdata, ib_chunk->leng=
-th_dw * 4);"
-trigger the invalid address. =
-
-        =
-
-> =
-
-> Thanks,
-> Christian.
-> =
-
-> > Signed-off-by: Chen Li <chenli@uniontech.com>
-> > ---
-> >   drivers/gpu/drm/radeon/radeon_cs.c | 6 +++---
-> >   1 file changed, 3 insertions(+), 3 deletions(-)
+> > That array should be fully initialized with data before using it, other=
+wise we
+> > have a much more serious bug and zeroing it out only papers over the re=
+al issue.
 > > =
 
-> > diff --git a/drivers/gpu/drm/radeon/radeon_cs.c b/drivers/gpu/drm/radeo=
-n/radeon_cs.c
-> > index fb736ef9f9aa..059431689c2d 100644
-> > --- a/drivers/gpu/drm/radeon/radeon_cs.c
-> > +++ b/drivers/gpu/drm/radeon/radeon_cs.c
-> > @@ -93,8 +93,8 @@ static int radeon_cs_parser_relocs(struct radeon_cs_p=
-arser *p)
-> >   	p->dma_reloc_idx =3D 0;
-> >   	/* FIXME: we assume that each relocs use 4 dwords */
-> >   	p->nrelocs =3D chunk->length_dw / 4;
-> > -	p->relocs =3D kvmalloc_array(p->nrelocs, sizeof(struct radeon_bo_list=
-),
-> > -			GFP_KERNEL | __GFP_ZERO);
-> > +	p->relocs =3D kvcalloc(p->nrelocs, sizeof(struct radeon_bo_list),
-> > +			GFP_KERNEL);
-> >   	if (p->relocs =3D=3D NULL) {
-> >   		return -ENOMEM;
-> >   	}
-> > @@ -299,7 +299,7 @@ int radeon_cs_parser_init(struct radeon_cs_parser *=
-p, void *data)
-> >   	}
-> >   	p->cs_flags =3D 0;
-> >   	p->nchunks =3D cs->num_chunks;
-> > -	p->chunks =3D kvmalloc_array(p->nchunks, sizeof(struct radeon_cs_chun=
-k), GFP_KERNEL);
-> > +	p->chunks =3D kvcalloc(p->nchunks, sizeof(struct radeon_cs_chunk), GF=
-P_KERNEL);
-> >   	if (p->chunks =3D=3D NULL) {
-> >   		return -ENOMEM;
-> >   	}
+> > How did you trigger the NULL pointer deref above?
 > =
 
+> Hi, Christian, thanks for reply! From radeon_cs_parser_init:
+> ```
+> 	if (user_chunk.chunk_id =3D=3D RADEON_CHUNK_ID_IB) {
+> 			if (!p->rdev || !(p->rdev->flags & RADEON_IS_AGP))
+> =
+
+>             /****** chenli: chunks[0] come here and continue! ******/
+> =
+
+> 				continue;
+> 		}
+> =
+
+> 		p->chunks[i].kdata =3D kvmalloc_array(size, sizeof(uint32_t), GFP_KERNE=
+L);
+> ```
+> In my case, chunks[0] is not allocated because it is just get continued, =
+so it's not
+> wired that kdata in "memcpy(parser->ib.ptr, ib_chunk->kdata, ib_chunk->le=
+ngth_dw * 4);"
+> trigger the invalid address. =
+
+>         =
+
+
+By the ways, chunks were allocated with kcalloc before https://git.kernel.o=
+rg/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=3D3fcb4f01deedfa=
+290e903e030956b8e1a5cb764f,
+which do zero the chunks array, that's why this error never happen before.
+
+> > =
+
+> > Thanks,
+> > Christian.
+> > =
+
+> > > Signed-off-by: Chen Li <chenli@uniontech.com>
+> > > ---
+> > >   drivers/gpu/drm/radeon/radeon_cs.c | 6 +++---
+> > >   1 file changed, 3 insertions(+), 3 deletions(-)
+> > > =
+
+> > > diff --git a/drivers/gpu/drm/radeon/radeon_cs.c b/drivers/gpu/drm/rad=
+eon/radeon_cs.c
+> > > index fb736ef9f9aa..059431689c2d 100644
+> > > --- a/drivers/gpu/drm/radeon/radeon_cs.c
+> > > +++ b/drivers/gpu/drm/radeon/radeon_cs.c
+> > > @@ -93,8 +93,8 @@ static int radeon_cs_parser_relocs(struct radeon_cs=
+_parser *p)
+> > >   	p->dma_reloc_idx =3D 0;
+> > >   	/* FIXME: we assume that each relocs use 4 dwords */
+> > >   	p->nrelocs =3D chunk->length_dw / 4;
+> > > -	p->relocs =3D kvmalloc_array(p->nrelocs, sizeof(struct radeon_bo_li=
+st),
+> > > -			GFP_KERNEL | __GFP_ZERO);
+> > > +	p->relocs =3D kvcalloc(p->nrelocs, sizeof(struct radeon_bo_list),
+> > > +			GFP_KERNEL);
+> > >   	if (p->relocs =3D=3D NULL) {
+> > >   		return -ENOMEM;
+> > >   	}
+> > > @@ -299,7 +299,7 @@ int radeon_cs_parser_init(struct radeon_cs_parser=
+ *p, void *data)
+> > >   	}
+> > >   	p->cs_flags =3D 0;
+> > >   	p->nchunks =3D cs->num_chunks;
+> > > -	p->chunks =3D kvmalloc_array(p->nchunks, sizeof(struct radeon_cs_ch=
+unk), GFP_KERNEL);
+> > > +	p->chunks =3D kvcalloc(p->nchunks, sizeof(struct radeon_cs_chunk), =
+GFP_KERNEL);
+> > >   	if (p->chunks =3D=3D NULL) {
+> > >   		return -ENOMEM;
+> > >   	}
+> > =
+
+> > =
+
+> > =
+
+> =
+
+> Regards,
+>   Chen Li
 > =
 
 > =
