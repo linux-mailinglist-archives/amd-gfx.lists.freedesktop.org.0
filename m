@@ -1,113 +1,114 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEB5A33F55A
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Mar 2021 17:22:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5EF633F62B
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Mar 2021 18:01:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E58D8981B;
-	Wed, 17 Mar 2021 16:22:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE79F6E102;
+	Wed, 17 Mar 2021 17:01:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr680045.outbound.protection.outlook.com [40.107.68.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6004E6E59B
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 16:22:18 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2063.outbound.protection.outlook.com [40.107.220.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A22E66E102
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 17:01:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ms43Cr6aOy9od/jVyWD2qjAPQoOXsKBIwRxCiqL6ZLDuwpp4Kyyc3pOwGmf+4OodccKxvxBaI4FZJtq/JoA+ZDHGQAGS5sc97Koi7gbdpqwxK2X9Gb2arLm/oZeUKXOJOTWkb+MjYwH5jWIs9NBOYqxsexqN+G098Lg5E+e2nu/C+4+hGowDMMiAYN700q2oMtzGvvm71y9RvdJ+Ywms0V7pNlp8x9nlcfs7du5OJB70/SxFMoZwd0HCDPBQnRobgIIR+4iuwpiexdW3y/wmbbhCp3gWMCIl2sY3IOPOx9SYtjZNg1AaGu5Oc0ESvdhgItHKGYYMvSjcyv9cBAjLCA==
+ b=Wc8ziYsOdgkGxXe21xN9ocFlzX3RAtt48IypLWs0TvSRGUBkEpmtx7SOgr4/buu3JX1x8L3MTYDX13YpTkaunQBK/jGPd7V7tySAE+mDVCLJFyh4rv5tVg9q/jsweLUx3a4cRb7ScnZqrEJIhHnBnynzw3h6CxGCy43QnpTECcO8d1V/QMQX8OFSUCjVYs/rYMr8dYzZF4qqNTNsMB4q19w8u/ARO53zMNP7b45duHR4rUunYdvhYsSS85CwGOy/OvRmxZwRoGeOCixagygKLjGQ9TCCN1OD29T/DZAhzRiWm0lrPXKdQS095keGJlt/dfdUSKjx2lbaWyOSz3vXgg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xJ6pvkst6TrA7QLQNNwZX/K9w6+rC7UU1YfKVXMBHno=;
- b=b2W79EZi7NawC07mYnqlIY4to0J5Vkv68GGl9dZMebp4UPdh/ejXKWF5IxCT8y4B9RGUSEUjbht/rMggS5fhU885PVsuNjCu6l6lunOR6k69EPhnBCe4KSgu8xvIiSfoa4lT5LreoNrjHJDf/k/SwzL99o6U/l9D9SHMV8IUc/ph+etEzj7SnUSN9gXSDEqWUEekI2UgUmJExJi+aEdFMhxV6/8/1c6/InpqNdZSctxja0UdDjyt1ARk9X6AURFlgmS8B4Bk6gJvA5LMbkh2RnakQ7/G0igkuwTjnyTawj4/dhOBPfF8egIuRVdFElNQslf3KUGQHprhqyW+uEMZ5A==
+ bh=IglD85GU/5zADV/yLuxjP7oqgMIYoYUyiz+PIIWbMDk=;
+ b=KUgtGSsfC2/PIGhXVV6sBGYuR5ZaN7sxuZD+xuHbp7EJPW6kNEVl/MKCzopZVFOxqvQN82V4RjzlFaD5vrALcn63LUvrA2WLYVnI83HHJYNGb0ho2fv89omajbecv5NWItU3DpU7i253W7m/TDTeJGmygrJXoa5nPsiWAcHKQZ6PSv5DvCjhSsqsIzvQH12u7zIiB5SQZNJ3Xnd2Lj+X68yhnWTg+TP2vD4QXWdXJO+j2lAbbmHijxqiw4hDzLCPbUwCR/O91vTglz6JcS0JVO6whZ+LKXKwsgj4zQMmlMT9i8sjELodlorjdUeV6whyjFe+OrvjMfqUd5CQ/2Ytag==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xJ6pvkst6TrA7QLQNNwZX/K9w6+rC7UU1YfKVXMBHno=;
- b=XwN+wZdur+w/gGA9DHe0uWSggiQzmzkEjdrtcQKRn9d9UUI/CgYqybSWzaDoziSSJosZD2EkjjBdKkqkKPIvYzR2+OfZH7reaHXDRfWfq1g6By8XIY2AJD+RQ6oWK774mBcFUFKIZR3glV63AZ6yETjot7KTN/GjBqQjp9gJ4+c=
+ bh=IglD85GU/5zADV/yLuxjP7oqgMIYoYUyiz+PIIWbMDk=;
+ b=OR1GqZuY3Yg60XGj+EIKYZvauW5pAsy+Szy9CIDRzzmeOyKoqm07E94rFBf48wZK+HjiNWvQUv9W2SVeGN0fhiK39GqJBvliNHnyhMiroS01clcBtdtlwBemagUAUaI29ZPxKhIDsDzEmjS+WPSEfotyD71fCJtDhZhWYOn9Q54=
 Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
- by MN2PR12MB4584.namprd12.prod.outlook.com (2603:10b6:208:24e::11)
+ by MN2PR12MB4583.namprd12.prod.outlook.com (2603:10b6:208:26e::7)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Wed, 17 Mar
- 2021 16:22:16 +0000
+ 2021 17:01:32 +0000
 Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  ([fe80::5deb:dba7:1bd4:f39c]) by MN2PR12MB4488.namprd12.prod.outlook.com
  ([fe80::5deb:dba7:1bd4:f39c%5]) with mapi id 15.20.3933.032; Wed, 17 Mar 2021
- 16:22:16 +0000
+ 17:01:32 +0000
 From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Siqueira, Rodrigo" <Rodrigo.Siqueira@amd.com>, "Wentland, Harry"
- <Harry.Wentland@amd.com>
-Subject: Re: [PATCH] drm/amd/display: Add irq register entry for dmub
-Thread-Topic: [PATCH] drm/amd/display: Add irq register entry for dmub
-Thread-Index: AQHXG0mPz42j7rDAB0q8kh4mc/8hRaqIXL76
-Date: Wed, 17 Mar 2021 16:22:16 +0000
-Message-ID: <MN2PR12MB448875BF7AE8910917EBE798F76A9@MN2PR12MB4488.namprd12.prod.outlook.com>
-References: <20210317162105.845084-1-Rodrigo.Siqueira@amd.com>
-In-Reply-To: <20210317162105.845084-1-Rodrigo.Siqueira@amd.com>
+To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "harv@gmx.de" <harv@gmx.de>
+Subject: Re: Amdgpu kernel oops and freezing on system suspend and hibernate
+Thread-Topic: Amdgpu kernel oops and freezing on system suspend and hibernate
+Thread-Index: AQHXG0p5RYHfl0EZ/0GCJ2t6T2vD76qIZ6b8
+Date: Wed, 17 Mar 2021 17:01:32 +0000
+Message-ID: <MN2PR12MB4488704D527398352637AC61F76A9@MN2PR12MB4488.namprd12.prod.outlook.com>
+References: <9f9f69fa-4638-673f-6695-1171e927a80b@gmx.de>
+In-Reply-To: <9f9f69fa-4638-673f-6695-1171e927a80b@gmx.de>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
  MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2021-03-17T16:22:15.713Z;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2021-03-17T17:01:32.007Z;
  MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
  Distribution
  Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
  MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+authentication-results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
 x-originating-ip: [192.161.79.247]
 x-ms-publictraffictype: Email
 x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: ef3af14d-7305-420b-fd7a-08d8e960d46d
-x-ms-traffictypediagnostic: MN2PR12MB4584:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB458470FBBE2191889BB7E6C9F76A9@MN2PR12MB4584.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:161;
+x-ms-office365-filtering-correlation-id: 03689fe7-0964-49ea-d25f-08d8e96650ff
+x-ms-traffictypediagnostic: MN2PR12MB4583:
+x-microsoft-antispam-prvs: <MN2PR12MB45830FAA82F9F471B3D276B4F76A9@MN2PR12MB4583.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 7mW8h+VJxJ3Ph7SBtR1ZTeJ0Y6N6me4fBbJLN8hiMp2fZMpmRwLO8a0mBpOXQOPYtCawj9jeBh0j52J3AeuSHhQuGQBkuwnWCiXHmKCm0qLML9WYUqv4rA0o+Ji7rj55NgG7IDBQ9azHseiBW2QK8mWZzLtbI9qg1nN1TAYpkmiUc8ndkCXwGuL1Cg08Uan7KFLpOkw9EzYDZGb3tyn0S4DDGeBDsTVedx4+jsEuirBcQJDHxc27xxMW862svDWL/GbGriLNZ2D5PRkFt7ziQGKz2A0XVcERE1Y3ZS+xrWO0tnTf4OidMgkKLofIixdij12TfDSt15YN/SWCLp81ojYxDrgFGTkTZy5pHQNmT5ah9pbyGMqEPOXAY8Tud5+Ijl17Bn1NKEXlJE0ZMxMXe9Q+NwF0xE0CAY2EOT1Yyq3J3rnbzVcCcDHbR66MspDlL6ZrTJMwVmUoaLwQAgxh8Latxvu/xIV+OzTjFp4CgE1SjrpTOID0SvjVQtb6ujmqNjKwP8UoR4n9Fc1pH1l5OSc8ejGVWbGkyzJZ4mEBJjrdBIXa9eOg8Kyo7H432269
+x-microsoft-antispam-message-info: UmDuP+vVr87K9KbyZWx1vwhaCzQh+oRL232UNCJmNE9u+Co44e8moOGsMtsRtM5B1OwEJ/u92/5UUHE7G6bB2uoo1l0UcGAlFfzLyPxBjR1N0s9SIg3EqC1UHRzX56/J74XzU/avnIuYetMxGm5D4cIE0KvqXLl3L0xRjxgOcumGgbPegGbQY4JvQWPebbCvIBaTnb267kq4/6Yp7gRcpA6/oGyIz7gOCjuaHunFiWslC66cTmCm9JG7ib0gXHX/P3vT+vtxDJ3bEWqBzieWluFnaR0/+HhJO6GQHk3vdFGmvcjFD05o2mOyBlaOKYofyCUFoaEIbwL8pZ8coK9rCvpQuX1svd27/+qMzKcFh+z4yuTLZTFPvaPfsH2lnfocCYv/Kbl3Io9ZaPy51uuRA9EhIzfrXRwPH9Nb3p2c6wHcas5C7Shs/HPNkcxEZqT1c9f/rONLuOrl4MWmpoSZIDzTAbRpALiTEU1mjINwsTESJtrnmaodJUx+hz9OPgCLEnls6FjsK6sj7q+C3CcqY7GiOKIO1yOdxj0O8M4hVWxFBytJPN/+xTmlJxhWQGcsXdbGI+ZjTKRRm9L5FS67v3tMPQ0JCDNeqWAdjud1kDg=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(396003)(366004)(376002)(39860400002)(136003)(83380400001)(186003)(54906003)(8936002)(110136005)(33656002)(2906002)(19627405001)(6636002)(64756008)(52536014)(53546011)(66556008)(6506007)(478600001)(7696005)(66476007)(66946007)(66446008)(71200400001)(4326008)(86362001)(316002)(8676002)(9686003)(76116006)(55016002)(5660300002)(26005);
+ SFS:(4636009)(346002)(366004)(396003)(39860400002)(136003)(376002)(33656002)(8676002)(316002)(26005)(5660300002)(76116006)(8936002)(86362001)(83380400001)(52536014)(186003)(30864003)(166002)(15650500001)(110136005)(2906002)(19627405001)(966005)(71200400001)(478600001)(7696005)(53546011)(6506007)(66556008)(66476007)(9686003)(64756008)(66446008)(66946007)(45080400002)(55016002)(19627235002);
  DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?jCShaH+TFidEHcYHhKTHNudiQkpKJARs39g1qSSrp8n+Pj+r1GadGkJv5VES?=
- =?us-ascii?Q?8D5zhOSAE4ei9vxHuF7NTt3UkEJdfOEq3NAoyq1Zp5eGP6pX7jJcYtIF482u?=
- =?us-ascii?Q?kpZDgOzA/xeK+0DOgB5WPO3m7Ky1PVEdmZN5iBKi+kn9SQcyUaO1NqG4xT64?=
- =?us-ascii?Q?LV5u31GYe43R/e+KnQJ6dCthMrqGfLpacagI8/t2IEhF5setks36rw4rg4XM?=
- =?us-ascii?Q?6XCLd28Xh0uP9GA8daWc6xvtARdOpYVJx+2xmPbsIrOSqkVQh+8b1WhIYRqc?=
- =?us-ascii?Q?f1INT5X3aQm/P4a64VXVs2ZSLXkBge1ZsDyo4oeSM50sa4ewF7dr2WJLxaqn?=
- =?us-ascii?Q?eoNo8lsQlIHigeAD9j/WQwXNrk0YhFNnR0YKLqWVOrMiIUN/D7xdnCTeO+zD?=
- =?us-ascii?Q?uxGeCJmnlSA5H6g8gREda2ca586ZRCbF+MKKjpDtp4JhlPWgbXtk5C0fsVO+?=
- =?us-ascii?Q?Dt7V3OxqqJdl4u52Mrs/MtpmwUPfVxogMmkyfjQe8OxJnOGD2pUwQyqVfWBv?=
- =?us-ascii?Q?3ZQ9dGMR5WCIDh5X1BCBbYjivQufT6iSzUiLiyxDcY38duUCij5mmVjhYzu1?=
- =?us-ascii?Q?mx+3T0COS34snolOiczuMenXKvTTDqiu83y0rwCuK4JsfmTFyGf3mvPv2Guh?=
- =?us-ascii?Q?5RtCZP/ejhugZ13hiYsCHR5r3OrGziTIIxw8hk7dHOhZ7UPhnIE6zPxSWOag?=
- =?us-ascii?Q?PlbuousF22KzxlYD6qFal0SYcrJtZjksEgvzmxxZGheSEr0DHF3/+hOoSCcY?=
- =?us-ascii?Q?qMhJyZUHZspJd17OQcCRAt90419iD4jQwy8DE8Z9GQnrs+q5+wh/lpcyLimJ?=
- =?us-ascii?Q?Yx54r2P+eK1q3LYl9qW1fLFO8v+nHtwnvJs8u1PyVQ0d3tyWG2U+4NKTTUGi?=
- =?us-ascii?Q?c1flB/kreaTji02eRjTT5AM9+sMbpWQ85uRdYoHdn6hvoI3E1ZnGyVYa3d/9?=
- =?us-ascii?Q?DJO0i7h01UMXcm6p5Ogsw93gMd2Wv3EFR2cVcQJbOcvu/1/pscnRG8L971Ai?=
- =?us-ascii?Q?7a1qaSnMQbPrfoxdfzDT+j1UngttjXp0myrFPc2m5Vc4rZrg6A/qEV+PT4ev?=
- =?us-ascii?Q?hiJPtlXrS438vT1fcWuzEksgUQkNzkkPlSugt5zBhaG4J6OmuMY58OvN+ZcN?=
- =?us-ascii?Q?AtVR8HQPNHYTFh1LvY6gkJXtuAMZgSCSiZUpsAld8ZAKlBylFCNo2Qx503dV?=
- =?us-ascii?Q?3AS/YkY3lRjJJZ8xhrGStIcS01jXk8ImbT+tFrxnvbce46uoK+lTGP9cfwZX?=
- =?us-ascii?Q?SrXfHgCMnoeVqMMJ9qsvtKPt65x/VFl0nfC3cmGxoLxqeTEOy4H/WyN0A+Eo?=
- =?us-ascii?Q?0+4u/bAT3rrkH5ZzsmeRMlQi?=
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?x4/459TCrwh/pQBa5zEArZBd/3l/YdG7LEmSCwhkFTOLpK7ML1q2/APoFFGk?=
+ =?us-ascii?Q?u2qFIv8YZGaCHq0pALIPMfiqD+DhosiVM2MB4ayzIBk52IYR1NpgOhjBZ62x?=
+ =?us-ascii?Q?KTXATP5m5HcWmBOf+BtLvCgbx5PD9ML33ygrGRN65slmlZWlm8AeNJ2sr36S?=
+ =?us-ascii?Q?6Aa/JPjm7++oT6F49aeegYPFIVbcqrClik3qJarapuSSX5IQGV71Xii0oTcq?=
+ =?us-ascii?Q?LhFSSkpjn5ZxGE43AVmzUf1ARSSYu3sO0VAM217RvolFkfBtWQGZySMn25fQ?=
+ =?us-ascii?Q?YFJB5SSxM9j4LNxw+CX8+OwEwhq/AXCazCh/q96KTzmymTwphVKwP3uiSEyB?=
+ =?us-ascii?Q?mNAu3k8tAx60Zt/cQZPWpx7yUytZq+jrdy0hr4LMA1rQXUr2d9W0QMV9LXAV?=
+ =?us-ascii?Q?1q5JxqiyZvu00Xg74ByVDiHlyXzOqKLmqwRr+aQs/44s+Cc1fuEkds0YbWc2?=
+ =?us-ascii?Q?t73T9KMwlU7uRfs2E7kpo+LBjiI9Z+eiPLgYjzBrXj1vyMEDkCg4wVq3VWJV?=
+ =?us-ascii?Q?H0HTcnfMn/TkBCi5/lPWq6yqPg2V20AtWwcl+R1ZTXTT5R4Rr/j1jg5XhvlE?=
+ =?us-ascii?Q?jSQKVaE86mhkqtuoZ0wP3z41I2iRt7IBpn1qE+FM0+QUZvrisu8Mwc9zHgVT?=
+ =?us-ascii?Q?7Mv3u5nlGd4OSlXFS+YR0nRyBzEzY9y5t0E7rA9kOnWfZ451HR4NAcPFyiw4?=
+ =?us-ascii?Q?6cw1UgI96ePX3cInteguEsaKo6BZ87GbmibYWNI2tVUYp2H3X8l97RZp1xYH?=
+ =?us-ascii?Q?KkbkkIOLV8PhGzjlscRaSfMNhXz7gO5Pe+YwCU9lvki0rW7tHfsIpNgzTREL?=
+ =?us-ascii?Q?pyI0/F+jakbNLI0lmofmRG0csxPNadRxrjntiyS3hOlnLQ4NJpKxo/JhKxjv?=
+ =?us-ascii?Q?71mSbP1GK3p0PPs+aanRTSBy46DWCVmgQrHEbnxIPn9rYQrjhvA/BhZFS2YD?=
+ =?us-ascii?Q?jc+zo8Fg/NN1QaVdHGmgdolEgUSoyYt1Mz14jv2QI1IfQYD9r5qtAP5lledP?=
+ =?us-ascii?Q?Z2wMpV9YQJLySpP41UD0WBc5wTdhwtzpngMKXlJdbYI22NCbYUeatiShCXOG?=
+ =?us-ascii?Q?qtX/c3T9qf+Sw6LbMxn5R3qTHN+8kNux+bmdBK5FO2s/YvcnAshubXrCKPHK?=
+ =?us-ascii?Q?GABY8g5hs5sY2ZasX9xZXfWCUL9pVCvkKn9QAmqj027HERiAvq/VljlODeKM?=
+ =?us-ascii?Q?YL/iUXUP96lZAIW3HPKtkbrlcozsqlYQTfedMHncPBkWYXoRhsNbgbjAfJom?=
+ =?us-ascii?Q?pl1KM5fHS5gLtIEUGNJmwXzHP+uNXQrWnlTT9BY70yhZxkYzfh6AaBr2yxZP?=
+ =?us-ascii?Q?psk6ktk9xZwsBe5FWU1FwiP9?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef3af14d-7305-420b-fd7a-08d8e960d46d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2021 16:22:16.1651 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 03689fe7-0964-49ea-d25f-08d8e96650ff
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2021 17:01:32.5862 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: N2wE7NBbQLftg6cvEbzz7kWhtD/u+/bSPcKJrseWYUG5NHc6IZJ5ATprBukev4OFVvr88C9PWXMnqkR5Xsk/iQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4584
+X-MS-Exchange-CrossTenant-userprincipalname: 6sHmcTkPqwspkGGZu7MWXA8wOqfOZE61WitfSFYmzVaLzpeqZsmaKA/etcL1Z+KwQ2R+EBte32QffCJAe0rSgA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4583
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,115 +120,278 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chiu, Solomon" <Solomon.Chiu@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Lin, 
- Wayne" <Wayne.Lin@amd.com>
-Content-Type: multipart/mixed; boundary="===============1917209959=="
+Content-Type: multipart/mixed; boundary="===============1510881072=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1917209959==
+--===============1510881072==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB448875BF7AE8910917EBE798F76A9MN2PR12MB4488namp_"
+	boundary="_000_MN2PR12MB4488704D527398352637AC61F76A9MN2PR12MB4488namp_"
 
---_000_MN2PR12MB448875BF7AE8910917EBE798F76A9MN2PR12MB4488namp_
+--_000_MN2PR12MB4488704D527398352637AC61F76A9MN2PR12MB4488namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 [AMD Official Use Only - Internal Distribution Only]
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Please try the latest patch set on this bug:
+https://gitlab.freedesktop.org/drm/amd/-/issues/1230<https://gitlab.freedes=
+ktop.org/drm/amd/-/issues/1230#note_844139>
+
+Alex
 ________________________________
-From: Siqueira, Rodrigo <Rodrigo.Siqueira@amd.com>
-Sent: Wednesday, March 17, 2021 12:21 PM
-To: Deucher, Alexander <Alexander.Deucher@amd.com>; Wentland, Harry <Harry.=
-Wentland@amd.com>
-Cc: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; Lin, Way=
-ne <Wayne.Lin@amd.com>; Chiu, Solomon <Solomon.Chiu@amd.com>
-Subject: [PATCH] drm/amd/display: Add irq register entry for dmub
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Harvey <=
+harv@gmx.de>
+Sent: Wednesday, March 17, 2021 12:20 PM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Subject: Amdgpu kernel oops and freezing on system suspend and hibernate
 
-DCN2.1 and DCN3.0 are missing some macros that register irq entries
-which cause compilation errors. This commit introduces those macros and
-fix the compilation error.
+Hello,
 
-Cc: Wayne Lin <Wayne.Lin@amd.com>
-Cc: Solomon Chiu <solomon.chiu@amd.com>
-Fixes: 53e9c0f651421136 ("drm/amd/display: Support vertical interrupt 0 for=
- all dcn ASIC")
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
----
- .../display/dc/irq/dcn21/irq_service_dcn21.c   | 17 +++++++++++++++++
- .../display/dc/irq/dcn30/irq_service_dcn30.c   | 18 ++++++++++++++++++
- 2 files changed, 35 insertions(+)
+I own a laptop, a MSI Bravo 17 A4DDR/MS-17FK
+with Ryzen 7 4800U and hybrid graphics on a Radeon RX 5500M.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c b=
-/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c
-index 48a3c360174e..bc1249a9858c 100644
---- a/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c
-+++ b/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c
-@@ -209,6 +209,23 @@ static const struct irq_source_info_funcs vline0_irq_i=
-nfo_funcs =3D {
-         BASE(mm ## block ## id ## _ ## reg_name ## _BASE_IDX) + \
-                         mm ## block ## id ## _ ## reg_name
+DMI: Micro-Star International Co., Ltd. Bravo 17 A4DDR/MS-17FK, BIOS
+E17FKAMS.117 10/29/2020
 
-+#define SRI_DMUB(reg_name)\
-+       BASE(mm ## reg_name ## _BASE_IDX) + \
-+                       mm ## reg_name
-+
-+#define IRQ_REG_ENTRY_DMUB(reg1, mask1, reg2, mask2)\
-+       .enable_reg =3D SRI_DMUB(reg1),\
-+       .enable_mask =3D \
-+               reg1 ## __ ## mask1 ## _MASK,\
-+       .enable_value =3D {\
-+               reg1 ## __ ## mask1 ## _MASK,\
-+               ~reg1 ## __ ## mask1 ## _MASK \
-+       },\
-+       .ack_reg =3D SRI_DMUB(reg2),\
-+       .ack_mask =3D \
-+               reg2 ## __ ## mask2 ## _MASK,\
-+       .ack_value =3D \
-+               reg2 ## __ ## mask2 ## _MASK \
+The system does not hibernate, it just freezes. Starting after a reset
+it then resumes from the swap partition and gets the system up, but
+shortly after that freezes again.
 
- #define IRQ_REG_ENTRY(block, reg_num, reg1, mask1, reg2, mask2)\
-         .enable_reg =3D SRI(reg1, block, reg_num),\
-diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn30/irq_service_dcn30.c b=
-/drivers/gpu/drm/amd/display/dc/irq/dcn30/irq_service_dcn30.c
-index 68f8f554c925..5af52ad49d7c 100644
---- a/drivers/gpu/drm/amd/display/dc/irq/dcn30/irq_service_dcn30.c
-+++ b/drivers/gpu/drm/amd/display/dc/irq/dcn30/irq_service_dcn30.c
-@@ -276,6 +276,24 @@ static const struct irq_source_info_funcs vline0_irq_i=
-nfo_funcs =3D {
-                 .funcs =3D &vblank_irq_info_funcs\
-         }
+Even suspending is not working properly - on archlinux with kernel
+5.11.6 and on 5.12-rc1 I see the following kernel oopses after resume:
 
-+#define SRI_DMUB(reg_name)\
-+       BASE(mm ## reg_name ## _BASE_IDX) + \
-+                       mm ## reg_name
-+
-+#define IRQ_REG_ENTRY_DMUB(reg1, mask1, reg2, mask2)\
-+       .enable_reg =3D SRI_DMUB(reg1),\
-+       .enable_mask =3D \
-+               reg1 ## __ ## mask1 ## _MASK,\
-+       .enable_value =3D {\
-+               reg1 ## __ ## mask1 ## _MASK,\
-+               ~reg1 ## __ ## mask1 ## _MASK \
-+       },\
-+       .ack_reg =3D SRI_DMUB(reg2),\
-+       .ack_mask =3D \
-+               reg2 ## __ ## mask2 ## _MASK,\
-+       .ack_value =3D \
-+               reg2 ## __ ## mask2 ## _MASK \
-+
- #define dmub_trace_int_entry()\
-         [DC_IRQ_SOURCE_DMCUB_OUTBOX0] =3D {\
-                 IRQ_REG_ENTRY_DMUB(DMCUB_INTERRUPT_ENABLE, DMCUB_OUTBOX0_R=
-EADY_INT_EN,\
---
-2.25.1
+The output of dmesg -l err,warn is:
+
+[11020.188925] ------------[ cut here ]------------
+[11020.188929] WARNING: CPU: 0 PID: 7736 at
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link.c:2574
+dc_link_set_backlight_level+0x8a/0xf0 [amdgpu]
+[11020.189314] Modules linked in: rfcomm snd_hda_codec_realtek
+snd_hda_codec_generic ledtrig_audio snd_hda_codec_hdmi cmac algif_hash
+algif_skcipher af_alg bnep intel_rapl_msr intel_rapl_common iwlmvm
+snd_hda_intel snd_intel_dspcfg soundwire_intel
+soundwire_generic_allocation soundwire_cadence nls_iso8859_1 vfat
+mac80211 snd_hda_codec fat edac_mce_amd uvcvideo btusb snd_hda_core
+kvm_amd btrtl libarc4 videobuf2_vmalloc btbcm snd_hwdep videobuf2_memops
+hid_multitouch soundwire_bus videobuf2_v4l2 btintel pktcdvd iwlwifi
+snd_soc_core kvm videobuf2_common bluetooth snd_compress videodev
+ac97_bus snd_pcm_dmaengine snd_pcm snd_timer irqbypass msi_wmi
+ecdh_generic joydev mousedev cfg80211 mc ecc rapl snd psmouse
+snd_rn_pci_acp3x pcspkr sparse_keymap k10temp i2c_piix4 snd_pci_acp3x
+soundcore rfkill tpm_crb tpm_tis tpm_tis_core pinctrl_amd i2c_hid
+acpi_cpufreq mac_hid soc_button_array vboxnetflt(OE) vboxnetadp(OE)
+vboxdrv(OE) usbip_host usbip_core sg fuse crypto_user bpf_preload
+ip_tables x_tables
+[11020.189400]  ext4 crc32c_generic crc16 mbcache jbd2 sr_mod cdrom uas
+usb_storage dm_crypt cbc encrypted_keys dm_mod trusted tpm
+crct10dif_pclmul crc32_pclmul crc32c_intel ghash_clmulni_intel
+aesni_intel crypto_simd cryptd glue_helper serio_raw ccp xhci_pci
+xhci_pci_renesas rng_core wmi video usbhid r8168(OE) amdgpu
+drm_ttm_helper ttm gpu_sched i2c_algo_bit drm_kms_helper syscopyarea
+sysfillrect sysimgblt fb_sys_fops cec drm agpgart
+[11020.189445] CPU: 0 PID: 7736 Comm: systemd-sleep Tainted: G
+  OE     5.11.6-arch1-1 #1
+[11020.189450] Hardware name: Micro-Star International Co., Ltd. Bravo
+17 A4DDR/MS-17FK, BIOS E17FKAMS.117 10/29/2020
+[11020.189453] RIP: 0010:dc_link_set_backlight_level+0x8a/0xf0 [amdgpu]
+[11020.189792] Code: 88 03 00 00 31 c0 48 8d 96 f0 01 00 00 48 8b 0a 48
+85 c9 74 06 48 3b 59 08 74 20 83 c0 01 48 81 c2 d0 04 00 00 83 f8 06 75
+e3 <0f> 0b 45 31 e4 5b 44 89 e0 5d 41 5c 41 5d 41 5e c3 48 98 48 69 c0
+[11020.189795] RSP: 0018:ffffc1f003373c38 EFLAGS: 00010246
+[11020.189799] RAX: 0000000000000006 RBX: ffff9e244e0ea800 RCX:
+0000000000000000
+[11020.189802] RDX: ffff9e2582fe1ed0 RSI: ffff9e2582fe0000 RDI:
+0000000000000000
+[11020.189804] RBP: ffff9e244e0f0000 R08: 00000000000000f9 R09:
+ffff9e244323a000
+[11020.189806] R10: ffff9e244323ae40 R11: 0000000001320122 R12:
+000000000000fa01
+[11020.189808] R13: 0000000000000000 R14: 000000000000fa42 R15:
+0000000000000003
+[11020.189810] FS:  00007f6219470a40(0000) GS:ffff9e275f600000(0000)
+knlGS:0000000000000000
+[11020.189813] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[11020.189815] CR2: 00007fb7a8980180 CR3: 0000000109cae000 CR4:
+0000000000350ef0
+[11020.189818] Call Trace:
+[11020.189828]  amdgpu_dm_backlight_update_status+0xb4/0xc0 [amdgpu]
+[11020.190185]  backlight_suspend+0x6a/0x80
+[11020.190192]  ? brightness_store+0x80/0x80
+[11020.190197]  dpm_run_callback+0x4c/0x150
+[11020.190202]  __device_suspend+0x11c/0x4d0
+[11020.190205]  dpm_suspend+0xef/0x230
+[11020.190209]  dpm_suspend_start+0x77/0x80
+[11020.190213]  suspend_devices_and_enter+0x109/0x800
+[11020.190219]  pm_suspend.cold+0x329/0x374
+[11020.190225]  state_store+0x71/0xd0
+[11020.190230]  kernfs_fop_write_iter+0x124/0x1b0
+[11020.190236]  new_sync_write+0x159/0x1f0
+[11020.190241]  vfs_write+0x1fc/0x2a0
+[11020.190245]  ksys_write+0x67/0xe0
+[11020.190249]  do_syscall_64+0x33/0x40
+[11020.190255]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[11020.190261] RIP: 0033:0x7f6219de10f7
+[11020.190265] Code: 0d 00 f7 d8 64 89 02 48 c7 c0 ff ff ff ff eb b7 0f
+1f 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 b8 01 00 00 00 0f
+05 <48> 3d 00 f0 ff ff 77 51 c3 48 83 ec 28 48 89 54 24 18 48 89 74 24
+[11020.190268] RSP: 002b:00007fff7ae91318 EFLAGS: 00000246 ORIG_RAX:
+0000000000000001
+[11020.190272] RAX: ffffffffffffffda RBX: 0000000000000004 RCX:
+00007f6219de10f7
+[11020.190275] RDX: 0000000000000004 RSI: 00007fff7ae91400 RDI:
+0000000000000004
+[11020.190276] RBP: 00007fff7ae91400 R08: 000055e3a1261b70 R09:
+00007f6219e770c0
+[11020.190278] R10: 00007f6219e76fc0 R11: 0000000000000246 R12:
+0000000000000004
+[11020.190280] R13: 000055e3a125d3c0 R14: 0000000000000004 R15:
+00007f6219eb3700
+[11020.190284] ---[ end trace e7dfefa87a0c3feb ]---
+[11020.853160] IRQ 85: no longer affine to CPU1
+[11020.856648] IRQ 86: no longer affine to CPU2
+[11020.859859] IRQ 87: no longer affine to CPU3
+[11020.862584] IRQ 88: no longer affine to CPU4
+[11020.865211] IRQ 89: no longer affine to CPU5
+[11020.867656] IRQ 90: no longer affine to CPU6
+[11020.870520] IRQ 91: no longer affine to CPU7
+[11020.873539] IRQ 92: no longer affine to CPU8
+[11020.876530] IRQ 93: no longer affine to CPU9
+[11020.879551] IRQ 94: no longer affine to CPU10
+[11023.064667] amdgpu 0000:03:00.0: amdgpu: SMU driver if version not
+matched
+
+the lspci -k output is:
+
+00:00.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Root Complex
+        Subsystem: Advanced Micro Devices, Inc. [AMD] Renoir Root Complex
+00:00.2 IOMMU: Advanced Micro Devices, Inc. [AMD] Renoir IOMMU
+        Subsystem: Advanced Micro Devices, Inc. [AMD] Renoir IOMMU
+00:01.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe
+Dummy Host Bridge
+00:01.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe GPP
+Bridge
+        Kernel driver in use: pcieport
+00:02.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe
+Dummy Host Bridge
+00:02.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe GPP
+Bridge
+        Kernel driver in use: pcieport
+00:02.2 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe GPP
+Bridge
+        Kernel driver in use: pcieport
+00:02.3 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe GPP
+Bridge
+        Kernel driver in use: pcieport
+00:08.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe
+Dummy Host Bridge
+00:08.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir Internal
+PCIe GPP Bridge to Bus
+        Kernel driver in use: pcieport
+00:08.2 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir Internal
+PCIe GPP Bridge to Bus
+        Kernel driver in use: pcieport
+00:14.0 SMBus: Advanced Micro Devices, Inc. [AMD] FCH SMBus Controller
+(rev 51)
+        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 12ac
+        Kernel driver in use: piix4_smbus
+        Kernel modules: i2c_piix4, sp5100_tco
+00:14.3 ISA bridge: Advanced Micro Devices, Inc. [AMD] FCH LPC Bridge
+(rev 51)
+        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 12ac
+00:18.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device
+24: Function 0
+00:18.1 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device
+24: Function 1
+00:18.2 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device
+24: Function 2
+00:18.3 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device
+24: Function 3
+        Kernel driver in use: k10temp
+        Kernel modules: k10temp
+00:18.4 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device
+24: Function 4
+00:18.5 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device
+24: Function 5
+00:18.6 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device
+24: Function 6
+00:18.7 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device
+24: Function 7
+01:00.0 PCI bridge: Advanced Micro Devices, Inc. [AMD/ATI] Navi 10 XL
+Upstream Port of PCI Express Switch (rev c1)
+        Kernel driver in use: pcieport
+02:00.0 PCI bridge: Advanced Micro Devices, Inc. [AMD/ATI] Navi 10 XL
+Downstream Port of PCI Express Switch
+        Kernel driver in use: pcieport
+03:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Navi
+14 [Radeon RX 5500/5500M / Pro 5500M] (rev c1)
+        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 12ac
+        Kernel driver in use: amdgpu
+        Kernel modules: amdgpu
+03:00.1 Audio device: Advanced Micro Devices, Inc. [AMD/ATI] Navi 10
+HDMI Audio
+        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 12ac
+        Kernel driver in use: snd_hda_intel
+        Kernel modules: snd_hda_intel
+04:00.0 Network controller: Intel Corporation Wi-Fi 6 AX200 (rev 1a)
+        Subsystem: Intel Corporation Device 0084
+        Kernel driver in use: iwlwifi
+        Kernel modules: iwlwifi
+05:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd.
+RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 15)
+        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 12ac
+        Kernel driver in use: r8168
+        Kernel modules: r8169, r8168
+06:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe
+SSD Controller SM981/PM981/PM983
+        Subsystem: Samsung Electronics Co Ltd Device a801
+        Kernel driver in use: nvme
+07:00.0 VGA compatible controller: Advanced Micro Devices, Inc.
+[AMD/ATI] Renoir (rev c6)
+        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 12ac
+        Kernel driver in use: amdgpu
+        Kernel modules: amdgpu
+07:00.2 Encryption controller: Advanced Micro Devices, Inc. [AMD] Family
+17h (Models 10h-1fh) Platform Security Processor
+        Subsystem: Advanced Micro Devices, Inc. [AMD] Family 17h (Models
+10h-1fh) Platform Security Processor
+        Kernel driver in use: ccp
+        Kernel modules: ccp
+07:00.3 USB controller: Advanced Micro Devices, Inc. [AMD] Renoir USB 3.1
+        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 12ac
+        Kernel driver in use: xhci_hcd
+        Kernel modules: xhci_pci
+07:00.4 USB controller: Advanced Micro Devices, Inc. [AMD] Renoir USB 3.1
+        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 12ac
+        Kernel driver in use: xhci_hcd
+        Kernel modules: xhci_pci
+07:00.5 Multimedia controller: Advanced Micro Devices, Inc. [AMD]
+Raven/Raven2/FireFlight/Renoir Audio Processor (rev 01)
+        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 12ac
+        Kernel modules: snd_pci_acp3x, snd_rn_pci_acp3x
+07:00.6 Audio device: Advanced Micro Devices, Inc. [AMD] Family 17h
+(Models 10h-1fh) HD Audio Controller
+        DeviceName: HD Audio Controller
+        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 12ac
+        Kernel driver in use: snd_hda_intel
+        Kernel modules: snd_hda_intel
+08:00.0 SATA controller: Advanced Micro Devices, Inc. [AMD] FCH SATA
+Controller [AHCI mode] (rev 81)
+        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 12ac
+        Kernel driver in use: ahci
+08:00.1 SATA controller: Advanced Micro Devices, Inc. [AMD] FCH SATA
+Controller [AHCI mode] (rev 81)
+        Subsystem: Micro-Star International Co., Ltd. [MSI] Device 12ac
+        Kernel driver in use: ahci
+
+I suppose the amdgpu module is at fault here?
+
+Greetings
+Harvey
 
 
---_000_MN2PR12MB448875BF7AE8910917EBE798F76A9MN2PR12MB4488namp_
+--_000_MN2PR12MB4488704D527398352637AC61F76A9MN2PR12MB4488namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -247,129 +411,329 @@ gn=3D"Left">
 <div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-Acked-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+Please try the latest patch set on this bug:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<a href=3D"https://gitlab.freedesktop.org/drm/amd/-/issues/1230#note_844139=
+" id=3D"LPlnk">https://gitlab.freedesktop.org/drm/amd/-/issues/1230</a><br>
+</div>
+<div class=3D"_Entity _EType_OWALinkPreview _EId_OWALinkPreview _EReadonly_=
+1"></div>
+<br>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Alex<br>
 </div>
 <div id=3D"appendonsend"></div>
 <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Siqueira, Rodrigo &lt=
-;Rodrigo.Siqueira@amd.com&gt;<br>
-<b>Sent:</b> Wednesday, March 17, 2021 12:21 PM<br>
-<b>To:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Wentland, =
-Harry &lt;Harry.Wentland@amd.com&gt;<br>
-<b>Cc:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
-gt;; Lin, Wayne &lt;Wayne.Lin@amd.com&gt;; Chiu, Solomon &lt;Solomon.Chiu@a=
-md.com&gt;<br>
-<b>Subject:</b> [PATCH] drm/amd/display: Add irq register entry for dmub</f=
-ont>
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
+ounces@lists.freedesktop.org&gt; on behalf of Harvey &lt;harv@gmx.de&gt;<br=
+>
+<b>Sent:</b> Wednesday, March 17, 2021 12:20 PM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Subject:</b> Amdgpu kernel oops and freezing on system suspend and hiber=
+nate</font>
 <div>&nbsp;</div>
 </div>
 <div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
 ">
-<div class=3D"PlainText">DCN2.1 and DCN3.0 are missing some macros that reg=
-ister irq entries<br>
-which cause compilation errors. This commit introduces those macros and<br>
-fix the compilation error.<br>
+<div class=3D"PlainText">Hello,<br>
 <br>
-Cc: Wayne Lin &lt;Wayne.Lin@amd.com&gt;<br>
-Cc: Solomon Chiu &lt;solomon.chiu@amd.com&gt;<br>
-Fixes: 53e9c0f651421136 (&quot;drm/amd/display: Support vertical interrupt =
-0 for all dcn ASIC&quot;)<br>
-Signed-off-by: Rodrigo Siqueira &lt;Rodrigo.Siqueira@amd.com&gt;<br>
----<br>
-&nbsp;.../display/dc/irq/dcn21/irq_service_dcn21.c&nbsp;&nbsp; | 17 +++++++=
-++++++++++<br>
-&nbsp;.../display/dc/irq/dcn30/irq_service_dcn30.c&nbsp;&nbsp; | 18 +++++++=
-+++++++++++<br>
-&nbsp;2 files changed, 35 insertions(+)<br>
+I own a laptop, a MSI Bravo 17 A4DDR/MS-17FK<br>
+with Ryzen 7 4800U and hybrid graphics on a Radeon RX 5500M.<br>
 <br>
-diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c b=
-/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c<br>
-index 48a3c360174e..bc1249a9858c 100644<br>
---- a/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c<br>
-+++ b/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c<br>
-@@ -209,6 +209,23 @@ static const struct irq_source_info_funcs vline0_irq_i=
-nfo_funcs =3D {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BASE(mm ## block ## id ## =
-_ ## reg_name ## _BASE_IDX) + \<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mm ##=
- block ## id ## _ ## reg_name<br>
-&nbsp;<br>
-+#define SRI_DMUB(reg_name)\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BASE(mm ## reg_name ## _BASE_IDX) + \=
+DMI: Micro-Star International Co., Ltd. Bravo 17 A4DDR/MS-17FK, BIOS <br>
+E17FKAMS.117 10/29/2020<br>
 <br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mm ## reg_name<b=
+The system does not hibernate, it just freezes. Starting after a reset <br>
+it then resumes from the swap partition and gets the system up, but <br>
+shortly after that freezes again.<br>
+<br>
+Even suspending is not working properly - on archlinux with kernel <br>
+5.11.6 and on 5.12-rc1 I see the following kernel oopses after resume:<br>
+<br>
+The output of dmesg -l err,warn is:<br>
+<br>
+[11020.188925] ------------[ cut here ]------------<br>
+[11020.188929] WARNING: CPU: 0 PID: 7736 at <br>
+drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link.c:2574 <br>
+dc_link_set_backlight_level+0x8a/0xf0 [amdgpu]<br>
+[11020.189314] Modules linked in: rfcomm snd_hda_codec_realtek <br>
+snd_hda_codec_generic ledtrig_audio snd_hda_codec_hdmi cmac algif_hash <br>
+algif_skcipher af_alg bnep intel_rapl_msr intel_rapl_common iwlmvm <br>
+snd_hda_intel snd_intel_dspcfg soundwire_intel <br>
+soundwire_generic_allocation soundwire_cadence nls_iso8859_1 vfat <br>
+mac80211 snd_hda_codec fat edac_mce_amd uvcvideo btusb snd_hda_core <br>
+kvm_amd btrtl libarc4 videobuf2_vmalloc btbcm snd_hwdep videobuf2_memops <b=
 r>
-+<br>
-+#define IRQ_REG_ENTRY_DMUB(reg1, mask1, reg2, mask2)\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .enable_reg =3D SRI_DMUB(reg1),\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .enable_mask =3D \<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; reg1 ## __ ## mask1 ## _MASK,\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .enable_value =3D {\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; reg1 ## __ ## mask1 ## _MASK,\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; ~reg1 ## __ ## mask1 ## _MASK \<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .ack_reg =3D SRI_DMUB(reg2),\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .ack_mask =3D \<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; reg2 ## __ ## mask2 ## _MASK,\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .ack_value =3D \<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; reg2 ## __ ## mask2 ## _MASK \<br>
-&nbsp;<br>
-&nbsp;#define IRQ_REG_ENTRY(block, reg_num, reg1, mask1, reg2, mask2)\<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .enable_reg =3D SRI(reg1, =
-block, reg_num),\<br>
-diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn30/irq_service_dcn30.c b=
-/drivers/gpu/drm/amd/display/dc/irq/dcn30/irq_service_dcn30.c<br>
-index 68f8f554c925..5af52ad49d7c 100644<br>
---- a/drivers/gpu/drm/amd/display/dc/irq/dcn30/irq_service_dcn30.c<br>
-+++ b/drivers/gpu/drm/amd/display/dc/irq/dcn30/irq_service_dcn30.c<br>
-@@ -276,6 +276,24 @@ static const struct irq_source_info_funcs vline0_irq_i=
-nfo_funcs =3D {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; .funcs =3D &amp;vblank_irq_info_funcs\<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;<br>
-+#define SRI_DMUB(reg_name)\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BASE(mm ## reg_name ## _BASE_IDX) + \=
-<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mm ## reg_name<b=
+hid_multitouch soundwire_bus videobuf2_v4l2 btintel pktcdvd iwlwifi <br>
+snd_soc_core kvm videobuf2_common bluetooth snd_compress videodev <br>
+ac97_bus snd_pcm_dmaengine snd_pcm snd_timer irqbypass msi_wmi <br>
+ecdh_generic joydev mousedev cfg80211 mc ecc rapl snd psmouse <br>
+snd_rn_pci_acp3x pcspkr sparse_keymap k10temp i2c_piix4 snd_pci_acp3x <br>
+soundcore rfkill tpm_crb tpm_tis tpm_tis_core pinctrl_amd i2c_hid <br>
+acpi_cpufreq mac_hid soc_button_array vboxnetflt(OE) vboxnetadp(OE) <br>
+vboxdrv(OE) usbip_host usbip_core sg fuse crypto_user bpf_preload <br>
+ip_tables x_tables<br>
+[11020.189400]&nbsp; ext4 crc32c_generic crc16 mbcache jbd2 sr_mod cdrom ua=
+s <br>
+usb_storage dm_crypt cbc encrypted_keys dm_mod trusted tpm <br>
+crct10dif_pclmul crc32_pclmul crc32c_intel ghash_clmulni_intel <br>
+aesni_intel crypto_simd cryptd glue_helper serio_raw ccp xhci_pci <br>
+xhci_pci_renesas rng_core wmi video usbhid r8168(OE) amdgpu <br>
+drm_ttm_helper ttm gpu_sched i2c_algo_bit drm_kms_helper syscopyarea <br>
+sysfillrect sysimgblt fb_sys_fops cec drm agpgart<br>
+[11020.189445] CPU: 0 PID: 7736 Comm: systemd-sleep Tainted: G <br>
+&nbsp; OE&nbsp;&nbsp;&nbsp;&nbsp; 5.11.6-arch1-1 #1<br>
+[11020.189450] Hardware name: Micro-Star International Co., Ltd. Bravo <br>
+17 A4DDR/MS-17FK, BIOS E17FKAMS.117 10/29/2020<br>
+[11020.189453] RIP: 0010:dc_link_set_backlight_level+0x8a/0xf0 [amdgpu]<br>
+[11020.189792] Code: 88 03 00 00 31 c0 48 8d 96 f0 01 00 00 48 8b 0a 48 <br=
+>
+85 c9 74 06 48 3b 59 08 74 20 83 c0 01 48 81 c2 d0 04 00 00 83 f8 06 75 <br=
+>
+e3 &lt;0f&gt; 0b 45 31 e4 5b 44 89 e0 5d 41 5c 41 5d 41 5e c3 48 98 48 69 c=
+0<br>
+[11020.189795] RSP: 0018:ffffc1f003373c38 EFLAGS: 00010246<br>
+[11020.189799] RAX: 0000000000000006 RBX: ffff9e244e0ea800 RCX: <br>
+0000000000000000<br>
+[11020.189802] RDX: ffff9e2582fe1ed0 RSI: ffff9e2582fe0000 RDI: <br>
+0000000000000000<br>
+[11020.189804] RBP: ffff9e244e0f0000 R08: 00000000000000f9 R09: <br>
+ffff9e244323a000<br>
+[11020.189806] R10: ffff9e244323ae40 R11: 0000000001320122 R12: <br>
+000000000000fa01<br>
+[11020.189808] R13: 0000000000000000 R14: 000000000000fa42 R15: <br>
+0000000000000003<br>
+[11020.189810] FS:&nbsp; 00007f6219470a40(0000) GS:ffff9e275f600000(0000) <=
+br>
+knlGS:0000000000000000<br>
+[11020.189813] CS:&nbsp; 0010 DS: 0000 ES: 0000 CR0: 0000000080050033<br>
+[11020.189815] CR2: 00007fb7a8980180 CR3: 0000000109cae000 CR4: <br>
+0000000000350ef0<br>
+[11020.189818] Call Trace:<br>
+[11020.189828]&nbsp; amdgpu_dm_backlight_update_status+0xb4/0xc0 [amdgpu]<b=
 r>
-+<br>
-+#define IRQ_REG_ENTRY_DMUB(reg1, mask1, reg2, mask2)\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .enable_reg =3D SRI_DMUB(reg1),\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .enable_mask =3D \<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; reg1 ## __ ## mask1 ## _MASK,\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .enable_value =3D {\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; reg1 ## __ ## mask1 ## _MASK,\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; ~reg1 ## __ ## mask1 ## _MASK \<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .ack_reg =3D SRI_DMUB(reg2),\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .ack_mask =3D \<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; reg2 ## __ ## mask2 ## _MASK,\<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .ack_value =3D \<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; reg2 ## __ ## mask2 ## _MASK \<br>
-+<br>
-&nbsp;#define dmub_trace_int_entry()\<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [DC_IRQ_SOURCE_DMCUB_OUTBO=
-X0] =3D {\<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; IRQ_REG_ENTRY_DMUB(DMCUB_INTERRUPT_ENABLE, DMCUB_OUTB=
-OX0_READY_INT_EN,\<br>
--- <br>
-2.25.1<br>
+[11020.190185]&nbsp; backlight_suspend+0x6a/0x80<br>
+[11020.190192]&nbsp; ? brightness_store+0x80/0x80<br>
+[11020.190197]&nbsp; dpm_run_callback+0x4c/0x150<br>
+[11020.190202]&nbsp; __device_suspend+0x11c/0x4d0<br>
+[11020.190205]&nbsp; dpm_suspend+0xef/0x230<br>
+[11020.190209]&nbsp; dpm_suspend_start+0x77/0x80<br>
+[11020.190213]&nbsp; suspend_devices_and_enter+0x109/0x800<br>
+[11020.190219]&nbsp; pm_suspend.cold+0x329/0x374<br>
+[11020.190225]&nbsp; state_store+0x71/0xd0<br>
+[11020.190230]&nbsp; kernfs_fop_write_iter+0x124/0x1b0<br>
+[11020.190236]&nbsp; new_sync_write+0x159/0x1f0<br>
+[11020.190241]&nbsp; vfs_write+0x1fc/0x2a0<br>
+[11020.190245]&nbsp; ksys_write+0x67/0xe0<br>
+[11020.190249]&nbsp; do_syscall_64+0x33/0x40<br>
+[11020.190255]&nbsp; entry_SYSCALL_64_after_hwframe+0x44/0xa9<br>
+[11020.190261] RIP: 0033:0x7f6219de10f7<br>
+[11020.190265] Code: 0d 00 f7 d8 64 89 02 48 c7 c0 ff ff ff ff eb b7 0f <br=
+>
+1f 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 b8 01 00 00 00 0f <br=
+>
+05 &lt;48&gt; 3d 00 f0 ff ff 77 51 c3 48 83 ec 28 48 89 54 24 18 48 89 74 2=
+4<br>
+[11020.190268] RSP: 002b:00007fff7ae91318 EFLAGS: 00000246 ORIG_RAX: <br>
+0000000000000001<br>
+[11020.190272] RAX: ffffffffffffffda RBX: 0000000000000004 RCX: <br>
+00007f6219de10f7<br>
+[11020.190275] RDX: 0000000000000004 RSI: 00007fff7ae91400 RDI: <br>
+0000000000000004<br>
+[11020.190276] RBP: 00007fff7ae91400 R08: 000055e3a1261b70 R09: <br>
+00007f6219e770c0<br>
+[11020.190278] R10: 00007f6219e76fc0 R11: 0000000000000246 R12: <br>
+0000000000000004<br>
+[11020.190280] R13: 000055e3a125d3c0 R14: 0000000000000004 R15: <br>
+00007f6219eb3700<br>
+[11020.190284] ---[ end trace e7dfefa87a0c3feb ]---<br>
+[11020.853160] IRQ 85: no longer affine to CPU1<br>
+[11020.856648] IRQ 86: no longer affine to CPU2<br>
+[11020.859859] IRQ 87: no longer affine to CPU3<br>
+[11020.862584] IRQ 88: no longer affine to CPU4<br>
+[11020.865211] IRQ 89: no longer affine to CPU5<br>
+[11020.867656] IRQ 90: no longer affine to CPU6<br>
+[11020.870520] IRQ 91: no longer affine to CPU7<br>
+[11020.873539] IRQ 92: no longer affine to CPU8<br>
+[11020.876530] IRQ 93: no longer affine to CPU9<br>
+[11020.879551] IRQ 94: no longer affine to CPU10<br>
+[11023.064667] amdgpu 0000:03:00.0: amdgpu: SMU driver if version not <br>
+matched<br>
+<br>
+the lspci -k output is:<br>
+<br>
+00:00.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Root Complex=
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Advanced Micro Device=
+s, Inc. [AMD] Renoir Root Complex<br>
+00:00.2 IOMMU: Advanced Micro Devices, Inc. [AMD] Renoir IOMMU<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Advanced Micro Device=
+s, Inc. [AMD] Renoir IOMMU<br>
+00:01.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe <br>
+Dummy Host Bridge<br>
+00:01.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe GPP <br>
+Bridge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: pcieport<b=
+r>
+00:02.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe <br>
+Dummy Host Bridge<br>
+00:02.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe GPP <br>
+Bridge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: pcieport<b=
+r>
+00:02.2 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe GPP <br>
+Bridge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: pcieport<b=
+r>
+00:02.3 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe GPP <br>
+Bridge<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: pcieport<b=
+r>
+00:08.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir PCIe <br>
+Dummy Host Bridge<br>
+00:08.1 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir Internal <br>
+PCIe GPP Bridge to Bus<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: pcieport<b=
+r>
+00:08.2 PCI bridge: Advanced Micro Devices, Inc. [AMD] Renoir Internal <br>
+PCIe GPP Bridge to Bus<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: pcieport<b=
+r>
+00:14.0 SMBus: Advanced Micro Devices, Inc. [AMD] FCH SMBus Controller <br>
+(rev 51)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Micro-Star Internatio=
+nal Co., Ltd. [MSI] Device 12ac<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: piix4_smbu=
+s<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel modules: i2c_piix4, sp510=
+0_tco<br>
+00:14.3 ISA bridge: Advanced Micro Devices, Inc. [AMD] FCH LPC Bridge <br>
+(rev 51)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Micro-Star Internatio=
+nal Co., Ltd. [MSI] Device 12ac<br>
+00:18.0 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device <br>
+24: Function 0<br>
+00:18.1 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device <br>
+24: Function 1<br>
+00:18.2 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device <br>
+24: Function 2<br>
+00:18.3 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device <br>
+24: Function 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: k10temp<br=
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel modules: k10temp<br>
+00:18.4 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device <br>
+24: Function 4<br>
+00:18.5 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device <br>
+24: Function 5<br>
+00:18.6 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device <br>
+24: Function 6<br>
+00:18.7 Host bridge: Advanced Micro Devices, Inc. [AMD] Renoir Device <br>
+24: Function 7<br>
+01:00.0 PCI bridge: Advanced Micro Devices, Inc. [AMD/ATI] Navi 10 XL <br>
+Upstream Port of PCI Express Switch (rev c1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: pcieport<b=
+r>
+02:00.0 PCI bridge: Advanced Micro Devices, Inc. [AMD/ATI] Navi 10 XL <br>
+Downstream Port of PCI Express Switch<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: pcieport<b=
+r>
+03:00.0 Display controller: Advanced Micro Devices, Inc. [AMD/ATI] Navi <br=
+>
+14 [Radeon RX 5500/5500M / Pro 5500M] (rev c1)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Micro-Star Internatio=
+nal Co., Ltd. [MSI] Device 12ac<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: amdgpu<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel modules: amdgpu<br>
+03:00.1 Audio device: Advanced Micro Devices, Inc. [AMD/ATI] Navi 10 <br>
+HDMI Audio<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Micro-Star Internatio=
+nal Co., Ltd. [MSI] Device 12ac<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: snd_hda_in=
+tel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel modules: snd_hda_intel<br=
+>
+04:00.0 Network controller: Intel Corporation Wi-Fi 6 AX200 (rev 1a)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Intel Corporation Dev=
+ice 0084<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: iwlwifi<br=
+>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel modules: iwlwifi<br>
+05:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. <br>
+RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller (rev 15)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Micro-Star Internatio=
+nal Co., Ltd. [MSI] Device 12ac<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: r8168<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel modules: r8169, r8168<br>
+06:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe <br=
+>
+SSD Controller SM981/PM981/PM983<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Samsung Electronics C=
+o Ltd Device a801<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: nvme<br>
+07:00.0 VGA compatible controller: Advanced Micro Devices, Inc. <br>
+[AMD/ATI] Renoir (rev c6)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Micro-Star Internatio=
+nal Co., Ltd. [MSI] Device 12ac<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: amdgpu<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel modules: amdgpu<br>
+07:00.2 Encryption controller: Advanced Micro Devices, Inc. [AMD] Family <b=
+r>
+17h (Models 10h-1fh) Platform Security Processor<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Advanced Micro Device=
+s, Inc. [AMD] Family 17h (Models <br>
+10h-1fh) Platform Security Processor<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: ccp<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel modules: ccp<br>
+07:00.3 USB controller: Advanced Micro Devices, Inc. [AMD] Renoir USB 3.1<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Micro-Star Internatio=
+nal Co., Ltd. [MSI] Device 12ac<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: xhci_hcd<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel modules: xhci_pci<br>
+07:00.4 USB controller: Advanced Micro Devices, Inc. [AMD] Renoir USB 3.1<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Micro-Star Internatio=
+nal Co., Ltd. [MSI] Device 12ac<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: xhci_hcd<b=
+r>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel modules: xhci_pci<br>
+07:00.5 Multimedia controller: Advanced Micro Devices, Inc. [AMD] <br>
+Raven/Raven2/FireFlight/Renoir Audio Processor (rev 01)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Micro-Star Internatio=
+nal Co., Ltd. [MSI] Device 12ac<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel modules: snd_pci_acp3x, s=
+nd_rn_pci_acp3x<br>
+07:00.6 Audio device: Advanced Micro Devices, Inc. [AMD] Family 17h <br>
+(Models 10h-1fh) HD Audio Controller<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DeviceName: HD Audio Controller<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Micro-Star Internatio=
+nal Co., Ltd. [MSI] Device 12ac<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: snd_hda_in=
+tel<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel modules: snd_hda_intel<br=
+>
+08:00.0 SATA controller: Advanced Micro Devices, Inc. [AMD] FCH SATA <br>
+Controller [AHCI mode] (rev 81)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Micro-Star Internatio=
+nal Co., Ltd. [MSI] Device 12ac<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: ahci<br>
+08:00.1 SATA controller: Advanced Micro Devices, Inc. [AMD] FCH SATA <br>
+Controller [AHCI mode] (rev 81)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Subsystem: Micro-Star Internatio=
+nal Co., Ltd. [MSI] Device 12ac<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kernel driver in use: ahci<br>
+<br>
+I suppose the amdgpu module is at fault here?<br>
+<br>
+Greetings<br>
+Harvey<br>
 <br>
 </div>
 </span></font></div>
@@ -377,9 +741,9 @@ OX0_READY_INT_EN,\<br>
 </body>
 </html>
 
---_000_MN2PR12MB448875BF7AE8910917EBE798F76A9MN2PR12MB4488namp_--
+--_000_MN2PR12MB4488704D527398352637AC61F76A9MN2PR12MB4488namp_--
 
---===============1917209959==
+--===============1510881072==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -390,4 +754,4 @@ amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 
---===============1917209959==--
+--===============1510881072==--
