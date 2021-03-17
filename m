@@ -2,72 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CD9D33F0AF
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Mar 2021 13:50:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 173F433F0AC
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Mar 2021 13:50:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EC2D6E546;
-	Wed, 17 Mar 2021 12:50:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF8926E580;
+	Wed, 17 Mar 2021 12:50:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDE566E50B
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 09:16:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 865EF6E506
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 09:20:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1615972580;
+ s=mimecast20190719; t=1615972801;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=ezgL+/5ajoQ5DL0i1PwRjRopGxlsHomHBU/6UBrTjAg=;
- b=PZedBeeSP/ZSt+iYybg+CgvPVy6GNW5c0tUbF9PfNMYswIgrhXzXU54q3ftadDffpds0ZE
- 9I2IcPulH4m8zmIePWYtgc2sd8ZqkZq8NXmdpYKbVXmuQNdRG+rCimxu1WWrH4mIVG+xTm
- UTQLVamZMHuD0Y557J517zGb4x0hWkM=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-519-PmH3I7QOPmerTZVS_gVyIw-1; Wed, 17 Mar 2021 05:16:18 -0400
-X-MC-Unique: PmH3I7QOPmerTZVS_gVyIw-1
-Received: by mail-ed1-f69.google.com with SMTP id m8so13335282edv.11
- for <amd-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 02:16:17 -0700 (PDT)
+ bh=ISzfzQ/IPmRhET4/orSoWQRmEwqfjZENnnmDXST1Uxo=;
+ b=Bg3pTb3MIilyDcwqP6U9jZOCVGOxj/XNnNeVXjdIzS7a3zEn8pYA6M745sysNb7BlOhqtJ
+ nToWrCMG/dCxsiiyhBrPWbnDwhWSfm9A7Ss4iwEI94oTfvmZUn/DK8clS4y8Qtr1yx7n0P
+ /o9Zq3fWAkHBtLw+VJJ2+0OjPmJziN8=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-32-wZHK2vjdMXWP1dLcBs-o1w-1; Wed, 17 Mar 2021 05:18:54 -0400
+X-MC-Unique: wZHK2vjdMXWP1dLcBs-o1w-1
+Received: by mail-ed1-f71.google.com with SMTP id m8so13338193edv.11
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 02:18:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=ezgL+/5ajoQ5DL0i1PwRjRopGxlsHomHBU/6UBrTjAg=;
- b=uCIFcdJMTogCPHzpIV6bhnXAa2HzSxpg9opQUX6kvRyT2GXx01Q+VMA0KG7TVoMeQa
- Qr7PruxSu15qxgMfFHtSQXL/98SQrl9Zi/6RHZizzLMu02/ShUgKeLYkrM+WAwjIi3Dd
- hrWtonchLaAwWYiPMEH3gA1SBP6mLTd16Px6i3H2l2+C7lqpvDJcepfM7GhX7KkjHlFn
- j78Imo8pxl8SZ7D1snHHwlLXguFqMEaKL9N6oOHS6WhRcPrNiM0ogLLq9FrjLgxXV12v
- Hm2mruCt/jy/378ITOkqCYd7eFt4QupAowYaOb6IQD75kskAc74DtCQ3ctm/DbfXovpY
- 08Qg==
-X-Gm-Message-State: AOAM532KNN2ILGA7vEaeDOn33XBSuCllXCSywOCI83FGf0VW7gPmaSAm
- Z7XJXbhGggy5h3TS/hU2rpqk/a4cBFnwwEUGPRP2gptQ0QWMX2H/D6BbxjqoOm+xPPgLZusezx6
- 6V64AsJr5Hl/TJUzX1ogOmRr8ZQ==
-X-Received: by 2002:a17:907:a06b:: with SMTP id
- ia11mr33927479ejc.294.1615972576886; 
- Wed, 17 Mar 2021 02:16:16 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJz7jjpdDMxbW+XNL49aWfAClHqnec+uYzupjWEAOvDPK/ZPxcHSEt7GO1YyJ3VmFRx/bEKccQ==
-X-Received: by 2002:a17:907:a06b:: with SMTP id
- ia11mr33927469ejc.294.1615972576738; 
- Wed, 17 Mar 2021 02:16:16 -0700 (PDT)
+ bh=ISzfzQ/IPmRhET4/orSoWQRmEwqfjZENnnmDXST1Uxo=;
+ b=Idll/WaFvlG8dgi44oQubC9/xAbtvNVB2QCRnJErvLgJqjSBq/IdO1JELsNHHl9hO5
+ qXwdxWkPK78MzZw9p6UJax6oVtT8ugLrTFCE12UQdInjiZKz6A9NgeePM3y+12lbv2m0
+ GID6qEIwp1Oz1phtmJ5EZs+99fcqKmO+DPsEYDBGTorhEu3fC/njGcum1hEb0IxZ6b1J
+ 3UnmmuRlnWn9ytF0K32KQu00F/EHlZTarsvF/HYE61p5nd5UsVy9MksUKVsEMUCA8T0F
+ A7Ru7QcuoHRDbU84Q/gq9pQV8rWFitV4gbujQss/m2gbJhVv6OqH+WpSD8avgsV6cKTb
+ elCQ==
+X-Gm-Message-State: AOAM532lNSuW/1pAOv1KyZmLG8xvBa+kqJiFrffZTf+iyDoMCND1Mfkf
+ bri0ORUPJn6Xiuu5kSF/++cI3rNZIKUbwmItdrpInVROt+YSwJM5JxmcKywUBuiuVykv1tu5h1X
+ NELzn0ya/aAxkpbXg1D4FmYaWfw==
+X-Received: by 2002:aa7:de11:: with SMTP id h17mr7803123edv.83.1615972732941; 
+ Wed, 17 Mar 2021 02:18:52 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy5Vki1f67c1FvqFX0zNMhqPKCumzQRxBE+S3SHqyz4ykhSOy+E0AHoUnmgPJw848Jpcto+7A==
+X-Received: by 2002:aa7:de11:: with SMTP id h17mr7803108edv.83.1615972732779; 
+ Wed, 17 Mar 2021 02:18:52 -0700 (PDT)
 Received: from x1.localdomain
  (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
  [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
- by smtp.gmail.com with ESMTPSA id g21sm10944066ejd.6.2021.03.17.02.16.16
+ by smtp.gmail.com with ESMTPSA id r19sm12071627edp.52.2021.03.17.02.18.52
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 17 Mar 2021 02:16:16 -0700 (PDT)
-Subject: Re: [PATCH 1/2] platform/x86: Add missing LPS0 functions for AMD
+ Wed, 17 Mar 2021 02:18:52 -0700 (PDT)
+Subject: Re: [PATCH 2/2] platform/x86: force LPS0 functions for AMD
 To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
  linux-acpi@vger.kernel.org, rjw@rjwysocki.net, lenb@kernel.org
 References: <20210316194639.287216-1-alexander.deucher@amd.com>
+ <20210316194639.287216-2-alexander.deucher@amd.com>
 From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <904272c4-1f8c-366e-953a-af1d747fed1b@redhat.com>
-Date: Wed, 17 Mar 2021 10:16:15 +0100
+Message-ID: <de19e30b-e910-5ef5-53ec-bddb4d865489@redhat.com>
+Date: Wed, 17 Mar 2021 10:18:51 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.7.0
 MIME-Version: 1.0
-In-Reply-To: <20210316194639.287216-1-alexander.deucher@amd.com>
+In-Reply-To: <20210316194639.287216-2-alexander.deucher@amd.com>
 Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
 X-Mimecast-Spam-Score: 0
@@ -95,58 +94,69 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 Hi,
 
 On 3/16/21 8:46 PM, Alex Deucher wrote:
-> These are supposedly not required for AMD platforms,
-> but at least some HP laptops seem to require it to
-> properly turn off the keyboard backlight.
+> ACPI_LPS0_ENTRY_AMD/ACPI_LPS0_EXIT_AMD are supposedly not
+> required for AMD platforms, and on some platforms they are
+> not even listed in the function mask but at least some HP
+> laptops seem to require it to properly support s0ix.
 > 
 > Based on a patch from Marcin Bachry <hegel666@gmail.com>.
 > 
 > Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1230
 > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 > Cc: Marcin Bachry <hegel666@gmail.com>
+> ---
+>  drivers/acpi/x86/s2idle.c | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/acpi/x86/s2idle.c b/drivers/acpi/x86/s2idle.c
+> index 2d7ddb8a8cb6..dc3cc021125e 100644
+> --- a/drivers/acpi/x86/s2idle.c
+> +++ b/drivers/acpi/x86/s2idle.c
+> @@ -317,11 +317,16 @@ static void lpi_check_constraints(void)
+>  	}
+>  }
+>  
+> +static bool acpi_s2idle_vendor_amd(void)
+> +{
+> +	return boot_cpu_data.x86_vendor == X86_VENDOR_AMD;
+> +}
+> +
+>  static void acpi_sleep_run_lps0_dsm(unsigned int func)
+>  {
+>  	union acpi_object *out_obj;
+>  
+> -	if (!(lps0_dsm_func_mask & (1 << func)))
+> +	if (!acpi_s2idle_vendor_amd() && !(lps0_dsm_func_mask & (1 << func)))
+>  		return;
+>  
+>  	out_obj = acpi_evaluate_dsm(lps0_device_handle, &lps0_dsm_guid, rev_id, func, NULL);
 
-Thanks, patch looks good to me:
+Skipping the dsm_func_mask feels a bit wrong to me. The commit message talks
+about there being a need to unconditional make the calls in the case of the
+ACPI_LPS0_ENTRY_AMD/ACPI_LPS0_EXIT_AMD calls. Maybe instead add a "skip_func_mask"
+boolean parameter to acpi_sleep_run_lps0_dsm() and set that to false everywhere
+except for the 2 ACPI_LPS0_ENTRY_AMD/ACPI_LPS0_EXIT_AMD calls ?
 
-Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+This way we can control when to skip the check on a call by call basis, rather
+then always skipping it on all AMD systems.
 
 Regards,
 
 Hans
 
 
-> ---
->  drivers/acpi/x86/s2idle.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/acpi/x86/s2idle.c b/drivers/acpi/x86/s2idle.c
-> index 2b69536cdccb..2d7ddb8a8cb6 100644
-> --- a/drivers/acpi/x86/s2idle.c
-> +++ b/drivers/acpi/x86/s2idle.c
-> @@ -42,6 +42,8 @@ static const struct acpi_device_id lps0_device_ids[] = {
+> @@ -331,11 +336,6 @@ static void acpi_sleep_run_lps0_dsm(unsigned int func)
+>  			  func, out_obj ? "successful" : "failed");
+>  }
 >  
->  /* AMD */
->  #define ACPI_LPS0_DSM_UUID_AMD      "e3f32452-febc-43ce-9039-932122d37721"
-> +#define ACPI_LPS0_ENTRY_AMD         2
-> +#define ACPI_LPS0_EXIT_AMD          3
->  #define ACPI_LPS0_SCREEN_OFF_AMD    4
->  #define ACPI_LPS0_SCREEN_ON_AMD     5
->  
-> @@ -408,6 +410,7 @@ int acpi_s2idle_prepare_late(void)
->  
->  	if (acpi_s2idle_vendor_amd()) {
->  		acpi_sleep_run_lps0_dsm(ACPI_LPS0_SCREEN_OFF_AMD);
-> +		acpi_sleep_run_lps0_dsm(ACPI_LPS0_ENTRY_AMD);
->  	} else {
->  		acpi_sleep_run_lps0_dsm(ACPI_LPS0_SCREEN_OFF);
->  		acpi_sleep_run_lps0_dsm(ACPI_LPS0_ENTRY);
-> @@ -422,6 +425,7 @@ void acpi_s2idle_restore_early(void)
->  		return;
->  
->  	if (acpi_s2idle_vendor_amd()) {
-> +		acpi_sleep_run_lps0_dsm(ACPI_LPS0_EXIT_AMD);
->  		acpi_sleep_run_lps0_dsm(ACPI_LPS0_SCREEN_ON_AMD);
->  	} else {
->  		acpi_sleep_run_lps0_dsm(ACPI_LPS0_EXIT);
+> -static bool acpi_s2idle_vendor_amd(void)
+> -{
+> -	return boot_cpu_data.x86_vendor == X86_VENDOR_AMD;
+> -}
+> -
+>  static int lps0_device_attach(struct acpi_device *adev,
+>  			      const struct acpi_device_id *not_used)
+>  {
 > 
 
 _______________________________________________
