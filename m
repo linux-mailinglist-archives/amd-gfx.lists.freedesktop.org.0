@@ -1,41 +1,54 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBA7033F3F7
-	for <lists+amd-gfx@lfdr.de>; Wed, 17 Mar 2021 16:25:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1057333F3E0
+	for <lists+amd-gfx@lfdr.de>; Wed, 17 Mar 2021 16:14:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CE346E7D5;
-	Wed, 17 Mar 2021 15:25:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6F8E89AAE;
+	Wed, 17 Mar 2021 15:14:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 642 seconds by postgrey-1.36 at gabe;
- Wed, 17 Mar 2021 15:25:17 UTC
-Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 605C96E5D4;
- Wed, 17 Mar 2021 15:25:17 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id 68668C800AA;
- Wed, 17 Mar 2021 16:14:34 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
-Received: from srv6.fidu.org ([127.0.0.1])
- by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10026)
- with LMTP id ViZFGjpL2COx; Wed, 17 Mar 2021 16:14:34 +0100 (CET)
-Received: from wsembach-tuxedo.fritz.box
- (host-212-18-30-247.customer.m-online.net [212.18.30.247])
- (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPA id D5CAAC800A5;
- Wed, 17 Mar 2021 16:14:33 +0100 (CET)
-From: Werner Sembach <wse@tuxedocomputers.com>
-To: wse@tuxedocomputers.com, harry.wentland@amd.com, sunpeng.li@amd.com,
- alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie,
- daniel@ffwll.ch, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/amd/display: Try YCbCr420 color when YCbCr444 fails
-Date: Wed, 17 Mar 2021 16:13:48 +0100
-Message-Id: <20210317151348.11331-1-wse@tuxedocomputers.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com
+ [IPv6:2607:f8b0:4864:20::22a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 016E689AAE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 15:14:24 +0000 (UTC)
+Received: by mail-oi1-x22a.google.com with SMTP id d16so32814264oic.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 08:14:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=BodratDucff9ye3tU544b1WqnufWynTLN5XzgLW0phc=;
+ b=C+Pk73brWe37fg7zxn1uL0THKajFF8LOrgWmIButK9aNBB10DeycOms1qzaIK574Si
+ m69/lwxMKPBA0YY8LGXCyd85TsN/keMLjk1UvsHUYhZBBg3MObEBixUjuuRgqBl7TfaW
+ wu4XwGILBclGCU8J6tR5sQk443QDdv+OxRwP29bZT1ETyuZkjVti1A1bdnrtoBuEzZ3l
+ VREYRc5FqWq5stkxYRb6GkRqc6f/IXC4kTtybu89WJt1md/+StFVPFqZ4HdLMmaJ6g1v
+ ArALppzlVBSSkz9fc9wL99IQGJSdEFEewAHDF+JcAQ+mr3wgfoft0pOHD88cia4vZmVP
+ DRCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=BodratDucff9ye3tU544b1WqnufWynTLN5XzgLW0phc=;
+ b=btqP7hcutBZUkYyLhp0F2+nztpM/8Ij4z004rVz4GpFprLUeuqEbcv5xZBf0ZR6Rxv
+ /Vg0iI6BrJhWQGfqYyoOSE/9fwSxTTawUKBhfSIiPOWV9ZMra4Ws2DCta468Cv9zc/XH
+ br2eHp1LIBaNjROhVtGn6zV9nHu8As5ABJb6a52CT1ajhUFPco4aCMlJsXBwvf50GFxX
+ 9+tYkncYixQXgLr0gaG8L3GOHjZvkGMGrsfk8AcYh1QPrWSO9M06ONN+Y7RIF16JOTPi
+ l97SIh0nuShePaPXW6z0RwqXR+dDzKh7+0Tg8ToGUI4VpSg6YsVteIZ37fKEDpbC7jQk
+ sAzA==
+X-Gm-Message-State: AOAM530pS7wQqUt/ewQOx25aNIp2ZCQ8WIu/93aGx2dhbD3NlDBPMvkt
+ sYDwR4e6qQm+RXozMLesyb8YNda9nwoMEZCDrn361N2K
+X-Google-Smtp-Source: ABdhPJzjZzav+odz8+Vui+H8XARjAB2+061aO1C5XW7aH2uWRbmV47IhlfoZ1/d2fzTzyJbu9P7dyJTWgcQGCpo/oyA=
+X-Received: by 2002:aca:4284:: with SMTP id p126mr3138735oia.123.1615994064345; 
+ Wed, 17 Mar 2021 08:14:24 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210316215006.18769-1-contact@scrumplex.net>
+ <7706e621-78ce-1330-b2f4-e6beacd022cb@amd.com>
+In-Reply-To: <7706e621-78ce-1330-b2f4-e6beacd022cb@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 17 Mar 2021 11:14:13 -0400
+Message-ID: <CADnq5_NTJuOWU=v_TWLm8r+USFsWfSBCvdaBjcb=As9tKpibPg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: check fb of primary plane
+To: Harry Wentland <harry.wentland@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,60 +60,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Cc: Alex Deucher <alexander.deucher@amd.com>, Simon Ser <contact@emersion.fr>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Sefa Eyeoglu <contact@scrumplex.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When encoder validation of a display mode fails, retry with less bandwidth
-heavy YCbCr420 color mode, if available. This enables some HDMI 1.4 setups
-to support 4k60Hz output, which previously failed silently.
+On Wed, Mar 17, 2021 at 10:05 AM Harry Wentland <harry.wentland@amd.com> wrote:
+>
+>
+>
+> On 2021-03-16 5:50 p.m., Sefa Eyeoglu wrote:
+> > Sometimes the primary plane might not be initialized (yet), which
+> > causes dm_check_crtc_cursor to divide by zero.
+> > Apparently a weird state before a S3-suspend causes the aforementioned
+> > divide-by-zero error when resuming from S3.  This was explained in
+> > bug 212293 on Bugzilla.
+> >
+> > To avoid this divide-by-zero error we check if the primary plane's fb
+> > isn't NULL.  If it's NULL the src_w and src_h attributes will be 0,
+> > which would cause a divide-by-zero.
+> >
+> > This fixes Bugzilla report 212293
+> > https://bugzilla.kernel.org/show_bug.cgi?id=212293>>
+> > Fixes: 12f4849a1cfd69f3 ("drm/amd/display: check cursor scaling")
+> > Signed-off-by: Sefa Eyeoglu <contact@scrumplex.net>
+>
+> Thanks for your patch.
+>
+> It is
+> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 
-On some setups, while the monitor and the gpu support display modes with
-pixel clocks of up to 600MHz, the link encoder might not. This prevents
-YCbCr444 and RGB encoding for 4k60Hz, but YCbCr420 encoding might still be
-possible. However, which color mode is used is decided before the link
-encoder capabilities are checked. This patch fixes the problem by retrying
-to find a display mode with YCbCr420 enforced and using it, if it is
-valid.
+Applied.  Thanks!
 
-Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-Cc: <stable@vger.kernel.org>
----
+Alex
 
-From c9398160caf4ff20e63b8ba3a4366d6ef95c4ac3 Mon Sep 17 00:00:00 2001
-From: Werner Sembach <wse@tuxedocomputers.com>
-Date: Wed, 17 Mar 2021 12:52:22 +0100
-Subject: [PATCH] Retry forcing YCbCr420 color on failed encoder validation
-
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 961abf1cf040..2d16389b5f1e 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -5727,6 +5727,15 @@ create_validate_stream_for_sink(struct amdgpu_dm_connector *aconnector,
- 
- 	} while (stream == NULL && requested_bpc >= 6);
- 
-+	if (dc_result == DC_FAIL_ENC_VALIDATE && !aconnector->force_yuv420_output) {
-+		DRM_DEBUG_KMS("Retry forcing YCbCr420 encoding\n");
-+
-+		aconnector->force_yuv420_output = true;
-+		stream = create_validate_stream_for_sink(aconnector, drm_mode,
-+						dm_state, old_stream);
-+		aconnector->force_yuv420_output = false;
-+	}
-+
- 	return stream;
- }
- 
--- 
-2.25.1
-
+>
+> Harry
+>
+> > ---
+> >   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 ++-
+> >   1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > index 573cf17262da4e11..fbb1ac223ccbb62a 100644
+> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > @@ -9267,7 +9267,8 @@ static int dm_check_crtc_cursor(struct drm_atomic_state *state,
+> >
+> >       new_cursor_state = drm_atomic_get_new_plane_state(state, crtc->cursor);
+> >       new_primary_state = drm_atomic_get_new_plane_state(state, crtc->primary);
+> > -     if (!new_cursor_state || !new_primary_state || !new_cursor_state->fb) {
+> > +     if (!new_cursor_state || !new_primary_state ||
+> > +             !new_cursor_state->fb || !new_primary_state->fb) {
+> >               return 0;
+> >       }
+> >
+> >
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
