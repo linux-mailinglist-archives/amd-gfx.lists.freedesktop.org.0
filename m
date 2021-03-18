@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C46BC33FE34
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Mar 2021 05:33:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3373133FE3D
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Mar 2021 05:34:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B0BA6E090;
-	Thu, 18 Mar 2021 04:33:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F90F6E884;
+	Thu, 18 Mar 2021 04:34:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-DM3-obe.outbound.protection.outlook.com
  (mail-dm3nam07on2045.outbound.protection.outlook.com [40.107.95.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D5B46E880
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C0696E87D
  for <amd-gfx@lists.freedesktop.org>; Thu, 18 Mar 2021 04:33:49 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=amDJPyTdAhTvQZ0ac25aPSz3ubnW6CopBRrrxQOlp9cp1iWcTvPp7xqo7fMrKohFj5AUg4k/N42cg5tH1yQAHWVB9CJpthphvjfFRt9R73lw2omKV/6V7EKTI1MB0C+LTVS8YvKj8Rc0rvLkGE+VCmCb5uxX7GCveCADwI3mVt67svlh9AaySR/VcMWB1XvIr4h1s0w6G1sT+WzXJHzB5b4TCYap2KWz/edMKvSyyxpwHTwBlOUC8ZE6S5ZVStlbfgYXoJAmtKzCCRhi0ri+Kh2IGJ69kReAp7hz7+ZWqHpvlWLe8fN6hFsY6tTHbSMRaU0AmxUhVr2b+je/yDZznA==
+ b=GT0CEKRLJ/u+ppJ/fga1RlvaSVs+5gXrdAbQU9/QlSBreREzs5fehOFlozog+xAHC/OJv0e2RX4Ubl6u65jUbJDs6kyRY0G1Ym7+f95ZHUuXr8kTff6BEZwuzaMuMF8RElbOFrcHQZ9slH10RaFJ+jWy8gyTbI2xSKMujAfGiSq+ZFu6Ppy17w0+NQ1gBACOA2DPczejgyqVxXva15rzASu1ytrcvTlfhOW681DkGM/Anwy8WAbiF5WtxxnOoDX/ywX9I/kAnKVly1Vb2S0t+q1B+qe5evV7icCCWezyYuDuRpG4mlZkiCC6s5T7bUBrFrDuQzmisgpe9grjjthX7w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0C8N7oq/w6xnyLS9PTuQAJvKTuGU7ZhCIfbvMpCfUtI=;
- b=nRuAVcCSp8lmrx9RS+NoIyOlaTF9O0ESIsw1ctUh8ys9dhoSmnNcqNjW6NR8RZmzDxlp2MifbDe3nnmd3VVriL9gNp3moPOMDlAeihwL7uzgjOhGXedaPLb1777CF+XaDwLDqEK9loSD1TEkqKjWt40KPk711St4NDKUoEPemJFLue5PgeAC6eXZwGvYd/W79NtH91XRTvVlHGLOM4LUDsY7XgHTkr/vnTkArfy1Y13psvA2LNloHRUGOjMyxy+Yiwq9Mg0emGOFMPPsn8m6IMRaj4PItHChiiFn9lIXnSeRHM54p8rPRbWOwxmTfDt/V78AsUdyJ7mx6ddCjIhFYw==
+ bh=Dxu0gHyeb4kiNNven5XJ2yGZW8l+c05gjmff15K84jc=;
+ b=WILvqvwldvJN6bq20K9c59O1PI0gJKXEuWu0NDAd+PyqpYexoOJ37ZqFpyWySo1QZy4Vch7j1PJvC3DGWjbYUVzkIhPjpQFrUFH2xMm2jjEIGT2RWwTtySi2koZgfN+YtgjJw3fXnSxy9VZCyEh5ksp2cQnU1Tx0cqN337fmzcpJIXskuVbXfWdHXg29+Z02+oLzvTIbMhDE7VxzeGGOqVP48DOUieOV8FyHyxlf6jhrLkof9+XAlPLa4RAuoPVFHfmjwHsjz7JQB/FoQxva5P1kmlEj2DNWraFwhiukzW7UNk8j3tXoMWSg+kFS4oJYh/uabneTb3T85z3WLjm4sw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0C8N7oq/w6xnyLS9PTuQAJvKTuGU7ZhCIfbvMpCfUtI=;
- b=V6qRnes/4JEQ5p1WImhS7L2EsEFgVoLcD1ATYx8sY54esrriCiwI5Qkz9smkZGC8qj416t//NBA1QOeRRWU9k0XuC4Yyp3horQCTlKrT1Lgl5DJ9BOikRBFHQy+Crx6xGLxTDSzuTAadGLCyfZcPn7I5lttIqChbQkdS3hb1xrk=
+ bh=Dxu0gHyeb4kiNNven5XJ2yGZW8l+c05gjmff15K84jc=;
+ b=PfbcnlaLmjRo65hENXDGnGlN20wM0Bky1Gugt7N2LLD/DexVDO7vL/4obQ3oFnwppUMolD4uzW9/il6liurUZLVjom8n/cWpPFA/AeVSXvUX7WzHT3o/aKqK/SjFonWCgd8rMN03feehQfYRmgGbD/sV6IeWjdsLfDOP9uT2iOs=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,16 +34,16 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
  by MN2PR12MB4016.namprd12.prod.outlook.com (2603:10b6:208:16b::30)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3933.32; Thu, 18 Mar
- 2021 04:33:43 +0000
+ 2021 04:33:44 +0000
 Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  ([fe80::5deb:dba7:1bd4:f39c]) by MN2PR12MB4488.namprd12.prod.outlook.com
  ([fe80::5deb:dba7:1bd4:f39c%5]) with mapi id 15.20.3933.033; Thu, 18 Mar 2021
- 04:33:43 +0000
+ 04:33:44 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 03/13] drm/amdgpu: disentangle HG systems from vgaswitcheroo
-Date: Thu, 18 Mar 2021 00:33:13 -0400
-Message-Id: <20210318043323.3989-3-alexander.deucher@amd.com>
+Subject: [PATCH 04/13] drm/amdgpu: rework S3/S4/S0ix state handling
+Date: Thu, 18 Mar 2021 00:33:14 -0400
+Message-Id: <20210318043323.3989-4-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210318043323.3989-1-alexander.deucher@amd.com>
 References: <20210318043323.3989-1-alexander.deucher@amd.com>
@@ -60,50 +60,50 @@ Received: from localhost.localdomain (192.161.79.247) by
  Transport; Thu, 18 Mar 2021 04:33:43 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 9830b7c3-a98b-4f7d-d51c-08d8e9c70314
+X-MS-Office365-Filtering-Correlation-Id: 29a53e66-46bf-4757-e210-08d8e9c7036b
 X-MS-TrafficTypeDiagnostic: MN2PR12MB4016:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4016F907232270FDCE8AC91AF7699@MN2PR12MB4016.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3173;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4016FE6ABEB08525654FE897F7699@MN2PR12MB4016.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vavHdwNqDARjQLNcq9NBwXHFrkoyJczkx3gv9sXxLzf71H1YyGtua4eBA+nfhkBh+G2SEULqYWksmqKuUkY8EmObsDmO75LrksyPlmfvyLHn5/wx11n8ip2s8jLY5WO1Ka8UTIwta0q5cIqP/+V0ViwtD+EqN5U6wTfs50ictUp9JsfkrsAtfB+duuN/s1bKo7W2R+1k/QQY+kzPmdWtLLIhBbYJ+BPhlSWGum+swTXOHzynkG4jAnupflkyCUgyDAerp4aTG+DOZT+1YTI0VOv2DbkfoV3uUH3BSpSOOrMNwrrySu1hCVeuGvYOn/spCL8VGP3JIgYgEYwYuU8qM+LVdG2um+kIfk1ekyEcrvH+mLS6XVqfWDvCEMznqxF7/rQYU5IA60rAC58c1PoXb56ia9ynVwNDTpn4DNDmDV3L2Hi1Fe6rurWcFXP5aykUoFsR64/4oACtxNR7nES4Yd5NiRCA9TrmJ+KYa0U0ZDX1Gx9uTGLiAzj255O5mxrCDoq2rQMPYqhVoBMFd+XYaHAq+iR6W/0IiewpX3r+7iyFtJioibXqiGDnMBcPxQDJbMsjwuSC5WEYSJtqNxtfNDsx2ZK7VZmt/tDRk/NpkqoLeCydY5w772a168Fey9EyiL5ar8V8WtUQqCoyQ4xISA==
+X-Microsoft-Antispam-Message-Info: rxchgfc4HHk0Ef6qJSflW2LAOhLkjBl183fh98rt0BRj9MY5CDd3NAVZGCyB87o/12zxZa9LAsMk2BAJSi5/IvjoZUZBj3hqDlmzn13hsi+o+XuQyr57pRklP99PCO9w6KBo5LGe6qbg6zABHayZjW2Exw16T8chnAksMydMYVA89kpt2cgewdDe0J/nXTSXE1RXuRbspGm9r3Wsy5hS0sSpOt0p2NJ5YhkUSUFpLsAIJsZCPYuyTYcXz3G6vSXMtDhFnN954ongHBfJojw4Z4Egc/ujLixBva9+ZIiClunZUHdmz+zovZttEVrjNl60ikBfTcrr3PURlKapjEk4uXVS+MYUCvMv9/bEAve/9oLQxFXqbFpTZpMCyKcOWiExPFBOKOIYcICBVbAzeuXBDcDKjW5owmEnShRz1Zc2hvQi4FkhEnbVNZ5yisMSsjf2EXBzHm0vZz2o0vQciQVOe11iZuDsV/MpnFUA3sMwpjxkHho6eXRIcbkn56Gfcxvh98eDoeGfYOa+jjETzUwZjDZ8MPd78eeURB7SLYpHWJbbyh65Va81V56VJiWDdFUK1od819S5TBJULZ5V3EtdoB9bkVQq+/tsMtevnVJWTTMMOVVp8BSfLKmlZ8XPAypty56giWs2RcQyHpXQwYVq3g==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(39860400002)(346002)(396003)(376002)(366004)(136003)(316002)(5660300002)(52116002)(1076003)(83380400001)(8676002)(66946007)(478600001)(38100700001)(86362001)(8936002)(16526019)(69590400012)(4326008)(6506007)(6666004)(186003)(36756003)(66556008)(66476007)(2906002)(6486002)(956004)(26005)(2616005)(6916009)(6512007);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?Av4nrUXRd1n2olugp1QE2jH3PnAWjDBToN18PapZ4FaO3FJri32bkkGoR3h4?=
- =?us-ascii?Q?sI2ai3yM/Qcd+26okfn6O3pZQrsZfUhLkIUmRnmH3e7G7b2GmZ5ZBBRb4Vym?=
- =?us-ascii?Q?dtzV3jCFNQ/LOhihn3DsLXJl21AKxKZzzQzXNzyfpfnl3c6nP9GsjxUDsUff?=
- =?us-ascii?Q?1eH0WtTNVtamXEzVlJZp57E88dyyLWRnJQ17m2Ak8ElwoBJk3EvryexLMHxE?=
- =?us-ascii?Q?83YxJ3DqbY00maGZVsehn5fnF2Lt81vYg5iLNKoY62/y0Xk4lOo583ssq+LJ?=
- =?us-ascii?Q?1s92nxRXa75gPOfTg9dqJGBWQj2skQsJ5ATRtEypNCzvEdSrFcRbH3Q/+eSB?=
- =?us-ascii?Q?uQOUfxsV0BBzBCDsv40CTdzNGs00mnBk95s46++HSXoXmDiP6lEoNJ2QyJjd?=
- =?us-ascii?Q?xkV2YKffyXds8GikSBeRljfFhh3yeODl0HiSBdFx8o+XK+8dVfAFAVM8BMBt?=
- =?us-ascii?Q?5ooIy0x/6+BABPIdgJ5r3DPgIo5B+9Psd/GZGjvctB21z5w7CXDdjdo26F9m?=
- =?us-ascii?Q?rhiHLuz2s4ASQTl0xhK3zpUkEKPt9tDT+cMlwHj5bKcLfeyihbfuqUo+0UOU?=
- =?us-ascii?Q?j23GTXmfbst0lOt5dFF3eGq+Q9myW8nDVL7vnzokWKjwTd+TgOkZrUj4mAIN?=
- =?us-ascii?Q?3NZPnHPr/Oc8rcUI4/J7X8HhAtSiP6Ffv15PbOaoqisrwz9uSAHF4c/8xhFv?=
- =?us-ascii?Q?TdPv/ufo1BI/LcANQf548JyYe+LSUpetvWQti1MqEfPclJyD7f8v8ymsimfd?=
- =?us-ascii?Q?rcU+x4Xt99PQ1rUbm1kl+Kz2aPR92bcA/JWp8kPhSY0vZNDVULB0YRqSsw1z?=
- =?us-ascii?Q?xSTJ2yDYN0Gr4fg//Nxt1TnnfDCdbJI1DxRS6dnXW2hq5FiklP5Diebz0JZZ?=
- =?us-ascii?Q?ZuZ6zxrAOCohNgs+9l2sDpaWdlTPQOc2r+kE+cfL8Y6+OSSSMZrJLHVlluDH?=
- =?us-ascii?Q?cW/CstpA8F9VCO0q2bYqhIqtJq063WXPvIT87+iZjkDIW+KdA1DHuXzA/Q4Y?=
- =?us-ascii?Q?DJnlhMqWhjWFtGmOJNF9HUiU4uscgtD4M1I+q1tu54naO/bFLHZrSDmAKpO8?=
- =?us-ascii?Q?e5C3ZM2zDTRUdOAbQ6FIbMg4IkoIgxFI3fZ+2qzRCWXFn1DYfwYoRDE6E7jE?=
- =?us-ascii?Q?AtADCv35eAKDfeLUr10OPhMnrwpo7CKQn9PYVMuzvwenC9jq4fclYTpNLjmJ?=
- =?us-ascii?Q?OJCxGSMP0to4JJtVwhn958+u9XHDNGlj09U4z0XNSCcgGEVz7m72buo2T6xz?=
- =?us-ascii?Q?uaSaC0xCyfMSFHEv9YcOVXj84dd2HSFoMl+6sLJ8KV7V0efLgPxGby3Azyvq?=
- =?us-ascii?Q?UEiFd+ue7/SuLgBt7FBMAqEq?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?SxWP4/M5mF9Gc0RFAC0pNNTgH7SZqQwPgZloKmONawKIXQIrsMdgWaKmcsXN?=
+ =?us-ascii?Q?cKpw35VRV96PXNcCddOsmnY8peyNEc6WoO7onwCGTSBMuJIU9cpigxj3DOvo?=
+ =?us-ascii?Q?d9nS6sGJhS+z7FrzeZhP3/coYkPtZVB/vg3SiQuaRjl3NsK+rQQ8o69rDYow?=
+ =?us-ascii?Q?rE1c3hlJNHDv84tQuD4SHUnMO668mkvDyEbmLAysbdROIE40lS4TUVIaE1Ah?=
+ =?us-ascii?Q?rqwT5YXRULMW2yAvc6NKaJF+rn1RhTr5jW1fNlweQGWTWxyeqCw5GU1zuctV?=
+ =?us-ascii?Q?etPA8V3lOmyCr/2xM14zU8Y96QOCfknH2OT9EdPINUuTrlxJa0yCr42qDIx6?=
+ =?us-ascii?Q?4e0wwU9UQxvJrNl6xTYpnw+w3FkN6aM9XAQ4hf9vI9NIVxjEO/e5AySmogb2?=
+ =?us-ascii?Q?XhDnIBJihAftoY1aAA/h1y3IyTo4JDrsBD+18ZvSqOFdgCAjvp6IAYGWj5K0?=
+ =?us-ascii?Q?qqUoYXrcsrO/Z21JPumBnM7tdDpchrvoOkq/CCfyBMb1LP2VGTmCVpKLC7jl?=
+ =?us-ascii?Q?QUh3g9Lx8EG1O0Er7UEQRqGeUxMekX8aHJfw2sU5t17U+9d7rk4vufKmdfX1?=
+ =?us-ascii?Q?K/3AfZGypl+ENS8sMALmBqvXhD9flR6yDnWlG35QUla9yZZSOwE02PNUjOyZ?=
+ =?us-ascii?Q?QQodifz6892GUXdw6pXPWUI8haNZfTJs/JWUUiyv80sllEdC6Gby/D/5kYFR?=
+ =?us-ascii?Q?uXqn0CWxjEwg/NZvps+ZcOLx/xa/O8BTilv5yJE5pV3H17Olq1ZTOOpiz90S?=
+ =?us-ascii?Q?/F/epSXmXEey+2b4kz3mB5mYq7Ku3WzguAUek7QUvr3Ap+4qVKBygnrD1uW3?=
+ =?us-ascii?Q?2STMf4mlVBu1csyjv8YweoeydRzqe4ldEPhiwA5CB/VlwL5a9eSO2OCZiPnK?=
+ =?us-ascii?Q?BpVUdP3Q7J2TqaEK1RmcJK2wjMRRtBTRHf3CjHXGc619t6QC3vR4iU9Knn3i?=
+ =?us-ascii?Q?K9ubeWKlV3Gcbmf+agL+wRtHRO5dWIN1EfUY5vNY3qQyB5DDMal797OggNgx?=
+ =?us-ascii?Q?besQEEuX9gGKGXultW5KXATJ32iAkhaDHhOG2O3X+sAWTJSIw0xRqbX2INFR?=
+ =?us-ascii?Q?8cAIqi/rof1dUpRSPlfw+hEbKuqgeZlYLehWFBvMOrOs6JXghtfocnKI35il?=
+ =?us-ascii?Q?e7XEys8P4wGKhclOvOLQ48YXIeROnYAGjC3E7UiaG3djXzeSgV17pHXpeK9K?=
+ =?us-ascii?Q?hws539UfplyRmqkqdFrg62ySSFl7pF41l8Q0RAUvw/XGL2oBYBXEZ3fB6WsM?=
+ =?us-ascii?Q?TxRJlJBCpwtVDIropWCr6jfyGJMEAQHOM1cnnHuwjR/hY8u1G+FsY2CP8LLe?=
+ =?us-ascii?Q?KnIt6E7pt37cqjSUbxquTBnU?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9830b7c3-a98b-4f7d-d51c-08d8e9c70314
+X-MS-Exchange-CrossTenant-Network-Message-Id: 29a53e66-46bf-4757-e210-08d8e9c7036b
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2021 04:33:43.4765 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2021 04:33:44.0091 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9uksK+gP4E8XbxOHGvVX3z2UKYCHXZLA9Vfzy//5mQ9P2kFgQNSpYuZADw0msXOkS7+HkSj7CIPrHDKyvV95pA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: yNWYPUUU2qXpj6AECXnYAiMfM7Q8hmorBdgFiI5ouwSUBChKuKFd1Nr3enMi+E7PH7LrD/afi8gLq++W+ei2hA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4016
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -122,252 +122,157 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-There's no need to keep vgaswitcheroo around for HG
-systems.  They don't use muxes and their power control
-is handled via ACPI.
+Set flags at the top level pmops callbacks to track
+state.  This cleans up the current set of flags and
+properly handles S4 on S0ix capable systems.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 38 +++++++++-------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 34 ++++++++-----------
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c    |  9 ++---
- 4 files changed, 35 insertions(+), 49 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h        | 10 +++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  8 +++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 30 +++++++++++++---------
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c  |  2 +-
+ 4 files changed, 25 insertions(+), 25 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index efe6b5ca5185..569c85419f76 100644
+index 569c85419f76..c03463d614e5 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -1275,8 +1275,9 @@ void amdgpu_device_program_register_sequence(struct amdgpu_device *adev,
- 					     const u32 *registers,
- 					     const u32 array_size);
+@@ -1030,13 +1030,9 @@ struct amdgpu_device {
  
--bool amdgpu_device_supports_atpx(struct drm_device *dev);
- int amdgpu_device_mode1_reset(struct amdgpu_device *adev);
-+bool amdgpu_device_supports_atpx(struct drm_device *dev);
-+bool amdgpu_device_supports_px(struct drm_device *dev);
- bool amdgpu_device_supports_boco(struct drm_device *dev);
- bool amdgpu_device_supports_baco(struct drm_device *dev);
- bool amdgpu_device_is_peer_accessible(struct amdgpu_device *adev,
+ 	/* s3/s4 mask */
+ 	bool                            in_suspend;
+-	bool				in_hibernate;
+-
+-	/*
+-	 * The combination flag in_poweroff_reboot_com used to identify the poweroff
+-	 * and reboot opt in the s0i3 system-wide suspend.
+-	 */
+-	bool 				in_poweroff_reboot_com;
++	bool				in_s3;
++	bool				in_s4;
++	bool				in_s0ix;
+ 
+ 	atomic_t 			in_gpu_reset;
+ 	enum pp_mp1_state               mp1_state;
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 0f82c5d21237..a984ba6634fd 100644
+index a984ba6634fd..1859bc06ed70 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -212,18 +212,18 @@ static DEVICE_ATTR(serial_number, S_IRUGO,
- 		amdgpu_device_get_serial_number, NULL);
- 
- /**
-- * amdgpu_device_supports_atpx - Is the device a dGPU with HG/PX power control
-+ * amdgpu_device_supports_px - Is the device a dGPU with ATPX power control
-  *
-  * @dev: drm_device pointer
-  *
-- * Returns true if the device is a dGPU with HG/PX power control,
-+ * Returns true if the device is a dGPU with ATPX power control,
-  * otherwise return false.
-  */
--bool amdgpu_device_supports_atpx(struct drm_device *dev)
-+bool amdgpu_device_supports_px(struct drm_device *dev)
+@@ -2656,8 +2656,7 @@ static int amdgpu_device_ip_suspend_phase1(struct amdgpu_device *adev)
  {
- 	struct amdgpu_device *adev = drm_to_adev(dev);
+ 	int i, r;
  
--	if (adev->flags & AMD_IS_PX)
-+	if ((adev->flags & AMD_IS_PX) && !amdgpu_is_atpx_hybrid())
- 		return true;
- 	return false;
- }
-@@ -233,14 +233,15 @@ bool amdgpu_device_supports_atpx(struct drm_device *dev)
-  *
-  * @dev: drm_device pointer
-  *
-- * Returns true if the device is a dGPU with HG/PX power control,
-+ * Returns true if the device is a dGPU with ACPI power control,
-  * otherwise return false.
-  */
- bool amdgpu_device_supports_boco(struct drm_device *dev)
- {
- 	struct amdgpu_device *adev = drm_to_adev(dev);
+-	if (adev->in_poweroff_reboot_com ||
+-	    !amdgpu_acpi_is_s0ix_supported(adev) || amdgpu_in_reset(adev)) {
++	if (!adev->in_s0ix || amdgpu_in_reset(adev)) {
+ 		amdgpu_device_set_pg_state(adev, AMD_PG_STATE_UNGATE);
+ 		amdgpu_device_set_cg_state(adev, AMD_CG_STATE_UNGATE);
+ 	}
+@@ -3737,8 +3736,7 @@ int amdgpu_device_suspend(struct drm_device *dev, bool fbcon)
  
--	if (adev->has_pr3)
-+	if (adev->has_pr3 ||
-+	    ((adev->flags & AMD_IS_PX) && amdgpu_is_atpx_hybrid()))
- 		return true;
- 	return false;
- }
-@@ -1391,7 +1392,7 @@ static void amdgpu_switcheroo_set_state(struct pci_dev *pdev,
- 	struct drm_device *dev = pci_get_drvdata(pdev);
- 	int r;
+ 	amdgpu_fence_driver_suspend(adev);
  
--	if (amdgpu_device_supports_atpx(dev) && state == VGA_SWITCHEROO_OFF)
-+	if (amdgpu_device_supports_px(dev) && state == VGA_SWITCHEROO_OFF)
- 		return;
+-	if (adev->in_poweroff_reboot_com ||
+-	    !amdgpu_acpi_is_s0ix_supported(adev) || amdgpu_in_reset(adev))
++	if (!adev->in_s0ix || amdgpu_in_reset(adev))
+ 		r = amdgpu_device_ip_suspend_phase2(adev);
+ 	else
+ 		amdgpu_gfx_state_change_set(adev, sGpuChangeState_D3Entry);
+@@ -3772,7 +3770,7 @@ int amdgpu_device_resume(struct drm_device *dev, bool fbcon)
+ 	if (dev->switch_power_state == DRM_SWITCH_POWER_OFF)
+ 		return 0;
  
- 	if (state == VGA_SWITCHEROO_ON) {
-@@ -3197,7 +3198,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 	struct drm_device *ddev = adev_to_drm(adev);
- 	struct pci_dev *pdev = adev->pdev;
- 	int r, i;
--	bool atpx = false;
-+	bool px = false;
- 	u32 max_MBps;
+-	if (amdgpu_acpi_is_s0ix_supported(adev))
++	if (adev->in_s0ix)
+ 		amdgpu_gfx_state_change_set(adev, sGpuChangeState_D0Entry);
  
- 	adev->shutdown = false;
-@@ -3359,16 +3360,12 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 	if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
- 		vga_client_register(adev->pdev, adev, NULL, amdgpu_device_vga_set_decode);
- 
--	if (amdgpu_device_supports_atpx(ddev))
--		atpx = true;
--	if (amdgpu_has_atpx() &&
--	    (amdgpu_is_atpx_hybrid() ||
--	     amdgpu_has_atpx_dgpu_power_cntl()) &&
--	    !pci_is_thunderbolt_attached(adev->pdev))
-+	if (amdgpu_device_supports_px(ddev)) {
-+		px = true;
- 		vga_switcheroo_register_client(adev->pdev,
--					       &amdgpu_switcheroo_ops, atpx);
--	if (atpx)
-+					       &amdgpu_switcheroo_ops, px);
- 		vga_switcheroo_init_domain_pm_ops(adev->dev, &adev->vga_pm_domain);
-+	}
- 
- 	if (amdgpu_emu_mode == 1) {
- 		/* post the asic on emulation mode */
-@@ -3575,7 +3572,7 @@ int amdgpu_device_init(struct amdgpu_device *adev,
- 
- failed:
- 	amdgpu_vf_error_trans_all(adev);
--	if (atpx)
-+	if (px)
- 		vga_switcheroo_fini_domain_pm_ops(adev->dev);
- 
- failed_unmap:
-@@ -3635,13 +3632,10 @@ void amdgpu_device_fini(struct amdgpu_device *adev)
- 
- 	kfree(adev->bios);
- 	adev->bios = NULL;
--	if (amdgpu_has_atpx() &&
--	    (amdgpu_is_atpx_hybrid() ||
--	     amdgpu_has_atpx_dgpu_power_cntl()) &&
--	    !pci_is_thunderbolt_attached(adev->pdev))
-+	if (amdgpu_device_supports_px(adev_to_drm(adev))) {
- 		vga_switcheroo_unregister_client(adev->pdev);
--	if (amdgpu_device_supports_atpx(adev_to_drm(adev)))
- 		vga_switcheroo_fini_domain_pm_ops(adev->dev);
-+	}
- 	if ((adev->pdev->class >> 8) == PCI_CLASS_DISPLAY_VGA)
- 		vga_client_register(adev->pdev, NULL, NULL, NULL);
- 	iounmap(adev->rmmio);
+ 	/* post card */
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 60fba0454368..cfa73ff292d5 100644
+index cfa73ff292d5..5438a4d3d517 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1410,9 +1410,7 @@ static int amdgpu_pmops_prepare(struct device *dev)
- 	/* Return a positive number here so
- 	 * DPM_FLAG_SMART_SUSPEND works properly
+@@ -1334,9 +1334,7 @@ amdgpu_pci_shutdown(struct pci_dev *pdev)
  	 */
--	if ((amdgpu_device_supports_atpx(drm_dev) &&
--	    amdgpu_is_atpx_hybrid()) ||
--	    amdgpu_device_supports_boco(drm_dev))
-+	if (amdgpu_device_supports_boco(drm_dev))
- 		return pm_runtime_suspended(dev) &&
- 			pm_suspend_via_firmware();
+ 	if (!amdgpu_passthrough(adev))
+ 		adev->mp1_state = PP_MP1_STATE_UNLOAD;
+-	adev->in_poweroff_reboot_com = true;
+ 	amdgpu_device_ip_suspend(adev);
+-	adev->in_poweroff_reboot_com = false;
+ 	adev->mp1_state = PP_MP1_STATE_NONE;
+ }
  
-@@ -1501,7 +1499,7 @@ static int amdgpu_pmops_runtime_suspend(struct device *dev)
- 	}
+@@ -1425,15 +1423,28 @@ static void amdgpu_pmops_complete(struct device *dev)
+ static int amdgpu_pmops_suspend(struct device *dev)
+ {
+ 	struct drm_device *drm_dev = dev_get_drvdata(dev);
++	struct amdgpu_device *adev = drm_to_adev(drm_dev);
++	int r;
  
- 	adev->in_runpm = true;
--	if (amdgpu_device_supports_atpx(drm_dev))
-+	if (amdgpu_device_supports_px(drm_dev))
- 		drm_dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
+-	return amdgpu_device_suspend(drm_dev, true);
++	if (amdgpu_acpi_is_s0ix_supported(adev))
++		adev->in_s0ix = true;
++	adev->in_s3 = true;
++	r = amdgpu_device_suspend(drm_dev, true);
++	adev->in_s3 = false;
++
++	return r;
+ }
  
- 	ret = amdgpu_device_suspend(drm_dev, false);
-@@ -1510,16 +1508,14 @@ static int amdgpu_pmops_runtime_suspend(struct device *dev)
- 		return ret;
- 	}
+ static int amdgpu_pmops_resume(struct device *dev)
+ {
+ 	struct drm_device *drm_dev = dev_get_drvdata(dev);
++	struct amdgpu_device *adev = drm_to_adev(drm_dev);
++	int r;
  
--	if (amdgpu_device_supports_atpx(drm_dev)) {
-+	if (amdgpu_device_supports_px(drm_dev)) {
- 		/* Only need to handle PCI state in the driver for ATPX
- 		 * PCI core handles it for _PR3.
- 		 */
--		if (!amdgpu_is_atpx_hybrid()) {
--			amdgpu_device_cache_pci_state(pdev);
--			pci_disable_device(pdev);
--			pci_ignore_hotplug(pdev);
--			pci_set_power_state(pdev, PCI_D3cold);
--		}
-+		amdgpu_device_cache_pci_state(pdev);
-+		pci_disable_device(pdev);
-+		pci_ignore_hotplug(pdev);
-+		pci_set_power_state(pdev, PCI_D3cold);
- 		drm_dev->switch_power_state = DRM_SWITCH_POWER_DYNAMIC_OFF;
- 	} else if (amdgpu_device_supports_baco(drm_dev)) {
- 		amdgpu_device_baco_enter(drm_dev);
-@@ -1538,19 +1534,17 @@ static int amdgpu_pmops_runtime_resume(struct device *dev)
- 	if (!adev->runpm)
- 		return -EINVAL;
+-	return amdgpu_device_resume(drm_dev, true);
++	r = amdgpu_device_resume(drm_dev, true);
++	if (amdgpu_acpi_is_s0ix_supported(adev))
++		adev->in_s0ix = false;
++	return r;
+ }
  
--	if (amdgpu_device_supports_atpx(drm_dev)) {
-+	if (amdgpu_device_supports_px(drm_dev)) {
- 		drm_dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
+ static int amdgpu_pmops_freeze(struct device *dev)
+@@ -1442,9 +1453,9 @@ static int amdgpu_pmops_freeze(struct device *dev)
+ 	struct amdgpu_device *adev = drm_to_adev(drm_dev);
+ 	int r;
  
- 		/* Only need to handle PCI state in the driver for ATPX
- 		 * PCI core handles it for _PR3.
- 		 */
--		if (!amdgpu_is_atpx_hybrid()) {
--			pci_set_power_state(pdev, PCI_D0);
--			amdgpu_device_load_pci_state(pdev);
--			ret = pci_enable_device(pdev);
--			if (ret)
--				return ret;
--		}
-+		pci_set_power_state(pdev, PCI_D0);
-+		amdgpu_device_load_pci_state(pdev);
-+		ret = pci_enable_device(pdev);
-+		if (ret)
-+			return ret;
- 		pci_set_master(pdev);
- 	} else if (amdgpu_device_supports_boco(drm_dev)) {
- 		/* Only need to handle PCI state in the driver for ATPX
-@@ -1561,7 +1555,7 @@ static int amdgpu_pmops_runtime_resume(struct device *dev)
- 		amdgpu_device_baco_exit(drm_dev);
- 	}
- 	ret = amdgpu_device_resume(drm_dev, false);
--	if (amdgpu_device_supports_atpx(drm_dev))
-+	if (amdgpu_device_supports_px(drm_dev))
- 		drm_dev->switch_power_state = DRM_SWITCH_POWER_ON;
- 	adev->in_runpm = false;
- 	return 0;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index 8e6ef4d8b7ee..86eeeb4f3513 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -161,7 +161,7 @@ int amdgpu_driver_load_kms(struct amdgpu_device *adev, unsigned long flags)
- 		goto out;
- 	}
+-	adev->in_hibernate = true;
++	adev->in_s4 = true;
+ 	r = amdgpu_device_suspend(drm_dev, true);
+-	adev->in_hibernate = false;
++	adev->in_s4 = false;
+ 	if (r)
+ 		return r;
+ 	return amdgpu_asic_reset(adev);
+@@ -1460,13 +1471,8 @@ static int amdgpu_pmops_thaw(struct device *dev)
+ static int amdgpu_pmops_poweroff(struct device *dev)
+ {
+ 	struct drm_device *drm_dev = dev_get_drvdata(dev);
+-	struct amdgpu_device *adev = drm_to_adev(drm_dev);
+-	int r;
  
--	if (amdgpu_device_supports_atpx(dev) &&
-+	if (amdgpu_device_supports_px(dev) &&
- 	    (amdgpu_runtime_pm != 0)) { /* enable runpm by default for atpx */
- 		adev->runpm = true;
- 		dev_info(adev->dev, "Using ATPX for runtime pm\n");
-@@ -202,13 +202,10 @@ int amdgpu_driver_load_kms(struct amdgpu_device *adev, unsigned long flags)
+-	adev->in_poweroff_reboot_com = true;
+-	r =  amdgpu_device_suspend(drm_dev, true);
+-	adev->in_poweroff_reboot_com = false;
+-	return r;
++	return amdgpu_device_suspend(drm_dev, true);
+ }
  
- 	if (adev->runpm) {
- 		/* only need to skip on ATPX */
--		if (amdgpu_device_supports_atpx(dev) &&
--		    !amdgpu_is_atpx_hybrid())
-+		if (amdgpu_device_supports_px(dev))
- 			dev_pm_set_driver_flags(dev->dev, DPM_FLAG_NO_DIRECT_COMPLETE);
- 		/* we want direct complete for BOCO */
--		if ((amdgpu_device_supports_atpx(dev) &&
--		    amdgpu_is_atpx_hybrid()) ||
--		    amdgpu_device_supports_boco(dev))
-+		if (amdgpu_device_supports_boco(dev))
- 			dev_pm_set_driver_flags(dev->dev, DPM_FLAG_SMART_PREPARE |
- 						DPM_FLAG_SMART_SUSPEND |
- 						DPM_FLAG_MAY_SKIP_RESUME);
+ static int amdgpu_pmops_restore(struct device *dev)
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index e722adcf2f53..cfcac110ed84 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -1337,7 +1337,7 @@ static int smu_disable_dpms(struct smu_context *smu)
+ 	bool use_baco = !smu->is_apu &&
+ 		((amdgpu_in_reset(adev) &&
+ 		  (amdgpu_asic_reset_method(adev) == AMD_RESET_METHOD_BACO)) ||
+-		 ((adev->in_runpm || adev->in_hibernate) && amdgpu_asic_supports_baco(adev)));
++		 ((adev->in_runpm || adev->in_s4) && amdgpu_asic_supports_baco(adev)));
+ 
+ 	/*
+ 	 * For custom pptable uploading, skip the DPM features
 -- 
 2.30.2
 
