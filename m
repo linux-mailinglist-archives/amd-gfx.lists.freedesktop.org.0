@@ -1,59 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 518A3343B9A
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Mar 2021 09:20:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35A71343B91
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Mar 2021 09:20:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 582386E3F4;
-	Mon, 22 Mar 2021 08:20:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62F9F6E3DF;
+	Mon, 22 Mar 2021 08:20:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com
- [IPv6:2a00:1450:4864:20::632])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FB0A6EB0F
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 23:24:23 +0000 (UTC)
-Received: by mail-ej1-x632.google.com with SMTP id k10so12234727ejg.0
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 16:24:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=lZjC5MYRszFKToyjw0wtcbVmRCl1gRLkwMvW9D8FFsM=;
- b=vKozyBbKjc0ZyVzaCQcntN1YrghkSwertT5myBgovjgJsEl3QjHrnw1/+HnbSF40dC
- 3zlaPKEJ0j699jJpYIMxqeGvzPbUV+BZq/Gj4wt6nICDvoLIUsU0YnkW2BY/KvC5aaHg
- DYoZuGoUz2LB6yF6/dh0SoaPz4eCeNVrvSBkjZgSBa5y6EZyTUG1eBHuUojvJ7eTna5H
- fUmDV+bKgfU3PgQ+18WfqZPWnQMSHtoFdLVtXrkSS60nZWfwk8Jae+k1nWCFYyf1yBJ/
- vX6mimkHHsefk3oe1mGmJdjR8nMJOaAsmeis3HCPrjPP+luZaw6NrE1PYNtiQa3wt+ux
- 324w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=lZjC5MYRszFKToyjw0wtcbVmRCl1gRLkwMvW9D8FFsM=;
- b=qwlZ8N8snrbKnCHL6MrLp4sBgeDwmalhoc7+ZntW44ysNwO4TnSOHDndR59hKRp8SN
- I7BS2D3hRGhcqtgPr6n/BJHqUFDLdQLsisAHo+rzLvuAE9fLV7dWLT12TsvdkpE/cAPS
- jmoJFgkFNuzv/pHB9DoM1xmctxRiUvavZGsR9+FXinuyoEgKgaSFosBaVEHxzyeypPE6
- 9X0sFD14ctM4Qz/kb+PjsEc/+ArlQ1Jd+j1S+VGsigJeKozPrD/wtRb9RAbuyIsMZ4NM
- K1YObvwzPm/JWbtatc9YehqfUrA6q0leDmJPxPlvaIzI8YZoOsXmAq4ciE6FbqpAKMlU
- SD8g==
-X-Gm-Message-State: AOAM533V0yCfGGcwiXR29i3DGJMihCd2KPSm7gyJolugyoP8zPobFgzR
- exNouITQZd32STRaDWKC7aQVD1Lwezs=
-X-Google-Smtp-Source: ABdhPJzVv2ocBpWzi6Yz1/pKDkHm6dWoDjiVDzCwnuHuCEWGgWVKKmnAIMPmbUPAOXdxh9iSV46s3w==
-X-Received: by 2002:a17:906:d797:: with SMTP id
- pj23mr7126089ejb.367.1616196262220; 
- Fri, 19 Mar 2021 16:24:22 -0700 (PDT)
-Received: from localhost ([2001:470:5139::819])
- by smtp.gmail.com with ESMTPSA id lu26sm4329102ejb.33.2021.03.19.16.24.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 19 Mar 2021 16:24:21 -0700 (PDT)
-From: Tobias Jakobi <cubic2k@gmail.com>
-X-Google-Original-From: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu/swsmu: fix typo (memlk -> memclk)
-Date: Sat, 20 Mar 2021 00:24:19 +0100
-Message-Id: <20210319232419.174234-1-tjakobi@math.uni-bielefeld.de>
-X-Mailer: git-send-email 2.26.2
+X-Greylist: delayed 2254 seconds by postgrey-1.36 at gabe;
+ Sat, 20 Mar 2021 03:05:37 UTC
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94C456EB2B;
+ Sat, 20 Mar 2021 03:05:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Sender:Content-Type:MIME-Version:
+ References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=+sIlNzRjvkor36vVjZVUZsfBi2atAGv+9aK56Y329n8=; b=Ls2jzXgBP4KXoqGUgnIwSsxHvE
+ GieDQ0S8TGF6WrEVSGpcnxQmx3jZo63BZwxvGa7sOShad+0vd+swUeXsfh5vBxL5MrekGvnPQ05da
+ VxnWpHCON6doBupk9CHbd8uTxpn76usxAKaT5D35XqLtUjVn7WD4pcxnnLhB14mufvUbkuHxpyKDx
+ lTfixTHy6Y9iZG1hSxcXFt/bKytP0h8g4LoL28HIdvyCVJFTPC/u/isPUmmyU+WGChNUXEOwAukAd
+ eXc5wBAy/untSvcFIUPjhru4IWwpXBTgtVzuwM5ah5zuGvo8KI0d9f7aZw6bWgKy8exozcRHA/fGH
+ wIvG3wxQ==;
+Received: from rdunlap (helo=localhost)
+ by bombadil.infradead.org with local-esmtp (Exim 4.94 #2 (Red Hat Linux))
+ id 1lNRLL-001etm-0F; Sat, 20 Mar 2021 02:28:00 +0000
+Date: Fri, 19 Mar 2021 19:27:58 -0700 (PDT)
+From: Randy Dunlap <rdunlap@bombadil.infradead.org>
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+Subject: Re: [PATCH V2] drm/amdgpu: Fix a typo
+In-Reply-To: <20210318202414.10547-1-unixbhaskar@gmail.com>
+Message-ID: <3cc678f2-36d1-1af1-5759-37aea82f41ea@bombadil.infradead.org>
+References: <20210318202414.10547-1-unixbhaskar@gmail.com>
 MIME-Version: 1.0
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20210319_192759_071088_BBA1C01B 
+X-CRM114-Status: GOOD (  12.85  )
+X-Spam-Score: -0.0 (/)
+X-Spam-Report: Spam detection software,
+ running on the system "bombadil.infradead.org", 
+ has NOT identified this incoming email as spam.  The original
+ message has been attached to this so you can view it or label
+ similar future email.  If you have any questions, see
+ the administrator of that system for details.
+ Content preview:  On Fri, 19 Mar 2021,
+ Bhaskar Chowdhury wrote: > s/traing/training/
+ > > ...Plus the entire sentence construction for better readability. > >
+ Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com> > --- > Changes from
+ V1: > Alex and Randy's sugge [...] 
+ Content analysis details:   (-0.0 points, 5.0 required)
+ pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ -0.0 NO_RELAYS              Informational: message was not relayed via SMTP
 X-Mailman-Approved-At: Mon, 22 Mar 2021 08:19:58 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,67 +67,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
-Content-Type: text/plain; charset="us-ascii"
+Cc: guchun.chen@amd.com, airlied@linux.ie, Bhawanpreet.Lakha@amd.com,
+ tao.zhou1@amd.com, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ ray.huang@amd.com, dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
+ Jiansong.Chen@amd.com, alexander.deucher@amd.com, Likun.Gao@amd.com,
+ John.Clements@amd.com, christian.koenig@amd.com, Hawking.Zhang@amd.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-- no functional changes
 
-Signed-off-by: Tobias Jakobi <tjakobi@math.uni-bielefeld.de>
----
- drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c         | 4 ++--
- drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-index 6e641f1513d8..66d69c13f915 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-@@ -1433,7 +1433,7 @@ static int navi10_get_power_profile_mode(struct smu_context *smu, char *buf)
- 		size += sprintf(buf + size, "%19s %d(%13s) %7d %7d %7d %7d %7d %7d %7d %7d %7d\n",
- 			" ",
- 			2,
--			"MEMLK",
-+			"MEMCLK",
- 			activity_monitor.Mem_FPS,
- 			activity_monitor.Mem_MinFreqStep,
- 			activity_monitor.Mem_MinActiveFreqType,
-@@ -1493,7 +1493,7 @@ static int navi10_set_power_profile_mode(struct smu_context *smu, long *input, u
- 			activity_monitor.Soc_PD_Data_error_coeff = input[8];
- 			activity_monitor.Soc_PD_Data_error_rate_coeff = input[9];
- 			break;
--		case 2: /* Memlk */
-+		case 2: /* Memclk */
- 			activity_monitor.Mem_FPS = input[1];
- 			activity_monitor.Mem_MinFreqStep = input[2];
- 			activity_monitor.Mem_MinActiveFreqType = input[3];
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-index af73e1430af5..f21679acd9af 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-@@ -1366,7 +1366,7 @@ static int sienna_cichlid_get_power_profile_mode(struct smu_context *smu, char *
- 		size += sprintf(buf + size, "%19s %d(%13s) %7d %7d %7d %7d %7d %7d %7d %7d %7d\n",
- 			" ",
- 			2,
--			"MEMLK",
-+			"MEMCLK",
- 			activity_monitor->Mem_FPS,
- 			activity_monitor->Mem_MinFreqStep,
- 			activity_monitor->Mem_MinActiveFreqType,
-@@ -1429,7 +1429,7 @@ static int sienna_cichlid_set_power_profile_mode(struct smu_context *smu, long *
- 			activity_monitor->Fclk_PD_Data_error_coeff = input[8];
- 			activity_monitor->Fclk_PD_Data_error_rate_coeff = input[9];
- 			break;
--		case 2: /* Memlk */
-+		case 2: /* Memclk */
- 			activity_monitor->Mem_FPS = input[1];
- 			activity_monitor->Mem_MinFreqStep = input[2];
- 			activity_monitor->Mem_MinActiveFreqType = input[3];
--- 
-2.26.2
+On Fri, 19 Mar 2021, Bhaskar Chowdhury wrote:
 
+> s/traing/training/
+>
+> ...Plus the entire sentence construction for better readability.
+>
+> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+> ---
+> Changes from V1:
+>  Alex and Randy's suggestions incorporated.
+>
+> drivers/gpu/drm/amd/amdgpu/psp_v11_0.c | 8 ++++----
+> 1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
+> index c325d6f53a71..bf3857867f51 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
+> @@ -661,10 +661,10 @@ static int psp_v11_0_memory_training(struct psp_context *psp, uint32_t ops)
+>
+> 	if (ops & PSP_MEM_TRAIN_SEND_LONG_MSG) {
+> 		/*
+> -		 * Long traing will encroach certain mount of bottom VRAM,
+> -		 * saving the content of this bottom VRAM to system memory
+> -		 * before training, and restoring it after training to avoid
+> -		 * VRAM corruption.
+> +		 * Long training will encroach a certain amount on the bottom of VRAM;
+> +                 * save the content from the bottom VRAM to system memory
+> +                 * before training, and restore it after training to avoid
+> +                 * VRAM corruption.
+
+These 3 new lines are indented with spaces instead of tabs. Oops.  :(
+
+(I may be too late with this comment -- sorry about that.)
+
+> 		 */
+> 		sz = GDDR6_MEM_TRAINING_ENCROACHED_SIZE;
+>
+> --
+> 2.26.2
+>
+>
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
