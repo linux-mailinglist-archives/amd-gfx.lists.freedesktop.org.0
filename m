@@ -1,107 +1,108 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8646D343B57
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Mar 2021 09:12:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E275C343BFC
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Mar 2021 09:42:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A90C6E103;
-	Mon, 22 Mar 2021 08:12:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1496F89B68;
+	Mon, 22 Mar 2021 08:42:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam07on2063.outbound.protection.outlook.com [40.107.95.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AF156E103
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 08:12:14 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr770070.outbound.protection.outlook.com [40.107.77.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1E9889B68
+ for <amd-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 08:42:52 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YsWYG31RYfbhB7tYfvl3Et4bPzJ7rqs244ZgP/1sTJXfD1EMHojFrdfrLpp4p06jJpF/3y3clfztL/CMtZZJGdTMIWxAAa+/pljlBKQWhUF77sLprctnMu6BjXplCFvjaqMZ9GHE6KnilYcAvFZLujkCgR/kNbM0ocbVfNVRnuwLdTMvzIw4y3fv1FaMiaVW+TpBMF4ztEmtN+ej5UoiHOiAOCQv8SzOgIeVLR/zr/fTC90VdHCWKI5ZRD25MIq+BBn7FyflV2t6TreNj8WUJDxzasMafDy7bJossg2G9bbyoe/eXmoXgY3k3MnDk56/Y+fbVJbvgVGz2UV9VggP0g==
+ b=RonH0BCJmBFmrU2tVwODjWDDJHPeZsnZmGJx6dydIPJrOuoKYnZUQA7+1oHOo9T2ndxvmsHMwrx/qqRC57Oxlq11HrbP/YJwsGcwzl6ForKa1l21BJB3hsPFJN8YfWRS6LWWuvd4zcEAHsKMb/yqOb/R1cwgIcgyTWhYdSO9myNa35s5wauYCNd6mDm3swITWzYVDhU/VW05fCvs5YmjksAs7+j1eWVliRC7/elclhS5uGi/qV4KUMbYbhobQCNmIQxRs+Wqv3w3ZI1/0ZMAn7GbPOkitchmRF1uzuN6QhvLZw9d+64uUP1VScl3VFEj+xMvztrWZgF9AMkdy+YagQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W+4X22nt5bTuGw8EGVTDUh+11iR5B3sf01BaYaUBbyo=;
- b=k0kuWZYPUxxBsa9ThCGYrOYsY/i0B/Cs3NrP4TcKGyn3Ys6boEN6W5tVvIqcxWZdy0tUUTmiqeF8ervqD93L1t4njLQT5pYDU+3O86nerjeLRhrdJKNB7WTMJcZG8+fQUufEI9VStV9xk07YWCXMjCX8jLbT8NFJ/SWVEDyFU22k98YtNb+B+M5KAWV9c/Vt33PFHqbkB4KAeKWQxs/I/p7jARAWxHAcq2NkpfuKcWgoZuaeQ+PDEJr41bQJPj+TRdxBcihpFl4V/4UcAQiurDy9j/TX+XwYqgleIfO3W8DoVGUR5yh3/2XE0he7LfgVw4g7yNTOnCWzJmN1/m1uvw==
+ bh=vePCLNMshlzSEg4+AyebHBEaxyzIKltVNF5W/TP31bA=;
+ b=h0BK1uraU63gyfIeyo1XzBGHAowOL8FWQ91syqSUhBzUMiJwlv+1BnWHrk827+tnM+qypglF/v87djwHQmQ66rcHzNJpiAhVg2ju7patwpduqH1LwqU1xhswnQlgoYJkUmyqoMeiWyIOC8wSTNYkFs/c+mVJX+tk2e3ZO3YmiZQ/6WlummA38XnCxF5IbJ2E9ugECBN8v4uaC5Qdw0ku4uUM+UG9kAByruH2a6h8t4r8H55Aa8RyDQnauHwbqT+8C3X2R/80DP9+bpTvfaE5vLgiFG12aO157yrhcVL8EJgZ4rSzFH4ym4N3PqtdfANmveAO+A3eCIiYKQo5gVjC9A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W+4X22nt5bTuGw8EGVTDUh+11iR5B3sf01BaYaUBbyo=;
- b=OuWqWkwrFhfxbiuDBZLMLlgUV1zlFz1FEGT2/7zhMaMQaHXmixuvJgS6ZMKTx54rlkmrgsaAtjd1grzKHKyLxngiMH+zXq0mt4tBrMZxa4vq3iRtqIEdREViLh5IW9fjini0Is1+wos3Mt8YGsZwDSEKgWsaf/wm/ldvQmMlHs4=
+ bh=vePCLNMshlzSEg4+AyebHBEaxyzIKltVNF5W/TP31bA=;
+ b=vLV0EHwF1DuZISVXhiQ6N6cTSWVNZhzk0tT1ZV6WRvmFwFQe1jbIqp8J+rI6Dw2P8eZ/ApLDB70lHry4gR8B33a/5Gj3UzEgp/iJtuqpKmARhvdGbbkZqVUhIwHQj2/vQx1eYV7w51XU21vjdiU2AyqJr9RCiqURfqXlmyvaGU4=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB4250.namprd12.prod.outlook.com (2603:10b6:5:21a::9) by
- DM6PR12MB2939.namprd12.prod.outlook.com (2603:10b6:5:18b::24) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3955.18; Mon, 22 Mar 2021 08:12:12 +0000
-Received: from DM6PR12MB4250.namprd12.prod.outlook.com
- ([fe80::292c:5927:cb7c:cffb]) by DM6PR12MB4250.namprd12.prod.outlook.com
- ([fe80::292c:5927:cb7c:cffb%7]) with mapi id 15.20.3955.027; Mon, 22 Mar 2021
- 08:12:12 +0000
-From: Lang Yu <Lang.Yu@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amd/dispaly: fix deadlock issue in amdgpu reset
-Date: Mon, 22 Mar 2021 16:11:38 +0800
-Message-Id: <20210322081138.3484804-1-Lang.Yu@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from CY4PR12MB1287.namprd12.prod.outlook.com (2603:10b6:903:40::8)
+ by CY4PR1201MB0184.namprd12.prod.outlook.com (2603:10b6:910:1d::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Mon, 22 Mar
+ 2021 08:42:51 +0000
+Received: from CY4PR12MB1287.namprd12.prod.outlook.com
+ ([fe80::8908:d7:5544:6007]) by CY4PR12MB1287.namprd12.prod.outlook.com
+ ([fe80::8908:d7:5544:6007%8]) with mapi id 15.20.3955.025; Mon, 22 Mar 2021
+ 08:42:51 +0000
+From: Guchun Chen <guchun.chen@amd.com>
+To: amd-gfx@lists.freedesktop.org, lee.jones@linaro.org,
+ harry.wentland@amd.com, alexander.deucher@amd.com, Rodrigo.Siqueira@amd.com
+Subject: [PATCH] drm/amd/display: fix modprobe failure on vega series
+Date: Mon, 22 Mar 2021 16:42:30 +0800
+Message-Id: <20210322084230.24043-1-guchun.chen@amd.com>
+X-Mailer: git-send-email 2.17.1
 X-Originating-IP: [180.167.199.189]
-X-ClientProxiedBy: HK2PR06CA0010.apcprd06.prod.outlook.com
- (2603:1096:202:2e::22) To DM6PR12MB4250.namprd12.prod.outlook.com
- (2603:10b6:5:21a::9)
+X-ClientProxiedBy: HK2PR02CA0156.apcprd02.prod.outlook.com
+ (2603:1096:201:1f::16) To CY4PR12MB1287.namprd12.prod.outlook.com
+ (2603:10b6:903:40::8)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from lang-desktop.amd.com (180.167.199.189) by
- HK2PR06CA0010.apcprd06.prod.outlook.com (2603:1096:202:2e::22) with Microsoft
+Received: from guchchen-System-Product-Name.amd.com (180.167.199.189) by
+ HK2PR02CA0156.apcprd02.prod.outlook.com (2603:1096:201:1f::16) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3955.18 via Frontend Transport; Mon, 22 Mar 2021 08:12:10 +0000
+ 15.20.3955.18 via Frontend Transport; Mon, 22 Mar 2021 08:42:48 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: f8ba1f13-1cae-48fe-ed7b-08d8ed0a322e
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2939:
+X-MS-Office365-Filtering-Correlation-Id: 59698936-9e8e-4780-0bba-08d8ed0e7a3d
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB0184:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB293953D0D4AEB60E4AB4B104FB659@DM6PR12MB2939.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB01846186DD41DF79F911F63FF1659@CY4PR1201MB0184.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3yEKvNEtBINgtSLJBqcOT1KXTZfnKmgZA+3TWyvxNZw/64ogf/ftwqDJhXlr9Y6TtP74SLMF8YUMV+y7sfJkLr+1/L8QNJN+yqvgLJTQRKIdTnyqluI6bz88dSqahXNL+fQsGLD5wCtfCxkRN7IBiLSZ6BAOx11BWzViKzRQzPOB2TIoeqDPWMq7hJNogSbrJbMka3mT5vxjDdSPkyT28Qbc/gJXL4VbugSi0TK0lM2iscaKz/lls5ezeWyiq2G2vjEsBTdwMrIjZL3J/aGmbmFJ93EBy0zDx6WNH5cXKuShhQn/1qFa3qI8dpt8CPqO5hKjjWF25PKUFDKEKAROeDiV5WD9087Khyi+Pqt01GMPVtpfdZ6lXw/SukOYUc1nl/yFaokzxVVw01kcNcES86QovTUrZNnkapJB0mFNtswGZFcY0NFuyJhbCm7DI8JCPoSUvKIqx9SypEBIjWFB6dySdyNvh7vxKQOpSBHcxm/qVUCwfuJInxK3RRuBSwAuD6jRXFyimnznJu+EI2qJIAV+kb2SUsUTvvo9Ye4hoT6bEXU8PBRiPG2b10g/XYYx6UAmiPWZCRU435+66lwZofQN4mpUQ1P80PWffHrDrFI5W6mhvDhOpCrySrrsq17v6h68fM5NHKRT8sWZS/zWWw==
+X-Microsoft-Antispam-Message-Info: N0NkxRCXUHaJY5607tEpJFZGOmIk4qyW8apHOlG5ylgxlXIgy0QUDvRVMsvFV/M+4Z61pjp5QDvfsVmkuvFbQHvyqnmZqVIkvbtRPG6zKSpWQfvENAvlVXJH92uBV22YMjSRl5ZS/KNL+z/wYpUrjQ5r+hpk90Kvblx9Y6YyqprUW6ephTXnEWJeMYWpPKDJh/va/6p4RKsSJ30URmbg+z5eTSkX/cRlYZgayViXwt+V/vMqpAfTmieAGBOg10f2I75du27lb/1ml/RWLySH2FvUR5ysQ5MvzYjPbzgJrt3Uqw9OchlfR8d4pjc4lL7TggIYd7m+xxrjddhkR0uaKK+wFtzNlmt3C3iX1taWCemrgH+8aWnenzTuALFyt3Jm7qXiM7mjLGCS/HvXv8kEmTKDnMv4xDsRl6q90UVilXOcNnTCMlEPecHzOUbIvzKVm41JRKRww0isOCk2kYg5CJ0un/f9Xmm4IFc2Zxx+Fn9NmDJY93MzP4zxUWxMdrezUWmdKDyY2OCh2iEticgvFP5ITs/EVp4qSOhHYPVJf371nK/UJFJhZlTy44LNfoizBfvOWLEmCBsKZt4AwAUwJS4H04+EonBeEY7Ac1TUUa2xXynDEDSTZBLyQHr3HlJOxxQEwsIqqzNaSI054UdZ/YIYtFe8yvH9QJWMM8lC7rE=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB4250.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(376002)(39860400002)(346002)(136003)(366004)(4326008)(1076003)(36756003)(66556008)(38100700001)(6666004)(6916009)(66946007)(83380400001)(66476007)(5660300002)(16526019)(186003)(26005)(8676002)(7696005)(52116002)(86362001)(478600001)(8936002)(2616005)(956004)(6486002)(2906002)(54906003)(316002);
+ IPV:NLI; SFV:NSPM; H:CY4PR12MB1287.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(136003)(366004)(396003)(346002)(39860400002)(956004)(2906002)(8676002)(316002)(2616005)(6636002)(38100700001)(86362001)(478600001)(8936002)(6666004)(36756003)(7696005)(16526019)(186003)(52116002)(83380400001)(44832011)(1076003)(66946007)(5660300002)(66556008)(66476007)(26005)(4326008)(6486002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?V1i+BUhTGqNsqiUWjE2Fa73dv/BUHFHLBd+mcClvX1o9Gljw5665uoQNVFyH?=
- =?us-ascii?Q?JkzJnCtxjCe6+jhBu0eMUvOS6mE8D1xJC61l2HGVxogsgUEVaGj4T0oFIyGs?=
- =?us-ascii?Q?AixPD3I5ygB3K/kjOjn3HxRtOyoNp1pXGjUJ5DTz4E565MrnGyLgOcmzWeHk?=
- =?us-ascii?Q?RbMbA9ypdPnxEK4wNnbcqZ8nSiH2CA4C0tHFW1uybE5T/ZLMLoMEA8p8k574?=
- =?us-ascii?Q?Gyn/IQAjx7A3fC5WA6osk1uuoBw91Eve8JaPllE2VK8c89/0VuDNeYgdgdYo?=
- =?us-ascii?Q?jX5f4PSBRRLB7BULghEWemE+I1udD7BAt65g9tG1Uoc/IQwK/66lVeKVDyAd?=
- =?us-ascii?Q?BaWzrwxt59U9z1RQBAsBcdiOmG9rm1VbD0WZDyYcHNd0VdJFZAyJAm8xYjYW?=
- =?us-ascii?Q?9UoKr5Bw0oQv29X5bgRcvezKexLGP6/j0k49qthr5gTMiXCAg2Z9AjlJCAs+?=
- =?us-ascii?Q?f+r+MZV72JwY50kdQb3wGDaIAalU5bhShVteXtoNpM0lqLsbuHEE5qwA9nKD?=
- =?us-ascii?Q?zpQ4L65MoOdyl36ngVKOwcCSlt4B+5fuegSJeXWlTh5F72JJprn8RwA+hcW3?=
- =?us-ascii?Q?vJk+v5GSGNkvGqVzoNhXHSRWC1qHITJtG7P91gfrN/TOsCwuoZW6PMaDS8Ds?=
- =?us-ascii?Q?y0vpQxA7mK0tttJWvsRPRI2L5hFgZFs5/JtkfIYYerd6f26XBxcqkEdxok0S?=
- =?us-ascii?Q?OLFC0/IQoNv9HZm58xiP2uvI3g6blnc637dzC5EYSSixv4dP97HIljWd4MRV?=
- =?us-ascii?Q?dwKK9fNt5yXqK15a2aMyXm2ZAWBB19QRGskGSStSlwSQJIbGr3+BLW8xatv+?=
- =?us-ascii?Q?JPIAmo/GmictQD65EJ0GVj2bBdQGb2PtN3x1gs1cFhQWvKAa7O/FZHepIEmU?=
- =?us-ascii?Q?g699JpisrBOnRt/DxMXa3htWaknuQKIxaWUR+aMfdT4shIJU7JazIT+Y7ms5?=
- =?us-ascii?Q?MMb8iWJEp2CJjML27tvk1lhiwTLavCdpED7BiNtBzEfmxmiuV52s4ysg1EHK?=
- =?us-ascii?Q?U7QahehCZa+mecvnG7rtiG0B5yPJ+wo4isLxzcUAWff4og9Zdh1dPfMhJFYC?=
- =?us-ascii?Q?dvNt1EL7xNmLDomKOnudYoFryKswwOTJ5ire9S2tigtGvhtVWeZUBOVGuDXT?=
- =?us-ascii?Q?Y7UEcGxQFkgXv0AcYLkrcyPvnqDxY5dOazc7ZNcXf/Wy/D9kfJw0D9xWMhhL?=
- =?us-ascii?Q?sLeAGzUCvCMT4pupf3tDu//K5jFosw8uUkYJfvqjq9qt9PcfmNUF6wdYcfQA?=
- =?us-ascii?Q?9f5ZikedoI07vl5MLP7Eq5DRZ+rhG/U5HwJxpx0BQrtnpCkmOldOAgE4A1vD?=
- =?us-ascii?Q?kFCtUZvXILkt9ReYhOVYtgIV?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?qMBPalqtoXAS99l0YMFNEDM9LUCSFOlAtYIsOukjCrV1gBg1ODI9VT7qs5If?=
+ =?us-ascii?Q?8VuwJwYteVMZJ1Dytj5LxKKnS/sBecb+WCxk1rul7+s+PmOrECnbV7fc9J66?=
+ =?us-ascii?Q?HiWWX6ggP565tMIj/8XSZcE+nFecIypUaRo31LToRggdBLuotJ8dnxlA5yWJ?=
+ =?us-ascii?Q?aeZ8GE4Hc92c9U5+snND5xT3OU6TpZkd4krnmzatiRp+0r/PpNSof3LIxfTC?=
+ =?us-ascii?Q?Sk+NAH0ORNm4ftHXbcEx7NgQD+QN4EIQ9yBGkOzkEWh11JgdVStsEbNFzkwD?=
+ =?us-ascii?Q?ktKBvV6kNlsRp1ZULHKbOSTHisV1ROpk9sdSM9Vo+0uplf+nY9q/OvX9NdHb?=
+ =?us-ascii?Q?pSRH7sX6C7UGw92SByWFa3GE8pMM/XmSrY5S1H3doE0ZJGuG7gXXnqz67SBe?=
+ =?us-ascii?Q?wpzlTAKroxN/kWkBIfLqpPQ/MclTx5W+TymNi+jA+ZCJDin3z+bmIFiCkZ37?=
+ =?us-ascii?Q?B5Hg5eyZCK1oVKaoYf1lzqFCNpQ0bkJXUqbW3VQyMqyDYsVIhXWvqNZ8Gyyq?=
+ =?us-ascii?Q?oTdI2mi224q+NXCFuK2HgfysA3wun8YJ9RQy5bbm7Ig4XNm3ZPMCKRabkjfd?=
+ =?us-ascii?Q?sysBQ5bslZ6DD1Vvb+X6Z48CoVmuFy6IVcMfYwAE5cc9xHj5Yl2vr/P+y2x5?=
+ =?us-ascii?Q?5FnyZS/vO1FgClhuL70eHGaC9GSRm2hLxKxi6ZGCSZo/aVqvl23KL/+KC1HY?=
+ =?us-ascii?Q?uQA9e1S0phqscKhyBgKsl1e7ltlsbTmG4BGgHWi8DMUwVV0e4fbBjxBGe3/3?=
+ =?us-ascii?Q?is+YI+39ebUFvRsqnJHVcsRJrzYtKVQfCFC2mArXzeL6eVLLpwjU4nWXy9PW?=
+ =?us-ascii?Q?Buwg2RbW77a+5jl08cpFkS8lC2h8lmwapswJBeYO2jAONps8rk8otwv/+ljL?=
+ =?us-ascii?Q?kYGUjHQ/Rq4TEKOmfpcaVWs5ytLVKyIVLeJBxg+e4gNMT8SK5Wkk8tV4zhEQ?=
+ =?us-ascii?Q?8NY1mhtDf5XR6ofAaGwychIi8i5PC5Cc0G5uNveJjCOvq3S1O7vXYlZtoXbl?=
+ =?us-ascii?Q?sztK77ntLcMYkb8Xc5M7pogrSV53IPja/kBCjxvIDCzHg42myJtj/eDv1GNO?=
+ =?us-ascii?Q?HMT+uPJV++UWqXXywxGnwPkyaAEq7iM9yDUDeSxSThp5y+ctML2vTd3mGtf/?=
+ =?us-ascii?Q?958LP2LGKnqHu5d4+oOaQTc/dm5/RgtdajsR0Khd73JzSdl/tPJMpJdVEsDK?=
+ =?us-ascii?Q?UNGC4wYfSnU1cXnCltOecPi1XwaihQlrJ+2vup5NePf/3O/2RZ/yaIVNeXVk?=
+ =?us-ascii?Q?Mn0kb2j25/JVEJommJkeqm7dhBCQxbl4ou4I1SGVHADBaMygFfoBzOntITei?=
+ =?us-ascii?Q?ju/UAafb/pFjh56I0KytEQ7A9+kY1OdMzEGQnpZmGJgFlQ=3D=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f8ba1f13-1cae-48fe-ed7b-08d8ed0a322e
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4250.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 59698936-9e8e-4780-0bba-08d8ed0e7a3d
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR12MB1287.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2021 08:12:12.2925 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2021 08:42:51.1190 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fRchRvBuusjTD04QOJMQo5dH0JGqunj6cocV1oV61kIAKO47/vCObd0WJqjH75TsEDw1B38EP6gQyhUrrMiTqw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2939
+X-MS-Exchange-CrossTenant-UserPrincipalName: gR8feKXyS6bVgdKdNkfph+Yly32gUF+Bn2BHUAq5TReZlFgdNyiSfIWgiFoXvN80e4uSoL07/j33y5dtPjGVbQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0184
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,129 +114,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Huang Rui <ray.huang@amd.com>,
- Lang Yu <Lang.Yu@amd.com>
+Cc: Guchun Chen <guchun.chen@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In amdggpu reset, while dm.dc_lock is held by dm_suspend,
-handle_hpd_rx_irq tries to acquire it. Deadlock occurred!
+Fixes: d88b34caee83 ("Remove some large variables from the stack")
 
-Deadlock log:
+[   41.232097] Call Trace:
+[   41.232105]  kvasprintf+0x66/0xd0
+[   41.232122]  kasprintf+0x49/0x70
+[   41.232136]  __drm_crtc_init_with_planes+0x2e1/0x340 [drm]
+[   41.232219]  ? create_object+0x263/0x3b0
+[   41.232231]  drm_crtc_init_with_planes+0x46/0x60 [drm]
+[   41.232303]  amdgpu_dm_init+0x69c/0x1750 [amdgpu]
+[   41.232998]  ? phm_wait_for_register_unequal.part.1+0x58/0x90 [amdgpu]
+[   41.233662]  ? smu9_wait_for_response+0x7d/0xa0 [amdgpu]
+[   41.234294]  ? smu9_send_msg_to_smc_with_parameter+0x77/0xd0 [amdgpu]
+[   41.234912]  ? smum_send_msg_to_smc_with_parameter+0x96/0x100 [amdgpu]
+[   41.235520]  ? psm_set_states+0x5c/0x60 [amdgpu]
+[   41.236165]  dm_hw_init+0x12/0x20 [amdgpu]
+[   41.236834]  amdgpu_device_init+0x1402/0x1df0 [amdgpu]
+[   41.237314]  amdgpu_driver_load_kms+0x65/0x320 [amdgpu]
+[   41.237780]  amdgpu_pci_probe+0x150/0x250 [amdgpu]
+[   41.238240]  local_pci_probe+0x47/0xa0
+[   41.238253]  pci_device_probe+0x10b/0x1c0
+[   41.238265]  really_probe+0xf5/0x4c0
+[   41.238275]  driver_probe_device+0xe8/0x150
+[   41.238284]  device_driver_attach+0x58/0x60
+[   41.238293]  __driver_attach+0xa3/0x140
+[   41.238301]  ? device_driver_attach+0x60/0x60
+[   41.238309]  ? device_driver_attach+0x60/0x60
+[   41.238317]  bus_for_each_dev+0x74/0xb0
+[   41.238330]  ? kmem_cache_alloc_trace+0x31a/0x470
+[   41.238341]  driver_attach+0x1e/0x20
+[   41.238348]  bus_add_driver+0x14a/0x220
+[   41.238357]  ? 0xffffffffc0f09000
+[   41.238364]  driver_register+0x60/0x100
+[   41.238373]  ? 0xffffffffc0f09000
+[   41.238379]  __pci_register_driver+0x54/0x60
+[   41.238389]  amdgpu_init+0x68/0x1000 [amdgpu]
+[   41.238836]  do_one_initcall+0x48/0x1e0
+[   41.238850]  ? kmem_cache_alloc_trace+0x31a/0x470
+[   41.238862]  do_init_module+0x5f/0x224
+[   41.238876]  load_module+0x266b/0x2ec0
+[   41.238887]  ? security_kernel_post_read_file+0x5c/0x70
+[   41.238905]  __do_sys_finit_module+0xc1/0x120
+[   41.238913]  ? __do_sys_finit_module+0xc1/0x120
+[   41.238924]  __x64_sys_finit_module+0x1a/0x20
+[   41.238932]  do_syscall_64+0x37/0x80
+[   41.238942]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
 
-[  104.528304] amdgpu 0000:03:00.0: amdgpu: GPU reset begin!
-
-[  104.640084] ======================================================
-[  104.640092] WARNING: possible circular locking dependency detected
-[  104.640099] 5.11.0-custom #1 Tainted: G        W   E
-[  104.640107] ------------------------------------------------------
-[  104.640114] cat/1158 is trying to acquire lock:
-[  104.640120] ffff88810a09ce00 ((work_completion)(&lh->work)){+.+.}-{0:0}, at: __flush_work+0x2e3/0x450
-[  104.640144]
-               but task is already holding lock:
-[  104.640151] ffff88810a09cc70 (&adev->dm.dc_lock){+.+.}-{3:3}, at: dm_suspend+0xb2/0x1d0 [amdgpu]
-[  104.640581]
-               which lock already depends on the new lock.
-
-[  104.640590]
-               the existing dependency chain (in reverse order) is:
-[  104.640598]
-               -> #2 (&adev->dm.dc_lock){+.+.}-{3:3}:
-[  104.640611]        lock_acquire+0xca/0x390
-[  104.640623]        __mutex_lock+0x9b/0x930
-[  104.640633]        mutex_lock_nested+0x1b/0x20
-[  104.640640]        handle_hpd_rx_irq+0x9b/0x1c0 [amdgpu]
-[  104.640959]        dm_irq_work_func+0x4e/0x60 [amdgpu]
-[  104.641264]        process_one_work+0x2a7/0x5b0
-[  104.641275]        worker_thread+0x4a/0x3d0
-[  104.641283]        kthread+0x125/0x160
-[  104.641290]        ret_from_fork+0x22/0x30
-[  104.641300]
-               -> #1 (&aconnector->hpd_lock){+.+.}-{3:3}:
-[  104.641312]        lock_acquire+0xca/0x390
-[  104.641321]        __mutex_lock+0x9b/0x930
-[  104.641328]        mutex_lock_nested+0x1b/0x20
-[  104.641336]        handle_hpd_rx_irq+0x67/0x1c0 [amdgpu]
-[  104.641635]        dm_irq_work_func+0x4e/0x60 [amdgpu]
-[  104.641931]        process_one_work+0x2a7/0x5b0
-[  104.641940]        worker_thread+0x4a/0x3d0
-[  104.641948]        kthread+0x125/0x160
-[  104.641954]        ret_from_fork+0x22/0x30
-[  104.641963]
-               -> #0 ((work_completion)(&lh->work)){+.+.}-{0:0}:
-[  104.641975]        check_prev_add+0x94/0xbf0
-[  104.641983]        __lock_acquire+0x130d/0x1ce0
-[  104.641992]        lock_acquire+0xca/0x390
-[  104.642000]        __flush_work+0x303/0x450
-[  104.642008]        flush_work+0x10/0x20
-[  104.642016]        amdgpu_dm_irq_suspend+0x93/0x100 [amdgpu]
-[  104.642312]        dm_suspend+0x181/0x1d0 [amdgpu]
-[  104.642605]        amdgpu_device_ip_suspend_phase1+0x8a/0x100 [amdgpu]
-[  104.642835]        amdgpu_device_ip_suspend+0x21/0x70 [amdgpu]
-[  104.643066]        amdgpu_device_pre_asic_reset+0x1bd/0x1d2 [amdgpu]
-[  104.643403]        amdgpu_device_gpu_recover.cold+0x5df/0xa9d [amdgpu]
-[  104.643715]        gpu_recover_get+0x2e/0x60 [amdgpu]
-[  104.643951]        simple_attr_read+0x6d/0x110
-[  104.643960]        debugfs_attr_read+0x49/0x70
-[  104.643970]        full_proxy_read+0x5f/0x90
-[  104.643979]        vfs_read+0xa3/0x190
-[  104.643986]        ksys_read+0x70/0xf0
-[  104.643992]        __x64_sys_read+0x1a/0x20
-[  104.643999]        do_syscall_64+0x38/0x90
-[  104.644007]        entry_SYSCALL_64_after_hwframe+0x44/0xa9
-[  104.644017]
-               other info that might help us debug this:
-
-[  104.644026] Chain exists of:
-                 (work_completion)(&lh->work) --> &aconnector->hpd_lock --> &adev->dm.dc_lock
-
-[  104.644043]  Possible unsafe locking scenario:
-
-[  104.644049]        CPU0                    CPU1
-[  104.644055]        ----                    ----
-[  104.644060]   lock(&adev->dm.dc_lock);
-[  104.644066]                                lock(&aconnector->hpd_lock);
-[  104.644075]                                lock(&adev->dm.dc_lock);
-[  104.644083]   lock((work_completion)(&lh->work));
-[  104.644090]
-                *** DEADLOCK ***
-
-[  104.644096] 3 locks held by cat/1158:
-[  104.644103]  #0: ffff88810d0e4eb8 (&attr->mutex){+.+.}-{3:3}, at: simple_attr_read+0x4e/0x110
-[  104.644119]  #1: ffff88810a0a1600 (&adev->reset_sem){++++}-{3:3}, at: amdgpu_device_lock_adev+0x42/0x94 [amdgpu]
-[  104.644489]  #2: ffff88810a09cc70 (&adev->dm.dc_lock){+.+.}-{3:3}, at: dm_suspend+0xb2/0x1d0 [amdgpu]
-
-Signed-off-by: Lang Yu <Lang.Yu@amd.com>
+Signed-off-by: Guchun Chen <guchun.chen@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index e176ea84d75b..8727488df769 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -2657,13 +2657,15 @@ static void handle_hpd_rx_irq(void *param)
- 		}
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c b/drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c
+index 556ecfabc8d2..1244fcb0f446 100644
+--- a/drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c
++++ b/drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c
+@@ -2051,11 +2051,11 @@ void bw_calcs_init(struct bw_calcs_dceip *bw_dceip,
  
--	mutex_lock(&adev->dm.dc_lock);
-+	if (!amdgpu_in_reset(adev))
-+		mutex_lock(&adev->dm.dc_lock);
- #ifdef CONFIG_DRM_AMD_DC_HDCP
- 	result = dc_link_handle_hpd_rx_irq(dc_link, &hpd_irq_data, NULL);
- #else
- 	result = dc_link_handle_hpd_rx_irq(dc_link, NULL, NULL);
- #endif
--	mutex_unlock(&adev->dm.dc_lock);
-+	if (!amdgpu_in_reset(adev))
-+		mutex_unlock(&adev->dm.dc_lock);
+ 	enum bw_calcs_version version = bw_calcs_version_from_asic_id(asic_id);
  
- out:
- 	if (result && !is_mst_root_connector) {
+-	dceip = kzalloc(sizeof(dceip), GFP_KERNEL);
++	dceip = kzalloc(sizeof(*dceip), GFP_KERNEL);
+ 	if (!dceip)
+ 		return;
+ 
+-	vbios = kzalloc(sizeof(vbios), GFP_KERNEL);
++	vbios = kzalloc(sizeof(*vbios), GFP_KERNEL);
+ 	if (!vbios) {
+ 		kfree(dceip);
+ 		return;
 -- 
-2.25.1
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
