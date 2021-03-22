@@ -1,39 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE2BE345986
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Mar 2021 09:18:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AD1B345982
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Mar 2021 09:18:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 583D86E862;
-	Tue, 23 Mar 2021 08:18:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EC426E85E;
+	Tue, 23 Mar 2021 08:18:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 306 seconds by postgrey-1.36 at gabe;
- Mon, 22 Mar 2021 20:43:49 UTC
-Received: from dal3relay234.mxroute.com (dal3relay234.mxroute.com
- [64.40.27.234])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B4A26E029
- for <amd-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 20:43:49 +0000 (UTC)
-Received: from filter004.mxroute.com ([149.28.56.236] filter004.mxroute.com)
- (Authenticated sender: mN4UYu2MZsgR)
- by dal3relay234.mxroute.com (ZoneMTA) with ESMTPSA id 1785ba93d5b000362f.003
- for <amd-gfx@lists.freedesktop.org>
- (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256);
- Mon, 22 Mar 2021 20:38:41 +0000
-X-Zone-Loop: 8cd44d3f25563b5a8e87947550dfb416a0e280a36c30
-X-Originating-IP: [149.28.56.236]
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- amd-gfx@lists.freedesktop.org
-From: Thomas Lambertz <mail@thomaslambertz.de>
-Subject: [PATCH] drm/amdgpu/display: fix dmub invalid register read
-Message-ID: <3eb98a62-12f4-d191-97b8-15e2f8ca06e3@thomaslambertz.de>
-Date: Mon, 22 Mar 2021 21:38:24 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com
+ [IPv6:2607:f8b0:4864:20::f32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0FBB89F2D;
+ Mon, 22 Mar 2021 21:06:27 +0000 (UTC)
+Received: by mail-qv1-xf32.google.com with SMTP id dc12so8514502qvb.4;
+ Mon, 22 Mar 2021 14:06:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=xPLRPNjgY0ax0oZwT9jDC8RniRcWGGGKB5AERe/75K0=;
+ b=a3YhtOJ2fmCXh2tOAF1skh2r0jCbsm44WhTNjT4Uzk9fA1yzjOXrfCWoXkuaqq8jcA
+ QCOph2dqCZxJMIKIMRLonxYUcwfTGVqQARFcgo2HKhEPfC0u2N4mV1URlg/yYYNInLp3
+ mldVKM80JhNfwgUzS1n/K8n0Y+JrLhgpFVnnYF8fTpllU4QUEoStl4qZ0B7m9oEFoPOT
+ sgLqZqACFVUYKTqv00z6KifvCehE7m3Xc0w+G+X24BDNbQemsOhXQ0giovuzxQlIWIPv
+ +eJwFUbw6l6MfF854YwZnPrlN4TYcDSK9mzED8vkcMJKU4hyGfyVa0melMP2+6urFeJz
+ mjHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=xPLRPNjgY0ax0oZwT9jDC8RniRcWGGGKB5AERe/75K0=;
+ b=AaEGzejsT/YnTmaoeU7S+AaZOu0GWL6EMHYJFP10HiM1mgm1MqAbZJVjW3dPxzSOcC
+ Br3wM30455OXpkloXP7LXZzqzVsuqHxBheXlT7LxCs285oqOUrNo6zH/xGieRgawnqst
+ XR415c6u71kic6E6yGcNsZhFrV/aGN+FYqS3rbRbgfoViwvBTV5s2Xd/MxB5ZD5iAXGD
+ qV9LM4ADuz3K5ZeurdWF3EHx7dhTzIQy3YxCuLJkGTCvcSQ1bTW9wxozgmcUMHN0ojmo
+ TQ3uUvcuvn/1ilNlcB08zRX/aBqi0vtZOyq2qBBuBSwKjDmBDdFWSsXIKZa1bDHMk7Hm
+ 7Zpg==
+X-Gm-Message-State: AOAM530MTPLVCoEkBlq+387nf4JKUJDgy11cyjVLlFYGglJIrE1zNiGv
+ 6XD1zN+Ge1mTY2PETZ06y4I=
+X-Google-Smtp-Source: ABdhPJyL8RzT2268AePI7aoKOYXKUVZdw+v/SpLsXEcuN/hf+pUU7PWPOcyO3v+unk8GIxbJTVbOgA==
+X-Received: by 2002:a05:6214:10c7:: with SMTP id
+ r7mr2044447qvs.3.1616447186832; 
+ Mon, 22 Mar 2021 14:06:26 -0700 (PDT)
+Received: from localhost.localdomain ([138.199.10.68])
+ by smtp.gmail.com with ESMTPSA id z14sm9639290qti.87.2021.03.22.14.06.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Mar 2021 14:06:26 -0700 (PDT)
+From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie,
+ daniel@ffwll.ch, evan.quan@amd.com, unixbhaskar@gmail.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/amd: Fix a typo in two different sentences
+Date: Tue, 23 Mar 2021 02:36:12 +0530
+Message-Id: <20210322210612.1786322-1-unixbhaskar@gmail.com>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-Content-Language: en-US
-X-AuthUser: mail@thomaslambertz.de
 X-Mailman-Approved-At: Tue, 23 Mar 2021 08:18:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -46,68 +68,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: rdunlap@infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-DMCUB_SCRATCH_0 sometimes contains 0xdeadbeef during initialization.
-If this is detected, return 0 instead. This prevents wrong bit-flags
-from being read.
 
-The main impact of this bug is in the status check loop in
-dmub_srv_wait_for_auto_load. As it is waiting for the device to become
-ready, returning too early leads to a race condition. It is usually won
-on first boot, but lost when laptop resumes from sleep, breaking screen
-brightness control.
+s/defintion/definition/ .....two different places.
 
-This issue was always present, but previously mitigated by the fact that
-the full register was compared to the wanted value. Currently, only the
-bottom two bits are tested, which are also set in 0xdeadbeef, thus
-returning readiness to early.
-
-Fixes: 5fe6b98ae00d ("drm/amd/display: Update dmub code")
-Signed-off-by: Thomas Lambertz <mail@thomaslambertz.de>
+Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
 ---
- drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c | 8 +++++++-
- drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h | 2 ++
- 2 files changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/include/atombios.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
-index 8e8e65fa83c0..d6fcae182f68 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.c
-@@ -323,8 +323,14 @@ uint32_t dmub_dcn20_get_gpint_response(struct dmub_srv *dmub)
- union dmub_fw_boot_status dmub_dcn20_get_fw_boot_status(struct dmub_srv *dmub)
- {
- 	union dmub_fw_boot_status status;
-+	uint32_t value;
-+
-+	value = REG_READ(DMCUB_SCRATCH0);
-+	if (value == DMCUB_SCRATCH0_INVALID)
-+		status.all = 0;
-+	else
-+		status.all = value;
-
--	status.all = REG_READ(DMCUB_SCRATCH0);
- 	return status;
- }
-
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
-index a62be9c0652e..9557e76cf5d4 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn20.h
-@@ -154,6 +154,8 @@ struct dmub_srv_common_regs {
-
- extern const struct dmub_srv_common_regs dmub_srv_dcn20_regs;
-
-+#define DMCUB_SCRATCH0_INVALID 0xdeadbeef
-+
- /* Hardware functions. */
-
- void dmub_dcn20_init(struct dmub_srv *dmub);
+diff --git a/drivers/gpu/drm/amd/include/atombios.h b/drivers/gpu/drm/amd/include/atombios.h
+index c1d7b1d0b952..47eb84598b96 100644
+--- a/drivers/gpu/drm/amd/include/atombios.h
++++ b/drivers/gpu/drm/amd/include/atombios.h
+@@ -1987,9 +1987,9 @@ typedef struct _PIXEL_CLOCK_PARAMETERS_V6
+ #define PIXEL_CLOCK_V6_MISC_HDMI_BPP_MASK           0x0c
+ #define PIXEL_CLOCK_V6_MISC_HDMI_24BPP              0x00
+ #define PIXEL_CLOCK_V6_MISC_HDMI_36BPP              0x04
+-#define PIXEL_CLOCK_V6_MISC_HDMI_36BPP_V6           0x08    //for V6, the correct defintion for 36bpp should be 2 for 36bpp(2:1)
++#define PIXEL_CLOCK_V6_MISC_HDMI_36BPP_V6           0x08    //for V6, the correct definition for 36bpp should be 2 for 36bpp(2:1)
+ #define PIXEL_CLOCK_V6_MISC_HDMI_30BPP              0x08
+-#define PIXEL_CLOCK_V6_MISC_HDMI_30BPP_V6           0x04    //for V6, the correct defintion for 30bpp should be 1 for 36bpp(5:4)
++#define PIXEL_CLOCK_V6_MISC_HDMI_30BPP_V6           0x04    //for V6, the correct definition for 30bpp should be 1 for 36bpp(5:4)
+ #define PIXEL_CLOCK_V6_MISC_HDMI_48BPP              0x0c
+ #define PIXEL_CLOCK_V6_MISC_REF_DIV_SRC             0x10
+ #define PIXEL_CLOCK_V6_MISC_GEN_DPREFCLK            0x40
 --
 2.31.0
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
