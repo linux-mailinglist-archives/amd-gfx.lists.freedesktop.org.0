@@ -2,110 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3868D343F3E
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Mar 2021 12:09:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19372343F8A
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Mar 2021 12:22:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB1376E427;
-	Mon, 22 Mar 2021 11:08:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 924B56E43C;
+	Mon, 22 Mar 2021 11:22:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2058.outbound.protection.outlook.com [40.107.243.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBF5E6E406;
- Mon, 22 Mar 2021 11:08:27 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PaGN+iRTZ5U6/b79ik0i2URYpQ6IjyH426ofgz44NMuzUpJGJEjxbBcXV6fOWBwH5QYBl45+Cq0Zr1hDHKvhkorZ8A/ImW5qynkproP58Eru676xp/E6qWPUDzuj8EBdmx7BwzoI/Yi8x5H2Yiur0RQokVxk1AevP9xwMOZ8V1XfZCHVm1+kIgsmr+JAVzj/Xuw9ojDzGYaQogHCFgYlDhkmRA/jH+kj6MmrnARjId8/dT6eOtQXAOcEc38qzj5OGzLvV6EYaGFqbbQ9IBb0XylP3MmiKkofVp0DwPEkaE321Yr/DWw/v8CTzxfcfojWbIV+zXs+SmKUhH1HLUEr2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8RCoLsH7sTr9z/n56GvfDtsxb9pzYOKmQXozkxbljZI=;
- b=UuNq5PWPV3OAxhqDFIdiQFgoF1+oaH0V+GvjGCbBCUDLymrLQNf9Y8daehExa5WJIHZzcTeBwR6x4BGC/t/rykJnFgDal6h+HqtGUQH/Bppq5baiVtFWnvd2Cda4eFk2seq/aUZHWyhtEUPLJCUPrk4ClIbrSNRwQQfls8E/F/H57swYyy6H++gApESv1gwHI9hdaj4D1+xuEUKux5+5GQC4DGQl3dmZnjdvF4VmBgtxsghDXbymLa8IspRG0IAt6ZpxVq/lOoW3pH3w0Kfxjs1SKxZ03BfCRy+bNhRDhpeasYkrUkmrNzcIh+8HHnSoJOWx+LougjeCJNLTvVfJMQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8RCoLsH7sTr9z/n56GvfDtsxb9pzYOKmQXozkxbljZI=;
- b=ytPnHo5zGYuwBe5xxirGJ3YBkWk1HDgrdexy23FSmmn60jT1AqG9biFXiqcfVcM9yVYDlhxNymv8B6W/a+f/dRJXWNdXBOd+ttfhpDeGhiFIW2Ogpo447YGEwwSlYFx9Ih3OhYuT7LXa3nhpJhxV7sYABfHnozsaLpvmDtuC2nw=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from BL0PR12MB4948.namprd12.prod.outlook.com (2603:10b6:208:1cc::20)
- by MN2PR12MB4255.namprd12.prod.outlook.com (2603:10b6:208:198::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.24; Mon, 22 Mar
- 2021 11:08:23 +0000
-Received: from BL0PR12MB4948.namprd12.prod.outlook.com
- ([fe80::70f5:99ed:65a1:c033]) by BL0PR12MB4948.namprd12.prod.outlook.com
- ([fe80::70f5:99ed:65a1:c033%5]) with mapi id 15.20.3933.036; Mon, 22 Mar 2021
- 11:08:23 +0000
-From: Felix Kuehling <Felix.Kuehling@amd.com>
-To: dri-devel@lists.freedesktop.org,
-	amd-gfx@lists.freedesktop.org
-Subject: [PATCH 44/44] drm/amdkfd: Nested locking and invalidation of child
- ranges
-Date: Mon, 22 Mar 2021 06:59:00 -0400
-Message-Id: <20210322105900.14068-45-Felix.Kuehling@amd.com>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210322105900.14068-1-Felix.Kuehling@amd.com>
-References: <20210322105900.14068-1-Felix.Kuehling@amd.com>
-X-Originating-IP: [165.204.55.251]
-X-ClientProxiedBy: YTOPR0101CA0008.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:15::21) To BL0PR12MB4948.namprd12.prod.outlook.com
- (2603:10b6:208:1cc::20)
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
+ [IPv6:2a00:1450:4864:20::636])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8C446E43C;
+ Mon, 22 Mar 2021 11:22:09 +0000 (UTC)
+Received: by mail-ej1-x636.google.com with SMTP id e14so2379921ejz.11;
+ Mon, 22 Mar 2021 04:22:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=g9CYU8ph0vDP0UpidKlZ96Df95ABUGKLwENhljDyRxc=;
+ b=q9wd1SlO0hu+0Zp/IXf58xRiY0FL42D5GrnMw4/nce74kEHeTSibcO0DO0LBv4yZua
+ geGPUuk15BRAC5RrrO50Dmyg+tznDwp6Wn5UZ2xnss51mn8eQXFYzriONrJlioNt9Y7P
+ G3g5ezECGCdIC9eik908h/ok9e0feX4mDzyR6dcx6rG3v+tmYGgEaiq9uCE2iAzPWvhJ
+ 5TZh9ViinCYrh5L/D5Fr4piKn4NvbXF2RazmSfaIPWTrKjZsJ8EWFVGAFuc0ibFSC5wD
+ +64+PWdYh8sqox8nnPEqTRBzlXeiis6Yn4Pc4RmIYt38C9fJrB3xAzQWKKktc9I06xhc
+ hWnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=g9CYU8ph0vDP0UpidKlZ96Df95ABUGKLwENhljDyRxc=;
+ b=Fi99sqseH+qBI9brtO7hLTa6SfoK4jjSwA4llTVCKl57cGq0Sn5JdsfrItq3H0zNpz
+ +BhK/fkxj6J153W53ILmS40DBtPFhnroatGN7gxX6woVGoPb19foHOHUIpQb6nAjqjJB
+ Zu2lvif3QwDH4v/qrzq//kJdLplwc9lvZEvfY/K+IjRhqOX8TwA1YfndC2eJhyxzo7fk
+ zzCHrUiWNdk4CBg1vwgZDJefoEnti3q4fJVlW4N9LvIEVO97eFsr6TAJVU8UhFFWG4oo
+ 37i46/v2159APgcddy0JiEQU3nqmg88lL4t24H47JS3J4U6liKP2La3b3jUXw8QQmRP8
+ EjhA==
+X-Gm-Message-State: AOAM532Yyl/sK9ncJlmDGNzjPGOmD8SNJ5hpO+BEiGAgZTh+2laMgJS3
+ G+cEKGozghqtrstWAR1Pu6qc6WlQaCk=
+X-Google-Smtp-Source: ABdhPJy2++XZNY8lWbmzOXxG4x3DsN2g7IGZadDlk+dD1NYQ27/BTObov+K1bEpf5EJnkqF7IIL4wQ==
+X-Received: by 2002:a17:906:c143:: with SMTP id
+ dp3mr16922605ejc.499.1616412128529; 
+ Mon, 22 Mar 2021 04:22:08 -0700 (PDT)
+Received: from abel.fritz.box ([2a02:908:1252:fb60:9d51:daf9:5d58:3f40])
+ by smtp.gmail.com with ESMTPSA id f19sm11296349edu.12.2021.03.22.04.22.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Mar 2021 04:22:07 -0700 (PDT)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/ttm: stop warning on TT shrinker failure v2
+Date: Mon, 22 Mar 2021 12:22:06 +0100
+Message-Id: <20210322112206.4574-1-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from Harpoon.amd.com (165.204.55.251) by
- YTOPR0101CA0008.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.24 via Frontend
- Transport; Mon, 22 Mar 2021 11:07:52 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 32e7e30e-316d-4bb0-426b-08d8ed22bcb1
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4255:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB42553E3460C066C6D115A24C92659@MN2PR12MB4255.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:466;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SD/CFpV5+eHsbBbCrd3wDPevIdQgsgnyk9s3/kcm3tF4j5zcTLGiuCmRjG4rpzl2d6r75ftHUJHDIB4DH26xledPNbgs2/wHrZFb8iGn5inMfTFJen3akIZhqJXrCKI+KoPOfimbPNS3vmpVNpVUinB7RHbe257KMtv0ic+WWhVXnssW1XUYO3JOWe5mQojnRzyi2ZTe0adN+aQIkiC9BJ9lWX8s3nAUVe/WglQugDncwvnj2PLI8GwQmCbR2L8ipVeN4nEtJklZeQtQC2R3LxUY0MQzImX8QFq6UqArJ4W1PECwENCehF4yevZv1Aq5Nf8GIKRMjmN+yAJ29W/tHijxVNFSSQfkWPq/5kHYVoXYbXxQXqpK+Rm0My86sSaO4ohwo0XU8D8JDttsCOZY5w1AU2k7ZeeM0FEp+OW7dzPmY3qUekbFPaHlY26fVJBGsM+qqAx3Z3onAfajmUrYuHHJnO9XYyWQWHgLT8RwvQoQXB1hcIhVc84pSQETiwIMU/1MeoOFHQOwoABF+cQ479K+C3kA7989UlD/E104V6F9qmmSI8GZbrhn1bQLvZQ9duA0p/IFard9VSROzl8+kcIP+VvAeasTxyinglBA8/fdlgFNr822Tv3Znm1Qy4/fTabjJNgxT9dXuaKZKLS25lGgSDs5x7ThZrsu7LfuNEY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL0PR12MB4948.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(136003)(366004)(39860400002)(376002)(346002)(450100002)(1076003)(36756003)(38100700001)(6666004)(66946007)(83380400001)(66556008)(66476007)(5660300002)(16526019)(186003)(8676002)(26005)(7696005)(52116002)(86362001)(478600001)(8936002)(2616005)(956004)(6486002)(2906002)(316002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?/RM9hJQsXr+yLRe1Mp/qPqcIow3BpQ4rVNeMpejan7qlXh0hPLMc0hM7T/5e?=
- =?us-ascii?Q?VzxsmYI1uP/N0/K87j4pNmSrPkHOK4r/yUvDHuLzFr48nuGG7SaN22pmsTMW?=
- =?us-ascii?Q?eof3EB4N3lKobVBTkuf0TD/Q5Nk9JbORIlICoPzneQpWcVcvPTFflfW+ChBr?=
- =?us-ascii?Q?sBfhlO1wrdipCzt2RJZFc6QE15bfgIRouIg2yKI2MtuIEbChno4FfKLJrkTp?=
- =?us-ascii?Q?X2eAOHW4hluqChCLkQP91nMd9qns2dhZo3YFuSHeRrzeT4s/y3f8L9qRgFTo?=
- =?us-ascii?Q?NFEIrdWu7A2RVaj5BARi2LU5dw17xWXGi2TMal2Ikw7a1/54HP3gjQhnDpUB?=
- =?us-ascii?Q?sxelhs4julWdQhpMJsC3Os0ANrZkG7gExakvPVoEFSI5+suuD343yIxKKePr?=
- =?us-ascii?Q?xzQbKxMy4Hf9m/7WXjqhpd3krSIASYsM9tI/0voo59Y2GVPRcxy4k5q/cQhA?=
- =?us-ascii?Q?JP9M7NdePey83SYXXsePdNHCvo9NFMvXFNkht+TjOnOJPz9BGwACNfmhRX9q?=
- =?us-ascii?Q?OjYBya6O281/jPV5a0S0XMJlGOeHZK5qSfjiVFFwfaYToTki2kaahzYbm/Da?=
- =?us-ascii?Q?8b3ODPudOAKCLWMaUZDvsU7LrNSY5rYyLXM7VFnvk4B4yV20AVOwIANqPyYy?=
- =?us-ascii?Q?f1WKb7n3lw9clo9lMYf6XHNHaKByBpXnVZzF+iKkzgFQHGrR/1UVQCzREh9b?=
- =?us-ascii?Q?zceqMPzfLxsVB12mRTS5JV7/MrVmypHL6Q4OgygHxji/hk6jHuYS860XKXBD?=
- =?us-ascii?Q?AOeRLnHO29TojdUzWYkVwOr7r45MIoNqfeyV5w6NS2sqH/dTZw9gpyfEAHL2?=
- =?us-ascii?Q?kRGW3vTVEHULBDzjKK4OxaNkfcr1y5xNSfjHSh8B6mtJPV+hiUXtR5QQzCKL?=
- =?us-ascii?Q?uwC+cJLNMyl11oIj5OuKCgpQpNzab1sI1urnPqw77B2wQh6CWDTKWR0NWcMS?=
- =?us-ascii?Q?JT0/+pUsUfZFtplnuQRbe+OoeXo23ubphJ3DxmzgtEgtkKzpg6fJ6qStcHdF?=
- =?us-ascii?Q?QOZy0JVfWCVCh98+P0p4LfIvgHMWRGkguc9a9jYWKYiFItUvj3hrpAhIT8Aa?=
- =?us-ascii?Q?4mRqH5Q8lTZNRp/0EH5ZtArXqrrIB7QWsLPhNDFg3IDSlj2uBFEzadqN8Hwz?=
- =?us-ascii?Q?Um+SBVf5qvvF5s0t9L8XD7+0vioSizQvYAFyCDJau8a1ZvEauWPG4DAsgn7B?=
- =?us-ascii?Q?5XaKrptOxeUXSy2rEyBEPMEQoGBoIRLrrI0pu6j8fLNnInezVWD2WqBGEua2?=
- =?us-ascii?Q?CWO4qmf4HpdkybVL4fnVJVWihhwthqBxaEhjGYOcZO4cpdHPsUVrOOn6hfYR?=
- =?us-ascii?Q?eQxbxy6vxLFvvsL54saclFiM?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32e7e30e-316d-4bb0-426b-08d8ed22bcb1
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB4948.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Mar 2021 11:07:52.4534 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nIj4hc8Bxj6JhnOdb0QUf3c3sQ6XYiuKPKTTyMJipVPE5I97y0NSAnN9TB9ytTPqamLz8t3VgfUVUIVsQIPsGQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4255
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,146 +67,24 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Liang.Liang@amd.com, daniel@ffwll.ch
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This allows validation of child ranges, so the GPU page fault handler
-can be more light-weight.
-
-Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |  8 +++++
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c     | 40 +++++++++++++++++-------
- 2 files changed, 37 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-index 4d79d69d8aac..cc8bf6438383 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-@@ -826,12 +826,18 @@ static vm_fault_t svm_migrate_to_ram(struct vm_fault *vmf)
- 	}
- 
- 	mutex_lock(&parent->migrate_mutex);
-+	if (prange != parent)
-+		mutex_lock_nested(&prange->migrate_mutex, 1);
- 
- 	if (!prange->actual_loc)
- 		goto out_unlock_prange;
- 
- 	svm_range_lock(parent);
-+	if (prange != parent)
-+		mutex_lock_nested(&prange->lock, 1);
- 	r = svm_range_split_by_granularity(p, mm, addr, parent, prange);
-+	if (prange != parent)
-+		mutex_unlock(&prange->lock);
- 	svm_range_unlock(parent);
- 	if (r) {
- 		pr_debug("failed %d to split range by granularity\n", r);
-@@ -852,6 +858,8 @@ static vm_fault_t svm_migrate_to_ram(struct vm_fault *vmf)
- 	schedule_deferred_list_work(&p->svms);
- 
- out_unlock_prange:
-+	if (prange != parent)
-+		mutex_unlock(&prange->migrate_mutex);
- 	mutex_unlock(&parent->migrate_mutex);
- out:
- 	mutex_unlock(&p->svms.lock);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 0a6e28f0dcaf..bc1a9e9ba722 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -1281,10 +1281,6 @@ void svm_range_unreserve_bos(struct svm_validate_context *ctx)
-  * serialize concurrent migrations or validations of the same range, the
-  * prange->migrate_mutex must be held.
-  *
-- * The range must be in the inverval tree and have an MMU notifier to catch
-- * concurrent invalidations of the virtual address range. This means it cannot
-- * be a child range.
-- *
-  * For VRAM ranges, the SVM BO must be allocated and valid (protected by its
-  * eviction fence.
-  *
-@@ -1568,10 +1564,24 @@ svm_range_evict(struct svm_range *prange, struct mm_struct *mm,
- 		schedule_delayed_work(&svms->restore_work,
- 			msecs_to_jiffies(AMDGPU_SVM_RANGE_RESTORE_DELAY_MS));
- 	} else {
-+		struct svm_range *pchild;
-+		unsigned long s, l;
-+
- 		pr_debug("invalidate unmap svms 0x%p [0x%lx 0x%lx] from GPUs\n",
- 			 prange->svms, start, last);
- 		svm_range_lock(prange);
--		svm_range_unmap_from_gpus(prange, start, last);
-+		list_for_each_entry(pchild, &prange->child_list, child_list) {
-+			mutex_lock_nested(&pchild->lock, 1);
-+			s = max(start, pchild->start);
-+			l = min(last, pchild->last);
-+			if (l >= s)
-+				svm_range_unmap_from_gpus(pchild, s, l);
-+			mutex_unlock(&pchild->lock);
-+		}
-+		s = max(start, prange->start);
-+		l = min(last, prange->last);
-+		if (l >= s)
-+			svm_range_unmap_from_gpus(prange, s, l);
- 		svm_range_unlock(prange);
- 	}
- 
-@@ -1927,6 +1937,7 @@ svm_range_unmap_from_cpu(struct mm_struct *mm, struct svm_range *prange,
- 	struct svm_range_list *svms;
- 	struct svm_range *pchild;
- 	struct kfd_process *p;
-+	unsigned long s, l;
- 	bool unmap_parent;
- 
- 	p = kfd_lookup_process_by_mm(mm);
-@@ -1937,14 +1948,23 @@ svm_range_unmap_from_cpu(struct mm_struct *mm, struct svm_range *prange,
- 	pr_debug("svms 0x%p prange 0x%p [0x%lx 0x%lx] [0x%lx 0x%lx]\n", svms,
- 		 prange, prange->start, prange->last, start, last);
- 
--	svm_range_unmap_from_gpus(prange, start, last);
--
- 	svm_range_lock(prange);
- 
- 	unmap_parent = start <= prange->start && last >= prange->last;
- 
--	list_for_each_entry(pchild, &prange->child_list, child_list)
-+	list_for_each_entry(pchild, &prange->child_list, child_list) {
-+		mutex_lock_nested(&pchild->lock, 1);
-+		s = max(start, pchild->start);
-+		l = min(last, pchild->last);
-+		if (l >= s)
-+			svm_range_unmap_from_gpus(pchild, s, l);
- 		svm_range_unmap_split(mm, prange, pchild, start, last);
-+		mutex_unlock(&pchild->lock);
-+	}
-+	s = max(start, prange->start);
-+	l = min(last, prange->last);
-+	if (l >= s)
-+		svm_range_unmap_from_gpus(prange, s, l);
- 	svm_range_unmap_split(mm, prange, prange, start, last);
- 
- 	svm_range_unlock(prange);
-@@ -2142,12 +2162,10 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
- 		goto out;
- 	}
- 
--	svm_range_list_lock_and_flush_work(svms, mm);
-+	mmap_read_lock(mm);
- 	mutex_lock(&svms->lock);
- 	prange = svm_range_from_addr(svms, addr, NULL);
- 
--	mmap_write_downgrade(mm);
--
- 	if (!prange) {
- 		pr_debug("failed to find prange svms 0x%p address [0x%llx]\n",
- 			 svms, addr);
--- 
-2.31.0
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+RG9uJ3QgcHJpbnQgYSB3YXJuaW5nIHdoZW4gd2UgZmFpbCB0byBhbGxvY2F0ZSBhIHBhZ2UgZm9y
+IHN3YXBwaW5nIHRoaW5ncyBvdXQuCgp2Mjogb25seSBzdG9wIHRoZSB3YXJuaW5nCgpTaWduZWQt
+b2ZmLWJ5OiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Ci0tLQog
+ZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fdHQuYyB8IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAxIGlu
+c2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS90
+dG0vdHRtX3R0LmMgYi9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV90dC5jCmluZGV4IDJmMDgzM2M5
+OGQyYy4uNDhiOWE2NTA2MzBiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV90
+dC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX3R0LmMKQEAgLTM2OSw3ICszNjksNyBA
+QCBzdGF0aWMgdW5zaWduZWQgbG9uZyB0dG1fdHRfc2hyaW5rZXJfc2NhbihzdHJ1Y3Qgc2hyaW5r
+ZXIgKnNocmluaywKIAl9OwogCWludCByZXQ7CiAKLQlyZXQgPSB0dG1fYm9fc3dhcG91dCgmY3R4
+LCBHRlBfTk9GUyk7CisJcmV0ID0gdHRtX2JvX3N3YXBvdXQoJmN0eCwgR0ZQX05PRlMgfCBfX0dG
+UF9OT1dBUk4pOwogCXJldHVybiByZXQgPCAwID8gU0hSSU5LX0VNUFRZIDogcmV0OwogfQogCi0t
+IAoyLjI1LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
