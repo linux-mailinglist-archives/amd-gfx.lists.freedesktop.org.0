@@ -2,60 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB5E3462D3
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Mar 2021 16:28:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 787C33462F6
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Mar 2021 16:34:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D91316E96E;
-	Tue, 23 Mar 2021 15:28:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCC136EA0D;
+	Tue, 23 Mar 2021 15:34:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AC546EA7A
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 15:28:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1616513327;
- bh=XoYQgxkZ7UzcuBJ6V8EAU9HMx8R2VBaq04QF8534fyA=;
- h=X-UI-Sender-Class:Reply-To:Subject:To:References:From:Date:
- In-Reply-To;
- b=R9BnLpopJ/jmU7eJP1EQesmJtqQSaPTgZPNsRvEZMkhOq2fKKV+KJ77oTyxTmJiSr
- L3y9H5GBM8ErZ3CwH/cQPDdSy47A4a0nSoKXZB3DqMZBKarMyVoVmk82oG2QGIfjzb
- KvJBMza8kweZS80o6Qfo+DSRDiXIMFxCcPp9xIns=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.1.1] ([178.27.134.71]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N3bSj-1lp5dE1i55-010dfv for
- <amd-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 16:28:47 +0100
-Subject: Re: Amdgpu kernel oops and freezing on system suspend and hibernate
-To: amd-gfx@lists.freedesktop.org
-References: <9f9f69fa-4638-673f-6695-1171e927a80b@gmx.de>
- <MN2PR12MB4488704D527398352637AC61F76A9@MN2PR12MB4488.namprd12.prod.outlook.com>
- <a8ad9295-196c-77cf-ca63-161fb97632cb@gmx.de>
- <CADnq5_Oe6PHz5rQ9u5T2M3ZKhWE+fuj5CD2ngvXRiZFeZprS=Q@mail.gmail.com>
-From: Harvey <harv@gmx.de>
-Message-ID: <ef1b7ff1-b926-8651-3ff6-9c05bd8b234f@gmx.de>
-Date: Tue, 23 Mar 2021 16:26:50 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com
+ [IPv6:2607:f8b0:4864:20::1029])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2334C6EA09
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 15:32:13 +0000 (UTC)
+Received: by mail-pj1-x1029.google.com with SMTP id ha17so10259875pjb.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 08:32:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=g/Cz6+lI4apo80sn1DnT1qYl9f9fU+dp+JkTkb3512U=;
+ b=vEWOnzcPAb3XUs9wWbP9lku+DAFgzlcDzRRhAoL9Hasc1Vf51F/7RUnk5o7GPtWmPe
+ D6/pgD7ntmtrmUHaSjol8wz4b6Yyj/AW+md6HZW146wl5iLEaH01R0c6ld3FLPxV9i0N
+ 8/Q+slZm3CUwfTIL3rrzSOWBp0mbjTBBO7G5jjRBOxI98GyJgod6Ie+5YVfGk9qWWXIf
+ eP56ZyyW3/Yfwe41p9aa9bOR0VzwKCn/2Jk9YV0i6LmNHXDpQwPj6XFRVxrjkj1Mra2h
+ N/pamD57wqsIKMvWj/Y75snolN+PKxnmwk9tYlRPPzpLt/+Y7KMf+MaW/55MfAqaLCuY
+ 82eQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=g/Cz6+lI4apo80sn1DnT1qYl9f9fU+dp+JkTkb3512U=;
+ b=iy6ROwzCvzTTZmgS3bj31CTWkh+PWx+E09FiCViwY8wacBcyZ0u8QHRCxxRKZanqN9
+ geFtH+K+nLFDOLn0jsKm36ufWJvL0ZznV0ydYW1jCWg07cEGC9YLQFmi+lJGgC1HCxV6
+ xklOKRFodRks0jeqRaK3z+l6RnTRxBoZwmNaLH/LrICvjrcNRzO8kL2P/rDlj8LPB23p
+ ENHopeHLlLQHCborzJfOlsNd62RjiXNMT8hUiYXU6wUN+yLuB1hJNaAX3s0d3q8lkku/
+ pNfl0EMph6gUXuP1W2ry13ThhBjF3GzAiycHmP2jvbqVpfeCLDXXiyXAkqJlQlNY1+Uf
+ BHng==
+X-Gm-Message-State: AOAM532vNtAZURPlbgc3xuxras8ws0Czz5M7Ts1hlN4GLiIjQVBZRlJh
+ oXJAqgZRvFLykhQFdzkryc8d+HvRieeG3fgIotmlmw==
+X-Google-Smtp-Source: ABdhPJzybHQSeUegRVEbcZgHuCKOtLDObMB/kMd16TadUSXkT8HdE3FF4Uh+STfdxV7alw6Di2Al9VuqakcsmQBSEVo=
+X-Received: by 2002:a17:90a:4005:: with SMTP id u5mr5039685pjc.6.1616513532457; 
+ Tue, 23 Mar 2021 08:32:12 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CADnq5_Oe6PHz5rQ9u5T2M3ZKhWE+fuj5CD2ngvXRiZFeZprS=Q@mail.gmail.com>
-X-Provags-ID: V03:K1:BsZ9jhU8UakYWQDaa2FeHrcHEtEXGn4T5gsnn3xaXM94hPyRTG7
- 5EyWwUcs7jyQLcob6AUsbEi3IyCUagNvCyYB43t4qSDwh6jIH1XCDzL4FhsJmlIU0llDIhL
- nzHbyQvzJge6J+Vu6bN75QFPhWTVaO3Vqz26AsZcxbnJhFEZPAs+0VYJmQ4anrLw5jx7Ynm
- lqyCvitflfhYSmy9CqhYQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:lVAbDe735GE=:3FrODUrJhO9GPo7CsRC1j6
- NDxmQWwnI2dpfdES4kKgRI0tgYVlIOhDxUKR++HbX8ajoHx/yDkxhUWMsramMxpWYFxKMKUqO
- zugyICW2zdX4+cdptvW0iTPL7vuv3AHFZesIJiYInvFfFSYPKKaM/OJS1UzX42JjAbI61T2lm
- GbsOs/1XHyGsM0jFcrrmGmfkALRME5gJqtF+TXX+0nun+YPAYqjLjRozLCYu0iZWvPUQ+RWC/
- ukHS8d8geFZVEXUilJT8xIAS1jDO5rZB3R7p/3qKc44rmKcHacCwEeV2T8F4tgFIKXj0x0dA7
- P6jSHZquCwryPW2/uRSgqyRC6hhki5xQymTZlD8LcbhzkNS5x5tRAQ/NNN5w1nonx2PVSZKz6
- WRHEsIVBZ+nAf5Qi+kyPx418yo4sSNZUQWbwfdFNr+ig5v/FGRvypW9oxiIzoimNfOj7uuyJY
- UDEgfEc05jmr9cmLPLbx1F8ZBfrLRk85/6xot4aZ/9IJc3cTnEqWewYsxfNWEmFXcYQQdzQM1
- V0a/Wwq8gv6sN1g+bJDk0qA4L6eZvt+EEICREWRNTQyBEgp6qgzHde6LSW3vB4/0nMk5RnyX7
- quYzvLxgckMrFYFzB3KaZn1QOhUjD/hmcJ+RQ//9c6uu3YiBaQbnTNT0zZtX+7+UdDV+sfTUM
- LUqyeCBOTMVEqnWUB0kV3EHn3Px7SyZ0lCgVwLKVo6mcf5eRS8ITQbZE/6Ip2O9B7HVfBTdNv
- 24KJs4qDYbyZJIn+9fnnD14diAVqlvG/gCV72LAaOdmgAgPBM3kHmHohHtlE6PDQQYI243gfl
- NEu+9TT3NB5DlRGuuXOzjXzS8eJUq2WIs7vDmjmC72mhl76ojauggkx3j5IfpMfYVlk58n54r
- C9X8eCMXkiMBDVyI3LPQ==
+References: <20210310161444.1015500-1-markyacoub@chromium.org>
+ <CADnq5_P9aYcedOP2qduSz7VN1fCSnmQEtPa+FdjYu9Co7TwPog@mail.gmail.com>
+In-Reply-To: <CADnq5_P9aYcedOP2qduSz7VN1fCSnmQEtPa+FdjYu9Co7TwPog@mail.gmail.com>
+From: Mark Yacoub <markyacoub@google.com>
+Date: Tue, 23 Mar 2021 11:32:01 -0400
+Message-ID: <CAC0gqY7Y2WxtAZ3GnWmASPYq7ahYTfmPhOHAAX5UjMNS9k098w@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Ensure that the modifier requested is
+ supported by plane.
+To: Alex Deucher <alexdeucher@gmail.com>
+X-Mailman-Approved-At: Tue, 23 Mar 2021 15:34:51 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,221 +62,116 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: harv@gmx.de
-Content-Type: multipart/mixed; boundary="===============1509580420=="
+Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
+ Mark Yacoub <markyacoub@chromium.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1509580420==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="zLZGM7OOWeRpcu8S0zaQgfOlkoT6YsycL"
+On Tue, Mar 23, 2021 at 11:02 AM Alex Deucher <alexdeucher@gmail.com> wrote:
+>
+> On Wed, Mar 10, 2021 at 11:15 AM Mark Yacoub <markyacoub@chromium.org> wrote:
+> >
+> > From: Mark Yacoub <markyacoub@google.com>
+> >
+> > On initializing the framebuffer, call drm_any_plane_has_format to do a
+> > check if the modifier is supported. drm_any_plane_has_format calls
+> > dm_plane_format_mod_supported which is extended to validate that the
+> > modifier is on the list of the plane's supported modifiers.
+> >
+> > The bug was caught using igt-gpu-tools test: kms_addfb_basic.addfb25-bad-modifier
+> >
+> > Tested on ChromeOS Zork by turning on the display, running an overlay
+> > test, and running a YT video.
+> >
+> > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > Cc: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+> > Signed-off-by: default avatarMark Yacoub <markyacoub@chromium.org>
+>
+> I'm not an expert with modifiers yet.  Will this break chips which
+> don't currently support modifiers?
+No it shouldn't. When you don't support modifiers yet, your will
+default to Linear Modifier (DRM_FORMAT_MOD_LINEAR),
+which is later checked in amdgpu_dm.c::dm_plane_format_mod_supported()
+    /*
+    * We always have to allow this modifier, because core DRM still
+    * checks LINEAR support if userspace does not provide modifiers.
+    */
+    if (modifier == DRM_FORMAT_MOD_LINEAR)
+        return true;
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---zLZGM7OOWeRpcu8S0zaQgfOlkoT6YsycL
-Content-Type: multipart/mixed; boundary="BfJKeOMIH72m25XEBJN1VmhuKvkEcAkDp";
- protected-headers="v1"
-From: Harvey <harv@gmx.de>
-Reply-To: harv@gmx.de
-To: amd-gfx@lists.freedesktop.org
-Message-ID: <ef1b7ff1-b926-8651-3ff6-9c05bd8b234f@gmx.de>
-Subject: Re: Amdgpu kernel oops and freezing on system suspend and hibernate
-References: <9f9f69fa-4638-673f-6695-1171e927a80b@gmx.de>
- <MN2PR12MB4488704D527398352637AC61F76A9@MN2PR12MB4488.namprd12.prod.outlook.com>
- <a8ad9295-196c-77cf-ca63-161fb97632cb@gmx.de>
- <CADnq5_Oe6PHz5rQ9u5T2M3ZKhWE+fuj5CD2ngvXRiZFeZprS=Q@mail.gmail.com>
-In-Reply-To: <CADnq5_Oe6PHz5rQ9u5T2M3ZKhWE+fuj5CD2ngvXRiZFeZprS=Q@mail.gmail.com>
-
---BfJKeOMIH72m25XEBJN1VmhuKvkEcAkDp
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: de-DE
-Content-Transfer-Encoding: quoted-printable
-
-Alex,
-
-thanks for the hint, but...
-
-Is this patch intended for kernel 5.11.8?
-
-I applied the patch against 5.11.8 and it is freezing again:
-
-
-M=C3=A4r 23 16:18:51 obelix kernel: [drm:amdgpu_dm_atomic_commit_tail=20
-[amdgpu]] *ERROR* Waiting for fences timed out!
-M=C3=A4r 23 16:18:51 obelix kernel: [drm:amdgpu_dm_atomic_commit_tail=20
-[amdgpu]] *ERROR* Waiting for fences timed out!
-M=C3=A4r 23 16:18:51 obelix kernel: [drm:amdgpu_job_timedout [amdgpu]]=20
-*ERROR* ring sdma0 timeout, signaled seq=3D615, emitted seq=3D617
-M=C3=A4r 23 16:18:51 obelix kernel: [drm:amdgpu_job_timedout [amdgpu]]=20
-*ERROR* Process information: process  pid 0 thread  pid 0
-M=C3=A4r 23 16:18:51 obelix kernel: amdgpu 0000:03:00.0: amdgpu: GPU rese=
-t begin!
-M=C3=A4r 23 16:18:51 obelix kernel: BUG: kernel NULL pointer dereference,=
-=20
-address: 0000000000000029
-M=C3=A4r 23 16:18:51 obelix kernel: #PF: supervisor read access in kernel=
- mode
-M=C3=A4r 23 16:18:51 obelix kernel: #PF: error_code(0x0000) - not-present=
- page
-M=C3=A4r 23 16:18:51 obelix kernel: PGD 0 P4D 0
-M=C3=A4r 23 16:18:51 obelix kernel: Oops: 0000 [#1] PREEMPT SMP NOPTI
-M=C3=A4r 23 16:18:51 obelix kernel: CPU: 12 PID: 178 Comm: kworker/12:1 N=
-ot=20
-tainted 5.11.8-arch1-1-custom #1
-M=C3=A4r 23 16:18:51 obelix kernel: Hardware name: Micro-Star Internation=
-al=20
-Co., Ltd. Bravo 17 A4DDR/MS-17FK, BIOS E17FKAMS.117 10/29/2020
-M=C3=A4r 23 16:18:51 obelix kernel: Workqueue: events drm_sched_job_timed=
-out=20
-[gpu_sched]
-M=C3=A4r 23 16:18:51 obelix kernel: RIP: 0010:kernel_queue_uninit+0xd/0xf=
-0=20
-[amdgpu]
-M=C3=A4r 23 16:18:51 obelix kernel: Code: ee 48 89 c7 e8 a4 f9 ff ff 84 c=
-0 0f=20
-84 e3 d3 1f 00 4c 89 e0 5d 41 5c 41 5d c3 0f 1f 00 0f 1f 44 00 00 55 48=20
-8b 47 10 48 89 fd <8b> 50 28 83 fa 02 74 78 83 fa 03 0f 84 b1 00 00 00=20
-48 8b 7f 08 4c
-M=C3=A4r 23 16:18:51 obelix kernel: RSP: 0018:ffffa35d806dfd40 EFLAGS: 00=
-010246
-M=C3=A4r 23 16:18:51 obelix kernel: RAX: 0000000000000001 RBX:=20
-ffff8b044c5ee000 RCX: 000000000080005b
-M=C3=A4r 23 16:18:51 obelix kernel: RDX: 000000000080005c RSI:=20
-0000000000000001 RDI: ffff8b044a877bc0
-M=C3=A4r 23 16:18:51 obelix kernel: RBP: ffff8b044a877bc0 R08:=20
-0000000000000001 R09: 0000000000000000
-M=C3=A4r 23 16:18:51 obelix kernel: R10: 0000000000000000 R11:=20
-ffffffffafccba00 R12: ffff8b044c5ee0d0
-M=C3=A4r 23 16:18:51 obelix kernel: R13: ffff8b044bf60000 R14:=20
-ffff8b04414a1000 R15: ffff8b04414a10c8
-M=C3=A4r 23 16:18:51 obelix kernel: FS:  0000000000000000(0000)=20
-GS:ffff8b075f900000(0000) knlGS:0000000000000000
-M=C3=A4r 23 16:18:51 obelix kernel: CS:  0010 DS: 0000 ES: 0000 CR0:=20
-0000000080050033
-M=C3=A4r 23 16:18:51 obelix kernel: CR2: 0000000000000029 CR3:=20
-00000001ab010000 CR4: 0000000000350ee0
-M=C3=A4r 23 16:18:51 obelix kernel: Call Trace:
-M=C3=A4r 23 16:18:51 obelix kernel:  stop_cpsch+0xa0/0xc0 [amdgpu]
-M=C3=A4r 23 16:18:51 obelix kernel:  kgd2kfd_suspend.part.0+0x2f/0x40 [am=
-dgpu]
-M=C3=A4r 23 16:18:51 obelix kernel:  kgd2kfd_pre_reset+0x3f/0x50 [amdgpu]=
-
-M=C3=A4r 23 16:18:51 obelix kernel:=20
-amdgpu_device_gpu_recover.cold+0x36e/0x95d [amdgpu]
-M=C3=A4r 23 16:18:51 obelix kernel:  amdgpu_job_timedout+0x121/0x140 [amd=
-gpu]
-M=C3=A4r 23 16:18:51 obelix kernel:  drm_sched_job_timedout+0x64/0xe0 [gp=
-u_sched]
-M=C3=A4r 23 16:18:51 obelix kernel:  process_one_work+0x214/0x3e0
-M=C3=A4r 23 16:18:51 obelix kernel:  worker_thread+0x4d/0x3d0
-M=C3=A4r 23 16:18:51 obelix kernel:  ? rescuer_thread+0x3c0/0x3c0
-M=C3=A4r 23 16:18:51 obelix kernel:  kthread+0x133/0x150
-M=C3=A4r 23 16:18:51 obelix kernel:  ? __kthread_bind_mask+0x60/0x60
-M=C3=A4r 23 16:18:51 obelix kernel:  ret_from_fork+0x22/0x30
-M=C3=A4r 23 16:18:51 obelix kernel: Modules linked in: rfcomm=20
-snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio=20
-snd_hda_codec_hdmi cmac algif_hash snd_hda_intel algif_skcipher=20
-snd_intel_dspcfg soundwire_intel af_alg soundwire_ge>
-M=C3=A4r 23 16:18:51 obelix kernel:  sr_mod cdrom uas usb_storage dm_cryp=
-t=20
-cbc encrypted_keys dm_mod trusted tpm crct10dif_pclmul crc32_pclmul=20
-crc32c_intel ghash_clmulni_intel aesni_intel crypto_simd cryptd=20
-glue_helper serio_raw ccp xhc>
-M=C3=A4r 23 16:18:51 obelix kernel: CR2: 0000000000000029
-M=C3=A4r 23 16:18:51 obelix kernel: ---[ end trace 8a72c5e07cbe6b63 ]---
-M=C3=A4r 23 16:18:51 obelix kernel: RIP: 0010:kernel_queue_uninit+0xd/0xf=
-0=20
-[amdgpu]
-M=C3=A4r 23 16:18:51 obelix kernel: Code: ee 48 89 c7 e8 a4 f9 ff ff 84 c=
-0 0f=20
-84 e3 d3 1f 00 4c 89 e0 5d 41 5c 41 5d c3 0f 1f 00 0f 1f 44 00 00 55 48=20
-8b 47 10 48 89 fd <8b> 50 28 83 fa 02 74 78 83 fa 03 0f 84 b1 00 00 00=20
-48 8b 7f 08 4c
-M=C3=A4r 23 16:18:51 obelix kernel: RSP: 0018:ffffa35d806dfd40 EFLAGS: 00=
-010246
-M=C3=A4r 23 16:18:51 obelix kernel: RAX: 0000000000000001 RBX:=20
-ffff8b044c5ee000 RCX: 000000000080005b
-M=C3=A4r 23 16:18:51 obelix kernel: RDX: 000000000080005c RSI:=20
-0000000000000001 RDI: ffff8b044a877bc0
-M=C3=A4r 23 16:18:51 obelix kernel: RBP: ffff8b044a877bc0 R08:=20
-0000000000000001 R09: 0000000000000000
-M=C3=A4r 23 16:18:51 obelix kernel: R10: 0000000000000000 R11:=20
-ffffffffafccba00 R12: ffff8b044c5ee0d0
-M=C3=A4r 23 16:18:51 obelix kernel: R13: ffff8b044bf60000 R14:=20
-ffff8b04414a1000 R15: ffff8b04414a10c8
-M=C3=A4r 23 16:18:51 obelix kernel: FS:  0000000000000000(0000)=20
-GS:ffff8b075f900000(0000) knlGS:0000000000000000
-M=C3=A4r 23 16:18:51 obelix kernel: CS:  0010 DS: 0000 ES: 0000 CR0:=20
-0000000080050033
-M=C3=A4r 23 16:18:51 obelix kernel: CR2: 0000000000000029 CR3:=20
-0000000105594000 CR4: 0000000000350ee0
-M=C3=A4r 23 16:19:10 obelix systemd[1]: systemd-hostnamed.service:=20
-Deactivated successfully.
-M=C3=A4r 23 16:19:10 obelix audit[1]: SERVICE_STOP pid=3D1 uid=3D0=20
-auid=3D4294967295 ses=3D4294967295 msg=3D'unit=3Dsystemd-hostnamed=20
-comm=3D"systemd" exe=3D"/usr/lib/systemd/systemd" hostname=3D? addr=3D?=20
-terminal=3D? res=3Dsuccess'
-M=C3=A4r 23 16:19:10 obelix kernel: [drm:amdgpu_dm_atomic_commit_tail=20
-[amdgpu]] *ERROR* Waiting for fences timed out!
-
-Greetings
-Harvey
-
-Am 22.03.21 um 20:22 schrieb Alex Deucher:
-> On Thu, Mar 18, 2021 at 8:19 AM Harvey <harv@gmx.de> wrote:
->>
->> Alex,
->>
->> I waited for kernel 5.11.7 to hit our repos yesterday evening and test=
-ed
->> again:
->>
->> 1. The suspend issue is gone - suspend and resume now work as expected=
-=2E
->>
->> 2. System hibernation seems to be a different beast - still freezing
->=20
-> You need this patch:
-> https://gitlab.freedesktop.org/agd5f/linux/-/commit/711c13547aad08f2cfe=
-996e0cddc3d56f1233081
->=20
+>
 > Alex
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
->=20
-
---=20
-I am root. If you see me laughing, you'd better have a backup!
-
-
---BfJKeOMIH72m25XEBJN1VmhuKvkEcAkDp--
-
---zLZGM7OOWeRpcu8S0zaQgfOlkoT6YsycL
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wmMEABEIACMWIQRSRNvmxYqoNs6vm0SLlqqYsFRKCQUCYFoIugUDAAAAAAAKCRCLlqqYsFRKCT0m
-AJ0d1lQ71Mu83wQsiGMjfErXcRK37wCeIlrjUY5d3EihkvOWWstuHYYAJI8=
-=nB29
------END PGP SIGNATURE-----
-
---zLZGM7OOWeRpcu8S0zaQgfOlkoT6YsycL--
-
---===============1509580420==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>
+>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_display.c       | 13 +++++++++++++
+> >  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  9 +++++++++
+> >  2 files changed, 22 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+> > index afa5f8ad0f563..a947b5aa420d2 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+> > @@ -908,6 +908,19 @@ int amdgpu_display_gem_fb_verify_and_init(
+> >                                          &amdgpu_fb_funcs);
+> >         if (ret)
+> >                 goto err;
+> > +       /* Verify that the modifier is supported. */
+> > +       if (!drm_any_plane_has_format(dev, mode_cmd->pixel_format,
+> > +                                     mode_cmd->modifier[0])) {
+> > +               struct drm_format_name_buf format_name;
+> > +               drm_dbg_kms(dev,
+> > +                           "unsupported pixel format %s / modifier 0x%llx\n",
+> > +                           drm_get_format_name(mode_cmd->pixel_format,
+> > +                                               &format_name),
+> > +                           mode_cmd->modifier[0]);
+> > +
+> > +               ret = -EINVAL;
+> > +               goto err;
+> > +       }
+> >
+> >         ret = amdgpu_display_framebuffer_init(dev, rfb, mode_cmd, obj);
+> >         if (ret)
+> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > index 961abf1cf040c..21314024a83ce 100644
+> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> > @@ -3939,6 +3939,7 @@ static bool dm_plane_format_mod_supported(struct drm_plane *plane,
+> >  {
+> >         struct amdgpu_device *adev = drm_to_adev(plane->dev);
+> >         const struct drm_format_info *info = drm_format_info(format);
+> > +       int i;
+> >
+> >         enum dm_micro_swizzle microtile = modifier_gfx9_swizzle_mode(modifier) & 3;
+> >
+> > @@ -3952,6 +3953,14 @@ static bool dm_plane_format_mod_supported(struct drm_plane *plane,
+> >         if (modifier == DRM_FORMAT_MOD_LINEAR)
+> >                 return true;
+> >
+> > +       /* Check that the modifier is on the list of the plane's supported modifiers. */
+> > +       for (i = 0; i < plane->modifier_count; i++) {
+> > +               if (modifier == plane->modifiers[i])
+> > +                       break;
+> > +       }
+> > +       if (i == plane->modifier_count)
+> > +               return false;
+> > +
+> >         /*
+> >          * The arbitrary tiling support for multiplane formats has not been hooked
+> >          * up.
+> > --
+> > 2.30.1.766.gb4fecdf3b7-goog
+> >
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1509580420==--
