@@ -2,107 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D119C345782
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Mar 2021 06:50:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E267345984
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Mar 2021 09:18:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F125E6E40C;
-	Tue, 23 Mar 2021 05:50:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D48356E856;
+	Tue, 23 Mar 2021 08:18:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2070.outbound.protection.outlook.com [40.107.93.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80D656E40C
- for <amd-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 05:50:11 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n7ZcgSGkLglQaV+IvTfjq7GMy/3aNdMgnzgFlJq02+ce1QDZ+rEZU9Id6fpcUIqBU07a8tWj+JYp1p+Dec5KIXgoaYrOel9lxF1paqcplaIjDHto43/uKDlBti72FakT/P7VjL+hlAeRkm5mtxt1OARx0O+JU3jbPm+H+EfPPGPGdWrrV97dDjl2BShpSaX5j3QM7fFRTfW4qWR6nqs5s3XpbIAAShgmziQRWgbqNvfBeeMOP6lRnnUCMEbJPZ1Js5CgrbPdBNbxhXc/wYFr1RGMcOFwz4NvnMDhJogzzyI/zlKfym88LppT/QJacQw2wrM0VBvZWEItMuPGH5QD8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iAXvtrK1Ik1tKfgRNmOeyHMNEBKKtWGVfdMvbsEByE0=;
- b=kCsGF4uy3ARWIfGtJa/JWdj6zUQVQPZmK9XYi886G+auOrEcpijjK0djOeofg2Eid/VN0Btkx/w8PeGlucjXRXagkI1D2L9M5fI159Wb5OCdjOyM8tMhmwjP5ANw/Jf9vDYvQz8f3aEzdf/5IYV9TbKkd5QKGCGcKpCnWqqqyl0LVqjBiO57rhwAc6MV2DiTdfmmME+s+lPid4zD6dGlkoO0m/vcBuYj8CDEWvKufXipdwYAWkjQk1dgTEoiswmWEkkyjJGvXGtrgCnzo+QzxKEo9WmuBgSNuSkQ44YeQKhekn2Z1UswS1Wr8LOYfQdBUpdH0KHFGqdlTffdkKVUQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iAXvtrK1Ik1tKfgRNmOeyHMNEBKKtWGVfdMvbsEByE0=;
- b=CCYJJeSZyrbzcAMNrrqU2tyMrhQJDJ8kscl3KEX/WINY0QpF/VZVdi1ngVN65GqpMGrFaow3EHoHNqzyp3nn++v2EU8u91Cr7IyT0VYYXD1atEeA5JgYB3GvjQFd3iQDYlsA/AR4fdwqiYYBGeaeKo20Fokmj/UjjkDcmpisYnY=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from CY4PR12MB1287.namprd12.prod.outlook.com (2603:10b6:903:40::8)
- by CY4PR12MB1878.namprd12.prod.outlook.com (2603:10b6:903:123::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Tue, 23 Mar
- 2021 05:50:07 +0000
-Received: from CY4PR12MB1287.namprd12.prod.outlook.com
- ([fe80::8908:d7:5544:6007]) by CY4PR12MB1287.namprd12.prod.outlook.com
- ([fe80::8908:d7:5544:6007%8]) with mapi id 15.20.3955.027; Tue, 23 Mar 2021
- 05:50:07 +0000
-From: Guchun Chen <guchun.chen@amd.com>
-To: amd-gfx@lists.freedesktop.org, lijo.lazar@amd.com, jiansong.chen@amd.com,
- evan.quan@amd.com
-Subject: [PATCH] drm/amd/pm: fix gpu reset failure by MP1 state setting
-Date: Tue, 23 Mar 2021 13:49:39 +0800
-Message-Id: <20210323054939.26101-1-guchun.chen@amd.com>
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [180.167.199.189]
-X-ClientProxiedBy: HK2PR04CA0062.apcprd04.prod.outlook.com
- (2603:1096:202:14::30) To CY4PR12MB1287.namprd12.prod.outlook.com
- (2603:10b6:903:40::8)
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6C306E092;
+ Tue, 23 Mar 2021 07:38:46 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1616485125; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ofPdbLGiOv4t4glajDJiQOBAXsq/hbLdis6yZwHlhBg=;
+ b=mDTbOZXOo1pjW69S7Rhqr3O0HUnTFZK692Xd6c6Kkw2rAh+eVm2wN8ttIXEQPjhnY8C3Z+
+ Jwhq2L5om4GpvS1ahdVWBo+B3gbxmA60cqA9za2A8zGl6y4RP2mz6VdXqVXoz5TELQhGCu
+ lL8TRKSvQRXtlkiC4Ak6ssTSc5DeF4g=
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 13332ACBF;
+ Tue, 23 Mar 2021 07:38:45 +0000 (UTC)
+Date: Tue, 23 Mar 2021 08:38:33 +0100
+From: Michal Hocko <mhocko@suse.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Subject: Re: [PATCH] drm/ttm: stop warning on TT shrinker failure
+Message-ID: <YFma+ZxncvfBd++o@dhcp22.suse.cz>
+References: <2831bfcc-140e-dade-1f50-a6431e495e9d@gmail.com>
+ <YFT2LSR97rkkPyEP@phenom.ffwll.local>
+ <1ae415c4-8e49-5183-b44d-bc92088657d5@gmail.com>
+ <CAKMK7uEDhuvSwJj5CX8vHgLb+5zm=rdJPmXwb-VQWdrW6GwQZw@mail.gmail.com>
+ <e6e9df3e-cd2b-d80f-205d-6ca1865819b2@gmail.com>
+ <YFigZ5+H95c/GI/S@phenom.ffwll.local>
+ <20210322140548.GN1719932@casper.infradead.org>
+ <YFi+UROYbQERYEEr@dhcp22.suse.cz>
+ <CAKMK7uGM6EJvzktrANyeeemRPoW7O0ka-ZyKi==wL1zt3yM=5w@mail.gmail.com>
+ <c78457bb-d93a-ff84-1cce-0fb3fa9f0cec@gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from guchchen-System-Product-Name.amd.com (180.167.199.189) by
- HK2PR04CA0062.apcprd04.prod.outlook.com (2603:1096:202:14::30) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3955.18 via Frontend Transport; Tue, 23 Mar 2021 05:50:05 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: e662cd79-d5c6-4724-1ab7-08d8edbf8333
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1878:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CY4PR12MB18781E96F7903518A5035F24F1649@CY4PR12MB1878.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1388;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /p4ghFEn0IX0vTj+7GFu6o1cVa7gfW4rZepa6bOEaP3wmMOsaDc+ugqehr0upSDgyo/crZ9z83dpZ+I+SHUHEZ4acqffLeRdzi5hxJy4SBN2TTvLQvXAIlcHtWJ7W8/kc3uZi2+x3NQrPzHF28hezEBREXKdxIcXeqmRlssdzMvAPnHrVJsH8YA0ok6+/NHcqjEHAVLN/mXiIX1RTvegHKmEb4A971HKrJ+F8/nLRns/VXLVBJFeEi9UJJNDVd9Kn9iM2IBrkmh00y6sxDVHp9VNDATQLvt3ID/EduFM3CJ/mYs8HJ5to4nAtmh6M5NcijMqX6kY6fOykw3PtGk/Kkt9/WQfbdDoOQmJZLQaKWhJMQZbFi5+NDFsW3sJlT9GKfd8FZ2yG+KHpAMW21j1DTc3tpPDlnTnWRQGwJXaarQj64RlEWdMP3Z9NkCXGJVjHvOahCI8IOUoRPsUQwA59pCnUhbNGhqT/3LOtpmRB0bUd4Lfyz3sI8zAjI0q9KTYpbPQVKGld7Ztp2QxoiQYxjpOZszipPN0pQJ+YII8C6ixvc9NTjNtEmRu2Vry5/Yt6WmsdrYW2Y+V0EAw5BfoLRXYEN/pUF4/GMOUoEaWYAmDRZwS5r0i+kUPSVuJsnGiC+HcJY8KcDjEy6RDIQrphvVHAe0tiut4YkcBCIP5rzw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY4PR12MB1287.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(396003)(376002)(366004)(346002)(66946007)(6486002)(86362001)(478600001)(83380400001)(5660300002)(44832011)(66556008)(38100700001)(66476007)(316002)(6666004)(8936002)(2906002)(16526019)(6636002)(2616005)(26005)(956004)(8676002)(52116002)(186003)(4326008)(1076003)(7696005)(36756003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?57ER/KaaDxXKUfYXE4ufdSe3iE+MaaCGUforD6t7+JoklYJftx2k0mo6DIl9?=
- =?us-ascii?Q?mXbuFlKMlksOX6pWfxlugE2M3v07CL4RCluD+1p4A9m7sxlhpyngh+lMr2ER?=
- =?us-ascii?Q?YeK/ngRlUUAYTe04DvdzZt/ELF1d+WzfQNGHz2w+Otj1cmIVOtZKLE1os2zk?=
- =?us-ascii?Q?6IwcmzSGrELaGsuJktdooLMKvisMrsA0yluy9a4VD8cOo6QE2rjQWi7WJnGI?=
- =?us-ascii?Q?Bz7/RklFC6Q7iTlTJn7XfTOpd8ZQI02vQcL1CksFxg7Qo4/FsCmp1ejVICl5?=
- =?us-ascii?Q?e0W8VJn+QP6JsVALfJXSQejmxF+X8bmoXMx7i9aclFNlOkaVEMyL47I1ePhg?=
- =?us-ascii?Q?GW2lkyaqlKtjNCfafKMtH6nhY04O8xMpPRf3tDYukWilc4R8NrtoTrq1rYZQ?=
- =?us-ascii?Q?5VRe9qROHllNDEaFm8UfvCOK29GPo2w3YeWsrqaQJKAMwwuKHd8WAF/zRTo/?=
- =?us-ascii?Q?7cC9OGnJIQIvLqqMGJSXVnWySpOpe2zl2qBDx23CAYlir5sfTi8H54WM54k2?=
- =?us-ascii?Q?qNUFj1maloZBzAfdGeExslET25bwt0xOfDqGiyA/nLCSSUYgksAtnhFBopxg?=
- =?us-ascii?Q?KmABy5qeD1jOtmT428O2T3//6amoTU5QH6mkX9c2KwEYpYWui+SPwuk5+Mzz?=
- =?us-ascii?Q?9CXCSQ40egzRjfn6qoo16LyTA+t8MWME3KCjpw2NjeMRamMeCbfRVhYKSAcY?=
- =?us-ascii?Q?uzDJGViCCjcf8BDzIXq+UEWFAE5AZlcaclMwicMPWZAxBTBPK/9pWeGp49rS?=
- =?us-ascii?Q?Dd8bC3q/gHqpyRGGcDsnQuEKElU8HIULQmDFO0/JFw+jZQwoVTPpT5aqNBdG?=
- =?us-ascii?Q?T2nPikn6Fd2jx81ntGxr4ui2rRJuTDnCI67qtR6erko4vZRVsUcFiNQUxt8b?=
- =?us-ascii?Q?zBlAfQAgXKpamZYtysps45xI7a17Iho5nukxOQZI7JQ93k9e7DugHmFGmImf?=
- =?us-ascii?Q?URXI2Aqoh9G2/DEwKS+eJqHOtNFLIYLcgpex6j4tohz2piG9x1aM1BjkOPJk?=
- =?us-ascii?Q?6Cda61Vwj7F4qWtXyNlPtDZDaw96zxh/nKYVCGKcec3aIUJFou6ClWGftoXl?=
- =?us-ascii?Q?N1O0tX6gIlPpY52W/3Fh1/iY8w7gVWg8dDwRLSsLvGfTkbZtUKPbTxoRRDhY?=
- =?us-ascii?Q?cyRwBWxRAY/omAV2F+0aGeB5lM0ml5K0svWCkbHDCIC/d201mKhr7sgo59cy?=
- =?us-ascii?Q?iIH8VExB9QZNezYUsX7Wh95F3DquKBKv7WKo18Z25k1GBr/c7V6HvJYKuY6L?=
- =?us-ascii?Q?S457M3H2AzNc8gPyPzEk1xIyE0q1NQEUIQPo6iC02C0XKb0ZQsHJBZN+IFov?=
- =?us-ascii?Q?LbVRXbiJF1oKVH8H8R1bpo/sNU4WgwSkVZDWLigtjTm54A=3D=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e662cd79-d5c6-4724-1ab7-08d8edbf8333
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR12MB1287.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2021 05:50:07.0825 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Svcsl4zFEl+LFSImAKLMvRwnTwZwwcsS/O4z1hX3MkmtVFu2lvkRubg0NbvKWz8eTUMbw//Jz29bObfnV8OxXg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1878
+Content-Disposition: inline
+In-Reply-To: <c78457bb-d93a-ff84-1cce-0fb3fa9f0cec@gmail.com>
+X-Mailman-Approved-At: Tue, 23 Mar 2021 08:18:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,65 +55,133 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Guchun Chen <guchun.chen@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Matthew Wilcox <willy@infradead.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Linux MM <linux-mm@kvack.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Dave Chinner <dchinner@redhat.com>, Leo Liu <Leo.Liu@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Instead of blocking varied unsupported MP1 state in upper level,
-defer and skip such MP1 state handling in specific ASIC.
+On Mon 22-03-21 20:34:25, Christian K=F6nig wrote:
+> Am 22.03.21 um 18:02 schrieb Daniel Vetter:
+> > On Mon, Mar 22, 2021 at 5:06 PM Michal Hocko <mhocko@suse.com> wrote:
+> > > On Mon 22-03-21 14:05:48, Matthew Wilcox wrote:
+> > > > On Mon, Mar 22, 2021 at 02:49:27PM +0100, Daniel Vetter wrote:
+> > > > > On Sun, Mar 21, 2021 at 03:18:28PM +0100, Christian K=F6nig wrote:
+> > > > > > Am 20.03.21 um 14:17 schrieb Daniel Vetter:
+> > > > > > > On Sat, Mar 20, 2021 at 10:04 AM Christian K=F6nig
+> > > > > > > <ckoenig.leichtzumerken@gmail.com> wrote:
+> > > > > > > > Am 19.03.21 um 20:06 schrieb Daniel Vetter:
+> > > > > > > > > On Fri, Mar 19, 2021 at 07:53:48PM +0100, Christian K=F6n=
+ig wrote:
+> > > > > > > > > > Am 19.03.21 um 18:52 schrieb Daniel Vetter:
+> > > > > > > > > > > On Fri, Mar 19, 2021 at 03:08:57PM +0100, Christian K=
+=F6nig wrote:
+> > > > > > > > > > > > Don't print a warning when we fail to allocate a pa=
+ge for swapping things out.
+> > > > > > > > > > > > =
 
-Signed-off-by: Lijo Lazar <lijo.lazar@amd.com>
-Signed-off-by: Guchun Chen <guchun.chen@amd.com>
----
- drivers/gpu/drm/amd/pm/amdgpu_dpm.c                    |  3 ---
- .../gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c    | 10 +++++++---
- 2 files changed, 7 insertions(+), 6 deletions(-)
+> > > > > > > > > > > > Also rely on memalloc_nofs_save/memalloc_nofs_resto=
+re instead of GFP_NOFS.
+> > > > > > > > > > > Uh this part doesn't make sense. Especially since you=
+ only do it for the
+> > > > > > > > > > > debugfs file, not in general. Which means you've just=
+ completely broken
+> > > > > > > > > > > the shrinker.
+> > > > > > > > > > Are you sure? My impression is that GFP_NOFS should now=
+ work much more out
+> > > > > > > > > > of the box with the memalloc_nofs_save()/memalloc_nofs_=
+restore().
+> > > > > > > > > Yeah, if you'd put it in the right place :-)
+> > > > > > > > > =
 
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-index 15e239582a97..0a6bb3311f0f 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-@@ -1027,9 +1027,6 @@ int amdgpu_dpm_set_mp1_state(struct amdgpu_device *adev,
- 	int ret = 0;
- 	const struct amd_pm_funcs *pp_funcs = adev->powerplay.pp_funcs;
- 
--	if (mp1_state == PP_MP1_STATE_NONE)
--		return 0;
--
- 	if (pp_funcs && pp_funcs->set_mp1_state) {
- 		ret = pp_funcs->set_mp1_state(
- 				adev->powerplay.pp_handle,
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-index 722fe067ac2c..72d9c1be1835 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-@@ -3113,14 +3113,18 @@ static int sienna_cichlid_system_features_control(struct smu_context *smu,
- static int sienna_cichlid_set_mp1_state(struct smu_context *smu,
- 					enum pp_mp1_state mp1_state)
- {
-+	int ret;
-+
- 	switch (mp1_state) {
- 	case PP_MP1_STATE_UNLOAD:
--		return smu_cmn_set_mp1_state(smu, mp1_state);
-+		ret = smu_cmn_set_mp1_state(smu, mp1_state);
-+		break;
- 	default:
--		return -EINVAL;
-+		/* Ignore others */
-+		ret = 0;
- 	}
- 
--	return 0;
-+	return ret;
- }
- 
- static const struct pptable_funcs sienna_cichlid_ppt_funcs = {
--- 
-2.17.1
+> > > > > > > > > But also -mm folks are very clear that memalloc_no*() fam=
+ily is for dire
+> > > > > > > > > situation where there's really no other way out. For anyt=
+hing where you
+> > > > > > > > > know what you're doing, you really should use explicit gf=
+p flags.
+> > > > > > > > My impression is just the other way around. You should try =
+to avoid the
+> > > > > > > > NOFS/NOIO flags and use the memalloc_no* approach instead.
+> > > > > > > Where did you get that idea?
+> > > > > > Well from the kernel comment on GFP_NOFS:
+> > > > > > =
 
+> > > > > >   * %GFP_NOFS will use direct reclaim but will not use any file=
+system
+> > > > > > interfaces.
+> > > > > >   * Please try to avoid using this flag directly and instead use
+> > > > > >   * memalloc_nofs_{save,restore} to mark the whole scope which
+> > > > > > cannot/shouldn't
+> > > > > >   * recurse into the FS layer with a short explanation why. All=
+ allocation
+> > > > > >   * requests will inherit GFP_NOFS implicitly.
+> > > > > Huh that's interesting, since iirc Willy or Dave told me the oppo=
+site, and
+> > > > > the memalloc_no* stuff is for e.g. nfs calling into network layer=
+ (needs
+> > > > > GFP_NOFS) or swap on top of a filesystems (even needs GFP_NOIO I =
+think).
+> > > > > =
+
+> > > > > Adding them, maybe I got confused.
+> > > > My impression is that the scoped API is preferred these days.
+> > > > =
+
+> > > > https://www.kernel.org/doc/html/latest/core-api/gfp_mask-from-fs-io=
+.html
+> > > > =
+
+> > > > I'd probably need to spend a few months learning the DRM subsystem =
+to
+> > > > have a more detailed opinion on whether passing GFP flags around ex=
+plicitly
+> > > > or using the scope API is the better approach for your situation.
+> > > yes, in an ideal world we would have a clearly defined scope of the
+> > > reclaim recursion wrt FS/IO associated with it. I've got back to
+> > > https://lore.kernel.org/amd-gfx/20210319140857.2262-1-christian.koeni=
+g@amd.com/
+> > > and there are two things standing out. Why does ttm_tt_debugfs_shrink=
+_show
+> > > really require NOFS semantic? And why does it play with
+> > > fs_reclaim_acquire?
+> > It's our shrinker. shrink_show simply triggers that specific shrinker
+> > asking it to shrink everything it can, which helps a lot with testing
+> > without having to drive the entire system against the OOM wall.
+
+Yes I figured that much. But...
+
+> > fs_reclaim_acquire is there to make sure lockdep understands that this
+> > is a shrinker and that it checks all the dependencies for us like if
+> > we'd be in real reclaim. There is some drop caches interfaces in proc
+> > iirc, but those drop everything, and they don't have the fs_reclaim
+> > annotations to teach lockdep about what we're doing.
+
+... I really do not follow this. You shouldn't really care whether this
+is a reclaim interface or not. Or maybe I just do not understand this...
+ =
+
+> To summarize the debugfs code is basically to test if that stuff really
+> works with GFP_NOFS.
+
+What do you mean by testing GFP_NOFS. Do you mean to test that GFP_NOFS
+context is sufficiently powerful to reclaim enough objects due to some
+internal constrains?
+
+> My only concern is that if I could rely on memalloc_no* being used we cou=
+ld
+> optimize this quite a bit further.
+
+Yes you can use the scope API and you will be guaranteed that _any_
+allocation from the enclosed context will inherit GFP_NO* semantic.
+
+-- =
+
+Michal Hocko
+SUSE Labs
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
