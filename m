@@ -1,54 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8922E346285
-	for <lists+amd-gfx@lfdr.de>; Tue, 23 Mar 2021 16:14:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB5E3462D3
+	for <lists+amd-gfx@lfdr.de>; Tue, 23 Mar 2021 16:28:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 130436E150;
-	Tue, 23 Mar 2021 15:14:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D91316E96E;
+	Tue, 23 Mar 2021 15:28:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com
- [IPv6:2607:f8b0:4864:20::331])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADD466E150;
- Tue, 23 Mar 2021 15:14:17 +0000 (UTC)
-Received: by mail-ot1-x331.google.com with SMTP id
- 68-20020a9d0f4a0000b02901b663e6258dso19751163ott.13; 
- Tue, 23 Mar 2021 08:14:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=X2/dvppl9EFycIbzir/9o2eLnvUFv2pJ4xfdH+MA8QM=;
- b=UYL7rLim99JevyGztNbHniK+OkVfhlRvzTAL3RkiH8/YQTtZTQTM6+dc0rvPvDc2eP
- o/5tgadaF2WWFKuJfSiVvaxfxamcwfN1D80bNBUKwo1u96pAZRa+OCuybj1dmJI4IWAf
- PlIA1zuFfV+0jKBBp7Kc6qhSo3IVU60AV5w1d+QQCxjnQLzt7UaMtQx4qQiJyI1Z6yap
- +9VUSFj19N8glrhb1A4IqQU5icycGjm9mq7t9VX5wvQoSRTYcgMzm1aTrsenoUUYwGle
- XWlJ84ApF9FXH6EN3rh4CJuUB11mVfpKNhcpIGaJ6oeZbOOOkrdAZKTs/uDG8DA7Sruz
- sDGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=X2/dvppl9EFycIbzir/9o2eLnvUFv2pJ4xfdH+MA8QM=;
- b=uXR6B0WwuX3wFRsFYHuz8NqBY8NHDWYcN/vuZDWufP012GFatzLDw7VVudMiP3N6RF
- Cap0dlwWzhNHdFKw4NX4wnxdaJW1ZVQmtfBHYHwOTR7qk3r9XE5F/AwEpwlSdK3AMQB8
- U0kyiCudl23Mm1Gaq6jlBkN7AEOOM1vUq9bAVllIfYjpSGCIcv1C3jms+We3CeQaNc2g
- sVOrJetwusvj3UVKnDnpJvUgIGghbRW/JgOyU7FbxsccphYDxVNzxjBBKbYf4HdYG8lq
- LYseUZibuSj/TRk7EUJLqkQu3W242YXzAYru/dROdo3266EdnzvEFa7jGxboo2CBCV52
- FbCQ==
-X-Gm-Message-State: AOAM531KsOfyPM6oMbK0rUA4oe4TjPnVOYYa2W/VFBv5iFWXqsIylIjO
- 9C0/UWNLcEg81hKnFV+lFhFVGMQ4KIv/JPsVrOs=
-X-Google-Smtp-Source: ABdhPJxccxo6qay1Ja8B5rRGkZ84PCoqVfKLkENwqOk7ApRciBrgC59v5U9P9CD7fq7Ef1XGJlgxtw+h+XkfyAT3oxU=
-X-Received: by 2002:a9d:750e:: with SMTP id r14mr4876999otk.311.1616512457068; 
- Tue, 23 Mar 2021 08:14:17 -0700 (PDT)
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AC546EA7A
+ for <amd-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 15:28:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1616513327;
+ bh=XoYQgxkZ7UzcuBJ6V8EAU9HMx8R2VBaq04QF8534fyA=;
+ h=X-UI-Sender-Class:Reply-To:Subject:To:References:From:Date:
+ In-Reply-To;
+ b=R9BnLpopJ/jmU7eJP1EQesmJtqQSaPTgZPNsRvEZMkhOq2fKKV+KJ77oTyxTmJiSr
+ L3y9H5GBM8ErZ3CwH/cQPDdSy47A4a0nSoKXZB3DqMZBKarMyVoVmk82oG2QGIfjzb
+ KvJBMza8kweZS80o6Qfo+DSRDiXIMFxCcPp9xIns=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.1.1] ([178.27.134.71]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N3bSj-1lp5dE1i55-010dfv for
+ <amd-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 16:28:47 +0100
+Subject: Re: Amdgpu kernel oops and freezing on system suspend and hibernate
+To: amd-gfx@lists.freedesktop.org
+References: <9f9f69fa-4638-673f-6695-1171e927a80b@gmx.de>
+ <MN2PR12MB4488704D527398352637AC61F76A9@MN2PR12MB4488.namprd12.prod.outlook.com>
+ <a8ad9295-196c-77cf-ca63-161fb97632cb@gmx.de>
+ <CADnq5_Oe6PHz5rQ9u5T2M3ZKhWE+fuj5CD2ngvXRiZFeZprS=Q@mail.gmail.com>
+From: Harvey <harv@gmx.de>
+Message-ID: <ef1b7ff1-b926-8651-3ff6-9c05bd8b234f@gmx.de>
+Date: Tue, 23 Mar 2021 16:26:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210323011923.133284-1-wanjiabing@vivo.com>
-In-Reply-To: <20210323011923.133284-1-wanjiabing@vivo.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 23 Mar 2021 11:14:05 -0400
-Message-ID: <CADnq5_MWQPaSjKY5ky2xSacUr5_fP0uDiw8TU3HVA6QC6NvAtA@mail.gmail.com>
-Subject: Re: [PATCH] gpu: drm: amd: Remove duplicate includes
-To: Wan Jiabing <wanjiabing@vivo.com>
+In-Reply-To: <CADnq5_Oe6PHz5rQ9u5T2M3ZKhWE+fuj5CD2ngvXRiZFeZprS=Q@mail.gmail.com>
+X-Provags-ID: V03:K1:BsZ9jhU8UakYWQDaa2FeHrcHEtEXGn4T5gsnn3xaXM94hPyRTG7
+ 5EyWwUcs7jyQLcob6AUsbEi3IyCUagNvCyYB43t4qSDwh6jIH1XCDzL4FhsJmlIU0llDIhL
+ nzHbyQvzJge6J+Vu6bN75QFPhWTVaO3Vqz26AsZcxbnJhFEZPAs+0VYJmQ4anrLw5jx7Ynm
+ lqyCvitflfhYSmy9CqhYQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:lVAbDe735GE=:3FrODUrJhO9GPo7CsRC1j6
+ NDxmQWwnI2dpfdES4kKgRI0tgYVlIOhDxUKR++HbX8ajoHx/yDkxhUWMsramMxpWYFxKMKUqO
+ zugyICW2zdX4+cdptvW0iTPL7vuv3AHFZesIJiYInvFfFSYPKKaM/OJS1UzX42JjAbI61T2lm
+ GbsOs/1XHyGsM0jFcrrmGmfkALRME5gJqtF+TXX+0nun+YPAYqjLjRozLCYu0iZWvPUQ+RWC/
+ ukHS8d8geFZVEXUilJT8xIAS1jDO5rZB3R7p/3qKc44rmKcHacCwEeV2T8F4tgFIKXj0x0dA7
+ P6jSHZquCwryPW2/uRSgqyRC6hhki5xQymTZlD8LcbhzkNS5x5tRAQ/NNN5w1nonx2PVSZKz6
+ WRHEsIVBZ+nAf5Qi+kyPx418yo4sSNZUQWbwfdFNr+ig5v/FGRvypW9oxiIzoimNfOj7uuyJY
+ UDEgfEc05jmr9cmLPLbx1F8ZBfrLRk85/6xot4aZ/9IJc3cTnEqWewYsxfNWEmFXcYQQdzQM1
+ V0a/Wwq8gv6sN1g+bJDk0qA4L6eZvt+EEICREWRNTQyBEgp6qgzHde6LSW3vB4/0nMk5RnyX7
+ quYzvLxgckMrFYFzB3KaZn1QOhUjD/hmcJ+RQ//9c6uu3YiBaQbnTNT0zZtX+7+UdDV+sfTUM
+ LUqyeCBOTMVEqnWUB0kV3EHn3Px7SyZ0lCgVwLKVo6mcf5eRS8ITQbZE/6Ip2O9B7HVfBTdNv
+ 24KJs4qDYbyZJIn+9fnnD14diAVqlvG/gCV72LAaOdmgAgPBM3kHmHohHtlE6PDQQYI243gfl
+ NEu+9TT3NB5DlRGuuXOzjXzS8eJUq2WIs7vDmjmC72mhl76ojauggkx3j5IfpMfYVlk58n54r
+ C9X8eCMXkiMBDVyI3LPQ==
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,56 +67,221 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- kael_w@yeah.net, Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: harv@gmx.de
+Content-Type: multipart/mixed; boundary="===============1509580420=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Same patch was already applied recently.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1509580420==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="zLZGM7OOWeRpcu8S0zaQgfOlkoT6YsycL"
 
-Thanks,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--zLZGM7OOWeRpcu8S0zaQgfOlkoT6YsycL
+Content-Type: multipart/mixed; boundary="BfJKeOMIH72m25XEBJN1VmhuKvkEcAkDp";
+ protected-headers="v1"
+From: Harvey <harv@gmx.de>
+Reply-To: harv@gmx.de
+To: amd-gfx@lists.freedesktop.org
+Message-ID: <ef1b7ff1-b926-8651-3ff6-9c05bd8b234f@gmx.de>
+Subject: Re: Amdgpu kernel oops and freezing on system suspend and hibernate
+References: <9f9f69fa-4638-673f-6695-1171e927a80b@gmx.de>
+ <MN2PR12MB4488704D527398352637AC61F76A9@MN2PR12MB4488.namprd12.prod.outlook.com>
+ <a8ad9295-196c-77cf-ca63-161fb97632cb@gmx.de>
+ <CADnq5_Oe6PHz5rQ9u5T2M3ZKhWE+fuj5CD2ngvXRiZFeZprS=Q@mail.gmail.com>
+In-Reply-To: <CADnq5_Oe6PHz5rQ9u5T2M3ZKhWE+fuj5CD2ngvXRiZFeZprS=Q@mail.gmail.com>
 
-Alex
+--BfJKeOMIH72m25XEBJN1VmhuKvkEcAkDp
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: de-DE
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 22, 2021 at 9:19 PM Wan Jiabing <wanjiabing@vivo.com> wrote:
->
-> ../hw_ddc.h, ../hw_gpio.h and ../hw_hpd.h have been included
-> at line 32, so remove them.
->
-> Signed-off-by: Wan Jiabing <wanjiabing@vivo.com>
-> ---
->  .../gpu/drm/amd/display/dc/gpio/dce110/hw_factory_dce110.c    | 4 ----
->  1 file changed, 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/gpio/dce110/hw_factory_dce110.c b/drivers/gpu/drm/amd/display/dc/gpio/dce110/hw_factory_dce110.c
-> index 66e4841f41e4..ca335ea60412 100644
-> --- a/drivers/gpu/drm/amd/display/dc/gpio/dce110/hw_factory_dce110.c
-> +++ b/drivers/gpu/drm/amd/display/dc/gpio/dce110/hw_factory_dce110.c
-> @@ -48,10 +48,6 @@
->  #define REGI(reg_name, block, id)\
->         mm ## block ## id ## _ ## reg_name
->
-> -#include "../hw_gpio.h"
-> -#include "../hw_ddc.h"
-> -#include "../hw_hpd.h"
-> -
->  #include "reg_helper.h"
->  #include "../hpd_regs.h"
->
-> --
-> 2.25.1
->
+Alex,
+
+thanks for the hint, but...
+
+Is this patch intended for kernel 5.11.8?
+
+I applied the patch against 5.11.8 and it is freezing again:
+
+
+M=C3=A4r 23 16:18:51 obelix kernel: [drm:amdgpu_dm_atomic_commit_tail=20
+[amdgpu]] *ERROR* Waiting for fences timed out!
+M=C3=A4r 23 16:18:51 obelix kernel: [drm:amdgpu_dm_atomic_commit_tail=20
+[amdgpu]] *ERROR* Waiting for fences timed out!
+M=C3=A4r 23 16:18:51 obelix kernel: [drm:amdgpu_job_timedout [amdgpu]]=20
+*ERROR* ring sdma0 timeout, signaled seq=3D615, emitted seq=3D617
+M=C3=A4r 23 16:18:51 obelix kernel: [drm:amdgpu_job_timedout [amdgpu]]=20
+*ERROR* Process information: process  pid 0 thread  pid 0
+M=C3=A4r 23 16:18:51 obelix kernel: amdgpu 0000:03:00.0: amdgpu: GPU rese=
+t begin!
+M=C3=A4r 23 16:18:51 obelix kernel: BUG: kernel NULL pointer dereference,=
+=20
+address: 0000000000000029
+M=C3=A4r 23 16:18:51 obelix kernel: #PF: supervisor read access in kernel=
+ mode
+M=C3=A4r 23 16:18:51 obelix kernel: #PF: error_code(0x0000) - not-present=
+ page
+M=C3=A4r 23 16:18:51 obelix kernel: PGD 0 P4D 0
+M=C3=A4r 23 16:18:51 obelix kernel: Oops: 0000 [#1] PREEMPT SMP NOPTI
+M=C3=A4r 23 16:18:51 obelix kernel: CPU: 12 PID: 178 Comm: kworker/12:1 N=
+ot=20
+tainted 5.11.8-arch1-1-custom #1
+M=C3=A4r 23 16:18:51 obelix kernel: Hardware name: Micro-Star Internation=
+al=20
+Co., Ltd. Bravo 17 A4DDR/MS-17FK, BIOS E17FKAMS.117 10/29/2020
+M=C3=A4r 23 16:18:51 obelix kernel: Workqueue: events drm_sched_job_timed=
+out=20
+[gpu_sched]
+M=C3=A4r 23 16:18:51 obelix kernel: RIP: 0010:kernel_queue_uninit+0xd/0xf=
+0=20
+[amdgpu]
+M=C3=A4r 23 16:18:51 obelix kernel: Code: ee 48 89 c7 e8 a4 f9 ff ff 84 c=
+0 0f=20
+84 e3 d3 1f 00 4c 89 e0 5d 41 5c 41 5d c3 0f 1f 00 0f 1f 44 00 00 55 48=20
+8b 47 10 48 89 fd <8b> 50 28 83 fa 02 74 78 83 fa 03 0f 84 b1 00 00 00=20
+48 8b 7f 08 4c
+M=C3=A4r 23 16:18:51 obelix kernel: RSP: 0018:ffffa35d806dfd40 EFLAGS: 00=
+010246
+M=C3=A4r 23 16:18:51 obelix kernel: RAX: 0000000000000001 RBX:=20
+ffff8b044c5ee000 RCX: 000000000080005b
+M=C3=A4r 23 16:18:51 obelix kernel: RDX: 000000000080005c RSI:=20
+0000000000000001 RDI: ffff8b044a877bc0
+M=C3=A4r 23 16:18:51 obelix kernel: RBP: ffff8b044a877bc0 R08:=20
+0000000000000001 R09: 0000000000000000
+M=C3=A4r 23 16:18:51 obelix kernel: R10: 0000000000000000 R11:=20
+ffffffffafccba00 R12: ffff8b044c5ee0d0
+M=C3=A4r 23 16:18:51 obelix kernel: R13: ffff8b044bf60000 R14:=20
+ffff8b04414a1000 R15: ffff8b04414a10c8
+M=C3=A4r 23 16:18:51 obelix kernel: FS:  0000000000000000(0000)=20
+GS:ffff8b075f900000(0000) knlGS:0000000000000000
+M=C3=A4r 23 16:18:51 obelix kernel: CS:  0010 DS: 0000 ES: 0000 CR0:=20
+0000000080050033
+M=C3=A4r 23 16:18:51 obelix kernel: CR2: 0000000000000029 CR3:=20
+00000001ab010000 CR4: 0000000000350ee0
+M=C3=A4r 23 16:18:51 obelix kernel: Call Trace:
+M=C3=A4r 23 16:18:51 obelix kernel:  stop_cpsch+0xa0/0xc0 [amdgpu]
+M=C3=A4r 23 16:18:51 obelix kernel:  kgd2kfd_suspend.part.0+0x2f/0x40 [am=
+dgpu]
+M=C3=A4r 23 16:18:51 obelix kernel:  kgd2kfd_pre_reset+0x3f/0x50 [amdgpu]=
+
+M=C3=A4r 23 16:18:51 obelix kernel:=20
+amdgpu_device_gpu_recover.cold+0x36e/0x95d [amdgpu]
+M=C3=A4r 23 16:18:51 obelix kernel:  amdgpu_job_timedout+0x121/0x140 [amd=
+gpu]
+M=C3=A4r 23 16:18:51 obelix kernel:  drm_sched_job_timedout+0x64/0xe0 [gp=
+u_sched]
+M=C3=A4r 23 16:18:51 obelix kernel:  process_one_work+0x214/0x3e0
+M=C3=A4r 23 16:18:51 obelix kernel:  worker_thread+0x4d/0x3d0
+M=C3=A4r 23 16:18:51 obelix kernel:  ? rescuer_thread+0x3c0/0x3c0
+M=C3=A4r 23 16:18:51 obelix kernel:  kthread+0x133/0x150
+M=C3=A4r 23 16:18:51 obelix kernel:  ? __kthread_bind_mask+0x60/0x60
+M=C3=A4r 23 16:18:51 obelix kernel:  ret_from_fork+0x22/0x30
+M=C3=A4r 23 16:18:51 obelix kernel: Modules linked in: rfcomm=20
+snd_hda_codec_realtek snd_hda_codec_generic ledtrig_audio=20
+snd_hda_codec_hdmi cmac algif_hash snd_hda_intel algif_skcipher=20
+snd_intel_dspcfg soundwire_intel af_alg soundwire_ge>
+M=C3=A4r 23 16:18:51 obelix kernel:  sr_mod cdrom uas usb_storage dm_cryp=
+t=20
+cbc encrypted_keys dm_mod trusted tpm crct10dif_pclmul crc32_pclmul=20
+crc32c_intel ghash_clmulni_intel aesni_intel crypto_simd cryptd=20
+glue_helper serio_raw ccp xhc>
+M=C3=A4r 23 16:18:51 obelix kernel: CR2: 0000000000000029
+M=C3=A4r 23 16:18:51 obelix kernel: ---[ end trace 8a72c5e07cbe6b63 ]---
+M=C3=A4r 23 16:18:51 obelix kernel: RIP: 0010:kernel_queue_uninit+0xd/0xf=
+0=20
+[amdgpu]
+M=C3=A4r 23 16:18:51 obelix kernel: Code: ee 48 89 c7 e8 a4 f9 ff ff 84 c=
+0 0f=20
+84 e3 d3 1f 00 4c 89 e0 5d 41 5c 41 5d c3 0f 1f 00 0f 1f 44 00 00 55 48=20
+8b 47 10 48 89 fd <8b> 50 28 83 fa 02 74 78 83 fa 03 0f 84 b1 00 00 00=20
+48 8b 7f 08 4c
+M=C3=A4r 23 16:18:51 obelix kernel: RSP: 0018:ffffa35d806dfd40 EFLAGS: 00=
+010246
+M=C3=A4r 23 16:18:51 obelix kernel: RAX: 0000000000000001 RBX:=20
+ffff8b044c5ee000 RCX: 000000000080005b
+M=C3=A4r 23 16:18:51 obelix kernel: RDX: 000000000080005c RSI:=20
+0000000000000001 RDI: ffff8b044a877bc0
+M=C3=A4r 23 16:18:51 obelix kernel: RBP: ffff8b044a877bc0 R08:=20
+0000000000000001 R09: 0000000000000000
+M=C3=A4r 23 16:18:51 obelix kernel: R10: 0000000000000000 R11:=20
+ffffffffafccba00 R12: ffff8b044c5ee0d0
+M=C3=A4r 23 16:18:51 obelix kernel: R13: ffff8b044bf60000 R14:=20
+ffff8b04414a1000 R15: ffff8b04414a10c8
+M=C3=A4r 23 16:18:51 obelix kernel: FS:  0000000000000000(0000)=20
+GS:ffff8b075f900000(0000) knlGS:0000000000000000
+M=C3=A4r 23 16:18:51 obelix kernel: CS:  0010 DS: 0000 ES: 0000 CR0:=20
+0000000080050033
+M=C3=A4r 23 16:18:51 obelix kernel: CR2: 0000000000000029 CR3:=20
+0000000105594000 CR4: 0000000000350ee0
+M=C3=A4r 23 16:19:10 obelix systemd[1]: systemd-hostnamed.service:=20
+Deactivated successfully.
+M=C3=A4r 23 16:19:10 obelix audit[1]: SERVICE_STOP pid=3D1 uid=3D0=20
+auid=3D4294967295 ses=3D4294967295 msg=3D'unit=3Dsystemd-hostnamed=20
+comm=3D"systemd" exe=3D"/usr/lib/systemd/systemd" hostname=3D? addr=3D?=20
+terminal=3D? res=3Dsuccess'
+M=C3=A4r 23 16:19:10 obelix kernel: [drm:amdgpu_dm_atomic_commit_tail=20
+[amdgpu]] *ERROR* Waiting for fences timed out!
+
+Greetings
+Harvey
+
+Am 22.03.21 um 20:22 schrieb Alex Deucher:
+> On Thu, Mar 18, 2021 at 8:19 AM Harvey <harv@gmx.de> wrote:
+>>
+>> Alex,
+>>
+>> I waited for kernel 5.11.7 to hit our repos yesterday evening and test=
+ed
+>> again:
+>>
+>> 1. The suspend issue is gone - suspend and resume now work as expected=
+=2E
+>>
+>> 2. System hibernation seems to be a different beast - still freezing
+>=20
+> You need this patch:
+> https://gitlab.freedesktop.org/agd5f/linux/-/commit/711c13547aad08f2cfe=
+996e0cddc3d56f1233081
+>=20
+> Alex
 > _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+>=20
+
+--=20
+I am root. If you see me laughing, you'd better have a backup!
+
+
+--BfJKeOMIH72m25XEBJN1VmhuKvkEcAkDp--
+
+--zLZGM7OOWeRpcu8S0zaQgfOlkoT6YsycL
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wmMEABEIACMWIQRSRNvmxYqoNs6vm0SLlqqYsFRKCQUCYFoIugUDAAAAAAAKCRCLlqqYsFRKCT0m
+AJ0d1lQ71Mu83wQsiGMjfErXcRK37wCeIlrjUY5d3EihkvOWWstuHYYAJI8=
+=nB29
+-----END PGP SIGNATURE-----
+
+--zLZGM7OOWeRpcu8S0zaQgfOlkoT6YsycL--
+
+--===============1509580420==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============1509580420==--
