@@ -2,41 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2B60347433
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Mar 2021 10:11:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9668347936
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Mar 2021 14:05:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 022296E42C;
-	Wed, 24 Mar 2021 09:11:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEE286E9F9;
+	Wed, 24 Mar 2021 13:05:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 132CC6E974
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 09:11:53 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id 3A94AC800AE
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 10:11:49 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
-Received: from srv6.fidu.org ([127.0.0.1])
- by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id Ngeee4lFGhq9 for <amd-gfx@lists.freedesktop.org>;
- Wed, 24 Mar 2021 10:11:49 +0100 (CET)
-Received: from [IPv6:2003:e3:7f2c:fb00:2f7:3bb3:1f:bbc0]
- (p200300e37f2cFB0002f73bB3001fbbc0.dip0.t-ipconnect.de
- [IPv6:2003:e3:7f2c:fb00:2f7:3bb3:1f:bbc0])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPSA id 18438C800AB
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 10:11:49 +0100 (CET)
-To: amd-gfx@lists.freedesktop.org
-From: Werner Sembach <wse@tuxedocomputers.com>
-Subject: Color mode exposed to user space?
-Message-ID: <e557c681-4218-dbe3-4e92-f6eaf352b614@tuxedocomputers.com>
-Date: Wed, 24 Mar 2021 10:11:46 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+Received: from szxga05-in.huawei.com (szxga05-in.huawei.com [45.249.212.191])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 035436E993;
+ Wed, 24 Mar 2021 09:17:14 +0000 (UTC)
+Received: from DGGEMS406-HUB.china.huawei.com (unknown [172.30.72.59])
+ by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4F52cb6gM8zPlk3;
+ Wed, 24 Mar 2021 17:14:39 +0800 (CST)
+Received: from localhost.localdomain (10.69.192.56) by
+ DGGEMS406-HUB.china.huawei.com (10.3.19.206) with Microsoft SMTP Server id
+ 14.3.498.0; Wed, 24 Mar 2021 17:17:07 +0800
+From: Tian Tao <tiantao6@hisilicon.com>
+To: <airlied@linux.ie>, <daniel@ffwll.ch>
+Subject: [PATCH drm/amdgpu 0/2] Convert sysfs sprintf/snprintf family to
+ sysfs_emit 
+Date: Wed, 24 Mar 2021 17:17:39 +0800
+Message-ID: <1616577461-18556-1-git-send-email-tiantao6@hisilicon.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Language: en-US
+X-Originating-IP: [10.69.192.56]
+X-CFilter-Loop: Reflected
+X-Mailman-Approved-At: Wed, 24 Mar 2021 13:05:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,21 +40,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+Use the generic sysfs_emit() function to take place of
+snprintf/scnprintf, to avoid buffer overrun.
 
-is the information which color mode is currently in used for a display (RGB, YCbCr444, or YCbCr420) exposed to user space somewhere?
+Tian Tao (2):
+  drm/amdgpu: Convert sysfs sprintf/snprintf family to sysfs_emit
+  drm/amd/pm: Convert sysfs sprintf/snprintf family to sysfs_emit
 
-If no: Where would be the best place to put code to expose it to sysfs?
+ drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c   |  8 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c  |  6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c      |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c      |  8 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 32 +++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c     |  4 +-
+ drivers/gpu/drm/amd/amdgpu/df_v3_6.c         |  2 +-
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c           | 88 ++++++++++++++--------------
+ 9 files changed, 73 insertions(+), 79 deletions(-)
 
-Thanks in advance,
-
-Werner Sembach
-
+-- 
+2.7.4
 
 _______________________________________________
 amd-gfx mailing list
