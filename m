@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9CB934B1D9
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Mar 2021 23:06:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55F2734B1DB
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Mar 2021 23:06:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2585A6F4B8;
-	Fri, 26 Mar 2021 22:06:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D833D6F4BA;
+	Fri, 26 Mar 2021 22:06:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2063.outbound.protection.outlook.com [40.107.94.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE356F4B8
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 22:06:06 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2076.outbound.protection.outlook.com [40.107.243.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAF7B6F4BA
+ for <amd-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 22:06:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZuXw7YCabIXK3YYIlwOsP0yD0d4M2r2LWHu3Uidx4EZNdVIsweFH3/MKXZHSSlEBZesf03tsXKHjk6dMoXzqdBOVjljBlikin+rPpQdAf/ms3dSyBMePtvUrH+tJroLWfwWP25LW6xEmACbWHd22tKQC58XbQmd2FRLvI83Sj33zcZG5j1zj9dImwo1RWdearYkTm/PqR8o1v6N055cEetgTPSz4UAFZ5hY7DvEWiJvE87sThiGLptSW+i44QN5bgESO+nfEy0sxMoUjqWymTE9n1c6mPdLstjuSwtZB3IkUqJDb9G0UgftNvs1wR0BWSp31atSYjeMivdjZyOfcLA==
+ b=MCLla+6eiZYoUkWE1BEywg0u1XgYrTma6nOK+3tOyK26lJZg6GQEm2YRs+YOd0uKgYleVsPgW9SfU5So+jeobxQq4tmoANdUJ0X6/b9bj+u3NfrdTC+/4zwY2pfszRG7r1SdZFjfbzGXoSiT12UWyrEMiHc5FphwdQOiO9evCQBGhAZNpaD5RjeZulan61Q6mLvvxtf4inYr3jFDtjdSkIPkJDiwKYNiVcaIyA0vWwKpbKuGRlxcsh1NXmGX405EqKK2fGCubuEkjkj3qsc8kacesWJz/1Obx3UlbBYw4fpGhglA+votK1Lrz1eqgmnCV0IaVDUdMu/cX98QWQB+uw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XQ+gqh0t7kynpy4k+fs0fdQco0reqHTnOdHNS4srXWw=;
- b=XgbR/g35d2RmhNNDSj/mOH1/QEjjx8N47IPuZ8gONuy1U0Whd3hNC3K592eZUf8+51Hxc4DB/PPwhmwhMM7LMdyRcDukVjAajFACtuBYLlPdMPNZNDK61Yfq3LF5wIvKe3dlY/m84iZUnBWgk9Gr4SHi9drXFVSH0RpqKfHegrOnaam1l154f1jssNIbxbvG3/UmBtdz6RVLmySZpke+fblYe5BhIvgjErmX5VzS4C1BcpDtVPP8ucKWXfpYwMbBJqIxYba3DXzddUwkaKwtiHaQRS+QY3iPpyrV9Tx9cVWAmWyuHBVzsE/PKjVHwTJxdLO//sAtkBOO0XV2af+7kA==
+ bh=q7DBe+GFuZ7+3a+pKWC6tVjVrZ571yFK9Qg8xIE98Pg=;
+ b=CFJYmGmKPhp/6eaL8QqLJp2VAs74nMGfGmFUvNeC+SHQ5L/gd4/X0/MtfZZLmqIiueXf4KkXUZsavAaznrdYb8KRbX3JdG3+bFWc0tGiAlvR0x53VN6uRoqy2pjv45Y6ZTwNfX8xDQEdKCnN9kYGy6xFN2k3VvRvdXu/ZKaE9g+JQUCfO0Ev0n6vyXXogAnhoaPIJ/T/GG0SxtMsiuzGVbUA4LyZck4trKMY5/JTf7Ig2uP7tplYZcpnYKGi8zVoBmu0i3HnD2VFbEUCTx8+pdJc/MtTS+b0jb2ckSn8YOaRr0EwxEIeS0Ne7HixwlG3glK+f6bvBAM/uSf9A+Mf1g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XQ+gqh0t7kynpy4k+fs0fdQco0reqHTnOdHNS4srXWw=;
- b=hrlrHGtNcoXqnziaTEMCPWkCazGDz03TyZBCWNp6Tle3Cq50nekYVz+c3AoZ4YbwJ51wE6d9z+ylR6ikeIqyb0i2XhhnZiGdYXEw/VgvU9PRNZwnWqsvladrjVkUkmcEps0pRF8fCUzgI8v7di5cAkUoimOv4mKOP479V7lZuIw=
-Received: from DM5PR16CA0035.namprd16.prod.outlook.com (2603:10b6:4:15::21) by
- DM6PR12MB2923.namprd12.prod.outlook.com (2603:10b6:5:180::17) with
+ bh=q7DBe+GFuZ7+3a+pKWC6tVjVrZ571yFK9Qg8xIE98Pg=;
+ b=xfy31OkkCZWZf8r4UQA41JC5B1IPvjY7TGivID7ucq2lbTxGpsnWKcaA4N8vZVoj7ifPoZL0ufjhwwkfUY2qynR1grPjsje+rucamXefjJusOnK6h+Nlx/g5Lvto8QCNZQgWXont9zbRCAVUgau1bMYRCbRb99VAW5c8NZXXvvY=
+Received: from DM5PR16CA0043.namprd16.prod.outlook.com (2603:10b6:4:15::29) by
+ BN8PR12MB3554.namprd12.prod.outlook.com (2603:10b6:408:65::13) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3955.18; Fri, 26 Mar 2021 22:06:04 +0000
+ 15.20.3933.32; Fri, 26 Mar 2021 22:06:05 +0000
 Received: from DM6NAM11FT035.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:15:cafe::94) by DM5PR16CA0035.outlook.office365.com
- (2603:10b6:4:15::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25 via Frontend
- Transport; Fri, 26 Mar 2021 22:06:03 +0000
+ (2603:10b6:4:15:cafe::5e) by DM5PR16CA0043.outlook.office365.com
+ (2603:10b6:4:15::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.24 via Frontend
+ Transport; Fri, 26 Mar 2021 22:06:05 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,19 +48,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT035.mail.protection.outlook.com (10.13.172.100) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3955.18 via Frontend Transport; Fri, 26 Mar 2021 22:06:03 +0000
+ 15.20.3955.18 via Frontend Transport; Fri, 26 Mar 2021 22:06:05 +0000
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Fri, 26 Mar
- 2021 17:06:02 -0500
+ 2021 17:06:04 -0500
 Received: from Bumblebee.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2106.2 via Frontend
- Transport; Fri, 26 Mar 2021 17:06:01 -0500
+ Transport; Fri, 26 Mar 2021 17:06:03 -0500
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 10/21] drm/amd/display: Interface for LTTPR interop
-Date: Fri, 26 Mar 2021 18:05:23 -0400
-Message-ID: <20210326220534.918023-11-Anson.Jacob@amd.com>
+Subject: [PATCH 11/21] drm/amd/display: Enumerate LTTPR modes
+Date: Fri, 26 Mar 2021 18:05:24 -0400
+Message-ID: <20210326220534.918023-12-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210326220534.918023-1-Anson.Jacob@amd.com>
 References: <20210326220534.918023-1-Anson.Jacob@amd.com>
@@ -68,27 +68,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 15922451-5ec9-436a-b082-08d8f0a358d6
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2923:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB29239E86ADB9DA3D18631823EB619@DM6PR12MB2923.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Office365-Filtering-Correlation-Id: 48586be9-aa93-4f43-5e5a-08d8f0a35a09
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3554:
+X-Microsoft-Antispam-PRVS: <BN8PR12MB35549DE245C6D4605A3FB38AEB619@BN8PR12MB3554.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hnmTQhxlfdF4sPDOediBqOQmDLX0nXm6qFsvOlhh/YjoccGLWddi827fIxC+vw16X/nu3jdTT1ssiCrXe5hNVDN53vf5CM+AiF8E2pa2Ml6l27E1xf7xHtsNXsOkr/ksQ/KFCs+4y8ghA5e57n7HYL3EKfk1rAnr3SMivtKUiraZl6hf8o2uDWX0mkOJ8cJ1wbEpF4Fk0dirZpwAl1YlvXBFDT7+EU1h4KMtCoyqH1X+/0w4xt3FzDw/Pu4ufhL/kOALYVIv4ZsA7sAK3+IOFYTqQpMrUPOiBeAL5AwP7kUM+aBmSIB5ZlxXGWhcYmiLH1VIW+QMdNppQ/HWToz8Vzb+UuNO0zV8V57PHh1mMa2aG795V4F6X3JbMZxMsaChsot7eQlOV3cx4Mk+m48e/sBl+piovmkdRBXjmheM5P8PxYme0s+aHJUyJqYvbMGJSElm9K3GEX5S8vEuxqZtkxGvK/qSUPnkMLOXvGcobEkztyg2QCXXXlBAsAXAyIGRL0aDfQh1codbWtW5sbOVbcQdB7nGFcQ808ZeoR2Q25XYTbxaZbqL+i6JPgZXQkY/MJBmvgqUyTg21DC2QV54V3q7wvq7MLsbWOVVjTXOHIx5fLcncYFbJRM76M6EGjxQ05EYL+Bc5X5Mrsi1VX5UMX3wo1gvTlMGQSMG+A0jRwuZu7bSn0sEehcBaCHCmVEr
+X-Microsoft-Antispam-Message-Info: +GjPNyzlv8F2sRBDPIJny7yXO4cY7h7hqxEnVEP+GvlypjjJIr03sdO5MyQ9OKgUX1KCPcLYyuZouea2Dwb0ZQo2NL6hUYYpIpdQXEZqWj+MGc9okqKxKWQwHfC08SMiuLFo+MLX7L7kWy3bOyzeH7AE8nbmd8oS2oCUkvZ0pvECTRBuCYrnH84p63td0RGMpv2LTiOw+b91yovjdcfRdDJFMUEWuYpeHXbJorl2tXG4vM+o0h/0VhM48pTh691tISlDH0lwsb+sZX0EKUzVHlDmgYo6eS4DPIEX62q96JRudnkJnPDec6gbRCkFISsaSIN+6t/NfjgKTBV7j3M+nA/2VNq/EYCEgNm340xzt58nhSAtUNalYiuC/ErQnZqJmou3QJjO/9WjUBaqxoWG26lSzDAWBIYvSu+4tc+1KbbekXt2QXSO0TZNpcB31/B8tk3TDjvZIQGo8xwgcWJVlP+pFDMN3UsvJyAVlXqPCvpY7ml9EHO3UA8+gbjtN2gUzOGL2ksSSp9TPl3KGYBK9oYfBKz+xaYEVaavQOyy/mKXBfJ/brbrO3Vy+UOt3MtEWrHMo2xkdpWMkGsYMKMOmCrOZCQAFb+pWLWMIWCvJWlsLi8j8D2f0t04NQ7gk1dHTjpLeXT3mMsL3iIbZTjzfb7GSx4dKdfCnyUtx/2Sx6RBoVu3pFUGfWlv0cvv9F+/
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(396003)(39860400002)(136003)(376002)(346002)(46966006)(36840700001)(54906003)(26005)(4326008)(86362001)(6916009)(356005)(186003)(7696005)(316002)(81166007)(1076003)(5660300002)(478600001)(8936002)(82310400003)(6666004)(47076005)(8676002)(36860700001)(426003)(2616005)(82740400003)(336012)(70586007)(70206006)(2906002)(36756003)(83380400001)(36900700001);
+ SFS:(4636009)(376002)(39860400002)(396003)(346002)(136003)(46966006)(36840700001)(70586007)(426003)(86362001)(83380400001)(4326008)(336012)(2616005)(356005)(6666004)(316002)(70206006)(2906002)(478600001)(82740400003)(8676002)(36756003)(54906003)(82310400003)(6916009)(7696005)(186003)(36860700001)(26005)(5660300002)(8936002)(1076003)(47076005)(81166007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2021 22:06:03.2796 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15922451-5ec9-436a-b082-08d8f0a358d6
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2021 22:06:05.2884 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48586be9-aa93-4f43-5e5a-08d8f0a35a09
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT035.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2923
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3554
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,194 +112,167 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Wesley Chalmers <Wesley.Chalmers@amd.com>
 
 [WHY]
-The logic to toggle LTTPR transparent/non-transparent requires 2 flags
-provided by BIOS
+There are three possible modes for LTTPR:
+- Non-LTTPR mode, where AUX timeout is 400 us and no per-hop link
+training is done
+- LTTPR Transparent mode, where AUX timeout is 3200 us and no per-hop
+link training is done
+- LTTPR Non-Transparent mode, where AUX timeout is 3200 us and per-hop
+link training is done
 
 [HOW]
-Repurpose the interface to get dce caps so both LTTPR querying functions
-can use them.
+Use an enum instead of a bool to track LTTPR state; modify comparisons
+accordingly.
 
 Signed-off-by: Wesley Chalmers <Wesley.Chalmers@amd.com>
 Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
 ---
- .../drm/amd/display/dc/bios/bios_parser2.c    | 75 ++++++++++++++++---
- .../gpu/drm/amd/display/dc/dc_bios_types.h    |  3 +
- drivers/gpu/drm/amd/include/atomfirmware.h    |  1 +
- 3 files changed, 67 insertions(+), 12 deletions(-)
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 33 +++++++++++++------
+ .../drm/amd/display/dc/core/dc_link_hwss.c    |  2 +-
+ drivers/gpu/drm/amd/display/dc/dc_link.h      |  9 ++++-
+ 3 files changed, 32 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-index 2ee0c6fc069a..d79f4fe06c47 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-@@ -916,7 +916,7 @@ static enum bp_result bios_parser_get_soc_bb_info(
- 	return result;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 962e88dd8dda..209286357867 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -284,7 +284,7 @@ static uint8_t dc_dp_initialize_scrambling_data_symbols(
+ 
+ static inline bool is_repeater(struct dc_link *link, uint32_t offset)
+ {
+-	return (link->lttpr_non_transparent_mode && offset != 0);
++	return (link->lttpr_mode == LTTPR_MODE_NON_TRANSPARENT) && (offset != 0);
  }
  
--static enum bp_result get_lttpr_caps_v4_1(
-+static enum bp_result get_disp_caps_v4_1(
- 	struct bios_parser *bp,
- 	uint8_t *dce_caps)
- {
-@@ -935,12 +935,12 @@ static enum bp_result get_lttpr_caps_v4_1(
- 	if (!disp_cntl_tbl)
- 		return BP_RESULT_BADBIOSTABLE;
+ static void dpcd_set_lt_pattern_and_lane_settings(
+@@ -1072,7 +1072,7 @@ static enum link_training_result perform_clock_recovery_sequence(
+ 		/* 3. wait receiver to lock-on*/
+ 		wait_time_microsec = lt_settings->cr_pattern_time;
  
--	*dce_caps = !!(disp_cntl_tbl->display_caps & DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE);
-+	*dce_caps = disp_cntl_tbl->display_caps;
+-		if (link->lttpr_non_transparent_mode)
++		if (link->lttpr_mode == LTTPR_MODE_NON_TRANSPARENT)
+ 			wait_time_microsec = TRAINING_AUX_RD_INTERVAL;
  
- 	return result;
+ 		wait_for_training_aux_rd_interval(
+@@ -1326,7 +1326,17 @@ static uint8_t convert_to_count(uint8_t lttpr_repeater_count)
+ 	return 0; // invalid value
  }
  
--static enum bp_result get_lttpr_caps_v4_2(
-+static enum bp_result get_disp_caps_v4_2(
- 	struct bios_parser *bp,
- 	uint8_t *dce_caps)
- {
-@@ -959,12 +959,12 @@ static enum bp_result get_lttpr_caps_v4_2(
- 	if (!disp_cntl_tbl)
- 		return BP_RESULT_BADBIOSTABLE;
- 
--	*dce_caps = !!(disp_cntl_tbl->display_caps & DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE);
-+	*dce_caps = disp_cntl_tbl->display_caps;
- 
- 	return result;
- }
- 
--static enum bp_result get_lttpr_caps_v4_3(
-+static enum bp_result get_disp_caps_v4_3(
- 	struct bios_parser *bp,
- 	uint8_t *dce_caps)
- {
-@@ -983,12 +983,12 @@ static enum bp_result get_lttpr_caps_v4_3(
- 	if (!disp_cntl_tbl)
- 		return BP_RESULT_BADBIOSTABLE;
- 
--	*dce_caps = !!(disp_cntl_tbl->display_caps & DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE);
-+	*dce_caps = disp_cntl_tbl->display_caps;
- 
- 	return result;
- }
- 
--static enum bp_result get_lttpr_caps_v4_4(
-+static enum bp_result get_disp_caps_v4_4(
- 	struct bios_parser *bp,
- 	uint8_t *dce_caps)
- {
-@@ -1007,7 +1007,52 @@ static enum bp_result get_lttpr_caps_v4_4(
- 	if (!disp_cntl_tbl)
- 		return BP_RESULT_BADBIOSTABLE;
- 
--	*dce_caps = !!(disp_cntl_tbl->display_caps & DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE);
-+	*dce_caps = disp_cntl_tbl->display_caps;
+-static void configure_lttpr_mode(struct dc_link *link)
++static void configure_lttpr_mode_transparent(struct dc_link *link)
++{
++	uint8_t repeater_mode = DP_PHY_REPEATER_MODE_TRANSPARENT;
 +
-+	return result;
++	core_link_write_dpcd(link,
++			DP_PHY_REPEATER_MODE,
++			(uint8_t *)&repeater_mode,
++			sizeof(repeater_mode));
 +}
 +
-+static enum bp_result bios_parser_get_lttpr_interop(
-+	struct dc_bios *dcb,
-+	uint8_t *dce_caps)
-+{
-+	struct bios_parser *bp = BP_FROM_DCB(dcb);
-+	enum bp_result result = BP_RESULT_UNSUPPORTED;
-+	struct atom_common_table_header *header;
-+	struct atom_data_revision tbl_revision;
-+
-+	if (!DATA_TABLES(dce_info))
-+		return BP_RESULT_UNSUPPORTED;
-+
-+	header = GET_IMAGE(struct atom_common_table_header,
-+						DATA_TABLES(dce_info));
-+	get_atom_data_table_revision(header, &tbl_revision);
-+	switch (tbl_revision.major) {
-+	case 4:
-+		switch (tbl_revision.minor) {
-+		case 1:
-+			result = get_disp_caps_v4_1(bp, dce_caps);
-+			*dce_caps = !!(*dce_caps & DCE_INFO_CAPS_VBIOS_LTTPR_TRANSPARENT_ENABLE);
-+			break;
-+		case 2:
-+			result = get_disp_caps_v4_2(bp, dce_caps);
-+			*dce_caps = !!(*dce_caps & DCE_INFO_CAPS_VBIOS_LTTPR_TRANSPARENT_ENABLE);
-+			break;
-+		case 3:
-+			result = get_disp_caps_v4_3(bp, dce_caps);
-+			*dce_caps = !!(*dce_caps & DCE_INFO_CAPS_VBIOS_LTTPR_TRANSPARENT_ENABLE);
-+			break;
-+		case 4:
-+			result = get_disp_caps_v4_4(bp, dce_caps);
-+			*dce_caps = !!(*dce_caps & DCE_INFO_CAPS_VBIOS_LTTPR_TRANSPARENT_ENABLE);
-+			break;
-+		default:
-+			break;
-+		}
-+		break;
-+	default:
-+		break;
-+	}
++static void configure_lttpr_mode_non_transparent(struct dc_link *link)
+ {
+ 	/* aux timeout is already set to extended */
+ 	/* RESET/SET lttpr mode to enable non transparent mode */
+@@ -1346,7 +1356,7 @@ static void configure_lttpr_mode(struct dc_link *link)
+ 		link->dpcd_caps.lttpr_caps.mode = repeater_mode;
+ 	}
  
- 	return result;
- }
-@@ -1031,16 +1076,20 @@ static enum bp_result bios_parser_get_lttpr_caps(
- 	case 4:
- 		switch (tbl_revision.minor) {
- 		case 1:
--			result = get_lttpr_caps_v4_1(bp, dce_caps);
-+			result = get_disp_caps_v4_1(bp, dce_caps);
-+			*dce_caps = !!(*dce_caps & DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE);
- 			break;
- 		case 2:
--			result = get_lttpr_caps_v4_2(bp, dce_caps);
-+			result = get_disp_caps_v4_2(bp, dce_caps);
-+			*dce_caps = !!(*dce_caps & DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE);
- 			break;
- 		case 3:
--			result = get_lttpr_caps_v4_3(bp, dce_caps);
-+			result = get_disp_caps_v4_3(bp, dce_caps);
-+			*dce_caps = !!(*dce_caps & DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE);
- 			break;
- 		case 4:
--			result = get_lttpr_caps_v4_4(bp, dce_caps);
-+			result = get_disp_caps_v4_4(bp, dce_caps);
-+			*dce_caps = !!(*dce_caps & DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE);
- 			break;
- 		default:
- 			break;
-@@ -2670,6 +2719,8 @@ static const struct dc_vbios_funcs vbios_funcs = {
- 	.get_disp_connector_caps_info = bios_parser_get_disp_connector_caps_info,
+-	if (link->lttpr_non_transparent_mode) {
++	if (link->lttpr_mode == LTTPR_MODE_NON_TRANSPARENT) {
  
- 	.get_lttpr_caps = bios_parser_get_lttpr_caps,
-+
-+	.get_lttpr_interop = bios_parser_get_lttpr_interop,
+ 		DC_LOG_HW_LINK_TRAINING("%s\n Set LTTPR to Non Transparent Mode\n", __func__);
+ 
+@@ -1562,8 +1572,10 @@ enum link_training_result dc_link_dp_perform_link_training(
+ 			&lt_settings);
+ 
+ 	/* Configure lttpr mode */
+-	if (link->lttpr_non_transparent_mode)
+-		configure_lttpr_mode(link);
++	if (link->lttpr_mode == LTTPR_MODE_NON_TRANSPARENT)
++		configure_lttpr_mode_non_transparent(link);
++	else if (link->lttpr_mode == LTTPR_MODE_TRANSPARENT)
++		configure_lttpr_mode_transparent(link);
+ 
+ 	if (link->ctx->dc->work_arounds.lt_early_cr_pattern)
+ 		start_clock_recovery_pattern_early(link, &lt_settings, DPRX);
+@@ -1578,7 +1590,7 @@ enum link_training_result dc_link_dp_perform_link_training(
+ 
+ 	dp_set_fec_ready(link, fec_enable);
+ 
+-	if (link->lttpr_non_transparent_mode) {
++	if (link->lttpr_mode == LTTPR_MODE_NON_TRANSPARENT) {
+ 
+ 		/* 2. perform link training (set link training done
+ 		 *  to false is done as well)
+@@ -1899,7 +1911,7 @@ static struct dc_link_settings get_max_link_cap(struct dc_link *link)
+ 	 * account for lttpr repeaters cap
+ 	 * notes: repeaters do not snoop in the DPRX Capabilities addresses (3.6.3).
+ 	 */
+-	if (link->lttpr_non_transparent_mode) {
++	if (link->lttpr_mode == LTTPR_MODE_NON_TRANSPARENT) {
+ 		if (link->dpcd_caps.lttpr_caps.max_lane_count < max_link_cap.lane_count)
+ 			max_link_cap.lane_count = link->dpcd_caps.lttpr_caps.max_lane_count;
+ 
+@@ -2057,7 +2069,7 @@ bool dp_verify_link_cap(
+ 	max_link_cap = get_max_link_cap(link);
+ 
+ 	/* Grant extended timeout request */
+-	if (link->lttpr_non_transparent_mode && link->dpcd_caps.lttpr_caps.max_ext_timeout > 0) {
++	if ((link->lttpr_mode == LTTPR_MODE_NON_TRANSPARENT) && (link->dpcd_caps.lttpr_caps.max_ext_timeout > 0)) {
+ 		uint8_t grant = link->dpcd_caps.lttpr_caps.max_ext_timeout & 0x80;
+ 
+ 		core_link_write_dpcd(link, DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT, &grant, sizeof(grant));
+@@ -3529,7 +3541,8 @@ static bool retrieve_link_cap(struct dc_link *link)
+ 	}
+ 
+ 	/* decide lttpr non transparent mode */
+-	link->lttpr_non_transparent_mode = is_lttpr_present;
++	/*This is a temporary placeholder for LTTPR logic. More comprehensive logic will be added in a future change*/
++	link->lttpr_mode = is_lttpr_present ? LTTPR_MODE_NON_TRANSPARENT : LTTPR_MODE_NON_LTTPR;
+ 
+ 	if (!is_lttpr_present)
+ 		dc_link_aux_try_to_configure_timeout(link->ddc, LINK_AUX_DEFAULT_TIMEOUT_PERIOD);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
+index 124ce215fca5..22fe19ee842d 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
+@@ -302,7 +302,7 @@ void dp_set_hw_lane_settings(
+ {
+ 	struct link_encoder *encoder = link->link_enc;
+ 
+-	if (link->lttpr_non_transparent_mode && !is_immediate_downstream(link, offset))
++	if ((link->lttpr_mode == LTTPR_MODE_NON_TRANSPARENT) && !is_immediate_downstream(link, offset))
+ 		return;
+ 
+ 	/* call Encoder to set lane settings */
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
+index c50ef5a909a6..7b927e634279 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_link.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
+@@ -35,6 +35,13 @@ enum dc_link_fec_state {
+ 	dc_link_fec_ready,
+ 	dc_link_fec_enabled
  };
++
++enum lttpr_mode {
++	LTTPR_MODE_NON_LTTPR,
++	LTTPR_MODE_TRANSPARENT,
++	LTTPR_MODE_NON_TRANSPARENT,
++};
++
+ struct dc_link_status {
+ 	bool link_active;
+ 	struct dpcd_caps *dpcd_caps;
+@@ -100,7 +107,7 @@ struct dc_link {
+ 	bool link_state_valid;
+ 	bool aux_access_disabled;
+ 	bool sync_lt_in_progress;
+-	bool lttpr_non_transparent_mode;
++	enum lttpr_mode lttpr_mode;
+ 	bool is_internal_display;
  
- static bool bios_parser2_construct(
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
-index 1b957c60156b..67abda44eb1f 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
-@@ -153,6 +153,9 @@ struct dc_vbios_funcs {
- 	enum bp_result (*get_lttpr_caps)(
- 			struct dc_bios *dcb,
- 			uint8_t *dce_caps);
-+	enum bp_result (*get_lttpr_interop)(
-+			struct dc_bios *dcb,
-+			uint8_t *dce_caps);
- };
- 
- struct bios_registers {
-diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h b/drivers/gpu/drm/amd/include/atomfirmware.h
-index 82b3cd89b383..c77ed38c20fb 100644
---- a/drivers/gpu/drm/amd/include/atomfirmware.h
-+++ b/drivers/gpu/drm/amd/include/atomfirmware.h
-@@ -1079,6 +1079,7 @@ enum dce_info_caps_def
-   DCE_INFO_CAPS_ENABLE_INTERLAC_TIMING   =0x08,
-   // only for VBIOS
-   DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE	 =0x20,
-+  DCE_INFO_CAPS_VBIOS_LTTPR_TRANSPARENT_ENABLE = 0x40,
- };
- 
- /* 
+ 	/* TODO: Rename. Flag an endpoint as having a programmable mapping to a
 -- 
 2.25.1
 
