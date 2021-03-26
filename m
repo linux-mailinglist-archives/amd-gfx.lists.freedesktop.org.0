@@ -2,95 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E58BD34B1CE
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Mar 2021 23:05:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85BD934B1D0
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Mar 2021 23:05:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51AFE6F4A4;
-	Fri, 26 Mar 2021 22:05:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 138AB6F4A9;
+	Fri, 26 Mar 2021 22:05:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam08on2042.outbound.protection.outlook.com [40.107.102.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 598026F4A4
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 22:05:42 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2070.outbound.protection.outlook.com [40.107.237.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE21D6F4A8
+ for <amd-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 22:05:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jDyL94AuLUSnhfJTKTT4uuJ6Rn+iyeqr1oLMh8uNH5mg9cX91m6TSCJgMXKfKmrM6gQPBeM/Zc+MPzaqjSZFzCaxkztP1Exq6yl6ZXHfDL5tb0Mp4iBt+D8oupJm47O1D4VJ9imTRPZakTPnixYfOahB9/WuwhA+8fBAWi5CxQ6a/B/30fsIp56nJj+26cnOORt0gIXBAwDa0CXL/YAJkQzwyAq1H8yDcnLSsMGsPapSFwbOUYPurxkPuMG/YWhP0H6FwgRR++VJeAhxvgFN/FhGnxmwLzM6aBmqxuoUu1jFp6LzBaW7AGjKE1wfJ7EJ4giOz1xI51rtoSsP+kRXTg==
+ b=dMmZHDiXpwG3M6F612/zSntrleTsrnzaTe2kv5AjvHiLkSmFTW52JUM8qQI08LLwUhG+BJ+KCV/S0QrmGwSlGxb+2FXqLrE5yuPbvP3UQmXQFelzzhkp20qmP6J9NK0vxZWIggte9ZqdzHs+H4d/clHDviWg81817p87LjXx9Skc8O7vJGnwkB/YI3TU0tYLDqfv756RgP++ufbz6XpbSuYuUIIxPkLmz73JfOch687vn5kGJdqx7hHBBzfORWpYR4NNLc269RLZR2KdqMw0Ee9qvuaWfzmAOVI9PPAt5JWGcEHBh022t5kvOFzLI+KVfaisCRd6n+aFgRhp/twLTQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X4CVXUjs4RfyTEb3GqmlzSoAKAMURiECv5E7F67Mey4=;
- b=GD/TDhbuUaTJQQ3yQOgojJf8dBZR7VrUXpV0EycI0myH+rjs1lx+1rXM7gH3Aj7g06mDS279WZvNMt24d1qYUTZ2SsMyRheY2V/M/lAs8n8HxsPTNr3eo3UMLEauHtZMPRwfMiTaf3lD+tsM9CBgzXhMOsxZ8lf9zkhPI2crCkD9ZSPfF3x4WR6QcTbPCfDeWVaVOLHuXW6YEiJrV9ukFYXeDXs5V+/W+0eW97sq2Voujb9PexELKzd4z8mKAP39RgvIqwVGkX6X8vDQPPeb93OaYnMh5at8nhdrms6B+Y26eq+fve7WspJfQP/iVZiAUfElEFY2uh9yDLA1yn53yQ==
+ bh=3raDSY5Iln6AXemSrpYDtv0tbWkrLOaUdUU7E/c6+0Q=;
+ b=aksCWiRaLMrNQQM52qRC2oYA1PAsTW6Llq2PgOrlqJ5UAqp2H8DjwQVUwD3z9cUNTBJOwDaMVrWtQr0hEAvNPlBQ8ZMHUl/QjcIU2jiz8vob5HClnlLu42pAjuPGh5OB04cjf6eaa/PQIaUmHZ4ohOT4iatSXCA3bTksfCbGfBhx0RXruhkBMLm6YouQLAZ6mjvWcxN/AMfRzV3pT9wsu0r/hxba5a++hWgWCNqfcCQi2eux11XOza4670WorFHQMGRay9pMt4uvT+RHyqJnjIUhuZdy0aXcCLmq95vkx3eCkqa7qXQ4cIUkO9WIIIAyfvi6++buqCfH5EDgpO8Qrg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X4CVXUjs4RfyTEb3GqmlzSoAKAMURiECv5E7F67Mey4=;
- b=TnlGr2SIJkNGAmRjMkbl63DDO9u022PtxfJjZ+jddGWmyKEbhtz7I2uCQiK/7em0LPtxBM/ir0DGR15yIs1IIHJDrf8dpkP7qE5MMWCVTHdVnAKNH3io1Ox2+Z6dzXYYb+V+vt/BXxrEKTfbtWO7VgHaual9j2IsrTBFSWrrmf0=
-Received: from DM6PR11CA0061.namprd11.prod.outlook.com (2603:10b6:5:14c::38)
- by SN1PR12MB2591.namprd12.prod.outlook.com (2603:10b6:802:30::32) with
+ bh=3raDSY5Iln6AXemSrpYDtv0tbWkrLOaUdUU7E/c6+0Q=;
+ b=0U5QimvXc/uSo0uIyNYWXSMZ10ADmZybZcOt4flBZxgi24VHnUBiX/196YkrRf4U4EWvuaC5ZFpZkpSzL0CtNJhCYJ1TxpSnm42A2v3WarrbpixNp1d9Vlc2TzH+83BuGDg16kAAUu/o6fNYhni0dUOmRDMa0k9EPCZ4ofw640k=
+Received: from DS7PR03CA0262.namprd03.prod.outlook.com (2603:10b6:5:3b3::27)
+ by PH0PR12MB5484.namprd12.prod.outlook.com (2603:10b6:510:eb::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.26; Fri, 26 Mar
- 2021 22:05:40 +0000
-Received: from DM6NAM11FT065.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:14c:cafe::22) by DM6PR11CA0061.outlook.office365.com
- (2603:10b6:5:14c::38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25; Fri, 26 Mar
+ 2021 22:05:42 +0000
+Received: from DM6NAM11FT064.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b3:cafe::b1) by DS7PR03CA0262.outlook.office365.com
+ (2603:10b6:5:3b3::27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25 via Frontend
- Transport; Fri, 26 Mar 2021 22:05:40 +0000
+ Transport; Fri, 26 Mar 2021 22:05:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
  header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT065.mail.protection.outlook.com (10.13.172.109) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DM6NAM11FT064.mail.protection.outlook.com (10.13.172.234) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3955.18 via Frontend Transport; Fri, 26 Mar 2021 22:05:40 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3955.18 via Frontend Transport; Fri, 26 Mar 2021 22:05:42 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Fri, 26 Mar
- 2021 17:05:39 -0500
+ 2021 17:05:41 -0500
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Fri, 26 Mar
- 2021 17:05:38 -0500
+ 2021 17:05:41 -0500
 Received: from Bumblebee.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2106.2 via Frontend
- Transport; Fri, 26 Mar 2021 17:05:38 -0500
+ Transport; Fri, 26 Mar 2021 17:05:40 -0500
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 00/21] DC Patches March 26, 2021
-Date: Fri, 26 Mar 2021 18:05:13 -0400
-Message-ID: <20210326220534.918023-1-Anson.Jacob@amd.com>
+Subject: [PATCH 01/21] drm/amd/display: BIOS LTTPR Caps Interface
+Date: Fri, 26 Mar 2021 18:05:14 -0400
+Message-ID: <20210326220534.918023-2-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210326220534.918023-1-Anson.Jacob@amd.com>
+References: <20210326220534.918023-1-Anson.Jacob@amd.com>
 MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f33e14c7-7cae-41f8-ccf3-08d8f0a34b16
-X-MS-TrafficTypeDiagnostic: SN1PR12MB2591:
-X-Microsoft-Antispam-PRVS: <SN1PR12MB2591C484826A1E9B79ABCBAAEB619@SN1PR12MB2591.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Office365-Filtering-Correlation-Id: a7c14a55-a9d1-4c8c-ed87-08d8f0a34c38
+X-MS-TrafficTypeDiagnostic: PH0PR12MB5484:
+X-Microsoft-Antispam-PRVS: <PH0PR12MB54846FD53BC52903A1687ACFEB619@PH0PR12MB5484.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: u6QHnJpaMtTOaU5yCpZ4c/TXR3YeZkBu1+mT0oMgqXuGC0TNnbem2G2IfpwtGwt7uBOZ5fydNo2jSEnRJFTD8muxsjo6f8HOz96dVFFXlS+C+NzUpqk0rqCB7Y+KVUhyX6iQC5OjnSDjgbf/PGYHw1H9r/VM+vidsxgHGcVowUDMAxaCPC/guNBo8alg3rvmvJKWZGqzvoLuqnJwQkfk/P9YJDXQSRZIpjA5NyNqgUoAgQG0wATQv6umK4L0MTSM3s6pb48t3motcEC2lNXsC6JZ4+j+3zhVHqxCF4kV//9iXrdqJTfh0dEeSjD6qKUV7HCMlnadxKXgbgLUOECvz6yWcVqyZ/f3Kw/Axj28TLdh0NUpMhbKU2Me1fcDOUulbhgKiibgV1d/u9jvZbg8/C7fNlu83XIGBD9b6MP1lsVv9p/CsGLL7Z8vgor9hKKOGtjHqF5Bzw1Pu0juU+FrEdUmtdtmfMibiX34i3WjThhuVA86Xoe4JsiKa0mYUPlriNemLVHJ+WaoWEuaZEcZY+AP2DoHU1rOYpYtkt9f1QPvodqTXMHXHFV1eTa7XCscO0DYAHmbcIJbla1RLpRe47wNpymS8X2sf1cnq/5ujUluCd8UDFdiDGIYRUMUytlIwd2OzM79gVRC0Akeqytgb5/KWB2FFZUnjWb2r7koDRvTjUOhFWmnYC3jDNnXlDyv
+X-Microsoft-Antispam-Message-Info: hQDRJxA89plql1gYB1MmfKweDrgOL1uv2FIay1Bh6jYhLNbbe2Gr1TNOPkcuwloZmyMg1MKMUFcAHI8pxH3Z25SxDHGZE7yGR6PIjlfc3TeMGgKwSD14eRC/kR7XYSkweNJ1w0qtFia1z/hCvG19JYJsvKuQbFnar2I7FdlvBt2vS6cQ2CKuxidRYT+Axkx2/pVONYvKWJ3/Uk+xtsxVq4FFGhq18J1kdK4trWpuqbooYDwnqxuKNCOnGjkJ9M4avK827diGKRH49IWvS2SEAlIz/HkVKNWRWNBN7BCOhNPT6FwuL2phUxC/wKmDX3LTaA+SSuHpoQmarrtdxWB28Fp3GInFdeslDFbgIQVDXPizIlPY6y8nJlSX+tBi9wOK7waAgZnko7mHyyDeem2KQZjfgy11cnNHpNKq0ASV1vo02B1KKveDwavwmP9qtd8LTATZF1aowugzg5kWdl+czm7nL54HqUMEgsDVW0Rz4L0uX38Lxalj2gzvbK3+ZDpcXrYujuYFP8TziXPPO1Kt3yTOb8z6BzuNAYuSmB8qFiZqUKBVzqOMXZtRoA/NoAcRgtUFD+LzVSsvmnndFPVTc3XQOsoMqWuelaSNUO4b05AdXnf8SGVMEldXzwhoDeRB9+4jaRuSmiR2kJqvg392BD2LMG5oKWCe/Vd2YqKfhVrPsGeuQh6vEDHPk+6KeJCT
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(396003)(346002)(136003)(39860400002)(376002)(36840700001)(46966006)(356005)(81166007)(82740400003)(316002)(70586007)(83380400001)(36756003)(186003)(6916009)(26005)(7696005)(336012)(70206006)(82310400003)(4326008)(54906003)(5660300002)(36860700001)(1076003)(478600001)(8936002)(8676002)(426003)(47076005)(2906002)(6666004)(86362001)(2616005)(36900700001);
+ IPV:NLI; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(396003)(136003)(346002)(376002)(39860400002)(36840700001)(46966006)(6666004)(82310400003)(70586007)(316002)(83380400001)(478600001)(336012)(8936002)(36756003)(6916009)(47076005)(36860700001)(2906002)(5660300002)(54906003)(86362001)(8676002)(2616005)(7696005)(356005)(82740400003)(1076003)(426003)(4326008)(26005)(70206006)(186003)(81166007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2021 22:05:40.2006 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f33e14c7-7cae-41f8-ccf3-08d8f0a34b16
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2021 22:05:42.1030 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a7c14a55-a9d1-4c8c-ed87-08d8f0a34c38
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT065.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT064.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2591
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5484
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,119 +104,256 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com,
- Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+Cc: Wesley Chalmers <Wesley.Chalmers@amd.com>, Eryk.Brol@amd.com,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
+ Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This patchset brings along following features/fixes:
-    - LTTPR improvements
-    - Disable MALL when SMU not present
-    - Fix bug in HW that causes P-State to hang when DPG is enabled in
-      certain conditions
-    - Update code path for enabling DPG
-    - Update display endpoint control path
-    - Add dynamic link encoder selection
-    - Fix debugfs MST topology to dump from the root MST node
-    - Enable DP DSC Compliance automation for Linux
-    - ASSR is enabled only when DPCD is supported and the display
-      connected is internal
-    - Added kernel trace event to print real-time refresh rate value
-      to debug VRR issues
+From: Wesley Chalmers <Wesley.Chalmers@amd.com>
 
-Anthony Koo (1):
-  drm/amd/display: [FW Promotion] Release 0.0.58
+[WHY]
+Some platforms will have LTTPR capabilities forced on by VBIOS flags;
+the functions added here will access those flags.
 
-Aric Cyr (1):
-  drm/amd/display: 3.2.129
+Signed-off-by: Wesley Chalmers <Wesley.Chalmers@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Acked-by: Anson Jacob <Anson.Jacob@amd.com>
+---
+ .../drm/amd/display/dc/bios/bios_parser2.c    | 139 ++++++++++++++++++
+ .../gpu/drm/amd/display/dc/dc_bios_types.h    |   3 +
+ drivers/gpu/drm/amd/include/atomfirmware.h    |  37 ++++-
+ 3 files changed, 178 insertions(+), 1 deletion(-)
 
-Chris Park (1):
-  drm/amd/display: Disable MALL when SMU not present
-
-Eryk Brol (1):
-  drm/amd/display: Fix MST topology debugfs
-
-Jimmy Kizito (2):
-  drm/amd/display: Add dynamic link encoder selection.
-  drm/amd/display: Update display endpoint control path.
-
-Krunoslav Kovac (1):
-  drm/amd/display: Rename fs_params to hdr_tm_params
-
-Leo (Hanghong) Ma (1):
-  drm/amd/display: Fix static checker warnings on tracebuff_fb
-
-Qingqing Zhuo (2):
-  drm/amd/display: enable DP DSC Compliance automation
-  drm/amd/display: add log for automated test
-
-Rodrigo Siqueira (1):
-  drm/amd/display: Add refresh rate trace
-
-Stylon Wang (1):
-  drm/amd/display: Guard ASSR with internal display flag
-
-Vladimir Stempen (1):
-  drm/amd/display: Fix typo for variable name
-
-Wenjing Liu (2):
-  drm/amd/display: define mod_hdcp_display_disable_option struct
-  drm/amd/display: add mod hdcp interface for supporting encryption
-    state query
-
-Wesley Chalmers (6):
-  drm/amd/display: BIOS LTTPR Caps Interface
-  drm/amd/display: Interface for LTTPR interop
-  drm/amd/display: Enumerate LTTPR modes
-  drm/amd/display: LTTPR config logic
-  drm/amd/display: New path for enabling DPG
-  drm/amd/display: Set max TTU on DPG enable
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  14 +
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |   1 +
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |   4 +
- .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.c    |   6 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_trace.h   |  19 ++
- drivers/gpu/drm/amd/display/dc/Makefile       |   5 +-
- .../drm/amd/display/dc/bios/bios_parser2.c    | 190 +++++++++++
- .../display/dc/clk_mgr/dcn30/dcn30_clk_mgr.c  |   7 +
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  35 ++
- drivers/gpu/drm/amd/display/dc/core/dc_link.c |  16 +-
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 197 +++++++++---
- .../drm/amd/display/dc/core/dc_link_enc_cfg.c | 303 ++++++++++++++++++
- .../drm/amd/display/dc/core/dc_link_hwss.c    |  24 +-
- .../gpu/drm/amd/display/dc/core/dc_resource.c |   7 +
- drivers/gpu/drm/amd/display/dc/dc.h           |   2 +-
- .../gpu/drm/amd/display/dc/dc_bios_types.h    |   6 +
- drivers/gpu/drm/amd/display/dc/dc_link.h      |  19 +-
- drivers/gpu/drm/amd/display/dc/dc_stream.h    |  16 +
- drivers/gpu/drm/amd/display/dc/dc_types.h     |  15 +
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |  10 +-
- .../gpu/drm/amd/display/dc/inc/core_types.h   |  27 ++
- .../gpu/drm/amd/display/dc/inc/hw/clk_mgr.h   |   3 +
- drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h  |   1 +
- .../drm/amd/display/dc/inc/hw/link_encoder.h  |  13 +
- .../gpu/drm/amd/display/dc/inc/link_enc_cfg.h |  86 +++++
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |   4 +-
- .../gpu/drm/amd/display/dmub/src/dmub_srv.c   | 142 ++++----
- .../amd/display/modules/color/color_gamma.c   |   6 +-
- .../amd/display/modules/color/color_gamma.h   |   4 +-
- .../gpu/drm/amd/display/modules/hdcp/hdcp.c   |  10 +-
- .../gpu/drm/amd/display/modules/hdcp/hdcp.h   |   4 +-
- .../display/modules/hdcp/hdcp1_execution.c    |  37 ++-
- .../display/modules/hdcp/hdcp1_transition.c   |   6 +-
- .../display/modules/hdcp/hdcp2_execution.c    |  10 +-
- .../display/modules/hdcp/hdcp2_transition.c   |  10 +-
- .../drm/amd/display/modules/hdcp/hdcp_psp.c   |  10 +
- .../drm/amd/display/modules/inc/mod_hdcp.h    |  10 +-
- drivers/gpu/drm/amd/include/atomfirmware.h    |  38 ++-
- 38 files changed, 1141 insertions(+), 176 deletions(-)
- create mode 100644 drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/inc/link_enc_cfg.h
-
+diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+index b208f06ed514..2ee0c6fc069a 100644
+--- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
++++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
+@@ -916,6 +916,143 @@ static enum bp_result bios_parser_get_soc_bb_info(
+ 	return result;
+ }
+ 
++static enum bp_result get_lttpr_caps_v4_1(
++	struct bios_parser *bp,
++	uint8_t *dce_caps)
++{
++	enum bp_result result = BP_RESULT_OK;
++	struct atom_display_controller_info_v4_1 *disp_cntl_tbl = NULL;
++
++	if (!dce_caps)
++		return BP_RESULT_BADINPUT;
++
++	if (!DATA_TABLES(dce_info))
++		return BP_RESULT_BADBIOSTABLE;
++
++	disp_cntl_tbl = GET_IMAGE(struct atom_display_controller_info_v4_1,
++							DATA_TABLES(dce_info));
++
++	if (!disp_cntl_tbl)
++		return BP_RESULT_BADBIOSTABLE;
++
++	*dce_caps = !!(disp_cntl_tbl->display_caps & DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE);
++
++	return result;
++}
++
++static enum bp_result get_lttpr_caps_v4_2(
++	struct bios_parser *bp,
++	uint8_t *dce_caps)
++{
++	enum bp_result result = BP_RESULT_OK;
++	struct atom_display_controller_info_v4_2 *disp_cntl_tbl = NULL;
++
++	if (!dce_caps)
++		return BP_RESULT_BADINPUT;
++
++	if (!DATA_TABLES(dce_info))
++		return BP_RESULT_BADBIOSTABLE;
++
++	disp_cntl_tbl = GET_IMAGE(struct atom_display_controller_info_v4_2,
++							DATA_TABLES(dce_info));
++
++	if (!disp_cntl_tbl)
++		return BP_RESULT_BADBIOSTABLE;
++
++	*dce_caps = !!(disp_cntl_tbl->display_caps & DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE);
++
++	return result;
++}
++
++static enum bp_result get_lttpr_caps_v4_3(
++	struct bios_parser *bp,
++	uint8_t *dce_caps)
++{
++	enum bp_result result = BP_RESULT_OK;
++	struct atom_display_controller_info_v4_3 *disp_cntl_tbl = NULL;
++
++	if (!dce_caps)
++		return BP_RESULT_BADINPUT;
++
++	if (!DATA_TABLES(dce_info))
++		return BP_RESULT_BADBIOSTABLE;
++
++	disp_cntl_tbl = GET_IMAGE(struct atom_display_controller_info_v4_3,
++							DATA_TABLES(dce_info));
++
++	if (!disp_cntl_tbl)
++		return BP_RESULT_BADBIOSTABLE;
++
++	*dce_caps = !!(disp_cntl_tbl->display_caps & DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE);
++
++	return result;
++}
++
++static enum bp_result get_lttpr_caps_v4_4(
++	struct bios_parser *bp,
++	uint8_t *dce_caps)
++{
++	enum bp_result result = BP_RESULT_OK;
++	struct atom_display_controller_info_v4_4 *disp_cntl_tbl = NULL;
++
++	if (!dce_caps)
++		return BP_RESULT_BADINPUT;
++
++	if (!DATA_TABLES(dce_info))
++		return BP_RESULT_BADBIOSTABLE;
++
++	disp_cntl_tbl = GET_IMAGE(struct atom_display_controller_info_v4_4,
++							DATA_TABLES(dce_info));
++
++	if (!disp_cntl_tbl)
++		return BP_RESULT_BADBIOSTABLE;
++
++	*dce_caps = !!(disp_cntl_tbl->display_caps & DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE);
++
++	return result;
++}
++
++static enum bp_result bios_parser_get_lttpr_caps(
++	struct dc_bios *dcb,
++	uint8_t *dce_caps)
++{
++	struct bios_parser *bp = BP_FROM_DCB(dcb);
++	enum bp_result result = BP_RESULT_UNSUPPORTED;
++	struct atom_common_table_header *header;
++	struct atom_data_revision tbl_revision;
++
++	if (!DATA_TABLES(dce_info))
++		return BP_RESULT_UNSUPPORTED;
++
++	header = GET_IMAGE(struct atom_common_table_header,
++						DATA_TABLES(dce_info));
++	get_atom_data_table_revision(header, &tbl_revision);
++	switch (tbl_revision.major) {
++	case 4:
++		switch (tbl_revision.minor) {
++		case 1:
++			result = get_lttpr_caps_v4_1(bp, dce_caps);
++			break;
++		case 2:
++			result = get_lttpr_caps_v4_2(bp, dce_caps);
++			break;
++		case 3:
++			result = get_lttpr_caps_v4_3(bp, dce_caps);
++			break;
++		case 4:
++			result = get_lttpr_caps_v4_4(bp, dce_caps);
++			break;
++		default:
++			break;
++		}
++		break;
++	default:
++		break;
++	}
++
++	return result;
++}
++
+ static enum bp_result get_embedded_panel_info_v2_1(
+ 		struct bios_parser *bp,
+ 		struct embedded_panel_info *info)
+@@ -2531,6 +2668,8 @@ static const struct dc_vbios_funcs vbios_funcs = {
+ 	.get_soc_bb_info = bios_parser_get_soc_bb_info,
+ 
+ 	.get_disp_connector_caps_info = bios_parser_get_disp_connector_caps_info,
++
++	.get_lttpr_caps = bios_parser_get_lttpr_caps,
+ };
+ 
+ static bool bios_parser2_construct(
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
+index 86ab8f16f621..1b957c60156b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_bios_types.h
+@@ -150,6 +150,9 @@ struct dc_vbios_funcs {
+ 			struct dc_bios *dcb,
+ 			struct graphics_object_id object_id,
+ 			struct bp_disp_connector_caps_info *info);
++	enum bp_result (*get_lttpr_caps)(
++			struct dc_bios *dcb,
++			uint8_t *dce_caps);
+ };
+ 
+ struct bios_registers {
+diff --git a/drivers/gpu/drm/amd/include/atomfirmware.h b/drivers/gpu/drm/amd/include/atomfirmware.h
+index 58364a8eb1f3..82b3cd89b383 100644
+--- a/drivers/gpu/drm/amd/include/atomfirmware.h
++++ b/drivers/gpu/drm/amd/include/atomfirmware.h
+@@ -981,6 +981,40 @@ struct atom_display_controller_info_v4_2
+   uint8_t  reserved3[8];
+ };
+ 
++struct atom_display_controller_info_v4_3
++{
++  struct  atom_common_table_header  table_header;
++  uint32_t display_caps;
++  uint32_t bootup_dispclk_10khz;
++  uint16_t dce_refclk_10khz;
++  uint16_t i2c_engine_refclk_10khz;
++  uint16_t dvi_ss_percentage;       // in unit of 0.001%
++  uint16_t dvi_ss_rate_10hz;
++  uint16_t hdmi_ss_percentage;      // in unit of 0.001%
++  uint16_t hdmi_ss_rate_10hz;
++  uint16_t dp_ss_percentage;        // in unit of 0.001%
++  uint16_t dp_ss_rate_10hz;
++  uint8_t  dvi_ss_mode;             // enum of atom_spread_spectrum_mode
++  uint8_t  hdmi_ss_mode;            // enum of atom_spread_spectrum_mode
++  uint8_t  dp_ss_mode;              // enum of atom_spread_spectrum_mode
++  uint8_t  ss_reserved;
++  uint8_t  dfp_hardcode_mode_num;   // DFP hardcode mode number defined in StandardVESA_TimingTable when EDID is not available
++  uint8_t  dfp_hardcode_refreshrate;// DFP hardcode mode refreshrate defined in StandardVESA_TimingTable when EDID is not available
++  uint8_t  vga_hardcode_mode_num;   // VGA hardcode mode number defined in StandardVESA_TimingTable when EDID is not avablable
++  uint8_t  vga_hardcode_refreshrate;// VGA hardcode mode number defined in StandardVESA_TimingTable when EDID is not avablable
++  uint16_t dpphy_refclk_10khz;
++  uint16_t reserved2;
++  uint8_t  dcnip_min_ver;
++  uint8_t  dcnip_max_ver;
++  uint8_t  max_disp_pipe_num;
++  uint8_t  max_vbios_active_disp_pipe_num;
++  uint8_t  max_ppll_num;
++  uint8_t  max_disp_phy_num;
++  uint8_t  max_aux_pairs;
++  uint8_t  remotedisplayconfig;
++  uint8_t  reserved3[8];
++};
++
+ struct atom_display_controller_info_v4_4 {
+ 	struct atom_common_table_header table_header;
+ 	uint32_t display_caps;
+@@ -1043,7 +1077,8 @@ enum dce_info_caps_def
+   DCE_INFO_CAPS_DISABLE_DFP_DP_HBR2      =0x04,
+   // only for VBIOS
+   DCE_INFO_CAPS_ENABLE_INTERLAC_TIMING   =0x08,
+-
++  // only for VBIOS
++  DCE_INFO_CAPS_LTTPR_SUPPORT_ENABLE	 =0x20,
+ };
+ 
+ /* 
 -- 
 2.25.1
 
