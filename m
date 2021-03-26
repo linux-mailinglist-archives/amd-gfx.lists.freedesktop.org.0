@@ -2,65 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EA4734A3E9
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Mar 2021 10:14:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D97D34A81B
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Mar 2021 14:30:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBA816EE67;
-	Fri, 26 Mar 2021 09:14:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E04FE6F3D5;
+	Fri, 26 Mar 2021 13:30:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
- [IPv6:2a00:1450:4864:20::635])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C74E6EE67
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 09:14:39 +0000 (UTC)
-Received: by mail-ej1-x635.google.com with SMTP id jy13so7340031ejc.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 02:14:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=P8U7VZpB0RiWvNs/jTD5Hf7xWe3ur++CLYXMWXNC8hQ=;
- b=fpzdQrGiwlh4ECwFLUPQlpGbu7ZWh8Hht84R6UC9PjQ7UKhfgZ/uq9XnD5+QQDGOPN
- bU4OlUyT1bcCEM5TutLoN/iC9guI8i3fnumFn/KoYbkkBOimuK6oDSzvFuPWWOHiByFQ
- hg/YUQRXuHF03fvauXRLHnNzhv7IhNQXZFVZxm1maScw5i0Ei3h03KROGrUnvydv2EmC
- 0iAKFxBrn+GUldmDYPZGx1c33DMG3zInv5ANs6OziIOf8iP9gUUKHJqWBfASLfUBeSJD
- i9NJFiSUeyF8e9lwxQ4wGOXZbLd8gK7bIPv55+t20sWMs6nx9b8FD1SS3Rn26z06o/IC
- nyBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=P8U7VZpB0RiWvNs/jTD5Hf7xWe3ur++CLYXMWXNC8hQ=;
- b=EQo2OXY9a2ItQRuQJpGkdY0b++GWexeL55zETyqlI9hgcdwqFii5uwsTe4V7Mnnumj
- 815wu9h5i/trNUBeuXjmd4vmfP4S1EDRJ6yBIeZv7OY6KOF5U7idKVPNaLxnZaSCYCF8
- f+OKLpeqYhCBbX5JhXniasfhKZmYHzebzMi2vgWGuQdhtSFAwBLJ7GQ2qaTy9yJb8cff
- QUmLgC7RQ+Mwn5bRqURsUwtwA9eK69adycLYi5bErLNnSFqCNEPEy8yAMH8siq+tmhM7
- OAKwLZhvrNiilXlaVM6MY9hQiiasYnv0/4QLHvxoQr04SuLp2fLUJRx3ip6nrmVjvHMM
- fG2g==
-X-Gm-Message-State: AOAM530IS6gtWJULlWWvisKRSI6LPFAx5TRseF8Y6LFfyuXvIkhf+udJ
- QNVZ5piFizfugwfB5hWclA0=
-X-Google-Smtp-Source: ABdhPJwREDTkODk5PRVsaIoHRZ48w7qLji9umrjCLU+hbequ/i+4ParVuKSXb9m3Xh/WNW/pAcZJwg==
-X-Received: by 2002:a17:906:8583:: with SMTP id
- v3mr14453106ejx.361.1616750077636; 
- Fri, 26 Mar 2021 02:14:37 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:f5e9:4efc:3566:86b9?
- ([2a02:908:1252:fb60:f5e9:4efc:3566:86b9])
- by smtp.gmail.com with ESMTPSA id jx22sm3561708ejc.105.2021.03.26.02.14.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 26 Mar 2021 02:14:37 -0700 (PDT)
-Subject: Re: [PATCH 3/4] Revert "drm/amdgpu: workaround the TMR MC address
- issue (v2)"
-To: Oak Zeng <Oak.Zeng@amd.com>, amd-gfx@lists.freedesktop.org
-References: <1616690318-3555-1-git-send-email-Oak.Zeng@amd.com>
- <1616690318-3555-3-git-send-email-Oak.Zeng@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <e90c376e-0fcc-cccb-e2d6-8371e8a141e1@gmail.com>
-Date: Fri, 26 Mar 2021 10:14:36 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+Received: from m15114.mail.126.com (m15114.mail.126.com [220.181.15.114])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C8616E0FC;
+ Fri, 26 Mar 2021 09:38:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=126.com;
+ s=s110527; h=Subject:From:Message-ID:Date:MIME-Version; bh=HO2+8
+ yOEkgeYzysiOq9FR+H9/COuTtLqX7AQLkhjh0E=; b=nK+Ik7kcibyjN8ExUMi/4
+ WYjcmHp38Co+WDcoInpxrviF9oui2r6CTEZMYMuO1PcwN746RU2QoC6tzUFRQW3x
+ iRa6d0qqx/ewMyr7gS0WI5xRM3CiWGFRMytnurrL17n9sb9ngF5hiBsoisyIwR1E
+ okc0Hq8aeIXnEC5PLvDduc=
+Received: from [172.20.20.87] (unknown [182.150.46.145])
+ by smtp7 (Coremail) with SMTP id DsmowACnkVGCq11gfdmvPA--.60080S2;
+ Fri, 26 Mar 2021 17:38:12 +0800 (CST)
+Subject: Re: [PATCH] drm/amdkfd: dqm fence memory corruption
+To: Felix Kuehling <felix.kuehling@amd.com>
+References: <1611750806-10730-1-git-send-email-jinsdb@126.com>
+ <4de809ac-fdd7-b02a-c55f-3c79321cfb7f@amd.com>
+From: Qu Huang <jinsdb@126.com>
+Message-ID: <14c4be41-28ab-3266-eaf3-b6b0342e18ba@126.com>
+Date: Fri, 26 Mar 2021 17:38:09 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <1616690318-3555-3-git-send-email-Oak.Zeng@amd.com>
-Content-Language: en-US
+In-Reply-To: <4de809ac-fdd7-b02a-c55f-3c79321cfb7f@amd.com>
+X-CM-TRANSID: DsmowACnkVGCq11gfdmvPA--.60080S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7tFW7XFyrAw15Gw48Wry7GFg_yoW8Aw4fpF
+ WkJFy5Kry8Jw12v34xXa18uFy5Cw4rWrWfWFy7C39xua13XF9IyrW5AFWUK348uFyvya17
+ tF4DCrZruF1qvaUanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jQ189UUUUU=
+X-Originating-IP: [182.150.46.145]
+X-CM-SenderInfo: pmlq2vbe6rjloofrz/1tbigQRhDlpECnN1nQAAsl
+X-Mailman-Approved-At: Fri, 26 Mar 2021 13:30:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,138 +51,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: felix.kuehling@amd.com, lijo.lazar@amd.com, christian.koenig@amd.com,
- hawking.zhang@amd.com
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: airlied@linux.ie, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 25.03.21 um 17:38 schrieb Oak Zeng:
-> This reverts commit 34a33d4683cba7ba63c894132efb1998c0217631.
-
-We need a single sentence here why we do the revert and I think you need 
-to reorder the patches.
-
-E.g. patch #3 should be #4 and #4 should be #3, otherwise you break the 
-driver in between.
-
-Apart from that looks like a nice cleanup to me.
-
-Christian.
-
->
-> Signed-off-by: Oak Zeng <Oak.Zeng@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h  |  9 ---------
->   drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c  | 10 ----------
->   drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c | 21 ++++++---------------
->   drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c  | 10 ++++------
->   4 files changed, 10 insertions(+), 40 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-> index 7cd9d34..a9e0bba 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-> @@ -217,15 +217,6 @@ struct amdgpu_gmc {
->   	 */
->   	u64			fb_start;
->   	u64			fb_end;
-> -	/* In the case of use GART table for vmid0 FB access, [fb_start, fb_end]
-> -	 * will be squeezed to GART aperture. But we have a PSP FW issue to fix
-> -	 * for now. To temporarily workaround the PSP FW issue, added below two
-> -	 * variables to remember the original fb_start/end to re-enable FB
-> -	 * aperture to workaround the PSP FW issue. Will delete it after we
-> -	 * get a proper PSP FW fix.
-> -	 */
-> -	u64			fb_start_original;
-> -	u64			fb_end_original;
->   	unsigned		vram_width;
->   	u64			real_vram_size;
->   	int			vram_mtrr;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> index 5c71c5c..1005124 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-> @@ -410,16 +410,6 @@ static int psp_tmr_init(struct psp_context *psp)
->   				      AMDGPU_GEM_DOMAIN_VRAM,
->   				      &psp->tmr_bo, &psp->tmr_mc_addr, pptr);
->   
-> -	/* workaround the tmr_mc_addr:
-> -	 * PSP requires an address in FB aperture. Right now driver produce
-> -	 * tmr_mc_addr in the GART aperture. Convert it back to FB aperture
-> -	 * for PSP. Will revert it after we get a fix from PSP FW.
-> -	 */
-> -	if (psp->adev->asic_type == CHIP_ALDEBARAN) {
-> -		psp->tmr_mc_addr -= psp->adev->gmc.fb_start;
-> -		psp->tmr_mc_addr += psp->adev->gmc.fb_start_original;
-> -	}
-> -
->   	return ret;
->   }
->   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c
-> index 7beef4c..8c8f0d3 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_0.c
-> @@ -154,21 +154,12 @@ static void gfxhub_v1_0_init_system_aperture_regs(struct amdgpu_device *adev)
->   	 * FB aperture and AGP aperture. Disable them.
->   	 */
->   	if (adev->gmc.pdb0_bo) {
-> -		if (adev->asic_type == CHIP_ALDEBARAN) {
-> -			WREG32_SOC15(GC, 0, mmMC_VM_FB_LOCATION_TOP, adev->gmc.fb_end_original >> 24);
-> -			WREG32_SOC15(GC, 0, mmMC_VM_FB_LOCATION_BASE, adev->gmc.fb_start_original >> 24);
-> -			WREG32_SOC15(GC, 0, mmMC_VM_AGP_TOP, 0);
-> -			WREG32_SOC15(GC, 0, mmMC_VM_AGP_BOT, 0xFFFFFF);
-> -			WREG32_SOC15(GC, 0, mmMC_VM_SYSTEM_APERTURE_LOW_ADDR, adev->gmc.fb_start_original >> 18);
-> -			WREG32_SOC15(GC, 0, mmMC_VM_SYSTEM_APERTURE_HIGH_ADDR, adev->gmc.fb_end_original >> 18);
-> -		} else {
-> -			WREG32_SOC15(GC, 0, mmMC_VM_FB_LOCATION_TOP, 0);
-> -			WREG32_SOC15(GC, 0, mmMC_VM_FB_LOCATION_BASE, 0x00FFFFFF);
-> -			WREG32_SOC15(GC, 0, mmMC_VM_AGP_TOP, 0);
-> -			WREG32_SOC15(GC, 0, mmMC_VM_AGP_BOT, 0xFFFFFF);
-> -			WREG32_SOC15(GC, 0, mmMC_VM_SYSTEM_APERTURE_LOW_ADDR, 0x3FFFFFFF);
-> -			WREG32_SOC15(GC, 0, mmMC_VM_SYSTEM_APERTURE_HIGH_ADDR, 0);
-> -		}
-> +		WREG32_SOC15(GC, 0, mmMC_VM_FB_LOCATION_TOP, 0);
-> +		WREG32_SOC15(GC, 0, mmMC_VM_FB_LOCATION_BASE, 0x00FFFFFF);
-> +		WREG32_SOC15(GC, 0, mmMC_VM_AGP_TOP, 0);
-> +		WREG32_SOC15(GC, 0, mmMC_VM_AGP_BOT, 0xFFFFFF);
-> +		WREG32_SOC15(GC, 0, mmMC_VM_SYSTEM_APERTURE_LOW_ADDR, 0x3FFFFFFF);
-> +		WREG32_SOC15(GC, 0, mmMC_VM_SYSTEM_APERTURE_HIGH_ADDR, 0);
->   	}
->   }
->   
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c
-> index 8862ac2..8bb36d1 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c
-> @@ -51,8 +51,6 @@ static u64 mmhub_v1_7_get_fb_location(struct amdgpu_device *adev)
->   
->   	adev->gmc.fb_start = base;
->   	adev->gmc.fb_end = top;
-> -	adev->gmc.fb_start_original = base;
-> -	adev->gmc.fb_end_original = top;
->   
->   	return base;
->   }
-> @@ -148,10 +146,10 @@ static void mmhub_v1_7_init_system_aperture_regs(struct amdgpu_device *adev)
->   	if (adev->gmc.pdb0_bo) {
->   		WREG32_SOC15(MMHUB, 0, regMC_VM_AGP_BOT, 0xFFFFFF);
->   		WREG32_SOC15(MMHUB, 0, regMC_VM_AGP_TOP, 0);
-> -		WREG32_SOC15(MMHUB, 0, regMC_VM_FB_LOCATION_TOP, adev->gmc.fb_end_original >> 24);
-> -		WREG32_SOC15(MMHUB, 0, regMC_VM_FB_LOCATION_BASE, adev->gmc.fb_start_original >> 24);
-> -		WREG32_SOC15(MMHUB, 0, regMC_VM_SYSTEM_APERTURE_LOW_ADDR, adev->gmc.fb_start_original >> 18);
-> -		WREG32_SOC15(MMHUB, 0, regMC_VM_SYSTEM_APERTURE_HIGH_ADDR, adev->gmc.fb_end_original >> 18);
-> +		WREG32_SOC15(MMHUB, 0, regMC_VM_FB_LOCATION_TOP, 0);
-> +		WREG32_SOC15(MMHUB, 0, regMC_VM_FB_LOCATION_BASE, 0x00FFFFFF);
-> +		WREG32_SOC15(MMHUB, 0, regMC_VM_SYSTEM_APERTURE_LOW_ADDR, 0x3FFFFFFF);
-> +		WREG32_SOC15(MMHUB, 0, regMC_VM_SYSTEM_APERTURE_HIGH_ADDR, 0);
->   	}
->   	if (amdgpu_sriov_vf(adev))
->   		return;
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+T24gMjAyMS8xLzI4IDU6NTAsIEZlbGl4IEt1ZWhsaW5nIHdyb3RlOgo+IEFtIDIwMjEtMDEtMjcg
+dW0gNzozMyBhLm0uIHNjaHJpZWIgUXUgSHVhbmc6Cj4+IEFtZGdwdSBkcml2ZXIgdXNlcyA0LWJ5
+dGUgZGF0YSB0eXBlIGFzIERRTSBmZW5jZSBtZW1vcnksCj4+IGFuZCB0cmFuc21pdHMgR1BVIGFk
+ZHJlc3Mgb2YgZmVuY2UgbWVtb3J5IHRvIG1pY3JvY29kZQo+PiB0aHJvdWdoIHF1ZXJ5IHN0YXR1
+cyBQTTQgbWVzc2FnZS4gSG93ZXZlciwgcXVlcnkgc3RhdHVzCj4+IFBNNCBtZXNzYWdlIGRlZmlu
+aXRpb24gYW5kIG1pY3JvY29kZSBwcm9jZXNzaW5nIGFyZSBhbGwKPj4gcHJvY2Vzc2VkIGFjY29y
+ZGluZyB0byA4IGJ5dGVzLiBGZW5jZSBtZW1vcnkgb25seSBhbGxvY2F0ZXMKPj4gNCBieXRlcyBv
+ZiBtZW1vcnksIGJ1dCBtaWNyb2NvZGUgZG9lcyB3cml0ZSA4IGJ5dGVzIG9mIG1lbW9yeSwKPj4g
+c28gdGhlcmUgaXMgYSBtZW1vcnkgY29ycnVwdGlvbi4KPiAKPiBUaGFuayB5b3UgZm9yIHBvaW50
+aW5nIG91dCB0aGF0IGRpc2NyZXBhbmN5LiBUaGF0J3MgYSBnb29kIGNhdGNoIQo+IAo+IEknZCBw
+cmVmZXIgdG8gZml4IHRoaXMgcHJvcGVybHkgYnkgbWFraW5nIGRxbS0+ZmVuY2VfYWRkciBhIHU2
+NCBwb2ludGVyLgo+IFdlIHNob3VsZCBwcm9iYWJseSBhbHNvIGZpeCB1cCB0aGUgcXVlcnlfc3Rh
+dHVzIGFuZAo+IGFtZGtmZF9mZW5jZV93YWl0X3RpbWVvdXQgZnVuY3Rpb24gaW50ZXJmYWNlcyB0
+byB1c2UgYSA2NCBiaXQgZmVuY2UKPiB2YWx1ZXMgZXZlcnl3aGVyZSB0byBiZSBjb25zaXN0ZW50
+Lgo+IAo+IFJlZ2FyZHMsCj4gIMKgIEZlbGl4CkhpIEZlbGl4LCBUaGFua3MgZm9yIHlvdXIgYWR2
+aWNlLCBwbGVhc2UgY2hlY2sgdjIgYXQgCmh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL3BhdGNod29y
+ay9wYXRjaC8xMzcyNTg0LwpUaGFua3MsClF1Lgo+IAo+IAo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBR
+dSBIdWFuZyA8amluc2RiQDEyNi5jb20+Cj4+IC0tLQo+PiAgIGRyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1ka2ZkL2tmZF9kZXZpY2VfcXVldWVfbWFuYWdlci5jIHwgMiArLQo+PiAgIDEgZmlsZSBjaGFu
+Z2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX2RldmljZV9xdWV1ZV9tYW5hZ2VyLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfZGV2aWNlX3F1ZXVlX21hbmFnZXIuYwo+PiBpbmRl
+eCBlNjg2Y2UyLi44YjM4ZDBjIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
+ZGtmZC9rZmRfZGV2aWNlX3F1ZXVlX21hbmFnZXIuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGtmZC9rZmRfZGV2aWNlX3F1ZXVlX21hbmFnZXIuYwo+PiBAQCAtMTE2MSw3ICsxMTYx
+LDcgQEAgc3RhdGljIGludCBzdGFydF9jcHNjaChzdHJ1Y3QgZGV2aWNlX3F1ZXVlX21hbmFnZXIg
+KmRxbSkKPj4gICAJcHJfZGVidWcoIkFsbG9jYXRpbmcgZmVuY2UgbWVtb3J5XG4iKTsKPj4gICAK
+Pj4gICAJLyogYWxsb2NhdGUgZmVuY2UgbWVtb3J5IG9uIHRoZSBnYXJ0ICovCj4+IC0JcmV0dmFs
+ID0ga2ZkX2d0dF9zYV9hbGxvY2F0ZShkcW0tPmRldiwgc2l6ZW9mKCpkcW0tPmZlbmNlX2FkZHIp
+LAo+PiArCXJldHZhbCA9IGtmZF9ndHRfc2FfYWxsb2NhdGUoZHFtLT5kZXYsIHNpemVvZih1aW50
+NjRfdCksCj4+ICAgCQkJCQkmZHFtLT5mZW5jZV9tZW0pOwo+PiAgIAo+PiAgIAlpZiAocmV0dmFs
+KQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdm
+eCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
