@@ -2,69 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CADC34B1CF
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Mar 2021 23:05:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E4D34B1D2
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Mar 2021 23:05:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BE2E6F4AA;
-	Fri, 26 Mar 2021 22:05:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66BC86F4AE;
+	Fri, 26 Mar 2021 22:05:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2075.outbound.protection.outlook.com [40.107.237.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4EE36F4A9
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 22:05:45 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2069.outbound.protection.outlook.com [40.107.93.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92AAB6F4AB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 22:05:47 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iATr/iATHn1mRNHN3t/cI1URnP55QoH9yofVAhWHSs4FnTV12JfMtzSWdFmw4Nu0iEZ0wCFw5tdPRiilTuqi2JkPZJtzVc3O1z33TUDx6P93YX8BGKw34ILZqLxUHLk9Hl0+Y1R2iiMizr03D398zlmtdWGjvTuYeXeTX3GnwdBivoarGdwhnKbG6rbN0Ve9Pzm/+MJIxV9uw232MkZA/xQtTxK+KOjzFJs9t/Ts9kikJEBR0vswd21qYnUBPJQKTGQEhiQI395dxszy+aSZQwZyQvBEWZIdIRPpTgFndRe4vYkqJvpaC8gq5HxBXu6AB30+j+wowZ74dl5sGoJl3A==
+ b=LvmR5iQsAVYGsg2EzwKH7AWxl2hXL+77V9uRGM5fd1ErLvzxLjEt5NBujeyELV+cZmpIhPQBNR4xyl1fa3x3QHXhdNOxecequVQvrr7t0BWb+ZGgTsCIe+VJs41LcsqpKk8zXppJxUnbcTRf0LE2EWmai1v3vUd/PLGRNojki1kzEJLZK+GJcgwbj0OLr6EgIbjDVeiTSObcLjBxawvgMqU86QGOWfB3AFrxiy3uIBswtSqWzthfmvI1KHeq68VOxVT8oS0s4Am/ZVY5LFEai37yb4YkEiiDcIJd/nBxPFpo3iA/61JA7+Lz7yElNWBwABRtB0HECjbIM49qNqfi9w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j8ulkN9S4oupc6ubrR5ysf7hqD3u67j9N7XU94QEgKo=;
- b=T8aHfn0zQhZt+3qR4ldHe3zChhnsGSBRLxJ7eDYV3s6YlrVFt1ZEmeE1QX5XQyzZlNTowq2a95PyuZ6t1KFUJoSCjGTSxt0VxpJVE1RlFLu/nOCVNrA6Nj9uRKAvKfMP9O38BIAAWbxFJMp59Sxh5Yes7RAxQp1uJfJivWXFwyq9EwSLi7E/jczaXamC1qcD7XpcuF14hFMcTxh6YrFlZF8DCZff1u+8EFiFWCgFtTMT0VB1dFV9xN5BEs5NaDwCs2CmM5j0u5lELqV9s3l55FK1jWvMcu9nOjpdgEVx+mytAS6yT9pcTtdL52ZosHF0Y+Ll+EyYfR6iEcwMNbHUxA==
+ bh=zGfSK0RlAHupohR7sfWBL0YUCL7u4dO/kzwAYrz8BQI=;
+ b=maZKuWicX7NA/Wn5Yv6gJAUAORscjtUd5bxiCSSi+ivjG7IaQTLTEFPqlueMbXR9JPewqQg868lT3va3tUvOjMtKzg7fiMiJzcu9Wcb80BmSxCDydZxMEO9IrOu6LsVurdDPcDRfC2z2KAXbVyf3zDPXxe9WH7QLFTElrE0IPgfhXLU5+KR2HQsbGDahuzeYuNzlIWL3P1ctTdzJ2AKJxDms/IkZRWeS/cHZMaVkFHNnw2mhTvgjm31J+4nsPLxXmuqLaa5vLQDIrvmxP6X7UpXvOnULDvTiLcqA49TlIOJ6lYp/mjTeOaJ4WxrV7HIPL7jhBcnzCNr0Vu6ShSVSog==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j8ulkN9S4oupc6ubrR5ysf7hqD3u67j9N7XU94QEgKo=;
- b=ysT9GMti2XL2CMru7uWClF/VI9c88dqq3IgQi1fW6/7p81ancoRH6Fq+qBAAmx9cyq1fW4wem68KdWLbIUyLzvsDvF4IHXdwVICdT3hKEVMq5Sebo4UC55EBnl+6ZqcgZIJtmRLoXh/hqx5IJsoj/OxKPnkyx2xREA2rM+7cbWk=
-Received: from DM6PR03CA0090.namprd03.prod.outlook.com (2603:10b6:5:333::23)
- by BYAPR12MB3463.namprd12.prod.outlook.com (2603:10b6:a03:ac::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.29; Fri, 26 Mar
- 2021 22:05:43 +0000
-Received: from DM6NAM11FT031.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:333:cafe::21) by DM6PR03CA0090.outlook.office365.com
- (2603:10b6:5:333::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25 via Frontend
- Transport; Fri, 26 Mar 2021 22:05:43 +0000
+ bh=zGfSK0RlAHupohR7sfWBL0YUCL7u4dO/kzwAYrz8BQI=;
+ b=mf0XEcf6TSvncOhRMTX0Bet7QeYm1WNYJnF5oe9gfliupI6a25HWYRknotHVb3TyVIqUSIIkr5App9GODsCFftTgwW+1AgmBZSKxlgRvgq1SnzelBnySH9dNA9eoQ3QMd4DBFkoyIt/wF18XZR4k245dnoGj43c6q6DSQXAzrA8=
+Received: from DM3PR12CA0063.namprd12.prod.outlook.com (2603:10b6:0:56::31) by
+ CY4PR12MB1478.namprd12.prod.outlook.com (2603:10b6:910:10::14) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3977.29; Fri, 26 Mar 2021 22:05:44 +0000
+Received: from DM6NAM11FT035.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:0:56:cafe::93) by DM3PR12CA0063.outlook.office365.com
+ (2603:10b6:0:56::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.29 via Frontend
+ Transport; Fri, 26 Mar 2021 22:05:44 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
  header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT031.mail.protection.outlook.com (10.13.172.203) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DM6NAM11FT035.mail.protection.outlook.com (10.13.172.100) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3955.18 via Frontend Transport; Fri, 26 Mar 2021 22:05:42 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3955.18 via Frontend Transport; Fri, 26 Mar 2021 22:05:44 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Fri, 26 Mar
- 2021 17:05:42 -0500
+ 2021 17:05:43 -0500
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Fri, 26 Mar
- 2021 17:05:42 -0500
+ 2021 17:05:43 -0500
 Received: from Bumblebee.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2106.2 via Frontend
- Transport; Fri, 26 Mar 2021 17:05:41 -0500
+ Transport; Fri, 26 Mar 2021 17:05:42 -0500
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 02/21] drm/amd/display: Add refresh rate trace
-Date: Fri, 26 Mar 2021 18:05:15 -0400
-Message-ID: <20210326220534.918023-3-Anson.Jacob@amd.com>
+Subject: [PATCH 03/21] drm/amd/display: Fix static checker warnings on
+ tracebuff_fb
+Date: Fri, 26 Mar 2021 18:05:16 -0400
+Message-ID: <20210326220534.918023-4-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210326220534.918023-1-Anson.Jacob@amd.com>
 References: <20210326220534.918023-1-Anson.Jacob@amd.com>
@@ -72,27 +73,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3a19f4bc-84ee-40fa-4b00-08d8f0a34cb8
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3463:
-X-Microsoft-Antispam-PRVS: <BYAPR12MB3463E409D60EF20AAC8553A3EB619@BYAPR12MB3463.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:849;
+X-MS-Office365-Filtering-Correlation-Id: 5c388a7b-7c7d-4423-9280-08d8f0a34d9d
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1478:
+X-Microsoft-Antispam-PRVS: <CY4PR12MB1478A219E9AC2E4A4E55D3A1EB619@CY4PR12MB1478.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ns7uHUI6DX2+g3vYrbZRbZhMG3AFw1iNsyO0XiXvfkKie9sLd3zxn2HYLzS5iWvcBqkLJ8tuXg02/AvXYt2pLf6Czn719vXmDhjtG0VmNn0QzIoU/w5ZBmtaeYMZQVJgsCnOVIp4xKm6K0WM1nDGEk9aA/AVpGQPu41nvkfeAG+1EBOsMloEdDD/t/iGDNmP4js1mnQZkRM7AhyNxuAMKMtKG+0YtYwldQQN0FSjTsa5VdPUeDZccE9dlCUHzJTDhG6ppFFoSFgLz5wxZvOkGNcrvkV0m07hVNV1zxpFWN+6RPIyE7wSkKgI4lg553L2RAUtR3QP3mrLzbao5G6TkXxGqyehQR8MS1i7JA0pkD2JL4Xl7pLUXb9Cm8Ias6eo1zRYgsaUKwphIyD8ZLu2SDiACEUAW8ia6Tooq08QFEG4jb5lIIQJoSNzBMNXKofHLSNaGoDVUHzZGGh7fBibflDxZrr1GWFefguVtCfLvCRgjF2Qn1woCKvvbJ9g5q9Ez26Gk3JWiACDl4NKv2uNAYgqaEHAey14LD0U3WP/lH3RI30CnSOkOIM0Y+PFjQSZOtMP3oNuUsh3Psc/Lkfm93tChig8pIP7+sqdUwwj8L/ZVRolMyBK6j5MAcKMm126Sm8Zhbic1X9z3RZl5lTOYbRciFe75nN3Fhv9FD8APjlwvocxYNYAa8p5OLyP94hR
+X-Microsoft-Antispam-Message-Info: 5W3sO8m3YltUtSb7LxWTCXxCiLSUl5sy/g8EOaZzAUHIok84DO1ijC9YjI1GAkULY67lNt0HUrvFxTAOFTOZmxrMFh2gGLYH4U99/o8z3+UC/DhlksyfPgZTSR9IlXfEmAGeEkTGe+JbOHcQxHRY4xQulHVdufysQZOXLuX7/iKAenSTGSt7nTlOnOP23hxq0BVjBNlFtDc7i+NcjuIRNk2tRC5+2McKWPq0Hsk0fQrbiAXAyZ+IGaSSWiUxQfhrEPIW7SlB4sTjU73gmdOVuAvs2EjzaLdcRYwUKAm/yrS7n0ln+3MNO/JlrgHqcsbt80WENt3InuuDXgkIl1S9e06T8vFHjnc1lZM2iDdp6WLBzcMMHGRIXK0FbfA5Lp2hDeakiSYstDgoOWCgfoG2huzP8Y95/VRD7ZXOLRtZTgNKZt3oJqN3bPuskAPpp+Wfg+SuP0+q+q+eDQ793R3d/cx1jG9PZxthN8i26Ne61U/slaR4a6183CGUfrg7jAtsR9ADq97ncGlwxdhuqXFvRuhOqpqgySgeOj+J7u+n+yPu0l+seck+bFVBhC/uDweg4B/9SiD9O4cwFuEsbkJ9sA4CagiEhdiqT4LXMFOFgY2YN2/TYl0ZRNdCt50qU5jbwnrN4QVTG1zvFWXq8S5keTClo+KExWLuhmkIeeo55SQbbR7hRZ3GIXfUawJyILad
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(396003)(39860400002)(346002)(136003)(376002)(46966006)(36840700001)(4326008)(47076005)(316002)(6666004)(82740400003)(1076003)(83380400001)(81166007)(478600001)(54906003)(2906002)(82310400003)(36860700001)(36756003)(356005)(70206006)(5660300002)(336012)(70586007)(26005)(426003)(2616005)(186003)(86362001)(8936002)(6916009)(7696005)(8676002)(36900700001);
+ IPV:NLI; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(396003)(136003)(376002)(346002)(39860400002)(36840700001)(46966006)(426003)(54906003)(70586007)(70206006)(83380400001)(316002)(2906002)(2616005)(5660300002)(356005)(4326008)(186003)(26005)(8676002)(6916009)(36860700001)(86362001)(336012)(82740400003)(36756003)(47076005)(6666004)(1076003)(82310400003)(478600001)(8936002)(7696005)(81166007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2021 22:05:42.9387 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a19f4bc-84ee-40fa-4b00-08d8f0a34cb8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2021 22:05:44.4493 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c388a7b-7c7d-4423-9280-08d8f0a34d9d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT031.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT035.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3463
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1478
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,102 +107,206 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com,
- Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+ Aurabindo.Pillai@amd.com, "Leo \(Hanghong\) Ma" <hanghong.ma@amd.com>,
+ Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+From: "Leo (Hanghong) Ma" <hanghong.ma@amd.com>
 
-When we have to debug VRR issues, we usually want to know the current
-refresh rate; for this reason, it is handy to have a way to check in
-real-time the refresh rate value. This commit introduces a kernel trace
-that can provide such information.
+[Why]
+Static analysis on linux-next has found a potential null pointer
+dereference;
 
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+[How]
+Refactor the function, add ASSERT and remove the unnecessary check.
+
+Signed-off-by: Leo (Hanghong) Ma <hanghong.ma@amd.com>
 Reviewed-by: Harry Wentland <Harry.Wentland@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 14 ++++++++++++++
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  1 +
- .../amd/display/amdgpu_dm/amdgpu_dm_trace.h   | 19 +++++++++++++++++++
- 3 files changed, 34 insertions(+)
+ .../gpu/drm/amd/display/dmub/src/dmub_srv.c   | 142 +++++++++---------
+ 1 file changed, 68 insertions(+), 74 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 4c02373a707a..29313d71155e 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -459,6 +459,9 @@ static void dm_vupdate_high_irq(void *interrupt_params)
- 	struct common_irq_params *irq_params = interrupt_params;
- 	struct amdgpu_device *adev = irq_params->adev;
- 	struct amdgpu_crtc *acrtc;
-+	struct drm_device *drm_dev;
-+	struct drm_vblank_crtc *vblank;
-+	ktime_t frame_duration_ns, previous_timestamp;
- 	unsigned long flags;
- 	int vrr_active;
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+index 8ba0a9e2da54..743d3b7f6f24 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+@@ -415,6 +415,12 @@ enum dmub_status dmub_srv_hw_init(struct dmub_srv *dmub,
+ 	if (!dmub->sw_init)
+ 		return DMUB_STATUS_INVALID;
  
-@@ -466,6 +469,17 @@ static void dm_vupdate_high_irq(void *interrupt_params)
- 
- 	if (acrtc) {
- 		vrr_active = amdgpu_dm_vrr_active_irq(acrtc);
-+		drm_dev = acrtc->base.dev;
-+		vblank = &drm_dev->vblank[acrtc->base.index];
-+		previous_timestamp = atomic64_read(&irq_params->previous_timestamp);
-+		frame_duration_ns = vblank->time - previous_timestamp;
++	if (!inst_fb || !stack_fb || !data_fb || !bios_fb || !mail_fb ||
++		!tracebuff_fb || !fw_state_fb || !scratch_mem_fb) {
++		ASSERT(0);
++		return DMUB_STATUS_INVALID;
++	}
 +
-+		if (frame_duration_ns > 0) {
-+			trace_amdgpu_refresh_rate_track(acrtc->base.index,
-+						frame_duration_ns,
-+						ktime_divns(NSEC_PER_SEC, frame_duration_ns));
-+			atomic64_set(&irq_params->previous_timestamp, vblank->time);
-+		}
+ 	dmub->fb_base = params->fb_base;
+ 	dmub->fb_offset = params->fb_offset;
+ 	dmub->psp_version = params->psp_version;
+@@ -422,97 +428,85 @@ enum dmub_status dmub_srv_hw_init(struct dmub_srv *dmub,
+ 	if (dmub->hw_funcs.reset)
+ 		dmub->hw_funcs.reset(dmub);
  
- 		DRM_DEBUG_VBL("crtc:%d, vupdate-vrr:%d\n",
- 			      acrtc->crtc_id,
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-index 1b8988dc0daf..c5f5f62cf591 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-@@ -66,6 +66,7 @@ struct dc_plane_state;
- struct common_irq_params {
- 	struct amdgpu_device *adev;
- 	enum dc_irq_source irq_src;
-+	atomic64_t previous_timestamp;
- };
+-	if (inst_fb && data_fb) {
+-		cw0.offset.quad_part = inst_fb->gpu_addr;
+-		cw0.region.base = DMUB_CW0_BASE;
+-		cw0.region.top = cw0.region.base + inst_fb->size - 1;
+-
+-		cw1.offset.quad_part = stack_fb->gpu_addr;
+-		cw1.region.base = DMUB_CW1_BASE;
+-		cw1.region.top = cw1.region.base + stack_fb->size - 1;
+-
+-		if (params->load_inst_const && dmub->hw_funcs.backdoor_load) {
+-		    /**
+-		     * Read back all the instruction memory so we don't hang the
+-		     * DMCUB when backdoor loading if the write from x86 hasn't been
+-		     * flushed yet. This only occurs in backdoor loading.
+-		     */
+-		    dmub_flush_buffer_mem(inst_fb);
+-		    dmub->hw_funcs.backdoor_load(dmub, &cw0, &cw1);
+-		}
+-
+-	}
+-
+-	if (inst_fb && data_fb && bios_fb && mail_fb && tracebuff_fb &&
+-	    fw_state_fb && scratch_mem_fb) {
+-		cw2.offset.quad_part = data_fb->gpu_addr;
+-		cw2.region.base = DMUB_CW0_BASE + inst_fb->size;
+-		cw2.region.top = cw2.region.base + data_fb->size;
++	cw0.offset.quad_part = inst_fb->gpu_addr;
++	cw0.region.base = DMUB_CW0_BASE;
++	cw0.region.top = cw0.region.base + inst_fb->size - 1;
  
- /**
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
-index ac8bcd171b57..46a33f64cf8e 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
-@@ -618,6 +618,25 @@ TRACE_EVENT(amdgpu_dmub_trace_high_irq,
- 		  __entry->param0, __entry->param1)
- );
+-		cw3.offset.quad_part = bios_fb->gpu_addr;
+-		cw3.region.base = DMUB_CW3_BASE;
+-		cw3.region.top = cw3.region.base + bios_fb->size;
+-
+-		cw4.offset.quad_part = mail_fb->gpu_addr;
+-		cw4.region.base = DMUB_CW4_BASE;
+-		cw4.region.top = cw4.region.base + mail_fb->size;
++	cw1.offset.quad_part = stack_fb->gpu_addr;
++	cw1.region.base = DMUB_CW1_BASE;
++	cw1.region.top = cw1.region.base + stack_fb->size - 1;
  
-+TRACE_EVENT(amdgpu_refresh_rate_track,
-+	TP_PROTO(int crtc_index, ktime_t refresh_rate_ns, uint32_t refresh_rate_hz),
-+	TP_ARGS(crtc_index, refresh_rate_ns, refresh_rate_hz),
-+	TP_STRUCT__entry(
-+		__field(int, crtc_index)
-+		__field(ktime_t, refresh_rate_ns)
-+		__field(uint32_t, refresh_rate_hz)
-+		),
-+	TP_fast_assign(
-+		__entry->crtc_index = crtc_index;
-+		__entry->refresh_rate_ns = refresh_rate_ns;
-+		__entry->refresh_rate_hz = refresh_rate_hz;
-+	),
-+	TP_printk("crtc_index=%d refresh_rate=%dHz (%lld)",
-+		  __entry->crtc_index,
-+		  __entry->refresh_rate_hz,
-+		  __entry->refresh_rate_ns)
-+);
++	if (params->load_inst_const && dmub->hw_funcs.backdoor_load) {
+ 		/**
+-		 * Doubled the mailbox region to accomodate inbox and outbox.
+-		 * Note: Currently, currently total mailbox size is 16KB. It is split
+-		 * equally into 8KB between inbox and outbox. If this config is
+-		 * changed, then uncached base address configuration of outbox1
+-		 * has to be updated in funcs->setup_out_mailbox.
++		 * Read back all the instruction memory so we don't hang the
++		 * DMCUB when backdoor loading if the write from x86 hasn't been
++		 * flushed yet. This only occurs in backdoor loading.
+ 		 */
+-		inbox1.base = cw4.region.base;
+-		inbox1.top = cw4.region.base + DMUB_RB_SIZE;
+-		outbox1.base = inbox1.top;
+-		outbox1.top = cw4.region.top;
++		dmub_flush_buffer_mem(inst_fb);
++		dmub->hw_funcs.backdoor_load(dmub, &cw0, &cw1);
++	}
+ 
+-		cw5.offset.quad_part = tracebuff_fb->gpu_addr;
+-		cw5.region.base = DMUB_CW5_BASE;
+-		cw5.region.top = cw5.region.base + tracebuff_fb->size;
++	cw2.offset.quad_part = data_fb->gpu_addr;
++	cw2.region.base = DMUB_CW0_BASE + inst_fb->size;
++	cw2.region.top = cw2.region.base + data_fb->size;
+ 
+-		outbox0.base = DMUB_REGION5_BASE + TRACE_BUFFER_ENTRY_OFFSET;
+-		outbox0.top = outbox0.base + tracebuff_fb->size - TRACE_BUFFER_ENTRY_OFFSET;
++	cw3.offset.quad_part = bios_fb->gpu_addr;
++	cw3.region.base = DMUB_CW3_BASE;
++	cw3.region.top = cw3.region.base + bios_fb->size;
+ 
++	cw4.offset.quad_part = mail_fb->gpu_addr;
++	cw4.region.base = DMUB_CW4_BASE;
++	cw4.region.top = cw4.region.base + mail_fb->size;
+ 
+-		cw6.offset.quad_part = fw_state_fb->gpu_addr;
+-		cw6.region.base = DMUB_CW6_BASE;
+-		cw6.region.top = cw6.region.base + fw_state_fb->size;
++	/**
++	 * Doubled the mailbox region to accomodate inbox and outbox.
++	 * Note: Currently, currently total mailbox size is 16KB. It is split
++	 * equally into 8KB between inbox and outbox. If this config is
++	 * changed, then uncached base address configuration of outbox1
++	 * has to be updated in funcs->setup_out_mailbox.
++	 */
++	inbox1.base = cw4.region.base;
++	inbox1.top = cw4.region.base + DMUB_RB_SIZE;
++	outbox1.base = inbox1.top;
++	outbox1.top = cw4.region.top;
+ 
+-		dmub->fw_state = fw_state_fb->cpu_addr;
++	cw5.offset.quad_part = tracebuff_fb->gpu_addr;
++	cw5.region.base = DMUB_CW5_BASE;
++	cw5.region.top = cw5.region.base + tracebuff_fb->size;
+ 
+-		dmub->scratch_mem_fb = *scratch_mem_fb;
++	outbox0.base = DMUB_REGION5_BASE + TRACE_BUFFER_ENTRY_OFFSET;
++	outbox0.top = outbox0.base + tracebuff_fb->size - TRACE_BUFFER_ENTRY_OFFSET;
+ 
+-		if (dmub->hw_funcs.setup_windows)
+-			dmub->hw_funcs.setup_windows(dmub, &cw2, &cw3, &cw4,
+-						     &cw5, &cw6);
++	cw6.offset.quad_part = fw_state_fb->gpu_addr;
++	cw6.region.base = DMUB_CW6_BASE;
++	cw6.region.top = cw6.region.base + fw_state_fb->size;
+ 
+-		if (dmub->hw_funcs.setup_outbox0)
+-			dmub->hw_funcs.setup_outbox0(dmub, &outbox0);
++	dmub->fw_state = fw_state_fb->cpu_addr;
+ 
+-		if (dmub->hw_funcs.setup_mailbox)
+-			dmub->hw_funcs.setup_mailbox(dmub, &inbox1);
+-		if (dmub->hw_funcs.setup_out_mailbox)
+-			dmub->hw_funcs.setup_out_mailbox(dmub, &outbox1);
+-	}
++	dmub->scratch_mem_fb = *scratch_mem_fb;
+ 
+-	if (mail_fb) {
+-		dmub_memset(&rb_params, 0, sizeof(rb_params));
+-		rb_params.ctx = dmub;
+-		rb_params.base_address = mail_fb->cpu_addr;
+-		rb_params.capacity = DMUB_RB_SIZE;
++	if (dmub->hw_funcs.setup_windows)
++		dmub->hw_funcs.setup_windows(dmub, &cw2, &cw3, &cw4, &cw5, &cw6);
+ 
+-		dmub_rb_init(&dmub->inbox1_rb, &rb_params);
++	if (dmub->hw_funcs.setup_outbox0)
++		dmub->hw_funcs.setup_outbox0(dmub, &outbox0);
+ 
+-		// Initialize outbox1 ring buffer
+-		rb_params.ctx = dmub;
+-		rb_params.base_address = (void *) ((uint8_t *) (mail_fb->cpu_addr) + DMUB_RB_SIZE);
+-		rb_params.capacity = DMUB_RB_SIZE;
+-		dmub_rb_init(&dmub->outbox1_rb, &rb_params);
++	if (dmub->hw_funcs.setup_mailbox)
++		dmub->hw_funcs.setup_mailbox(dmub, &inbox1);
++	if (dmub->hw_funcs.setup_out_mailbox)
++		dmub->hw_funcs.setup_out_mailbox(dmub, &outbox1);
+ 
+-	}
++	dmub_memset(&rb_params, 0, sizeof(rb_params));
++	rb_params.ctx = dmub;
++	rb_params.base_address = mail_fb->cpu_addr;
++	rb_params.capacity = DMUB_RB_SIZE;
++	dmub_rb_init(&dmub->inbox1_rb, &rb_params);
 +
- #endif /* _AMDGPU_DM_TRACE_H_ */
++	// Initialize outbox1 ring buffer
++	rb_params.ctx = dmub;
++	rb_params.base_address = (void *) ((uint8_t *) (mail_fb->cpu_addr) + DMUB_RB_SIZE);
++	rb_params.capacity = DMUB_RB_SIZE;
++	dmub_rb_init(&dmub->outbox1_rb, &rb_params);
  
- #undef TRACE_INCLUDE_PATH
+ 	dmub_memset(&outbox0_rb_params, 0, sizeof(outbox0_rb_params));
+ 	outbox0_rb_params.ctx = dmub;
 -- 
 2.25.1
 
