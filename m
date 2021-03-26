@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9F734B1D8
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Mar 2021 23:06:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 601CB34B1DA
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Mar 2021 23:06:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 557666F4B7;
-	Fri, 26 Mar 2021 22:06:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D27F46F4B4;
+	Fri, 26 Mar 2021 22:06:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2050.outbound.protection.outlook.com [40.107.223.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3035C6F4B4
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 22:06:03 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2061.outbound.protection.outlook.com [40.107.236.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 741B66F4B8
+ for <amd-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 22:06:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N6j5nLjpGEDxAa6TVw+j+Ujv0U7LU3xz2USPsi8tns/TLIkpQfduyYnuY0MhoZsl93zeZpgbmBWfbuNmz9PtQyYpbqwQ+kw7HAstUg+oQxWnLA4v5azMN0MRBi3qAo5/NDwJ4dq4egwNZWyNqApZbtyLH4qER3ctOWO3lJ/ZKNShsOpQDhSP8sOsD1If6ShQr9FHPixnNP43lt0rIh05CFzFUGO2N2jjv6EtjQKJKfmlg2nwVLsceWLIbffdOMggrtaxducKI+WSAYFqqqtOg7/5bxm/pJX8c5VZdrZC3b0ENfD5KI+StlgLomrn8iUPbMY5PLKbQuTHAvLUqNT2pw==
+ b=WfBKnPH3ZbO8W8RV3I5OEJKMfRUKkjsJSB8N3k0s9NuYOY+64E5Gzwd+/3uS4s8mtKDd5VGdnwyI7zUOA2yUToMN6gCmj2bNklzlh1xmsCQYcHzs81zKHXc0HFZpGGw7tB26YBefQ7AHyGwVFpNXZ57qF9cwu46hXBBVLllv9w7IBNmQKEgUlOFBUvJup91Z8GLrKO3Pv54gqOitGCoLdB3T8F4mPc2u82CMDJMUxTgjdWwaVWRgaFX1L4W1pWKwy8A2s6ZWt34p37ofMFM/y/P1pMM3EE2HAcnx20w0m9IaN91B5A4oDAm9jwjqQkpbsajYnAIi9x/i7HW5GhAkiw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Vn+TmxyiXFeXonmvuMJM6ymTXDdb0D5txqDCoT0KT0s=;
- b=e0ELUdwg5+lczYumJUoZMoBB/eTZcWd2YjetJcnUiEfogH80BiJ7ZzkqsZJJqCQK/wEw0AKwLFfFd1MDlvNfuJDYtIP/k6t/0F3MpW7g7sSeqKNSlp/3VAN+3XWD7GPZLwyF7YL1pl+JTKSIo541pVuEIeFgHB5X7+Jd87SD/CZQYHH6E34vV6fbL0kjbWAV+5lyH/EIpohCYplNzabgYMnshInZyI63/eCBxnw/+VRy+2RYqtmVek+/uuUrTFoNihvu82OBrTQx1KX7ywh0YBxWu+dj1mS86N8KZzjPKYI2W38IMksHDeQ45yEM9m6G8x/fiOKpblg+JQtWcdbZlA==
+ bh=8SkIVyeDOjrUweAvey23QBp8bP+D40pE4Kwgp3h8MeU=;
+ b=M55wcaUc8l6KbUPb6F8SKjpQT2z1uc5OilY7pzbcfg3a4HzQRkMTxGYi6N4WaSGBj5X0Z38d2Rguxt12CWKc391z+Y6V7hmTaTcqa6ElTV6zJSaqBbBEi9kWvkzPMS8/pXWHKQUdvxKEvN1aQUGe+6sfBx7yfbRJiMk4NK2OYeT4qR+G11niPfevqTbxSIMDTRAzhlv67OQtXOb4zkehqDjw05r/P03ech8ifH14s42UP7W5tidVlzYr3n8W9eGIWXnZOkiDN7EguYODjSogCquyKto5Wb/bgG8iDi1d0eI0a45iJTul2KuTAwOJhDLb9lWauO8SLHnjjz4KRojsng==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Vn+TmxyiXFeXonmvuMJM6ymTXDdb0D5txqDCoT0KT0s=;
- b=bNohLk5B6HUcP53lnKh31/CRiHOqAIpW4+RhQ4I42qQJjkKnKeUomw+wJO6xoJcn/XDkQEN4WjyockA8kBAB8/WNfaHg4HBu/bJ+Ot14dRMuL9LnVr3nasmS9cqMJnrTyvdm2GhsbwoeuvsMrP+dCLzunmfAhGoFshRgqZtfyhM=
-Received: from DM5PR04CA0059.namprd04.prod.outlook.com (2603:10b6:3:ef::21) by
- DM6PR12MB3772.namprd12.prod.outlook.com (2603:10b6:5:1c3::12) with
+ bh=8SkIVyeDOjrUweAvey23QBp8bP+D40pE4Kwgp3h8MeU=;
+ b=os1K7E0Z6j0SCjB9+mr4EY0yj8ejCe2cZ8wZ95iJ0BSxLWUZTF7SiC8ejnTYLtkSRaFw0Cjcdxr7iBPJBEDrUVYa2BCnFGJm/SScKbKz+wVlalDuuPM5CuESFKWjtKif937mqUEDwEx0cOZJiv8Qb3dt8fLdysbkT7/1iE2xR1U=
+Received: from DM5PR07CA0153.namprd07.prod.outlook.com (2603:10b6:3:ee::19) by
+ BN6PR12MB1505.namprd12.prod.outlook.com (2603:10b6:405:5::20) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3977.30; Fri, 26 Mar 2021 22:06:01 +0000
-Received: from DM6NAM11FT017.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:ef:cafe::c) by DM5PR04CA0059.outlook.office365.com
- (2603:10b6:3:ef::21) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.3977.25; Fri, 26 Mar 2021 22:06:02 +0000
+Received: from DM6NAM11FT055.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:ee:cafe::a) by DM5PR07CA0153.outlook.office365.com
+ (2603:10b6:3:ee::19) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.24 via Frontend
- Transport; Fri, 26 Mar 2021 22:06:01 +0000
+ Transport; Fri, 26 Mar 2021 22:06:02 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,25 +46,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT017.mail.protection.outlook.com (10.13.172.145) with Microsoft SMTP
+ DM6NAM11FT055.mail.protection.outlook.com (10.13.173.103) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3955.18 via Frontend Transport; Fri, 26 Mar 2021 22:06:01 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
+ 15.20.3955.18 via Frontend Transport; Fri, 26 Mar 2021 22:06:02 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Fri, 26 Mar
- 2021 17:06:00 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Fri, 26 Mar
- 2021 17:06:00 -0500
+ 2021 17:06:01 -0500
 Received: from Bumblebee.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2106.2 via Frontend
- Transport; Fri, 26 Mar 2021 17:05:54 -0500
+ Transport; Fri, 26 Mar 2021 17:06:00 -0500
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/21] drm/amd/display: Fix typo for variable name
-Date: Fri, 26 Mar 2021 18:05:21 -0400
-Message-ID: <20210326220534.918023-9-Anson.Jacob@amd.com>
+Subject: [PATCH 09/21] drm/amd/display: Rename fs_params to hdr_tm_params
+Date: Fri, 26 Mar 2021 18:05:22 -0400
+Message-ID: <20210326220534.918023-10-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210326220534.918023-1-Anson.Jacob@amd.com>
 References: <20210326220534.918023-1-Anson.Jacob@amd.com>
@@ -72,27 +68,27 @@ MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-Office365-Filtering-HT: Tenant
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e4269a22-9ca1-4721-2473-08d8f0a35781
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3772:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB37724D18D56EF085247A1F5EEB619@DM6PR12MB3772.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3173;
+X-MS-Office365-Filtering-Correlation-Id: d1bc156c-f4ec-4940-1084-08d8f0a35827
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1505:
+X-Microsoft-Antispam-PRVS: <BN6PR12MB150566FDC20C9EBA0AE7C12BEB619@BN6PR12MB1505.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:873;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5FOQmcp8CwY4NXRsl2m9LVtyD2i8ZOFZJ3LfAGPIm8XrNCqXn1FwNCUSwTXFkkSvpwHHdL2Y7AfwVe4xXdq5j0Jm8Qdq7dwi9hoMDI+yyL27tKZQHvaxrxD8rLU+BwGR+CjxWnW6xpZJRa3vUs/K+0mQ/Xn7kbZeff3p9K934yfDC5EJtGWx2bozpVYsF3LBKYAcbabF2fsRHQGCuwUfupaBn0hD9OqQPB0NQt3Cgmly+HWJzrVdfqOysRqav4YsFyEk4ax5Z9HgGgA3fxF07GgPdbUud43/HcorNXxzNR4nbj8xBvW4t9+kMjDKp1hs0YaoSArQA+4WtCVN/pUK7YYbXYLiXoMmfxEEePkf++Q5WdldFFXRnwDNty7GhUt4/mXFVcdq64sahJm9u5CU3mBYXP7T4uEcwbRXT4lArmQ5idL7x0ENwGSnT1jX1FFxUlTtj0Jv8FO+2KeEP2UYQLe/2Ffp+R5IBLbJ2JaEct+z/QTgTQkHYrOhExIFtH55rTXvvkMpZriHbX+CAplvO/soP2c0IHIWjxb6Ok1HiE1LmEU5miDQEnKYsccrnqCO6HLJJXAC4dxEff0pkbukgAFNaekOAvaItW4+mbyR/KKs7iM83kP+1pmy6WRjddtfKDZeHcTxrE6qn4XIHDNXwGv3uIwYIyNq4HdIASaeKDKRKuZPPLfvbHp4iztf6Px7
+X-Microsoft-Antispam-Message-Info: AMHGux9qB3uNfnp52HhkQQ2kviLub74D3ZzC+LbClhHBISPP+edhnlodwTgu0OT9EOYAucjpeW1DOhac0FOBvJ30wnHJYQVFOxjYOuxHIeIwi0QzMh/CtoV4m5PQBET3c6c59DNkdDVC8Q/+vGsEpwxc4EA2YDzD23ePiN7Tf34p2U5+R9o38TBFZf5iTEr4Ut2QG4YYjSjJoMRjAkxRSz/NdsNhTERiRy84Muz6cDwexul31BCPF4qXZ3GGyxXj4AZ/i8kVR7vGGOmCXJ/3wuaKDzEUHOCDmJbnv3bZgyisJ5UdwNNMfSIQVCzP/3K/5mvZxiN80aYVO5myUZY76Rc1ijbAj92nicEhWNe1q4imbNklGFI5ouxI9zSQ20tqZtZoGFxR40u2kSTJm5irbYqLBesIQ3Cm8/OsAy38AKlJybB8nrZmK7WBq58Ao0qyiFdVeldh4hgPir7ucjasNWXsEBefiaxgBXm/rMp6DtkhPF3AixYk1eatSYxeIP1I3iCF43Y3PQtdwmMbUCkVBxeSHZ+//CdaDQTINOTNACkilRU+CK9tOox/Y1LL5CeitLUSvzFzn3SDzHy00JqNsABcBJqaOyRrmYyrfu+f8DUYhByES0bKG1a159II+OiryXLg/MSvHmksm+QYFn0y+XPh7gg5ZI2iYVA5MqC0to5ohgtb2J8WkSisqWypzgCZ
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(39860400002)(376002)(396003)(136003)(46966006)(36840700001)(8676002)(426003)(8936002)(4326008)(83380400001)(1076003)(2906002)(2616005)(356005)(36860700001)(82310400003)(5660300002)(47076005)(36756003)(186003)(81166007)(82740400003)(70206006)(336012)(26005)(6666004)(478600001)(316002)(6916009)(7696005)(86362001)(70586007)(54906003)(36900700001);
+ SFS:(4636009)(136003)(346002)(376002)(39860400002)(396003)(36840700001)(46966006)(356005)(81166007)(8936002)(426003)(478600001)(83380400001)(36756003)(26005)(2616005)(6666004)(8676002)(336012)(36860700001)(47076005)(82310400003)(82740400003)(186003)(86362001)(5660300002)(316002)(2906002)(7696005)(6916009)(1076003)(70206006)(4326008)(70586007)(54906003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2021 22:06:01.0332 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e4269a22-9ca1-4721-2473-08d8f0a35781
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2021 22:06:02.1276 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d1bc156c-f4ec-4940-1084-08d8f0a35827
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT017.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT055.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3772
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1505
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,64 +100,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Vladimir Stempen <vladimir.stempen@amd.com>, Eryk.Brol@amd.com,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
- Alexander Deucher <alexander.deucher@amd.com>, Bhawanpreet.Lakha@amd.com,
- Bindu R <Bindu.R@amd.com>
+Cc: Aric Cyr <Aric.Cyr@amd.com>, Krunoslav Kovac <Krunoslav.Kovac@amd.com>,
+ Anthony Koo <Anthony.Koo@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
+ bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Vladimir Stempen <vladimir.stempen@amd.com>
+From: Krunoslav Kovac <Krunoslav.Kovac@amd.com>
 
-[why]
-Word "remainder" was misspelled as "reminder" in
-reduceSizeAndFraction method variable.
+[Why&How]
+Renaming structure to better indicate its meaning.
 
-[how]
-Fix the spelling.
-
-Signed-off-by: Vladimir Stempen <vladimir.stempen@amd.com>
-Reviewed-by: Alexander Deucher <alexander.deucher@amd.com>
-Reviewed-by: Bindu R <Bindu.R@amd.com>
+Signed-off-by: Krunoslav Kovac <Krunoslav.Kovac@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
+Acked-by: Anthony Koo <Anthony.Koo@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c  | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/amd/display/modules/color/color_gamma.c | 6 +++---
+ drivers/gpu/drm/amd/display/modules/color/color_gamma.h | 4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index e0aa88a7766b..e1f33f908b5b 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -1893,7 +1893,7 @@ uint64_t reduceSizeAndFraction(
- 	num = *numerator;
- 	denom = *denominator;
- 	for (i = 0; i < count; i++) {
--		uint32_t num_reminder, denom_reminder;
-+		uint32_t num_remainder, denom_remainder;
- 		uint64_t num_result, denom_result;
- 		if (checkUint32Bounary &&
- 			num <= max_int32 && denom <= max_int32) {
-@@ -1901,13 +1901,13 @@ uint64_t reduceSizeAndFraction(
- 			break;
- 		}
- 		do {
--			num_result = div_u64_rem(num, prime_numbers[i], &num_reminder);
--			denom_result = div_u64_rem(denom, prime_numbers[i], &denom_reminder);
--			if (num_reminder == 0 && denom_reminder == 0) {
-+			num_result = div_u64_rem(num, prime_numbers[i], &num_remainder);
-+			denom_result = div_u64_rem(denom, prime_numbers[i], &denom_remainder);
-+			if (num_remainder == 0 && denom_remainder == 0) {
- 				num = num_result;
- 				denom = denom_result;
- 			}
--		} while (num_reminder == 0 && denom_reminder == 0);
-+		} while (num_remainder == 0 && denom_remainder == 0);
- 	}
- 	*numerator = num;
- 	*denominator = denom;
+diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
+index 5c67e12b2e55..ef742d95ef05 100644
+--- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
++++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
+@@ -942,7 +942,7 @@ static void hermite_spline_eetf(struct fixed31_32 input_x,
+ static bool build_freesync_hdr(struct pwl_float_data_ex *rgb_regamma,
+ 		uint32_t hw_points_num,
+ 		const struct hw_x_point *coordinate_x,
+-		const struct freesync_hdr_tf_params *fs_params,
++		const struct hdr_tm_params *fs_params,
+ 		struct calculate_buffer *cal_buffer)
+ {
+ 	uint32_t i;
+@@ -2027,7 +2027,7 @@ bool mod_color_calculate_degamma_params(struct dc_color_caps *dc_caps,
+ static bool calculate_curve(enum dc_transfer_func_predefined trans,
+ 				struct dc_transfer_func_distributed_points *points,
+ 				struct pwl_float_data_ex *rgb_regamma,
+-				const struct freesync_hdr_tf_params *fs_params,
++				const struct hdr_tm_params *fs_params,
+ 				uint32_t sdr_ref_white_level,
+ 				struct calculate_buffer *cal_buffer)
+ {
+@@ -2106,7 +2106,7 @@ static bool calculate_curve(enum dc_transfer_func_predefined trans,
+ 
+ bool mod_color_calculate_regamma_params(struct dc_transfer_func *output_tf,
+ 		const struct dc_gamma *ramp, bool mapUserRamp, bool canRomBeUsed,
+-		const struct freesync_hdr_tf_params *fs_params,
++		const struct hdr_tm_params *fs_params,
+ 		struct calculate_buffer *cal_buffer)
+ {
+ 	struct dc_transfer_func_distributed_points *tf_pts = &output_tf->tf_pts;
+diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.h b/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
+index 7563457e2ff4..2893abf48208 100644
+--- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
++++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.h
+@@ -76,7 +76,7 @@ struct regamma_lut {
+ 	};
+ };
+ 
+-struct freesync_hdr_tf_params {
++struct hdr_tm_params {
+ 	unsigned int sdr_white_level;
+ 	unsigned int min_content; // luminance in 1/10000 nits
+ 	unsigned int max_content; // luminance in nits
+@@ -108,7 +108,7 @@ void precompute_de_pq(void);
+ 
+ bool mod_color_calculate_regamma_params(struct dc_transfer_func *output_tf,
+ 		const struct dc_gamma *ramp, bool mapUserRamp, bool canRomBeUsed,
+-		const struct freesync_hdr_tf_params *fs_params,
++		const struct hdr_tm_params *fs_params,
+ 		struct calculate_buffer *cal_buffer);
+ 
+ bool mod_color_calculate_degamma_params(struct dc_color_caps *dc_caps,
 -- 
 2.25.1
 
