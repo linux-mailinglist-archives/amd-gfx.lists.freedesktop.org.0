@@ -2,54 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15E2734E8F5
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Mar 2021 15:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0533034E8F1
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Mar 2021 15:24:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 830076E8F0;
-	Tue, 30 Mar 2021 13:24:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46FB76E8ED;
+	Tue, 30 Mar 2021 13:24:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com
- [IPv6:2607:f8b0:4864:20::62e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE5316E8AC
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Mar 2021 11:06:12 +0000 (UTC)
-Received: by mail-pl1-x62e.google.com with SMTP id e14so5977052plj.2
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Mar 2021 04:06:12 -0700 (PDT)
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
+ [IPv6:2607:f8b0:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AFE06E8B0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Mar 2021 11:19:43 +0000 (UTC)
+Received: by mail-pf1-x435.google.com with SMTP id c204so11944744pfc.4
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Mar 2021 04:19:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=DskNrmJoVlSyLul5rgVfAIyNWef+AlzHHvEOelMyti0=;
- b=slVa6+xoi3BdoEmDA0VoVWkO8tuL/lXxZmvTYGJg7wGz1ScYaIRXrCfzU8ZDfT3ZM0
- ggp/ygaQGKJGhFRA5QW7f9U3EfpbXSMsXTYWx7p1nwBA8Ekc49nwzUS6jMME7z7gTQer
- pMAXay4GGKQ56ztl5Jx1BBEy9AL93xGYlIGeODixUv/aqu+Qb+EPVu6yig6as9K82Ctm
- Pc3Lb0tpzXuQ5QcHBiBeRUxF6g9QB2ZdsgL/8/oYQe2iFwggUqNONxGYgSPBasb/yQF+
- y9q6PFdQulOmXT/wl+s9SdMhbJRohu5/5mZE85W2ZPZCmG6ZrLW1OBmlPFp3zsxQu37T
- whJg==
+ :cc; bh=nEiq5VYqidlia0rfaVKXey2aQI1J0UOeUfwbZ7SzFqw=;
+ b=qIay2yJaGw8H+hG15KImlYeu0r6L9MLLcQDEnZF2qFdTW2zSpQ40IXg+/vxlnJQz4o
+ TKzi5YqlKrIHttRWaLvFbdM20gKQ/igZVcwm8SFzdsf0/GzVTOyvvDeB6kqpBolWhn33
+ iI+TCXiaVJhMe/oW7DCLEON36LzdAAwFwyEShryYOFQyky1isZ0YY5RVfN5W3oiAYvwy
+ 8+KnWX/nQwEbJaqACWTSuM18VOAT1ks9X9zr7SchWYDgwTLwBD/knap1CJ7Ca9tlGG8b
+ sFpNlx44sNZxtyb4faahEv9qJLV1qWz1e1po03itPLigsO5ao0DVK7AqSPfVLMue7R6H
+ nwTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=DskNrmJoVlSyLul5rgVfAIyNWef+AlzHHvEOelMyti0=;
- b=bDf8Ad4OVxIQXAzsfYbTqg5L+i/ye+zAnu4WlQ8ttungfXcJyD1i2OHepah9+3Oq4j
- wXUAvI/Gli4R35rgGuz2KQQESazmDS7t1PwX0IL+1FBoS4ZkXhdXK1SAkT25FOTAVzfr
- XabzcjQICrApSdzzuf7JIhewICyKVZyNDnrm8R0cluHyOlFTIKbvln9YaP4xeIQemNPn
- S/9Y6d1d0RTwVdcly9B8j06PTX+MyncUSKJEAajKTGJWZveuCeS+scvWfR0B6jv8J3O3
- yWr2dc6TuwC2tKStzSfS2VjcQ/6EYxGX6L9z65tFB7BmWvFZx0HiLwDLbxVO+FlK2nhZ
- tkWg==
-X-Gm-Message-State: AOAM531IQyS0mL5XC7V/U/SpIjjwNjlqS/NmyLoEvcGqpCgq40cynb5n
- 3IEURjuNfIyQp7/c/pFq+Tw8SZ80cpbHbWi6F+kakg==
-X-Google-Smtp-Source: ABdhPJxfOmfQB9fzlhBcQ+PyXZQEzxSloSUbr4UVE6rrRVfcHfZyWFno3tNgnDlI6rBdjWZE6AMTaSFq8fb0+pHpeFc=
-X-Received: by 2002:a17:902:f68a:b029:e5:b17f:9154 with SMTP id
- l10-20020a170902f68ab02900e5b17f9154mr32285479plg.28.1617102372210; Tue, 30
- Mar 2021 04:06:12 -0700 (PDT)
+ bh=nEiq5VYqidlia0rfaVKXey2aQI1J0UOeUfwbZ7SzFqw=;
+ b=C223pNCL9dTuwZ0gkJgK8UDvAZT3VaZeWif0j06xU2UOkWPwZ6xoeeqdBR5yi81y9X
+ I/xzt3AkmEVCk2qjeYpoLQgL/q2cQ39+UZDRhrIW2cb2U/zjFSRvePHTRNHOHzCMaqOH
+ TeALt3j468mu1loJSAFXdNbDp6vlXFnPM7autNN0rd1AcQ9moaGP9lVbyU+ZCxX71wiV
+ XiHMvSIaAGvTtSfiabFTo79YJhhdZDHO6LYhA7rDTMoj00qdUO2dihEXTxypYmvixva2
+ PuABjLis1jxCwopAosF3RE1MKbyH5zf5EBTxhvHoWaMaW/5xLgbFdkTyAMfPf1ATJYE5
+ S8Ow==
+X-Gm-Message-State: AOAM530H7QJF992MAANQjpDp2CzkA1Y2AQj/HTrYd4h4mqp0SVJe+Roc
+ c9S6fy85qno0JcMyEKwMD/5gdPYqNA0P4wRMFxPGNA==
+X-Google-Smtp-Source: ABdhPJxq5q/aaT+6jdvgQQdbDwMNlvYfZjAmKD/2J/yR3c6DqBDMvry2T/Awy6EWGZ+THIsQHdyfhPbS801PyKVA3nE=
+X-Received: by 2002:a05:6a00:b54:b029:207:2a04:7b05 with SMTP id
+ p20-20020a056a000b54b02902072a047b05mr29651828pfo.12.1617103182535; Tue, 30
+ Mar 2021 04:19:42 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210326203807.105754-1-lyude@redhat.com>
- <20210326203807.105754-20-lyude@redhat.com>
-In-Reply-To: <20210326203807.105754-20-lyude@redhat.com>
+ <20210326203807.105754-21-lyude@redhat.com>
+In-Reply-To: <20210326203807.105754-21-lyude@redhat.com>
 From: Robert Foss <robert.foss@linaro.org>
-Date: Tue, 30 Mar 2021 13:06:01 +0200
-Message-ID: <CAG3jFytEUCqh6U6oG8hKqk-2bmr+qtcwg1gbWRQp_KxXTxfVsw@mail.gmail.com>
-Subject: Re: [PATCH v2 19/20] drm/dp_mst: Drop DRM_ERROR() on kzalloc() fail
- in drm_dp_mst_handle_up_req()
+Date: Tue, 30 Mar 2021 13:19:31 +0200
+Message-ID: <CAG3jFyvEvb=YWopYUmi1bf=fe3ZX7VmtvnnmT5dHcNjLhHvsQg@mail.gmail.com>
+Subject: Re: [PATCH v2 20/20] drm/dp_mst: Convert drm_dp_mst_topology.c to
+ drm_err()/drm_dbg*()
 To: Lyude Paul <lyude@redhat.com>
 X-Mailman-Approved-At: Tue, 30 Mar 2021 13:24:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -77,42 +77,63 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Hey Lyude,
 
-This patch looks good to me.
+This patch looks good, but I have one question below. With it
+addressed, feel free to add my r-b.
 
 Reviewed-by: Robert Foss <robert.foss@linaro.org>
 
-On Fri, 26 Mar 2021 at 21:40, Lyude Paul <lyude@redhat.com> wrote:
 >
-> Checkpatch was complaining about this - there's no need for us to print
-> errors when kzalloc() fails, as kzalloc() will already WARN for us. So,
-> let's fix that before converting things to make checkpatch happy.
+> -static bool drm_dp_sideband_parse_req(struct drm_dp_sideband_msg_rx *raw,
+> +static bool drm_dp_sideband_parse_req(const struct drm_dp_mst_topology_mgr *mgr,
+> +                                     struct drm_dp_sideband_msg_rx *raw,
+>                                       struct drm_dp_sideband_msg_req_body *msg)
+>  {
+>         memset(msg, 0, sizeof(*msg));
+> @@ -1117,12 +1125,12 @@ static bool drm_dp_sideband_parse_req(struct drm_dp_sideband_msg_rx *raw,
 >
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: Robert Foss <robert.foss@linaro.org>
-> ---
->  drivers/gpu/drm/drm_dp_mst_topology.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
+>         switch (msg->req_type) {
+>         case DP_CONNECTION_STATUS_NOTIFY:
+> -               return drm_dp_sideband_parse_connection_status_notify(raw, msg);
+> +               return drm_dp_sideband_parse_connection_status_notify(mgr, raw, msg);
+>         case DP_RESOURCE_STATUS_NOTIFY:
+> -               return drm_dp_sideband_parse_resource_status_notify(raw, msg);
+> +               return drm_dp_sideband_parse_resource_status_notify(mgr, raw, msg);
+>         default:
+> -               DRM_ERROR("Got unknown request 0x%02x (%s)\n", msg->req_type,
+> -                         drm_dp_mst_req_type_str(msg->req_type));
+> +               drm_err(mgr->dev, "Got unknown request 0x%02x (%s)\n",
+> +                       msg->req_type, drm_dp_mst_req_type_str(msg->req_type));
+>                 return false;
+>         }
+>  }
 >
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-> index ec2285595c33..74c420f5f204 100644
-> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> @@ -4113,10 +4113,9 @@ static int drm_dp_mst_handle_up_req(struct drm_dp_mst_topology_mgr *mgr)
->                 return 0;
+
+.. snip ..
+
+> @@ -4118,12 +4121,12 @@ static int drm_dp_mst_handle_up_req(struct drm_dp_mst_topology_mgr *mgr)
 >
->         up_req = kzalloc(sizeof(*up_req), GFP_KERNEL);
-> -       if (!up_req) {
-> -               DRM_ERROR("Not enough memory to process MST up req\n");
-> +       if (!up_req)
->                 return -ENOMEM;
-> -       }
-> +
 >         INIT_LIST_HEAD(&up_req->next);
 >
->         drm_dp_sideband_parse_req(&mgr->up_req_recv, &up_req->msg);
-> --
-> 2.30.2
+> -       drm_dp_sideband_parse_req(&mgr->up_req_recv, &up_req->msg);
+> +       drm_dp_sideband_parse_req(mgr, &mgr->up_req_recv, &up_req->msg);
+
+drm_dp_sideband_parse_req() is only called here, and the function
+arguments could probably stand to have `&mgr->up_req_recv` removed
+(here and in the func. declaration) since the same data structure is
+accessible through the `mgr` pointer inside of
+drm_dp_sideband_parse_req(). I guess this is a matter of taste, so
+feel free to do what you want with this.
+
 >
+>         if (up_req->msg.req_type != DP_CONNECTION_STATUS_NOTIFY &&
+>             up_req->msg.req_type != DP_RESOURCE_STATUS_NOTIFY) {
+> -               DRM_DEBUG_KMS("Received unknown up req type, ignoring: %x\n",
+> -                             up_req->msg.req_type);
+> +               drm_dbg_kms(mgr->dev, "Received unknown up req type, ignoring: %x\n",
+> +                           up_req->msg.req_type);
+>                 kfree(up_req);
+>                 goto out;
+>         }
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
