@@ -1,119 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB3C434E3A8
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Mar 2021 10:58:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7E8D34E8EE
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Mar 2021 15:24:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 553826E87F;
-	Tue, 30 Mar 2021 08:58:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 023C26E8EA;
+	Tue, 30 Mar 2021 13:24:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2044.outbound.protection.outlook.com [40.107.93.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3B386E87F
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Mar 2021 08:58:44 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hycRriJdsIYmJAewqiDgtHtGytKJRXGFLlVOaVSAPZ/LFjw/cvMKHEhZ2I75K8YNy4os9rPht+4Rm82gAg4MoH3+1Dlg5htuqjM2us/n9Us2LoV7da037AnVwcQQrBjtN920MOcCQrKNoVFymrWucUHChIJ90yH/fi1vJ2wlVYRo3y3a7/L55DJlN4sO6K7GIHuBOgJ47+bdJFm5Hm3YT47dR7TOQqp3EcQYfjfOg+33lZ/h2MLGgU+WGtr1NINhNhknYbX4a+BkPDUq5HevaDxFqP7LsQx/YTWoCFT0f7KD+mKhRAXdaD8OVnMHbxOlzNSHoQM1vKnOfRxCGMDO0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=403PRATxMIbMoMSAgMgAY2LGb+0DGa1kHt24z59NSQA=;
- b=O0iyWy341a+mDwuiCC1MMQfn4dkhbd/YXtSOLlR3j0wBPKksAo9wbeG2cfXLV3A+t98pcdBaf3RV53JqwnFxeHPlOILJNeq/MMBS49WEAt4AH16rEfea6OkPuB6oKsZPAH0ZaO46ErUf3r0PdDL3ZOuiQiL4pOPQzdYV388/pWGa8Oe46+Pdtqse4ygRQqlr8xYJ94RLKh+Zxwh0q8Dcn4FuKXJ7Ojosueff5VCzyLqjzXIGsdVkZI66NVxr8ATU5Ruybiw+sWsEVGzWqblUSNSXqbFFTUPUD1GTOwzw/frL1dvCtULM8zgvYNK8vZoLfT3K9/wvne5cFWoUnOTmRA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=403PRATxMIbMoMSAgMgAY2LGb+0DGa1kHt24z59NSQA=;
- b=4WArts7LQIz355k484BhgjERZV1/RlrrdXdbzOnBRUp14xZRIBKmBWXz+WPyQQsxrMZMO7zDpfd1MudG8mJo0Tbr1t6xhUZRbGMKOV35w3JEyecY7kivjemrl8ih4ScuKsIEWzCaHopRaYIryy3ZYy+WDmqi24/vdGs+bjZyWpI=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from CY4PR12MB1463.namprd12.prod.outlook.com (2603:10b6:910:e::19)
- by CY4PR12MB1829.namprd12.prod.outlook.com (2603:10b6:903:11d::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.33; Tue, 30 Mar
- 2021 08:58:42 +0000
-Received: from CY4PR12MB1463.namprd12.prod.outlook.com
- ([fe80::6504:7fc4:d02f:77f2]) by CY4PR12MB1463.namprd12.prod.outlook.com
- ([fe80::6504:7fc4:d02f:77f2%3]) with mapi id 15.20.3977.033; Tue, 30 Mar 2021
- 08:58:42 +0000
-Subject: Re: [PATCH] drm/amdgpu: Toggle msix after FLR for sriov
-To: Emily Deng <Emily.Deng@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20210330081441.61418-1-Emily.Deng@amd.com>
-From: Nirmoy <nirmodas@amd.com>
-Message-ID: <53edd04b-97a6-3f79-16e3-9a58704f8e28@amd.com>
-Date: Tue, 30 Mar 2021 10:58:38 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-In-Reply-To: <20210330081441.61418-1-Emily.Deng@amd.com>
-Content-Language: en-US
-X-Originating-IP: [165.204.84.11]
-X-ClientProxiedBy: BN9PR03CA0768.namprd03.prod.outlook.com
- (2603:10b6:408:13a::23) To CY4PR12MB1463.namprd12.prod.outlook.com
- (2603:10b6:910:e::19)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com
+ [IPv6:2a00:1450:4864:20::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E98086E883
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Mar 2021 09:07:52 +0000 (UTC)
+Received: by mail-lf1-x133.google.com with SMTP id o126so22737204lfa.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Mar 2021 02:07:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=A0U2Z9rQ2O4A+FKmyq8e7StGMrORBfwuhVEPPZCsRTU=;
+ b=kaSm6PguyCQm0ShTHIpHbuTFr52ax4Ne1rD3HXfImclA9FFijkXeLYmx8HibjX7JjN
+ XYgK0md4szgnLAG8q+GXZYB3kYwcyOh+eMFMtYXd19dN8sB/arFpta9BxXC+WpOFs1O8
+ l83plwYIbMT9YHXhijLdn6ZPw+0Lk5ZLx/gaSqALZblZB3LSIAlnW+o6fgnYodrDCxHF
+ mOnK8VdEo/bmUmrtINaKdRcRgqeLD2NZrwfibg9V6ajxeaorDZLmZXZr7/iW4s0XRhUG
+ sgjMvRquD5riT5aMMOBYyEnVLEfggY/la98eaZZ2KTPD1DsmVnvqnU5D6m6sXH0Je1el
+ IJ1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=A0U2Z9rQ2O4A+FKmyq8e7StGMrORBfwuhVEPPZCsRTU=;
+ b=Ng4AbkxFklXKdePMg+ScjEB2uAvRrQvp3+F9UhvLfr712LDHt1Zu12EEg3H3GCpNrA
+ Z0hJXidWxFQKUG1r0fQwdGK5aVPxeXfuVb2SYYjwx6BKpatOaIIt55Gk18NUhO6Ic0nC
+ qxGhWnLpNa0hy+2ArDNqmMn9AhrgZYLJ5ZP65MgYD9/ktzCG28YZBYhwYkHYFAeMEYqi
+ eKvJf/Elj8LQu2N1ilv9AfueHy7+LhB3836KjCTIzN8kN0uanp0+1/hKjLfJ/SLR5UWW
+ zhlK2RvTCTprM8xlEZchZe/xUHSxaslb4yHCYKXql6FgjLjxkL1SsHhThb1e++lvGgni
+ 30OQ==
+X-Gm-Message-State: AOAM531I6Uwqy85ScnKE5+FiGjoj+sIr8xANeblIfiPtq3+k5sqt4U96
+ j5u3rbfn9dFGB+1zOccMN9Spj38tFr3+M4jEariilpkIXHTvPw==
+X-Google-Smtp-Source: ABdhPJzUsVggCUk0hFzd5aBjMufyki2oJ6OrU2L0+qUGzgwCILfQ905D34XapS7MTOarUt/ZJG1rAAvq1FsO03lATSQ=
+X-Received: by 2002:a05:6512:94d:: with SMTP id
+ u13mr17659954lft.368.1617095271434; 
+ Tue, 30 Mar 2021 02:07:51 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.31.5.65] (165.204.84.11) by
- BN9PR03CA0768.namprd03.prod.outlook.com (2603:10b6:408:13a::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25 via Frontend
- Transport; Tue, 30 Mar 2021 08:58:41 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: e62a5b14-0e71-45b5-c943-08d8f35a0499
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1829:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CY4PR12MB1829E12BB19D7C86492E0E498B7D9@CY4PR12MB1829.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: t8IlPrK8alI4nBGdLt1v0tBUrnVTb3YhxbprG0+t+OfvCg58khHpiiWyNwe7rBCjwHL3eyEVCvirbIoPyloBc2V0DKJm3QLfCpHDoCUfuHcUD0RCO9S30au5gag/ACTAVTQwMHMmP1+wua2FLqf1P4RzSZ+botlQGfa1mcBpuUPpzrNEMK1Zhz4eP6YGlSrm37Y9/rIG+aqLQUem8a6R0a70i7toIYJlEO1TNQIKMrEi71xzZDTBEclGOLQkRaeOBQL+XdlpB+m32oqBPQzyrTrwRc1HuyEJxQXoa/rxOJljgHSxqfeX0Zp3wP8GceFM05vz9yU5mJ9xcNrTHrRAUOdrJrlynXDReSluFH5TKEVN5s3EG+jOY1yKsu0aNtyyPTw9AQIScwL7dNIRRimlOK66oPJI+o+EG3ztKtA8oK3m+ORRxUYV/m91sTgxe/wSONlDvjr9fruOWOKiMemw3ESJTYiMfSzpHwejGcaelrF6UqlhezG07tBEv0QdXWrVLrFOeG1wrGtu2NdsDgMZgb/g50ojS1nQXVCrhDga3qtUriaT2xep2Z0zLFKWxq54YSDBemePhOfKhNJLSBYF3N+23/mW4Iw3H+GcsFvQXUNJuStXNp7V+gb3ipeGygto2RqWkopjHS0w2vKTBT1qfVbbBKgPVBaHM1tQq9CJeDmkpagaFTW8A3cRpbKp7V5M6dZCLwxB0S8i/rEskFesAlVS41rhfgy6qLxQL+43Vcs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY4PR12MB1463.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(346002)(39860400002)(136003)(376002)(366004)(38100700001)(53546011)(36756003)(2906002)(6666004)(31696002)(83380400001)(52116002)(2616005)(956004)(6486002)(8676002)(478600001)(31686004)(16526019)(16576012)(316002)(66556008)(8936002)(186003)(5660300002)(66946007)(66476007)(26005)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?cDRIeXhmNzMxSHNpdFhSZ0VodVNzdTY1T3Z3MVBmVFpyeWdwVFVuNEFyVXBk?=
- =?utf-8?B?WWVKOWtCbkFXRW43ejJQSWJiZXZ5aXArWSs2RjBYcGZQOS8xQlRRMkhKM0FG?=
- =?utf-8?B?ZUcvdVRYUnlBclArWTlHZitsNDR2ZWlQWE5nNFdnZ2lyd3VYWHE5YlE5eDJa?=
- =?utf-8?B?Rzh0VVVkSm5LNHZIRTNLTjAzN0JHMWhNSStWanJHSnZIbi9QcVVCM0pLUC9x?=
- =?utf-8?B?ZXVjZ2xoc0tNQWJKWHRYOGtxM2Q5SXVSR3d0NnVMVWdvYlJlZUZFVVpvSzZL?=
- =?utf-8?B?Qm9DWmpoaHdCK0FEUldnZzdYV28vb3FlL2FNeFdHb0RaMUc4dkZlYTgwZU9D?=
- =?utf-8?B?U0U1RVVQanBVMVE5RHlJWXNkbVN4MU51SG9jVnZRYll5MGtEVFNOOFI2R0NU?=
- =?utf-8?B?ZEREaElDelVZd3pwZjgrYllTSW8rcUVqVy9ZWnRyYWlqa1p2aDA4V0EycUtM?=
- =?utf-8?B?ZGtjaG9vNm5RU0FzcEVPaWh4UDdEaWJ0UEdYM29obVM5M1R5Zk9waWtOUzlE?=
- =?utf-8?B?WVVOd1V0T0NOU1lmZlh4ZTRwZGhjZjN2U2tPTktxWHF2aEcvNGVpYmFqN1Zn?=
- =?utf-8?B?Z3UvM3dzNWpybE9uYnA1Qyt3d0dNMVRvc0dlM3JnNnEwTzBtM1ZyM0lZK0xk?=
- =?utf-8?B?U2xnVGdXOVhLcUFaL0RyZERrYkkyNzd3YVpIYnFIOTUxLzIyZEtLazJWS3Z6?=
- =?utf-8?B?bXRvcTJ0NFFPK3l3VitSaFRtMFVCUjhUREJNMzBSSFBDMVFJc1F5N05kb0FP?=
- =?utf-8?B?S3AyK0FuMU9FaHF2YTlmSVVxcUpWU0k3YStqVlB4ZXlXc0FENVRVNkNYMWJp?=
- =?utf-8?B?QkpyN3JiN28rckNaeE13NnVQMFNXZ1JUMDF1TThRMHFmMVlWL3dwTm9RVUVP?=
- =?utf-8?B?eDY1SjBZVDEzR0FQRElxdm4rREt6VUtOSWREQkJ3Smp4WWZSZ2hZcGd1TnM4?=
- =?utf-8?B?NEY2bXY2SzNNZUthZXJBWFJiTXNyM2pzMlAxYkhxRUN3WExZN2F6Z1J6V004?=
- =?utf-8?B?K3ZmNDZiRWdLUWxzaEpYSUJ2NWg3STZwNzc3NVRUMEgrRHBWMFRuWDhYUUth?=
- =?utf-8?B?SHU1d1Nvb1RDTDY1RVdwbWc5Y0VFVEZiSXEzaktNcEdlWVBncVdLQ2NjYzY4?=
- =?utf-8?B?WmlYVGlxOW9yUTJsVUY3cGt1bGhCMm52VzlrbEtoajBlVEVmUGFFK0N1azVE?=
- =?utf-8?B?bnVETlp6RmVOYWQyQUZMNnQ5dUd0bEt0TUE4aTMva21GTDlzbW1YL0tVMHdo?=
- =?utf-8?B?Z1k5OUJSRDBoVGsreVZvZkRjVGpVWE9YSExGNURmNUo1SHJHKzMxUUt1QWxF?=
- =?utf-8?B?UXVxZ05WcmZsbXlVQ1NSRExFTTd3cjdYZnl1d3BMbmhQZUdGL1RiVXhXK1dH?=
- =?utf-8?B?ODYyaDFBSXNLZ1BUb1dIb0pSWHhmMWxGMlVGMVFoc1FJTG9OUXdOdVJ5N0pK?=
- =?utf-8?B?dUx3M0huQ28ya0NPTmU2cmpSZzBsZGNhb1E4Qk9RNEpuVm9yQ0I0Z3lINUJo?=
- =?utf-8?B?dlZTL21JcXo3azF1TlExRFdEdFMxNlJ4Z0hlQ0xIdnhOc0FyalNqSG5TTHRl?=
- =?utf-8?B?VElDM3doeDlrRWNLb0hFQm1sVXE2ajVOV3VabVFBRFNKQWIyM2pRaUg3aUNz?=
- =?utf-8?B?WkE5Y3dmbGsvemhwSXR0cUlOQlZoMEFCcEROVmhEdnRCZmpYL3BvQmp5aTRi?=
- =?utf-8?B?OU9QQUI5VndOajZPWjBnRkZDdHpIWUdtT25qRUFZU3dIRGxBVnlzcmhnZml4?=
- =?utf-8?Q?lTkyU40gM/JrJQ31HsIghQPVV+6LWxrin+jqBNL?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e62a5b14-0e71-45b5-c943-08d8f35a0499
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR12MB1463.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2021 08:58:42.5377 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LFZ0le8vMj0hx06seOvyDE6MTXz1u3GFAqqDbLYnM+WP5KLU/RwIS6k1DmfxyH04G2j2m8woPio2J7hBe/0dEw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1829
+References: <CAHJvkbsexf7kM-11ZdrM+pHUUyvttB8fyJMfcsQAC1233jp8LA@mail.gmail.com>
+ <388b2a9d-0e63-b70f-28ed-6297a524fb76@amd.com>
+In-Reply-To: <388b2a9d-0e63-b70f-28ed-6297a524fb76@amd.com>
+From: Alberto Salvia Novella <es20490446e@gmail.com>
+Date: Tue, 30 Mar 2021 11:07:40 +0200
+Message-ID: <CAHJvkbuu5WB=QTu0EUgSGcoK6KMbP2j8NA0o+XTdtkwadNpsxg@mail.gmail.com>
+Subject: Re: Interlaced resolutions hang the desktop
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+X-Mailman-Approved-At: Tue, 30 Mar 2021 13:24:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,74 +62,104 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: alexander.deucher@amd.com, benh@kernel.crashing.org,
+ linux-fbdev@vger.kernel.org, amd-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1027779371=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+--===============1027779371==
+Content-Type: multipart/alternative; boundary="00000000000038d0f805bebd55db"
 
-On 3/30/21 10:14 AM, Emily Deng wrote:
-> From: "Emily.Deng" <Emily.Deng@amd.com>
+--00000000000038d0f805bebd55db
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I guessed so.
+
+The GPU is a Radeon HD5870, and the screen is an old Telefunken TV
+(TLFK22LEDPVR1).
+
+Since my real display got into repair I used this TV meanwhile, and to my
+surprise it froze the system.
+
+On Tue, 30 Mar 2021 at 10:15, Christian K=C3=B6nig <christian.koenig@amd.co=
+m>
+wrote:
+
+> Hi Alberto,
 >
-> After FLR, the msix will be cleared, so need to toggle it for sriov.
+> well what hardware do you have?
 >
-> v2:
-> Change name with amdgpu_irq prefix, remove #ifdef.
+> Interlaced resolutions are not used any more on modern hardware, so they
+> are not well tested.
 >
-> Signed-off-by: Emily.Deng <Emily.Deng@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c | 14 ++++++++++++++
->   1 file changed, 14 insertions(+)
+> Regards,
+> Christian.
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-> index 03412543427a..3045f52e613d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-> @@ -277,6 +277,17 @@ static bool amdgpu_msi_ok(struct amdgpu_device *adev)
->   	return true;
->   }
->   
-> +static void amdgpu_irq_restore_msix(struct amdgpu_device *adev)
-> +{
-> +	u16 ctrl;
-> +
-> +	pci_read_config_word(adev->pdev, adev->pdev->msix_cap + PCI_MSIX_FLAGS, &ctrl);
-> +	ctrl &= ~PCI_MSIX_FLAGS_ENABLE;
-> +	pci_write_config_word(adev->pdev, adev->pdev->msix_cap + PCI_MSIX_FLAGS, ctrl);
-> +	ctrl |= PCI_MSIX_FLAGS_ENABLE;
-> +	pci_write_config_word(adev->pdev, adev->pdev->msix_cap + PCI_MSIX_FLAGS, ctrl);
+> Am 30.03.21 um 10:04 schrieb Alberto Salvia Novella:
+> > The entire desktop hangs after some minutes when using the module
+> > "radeon" with an interlaced resolution.
+> >
+> > Easier to trigger by playing a video on Firefox, at least on kwin_x11.
+> > Wayland didn't exhibit the problem.
+> >
+> > Other display drivers, from different computers I have tried, didn't
+> > allow those interlaced resolutions all together. It seems they know
+> > there will be problems.
+>
+>
 
+--00000000000038d0f805bebd55db
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Why write 1st clear and then set the msix flag if we know that msix is 
-already cleared.
+<div dir=3D"ltr"><div>I guessed so.</div><div><br></div><div>The GPU is a R=
+adeon HD5870, and the screen is an old Telefunken TV (TLFK22LEDPVR1).</div>=
+<div><br></div><div>Since my real display got into repair I used this TV me=
+anwhile, and to my surprise it froze the system.<br></div></div><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 30 Mar 20=
+21 at 10:15, Christian K=C3=B6nig &lt;<a href=3D"mailto:christian.koenig@am=
+d.com">christian.koenig@amd.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">Hi Alberto,<br>
+<br>
+well what hardware do you have?<br>
+<br>
+Interlaced resolutions are not used any more on modern hardware, so they <b=
+r>
+are not well tested.<br>
+<br>
+Regards,<br>
+Christian.<br>
+<br>
+Am 30.03.21 um 10:04 schrieb Alberto Salvia Novella:<br>
+&gt; The entire desktop hangs after some minutes when using the module <br>
+&gt; &quot;radeon&quot; with an interlaced resolution.<br>
+&gt;<br>
+&gt; Easier to trigger by playing a video on Firefox, at least on kwin_x11.=
+ <br>
+&gt; Wayland didn&#39;t exhibit the problem.<br>
+&gt;<br>
+&gt; Other display drivers, from different computers I have tried, didn&#39=
+;t <br>
+&gt; allow those interlaced resolutions all together. It seems they know <b=
+r>
+&gt; there will be problems.<br>
+<br>
+</blockquote></div>
 
+--00000000000038d0f805bebd55db--
 
+--===============1027779371==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-> +}
-> +
->   /**
->    * amdgpu_irq_init - initialize interrupt handling
->    *
-> @@ -558,6 +569,9 @@ void amdgpu_irq_gpu_reset_resume_helper(struct amdgpu_device *adev)
->   {
->   	int i, j, k;
->   
-> +	if (amdgpu_sriov_vf(adev))
-> +		amdgpu_irq_restore_msix(adev);
-
-
-Is it possible to load amdgpu on guest without msix ? If so then we need 
-to probe if msix is enabled.
-
-
-Nirmoy
-
-
-> +
->   	for (i = 0; i < AMDGPU_IRQ_CLIENTID_MAX; ++i) {
->   		if (!adev->irq.client[i].sources)
->   			continue;
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============1027779371==--
