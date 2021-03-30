@@ -2,57 +2,122 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10CF334E8F2
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Mar 2021 15:24:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAD3A34E882
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Mar 2021 15:10:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 729A46E8EE;
-	Tue, 30 Mar 2021 13:24:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34C916E8DC;
+	Tue, 30 Mar 2021 13:10:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mengyan1223.wang (mengyan1223.wang [89.208.246.23])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C89216E8DB;
- Tue, 30 Mar 2021 13:09:36 +0000 (UTC)
-Received: from [IPv6:240e:35a:1037:8a00:70b2:e35d:833c:af3e] (unknown
- [IPv6:240e:35a:1037:8a00:70b2:e35d:833c:af3e])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature ECDSA (P-384))
- (Client did not present a certificate)
- (Authenticated sender: xry111@mengyan1223.wang)
- by mengyan1223.wang (Postfix) with ESMTPSA id 5D1C765C14;
- Tue, 30 Mar 2021 09:09:23 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mengyan1223.wang;
- s=mail; t=1617109776;
- bh=3iP3rLSkq+VHRv9oXI55n1v+WgpcbUG9Pj6ypqndVyM=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=jlPQQcKuSJNeAKBfBqLWKzTAZ6N3flgBhFW3Ivu2XobvF0fkmyiHwYvb0HYY7nIZS
- EBh7I34Aisb+H8iNJUk3xZs/BiLYHW++v/XmWX/jf4Cbx4JrIWmZjQl0MjILUeF/1K
- xQdpbmBBBpAD+PN9Hay0/EduuiMHirfHM5ih+7WqO+HWmI17Md3WelMnUP8QFlI1hb
- +gyjmh3U67Y5rwG1qJaBq/SfFhaaFz+ITR1uTpf6zaGyb7Elk0WXQdpSyHX6S/qiv6
- 87TdrlOY3uqwScMSVkaLwGfXUsy0fESYLEcLKt+Af+m4bbWtgROcHaKY5ESNYCHmmG
- lTlQjar0XhL5w==
-Message-ID: <63f5f6b39d22d9833a4c1503a34840eb08050f75.camel@mengyan1223.wang>
-Subject: Re: [PATCH] drm/amdgpu: fix an underflow on non-4KB-page systems
-From: Xi Ruoyao <xry111@mengyan1223.wang>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, Alex
- Deucher <alexander.deucher@amd.com>
-Date: Tue, 30 Mar 2021 21:09:12 +0800
-In-Reply-To: <f3fb57055f0bd3f19bb6ac397dc92113e1555764.camel@mengyan1223.wang>
-References: <20210329175348.26859-1-xry111@mengyan1223.wang>
- <d192e2a8-8baf-0a8c-93a9-9abbad992c7d@gmail.com>
- <be9042b9294bda450659d3cd418c5e8759d57319.camel@mengyan1223.wang>
- <9a11c873-a362-b5d1-6d9c-e937034e267d@gmail.com>
- <bf9e05d4a6ece3e8bf1f732b011d3e54bbf8000e.camel@mengyan1223.wang>
- <84b3911173ad6beb246ba0a77f93d888ee6b393e.camel@mengyan1223.wang>
- <97c520ce107aa4d5fd96e2c380c8acdb63d45c37.camel@mengyan1223.wang>
- <7701fb71-9243-2d90-e1e1-d347a53b7d77@gmail.com>
- <368b9b1b7343e35b446bb1028ccf0ae75dc2adc4.camel@mengyan1223.wang>
- <71e3905a5b72c5b97df837041b19175540ebb023.camel@mengyan1223.wang>
- <c3caf16b-584a-3e4c-0104-15bb41613136@amd.com>
- <f3fb57055f0bd3f19bb6ac397dc92113e1555764.camel@mengyan1223.wang>
-User-Agent: Evolution 3.40.0 
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2043.outbound.protection.outlook.com [40.107.223.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1A446E8DB
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Mar 2021 13:10:31 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DgobePS9shC1E68ZaKrNtFrYYlKliR3RNcLcV2C03W3ILxugnmdo7gT2/vvyjjU8AJr5UqYh+WTFMSdbX2z+I6HHw+gnrw0Z39J5ak24Qrnb3lp9eCi5xa1K25qZfz8ZfR+HO2M6X2YtAOFOuDSyByz1YIaEQwkkRc1X74zrUj6NkdPU0FfJ8IDC5BvoXce5i5h4sROgnHDuQ0XwpB0c1Uz19GN5lmHa7IDjj6PL7fNlsHZOumk4d2looHPv8ED2dLaCYaXzB2oRHVavaYCy8+vtskjGSys+I0/4F2NVcwiy17Ev2n5AEH9tTtumMUD6Hm/ygB9X3uD1mSHDFou3Lw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hdUwq6ovuzwnw/Od3SFYbWix15bnPvTwY/qLFePjNOE=;
+ b=K4eWPjIEUspHv6HOtcC8SBc5bLIP3cCpiRjUqDBaMotCAjREpPbGLAWYsVTRPEGy7QyaU1BsJehycTQWtn1JUmHDjrcj696FnxCdbWCVWRpUlfFSf1/qv3ZEYT509DOEei1h4cCqlC5mtiaI3/mB7iNklR7FpQ1KIAmY+tL0SeEaCRqhVDkOvZovxFvjokkv1XdwMTJtmOpRdCxg6pKXWNpWDXiyPoYlMW58FpaWdz6G+XgLMe6jCtyk44sgYewbovQsgaAONjEPgvRou8OveSYMYrmaxZtii1/pmKQBe6oYZlZhNblXbOdM23b+fFXxEy9wg1Mp0igtDqn4PZuBSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hdUwq6ovuzwnw/Od3SFYbWix15bnPvTwY/qLFePjNOE=;
+ b=FRG0cGtcqXulkLTE8RzQlTx7Se8cEMbaWEpTiNjOH4/cYgEmwfL2tF7EdyrW0bNqtD3ID6/JM4a6qPBAU+oQAXKHGDEC8loDWyY6v83+KweJmS22705Z4L0PY/jmR5Q6NYgLltKLTl0OeAkqSsFQCyRwihCPqI+K8GUXpifk0t8=
+Received: from CY4PR12MB1287.namprd12.prod.outlook.com (2603:10b6:903:40::8)
+ by CY4PR12MB1159.namprd12.prod.outlook.com (2603:10b6:903:36::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.30; Tue, 30 Mar
+ 2021 13:10:30 +0000
+Received: from CY4PR12MB1287.namprd12.prod.outlook.com
+ ([fe80::8908:d7:5544:6007]) by CY4PR12MB1287.namprd12.prod.outlook.com
+ ([fe80::8908:d7:5544:6007%8]) with mapi id 15.20.3977.032; Tue, 30 Mar 2021
+ 13:10:30 +0000
+From: "Chen, Guchun" <Guchun.Chen@amd.com>
+To: "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Zhang,
+ Hawking" <Hawking.Zhang@amd.com>
+Subject: RE: [PATCH 2/2] drm/amdgpu: fix compiler warning
+Thread-Topic: [PATCH 2/2] drm/amdgpu: fix compiler warning
+Thread-Index: AQHXJUvfMHvK/K3VA0aWK/B4FtbTmKqcV5yAgAAomzA=
+Date: Tue, 30 Mar 2021 13:10:29 +0000
+Message-ID: <CY4PR12MB1287918442BA6CF42D844932F17D9@CY4PR12MB1287.namprd12.prod.outlook.com>
+References: <20210330100229.26435-1-guchun.chen@amd.com>
+ <20210330100229.26435-2-guchun.chen@amd.com>
+ <a8fc10aa-b410-efd5-ae29-7c4bbb76d05d@amd.com>
+In-Reply-To: <a8fc10aa-b410-efd5-ae29-7c4bbb76d05d@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Enabled=true;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SetDate=2021-03-30T13:10:21Z; 
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Method=Privileged;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_Name=Public_0;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ActionId=96cb234d-c193-446b-89f6-8b6bdd2394da;
+ MSIP_Label_0d814d60-469d-470c-8cb0-58434e2bf457_ContentBits=1
+authentication-results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [101.93.253.191]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 86745632-3ba8-4368-2a9f-08d8f37d31a7
+x-ms-traffictypediagnostic: CY4PR12MB1159:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CY4PR12MB115906098E691B64ECE1F10BF17D9@CY4PR12MB1159.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: st0TkinA8DLpv6XWaR/WgkTGsAJ5FB4O/dUX2G2XvvkrHPxDWG5JyVLUksM0Qvfe2sFHMQJBukbjyVA9KY30m1jbNUk3vW/SpDlH1cNceRLsAR1fmGWW4vXqR6HlDEbuIM+LIzdTDmI7GpFJSkpH1IjYF2VczuONkTU4y5oL3jzPy6gF7ejxjgjGNqI0CTPkIAELvzAd0kOYiHGGozaM1XEVfrpRnRO370lpnJN46Zurzz4meSv+ZORXsbEoherKihPjSvSeWO3+YjSlH8Xsf4OAeJFyKNIQFaBtV0ooaNdZ5WpqQSS3T7ltMcRutIb1kFxEDPvpUlYOaFFs9r07uo7Ooeupw2hmBxWRJeZO6cHtPypv1fLBvCK3RpFeFKp6fQSkxTKMKf/A1ad6zcvdu1w+gweEgqXdRaywZEh4YDQFffLKlworwPaVjMFSv8YgnJj3WbisglmM0lTOMXTzCxdhQ9zfmEwJMBpRij5285UXzEEXaJ6rg16ddqv0xMlzTXT16azxPwIpawM38ywGZgfFGAZcmGevBbmkNxTrW2cYHAj3mYUmk+r6Uo+Vutrj+185oUWEdkrtNWeK3pAbA74fjz9T+Yjx09FOTKpEoMiS0eYwySICHcTdCWQC9FS46sGC5rxEYc7KSNy0Fim8BA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY4PR12MB1287.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(136003)(376002)(396003)(366004)(39860400002)(66946007)(110136005)(66476007)(86362001)(76116006)(64756008)(66556008)(8936002)(66446008)(316002)(6636002)(38100700001)(52536014)(33656002)(5660300002)(55016002)(8676002)(2906002)(83380400001)(71200400001)(186003)(478600001)(53546011)(6506007)(26005)(7696005)(9686003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: =?utf-8?B?U3VjM1FoREloeEpPWXB1SUhabkN5dmdMNHZpdm9ZZlptQnpHcitncW5XZjQr?=
+ =?utf-8?B?ZHdIY1I3Mk9rZTBkMlFNNE1pWng3MjIyOWI0TkQzL2JEVmE5bnRsR2JoMUVu?=
+ =?utf-8?B?d0tiUGpYYjJLQStkV2wrYU1MQTNhY09oNjA0WlV6elk2cG5lOFN0ZDlYbVd4?=
+ =?utf-8?B?a0xpTlNTVFVGL3FvdGVjekRFdWkydUNOa3k0Q3BXVUFYNmViaVN3QmgyZndB?=
+ =?utf-8?B?b2o3L2pZeDNuc1ZjclNBZHFhUVlmN01qenV2Nm9RbUNqWlduTzkvODhwZjRu?=
+ =?utf-8?B?azJIVDRRL2VnZisyRHVUM0ZsbHBFeklNR2MrSWVGK1ZnYWExM0VLUUMyNU9I?=
+ =?utf-8?B?VkZKbVhmSkgzbWpBd05EOFNmcUxPSEtJQldKMDg2M09nalZmaldFaXZVeFpU?=
+ =?utf-8?B?WXY3d1E3NmJQQ29TaDIrWUlPejYxYjdnQ2NvcXp2UVFEVzY2VWczY2hwd2FP?=
+ =?utf-8?B?Y2VldndSdDNNY3RWQjB6MTFJNGd1ME9nVE5tdGJKTTZiUFd2cDg1SnR4K3J2?=
+ =?utf-8?B?YWpuSU9XaWdaVEZoY0dES1lXZjk2Qzh3bGo3eElYMFhIZ2RNSWR3T2owM0lC?=
+ =?utf-8?B?L28vbXJ0YUF6Z1pybnlkUXVaMjAyeVpvaFkvQlBFWlpvWHluOFpjL2lueWVC?=
+ =?utf-8?B?WXJkeTB0Ukk0RGhhdjZQdUdzakFoWHNYc3o0Zjkyckg2UEc4TTQxYUorUnd6?=
+ =?utf-8?B?OU8rQWFrUERMOVh0SUlPdld6Y2xZejByekFMbERjRndkRjh2MDEwczZBaEgy?=
+ =?utf-8?B?dWcrVlU2OXJmR0xkbTVnK2dUYU1SRW0zUnlsamNSSWk2QmhaZXRidjlJdVlh?=
+ =?utf-8?B?UnFqYmU3YUhQcXY0VTBKRUZWdXRMYjdSalZUU2hCRUU1dUJiazdKajNUaGF3?=
+ =?utf-8?B?aTRPS2FodUFxaGY0Tmlkd3k5QWdQUG5EZTBobkpMeVJ5MXQ2dW0zcEFRa3lI?=
+ =?utf-8?B?ekpBekdFS2pJSDJOK1dsQ0Y3UHd0eWMxVVNlUjVFUHNDU1JEUmxabERRWXR4?=
+ =?utf-8?B?Z0FUUTBjWTZGV1RzUU9iaDd3V0hvdjZSdzRaOUZqKzMvYTlpeS9na1FlTmkv?=
+ =?utf-8?B?Mjc1MFNQMHk2RUYyVy95VTdpakJYdTN0WHJPbFBURFc1dmg4TUNRdFVlVFk5?=
+ =?utf-8?B?aW1hVmdWNkNvNGNPR0NWSjVhSGNIR1dNT09PRjJGZHhwbjhKSC9XRE5mSXow?=
+ =?utf-8?B?R3lZeEd6L1Y5bU9WY2tIak9NUE9Vd3d4N2NJdWdOa2pOSE8xSWt3QzhwTC8z?=
+ =?utf-8?B?YlpmN3dSV1hZSVlIT0dtbEEzcVVhODBEQXViekc0SkJLU1BZOWVWekptU0lZ?=
+ =?utf-8?B?SWdHSEFHYjlJNjZMQzBrUi9uRGFsVHdMRmRqcnhtaitJZlFoQUN6UUtIK2RX?=
+ =?utf-8?B?MzhUOWdIQUhXYUsrY3oxT2NCbEU0Mk1jTHlpSTFLR1VGOC82VHVQVXhiVFkx?=
+ =?utf-8?B?Tm5kZ3BNdnVpWGVNSm9aVEdGRmFuVytyR2ZhaXpqd1AzNkEvQ3NYR0FORTEw?=
+ =?utf-8?B?VEJaekVuWld4VGY1dElrS0dmVE9uOHBncDhRdkN6ZU84RVBPa2IvWXlKSXlv?=
+ =?utf-8?B?STRZWGRGcmVHd1QwdktTVDd1dmZlblhXK0tJdnRYamVkVkFYemNzc3VXT0tG?=
+ =?utf-8?B?MWhIOGZNdHhRZHpVK3dyendYelZKL2NhYmVNak03TXpKR3laRXpEbnlaV0NQ?=
+ =?utf-8?B?UUI2VmZsa3plQ3AybUdYdXMwb0RmSytLb1lnR09lN1hQN1RoZDNtOVpwUjBn?=
+ =?utf-8?Q?NKfgAZHrP2wb9SRaO2jUUPq2DJ8IgfjvPVgNKla?=
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 30 Mar 2021 13:24:40 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR12MB1287.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86745632-3ba8-4368-2a9f-08d8f37d31a7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Mar 2021 13:10:30.0886 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: V9E3xIYgJXCNCkciQVBPHrU5n+RfyNUpSZ684mKQ2vdEwkMCVYAydecjlhQk0g5OSO/GHWU0v22GTF+dXNkB4w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1159
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,48 +129,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Felix Kuehling <Felix.Kuehling@amd.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Dan =?ISO-8859-1?Q?Hor=E1k?= <dan@danny.cz>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, stable@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAyMS0wMy0zMCAyMTowMiArMDgwMCwgWGkgUnVveWFvIHdyb3RlOgo+IE9uIDIwMjEtMDMt
-MzAgMTQ6NTUgKzAyMDAsIENocmlzdGlhbiBLw7ZuaWcgd3JvdGU6Cj4gPiAKPiA+IEkgcmF0aGVy
-IHNlZSB0aGlzIGFzIGEga2VybmVsIGJ1Zy4gQ2FuIHlvdSB0ZXN0IGlmIHRoaXMgY29kZSBmcmFn
-bWVudCAKPiA+IGZpeGVzIHlvdXIgaXNzdWU6Cj4gPiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfa21zLmMgCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9h
-bWQvYW1kZ3B1L2FtZGdwdV9rbXMuYwo+ID4gaW5kZXggNjRiZWIzMzk5NjA0Li5lMTI2MGI1MTdl
-MWIgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfa21z
-LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9rbXMuYwo+ID4g
-QEAgLTc4MCw3ICs3ODAsNyBAQCBpbnQgYW1kZ3B1X2luZm9faW9jdGwoc3RydWN0IGRybV9kZXZp
-Y2UgKmRldiwgdm9pZCAKPiA+ICpkYXRhLCBzdHJ1Y3QgZHJtX2ZpbGUgKmZpbHApCj4gPiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBkZXZfaW5mby0+dmlydHVhbF9hZGRyZXNzX2FsaWdubWVudCA9IAo+ID4gbWF4
-KChpbnQpUEFHRV9TSVpFLCBBTURHUFVfR1BVX1BBR0VfU0laRSk7Cj4gPiDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBkZXZfaW5mby0+cHRlX2ZyYWdtZW50X3NpemUgPSAoMSA8PCAK
-PiA+IGFkZXYtPnZtX21hbmFnZXIuZnJhZ21lbnRfc2l6ZSkgKiBBTURHUFVfR1BVX1BBR0VfU0la
-RTsKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRldl9pbmZvLT5nYXJ0X3BhZ2Vf
-c2l6ZSA9IEFNREdQVV9HUFVfUEFHRV9TSVpFOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgZGV2X2luZm8tPmdhcnRfcGFnZV9zaXplID0gCj4gPiBkZXZfaW5mby0+dmlydHVhbF9h
-ZGRyZXNzX2FsaWdubWVudDsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRl
-dl9pbmZvLT5jdV9hY3RpdmVfbnVtYmVyID0gYWRldi0+Z2Z4LmN1X2luZm8ubnVtYmVyOwo+ID4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZGV2X2luZm8tPmN1X2FvX21hc2sgPSBh
-ZGV2LT5nZnguY3VfaW5mby5hb19jdV9tYXNrOwo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgZGV2X2luZm8tPmNlX3JhbV9zaXplID0gYWRldi0+Z2Z4LmNlX3JhbV9zaXplOwo+
-IAo+IEl0IHdvcmtzLsKgIEkndmUgc2VlbiBpdCBhdAo+IGh0dHBzOi8vZ2l0aHViLmNvbS94ZW4w
-bi9saW51eC9jb21taXQvODRhZGE3Mjk4MzgzOGJkN2NlNTRiYzMyZjVkMzRhYzViNWFhZTE5MQo+
-IGJlZm9yZSAod2l0aCBhIGNvbW1vbiBzdWItZXhwcmVzc2lvbiwgdGhvdWdoIDopLgoKU29tZSBj
-b21tZW50OiBvbiBhbiBvbGQgdmVyc2lvbiBvZiBGZWRvcmEgcG9ydGVkIGJ5IExvb25nc29uLCBY
-b3JnIGp1c3QgaGFuZ3MKd2l0aG91dCB0aGlzIGNvbW1pdC4gIEJ1dCBvbiB0aGUgc3lzdGVtIEkg
-YnVpbHQgZnJvbSBzb3VyY2UsIEkgZGlkbid0IHNlZSBhbnkKaXNzdWUgYmVmb3JlIExpbnV4IDUu
-MTEuICBTbyBJIG1pc2JlbGlldmVkIHRoYXQgaXQgd2FzIHNvbWV0aGluZyBhbHJlYWR5IGZpeGVk
-LgoKRGFuOiB5b3UgY2FuIHRyeSBpdCBvbiB5b3VyIFBQQyA2NCB3aXRoIG5vbi00SyBwYWdlIGFz
-IHdlbGwuCi0tIApYaSBSdW95YW8gPHhyeTExMUBtZW5neWFuMTIyMy53YW5nPgpTY2hvb2wgb2Yg
-QWVyb3NwYWNlIFNjaWVuY2UgYW5kIFRlY2hub2xvZ3ksIFhpZGlhbiBVbml2ZXJzaXR5CgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxp
-bmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+[AMD Public Use]
+
+Inline comments after yours'.
+
+Regards,
+Guchun
+
+-----Original Message-----
+From: Koenig, Christian <Christian.Koenig@amd.com> 
+Sent: Tuesday, March 30, 2021 6:40 PM
+To: Chen, Guchun <Guchun.Chen@amd.com>; amd-gfx@lists.freedesktop.org; Zhang, Hawking <Hawking.Zhang@amd.com>
+Subject: Re: [PATCH 2/2] drm/amdgpu: fix compiler warning
+
+Am 30.03.21 um 12:02 schrieb Guchun Chen:
+> warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+>    int write = !(gtt->userflags & AMDGPU_GEM_USERPTR_READONLY);
+
+Well there seems to be some kind of bug in the compiler if it complains about the code below.
+[Guchun]From linux coding style's perspective, we shall put the declarations together, separated from code by one blank line, right?
+
+>
+> Signed-off-by: Guchun Chen <guchun.chen@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 2 --
+>   1 file changed, 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c 
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> index 722efd86718e..2a6fc0556386 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -824,7 +824,6 @@ static int amdgpu_ttm_tt_pin_userptr(struct ttm_device *bdev,
+>   	struct amdgpu_device *adev = amdgpu_ttm_adev(bdev);
+>   	struct amdgpu_ttm_tt *gtt = (void *)ttm;
+>   	int r;
+> -
+
+Better have variable like "r" and "i" declared last.
+[Guchun]Will send v2 to address this if you don't have objection to this patch.
+
+Christian.
+
+>   	int write = !(gtt->userflags & AMDGPU_GEM_USERPTR_READONLY);
+>   	enum dma_data_direction direction = write ?
+>   		DMA_BIDIRECTIONAL : DMA_TO_DEVICE; @@ -861,7 +860,6 @@ static void 
+> amdgpu_ttm_tt_unpin_userptr(struct ttm_device *bdev,
+>   {
+>   	struct amdgpu_device *adev = amdgpu_ttm_adev(bdev);
+>   	struct amdgpu_ttm_tt *gtt = (void *)ttm;
+> -
+>   	int write = !(gtt->userflags & AMDGPU_GEM_USERPTR_READONLY);
+>   	enum dma_data_direction direction = write ?
+>   		DMA_BIDIRECTIONAL : DMA_TO_DEVICE;
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
