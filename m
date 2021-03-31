@@ -1,114 +1,127 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8F66350024
-	for <lists+amd-gfx@lfdr.de>; Wed, 31 Mar 2021 14:25:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35B6F350096
+	for <lists+amd-gfx@lfdr.de>; Wed, 31 Mar 2021 14:44:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E4B96EA8A;
-	Wed, 31 Mar 2021 12:25:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C950E6E1CD;
+	Wed, 31 Mar 2021 12:44:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2087.outbound.protection.outlook.com [40.107.236.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F7786EA79;
- Wed, 31 Mar 2021 12:25:29 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2067.outbound.protection.outlook.com [40.107.93.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B6AD6E1B8;
+ Wed, 31 Mar 2021 12:44:47 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jnFTJYtCswXMCm3g9D6WEedynr9t+mB+IbR88f7itq42Q1oEjrf5TNDC4oO3wnUDFaWLoEKucZAyha57bSgYjuW5Iya0MD1jKllqr/ieUD0oI7iINeSUdof4qFn1JAlA42KtlPFyZ046jhr5X2Y4L8Rqzp5nU2quoDTpxTHmB3JLJHff4wpB6DPpf85rAplf80EH/l2QEyBrCM3caB+v1pl7mvJgSTDjAeqofn0DSfqTo/J+sobSY/4nPjZsLDhB8sQp9eBOFecU1YeA+VMs0ybJ1FBz3LGYyX0xplthVaoI8eh2yKDmgcu1CKA4PkDpiHtsdazEyf/xdDSMWaw+zw==
+ b=mTX4ulvcf8AbftFG2710794e1x3hsYGPKceBrbu2sHa7xNqqYYOnDpRb66g2A5fa1Tvj+6yipgxwzTAoXsobDUuhYhyyvotV+Mm8rzlYwTjxZXsUHwjgyQ2zSmPX4jVwTLodhCuUvcwAd49kLM0BhcFQC5OfFpd/Z45kKc0MA0yUfDXB8vBKVBZS1XbhDJAQEqBA0zgwhB9x/8mSYRlxvxZ5UCeorPLVM0jtEvGD+SYYYg/kwQqJJUQyeepYtF2mkCCRy2duDQJFDcYlNukzxJLcP7Lj4QXuvoRG6IWBUevsF7nWRPxNgx10bSpAXzjPml5omih+Vq9FMzjzc670zA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZEeVdYb7Uw9QHXqJevQuZrbFXTm9cMPtaQlV9xW2rJg=;
- b=mjPx7HG0vbk27DesXJ1lFW+iHwm30D01vXtpL/BgzOUKyk6u4Xk8xsQjuqavDJO8F/cJO77MYcRwftbZPX9IB/HkGpyz1LzoGjJbbsFcdJ09RPBr1ouzbvrRIEdMNpHgBUrH8kVnvmnNVsWJx45SuZDd18pyXgwx4bfANqBLuzdfL4yJA+JA8z9CkNsaMg0YM2Hdyjl5UzXKmt72XoXWlNxYlbZ9+GOXkVeVnNZeeL+JeT0IB2Z+IbtqV9ZMu7TL/f1SdOIHP1MR0bKRQxakn+pGrPY24+AvnA7lvTdxRVOSbOEuZwpRH7xEjWhoCYDRJ1PQ+7POXARhgIYOK5K6gA==
+ bh=D+A58sn/VTZu6qWucRgDn3kIiNVm1ev5+wesFLXsomc=;
+ b=FfJykL+IgcRScZAE0Pv2jc/sCLCkkwttsmXs7lX/1DddV2zzjEepr30XAFFY5jqof3djnXqRR7UOk06YKYPMAD29QBGKpasi9ij4o5eP+eDGlSeZEkXlveTp5ZQUKyd7JwPp1fEQm9NiRf0V1FO7vDQwQJdlnklYXmz5VMtEfzU9D9bao0ehrVlwAGe0W5YD00+OZ/ZRya448UdN1c9TMWkvqbMQXkdN4Fz+XZtdwN45Js7SvAqJWukZfzrCpwRHFnntJXj03kdxFXMlK65D8j5ZxPTtY1N7adMbSzHnRT95C7noVzZxo3DI2Z0arkmlllRuWoxeC3hN3uNVEHvoBw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZEeVdYb7Uw9QHXqJevQuZrbFXTm9cMPtaQlV9xW2rJg=;
- b=Ev5o5woch5pABysR2qPgm1kXWnmoyq8W/g/utrbbnvSf8oI3TiX8DDQB4SvM+hj4Q8i17o0/+VNGL5lyZKqcgIwrVRciQJ1kyU9L5+DTlta9ug5nUEUWAxOTa6ct1x1NzV03buyHAapLj4S0PUKa6+qjC2cuidV2UUQEsGiyAv0=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB2601.namprd12.prod.outlook.com (2603:10b6:5:45::27) by
- DM6PR12MB2937.namprd12.prod.outlook.com (2603:10b6:5:181::11) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3999.27; Wed, 31 Mar 2021 12:25:24 +0000
-Received: from DM6PR12MB2601.namprd12.prod.outlook.com
- ([fe80::3d2c:5edf:5d51:4101]) by DM6PR12MB2601.namprd12.prod.outlook.com
- ([fe80::3d2c:5edf:5d51:4101%7]) with mapi id 15.20.3977.033; Wed, 31 Mar 2021
- 12:25:24 +0000
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-To: Harry Wentland <harry.wentland@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Peter Zijlstra <peterz@infradead.org>,
- aric.cyr@amd.com
-Subject: [PATCH 4/4] drm/amd/display: Add DC_FP helper to check FPU state
-Date: Wed, 31 Mar 2021 08:25:02 -0400
-Message-Id: <20210331122502.1031073-5-Rodrigo.Siqueira@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210331122502.1031073-1-Rodrigo.Siqueira@amd.com>
+ bh=D+A58sn/VTZu6qWucRgDn3kIiNVm1ev5+wesFLXsomc=;
+ b=HWdgRmAXXaLMiSupV18haddMLzAkx2yteBhl1fRcNIyVr+j61eghhV5D2ZbUlR6BLw7+m4EGqM8uKQBoiIQqiBi4ikQVWNvfkUUmXA32DKlI2c7oFyH8VoTdRnwOxR2/sfS70Puhp160gHi0YfBJexeZBC7E2vbkf3elpBqSZaU=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by BL0PR12MB2385.namprd12.prod.outlook.com (2603:10b6:207:4d::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.27; Wed, 31 Mar
+ 2021 12:44:44 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::c1ff:dcf1:9536:a1f2]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::c1ff:dcf1:9536:a1f2%2]) with mapi id 15.20.3977.033; Wed, 31 Mar 2021
+ 12:44:44 +0000
+Subject: Re: [PATCH 3/4] drm/amd/display: Add ref count control for FPU
+ utilization
+To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Peter Zijlstra <peterz@infradead.org>, aric.cyr@amd.com
 References: <20210331122502.1031073-1-Rodrigo.Siqueira@amd.com>
-X-Originating-IP: [2607:fea8:56e0:6d60:1683:1bc7:ac8c:6a3]
-X-ClientProxiedBy: YTBPR01CA0006.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:14::19) To DM6PR12MB2601.namprd12.prod.outlook.com
- (2603:10b6:5:45::27)
+ <20210331122502.1031073-4-Rodrigo.Siqueira@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <b7c06a38-9a15-630e-61b0-07752776d660@amd.com>
+Date: Wed, 31 Mar 2021 14:44:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+In-Reply-To: <20210331122502.1031073-4-Rodrigo.Siqueira@amd.com>
+Content-Language: en-US
+X-Originating-IP: [2a02:908:1252:fb60:46d6:1b43:479c:c70b]
+X-ClientProxiedBy: AM0PR04CA0022.eurprd04.prod.outlook.com
+ (2603:10a6:208:122::35) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60:1683:1bc7:ac8c:6a3)
- by YTBPR01CA0006.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::19) with
+Received: from [IPv6:2a02:908:1252:fb60:46d6:1b43:479c:c70b]
+ (2a02:908:1252:fb60:46d6:1b43:479c:c70b) by
+ AM0PR04CA0022.eurprd04.prod.outlook.com (2603:10a6:208:122::35) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.30 via Frontend
- Transport; Wed, 31 Mar 2021 12:25:23 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25 via Frontend
+ Transport; Wed, 31 Mar 2021 12:44:42 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: ab9f4f65-71ea-4b88-ff84-08d8f4400f28
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2937:
+X-MS-Office365-Filtering-Correlation-Id: 668247b6-034a-4b72-3979-08d8f442c262
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2385:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB2937CB5C85D555E18323F7B0987C9@DM6PR12MB2937.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-Microsoft-Antispam-PRVS: <BL0PR12MB23852D99DB38660E033CAE6C837C9@BL0PR12MB2385.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2449;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cRky6JTFpNx7Cvu9kF61QoEnS7Vcm9lF5Bm0dB+C34qMUeCNkZ6M+12CCq3yWXcxac193cWqywQLoyTW8MLUPje5Q6Dcs3BXPwqb1hA3e5vABulAtWpuq797NS0O/sin/9zaYG3UQoutxath9Ai5Ntx19lDgI87mNI0e0uAyJUcbFu3FIEctISWxyyF0zdYf4ANQNZWFaKvBrAwibUVotq9vQC8W00nM43L7BoC34hdWtx6ygsUaCB9hIV/G+6Hi49r6ySqBmmO1Ln5YZW7Wxk9p28emPJ+XRDaNGHVaUG0+oVicw5gMG39UBwBo51koaO5PFyQZgGn59HW96WjH1WUIClELmgPjySFjXMLlxptLTSbQtCYj+dozS2VzRH3vawP90HwcnUQD8VW08vT6rZQln9wRHgMf7REY1fRy13Z3XsAkedHAAIqHAPb4FspADeqr3jMnXW1ZRMKHfSuPvx3MzcIfZQvYch3clY8ENatJp4QiQiS4sHpcJmzAYjFWCqd2E3dlyH9kz1DoyxIgeMPWN5sSA4Bk1yCr1FBA+yALPM3TGyR9JWKzVmtmeoEvD8NLCoESQAiP1tlzVm3oIigouRAcIPCwUdvaIzGQBsIywy1rsuGUK0Ulp1EtmTWI+Ms0pjPF/nUeFHBg3OuCrjRKNfTAR1NKAOMzj5VR9ao=
+X-Microsoft-Antispam-Message-Info: gn//M02p1RPggLVOA5dlcR0fjGJYnmnRih7cSlXUPwZEthoLZ4enhUA8PD+RyHBA+BtQlIUCZTzfgg9AmS1x3emTHOxyha3FfY31ITIUEh0tldY43X+CnRQJh0L11ICWlyKY0vp08zBdSf9ovYC8nHnYalCkaH/DNgq59IewwJu1ub0UyzIfyxHyCqAO1AUt/Wm+ZEHUNd9+8MvGl4+xki0uRMBQSBfLClpt95sEbjSH0/17dC9S0YV0ZnWxBUYfTHVmAqsZKL/dRhoNg4iBvEcCStgV66s2v+y6WK2BuK76DFZAMrrgPgMvdUG9/SIcpfZ539rif0KogyAox5+tDjEbT8SM8lgSD5Yn+KOml2KbDDoB3NfY1AVbmQlkPs5O3G4C0n9tTzLPDcFyzseBwhT3FRcAC0yNbgAAhFw0UjivmchwcXcV77uBz+McJPMEfwFPqhDXXO4MBYQUz08oAxrqTdMF1g72hBs75BL9UCub4dEU3WRFNLADvc8bwgnq4ke+T13iFlnhEjCeVuMpaTM0C9oAqbUcx/1u6y+yn/BQfIk07mtF7ThKwXLNmR6nqDRxir1LNQ1SEcDKlGQFW5Ir/+8yPfFMUm5KHRxuejypuE2ipvk544oyJl94MTgl+yAjxajzr/xMvmTD2p9Yeqz5kUg7Y3Ip9jNTpPQ54pHHxQsC91zDUegQZgoCTdoQWpDUnKGC2kAvdWKQmvHc4E6MBBigH0fK/FzO7ezP9R0=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB2601.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(396003)(376002)(366004)(136003)(39860400002)(316002)(38100700001)(2906002)(6636002)(6666004)(4326008)(5660300002)(66946007)(36756003)(8936002)(83380400001)(478600001)(66556008)(66476007)(6486002)(8676002)(186003)(16526019)(6512007)(52116002)(1076003)(2616005)(110136005)(86362001)(6506007);
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(136003)(346002)(366004)(39860400002)(376002)(31696002)(5660300002)(16526019)(31686004)(6486002)(186003)(2906002)(6636002)(4326008)(36756003)(2616005)(38100700001)(66946007)(66476007)(66556008)(6666004)(8936002)(478600001)(110136005)(86362001)(316002)(83380400001)(8676002)(52116002)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?vOvBoocQigbhHI1EWY2fcvdpuzYiLmcW2u1I8aGr3rgA8DWfbdkihqQWzCzy?=
- =?us-ascii?Q?HG04EKS/zkbB0gWLSqPpHUDxiiWryPpTFZ78tHHKMpyShWC6zA1c2FS0JdJ/?=
- =?us-ascii?Q?Jc2q5eTtzLdFn8qnloTbN+CLyE50OA1dnDc3b66I4UkcTXdxb6Xd1Ij2Fgzp?=
- =?us-ascii?Q?Z90KZG3D35loBHNcMPIuHuazuV57vrEgfnDue5dD8eNkeUSRN6q4vJLbHID2?=
- =?us-ascii?Q?ppY/LVAt5moxXXlLPlKWA7ZM7YZ4wQcYs1Zwog/ZF+ktrW/0d5HuWiRVugdP?=
- =?us-ascii?Q?DMfqxcTauVeS69rJZ74DsY+Nx/gY1zIK0X2xjVkn3cQcEzQF7IuTZkvD6Fy2?=
- =?us-ascii?Q?RAbvCYlQo6SjYtidKfToZDS/u+Us2gpNcaqyZKjAXyZzsmqNr4xFfwfUOG0H?=
- =?us-ascii?Q?XXa7vtnccOroYuVB/lpQIjEWAnQP/OioApW04bhE0XNtRqWLHNyZOORrj4qv?=
- =?us-ascii?Q?lbZ4lMIEULZGN3sGwrsUs6b5xMVCYG+Io8re4pGkRref2UypSmm9MSxI9xUQ?=
- =?us-ascii?Q?iP2Ju2hfrQtPQWrS+qKRDcylQOcph8DedSkqHk++ZQYxCvyBpbiSbLpV8Yn0?=
- =?us-ascii?Q?eyDEV98PgnxnJKbsnCP0Gcg3I6MnbvfX9mREiMf78zV7mHM5jmKfdcy/GJdn?=
- =?us-ascii?Q?XVzBqSBTZmo2k9vxDmy8R+lBxi2sX+6/2EnhIaCGV1Q/IzkKNopRHO2FzDuP?=
- =?us-ascii?Q?h8/6bIjmA2NmZvFd76VyDr7F7t4H12mvFSb2shRxH6d5fcR+ZTqaTu91dcPq?=
- =?us-ascii?Q?GZrcBR9R3CHxxwaBqOjDCU8bdhoweNzf93Kz3vy+moj99aOD7OxThWuEYhMn?=
- =?us-ascii?Q?quJAyG5Ugpgxa3Myh/KwroE62VoAB6l8RNqU5KgRFFk+qfw1RkpeVDB0cFC9?=
- =?us-ascii?Q?hEo0hEmprM4QP8ebQBWdA4YbvX+8KH9rb7YUZTlPmepRigvTsUwRNm+YiSC7?=
- =?us-ascii?Q?MUk4VgyXDnqEpLqsMbVaTnPlbpoDM6vF21a9poqSo5NCHHA68y8EhidhoZv5?=
- =?us-ascii?Q?JJT1pSn9hELWTaeQsRfwAbZ0Hk7wK6Uo3qFRIjVDhLIbiBbzk8NsLB54X/qV?=
- =?us-ascii?Q?lGQhPxLfyIBQpUjpcj94fXcBE+wOZpem3hs7deX4TL3oVKV3fhCifs7GmGvu?=
- =?us-ascii?Q?yToMcV+Ll8lBfb1Xk3Ra4rLW2IdNIwnmN9BZgYxkniV95sM82bqObSf9sNBc?=
- =?us-ascii?Q?nRksXTZHtBjULcixyeF7p5WIFjBxG4/KbqMm2p5JfntI5jsuphxK2+FVdRpf?=
- =?us-ascii?Q?oKkCIZ6MWWNBPpPIJFz/lwtvUXc4RFQ6lYUa6Zb3repWYdQj1QWdylKMo5tO?=
- =?us-ascii?Q?Rd2YiAF3MYWZRuXIPLwt6Am8sk2PIDdTgkUDqWjmW3H2LO2yq5NXrRvust0e?=
- =?us-ascii?Q?14v9A9ffmo5/bkOJSKcIhaNaUCl6?=
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?K0tCNzdpZkQ5Y2MrUWxOaCtuTDBOU0FWckNwdXYvejZrY29qTTZHWHJNOUVD?=
+ =?utf-8?B?NkRLWURaMlBWMTQ2c0k1Y0h1U3BGNXltZ1BDdXhuTUtONkc2K2drNUNWdXMx?=
+ =?utf-8?B?SmsvbjhtUTZtWUF2dEpVVDlQSTB1azNJKzZVNW9IaFQvNWZ0dDZ0VmxkKzFP?=
+ =?utf-8?B?a09TZFJvWHgyaHd2TWxFZGw0dXRoZTZpb3Vydzd1ak52bTFVWUtjOGhkRVJk?=
+ =?utf-8?B?QTBuOHNTa0cycGtSYVBPd240UUJibGZTeVFZNzZIR1BUOEFZbkZYdkd4YnR0?=
+ =?utf-8?B?VStpOEo0YnNFZXFUR2RocmxpYVN0TkpBSk5qSW5WeGcxSmt2U1ZjcWpWVENm?=
+ =?utf-8?B?U3p3bXNjRWFjUWJndk1VdmR0V0xSdGRJMWVRVmpLOVFXZzhSWWE1RkZXaFQw?=
+ =?utf-8?B?Z0g1R2ZQQkFmaFNjSHg2bTRaZjdBZ3UyRUJtc2FydGF0Lzh2NzZlMVNxS1VJ?=
+ =?utf-8?B?SEhZdjNNMVFVWFlCaFpvS3lVTGFvSVNQNFlNWWZMNDBDN3YrNVZXajZ4aFEv?=
+ =?utf-8?B?dm55aGcwU2NuUjJXTlRHcDlNZ05uVHJtTEQwMW1HOFZNR3R2R09FbzFnVGQv?=
+ =?utf-8?B?bm5EcHNLZkd0VGZsKzBQK1A0OXlQMm5OeDdrMW5qMVMzNTNpMVR2Zml5YUZk?=
+ =?utf-8?B?eWlTbU1DUTZVdGlXWXdJV3c4TVRHajFpTXozVVEveFhJMVY0TGRDWEY1TW5N?=
+ =?utf-8?B?Nkk0Rnk4MkNCc0M4aVFsekdINjdockVITDFsT1FadXNUaTFWUkkrdGRJa1pq?=
+ =?utf-8?B?MktYd3JHOFBLTWlEcnRpbkF2akdHSmQ4OFppWW9Xc2V2dVR5U1VXdDhwTnJP?=
+ =?utf-8?B?aTY2eDNTb0FGQ3p2NjlsL1VkaHZpM3oxSjhLb0o3ZldYUXJ1NmR3S2IzUXMv?=
+ =?utf-8?B?Y2hka0pYV3pKRTJxZ1B6ZWZzcGVlVzRSSjBvMUkxZXJOUmJrWFBEdFBTVWhG?=
+ =?utf-8?B?Qk92cElhMWprajlIM3NVRXN1STBYZEI5NitJZ0dZeTArMC9yQVpORHhJbEVD?=
+ =?utf-8?B?ckJNeTh3RmI3QXNPbHRoSWRVcnc3d1JNclpIai9aZ0hLelcvR1ZKdnZ0TTFN?=
+ =?utf-8?B?RHZLK0svdGJuOHcvbTJ5SGtEUE1FZnU1VjZnL2tBRnhyWkQ4Y2FXK3FZNW9x?=
+ =?utf-8?B?czhTdVloa3RRalRBTHg3aTV6NXFJRVVzNlRVbGVlL05rWVM5a3dNSEVMQWk4?=
+ =?utf-8?B?cTQzOVFIZVFPbHFSNFhCeDJJOEJpaHVPNnlTMFYzeTQ2aHlpVll0ZC81S0NT?=
+ =?utf-8?B?M2M2V1B3bFFyc1A0VXY5ektJYndxL0JHUjZZNkQ2MkcybjBhY3RFTDA0L0pC?=
+ =?utf-8?B?QVBiTS90RlFqNFJHeGJzTjBHRi9KOFduc3RWR29BM1gxWHE1VW9xb3NlSE1M?=
+ =?utf-8?B?S2doL2NxN1RkNFhDQjNOQ2QxRjZtYVdZYXQ1TWpJVStjQkxLeURQOWFwdUtH?=
+ =?utf-8?B?VnpxYVYrSCt2WXozSjhrU2dYbGhQWlp4Z1E3T1pkdTNoeE5RV21NbVVFbVY3?=
+ =?utf-8?B?Y3hnRkFMUS9NQUY4ZWdPVXZZbisrZ05SRGpzT3hsYkFSS0JpQ0VVbVhPSVMy?=
+ =?utf-8?B?cjF1RzNYc2tITVEydkUzMURWUTBhUUhxL0s5TGJuWWl1UXdOSENEMVY5eHAz?=
+ =?utf-8?B?Zi9GQ01qS3ZjMzhZbndYOHQ4WGM0QkxQb2pXQmJ0eGFFMXhjc3FubHlJSTNP?=
+ =?utf-8?B?ek9vZWNtVldvK0NndkROazFGZzBDczFRMW5xSHFqZko0NVlyWDlDNVk1OWY4?=
+ =?utf-8?B?NVJlZjRSUGs2aURZNFRLUkd3UUtmVG04TW1ZWWR1M2VhUWlIUzZxc2tsUGhH?=
+ =?utf-8?B?azZ1dFc0dTJNL1JBMFZWQlZ4Y3Uwa2p6UEhNTGJRR0xWaHRKeVptbjQ3dko1?=
+ =?utf-8?Q?WMz3twNIWeP/s?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab9f4f65-71ea-4b88-ff84-08d8f4400f28
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2601.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 668247b6-034a-4b72-3979-08d8f442c262
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2021 12:25:24.3603 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2021 12:44:44.3088 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: H9+yZhSTKnkRIGTZrWhGXfOHzuDq5zxI/gWJiapH8lwstChfNBsJBjloY4cMIRdVEnUGu2NQRdVmMaWMXUTNVQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2937
+X-MS-Exchange-CrossTenant-UserPrincipalName: Jei2Gp+mftSyTGLptI/AVrfn9CpSV3w/asp+dMoRulMa/hdEeDJYDRRG8RtZ3yHn
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2385
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,161 +134,141 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-To fully isolate FPU operations in a single place, we must avoid
-situations where compilers spill FP values to registers due to FP enable
-in a specific C file. Note that even if we isolate all FPU functions in
-a single file and call its interface from other files, the compiler
-might enable the use of FPU before we call DC_FP_START. Nevertheless, it
-is the programmer's responsibility to invoke DC_FP_START/END in the
-correct place. To highlight situations where developers forgot to use
-the FP protection before calling the DC FPU interface functions, we
-introduce a helper that checks if the function is invoked under FP
-protection. If not, it will trigger a kernel warning.
+Am 31.03.21 um 14:25 schrieb Rodrigo Siqueira:
+> DC invokes DC_FPU_START/END in multiple parts of the code; this can
+> create a situation where we invoke this FPU operation in a nested way.
+> For avoiding this situation, this commit adds a mechanism where
+> dc_fpu_begin/end manages the access to kernel_fpu_begin/end.
 
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
----
- .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.c    | 34 ++++++++++++++++---
- .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.h    |  1 +
- .../drm/amd/display/dc/dcn20/dcn20_resource.c |  2 ++
- .../drm/amd/display/dc/fpu_operations/dcn2x.c | 17 ++++++++++
- 4 files changed, 49 insertions(+), 5 deletions(-)
+In general please name this "recursion" control instead of "ref count". 
+Let's call the child by it's name :)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-index 5dcefe193523..0d95f680b62b 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-@@ -40,6 +40,25 @@
-  */
- 
- static DEFINE_PER_CPU(atomic_t, fpu_ref);
-+static DEFINE_PER_CPU(atomic_t, fp_dc_enabled);
-+
-+/**
-+ * is_fp_dc_enabled - Check if FPU protection is enabled
-+ *
-+ * This function tells if the code is already under FPU protection or not. A
-+ * function that works as an API for a set of FPU operations can use this
-+ * function for checking if the caller invoked it after DC_FP_START(). For
-+ * example, take a look at dcn2x.c file.
-+ *
-+ * Return:
-+ * Return true if we already enabled FPU protection, otherwise return false.
-+ */
-+inline bool is_fp_dc_enabled(void)
-+{
-+	atomic_t *fp_enabled = this_cpu_ptr(&fp_dc_enabled);
-+
-+	return atomic_read(fp_enabled);
-+}
- 
- /**
-  * dc_fpu_begin - Enables FPU protection
-@@ -55,12 +74,15 @@ void dc_fpu_begin(const char *function_name, const int line)
- {
- 	int ret;
- 	atomic_t *local_fpu_ref = this_cpu_ptr(&fpu_ref);
-+	atomic_t *fp_enabled = this_cpu_ptr(&fp_dc_enabled);
- 
- 	ret = atomic_inc_return(local_fpu_ref);
- 	TRACE_DCN_FPU(true, function_name, line, ret);
- 
--	if (ret == 1)
-+	if (ret == 1) {
- 		kernel_fpu_begin();
-+		atomic_set(fp_enabled, 1);
-+	}
- }
- 
- /**
-@@ -75,13 +97,15 @@ void dc_fpu_begin(const char *function_name, const int line)
-  */
- void dc_fpu_end(const char *function_name, const int line)
- {
--
--	int ret;
-+	bool ret;
- 	atomic_t *local_fpu_ref = this_cpu_ptr(&fpu_ref);
-+	atomic_t *fp_enabled = this_cpu_ptr(&fp_dc_enabled);
- 
--	ret = atomic_dec_return(local_fpu_ref);
-+	ret = atomic_dec_and_test(local_fpu_ref);
- 	TRACE_DCN_FPU(false, function_name, line, ret);
- 
--	if (!ret)
-+	if (ret) {
-+		atomic_set(fp_enabled, 0);
- 		kernel_fpu_end();
-+	}
- }
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.h b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.h
-index fb54983c5c60..e782dfa640bf 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.h
-@@ -27,6 +27,7 @@
- #ifndef __DC_FPU_H__
- #define __DC_FPU_H__
- 
-+bool is_fp_dc_enabled(void);
- void dc_fpu_begin(const char *function_name, const int line);
- void dc_fpu_end(const char *function_name, const int line);
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index b58edd012038..d0771e29c243 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -2351,7 +2351,9 @@ int dcn20_populate_dml_pipes_from_context(
- 	}
- 
- 	/* populate writeback information */
-+	DC_FP_START();
- 	dc->res_pool->funcs->populate_dml_writeback_from_context(dc, res_ctx, pipes);
-+	DC_FP_END();
- 
- 	return pipe_cnt;
- }
-diff --git a/drivers/gpu/drm/amd/display/dc/fpu_operations/dcn2x.c b/drivers/gpu/drm/amd/display/dc/fpu_operations/dcn2x.c
-index 32b23a182428..1c8a97d342c0 100644
---- a/drivers/gpu/drm/amd/display/dc/fpu_operations/dcn2x.c
-+++ b/drivers/gpu/drm/amd/display/dc/fpu_operations/dcn2x.c
-@@ -42,6 +42,22 @@
-  *    that deals with FP register is contained within this call.
-  * 3. All function that needs to be accessed outside this file requires a
-  *    public interface that not uses any FPU reference.
-+ * 4. Developers should not use DC_FP_START/END in this file, but they need to
-+ *    ensure that the caller invokes it before access any function available in
-+ *    this file. For this reason, public API in this file must invoke
-+ *    ASSERT(is_fp_dc_enabled());
-+ *
-+ * Let's expand a little bit more the idea in the code pattern number for. To
-+ * fully isolate FPU operations in a single place, we must avoid situations
-+ * where compilers spill FP values to registers due to FP enable in a specific
-+ * C file. Note that even if we isolate all FPU functions in a single file and
-+ * call its interface from other files, the compiler might enable the use of
-+ * FPU before we call DC_FP_START. Nevertheless, it is the programmer's
-+ * responsibility to invoke DC_FP_START/END in the correct place. To highlight
-+ * situations where developers forgot to use the FP protection before calling
-+ * the DC FPU interface functions, we introduce a helper that checks if the
-+ * function is invoked under FP protection. If not, it will trigger a kernel
-+ * warning.
-  */
- 
- static noinline void _dcn20_populate_dml_writeback_from_context(struct dc *dc,
-@@ -84,6 +100,7 @@ static noinline void _dcn20_populate_dml_writeback_from_context(struct dc *dc,
- void dcn20_populate_dml_writeback_from_context(struct dc *dc,
- 	struct resource_context *res_ctx, display_e2e_pipe_params_st *pipes)
- {
-+	ASSERT(is_fp_dc_enabled());
- 	_dcn20_populate_dml_writeback_from_context(dc, res_ctx, pipes);
- }
- 
--- 
-2.25.1
+>
+> Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> ---
+>   .../amd/display/amdgpu_dm/amdgpu_dm_trace.h   | 13 ++++---
+>   .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.c    | 34 ++++++++++++++++---
+>   drivers/gpu/drm/amd/display/dc/dc_trace.h     |  4 +--
+>   3 files changed, 40 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
+> index 230bb12c405e..cd4f0d3f37fb 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_trace.h
+> @@ -638,23 +638,26 @@ TRACE_EVENT(amdgpu_refresh_rate_track,
+>   );
+>   
+>   TRACE_EVENT(dcn_fpu,
+> -	    TP_PROTO(bool begin, const char *function, const int line),
+> -	    TP_ARGS(begin, function, line),
+> +	    TP_PROTO(bool begin, const char *function, const int line, const int ref_count),
+> +	    TP_ARGS(begin, function, line, ref_count),
+>   
+>   	    TP_STRUCT__entry(
+>   			     __field(bool, begin)
+>   			     __field(const char *, function)
+>   			     __field(int, line)
+> +			     __field(int, ref_count)
+>   	    ),
+>   	    TP_fast_assign(
+>   			   __entry->begin = begin;
+>   			   __entry->function = function;
+>   			   __entry->line = line;
+> +			   __entry->ref_count = ref_count;
+>   	    ),
+> -	    TP_printk("%s()+%d: %s",
+> +	    TP_printk("%s: ref_count: %d: %s()+%d:",
+> +		      __entry->begin ? "begin" : "end",
+> +		      __entry->ref_count,
+>   		      __entry->function,
+> -		      __entry->line,
+> -		      __entry->begin ? "begin" : "end"
+> +		      __entry->line
+>   	    )
+>   );
+>   
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
+> index ff34007509de..5dcefe193523 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
+> @@ -28,6 +28,19 @@
+>   
+>   #include <asm/fpu/api.h>
+>   
+> +/**
+> + * DOC: Overview
+> + *
+> + * DC core uses FPU operations in multiple parts of the code, which requires a
+> + * more specialized way to manage these areas' entrance. To fulfill this
+> + * requirement, we created some wrapper functions that encapsulate
+> + * kernel_fpu_begin/end to better fit our need in the display component. In
+> + * summary, in this file, you can find functions related to FPU operation
+> + * management.
+> + */
+> +
+> +static DEFINE_PER_CPU(atomic_t, fpu_ref);
+> +
+>   /**
+>    * dc_fpu_begin - Enables FPU protection
+>    * @function_name: A string containing the function name for debug purposes
+> @@ -40,8 +53,14 @@
+>    */
+>   void dc_fpu_begin(const char *function_name, const int line)
+>   {
+> -	TRACE_DCN_FPU(true, function_name, line);
+> -	kernel_fpu_begin();
+> +	int ret;
+> +	atomic_t *local_fpu_ref = this_cpu_ptr(&fpu_ref);
+> +
+> +	ret = atomic_inc_return(local_fpu_ref);
+
+You need to disable preemption for this or otherwise it can be that you 
+schedule to another process.
+
+Regards,
+Christian.
+
+> +	TRACE_DCN_FPU(true, function_name, line, ret);
+> +
+> +	if (ret == 1)
+> +		kernel_fpu_begin();
+>   }
+>   
+>   /**
+> @@ -56,6 +75,13 @@ void dc_fpu_begin(const char *function_name, const int line)
+>    */
+>   void dc_fpu_end(const char *function_name, const int line)
+>   {
+> -	TRACE_DCN_FPU(false, function_name, line);
+> -	kernel_fpu_end();
+> +
+> +	int ret;
+> +	atomic_t *local_fpu_ref = this_cpu_ptr(&fpu_ref);
+> +
+> +	ret = atomic_dec_return(local_fpu_ref);
+> +	TRACE_DCN_FPU(false, function_name, line, ret);
+> +
+> +	if (!ret)
+> +		kernel_fpu_end();
+>   }
+> diff --git a/drivers/gpu/drm/amd/display/dc/dc_trace.h b/drivers/gpu/drm/amd/display/dc/dc_trace.h
+> index d598ba697e45..c711797e5c9e 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dc_trace.h
+> +++ b/drivers/gpu/drm/amd/display/dc/dc_trace.h
+> @@ -38,5 +38,5 @@
+>   #define TRACE_DCN_CLOCK_STATE(dcn_clocks) \
+>   	trace_amdgpu_dm_dc_clocks_state(dcn_clocks)
+>   
+> -#define TRACE_DCN_FPU(begin, function, line) \
+> -	trace_dcn_fpu(begin, function, line)
+> +#define TRACE_DCN_FPU(begin, function, line, ref_count) \
+> +	trace_dcn_fpu(begin, function, line, ref_count)
 
 _______________________________________________
 amd-gfx mailing list
