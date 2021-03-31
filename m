@@ -2,116 +2,112 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C59434FC0F
-	for <lists+amd-gfx@lfdr.de>; Wed, 31 Mar 2021 11:02:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25FE1350026
+	for <lists+amd-gfx@lfdr.de>; Wed, 31 Mar 2021 14:25:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 825846E9FF;
-	Wed, 31 Mar 2021 09:02:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E41C96EA86;
+	Wed, 31 Mar 2021 12:25:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2081.outbound.protection.outlook.com [40.107.243.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E78C66E9FF
- for <amd-gfx@lists.freedesktop.org>; Wed, 31 Mar 2021 09:02:03 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2087.outbound.protection.outlook.com [40.107.236.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B8386EA79;
+ Wed, 31 Mar 2021 12:25:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VvvSpmWowisTcpM+sT4tD3sCPJEn2ioJWQOJPAYXBN3JHjuzUQqoreoo1OIM35fjy6h4MLrloSh0sBKkoU8cqMj0Apae883Dc+lE5Lpn+wqZxV/dRogLN3vKqapYI18pl6bBOP0Tc8RB4lt/2YOI3mlFeQQ533M8ONBBAKIRxCzj3EyEBKl9LUO/ocHmXH43GwDrGNYI15lHaQBNO6eB1ONcrPsHzCH1PhFFxK4ZkgFnJ+P4zMq8127qizTdAmZZb0wD5r2zAs+zpRDFWVTYbkxHI6nIvY7YZm6Ak0wZTRD9BTYkA99MY25NQFvDtYRGv8FSJEEu26Sv/eMW8KEj2Q==
+ b=gccE6XOYIQVBxqoRNY74+QQiyXs/DZ+fPKpr3knqlcMByAAaCPrXTB28DT9DNZz8o7hwIj6+oChYC7G+4raWLmVzcQC1mV4T5M01v4Kh9O8sIs0KrzHz1NwT8dLevJekCvzLbjkR+Xo83ZIMsLtv4GfwJwGsoxawGzNe/fQOTcZ2ezpFoiiEXsQSJtrYHzSX3txNEFvj7H6A8eF+v+jotrpc0/VYRnh1TpCRgsT3bnGXJomjvwi6auSD7bbPn9xvdasAQnxME9dQeT6tOUzho/1VBZzseWph7TefybHHYYx9yK+qomUSWKhj4/ZqVqeO0orcgfyPvqrRl6Y5HZ18rA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8rxRsUx/YQ38cff3TGQqUOwMg/93i9dGuZQzx8+zW3w=;
- b=FQCCy4aAuNQyHid2x/bAm7LMR90rbZ0DK6C1a+rKcPchCl4cvrUXiOD1A5/20XSRDcc/ylWaH+CPjCUaf0yOAybB+yiLynXxiw5KXZ7sJw+CKFTdeZbn/BFFX0ztJgqipmdhxTJqgHAykXMMuK7GX10JCP/BT6hFhfnktv7gMCVytuhAEIdrTS9RbYm9CSirYsZDQzZyFkSvfEILsijtniZdhzWM5kh1XBNQPBRqAjw250KCYyQ59uUoUll3jyVJREyQ+/ERUdH2TROwaFQqru3eSjYKLTRdWNKs9nFi62dB1XQQc6vdkOBK0fyKNLXItX2cZ8/a3M3GusO1A2PJCg==
+ bh=K6MK2JyUwkCwzwbnfxVRkW1N35dXr46ZhPt+CG8C1Sg=;
+ b=BAzrd9GzUvY1yLxsOnB/MY67Phz9y6vu/nAj7IaHuu4Sl88/JcQOnDi8Kat5/uGExIVxUf81YtV5G/nd4mLFsEEOxoqz13jAuQruHMe+1OAuQDma/PAgde9vBpLq9C4w76UElUPpQwF814zH3rsBD1Dp/WoOApJiQt72t0br1zXQHvN+Y2cwyXEk5F1GKsouvJ5gBKDRnydgawUhIDIE+KkTJ2ldUBYL2jmPd0GcLOLLPeg72tooS/skAPvCrDlN7keVmPIPlXeNK9eEEz/NCNG1M474zu2LSvdapuDVt8nlu7okma5LP18+MLekcdE0OuRHHCTW836dHF7nOxgmdQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8rxRsUx/YQ38cff3TGQqUOwMg/93i9dGuZQzx8+zW3w=;
- b=n7j6/sf4d9XyUvCa+GF7Cm3r/pmACIGprCYwrK66GFmNzytMk1DObFzaEhszHEn4upuTPDN0AoN6yaqvZ7GlRHmIHcLv79nSk7hfrWP8xyIEwNPg5AXCKDbcR5pdj75khmsjVCIQy4DIJ9P7vkMMHpCBJE+BqVVjLyx5MuL5bX8=
-Received: from BY5PR12MB4115.namprd12.prod.outlook.com (2603:10b6:a03:20f::20)
- by BYAPR12MB2599.namprd12.prod.outlook.com (2603:10b6:a03:6b::33)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.33; Wed, 31 Mar
- 2021 09:02:02 +0000
-Received: from BY5PR12MB4115.namprd12.prod.outlook.com
- ([fe80::856e:ecb2:3146:132]) by BY5PR12MB4115.namprd12.prod.outlook.com
- ([fe80::856e:ecb2:3146:132%3]) with mapi id 15.20.3999.027; Wed, 31 Mar 2021
- 09:02:02 +0000
-From: "Deng, Emily" <Emily.Deng@amd.com>
-To: "Deng, Emily" <Emily.Deng@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 2/2] drm/amdgpu: Revert "SWDEV-238407 Add clear vf fw
- support"
-Thread-Topic: [PATCH 2/2] drm/amdgpu: Revert "SWDEV-238407 Add clear vf fw
- support"
-Thread-Index: AQHXJffmHG3GZpNlX0Sx8NZx4r4iz6qdzRBw
-Date: Wed, 31 Mar 2021 09:02:01 +0000
-Message-ID: <BY5PR12MB41155C1B22B01B9CD637FFD88F7C9@BY5PR12MB4115.namprd12.prod.outlook.com>
-References: <20210331063407.9065-1-Emily.Deng@amd.com>
- <20210331063407.9065-2-Emily.Deng@amd.com>
-In-Reply-To: <20210331063407.9065-2-Emily.Deng@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=005322fe-d250-4133-bcac-47fe7b99d2c5;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Use Only - Unrestricted;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2021-03-31T09:01:55Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: amd.com; dkim=none (message not signed)
+ bh=K6MK2JyUwkCwzwbnfxVRkW1N35dXr46ZhPt+CG8C1Sg=;
+ b=AB1UMfO1w3B2ED5w7PHlbnJcL1fCSlrOPwxPUm9yMn+5Ypp3NF43syfPWpSQ6umkdewgUeWE/ZH7hITNjdGSiFlnTnxpE0dx6cgjJ4cjvH25asAmznTW8OY6ltl0WtL4vw0TOSlWlyw1dU4pfqcs+hA4IVoSz78NRPQsGsEAdJg=
+Authentication-Results: amd.com; dkim=none (message not signed)
  header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [180.167.199.189]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 5503df46-14b5-4698-6b86-08d8f423a620
-x-ms-traffictypediagnostic: BYAPR12MB2599:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BYAPR12MB2599DCEFEF1D624D1D2473F88F7C9@BYAPR12MB2599.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:194;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Uj2Ok9MxQmovF8x9TG1upvPkDJ44mahdyYxcRo1DXXveN6ul2XB8wSt9b5uioEr2Z/cyrGvbJCfnRYT4IEgQBdQ8cz7jRkYQ5OQ8mf5llY7XBhR5GV5D8xhvaMRwXLBMEadno97k0usDVpIex4IPmVVeKfv8SSMMldIcO3/uHtMYirY9uDS2JJBfsxZFrjZ4IrqZREj/tMnJHeGyiCza919oJ2Ja6Ly1kYVS3BbX5ibAKBTkJ1RvcgOoKAZt3cVJTXc43RisfIKr97L8ffjf67EIiNCn0cIlaaSU5/B+R9dXuJ8Oo0+hMijpG7JbRMGenR+E4MN5ty6ybqA65l6olRkS9AXUvf03HAJ89B9ctbm1WI/7T8FAQrKk62H9tMYocgSWO148aNvID4aCiqvZMS/2bn6f1lQadEp4rTot8BLABxwiaVZT0JAoJBHQBzU3MbcUoN0QH4tCNAjEbUxHezF3YD35SDZVFxYXk4owQHU3lfUycZssizDDD8h/RwjEU1jP50XePWnfqRz545mhOI54WhW7XIXEH3+tR7gE6hd97Xr++ck6AEbJtcKwP3c3PkrxIcIGDIrLDpumBEbzMpazCOjkl2X1fvIITiVXUNi6joYcLz+JOwHAi6yg0mCLXQf/6hO1uqOfyF9UOV+uiGTQeS3bdGJJnxCFj90ASP4=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR12MB4115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(346002)(136003)(376002)(366004)(396003)(6506007)(5660300002)(316002)(33656002)(110136005)(38100700001)(86362001)(71200400001)(8936002)(478600001)(52536014)(66946007)(7696005)(55016002)(8676002)(76116006)(26005)(186003)(66556008)(66476007)(9686003)(64756008)(66446008)(83380400001)(2906002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?mybb+OJeSAWr5w+RZAnQLLmqqOYWE8uo9T6We0SN74EJd6qk4ofok7gKuEQi?=
- =?us-ascii?Q?maiUMPbB9Z6+7tBFf3/1d8cCYzB4dl8E7YqOeY/OsF9rIO4zdgX8DzdbgCKp?=
- =?us-ascii?Q?d5yct+SJrKwBkpeUep0GRm/id0XHJrJRNK8oquQU+iYyhbbzIq8BkH0EbTfY?=
- =?us-ascii?Q?2wr4QDYgBwm1g56mV4zxBYjko/88nRXT2GM2i2L2ESIeWh8drPZLrweBE0Tu?=
- =?us-ascii?Q?S/7csCSXEvJYkH1RWEYkMUObFsZENyTcvIMgWL/BOwdnZXmiuGCfzLfmyhMm?=
- =?us-ascii?Q?Cs7JKEj95vuiS3NmcSKkqikG76EHWHulk6yXJ/LziBC1zQQ+VI6VdMmndOwB?=
- =?us-ascii?Q?1qdao/dEQc1csWnJfTnkDYHNqh0iXkSg9NeJ73W0MHJMLshP8o+F8cDCQVvw?=
- =?us-ascii?Q?pKEvk4KBdR4dvGOGhb9IknLgKjrg5IHrdCMdwochBO/ci0lS1N9xbNntTGQc?=
- =?us-ascii?Q?G08R9OSiUiAiFMRj0lHeuiviIH6KeU03M2hRBRxUn4c7d6tWGXFX9J8ROBZJ?=
- =?us-ascii?Q?fyeKKAWQ2nhxZyIX9AVSPY7HyXPN1JHf2LszJ47BgnG5J0eqUzz6hJNrvAky?=
- =?us-ascii?Q?n8bPsnk/cE3Y+jDmXSBtdGZkXCZPMXKAqF36lyiaextMmujd4XebADC7J1y4?=
- =?us-ascii?Q?epSD7zZCQYJYagxqcdy/uVExkRC5fhuEtPTcbHy+wkPu0Rf8p2/8OttT468m?=
- =?us-ascii?Q?5LSbPFjYnKRoyPFNCBFmL6Fa/ZF9C10fYMLKOtgWsA0idzkkDz0HHmZ7lDP2?=
- =?us-ascii?Q?8T3EHflAjmbIx3hLJIqh4BDKjpGrf4lSwQOFRWntUoP7l1AsOa2zaTe69yur?=
- =?us-ascii?Q?CKNNBlgsMhzkSYPVkJoWGYahA/kGMSJCLz9BzJSyWQ+Uu5DxI6NHL0xfrkgd?=
- =?us-ascii?Q?P7lSqfmIcAxVfUpNxv9fw8N0YjnthwkB1913kDEjxpVGorh6e12Xm+R/z8b4?=
- =?us-ascii?Q?iE5x4FOf5kfihoJ4Ue3TwjIZzc3UuYiM+CI30ByLcQvrqW2DJPFoaWHutEDD?=
- =?us-ascii?Q?9Rpite6tGVx+ghLJj6OPb+tWiXJd48Z7jqqq9n8voBQ+cD7djLhtKhkRt3Jb?=
- =?us-ascii?Q?ucBM6KEBZVOpVi7zqeozfuL9y4uXBcN9cDvORZ+5XZBFyrTVw1nqdJ7VZZJ3?=
- =?us-ascii?Q?BiJJ/NMqnEs5OJHvb/KeHMSHtXoq1gzTApG8XwobRPBOAOfSRhRZEJf7bDwJ?=
- =?us-ascii?Q?4+KZVDnD1aBnaXIdxKM9l0WAA4H+TiV09ww4rAnkMvm25nqXc5LScr9wDayT?=
- =?us-ascii?Q?c91zBLCpWI57wg5vvGVr97Hqigf/KgFTVYzZKginqfdvfVAflFLx9wh/63Ci?=
- =?us-ascii?Q?CF6W91NEvC89CzYpQOECBIxt?=
+Received: from DM6PR12MB2601.namprd12.prod.outlook.com (2603:10b6:5:45::27) by
+ DM6PR12MB2937.namprd12.prod.outlook.com (2603:10b6:5:181::11) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3999.27; Wed, 31 Mar 2021 12:25:21 +0000
+Received: from DM6PR12MB2601.namprd12.prod.outlook.com
+ ([fe80::3d2c:5edf:5d51:4101]) by DM6PR12MB2601.namprd12.prod.outlook.com
+ ([fe80::3d2c:5edf:5d51:4101%7]) with mapi id 15.20.3977.033; Wed, 31 Mar 2021
+ 12:25:21 +0000
+From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+To: Harry Wentland <harry.wentland@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Peter Zijlstra <peterz@infradead.org>,
+ aric.cyr@amd.com
+Subject: [PATCH 0/4] drm/amd/display: Base changes for isolating FPU operation
+ in a single place
+Date: Wed, 31 Mar 2021 08:24:58 -0400
+Message-Id: <20210331122502.1031073-1-Rodrigo.Siqueira@amd.com>
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [2607:fea8:56e0:6d60:1683:1bc7:ac8c:6a3]
+X-ClientProxiedBy: YTBPR01CA0006.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:14::19) To DM6PR12MB2601.namprd12.prod.outlook.com
+ (2603:10b6:5:45::27)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60:1683:1bc7:ac8c:6a3)
+ by YTBPR01CA0006.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.30 via Frontend
+ Transport; Wed, 31 Mar 2021 12:25:21 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: a9332084-2af5-4314-44fc-08d8f4400d70
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2937:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB2937862060DFC2440FF0142C987C9@DM6PR12MB2937.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7xTWSGXkgbywl1IVaAJnuJNYxh+7zfv/lsuZ81pd3UiLjQJN9hgJf51Ks/4Ij+QgyQ41CsCZPuMhyptLU3FGUeJ23Jj38obbNcW+NRGfG1Fu/joDJAIcBiusdjiuyTYC45iBjUug/s0lBnj1Dv80XjmGfCxDN1W9a0lgfLQWZQeucaAL2zXvkjFfx9poT14Y9nR2+Ol4pof8iLZB6t31SAAhjT5Akt2i9mvs5oNzO01u2krdoEYxST6u0Xzv2/qTQm7vlH7PMPfKROQn7s4nbMvW7H8dJwIju2Hq+0uMvoFYFgx2SvHvJuyh9Inm/MPD3rrJR8+qY4bgGNN21ItigeI74E2/OIGzQKip/LDlyilC3FdvqjzLoDeHQGfUgZ7dS/BagFOqd5m/2mUVQFJYpFnRtonX56A7ME8hhgX2wJyb3hvBIp2fKc6DHUYbeeIQuHezZV4YkmuqNN7qksygbky7QhVwDQJIBb16oEnzajjBQA/kiowh5FE25wEMfTSkUQie28uWZM00fbfiSTV7Vzghx9RwkMgKp0Y+OTE+cQJ5Ubn6QDIRkbJCyAV/NFPAWEZU01emWgnuMq0arLTtaMjqH8kbQZ3jIfcvBwrDFDCgRjvehkasxUogTjXHuTw6WyEY5nu3a8cd32z5LuSYDQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB2601.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(396003)(376002)(366004)(136003)(39860400002)(316002)(38100700001)(2906002)(6636002)(6666004)(4326008)(5660300002)(66946007)(36756003)(8936002)(83380400001)(478600001)(66556008)(66476007)(6486002)(8676002)(186003)(16526019)(6512007)(52116002)(1076003)(2616005)(110136005)(86362001)(6506007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?X/dkPXRcUHxkflADgC7G48Z7Gkd2sLSi4DFu6VNuHr4FPbv1a+ndK6k0llzk?=
+ =?us-ascii?Q?HVDaLo14XqMz7FM5badrvFcx0I0gRqb7hgqreKxM43N2QIVhAtdHRSPmx8UT?=
+ =?us-ascii?Q?bGCn9q7BVYfciX7hVxqZvqFHEtlrqQoGdpEI3rWOGEXIiKkx88OT1oVvjNOK?=
+ =?us-ascii?Q?OKnwdfZy+hK1sT7QkhVMyQ8NJTsG0b22dpp/smUYO9uGtx6BOQ8so3F7kpeC?=
+ =?us-ascii?Q?xflb6lZ0sgUHjQBWiJC+MtrToLzoo4O5au/wq89j86P+DUiAcx+qmsLkscbd?=
+ =?us-ascii?Q?lBf/qqGtF+VP/nPUvh0s/VdDbrWf2NfC3PeEaWEScdhM1IMudwfZyozkZKfq?=
+ =?us-ascii?Q?nccCRD3LSrRTLqJ+s2l7LRsQipPpikYrRB6wEXdIiTIQbNqm1t5mEi6VX6yC?=
+ =?us-ascii?Q?UQIuRAZphMGV475kb13eezYWrslWGh/5wL3LW8X/WwaXcoMfDoPgmoDNtVY2?=
+ =?us-ascii?Q?BEwFFYyxCcUsOr4md5f4WOSjVIvWnAfVywfEPbcPNFtoPDhQo8yWZfbNjbE4?=
+ =?us-ascii?Q?BD+/xnRkEIBgWG4mD1OWSfic/GYrad8DnyK0asIP9krll6dIMUfuzsNhubww?=
+ =?us-ascii?Q?ZHI5vacWlIAGJyuyh/wFFQ9LGPISCczcVO1wEoQu2XHbGki7IAEHkuquIGen?=
+ =?us-ascii?Q?syTyUhkjfMu8lzYWN/g5fIdNC1c1rMdFxsqFJThQUrGBrfb0DIyIJIUV3LJH?=
+ =?us-ascii?Q?LK2pwo2vBtbxVn0KnGHnU8jCHzLF27WIFcBfF1BhVuIMbj897rZb8XuyFYxn?=
+ =?us-ascii?Q?vqnzvVKQtflWhLEHHNmJgw9aV7ntUaASneVoDh1mJfxeaAiYVcYoy0jHxPsb?=
+ =?us-ascii?Q?JGNBjS1wGRoBDJ3e9/TEZmRzP/jhusBgV/zKIEYkHeMe2ccK8HxQY/B/ahVI?=
+ =?us-ascii?Q?6u2D/oSd7qdVV3Lkkpt3Pmks46vl2XFOvtEfFI4q3uR4QC4Y5IkY4B+VqelJ?=
+ =?us-ascii?Q?RB01Gc5ucZuc8KowHjBqGNWwnEGlxly+fq7W0hlUldF7qG1Glg4HQPymJ4SG?=
+ =?us-ascii?Q?G20dMk+BGc0L57NEEIj4WJ4/g9syUyZoBpn0ErK87yuivo3nER+o6CiZtSza?=
+ =?us-ascii?Q?WiSGGcY3zHs984yQYdXI9LwATIfKacQjheA1/Gmdd/eu+XWpMZE8yy2kGxga?=
+ =?us-ascii?Q?dlyHjVqajZVFyOn8nZJmIl56Dkiis8HS6sJ/SnK6/fGFGIXlpOItnA0GoAYD?=
+ =?us-ascii?Q?zYsTp64g1RbSmmsB8BI7LOurpxGHQoG+4iWshlON2gHMObxhNfKF/EIpCSty?=
+ =?us-ascii?Q?jgUmFAkpbUFHN4LXBjMz0MYh1SOEZSznJ14oOq1gj3xL00GO5TUm7keYP6Od?=
+ =?us-ascii?Q?4LC3A9mNqV12BgkMp5qYXRGn7viHUYcTlWptpOXMkrE7P2UIIXC5sU8R0udk?=
+ =?us-ascii?Q?sfThL0C74SB/TZqJ64BzccGVNh33?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a9332084-2af5-4314-44fc-08d8f4400d70
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2601.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB4115.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5503df46-14b5-4698-6b86-08d8f423a620
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Mar 2021 09:02:01.8780 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: iNvOszuzrrKpmg/BtnEcw51IBNvOP/tHzj43C7oPMZ1C37o8vVo5RrHcXwyCs7o8
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2599
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2021 12:25:21.5579 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xqnLfLyZRZbFQjuGkODlJTUA9yAlqalz3G2YHwYBlJKi26yV2j6wy9XnfQ+afy/K6k+ri1Yi9iHDQ2C7roVXQQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2937
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,140 +119,114 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - Internal Distribution Only]
+Hi,
 
-Ping ......
+In the display core, we utilize floats and doubles units for calculating
+modesetting parameters. One side effect of our approach to use double-precision
+is the fact that we spread multiple FPU access across our driver, which means
+that we can accidentally clobber user space FPU state.
 
->-----Original Message-----
->From: Emily Deng <Emily.Deng@amd.com>
->Sent: Wednesday, March 31, 2021 2:34 PM
->To: amd-gfx@lists.freedesktop.org
->Cc: Deng, Emily <Emily.Deng@amd.com>
->Subject: [PATCH 2/2] drm/amdgpu: Revert "SWDEV-238407 Add clear vf fw
->support"
->
->As already moved the support to host driver, so revert this in guest driver.
->This reverts commit 8d5e6f45df5f9073760dea0ab94321615cea16ec.
->
->Signed-off-by: Emily Deng <Emily.Deng@amd.com>
->---
-> drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 36 ++-----------------------
->drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h |  8 ------
-> 2 files changed, 2 insertions(+), 42 deletions(-)
->
->diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
->b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
->index c36c8fca1f64..aa2f8fc4aac8 100644
->--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
->+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
->@@ -291,9 +291,8 @@ psp_cmd_submit_buf(struct psp_context *psp,
-> amdgpu_asic_invalidate_hdp(psp->adev, NULL);
-> }
->
->-/* We allow TEE_ERROR_NOT_SUPPORTED for VMR command and
->PSP_ERR_UNKNOWN_COMMAND in SRIOV */
->-skip_unsupport = (psp->cmd_buf_mem->resp.status ==
->TEE_ERROR_NOT_SUPPORTED ||
->-psp->cmd_buf_mem->resp.status ==
->PSP_ERR_UNKNOWN_COMMAND) && amdgpu_sriov_vf(psp->adev);
->+/* We allow TEE_ERROR_NOT_SUPPORTED for VMR command in
->SRIOV */
->+skip_unsupport = (psp->cmd_buf_mem->resp.status == 0xffff000a)
->&&
->+amdgpu_sriov_vf(psp->adev);
->
-> memcpy((void*)&cmd->resp, (void*)&psp->cmd_buf_mem->resp,
->sizeof(struct psp_gfx_resp));
->
->@@ -420,26 +419,6 @@ static int psp_tmr_init(struct psp_context *psp)
-> return ret;
-> }
->
->-static int psp_clear_vf_fw(struct psp_context *psp) -{
->-int ret;
->-struct psp_gfx_cmd_resp *cmd;
->-
->-if (!amdgpu_sriov_vf(psp->adev) || psp->adev->asic_type !=
->CHIP_NAVI12)
->-return 0;
->-
->-cmd = kzalloc(sizeof(struct psp_gfx_cmd_resp), GFP_KERNEL);
->-if (!cmd)
->-return -ENOMEM;
->-
->-cmd->cmd_id = GFX_CMD_ID_CLEAR_VF_FW;
->-
->-ret = psp_cmd_submit_buf(psp, NULL, cmd, psp-
->>fence_buf_mc_addr);
->-kfree(cmd);
->-
->-return ret;
->-}
->-
-> static bool psp_skip_tmr(struct psp_context *psp)  {
-> switch (psp->adev->asic_type) {
->@@ -1924,12 +1903,6 @@ static int psp_hw_start(struct psp_context *psp)
-> return ret;
-> }
->
->-ret = psp_clear_vf_fw(psp);
->-if (ret) {
->-DRM_ERROR("PSP clear vf fw!\n");
->-return ret;
->-}
->-
-> ret = psp_boot_config_set(adev);
-> if (ret) {
-> DRM_WARN("PSP set boot config@\n");
->@@ -2448,11 +2421,6 @@ static int psp_hw_fini(void *handle)
-> }
->
-> psp_asd_unload(psp);
->-ret = psp_clear_vf_fw(psp);
->-if (ret) {
->-DRM_ERROR("PSP clear vf fw!\n");
->-return ret;
->-}
->
-> psp_tmr_terminate(psp);
-> psp_ring_destroy(psp, PSP_RING_TYPE__KM); diff --git
->a/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
->b/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
->index dd4d65f7e0f0..b5b1feaa259e 100644
->--- a/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
->+++ b/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
->@@ -97,7 +97,6 @@ enum psp_gfx_cmd_id
->     GFX_CMD_ID_SETUP_VMR          = 0x00000009,   /* setup VMR region */
->     GFX_CMD_ID_DESTROY_VMR        = 0x0000000A,   /* destroy VMR region
->*/
->     GFX_CMD_ID_PROG_REG           = 0x0000000B,   /* program regs */
->-    GFX_CMD_ID_CLEAR_VF_FW        = 0x0000000D,   /* Clear VF FW, to be
->used on VF shutdown. */
->     GFX_CMD_ID_GET_FW_ATTESTATION = 0x0000000F,   /* Query GPUVA of
->the Fw Attestation DB */
->     /* IDs upto 0x1F are reserved for older programs (Raven, Vega 10/12/20)
->*/
->     GFX_CMD_ID_LOAD_TOC           = 0x00000020,   /* Load TOC and obtain
->TMR size */
->@@ -401,11 +400,4 @@ struct psp_gfx_rb_frame
->                 /* total 64 bytes */
-> };
->
->-#define PSP_ERR_UNKNOWN_COMMAND 0x00000100
->-
->-enum tee_error_code {
->-    TEE_SUCCESS                         = 0x00000000,
->-    TEE_ERROR_NOT_SUPPORTED             = 0xFFFF000A,
->-};
->-
-> #endif /* _PSP_TEE_GFX_IF_H_ */
->--
->2.25.1
+# Challenges
+
+1. Keep in mind that this FPU code is ingrained in our display driver and
+performs several crucial tasks. Additionally, we already have multiple
+architectures available in the kernel and a large set of users; in other words,
+we prefer to avoid a radical approach that might break our user's system.
+
+2. We share our display code with Windows; thus, we need to maintain the
+interoperability between these two systems.
+
+3. We need a mechanism for identifying which function uses FPU registers;
+fortunately, Peter Zijlstra wrote a series a couple of months ago where he
+introduced an FPU check for objtool. I used the following command for
+identifying the potential FPU usage:
+
+ ./tools/objtool/objtool check -Ffa "drivers/gpu/drm/amd/display/dc/ANY_FILE.o"
+
+4. Since our code heavily relies on FPU and the fact that we spread
+kernel_fpu_begin/end across multiple functions, we can have some complex
+scenarios that will require code refactoring. However, we want to avoid
+complicated changes since this is a formula to introduce regressions; we want
+something that allows us to fix it in small, safe, and reliable steps.
+
+# Our approach
+
+For trying to solve this problem, we came up with the following strategy:
+
+1. Keep in mind that we are using kernel_fpu_begin/end spread in various areas
+and sometimes across multiple functions. If we try to move some of the
+functions to an isolated place, we can generate a situation where we can call
+the FPU protection more than once, causing multiple warnings. We can deal with
+this problem by adding a thin management layer around the kernel_fpu_begin/end
+used inside the display.
+
+2. We will need a trace mechanism for this FPU management inside our display
+code.
+
+3. After we get the thin layer that manages FPU, we can start to move each
+function that uses FPU to the centralized place. Our DQE runs multiple tests in
+different ASICs every week; we can take advantage of this to ensure that our
+FPU patches work does not introduce any regression. The idea is to work on a
+specific part of the code every week (e.g.,  week 1: DCN2, week 1: DCN2.1,
+etc.).
+
+4. Finally, after we can isolate the FPU operations in a single place, we can
+altogether remove the FPU flags from other files and eliminate an unnecessary
+code introduced to deal with this problem.
+
+# This series
+
+To maintain the interoperability between multiple OSes, we already have a
+define named DC_FP_START/END, which is a straightforward wrapper to
+kernel_fpu_begin/end in the Linux side. In this series, I decided to expand the
+scope of this DC_FP_* wrapper to trace FPU entrance and exit in the display
+code, but I also add a mechanism for managing the entrance and exit of
+kernel_fpu_begin/end. You can see the details on how I did that in the last two
+patches.
+
+I also isolate a simple function that requires FPU access to demonstrate my
+strategy for isolating this FPU access in a single place. If this series gets
+accepted, the following steps consist of moving all FPU functions weekly until
+we isolate everything in the fpu_operation folder.
+
+Best Regards
+Rodrigo Siqueira
+
+
+Rodrigo Siqueira (4):
+  drm/amd/display: Introduce FPU directory inside DC
+  drm/amd/display: Add FPU event trace
+  drm/amd/display: Add ref count control for FPU utilization
+  drm/amd/display: Add DC_FP helper to check FPU state
+
+ .../gpu/drm/amd/display/amdgpu_dm/Makefile    |   3 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_trace.h   |  24 ++++
+ .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.c    | 111 ++++++++++++++++++
+ .../gpu/drm/amd/display/amdgpu_dm/dc_fpu.h    |  34 ++++++
+ drivers/gpu/drm/amd/display/dc/Makefile       |   1 +
+ drivers/gpu/drm/amd/display/dc/dc_trace.h     |   3 +
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c |  41 +------
+ .../drm/amd/display/dc/dcn20/dcn20_resource.h |   2 -
+ .../drm/amd/display/dc/dcn21/dcn21_resource.c |   2 +
+ .../amd/display/dc/fpu_operations/Makefile    |  58 +++++++++
+ .../drm/amd/display/dc/fpu_operations/dcn2x.c | 106 +++++++++++++++++
+ .../drm/amd/display/dc/fpu_operations/dcn2x.h |  33 ++++++
+ drivers/gpu/drm/amd/display/dc/os_types.h     |   6 +-
+ 13 files changed, 381 insertions(+), 43 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
+ create mode 100644 drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.h
+ create mode 100644 drivers/gpu/drm/amd/display/dc/fpu_operations/Makefile
+ create mode 100644 drivers/gpu/drm/amd/display/dc/fpu_operations/dcn2x.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/fpu_operations/dcn2x.h
+
+-- 
+2.25.1
 
 _______________________________________________
 amd-gfx mailing list
