@@ -2,92 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7B5634F9A3
-	for <lists+amd-gfx@lfdr.de>; Wed, 31 Mar 2021 09:17:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1651234FB42
+	for <lists+amd-gfx@lfdr.de>; Wed, 31 Mar 2021 10:11:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A0256E9FC;
-	Wed, 31 Mar 2021 07:17:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 127356EA07;
+	Wed, 31 Mar 2021 08:11:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2082.outbound.protection.outlook.com [40.107.237.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB84A6E9FC
- for <amd-gfx@lists.freedesktop.org>; Wed, 31 Mar 2021 07:17:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CYnDpA+yy9cBotGLTGbHtsecLyiuXxJIywrvfJAElLej1jtMUkudWmk3LrN1FrSRCDapyqSm3Io4VZYULjDudcIerSd+zarRNEkK4RtHrn5vPrD2jBfaswkb7pbya7YFQNkKWDYbAmIVtyo4moimRr2+LU6G474B8qlMZV3BMSxr8h2pVC7mCnuvbkjgLGAxBDkIKCKZoxFhTVFV0ct9U9WQACL9YrttlJXlIRC2VMRAcf2M0eLbHBaV5k6VBjan/8VjiJArk5TD+MM9Bz2BzrivFB8wp7ETQgaEjt7vM0GXmopGKmwGsYJcSdLKOKzgR7VmPQKcfg6uL2o++J5sow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PsxuOZeqgT8fSxHzaAFIfgLFxLorS0wzQzCY7s1PAWs=;
- b=iIAGLvrebAHWy8iCAgNxHaeNpF92+pHe8NA9e20qlxSZNk3mpb5eCUY+rySMcCNM/Pu7f7dT5Ny54on9VzzCHUwMNIvMNhVQYjCoGlUbovoK3zli30wgjRCWEOiIynyHroE6h3dhLaFa0LIrO6iYvT5h7zGejadN+lGNpjRO6oR+Iz18PLLek6WDJpz6wdcBfSn++eV4mZd5BW0pbTK9B7qx1e+wZQVgE8QRcWn3vmCXcAnGNXVkVVvrJRebQPHYFIWRUOC+ROlik592VvxVDfhOBdpdbw4ecWalOAoaFDuwp/TSaud8ejYQ1aNpvgfXzHK45RldiXgeSi0MdOroFA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PsxuOZeqgT8fSxHzaAFIfgLFxLorS0wzQzCY7s1PAWs=;
- b=292vH7YOQDkFxRJjR6Uai4xnxzykuvnWiNloyxcZ3KPM7DEDYOS9zhgyyT/zCnGnc/ALvIseXz8fhX6QpQZLwkU7rLVAVPRKG6DC5LItHvy9PxzviGp7X215XqcNSVj9MIQzRvxxaoe+aarzfmcKZ2v2jnlPA7g8DRGe9ygMQ68=
-Received: from BN6PR22CA0040.namprd22.prod.outlook.com (2603:10b6:404:37::26)
- by CO6PR12MB5492.namprd12.prod.outlook.com (2603:10b6:5:35d::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.26; Wed, 31 Mar
- 2021 07:17:27 +0000
-Received: from BN8NAM11FT021.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:37:cafe::33) by BN6PR22CA0040.outlook.office365.com
- (2603:10b6:404:37::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.27 via Frontend
- Transport; Wed, 31 Mar 2021 07:17:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT021.mail.protection.outlook.com (10.13.177.114) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3955.18 via Frontend Transport; Wed, 31 Mar 2021 07:17:27 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Wed, 31 Mar
- 2021 02:17:26 -0500
-Received: from z-bu18.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2 via Frontend
- Transport; Wed, 31 Mar 2021 02:17:25 -0500
-From: Peng Ju Zhou <PengJu.Zhou@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: change mmhub register access from mmio to rlcg
-Date: Wed, 31 Mar 2021 15:17:16 +0800
-Message-ID: <20210331071716.11916-1-PengJu.Zhou@amd.com>
-X-Mailer: git-send-email 2.17.1
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com
+ [IPv6:2a00:1450:4864:20::230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FFF46E9FE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 31 Mar 2021 07:21:56 +0000 (UTC)
+Received: by mail-lj1-x230.google.com with SMTP id f16so22690432ljm.1
+ for <amd-gfx@lists.freedesktop.org>; Wed, 31 Mar 2021 00:21:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=T9mpbG0LKZeMMuNxWV0NvqO5oakAI5+YdJkkB+P+Me4=;
+ b=MDrbEILXDKu2WlNoJD551OFsm7EvtqFjcZ5nPAcYjOeckOotOm3ZH4U0mNa5cyV0HG
+ ZS6opq53KVIWaKdrHa5Wd9mWOGrUuImwpw+UAI1aYIZpOk/0o8H3pnQs74cV5irTb+zD
+ I09qYRZ2anghNE5l/IsnjHljdbth1PlV8PqwCENorEjgY2PuZhPuvRFKoec5T9aKsCJ2
+ RV+xO7wylAYq+o9l7AxptA5fmX+fawaqmVXfSxv9wn5kDev6X5APIq2FQkVLf8rQRT2o
+ mx0HX/bJ0JDBMhQj2yOKa0GFyJB9OJ+hSOSh7x6Dwh/whFo8MVaw+92aVWkQpGshkezp
+ 3i3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=T9mpbG0LKZeMMuNxWV0NvqO5oakAI5+YdJkkB+P+Me4=;
+ b=AmJ53140WRGBOtb6eSjWD1+9XaW5o5AXorkUzr2O9xLXBveB9pQb7+pz8o1tvuNEiN
+ DHte2Jb8GtI2UnhZKiPBpsHEBto2weU24CsnxIoyDcJSPB1clUnO9U8/CP1GFEvybVU9
+ NMqQvybXTXIAoBWRdDBKX97mIB6Y9y6y1pnWT2BoFQpo+QcLBP4t39+8oz+klWBbOmn+
+ DWG5AFoIaBw4lur+JgOgAlh6h7uF6EK5q1KJueWlTqlPOdDJ/P5rx8ZgUerv2pFgryMx
+ kNsF3vEEb9NATgJ+zxgpIldq94Omi9xogpfLMr072CnPXAlpl91yJFboDWCTFUBpZOmk
+ 5hUw==
+X-Gm-Message-State: AOAM530106ccFx3i5smXT1QZPATskFCn7dInKJAM7m56/Nv3edUPT82L
+ /0dPkPzzFHGGURw1yr4ITC13rmAawGu6xOyBlLM=
+X-Google-Smtp-Source: ABdhPJx2EDlEK4QHeRPZOf+JKH6JApS1oFfLSNIIj1JszBHpvMET1hMcHqwYjZSGqvmRikv6y8bumN+YSXIJilXxmV8=
+X-Received: by 2002:a2e:8591:: with SMTP id b17mr1196244lji.230.1617175315043; 
+ Wed, 31 Mar 2021 00:21:55 -0700 (PDT)
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7e268e30-bbe4-453f-7073-08d8f4150a1f
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5492:
-X-Microsoft-Antispam-PRVS: <CO6PR12MB54923296EE5E15E03E3CF140F87C9@CO6PR12MB5492.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RKhI2O+QNJxKTxafdTTH6rLn0jdV2edsiww0mV3DMW8CJreZhuNsQMi76tQAPznF5Z/z6AIWbDkujMbQWp3qxnylP5xBwtALTF6yuzZp6TSu8uHEzH68i5q3kgBrtm1PThlSRHtyrhucySdwvnV/2e3Sp9S/O+hAXqZZiB8KqUHM5e1BSKOgeyUPjsE6fQIZldbhvlXh4enK8JGLm/YDkvg4+xmDuDlo/qwhb0BiuO2H57nvWpVEHcOL0SFJmXq/jmxGZYF9UI1ibtO4UIE67sfSm5AiPOBsrviJXelHJ5tQihQ9AR9afmqOGBzeioncH6rLbEwBn5ORR6cq9TDE3doA5L8FdjjoY0aapeb+GeHt9TtnOQq47avAvv318GuW1C5Cwr5Dikx0uVmUPSzLhPHWZNu06hSpgPOv6itT8vkC1ES9DCrqzcoIVQyRsfHAr+jXCGZzpaOCz5fYpYToowcmumBRdUEmzxLPsRmQ4QDRTFDlZS3ClFh/GMWBTdBIRoJVHkteNqgTwLRjpgfr7Uyzdso/VWQC2WXvBE3E3o+RH8wq32MVUkuVGOGMd6fWburbGEiHZiSm52FiwjEO8AtK4/VVf5u5tiEcZy/yJV9iAGl1hwz9x2vd+d/QJKk0ROtR2JIuUt9jGHGyCvZGxP4TX7kW2n7BZ3Os2geFIRsA2G4hrLMfEIacJA2tM/HL
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(136003)(376002)(39860400002)(396003)(36840700001)(46966006)(86362001)(82740400003)(83380400001)(5660300002)(54906003)(2616005)(356005)(81166007)(36756003)(36860700001)(7696005)(6916009)(70206006)(47076005)(6666004)(26005)(186003)(8936002)(8676002)(4326008)(336012)(478600001)(2906002)(19627235002)(316002)(426003)(82310400003)(70586007)(1076003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2021 07:17:27.3798 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e268e30-bbe4-453f-7073-08d8f4150a1f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT021.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5492
+References: <CAHJvkbsexf7kM-11ZdrM+pHUUyvttB8fyJMfcsQAC1233jp8LA@mail.gmail.com>
+ <388b2a9d-0e63-b70f-28ed-6297a524fb76@amd.com>
+ <CAHJvkbuu5WB=QTu0EUgSGcoK6KMbP2j8NA0o+XTdtkwadNpsxg@mail.gmail.com>
+ <909002f5-691c-1cbb-1e44-a99217be8791@gmail.com>
+ <CAHJvkbsMY689cK3uq_O+i6jiqgLmSAUcrD43oHxpSsVwyhJ1Mg@mail.gmail.com>
+ <b1137716-d6dd-6572-3d45-d0063caef26e@amd.com>
+ <CAHJvkbvkwAw2-pRo=rvnB98XxgtNCE-QAzv4HZ-KceH-vZkKoA@mail.gmail.com>
+ <3d3563f3-f093-f293-e237-b87306a4cede@amd.com>
+In-Reply-To: <3d3563f3-f093-f293-e237-b87306a4cede@amd.com>
+From: Alberto Salvia Novella <es20490446e@gmail.com>
+Date: Wed, 31 Mar 2021 09:21:43 +0200
+Message-ID: <CAHJvkbvQ-JJ4vhc3MHNiQ2Jb7dpHUTQBcZ4L1KDnSV=WXDPsOA@mail.gmail.com>
+Subject: Re: Interlaced resolutions hang the desktop
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+X-Mailman-Approved-At: Wed, 31 Mar 2021 08:11:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,181 +67,417 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jianzh@amd.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: alexander.deucher@amd.com,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ linux-fbdev@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ benh@kernel.crashing.org
+Content-Type: multipart/mixed; boundary="===============0706022565=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: pengzhou <PengJu.Zhou@amd.com>
+--===============0706022565==
+Content-Type: multipart/alternative; boundary="0000000000003159a105becff844"
 
-change mmhub register access from mmio to rlcg if mmhub
-indirect access enabled, otherwise access these registers in
-the old path.
+--0000000000003159a105becff844
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: pengzhou <PengJu.Zhou@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  | 12 ++++++--
- drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c | 39 +++++++++++++------------
- 2 files changed, 29 insertions(+), 22 deletions(-)
+24fps is intended for video only. Anything interactive at 24fps, as just
+moving the mouse around, is extremely choppy.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-index 33e54eed2eec..7d0ce34dcc45 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-@@ -38,6 +38,7 @@
- #include "soc15.h"
- #include "soc15d.h"
- #include "soc15_common.h"
-+#include "gc/gc_10_1_0_offset.h"
- 
- #include "nbio_v2_3.h"
- 
-@@ -253,7 +254,10 @@ static void gmc_v10_0_flush_vm_hub(struct amdgpu_device *adev, uint32_t vmid,
- 			DRM_ERROR("Timeout waiting for sem acquire in VM flush!\n");
- 	}
- 
--	WREG32_NO_KIQ(hub->vm_inv_eng0_req + hub->eng_distance * eng, inv_req);
-+	if (vmhub == AMDGPU_MMHUB_0)
-+		WREG32_RLC_NO_KIQ((hub->vm_inv_eng0_req + eng), inv_req);
-+	else
-+		WREG32_NO_KIQ(hub->vm_inv_eng0_req + eng, inv_req);
- 
- 	/*
- 	 * Issue a dummy read to wait for the ACK register to be cleared
-@@ -280,8 +284,10 @@ static void gmc_v10_0_flush_vm_hub(struct amdgpu_device *adev, uint32_t vmid,
- 		 * add semaphore release after invalidation,
- 		 * write with 0 means semaphore release
- 		 */
--		WREG32_NO_KIQ(hub->vm_inv_eng0_sem +
--			      hub->eng_distance * eng, 0);
-+		if (vmhub == AMDGPU_MMHUB_0)
-+			WREG32_RLC_NO_KIQ(hub->vm_inv_eng0_sem + eng, 0);
-+		else
-+			WREG32_NO_KIQ(hub->vm_inv_eng0_sem + eng, 0);
- 
- 	spin_unlock(&adev->gmc.invalidate_lock);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-index f107385faba2..9dae6eb47053 100644
---- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-@@ -29,6 +29,7 @@
- #include "mmhub/mmhub_2_0_0_default.h"
- #include "navi10_enum.h"
- 
-+#include "gc/gc_10_1_0_offset.h"
- #include "soc15_common.h"
- 
- #define mmMM_ATC_L2_MISC_CG_Sienna_Cichlid                      0x064d
-@@ -165,11 +166,11 @@ static void mmhub_v2_0_setup_vm_pt_regs(struct amdgpu_device *adev, uint32_t vmi
- {
- 	struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_MMHUB_0];
- 
--	WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_BASE_ADDR_LO32,
-+	WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_BASE_ADDR_LO32,
- 			    hub->ctx_addr_distance * vmid,
- 			    lower_32_bits(page_table_base));
- 
--	WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_BASE_ADDR_HI32,
-+	WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_BASE_ADDR_HI32,
- 			    hub->ctx_addr_distance * vmid,
- 			    upper_32_bits(page_table_base));
- }
-@@ -180,14 +181,14 @@ static void mmhub_v2_0_init_gart_aperture_regs(struct amdgpu_device *adev)
- 
- 	mmhub_v2_0_setup_vm_pt_regs(adev, 0, pt_base);
- 
--	WREG32_SOC15(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_START_ADDR_LO32,
-+	WREG32_SOC15_RLC(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_START_ADDR_LO32,
- 		     (u32)(adev->gmc.gart_start >> 12));
--	WREG32_SOC15(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_START_ADDR_HI32,
-+	WREG32_SOC15_RLC(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_START_ADDR_HI32,
- 		     (u32)(adev->gmc.gart_start >> 44));
- 
--	WREG32_SOC15(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_END_ADDR_LO32,
-+	WREG32_SOC15_RLC(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_END_ADDR_LO32,
- 		     (u32)(adev->gmc.gart_end >> 12));
--	WREG32_SOC15(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_END_ADDR_HI32,
-+	WREG32_SOC15_RLC(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_END_ADDR_HI32,
- 		     (u32)(adev->gmc.gart_end >> 44));
- }
- 
-@@ -197,9 +198,9 @@ static void mmhub_v2_0_init_system_aperture_regs(struct amdgpu_device *adev)
- 	uint32_t tmp;
- 
- 	/* Program the AGP BAR */
--	WREG32_SOC15(MMHUB, 0, mmMMMC_VM_AGP_BASE, 0);
--	WREG32_SOC15(MMHUB, 0, mmMMMC_VM_AGP_BOT, adev->gmc.agp_start >> 24);
--	WREG32_SOC15(MMHUB, 0, mmMMMC_VM_AGP_TOP, adev->gmc.agp_end >> 24);
-+	WREG32_SOC15_RLC(MMHUB, 0, mmMMMC_VM_AGP_BASE, 0);
-+	WREG32_SOC15_RLC(MMHUB, 0, mmMMMC_VM_AGP_BOT, adev->gmc.agp_start >> 24);
-+	WREG32_SOC15_RLC(MMHUB, 0, mmMMMC_VM_AGP_TOP, adev->gmc.agp_end >> 24);
- 
- 	if (!amdgpu_sriov_vf(adev)) {
- 		/* Program the system aperture low logical page number. */
-@@ -304,12 +305,12 @@ static void mmhub_v2_0_enable_system_domain(struct amdgpu_device *adev)
- {
- 	uint32_t tmp;
- 
--	tmp = RREG32_SOC15(MMHUB, 0, mmMMVM_CONTEXT0_CNTL);
-+	tmp = RREG32_SOC15_RLC(MMHUB, 0, mmMMVM_CONTEXT0_CNTL);
- 	tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT0_CNTL, ENABLE_CONTEXT, 1);
- 	tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT0_CNTL, PAGE_TABLE_DEPTH, 0);
- 	tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT0_CNTL,
- 			    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT, 0);
--	WREG32_SOC15(MMHUB, 0, mmMMVM_CONTEXT0_CNTL, tmp);
-+	WREG32_SOC15_RLC(MMHUB, 0, mmMMVM_CONTEXT0_CNTL, tmp);
- }
- 
- static void mmhub_v2_0_disable_identity_aperture(struct amdgpu_device *adev)
-@@ -371,16 +372,16 @@ static void mmhub_v2_0_setup_vmid_config(struct amdgpu_device *adev)
- 		tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL,
- 				    RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
- 				    !adev->gmc.noretry);
--		WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_CNTL,
-+		WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT1_CNTL,
- 				    i * hub->ctx_distance, tmp);
--		WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
-+		WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
- 				    i * hub->ctx_addr_distance, 0);
--		WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_HI32,
-+		WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_HI32,
- 				    i * hub->ctx_addr_distance, 0);
--		WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_END_ADDR_LO32,
-+		WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_END_ADDR_LO32,
- 				    i * hub->ctx_addr_distance,
- 				    lower_32_bits(adev->vm_manager.max_pfn - 1));
--		WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
-+		WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
- 				    i * hub->ctx_addr_distance,
- 				    upper_32_bits(adev->vm_manager.max_pfn - 1));
- 	}
-@@ -392,9 +393,9 @@ static void mmhub_v2_0_program_invalidation(struct amdgpu_device *adev)
- 	unsigned i;
- 
- 	for (i = 0; i < 18; ++i) {
--		WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_INVALIDATE_ENG0_ADDR_RANGE_LO32,
-+		WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_INVALIDATE_ENG0_ADDR_RANGE_LO32,
- 				    i * hub->eng_addr_distance, 0xffffffff);
--		WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_INVALIDATE_ENG0_ADDR_RANGE_HI32,
-+		WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_INVALIDATE_ENG0_ADDR_RANGE_HI32,
- 				    i * hub->eng_addr_distance, 0x1f);
- 	}
- }
-@@ -423,7 +424,7 @@ static void mmhub_v2_0_gart_disable(struct amdgpu_device *adev)
- 
- 	/* Disable all tables */
- 	for (i = 0; i < AMDGPU_NUM_VMID; i++)
--		WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT0_CNTL,
-+		WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT0_CNTL,
- 				    i * hub->ctx_distance, 0);
- 
- 	/* Setup TLB control */
--- 
-2.17.1
+No way anyone would prefer that over an interlaced resolution or a lower
+resolution. That is, by far, the worst option.
+
+Just try it on your screen, set it to 24Hz or alike, and tell me your
+experience. You can't even tell where the mouse is going to go.
+
+On Wed, 31 Mar 2021 at 08:44, Christian K=C3=B6nig <christian.koenig@amd.co=
+m>
+wrote:
+
+> Hi Alberto,
+>
+> well a frame rate of 24Hz is perfectly reasonable for a TV and desktop
+> usage.
+>
+> This is probably caused by the TVs limited HDMI bandwidth and a refresh
+> rate of 30/25 Hz for the interlaced mode isn't much better either.
+>
+> Regards,
+> Christian.
+>
+> Am 30.03.21 um 22:59 schrieb Alberto Salvia Novella:
+>
+> The frame-rate at 24Hz is extremely poor for normal desktop usage.
+>
+> If the highest resolution, aka 1080p, uses that refresh rate then the
+> desktop will default to that frame-rate.
+>
+> Other progressive modes don't exhibit any issue.
+>
+> On Tue, 30 Mar 2021 at 18:26, Christian K=C3=B6nig <christian.koenig@amd.=
+com>
+> wrote:
+>
+>> Hi Alberto,
+>>
+>> I think the driver should only support resolutions that are *progressive=
+*,
+>> but also at least of *50Hz*.
+>>
+>>
+>> Why do you think so?, the 24Hz resolution seems to be the native one of
+>> the display.
+>>
+>> Regards,
+>> Christian.
+>>
+>> Am 30.03.21 um 17:37 schrieb Alberto Salvia Novella:
+>>
+>> This is why I'm using interlaced:
+>>
+>> $ *xrandr*
+>> Screen 0: minimum 320 x 200, current 1920 x 1080, maximum 8192 x 8192
+>> DisplayPort-0 disconnected (normal left inverted right x axis y axis)
+>> HDMI-0 connected primary 1920x1080+0+0 (normal left inverted right x axi=
+s
+>> y axis) 16mm x 9mm
+>>    1920x*1080i*    60.00*+  50.00    59.94
+>>    1920x1080     *24.00*    23.98
+>>    1280x*720*      60.00    50.00    59.94
+>>    1024x768      75.03    70.07    60.00
+>>    832x624       74.55
+>>    800x600       72.19    75.00    60.32    56.25
+>>    720x576       50.00
+>>    720x576i      50.00
+>>    720x480       60.00    59.94
+>>    720x480i      60.00    59.94
+>>    640x480       75.00    72.81    66.67    60.00    59.94
+>>    720x400       70.08
+>> DVI-0 disconnected (normal left inverted right x axis y axis)
+>>
+>> I think the driver should only support resolutions that are *progressive=
+*,
+>> but also at least of *50Hz*.
+>>
+>> On Tue, 30 Mar 2021 at 15:41, Christian K=C3=B6nig <
+>> ckoenig.leichtzumerken@gmail.com> wrote:
+>>
+>>> Mhm, no idea why an interlaced resolution would cause a crash. Maybe
+>>> some miscalculation in the display code.
+>>>
+>>> But apart from that if you just connected your PC to a TV I also
+>>> wouldn't recommend using an interlaced resolution in the first place.
+>>>
+>>> See those resolutions only exists for backward compatibility with analo=
+g
+>>> hardware.
+>>>
+>>> I think we would just disable those modes instead of searching for the
+>>> bug.
+>>>
+>>> Regards,
+>>> Christian.
+>>>
+>>> Am 30.03.21 um 11:07 schrieb Alberto Salvia Novella:
+>>>
+>>> I guessed so.
+>>>
+>>> The GPU is a Radeon HD5870, and the screen is an old Telefunken TV
+>>> (TLFK22LEDPVR1).
+>>>
+>>> Since my real display got into repair I used this TV meanwhile, and to
+>>> my surprise it froze the system.
+>>>
+>>> On Tue, 30 Mar 2021 at 10:15, Christian K=C3=B6nig <christian.koenig@am=
+d.com>
+>>> wrote:
+>>>
+>>>> Hi Alberto,
+>>>>
+>>>> well what hardware do you have?
+>>>>
+>>>> Interlaced resolutions are not used any more on modern hardware, so
+>>>> they
+>>>> are not well tested.
+>>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>> Am 30.03.21 um 10:04 schrieb Alberto Salvia Novella:
+>>>> > The entire desktop hangs after some minutes when using the module
+>>>> > "radeon" with an interlaced resolution.
+>>>> >
+>>>> > Easier to trigger by playing a video on Firefox, at least on
+>>>> kwin_x11.
+>>>> > Wayland didn't exhibit the problem.
+>>>> >
+>>>> > Other display drivers, from different computers I have tried, didn't
+>>>> > allow those interlaced resolutions all together. It seems they know
+>>>> > there will be problems.
+>>>>
+>>>>
+>>> _______________________________________________
+>>> amd-gfx mailing listamd-gfx@lists.freedesktop.orghttps://lists.freedesk=
+top.org/mailman/listinfo/amd-gfx <https://nam11.safelinks.protection.outloo=
+k.com/?url=3Dhttps%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd=
+-gfx&data=3D04%7C01%7Cchristian.koenig%40amd.com%7C24d157e6250d4979c5fc08d8=
+f3beb949%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637527347790767402%7C=
+Unknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiL=
+CJXVCI6Mn0%3D%7C1000&sdata=3DefPyW%2BUl4PhnDWqghsRmaE7DKAUYoylzMP529%2BWrHD=
+U%3D&reserved=3D0>
+>>>
+>>>
+>>>
+>>
+>
+
+--0000000000003159a105becff844
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>24fps is intended for video only. Anything interactiv=
+e at 24fps, as just moving the mouse around, is extremely choppy.</div><div=
+><br></div><div>No way anyone would prefer that over an interlaced resoluti=
+on or a lower resolution. That is, by far, the worst option.</div><div><br>=
+</div><div>Just try it on your screen, set it to 24Hz or alike, and tell me=
+ your experience. You can&#39;t even tell where the mouse is going to go.<b=
+r></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Wed, 31 Mar 2021 at 08:44, Christian K=C3=B6nig &lt;<a href=3D"m=
+ailto:christian.koenig@amd.com">christian.koenig@amd.com</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+ =20
+  <div>
+    Hi Alberto,<br>
+    <br>
+    well a frame rate of 24Hz is perfectly reasonable for a TV and
+    desktop usage.<br>
+    <br>
+    This is probably caused by the TVs limited HDMI bandwidth and a
+    refresh rate of 30/25 Hz for the interlaced mode isn&#39;t much better
+    either.<br>
+    <br>
+    Regards,<br>
+    Christian.<br>
+    <br>
+    <div>Am 30.03.21 um 22:59 schrieb Alberto
+      Salvia Novella:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">
+        <div>The frame-rate at 24Hz is extremely poor for normal desktop
+          usage.<br>
+        </div>
+        <div><br>
+        </div>
+        <div>If the highest resolution, aka 1080p, uses that refresh
+          rate then the desktop will default to that frame-rate.</div>
+        <div><br>
+        </div>
+        <div>Other progressive modes don&#39;t exhibit any issue.<br>
+        </div>
+      </div>
+      <br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 30 Mar 2021 at 18:26,
+          Christian K=C3=B6nig &lt;<a href=3D"mailto:christian.koenig@amd.c=
+om" target=3D"_blank">christian.koenig@amd.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div> Hi Alberto,<br>
+            <br>
+            <blockquote type=3D"cite">I think the driver should only
+              support resolutions that are <b>progressive</b>, but also
+              at least of <b>50Hz</b>.</blockquote>
+            <br>
+            Why do you think so?, the 24Hz resolution seems to be the
+            native one of the display.<br>
+            <br>
+            Regards,<br>
+            Christian.<br>
+            <br>
+            <div>Am 30.03.21 um 17:37 schrieb Alberto Salvia Novella:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">
+                <div>This is why I&#39;m using interlaced:<br>
+                </div>
+                <div><br>
+                </div>
+                <div>$ <b>xrandr</b><br>
+                  Screen 0: minimum 320 x 200, current 1920 x 1080,
+                  maximum 8192 x 8192<br>
+                  DisplayPort-0 disconnected (normal left inverted right
+                  x axis y axis)<br>
+                  HDMI-0 connected primary 1920x1080+0+0 (normal left
+                  inverted right x axis y axis) 16mm x 9mm<br>
+                  =C2=A0 =C2=A01920x<b>1080i</b> =C2=A0 =C2=A060.00*+ =C2=
+=A050.00 =C2=A0 =C2=A059.94 =C2=A0<br>
+                  =C2=A0 =C2=A01920x1080 =C2=A0 =C2=A0 <b>24.00</b> =C2=A0 =
+=C2=A023.98 =C2=A0<br>
+                  =C2=A0 =C2=A01280x<b>720</b> =C2=A0 =C2=A0 =C2=A060.00 =
+=C2=A0 =C2=A050.00 =C2=A0 =C2=A059.94 =C2=A0<br>
+                  =C2=A0 =C2=A01024x768 =C2=A0 =C2=A0 =C2=A075.03 =C2=A0 =
+=C2=A070.07 =C2=A0 =C2=A060.00 =C2=A0<br>
+                  =C2=A0 =C2=A0832x624 =C2=A0 =C2=A0 =C2=A0 74.55 =C2=A0<br=
+>
+                  =C2=A0 =C2=A0800x600 =C2=A0 =C2=A0 =C2=A0 72.19 =C2=A0 =
+=C2=A075.00 =C2=A0 =C2=A060.32 =C2=A0 =C2=A056.25 =C2=A0<br>
+                  =C2=A0 =C2=A0720x576 =C2=A0 =C2=A0 =C2=A0 50.00 =C2=A0<br=
+>
+                  =C2=A0 =C2=A0720x576i =C2=A0 =C2=A0 =C2=A050.00 =C2=A0<br=
+>
+                  =C2=A0 =C2=A0720x480 =C2=A0 =C2=A0 =C2=A0 60.00 =C2=A0 =
+=C2=A059.94 =C2=A0<br>
+                  =C2=A0 =C2=A0720x480i =C2=A0 =C2=A0 =C2=A060.00 =C2=A0 =
+=C2=A059.94 =C2=A0<br>
+                  =C2=A0 =C2=A0640x480 =C2=A0 =C2=A0 =C2=A0 75.00 =C2=A0 =
+=C2=A072.81 =C2=A0 =C2=A066.67 =C2=A0 =C2=A060.00 =C2=A0
+                  =C2=A059.94 =C2=A0<br>
+                  =C2=A0 =C2=A0720x400 =C2=A0 =C2=A0 =C2=A0 70.08 =C2=A0<br=
+>
+                  DVI-0 disconnected (normal left inverted right x axis
+                  y axis)</div>
+                <div><br>
+                </div>
+                <div>I think the driver should only support resolutions
+                  that are <b>progressive</b>, but also at least of <b>50Hz=
+</b>.<br>
+                </div>
+              </div>
+              <br>
+              <div class=3D"gmail_quote">
+                <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 30 Mar 2021 a=
+t
+                  15:41, Christian K=C3=B6nig &lt;<a href=3D"mailto:ckoenig=
+.leichtzumerken@gmail.com" target=3D"_blank">ckoenig.leichtzumerken@gmail.c=
+om</a>&gt;
+                  wrote:<br>
+                </div>
+                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                  <div> Mhm, no idea why an interlaced resolution would
+                    cause a crash. Maybe some miscalculation in the
+                    display code.<br>
+                    <br>
+                    But apart from that if you just connected your PC to
+                    a TV I also wouldn&#39;t recommend using an interlaced
+                    resolution in the first place.<br>
+                    <br>
+                    See those resolutions only exists for backward
+                    compatibility with analog hardware.<br>
+                    <br>
+                    I think we would just disable those modes instead of
+                    searching for the bug.<br>
+                    <br>
+                    Regards,<br>
+                    Christian.<br>
+                    <br>
+                    <div>Am 30.03.21 um 11:07 schrieb Alberto Salvia
+                      Novella:<br>
+                    </div>
+                    <blockquote type=3D"cite">
+                      <div dir=3D"ltr">
+                        <div>I guessed so.</div>
+                        <div><br>
+                        </div>
+                        <div>The GPU is a Radeon HD5870, and the screen
+                          is an old Telefunken TV (TLFK22LEDPVR1).</div>
+                        <div><br>
+                        </div>
+                        <div>Since my real display got into repair I
+                          used this TV meanwhile, and to my surprise it
+                          froze the system.<br>
+                        </div>
+                      </div>
+                      <br>
+                      <div class=3D"gmail_quote">
+                        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 30 Ma=
+r
+                          2021 at 10:15, Christian K=C3=B6nig &lt;<a href=
+=3D"mailto:christian.koenig@amd.com" target=3D"_blank">christian.koenig@amd=
+.com</a>&gt;
+                          wrote:<br>
+                        </div>
+                        <blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">H=
+i Alberto,<br>
+                          <br>
+                          well what hardware do you have?<br>
+                          <br>
+                          Interlaced resolutions are not used any more
+                          on modern hardware, so they <br>
+                          are not well tested.<br>
+                          <br>
+                          Regards,<br>
+                          Christian.<br>
+                          <br>
+                          Am 30.03.21 um 10:04 schrieb Alberto Salvia
+                          Novella:<br>
+                          &gt; The entire desktop hangs after some
+                          minutes when using the module <br>
+                          &gt; &quot;radeon&quot; with an interlaced resolu=
+tion.<br>
+                          &gt;<br>
+                          &gt; Easier to trigger by playing a video on
+                          Firefox, at least on kwin_x11. <br>
+                          &gt; Wayland didn&#39;t exhibit the problem.<br>
+                          &gt;<br>
+                          &gt; Other display drivers, from different
+                          computers I have tried, didn&#39;t <br>
+                          &gt; allow those interlaced resolutions all
+                          together. It seems they know <br>
+                          &gt; there will be problems.<br>
+                          <br>
+                        </blockquote>
+                      </div>
+                      <br>
+                      <fieldset></fieldset>
+                      <pre>_______________________________________________
+amd-gfx mailing list
+<a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_blank">amd-gfx@=
+lists.freedesktop.org</a>
+<a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2=
+F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D04%7C01=
+%7Cchristian.koenig%40amd.com%7C24d157e6250d4979c5fc08d8f3beb949%7C3dd8961f=
+e4884e608e11a82d994e183d%7C0%7C0%7C637527347790767402%7CUnknown%7CTWFpbGZsb=
+3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C100=
+0&amp;sdata=3DefPyW%2BUl4PhnDWqghsRmaE7DKAUYoylzMP529%2BWrHDU%3D&amp;reserv=
+ed=3D0" target=3D"_blank">https://lists.freedesktop.org/mailman/listinfo/am=
+d-gfx</a>
+</pre>
+                    </blockquote>
+                    <br>
+                  </div>
+                </blockquote>
+              </div>
+            </blockquote>
+            <br>
+          </div>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </div>
+
+</blockquote></div>
+
+--0000000000003159a105becff844--
+
+--===============0706022565==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0706022565==--
