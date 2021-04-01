@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C7763516C8
-	for <lists+amd-gfx@lfdr.de>; Thu,  1 Apr 2021 18:46:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DE483516CA
+	for <lists+amd-gfx@lfdr.de>; Thu,  1 Apr 2021 18:46:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B3BC6ECE3;
-	Thu,  1 Apr 2021 16:46:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64E316ECE6;
+	Thu,  1 Apr 2021 16:46:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2057.outbound.protection.outlook.com [40.107.92.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DB3D6ECE3
- for <amd-gfx@lists.freedesktop.org>; Thu,  1 Apr 2021 16:46:01 +0000 (UTC)
+ (mail-bn7nam10on2053.outbound.protection.outlook.com [40.107.92.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D16966ECDE
+ for <amd-gfx@lists.freedesktop.org>; Thu,  1 Apr 2021 16:46:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FjfkJMsJiuLycbo+2p1d4xel3VrvYx+snrXvkdPw/7Ugn3601MWA55Bl89ERgGHf6l5deb9Og8ue0PuJU09zqRh4W1VfHJzXqThjggkmtcKzGTwqPu3d4MoxGnXePxXWWx82Bs0nj/izRMPux9598Ld+xLFu8HZaRhj04lhb1aMtpIvE8xOxkoLHuuEaBmlTFRnEwpttuRri17BPgauUEPNDjkw/qsqK1svHQbzggR5dX+ny/hQRyZIk7s1gJfQmuSF38rFVKvyHQ3acRUXC/9H2TSnAmIcofHb+G1S0E/5+IwiPQ0A8Qz6CHqz8SbX6vLJpEtSt/qLXKu7ymTAO7A==
+ b=XDgMwvB8Xyj4TieuKoSsTStLlK9TIRvHDs6DkGghpgW6Ck59Y//5VL9yGttad9L1kFGvMjsHM9HDnrdJAEcT5lr0am1CwKywYX/OliFjXKSJQKPvNUzUYx5mHLaLHxkm42mqMQ/rZwRFTV4Nre+vwyzMqgQTGfR1iErNT44vHDticKkSYgJyQn7ple9Ddrfop9oZPBbINYykqcQlCdG3N6Hva9dpDcw6ZM94JYcWgDjquLIxhGw+GIMIitwi590G4bY0asrz25jdt1YbYVhKoeQY9rqOQX91S9oMIuzeBKgx0lroxTvNEjmwqnT6gKNWQI5s1klWVNLYRtfgRDqyCg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f5rziwZ8z0keUrNUQGpySfMk0IZKFegR/L18WkbWbZo=;
- b=fZ5e/pSdn401z6yiba5p+z/taWmrNJvC7yoA6TCfiUUE87u71zF4261k6Idx3CIBF4JpLCTgMBCchRrjC+UL0Bw5SktFdpPPL6HdAl8L3uVhNQemzzNytEL7MnbpgF2KwD0wd5sLa9EvSlXvUnO5d2Uy1RD/HJBe+Sb5b+FPfpknClqS2wiiotazEeaWDsKEIpXtYKUHbtRsYEN6hvYf1plZDsPhAf7/awcd3KWgEUf7tcsbxPR2+zJ4ZUtYspLXl7ybTkscLJNvLnHOxrloVv5XTc6ssSchYi3fym3QnxnCeP6OfWp4/nsI/WAsL2lmGVkni/m4agzAHBqwsNlUSQ==
+ bh=4xn/X9OOZB9YuyACglclmVOBEGey8l1z8kfN0g5K41o=;
+ b=AMI3UuxFjOzIByYJfKIE1AzvbJUzcTfc+jFERufBbwOK//BGJELULlQFrx6SpdD1vsLUp+pKMpZ84vuMZRGfoEzhTpfgvdPaZfxFBVqTognXrmMKEl24BKjxN8l4HMw7gWJbxiXTQAP+l8NeMZi/bPri5uLSzAsF82Ci8JLcYEmBlYBHZVmkA4TCuzrI8Zba7Gze31AZmx1KT1TRr1KCRyue980uVtC9IFWhHKuuCusOvP2Yz40ILlhZ558W9UCXCChZOYLqCvY3blVc9QOJUAHuI67s447ZiXVvUa2j5NbqNNAh77svfwqbS84rZTmLTrdGEy/88V9lBRzzzbJXAA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f5rziwZ8z0keUrNUQGpySfMk0IZKFegR/L18WkbWbZo=;
- b=jU+PeVatbMjs4n3sM2dWZtj//i9V3oUhW5lzzeRqZCK+4Z0UiYRvYyuA/xqSJNZN9SXfxiWwzFjApo38jraPLF1w5Ad+FGdU4iM3q5VfPPCeUpKUrnWuAW00dfmVhlZSmYc3scbTc0oSrHf0gQQidz9OSX1LmKsJf8x+sj2/OGY=
+ bh=4xn/X9OOZB9YuyACglclmVOBEGey8l1z8kfN0g5K41o=;
+ b=SJE7SnBxA8KzUR2EpUH3R7S1P+GjpQNetplrDgZevrLWkayRqA8+Zb8h9SK7wwp9aDZzXlBQMta90Js+J8KpdNRhhqL5dMsZ1Fg7UFIafAAe6em6BLgGfqdkxH6cBEDyemwYhIy8i1N6jYF55Wk4ZglGRMBNSaJXJIqVP2ShgWE=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,17 +34,17 @@ Received: from DM6PR12MB2939.namprd12.prod.outlook.com (2603:10b6:5:18b::24)
  by DM6PR12MB4619.namprd12.prod.outlook.com (2603:10b6:5:7c::23) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.25; Thu, 1 Apr
- 2021 16:46:00 +0000
+ 2021 16:46:01 +0000
 Received: from DM6PR12MB2939.namprd12.prod.outlook.com
  ([fe80::1887:4978:1b79:7cc1]) by DM6PR12MB2939.namprd12.prod.outlook.com
  ([fe80::1887:4978:1b79:7cc1%5]) with mapi id 15.20.3999.028; Thu, 1 Apr 2021
- 16:46:00 +0000
+ 16:46:01 +0000
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 06/21] drm/amd/display: Move vupdate keepout programming from
- DCN20 to DCN10
-Date: Thu,  1 Apr 2021 12:45:12 -0400
-Message-Id: <20210401164527.26603-7-qingqing.zhuo@amd.com>
+Subject: [PATCH 07/21] drm/amd/display: Add debugfs entry for LTTPR register
+ status
+Date: Thu,  1 Apr 2021 12:45:13 -0400
+Message-Id: <20210401164527.26603-8-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210401164527.26603-1-qingqing.zhuo@amd.com>
 References: <20210401164527.26603-1-qingqing.zhuo@amd.com>
@@ -57,52 +57,52 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from localhost.localdomain (165.204.55.250) by
  YT1PR01CA0140.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2f::19) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3977.32 via Frontend Transport; Thu, 1 Apr 2021 16:45:59 +0000
+ 15.20.3977.32 via Frontend Transport; Thu, 1 Apr 2021 16:46:00 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6782a804-a4e0-418e-1220-08d8f52da112
+X-MS-Office365-Filtering-Correlation-Id: a86714d5-1324-4038-f585-08d8f52da1a9
 X-MS-TrafficTypeDiagnostic: DM6PR12MB4619:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4619968D48DA88A87B4CAD27FB7B9@DM6PR12MB4619.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4619474D970DEB063C780FCCFB7B9@DM6PR12MB4619.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pS7ayyJ2P3p8HFMhuDPlO0jtpY89x7NOiJhraAZ+Na9Tr8CqtVyzR39X59QBOc4ZieCtjgmUQyZ+jO/DsRNKPvc7RsQKwQNI7TWXMbW4oc2zeTWj5z6HlPoGWjV3orKLVBiAQdXoXNU3OYos4AGHlAUAxcl48DpdAk55MvcnfDQ5Tfjyb4YoJh+B9tJOhJTTQeQJEAm6SPwRqKoZIph/3uQbhsT2IwQZVkCANvzbTO1eJ/h0T9ZG410nMqmNaojpIn8eyZK/Nux5jYpUNtKF0JJX7s6ZxEFR6grgQSM17oi6M5n86FpJJd6Ph46O6u4CtRB9hGogQlUrU7kpZ88v5G00wVElpjF+QI316j42mVGfYui27zzjriq8foORYkjsCOqZCgFhacx4jCaLBV9mw0BXDULMkO67fYTNLbbbVGt8e/AAmKtFa0sGCLadoKB4+99NzShyIPS5eBKy+1JuQ8nTf84oNUYi/6aGQsEez91iO/BSLPl+Jhkh8nXHADxRL0Ywk9plQwwo8AzKL7b1nnERuWLNKjrDyQ6m/+IaxlBCZzowCn6hOnzHa9aDciU5QVgUYHRjZbfvteQefwoGZawnUlbyiK7ysiWKzTTfRq067RACIrR8QfhAw3Vsit1QjjoJ7Htlh1re27tsb5MpeF9xU3x4eASJ+Oxv2HbgzyVb0U2VIU3bxDWuWx2h5f0s
+X-Microsoft-Antispam-Message-Info: eAPMfc9yae8rXDOM8SupiBkexl1W3OXRd1Y+fJ42CLKXG7AJMru1BlYzJyfKhOKwtJKYnLa6rBU4TnRc2hW4JmnVpxqmOGhld+NrLQPTpmXTrjhWd/JOLWmVRkyGyKS7CZMOQoNoChAnQJxVdrGe8Y/PzAISneZS8Xhpg2PhdWddjmiV0pYrOy+zg6o9fSpC0csOviz2U8zncD3AlWkzCfBRwiOKHO7FlIeS+8zQ3Ndsn5nxz3TX6i/BGRkiff6jd+R1XMWOVZXAURp38DO6hoksqJnvI0LzgBW2d56q9Biiw4aOGGD5maMoTh4tysgOgRs6Qdl7Q6ygijIDvPn9QxcoheApWwJWS4UnGonRY4khuyDAOsnjswKqJqqLWfYxpkeUk21iZQlc0EuGZkazu0tWd/tkLU9U0glt/EMbn2+9+ywP55fTJGauF7m2fS481iy+n9asVxf5+5E7Fc4ioY/kBC762aOFLk35sHNXEy/6XBRwFcBmA4DirjutLK0SZ5Yd4M4tSZcKeAt+7ZUPGjkdC2oEmx4axTR1LekXmN5QmDLn5s/UC/nTEwpB2mBOmRjMZNGR2LCaFgZbQoB0GOa06r4WPPLBOROnPKVpDt6pYdnmiqyVPalf6y591ONLtNwWsmig2OZZqyOdvunRpHCGA76ELeAoEIJzHyoXr6ChWWmnQWzpUHgonFAbiboo
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB2939.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(396003)(136003)(39860400002)(346002)(366004)(36756003)(69590400012)(66476007)(6666004)(478600001)(6506007)(38100700001)(16526019)(26005)(83380400001)(8936002)(8676002)(2616005)(2906002)(66556008)(6916009)(6512007)(4326008)(316002)(1076003)(44832011)(52116002)(956004)(186003)(86362001)(5660300002)(66946007)(6486002);
+ SFS:(4636009)(376002)(396003)(136003)(39860400002)(346002)(366004)(36756003)(69590400012)(66476007)(6666004)(478600001)(6506007)(38100700001)(16526019)(26005)(8936002)(8676002)(2616005)(2906002)(66556008)(6916009)(6512007)(4326008)(316002)(1076003)(44832011)(52116002)(956004)(186003)(86362001)(5660300002)(66946007)(6486002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?smyQTnlN9no4gbfr/Nh/AmetbuTBONE88oMUd/kMPkhg11mU6ulbHq/dIDRI?=
- =?us-ascii?Q?J5DoLxKTaC/aJZQYtlnhIRpYuHpETuk/2EioOck/5/ZsBCv+BLxBwHKlE6Sm?=
- =?us-ascii?Q?lK9WV93VZJlnP2FednM6bjn5UFKdcjUL9InayRLQU5Thns72CPGw+7nB1ogG?=
- =?us-ascii?Q?yO+rngiGFfcq+Bire9RvHMsUTL0reufRpdR/WsS1MhhJgRsvNYvGIsZBDmS7?=
- =?us-ascii?Q?Yl4xyku9vJxYJKV5IP8Y9zTth8qtKf9kSEzRB5mjIpNS7bqZ+dpjusGEVkxr?=
- =?us-ascii?Q?p+C13zd7QA/SBM+1i5WprhhaqGqxphmAOCC3AEVAr/2Lc9eziVjKlv1ZkibS?=
- =?us-ascii?Q?qahuGFQKCOpEG3DFdmAjq/7qH+moVsynBb2ghdu/8D3XE8uCPsyKPgtagapU?=
- =?us-ascii?Q?vzWaKDWGl7Tugn7hSV7mKXq7tfivXC08O3HvTiVphsLiURjHkCwJ/sOr91rU?=
- =?us-ascii?Q?JPHOxsgVzQi16dsK4fyDQEcHYsl6yXN9FvIW5JWIfw37QIMjyRSvYaaq+KeK?=
- =?us-ascii?Q?Qeu2dKWaSG4SZIrhHE2vb4D+9hNNPb3oB9/6fr8Q0AuJeIH2QfOazlDm5ugR?=
- =?us-ascii?Q?/3kVeGU6RJnmNfL8LFrcyVwO1smBLPncvtSxVOvDlFyAxmlRiYX8pEIzWIV2?=
- =?us-ascii?Q?FKUMKxXTCM3+Xq+mJR2oedCYIZjGp4xGASDtgEPUI3i3rwLBOfpG2cFCSZYy?=
- =?us-ascii?Q?OrKFOxnCiaUzGZfyYFw2kU63Il3RYTeyzfS8qPsjDHuC4kCFnthCM6yJSrpD?=
- =?us-ascii?Q?ajcsEfXfkDMeFMvUp8ij97fVIKE8Exth0RdNT1VhYg86CEaFGV0qxQqCzOV+?=
- =?us-ascii?Q?+1PX5mu2DEAnbE8pjrwunxfBZeAiIpUyn1D6zyHdZmcm6LZbdtMPuvhA4hpr?=
- =?us-ascii?Q?uHFW6BFQqqu6W68lCnx2SXt8EctboOFl4HnRD1hcdVxu2jWKCycpnX+/rLjf?=
- =?us-ascii?Q?ANnmBRPQ41WkLDJ+JHLplABVwu9fybQL5oguLiEEAqnVyYYZUTdXrgQ6IPkw?=
- =?us-ascii?Q?YBcXqW1cd35s3HpLrgtVFmKwFGJDZkCdM7QrCT4J7hAszt+6/8fO868n0HUP?=
- =?us-ascii?Q?b+PXg+a2AEWw7itkJIiXr+k6GPqgjbUa8Ms3KfOjeUp4OSiZDF4fwDZcKvZW?=
- =?us-ascii?Q?4dIRPkIkbMl8Gelj+uopRyZOZYfD1SFQ/1ryQy7KX+ArcH1vUgzslvtCUyKg?=
- =?us-ascii?Q?+PiBpLbTqKraGUfSChImVaqNA0YVzrYwKOSxtuO4tYwDnIXndt1McoexEams?=
- =?us-ascii?Q?WqDezLUcjrM9dR6fnvFD6Z6m1oO6n8anfIonq8LRq8wAoFNiKUm9JvPN/lEw?=
- =?us-ascii?Q?MguuzNQMCl66a2mBucFYfrBj?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?PCt+Wbf9o2Ghany2bszK42+sW1S1tzZjpM4UDWZ6HZZFlMt8cBVX6NsWKk/T?=
+ =?us-ascii?Q?cF++UJUBWrvN9axdO3+oA4+FgLj12jPhayprlM5soA/hDp+nfLZVN5/yfubt?=
+ =?us-ascii?Q?XJ5z02BZz91JNfxwQ8eCuNpOGiemNXCgKfze3gv8KFEF/JD22+2jfQ6coWXF?=
+ =?us-ascii?Q?a4F7FBT8TVB89/VMQbW/a0g+IVclSK9rMKadoNesFGMck286Dk94SjCSHyzE?=
+ =?us-ascii?Q?Ud/sJcB6r246qJsQQ/UPci5upy8KbaEdJrg2fPWcoWtOZ7Mx0SIyUlSDqRRQ?=
+ =?us-ascii?Q?tPeDNlKV0DfehL2MMLAfXwoIQBs8n9g1fMb7jGHjKmtIlQbeku59neWPFmA8?=
+ =?us-ascii?Q?49bC8/gvcUOgLinbfrC8fwdg2zw3B+sTJY4Jdc8KgAskvSsYbIwMKey+LLtw?=
+ =?us-ascii?Q?CM/qD+4eaqv4QcWr0HNKyBSDGnT4pVNbRhG4G5pvon4PBlVEbgecNC0Y+7Fv?=
+ =?us-ascii?Q?/+jAEjQMn/xvzzMdbk89kN2DyZ6gvIjNBi+bExNBffdfiC13nt6MS4pCLGO1?=
+ =?us-ascii?Q?VHJbIe3+ZQTnR4iR59cuPkNDxrPW2dXegpvyoBkepsY85MGxO7yphT6BK/cO?=
+ =?us-ascii?Q?ph66Wl9NVN9Kcub7tuyZwbfxkL1UzfFxJbvvp90tbjzYghKd5LTUB3vZmsn1?=
+ =?us-ascii?Q?S8KmzbcHw7FQa2ENJ4eEsqlNMYdRZwypehE8cXp2LfGB9RPtlFAxx1n8VLrr?=
+ =?us-ascii?Q?Qzhh2SmB0UiQQDZEtwvErS4aCcFnNTzpQ99OqPgZ3PwGPDLwWBr/HPopU87t?=
+ =?us-ascii?Q?HwDvX/9sKIvxmFqsBXVJFlrwc6HkXXoObXfKeJ9lMDmaJMdna7KxfOJZDj1q?=
+ =?us-ascii?Q?QEsAXNl4Q0QTfFw+Ee4EuIACQHDtwy667KTBmLH81UBZCKI0M4fGfjnZ6p2L?=
+ =?us-ascii?Q?9Zvrv4uLdPVIGcYQr/wjnD/9tCuaxqrwa/TJKUkafWw/NA4g22BOWhj561Sp?=
+ =?us-ascii?Q?WZxArGtquPat2oMgDPRiDM58SbRMcIeVpWldFBXFvsc+PjaN7dyvrizrSWuF?=
+ =?us-ascii?Q?76/I37nbvTx3UJGgQ5uSUMOARWQLUxt7vrmINBEgC63wKz7JvC9FcU4o+ovC?=
+ =?us-ascii?Q?v4yKuhNPJubgRe0b0SIn0O9IDv57NQ7n2Z7Rj7ybvQK1Mo553IJVAYCnm43G?=
+ =?us-ascii?Q?85hSbroCgkLnwIyWmnCMz6u7yrwa1shk7OBbkpvxJjzdjXxG2uBN1oBz7e6b?=
+ =?us-ascii?Q?ihXQR0yZWjZJugePst24Tk+ezoD3BeokYhD0khIMni7q3PYTXsgwd1/oNISJ?=
+ =?us-ascii?Q?xinmgre3A+QBEI2X5XEgLbrsToteeKlBKjyZbstar8bGJLpFUJCrotpSGIFj?=
+ =?us-ascii?Q?uFW9dPYEPFM5dxMfkOs1O4EA?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6782a804-a4e0-418e-1220-08d8f52da112
+X-MS-Exchange-CrossTenant-Network-Message-Id: a86714d5-1324-4038-f585-08d8f52da1a9
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2939.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2021 16:46:00.0682 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2021 16:46:00.9267 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SsLdz/LvoD5kZ3/w4WaE4l4XFYgIz45GllHJvyC7DnXChu6jf3BvBKKpyXSjknND
+X-MS-Exchange-CrossTenant-UserPrincipalName: nRfaez3V9DE7+N2nfUSg7JrCPozZk6PZ9UNyc64tW1eVnf5TDHyXO2A7MLJk4WU4
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4619
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -115,121 +115,122 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Leo Li <sunpeng.li@amd.com>, Harry.Wentland@amd.com,
+Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
- bindu.r@amd.com
+ Anson.Jacob@amd.com, Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Leo Li <sunpeng.li@amd.com>
+From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 
 [Why]
-
-The OTG_VUPDATE_KEEPOUT register and fields is
-available on DCN10, and named the same in DCN20.
+Functionality of LTTPR is reporter through the DPCD register
 
 [How]
+Expose a interface in debugfs to read the current status of
+LTTPR as reported from the device's DPCD register
 
-Move register definition and programming function
-to dcn10 optc.
-
-There is no functional change.
-
-Signed-off-by: Leo Li <sunpeng.li@amd.com>
-Reviewed-by: Harry Wentland <Harry.Wentland@amd.com>
+Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.c    | 16 ++++++++++++++++
- .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.h    |  3 +++
- .../gpu/drm/amd/display/dc/dcn20/dcn20_optc.c    | 16 ----------------
- .../gpu/drm/amd/display/dc/dcn20/dcn20_optc.h    |  3 ---
- 4 files changed, 19 insertions(+), 19 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 66 +++++++++++++++++++
+ 1 file changed, 66 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
-index 6138f4887de7..677663cc7bff 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
-@@ -131,6 +131,22 @@ void optc1_setup_vertical_interrupt2(
- 			OTG_VERTICAL_INTERRUPT2_LINE_START, start_line);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index 5a9809e33af8..32f05aefda17 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -400,6 +400,70 @@ static ssize_t dp_phy_settings_read(struct file *f, char __user *buf,
+ 	return result;
  }
  
-+/**
-+ * Vupdate keepout can be set to a window to block the update lock for that pipe from changing.
-+ * Start offset begins with vstartup and goes for x number of clocks,
-+ * end offset starts from end of vupdate to x number of clocks.
-+ */
-+void optc1_set_vupdate_keepout(struct timing_generator *optc,
-+			       struct vupdate_keepout_params *params)
++static int dp_lttpr_status_show(struct seq_file *m, void *d)
 +{
-+	struct optc *optc1 = DCN10TG_FROM_TG(optc);
++	char *data;
++	struct amdgpu_dm_connector *connector = file_inode(m->file)->i_private;
++	struct dc_link *link = connector->dc_link;
++	uint32_t read_size = 1;
++	uint8_t repeater_count = 0;
 +
-+	REG_SET_3(OTG_VUPDATE_KEEPOUT, 0,
-+		  MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_START_OFFSET, params->start_offset,
-+		  MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_END_OFFSET, params->end_offset,
-+		  OTG_MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_EN, params->enable);
++	data = kzalloc(read_size, GFP_KERNEL);
++	if (!data)
++		return 0;
++
++	dm_helpers_dp_read_dpcd(link->ctx, link, 0xF0002, data, read_size);
++
++	switch ((uint8_t)*data) {
++	case 0x80:
++		repeater_count = 1;
++		break;
++	case 0x40:
++		repeater_count = 2;
++		break;
++	case 0x20:
++		repeater_count = 3;
++		break;
++	case 0x10:
++		repeater_count = 4;
++		break;
++	case 0x8:
++		repeater_count = 5;
++		break;
++	case 0x4:
++		repeater_count = 6;
++		break;
++	case 0x2:
++		repeater_count = 7;
++		break;
++	case 0x1:
++		repeater_count = 8;
++		break;
++	case 0x0:
++		repeater_count = 0;
++		break;
++	default:
++		repeater_count = (uint8_t)*data;
++		break;
++	}
++
++	seq_printf(m, "phy repeater count: %d\n", repeater_count);
++
++	dm_helpers_dp_read_dpcd(link->ctx, link, 0xF0003, data, read_size);
++
++	if ((uint8_t)*data == 0x55)
++		seq_printf(m, "phy repeater mode: transparent\n");
++	else if ((uint8_t)*data == 0xAA)
++		seq_printf(m, "phy repeater mode: non-transparent\n");
++	else if ((uint8_t)*data == 0x00)
++		seq_printf(m, "phy repeater mode: non lttpr\n");
++	else
++		seq_printf(m, "phy repeater mode: read error\n");
++
++	kfree(data);
++	return 0;
 +}
 +
- /**
-  * program_timing_generator   used by mode timing set
-  * Program CRTC Timing Registers - OTG_H_*, OTG_V_*, Pixel repetition.
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.h
-index 2529723beeb1..cabfe83fd634 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.h
-@@ -194,6 +194,9 @@ struct dcn_optc_registers {
- 	SF(OTG0_OTG_DOUBLE_BUFFER_CONTROL, OTG_UPDATE_PENDING, mask_sh),\
- 	SF(OTG0_OTG_DOUBLE_BUFFER_CONTROL, OTG_BLANK_DATA_DOUBLE_BUFFER_EN, mask_sh),\
- 	SF(OTG0_OTG_DOUBLE_BUFFER_CONTROL, OTG_RANGE_TIMING_DBUF_UPDATE_MODE, mask_sh),\
-+	SF(OTG0_OTG_VUPDATE_KEEPOUT, OTG_MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_EN, mask_sh), \
-+	SF(OTG0_OTG_VUPDATE_KEEPOUT, MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_START_OFFSET, mask_sh), \
-+	SF(OTG0_OTG_VUPDATE_KEEPOUT, MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_END_OFFSET, mask_sh), \
- 	SF(OTG0_OTG_H_TOTAL, OTG_H_TOTAL, mask_sh),\
- 	SF(OTG0_OTG_H_BLANK_START_END, OTG_H_BLANK_START, mask_sh),\
- 	SF(OTG0_OTG_H_BLANK_START_END, OTG_H_BLANK_END, mask_sh),\
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c
-index ea7eaf7d755f..3139d90017ee 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.c
-@@ -134,22 +134,6 @@ void optc2_set_gsl_window(struct timing_generator *optc,
- 		OTG_GSL_WINDOW_END_Y, params->gsl_window_end_y);
- }
- 
--/**
-- * Vupdate keepout can be set to a window to block the update lock for that pipe from changing.
-- * Start offset begins with vstartup and goes for x number of clocks,
-- * end offset starts from end of vupdate to x number of clocks.
-- */
--void optc2_set_vupdate_keepout(struct timing_generator *optc,
--		   const struct vupdate_keepout_params *params)
--{
--	struct optc *optc1 = DCN10TG_FROM_TG(optc);
--
--	REG_SET_3(OTG_VUPDATE_KEEPOUT, 0,
--		MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_START_OFFSET, params->start_offset,
--		MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_END_OFFSET, params->end_offset,
--		OTG_MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_EN, params->enable);
--}
--
- void optc2_set_gsl_source_select(
- 		struct timing_generator *optc,
- 		int group_idx,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.h
-index e0a0a8a8e2c6..3dee2ec2a1bb 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_optc.h
-@@ -56,9 +56,6 @@
- 	SF(OTG0_OTG_GSL_WINDOW_X, OTG_GSL_WINDOW_END_X, mask_sh), \
- 	SF(OTG0_OTG_GSL_WINDOW_Y, OTG_GSL_WINDOW_START_Y, mask_sh),\
- 	SF(OTG0_OTG_GSL_WINDOW_Y, OTG_GSL_WINDOW_END_Y, mask_sh),\
--	SF(OTG0_OTG_VUPDATE_KEEPOUT, OTG_MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_EN, mask_sh), \
--	SF(OTG0_OTG_VUPDATE_KEEPOUT, MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_START_OFFSET, mask_sh), \
--	SF(OTG0_OTG_VUPDATE_KEEPOUT, MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_END_OFFSET, mask_sh), \
- 	SF(OTG0_OTG_GSL_CONTROL, OTG_GSL_MASTER_MODE, mask_sh), \
- 	SF(OTG0_OTG_GSL_CONTROL, OTG_MASTER_UPDATE_LOCK_GSL_EN, mask_sh), \
- 	SF(OTG0_OTG_DSC_START_POSITION, OTG_DSC_START_POSITION_X, mask_sh), \
+ static ssize_t dp_phy_settings_write(struct file *f, const char __user *buf,
+ 				 size_t size, loff_t *pos)
+ {
+@@ -2301,6 +2365,7 @@ DEFINE_SHOW_ATTRIBUTE(dp_dsc_fec_support);
+ DEFINE_SHOW_ATTRIBUTE(dmub_fw_state);
+ DEFINE_SHOW_ATTRIBUTE(dmub_tracebuffer);
+ DEFINE_SHOW_ATTRIBUTE(output_bpc);
++DEFINE_SHOW_ATTRIBUTE(dp_lttpr_status);
+ #ifdef CONFIG_DRM_AMD_DC_HDCP
+ DEFINE_SHOW_ATTRIBUTE(hdcp_sink_capability);
+ #endif
+@@ -2421,6 +2486,7 @@ static const struct {
+ } dp_debugfs_entries[] = {
+ 		{"link_settings", &dp_link_settings_debugfs_fops},
+ 		{"phy_settings", &dp_phy_settings_debugfs_fop},
++		{"lttpr_status", &dp_lttpr_status_fops},
+ 		{"test_pattern", &dp_phy_test_pattern_fops},
+ #ifdef CONFIG_DRM_AMD_DC_HDCP
+ 		{"hdcp_sink_capability", &hdcp_sink_capability_fops},
 -- 
 2.17.1
 
