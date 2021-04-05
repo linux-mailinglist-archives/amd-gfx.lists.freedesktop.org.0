@@ -2,106 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA99935432C
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Apr 2021 17:08:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52ED535450D
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Apr 2021 18:18:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 067D189D8D;
-	Mon,  5 Apr 2021 15:08:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5DDF89CA0;
+	Mon,  5 Apr 2021 16:18:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2052.outbound.protection.outlook.com [40.107.92.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5929C89D8D
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 Apr 2021 15:08:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Aw4P5p2Jd3u9Tw0KfJ7MgSykvRzakkmUQ3kRehTEYKpu9gdu+ssuca1NRtxhEr1yHuo+7YTIpw61Fy8eC3Z+Glv3XDsJxJB+Uh2yeTHma1Ph/Iivhc70B39lWEh8YLF3zBmZ2fAzkYvi5my1B9yJcpxlyLs5NyDsHA01DKU4jaAjSiAhsNdemttZYdskcK2poXXSHLXQDZAfnP4EpV/eR40UnLpUVoUVhXIWpUi6PRQ8g3TyBTQcnC4uZX4kYHqshlN92nYThxuQGtTpWheV1rOHIxS6o2H88n7K5GALyTLNUGrB6TvzYw7QbHefZNkCNizJsIL02QIuex8SkUswdg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Pt3FCBQZ7/Zyvwt1STpYH44cJcXBEmWcu1UGvKSfogM=;
- b=HB0BFOcsHeMtttBZICFGXjP46aIsUpQF5gbUjQP6t4L/s3i57lqVxymAwIlx+LWftpeJQRDOQQ4/7letKzDTK0lCQO8MRRbxZO4c7d4X5T1gaaoTSbG8Qv2ocJbwusUbVrAsXiKyL+mV4plAaFweclHDhKlmHPAy63eydsa76Rs53GNu7l1cXN47KbzOt23QiWY+ZNx3V4YiDpdg9szY44GtK+bRADKL//sjYz7cyYzZUhKRrLgLkXmeIHEw2Rpj6m7kXfEeoxMyxbz6Bj+IVMEtEmwRNItAZ50wGN2m6whdpNNIH4pHH/i97yzjSLWhvkXU+/5TuykvJPGRf/ECdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Pt3FCBQZ7/Zyvwt1STpYH44cJcXBEmWcu1UGvKSfogM=;
- b=TcNz1QOCjNWnNasBwkpc9SowxtKILH81xPD8AMVBJd5iCrNpnaI3DAVzu2VbbKPAXXMjK4cZUytmZHXYEPr73T9fPdTKlQbRL+gwx5vu09G6Mp/DctyVxsyilZ+luDQjXWmyvEiWRS0zyB9MknQ5F+XzuzJZGToTQmDiRCLwJi4=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB2939.namprd12.prod.outlook.com (2603:10b6:5:18b::24)
- by DM5PR12MB1340.namprd12.prod.outlook.com (2603:10b6:3:76::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.32; Mon, 5 Apr
- 2021 15:08:46 +0000
-Received: from DM6PR12MB2939.namprd12.prod.outlook.com
- ([fe80::1887:4978:1b79:7cc1]) by DM6PR12MB2939.namprd12.prod.outlook.com
- ([fe80::1887:4978:1b79:7cc1%5]) with mapi id 15.20.3999.032; Mon, 5 Apr 2021
- 15:08:46 +0000
-From: Qingqing Zhuo <qingqing.zhuo@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] Revert "drm/amdgpu: Ensure that the modifier requested is
- supported by plane."
-Date: Mon,  5 Apr 2021 11:08:34 -0400
-Message-Id: <20210405150834.3942-1-qingqing.zhuo@amd.com>
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [165.204.55.250]
-X-ClientProxiedBy: YT1PR01CA0072.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:2d::11) To DM6PR12MB2939.namprd12.prod.outlook.com
- (2603:10b6:5:18b::24)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (165.204.55.250) by
- YT1PR01CA0072.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2d::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3999.32 via Frontend Transport; Mon, 5 Apr 2021 15:08:45 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b5008e09-a781-4de6-4efc-08d8f844b564
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1340:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB134096CB2EEFEBCE7D45C0D8FB779@DM5PR12MB1340.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1824;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kJm7k3ZKTBW6ex4L2pdqjGb6j9clxjxC5t3XhdjrarIFRsIRaLB+DprB+Sf/GAUMarjxdWjp/B5eikjQvR49GwDeqxcJ84XSxYalnkQD0ykAJrHmwnCva28R7xESOVSBL26YKZmtP+KcFtfvxqMXPgz708HaNcNmxCz7whZ+PRDA7qcrC6XtO2uJYHnFrrbcR3gvfr8oGDdO3setHwTHe9KMt1szllM8TEky1T/i24QsPk+cSmaInqXSuV945Q49ZcaRFUIXV6w+TMmEZuX/J+U1osyRkzidZwV1B8EoOcxq2X95OKqieK4rGNY8xZaQkc/nZZ9LKnW+Fiy0K6+aYMZLMHC58+BK9+2anV1aa5V2dRK8+5zlzjqGGQ3IomArAHVPXai8B20ibBkvWSSpT7KbrcKkf9qJWVAGeP516+S5bHCQN6NpY2cnvKcnZHDKA2v+Ydn7tip7r60UY0OpvJW1DbHiNngAw8vwOqI7UslAMuT3l6TkQgp6T/mLMmzC14JiDF7fDk8mmZEjUJH6eWHI1tVs8gf9HCUMIO4bZJYaNofOz+ete412OiRXWCBAuWDNwH+JEOBHIZLyTqJyDqDCbqMyQvu5Je3pex6bR9oLeYuzjQnfy8FdoyQYalatpKZ3hl1V6143Y6Uv/Z1lwocKJyLEAZU9+XVQrW2Ng0SBe8pTSwS/U60UqrBeftbS
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB2939.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(136003)(346002)(366004)(39860400002)(396003)(69590400012)(66556008)(66476007)(26005)(6916009)(2906002)(1076003)(6486002)(83380400001)(52116002)(38100700001)(44832011)(8676002)(6512007)(8936002)(956004)(16526019)(2616005)(186003)(4326008)(86362001)(316002)(6506007)(66946007)(6666004)(5660300002)(36756003)(478600001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?AAu5iU0elWvdQkWWzyp0d6HOWlXneLW5X5GtEWrDgiR9SN1HRrDkHaV5IkL9?=
- =?us-ascii?Q?y6PJqdqUNU7KFKgZu+81utX4ZYFuf1KC8xuuBgYj6HsPAZrb+7DhnSF9/64K?=
- =?us-ascii?Q?ZSccD/ILUD5GQ9KuRCfz+sg8e3zsV4kUQSi4oa5pxNA87ZX5OJgoOCyf7p6s?=
- =?us-ascii?Q?Q+mJNb8rZG9ca+jyDAD0SzBb/JmWdKpLa7DkqK87YrrY4L5DWOiZC0uraaLK?=
- =?us-ascii?Q?pnOhE1hG8SbzTt5/NEHZvAuhOpfilcrgUHgXokwYCTWutooO3piKZGx1JJVR?=
- =?us-ascii?Q?pVTTaPahviFVGjWN5q/S7ljNJSzXKp9YaeoaB6SJRjGnaNmhbEGVoRgJlFpY?=
- =?us-ascii?Q?OmXUGSVfu1M7DGiVaR9gHMgrY4tUMluhoBlfGuqlUzFh/yotqpclqpTfOZLu?=
- =?us-ascii?Q?0LT8FEgxB0+kYRDpsx5TnOGGX/LLoGtB9D6GZIaW2lP42cIpgk6fyGAZFuGQ?=
- =?us-ascii?Q?EOys+sidF7kl2zI63VjKwljc/2aq0ZB6hoKloHXXGOgnCuSYuJ67R+ri6CMF?=
- =?us-ascii?Q?TxeboIeuFY1xuMLVw3r6QAJuYBICMP3EDETsRzFG0MN9gfP+XMh8xwV0V0NK?=
- =?us-ascii?Q?kUmumW9QX7EU/NVkPiWhWaAkvDE/uzV1rIKpr7Ms9gWPAzPPM4eIgdV7xGbb?=
- =?us-ascii?Q?xaYXy/fuKLIIVKNs/z61Y9PXYAuuzyHQcaxXOGuicySYdmEZWmRnHFYVarzS?=
- =?us-ascii?Q?/HUjKAS60MNdCReLGpkcigcCmyEIVebae6lE2jiFO8MIJeoQugOzWfskP6m6?=
- =?us-ascii?Q?Zkr7mNUOJqRDm13zloQUF2TaGtJVmqbW6wwG5MsCoqE+5fj305ka4v3YbDdw?=
- =?us-ascii?Q?NeQ5W0dQk5XqYj7zxk0EpS3EqQePN/fNdQoyruRG6mv1qeHNk3czCqd4MNw8?=
- =?us-ascii?Q?3yNIrQhcRNt436KgrFRwONE7QRye86/JMX/nIaqavPwWPZflR9vbDEx+gcS2?=
- =?us-ascii?Q?WtDULmiPG+bTjSNNUa4UTXgEvBjc93eEz/qjPmNvWFkTR2LJGt41oujPExNN?=
- =?us-ascii?Q?sFyIwxXLyrILEgMFzXyEyVEC7gr5xjZdQ/gaXWVOrDooAyIpsiqzfIDTFeTV?=
- =?us-ascii?Q?4YlJnoH6DzW966nXhXxuH/Sks/6KEnAcUknMkZ0jnL9EpDpIfbAJKaG31pHB?=
- =?us-ascii?Q?IOjJgo4WroSUbBupyDbpjlJthlbT+bBT4r2/4CcS5qm63Scl7nJJzxjhn/Bu?=
- =?us-ascii?Q?h+SHcrVKaXp4X7kEMzKvWo+y9szvd6UxklDlDB9I8f7uUr34EBCxFbwBDg0t?=
- =?us-ascii?Q?J2sDJVjVd4mk12l5e4ePrHeUJC5KhuLWB1htUCAfniOF1I/EyOgeeXOJPTsD?=
- =?us-ascii?Q?s6ETKryob56ILG0hL6+17QeM?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b5008e09-a781-4de6-4efc-08d8f844b564
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2939.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2021 15:08:45.8569 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hE88vAhv+lm5OaFNvgWYHsH9KRK/DHJ5+Gu34M7fYKfSiX/8Wp2GyE3f6VWBQBCd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1340
+X-Greylist: delayed 429 seconds by postgrey-1.36 at gabe;
+ Mon, 05 Apr 2021 16:09:10 UTC
+Received: from qq.com (smtpbg413.qq.com [113.96.223.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0564D89ED3
+ for <amd-gfx@lists.freedesktop.org>; Mon,  5 Apr 2021 16:09:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+ t=1617638503; bh=nQuEu7EzvaKkU4dK1vpGKWBH/+lQvqT8RagFHkFryvM=;
+ h=From:To:Subject:Mime-Version:Date:Message-ID;
+ b=nZHaZlI5D86chXDKDFMbj0KxHg2nxzKAWoDunv1KSH7KSF4i3zBkDmeCr0GExsj7Y
+ e727IgoPAkx/l6+ps+lJDRc5fkIzL2lvLzk7XlWIUw+ppfw73iPPGxu2GObelFCCsV
+ 3TC/WZsQZ6Fun6d9bNRQVaQI4Z+AzG3euzrFDWn4=
+X-QQ-FEAT: XlyovC/qA/eUC9TJEJFNZHkhoZpbDpwQf10PkYThZ7sdoQN07xh9SraihacEu
+ se50KeltZxKQL0NqYJlYdG0XvDXVPC6Y5bco499iwKKwXKsjRU8tbQI4n657lATpKhHlKaH
+ /KfbyOnXCrxbE4Ws/h//qOJq2yF9reSgkvjh7C+a7+SyIK1pxAZfS1S+BBMTPhhe826OJu9
+ tjMpwactOPwQF4s7vqtirX7aFj3vHKOyMoFqepQQ88ocAY9d3NsSXrwWtxOGlKqZrQeF7FU
+ nLJn20k98F60ae
+X-QQ-SSF: 000000000000001000000000000000Z
+X-QQ-XMAILINFO: NGKE9ndak/QuSZoitMiZbvd4qX2F0ZgA7D6CtKMTlHGOGmQguwAuScPWBpLWMX
+ kgSTl1WOm86jzmbbt+MiBsSSxYVjnUcF6eAtY9A9jKhi/9eihf1fR85sKwrxf6guuQ+dhH7i8Tp+Q
+ kCZtennQDUycGQkV7oAgc0Gy8LAiq/KmPWxO5grOY/FQ7wI7JUOUGGCkhuo9I2//E0q1Ln+aqsOZm
+ iic/YjlG3eBtbibI1psM6NEx1aADvWUqskDuK0odzDRWsZ/qbHGR9bBEVggm9ooWxpxEsVyjATjZM
+ x7dkFrEAj6fIKKksPHRY53SIZNE4F8FNlmkYZExisShtE7Lq4kxWM1xeZA3MznOLw9nnu+w//u09F
+ 2SvTwb+LWN0M2xyUVAVF9mQmx69kMIUYMoEUTeuzA2BgJ5D/IlccH5V3qCNShVnxcn7/mO4Qk0vQj
+ HqYgXTcGONhp5XbE6Lc7Oh2D3Y9HlfTqoklXQ7jwoOnMzprTwwJRK+FE33WzLhYWorIMT1CITzezS
+ Rm35rKbPNuGlHWNnIsaogUifgUD1LAfk3reTGavlbl+YAbj3EPma8VFa5VfiU0kEIbdTe2kCrDkRL
+ 7cGgK7MPgWkegld57Vhl7JUFDXQzekGen63/gTavtuG9Ta8qktfeZqJ4xCKjeBhPLX+lO7TlmboIw
+ dGLBRQ1hxalquGSqXvZ+zkSfhz7XKiACTAMp2SjqKpg/GqyOrkrAm4hXxgHGgQsseeZrtxy5OA3el
+ EqSCisloN2Q3Yz55hlgXhNi7l
+X-HAS-ATTACH: no
+X-QQ-BUSINESS-ORIGIN: 2
+X-Originating-IP: 114.84.240.151
+X-QQ-STYLE: 
+X-QQ-mid: webmail826t1617638502t6917251
+From: "=?ISO-8859-1?B?MjU4NDU0OTQ2?=" <258454946@qq.com>
+To: "=?ISO-8859-1?B?YW1kLWdmeA==?=" <amd-gfx@lists.freedesktop.org>
+Subject: a quetion about buffer migration for user mapped bo.
+Mime-Version: 1.0
+Date: Tue, 6 Apr 2021 00:01:42 +0800
+X-Priority: 3
+Message-ID: <tencent_826EEA87BF2072281A8B94B2955DDCA14E05@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+X-QQ-SENDSIZE: 520
+Received: from qq.com (unknown [127.0.0.1]) by smtp.qq.com (ESMTP) with SMTP
+ id ; Tue, 06 Apr 2021 00:01:43 +0800 (CST)
+Feedback-ID: webmail:qq.com:bgforeign:bgforeign11
+X-QQ-Bgrelay: 1
+X-Mailman-Approved-At: Mon, 05 Apr 2021 16:18:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,94 +69,73 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: markyacoub@chromium.org, Rodrigo.Siqueira@amd.com, daniel.wheeler@amd.com,
- bas@basnieuwenhuizen.nl, alexander.deucher@amd.com,
- nicholas.kazlauskas@amd.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0655195698=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 9f81b5d40ca2c689334ad8288a4ddca4722a6e10.
+This is a multi-part message in MIME format.
 
-The original commit was found to cause the following two issues
-on sienna cichlid:
-1. Refresh rate locked during vrrdemo
-2. Display sticks on flipped landscape mode after changing
-   orientation, and cannot be changed back to regular landscape
+--===============0655195698==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_606B3466_11625A20_4392872D"
+Content-Transfer-Encoding: 8Bit
 
-Signed-off-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c    | 13 -------------
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  | 18 +++---------------
- 2 files changed, 3 insertions(+), 28 deletions(-)
+This is a multi-part message in MIME format.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index 0f17984fdea4..6304a49b02fd 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -908,19 +908,6 @@ int amdgpu_display_gem_fb_verify_and_init(
- 					 &amdgpu_fb_funcs);
- 	if (ret)
- 		goto err;
--	/* Verify that the modifier is supported. */
--	if (!drm_any_plane_has_format(dev, mode_cmd->pixel_format,
--				      mode_cmd->modifier[0])) {
--		struct drm_format_name_buf format_name;
--		drm_dbg_kms(dev,
--			    "unsupported pixel format %s / modifier 0x%llx\n",
--			    drm_get_format_name(mode_cmd->pixel_format,
--						&format_name),
--			    mode_cmd->modifier[0]);
--
--		ret = -EINVAL;
--		goto err;
--	}
- 
- 	ret = amdgpu_display_framebuffer_init(dev, rfb, mode_cmd, obj);
- 	if (ret)
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 54ef0f3f37b7..ac6ab35f89b2 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -4299,7 +4299,6 @@ static bool dm_plane_format_mod_supported(struct drm_plane *plane,
- {
- 	struct amdgpu_device *adev = drm_to_adev(plane->dev);
- 	const struct drm_format_info *info = drm_format_info(format);
--	int i;
- 
- 	enum dm_micro_swizzle microtile = modifier_gfx9_swizzle_mode(modifier) & 3;
- 
-@@ -4307,22 +4306,11 @@ static bool dm_plane_format_mod_supported(struct drm_plane *plane,
- 		return false;
- 
- 	/*
--	 * We always have to allow these modifiers:
--	 * 1. Core DRM checks for LINEAR support if userspace does not provide modifiers.
--	 * 2. Not passing any modifiers is the same as explicitly passing INVALID.
-+	 * We always have to allow this modifier, because core DRM still
-+	 * checks LINEAR support if userspace does not provide modifers.
- 	 */
--	if (modifier == DRM_FORMAT_MOD_LINEAR ||
--	    modifier == DRM_FORMAT_MOD_INVALID) {
-+	if (modifier == DRM_FORMAT_MOD_LINEAR)
- 		return true;
--	}
--
--	/* Check that the modifier is on the list of the plane's supported modifiers. */
--	for (i = 0; i < plane->modifier_count; i++) {
--		if (modifier == plane->modifiers[i])
--			break;
--	}
--	if (i == plane->modifier_count)
--		return false;
- 
- 	/*
- 	 * The arbitrary tiling support for multiplane formats has not been hooked
--- 
-2.17.1
+------=_NextPart_606B3466_11625A20_4392872D
+Content-Type: text/plain;
+	charset="ISO-8859-1"
+Content-Transfer-Encoding: base64
+
+SGkgR3V5cywNCg0KDQpJIGFtIGEgbmV3YmVlIG9mIGdmeCBkZXZlbG9wbWVudC4gUmVjZW50
+bHksIEkgYW0gcmVzZWFyY2hpbmcgYW1kZ3B1IG9wZW4gc291cmNlIGRyaXZlciwgYW5kIGVu
+Y291bnRlciBhIHByb2JsZW0sIGJ1dCBkbyBub3QgZmluZCB0aGUgYW5zd2VyLg0KDQoNCldl
+IGtub3cgdGhlIHVzZXIgbWF5YmUgbWFwIGEgZ2VtIGJhY2tpbmcgYnVmZmVyIGZvciByZWFk
+aW5nL3dyaXRpbmcgYW5kIGhvbGQgdGhlIG1hcHBpbmcgZm9yIGEgbG9uZyB0ZXJtLiB3aGls
+ZSwga2VybmVsIGRyaXZlciB3aWxsIGFsc28gbW92ZXMgdGhlIHVzZXIgbWFwcGVkIGJvIHRv
+IG90aGVyIG1lbW9yeSByZWdpb24uIHZyYW0gLSZndDtndHQsIGd0dC0mZ3Q7dnJhbSwgZXZl
+biBpdCBtYXkgYmUgc3dhcGVkIG91dCB1bmRlciBPT00gY2FzZS4NCg0KDQpTbywgbXkgcXVl
+c3Rpb24gaXMgaG93IGRyaXZlciBwcmV2ZW50cyBrZXJuZWwgdHRtIGZyb20gbW92aW5nIHRo
+ZSB1c2VyIG1hcHBlZCBibyB3aGlsZSB1c2VyIGlzIGFjY2Vzc2luZyBpdD8NCg0KDQpUaGFu
+a3MgZm9yIHlvdXIgYXR0ZW50aW9uIQ0KDQoNCkxpemhpLg==
+
+------=_NextPart_606B3466_11625A20_4392872D
+Content-Type: text/html;
+	charset="ISO-8859-1"
+Content-Transfer-Encoding: base64
+
+PG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNo
+YXJzZXQ9R0IxODAzMCI+PGRpdj5IaSBHdXlzLDwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+
+SSBhbSBhIG5ld2JlZSBvZiBnZnggZGV2ZWxvcG1lbnQuIFJlY2VudGx5LCBJIGFtIHJlc2Vh
+cmNoaW5nIGFtZGdwdSBvcGVuIHNvdXJjZSBkcml2ZXIsIGFuZCBlbmNvdW50ZXIgYSBwcm9i
+bGVtLCBidXQgZG8gbm90IGZpbmQgdGhlIGFuc3dlci48L2Rpdj48ZGl2Pjxicj48L2Rpdj48
+ZGl2PldlIGtub3cgdGhlIHVzZXIgbWF5YmUgbWFwIGEgZ2VtIGJhY2tpbmcgYnVmZmVyIGZv
+ciByZWFkaW5nL3dyaXRpbmcgYW5kIGhvbGQgdGhlIG1hcHBpbmcgZm9yIGEgbG9uZyB0ZXJt
+LiB3aGlsZSwga2VybmVsIGRyaXZlciB3aWxsIGFsc28gbW92ZXMgdGhlIHVzZXIgbWFwcGVk
+IGJvIHRvIG90aGVyIG1lbW9yeSByZWdpb24uIHZyYW0gLSZndDtndHQsIGd0dC0mZ3Q7dnJh
+bSwgZXZlbiBpdCBtYXkgYmUgc3dhcGVkIG91dCB1bmRlciBPT00gY2FzZS48L2Rpdj48ZGl2
+Pjxicj48L2Rpdj48ZGl2PlNvLCBteSBxdWVzdGlvbiBpcyBob3cgZHJpdmVyIHByZXZlbnRz
+IGtlcm5lbCB0dG0gZnJvbSBtb3ZpbmcgdGhlIHVzZXIgbWFwcGVkIGJvIHdoaWxlIHVzZXIg
+aXMgYWNjZXNzaW5nIGl0PzwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+VGhhbmtzIGZvciB5
+b3VyIGF0dGVudGlvbiE8L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkxpemhpLjwvZGl2Pg==
+
+------=_NextPart_606B3466_11625A20_4392872D--
+
+
+
+
+--===============0655195698==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0655195698==--
+
+
+
