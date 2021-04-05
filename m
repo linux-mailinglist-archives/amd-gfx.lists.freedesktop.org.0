@@ -2,55 +2,113 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D730135450C
-	for <lists+amd-gfx@lfdr.de>; Mon,  5 Apr 2021 18:18:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39040354538
+	for <lists+amd-gfx@lfdr.de>; Mon,  5 Apr 2021 18:34:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4280D89DBF;
-	Mon,  5 Apr 2021 16:18:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EC2689CC9;
+	Mon,  5 Apr 2021 16:34:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com
- [IPv6:2607:f8b0:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABCC289F89
- for <amd-gfx@lists.freedesktop.org>; Mon,  5 Apr 2021 16:14:49 +0000 (UTC)
-Received: by mail-pf1-x432.google.com with SMTP id c204so4705132pfc.4
- for <amd-gfx@lists.freedesktop.org>; Mon, 05 Apr 2021 09:14:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=DwMPmbMMFEN25sIOtYqWoH1ZFZKpYubY3tm+vXsIpYc=;
- b=JoxKc90LqU2Bpdmx4eMrSYXWAbXkVMjd3QMlmzMzHJI7OCE93VgQtm3i7DczfQ/TTc
- PzS7ar5tvOZlOYRQnP3Pa2aWD9OOhTQMP1ZVReorF2JLZgjpWbWnaTg28euVy71aBa4K
- 21wp49zROsz09Je4E8kthjBWpv+vXGKBvyevC8xyqA4gj8r86bmUN8reG60pBS4QSUj3
- 4tmc8+wpGvO0qFpuDTVPTac4pwL7vUi/qx2YMZq4Z7nTExnbwIWX3RQ7VatZzwsYKfPK
- PKEEEC5vlvsr71L9lVkHrxVoFtmPd9Te40efGkUlvDsG1ryzQxnEE+H8a19ahVV6LRym
- uhVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=DwMPmbMMFEN25sIOtYqWoH1ZFZKpYubY3tm+vXsIpYc=;
- b=tWGdZZ9pga6vhpuZCUc5ZuDKd6I2K422r6S1fQmgzl34tXCU5jxb14yb6ZjYkonJPT
- ETt+KY8zaBGV+ibwBpUPIoUfyf5PUf2T4hi7KXNO6+O1C+z8UN/WHkarzin2mUB7cBNL
- vUdQn43S0VB+elTDpG65VTUZUfKjkHqWafypWMyze+/3ye+iouoShRJQlJOkZnhliqzL
- 5Hncwalj/wEy9ySGOLtu+kHQ4FdQO3Ln5RoD4YkFMAK7SoeN4osscM1eHkaoToLpn84+
- 9ridnZHfNrhvRhrvZNrc84vlYhOV8rdV6Ca4qJSY/UgVfrAcCZpxfDUiQR2NvtA45Ym/
- h2ow==
-X-Gm-Message-State: AOAM532K99uKefoB8U8NpDwZIet3qFUf6deWSBB9Oe0SkE3kOarq+dbs
- HkC+ZWwDQz0DsNCoywlTa2AgzuSoPDg2g3eIeJHflA==
-X-Google-Smtp-Source: ABdhPJxkU7KJRSz7yHIgDVAPwYDU6H+vcb1+9cEVhnTTuHVDXLZJJyNBpf19HEhU2tuwy5LfZtY52vFZuFjvh47z5Eo=
-X-Received: by 2002:a63:4502:: with SMTP id s2mr24562855pga.94.1617639289075; 
- Mon, 05 Apr 2021 09:14:49 -0700 (PDT)
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com
+ (mail-eopbgr700070.outbound.protection.outlook.com [40.107.70.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E7C989CC9
+ for <amd-gfx@lists.freedesktop.org>; Mon,  5 Apr 2021 16:34:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bBm5oL8ZK1pCFtAmQ8QCLWDqNf8un9tJ+3zcBqFeNmpZFagaoznyOrJElHOjRUtU4rVJufBeINexcM6k+eYmHkfxT2kLOtSKr3OlVg2GulN6rmp9Q6Jt3PTfgx6Cxo+8uNcFl4aWaSFVFi2RmFr1+NPTT55k4EhEqIf4z0mcy4Xg/eObzLBOWNsv48Yqwo3vuTcosJrq5xkOrj52zFcb6sXgVGoEOuqngmbldsuVIRtuvByv++SRpKjibXcUJLGBeGnFC6wrxqr8uRdplA9svd0Roth2khV3iVs+gXhMZHB1/okLG0RYvS5Dx7RirpgJP90X2wdet/LWfsi6sVsVBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IZD79FgB/Eh1r335eqaQiWOSDQzXh+/t3Dol7LI1Pbk=;
+ b=lQrmAPOlGd+rRAXHIClA+jrEWj8j0YbTNuFPb3vNv/q+pndde7m/cjczo2uz1x7a540ad323bS+9nFtjeECg7HmCmgXZV0gmmA1Kw8WtJPQISrw1AQcHAJZ1use8qH7AEfjwSDmNxtiChbmwQxGNFuAr58d17oC2gTcOvBtwiWjtiAwtxrPw2Wd7W0F+hHk0P4zsLymAM52OGn6zPEGjQFSsi3qKgdVLjITzjprQco0NziWw7XrepDcj/WYddiPpP/KC6BKZS9kVvtJV/DRIquA+Kv6U0TD3N4cfYSrE/0BeB7A4jR46pcPyS8X99jxD8C+oiWSa1Xf7HaHGPgjdBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IZD79FgB/Eh1r335eqaQiWOSDQzXh+/t3Dol7LI1Pbk=;
+ b=ti/wfABvCYlzV2vfo6s70LyRm1dc/chcCA8U/Iv5ioE+3H0//dYK9fgFeE9o2Ir6haXVfwLF0ydxTViboI7S52zf5T8P93GT9Ro75xpUeolDXPUWd4N8aLFx2m+YRl3wVDFNdBaEMTGGPRVuYzp3NGvrTTOeA1FB0viu/cAvmFA=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from SN6PR12MB4623.namprd12.prod.outlook.com (2603:10b6:805:e9::17)
+ by SA0PR12MB4448.namprd12.prod.outlook.com (2603:10b6:806:94::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.27; Mon, 5 Apr
+ 2021 16:34:03 +0000
+Received: from SN6PR12MB4623.namprd12.prod.outlook.com
+ ([fe80::29cb:752d:a8a7:24a8]) by SN6PR12MB4623.namprd12.prod.outlook.com
+ ([fe80::29cb:752d:a8a7:24a8%6]) with mapi id 15.20.3999.032; Mon, 5 Apr 2021
+ 16:34:03 +0000
+Subject: Re: a quetion about buffer migration for user mapped bo.
+To: 258454946 <258454946@qq.com>, amd-gfx <amd-gfx@lists.freedesktop.org>,
+ "Christian.Koenig@amd.com" <Christian.Koenig@amd.com>
+References: <tencent_826EEA87BF2072281A8B94B2955DDCA14E05@qq.com>
+From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+Message-ID: <729f8458-4586-2fd8-6232-012907c47ccc@amd.com>
+Date: Mon, 5 Apr 2021 12:34:00 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+In-Reply-To: <tencent_826EEA87BF2072281A8B94B2955DDCA14E05@qq.com>
+Content-Language: en-US
+X-Originating-IP: [2607:fea8:3edf:49b0:735:b7a7:7d67:dece]
+X-ClientProxiedBy: YT1PR01CA0036.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::49)
+ To SN6PR12MB4623.namprd12.prod.outlook.com
+ (2603:10b6:805:e9::17)
 MIME-Version: 1.0
-References: <20210405150834.3942-1-qingqing.zhuo@amd.com>
- <20210405161023.b4bygttkpq2ttfnq@outlook.office365.com>
-In-Reply-To: <20210405161023.b4bygttkpq2ttfnq@outlook.office365.com>
-From: Mark Yacoub <markyacoub@google.com>
-Date: Mon, 5 Apr 2021 12:14:38 -0400
-Message-ID: <CAC0gqY7ejs2iBCkMTHbVSQ5vnd-UJqmU2AXgs8OL+S4=EwstMg@mail.gmail.com>
-Subject: Re: [PATCH] Revert "drm/amdgpu: Ensure that the modifier requested is
- supported by plane."
-To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-X-Mailman-Approved-At: Mon, 05 Apr 2021 16:18:52 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2607:fea8:3edf:49b0:735:b7a7:7d67:dece]
+ (2607:fea8:3edf:49b0:735:b7a7:7d67:dece) by
+ YT1PR01CA0036.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::49) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3999.32 via Frontend Transport; Mon, 5 Apr 2021 16:34:02 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ea63e86b-cfe6-4315-77e4-08d8f8509f8a
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4448:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SA0PR12MB4448060AC1F4AC4312A0304BEA779@SA0PR12MB4448.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WjO/7wKxBhiSb3h0RrdcB3YHekrmOEpFu4kK+gFQo7AJVpQ7ta7+jHdJV9J2jcU6dfmVhusM0YaL229eiMoq3LL2Tj27apFV9JUe8i5p07gTLnJB0nT4YjFwH0LjxBIYMPrSD7xKqu+YeIUgmar3lji4Y++uswzmdgSqYedcCNP+6y/24MorHwTnycIPuwyc/YnJoZ1IfP5BDdCX3k9sEMte/pxEvsWvli4xSAT5xR68fvr+wDMKiQFiCBkeDkhKi35+x1ETuZwDhNcrVsCgCCp+u/draXzYun2IjbXuqHTsk3JvTXsoPRafOqqAbHjIbmE/zdMd5k8JnheNP1ldz3ImRknthcGiasWTerVUHr/lb/Hq4+hPygve4Mq0YAF3y50awu9LgNqwhPc5jtYGzvw0e9Tu/o4hf+Us05J4nDnouSCmLHzujLsNdMrx8vEjzel4wkiHA+YGFsBYHJpeH6vyE7z/9LJRiG5iCRCm4NR2bjI4B9fkOVfkvK6UcCNsK5CzfjpNZENxkemUZkBMoqIxOOd3VOy0mx4TR0qXhN/48Mkyr+0oms/5gCdLIVxEaYZxIWujSP5cVlQXEqPqx/kXzperRnmISwtuxRuSLG4ryrkv3Iw8j+H0tPUXnXltSBHPKFQUnRZx90rCnrB5S0wai2Hr9GWDneGAOmmY7QiuzMtmtQkkpWG8Qn7atqigULAtWE5vqG6SSayrBb/cMHD7H/+QIgtILmsJAA+gnIGhl3JeX4YFXzWHO2oL7/L0iWa7KtuPRlR9TlCMPXVvsV2NozOXhO62mVAyi0Tkuho=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN6PR12MB4623.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(376002)(396003)(366004)(136003)(39860400002)(83380400001)(6486002)(38100700001)(478600001)(44832011)(52116002)(53546011)(966005)(166002)(5660300002)(2616005)(8936002)(16526019)(66476007)(66946007)(66556008)(8676002)(36756003)(6636002)(2906002)(186003)(31696002)(86362001)(316002)(110136005)(31686004)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?Windows-1252?Q?BwiEAXtrUBfV07NH/3xHCs9WMStFJildQesl/X+/PXg7eVtRrdixHPFi?=
+ =?Windows-1252?Q?1Gz1NSWfywsQcgTorj5Q0x3TqzkJFiSeHYUHdeZVQarp8JG3lhDAoEOf?=
+ =?Windows-1252?Q?a0JsS3+MT3vbeLptjbtona+l6HSpoJ+5tYvcMM7xUOKWZLJHKHXGCO3t?=
+ =?Windows-1252?Q?h/kpk+/7NqDCJ6hOghDGoDJnOo045U9kKNBqk68YauSn1s56pvUR2Xxg?=
+ =?Windows-1252?Q?CFAffOsL2+SfzOa3fL4tWjSfe7hoRvB/GmhUD252QDC+uiG4gZZs4wga?=
+ =?Windows-1252?Q?KeKYIdHQwv9GKXjzQ7qBBdyt9oWcubJw2SazJJ3ikfK4BvWjfH/z9PIT?=
+ =?Windows-1252?Q?ojJkrmx89Akq/W44Lp4lRrUBXqVeFJY3HYydZScu/PQvWUJv6dokM7JQ?=
+ =?Windows-1252?Q?izJmyAe/exj56g/xS9Sc84xREuZDPuyd5TJeNI/e3lnd479u/TJOYbMV?=
+ =?Windows-1252?Q?tU5uL7dhp7slrxSfyhBaxIzZ5c3QnxyfKDj6UMZzGzVA6ZZCu9KsR2wg?=
+ =?Windows-1252?Q?j7flo2ivo6yEJlksycAe6W8K3d9zL+ovhRS0CKais+a8jZLJORz4NkGU?=
+ =?Windows-1252?Q?k8+7mBnFnPf/NhkMygh9CfL8qN+JC6E6c51+Hn6X0CFT2KJIW6Ad78Cx?=
+ =?Windows-1252?Q?z8cXH8EpXkgsMMrf4U6AR6JgShAbKQoCRzEXcZg3ubU9piGR3n2DxLP3?=
+ =?Windows-1252?Q?Bs/xxnETqinDvedoRi/NP8HFZ9hArdDgpdHYfWpu9G0d3Q9IDBtwwtTB?=
+ =?Windows-1252?Q?0ioEtWv9MC9ATHQOweJKa8R6j5F3pTeUiC8hkWVw4z/CZtpglFriMfpN?=
+ =?Windows-1252?Q?OFO1NHwmNCwYl7HNwoYdqDkuipUlV+21BZDt7xhP0G5A1grDlsCucgYJ?=
+ =?Windows-1252?Q?ZmZxyEIhx8NOmwGBOY6nJ1nSOzRqKQGh3gKy/SVC53cyzSPg6oa8/PPl?=
+ =?Windows-1252?Q?p/QUtgqZIn5N2SH6RAd5rV3m+2u9YRFOViu+ysXSUvnVn0Et7JPiOtWs?=
+ =?Windows-1252?Q?4nzu+NwqQC77rGQFLN/sl0Mhx5P5stDn/0/i/JSFaNpw0Aw1HMc3bhA3?=
+ =?Windows-1252?Q?BhFbMl86wXKIX/he9b8kIFI5tcOFT7DbQze7jfTQCbLKYXIX58A5rscR?=
+ =?Windows-1252?Q?qDDA2szjdPlJ7z10BFUjp17G6Dpsw6dj6Nf9IUfEslphW7xeDX1CSJi5?=
+ =?Windows-1252?Q?1tn/tW9VPwK3EDXDnTdj7ZFLiVEU8KsQqxRhL1IZXW6sdXkQ2I6mCwmc?=
+ =?Windows-1252?Q?KV3UYEa+gKuc2M3WQti3cTD1/evWWD6vR+8bRDaiF1Tgb/AMT/WufM7O?=
+ =?Windows-1252?Q?cKTetOS77MerTlMsCyITxwUpVSW88pd9obiGsmCsnp7n6deV5g8mRm8s?=
+ =?Windows-1252?Q?thFdRfx6DRTZgGzTRovDJ4kLm1awS5JmeI2ePxwemI987kY3dIktREqB?=
+ =?Windows-1252?Q?SkeV5Zze+VOevC1gGDLih9EIm8wz3RT8/Ha+ZI5pLchqP3fGJ7DCJcz9?=
+ =?Windows-1252?Q?q04hvdFy?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea63e86b-cfe6-4315-77e4-08d8f8509f8a
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR12MB4623.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Apr 2021 16:34:03.1768 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xkXbLLhlb89IQPMu42l4nLrMCtDYiyEG0MxfK4fgG2Aw3o0hm1ASPSegLBkmIyymucAKJbzteV/QUKpLi1Fclw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4448
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,115 +120,117 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Yacoub <markyacoub@chromium.org>,
- Qingqing Zhuo <qingqing.zhuo@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, daniel.wheeler@amd.com,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- Alex Deucher <alexander.deucher@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0112882136=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Not really, I can't think what this patch breaks yet, I'll need to
-investigate further. But if it's found to be the culprit for the bugs,
-I'm all for reverting right now and I'll debug further later.
+--===============0112882136==
+Content-Type: multipart/alternative;
+ boundary="------------C025CBD34C547DB449C7761E"
+Content-Language: en-US
 
-On Mon, Apr 5, 2021 at 12:10 PM Rodrigo Siqueira
-<Rodrigo.Siqueira@amd.com> wrote:
+--------------C025CBD34C547DB449C7761E
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
+
+ From my understanding and looking at the code I think we don't prevent 
+but rather invalidate current user mappings and use subsequent page 
+faults to map into user space process the pages from the new location. 
+Check what this function is doing during move - 
+https://elixir.bootlin.com/linux/v5.12-rc5/source/drivers/gpu/drm/ttm/ttm_bo.c#L238
+
+Andrey
+
+On 2021-04-05 12:01 p.m., 258454946 wrote:
+> Hi Guys,
 >
-> In general lgtm.
+> I am a newbee of gfx development. Recently, I am researching amdgpu 
+> open source driver, and encounter a problem, but do not find the answer.
 >
-> Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> We know the user maybe map a gem backing buffer for reading/writing 
+> and hold the mapping for a long term. while, kernel driver will also 
+> moves the user mapped bo to other memory region. vram ->gtt, 
+> gtt->vram, even it may be swaped out under OOM case.
 >
-> Mark Yacoub, do you have any comment?
+> So, my question is how driver prevents kernel ttm from moving the user 
+> mapped bo while user is accessing it?
 >
-> On 04/05, Qingqing Zhuo wrote:
-> > This reverts commit 9f81b5d40ca2c689334ad8288a4ddca4722a6e10.
-> >
-> > The original commit was found to cause the following two issues
-> > on sienna cichlid:
-> > 1. Refresh rate locked during vrrdemo
-> > 2. Display sticks on flipped landscape mode after changing
-> >    orientation, and cannot be changed back to regular landscape
-> >
-> > Signed-off-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-> > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_display.c    | 13 -------------
-> >  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  | 18 +++---------------
-> >  2 files changed, 3 insertions(+), 28 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-> > index 0f17984fdea4..6304a49b02fd 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-> > @@ -908,19 +908,6 @@ int amdgpu_display_gem_fb_verify_and_init(
-> >                                        &amdgpu_fb_funcs);
-> >       if (ret)
-> >               goto err;
-> > -     /* Verify that the modifier is supported. */
-> > -     if (!drm_any_plane_has_format(dev, mode_cmd->pixel_format,
-> > -                                   mode_cmd->modifier[0])) {
-> > -             struct drm_format_name_buf format_name;
-> > -             drm_dbg_kms(dev,
-> > -                         "unsupported pixel format %s / modifier 0x%llx\n",
-> > -                         drm_get_format_name(mode_cmd->pixel_format,
-> > -                                             &format_name),
-> > -                         mode_cmd->modifier[0]);
-> > -
-> > -             ret = -EINVAL;
-> > -             goto err;
-> > -     }
-> >
-> >       ret = amdgpu_display_framebuffer_init(dev, rfb, mode_cmd, obj);
-> >       if (ret)
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > index 54ef0f3f37b7..ac6ab35f89b2 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> > @@ -4299,7 +4299,6 @@ static bool dm_plane_format_mod_supported(struct drm_plane *plane,
-> >  {
-> >       struct amdgpu_device *adev = drm_to_adev(plane->dev);
-> >       const struct drm_format_info *info = drm_format_info(format);
-> > -     int i;
-> >
-> >       enum dm_micro_swizzle microtile = modifier_gfx9_swizzle_mode(modifier) & 3;
-> >
-> > @@ -4307,22 +4306,11 @@ static bool dm_plane_format_mod_supported(struct drm_plane *plane,
-> >               return false;
-> >
-> >       /*
-> > -      * We always have to allow these modifiers:
-> > -      * 1. Core DRM checks for LINEAR support if userspace does not provide modifiers.
-> > -      * 2. Not passing any modifiers is the same as explicitly passing INVALID.
-> > +      * We always have to allow this modifier, because core DRM still
-> > +      * checks LINEAR support if userspace does not provide modifers.
-> >        */
-> > -     if (modifier == DRM_FORMAT_MOD_LINEAR ||
-> > -         modifier == DRM_FORMAT_MOD_INVALID) {
-> > +     if (modifier == DRM_FORMAT_MOD_LINEAR)
-> >               return true;
-> > -     }
-> > -
-> > -     /* Check that the modifier is on the list of the plane's supported modifiers. */
-> > -     for (i = 0; i < plane->modifier_count; i++) {
-> > -             if (modifier == plane->modifiers[i])
-> > -                     break;
-> > -     }
-> > -     if (i == plane->modifier_count)
-> > -             return false;
-> >
-> >       /*
-> >        * The arbitrary tiling support for multiplane formats has not been hooked
-> > --
-> > 2.17.1
-> >
+> Thanks for your attention!
 >
-> --
-> Rodrigo Siqueira
-> https://siqueira.tech
+> Lizhi.
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--------------C025CBD34C547DB449C7761E
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 7bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+  </head>
+  <body>
+    <p>From my understanding and looking at the code I think we don't
+      prevent but rather invalidate current user mappings and use
+      subsequent page faults to map into user space process the pages
+      from the new location. Check what this function is doing during
+      move -
+<a class="moz-txt-link-freetext" href="https://elixir.bootlin.com/linux/v5.12-rc5/source/drivers/gpu/drm/ttm/ttm_bo.c#L238">https://elixir.bootlin.com/linux/v5.12-rc5/source/drivers/gpu/drm/ttm/ttm_bo.c#L238</a><br>
+    </p>
+    <p>Andrey<br>
+    </p>
+    <div class="moz-cite-prefix">On 2021-04-05 12:01 p.m., 258454946
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:tencent_826EEA87BF2072281A8B94B2955DDCA14E05@qq.com">
+      
+      <div>Hi Guys,</div>
+      <div><br>
+      </div>
+      <div>I am a newbee of gfx development. Recently, I am researching
+        amdgpu open source driver, and encounter a problem, but do not
+        find the answer.</div>
+      <div><br>
+      </div>
+      <div>We know the user maybe map a gem backing buffer for
+        reading/writing and hold the mapping for a long term. while,
+        kernel driver will also moves the user mapped bo to other memory
+        region. vram -&gt;gtt, gtt-&gt;vram, even it may be swaped out
+        under OOM case.</div>
+      <div><br>
+      </div>
+      <div>So, my question is how driver prevents kernel ttm from moving
+        the user mapped bo while user is accessing it?</div>
+      <div><br>
+      </div>
+      <div>Thanks for your attention!</div>
+      <div><br>
+      </div>
+      <div>Lizhi.</div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">_______________________________________________
+amd-gfx mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/amd-gfx">https://lists.freedesktop.org/mailman/listinfo/amd-gfx</a>
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------C025CBD34C547DB449C7761E--
+
+--===============0112882136==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0112882136==--
