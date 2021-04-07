@@ -1,108 +1,107 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 582EF35772C
-	for <lists+amd-gfx@lfdr.de>; Wed,  7 Apr 2021 23:50:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57B0035784C
+	for <lists+amd-gfx@lfdr.de>; Thu,  8 Apr 2021 01:13:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACCCC6E156;
-	Wed,  7 Apr 2021 21:50:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBB626E9B1;
+	Wed,  7 Apr 2021 23:13:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2078.outbound.protection.outlook.com [40.107.243.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC95E6E156
- for <amd-gfx@lists.freedesktop.org>; Wed,  7 Apr 2021 21:50:15 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam08on2078.outbound.protection.outlook.com [40.107.101.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56C466E9AC;
+ Wed,  7 Apr 2021 23:13:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cz/OfciJsYzj6lcFzUcdDSDPykAACxRKgpq1CNfbo0fasdo3tCZ0sD146ZEf5t/tqVU9vQYRS/YnfaWtpcZ7pQ+hiW8Pu7P5LBX0+ugrHHyNA+w18KyPYGR2NBwwJqid8i55N8YcOj7NSTe87BO6Hx5PEH1a6reF7hp7ftm4w5QvGQa9dvhUOcnVsV2hWcLFp8L7hM6GSP0WYS81gF7ivBz7HWrNNZDzCu8NpNMU68MUc0yvIrPe+dT2NyBN5nMsTSmuR5+4Os+zOMNYTc7gw2PCbpMJPC9HCyP3ZiPTf235xZ8sTWa9Sjm6Ys/nsk8dEnkrQ/nva2/Ys35fPIiuMA==
+ b=NAC4ZVj2qKyCBAy8ahizGCHTZoiPX9yg0rs8+guYURYQ+H0JkSSeXW5v+Su08IopmXvqiD1bGSNJJmIk5aACIjqrvM0A3L/FcAO1svL1o/Fs9rVeFoffhb+Sgt3je2eC9ZUcJNlGVGAAXADlkTrckxEDzhOwiGf21/tAPBpXQ1FgVIsRR3ga0x6Ggul30/mbLwGvSTL09YXQGRbsvHNWQ35DUNYpgtg6Frn/tp6gZmP4W7su70fFqWC8HX9wGkr0hfx+7xcN2xK28X8iEoJieaokb2hKi1iEmLg61WuVf/t+O+andpetrjMsPpffw9Z8qBI/kDS7DUqTz/Sh4SDfog==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4HB4jJj7Vz6sleyGFlfX03x7KARG+Ntsw4G6fLKE8no=;
- b=gzh5OJhCkbIWBHBmtZuNoxyBEFAjf/DOpEgCdPPhMqDZ7l3Yz8Xu9Hfmao4Q1m9TrP8FnlNBr3ZKsI+GTGpQ1NNIzSwqI0ehiHjUhofGxbxFWTDNJn/Hr2qNIJAvwg5LFGq36ZDVf2cwLdu1lsq2kO975Xit/p2yqJjBxfIcmccfpKiT1qkf4Em/XBY70DxkNej4mlUSg8ItlFfPRFHQXcvjRI7a/4EHQMp5wmayO0EAT6zRMyd5+L4WoH7TsZiKpaik8E/1jnMzlWaWl02LuSpUv9MVpHS1YBMie4uc2Ct/CO0bexw9x03YEEQP7zikZmN/96V9dJTwCbnssDB8jw==
+ bh=oDnilKetB8iHmON2nYxNTpARzZRuEyJTWWQpDwoqHBc=;
+ b=Umc2Y5NchQkrV1yGHFlEZqgEEu7V8VtJrOsEfjQGHxGCMIuK/qaifOtT+BS9DNr0jnbjw1lmtJJNIm71h9Rd5uyCqwIegyMIn4U+ZgAFm2Qaxd/ItdXo4wuHsrGo+JOeHT7lcRX7KIUgccEaMCJzcplM7U3Gr2jypydWYSUC+IQVcZHe/sOu3HugAdoWpiv90lpyCy0vm4retG7BC3T34ZmjIBioaGr0y9vCx9YoAWvSb1/Umjl6x71Mw/micd0KYRRwog7tIG13/85BNb69aMcVycWU4lW33qDrcE53wLY6vqbBvMbxCcaDWXHEWNJp21z67HFxOhqt4Tq69rUIXA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4HB4jJj7Vz6sleyGFlfX03x7KARG+Ntsw4G6fLKE8no=;
- b=vl3FxNIfzyRmNv7jbGcGtSVmuZuVZTkpJ1qNQYc0lyB7F2x+OvzbyzARBW6A+oBjQBGnQM1yc6hgcn+avVldDIsUuDvb6l4VCehaHaC4flURgTWAuysTQUYuNEC5cb1BNS1RURj1LYVgHDK+VHoMRuTyAUO6Q3kMESm4zYvwZug=
+ bh=oDnilKetB8iHmON2nYxNTpARzZRuEyJTWWQpDwoqHBc=;
+ b=VkKJAbwOKCSQayW4bZwo/Cc+EFtE5MmynbvA/iFDZDQ6R0LAA395uR46+3NxLS1j/8awYEEliIFdFHStlIQBPCOA6CHa3qXQFqWaxmsQLfEYbYMBCzxuspfIV51N9FuirwiNd3qJE/0VE35go23RLleWUGE/0ChlGHBYnN5+9RY=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB2601.namprd12.prod.outlook.com (2603:10b6:5:45::27) by
- DM6PR12MB2604.namprd12.prod.outlook.com (2603:10b6:5:4d::15) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3999.29; Wed, 7 Apr 2021 21:50:13 +0000
-Received: from DM6PR12MB2601.namprd12.prod.outlook.com
- ([fe80::3d2c:5edf:5d51:4101]) by DM6PR12MB2601.namprd12.prod.outlook.com
- ([fe80::3d2c:5edf:5d51:4101%7]) with mapi id 15.20.3999.033; Wed, 7 Apr 2021
- 21:50:13 +0000
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amd/display: Fix two cursor duplication when using overlay
-Date: Wed,  7 Apr 2021 17:49:48 -0400
-Message-Id: <20210407214948.879763-1-Rodrigo.Siqueira@amd.com>
-X-Mailer: git-send-email 2.25.1
-X-Originating-IP: [2607:fea8:56e0:6d60:588b:b417:efbd:a0e]
-X-ClientProxiedBy: BN9PR03CA0978.namprd03.prod.outlook.com
- (2603:10b6:408:109::23) To DM6PR12MB2601.namprd12.prod.outlook.com
- (2603:10b6:5:45::27)
+Received: from BL0PR12MB4948.namprd12.prod.outlook.com (2603:10b6:208:1cc::20)
+ by MN2PR12MB4392.namprd12.prod.outlook.com (2603:10b6:208:264::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.28; Wed, 7 Apr
+ 2021 23:13:37 +0000
+Received: from BL0PR12MB4948.namprd12.prod.outlook.com
+ ([fe80::70f5:99ed:65a1:c033]) by BL0PR12MB4948.namprd12.prod.outlook.com
+ ([fe80::70f5:99ed:65a1:c033%7]) with mapi id 15.20.3933.039; Wed, 7 Apr 2021
+ 23:13:37 +0000
+From: Felix Kuehling <Felix.Kuehling@amd.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH 1/4] drm/amdkfd: Remove legacy code not acquiring VMs
+Date: Wed,  7 Apr 2021 19:12:56 -0400
+Message-Id: <20210407231259.1787-1-Felix.Kuehling@amd.com>
+X-Mailer: git-send-email 2.31.1
+X-Originating-IP: [165.204.55.251]
+X-ClientProxiedBy: YT1PR01CA0141.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2f::20) To BL0PR12MB4948.namprd12.prod.outlook.com
+ (2603:10b6:208:1cc::20)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60:588b:b417:efbd:a0e)
- by BN9PR03CA0978.namprd03.prod.outlook.com (2603:10b6:408:109::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.16 via Frontend
- Transport; Wed, 7 Apr 2021 21:50:12 +0000
+Received: from Harpoon.amd.com (165.204.55.251) by
+ YT1PR01CA0141.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2f::20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3999.32 via Frontend Transport; Wed, 7 Apr 2021 23:13:36 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 62b6607e-80c9-43b0-1588-08d8fa0f1f35
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2604:
+X-MS-Office365-Filtering-Correlation-Id: eb1abebb-f9b0-4c4b-75fd-08d8fa1ac5e1
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4392:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB260491CEC9E0786B2E1F31C898759@DM6PR12MB2604.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB439299FDA20E1F8BA156A9DE92759@MN2PR12MB4392.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9PhkB6U6LfNnpqKfUAK0ysBfWPnd6DhdG9vFSI2wuFcf+m7kNama/Y4gqz9AZ8RPztJMdsDrqm0BxGNdhlJvKh/qcaht0qJvxdgLuRkJGjBkkS7LF+4phh1ew9ikklC9cuDHsECba1K4PpTMIKUamk/vKjTcQ1rcBduruklRpNnvQk4bISDt4inIZdTcqtAphqXGWWm7KTPsTlybXkRQxd7OSM+/C2f0el6z9zmkhd+bLfT/IgpfKZed6QyKkC/x7K/C6o84uA2lHIbLI3N3TEkD5e1ZgGHRxvlR1oVlwc/zRnBH8lNuwBtMbv0qyzZe3Ps9hFgsOQyIfOJWXb0L2vFIiqdzkV3Nbocs9/UW+Lg2ToiPKgRSn2XtKOZwRSRfuzP6zBWuVpe5TxBEE6fikX/D7Hf09de1RPt1M1QqquMvmXYY380BgEI68NqdA6EjM2sAPI0vvX4DrmH0/FvLYd8+d11vpUHbR/KG+JetLSWD+vRdc9hk3X0bCQlr8tdvrJ2Mfe1cpT2dS4tKPh0rgxmDxBYVZ84TzgfpvsQvsS8MYQ9A8j1qfZWJWqpvvaycx4g+p6NAdB6+Sz8HMqiAYwcjA94pbgDN+qC4nrwVS2J5xH7v6ldnPWuAtYqJ9txh+DOmyprTuAG6BZ7KXR7ZTjmjL5uA4ksEr2Wgu9fLE38=
+X-Microsoft-Antispam-Message-Info: C2FDYVg0X1C5FEGn0PVATJFVVSwjBHbCMbwO4ZMQC9ELaJYfnPfZQNUuwnQQcjY1DjPnn21p15g2UPma7vCwzoAqWgv2KLY2tId0M23ZEXCEt4YPoUdpXZvneGTdDbecZ57qAEEAwxJvWxNmWkUPV9JaBFB7yTibagu5yYOggLOEZMOyv3vr4BYpJud3hG+InrAhIzWvOGcnm1m81r52ciXl1mR/uTcD829aPpkl8bHoK2lFhkOfjeaYsZAHpmV2VoZ7Y1PMJmC2jSBo2phUMT7ul+HhiQxb+LT4Nv5Re+g5r80qZktQQ9fXyby/ZZA5QzKbdRtT+u+mTPyHZRPaFRfi/FgTyoZHRBnbpGX7W4Iyd3bQZ+IGnLwSp0JgtddyBZ3Zb7n0mP9LK+WfKQP377Z98TSlwrm5axMDwFRkNQhT0Rf1XO8M3Wdw91xFSBAGy4m/cvBOmbw94Shb7mxdwOrtRGppors1fGow9v60K2/Q2ChBfFKF+91VKq+o3XpIZ6nHCrznWLoyY6rJxA9y9/Ogb1tU7jEQJ/TNcKdY/8kZK4bw/k/um9lMCKtxMMhP+PYN+rLAQ86DRt1euV964KM3hpY/DdP0P5W5MUGbL6CQ5Or+xNL54VXTEswKqQjH6qKzfSZ8uu2FgQ4kdjt7YgJgA4Sf1kbz5sZn2fiWqHGSJh4pI1wDZacO5EsiIBmi
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB2601.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(376002)(39860400002)(136003)(366004)(396003)(6512007)(8936002)(8676002)(186003)(83380400001)(2906002)(38100700001)(16526019)(52116002)(5660300002)(2616005)(66476007)(478600001)(6486002)(66556008)(1076003)(316002)(6666004)(36756003)(54906003)(6506007)(66946007)(86362001)(6916009)(4326008);
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB4948.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(39860400002)(366004)(136003)(376002)(346002)(396003)(66556008)(66946007)(316002)(16526019)(86362001)(186003)(52116002)(83380400001)(26005)(66476007)(1076003)(478600001)(7696005)(5660300002)(6666004)(2616005)(38100700001)(2906002)(36756003)(8936002)(8676002)(956004)(38350700001)(4326008)(6486002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?TQs9K4YubpWut7JecWpM9XncDlWfjCkCe0RIh4GmVFA0VR93H6MJXOkENlXs?=
- =?us-ascii?Q?AB5316ftiJ85En3TEIAqquVWHVNKLiMrJiMnFeDx3eOp/E1GoNLPqZoncc/J?=
- =?us-ascii?Q?bkt9jxl9dt8aDvY6qPncjYyXpSNiSGOOvcbIz4z+wcjt+MAzaZFSRF3PI07P?=
- =?us-ascii?Q?XYmPCS6JiRFQaYjYqHC+bBa0BlcYhUEmKLP661OYODECnOVO9Dr3ABZhM3x+?=
- =?us-ascii?Q?8L9QFunp3JyQvwdqRi/+la/tCtL/+WpuPk0p3q1jjDzlQAh/LmyrRUtWEXvl?=
- =?us-ascii?Q?hiPMm6rKeKbjTJvDwJ6fd5EBfxSAAaQCzbk3NrbpAixPgm1rM09nhZL91QVC?=
- =?us-ascii?Q?ukajVRtsrdmSVYCFidwP7ki49RotJm/h5Bf2bTHoEXWmRVoD+xSrt9ZVC0FD?=
- =?us-ascii?Q?3FCKmm6v3eVw81BuMwkyRQ6BpYbULFt61qmwAy8Pl+PUHk7zTqnXd6mRCYyg?=
- =?us-ascii?Q?qxs9lq9pQS922+dNvuB6ps/a1W6WSUHEKK79jzPdaYbfokjDJMCXp/932+gI?=
- =?us-ascii?Q?Dj87IiVbzzeM4VHFtIv9pMPUXxh8KMwb/Y9ng5uIzaCPnVtxPm10J2YrZ7g3?=
- =?us-ascii?Q?qHYaaS2p/H6v1N8mdCkKMGalARzXaOUJnBkVyZHeF0SmRlYrxzZC2bFXvMYf?=
- =?us-ascii?Q?7ty3hARbdrBmSayRKWX98I3oQBN33FoD1sR9r/vpvPhPtoYZyKEicN/x6bVO?=
- =?us-ascii?Q?ydj8ZQYuXkddWquiZLEeVqEVB+sn+XAuElSYB3JVJyYGILZ8kCQ/yfM0/J3F?=
- =?us-ascii?Q?uXE+J8o26U+EpYKeLykKgXw3MUkOsOC6+SxWKNaFlsbrM8L8TiIX1g/nTgeq?=
- =?us-ascii?Q?o7UdTSsATu1M1ofihwlOkeK6mqJSikKzj0AGwtuyuQISgjH1neRt9UQ6U+C2?=
- =?us-ascii?Q?iq4aEZqtGmaOjyGqFE6piaceCL/G9cjxFIA9iuEUuVM0KwUAjHBApxz6H99X?=
- =?us-ascii?Q?xKTlDJWjaDLCFwP/VEyveCqKzdO9pqjgVRwTST9HY4YODkD+qjGRXFTWx5FI?=
- =?us-ascii?Q?Nbl4zxY7LoX5LnbzTImUBJSBRThpB6kP7/lSEBRs66Y2zWsiyj9oOma50bnS?=
- =?us-ascii?Q?MEliRHLSdLV19ilgwFaIQ/0NyUIUiyuzQWdT3zYIqJnj7uBck6qBknIxURVP?=
- =?us-ascii?Q?QsUe++mXWHdpXgp2EqJd/rl4p++r00jnZaCOyVgOFZ0ZgIfyPcEKA5yeLfuZ?=
- =?us-ascii?Q?sf1x0hCms2Zai3lU46VsSV53LExHPcOON4QQZabxgQS5ZpcIe3XVLJIO2enI?=
- =?us-ascii?Q?N903lCiCnjHJaJQmEPf9BhWdxIScXEVl/FC+dqYdbUNqIic9UsU7fBOR1ypA?=
- =?us-ascii?Q?8bKr02KecrSlXjD2AuNYzZx1mzwxuSDa+jCOXgtNthMaiovi/CeACcEq9Mvs?=
- =?us-ascii?Q?jHaonsibGsSUdujT4fhhWUaPXh7u?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?toTeszJc1gDZOLfUOwvLX29e9kGv4S0UZeXJKm/IDN4n4M8aty8ZQTiFvFBr?=
+ =?us-ascii?Q?z2lxGTyvVpBBmt1obc2ALM8Yy/OkE+RcDnzjWOs71RK3xKtaGBfA8GK29bTI?=
+ =?us-ascii?Q?moERpnbHCshcX66uMdRHXuyD3JzbWDM/t0M7wUzd7JtP37sV3fNDWJGvcIM+?=
+ =?us-ascii?Q?Lt6AQUop+a61K+HfENDjytS9Wwh6cf9JmC2s3kRhnIyTmM0ubEAO+hLG8qhP?=
+ =?us-ascii?Q?aYhpWTmoa8N+hOrBQVbgKQ+Cbl5gR2j3rp5oHznLA74ykc4YTsX6H8yThcUa?=
+ =?us-ascii?Q?SqLPbqVnAKBInWQ3AHIzYonXRUqkFUhEJi94rdbHPB3g9s2fU+1lRcSXTRqe?=
+ =?us-ascii?Q?19xHUVQxYvm0KVHJEicftbannRv54lX9AN/72kzTD0LpYk760ENNjTl7NqB/?=
+ =?us-ascii?Q?K7t8tH/Wy5DVnPwGUusqUuPdN+IRIhjCelzLtmYElZLK4kWjvlGnn/MXOuIh?=
+ =?us-ascii?Q?3+D6wyMQGgdnTONxmRn5CD/15n8+x9OLAv4mV0U//xh8V3XuhVD/WRSJucBf?=
+ =?us-ascii?Q?n/D4YO2cXhqCF1GcqOkTSPiKi6E7g4rnIGb2FJrzG1xo5z0UY+Z7FdISknHi?=
+ =?us-ascii?Q?2XX8NcTBeikShzAWhvx2iiapvIst82V+gKvjqlk3O4dqXLPGy0neRxTBzHph?=
+ =?us-ascii?Q?pnI3FVSR3VzQzAQ7e/t5pOWra6TDDBy8yeDPnCyp1715cnZP047IhvdLhir5?=
+ =?us-ascii?Q?RaTUgI64/wfTc2Jv3HG3wPNDKTbUSrH7rG6cRY3CBFkCdF/v4jfCNbBEgNyH?=
+ =?us-ascii?Q?/WmmDfbBoQmnMbwX6v2NNBwyIW9nKtjLo3UJ/ks1tF9rbb04JIdQlH2bN3fe?=
+ =?us-ascii?Q?hXc6ro8YIjpwI0mAf08YQ1o7BydHhV4cSmsh5x4lRlayuJcrH344Rs424X5c?=
+ =?us-ascii?Q?Wy2o72lDry1GjAu1eDNNwxzXCkZ1V4w7NTkGwLgq+eCwR2jKnONHG2H8V9MX?=
+ =?us-ascii?Q?OveK5ctHG28QC5FlxL+Pyl4g5VcGLKY7fNzPlGcxVRdprwFI8JShZrs4kQMa?=
+ =?us-ascii?Q?ROZjT+jNC9vyl76drYMWD79jCwEsiIjNur9G3iUyHYboCJFWQ6d+NoPV2qIp?=
+ =?us-ascii?Q?0sCcMhlKOEDlbK/zrvJ9qHYzWvtITKr5NEcBK7HB2VoQ4kEfie/WdmqdDYtn?=
+ =?us-ascii?Q?XfCL38eiw2N30Ndf10MEGXN/Bt7LDkG3xyQUHyt8PCHuUArWP/Y0K0I0CLLQ?=
+ =?us-ascii?Q?u9ld1ypyIjUMTv/2U7MFJUyyLLtoomy2DPZZn8+4tnHpSWeja1KfSZCioGE3?=
+ =?us-ascii?Q?4U77CY8VQvexUS2vpTxSUTX/wM5vczyY5rMdlzYl2k4QGuHPeSyvAhkjvGbh?=
+ =?us-ascii?Q?OlfLEvAEznB33ZpTxm3Iploq?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 62b6607e-80c9-43b0-1588-08d8fa0f1f35
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2601.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb1abebb-f9b0-4c4b-75fd-08d8fa1ac5e1
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB4948.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2021 21:50:12.9900 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2021 23:13:36.9891 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jBBxzobtrN8pPMxUym91iAXqQ6ncWr5JrNEitJqjY1SGw90161jP6HZTAdZFrwsFAQpP3MPBKNIwdu1x3Jw9dQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2604
+X-MS-Exchange-CrossTenant-UserPrincipalName: QmKRQHIHqkd31Vjb6SB0mlJ8SGRZddQNH+0vB4Y9v2k+YjlUaTOsOYsXvl16rwRM+9mc/yWxjNU+ks+K4RewNg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4392
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,152 +113,183 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hersen Wu <hersenxs.wu@amd.com>, Harry Wentland <Harry.Wentland@amd.com>,
- Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>,
- Louis Li <Ching-shih.Li@amd.com>
+Cc: christian.koenig@amd.com, tzimmermann@suse.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Our driver supports overlay planes, and as expected, some userspace
-compositor takes advantage of these features. If the userspace is not
-enabling the cursor, they can use multiple planes as they please.
-Nevertheless, we start to have constraints when userspace tries to
-enable hardware cursor with various planes. Basically, we cannot draw
-the cursor at the same size and position on two separated pipes since it
-uses extra bandwidth and DML only run with one cursor.
+ROCm user mode has acquired VMs from DRM file descriptors for as long
+as it supported the upstream KFD. Legacy code to support older versions
+of ROCm is not needed any more.
 
-For those reasons, when we enable hardware cursor and multiple planes,
-our driver should accept variations like the ones described below:
-
-  +-------------+   +--------------+
-  | +---------+ |   |              |
-  | |Primary  | |   | Primary      |
-  | |         | |   | Overlay      |
-  | +---------+ |   |              |
-  |Overlay      |   |              |
-  +-------------+   +--------------+
-
-In this scenario, we can have the desktop UI in the overlay and some
-other framebuffer attached to the primary plane (e.g., video). However,
-userspace needs to obey some rules and avoid scenarios like the ones
-described below (when enabling hw cursor):
-
-                                      +--------+
-                                      |Overlay |
- +-------------+    +-----+-------+ +-|        |--+
- | +--------+  | +--------+       | | +--------+  |
- | |Overlay |  | |Overlay |       | |             |
- | |        |  | |        |       | |             |
- | +--------+  | +--------+       | |             |
- | Primary     |    | Primary     | | Primary     |
- +-------------+    +-------------+ +-------------+
-
- +-------------+   +-------------+
- |     +--------+  |  Primary    |
- |     |Overlay |  |             |
- |     |        |  |             |
- |     +--------+  | +--------+  |
- | Primary     |   | |Overlay |  |
- +-------------+   +-|        |--+
-                     +--------+
-
-If the userspace violates some of the above scenarios, our driver needs
-to reject the commit; otherwise, we can have unexpected behavior. Since
-we don't have a proper driver validation for the above case, we can see
-some problems like a duplicate cursor in applications that use multiple
-planes. This commit fixes the cursor issue and others by adding adequate
-verification for multiple planes.
-
-Cc: Louis Li <Ching-shih.Li@amd.com>
-Cc: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
-Cc: Harry Wentland <Harry.Wentland@amd.com>
-Cc: Hersen Wu <hersenxs.wu@amd.com>
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 59 +++++++++++++++++++
- 1 file changed, 59 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |  4 --
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  | 50 -------------------
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      | 27 ++++------
+ 3 files changed, 10 insertions(+), 71 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index ac6ab35f89b2..5ae6d61e83f1 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -9939,6 +9939,61 @@ static int add_affected_mst_dsc_crtcs(struct drm_atomic_state *state, struct drm
- }
- #endif
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+index 14f68c028126..5ffb07b02810 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+@@ -234,14 +234,10 @@ uint8_t amdgpu_amdkfd_get_xgmi_hops_count(struct kgd_dev *dst, struct kgd_dev *s
+ 	})
  
-+static int validate_overlay(struct drm_atomic_state *state)
-+{
-+	int i;
-+	struct drm_plane *plane;
-+	struct drm_plane_state *old_plane_state, *new_plane_state;
-+	struct drm_plane_state *primary_state, *cursor_state, *overlay_state = NULL;
-+
-+	/* Check if primary plane is contained inside overlay */
-+	for_each_oldnew_plane_in_state_reverse(state, plane, old_plane_state, new_plane_state, i) {
-+		if (plane->type == DRM_PLANE_TYPE_OVERLAY) {
-+			if (drm_atomic_plane_disabling(plane->state, new_plane_state))
-+				return 0;
-+
-+			overlay_state = new_plane_state;
-+			continue;
-+		}
-+	}
-+
-+	/* check if we're making changes to the overlay plane */
-+	if (!overlay_state)
-+		return 0;
-+
-+	/* check if overlay plane is enabled */
-+	if (!overlay_state->crtc)
-+		return 0;
-+
-+	/* find the primary plane for the CRTC that the overlay is enabled on */
-+	primary_state = drm_atomic_get_plane_state(state, overlay_state->crtc->primary);
-+	if (IS_ERR(primary_state))
-+		return PTR_ERR(primary_state);
-+
-+	/* check if primary plane is enabled */
-+	if (!primary_state->crtc)
-+		return 0;
-+
-+	/* check if cursor plane is enabled */
-+	cursor_state = drm_atomic_get_plane_state(state, overlay_state->crtc->cursor);
-+	if (IS_ERR(cursor_state))
-+		return PTR_ERR(cursor_state);
-+
-+	if (drm_atomic_plane_disabling(plane->state, cursor_state))
-+		return 0;
-+
-+	/* Perform the bounds check to ensure the overlay plane covers the primary */
-+	if (primary_state->crtc_x < overlay_state->crtc_x ||
-+	    primary_state->crtc_y < overlay_state->crtc_y ||
-+	    primary_state->crtc_x + primary_state->crtc_w > overlay_state->crtc_x + overlay_state->crtc_w ||
-+	    primary_state->crtc_y + primary_state->crtc_h > overlay_state->crtc_y + overlay_state->crtc_h) {
-+		DRM_DEBUG_ATOMIC("Overlay plane is enabled with hardware cursor but does not fully cover primary plane\n");
+ /* GPUVM API */
+-int amdgpu_amdkfd_gpuvm_create_process_vm(struct kgd_dev *kgd, u32 pasid,
+-					void **vm, void **process_info,
+-					struct dma_fence **ef);
+ int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct kgd_dev *kgd,
+ 					struct file *filp, u32 pasid,
+ 					void **vm, void **process_info,
+ 					struct dma_fence **ef);
+-void amdgpu_amdkfd_gpuvm_destroy_process_vm(struct kgd_dev *kgd, void *vm);
+ void amdgpu_amdkfd_gpuvm_release_process_vm(struct kgd_dev *kgd, void *vm);
+ uint64_t amdgpu_amdkfd_gpuvm_get_process_page_dir(void *vm);
+ int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index e93850f2f3b1..36012229ccc1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -1037,41 +1037,6 @@ static int init_kfd_vm(struct amdgpu_vm *vm, void **process_info,
+ 	return ret;
+ }
+ 
+-int amdgpu_amdkfd_gpuvm_create_process_vm(struct kgd_dev *kgd, u32 pasid,
+-					  void **vm, void **process_info,
+-					  struct dma_fence **ef)
+-{
+-	struct amdgpu_device *adev = get_amdgpu_device(kgd);
+-	struct amdgpu_vm *new_vm;
+-	int ret;
+-
+-	new_vm = kzalloc(sizeof(*new_vm), GFP_KERNEL);
+-	if (!new_vm)
+-		return -ENOMEM;
+-
+-	/* Initialize AMDGPU part of the VM */
+-	ret = amdgpu_vm_init(adev, new_vm, AMDGPU_VM_CONTEXT_COMPUTE, pasid);
+-	if (ret) {
+-		pr_err("Failed init vm ret %d\n", ret);
+-		goto amdgpu_vm_init_fail;
+-	}
+-
+-	/* Initialize KFD part of the VM and process info */
+-	ret = init_kfd_vm(new_vm, process_info, ef);
+-	if (ret)
+-		goto init_kfd_vm_fail;
+-
+-	*vm = (void *) new_vm;
+-
+-	return 0;
+-
+-init_kfd_vm_fail:
+-	amdgpu_vm_fini(adev, new_vm);
+-amdgpu_vm_init_fail:
+-	kfree(new_vm);
+-	return ret;
+-}
+-
+ int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct kgd_dev *kgd,
+ 					   struct file *filp, u32 pasid,
+ 					   void **vm, void **process_info,
+@@ -1138,21 +1103,6 @@ void amdgpu_amdkfd_gpuvm_destroy_cb(struct amdgpu_device *adev,
+ 	}
+ }
+ 
+-void amdgpu_amdkfd_gpuvm_destroy_process_vm(struct kgd_dev *kgd, void *vm)
+-{
+-	struct amdgpu_device *adev = get_amdgpu_device(kgd);
+-	struct amdgpu_vm *avm = (struct amdgpu_vm *)vm;
+-
+-	if (WARN_ON(!kgd || !vm))
+-		return;
+-
+-	pr_debug("Destroying process vm %p\n", vm);
+-
+-	/* Release the VM context */
+-	amdgpu_vm_fini(adev, avm);
+-	kfree(vm);
+-}
+-
+ void amdgpu_amdkfd_gpuvm_release_process_vm(struct kgd_dev *kgd, void *vm)
+ {
+ 	struct amdgpu_device *adev = get_amdgpu_device(kgd);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index d4241d29ea94..d97e330a5022 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -935,9 +935,6 @@ static void kfd_process_destroy_pdds(struct kfd_process *p)
+ 					pdd->dev->kgd, pdd->vm);
+ 			fput(pdd->drm_file);
+ 		}
+-		else if (pdd->vm)
+-			amdgpu_amdkfd_gpuvm_destroy_process_vm(
+-				pdd->dev->kgd, pdd->vm);
+ 
+ 		if (pdd->qpd.cwsr_kaddr && !pdd->qpd.cwsr_base)
+ 			free_pages((unsigned long)pdd->qpd.cwsr_kaddr,
+@@ -1375,19 +1372,18 @@ int kfd_process_device_init_vm(struct kfd_process_device *pdd,
+ 	struct kfd_dev *dev;
+ 	int ret;
+ 
++	if (!drm_file)
 +		return -EINVAL;
-+	}
 +
-+	return 0;
-+}
-+
- /**
-  * amdgpu_dm_atomic_check() - Atomic check implementation for AMDgpu DM.
-  * @dev: The DRM device
-@@ -10113,6 +10168,10 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
- 			goto fail;
+ 	if (pdd->vm)
+-		return drm_file ? -EBUSY : 0;
++		return -EBUSY;
+ 
+ 	p = pdd->process;
+ 	dev = pdd->dev;
+ 
+-	if (drm_file)
+-		ret = amdgpu_amdkfd_gpuvm_acquire_process_vm(
+-			dev->kgd, drm_file, p->pasid,
+-			&pdd->vm, &p->kgd_process_info, &p->ef);
+-	else
+-		ret = amdgpu_amdkfd_gpuvm_create_process_vm(dev->kgd, p->pasid,
+-			&pdd->vm, &p->kgd_process_info, &p->ef);
++	ret = amdgpu_amdkfd_gpuvm_acquire_process_vm(
++		dev->kgd, drm_file, p->pasid,
++		&pdd->vm, &p->kgd_process_info, &p->ef);
+ 	if (ret) {
+ 		pr_err("Failed to create process VM object\n");
+ 		return ret;
+@@ -1409,8 +1405,6 @@ int kfd_process_device_init_vm(struct kfd_process_device *pdd,
+ err_init_cwsr:
+ err_reserve_ib_mem:
+ 	kfd_process_device_free_bos(pdd);
+-	if (!drm_file)
+-		amdgpu_amdkfd_gpuvm_destroy_process_vm(dev->kgd, pdd->vm);
+ 	pdd->vm = NULL;
+ 
+ 	return ret;
+@@ -1435,6 +1429,9 @@ struct kfd_process_device *kfd_bind_process_to_device(struct kfd_dev *dev,
+ 		return ERR_PTR(-ENOMEM);
  	}
  
-+	ret = validate_overlay(state);
-+	if (ret)
-+		goto fail;
++	if (!pdd->vm)
++		return ERR_PTR(-ENODEV);
 +
- 	/* Add new/modified planes */
- 	for_each_oldnew_plane_in_state_reverse(state, plane, old_plane_state, new_plane_state, i) {
- 		ret = dm_update_plane_state(dc, state, plane,
+ 	/*
+ 	 * signal runtime-pm system to auto resume and prevent
+ 	 * further runtime suspend once device pdd is created until
+@@ -1452,10 +1449,6 @@ struct kfd_process_device *kfd_bind_process_to_device(struct kfd_dev *dev,
+ 	if (err)
+ 		goto out;
+ 
+-	err = kfd_process_device_init_vm(pdd, NULL);
+-	if (err)
+-		goto out;
+-
+ 	/*
+ 	 * make sure that runtime_usage counter is incremented just once
+ 	 * per pdd
 -- 
-2.25.1
+2.31.1
 
 _______________________________________________
 amd-gfx mailing list
