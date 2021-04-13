@@ -1,32 +1,72 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8B4A35E1E7
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11B6E35E1E5
 	for <lists+amd-gfx@lfdr.de>; Tue, 13 Apr 2021 16:53:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DD3D89BF3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FC9B89B99;
 	Tue, 13 Apr 2021 14:53:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from szxga05-in.huawei.com (szxga05-in.huawei.com [45.249.212.191])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E90A6E226;
- Tue, 13 Apr 2021 08:03:32 +0000 (UTC)
-Received: from DGGEMS408-HUB.china.huawei.com (unknown [172.30.72.60])
- by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4FKJ1w2BrXzNvNG;
- Tue, 13 Apr 2021 16:00:36 +0800 (CST)
-Received: from localhost.localdomain (10.69.192.56) by
- DGGEMS408-HUB.china.huawei.com (10.3.19.208) with Microsoft SMTP Server id
- 14.3.498.0; Tue, 13 Apr 2021 16:03:19 +0800
-From: Tian Tao <tiantao6@hisilicon.com>
-To: <airlied@linux.ie>, <daniel@ffwll.ch>
-Subject: [PATCH] drm/amdgpu: remove set but not used variables
-Date: Tue, 13 Apr 2021 16:03:41 +0800
-Message-ID: <1618301021-46389-1-git-send-email-tiantao6@hisilicon.com>
-X-Mailer: git-send-email 2.7.4
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com
+ [66.111.4.224])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E16B89E14;
+ Tue, 13 Apr 2021 12:11:13 +0000 (UTC)
+Received: from compute7.internal (compute7.nyi.internal [10.202.2.47])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 96B8B58037A;
+ Tue, 13 Apr 2021 08:11:10 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute7.internal (MEProxy); Tue, 13 Apr 2021 08:11:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding; s=fm2; bh=cbuXGXgLaupvjIq688HiNFaXJU
+ 6ajc1vYG74Y5TUPqo=; b=tujpqvXWAeMSn+Iud1rrp39cxnmCwwMYPwb3bM6sfv
+ 37aw84wL+3GvX9CuXK8+m46Xa0Dx4nhumPBFspq/ug8Wq67qpgyCQTLNUHbQq6n5
+ pZ8/6Ue40NZScCZ3Rn9kY70SOaDdWXLfi8abdPtkLGBZ+L7rzrMB16GxMQqrTibm
+ 0AjDcQ5LTahPNYiUS1xplN1HtQ1IwcYso29V+C0p2LDsMMxlxmI7i/kHpedRXpA+
+ AvkobIQfhL4ezySB8D5Vwl5kBDaaeD4bYTUUHp/BsC580g85iOv8d/z6ezQC8SpY
+ 53quJbjdJrjgroNRqe6k5C7hSQL180qPQpMfcE0grBKA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:date:from
+ :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=cbuXGXgLaupvjIq68
+ 8HiNFaXJU6ajc1vYG74Y5TUPqo=; b=tvv5NuVq4iFFw/HyUJZtE8AzUUC0EfxAz
+ Sd3z4qSb6TXq5druZhtnmqLVUWcqvkHvPZJA0dGzjyv2kvYVnBrrcZnLyJVK5dVX
+ 9+Q7sVV8fiMvRsHPVkess7E9KEAQmCWKODB4jZmnMaOVA+AvUg2cwGY5p3NsAUtD
+ oWRchrvoKiZ5+bLyYHYzPU/E6vyfKb4MRao8kwqbQpe6gToiSD9Ur0tlb6ZJ92ax
+ HMthUay6g2x0HaW93wh6T05LexrG9B2bsrjoZS+E0jeGA19yU4pw1BfKUZSaN0as
+ qA3R3EeAS2rI9MxPwi2d6hfKEMYlbHEqrjJHnqWBoUfDCmBzTHg8w==
+X-ME-Sender: <xms:W4p1YABo0yVadzZXjLw4BSySjTRDU-qjkjuDEEUHdQRuqgGS6bp2rA>
+ <xme:W4p1YCfJ6FJLy44n7G8l1dammo0XxBqmUb9ltx1xrIF03VadlIbwvK7FGj_ELmAW3
+ PcTh_mlshMY-iMYz6c>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudekledggeelucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcu
+ tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
+ hrnhepjeffheduvddvvdelhfegleelfffgieejvdehgfeijedtieeuteejteefueekjeeg
+ necukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrg
+ hrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:W4p1YAel71TL6qfdXAnxyQ7nyjc0NAsrXFNQQmuSFnKhpO8PTagDyA>
+ <xmx:W4p1YOh6bG4ktCX6o1FHHVpR7pI3ZWw9af6oTOx2_k9gkGGXw8AMqQ>
+ <xmx:W4p1YETOewf2IL2MIRMK-tOOZkgKkX1nQmAeaOcuTLxH__McGF6g4A>
+ <xmx:Xop1YHpOybSvxgqLY0oD_aNsO5vuftlYybUhxqY7r2Ex50L2h8kwMQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id EDC6E24005A;
+ Tue, 13 Apr 2021 08:11:06 -0400 (EDT)
+From: Maxime Ripard <maxime@cerno.tech>
+To: dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>,
+ David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <maxime@cerno.tech>
+Subject: [PATCH v2 1/5] drm/connector: Create a helper to attach the
+ hdr_output_metadata property
+Date: Tue, 13 Apr 2021 14:11:00 +0200
+Message-Id: <20210413121104.375789-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-Originating-IP: [10.69.192.56]
-X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Tue, 13 Apr 2021 14:53:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -39,48 +79,140 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tian Tao <tiantao6@hisilicon.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
+Cc: Tim Gover <tim.gover@raspberrypi.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Eric Anholt <eric@anholt.net>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Phil Elwell <phil@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jernej Skrabec <jernej.skrabec@siol.net>, Dom Cobley <dom@raspberrypi.com>,
+ Andrzej Hajda <a.hajda@samsung.com>, linux-kernel@vger.kernel.org,
+ Robert Foss <robert.foss@linaro.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The value of ret set but will rewriten, so just delete.
+All the drivers that implement HDR output call pretty much the same
+function to initialise the hdr_output_metadata property, and while the
+creation of that property is in a helper, every driver uses the same
+code to attach it.
 
-Signed-off-by: Tian Tao <tiantao6@hisilicon.com>
+Provide a helper for it as well
+
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+Reviewed-by: Jernej Skrabec <jernej.skrabec@siol.net>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 1fb2a91..f303ad6 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -1815,10 +1815,8 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
- 		return 0;
+Changes from v1:
+  - Rebased on latest drm-misc-next tag
+  - Added the tags
+---
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  4 +---
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     |  3 +--
+ drivers/gpu/drm/drm_connector.c               | 21 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  3 +--
+ include/drm/drm_connector.h                   |  1 +
+ 5 files changed, 25 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 55e39b462a5e..1e22ce718010 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -7078,9 +7078,7 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_display_manager *dm,
+ 	if (connector_type == DRM_MODE_CONNECTOR_HDMIA ||
+ 	    connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+ 	    connector_type == DRM_MODE_CONNECTOR_eDP) {
+-		drm_object_attach_property(
+-			&aconnector->base.base,
+-			dm->ddev->mode_config.hdr_output_metadata_property, 0);
++		drm_connector_attach_hdr_output_metadata_property(&aconnector->base);
  
- 	*data = kmalloc(sizeof(**data), GFP_KERNEL | __GFP_ZERO);
--	if (!*data) {
--		ret = -ENOMEM;
--		goto out;
--	}
-+	if (!*data)
-+		return -ENOMEM;
+ 		if (!aconnector->mst_port)
+ 			drm_connector_attach_vrr_capable_property(&aconnector->base);
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index dda4fa9a1a08..f24bbb840dbf 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -2492,8 +2492,7 @@ static int dw_hdmi_connector_create(struct dw_hdmi *hdmi)
+ 	drm_connector_attach_max_bpc_property(connector, 8, 16);
  
- 	mutex_init(&con->recovery_lock);
- 	INIT_WORK(&con->recovery_work, amdgpu_ras_do_recovery);
-@@ -1848,7 +1846,7 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
- 	kfree((*data)->bps);
- 	kfree(*data);
- 	con->eh_data = NULL;
--out:
+ 	if (hdmi->version >= 0x200a && hdmi->plat_data->use_drm_infoframe)
+-		drm_object_attach_property(&connector->base,
+-			connector->dev->mode_config.hdr_output_metadata_property, 0);
++		drm_connector_attach_hdr_output_metadata_property(connector);
+ 
+ 	drm_connector_attach_encoder(connector, hdmi->bridge.encoder);
+ 
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index 7631f76e7f34..a4aa2d87af35 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -2150,6 +2150,27 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+ }
+ EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
+ 
++/**
++ * drm_connector_attach_hdr_output_metadata_property - attach "HDR_OUTPUT_METADA" property
++ * @connector: connector to attach the property on.
++ *
++ * This is used to allow the userspace to send HDR Metadata to the
++ * driver.
++ *
++ * Returns:
++ * Zero on success, negative errno on failure.
++ */
++int drm_connector_attach_hdr_output_metadata_property(struct drm_connector *connector)
++{
++	struct drm_device *dev = connector->dev;
++	struct drm_property *prop = dev->mode_config.hdr_output_metadata_property;
 +
- 	dev_warn(adev->dev, "Failed to initialize ras recovery!\n");
++	drm_object_attach_property(&connector->base, prop, 0);
++
++	return 0;
++}
++EXPORT_SYMBOL(drm_connector_attach_hdr_output_metadata_property);
++
+ /**
+  * drm_connector_set_vrr_capable_property - sets the variable refresh rate
+  * capable property for a connector
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 95919d325b0b..f2f1b025e6ba 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2965,8 +2965,7 @@ intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *c
+ 	drm_connector_attach_content_type_property(connector);
  
- 	/*
+ 	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+-		drm_object_attach_property(&connector->base,
+-			connector->dev->mode_config.hdr_output_metadata_property, 0);
++		drm_connector_attach_hdr_output_metadata_property(connector);
+ 
+ 	if (!HAS_GMCH(dev_priv))
+ 		drm_connector_attach_max_bpc_property(connector, 8, 12);
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index 1922b278ffad..32172dab8427 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -1671,6 +1671,7 @@ int drm_connector_attach_scaling_mode_property(struct drm_connector *connector,
+ 					       u32 scaling_mode_mask);
+ int drm_connector_attach_vrr_capable_property(
+ 		struct drm_connector *connector);
++int drm_connector_attach_hdr_output_metadata_property(struct drm_connector *connector);
+ int drm_mode_create_aspect_ratio_property(struct drm_device *dev);
+ int drm_mode_create_hdmi_colorspace_property(struct drm_connector *connector);
+ int drm_mode_create_dp_colorspace_property(struct drm_connector *connector);
 -- 
-2.7.4
+2.30.2
 
 _______________________________________________
 amd-gfx mailing list
