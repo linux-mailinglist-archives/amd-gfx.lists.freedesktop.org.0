@@ -2,117 +2,107 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0375535F762
-	for <lists+amd-gfx@lfdr.de>; Wed, 14 Apr 2021 17:21:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3160435F788
+	for <lists+amd-gfx@lfdr.de>; Wed, 14 Apr 2021 17:27:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E3AE6E92D;
-	Wed, 14 Apr 2021 15:21:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A77886E94F;
+	Wed, 14 Apr 2021 15:27:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2077.outbound.protection.outlook.com [40.107.236.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A350D6E92D;
- Wed, 14 Apr 2021 15:21:42 +0000 (UTC)
+ (mail-bn8nam11on2056.outbound.protection.outlook.com [40.107.236.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 774336E94F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 15:27:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OWbBC45cs0ZzczxltOQ2d8MUChpXsjTXKhhFJuZmjZCERCqRXx+hd4wWRDGlvJq0VS36iaGUTYK76E2zlVwRYL+JkfIj6gQ6DMd2BzFR1/Ttv1Dur2YBLL4npws7CGywVvhXbCsy3Uzo2eJnfM3NP0R5xYXvUj2eldgHKx970W8QqOpqkBpxodMAk6YiWRRyjbNEjVrwBUG3yJesseM7zc9c+2agL04bOBJvamEOkGwNjGXt7Fhu4ssrViyFMTWVf6SRU5Gn7vdkWSJc6ceHMKZRDHNSAdC4cUwDehQZXRnIMIPdxlXN+UNBs1sewuWnRAkfZJCGVj7HE8a95xjFdQ==
+ b=NWZft99+7csDqu78rwWhm3jH3mK3lTr34Om62S2IZ4Fc2uDgSZSqTyHKtlYymu5rRwoQ/oGGZv/jQOtTKOuJWV8A6B3h/UlXkt5z1Ewh7+K/m9djc1SeHvYLIEXbekL7+AhH9Qalyi04Qbb7VGLY4/D4X6TlOb8Yiz54HzplJj/bk2emrYWDsvPQzhf/irPG867XaHQjsjSMpHqGynMfM0U61Nq78uQ0z/GoC7PTNDgWelYADojWA4g/3VzuF+SuGpGCXmziZ9lBvFxOzhvTJYZ9xsYDTjtk0XqGXs/Z9a6EAARAXF1hOwgYj8hWcPt6v/Fy/n7oWnetUjCqC0FQJA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3rjAfuBu8XxPQ+HaFoHMQGA5SWUhkYQjBdqYDeh06Zk=;
- b=Vfxh/EVPkfJm6q50o93APXsDMxlI0e4vkO4X3GUx1ZQtv62h5IBclVRoA/LudqVP4QfOpdDdPUJKP2Scm6Nh4kVkWDfN8jEPY2yotz9NQQa1ASlC7UakglH2I2z7qiHG4PARbsMd56/afH+sDCkr89nae8JWyRmDe10QQrCWtih8jUwiRi6d3Y/0WZtoclEhmGLhwy521ROx00R5Pd3N6QnX/0HbF+nI5y++VRiFGsYCSqyVEh3EaA/6p12IH/Ce6t0wXEpGqJZP4hdE1dO9asBskJWcOggCsrlTiiCGx2HaGCRz2/U7Y9G52H3ceWbUfKOT5hwnSzrvT7i09cVVeQ==
+ bh=Axoe0Zylw9TZrPvIWFCs8U2VShrWLC5HC9m651CmP6E=;
+ b=eP8sXeggum3Ft/ZFv3oRDASAzeLdFAQR3022JCpuw02WfneykxP1g7dFd1HaS+NGew6gPtgWPDvyKz/adaPX0IBEircxmmlZCanBZDqpfZJSAYWfh7LqiaDwdUyKSTkoX2KBXcUr9Iu+5rsgjc2rhrMqKhqcPC4LqdFRBi+PJvGggEKdP3LneHgicPVlpQCPX83B7jC3ec+k6jFLdjvYezoZQafNWAt5V3M6EKAlZ0u3FZmosAOgCzaCFotVe3jETz6C2xeM8DREmqZuzQAngV33ja48rrwFcJG7ElwfTFfbKSKwUzYAMBjAl/ct8Yr1D0OcyO2TBtwMuK9SlLWIqg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3rjAfuBu8XxPQ+HaFoHMQGA5SWUhkYQjBdqYDeh06Zk=;
- b=RvmRHPMNPi8BceZZz5zUXSeLBqBqFuLjLEWhkOxrP74fyQAJTxG2Ws/r2r9meD8bWpexhKTRZaCIu47WGtoF+6GSKn+6Lg9I6Y6xIdOjCjGWNqFEStUVJJZsPrfRejBDbHM38+h1CmRVGtY1SnoEvvRxEwLdDuaRXaE+MpLGqG0=
-Authentication-Results: suse.de; dkim=none (message not signed)
- header.d=none;suse.de; dmarc=none action=none header.from=amd.com;
-Received: from DM5PR12MB2583.namprd12.prod.outlook.com (2603:10b6:4:b3::28) by
- DM6PR12MB2937.namprd12.prod.outlook.com (2603:10b6:5:181::11) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3999.27; Wed, 14 Apr 2021 15:21:39 +0000
-Received: from DM5PR12MB2583.namprd12.prod.outlook.com
- ([fe80::d568:cff1:dc2a:5baa]) by DM5PR12MB2583.namprd12.prod.outlook.com
- ([fe80::d568:cff1:dc2a:5baa%3]) with mapi id 15.20.4042.016; Wed, 14 Apr 2021
- 15:21:39 +0000
-Subject: Re: [PATCH 2/4] drm/amdkfd: Use drm_priv to pass VM from KFD to amdgpu
-To: Felix Kuehling <Felix.Kuehling@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20210407231259.1787-1-Felix.Kuehling@amd.com>
- <20210407231259.1787-2-Felix.Kuehling@amd.com>
-From: philip yang <yangp@amd.com>
-Message-ID: <3813f130-a255-0d63-3b40-60919a1ba8f8@amd.com>
-Date: Wed, 14 Apr 2021 11:21:37 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
-In-Reply-To: <20210407231259.1787-2-Felix.Kuehling@amd.com>
-Content-Language: en-CA
-X-Originating-IP: [165.204.55.251]
-X-ClientProxiedBy: YT1PR01CA0015.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::28)
- To DM5PR12MB2583.namprd12.prod.outlook.com
- (2603:10b6:4:b3::28)
+ bh=Axoe0Zylw9TZrPvIWFCs8U2VShrWLC5HC9m651CmP6E=;
+ b=zGlWg3iAHGLAerlPec1oGwYXS6+iIKJFikIdKBZNno8r1n3/A42WltPh4CrdpgW1lQbPAWDEJSm/05t14bcaK1mRabfH5MJgUmvcYCkpYtjExjeE0tfIvfSeBUyt45BLctq+y/v9/FsXwnj7qfMFez2ggt0yDMmxLk3w6zXN97Q=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from DM6PR12MB3962.namprd12.prod.outlook.com (2603:10b6:5:1ce::21)
+ by DM5PR12MB2502.namprd12.prod.outlook.com (2603:10b6:4:af::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.16; Wed, 14 Apr
+ 2021 15:27:25 +0000
+Received: from DM6PR12MB3962.namprd12.prod.outlook.com
+ ([fe80::cc66:8fc2:7029:d660]) by DM6PR12MB3962.namprd12.prod.outlook.com
+ ([fe80::cc66:8fc2:7029:d660%4]) with mapi id 15.20.4042.016; Wed, 14 Apr 2021
+ 15:27:25 +0000
+From: Luben Tuikov <luben.tuikov@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amdgpu: Add double-sscanf but invert
+Date: Wed, 14 Apr 2021 11:27:12 -0400
+Message-Id: <20210414152712.25349-1-luben.tuikov@amd.com>
+X-Mailer: git-send-email 2.31.0.97.g1424303384
+In-Reply-To: <20210414152126.24685-1-luben.tuikov@amd.com>
+References: <20210414152126.24685-1-luben.tuikov@amd.com>
+X-Originating-IP: [165.204.84.11]
+X-ClientProxiedBy: YT1PR01CA0023.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::36)
+ To DM6PR12MB3962.namprd12.prod.outlook.com
+ (2603:10b6:5:1ce::21)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.27.226.38] (165.204.55.251) by
- YT1PR01CA0015.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::28) with Microsoft
+Received: from localhost.localdomain.amd.com (165.204.84.11) by
+ YT1PR01CA0023.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4020.22 via Frontend Transport; Wed, 14 Apr 2021 15:21:38 +0000
+ 15.20.4020.21 via Frontend Transport; Wed, 14 Apr 2021 15:27:24 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: eca61a59-1095-4973-b949-08d8ff58ffea
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2937:
+X-MS-Office365-Filtering-Correlation-Id: cf7b6d90-240e-4a8f-f7a4-08d8ff59ce87
+X-MS-TrafficTypeDiagnostic: DM5PR12MB2502:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB29378AC979C323950EE6F198E64E9@DM6PR12MB2937.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:392;
+X-Microsoft-Antispam-PRVS: <DM5PR12MB2502D94B8270265CA9065631994E9@DM5PR12MB2502.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:51;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9txcaOqmZeskP9rGEbBuT2tpqw0YP/qPP1WoK4moD6D7heX5AAjG+m8D2qnf8PU04CYDw99Y/GaPz412dKujhaWc0a/6AyzJLdbYOsDoo8SXj/rfvEj09PhMfj+PxMhuHz3hVxcm6+dSHwDosD9TAoTPtX17zYvhO47R3dr7MnvJaSAccpUE+YCq1Y1HwG2gSGK1VLLmrnrHuxa7q4SIoPfAT3J84rvo12EOQvXZqZ79IStFUyvvqBWJ3Vfm/4wevrmf1PILcK3bVjeHTbG4OGwG8g5pDGJrIHGwc2qCirt2Q0XsPjRgX5P0H0blodEOhRHRy8XpBsinyFd6qNWHJ/WwThps/WtLA/6YbWzRyUDfOt/wA3jvg9TVki4dlbmh7uMaKSF58531hUSYV4OIF/crDSCnC6am053dxlNsQlv1OUeHgd1XpSWVZyFyT3mrDiUJ5Fu+eJn8zuIcNkXJP2NiRynmJkMduqBfpPddviP420qBJlM6a+HKasvxLBYqPGn4Y1xzzEM5WLEPJuyGgwoMY5jKGinsns687K9iYk0tjQ/77n2J1TVd2bA4y4ig8wkHUvMUiYSpHSPpLDyjIjxjfoU/ZAGLgtOZ5QIEy06F60pvGmwX67N9HebtFmXF+2e5KXSUqReu5rv7YpK67OMftSav3Y/VNBbYeZFUzGHfpopG1Z0L3RtYAblEO627
+X-Microsoft-Antispam-Message-Info: CuO+3jUyv29I7v5kgcuO0TzeZflq1wTGzH2PSg/6xZqOWVwVFFga8Fxmu386zhbRqvOh+FOBU4DuVza0UpFU0bYmB3Ew8bGHWG1PGpsLAXygBj3sRlSN8F5l8tZsIlws0pXgK9hEfZqoYROBbTcUv038Re2HwUBdIX8s9HfO6bE+Mrzxo5wgoAXQ8TEyFEENa5qiUEiL5NUMSgbPz1dBYfZZVLFCbpXNG9wwmgzVxMqkVzKhvluj6RjyzwMYAMxpd2fDZIQU8a+Cy8oDTPUR4a8ce+WjQZWzgcXO/CJ5AIDl0qGJqgi570PS/Mqk+6rewOYbq1ZlHJhdR70WFLPIpb55sV83kbyhbQPu32Efal9mD9MCNjX92kosIqNQy/JPquwwuRNjwWw3jNgehRxxKbpE4KPUh0TDEnZgMvkTiv4zY32g3GBKW8DEadyH2UvHhncGLmbR7JUeqHFcR6OnmlVmc1bEiCCblFwG1/MKYNTMD+iJOJKD/RhLbd01TSG3xEfWIhevil73dV+sobK+utWDEUxg7F1MPNqUUeY5tp+W7nTR4H2lLZ01oHeGykrSpaZOuq8JOcWQlKj2Ev4Gp+zCSlLfscFjnb6wpIHw4VALueTImkOGdDk9HAennuWadJXoOTwSjR0eGXhxOWucog==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB2583.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(396003)(136003)(39860400002)(346002)(366004)(66556008)(478600001)(36756003)(8676002)(66946007)(956004)(66476007)(2616005)(16526019)(186003)(38100700002)(31696002)(4326008)(83380400001)(31686004)(2906002)(316002)(5660300002)(26005)(6486002)(8936002)(16576012)(53546011)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3962.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(396003)(39860400002)(346002)(366004)(376002)(7696005)(5660300002)(52116002)(26005)(8936002)(2906002)(54906003)(186003)(36756003)(66946007)(8676002)(6916009)(38100700002)(86362001)(6666004)(66556008)(316002)(1076003)(4326008)(83380400001)(478600001)(956004)(6486002)(44832011)(2616005)(38350700002)(16526019)(66476007);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?SDllNUNpOHp4Z0NTUCtzQ0Y5ZXlmTWdudWh5bVprVGt0NEVmaytZZGVXYW55?=
- =?utf-8?B?U0hRWXoxOEhMMGdpUCtOY3dwK21WbkljVmhIaVZDTzJYaHhtcXZiZW9PZmFj?=
- =?utf-8?B?M3BrYTIxTFdJaFJaTGxsMTc0TU5hTStIOHVCS0dJdzduTnM3M0VFNDBVTG5W?=
- =?utf-8?B?dWVTeDZMR1FISURtdEZIMXZRYjErelJJUE5rQ1FrdGtmTmxjU2JrZkc3dmNR?=
- =?utf-8?B?UzhwbU1wMUhEbjRSRE05bHhFMjRTbllSTjFONDA0RzFKaE5zdlFDWFJ3NWd3?=
- =?utf-8?B?Q1hUQ0JrRE03dk1LbENGczhVTVEzMUtqYzhOMkVrblBZWnE1WnJDaHh5TU1N?=
- =?utf-8?B?TitNb0NYVkZ0WjJyUmtzSFBPQm4ySmxMdllydFlhSEF6QjF3T0ViN1dRMnAw?=
- =?utf-8?B?VmE2NGl5Wkk0ZVNwbnRhaUdEMVAwM2JwRGRaaHhIekt2L2NPak9TQlFjVjZz?=
- =?utf-8?B?TmZselpkWjdyQW12cGdrb3NFM1Vicmg1eWxORVk3Z1VPdEJyek0rWnhDc25i?=
- =?utf-8?B?elBrL3lXeGM3Qm9iK1AzYlNmb0dkQ0tVZVl2RjJvaFBBck9VTGJMaVhEbWpl?=
- =?utf-8?B?SmV2ZmNKUWJrRUJHWHNycHJySWIvRkpRK29ScURCNGFudXR0MTBIdFkrczdh?=
- =?utf-8?B?RkU2d3RlOUdHR1lwTms2NzFlcVpneXlnTTlaQzExdmpUbUlxV0tWczlDWmI2?=
- =?utf-8?B?WVJ1VThvZld6aWZ0aGFSMjBKdkJwdCs2clZpQjVodjFmbU5LeElYUXpIM2FH?=
- =?utf-8?B?Tkw5OFRMN0pRdytFUmdDaVVHMmZVNVh1cFRaYkR0S1E2OVVReWQvcmM5YWdr?=
- =?utf-8?B?Y1lickQrcEMxVHV4ek16cFU5aktlSklCc1dQN3ZTUmtyTEZrVWRwYkZJdU5u?=
- =?utf-8?B?Y0RkaWhDbkw3SEEzTVlZcSt5S1dXRDFDWFFFNStFVDJnWWdoa042bytoZURn?=
- =?utf-8?B?dHA2T2lKTWhzZFQ2RWN2Q0FhaFN4MnFMQ2U0aXJ3WkxKY1h5aEh6MWhhVjg1?=
- =?utf-8?B?QUE4bFdkTVJYQWk1aGIvcWNKdjRFU3BOdWhPeWZZYU9CQWJIQ2NBdS9hdm5Y?=
- =?utf-8?B?bmlnVnIwMkdYZ0ZsRWgxQldUbnhvRHM0M2lXRUlKNjBuVGFNZCtHT1l4TlRR?=
- =?utf-8?B?Mml2eDUwcXhnNkxLZlYyRXEzVEg2U3lmcU9vckdaMXUzNDlFR1FkVnIzOGFW?=
- =?utf-8?B?ZitzSXYxVWpFcGFUUzM0S3Nvb2h3enlaVVlwRzZOanVMc0hvR25LQXh3V2N0?=
- =?utf-8?B?MjM1WHNyaDJObUJZY0hjeTlrMXdVOXB3R2p1bDdqcjUwck5uQXBQK2x5Si9U?=
- =?utf-8?B?UkUwQ0NCR0lCNlNiTHpLbHRiYXMzd3dxbFIyYTFxUk5wK2R3YjdtU1JIdWxv?=
- =?utf-8?B?UWREN1EvNkhNZXluV1o1USswTzllcWpoYStjRmtxSkVVMjVQMk4zUVo3cnd6?=
- =?utf-8?B?dFlXUVhCbmY3cEhGcGx1MGxhakRWd3ZKNG4yL0dQM2VYY21vdXR5ejQ5L1Vw?=
- =?utf-8?B?VTN1ZlFieFk2MXhJMUZPU1g5NHF6OTZtUkFxcHBuV0NkUE40UmtzdVBDWWpH?=
- =?utf-8?B?cC90UG5ML2lxdUFDcHZycVdBOWFSUzEzUW1XTXhOK3ZMREFBMDdrK2JndGt1?=
- =?utf-8?B?eGdzazN5ZHZ2Q2E3MVhtYWlyZXl6dllEZ2trQWp1M0dna1NOZHEvM2FsaEhC?=
- =?utf-8?B?bXhybG92SzVxMVQ2c3YvRTJxeUg2V3VvY3NSY04zU1JqUUQ4MzBZWW5VNS9G?=
- =?utf-8?Q?9mbV/r7Vv+1H0TYbdevF/Sp2u23IKEscKI1pLDK?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?AExYxue/O9RhcwaDeB0gvyeNXQencsuqu/RTBM4OB65vUQkemKhkW4VZapjT?=
+ =?us-ascii?Q?akUGHuISUz45CHZrvX6tjRMYn6/Yp7dRyuV81+4p9amcHxiTbSx1ZlF77IFz?=
+ =?us-ascii?Q?mXuPZzoS5kOmEj1QifWWmHB/HNh6jqOeGZ9Tfo4Vqnm3pNz8Sd99MyGiWkEE?=
+ =?us-ascii?Q?96RqZ10jMxcFAIgKmlqz4LkLGtZRMF9sFSY52ut3oh4rmWwZHO3yDzwoR9Y3?=
+ =?us-ascii?Q?ou4x1XoQCYBuZ4ph8yDWVniGFszY5jW1z6OzAhsnfhSIFoWWw9vV4qdCf/jZ?=
+ =?us-ascii?Q?p2NOF13EpDnfL78qGq3PCT2GfK3HqB+ChAmsmbJqYzqvp8b+Ls9K+iGnqzAr?=
+ =?us-ascii?Q?+gc/9PACtD/GGyLjvW5cSHXS0wT+hPuBh/7v5iatDIOe1OLqqOYFvgZzU5lG?=
+ =?us-ascii?Q?aJaRjf3pockM/3G8JgjovYLrc+d5E9vdBpJQdz0DM3jeGpF4wCouILo4uGlx?=
+ =?us-ascii?Q?+2hvZlaIuZCr3OQ3sUvIhm95aZKmWdhZMfrquMCuhktcbbCN+zwHn3UPPKzf?=
+ =?us-ascii?Q?5yfdYU1f2pghx4CInKy0PCsSK8xGAZSKgo1O4SjiaVlJL1pXg2kdohxWEmq9?=
+ =?us-ascii?Q?m4StWeqoVt3DtasjlQ6lnniXOHT/pDnnHNbwbJsiKxw49XnWIwwxAbfJ+LJE?=
+ =?us-ascii?Q?iDVJxzb6hxBbNWNZXOYRYhqkWovrf+2EA3jE7MZOHyQ28hFuvo3AbUJaGLv9?=
+ =?us-ascii?Q?YdXNDg4cv5psn6ZGcVoWfa56BseJMxofHOk5iiordazqnavSfFSeHN+6s0O3?=
+ =?us-ascii?Q?WfvCcosyUJoDD3WELoIeOGl9HIW8Rt/2CFxhlmj9cKA7pM1pSfDq1458St1C?=
+ =?us-ascii?Q?KwJCkCOlodtbHrENCKQcd+myN727HLSYvkglVj8IXwacbDX679OkYk0lnOb1?=
+ =?us-ascii?Q?bgbZs1SY+cd8ynio3RA/G3riOm2mww7agxJEhp6OKj7TdsIue0GNRgYDDR/W?=
+ =?us-ascii?Q?Bu3e+Lx0Mmk8/dGJZ5YBuDbIGYSKheJ6FxtvGIdEkb7IVr8AcryHKJEZWmJ1?=
+ =?us-ascii?Q?lNu6oVrwfCfjScLKstniz3kYUf52/Kx5db5iFA/L25KbWRuTfoR0mqhMIqJp?=
+ =?us-ascii?Q?pDGnIrDjdE0omSnll9RzJ5cQICA8LMI0TOjt8Q2mDvDAIbiW1yIWRtR57c5D?=
+ =?us-ascii?Q?CwSt+GHNrwQ/I0KWwOvQgzTN6Pb41M/V6W5N7uLzh4Mm5uB1avBGdgBqV+Fp?=
+ =?us-ascii?Q?3wZ9ZFrCa1bWclOydyWhKZJh/G47CiPYHWhmWJxnaz0UPXhpAB/oI4RMnXp1?=
+ =?us-ascii?Q?XNVtlpB8zw2gUpfArIerP66B3LOj1M28Sm1t7jF55uWeOxbEnnIVfBCNd8WN?=
+ =?us-ascii?Q?g4IqIjXM6hHFKLDKhc+dqEBe?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eca61a59-1095-4973-b949-08d8ff58ffea
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB2583.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf7b6d90-240e-4a8f-f7a4-08d8ff59ce87
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3962.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2021 15:21:39.1771 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2021 15:27:25.7053 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rpTbM0TINbh0NBb+Fp7q3H95F5puzgcJM0XR40WciOrHSlqJBivDYqpXCedJN35R
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2937
+X-MS-Exchange-CrossTenant-UserPrincipalName: A6utWKyyrs2h/HxIe65s7bntCBuH3S5pap5ZuCpi+EpA4RPVHEXw395xT9q6Hygg
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2502
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,321 +114,62 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: christian.koenig@amd.com, tzimmermann@suse.de
-Content-Type: multipart/mixed; boundary="===============0118352725=="
+Cc: Alexander Deucher <Alexander.Deucher@amd.com>,
+ Luben Tuikov <luben.tuikov@amd.com>, John Clements <john.clements@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0118352725==
-Content-Type: text/html; charset=utf-8
-Content-Language: en-CA
-Content-Transfer-Encoding: 7bit
+Add back the double-sscanf so that both decimal
+and hexadecimal values could be read in, but this
+time invert the scan so that hexadecimal format
+with a leading 0x is tried first, and if that
+fails, then try decimal format.
 
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 2021-04-07 7:12 p.m., Felix Kuehling
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:20210407231259.1787-2-Felix.Kuehling@amd.com">
-      <pre class="moz-quote-pre" wrap="">amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu needs the drm_priv to allow mmap
-to access the BO through the corresponding file descriptor.
+Also use a logical-AND instead of nesting double
+if-conditional.
 
-Signed-off-by: Felix Kuehling <a class="moz-txt-link-rfc2396E" href="mailto:Felix.Kuehling@amd.com">&lt;Felix.Kuehling@amd.com&gt;</a>
+See commit "drm/amdgpu: Fix a bug for input with double sscanf"
+
+Cc: Alexander Deucher <Alexander.Deucher@amd.com>
+Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
+Reviewed-by: John Clements <john.clements@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    | 14 ++--
- .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  | 69 +++++++++++--------
- drivers/gpu/drm/amd/amdkfd/kfd_process.c      |  5 +-
- 3 files changed, 50 insertions(+), 38 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-index 5ffb07b02810..0d59bebd92af 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-@@ -236,20 +236,20 @@ uint8_t amdgpu_amdkfd_get_xgmi_hops_count(struct kgd_dev *dst, struct kgd_dev *s
- /* GPUVM API */
- int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct kgd_dev *kgd,
- 					struct file *filp, u32 pasid,
--					void **vm, void **process_info,
-+					void **process_info,
- 					struct dma_fence **ef);
--void amdgpu_amdkfd_gpuvm_release_process_vm(struct kgd_dev *kgd, void *vm);
--uint64_t amdgpu_amdkfd_gpuvm_get_process_page_dir(void *vm);
-+void amdgpu_amdkfd_gpuvm_release_process_vm(struct kgd_dev *kgd, void *drm_priv);
-+uint64_t amdgpu_amdkfd_gpuvm_get_process_page_dir(void *drm_priv);
- int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
- 		struct kgd_dev *kgd, uint64_t va, uint64_t size,
--		void *vm, struct kgd_mem **mem,
-+		void *drm_priv, struct kgd_mem **mem,
- 		uint64_t *offset, uint32_t flags);
- int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
- 		struct kgd_dev *kgd, struct kgd_mem *mem, uint64_t *size);
- int amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
--		struct kgd_dev *kgd, struct kgd_mem *mem, void *vm);
-+		struct kgd_dev *kgd, struct kgd_mem *mem, void *drm_priv);
- int amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu(
--		struct kgd_dev *kgd, struct kgd_mem *mem, void *vm);
-+		struct kgd_dev *kgd, struct kgd_mem *mem, void *drm_priv);
- int amdgpu_amdkfd_gpuvm_sync_memory(
- 		struct kgd_dev *kgd, struct kgd_mem *mem, bool intr);
- int amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(struct kgd_dev *kgd,
-@@ -260,7 +260,7 @@ int amdgpu_amdkfd_gpuvm_get_vm_fault_info(struct kgd_dev *kgd,
- 					      struct kfd_vm_fault_info *info);
- int amdgpu_amdkfd_gpuvm_import_dmabuf(struct kgd_dev *kgd,
- 				      struct dma_buf *dmabuf,
--				      uint64_t va, void *vm,
-+				      uint64_t va, void *drm_priv,
- 				      struct kgd_mem **mem, uint64_t *size,
- 				      uint64_t *mmap_offset);
- int amdgpu_amdkfd_get_tile_config(struct kgd_dev *kgd,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-index 36012229ccc1..95442bcd60fb 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-@@ -951,6 +951,13 @@ static int process_update_pds(struct amdkfd_process_info *process_info,
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index 44dfb3613e37..38a691a3b600 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -229,7 +229,8 @@ static int amdgpu_ras_debugfs_ctrl_parse_data(struct file *f,
  
-+static struct amdgpu_vm *drm_priv_to_vm(struct drm_file *drm_priv)
-+{
-+	struct amdgpu_fpriv *fpriv = drm_priv-&gt;driver_priv;
-+
-+	return &amp;fpriv-&gt;vm;
-+}
-+
- static int init_kfd_vm(struct amdgpu_vm *vm, void **process_info,
- 		       struct dma_fence **ef)
- {
-@@ -1039,15 +1046,19 @@ static int init_kfd_vm(struct amdgpu_vm *vm, void **process_info,
+ 	if (op != -1) {
+ 		if (op == 3) {
+-			if (sscanf(str, "%*s %llx", &address) != 1)
++			if (sscanf(str, "%*s 0x%llx", &address) != 1 &&
++			    sscanf(str, "%*s %llu", &address) != 1)
+ 				return -EINVAL;
  
- int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct kgd_dev *kgd,
- 					   struct file *filp, u32 pasid,
--					   void **vm, void **process_info,
-+					   void **process_info,
- 					   struct dma_fence **ef)
- {
- 	struct amdgpu_device *adev = get_amdgpu_device(kgd);
--	struct drm_file *drm_priv = filp-&gt;private_data;
--	struct amdgpu_fpriv *drv_priv = drm_priv-&gt;driver_priv;
--	struct amdgpu_vm *avm = &amp;drv_priv-&gt;vm;
-+	struct amdgpu_fpriv *drv_priv;
-+	struct amdgpu_vm *avm;
- 	int ret;
+ 			data->op = op;
+@@ -253,7 +254,9 @@ static int amdgpu_ras_debugfs_ctrl_parse_data(struct file *f,
+ 		data->op = op;
  
-+	ret = amdgpu_file_to_fpriv(filp, &amp;drv_priv);
-+	if (ret)
-+		return ret;
-+	avm = &amp;drv_priv-&gt;vm;
-+
- 	/* Already a compute VM? */
- 	if (avm-&gt;process_info)
- 		return -EINVAL;
-@@ -1062,7 +1073,7 @@ int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct kgd_dev *kgd,
- 	if (ret)
- 		return ret;
- 
--	*vm = (void *)avm;
-+	amdgpu_vm_set_task_info(avm);
- 
- 	return 0;
- }
-@@ -1103,15 +1114,17 @@ void amdgpu_amdkfd_gpuvm_destroy_cb(struct amdgpu_device *adev,
- 	}
- }
- 
--void amdgpu_amdkfd_gpuvm_release_process_vm(struct kgd_dev *kgd, void *vm)
-+void amdgpu_amdkfd_gpuvm_release_process_vm(struct kgd_dev *kgd, void *drm_priv)
- {
- 	struct amdgpu_device *adev = get_amdgpu_device(kgd);
--	struct amdgpu_vm *avm = (struct amdgpu_vm *)vm;
-+	struct amdgpu_vm *avm;
- 
--	if (WARN_ON(!kgd || !vm))
-+	if (WARN_ON(!kgd || !drm_priv))
- 		return;
- 
--	pr_debug(&quot;Releasing process vm %p\n&quot;, vm);
-+	avm = drm_priv_to_vm(drm_priv);
-+
-+	pr_debug(&quot;Releasing process vm %p\n&quot;, avm);
- 
- 	/* The original pasid of amdgpu vm has already been
- 	 * released during making a amdgpu vm to a compute vm
-@@ -1122,9 +1135,9 @@ void amdgpu_amdkfd_gpuvm_release_process_vm(struct kgd_dev *kgd, void *vm)
- 	amdgpu_vm_release_compute(adev, avm);
- }
- 
--uint64_t amdgpu_amdkfd_gpuvm_get_process_page_dir(void *vm)
-+uint64_t amdgpu_amdkfd_gpuvm_get_process_page_dir(void *drm_priv)
- {
--	struct amdgpu_vm *avm = (struct amdgpu_vm *)vm;
-+	struct amdgpu_vm *avm = drm_priv_to_vm(drm_priv);
- 	struct amdgpu_bo *pd = avm-&gt;root.base.bo;
- 	struct amdgpu_device *adev = amdgpu_ttm_adev(pd-&gt;tbo.bdev);
- 
-@@ -1135,11 +1148,11 @@ uint64_t amdgpu_amdkfd_gpuvm_get_process_page_dir(void *vm)
- 
- int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
- 		struct kgd_dev *kgd, uint64_t va, uint64_t size,
--		void *vm, struct kgd_mem **mem,
-+		void *drm_priv, struct kgd_mem **mem,
- 		uint64_t *offset, uint32_t flags)
- {
- 	struct amdgpu_device *adev = get_amdgpu_device(kgd);
--	struct amdgpu_vm *avm = (struct amdgpu_vm *)vm;
-+	struct amdgpu_vm *avm = drm_priv_to_vm(drm_priv);
- 	enum ttm_bo_type bo_type = ttm_bo_type_device;
- 	struct sg_table *sg = NULL;
- 	uint64_t user_addr = 0;
-@@ -1350,10 +1363,10 @@ int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
- }
- 
- int amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
--		struct kgd_dev *kgd, struct kgd_mem *mem, void *vm)
-+		struct kgd_dev *kgd, struct kgd_mem *mem, void *drm_priv)
- {
- 	struct amdgpu_device *adev = get_amdgpu_device(kgd);
--	struct amdgpu_vm *avm = (struct amdgpu_vm *)vm;
-+	struct amdgpu_vm *avm = drm_priv_to_vm(drm_priv);
- 	int ret;
- 	struct amdgpu_bo *bo;
- 	uint32_t domain;
-@@ -1394,9 +1407,9 @@ int amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
- 	pr_debug(&quot;Map VA 0x%llx - 0x%llx to vm %p domain %s\n&quot;,
- 			mem-&gt;va,
- 			mem-&gt;va + bo_size * (1 + mem-&gt;aql_queue),
--			vm, domain_string(domain));
-+			avm, domain_string(domain));
- 
--	ret = reserve_bo_and_vm(mem, vm, &amp;ctx);
-+	ret = reserve_bo_and_vm(mem, avm, &amp;ctx);
- 	if (unlikely(ret))
- 		goto out;
- 
-@@ -1440,7 +1453,7 @@ int amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
- 	}
- 
- 	list_for_each_entry(entry, &amp;mem-&gt;bo_va_list, bo_list) {
--		if (entry-&gt;bo_va-&gt;base.vm == vm &amp;&amp; !entry-&gt;is_mapped) {
-+		if (entry-&gt;bo_va-&gt;base.vm == avm &amp;&amp; !entry-&gt;is_mapped) {
- 			pr_debug(&quot;\t map VA 0x%llx - 0x%llx in entry %p\n&quot;,
- 					entry-&gt;va, entry-&gt;va + bo_size,
- 					entry);
-@@ -1452,7 +1465,7 @@ int amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
- 				goto map_bo_to_gpuvm_failed;
- 			}
- 
--			ret = vm_update_pds(vm, ctx.sync);
-+			ret = vm_update_pds(avm, ctx.sync);
- 			if (ret) {
- 				pr_err(&quot;Failed to update page directories\n&quot;);
- 				goto map_bo_to_gpuvm_failed;
-@@ -1488,11 +1501,11 @@ int amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
- }
- 
- int amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu(
--		struct kgd_dev *kgd, struct kgd_mem *mem, void *vm)
-+		struct kgd_dev *kgd, struct kgd_mem *mem, void *drm_priv)
- {
- 	struct amdgpu_device *adev = get_amdgpu_device(kgd);
--	struct amdkfd_process_info *process_info =
--		((struct amdgpu_vm *)vm)-&gt;process_info;
-+	struct amdgpu_vm *avm = drm_priv_to_vm(drm_priv);
-+	struct amdkfd_process_info *process_info = avm-&gt;process_info;
- 	unsigned long bo_size = mem-&gt;bo-&gt;tbo.base.size;
- 	struct kfd_bo_va_list *entry;
- 	struct bo_vm_reservation_context ctx;
-@@ -1500,7 +1513,7 @@ int amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu(
- 
- 	mutex_lock(&amp;mem-&gt;lock);
- 
--	ret = reserve_bo_and_cond_vms(mem, vm, BO_VM_MAPPED, &amp;ctx);
-+	ret = reserve_bo_and_cond_vms(mem, avm, BO_VM_MAPPED, &amp;ctx);
- 	if (unlikely(ret))
- 		goto out;
- 	/* If no VMs were reserved, it means the BO wasn't actually mapped */
-@@ -1509,17 +1522,17 @@ int amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu(
- 		goto unreserve_out;
- 	}
- 
--	ret = vm_validate_pt_pd_bos((struct amdgpu_vm *)vm);
-+	ret = vm_validate_pt_pd_bos(avm);
- 	if (unlikely(ret))
- 		goto unreserve_out;
- 
- 	pr_debug(&quot;Unmap VA 0x%llx - 0x%llx from vm %p\n&quot;,
- 		mem-&gt;va,
- 		mem-&gt;va + bo_size * (1 + mem-&gt;aql_queue),
--		vm);
-+		avm);
- 
- 	list_for_each_entry(entry, &amp;mem-&gt;bo_va_list, bo_list) {
--		if (entry-&gt;bo_va-&gt;base.vm == vm &amp;&amp; entry-&gt;is_mapped) {
-+		if (entry-&gt;bo_va-&gt;base.vm == avm &amp;&amp; entry-&gt;is_mapped) {
- 			pr_debug(&quot;\t unmap VA 0x%llx - 0x%llx from entry %p\n&quot;,
- 					entry-&gt;va,
- 					entry-&gt;va + bo_size,
-@@ -1645,14 +1658,14 @@ int amdgpu_amdkfd_gpuvm_get_vm_fault_info(struct kgd_dev *kgd,
- 
- int amdgpu_amdkfd_gpuvm_import_dmabuf(struct kgd_dev *kgd,
- 				      struct dma_buf *dma_buf,
--				      uint64_t va, void *vm,
-+				      uint64_t va, void *drm_priv,
- 				      struct kgd_mem **mem, uint64_t *size,
- 				      uint64_t *mmap_offset)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)kgd;
-+	struct amdgpu_vm *avm = drm_priv_to_vm(drm_priv);
- 	struct drm_gem_object *obj;
- 	struct amdgpu_bo *bo;
--	struct amdgpu_vm *avm = (struct amdgpu_vm *)vm;
- 
- 	if (dma_buf-&gt;ops != &amp;amdgpu_dmabuf_ops)
- 		/* Can't handle non-graphics buffers */
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-index d97e330a5022..bad0ecd6ef87 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -1383,13 +1383,12 @@ int kfd_process_device_init_vm(struct kfd_process_device *pdd,
- 
- 	ret = amdgpu_amdkfd_gpuvm_acquire_process_vm(
- 		dev-&gt;kgd, drm_file, p-&gt;pasid,
--		&amp;pdd-&gt;vm, &amp;p-&gt;kgd_process_info, &amp;p-&gt;ef);
-+		&amp;p-&gt;kgd_process_info, &amp;p-&gt;ef);
- 	if (ret) {
- 		pr_err(&quot;Failed to create process VM object\n&quot;);
- 		return ret;
- 	}
--
--	amdgpu_vm_set_task_info(pdd-&gt;vm);
-+	pdd-&gt;vm = drm_file-&gt;private_data;
- </pre>
-    </blockquote>
-    <p>Maybe it is better to read, rename pdd-&gt;vm to pdd-&gt;drm_priv
-      as well?</p>
-    <p>Philip<br>
-    </p>
-    <blockquote type="cite" cite="mid:20210407231259.1787-2-Felix.Kuehling@amd.com">
-      <pre class="moz-quote-pre" wrap="">
- 	ret = kfd_process_device_reserve_ib_mem(pdd);
- 	if (ret)
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---===============0118352725==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+ 		if (op == 2) {
+-			if (sscanf(str, "%*s %*s %*s %x %llx %llx",
++			if (sscanf(str, "%*s %*s %*s 0x%x 0x%llx 0x%llx",
++				   &sub_block, &address, &value) != 3 &&
++			    sscanf(str, "%*s %*s %*s %u %llu %llu",
+ 				   &sub_block, &address, &value) != 3)
+ 				return -EINVAL;
+ 			data->head.sub_block_index = sub_block;
+-- 
+2.31.0.97.g1424303384
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0118352725==--
