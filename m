@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3256A362247
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Apr 2021 16:34:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D36336224A
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Apr 2021 16:34:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A14716E084;
-	Fri, 16 Apr 2021 14:34:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D35E56EB86;
+	Fri, 16 Apr 2021 14:34:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2040.outbound.protection.outlook.com [40.107.93.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B524F6EB84
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam08on2081.outbound.protection.outlook.com [40.107.101.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96C456E084
  for <amd-gfx@lists.freedesktop.org>; Fri, 16 Apr 2021 14:34:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=O/v5NDGzo2Ic5tKdKXg7eHyh2d7du7wp5Pmr9qFrCfOdvEzKfPSh1oopJWIaUSjT/IWPiw9j/TXsYgd9TAvpUtqj7AWYZwip/TZVJpd6Tm1UFbuOkfJ8HIpr+8cOL68TATvxcIaz5mPR5vBdP0bci4UdOl0+l7rvRfn5ptEuUaNwjI6iCy3iD5+0hXRpqUKe59jy0YekGMX7zzmMNssS4P2IRGLlod31P/R9jt3IfazTTNHdq84/DpPoBih+v8r+paxI7ntMwgCyAEYsdZtExVfUwRGWlDJjJnjgBg3spRa5f5rMnnLUrad1MVzJJa7OW8P1H9KfWGs7T81sWxiHKw==
+ b=hfeiA+uw7l6i6LskpC3c9Gl6ANPtwDELuCepiM9t/0eJ9yE9xGLBqWmJkopa8mhXUicdUdSbyYQKKY5uk2nMGv1mC0LpHEo1vc6fFPg/eZkrnCFgxrOuBt1a8z+6IlhiS6uJJ7Oy/4KMHbRXpDPB5vfxS2hmVrKyJTglTMVJEjUAkNZRm0hzTMmrlVSfUdwRsQmI4qzDpe1ShuoTGGNGENhcT8P+l+lgAhvUi84P4t2gfrURu3WZlLNnxPCQgeHEUeNH0hDFy0fpTpcSpeMgbe+vncVzcN1v9ED0oBTXmgJmA9T/CW03/zkqlW47WgQTKQh2TLSzU1NInU6MIr5x3g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Je4NK0oZjC6BNdt1D2wjqDWFeqHBMFNXOaB3BFsStEU=;
- b=bs+P69HN+SdbLwc8LCpbUOdPg5ddPXz/iHmZh8DFZZDFWDuOYNwGT6HRhs3Fne9VE2yHIkt6+l3oEnJZPvPHyyLJtYUmt0ZJACiEJGoGspBmLpjyOFRVHB+jxIP9vaczJvaXdWh5fJfUHWKWdzqr0IS0PuABbdRqIx6yP97v6T9NE53z1RBUa9DtLYq/I6MYjNFH0aUBYF8hgTz48I/YNJL8SNWYdWqXJGDJ+q4fgAsY/2HA86/v0w/qp2jZjC/7plszNHPCcVHfZPr0ABtu83dYU7XgYq3h5f+rkICyGsxUHB0NwzwcXlCkCU+uZ/h0qN6yRFdwr6lw8GPeNoGPGw==
+ bh=r4sFDezJsAwTc8I1L4DAkXc0cyEEZspD/GAlTWOxwro=;
+ b=j2feFbGbk6gXLwKl+4KwbuaL3LEwylenCRKDstfz11Tj1KjBCgMpM8J1jcaI6yCJKO/txllEMSLA6Ik+4oR/TpnrAoS5qGyuGzy8+OCq4OYB98EtmiuJGug29l+9RILdOHMf8QuIpMeJ9liSEhMb2HY5PT8bSqdJSYOVzPIVLBYGwjpmIxqSp1StdCEeL/jHE2jPkkcOCXLRTPj/3ZiJx44WqwwwQkBpeX8FnrVX9M+bimQQYp5WsDASbsDvgu4zq5owL8ByrFYqFNfhHnhKzK1QHs97+a0no6L7zA2KSbO66pYPq+f7oO0cquBFnrZu8Qvs0Y+Q4cPOH/8yhhLbQw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Je4NK0oZjC6BNdt1D2wjqDWFeqHBMFNXOaB3BFsStEU=;
- b=Kzaz7gbzoScqXy5Wyan9Vxolj/afACgk3PmZGmUegKxlbBW841PuPMeioLeUtV6tCmhgbSYQR9nA4Z7T9zN3BS8gChRyBXM4c/h6ilx85ZhICRtDmyDub/C5QQDW5Yx8meqqUVYWrRp4JAchzvzVdRvfM92yXFo3iCn64mlIqfs=
-Received: from BN9PR03CA0552.namprd03.prod.outlook.com (2603:10b6:408:138::17)
- by CH2PR12MB4645.namprd12.prod.outlook.com (2603:10b6:610:e::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.22; Fri, 16 Apr
+ bh=r4sFDezJsAwTc8I1L4DAkXc0cyEEZspD/GAlTWOxwro=;
+ b=zvTmeYiFRbXTa0DlLYvBByejkRBqjFsHzKuSt0BY06DqehaPPWSRO3MysB3Fll0hS4hyo6vsUxWWPbCkpkksHY0Y+ZZd0/hNpkFqIyWxDM1iUa4C96KLwT13jmeJXN3ntb3IJSgdzUM1kiStYgnYtF+IE5gpq4meBlY8u4+xkek=
+Received: from BN9PR03CA0544.namprd03.prod.outlook.com (2603:10b6:408:138::9)
+ by BYAPR12MB4773.namprd12.prod.outlook.com (2603:10b6:a03:109::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.16; Fri, 16 Apr
  2021 14:34:28 +0000
 Received: from BN8NAM11FT050.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:138:cafe::73) by BN9PR03CA0552.outlook.office365.com
- (2603:10b6:408:138::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.18 via Frontend
+ (2603:10b6:408:138:cafe::28) by BN9PR03CA0544.outlook.office365.com
+ (2603:10b6:408:138::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.16 via Frontend
  Transport; Fri, 16 Apr 2021 14:34:28 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
@@ -52,42 +52,43 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 16 Apr
- 2021 09:34:27 -0500
+ 2021 09:34:28 -0500
 Received: from elite-desk-aura.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2242.4 via
  Frontend Transport; Fri, 16 Apr 2021 09:34:27 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 05/19] drm/amd/display: disable seamless boot for external DP
-Date: Fri, 16 Apr 2021 10:34:03 -0400
-Message-ID: <20210416143417.611019-6-aurabindo.pillai@amd.com>
+Subject: [PATCH 06/19] drm/amd/display: removed unused function
+ dc_link_reallocate_mst_payload.
+Date: Fri, 16 Apr 2021 10:34:04 -0400
+Message-ID: <20210416143417.611019-7-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210416143417.611019-1-aurabindo.pillai@amd.com>
 References: <20210416143417.611019-1-aurabindo.pillai@amd.com>
 MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9db9df48-d4f0-4cae-33a2-08d900e4bd7e
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4645:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB4645E46726BA77E38D9605F18B4C9@CH2PR12MB4645.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:62;
+X-MS-Office365-Filtering-Correlation-Id: 0aae37b4-b495-48cf-951d-08d900e4bdde
+X-MS-TrafficTypeDiagnostic: BYAPR12MB4773:
+X-Microsoft-Antispam-PRVS: <BYAPR12MB4773B6D8B336688157FB2D2F8B4C9@BYAPR12MB4773.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7XGx/jFYP2Clvoiec437SSfeSE5rVg6vT2Uq0cinUbc440DfZ4ei4/hd4125lL5vK1ZDUeZFoTWSBFqasgWn5ydNKDlFVRAfeJNRhH5xvMCdDYdFDgPjAoGFmoFWzFFNng81VCc1+/ysACFP8ae9fGR4Mr48I7+6acjnhbW4in4anvlJMvuP50tz3Yka619hfG+Cw7MjnV/FjyTdAOlx6P3RJCFndlx41NFJ/g81Ow92Yt7A8V2RgbO+TJabbAgoibYkoqHMxes4z2+CGg7bqowXrn4/pet1CfGcBpMq2ARmNr631Awrlj2PGGc9dxhH4+vmpLp+zJSNAh5ANQ1yJY1hvKaYYII682pNbKWAAECRusJvIoSwoCURzkZ63tdHZsC/V2KCNqpNbzp7o993kJlvLR7zBsGdjdCtPwi52JlVoENIiaiYmbccDSgZ/rlWB2sCW6cpYtxe8gO5lZrt4YctqS3rxu53MKGQ/STXNnxQcojT9p4vrceMd3SOWgzlmjpuCJc5qYN3GYTy7/vuDjpn0lb9YzErhn1OcG+BdHF/Byqd6Yu7E86L4CZnamTRqGgZTvLfk8otFEHv4uS1M+Ipfq7elZXhiZNX4uS9tFFSe9uFhESOaLeanJCpBA7P/RYXF0ohkrcr8+/8s2VJahPEqwN2Hoz1bO98qMZFio1/eNteh6L5iNZHL1oYx3B/
+X-Microsoft-Antispam-Message-Info: u9BI3sb33PkXODxP9Brtp8DKeBZ2NVwUX5s6VBCaMhf7XLsG9ZYCydO5L2eDQmlggqPKqeEeqju1LE1N9DEFXThNRSnAudij/DhNRqaAtJJeElUH6dMm6iVycx02EKNpso8zgyTZJQRz1OXBlYd77OxUSIecLdxUR8rXsEVK9RpZzQegprvwaxYKfP/hGwCtc4JipPIiajOHQu/8TgAOlhkB9tijUdKjAR/by9yNC3yTJpE7hKaqDmDEnFC9pNb+KtfevQVYDdkfYCImVT17zWVsnUrXgZnPUxzhffA0edjEFMPBTlJPiEQPffDR+jBmP0hBT6Y2bc55dSRxJ1PJjJSq53WCzTufiMOfBzVGAIjJy4HJiYzQX2PDmKXjM7VHcZ/FF7wdPUCl9+fC07yhNjz606srBorIlKxb2rj+dKo7V+8dU2H8sKFvZq1F5c08JNDwxWp+04HaIrj6Ut1mRQxFDptcVYOME+8UZdGp71rPMRuUhTKH+1X4ZE8JBq1Px9Znbepl6HXS6KAvHnuGoNIqdZ3OhvzkLl125YEdPqtQeVyu8uHgjYtZmgRT/Iy18zcWYlPp/3thJqA6L5CnxZPGDU1qm5PwDHvVT3wpdCF3m+16NbnH2JkN2nCfql3gEjGDOmRjkjGZUhWP/5ta6lwOa3NJTRkB/y8cKn+IEcoIjg6PWOufmidZSmqukODm
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(136003)(396003)(39860400002)(376002)(346002)(46966006)(36840700001)(54906003)(81166007)(44832011)(6666004)(4326008)(186003)(36756003)(36860700001)(356005)(6916009)(8676002)(86362001)(7696005)(5660300002)(70586007)(426003)(26005)(316002)(1076003)(336012)(8936002)(70206006)(83380400001)(2616005)(478600001)(82740400003)(2906002)(82310400003)(47076005)(36900700001);
+ SFS:(4636009)(376002)(136003)(39860400002)(396003)(346002)(36840700001)(46966006)(6916009)(82740400003)(8936002)(1076003)(478600001)(47076005)(356005)(70206006)(81166007)(70586007)(44832011)(8676002)(6666004)(2616005)(86362001)(5660300002)(36756003)(83380400001)(4326008)(336012)(316002)(2906002)(82310400003)(426003)(7696005)(26005)(36860700001)(186003)(54906003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2021 14:34:28.0894 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9db9df48-d4f0-4cae-33a2-08d900e4bd7e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2021 14:34:28.7210 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0aae37b4-b495-48cf-951d-08d900e4bdde
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT050.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4645
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB4773
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,50 +100,100 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Martin Leung <Martin.Leung@amd.com>,
- Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
- Anthony Wang <anthony1.wang@amd.com>, Bhawanpreet.Lakha@amd.com,
+Cc: Robin Singh <robin.singh@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
  bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Anthony Wang <anthony1.wang@amd.com>
+From: Robin Singh <robin.singh@amd.com>
 
 [Why]
-Primary feature use case is with eDP panels.
+Found that dc_link_reallocate_mst_payload is not used anymore
+in any of the use case scenario.
 
 [How]
-Fail seamless boot validation if display is not an eDP panel.
+removed dc_link_reallocate_mst_payload function definition
+and declaration.
 
-Signed-off-by: Anthony Wang <anthony1.wang@amd.com>
-Reviewed-by: Martin Leung <Martin.Leung@amd.com>
+Signed-off-by: Robin Singh <robin.singh@amd.com>
+Reviewed-by: Harry Wentland <Harry.Wentland@amd.com>
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 44 -------------------
+ drivers/gpu/drm/amd/display/dc/dc_link.h      |  1 -
+ 2 files changed, 45 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 724ddce8aa41..ee4970491d7b 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -1323,11 +1323,10 @@ bool dc_validate_seamless_boot_timing(const struct dc *dc,
- 	struct dc_link *link = sink->link;
- 	unsigned int i, enc_inst, tg_inst = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index 9507b08567b4..fa384923cfc1 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -3136,50 +3136,6 @@ static enum dc_status deallocate_mst_payload(struct pipe_ctx *pipe_ctx)
+ 	return DC_OK;
+ }
  
--	// Seamless port only support single DP and EDP so far
--	if ((sink->sink_signal != SIGNAL_TYPE_DISPLAY_PORT &&
--		sink->sink_signal != SIGNAL_TYPE_EDP) ||
--		sink->sink_signal == SIGNAL_TYPE_DISPLAY_PORT_MST)
-+	/* Support seamless boot on EDP displays only */
-+	if (sink->sink_signal != SIGNAL_TYPE_EDP) {
- 		return false;
-+	}
+-enum dc_status dc_link_reallocate_mst_payload(struct dc_link *link)
+-{
+-	int i;
+-	struct pipe_ctx *pipe_ctx;
+-
+-	// Clear all of MST payload then reallocate
+-	for (i = 0; i < MAX_PIPES; i++) {
+-		pipe_ctx = &link->dc->current_state->res_ctx.pipe_ctx[i];
+-
+-		/* driver enable split pipe for external monitors
+-		 * we have to check pipe_ctx is split pipe or not
+-		 * If it's split pipe, driver using top pipe to
+-		 * reaallocate.
+-		 */
+-		if (!pipe_ctx || pipe_ctx->top_pipe)
+-			continue;
+-
+-		if (pipe_ctx->stream && pipe_ctx->stream->link == link &&
+-				pipe_ctx->stream->dpms_off == false &&
+-				pipe_ctx->stream->signal == SIGNAL_TYPE_DISPLAY_PORT_MST) {
+-			deallocate_mst_payload(pipe_ctx);
+-		}
+-	}
+-
+-	for (i = 0; i < MAX_PIPES; i++) {
+-		pipe_ctx = &link->dc->current_state->res_ctx.pipe_ctx[i];
+-
+-		if (!pipe_ctx || pipe_ctx->top_pipe)
+-			continue;
+-
+-		if (pipe_ctx->stream && pipe_ctx->stream->link == link &&
+-				pipe_ctx->stream->dpms_off == false &&
+-				pipe_ctx->stream->signal == SIGNAL_TYPE_DISPLAY_PORT_MST) {
+-			/* enable/disable PHY will clear connection between BE and FE
+-			 * need to restore it.
+-			 */
+-			link->link_enc->funcs->connect_dig_be_to_fe(link->link_enc,
+-									pipe_ctx->stream_res.stream_enc->id, true);
+-			dc_link_allocate_mst_payload(pipe_ctx);
+-		}
+-	}
+-
+-	return DC_OK;
+-}
  
- 	/* Check for enabled DIG to identify enabled display */
- 	if (!link->link_enc->funcs->is_dig_enabled(link->link_enc))
+ #if defined(CONFIG_DRM_AMD_DC_HDCP)
+ static void update_psp_stream_config(struct pipe_ctx *pipe_ctx, bool dpms_off)
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
+index b0013e674864..054bab45ee17 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_link.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
+@@ -276,7 +276,6 @@ enum dc_detect_reason {
+ bool dc_link_detect(struct dc_link *dc_link, enum dc_detect_reason reason);
+ bool dc_link_get_hpd_state(struct dc_link *dc_link);
+ enum dc_status dc_link_allocate_mst_payload(struct pipe_ctx *pipe_ctx);
+-enum dc_status dc_link_reallocate_mst_payload(struct dc_link *link);
+ 
+ /* Notify DC about DP RX Interrupt (aka Short Pulse Interrupt).
+  * Return:
 -- 
 2.31.1
 
