@@ -1,46 +1,55 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AD34369BD5
-	for <lists+amd-gfx@lfdr.de>; Fri, 23 Apr 2021 23:07:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 570A8369BFE
+	for <lists+amd-gfx@lfdr.de>; Fri, 23 Apr 2021 23:21:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B1926EC56;
-	Fri, 23 Apr 2021 21:07:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D38BE6EC50;
+	Fri, 23 Apr 2021 21:21:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com
- [209.85.166.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 095996EC50;
- Fri, 23 Apr 2021 21:07:15 +0000 (UTC)
-Received: by mail-io1-f51.google.com with SMTP id p8so1728449iol.11;
- Fri, 23 Apr 2021 14:07:15 -0700 (PDT)
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com
+ [IPv6:2607:f8b0:4864:20::335])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B58FC6EC50
+ for <amd-gfx@lists.freedesktop.org>; Fri, 23 Apr 2021 21:21:44 +0000 (UTC)
+Received: by mail-ot1-x335.google.com with SMTP id
+ c8-20020a9d78480000b0290289e9d1b7bcso32425096otm.4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 23 Apr 2021 14:21:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=OC0HUGyEXe+QUzjtbtojCN4/rYMk0JxQMFteDFx6JeI=;
+ b=WW3gAI8KbdXDBC6w9cJOBtDs63UxtyX0m2pvCVW7WQbDiBIaZG8hZlagIrOP9+s4yy
+ LEuyB0BPC8m6MMcTZrROHtV/MvWdaT1TplSnJ4/6Ck26t1OVSM+uqJqUUS46wrbOfiMf
+ RyhCirEWHdTlo4/A2xmLg/KYt6jVnUJbVJRmAokJDV+EUHZTg7QYvWUGCvXpbnLKF/xl
+ oKntdiN7unKTRJ4waTCJzxo1amicKHV/4/bfPvYJf6BtkmZc9uOwYdm8s2JLRJdU3+uU
+ O9+gtoqhUwwUdePRAIzLI+Fj7H9UcFPcAIZgEpUzkkvrqtX8eR6hNJ7pUzw1sX92R2iL
+ o1eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=vGf4Bqg3eO6JS3gvF6LxMt8XkWMGCm3Fd5yjKYFBgF8=;
- b=E203/yiOlCKbcP6eZiGFqffMqZDLPbUDVm5ztZ2yZMyDkAcLnf6RLnV4cJqB6r++zF
- l5OB6zgsR5RYJdy431rqYeKNpN24j+lRL29u6tZTkFO7V9E7OlybUOKGC0nRGaRGczcR
- UTNRQ4tFlKBfTKy+1mecrRZN1ROaGg+PShbz34OHN3+Eut4XhMbgu2/RXVBVlHT2XCfg
- ewduK7/Kx3nUnJHP083CS/vMbJlvREtcuaKPJFBsqoc5bCNMFuJBlkALI9aFhGJ0J3lU
- F1LAhHPRD7hZPkeX733dE9nE2tqohmtOm0cll0R+LqBg6M6YXKPSqmBiC+aY1LIIj7mf
- J7hA==
-X-Gm-Message-State: AOAM532nosdB2QoLRKesuURSyMPgSfFVrogGPL85buUQq4fFgxUFIFOf
- Pi5knQzN/vIUa+EehIChquEoeyszm3ksU3jrhdA=
-X-Google-Smtp-Source: ABdhPJx/mGXYebrjo1LW38fgTdwSQnNr3RmcE4CILvZv37TRPOr8OlvisBQvXkXDoBESh8c9agnzKhcwdoToZrcFn2Y=
-X-Received: by 2002:a5e:d515:: with SMTP id e21mr4718257iom.30.1619212035381; 
- Fri, 23 Apr 2021 14:07:15 -0700 (PDT)
+ bh=OC0HUGyEXe+QUzjtbtojCN4/rYMk0JxQMFteDFx6JeI=;
+ b=GaZ8pQmrIQy65SSMQ3H7FrruyfYzikpOLFXVgKJIF8Jp5BPU8FmweTY7bOj5p3sBxe
+ O3xBbjQ7v3Rb5rvqmm6kpGcmMKvOv4/WnXI1rIe6P1VSF/kP77tVJNo9s3y9s/YQjF7J
+ lG6tL6+temcUB8DlEPgfDslpB+3cus7Mr/GoHD0ValC+DQYCx9E/0FxTaEv/8IiL+9l5
+ CCqAARK+3qFqpnn/Wow7zcC+huXleJ9DIZo8ZgW1mN2nPgkvkRI68DREUAOm3XnL4tWg
+ UwzesUHzkUSQIqQYuMSYn9S20QYjYYRdLkZ/qPLF0Y91pbnc7juNynAQMp4wtEInBDIa
+ 7cPw==
+X-Gm-Message-State: AOAM532cu/q76UgZ7HSLfeVAfaK8Hoh+pzg2NSZ32bhGMTdFB8uX/Yh1
+ iHhh4rNreMhikjkTols7zggfyAgsxSr3OXGRx8pA2HloO0Czxw==
+X-Google-Smtp-Source: ABdhPJwYL6IwczFNYxsMB0fwQUc+9P0DNI0URvzi6el+Gpr0ISbRrz+4EW8na+m2YiPDBC8nUwl9F8AZyxrjP/KaBuA=
+X-Received: by 2002:a05:6830:1f12:: with SMTP id
+ u18mr5108279otg.132.1619212904095; 
+ Fri, 23 Apr 2021 14:21:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210423184309.207645-1-lyude@redhat.com>
- <20210423184309.207645-3-lyude@redhat.com>
-In-Reply-To: <20210423184309.207645-3-lyude@redhat.com>
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Date: Fri, 23 Apr 2021 17:07:04 -0400
-Message-ID: <CAKb7UvgpMO60gRzmJY0V5nOsT8u9y2hFLazmVJ+pEiedEKOOhQ@mail.gmail.com>
-Subject: Re: [Nouveau] [PATCH v4 02/17] drm/nouveau/kms/nv50-: Move AUX
- adapter reg to connector late register/early unregister
-To: Lyude Paul <lyude@redhat.com>
+References: <20210423190242.2118230-1-Harish.Kasiviswanathan@amd.com>
+In-Reply-To: <20210423190242.2118230-1-Harish.Kasiviswanathan@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 23 Apr 2021 17:21:32 -0400
+Message-ID: <CADnq5_MDLeQEUQOSQLU6Nj=b4j11DF=2aOLfeAazei6-TqL0=Q@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/pm: Update energy_accumulator in gpu metrics
+To: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,108 +61,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Ben Skeggs <bskeggs@redhat.com>
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Some trivia, no comment on the real logic of the changes:
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-On Fri, Apr 23, 2021 at 2:43 PM Lyude Paul <lyude@redhat.com> wrote:
+On Fri, Apr 23, 2021 at 3:02 PM Harish Kasiviswanathan
+<Harish.Kasiviswanathan@amd.com> wrote:
 >
-> Since AUX adapters on nouveau have their respective DRM connectors as
-> parents, we need to make sure that we register then after their connectors.
-
-then -> them
-
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Signed-off-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
 > ---
->  drivers/gpu/drm/nouveau/nouveau_connector.c | 25 ++++++++++++++++-----
->  1 file changed, 20 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> index 61e6d7412505..c04044be3d32 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> @@ -401,7 +401,6 @@ nouveau_connector_destroy(struct drm_connector *connector)
->         drm_connector_cleanup(connector);
->         if (nv_connector->aux.transfer) {
->                 drm_dp_cec_unregister_connector(&nv_connector->aux);
-> -               drm_dp_aux_unregister(&nv_connector->aux);
->                 kfree(nv_connector->aux.name);
->         }
->         kfree(connector);
-> @@ -905,13 +904,29 @@ nouveau_connector_late_register(struct drm_connector *connector)
->         int ret;
+> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+> index dcbe3a72da09..1f02e4ee2909 100644
+> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+> @@ -1657,7 +1657,8 @@ static ssize_t aldebaran_get_gpu_metrics(struct smu_context *smu,
+>         gpu_metrics->average_mm_activity = 0;
 >
->         ret = nouveau_backlight_init(connector);
-> +       if (ret)
-> +               return ret;
+>         gpu_metrics->average_socket_power = metrics.AverageSocketPower;
+> -       gpu_metrics->energy_accumulator = 0;
+> +       gpu_metrics->energy_accumulator = metrics.EnergyAcc64bitHigh << 32 |
+> +                                         metrics.EnergyAcc64bitLow;
 >
-> +       if (connector->connector_type == DRM_MODE_CONNECTOR_eDP ||
-> +           connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort) {
-> +               ret = drm_dp_aux_register(&nouveau_connector(connector)->aux);
-> +               if (ret)
-> +                       goto backlight_fini;
-> +       }
-> +
-> +       return 0;
-> +backlight_fini:
-> +       nouveau_backlight_fini(connector);
->         return ret;
->  }
->
->  static void
->  nouveau_connector_early_unregister(struct drm_connector *connector)
->  {
-> +       if (connector->connector_type == DRM_MODE_CONNECTOR_eDP ||
-> +           connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort)
-> +               drm_dp_aux_unregister(&nouveau_connector(connector)->aux);
-> +
->         nouveau_backlight_fini(connector);
->  }
->
-> @@ -1343,14 +1358,14 @@ nouveau_connector_create(struct drm_device *dev,
->                 snprintf(aux_name, sizeof(aux_name), "sor-%04x-%04x",
->                          dcbe->hasht, dcbe->hashm);
->                 nv_connector->aux.name = kstrdup(aux_name, GFP_KERNEL);
-> -               ret = drm_dp_aux_register(&nv_connector->aux);
-> +               drm_dp_aux_init(&nv_connector->aux);
->                 if (ret) {
-> -                       NV_ERROR(drm, "failed to register aux channel\n");
-> +                       NV_ERROR(drm, "Failed to init AUX adapter for sor-%04x-%04x: %d\n",
-
-Maybe just use aux_name instead of rebuilding the string again?
-
-> +                                dcbe->hasht, dcbe->hashm, ret);
->                         kfree(nv_connector);
->                         return ERR_PTR(ret);
->                 }
-> -               funcs = &nouveau_connector_funcs;
-> -               break;
-> +               fallthrough;
->         default:
->                 funcs = &nouveau_connector_funcs;
->                 break;
+>         gpu_metrics->average_gfxclk_frequency = metrics.AverageGfxclkFrequency;
+>         gpu_metrics->average_socclk_frequency = metrics.AverageSocclkFrequency;
 > --
-> 2.30.2
+> 2.25.1
 >
 > _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
