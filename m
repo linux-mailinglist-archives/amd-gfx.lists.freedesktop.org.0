@@ -1,64 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30EDF36AC65
-	for <lists+amd-gfx@lfdr.de>; Mon, 26 Apr 2021 08:49:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DCBE36AF96
+	for <lists+amd-gfx@lfdr.de>; Mon, 26 Apr 2021 10:15:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A55A89FC0;
-	Mon, 26 Apr 2021 06:49:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF256E5A4;
+	Mon, 26 Apr 2021 08:15:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
- [IPv6:2a00:1450:4864:20::636])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B6A189FC0
- for <amd-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 06:49:15 +0000 (UTC)
-Received: by mail-ej1-x636.google.com with SMTP id ja3so6876849ejc.9
- for <amd-gfx@lists.freedesktop.org>; Sun, 25 Apr 2021 23:49:15 -0700 (PDT)
+Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com
+ [IPv6:2607:f8b0:4864:20::e34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A86636E1DE;
+ Sat, 24 Apr 2021 09:27:51 +0000 (UTC)
+Received: by mail-vs1-xe34.google.com with SMTP id y22so1879002vsd.13;
+ Sat, 24 Apr 2021 02:27:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=qXq+w1lEkDI7dVZMQDYXa/JSwTcgXlJBhIvbj7vIkX0=;
- b=q8lA0+eCBd2vz0+b4XC/7LhrbWsYGHOxF5zU0Y2xyYFxiB3TVUJgRyUYayqPZE9/di
- MFOz/H4mJj4b+FwR1dH/+eHBNEL9bSugtJRac6tn6hGCVajJaGglgqB/gPpdmGOdImFZ
- af8bqspyY6WSjI/vvrGn0HZV/3bMJHCmG17ywpPEarQ5yC0V6Dy1jc8HuJ1x+M6jgAcg
- IEwRRLFNxNo7OebmnDenlXKQcGrH1Y1egt7EvSVf0seU1GkrURIrylC8JkpMm/qo3VwW
- ff3k6h1J+Lu51p6MfW/7COwKWZwSB00QH++I6C1IoijoHVe6pniUJc3zq+isHcpKaZZu
- 6Kiw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=rlGWPl25FCa96zci06+ZWbGtm3tUuzzsH67YozYxWGE=;
+ b=sTf+76tWRNc4bSEDLdNAg0wexuK5dsnVUl1FWko6IsXWXz/k/VwT0CaZf0e8mls9yX
+ vu1RB8IyOarHBHxpzItwynwKzCbzaS/+MMT0KRiBZ4rA9605WPwZXHYHgDe2k2FM09bp
+ CQSd3E0bqSC5dT8cBVIvvaqyKr1+Oh1dB/0gHOlSeDAKII+SYBYSPnbpJPId9kXMYaFI
+ c+kLweW2xBC/8F4ZmsxPywClM4LWKtZjjikKmFAEF4k0AFqs2/8c3Fxh+xnDKHyL1SvO
+ aIp4bkXU6+SNL+jFNhEFUDMeX31he7KDwDtASt+FhQfviO6tbx9s2pm+MPI7iRjsI55U
+ vybg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=qXq+w1lEkDI7dVZMQDYXa/JSwTcgXlJBhIvbj7vIkX0=;
- b=WoNnvp0u6MhWUSLab8BTR3TfRIAVIqKCLNhBEN7Xxei+O4V6BHbhozTfXq7c5PHD8Q
- vgeFJN8faWMBVrSrLb6/tenuu5uo3glfZK1n+Qh549jFj6lDsaZYX7VqB/IyEheqGQ30
- SWga5E37OllMbkiLkfBymUfPWca8YW0vi7aGOjbmOvSNMnzqQrezSr00myMa7eM549CD
- gGST5nxdRdu9PaljTTpgzY8E2vmorNVwNeVZfbml5o5OE5Ew+OeOlskLzGWeLFtiwQqe
- P+mwSGK0ely0TwGQYSuzdj9VnT3q4rAkwa3uN7rK250RbhnPurMWfIRiEoINNfY7S2Zo
- quvA==
-X-Gm-Message-State: AOAM5314gebQZ0zlanr0I6vm9vcgGV3LnD4NdDyjvOdVYtqwltdyBWQG
- f0oyP4Xlhpxr6uW+Nu2FnZxtzqrFxeg=
-X-Google-Smtp-Source: ABdhPJxM73OmuOiqgVHYi+U/dVUMVzmW4QjpBV6tBt6Y577N0rP5TQKYSj/zZD+mdPxSpQquLlUP4Q==
-X-Received: by 2002:a17:906:e118:: with SMTP id
- gj24mr6007440ejb.205.1619419753823; 
- Sun, 25 Apr 2021 23:49:13 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:ddf1:e741:577e:9eb2?
- ([2a02:908:1252:fb60:ddf1:e741:577e:9eb2])
- by smtp.gmail.com with ESMTPSA id 9sm10690894ejv.73.2021.04.25.23.49.12
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 25 Apr 2021 23:49:13 -0700 (PDT)
-Subject: Re: [PATCH 1/2] drm/scheduler: Change scheduled fence track
-To: Alex Deucher <Alexander.Deucher@amd.com>
-References: <20210426062701.39732-1-Roy.Sun@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <8b8ec884-5b0b-3409-b7b0-be7da43e3e71@gmail.com>
-Date: Mon, 26 Apr 2021 08:49:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=rlGWPl25FCa96zci06+ZWbGtm3tUuzzsH67YozYxWGE=;
+ b=YBWIM3Ar+L7jJoHOLjkHzsYCt8miVFJQ/tbVPYLAxZ9zCtV+J86zy/wVHXEtBkFPk4
+ 6LAXWkBC4jrmB6q2ZlUzHbK8Ynve9tnu5k6IR7h0CIt3Cyo/9Z+jGroGVVZLXWZ1hp/C
+ UFRQ1gSg7zaL6Aj3ozo6Qz6VnpFQHXmHfdm/kO5A0w/vjZeLqCkrHK7upORk5ASjuV3Y
+ i6jLRVhVx6OLfK+Eck6kyP8iCQmXFi9lxT6L3S0Do8af3oJK8Wgwd5Bg4v9Rgq5JqjcB
+ SlkQyhD706HlMjs6koC9Hif+q+QIQHDNSm9YOW1RHT89ep2/cnuzfvzO9xOw0i6ujJbh
+ yV/A==
+X-Gm-Message-State: AOAM532eYkd9xGQhI46idsN8SJQEJmcoLJyWajDYGT9LG285H8XMuAF9
+ qiBvpAXfDYwdh0RVcj2AWBnfq4+YpmXS5Wv1Tr4=
+X-Google-Smtp-Source: ABdhPJzewChMoUIj259gk1Tr7mqAnTRL0xv0ExATevzweUjTPS5Pzj3bXAxO4wZu56lswZD7wmGZZCObG+AIzQh6yKo=
+X-Received: by 2002:a05:6102:322f:: with SMTP id
+ x15mr6785842vsf.9.1619256470690; 
+ Sat, 24 Apr 2021 02:27:50 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210426062701.39732-1-Roy.Sun@amd.com>
-Content-Language: en-US
+References: <1619213997-5475-1-git-send-email-jrdr.linux@gmail.com>
+ <da39ded9-7222-8530-2388-aef3879d1ca3@amd.com>
+In-Reply-To: <da39ded9-7222-8530-2388-aef3879d1ca3@amd.com>
+From: Souptick Joarder <jrdr.linux@gmail.com>
+Date: Sat, 24 Apr 2021 14:57:39 +0530
+Message-ID: <CAFqt6zbnK6xVvsy5F7ZbOfKhQhfUnv5tPwp+d-_rwxK6TnJUhQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Added missing prototype
+To: Felix Kuehling <felix.kuehling@amd.com>
+X-Mailman-Approved-At: Mon, 26 Apr 2021 08:15:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,73 +62,76 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>, Roy Sun <Roy.Sun@amd.com>,
- David M Nieto <david.nieto@amd.com>
+Cc: jonathan.kim@amd.com, David Airlie <airlied@linux.ie>,
+ linux-kernel@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>,
+ Luben Tuikov <luben.tuikov@amd.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>, evan.quan@amd.com,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, Dennis.Li@amd.com,
+ Hawking Zhang <Hawking.Zhang@amd.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hey Alex,
-
-any objections that we merge those two patches through drm-misc-next?
-
-Thanks,
-Christian.
-
-Am 26.04.21 um 08:27 schrieb Roy Sun:
-> Update the timestamp of scheduled fence on HW
-> completion of the previous fences
+On Sat, Apr 24, 2021 at 5:03 AM Felix Kuehling <felix.kuehling@amd.com> wrote:
 >
-> This allow more accurate tracking of the fence
-> execution in HW
+> Am 2021-04-23 um 5:39 p.m. schrieb Souptick Joarder:
+> > Kernel test robot throws below warning ->
+> >
+> >>> drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c:125:5: warning:
+> >>> no previous prototype for 'kgd_arcturus_hqd_sdma_load'
+> >>> [-Wmissing-prototypes]
+> >      125 | int kgd_arcturus_hqd_sdma_load(struct kgd_dev *kgd, void
+> > *mqd,
+> >
+> >>> drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c:227:6: warning:
+> >>> no previous prototype for 'kgd_arcturus_hqd_sdma_is_occupied'
+> >>> [-Wmissing-prototypes]
+> >      227 | bool kgd_arcturus_hqd_sdma_is_occupied(struct kgd_dev *kgd,
+> > void *mqd)
+> >          |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> >>> drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c:246:5: warning:
+> >>> no previous prototype for 'kgd_arcturus_hqd_sdma_destroy'
+> >>> [-Wmissing-prototypes]
+> >      246 | int kgd_arcturus_hqd_sdma_destroy(struct kgd_dev *kgd, void
+> > *mqd,
+> >          |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> >
+> > Added prototype for these functions.
+> The prototypes are already defined in amdgpu_amdkfd_arcturus.h. I think
+> we just need to add a #include in amdgpu_amdkfd_arcturus.c.
 >
-> Signed-off-by: David M Nieto <david.nieto@amd.com>
-> Signed-off-by: Roy Sun <Roy.Sun@amd.com>
-> ---
->   drivers/gpu/drm/scheduler/sched_main.c | 12 ++++++++++--
->   1 file changed, 10 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> index 92d8de24d0a1..f8e39ab0c41b 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -515,7 +515,7 @@ void drm_sched_resubmit_jobs(struct drm_gpu_scheduler *sched)
->   EXPORT_SYMBOL(drm_sched_resubmit_jobs);
->   
->   /**
-> - * drm_sched_resubmit_jobs_ext - helper to relunch certain number of jobs from mirror ring list
-> + * drm_sched_resubmit_jobs_ext - helper to relaunch certain number of jobs from pending list
->    *
->    * @sched: scheduler instance
->    * @max: job numbers to relaunch
-> @@ -671,7 +671,7 @@ drm_sched_select_entity(struct drm_gpu_scheduler *sched)
->   static struct drm_sched_job *
->   drm_sched_get_cleanup_job(struct drm_gpu_scheduler *sched)
->   {
-> -	struct drm_sched_job *job;
-> +	struct drm_sched_job *job, *next;
->   
->   	/*
->   	 * Don't destroy jobs while the timeout worker is running  OR thread
-> @@ -690,6 +690,14 @@ drm_sched_get_cleanup_job(struct drm_gpu_scheduler *sched)
->   	if (job && dma_fence_is_signaled(&job->s_fence->finished)) {
->   		/* remove job from pending_list */
->   		list_del_init(&job->list);
-> We just need to record the scheduled time of the next job. So we
-> need not to check the rest job.
-> +		/* account for the next fence in the queue */
-> +		next = list_first_entry_or_null(&sched->pending_list,
-> +				struct drm_sched_job, list);
-> +		if (next && test_bit(DMA_FENCE_FLAG_TIMESTAMP_BIT,
-> +			&job->s_fence->finished.flags)) {
-> +			next->s_fence->scheduled.timestamp =
-> +				job->s_fence->finished.timestamp;
-> +		}
->   	} else {
->   		job = NULL;
->   		/* queue timeout for next job */
 
+Right. I missed that file. Will send v2.
+
+> Regards,
+>   Felix
+>
+>
+> >
+> > Reported-by: kernel test robot <lkp@intel.com>
+> > Signed-off-by: Souptick Joarder <jrdr.linux@gmail.com>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu.h | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > index dc3a692..8fff0e7 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > @@ -316,6 +316,11 @@ int amdgpu_device_ip_wait_for_idle(struct amdgpu_device *adev,
+> >                                  enum amd_ip_block_type block_type);
+> >  bool amdgpu_device_ip_is_idle(struct amdgpu_device *adev,
+> >                             enum amd_ip_block_type block_type);
+> > +int kgd_arcturus_hqd_sdma_load(struct kgd_dev *kgd, void *mqd,
+> > +                             uint32_t __user *wptr, struct mm_struct *mm);
+> > +bool kgd_arcturus_hqd_sdma_is_occupied(struct kgd_dev *kgd, void *mqd);
+> > +int kgd_arcturus_hqd_sdma_destroy(struct kgd_dev *kgd, void *mqd,
+> > +                                     unsigned int utimeout);
+> >
+> >  #define AMDGPU_MAX_IP_NUM 16
+> >
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
