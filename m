@@ -1,109 +1,106 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5406336E241
-	for <lists+amd-gfx@lfdr.de>; Thu, 29 Apr 2021 01:44:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06B1336E31B
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Apr 2021 03:54:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 913116ECA9;
-	Wed, 28 Apr 2021 23:44:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 413866ECE0;
+	Thu, 29 Apr 2021 01:54:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2089.outbound.protection.outlook.com [40.107.223.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70C486ECA6;
- Wed, 28 Apr 2021 23:44:07 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2078.outbound.protection.outlook.com [40.107.236.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BB666EC73
+ for <amd-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 01:53:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=krTp3KB17KdspN+l55lTpJyCyiGB+B0XsVItABrVXs8eUKj6F7yhMGSzegPelaHcalOM7PRqASQbytKEZoDsA7l2dtXQd8NWngyBLLpwylI/QN3JHfJgGyMuu+0Uv1ipT5bm9hbmBCt2blbH4wMIIW1FhuZr3sM+nX+dh91C3/neaspdER3JYtGl+MCZaEuxBVepgCj+BF7VPluhb1FcWQIYwTLt1bOE04ksG2kLqjWg6DdlJNxs3WWv4zjCM7xNet4gTYKu9UB2yrdIyhQaSF+rgoPMA/IIiZ8dj9S1tf3/6wbK//0gGGakfGfAnn/tAijFn5fGOpx/4R/ZEFJalg==
+ b=TJpmfZtsgOSXtvwUhWnCDPvpWcd58hVASORJk6GN4ef4t2oXC2AzDK09QJQIJvp3Nyt9IvnKyH4h6okIiOvGOjeXRWd8c52QJnxf2Cs7QpApeM/T/cHNrhrIw1+lUBj8oB1tNEalE3S9OXrupPzNv6hiJpanA9dA8r42qsQVO0Ze8po/hvFQyn0xUsBe5YTf3Ai3rr2gO5YmGKAc1dmIiGXtm2sNdbgVvBVXOH6UeWKVo84kifRhGbzC8Fxbshmyv3DK3Wki2FUpkFsOPpFHafD3R1Tk8bxmHRrU7wbirw5pDkiVhZE3k1+shiAQknuCIdZXjyzMfbdbxrUq6wzTWw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y2+c/cP7bcshwyqqC6QbecqSBUwnPyYlJSid3zEYyEg=;
- b=nxQwZBTtTTZ1hFYpxdaIGi3jffOZ6SuWhFyhxXS5PQ8/EL4fCSt1vrsGjjI3vO0MWeH3muDkDgsjp3WpIRsyaa0Vlriqnk92XaEOFBAwvUiwJ5esC0v5+WyY/YKk0PfMBtchdaSGlFSlQrGjpIN6i5Si++15Wxmhgw0hB6cY9BgdEx5C34CJVd7W39WFihKY5KHDER5UfVhvKAe9Eu9OkzqonEKG57XEL7CUZZduAKhPWg6iUdlGrB+Q05BK2G+mdOce7UagcUPM7q7XKG2cc8gqXUcmHTNbyTlQyEHd7cSKIkk8NQKMOx9JROu6TKThbvoVmgRTn+9nvh8IDUAXOQ==
+ bh=GSz33lFyja06v/OkSQoJjUyjJvB/2Z9LC6bnbUD7p1U=;
+ b=H/mFn77ZCTIHbOCwks6ttZYa54WlPGq3W+UfTe7Jzz0yw4kzRwMSqtjiuk9jkhb2QU6mDLiFNgFxy9pKnDlaqPaPu8JVDCoRE9BtyclYpW5E6FlNCQm5pdJ1rlrYWnsCyYmi0EkKSPRUMAevP3XqeZQIc3pwAw5L7eNw3mocYZ5UQfFf7xUOWP4NQaJgkTjehrSN2IA1+mYlbCXLHN60Nn9Hm2qF5kK8YTk+AlRjmmhFc2JPUO0PLdyWzk1U6O9MMYTwKLsi90fsNQelOZVIEqorDQNxA34Wmml8vJ5vEY3+X7864Bzo+GCcN39mDtaebdAhk5xEFykDY2G2s5XhKA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y2+c/cP7bcshwyqqC6QbecqSBUwnPyYlJSid3zEYyEg=;
- b=HHYPFrgSQ/K58lxu/muq020DYHx398i1lT8s0qAaITLUfYkRFJlbK8Ftovt4RrXabL3MAkXZLzD7MIPsJevH2Nt1YYvd6F/nAvmeDGPnV5oSbr75ByMqHoh+JjWzyAvgS5S2eZfpFyAHnnHnUlre/5Q31QnVTU24Pfh3npU/WWo=
+ bh=GSz33lFyja06v/OkSQoJjUyjJvB/2Z9LC6bnbUD7p1U=;
+ b=xofxaFDwbEi1B7DSdL4f5N4A8NQ+JkedZQi7GANkBEQe4LtIX8H2ZJOFy6HLVuTjVUBh7exeZC7W29BlxM07br8n5fsfZbMf74qzwLLBhz/E70ZZgx5QqhncomNj4/zc33wgxYe5QRAmJyDB3qhRligt5A5sqxoOsP6UJMCTMFU=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
-Received: from DM5PR12MB4679.namprd12.prod.outlook.com (2603:10b6:4:a2::37) by
- DM6PR12MB4220.namprd12.prod.outlook.com (2603:10b6:5:21d::7) with
+Received: from DM5PR12MB2583.namprd12.prod.outlook.com (2603:10b6:4:b3::28) by
+ DM6PR12MB3514.namprd12.prod.outlook.com (2603:10b6:5:183::15) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4065.20; Wed, 28 Apr 2021 23:44:05 +0000
-Received: from DM5PR12MB4679.namprd12.prod.outlook.com
- ([fe80::595e:20a2:f658:a7a5]) by DM5PR12MB4679.namprd12.prod.outlook.com
- ([fe80::595e:20a2:f658:a7a5%5]) with mapi id 15.20.4065.026; Wed, 28 Apr 2021
- 23:44:05 +0000
-From: Nikola Cornij <nikola.cornij@amd.com>
+ 15.20.4065.20; Thu, 29 Apr 2021 01:53:54 +0000
+Received: from DM5PR12MB2583.namprd12.prod.outlook.com
+ ([fe80::d568:cff1:dc2a:5baa]) by DM5PR12MB2583.namprd12.prod.outlook.com
+ ([fe80::d568:cff1:dc2a:5baa%3]) with mapi id 15.20.4087.025; Thu, 29 Apr 2021
+ 01:53:53 +0000
+From: Philip Yang <Philip.Yang@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v8 1/1] drm/drm_mst: Use Extended Base Receiver Capability
- DPCD space
-Date: Wed, 28 Apr 2021 19:43:46 -0400
-Message-Id: <20210428234346.1085977-2-nikola.cornij@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210428234346.1085977-1-nikola.cornij@amd.com>
-References: <20210428234346.1085977-1-nikola.cornij@amd.com>
-X-Originating-IP: [165.204.55.250]
-X-ClientProxiedBy: YT1PR01CA0001.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::14)
- To DM5PR12MB4679.namprd12.prod.outlook.com
- (2603:10b6:4:a2::37)
+Subject: [PATCH 1/2] drm/amdkfd: wait migration done only if migration starts
+Date: Wed, 28 Apr 2021 21:53:38 -0400
+Message-Id: <20210429015339.13047-1-Philip.Yang@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [165.204.55.251]
+X-ClientProxiedBy: YT1PR01CA0130.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2f::9) To DM5PR12MB2583.namprd12.prod.outlook.com
+ (2603:10b6:4:b3::28)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from ubuntu.localdomain (165.204.55.250) by
- YT1PR01CA0001.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::14) with Microsoft
+Received: from Philip-Dev.amd.com (165.204.55.251) by
+ YT1PR01CA0130.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2f::9) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4065.24 via Frontend Transport; Wed, 28 Apr 2021 23:44:05 +0000
+ 15.20.4065.24 via Frontend Transport; Thu, 29 Apr 2021 01:53:52 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9a53d8a5-a00b-4c92-6bff-08d90a9f8273
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4220:
+X-MS-Office365-Filtering-Correlation-Id: 6168cc96-ceba-427f-5f2e-08d90ab1a428
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3514:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4220F2D6568FF354E209719FEE409@DM6PR12MB4220.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:186;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB351498DA746ABE74E03FA516E65F9@DM6PR12MB3514.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2oal4f26jgpNrpDQ1T15TcOYhfYYxUHSZiQoq47pgGU4d+hERyw2yg+7QDHlo9UfIrAiiscEX2LSGLGtgK1PLPXOeEoYdhP3Jzfea5roVrknQcyR6MyD3g6B+SqIA0YbDhUJNRbTzWGWhnba3mgus3hhb2FkhPpjaGTsKpujFY4B1LN8iatVyjHJ3nln/eZCjI3/hbVS7gd0lW4Ajr0ySYFGjhm82SFU7Oddub9bMAxyCQsb/y2FPwv4Wlxkbxlsz80olDvp4AP6JlPdCxq1tQ0Ixl8c5dwGKKe8jrJKDo5zbLFggKtjQo0Z9Q9VnXWL2GU49k0zjl0bbq7jc0TbEE8p+h5BYfMuEZjv32VOP+rnJvHwrBiAlJ4KI/QErMq/kgW0mRiXILerJANMbgQG67l2+Uv7RnvSFPEqnf22IMMad2hfLwHsDSuDD2MQRryMDFF3IY/1VqEKpKz5wTVMgPEEmT3Jo4AiyqKTDUhJYb5YXRbsMHrhuod8RuB8O/VRp0kPQNs4Ml/U+Tc7Rj+leYMDfQVKfilvBAunBrhEMf975D6/TbVxyeDxhQlWEkDkvGj54rhtp2tf4IHUnqieEdYNzc5fY8QGK6iFdogVOUtT2GriHS4QuVIfTsADyKvew0Mmjq+F+xq+q8XV/Iom8MoAGEz566olNt4YXU6j7IM=
+X-Microsoft-Antispam-Message-Info: 0nGXEEoF2c4fIDAmmfl9xROlsGM+2p/j0xcqQCsiPNsFk66Rsh+2WhbkiTBDpn2usOC6XsB+nm1Zy5n+chAB9hDn2COqhVU/tVyMhFVRdBAsrmxCw11uN2CKBjAJx8fzgjLxr1Gf7mNTxphvAeUfCznLUSALkTh9G3OasDzvgd96V9O3aW8FdqfUfOmhmjl9SL+tZ2SEfEAVpMDj2ZbKKRNoKGHESCotTJkvsR9sUSWxIAXhmv627KP/EyJv3/w+LLpI+BS5WvpWNMqO1K0+zAD47xT+rTJKsWBKdLptzrFDXxW4J177jl3YW92Ije/lIFmhNEKoNXPIp1hb+4spx6VejanbDDRF08t3C0SH/KRk6qcbpXhg0brvJP+6CYi6IOujkMqEzoeOUKoomLrQXIdAc07mQ3RvLqNICOTgVB39sM62jAmNJdw6wrhto417TbEX+IR+BzMDsEfqAP/8Qczo1PE4ZVm0qnptBd8gavZzYEEa7OHOCQBXmo6apaz6vqZSNyXb8gA3jOupDnDdok+voNPwNf+nDEPa/MBF036AwlKjSDAZW3DEXla+rg2mkmm9tmAHn4Wc8Gn5kLxoHQ55oQXgFTpiLYfDS/dmuefipVyl5doXPMVMT++HI8qE/3l8+WzpOw8dhUM6dt7dso9HD8rg+WI4GSh3vpMRpGY=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB4679.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(376002)(346002)(396003)(136003)(366004)(38100700002)(6486002)(38350700002)(86362001)(8936002)(6666004)(66946007)(66556008)(66476007)(316002)(2906002)(16526019)(6916009)(6512007)(83380400001)(478600001)(8676002)(186003)(5660300002)(956004)(2616005)(1076003)(26005)(36756003)(30864003)(4326008)(6506007)(52116002)(44832011);
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB2583.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(39860400002)(136003)(346002)(376002)(396003)(83380400001)(478600001)(26005)(316002)(956004)(5660300002)(6916009)(86362001)(7696005)(52116002)(16526019)(6666004)(2616005)(6486002)(66476007)(8936002)(2906002)(8676002)(1076003)(66946007)(38350700002)(38100700002)(66556008)(4326008)(186003)(36756003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?+FrLTDsWvrNnYdmJfsDSZOkZEA0WLEDkR6mV8OvUhvoUZI+iVlpz1lM0J5l1?=
- =?us-ascii?Q?sjv1i9LWREUGriLAtP2++MY6c91eqGKNJCMHaFYuSyq4nP29gHIHvc18K9km?=
- =?us-ascii?Q?S8PWoMoSkaJA54qych8fTDvSy7swYNnOTETKCOqbGyXX8okOoSGeQn1H7XMa?=
- =?us-ascii?Q?nWz81t0413Ixei78XVeTgUOW0cbZsJow1po3yujEFii+IaYXz0adakMPMVN1?=
- =?us-ascii?Q?eqkMHMyE8LOl5/km59pc+sBPacgPDowCqgtUDs1GLiFgxDTb4TWJlqsy9bgc?=
- =?us-ascii?Q?5oyj3Yh0cj5QDXOk7mWCEGvatpnC2KYUHGigOoVFZiHjUr3cmM9POtyc6zrz?=
- =?us-ascii?Q?48sJ38VUgCyaCIDbpk7DtNTz0MI7tsLd65CiN0g6i2rJecJnW5XwbO/NKZdx?=
- =?us-ascii?Q?M7Js+Qm0iY6yDZcMp1P7V8XoreCsCwjBmNyIbUaPHYJZXAhrfn2lRgfEB1JE?=
- =?us-ascii?Q?fMRLwBfZMhW1PusMt7xyMsLMQGyGBWQWWYcpipOx3ler/art01XP8Wa/sdTQ?=
- =?us-ascii?Q?OTnOVbzMprcVFB7JaGpfItjooOQS9BywRwKhMVEGnEKQ1L5LYpY71Jm7iS+D?=
- =?us-ascii?Q?TUBaQaj9XEq1ySsZ7+/cSpXLuzBeE1QZGAIAdnR64Ke9Mo/6yy6YUyyMTltt?=
- =?us-ascii?Q?+fUgoAVBMiaJtcW6KivX6dk1/GM8orHg7PIa3lFITeLvOjVoGgYVaUyo8IdN?=
- =?us-ascii?Q?3/Ii+Ek4jgMTcnf5dLLvz/YV++30Ao9eF5qlppHfzy2Sy/cLH1i6J3A+moE0?=
- =?us-ascii?Q?BVqQaryMLFcydFFipqhfxgdamiwyqbRwH6YEh5k2AdxizSMiNywLWweymoEz?=
- =?us-ascii?Q?z2S9HTVTL1pjwN0bls3OOglqZaRLgvlS156XQREKpsm/aAusEPAmwRtxgQHf?=
- =?us-ascii?Q?bZLl9ONYkAgZ3Hva1AtKUNq3htd88fFY8xir+ycfSyMG2P/SVbfKTL2Xaxen?=
- =?us-ascii?Q?wjJCUbThnKE3XCcvBuRuCeVepBNtLA0suW49IID2BLL5+jx/fChA0OJNoPUg?=
- =?us-ascii?Q?DVz5cZzBLrOIU5RuwK/ldEyf+nuMYwSiIgikNnpF23P92YKeUnVckcKeSs/+?=
- =?us-ascii?Q?z0aNdHNXhLU1n62tazIZ3LoiaFIlAV98rVJdPu0jjE+4IwXnaM9VKtH0mOKR?=
- =?us-ascii?Q?MVRiOsNDQkw4cNRGI45BFsprPh1+D8MGck1MkS/PyRTJkcAez7EQpLPpIVNg?=
- =?us-ascii?Q?duRC/JPRPAMHKHZ0jaxwE3CzzenP2FIVmLu0dBvdfyC1++HM6lalsy5/z2qO?=
- =?us-ascii?Q?XuiSU8Iz+2QE0CZgV1r1hcrFPYPAa+8GIaC4IZP92Q2Ej5yrsPzuJLA7pNit?=
- =?us-ascii?Q?smFcCGhU1NIdwPprPZ60XsAP?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?MK7ZMCVLx2xo0RnndHgkK3ZI7OkocRdhjWZlY2vIa+AwgIFh3H4SRQCNwzPu?=
+ =?us-ascii?Q?/Bo4ra2/xu5l3k4TSy4lGIC7dY57bLjbZhdpM4MZGgDUBjEkaPV4fs1kSXrR?=
+ =?us-ascii?Q?wbqrOk5grY+KPElamq7yYVS4sUQdsK7jsLKkEwyXw8gU7mfM7h+F0vl4wJMD?=
+ =?us-ascii?Q?TtK24BszPUo3M+8kvFBr/56Mnl5EGSeuxQSxxmt0Us2L4hgMohUHyRtyl/Xz?=
+ =?us-ascii?Q?OKMPOiuaVHCv0bIFsTDaCIUEoGAlt02aOtAWKayYmqkZnmLA9081aJPGU+/U?=
+ =?us-ascii?Q?rP1rm6UoY+lDhy47vb29BiZE3s/2FOystifSb6Xo0vwaad+TFmWuMnVt46uJ?=
+ =?us-ascii?Q?hkURPEjz+KM+j+AhLISv4mw2exlCwuN/sLiX3AssoY9Uy3LrqhNOeCQJ1jIv?=
+ =?us-ascii?Q?/n7ZaIW4zagpdrj7iVHts0UALr+hNf4gKoj8H8qQQAvqZ0E+dYzBNN9SqwS6?=
+ =?us-ascii?Q?FrdzLBHB7NUQxaj7+F+pOl8zxfO7tyjpjJK4EasneM2DSwS9v+X95i1TJDqF?=
+ =?us-ascii?Q?F1v4gIzEDIFI4DMw9r0J8Zjns9yHMi0MJJK13w6sDHyiEuwM59e5Plgheqa+?=
+ =?us-ascii?Q?bfNyDkFVtiK8B/+qn5IV2MOX/UMcrOHIs8kXvnX+Bvu774F0LqnKXXAQeQy0?=
+ =?us-ascii?Q?9WaHZpbnxkTp9pBOMKv9b9QIkUQJiBz6UCm3mOnj7qT5Zz+DaCL0Ae6kAX/m?=
+ =?us-ascii?Q?jJgrnssE/OGSSA1jGSwUUSKGfRcF3IeargZYcEOf9ZOZZIY/2tD4A42SDFYt?=
+ =?us-ascii?Q?OCwNykvUJ9OxsqLZdxIAxb9r6cZw6wD40HHQms7QuI3O1E2Hr4kIy3UMmwqc?=
+ =?us-ascii?Q?OuzMfVy3tOSkuPYLjayxhV+VfdFlLQsW3jrcJ1ODuiWE7Jz0kFOzQg9yLRlX?=
+ =?us-ascii?Q?q29bmVWPq/Y+qrB4o/NWZldCCxc9Thj2Mfc98597aeTJpLBE7nEOw8kbwk2z?=
+ =?us-ascii?Q?Fd4zSCxsdsXMvRf9haO3gSdsSPsMs3m0Xsd+Hgl/JX45SK41z+ZTZhAdqEt5?=
+ =?us-ascii?Q?b3/R0KhUWIC2zX6rmfGmQf766kjSAhi400vYL4EqSNR3JDVukq1E5/aOgSBd?=
+ =?us-ascii?Q?HwYYpzxSZotoNFtYDH9mPlHcwNejZExeloKNCAex5TT3nIBntFPl8UYYVJzP?=
+ =?us-ascii?Q?ijbeD2pu7wpMuJ2lld55oxckGK/H6NVgHB0CjkBO8bqqe/1ZLgbynfrQQmQm?=
+ =?us-ascii?Q?kAuXPoAjOgvI69+3800guIdBJ/CB/veO8dqW37ffCzDeOCT2o9Kap4xUUw5M?=
+ =?us-ascii?Q?9Lh4YmXDGeNpQTqhwl45BhW4NCoY9tgX2SNZvEJpzb8IQhlFcVpj5b8c2ZOG?=
+ =?us-ascii?Q?SADkwVW0nYE0/BoOOfKhUrJi?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a53d8a5-a00b-4c92-6bff-08d90a9f8273
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB4679.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6168cc96-ceba-427f-5f2e-08d90ab1a428
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB2583.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2021 23:44:05.5955 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2021 01:53:53.5220 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3Y6zd+KxGEfn5uUn6W9k3OGlCuEXF1Klqd4r6P+gj5vCofaPJrh8KW0QG5qZwosRQgigeWGH4udAUm2W+uI6ZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4220
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1WzM+e61DC4aiyx+5gdoub0Lnq27Mbsw6BdoTEjLL+M4xeLEQXUqsgAfQfbDe3LD
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3514
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,297 +112,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Nikola Cornij <nikola.cornij@amd.com>, koba.ko@canonical.com,
- aurabindo.pillai@amd.com, mikita.lipski@amd.com, ville.syrjala@linux.intel.com
+Cc: Philip Yang <Philip.Yang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[why]
-DP 1.4a spec madates that if DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT is
-set, Extended Base Receiver Capability DPCD space must be used. Without
-doing that, the three DPCD values that differ will be wrong, leading to
-incorrect or limited functionality. MST link rate, for example, could
-have a lower value. Also, Synaptics quirk wouldn't work out well when
-Extended DPCD was not read, resulting in no DSC for such hubs.
+If migration vma setup, but failed before start sdma memory copy, e.g.
+process is killed, don't wait for sdma fence done.
 
-[how]
-Modify MST topology manager to use the values from Extended DPCD where
-applicable.
-
-To prevent regression on the sources that have a lower maximum link rate
-capability than MAX_LINK_RATE from Extended DPCD, have the drivers
-supply maximum lane count and rate at initialization time.
-
-This also reverts 'commit 2dcab875e763 ("Revert drm/dp_mst: Retrieve
-extended DPCD caps for topology manager")', brining the change back to
-the original 'commit ad44c03208e4 ("drm/dp_mst: Retrieve extended DPCD
-caps for topology manager")'.
-
-Signed-off-by: Nikola Cornij <nikola.cornij@amd.com>
+Signed-off-by: Philip Yang <Philip.Yang@amd.com>
 ---
- .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  5 +++
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 18 ++++++++++
- drivers/gpu/drm/amd/display/dc/dc_link.h      |  2 ++
- drivers/gpu/drm/drm_dp_mst_topology.c         | 33 ++++++++++++-------
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |  6 +++-
- drivers/gpu/drm/nouveau/dispnv50/disp.c       |  3 +-
- drivers/gpu/drm/radeon/radeon_dp_mst.c        |  7 ++++
- include/drm/drm_dp_mst_helper.h               | 12 ++++++-
- 8 files changed, 71 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_migrate.c | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 997567f6f0ba..b7e01b6fb328 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -429,6 +429,8 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
- 				       struct amdgpu_dm_connector *aconnector,
- 				       int link_index)
- {
-+	struct dc_link_settings max_link_enc_cap = {0};
-+
- 	aconnector->dm_dp_aux.aux.name =
- 		kasprintf(GFP_KERNEL, "AMDGPU DM aux hw bus %d",
- 			  link_index);
-@@ -443,6 +445,7 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
- 	if (aconnector->base.connector_type == DRM_MODE_CONNECTOR_eDP)
- 		return;
- 
-+	dc_link_dp_get_max_link_enc_cap(aconnector->dc_link, &max_link_enc_cap);
- 	aconnector->mst_mgr.cbs = &dm_mst_cbs;
- 	drm_dp_mst_topology_mgr_init(
- 		&aconnector->mst_mgr,
-@@ -450,6 +453,8 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
- 		&aconnector->dm_dp_aux.aux,
- 		16,
- 		4,
-+		max_link_enc_cap.lane_count,
-+		max_link_enc_cap.link_rate,
- 		aconnector->connector_id);
- 
- 	drm_connector_attach_dp_subconnector_property(&aconnector->base);
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index 7d2e433c2275..6fe66b7ee53e 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -1894,6 +1894,24 @@ bool dc_link_dp_sync_lt_end(struct dc_link *link, bool link_down)
- 	return true;
- }
- 
-+bool dc_link_dp_get_max_link_enc_cap(const struct dc_link *link, struct dc_link_settings *max_link_enc_cap)
-+{
-+	if (!max_link_enc_cap) {
-+		DC_LOG_ERROR("%s: Could not return max link encoder caps", __func__);
-+		return false;
-+	}
-+
-+	if (link->link_enc->funcs->get_max_link_cap) {
-+		link->link_enc->funcs->get_max_link_cap(link->link_enc, max_link_enc_cap);
-+		return true;
-+	}
-+
-+	DC_LOG_ERROR("%s: Max link encoder caps unknown", __func__);
-+	max_link_enc_cap->lane_count = 1;
-+	max_link_enc_cap->link_rate = 6;
-+	return false;
-+}
-+
- static struct dc_link_settings get_max_link_cap(struct dc_link *link)
- {
- 	struct dc_link_settings max_link_cap = {0};
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
-index b0013e674864..cb6d0543d839 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_link.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
-@@ -346,6 +346,8 @@ bool dc_link_dp_set_test_pattern(
- 	const unsigned char *p_custom_pattern,
- 	unsigned int cust_pattern_size);
- 
-+bool dc_link_dp_get_max_link_enc_cap(const struct dc_link *link, struct dc_link_settings *max_link_enc_cap);
-+
- void dc_link_enable_hpd_filter(struct dc_link *link, bool enable);
- 
- bool dc_link_is_dp_sink_present(struct dc_link *link);
-diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-index 5539a91b4031..31d9f3ff0d39 100644
---- a/drivers/gpu/drm/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-@@ -3708,19 +3708,24 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms
- 	/* set the device into MST mode */
- 	if (mst_state) {
- 		struct drm_dp_payload reset_pay;
-+		int lane_count;
-+		int link_rate;
- 
- 		WARN_ON(mgr->mst_primary);
- 
- 		/* get dpcd info */
--		ret = drm_dp_dpcd_read(mgr->aux, DP_DPCD_REV, mgr->dpcd, DP_RECEIVER_CAP_SIZE);
--		if (ret != DP_RECEIVER_CAP_SIZE) {
--			drm_dbg_kms(mgr->dev, "failed to read DPCD\n");
-+		ret = drm_dp_read_dpcd_caps(mgr->aux, mgr->dpcd);
-+		if (ret < 0) {
-+			drm_dbg_kms(mgr->dev, "%s: failed to read DPCD, ret %d\n",
-+				    mgr->aux->name, ret);
- 			goto out_unlock;
- 		}
- 
-+		lane_count = min_t(int, mgr->dpcd[2] & DP_MAX_LANE_COUNT_MASK, mgr->max_lane_count);
-+		link_rate = min_t(int, mgr->dpcd[1], mgr->max_link_rate);
- 		mgr->pbn_div = drm_dp_get_vc_payload_bw(mgr,
--							drm_dp_bw_code_to_link_rate(mgr->dpcd[1]),
--							mgr->dpcd[2] & DP_MAX_LANE_COUNT_MASK);
-+							drm_dp_bw_code_to_link_rate(link_rate),
-+							lane_count);
- 		if (mgr->pbn_div == 0) {
- 			ret = -EINVAL;
- 			goto out_unlock;
-@@ -5448,14 +5453,17 @@ EXPORT_SYMBOL(drm_atomic_get_mst_topology_state);
-  * @aux: DP helper aux channel to talk to this device
-  * @max_dpcd_transaction_bytes: hw specific DPCD transaction limit
-  * @max_payloads: maximum number of payloads this GPU can source
-+ * @max_lane_count: maximum number of lanes this GPU supports
-+ * @max_link_rate: maximum link rate this GPU supports, units as in DPCD
-  * @conn_base_id: the connector object ID the MST device is connected to.
-  *
-  * Return 0 for success, or negative error code on failure
-  */
- int drm_dp_mst_topology_mgr_init(struct drm_dp_mst_topology_mgr *mgr,
- 				 struct drm_device *dev, struct drm_dp_aux *aux,
--				 int max_dpcd_transaction_bytes,
--				 int max_payloads, int conn_base_id)
-+				 int max_dpcd_transaction_bytes, int max_payloads,
-+				 int max_lane_count, int max_link_rate,
-+				 int conn_base_id)
- {
- 	struct drm_dp_mst_topology_state *mst_state;
- 
-@@ -5490,6 +5498,8 @@ int drm_dp_mst_topology_mgr_init(struct drm_dp_mst_topology_mgr *mgr,
- 	mgr->aux = aux;
- 	mgr->max_dpcd_transaction_bytes = max_dpcd_transaction_bytes;
- 	mgr->max_payloads = max_payloads;
-+	mgr->max_lane_count = max_lane_count;
-+	mgr->max_link_rate = max_link_rate;
- 	mgr->conn_base_id = conn_base_id;
- 	if (max_payloads + 1 > sizeof(mgr->payload_mask) * 8 ||
- 	    max_payloads + 1 > sizeof(mgr->vcpi_mask) * 8)
-@@ -5896,14 +5906,13 @@ struct drm_dp_aux *drm_dp_mst_dsc_aux_for_port(struct drm_dp_mst_port *port)
- 	if (drm_dp_has_quirk(&desc, DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) &&
- 	    port->mgr->dpcd[DP_DPCD_REV] >= DP_DPCD_REV_14 &&
- 	    port->parent == port->mgr->mst_primary) {
--		u8 downstreamport;
-+		u8 dpcd_ext[DP_RECEIVER_CAP_SIZE];
- 
--		if (drm_dp_dpcd_read(&port->aux, DP_DOWNSTREAMPORT_PRESENT,
--				     &downstreamport, 1) < 0)
-+		if (drm_dp_read_dpcd_caps(port->mgr->aux, dpcd_ext) < 0)
- 			return NULL;
- 
--		if ((downstreamport & DP_DWN_STRM_PORT_PRESENT) &&
--		   ((downstreamport & DP_DWN_STRM_PORT_TYPE_MASK)
-+		if ((dpcd_ext[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_PRESENT) &&
-+		    ((dpcd_ext[DP_DOWNSTREAMPORT_PRESENT] & DP_DWN_STRM_PORT_TYPE_MASK)
- 		     != DP_DWN_STRM_PORT_TYPE_ANALOG))
- 			return port->mgr->aux;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+index 6b810863f6ba..19b08247ba8a 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+@@ -460,10 +460,12 @@ svm_migrate_vma_to_vram(struct amdgpu_device *adev, struct svm_range *prange,
  	}
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 860381d68d9d..a4245eb48ef4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -942,6 +942,7 @@ intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_base_id)
- 	struct intel_dp *intel_dp = &dig_port->dp;
- 	enum port port = dig_port->base.port;
- 	int ret;
-+	int bios_max_link_rate;
  
- 	if (!HAS_DP_MST(i915) || intel_dp_is_edp(intel_dp))
- 		return 0;
-@@ -956,8 +957,11 @@ intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_base_id)
+ 	if (migrate.cpages) {
+-		svm_migrate_copy_to_vram(adev, prange, &migrate, &mfence,
+-					 scratch);
+-		migrate_vma_pages(&migrate);
+-		svm_migrate_copy_done(adev, mfence);
++		r = svm_migrate_copy_to_vram(adev, prange, &migrate, &mfence,
++					     scratch);
++		if (!r) {
++			migrate_vma_pages(&migrate);
++			svm_migrate_copy_done(adev, mfence);
++		}
+ 		migrate_vma_finalize(&migrate);
+ 	}
  
- 	/* create encoders */
- 	intel_dp_create_fake_mst_encoders(dig_port);
-+	bios_max_link_rate = intel_bios_dp_max_link_rate(&dig_port->base);
- 	ret = drm_dp_mst_topology_mgr_init(&intel_dp->mst_mgr, &i915->drm,
--					   &intel_dp->aux, 16, 3, conn_base_id);
-+					   &intel_dp->aux, 16, 3,
-+					   dig_port->max_lanes,
-+					   bios_max_link_rate / 27000, conn_base_id);
- 	if (ret)
- 		return ret;
+@@ -663,10 +665,12 @@ svm_migrate_vma_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
+ 	pr_debug("cpages %ld\n", migrate.cpages);
  
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 1c9c0cdf85db..e02f9d2d74eb 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -1617,7 +1617,8 @@ nv50_mstm_new(struct nouveau_encoder *outp, struct drm_dp_aux *aux, int aux_max,
- 	mstm->mgr.cbs = &nv50_mstm;
- 
- 	ret = drm_dp_mst_topology_mgr_init(&mstm->mgr, dev, aux, aux_max,
--					   max_payloads, conn_base_id);
-+					   max_payloads, outp->dcb->dpconf.link_nr,
-+					   outp->dcb->dpconf.link_bw, conn_base_id);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/radeon/radeon_dp_mst.c b/drivers/gpu/drm/radeon/radeon_dp_mst.c
-index 59cf1d288465..8f0b2dccd199 100644
---- a/drivers/gpu/drm/radeon/radeon_dp_mst.c
-+++ b/drivers/gpu/drm/radeon/radeon_dp_mst.c
-@@ -629,13 +629,20 @@ int
- radeon_dp_mst_init(struct radeon_connector *radeon_connector)
- {
- 	struct drm_device *dev = radeon_connector->base.dev;
-+	int max_link_rate;
- 
- 	if (!radeon_connector->ddc_bus->has_aux)
- 		return 0;
- 
-+	if (radeon_connector_is_dp12_capable(&radeon_connector->base))
-+		max_link_rate = 0x14;
-+	else
-+		max_link_rate = 0x0a;
-+
- 	radeon_connector->mst_mgr.cbs = &mst_cbs;
- 	return drm_dp_mst_topology_mgr_init(&radeon_connector->mst_mgr, dev,
- 					    &radeon_connector->ddc_bus->aux, 16, 6,
-+					    4, max_link_rate,
- 					    radeon_connector->base.base.id);
- }
- 
-diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
-index 20dc705642bd..b5b0bf37813b 100644
---- a/include/drm/drm_dp_mst_helper.h
-+++ b/include/drm/drm_dp_mst_helper.h
-@@ -593,6 +593,14 @@ struct drm_dp_mst_topology_mgr {
- 	 * @max_payloads: maximum number of payloads the GPU can generate.
- 	 */
- 	int max_payloads;
-+	/**
-+	 * @max_lane_count: maximum number of lanes the GPU can drive.
-+	 */
-+	int max_lane_count;
-+	/**
-+	 * @max_link_rate: maximum link rate per lane GPU can output.
-+	 */
-+	int max_link_rate;
- 	/**
- 	 * @conn_base_id: DRM connector ID this mgr is connected to. Only used
- 	 * to build the MST connector path value.
-@@ -765,7 +773,9 @@ struct drm_dp_mst_topology_mgr {
- int drm_dp_mst_topology_mgr_init(struct drm_dp_mst_topology_mgr *mgr,
- 				 struct drm_device *dev, struct drm_dp_aux *aux,
- 				 int max_dpcd_transaction_bytes,
--				 int max_payloads, int conn_base_id);
-+				 int max_payloads,
-+				 int max_lane_count, int max_link_rate,
-+				 int conn_base_id);
- 
- void drm_dp_mst_topology_mgr_destroy(struct drm_dp_mst_topology_mgr *mgr);
- 
+ 	if (migrate.cpages) {
+-		svm_migrate_copy_to_ram(adev, prange, &migrate, &mfence,
+-					scratch);
+-		migrate_vma_pages(&migrate);
+-		svm_migrate_copy_done(adev, mfence);
++		r = svm_migrate_copy_to_ram(adev, prange, &migrate, &mfence,
++					    scratch);
++		if (!r) {
++			migrate_vma_pages(&migrate);
++			svm_migrate_copy_done(adev, mfence);
++		}
+ 		migrate_vma_finalize(&migrate);
+ 	} else {
+ 		pr_debug("failed collect migrate device pages [0x%lx 0x%lx]\n",
 -- 
-2.25.1
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
