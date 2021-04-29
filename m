@@ -1,48 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5103836EAC5
-	for <lists+amd-gfx@lfdr.de>; Thu, 29 Apr 2021 14:46:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D92936EC2E
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Apr 2021 16:13:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBC4C6EE97;
-	Thu, 29 Apr 2021 12:46:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADF986EEA0;
+	Thu, 29 Apr 2021 14:13:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-m176218.qiye.163.com (mail-m176218.qiye.163.com
- [59.111.176.218])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FDC86EE95;
- Thu, 29 Apr 2021 12:39:11 +0000 (UTC)
-Received: from wanjb-virtual-machine.localdomain (unknown [36.152.145.182])
- by mail-m176218.qiye.163.com (Hmail) with ESMTPA id 1208F320114;
- Thu, 29 Apr 2021 20:39:09 +0800 (CST)
-From: Wan Jiabing <wanjiabing@vivo.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Aric Cyr <aric.cyr@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Qingqing Zhuo <qingqing.zhuo@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
- Jacky Liao <ziyu.liao@amd.com>,
- Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- Wenjing Liu <wenjing.liu@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] [v2] drm/amd/display: Remove duplicate declaration of dc_state
-Date: Thu, 29 Apr 2021 20:38:36 +0800
-Message-Id: <20210429123900.25156-1-wanjiabing@vivo.com>
-X-Mailer: git-send-email 2.25.1
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DDA36EE9E;
+ Thu, 29 Apr 2021 13:39:54 +0000 (UTC)
+Received: from 1-171-217-32.dynamic-ip.hinet.net ([1.171.217.32]
+ helo=localhost) by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <kai.heng.feng@canonical.com>)
+ id 1lc6tS-00049f-TU; Thu, 29 Apr 2021 13:39:51 +0000
+From: Kai-Heng Feng <kai.heng.feng@canonical.com>
+To: alexander.deucher@amd.com,
+	christian.koenig@amd.com
+Subject: [PATCH] drm/radeon/dpm: Disable sclk switching when two 4K 60Hz
+ monitors are connected
+Date: Thu, 29 Apr 2021 21:39:40 +0800
+Message-Id: <20210429133941.531730-1-kai.heng.feng@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
- oVCBIfWUFZGUhKHlZMS0kaGRhJHhkaTR1VEwETFhoSFyQUDg9ZV1kWGg8SFR0UWUFZT0tIVUpKS0
- hKTFVLWQY+
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MVE6CDo5Hz8IPEgvOD0KFT1C
- SDkKChRVSlVKTUpCTUJCQk9CQkJDVTMWGhIXVQwaFRESGhkSFRw7DRINFFUYFBZFWVdZEgtZQVlI
- TVVKTklVSk9OVUpDSVlXWQgBWUFJQ0hKNwY+
-X-HM-Tid: 0a791da3e029d978kuws1208f320114
-X-Mailman-Approved-At: Thu, 29 Apr 2021 12:46:20 +0000
+X-Mailman-Approved-At: Thu, 29 Apr 2021 14:13:00 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,38 +39,95 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kael_w@yeah.net, Wan Jiabing <wanjiabing@vivo.com>
+Cc: David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-There are two declarations of struct dc_state here.
-Remove the later duplicate more secure.
+Screen flickers rapidly when two 4K 60Hz monitors are connected to an
+Oland card. This issue doesn't happen when one monitor is 4K 60Hz
+(pixelclock 594MHz) and another one is 4K 30Hz (pixelclock 297MHz).
 
-Signed-off-by: Wan Jiabing <wanjiabing@vivo.com>
----
-Changelog:
-v2:
-- Remove the later duplicate instead of the former.
----
- drivers/gpu/drm/amd/display/dc/dc.h | 1 -
- 1 file changed, 1 deletion(-)
+The issue is gone after setting "power_dpm_force_performance_level" to
+"high". Following the lead, we found that the issue only occurs when
+sclk is too low.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 8108b82bac60..6f3c95b5d1a2 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -594,7 +594,6 @@ struct dc_bounding_box_overrides {
- 	int min_dcfclk_mhz;
- };
+So resolve the issue by disabling sclk switching when there are two
+monitors that requires high pixelclock (> 297MHz).
+
+Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+---
+ drivers/gpu/drm/radeon/radeon.h    | 1 +
+ drivers/gpu/drm/radeon/radeon_pm.c | 8 ++++++++
+ drivers/gpu/drm/radeon/si_dpm.c    | 3 +++
+ 3 files changed, 12 insertions(+)
+
+diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
+index 42281fce552e6..56ed5634cebef 100644
+--- a/drivers/gpu/drm/radeon/radeon.h
++++ b/drivers/gpu/drm/radeon/radeon.h
+@@ -1549,6 +1549,7 @@ struct radeon_dpm {
+ 	void                    *priv;
+ 	u32			new_active_crtcs;
+ 	int			new_active_crtc_count;
++	int			high_pixelclock_count;
+ 	u32			current_active_crtcs;
+ 	int			current_active_crtc_count;
+ 	bool single_display;
+diff --git a/drivers/gpu/drm/radeon/radeon_pm.c b/drivers/gpu/drm/radeon/radeon_pm.c
+index 0c1950f4e146f..3861c0b98fcf3 100644
+--- a/drivers/gpu/drm/radeon/radeon_pm.c
++++ b/drivers/gpu/drm/radeon/radeon_pm.c
+@@ -1767,6 +1767,7 @@ static void radeon_pm_compute_clocks_dpm(struct radeon_device *rdev)
+ 	struct drm_device *ddev = rdev->ddev;
+ 	struct drm_crtc *crtc;
+ 	struct radeon_crtc *radeon_crtc;
++	struct radeon_connector *radeon_connector;
  
--struct dc_state;
- struct resource_pool;
- struct dce_hwseq;
- struct gpu_info_soc_bounding_box_v1_0;
+ 	if (!rdev->pm.dpm_enabled)
+ 		return;
+@@ -1776,6 +1777,7 @@ static void radeon_pm_compute_clocks_dpm(struct radeon_device *rdev)
+ 	/* update active crtc counts */
+ 	rdev->pm.dpm.new_active_crtcs = 0;
+ 	rdev->pm.dpm.new_active_crtc_count = 0;
++	rdev->pm.dpm.high_pixelclock_count = 0;
+ 	if (rdev->num_crtc && rdev->mode_info.mode_config_initialized) {
+ 		list_for_each_entry(crtc,
+ 				    &ddev->mode_config.crtc_list, head) {
+@@ -1783,6 +1785,12 @@ static void radeon_pm_compute_clocks_dpm(struct radeon_device *rdev)
+ 			if (crtc->enabled) {
+ 				rdev->pm.dpm.new_active_crtcs |= (1 << radeon_crtc->crtc_id);
+ 				rdev->pm.dpm.new_active_crtc_count++;
++				if (!radeon_crtc->connector)
++					continue;
++
++				radeon_connector = to_radeon_connector(radeon_crtc->connector);
++				if (radeon_connector->pixelclock_for_modeset > 297000)
++					rdev->pm.dpm.high_pixelclock_count++;
+ 			}
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/radeon/si_dpm.c b/drivers/gpu/drm/radeon/si_dpm.c
+index 9186095518047..be6fa3257d1bc 100644
+--- a/drivers/gpu/drm/radeon/si_dpm.c
++++ b/drivers/gpu/drm/radeon/si_dpm.c
+@@ -2995,6 +2995,9 @@ static void si_apply_state_adjust_rules(struct radeon_device *rdev,
+ 	    ni_dpm_vblank_too_short(rdev))
+ 		disable_mclk_switching = true;
+ 
++	if (rdev->pm.dpm.high_pixelclock_count > 1)
++		disable_sclk_switching = true;
++
+ 	if (rps->vclk || rps->dclk) {
+ 		disable_mclk_switching = true;
+ 		disable_sclk_switching = true;
 -- 
-2.25.1
+2.30.2
 
 _______________________________________________
 amd-gfx mailing list
