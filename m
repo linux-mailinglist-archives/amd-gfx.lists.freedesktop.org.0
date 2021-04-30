@@ -2,44 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6749136FB8B
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Apr 2021 15:33:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D7FA36FB83
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Apr 2021 15:32:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C11EB6F51E;
-	Fri, 30 Apr 2021 13:33:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91B876F4C2;
+	Fri, 30 Apr 2021 13:32:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 549 seconds by postgrey-1.36 at gabe;
- Fri, 30 Apr 2021 13:33:43 UTC
-Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.180])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3AD406F51E
- for <amd-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 13:33:43 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by netline-mail3.netline.ch (Postfix) with ESMTP id D4DE12020D1;
- Fri, 30 Apr 2021 15:24:33 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
-Received: from netline-mail3.netline.ch ([127.0.0.1])
- by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id E6woeWIHKkYk; Fri, 30 Apr 2021 15:24:33 +0200 (CEST)
-Received: from thor (24.99.2.85.dynamic.wline.res.cust.swisscom.ch
- [85.2.99.24])
- by netline-mail3.netline.ch (Postfix) with ESMTPA id 5B9D62020C9;
- Fri, 30 Apr 2021 15:24:33 +0200 (CEST)
-Received: from [::1] by thor with esmtp (Exim 4.94)
- (envelope-from <michel@daenzer.net>)
- id 1lcT8C-000FLu-2b; Fri, 30 Apr 2021 15:24:32 +0200
-To: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>, amd-gfx@lists.freedesktop.org
-References: <20210429205024.892894-1-bas@basnieuwenhuizen.nl>
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-Subject: Re: [PATCH] Revert "drm/amdgpu: Verify bo size can fit framebuffer
- size on init."
-Message-ID: <88f8bff1-7750-515d-24ca-24c76cad9bdf@daenzer.net>
-Date: Fri, 30 Apr 2021 15:24:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2082.outbound.protection.outlook.com [40.107.236.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66FFB6F4C2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 13:32:41 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PUrTv7VvxfKU9NTdHA0byozsvy1MRfmuzoA1svK+gexFXT6Qo+5D3VWf4+wVdh23e3YtvdonaIxh+VTaGh2sr2G5CNVXRw20Xaafd6XPXsQqqHWfr5wFExevO3drzktck5Rc9I3GP0nC4wghNW/xqkClgZ60iQu1dANwdbJX85CYxwbuLXzEY3nblzbfZLW+s0kEg2xU7Xm9PVp2oKLZgWc70Cv8NiDdQ/JkR79Kiw2opBF7NRTGarok0/JaqhU9Wneotis4lubQJqG3c0LizXleOlZX50ZwudGxpLbqCzWrADiv6YDreXDHCUBk9yFh8153mFhHCZuw0UhLAlFxZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LO5IiTlRLuhhukriUtOcirTw11UAQfK5frZwkrCy4Qw=;
+ b=Gxg6xNNXHSHNYKZR3Gn54nZb+uanEa2SkwJMF6Qbkgv67WaXKSuVTIxLmyKMLMTmVWAx9/+f5+jE/ZGy7P31UkE8YvPVV5VVb1VBzw9WZ+DfEl1r6fxmFJnkXY7ZQrqv63tUCS5JUdQAeFN5aZAWmIvFs46/keoPXD8D3ijtsVr2Gjc221EgidjsCGBGzZGrY8SsAxWnAURCNcQfVbPRNN36HVxzPo97NyYg4DXxP/zgNztsTOmMgv9hakXi5OQR9eyi63KCn5GDAhgwe8veMyI/Txburl7HVGGCqE6ieKCTdUonfNYvA0aMN1P07h4Nq6Im47Tae3wfpsSmHjdzxA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LO5IiTlRLuhhukriUtOcirTw11UAQfK5frZwkrCy4Qw=;
+ b=cOVWVrh0wiZ1AzHjKFWUw5D6R8yM1hAgCe4GtukA/i/LegbVmYi4Wy2TxNf1YkXTOm5nVlZlMa9s6PF95FwNf2K2uWSd4PkMry9MZX7rIomwGhj+jX79ZeDmM4EdBfkLhDm4RupP5KH9zuHmHtI+jzFMn7jD1v0qUvPrC8cy5qM=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from CY4PR12MB1463.namprd12.prod.outlook.com (2603:10b6:910:e::19)
+ by CY4PR1201MB0053.namprd12.prod.outlook.com (2603:10b6:910:23::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.20; Fri, 30 Apr
+ 2021 13:32:39 +0000
+Received: from CY4PR12MB1463.namprd12.prod.outlook.com
+ ([fe80::a457:1047:3886:4630]) by CY4PR12MB1463.namprd12.prod.outlook.com
+ ([fe80::a457:1047:3886:4630%9]) with mapi id 15.20.4065.026; Fri, 30 Apr 2021
+ 13:32:39 +0000
+From: Nirmoy Das <nirmoy.das@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/1] drm/amdgpu: remove excess function parameter
+Date: Fri, 30 Apr 2021 15:32:27 +0200
+Message-Id: <20210430133227.23338-1-nirmoy.das@amd.com>
+X-Mailer: git-send-email 2.30.2
+X-Originating-IP: [217.86.127.183]
+X-ClientProxiedBy: AM0PR10CA0092.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:15::45) To CY4PR12MB1463.namprd12.prod.outlook.com
+ (2603:10b6:910:e::19)
 MIME-Version: 1.0
-In-Reply-To: <20210429205024.892894-1-bas@basnieuwenhuizen.nl>
-Content-Language: en-CA
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from brihaspati.fritz.box (217.86.127.183) by
+ AM0PR10CA0092.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:15::45) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4087.27 via Frontend Transport; Fri, 30 Apr 2021 13:32:37 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: df6798b6-2d2f-4ce6-28ac-08d90bdc6c38
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB0053:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB005343580FEEB27A3AE474E88B5E9@CY4PR1201MB0053.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: v0eY40hhkkHNX7IxrQhVUXb8aWFmmH9EQHbtZdvwjTGxUqXRAmYUhiZW2ojobomdwwH0P3ozS2LPAnQR9zeArvS0hFUi2bF+ixut21v1ucpaf63hVZ2DzWcPJ/Dy2ZAB1i2ivFBYcmYr2Bea4C2uVlpPrL5gidSiDrAddNSJacugestwXpKngz3E1x82pqbRcVsrFkIudYXPcuWvTGzOIk753oNB7QT4VMk3345hDBYTq9MJJnF9JRg9kwVVIwa9RyC6/3syKwYkD2Su/KCl38W8mcNj8JlxhE67eaNlxYCnd0MNrjQehU+c6TC68o/lMyhpC9w+Mfe3yBSY1C9SNR41vzMeJ9+k5n5e9dN3XGX1QEKOj1vg7OIArIKKdcPBkwqh04U+0wWpun868v08kEr8JcnlPCPknPQmlY19/Wb9F9HjAoud4GVmkJ5RFE5NwyrOsJpMYwfXWAUthtYeJrrEmXcUP7PprUayCA1q/eNsSlWvlehwB5Gq8hxtDhL80o4xKIm+YpWKw+zSMHYn5W13nVcsuXmyPVgJDvo/Wqo90ENgvACm4wvZmQtzOxuI5GpfmO8OE0hmUT/Q1u4vs7VdVIXbCxIzatBonN/1k3Y4VEmYD43SRbP9Y8Yt2KTxBDaPgnJJ6i0k2hp3/w6Myg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY4PR12MB1463.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(39860400002)(376002)(136003)(396003)(366004)(4744005)(38350700002)(2906002)(316002)(6506007)(1076003)(6486002)(5660300002)(26005)(44832011)(36756003)(83380400001)(478600001)(186003)(66946007)(38100700002)(2616005)(6512007)(52116002)(6916009)(16526019)(66476007)(86362001)(66556008)(8676002)(6666004)(4326008)(8936002)(956004);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?UDv71gQdWDiw5cPZjNycOAu1EyQ1Dj2QilKLjDMWZbG8Ex8nJ0PzYlkj9bSK?=
+ =?us-ascii?Q?J6NHbp0uP9K4fgKoDxfy6N68ueqbaZfqY0w1bW3ecpOAxLdJzVo7yWrzHC5a?=
+ =?us-ascii?Q?WD1BdLD5Wac3zlkBMbjGJCoRgadBQq2gmOiUJL+dxLc6gEMZdcy7/tnikHhe?=
+ =?us-ascii?Q?O0utSBhF7hDWmvqMHtktFXMezYLIGb7YNgbI9d2tzb3Ev+xBQlrnEOAFRObW?=
+ =?us-ascii?Q?j+4CjNwG8dQcjD+8infkJwLuTOjfDb1eRbXPJZQKyYKVwftt9xkzb5662tnP?=
+ =?us-ascii?Q?0LHSyxH0NwfAph/EXX/K1UZFD7Vkb6/tqOlR2JdZe0Dcek7+qeGXrBD2qYg+?=
+ =?us-ascii?Q?FY9eiZariM2hK6zTScOcPsBiWWfoBgpBp+hzRFsEN0puJ8WlAh1ikKbroTfS?=
+ =?us-ascii?Q?gW9seuwn3Ec3PaPrvKpIQQRvouUWliuxKWG2rkigRTqQEVHYVlj5KMk4Ya9J?=
+ =?us-ascii?Q?YhZk4ccRfz0gc1qGShdXKJ/bFwlSmFi1sojEoNvMXgy0TppdQjK7ESBm3aPo?=
+ =?us-ascii?Q?YewOuArQ1VKqSPoQblBiCVIEz1NpKxpycGP9NorGyYZLlS9T3iaKiDZbb7Zy?=
+ =?us-ascii?Q?Bya0ye+1Ni72OvVUGP5RVYZGw/fcWKRtTbXUrgLUqYZXAGd172KRKt9QFIs4?=
+ =?us-ascii?Q?iq6HVOdEuDI8dKrYnyBQQkG2YN+TJRRugmsxmF3U9gfJRtKnjsmIYaTINoTe?=
+ =?us-ascii?Q?7eTvCUdKwwbY1JbIhF7XRKzEKXpPFq4NEwwSRpGHhJd5JlaiqaJ3mfPOcAGO?=
+ =?us-ascii?Q?3WuI1Cm9eF1d/Om/dPDGkFMuES1WFq5GFeEuXH3uwPMMfEbEysXvU+nYAqpG?=
+ =?us-ascii?Q?dSfZQjQ4YQTqvuweN+KMkfQXhXl0t6e4UpG06d/9trk0WCYyuXNQTCx96hww?=
+ =?us-ascii?Q?vgWoinYhCYMMQbwsLfg3VNMp5GLWUEiZl2LSXD3NKbhHpo3c17C88L/wg07L?=
+ =?us-ascii?Q?g9xkQmMba228UG+AvMadjDitqdyfh8nlgR/s1CTYmpNkOyepfr5XDMrQjGas?=
+ =?us-ascii?Q?/ZYMbuwYHxfDor+wodm4FyB/9FRqprT0rvdU9OnNXOG05Grev11gUl6udKSS?=
+ =?us-ascii?Q?gYlaXoG1iPe4jf3h9j45vMkse8SUdDRTyBAva/okwV4JsT3PivXFZuoJzKYi?=
+ =?us-ascii?Q?VINolCWKx2MQxwcS+hIL+vvQIn1thkMpmr5BT09e5v+LqDiM9oK9llnTgubs?=
+ =?us-ascii?Q?kPp9zQFjM7mKMn/AQCMHqHd2pwRFLMqC+eBOMqoK22JuZ2R4PQlPVehYNZqN?=
+ =?us-ascii?Q?IT5z/CmvTOppcKc3JMhFt4l94+L3oVE4BlMmQnGYFpvC3XmX+P/0EmWKfIC0?=
+ =?us-ascii?Q?u+rNWzlvbU/XV3zasesMXMUR?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: df6798b6-2d2f-4ce6-28ac-08d90bdc6c38
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR12MB1463.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2021 13:32:38.9544 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wFTX2IYS3ElJ2q814vE8x3oXjo4j8pGWMnULgsoLhuyGeC/iPMmj6sA8/Gdoi/FkrO72ZDCm9aiNL3eFORZSuA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0053
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,35 +112,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexdeucher@gmail.com, markyacoub@chromium.org,
- xinhui pan <xinhui.pan@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: alexander.deucher@amd.com, Nirmoy Das <nirmoy.das@amd.com>,
+ Rodrigo.Siqueira@amd.com, Christian.Koenig@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAyMS0wNC0yOSAxMDo1MCBwLm0uLCBCYXMgTmlldXdlbmh1aXplbiB3cm90ZToKPiBUaGlz
-IHJldmVydHMgY29tbWl0IGYyNTg5MDdmZGQ4MzVlMWFlZDZkNjY2YjAwY2RkMGYxODY2NzZiN2Mu
-Cj4gCj4gU2FtZSBwcm9ibGVtIGFzICJkcm0vYW1kZ3B1OiBWZXJpZnkgYm8gc2l6ZSBjYW4gZml0
-IGZyYW1lYnVmZmVyIHNpemUiLAo+IGJ1dCBiZWNhdXNlIGl0IGdldHMgY2hlY2tlZCBlYXJsaWVy
-IGl0IG5vdyBvbmx5IHRyaWdnZXJzIG9uIHRoZQo+IG1vZGlmaWVycyBjYXNlLgo+IAo+IFRoZXJl
-IGFyZSBhIGNvdXBsZSBvZiByZWFzb25zIHdoeSB0aGUgRFJNIGNvcmUgQk8gc2l6ZSBjaGVjayB3
-b24ndAo+IHdvcmsgZm9yIEFNREdQVSwgZXNwZWNpYWxseSBhcm91bmQgRENDIHBsYW5lcy4KPiAK
-PiBTaWduZWQtb2ZmLWJ5OiBCYXMgTmlldXdlbmh1aXplbiA8YmFzQGJhc25pZXV3ZW5odWl6ZW4u
-bmw+Cj4gLS0tCj4gCj4gRm9yIC1maXhlcy4gTWlnaHQgaGF2ZSBzb21lIGNvbmZsaWN0cyB3aXRo
-Cj4gImRybS9hbWRncHU6IEVuc3VyZSB0aGF0IHRoZSBtb2RpZmllciByZXF1ZXN0ZWQgaXMgc3Vw
-cG9ydGVkIGJ5IHBsYW5lIgo+IGZvciBhbWQtc3RhZ2luZy1kcm0tbmV4dAoKVGhpcyBpbnRlcmFj
-dHMgYmFkbHkgd2l0aCA3OWZjZDQ0NmU3ZTEgImRybS9hbWRncHU6IEZpeCBtZW1vcnkgbGVhayIs
-IHJlc3VsdGluZyBpbiBCT3MgZ2V0dGluZyBkZXN0cm95ZWQgcHJlbWF0dXJlbHkgYW5kIGVuc3Vp
-bmcgYmFkbmVzcy4gVG8gYXZvaWQgdGhhdCwgYXQgbGVhc3QgdGhlIGRybV9nZW1fb2JqZWN0X3B1
-dCBjYWxsIG5lZWRzIHRvIGJlIHJlbW92ZWQgZnJvbSB0aGUgZW5kIG9mIGFtZGdwdV9kaXNwbGF5
-X3VzZXJfZnJhbWVidWZmZXJfY3JlYXRlIG5lZWRzIHRvIGJlIHJlbW92ZWQgYXMgd2VsbCwgaWYg
-bm90IDc5ZmNkNDQ2ZTdlMSByZXZlcnRlZCBhbHRvZ2V0aGVyLgoKCkkgc3VzcGVjdCA3OWZjZDQ0
-NmU3ZTEgd2FzIGF0IGxlYXN0IHBhcnRseSBhIGZpeC11cCBmb3IgZjI1ODkwN2ZkZDgzLCB0byBj
-b21wZW5zYXRlIGZvciBkcm1fZ2VtX2ZiX2luaXRfd2l0aF9mdW5jcyBpbmNyZW1lbnRpbmcgdGhl
-IEJPIHJlZmVyZW5jZSBjb3VudHMuCgoKLS0gCkVhcnRobGluZyBNaWNoZWwgRMOkbnplciAgICAg
-ICAgICAgICAgIHwgICAgICAgICAgICAgICBodHRwczovL3JlZGhhdC5jb20KTGlicmUgc29mdHdh
-cmUgZW50aHVzaWFzdCAgICAgICAgICAgICB8ICAgICAgICAgICAgIE1lc2EgYW5kIFggZGV2ZWxv
-cGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1n
-ZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
+Fix below htmldocs build warning:
+
+drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c:2808:
+warning: Excess function parameter 'vm_context' description in 'amdgpu_vm_init'
+
+Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index dae51992c607..f2513be72980 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -2796,7 +2796,6 @@ long amdgpu_vm_wait_idle(struct amdgpu_vm *vm, long timeout)
+  *
+  * @adev: amdgpu_device pointer
+  * @vm: requested vm
+- * @vm_context: Indicates if it GFX or Compute context
+  * @pasid: Process address space identifier
+  *
+  * Init @vm fields.
+-- 
+2.30.2
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
