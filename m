@@ -2,67 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A1EE36FBC3
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Apr 2021 15:50:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4AB736FBF3
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Apr 2021 16:16:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B32896F528;
-	Fri, 30 Apr 2021 13:50:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B636C6F537;
+	Fri, 30 Apr 2021 14:15:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
- [IPv6:2a00:1450:4864:20::635])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB9156F528
- for <amd-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 13:50:56 +0000 (UTC)
-Received: by mail-ej1-x635.google.com with SMTP id u3so26671619eja.12
- for <amd-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 06:50:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-transfer-encoding:content-language;
- bh=5as9kx2tbGf/kIcSa9FhFReJTaEZrShRQeq9K45Esaw=;
- b=JARVJLYrfbxw3ESqdJq2pmhKB8fua2y/GKtFDWuY0cl3itMGub9HHYeDSL1l7SzHUt
- EjLnFByqRgvZDZDTYnMiLfVCl2FGvmW7kfzE07n767AyCEHLJMTxhCq3zv++ku7vG+xC
- oMi76LmNz8hhM5ChQFvdP+rnKpy4mrfnYCspcvPIPAF/mCYub7UzCIAgTe/kGzY+228I
- /97SUIwDAmOB1I6uk4tJ1WKn/cO6r6xPThohrFPDtlCYBt2ne8WQ2BPC1S1hG+QTpoXU
- ivs37XaWDsHKwzE8nEsooLb2e9AgN1d/P4Q3uXBy6EkDszzZ5Sv/6IH5/v9tAp7o/J16
- ufRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=5as9kx2tbGf/kIcSa9FhFReJTaEZrShRQeq9K45Esaw=;
- b=iyNaBquDBK7gqclebKQNqD/2OS6WOCF5gfaZpTvc2LMFMRYPOyIpPg8OjupbqjEiGd
- JB/m06FlywvvXq2I/ukxo881a8sB+RdHf67gwjyQHINoo9ZDXRbS+sYq+3HsmErhzIqS
- BFFATPC19jerp862dVhnJiYKq5zsMaqyGgZg71FaCMfvfA7hICMRM1p3cPuWlOMaY0nf
- REZB5vUu9TRVbHOScG3O/rAz5Fru2z6cLFks9SdgD/DRuvHb+MRl93jcmK4BzqhCv520
- oxOn0Nb/5sk7PWxTeSaQ1Slq0yrp3OYnN7aBiq6TAA8Wn3WoX5ozjKVgJgShyFoJPWqj
- k+JQ==
-X-Gm-Message-State: AOAM533eDyoQzIAEhOoRUiXotKVBmYP6Sbv2RbbxEpVi+n2KqmW5h+R8
- VjonFUSx+s3t8BhZpq/9fK8HAq/bqmc=
-X-Google-Smtp-Source: ABdhPJxEOvmbhWZUYo+4+pwSpAEL2ZMGaoVKWRSsQ+CLmoq9TIh5S9OMr4H7KiUaq70k6/M9k0zL6w==
-X-Received: by 2002:a17:906:608a:: with SMTP id
- t10mr4570890ejj.374.1619790655379; 
- Fri, 30 Apr 2021 06:50:55 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:aa4a:1229:bd1a:d432?
- ([2a02:908:1252:fb60:aa4a:1229:bd1a:d432])
- by smtp.gmail.com with ESMTPSA id m9sm2068361ejj.53.2021.04.30.06.50.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 30 Apr 2021 06:50:55 -0700 (PDT)
-Subject: Re: [PATCH 1/5] drm/amdgpu: re-apply "use the new cursor in the VM
- code" v2
-To: Felix Kuehling <felix.kuehling@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20210427105410.2700-1-christian.koenig@amd.com>
- <63266df9-ba17-c53d-53b9-87331415f057@amd.com>
- <022dc479-53ad-eecb-1ac0-4156dadbd18d@gmail.com>
- <2e7a1de7-6cf3-e3eb-7575-c6afe68828e3@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <111abfa3-eaa3-e171-40c9-ffb6727660c2@gmail.com>
-Date: Fri, 30 Apr 2021 15:50:54 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
+ [66.111.4.230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40F806E108;
+ Fri, 30 Apr 2021 09:44:58 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 4ECFF5800D2;
+ Fri, 30 Apr 2021 05:44:57 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute3.internal (MEProxy); Fri, 30 Apr 2021 05:44:57 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding; s=fm2; bh=JjDK5rsfeA5jH5e+etU6Pjpkhk
+ 5S/nK7Bq9hIE+7SHU=; b=G5MH0nX64Vc+BlpsE/u9dRxE1C6dnn3jwLCFHfECQ/
+ 8XlmOIUFxm+sq5y0KYFfgwJGWctYEA0s6uBf6kXYVWap6VYI2G6Sljm2MdUHyKlA
+ u90Yl96iuXZAEoGu9SUGwV137vbEEUSdWbMSpgIZmt4kmXF53UCHB7HFLqQo5JFI
+ vIyBaEHMzYjeihmNFweOywkyVF4/6/nMRdhPhGeOTuPxk6S+5SpXYu6GTDdNtmLi
+ s1qwyiIlfAwtDZruHg3XdfSwql2CH4J36qRbY8OvjMUGWifFxau/uPARZOoEcerN
+ Io7pZgM2EwxLr+6I+aVBlXUAqAj0p9NiNh5hZEPpDmBA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:date:from
+ :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=JjDK5rsfeA5jH5e+e
+ tU6Pjpkhk5S/nK7Bq9hIE+7SHU=; b=UJglAWk0rRtYWZAZLgRbvJx9FnQ5lbdNz
+ 7KZ4+XVUMTl13prIFGYFNwQ7D4l6fzGCWZJ/g1wxw9K/+ABJh3kRs837G3emdAGQ
+ z18MoxjsetTK6C+n9c+ASwDpMmfWyFIhfPjcgA/AecwBNVLrlG8P3xORJDK8dcdJ
+ oeZWq5x6/EZM5R01W3uZR+u0ngQ98tDjEAV3zSlAIG7zEpEZ9PUBB8Xdf4dBPPOq
+ bNxWAkjLbmAU7O7gKhfJS5jffZdn/YosfBaS8/ZlPSfL5x+JHx5I+Uqd4I3JkliL
+ YTuYO0HqMfHC57phBRWaPCCqz46+TBDFOGpjF6RRUyTQ9P0I7cVWw==
+X-ME-Sender: <xms:ldGLYLSerNBh-o4lywZ1Cz1VnibcKv7q1hieaV6I45Bvv8AilN8cjQ>
+ <xme:ldGLYMxm-52eCYndB86eOsHJsfjNPfZilrHx6amR6PRguSo0jwX-qXn2it_-RM-QW
+ -6w9DwfeQMK3vw-040>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvddviedgudelucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcu
+ tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
+ hrnhepjeffheduvddvvdelhfegleelfffgieejvdehgfeijedtieeuteejteefueekjeeg
+ necukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrg
+ hrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:ldGLYA1l1sXHtFTRftReJWdUVlRraNwZpMqSO3Ovq57YZWtxgj5eog>
+ <xmx:ldGLYLAg8o2HANlsMtTTpKzSGWuFGCF66KOCaH7oKVx13iFWUF479g>
+ <xmx:ldGLYEjP-fd0CYaW48f0ZBtRIDgbNJwb9tV3OznUDVlVOV-KKCQ8ug>
+ <xmx:mdGLYP12KsAXGI3Ms69GBKfN_60GlRVcMsyxxKRuYQCEuZWyJTPqWA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76]) by mail.messagingengine.com (Postfix) with ESMTPA;
+ Fri, 30 Apr 2021 05:44:53 -0400 (EDT)
+From: Maxime Ripard <maxime@cerno.tech>
+To: dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>,
+ David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <maxime@cerno.tech>
+Subject: [PATCH v3 1/5] drm/connector: Create a helper to attach the
+ hdr_output_metadata property
+Date: Fri, 30 Apr 2021 11:44:47 +0200
+Message-Id: <20210430094451.2145002-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <2e7a1de7-6cf3-e3eb-7575-c6afe68828e3@amd.com>
-Content-Language: en-US
+X-Mailman-Approved-At: Fri, 30 Apr 2021 14:15:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,204 +78,146 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Tim Gover <tim.gover@raspberrypi.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Andrzej Hajda <a.hajda@samsung.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Phil Elwell <phil@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jernej Skrabec <jernej.skrabec@siol.net>, Dom Cobley <dom@raspberrypi.com>,
+ Eric Anholt <eric@anholt.net>, linux-kernel@vger.kernel.org,
+ Robert Foss <robert.foss@linaro.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-CgpBbSAzMC4wNC4yMSB1bSAxNTo0NSBzY2hyaWViIEZlbGl4IEt1ZWhsaW5nOgo+IEFtIDIwMjEt
-MDQtMzAgdW0gNDo1NCBhLm0uIHNjaHJpZWIgQ2hyaXN0aWFuIEvDtm5pZzoKPj4KPj4gQW0gMzAu
-MDQuMjEgdW0gMTA6MzIgc2NocmllYiBGZWxpeCBLdWVobGluZzoKPj4+IEFtIDIwMjEtMDQtMjcg
-dW0gNjo1NCBhLm0uIHNjaHJpZWIgQ2hyaXN0aWFuIEvDtm5pZzoKPj4+PiBOb3cgdGhhdCB3ZSBm
-b3VuZCB0aGUgdW5kZXJseWluZyBwcm9ibGVtIHdlIGNhbiByZS1hcHBseSB0aGlzIHBhdGNoLgo+
-Pj4+Cj4+Pj4gVGhpcyByZXZlcnRzIGNvbW1pdCA4NjdmZWU3Zjg4MjFmZjQyZTczMDgwODhjZjBj
-MzQ1MGFjNDljMTdjLgo+Pj4+Cj4+Pj4gdjI6IHJlYmFzZSBvbiBLRkQgY2hhbmdlcwo+Pj4+Cj4+
-Pj4gU2lnbmVkLW9mZi1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQu
-Y29tPgo+Pj4gQWNrZWQtYnk6IEZlbGl4IEt1ZWhsaW5nIDxGZWxpeC5LdWVobGluZ0BhbWQuY29t
-Pgo+PiBUaGFua3MsIGp1c3QgZm9yIHRoaXMgcGF0Y2ggb3IgdGhlIHNlcmllcz8KPiBJIG1lYW50
-IGl0IGZvciB0aGUgcGF0Y2guIEkgY291bGQgcHJvYmFibHkgZXh0ZW5kIGl0IHRvIHRoZSBzZXJp
-ZXMuIEJ1dAo+IEknbSBhIGJpdCBjb25mdXNlZCBob3cgdGhlIHBhdGNoZXMgcmVsYXRlIHRvIGVh
-Y2ggb3RoZXIuIFRoZXJlIHNlZW1zIHRvCj4gYmUgYW4gaW1wbGljYXRpb24gdGhhdCBldmVyeXRo
-aW5nIGxlYWRzIHVwIHRvIGVuYWJsaW5nIHBhdGNoIDUsIGkuZS4KPiByZW1vdmluZyB1c2VycyBv
-ZiBtbV9ub2RlcyBzbyB0aGF0IHlvdSBjYW4gaW4gcGF0Y2ggNSBtYWtlIHRoZSBkYXRhCj4gc3Ry
-dWN0dXJlIGNvbnRhaW5pbmcgbW1fbm9kZXMgcHJpdmF0ZS4KPgo+IEJ1dCBpdCdzIG5vdCB0aGUg
-c2FtZSBkYXRhIHN0cnVjdHVyZS4gSSBkb24ndCB0aGluayBwYXRjaCA1IHJlYWxseQo+IGRlcGVu
-ZHMgb24gYW55IG9mIHRoZSBwcmV2aW91cyBwYXRjaGVzLCBiZWNhdXNlIGFsbCB0aGUgb3RoZXIg
-cGF0Y2hlcwo+IGRlYWwgd2l0aCB0dG1fcmVzb3VyY2UubW1fbm9kZXMgYW5kIHBhdGNoIDUgZGVh
-bHMgd2l0aAo+IGFtZGdwdV92cmFtX3Jlc2VydmF0aW9uLm1tX25vZGVzLgoKTm8sIHlvdSBhcmUg
-Y2xvc2UgYnV0IHN0aWxsIG1pc3VuZGVyc3Rvb2QgdGhlIGludGVudGlvbiBoZXJlIGEgYml0LgoK
-SSB3YW50IHRvIHN0b3AgdXNpbmcgZHJtX21tX25vZGUgZGlyZWN0bHkgaW4gdGhlIGFtZGdwdSBj
-b2RlIHNvIHRoYXQgd2UgCmFyZSBhYmxlIHRvIHN3aXRjaCB0aGUgVlJBTSBtYW5hZ2VtZW50IHRv
-IGEgYnVkZHkgYWxsb2NhdG9yIHNvb25lciBvciBsYXRlci4KCm1tX25vZGVzIGFuZCBhbWRncHVf
-dnJhbV9yZXNlcnZhdGlvbi5tbV9ub2RlcyBhcmUgYm90aCBvZiB0aGF0IHR5cGUuCgpSZWdhcmRz
-LApDaHJpc3RpYW4uCgo+Cj4gUmVnYXJkcywKPiAgwqAgRmVsaXgKPgo+Cj4+IENocmlzdGlhbi4K
-Pj4KPj4+Cj4+Pj4gLS0tCj4+Pj4gIMKgIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
-dV92bS5jIHwgNTUKPj4+PiArKysrKysrKystLS0tLS0tLS0tLS0tLS0tLQo+Pj4+ICDCoCBkcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdm0uaCB8wqAgMiArLQo+Pj4+ICDCoCBkcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfc3ZtLmPCoMKgIHzCoCAzICstCj4+Pj4gIMKgIDMg
-ZmlsZXMgY2hhbmdlZCwgMjAgaW5zZXJ0aW9ucygrKSwgNDAgZGVsZXRpb25zKC0pCj4+Pj4KPj4+
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmMKPj4+
-PiBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5jCj4+Pj4gaW5kZXggZGFl
-NTE5OTJjNjA3Li5mYTQzZDMzMmE5NzkgMTAwNjQ0Cj4+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmMKPj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
-ZGdwdS9hbWRncHVfdm0uYwo+Pj4+IEBAIC0zNyw2ICszNyw3IEBACj4+Pj4gIMKgICNpbmNsdWRl
-ICJhbWRncHVfZ21jLmgiCj4+Pj4gIMKgICNpbmNsdWRlICJhbWRncHVfeGdtaS5oIgo+Pj4+ICDC
-oCAjaW5jbHVkZSAiYW1kZ3B1X2RtYV9idWYuaCIKPj4+PiArI2luY2x1ZGUgImFtZGdwdV9yZXNf
-Y3Vyc29yLmgiCj4+Pj4gIMKgICNpbmNsdWRlICJrZmRfc3ZtLmgiCj4+Pj4gIMKgIMKgIC8qKgo+
-Pj4+IEBAIC0xNjA2LDcgKzE2MDcsNyBAQCBzdGF0aWMgaW50IGFtZGdwdV92bV91cGRhdGVfcHRl
-cyhzdHJ1Y3QKPj4+PiBhbWRncHVfdm1fdXBkYXRlX3BhcmFtcyAqcGFyYW1zLAo+Pj4+ICDCoMKg
-ICogQGxhc3Q6IGxhc3QgbWFwcGVkIGVudHJ5Cj4+Pj4gIMKgwqAgKiBAZmxhZ3M6IGZsYWdzIGZv
-ciB0aGUgZW50cmllcwo+Pj4+ICDCoMKgICogQG9mZnNldDogb2Zmc2V0IGludG8gbm9kZXMgYW5k
-IHBhZ2VzX2FkZHIKPj4+PiAtICogQG5vZGVzOiBhcnJheSBvZiBkcm1fbW1fbm9kZXMgd2l0aCB0
-aGUgTUMgYWRkcmVzc2VzCj4+Pj4gKyAqIEByZXM6IHR0bV9yZXNvdXJjZSB0byBtYXAKPj4+PiAg
-wqDCoCAqIEBwYWdlc19hZGRyOiBETUEgYWRkcmVzc2VzIHRvIHVzZSBmb3IgbWFwcGluZwo+Pj4+
-ICDCoMKgICogQGZlbmNlOiBvcHRpb25hbCByZXN1bHRpbmcgZmVuY2UKPj4+PiAgwqDCoCAqCj4+
-Pj4gQEAgLTE2MjEsMTMgKzE2MjIsMTMgQEAgaW50IGFtZGdwdV92bV9ib191cGRhdGVfbWFwcGlu
-ZyhzdHJ1Y3QKPj4+PiBhbWRncHVfZGV2aWNlICphZGV2LAo+Pj4+ICDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIGJvb2wgdW5sb2NrZWQsIHN0cnVjdCBkbWFfcmVzdiAqcmVzdiwK
-Pj4+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB1aW50NjRfdCBzdGFydCwg
-dWludDY0X3QgbGFzdCwKPj4+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB1
-aW50NjRfdCBmbGFncywgdWludDY0X3Qgb2Zmc2V0LAo+Pj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgc3RydWN0IGRybV9tbV9ub2RlICpub2RlcywKPj4+PiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCB0dG1fcmVzb3VyY2UgKnJlcywKPj4+PiAgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkbWFfYWRkcl90ICpwYWdlc19hZGRyLAo+Pj4+
-ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBkbWFfZmVuY2UgKipm
-ZW5jZSkKPj4+PiAgwqAgewo+Pj4+ICDCoMKgwqDCoMKgIHN0cnVjdCBhbWRncHVfdm1fdXBkYXRl
-X3BhcmFtcyBwYXJhbXM7Cj4+Pj4gK8KgwqDCoCBzdHJ1Y3QgYW1kZ3B1X3Jlc19jdXJzb3IgY3Vy
-c29yOwo+Pj4+ICDCoMKgwqDCoMKgIGVudW0gYW1kZ3B1X3N5bmNfbW9kZSBzeW5jX21vZGU7Cj4+
-Pj4gLcKgwqDCoCB1aW50NjRfdCBwZm47Cj4+Pj4gIMKgwqDCoMKgwqAgaW50IHI7Cj4+Pj4gIMKg
-IMKgwqDCoMKgwqAgbWVtc2V0KCZwYXJhbXMsIDAsIHNpemVvZihwYXJhbXMpKTsKPj4+PiBAQCAt
-MTY0NSwxNCArMTY0Niw2IEBAIGludCBhbWRncHVfdm1fYm9fdXBkYXRlX21hcHBpbmcoc3RydWN0
-Cj4+Pj4gYW1kZ3B1X2RldmljZSAqYWRldiwKPj4+PiAgwqDCoMKgwqDCoCBlbHNlCj4+Pj4gIMKg
-wqDCoMKgwqDCoMKgwqDCoCBzeW5jX21vZGUgPSBBTURHUFVfU1lOQ19FWFBMSUNJVDsKPj4+PiAg
-wqAgLcKgwqDCoCBwZm4gPSBvZmZzZXQgPj4gUEFHRV9TSElGVDsKPj4+PiAtwqDCoMKgIGlmIChu
-b2Rlcykgewo+Pj4+IC3CoMKgwqDCoMKgwqDCoCB3aGlsZSAocGZuID49IG5vZGVzLT5zaXplKSB7
-Cj4+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcGZuIC09IG5vZGVzLT5zaXplOwo+Pj4+IC3C
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgICsrbm9kZXM7Cj4+Pj4gLcKgwqDCoMKgwqDCoMKgIH0KPj4+
-PiAtwqDCoMKgIH0KPj4+PiAtCj4+Pj4gIMKgwqDCoMKgwqAgYW1kZ3B1X3ZtX2V2aWN0aW9uX2xv
-Y2sodm0pOwo+Pj4+ICDCoMKgwqDCoMKgIGlmICh2bS0+ZXZpY3RpbmcpIHsKPj4+PiAgwqDCoMKg
-wqDCoMKgwqDCoMKgIHIgPSAtRUJVU1k7Cj4+Pj4gQEAgLTE2NzEsMjMgKzE2NjQsMTcgQEAgaW50
-IGFtZGdwdV92bV9ib191cGRhdGVfbWFwcGluZyhzdHJ1Y3QKPj4+PiBhbWRncHVfZGV2aWNlICph
-ZGV2LAo+Pj4+ICDCoMKgwqDCoMKgIGlmIChyKQo+Pj4+ICDCoMKgwqDCoMKgwqDCoMKgwqAgZ290
-byBlcnJvcl91bmxvY2s7Cj4+Pj4gIMKgIC3CoMKgwqAgZG8gewo+Pj4+ICvCoMKgwqAgYW1kZ3B1
-X3Jlc19maXJzdChyZXMsIG9mZnNldCwgKGxhc3QgLSBzdGFydCArIDEpICoKPj4+PiBBTURHUFVf
-R1BVX1BBR0VfU0laRSwKPj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICZjdXJzb3IpOwo+
-Pj4+ICvCoMKgwqAgd2hpbGUgKGN1cnNvci5yZW1haW5pbmcpIHsKPj4+PiAgwqDCoMKgwqDCoMKg
-wqDCoMKgIHVpbnQ2NF90IHRtcCwgbnVtX2VudHJpZXMsIGFkZHI7Cj4+Pj4gIMKgIC0KPj4+PiAt
-wqDCoMKgwqDCoMKgwqAgbnVtX2VudHJpZXMgPSBsYXN0IC0gc3RhcnQgKyAxOwo+Pj4+IC3CoMKg
-wqDCoMKgwqDCoCBpZiAobm9kZXMpIHsKPj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBhZGRy
-ID0gbm9kZXMtPnN0YXJ0IDw8IFBBR0VfU0hJRlQ7Cj4+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgbnVtX2VudHJpZXMgPSBtaW4oKG5vZGVzLT5zaXplIC0gcGZuKSAqCj4+Pj4gLcKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBBTURHUFVfR1BVX1BBR0VTX0lOX0NQVV9QQUdFLCBudW1f
-ZW50cmllcyk7Cj4+Pj4gLcKgwqDCoMKgwqDCoMKgIH0gZWxzZSB7Cj4+Pj4gLcKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgYWRkciA9IDA7Cj4+Pj4gLcKgwqDCoMKgwqDCoMKgIH0KPj4+PiAtCj4+Pj4g
-K8KgwqDCoMKgwqDCoMKgIG51bV9lbnRyaWVzID0gY3Vyc29yLnNpemUgPj4gQU1ER1BVX0dQVV9Q
-QUdFX1NISUZUOwo+Pj4+ICDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKHBhZ2VzX2FkZHIpIHsKPj4+
-PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYm9vbCBjb250aWd1b3VzID0gdHJ1ZTsKPj4+
-PiAgwqAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKG51bV9lbnRyaWVzID4gQU1ER1BV
-X0dQVV9QQUdFU19JTl9DUFVfUEFHRSkgewo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgdWludDY0X3QgcGZuID0gY3Vyc29yLnN0YXJ0ID4+IFBBR0VfU0hJRlQ7Cj4+Pj4gIMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdWludDY0X3QgY291bnQ7Cj4+Pj4gIMKg
-IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29udGlndW91cyA9IHBhZ2VzX2Fk
-ZHJbcGZuICsgMV0gPT0KPj4+PiBAQCAtMTcwNywxNiArMTY5NCwxOCBAQCBpbnQgYW1kZ3B1X3Zt
-X2JvX3VwZGF0ZV9tYXBwaW5nKHN0cnVjdAo+Pj4+IGFtZGdwdV9kZXZpY2UgKmFkZXYsCj4+Pj4g
-IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH0KPj4+PiAgwqAgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgaWYgKCFjb250aWd1b3VzKSB7Cj4+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBhZGRyID0gcGZuIDw8IFBBR0VfU0hJRlQ7Cj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBhZGRyID0gY3Vyc29yLnN0YXJ0Owo+Pj4+ICDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIHBhcmFtcy5wYWdlc19hZGRyID0gcGFnZXNfYWRkcjsKPj4+PiAg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfSBlbHNlIHsKPj4+PiAtwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGFkZHIgPSBwYWdlc19hZGRyW3Bmbl07Cj4+Pj4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBhZGRyID0gcGFnZXNfYWRkcltjdXJzb3Iuc3RhcnQgPj4gUEFH
-RV9TSElGVF07Cj4+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcGFyYW1z
-LnBhZ2VzX2FkZHIgPSBOVUxMOwo+Pj4+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB9Cj4+
-Pj4gIMKgIMKgwqDCoMKgwqDCoMKgwqDCoCB9IGVsc2UgaWYgKGZsYWdzICYgKEFNREdQVV9QVEVf
-VkFMSUQgfCBBTURHUFVfUFRFX1BSVCkpIHsKPj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBh
-ZGRyICs9IGJvX2FkZXYtPnZtX21hbmFnZXIudnJhbV9iYXNlX29mZnNldDsKPj4+PiAtwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBhZGRyICs9IHBmbiA8PCBQQUdFX1NISUZUOwo+Pj4+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGFkZHIgPSBib19hZGV2LT52bV9tYW5hZ2VyLnZyYW1fYmFzZV9vZmZz
-ZXQgKwo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY3Vyc29yLnN0YXJ0Owo+
-Pj4+ICvCoMKgwqDCoMKgwqDCoCB9IGVsc2Ugewo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IGFkZHIgPSAwOwo+Pj4+ICDCoMKgwqDCoMKgwqDCoMKgwqAgfQo+Pj4+ICDCoCDCoMKgwqDCoMKg
-wqDCoMKgwqAgdG1wID0gc3RhcnQgKyBudW1fZW50cmllczsKPj4+PiBAQCAtMTcyNCwxNCArMTcx
-Myw5IEBAIGludCBhbWRncHVfdm1fYm9fdXBkYXRlX21hcHBpbmcoc3RydWN0Cj4+Pj4gYW1kZ3B1
-X2RldmljZSAqYWRldiwKPj4+PiAgwqDCoMKgwqDCoMKgwqDCoMKgIGlmIChyKQo+Pj4+ICDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBnb3RvIGVycm9yX3VubG9jazsKPj4+PiAgwqAgLcKgwqDC
-oMKgwqDCoMKgIHBmbiArPSBudW1fZW50cmllcyAvIEFNREdQVV9HUFVfUEFHRVNfSU5fQ1BVX1BB
-R0U7Cj4+Pj4gLcKgwqDCoMKgwqDCoMKgIGlmIChub2RlcyAmJiBub2Rlcy0+c2l6ZSA9PSBwZm4p
-IHsKPj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwZm4gPSAwOwo+Pj4+IC3CoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgICsrbm9kZXM7Cj4+Pj4gLcKgwqDCoMKgwqDCoMKgIH0KPj4+PiArwqDCoMKg
-wqDCoMKgwqAgYW1kZ3B1X3Jlc19uZXh0KCZjdXJzb3IsIG51bV9lbnRyaWVzICogQU1ER1BVX0dQ
-VV9QQUdFX1NJWkUpOwo+Pj4+ICDCoMKgwqDCoMKgwqDCoMKgwqAgc3RhcnQgPSB0bXA7Cj4+Pj4g
-LQo+Pj4+IC3CoMKgwqAgfSB3aGlsZSAodW5saWtlbHkoc3RhcnQgIT0gbGFzdCArIDEpKTsKPj4+
-PiArwqDCoMKgIH07Cj4+Pj4gIMKgIMKgwqDCoMKgwqAgciA9IHZtLT51cGRhdGVfZnVuY3MtPmNv
-bW1pdCgmcGFyYW1zLCBmZW5jZSk7Cj4+Pj4gIMKgIEBAIC0xNzYwLDcgKzE3NDQsNiBAQCBpbnQg
-YW1kZ3B1X3ZtX2JvX3VwZGF0ZShzdHJ1Y3QgYW1kZ3B1X2RldmljZQo+Pj4+ICphZGV2LCBzdHJ1
-Y3QgYW1kZ3B1X2JvX3ZhICpib192YSwKPj4+PiAgwqDCoMKgwqDCoCBzdHJ1Y3QgYW1kZ3B1X2Jv
-X3ZhX21hcHBpbmcgKm1hcHBpbmc7Cj4+Pj4gIMKgwqDCoMKgwqAgZG1hX2FkZHJfdCAqcGFnZXNf
-YWRkciA9IE5VTEw7Cj4+Pj4gIMKgwqDCoMKgwqAgc3RydWN0IHR0bV9yZXNvdXJjZSAqbWVtOwo+
-Pj4+IC3CoMKgwqAgc3RydWN0IGRybV9tbV9ub2RlICpub2RlczsKPj4+PiAgwqDCoMKgwqDCoCBz
-dHJ1Y3QgZG1hX2ZlbmNlICoqbGFzdF91cGRhdGU7Cj4+Pj4gIMKgwqDCoMKgwqAgc3RydWN0IGRt
-YV9yZXN2ICpyZXN2Owo+Pj4+ICDCoMKgwqDCoMKgIHVpbnQ2NF90IGZsYWdzOwo+Pj4+IEBAIC0x
-NzY5LDcgKzE3NTIsNiBAQCBpbnQgYW1kZ3B1X3ZtX2JvX3VwZGF0ZShzdHJ1Y3QgYW1kZ3B1X2Rl
-dmljZQo+Pj4+ICphZGV2LCBzdHJ1Y3QgYW1kZ3B1X2JvX3ZhICpib192YSwKPj4+PiAgwqAgwqDC
-oMKgwqDCoCBpZiAoY2xlYXIgfHwgIWJvKSB7Cj4+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoCBtZW0g
-PSBOVUxMOwo+Pj4+IC3CoMKgwqDCoMKgwqDCoCBub2RlcyA9IE5VTEw7Cj4+Pj4gIMKgwqDCoMKg
-wqDCoMKgwqDCoCByZXN2ID0gdm0tPnJvb3QuYmFzZS5iby0+dGJvLmJhc2UucmVzdjsKPj4+PiAg
-wqDCoMKgwqDCoCB9IGVsc2Ugewo+Pj4+ICDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IGRybV9n
-ZW1fb2JqZWN0ICpvYmogPSAmYm8tPnRiby5iYXNlOwo+Pj4+IEBAIC0xNzg0LDcgKzE3NjYsNiBA
-QCBpbnQgYW1kZ3B1X3ZtX2JvX3VwZGF0ZShzdHJ1Y3QgYW1kZ3B1X2RldmljZQo+Pj4+ICphZGV2
-LCBzdHJ1Y3QgYW1kZ3B1X2JvX3ZhICpib192YSwKPj4+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBibyA9IGdlbV90b19hbWRncHVfYm8oZ29iaik7Cj4+Pj4gIMKgwqDCoMKg
-wqDCoMKgwqDCoCB9Cj4+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoCBtZW0gPSAmYm8tPnRiby5tZW07
-Cj4+Pj4gLcKgwqDCoMKgwqDCoMKgIG5vZGVzID0gbWVtLT5tbV9ub2RlOwo+Pj4+ICDCoMKgwqDC
-oMKgwqDCoMKgwqAgaWYgKG1lbS0+bWVtX3R5cGUgPT0gVFRNX1BMX1RUKQo+Pj4+ICDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBwYWdlc19hZGRyID0gYm8tPnRiby50dG0tPmRtYV9hZGRyZXNz
-Owo+Pj4+ICDCoMKgwqDCoMKgIH0KPj4+PiBAQCAtMTgzMyw3ICsxODE0LDcgQEAgaW50IGFtZGdw
-dV92bV9ib191cGRhdGUoc3RydWN0IGFtZGdwdV9kZXZpY2UKPj4+PiAqYWRldiwgc3RydWN0IGFt
-ZGdwdV9ib192YSAqYm9fdmEsCj4+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoCByID0gYW1kZ3B1X3Zt
-X2JvX3VwZGF0ZV9tYXBwaW5nKGFkZXYsIGJvX2FkZXYsIHZtLCBmYWxzZSwKPj4+PiBmYWxzZSwK
-Pj4+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-cmVzdiwgbWFwcGluZy0+c3RhcnQsCj4+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIG1hcHBpbmctPmxhc3QsIHVwZGF0ZV9mbGFncywKPj4+PiAt
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtYXBwaW5nLT5v
-ZmZzZXQsIG5vZGVzLAo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIG1hcHBpbmctPm9mZnNldCwgbWVtLAo+Pj4+ICDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwYWdlc19hZGRyLCBsYXN0X3VwZGF0ZSk7
-Cj4+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAocikKPj4+PiAgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgcmV0dXJuIHI7Cj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2FtZGdwdV92bS5oCj4+Pj4gYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
-cHVfdm0uaAo+Pj4+IGluZGV4IGU1YTNmMThiZTJiNy4uMWFlNWVhOGRiNDk3IDEwMDY0NAo+Pj4+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5oCj4+Pj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmgKPj4+PiBAQCAtNDAyLDcgKzQw
-Miw3IEBAIGludCBhbWRncHVfdm1fYm9fdXBkYXRlX21hcHBpbmcoc3RydWN0Cj4+Pj4gYW1kZ3B1
-X2RldmljZSAqYWRldiwKPj4+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBi
-b29sIHVubG9ja2VkLCBzdHJ1Y3QgZG1hX3Jlc3YgKnJlc3YsCj4+Pj4gIMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgdWludDY0X3Qgc3RhcnQsIHVpbnQ2NF90IGxhc3QsCj4+Pj4g
-IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdWludDY0X3QgZmxhZ3MsIHVpbnQ2
-NF90IG9mZnNldCwKPj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBk
-cm1fbW1fbm9kZSAqbm9kZXMsCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBz
-dHJ1Y3QgdHRtX3Jlc291cmNlICpyZXMsCj4+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgZG1hX2FkZHJfdCAqcGFnZXNfYWRkciwKPj4+PiAgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgZG1hX2ZlbmNlICoqZmVuY2UpOwo+Pj4+ICDCoCBpbnQg
-YW1kZ3B1X3ZtX2JvX3VwZGF0ZShzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiwKPj4+PiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX3N2bS5jCj4+Pj4gYi9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfc3ZtLmMKPj4+PiBpbmRleCBlNGNlOTdhYjZlMjYu
-LjBiMGU3NmUxNmRkYyAxMDA2NDQKPj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtm
-ZC9rZmRfc3ZtLmMKPj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfc3Zt
-LmMKPj4+PiBAQCAtMTE1MSw4ICsxMTUxLDcgQEAgc3ZtX3JhbmdlX21hcF90b19ncHUoc3RydWN0
-IGFtZGdwdV9kZXZpY2UKPj4+PiAqYWRldiwgc3RydWN0IGFtZGdwdV92bSAqdm0sCj4+Pj4gIMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwcmFuZ2UtPm1hcHBpbmcu
-c3RhcnQsCj4+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBw
-cmFuZ2UtPm1hcHBpbmcubGFzdCwgcHRlX2ZsYWdzLAo+Pj4+ICDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcHJhbmdlLT5tYXBwaW5nLm9mZnNldCwKPj4+PiAtwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcHJhbmdlLT50dG1fcmVzID8KPj4+
-PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBwcmFuZ2Ut
-PnR0bV9yZXMtPm1tX25vZGUgOiBOVUxMLAo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBwcmFuZ2UtPnR0bV9yZXMsCj4+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkbWFfYWRkciwgJnZtLT5sYXN0X3VwZGF0ZSk7Cj4+Pj4g
-IMKgwqDCoMKgwqAgaWYgKHIpIHsKPj4+PiAgwqDCoMKgwqDCoMKgwqDCoMKgIHByX2RlYnVnKCJm
-YWlsZWQgJWQgdG8gbWFwIHRvIGdwdSAweCVseFxuIiwgciwKPj4+PiBwcmFuZ2UtPnN0YXJ0KTsK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZngg
-bWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
+All the drivers that implement HDR output call pretty much the same
+function to initialise the hdr_output_metadata property, and while the
+creation of that property is in a helper, every driver uses the same
+code to attach it.
+
+Provide a helper for it as well
+
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+Reviewed-by: Jernej Skrabec <jernej.skrabec@siol.net>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+
+---
+
+Changes from v2:
+  - Rebased on current drm-misc-next
+  - Fixed a merge conflict with i915
+
+Changes from v1:
+  - Rebased on latest drm-misc-next tag
+  - Added the tags
+---
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  4 +---
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     |  3 +--
+ drivers/gpu/drm/drm_connector.c               | 21 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  3 +--
+ include/drm/drm_connector.h                   |  1 +
+ 5 files changed, 25 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index a0c8c41e4e57..c8d7e7dbc05e 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -7498,9 +7498,7 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_display_manager *dm,
+ 	if (connector_type == DRM_MODE_CONNECTOR_HDMIA ||
+ 	    connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+ 	    connector_type == DRM_MODE_CONNECTOR_eDP) {
+-		drm_object_attach_property(
+-			&aconnector->base.base,
+-			dm->ddev->mode_config.hdr_output_metadata_property, 0);
++		drm_connector_attach_hdr_output_metadata_property(&aconnector->base);
+ 
+ 		if (!aconnector->mst_port)
+ 			drm_connector_attach_vrr_capable_property(&aconnector->base);
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index ae97513ef886..dd7f6eda2ce2 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -2492,8 +2492,7 @@ static int dw_hdmi_connector_create(struct dw_hdmi *hdmi)
+ 	drm_connector_attach_max_bpc_property(connector, 8, 16);
+ 
+ 	if (hdmi->version >= 0x200a && hdmi->plat_data->use_drm_infoframe)
+-		drm_object_attach_property(&connector->base,
+-			connector->dev->mode_config.hdr_output_metadata_property, 0);
++		drm_connector_attach_hdr_output_metadata_property(connector);
+ 
+ 	drm_connector_attach_encoder(connector, hdmi->bridge.encoder);
+ 
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index eab8c0b82de2..c5e2f642acd9 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -2151,6 +2151,27 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+ }
+ EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
+ 
++/**
++ * drm_connector_attach_hdr_output_metadata_property - attach "HDR_OUTPUT_METADA" property
++ * @connector: connector to attach the property on.
++ *
++ * This is used to allow the userspace to send HDR Metadata to the
++ * driver.
++ *
++ * Returns:
++ * Zero on success, negative errno on failure.
++ */
++int drm_connector_attach_hdr_output_metadata_property(struct drm_connector *connector)
++{
++	struct drm_device *dev = connector->dev;
++	struct drm_property *prop = dev->mode_config.hdr_output_metadata_property;
++
++	drm_object_attach_property(&connector->base, prop, 0);
++
++	return 0;
++}
++EXPORT_SYMBOL(drm_connector_attach_hdr_output_metadata_property);
++
+ /**
+  * drm_connector_set_vrr_capable_property - sets the variable refresh rate
+  * capable property for a connector
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 9c172dd6fb5b..3c767bcc47b1 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2459,8 +2459,7 @@ intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *c
+ 	drm_connector_attach_content_type_property(connector);
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 10)
+-		drm_object_attach_property(&connector->base,
+-			connector->dev->mode_config.hdr_output_metadata_property, 0);
++		drm_connector_attach_hdr_output_metadata_property(connector);
+ 
+ 	if (!HAS_GMCH(dev_priv))
+ 		drm_connector_attach_max_bpc_property(connector, 8, 12);
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index 1922b278ffad..32172dab8427 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -1671,6 +1671,7 @@ int drm_connector_attach_scaling_mode_property(struct drm_connector *connector,
+ 					       u32 scaling_mode_mask);
+ int drm_connector_attach_vrr_capable_property(
+ 		struct drm_connector *connector);
++int drm_connector_attach_hdr_output_metadata_property(struct drm_connector *connector);
+ int drm_mode_create_aspect_ratio_property(struct drm_device *dev);
+ int drm_mode_create_hdmi_colorspace_property(struct drm_connector *connector);
+ int drm_mode_create_dp_colorspace_property(struct drm_connector *connector);
+-- 
+2.31.1
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
