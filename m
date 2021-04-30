@@ -1,91 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6028936F5F3
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Apr 2021 08:52:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1398836F638
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Apr 2021 09:14:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08D496E49D;
-	Fri, 30 Apr 2021 06:52:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FACE6E4CD;
+	Fri, 30 Apr 2021 07:14:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2055.outbound.protection.outlook.com [40.107.92.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85DC06E49A
- for <amd-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 06:52:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kxQo5rSvHY76dwET0TyrqvcIM3K7F2WL2qE1fxkAtnvPMf8KAxyf7PbNk6JYWakP+fM5EZBP6S9k6/KIjMA1l/SDvWizuwOg3uKU2DsBDvQ2y2L2L9iLPazskokPsofS6+llnNz39vYDZBeF/aYkd831Guu8rIyMmNpO5ttP4yWVHi3OIRF0Z/MinkaSFZap78zksEeWN0W0hfYC/gBgpFRKSkjeK+HU6Ua3nXXMQvIHnYmA9GV6woSHSf1ohe6Ep0tfnf8eB6lffzVDeMWRMk9bBUihhf2ZehZC07S/3V5xuQu0MLa+OanxxVasPe8zFRQomrKvRfxBJJR1Oy0UTA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M5pCEWc5eIJk18NDxiMXXezK/HaoVtA3l94WInBfyso=;
- b=gP6wdh6F1Up7HkaHu9S41Wcmpdul5sGenjatc5dwJUKkG/OzVDPbcDjEJEjbaNhKxlIxhV9Pg6rKiSwgVm070mxmkePFYDnGme79UNizWOvmKbimSWJEui03z0Bf49ogZou4iR/SeiP8cP8RJLd9Ye9vy5Z3rew96wHY8GoEZvS9xS1b32GhmtsEgPIwfe2UGZmStZU4XELhf55RzWga4UuCU33ppH8k1p56j3gcDCzUZAow6hKqcp7fiGDBZ74X6CyaAMqNdHyB1vaRMJhzvJ6XzEDxe7BpAjI5FCp2QJmff/4x9yjCYqO5v55kV9kvP5pnGHvC4zkmEF6+4C1JOQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M5pCEWc5eIJk18NDxiMXXezK/HaoVtA3l94WInBfyso=;
- b=eeTRRvdYt8vSIAPUdgyuvbYGXbWA7sQGq32Pw9rAfjOYvO6zI3kUToFjk+MSXTfekDsmDHrqbBssXfDZMbMvyLdrw2rnbBym8H9tZtWgUdSP4FZ8b6KZAhrMtCOPTYhiKqoVRmapieHgXQq6vrlNrmgHRyLfYStyUNzVxgJr8r8=
-Received: from MWHPR21CA0069.namprd21.prod.outlook.com (2603:10b6:300:db::31)
- by MN2PR12MB4158.namprd12.prod.outlook.com (2603:10b6:208:15f::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.23; Fri, 30 Apr
- 2021 06:52:07 +0000
-Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:db:cafe::ad) by MWHPR21CA0069.outlook.office365.com
- (2603:10b6:300:db::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.1 via Frontend
- Transport; Fri, 30 Apr 2021 06:52:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4087.27 via Frontend Transport; Fri, 30 Apr 2021 06:52:06 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 30 Apr
- 2021 01:52:05 -0500
-Received: from stanley-test.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.4 via Frontend
- Transport; Fri, 30 Apr 2021 01:52:04 -0500
-From: Stanley.Yang <Stanley.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Hawking.Zhang@amd.com>
-Subject: [PATCH Review 1/1] drm/amdgpu: force enable gfx ras for vega20 ws
-Date: Fri, 30 Apr 2021 14:52:02 +0800
-Message-ID: <20210430065202.18115-1-Stanley.Yang@amd.com>
-X-Mailer: git-send-email 2.17.1
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E8F66E45D;
+ Fri, 30 Apr 2021 04:57:07 +0000 (UTC)
+Received: from 1-171-217-32.dynamic-ip.hinet.net ([1.171.217.32]
+ helo=localhost) by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <kai.heng.feng@canonical.com>)
+ id 1lcLD6-0003dM-4f; Fri, 30 Apr 2021 04:57:04 +0000
+From: Kai-Heng Feng <kai.heng.feng@canonical.com>
+To: alexander.deucher@amd.com,
+	christian.koenig@amd.com
+Subject: [PATCH v2] drm/radeon/dpm: Disable sclk switching on Oland when two
+ 4K 60Hz monitors are connected
+Date: Fri, 30 Apr 2021 12:56:56 +0800
+Message-Id: <20210430045656.577395-1-kai.heng.feng@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8ad68420-1647-46ad-d604-08d90ba4781a
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4158:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4158D03BDC13399977F128859A5E9@MN2PR12MB4158.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dbbjy/57VJwnsZDqbF9zkVl/eUv5MWoZT/T57vYySBmKUmU89AHChOfWZdH8vTKgWNyqATG2BGBkzOzwyQPhUV2fCgNmIGFHHohYD1S9+mX1ZFnDG5lARaX5ouN3WhvxT8TaBedPh2fSA5Byko+JihXhbO1o2e3iNOYeHwouM0zt8XNtOY+jonzV5EiD2hhMubMNIBYiArjdQqeN/JI0ggT5oOhH268y1CG3Gnb603eosVYwf6VjoGL9BNkj4PBcW2kP0olDM2qqWr0iz4c7bEIpRd/p63K0dNyEl996vNYpOgWsQLnkRhuzFpRH3olKGE2zHSTmm/ORakjyXV8mnywD44IECyFNM71k/dF84Jg8mSfG8cscQYcxU38Dti7jNyNNelSAIUWemrEsPKxBwvuyy+GIhqwiZ+QIy2O6QvSisZzwNTCH+LNuFNMwdpT2537uUgUPD114JTaMY3f2pwhCpB4LcZg8JHgMc9PSqllpXx2vw/b4pq7Fi6nehzI9BkCPVkaIKSB7QvTgDGstw+CiOPSTqMn0sT3rDDzwdp5UzmCULMJSqRX9d+U8kC0qX6CsvIznqUppjeqWgN2hlRfVcuJ5XA01/8b7EWcSder6UXZZwekw64Q74T6sIk9IujKsJk3eEWdC5Gs6pOifnTvg6kbt+59ZG0BbWZIass1Gaj3ZrP+3umUm0ncfbnWG
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39840400004)(396003)(346002)(136003)(376002)(36840700001)(46966006)(316002)(26005)(426003)(2616005)(8936002)(336012)(110136005)(86362001)(36860700001)(186003)(1076003)(83380400001)(81166007)(47076005)(5660300002)(70586007)(2906002)(70206006)(6636002)(8676002)(82310400003)(4326008)(7696005)(36756003)(356005)(478600001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2021 06:52:06.5543 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ad68420-1647-46ad-d604-08d90ba4781a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4158
+X-Mailman-Approved-At: Fri, 30 Apr 2021 07:14:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,66 +39,97 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Stanley.Yang" <Stanley.Yang@amd.com>
+Cc: David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Screen flickers rapidly when two 4K 60Hz monitors are in use. This issue
+doesn't happen when one monitor is 4K 60Hz (pixelclock 594MHz) and
+another one is 4K 30Hz (pixelclock 297MHz).
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index daf63a4c1fff..dfeaa57dd7ea 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -34,6 +34,7 @@
- #include "amdgpu_xgmi.h"
- #include "ivsrcid/nbio/irqsrcs_nbif_7_4.h"
- #include <asm/mce.h>
-+#include "atom.h"
+The issue is gone after setting "power_dpm_force_performance_level" to
+"high". Following the indication, we found that the issue occurs when
+sclk is too low.
+
+So resolve the issue by disabling sclk switching when there are two
+monitors requires high pixelclock (> 297MHz).
+
+v2:
+ - Only apply the fix to Oland.
+Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+---
+ drivers/gpu/drm/radeon/radeon.h    | 1 +
+ drivers/gpu/drm/radeon/radeon_pm.c | 8 ++++++++
+ drivers/gpu/drm/radeon/si_dpm.c    | 3 +++
+ 3 files changed, 12 insertions(+)
+
+diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
+index 42281fce552e6..56ed5634cebef 100644
+--- a/drivers/gpu/drm/radeon/radeon.h
++++ b/drivers/gpu/drm/radeon/radeon.h
+@@ -1549,6 +1549,7 @@ struct radeon_dpm {
+ 	void                    *priv;
+ 	u32			new_active_crtcs;
+ 	int			new_active_crtc_count;
++	int			high_pixelclock_count;
+ 	u32			current_active_crtcs;
+ 	int			current_active_crtc_count;
+ 	bool single_display;
+diff --git a/drivers/gpu/drm/radeon/radeon_pm.c b/drivers/gpu/drm/radeon/radeon_pm.c
+index 0c1950f4e146f..3861c0b98fcf3 100644
+--- a/drivers/gpu/drm/radeon/radeon_pm.c
++++ b/drivers/gpu/drm/radeon/radeon_pm.c
+@@ -1767,6 +1767,7 @@ static void radeon_pm_compute_clocks_dpm(struct radeon_device *rdev)
+ 	struct drm_device *ddev = rdev->ddev;
+ 	struct drm_crtc *crtc;
+ 	struct radeon_crtc *radeon_crtc;
++	struct radeon_connector *radeon_connector;
  
- static const char *RAS_FS_NAME = "ras";
- 
-@@ -2070,6 +2071,25 @@ static bool amdgpu_ras_asic_supported(struct amdgpu_device *adev)
- 		adev->asic_type == CHIP_SIENNA_CICHLID;
- }
- 
-+/*
-+ * this is workaround for vega20 workstation sku,
-+ * force enable gfx ras, ignore vbios gfx ras flag
-+ * due to GC EDC can not write
-+ */
-+static void amdgpu_ras_get_quirks(struct amdgpu_device *adev,
-+		uint32_t *hw_supported)
-+{
-+	struct atom_context *ctx = adev->mode_info.atom_context;
+ 	if (!rdev->pm.dpm_enabled)
+ 		return;
+@@ -1776,6 +1777,7 @@ static void radeon_pm_compute_clocks_dpm(struct radeon_device *rdev)
+ 	/* update active crtc counts */
+ 	rdev->pm.dpm.new_active_crtcs = 0;
+ 	rdev->pm.dpm.new_active_crtc_count = 0;
++	rdev->pm.dpm.high_pixelclock_count = 0;
+ 	if (rdev->num_crtc && rdev->mode_info.mode_config_initialized) {
+ 		list_for_each_entry(crtc,
+ 				    &ddev->mode_config.crtc_list, head) {
+@@ -1783,6 +1785,12 @@ static void radeon_pm_compute_clocks_dpm(struct radeon_device *rdev)
+ 			if (crtc->enabled) {
+ 				rdev->pm.dpm.new_active_crtcs |= (1 << radeon_crtc->crtc_id);
+ 				rdev->pm.dpm.new_active_crtc_count++;
++				if (!radeon_crtc->connector)
++					continue;
 +
-+	if (!ctx)
-+		return;
++				radeon_connector = to_radeon_connector(radeon_crtc->connector);
++				if (radeon_connector->pixelclock_for_modeset > 297000)
++					rdev->pm.dpm.high_pixelclock_count++;
+ 			}
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/radeon/si_dpm.c b/drivers/gpu/drm/radeon/si_dpm.c
+index 9186095518047..3cc2b96a7f368 100644
+--- a/drivers/gpu/drm/radeon/si_dpm.c
++++ b/drivers/gpu/drm/radeon/si_dpm.c
+@@ -2979,6 +2979,9 @@ static void si_apply_state_adjust_rules(struct radeon_device *rdev,
+ 		    (rdev->pdev->device == 0x6605)) {
+ 			max_sclk = 75000;
+ 		}
 +
-+	if (adev->asic_type == CHIP_VEGA20 &&
-+			strnstr(ctx->vbios_version, "D16406",
-+					sizeof(ctx->vbios_version)))
-+			*hw_supported |= (1 << AMDGPU_RAS_BLOCK__GFX);
-+}
-+
- /*
-  * check hardware's ras ability which will be saved in hw_supported.
-  * if hardware does not support ras, we can skip some ras initializtion and
-@@ -2112,6 +2132,8 @@ static void amdgpu_ras_check_supported(struct amdgpu_device *adev,
- 				1 << AMDGPU_RAS_BLOCK__MMHUB);
++		if (rdev->pm.dpm.high_pixelclock_count > 1)
++			disable_sclk_switching = true;
  	}
  
-+	amdgpu_ras_get_quirks(adev, hw_supported);
-+
- 	/* hw_supported needs to be aligned with RAS block mask. */
- 	*hw_supported &= AMDGPU_RAS_BLOCK_MASK;
- 
+ 	if (rps->vce_active) {
 -- 
-2.17.1
+2.30.2
 
 _______________________________________________
 amd-gfx mailing list
