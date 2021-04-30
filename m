@@ -2,119 +2,105 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72B2636FBE3
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Apr 2021 16:06:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D452A36FC0C
+	for <lists+amd-gfx@lfdr.de>; Fri, 30 Apr 2021 16:23:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4894C6E4A6;
-	Fri, 30 Apr 2021 14:06:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B53A6F53B;
+	Fri, 30 Apr 2021 14:23:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2081.outbound.protection.outlook.com [40.107.220.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79FBE6E4A6
- for <amd-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 14:06:20 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2044.outbound.protection.outlook.com [40.107.94.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A7B76F53B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 14:23:47 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OGYksTHptIetsvcwocKT/DHGFdetLM3zn7lVem5Fpt7Np0brNKP7TmrFhJC7uoJQsJdtfSUyWq7JoOacYaCEpMmcP9QTTv/sDeLYd6ioVs0CPg5AbA52PCOJUB7wntwhZgneTyXdyJaMj7F1uoKvJ6duhmoDT/ax52raYIpS+uyEnlu2OPdyc7wNQh3DZsAyVGjP9dKncIYGRnCnoGlWBoNn1odfrBPuQ9yM1NvXsh2y5bcoMuDQ7IjElsVr50OvvIkfAXUf32sejWwk5BU2bI4dEUZtAxIvAN9iXrjdR9rIna0Jas3xPQKw1LgfIrXDAM8DXfl5MRIM9xqnwhCxaw==
+ b=D9gzrRhL7g81eJrih3geXJFhZTdmreI+90RhuVYrnyrY+VayFINt6tIgNuTXuHZF1byxerzfNOj8Ob0NR7YeKbPvjbZ/zVqZIXeS1sGaPTUP/lvaP/i3xeyBIR6Und/jx3OhCWQ+B1lLKra5G6dY1aOYwk7foLi29CaOlSh0gao1g4exKQzqUIgoBNbrpRrn02qY3VZdu1pVPFuGhZnc7yDoqDGHEh6RSn3OCHydyUCH6mn7zHHMwH/hMtcJhCKA2H++eJCPLy1kxOkhFZNztDLXGPgm8nn98fK5NfhZ19ici+Oy/GRyx2jJu4x7EGY4eHQJicbHsZiLdq0vpWHSNQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DhkEMe4BZJusjobKtB1GWq3bq2s+DC/p6EwW+UmO5IQ=;
- b=a3BjtX+3J9wiJqeg2I7rKefoZN3z5CiDUrL/n/PB/1ayh+l44hyUHcbwzBKqIJzgBWR16eJ/cCFQJYlgRmetJgaFxdSdex+TWCk+nXlyaCPsGwyV7+Dq5bjl3v2bdYYnhknVbZkZKQs4LqhNbAD7xBbRi+Mny5RGVu4V+0UoytiLSWUk2c/heLjfIpYc/iqzy28WyIEMiLLlVudQhBcO8ifYj0b4Jy8ypI2Eng8OvHrEJs4OLl1uTnZvwZUQEv910z1Rt9XzqoFJARhVjjeQ1gLrCmpxZ/B83MIBcn2fAEO2LAPV8R/OI20LDENxiZ78J98xGv4H3lrdXN3wZWvGBA==
+ bh=vbws0za2oMWeyCPCUrHM0Ne437ADLbgTXyZJdtw2Flo=;
+ b=OgDUH8lLdDS0sY/dwXM0anOT0H4ouvn+Knc3HMzMXALzjhXc9N5uHkGA2pjP355k9doDonsxtCCw1IR1m1V1xuuXxyv09HsfEdbhBB8fjNEU/4sFg0Ngf9+A2s8WU628EWkQmTW13zNaksqssuV2KKhd3Szt7sxpkC/odTPnp9g2F1AI2uwrU6+MplSlWwk4/Q4OkGaiX6yvvzC1e+0smR7QcNZGAJQYEiD7fkFRTFIXliqDXOZTkCNAZ0DI/Y0/Dvy1Dbxp1jCVD5IcSTLuvw4Oapn3MEK7pBhuqoQQerMeV7CbwtebVzPapceHzW5R3ngOx1VxwqR2aWFUP/B2Sw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DhkEMe4BZJusjobKtB1GWq3bq2s+DC/p6EwW+UmO5IQ=;
- b=ksWAo7J33Hpq16foIRbFXnVH6TeJBj9lg6wKtovsUOnKZ7Ca+YpgYNPjUe5S+oRgCqBs6Y8lMdnHrhiRxEUdNh8NriSr80nL/Znfhf4hREQvIruQnbf4rCPLjVTfjvRYHLf50WwPbNYKrbWC8dYuLvsgZ24n9lr4PfXsT3Z5Jf8=
+ bh=vbws0za2oMWeyCPCUrHM0Ne437ADLbgTXyZJdtw2Flo=;
+ b=ksr7t/Pas+3j5ltRldpvIVVwOaHs9/pxPyKj6NnIaabUl5u4sm2MAnir2JXy0nxsl2HlF+jv+HdPezgatFHES+af/nGgH6euT8c0cL7hyjPpiwIf63bZfh9uiJ0Bmg5EwDwUD1fFGRTMPexZG/u1QOEbRSun/FWtp5B5hnLU3n8=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
-Received: from DM5PR1201MB0234.namprd12.prod.outlook.com (2603:10b6:4:56::22)
- by DM5PR1201MB0140.namprd12.prod.outlook.com (2603:10b6:4:57::14)
+Received: from BYAPR12MB3126.namprd12.prod.outlook.com (2603:10b6:a03:df::28)
+ by BY5PR12MB3795.namprd12.prod.outlook.com (2603:10b6:a03:1a9::32)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.23; Fri, 30 Apr
- 2021 14:06:17 +0000
-Received: from DM5PR1201MB0234.namprd12.prod.outlook.com
- ([fe80::a996:2224:603:1510]) by DM5PR1201MB0234.namprd12.prod.outlook.com
- ([fe80::a996:2224:603:1510%10]) with mapi id 15.20.4065.030; Fri, 30 Apr 2021
- 14:06:17 +0000
-Subject: Re: [PATCH] drm/amdkfd: add ACPI SRAT parsing for topology
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.25; Fri, 30 Apr
+ 2021 14:23:45 +0000
+Received: from BYAPR12MB3126.namprd12.prod.outlook.com
+ ([fe80::1855:9722:849:a7e0]) by BYAPR12MB3126.namprd12.prod.outlook.com
+ ([fe80::1855:9722:849:a7e0%7]) with mapi id 15.20.4065.027; Fri, 30 Apr 2021
+ 14:23:45 +0000
+From: Shashank Sharma <shashank.sharma@amd.com>
 To: amd-gfx@lists.freedesktop.org
-References: <20210428151154.28317-1-jinhuieric.huang@amd.com>
-From: Eric Huang <jinhuieric.huang@amd.com>
-Message-ID: <5ca292d3-409b-802e-a618-66ef01b10821@amd.com>
-Date: Fri, 30 Apr 2021 10:06:14 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
-In-Reply-To: <20210428151154.28317-1-jinhuieric.huang@amd.com>
-Content-Language: en-US
-X-Originating-IP: [2607:9880:2048:122:150d:2265:cbad:a5fb]
-X-ClientProxiedBy: YTXPR0101CA0045.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:1::22) To DM5PR1201MB0234.namprd12.prod.outlook.com
- (2603:10b6:4:56::22)
+Subject: [PATCH] drm/amdgpu/display: DP MST hot-unplug cleanup
+Date: Fri, 30 Apr 2021 19:53:22 +0530
+Message-Id: <20210430142322.147627-1-shashank.sharma@amd.com>
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [106.51.20.251]
+X-ClientProxiedBy: MA1PR01CA0183.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:d::6) To BYAPR12MB3126.namprd12.prod.outlook.com
+ (2603:10b6:a03:df::28)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2607:9880:2048:122:150d:2265:cbad:a5fb]
- (2607:9880:2048:122:150d:2265:cbad:a5fb) by
- YTXPR0101CA0045.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.25 via Frontend
- Transport; Fri, 30 Apr 2021 14:06:17 +0000
+Received: from localhost.localdomain (106.51.20.251) by
+ MA1PR01CA0183.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:d::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4087.27 via Frontend Transport; Fri, 30 Apr 2021 14:23:44 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4b09a0df-4c2a-4968-c39b-08d90be11f7e
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB0140:
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB01400BCB33D45035087A9FD8825E9@DM5PR1201MB0140.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 6976248e-49ae-42b6-c9d4-08d90be39034
+X-MS-TrafficTypeDiagnostic: BY5PR12MB3795:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BY5PR12MB379529D10E9837B059704C79F25E9@BY5PR12MB3795.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: W/0T8Vo8EFBGfax5PgTRD1Kmaa0fpzjj9QFjoxvToQBXM2qSjUbXvRDri0Uiw34kQb+7NJTLqOVKy94kNxecjiymH723oO3TTthmbwo0D9kSdZkRR9B2mGVSeSzwlSW6JVUZwH3UL7FV6GeIIoDpKalR7iJ+1ZpqG8AYBZYr8JQqWl8W/oNpKTn9Q6UeB9ssOdSqMEwTzuze2vjVzJzmX28MUJlvR9u4yQ/ggTQaLlGzFvZRiSN0hWj2qzin+4ffMuUsHrHLTjukKClsapkEQgLv3nszWl0FN/+Vjm1gua/pXuu0uqJSoA974/LDSanPPRv1yb2MUON0DhhFWpTjN0akS/kWJdhMqRlCaYJq30an6ZN48IpjarEWE3wy+ueg6M492WwoXTChPsCfoxEiBPI0W3R1khA/LNPmK01+OKrdCxRI+hJJHZKAPFBJi09YNiCDtWcmv8O2unn5MrEP65+1991hCJ6c8ZdGiA4vhpspjiGLv+Ao64mn7BOPDMswk2CobsiW+9PGY6nbusm6N9sUZq1eqt9cbgWvJhos1Fy793qTvEei4EXyllMH1sxNXWqC+157EU8/bEY8YFf9RAm7jwGs1DUPR/MwvQcQCBZfYrOU7ol3hUsggNVHjqWDDySYRQiAQU9+ifTo03eKbI+uuhPLaQL2YuGpV06bPmqiiW4vixuhz8aJjj0RA5re
+X-Microsoft-Antispam-Message-Info: UV2wXzICc93p+x/cL+oH5E5X+le/zBlSTXCvRiWgUg2bKiWXolw4oaVkpFaGk5VXAAwoEHvfZqCSz46C829YWUB2cze9w0pwN+9YE2L52e/L9peYofO6aDCGjWI2EEyG8qRAuawteHib3yxIsLKJ8cXTR/U5ts0tjcVHMTkKnJBv8k86AV42+zYw5yb2foCdTFv1dplPIDh5KvDXTVmGAGfYaHhLI4QIPZBLJ9cfDCS1E4fxGxYJC14oWjG3EsbfdaaWMWHSegNJtq9Nx7MBEmvUSGiKuHYCGM/J9Y7hVpDjR+cMURDKViavRg8/ed9GI4S4N2cjGlnMJXn8c9fYD0CywUT9bDM+j+yxIgIM/QP2fSaN344KsTkecgIy4dGmFngv/HF0cV7RVh3Muz7R1nLE9iJczmoV8H9VnQTzDIyaF5gLcKzo9eRsJDHchYDNy4pRw3koAMec5+c4xG/PshywERBha9Jjp6rI3C6nt/xR7FWFpf8CCWYtkQx/Ykssud/hTBwDBtPrA/KUM+wBA8qXVfqzGAv6mwCYq4RaFyyPUVRGNK0NYg4X+wDicnDPtt8l/c717NWo4anb3NWvz5LJd0fVwBvMvjKOAIsyIx+3S6/l773UE1ER4WGlue1pPM26H7JeRljASkkL829yTca0P0dalsSMJ1YhsMcr4MJFSNdvLT8wwcPdTduD+jp8
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR1201MB0234.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(346002)(136003)(366004)(396003)(376002)(2906002)(66946007)(66476007)(8936002)(66556008)(8676002)(53546011)(316002)(6666004)(83380400001)(6486002)(86362001)(38100700002)(31686004)(31696002)(6916009)(186003)(2616005)(36756003)(5660300002)(16526019)(478600001)(43740500002)(45980500001);
+ IPV:NLI; SFV:NSPM; H:BYAPR12MB3126.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(366004)(376002)(136003)(396003)(39860400002)(2616005)(54906003)(8676002)(86362001)(38100700002)(4326008)(44832011)(5660300002)(956004)(8936002)(6512007)(26005)(316002)(186003)(16526019)(6916009)(478600001)(66476007)(66556008)(1076003)(66946007)(38350700002)(36756003)(6666004)(6506007)(55236004)(83380400001)(6486002)(1006002)(52116002)(2906002)(69590400013);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?bHRHRUVsVzd5R29jcHI2Q0x3WFBJTk5pbTh3ejJzMVVqZ25VeS9nYlVBblB6?=
- =?utf-8?B?aWFNVzdabWNQRHNSdGM1dmhzUmJBZnZKcEpsVzFFN3orNGJteTV1dlhwbUlZ?=
- =?utf-8?B?ZG5NaUJveG9IY1ZKeWNGSzBQck9jcTZNdEF2MGo0UkR1VytWczdqem5HOUV1?=
- =?utf-8?B?WlhQWlVsbkw5cFNXbElSZlh0ZlZrWEtKaEFMZ3g4bUVVRktUN2VCUUpJSUZQ?=
- =?utf-8?B?Y050ak85dks5dlhrVk1sdXVId1hRZGhaY0tGNXBmN2JBcUIxRkQxRTBJYmJr?=
- =?utf-8?B?SCsrUllOM3lVTnFDVFFHVzBLZlhGWTdCeGZLWWswRWVtS2dySUNVZ2pGV0l5?=
- =?utf-8?B?NElhMHNkc3pSaVdCTER4U3FYYUgwQ3JzQ0RIYlFWTTZjcUtkanV4aUJ2WlJu?=
- =?utf-8?B?Y3BuVVJma3RQcmhIeXNyeDcyeEtXY2JlSndsQmNSWkpKUksxYlJmUklUUHVR?=
- =?utf-8?B?YUQvRFQ5a3RXRGhoOGNnQ3FvSEJIbDZROXNMcnpwcnhlRHBoajFqYXFlUHNS?=
- =?utf-8?B?MUkyMm9OdmIrZ2xyT3lLMEdwbzhmWUpmQStxSjlOc2s0MlR3NG5WOWxRSDc4?=
- =?utf-8?B?VThVYkpWbi9lbEFBTzhUY1FhYTZoV3lTQ3JDYlNGdFFCVGE0YnAwSExWTFBC?=
- =?utf-8?B?OFlnQ3ZLQXhtV3BIY1R6MVJybUVhUWVxY1k5cEZVQVk4U1ZFOVhtUVVQdzNv?=
- =?utf-8?B?Z3R4MkZvZzFpUHM3bGxDd1VKbElsdTNZaDl3ZXdlY2ovK0l1dXNadk5sc0VR?=
- =?utf-8?B?QmZ6a3A4VmlKTmNRYi8vM0t5UVNjb0s4MjdlUW1qSURkUnJuOWtyYVl1VGYw?=
- =?utf-8?B?UTQzaVlaMTZrS1NPbjl5c0V5dVdOcjVueXFQMm9DbTd1ejhLdnMrdmpQdXVF?=
- =?utf-8?B?bDZ6OUx0K1BSNG1IVjZleHVSckFFZjdaZlpnNzRDcHlLdTFOSlZXalJZMUh6?=
- =?utf-8?B?d0V4dEhvWFlqSFZnZ3JGRFZsYzlQVmNta2RBYUs0dDd5QUg1SVl1YU9uNXAv?=
- =?utf-8?B?Z054NkxKMW94RS84OGpBemVHYjVlWVh5TVhtQkZGUHl0Q2dTc09IVnliem9v?=
- =?utf-8?B?Z0tBNDN2TFVmOWpqdU5oakpGTXFYVzhDVUNJVjNrSDF3VXcwSkk1VnhCaGpN?=
- =?utf-8?B?Ly8rSkdZUHI0eUZsazlsOVA3K2k3L0w1QWNqUm5IaHlaVEQ2Q2JLV2luR096?=
- =?utf-8?B?NDU5UjVXbUpYbmhqazZHZ2piemgrY2R5THJLOTY1aUFySm9COWgzVFFRdnM5?=
- =?utf-8?B?am9kdHBaQzZpK0wvSUx0cVcyV3Z5YVkvR3NFZ0xXK0lLWDI2OWxmT1Z4RWlw?=
- =?utf-8?B?anc0QWt4S2g4ai9Yc0x1bTdGWm5KTVV5bHhiblM3SXUwUGI2Tm5oZW9VTzhL?=
- =?utf-8?B?M0tUSWRXY2VVN1NSMHIwWkJ3Yml3UlhmbHJMSVdHek5DQWRiR1RhUk1PUzJU?=
- =?utf-8?B?Z2lLbklKSGJIUnF0Q2JjZmVzM216dWluUEZaR2tFN2JwQXlvQ01kM04vNGFH?=
- =?utf-8?B?WEUzWXlkT0txQjZsSXQyVlRNVDVQQkh5eDZ2OGxWaHdrYVQxVUtRQWpNSzlx?=
- =?utf-8?B?QXNEYmo4amJweFFvSWs5Uno2OGZrSGgvN1lZYXNMdzVVRG11RXNzNk54Nko2?=
- =?utf-8?B?aDZoQnVmVUxJcVU5cWxwWG16TW5GdWl6dTJqSkF0OFgrNGVZVE53Ni82NE1E?=
- =?utf-8?B?UGE0UGJuSDVvemlaVnJTZkV3ZzJqTVVYVTkwR2hWWWoybjQ4amp0cTlYajl0?=
- =?utf-8?B?K1FIVUVwTmRhcWlqQWFYa3ZmTGRNM0hhaEJDbkloY0F2dGpLZXh2N3V5WVBv?=
- =?utf-8?B?TWVadjVZOFBMU3pDSzJ3aE1wNFp6cEt4clhTUXhGUjlZL1krOG4rRGZiU3JV?=
- =?utf-8?Q?2JfihxSS/NhUp?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?BMF4Wlgwn3BxUE6+OjRnKT0b+EE9Lt+YOMhykoMOpYSIyCvBuqqknsA7SUgH?=
+ =?us-ascii?Q?Q4ip15REuLj82sxjDPFBt1z8ulcDCR6DFWJQRWKm4nbk9cxM9rOu5W3dDn0U?=
+ =?us-ascii?Q?GnAz75T9MaNM11BndZoCrKVFGfHxJ2S87yx/AjGPT+KFARyP2Dc5ELU0ns34?=
+ =?us-ascii?Q?zO7Pmlyi0X5ddESgZgPcT3agh3fwB6vzJZAoKWaybsEBljKaY81EQWC/4lgz?=
+ =?us-ascii?Q?aSGEu2OqJJhO+SSbitfqOAE9QWKDGqVRKPbrXA6bRblWMddBazWKH2nZTvYM?=
+ =?us-ascii?Q?G5j+b2gA8mVb1i7vnc2JBKdcH582HnD9WpVvNYXQvfz3rIIokumJdHXcrHSR?=
+ =?us-ascii?Q?Y9UpJqrR5ahaO/2vaHAabPPoYZAFtqJm4TnCA7b7V3rqKPELtgbigMFMZumK?=
+ =?us-ascii?Q?zCjyVMOnsU+kDYWNgPMuXwBbDKtTGj1YEU8iFkmGNeQ1diJXOzrLtbpvr6sy?=
+ =?us-ascii?Q?QQANCmv34QlKED6KyOIciYVPL1/UiLpQpGwUnN1OSFgeZZV4uHzycYYtEypM?=
+ =?us-ascii?Q?+jBiPG9Ps7okuKHGxSGdjK+fpb3r+WR9nE1WyPvImWZrDNPu/VuedA0Up0wC?=
+ =?us-ascii?Q?gLJ1afoczBj51Q4z0UhR/4UwxDzBjdwV10Q+8d4SpVHm82aTSUSYdzKdPjHX?=
+ =?us-ascii?Q?smFGRBE/dkuyN/JrIRcAbgrgZ8qhgmKQbgq4WdqaH2JE8AdE3M2MHfHOmPo6?=
+ =?us-ascii?Q?+ZuSJKHz8q9qB+nIPqALLrqA1M2P/xARhI9xp+qAUWJF6lgV6Rv/FS/UdIsG?=
+ =?us-ascii?Q?GRnLjr8t+x5rKLniSH3yuyxJfPPdeMqh4R3HJx7WZesOAgtdW+24g4uzaGZa?=
+ =?us-ascii?Q?TfNvbQJoOFC08UN9OHMuXfR9t4+5Tb4bDHatn7ybdn6z0gPqs08oH4akcz2J?=
+ =?us-ascii?Q?Og3A3/bHQ0X4qz2qRU2FGGH/XVpcnkMZjTNxZmai+YA2Y8fKB4tnKQ+SJ2zY?=
+ =?us-ascii?Q?BNsLJhPckkd4t3n6Q+Obl298/rzF3M8pv1g1sxjglRNqZ6nx9Eb0qtTKdyeP?=
+ =?us-ascii?Q?5RV61BhA68Ju7heg275rhhyFyxSYqieOv7ptz67aG5GQuwFXkK0LM9lynD4c?=
+ =?us-ascii?Q?0RuIr7xqh6nZjS6UCUz1ikkaKD99qK5h8etTKz0L1HdPa+THihkJbNffCkeH?=
+ =?us-ascii?Q?HbpYM8PYjd5Az9AivLH+QpWbDsfowNiAMU5ZhXcPL6KOFLtVbuOY5titYq7Y?=
+ =?us-ascii?Q?p1pWX1LKsIlOgtqTlVE2BTB4P7ZvIgipCWWTiPYAXbqGZl2qw6W+TkV/sAx6?=
+ =?us-ascii?Q?HVpD8wXbSjDVZXkMb/+BoNbcrRwJEgmRMvAIJyzVnZfhJTGoxrQI4GaLMLW+?=
+ =?us-ascii?Q?zckebLhu8fHDrFTy/Ea2J0JD?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4b09a0df-4c2a-4968-c39b-08d90be11f7e
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR1201MB0234.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6976248e-49ae-42b6-c9d4-08d90be39034
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3126.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2021 14:06:17.5583 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2021 14:23:45.6175 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LSnviH2NaacB987IIhbqEUmqNXTSlNcY9bQGYat2Tdm96ngj/vV80Fdnsot1RKYj9brDMzLcmpgzEXV97jmM5w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0140
+X-MS-Exchange-CrossTenant-UserPrincipalName: HJ/S0Pdsjs6GwlL+rocv4GU+4AwLWevVnc38aJLAI02nmI/bZOml4ZFOT2UPwgBPyGhTsEpZgqLbHjFFVF8RuQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3795
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,142 +112,88 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Shashank Sharma <shashank.sharma@amd.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-ping...
+The current DP MST hotplug handling sequence adds new remote
+sinks during the MST plug-in, but it doesn't removes it during
+the unplug, which results into saturation of sink count after
+2 contineous hotplugs (dual monitor scenario).
 
-On 2021-04-28 11:11 a.m., Eric Huang wrote:
-> In NPS4 BIOS we need to find the closest numa node when creating
-> topology io link between cpu and gpu, if PCI driver doesn't set
-> it.
->
-> Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdkfd/kfd_crat.c | 94 ++++++++++++++++++++++++++-
->   1 file changed, 91 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-> index 38d45711675f..57518136c7d7 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-> @@ -1759,6 +1759,87 @@ static int kfd_fill_gpu_memory_affinity(int *avail_size,
->   	return 0;
->   }
->   
-> +#ifdef CONFIG_ACPI
-> +static void kfd_find_numa_node_in_srat(struct kfd_dev *kdev,
-> +		int *numa_node)
-> +{
-> +	struct acpi_table_header *table_header = NULL;
-> +	struct acpi_subtable_header *sub_header = NULL;
-> +	unsigned long table_end, subtable_len;
-> +	u32 pci_id = pci_domain_nr(kdev->pdev->bus) << 16 |
-> +			pci_dev_id(kdev->pdev);
-> +	u32 bdf;
-> +	acpi_status status;
-> +	struct acpi_srat_cpu_affinity *cpu;
-> +	struct acpi_srat_generic_affinity *gpu;
-> +	int pxm = 0, max_pxm = 0;
-> +	bool found = false;
-> +
-> +	/* Fetch the SRAT table from ACPI */
-> +	status = acpi_get_table(ACPI_SIG_SRAT, 0, &table_header);
-> +	if (status == AE_NOT_FOUND) {
-> +		pr_warn("SRAT table not found\n");
-> +		return;
-> +	} else if (ACPI_FAILURE(status)) {
-> +		const char *err = acpi_format_exception(status);
-> +		pr_err("SRAT table error: %s\n", err);
-> +		return;
-> +	}
-> +
-> +	table_end = (unsigned long)table_header + table_header->length;
-> +
-> +	/* Parse all entries looking for a match. */
-> +
-> +	sub_header = (struct acpi_subtable_header *)
-> +			((unsigned long)table_header +
-> +			sizeof(struct acpi_table_srat));
-> +	subtable_len = sub_header->length;
-> +
-> +	while (((unsigned long)sub_header) + subtable_len  < table_end) {
-> +		/*
-> +		 * If length is 0, break from this loop to avoid
-> +		 * infinite loop.
-> +		 */
-> +		if (subtable_len == 0) {
-> +			pr_err("SRAT invalid zero length\n");
-> +			break;
-> +		}
-> +
-> +		switch (sub_header->type) {
-> +		case ACPI_SRAT_TYPE_CPU_AFFINITY:
-> +			cpu = (struct acpi_srat_cpu_affinity *)sub_header;
-> +			pxm = *((u32 *)cpu->proximity_domain_hi) << 8 |
-> +					cpu->proximity_domain_lo;
-> +			if (pxm > max_pxm)
-> +				max_pxm = pxm;
-> +			break;
-> +		case ACPI_SRAT_TYPE_GENERIC_AFFINITY:
-> +			gpu = (struct acpi_srat_generic_affinity *)sub_header;
-> +			bdf = *((u16 *)(&gpu->device_handle[0])) << 16 |
-> +					*((u16 *)(&gpu->device_handle[2]));
-> +			if (bdf == pci_id) {
-> +				found = true;
-> +				*numa_node = pxm_to_node(gpu->proximity_domain);
-> +			}
-> +			break;
-> +		default:
-> +			break;
-> +		}
-> +
-> +		if (found)
-> +			break;
-> +
-> +		sub_header = (struct acpi_subtable_header *)
-> +				((unsigned long)sub_header + subtable_len);
-> +		subtable_len = sub_header->length;
-> +	}
-> +
-> +	/* workaround bad cpu-gpu binding case */
-> +	if (found && (*numa_node < 0 || *numa_node > max_pxm))
-> +		*numa_node = 0;
-> +}
-> +#endif
-> +
->   /* kfd_fill_gpu_direct_io_link - Fill in direct io link from GPU
->    * to its NUMA node
->    *	@avail_size: Available size in the memory
-> @@ -1774,6 +1855,9 @@ static int kfd_fill_gpu_direct_io_link_to_cpu(int *avail_size,
->   			uint32_t proximity_domain)
->   {
->   	struct amdgpu_device *adev = (struct amdgpu_device *)kdev->kgd;
-> +#ifdef CONFIG_NUMA
-> +	int numa_node = 0;
-> +#endif
->   
->   	*avail_size -= sizeof(struct crat_subtype_iolink);
->   	if (*avail_size < 0)
-> @@ -1805,9 +1889,13 @@ static int kfd_fill_gpu_direct_io_link_to_cpu(int *avail_size,
->   
->   	sub_type_hdr->proximity_domain_from = proximity_domain;
->   #ifdef CONFIG_NUMA
-> -	if (kdev->pdev->dev.numa_node == NUMA_NO_NODE)
-> -		sub_type_hdr->proximity_domain_to = 0;
-> -	else
-> +	if (kdev->pdev->dev.numa_node == NUMA_NO_NODE) {
-> +#ifdef CONFIG_ACPI
-> +		kfd_find_numa_node_in_srat(kdev, &numa_node);
-> +#endif
-> +		sub_type_hdr->proximity_domain_to = numa_node;
-> +		set_dev_node(&kdev->pdev->dev, numa_node);
-> +	} else
->   		sub_type_hdr->proximity_domain_to = kdev->pdev->dev.numa_node;
->   #else
->   	sub_type_hdr->proximity_domain_to = 0;
+This patch adds a clean-up sequence during the hot-unplug situation.
+
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+
+Signed-off-by: Shashank Sharma <shashank.sharma@amd.com>
+---
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   | 30 ++++++++++++++++++-
+ 1 file changed, 29 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+index 8dc5005bec0a..8b87dd0a3d50 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+@@ -220,6 +220,7 @@ static int dm_dp_mst_get_modes(struct drm_connector *connector)
+ 		struct dc_sink_init_data init_params = {
+ 				.link = aconnector->dc_link,
+ 				.sink_signal = SIGNAL_TYPE_DISPLAY_PORT_MST };
++
+ 		dc_sink = dc_link_add_remote_sink(
+ 			aconnector->dc_link,
+ 			(uint8_t *)aconnector->edid,
+@@ -266,15 +267,42 @@ dm_mst_atomic_best_encoder(struct drm_connector *connector,
+ 	return &adev->dm.mst_encoders[acrtc->crtc_id].base;
+ }
+ 
++static void
++dm_dp_mst_sink_cleanup(struct drm_connector *connector)
++{
++	struct amdgpu_dm_connector *aconnector = to_amdgpu_dm_connector(connector);
++
++	if (aconnector->dc_sink)
++		dc_link_remove_remote_sink(aconnector->dc_link,
++					   aconnector->dc_sink);
++
++	if (aconnector->edid) {
++		kfree(aconnector->edid);
++		aconnector->edid = NULL;
++	}
++}
++
+ static int
+ dm_dp_mst_detect(struct drm_connector *connector,
+ 		 struct drm_modeset_acquire_ctx *ctx, bool force)
+ {
+ 	struct amdgpu_dm_connector *aconnector = to_amdgpu_dm_connector(connector);
+ 	struct amdgpu_dm_connector *master = aconnector->mst_port;
++	enum drm_connector_status status;
+ 
+-	return drm_dp_mst_detect_port(connector, ctx, &master->mst_mgr,
++	status = drm_dp_mst_detect_port(connector, ctx, &master->mst_mgr,
+ 				      aconnector->port);
++
++	if ((status == connector_status_disconnected) &&
++	    (connector->status == connector_status_connected)) {
++
++		/* Fresh hot-unplug scenario, sink cleaup required */
++		DRM_DEBUG_DRIVER("[CONNECTOR:%d:%s] MST hot-unplug, doing sink cleanup\n",
++		connector->base.id, connector->name);
++		dm_dp_mst_sink_cleanup(connector);
++	}
++
++	return status;
+ }
+ 
+ static int dm_dp_mst_atomic_check(struct drm_connector *connector,
+-- 
+2.25.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
