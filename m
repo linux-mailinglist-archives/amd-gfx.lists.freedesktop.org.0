@@ -2,34 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A491371A65
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 May 2021 18:38:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9E85371A6D
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 May 2021 18:39:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7660089E47;
-	Mon,  3 May 2021 16:38:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 665D56E988;
+	Mon,  3 May 2021 16:39:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 217236E983;
- Mon,  3 May 2021 16:38:50 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C2838613ED;
- Mon,  3 May 2021 16:38:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FF786E988;
+ Mon,  3 May 2021 16:39:18 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E5B3B613E9;
+ Mon,  3 May 2021 16:39:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1620059929;
- bh=Lw6vE4UcBrY7WNNZ9dvZ6+mazSAp9vuX80l+b5VsBCo=;
+ s=k20201202; t=1620059957;
+ bh=pn463DpuLQ0mVp4jzjh8oJK03lZfNaaZKSbL1aWfd64=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=pZXPSpSFbjCDrsdM3gPgyI3eHcs7IOmg7W1m4vlmlU5WBmeF0HxlV3eIaEg6Pg1ed
- VLXs6128vJ1Xy2yxJNPEcQ+caRKA45a0ItA5HhMJlhsw3CvLChYk+htMgmkfrbIR0K
- FSa332T2V6wNWlPrOtRJg5V7bDOkG8GDPWkgXj9e48U9n8OMXn9dy7M/foUkk7zuKw
- ymjCTRc8QAYoUVt2WYO3RA0UrGpO1JCTKaHGeUuWX57zfC06q3m74+ns2I+FSedspl
- hF46kWrtjqYX1KJ//FxOzFxGhMUXE/4QS/BfMD0ABuU33kkyMIbFezyrzXf33GEICF
- lRtJqtTTNE42A==
+ b=tsqCFrhPt/HT/cB/5Yhvi6zDZSehV+LCBql3DBVffnSoaILYDQDWjZn4ppPRH6B59
+ HPMrP3RIb/696Q8uxWVZ6kq5qTpC0RdO42LLq08TUSngJ9X00clHXbPSXfR1TvVxm4
+ nlv5moJwbHNAKjvbuqakDFbfdJ1bxKM4hfcmmZtIF6UM861tFVV0UbsJ3VjskafaAA
+ mo/q3PBr4Sum+b0+C0iyHUOmDQAWBAdtjtvrdWHq7Dmemk5HNTvirxnT3ahtVqRD0G
+ zaElumO/dMQO8ZTOrHSakv5gXjaJKFeO7EPxmkujWDSPLdQxxHyPtLNKnb5gR2nJ5f
+ hpNeeetM6X3Rg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 013/100] drm/amdgpu: Fix some unload driver issues
-Date: Mon,  3 May 2021 12:37:02 -0400
-Message-Id: <20210503163829.2852775-13-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 032/100] drm/amdgpu: mask the xgmi number of hops
+ reported from psp to kfd
+Date: Mon,  3 May 2021 12:37:21 -0400
+Message-Id: <20210503163829.2852775-32-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210503163829.2852775-1-sashal@kernel.org>
 References: <20210503163829.2852775-1-sashal@kernel.org>
@@ -47,55 +48,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org,
- Emily Deng <Emily.Deng@amd.com>, amd-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Sasha Levin <sashal@kernel.org>, Jonathan Kim <jonathan.kim@amd.com>,
+ Amber Lin <amber.lin@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogRW1pbHkgRGVuZyA8RW1pbHkuRGVuZ0BhbWQuY29tPgoKWyBVcHN0cmVhbSBjb21taXQg
-YmIwY2QwOWJlNDVlYTQ1N2YyNWZkY2JjYjNkNmNmMjIzMGYyNmM0NiBdCgpXaGVuIHVubG9hZGlu
-ZyBkcml2ZXIgYWZ0ZXIga2lsbGluZyBzb21lIGFwcGxpY2F0aW9ucywgaXQgd2lsbCBoaXQgc2Rt
-YQpmbHVzaCB0bGIgam9iIHRpbWVvdXQgd2hpY2ggaXMgY2FsbGVkIGJ5IHR0bV9ib19kZWxheV9k
-ZWxldGUuIFNvCnRvIGF2b2lkIHRoZSBqb2Igc3VibWl0IGFmdGVyIGZlbmNlIGRyaXZlciBmaW5p
-LCBjYWxsIHR0bV9ib19sb2NrX2RlbGF5ZWRfd29ya3F1ZXVlCmJlZm9yZSBmZW5jZSBkcml2ZXIg
-ZmluaS4gQW5kIGFsc28gcHV0IGRybV9zY2hlZF9maW5pIGJlZm9yZSB3YWl0aW5nIGZlbmNlLgoK
-U2lnbmVkLW9mZi1ieTogRW1pbHkgRGVuZyA8RW1pbHkuRGVuZ0BhbWQuY29tPgpSZXZpZXdlZC1i
-eTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgpTaWduZWQtb2Zm
-LWJ5OiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+ClNpZ25lZC1vZmYt
-Ynk6IFNhc2hhIExldmluIDxzYXNoYWxAa2VybmVsLm9yZz4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfZGV2aWNlLmMgfCAxICsKIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1L2FtZGdwdV9mZW5jZS5jICB8IDUgKysrLS0KIDIgZmlsZXMgY2hhbmdlZCwgNCBpbnNlcnRp
-b25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L2FtZGdwdV9kZXZpY2UuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
-dV9kZXZpY2UuYwppbmRleCA3NmQxMGYxYzU3OWIuLjdmMjY4OWQ0Yjg2ZCAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2RldmljZS5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kZXZpY2UuYwpAQCAtMzU1MSw2ICszNTUxLDcgQEAg
-dm9pZCBhbWRncHVfZGV2aWNlX2Zpbmkoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCiB7CiAJ
-ZGV2X2luZm8oYWRldi0+ZGV2LCAiYW1kZ3B1OiBmaW5pc2hpbmcgZGV2aWNlLlxuIik7CiAJZmx1
-c2hfZGVsYXllZF93b3JrKCZhZGV2LT5kZWxheWVkX2luaXRfd29yayk7CisJdHRtX2JvX2xvY2tf
-ZGVsYXllZF93b3JrcXVldWUoJmFkZXYtPm1tYW4uYmRldik7CiAJYWRldi0+c2h1dGRvd24gPSB0
-cnVlOwogCiAJa2ZyZWUoYWRldi0+cGNpX3N0YXRlKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9mZW5jZS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvYW1kZ3B1X2ZlbmNlLmMKaW5kZXggZmUyZDQ5NWQwOGFiLi5kMDdjNDU4YzBiZWQgMTAwNjQ0
-Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9mZW5jZS5jCisrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9mZW5jZS5jCkBAIC01MzIsNiArNTMyLDgg
-QEAgdm9pZCBhbWRncHVfZmVuY2VfZHJpdmVyX2Zpbmkoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFk
-ZXYpCiAKIAkJaWYgKCFyaW5nIHx8ICFyaW5nLT5mZW5jZV9kcnYuaW5pdGlhbGl6ZWQpCiAJCQlj
-b250aW51ZTsKKwkJaWYgKCFyaW5nLT5ub19zY2hlZHVsZXIpCisJCQlkcm1fc2NoZWRfZmluaSgm
-cmluZy0+c2NoZWQpOwogCQlyID0gYW1kZ3B1X2ZlbmNlX3dhaXRfZW1wdHkocmluZyk7CiAJCWlm
-IChyKSB7CiAJCQkvKiBubyBuZWVkIHRvIHRyaWdnZXIgR1BVIHJlc2V0IGFzIHdlIGFyZSB1bmxv
-YWRpbmcgKi8KQEAgLTU0MCw4ICs1NDIsNyBAQCB2b2lkIGFtZGdwdV9mZW5jZV9kcml2ZXJfZmlu
-aShzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldikKIAkJaWYgKHJpbmctPmZlbmNlX2Rydi5pcnFf
-c3JjKQogCQkJYW1kZ3B1X2lycV9wdXQoYWRldiwgcmluZy0+ZmVuY2VfZHJ2LmlycV9zcmMsCiAJ
-CQkJICAgICAgIHJpbmctPmZlbmNlX2Rydi5pcnFfdHlwZSk7Ci0JCWlmICghcmluZy0+bm9fc2No
-ZWR1bGVyKQotCQkJZHJtX3NjaGVkX2ZpbmkoJnJpbmctPnNjaGVkKTsKKwogCQlkZWxfdGltZXJf
-c3luYygmcmluZy0+ZmVuY2VfZHJ2LmZhbGxiYWNrX3RpbWVyKTsKIAkJZm9yIChqID0gMDsgaiA8
-PSByaW5nLT5mZW5jZV9kcnYubnVtX2ZlbmNlc19tYXNrOyArK2opCiAJCQlkbWFfZmVuY2VfcHV0
-KHJpbmctPmZlbmNlX2Rydi5mZW5jZXNbal0pOwotLSAKMi4zMC4yCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+From: Jonathan Kim <jonathan.kim@amd.com>
+
+[ Upstream commit 4ac5617c4b7d0f0a8f879997f8ceaa14636d7554 ]
+
+The psp supplies the link type in the upper 2 bits of the psp xgmi node
+information num_hops field.  With a new link type, Aldebaran has these
+bits set to a non-zero value (1 = xGMI3) so the KFD topology will report
+the incorrect IO link weights without proper masking.
+The actual number of hops is located in the 3 least significant bits of
+this field so mask if off accordingly before passing it to the KFD.
+
+Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
+Reviewed-by: Amber Lin <amber.lin@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+index 1162913c8bf4..0526dec1d736 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+@@ -465,15 +465,22 @@ int amdgpu_xgmi_update_topology(struct amdgpu_hive_info *hive, struct amdgpu_dev
+ }
+ 
+ 
++/*
++ * NOTE psp_xgmi_node_info.num_hops layout is as follows:
++ * num_hops[7:6] = link type (0 = xGMI2, 1 = xGMI3, 2/3 = reserved)
++ * num_hops[5:3] = reserved
++ * num_hops[2:0] = number of hops
++ */
+ int amdgpu_xgmi_get_hops_count(struct amdgpu_device *adev,
+ 		struct amdgpu_device *peer_adev)
+ {
+ 	struct psp_xgmi_topology_info *top = &adev->psp.xgmi_context.top_info;
++	uint8_t num_hops_mask = 0x7;
+ 	int i;
+ 
+ 	for (i = 0 ; i < top->num_nodes; ++i)
+ 		if (top->nodes[i].node_id == peer_adev->gmc.xgmi.node_id)
+-			return top->nodes[i].num_hops;
++			return top->nodes[i].num_hops & num_hops_mask;
+ 	return	-EINVAL;
+ }
+ 
+-- 
+2.30.2
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
