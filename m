@@ -1,35 +1,36 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05797371A45
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 May 2021 18:38:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B0B2371A50
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 May 2021 18:38:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 319C76E977;
-	Mon,  3 May 2021 16:38:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FD696E97B;
+	Mon,  3 May 2021 16:38:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02EBA6E977;
- Mon,  3 May 2021 16:38:38 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8E185613B4;
- Mon,  3 May 2021 16:38:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C90D96E97B;
+ Mon,  3 May 2021 16:38:40 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 626FE61438;
+ Mon,  3 May 2021 16:38:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1620059917;
- bh=RI5xZp6fXcTeorMo8FtnealqGLEsm1U4JacNau8h+kg=;
+ s=k20201202; t=1620059920;
+ bh=eTN+de3NHgpVDaYMabz2GfZkvrhhJsTxTr5eGN63y5k=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=AS2RJFaCoU39ee6tVZ9zGicSdCBMmntBmrBqi90lW4rE08BXZcFpgvT25TtarMs01
- fvUPRxGQYPg6Spy8ErEq+/UWnwVagbjQhWtgDbxm/HSa8ZK8ajb528ze39CG02Y7Cg
- 40gn240G5/vwmGGbtYpERJJlP40d/NSmEUwlp8cLnl4HMBrBxKdMQiDmcr8BAU33/I
- Fom1GvCfp2za5V5n0a6ef6UIXakTq4TNitdWCe9R5U9O4WnZECw1OpeU5szbLOi2+b
- cBxBwCe3rFu0lq5TE30A97xzn4TUsNrgPGjEMEaT+BXZlV+qm83INhGpGyMNP4VLo1
- C5VZI0IRZzIdw==
+ b=bOUiZ0ZNgHU4OCNMDALfMYSJQLExhh1S6Fs7ck8WvWlafVXxTQAG7GVo1kNK1sV4T
+ E9DrVIJv2dXvc8sEinyeu95geHG//bGs8vnbH9/RR84GfITfS+v8dLNPTBBaZFoQdA
+ CMgPUE5YtBMXc6k6dFinY2MwrwWZSeaWnm7HMWSUeBflw11qtlI5Bf4b3xks+TmhJN
+ OyTzGOm8ibHtERQIT9ucXH2/G/Vwv3ivo7Izxt0/S+H1J7vmAa6Gp2MBk1M9balRTt
+ w5uvJhxSwjMjR3m26uy5A4rxkeblpFuk1rNCDZRzwT3nrtdi4Q2uQ8aHwNvoszseCU
+ YkRqLvSZMF/Ww==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 005/100] drm/amd/display: changing sr exit latency
-Date: Mon,  3 May 2021 12:36:54 -0400
-Message-Id: <20210503163829.2852775-5-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 007/100] drm/amd/display: Check for DSC support
+ instead of ASIC revision
+Date: Mon,  3 May 2021 12:36:56 -0400
+Message-Id: <20210503163829.2852775-7-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210503163829.2852775-1-sashal@kernel.org>
 References: <20210503163829.2852775-1-sashal@kernel.org>
@@ -47,50 +48,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org,
- Qingqing Zhuo <Qingqing.Zhuo@amd.com>, amd-gfx@lists.freedesktop.org,
- Daniel Wheeler <daniel.wheeler@amd.com>, Alvin Lee <Alvin.Lee2@amd.com>,
- Martin Leung <martin.leung@amd.com>, Alex Deucher <alexander.deucher@amd.com>
+Cc: Sasha Levin <sashal@kernel.org>, Eryk Brol <eryk.brol@amd.com>,
+ amd-gfx@lists.freedesktop.org, Daniel Wheeler <daniel.wheeler@amd.com>,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ Bindu Ramamurthy <bindu.r@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Martin Leung <martin.leung@amd.com>
+From: Eryk Brol <eryk.brol@amd.com>
 
-[ Upstream commit efe213e5a57e0cd92fa4f328dc1963d330549982 ]
+[ Upstream commit 349a19b2f1b01e713268c7de9944ad669ccdf369 ]
 
-[Why]
-Hardware team remeasured, need to update timings
-to increase latency slightly and avoid intermittent
-underflows.
+[why]
+This check for ASIC revision is no longer useful and causes
+lightup issues after a topology change in MST DSC scenario.
+In this case, DSC configs should be recalculated for the new
+topology. This check prevented that from happening on certain
+ASICs that do, in fact, support DSC.
 
-[How]
-sr exit latency update.
+[how]
+Change the ASIC revision to instead check if DSC is supported.
 
-Signed-off-by: Martin Leung <martin.leung@amd.com>
-Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
-Acked-by: Qingqing Zhuo <Qingqing.Zhuo@amd.com>
+Signed-off-by: Eryk Brol <eryk.brol@amd.com>
+Acked-by: Bindu Ramamurthy <bindu.r@amd.com>
 Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c | 2 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index 2455d210ccf6..8465cae180da 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -180,7 +180,7 @@ struct _vcs_dpi_soc_bounding_box_st dcn3_0_soc = {
- 		},
- 	.min_dcfclk = 500.0, /* TODO: set this to actual min DCFCLK */
- 	.num_states = 1,
--	.sr_exit_time_us = 12,
-+	.sr_exit_time_us = 15.5,
- 	.sr_enter_plus_exit_time_us = 20,
- 	.urgent_latency_us = 4.0,
- 	.urgent_latency_pixel_data_only_us = 4.0,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index c07737c45677..830d302be045 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -8659,7 +8659,7 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
+ 	}
+ 
+ #if defined(CONFIG_DRM_AMD_DC_DCN)
+-	if (adev->asic_type >= CHIP_NAVI10) {
++	if (dc_resource_is_dsc_encoding_supported(dc)) {
+ 		for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+ 			if (drm_atomic_crtc_needs_modeset(new_crtc_state)) {
+ 				ret = add_affected_mst_dsc_crtcs(state, crtc);
 -- 
 2.30.2
 
