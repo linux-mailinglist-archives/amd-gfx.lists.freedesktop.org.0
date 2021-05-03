@@ -1,36 +1,35 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31862371AD3
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 May 2021 18:41:34 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D2C371AEE
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 May 2021 18:42:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57B4E6E9BA;
-	Mon,  3 May 2021 16:41:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F8BE6E9BD;
+	Mon,  3 May 2021 16:41:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C47D96E9AF;
- Mon,  3 May 2021 16:41:30 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A6E0761931;
- Mon,  3 May 2021 16:41:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D1CF6E9BD;
+ Mon,  3 May 2021 16:41:56 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A594F61413;
+ Mon,  3 May 2021 16:41:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1620060090;
- bh=DMPfJLhMJ1dY0RoG7NKxrjmH+LGy7NrejNLEePArhVk=;
+ s=k20201202; t=1620060115;
+ bh=4cmfOlk2AwKjf5dDlH4Uogi8Rqs2A8gaqjb+hamRd+s=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Uu8UJ7lkVImHfNMdaiCpHo2vu0hLi97xjvYdGWrc1Is4b8sGLJMvJsaZT3ckjfi0N
- hB+evXIQ6VHFWkv1TP81lVmw1I6zX+Ymu96IiZdw+YccOxajTtEqGWMiqh0UGY5x9v
- a+Tk6spmGOsuTajLRPUAlBll6O7Kkwo1mxp5i2s+b04FPNJSvnbcCi2JUrxYXmue71
- FeMmc2eeowcMSlwp+qR/Uc63F1lJ7m3dk8sVC4tj0/ZI0l/sh/kJ74UxJ7d0R3Pxtb
- zp0EmoEwAHgu2Q3hF1RDbI5t+3ayhl2OPXbxuVJgkGb9E8x2rCsUuJgi1lhvtMm55C
- QpO1hztNrQa4Q==
+ b=Gl1U67yzfw6KV2ACGTWjJ3sTsLhOImjW0c9oj9Gf3joZ0Y/yp1ALtT0Li2UpQSiFs
+ vcqPGvMsUKkT+9s+oMek3n3+1fFJ9ltcDMmpkUjfc0Bu+OLXz0T0Q4NXH2H4OAW+1s
+ IIUxZ0D00MZ+aFl/79IfC5umlAsPn8dajVbl5LPVoRx3UojwdQepJ58Uwa9D8g/VLt
+ gpoWu4AlUj+BfLjeWD0ULloPhi16JqtHJLizi238x2Y7GG/Sko8VtUIcBgwKeD7PHr
+ +lHOGMTWlpzAb/rJudWz+wVY09gie4mPunoA4Ve96Oi6orfGZogjmz91tllYjVHStB
+ hr7EArwGA5mdQ==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 14/35] drm/amdgpu : Fix asic reset regression
- issue introduce by 8f211fe8ac7c4f
-Date: Mon,  3 May 2021 12:40:48 -0400
-Message-Id: <20210503164109.2853838-14-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 30/35] amdgpu: avoid incorrect %hu format string
+Date: Mon,  3 May 2021 12:41:04 -0400
+Message-Id: <20210503164109.2853838-30-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210503164109.2853838-1-sashal@kernel.org>
 References: <20210503164109.2853838-1-sashal@kernel.org>
@@ -48,46 +47,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- shaoyunl <shaoyun.liu@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Sasha Levin <sashal@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Tom Rix <trix@redhat.com>, amd-gfx@lists.freedesktop.org,
+ clang-built-linux@googlegroups.com, dri-devel@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: shaoyunl <shaoyun.liu@amd.com>
-
-[ Upstream commit c8941550aa66b2a90f4b32c45d59e8571e33336e ]
-
-This recent change introduce SDMA interrupt info printing with irq->process function.
-These functions do not require a set function to enable/disable the irq
-
-Signed-off-by: shaoyunl <shaoyun.liu@amd.com>
-Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-index 1abf5b5bac9e..18402a6ba8fe 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-@@ -447,7 +447,7 @@ void amdgpu_irq_gpu_reset_resume_helper(struct amdgpu_device *adev)
- 		for (j = 0; j < AMDGPU_MAX_IRQ_SRC_ID; ++j) {
- 			struct amdgpu_irq_src *src = adev->irq.client[i].sources[j];
- 
--			if (!src)
-+			if (!src || !src->funcs || !src->funcs->set)
- 				continue;
- 			for (k = 0; k < src->num_types; k++)
- 				amdgpu_irq_update(adev, src, k);
--- 
-2.30.2
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+RnJvbTogQXJuZCBCZXJnbWFubiA8YXJuZEBhcm5kYi5kZT4KClsgVXBzdHJlYW0gY29tbWl0IDdk
+OThkNDE2YzJjYzFjMWY3ZDk1MDhlODg3ZGU0NjMwZTUyMWQ3OTcgXQoKY2xhbmcgcG9pbnRzIG91
+dCB0aGF0IHRoZSAlaHUgZm9ybWF0IHN0cmluZyBkb2VzIG5vdCBtYXRjaCB0aGUgdHlwZQpvZiB0
+aGUgdmFyaWFibGVzIGhlcmU6Cgpkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdXZk
+LmM6MjYzOjc6IHdhcm5pbmc6IGZvcm1hdCBzcGVjaWZpZXMgdHlwZSAndW5zaWduZWQgc2hvcnQn
+IGJ1dCB0aGUgYXJndW1lbnQgaGFzIHR5cGUgJ3Vuc2lnbmVkIGludCcgWy1XZm9ybWF0XQogICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdmVyc2lvbl9tYWpvciwgdmVyc2lvbl9taW5v
+cik7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+CmluY2x1
+ZGUvZHJtL2RybV9wcmludC5oOjQ5ODoxOTogbm90ZTogZXhwYW5kZWQgZnJvbSBtYWNybyAnRFJN
+X0VSUk9SJwogICAgICAgIF9fZHJtX2VycihmbXQsICMjX19WQV9BUkdTX18pCiAgICAgICAgICAg
+ICAgICAgIH5+fiAgICBefn5+fn5+fn5+fgoKQ2hhbmdlIGl0IHRvIGEgcmVndWxhciAldSwgdGhl
+IHNhbWUgd2F5IGEgcHJldmlvdXMgcGF0Y2ggZGlkIGZvcgphbm90aGVyIGluc3RhbmNlIG9mIHRo
+ZSBzYW1lIHdhcm5pbmcuCgpSZXZpZXdlZC1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFu
+LmtvZW5pZ0BhbWQuY29tPgpSZXZpZXdlZC1ieTogVG9tIFJpeCA8dHJpeEByZWRoYXQuY29tPgpT
+aWduZWQtb2ZmLWJ5OiBBcm5kIEJlcmdtYW5uIDxhcm5kQGFybmRiLmRlPgpTaWduZWQtb2ZmLWJ5
+OiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+ClNpZ25lZC1vZmYtYnk6
+IFNhc2hhIExldmluIDxzYXNoYWxAa2VybmVsLm9yZz4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1k
+L2FtZGdwdS9hbWRncHVfdXZkLmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24o
+KyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS9hbWRncHVfdXZkLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdXZkLmMK
+aW5kZXggZTVhNmRiNmJlYWI3Li44YzVmMzliZWVlN2MgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV91dmQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
+ZGdwdS9hbWRncHVfdXZkLmMKQEAgLTIzMSw3ICsyMzEsNyBAQCBpbnQgYW1kZ3B1X3V2ZF9zd19p
+bml0KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2KQogCQlpZiAoKGFkZXYtPmFzaWNfdHlwZSA9
+PSBDSElQX1BPTEFSSVMxMCB8fAogCQkgICAgIGFkZXYtPmFzaWNfdHlwZSA9PSBDSElQX1BPTEFS
+SVMxMSkgJiYKIAkJICAgIChhZGV2LT51dmQuZndfdmVyc2lvbiA8IEZXXzFfNjZfMTYpKQotCQkJ
+RFJNX0VSUk9SKCJQT0xBUklTMTAvMTEgVVZEIGZpcm13YXJlIHZlcnNpb24gJWh1LiVodSBpcyB0
+b28gb2xkLlxuIiwKKwkJCURSTV9FUlJPUigiUE9MQVJJUzEwLzExIFVWRCBmaXJtd2FyZSB2ZXJz
+aW9uICV1LiV1IGlzIHRvbyBvbGQuXG4iLAogCQkJCSAgdmVyc2lvbl9tYWpvciwgdmVyc2lvbl9t
+aW5vcik7CiAJfSBlbHNlIHsKIAkJdW5zaWduZWQgaW50IGVuY19tYWpvciwgZW5jX21pbm9yLCBk
+ZWNfbWlub3I7Ci0tIAoyLjMwLjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1k
+LWdmeAo=
