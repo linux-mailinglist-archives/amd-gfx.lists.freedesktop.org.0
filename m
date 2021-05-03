@@ -1,38 +1,38 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54E50371B36
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 May 2021 18:43:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93066371B3B
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 May 2021 18:43:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4ADD66E9CA;
-	Mon,  3 May 2021 16:43:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD0E76E9CD;
+	Mon,  3 May 2021 16:43:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B01696E9CA;
- Mon,  3 May 2021 16:43:25 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5574361969;
- Mon,  3 May 2021 16:43:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 551426E9C9;
+ Mon,  3 May 2021 16:43:51 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F023A61132;
+ Mon,  3 May 2021 16:43:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1620060205;
- bh=iF/yoIy/SeFtrRmptbNe5kD87n/yYWTYJIWVBewqFKA=;
+ s=k20201202; t=1620060231;
+ bh=jNFo7NKnWOIApppX+Dex7WrZmrfhePM+x12UpR8/ps0=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=s6YGwkj0Aa8qtnY91qwVuCW/AMhAyiOGsZi9uvcilXMPab22Mmg05QhHzJlkhO/sn
- RLpxMISQbEvusj0fS+hRcR7G8C28AZJyfKBFPv0TaCwlgULCAfN9xaIOVU7sB9Iy8f
- MBVt86vN0AoYGwGfeQIzLknd5OsDRYyDxvIiFKKJMVIEYAbQnx2Fs9DStayIchRAXT
- fXWO1xwaPQywxvuY24medaS9F7HS4ntr5PnhysfYHw5h7nAmXbgqai3veTvyrMEZzQ
- mTR6zANzevXZjnDqDsZOQAXexxLQE6qp+E452lZwoyCIlK6OgGFMCj0T3MCpRmYX34
- 1fYx/pNeAHDNw==
+ b=Zj3ijRlg6ONVmiLJB99BOrA/Pei1Tf8pOM+KHfoYVfdQuO9V4psxbtS3M2DrQ1nBZ
+ zSprVRqIZ9NjizoXmzh30VOqiE0ta1uG+eDz/z3/GVqfLOzqVvvf+oxqBEmpvyJHnT
+ qOsrnG/EF8Tmw4+X4qiG4us58HCK0t7Xsp2YSkp7vAqpAmjZVRaC2RUDiJdTMwjAlz
+ SjtkMVI/lXOtrMkzAhRJ7S/xwMk6xH5EuILokd5ZgIuQSbJJfFsUCry0INDmJwkrmp
+ kK7v/PFmtSo709pAGiiQ0YO8m8mRklmlWkobQDJLkgN+B81iafBK3d1Yj+mC2AjcJa
+ SiBS0GHothegw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 22/24] drm/amdgpu: fix NULL pointer dereference
-Date: Mon,  3 May 2021 12:42:50 -0400
-Message-Id: <20210503164252.2854487-22-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.4 14/16] drm/amdgpu: fix NULL pointer dereference
+Date: Mon,  3 May 2021 12:43:27 -0400
+Message-Id: <20210503164329.2854739-14-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210503164252.2854487-1-sashal@kernel.org>
-References: <20210503164252.2854487-1-sashal@kernel.org>
+In-Reply-To: <20210503164329.2854739-1-sashal@kernel.org>
+References: <20210503164329.2854739-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -85,10 +85,10 @@ ZGVyLmRldWNoZXJAYW1kLmNvbT4KU2lnbmVkLW9mZi1ieTogU2FzaGEgTGV2aW4gPHNhc2hhbEBr
 ZXJuZWwub3JnPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYyB8
 IDIgKy0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlm
 ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYyBiL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYwppbmRleCA4MGM2MGE2MmQzOWUuLjcy
-NzFlM2YzMmQ4MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
+cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYwppbmRleCAwNjJjMjMxMjViMmEuLjZi
+ZWIzZTc2ZTFjOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1
 X3R0bS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYwpAQCAt
-NjUyLDcgKzY1Miw3IEBAIHN0YXRpYyB2b2lkIGFtZGdwdV90dG1fdHRfdW5waW5fdXNlcnB0cihz
+NTY2LDcgKzU2Niw3IEBAIHN0YXRpYyB2b2lkIGFtZGdwdV90dG1fdHRfdW5waW5fdXNlcnB0cihz
 dHJ1Y3QgdHRtX3R0ICp0dG0pCiAJCURNQV9CSURJUkVDVElPTkFMIDogRE1BX1RPX0RFVklDRTsK
 IAogCS8qIGRvdWJsZSBjaGVjayB0aGF0IHdlIGRvbid0IGZyZWUgdGhlIHRhYmxlIHR3aWNlICov
 Ci0JaWYgKCF0dG0tPnNnLT5zZ2wpCisJaWYgKCF0dG0tPnNnIHx8ICF0dG0tPnNnLT5zZ2wpCiAJ
