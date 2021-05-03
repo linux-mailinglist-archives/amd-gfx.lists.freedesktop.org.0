@@ -1,53 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 206D137193F
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 May 2021 18:28:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CABC37195F
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 May 2021 18:35:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFA5889C8F;
-	Mon,  3 May 2021 16:28:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBB4A6E8D5;
+	Mon,  3 May 2021 16:35:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com
- [IPv6:2607:f8b0:4864:20::232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F8C889C8F
- for <amd-gfx@lists.freedesktop.org>; Mon,  3 May 2021 16:28:37 +0000 (UTC)
-Received: by mail-oi1-x232.google.com with SMTP id i11so5912229oig.8
- for <amd-gfx@lists.freedesktop.org>; Mon, 03 May 2021 09:28:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=cRFDpuMwuNrzRCZerqEUIZJfwBeJZa1OXw2reMpB/BA=;
- b=t+9zPtD/vgbXyi7ZVtybylYA1F9S2tvCyzvwtJp5jJxqceCiz7Iep5T2pZOJpcqOEs
- 6abMYSPD1fCAiqQxiBvUK19ZFPwPXovZBsg7l0TlkH3T5Rsi1SwL3QcfIsquyIJ4MfvJ
- 9yFeP8sb8VZvupxs6KlrQGE0T6EGwC/0AqpL+CMh30QMeUhKL5ChbudaNQczKJDbx8WW
- 5xQ6KbTWGWhlFK4/xuRtwMd+D5RU5NyEiL4Tiu5mUPKPqIzcR3fn9AbkDRxRCYu6TwKC
- JLWYBBSd+x/atA74B2QbyAss24QRcMlMfn6n8ZAQsiJxY45TAotuIcYDMf6LAx67GOWs
- B7xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=cRFDpuMwuNrzRCZerqEUIZJfwBeJZa1OXw2reMpB/BA=;
- b=ity/hMKJh4vZX/fDvRDzFLWOwszjB5JoU+dIQ6McY7ba2eIshJSsJh0makT1zI4Ehn
- Km7mRWtGalpUJYoAbbc1oWB/WTRSiqm4I4FUI41g1Yyuu7e2IBE+U4lfXIqx0dlmrz2r
- aE6bHNpEr6A1lklG45oTetxtbzCO68DiRWHUM4f6ikiID6+aGNErzftL0l7BUFBXFy5j
- uhFQ65WkTe5mLiYw6MRbP4Rrls5zOMPGIoO73ztD+s37Q8kqx3ioGFG3fAfAzPu1TwC9
- 84JbQAvT/78WjlaqRknu1fnLCD5Oc/MN3I36W2dUuklnYT3JwTRHUnHexK85OhFXXwEj
- qXxA==
-X-Gm-Message-State: AOAM5331zUtjr8d/+ScTG/mfF2jtU79lWPP55lsSmb1Q2b3RRhdX5dya
- pCD9Zf8WbWkJM9BcCvR1BP5eCb3eBT0p+eMGAu8=
-X-Google-Smtp-Source: ABdhPJwMp9FtUGvzhME4BtwRjW7926eRz5B7a42Bqmlr3haGwwOIUYScAuu193mGYpcJp/o/69FoIl9cVaqbLDsOdT8=
-X-Received: by 2002:aca:fc50:: with SMTP id a77mr8490607oii.123.1620059316447; 
- Mon, 03 May 2021 09:28:36 -0700 (PDT)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B0006E8DA;
+ Mon,  3 May 2021 16:35:22 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A1AC060D07;
+ Mon,  3 May 2021 16:35:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1620059721;
+ bh=l++XYtZtJ70mk4ZhI+OUoCT6J6N26BdalDtg7D1/Kkg=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=X1FTRV8uyEJ2kD+cyWQAGLOQlAySUEqYWyw7fowL9MeTFx5feWZ9QQQz+r6gN9UhC
+ dmPyvsfgbmA6R4jA7CzuRCNyS7Qo2x8t47z7Wz4nv2QmwiSq4s+1zLh6d6L/zNNzJo
+ 2O63GTRwQqnfnLoYxaiUC0bDG7+NuLQjSiSBtWEDzSemZTfq3Nf6fqjcI42cGre7h2
+ wyyKiGki6yKUq64FQYjj6E6A8T4KEwMSEqW0AmkmbkIcwagodRySfSEln0HjNiZEBx
+ wwDTLbc7dyJNyt/XVcQjN3j4nhWauw5BtQV8K6Mqr7USwIBYp1wX+hf5h60QQpIVdv
+ +jwvdKCLn85dw==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.12 005/134] drm/amd/display: changing sr exit latency
+Date: Mon,  3 May 2021 12:33:04 -0400
+Message-Id: <20210503163513.2851510-5-sashal@kernel.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210503163513.2851510-1-sashal@kernel.org>
+References: <20210503163513.2851510-1-sashal@kernel.org>
 MIME-Version: 1.0
-References: <alpine.LRH.2.02.2105031023580.29348@file01.intranet.prod.int.rdu2.redhat.com>
-In-Reply-To: <alpine.LRH.2.02.2105031023580.29348@file01.intranet.prod.int.rdu2.redhat.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 3 May 2021 12:28:25 -0400
-Message-ID: <CADnq5_O7Mbodcoj3-NtVesQ00tH8jaAEG0vOoZx5NoDE37Cw6A@mail.gmail.com>
-Subject: Re: A hotplug bug in AMDGPU
-To: Mikulas Patocka <mpatocka@redhat.com>
+X-stable: review
+X-Patchwork-Hint: Ignore
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,74 +47,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org,
+ Qingqing Zhuo <Qingqing.Zhuo@amd.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Wheeler <daniel.wheeler@amd.com>, Alvin Lee <Alvin.Lee2@amd.com>,
+ Martin Leung <martin.leung@amd.com>, Alex Deucher <alexander.deucher@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 3, 2021 at 11:40 AM Mikulas Patocka <mpatocka@redhat.com> wrote:
->
-> Hi
->
-> There's a bug with monitor hotplug starting with the kernel 5.7.
->
-> I have Radeon RX 570. If I boot the system with the monitor unplugged and
-> then plug the monitor via DVI, the kernel 5.6 and below will properly
-> initialized graphics; the kernels 5.7+ will not initialize it - and the
-> monitor reports no signal.
->
-> I bisected the issue and it is caused by the patch
-> 4fdda2e66de0b7d37aa27af3c1bbe25ecb2d5408 ("drm/amdgpu/runpm: enable runpm
-> on baco capable VI+ asics")
->
-> When I remove the code that sets adev->runpm on the kernel 5.12, monitor
-> hotplug works correctly.
+From: Martin Leung <martin.leung@amd.com>
 
-This isn't really a hotplug bug per se.  That patch enabled runtime
-power management which powered down the GPU completely to save power.
-Unfortunately when it's powered down, hotplug interrupts won't work
-because the entire GPU is powered off.  Disabling runtime pm will
-allow hotplug interrupts to work, but will cause the GPU to burn a lot
-more power.  I'm not sure what the best solution is.  You can manually
-wake the card via sysfs (either via the runtime pm controls in
-/sys/class/drm/card0/device/power or by reading a sensor on the board
-like temperature) then hotplut the monitor or via a direct request to
-probe the displays via the display server.
+[ Upstream commit efe213e5a57e0cd92fa4f328dc1963d330549982 ]
 
-Alex
+[Why]
+Hardware team remeasured, need to update timings
+to increase latency slightly and avoid intermittent
+underflows.
 
->
-> Mikulas
->
->
-> Signed-off-by: Mikulas Patocka <mpatocka@redhat.com>
->
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c |    2 --
->  1 file changed, 2 deletions(-)
->
-> Index: linux-5.12/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> ===================================================================
-> --- linux-5.12.orig/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     2021-04-26 14:50:53.000000000 +0200
-> +++ linux-5.12/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c  2021-05-03 16:19:54.000000000 +0200
-> @@ -183,8 +183,6 @@ int amdgpu_driver_load_kms(struct amdgpu
->                                 adev->runpm = true;
->                         break;
->                 default:
-> -                       /* enable runpm on CI+ */
-> -                       adev->runpm = true;
->                         break;
->                 }
->                 if (adev->runpm)
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+[How]
+sr exit latency update.
+
+Signed-off-by: Martin Leung <martin.leung@amd.com>
+Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
+Acked-by: Qingqing Zhuo <Qingqing.Zhuo@amd.com>
+Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+index fb7f1dea3c46..71e2d5e02571 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+@@ -181,7 +181,7 @@ struct _vcs_dpi_soc_bounding_box_st dcn3_0_soc = {
+ 		},
+ 	.min_dcfclk = 500.0, /* TODO: set this to actual min DCFCLK */
+ 	.num_states = 1,
+-	.sr_exit_time_us = 12,
++	.sr_exit_time_us = 15.5,
+ 	.sr_enter_plus_exit_time_us = 20,
+ 	.urgent_latency_us = 4.0,
+ 	.urgent_latency_pixel_data_only_us = 4.0,
+-- 
+2.30.2
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
