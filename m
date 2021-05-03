@@ -1,27 +1,53 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A541D37182C
-	for <lists+amd-gfx@lfdr.de>; Mon,  3 May 2021 17:40:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 206D137193F
+	for <lists+amd-gfx@lfdr.de>; Mon,  3 May 2021 18:28:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 362C66E8BC;
-	Mon,  3 May 2021 15:40:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFA5889C8F;
+	Mon,  3 May 2021 16:28:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 9937 seconds by postgrey-1.36 at gabe;
- Mon, 03 May 2021 15:39:25 UTC
-Received: from haydenquinn.com.au (unknown [31.7.62.119])
- by gabe.freedesktop.org (Postfix) with ESMTP id 022C16E0EA
- for <amd-gfx@lists.freedesktop.org>; Mon,  3 May 2021 15:39:25 +0000 (UTC)
-To: amd-gfx@lists.freedesktop.org
-Subject: Re: the quick follow up
-Message-ID: <ecf6ddd1bf20276941b7398eecba1d7a@mynoisycar.com>
-Date: Mon, 03 May 2021 18:59:30 +0200
-From: "Rory Henderson" <slimseykdmcdd@haarkonzept.eu>
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com
+ [IPv6:2607:f8b0:4864:20::232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F8C889C8F
+ for <amd-gfx@lists.freedesktop.org>; Mon,  3 May 2021 16:28:37 +0000 (UTC)
+Received: by mail-oi1-x232.google.com with SMTP id i11so5912229oig.8
+ for <amd-gfx@lists.freedesktop.org>; Mon, 03 May 2021 09:28:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=cRFDpuMwuNrzRCZerqEUIZJfwBeJZa1OXw2reMpB/BA=;
+ b=t+9zPtD/vgbXyi7ZVtybylYA1F9S2tvCyzvwtJp5jJxqceCiz7Iep5T2pZOJpcqOEs
+ 6abMYSPD1fCAiqQxiBvUK19ZFPwPXovZBsg7l0TlkH3T5Rsi1SwL3QcfIsquyIJ4MfvJ
+ 9yFeP8sb8VZvupxs6KlrQGE0T6EGwC/0AqpL+CMh30QMeUhKL5ChbudaNQczKJDbx8WW
+ 5xQ6KbTWGWhlFK4/xuRtwMd+D5RU5NyEiL4Tiu5mUPKPqIzcR3fn9AbkDRxRCYu6TwKC
+ JLWYBBSd+x/atA74B2QbyAss24QRcMlMfn6n8ZAQsiJxY45TAotuIcYDMf6LAx67GOWs
+ B7xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=cRFDpuMwuNrzRCZerqEUIZJfwBeJZa1OXw2reMpB/BA=;
+ b=ity/hMKJh4vZX/fDvRDzFLWOwszjB5JoU+dIQ6McY7ba2eIshJSsJh0makT1zI4Ehn
+ Km7mRWtGalpUJYoAbbc1oWB/WTRSiqm4I4FUI41g1Yyuu7e2IBE+U4lfXIqx0dlmrz2r
+ aE6bHNpEr6A1lklG45oTetxtbzCO68DiRWHUM4f6ikiID6+aGNErzftL0l7BUFBXFy5j
+ uhFQ65WkTe5mLiYw6MRbP4Rrls5zOMPGIoO73ztD+s37Q8kqx3ioGFG3fAfAzPu1TwC9
+ 84JbQAvT/78WjlaqRknu1fnLCD5Oc/MN3I36W2dUuklnYT3JwTRHUnHexK85OhFXXwEj
+ qXxA==
+X-Gm-Message-State: AOAM5331zUtjr8d/+ScTG/mfF2jtU79lWPP55lsSmb1Q2b3RRhdX5dya
+ pCD9Zf8WbWkJM9BcCvR1BP5eCb3eBT0p+eMGAu8=
+X-Google-Smtp-Source: ABdhPJwMp9FtUGvzhME4BtwRjW7926eRz5B7a42Bqmlr3haGwwOIUYScAuu193mGYpcJp/o/69FoIl9cVaqbLDsOdT8=
+X-Received: by 2002:aca:fc50:: with SMTP id a77mr8490607oii.123.1620059316447; 
+ Mon, 03 May 2021 09:28:36 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer-Sent-By: 1
-X-Mailman-Approved-At: Mon, 03 May 2021 15:40:40 +0000
+References: <alpine.LRH.2.02.2105031023580.29348@file01.intranet.prod.int.rdu2.redhat.com>
+In-Reply-To: <alpine.LRH.2.02.2105031023580.29348@file01.intranet.prod.int.rdu2.redhat.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 3 May 2021 12:28:25 -0400
+Message-ID: <CADnq5_O7Mbodcoj3-NtVesQ00tH8jaAEG0vOoZx5NoDE37Cw6A@mail.gmail.com>
+Subject: Re: A hotplug bug in AMDGPU
+To: Mikulas Patocka <mpatocka@redhat.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,97 +59,75 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: rongbindesigne@aliyun.com
-Content-Type: multipart/mixed; boundary="===============1723065387=="
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1723065387==
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+On Mon, May 3, 2021 at 11:40 AM Mikulas Patocka <mpatocka@redhat.com> wrote:
+>
+> Hi
+>
+> There's a bug with monitor hotplug starting with the kernel 5.7.
+>
+> I have Radeon RX 570. If I boot the system with the monitor unplugged and
+> then plug the monitor via DVI, the kernel 5.6 and below will properly
+> initialized graphics; the kernels 5.7+ will not initialize it - and the
+> monitor reports no signal.
+>
+> I bisected the issue and it is caused by the patch
+> 4fdda2e66de0b7d37aa27af3c1bbe25ecb2d5408 ("drm/amdgpu/runpm: enable runpm
+> on baco capable VI+ asics")
+>
+> When I remove the code that sets adev->runpm on the kernel 5.12, monitor
+> hotplug works correctly.
 
-<html>
-<head>
-</head>
-<body>
-<span style="display: block; text-align: left;"><span style="display:
-block; text-align: left;"><span style="display: block; text-align:
-left;"><span style="display: block; text-align: left;"><span
-style="display: block; text-align: left;"><span style="display: block;
-text-align: left;"><span style="display: block; text-align: left;"><span
-style="text-align: left;"><span style="text-align: left;"><span
-style="text-align: left;"></span></span></span><span style="text-align:
-left;"><span style="text-align: left;">Hi,<br /><br
-/></span></span></span></span></span></span></span></span></span>
-<div><span style="display: block; text-align: left;">I hope all is well.<br
-/>This email is just to let you know that&nbsp;the&nbsp;following drone now
-is in our stock, ready to ship&nbsp;to customers&nbsp;worldwide.</span><br
-/><span style="display: block; text-align: left;"><span style="display:
-block; text-align: left;"></span></span><span style="display: block;
-text-align: left;">Drone specs and features：<br />Frequency: 5G<br />FPV
-Image transmission: 2km<br />6K wide-angle 120&deg; adjustable camera.<br
-/>Battery: 2850mAh Li-ion battery<br />Flight time: 28-30 minutes<br
-/>Remote control distance: 2km<br />Level-7 wind resistance <br />GPS
-positioning mode<br />Follow me function: The plane will follow the
-direction of movement.<br />Surroud flight: will make the plane fly in
-circles, providing a shooting angle.<br />Waypoint flight mode: draw a
-route on the screen and the drone fly follow the given path.<br />Auto
-return function. <br />With low power protection overcurrent protection.<br
-/><br /></span><span>Costs: u&nbsp; &nbsp;s&nbsp; &nbsp;d<br />1-5
-units&nbsp;295.50 each<br />6-10 units&nbsp;285.50 each<br />11-20 units
-275.50 each<br /><br />If you would like to place an order, we need to know
-your delivery address to get the package ready for you.&nbsp;<br
-/></span></div>
-<span style="display: block; text-align: left;"><span style="display:
-block; text-align: left;"><span style="display: block; text-align:
-left;"><span style="display: block; text-align: left;"><span
-style="display: block; text-align: left;"><span style="display: block;
-text-align: left;"><span style="display: block; text-align: left;"><span
-style="display: block; text-align: left;"><span style="display: block;
-text-align: left;"><span style="display: block; text-align: left;"><span
-style="text-align: left;"><span style="text-align:
-left;"></span></span></span></span></span></span></span></span></span></span></span></span><span
-style="display: block; text-align: left;"><span style="display: block;
-text-align: left;"><span style="display: block; text-align:
-left;"><span></span></span></span></span><span style="display: block;
-text-align: left;"><span style="display: block; text-align: left;"><br
-/></span></span><span style="display: block; text-align: left;"><img
-src="https://ae01.alicdn.com/kf/Hc9d51d1d21744a969f87e41d4a3bec84d.jpg"
-width="500" height="757" /><img
-src="https://ae01.alicdn.com/kf/H6966efe8bce64adb88c45f7172d144a3j.jpg"
-width="500" height="685" /><br /></span><span style="display: block;
-text-align: left;"><span style="text-align: left;"><br /><br /><br /><img
-src="https://ae01.alicdn.com/kf/H59144da9eba34d43aae89c56101741a8c.jpg"
-width="500" height="756" /><img
-src="https://ae01.alicdn.com/kf/Hb9e04516047243f0954fab86b79e7100E.jpg"
-width="500" height="1051" /><br /><img
-src="https://ae01.alicdn.com/kf/H72234d22076d4d70b049628d927763191.jpg"
-width="500" height="657" /><img
-src="https://ae01.alicdn.com/kf/H0c25bf7e694a410f96d268c839e67cf1V.jpg"
-width="500" height="930" /><br /></span></span><span style="display: block;
-text-align: left;"><span style="display: block; text-align: left;"><span
-style="display: block; text-align: left;"><span style="display: block;
-text-align: left;"><br /><br /></span></span></span></span>
-<div>If you would like to place an order, we need to know your delivery
-address to get the package ready for you.&nbsp;</div>
-<span style="display: block; text-align: left;"><span style="display:
-block; text-align: left;"><span style="display: block; text-align:
-left;"><br />Thanks,<br />Rory&nbsp;Henderson</span></span></span><span
-style="display: block; text-align: left;"><span style="display: block;
-text-align: left;"></span></span>
-</body>
-</html>
+This isn't really a hotplug bug per se.  That patch enabled runtime
+power management which powered down the GPU completely to save power.
+Unfortunately when it's powered down, hotplug interrupts won't work
+because the entire GPU is powered off.  Disabling runtime pm will
+allow hotplug interrupts to work, but will cause the GPU to burn a lot
+more power.  I'm not sure what the best solution is.  You can manually
+wake the card via sysfs (either via the runtime pm controls in
+/sys/class/drm/card0/device/power or by reading a sensor on the board
+like temperature) then hotplut the monitor or via a direct request to
+probe the displays via the display server.
 
+Alex
 
---===============1723065387==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>
+> Mikulas
+>
+>
+> Signed-off-by: Mikulas Patocka <mpatocka@redhat.com>
+>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c |    2 --
+>  1 file changed, 2 deletions(-)
+>
+> Index: linux-5.12/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> ===================================================================
+> --- linux-5.12.orig/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     2021-04-26 14:50:53.000000000 +0200
+> +++ linux-5.12/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c  2021-05-03 16:19:54.000000000 +0200
+> @@ -183,8 +183,6 @@ int amdgpu_driver_load_kms(struct amdgpu
+>                                 adev->runpm = true;
+>                         break;
+>                 default:
+> -                       /* enable runpm on CI+ */
+> -                       adev->runpm = true;
+>                         break;
+>                 }
+>                 if (adev->runpm)
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1723065387==--
