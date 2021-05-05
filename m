@@ -1,107 +1,84 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B07F6373BF7
-	for <lists+amd-gfx@lfdr.de>; Wed,  5 May 2021 15:06:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3445373C07
+	for <lists+amd-gfx@lfdr.de>; Wed,  5 May 2021 15:10:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D13F26E454;
-	Wed,  5 May 2021 13:06:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 388856E48F;
+	Wed,  5 May 2021 13:10:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2088.outbound.protection.outlook.com [40.107.237.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20CF36E454
- for <amd-gfx@lists.freedesktop.org>; Wed,  5 May 2021 13:06:13 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MQqE9H4BLe/el5H0PJVYCY7lfL2GFphWj1KefzlAxBlyB7eJIDYO/PuLdP2xphPH7zCTc7zpdml2zVHj9jqEwf3kbG5XLE3fBVufCAfMKZA0rMzHXp9goNooaPLMrQlvRaEN4EADdYwqanb9k8Vj8ia2aKO/LghOe9ptDpvr4TV7MJ13grk0D3309jVm0ALIWBKon1gdqal3F1mYDG5MF217D/UQ9TZ0IqBPsx3V57hO3TZJEW7djoz3D3nnbMWsP+mXHEfkrjN7ZUuI66MnhdyvnJ27PcZM6TuzLTCL92EaPuBEAu7vK+UmON9PZEzeWbjGoISZllVTfYv1ldw+AA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=baKiNYDEsJvR0VEamycCgqkyiNmW9od/v/dn7wMkI/4=;
- b=lON4KN24MedLpzxexK6Giuno42RgiSzJX8TzDc27cg4BSzAURPjUht1z4apMWAMsUMWK+ZDJ9GKqwZ1B6dbf9roJDo1wpygXk4DDdW2YEslTzpZMrUO7kghNg5X2+R2YuQGigDGltPGE2jVRGUVG7uv4LtS087Ag7CZP1jZ/6XBodDLtCasBIhrG4rIJvif+rtF9jlGryxsYwuaae34IQx4LSxSg6+1azO4p+ridsvf5JuIq4xYvmhJN2yyrAOBYSai1EG5jtDbXofR50++E6yUaGckGXCWlsFT2X7hKluXrWJYsmtTA1F9rjUzS6o5ee/jp5CNyHre1cSu6bOu6Og==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=baKiNYDEsJvR0VEamycCgqkyiNmW9od/v/dn7wMkI/4=;
- b=TY3NCthCfmeq9eBU2P4jCx1M982p8fhlCrHenSLCtAUtCC36+vX0QPcnJqVGJfD8z3UU1f1nyVrzRledyOLOp+ZVALv+P2kLeb79Wk+Q5SUWsgJYNRkaj08wl3WDZzX9bGUfaqxOq7j+feML8z5X/q6qtjTNsXJ/9fkD7T1b32M=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB3839.namprd12.prod.outlook.com (2603:10b6:208:168::22)
- by MN2PR12MB4253.namprd12.prod.outlook.com (2603:10b6:208:1de::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4087.25; Wed, 5 May
- 2021 13:06:11 +0000
-Received: from MN2PR12MB3839.namprd12.prod.outlook.com
- ([fe80::c14f:8ae9:c5fd:212c]) by MN2PR12MB3839.namprd12.prod.outlook.com
- ([fe80::c14f:8ae9:c5fd:212c%5]) with mapi id 15.20.4087.044; Wed, 5 May 2021
- 13:06:11 +0000
-From: Sathishkumar S <sathishkumar.sundararaju@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: set vcn mgcg flag for picasso
-Date: Tue,  4 May 2021 14:57:26 +0530
-Message-Id: <20210504092726.15498-1-sathishkumar.sundararaju@amd.com>
-X-Mailer: git-send-email 2.17.1
-X-Originating-IP: [165.204.157.251]
-X-ClientProxiedBy: MAXPR0101CA0060.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:e::22) To MN2PR12MB3839.namprd12.prod.outlook.com
- (2603:10b6:208:168::22)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE8016E450
+ for <amd-gfx@lists.freedesktop.org>; Wed,  5 May 2021 09:00:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1620205211;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=nOOxG8KwNMz1eFISDrmtfXXoZ2NzbYcR1eDNGbXkN5M=;
+ b=iFbpT+rkSj0LwTyEuPoGbLP5D4na0hcCrRDehTfWMyFcFxrT1pVxMsVPpeBoLfGN3YMs4D
+ h/UbsfZ66UQtZl5VfZsFxPcPIIBs93nntO/GLIb4qT1MD0UEClKhrZSZyTSjm52ryzHosG
+ 0v+5p7WzBpeRAOXiOnT4lF+32pUX5rY=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-424-Lnwfpw2yOQqlLnC3H-Mf3Q-1; Wed, 05 May 2021 05:00:09 -0400
+X-MC-Unique: Lnwfpw2yOQqlLnC3H-Mf3Q-1
+Received: by mail-ed1-f72.google.com with SMTP id
+ w20-20020aa7dcd40000b02903886b9b0013so506206edu.22
+ for <amd-gfx@lists.freedesktop.org>; Wed, 05 May 2021 02:00:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=nOOxG8KwNMz1eFISDrmtfXXoZ2NzbYcR1eDNGbXkN5M=;
+ b=hAKBA7wz9RslMGrK+F4k4BnEtfWGNxpOF4+Q1vLrrPY76zN9lSr0lRvSBGFRXHV32S
+ Ok5xhR8ja25Px8Y/g/tv46y4v8yZUBMU9r/pa2JD0W3rYyIaJSXyzsZmAXO6b1I3FcIO
+ 0feuFJ9OztK6fPdcitmdwjXXnI19IqMsqbs+97eDar4mtyqwOEDkzVHQOet4EX3feT06
+ Nc+YBKsJCbYKgOpDciLt4DMWXiyxF7wD6QvnxBRnybNsf+3VU6mAe99xkywlJM1JC9p2
+ LAmx2q7fVwKmh8V0EjQ/tNdKNqLU+B79Vm3ubqyeKlOrO4Bam9PIE8burEpHi04ZUz7k
+ Zkhw==
+X-Gm-Message-State: AOAM530RJXX50HbOeoDb7X9Jp3yjeNadpp9kLYv+496TVX5HpfmH7d8R
+ noiOzEFtYyJwlnyZWgqsjnncQU6khQ1k2br25Hx6YrXyyo6UzvCi49l45vb6Lxk5upZ1VjppUZC
+ JFakB7tyrzuIjBKl4Uii8qTGvYg==
+X-Received: by 2002:a17:906:e88:: with SMTP id
+ p8mr25443078ejf.31.1620205207994; 
+ Wed, 05 May 2021 02:00:07 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxJTLyyjLte+decu+WLdsqi+cR0B42grizYAH0vUZ74jz9Rb2rhoCs6M4/f1HwDK9+GA0/7wQ==
+X-Received: by 2002:a17:906:e88:: with SMTP id
+ p8mr25443055ejf.31.1620205207823; 
+ Wed, 05 May 2021 02:00:07 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+ by smtp.gmail.com with ESMTPSA id a22sm15599349edu.14.2021.05.05.02.00.07
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 05 May 2021 02:00:07 -0700 (PDT)
+Subject: Re: [PATCH] platform/x86: Add missing LPS0 functions for AMD
+To: "Limonciello, Mario" <Mario.Limonciello@amd.com>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
+ "rjw@rjwysocki.net" <rjw@rjwysocki.net>, "lenb@kernel.org" <lenb@kernel.org>
+References: <20210504221140.593002-1-alexander.deucher@amd.com>
+ <BYAPR12MB2693F7109BC8E7EF9F672A16E25A9@BYAPR12MB2693.namprd12.prod.outlook.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <22c1b9a9-8167-5e4f-6ff7-278c386cc423@redhat.com>
+Date: Wed, 5 May 2021 11:00:06 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from arun-Mandolin-PCO.amd.com (165.204.157.251) by
- MAXPR0101CA0060.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:e::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25 via Frontend
- Transport; Wed, 5 May 2021 13:06:09 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c2ddc63a-ad56-4795-df0f-08d90fc68e0d
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4253:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4253D851CFECB19BAF0A22CC9D599@MN2PR12MB4253.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /veOeZ7hxO4lXDUH3CMrTzUwq4rjYKZAo/YjXBbwyH3/urMk4BzqPi0SAfTkiRhuQ+nRNwELzF8khHWAGzUvxJ9Z4zbkBlxv5WJ+O6CayGCxyOwwtjVsSCRJWc0h3FhD0z4QbN0dsu423ol1t7KT8IoVEVUlvrBzJQuJW6r++9kFzZc2w/kLLtkfKiSYvcpHfRXWQHAzidrxcyp6RUshkh39xTxs5fYgpLztOn5aoz/mVDuDgp6yD0UlTTUldBpGWAsJ7hvGkzoOMpkTIO5jFVD/4sKFCgcsAudggABxixCksqisQyPtchDu+5z9YFL6UAWs86zav3c/qcvALSw6X+TaUpygt9sKLaR0ASwX8CkUeoXY38d5U0zFROSsDTYLzQ8oN67GgVgtfwfduIh82WVwykPeeK1zZ+6lK97oRFWLpUFCg9RbyotF8HIDNyCbXtIuo/r+qpoMRgCULENn/SJvq21hjkorDgsnKqWiqgfAni8wb+XgqXVEffyNjbVn1fiZRBXeOWinWEkdnlG2gmNJwOzmzuAq/xitRQZJ6qPXF4nYdnHHmw4jqXdX8vp8KkL9okyeALMz9RigDNG7yXozVYZ8Q/eY4xNnG0w5xikqMlT2fHKgmUWy5LUh3Bwe322JvEeM/MVY2UgsVhTx38AWvptpi2kUZnM6m1UjHU0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3839.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(376002)(396003)(366004)(136003)(39860400002)(6916009)(16526019)(186003)(83380400001)(54906003)(6666004)(38100700002)(38350700002)(7696005)(2906002)(956004)(26005)(66476007)(86362001)(6486002)(4744005)(2616005)(478600001)(8676002)(316002)(36756003)(8936002)(4326008)(5660300002)(66946007)(1076003)(66556008)(52116002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?CufmZrkm2rdwtuZylLAwfAAWsDWRhbvWuXkvVTa+JWdCe1ca3/eVDkmB9m38?=
- =?us-ascii?Q?RqQfKwKOXWj+h05oOD21E8o4iUM2E9T+bS/z4bgMZEENDzddeFgYW7x84spL?=
- =?us-ascii?Q?bfJa/pnO++/bDyjrBxP5GxwNgF6aH30wmyWYI69XjnSxdz00fLJG/6xicj4P?=
- =?us-ascii?Q?HjCsCxZCFn1cWYErTXyHYAtqU1YdIkn/hjS0KexwPuy8P9F81Y1+vwo+cVof?=
- =?us-ascii?Q?taxmRPWojiWFwETc3nW+EMqNSqU58zpavixBzfo1mP91l6NwJtuVmHDhQUfx?=
- =?us-ascii?Q?pRV5LNBPuyurFeP3ly/YWBX004ULPxHaLDGBY/oFw0aJmdbjudCdCOlF38hw?=
- =?us-ascii?Q?ZM7fE0/TJkoEgGJFVmbH6/nwO4g/tfqqa5yhBAfBpXeLrvRO5FXf5MJHHzM5?=
- =?us-ascii?Q?9l32Z75iQepCzxUckTrVWtwVY8NfB14fyuclXm8pOg/SDSgPme5k9ZDLzUv1?=
- =?us-ascii?Q?7GHFCkZd2PPJrvstUPeC+dOLAo4k3cNtOnhlzWX+qJZ4L06X+wKK6XYfJQUe?=
- =?us-ascii?Q?sdxvvqLeRI2WKgojs5VPfGOqTGIEQKZFWoJ87oWRiamUvuL3aXnoVeapF8qg?=
- =?us-ascii?Q?T+ExCSeww4WQxmfrtoqR/h1kBHQDDoKpFuOcjjR02htaUkIWD4HjNHQwTXS3?=
- =?us-ascii?Q?s06B59b3k40GPjk9AUmJ7PcYOLOjZfFW5dJ0fYqPUwnQagvXGWWhT18EoZwP?=
- =?us-ascii?Q?gjQh++i50r0k1EkSnNNVn++64kKVORX+VzY2TKVCjV3ZH8Oc5asJ9t3L+way?=
- =?us-ascii?Q?ehEVz5dMByIqDp5MuOhoJ2T2YbpDzPwheSDssmtAcfRwspiCbhXnBxf5nHsY?=
- =?us-ascii?Q?grG18bndAnTYclxJFbRvUFxmWK3OAEaRA34cTm26BuOtVBVACXJnUlPHIjp7?=
- =?us-ascii?Q?+8ypMEA1yYUT2jnbsyYJemdCMNjBjHhiRiLvfU3WnxynJAvstWBNyWiw2CwE?=
- =?us-ascii?Q?4TPLiOekt3h02F13kZRzxr7vjkUkBQrKYzv9kvZNHdTYv6M7sADQR5QusAHF?=
- =?us-ascii?Q?Oo5pvbGdOUyMbNUVYeb/GOByLkaDq7mYcnZm4d5kKLVuhTJ9dgNOm58vOwfN?=
- =?us-ascii?Q?ktEhtDmnbc4/ewJaI3g4OJL1fSThR2rTAHLNMsH4azeSyLV1h9iA0jYE6fAJ?=
- =?us-ascii?Q?499a/x/N4qPqAkHCaQ7EhAsn8/UfC6YGGKKvD9nN0rZputJOvF9pPD3I/+b3?=
- =?us-ascii?Q?3EPMgCAx0mDXJczcT/VVe6nOLR6n2gExs4dVExL1noi1awIFYbq7ESFWgIDu?=
- =?us-ascii?Q?rhp47lecXqFD9pPKHelN5AhsavukjlLXyBsE69D+ELH+OeNtEgMsqtsLptQs?=
- =?us-ascii?Q?NO1ohjsIavOsHDIum0teawDB?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c2ddc63a-ad56-4795-df0f-08d90fc68e0d
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3839.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 May 2021 13:06:11.4248 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zwsD16k+V8CBsyWL7EPrq1Ssh76AjiSzMcQ70Z9OcwJNqtmFWZcE7jlDIx9OE8ShCU7zRHxitPbJPPS4BRdCDQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4253
+In-Reply-To: <BYAPR12MB2693F7109BC8E7EF9F672A16E25A9@BYAPR12MB2693.namprd12.prod.outlook.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+X-Mailman-Approved-At: Wed, 05 May 2021 13:10:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,39 +90,90 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander Deucher <Alexander.Deucher@amd.com>,
- Sathishkumar S <sathishkumar.sundararaju@amd.com>, Leo Liu <Leo.Liu@amd.com>
+Cc: "Liang, Prike" <Prike.Liang@amd.com>, "S-k,
+ Shyam-sundar" <Shyam-sundar.S-k@amd.com>, Marcin Bachry <hegel666@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Sathishkumar S <sathishkumar.sundararaju@amd.com>
+Hi,
 
-enable vcn mgcg flag for picasso.
+On 5/5/21 12:33 AM, Limonciello, Mario wrote:
+> [AMD Public Use]
+> 
+>> Subject: [PATCH] platform/x86: Add missing LPS0 functions for AMD
+> 
+> Rafael might be willing to fix it up on commit, but if you end up needing to re-spin
+> I think technically this subsystem prefix to match other stuff committed to this file
+> should be:
+> 
+> "ACPI: PM: s2idle:"
 
-Signed-off-by: Sathishkumar S <sathishkumar.sundararaju@amd.com>
-Reviewed-by: Leo Liu <leo.liu@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/soc15.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Ack, please get the subject next right time. I was about the put this in a folder
+with patches to apply to the pdx86 kernel tree once 5.13-rc1 is out, but this
+should not go upstream through the pdx86 tree at all.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
-index 28e9f6b726a6..e3f42ad1e6bc 100644
---- a/drivers/gpu/drm/amd/amdgpu/soc15.c
-+++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
-@@ -1401,7 +1401,8 @@ static int soc15_common_early_init(void *handle)
- 				AMD_CG_SUPPORT_MC_MGCG |
- 				AMD_CG_SUPPORT_MC_LS |
- 				AMD_CG_SUPPORT_SDMA_MGCG |
--				AMD_CG_SUPPORT_SDMA_LS;
-+				AMD_CG_SUPPORT_SDMA_LS |
-+				AMD_CG_SUPPORT_VCN_MGCG;
- 
- 			adev->pg_flags = AMD_PG_SUPPORT_SDMA |
- 				AMD_PG_SUPPORT_MMHUB |
--- 
-2.17.1
+Regards,
+
+Hans
+
+
+
+> 
+>>
+>> These are supposedly not required for AMD platforms,
+>> but at least some HP laptops seem to require it to
+>> properly turn off the keyboard backlight.
+>>
+>> Based on a patch from Marcin Bachry <hegel666@gmail.com>.
+>>
+>> Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1230
+>> Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+>> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+>> Cc: Marcin Bachry <hegel666@gmail.com>
+>> Cc: Mario Limonciello <mario.limonciello@amd.com>
+>> ---
+>>
+>> Dropping patch 2/2 for now.  This patch fixes several
+>> systems and doesn't appear to cause any issues.
+>>
+>>  drivers/acpi/x86/s2idle.c | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/drivers/acpi/x86/s2idle.c b/drivers/acpi/x86/s2idle.c
+>> index 2b69536cdccb..2d7ddb8a8cb6 100644
+>> --- a/drivers/acpi/x86/s2idle.c
+>> +++ b/drivers/acpi/x86/s2idle.c
+>> @@ -42,6 +42,8 @@ static const struct acpi_device_id lps0_device_ids[] = {
+>>
+>>  /* AMD */
+>>  #define ACPI_LPS0_DSM_UUID_AMD      "e3f32452-febc-43ce-9039-
+>> 932122d37721"
+>> +#define ACPI_LPS0_ENTRY_AMD         2
+>> +#define ACPI_LPS0_EXIT_AMD          3
+>>  #define ACPI_LPS0_SCREEN_OFF_AMD    4
+>>  #define ACPI_LPS0_SCREEN_ON_AMD     5
+>>
+>> @@ -408,6 +410,7 @@ int acpi_s2idle_prepare_late(void)
+>>
+>>  	if (acpi_s2idle_vendor_amd()) {
+>>  		acpi_sleep_run_lps0_dsm(ACPI_LPS0_SCREEN_OFF_AMD);
+>> +		acpi_sleep_run_lps0_dsm(ACPI_LPS0_ENTRY_AMD);
+>>  	} else {
+>>  		acpi_sleep_run_lps0_dsm(ACPI_LPS0_SCREEN_OFF);
+>>  		acpi_sleep_run_lps0_dsm(ACPI_LPS0_ENTRY);
+>> @@ -422,6 +425,7 @@ void acpi_s2idle_restore_early(void)
+>>  		return;
+>>
+>>  	if (acpi_s2idle_vendor_amd()) {
+>> +		acpi_sleep_run_lps0_dsm(ACPI_LPS0_EXIT_AMD);
+>>  		acpi_sleep_run_lps0_dsm(ACPI_LPS0_SCREEN_ON_AMD);
+>>  	} else {
+>>  		acpi_sleep_run_lps0_dsm(ACPI_LPS0_EXIT);
+>> --
+>> 2.30.2
+> 
 
 _______________________________________________
 amd-gfx mailing list
