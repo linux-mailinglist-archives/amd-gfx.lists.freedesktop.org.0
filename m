@@ -1,116 +1,106 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 196F4375C14
-	for <lists+amd-gfx@lfdr.de>; Thu,  6 May 2021 22:02:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4EA5375D3E
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 May 2021 00:37:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B2906E157;
-	Thu,  6 May 2021 20:02:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57D986ECEB;
+	Thu,  6 May 2021 22:37:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2056.outbound.protection.outlook.com [40.107.244.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4634F6E157
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 May 2021 20:02:25 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2051.outbound.protection.outlook.com [40.107.223.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99FA16ECEB
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 May 2021 22:37:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j83zchotszHhNuMqZUXM347sbhHYz16QthpZP1p4IC4kJyR/w1d/n7lWeAkWEgH0ROieFGIPSEe34zU+xd79DnD9mnvCr6lKeTLJ2RbQkEnxPbJ3rJ4qZwSfgUSDp+oJCgBWONlxPXB/XygA/MEMh8bostWs1Wtvhr8AS5R0g0jUr2wCeOH/ogr0Gg2d8udJzAcPQy7OufVyTULieANYdK6zJ3asosacDzZr2A1cDq8LEsFNrRBolHga57l347uIyz0Jn0BNNHFHqsMosTtHWuixpC5m4uCg2wzrKoR7ltibxSK8RDLscrm3wm6KNT+/CgzGSJHFrzi1B4aHDcx63Q==
+ b=G95bzCzlBXBCGDuJSM+tGMM0B7mdHYzpGxfzq43z+QZzJyxvLdRs0JHjnvc3fOQmyk3qG+hHODXd8CswL1i0m3M+M8DNuQ6GdrRz4i0gdbJC7VEbEGGQsfN9pLnHtAqUpoHTgjVLD0DfAMIMnHnTkXCauikQ2ryMR6V0juwzyqyrJP8v7fQsYH6GvQl33QRrlULhWkhbgS9O/BD2Y/7KN7wIeRQ3RisYfmQGz034xNNgN9SiGxuE/FQQWRnkUNTQVdZlRWpR1UJJMk0/WIt8d0DSz+FgWs1kYFOqSyTkdbzH+vzR4uDqnuz8T3a9IQcB8i3agKksPWffeWHMgRIM6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ksy783AAnwoa4UGzdxvtsu2URH6/rcMWx4a0357uEwY=;
- b=a7HdHdP8LtHCB4+fTr5rA2YvT9qt6tSMd6CJVRGt9aORDT8CJnUrRlM4JBW4/DOLW2bbh/cWBH0jqMYiiSzgwdgvPBbJKHF1VsONZwMtdaR0CumLcpsUaNfsQmBEdfybrh6OIYbuK24BCgnsTakhSnfNAjdTYGrxuZ4VLT0JuFKMPNGTiQvXOEdUxwtWwPXdCJJPahrMTP1Ej5l1oElwaW2Ye4vKWEkchq6yFB0dwO8OlGLHSidmGMT3LE0AxKzX6Qzvwa7QyjBQab6f4cOfSElqspgtBzfegR6f0CUnysfoRswkLgp6OEZ08TMeYuID7RIefYv5EE2ti6/p4bopEA==
+ bh=+tRQIGIYQyrdHG5dYuCgYfH7bB8SINYYJvGlKHRO6bQ=;
+ b=aOxYVwoKEHcaYbly4AA8gfndY9ksK/gFexNic+kiYVikAHkYxPXfXzeEPTh/7UshIYWUFUptlpn3Sq11x+nGDWoXv0fCFCRNg5lm//eR5PuZ67EiTFUX41FfHCJZCMd1+lgMqnUjrEPblpM4gQvAL+hOvClI08RYHiABTiGAFadhampXyVF6wnCP2DFKrpZ8XYqT0AaCYeDk194C2AFKOE2kUzQ4aUoEdV9w+kySGqStC2GyJVzxjTPDGbjjKpLOn2EIiAfeNebnCdvb2879ZEodNTYVfi+d3AUBusqa3OCK2139RDvczkUPDBpc8uTzn5l4NL6fmjphWLHW1Rf/9w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ksy783AAnwoa4UGzdxvtsu2URH6/rcMWx4a0357uEwY=;
- b=glcYgDX3T4xcw40QjCmZnv8em6cApa8glBbLiEMl3IzznY1u71qflpp9+Ygjwa4KmApfc0e0UkLyHal/gEeLO72GNW+4gOHaB0wrgmtqxG+MK+sF32igbpgK+Uhc35DyxIYhgbeFmzJHQb9Pwg+SAp+Q2zSai4H9mcSXpDMpoUM=
-Received: from BYAPR12MB2760.namprd12.prod.outlook.com (2603:10b6:a03:72::16)
- by BY5PR12MB4917.namprd12.prod.outlook.com (2603:10b6:a03:1d1::8)
+ bh=+tRQIGIYQyrdHG5dYuCgYfH7bB8SINYYJvGlKHRO6bQ=;
+ b=Y4rklbOmxqAs5Y3dxK57f/QzprZaPYRUn2TSK5wfHU8q4raq7D88CQ4/Da29XeFO0fuGlnqzWpiWVbBjCYuPixwMAxoLZPH6lF2l/7FV9uGXeE0N5c+ggEGKp0LsLQHvcwtKH6ES0CWllziDgqWXG4HGNID49Z41M+DNlnIp2z0=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from BYAPR12MB2840.namprd12.prod.outlook.com (2603:10b6:a03:62::32)
+ by BYAPR12MB2840.namprd12.prod.outlook.com (2603:10b6:a03:62::32)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Thu, 6 May
- 2021 20:02:23 +0000
-Received: from BYAPR12MB2760.namprd12.prod.outlook.com
- ([fe80::bcd1:907d:8cee:5085]) by BYAPR12MB2760.namprd12.prod.outlook.com
- ([fe80::bcd1:907d:8cee:5085%3]) with mapi id 15.20.4087.045; Thu, 6 May 2021
- 20:02:23 +0000
-From: "Kasiviswanathan, Harish" <Harish.Kasiviswanathan@amd.com>
-To: "Joshi, Mukul" <Mukul.Joshi@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdgpu: Enable TCP channel hashing for Aldebaran
-Thread-Topic: [PATCH] drm/amdgpu: Enable TCP channel hashing for Aldebaran
-Thread-Index: AQHXQrC1p/1k1huvYESOdxpKhX3w46rW3gFw
-Date: Thu, 6 May 2021 20:02:23 +0000
-Message-ID: <BYAPR12MB276032A015062200B3A3178C8C589@BYAPR12MB2760.namprd12.prod.outlook.com>
-References: <20210506194724.9964-1-mukul.joshi@amd.com>
-In-Reply-To: <20210506194724.9964-1-mukul.joshi@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=true;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2021-05-06T20:02:18Z; 
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal Use Only -
- Unrestricted;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ActionId=23b83015-8202-49b4-afa6-d410b9e5620c;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=1
-msip_justification: I confirm the recipients are approved for sharing this
- content
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [2607:fea8:3ae0:384c:4cac:828d:28d:e9c3]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2f21618c-b518-452e-c76e-08d910c9dd5f
-x-ms-traffictypediagnostic: BY5PR12MB4917:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BY5PR12MB49171729CD6E919470747E6E8C589@BY5PR12MB4917.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:949;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 3fimaHRpJf+bp7UtIXCIzmR56AT6goqigUUzIFQtFruNzViMAQ0VgNi5PEH4cnbxJ7+L/Kn0zFbo/DtOp7iohZ1fB7UGvMXq+a1M8klV2mzb8vfJ7z7UhxMFMmj6mxfSiPlGMcCwWHgZ40WgSLONwSYdqBWmjDCp213VfgGuV9EElyJ33G0cyXzTu27nZCoiKt7NnN5WpbHgYW97VFgtl8lQ1I4T5+EDjAebhuUzWsjWW2DDwypkTZircBo7KPhwSjBOMVmOTYnPs9v9rK54Oy6TrhuIp2xYxs4O0dVN928lgQhk5NAObi1t9eF9DPVAkvPcqyEvsHNmHUOeIr6YovZFoqIvwP+PgZtJU9O8DVwYcEUmCRdoi0DHgSYZ71aoBrLZZ6W9doUzTsm6AME3w/vV+rAR2WJtVFCNthWI06fhLDUDPfPWu7/s6YfGHLb5/dEl6ibvwvCoNlOsgPLb4bATjEPJjApNQ2t4fzwGAo+un8XSKB3sWTv3/TQcIs7d9+QklQ4Flqn5aZ3HofuuF0JhzPIfkxnK6X6OqEW+TRY4i+PW93YIAv3YfN7m6dUe7PZit5m5OuYNmAPu9u9yJXSRaVvqAPLAQOEbkypRF5E=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB2760.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(396003)(376002)(366004)(346002)(33656002)(38100700002)(7696005)(8936002)(110136005)(71200400001)(316002)(64756008)(52536014)(122000001)(9686003)(2906002)(478600001)(8676002)(66476007)(66946007)(86362001)(83380400001)(76116006)(66556008)(6506007)(5660300002)(55016002)(66446008)(186003)(4326008)(53546011);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?wmNZUmukAAw9M9xhck4AZWIj+uJl2SzaQSc6cnTbHWMgBTrLhD8R87IGZDBa?=
- =?us-ascii?Q?PXgwz2M1En7/mmIqJI8F8V45n8uoL9Iri2YKZcuWV2Tmxfl85U+3U1l5nbT/?=
- =?us-ascii?Q?xpNwP3rSzJ6FDyGQ0y1+2/22U9qzybPto+5jqyzSthSFYnufgCxoD+vPfnX8?=
- =?us-ascii?Q?wQ/svq/8QQzd92wuWkfFQn1AxWDYAoAi5QTVWJQ91aOFwUPMBqzTXrf4LA+x?=
- =?us-ascii?Q?H2GAkKT+8cRaq2AnHczA/LampE68E0exNhWB7lvBP+5wAeBZDbr1pkv6PNQ1?=
- =?us-ascii?Q?Nq96r+YiFKbUHG3SScy/bkwfB5YBEq/eXtxxn5+Q1ytjzoH0XNyT2MgDpo+L?=
- =?us-ascii?Q?8bygDMCe1k269v9GjOW9nPj7PSNlmOTU3fPQ7/TYKKPNHnnF4dRUI38U65BO?=
- =?us-ascii?Q?PsGA54MZRpPlWNXJzYEN35WbWqJ9jIN0LPPmLwSBEyxZcgqjFniQUkLQi8fy?=
- =?us-ascii?Q?qZG7ZsDzBML/8KTdQu9ueyHgbUuQF3ZNKqsu13587CAsyuUyzAwfmxv9wPcD?=
- =?us-ascii?Q?G+SsYJmrSOvhnbQRRpqKtswmxNu2WTmudfgkzYZ4Flk9bXaoxQbiTHqnTbCh?=
- =?us-ascii?Q?EpW0jSrEc+7vQ9WjWDfEzCO0C2rche+fQJPKsOUORJ/ahHMiIOp89YDaPU+e?=
- =?us-ascii?Q?a+8hBvc3bk7u1jl4gZZVKzpwvSvPIv/AJk0g1M+d+re0tM0YxoW34BBlHNOV?=
- =?us-ascii?Q?HNNsm68UxpDGsPJQBaf/wy2iL+1yeOR5LoXxaYq4coDbkYK5GfWRvcwOUlZ9?=
- =?us-ascii?Q?MZgl/3FlrzTvbtdg7jdvs7tSdFSPUHLfvaR7yKkPKFCQCaDXDlWmM4v4q6nw?=
- =?us-ascii?Q?DxPdJ7d05R+2OSMOFPGTRGkDLX7dUJTIfqjChfVo74pI7vITFXIe+N9Q/j7t?=
- =?us-ascii?Q?9x7rZvUuLaL814Pqj6pMjtjjdlCoyPR0sQMx3SwqLswy+5YU3mMnptFafWQ9?=
- =?us-ascii?Q?I6RqBqQv10Mg69FeoU4UiQy3d7Sm8G4Q4XMGPTjp+SlDRlHMUEC6mD5bgMKj?=
- =?us-ascii?Q?7lHNHRebp6QtzIBW8ybjj6zcqsc0I/uD1SvkYNUYcRlxdvQuNllyOikRYBLv?=
- =?us-ascii?Q?r+J7bksi1XVloHJ0KrmQZUljk9FZWFtg80K3JnSMcEsL6UcInrXPf8o76Gf6?=
- =?us-ascii?Q?v2LNLD+ixlTx/VCavftZyh7YhQzG7jww6CiNdd5+EAj1U22GSN7j81dzKFY3?=
- =?us-ascii?Q?ChStc/8L51OIOe7AAKvf4vAvvU8tgnaWaKlQcTheOaBpEiWseZkz/qDI573U?=
- =?us-ascii?Q?X4UtU/Pf8zl8BWgiESUEYRYzBf1s9C01rTPf5Tj7v7y7ta92kl7UgC2R5JIS?=
- =?us-ascii?Q?0R/1GQH6RXsi/NRsA3K0h2ZYAixJJgDQLHSexh+3Q1ofPkRAJoIHsIIHTAWO?=
- =?us-ascii?Q?JKqxqvUtQyEwenPysh3EgbrH+XRC?=
+ 2021 22:37:48 +0000
+Received: from BYAPR12MB2840.namprd12.prod.outlook.com
+ ([fe80::7c65:7181:6d1d:8616]) by BYAPR12MB2840.namprd12.prod.outlook.com
+ ([fe80::7c65:7181:6d1d:8616%7]) with mapi id 15.20.4108.027; Thu, 6 May 2021
+ 22:37:48 +0000
+From: David M Nieto <david.nieto@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: 
+Date: Thu,  6 May 2021 15:37:31 -0700
+Message-Id: <20210506223733.28058-1-david.nieto@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [165.204.53.123]
+X-ClientProxiedBy: SJ0PR03CA0290.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::25) To BYAPR12MB2840.namprd12.prod.outlook.com
+ (2603:10b6:a03:62::32)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from loud-cracker.amd.com (165.204.53.123) by
+ SJ0PR03CA0290.namprd03.prod.outlook.com (2603:10b6:a03:39e::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.24 via Frontend
+ Transport; Thu, 6 May 2021 22:37:47 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c6c6e888-daca-42f7-a64b-08d910df92e0
+X-MS-TrafficTypeDiagnostic: BYAPR12MB2840:
+X-Microsoft-Antispam-PRVS: <BYAPR12MB2840E97E1DE7524174940736F4589@BYAPR12MB2840.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7zCR858L6Of/CEZkn0bTM1Jth0UqtNeGxAJpIRVdjh3QRx8YlV80g/9EvPiikzX6IlYYhkpZ08exYMR57txN35f3pvyL3+1BVbDXQezPLjzqLJP4c1S9pUj6vm7L0KpMO9O4+spIVsGg9GVo0UFd9zC9CwzMdIdFAekGTWjy19wuSzmjsAl5QZMbFTuNXKyrG3b2O1nR+5OejVz59j7arINPBdzINPdl7oW5qHPOl3rJnNX5yM8GyHA3dRKolt1KyMwYKwber06/0aTi54risp+P/w9gvARCujGt9bfafMIx7kde+jjfXvdPpqPptl0GAYNmeAaVBEvanaRcv8ysZwcvYt1w53XJZ3fJVxCxDklcikYr6b2IsYY9Qirc27aei+2wNuApHVjWXCk3hzPWiw4Lx6Ti0T75silKe1FUK028Nlb/EfDHlNyONr8y3Wrhugn+Mfafpo0A74khwhnignjK183KPsmrwmr2fWbzUDmdSQwgdAq1ubQqHcsaT7IPISxGDDnHzAw8WlqVkm84BBrA8W4TVsIk8BoGdz1APA3E8SVwGX/oQY9hQMofnYO4Ej9G/UC4e2ZHivCfRHmen9YSNpQPHlOkUlgiBe0ndF0MHzM/PfFcEkGPWMF1u6PhOOtcuMX1dBDCJG7fNvGQf4OP+SteVYAeg32aIynZ2U0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR12MB2840.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(39860400002)(366004)(346002)(136003)(376002)(2906002)(5406001)(52116002)(7696005)(1076003)(956004)(6916009)(6486002)(5660300002)(478600001)(66476007)(26005)(86362001)(36756003)(316002)(8936002)(16526019)(186003)(66946007)(83380400001)(6666004)(66556008)(38350700002)(2616005)(38100700002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?jwQUg9b1R1F80gVmeFk2S0CCRZmNV3J5Y1aAEAxJG/bdJiuY/AYxD3+nrkMf?=
+ =?us-ascii?Q?dtmLCrAetEvLmudPXJuVC2HtkLffOEON/bTL4WDfIX9wxE9qEP/lDgAwtirr?=
+ =?us-ascii?Q?8QkMJfVwunSTa7v/OvbX9Vh9Ca2Kf7XMClQzmsjIOMiUHvDE71h6GPxo3sKZ?=
+ =?us-ascii?Q?tdF+nQ4SxgfzcdsTX1autqsPssSy2jILlotIZn4FGPh0wxucAe/Lbkx2QkH5?=
+ =?us-ascii?Q?G6EDVtO7+ENspamopETVzlKk0OOz+xEKqXO4+q5Ga28waMxhQ66PdddVImpv?=
+ =?us-ascii?Q?OxG0n0d+Bi0BxhuzilIsc8s1N49uL9RcB5KC3ODHLKKIbZ1BTrHp96ed/irW?=
+ =?us-ascii?Q?u0ofp6UW8RhZhTdUskI0B0CaWC+qknajHeBuxcfMHdds2pJTeSWgOzrgpHVz?=
+ =?us-ascii?Q?XiroWCiOQSxfadR1i4IOJFvWzDGodRR1Uv4n9NT9wsvVxVzqshVVCWfWhCIA?=
+ =?us-ascii?Q?fYi2jMJgTwQwbjJNnGUPjbasDBjSNkuA3myxtlDtQXNvQoCA0C+fyHZNrfrP?=
+ =?us-ascii?Q?7azPCvb0dxfMmnCbT1KeNrWslZxKo08JPxB/NAB/begNiduAymgX5RwwEn3c?=
+ =?us-ascii?Q?eBILs9ygXNxtPJhdKuJa/snd3/RbGwA9NKsf2HEzVkYdQvgvFeSE3EqlCFPY?=
+ =?us-ascii?Q?j0JPQe9TDcQUf6CyHm2ao+ep79UIRTP1HHBJ0hgcYZNYPq2KGdpe2mOiFyoE?=
+ =?us-ascii?Q?jMZZmxwNF+PgK6aDlwsxlM7N94L7UZooYRpclW5g+YUbKEdwMKtYTZ6TBtpq?=
+ =?us-ascii?Q?7+jzlQChKlO4cg9d+EtwPaJ9T7P+ePfvmLCiM5DLznCAkPVWbSLeYE+j2sI+?=
+ =?us-ascii?Q?W4ZiV4YVMLKNGJGPFNaTsE1Y182qMU4ShAmW2/lbuM+crgAXvjPfq2e31JQO?=
+ =?us-ascii?Q?8eblC06S73Zq1WnhfipRXUcksnsq0q2ElgFTTo8FEzkHx1G7j32zPOGCEuKH?=
+ =?us-ascii?Q?VP8ahzVqQBLr25KXO6iHb5p2ZtgGENzN6lpWstzuTs58mRp02k1lhZM8gv29?=
+ =?us-ascii?Q?k+XpBAGh9x24S1KLkGdeapD04oGv8FeuzJRNGXdC/BtmEnNMXhLd/WPxeV1K?=
+ =?us-ascii?Q?BWYIKqlfabr69ZdzN2qnzfuJdqqHWcgDdpQzahOGSYcmOhGCBzJrTlT9rBYQ?=
+ =?us-ascii?Q?swfr2hPRnWDoQl4cdJEhU0HcpsyTHjmzz+/rKp/0fNKQihbD4P3JXoa8/BBA?=
+ =?us-ascii?Q?s+fHd+RDMlYbH8zMtFfR9UYyOta/6QinJVnCHDDM3LKGD+fDRm56QDXjM6O5?=
+ =?us-ascii?Q?NY98w1DtD9ekVpHNZSdmJHXw8v37Ahm/RuyMKUvcxaL23yPpYCzhTrnAkPt/?=
+ =?us-ascii?Q?54p1USUo4JXCtzPHUjgsGUXl?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6c6e888-daca-42f7-a64b-08d910df92e0
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB2840.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB2760.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f21618c-b518-452e-c76e-08d910c9dd5f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2021 20:02:23.6299 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Ufx8T9WRsu4VGcNgobEasjlDRVzACUdvFH8c7pwpWcarYYiSqMpMd5gkpmS2TSELX962UYZGXbtW/QnQZk95bw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4917
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2021 22:37:47.9052 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JoO9EBmsN8t8Lj4RUH81P7w/IMqU8R00ksXomLmgMHdUtefZJt8fXugbpSPpv6av
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2840
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,97 +112,262 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zeng, Oak" <Oak.Zeng@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only - Internal Distribution Only]
+During stress testing we found that with some Vulkan applications
+the fence information displayed in the recently added fdinfo was not
+properly calculated, two issues were discovered:
 
-Reviewed-by: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
+(1) A missing dma_put_fence on the loop that calculates the usage
+ratios when the fence is being ignored.
+(2) The approximation for the ratio calculation is not accurate
+when accounting for non-active contexts. The fix is to ignore those
+context if they have activity ratios lower than 0.01%
 
------Original Message-----
-From: Joshi, Mukul <Mukul.Joshi@amd.com> 
-Sent: Thursday, May 6, 2021 3:47 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Kasiviswanathan, Harish <Harish.Kasiviswanathan@amd.com>; Joshi, Mukul <Mukul.Joshi@amd.com>; Zeng, Oak <Oak.Zeng@amd.com>
-Subject: [PATCH] drm/amdgpu: Enable TCP channel hashing for Aldebaran
+Attached is also a script demonstrating how the fdinfo can be used
+to monitor gpu usage on running processes.
 
-Enable TCP channel hashing to match DF hash settings for Aldebaran.
+#!/usr/bin/env python3
 
-Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
-Signed-off-by: Oak Zeng <Oak.Zeng@amd.com>
-Reviewed-by: Joseph Greathouse <Joseph.Greathouse@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/df_v3_6.c            | 17 +++++++++++------
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c           |  3 ++-
- .../amd/include/asic_reg/df/df_3_6_sh_mask.h    |  1 +
- 3 files changed, 14 insertions(+), 7 deletions(-)
+#
+# Copyright (C) 2021 Advanced Micro Devices. All rights reserved.
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of
+# this software and associated documentation files (the "Software"), to
+# deal in
+# the Software without restriction, including without limitation the
+# rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of
+# the Software, and to permit persons to whom the Software is furnished
+# to do so,
+# subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS
+# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR
+# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+# WHETHER
+# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+# IN
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/df_v3_6.c b/drivers/gpu/drm/amd/amdgpu/df_v3_6.c
-index 0d8459d63bac..36ba229576d8 100644
---- a/drivers/gpu/drm/amd/amdgpu/df_v3_6.c
-+++ b/drivers/gpu/drm/amd/amdgpu/df_v3_6.c
-@@ -219,11 +219,11 @@ static void df_v3_6_query_hashes(struct amdgpu_device *adev)
- 	adev->df.hash_status.hash_2m = false;
- 	adev->df.hash_status.hash_1g = false;
- 
--	if (adev->asic_type != CHIP_ARCTURUS)
--		return;
--
--	/* encoding for hash-enabled on Arcturus */
--	if (adev->df.funcs->get_fb_channel_number(adev) == 0xe) {
-+	/* encoding for hash-enabled on Arcturus and Aldebaran */
-+	if ((adev->asic_type == CHIP_ARCTURUS &&
-+	     adev->df.funcs->get_fb_channel_number(adev) == 0xe) ||
-+	     (adev->asic_type == CHIP_ALDEBARAN &&
-+	      adev->df.funcs->get_fb_channel_number(adev) == 0x1e)) {
- 		tmp = RREG32_SOC15(DF, 0, mmDF_CS_UMC_AON0_DfGlobalCtrl);
- 		adev->df.hash_status.hash_64k = REG_GET_FIELD(tmp,
- 						DF_CS_UMC_AON0_DfGlobalCtrl,
-@@ -278,7 +278,12 @@ static u32 df_v3_6_get_fb_channel_number(struct amdgpu_device *adev)
- 	u32 tmp;
- 
- 	tmp = RREG32_SOC15(DF, 0, mmDF_CS_UMC_AON0_DramBaseAddress0);
--	tmp &= DF_CS_UMC_AON0_DramBaseAddress0__IntLvNumChan_MASK;
-+	if (adev->asic_type == CHIP_ALDEBARAN)
-+		tmp &=
-+		ALDEBARAN_DF_CS_UMC_AON0_DramBaseAddress0__IntLvNumChan_MASK;
-+	else
-+		tmp &= DF_CS_UMC_AON0_DramBaseAddress0__IntLvNumChan_MASK;
-+
- 	tmp >>= DF_CS_UMC_AON0_DramBaseAddress0__IntLvNumChan__SHIFT;
- 
- 	return tmp;
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index 16a3b279a9ef..22608c45f07c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -3937,7 +3937,8 @@ static void gfx_v9_0_init_tcp_config(struct amdgpu_device *adev)
- {
- 	u32 tmp;
- 
--	if (adev->asic_type != CHIP_ARCTURUS)
-+	if (adev->asic_type != CHIP_ARCTURUS &&
-+	    adev->asic_type != CHIP_ALDEBARAN)
- 		return;
- 
- 	tmp = RREG32_SOC15(GC, 0, mmTCP_ADDR_CONFIG);
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/df/df_3_6_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/df/df_3_6_sh_mask.h
-index 7afa87c7ff54..f804e13b002e 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/df/df_3_6_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/df/df_3_6_sh_mask.h
-@@ -50,6 +50,7 @@
- #define DF_CS_UMC_AON0_DramBaseAddress0__AddrRngVal_MASK						0x00000001L
- #define DF_CS_UMC_AON0_DramBaseAddress0__LgcyMmioHoleEn_MASK						0x00000002L
- #define DF_CS_UMC_AON0_DramBaseAddress0__IntLvNumChan_MASK						0x0000003CL
-+#define ALDEBARAN_DF_CS_UMC_AON0_DramBaseAddress0__IntLvNumChan_MASK					0x0000007CL
- #define DF_CS_UMC_AON0_DramBaseAddress0__IntLvAddrSel_MASK						0x00000E00L
- #define DF_CS_UMC_AON0_DramBaseAddress0__DramBaseAddr_MASK						0xFFFFF000L
- 
--- 
-2.17.1
+from tokenize import tokenize
+import sys
+import os
+import pwd
+
+total_mem = dict()
+total_usage = dict()
+def can_access(path):
+    return os.access(path + "/fdinfo", os.X_OK)
+
+
+def calc_perc(entry, metric):
+    if not metric in entry:
+        return 0.0
+    if (type(entry[metric]) == list) :
+        return sum(entry[metric])
+    else :
+        return entry[metric]
+
+def process_pid(file):
+    stat = dict()
+    pasids = []
+
+    for fd in os.scandir(file.path + "/fdinfo"):
+        entry = {}
+        with open(fd) as f:
+            for line in f:
+                entries = line.strip().split()
+                if (entries[0] == "pdev:") :
+                    entry["pdev"] = entries[1]
+                elif (entries[0] == "pasid:") :
+                    entry["pasid"] = entries[1]
+                elif (entries[0] == "vram") :
+                    entry["mem"] = int(entries[2])
+                elif ("gfx" in entries[0]) :
+                    if not "gfx" in entry :
+                        entry["gfx"] = [0,0,0,0,0,0,0,0]
+                    entry["gfx"][int(entries[0].lstrip("gfx").rstrip(":"))]
+=
+			float(entries[1].rstrip("%"))
+                elif ("dma" in entries[0]) :
+                    if not "dma" in entry :
+                        entry["dma"] = [0,0,0,0,0,0,0,0]
+                    entry["dma"][int(entries[0].lstrip("dma").rstrip(":"))]
+=
+			float(entries[1].rstrip("%"))
+                elif ("dec" in entries[0]) :
+                    if not "dec" in entry :
+                        entry["dec"] = [0,0,0,0,0,0,0,0]
+                    entry["dec"][int(entries[0].lstrip("dec").rstrip(":"))]
+=
+			float(entries[1].rstrip("%"))
+                elif ("enc" in entries[0]) :
+                    if not "enc" in entry :
+                        entry["enc"] = [0,0,0,0,0,0,0,0]
+                    entry["enc"][int(entries[0].lstrip("enc").rstrip(":"))]
+=
+			float(entries[1].rstrip("%"))
+                elif ("compute" in entries[0]) :
+                    if not "compute" in entry :
+                        entry["compute"] = [0,0,0,0,0,0,0,0]
+                    entry["compute"][int(entries[0].lstrip("compute").rstrip(":"))]
+=
+			float(entries[1].rstrip("%"))
+
+            if not "pdev" in entry:
+                continue
+            if not "pasid" in entry :
+                continue
+            if (entry["pdev"], entry["pasid"]) in pasids:
+              continue
+            pasids.append((entry["pdev"], entry["pasid"]))
+
+            pdev = entry["pdev"]
+
+            if not pdev in stat:
+                stat[pdev] = dict()
+
+            if "mem" in entry :
+                if "mem" in stat[pdev] :
+                    stat[pdev]["mem"] = stat[pdev]["mem"] +
+entry["mem"];
+                else :
+                    stat[pdev]["mem"] = entry["mem"]
+
+            if "gfx" in entry :
+                if "gfx" in stat[pdev] :
+                    stat[pdev]["gfx"] = [a + b for a, b in
+zip(stat[pdev]["gfx"],
+			entry["gfx"])]
+                else :
+                    stat[pdev]["gfx"] = entry["gfx"]
+
+            if "enc" in entry :
+                if "enc" in stat[pdev] :
+                    stat[pdev]["enc"] = [a + b for a, b in
+zip(stat[pdev]["enc"],
+			entry["enc"])]
+                else :
+                    stat[pdev]["enc"] = entry["enc"]
+
+            if "dec" in entry :
+                if "dec" in stat[pdev] :
+                    stat[pdev]["dec"] = [a + b for a, b in
+zip(stat[pdev]["dec"],
+			entry["dec"])]
+                else :
+                    stat[pdev]["dec"] = entry["dec"]
+
+            if "dma" in entry :
+                if "dma" in stat[pdev] :
+                    stat[pdev]["dma"] = [a + b for a, b in
+zip(stat[pdev]["dma"],
+			entry["dma"])]
+                else :
+                    stat[pdev]["dma"] = entry["dma"]
+
+            if "compute" in entry :
+                if "compute" in stat[pdev] :
+                    stat[pdev]["compute"] = [a + b for a, b in
+zip(stat[pdev]["compute"],
+			entry["compute"])]
+                else :
+                    stat[pdev]["compute"] = entry["compute"]
+
+    for gpu in stat:
+        stat[gpu]["pid"] = file.name
+        with open(file.path + "/comm") as f:
+            stat[gpu]["name"] = f.readline().strip()
+
+    if stat:
+        for s in stat:
+            if not s in total_mem:
+                total_mem[s] = int(stat[s]["mem"])
+            else:
+                total_mem[s] = total_mem[s] + int(stat[s]["mem"])
+
+            if not s in total_usage:
+                total_usage[s] = dict()
+
+            for key in stat[s]:
+                if key == "mem":
+                    continue
+                if key == "name":
+                    continue
+                if key == "pid":
+                    continue
+                total = calc_perc(stat[s], key)
+
+                if not key in total_usage[s]:
+                    total_usage[s][key] = total
+                else:
+                    total_usage[s][key] = total + total_usage[s][key]
+
+            # the /proc/PID is owned by process creator
+            proc_stat_file = os.stat("/proc/%d" % int(stat[s]['pid']))
+            # get UID via stat call
+            uid = proc_stat_file.st_uid
+            # look up the username from uid
+            username = pwd.getpwuid(uid)[0]
+
+            print("| {0:5s} | {1:16s} | {9:10s} | {2} | {3:7d} KiB |
+{4:6.2f}  {5:6.2f}  {6:6.2f}  {7:6.2f}  {8:6.2f}  |"
+                .format(stat[s]["pid"].ljust(5),
+stat[s]["name"].ljust(16), s,
+                stat[s]["mem"],
+                calc_perc(stat[s], 'gfx'),
+                calc_perc(stat[s], 'compute'),
+                calc_perc(stat[s], 'dma'),
+                calc_perc(stat[s], 'enc'),
+                calc_perc(stat[s], 'dec'),
+                username
+                ))
+            print("+-------+------------------+------------+--------------+-------------+-----------------------------------------+")
+
+path = "/proc/"
+print("+=======+==================+============+==============+=============+=========================================+")
+print("| pid   | name             | user       | gpu bdf      | fb usage
+| ring usage (%)                          |")
+print("|       |                  |            |              |
+| gfx     comp    dma     enc     dec     |")
+print("+=======+==================+============+==============+=============+=========================================+")
+
+for file in os.scandir(path):
+    if (file.is_dir() and file.name.isnumeric()) :
+        if (can_access(file.path)):
+            process_pid(file)
+
+for gpu in total_mem:
+    print("|                                 TOTAL:| {0} | {1:7d} KiB |
+{2:6.2f}  {3:6.2f}  {4:6.2f}  {5:6.2f}  {6:6.2f}  |".format(gpu,
+total_mem[gpu],
+        calc_perc(total_usage[gpu], 'gfx'),
+        calc_perc(total_usage[gpu], 'compute'),
+        calc_perc(total_usage[gpu], 'dma'),
+        calc_perc(total_usage[gpu], 'enc'),
+        calc_perc(total_usage[gpu], 'dec'),
+        ))
+print("+=======+==================+============+==============+=============+=====================+++=================+")
+
+
+
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
