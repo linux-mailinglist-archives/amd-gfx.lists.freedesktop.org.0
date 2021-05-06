@@ -2,49 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4EA5375D3E
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 May 2021 00:37:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57EEE375D3F
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 May 2021 00:38:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57D986ECEB;
-	Thu,  6 May 2021 22:37:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D60256ECFC;
+	Thu,  6 May 2021 22:38:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2051.outbound.protection.outlook.com [40.107.223.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99FA16ECEB
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 May 2021 22:37:50 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2056.outbound.protection.outlook.com [40.107.93.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56A916ECFC
+ for <amd-gfx@lists.freedesktop.org>; Thu,  6 May 2021 22:38:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=G95bzCzlBXBCGDuJSM+tGMM0B7mdHYzpGxfzq43z+QZzJyxvLdRs0JHjnvc3fOQmyk3qG+hHODXd8CswL1i0m3M+M8DNuQ6GdrRz4i0gdbJC7VEbEGGQsfN9pLnHtAqUpoHTgjVLD0DfAMIMnHnTkXCauikQ2ryMR6V0juwzyqyrJP8v7fQsYH6GvQl33QRrlULhWkhbgS9O/BD2Y/7KN7wIeRQ3RisYfmQGz034xNNgN9SiGxuE/FQQWRnkUNTQVdZlRWpR1UJJMk0/WIt8d0DSz+FgWs1kYFOqSyTkdbzH+vzR4uDqnuz8T3a9IQcB8i3agKksPWffeWHMgRIM6g==
+ b=Rk6d2CFDLbgej+qtY3fzzjAFpXTmKd1XCoGiIgz8BKrc8ox5jSYK/v9VsKoOdxP68/KrcPEz2M2ewwR1WKhbfsL7DvLKHiThlpqavry/RWOhGGkeDIExJjGyIZqLv3877vMFu6YLzz4NOlzm2Iw4F9UqjfBeeLXK4T+vHZVifcGT8HpB2jSFezi69GpExStC70rEAyIzg6er6j4A75nsvhq5G59X1NW74RtrmuOfsu90UXvPyoz/lmCPdeljS2zHnrzLrO+pyRSSrqcOCmWVxnRbA27NP6QT9WosMAENqkcIaXZ99uZaOAUx5vdxd4ABagoqMgYE440FdCDQwGzopQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+tRQIGIYQyrdHG5dYuCgYfH7bB8SINYYJvGlKHRO6bQ=;
- b=aOxYVwoKEHcaYbly4AA8gfndY9ksK/gFexNic+kiYVikAHkYxPXfXzeEPTh/7UshIYWUFUptlpn3Sq11x+nGDWoXv0fCFCRNg5lm//eR5PuZ67EiTFUX41FfHCJZCMd1+lgMqnUjrEPblpM4gQvAL+hOvClI08RYHiABTiGAFadhampXyVF6wnCP2DFKrpZ8XYqT0AaCYeDk194C2AFKOE2kUzQ4aUoEdV9w+kySGqStC2GyJVzxjTPDGbjjKpLOn2EIiAfeNebnCdvb2879ZEodNTYVfi+d3AUBusqa3OCK2139RDvczkUPDBpc8uTzn5l4NL6fmjphWLHW1Rf/9w==
+ bh=ZaZhSwp4MTjncjecPRjoxGtqt0WgrZ+P3Bn2m0R8EZg=;
+ b=V1hI3IFx+kbN0H6+M4Qqp8SBDwGEiu0qbMwsTNVxgw+Tpgp6ioSv72+6K4+5ZDUSE/a1Gr84Fa7Gm5KzLc3TnCVO4ltKZ8GthEm+z6yL9krK+i+B+uqJXvl1Z7Gx7d6hJl3ykD8SC0/upuwB87C/vL0KVKljdM2Upss9beS7u0skGAWfb6XIHfTn6hTaTGudTj6Drp2ymiWNCkUFDldHQow47J04cbLBI8c77ugoAe/Pr/Ic/iZQbvcsLzT85ZDHSOvNAgZZg0h6SFVaDhgTMfueyt3zQZDhSrta0EzyYfsyiuuCadz14xFRHmsGFX4vxU4tM5rZmZg7B5m+nNb6Aw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+tRQIGIYQyrdHG5dYuCgYfH7bB8SINYYJvGlKHRO6bQ=;
- b=Y4rklbOmxqAs5Y3dxK57f/QzprZaPYRUn2TSK5wfHU8q4raq7D88CQ4/Da29XeFO0fuGlnqzWpiWVbBjCYuPixwMAxoLZPH6lF2l/7FV9uGXeE0N5c+ggEGKp0LsLQHvcwtKH6ES0CWllziDgqWXG4HGNID49Z41M+DNlnIp2z0=
+ bh=ZaZhSwp4MTjncjecPRjoxGtqt0WgrZ+P3Bn2m0R8EZg=;
+ b=C3Uf7Kczxzhj7u+a861gVnNHByAXLVX9/qlFiBB3Gor5DqXVu1T80a1Tv9l4AI1+q5qXeosFUk4MPw+TGCe0VkJALaCjwmaYYCsO9IKsOIyFO/kOub9lx3DpDqkqW5r5qDb+S664qI9/BV2Qc1X3If1qYHtb5BIk2V2LW/y/81E=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from BYAPR12MB2840.namprd12.prod.outlook.com (2603:10b6:a03:62::32)
- by BYAPR12MB2840.namprd12.prod.outlook.com (2603:10b6:a03:62::32)
+ by BY5PR12MB4034.namprd12.prod.outlook.com (2603:10b6:a03:205::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Thu, 6 May
- 2021 22:37:48 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.26; Thu, 6 May
+ 2021 22:38:01 +0000
 Received: from BYAPR12MB2840.namprd12.prod.outlook.com
  ([fe80::7c65:7181:6d1d:8616]) by BYAPR12MB2840.namprd12.prod.outlook.com
  ([fe80::7c65:7181:6d1d:8616%7]) with mapi id 15.20.4108.027; Thu, 6 May 2021
- 22:37:48 +0000
+ 22:38:01 +0000
 From: David M Nieto <david.nieto@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: 
-Date: Thu,  6 May 2021 15:37:31 -0700
-Message-Id: <20210506223733.28058-1-david.nieto@amd.com>
+Subject: [PATCH 1/2] drm/amdgpu: free resources on fence usage query
+Date: Thu,  6 May 2021 15:37:32 -0700
+Message-Id: <20210506223733.28058-2-david.nieto@amd.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210506223733.28058-1-david.nieto@amd.com>
+References: <20210506223733.28058-1-david.nieto@amd.com>
 X-Originating-IP: [165.204.53.123]
 X-ClientProxiedBy: SJ0PR03CA0290.namprd03.prod.outlook.com
  (2603:10b6:a03:39e::25) To BYAPR12MB2840.namprd12.prod.outlook.com
@@ -55,52 +57,53 @@ Received: from loud-cracker.amd.com (165.204.53.123) by
  SJ0PR03CA0290.namprd03.prod.outlook.com (2603:10b6:a03:39e::25) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.24 via Frontend
- Transport; Thu, 6 May 2021 22:37:47 +0000
+ Transport; Thu, 6 May 2021 22:38:01 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c6c6e888-daca-42f7-a64b-08d910df92e0
-X-MS-TrafficTypeDiagnostic: BYAPR12MB2840:
-X-Microsoft-Antispam-PRVS: <BYAPR12MB2840E97E1DE7524174940736F4589@BYAPR12MB2840.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-MS-Office365-Filtering-Correlation-Id: a3f55a70-5fa9-48d2-de44-08d910df9ace
+X-MS-TrafficTypeDiagnostic: BY5PR12MB4034:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BY5PR12MB403472576222E785434AE514F4589@BY5PR12MB4034.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:241;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7zCR858L6Of/CEZkn0bTM1Jth0UqtNeGxAJpIRVdjh3QRx8YlV80g/9EvPiikzX6IlYYhkpZ08exYMR57txN35f3pvyL3+1BVbDXQezPLjzqLJP4c1S9pUj6vm7L0KpMO9O4+spIVsGg9GVo0UFd9zC9CwzMdIdFAekGTWjy19wuSzmjsAl5QZMbFTuNXKyrG3b2O1nR+5OejVz59j7arINPBdzINPdl7oW5qHPOl3rJnNX5yM8GyHA3dRKolt1KyMwYKwber06/0aTi54risp+P/w9gvARCujGt9bfafMIx7kde+jjfXvdPpqPptl0GAYNmeAaVBEvanaRcv8ysZwcvYt1w53XJZ3fJVxCxDklcikYr6b2IsYY9Qirc27aei+2wNuApHVjWXCk3hzPWiw4Lx6Ti0T75silKe1FUK028Nlb/EfDHlNyONr8y3Wrhugn+Mfafpo0A74khwhnignjK183KPsmrwmr2fWbzUDmdSQwgdAq1ubQqHcsaT7IPISxGDDnHzAw8WlqVkm84BBrA8W4TVsIk8BoGdz1APA3E8SVwGX/oQY9hQMofnYO4Ej9G/UC4e2ZHivCfRHmen9YSNpQPHlOkUlgiBe0ndF0MHzM/PfFcEkGPWMF1u6PhOOtcuMX1dBDCJG7fNvGQf4OP+SteVYAeg32aIynZ2U0=
+X-Microsoft-Antispam-Message-Info: qk+64ixYLl+lSPzLIEzAzD/7PWhi89h8gXS5IQS8lTid9Gge/k561uCNzsxCeRTANdIiiEcNtN4ceWUNpSr986rJIMXG+lwJYd+/6Wj43WBGCtlp7fS8s8jpT4Uya3VCBGRHrKsEJMkizrW6J5ZbZS/2tIL88AtCHs3+Osp19HbclK1DznP9bvbK08d87GG1Mb8PoglRF2cE9iblald/yLm1HBEDIHgtexNiJSJdzWMil6Y5Uun+bQ6USS2MR2o/WFp1eL+WtGJrChBi1k+svcU+9HiC0SZ1bitaU3YUswPqAm/PgxIwsoxcfI9Z/cZLCP0jdnKfdiepj0GKSFULdX5dZU/i+MwcK2lLXFq1WQ6jlurS1XbTTM8b3toFAKpNNNKD05LUG1VzG0O9qBWX6rDi2DT4fLW1nC7VzyN8Vr5aiaL/yaUbfWx9wdXoPmDbwfw9a3CGDaEAxAgj0rddkwEv9MDMWz1b4wr1CB5w41YnqXAzeQ44cmETWPSosu/WxT3WbStSPp+yH2dJCooHEZunpumQ0Q2wxqDCaK6M/mKGsK8Fo0t+OfLFbpB0D2FVVXZeKbM4/y3TvHOoAo+IUO6k2YjafX8oWFORuJztE+qVVH5rMM5/c/OBogsoxTPOX1cXx2p8xMovPf//KujkQA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR12MB2840.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(39860400002)(366004)(346002)(136003)(376002)(2906002)(5406001)(52116002)(7696005)(1076003)(956004)(6916009)(6486002)(5660300002)(478600001)(66476007)(26005)(86362001)(36756003)(316002)(8936002)(16526019)(186003)(66946007)(83380400001)(6666004)(66556008)(38350700002)(2616005)(38100700002);
+ SFS:(4636009)(366004)(396003)(39860400002)(346002)(376002)(136003)(38350700002)(38100700002)(6486002)(16526019)(8676002)(86362001)(478600001)(8936002)(6916009)(52116002)(7696005)(83380400001)(2906002)(5660300002)(66946007)(66556008)(66476007)(4326008)(186003)(956004)(26005)(2616005)(1076003)(6666004)(36756003)(316002);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?jwQUg9b1R1F80gVmeFk2S0CCRZmNV3J5Y1aAEAxJG/bdJiuY/AYxD3+nrkMf?=
- =?us-ascii?Q?dtmLCrAetEvLmudPXJuVC2HtkLffOEON/bTL4WDfIX9wxE9qEP/lDgAwtirr?=
- =?us-ascii?Q?8QkMJfVwunSTa7v/OvbX9Vh9Ca2Kf7XMClQzmsjIOMiUHvDE71h6GPxo3sKZ?=
- =?us-ascii?Q?tdF+nQ4SxgfzcdsTX1autqsPssSy2jILlotIZn4FGPh0wxucAe/Lbkx2QkH5?=
- =?us-ascii?Q?G6EDVtO7+ENspamopETVzlKk0OOz+xEKqXO4+q5Ga28waMxhQ66PdddVImpv?=
- =?us-ascii?Q?OxG0n0d+Bi0BxhuzilIsc8s1N49uL9RcB5KC3ODHLKKIbZ1BTrHp96ed/irW?=
- =?us-ascii?Q?u0ofp6UW8RhZhTdUskI0B0CaWC+qknajHeBuxcfMHdds2pJTeSWgOzrgpHVz?=
- =?us-ascii?Q?XiroWCiOQSxfadR1i4IOJFvWzDGodRR1Uv4n9NT9wsvVxVzqshVVCWfWhCIA?=
- =?us-ascii?Q?fYi2jMJgTwQwbjJNnGUPjbasDBjSNkuA3myxtlDtQXNvQoCA0C+fyHZNrfrP?=
- =?us-ascii?Q?7azPCvb0dxfMmnCbT1KeNrWslZxKo08JPxB/NAB/begNiduAymgX5RwwEn3c?=
- =?us-ascii?Q?eBILs9ygXNxtPJhdKuJa/snd3/RbGwA9NKsf2HEzVkYdQvgvFeSE3EqlCFPY?=
- =?us-ascii?Q?j0JPQe9TDcQUf6CyHm2ao+ep79UIRTP1HHBJ0hgcYZNYPq2KGdpe2mOiFyoE?=
- =?us-ascii?Q?jMZZmxwNF+PgK6aDlwsxlM7N94L7UZooYRpclW5g+YUbKEdwMKtYTZ6TBtpq?=
- =?us-ascii?Q?7+jzlQChKlO4cg9d+EtwPaJ9T7P+ePfvmLCiM5DLznCAkPVWbSLeYE+j2sI+?=
- =?us-ascii?Q?W4ZiV4YVMLKNGJGPFNaTsE1Y182qMU4ShAmW2/lbuM+crgAXvjPfq2e31JQO?=
- =?us-ascii?Q?8eblC06S73Zq1WnhfipRXUcksnsq0q2ElgFTTo8FEzkHx1G7j32zPOGCEuKH?=
- =?us-ascii?Q?VP8ahzVqQBLr25KXO6iHb5p2ZtgGENzN6lpWstzuTs58mRp02k1lhZM8gv29?=
- =?us-ascii?Q?k+XpBAGh9x24S1KLkGdeapD04oGv8FeuzJRNGXdC/BtmEnNMXhLd/WPxeV1K?=
- =?us-ascii?Q?BWYIKqlfabr69ZdzN2qnzfuJdqqHWcgDdpQzahOGSYcmOhGCBzJrTlT9rBYQ?=
- =?us-ascii?Q?swfr2hPRnWDoQl4cdJEhU0HcpsyTHjmzz+/rKp/0fNKQihbD4P3JXoa8/BBA?=
- =?us-ascii?Q?s+fHd+RDMlYbH8zMtFfR9UYyOta/6QinJVnCHDDM3LKGD+fDRm56QDXjM6O5?=
- =?us-ascii?Q?NY98w1DtD9ekVpHNZSdmJHXw8v37Ahm/RuyMKUvcxaL23yPpYCzhTrnAkPt/?=
- =?us-ascii?Q?54p1USUo4JXCtzPHUjgsGUXl?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?haAB83baiGaDzJXl+fsbhRd/kc1TTjJCBnQtVmTEaoKQ+cHsmVN281x3ZDeg?=
+ =?us-ascii?Q?AHb2u1CMtUADzSUzFEyKWiGCXZfV8QToqx7p8H1rC3nHHDR2eP9PRtNf/W8a?=
+ =?us-ascii?Q?Xv5ab0xb0HxxPLUeKsNrBpXW3to8W1XtrHz6RaeR53igclkl8Ag9/fsF0lBX?=
+ =?us-ascii?Q?YY2YDuVXfLcmrlDLuVuAVD073JANf2oKJw1tq9pTOaLe2ZnH178kabTXoTLa?=
+ =?us-ascii?Q?Ttc9muDfndT9wOhPTv+9CrZmtT8ouzTKsynDSnrvQ1sOJoKmye69QijT+9dm?=
+ =?us-ascii?Q?Z/SHiwh/GvlT6KffrhRKGV5O/3mZDDkswkPS4fexrYM0ejbIRjS+0aDy+TqT?=
+ =?us-ascii?Q?+3VyubC2Nck16nmQvH5+jyQzT7YpAJCY7DV3Wwh6zhzY0X39CGGqTqvYK9sZ?=
+ =?us-ascii?Q?7IpXPH8EcvcgI/Pomq+uGqtuIdyU9iE12JxE2+AoydPpve7Ld9dGBSbKFQnN?=
+ =?us-ascii?Q?CpAz435DKhOCK5HOW2QVuYK3bfydA9fQHtIZ9/L7gT7EWTmEm9vCRrfv+ns5?=
+ =?us-ascii?Q?IXBPnl1mzmX+Vhd+epcXrqALRYBDv/ILXv/dxwm55rdaZy1it0hA4K9HpFTK?=
+ =?us-ascii?Q?YYsHkTQ9PaDEgFYtW3VpT1tcVYZ0o1/VN8RWB7U1iq16hOiMEJHIBPEC9ZH4?=
+ =?us-ascii?Q?00101KU748RPmKRitIMVEjGwr/y2BFM0mqXX9IalLD55WDVNUxfblCEVk5zo?=
+ =?us-ascii?Q?nJCkkivbiW+SrQ9xfxDJaYPAPbTD7PDcBy/3wfPE7mohj8O6NkEF4zYD3NTC?=
+ =?us-ascii?Q?ckk9lDHNUD+e6rvkSChTdA2sOQV1aVibCaQiBwryPEnQDpH5uc6vkBtueWrY?=
+ =?us-ascii?Q?+HqR+J0J3pvzcPZZjTJXXmKp8jj+1mt1Kw05jgt8f7KPqA28FWlGbsjXZ4eS?=
+ =?us-ascii?Q?OoOaLdHP+7U8bY9Bz5tH/FnRJYtI5BjwEU1AOjztrv4cxGVmdBnh3CN2DkE+?=
+ =?us-ascii?Q?3OFxWkbytViNRXIzC14l1KrOB1P9vFV1ZV2kSZ8zAs77qjBLJqK+d/qjNTyQ?=
+ =?us-ascii?Q?lggOF7aSVlzICeNVUeffU32bG7eyJoB1A097+Luec+irwQetPs271fW4U7YE?=
+ =?us-ascii?Q?NtoTfTrUXGhKHiDzuu//k7idOVLVRTDEwU8x6K2RQXSeTwaDMnTHKDr3Jsuj?=
+ =?us-ascii?Q?GHv6sjc6mPKbFM1/AXHXz/lQFVMTRyTXV7mbIEKamS1q3XsdAHFUoAYFsysT?=
+ =?us-ascii?Q?Z3sA7xfXF7pjRlp0Y//FjD6Xy0T+0kn+GXZl0xJDJNp2kiBD3bae1WPV0t99?=
+ =?us-ascii?Q?9TuK1Q9mrvWbo76ghNSMsFlvvPyZ/s3rohyEvEEekSx/3edkCJ3Z1HiXCQXo?=
+ =?us-ascii?Q?2OSHOAzc2bscpwPNGTTIhj+4?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6c6e888-daca-42f7-a64b-08d910df92e0
+X-MS-Exchange-CrossTenant-Network-Message-Id: a3f55a70-5fa9-48d2-de44-08d910df9ace
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB2840.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2021 22:37:47.9052 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2021 22:38:01.1675 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JoO9EBmsN8t8Lj4RUH81P7w/IMqU8R00ksXomLmgMHdUtefZJt8fXugbpSPpv6av
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2840
+X-MS-Exchange-CrossTenant-UserPrincipalName: nLRVTrWb8WUUUv83fapGrlIYlkjN8rmmeJj7QrgLxS90FPEP1Ol+27BoQw8dv7Yb
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4034
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,261 +115,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David M Nieto <david.nieto@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-During stress testing we found that with some Vulkan applications
-the fence information displayed in the recently added fdinfo was not
-properly calculated, two issues were discovered:
+Free the resources if the fence needs to be ignored
+during the ratio calculation
 
-(1) A missing dma_put_fence on the loop that calculates the usage
-ratios when the fence is being ignored.
-(2) The approximation for the ratio calculation is not accurate
-when accounting for non-active contexts. The fix is to ignore those
-context if they have activity ratios lower than 0.01%
+Signed-off-by: David M Nieto <david.nieto@amd.com>
+Change-Id: Ibfc55a94c53d4b3a1dba8fff4c53fd893195bb96
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-Attached is also a script demonstrating how the fdinfo can be used
-to monitor gpu usage on running processes.
-
-#!/usr/bin/env python3
-
-#
-# Copyright (C) 2021 Advanced Micro Devices. All rights reserved.
-#
-# Permission is hereby granted, free of charge, to any person obtaining
-# a copy of
-# this software and associated documentation files (the "Software"), to
-# deal in
-# the Software without restriction, including without limitation the
-# rights to
-# use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of
-# the Software, and to permit persons to whom the Software is furnished
-# to do so,
-# subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be
-# included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-# EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-# MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-# WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
-# IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-#
-
-from tokenize import tokenize
-import sys
-import os
-import pwd
-
-total_mem = dict()
-total_usage = dict()
-def can_access(path):
-    return os.access(path + "/fdinfo", os.X_OK)
-
-
-def calc_perc(entry, metric):
-    if not metric in entry:
-        return 0.0
-    if (type(entry[metric]) == list) :
-        return sum(entry[metric])
-    else :
-        return entry[metric]
-
-def process_pid(file):
-    stat = dict()
-    pasids = []
-
-    for fd in os.scandir(file.path + "/fdinfo"):
-        entry = {}
-        with open(fd) as f:
-            for line in f:
-                entries = line.strip().split()
-                if (entries[0] == "pdev:") :
-                    entry["pdev"] = entries[1]
-                elif (entries[0] == "pasid:") :
-                    entry["pasid"] = entries[1]
-                elif (entries[0] == "vram") :
-                    entry["mem"] = int(entries[2])
-                elif ("gfx" in entries[0]) :
-                    if not "gfx" in entry :
-                        entry["gfx"] = [0,0,0,0,0,0,0,0]
-                    entry["gfx"][int(entries[0].lstrip("gfx").rstrip(":"))]
-=
-			float(entries[1].rstrip("%"))
-                elif ("dma" in entries[0]) :
-                    if not "dma" in entry :
-                        entry["dma"] = [0,0,0,0,0,0,0,0]
-                    entry["dma"][int(entries[0].lstrip("dma").rstrip(":"))]
-=
-			float(entries[1].rstrip("%"))
-                elif ("dec" in entries[0]) :
-                    if not "dec" in entry :
-                        entry["dec"] = [0,0,0,0,0,0,0,0]
-                    entry["dec"][int(entries[0].lstrip("dec").rstrip(":"))]
-=
-			float(entries[1].rstrip("%"))
-                elif ("enc" in entries[0]) :
-                    if not "enc" in entry :
-                        entry["enc"] = [0,0,0,0,0,0,0,0]
-                    entry["enc"][int(entries[0].lstrip("enc").rstrip(":"))]
-=
-			float(entries[1].rstrip("%"))
-                elif ("compute" in entries[0]) :
-                    if not "compute" in entry :
-                        entry["compute"] = [0,0,0,0,0,0,0,0]
-                    entry["compute"][int(entries[0].lstrip("compute").rstrip(":"))]
-=
-			float(entries[1].rstrip("%"))
-
-            if not "pdev" in entry:
-                continue
-            if not "pasid" in entry :
-                continue
-            if (entry["pdev"], entry["pasid"]) in pasids:
-              continue
-            pasids.append((entry["pdev"], entry["pasid"]))
-
-            pdev = entry["pdev"]
-
-            if not pdev in stat:
-                stat[pdev] = dict()
-
-            if "mem" in entry :
-                if "mem" in stat[pdev] :
-                    stat[pdev]["mem"] = stat[pdev]["mem"] +
-entry["mem"];
-                else :
-                    stat[pdev]["mem"] = entry["mem"]
-
-            if "gfx" in entry :
-                if "gfx" in stat[pdev] :
-                    stat[pdev]["gfx"] = [a + b for a, b in
-zip(stat[pdev]["gfx"],
-			entry["gfx"])]
-                else :
-                    stat[pdev]["gfx"] = entry["gfx"]
-
-            if "enc" in entry :
-                if "enc" in stat[pdev] :
-                    stat[pdev]["enc"] = [a + b for a, b in
-zip(stat[pdev]["enc"],
-			entry["enc"])]
-                else :
-                    stat[pdev]["enc"] = entry["enc"]
-
-            if "dec" in entry :
-                if "dec" in stat[pdev] :
-                    stat[pdev]["dec"] = [a + b for a, b in
-zip(stat[pdev]["dec"],
-			entry["dec"])]
-                else :
-                    stat[pdev]["dec"] = entry["dec"]
-
-            if "dma" in entry :
-                if "dma" in stat[pdev] :
-                    stat[pdev]["dma"] = [a + b for a, b in
-zip(stat[pdev]["dma"],
-			entry["dma"])]
-                else :
-                    stat[pdev]["dma"] = entry["dma"]
-
-            if "compute" in entry :
-                if "compute" in stat[pdev] :
-                    stat[pdev]["compute"] = [a + b for a, b in
-zip(stat[pdev]["compute"],
-			entry["compute"])]
-                else :
-                    stat[pdev]["compute"] = entry["compute"]
-
-    for gpu in stat:
-        stat[gpu]["pid"] = file.name
-        with open(file.path + "/comm") as f:
-            stat[gpu]["name"] = f.readline().strip()
-
-    if stat:
-        for s in stat:
-            if not s in total_mem:
-                total_mem[s] = int(stat[s]["mem"])
-            else:
-                total_mem[s] = total_mem[s] + int(stat[s]["mem"])
-
-            if not s in total_usage:
-                total_usage[s] = dict()
-
-            for key in stat[s]:
-                if key == "mem":
-                    continue
-                if key == "name":
-                    continue
-                if key == "pid":
-                    continue
-                total = calc_perc(stat[s], key)
-
-                if not key in total_usage[s]:
-                    total_usage[s][key] = total
-                else:
-                    total_usage[s][key] = total + total_usage[s][key]
-
-            # the /proc/PID is owned by process creator
-            proc_stat_file = os.stat("/proc/%d" % int(stat[s]['pid']))
-            # get UID via stat call
-            uid = proc_stat_file.st_uid
-            # look up the username from uid
-            username = pwd.getpwuid(uid)[0]
-
-            print("| {0:5s} | {1:16s} | {9:10s} | {2} | {3:7d} KiB |
-{4:6.2f}  {5:6.2f}  {6:6.2f}  {7:6.2f}  {8:6.2f}  |"
-                .format(stat[s]["pid"].ljust(5),
-stat[s]["name"].ljust(16), s,
-                stat[s]["mem"],
-                calc_perc(stat[s], 'gfx'),
-                calc_perc(stat[s], 'compute'),
-                calc_perc(stat[s], 'dma'),
-                calc_perc(stat[s], 'enc'),
-                calc_perc(stat[s], 'dec'),
-                username
-                ))
-            print("+-------+------------------+------------+--------------+-------------+-----------------------------------------+")
-
-path = "/proc/"
-print("+=======+==================+============+==============+=============+=========================================+")
-print("| pid   | name             | user       | gpu bdf      | fb usage
-| ring usage (%)                          |")
-print("|       |                  |            |              |
-| gfx     comp    dma     enc     dec     |")
-print("+=======+==================+============+==============+=============+=========================================+")
-
-for file in os.scandir(path):
-    if (file.is_dir() and file.name.isnumeric()) :
-        if (can_access(file.path)):
-            process_pid(file)
-
-for gpu in total_mem:
-    print("|                                 TOTAL:| {0} | {1:7d} KiB |
-{2:6.2f}  {3:6.2f}  {4:6.2f}  {5:6.2f}  {6:6.2f}  |".format(gpu,
-total_mem[gpu],
-        calc_perc(total_usage[gpu], 'gfx'),
-        calc_perc(total_usage[gpu], 'compute'),
-        calc_perc(total_usage[gpu], 'dma'),
-        calc_perc(total_usage[gpu], 'enc'),
-        calc_perc(total_usage[gpu], 'dec'),
-        ))
-print("+=======+==================+============+==============+=============+=====================+++=================+")
-
-
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+index 01fe60fedcbe..9036c93b4a0c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+@@ -669,11 +669,15 @@ void amdgpu_ctx_fence_time(struct amdgpu_ctx *ctx, struct amdgpu_ctx_entity *cen
+ 		if (!fence)
+ 			continue;
+ 		s_fence = to_drm_sched_fence(fence);
+-		if (!dma_fence_is_signaled(&s_fence->scheduled))
++		if (!dma_fence_is_signaled(&s_fence->scheduled)) {
++			dma_fence_put(fence);
+ 			continue;
++		}
+ 		t1 = s_fence->scheduled.timestamp;
+-		if (t1 >= now)
++		if (!ktime_before(t1, now)) {
++			dma_fence_put(fence);
+ 			continue;
++		}
+ 		if (dma_fence_is_signaled(&s_fence->finished) &&
+ 			s_fence->finished.timestamp < now)
+ 			*total += ktime_sub(s_fence->finished.timestamp, t1);
+-- 
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
