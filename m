@@ -2,65 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C0C6375EB0
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 May 2021 04:06:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F709375F2F
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 May 2021 05:37:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE8206EDCC;
-	Fri,  7 May 2021 02:06:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91BAF6E02B;
+	Fri,  7 May 2021 03:37:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
- [IPv6:2a00:1450:4864:20::12f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8143D6EDCC;
- Fri,  7 May 2021 02:06:45 +0000 (UTC)
-Received: by mail-lf1-x12f.google.com with SMTP id z13so10661529lft.1;
- Thu, 06 May 2021 19:06:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=RusZqf2ICrM5fo1RSYd7Qden8l8w86x5qFZgmckN64E=;
- b=D3bvz8i81tQkrtuQ+d1bkqIKoTdXAZWYYo6Jfm6wspflRIADJqkHwK3Tng54nv8L8j
- kIUQ4Gd1GX0Mm3MGVRY/Cv0CqOQ2b/SwKrjuqKQ2ZLb42V5VpGDH8k9zdxW5F8jvJyfa
- oLTIlByZ21h77IN3GiYOi8DRoH5svGBcNiKp/hCtXMH1J7nhMihzdzDioSOcRJ0RARol
- OVt144Jx1rzUTkCU0vW3daSLf0owrtC0yAdtvCT57MQoOyn7OYD0UppOnItgNU2aQ3lA
- twFeOWFtx02nENFd16Y5AUuwOe/mWTYJiHeGA8pGRIoA8ogpgcLuy5gafsmAh3Y1WSVg
- /i3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=RusZqf2ICrM5fo1RSYd7Qden8l8w86x5qFZgmckN64E=;
- b=P2mS9AbXDZQPvsmz57AYXjOg/oUpUjTHivIplDWQuVqlRS3yH85qgLymsdkXJR/6jV
- wO3kGWh31AriUWTygUWyZh14lq2gknppvrOus8SDOVg20M3LtHcLUhHapTK+VAv9JBpK
- JHVWzYe3pa3mlS7TDIEdFdbvDMutJc7aIlaOmjTw2ltXd2yMhskNfH3zIJI1VEIuARSN
- 0eGLcNHR2pGPBxXZ03MkrNlny8zmVOVqRzemN7osK9G0ojHQUNmTBlkS2AB4hwaG/Pnd
- W/5SbpdYoh7g2quk5QRHXTa0t/op4EPXhj6YVISpYbYIsm2plgSTENVob/oA5HzjF0+v
- YRnA==
-X-Gm-Message-State: AOAM532Nlb649HiDhwO3GlndCMyIcyL1oUVtcBsz+D0tDVq8l0jcAQFU
- crSFUk4ZasVbVJOsqoL+xIKBvCUF0zLDK7hWLt0=
-X-Google-Smtp-Source: ABdhPJy6fE0F0maDDYRJg2QRG950fLRhaA0QiW7C6vG6nsHx3tC0UfW9AmOOCNLGEB8W9gmuKKolcqYX/UZkgFF0HoM=
-X-Received: by 2002:a05:6512:c04:: with SMTP id
- z4mr4820989lfu.167.1620353203882; 
- Thu, 06 May 2021 19:06:43 -0700 (PDT)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2086.outbound.protection.outlook.com [40.107.244.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F02766E02B
+ for <amd-gfx@lists.freedesktop.org>; Fri,  7 May 2021 03:37:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dE0q2NbujAfiBb6UQyAVHWMubwXFqmzo8KksdI9hfHDcuKX9gT//mivaIdQxeRz4X2Z211kI1w5TlG6MXKK/e4mV48HvNqwUQp3Q74RxNv22W2vgGrxJB+7Zl2r7eu+JJvsQqEHxQnkDZ8fgz2/FPoBqdlpnbi7PX8PsPfxjf9FPknRB2FKIElz79bveUdq8gFrenG81ahVBwMr/f9zqFAHclBSJsS7GiYHU/81hTlk5yY1gohVrhL91GXiiwM/psN45ZSAQJAxRcgNnTuVCSnwnvhWtwTiUnZr8R6cSDr5E08s6O5racSv2P+bTu4kK0mILTw04pRvaMudi0Cc0Xg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=i3wG+sCxl8iD2nWU+K/pWTu6D9e1zHwGnVz2AcL8V0Q=;
+ b=asOiEcBPnj43zzsKattEVv4DWxeOayoeY9chWgQNoKP2fSO8JT3haXssIGy5vnyYo+ClSOaxsrUgb6dPpvNWmle+OTKIXlDulXwA9Tcpyebh1urHt7bPFIP38r0MmzbIXeVGkhxPNagjS0dznfKGnEp5v6sclf4IPqFs+DRngtTXpGUClKpRfU1mPOc6wFLXllzkN0KqNeJuAqWiqVVC+e+tf9wobxwFZewesj6pe5oyAHc6g/kmohFwQSMQ9Gf3zWQwtd43xLyQkQgtftc8eW/jxqVKfQ+2PYhMQ3wa+1R/zlAxys1m9aOV5u5+JiVMtQCSgS+p88kcC1m2TSdg1Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=i3wG+sCxl8iD2nWU+K/pWTu6D9e1zHwGnVz2AcL8V0Q=;
+ b=4moJZNWbtZ0cJeoJC5MIQmJkSYM+g3EeZpk3WeA0F1lP39OdbX5ZWjPM+qsjISLWW+HWIhIg0EZ6vmrXHSOi/0XKVqgQzfOqr+xbvMa+tTaHfhbvwOefRchIiw1naSXzwdHy0qHP/BR7GesA8lqceGbljhN6zJiCoL1JH4Vz8ys=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from SA0PR12MB4430.namprd12.prod.outlook.com (2603:10b6:806:70::20)
+ by SN1PR12MB2365.namprd12.prod.outlook.com (2603:10b6:802:2e::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.27; Fri, 7 May
+ 2021 03:37:16 +0000
+Received: from SA0PR12MB4430.namprd12.prod.outlook.com
+ ([fe80::31de:f08e:20b2:d121]) by SA0PR12MB4430.namprd12.prod.outlook.com
+ ([fe80::31de:f08e:20b2:d121%9]) with mapi id 15.20.4108.027; Fri, 7 May 2021
+ 03:37:16 +0000
+From: Alex Sierra <alex.sierra@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/5] drm/amdkfd: device pgmap owner at the svm migrate init
+Date: Thu,  6 May 2021 22:36:33 -0500
+Message-Id: <20210507033637.29622-1-alex.sierra@amd.com>
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [165.204.78.1]
+X-ClientProxiedBy: SA0PR13CA0018.namprd13.prod.outlook.com
+ (2603:10b6:806:130::23) To SA0PR12MB4430.namprd12.prod.outlook.com
+ (2603:10b6:806:70::20)
 MIME-Version: 1.0
-References: <CAOWid-d=a1Q3R92s7GrzxWhXx7_dc8NQvQg7i7RYTVv3+jHxkQ@mail.gmail.com>
- <20201103053244.khibmr66p7lhv7ge@ast-mbp.dhcp.thefacebook.com>
- <CAOWid-eQSPru0nm8+Xo3r6C0pJGq+5r8mzM8BL2dgNn2c9mt2Q@mail.gmail.com>
- <CAADnVQKuoZDB-Xga5STHdGSxvSP=B6jQ40kLdpL1u+J98bv65A@mail.gmail.com>
- <CAOWid-czZphRz6Y-H3OcObKCH=bLLC3=bOZaSB-6YBE56+Qzrg@mail.gmail.com>
- <20201103210418.q7hddyl7rvdplike@ast-mbp.dhcp.thefacebook.com>
- <CAOWid-djQ_NRfCbOTnZQ-A8Pr7jMP7KuZEJDSsvzWkdw7qc=yA@mail.gmail.com>
- <20201103232805.6uq4zg3gdvw2iiki@ast-mbp.dhcp.thefacebook.com>
- <YBgU9Vu0BGV8kCxD@phenom.ffwll.local>
- <CAOWid-eXMqcNpjFxbcuUDU7Y-CCYJRNT_9mzqFYm1jeCPdADGQ@mail.gmail.com>
- <YBqEbHyIjUjgk+es@phenom.ffwll.local>
- <CAOWid-c4Nk717xUah19B=z=2DtztbtU=_4=fQdfhqpfNJYN2gw@mail.gmail.com>
- <CAKMK7uFEhyJChERFQ_DYFU4UCA2Ox4wTkds3+GeyURH5xNMTCA@mail.gmail.com>
-In-Reply-To: <CAKMK7uFEhyJChERFQ_DYFU4UCA2Ox4wTkds3+GeyURH5xNMTCA@mail.gmail.com>
-From: Kenny Ho <y2kenny@gmail.com>
-Date: Thu, 6 May 2021 22:06:32 -0400
-Message-ID: <CAOWid-fL0=OM2XiOH+NFgn_e2L4Yx8sXA-+HicUb9bzhP0t8Bw@mail.gmail.com>
-Subject: Re: [RFC] Add BPF_PROG_TYPE_CGROUP_IOCTL
-To: Daniel Vetter <daniel@ffwll.ch>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from alex-MS-7B09.amd.com (165.204.78.1) by
+ SA0PR13CA0018.namprd13.prod.outlook.com (2603:10b6:806:130::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.11 via Frontend
+ Transport; Fri, 7 May 2021 03:37:16 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 68f216fc-db66-41a3-a456-08d91109690a
+X-MS-TrafficTypeDiagnostic: SN1PR12MB2365:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SN1PR12MB236586AA0DEEE864A55E8A0DFD579@SN1PR12MB2365.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2512;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: MP6wZzM6nbH/L5V1HiX6w5fLTCabiWsMSqnX9FxsHhcnFsJG61whqmtGFrQ4x9bxOwbV0i6Jz1HDqsvWdGqZXYhwRaiiE2pbiSfuRnyWLkPfnjg82BnQV6qZK1DR8d2VKXq8QbRtAwSZA3Nl6Kg6nmgA12zxIPRO/L5EGBKjFTmU/vk5c7FAqJ0nif8nJFbPJruJ+U4Ug0eGC+JOY1VCqel8QtVYkM6/R50nMRdv8D1z//xRY4oemfJBz4znPQbNnYK07fZiqdptMr9gCWWBSaPYEjzgnTZWsdAvn811THwbgwzQJwo11/rjYd6IFdOwlnO6BvDGIfYNbwBb0ZoI+U+wOd3UYr9nhFksRypsGvgCNVQ/P9S+7J/ovi9mddSJ/cyeGGTeKL4pjoI6EXSFshSqrNWKYeBijBwaiuA+f9FOzWQFhyb/kb+stsF1hLJ1OTghY5Sf+XUqtEx7V1+SsLtM4ligHyZ7+5lJUypulWMo3QMiyl5sS7uCmioFsCKX9rouF7oMBy+6qtDyWaQRd4fyKoLjMqNePyWgeKgdqCDqgOTmbn5R6RdFl0EjveKXOGF13U/yQB/HKCjATyN24gqt0kZC9HSM9GiDgprB+uhR0ixJUA7hEcE5P0vrzWygObikmAUPD+Js0sZT6cfAzA9ODb2CDzHQW6k7xDyNFYk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB4430.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(376002)(39860400002)(396003)(346002)(136003)(8676002)(26005)(8936002)(66556008)(4326008)(52116002)(2616005)(66946007)(16526019)(186003)(7696005)(38350700002)(478600001)(66476007)(38100700002)(6486002)(44832011)(956004)(36756003)(86362001)(316002)(6666004)(6916009)(2906002)(83380400001)(1076003)(5660300002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?1mEhChq6LleEcfw6qj+Ket8+cKo4d1N5ZF2B9338NdrKT6zwBYpaiOf5hkJN?=
+ =?us-ascii?Q?t17PSSAjH/aO02ctSOpUyVxJy8/BJPpY0rJwovpQvAjs/wk6fm8cnQ8bsCvm?=
+ =?us-ascii?Q?DjJ4j1h0lvrLcsoH3jQ7u77624UD3PUQGqfaarzRmRn2H0oDXQD900NNICLP?=
+ =?us-ascii?Q?AnBrOFN5biWCtCbwtq+w1ST9fDivY3O4MxRbZTdCsDzKnVahl1Jsf1Tiet/r?=
+ =?us-ascii?Q?Zi1qyb7KTLgxoFNvi+a9oj9gVCus0cFofSumTk9dQ+IH4WgRLTUzJUvLV1ZA?=
+ =?us-ascii?Q?ynyyHvm4wL8WV2CHdsgVJPFZg3u9a3P2tsS1KN6WGm2xUfcJcY65phHAuL/T?=
+ =?us-ascii?Q?KE/TkUfF8Hq1+PcLKC//nxsECYy7C6CcZb4SiMgdd2yZVLr9PAEo/t/FX5+0?=
+ =?us-ascii?Q?SnXfe9ioOXQGRRWHnRCeRH8VMtvoQ81WErsB2X9bEGUeBrGrUSdVZdhGWsCx?=
+ =?us-ascii?Q?KFgRfXbchmTtrTyaH5lUxQYvGyRjFwvcbqGU+pdTCNF1VFEfWL5etFOF+aX9?=
+ =?us-ascii?Q?Y94ukC8/Fx20FSBIAn3RRRfXwPoVSadtDOZ+1fc21wq0NG5AQt9HsvrIgu3y?=
+ =?us-ascii?Q?KigoKVnht6/I5DzirMJVg/TrH8AaP04AryQfcKgsWpayfbp3PWfL8kA3xf+t?=
+ =?us-ascii?Q?vaaOyDdxW5KmU4nVz7b99ChuhW/tFjZu0fOsksriBiChOB3g0mZAHpBvWqQU?=
+ =?us-ascii?Q?wQjOtj184pUWx60QEXlG694BEVX3ZzWC2wmlsSnIflF2H7G64c6qUjrVj7ou?=
+ =?us-ascii?Q?+8tyRAHTnF6PI5afWa0iEYCsZX22dluXCWEkpblRRH+OSYhaB4VJwS0DVRGl?=
+ =?us-ascii?Q?O9iTPipRlrre0HW6D7mos3eCFnErRTuQ++RTBL3z0MqEDd2lppNSBYclkzvo?=
+ =?us-ascii?Q?et2CTPuLAUfYgy6yV93Q4XbiiDJnF3HH/aZDCtxtH2/HyknacWIKoLMkjwt0?=
+ =?us-ascii?Q?QFWyS/PI9NizwodSSpHnycR1c6pHiRye6Bro8cmqiZ7VrGwciV9wUq710Ky0?=
+ =?us-ascii?Q?VeokftgHPB7vrQAkdGwlS1B+WPSFGZwZ27qb7TXITgBqmLqywecqT2hUMcp7?=
+ =?us-ascii?Q?YLYFNE1eDmFPWxHl/WajEUvZHvodwT41AsDTW+RjdAvwB5QTghdh+9GbDEei?=
+ =?us-ascii?Q?iM8DmJXOEASgRB73o3YmCA/hSmD7A3WrPQ0hLcNpCoAstrm4MRRnhkqbOJQx?=
+ =?us-ascii?Q?ZfeUolx5cxkbKlEbGcGESCufBkFCIHMMGqpEOx8jL1ZZrVJ+vt61fVUu9UNb?=
+ =?us-ascii?Q?Xm8NN+H3GwiUaOE+oeYJKwUDuTxk7mY3AvCnjYAHQyYlLIPXryC8A1Bomocq?=
+ =?us-ascii?Q?ujEr9BXLl5iNVgjTr8/Nwua8?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 68f216fc-db66-41a3-a456-08d91109690a
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB4430.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2021 03:37:16.6091 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oabNJEJcOHEdbpvuQeeCZiYTOV12kL7xNyObLq0+wmnuPFBvGVmpc1gfP5rduIVFMO7AKfP/P8wtCbKr1Rc/yg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2365
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,44 +113,69 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Song Liu <songliubraving@fb.com>, Andrii Nakryiko <andriin@fb.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Borkmann <daniel@iogearbox.net>, Kenny Ho <Kenny.Ho@amd.com>,
- "open list:CONTROL GROUP \(CGROUP\)" <cgroups@vger.kernel.org>,
- Brian Welty <brian.welty@intel.com>, John Fastabend <john.fastabend@gmail.com>,
- Alexei Starovoitov <ast@kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Martin KaFai Lau <kafai@fb.com>,
- Linux-Fsdevel <linux-fsdevel@vger.kernel.org>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Network Development <netdev@vger.kernel.org>, KP Singh <kpsingh@chromium.org>,
- Yonghong Song <yhs@fb.com>, bpf <bpf@vger.kernel.org>,
- Dave Airlie <airlied@gmail.com>,
- Alexei Starovoitov <alexei.starovoitov@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>
+Cc: Alex Sierra <alex.sierra@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Sorry for the late reply (I have been working on other stuff.)
+pgmap owner member at the svm migrate init could be referenced
+to either adev or hive, depending on device topology.
 
-On Fri, Feb 5, 2021 at 8:49 AM Daniel Vetter <daniel@ffwll.ch> wrote:
->
-> So I agree that on one side CU mask can be used for low-level quality
-> of service guarantees (like the CLOS cache stuff on intel cpus as an
-> example), and that's going to be rather hw specific no matter what.
->
-> But my understanding of AMD's plans here is that CU mask is the only
-> thing you'll have to partition gpu usage in a multi-tenant environment
-> - whether that's cloud or also whether that's containing apps to make
-> sure the compositor can still draw the desktop (except for fullscreen
-> ofc) doesn't really matter I think.
-This is not correct.  Even in the original cgroup proposal, it
-supports both mask and count as a way to define unit(s) of sub-device.
-For AMD, we already have SRIOV that supports GPU partitioning in a
-time-sliced-of-a-whole-GPU fashion.
+Signed-off-by: Alex Sierra <alex.sierra@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_migrate.c | 6 +++---
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.h     | 3 +++
+ 2 files changed, 6 insertions(+), 3 deletions(-)
 
-Kenny
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+index bc2fc528ad58..02340f36bd3d 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+@@ -426,7 +426,7 @@ svm_migrate_vma_to_vram(struct amdgpu_device *adev, struct svm_range *prange,
+ 	migrate.start = start;
+ 	migrate.end = end;
+ 	migrate.flags = MIGRATE_VMA_SELECT_SYSTEM;
+-	migrate.pgmap_owner = adev;
++	migrate.pgmap_owner = SVM_ADEV_PGMAP_OWNER(adev);
+ 
+ 	size = 2 * sizeof(*migrate.src) + sizeof(uint64_t) + sizeof(dma_addr_t);
+ 	size *= npages;
+@@ -641,7 +641,7 @@ svm_migrate_vma_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
+ 	migrate.start = start;
+ 	migrate.end = end;
+ 	migrate.flags = MIGRATE_VMA_SELECT_DEVICE_PRIVATE;
+-	migrate.pgmap_owner = adev;
++	migrate.pgmap_owner = SVM_ADEV_PGMAP_OWNER(adev);
+ 
+ 	size = 2 * sizeof(*migrate.src) + sizeof(uint64_t) + sizeof(dma_addr_t);
+ 	size *= npages;
+@@ -907,7 +907,7 @@ int svm_migrate_init(struct amdgpu_device *adev)
+ 	pgmap->range.start = res->start;
+ 	pgmap->range.end = res->end;
+ 	pgmap->ops = &svm_migrate_pgmap_ops;
+-	pgmap->owner = adev;
++	pgmap->owner = SVM_ADEV_PGMAP_OWNER(adev);
+ 	pgmap->flags = MIGRATE_VMA_SELECT_DEVICE_PRIVATE;
+ 	r = devm_memremap_pages(adev->dev, pgmap);
+ 	if (IS_ERR(r)) {
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.h b/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
+index 573f984b81fe..4297250f259d 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
+@@ -35,6 +35,9 @@
+ #include "amdgpu.h"
+ #include "kfd_priv.h"
+ 
++#define SVM_ADEV_PGMAP_OWNER(adev)\
++			((adev)->hive ? (void *)(adev)->hive : (void *)(adev))
++
+ struct svm_range_bo {
+ 	struct amdgpu_bo		*bo;
+ 	struct kref			kref;
+-- 
+2.17.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
