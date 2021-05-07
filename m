@@ -1,92 +1,108 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F145A376628
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 May 2021 15:28:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 379C437671A
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 May 2021 16:38:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 747606E082;
-	Fri,  7 May 2021 13:28:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD69B6EE34;
+	Fri,  7 May 2021 14:38:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2058.outbound.protection.outlook.com [40.107.93.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61A086E082
- for <amd-gfx@lists.freedesktop.org>; Fri,  7 May 2021 13:28:26 +0000 (UTC)
+Received: from NAM02-CY1-obe.outbound.protection.outlook.com
+ (mail-eopbgr760048.outbound.protection.outlook.com [40.107.76.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3409C6EE34
+ for <amd-gfx@lists.freedesktop.org>; Fri,  7 May 2021 14:38:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q8YXr5Tjm4sPeeooE1D5K1ESbLcltHjLaVadhfR1Lrdsp9U1Q13yctjE1WUHKSqIFT8LxCSRtz39jy29/NwJIHmBpq6IIX9b+ubhEX5eU+4nON3jtAWERLQ4JE6G7h9fz0/vW1gPnd/GolY/6s+TwlmIu44S7hzC+1nhtDmzyc3qhmuehU6NlSYb/Qz+k4NHKAGz8KmSlBfAHYRKsjRXjRJC0DVXyDNSxSODSYEZAoM6Z8q/gm4SLU79PSA5rLCwhhyP/2ou6UUgHQipzCU9KaUgPIvz1xRrx0ZaCDEucQpEDTBOcAV8vTXEjkhY49mywNfkS41BxYSN/tFuOYFc8Q==
+ b=jl/xl1dYmbxG5oVUsfJNCS35GXu9WPdIOaQTRTkRnSKDrJYQ31xjtyBUtHHfdkFeAs2TslJW1YAxUZzba3L5NN0b/5vv0viq9leUJEL/mEUX+P+4tVoRV9FClq7GuY1tTW++6fQuWBKORiLHLfI5uY3k+tYihAHxPYIGiIBMvG9ETvLEQLi/l61i3mLOj1pRDdKY/4zvPxu6avuOcJva76pQRysQmfTSm4p9WtskMN0NKPJHR2wR2wuRydLILwTNDkMw19+gPxeHAOvmgysdUC9dkCI8Cmq9yYQE/Fh+BsfSwTGNGOsA1aTStMP5CXJNSGbE2M7mCdqmDEK27ueR6A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=trxgwqVTZaDYQP6Ze+Hqmzn5a1TZoXUiHVDgSGrMntg=;
- b=V+AMpeMTp/onGAjd6PhGy7Sx//ve5ILl4HRhWOlxKL07sRZgulAcfQL3xGBSdfL6z6hc6R+C7o5DqnLnIL6YWTuFciG+DlzKvRAZgNe/a4XFJs/fiJrrq5coqvxzpgKFff+otQVZ87OUo9c3CLHY5ZCjYraPr8BE0nnx8t7GL2bjQr0uhY04qf1UYY2p5jwbC5WlLP+jBxLf9Q2rA1NBqZfujpFw5Z7S369Mb0PvAjKpdUC8gCsx1BjK2R/ga392HpkCJxGXUoGwG89TTRmwEpqvRG5V2NTeHK52+D/LxRbVvAtbc6NEKvyu3aRZcJKqSjFnLhxuIxmqIqh6T0l0gA==
+ bh=RqUgURkQXuIuY3HAR31uXNKVmu5SCCViUiZP6daHn+I=;
+ b=ofEOgJYCH6L9310asj2/HyrDOj65IyfOvgOAtasKInt23P6ZyO1pRy2AaWYIPlGIhn554xZTOMroY6mzPzUlkK6BVcF7OcHm8mC4OLAD4YsT/gnqg4wOrcrjY1VlfwlukL/rhKVpdXU1+r0TEIv9A70CK4ineG3Yb92XqaV8kzduRfTaTnLhzlYyQwTiu43pPO6OHLmpTCOgA4VUzn9lqAr5BXspErzNwFMVsui+/k3pTQE/itKSjl0fXKFIp4CNVpIhb1814hE1zx92iTd4i50vjj1BpIqXfxfNzpS3VU0udssAT5XeFLh32Am5sdK/zuzzvuqyb+Y9WdssZ3Yntw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=trxgwqVTZaDYQP6Ze+Hqmzn5a1TZoXUiHVDgSGrMntg=;
- b=oqP3Dmn25MiJsfmIILnbkRiIEEokFZdCGuq+5D24Fv4mmfWEvbxPTdejo185s4pisSCQQvx7cBCW32PLDk1Ig77MZQXuIw9Sm/PHWgzB6Wm4yW0uUm9xz3oymLw+3Zhig3TLap5GaYCsGR3Ik8PF2UmZDkhHRvX3d2ks8upRiI4=
-Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
- by MN2PR12MB4583.namprd12.prod.outlook.com (2603:10b6:208:26e::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Fri, 7 May
- 2021 13:28:23 +0000
-Received: from MN2PR12MB4488.namprd12.prod.outlook.com
- ([fe80::3d98:cefb:476c:c36e]) by MN2PR12MB4488.namprd12.prod.outlook.com
- ([fe80::3d98:cefb:476c:c36e%8]) with mapi id 15.20.4108.027; Fri, 7 May 2021
- 13:28:23 +0000
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-To: "Yu, Lang" <Lang.Yu@amd.com>, "Chen, Guchun" <Guchun.Chen@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Huang, Ray"
- <Ray.Huang@amd.com>, "Song, Asher" <Asher.Song@amd.com>
-Subject: Re: [PATCH libdrm] Revert "tests/amdgpu: fix bo eviction test issue"
-Thread-Topic: [PATCH libdrm] Revert "tests/amdgpu: fix bo eviction test issue"
-Thread-Index: AQHXQl31tkJYpyfnoUyRTYpFwac2HarXm0iAgABpSTA=
-Date: Fri, 7 May 2021 13:28:23 +0000
-Message-ID: <MN2PR12MB448860FFF944644EEA011C6CF7579@MN2PR12MB4488.namprd12.prod.outlook.com>
-References: <20210506095509.7815-1-guchun.chen@amd.com>,
- <DM6PR12MB42508D945ADD562AAB8BCA7EFB579@DM6PR12MB4250.namprd12.prod.outlook.com>
-In-Reply-To: <DM6PR12MB42508D945ADD562AAB8BCA7EFB579@DM6PR12MB4250.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2021-05-07T13:28:22.913Z;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
- Distribution
- Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
- MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [192.161.79.245]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ea2d8742-48b3-4b15-650c-08d9115bfd2b
-x-ms-traffictypediagnostic: MN2PR12MB4583:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB4583AB1C7C72689130B3E514F7579@MN2PR12MB4583.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:94;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: d+BW3mBGKjZPO6p/7Hhzogz9ABllqCNT0U0CNmm73SMapGVuI0ErSgpkCGb9G5R/6JG7T7em3vUmwihUZExuVVVkopsp49iVPI3JjB0Dek/ByWuUM4ZBVqwuO35rvYqptbvOfDbyJXLlXqWMGeeziFulFf9XNi+O1dqSfMGbbmLivQVjkMOLRLqDTTJ7MjqifAdQlmBhDEvxn3vC9Yk0+PI2elbZAWvGmvVYxr/YtoHeSa/rgJSb0nvie/hkDpb/nJtsUS7o4R3lFHQZoGNdbK+PnDDrDw/z7eQx95oN/KqwRZGm1c17DTvZbVqeKEIc3Vaf8pBxixCOb8tE46w+N0pYynz2j2yhcvyFPEY5cSPTF2roWPNUQc6GFq+fHhRrLoIH9iZ98PwylLtb6oWeXL1Z2ISMUYeeu7PHDQRq48Z3M3bwhe7khxszrUgZ5dSnNi8Mu42Q4AmNLLTbMO3vouRGnpI1vUdTtYmsKrosAqX2pf9s34rSE7+oF7A2HV5lm/VYsuPIHsKT/HF3GoYTHNpa8sggMeFpf+mAU0GNYptpWKyFGWR8Lh7vPYKJz2sowDd/1EPhJM6yYDA5quWHJpmPhein699TSmmdvtqq+7PciYcQ+wE/qQF2klFkXkBhw3ajSA5w1Lgx0gx0+c2AYA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(39850400004)(346002)(376002)(136003)(366004)(83380400001)(7696005)(2906002)(45080400002)(66946007)(186003)(9686003)(5660300002)(86362001)(316002)(6636002)(8936002)(66556008)(64756008)(66476007)(76116006)(66446008)(55016002)(966005)(6506007)(26005)(8676002)(110136005)(38100700002)(166002)(71200400001)(122000001)(478600001)(19627405001)(52536014)(33656002)(53546011);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: ZIk2G0+zWUk3mD0qumONKqM3fdtgOJczmwqpGZXQs3i+mmsbhQ66UbNYKmsObhBE/0LiYkKj0JLWZa0Pf+EOHgZRWxlLCgVHBL80Q2zDUDJugqCF/pON2aI7y+DBB5AaZPvy3TjMYpcojmP6PNd1n+yALRn9NR3vNrX0qDn+jK04LlwoUctnLxnsE+br2zQcAxgS+VQms+3fc44EL0NvaRIHRoekf7vUwbtrd84zt0HJXeHvK+MMadH5uiEoMf4wc/ZdO/Xpj9LoL6Ya+TWl9pqyxTK9ngVrTBMeUF5++109rJRD/De4IrxyNsxpjSz4rMQMZVeefxH5Smpu8h4Ba/eR4/bpzE1hDtdNElZKlr0Wno+k5BNSM5g4xFxTqTShr7oQX51oUKMBuu1gkDLfHMmCEK4yhieqNRu6GI8P9qdR5yQgMXPf09E6m7fWBatifLQaRGXNrFYOg0E5RhfM5DZ/IEAvXrywvMgiFX9r+6BTWsusboxKjJnuJhxu1XT/Il9mgc+7KnNfGDGVs5JNLYfCIuYmdhO7FpZqMGtGB0p/8wh4dIMQ95ZmiyCkObQ5WPmJjCqGU+aIbiDoNipRhUK1VAU9ppApADRGcRGP25yCJ+v3mpcVZyjDJkT7frYDoYUj9ae5swUaDeii5akirbfB0NhoFiLXUncXDnh1mBYhfwZ1UnDRKGtcM/0fInoN7fCHyDxH6vsYj32QZVMMYz2+jUTPn9wv9C0oepabGRw=
+ bh=RqUgURkQXuIuY3HAR31uXNKVmu5SCCViUiZP6daHn+I=;
+ b=l6yXH6abEk1RXSm2rHbHGll9ja59Gbniy13FyrE6Whsogk8MKBmYYBk6CS1+vu2+Zu/eMkCVyUtdlmCvTUfd1zZ//yjTBVaAblQIZF+UO4ZFE46A5JIuZIcEb55uLXklA8+V78ey2x8nphqeR7Ac0KyjKD0NH7QT4FYC2iJViF0=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from DM6PR12MB2601.namprd12.prod.outlook.com (2603:10b6:5:45::27) by
+ DM6PR12MB4497.namprd12.prod.outlook.com (2603:10b6:5:2a5::24) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4108.25; Fri, 7 May 2021 14:38:22 +0000
+Received: from DM6PR12MB2601.namprd12.prod.outlook.com
+ ([fe80::3d2c:5edf:5d51:4101]) by DM6PR12MB2601.namprd12.prod.outlook.com
+ ([fe80::3d2c:5edf:5d51:4101%7]) with mapi id 15.20.4108.027; Fri, 7 May 2021
+ 14:38:22 +0000
+From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amd/display: Make underlay rules less strict
+Date: Fri,  7 May 2021 10:37:59 -0400
+Message-Id: <20210507143759.1546044-1-Rodrigo.Siqueira@amd.com>
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [2607:fea8:56e0:6d60:ae2c:6ad7:f7d8:54c2]
+X-ClientProxiedBy: BN9PR03CA0077.namprd03.prod.outlook.com
+ (2603:10b6:408:fc::22) To DM6PR12MB2601.namprd12.prod.outlook.com
+ (2603:10b6:5:45::27)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from atma2.hitronhub.home (2607:fea8:56e0:6d60:ae2c:6ad7:f7d8:54c2)
+ by BN9PR03CA0077.namprd03.prod.outlook.com (2603:10b6:408:fc::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25 via Frontend
+ Transport; Fri, 7 May 2021 14:38:21 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: eb8d7b95-e743-4d58-99ca-08d91165c3d0
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4497:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4497F2CB7533312569427EAC98579@DM6PR12MB4497.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:428;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uowq+X3nBntGQTiETeZ2Fkp4iNhoLUOjfPwNExqabGq49LALXa9Ic+GROutsTSKc4uaWwXRypF9Fj9ftMLgUyYU5Yi1dFz1xntCAdWX/vM76To5Yncs/p2hETT5km/nRQXAqhsPFty2SpZ0N5dr4WqiJ7IXlcsp1odfZIylnPW/0Yb70faNulXkdeM/rQxNbB1ixT0NTr1iBzqnhLTHUVS9ZRzI7gOwzcwAEjznNLghSPdx4l3pLCs3pXbgLVIDBBxaLQoxLKXJuHQ2ae5L4JkcyLHmcmMPuXBO6y0dJkNZB9+5EiI1Xd5+Lowlhenf60hrepasQR5YdwA+1vub7u3riflQZ4o5CQLYLVxZlegBrrdyGCe+R7AxExF0ImPTX+oG9M1dishZ2LYKxxa+lr/rmilnZnUNI9ogP40jeaCh9VS8XNB3HLxvh+Xeb8dIU/ZKqIGG4Qhipo5OpexwpkHE4mKDV3U6yri89lO2Dy8fH5uVZ8rTHfQmzqOgqhIDLtyoio+hfvtU/kF/g4wPFbLCFMT8snrvdZfYPPvRl+JfB8CEvxDxp3XylUJFzP7XXIP8Y797ggAyG+xkiwntjTg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB2601.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(39860400002)(366004)(396003)(376002)(346002)(136003)(316002)(6512007)(4326008)(86362001)(6506007)(6486002)(5660300002)(2906002)(1076003)(8936002)(66476007)(6666004)(478600001)(6916009)(16526019)(83380400001)(66556008)(66946007)(186003)(2616005)(8676002)(38100700002)(52116002)(36756003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?5NBYkhAm2JXt86O2p3T49CFyuh3VUh116CvHRCb8Xz5hnfXngoj39HqC9XB/?=
+ =?us-ascii?Q?xf92ABZUOtjFpqJdxtQ0OqmEojdPH7HJ809Pz2TkEkZ6udbvyN8Ean78NqnU?=
+ =?us-ascii?Q?ikhTLA4ClNAGw6NQoOsrXSYg0kYEX2MlC+A/kv58jWvXapRitdMFBEw6A3Nw?=
+ =?us-ascii?Q?k+Z4dFHHtH2CwkTZBq8Wo/TAwgLuPH+pCIxq18SGQ8VhITlQQKHcg4YxTACZ?=
+ =?us-ascii?Q?PqDakopNHFjZOBLoHCndOktE7SCCW+ZKQTaNgEFjmL0IXjUsRLGte13LCqvd?=
+ =?us-ascii?Q?TPDGUoFvyKQ2jeg5zN2vbbHOLMwtPItloGwBT15PdRnJZZrX6eXpsH91gvmm?=
+ =?us-ascii?Q?cCRStymqrENQDOWd8QcMyTH1I/NbcqzkWJ80m7S6TPz5wtCgbVyuOvAw5fEQ?=
+ =?us-ascii?Q?mJ6KQI0Lv48d3DVJzfFfN4mmyu9gL4ofXRco2lzcm7yNlMW1TdgtPbwLIv3A?=
+ =?us-ascii?Q?jFCsGva0E+9VUGFLH7WSYbGMK5cZV2YEgXc4rwZzfObtAw9s3wkxTrKrpugO?=
+ =?us-ascii?Q?KpPpFIPUIV7K8SNiO+wpavmHXpX9Cp73Obk95YKndodMTJJZv5NxPOOm3+aB?=
+ =?us-ascii?Q?HVuwdACcaVYIvLhIqq4ZIFNUEq55J9Qf9FroQI2lgci8grTOzJ1Jtm7PHj0d?=
+ =?us-ascii?Q?Gda4i51Q+HytTjYC8/VTLZX+PznYT13Jz5TvkxcKii4aQmkES1hg3Row3V3F?=
+ =?us-ascii?Q?BjgxvG/uGdiOkrvJ6QulmxN7B+fohMSfz35MgJZoFtX5TgGWkX28eADussDQ?=
+ =?us-ascii?Q?FCGZ84r4pIW5BtIKdqo+fmMuw0QqTbk5Ncy0Jr5pgihWhqAve6mBswxHwDNI?=
+ =?us-ascii?Q?1GYBb8z4LAxHNG3Ox+xrUn0JwPALwA6k3PaxRUId6h0O2uUXCL2gwn5ZTRG1?=
+ =?us-ascii?Q?P5RJQHVtOoCVbf6mCQpwCxMqFYewMornVJVqJYQAhNd02KlNn+nBB2iWqffT?=
+ =?us-ascii?Q?v2Xi5vq7B8fxwdz3Js+lzIOE3WVj4IewaqHyiglwQQNJRIpq0R/rE/TjuPdy?=
+ =?us-ascii?Q?8V2EYd3a2ZqIhSU+Hg/EJIKRah+c3PNlrpRVqA2WEOjQwS0SJyt+rAi18mJ6?=
+ =?us-ascii?Q?Etkl5xNxXYg9QwbdxcKcv+X1wpeh9Ie+wJWmE3CcMzIIz3/ktMuA7hWolzIN?=
+ =?us-ascii?Q?kkAswsDRp+5aiZ22GAISgs9QRKAHYyFwvjO4rK92OfobRsT28oM+wQqB1dDq?=
+ =?us-ascii?Q?C51V77Va1YZXH2pjb4YLicSeNUS6rv2FtKXkw04KSMTdwUlpoCx5/LugF/j+?=
+ =?us-ascii?Q?YDvoHlGpJbuJdGth9+Hi4pKe6+9Vh8Eqd5XQ7lNkrkORPW9oi/npPD0/eTQy?=
+ =?us-ascii?Q?T1XDa+HXP8lv3d2tN2Kcm8WRz7Fmtq3Pz/dLsbv5Olu2bsMHGo7qkXEa35Un?=
+ =?us-ascii?Q?d0+tI49WKvyOWuJAr+D9DuYPpgyH?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb8d7b95-e743-4d58-99ca-08d91165c3d0
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2601.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ea2d8742-48b3-4b15-650c-08d9115bfd2b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2021 13:28:23.4402 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +R5LTmv/Voi6CO3Obl7iGYCSTqatLhMxjCQfrWvbKQUwDmcqLkPqao/KzkAFdP3p/eViSOZoYemYFCBknrXGfQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4583
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2021 14:38:22.5712 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aBdb47suUd74oiS2d7GyZONF9rbc2OECw1eaXSBeoWIY/HUjqGfb63tdsjOPT+DBjnpxJq7cnTulWoWSdeateg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4497
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,328 +114,69 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0382683251=="
+Cc: hersenxs.wu@amd.com, Bhawanpreet.Lakha@amd.com,
+ Harry Wentland <harry.wentland@amd.com>, nicholas.choi@amd.com,
+ nicholas.kazlauskas@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0382683251==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB448860FFF944644EEA011C6CF7579MN2PR12MB4488namp_"
+Currently, we reject all conditions where the underlay plane goes
+outside the overlay plane limits, which is not entirely correct since we
+reject some valid cases like the ones illustrated below:
 
---_000_MN2PR12MB448860FFF944644EEA011C6CF7579MN2PR12MB4488namp_
-Content-Type: text/plain; charset="iso-2022-jp"
-Content-Transfer-Encoding: quoted-printable
+  +--------------------+  +--------------------+
+  |   Overlay plane    |  |   Overlay plane    |
+  |                    |  |        +-----------|--+
+  | +--------------+   |  |        |           |  |
+  | |              |   |  |        |           |  |
+  +--------------------+  +--------------------+  |
+    | Primary plane|               +--------------+
+    |  (underlay)  |
+    +--------------+
+  +-+--------------+---+  +--------------------+
+  |    Overlay plane   |  |    Overlay plane   |
++-|------------+       |  |       +--------------+
+| |            |       |  |       |            | |
+| |            |       |  |       |            | |
+| |            |       |  |       |            | |
++-|------------+       |  |       +--------------+
+  +--------------------+  +--------------------+
 
-[AMD Official Use Only - Internal Distribution Only]
+This patch fixes this issue by only rejecting commit requests where the
+underlay is entirely outside the overlay limits. After applying this
+patch, a set of subtests related to kms_plane, kms_plane_alpha_blend,
+and kms_plane_scaling will pass.
 
-For libdrm tests, please open a gitlab merge request:
-https://gitlab.freedesktop.org/mesa/drm/-/merge_requests
-
-Alex
-
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Yu, Lang=
- <Lang.Yu@amd.com>
-Sent: Friday, May 7, 2021 3:10 AM
-To: Chen, Guchun <Guchun.Chen@amd.com>; amd-gfx@lists.freedesktop.org <amd-=
-gfx@lists.freedesktop.org>; Huang, Ray <Ray.Huang@amd.com>; Song, Asher <As=
-her.Song@amd.com>
-Subject: RE: [PATCH libdrm] Revert "tests/amdgpu: fix bo eviction test issu=
-e"
-
-[AMD Official Use Only - Internal Distribution Only]
-
-
-Reviewed-by:  Lang Yu <Lang.Yu@amd.com>
-
-Regards=1B$B!$=1B(B
-Lang
-
------Original Message-----
-From: Chen, Guchun <Guchun.Chen@amd.com>
-Sent: Thursday, May 6, 2021 5:55 PM
-To: amd-gfx@lists.freedesktop.org; Yu, Lang <Lang.Yu@amd.com>; Huang, Ray <=
-Ray.Huang@amd.com>; Song, Asher <Asher.Song@amd.com>
-Cc: Chen, Guchun <Guchun.Chen@amd.com>
-Subject: [PATCH libdrm] Revert "tests/amdgpu: fix bo eviction test issue"
-
-This reverts commit a5a400c9581c3b91598623603067556b18084c5d.
-
-bo evict test was disabled by default per below commit. So still keep it as=
- disabled.
-
-1f6a85cc test/amdgpu: disable bo eviction test by default
-
-Signed-off-by: Guchun Chen <guchun.chen@amd.com>
+Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- tests/amdgpu/amdgpu_test.c |  3 +++
- tests/amdgpu/basic_tests.c | 13 ++++---------
- 2 files changed, 7 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/tests/amdgpu/amdgpu_test.c b/tests/amdgpu/amdgpu_test.c index =
-60f3a508..77bbfbcc 100644
---- a/tests/amdgpu/amdgpu_test.c
-+++ b/tests/amdgpu/amdgpu_test.c
-@@ -496,6 +496,9 @@ static void amdgpu_disable_suites()
-                                 "gfx ring slow bad draw test (set amdgpu.l=
-ockup_timeout=3D50)", CU_FALSE))
-                         fprintf(stderr, "test deactivation failed - %s\n",=
- CU_get_error_msg());
-
-+       if (amdgpu_set_test_active(BASIC_TESTS_STR, "bo eviction Test", CU_=
-FALSE))
-+               fprintf(stderr, "test deactivation failed - %s\n",
-+CU_get_error_msg());
-+
-         /* This test was ran on GFX8 and GFX9 only */
-         if (family_id < AMDGPU_FAMILY_VI || family_id > AMDGPU_FAMILY_RV)
-                 if (amdgpu_set_test_active(BASIC_TESTS_STR, "Sync dependen=
-cy Test", CU_FALSE)) diff --git a/tests/amdgpu/basic_tests.c b/tests/amdgpu=
-/basic_tests.c index 8e7c4916..3a4214f5 100644
---- a/tests/amdgpu/basic_tests.c
-+++ b/tests/amdgpu/basic_tests.c
-@@ -928,15 +928,6 @@ static void amdgpu_bo_eviction_test(void)
-                                    0, &vram_info);
-         CU_ASSERT_EQUAL(r, 0);
-
--       r =3D amdgpu_query_heap_info(device_handle, AMDGPU_GEM_DOMAIN_GTT,
--                                  0, &gtt_info);
--       CU_ASSERT_EQUAL(r, 0);
--
--       if (vram_info.max_allocation > gtt_info.heap_size/3) {
--               vram_info.max_allocation =3D gtt_info.heap_size/3;
--               gtt_info.max_allocation =3D vram_info.max_allocation;
--       }
--
-         r =3D amdgpu_bo_alloc_wrap(device_handle, vram_info.max_allocation=
-, 4096,
-                                  AMDGPU_GEM_DOMAIN_VRAM, 0, &vram_max[0]);
-         CU_ASSERT_EQUAL(r, 0);
-@@ -944,6 +935,10 @@ static void amdgpu_bo_eviction_test(void)
-                                  AMDGPU_GEM_DOMAIN_VRAM, 0, &vram_max[1]);
-         CU_ASSERT_EQUAL(r, 0);
-
-+       r =3D amdgpu_query_heap_info(device_handle, AMDGPU_GEM_DOMAIN_GTT,
-+                                  0, &gtt_info);
-+       CU_ASSERT_EQUAL(r, 0);
-+
-         r =3D amdgpu_bo_alloc_wrap(device_handle, gtt_info.max_allocation,=
- 4096,
-                                  AMDGPU_GEM_DOMAIN_GTT, 0, &gtt_max[0]);
-         CU_ASSERT_EQUAL(r, 0);
---
-2.17.1
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
-reedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D04%7C01%7Calexande=
-r.deucher%40amd.com%7Cb3ce363db6e94aa1396308d9112727fc%7C3dd8961fe4884e608e=
-11a82d994e183d%7C0%7C0%7C637559682163619573%7CUnknown%7CTWFpbGZsb3d8eyJWIjo=
-iMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdat=
-a=3Dd9uch8frkIAiVkdtaOHillKHngoVp8brn%2FxJuKatmYU%3D&amp;reserved=3D0
-
---_000_MN2PR12MB448860FFF944644EEA011C6CF7579MN2PR12MB4488namp_
-Content-Type: text/html; charset="iso-2022-jp"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-2022-=
-jp">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:11pt;color:#0078D7;margin:5pt;" ali=
-gn=3D"Left">
-[AMD Official Use Only - Internal Distribution Only]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-For libdrm tests, please open a gitlab merge request:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<a href=3D"https://gitlab.freedesktop.org/mesa/drm/-/merge_requests" id=3D"=
-LPlnk489763">https://gitlab.freedesktop.org/mesa/drm/-/merge_requests</a></=
-div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Alex</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Yu, Lang &lt;Lang.Yu@amd.com&=
-gt;<br>
-<b>Sent:</b> Friday, May 7, 2021 3:10 AM<br>
-<b>To:</b> Chen, Guchun &lt;Guchun.Chen@amd.com&gt;; amd-gfx@lists.freedesk=
-top.org &lt;amd-gfx@lists.freedesktop.org&gt;; Huang, Ray &lt;Ray.Huang@amd=
-.com&gt;; Song, Asher &lt;Asher.Song@amd.com&gt;<br>
-<b>Subject:</b> RE: [PATCH libdrm] Revert &quot;tests/amdgpu: fix bo evicti=
-on test issue&quot;</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">[AMD Official Use Only - Internal Distribution Onl=
-y]<br>
-<br>
-<br>
-Reviewed-by:&nbsp; Lang Yu &lt;Lang.Yu@amd.com&gt;<br>
-<br>
-Regards=1B$B!$=1B(B<br>
-Lang<br>
-<br>
------Original Message-----<br>
-From: Chen, Guchun &lt;Guchun.Chen@amd.com&gt; <br>
-Sent: Thursday, May 6, 2021 5:55 PM<br>
-To: amd-gfx@lists.freedesktop.org; Yu, Lang &lt;Lang.Yu@amd.com&gt;; Huang,=
- Ray &lt;Ray.Huang@amd.com&gt;; Song, Asher &lt;Asher.Song@amd.com&gt;<br>
-Cc: Chen, Guchun &lt;Guchun.Chen@amd.com&gt;<br>
-Subject: [PATCH libdrm] Revert &quot;tests/amdgpu: fix bo eviction test iss=
-ue&quot;<br>
-<br>
-This reverts commit a5a400c9581c3b91598623603067556b18084c5d.<br>
-<br>
-bo evict test was disabled by default per below commit. So still keep it as=
- disabled.<br>
-<br>
-1f6a85cc test/amdgpu: disable bo eviction test by default<br>
-<br>
-Signed-off-by: Guchun Chen &lt;guchun.chen@amd.com&gt;<br>
----<br>
-&nbsp;tests/amdgpu/amdgpu_test.c |&nbsp; 3 +++<br>
-&nbsp;tests/amdgpu/basic_tests.c | 13 ++++---------<br>
-&nbsp;2 files changed, 7 insertions(+), 9 deletions(-)<br>
-<br>
-diff --git a/tests/amdgpu/amdgpu_test.c b/tests/amdgpu/amdgpu_test.c index =
-60f3a508..77bbfbcc 100644<br>
---- a/tests/amdgpu/amdgpu_test.c<br>
-+++ b/tests/amdgpu/amdgpu_test.c<br>
-@@ -496,6 +496,9 @@ static void amdgpu_disable_suites()<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;gfx ring slow bad draw tes=
-t (set amdgpu.lockup_timeout=3D50)&quot;, CU_FALSE))<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fprin=
-tf(stderr, &quot;test deactivation failed - %s\n&quot;, CU_get_error_msg())=
-;<br>
-&nbsp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (amdgpu_set_test_active(BASIC_TEST=
-S_STR, &quot;bo eviction Test&quot;, CU_FALSE))<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; fprintf(stderr, &quot;test deactivation failed - %s\n&quot;, <br=
->
-+CU_get_error_msg());<br>
-+<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* This test was ran on GF=
-X8 and GFX9 only */<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (family_id &lt; AMDGPU_=
-FAMILY_VI || family_id &gt; AMDGPU_FAMILY_RV)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; if (amdgpu_set_test_active(BASIC_TESTS_STR, &quot;Syn=
-c dependency Test&quot;, CU_FALSE)) diff --git a/tests/amdgpu/basic_tests.c=
- b/tests/amdgpu/basic_tests.c index 8e7c4916..3a4214f5 100644<br>
---- a/tests/amdgpu/basic_tests.c<br>
-+++ b/tests/amdgpu/basic_tests.c<br>
-@@ -928,15 +928,6 @@ static void amdgpu_bo_eviction_test(void)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0, &amp;vram_i=
-nfo);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CU_ASSERT_EQUAL(r, 0);<br>
-&nbsp;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_query_heap_info(device_h=
-andle, AMDGPU_GEM_DOMAIN_GTT,<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0, &amp;gtt_info);<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CU_ASSERT_EQUAL(r, 0);<br>
--<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (vram_info.max_allocation &gt; gtt=
-_info.heap_size/3) {<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; vram_info.max_allocation =3D gtt_info.heap_size/3;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; gtt_info.max_allocation =3D vram_info.max_allocation;<br>
--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
--<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_bo_alloc_wrap=
-(device_handle, vram_info.max_allocation, 4096,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_GEM_DOMAIN_VRAM, 0,=
- &amp;vram_max[0]);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CU_ASSERT_EQUAL(r, 0);<br>
-@@ -944,6 +935,10 @@ static void amdgpu_bo_eviction_test(void)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_GEM_DOMAIN_VRAM, 0,=
- &amp;vram_max[1]);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CU_ASSERT_EQUAL(r, 0);<br>
-&nbsp;<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_query_heap_info(device_h=
-andle, AMDGPU_GEM_DOMAIN_GTT,<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0, &amp;gtt_info);<br>
-+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CU_ASSERT_EQUAL(r, 0);<br>
-+<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_bo_alloc_wrap=
-(device_handle, gtt_info.max_allocation, 4096,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AMDGPU_GEM_DOMAIN_GTT, 0, =
-&amp;gtt_max[0]);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CU_ASSERT_EQUAL(r, 0);<br>
---<br>
-2.17.1<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2=
-F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D04%=
-7C01%7Calexander.deucher%40amd.com%7Cb3ce363db6e94aa1396308d9112727fc%7C3dd=
-8961fe4884e608e11a82d994e183d%7C0%7C0%7C637559682163619573%7CUnknown%7CTWFp=
-bGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%=
-7C1000&amp;amp;sdata=3Dd9uch8frkIAiVkdtaOHillKHngoVp8brn%2FxJuKatmYU%3D&amp=
-;amp;reserved=3D0">https://nam11.safelinks.protection.outlook.com/?url=3Dht=
-tps%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;da=
-ta=3D04%7C01%7Calexander.deucher%40amd.com%7Cb3ce363db6e94aa1396308d9112727=
-fc%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637559682163619573%7CUnknow=
-n%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI=
-6Mn0%3D%7C1000&amp;amp;sdata=3Dd9uch8frkIAiVkdtaOHillKHngoVp8brn%2FxJuKatmY=
-U%3D&amp;amp;reserved=3D0</a><br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_MN2PR12MB448860FFF944644EEA011C6CF7579MN2PR12MB4488namp_--
-
---===============0382683251==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index cc048c348a92..15006aafc630 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -10098,10 +10098,10 @@ static int validate_overlay(struct drm_atomic_state *state)
+ 		return 0;
+ 
+ 	/* Perform the bounds check to ensure the overlay plane covers the primary */
+-	if (primary_state->crtc_x < overlay_state->crtc_x ||
+-	    primary_state->crtc_y < overlay_state->crtc_y ||
+-	    primary_state->crtc_x + primary_state->crtc_w > overlay_state->crtc_x + overlay_state->crtc_w ||
+-	    primary_state->crtc_y + primary_state->crtc_h > overlay_state->crtc_y + overlay_state->crtc_h) {
++	if (primary_state->crtc_x + primary_state->crtc_w < overlay_state->crtc_x ||
++	    primary_state->crtc_x > overlay_state->crtc_x + overlay_state->crtc_w ||
++	    primary_state->crtc_y > overlay_state->crtc_y + overlay_state->crtc_h ||
++	    primary_state->crtc_y + primary_state->crtc_h < overlay_state->crtc_y) {
+ 		DRM_DEBUG_ATOMIC("Overlay plane is enabled with hardware cursor but does not fully cover primary plane\n");
+ 		return -EINVAL;
+ 	}
+-- 
+2.25.1
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0382683251==--
