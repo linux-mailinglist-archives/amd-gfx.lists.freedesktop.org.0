@@ -2,61 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F68A3770E9
-	for <lists+amd-gfx@lfdr.de>; Sat,  8 May 2021 11:31:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E16CB377184
+	for <lists+amd-gfx@lfdr.de>; Sat,  8 May 2021 13:52:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D5D86E873;
-	Sat,  8 May 2021 09:31:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5913A6E87B;
+	Sat,  8 May 2021 11:52:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com
- [IPv6:2a00:1450:4864:20::12d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FFD16E873
- for <amd-gfx@lists.freedesktop.org>; Sat,  8 May 2021 09:30:59 +0000 (UTC)
-Received: by mail-lf1-x12d.google.com with SMTP id c11so16200376lfi.9
- for <amd-gfx@lists.freedesktop.org>; Sat, 08 May 2021 02:30:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qtec.com; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=eWJyRyeQ5MxvA7qcuiyWtFi5pFj6BXtkfVg0lxOlM48=;
- b=ONor3CYJ+G3cplIPzRuAHbRye/FwGNd69CMsXxLB7DF1f7B+iE7S7GcA997J3Y/9zv
- 2Q6LVICRameG0dNDL9S1kiP45h7RO37u7mWg+QCzR6flp+jJg4iysGe40fU2ubu+MOs8
- l9CKAgwtYsJ8EmZFBe/8BpGNSatd1N/YDoS6/pmJwwMMa1px5rwKLILN4s97Z0VWo8lE
- tWpQGoChoQvXPXbjdpardWnm2H2H4VpXwFFjImjq++ugoYURb/LGFyyYhkc31Db7AJk7
- Nq4ll+ugY9Y+1YYSSZ5QQwQTYKwfEx5O8Q1AEkZhvfQ7pB+UXwBfy2iniKi14+MehD2b
- x4oQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=eWJyRyeQ5MxvA7qcuiyWtFi5pFj6BXtkfVg0lxOlM48=;
- b=dXBDoKfGTQRmqTVT4p/zrNq5sWMOvqsxNtjA9mInXiv4CN50Ypir1zPJYpeFAcT1YZ
- bRZeSogJYmmh6YjJ22TYQ9VuTVoPFgAYEMkhp8ux8fB6ieYRqw9xlkk0nNymbHAJQyGz
- tLun7MLAFcSRGeq4IFFedIKMKBDqrAjezA0cH7nQsd18nKAzgPFXyrxzjRyVptlzjyIp
- hHxnh0mwpsvTG2aJCigeDhpId+thoHKON0CKo5OieS4AgUgbSHU4AYNeeTKfdgW9DXQy
- esLiiaSeya0cjk8+x4WZ6M6ivgXtQHTK3Q53a/YBkaoUiRbyrWX2GE1CP92b4DphdcD6
- mz9g==
-X-Gm-Message-State: AOAM530H2S2zNFw2Hnttx/cI90K8ZCCk3lqgh9NPHjnD2Io2ILMfv/CB
- Li2zFLdFhLxJ1ihDafUad0CBnufOsgGqiaUxRTmBpg==
-X-Google-Smtp-Source: ABdhPJwcMrHQNEMqUJXEnpuVQuWQ1t9VzK8eBl/rXycSqJgd1R1UV/10l4P7xu9ewe9JGqzRWaWkrKxYz76Hoa3hH1A=
-X-Received: by 2002:a05:6512:304c:: with SMTP id
- b12mr9280009lfb.3.1620466257288; 
- Sat, 08 May 2021 02:30:57 -0700 (PDT)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2071.outbound.protection.outlook.com [40.107.237.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD2166E877
+ for <amd-gfx@lists.freedesktop.org>; Sat,  8 May 2021 11:52:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IT1SQLHDrYq3vLibjadPx/qAHaAorjwVu6BPG6AbXWVJR0K/+pX+rGhZ5gx8bqICO769GaT3dOgwzZnEc0ZqwxRAPyyiRPOja8F+InvuRQBl1ZHW6napBuqN1aZjVkouupIg561zaVPWcJrFr8vTBCrhbofok/KRGtZ9ankYgx1VXboQIaTc7HpuWL+l0dcb3bYY18vLK7btr/54zkvQFMi5tiTO+WRZsGqgocWWfjNZy+yn7dljliO1Qi25svYD6BvYrTb3dNd7uD2V7w10AOOmnlXvEVU3NZtb7CsNem0bLCuVc5LeQZ+GIkYBP4x0rDTVBxEKwbhOx7hPyR932g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xJaWxka/8tjQPo0YOPi9cYcg11p3WoC+zUU72nJjaj0=;
+ b=MdtdvcAcg+AQ6Qkw86e+omk5To/GEZ7UFRTndq37apzHYj/GnzYIQ8Z69juxWO3nDwMd/XBVA72k37SRXgAWhFOcM2M6dYfXJvPeSy8hJ0WYSkb/jYnCDbx33/inqaIf6cEFBVUEt7+C1TTqijON0yrOfuX4FqOPo1Rkr6mgpf+u/zllpcDfyxHkD1IZKyMR+78cyHFI0KPaxrqyhrTNKKPwmmG3OsdKLRdRQ8bbTuip9MhGT5BTCU19rgkrKa0LFIGLSAYTMJI6csEgfVtUSBkSwoc+81mpTos4LlsWsmwwNwtE0JJYDitiyLi5TD6LQwjoCvJUMiZryFjZaFy5Vg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xJaWxka/8tjQPo0YOPi9cYcg11p3WoC+zUU72nJjaj0=;
+ b=0owYdF7Wl9wxZoSzl4gdCf/wWSXG60ht5pLz1UIhI9SoUe7AJ/bWoicj7Hcq0uajD1K2RcXqmpxeHk0AMisMPyXvWuyAGVLMiitZ/q22sVs/3Y8oeRKe8fIYqsSZ9ZrFlzOBf3G13Va2xlnGdhw84SLh+tHlMhgHooRh0SbgbsE=
+Received: from MW4PR04CA0102.namprd04.prod.outlook.com (2603:10b6:303:83::17)
+ by MW3PR12MB4425.namprd12.prod.outlook.com (2603:10b6:303:5e::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Sat, 8 May
+ 2021 11:51:55 +0000
+Received: from CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:83:cafe::3e) by MW4PR04CA0102.outlook.office365.com
+ (2603:10b6:303:83::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25 via Frontend
+ Transport; Sat, 8 May 2021 11:51:55 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1NAM11FT064.mail.protection.outlook.com (10.13.175.77) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4108.25 via Frontend Transport; Sat, 8 May 2021 11:51:54 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Sat, 8 May 2021
+ 06:51:53 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Sat, 8 May 2021
+ 04:51:53 -0700
+Received: from z-bu18.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4 via Frontend
+ Transport; Sat, 8 May 2021 06:51:52 -0500
+From: Peng Ju Zhou <PengJu.Zhou@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH v3 01/13] drm/amdgpu: Indirect register access for Navi12 sriov
+Date: Sat, 8 May 2021 19:51:33 +0800
+Message-ID: <20210508115145.758-1-PengJu.Zhou@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20210318083236.43578-1-daniel@qtec.com>
- <MN2PR12MB37755DAAB03FC0065E98EF1183699@MN2PR12MB3775.namprd12.prod.outlook.com>
- <CADnq5_MMTBXt50sqJvYmXWn0uBALz2fNvpSrCfjSuMa99VLa=w@mail.gmail.com>
- <375f0915-83b3-c729-b95f-939d828d24d0@amd.com>
- <CAH1Ww+TNMpk-LYYaM=SG9XGK4wcGY3+w8rJzihUw=4EpzVV9EQ@mail.gmail.com>
- <aae87a0a-d643-8ee9-d0f8-e983f8613a88@gmail.com>
- <CADnq5_NbGz3UaXeTybZBeCSUwxaV8bNxKkaVwtLoZQGSvkbYYg@mail.gmail.com>
- <CAH1Ww+TSv3_LR_sf6hm_-i27=1Wb8Aay5FjOQq2Csh9jvKheCA@mail.gmail.com>
- <605b85ab-57ce-86ed-1899-8874450dd318@amd.com>
-In-Reply-To: <605b85ab-57ce-86ed-1899-8874450dd318@amd.com>
-From: Daniel Gomez <daniel@qtec.com>
-Date: Sat, 8 May 2021 11:30:46 +0200
-Message-ID: <CAH1Ww+QosqhDuK8JWnS_AK+DJd7Tf2uB7vnRSYNo_1bnn9tD_w@mail.gmail.com>
-Subject: Re: [PATCH] drm/radeon/ttm: Fix memory leak userptr pages
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c295e5dc-3c3f-495d-f348-08d91217ad49
+X-MS-TrafficTypeDiagnostic: MW3PR12MB4425:
+X-Microsoft-Antispam-PRVS: <MW3PR12MB442588357699A5C171494D56F8569@MW3PR12MB4425.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LogmoRiSAd0FiepLzIg/y/eHVU+1oyiS1+m1+o/ImHF0z5Q5MThPacB47FSqDpu+kaVaMBf/BdJsEoY9B2UQksxgD+AuI9RYqHZKMvAOFdfGLCv6bpAP4B0NzuNz13vozeBePDmdipdRr2wiAqvCXBbHE2w0G0DMrcy4wnAczkTNOnr9fRvlZ/Z/gsHwKv4Cyo8RSbl5wvs377r2Rr45XZzMKRbufqOt+KmYSH7NYgZAUI5v6e33QIbe8yYOFgH5UhH7uuqavWMSHXuDmQYHZiLGJ2ShxUhrby076mg+lbS77FQqlpF7XgTL9nYzP3W5fPu93P2IlWNcl0fWsN8W1k8QwNzD0/hSp5V3Y/kvFNJLanaAc7Vqbqe/wRZJiJBowXmyf5nCpJNBTlsczKeW3RY92O6HaG66JrvETM6LceCqzP63mQlVDxNGesr6FYEz4TbthvumjQ/Wr5CF7XmMa8AxHJW/EopsEhGED/0PR+p2LljKP3mszc9mpCsW1c3SfVdwl0EWfzBLRFWFAWyOp9KFRkYJyZfstVTDM7Wmu1T5DjW+JCLvznu+xOfRm9GB4iGl/+haAFekoWksva4+G6rfVDuD+/LKSPKPJAD9teNNg8Br70SKBDSA9grcCG/mmrmLh3mxL4ptASk9ZyDHRUthny/qJQRMGr11lmjQH2EiUYLU2Bjl1N3OtVbEgEBR
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(396003)(39850400004)(346002)(136003)(376002)(36840700001)(46966006)(7696005)(36860700001)(26005)(8936002)(82310400003)(36756003)(6666004)(2906002)(336012)(316002)(1076003)(30864003)(81166007)(8676002)(70586007)(478600001)(5660300002)(6916009)(47076005)(83380400001)(426003)(2616005)(356005)(70206006)(186003)(86362001)(4326008)(82740400003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2021 11:51:54.8839 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c295e5dc-3c3f-495d-f348-08d91217ad49
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4425
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,810 +102,320 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Felix Kuehling <felix.kuehling@amd.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>, "dagmcr@gmail.com" <dagmcr@gmail.com>,
- Alex Deucher <alexdeucher@gmail.com>
-Content-Type: multipart/mixed; boundary="===============1453516507=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1453516507==
-Content-Type: multipart/alternative; boundary="000000000000a2f2b305c1ce3317"
+Change RLCG/SOC15 register access interface to triage
+GC/MMHUB access from MMIO to RLCG.
 
---000000000000a2f2b305c1ce3317
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Peng Ju Zhou <PengJu.Zhou@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h       |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h   |  4 +-
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c    | 78 ++++++++++----------
+ drivers/gpu/drm/amd/amdgpu/soc15_common.h | 87 +++++++++++++----------
+ 4 files changed, 91 insertions(+), 79 deletions(-)
 
-Hi guys,
-
-
-On Wed, 7 Apr 2021 at 11:27, Christian K=C3=B6nig <christian.koenig@amd.com=
->
-wrote:
-
-> Am 07.04.21 um 09:47 schrieb Daniel Gomez:
-> > On Tue, 6 Apr 2021 at 22:56, Alex Deucher <alexdeucher@gmail.com> wrote=
-:
-> >> On Mon, Mar 22, 2021 at 6:34 AM Christian K=C3=B6nig
-> >> <ckoenig.leichtzumerken@gmail.com> wrote:
-> >>> Hi Daniel,
-> >>>
-> >>> Am 22.03.21 um 10:38 schrieb Daniel Gomez:
-> >>>> On Fri, 19 Mar 2021 at 21:29, Felix Kuehling <felix.kuehling@amd.com=
->
-> wrote:
-> >>>>> This caused a regression in kfdtest in a large-buffer stress test
-> after
-> >>>>> memory allocation for user pages fails:
-> >>>> I'm sorry to hear that. BTW, I guess you meant amdgpu leak patch and
-> >>>> not this one.
-> >>>> Just some background for the mem leak patch if helps to understand
-> this:
-> >>>> The leak was introduce here:
-> >>>>
-> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgit.k=
-ernel.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Ftorvalds%2Flinux.git%2Fcommi=
-t%2F%3Fid%3D0b988ca1c7c4c73983b4ea96ef7c2af2263c87eb&amp;data=3D04%7C01%7CC=
-hristian.Koenig%40amd.com%7C65d21b6f02da409ac7b508d8f9997367%7C3dd8961fe488=
-4e608e11a82d994e183d%7C0%7C0%7C637533784761980218%7CUnknown%7CTWFpbGZsb3d8e=
-yJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&am=
-p;sdata=3D%2FeOQf12NBkC3YGZ7QW66%2FT%2FpyM3DjEb9IMbqUvISMfo%3D&amp;reserved=
-=3D0
-> >>>> where the bound status was introduced for all drm drivers including
-> >>>> radeon and amdgpu. So this patch just reverts the logic to the
-> >>>> original code but keeping the bound status. In my case, the binding
-> >>>> code allocates the user pages memory and returns without bounding (a=
-t
-> >>>> amdgpu_gtt_mgr_has_gart_addr). So,
-> >>>> when the unbinding happens, the memory needs to be cleared to preven=
-t
-> the leak.
-> >>> Ah, now I understand what's happening here. Daniel your patch is not
-> >>> really correct.
-> >>>
-> >>> The problem is rather that we don't set the tt object to bound if it
-> >>> doesn't have a GTT address.
-> >>>
-> >>> Going to provide a patch for this.
-> >> Did this patch ever land?
-> > I don't think so but I might send a v2 following Christian's comment
-> > if you guys agree.
->
-> Somebody else already provided a patch which I reviewed, but I'm not
-> sure if that landed either.
->
-> > Also, the patch here is for radeon but the pagefault issue reported by
-> > Felix is affected by the amdgpu one:
-> >
-> > radeon patch: drm/radeon/ttm: Fix memory leak userptr pages
-> >
-> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpatch=
-work.kernel.org%2Fproject%2Fdri-devel%2Fpatch%2F20210318083236.43578-1-dani=
-el%40qtec.com%2F&amp;data=3D04%7C01%7CChristian.Koenig%40amd.com%7C65d21b6f=
-02da409ac7b508d8f9997367%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C63753=
-3784761980218%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiL=
-CJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DHSMK%2FqYz%2Bzz9qbKc%2FITU=
-WluBDeaW9YrgyH8p0L640%2F0%3D&amp;reserved=3D0
-> >
-> > amdgpu patch: drm/amdgpu/ttm: Fix memory leak userptr pages
-> >
-> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fpatch=
-work.kernel.org%2Fproject%2Fdri-devel%2Fpatch%2F20210317160840.36019-1-dani=
-el%40qtec.com%2F&amp;data=3D04%7C01%7CChristian.Koenig%40amd.com%7C65d21b6f=
-02da409ac7b508d8f9997367%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C63753=
-3784761980218%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiL=
-CJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DUsUZ4YjCSjHmzlPB07oTaGrsnt=
-TrQSwlGk%2BxUjwDiag%3D&amp;reserved=3D0
-> >
-> > I assume both need to be fixed with the same approach.
->
-> Yes correct. Let me double check where that fix went.
-
-
-This patch (actually, the memory leak fix for amdgpu not radeon) has landed
-in mainline and has been back-ported to the stable branches. I just want to
-verify with you if that=E2=80=99s okay and the NULL pointer issue reported =
-by Felix
-is fixed by this other patch:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/d=
-rivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c?id=3D3c3dc654333f6389803cdcaf03912e9=
-4173ae510
-
-Thanks,
-Daniel
-
->
->
-> Thanks,
-> Christian.
->
-> >
-> > Daniel
-> >> Alex
-> >>
-> >>> Regards,
-> >>> Christian.
-> >>>
-> >>>>> [17359.536303] amdgpu: init_user_pages: Failed to get user pages: -=
-16
-> >>>>> [17359.543746] BUG: kernel NULL pointer dereference, address:
-> 0000000000000000
-> >>>>> [17359.551494] #PF: supervisor read access in kernel mode
-> >>>>> [17359.557375] #PF: error_code(0x0000) - not-present page
-> >>>>> [17359.563247] PGD 0 P4D 0
-> >>>>> [17359.566514] Oops: 0000 [#1] SMP PTI
-> >>>>> [17359.570728] CPU: 8 PID: 5944 Comm: kfdtest Not tainted
-> 5.11.0-kfd-fkuehlin #193
-> >>>>> [17359.578760] Hardware name: ASUS All Series/X99-E WS/USB 3.1, BIO=
-S
-> 3201 06/17/2016
-> >>>>> [17359.586971] RIP: 0010:amdgpu_ttm_backend_unbind+0x52/0x110
-> [amdgpu]
-> >>>>> [17359.594075] Code: 48 39 c6 74 1b 8b 53 0c 48 8d bd 80 a1 ff ff e=
-8
-> 24 62 00 00 85 c0 0f 85 ab 00 00 00 c6 43 54 00 5b 5d c3 48 8b 46 10 8b 4=
-e
-> 50 <48> 8b 30 48 85 f6 74 ba 8b 50 0c 48 8b bf 80 a1 ff ff 83 e1 01 45
-> >>>>> [17359.614340] RSP: 0018:ffffa4764971fc98 EFLAGS: 00010206
-> >>>>> [17359.620315] RAX: 0000000000000000 RBX: ffff950e8d4edf00 RCX:
-> 0000000000000000
-> >>>>> [17359.628204] RDX: 0000000000000000 RSI: ffff950e8d4edf00 RDI:
-> ffff950eadec5e80
-> >>>>> [17359.636084] RBP: ffff950eadec5e80 R08: 0000000000000000 R09:
-> 0000000000000000
-> >>>>> [17359.643958] R10: 0000000000000246 R11: 0000000000000001 R12:
-> ffff950c03377800
-> >>>>> [17359.651833] R13: ffff950eadec5e80 R14: ffff950c03377858 R15:
-> 0000000000000000
-> >>>>> [17359.659701] FS:  00007febb20cb740(0000) GS:ffff950ebfc00000(0000=
-)
-> knlGS:0000000000000000
-> >>>>> [17359.668528] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> >>>>> [17359.675012] CR2: 0000000000000000 CR3: 00000006d700e005 CR4:
-> 00000000001706e0
-> >>>>> [17359.682883] Call Trace:
-> >>>>> [17359.686063]  amdgpu_ttm_backend_destroy+0x12/0x70 [amdgpu]
-> >>>>> [17359.692349]  ttm_bo_cleanup_memtype_use+0x37/0x60 [ttm]
-> >>>>> [17359.698307]  ttm_bo_release+0x278/0x5e0 [ttm]
-> >>>>> [17359.703385]  amdgpu_bo_unref+0x1a/0x30 [amdgpu]
-> >>>>> [17359.708701]  amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu+0x7e5/0x910
-> [amdgpu]
-> >>>>> [17359.716307]  kfd_ioctl_alloc_memory_of_gpu+0x11a/0x220 [amdgpu]
-> >>>>> [17359.723036]  kfd_ioctl+0x223/0x400 [amdgpu]
-> >>>>> [17359.728017]  ? kfd_dev_is_large_bar+0x90/0x90 [amdgpu]
-> >>>>> [17359.734152]  __x64_sys_ioctl+0x8b/0xd0
-> >>>>> [17359.738796]  do_syscall_64+0x2d/0x40
-> >>>>> [17359.743259]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-> >>>>> [17359.749205] RIP: 0033:0x7febb083b6d7
-> >>>>> [17359.753681] Code: b3 66 90 48 8b 05 b1 47 2d 00 64 c7 00 26 00 0=
-0
-> 00 48 c7 c0 ff ff ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 b8 10 00 00 00 0=
-f
-> 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 81 47 2d 00 f7 d8 64 89 01 48
-> >>>>> [17359.774340] RSP: 002b:00007ffdb5522cd8 EFLAGS: 00000202 ORIG_RAX=
-:
-> 0000000000000010
-> >>>>> [17359.782668] RAX: ffffffffffffffda RBX: 0000000000000001 RCX:
-> 00007febb083b6d7
-> >>>>> [17359.790566] RDX: 00007ffdb5522d60 RSI: 00000000c0284b16 RDI:
-> 0000000000000003
-> >>>>> [17359.798459] RBP: 00007ffdb5522d10 R08: 00007ffdb5522dd0 R09:
-> 00000000c4000004
-> >>>>> [17359.806352] R10: 0000000000000000 R11: 0000000000000202 R12:
-> 0000559416e4e2aa
-> >>>>> [17359.814251] R13: 0000000000000000 R14: 0000000000000021 R15:
-> 0000000000000000
-> >>>>> [17359.822140] Modules linked in: ip6table_filter ip6_tables
-> iptable_filter amdgpu x86_pkg_temp_thermal drm_ttm_helper ttm iommu_v2
-> gpu_sched ip_tables x_tables
-> >>>>> [17359.837776] CR2: 0000000000000000
-> >>>>> [17359.841888] ---[ end trace a6f27d64475b28c8 ]---
-> >>>>> [17359.847318] RIP: 0010:amdgpu_ttm_backend_unbind+0x52/0x110
-> [amdgpu]
-> >>>>> [17359.854479] Code: 48 39 c6 74 1b 8b 53 0c 48 8d bd 80 a1 ff ff e=
-8
-> 24 62 00 00 85 c0 0f 85 ab 00 00 00 c6 43 54 00 5b 5d c3 48 8b 46 10 8b 4=
-e
-> 50 <48> 8b 30 48 85 f6 74 ba 8b 50 0c 48 8b bf 80 a1 ff ff 83 e1 01 45
-> >>>>> [17359.874929] RSP: 0018:ffffa4764971fc98 EFLAGS: 00010206
-> >>>>> [17359.881014] RAX: 0000000000000000 RBX: ffff950e8d4edf00 RCX:
-> 0000000000000000
-> >>>>> [17359.889007] RDX: 0000000000000000 RSI: ffff950e8d4edf00 RDI:
-> ffff950eadec5e80
-> >>>>> [17359.897008] RBP: ffff950eadec5e80 R08: 0000000000000000 R09:
-> 0000000000000000
-> >>>>> [17359.905020] R10: 0000000000000246 R11: 0000000000000001 R12:
-> ffff950c03377800
-> >>>>> [17359.913034] R13: ffff950eadec5e80 R14: ffff950c03377858 R15:
-> 0000000000000000
-> >>>>> [17359.921050] FS:  00007febb20cb740(0000) GS:ffff950ebfc00000(0000=
-)
-> knlGS:0000000000000000
-> >>>>> [17359.930047] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> >>>>> [17359.936674] CR2: 0000000000000000 CR3: 00000006d700e005 CR4:
-> 00000000001706e0
-> >>>>   From what I understand, the init_user_pages fails (returns EBUSY)
-> and
-> >>>> the code goes to allocate_init_user_pages_failed where the unbind an=
-d
-> >>>> the userptr clear occurs.
-> >>>> Can we prevent this if we save the bounding status + userptr alloc? =
-so
-> >>>> the function amdgpu_ttm_backend_unbind returns without trying to cle=
-ar
-> >>>> the userptr memory?
-> >>>>
-> >>>> Something like:
-> >>>>
-> >>>> amdgpu_ttm_backend_bind:
-> >>>>       if (gtt->userptr) {
-> >>>>           r =3D amdgpu_ttm_tt_pin_userptr(bdev, ttm);
-> >>>>           if (r) ...
-> >>>>          gtt->sg_table =3D true;
-> >>>>      }
-> >>>>
-> >>>> amdgpu_ttm_backend_unbind:
-> >>>> if (gtt->sg_table) {
-> >>>>           if (gtt->user_ptr) ...
-> >>>> }
-> >>>>
-> >>>> If you agree, I'll send a v2 patch. Otherwise, maybe we could return
-> >>>> within amdgpu_ttm_tt_unpin_userptr if memory hasn't been allocated.
-> >>>>
-> >>>> Any other ideas?
-> >>>>
-> >>>> Regards,
-> >>>> Daniel
-> >>>>
-> >>>>> Reverting this patch fixes the problem for me.
-> >>>>>
-> >>>>> Regards,
-> >>>>>      Felix
-> >>>>>
-> >>>>> On 2021-03-18 10:57 p.m., Alex Deucher wrote:
-> >>>>>> Applied.  Thanks!
-> >>>>>>
-> >>>>>> Alex
-> >>>>>>
-> >>>>>> On Thu, Mar 18, 2021 at 5:00 AM Koenig, Christian
-> >>>>>> <Christian.Koenig@amd.com> wrote:
-> >>>>>>> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> >>>>>>> ________________________________
-> >>>>>>> Von: Daniel Gomez <daniel@qtec.com>
-> >>>>>>> Gesendet: Donnerstag, 18. M=C3=A4rz 2021 09:32
-> >>>>>>> Cc: dagmcr@gmail.com <dagmcr@gmail.com>; Daniel Gomez <
-> daniel@qtec.com>; Deucher, Alexander <Alexander.Deucher@amd.com>; Koenig,
-> Christian <Christian.Koenig@amd.com>; David Airlie <airlied@linux.ie>;
-> Daniel Vetter <daniel@ffwll.ch>; amd-gfx@lists.freedesktop.org <
-> amd-gfx@lists.freedesktop.org>; dri-devel@lists.freedesktop.org <
-> dri-devel@lists.freedesktop.org>; linux-kernel@vger.kernel.org <
-> linux-kernel@vger.kernel.org>
-> >>>>>>> Betreff: [PATCH] drm/radeon/ttm: Fix memory leak userptr pages
-> >>>>>>>
-> >>>>>>> If userptr pages have been pinned but not bounded,
-> >>>>>>> they remain uncleared.
-> >>>>>>>
-> >>>>>>> Signed-off-by: Daniel Gomez <daniel@qtec.com>
-> >>>>>>> ---
-> >>>>>>>     drivers/gpu/drm/radeon/radeon_ttm.c | 5 +++--
-> >>>>>>>     1 file changed, 3 insertions(+), 2 deletions(-)
-> >>>>>>>
-> >>>>>>> diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c
-> b/drivers/gpu/drm/radeon/radeon_ttm.c
-> >>>>>>> index e8c66d10478f..bbcc6264d48f 100644
-> >>>>>>> --- a/drivers/gpu/drm/radeon/radeon_ttm.c
-> >>>>>>> +++ b/drivers/gpu/drm/radeon/radeon_ttm.c
-> >>>>>>> @@ -485,13 +485,14 @@ static void radeon_ttm_backend_unbind(struc=
-t
-> ttm_bo_device *bdev, struct ttm_tt
-> >>>>>>>             struct radeon_ttm_tt *gtt =3D (void *)ttm;
-> >>>>>>>             struct radeon_device *rdev =3D radeon_get_rdev(bdev);
-> >>>>>>>
-> >>>>>>> +       if (gtt->userptr)
-> >>>>>>> +               radeon_ttm_tt_unpin_userptr(bdev, ttm);
-> >>>>>>> +
-> >>>>>>>             if (!gtt->bound)
-> >>>>>>>                     return;
-> >>>>>>>
-> >>>>>>>             radeon_gart_unbind(rdev, gtt->offset, ttm->num_pages)=
-;
-> >>>>>>>
-> >>>>>>> -       if (gtt->userptr)
-> >>>>>>> -               radeon_ttm_tt_unpin_userptr(bdev, ttm);
-> >>>>>>>             gtt->bound =3D false;
-> >>>>>>>     }
-> >>>>>>>
-> >>>>>>> --
-> >>>>>>> 2.30.2
-> >>>>>>>
-> >>>>>>> _______________________________________________
-> >>>>>>> dri-devel mailing list
-> >>>>>>> dri-devel@lists.freedesktop.org
-> >>>>>>>
-> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists=
-.freedesktop.org%2Fmailman%2Flistinfo%2Fdri-devel&amp;data=3D04%7C01%7CChri=
-stian.Koenig%40amd.com%7C65d21b6f02da409ac7b508d8f9997367%7C3dd8961fe4884e6=
-08e11a82d994e183d%7C0%7C0%7C637533784761980218%7CUnknown%7CTWFpbGZsb3d8eyJW=
-IjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;s=
-data=3DaU9ZAl66EOLKphjWFPXJPR%2BTM%2BZeeMv%2BVJC6vliEqrs%3D&amp;reserved=3D=
-0
-> >>>>>> _______________________________________________
-> >>>>>> dri-devel mailing list
-> >>>>>> dri-devel@lists.freedesktop.org
-> >>>>>>
-> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists=
-.freedesktop.org%2Fmailman%2Flistinfo%2Fdri-devel&amp;data=3D04%7C01%7CChri=
-stian.Koenig%40amd.com%7C65d21b6f02da409ac7b508d8f9997367%7C3dd8961fe4884e6=
-08e11a82d994e183d%7C0%7C0%7C637533784761980218%7CUnknown%7CTWFpbGZsb3d8eyJW=
-IjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;s=
-data=3DaU9ZAl66EOLKphjWFPXJPR%2BTM%2BZeeMv%2BVJC6vliEqrs%3D&amp;reserved=3D=
-0
-> >>>> _______________________________________________
-> >>>> amd-gfx mailing list
-> >>>> amd-gfx@lists.freedesktop.org
-> >>>>
-> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists=
-.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D04%7C01%7CChrist=
-ian.Koenig%40amd.com%7C65d21b6f02da409ac7b508d8f9997367%7C3dd8961fe4884e608=
-e11a82d994e183d%7C0%7C0%7C637533784761980218%7CUnknown%7CTWFpbGZsb3d8eyJWIj=
-oiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sda=
-ta=3DUSmYbhfkSfPcE1npvsMfRwBr9Ijresh1fH4cAeNEr2M%3D&amp;reserved=3D0
->
->
-
---000000000000a2f2b305c1ce3317
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">Hi guys,</div><div dir=3D"auto"><br></div><div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, 7 Apr 20=
-21 at 11:27, Christian K=C3=B6nig &lt;<a href=3D"mailto:christian.koenig@am=
-d.com">christian.koenig@amd.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;bo=
-rder-left-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)">=
-Am 07.04.21 um 09:47 schrieb Daniel Gomez:<br>
-&gt; On Tue, 6 Apr 2021 at 22:56, Alex Deucher &lt;<a href=3D"mailto:alexde=
-ucher@gmail.com" target=3D"_blank">alexdeucher@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; On Mon, Mar 22, 2021 at 6:34 AM Christian K=C3=B6nig<br>
-&gt;&gt; &lt;<a href=3D"mailto:ckoenig.leichtzumerken@gmail.com" target=3D"=
-_blank">ckoenig.leichtzumerken@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;&gt; Hi Daniel,<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Am 22.03.21 um 10:38 schrieb Daniel Gomez:<br>
-&gt;&gt;&gt;&gt; On Fri, 19 Mar 2021 at 21:29, Felix Kuehling &lt;<a href=
-=3D"mailto:felix.kuehling@amd.com" target=3D"_blank">felix.kuehling@amd.com=
-</a>&gt; wrote:<br>
-&gt;&gt;&gt;&gt;&gt; This caused a regression in kfdtest in a large-buffer =
-stress test after<br>
-&gt;&gt;&gt;&gt;&gt; memory allocation for user pages fails:<br>
-&gt;&gt;&gt;&gt; I&#39;m sorry to hear that. BTW, I guess you meant amdgpu =
-leak patch and<br>
-&gt;&gt;&gt;&gt; not this one.<br>
-&gt;&gt;&gt;&gt; Just some background for the mem leak patch if helps to un=
-derstand this:<br>
-&gt;&gt;&gt;&gt; The leak was introduce here:<br>
-&gt;&gt;&gt;&gt; <a href=3D"https://nam11.safelinks.protection.outlook.com/=
-?url=3Dhttps%3A%2F%2Fgit.kernel.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Fto=
-rvalds%2Flinux.git%2Fcommit%2F%3Fid%3D0b988ca1c7c4c73983b4ea96ef7c2af2263c8=
-7eb&amp;amp;data=3D04%7C01%7CChristian.Koenig%40amd.com%7C65d21b6f02da409ac=
-7b508d8f9997367%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C63753378476198=
-0218%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik=
-1haWwiLCJXVCI6Mn0%3D%7C1000&amp;amp;sdata=3D%2FeOQf12NBkC3YGZ7QW66%2FT%2Fpy=
-M3DjEb9IMbqUvISMfo%3D&amp;amp;reserved=3D0" rel=3D"noreferrer" target=3D"_b=
-lank">https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fg=
-it.kernel.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Ftorvalds%2Flinux.git%2Fc=
-ommit%2F%3Fid%3D0b988ca1c7c4c73983b4ea96ef7c2af2263c87eb&amp;amp;data=3D04%=
-7C01%7CChristian.Koenig%40amd.com%7C65d21b6f02da409ac7b508d8f9997367%7C3dd8=
-961fe4884e608e11a82d994e183d%7C0%7C0%7C637533784761980218%7CUnknown%7CTWFpb=
-GZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7=
-C1000&amp;amp;sdata=3D%2FeOQf12NBkC3YGZ7QW66%2FT%2FpyM3DjEb9IMbqUvISMfo%3D&=
-amp;amp;reserved=3D0</a><br>
-&gt;&gt;&gt;&gt; where the bound status was introduced for all drm drivers =
-including<br>
-&gt;&gt;&gt;&gt; radeon and amdgpu. So this patch just reverts the logic to=
- the<br>
-&gt;&gt;&gt;&gt; original code but keeping the bound status. In my case, th=
-e binding<br>
-&gt;&gt;&gt;&gt; code allocates the user pages memory and returns without b=
-ounding (at<br>
-&gt;&gt;&gt;&gt; amdgpu_gtt_mgr_has_gart_addr). So,<br>
-&gt;&gt;&gt;&gt; when the unbinding happens, the memory needs to be cleared=
- to prevent the leak.<br>
-&gt;&gt;&gt; Ah, now I understand what&#39;s happening here. Daniel your pa=
-tch is not<br>
-&gt;&gt;&gt; really correct.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; The problem is rather that we don&#39;t set the tt object to b=
-ound if it<br>
-&gt;&gt;&gt; doesn&#39;t have a GTT address.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Going to provide a patch for this.<br>
-&gt;&gt; Did this patch ever land?<br>
-&gt; I don&#39;t think so but I might send a v2 following Christian&#39;s c=
-omment<br>
-&gt; if you guys agree.<br>
-<br>
-Somebody else already provided a patch which I reviewed, but I&#39;m not <b=
-r>
-sure if that landed either.<br>
-<br>
-&gt; Also, the patch here is for radeon but the pagefault issue reported by=
-<br>
-&gt; Felix is affected by the amdgpu one:<br>
-&gt;<br>
-&gt; radeon patch: drm/radeon/ttm: Fix memory leak userptr pages<br>
-&gt; <a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps=
-%3A%2F%2Fpatchwork.kernel.org%2Fproject%2Fdri-devel%2Fpatch%2F2021031808323=
-6.43578-1-daniel%40qtec.com%2F&amp;amp;data=3D04%7C01%7CChristian.Koenig%40=
-amd.com%7C65d21b6f02da409ac7b508d8f9997367%7C3dd8961fe4884e608e11a82d994e18=
-3d%7C0%7C0%7C637533784761980218%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDA=
-iLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;amp;sdata=3DHSMK=
-%2FqYz%2Bzz9qbKc%2FITUWluBDeaW9YrgyH8p0L640%2F0%3D&amp;amp;reserved=3D0" re=
-l=3D"noreferrer" target=3D"_blank">https://nam11.safelinks.protection.outlo=
-ok.com/?url=3Dhttps%3A%2F%2Fpatchwork.kernel.org%2Fproject%2Fdri-devel%2Fpa=
-tch%2F20210318083236.43578-1-daniel%40qtec.com%2F&amp;amp;data=3D04%7C01%7C=
-Christian.Koenig%40amd.com%7C65d21b6f02da409ac7b508d8f9997367%7C3dd8961fe48=
-84e608e11a82d994e183d%7C0%7C0%7C637533784761980218%7CUnknown%7CTWFpbGZsb3d8=
-eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&a=
-mp;amp;sdata=3DHSMK%2FqYz%2Bzz9qbKc%2FITUWluBDeaW9YrgyH8p0L640%2F0%3D&amp;a=
-mp;reserved=3D0</a><br>
-&gt;<br>
-&gt; amdgpu patch: drm/amdgpu/ttm: Fix memory leak userptr pages<br>
-&gt; <a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps=
-%3A%2F%2Fpatchwork.kernel.org%2Fproject%2Fdri-devel%2Fpatch%2F2021031716084=
-0.36019-1-daniel%40qtec.com%2F&amp;amp;data=3D04%7C01%7CChristian.Koenig%40=
-amd.com%7C65d21b6f02da409ac7b508d8f9997367%7C3dd8961fe4884e608e11a82d994e18=
-3d%7C0%7C0%7C637533784761980218%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDA=
-iLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;amp;sdata=3DUsUZ=
-4YjCSjHmzlPB07oTaGrsntTrQSwlGk%2BxUjwDiag%3D&amp;amp;reserved=3D0" rel=3D"n=
-oreferrer" target=3D"_blank">https://nam11.safelinks.protection.outlook.com=
-/?url=3Dhttps%3A%2F%2Fpatchwork.kernel.org%2Fproject%2Fdri-devel%2Fpatch%2F=
-20210317160840.36019-1-daniel%40qtec.com%2F&amp;amp;data=3D04%7C01%7CChrist=
-ian.Koenig%40amd.com%7C65d21b6f02da409ac7b508d8f9997367%7C3dd8961fe4884e608=
-e11a82d994e183d%7C0%7C0%7C637533784761980218%7CUnknown%7CTWFpbGZsb3d8eyJWIj=
-oiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;amp=
-;sdata=3DUsUZ4YjCSjHmzlPB07oTaGrsntTrQSwlGk%2BxUjwDiag%3D&amp;amp;reserved=
-=3D0</a><br>
-&gt;<br>
-&gt; I assume both need to be fixed with the same approach.<br>
-<br>
-Yes correct. Let me double check where that fix went.</blockquote><div dir=
-=3D"auto"><br></div><div dir=3D"auto">This patch (actually, the memory leak=
- fix for amdgpu not radeon) has landed in mainline and has been back-ported=
- to the stable branches. I just want to verify with you if that=E2=80=99s o=
-kay and the NULL pointer issue reported by Felix is fixed by this other pat=
-ch:</div><div dir=3D"auto"><br></div><div dir=3D"auto"><div><a href=3D"http=
-s://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drive=
-rs/gpu/drm/amd/amdgpu/amdgpu_ttm.c?id=3D3c3dc654333f6389803cdcaf03912e94173=
-ae510">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/c=
-ommit/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c?id=3D3c3dc654333f6389803cdcaf=
-03912e94173ae510</a></div><br></div><div dir=3D"auto">Thanks,</div><div dir=
-=3D"auto">Daniel</div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-left:1=
-ex;border-left-color:rgb(204,204,204)" dir=3D"auto"><br>
-<br>
-Thanks,<br>
-Christian.<br>
-<br>
-&gt;<br>
-&gt; Daniel<br>
-&gt;&gt; Alex<br>
-&gt;&gt;<br>
-&gt;&gt;&gt; Regards,<br>
-&gt;&gt;&gt; Christian.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; [17359.536303] amdgpu: init_user_pages: Failed to get =
-user pages: -16<br>
-&gt;&gt;&gt;&gt;&gt; [17359.543746] BUG: kernel NULL pointer dereference, a=
-ddress: 0000000000000000<br>
-&gt;&gt;&gt;&gt;&gt; [17359.551494] #PF: supervisor read access in kernel m=
-ode<br>
-&gt;&gt;&gt;&gt;&gt; [17359.557375] #PF: error_code(0x0000) - not-present p=
-age<br>
-&gt;&gt;&gt;&gt;&gt; [17359.563247] PGD 0 P4D 0<br>
-&gt;&gt;&gt;&gt;&gt; [17359.566514] Oops: 0000 [#1] SMP PTI<br>
-&gt;&gt;&gt;&gt;&gt; [17359.570728] CPU: 8 PID: 5944 Comm: kfdtest Not tain=
-ted 5.11.0-kfd-fkuehlin #193<br>
-&gt;&gt;&gt;&gt;&gt; [17359.578760] Hardware name: ASUS All Series/X99-E WS=
-/USB 3.1, BIOS 3201 06/17/2016<br>
-&gt;&gt;&gt;&gt;&gt; [17359.586971] RIP: 0010:amdgpu_ttm_backend_unbind+0x5=
-2/0x110 [amdgpu]<br>
-&gt;&gt;&gt;&gt;&gt; [17359.594075] Code: 48 39 c6 74 1b 8b 53 0c 48 8d bd =
-80 a1 ff ff e8 24 62 00 00 85 c0 0f 85 ab 00 00 00 c6 43 54 00 5b 5d c3 48 =
-8b 46 10 8b 4e 50 &lt;48&gt; 8b 30 48 85 f6 74 ba 8b 50 0c 48 8b bf 80 a1 f=
-f ff 83 e1 01 45<br>
-&gt;&gt;&gt;&gt;&gt; [17359.614340] RSP: 0018:ffffa4764971fc98 EFLAGS: 0001=
-0206<br>
-&gt;&gt;&gt;&gt;&gt; [17359.620315] RAX: 0000000000000000 RBX: ffff950e8d4e=
-df00 RCX: 0000000000000000<br>
-&gt;&gt;&gt;&gt;&gt; [17359.628204] RDX: 0000000000000000 RSI: ffff950e8d4e=
-df00 RDI: ffff950eadec5e80<br>
-&gt;&gt;&gt;&gt;&gt; [17359.636084] RBP: ffff950eadec5e80 R08: 000000000000=
-0000 R09: 0000000000000000<br>
-&gt;&gt;&gt;&gt;&gt; [17359.643958] R10: 0000000000000246 R11: 000000000000=
-0001 R12: ffff950c03377800<br>
-&gt;&gt;&gt;&gt;&gt; [17359.651833] R13: ffff950eadec5e80 R14: ffff950c0337=
-7858 R15: 0000000000000000<br>
-&gt;&gt;&gt;&gt;&gt; [17359.659701] FS:=C2=A0 00007febb20cb740(0000) GS:fff=
-f950ebfc00000(0000) knlGS:0000000000000000<br>
-&gt;&gt;&gt;&gt;&gt; [17359.668528] CS:=C2=A0 0010 DS: 0000 ES: 0000 CR0: 0=
-000000080050033<br>
-&gt;&gt;&gt;&gt;&gt; [17359.675012] CR2: 0000000000000000 CR3: 00000006d700=
-e005 CR4: 00000000001706e0<br>
-&gt;&gt;&gt;&gt;&gt; [17359.682883] Call Trace:<br>
-&gt;&gt;&gt;&gt;&gt; [17359.686063]=C2=A0 amdgpu_ttm_backend_destroy+0x12/0=
-x70 [amdgpu]<br>
-&gt;&gt;&gt;&gt;&gt; [17359.692349]=C2=A0 ttm_bo_cleanup_memtype_use+0x37/0=
-x60 [ttm]<br>
-&gt;&gt;&gt;&gt;&gt; [17359.698307]=C2=A0 ttm_bo_release+0x278/0x5e0 [ttm]<=
-br>
-&gt;&gt;&gt;&gt;&gt; [17359.703385]=C2=A0 amdgpu_bo_unref+0x1a/0x30 [amdgpu=
-]<br>
-&gt;&gt;&gt;&gt;&gt; [17359.708701]=C2=A0 amdgpu_amdkfd_gpuvm_alloc_memory_=
-of_gpu+0x7e5/0x910 [amdgpu]<br>
-&gt;&gt;&gt;&gt;&gt; [17359.716307]=C2=A0 kfd_ioctl_alloc_memory_of_gpu+0x1=
-1a/0x220 [amdgpu]<br>
-&gt;&gt;&gt;&gt;&gt; [17359.723036]=C2=A0 kfd_ioctl+0x223/0x400 [amdgpu]<br=
->
-&gt;&gt;&gt;&gt;&gt; [17359.728017]=C2=A0 ? kfd_dev_is_large_bar+0x90/0x90 =
-[amdgpu]<br>
-&gt;&gt;&gt;&gt;&gt; [17359.734152]=C2=A0 __x64_sys_ioctl+0x8b/0xd0<br>
-&gt;&gt;&gt;&gt;&gt; [17359.738796]=C2=A0 do_syscall_64+0x2d/0x40<br>
-&gt;&gt;&gt;&gt;&gt; [17359.743259]=C2=A0 entry_SYSCALL_64_after_hwframe+0x=
-44/0xa9<br>
-&gt;&gt;&gt;&gt;&gt; [17359.749205] RIP: 0033:0x7febb083b6d7<br>
-&gt;&gt;&gt;&gt;&gt; [17359.753681] Code: b3 66 90 48 8b 05 b1 47 2d 00 64 =
-c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 b8 =
-10 00 00 00 0f 05 &lt;48&gt; 3d 01 f0 ff ff 73 01 c3 48 8b 0d 81 47 2d 00 f=
-7 d8 64 89 01 48<br>
-&gt;&gt;&gt;&gt;&gt; [17359.774340] RSP: 002b:00007ffdb5522cd8 EFLAGS: 0000=
-0202 ORIG_RAX: 0000000000000010<br>
-&gt;&gt;&gt;&gt;&gt; [17359.782668] RAX: ffffffffffffffda RBX: 000000000000=
-0001 RCX: 00007febb083b6d7<br>
-&gt;&gt;&gt;&gt;&gt; [17359.790566] RDX: 00007ffdb5522d60 RSI: 00000000c028=
-4b16 RDI: 0000000000000003<br>
-&gt;&gt;&gt;&gt;&gt; [17359.798459] RBP: 00007ffdb5522d10 R08: 00007ffdb552=
-2dd0 R09: 00000000c4000004<br>
-&gt;&gt;&gt;&gt;&gt; [17359.806352] R10: 0000000000000000 R11: 000000000000=
-0202 R12: 0000559416e4e2aa<br>
-&gt;&gt;&gt;&gt;&gt; [17359.814251] R13: 0000000000000000 R14: 000000000000=
-0021 R15: 0000000000000000<br>
-&gt;&gt;&gt;&gt;&gt; [17359.822140] Modules linked in: ip6table_filter ip6_=
-tables iptable_filter amdgpu x86_pkg_temp_thermal drm_ttm_helper ttm iommu_=
-v2 gpu_sched ip_tables x_tables<br>
-&gt;&gt;&gt;&gt;&gt; [17359.837776] CR2: 0000000000000000<br>
-&gt;&gt;&gt;&gt;&gt; [17359.841888] ---[ end trace a6f27d64475b28c8 ]---<br=
->
-&gt;&gt;&gt;&gt;&gt; [17359.847318] RIP: 0010:amdgpu_ttm_backend_unbind+0x5=
-2/0x110 [amdgpu]<br>
-&gt;&gt;&gt;&gt;&gt; [17359.854479] Code: 48 39 c6 74 1b 8b 53 0c 48 8d bd =
-80 a1 ff ff e8 24 62 00 00 85 c0 0f 85 ab 00 00 00 c6 43 54 00 5b 5d c3 48 =
-8b 46 10 8b 4e 50 &lt;48&gt; 8b 30 48 85 f6 74 ba 8b 50 0c 48 8b bf 80 a1 f=
-f ff 83 e1 01 45<br>
-&gt;&gt;&gt;&gt;&gt; [17359.874929] RSP: 0018:ffffa4764971fc98 EFLAGS: 0001=
-0206<br>
-&gt;&gt;&gt;&gt;&gt; [17359.881014] RAX: 0000000000000000 RBX: ffff950e8d4e=
-df00 RCX: 0000000000000000<br>
-&gt;&gt;&gt;&gt;&gt; [17359.889007] RDX: 0000000000000000 RSI: ffff950e8d4e=
-df00 RDI: ffff950eadec5e80<br>
-&gt;&gt;&gt;&gt;&gt; [17359.897008] RBP: ffff950eadec5e80 R08: 000000000000=
-0000 R09: 0000000000000000<br>
-&gt;&gt;&gt;&gt;&gt; [17359.905020] R10: 0000000000000246 R11: 000000000000=
-0001 R12: ffff950c03377800<br>
-&gt;&gt;&gt;&gt;&gt; [17359.913034] R13: ffff950eadec5e80 R14: ffff950c0337=
-7858 R15: 0000000000000000<br>
-&gt;&gt;&gt;&gt;&gt; [17359.921050] FS:=C2=A0 00007febb20cb740(0000) GS:fff=
-f950ebfc00000(0000) knlGS:0000000000000000<br>
-&gt;&gt;&gt;&gt;&gt; [17359.930047] CS:=C2=A0 0010 DS: 0000 ES: 0000 CR0: 0=
-000000080050033<br>
-&gt;&gt;&gt;&gt;&gt; [17359.936674] CR2: 0000000000000000 CR3: 00000006d700=
-e005 CR4: 00000000001706e0<br>
-&gt;&gt;&gt;&gt;=C2=A0 =C2=A0From what I understand, the init_user_pages fa=
-ils (returns EBUSY) and<br>
-&gt;&gt;&gt;&gt; the code goes to allocate_init_user_pages_failed where the=
- unbind and<br>
-&gt;&gt;&gt;&gt; the userptr clear occurs.<br>
-&gt;&gt;&gt;&gt; Can we prevent this if we save the bounding status + userp=
-tr alloc? so<br>
-&gt;&gt;&gt;&gt; the function amdgpu_ttm_backend_unbind returns without try=
-ing to clear<br>
-&gt;&gt;&gt;&gt; the userptr memory?<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Something like:<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; amdgpu_ttm_backend_bind:<br>
-&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (gtt-&gt;userptr) {<br>
-&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0r =3D amdgpu_ttm_t=
-t_pin_userptr(bdev, ttm);<br>
-&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (r) ...<br>
-&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 gtt-&gt;sg_table =3D tru=
-e;<br>
-&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 }<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; amdgpu_ttm_backend_unbind:<br>
-&gt;&gt;&gt;&gt; if (gtt-&gt;sg_table) {<br>
-&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (gtt-&gt;user_p=
-tr) ...<br>
-&gt;&gt;&gt;&gt; }<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; If you agree, I&#39;ll send a v2 patch. Otherwise, maybe w=
-e could return<br>
-&gt;&gt;&gt;&gt; within amdgpu_ttm_tt_unpin_userptr if memory hasn&#39;t be=
-en allocated.<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Any other ideas?<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Regards,<br>
-&gt;&gt;&gt;&gt; Daniel<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; Reverting this patch fixes the problem for me.<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; Regards,<br>
-&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 Felix<br>
-&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt; On 2021-03-18 10:57 p.m., Alex Deucher wrote:<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Applied.=C2=A0 Thanks!<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; Alex<br>
-&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt; On Thu, Mar 18, 2021 at 5:00 AM Koenig, Christian<=
-br>
-&gt;&gt;&gt;&gt;&gt;&gt; &lt;<a href=3D"mailto:Christian.Koenig@amd.com" ta=
-rget=3D"_blank">Christian.Koenig@amd.com</a>&gt; wrote:<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; Reviewed-by: Christian K=C3=B6nig &lt;<a href=
-=3D"mailto:christian.koenig@amd.com" target=3D"_blank">christian.koenig@amd=
-.com</a>&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; ________________________________<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; Von: Daniel Gomez &lt;<a href=3D"mailto:daniel=
-@qtec.com" target=3D"_blank">daniel@qtec.com</a>&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; Gesendet: Donnerstag, 18. M=C3=A4rz 2021 09:32=
-<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; Cc: <a href=3D"mailto:dagmcr@gmail.com" target=
-=3D"_blank">dagmcr@gmail.com</a> &lt;<a href=3D"mailto:dagmcr@gmail.com" ta=
-rget=3D"_blank">dagmcr@gmail.com</a>&gt;; Daniel Gomez &lt;<a href=3D"mailt=
-o:daniel@qtec.com" target=3D"_blank">daniel@qtec.com</a>&gt;; Deucher, Alex=
-ander &lt;<a href=3D"mailto:Alexander.Deucher@amd.com" target=3D"_blank">Al=
-exander.Deucher@amd.com</a>&gt;; Koenig, Christian &lt;<a href=3D"mailto:Ch=
-ristian.Koenig@amd.com" target=3D"_blank">Christian.Koenig@amd.com</a>&gt;;=
- David Airlie &lt;<a href=3D"mailto:airlied@linux.ie" target=3D"_blank">air=
-lied@linux.ie</a>&gt;; Daniel Vetter &lt;<a href=3D"mailto:daniel@ffwll.ch"=
- target=3D"_blank">daniel@ffwll.ch</a>&gt;; <a href=3D"mailto:amd-gfx@lists=
-.freedesktop.org" target=3D"_blank">amd-gfx@lists.freedesktop.org</a> &lt;<=
-a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D"_blank">amd-gfx@l=
-ists.freedesktop.org</a>&gt;; <a href=3D"mailto:dri-devel@lists.freedesktop=
-.org" target=3D"_blank">dri-devel@lists.freedesktop.org</a> &lt;<a href=3D"=
-mailto:dri-devel@lists.freedesktop.org" target=3D"_blank">dri-devel@lists.f=
-reedesktop.org</a>&gt;; <a href=3D"mailto:linux-kernel@vger.kernel.org" tar=
-get=3D"_blank">linux-kernel@vger.kernel.org</a> &lt;<a href=3D"mailto:linux=
--kernel@vger.kernel.org" target=3D"_blank">linux-kernel@vger.kernel.org</a>=
-&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; Betreff: [PATCH] drm/radeon/ttm: Fix memory le=
-ak userptr pages<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; If userptr pages have been pinned but not boun=
-ded,<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; they remain uncleared.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; Signed-off-by: Daniel Gomez &lt;<a href=3D"mai=
-lto:daniel@qtec.com" target=3D"_blank">daniel@qtec.com</a>&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; ---<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0drivers/gpu/drm/radeon/rade=
-on_ttm.c | 5 +++--<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A01 file changed, 3 insertion=
-s(+), 2 deletions(-)<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; diff --git a/drivers/gpu/drm/radeon/radeon_ttm=
-.c b/drivers/gpu/drm/radeon/radeon_ttm.c<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; index e8c66d10478f..bbcc6264d48f 100644<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; --- a/drivers/gpu/drm/radeon/radeon_ttm.c<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; +++ b/drivers/gpu/drm/radeon/radeon_ttm.c<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; @@ -485,13 +485,14 @@ static void radeon_ttm_b=
-ackend_unbind(struct ttm_bo_device *bdev, struct ttm_tt<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0struct radeon_ttm_tt *gtt =3D (void *)ttm;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0struct radeon_device *rdev =3D radeon_get_rdev(bdev);<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0if (gtt-&gt;userpt=
-r)<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0radeon_ttm_tt_unpin_userptr(bdev, ttm);<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; +<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0if (!gtt-&gt;bound)<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0radeon_gart_unbind(rdev, gtt-&gt;offset, ttm-&gt;num_pages);<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0if (gtt-&gt;userpt=
-r)<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0radeon_ttm_tt_unpin_userptr(bdev, ttm);<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0gtt-&gt;bound =3D false;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0}<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; --<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; 2.30.2<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; ______________________________________________=
-_<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; dri-devel mailing list<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; <a href=3D"mailto:dri-devel@lists.freedesktop.=
-org" target=3D"_blank">dri-devel@lists.freedesktop.org</a><br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; <a href=3D"https://nam11.safelinks.protection.=
-outlook.com/?url=3Dhttps%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo=
-%2Fdri-devel&amp;amp;data=3D04%7C01%7CChristian.Koenig%40amd.com%7C65d21b6f=
-02da409ac7b508d8f9997367%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C63753=
-3784761980218%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiL=
-CJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;amp;sdata=3DaU9ZAl66EOLKphjWFPXJPR=
-%2BTM%2BZeeMv%2BVJC6vliEqrs%3D&amp;amp;reserved=3D0" rel=3D"noreferrer" tar=
-get=3D"_blank">https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%=
-3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Fdri-devel&amp;amp;data=
-=3D04%7C01%7CChristian.Koenig%40amd.com%7C65d21b6f02da409ac7b508d8f9997367%=
-7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637533784761980218%7CUnknown%7=
-CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn=
-0%3D%7C1000&amp;amp;sdata=3DaU9ZAl66EOLKphjWFPXJPR%2BTM%2BZeeMv%2BVJC6vliEq=
-rs%3D&amp;amp;reserved=3D0</a><br>
-&gt;&gt;&gt;&gt;&gt;&gt; _______________________________________________<br=
->
-&gt;&gt;&gt;&gt;&gt;&gt; dri-devel mailing list<br>
-&gt;&gt;&gt;&gt;&gt;&gt; <a href=3D"mailto:dri-devel@lists.freedesktop.org"=
- target=3D"_blank">dri-devel@lists.freedesktop.org</a><br>
-&gt;&gt;&gt;&gt;&gt;&gt; <a href=3D"https://nam11.safelinks.protection.outl=
-ook.com/?url=3Dhttps%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Fd=
-ri-devel&amp;amp;data=3D04%7C01%7CChristian.Koenig%40amd.com%7C65d21b6f02da=
-409ac7b508d8f9997367%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637533784=
-761980218%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBT=
-iI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;amp;sdata=3DaU9ZAl66EOLKphjWFPXJPR%2BT=
-M%2BZeeMv%2BVJC6vliEqrs%3D&amp;amp;reserved=3D0" rel=3D"noreferrer" target=
-=3D"_blank">https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%=
-2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Fdri-devel&amp;amp;data=3D=
-04%7C01%7CChristian.Koenig%40amd.com%7C65d21b6f02da409ac7b508d8f9997367%7C3=
-dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637533784761980218%7CUnknown%7CTW=
-FpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3=
-D%7C1000&amp;amp;sdata=3DaU9ZAl66EOLKphjWFPXJPR%2BTM%2BZeeMv%2BVJC6vliEqrs%=
-3D&amp;amp;reserved=3D0</a><br>
-&gt;&gt;&gt;&gt; _______________________________________________<br>
-&gt;&gt;&gt;&gt; amd-gfx mailing list<br>
-&gt;&gt;&gt;&gt; <a href=3D"mailto:amd-gfx@lists.freedesktop.org" target=3D=
-"_blank">amd-gfx@lists.freedesktop.org</a><br>
-&gt;&gt;&gt;&gt; <a href=3D"https://nam11.safelinks.protection.outlook.com/=
-?url=3Dhttps%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&a=
-mp;amp;data=3D04%7C01%7CChristian.Koenig%40amd.com%7C65d21b6f02da409ac7b508=
-d8f9997367%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637533784761980218%=
-7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWw=
-iLCJXVCI6Mn0%3D%7C1000&amp;amp;sdata=3DUSmYbhfkSfPcE1npvsMfRwBr9Ijresh1fH4c=
-AeNEr2M%3D&amp;amp;reserved=3D0" rel=3D"noreferrer" target=3D"_blank">https=
-://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.freede=
-sktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D04%7C01%7CChristian=
-.Koenig%40amd.com%7C65d21b6f02da409ac7b508d8f9997367%7C3dd8961fe4884e608e11=
-a82d994e183d%7C0%7C0%7C637533784761980218%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiM=
-C4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;amp;sd=
-ata=3DUSmYbhfkSfPcE1npvsMfRwBr9Ijresh1fH4cAeNEr2M%3D&amp;amp;reserved=3D0</=
-a><br>
-<br>
-</blockquote></div></div>
-
---000000000000a2f2b305c1ce3317--
-
---===============1453516507==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index 125b25a5ce5b..c3c75c1f628f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -1144,6 +1144,7 @@ int emu_soc_asic_init(struct amdgpu_device *adev);
+  * Registers read & write functions.
+  */
+ #define AMDGPU_REGS_NO_KIQ    (1<<1)
++#define AMDGPU_REGS_RLC	(1<<2)
+ 
+ #define RREG32_NO_KIQ(reg) amdgpu_device_rreg(adev, (reg), AMDGPU_REGS_NO_KIQ)
+ #define WREG32_NO_KIQ(reg, v) amdgpu_device_wreg(adev, (reg), (v), AMDGPU_REGS_NO_KIQ)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
+index 4fc2ce8ce8ab..7a4775ab6804 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_rlc.h
+@@ -127,8 +127,8 @@ struct amdgpu_rlc_funcs {
+ 	void (*reset)(struct amdgpu_device *adev);
+ 	void (*start)(struct amdgpu_device *adev);
+ 	void (*update_spm_vmid)(struct amdgpu_device *adev, unsigned vmid);
+-	void (*rlcg_wreg)(struct amdgpu_device *adev, u32 offset, u32 v, u32 flag);
+-	u32 (*rlcg_rreg)(struct amdgpu_device *adev, u32 offset, u32 flag);
++	void (*rlcg_wreg)(struct amdgpu_device *adev, u32 offset, u32 v, u32 acc_flags, u32 hwip);
++	u32 (*rlcg_rreg)(struct amdgpu_device *adev, u32 offset, u32 acc_flags, u32 hwip);
+ 	bool (*is_rlcg_access_range)(struct amdgpu_device *adev, uint32_t reg);
+ };
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 49fd10a15707..6603cc3466b8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -1427,38 +1427,36 @@ static const struct soc15_reg_golden golden_settings_gc_10_1_2[] =
+ 	SOC15_REG_GOLDEN_VALUE(GC, 0, mmUTCL1_CTRL, 0xffffffff, 0x00800000)
+ };
+ 
+-static bool gfx_v10_is_rlcg_rw(struct amdgpu_device *adev, u32 offset, uint32_t *flag, bool write)
+-{
+-	/* always programed by rlcg, only for gc */
+-	if (offset == SOC15_REG_OFFSET(GC, 0, mmRLC_CSIB_ADDR_HI) ||
+-	    offset == SOC15_REG_OFFSET(GC, 0, mmRLC_CSIB_ADDR_LO) ||
+-	    offset == SOC15_REG_OFFSET(GC, 0, mmRLC_CSIB_LENGTH) ||
+-	    offset == SOC15_REG_OFFSET(GC, 0, mmGRBM_GFX_CNTL) ||
+-	    offset == SOC15_REG_OFFSET(GC, 0, mmGRBM_GFX_INDEX) ||
+-	    offset == SOC15_REG_OFFSET(GC, 0, mmCP_ME_CNTL)) {
+-		if (!amdgpu_sriov_reg_indirect_gc(adev))
+-			*flag = GFX_RLCG_GC_WRITE_OLD;
+-		else
+-			*flag = write ? GFX_RLCG_GC_WRITE : GFX_RLCG_GC_READ;
++static bool gfx_v10_get_rlcg_flag(struct amdgpu_device *adev, u32 acc_flags, u32 hwip,
++				 int write, u32 *rlcg_flag)
++{
++	switch (hwip) {
++	case GC_HWIP:
++		if (amdgpu_sriov_reg_indirect_gc(adev)) {
++			*rlcg_flag = write ? GFX_RLCG_GC_WRITE : GFX_RLCG_GC_READ;
+ 
+-		return true;
+-	}
++			return true;
++		/* only in new version, AMDGPU_REGS_NO_KIQ and AMDGPU_REGS_RLC enabled simultaneously */
++		} else if ((acc_flags & AMDGPU_REGS_RLC) && !(acc_flags & AMDGPU_REGS_NO_KIQ)) {
++			*rlcg_flag = GFX_RLCG_GC_WRITE_OLD;
+ 
+-	/* currently support gc read/write, mmhub write */
+-	if (offset >= SOC15_REG_OFFSET(GC, 0, mmSDMA0_DEC_START) &&
+-	    offset <= SOC15_REG_OFFSET(GC, 0, mmRLC_GTS_OFFSET_MSB)) {
+-		if (amdgpu_sriov_reg_indirect_gc(adev))
+-			*flag = write ? GFX_RLCG_GC_WRITE : GFX_RLCG_GC_READ;
+-		else
+-			return false;
+-	} else {
+-		if (amdgpu_sriov_reg_indirect_mmhub(adev))
+-			*flag = GFX_RLCG_MMHUB_WRITE;
+-		else
+-			return false;
++			return true;
++		}
++
++		break;
++	case MMHUB_HWIP:
++		if (amdgpu_sriov_reg_indirect_mmhub(adev) &&
++		    (acc_flags & AMDGPU_REGS_RLC) && write) {
++			*rlcg_flag = GFX_RLCG_MMHUB_WRITE;
++			return true;
++		}
++
++		break;
++	default:
++		DRM_INFO("Not program register by RLCG\n");
+ 	}
+ 
+-	return true;
++	return false;
+ }
+ 
+ static u32 gfx_v10_rlcg_rw(struct amdgpu_device *adev, u32 offset, u32 v, uint32_t flag)
+@@ -1518,36 +1516,34 @@ static u32 gfx_v10_rlcg_rw(struct amdgpu_device *adev, u32 offset, u32 v, uint32
+ 	return ret;
+ }
+ 
+-static void gfx_v10_rlcg_wreg(struct amdgpu_device *adev, u32 offset, u32 value, u32 flag)
++static void gfx_v10_rlcg_wreg(struct amdgpu_device *adev, u32 offset, u32 value, u32 acc_flags, u32 hwip)
+ {
+-	uint32_t rlcg_flag;
++	u32 rlcg_flag;
+ 
+-	if (amdgpu_sriov_fullaccess(adev) &&
+-	    gfx_v10_is_rlcg_rw(adev, offset, &rlcg_flag, 1)) {
++	if (!amdgpu_sriov_runtime(adev) &&
++	    gfx_v10_get_rlcg_flag(adev, acc_flags, hwip, 1, &rlcg_flag)) {
+ 		gfx_v10_rlcg_rw(adev, offset, value, rlcg_flag);
+-
+ 		return;
+ 	}
+-	if (flag & AMDGPU_REGS_NO_KIQ)
++
++	if (acc_flags & AMDGPU_REGS_NO_KIQ)
+ 		WREG32_NO_KIQ(offset, value);
+ 	else
+ 		WREG32(offset, value);
+ }
+ 
+-static u32 gfx_v10_rlcg_rreg(struct amdgpu_device *adev, u32 offset, u32 flag)
++static u32 gfx_v10_rlcg_rreg(struct amdgpu_device *adev, u32 offset, u32 acc_flags, u32 hwip)
+ {
+-	uint32_t rlcg_flag;
++	u32 rlcg_flag;
+ 
+-	if (amdgpu_sriov_fullaccess(adev) &&
+-	    gfx_v10_is_rlcg_rw(adev, offset, &rlcg_flag, 0))
++	if (!amdgpu_sriov_runtime(adev) &&
++	    gfx_v10_get_rlcg_flag(adev, acc_flags, hwip, 0, &rlcg_flag))
+ 		return gfx_v10_rlcg_rw(adev, offset, 0, rlcg_flag);
+ 
+-	if (flag & AMDGPU_REGS_NO_KIQ)
++	if (acc_flags & AMDGPU_REGS_NO_KIQ)
+ 		return RREG32_NO_KIQ(offset);
+ 	else
+ 		return RREG32(offset);
+-
+-	return 0;
+ }
+ 
+ static const struct soc15_reg_golden golden_settings_gc_10_1_nv14[] =
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15_common.h b/drivers/gpu/drm/amd/amdgpu/soc15_common.h
+index 14bd794bbea6..c781808e4dc3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15_common.h
++++ b/drivers/gpu/drm/amd/amdgpu/soc15_common.h
+@@ -27,28 +27,51 @@
+ /* Register Access Macros */
+ #define SOC15_REG_OFFSET(ip, inst, reg)	(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg)
+ 
++#define __WREG32_SOC15_RLC__(reg, value, flag, hwip) \
++	((amdgpu_sriov_vf(adev) && adev->gfx.rlc.funcs->rlcg_wreg) ? \
++	 adev->gfx.rlc.funcs->rlcg_wreg(adev, reg, value, flag, hwip) : \
++	 WREG32(reg, value))
++
++#define __RREG32_SOC15_RLC__(reg, flag, hwip) \
++	((amdgpu_sriov_vf(adev) && adev->gfx.rlc.funcs->rlcg_rreg) ? \
++	 adev->gfx.rlc.funcs->rlcg_rreg(adev, reg, flag, hwip) : \
++	 RREG32(reg))
++
+ #define WREG32_FIELD15(ip, idx, reg, field, val)	\
+-	WREG32(adev->reg_offset[ip##_HWIP][idx][mm##reg##_BASE_IDX] + mm##reg,	\
+-	(RREG32(adev->reg_offset[ip##_HWIP][idx][mm##reg##_BASE_IDX] + mm##reg)	\
+-	& ~REG_FIELD_MASK(reg, field)) | (val) << REG_FIELD_SHIFT(reg, field))
++	 __WREG32_SOC15_RLC__(adev->reg_offset[ip##_HWIP][idx][mm##reg##_BASE_IDX] + mm##reg,	\
++				(__RREG32_SOC15_RLC__( \
++					adev->reg_offset[ip##_HWIP][idx][mm##reg##_BASE_IDX] + mm##reg, \
++					0, ip##_HWIP) & \
++				~REG_FIELD_MASK(reg, field)) | (val) << REG_FIELD_SHIFT(reg, field), \
++			      0, ip##_HWIP)
+ 
+ #define RREG32_SOC15(ip, inst, reg) \
+-	RREG32(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg)
++	__RREG32_SOC15_RLC__(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg, \
++			 0, ip##_HWIP)
++
++#define RREG32_SOC15_IP(ip, reg) __RREG32_SOC15_RLC__(reg, 0, ip##_HWIP)
+ 
+ #define RREG32_SOC15_NO_KIQ(ip, inst, reg) \
+-	RREG32_NO_KIQ(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg)
++	__RREG32_SOC15_RLC__(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg, \
++			 AMDGPU_REGS_NO_KIQ, ip##_HWIP)
+ 
+ #define RREG32_SOC15_OFFSET(ip, inst, reg, offset) \
+-	RREG32((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg) + offset)
++	 __RREG32_SOC15_RLC__((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg) + offset, 0, ip##_HWIP)
+ 
+ #define WREG32_SOC15(ip, inst, reg, value) \
+-	WREG32((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg), value)
++	 __WREG32_SOC15_RLC__((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg), \
++			  value, 0, ip##_HWIP)
++
++#define WREG32_SOC15_IP(ip, reg, value) \
++	 __WREG32_SOC15_RLC__(reg, value, 0, ip##_HWIP)
+ 
+ #define WREG32_SOC15_NO_KIQ(ip, inst, reg, value) \
+-	WREG32_NO_KIQ((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg), value)
++	__WREG32_SOC15_RLC__(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg, \
++			     value, AMDGPU_REGS_NO_KIQ, ip##_HWIP)
+ 
+ #define WREG32_SOC15_OFFSET(ip, inst, reg, offset, value) \
+-	WREG32((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg) + offset, value)
++	 __WREG32_SOC15_RLC__((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg) + offset, \
++			  value, 0, ip##_HWIP)
+ 
+ #define SOC15_WAIT_ON_RREG(ip, inst, reg, expected_value, mask) \
+ ({	int ret = 0;						\
+@@ -77,12 +100,7 @@
+ })
+ 
+ #define WREG32_RLC(reg, value) \
+-	do { \
+-		if (adev->gfx.rlc.funcs->rlcg_wreg) \
+-			adev->gfx.rlc.funcs->rlcg_wreg(adev, reg, value, 0); \
+-		else \
+-			WREG32(reg, value);	\
+-	} while (0)
++	__WREG32_SOC15_RLC__(reg, value, AMDGPU_REGS_RLC, GC_HWIP)
+ 
+ #define WREG32_RLC_EX(prefix, reg, value) \
+ 	do {							\
+@@ -108,24 +126,19 @@
+ 		}	\
+ 	} while (0)
+ 
++/* shadow the registers in the callback function */
+ #define WREG32_SOC15_RLC_SHADOW(ip, inst, reg, value) \
+-	WREG32_RLC((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg), value)
++	__WREG32_SOC15_RLC__((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg), value, AMDGPU_REGS_RLC, GC_HWIP)
+ 
++/* for GC only */
+ #define RREG32_RLC(reg) \
+-	(adev->gfx.rlc.funcs->rlcg_rreg ? \
+-		adev->gfx.rlc.funcs->rlcg_rreg(adev, reg, 0) : RREG32(reg))
+-
+-#define WREG32_RLC_NO_KIQ(reg, value) \
+-	do { \
+-		if (adev->gfx.rlc.funcs->rlcg_wreg) \
+-			adev->gfx.rlc.funcs->rlcg_wreg(adev, reg, value, AMDGPU_REGS_NO_KIQ); \
+-		else \
+-			WREG32_NO_KIQ(reg, value);	\
+-	} while (0)
++	__RREG32_SOC15_RLC__(reg, AMDGPU_REGS_RLC, GC_HWIP)
++
++#define WREG32_RLC_NO_KIQ(reg, value, hwip) \
++	__WREG32_SOC15_RLC__(reg, value, AMDGPU_REGS_NO_KIQ | AMDGPU_REGS_RLC, hwip)
+ 
+-#define RREG32_RLC_NO_KIQ(reg) \
+-	(adev->gfx.rlc.funcs->rlcg_rreg ? \
+-		adev->gfx.rlc.funcs->rlcg_rreg(adev, reg, AMDGPU_REGS_NO_KIQ) : RREG32_NO_KIQ(reg))
++#define RREG32_RLC_NO_KIQ(reg, hwip) \
++	__RREG32_SOC15_RLC__(reg, AMDGPU_REGS_NO_KIQ | AMDGPU_REGS_RLC, hwip)
+ 
+ #define WREG32_SOC15_RLC_SHADOW_EX(prefix, ip, inst, reg, value) \
+ 	do {							\
+@@ -146,12 +159,12 @@
+ 	} while (0)
+ 
+ #define RREG32_SOC15_RLC(ip, inst, reg) \
+-	RREG32_RLC(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg)
++	__RREG32_SOC15_RLC__(adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg, AMDGPU_REGS_RLC, ip##_HWIP)
+ 
+ #define WREG32_SOC15_RLC(ip, inst, reg, value) \
+ 	do {							\
+ 		uint32_t target_reg = adev->reg_offset[ip##_HWIP][0][reg##_BASE_IDX] + reg;\
+-		WREG32_RLC(target_reg, value); \
++		__WREG32_SOC15_RLC__(target_reg, value, AMDGPU_REGS_RLC, ip##_HWIP); \
+ 	} while (0)
+ 
+ #define WREG32_SOC15_RLC_EX(prefix, ip, inst, reg, value) \
+@@ -161,14 +174,16 @@
+ 	} while (0)
+ 
+ #define WREG32_FIELD15_RLC(ip, idx, reg, field, val)   \
+-	WREG32_RLC((adev->reg_offset[ip##_HWIP][idx][mm##reg##_BASE_IDX] + mm##reg), \
+-	(RREG32_RLC(adev->reg_offset[ip##_HWIP][idx][mm##reg##_BASE_IDX] + mm##reg) \
+-	& ~REG_FIELD_MASK(reg, field)) | (val) << REG_FIELD_SHIFT(reg, field))
++	__WREG32_SOC15_RLC__((adev->reg_offset[ip##_HWIP][idx][mm##reg##_BASE_IDX] + mm##reg), \
++			     (__RREG32_SOC15_RLC__(adev->reg_offset[ip##_HWIP][idx][mm##reg##_BASE_IDX] + mm##reg, \
++						   AMDGPU_REGS_RLC, ip##_HWIP) & \
++			      ~REG_FIELD_MASK(reg, field)) | (val) << REG_FIELD_SHIFT(reg, field), \
++			     AMDGPU_REGS_RLC, ip##_HWIP)
+ 
+ #define WREG32_SOC15_OFFSET_RLC(ip, inst, reg, offset, value) \
+-	WREG32_RLC(((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg) + offset), value)
++	__WREG32_SOC15_RLC__((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg) + offset, value, AMDGPU_REGS_RLC, ip##_HWIP)
+ 
+ #define RREG32_SOC15_OFFSET_RLC(ip, inst, reg, offset) \
+-	RREG32_RLC(((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg) + offset))
++	__RREG32_SOC15_RLC__((adev->reg_offset[ip##_HWIP][inst][reg##_BASE_IDX] + reg) + offset, AMDGPU_REGS_RLC, ip##_HWIP)
+ 
+ #endif
+-- 
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1453516507==--
