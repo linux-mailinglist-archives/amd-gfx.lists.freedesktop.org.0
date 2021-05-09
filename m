@@ -1,55 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF521377765
-	for <lists+amd-gfx@lfdr.de>; Sun,  9 May 2021 17:42:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83992377768
+	for <lists+amd-gfx@lfdr.de>; Sun,  9 May 2021 17:42:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D54CE6E1F6;
-	Sun,  9 May 2021 15:42:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 776686E20F;
+	Sun,  9 May 2021 15:42:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 594 seconds by postgrey-1.36 at gabe;
- Sat, 08 May 2021 18:30:05 UTC
-Received: from magratgarlick.emantor.de (magratgarlick.emantor.de
- [IPv6:2a01:4f8:c17:c88::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 946856E0EE;
- Sat,  8 May 2021 18:30:05 +0000 (UTC)
-Received: by magratgarlick.emantor.de (Postfix, from userid 114)
- id CD059125A81; Sat,  8 May 2021 20:20:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=czerwinskis.de;
- s=mail; t=1620498006;
- bh=eTcUQwqKOuKmD2QbJtpZOH7NjK31efH/FQy8a+iwiSA=;
- h=From:To:Cc:Subject:Date:From;
- b=Um36VnS5dntn186tQ7CL537Op6H+nn0a486NpOBL20Qw1ELKhyaRLKCuKaSmQyCZ8
- a7so3bIRuLguc6UieK7Y5AX1Ei/4TSw/AFgvlsXpbOh82Flx1BCNjWH6iIfPgkGp2V
- 03GRuvsXFkRTJskMWiD84CodkgEy/MTToADnVqGI=
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
- magratgarlick.emantor.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
- DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,URIBL_BLOCKED
- autolearn=unavailable autolearn_force=no version=3.4.2
-Received: from localhost (unknown [IPv6:2001:9e8:73:702:c0d3:dbff:fefe:ff70])
- by magratgarlick.emantor.de (Postfix) with ESMTPSA id 3BE5C125A80;
- Sat,  8 May 2021 20:20:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=czerwinskis.de;
- s=mail; t=1620498003;
- bh=eTcUQwqKOuKmD2QbJtpZOH7NjK31efH/FQy8a+iwiSA=;
- h=From:To:Cc:Subject:Date:From;
- b=bxD2sC729WZWz4PWcg8D6L/D+rFjOl1PK7xdH1Dnxx+IoPpMimiHpPeGSCz9o9Uge
- AJ+QdvQRXxbtUif+1DbkVyBubb8HmQDV/GimrSLtPqsV7nJD+T2usK4aj1yuIUYthX
- AjNSFqwqVBW1aoAqjedKmoOg75HBkThKKNQ8R+JI=
-From: Rouven Czerwinski <rouven@czerwinskis.de>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH] drm/amd/display: remove unused function
- dc_link_perform_link_training
-Date: Sat,  8 May 2021 20:19:51 +0200
-Message-Id: <20210508181951.129548-1-rouven@czerwinskis.de>
-X-Mailer: git-send-email 2.31.1
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com
+ [IPv6:2607:f8b0:4864:20::529])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6364C6E1CE
+ for <amd-gfx@lists.freedesktop.org>; Sun,  9 May 2021 12:11:09 +0000 (UTC)
+Received: by mail-pg1-x529.google.com with SMTP id y32so11331504pga.11
+ for <amd-gfx@lists.freedesktop.org>; Sun, 09 May 2021 05:11:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=rgnivCnwUOL+7jUiwYwX1I74kp4hGBvTbYjp5pejkHE=;
+ b=aXY8W1aSADd3h7KTimcqLEAaFMPpxUt1bfmOiH1rQeEY2mFqYxliGk1fK2H/9DHYCu
+ ODSijyR5MXCOqnkMqnHDSdogm6l8PytZk8todvMt3ZQ1ppdUGardJasoDpknHv0KfmO5
+ /12WpYEu4xVkDnLro024lI4aCCQJ80LwPk2+ec9qF7xpoXTGlQvfImcrVkA2IGW+wpUh
+ a96Z7TpqWkmXUDoMwNcSz1sX+F+QemOtgIKT1hPkSst+uulEUJvJXTgVA8lbUBueaIAE
+ eupLgvuKhh4MCNdV+Oi6xVPuSq0Ga55OPng0YYi95/Gq0nxngWpn+fBHwyeUKPmr0lus
+ XEIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=rgnivCnwUOL+7jUiwYwX1I74kp4hGBvTbYjp5pejkHE=;
+ b=cn+kt398YinbKs0R97k6ig23/bHLeGbnjqJ/MSBWhYZMey2+/Iu6mYU3CPJHU1jc4e
+ bIRT4mSWKSByVDW1TukMeh1Oj5L1X6MHaEOokfgpuh89ga/acmuXSWAVyM20TYrWlvv5
+ h4W/wDhHu888W3ObhIVEuJxf4KHKB9bk6eJUThfbmV9rYsp5gDo83Lwbb4fv0bhRnlsv
+ jFV0T4jGQ3vJ6p9TNejRa5M5696dTaAjNh9ta+GVV9yUjNpOxdoIlRlb8t2bU04olPw7
+ SND3c8+TyBEPZWme0XvN0DRM9CF3ct+LR/EkB4Ydzz98lci0coBHYGTfec/MgEkGPNzu
+ zCvg==
+X-Gm-Message-State: AOAM530KfKzNQUSbwQD34PTtZInHFOVkbmp5AWueFcZgPx4DkYiXnOPA
+ AUMHWOA6PXsWuURW5vcvcFY=
+X-Google-Smtp-Source: ABdhPJwCNMY37pXoAhszbNse9uNUm+L2/gxVBAPvQtc7Xrc2z/CaEkBkDPeCVhc4iloobnBW80KSsA==
+X-Received: by 2002:a62:1c0f:0:b029:25f:ba3c:9cc0 with SMTP id
+ c15-20020a621c0f0000b029025fba3c9cc0mr19637319pfc.56.1620562268641; 
+ Sun, 09 May 2021 05:11:08 -0700 (PDT)
+Received: from localhost.localdomain ([104.200.131.246])
+ by smtp.gmail.com with ESMTPSA id g13sm9505146pfi.18.2021.05.09.05.11.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 09 May 2021 05:11:08 -0700 (PDT)
+From: youling257 <youling257@gmail.com>
+To: qingqing.zhuo@amd.com
+Subject: Re: [PATCH 2/2] Revert "Revert "drm/amdgpu: Ensure that the modifier
+ requested is supported by plane.""
+Date: Sun,  9 May 2021 20:10:55 +0800
+Message-Id: <20210509121055.24728-1-youling257@gmail.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210414233533.24012-2-qingqing.zhuo@amd.com>
+References: <20210414233533.24012-2-qingqing.zhuo@amd.com>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Sun, 09 May 2021 15:42:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -63,67 +68,15 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rouven Czerwinski <r.czerwinski@pengutronix.de>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Rouven Czerwinski <rouven@czerwinskis.de>, amd-gfx@lists.freedesktop.org,
- kernel@pengutronix.de
+Cc: markyacoub@chromium.org, Rodrigo.Siqueira@amd.com,
+ amd-gfx@lists.freedesktop.org, daniel.wheeler@amd.com, bas@basnieuwenhuizen.nl,
+ alexander.deucher@amd.com, nicholas.kazlauskas@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This function is not used anywhere, remove it. It was added in
-40dd6bd376a4 ("drm/amd/display: Linux Set/Read link rate and lane count
-through debugfs") and moved in fe798de53a7a ("drm/amd/display: Move link
-functions from dc to dc_link"), but a user is missing.
-
-Signed-off-by: Rouven Czerwinski <r.czerwinski@pengutronix.de>
----
- drivers/gpu/drm/amd/display/dc/core/dc_link.c | 13 -------------
- drivers/gpu/drm/amd/display/dc/dc_link.h      |  3 ---
- 2 files changed, 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index 3fb0cebd6938..55c5cf2264b3 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -3553,19 +3553,6 @@ void dc_link_set_drive_settings(struct dc *dc,
- 	dc_link_dp_set_drive_settings(dc->links[i], lt_settings);
- }
- 
--void dc_link_perform_link_training(struct dc *dc,
--				   struct dc_link_settings *link_setting,
--				   bool skip_video_pattern)
--{
--	int i;
--
--	for (i = 0; i < dc->link_count; i++)
--		dc_link_dp_perform_link_training(
--			dc->links[i],
--			link_setting,
--			skip_video_pattern);
--}
--
- void dc_link_set_preferred_link_settings(struct dc *dc,
- 					 struct dc_link_settings *link_setting,
- 					 struct dc_link *link)
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
-index fc5622ffec3d..45c927cd27ab 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_link.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
-@@ -363,9 +363,6 @@ bool dc_link_is_hdcp22(struct dc_link *link, enum signal_type signal);
- void dc_link_set_drive_settings(struct dc *dc,
- 				struct link_training_settings *lt_settings,
- 				const struct dc_link *link);
--void dc_link_perform_link_training(struct dc *dc,
--				   struct dc_link_settings *link_setting,
--				   bool skip_video_pattern);
- void dc_link_set_preferred_link_settings(struct dc *dc,
- 					 struct dc_link_settings *link_setting,
- 					 struct dc_link *link);
--- 
-2.31.1
-
+I using amd 3400g running with android-x86, this patch is a bad commit when i use android-x86 on amdgpu.
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
