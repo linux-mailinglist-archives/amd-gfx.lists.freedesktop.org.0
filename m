@@ -2,58 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEBB8377766
-	for <lists+amd-gfx@lfdr.de>; Sun,  9 May 2021 17:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9FE5377773
+	for <lists+amd-gfx@lfdr.de>; Sun,  9 May 2021 17:53:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBF826E20A;
-	Sun,  9 May 2021 15:42:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD9D76E226;
+	Sun,  9 May 2021 15:53:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
- [IPv6:2607:f8b0:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 980216E1F6;
- Sun,  9 May 2021 14:50:40 +0000 (UTC)
-Received: by mail-pf1-x435.google.com with SMTP id b15so11890058pfl.4;
- Sun, 09 May 2021 07:50:40 -0700 (PDT)
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com
+ [IPv6:2607:f8b0:4864:20::32f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E2066E226
+ for <amd-gfx@lists.freedesktop.org>; Sun,  9 May 2021 15:53:09 +0000 (UTC)
+Received: by mail-ot1-x32f.google.com with SMTP id
+ u19-20020a0568302493b02902d61b0d29adso11481269ots.10
+ for <amd-gfx@lists.freedesktop.org>; Sun, 09 May 2021 08:53:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=bz8P1nZoUMT1v+PZjFbkPen/qOCExDvSHfDWKtBldgY=;
- b=k/Efj0VxOLnEitzgW/jLeQUTvNCDM1rnJkA1jWgkvJx+ic7PPM1mFNamQy/29LQiBb
- 6S0WQjY5cEvp0fgqqFNO5Xpj30M0Sl1MQL2do3pekttEaR62JYdXpxCYiS/ZjZSl0gnC
- Wa+Ykz/2O1A1wedeTI5ql780tHgdegHObqerCSdMkFh8PN4VyLpz4dZ/IbfuM72YXrl+
- 1KVSnSURz8NGBy/sbZYFxbXm7/99Yl37EjYrPpFEcgjzbZpup8acOatrRmVBeq2D7odX
- mmBt6WjjHOQI9Yl1wKYRwGDZYOHPOUnIBp1rp3EzW1ydhKw+5QrQ82y20XDBh3/ZB1V8
- WldQ==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=dATx1wjj0Z53Rq4bLdtp/Zi4E4zS2rFOkCq9fFzzQIY=;
+ b=dn4GHdJi5eXn+M3wbtv34RwqboyDSlhlj9dwuGVxycTj5Q3VJ8d0b/IplaMSWrlf34
+ o0+2HS8Y5IU/r877bN0dXVN2Z0ZQUAInd+TZsdx2h477A6uDgkLR0mfQBjWYqeczv2iM
+ CaeGdCuQXtEKTzmCUS00VN+yywDWkF2WPKkcG4ZVIP361+lkE7fWNkWsdEOTKt6+eHnC
+ mKfNjiW852ffhnGqJKj/eckSTqyRhc3j525Lfrjh5T3sdKlim6m+kVU2LHjM5MfKCxF9
+ 2fO+331/HgixhursXJEcctnH3/wtX0qTTT8bo27uQdciMwdnD0kVBNTHR0dahuUI4krP
+ kgzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=bz8P1nZoUMT1v+PZjFbkPen/qOCExDvSHfDWKtBldgY=;
- b=W0ejrq3/kEaRTyfjWDGmcDBt0UUPtwAzd2fVMuUy0pL4G+JLvPk0LSAJ7SbHPy4Kir
- BJDu2LIbuRkPCQATp/FXqnICX83plrXIz3KdpApyZKdc7uQHRoMlzA2XIB2PSbu1r201
- +Hk9ghtskSZPssja75s47EeA8Im8UFulxC505/R5XhzfHoiTELRN/F8/sBkRLEnX2Bnd
- 3qtkXJ6C1dAu2JP85wLiPiz9B4LgUEpf7Iv7b6kPR420fvT/cfbrtSItn/d91sBOZME5
- OXVTw5nxM83i95fOZbOmHcTEl/Rl6oltqVVEgcWvCk/8YyyKpyfM+iDNa20+vtt8fJDj
- OYSQ==
-X-Gm-Message-State: AOAM532erzVRQO2eW31PrnUFIGISgdKTE4JoEj0IwO8nrQpOT+hoM23R
- 77BoP51v77AaGb/D8vj5KKFS4x6DKwFkvtu55VU=
-X-Google-Smtp-Source: ABdhPJxtOy3inc148leudhozlWQYkcstye2E7St5sE+gvTakogQlfT5Ml/TJK5sfdIi/CscHWhigQg==
-X-Received: by 2002:a63:9612:: with SMTP id c18mr1553295pge.29.1620571840169; 
- Sun, 09 May 2021 07:50:40 -0700 (PDT)
-Received: from localhost.localdomain ([2405:201:9004:6c18:2a60:b7b4:ea0e:f455])
- by smtp.gmail.com with ESMTPSA id r63sm17043720pjg.46.2021.05.09.07.50.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 09 May 2021 07:50:39 -0700 (PDT)
-From: Dwaipayan Ray <dwaipayanray1@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie,
- daniel@ffwll.ch
-Subject: [PATCH] drm/amd/amdgpu: Fix errors in function documentation
-Date: Sun,  9 May 2021 20:19:23 +0530
-Message-Id: <20210509144923.6316-1-dwaipayanray1@gmail.com>
-X-Mailer: git-send-email 2.28.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=dATx1wjj0Z53Rq4bLdtp/Zi4E4zS2rFOkCq9fFzzQIY=;
+ b=jYaARZpweqwGgBySQNG8yxZwvYnwZ8US6HOQOvAuGSOt+U80wZjQ1IajhFaF/YaO6Z
+ fRJup+ZEMn0EhfQOcAF2WFstxlVw1CFFK3ONKmEFRdryrFguQXBr3P4givN2sqokPqsD
+ bhhfkSObDugzLa7ctBZLPsYpLFACHajQevLVoAUjN16jPsfgw4PEkVxHy5Io8jssvMC+
+ yJSnYRTzkeqhLkLjFdEwUoee6i/16GQkjSof1uEYtxzXrX+WQrI/Wb8Tb7+0IOiYqoTw
+ r/Zyvy2pK1/xCvtPA3EqjinI8aknmXyVG+0iOhzY+pLC4l1da8+Jcwt9ZixhkWakjQxQ
+ Wsdw==
+X-Gm-Message-State: AOAM531GIx1OM6T/xpECqiSRPS4YBxNjSFQ0z1ptVWE4E0wkhsQRpAXC
+ QePkOWpyw4VvvFFVTYf4oLRqc504VVAzxPBSe3s=
+X-Google-Smtp-Source: ABdhPJy7YC3ELZGgsRsziWdYDQrUqAeDkBKLT/CKNXiru3bd60LWNuzmdtOAprAvGHg6y2w9TZjoTnUbLrYZnZGDAK8=
+X-Received: by 2002:a9d:74c6:: with SMTP id a6mr1601380otl.132.1620575588643; 
+ Sun, 09 May 2021 08:53:08 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Sun, 09 May 2021 15:42:11 +0000
+References: <20210414233533.24012-2-qingqing.zhuo@amd.com>
+ <20210509121055.24728-1-youling257@gmail.com>
+In-Reply-To: <20210509121055.24728-1-youling257@gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Sun, 9 May 2021 11:52:57 -0400
+Message-ID: <CADnq5_MF0y0sHH6Vz8KZH5j=iXToq3WPw7+kW=BqMk=oNZ=Ppw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] Revert "Revert "drm/amdgpu: Ensure that the modifier
+ requested is supported by plane.""
+To: youling257 <youling257@gmail.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,58 +62,32 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dwaipayan Ray <dwaipayanray1@gmail.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- lukas.bulwahn@gmail.com, linux-media@vger.kernel.org
+Cc: Mark Yacoub <markyacoub@chromium.org>,
+ Qingqing Zhuo <qingqing.zhuo@amd.com>, "Siqueira,
+ Rodrigo" <Rodrigo.Siqueira@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, "Wheeler,
+ Daniel" <daniel.wheeler@amd.com>, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ "Deucher, Alexander" <alexander.deucher@amd.com>, "Kazlauskas,
+ Nicholas" <nicholas.kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix a couple of syntax errors and removed one excess
-parameter in the function documentations which lead
-to kernel docs build warning.
+On Sun, May 9, 2021 at 11:42 AM youling257 <youling257@gmail.com> wrote:
+>
+> I using amd 3400g running with android-x86, this patch is a bad commit when i use android-x86 on amdgpu.
 
-Signed-off-by: Dwaipayan Ray <dwaipayanray1@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 3 +++
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  | 1 -
- 2 files changed, 3 insertions(+), 1 deletion(-)
+Can you provide more details?  What sort of problem are you seeing?
+Please provide your dmesg output.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index ae9fb2025259..312f24004413 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -320,11 +320,14 @@ static int amdgpu_ras_debugfs_ctrl_parse_data(struct file *f,
-  * "disable" requires only the block.
-  * "enable" requires the block and error type.
-  * "inject" requires the block, error type, address, and value.
-+ *
-  * The block is one of: umc, sdma, gfx, etc.
-  *	see ras_block_string[] for details
-+ *
-  * The error type is one of: ue, ce, where,
-  *	ue is multi-uncorrectable
-  *	ce is single-correctable
-+ *
-  * The sub-block is a the sub-block index, pass 0 if there is no sub-block.
-  * The address and value are hexadecimal numbers, leading 0x is optional.
-  *
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 16252d48e5a4..7e1a67295106 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2796,7 +2796,6 @@ long amdgpu_vm_wait_idle(struct amdgpu_vm *vm, long timeout)
-  *
-  * @adev: amdgpu_device pointer
-  * @vm: requested vm
-- * @vm_context: Indicates if it GFX or Compute context
-  * @pasid: Process address space identifier
-  *
-  * Init @vm fields.
--- 
-2.30.2
+Alex
 
+
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
