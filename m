@@ -2,59 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C67F8377763
-	for <lists+amd-gfx@lfdr.de>; Sun,  9 May 2021 17:42:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEBB8377766
+	for <lists+amd-gfx@lfdr.de>; Sun,  9 May 2021 17:42:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1EA589F43;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBF826E20A;
 	Sun,  9 May 2021 15:42:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com
- [IPv6:2607:f8b0:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 359446E1CE;
- Sun,  9 May 2021 12:17:53 +0000 (UTC)
-Received: by mail-pl1-x62d.google.com with SMTP id t21so7819006plo.2;
- Sun, 09 May 2021 05:17:53 -0700 (PDT)
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
+ [IPv6:2607:f8b0:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 980216E1F6;
+ Sun,  9 May 2021 14:50:40 +0000 (UTC)
+Received: by mail-pf1-x435.google.com with SMTP id b15so11890058pfl.4;
+ Sun, 09 May 2021 07:50:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=rgnivCnwUOL+7jUiwYwX1I74kp4hGBvTbYjp5pejkHE=;
- b=UUucRwKuPyr+T2+vaAhzhaV5jNNrauLGRImO37AvkiH9Wt8pWm7apR9rDD457wz1N5
- ebUSg2+3sZ7OA2NULiLrYD6mif8T2MT1dGNES7s6jhZYgESpA1v81QiacM4Y7MuKzWPV
- yCZVnO4hsO5Q65Q+tSsAeKKmARz1NWUKL6hulHxKMNWtsGhi/hKYnhUZ6liMpifFWw4L
- UM2m9yt6kJG4D9ss6jQNkirCZK0Cbiw1kyuDbEpyGBMO9i9HrFaASoqs5EOYCOupcAfp
- hCXicWBg8j+L+wP1/lwPk+ekgDZ4+yzawFDdombqsJvn/e1p4Z2eUabGED3ikcbqpnB3
- ilzA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=bz8P1nZoUMT1v+PZjFbkPen/qOCExDvSHfDWKtBldgY=;
+ b=k/Efj0VxOLnEitzgW/jLeQUTvNCDM1rnJkA1jWgkvJx+ic7PPM1mFNamQy/29LQiBb
+ 6S0WQjY5cEvp0fgqqFNO5Xpj30M0Sl1MQL2do3pekttEaR62JYdXpxCYiS/ZjZSl0gnC
+ Wa+Ykz/2O1A1wedeTI5ql780tHgdegHObqerCSdMkFh8PN4VyLpz4dZ/IbfuM72YXrl+
+ 1KVSnSURz8NGBy/sbZYFxbXm7/99Yl37EjYrPpFEcgjzbZpup8acOatrRmVBeq2D7odX
+ mmBt6WjjHOQI9Yl1wKYRwGDZYOHPOUnIBp1rp3EzW1ydhKw+5QrQ82y20XDBh3/ZB1V8
+ WldQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=rgnivCnwUOL+7jUiwYwX1I74kp4hGBvTbYjp5pejkHE=;
- b=psYv2tt2+TYZLiH2ldK9b6AkRFBb5fxjUJpHXLc9ojZKRlA9ujxo+OwYPl2odXDzcG
- SFJpeazD6LvRdH/NBHirbj+xloewlTvajK4B7gws7d5lTHU4YTxN9TxkoWdDtswa/NIr
- gd2XjDButsbyC68H9I/DvdBZfobZfa7HkM6T5c3CSWHEQcslmU4bG2N+ctnbU8ImVI21
- 0pXzk80ml9DpmjOLepOQ4LfFJFifItK08+a8BwQEM6GSEH9rF7ZP4fn4ErwGvNi+i7YU
- RnAINtkwNVLKmTBAgejmoE/YQkCVnUeuBbvyxxa2rX2iP3JO+Nz/CfAJcY5DJcMJVIO8
- 67Dg==
-X-Gm-Message-State: AOAM5313mP2LIThypjm/KuygNdJYV1oCorBugpvx5PCQpPIXPTJNL891
- 9UmFxhXUyYO977EUfl0/M9M=
-X-Google-Smtp-Source: ABdhPJwvX9JmBgkjMhR6w6ELWpMMw3nJlZIu09Um3ikaFUt2WdYfuZagyhv8eXoL2WRQZIRBSYzFoQ==
-X-Received: by 2002:a17:90a:e003:: with SMTP id
- u3mr34503590pjy.77.1620562672731; 
- Sun, 09 May 2021 05:17:52 -0700 (PDT)
-Received: from localhost.localdomain ([104.200.131.246])
- by smtp.gmail.com with ESMTPSA id x10sm8524430pjq.53.2021.05.09.05.17.47
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=bz8P1nZoUMT1v+PZjFbkPen/qOCExDvSHfDWKtBldgY=;
+ b=W0ejrq3/kEaRTyfjWDGmcDBt0UUPtwAzd2fVMuUy0pL4G+JLvPk0LSAJ7SbHPy4Kir
+ BJDu2LIbuRkPCQATp/FXqnICX83plrXIz3KdpApyZKdc7uQHRoMlzA2XIB2PSbu1r201
+ +Hk9ghtskSZPssja75s47EeA8Im8UFulxC505/R5XhzfHoiTELRN/F8/sBkRLEnX2Bnd
+ 3qtkXJ6C1dAu2JP85wLiPiz9B4LgUEpf7Iv7b6kPR420fvT/cfbrtSItn/d91sBOZME5
+ OXVTw5nxM83i95fOZbOmHcTEl/Rl6oltqVVEgcWvCk/8YyyKpyfM+iDNa20+vtt8fJDj
+ OYSQ==
+X-Gm-Message-State: AOAM532erzVRQO2eW31PrnUFIGISgdKTE4JoEj0IwO8nrQpOT+hoM23R
+ 77BoP51v77AaGb/D8vj5KKFS4x6DKwFkvtu55VU=
+X-Google-Smtp-Source: ABdhPJxtOy3inc148leudhozlWQYkcstye2E7St5sE+gvTakogQlfT5Ml/TJK5sfdIi/CscHWhigQg==
+X-Received: by 2002:a63:9612:: with SMTP id c18mr1553295pge.29.1620571840169; 
+ Sun, 09 May 2021 07:50:40 -0700 (PDT)
+Received: from localhost.localdomain ([2405:201:9004:6c18:2a60:b7b4:ea0e:f455])
+ by smtp.gmail.com with ESMTPSA id r63sm17043720pjg.46.2021.05.09.07.50.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 09 May 2021 05:17:52 -0700 (PDT)
-From: youling257 <youling257@gmail.com>
-To: markyacoub@chromium.org
-Subject: Re: [PATCH v2] drm/amdgpu: Ensure that the modifier requested is
- supported by plane.
-Date: Sun,  9 May 2021 20:17:41 +0800
-Message-Id: <20210509121741.25858-1-youling257@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210324201624.712307-1-markyacoub@chromium.org>
-References: <20210324201624.712307-1-markyacoub@chromium.org>
+ Sun, 09 May 2021 07:50:39 -0700 (PDT)
+From: Dwaipayan Ray <dwaipayanray1@gmail.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie,
+ daniel@ffwll.ch
+Subject: [PATCH] drm/amd/amdgpu: Fix errors in function documentation
+Date: Sun,  9 May 2021 20:19:23 +0530
+Message-Id: <20210509144923.6316-1-dwaipayanray1@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
 X-Mailman-Approved-At: Sun, 09 May 2021 15:42:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -68,15 +65,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, michel@daenzer.net, daniel@fooishbar.org,
- dri-devel@lists.freedesktop.org, bas@basnieuwenhuizen.nl,
- alexander.deucher@amd.com, markyacoub@google.com
+Cc: Dwaipayan Ray <dwaipayanray1@gmail.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ lukas.bulwahn@gmail.com, linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-I using amd 3400g running with android-x86, this patch is a bad commit when i use android-x86 on amdgpu.
+Fix a couple of syntax errors and removed one excess
+parameter in the function documentations which lead
+to kernel docs build warning.
+
+Signed-off-by: Dwaipayan Ray <dwaipayanray1@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 3 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c  | 1 -
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index ae9fb2025259..312f24004413 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -320,11 +320,14 @@ static int amdgpu_ras_debugfs_ctrl_parse_data(struct file *f,
+  * "disable" requires only the block.
+  * "enable" requires the block and error type.
+  * "inject" requires the block, error type, address, and value.
++ *
+  * The block is one of: umc, sdma, gfx, etc.
+  *	see ras_block_string[] for details
++ *
+  * The error type is one of: ue, ce, where,
+  *	ue is multi-uncorrectable
+  *	ce is single-correctable
++ *
+  * The sub-block is a the sub-block index, pass 0 if there is no sub-block.
+  * The address and value are hexadecimal numbers, leading 0x is optional.
+  *
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 16252d48e5a4..7e1a67295106 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -2796,7 +2796,6 @@ long amdgpu_vm_wait_idle(struct amdgpu_vm *vm, long timeout)
+  *
+  * @adev: amdgpu_device pointer
+  * @vm: requested vm
+- * @vm_context: Indicates if it GFX or Compute context
+  * @pasid: Process address space identifier
+  *
+  * Init @vm fields.
+-- 
+2.30.2
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
