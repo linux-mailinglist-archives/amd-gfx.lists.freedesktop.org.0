@@ -1,60 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83992377768
-	for <lists+amd-gfx@lfdr.de>; Sun,  9 May 2021 17:42:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C67F8377763
+	for <lists+amd-gfx@lfdr.de>; Sun,  9 May 2021 17:42:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 776686E20F;
-	Sun,  9 May 2021 15:42:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1EA589F43;
+	Sun,  9 May 2021 15:42:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com
- [IPv6:2607:f8b0:4864:20::529])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6364C6E1CE
- for <amd-gfx@lists.freedesktop.org>; Sun,  9 May 2021 12:11:09 +0000 (UTC)
-Received: by mail-pg1-x529.google.com with SMTP id y32so11331504pga.11
- for <amd-gfx@lists.freedesktop.org>; Sun, 09 May 2021 05:11:09 -0700 (PDT)
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com
+ [IPv6:2607:f8b0:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 359446E1CE;
+ Sun,  9 May 2021 12:17:53 +0000 (UTC)
+Received: by mail-pl1-x62d.google.com with SMTP id t21so7819006plo.2;
+ Sun, 09 May 2021 05:17:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
  bh=rgnivCnwUOL+7jUiwYwX1I74kp4hGBvTbYjp5pejkHE=;
- b=aXY8W1aSADd3h7KTimcqLEAaFMPpxUt1bfmOiH1rQeEY2mFqYxliGk1fK2H/9DHYCu
- ODSijyR5MXCOqnkMqnHDSdogm6l8PytZk8todvMt3ZQ1ppdUGardJasoDpknHv0KfmO5
- /12WpYEu4xVkDnLro024lI4aCCQJ80LwPk2+ec9qF7xpoXTGlQvfImcrVkA2IGW+wpUh
- a96Z7TpqWkmXUDoMwNcSz1sX+F+QemOtgIKT1hPkSst+uulEUJvJXTgVA8lbUBueaIAE
- eupLgvuKhh4MCNdV+Oi6xVPuSq0Ga55OPng0YYi95/Gq0nxngWpn+fBHwyeUKPmr0lus
- XEIQ==
+ b=UUucRwKuPyr+T2+vaAhzhaV5jNNrauLGRImO37AvkiH9Wt8pWm7apR9rDD457wz1N5
+ ebUSg2+3sZ7OA2NULiLrYD6mif8T2MT1dGNES7s6jhZYgESpA1v81QiacM4Y7MuKzWPV
+ yCZVnO4hsO5Q65Q+tSsAeKKmARz1NWUKL6hulHxKMNWtsGhi/hKYnhUZ6liMpifFWw4L
+ UM2m9yt6kJG4D9ss6jQNkirCZK0Cbiw1kyuDbEpyGBMO9i9HrFaASoqs5EOYCOupcAfp
+ hCXicWBg8j+L+wP1/lwPk+ekgDZ4+yzawFDdombqsJvn/e1p4Z2eUabGED3ikcbqpnB3
+ ilzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
  bh=rgnivCnwUOL+7jUiwYwX1I74kp4hGBvTbYjp5pejkHE=;
- b=cn+kt398YinbKs0R97k6ig23/bHLeGbnjqJ/MSBWhYZMey2+/Iu6mYU3CPJHU1jc4e
- bIRT4mSWKSByVDW1TukMeh1Oj5L1X6MHaEOokfgpuh89ga/acmuXSWAVyM20TYrWlvv5
- h4W/wDhHu888W3ObhIVEuJxf4KHKB9bk6eJUThfbmV9rYsp5gDo83Lwbb4fv0bhRnlsv
- jFV0T4jGQ3vJ6p9TNejRa5M5696dTaAjNh9ta+GVV9yUjNpOxdoIlRlb8t2bU04olPw7
- SND3c8+TyBEPZWme0XvN0DRM9CF3ct+LR/EkB4Ydzz98lci0coBHYGTfec/MgEkGPNzu
- zCvg==
-X-Gm-Message-State: AOAM530KfKzNQUSbwQD34PTtZInHFOVkbmp5AWueFcZgPx4DkYiXnOPA
- AUMHWOA6PXsWuURW5vcvcFY=
-X-Google-Smtp-Source: ABdhPJwCNMY37pXoAhszbNse9uNUm+L2/gxVBAPvQtc7Xrc2z/CaEkBkDPeCVhc4iloobnBW80KSsA==
-X-Received: by 2002:a62:1c0f:0:b029:25f:ba3c:9cc0 with SMTP id
- c15-20020a621c0f0000b029025fba3c9cc0mr19637319pfc.56.1620562268641; 
- Sun, 09 May 2021 05:11:08 -0700 (PDT)
+ b=psYv2tt2+TYZLiH2ldK9b6AkRFBb5fxjUJpHXLc9ojZKRlA9ujxo+OwYPl2odXDzcG
+ SFJpeazD6LvRdH/NBHirbj+xloewlTvajK4B7gws7d5lTHU4YTxN9TxkoWdDtswa/NIr
+ gd2XjDButsbyC68H9I/DvdBZfobZfa7HkM6T5c3CSWHEQcslmU4bG2N+ctnbU8ImVI21
+ 0pXzk80ml9DpmjOLepOQ4LfFJFifItK08+a8BwQEM6GSEH9rF7ZP4fn4ErwGvNi+i7YU
+ RnAINtkwNVLKmTBAgejmoE/YQkCVnUeuBbvyxxa2rX2iP3JO+Nz/CfAJcY5DJcMJVIO8
+ 67Dg==
+X-Gm-Message-State: AOAM5313mP2LIThypjm/KuygNdJYV1oCorBugpvx5PCQpPIXPTJNL891
+ 9UmFxhXUyYO977EUfl0/M9M=
+X-Google-Smtp-Source: ABdhPJwvX9JmBgkjMhR6w6ELWpMMw3nJlZIu09Um3ikaFUt2WdYfuZagyhv8eXoL2WRQZIRBSYzFoQ==
+X-Received: by 2002:a17:90a:e003:: with SMTP id
+ u3mr34503590pjy.77.1620562672731; 
+ Sun, 09 May 2021 05:17:52 -0700 (PDT)
 Received: from localhost.localdomain ([104.200.131.246])
- by smtp.gmail.com with ESMTPSA id g13sm9505146pfi.18.2021.05.09.05.11.02
+ by smtp.gmail.com with ESMTPSA id x10sm8524430pjq.53.2021.05.09.05.17.47
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 09 May 2021 05:11:08 -0700 (PDT)
+ Sun, 09 May 2021 05:17:52 -0700 (PDT)
 From: youling257 <youling257@gmail.com>
-To: qingqing.zhuo@amd.com
-Subject: Re: [PATCH 2/2] Revert "Revert "drm/amdgpu: Ensure that the modifier
- requested is supported by plane.""
-Date: Sun,  9 May 2021 20:10:55 +0800
-Message-Id: <20210509121055.24728-1-youling257@gmail.com>
+To: markyacoub@chromium.org
+Subject: Re: [PATCH v2] drm/amdgpu: Ensure that the modifier requested is
+ supported by plane.
+Date: Sun,  9 May 2021 20:17:41 +0800
+Message-Id: <20210509121741.25858-1-youling257@gmail.com>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210414233533.24012-2-qingqing.zhuo@amd.com>
-References: <20210414233533.24012-2-qingqing.zhuo@amd.com>
+In-Reply-To: <20210324201624.712307-1-markyacoub@chromium.org>
+References: <20210324201624.712307-1-markyacoub@chromium.org>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Sun, 09 May 2021 15:42:11 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -68,9 +68,9 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: markyacoub@chromium.org, Rodrigo.Siqueira@amd.com,
- amd-gfx@lists.freedesktop.org, daniel.wheeler@amd.com, bas@basnieuwenhuizen.nl,
- alexander.deucher@amd.com, nicholas.kazlauskas@amd.com
+Cc: amd-gfx@lists.freedesktop.org, michel@daenzer.net, daniel@fooishbar.org,
+ dri-devel@lists.freedesktop.org, bas@basnieuwenhuizen.nl,
+ alexander.deucher@amd.com, markyacoub@google.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
