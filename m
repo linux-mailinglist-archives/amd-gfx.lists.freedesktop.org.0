@@ -2,64 +2,117 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B86379433
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 May 2021 18:37:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C507379402
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 May 2021 18:36:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED6086E8BD;
-	Mon, 10 May 2021 16:37:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E5826E500;
+	Mon, 10 May 2021 16:36:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com
- [IPv6:2607:f8b0:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 428306E0AC
- for <amd-gfx@lists.freedesktop.org>; Mon, 10 May 2021 16:32:40 +0000 (UTC)
-Received: by mail-ot1-x330.google.com with SMTP id
- c8-20020a9d78480000b0290289e9d1b7bcso14972117otm.4
- for <amd-gfx@lists.freedesktop.org>; Mon, 10 May 2021 09:32:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:in-reply-to:references:from:date:message-id:subject:to
- :cc; bh=7iVPMXXCbbnFWsO7rQh9t4SlxCZgXRCVEdJJu6UNBYA=;
- b=tcKM6gH6u6yvIVn/NGff37XqdkMupa64PPAvt82+VTJZxgajwLacegS3qONzJd3sDH
- g7QfxhzH6HixZ+pDzJFk9fFbOip0fdK7n58E6RVh2z1+8sHwdRUJVKLZFSFaLVnDzRdX
- MRe5RqND+FtXxch2t1PanESXrJYRoJQXGYVWfwR9PEWYDQIF0lfd4h0clbyhJyPs1j5G
- +doZZ+YStsY84/yMoqjfJTTlxq0qzPHGI3UMjWa7GDEaTHBWFhe/A9RDSaz5SCLfs6jJ
- RSn8MIbYCD37m/KAOZxtnZOYWuM4ggZXE8OtcfWZf4H5IasH7XtnulPvrE+QV+OTwYaL
- oKcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:in-reply-to:references:from:date
- :message-id:subject:to:cc;
- bh=7iVPMXXCbbnFWsO7rQh9t4SlxCZgXRCVEdJJu6UNBYA=;
- b=nxwHkRE2qgZpepXyP1PhpdCC8wEzna0pyygckHc+jmKL7PJ7eetAdihOP7jB8K0g40
- TmVtMNZYswIeyeRxsG9MDI/ZJKUoMsx0bdcy6rLpcoL4i1G9Z1I5DZZeBuUjRvdxWob+
- l9JFKeOC12k2/OgZuqrOXYEE3botXhtOzy2iLjG3LD0NL4a2+ldJfqyRiJTM+QcHRpoL
- q0SXUP5pZHCPLDmIVoKcrDDrABIZAXGj0+09zmS42as03cS7hXtcC5MXd8aUzunp2UAu
- wPC6XmB2Y4W86maQo4NCUNkuWiFTX5YOJgslRWFI+NVIKJCLED73H8QYKs7zw1U1CJbQ
- xhuw==
-X-Gm-Message-State: AOAM530uNoUNjhjXV4+Vpo3p57wp/BOVOkiWG2LjT2lvpdAeMhf0u8Gc
- 03eETIT8zMM+CyWqt55Zgyuqybg3OVAW2D+Qsww=
-X-Google-Smtp-Source: ABdhPJzlKwht/DrKjPFgylUb0BPmnwYVYO1KIqPi68pnConGKwONwq9eb9UKk1IfPOA0SJBO907vChgSdu+SOQXmT5s=
-X-Received: by 2002:a9d:12b5:: with SMTP id g50mr22023842otg.97.1620664359263; 
- Mon, 10 May 2021 09:32:39 -0700 (PDT)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2055.outbound.protection.outlook.com [40.107.94.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD2926E89A;
+ Mon, 10 May 2021 16:36:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RLQ7lNFzHwMmiZdt8qAMYmQJBXCdFNft6y8/EOc1nAhs415oFtRqGXlrhEgL3Cd/TQ9aNOmElceD9yix0/EZ4kphj9MLWZZ+7Ggo12Rx+qLDLKgASpqG7arFqMBQB6RfIii8tC9tDdR6ErqolqgYw8pMcLQpqxGw0eTqe3x07PLxVlyb7O0HVfvYQe/IKaIwpWJlAKeBd/kbZlZO56fTQ6bWT0VLStws41OSqgy9PnIfyJaWjNwx+abgKxNAgi8h4ieRIc+krAmsA98+8rV/1fAwlhHjqHAkSPMMJAOOHndb4hvboZFU1PO7iQLRtnXHXkKFSrV8VGcBsI6lT+XPgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WH9mV/4G+pvjgm69H/sukJ+57rWHS6bSAKI6Wq2WwqI=;
+ b=TRIjNJZXfjXKcKg0XR/Pon6Sne5iP+gglrTAclgwzMJNqTD8HGXou3qcV+3UZugJd8+Em4kXWX2nCxNfy1vTjnyHF7AJuXsJIblCQMZ+O/+St2FgTOzhw6Vbq0djSHqTa6Kp9DP1fzjEYXCOIPcsA9uLwGus00W96rgQ2mhm2SGkXEZbjwW8BlHIp3OIh4ggw3Rir2J4Srowzf5ocEP2tWPNn5YJvPEUe9Lx5TgGJUs9Me3DBHG1cV9SgFIqgNZvY/ppJVmkCrmkvrfNgI2Roxeg7XKzj3XbaX9Sx7eJXOqpJ4NKTjU/OVdcrq7QU4gHKaE5F6L9ZY+0GywbF57OBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WH9mV/4G+pvjgm69H/sukJ+57rWHS6bSAKI6Wq2WwqI=;
+ b=fLD2k7OtJ+7J+/1Y8V8ZjfYE7uM8dYtaUOLaBl2Rlft+ypuXMUmyEOOtQo5JxP5iyKhTGsVzvR9deVh11THQG7QfxNy3HN/gRz8mfwwN9g6AmMTQB70n57lI5z8p+zVhkmsI0lveMwt+hZCu9bl0WX4sUlMm/GY+sMlZoQqv4bI=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from SN6PR12MB4623.namprd12.prod.outlook.com (2603:10b6:805:e9::17)
+ by SA0PR12MB4462.namprd12.prod.outlook.com (2603:10b6:806:95::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Mon, 10 May
+ 2021 16:36:41 +0000
+Received: from SN6PR12MB4623.namprd12.prod.outlook.com
+ ([fe80::ad51:8c49:b171:856c]) by SN6PR12MB4623.namprd12.prod.outlook.com
+ ([fe80::ad51:8c49:b171:856c%7]) with mapi id 15.20.4108.031; Mon, 10 May 2021
+ 16:36:41 +0000
+From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-pci@vger.kernel.org, ckoenig.leichtzumerken@gmail.com,
+ daniel.vetter@ffwll.ch, Harry.Wentland@amd.com
+Subject: [PATCH v6 00/16] RFC Support hot device unplug in amdgpu
+Date: Mon, 10 May 2021 12:36:09 -0400
+Message-Id: <20210510163625.407105-1-andrey.grodzovsky@amd.com>
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [2607:fea8:3edf:49b0:6a5:47b8:e610:f6a3]
+X-ClientProxiedBy: YT2PR01CA0020.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:38::25) To SN6PR12MB4623.namprd12.prod.outlook.com
+ (2603:10b6:805:e9::17)
 MIME-Version: 1.0
-Received: by 2002:a05:6830:4118:0:0:0:0 with HTTP; Mon, 10 May 2021 09:32:38
- -0700 (PDT)
-In-Reply-To: <CAJUqKUoxKdp+U5y0gzi=_N94zs6b9DjUoYT3Mfn0-z-X0hCbMQ@mail.gmail.com>
-References: <20210414233533.24012-2-qingqing.zhuo@amd.com>
- <20210509121055.24728-1-youling257@gmail.com>
- <CADnq5_MF0y0sHH6Vz8KZH5j=iXToq3WPw7+kW=BqMk=oNZ=Ppw@mail.gmail.com>
- <CAOzgRdZf0R7mVY+spDZz_CG1Kpf7qmP6oGaOJ_XKauZA3ZhZeg@mail.gmail.com>
- <CAP+8YyEv3NPqeEVmFvQDoq_+=h8Q_goHUbgt7fNPUXJbR5AcKw@mail.gmail.com>
- <CAOzgRdYbmnA3M5d30i94TwGNtOWOviChBq9eEdhTjbfvGXaSfw@mail.gmail.com>
- <CAOzgRdaKpwd5ze8om4F22yq_DeREma1H6KUquqJ34dnSTvsjiQ@mail.gmail.com>
- <CAJUqKUoxKdp+U5y0gzi=_N94zs6b9DjUoYT3Mfn0-z-X0hCbMQ@mail.gmail.com>
-From: youling 257 <youling257@gmail.com>
-Date: Tue, 11 May 2021 00:32:38 +0800
-Message-ID: <CAOzgRdYEGELkhOOkkm=OOZsmrCrKjR+GKJ_ZyqVVjUURX+Szfw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] Revert "Revert "drm/amdgpu: Ensure that the modifier
- requested is supported by plane.""
-To: Mark Yacoub <markyacoub@chromium.org>
-X-Mailman-Approved-At: Mon, 10 May 2021 16:37:43 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from agrodzovsky-All-Series.hitronhub.home
+ (2607:fea8:3edf:49b0:6a5:47b8:e610:f6a3) by
+ YT2PR01CA0020.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:38::25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4108.31 via Frontend Transport; Mon, 10 May 2021 16:36:40 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ee1b6dff-ae9c-49a8-d82f-08d913d1ca14
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4462:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SA0PR12MB446289615760E861B938F100EA549@SA0PR12MB4462.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: TIQxZkXXTman37N440jTguZDI5anXlTIleZ9e7Ci34SiXFUwgfcZHWnX3eT9Rxpvpgo9swllWMHBRdds6fveymthIt031gnGC0/NaxSve3YEXtHqTLRUlobpNEsxcw86dEq92ndkEm9DYuiw3ddsl4LnNCywmbFd0KiDKVzK62b9CJkRw0mygDazpIwC65X7Vxrzz/mPZEAhu6QsXHi9BJl2PPAJV6OzNjJ2u+lMSous6FhQ/5ZBWhuq7BEdl7QKMaFhyBHGjmFyBCW1NGWCi9pAnWc+hS8jCrCYczYIpHmBwtpYHQdzRRWuraIY7ThrS8h7+wmbwico2kCxuuq3kD6vbnSURm1JZWsoidVCtnRCku2RUK4UiqBIJ8w7JJvGMiE3+JuHXn2DxzjiP/6qNBuUvMA+fIfDoWSW5lRikLvyg5VsqIC2VJTftb+yHdZkSZFWufNx09kOWSFZfwdezqdbnYFxT+Clz4QExNZqPF+VLqhbvyYxJ+8vuN+FFarni31eRrtEIwRMjQHHGQBcuGBUz4u8Y4iX8SeVmO0GCjaLpr45am9Spq2k9uK0Vd37F82/a7k5D8+YvTUfbRDt15YD8EtwhnJl4PPjU0PsyH0hpY5eGES847FeoDA7/BNedA6fFAgik+VupxMqicLdjixl6AcmuclhJLrMdlGp7hk+wtz1LKJVECJxLkx6AFFgXjsYv2WZRi5MlpJatv0pCQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN6PR12MB4623.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(136003)(39860400002)(396003)(376002)(346002)(86362001)(6506007)(38100700002)(52116002)(966005)(6666004)(44832011)(8676002)(36756003)(5660300002)(478600001)(8936002)(2906002)(6486002)(66946007)(2616005)(66476007)(66556008)(1076003)(316002)(6636002)(6512007)(16526019)(186003)(83380400001)(4326008);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?YkR4NUJlaHBjQVNQMU9hQVFMMFFEUXdFdU5kbVB3eHhJeHZ3MHNtMFVCblRK?=
+ =?utf-8?B?UmIwRUN4UzJ4RENhTk1vWWRNbWREeDhZN2JBU3ZLeEh4Ry83L0ZNeW9ocG5L?=
+ =?utf-8?B?eWcxakUxL3dta2pFODVBbFQzdkU4bDlZYnU0MXhYanY0RW1WenZiK1ZnUmtp?=
+ =?utf-8?B?NFhWcmZnbmdJNUNQa2RzY2wyRysyNVQ3SjE5eW95VS9FRzk4L3hhL01hb1d2?=
+ =?utf-8?B?aEpBbnNXdkF6S3hQajkwUHB0a1Q5bWRNSmlJU3dHRTBwbFN4OFZCWFN1djFS?=
+ =?utf-8?B?YzdOT1lvRnJ4cjI2eFNhUVVJbXZYYklSMCtVSXVudHV4OVJmZ0M2WE1pdEZJ?=
+ =?utf-8?B?aXBhRU5EMndvbDltOEtyanFPQ0k3NXVybVVSRzdlVnJ3R2cvdXhHa1E3dkU4?=
+ =?utf-8?B?YjNEOFNiOTZuK0V2MklKRmQyR1ZJRUI4RWQ2OEw2WTArcG43N2hFaGptUk9m?=
+ =?utf-8?B?WlRTQ0YrYWhBN29scDFzWElPaG5oNndpbXFXNUl3WDNmRzJKUnZ5enZ5ajNB?=
+ =?utf-8?B?Yk80SGYxWkQ5ZTdxcXJNSW1HTjhQczBLYUk0Zm1YTHE4Z1RRK21NaXd0dllD?=
+ =?utf-8?B?YUZvazRpb1FsaGtGeUtPeXdHcVZxdUZkTW9obVY5VkV6ZTBCSWx6QnJNd2Q3?=
+ =?utf-8?B?clVtTnFvSmFDK3dZNzBOZFRUUGZ3TStkQUY5QkQ1OXFIRHJPa1RuYUJ3QWh6?=
+ =?utf-8?B?QWJpRmZSYmRLendYYmlSeE4yNlUwRHpScFVWMDU5RDU1U1pRRVM3OTUrYXJY?=
+ =?utf-8?B?ZTRFZlZDSk9mcHlNbkpvQ2huOER4RStFZVRUOTV0djYzR3VJNWxwNXhFK1N0?=
+ =?utf-8?B?dTByUXJoVUdHeFNoOFBCSkdVWFV5NW1kdlNNbnAybndqVFgzbjVHMnJSaDY0?=
+ =?utf-8?B?a0c0dXl6SlhLcjQ0L2JPL1RGOGdDcE1PR0VBeWx5dU9aM3NBRjVjZDJMNWd4?=
+ =?utf-8?B?S2o1clphTEpFRDdXTnRYdXFVa3pKRjJ2Y2s4cGg1bVN2Y1dyWXpXZVE0OXBx?=
+ =?utf-8?B?NmRqekE0aHhjTWc1MWl3QXNPT0ZoSm1LUmQxUUdDNkFMQTc3L3BOTXFnczRu?=
+ =?utf-8?B?MU03d0Z3UVdHK0JrSlAyYzZ3S1lKVDlHR2g1aVdXdTZPa1E3SGNzWlQ2MXgy?=
+ =?utf-8?B?Ty9XNEpXMmxmWlhnL2YxTmxBZzgzTU5iNWRFN2hIY0xKaDJ1SmhmZlo2MjBx?=
+ =?utf-8?B?SlNvYndnMkZvSWZGOXZMdmtXSHVPYUVSc09XS2NnalVFK0c0ejdlbFB2ZnVD?=
+ =?utf-8?B?UnRUUmtydGRKRE9OdzJmd2hxUWI5aEZRem5XS3FQTW9KZUhiRXhwT2ZWVjhp?=
+ =?utf-8?B?bGNsVjFEUForejVJZE93aUtKTjgxV1EzTmZKZWhNK0JUS2JJNnpUbFdQWFVI?=
+ =?utf-8?B?SkNOYnp4QTgzeW5WcGQyRENzMzJtZmF5NExNNHV3N1VPdHhYV0pLU1dDc2Iw?=
+ =?utf-8?B?NVk5RzZvMmlEdTlZbVNCVkNFNjBHRW9YK1BSU0s3RVVqWjJCZExqMnp2eXlU?=
+ =?utf-8?B?N2lLaUtENGxVN0RrOU4rd1hLZW5tdWY4UFc1QlE3V3BPKzJQL3I2bTE5OTJU?=
+ =?utf-8?B?RWIxbDR3WVlDWVZjYVJjTjFHS3oxOWdWOFF1U1htWE9CWjdLQXplVzJFblEv?=
+ =?utf-8?B?WnR2MDBnd0VSSXF1TWJoTmxqOHdZR3JLNkhScWFidkMzTEtuUWNiaTRaLzJP?=
+ =?utf-8?B?YnhXdm4wVFMyYkZBbm5BOEx1d0RBbEhZSkZHSHkwOWNpeVNCcXJyZDJTempn?=
+ =?utf-8?B?SkJJYTVhaXJzV0FORzZ0NStObmNTVDZEQjNxVGNBaGlYZjE1aEpQOHN3cjdh?=
+ =?utf-8?B?RGQybXU3UDNESVBkR09qYmNpd2gwSm84UloyMmdJb0kzeGJmcVNUOFNYU1NF?=
+ =?utf-8?Q?6FlReWY/dBT+5?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ee1b6dff-ae9c-49a8-d82f-08d913d1ca14
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR12MB4623.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 May 2021 16:36:41.0761 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gg2/cqAcVOkyV5by/Vh5xQyiFz1Po2KRvwU7imuk5QeMgJgAAx1f97+nyO00cH2m5lOTeGnD5ReSTQ3YbIwzeg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4462
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,419 +124,187 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Qingqing Zhuo <qingqing.zhuo@amd.com>, "Siqueira,
- Rodrigo" <Rodrigo.Siqueira@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, "Deucher,
- Alexander" <alexander.deucher@amd.com>, "Wheeler,
- Daniel" <daniel.wheeler@amd.com>, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- Alex Deucher <alexdeucher@gmail.com>, "Kazlauskas,
- Nicholas" <nicholas.kazlauskas@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>, gregkh@linuxfoundation.org,
+ Felix.Kuehling@amd.com, ppaalanen@gmail.com, helgaas@kernel.org,
+ Alexander.Deucher@amd.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-what userspace problem?
-
-05-10 16:23:35.438  1686  1686 I SurfaceFlinger: OpenGL ES
-informations: format=0x1
-05-10 16:23:35.438  1686  1686 I SurfaceFlinger: vendor    : AMD
-05-10 16:23:35.438  1686  1686 I SurfaceFlinger: renderer  : AMD
-Radeon(TM) Vega 11 Graphics (RAVEN, DRM 3.41.0,
-5.13.0-rc1-android-x86_64+, LLVM 12.0)
-05-10 16:23:35.439  1686  1686 I SurfaceFlinger: version   : OpenGL ES
-3.2 Mesa 21.1.0 (git-1a53901057)
-05-10 16:23:35.439  1686  1686 I SurfaceFlinger: extensions:
-GL_EXT_debug_marker GL_EXT_blend_minmax GL_EXT_multi_draw_arrays
-GL_EXT_texture_filter_anisotropic GL_EXT_texture_compression_s3tc
-GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc
-GL_EXT_texture_format_BGRA8888 GL_OES_compressed_ETC1_RGB8_texture
-GL_OES_depth24 GL_OES_element_index_uint GL_OES_fbo_render_mipmap
-GL_OES_mapbuffer GL_OES_rgb8_rgba8 GL_OES_standard_derivatives
-GL_OES_stencil8 GL_OES_texture_3D GL_OES_texture_float
-GL_OES_texture_float_linear GL_OES_texture_half_float
-GL_OES_texture_half_float_linear GL_OES_texture_npot
-GL_OES_vertex_half_float GL_EXT_draw_instanced
-GL_EXT_texture_sRGB_decode GL_OES_EGL_image GL_OES_depth_texture
-GL_AMD_performance_monitor GL_OES_packed_depth_stencil
-GL_EXT_texture_type_2_10_10_10_REV GL_NV_conditional_render
-GL_OES_get_program_binary GL_APPLE_texture_max_level
-GL_EXT_discard_framebuffer GL_EXT_read_format_bgra GL_EXT_frag_depth
-GL_NV_fbo_color_attachments GL_OES_EGL_image_external GL_OES_EGL_sync
-GL_OES_vertex_array_object GL_OES_viewp
-05-10 16:23:35.439  1686  1686 I SurfaceFlinger: GL_MAX_TEXTURE_SIZE = 16384
-05-10 16:23:35.439  1686  1686 I SurfaceFlinger: GL_MAX_VIEWPORT_DIMS = 16384
-05-10 16:23:35.488     0     0 D
-[drm:drm_helper_probe_single_connector_modes [drm_kms_helper]]
-[CONNECTOR: 78:DP-1]
-05-10 16:23:35.488     0     0 D
-[drm:drm_helper_probe_single_connector_modes [drm_kms_helper]]
-[CONNECTOR: 78:DP-1] disconnected
-05-10 16:23:35.488     0     0 D
-[drm:drm_helper_probe_single_connector_modes [drm_kms_helper]]
-[CONNECTOR: 85:HDMI-A-1]
-05-10 16:23:35.488     0     0 D         : [drm:drm_add_edid_modes
-[drm]] ELD monitor HDMI
-05-10 16:23:35.488     0     0 D [drm:drm_add_edid_modes [drm]] HDMI:
-latency present 0 0, video latency 0 0, audio latency 0 0
-05-10 16:23:35.488     0     0 D         : [drm:drm_add_edid_modes
-[drm]] ELD size 28, SAD count 1
-05-10 16:23:35.488     0     0 D         : [drm:drm_add_display_info
-[drm]] Supported Monitor Refresh rate range is 48 Hz - 75 Hz
-05-10 16:23:35.488     0     0 D         : [drm:drm_add_display_info
-[drm]] non_desktop set to 0
-05-10 16:23:35.488     0     0 D [drm:drm_add_display_info [drm]]
-HDMI: DVI dual 0, max TMDS clock 320000 kHz
-05-10 16:23:35.488     0     0 D         : [drm:drm_add_display_info
-[drm]] hdmi_21 sink detected. parsing edid
-05-10 16:23:35.488     0     0 D         : [drm:drm_add_display_info
-[drm]] CEA VCDB 0xff
-05-10 16:23:35.488     0     0 D         :
-[drm:drm_for_each_detailed_block.part.0 [drm]] stereo mode not
-supported
-05-10 16:23:35.489     0     0 D         :
-[drm:drm_for_each_detailed_block.part.0 [drm]] stereo mode not
-supported
-05-10 16:23:35.489     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:2560  height:1600
-05-10 16:23:35.489     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1920  height:1200
-05-10 16:23:35.489     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1920  height:1080
-05-10 16:23:35.489     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1920  height:1080
-05-10 16:23:35.489     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1920  height:1080
-05-10 16:23:35.490     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1920  height:1080
-05-10 16:23:35.490     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1600  height:1200
-05-10 16:23:35.490     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1680  height:1050
-05-10 16:23:35.490     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1400  height:1050
-05-10 16:23:35.490     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1600  height:900
-05-10 16:23:35.490     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1280  height:1024
-05-10 16:23:35.491     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1280  height:1024
-05-10 16:23:35.491     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1440  height:900
-05-10 16:23:35.491     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1280  height:960
-05-10 16:23:35.491     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1280  height:800
-05-10 16:23:35.491     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1280  height:720
-05-10 16:23:35.491     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1280  height:720
-05-10 16:23:35.491     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1280  height:720
-05-10 16:23:35.492     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1024  height:768
-05-10 16:23:35.492     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1024  height:768
-05-10 16:23:35.492     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:1024  height:768
-05-10 16:23:35.492     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:800  height:600
-05-10 16:23:35.492     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:800  height:600
-05-10 16:23:35.492     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:640  height:480
-05-10 16:23:35.492     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:640  height:480
-05-10 16:23:35.493     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:640  height:480
-05-10 16:23:35.493     0     0 D         : [drm:create_stream_for_sink
-[amdgpu]] Destination Rectangle x:0  y:0  width:720  height:400
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1920x1080i": 60
-74250 1920 2008 2052 2200 1080 1084 1094 1125 0x40 0x15
-05-10 16:23:35.493     0     0 D         : [drm:drm_mode_prune_invalid
-[drm]] Not using 1920x1080i mode: NO_INTERLACE
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1920x1080i": 60
-74176 1920 2008 2052 2200 1080 1084 1094 1125 0x40 0x15
-05-10 16:23:35.493     0     0 D         : [drm:drm_mode_prune_invalid
-[drm]] Not using 1920x1080i mode: NO_INTERLACE
-05-10 16:23:35.493     0     0 D
-[drm:drm_helper_probe_single_connector_modes [drm_kms_helper]]
-[CONNECTOR: 85:HDMI-A-1] probed modes :
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "2560x1600": 60
-267810 2560 2608 2640 2720 1600 1603 1608 1641 0x68 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1920x1200": 60
-267810 1920 2608 2640 2720 1200 1603 1608 1641 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1920x1080": 60
-148500 1920 2008 2052 2200 1080 1084 1089 1125 0x40 0xa
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1920x1080": 60
-148500 1920 2008 2052 2200 1080 1084 1089 1125 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1920x1080": 60
-148352 1920 2008 2052 2200 1080 1084 1089 1125 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1920x1080": 50
-148500 1920 2448 2492 2640 1080 1084 1089 1125 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1600x1200": 60
-267810 1600 2608 2640 2720 1200 1603 1608 1641 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1680x1050": 60
-119000 1680 1728 1760 1840 1050 1053 1059 1080 0x40 0x9
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1400x1050": 60
-101000 1400 1448 1480 1560 1050 1053 1057 1080 0x40 0x9
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1600x900": 60
-108000 1600 1624 1704 1800 900 901 904 1000 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1280x1024": 75
-135000 1280 1296 1440 1688 1024 1025 1028 1066 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1280x1024": 60
-108000 1280 1328 1440 1688 1024 1025 1028 1066 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1440x900": 60 88750
-1440 1488 1520 1600 900 903 909 926 0x40 0x9
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1280x960": 60
-108000 1280 1376 1488 1800 960 961 964 1000 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1280x800": 60
-267810 1280 2608 2640 2720 800 1603 1608 1641 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1280x720": 60 74250
-1280 1390 1430 1650 720 725 730 750 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1280x720": 60 74250
-1280 1390 1430 1650 720 725 730 750 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1280x720": 60 74176
-1280 1390 1430 1650 720 725 730 750 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1024x768": 75 78750
-1024 1040 1136 1312 768 769 772 800 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1024x768": 70 75000
-1024 1048 1184 1328 768 771 777 806 0x40 0xa
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "1024x768": 60 65000
-1024 1048 1184 1344 768 771 777 806 0x40 0xa
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "800x600": 75 49500
-800 816 896 1056 600 601 604 625 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "800x600": 60 40000
-800 840 968 1056 600 601 605 628 0x40 0x5
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "640x480": 75 31500
-640 656 720 840 480 481 484 500 0x40 0xa
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "640x480": 60 25200
-640 656 752 800 480 490 492 525 0x40 0xa
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "640x480": 60 25175
-640 656 752 800 480 490 492 525 0x40 0xa
-05-10 16:23:35.493     0     0 D         :
-[drm:drm_mode_debug_printmodeline [drm]] Modeline "720x400": 70 28320
-720 738 846 900 400 412 414 449 0x40 0x6
-05-10 16:23:35.493     0     0 D
-[drm:drm_helper_probe_single_connector_modes [drm_kms_helper]]
-[CONNECTOR: 90:HDMI-A-2]
-05-10 16:23:35.493     0     0 D
-[drm:drm_helper_probe_single_connector_modes [drm_kms_helper]]
-[CONNECTOR: 90:HDMI-A-2] disconnected
-05-10 16:23:35.494     0     0 D
-[drm:drm_helper_probe_single_connector_modes [drm_kms_helper]]
-[CONNECTOR: 94:HDMI-A-3]
-05-10 16:23:35.494     0     0 D
-[drm:drm_helper_probe_single_connector_modes [drm_kms_helper]]
-[CONNECTOR: 94:HDMI-A-3] disconnected
-
-05-10 16:23:35.502     0     0 D
-[drm:drm_helper_probe_single_connector_modes [drm_kms_helper]]
-[CONNECTOR: 85:HDMI-A-1]
-05-10 16:23:35.502     0     0 D         : [drm:drm_add_edid_modes
-[drm]] ELD monitor HDMI
-05-10 16:23:35.502     0     0 D [drm:drm_add_edid_modes [drm]] HDMI:
-latency present 0 0, video latency 0 0, audio latency 0 0
-05-10 16:23:35.503     0     0 D         : [drm:drm_add_edid_modes
-[drm]] ELD size 28, SAD count 1
-05-10 16:23:35.503     0     0 D         : [drm:drm_add_display_info
-[drm]] Supported Monitor Refresh rate range is 48 Hz - 75 Hz
-05-10 16:23:35.503     0     0 D         : [drm:drm_add_display_info
-[drm]] non_desktop set to 0
-05-10 16:23:35.503     0     0 D [drm:drm_add_display_info [drm]]
-HDMI: DVI dual 0, max TMDS clock 320000 kHz
-05-10 16:23:35.503     0     0 D         : [drm:drm_add_display_info
-[drm]] hdmi_21 sink detected. parsing edid
-05-10 16:23:35.503     0     0 D         : [drm:drm_add_display_info
-[drm]] CEA VCDB 0xff
-05-10 16:23:35.503     0     0 D         :
-[drm:drm_for_each_detailed_block.part.0 [drm]] stereo mode not
-supported
-05-10 16:23:35.503     0     0 D         :
-[drm:drm_for_each_detailed_block.part.0 [drm]] stereo mode not
-supported
-
-05-10 16:23:35.797  1920  2001 I EGL-MAIN: found extension DRI_Core version 2
-05-10 16:23:35.797  1920  2001 I EGL-MAIN: found extension
-DRI_IMAGE_DRIVER version 1
-05-10 16:23:35.798  1920  2001 I EGL-MAIN: found extension
-DRI_ConfigOptions version 2
-05-10 16:23:35.798  1920  2001 D libdrm  :
-/vendor/etc/hwdata/amdgpu.ids version: 1.0.0
-05-10 16:23:35.802  1920  2001 I EGL-MAIN: found extension
-DRI_TexBuffer version 2
-05-10 16:23:35.802  1920  2001 I EGL-MAIN: found extension DRI2_Flush version 4
-05-10 16:23:35.802  1920  2001 I EGL-MAIN: found extension DRI_IMAGE version 18
-05-10 16:23:35.802  1920  2001 I EGL-MAIN: found extension
-DRI_RENDERER_QUERY version 1
-05-10 16:23:35.802  1920  2001 I EGL-MAIN: found extension
-DRI_CONFIG_QUERY version 2
-05-10 16:23:35.802  1920  2001 I EGL-MAIN: found extension DRI2_Fence version 2
-05-10 16:23:35.802  1920  2001 I EGL-MAIN: found extension
-DRI2_Interop version 1
-05-10 16:23:35.802  1920  2001 I EGL-MAIN: found extension DRI_NoError version 1
-05-10 16:23:35.803  1920  2001 I EGL-MAIN: found extension DRI2_Blob version 1
-05-10 16:23:35.803  1920  2001 I EGL-MAIN: found extension DRI_IMAGE version 18
-05-10 16:23:35.803  1920  2001 I EGL-MAIN: found extension
-DRI2_BufferDamage version 1
-05-10 16:23:35.803  1920  2001 I EGL-MAIN: found extension
-DRI_Robustness version 1
-05-10 16:23:35.875     0     0 D [drm:drm_mode_addfb2 [drm]] [FB: 104]
-05-10 16:23:35.875     0     0 D [drm:drm_mode_addfb2 [drm]] [FB: 104]
-05-10 16:23:35.875     0     0 D         :
-[drm:dm_plane_helper_prepare_fb [amdgpu]] No FB bound
-05-10 16:23:35.876     0     0 D         : [drm:dcn10_program_pipe
-[amdgpu]] Un-gated front end for pipe 0
-05-10 16:23:35.891     0     0 D [drm:drm_mode_addfb2 [drm]] [FB: 102]
-05-10 16:23:35.892     0     0 D [drm:drm_mode_addfb2 [drm]] [FB: 102]
-05-10 16:23:35.892     0     0 D         :
-[drm:dm_plane_helper_prepare_fb [amdgpu]] No FB bound
-05-10 16:23:35.893     0     0 D         : [drm:dcn10_program_pipe
-[amdgpu]] Un-gated front end for pipe 0
-
-2021-05-10 23:18 GMT+08:00, Mark Yacoub <markyacoub@chromium.org>:
-> Like the previous time it was reverted, there is a chance it's a user
-> space bug that's not passing the correct modifier.
-> Are you able to check what exactly returns false in the code above.
-> This will give you the greatest hint on what the userspace is missing
-> and needs to be fixed there.
->
-> On Sun, May 9, 2021 at 10:09 PM youling 257 <youling257@gmail.com> wrote:
->>
->> Revert "Revert "drm/amdgpu: Ensure that the modifier requested is
->> supported by plane."" is first bad commt.
->> "drm/amd/display: Fix two cursor duplication when using overlay" is
->> second bad commit.
->> they cause same problem, look the video.
->> i have to revert two patch for my androidx86 run on amdgpu.
->>
->> 2021-05-10 5:42 GMT+08:00, youling 257 <youling257@gmail.com>:
->> > error dmesg
->> >
->> > [  115.977746] [drm:dm_plane_helper_prepare_fb [amdgpu]] No FB bound
->> > [  115.980406] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for
->> > pipe
->> > 0
->> > [  115.993656] [drm:drm_mode_addfb2 [drm]] [FB:104]
->> > [  115.993694] [drm:drm_mode_addfb2 [drm]] [FB:105]
->> > [  115.993722] [drm:drm_mode_addfb2 [drm]] [FB:106]
->> > [  115.993750] [drm:drm_mode_addfb2 [drm]] [FB:107]
->> > [  115.993777] [drm:drm_mode_addfb2 [drm]] [FB:108]
->> > [  115.994215] [drm:drm_mode_addfb2 [drm]] [FB:104]
->> > [  115.994371] [drm:dm_plane_helper_prepare_fb [amdgpu]] No FB bound
->> > [  115.997095] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for
->> > pipe
->> > 0
->> > [  116.010298] [drm:drm_mode_addfb2 [drm]] [FB:102]
->> > [  116.010337] [drm:drm_mode_addfb2 [drm]] [FB:105]
->> > [  116.010366] [drm:drm_mode_addfb2 [drm]] [FB:106]
->> > [  116.010394] [drm:drm_mode_addfb2 [drm]] [FB:107]
->> > [  116.010422] [drm:drm_mode_addfb2 [drm]] [FB:108]
->> > [  116.010853] [drm:drm_mode_addfb2 [drm]] [FB:102]
->> > [  116.011018] [drm:dm_plane_helper_prepare_fb [amdgpu]] No FB bound
->> > [  116.013694] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for
->> > pipe
->> > 0
->> >
->> >
->> > normal dmesg
->> >  3464.827004] [drm:drm_mode_addfb2 [drm]] [FB:105]
->> > [ 3464.833405] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for
->> > pipe
->> > 0
->> > [ 3464.833981] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for
->> > pipe
->> > 3
->> > [ 3464.842396] [drm:drm_mode_addfb2 [drm]] [FB:104]
->> > [ 3464.842476] [drm:drm_mode_addfb2 [drm]] [FB:106]
->> > [ 3464.842550] [drm:drm_mode_addfb2 [drm]] [FB:107]
->> > [ 3464.842615] [drm:drm_mode_addfb2 [drm]] [FB:108]
->> > [ 3464.842679] [drm:drm_mode_addfb2 [drm]] [FB:109]
->> > [ 3464.842741] [drm:drm_mode_addfb2 [drm]] [FB:110]
->> > [ 3464.843748] [drm:drm_mode_addfb2 [drm]] [FB:104]
->> > [ 3464.843821] [drm:drm_mode_addfb2 [drm]] [FB:106]
->> > [ 3464.850026] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for
->> > pipe
->> > 0
->> > [ 3464.850378] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for
->> > pipe
->> > 3
->> > [ 3464.858841] [drm:drm_mode_addfb2 [drm]] [FB:102]
->> > [ 3464.858878] [drm:drm_mode_addfb2 [drm]] [FB:105]
->> > [ 3464.858906] [drm:drm_mode_addfb2 [drm]] [FB:107]
->> > [ 3464.858933] [drm:drm_mode_addfb2 [drm]] [FB:108]
->> > [ 3464.858960] [drm:drm_mode_addfb2 [drm]] [FB:109]
->> > [ 3464.858987] [drm:drm_mode_addfb2 [drm]] [FB:110]
->> > [ 3464.859609] [drm:drm_mode_addfb2 [drm]] [FB:102]
->> > [ 3464.859641] [drm:drm_mode_addfb2 [drm]] [FB:105]
->> > [ 3464.866353] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for
->> > pipe
->> > 0
->> > [ 3464.866653] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for
->> > pipe
->> > 3
->> >
->> > 2021-05-10 4:57 GMT+08:00, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>:
->> >> It would be very helpful if you could enable drm.debug=0x4 and then
->> >> take the dmesg to figure out what modifier was rejected
->> >>
->> >> On Sun, May 9, 2021 at 10:51 PM youling 257 <youling257@gmail.com>
->> >> wrote:
->> >>>
->> >>> look this video,
->> >>> https://drive.google.com/file/d/1QklH_H2AlOTu8W1D3yl6_3rtZ7IqbjR_/view?usp=sharing
->> >>>
->> >>> 2021-05-09 23:52 GMT+08:00, Alex Deucher <alexdeucher@gmail.com>:
->> >>> > On Sun, May 9, 2021 at 11:42 AM youling257 <youling257@gmail.com>
->> >>> > wrote:
->> >>> >>
->> >>> >> I using amd 3400g running with android-x86, this patch is a bad
->> >>> >> commit
->> >>> >> when i use android-x86 on amdgpu.
->> >>> >
->> >>> > Can you provide more details?  What sort of problem are you seeing?
->> >>> > Please provide your dmesg output.
->> >>> >
->> >>> > Alex
->> >>> >
->> >>> >
->> >>> >> _______________________________________________
->> >>> >> amd-gfx mailing list
->> >>> >> amd-gfx@lists.freedesktop.org
->> >>> >> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
->> >>> >
->> >>
->> >
->
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+VW50aWwgbm93IGV4dHJhY3RpbmcgYSBjYXJkIGVpdGhlciBieSBwaHlzaWNhbCBleHRyYWN0aW9u
+IChlLmcuIGVHUFUgd2l0aCAKdGh1bmRlcmJvbHQgY29ubmVjdGlvbiBvciBieSBlbXVsYXRpb24g
+dGhyb3VnaCDCoHN5c2ZzIC0+IC9zeXMvYnVzL3BjaS9kZXZpY2VzL2RldmljZV9pZC9yZW1vdmUp
+IAp3b3VsZCBjYXVzZSByYW5kb20gY3Jhc2hlcyBpbiB1c2VyIGFwcHMuIFRoZSByYW5kb20gY3Jh
+c2hlcyBpbiBhcHBzIHdlcmUgCm1vc3RseSBkdWUgdG8gdGhlIGFwcCBoYXZpbmcgbWFwcGVkIGEg
+ZGV2aWNlIGJhY2tlZCBCTyBpbnRvIGl0cyBhZGRyZXNzIApzcGFjZSBhbmQgd2FzIHN0aWxsIHRy
+eWluZyB0byBhY2Nlc3MgdGhlIEJPIHdoaWxlIHRoZSBiYWNraW5nIGRldmljZSB3YXMgZ29uZS4K
+VG8gYW5zd2VyIHRoaXMgZmlyc3QgcHJvYmxlbSBDaHJpc3RpYW4gc3VnZ2VzdGVkIGZpeGluZyB0
+aGUgaGFuZGxpbmcgb2YgbWFwcGVkIAptZW1vcnkgaW4gdGhlIGNsaWVudHMgd2hlbiB0aGUgZGV2
+aWNlIGdvZXMgYXdheSBieSBmb3JjaWJseSB1bm1hcHBpbmcgYWxsIGJ1ZmZlcnMgdGhlIAp1c2Vy
+wqBwcm9jZXNzZXMgaGF2ZcKgYnkgY2xlYXJpbmcgdGhlaXIgcmVzcGVjdGl2ZSBWTUFzIG1hcHBp
+bmcgdGhlIGRldmljZSBCT3MuClRoZW4gd2hlbiB0aGUgVk1BcyB0cnkgdG8gZmlsbCBpbiB0aGUg
+cGFnZSB0YWJsZXMgYWdhaW4gd2UgY2hlY2sgaW4gdGhlIGZhdWx0IApoYW5kbGVyIGlmIHRoZSBk
+ZXZpY2UgaXMgcmVtb3ZlZCBhbmQgaWYgc28sIHJldHVybiBhbiBlcnJvci4gVGhpcyB3aWxsIGdl
+bmVyYXRlIGEgClNJR0JVUyB0byB0aGUgYXBwbGljYXRpb24gd2hpY2ggY2FuIHRoZW4gY2xlYW5s
+eSB0ZXJtaW5hdGUuIFRoaXMgaW5kZWVkIHdhcyBkb25lIApidXQgdGhpcyBpbiB0dXJuIGNyZWF0
+ZWQgYSBwcm9ibGVtIG9mIGtlcm5lbCBPT1BzIHdoZXJlIHRoZSBPT1BTZXMgd2VyZSBkdWUgdG8g
+dGhlIApmYWN0IHRoYXQgd2hpbGUgdGhlIGFwcCB3YXMgdGVybWluYXRpbmcgYmVjYXVzZSBvZiB0
+aGUgU0lHQlVTIGl0IHdvdWxkIHRyaWdnZXIgdXNlIAphZnRlciBmcmVlIGluIHRoZSBkcml2ZXIg
+YnkgY2FsbGluZyB0b8KgYWNjZXNzwqBkZXZpY2Ugc3RydWN0dXJlcyB0aGF0IHdlcmUgYWxyZWFk
+eQpyZWxlYXNlZCBmcm9tIHRoZSBwY2kgcmVtb3ZlIHNlcXVlbmNlLiBUaGlzIHdhcyBoYW5kbGVk
+IGJ5IGludHJvZHVjaW5nIGEgJ2ZsdXNoJyAKc2VxdWVuY2UgZHVyaW5nIGRldmljZSByZW1vdmFs
+IHdoZXJlIHdlIHdhaXQgZm9yIGRybSBmaWxlIHJlZmVyZW5jZSB0byBkcm9wIHRvIDAgCm1lYW5p
+bmcgYWxsIHVzZXIgY2xpZW50cyBkaXJlY3RseSB1c2luZyB0aGlzIGRldmljZSB0ZXJtaW5hdGVk
+LgoKdjI6CkJhc2VkIG9uIGRpc2N1c3Npb25zIGluIHRoZSBtYWlsaW5nIGxpc3Qgd2l0aCBEYW5p
+ZWwgYW5kIFBla2thIFsxXSBhbmQgYmFzZWQgb24gdGhlIGRvY3VtZW50IApwcm9kdWNlZCBieSBQ
+ZWtrYSBmcm9tIHRob3NlIGRpc2N1c3Npb25zIFsyXSB0aGUgd2hvbGUgYXBwcm9hY2ggd2l0aCBy
+ZXR1cm5pbmcgU0lHQlVTIGFuZCAKd2FpdGluZyBmb3IgYWxsIHVzZXIgY2xpZW50cyBoYXZpbmcg
+Q1BVIG1hcHBpbmcgb2YgZGV2aWNlIEJPcyB0byBkaWUgd2FzIGRyb3BwZWQuIApJbnN0ZWFkIGFz
+IHBlciB0aGUgZG9jdW1lbnQgc3VnZ2VzdGlvbiB0aGUgZGV2aWNlIHN0cnVjdHVyZXMgYXJlIGtl
+cHQgYWxpdmUgdW50aWwgCnRoZSBsYXN0IHJlZmVyZW5jZSB0byB0aGUgZGV2aWNlIGlzIGRyb3Bw
+ZWQgYnkgdXNlciBjbGllbnQgYW5kIGluIHRoZSBtZWFud2hpbGUgYWxsIGV4aXN0aW5nIGFuZCBu
+ZXcgQ1BVIG1hcHBpbmdzIG9mIHRoZSBCT3MgCmJlbG9uZ2luZyB0byB0aGUgZGV2aWNlIGRpcmVj
+dGx5IG9yIGJ5IGRtYS1idWYgaW1wb3J0IGFyZSByZXJvdXRlZCB0byBwZXIgdXNlciAKcHJvY2Vz
+cyBkdW1teSBydyBwYWdlLkFsc28sIEkgc2tpcHBlZCB0aGUgJ1JlcXVpcmVtZW50cyBmb3IgS01T
+IFVBUEknIHNlY3Rpb24gb2YgWzJdIApzaW5jZSBpIGFtIHRyeWluZyB0byBnZXQgdGhlIG1pbmlt
+YWwgc2V0IG9mIHJlcXVpcmVtZW50cyB0aGF0IHN0aWxsIGdpdmUgdXNlZnVsIHNvbHV0aW9uIAp0
+byB3b3JrIGFuZCB0aGlzIGlzIHRoZSdSZXF1aXJlbWVudHMgZm9yIFJlbmRlciBhbmQgQ3Jvc3Mt
+RGV2aWNlIFVBUEknIHNlY3Rpb24gYW5kIHNvIG15IAp0ZXN0IGNhc2UgaXMgcmVtb3ZpbmcgYSBz
+ZWNvbmRhcnkgZGV2aWNlLCB3aGljaCBpcyByZW5kZXIgb25seSBhbmQgaXMgbm90IGludm9sdmVk
+IAppbiBLTVMuCgp2MzoKTW9yZSB1cGRhdGVzIGZvbGxvd2luZyBjb21tZW50cyBmcm9tIHYyIHN1
+Y2ggYXMgcmVtb3ZpbmcgbG9vcCB0byBmaW5kIERSTSBmaWxlIHdoZW4gcmVyb3V0aW5nIApwYWdl
+IGZhdWx0cyB0byBkdW1teSBwYWdlLGdldHRpbmcgcmlkIG9mIHVubmVjZXNzYXJ5IHN5c2ZzIGhh
+bmRsaW5nIHJlZmFjdG9yaW5nIGFuZCBtb3ZpbmcgCnByZXZlbnRpb24gb2YgR1BVIHJlY292ZXJ5
+IHBvc3QgZGV2aWNlIHVucGx1ZyBmcm9tIGFtZGdwdSB0byBzY2hlZHVsZXIgbGF5ZXIuIApPbiB0
+b3Agb2YgdGhhdCBhZGRlZCB1bnBsdWcgc3VwcG9ydCBmb3IgdGhlIElPTU1VIGVuYWJsZWQgc3lz
+dGVtLgoKdjQ6CkRyb3AgbGFzdCBzeXNmcyBoYWNrIGFuZCB1c2Ugc3lzZnMgZGVmYXVsdCBhdHRy
+aWJ1dGUuCkd1YXJkIGFnYWluc3Qgd3JpdGUgYWNjZXNzZXMgYWZ0ZXIgZGV2aWNlIHJlbW92YWwg
+dG8gYXZvaWQgbW9kaWZ5aW5nIHJlbGVhc2VkIG1lbW9yeS4KVXBkYXRlIGR1bW15IHBhZ2VzIGhh
+bmRsaW5nIHRvIG9uIGRlbWFuZCBhbGxvY2F0aW9uIGFuZCByZWxlYXNlIHRocm91Z2ggZHJtIG1h
+bmFnZWQgZnJhbWV3b3JrLgpBZGQgcmV0dXJuIHZhbHVlIHRvIHNjaGVkdWxlciBqb2IgVE8gaGFu
+ZGxlciAoYnkgTHViZW4gVHVpa292KSBhbmQgdXNlIHRoaXMgaW4gYW1kZ3B1IGZvciBwcmV2ZW50
+aW9uIApvZiBHUFUgcmVjb3ZlcnkgcG9zdCBkZXZpY2UgdW5wbHVnCkFsc28gcmViYXNlIG9uIHRv
+cCBvZiBkcm0tbWlzYy1tZXh0IGluc3RlYWQgb2YgYW1kLXN0YWdpbmctZHJtLW5leHQKCnY1OgpU
+aGUgbW9zdCBzaWduaWZpY2FudCBpbiB0aGlzIHNlcmllcyBpcyB0aGUgaW1wcm92ZWQgcHJvdGVj
+dGlvbiBmcm9tIGtlcm5lbCBkcml2ZXIgYWNjZXNzaW5nIE1NSU8gcmFuZ2VzIHRoYXQgd2VyZSBh
+bGxvY2F0ZWQKZm9yIHRoZSBkZXZpY2Ugb25jZSB0aGUgZGV2aWNlIGlzIGdvbmUuIFRvIGRvIHRo
+aXMsIGZpcnN0IGEgcGF0Y2ggJ2RybS9hbWRncHU6IFVubWFwIGFsbCBNTUlPIG1hcHBpbmdzJyBp
+cyBpbnRyb2R1Y2VkLgpUaGlzIHBhdGNoIHVuYW1wcyBhbGwgTU1JTyBtYXBwZWQgaW50byB0aGUg
+a2VybmVsIGFkZHJlc3Mgc3BhY2UgaW4gdGhlIGZvcm0gb2YgQkFScyBhbmQga2VybmVsIEJPcyB3
+aXRoIENQVSB2aXNpYmxlIFZSQU0gbWFwcGluZ3MuClRoaXMgd2F5IGl0IGhlbHBlZCB0byBkaXNj
+b3ZlciBtdWx0aXBsZSBzdWNoIGFjY2VzcyBwb2ludHMgYmVjYXVzZSBhIHBhZ2UgZmF1bHQgd291
+bGQgYmUgaW1tZWRpYXRlbHkgZ2VuZXJhdGVkIG9uIGFjY2Vzcy4gTW9zdCBvZiB0aGVtCndlcmUg
+c29sdmVkIGJ5IG1vdmluZyBIVyBmaW5pIGNvZGUgaW50byBwY2lfcmVtb3ZlIHN0YWdlIChwYXRj
+aCBkcm0vYW1kZ3B1OiBBZGQgZWFybHkgZmluaSBjYWxsYmFjaykgYW5kIGZvciBzb21lIHdobyAK
+d2VyZSBoYXJkZXIgdG8gdW53aW5kIGRybV9kZXZfZW50ZXIvZXhpdCBzY29waW5nIHdhcyB1c2Vk
+LiBJbiBhZGRpdGlvbiBhbGwgdGhlIElPQ1RMcyBhbmQgYWxsIGJhY2tncm91bmQgd29yayBhbmQg
+dGltZXJzIAphcmUgbm93IHByb3RlY3RlZCB3aXRoIGRybV9kZXZfZW50ZXIvZXhpdCBhdCB0aGVp
+ciByb290IGluIGFuIGF0dGVtcHQgdGhhdCBhZnRlciBkcm1fZGV2X3VucGx1ZyBpcyBmaW5pc2hl
+ZCBub25lIG9mIHRoZW0gCnJ1biBhbnltb3JlIGFuZCB0aGUgcGNpX3JlbW92ZSB0aHJlYWQgaXMg
+dGhlIG9ubHkgdGhyZWFkIGV4ZWN1dGluZyB3aGljaCBtaWdodCB0b3VjaCB0aGUgSFcuIFRvIHBy
+ZXZlbnQgZGVhZGxvY2tzIGluIHN1Y2ggCmNhc2UgYWdhaW5zdCB0aHJlYWRzIHN0dWNrIG9uIHZh
+cmlvdXMgSFcgb3IgU1cgZmVuY2VzIHBhdGNoZXMgJ2RybS9hbWRncHU6IEZpbmFsaXNlIGRldmlj
+ZSBmZW5jZXMgb24gZGV2aWNlIHJlbW92ZScgIAphbmQgZHJtL2FtZGdwdTogQWRkIHJ3X3NlbSB0
+byBwdXNoaW5nIGpvYiBpbnRvIHNjaGVkIHF1ZXVlJyB0YWtlIGNhcmUgb2YgZm9yY2Ugc2lnbmFs
+aW5nIGFsbCBzdWNoIGV4aXN0aW5nIGZlbmNlcyAKYW5kIHJlamVjdGluZyBhbnkgbmV3bHkgYWRk
+ZWQgb25lcy4KCnY2OgpEcm9wIHVzaW5nIGRybV9kZXZfZW50ZXIvZXhpdCBpbiBjb25qdW5jdGlv
+biB3aXRoIHNpZ25hbGxpbmcgSFcgZmVuY2VzIGJlZm9yZSBzZXR0aW5nIGRybV9kZXZfdW5wbHVn
+LgpXZSBuZWVkIHRvIGRldmlzZSBhIG1vcmUgcm9idXN0IGNyb3MgRFJNIGFwcHJvYWNoIHRvIHRo
+ZSBwcm9ibGVtIG9mIGRtYSBmZW5jZSB3YWl0cyBmYWxsaW5nCmluc2lkZSBkcm1fZGV2X2VudGVy
+L2V4aXQgc2NvcGVzIC0+IG1vdmUgdG8gVE9ETy4KCldpdGggdGhlc2UgcGF0Y2hlcyBJIGFtIGFi
+bGUgdG8gZ3JhY2VmdWxseSByZW1vdmUgdGhlIHNlY29uZGFyeSBjYXJkIHVzaW5nIHN5c2ZzIHJl
+bW92ZSBob29rIHdoaWxlIGdseGdlYXJzIGlzIHJ1bm5pbmcgb2ZmIG9mIHNlY29uZGFyeSAKY2Fy
+ZCAoRFJJX1BSSU1FPTEpIHdpdGhvdXQga2VybmVsIG9vcHNlcyBvciBoYW5ncyBhbmQga2VlcCB3
+b3JraW5nIHdpdGggdGhlIHByaW1hcnkgY2FyZCBvciBzb2Z0IHJlc2V0IHRoZSBkZXZpY2Ugd2l0
+aG91dCBoYW5ncyBvciBvb3BzZXMuCkFsc28gYXMgcGVyIERhbmllbCdzIGNvbW1lbnQgSSBhZGRl
+ZCAzIHRlc3RzIHRvIElHVCBbNF0gdG8gY29yZV9ob3R1bnBsdWcgdGVzdCBzdWl0ZSAtIHJlbW92
+ZSBkZXZpY2Ugd2hpbGUgY29tbWFuZHMgYXJlIHN1Ym1pdHRlZCwgCmV4cG9ydGVkIEJPIGFuZCBl
+eHBvcnRlZCBmZW5jZSAobm90IHB1c2hlZCB5ZXQpLgpBbHNvIG5vdyBpdCdzIHBvc3NpYmxlIHRv
+IHBsdWcgYmFjayB0aGUgZGV2aWNlIGFmdGVyIHVucGx1ZyAKQWxzbyBzb21lIHVzZXJzIG5vdyBj
+YW4gc3VjY2Vzc2Z1bGx5IHVzZSB0aG9zZSBwYXRjaGVzIHdpdGggZUdQVSBib3hlc1szXS4KClRP
+RE9zIGZvciBmb2xsb3d1cCB3b3JrOgpDb252ZXJ0IEFNREdQVSBjb2RlIHRvIHVzZSBkZXZtIChm
+b3IgaHcgc3R1ZmYpIGFuZCBkcm1tIChmb3Igc3cgc3R1ZmYgYW5kIGFsbG9jYXRpb25zKSAoRGFu
+aWVsKQpBZGQgc3VwcG9ydCBmb3IgJ1JlcXVpcmVtZW50cyBmb3IgS01TIFVBUEknIHNlY3Rpb24g
+b2YgWzJdIC0gdW5wbHVnZ2luZyBwcmltYXJ5LCBkaXNwbGF5IGNvbm5lY3RlZCBjYXJkLgpBbm5v
+dGF0ZSBkcm1fZGV2X2VudGVyL2V4aXQgYWdhaW5zdCBkbWFfZmVuY2Vfd2FpdHMgYXMgZmlyc3Qg
+aW4gZGVjaWRpbmcgd2hlcmUgdG8gdXNlIGRybV9kZXZfZW50ZXIvZXhpdAppbiBjb2RlIGZvciBk
+ZXZpY2UgdW5wbHVnLgoKWzFdIC0gRGlzY3Vzc2lvbnMgZHVyaW5nIHY1IG9mIHRoZSBwYXRjaHNl
+dCBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbWQtZ2Z4LzIwMjEwNDI4MTUxMjA3LjEyMTIyNTgt
+MS1hbmRyZXkuZ3JvZHpvdnNreUBhbWQuY29tLwpbMl0gLSBkcm0vZG9jOiBkZXZpY2UgaG90LXVu
+cGx1ZyBmb3IgdXNlcnNwYWNlIGh0dHBzOi8vd3d3LnNwaW5pY3MubmV0L2xpc3RzL2RyaS1kZXZl
+bC9tc2cyNTk3NTUuaHRtbApbM10gLSBSZWxhdGVkIGdpdGxhYiB0aWNrZXQgaHR0cHM6Ly9naXRs
+YWIuZnJlZWRlc2t0b3Aub3JnL2RybS9hbWQvLS9pc3N1ZXMvMTA4MQpbNF0gLSBSZWxhdGVkIElH
+VCB0ZXN0cyBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvYWdyb2R6b3YvaWd0LWdwdS10
+b29scy8tL2NvbW1pdHMvbWFzdGVyCgpBbmRyZXkgR3JvZHpvdnNreSAoMTYpOgogIGRybS90dG06
+IFJlbWFwIGFsbCBwYWdlIGZhdWx0cyB0byBwZXIgcHJvY2VzcyBkdW1teSBwYWdlLgogIGRybS90
+dG06IEV4cG9zZSB0dG1fdHRfdW5wb3B1bGF0ZSBmb3IgZHJpdmVyIHVzZQogIGRybS9hbWRncHU6
+IFNwbGl0IGFtZGdwdV9kZXZpY2VfZmluaSBpbnRvIGVhcmx5IGFuZCBsYXRlCiAgZHJtL2FtZGtm
+ZDogU3BsaXQga2ZkIHN1c3BlbmQgZnJvbSBkZXZpZSBleGl0CiAgZHJtL2FtZGdwdTogQWRkIGVh
+cmx5IGZpbmkgY2FsbGJhY2sKICBkcm0vYW1kZ3B1OiBIYW5kbGUgSU9NTVUgZW5hYmxlZCBjYXNl
+LgogIGRybS9hbWRncHU6IFJlbWFwIGFsbCBwYWdlIGZhdWx0cyB0byBwZXIgcHJvY2VzcyBkdW1t
+eSBwYWdlLgogIFBDSTogQWRkIHN1cHBvcnQgZm9yIGRldl9ncm91cHMgdG8gc3RydWN0IHBjaV9k
+ZXZpY2VfZHJpdmVyCiAgZHJtL2FtZGdwdTogQ29udmVydCBkcml2ZXIgc3lzZnMgYXR0cmlidXRl
+cyB0byBzdGF0aWMgYXR0cmlidXRlcwogIGRybS9hbWRncHU6IEd1YXJkIGFnYWluc3Qgd3JpdGUg
+YWNjZXNzZXMgYWZ0ZXIgZGV2aWNlIHJlbW92YWwKICBkcm0vc2NoZWQ6IE1ha2UgdGltZW91dCB0
+aW1lciByZWFybSBjb25kaXRpb25hbC4KICBkcm0vYW1kZ3B1OiBQcmV2ZW50IGFueSBqb2IgcmVj
+b3ZlcmllcyBhZnRlciBkZXZpY2UgaXMgdW5wbHVnZ2VkLgogIGRybS9hbWRncHU6IEZpeCBoYW5n
+IG9uIGRldmljZSByZW1vdmFsLgogIGRybS9zY2hlZHVsZXI6IEZpeCBoYW5nIHdoZW4gc2NoZWRf
+ZW50aXR5IHJlbGVhc2VkCiAgZHJtL2FtZC9kaXNwbGF5OiBSZW1vdmUgc3VwZXJmbG91cyBkcm1f
+bW9kZV9jb25maWdfY2xlYW51cAogIGRybS9hbWRncHU6IFZlcmlmeSBETUEgb3BlYXJhdGlvbnMg
+ZnJvbSBkZXZpY2UgYXJlIGRvbmUKCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHUu
+aCAgICAgICAgICAgfCAgNiArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Ft
+ZGtmZC5jICAgIHwgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9hbWRr
+ZmQuaCAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYXRvbWJp
+b3MuYyAgfCAxNyArKy0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGV2aWNl
+LmMgICAgfCA5OCArKysrKysrKysrKysrLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS9hbWRncHVfZHJ2LmMgICAgICAgfCAyNiArKysrLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X2ZlbmNlLmMgICAgIHwgMzEgKysrKy0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
+ZGdwdS9hbWRncHVfZ2FydC5jICAgICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X2dhcnQuaCAgICAgIHwgIDEgKwogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1X2dtYy5jICAgICAgIHwgIDkgKysKIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2Ft
+ZGdwdV9ndHRfbWdyLmMgICB8IDI1ICsrLS0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
+bWRncHVfaWIuYyAgICAgICAgfCAxNyArKystCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
+bWRncHVfaXJxLmMgICAgICAgfCAzNSArKysrKy0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS9hbWRncHVfaXJxLmggICAgICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1X2pvYi5jICAgICAgIHwgMTkgKysrLQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1X2ttcy5jICAgICAgIHwgMTIgKystCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
+bWRncHVfcHNwLmMgICAgICAgfCA2MyArKysrKysrLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L2FtZGdwdV9wc3AuaCAgICAgICB8ICAyICsKIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L2FtZGdwdV9yYXMuYyAgICAgICB8ICAxICsKIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
+L2FtZGdwdV9yaW5nLmMgICAgICB8IDcwICsrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9h
+bWQvYW1kZ3B1L2FtZGdwdV9yaW5nLmggICAgICB8IDUyICsrLS0tLS0tLS0KIGRyaXZlcnMvZ3B1
+L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYyAgICAgICB8IDIxICsrKy0KIGRyaXZlcnMvZ3B1
+L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV91dmQuYyAgICAgICB8IDMxICsrKystLQogZHJpdmVycy9n
+cHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZjZS5jICAgICAgIHwgMTEgKystCiBkcml2ZXJzL2dw
+dS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdmNuLmMgICAgICAgfCAyMiArKystLQogZHJpdmVycy9n
+cHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmMgICAgICAgIHwgIDcgKy0KIGRyaXZlcnMvZ3B1
+L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92cmFtX21nci5jICB8IDE0ICstLQogZHJpdmVycy9ncHUv
+ZHJtL2FtZC9hbWRncHUvY2lrX2loLmMgICAgICAgICAgIHwgIDMgKy0KIGRyaXZlcnMvZ3B1L2Ry
+bS9hbWQvYW1kZ3B1L2N6X2loLmMgICAgICAgICAgICB8ICAzICstCiBkcml2ZXJzL2dwdS9kcm0v
+YW1kL2FtZGdwdS9pY2VsYW5kX2loLmMgICAgICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL2Ft
+ZC9hbWRncHUvbmF2aTEwX2loLmMgICAgICAgIHwgIDUgKy0KIGRyaXZlcnMvZ3B1L2RybS9hbWQv
+YW1kZ3B1L3BzcF92MTFfMC5jICAgICAgICB8IDQ0ICsrKystLS0tLQogZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvcHNwX3YxMl8wLmMgICAgICAgIHwgIDggKy0KIGRyaXZlcnMvZ3B1L2RybS9h
+bWQvYW1kZ3B1L3BzcF92M18xLmMgICAgICAgICB8ICA4ICstCiBkcml2ZXJzL2dwdS9kcm0vYW1k
+L2FtZGdwdS9zaV9paC5jICAgICAgICAgICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvdG9uZ2FfaWguYyAgICAgICAgIHwgIDMgKy0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L3ZjZV92NF8wLmMgICAgICAgICB8IDI2ICsrKy0tCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2Ft
+ZGdwdS92Y25fdjNfMC5jICAgICAgICAgfCAyMiArKystLQogZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvdmVnYTEwX2loLmMgICAgICAgIHwgIDUgKy0KIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
+Z3B1L3ZlZ2EyMF9paC5jICAgICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtm
+ZC9rZmRfZGV2aWNlLmMgICAgICAgfCAgMyArLQogLi4uL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1k
+Z3B1X2RtL2FtZGdwdV9kbS5jIHwgMTMgKystCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2luY2x1ZGUv
+YW1kX3NoYXJlZC5oICAgICAgfCAgMiArCiAuLi4vZHJtL2FtZC9wbS9wb3dlcnBsYXkvc211bWdy
+L3NtdTdfc211bWdyLmMgfCAgMiArCiBkcml2ZXJzL2dwdS9kcm0vc2NoZWR1bGVyL3NjaGVkX2Vu
+dGl0eS5jICAgICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL3NjaGVkdWxlci9zY2hlZF9tYWlu
+LmMgICAgICAgIHwgMzUgKysrKysrLQogZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm9fdm0uYyAg
+ICAgICAgICAgICAgIHwgNTcgKysrKysrKysrKy0KIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX3R0
+LmMgICAgICAgICAgICAgICAgICB8ICAxICsKIGRyaXZlcnMvcGNpL3BjaS1kcml2ZXIuYyAgICAg
+ICAgICAgICAgICAgICAgICB8ICAxICsKIGluY2x1ZGUvZHJtL3R0bS90dG1fYm9fYXBpLmggICAg
+ICAgICAgICAgICAgICB8ICAyICsKIGluY2x1ZGUvbGludXgvcGNpLmggICAgICAgICAgICAgICAg
+ICAgICAgICAgICB8ICAzICsKIDUxIGZpbGVzIGNoYW5nZWQsIDU4NSBpbnNlcnRpb25zKCspLCAy
+NzIgZGVsZXRpb25zKC0pCgotLSAKMi4yNS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2FtZC1nZngK
