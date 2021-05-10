@@ -2,52 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0E2B379924
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 May 2021 23:26:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 692A1379975
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 May 2021 23:52:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 537506E8FD;
-	Mon, 10 May 2021 21:26:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB4256E924;
+	Mon, 10 May 2021 21:52:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com
- [IPv6:2607:f8b0:4864:20::229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01BE36E8FC;
- Mon, 10 May 2021 21:26:28 +0000 (UTC)
-Received: by mail-oi1-x229.google.com with SMTP id v22so12238562oic.2;
- Mon, 10 May 2021 14:26:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=i+UW9l1f2CKj2UlOVF+I0X5zqvD69rO6YcKaLDCC+D0=;
- b=aK69t+Y+KATfWUAk6yHy1uarwT8DuzijzWsJdsSzwILo31w+CBa7Ge896y2dH1twPd
- v99eDJh8be/MuW6zfNcEl34FncVQgrsS+XE8Wki23vSuSn2x5v6XWSCLS4tiOsSo44UE
- EBr6NPmu6nhWJNyjq92eQpoHYRdllfwhWmBZCCjySLiCwIqILEAoKUo0sWs1XYTt+rMR
- xMBykOXja9HhlrNBvrPHqsQOotCGUuOgm0EFycwdht9aB03Pc/ooSiTve/gYW3hqqJFe
- 5SqQI3mQ4SUl+ONI4tYYcppGR3w5X1Ed0BcbwslsMh9WKRcMiq3s/fDZ1eDWtlIKeoDJ
- mUqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=i+UW9l1f2CKj2UlOVF+I0X5zqvD69rO6YcKaLDCC+D0=;
- b=r3Lq7x3Wylu4XElmvvCu3kwJKGR8JsR5FUi8oU8nY/NvkuirCCajTOeZu2ozjjYE1Q
- Ob4TRnAa3IpLrA3gfiojFgcwyBDhYz7yq+kJUoYY99cMhoaWMBnNHI44m3crINJD92cs
- GVUPEe/Zhy4UUkDDvidxuFn1JnVKvDO9So1a+m9Kz+7oqvo2q7oDh7OQMVdxg0XqF0Kk
- bFL84jZRjvsvWou3FhxRDRi63YNhxdK5R5I5OkuSf+QWjSMplSzF6XK27QUQfpDL7TR8
- Qg6xAsLr/yGfOO4rQwIN2KJcDsWLMfE4JrWlHMCAhQsho2NQx80mPYEOicEBtRITLytk
- JplQ==
-X-Gm-Message-State: AOAM532gWi06/FfVpOOQNBU3zA6jb0cB6A2oc2XQuaBqMCQ1EsoJmSld
- Pp+m0x48mT4yakbHBTNVY0lfvB9wEKAv5ksMod8=
-X-Google-Smtp-Source: ABdhPJz4WhvHhLUxZ231BvPLJkYiYWjvhE4d3egBqLdAG8uLzsMiXOd5tzCaRkhSGLlxD0u7yK2ZkKTaNoJJycm9sXk=
-X-Received: by 2002:aca:fc50:: with SMTP id a77mr19688116oii.123.1620681988325; 
- Mon, 10 May 2021 14:26:28 -0700 (PDT)
+X-Greylist: delayed 1330 seconds by postgrey-1.36 at gabe;
+ Mon, 10 May 2021 21:50:30 UTC
+Received: from gateway36.websitewelcome.com (gateway36.websitewelcome.com
+ [192.185.201.2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E92126E926
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 May 2021 21:50:30 +0000 (UTC)
+Received: from cm14.websitewelcome.com (cm14.websitewelcome.com [100.42.49.7])
+ by gateway36.websitewelcome.com (Postfix) with ESMTP id 9B267400CA1C5
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 May 2021 16:28:13 -0500 (CDT)
+Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
+ id gDRllGejk8ElSgDRlloQLX; Mon, 10 May 2021 16:28:13 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=KgfgvAJslFXT/V//YjtBHOgr5mG9TcHB2XOA5MwkyEc=; b=jBEbMKAMemcnb4u3CBVuzDGDg/
+ 9TAQOBwBZc8a0bYT0mZXv0Az0trVtcXMbJaj5NTPgpRHn6s8y6j9uwqjqS9TO2hXOeHcP6Y0zMlct
+ z9W1UgaHqhQSY7T8JBksNrS9m5YBhU4iOQS+pLgMqGY0Qgm+IUudasrrN/xO1kvLqNi0Ycg4g2706
+ dA9uU9e9MrQr8v0rFuJjnU9fULOrz1TNk3rGPp6zZrd2J5Bj08W8MDxSWiTwC9QXFnZM2fu/GSFkw
+ EehqKoYJrDqeSoZ/os8loLvV5zVg8oT0KrbTAIYcP7tF3lqOfk1Rb0OFLoj8R/w5YMlENzZ0NyLsY
+ 1A/4VDyA==;
+Received: from 187-162-31-110.static.axtel.net ([187.162.31.110]:42170
+ helo=[192.168.15.8])
+ by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.94.2)
+ (envelope-from <gustavo@embeddedor.com>)
+ id 1lgDRg-00137t-Uf; Mon, 10 May 2021 16:28:08 -0500
+Subject: Re: [PATCH] drm/radeon/ni_dpm: Fix booting bug
+To: Alex Deucher <alexdeucher@gmail.com>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>
+References: <20210509224926.GA31035@embeddedor>
+ <CADnq5_OWk+rXK5xrwu0YOMVC45WyQgFQBTUNkcF8oO3ucp+=XQ@mail.gmail.com>
+From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+Message-ID: <ba5f2a73-58e8-6b3e-4048-bb19f238be51@embeddedor.com>
+Date: Mon, 10 May 2021 16:28:33 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210510122338.3748-1-thunder.leizhen@huawei.com>
-In-Reply-To: <20210510122338.3748-1-thunder.leizhen@huawei.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 10 May 2021 17:26:17 -0400
-Message-ID: <CADnq5_Nc4ycGD7PrkQu2+fDuEOh6HqjjgSuyBfkjKSzU747mFg@mail.gmail.com>
-Subject: Re: [PATCH 1/1] drm/amdgpu: Delete two unneeded bool conversions
-To: Zhen Lei <thunder.leizhen@huawei.com>
+In-Reply-To: <CADnq5_OWk+rXK5xrwu0YOMVC45WyQgFQBTUNkcF8oO3ucp+=XQ@mail.gmail.com>
+Content-Language: en-US
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - embeddedor.com
+X-BWhitelist: no
+X-Source-IP: 187.162.31.110
+X-Source-L: No
+X-Exim-ID: 1lgDRg-00137t-Uf
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 187-162-31-110.static.axtel.net ([192.168.15.8])
+ [187.162.31.110]:42170
+X-Source-Auth: gustavo@embeddedor.com
+X-Email-Count: 10
+X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
+X-Local-Domain: yes
+X-Mailman-Approved-At: Mon, 10 May 2021 21:52:04 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,53 +83,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- amd-gfx <amd-gfx@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ David Airlie <airlied@linux.ie>, LKML <linux-kernel@vger.kernel.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ linux-hardening@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ Christian Zigotzky <chzigotzky@xenosoft.de>,
  Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Applied.  Thanks!
-
-Alex
-
-On Mon, May 10, 2021 at 8:24 AM Zhen Lei <thunder.leizhen@huawei.com> wrote:
->
-> The result of an expression consisting of a single relational operator is
-> already of the bool type and does not need to be evaluated explicitly.
->
-> No functional change.
->
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
-> index a9899335d0b1fb0..709ac576ac7e892 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
-> @@ -569,9 +569,9 @@ static int mmhub_v2_3_set_clockgating(struct amdgpu_device *adev,
->                 return 0;
->
->         mmhub_v2_3_update_medium_grain_clock_gating(adev,
-> -                       state == AMD_CG_STATE_GATE ? true : false);
-> +                               state == AMD_CG_STATE_GATE);
->         mmhub_v2_3_update_medium_grain_light_sleep(adev,
-> -                       state == AMD_CG_STATE_GATE ? true : false);
-> +                               state == AMD_CG_STATE_GATE);
->
->         return 0;
->  }
-> --
-> 2.26.0.106.g9fadedd
->
->
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+SGkgQWxleCwKCk9uIDUvMTAvMjEgMTY6MTcsIEFsZXggRGV1Y2hlciB3cm90ZToKPiBPbiBTdW4s
+IE1heSA5LCAyMDIxIGF0IDY6NDggUE0gR3VzdGF2byBBLiBSLiBTaWx2YQo+IDxndXN0YXZvYXJz
+QGtlcm5lbC5vcmc+IHdyb3RlOgpbLi5dCgo+Pgo+PiBCdWc6IGh0dHBzOi8vbG9yZS5rZXJuZWwu
+b3JnL2RyaS1kZXZlbC8zZWVkYmU3OC0xZmJkLTQ3NjMtYTdmMy1hYzU2NjVlNzZhNGFAeGVub3Nv
+ZnQuZGUvCj4+IEZpeGVzOiA0MzRmYjFlNzQ0NGEgKCJkcm0vcmFkZW9uL25pc2xhbmRzX3NtYy5o
+OiBSZXBsYWNlIG9uZS1lbGVtZW50IGFycmF5IHdpdGggZmxleGlibGUtYXJyYXkgbWVtYmVyIGlu
+IHN0cnVjdCBOSVNMQU5EU19TTUNfU1dTVEFURSIpCj4+IENjOiBzdGFibGVAdmdlci5rZXJuZWwu
+b3JnCj4+IFJlcG9ydGVkLWJ5OiBDaHJpc3RpYW4gWmlnb3R6a3kgPGNoemlnb3R6a3lAeGVub3Nv
+ZnQuZGU+Cj4+IFRlc3RlZC1ieTogQ2hyaXN0aWFuIFppZ290emt5IDxjaHppZ290emt5QHhlbm9z
+b2Z0LmRlPgo+PiBMaW5rOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9kcmktZGV2ZWwvOWJiNWZj
+YmQtZGFmNS0xNjY5LWIzZTctYjg2MjRiM2MzNmY5QHhlbm9zb2Z0LmRlLwo+PiBTaWduZWQtb2Zm
+LWJ5OiBHdXN0YXZvIEEuIFIuIFNpbHZhIDxndXN0YXZvYXJzQGtlcm5lbC5vcmc+Cj4gCj4gVGhp
+cyBzZWVtcyBsaWtlIGEgbG90IG9mIGNodXJuIGp1c3QgdG8gdXNlIGZsZXhpYmxlIGFycmF5cy4g
+IFRoYXQKPiBzYWlkLCBpZiBzdGF0aWMgY2hlY2tlcnMgYXJlIGdvaW5nIHRvIGtlZXAgY29tcGxh
+aW5pbmcgYWJvdXQgc2luZ2xlCj4gZWxlbWVudCBhcnJheXMsIEkgZG9uJ3QgbWluZCBhcHBseWlu
+ZyB0aGVzZSBwYXRjaGVzIHNpbmNlIHRoaXMgY29kZSBpcwo+IG5vdCBsaWtlbHkgdG8gY2hhbmdl
+LiAgQXBwbGllZC4gIFRoYW5rcy4KClRoaXMgaXMgbm90IG9ubHkgYWJvdXQgdGhlIG9uZS1lbGVt
+ZW50IGFycmF5cy4gVGhlc2UgZml4ZXMgKHRvZ2V0aGVyIHdpdGggY29tbWl0cwo0MzRmYjFlNzQ0
+NGEgYW5kIDk2ZTI3ZThkOTE5ZSkgYWxsb3cgdXMgdG8gZml4IG1vcmUgdGhhbiBhIGRvemVuIG9m
+IHRoZXNlIG91dC1vZi1ib3VuZHMKd2FybmluZ3M6Cgpkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL25p
+X2RwbS5jOjI1MjE6MjA6IHdhcm5pbmc6IGFycmF5IHN1YnNjcmlwdCAxIGlzIGFib3ZlIGFycmF5
+IGJvdW5kcyBvZiDigJhOSVNMQU5EU19TTUNfSFdfUEVSRk9STUFOQ0VfTEVWRUxbMV3igJkge2Fr
+YSDigJhzdHJ1Y3QKTklTTEFORFNfU01DX0hXX1BFUkZPUk1BTkNFX0xFVkVMWzFd4oCZfSBbLVdh
+cnJheS1ib3VuZHNdCiAyNTIxIHwgICBzbWNfc3RhdGUtPmxldmVsc1tpXS5kcG0yLk1heFBTID0K
+ICAgICAgfCAgIH5+fn5+fn5+fn5+fn5+fn5+Xn5+Cgp3aGljaCBzaG91bGQgYmUgZml4ZWQgaW4g
+b3JkZXIgdG8gZ2xvYmFsbHkgZW5hYmxlIC1XYXJyYXktYm91bmRzLiA6KQoKVGhhbmtzIQotLQpH
+dXN0YXZvCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwph
+bWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
