@@ -1,32 +1,31 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36FAB378FCA
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 May 2021 15:57:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF52378FCF
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 May 2021 15:58:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76DF26E489;
-	Mon, 10 May 2021 13:57:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC77C6E491;
+	Mon, 10 May 2021 13:57:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from szxga07-in.huawei.com (szxga07-in.huawei.com [45.249.212.35])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13AD46E46B;
- Mon, 10 May 2021 12:16:36 +0000 (UTC)
-Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.58])
- by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4Ff0Mk3xNfzCrB0;
- Mon, 10 May 2021 20:13:54 +0800 (CST)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E82656E159;
+ Mon, 10 May 2021 12:24:15 +0000 (UTC)
+Received: from DGGEMS408-HUB.china.huawei.com (unknown [172.30.72.59])
+ by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4Ff0XZ24QHzCr37;
+ Mon, 10 May 2021 20:21:34 +0800 (CST)
 Received: from thunder-town.china.huawei.com (10.174.177.72) by
- DGGEMS403-HUB.china.huawei.com (10.3.19.203) with Microsoft SMTP Server id
- 14.3.498.0; Mon, 10 May 2021 20:16:26 +0800
+ DGGEMS408-HUB.china.huawei.com (10.3.19.208) with Microsoft SMTP Server id
+ 14.3.498.0; Mon, 10 May 2021 20:24:03 +0800
 From: Zhen Lei <thunder.leizhen@huawei.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- "Alex Deucher" <alexander.deucher@amd.com>,
+To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, David Airlie
  <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, amd-gfx
  <amd-gfx@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>
-Subject: [PATCH 1/1] drm/amd/display: Delete several unneeded bool conversions
-Date: Mon, 10 May 2021 20:16:21 +0800
-Message-ID: <20210510121621.3692-1-thunder.leizhen@huawei.com>
+Subject: [PATCH 1/1] drm/amdgpu: Delete two unneeded bool conversions
+Date: Mon, 10 May 2021 20:23:38 +0800
+Message-ID: <20210510122338.3748-1-thunder.leizhen@huawei.com>
 X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
 X-Originating-IP: [10.174.177.72]
@@ -56,45 +55,25 @@ No functional change.
 
 Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp_cm.c | 4 ++--
- drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c    | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp_cm.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp_cm.c
-index 8dc3d1f7398422e..2feb051a200294a 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp_cm.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dpp_cm.c
-@@ -482,7 +482,7 @@ bool dpp20_program_blnd_lut(
- 		next_mode = LUT_RAM_A;
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
+index a9899335d0b1fb0..709ac576ac7e892 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_3.c
+@@ -569,9 +569,9 @@ static int mmhub_v2_3_set_clockgating(struct amdgpu_device *adev,
+ 		return 0;
  
- 	dpp20_power_on_blnd_lut(dpp_base, true);
--	dpp20_configure_blnd_lut(dpp_base, next_mode == LUT_RAM_A ? true:false);
-+	dpp20_configure_blnd_lut(dpp_base, next_mode == LUT_RAM_A);
+ 	mmhub_v2_3_update_medium_grain_clock_gating(adev,
+-			state == AMD_CG_STATE_GATE ? true : false);
++				state == AMD_CG_STATE_GATE);
+ 	mmhub_v2_3_update_medium_grain_light_sleep(adev,
+-			state == AMD_CG_STATE_GATE ? true : false);
++				state == AMD_CG_STATE_GATE);
  
- 	if (next_mode == LUT_RAM_A)
- 		dpp20_program_blnd_luta_settings(dpp_base, params);
-@@ -893,7 +893,7 @@ bool dpp20_program_shaper(
- 	else
- 		next_mode = LUT_RAM_A;
- 
--	dpp20_configure_shaper_lut(dpp_base, next_mode == LUT_RAM_A ? true:false);
-+	dpp20_configure_shaper_lut(dpp_base, next_mode == LUT_RAM_A);
- 
- 	if (next_mode == LUT_RAM_A)
- 		dpp20_program_shaper_luta_settings(dpp_base, params);
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c
-index 910c17fd4278932..950c9bfd53de516 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c
-@@ -874,7 +874,7 @@ bool mpc3_program_shaper(
- 	else
- 		next_mode = LUT_RAM_A;
- 
--	mpc3_configure_shaper_lut(mpc, next_mode == LUT_RAM_A ? true:false, rmu_idx);
-+	mpc3_configure_shaper_lut(mpc, next_mode == LUT_RAM_A, rmu_idx);
- 
- 	if (next_mode == LUT_RAM_A)
- 		mpc3_program_shaper_luta_settings(mpc, params, rmu_idx);
+ 	return 0;
+ }
 -- 
 2.26.0.106.g9fadedd
 
