@@ -2,61 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45860377E21
-	for <lists+amd-gfx@lfdr.de>; Mon, 10 May 2021 10:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5261A377E1C
+	for <lists+amd-gfx@lfdr.de>; Mon, 10 May 2021 10:26:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84DC06E42D;
-	Mon, 10 May 2021 08:26:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF58C6E426;
+	Mon, 10 May 2021 08:26:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com
- [IPv6:2607:f8b0:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5F9A89B42
- for <amd-gfx@lists.freedesktop.org>; Mon, 10 May 2021 02:09:40 +0000 (UTC)
-Received: by mail-ot1-x334.google.com with SMTP id
- f75-20020a9d03d10000b0290280def9ab76so13085290otf.12
- for <amd-gfx@lists.freedesktop.org>; Sun, 09 May 2021 19:09:40 -0700 (PDT)
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com
+ [IPv6:2607:f8b0:4864:20::102d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B8306E328
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 May 2021 02:20:59 +0000 (UTC)
+Received: by mail-pj1-x102d.google.com with SMTP id
+ cl24-20020a17090af698b0290157efd14899so9387392pjb.2
+ for <amd-gfx@lists.freedesktop.org>; Sun, 09 May 2021 19:20:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:in-reply-to:references:from:date:message-id:subject:to
- :cc; bh=2UaFKZdetO+FOLBGObqhXA7/WqBOaeWMWNijs2fh+G8=;
- b=JV/WyaPActxftlkLOlHGF5ngD2Yrqbk4Neo8CXgStyqbcGOdIj5xtuU4fHOPMal2Eu
- HP18mJHPb9JSqPLdj7zhOqnXM17DjlRKQok4VJmV6JY99dUhsfi1WRMhKovRWfXkDO1x
- NOZdvuXNh4sU63EH8zHXPdV7jJzudsMPMr9R4X5ywLkoZirtOxsXTqPfe1oClhasvdf0
- 2FG6bh85kcsFxT0LO/Mqk5c1HRo5FLOLRZo1bwm9zxVGj8uH4VNL+UFZX2G72gJc081H
- FOM5gMIj3LwYLuf9LuDnwBHRnEbsqiPZtpKLAVLxGLLo8OmdF7EkoJsL89mB+vb/KMwB
- yiag==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=GY/5bA7kV7iDdYH9WTyBo3gPdY/tZoyv959MRycTskU=;
+ b=iKTuLM8160kceYtUwHLK7FPN7OehYwZsBjGmNeCHIFUYxFPwmn7Yh4WU61KqPdjSW/
+ HmVxC41/4kMFLLJmDOZ7R1860R/6d32vu0s71g4MQdkZPoDHiT+FZ/dG4rqkPvDzr4v9
+ 9xd3zpajUsdubSjxQy8A4KOkYBh2nbB46/fbz68fDcmt4Lhicg1CnvkHLHkndhzFC665
+ 1qUNhfsOOxd4C2I0x7QuVNf/2X/+l/0aWAlZ1RBku9lInidNJYTvnaIZp2DCqakpK4kf
+ D0gxWtc9UfEd1V5LDV2AmlZThEYYTy6BRGZy3DhxQmsrA0zw0RTYLel3E1Q/fcnJQY2h
+ M6Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:in-reply-to:references:from:date
- :message-id:subject:to:cc;
- bh=2UaFKZdetO+FOLBGObqhXA7/WqBOaeWMWNijs2fh+G8=;
- b=OlGlO9inq5ggVhzrrAY1nXj+8MRXMn3pY2u8qTPoVFZX1Sjels8BgIECPKjMhiAwwN
- ioRe4TO6UKU0uj8rt16gfZ3lcW72VRZ5M2VeY6OHthC4Ti2YzRBpKAEiTQVr9FEWyf7p
- +5OuHD1KIjDaLEthFscfSZf4x+PcPvt4ZA2koKEsUKyBgJ/3jCVTBEgIoWIE+9qMhM+b
- K6JT51V6WSrP1W/HMid7KgNcveVCk6PosqRLHn+/6DAJ9WnlhuvfmT2rPHzZRGjujPY8
- liDEN+Qdjbv9nPiKCbUpxTyL2nkqEzxN4JMq/ely7r1S5aMl3r2JGdfgpl6xEqg92Pyw
- bcPQ==
-X-Gm-Message-State: AOAM533TOZfUNuBVKOfWurZoXqoamD8BPQ7NPlAelAvz0ubeiTpHyANh
- KP9Gx3l3IAUA58YKWBDekDJXL3eFTPVKn2Z7xYo=
-X-Google-Smtp-Source: ABdhPJyv8OQJiAaVIxHi5X/ZUqaDKHiiO7z9A/ridtF8KQyoE9RJCL5aCqsvAOStw2AJMG34/hJ+Hc8gRIY8h+TYjmA=
-X-Received: by 2002:a9d:6f90:: with SMTP id h16mr1988732otq.8.1620612579917;
- Sun, 09 May 2021 19:09:39 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=GY/5bA7kV7iDdYH9WTyBo3gPdY/tZoyv959MRycTskU=;
+ b=J6p0UsEnDhpnz0gSYanrHJuOW2SMPrhgEKqzsiPUYgvkLvINvcE/CO/Fu3fLBrlmPF
+ 7fbBi/x31o9JI4fgx4KR6LiOk3GhCpAzZSCHJlMxO3uli0PDL4mOZ9ZnmxKwRLWeqMQh
+ +UnuLtVF3NU5q0n+hrlDMnJnQXF+UJS04qc7abgxQhCqWOOGSN6bxrctoXVhqdF/XCWg
+ Axyu3afAE3775/tQBZ9Iqy3Xo1UMMhMBZ9k+xKrCBc+Vz66yIcw59gKoOEm5hMo4eA0j
+ ZLx2fqMdsGCybm8cQuDgJ6wcmHBtwiILt1d35mWOIzO0y1oMKNyK4lmNGXJ99R0xqS6Z
+ N+pg==
+X-Gm-Message-State: AOAM532CNdkc/diZGvDWKen+wfP3dfU33fvyLI1g9GRDmGVV+G/2bFX6
+ vE+uKWGSt2LZETcDM6QYYBU=
+X-Google-Smtp-Source: ABdhPJyu/I7x3jQxNu4RPJ2UJ7yYcmR6eAGm5+97aPaMtld4RQPq2Hak6IZTKCHpdZJ3ayJRDIervQ==
+X-Received: by 2002:a17:90a:77c7:: with SMTP id
+ e7mr3738513pjs.227.1620613258789; 
+ Sun, 09 May 2021 19:20:58 -0700 (PDT)
+Received: from localhost.localdomain ([104.200.131.246])
+ by smtp.gmail.com with ESMTPSA id y13sm9686856pff.163.2021.05.09.19.20.53
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 09 May 2021 19:20:58 -0700 (PDT)
+From: youling257 <youling257@gmail.com>
+To: Rodrigo.Siqueira@amd.com
+Subject: Re: [PATCH v2] drm/amd/display: Fix two cursor duplication when using
+ overlay
+Date: Mon, 10 May 2021 10:20:47 +0800
+Message-Id: <20210510022047.9323-1-youling257@gmail.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210414000604.3273048-1-Rodrigo.Siqueira@amd.com>
+References: <20210414000604.3273048-1-Rodrigo.Siqueira@amd.com>
 MIME-Version: 1.0
-Received: by 2002:a05:6830:4118:0:0:0:0 with HTTP; Sun, 9 May 2021 19:09:39
- -0700 (PDT)
-In-Reply-To: <CAOzgRdYbmnA3M5d30i94TwGNtOWOviChBq9eEdhTjbfvGXaSfw@mail.gmail.com>
-References: <20210414233533.24012-2-qingqing.zhuo@amd.com>
- <20210509121055.24728-1-youling257@gmail.com>
- <CADnq5_MF0y0sHH6Vz8KZH5j=iXToq3WPw7+kW=BqMk=oNZ=Ppw@mail.gmail.com>
- <CAOzgRdZf0R7mVY+spDZz_CG1Kpf7qmP6oGaOJ_XKauZA3ZhZeg@mail.gmail.com>
- <CAP+8YyEv3NPqeEVmFvQDoq_+=h8Q_goHUbgt7fNPUXJbR5AcKw@mail.gmail.com>
- <CAOzgRdYbmnA3M5d30i94TwGNtOWOviChBq9eEdhTjbfvGXaSfw@mail.gmail.com>
-From: youling 257 <youling257@gmail.com>
-Date: Mon, 10 May 2021 10:09:39 +0800
-Message-ID: <CAOzgRdaKpwd5ze8om4F22yq_DeREma1H6KUquqJ34dnSTvsjiQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] Revert "Revert "drm/amdgpu: Ensure that the modifier
- requested is supported by plane.""
-To: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
 X-Mailman-Approved-At: Mon, 10 May 2021 08:26:24 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,112 +69,18 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Yacoub <markyacoub@chromium.org>,
- Qingqing Zhuo <qingqing.zhuo@amd.com>, "Siqueira,
- Rodrigo" <Rodrigo.Siqueira@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, "Deucher,
- Alexander" <alexander.deucher@amd.com>, "Wheeler,
- Daniel" <daniel.wheeler@amd.com>, Alex Deucher <alexdeucher@gmail.com>,
- "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, seanpaul@chromium.org, hersenxs.wu@amd.com,
+ Harry.Wentland@amd.com, Nicholas.Kazlauskas@amd.com, Ching-shih.Li@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Revert "Revert "drm/amdgpu: Ensure that the modifier requested is
-supported by plane."" is first bad commt.
-"drm/amd/display: Fix two cursor duplication when using overlay" is
-second bad commit.
-they cause same problem, look the video.
-i have to revert two patch for my androidx86 run on amdgpu.
+I using amd 3400g running with android-x86, this patch is a bad commit when i use android-x86 on amdgpu.
 
-2021-05-10 5:42 GMT+08:00, youling 257 <youling257@gmail.com>:
-> error dmesg
->
-> [  115.977746] [drm:dm_plane_helper_prepare_fb [amdgpu]] No FB bound
-> [  115.980406] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for pipe
-> 0
-> [  115.993656] [drm:drm_mode_addfb2 [drm]] [FB:104]
-> [  115.993694] [drm:drm_mode_addfb2 [drm]] [FB:105]
-> [  115.993722] [drm:drm_mode_addfb2 [drm]] [FB:106]
-> [  115.993750] [drm:drm_mode_addfb2 [drm]] [FB:107]
-> [  115.993777] [drm:drm_mode_addfb2 [drm]] [FB:108]
-> [  115.994215] [drm:drm_mode_addfb2 [drm]] [FB:104]
-> [  115.994371] [drm:dm_plane_helper_prepare_fb [amdgpu]] No FB bound
-> [  115.997095] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for pipe
-> 0
-> [  116.010298] [drm:drm_mode_addfb2 [drm]] [FB:102]
-> [  116.010337] [drm:drm_mode_addfb2 [drm]] [FB:105]
-> [  116.010366] [drm:drm_mode_addfb2 [drm]] [FB:106]
-> [  116.010394] [drm:drm_mode_addfb2 [drm]] [FB:107]
-> [  116.010422] [drm:drm_mode_addfb2 [drm]] [FB:108]
-> [  116.010853] [drm:drm_mode_addfb2 [drm]] [FB:102]
-> [  116.011018] [drm:dm_plane_helper_prepare_fb [amdgpu]] No FB bound
-> [  116.013694] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for pipe
-> 0
->
->
-> normal dmesg
->  3464.827004] [drm:drm_mode_addfb2 [drm]] [FB:105]
-> [ 3464.833405] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for pipe
-> 0
-> [ 3464.833981] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for pipe
-> 3
-> [ 3464.842396] [drm:drm_mode_addfb2 [drm]] [FB:104]
-> [ 3464.842476] [drm:drm_mode_addfb2 [drm]] [FB:106]
-> [ 3464.842550] [drm:drm_mode_addfb2 [drm]] [FB:107]
-> [ 3464.842615] [drm:drm_mode_addfb2 [drm]] [FB:108]
-> [ 3464.842679] [drm:drm_mode_addfb2 [drm]] [FB:109]
-> [ 3464.842741] [drm:drm_mode_addfb2 [drm]] [FB:110]
-> [ 3464.843748] [drm:drm_mode_addfb2 [drm]] [FB:104]
-> [ 3464.843821] [drm:drm_mode_addfb2 [drm]] [FB:106]
-> [ 3464.850026] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for pipe
-> 0
-> [ 3464.850378] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for pipe
-> 3
-> [ 3464.858841] [drm:drm_mode_addfb2 [drm]] [FB:102]
-> [ 3464.858878] [drm:drm_mode_addfb2 [drm]] [FB:105]
-> [ 3464.858906] [drm:drm_mode_addfb2 [drm]] [FB:107]
-> [ 3464.858933] [drm:drm_mode_addfb2 [drm]] [FB:108]
-> [ 3464.858960] [drm:drm_mode_addfb2 [drm]] [FB:109]
-> [ 3464.858987] [drm:drm_mode_addfb2 [drm]] [FB:110]
-> [ 3464.859609] [drm:drm_mode_addfb2 [drm]] [FB:102]
-> [ 3464.859641] [drm:drm_mode_addfb2 [drm]] [FB:105]
-> [ 3464.866353] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for pipe
-> 0
-> [ 3464.866653] [drm:dcn10_program_pipe [amdgpu]] Un-gated front end for pipe
-> 3
->
-> 2021-05-10 4:57 GMT+08:00, Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>:
->> It would be very helpful if you could enable drm.debug=0x4 and then
->> take the dmesg to figure out what modifier was rejected
->>
->> On Sun, May 9, 2021 at 10:51 PM youling 257 <youling257@gmail.com> wrote:
->>>
->>> look this video,
->>> https://drive.google.com/file/d/1QklH_H2AlOTu8W1D3yl6_3rtZ7IqbjR_/view?usp=sharing
->>>
->>> 2021-05-09 23:52 GMT+08:00, Alex Deucher <alexdeucher@gmail.com>:
->>> > On Sun, May 9, 2021 at 11:42 AM youling257 <youling257@gmail.com>
->>> > wrote:
->>> >>
->>> >> I using amd 3400g running with android-x86, this patch is a bad
->>> >> commit
->>> >> when i use android-x86 on amdgpu.
->>> >
->>> > Can you provide more details?  What sort of problem are you seeing?
->>> > Please provide your dmesg output.
->>> >
->>> > Alex
->>> >
->>> >
->>> >> _______________________________________________
->>> >> amd-gfx mailing list
->>> >> amd-gfx@lists.freedesktop.org
->>> >> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
->>> >
->>
->
+Revert "Revert "drm/amdgpu: Ensure that the modifier requested is supported by plane."" is the first bad commit, cause a androidx86 run on amdgpu problem, look the video, https://drive.google.com/file/d/1QklH_H2AlOTu8W1D3yl6_3rtZ7IqbjR_/view?usp=sharing
+
+"drm/amd/display: Fix two cursor duplication when using overlay" is the second bad commit, also cause this problem, https://drive.google.com/file/d/1QklH_H2AlOTu8W1D3yl6_3rtZ7IqbjR_/view?usp=sharing
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
