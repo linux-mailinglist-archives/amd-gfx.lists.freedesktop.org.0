@@ -2,118 +2,106 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3C4937AAE1
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 May 2021 17:39:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 681D437AB04
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 May 2021 17:44:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25D316EA67;
-	Tue, 11 May 2021 15:39:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12C366EA6A;
+	Tue, 11 May 2021 15:44:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2065.outbound.protection.outlook.com [40.107.236.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1D086EA67
- for <amd-gfx@lists.freedesktop.org>; Tue, 11 May 2021 15:39:56 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2040.outbound.protection.outlook.com [40.107.94.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C9DB6EA6A
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 May 2021 15:44:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=V5JwKa573y1e4LJDI75Ujp4Px3skcX3nInnDj49KHzJheyEyBwYwVkQ7Fl7rOdlVBUQGB+z+KGIQw94kyc/51azciIWtRezGckhKIeESVicJIW6OENm7NTfhtIdskdjpXqRTglZwaE3q37hWk9LJwcnnDifoYWMA22YIa64g3t6RZtDVEsCUPrgPW1l+HQ9iZGnPE1s+2lIaZBDzHce2zrRupSpVk5KeD2c6cVz29tdAYfRf7gzUITDR0M0nk7igBM+VI5urvH1Ust9NMDQtxxpp+wWm/E/klvN5kKPa8lCsJtsVS4uQzlXPl3oOBBoK57N2D/BHPA10xbL3iLQF8Q==
+ b=HkXyxFCPgwEnUi12akCXTXct3LUHWYSzqMRpP4NF8RHzXZmoggBUFf30MP+3zCzyj/QLV5khTalxUjYp1KjRGEU9f+0MdxeA2KrjcnFVKsiYSJw0uZCzagkhDayjxfhep08SMktXGSmmsW11+5isgvC7Qo9n0zvGUiaTzTgTSNj7QGPbEVszQ1+dgccYZoPrQ0Gk8+elNVfB6+waTiqzAWguwkG7u3ItOqFutGKqAut0HKFwNpiUbZOa4gFqL+x6tDPhmPmocPl/pRmC1RaNhmi3hz4DfULaXlyi4jVuc1pD+/U03D3+vl8TcBTEZaBDClrRwkzQumtqOMYD7K7GlQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gBKnqFBx/kkDCh41pCXhAx9WA5f2JZooVzMIsxM836s=;
- b=EvrV1rOXvAmg6Xd+7yAdMyqMXUxOg015bPCC86IzobJiRZLEGasPdSilacpUi+L7Hj20viNElOuKbUp6CfplSd/VEDin/EiyUdxnd1z5KkC0OCe2EmaYavtjWE6Ix0FPO7JS8zYuuxXvJGJeF/PKxwJIro12iEMfWFYQrgAndBB1SUFWvSOlKCJPJyKb77fmqpf+eQKbeC+IBfHGP/IN4dhQgzvOSKRNN7goEjQkXbRIbV9K2qZXzWCiymgS25qH7tBwhtpU8VUogqIe1ojsJ66OXPPHThFguVL++3d3UGbn1ti4Y2+CgsMt5lA8nCrB4xoaEaHv0pES3vdhjldzBw==
+ bh=X+10VGLmDMcUQWwiQL3mqY5x9OSUlx5XogZTAkJl6kI=;
+ b=YjW0RTJqYz8RDH3zUYnKtplgDpAj2cvqRrpmvrk1ewVfj9jSqvrb0yQ2omi4hYk/yup1zP1pFbCPglodXMZju3C1y1PMEhjcRr10tgDGfbJWzifBufuWZkdCZFcO+QhMeRJoaTaByajmvi1JszApWsSqQ47cN8wnwicMQHJOrL036eP0LPsotVRx44nFnYwVSuz0ZbJNqP5Nx6A2yC4LKloY+yw+GTdNg0DzaiEPmwt1SgacfZVDVA/NGM9HLu3lZiRVy6/uPQYT8KQS0EQTrZ9GMwLIYDPAWWjf+yLEjBAOfnfBdzsI9fUU7kJRjR85gFoYfjgORtdse7J0Kvp58Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gBKnqFBx/kkDCh41pCXhAx9WA5f2JZooVzMIsxM836s=;
- b=CshOJzI2W45vDV1wwg5auc5tubDcuB2DLznleY7NzwSPgnyb5OENdDIBf1AadqbCJVfrSowE5cvxwAw1Cgs8wm+yfIdDAuBeBz6avOUvx77qMkncI2X3Um0QDZWKTTX+Z5nGWwC9Pqb21yMslxoJCGxtSqbFowX+YWAyYFo+Rko=
+ bh=X+10VGLmDMcUQWwiQL3mqY5x9OSUlx5XogZTAkJl6kI=;
+ b=4v6TkODTYdgoqZ1+CnV/cC5unSghldTdhZ+ddBMt1/BHLKJcQhgIb4nvokFujFpMn5drLN/zdESOuY8AEeEvT0dV3R1dTfXzMrh6PO5afMKv8k3GgzYsl3sSMGrxPcNIo3CfQ4PNiCRI6j3pPR/yTncKHE7HU8/CUwqycyehK1A=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5133.namprd12.prod.outlook.com (2603:10b6:5:390::6) by
- DM6PR12MB5568.namprd12.prod.outlook.com (2603:10b6:5:20c::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4129.25; Tue, 11 May 2021 15:39:55 +0000
-Received: from DM4PR12MB5133.namprd12.prod.outlook.com
- ([fe80::cdbd:bd79:d9b2:ed90]) by DM4PR12MB5133.namprd12.prod.outlook.com
- ([fe80::cdbd:bd79:d9b2:ed90%7]) with mapi id 15.20.4108.031; Tue, 11 May 2021
- 15:39:55 +0000
-Subject: Re: [PATCH v2 2/2] drm/amdkfd: new range accessible by all GPUs
-To: Philip Yang <Philip.Yang@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20210505175617.30404-2-Philip.Yang@amd.com>
- <20210511151504.31849-1-Philip.Yang@amd.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-Message-ID: <960a368b-ee89-9a30-2dd7-9c5dcba3129a@amd.com>
-Date: Tue, 11 May 2021 11:39:53 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
-In-Reply-To: <20210511151504.31849-1-Philip.Yang@amd.com>
-Content-Language: en-US
-X-Originating-IP: [142.116.138.207]
-X-ClientProxiedBy: YT1PR01CA0030.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::43)
- To DM4PR12MB5133.namprd12.prod.outlook.com
- (2603:10b6:5:390::6)
+Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
+ by MN2PR12MB4437.namprd12.prod.outlook.com (2603:10b6:208:26f::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Tue, 11 May
+ 2021 15:44:27 +0000
+Received: from MN2PR12MB4488.namprd12.prod.outlook.com
+ ([fe80::3d98:cefb:476c:c36e]) by MN2PR12MB4488.namprd12.prod.outlook.com
+ ([fe80::3d98:cefb:476c:c36e%8]) with mapi id 15.20.4108.032; Tue, 11 May 2021
+ 15:44:27 +0000
+From: Alex Deucher <alexander.deucher@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/amdgpu/display: add helper functions to get/set
+ backlight (v2)
+Date: Tue, 11 May 2021 11:44:10 -0400
+Message-Id: <20210511154411.1281317-1-alexander.deucher@amd.com>
+X-Mailer: git-send-email 2.31.1
+X-Originating-IP: [192.161.79.245]
+X-ClientProxiedBy: BL0PR02CA0063.namprd02.prod.outlook.com
+ (2603:10b6:207:3d::40) To MN2PR12MB4488.namprd12.prod.outlook.com
+ (2603:10b6:208:24e::19)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.2.100] (142.116.138.207) by
- YT1PR01CA0030.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::43) with Microsoft
+Received: from localhost.localdomain (192.161.79.245) by
+ BL0PR02CA0063.namprd02.prod.outlook.com (2603:10b6:207:3d::40) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4108.31 via Frontend Transport; Tue, 11 May 2021 15:39:55 +0000
+ 15.20.4108.25 via Frontend Transport; Tue, 11 May 2021 15:44:26 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2f712906-8af7-421c-d4aa-08d91493067e
-X-MS-TrafficTypeDiagnostic: DM6PR12MB5568:
+X-MS-Office365-Filtering-Correlation-Id: 41228151-5b90-47dc-c467-08d91493a87e
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4437:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB5568C020A12D8950E977145B92539@DM6PR12MB5568.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB44370A228FB27935514B98D2F7539@MN2PR12MB4437.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hrrc2HPUvTFWDibftoS0k5ykJam+XIoQFJr1NZ0jrWzQJuhfLjlr0iIuRbVq0sYSd3F+pRnThZmwegkam9HpjOZZw0pXZ4SThpvQt9Shq5P5o2jJ3oix0l2a4xM1INXnD/lP+k/XblG865n3vrNKwDFN18/cOOhWr5fODGTyaSKY7/T+s/u0/FaXwbk48Vat7Mva+SnmkLwr/GlyxTB16Uw3x/IRCCeT9y2+LmOtGcD3zciBhw1QvMLT4y5QiUImm2Ox1HWWt4+UPQCWOLZ11r1iNXScuZCB6+ImvRapgDiTzP9co9JwhQ+xxdYn9Vcwt5bzkkDzjEvDjdDTSK4mxzZVWEfb0p/q/qb5n3gwj+HrFL1+pUDzwaooW0ovNUvVNn2cZGolfLw2aN4ZuoOTGUMQSHuXSWyBTiWGtrrpifrZLtxewWjubAmrhHRO/xam9mFrJ2JigU/XOR0m8G6oLTudYhFs1COtrRxUDuy1BWM2R5X1sqNdS2MHqx3SBpQHm429JCVePZCbGcHEFkRiSJAd9U/kpRWxhb+q89EmAHRa3gqy0MiSPUp72wQoQVctair6bXSO4VOLJMH2xnWoLnN7QHDxgHxCdbrFdpJarulkvL6QUFvDQfpn1kW3oSGIAlY8ZItXd/8TJfkKzrnwKUN7Dbk5E75xNxpJH/c3DlcAh1sp2OqDczCW9Hs6Eca+
+X-Microsoft-Antispam-Message-Info: Wc0jAcen9KNoxnInFpJZDt59mSJaxKpAWELPneUyywIGKjmpTEn7Ue3B5LdgnrlVBc6m8sCC6YWAE4PSrnkuI1jfsHnDjYERQPaw2EknSPMWmiwcU7Hg03R5hnHeH9d0pThaYMA9AuCwpajXPTPkEqWoj5zxvn0TZx+nBYmCiiY/GVoGka7LTOLthZkYFJ+lPYwE7oSe6e9JQuGkwaIi7Y8FPIbbefzawNdihoOCFZpHehmszRtTZ6YqyLwUn4s8AoA0AQWE7i+A3/cgZnFYyuUJM5aUTjI9N5lXOFkNsDMEcu+Msn6WFwJPqhZT421j1WUKiGxOwxoaPsFqYPLGnA6fzfMZvzvCnFdDGTxfCetkGl/SpmGDVUNsV53x2fVqswN2nzzdLAkUtG1qZINgw2GzwTNXNpJxz72r313jSYaGZHB1xxh0HiqIKOZG2j47KgXv6oVCmHIa/tjCXvmLckISdLjgPW79HJx8wzA/zl9Uqp4FUN4hbfAbT4lnvinIjmMkqYWHeAal1uwn9zseoDWGrBIPiXmwfgcEFb0h6yyAE4XY+vODU9BQtdU2vXPApmV8RS4EOC7GtOSqAriCx3O4W047MXaSgbi8QHfgbdPuYUBVZWciB1DKP19F+/08KtrzZ9QUpAN/VUmWGvGrvji7c3SfFmSKQZqU1wgPKo/KlUUS1MepnOS8Yk3+yNS8MwB2rDJuoZmMl/3Mz8njWHevLvy7NAFIiyT9bMvoZUk=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5133.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(136003)(346002)(39860400002)(376002)(366004)(16526019)(186003)(66556008)(66476007)(66946007)(2906002)(31696002)(31686004)(316002)(83380400001)(44832011)(478600001)(36756003)(5660300002)(38100700002)(6486002)(8676002)(26005)(86362001)(956004)(2616005)(16576012)(8936002)(43740500002)(45980500001);
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(966005)(956004)(6512007)(52116002)(66556008)(6666004)(66946007)(26005)(498600001)(2616005)(6506007)(2906002)(6486002)(86362001)(8936002)(1076003)(66476007)(16526019)(36756003)(38100700002)(38350700002)(83380400001)(8676002)(6916009)(5660300002)(4326008)(186003)(69590400013);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?ZEU2ZmR6cVkzUlUwVnJGVU5qZjdHeVpxY3hLQy9LWVdyNG1peTIrTWJRQkIr?=
- =?utf-8?B?U1dnK0psc1Z2WW1WbHRXZHBLeWpGTlVGa2tZNE5DdzM1bDVETmVKa1JNM0dZ?=
- =?utf-8?B?NE84RjJ5c0xjMkh6NjB0azlTWnNNTG9JSnVpNWJqZmVkbGROVzdDbmpNTzhY?=
- =?utf-8?B?TVA4elJFRkdQd254NVl2Ujc4SVB3eGZPVDJCc0dMR3VTMUo0MHBsc3lXWVVF?=
- =?utf-8?B?N0ZiM1c1TFhnRGZDTVczRWs2NU1pT3l4Qm5lcVB6bTdwWDNUZ1lZWEFLcWxM?=
- =?utf-8?B?d1M0RG1JVTM0bDVZTU1pSTh4VWlIZU1kYmNVcml5T3Nkd05iQmZVVkhROXQ2?=
- =?utf-8?B?Qm1ZWG5yRmdLdkYrRHprb1AxZFp0K1lZdVFieWIrTjRSdEhBb241MU1jZFZD?=
- =?utf-8?B?dnJSRjArZkJHR3B4aTFMMlZFVFFjVjROWVRudTNZeDZEcWlHSit5TEhabklU?=
- =?utf-8?B?Zk14citSU2lzMTVIb0FSMkNubHhmQWx6UzFwbkRlY1F3am4wOUErVDJxZmlX?=
- =?utf-8?B?ZTlEdy9FZE53UHYwUzYxWWY2b3graU9BRmY1UDZNQ2hrcU9YTGRFcDVMMGlO?=
- =?utf-8?B?VXJwTjdkNkZqWVRWT0RlVWYvTHRlRjlXaTl2dlcrbUxTUEtyekE4ckNMM1Br?=
- =?utf-8?B?aFBmSVpUZWFtUTd2VXQ1V2dCbUxsTFJ4b05nVmxMOXpMdXdObDNsUDVmRFgx?=
- =?utf-8?B?WE1GT0pZUWJudUZpMUs1WDRwNXlFK1BBN1VKdE5raXdhcngrWE8xTmpTREV1?=
- =?utf-8?B?TUpXQTZoZFY4d1hkeW55Vk9qVld3MW5Ob2ZXamRyRU15aUQ0NCsvT0I5L3Rk?=
- =?utf-8?B?Y0hjMDEwdlR0SnpBV3pnNjFZTE14M1ZVR1o0TWF5YzV2Zm9EWU5VOG9TaS9L?=
- =?utf-8?B?endERlJmMnBCWEdTYTdvMm5Zc2QvN1VhcHl3ZVllTzRzQmtLWmw2UTZBRmFG?=
- =?utf-8?B?YVRTTFF2Y1VMMjR1cUpZRVI5NldLN3lsL3hFOVpTRGk5ODVvNDI4WGFBOFp2?=
- =?utf-8?B?bVZienZ3UjVGNWIwaWJBeUVUeUpHeXJXQU9tRXIrVFpmV2JwTjV5b0pjQXQz?=
- =?utf-8?B?WEZXTFFuQVR3OGgySCtQYXRoNjRwWjlGVTZGYU5pRTFWU0hDVzlCZ0VVd0ZG?=
- =?utf-8?B?Rm9MejlielZjb2dMTFR2blRCWUpyWG9yUDZ4V3BGY1dGQlVERUxKSlJveWVp?=
- =?utf-8?B?aDh5eVV0L0NGWVNGZ1l1dWxBazNaVG55ei8yT1k5YlZmNndmVERWaXZ1YWRR?=
- =?utf-8?B?Vm5lSE1HYm1tbWU4LzdsMWpQY29GTEpLcXg0SzQzNHl6aXB0UnlaUTZ2ODdY?=
- =?utf-8?B?UVEya21FbWhZWlRaOElrbW9mY2U0bGM0NnBOVGFhZm5qbVU2ejZKMmprbGdx?=
- =?utf-8?B?MVpIQzNSd3V6WXAycDZOTWJPQUFWZ3haQm1TNmtKUTBYMHNJN0JEVDlLMURp?=
- =?utf-8?B?MHN6dFFtZWVwWERTak9PSWRseTJNREt0cHBoYXBDVENhQjdKdjk1VXFON0Zu?=
- =?utf-8?B?bm1VWXRaVGtwVzI4bDlIc2ZRQzZYc3BXWm8zT0QzbDB6cUZGTVNadXRuKzk3?=
- =?utf-8?B?bFh1R0hiVXBJNngwNm4vRVRaQ3BuK2cvRy9vS3A1MnBqUDk1K2JjQXhtWWUz?=
- =?utf-8?B?cnE3RHN2MEVJUm5zWjhEa1h3cDc3L2JIbzFiRDhqelRzR1JQYThzajdMR1R4?=
- =?utf-8?B?aS9sZFhxL0JNNDlQOXJTT1pERlRCWFBFS1JrVlNBQXQzTkdzM1NTNHQyZGUw?=
- =?utf-8?B?aFI0UzVDcU5aNGZadUMwSXJBeitTYkZhdDNlVTVLbENBTXE4VHJCU0RDMDJO?=
- =?utf-8?B?aEMrREpPeUJXT0F1ZDB6dz09?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?g02eTSCv1P5T5tvXYnsYhJQkyNkaJ4PC4VKu5BJ4ngOrGEQ4oaPYfreXjeYB?=
+ =?us-ascii?Q?f1XDXVmt7wvLz1bkISIdxJtf0gqUm/MfS1RDh6Y8BtudHdUWQCgWKuQXtTwI?=
+ =?us-ascii?Q?Tx3zmiCpbgUitgpsA2N6Q+wPmypJyo/p2ulb4ENkxw+QpL93ppN1UGlUOWmX?=
+ =?us-ascii?Q?EZArFBIDn0DdcxUfpmktCE2VDDSC8xrR06olasx5Sj4J8I3MtSdyebb2H559?=
+ =?us-ascii?Q?eP0UvchmOIxGq2FE7DzGoxj5c+fI+oYHuSIAtS4jmbk3TjVowb2/XHT0kJ+g?=
+ =?us-ascii?Q?gyola2nVYp0gHxLMmIdp/+C9ThkSEwEO+jTPxLNOmVaMsNx05GLwKRlEZz8z?=
+ =?us-ascii?Q?ZaLPUxQNBZmSgZ9Lf/jyNF30JOBRB9BcNTMf+sRzugO+CmdJFPxsOeXci/71?=
+ =?us-ascii?Q?c8j5B2+GPflpxQ5xFEYsf6hqCHkdrLUG/qaovRx8zUQizSu60d3eTqTwcnya?=
+ =?us-ascii?Q?WJBza7ZzQ7aVSv2PYVJDOHqMHUW6DIoaAyvvE11AA/B1c8bj3Apm53iuWMaA?=
+ =?us-ascii?Q?ZRLaGN2W+KCCwbrhYKF2uU1tU9nuVSVUro16w+3B4LqK4Qm8gkGhHcJbXe5h?=
+ =?us-ascii?Q?98lLAjGTEgc5z3cU/bk/HCt4KB6pFl8KQg5+Nm+E5R4tGa4pmZ3HF/h/jbdo?=
+ =?us-ascii?Q?DAE9cIchhhwEND+nOgdVgyY8tfNtPOy92VXURSGrEC3HoVoLpjh5u4fADcHa?=
+ =?us-ascii?Q?rGtTjgQxoXehdaBESJ58Uc3gbJyx3dOHYkk9VTsEvwJhCA6iuWM0NUS9XLfC?=
+ =?us-ascii?Q?9w7/4Xa0k02NumGRB4QvByYwsqhMkFS//tzIvKodvJF7ez/cNmirlv1v6FsV?=
+ =?us-ascii?Q?O3MA7vtD/IH4+iVNpw9pXrfttglcTSRZ6yfxAxHag6hZ7ZxsvSCJH7hr9Zjv?=
+ =?us-ascii?Q?eveVNhD1+RG8Eno255kQf+IacNvgP7umfODXoPYYSut9GOqlUI8wnH8wpu+9?=
+ =?us-ascii?Q?GOh47neuHKGD0gtd9Myx80b0KA8MhUBRvYWT7po2MzrNvmcv+yTYC305xzkJ?=
+ =?us-ascii?Q?5JpwPQNmDBe35XkRi9YBttaPGHRElRm+Q7RGCXmsD+GsVSbT0AqGD0jg0Mrm?=
+ =?us-ascii?Q?0X4cXFy4JRINAqymwPtHmtbgEo25y6330zlDlOIvhlDqSNOHJesy/KC6y+7u?=
+ =?us-ascii?Q?SeHUP0CRoe9Vem5MnQHPdzxDM5uWYpMvdn3VVhX53iy575IfLs0E0enB9cYN?=
+ =?us-ascii?Q?lbcNssgcN9eXmD7t/UUV30pmy2+BSmRla5kuhg5hPn+piJHjC97keT2k/o/q?=
+ =?us-ascii?Q?l5LdU1FczTwjiY3orOp1gGgKqsJ76KwRDilBN7MB0bJJbr/UjFY2cu9O4pmZ?=
+ =?us-ascii?Q?ZbId5iWblllHNbcO88yihZ4+?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f712906-8af7-421c-d4aa-08d91493067e
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5133.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41228151-5b90-47dc-c467-08d91493a87e
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2021 15:39:55.2364 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2021 15:44:27.1792 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9dVsjy/O4f+PtVXYzKvcZWcC/vCLv61WoD0R59BE/nd07GA07Xffzbvfx+m4PntDCke6395/5XuuwKaEgMgxOQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB5568
+X-MS-Exchange-CrossTenant-UserPrincipalName: SBJ/cAk3+p52VJP0hrpCAqNv4eH3D+pBAn81IdzPZ15LB7oCPTlz+/ugVVa3JOBZvT4kbUfAD6orGZrTeVHJJQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4437
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,68 +113,152 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Alex Deucher <alexander.deucher@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 2021-05-11 um 11:15 a.m. schrieb Philip Yang:
-> If xnack is on, new range is created to recover retry vm fault or
-> created by SVM API calls, set all GPUs have access to the range.
->
-> Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+And cache the value.  These can be used by the backlight callbacks
+and modesetting functions.
 
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+v2: rebase on latest backlight changes.
 
+Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1337
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+---
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 42 ++++++++++++++-----
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  7 ++++
+ 2 files changed, 38 insertions(+), 11 deletions(-)
 
-> ---
->  drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> index d9111fea724b..6a677bdfcadb 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> @@ -258,6 +258,7 @@ svm_range *svm_range_new(struct svm_range_list *svms, uint64_t start,
->  {
->  	uint64_t size = last - start + 1;
->  	struct svm_range *prange;
-> +	struct kfd_process *p;
->  
->  	prange = kzalloc(sizeof(*prange), GFP_KERNEL);
->  	if (!prange)
-> @@ -277,6 +278,11 @@ svm_range *svm_range_new(struct svm_range_list *svms, uint64_t start,
->  	prange->validate_timestamp = 0;
->  	mutex_init(&prange->migrate_mutex);
->  	mutex_init(&prange->lock);
-> +
-> +	p = container_of(svms, struct kfd_process, svms);
-> +	if (p->xnack_enabled)
-> +		bitmap_fill(prange->bitmap_access, MAX_GPU_INSTANCE);
-> +
->  	svm_range_set_default_attributes(&prange->preferred_loc,
->  					 &prange->prefetch_loc,
->  					 &prange->granularity, &prange->flags);
-> @@ -2243,7 +2249,7 @@ svm_range *svm_range_create_unregistered_range(struct amdgpu_device *adev,
->  
->  	prange = svm_range_new(&p->svms, start, last);
->  	if (!prange) {
-> -		pr_debug("Failed to create prange in address [0x%llx]\\n", addr);
-> +		pr_debug("Failed to create prange in address [0x%llx]\n", addr);
->  		return NULL;
->  	}
->  	if (kfd_process_gpuid_from_kgd(p, adev, &gpuid, &gpuidx)) {
-> @@ -2251,9 +2257,7 @@ svm_range *svm_range_create_unregistered_range(struct amdgpu_device *adev,
->  		svm_range_free(prange);
->  		return NULL;
->  	}
-> -	prange->preferred_loc = gpuid;
-> -	prange->actual_loc = 0;
-> -	/* Gurantee prange is migrate it */
-> +
->  	svm_range_add_to_svms(prange);
->  	svm_range_add_notifier_locked(mm, prange);
->  
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 5df187a6e25f..167c8759fbc9 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -3467,26 +3467,28 @@ static u32 convert_brightness_to_user(const struct amdgpu_dm_backlight_caps *cap
+ 				 max - min);
+ }
+ 
+-static int amdgpu_dm_backlight_update_status(struct backlight_device *bd)
++static int amdgpu_dm_backlight_set_level(struct amdgpu_display_manager *dm,
++					 u32 user_brightness)
+ {
+-	struct amdgpu_display_manager *dm = bl_get_data(bd);
+ 	struct amdgpu_dm_backlight_caps caps;
+ 	struct dc_link *link[AMDGPU_DM_MAX_NUM_EDP];
+-	u32 brightness;
++	u32 brightness[AMDGPU_DM_MAX_NUM_EDP];
+ 	bool rc;
+ 	int i;
+ 
+ 	amdgpu_dm_update_backlight_caps(dm);
+ 	caps = dm->backlight_caps;
+ 
+-	for (i = 0; i < dm->num_of_edps; i++)
++	for (i = 0; i < dm->num_of_edps; i++) {
++		dm->brightness[i] = user_brightness;
++		brightness[i] = convert_brightness_from_user(&caps, dm->brightness[i]);
+ 		link[i] = (struct dc_link *)dm->backlight_link[i];
++	}
+ 
+-	brightness = convert_brightness_from_user(&caps, bd->props.brightness);
+-	// Change brightness based on AUX property
++	/* Change brightness based on AUX property */
+ 	if (caps.aux_support) {
+ 		for (i = 0; i < dm->num_of_edps; i++) {
+-			rc = dc_link_set_backlight_level_nits(link[i], true, brightness,
++			rc = dc_link_set_backlight_level_nits(link[i], true, brightness[i],
+ 				AUX_BL_DEFAULT_TRANSITION_TIME_MS);
+ 			if (!rc) {
+ 				DRM_ERROR("DM: Failed to update backlight via AUX on eDP[%d]\n", i);
+@@ -3495,7 +3497,7 @@ static int amdgpu_dm_backlight_update_status(struct backlight_device *bd)
+ 		}
+ 	} else {
+ 		for (i = 0; i < dm->num_of_edps; i++) {
+-			rc = dc_link_set_backlight_level(dm->backlight_link[i], brightness, 0);
++			rc = dc_link_set_backlight_level(dm->backlight_link[i], brightness[i], 0);
+ 			if (!rc) {
+ 				DRM_ERROR("DM: Failed to update backlight on eDP[%d]\n", i);
+ 				break;
+@@ -3506,9 +3508,17 @@ static int amdgpu_dm_backlight_update_status(struct backlight_device *bd)
+ 	return rc ? 0 : 1;
+ }
+ 
+-static int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd)
++static int amdgpu_dm_backlight_update_status(struct backlight_device *bd)
+ {
+ 	struct amdgpu_display_manager *dm = bl_get_data(bd);
++
++	amdgpu_dm_backlight_set_level(dm, bd->props.brightness);
++
++	return 0;
++}
++
++static u32 amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm)
++{
+ 	struct amdgpu_dm_backlight_caps caps;
+ 
+ 	amdgpu_dm_update_backlight_caps(dm);
+@@ -3521,17 +3531,24 @@ static int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd)
+ 
+ 		rc = dc_link_get_backlight_level_nits(link, &avg, &peak);
+ 		if (!rc)
+-			return bd->props.brightness;
++			return dm->brightness[0];
+ 		return convert_brightness_to_user(&caps, avg);
+ 	} else {
+ 		int ret = dc_link_get_backlight_level(dm->backlight_link[0]);
+ 
+ 		if (ret == DC_ERROR_UNEXPECTED)
+-			return bd->props.brightness;
++			return dm->brightness[0];
+ 		return convert_brightness_to_user(&caps, ret);
+ 	}
+ }
+ 
++static int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd)
++{
++	struct amdgpu_display_manager *dm = bl_get_data(bd);
++
++	return amdgpu_dm_backlight_get_level(dm);
++}
++
+ static const struct backlight_ops amdgpu_dm_backlight_ops = {
+ 	.options = BL_CORE_SUSPENDRESUME,
+ 	.get_brightness = amdgpu_dm_backlight_get_brightness,
+@@ -3543,8 +3560,11 @@ amdgpu_dm_register_backlight_device(struct amdgpu_display_manager *dm)
+ {
+ 	char bl_name[16];
+ 	struct backlight_properties props = { 0 };
++	int i;
+ 
+ 	amdgpu_dm_update_backlight_caps(dm);
++	for (i = 0; i < dm->num_of_edps; i++)
++		dm->brightness[i] = AMDGPU_MAX_BL_LEVEL;
+ 
+ 	props.max_brightness = AMDGPU_MAX_BL_LEVEL;
+ 	props.brightness = AMDGPU_MAX_BL_LEVEL;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+index c6f79c7dfac4..721c8b49730c 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+@@ -436,6 +436,13 @@ struct amdgpu_display_manager {
+ 	 */
+ 	struct list_head da_list;
+ 	struct completion dmub_aux_transfer_done;
++
++	/**
++	 * @brightness:
++	 *
++	 * cached backlight values.
++	 */
++	u32 brightness[AMDGPU_DM_MAX_NUM_EDP];
+ };
+ 
+ enum dsc_clock_force_state {
+-- 
+2.31.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
