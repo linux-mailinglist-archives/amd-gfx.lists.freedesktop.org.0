@@ -1,64 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5BC437BCA6
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 May 2021 14:38:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 476D037BDAF
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 May 2021 15:08:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 359CD6EB95;
-	Wed, 12 May 2021 12:38:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 195C86EBAA;
+	Wed, 12 May 2021 13:08:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
- [IPv6:2a00:1450:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC2926EB93
- for <amd-gfx@lists.freedesktop.org>; Wed, 12 May 2021 12:38:07 +0000 (UTC)
-Received: by mail-ej1-x634.google.com with SMTP id t4so34817734ejo.0
- for <amd-gfx@lists.freedesktop.org>; Wed, 12 May 2021 05:38:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-transfer-encoding:content-language;
- bh=xDsigUUFOdaJ56zT7u22wwrD572cys0nYvdmi++SHzc=;
- b=H8xYcpfg7pt1psB/onebY3kw8VOsgI0gsdy+IifOYqk3ymHfknKebY3xgE/MJEmxhU
- 60VLTaQWEtPcCUZHqZFU9w/FXuMD32qRpCiw/yvDkvytGszdw/z99Mw1+Fj0RD8tARw+
- 9SGQU/4pZFJCMqIOcA6pV/KjtBVNIhMcGu5x1OQmoKObeugwlOKYfyRdeGTQtynGPfZy
- bGaCjA1dyYkhFZNXGydZiuNpIA0Vbd5bayJiM+5NJZSZMtmqW+Cv6Cu4RYx7PjO9DrxD
- 5IcWFrjTXwflkh5Ybuzpdg3OxCEve+EmQKvHdck6leAjnZxa9UeM0z9iDUMtIzn/OwI5
- ZbAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=xDsigUUFOdaJ56zT7u22wwrD572cys0nYvdmi++SHzc=;
- b=pLW9gYXsxCUN8geVKJT95pOSqIJJJb/BoG13BuQR5LPRGNeMxLZGmYu8GIQsdUK0pi
- d/Xo8/G31tZlgsRTvU3PkR8jPuv05H3tD741SFiq+FYUW/IqthcOks4IZq+Zm1Pm8GsR
- Sa/lFTAXN/poSPJBeXRYVy1m394Bf4YkPkkuu5AOC/5JvsFmYefkoGXokE2XkCH+Yjx3
- m9bfBpFvoXczGVg/KcYH9yVeC9p7LZZmeON/NheG1vGfVGDNjSOP62Tvj8hjD6lPFNhs
- 66PbI6IvWBkSuaD8EHWsVZzMbnJg+c4647J4XBTU203onybGFAgD1J5dGI8kF7EiInfr
- Xd1A==
-X-Gm-Message-State: AOAM532TApukalIDrSk2PfL3zT3dMytVK/vMFf8mFk90H6Y8AydzxRT4
- xQ3n+FPAO5MGHK+djgzPRjLOQ41cm10=
-X-Google-Smtp-Source: ABdhPJy+lOyKjz7vlm1wnH1sKpgdxfSgTRooP68EC93VNZzOib1FGZzkegLGuzuM4dQBVAncw6b+DQ==
-X-Received: by 2002:a17:906:6a93:: with SMTP id
- p19mr38003238ejr.319.1620823086321; 
- Wed, 12 May 2021 05:38:06 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:c533:38e4:26b8:d73?
- ([2a02:908:1252:fb60:c533:38e4:26b8:d73])
- by smtp.gmail.com with ESMTPSA id l11sm17088056eds.75.2021.05.12.05.38.05
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 12 May 2021 05:38:06 -0700 (PDT)
-Subject: Re: [PATCH] drm/amdgpu: flush TLB if valid PDE turns into PTE
-To: Philip Yang <Philip.Yang@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20210512123451.25900-1-Philip.Yang@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <6fd68338-f7b9-5ffc-70e7-45920149bfcf@gmail.com>
-Date: Wed, 12 May 2021 14:38:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+X-Greylist: delayed 455 seconds by postgrey-1.36 at gabe;
+ Wed, 12 May 2021 09:44:27 UTC
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 690CF6E1E9
+ for <amd-gfx@lists.freedesktop.org>; Wed, 12 May 2021 09:44:27 +0000 (UTC)
+Received: from zn.tnic (p200300ec2f0bb800ec6923be2c5225a4.dip0.t-ipconnect.de
+ [IPv6:2003:ec:2f0b:b800:ec69:23be:2c52:25a4])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 14A8B1EC01A2;
+ Wed, 12 May 2021 11:36:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+ t=1620812210;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+ bh=hVRfoW6q3II9JG/6HLWRqbnxdKNbxvXXpRAJyxfapS8=;
+ b=ZCQo4h0sRBxJjafwgw8J6wplzIEy5Th06Y9CH1rhhNpsfRHd8Wnctnq2KLE7I0yriftw4d
+ cxhj3iz80M8ggj6pfIvTAa7gN5GHig0nS5YGHskTDgzN+0iw+42ZWXlRhG6MpIuIAs4bQf
+ bOPrJ2p1ETqQe5Mc5r4To6lHlxWdGH4=
+Date: Wed, 12 May 2021 11:36:51 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Mukul Joshi <mukul.joshi@amd.com>
+Subject: Re: [PATCH] drm/amdgpu: Register bad page handler for Aldebaran
+Message-ID: <YJuhs1WsqtJ7ta1L@zn.tnic>
+References: <20210512013058.6827-1-mukul.joshi@amd.com>
 MIME-Version: 1.0
-In-Reply-To: <20210512123451.25900-1-Philip.Yang@amd.com>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <20210512013058.6827-1-mukul.joshi@amd.com>
+X-Mailman-Approved-At: Wed, 12 May 2021 13:07:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,176 +50,151 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: x86-ml <x86@kernel.org>, harish.kasiviswanathan@amd.com,
+ lkml <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
+so this is a drive-by review using the lore.kernel.org mail because I
+wasn't CCed on this.
 
-Am 12.05.21 um 14:34 schrieb Philip Yang:
-> Mapping huge page, 2MB aligned address with 2MB size, uses PDE0 as PTE.
-> If previously valid PDE0, PDE0.V=1 and PDE0.P=0 turns into PTE, this
-> requires TLB flush, otherwise page table walker will not read updated
-> PDE0.
->
-> Change page table update mapping to return free_table flag to indicate
-> the previously valid PDE may have turned into a PTE if page table is
-> freed.
->
-> Signed-off-by: Philip Yang <Philip.Yang@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 17 +++++++++++------
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h |  2 +-
->   drivers/gpu/drm/amd/amdkfd/kfd_svm.c   | 12 ++++++++++--
->   3 files changed, 22 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> index 3dcdcc9ff522..27418f9407f1 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-> @@ -1457,7 +1457,7 @@ static void amdgpu_vm_fragment(struct amdgpu_vm_update_params *params,
->    */
->   static int amdgpu_vm_update_ptes(struct amdgpu_vm_update_params *params,
->   				 uint64_t start, uint64_t end,
-> -				 uint64_t dst, uint64_t flags)
-> +				 uint64_t dst, uint64_t flags, bool *free_table)
-
-Please put that flag into the params structure instead.
-
-Christian.
-
->   {
->   	struct amdgpu_device *adev = params->adev;
->   	struct amdgpu_vm_pt_cursor cursor;
-> @@ -1583,6 +1583,8 @@ static int amdgpu_vm_update_ptes(struct amdgpu_vm_update_params *params,
->   			while (cursor.pfn < frag_start) {
->   				amdgpu_vm_free_pts(adev, params->vm, &cursor);
->   				amdgpu_vm_pt_next(adev, &cursor);
-> +				if (free_table)
-> +					*free_table = true;
->   			}
->   
->   		} else if (frag >= shift) {
-> @@ -1610,6 +1612,7 @@ static int amdgpu_vm_update_ptes(struct amdgpu_vm_update_params *params,
->    * @nodes: array of drm_mm_nodes with the MC addresses
->    * @pages_addr: DMA addresses to use for mapping
->    * @fence: optional resulting fence
-> + * @free_table: return true if page table is freed
->    *
->    * Fill in the page table entries between @start and @last.
->    *
-> @@ -1624,7 +1627,8 @@ int amdgpu_vm_bo_update_mapping(struct amdgpu_device *adev,
->   				uint64_t flags, uint64_t offset,
->   				struct drm_mm_node *nodes,
->   				dma_addr_t *pages_addr,
-> -				struct dma_fence **fence)
-> +				struct dma_fence **fence,
-> +				bool *free_table)
->   {
->   	struct amdgpu_vm_update_params params;
->   	enum amdgpu_sync_mode sync_mode;
-> @@ -1721,7 +1725,8 @@ int amdgpu_vm_bo_update_mapping(struct amdgpu_device *adev,
->   		}
->   
->   		tmp = start + num_entries;
-> -		r = amdgpu_vm_update_ptes(&params, start, tmp, addr, flags);
-> +		r = amdgpu_vm_update_ptes(&params, start, tmp, addr, flags,
-> +					  free_table);
->   		if (r)
->   			goto error_unlock;
->   
-> @@ -1879,7 +1884,7 @@ int amdgpu_vm_bo_update(struct amdgpu_device *adev, struct amdgpu_bo_va *bo_va,
->   						resv, mapping->start,
->   						mapping->last, update_flags,
->   						mapping->offset, nodes,
-> -						pages_addr, last_update);
-> +						pages_addr, last_update, NULL);
->   		if (r)
->   			return r;
->   	}
-> @@ -2090,7 +2095,7 @@ int amdgpu_vm_clear_freed(struct amdgpu_device *adev,
->   		r = amdgpu_vm_bo_update_mapping(adev, adev, vm, false, false,
->   						resv, mapping->start,
->   						mapping->last, init_pte_value,
-> -						0, NULL, NULL, &f);
-> +						0, NULL, NULL, &f, NULL);
->   		amdgpu_vm_free_mapping(adev, vm, mapping, f);
->   		if (r) {
->   			dma_fence_put(f);
-> @@ -3428,7 +3433,7 @@ bool amdgpu_vm_handle_fault(struct amdgpu_device *adev, u32 pasid,
->   	}
->   
->   	r = amdgpu_vm_bo_update_mapping(adev, adev, vm, true, false, NULL, addr,
-> -					addr, flags, value, NULL, NULL,
-> +					addr, flags, value, NULL, NULL, NULL,
->   					NULL);
->   	if (r)
->   		goto error_unlock;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> index ea60ec122b51..f61c20b70b79 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h
-> @@ -404,7 +404,7 @@ int amdgpu_vm_bo_update_mapping(struct amdgpu_device *adev,
->   				uint64_t flags, uint64_t offset,
->   				struct drm_mm_node *nodes,
->   				dma_addr_t *pages_addr,
-> -				struct dma_fence **fence);
-> +				struct dma_fence **fence, bool *free_table);
->   int amdgpu_vm_bo_update(struct amdgpu_device *adev,
->   			struct amdgpu_bo_va *bo_va,
->   			bool clear);
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> index b665e9ff77e3..4f28052d44bf 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> @@ -1084,7 +1084,7 @@ svm_range_unmap_from_gpu(struct amdgpu_device *adev, struct amdgpu_vm *vm,
->   
->   	return amdgpu_vm_bo_update_mapping(adev, adev, vm, false, true, NULL,
->   					   start, last, init_pte_value, 0,
-> -					   NULL, NULL, fence);
-> +					   NULL, NULL, fence, NULL);
->   }
->   
->   static int
-> @@ -1137,12 +1137,15 @@ svm_range_map_to_gpu(struct amdgpu_device *adev, struct amdgpu_vm *vm,
->   		     struct amdgpu_device *bo_adev, struct dma_fence **fence)
->   {
->   	struct amdgpu_bo_va bo_va;
-> +	bool free_table = false;
-> +	struct kfd_process *p;
->   	uint64_t pte_flags;
->   	int r = 0;
->   
->   	pr_debug("svms 0x%p [0x%lx 0x%lx]\n", prange->svms, prange->start,
->   		 prange->last);
->   
-> +	p = container_of(prange->svms, struct kfd_process, svms);
->   	if (prange->svm_bo && prange->ttm_res) {
->   		bo_va.is_xgmi = amdgpu_xgmi_same_hive(adev, bo_adev);
->   		prange->mapping.bo_va = &bo_va;
-> @@ -1159,7 +1162,8 @@ svm_range_map_to_gpu(struct amdgpu_device *adev, struct amdgpu_vm *vm,
->   					prange->mapping.offset,
->   					prange->ttm_res ?
->   						prange->ttm_res->mm_node : NULL,
-> -					dma_addr, &vm->last_update);
-> +					dma_addr, &vm->last_update,
-> +					&free_table);
->   	if (r) {
->   		pr_debug("failed %d to map to gpu 0x%lx\n", r, prange->start);
->   		goto out;
-> @@ -1175,6 +1179,10 @@ svm_range_map_to_gpu(struct amdgpu_device *adev, struct amdgpu_vm *vm,
->   	if (fence)
->   		*fence = dma_fence_get(vm->last_update);
->   
-> +	if (free_table)
-> +		amdgpu_amdkfd_flush_gpu_tlb_pasid((struct kgd_dev *)adev,
-> +						  p->pasid);
+On Tue, May 11, 2021 at 09:30:58PM -0400, Mukul Joshi wrote:
+> +static int amdgpu_bad_page_notifier(struct notifier_block *nb,
+> +				    unsigned long val, void *data)
+> +{
+> +	struct mce *m = (struct mce *)data;
+> +	struct amdgpu_device *adev = NULL;
+> +	uint32_t gpu_id = 0;
+> +	uint32_t umc_inst = 0;
+> +	uint32_t chan_index = 0;
+> +	struct ras_err_data err_data = {0, 0, 0, NULL};
+> +	struct eeprom_table_record err_rec;
+> +	uint64_t retired_page;
 > +
->   out:
->   	prange->mapping.bo_va = NULL;
->   	return r;
+> +	/*
+> +	 * If the error was generated in UMC_V2, which belongs to GPU UMCs,
 
+Why does it matter if the error is a v2 UMC generated one?
+
+IOW, can you detect the type of errors in GPU memory - I assume this
+is what this is supposed to handle - from the error signature itself
+instead of doing is_smca_umc_v2?
+
+> +	 * and error occurred in DramECC (Extended error code = 0) then only
+> +	 * process the error, else bail out.
+> +	 */
+> +	if (!m || !(is_smca_umc_v2(m->bank) && (XEC(m->status, 0x1f) == 0x0)))
+> +		return NOTIFY_DONE;
+> +
+> +	gpu_id = GET_MCA_IPID_GPUID(m->ipid);
+> +
+> +	/*
+> +	 * GPU Id is offset by GPU_ID_OFFSET in MCA_IPID_UMC register.
+> +	 */
+> +	gpu_id -= GPU_ID_OFFSET;
+> +
+> +	adev = find_adev(gpu_id);
+> +	if (!adev) {
+> +		dev_warn(adev->dev, "%s: Unable to find adev for gpu_id: %d\n",
+> +				     __func__, gpu_id);
+> +		return NOTIFY_DONE;
+> +	}
+> +
+> +	/*
+> +	 * If it is correctable error, then print a message and return.
+> +	 */
+> +	if (mce_is_correctable(m)) {
+> +		dev_info(adev->dev, "%s: UMC Correctable error detected.",
+> +				    __func__);
+
+So put yourself in the shoes of a support engineer who starts getting
+all those calls about people's hardware getting correctable errors and
+should they replace it and should AMD RMA the GPUs and so on and so
+on..? Do you really wanna be on the receiving side of that call?
+
+IOW, whom does printing the fact that the GPU had a corrected error
+which got corrected by the hardware, help and do you really want to
+upset people needlessly?
+
+> +		return NOTIFY_OK;
+> +	}
+> +
+> +	/*
+> +	 * If it is uncorrectable error, then find out UMC instance and
+> +	 * channel index.
+> +	 */
+> +	find_umc_inst_chan_index(m, &umc_inst, &chan_index);
+
+That's a void function but it could return a pointer to the instance and
+channel bundled in a struct maybe...
+
+> +
+> +	dev_info(adev->dev, "Uncorrectable error detected in UMC inst: %d,"
+> +			    " chan_idx: %d", umc_inst, chan_index);
+> +
+> +	memset(&err_rec, 0x0, sizeof(struct eeprom_table_record));
+> +
+> +	/*
+> +	 * Translate UMC channel address to Physical address
+> +	 */
+> +	retired_page = ADDR_OF_8KB_BLOCK(m->addr) |
+> +			ADDR_OF_256B_BLOCK(chan_index) |
+> +			OFFSET_IN_256B_BLOCK(m->addr);
+> +
+> +	err_rec.address = m->addr;
+> +	err_rec.retired_page = retired_page >> AMDGPU_GPU_PAGE_SHIFT;
+> +	err_rec.ts = (uint64_t)ktime_get_real_seconds();
+> +	err_rec.err_type = AMDGPU_RAS_EEPROM_ERR_NON_RECOVERABLE;
+> +	err_rec.cu = 0;
+> +	err_rec.mem_channel = chan_index;
+> +	err_rec.mcumc_id = umc_inst;
+> +
+> +	err_data.err_addr = &err_rec;
+> +	err_data.err_addr_cnt = 1;
+> +
+> +	if (amdgpu_bad_page_threshold != 0) {
+> +		amdgpu_ras_add_bad_pages(adev, err_data.err_addr,
+> +						err_data.err_addr_cnt);
+> +		amdgpu_ras_save_bad_pages(adev);
+> +	}
+> +
+> +	return NOTIFY_OK;
+> +}
+> +
+> +static struct notifier_block amdgpu_bad_page_nb = {
+> +	.notifier_call  = amdgpu_bad_page_notifier,
+> +	.priority       = MCE_PRIO_ACCEL,
+
+Nothing ever explains why this needs to be a separate priority. So how
+about it?
+
+> +};
+> +
+> +static void amdgpu_register_bad_pages_mca_notifier(void)
+> +{
+> +	/*
+> +	 * Register the x86 notifier with MCE subsystem.
+> +	 * Please note a notifier can be registered only once
+> +	 * with the MCE subsystem.
+> +	 */
+
+Why do you need this? Other users don't need that. Do you need to call
+mce_unregister_decode_chain() when the driver gets removed or so?
+
+> +	if (notifier_registered == false) {
+
+This is just silly and should be fixed properly once the issue is
+understood.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
