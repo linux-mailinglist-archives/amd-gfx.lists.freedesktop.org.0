@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72FD937CFA1
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B67237CF9F
 	for <lists+amd-gfx@lfdr.de>; Wed, 12 May 2021 19:32:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C7BA6EC8B;
-	Wed, 12 May 2021 17:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 709B36EC88;
+	Wed, 12 May 2021 17:32:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM04-MW2-obe.outbound.protection.outlook.com
  (mail-mw2nam08on2064.outbound.protection.outlook.com [40.107.101.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D9F26EC82
- for <amd-gfx@lists.freedesktop.org>; Wed, 12 May 2021 17:32:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDDCB6EC81
+ for <amd-gfx@lists.freedesktop.org>; Wed, 12 May 2021 17:32:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fH7xyR+EpAFnNbi7/BULXPBmzaUsS7LVsxScc0CN0x2N+1itHnAtPcB8C5LiXEr20viqQD2RYdYNrVM5apTwtw63yEpN/s0vzZP/ivvemanK+t8ethan9lX+jxu/Nxdi/9wLMFfhad5/rJYzJKSbpHOF5+w5SMji5S7ssJLQLGt0JFAh4iK7kUmaXhrJHjYhwHy9sASz99Raanov18s7tFTCfqWlxSHJzS3SJQTZFxPIEPdGRfawjk22VAu2UW3z5rk+lLiNdnYVl6n4+pUz1Paj5z5bKX4DyaozGFRv60tW6Vyzx8BdshIAOl0bLcIImPRMdZIKqEj6Kf1w6pXDgw==
+ b=E49UC7sU+WsNFQW/I4Ug13rMFGYtmSJhJgIi8GC3EELEeiWSe7gB6ST9cTlVKVZiTZVet86PXbhDcfED6H2o8E1RNOLtkMNuKSb2DxzD9lr+3A+fRjgny8xGYa1Btv65r0dt3OEKzP4PRtXfI5pVJU2q8jw6eyC9GeTdLdQxpDpV5eJUuYkaSFGCfl69SlaUIM8fgfesNwC7NG5G91EsK4goc87uqSQkhCXkKQtKhFeP+5J7ispgxT59ZXl69iLjt9zX82KaQGHWQLnPHz1McetOHYaoYcks0y3Xs0sCrwp81ymw8hKaezwY/zzVG5NgS1cl6tGQuS+SrfTZoT7hWA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3OXU5ibSLJ0DCv8ltzbWpMz4rMBJoBmCmKrHHw85CAk=;
- b=Qh7qTTmTXeYlLlsaV4tiSOb83dC6IBlQ9m5INwSKaKN5+VQgEXCGXTlqRj/T1hol86if34fRfTyJ5QpGc51eO1msmKjSyXu3ItRDrpJ5c1bk3R3crMnRsIWo94FNJ2O8YK6DbcaSluyrys6jHzJ/li8fSD3OQE+6T0BZyEU72GUMBKIiHtJS6El+ZZemphxhWFZC6eQW/APsFnDefUhmY9yiHgwF5WEcP4sIl8HIkk0uIMGJyCqzx88xF/Op8x5Cll/X3MZg6obnaFCWGjeEGlZdmaU8/irpmfF1qRmAhG0AdGL6PIWXzHKVVw0uz2k65dXseela3PV6wBfW2Be9Zg==
+ bh=wCtHwzb1tv9GasZcZoNqHjK35Fvj5Ofld+0/CUSGlgA=;
+ b=Qt2/T+YMH18t4n/7JlvbcztcLv1l+9nsYnN0TDUG641I4GGbC8fHie7bySYu0zVfdD3U9KOB1Iw6vctEkiLWc5Z8nIsKZRdhf/rIc9jdUYp5qwFX5SocQrU7Kt9IYwTfALKjCGAu+KGrfbM80ac90fyUdWzYzkxUBRTB87xTAb1DY0HEIcqsnDoADWS8+8fj6lFSITS24XNrqC7QIc8Coqxn2ibFEjzY9AKbBmvqu7ZSc7xPGI2WUNRVCmtBhMWrKHPybyjluUBtQ7DvNZIHs1J0TVn91oXAs9z0YaK7DOuM85ptduvOIETbcY26bfU0mek99oic6X0e5La9smoGcQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3OXU5ibSLJ0DCv8ltzbWpMz4rMBJoBmCmKrHHw85CAk=;
- b=a83u7ABmkREd9xYNP3Cmxj+K4N7VU3a3Cfn+5RPP06xuVwjE7ewHSsWIg/rBOj2p/FBgoWLRQYZzvRdrRDbm173CQ6XTYbG36inJe3pz7QNvMA0q8KmVuL+cQ43je3SCPPeqMpHl9lw6gaOY1ufyEw0G4dMvOc0nFhQbaCNvLAw=
+ bh=wCtHwzb1tv9GasZcZoNqHjK35Fvj5Ofld+0/CUSGlgA=;
+ b=qSQM/eKAJSG+Umr4q2nWkespOnfIAaozyys7vqBVMQNi+5HaOKdX2QWGite9YCafffLoYfDRx9496Txm0LXN2rPP/55AfKomDXMoEN23fBVfirk+vLd9AxDDiErppJ7ctv/Bh5VK3kEJXEy/8hHNTpvH9zhzk0GVYDBVhMEBXY0=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -41,10 +41,9 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  17:32:11 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 43/49] drm/amd/display: Edit license info for beige goby DC
- files
-Date: Wed, 12 May 2021 13:30:47 -0400
-Message-Id: <20210512173053.2347842-43-alexander.deucher@amd.com>
+Subject: [PATCH 44/49] drm/amd/display: Add DM support for Beige Goby
+Date: Wed, 12 May 2021 13:30:48 -0400
+Message-Id: <20210512173053.2347842-44-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210512173053.2347842-1-alexander.deucher@amd.com>
 References: <20210512173053.2347842-1-alexander.deucher@amd.com>
@@ -60,50 +59,50 @@ Received: from localhost.localdomain (192.161.79.245) by
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.11 via Frontend
  Transport; Wed, 12 May 2021 17:31:40 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ca8a37eb-5ff7-4810-dee1-08d9156bcd6e
+X-MS-Office365-Filtering-Correlation-Id: 7bedaf60-f902-4ad8-56b1-08d9156bcdc3
 X-MS-TrafficTypeDiagnostic: MN2PR12MB4567:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4567D862585E1DEA4403525EF7529@MN2PR12MB4567.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4567BA02E3AC0E7A16BE6863F7529@MN2PR12MB4567.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RB+/30cQ10/shhE9/xo2iJ5X92MNq98pLySwWHOFTSEVlzXDCsZ9EG1g2Qlbl0pY0Al9Yp/+A/g+PKCaAChQnA2llngrszfHznm7dOmY/sX9SCOh/jHqLM70lX0aVs2CZn2NKeQBKKhqIqRAoSzdzZjxeVJBIpPm3mRyIKCOBzICmVLIzQI3fQdRi1gfdaQzwHehcD8wYxZlJkljg80V0B2orji51Ix+V/ktujRfBges8w1RjIVSw6nco3hU82ZNUdR6wmWl5DnGanZoiaeDWK/Gjhtq5iBQMqg5SPNzDivtDk4sBtGvwIqq9eUi493T3oWGOdY+SLiQdcJRTPqUFB//YOVhQrJ9m64FMlZisUZi7sk3xq970bIs8Y1qyzdbLysVmvLlc2Lota12EfV85oKDVMXr3L21ctEvyNZrlZxN+4w4iRGRoD6ob+vnuBmlF4qGRmKgL/ufH552UooC5n34oLHSzQgUQgl8eTRL+hfXkGhUL9I8QAbf6mwexiuRQt2OnpHLP74t0c5f3FMOB6xS6Pq3HRYUEt7r0PIzkCBU2UsM9BwZUWpJJ/aGuV1n+RBVYvbU47foo5RS6VO05+NYUrxkSTTy+tca9CaiNL/wUnX4+276u2d05pc6Rlb4wlYDvusmlJprhe9BQsoFa+moTxyzqPys+0awb0lrG8XY77TQYtCq2kdHzpluQKwv
+X-Microsoft-Antispam-Message-Info: 4BA/lW2hzNHN5CXzWdcG/wHffmmULs7GxYeUxaeKdIxm/oZ1QfkosWNb9BhsYI98M+LKNmA8bSz2F3G+hUQkUTfusa4Ko/2Any6iXQVDFK28lRZgEvVKxjMxbDCBUW6BwE/1c3xgjqXEAxEfl2hWAZMnRAOfC2qnbIBqJAvWuNgKWqbZS47DpoJXs/dJvPZISReDUCCPcSYzhwKE86zeICi8riq6nIBq9fNm5jdv/C4/FToMl6B1GdXlriLIOrrGrKm/+u4MuUsTLcWBzc6BzNSlzvaF926AuJ06NvWozeZLNl+X7VMhi5eGAzv6PVwnVjGHizZfjhsj9DMGMXAl0eRou94VpEB5/Lt9jJfh7ZB6uHTlmSKshqgwsuYvBZY28PDou2d/IYHxjKsEbi8aWnyL/UxNih7D2ZVqdUpDnxXcpKy1wr7Iy/LrV1gSb+ZaSxg0FxnOvIpV+3q+YEjwwaAkZauXVS3T6rnxd5rItcg9CAfPrVP+Engrg8mw0QlUpRvPHzySL5vPnxye0l+eoKg3esfzpGtAfkO050Mk+Z9jIsxN8gTRSIhlWwUE/BK/kglfu6UCWjn6QB9lwzgIocMkGSNUHVBBzIJqdvjK6tD1FrvppVHcorFMil2TVg3b06/IigWmsGWMfGFlWnEzS0R7br1w3UjNhntrU2Z5/NMkfV4TjiR2cD1bvHUlzWk7
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(366004)(136003)(346002)(39860400002)(396003)(316002)(4326008)(66946007)(16526019)(54906003)(36756003)(5660300002)(26005)(6486002)(186003)(38350700002)(66556008)(66476007)(38100700002)(86362001)(6916009)(478600001)(956004)(2616005)(52116002)(6506007)(1076003)(83380400001)(6512007)(2906002)(8936002)(30864003)(8676002)(69590400013);
+ SFS:(4636009)(376002)(366004)(136003)(346002)(39860400002)(396003)(316002)(4326008)(66946007)(16526019)(54906003)(36756003)(5660300002)(26005)(6486002)(186003)(38350700002)(66556008)(66476007)(38100700002)(86362001)(6916009)(478600001)(956004)(2616005)(52116002)(6506007)(1076003)(6512007)(2906002)(8936002)(8676002)(69590400013);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?AwdRbN6GLtQ5+zNAOMVyymEGQO8lKMabNWMiR/KzbTQaozzp6dwKcsliuAJB?=
- =?us-ascii?Q?Zl7P+9MeCx/AXbMtGnfC6XuuknQfLsALrwbNr0v5bXZ5NoRJkfNvp69t9zkR?=
- =?us-ascii?Q?4I7irGHZLc2mvgnI0C4+eXKdpTpEaVI1HIpepuSSHwQ3PJHF9aqubbF8CUZu?=
- =?us-ascii?Q?L5+4T8YB4V60avE2Im9qOZnhfQKd+wStZafE2JQPIEohxo/j43W1yzWSJx0z?=
- =?us-ascii?Q?/SYm9Np5aipleqIUYR9q26E3paLf1ig39eI+9iGh8W38eRV98rZ4njcxz6zK?=
- =?us-ascii?Q?TPNdpQnsoYMrjCPA7NFZtIZNweCb5RlWP8QkY5LJMAb6zpihwKsM7DtITT/j?=
- =?us-ascii?Q?h484Qj8Tt+UgC7PcdddmgUahXmJ+NPE4hTByOpzy8UAhEssSK2WTtCBao1HS?=
- =?us-ascii?Q?MhOiWcWF52ku7HeiypIFre57+qgK2xPzARt97nO9NMpUpyRteHg+bV9GT3bH?=
- =?us-ascii?Q?73zBQmrvlMDiPh9xK2CRO9/O12U/Jh0mNbgW96m2CGAxMSgvGdE4kTnI7aEf?=
- =?us-ascii?Q?zxe5jV0yzOVvTDrv0iN6uV9rvw77Wc7dNgp4j7vl9p7zG23ffBAWlpPHfrMH?=
- =?us-ascii?Q?9V8hm6wpMaFqfYARXV7R3M6fOGaiZds6w9Nn6U5Ya0BdYIyqmxLlCHi2Qxja?=
- =?us-ascii?Q?xFoA/XeaCjFjWXdreNgKjFymYDgkgkmBhA29WZBIVxhPbKoIIaVIABSKQlBn?=
- =?us-ascii?Q?wQEupDxlXm1JpdwfY3C1fu9ea9IR2He79bfAvNiA0JFkTLANs3PxZEOuic06?=
- =?us-ascii?Q?77G8ssX41cfdlcN5cEvNlG6UUSEpkIa6qeCNwOX/bbw4uCZsog23kGAu154r?=
- =?us-ascii?Q?W9AEuMsOehrJVSdunxxcIpgO1XHn+tWmmb3EEyeBqmmN82M101d08CznAoQO?=
- =?us-ascii?Q?uK4lNKT61QvlLb3o56P4I8vVr8eKs7TeYo2jVoMLw/C0/VfJYh+Lr5wOob2I?=
- =?us-ascii?Q?n380EpD1xjqva4g08Mq9os9A0HBtJQWu4uGJOeKagWFOrrg68R8ARtCw0Ibs?=
- =?us-ascii?Q?AdACWkoJOaMLnnzP0plTDYs6ZJVc6gRgSamSjODbYnZOxUE4H5s8ppIeEeLQ?=
- =?us-ascii?Q?tSJ4bLLvRYnZjsEd+hYkfxRibfFx97S5v1uVhWxmfAoif/ws3uov6aPDDdqv?=
- =?us-ascii?Q?Kw35zijMpZUcLXYSlBDTC8wlhMQnVbT4Q63shVnobodd4wSONPOw3CwvjVva?=
- =?us-ascii?Q?YJn2JtBVwbQCt+YkUZA/468cXoJwKWAN9sgQ1sKjKIl5entdvrYk68mWmRyX?=
- =?us-ascii?Q?wPguXFj2733JzhOCaLQOlo4VN4HmllCm3Tyb0AuJYwcCNLOWMl9IUgj+nVdv?=
- =?us-ascii?Q?aPRJ1SAn070/PeGQEnPmvBOK?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?PAgLtt9BTRG9nPtM1rd6VC13/i/AdlRSpBhzpG9iYuz3i0o5wjT655gpSqvE?=
+ =?us-ascii?Q?gMA7db5OPiseaQRc3mnVGJOqe6PMysqM+zWZejkaByYpmvDhtWU5NJYSTsMN?=
+ =?us-ascii?Q?gFtMeJUoMUbBY/TTft1XBL/3Ixsw4nXySQALuON2umFeXtynliu7ZYgvVMGI?=
+ =?us-ascii?Q?/xFUXz8a0EvWI5kM9SGD1mjWNyoz9OPOpcfhD13haJOiDfbMWWEWZYAryA0a?=
+ =?us-ascii?Q?T93+skomnVHBG1d+QsDlSyTf5Ty8zZD/67VJckO7xsDqLN/w8y9akxFdJ0JV?=
+ =?us-ascii?Q?Oa+wI3WshkQKOdcWkRRsiNfv0nD+q/RbQavMsAfPkM9oCrJMOrWIKgBNafmx?=
+ =?us-ascii?Q?iChca8hkryK4Ut0C8/FOkytO9z30bauqTS49jeV9EuayGDtmSb+g1jsntGF1?=
+ =?us-ascii?Q?RjW1YxdcjLyECWFwwNAmVv19MhbPfvXsE7WNO44UtQHMAEXv3uvoRa4vvWJN?=
+ =?us-ascii?Q?My0bsbK1wrpHC9rmxAw2WRxrZKKajMdEfl23X8stxUAos4GAVFBw6RIUTZO1?=
+ =?us-ascii?Q?z99tIOU013q1Lq9bjw2thHKf5AGgmYLI2Qpn99viMtThojLCY7LKIg2fGwkx?=
+ =?us-ascii?Q?wjxlUmf7ZQ5HVrgKgDWbmNiHVELEAiDg7IMe7lmXzhM/M5ul+EtGGZ03tEIG?=
+ =?us-ascii?Q?PNPqXJms5UEfg10yd8lN2UqaSTwmfRMuEAK/33UGSRP02p21k57XBPCPkJ4t?=
+ =?us-ascii?Q?kVJIjo4q08vKc5h5lhIxopHx8ey6fgZjpELuM3B2QKySHZZiQuvj/7JrIHWm?=
+ =?us-ascii?Q?dynhYZsdT+qbJVil6smV13NLvXPMVyWudQ61g4bXKv501lkEzzuZHEE+Fgbq?=
+ =?us-ascii?Q?KhcHoKQTRX3IvrH0Q/36gDM52t0O1Cdbl8tiQkiovaT6TWOdajWk/JpMWk/b?=
+ =?us-ascii?Q?AefyTikVjVe6VPYqeWS2CCAUcX7UzlafdaLwPb3WE2j6DsU0kFGicfzkIPUz?=
+ =?us-ascii?Q?iRtbwUeCtVXLKN/Zmdvk+/IDqi+ANywde3uSqAEO1p+0kJCmxe6KeTCRnGl0?=
+ =?us-ascii?Q?dUyWqPkOJdrrktoy3/TOM+odFWv5pA440u97TY1YpcC6EYcn6+QNoJcfOmA5?=
+ =?us-ascii?Q?vXWsOIYd7l0Plr8wttugFDa6Z9FqFUJ5W2AMe60XPgfl6PezZc7tzx1sFNTQ?=
+ =?us-ascii?Q?qqZ2wpAqPcaq7m4tqkbrA3sEZzqGoRpIOZ3TzUAXDzxC3/GHJ/kPPJ5pbRY5?=
+ =?us-ascii?Q?lltgOiBc2tHq7GzaMTnSU0DF4d6rgyvWDSoG29T0kc1qvMN286t4qEV34ob+?=
+ =?us-ascii?Q?LYvy1tcbjV8K0xp51xipD5f/Pu3TC9T2EIjr3lqF90KSePqeHzsp9kpFWzkf?=
+ =?us-ascii?Q?G/U4OWWibOQoUHLovSmCNCGu?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ca8a37eb-5ff7-4810-dee1-08d9156bcd6e
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7bedaf60-f902-4ad8-56b1-08d9156bcdc3
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2021 17:31:40.3886 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2021 17:31:40.9671 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JJOWZOIbY5gI21+L6n/02f1HMOOI7dnYfN8Lb72lYfOY/twfPPjeMfHhiPRcNfd0tk0E2nqMrFNZEgHolCHw5w==
+X-MS-Exchange-CrossTenant-UserPrincipalName: O8TvFLbHYMSB1SVvF5yo3tCZWNEkKf764AlvwpaIwLxKzuEkQE7Mezi97amSPlC4jl+mP9PqeBAbYmaXYm7VNw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4567
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -125,504 +124,78 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 
-[How]
-* Add MIT license to all new files as SPDX tag.
-* Fix copyright year
+[Why&How]
+
+Adds the firmware definition and missing cases statement
+hooks for Beige Goby support in AMDGPU DM.
 
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dcn303/Makefile    |  8 ++-----
- .../drm/amd/display/dc/dcn303/dcn303_dccg.h   | 22 ++-----------------
- .../drm/amd/display/dc/dcn303/dcn303_hwseq.c  | 22 ++-----------------
- .../drm/amd/display/dc/dcn303/dcn303_hwseq.h  | 22 ++-----------------
- .../drm/amd/display/dc/dcn303/dcn303_init.c   | 22 ++-----------------
- .../drm/amd/display/dc/dcn303/dcn303_init.h   | 22 ++-----------------
- .../amd/display/dc/dcn303/dcn303_resource.c   | 22 ++-----------------
- .../amd/display/dc/dcn303/dcn303_resource.h   | 22 ++-----------------
- .../dc/irq/dcn303/irq_service_dcn303.c        | 22 ++-----------------
- .../dc/irq/dcn303/irq_service_dcn303.h        | 22 ++-----------------
- .../drm/amd/display/dmub/src/dmub_dcn303.c    | 22 ++-----------------
- .../drm/amd/display/dmub/src/dmub_dcn303.h    | 22 ++-----------------
- .../include/asic_reg/dcn/dcn_3_0_3_offset.h   | 21 +-----------------
- .../include/asic_reg/dcn/dcn_3_0_3_sh_mask.h  | 20 +++--------------
- .../include/asic_reg/dcn/dpcs_3_0_3_offset.h  |  7 ++++++
- .../include/asic_reg/dcn/dpcs_3_0_3_sh_mask.h |  7 ++++++
- 16 files changed, 42 insertions(+), 263 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn303/Makefile b/drivers/gpu/drm/amd/display/dc/dcn303/Makefile
-index 14729424231a..6f7a1f2b49f0 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn303/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dcn303/Makefile
-@@ -1,10 +1,6 @@
-+# SPDX-License-Identifier: MIT
- #
--# (c) Copyright 2021 Advanced Micro Devices, Inc. All the rights reserved
--#
--#  All rights reserved.  This notice is intended as a precaution against
--#  inadvertent publication and does not imply publication or any waiver
--#  of confidentiality.  The year included in the foregoing notice is the
--#  year of creation of the work.
-+# Copyright (C) 2021 Advanced Micro Devices, Inc. All the rights reserved
- #
- #  Authors: AMD
- #
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_dccg.h b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_dccg.h
-index bce3be1ae380..a79c54bbc899 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_dccg.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_dccg.h
-@@ -1,26 +1,8 @@
-+// SPDX-License-Identifier: MIT
- /*
-- * Copyright 2021 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-  *
-  * Authors: AMD
-- *
-  */
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 8e1dc10ae277..387f0c46c4a0 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -104,6 +104,8 @@ MODULE_FIRMWARE(FIRMWARE_GREEN_SARDINE_DMUB);
+ MODULE_FIRMWARE(FIRMWARE_VANGOGH_DMUB);
+ #define FIRMWARE_DIMGREY_CAVEFISH_DMUB "amdgpu/dimgrey_cavefish_dmcub.bin"
+ MODULE_FIRMWARE(FIRMWARE_DIMGREY_CAVEFISH_DMUB);
++#define FIRMWARE_BEIGE_GOBY_DMUB "amdgpu/beige_goby_dmcub.bin"
++MODULE_FIRMWARE(FIRMWARE_BEIGE_GOBY_DMUB);
  
- #ifndef __DCN303_DCCG_H__
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_hwseq.c
-index 36a953624a09..dc33ec8b7bdb 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_hwseq.c
-@@ -1,26 +1,8 @@
-+// SPDX-License-Identifier: MIT
- /*
-- * Copyright 2021 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-  *
-  * Authors: AMD
-- *
-  */
+ #define FIRMWARE_RAVEN_DMCU		"amdgpu/raven_dmcu.bin"
+ MODULE_FIRMWARE(FIRMWARE_RAVEN_DMCU);
+@@ -1358,6 +1360,7 @@ static int load_dmcu_fw(struct amdgpu_device *adev)
+ 	case CHIP_SIENNA_CICHLID:
+ 	case CHIP_NAVY_FLOUNDER:
+ 	case CHIP_DIMGREY_CAVEFISH:
++	case CHIP_BEIGE_GOBY:
+ 	case CHIP_VANGOGH:
+ 		return 0;
+ 	case CHIP_NAVI12:
+@@ -1473,6 +1476,10 @@ static int dm_dmub_sw_init(struct amdgpu_device *adev)
+ 		dmub_asic = DMUB_ASIC_DCN302;
+ 		fw_name_dmub = FIRMWARE_DIMGREY_CAVEFISH_DMUB;
+ 		break;
++	case CHIP_BEIGE_GOBY:
++		dmub_asic = DMUB_ASIC_DCN303;
++		fw_name_dmub = FIRMWARE_BEIGE_GOBY_DMUB;
++		break;
  
- #include "dcn303_hwseq.h"
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_hwseq.h b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_hwseq.h
-index b25342cc30f3..fc6cab720b6d 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_hwseq.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_hwseq.h
-@@ -1,26 +1,8 @@
-+// SPDX-License-Identifier: MIT
- /*
-- * Copyright 2021 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-  *
-  * Authors: AMD
-- *
-  */
- 
- #ifndef __DC_HWSS_DCN303_H__
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_init.c b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_init.c
-index 792515f853ca..86d4b303d02f 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_init.c
-@@ -1,26 +1,8 @@
-+// SPDX-License-Identifier: MIT
- /*
-- * Copyright 2021 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-  *
-  * Authors: AMD
-- *
-  */
- 
- #include "dcn303_hwseq.h"
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_init.h b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_init.h
-index 62014267380d..66b1e3604f07 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_init.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_init.h
-@@ -1,26 +1,8 @@
-+// SPDX-License-Identifier: MIT
- /*
-- * Copyright 2021 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-  *
-  * Authors: AMD
-- *
-  */
- 
- #ifndef __DC_DCN303_INIT_H__
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
-index c2528f0e0804..3d6259d0d392 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
-@@ -1,26 +1,8 @@
-+// SPDX-License-Identifier: MIT
- /*
-- * Copyright 2021 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-  *
-  * Authors: AMD
-- *
-  */
- 
- #include "dcn303_init.h"
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.h b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.h
-index 44a3166f86c8..5b590c169763 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.h
-@@ -1,26 +1,8 @@
-+// SPDX-License-Identifier: MIT
- /*
-- * Copyright 2021 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-  *
-  * Authors: AMD
-- *
-  */
- 
- #ifndef _DCN303_RESOURCE_H_
-diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn303/irq_service_dcn303.c b/drivers/gpu/drm/amd/display/dc/irq/dcn303/irq_service_dcn303.c
-index 68d3f61f0656..66e60762388e 100644
---- a/drivers/gpu/drm/amd/display/dc/irq/dcn303/irq_service_dcn303.c
-+++ b/drivers/gpu/drm/amd/display/dc/irq/dcn303/irq_service_dcn303.c
-@@ -1,26 +1,8 @@
-+// SPDX-License-Identifier: MIT
- /*
-- * Copyright 2021 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-  *
-  * Authors: AMD
-- *
-  */
- 
- #include "dm_services.h"
-diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn303/irq_service_dcn303.h b/drivers/gpu/drm/amd/display/dc/irq/dcn303/irq_service_dcn303.h
-index 76c7d9bcbc67..fd64e3848ff3 100644
---- a/drivers/gpu/drm/amd/display/dc/irq/dcn303/irq_service_dcn303.h
-+++ b/drivers/gpu/drm/amd/display/dc/irq/dcn303/irq_service_dcn303.h
-@@ -1,26 +1,8 @@
-+// SPDX-License-Identifier: MIT
- /*
-- * Copyright 2021 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-  *
-  * Authors: AMD
-- *
-  */
- 
- #ifndef __DAL_IRQ_SERVICE_DCN303_H__
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn303.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn303.c
-index bd7a4adf0ed4..9331e1719901 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn303.c
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn303.c
-@@ -1,26 +1,8 @@
-+// SPDX-License-Identifier: MIT
- /*
-- * Copyright 2021 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-  *
-  * Authors: AMD
-- *
-  */
- 
- #include "../dmub_srv.h"
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn303.h b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn303.h
-index 719b0959c494..84141d450256 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn303.h
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn303.h
-@@ -1,26 +1,8 @@
-+// SPDX-License-Identifier: MIT
- /*
-- * Copyright 2020 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-  *
-  * Authors: AMD
-- *
-  */
- 
- #ifndef _DMUB_DCN303_H_
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_3_offset.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_3_offset.h
-index da98eb1cb556..daa8130636f0 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_3_offset.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_3_offset.h
-@@ -1,27 +1,8 @@
- // SPDX-License-Identifier: MIT
- /*
-- * Copyright 2021 Advanced Micro Devices, Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-  *
-  * Authors: AMD
-- *
-  */
- 
- #ifndef _dcn_3_0_3_OFFSET_HEADER
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_3_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_3_sh_mask.h
-index 11696f7c2f3b..e8f4ad05932b 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_3_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_0_3_sh_mask.h
-@@ -1,22 +1,8 @@
-+// SPDX-License-Identifier: MIT
- /*
-- * Copyright (C) 2020  Advanced Micro Devices, Inc.
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-  *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included
-- * in all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
-- * AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-- * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-+ * Authors: AMD
-  */
- 
- #ifndef _dcn_3_0_3_SH_MASK_HEADER
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dpcs_3_0_3_offset.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dpcs_3_0_3_offset.h
-index d4ce3f141af7..6d6db95a391f 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dpcs_3_0_3_offset.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dpcs_3_0_3_offset.h
-@@ -1,3 +1,10 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-+ *
-+ * Authors: AMD
-+ */
-+
- #ifndef _dpcs_3_0_3_OFFSET_HEADER
- #define _dpcs_3_0_3_OFFSET_HEADER
- 
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dpcs_3_0_3_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dpcs_3_0_3_sh_mask.h
-index e2cc1747c646..55743d06f728 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dpcs_3_0_3_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dpcs_3_0_3_sh_mask.h
-@@ -1,3 +1,10 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright (C) 2021 Advanced Micro Devices, Inc.
-+ *
-+ * Authors: AMD
-+ */
-+
- #ifndef _dpcs_3_0_3_SH_MASK_HEADER
- #define _dpcs_3_0_3_SH_MASK_HEADER
- 
+ 	default:
+ 		/* ASIC doesn't support DMUB. */
+@@ -3735,6 +3742,7 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
+ 	case CHIP_SIENNA_CICHLID:
+ 	case CHIP_NAVY_FLOUNDER:
+ 	case CHIP_DIMGREY_CAVEFISH:
++	case CHIP_BEIGE_GOBY:
+ 	case CHIP_VANGOGH:
+ 		if (dcn10_register_irq_handlers(dm->adev)) {
+ 			DRM_ERROR("DM: Failed to initialize IRQ\n");
+@@ -3987,6 +3995,11 @@ static int dm_early_init(void *handle)
+ 		adev->mode_info.num_hpd = 5;
+ 		adev->mode_info.num_dig = 5;
+ 		break;
++	case CHIP_BEIGE_GOBY:
++		adev->mode_info.num_crtc = 2;
++		adev->mode_info.num_hpd = 2;
++		adev->mode_info.num_dig = 2;
++		break;
+ #endif
+ 	default:
+ 		DRM_ERROR("Unsupported ASIC type: 0x%X\n", adev->asic_type);
+@@ -4212,6 +4225,7 @@ fill_gfx9_tiling_info_from_device(const struct amdgpu_device *adev,
+ 	if (adev->asic_type == CHIP_SIENNA_CICHLID ||
+ 	    adev->asic_type == CHIP_NAVY_FLOUNDER ||
+ 	    adev->asic_type == CHIP_DIMGREY_CAVEFISH ||
++	    adev->asic_type == CHIP_BEIGE_GOBY ||
+ 	    adev->asic_type == CHIP_VANGOGH)
+ 		tiling_info->gfx9.num_pkrs = adev->gfx.config.gb_addr_config_fields.num_pkrs;
+ }
 -- 
 2.31.1
 
