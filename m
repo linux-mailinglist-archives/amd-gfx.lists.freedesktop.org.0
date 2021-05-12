@@ -1,34 +1,34 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA6BA37BDAB
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 May 2021 15:08:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D25C637BDB1
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 May 2021 15:08:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E554D6EB9A;
-	Wed, 12 May 2021 13:07:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C49C6EBD0;
+	Wed, 12 May 2021 13:08:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A8786EB4C
- for <amd-gfx@lists.freedesktop.org>; Wed, 12 May 2021 09:55:41 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 94972613C1;
- Wed, 12 May 2021 09:55:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A84A6EB66
+ for <amd-gfx@lists.freedesktop.org>; Wed, 12 May 2021 09:56:11 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 90D9D613F3;
+ Wed, 12 May 2021 09:56:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1620813341;
- bh=BcSy4cDGBIB8m+eWXJ7AjXw73ea+nxc1HjGTK4vE3mY=;
+ s=korg; t=1620813371;
+ bh=KDrVXIJud5eOZ2ooD1/fzaYbvuawxfcAmXeEkOcgF5I=;
  h=Subject:To:Cc:From:Date:From;
- b=L1q4tLEHaVqhybWWJZcZdCc9oR6i74xiae53w4d4f8LIffj8/XEKiaoqwut+MkPLU
- rw3evVUETzt4I7I0lTjk5YzymgS6rSeEvBxb7xtqDdwsExtTS6zZxyLTtOcCuzoTrN
- QKopkLORjapmAak0hHhf90EDP7hRVqLk9xQxXEzc=
+ b=X1N1mZWq00bzaxBhsjz2LVzzSJs7LFhEnY7cPdFf5E46DOX0jqUhqB4847J+VTrMD
+ +TnEoKlAhLTJ8oovwKZus/Kn/cbQZqMxaejvcheCCQe26ngk5uRN9SjnsGiLq5g3VV
+ FmAnQcExoUsfFkFX73LuEWUSYSxwbE9fZV9vcENo=
 Subject: Patch "drm/amd/display: Reject non-zero src_y and src_x for video
- planes" has been added to the 5.11-stable tree
+ planes" has been added to the 5.12-stable tree
 To: Roman.Li@amd.com, alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
  christian.koenig@amd.com, danny.wang@amd.com, gregkh@linuxfoundation.org,
  harry.wentland@amd.com, hersenxs.wu@amd.com, nicholas.kazlauskas@amd.com
 From: <gregkh@linuxfoundation.org>
-Date: Wed, 12 May 2021 11:55:03 +0200
-Message-ID: <1620813303167108@kroah.com>
+Date: Wed, 12 May 2021 11:55:21 +0200
+Message-ID: <16208133212562@kroah.com>
 MIME-Version: 1.0
 X-stable: commit
 X-Patchwork-Hint: ignore 
@@ -52,12 +52,12 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 ClRoaXMgaXMgYSBub3RlIHRvIGxldCB5b3Uga25vdyB0aGF0IEkndmUganVzdCBhZGRlZCB0aGUg
 cGF0Y2ggdGl0bGVkCgogICAgZHJtL2FtZC9kaXNwbGF5OiBSZWplY3Qgbm9uLXplcm8gc3JjX3kg
-YW5kIHNyY194IGZvciB2aWRlbyBwbGFuZXMKCnRvIHRoZSA1LjExLXN0YWJsZSB0cmVlIHdoaWNo
+YW5kIHNyY194IGZvciB2aWRlbyBwbGFuZXMKCnRvIHRoZSA1LjEyLXN0YWJsZSB0cmVlIHdoaWNo
 IGNhbiBiZSBmb3VuZCBhdDoKICAgIGh0dHA6Ly93d3cua2VybmVsLm9yZy9naXQvP3A9bGludXgv
 a2VybmVsL2dpdC9zdGFibGUvc3RhYmxlLXF1ZXVlLmdpdDthPXN1bW1hcnkKClRoZSBmaWxlbmFt
 ZSBvZiB0aGUgcGF0Y2ggaXM6CiAgICAgZHJtLWFtZC1kaXNwbGF5LXJlamVjdC1ub24temVyby1z
 cmNfeS1hbmQtc3JjX3gtZm9yLXZpZGVvLXBsYW5lcy5wYXRjaAphbmQgaXQgY2FuIGJlIGZvdW5k
-IGluIHRoZSBxdWV1ZS01LjExIHN1YmRpcmVjdG9yeS4KCklmIHlvdSwgb3IgYW55b25lIGVsc2Us
+IGluIHRoZSBxdWV1ZS01LjEyIHN1YmRpcmVjdG9yeS4KCklmIHlvdSwgb3IgYW55b25lIGVsc2Us
 IGZlZWxzIGl0IHNob3VsZCBub3QgYmUgYWRkZWQgdG8gdGhlIHN0YWJsZSB0cmVlLApwbGVhc2Ug
 bGV0IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPiBrbm93IGFib3V0IGl0LgoKCkZyb20gZDg5ZjYw
 NDhiZGNiNmE1NmFiYjM5NmM1ODQ3NDdkNWVlYWU2NTBkYiBNb24gU2VwIDE3IDAwOjAwOjAwIDIw
@@ -89,8 +89,8 @@ Ynk6IEdyZWcgS3JvYWgtSGFydG1hbiA8Z3JlZ2toQGxpbnV4Zm91bmRhdGlvbi5vcmc+Ci0tLQog
 ZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYyB8ICAgMTcg
 KysrKysrKysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCspCgotLS0g
 YS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jCisrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMKQEAgLTM3
-NDAsNiArMzc0MCwyMyBAQCBzdGF0aWMgaW50IGZpbGxfZGNfc2NhbGluZ19pbmZvKGNvbnN0IHN0
+L2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMKQEAgLTM4
+NTAsNiArMzg1MCwyMyBAQCBzdGF0aWMgaW50IGZpbGxfZGNfc2NhbGluZ19pbmZvKGNvbnN0IHN0
 CiAJc2NhbGluZ19pbmZvLT5zcmNfcmVjdC54ID0gc3RhdGUtPnNyY194ID4+IDE2OwogCXNjYWxp
 bmdfaW5mby0+c3JjX3JlY3QueSA9IHN0YXRlLT5zcmNfeSA+PiAxNjsKIAorCS8qCisJICogRm9y
 IHJlYXNvbnMgd2UgZG9uJ3QgKHlldCkgZnVsbHkgdW5kZXJzdGFuZCBhIG5vbi16ZXJvCisJICog
@@ -107,7 +107,7 @@ eSAhPSAwKSkKKwkJcmV0dXJuIC1FSU5WQUw7CisKIAlzY2FsaW5nX2luZm8tPnNyY19yZWN0Lndp
 ZHRoID0gc3RhdGUtPnNyY193ID4+IDE2OwogCWlmIChzY2FsaW5nX2luZm8tPnNyY19yZWN0Lndp
 ZHRoID09IDApCiAJCXJldHVybiAtRUlOVkFMOwoKClBhdGNoZXMgY3VycmVudGx5IGluIHN0YWJs
 ZS1xdWV1ZSB3aGljaCBtaWdodCBiZSBmcm9tIGhhcnJ5LndlbnRsYW5kQGFtZC5jb20gYXJlCgpx
-dWV1ZS01LjExL2RybS1hbWQtZGlzcGxheS1yZWplY3Qtbm9uLXplcm8tc3JjX3ktYW5kLXNyY194
+dWV1ZS01LjEyL2RybS1hbWQtZGlzcGxheS1yZWplY3Qtbm9uLXplcm8tc3JjX3ktYW5kLXNyY194
 LWZvci12aWRlby1wbGFuZXMucGF0Y2gKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
 X19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVz
 a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9h
