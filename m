@@ -1,39 +1,47 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8379837FA24
-	for <lists+amd-gfx@lfdr.de>; Thu, 13 May 2021 16:58:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A20BF37FA2B
+	for <lists+amd-gfx@lfdr.de>; Thu, 13 May 2021 17:02:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E5A56ED15;
-	Thu, 13 May 2021 14:58:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 217AC6ED16;
+	Thu, 13 May 2021 15:02:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 105649 seconds by postgrey-1.36 at gabe;
- Thu, 13 May 2021 14:57:43 UTC
-Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4694D6ED15
- for <amd-gfx@lists.freedesktop.org>; Thu, 13 May 2021 14:57:43 +0000 (UTC)
-Received: from zn.tnic (p200300ec2f0e440021f4b7a45291c72c.dip0.t-ipconnect.de
- [IPv6:2003:ec:2f0e:4400:21f4:b7a4:5291:c72c])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 7CBD11EC023E;
- Thu, 13 May 2021 16:57:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
- t=1620917861;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
- bh=AbgyPKG5ZtG/4WqxP4kIpo39kNw3OZzOO2nwU/C30hg=;
- b=oRJpIZArC9T1M+9MNwcVtDwjwfbntLsBzjjToIMCKWfzI3s0eG1Hr+RerU06xPGRegGdNV
- 4kXRfxt+dIQV3oe9KG2yNlBVoNz4nQFBNgRjaiKItSEZNZpwuZcOKQHamI3kAxT17XuauI
- AOQFZrfNvojet7MBk7JzSn81CuVsorc=
-Date: Thu, 13 May 2021 16:57:37 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Register bad page handler for Aldebaran
-Message-ID: <YJ0+YbwSpxTrghpo@zn.tnic>
+Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com
+ [IPv6:2607:f8b0:4864:20::c2b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4AA96ED16
+ for <amd-gfx@lists.freedesktop.org>; Thu, 13 May 2021 15:02:15 +0000 (UTC)
+Received: by mail-oo1-xc2b.google.com with SMTP id
+ v13-20020a4ac00d0000b029020b43b918eeso1135200oop.9
+ for <amd-gfx@lists.freedesktop.org>; Thu, 13 May 2021 08:02:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=2jiYyfGon+l+dlMJ6kapOd+In1t5dSTiN7MQBF/Q/Es=;
+ b=j30501PewlzcvcuQ4+8CqsWaMTS4JQ0lqMxYvK8rfcLbJEYtYIdIB1VD+EOmozA3Lh
+ dPQ+IitmoW7fTYLvMf7jNrpt8gHvZRQZG/HuOsP1/aNI3dWJQOJ41+dk5i5m1M/423tK
+ AoDRNcKCAPMaS2hIk3PsY+45IFW4k4I27XpU7BTsQmanXVZTxjBA6IX/hMftMhdvhUJH
+ hehJIjIRAuVbSGJAc7SbogLAeC7DoW1YVNgHFFZGt79MAaOpZsvz2TJrXrSzPRoV8b0c
+ cQR1SxkJhVOJAPhWBUjl74hlcbmhpRi8jlZge1WgV+9B7xHf79Sgv9CQiG+rMfdSoY2K
+ XWTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=2jiYyfGon+l+dlMJ6kapOd+In1t5dSTiN7MQBF/Q/Es=;
+ b=lUv3cbSvlCxQGNuDXLXLBHrzak0jC3OobahCPlkfWsqz67jG0YpqhvyFtPGSHjbd/x
+ x/NNdMMKFhHVL7WRG2tSQ2E7J/gFVe6Y//8Jwym3MVkstgAUQoCTfiiOz+DblTM56rT2
+ gfS3Ykg+8qg49xmg2/OfGRaZHVWEghjR9xf18q46aubc8o7Hb4lhA7KPk8JCghwepQEy
+ Toy2S2/WWfsn2HJ7jsLPs+rWlA6EhZaIML5dteCxyMgqaMJN90pcfvwBiMJsLauym9NH
+ 8rmPfzbCgHf89CNPTGh8fNuGPXwvnrAWb5/ChZins0IlGvgiRmfOHs5nmXmZdUpCNaaI
+ HSzg==
+X-Gm-Message-State: AOAM531ZUdSEg57b/5ErDwJfNaCxU/Uh9yzNexwpNHy5R2/oMcZPshYy
+ 0iYYn6TeOEF34EazwPj0tsNCrk175V8IfBTjtDOKEKB/
+X-Google-Smtp-Source: ABdhPJyLU0gR/kFQy8ahgNakokKjbP/wNRGj4ycisfi1FD3EebVM6PxVZFr23Qi3Yjm5fku9f9SUlVO0d3fbRkcejw8=
+X-Received: by 2002:a4a:d543:: with SMTP id q3mr32537508oos.72.1620918133701; 
+ Thu, 13 May 2021 08:02:13 -0700 (PDT)
+MIME-Version: 1.0
 References: <20210512013058.6827-1-mukul.joshi@amd.com>
  <YJuhs1WsqtJ7ta1L@zn.tnic>
  <DM4PR12MB5263797EB7B2D37C21427A88EE529@DM4PR12MB5263.namprd12.prod.outlook.com>
@@ -43,10 +51,13 @@ References: <20210512013058.6827-1-mukul.joshi@amd.com>
  <CADnq5_Or5maEWTZFzS6iksyoFC=q9=y=-YmPTdPuWRKFhdw0yg@mail.gmail.com>
  <YJ04D8a6LaVRMuGH@zn.tnic>
  <CADnq5_NQonmqtFDpfsWygGzA2kv-W-daDSkxkY2ALf9a1eby9g@mail.gmail.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CADnq5_NQonmqtFDpfsWygGzA2kv-W-daDSkxkY2ALf9a1eby9g@mail.gmail.com>
-X-Mailman-Approved-At: Thu, 13 May 2021 14:58:19 +0000
+ <YJ0+YbwSpxTrghpo@zn.tnic>
+In-Reply-To: <YJ0+YbwSpxTrghpo@zn.tnic>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 13 May 2021 11:02:02 -0400
+Message-ID: <CADnq5_PibVG4JRwtpX7at-dz6eT=XP8=pdy6a+4kCumdPxooeg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Register bad page handler for Aldebaran
+To: Borislav Petkov <bp@alien8.de>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,28 +78,42 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 13, 2021 at 10:32:45AM -0400, Alex Deucher wrote:
-> Right.  The sys admin can query the bad page count and decide when to
-> retire the card.
+On Thu, May 13, 2021 at 10:57 AM Borislav Petkov <bp@alien8.de> wrote:
+>
+> On Thu, May 13, 2021 at 10:32:45AM -0400, Alex Deucher wrote:
+> > Right.  The sys admin can query the bad page count and decide when to
+> > retire the card.
+>
+> Yap, although the driver should actively "tell" the sysadmin when some
+> critical counts of retired VRAM pages are reached because I doubt all
+> admins would go look at those counts on their own.
 
-Yap, although the driver should actively "tell" the sysadmin when some
-critical counts of retired VRAM pages are reached because I doubt all
-admins would go look at those counts on their own.
+I think we print something in the log as well when we hit the
+threshold.  I need to double check the code.
 
-Btw, you say "admin" - am I to understand that those are some high end
-GPU cards with ECC memory? If consumer grade stuff has this too, then
-the driver should very much warn on such levels on its own because
-normal users won't know what and where to look.
+>
+> Btw, you say "admin" - am I to understand that those are some high end
+> GPU cards with ECC memory? If consumer grade stuff has this too, then
+> the driver should very much warn on such levels on its own because
+> normal users won't know what and where to look.
+>
 
-Other than that, the big picture sounds good to me.
+Currently it's only available on workstation and datacenter boards.
 
-Thx.
+> Other than that, the big picture sounds good to me.
 
--- 
-Regards/Gruss,
-    Boris.
+Thanks!
 
-https://people.kernel.org/tglx/notes-about-netiquette
+Alex
+
+>
+> Thx.
+>
+> --
+> Regards/Gruss,
+>     Boris.
+>
+> https://people.kernel.org/tglx/notes-about-netiquette
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
