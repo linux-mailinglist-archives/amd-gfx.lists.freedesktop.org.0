@@ -2,27 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 269F637F296
-	for <lists+amd-gfx@lfdr.de>; Thu, 13 May 2021 07:26:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9B9337F29D
+	for <lists+amd-gfx@lfdr.de>; Thu, 13 May 2021 07:32:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFAFE6E81D;
-	Thu, 13 May 2021 05:26:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E2746E823;
+	Thu, 13 May 2021 05:32:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 422 seconds by postgrey-1.36 at gabe;
- Thu, 13 May 2021 05:26:53 UTC
-Received: from svt-ETHLX-2.amd.com (unknown [165.204.54.251])
- by gabe.freedesktop.org (Postfix) with ESMTP id D59786E81D
- for <amd-gfx@lists.freedesktop.org>; Thu, 13 May 2021 05:26:53 +0000 (UTC)
-Received: by svt-ETHLX-2.amd.com (Postfix, from userid 0)
- id 5570218402C5; Thu, 13 May 2021 01:19:51 -0400 (EDT)
-From: Bokun Zhang <bokun.zhang@amd.com>
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 171A76E81E
+ for <amd-gfx@lists.freedesktop.org>; Thu, 13 May 2021 05:32:51 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Vx7Irvor5luMXM3LRW3j5csZ1RInkHLHQ2xwG5HZ0JmyftnOhgodo6Jljc+wo2DyWo80BZBcRtY5g9qiJRx1pk4HRoAv6VGe1Y8Tg16zy21WsYE7RkCZ53csZ4Y2k+sYQ3wNH7ImULSf2Fdyh+Fj/u+kkmWzIW99Izh3vYB9NX83XhXUXXEEqE9j9LZ4sAoZbTsaNeKBRwsToWLzp6H3X8bemprBwLu2UAz4qCid2xKoWVaDTS3pILVlj5Sjv32Bf2zMoe/e6VduZTfq9Lcv4U/2o1en+kAsVGcgsuxecgLRFmCMNse+SwocNETu4+XmFjI+aYnNkQ5nH9CtOF9+rQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ljhw8KX4Ym9l8Culm/0ZYEAjWJX3mwrKYdmBFozBQts=;
+ b=dpbu6OFMaAo4g2AByDqTrhxZIKMTUBUrY9bpWwr/HGJoaYjNmaTzEDY17as9Q62nSmQknhM/yG2UbQ7e9+rzxULzRr5eeUDFy3IWHJDh8jevOl4IJAnoVR+4BB6bYWY/4sMkBEcLPLX4y+YgeE1lcgt6S4Ru1OOop3ik7W6VUve5jdKW4NeQWeULIoKZ+eB3maPzc4+Hs0ahqw8K4hN5T1W3m0DeIA8a5PqOtpuInVFQEGoBdKK9qRtWWXtPA97GN8xZoskgXEBpUTXgg6Zez9xMdZ38BLncw6TJTLgwRwVMc4/VbIquwAH1/9zxPprHyYxAy6qe6hMAbtQnpdl7ow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ljhw8KX4Ym9l8Culm/0ZYEAjWJX3mwrKYdmBFozBQts=;
+ b=24YW1w4jCpCUK0h9p474etewmvqrrB3KEmXxsGVS4Ib9mtAu2x1hV644LMW8n3r0muVig9r+RtFBc0FOWNuAzlst++hp0PU6qo6FYyboZIcQtlhKsflf4brVJUfzfPZgv70iWexe+kekHzOvlCdLS2d+9XZd3eR+SCV4Mk1fPOE=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from DM6PR12MB3962.namprd12.prod.outlook.com (2603:10b6:5:1ce::21)
+ by DM6PR12MB4748.namprd12.prod.outlook.com (2603:10b6:5:33::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.25; Thu, 13 May
+ 2021 05:32:49 +0000
+Received: from DM6PR12MB3962.namprd12.prod.outlook.com
+ ([fe80::142:82e3:7e9d:55a0]) by DM6PR12MB3962.namprd12.prod.outlook.com
+ ([fe80::142:82e3:7e9d:55a0%6]) with mapi id 15.20.4129.026; Thu, 13 May 2021
+ 05:32:49 +0000
+From: Luben Tuikov <luben.tuikov@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: Complete multimedia bandwidth interface
-Date: Thu, 13 May 2021 01:19:49 -0400
-Message-Id: <20210513051949.6846-1-bokun.zhang@amd.com>
-X-Mailer: git-send-email 2.20.1
+Subject: [PATCH 1/2] drm/amdgpu: Don't query CE and UE errors
+Date: Thu, 13 May 2021 01:32:32 -0400
+Message-Id: <20210513053233.116683-1-luben.tuikov@amd.com>
+X-Mailer: git-send-email 2.31.1.527.g2d677e5b15
+In-Reply-To: <MN2PR12MB448837F2FFA7B74AD3345C10F7529@MN2PR12MB4488.namprd12.prod.outlook.com>
+References: <MN2PR12MB448837F2FFA7B74AD3345C10F7529@MN2PR12MB4488.namprd12.prod.outlook.com>
+X-Originating-IP: [108.162.138.69]
+X-ClientProxiedBy: YTOPR0101CA0023.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:15::36) To DM6PR12MB3962.namprd12.prod.outlook.com
+ (2603:10b6:5:1ce::21)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (108.162.138.69) by
+ YTOPR0101CA0023.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::36) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.31 via Frontend
+ Transport; Thu, 13 May 2021 05:32:48 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 1bc996a3-ea73-4de3-c8a2-08d915d08bb0
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4748:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4748A04D96E49CA9E0C04FC899519@DM6PR12MB4748.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: di11ViX1GeHi7ccStS8kmMo/EQ0lYrHSDMGv5aIHfQNda4rzaHKGH4f3IuYKYnSF1+5dru1ULWz9Hc0aH8dvWR9Fpw+fQKuh9T65reGq+/iik57Vf3PG9Lmoq9jHKskbpgXEtM7D1vn8wz3YxBI5Ec5+2HeBbuG7hq1LAg3HIalIu4PA2oRee999Pg1OXgIW/jpGmJx9vfnAlubfJrmmxPZqu0NL7kO/eHqVbU+OVND2h7egHPCyXLX6erqxqOi9Ft7OSYbEa2+svstvK8ZraOA35Vr8NhE5zODJTKRcsAAFnzwz7hBPm4+VScIgpU9HgXl4csR8rVP6uk1g8++NWN6A0p3L7Tb6Ey7MT1Vmm1jKL8UQzkfEGJ3bu0CrZokPxKltBjyQFNC2D2z6Z0WdDAJXK3CWCv/f/vCUtd5zYHtPO1IWIJ/5eUGKih/Q5axDEs0I6gvPhX0uSbDvj5gMt1k5KShx5clSwqtGfOmSjMkW8rltcGYZaCbU7KpWMwbgqbbaEmCGRz5Y28cnxifNvDTJxjx0bHTwSiUVcmPeFyqcl9mdrB3my2kHFEX2WJXWpWPySDsbKvuKNMj0Z9PczkQEcuFGWnlUps6NdbxK9B2THjbeFqd9Yp5f38FeY0fwAq1gnaeFtzEoLs7dNGvE1SyiHc9OsygiCYTVZlKSrU1ikp/iHzn1Sf67IH71M8N9
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3962.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(366004)(39860400002)(136003)(396003)(346002)(2906002)(44832011)(8676002)(54906003)(5660300002)(316002)(36756003)(16526019)(956004)(86362001)(38100700002)(2616005)(4326008)(38350700002)(8936002)(186003)(6666004)(66476007)(6512007)(83380400001)(6486002)(6916009)(478600001)(1076003)(52116002)(66556008)(66946007)(55236004)(26005)(6506007)(69590400013);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?ZvI5xlm2VSpF1lRv5y4H0W3QyZxt0c27B51BJYXfi5YNsI51c8br6N2RBG8z?=
+ =?us-ascii?Q?uFuxBZgbs6uk1C0eCklyJjwkOGOAU/l+apcfZFktY673zKgKUEnOWbtdUCt7?=
+ =?us-ascii?Q?4Xix7IV+8b5vo0KaWtkkDMWa2ZvCRp1Kz2bc18XIIow/h77iaNIDYvCNIaY4?=
+ =?us-ascii?Q?k7S/AYpfctHoO3VBYkYAOfcDfts73Oe8ExYKZSldh0uvftP3HihB/AexjVkr?=
+ =?us-ascii?Q?X0xh4tbK3+Wi1r7PljO1J63KpKwPwtC1huzf+hnXTMrms+DzhEJopBFNiTEh?=
+ =?us-ascii?Q?SU0HniKTcCUMHS3mjeY32UA9nCnarSP9L5e74G7gMQyawXimvOxzNQ6jx8t2?=
+ =?us-ascii?Q?QBZACkBNVpmX7KLKu3Y/lKneq+yoP7TntIKjHdxzI/VrJawZsF+Kz5mziFna?=
+ =?us-ascii?Q?4xxCymSog8iNaNfDAKX+qVZJ3mfMxO2jut3Nk6sbAHruOTgA+vItzRejmxWe?=
+ =?us-ascii?Q?qegtDnj8T9xZyXJ1YggjA4QXv02jOdgTjXZggFpDEswrJFQbWiAPdyb8haGw?=
+ =?us-ascii?Q?hH8nXOyqRtvq/ClPiGkDLJNXW0OMROZW1VIjxiKlZ6g5Z1PS3AR1e1Gjqmpw?=
+ =?us-ascii?Q?Sf1LiWW/JHl1P74WtJdXekzS8WJvLSB/uypYCsA7/kRS0Iut42MMRVv23han?=
+ =?us-ascii?Q?Ig8oT2EvwQaMoz6QTgbG8HlkYYBJqU6kXxn/n5qXJUxH5HF0GGzNDsYnpK4S?=
+ =?us-ascii?Q?smF0yo1IibuQN+0eZrOLhrXNXuHFKXKevSUgHLHHmoF24f/Ckq+2TL3wAdW8?=
+ =?us-ascii?Q?EnVQFjdqmw/jfGwNO8IxVlochqh0VGT3eWMEDcgR5QvCsg8EOf3WMjkoLn2F?=
+ =?us-ascii?Q?xJWs6dBtZKFIk+e5WpZy95be4h89hQ0Tiv1ISFIh3xu1sTtvUwFuHJhoIVl6?=
+ =?us-ascii?Q?zlnJug2bA+6BfWx/9VZI/bLJqetjRgLEwtU/j2qn1ggG86LCuOHhnqN5q2dG?=
+ =?us-ascii?Q?SgSHntPOY9L2XcJRv2dO8f0aR4KymC4t00TAztKZWwSaVvnlOVIhOoaXGS2S?=
+ =?us-ascii?Q?6EOD4aBmcQnuul3rxFkq8SXuJc9Fh/Vq4ODPx3tkFT4LGM53696UejEHpynt?=
+ =?us-ascii?Q?FSK8fYwJINObtvhF3ON/jHSHv7rBHdCK93sZNagOInZGq2ftzfqQBgzP5Mww?=
+ =?us-ascii?Q?t3EwXF0Al2FGMo7yWOcFKMUfU7FX2ja1EtVEG24OdXzrBMO8z8h97ljkaoDK?=
+ =?us-ascii?Q?9+05zsKKkWyu96/JVIRcmxLRJiJyCVpJsuIkxvW7vusDuuNf2OeFyEb3eujf?=
+ =?us-ascii?Q?6ZKZvUVK2XvWuKeHo7KRU1eEM3FffzCA3lxYxJQQ9ZRe3Ml2szrqoWpibi7T?=
+ =?us-ascii?Q?AsWlhqV0DLOaOJF0QfTw/FGa?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1bc996a3-ea73-4de3-c8a2-08d915d08bb0
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3962.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 May 2021 05:32:49.3104 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: S1gADoYLN0dc+TUqKSVGjWPuEOBjrm+lbPYpXsTEHj7MM88pi9nInr9y0SSJPGtL
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4748
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,363 +115,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bokun Zhang <bokun.zhang@amd.com>
+Cc: Alexander Deucher <Alexander.Deucher@amd.com>,
+ Luben Tuikov <luben.tuikov@amd.com>, stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-- Update SRIOV PF2VF header with latest revision
+On QUERY2 IOCTL don't query counts of correctable
+and uncorrectable errors, since when RAS is
+enabled and supported on Vega20 server boards,
+this takes insurmountably long time, in O(n^3),
+which slows the system down to the point of it
+being unusable when we have GUI up.
 
-- Extend existing function in amdgpu_virt.c to read MM bandwidth config
-  from PF2VF message
-
-- Add SRIOV Sienna Cichlid codec array and update the bandwidth with
-  PF2VF message
-
-Change-Id: Id0cfa2e1adb7a097997d53b34d41a6d36a390c00
-Signed-off-by: Bokun Zhang <bokun.zhang@amd.com>
+Fixes: ae363a212b14 ("drm/amdgpu: Add a new flag to AMDGPU_CTX_OP_QUERY_STATE2")
+Cc: Alexander Deucher <Alexander.Deucher@amd.com>
+Cc: stable@vger.kernel.org
+Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c    |  56 ++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h    |  13 +++
- drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h |  54 ++++++++--
- drivers/gpu/drm/amd/amdgpu/nv.c             | 110 +++++++++++++++++++-
- 4 files changed, 226 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 16 ----------------
+ 1 file changed, 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-index a57842689d42..c64e583347c6 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-@@ -432,6 +432,9 @@ static int amdgpu_virt_read_pf2vf_data(struct amdgpu_device *adev)
- 	uint32_t checksum;
- 	uint32_t checkval;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+index 01fe60fedcbe..e1557020c49d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+@@ -337,7 +337,6 @@ static int amdgpu_ctx_query2(struct amdgpu_device *adev,
+ {
+ 	struct amdgpu_ctx *ctx;
+ 	struct amdgpu_ctx_mgr *mgr;
+-	unsigned long ras_counter;
  
-+	uint32_t i;
-+	uint32_t tmp;
-+
- 	if (adev->virt.fw_reserve.p_pf2vf == NULL)
+ 	if (!fpriv)
  		return -EINVAL;
+@@ -362,21 +361,6 @@ static int amdgpu_ctx_query2(struct amdgpu_device *adev,
+ 	if (atomic_read(&ctx->guilty))
+ 		out->state.flags |= AMDGPU_CTX_QUERY2_FLAGS_GUILTY;
  
-@@ -472,6 +475,27 @@ static int amdgpu_virt_read_pf2vf_data(struct amdgpu_device *adev)
- 		adev->virt.reg_access =
- 			((struct amd_sriov_msg_pf2vf_info *)pf2vf_info)->reg_access_flags.all;
- 
-+		adev->virt.decode_max_dimension_pixels = 0;
-+		adev->virt.decode_max_frame_pixels = 0;
-+		adev->virt.encode_max_dimension_pixels = 0;
-+		adev->virt.encode_max_frame_pixels = 0;
-+		adev->virt.is_mm_bw_enabled = false;
-+		for (i = 0; i < AMD_SRIOV_MSG_RESERVE_VCN_INST; i++) {
-+			tmp = ((struct amd_sriov_msg_pf2vf_info *)pf2vf_info)->mm_bw_management[i].decode_max_dimension_pixels;
-+			adev->virt.decode_max_dimension_pixels = max(tmp, adev->virt.decode_max_dimension_pixels);
-+
-+			tmp = ((struct amd_sriov_msg_pf2vf_info *)pf2vf_info)->mm_bw_management[i].decode_max_frame_pixels;
-+			adev->virt.decode_max_frame_pixels = max(tmp, adev->virt.decode_max_frame_pixels);
-+
-+			tmp = ((struct amd_sriov_msg_pf2vf_info *)pf2vf_info)->mm_bw_management[i].encode_max_dimension_pixels;
-+			adev->virt.encode_max_dimension_pixels = max(tmp, adev->virt.encode_max_dimension_pixels);
-+
-+			tmp = ((struct amd_sriov_msg_pf2vf_info *)pf2vf_info)->mm_bw_management[i].encode_max_frame_pixels;
-+			adev->virt.encode_max_frame_pixels = max(tmp, adev->virt.encode_max_frame_pixels);
-+		}
-+		if((adev->virt.decode_max_dimension_pixels > 0) || (adev->virt.encode_max_dimension_pixels > 0))
-+			adev->virt.is_mm_bw_enabled = true;
-+
- 		break;
- 	default:
- 		DRM_ERROR("invalid pf2vf version\n");
-@@ -744,3 +768,35 @@ enum amdgpu_sriov_vf_mode amdgpu_virt_get_sriov_vf_mode(struct amdgpu_device *ad
- 
- 	return mode;
- }
-+
-+void amdgpu_virt_update_sriov_video_codec(struct amdgpu_device *adev,
-+			struct amdgpu_video_codec_info *encode, uint32_t encode_array_size,
-+			struct amdgpu_video_codec_info *decode, uint32_t decode_array_size)
-+{
-+	uint32_t i;
-+
-+	if (!adev->virt.is_mm_bw_enabled)
-+		return;
-+
-+	if (encode) {
-+		for (i = 0; i < encode_array_size; i++) {
-+			encode[i].max_width = adev->virt.encode_max_dimension_pixels;
-+			encode[i].max_pixels_per_frame = adev->virt.encode_max_frame_pixels;
-+			if (encode[i].max_width > 0)
-+				encode[i].max_height = encode[i].max_pixels_per_frame / encode[i].max_width;
-+			else
-+				encode[i].max_height = 0;
-+		}
-+	}
-+
-+	if (decode) {
-+		for (i = 0; i < decode_array_size; i++) {
-+			decode[i].max_width = adev->virt.decode_max_dimension_pixels;
-+			decode[i].max_pixels_per_frame = adev->virt.decode_max_frame_pixels;
-+			if (decode[i].max_width > 0)
-+				decode[i].max_height = decode[i].max_pixels_per_frame / decode[i].max_width;
-+			else
-+				decode[i].max_height = 0;
-+		}
-+	}
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-index 383d4bdc3fb5..8d4c20bb71c5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.h
-@@ -233,8 +233,17 @@ struct amdgpu_virt {
- 	/* vf2pf message */
- 	struct delayed_work vf2pf_work;
- 	uint32_t vf2pf_update_interval_ms;
-+
-+	/* multimedia bandwidth config */
-+	bool     is_mm_bw_enabled;
-+	uint32_t decode_max_dimension_pixels;
-+	uint32_t decode_max_frame_pixels;
-+	uint32_t encode_max_dimension_pixels;
-+	uint32_t encode_max_frame_pixels;
- };
- 
-+struct amdgpu_video_codec_info;
-+
- #define amdgpu_sriov_enabled(adev) \
- ((adev)->virt.caps & AMDGPU_SRIOV_CAPS_ENABLE_IOV)
- 
-@@ -307,4 +316,8 @@ int amdgpu_virt_enable_access_debugfs(struct amdgpu_device *adev);
- void amdgpu_virt_disable_access_debugfs(struct amdgpu_device *adev);
- 
- enum amdgpu_sriov_vf_mode amdgpu_virt_get_sriov_vf_mode(struct amdgpu_device *adev);
-+
-+void amdgpu_virt_update_sriov_video_codec(struct amdgpu_device *adev,
-+			struct amdgpu_video_codec_info *encode, uint32_t encode_array_size,
-+			struct amdgpu_video_codec_info *decode, uint32_t decode_array_size);
- #endif
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-index befd0b4b7bea..a434c71fde8e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgv_sriovmsg.h
-@@ -56,6 +56,8 @@
- 
- #define AMD_SRIOV_MSG_RESERVE_UCODE		24
- 
-+#define AMD_SRIOV_MSG_RESERVE_VCN_INST 4
-+
- enum amd_sriov_ucode_engine_id {
- 	AMD_SRIOV_UCODE_ID_VCE = 0,
- 	AMD_SRIOV_UCODE_ID_UVD,
-@@ -98,10 +100,10 @@ union amd_sriov_msg_feature_flags {
- 
- union amd_sriov_reg_access_flags {
- 	struct {
--		uint32_t vf_reg_psp_access_ih    : 1;
--		uint32_t vf_reg_rlc_access_mmhub : 1;
--		uint32_t vf_reg_rlc_access_gc    : 1;
--		uint32_t reserved            : 29;
-+		uint32_t vf_reg_access_ih 	 : 1;
-+		uint32_t vf_reg_access_mmhub : 1;
-+		uint32_t vf_reg_access_gc 	 : 1;
-+		uint32_t reserved	         : 29;
- 	} flags;
- 	uint32_t all;
- };
-@@ -114,6 +116,37 @@ union amd_sriov_msg_os_info {
- 	uint32_t      all;
- };
- 
-+struct amd_sriov_msg_uuid_info {
-+	union {
-+		struct {
-+			uint32_t did	: 16;
-+			uint32_t fcn	: 8;
-+			uint32_t asic_7 : 8;
-+		};
-+		uint32_t time_low;
-+	};
-+
-+	struct {
-+		uint32_t time_mid  : 16;
-+		uint32_t time_high : 12;
-+		uint32_t version   : 4;
-+	};
-+
-+	struct {
-+		struct {
-+			uint8_t clk_seq_hi : 6;
-+			uint8_t variant    : 2;
-+		};
-+		union {
-+			uint8_t clk_seq_low;
-+			uint8_t asic_6;
-+		};
-+		uint16_t asic_4;
-+	};
-+
-+	uint32_t asic_0;
-+};
-+
- struct amd_sriov_msg_pf2vf_info_header {
- 	/* the total structure size in byte */
- 	uint32_t size;
-@@ -160,10 +193,19 @@ struct amd_sriov_msg_pf2vf_info {
- 	/* identification in ROCm SMI */
- 	uint64_t uuid;
- 	uint32_t fcn_idx;
--	/* flags which indicate the register access method VF should use */
-+	/* flags to indicate which register access method VF should use */
- 	union amd_sriov_reg_access_flags reg_access_flags;
-+	/* MM BW management */
-+	struct {
-+		uint32_t decode_max_dimension_pixels;
-+		uint32_t decode_max_frame_pixels;
-+		uint32_t encode_max_dimension_pixels;
-+		uint32_t encode_max_frame_pixels;
-+	} mm_bw_management[AMD_SRIOV_MSG_RESERVE_VCN_INST];
-+	/* UUID info */
-+	struct amd_sriov_msg_uuid_info uuid_info;
- 	/* reserved */
--	uint32_t reserved[256-27];
-+	uint32_t reserved[256 - 47];
- };
- 
- struct amd_sriov_msg_vf2pf_info_header {
-diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 75d1f9b939b2..9f74060207a4 100644
---- a/drivers/gpu/drm/amd/amdgpu/nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -218,11 +218,114 @@ static const struct amdgpu_video_codecs sc_video_codecs_decode =
- 	.codec_array = sc_video_codecs_decode_array,
- };
- 
-+/* SRIOV Sienna Cichlid, not const since data is controlled by host */
-+static struct amdgpu_video_codec_info sriov_sc_video_codecs_encode_array[] =
-+{
-+	{
-+		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
-+		.max_width = 4096,
-+		.max_height = 2304,
-+		.max_pixels_per_frame = 4096 * 2304,
-+		.max_level = 0,
-+	},
-+	{
-+		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC,
-+		.max_width = 4096,
-+		.max_height = 2304,
-+		.max_pixels_per_frame = 4096 * 2304,
-+		.max_level = 0,
-+	},
-+};
-+
-+static struct amdgpu_video_codec_info sriov_sc_video_codecs_decode_array[] =
-+{
-+	{
-+		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG2,
-+		.max_width = 4096,
-+		.max_height = 4096,
-+		.max_pixels_per_frame = 4096 * 4096,
-+		.max_level = 3,
-+	},
-+	{
-+		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4,
-+		.max_width = 4096,
-+		.max_height = 4096,
-+		.max_pixels_per_frame = 4096 * 4096,
-+		.max_level = 5,
-+	},
-+	{
-+		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_MPEG4_AVC,
-+		.max_width = 4096,
-+		.max_height = 4096,
-+		.max_pixels_per_frame = 4096 * 4096,
-+		.max_level = 52,
-+	},
-+	{
-+		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VC1,
-+		.max_width = 4096,
-+		.max_height = 4096,
-+		.max_pixels_per_frame = 4096 * 4096,
-+		.max_level = 4,
-+	},
-+	{
-+		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_HEVC,
-+		.max_width = 8192,
-+		.max_height = 4352,
-+		.max_pixels_per_frame = 8192 * 4352,
-+		.max_level = 186,
-+	},
-+	{
-+		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_JPEG,
-+		.max_width = 4096,
-+		.max_height = 4096,
-+		.max_pixels_per_frame = 4096 * 4096,
-+		.max_level = 0,
-+	},
-+	{
-+		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_VP9,
-+		.max_width = 8192,
-+		.max_height = 4352,
-+		.max_pixels_per_frame = 8192 * 4352,
-+		.max_level = 0,
-+	},
-+	{
-+		.codec_type = AMDGPU_INFO_VIDEO_CAPS_CODEC_IDX_AV1,
-+		.max_width = 8192,
-+		.max_height = 4352,
-+		.max_pixels_per_frame = 8192 * 4352,
-+		.max_level = 0,
-+	},
-+};
-+
-+static struct amdgpu_video_codecs sriov_sc_video_codecs_encode =
-+{
-+	.codec_count = ARRAY_SIZE(sriov_sc_video_codecs_encode_array),
-+	.codec_array = sriov_sc_video_codecs_encode_array,
-+};
-+
-+static struct amdgpu_video_codecs sriov_sc_video_codecs_decode =
-+{
-+	.codec_count = ARRAY_SIZE(sriov_sc_video_codecs_decode_array),
-+	.codec_array = sriov_sc_video_codecs_decode_array,
-+};
-+
- static int nv_query_video_codecs(struct amdgpu_device *adev, bool encode,
- 				 const struct amdgpu_video_codecs **codecs)
- {
- 	switch (adev->asic_type) {
- 	case CHIP_SIENNA_CICHLID:
-+		if (amdgpu_sriov_vf(adev)) {
-+			if (encode)
-+				*codecs = &sriov_sc_video_codecs_encode;
-+			else
-+				*codecs = &sriov_sc_video_codecs_decode;
-+		} else {
-+			if (encode)
-+				*codecs = &nv_video_codecs_encode;
-+			else
-+				*codecs = &sc_video_codecs_decode;
-+		}
-+		return 0;
- 	case CHIP_NAVY_FLOUNDER:
- 	case CHIP_DIMGREY_CAVEFISH:
- 	case CHIP_VANGOGH:
-@@ -1173,9 +1276,14 @@ static int nv_common_early_init(void *handle)
- static int nv_common_late_init(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-+	uint32_t i;
- 
--	if (amdgpu_sriov_vf(adev))
-+	if (amdgpu_sriov_vf(adev)) {
- 		xgpu_nv_mailbox_get_irq(adev);
-+		amdgpu_virt_update_sriov_video_codec(adev,
-+				sriov_sc_video_codecs_encode_array, ARRAY_SIZE(sriov_sc_video_codecs_encode_array),
-+				sriov_sc_video_codecs_decode_array, ARRAY_SIZE(sriov_sc_video_codecs_decode_array));
-+	}
- 
+-	/*query ue count*/
+-	ras_counter = amdgpu_ras_query_error_count(adev, false);
+-	/*ras counter is monotonic increasing*/
+-	if (ras_counter != ctx->ras_counter_ue) {
+-		out->state.flags |= AMDGPU_CTX_QUERY2_FLAGS_RAS_UE;
+-		ctx->ras_counter_ue = ras_counter;
+-	}
+-
+-	/*query ce count*/
+-	ras_counter = amdgpu_ras_query_error_count(adev, true);
+-	if (ras_counter != ctx->ras_counter_ce) {
+-		out->state.flags |= AMDGPU_CTX_QUERY2_FLAGS_RAS_CE;
+-		ctx->ras_counter_ce = ras_counter;
+-	}
+-
+ 	mutex_unlock(&mgr->lock);
  	return 0;
  }
 -- 
-2.20.1
+2.31.1.527.g2d677e5b15
 
 _______________________________________________
 amd-gfx mailing list
