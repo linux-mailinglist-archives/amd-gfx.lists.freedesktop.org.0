@@ -2,58 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32C5437F987
-	for <lists+amd-gfx@lfdr.de>; Thu, 13 May 2021 16:18:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5216A37F9D1
+	for <lists+amd-gfx@lfdr.de>; Thu, 13 May 2021 16:38:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94CC46E894;
-	Thu, 13 May 2021 14:17:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3B7C6E891;
+	Thu, 13 May 2021 14:38:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com
- [IPv6:2607:f8b0:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCF216E894
- for <amd-gfx@lists.freedesktop.org>; Thu, 13 May 2021 14:17:58 +0000 (UTC)
-Received: by mail-ot1-x330.google.com with SMTP id
- u25-20020a0568302319b02902ac3d54c25eso23738965ote.1
- for <amd-gfx@lists.freedesktop.org>; Thu, 13 May 2021 07:17:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=dfnosBslQXQ6G/XHnjEn8kNJdLQMZYIRcVlnHPvH2C8=;
- b=mq4tFwhiYBB2EaSet++vzh5Sr0pU/IBg1ujAlt3d1n8aY0afTSIoGsqVLWsqJAEkyj
- EE2OqfqAJkDAG+W9DlxKQqM559NMkfDH7Lv0PRszYSA7bHr5mDt56BmrlF1fvJNazVZ7
- Ojie/HAjVIAsyV6ibcX25qDqVN6FOCG82G+cyUbg6ZafyoCUontwMeZpXn5+NE2z3QGq
- j25EmTnu7lqWQPmcsxGDGFZL56mhOy/fW736B2xxNVga1uQvZf74YK1jziIQyq9Elxjb
- M6fH10MTu38vp3Pbrk+h9Z6evwEA2vmUyw9fi3p9JA7WgNQb7jipIdrjz/PozkHLD8EU
- pQMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=dfnosBslQXQ6G/XHnjEn8kNJdLQMZYIRcVlnHPvH2C8=;
- b=kEnVfZS0XE4tm+ZZazAZJtu3AEkxrFb8YDm2ypj26JSTdXbhTlJ7TTs6aTX3Z3Ph+W
- 1azG5gQvyTvk/NX/RYtA5hdMEsiIDOwZRaNwviWpWsOcbZj2JhHKCG3usmhRJQ3dyVV0
- fnCsCED5DJnW626vuwTTSxDnpZ2uV3iBd6GZojKfdI5bbo5UsMR9oQxcaF/DUu/DTF9X
- bGA6uPSxixQsD0BT6D01myWDMaL7V2BwDOukevsj/T15iFbht1a9BRlcgXyWlTVAvj2G
- o3T8JEpCc2Ub1IUrfa/CpXorOyLyp5aoS2nVDYFoP2fH98y5cFgf3xaU/mHb7AJ/hyDM
- yelw==
-X-Gm-Message-State: AOAM531Xr2+E84iRU1nj5BTLF3nj5NGZKgcPlPib9rPoaPUzHDUf64vO
- AiQF+r6jJEo+Q+LQCVfycebfZBc+cvBVCN7fNks=
-X-Google-Smtp-Source: ABdhPJxTuKONdTHhjCot+kHIbRUAsCd1jXu+Acx3Qqmz3ej6XXD1jWsLndeTtun90RmyYhqJQhoePg3XzWEPbbCSZPo=
-X-Received: by 2002:a9d:57cd:: with SMTP id q13mr33353968oti.23.1620915478199; 
- Thu, 13 May 2021 07:17:58 -0700 (PDT)
-MIME-Version: 1.0
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 071B66ED07
+ for <amd-gfx@lists.freedesktop.org>; Thu, 13 May 2021 14:30:44 +0000 (UTC)
+Received: from zn.tnic (p200300ec2f0e440021f4b7a45291c72c.dip0.t-ipconnect.de
+ [IPv6:2003:ec:2f0e:4400:21f4:b7a4:5291:c72c])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 4340E1EC032C;
+ Thu, 13 May 2021 16:30:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+ t=1620916242;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+ bh=Q/FWCwRMgsRKVUM9zO85vUS6qMZ5capc4M5/7Qx9MH4=;
+ b=h1Qbg54LGvKZ62jWfecfrcp4a3gGhPK6L4FS5qF50E3tXNDsNktWaZyOs8Qau1U+w1gqd3
+ +ig/uJT6i7HPfQpaEg0+ibjNAuCdy0nI9A9k1zlFCXUPZekk5HQQlax28ig1a7Y7N4HQg0
+ gTtCxo2S0OigQUnlkZFnAB0KxlATcR8=
+Date: Thu, 13 May 2021 16:30:39 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Register bad page handler for Aldebaran
+Message-ID: <YJ04D8a6LaVRMuGH@zn.tnic>
 References: <20210512013058.6827-1-mukul.joshi@amd.com>
  <YJuhs1WsqtJ7ta1L@zn.tnic>
  <DM4PR12MB5263797EB7B2D37C21427A88EE529@DM4PR12MB5263.namprd12.prod.outlook.com>
  <YJxDIhGnZ5XdukiS@zn.tnic>
  <DM4PR12MB52631035F875B77974FA8D21EE519@DM4PR12MB5263.namprd12.prod.outlook.com>
  <YJz3CMBFFIDBzVwX@zn.tnic>
-In-Reply-To: <YJz3CMBFFIDBzVwX@zn.tnic>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 13 May 2021 10:17:47 -0400
-Message-ID: <CADnq5_Or5maEWTZFzS6iksyoFC=q9=y=-YmPTdPuWRKFhdw0yg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Register bad page handler for Aldebaran
-To: Borislav Petkov <bp@alien8.de>
+ <CADnq5_Or5maEWTZFzS6iksyoFC=q9=y=-YmPTdPuWRKFhdw0yg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CADnq5_Or5maEWTZFzS6iksyoFC=q9=y=-YmPTdPuWRKFhdw0yg@mail.gmail.com>
+X-Mailman-Approved-At: Thu, 13 May 2021 14:38:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,89 +63,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 13, 2021 at 9:26 AM Borislav Petkov <bp@alien8.de> wrote:
->
-> On Thu, May 13, 2021 at 03:20:36AM +0000, Joshi, Mukul wrote:
-> > Exporting smca_get_bank_type() works fine when CONFIG_X86_MCE_AMD is defined.
-> > I would need to put #ifdef CONFIG_X86_MCE_AMD in my code to compile the amdgpu
-> > driver when CONFIG_X86_MCE_AMD is not defined.
-> > I can avoid all that by using is_smca_umc_v2().
-> > I think it would be cleaner with using is_smca_umc_v2().
->
-> See how smca_get_long_name() is exported and export that function the
-> same way.
->
-> To save you some energy: is_smca_umc_v2() is not going to happen.
->
-> > You can think of GPU device as a EDAC device here. It is mainly
-> > interested in handling uncorrectable errors.
->
-> An EDAC "device", as you call it, is not interested in handling UEs. If
-> anything, it counts them.
->
-> > It is a deferred interrupt that generates an MCE.
->
-> Is that the same deferred interrupt which calls amd_deferred_error_interrupt() ?
->
-> > When an uncorrectable error is detected on the GPU UMC, all we are
-> > doing is determining the physical address where the error occurred and
-> > then "retiring" the page that address belongs to.
->
-> What page is that? Normal DRAM page or a page in some special GPU memory?
->
+On Thu, May 13, 2021 at 10:17:47AM -0400, Alex Deucher wrote:
+> The bad pages are stored in an EEPROM on the board and the next time
+> the driver loads it reads the EEPROM so that it can reserve the bad
+> pages at init time so they don't get used again.
 
-GPU memory.
+And that works automagically on the next boot? Because that sounds like
+the right thing to do.
 
-> > By retiring, we mean we reserve the page so that it is not available
-> > for allocations to any applications.
->
-> We do that for normal DRAM memory pages by poisoning them. I hope you
-> don't mean that.
->
-> Looking at
->
-> amdgpu_ras_add_bad_pages
-> |-> amdgpu_vram_mgr_reserve_range
->
-> that's some VRAM thing so I'm guessing special memory on the GPU.
->
+So practically, what happens to a GPU in such a case where the VRAM
+starts going bad? It might get exhausted eventually and the driver will
+say something along the lines of:
 
-Yes.
+  "VRAM bad pages: 80%, consider replacing the GPU. It is operating
+  currently with degrated performance."
 
-> If so, what happens with all those "retired" pages when you reboot?
-> They're getting used again and potentially trigger the same UEs and the
-> same retiring happens?
+or so?
 
-The bad pages are stored in an EEPROM on the board and the next time
-the driver loads it reads the EEPROM so that it can reserve the bad
-pages at init time so they don't get used again.
+Yap, from a RAS perspective, that makes good sense as you're prolonging
+the life of the component while still remains operational as good as it
+can and the only user interaction you need is she/he replacing it.
 
-Alex
+Sounds good.
 
+Thx.
 
->
-> > We are providing information to the user by storing all the
-> > information about the retired pages in EEPROM. This can be accessed
-> > through sysfs.
->
-> Ok, I'm a user and I can access that information through sysfs. What can
-> I do with it?
->
-> > Hope it clears what "bad page retirement" is achieving.
->
-> It is getting there.
->
-> Thx.
->
-> --
-> Regards/Gruss,
->     Boris.
->
-> https://people.kernel.org/tglx/notes-about-netiquette
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
