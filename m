@@ -2,55 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A32A3380CF7
-	for <lists+amd-gfx@lfdr.de>; Fri, 14 May 2021 17:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45419380CA6
+	for <lists+amd-gfx@lfdr.de>; Fri, 14 May 2021 17:14:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19D6C6EEC4;
-	Fri, 14 May 2021 15:29:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB7066EEB6;
+	Fri, 14 May 2021 15:14:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com
- [IPv6:2607:f8b0:4864:20::632])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 647656EEA5
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 May 2021 14:54:56 +0000 (UTC)
-Received: by mail-pl1-x632.google.com with SMTP id 69so11664095plc.5
- for <amd-gfx@lists.freedesktop.org>; Fri, 14 May 2021 07:54:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ITqVGi5SndQrMkcFSU1RtiIxc9czHN3u3Tgs78Cw9A8=;
- b=Lj/tcxHj/53peCCj/ew30KKxmjfuHEyxTnDDfjwDWyqIBd4Gc4FecAuIwyi8goUSHe
- hM/o0jDkXu+yTE9JoLxxYCR2motDxXqfNs9n1UxSUvcZMGFFFIrg7kwUrok0KYP/qkCL
- Zo70mD69927D/Wjso3yDjNfAaj1v2qiOePe1Q51YxzHXbxljRGrTgPLJz4qHTWdqmBjU
- a/7wiBbXe/+t3+4DqValnNvWTuiWcK/UXu9jci8LLij5iNvjpY5OwYOvE7Ikg0yz1yqM
- xKX78dmAapwi7SI7WwCb864z5OIgDugLI4DkLKmrteLq99laP0EwB75F+UiPPdj8Jq1x
- xERw==
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
+ [IPv6:2a00:1450:4864:20::635])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9CBC6EEB8
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 May 2021 15:14:50 +0000 (UTC)
+Received: by mail-ej1-x635.google.com with SMTP id t4so45228903ejo.0
+ for <amd-gfx@lists.freedesktop.org>; Fri, 14 May 2021 08:14:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-transfer-encoding:content-language;
+ bh=lkUQRrmsd5Mij7ezcpU5+YyAuXMSHffZy9ShcHAmvko=;
+ b=QuoBSQyABVtVbjMzORCmPyBmlmbt2iUZpVnKijLI54xYIcfmdSyv7nrj9kqmQm16tM
+ ZqM4P1v2PDMw7GZBI7q9wYZZ1rzCLW/ERdV/EyNK7vfzUz40+hzfiGMXbTyqFD++EEY5
+ kRHs9WkI1p1A2seQeHjGGbNcnH4uHVImyzMnN/0OsJO8qRQUlwaj8tLIWlV1Ik2wTosh
+ 3DqyGUaIE4dA970mx01eFD8ntey/46eutTQuvsylCxX5KSwrkGY1f7l7KDiMNxlIpr2v
+ nQxrj2Tam0nK8opLorUIyJ3Pp4VgG2dky2ErrTM15SGunuGg26PfClnnz9y6s6oyIjkq
+ d9+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ITqVGi5SndQrMkcFSU1RtiIxc9czHN3u3Tgs78Cw9A8=;
- b=MROAPQWH60CxaV0rihEUrnkQ9+asMm2oB2ex8S8/uiuBI5l2QK2gk2IGuMnLZ2LkZF
- 6BZ2z0h/5EGqh0LhAFPBuROTyFWnWBJbRXJPnRmFhGe+AdMO0QbwF5FyQmMo+Gn2jxPS
- 4euD+Lf9MebRaJBU1IqKrIK1MsyoV8v4aNBdlf0NSIXf1Z8wDTpfDjN7KsZL8VHSGJhN
- XCAPTSurwUvFfvDkz6yIUUomve1NgAINv87Ht7lud+S1AWC+YcPj0KcDb3u/T5JLK7hL
- UtZkpsC7Ho0iY4FT9FLr8LxsL5DquhVBddXmz1xcKKbZXo/Xb/d6gw6ZmJVhqwmmKD2G
- 8EXw==
-X-Gm-Message-State: AOAM5300239WQzIK+yVUtudilepIE6N64GIRB61+4/6xmaw8PSi33OHE
- P4dodc4Tal3EjgBoAG500FtPppoYqVHiSg9L0nF2KA==
-X-Google-Smtp-Source: ABdhPJxOue4nDNlJ4CSrkoHVhpPpGSHuWrE0njoSkzwnD+OwNse9OU37A+jbKRrWR/mXT9sFwPvhd43MYm2VkD9f7sA=
-X-Received: by 2002:a17:902:b210:b029:eb:535f:852 with SMTP id
- t16-20020a170902b210b02900eb535f0852mr46202739plr.80.1621004095814; Fri, 14
- May 2021 07:54:55 -0700 (PDT)
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=lkUQRrmsd5Mij7ezcpU5+YyAuXMSHffZy9ShcHAmvko=;
+ b=Cp+Dn6gzgdVrCpXgS7yzM8S3BsbPghcUPlNjsEILcQQ26ECCDo/9ip0f0HSSzkwX+l
+ Bg3s75RApMktuhq9DTQjo4YnZ38TFdznSC7c1itI5miUwWQCLNfgZcQ42fVyrQiJCNd2
+ aKxAuFEeYCSi9rSyC8fiFYk5QvO5ieaDYB9V1zkIbYTsl7z/YkAlNwp8xY3o2LkUWmBT
+ ekZosUYsGQlmErD7WC6TfNAZl9NGB0WybMa2HaPSUvvz6T4FLVoTUoEclKx8XFQWQIlK
+ GbzaprxyMP0pzss3NevKpbA0dekbQ0tyZVK8LP04ISfsZ9JOhS7zO2TO8t8RWTa255dN
+ NtCA==
+X-Gm-Message-State: AOAM533dcZOr1z6GScwHRDJfFr6Uii3PZHttsA/Vk9xAzM+JXL7cY8HH
+ uhPh+i9mTL5HlysW/jAUwlnZMeYpIvc=
+X-Google-Smtp-Source: ABdhPJzji1wqyxsut9JgYB/ugY+VZU6bc5ohOYKPpVJMAtjUhvLFa8ydTLR/LSGaQyYqa4eYz7QxOQ==
+X-Received: by 2002:a17:906:bcd6:: with SMTP id
+ lw22mr4832254ejb.250.1621005289399; 
+ Fri, 14 May 2021 08:14:49 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:cf70:a0fd:8c48:efd4?
+ ([2a02:908:1252:fb60:cf70:a0fd:8c48:efd4])
+ by smtp.gmail.com with ESMTPSA id g9sm3775827ejo.8.2021.05.14.08.14.48
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 14 May 2021 08:14:48 -0700 (PDT)
+Subject: Re: [PATCH v2 2/2] drm/amdkfd: heavy-weight flush TLB after unmap
+To: Philip Yang <Philip.Yang@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20210513165855.16395-2-Philip.Yang@amd.com>
+ <20210514144222.24206-1-Philip.Yang@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <d5fba451-f75b-b77c-7fbf-a289914e97e5@gmail.com>
+Date: Fri, 14 May 2021 17:14:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210514114734.687096-1-Rodrigo.Siqueira@amd.com>
-In-Reply-To: <20210514114734.687096-1-Rodrigo.Siqueira@amd.com>
-From: Mark Yacoub <markyacoub@google.com>
-Date: Fri, 14 May 2021 10:54:44 -0400
-Message-ID: <CAC0gqY4JdrFnFTTErkd+7PBMXTabacEik+4s7LoemVrDk=AXXA@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd/display: Fix overlay validation by considering
- cursors
-To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-X-Mailman-Approved-At: Fri, 14 May 2021 15:29:09 +0000
+In-Reply-To: <20210514144222.24206-1-Philip.Yang@amd.com>
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,85 +71,79 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Harry Wentland <harry.wentland@amd.com>,
- "Tianci . Yin" <tianci.yin@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Daniel Wheeler <daniel.wheeler@amd.com>, Nicholas Choi <nicholas.choi@amd.com>,
- Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
- Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 14, 2021 at 7:48 AM Rodrigo Siqueira
-<Rodrigo.Siqueira@amd.com> wrote:
->
-> A few weeks ago, we saw a two cursor issue in a ChromeOS system. We
-> fixed it in the commit:
->
->  drm/amd/display: Fix two cursor duplication when using overlay
->  (read the commit message for more details)
->
-> After this change, we noticed that some IGT subtests related to
-> kms_plane and kms_plane_scaling started to fail. After investigating
-> this issue, we noticed that all subtests that fail have a primary plane
-> covering the overlay plane, which is currently rejected by amdgpu dm.
-> Fail those IGT tests highlight that our verification was too broad and
-> compromises the overlay usage in our drive. This patch fixes this issue
-nit: driver*
-> by ensuring that we only reject commits where the primary plane is not
-> fully covered by the overlay when the cursor hardware is enabled. With
-> this fix, all IGT tests start to pass again, which means our overlay
-> support works as expected.
->
-> Cc: Tianci.Yin <tianci.yin@amd.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Nicholas Choi <nicholas.choi@amd.com>
-> Cc: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
-> Cc: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
-> Cc: Mark Yacoub <markyacoub@google.com>
-> Cc: Daniel Wheeler <daniel.wheeler@amd.com>
->
-> Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index ccd67003b120..9c2537a17a7b 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -10067,7 +10067,7 @@ static int validate_overlay(struct drm_atomic_state *state)
->         int i;
->         struct drm_plane *plane;
->         struct drm_plane_state *old_plane_state, *new_plane_state;
-> -       struct drm_plane_state *primary_state, *overlay_state = NULL;
-> +       struct drm_plane_state *primary_state, *cursor_state, *overlay_state = NULL;
->
->         /* Check if primary plane is contained inside overlay */
->         for_each_oldnew_plane_in_state_reverse(state, plane, old_plane_state, new_plane_state, i) {
-> @@ -10097,6 +10097,14 @@ static int validate_overlay(struct drm_atomic_state *state)
->         if (!primary_state->crtc)
->                 return 0;
->
-> +       /* check if cursor plane is enabled */
-> +       cursor_state = drm_atomic_get_plane_state(state, overlay_state->crtc->cursor);
-> +       if (IS_ERR(cursor_state))
-> +               return PTR_ERR(cursor_state);
-> +
-> +       if (drm_atomic_plane_disabling(plane->state, cursor_state))
-> +               return 0;
-> +
->         /* Perform the bounds check to ensure the overlay plane covers the primary */
->         if (primary_state->crtc_x < overlay_state->crtc_x ||
->             primary_state->crtc_y < overlay_state->crtc_y ||
-> --
-> 2.25.1
->
-Happy this was caught earlier. Would not have been fun debugging it on
-Chrome haha.
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+QW0gMTQuMDUuMjEgdW0gMTY6NDIgc2NocmllYiBQaGlsaXAgWWFuZzoKPiBOZWVkIGRvIGEgaGVh
+dnktd2VpZ2h0IFRMQiBmbHVzaCB0byBtYWtlIHN1cmUgd2UgaGF2ZSBubyBtb3JlIGRpcnR5IGRh
+dGEKPiBpbiB0aGUgY2FjaGUgZm9yIHRoZSB1bm1hcHBlZCBwYWdlcy4KPgo+IERlZmluZSBlbnVt
+IFRMQl9GTFVTSF9UWVBFLCBhZGQgZmx1c2hfdHlwZSBwYXJhbWV0ZXIgdG8KPiBhbWRncHVfYW1k
+a2ZkX2ZsdXNoX2dwdV90bGJfcGFzaWQuCj4KPiBTaWduZWQtb2ZmLWJ5OiBQaGlsaXAgWWFuZyA8
+UGhpbGlwLllhbmdAYW1kLmNvbT4KClJldmlld2VkLWJ5OiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJp
+c3RpYW4ua29lbmlnQGFtZC5jb20+Cgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X2FtZGtmZC5jIHwgNCArKy0tCj4gICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdw
+dS9hbWRncHVfYW1ka2ZkLmggfCA5ICsrKysrKysrLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRrZmQva2ZkX3Byb2Nlc3MuYyAgIHwgMiArLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRr
+ZmQva2ZkX3N2bS5jICAgICAgIHwgNCArKy0tCj4gICA0IGZpbGVzIGNoYW5nZWQsIDEzIGluc2Vy
+dGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvYW1kZ3B1X2FtZGtmZC5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1X2FtZGtmZC5jCj4gaW5kZXggNWY2Njk2YTNjNzc4Li5iZmFiMmY5ZmRkMTcgMTAwNjQ0
+Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FtZGtmZC5jCj4gKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FtZGtmZC5jCj4gQEAgLTY3MCwx
+MCArNjcwLDEwIEBAIGludCBhbWRncHVfYW1ka2ZkX2ZsdXNoX2dwdV90bGJfdm1pZChzdHJ1Y3Qg
+a2dkX2RldiAqa2dkLCB1aW50MTZfdCB2bWlkKQo+ICAgCXJldHVybiAwOwo+ICAgfQo+ICAgCj4g
+LWludCBhbWRncHVfYW1ka2ZkX2ZsdXNoX2dwdV90bGJfcGFzaWQoc3RydWN0IGtnZF9kZXYgKmtn
+ZCwgdWludDE2X3QgcGFzaWQpCj4gK2ludCBhbWRncHVfYW1ka2ZkX2ZsdXNoX2dwdV90bGJfcGFz
+aWQoc3RydWN0IGtnZF9kZXYgKmtnZCwgdWludDE2X3QgcGFzaWQsCj4gKwkJCQkgICAgICBlbnVt
+IFRMQl9GTFVTSF9UWVBFIGZsdXNoX3R5cGUpCj4gICB7Cj4gICAJc3RydWN0IGFtZGdwdV9kZXZp
+Y2UgKmFkZXYgPSAoc3RydWN0IGFtZGdwdV9kZXZpY2UgKilrZ2Q7Cj4gLQljb25zdCB1aW50MzJf
+dCBmbHVzaF90eXBlID0gMDsKPiAgIAlib29sIGFsbF9odWIgPSBmYWxzZTsKPiAgIAo+ICAgCWlm
+IChhZGV2LT5mYW1pbHkgPT0gQU1ER1BVX0ZBTUlMWV9BSSkKPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FtZGtmZC5oIGIvZHJpdmVycy9ncHUvZHJtL2Ft
+ZC9hbWRncHUvYW1kZ3B1X2FtZGtmZC5oCj4gaW5kZXggMzEzZWU0OWI5ZjE3Li5mNGRlNTBkZTM1
+OWIgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FtZGtm
+ZC5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2FtZGtmZC5oCj4g
+QEAgLTM2LDYgKzM2LDEyIEBACj4gICAKPiAgIGV4dGVybiB1aW50NjRfdCBhbWRncHVfYW1ka2Zk
+X3RvdGFsX21lbV9zaXplOwo+ICAgCj4gK2VudW0gVExCX0ZMVVNIX1RZUEUgewo+ICsJVExCX0ZM
+VVNIX0xFR0FDWSA9IDAsCj4gKwlUTEJfRkxVU0hfTElHSFRXRUlHSFQsCj4gKwlUTEJfRkxVU0hf
+SEVBVllXRUlHSFQKPiArfTsKPiArCj4gICBzdHJ1Y3QgYW1kZ3B1X2RldmljZTsKPiAgIAo+ICAg
+c3RydWN0IGtmZF9ib192YV9saXN0IHsKPiBAQCAtMTM1LDcgKzE0MSw4IEBAIGludCBhbWRncHVf
+YW1ka2ZkX3N1Ym1pdF9pYihzdHJ1Y3Qga2dkX2RldiAqa2dkLCBlbnVtIGtnZF9lbmdpbmVfdHlw
+ZSBlbmdpbmUsCj4gICB2b2lkIGFtZGdwdV9hbWRrZmRfc2V0X2NvbXB1dGVfaWRsZShzdHJ1Y3Qg
+a2dkX2RldiAqa2dkLCBib29sIGlkbGUpOwo+ICAgYm9vbCBhbWRncHVfYW1ka2ZkX2hhdmVfYXRv
+bWljc19zdXBwb3J0KHN0cnVjdCBrZ2RfZGV2ICprZ2QpOwo+ICAgaW50IGFtZGdwdV9hbWRrZmRf
+Zmx1c2hfZ3B1X3RsYl92bWlkKHN0cnVjdCBrZ2RfZGV2ICprZ2QsIHVpbnQxNl90IHZtaWQpOwo+
+IC1pbnQgYW1kZ3B1X2FtZGtmZF9mbHVzaF9ncHVfdGxiX3Bhc2lkKHN0cnVjdCBrZ2RfZGV2ICpr
+Z2QsIHVpbnQxNl90IHBhc2lkKTsKPiAraW50IGFtZGdwdV9hbWRrZmRfZmx1c2hfZ3B1X3RsYl9w
+YXNpZChzdHJ1Y3Qga2dkX2RldiAqa2dkLCB1aW50MTZfdCBwYXNpZCwKPiArCQkJCSAgICAgIGVu
+dW0gVExCX0ZMVVNIX1RZUEUgZmx1c2hfdHlwZSk7Cj4gICAKPiAgIGJvb2wgYW1kZ3B1X2FtZGtm
+ZF9pc19rZmRfdm1pZChzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiwgdTMyIHZtaWQpOwo+ICAg
+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tmZF9wcm9jZXNzLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfcHJvY2Vzcy5jCj4gaW5kZXggOWQ0ZjUy
+N2JkYTdjLi41YjZjNTY2OWMwM2QgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRrZmQva2ZkX3Byb2Nlc3MuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1ka2ZkL2tm
+ZF9wcm9jZXNzLmMKPiBAQCAtMTg1Myw3ICsxODUzLDcgQEAgdm9pZCBrZmRfZmx1c2hfdGxiKHN0
+cnVjdCBrZmRfcHJvY2Vzc19kZXZpY2UgKnBkZCkKPiAgIAkJCQkJCQlwZGQtPnFwZC52bWlkKTsK
+PiAgIAl9IGVsc2Ugewo+ICAgCQlhbWRncHVfYW1ka2ZkX2ZsdXNoX2dwdV90bGJfcGFzaWQoZGV2
+LT5rZ2QsCj4gLQkJCQkJCXBkZC0+cHJvY2Vzcy0+cGFzaWQpOwo+ICsJCQkJCXBkZC0+cHJvY2Vz
+cy0+cGFzaWQsIFRMQl9GTFVTSF9MRUdBQ1kpOwo+ICAgCX0KPiAgIH0KPiAgIAo+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfc3ZtLmMgYi9kcml2ZXJzL2dwdS9k
+cm0vYW1kL2FtZGtmZC9rZmRfc3ZtLmMKPiBpbmRleCBhNTJlNDU5NDc4NWYuLmYyOTAxZTdhOTkz
+ZSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfc3ZtLmMKPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGtmZC9rZmRfc3ZtLmMKPiBAQCAtMTEyNyw3ICsx
+MTI3LDcgQEAgc3ZtX3JhbmdlX3VubWFwX2Zyb21fZ3B1cyhzdHJ1Y3Qgc3ZtX3JhbmdlICpwcmFu
+Z2UsIHVuc2lnbmVkIGxvbmcgc3RhcnQsCj4gICAJCQkJYnJlYWs7Cj4gICAJCX0KPiAgIAkJYW1k
+Z3B1X2FtZGtmZF9mbHVzaF9ncHVfdGxiX3Bhc2lkKChzdHJ1Y3Qga2dkX2RldiAqKWFkZXYsCj4g
+LQkJCQkJCSAgcC0+cGFzaWQpOwo+ICsJCQkJCXAtPnBhc2lkLCBUTEJfRkxVU0hfSEVBVllXRUlH
+SFQpOwo+ICAgCX0KPiAgIAo+ICAgCXJldHVybiByOwo+IEBAIC0xMTgzLDcgKzExODMsNyBAQCBz
+dm1fcmFuZ2VfbWFwX3RvX2dwdShzdHJ1Y3QgYW1kZ3B1X2RldmljZSAqYWRldiwgc3RydWN0IGFt
+ZGdwdV92bSAqdm0sCj4gICAKPiAgIAkJcCA9IGNvbnRhaW5lcl9vZihwcmFuZ2UtPnN2bXMsIHN0
+cnVjdCBrZmRfcHJvY2Vzcywgc3Ztcyk7Cj4gICAJCWFtZGdwdV9hbWRrZmRfZmx1c2hfZ3B1X3Rs
+Yl9wYXNpZCgoc3RydWN0IGtnZF9kZXYgKilhZGV2LAo+IC0JCQkJCQkgIHAtPnBhc2lkKTsKPiAr
+CQkJCQkJcC0+cGFzaWQsIFRMQl9GTFVTSF9MRUdBQ1kpOwo+ICAgCX0KPiAgIG91dDoKPiAgIAlw
+cmFuZ2UtPm1hcHBpbmcuYm9fdmEgPSBOVUxMOwoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9hbWQtZ2Z4Cg==
