@@ -2,17 +2,17 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A11493871E6
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 May 2021 08:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D0A3871FE
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 May 2021 08:37:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FFE088AC2;
-	Tue, 18 May 2021 06:28:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D0B86E817;
+	Tue, 18 May 2021 06:37:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2060.outbound.protection.outlook.com [40.107.94.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE6616EAA0
- for <amd-gfx@lists.freedesktop.org>; Tue, 18 May 2021 06:26:24 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2078.outbound.protection.outlook.com [40.107.237.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F36246E817
+ for <amd-gfx@lists.freedesktop.org>; Tue, 18 May 2021 06:37:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
  b=H0YLMrlKeZQuydxebtzX07h524Nc6DBJWSLw7YYeq1KfTxikj5o0cO2Tgr5dK0dRqPTktsMBycNxR6nte8vtpr2KtClYdf7TyBfCq9Z4Dys0rwsqGNtg6tykw93mOBls9e8q+sfA5QDGBb+DWzAnuddsUyKKq9+JdUFvRiSJNX46k+VAKVroQ7ytux6l8gffW/mFixgfFjS8m3U8gyUXGwb7DFRuwlNauzXb8Q8YSxNKblL/oY9+iGdyzDRs8EPxZgXEW6mmWN8PA0nksyy1+uyMwKY4RuQ274jx0JTL2sKFOiSHOauAHZERz6Yr+huf1JHsPlxDXJbI3M+873pb/g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
@@ -76,7 +76,6 @@ X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
  SFS:(4636009)(376002)(396003)(346002)(39860400002)(136003)(46966006)(36840700001)(44832011)(70206006)(54906003)(6666004)(4326008)(478600001)(7696005)(26005)(8676002)(36756003)(81166007)(70586007)(356005)(5660300002)(1076003)(8936002)(2616005)(336012)(82310400003)(83380400001)(186003)(316002)(47076005)(16526019)(426003)(86362001)(36860700001)(2906002)(82740400003)(6916009)(36900700001);
  DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2021 06:26:21.5252 (UTC)
 X-MS-Exchange-CrossTenant-Network-Message-Id: abba25fc-9fe8-43bb-fe9d-08d919c5da8e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
@@ -86,6 +85,7 @@ X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT006.eop-nam11.prod.protection.ou
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1498
+X-OriginatorOrg: amd.com
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
