@@ -2,109 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 542283894BC
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 May 2021 19:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FE443897A5
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 May 2021 22:12:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B486D6E20B;
-	Wed, 19 May 2021 17:39:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C39E36EE82;
+	Wed, 19 May 2021 20:12:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2056.outbound.protection.outlook.com [40.107.96.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B4D16E20B
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 May 2021 17:39:20 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2057.outbound.protection.outlook.com [40.107.223.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41B946EE82
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 May 2021 20:12:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YGSXCgVMdhNf1UnQ+bQLvX2QvL16aDMvRhRRcR1NMs7CzabnsAsV+EyNlarms9Fo2mG4B+bjgLlTpWgkfYSIe0egoGFWwt8k0pXMOoCuyD7jt5yMVY7y8buMn0uN20PH0nESJk0kIkaxYOjk6mlNZW2eNbG9SOq1QWAUaEIIcIEGHwfump9ZFzNc7iuZ9vK26oLVDBdp7WFtrfDYaTX/gT+ZV542F4O+lEohUAJ8iFbhuwFyax6k7ld8YC6s/BAsZgngeQ3er8+bLJ6CFz1I5NgNDKvJ0qRK2BmwszIIwbH/fnp+FfsQWnlJCqtRZqraFLGMp5NzSzL6FQq9Ty2ZZg==
+ b=TFeLYi0kd6yn2GS8snXsI44biBb8yJkoqmQW0GnrYz89bA55QYwmWLyY456C0FZ374b+QAa2iOAdqiw0/hM5Sd7LgVzHZ76HJqTBa0UDFmjnd/1bMDWFZcYdgbD39staB8EvnIJYDmp1p4SVW/j1NvkNsWiBBstgdLNWl5F+NlYJZjXze1c5qzCn0CveTbLAt18rgHCwdeINnLIcmYedaFLjRK3aDNrtFGfhKTe1P1bF5JfsSj+PQfbFUvQwEr5VCudPAPRBlEaxQ+388WlPe+Z2c1LFknDQnHGvDm9j0v6Mkbx9mKP/ZSqOMaMWIJkvFLGauxwmQ7aGOTLstT30tA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UTkpvsWGQLQBgMIVRMdAv9okkscrV/KKe5rbGnzeHd4=;
- b=N0cHBVodDHTLN9+T6KxxtlsGqvdhVOO8wA5OndHkde0sKtNP59ekJXCZL8iZRbREuzaw+vitTLhZpfdccFr5kSkO4Gw8wcqKuiR/M1pEQxlKuuUS8fQGcm8ksESq8AkLb5qgfeaymHdgFbIliEQLR9YOAst1VrOlxybs7QzgrImHZze33pXGK6V71m/nr1xfjw8s9vxN84hDGdjejIiDSx9hQ4/FGamwsVDa49gwjuT6Jdxf3GqWgGFmwQG1oy83VOyiWCXWiaaL0EzTVae9O3UYQRjRmkUeNQ6rwC2k2aKyQfhsctL+b6tYj+d4Q1s1T1fZF/4YMgznB7gS/JRZqQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=/hf0YsyUfCVailxIIPvQ/Uzs9DYzKtxnAkyT0QH6b/g=;
+ b=DInEuyxeFYUB8r1MDQ3ozqvbPLNlcMW2qTaiP1dO6kq+IKk5HblIhJ6nEpAi/88qXNqEoYIi54KYjPk/0k0tPozFCJZzJa1bRuXALBw1uyilQmKOCCbtpDvp5SVFSlNdrghRKi3HayT7fIv1ucFiiL4azmoZKkkJ95XQVW2PwD44A/xohRwKtFzaoObYi9laAf8l9bniTyaoqa5A7f+cVaZ/zOJy88Zt1JeFSSuPM8zyocxfYc9NfquavlnOvYAA3CIwmZIQNukaJzkYXERC3pTnC7RqFdsNc/wHitoNYIqnOZK6DaF42vkZqquVVoHjFbieOxfiWjVVEsyerABBvA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UTkpvsWGQLQBgMIVRMdAv9okkscrV/KKe5rbGnzeHd4=;
- b=s1U66vDxgC92o9oGab0O4tHqZWtvgod99uo+W7ezk5w5lB/AOkF64GCmA9rQjH6bBUYHJze3l3gnIButtozVVrbx4hToqyTHyHdQwMSx9NnIHLYNFFabbtMuSIHHkU1rju7GgqlPXBfyFHO6haAbpX0KMYUXYTkrWxenU9NPYSY=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB2840.namprd12.prod.outlook.com (2603:10b6:a03:62::32)
- by BYAPR12MB3063.namprd12.prod.outlook.com (2603:10b6:a03:d6::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.28; Wed, 19 May
- 2021 17:39:17 +0000
-Received: from BYAPR12MB2840.namprd12.prod.outlook.com
- ([fe80::7c65:7181:6d1d:8616]) by BYAPR12MB2840.namprd12.prod.outlook.com
- ([fe80::7c65:7181:6d1d:8616%7]) with mapi id 15.20.4129.031; Wed, 19 May 2021
- 17:39:17 +0000
-From: David M Nieto <david.nieto@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/amdgpu/pm: display vcn pp dpm (v3)
-Date: Wed, 19 May 2021 10:39:06 -0700
-Message-Id: <20210519173906.32504-3-david.nieto@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210519173906.32504-1-david.nieto@amd.com>
-References: <476f8809-5521-98b4-e08f-1d06fc099468@amd.com>
- <20210519173906.32504-1-david.nieto@amd.com>
-X-Originating-IP: [165.204.53.123]
-X-ClientProxiedBy: SJ0PR13CA0087.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::32) To BYAPR12MB2840.namprd12.prod.outlook.com
- (2603:10b6:a03:62::32)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from loud-cracker.amd.com (165.204.53.123) by
- SJ0PR13CA0087.namprd13.prod.outlook.com (2603:10b6:a03:2c4::32) with
+ bh=/hf0YsyUfCVailxIIPvQ/Uzs9DYzKtxnAkyT0QH6b/g=;
+ b=G+N+uOwJDkZiIqtnBmus2s8uBdYym5/0VRnbz+6bADNAgE+Gmi65ug54JEa+57YucOjKgCiCre8Cf+RH3P7iPaNWMlnx1hMYuzQlDy2Yacdmy0LdEfVGTXEZY2o56pTPDLi0MAjCXqUiLg6hOB52gCNykav9G/FtURGyjPILD3w=
+Received: from DM5PR21CA0064.namprd21.prod.outlook.com (2603:10b6:3:129::26)
+ by BYAPR12MB2933.namprd12.prod.outlook.com (2603:10b6:a03:138::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.11 via Frontend
- Transport; Wed, 19 May 2021 17:39:17 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.26; Wed, 19 May
+ 2021 20:12:43 +0000
+Received: from DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:129:cafe::a2) by DM5PR21CA0064.outlook.office365.com
+ (2603:10b6:3:129::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.2 via Frontend
+ Transport; Wed, 19 May 2021 20:12:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DM6NAM11FT028.mail.protection.outlook.com (10.13.173.140) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4129.25 via Frontend Transport; Wed, 19 May 2021 20:12:42 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Wed, 19 May
+ 2021 15:12:42 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Wed, 19 May
+ 2021 15:12:42 -0500
+Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.4 via Frontend
+ Transport; Wed, 19 May 2021 15:12:42 -0500
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amd/display: Fix GPU scaling regression by FS video
+ support
+Date: Wed, 19 May 2021 16:12:19 -0400
+Message-ID: <20210519201219.260847-1-nicholas.kazlauskas@amd.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 15d90d41-cea7-4763-e89e-08d91aed06ad
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3063:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR12MB3063F4BD6353851C4B4920EFF42B9@BYAPR12MB3063.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:235;
+X-MS-Office365-Filtering-Correlation-Id: f252f107-4961-4d59-4df2-08d91b0275d9
+X-MS-TrafficTypeDiagnostic: BYAPR12MB2933:
+X-Microsoft-Antispam-PRVS: <BYAPR12MB2933BA212D647C7E2BFCCAD3EC2B9@BYAPR12MB2933.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: W6vQ7gsF1ZM4SHTr7mEFVkAV7QMz0iHj616OQ+SBFT3/TOKyZwmYyFXPdI1Ve2rTWrm+TzSc756CiV9BDfLeyzU1D/tDAGQp9f+rmCEq8EvyO68e4IFkZITCLYtVnyhqXPE+NTZqJevJJYPApLxm5jYrJehU/hmESjE7HognVperezPSFMPVp/pD/+hUKiNeiQMwsZxBF0XcHVwlAf7uIWmhLuB21WFlPmIA4YzTXIhEaaAaN3fNYixqTyFEfYRvpYlhCfED7EH6EdoHgeRV9VbCyKuqcMMoAoIeQB7b0PllJGyBVpWRAqW1Asqh4r5yP+SZstB0PE694psjrZNf7JCTj2I5H4D2DmRyAW2Kakwn33F4Du7r4j+EGnVSzSR+mDdiHFhFc6qcmV8YBZKVqeyK34Um1bqA30KXWRBuyLqbiekqQRuGtccA9e/3FVpL0sQEifZTdOO/eLFMNRiwTpJyNZBa9xWHv5E06FucicHXTAW+4cC4dV/RmYnd/y660GwVKg10rI/FULaqbi3WNQUaKTCCgRpffNOxL65+5PMdFscGr7EgP1fajCBZr3bWlFdbzFLvcQq2mztR7Iqae82X871aWRQL1s/kJdLD8A64ALbU8vJ663o4EZOXKlih11SzfDTnf+dIzg/KDcgpuQj/kiZ5aGRi+46cUdsV9P8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB2840.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(346002)(39860400002)(366004)(376002)(396003)(4326008)(478600001)(8936002)(1076003)(8676002)(316002)(6916009)(6486002)(66946007)(5660300002)(86362001)(7696005)(26005)(186003)(2616005)(16526019)(52116002)(66556008)(66476007)(2906002)(38350700002)(36756003)(38100700002)(83380400001)(956004)(6666004);
+X-Microsoft-Antispam-Message-Info: cFrIuihFEoNsRpJVfwbzIltnqLkA8C8Bh0XJ/2KGYLgWu/aVjUija6IYV+JYArLIVgzqTxy3wki6J7S5ctItDZFyaBde6jqyVnQIAX7a5f+eGY+TOW0M5tDXUe+gnFqE1b5XMgVaq9EBPjmnqkGxqhw4VK5ccbP3ZhrlZz6Fz0jzYWViXT9Eohio5QlD26djGAAHZXVkELYaz2TYp9plUv3HZ3FK3orBKr+6GxK/ZmJxxvT+RDelrqimuQLVuDpXFAgrPSBJ54qXJnzDoYkjRQ4DZ3RqCSVKGjp0lHgxrQAvb42rcIRdY/a5hl28YIhG0BAydZHOkUl9/PK6kS2fLIAqdJ1U4BxZY+tfkjKEHsKCQBWJTPvXtrscPoepf7y5zGokcvcPE7HmoShgJKrIfBpzNVXcLExVj/baSV6EK5W82ZYeFQUyuF4OI1q4973kHtpGSOed0nWUGqHWlt8aHU8j7I+utAYvlzH8dkbMwmDRoWKDcbIMFtFeLYn1SKEAaBgZgcF0yrEKMITygoWINaaGfYbu1FK65pTYSsQzyZdhXNQKGz7uqn62MMWGinaHR4DS/fD23vhrJ8qg5aQjDwMWE3oqby6H2WVGHZ5R8fb2pKiLrY836e099q8AZk/3Ph5GSBfrAayo4UemS1nJ2OYE4j4O/kxVHJQO6F2Jy4Zoqk0WChSYeT/+GeaY40/e
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(136003)(39860400002)(376002)(346002)(396003)(46966006)(36840700001)(81166007)(356005)(336012)(2906002)(36756003)(8676002)(426003)(8936002)(2616005)(6916009)(70206006)(47076005)(1076003)(82310400003)(70586007)(4326008)(5660300002)(186003)(83380400001)(86362001)(26005)(82740400003)(36860700001)(6666004)(316002)(54906003)(478600001)(44832011)(36900700001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?aLpFpaACkcEoe2f/QKFOe+lpsxw304YjLB+wpXJ+VbaLZjehIbzHZUpneL8q?=
- =?us-ascii?Q?L7ebt4/WOJp7BlWnYLqOlByTbs0yDMSlTcO5AxFOWw0adT2czQdNFFtMQfX0?=
- =?us-ascii?Q?IR8znCt6cSbaVkC4dC6+Appl0AQg8G05HAVOhOIkKjRzg/PLITm/p37RDUx/?=
- =?us-ascii?Q?Lr4RaVbFJK6AfnmWLsGPgCihrrcLMTZuzYrMNDeIep01/mPOgUqi0HAKzP+R?=
- =?us-ascii?Q?CIQ7ZD/x6KeeDDg1AUMt1NJ96uyA+5WZHPXP9/5udURPwhnTKAJ+tclSrCvB?=
- =?us-ascii?Q?pnIcWIozdyU/kjfoGxZkr4ZQQ1ZW4SV4RsEcyjdmpBlzRZtEA3VlQFk1PxuY?=
- =?us-ascii?Q?n6fRDojsWDaRRc67NSAG+aWQ+FPrR+42Wbr/rY2YaF/h5A3jQ+X/UxTBJXkB?=
- =?us-ascii?Q?aDGevpBsqeerJb2A4xHlBF0KaF3QBnCGgrnNkuk4/oaPdJyGiQEjfW320b30?=
- =?us-ascii?Q?Hz+EqHR35R6wruNLjBBmuR902iJmQy1NFPBB+nr0LDBH7k3Kd+sXE3VyFxtc?=
- =?us-ascii?Q?lkhqpBl/wtQZdvvMRlS526xwy3Wg3hOeq+t4XnPZjAwp6lF1kBae5YMKoDU5?=
- =?us-ascii?Q?mj5AOfs8FJM5wtw0oe+yBlJIEIo1rEsAvbCAgofUFtc7NZUKlF2xp9DtTasG?=
- =?us-ascii?Q?EhGaIXQ7OHCWUvR0Cn0cI30sxJl+5QXWBt+UEi7Ue7QYfssvy1I6KA+Opi02?=
- =?us-ascii?Q?lHwtk7APVP2YbTC2nXsQJ21r2gvvFvUGKw+OpPamc8O93gA5fo51C4x9Vu9v?=
- =?us-ascii?Q?5zUFK8ltxdog4k5yEAbD8F7gMtO8zz/x+itbjZKeL3QlDPoj+NDgYQFcH4OY?=
- =?us-ascii?Q?Jk3UIMk0wtMUNNvEPGwqeHVvI35YsXSsHoh1pMnFCkjyQw69hKWWZHCMjxS1?=
- =?us-ascii?Q?0biRoFq5e/g+JYCudk5/YBlUh+ZxfAO/hhh5VbaoRDKnlPgsMHa0mjsiSvHb?=
- =?us-ascii?Q?DRh2l68H2tYWo1T1OFLV0Y/cTVmqbapZnsYMetR0+m70kuLAo4CP2Zy78GW+?=
- =?us-ascii?Q?bpxpHftiEIIvyGEPXf+RKs85/137k1i0f+k6Y936iG8grsAfrXTEbwhpxts+?=
- =?us-ascii?Q?EV3QLbR1KFNyOJHZih4p4ICnmP+03Qkwy7fzyiFaRU+FaEh+q98tkYk3aVgQ?=
- =?us-ascii?Q?xi2aGYTE/5DsvyMCr9lFHibCUz3ZahEtDqopvmPx9YkGJ7I+kl4GfzvnHJMH?=
- =?us-ascii?Q?uayPjTY4xGq5IbXuhiUnY5XyZ7/Zw3r42HwHh1D+X+viUtksL+p0LdOM9lsP?=
- =?us-ascii?Q?oavCwDVO9F3UtRvYBD7KskKBVW2BJPpww2qDcigZiBBZyLJxWsXSsFlhrdxT?=
- =?us-ascii?Q?4KwOxk0CfkvitGfFszi4ryNk?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15d90d41-cea7-4763-e89e-08d91aed06ad
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB2840.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2021 17:39:17.3756 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2021 20:12:42.9716 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f252f107-4961-4d59-4df2-08d91b0275d9
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: deamYoM1epYXLPbUU/0k8Dr0WOAEBuQAkas82nNCXyHD38QDZCMyNDmha8+wuBnl
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3063
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2933
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,245 +102,91 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David M Nieto <david.nieto@amd.com>
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Enable displaying DPM levels for VCN clocks
-in swsmu supported ASICs
+[Why]
+FS video support regressed GPU scaling and the scaled buffer ends up
+stuck in the top left of the screen at native size - full, aspect,
+center scaling modes do not function.
 
-v2: removed set functions for navi, renoir
-v3: removed set function from arcturus
+This is because decide_crtc_timing_for_drm_display_mode() does not
+get called when scaling is enabled.
 
-Signed-off-by: David M Nieto <david.nieto@amd.com>
-Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+[How]
+Split recalculate timing and scaling into two different flags.
+
+We don't want to call drm_mode_set_crtcinfo() for scaling, but we
+do want to call it for FS video.
+
+Optimize and move preferred_refresh calculation next to
+decide_crtc_timing_for_drm_display_mode() like it used to be since
+that's not used for FS video.
+
+We don't need to copy over the VIC or polarity in the case of FS video
+modes because those don't change.
+
+Fixes: a372f4abec ("drm/amd/display: Skip modeset for front porch change")
+
+Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 ---
- .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c | 46 +++++++++++++++++++
- .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   |  2 +
- .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   |  4 ++
- .../gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c   | 34 ++++++++++++++
- .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    | 46 +++++++++++++++++++
- 5 files changed, 132 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-index 77693bf0840c..1735a96dd307 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-@@ -822,6 +822,52 @@ static int arcturus_print_clk_levels(struct smu_context *smu,
- 				now) ? "*" : ""));
- 		break;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 8cd270f129..759621b0e8 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -5672,7 +5672,8 @@ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
+ 	struct drm_display_mode saved_mode;
+ 	struct drm_display_mode *freesync_mode = NULL;
+ 	bool native_mode_found = false;
+-	bool recalculate_timing = dm_state ? (dm_state->scaling != RMX_OFF) : false;
++	bool recalculate_timing = false;
++	bool scale = dm_state ? (dm_state->scaling != RMX_OFF) : false;
+ 	int mode_refresh;
+ 	int preferred_refresh = 0;
+ #if defined(CONFIG_DRM_AMD_DC_DCN)
+@@ -5735,7 +5736,7 @@ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
+ 		 */
+ 		DRM_DEBUG_DRIVER("No preferred mode found\n");
+ 	} else {
+-		recalculate_timing |= amdgpu_freesync_vid_mode &&
++		recalculate_timing = amdgpu_freesync_vid_mode &&
+ 				 is_freesync_video_mode(&mode, aconnector);
+ 		if (recalculate_timing) {
+ 			freesync_mode = get_highest_refresh_rate_mode(aconnector, false);
+@@ -5743,11 +5744,10 @@ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
+ 			mode = *freesync_mode;
+ 		} else {
+ 			decide_crtc_timing_for_drm_display_mode(
+-				&mode, preferred_mode,
+-				dm_state ? (dm_state->scaling != RMX_OFF) : false);
+-		}
++				&mode, preferred_mode, scale);
  
-+	case SMU_VCLK:
-+		ret = arcturus_get_current_clk_freq_by_table(smu, SMU_VCLK, &now);
-+		if (ret) {
-+			dev_err(smu->adev->dev, "Attempt to get current vclk Failed!");
-+			return ret;
+-		preferred_refresh = drm_mode_vrefresh(preferred_mode);
++			preferred_refresh = drm_mode_vrefresh(preferred_mode);
 +		}
-+
-+		single_dpm_table = &(dpm_context->dpm_tables.vclk_table);
-+		ret = arcturus_get_clk_table(smu, &clocks, single_dpm_table);
-+		if (ret) {
-+			dev_err(smu->adev->dev, "Attempt to get vclk levels Failed!");
-+			return ret;
-+		}
-+
-+		for (i = 0; i < single_dpm_table->count; i++)
-+			size += sprintf(buf + size, "%d: %uMhz %s\n",
-+				i, single_dpm_table->dpm_levels[i].value,
-+				(clocks.num_levels == 1) ? "*" :
-+				(arcturus_freqs_in_same_level(
-+				clocks.data[i].clocks_in_khz / 1000,
-+				now) ? "*" : ""));
-+		break;
-+
-+	case SMU_DCLK:
-+		ret = arcturus_get_current_clk_freq_by_table(smu, SMU_DCLK, &now);
-+		if (ret) {
-+			dev_err(smu->adev->dev, "Attempt to get current dclk Failed!");
-+			return ret;
-+		}
-+
-+		single_dpm_table = &(dpm_context->dpm_tables.dclk_table);
-+		ret = arcturus_get_clk_table(smu, &clocks, single_dpm_table);
-+		if (ret) {
-+			dev_err(smu->adev->dev, "Attempt to get dclk levels Failed!");
-+			return ret;
-+		}
-+
-+		for (i = 0; i < single_dpm_table->count; i++)
-+			size += sprintf(buf + size, "%d: %uMhz %s\n",
-+				i, single_dpm_table->dpm_levels[i].value,
-+				(clocks.num_levels == 1) ? "*" :
-+				(arcturus_freqs_in_same_level(
-+				clocks.data[i].clocks_in_khz / 1000,
-+				now) ? "*" : ""));
-+		break;
-+
- 	case SMU_PCIE:
- 		gen_speed = smu_v11_0_get_current_pcie_link_speed_level(smu);
- 		lane_width = smu_v11_0_get_current_pcie_link_width_level(smu);
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-index 30f585afeddd..e81310a424e5 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-@@ -1273,6 +1273,8 @@ static int navi10_print_clk_levels(struct smu_context *smu,
- 	case SMU_MCLK:
- 	case SMU_UCLK:
- 	case SMU_FCLK:
-+	case SMU_VCLK:
-+	case SMU_DCLK:
- 	case SMU_DCEFCLK:
- 		ret = navi10_get_current_clk_freq_by_table(smu, clk_type, &cur_value);
- 		if (ret)
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-index 0c40a54c46d7..b09c253b9db6 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-@@ -987,6 +987,10 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
- 	case SMU_MCLK:
- 	case SMU_UCLK:
- 	case SMU_FCLK:
-+	case SMU_VCLK:
-+	case SMU_VCLK1:
-+	case SMU_DCLK:
-+	case SMU_DCLK1:
- 	case SMU_DCEFCLK:
- 		ret = sienna_cichlid_get_current_clk_freq_by_table(smu, clk_type, &cur_value);
- 		if (ret)
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-index f43b4c623685..0805dc439572 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-@@ -109,6 +109,8 @@ static struct cmn2asic_mapping renoir_clk_map[SMU_CLK_COUNT] = {
- 	CLK_MAP(SOCCLK, CLOCK_SOCCLK),
- 	CLK_MAP(UCLK, CLOCK_FCLK),
- 	CLK_MAP(MCLK, CLOCK_FCLK),
-+	CLK_MAP(VCLK, CLOCK_VCLK),
-+	CLK_MAP(DCLK, CLOCK_DCLK),
- };
- 
- static struct cmn2asic_mapping renoir_table_map[SMU_TABLE_COUNT] = {
-@@ -202,6 +204,17 @@ static int renoir_get_dpm_clk_limited(struct smu_context *smu, enum smu_clk_type
- 			return -EINVAL;
- 		*freq = clk_table->FClocks[dpm_level].Freq;
- 		break;
-+	case SMU_VCLK:
-+		if (dpm_level >= NUM_VCN_DPM_LEVELS)
-+			return -EINVAL;
-+		*freq = clk_table->VClocks[dpm_level].Freq;
-+		break;
-+	case SMU_DCLK:
-+		if (dpm_level >= NUM_VCN_DPM_LEVELS)
-+			return -EINVAL;
-+		*freq = clk_table->DClocks[dpm_level].Freq;
-+		break;
-+
- 	default:
- 		return -EINVAL;
- 	}
-@@ -532,6 +545,14 @@ static int renoir_print_clk_levels(struct smu_context *smu,
- 		count = NUM_FCLK_DPM_LEVELS;
- 		cur_value = metrics.ClockFrequency[CLOCK_FCLK];
- 		break;
-+	case SMU_VCLK:
-+		count = NUM_VCN_DPM_LEVELS;
-+		cur_value = metrics.ClockFrequency[CLOCK_VCLK];
-+		break;
-+	case SMU_DCLK:
-+		count = NUM_VCN_DPM_LEVELS;
-+		cur_value = metrics.ClockFrequency[CLOCK_DCLK];
-+		break;
- 	default:
- 		break;
- 	}
-@@ -543,6 +564,8 @@ static int renoir_print_clk_levels(struct smu_context *smu,
- 	case SMU_MCLK:
- 	case SMU_DCEFCLK:
- 	case SMU_FCLK:
-+	case SMU_VCLK:
-+	case SMU_DCLK:
- 		for (i = 0; i < count; i++) {
- 			ret = renoir_get_dpm_clk_limited(smu, clk_type, i, &value);
- 			if (ret)
-@@ -730,6 +753,17 @@ static int renoir_get_dpm_clock_table(struct smu_context *smu, struct dpm_clocks
- 		clock_table->MemClocks[i].Vol = table->MemClocks[i].Vol;
  	}
  
-+	for (i = 0; i < NUM_VCN_DPM_LEVELS; i++) {
-+		clock_table->VClocks[i].Freq = table->VClocks[i].Freq;
-+		clock_table->VClocks[i].Vol = table->VClocks[i].Vol;
-+	}
-+
-+	for (i = 0; i < NUM_VCN_DPM_LEVELS; i++) {
-+		clock_table->DClocks[i].Freq = table->DClocks[i].Freq;
-+		clock_table->DClocks[i].Vol = table->DClocks[i].Vol;
-+	}
-+
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-index 7c191a5d6db9..fb744f3e17d7 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-@@ -816,6 +816,52 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
- 								       now) ? "*" : ""));
- 		break;
- 
-+	case SMU_VCLK:
-+		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_VCLK, &now);
-+		if (ret) {
-+			dev_err(smu->adev->dev, "Attempt to get current vclk Failed!");
-+			return ret;
-+		}
-+
-+		single_dpm_table = &(dpm_context->dpm_tables.vclk_table);
-+		ret = aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
-+		if (ret) {
-+			dev_err(smu->adev->dev, "Attempt to get vclk levels Failed!");
-+			return ret;
-+		}
-+
-+		for (i = 0; i < single_dpm_table->count; i++)
-+			size += sprintf(buf + size, "%d: %uMhz %s\n",
-+					i, single_dpm_table->dpm_levels[i].value,
-+					(clocks.num_levels == 1) ? "*" :
-+					(aldebaran_freqs_in_same_level(
-+								       clocks.data[i].clocks_in_khz / 1000,
-+								       now) ? "*" : ""));
-+		break;
-+
-+	case SMU_DCLK:
-+		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_DCLK, &now);
-+		if (ret) {
-+			dev_err(smu->adev->dev, "Attempt to get current dclk Failed!");
-+			return ret;
-+		}
-+
-+		single_dpm_table = &(dpm_context->dpm_tables.dclk_table);
-+		ret = aldebaran_get_clk_table(smu, &clocks, single_dpm_table);
-+		if (ret) {
-+			dev_err(smu->adev->dev, "Attempt to get dclk levels Failed!");
-+			return ret;
-+		}
-+
-+		for (i = 0; i < single_dpm_table->count; i++)
-+			size += sprintf(buf + size, "%d: %uMhz %s\n",
-+					i, single_dpm_table->dpm_levels[i].value,
-+					(clocks.num_levels == 1) ? "*" :
-+					(aldebaran_freqs_in_same_level(
-+								       clocks.data[i].clocks_in_khz / 1000,
-+								       now) ? "*" : ""));
-+		break;
-+
- 	default:
- 		break;
- 	}
+ 	if (recalculate_timing)
+@@ -5759,7 +5759,7 @@ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
+ 	* If scaling is enabled and refresh rate didn't change
+ 	* we copy the vic and polarities of the old timings
+ 	*/
+-	if (!recalculate_timing || mode_refresh != preferred_refresh)
++	if (!scale || mode_refresh != preferred_refresh)
+ 		fill_stream_properties_from_drm_display_mode(
+ 			stream, &mode, &aconnector->base, con_state, NULL,
+ 			requested_bpc);
 -- 
-2.17.1
+2.25.1
 
 _______________________________________________
 amd-gfx mailing list
