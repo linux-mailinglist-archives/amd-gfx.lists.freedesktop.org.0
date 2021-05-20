@@ -1,56 +1,106 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BBBC389C0A
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 May 2021 05:48:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B452389C38
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 May 2021 05:58:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 073EA6E839;
-	Thu, 20 May 2021 03:48:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19F486E8F9;
+	Thu, 20 May 2021 03:58:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com
- [IPv6:2607:f8b0:4864:20::32a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EC856E839
- for <amd-gfx@lists.freedesktop.org>; Thu, 20 May 2021 03:48:32 +0000 (UTC)
-Received: by mail-ot1-x32a.google.com with SMTP id
- i14-20020a9d624e0000b029033683c71999so2512222otk.5
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 May 2021 20:48:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=SAybIDptnyWL2NwGraFZl83ghvhiw0d1pDGYuphoUVQ=;
- b=ndEYES9+RwnUQITurwG6eGZKq6EG1GVfzSsinNwA1oi13wirsniBackCyjUOR7WO4r
- UgqSZ3lidccA+U6Au9Wlt5LBw3tCb2/kMuOIm+tNUsIjvm3Ro14GxeBeFBzYegI8ga8o
- PA2W+gOecwLK6adNnkfDtWk3mlZCGzLAbeEL10j2wd48A6DWl19nwgQ33Sbf6p4y2MCQ
- mLY2nLj/A9kgQm0qP4THssNN/jrRH0QIhwHyn5WAzkkeZ8y+TO7pG68lgd99GXmSAiW1
- /QDX6MDA9NsyDQLQ6GGIPXKnIW9biROe/2x0CpKg31LYo+vpXg1jGonofRe9EIF+XlUM
- +URQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=SAybIDptnyWL2NwGraFZl83ghvhiw0d1pDGYuphoUVQ=;
- b=CjBCB3HpiO96PS+2Kpf6tmfd8r3FtoCEfll/f9w17I8aghJTVG5y6hh9bPaCzlQAca
- p4zQ+8w5nqd4vGYQgcXz1MC2QYDq4lM4ZuC+2NrdinRlVo3C5kskMuetuB9wAKX+ZnHq
- raZuxU7mGCdgP5Z7tnXLd8mxbtXZvmN6WMPesnlr3REdFXOd48xsiuE/G0RQnQ8KYQuu
- XWte8cIaMBOtTTl/lyvPoJN+O0nwKaK3PAotGPbxFtpPwohN2rBwA4mhQsFzXM0hb63J
- OFffc9pd2eBvSJUWO2riguHhwGrv6h3q/vwGiJR0VfuXt1Nk4dHOFg4wQjI9erCfhkJi
- pL+Q==
-X-Gm-Message-State: AOAM533GReecPaBQ4K6bRq7xn9JXBuLg0bzPrvDiGpsavj5jpa9jS2v6
- YvSyCZc8XXzx7UYrY7rA7eCklVFzIyL/EhNQBaSI8pQs
-X-Google-Smtp-Source: ABdhPJx8MHyc7mEXGX5kviRpox7qoSNSKr3YSvOJjifSONhO/lupMt7iDZA5Hw4vlIOOXwchVSJHeFKJuBjrKryvC9Y=
-X-Received: by 2002:a9d:6548:: with SMTP id q8mr2299576otl.311.1621482511559; 
- Wed, 19 May 2021 20:48:31 -0700 (PDT)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2082.outbound.protection.outlook.com [40.107.243.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B08CE6E83B
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 May 2021 03:58:00 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lt0KyYDvvz12i5OqYeexhHHKlNxA1O4yEEZkja6sXyAeiUY5PEf9oCj8SS991BtKMQ2vWHzZwYSq/mUnvtXsR+sdk88VsIaO1FKMBexNQ6onNyRiPbp1G1pkNRz3GdrZzinUfSf0vOBl76uolePgjlExT3rcEzTvjUfIDVtbRD3/8kC3r1lWz9+nfa54harK1bbvd6MsORmMjKK9vzVmnVKyPltU2iwksJoI7ehFO6yX/RY8PwNJ5uRTbBlSYbTp+dfptC96VjfMfLHJHz+jrivIrkI8zy7rXPgJtgGPGv0hnBWZrO2maxiNzRhCyvIzZY17D+7B/kogS5GStznksQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GgmRHDJe6B2RxkctOJtqKaB5GTmKndcHE2jvdCVNiZU=;
+ b=dS47k/s6fZn9mEn27leyNN4cv9IB19fpP0dJNtlc+i96NRoslF2w5PhKA3QPM3r5g2lR9ovh/TFUn7q38fJ7qVpFmONMVzuzlnIeBJOyghxPCuDoyReCM15fZxcn5CTDvWAlnHZstfPA5Ji83EjcGDIlJ7UGZRWAXAyDHf6nwM998oQOSeYvkk2wE1GQFMCXuHEp2gxIURsI1k4GOKcl8grvmaxul7RAlOoCfqQyMYX6+Y4h3/Lm+CvVfPpMA5t8+xO+g5l7vHa32/dMJ+myJNyoYDIqAVM5Z3vr7pnWJEJrpc273RHYmB0HiSYS8d1dHuhBK69zDZn4plrL1nQphw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GgmRHDJe6B2RxkctOJtqKaB5GTmKndcHE2jvdCVNiZU=;
+ b=0aIPFelEUJdFV7wjcohNPRntSbSA86rtZLIBSqo++wTOMrd74njOy/3S4MIoPPMsvB9Wt1z0JEQkaDbu2aNhn87CAIAljrgnlCMgXgULH3Gkk9Hz8cyse2iD+RDgBoMowAGkkZrMTk3iq8AOR0gHFiXX6TpWa2zErc+eeg22QUc=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from DM6PR12MB2954.namprd12.prod.outlook.com (2603:10b6:5:188::22)
+ by DM5PR12MB1612.namprd12.prod.outlook.com (2603:10b6:4:a::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4129.25; Thu, 20 May 2021 03:57:54 +0000
+Received: from DM6PR12MB2954.namprd12.prod.outlook.com
+ ([fe80::4c0:7a8d:d41:dba0]) by DM6PR12MB2954.namprd12.prod.outlook.com
+ ([fe80::4c0:7a8d:d41:dba0%4]) with mapi id 15.20.4129.033; Thu, 20 May 2021
+ 03:57:53 +0000
+From: Darren Powell <darren.powell@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH 0/5] Modify smu_get_power_limit to implement Powerplay API
+Date: Wed, 19 May 2021 23:57:17 -0400
+Message-Id: <20210520035722.4877-1-darren.powell@amd.com>
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [165.204.54.211]
+X-ClientProxiedBy: YTOPR0101CA0043.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:14::20) To DM6PR12MB2954.namprd12.prod.outlook.com
+ (2603:10b6:5:188::22)
 MIME-Version: 1.0
-References: <20210517143910.2125-1-PengJu.Zhou@amd.com>
- <20210517143910.2125-8-PengJu.Zhou@amd.com>
-In-Reply-To: <20210517143910.2125-8-PengJu.Zhou@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 19 May 2021 23:48:20 -0400
-Message-ID: <CADnq5_PUB-uRRr73ZgfLkEKfHuAvVMttY-Tz_bt++UpRy5L-_A@mail.gmail.com>
-Subject: Re: [PATCH v5 08/10] drm/amdgpu: Modify MMHUB register access from
- MMIO to RLCG in file mmhub_v2*
-To: Peng Ju Zhou <PengJu.Zhou@amd.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from dapowell-ubuntu-200400-1.amd.com (165.204.54.211) by
+ YTOPR0101CA0043.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:14::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.31 via Frontend
+ Transport; Thu, 20 May 2021 03:57:52 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 115995a2-93dc-4606-9d08-08d91b437196
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1612:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1612ABE9084EEFF69CBB2C8DF02A9@DM5PR12MB1612.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:321;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: MqyR1VEwqoWrto/yLFw3aSQ1x/gIC4DACZaxGJDf86rN250xVZgAPGQoqD9R1kNiqrEK150I3jKo8NrXdjn+iYSVmPuUEXjDcwkbkGrZiEJKcuDonAA9DjMyZRbVvudZGv7J17LP1lpmVpQMmKJXdan3yDQLZ+PWvIawz9cIM1mTGDYHwVRMcorEU1qtLYdNX2j/YWOGE0gQdkVjaPF66L2Mm8JOffUFRuURF0XttM28XHgjKl+m1sGmrIXlc6QrB9VtW09hBFGlthBqsHtNhClq+XCr+DWP7K2P6BSf9JU0/ciDOvEvq+N5re2fNwLJQ3vupIBudnPkqRifQd4t3DnE6LqhjvRL2Oxa3/1w803ZxthK6urSKFMy9gQrSDxVp5TzJj00W/PT12UloZP3aN3NkC7aB15WlBtMgOXw6OVyBeZXP4B2XeaKp3rDFs3bVW8SfgaVjsxH5GIvCpD47byJMnDsV6Yh3d5ARaIKTDyAtuVR6hk94Xm2l5+x8c7C38gistLks1J7pIS5LIYtusSRmn2poJTvBz2SmFjY9LnJLZcJ+Rq3ihsSR8T18Xkd344s1eNcld+GuwkIlYRAPwpAa4BqWgHplRaUqEq/AAZZM203Fx+SLwrUeez+xpSiM0AzGSfhN+gGITy9nL5JZFoVDfRYNEJjuG7t5LwBQpY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB2954.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(376002)(396003)(39860400002)(366004)(346002)(66476007)(66556008)(2616005)(66946007)(16526019)(86362001)(186003)(4326008)(316002)(478600001)(956004)(52116002)(6916009)(7696005)(6666004)(26005)(2906002)(6486002)(44832011)(8676002)(36756003)(5660300002)(8936002)(38100700002)(38350700002)(83380400001)(1076003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?n1AHZ1OFA0TjwAq3ndr5DsBdSoXu6WOz1anCXD8bXHHMR7StcS2cv25JGsMq?=
+ =?us-ascii?Q?nx/aQ6gefa8evJasBGh4+8/NYCuSLUxab+mY2aKgGsbDsJrUkW8NG7LgSz3x?=
+ =?us-ascii?Q?urhQYWDEgwnsSqjDRS5porWNFOCwKLAoHFmbZVdGAcMGTs5KAnS948Iirezl?=
+ =?us-ascii?Q?8IJ8PgggZ3PwpAc7OyHmt+RdTLrRzMO3HE5uXC0xLTGX//Wixx603B6g01ow?=
+ =?us-ascii?Q?reJPb8abCMH4kd6RrBx5w8sdlVP77+qLRw0iTy/jSsaaNvq8TFoRXeE1LJUM?=
+ =?us-ascii?Q?eKPrIm6Kx4WAhlwPOsiPXBgxJ9TfXaYxtubE7gTt92IMIdGsDZAXoQYgzZF/?=
+ =?us-ascii?Q?2WsBskXCecku7JJ8kHcMQ8OoM4wva8iJnvUwyikL8Tq8rTBdIQWCExUccwRw?=
+ =?us-ascii?Q?zqR8OeoCLU4gLm5+nzcCR4f5ZYsF/3EHnQ24ynYex4JkfMWQ/03jc5xcCSVT?=
+ =?us-ascii?Q?RcKcRIPyzCyuEPqdqx9QP+K4i4yzoHyKbcSKk1zoo99chz3CYE8uKtvAJjyb?=
+ =?us-ascii?Q?u7B3Lrzalgnnzoc9l6OOX2NpjEnezwq+f/7LmEW27Spe5JfRBLqCQKPn04lQ?=
+ =?us-ascii?Q?isZc5cLdix+jPgd69Ybv9cftgfcI3r5M+VVDsZ2RabRKodTkuD3t9PVg155I?=
+ =?us-ascii?Q?PrfKbrcI/5t4loNidvNIK371PmmnsA8iLe+WLcguaMsDpBFmLstj39UNEWwh?=
+ =?us-ascii?Q?wtTY5yrZrtYyVNIRS8IVCK/qKQ0uyGJIGwzxVneGYP9NVF45J2Tfc917aasT?=
+ =?us-ascii?Q?zz2TprpUD8vBTgr2nsq9kJRrjPsQBOMKjvJCU2V5PDen2MdNhmdIoU8hv/Ey?=
+ =?us-ascii?Q?ZD7xZUYEJ/BBM1ax1iqjzfDNnIpDYeHkZ99aqet/nm2IoNleFcEDRIk2qsPD?=
+ =?us-ascii?Q?D2V0tZf53G1bVj247LUTNA0OxCWPuHzst/50PwXED531vSzc3XH+ZH2HMb8b?=
+ =?us-ascii?Q?NEIuUn0Q/KprqwMn4jhek0W1ggRmJs3oOZkwSS8nQeBr1LweWp//Eks771i4?=
+ =?us-ascii?Q?zC02eroWi7ocWd+5iK1YlcnINisSVJgD1rVx0B/EhQUc5HeVp2GgL/o358vC?=
+ =?us-ascii?Q?W0CUN9o8Y2kIGd0Xmfo7PkSRR3ThTZ/IxYW6l1UVD0o0eswPgxtAAGtYlwBZ?=
+ =?us-ascii?Q?Dp7sYvNNsYITi62FBzym4nfyMJoKqZXnhkX8TiPW08nE4Z1dTrulB4fHEyO2?=
+ =?us-ascii?Q?3At5/9QfT/g+M9V5aGNgccPdhws4WbEuqcmzsZpw6YpPbarNGgra+qE3hvHO?=
+ =?us-ascii?Q?8iBoWodPoAsupT2xEz2kjIcHUIckvJUFkt1x9KtHU63MI1zbc96aCS0SSFYr?=
+ =?us-ascii?Q?oHyJc0t0vdk7Aqit8PCTFSlW?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 115995a2-93dc-4606-9d08-08d91b437196
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2954.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2021 03:57:53.4689 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /Yk/gPFbXS35mnkKDLsXDmqbQRmEKUaIuFtIGQKD1eQaeiywJQAt7B+u23VOSx4WNlhmfjiYTV0uMVaSpil4cg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1612
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,148 +112,91 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: Darren Powell <darren.powell@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 17, 2021 at 10:39 AM Peng Ju Zhou <PengJu.Zhou@amd.com> wrote:
->
-> From: pengzhou <PengJu.Zhou@amd.com>
->
-> In SRIOV environment, KMD should access GC registers
-> with RLCG if GC indirect access flag enabled.
->
-> Signed-off-by: pengzhou <PengJu.Zhou@amd.com>
+=== Description ===
+Modify smu_get_power_limit to implement Powerplay API
 
-Patches 1-8 are:
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-See my comments on patch 9.
+=== Test System ===
+* DESKTOP(AMD FX-8350 + NAVI10(731F/ca), BIOS: F2)
+ + ISO(Ubuntu 20.04.1 LTS)
+ + Kernel(5.11.0-custom-fdoagd5f)
 
-Alex
+=== Patch Summary ===
+   linux: (git@gitlab.freedesktop.org:agd5f) origin/amd-staging-drm-next @ b1d634be9673
+    + 538c6ba2ec30 amdgpu/pm: reorder definition of swsmu_pm_funcs for readability
+    + 7b3ff20b1454 amdgpu/pm: simplify logic of smu_get_power_level
+    + 72f426c7d850 amdgpu/pm: modify Powerplay API get_power_limit to use pp_power_limit_level
+    + e6618a44993a amdgpu/pm: modify smu_get_power_limit to implement Powerplay API
+    + 16fb37b834e4 amdgpu/pm: add kernel documentation for smu_get_power_limit
 
-> ---
->  drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c | 37 +++++++++++++------------
->  1 file changed, 19 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-> index ac76081b91d5..e24225b3d42a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
-> @@ -29,6 +29,7 @@
->  #include "mmhub/mmhub_2_0_0_default.h"
->  #include "navi10_enum.h"
->
-> +#include "gc/gc_10_1_0_offset.h"
->  #include "soc15_common.h"
->
->  #define mmMM_ATC_L2_MISC_CG_Sienna_Cichlid                      0x064d
-> @@ -165,11 +166,11 @@ static void mmhub_v2_0_setup_vm_pt_regs(struct amdgpu_device *adev, uint32_t vmi
->  {
->         struct amdgpu_vmhub *hub = &adev->vmhub[AMDGPU_MMHUB_0];
->
-> -       WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_BASE_ADDR_LO32,
-> +       WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_BASE_ADDR_LO32,
->                             hub->ctx_addr_distance * vmid,
->                             lower_32_bits(page_table_base));
->
-> -       WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_BASE_ADDR_HI32,
-> +       WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_BASE_ADDR_HI32,
->                             hub->ctx_addr_distance * vmid,
->                             upper_32_bits(page_table_base));
->  }
-> @@ -180,14 +181,14 @@ static void mmhub_v2_0_init_gart_aperture_regs(struct amdgpu_device *adev)
->
->         mmhub_v2_0_setup_vm_pt_regs(adev, 0, pt_base);
->
-> -       WREG32_SOC15(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_START_ADDR_LO32,
-> +       WREG32_SOC15_RLC(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_START_ADDR_LO32,
->                      (u32)(adev->gmc.gart_start >> 12));
-> -       WREG32_SOC15(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_START_ADDR_HI32,
-> +       WREG32_SOC15_RLC(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_START_ADDR_HI32,
->                      (u32)(adev->gmc.gart_start >> 44));
->
-> -       WREG32_SOC15(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_END_ADDR_LO32,
-> +       WREG32_SOC15_RLC(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_END_ADDR_LO32,
->                      (u32)(adev->gmc.gart_end >> 12));
-> -       WREG32_SOC15(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_END_ADDR_HI32,
-> +       WREG32_SOC15_RLC(MMHUB, 0, mmMMVM_CONTEXT0_PAGE_TABLE_END_ADDR_HI32,
->                      (u32)(adev->gmc.gart_end >> 44));
->  }
->
-> @@ -197,9 +198,9 @@ static void mmhub_v2_0_init_system_aperture_regs(struct amdgpu_device *adev)
->         uint32_t tmp;
->
->         /* Program the AGP BAR */
-> -       WREG32_SOC15(MMHUB, 0, mmMMMC_VM_AGP_BASE, 0);
-> -       WREG32_SOC15(MMHUB, 0, mmMMMC_VM_AGP_BOT, adev->gmc.agp_start >> 24);
-> -       WREG32_SOC15(MMHUB, 0, mmMMMC_VM_AGP_TOP, adev->gmc.agp_end >> 24);
-> +       WREG32_SOC15_RLC(MMHUB, 0, mmMMMC_VM_AGP_BASE, 0);
-> +       WREG32_SOC15_RLC(MMHUB, 0, mmMMMC_VM_AGP_BOT, adev->gmc.agp_start >> 24);
-> +       WREG32_SOC15_RLC(MMHUB, 0, mmMMMC_VM_AGP_TOP, adev->gmc.agp_end >> 24);
->
->         if (!amdgpu_sriov_vf(adev)) {
->                 /* Program the system aperture low logical page number. */
-> @@ -308,7 +309,7 @@ static void mmhub_v2_0_enable_system_domain(struct amdgpu_device *adev)
->         tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT0_CNTL, PAGE_TABLE_DEPTH, 0);
->         tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT0_CNTL,
->                             RETRY_PERMISSION_OR_INVALID_PAGE_FAULT, 0);
-> -       WREG32_SOC15(MMHUB, 0, mmMMVM_CONTEXT0_CNTL, tmp);
-> +       WREG32_SOC15_RLC(MMHUB, 0, mmMMVM_CONTEXT0_CNTL, tmp);
->  }
->
->  static void mmhub_v2_0_disable_identity_aperture(struct amdgpu_device *adev)
-> @@ -370,16 +371,16 @@ static void mmhub_v2_0_setup_vmid_config(struct amdgpu_device *adev)
->                 tmp = REG_SET_FIELD(tmp, MMVM_CONTEXT1_CNTL,
->                                     RETRY_PERMISSION_OR_INVALID_PAGE_FAULT,
->                                     !adev->gmc.noretry);
-> -               WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_CNTL,
-> +               WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT1_CNTL,
->                                     i * hub->ctx_distance, tmp);
-> -               WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
-> +               WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_LO32,
->                                     i * hub->ctx_addr_distance, 0);
-> -               WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_HI32,
-> +               WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_START_ADDR_HI32,
->                                     i * hub->ctx_addr_distance, 0);
-> -               WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_END_ADDR_LO32,
-> +               WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_END_ADDR_LO32,
->                                     i * hub->ctx_addr_distance,
->                                     lower_32_bits(adev->vm_manager.max_pfn - 1));
-> -               WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
-> +               WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT1_PAGE_TABLE_END_ADDR_HI32,
->                                     i * hub->ctx_addr_distance,
->                                     upper_32_bits(adev->vm_manager.max_pfn - 1));
->         }
-> @@ -391,9 +392,9 @@ static void mmhub_v2_0_program_invalidation(struct amdgpu_device *adev)
->         unsigned i;
->
->         for (i = 0; i < 18; ++i) {
-> -               WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_INVALIDATE_ENG0_ADDR_RANGE_LO32,
-> +               WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_INVALIDATE_ENG0_ADDR_RANGE_LO32,
->                                     i * hub->eng_addr_distance, 0xffffffff);
-> -               WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_INVALIDATE_ENG0_ADDR_RANGE_HI32,
-> +               WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_INVALIDATE_ENG0_ADDR_RANGE_HI32,
->                                     i * hub->eng_addr_distance, 0x1f);
->         }
->  }
-> @@ -422,7 +423,7 @@ static void mmhub_v2_0_gart_disable(struct amdgpu_device *adev)
->
->         /* Disable all tables */
->         for (i = 0; i < AMDGPU_NUM_VMID; i++)
-> -               WREG32_SOC15_OFFSET(MMHUB, 0, mmMMVM_CONTEXT0_CNTL,
-> +               WREG32_SOC15_OFFSET_RLC(MMHUB, 0, mmMMVM_CONTEXT0_CNTL,
->                                     i * hub->ctx_distance, 0);
->
->         /* Setup TLB control */
-> --
-> 2.17.1
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+=== Tests ===
+==== get_power_limit Test ====
+* Test 
+ AMDGPU_PCI_ADDR=`lspci -nn | grep "VGA\|Display" | cut -d " " -f 1`
+ AMDGPU_HWMON=`ls -la /sys/class/hwmon | grep $AMDGPU_PCI_ADDR | cut -d " " -f 10`
+ HWMON_DIR=/sys/class/hwmon/${AMDGPU_HWMON}
+
+ lspci -nn | grep "VGA\|Display" ; \
+ echo "=== power1 cap ===" ; cat $HWMON_DIR/power1_cap ;           \
+ echo "=== power1 cap max ===" ; cat $HWMON_DIR/power1_cap_max ;   \
+ echo "=== power1 cap def ===" ; cat $HWMON_DIR/power1_cap_default
+
+==== Documentation Test ====
+* Insert temp documentation
+** Documentation/gpu/amdgpu.rst
+ vi Documentation/gpu/amdgpu.rst
+** added text to start
+------------START------------
+Test Documentation
+==================
+
+smu_get_power_limit
+-------------------
+.. kernel-doc:: drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+   :identifiers: smu_get_power_limit
+
+.. kernel-doc:: drivers/gpu/drm/amd/include/kgd_pp_interface.h
+   :identifiers: pp_power_limit_level
+-------------END-------------
+
+* Setup
+ cd ~/workspace/linux
+ . sphinx_2.4.4/bin/activate
+
+* Build
+ export SPHINXDOCLOG=sphinx.build.log
+ cp $SPHINXDOCLOG{,.old}
+ time make -j 8 htmldocs |& tee $SPHINXDOCLOG
+
+* View
+ firefox file:///home/dapowell/workspace/linux/Documentation/output/gpu/amdgpu.html
+
+Darren Powell (5):
+  amdgpu/pm: reorder definition of swsmu_pm_funcs for readability
+  amdgpu/pm: simplify logic of smu_get_power_level
+  amdgpu/pm: modify Powerplay API get_power_limit to use
+    pp_power_limit_level
+  amdgpu/pm: modify smu_get_power_limit to implement Powerplay API
+  amdgpu/pm: add kernel documentation for smu_get_power_limit
+
+ .../gpu/drm/amd/include/kgd_pp_interface.h    |  36 +++++-
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c            |  61 +++++-----
+ drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h       |   5 +-
+ .../gpu/drm/amd/pm/powerplay/amd_powerplay.c  |  29 +++--
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 110 ++++++++++++------
+ 5 files changed, 159 insertions(+), 82 deletions(-)
+
+
+base-commit: b1d634be967396d371e620685658224f28ba6247
+-- 
+2.25.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
