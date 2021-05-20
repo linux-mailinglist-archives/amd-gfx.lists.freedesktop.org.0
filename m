@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1DB438B1C2
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 May 2021 16:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10CBF38B1C5
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 May 2021 16:30:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 385D36F419;
-	Thu, 20 May 2021 14:30:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A23E6E40C;
+	Thu, 20 May 2021 14:30:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
  (mail-bn7nam10on2058.outbound.protection.outlook.com [40.107.92.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 595CD6E40C
- for <amd-gfx@lists.freedesktop.org>; Thu, 20 May 2021 14:30:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8C656E303
+ for <amd-gfx@lists.freedesktop.org>; Thu, 20 May 2021 14:30:35 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aWAGXKjkrP+tT8rDlwO6RWox4iEL9q659NnWZuZHt9TDh6GSh0WiN4iLF8wvyDDnIMG5GWY1HcKLM4jCH06cFCfPwRqWh5jHrhbrCeTbo/jPrHWu4I9imkGJjePXZ4xGBNJO4PcaGJUbdYO8zVSakpnYyUusB2Ip1CJ+qR1vJ1xL5l0EPoylu9ZSjumn8i3JxtCYC5RWKPCLYM1ejKnBLpwcgNtQ2eENap5OMTZIv23pMMfXAmff6Q5E76CPl76EuGW+Ip6LKYS1UwXE+nHKXUkiCkvOMSZhHHVO60MgHcgmz4ILAsmFZOdwZ1bJ/KYjGI1ZvzQ5zO9Tq3cTnENr3Q==
+ b=SpJVSCxJY4XeWpGAQboGbBfs2MXF7uU8o190kWN8P5lMvXutWD3NSdkptMstoZsBxyJj4Pm2DscQmHmxAZYlyqsexHkj4QcnZ+/ZvwzgsgoBwlBw9d61cscVkCxYCRQHm1fgfcKN5xhDVQRhMzfe8lK4TWkNDH2wbEzD5LpEfdcQfsMmyOXMbjHaRd+pOALclQj09xZ7uYqr/TWNDCb1DXXbG9LK1UDZiMchtsRO09Z2jClNnvkOCQYWYZcYszQXjeW+qHEgKKoQw2yop0u8CVAnmPQDpdhoKDY2Ray3pRpDbSPy7qjQK7+QFnnnAVAFaX661iJhIDdIHKOy0M/pRQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E3SsxPp9MwS5BrFpB3O48nXGlBUXoRi7lkwQdRCOago=;
- b=VeYGjF9ccb0RmrhmxN4joRqmTJwjQJLtGuajg7Cd0eXxr1G150XWxnAXpiltiSasK3gsbhNSBB8zgpyjbGCcjaY1oQpD5vVvPdxibiVNcQn9/VNM+UGbtKEiMgdDllHVg56xBeo8ZpZmNFBcG48xLwrTcBRMdiNMuxdAnkr631zKTOUILlGJOINnMPVJJEqc+rcRwrQWYl72EZhfDIgubDmzH2DfjGtEZU2UgNfvOuKU/AfxyLxWMLrC+zOC8yTWNGtBGtyKlgnnpdMjBRHHLcpdx5T220EXnaGmgFA0Fivcj5JfuZpf/mjjU+uFdfrAI34jcpyOaa57OWhlnUxbAA==
+ bh=ESFjITAuALhX+qLCpjvdP6owSb/3CvdTHPNMGjSpy28=;
+ b=QMt6HJ6z6lyq2WMHlfLYJnGqcdfmQt6j/QR7ne57sxGACVLwfwuMzkRdh2ugUlZrS61sVoRMZE2RHpw0QYRYbGDamT9s2Ir7kOcHjCwzfCouOfNYI2KjzGzLuT1XjQdpPuo+4qwy7A1GNCIbPObaCxFHyquiT4khX4iObblusughGNi2zNT/vnTlBS02tuVbigzSj1dw6J3hVonJKU4UP9rhONaGdfhpwPIe6rjNmOeN4SQp7F5/tG6qpdhOS6lKtaWK1iWAdfXwUSQtBqDN39RK8YIpRS2qa7Mc8h+9Dbpd5W4P/57p12Kbo/iUQStkHxNMXGXjrckYkYL0DPa9aA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E3SsxPp9MwS5BrFpB3O48nXGlBUXoRi7lkwQdRCOago=;
- b=dHeiArBg8vb9yZ1YGBbT8IpR5ZvHgF2JaL6aMw+xxjVEG3yzWApWXZYkPDEVJ/Pn/XCntwGfijPxl7Ih1pBuCA5VC4/CKwNdyQRw5JcvhWBhJUcIrwN27NDgZ47VEYpBIRB8ts6MqUzksTqgB9CwSIS8FUVdzxECSCO9j2/JBx4=
+ bh=ESFjITAuALhX+qLCpjvdP6owSb/3CvdTHPNMGjSpy28=;
+ b=5rRkGJWe1fz+fBtgZ3crQP0FZtzFm74xdAuLq64d+2LdwVDacgGrfcLWGHHidsn7qJVLd4k4/hZD/FtELjfyocpCkMkKyahX0wdGC0ZIERdqxk+CmzQxlQWbEqvGtRZBousj0Xj0+8PKMr+mFKMwOOLiiRQlox2gnUWFq3pa1hM=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,16 +34,16 @@ Received: from DM6PR12MB3067.namprd12.prod.outlook.com (2603:10b6:5:115::10)
  by DM6PR12MB4579.namprd12.prod.outlook.com (2603:10b6:5:2ac::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.26; Thu, 20 May
- 2021 14:30:22 +0000
+ 2021 14:30:23 +0000
 Received: from DM6PR12MB3067.namprd12.prod.outlook.com
  ([fe80::5c8c:adff:ab42:9345]) by DM6PR12MB3067.namprd12.prod.outlook.com
  ([fe80::5c8c:adff:ab42:9345%6]) with mapi id 15.20.4129.035; Thu, 20 May 2021
- 14:30:22 +0000
+ 14:30:23 +0000
 From: Graham Sider <Graham.Sider@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 3/6] drm/amd/pm: Add navi1x throttler translation
-Date: Thu, 20 May 2021 10:29:27 -0400
-Message-Id: <20210520142930.8369-3-Graham.Sider@amd.com>
+Subject: [PATCH 4/6] drm/amd/pm: Add sienna cichlid throttler translation
+Date: Thu, 20 May 2021 10:29:28 -0400
+Message-Id: <20210520142930.8369-4-Graham.Sider@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210520142930.8369-1-Graham.Sider@amd.com>
 References: <20210520142930.8369-1-Graham.Sider@amd.com>
@@ -56,52 +56,52 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from grasider-dev.amd.com (165.204.54.211) by
  YT2PR01CA0018.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:38::23) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4108.31 via Frontend Transport; Thu, 20 May 2021 14:30:21 +0000
+ 15.20.4108.31 via Frontend Transport; Thu, 20 May 2021 14:30:22 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c320d1b5-9d61-4fe4-50ba-08d91b9bccfa
+X-MS-Office365-Filtering-Correlation-Id: ab0c6f43-d340-430a-aaf0-08d91b9bcd80
 X-MS-TrafficTypeDiagnostic: DM6PR12MB4579:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB457944D88E0975CAEA1647B08A2A9@DM6PR12MB4579.namprd12.prod.outlook.com>
+X-Microsoft-Antispam-PRVS: <DM6PR12MB45799991F5C314A266C5E5018A2A9@DM6PR12MB4579.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: O3AjVrQPhvKOnEDpgIUy0AQ8/MrdG5Ig9MkmNytNZBo19JlDZLHkhTxD+Po1/0x0v//yerBj7uDYMHQrRAlVt5J9V8ukSXwZJJEXkHlLXhwJ2tdPMrfLAaosKmG0gMJ+GaejKawtdWz3HTsdKFwGMNqIEmDkoJUc37z50B8wcoLsZO/CBV2cbE7UUIbUbSMkyt/VoJ/+gfQm9YYf3xDKynBaq2vvE2cwNnBJc6fmPc9oIhBmdWF+ydKgZrFwtUzAiOvurBBBtoOmoGfe11HDmkinFgYeePZRKE3f4MKg93KeFcHwripJEmu3c5O1X7qrDnRoPd151p4YYcIwJd+vuxD1vRlJqLIrceCOM5TOxtZO7ntwhPX8wL0mLApEhLPEw8Z8/SehfoBazge8jUrcAA9tyf0sNayXxv3Y7yMRsrGN8of6NrK45LmO7tWj4rYdAZCUMR9tHCuxvs/y8ME1rgw0J+7fsSmRnkQmbKHQi47eFETDEvRvch+l+F/yh0wYIHNeg+ktK3kxThtgscqdxgnt62LpqxMAidoWi372hix80rNpqQ95c6azswBQIszvkQy8cEBon+f5DqZBVmOHCRF+W+W8ai63ekpcImUs7XgP1z/FBMuDr6hEHuHCdq7x6uTs79LBb8W3oh+Nj++et6aS2px+hrVbFA5JepiR9ZFVztWAzZ+k8vvcqIhrtMn3
+X-Microsoft-Antispam-Message-Info: DEetIUoYTp7KarYj7XKGhxVVbfTF9TDCWF9tLhksdqKPkAa/sPodW/kgwwLU07B6LGJNdO05bvxviTHBue1ylJOJWDA+iFJP53J//1VgWv5RbItcytSgelU1MYpA7oE4sQ9kynfRqKwm8vBTEKsbtJH0qtqPvK/JT1+ccxmZmwYDlV2zIxT4ebx/C0D9i8SYEzoL/bbq5NAd20qYIJPTd5Ufj7Bgz+94pvv+hnnacEE/e8R45oXvYLl3JMNXqrJYoXsa/o7+gvWy1PKVFdIbrNH90iSOZlreIuGTHGIbvaE0y6vIt6oiJiAxzYQUA9wXMNXeMKKhlBruNnUPloaV+92nG361CBBuZRrr6AfDNJiuFM7idQiEmOW/NlM01tIqNbTVNYsdeA4g0E0z/r6aDXkDyYeQuNzJ/m8ujLkuvtSeUzJZxdii0MgbAsWk3yYMg+GhCugVm79xN5kFSTu96NTIxjtvYiR/DrcCuC1Spt3IJrDpI0vp069Ma+Od+MLmoFgyRAixIC2AIQcvkul++wNnNmROAQ73hFv7gkxBI4h202EHjQd0UyziAfTAjuhOEPaz5hASyQL/wg53mnT8JchpSPTetchoL7zGbnilVJuFVqo5fOyS7FO1flAFNPierwapbY8xU+8imDvcdqrrXw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB3067.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(366004)(346002)(376002)(396003)(2906002)(52116002)(38350700002)(7696005)(8936002)(38100700002)(316002)(66946007)(83380400001)(6916009)(8676002)(1076003)(478600001)(66556008)(66476007)(6486002)(86362001)(5660300002)(956004)(36756003)(2616005)(4326008)(16526019)(186003)(26005)(32563001)(357404004);
+ SFS:(4636009)(39860400002)(136003)(366004)(346002)(376002)(396003)(2906002)(52116002)(38350700002)(7696005)(8936002)(38100700002)(316002)(66946007)(83380400001)(6916009)(8676002)(1076003)(478600001)(66556008)(66476007)(6486002)(86362001)(5660300002)(956004)(36756003)(2616005)(4326008)(16526019)(186003)(26005);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?TI5nO3bdNISS341eiFoza9ohTu/h24Y7ujCgIv0TCpqBfhqppXbCuyLv1ixo?=
- =?us-ascii?Q?oTu093x2UUyplsRGbMGIYrzIL2NbDtmHCPMfurHH3bmnDAeDU0u2/GdZlw+G?=
- =?us-ascii?Q?/7cOffPI1bugH0Ms3ZN15vVaaPWOc2QwvJ8v+9mPP4wHwklQ2adKasiauJhv?=
- =?us-ascii?Q?p+YVbsfpw3JfWC2QgQaEasU6EiC7iY0RjVPN3z4Z0JjjH5TH9gipaf3thZ8o?=
- =?us-ascii?Q?+jGgALHkrYoftsw9HGeyc7jA/AIRWDLwozKeYP3GvlNhGQaAXPJzchKkeyo8?=
- =?us-ascii?Q?QeOG6EhiaVTeYZxA5Z0CZUgxqNxeZfAHxuf2dvWweVu3Dwe21VanjK8E3ogJ?=
- =?us-ascii?Q?Yib6AuwSN5v2geWosXVCIOlwbEEc+wGh1hyxjgGhqLQ1dvcw+eItx75cX3NC?=
- =?us-ascii?Q?v0MWrVUOY6+ihwMrelWpUD642gHxzgeOd8ooqDxiNsoLtVy57SLXC4vu1XCX?=
- =?us-ascii?Q?7UDlOe96r7NMghIHyvysq7+51oMlDOQbWn24Rb8QoB5aGPexqT8Hnqaj/G6L?=
- =?us-ascii?Q?qs03wIs2Uf/0N8GB1WywpvLbci1FUaV3VFHt0hTtPxLakmtFuLDzF9/Oiiv6?=
- =?us-ascii?Q?1bEuockI6k5FoZZ5v2aNKqNuziy2LOCkG3Zz3t8IcAFi8aIT3RYuYcqhnERi?=
- =?us-ascii?Q?saLNYkfuUY8H5yENSdZ5aLK5veNMKmbr8ADNkSUrUIVrb5YR13RH0QrrZCYK?=
- =?us-ascii?Q?v2W3ay1qvy/PEhdMIGAZzWpUd+i/C/JcyNxLSBSvNKBML8eODwJxlh3tDtJY?=
- =?us-ascii?Q?Jdi4gqDdmuaNwCSrMNZ8PymJ5XS8g5pPfycElVg/0NBBXKDV1PiWXMqvmpjk?=
- =?us-ascii?Q?7agD+35vhIC/Nnj2M2KbJVANUnyweXhwLv/VXTXQbdIy+yH2XI+B/CB2ykyd?=
- =?us-ascii?Q?Qpx8/kG5qBmr42YndEkshRWaOjghlmLxa3oozkM30GraFkklGtEjJawQ67dV?=
- =?us-ascii?Q?yrtT+Vu/tz9mswkqBe1QqF9Jf5I9/6Ste0clh2kmMFx9d9Ghz/7gnsDY2Eno?=
- =?us-ascii?Q?MwXjTJjiT9/KgSih8WALv4HpuUw1ECp5wt/gEYgrvR0c2oqfv6+it93+yP8s?=
- =?us-ascii?Q?uXMMXdV/rBoSCr7Bu2yL42hcUJy45xBfBvB7mEven+cMrc8qPoFq2pF1ZZu0?=
- =?us-ascii?Q?Y/S1M/1AaGVnA08oLIc4JEuq+4kbJ17aekNQD1W1CuobK9WmQQXoDCZFTw/X?=
- =?us-ascii?Q?j9zDcFfh6IUPXvPg4ke5I2vceGPP6cEXba8Rgn19h+TK1L2oj4uFDGUecF5J?=
- =?us-ascii?Q?z4c/QcqVG+s8I6ASP+vkWlWget+wLAHGpT/4+/m3hGBG+dx1RdRPScbzOryZ?=
- =?us-ascii?Q?QCqLX+DKkgV3aKKDo+Qf8wbH?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?A0k6ab6Q4dUQg1QPllc/9/qg/UfImpKPm0vN0USVj0IgeEB0Nw0HABeM2tfH?=
+ =?us-ascii?Q?xpkgytTzyQ06qJwpS64JOHGOLLN/Psu9nQGSwLsCrpQvTkx+2eh4ycKnkX0Q?=
+ =?us-ascii?Q?I7MM2ks41lwMVpbBzcgwJ3hJG47X5tnb9pThy0SD4VqSDY0Z7NtyVI6rxL31?=
+ =?us-ascii?Q?KPDe2Eg808v838YOhqy9e7ypwA2ZdgkFecicSztRaKubf0VHCznABZVYT709?=
+ =?us-ascii?Q?L1FqIhifSnN7+11inqbSuylApDba2RxHtv1k4DZ15FsyDo1jKlzcmv2xZ1Ik?=
+ =?us-ascii?Q?3D0rlhxSphPSLCKmgZAp/YtiRkfD2KsMp/3xdFF7lasezqn1hg5ODIBizEGo?=
+ =?us-ascii?Q?cDNCSfOIJCkH9pyzCb1Sha6W9g8pG8ltIYjQyFgYIzWccrjOcyccuig0Ew1m?=
+ =?us-ascii?Q?eRM18DWt6omyLK4mTEopxgk/NVW+dgHlh+S0NpK65MDXqMK7wbx+EX6X873b?=
+ =?us-ascii?Q?glYKH/RZbteUly0jiVcThM/HBIVY/rteCog1hjHO22wsuAZeCK3Ijs/viqXX?=
+ =?us-ascii?Q?2Qe2q0fs5gMGG5SKqgnjtFeOCUiBXk0xJ55IR/ZGveRT0pGV7WBH8z7GvY9U?=
+ =?us-ascii?Q?myPcqSutnRAm16EjKYt3PA0UwhTBOihuWNB9HDN49NP4XAAZc/YT5h/bgn7l?=
+ =?us-ascii?Q?8rerUPvZtntcHJ7dMEpqWx/HR8uEHubefnNvoIFyRJ7PJORy5ZRcwaww4XmE?=
+ =?us-ascii?Q?vkRzQdUI1bIaY03SULeCTgykc9ouAkHDv0iz8ET6S7/GjwfxNrQXAEInC0mm?=
+ =?us-ascii?Q?7UeSQ7dw+DAHE5RsVKpCXk8upE1zyAwuWQfnFFTY8Ek42Aks9KOwCot8KaKW?=
+ =?us-ascii?Q?BzRRD7Lb4sO0nd0tHb7FKGfn/s45io9501rAxEgNmgS7/LE3bQPkttmfcE4L?=
+ =?us-ascii?Q?Jfa1CprV4YG2nmsJ5Xc3c0HUNI3FIYlur/6xBd/YJTpq6+ZkxFyiau+D5YbJ?=
+ =?us-ascii?Q?BB+YiETuCNXZ6HteABI0tcrcTIzC66e5Mp29ByVYjVqktzQRbDtN/HuQrzg4?=
+ =?us-ascii?Q?IKNVVaRxpul5opJMeqa5G+eNHmSH8oHoik0gqNZZ0xUmZvZ5EqYvyb9Y9KZO?=
+ =?us-ascii?Q?qjaZanFuHYHXEr0f4j+Ul+QDmih2OoukXadr8Nktq5v93S1y8oqRb1k5t53a?=
+ =?us-ascii?Q?YSPtXz0PZvQWN9NQOgDZ8sOLho9JX6JQJ+cRAXKpT3c4pZZjputre7uevjgu?=
+ =?us-ascii?Q?tzxBqBiGCNv5XcsWxm/NsOm5LX9thn5JBEekRl4Rkjqoy7b+U+tn2lLitXqi?=
+ =?us-ascii?Q?0tut+2HhKZHc7rZLhXjHg/u89kLpXITynRIQ4iRyE9W+d6ADF1/UfOiyixfm?=
+ =?us-ascii?Q?Y1BtD8cPmZA2FDihFg45dUa3?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c320d1b5-9d61-4fe4-50ba-08d91b9bccfa
+X-MS-Exchange-CrossTenant-Network-Message-Id: ab0c6f43-d340-430a-aaf0-08d91b9bcd80
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3067.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2021 14:30:22.4202 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2021 14:30:23.2987 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KfB++bqAnYQwdcvu+jO0J2GJ9zhm95OAKRdxZN+tbIriqRstLWCOk8V6GiLMmjHEn6N3eUJknYbKnufCJ+HC4A==
+X-MS-Exchange-CrossTenant-UserPrincipalName: +vfNL3cwCUl2XLGAPN4+HVDan4QPRNH5Dml100g8KR7Vc0XcF7Zj30r2Zo44X2X5xIg82XhcIBgRZj+yWv3/dg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4579
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -122,20 +122,20 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Perform dependent to independent throttle status translation for
-navi1x (navi10, navi12).
+sienna cichlid.
 ---
- .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 63 ++++++++++++++++---
- 1 file changed, 55 insertions(+), 8 deletions(-)
+ .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   | 48 ++++++++++++++++++-
+ 1 file changed, 46 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-index 78fe13183e8b..8d216c46d057 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-@@ -524,6 +524,49 @@ static int navi10_tables_init(struct smu_context *smu)
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+index 75acdb80c499..023b10306c3e 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+@@ -453,6 +453,49 @@ static int sienna_cichlid_tables_init(struct smu_context *smu)
  	return -ENOMEM;
  }
  
-+static uint32_t navi1x_get_indep_throttler_status(
++static uint32_t sienna_cichlid_get_indep_throttler_status(
 +					unsigned long dep_throttler_status)
 +{
 +	unsigned long indep_throttler_status = 0;
@@ -178,84 +178,27 @@ index 78fe13183e8b..8d216c46d057 100644
 +	return (uint32_t)indep_throttler_status;
 +}
 +
- static int navi10_get_legacy_smu_metrics_data(struct smu_context *smu,
- 					      MetricsMember_t member,
- 					      uint32_t *value)
-@@ -601,7 +644,7 @@ static int navi10_get_legacy_smu_metrics_data(struct smu_context *smu,
+ static int sienna_cichlid_get_smu_metrics_data(struct smu_context *smu,
+ 					       MetricsMember_t member,
+ 					       uint32_t *value)
+@@ -542,7 +585,7 @@ static int sienna_cichlid_get_smu_metrics_data(struct smu_context *smu,
  			SMU_TEMPERATURE_UNITS_PER_CENTIGRADES;
  		break;
  	case METRICS_THROTTLER_STATUS:
 -		*value = metrics->ThrottlerStatus;
-+		*value = navi1x_get_indep_throttler_status(metrics->ThrottlerStatus);
++		*value = sienna_cichlid_get_indep_throttler_status(metrics->ThrottlerStatus);
  		break;
  	case METRICS_CURR_FANSPEED:
  		*value = metrics->CurrFanSpeed;
-@@ -696,7 +739,7 @@ static int navi10_get_smu_metrics_data(struct smu_context *smu,
- 			SMU_TEMPERATURE_UNITS_PER_CENTIGRADES;
- 		break;
- 	case METRICS_THROTTLER_STATUS:
--		*value = metrics->ThrottlerStatus;
-+		*value = navi1x_get_indep_throttler_status(metrics->ThrottlerStatus);
- 		break;
- 	case METRICS_CURR_FANSPEED:
- 		*value = metrics->CurrFanSpeed;
-@@ -788,7 +831,7 @@ static int navi12_get_legacy_smu_metrics_data(struct smu_context *smu,
- 			SMU_TEMPERATURE_UNITS_PER_CENTIGRADES;
- 		break;
- 	case METRICS_THROTTLER_STATUS:
--		*value = metrics->ThrottlerStatus;
-+		*value = navi1x_get_indep_throttler_status(metrics->ThrottlerStatus);
- 		break;
- 	case METRICS_CURR_FANSPEED:
- 		*value = metrics->CurrFanSpeed;
-@@ -883,7 +926,7 @@ static int navi12_get_smu_metrics_data(struct smu_context *smu,
- 			SMU_TEMPERATURE_UNITS_PER_CENTIGRADES;
- 		break;
- 	case METRICS_THROTTLER_STATUS:
--		*value = metrics->ThrottlerStatus;
-+		*value = navi1x_get_indep_throttler_status(metrics->ThrottlerStatus);
- 		break;
- 	case METRICS_CURR_FANSPEED:
- 		*value = metrics->CurrFanSpeed;
-@@ -2672,7 +2715,8 @@ static ssize_t navi10_get_legacy_gpu_metrics(struct smu_context *smu,
- 	gpu_metrics->current_vclk0 = metrics.CurrClock[PPCLK_VCLK];
- 	gpu_metrics->current_dclk0 = metrics.CurrClock[PPCLK_DCLK];
+@@ -3666,7 +3709,8 @@ static ssize_t sienna_cichlid_get_gpu_metrics(struct smu_context *smu,
+ 	gpu_metrics->current_vclk1 = metrics->CurrClock[PPCLK_VCLK_1];
+ 	gpu_metrics->current_dclk1 = metrics->CurrClock[PPCLK_DCLK_1];
  
--	gpu_metrics->throttle_status = metrics.ThrottlerStatus;
+-	gpu_metrics->throttle_status = metrics->ThrottlerStatus;
 +	gpu_metrics->throttle_status =
-+			navi1x_get_indep_throttler_status(metrics.ThrottlerStatus);
++			sienna_cichlid_get_indep_throttler_status(metrics->ThrottlerStatus);
  
- 	gpu_metrics->current_fan_speed = metrics.CurrFanSpeed;
- 
-@@ -2749,7 +2793,8 @@ static ssize_t navi10_get_gpu_metrics(struct smu_context *smu,
- 	gpu_metrics->current_vclk0 = metrics.CurrClock[PPCLK_VCLK];
- 	gpu_metrics->current_dclk0 = metrics.CurrClock[PPCLK_DCLK];
- 
--	gpu_metrics->throttle_status = metrics.ThrottlerStatus;
-+	gpu_metrics->throttle_status =
-+			navi1x_get_indep_throttler_status(metrics.ThrottlerStatus);
- 
- 	gpu_metrics->current_fan_speed = metrics.CurrFanSpeed;
- 
-@@ -2825,7 +2870,8 @@ static ssize_t navi12_get_legacy_gpu_metrics(struct smu_context *smu,
- 	gpu_metrics->current_vclk0 = metrics.CurrClock[PPCLK_VCLK];
- 	gpu_metrics->current_dclk0 = metrics.CurrClock[PPCLK_DCLK];
- 
--	gpu_metrics->throttle_status = metrics.ThrottlerStatus;
-+	gpu_metrics->throttle_status =
-+			navi1x_get_indep_throttler_status(metrics.ThrottlerStatus);
- 
- 	gpu_metrics->current_fan_speed = metrics.CurrFanSpeed;
- 
-@@ -2907,7 +2953,8 @@ static ssize_t navi12_get_gpu_metrics(struct smu_context *smu,
- 	gpu_metrics->current_vclk0 = metrics.CurrClock[PPCLK_VCLK];
- 	gpu_metrics->current_dclk0 = metrics.CurrClock[PPCLK_DCLK];
- 
--	gpu_metrics->throttle_status = metrics.ThrottlerStatus;
-+	gpu_metrics->throttle_status =
-+			navi1x_get_indep_throttler_status(metrics.ThrottlerStatus);
- 
- 	gpu_metrics->current_fan_speed = metrics.CurrFanSpeed;
+ 	gpu_metrics->current_fan_speed = metrics->CurrFanSpeed;
  
 -- 
 2.17.1
