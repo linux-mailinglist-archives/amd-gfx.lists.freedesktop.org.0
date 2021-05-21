@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79E0438CC4B
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 May 2021 19:37:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4920838CC58
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 May 2021 19:37:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B41C86E15F;
-	Fri, 21 May 2021 17:37:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A78C66E520;
+	Fri, 21 May 2021 17:37:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2044.outbound.protection.outlook.com [40.107.223.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEA1B6E15F
- for <amd-gfx@lists.freedesktop.org>; Fri, 21 May 2021 17:37:01 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2068.outbound.protection.outlook.com [40.107.236.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DBC36E51C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 May 2021 17:37:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CoWx95K3xhOByB7X/tlcIJqNmPpxbi2hNLpZ7Sq1IZJ1sbpIRka6SEthAzzrz1RZwR/VMde9qFmf5LhYyO58tMNr7XlvDULrrKBaVJhGsRbl79hMblB7ronMPi0E+gEmuGvlGCz9HtHZNulHl8mTslXgR5HrFix7MpKXqqgvj0EovmsBOZaY4kbPlynzCQTa/lzxHuY8TvlwnDBNDv5OINjNHw1UQ65pPjdpLzi1LvAhNnuGBWHX9V0sDK2qmMJEQkHNcCSLvDskFItNhAnK9tlR1Xu6jPr+m/iVhbY0nxdbsvDuoBzyC1kEP0h7WCi1BkI4XCcJN6LhkFA3jZCUtw==
+ b=SeB+vs9GlaYzBUQw07WSaD/AJHzh9q0/b9Md/4lRf7XUwHLX8PpKbpcsQoutEMhQatYKVjapLWg0oPuAQIgDE+5Ay5RZFc4kd2FsFunoJN4nYncvXED5UpCxuOGXWtG5siAVTheUMztJZ9TJxxUxlD/Fnrr3d1tt5ge+OGstmhcaA9F1Ex2ikzxM87pPEydE8edwCobilyPCYtVuUTR/v46LDgpFylD5UtYRIaWWrTGvKQDJ5uULQRQCq+Mdkt7rQoUBOxWtAYloqN+2UGv3NbuM2zz7xmnLHixbCE0lW1gqeaLcSPTPigougXQR9xrC5kcFZBLGQ5eU8225ixustw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=er7p/mkFixya6kLXY6+jHN0B0mkErxDvZ6fOpXCZFAI=;
- b=HKR95c7V5YXGirLFTNB4M+OwoW5rigvQuu7aW1nwJS08MZPrXqcxWnMCF0HEWUqWnrIueHbfeLdkXft5gh2JSflD/2EC5qY1ElQ+LlBuaK2dh3+AMBnzbuPv5jptyx/4b3JpD/ph0ZBK1tLbQkGoGjFldJK7YIcQENJm0iULHefyIXEGMAp0ybY0tnRCTh8tjjKWKaHJpwThRmqN5lDsSRswJfx8M+Jv14cG9QDBHvNbzm31B/PLtPYXNcEc3vLDulnDr/vYtN/dh8Tjb5JGNVEkfn3tf8zaJbXNEdC9y2yVYJeKJXu3SDf8MXXGI/c480t7+WGvWPpcVKBx4pJZRQ==
+ bh=zJwdjnpdyxqQw0gKHGbTQ0XMxxbu7BLBOR6rdbAqIMo=;
+ b=LhFBl/OouiFNBdtAjoNxGQn2z4Jm1FsClc8Zavu7eB+ltBvIInHy16trUScte32rsG2r/GbFUxKGYQW27CAH25yD6bIitM1GY9ojYvDrnyQvLZxXII3/XITQdVlOvaFWqOGaFuKPITpXOKRxse8LznjssM6MAGnta10e3yyIn0nvhR2PWxu60utkt67pekWftE6o8LPS9sW2EHuge9JelDOBWQ34zdRxRQsp0d9GvcPaqb8+4epHUMVDVh9ramFiTw226GhFqJNwG/0SHlts314aO8SNQRBD8NAkfx+I/bufrGCx2zS9WnPfEaBaU3p3u5bKONk+9If7UPwYncEpkA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=er7p/mkFixya6kLXY6+jHN0B0mkErxDvZ6fOpXCZFAI=;
- b=irLxRQHfThEDnXqwAKfa5nagHIxMCe0UjqANOi5fTc37HdiU8BE/BtAJpnIWBU7NOZKg5YG0+yoYkxFw3mOIHywSx/K0P/JSlEI/5x+KAO3oUN+d8Lj7Doy62+p/K0s0EVr2Gg56FkxFm+DoQJ8fgPsLoSUPfxtSfVay5stevwI=
-Received: from BN9PR03CA0498.namprd03.prod.outlook.com (2603:10b6:408:130::23)
- by BYAPR12MB4631.namprd12.prod.outlook.com (2603:10b6:a03:10d::24)
+ bh=zJwdjnpdyxqQw0gKHGbTQ0XMxxbu7BLBOR6rdbAqIMo=;
+ b=G29JDonsnDkwHgccyenn6bT5QJKqc/TqmG5C9FB89XtceJ74e7aLHqGqhQoeYcRpIJ2GvPM04At1QXLJkwL/D5WGfTiq64jL80e1T96zlNgcsZRRSET2Zu6cmWC2DyDZ9t03T3cgT7i6q8relFxXPPOduzfmiHZ6LSiSoxEiSwQ=
+Received: from BN9PR03CA0483.namprd03.prod.outlook.com (2603:10b6:408:130::8)
+ by BN6PR12MB1827.namprd12.prod.outlook.com (2603:10b6:404:fd::22)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.23; Fri, 21 May
- 2021 17:36:58 +0000
+ 2021 17:36:59 +0000
 Received: from BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:130:cafe::72) by BN9PR03CA0498.outlook.office365.com
- (2603:10b6:408:130::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.26 via Frontend
- Transport; Fri, 21 May 2021 17:36:58 +0000
+ (2603:10b6:408:130:cafe::37) by BN9PR03CA0483.outlook.office365.com
+ (2603:10b6:408:130::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.23 via Frontend
+ Transport; Fri, 21 May 2021 17:36:59 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,17 +48,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT068.mail.protection.outlook.com (10.13.177.69) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4129.25 via Frontend Transport; Fri, 21 May 2021 17:36:58 +0000
+ 15.20.4129.25 via Frontend Transport; Fri, 21 May 2021 17:36:59 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 21 May
- 2021 12:36:57 -0500
+ 2021 12:36:58 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 01/15] drm/amd/display: Added support for individual control
- for multiple back-light instances.
-Date: Fri, 21 May 2021 13:36:32 -0400
-Message-ID: <20210521173646.1140586-2-qingqing.zhuo@amd.com>
+Subject: [PATCH 02/15] drm/amd/display: disable desktop VRR when using older
+ flip model
+Date: Fri, 21 May 2021 13:36:33 -0400
+Message-ID: <20210521173646.1140586-3-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210521173646.1140586-1-qingqing.zhuo@amd.com>
 References: <20210521173646.1140586-1-qingqing.zhuo@amd.com>
@@ -68,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1e3f9666-9006-47f4-a837-08d91c7f08ca
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4631:
-X-Microsoft-Antispam-PRVS: <BYAPR12MB4631D6EBE87EF3976A28A260FB299@BYAPR12MB4631.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
+X-MS-Office365-Filtering-Correlation-Id: 6b99575f-0d38-4875-a5b9-08d91c7f0968
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1827:
+X-Microsoft-Antispam-PRVS: <BN6PR12MB18278ED83524852AAEFD6A7DFB299@BN6PR12MB1827.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zKNK0ZM8rS4QqPo8Zbbv2E1BZK91TTHL7OE0ZsaxZyT8laiYKmZB0ooGpRDnXcOVYaLsju7emuNOtphveoDG/XefSbJ+D61u/9IYv6on9ONCidap1XjkcuLfMp0EwNi/19QdP42CgvgLydFg2LAKEzN4txCEXIH1xWdY0KOpvaiNfiI1AveKnZbTe64L/ZzoP1ry1HuUkPa/imQAQdtdybUw8TDyhdDBWu4f+VtPuySHKJfdoHoL2UNo4YHu/GhKFDuFKsmxBlh35hZSFqAP1BzmilYD8gvCmN9Wsw2MwSyJy4afJ9OIOguqXGUSGmWAc2s4im/XtDHM1CiaZCd0r/u4bB7A35TRI2vYc3g1xOU96QRhh3EQAYysaAcgpVvb7z5+9vu2sw4LOukvi28H7cUe1XWTZwm/LWuBmoBWZMESoCVg19dElxw++yAUxFA/XBos+KfevP18rianw6ajTEH77VTCz4fImSX4B49GGaPlfJ8SIux/HVbRAEmfJYZPQDm0x3WeBjEB/79rRND6MG8gPhrk/rxERlWrtp384tPYIKPuQoz5Tk2OVvqCW99Jrcp2GOzJ39T1cM30Oiur05BNtzFOH4MEWLKy/mxmxKXm9zM6uJLfWYm6Q3iu0e+w1ZOI517PSBvlzygB65xcgyKPuy9h0EL2cONcmnJoyn/vAS2z9qfMOI2Q2SZVnvSW
+X-Microsoft-Antispam-Message-Info: 4PDCUNgp84qZBi4IU+Sj3QEru0uo3fZiKaL8jkyoA9a9pKCyYmW582g+0HvKzFS77ZFobpyLdtwTYI8nR5Vn8eQeb9IjXrkQMNtUpzDEOdWU3dPpV+YZV6aaHJ+CiGH2XQNw/WuIUPw/xFTFkvlf9mQFs84EaBsrnnsPQMUin9GGXn8g95e6Y/P8euKJx3XaifZjJIRQVJkRc36PSw3RE9YoAWgf2x3j2qNPsHDq6GFBjD5VB4R6xidoYWJiTnhulqhIbHIPD2wyaq9KhoT5npQfgFJ1Dn44xtPlQO0pDZKF3t/+Iv+luqGFPz3Tp2Pg+1UtgQAk6wEpO2grm3QJ2ADKYgf5fsXwmBv2ehIuJHKLcNvYxxmqBaALcbl5pk7v8ubMfoLSdNI6UIFNMeL6qBPBha7ZjhNRCYS2/RneHY4j+PVBsqn4iWiz80tRw2PxzM4r2mFNZExobhsI3POdDJIRw/OYKQsrOB+L7zSyMGjLkTd6iKeXG3NrvHWCNa8N5uwXtBq5nwROLsCPnlaZEyOs3xEQRv+wtmctHSjVuv9OX0bNPtp/rPm+w3NghIuXvP7griy6ZX5KhxTKpxmvPhyS0OauQMm30OODKeQp00qcZk6vg/NyG8CvmF4ez9kythLh/VlH+UPJbN43f3itwx6m/rrFmPo1CS9BNQ2zOT9OT/t+7/kvlrImmktfSB2g
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(346002)(396003)(376002)(36840700001)(46966006)(336012)(2616005)(86362001)(316002)(16526019)(47076005)(4326008)(5660300002)(36756003)(44832011)(426003)(82310400003)(478600001)(36860700001)(70206006)(82740400003)(81166007)(6916009)(8936002)(2906002)(8676002)(1076003)(6666004)(70586007)(54906003)(356005)(186003)(83380400001)(26005)(36900700001);
+ SFS:(4636009)(346002)(396003)(376002)(136003)(39850400004)(36840700001)(46966006)(44832011)(26005)(70586007)(2616005)(8936002)(6916009)(426003)(70206006)(6666004)(5660300002)(82310400003)(36756003)(86362001)(8676002)(16526019)(186003)(4326008)(478600001)(1076003)(336012)(36860700001)(82740400003)(356005)(47076005)(316002)(83380400001)(2906002)(54906003)(81166007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2021 17:36:58.3129 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1e3f9666-9006-47f4-a837-08d91c7f08ca
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2021 17:36:59.3483 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b99575f-0d38-4875-a5b9-08d91c7f0968
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB4631
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1827
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,200 +100,130 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Anthony Koo <Anthony.Koo@amd.com>, Eryk.Brol@amd.com,
- Jake Wang <haonan.wang2@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
- bindu.r@amd.com
+Cc: Eryk.Brol@amd.com, hvanzyll <hvanzyll@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
+ Jun Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jake Wang <haonan.wang2@amd.com>
+From: hvanzyll <hvanzyll@amd.com>
 
-[Why & How]
-Added support for individual control for multiple back-light instances.
+[WHY]
+OS uses older flip model which does not work with desktop
+VRR causing memory allocations at the wrong IRQ level.
 
-Signed-off-by: Jake Wang <haonan.wang2@amd.com>
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+[HOW]
+Checks added to flip model to verify model is 2.2 or greater when
+doing any of the desktop VRR checks for full updates. This
+prevents full updates when VRR changes until a mode change.
+
+Signed-off-by: Harry VanZyllDeJong <hvanzyll@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 26 +++++++++++--------
- drivers/gpu/drm/amd/display/dc/dc_link.h      | 17 ++++++++++++
- drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c | 10 +++----
- drivers/gpu/drm/amd/display/dc/inc/hw/abm.h   |  3 ++-
- .../amd/display/modules/power/power_helpers.c | 15 ++++++-----
- .../amd/display/modules/power/power_helpers.h |  3 ++-
- 6 files changed, 47 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc_stream.h    |  3 ++
+ .../amd/display/modules/freesync/freesync.c   | 29 ++++++++++++-------
+ 2 files changed, 22 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 8cd270f12918..40d119354509 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1709,7 +1709,6 @@ static int dm_late_init(void *handle)
- 	unsigned int linear_lut[16];
- 	int i;
- 	struct dmcu *dmcu = NULL;
--	bool ret = true;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_stream.h b/drivers/gpu/drm/amd/display/dc/dc_stream.h
+index 13dae7238a58..0ab1a33dae84 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_stream.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_stream.h
+@@ -179,6 +179,9 @@ struct dc_stream_state {
  
- 	dmcu = adev->dm.dc->res_pool->dmcu;
+ 	bool use_vsc_sdp_for_colorimetry;
+ 	bool ignore_msa_timing_param;
++
++	bool freesync_on_desktop;
++
+ 	bool converter_disable_audio;
+ 	uint8_t qs_bit;
+ 	uint8_t qy_bit;
+diff --git a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+index 3f4f44b44e6a..b99aa232bd8b 100644
+--- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
++++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+@@ -516,7 +516,8 @@ bool mod_freesync_get_v_position(struct mod_freesync *mod_freesync,
+ }
  
-@@ -1726,18 +1725,23 @@ static int dm_late_init(void *handle)
- 	 * 0xFFFF x 0.01 = 0x28F
- 	 */
- 	params.min_abm_backlight = 0x28F;
--
- 	/* In the case where abm is implemented on dmcub,
--	 * dmcu object will be null.
--	 * ABM 2.4 and up are implemented on dmcub.
--	 */
--	if (dmcu)
--		ret = dmcu_load_iram(dmcu, params);
--	else if (adev->dm.dc->ctx->dmub_srv)
--		ret = dmub_init_abm_config(adev->dm.dc->res_pool, params);
-+	* dmcu object will be null.
-+	* ABM 2.4 and up are implemented on dmcub.
-+	*/
-+	if (dmcu) {
-+		if (!dmcu_load_iram(dmcu, params))
-+			return -EINVAL;
-+	} else if (adev->dm.dc->ctx->dmub_srv) {
-+		struct dc_link *edp_links[MAX_NUM_EDP];
-+		int edp_num;
+ static void build_vrr_infopacket_data_v1(const struct mod_vrr_params *vrr,
+-		struct dc_info_packet *infopacket)
++		struct dc_info_packet *infopacket,
++		bool freesync_on_desktop)
+ {
+ 	/* PB1 = 0x1A (24bit AMD IEEE OUI (0x00001A) - Byte 0) */
+ 	infopacket->sb[1] = 0x1A;
+@@ -542,10 +543,16 @@ static void build_vrr_infopacket_data_v1(const struct mod_vrr_params *vrr,
+ 			vrr->state != VRR_STATE_UNSUPPORTED)
+ 		infopacket->sb[6] |= 0x02;
  
--	if (!ret)
--		return -EINVAL;
-+		get_edp_links(adev->dm.dc, edp_links, &edp_num);
-+		for (i = 0; i < edp_num; i++) {
-+			if (!dmub_init_abm_config(adev->dm.dc->res_pool, params, i))
-+				return -EINVAL;
-+		}
+-	/* PB6 = [Bit 2 = FreeSync Active] */
+-	if (vrr->state != VRR_STATE_DISABLED &&
++	if (freesync_on_desktop) {
++		/* PB6 = [Bit 2 = FreeSync Active] */
++		if (vrr->state != VRR_STATE_DISABLED &&
+ 			vrr->state != VRR_STATE_UNSUPPORTED)
+-		infopacket->sb[6] |= 0x04;
++			infopacket->sb[6] |= 0x04;
++	} else {
++		if (vrr->state == VRR_STATE_ACTIVE_VARIABLE ||
++			vrr->state == VRR_STATE_ACTIVE_FIXED)
++			infopacket->sb[6] |= 0x04;
 +	}
  
- 	return detect_mst_link_for_all_connectors(adev_to_drm(adev));
- }
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
-index c871923e7db0..c617e9ae68a3 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_link.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
-@@ -216,6 +216,23 @@ static inline void get_edp_links(const struct dc *dc,
+ 	// For v1 & 2 infoframes program nominal if non-fs mode, otherwise full range
+ 	/* PB7 = FreeSync Minimum refresh rate (Hz) */
+@@ -824,13 +831,14 @@ static void build_vrr_infopacket_checksum(unsigned int *payload_size,
+ 
+ static void build_vrr_infopacket_v1(enum signal_type signal,
+ 		const struct mod_vrr_params *vrr,
+-		struct dc_info_packet *infopacket)
++		struct dc_info_packet *infopacket,
++		bool freesync_on_desktop)
+ {
+ 	/* SPD info packet for FreeSync */
+ 	unsigned int payload_size = 0;
+ 
+ 	build_vrr_infopacket_header_v1(signal, infopacket, &payload_size);
+-	build_vrr_infopacket_data_v1(vrr, infopacket);
++	build_vrr_infopacket_data_v1(vrr, infopacket, freesync_on_desktop);
+ 	build_vrr_infopacket_checksum(&payload_size, infopacket);
+ 
+ 	infopacket->valid = true;
+@@ -839,12 +847,13 @@ static void build_vrr_infopacket_v1(enum signal_type signal,
+ static void build_vrr_infopacket_v2(enum signal_type signal,
+ 		const struct mod_vrr_params *vrr,
+ 		enum color_transfer_func app_tf,
+-		struct dc_info_packet *infopacket)
++		struct dc_info_packet *infopacket,
++		bool freesync_on_desktop)
+ {
+ 	unsigned int payload_size = 0;
+ 
+ 	build_vrr_infopacket_header_v2(signal, infopacket, &payload_size);
+-	build_vrr_infopacket_data_v1(vrr, infopacket);
++	build_vrr_infopacket_data_v1(vrr, infopacket, freesync_on_desktop);
+ 
+ 	build_vrr_infopacket_fs2_data(app_tf, infopacket);
+ 
+@@ -953,12 +962,12 @@ void mod_freesync_build_vrr_infopacket(struct mod_freesync *mod_freesync,
+ #endif
+ 		break;
+ 	case PACKET_TYPE_FS_V2:
+-		build_vrr_infopacket_v2(stream->signal, vrr, app_tf, infopacket);
++		build_vrr_infopacket_v2(stream->signal, vrr, app_tf, infopacket, stream->freesync_on_desktop);
+ 		break;
+ 	case PACKET_TYPE_VRR:
+ 	case PACKET_TYPE_FS_V1:
+ 	default:
+-		build_vrr_infopacket_v1(stream->signal, vrr, infopacket);
++		build_vrr_infopacket_v1(stream->signal, vrr, infopacket, stream->freesync_on_desktop);
  	}
- }
  
-+static inline bool dc_get_edp_link_panel_inst(const struct dc *dc,
-+		const struct dc_link *link,
-+		unsigned int *inst_out)
-+{
-+	struct dc_link *edp_links[MAX_NUM_EDP];
-+	int edp_num;
-+
-+	if (link->connector_signal != SIGNAL_TYPE_EDP)
-+		return false;
-+	get_edp_links(dc, edp_links, &edp_num);
-+	if ((edp_num > 1) && (link->link_index > edp_links[0]->link_index))
-+		*inst_out = 1;
-+	else
-+		*inst_out = 0;
-+	return true;
-+}
-+
- /* Set backlight level of an embedded panel (eDP, LVDS).
-  * backlight_pwm_u16_16 is unsigned 32 bit with 16 bit integer
-  * and 16 bit fractional, where 1.0 is max backlight value.
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c
-index 6939ca2e8212..54a1408c8015 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c
-@@ -172,16 +172,12 @@ static bool dmub_abm_set_level(struct abm *abm, uint32_t level)
- 
- static bool dmub_abm_init_config(struct abm *abm,
- 	const char *src,
--	unsigned int bytes)
-+	unsigned int bytes,
-+	unsigned int inst)
- {
- 	union dmub_rb_cmd cmd;
- 	struct dc_context *dc = abm->ctx;
--	uint32_t edp_id_count = dc->dc_edp_id_count;
--	int i;
--	uint8_t panel_mask = 0;
--
--	for (i = 0; i < edp_id_count; i++)
--		panel_mask |= 0x01 << i;
-+	uint8_t panel_mask = 0x01 << inst;
- 
- 	// TODO: Optimize by only reading back final 4 bytes
- 	dmub_flush_buffer_mem(&dc->dmub_srv->dmub->scratch_mem_fb);
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/abm.h b/drivers/gpu/drm/amd/display/dc/inc/hw/abm.h
-index e8ce8c85adf1..142753644377 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/abm.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/abm.h
-@@ -52,7 +52,8 @@ struct abm_funcs {
- 	unsigned int (*get_target_backlight)(struct abm *abm);
- 	bool (*init_abm_config)(struct abm *abm,
- 			const char *src,
--			unsigned int bytes);
-+			unsigned int bytes,
-+			unsigned int inst);
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-index 6270ecbd2438..5e7331be1c0d 100644
---- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-+++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.c
-@@ -660,7 +660,8 @@ static void fill_iram_v_2_3(struct iram_table_v_2_2 *ram_table, struct dmcu_iram
- }
- 
- bool dmub_init_abm_config(struct resource_pool *res_pool,
--	struct dmcu_iram_parameters params)
-+	struct dmcu_iram_parameters params,
-+	unsigned int inst)
- {
- 	struct iram_table_v_2_2 ram_table;
- 	struct abm_config_table config;
-@@ -669,7 +670,7 @@ bool dmub_init_abm_config(struct resource_pool *res_pool,
- 	uint32_t i, j = 0;
- 
- #if defined(CONFIG_DRM_AMD_DC_DCN)
--	if (res_pool->abm == NULL && res_pool->multiple_abms[0] == NULL)
-+	if (res_pool->abm == NULL && res_pool->multiple_abms[inst] == NULL)
- 		return false;
- #else
- 	if (res_pool->abm == NULL)
-@@ -728,13 +729,13 @@ bool dmub_init_abm_config(struct resource_pool *res_pool,
- 	config.min_abm_backlight = ram_table.min_abm_backlight;
- 
- #if defined(CONFIG_DRM_AMD_DC_DCN)
--	if (res_pool->multiple_abms[0])
--		result = res_pool->multiple_abms[0]->funcs->init_abm_config(
--			res_pool->multiple_abms[0], (char *)(&config), sizeof(struct abm_config_table));
--	else
-+	if (res_pool->multiple_abms[inst]) {
-+		result = res_pool->multiple_abms[inst]->funcs->init_abm_config(
-+			res_pool->multiple_abms[inst], (char *)(&config), sizeof(struct abm_config_table), inst);
-+	} else
- #endif
- 		result = res_pool->abm->funcs->init_abm_config(
--			res_pool->abm, (char *)(&config), sizeof(struct abm_config_table));
-+			res_pool->abm, (char *)(&config), sizeof(struct abm_config_table), 0);
- 
- 	return result;
- }
-diff --git a/drivers/gpu/drm/amd/display/modules/power/power_helpers.h b/drivers/gpu/drm/amd/display/modules/power/power_helpers.h
-index 6f2eecce6baa..2a9f8e2d8080 100644
---- a/drivers/gpu/drm/amd/display/modules/power/power_helpers.h
-+++ b/drivers/gpu/drm/amd/display/modules/power/power_helpers.h
-@@ -49,6 +49,7 @@ struct dmcu_iram_parameters {
- bool dmcu_load_iram(struct dmcu *dmcu,
- 		struct dmcu_iram_parameters params);
- bool dmub_init_abm_config(struct resource_pool *res_pool,
--		struct dmcu_iram_parameters params);
-+		struct dmcu_iram_parameters params,
-+		unsigned int inst);
- 
- #endif /* MODULES_POWER_POWER_HELPERS_H_ */
+ 	if (true == pack_sdp_v1_3 &&
 -- 
 2.25.1
 
