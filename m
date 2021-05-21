@@ -1,63 +1,55 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80EBC38C835
-	for <lists+amd-gfx@lfdr.de>; Fri, 21 May 2021 15:35:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 795BD38C89E
+	for <lists+amd-gfx@lfdr.de>; Fri, 21 May 2021 15:47:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACF4D6F875;
-	Fri, 21 May 2021 13:35:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77D9E6F874;
+	Fri, 21 May 2021 13:47:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com
- [IPv6:2a00:1450:4864:20::530])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3808A6F64B;
- Fri, 21 May 2021 13:35:55 +0000 (UTC)
-Received: by mail-ed1-x530.google.com with SMTP id r11so23291358edt.13;
- Fri, 21 May 2021 06:35:55 -0700 (PDT)
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com
+ [IPv6:2607:f8b0:4864:20::235])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB0376F874
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 May 2021 13:47:23 +0000 (UTC)
+Received: by mail-oi1-x235.google.com with SMTP id z3so19681172oib.5
+ for <amd-gfx@lists.freedesktop.org>; Fri, 21 May 2021 06:47:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=CQNC5tcnBn2sqXfCRtfQO1Epq9bHKf0uPXF2miAwK8c=;
- b=fLsWWbaiDOqeBWiqz6Z+lTChhnRdQXJhHKLIfA8sFTt4eb1cfC4Lt3RrcQ21kaW+jW
- OHIxj5PhomewXQVDOd/NF4aWy9+nfK225wjSgNf4pICpSZapsAFD8LYus0KDiKKUuQ8g
- q29dSw99YdnCWDV0xwHNcRcX6NgiJpwFfWk5fk2Ot7V6FoTtgokzv/SI1lCWzOgnr2Lc
- FU/z2kh1YvgJfgjqA275Qr3tRFOI5QZVbtUGtxUdON110xwRCN7lFaz+JPDs9sgDLpka
- 7E+Uyoi5ddadvNEHHi1V3c2eC9DHyCLuYNLje5KHnohs/PqXiQcNWWZsqQZnDUp3ltdP
- CmMA==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=cq2iTH/te0U2nr8qul2JQysPZQf1AYXW9IfYdcASNrs=;
+ b=vh0DrMAH/k6if0YDjS1dSISvUFviLTvKvdIjPoZd9wkVRPEoAyfVa6scJgUedHKXKe
+ Kh2q7RS/uo87NZBpGvWR2TVB+KwaUXTWFgFzVoMBo4cPw8aPmpWFBWm8nsokuGlqXgM3
+ UV7XQbxuJ0U94uf9LKS2dUWaW0KSh2RB/fDwVGJ6XYseu5JKNUJunHMuPM64FzPPNJkm
+ kEfj6MxNmOBepgCYbeSfiqh+SOyWMII9q07S7tepEzF4LVSJ+200t39k2xRdxV9ArinN
+ 9p4GmiAP45Ru1jBzRNvuPY7gM27F0h+gV5SvcCBGFkXKbbQkfiC1QZG6DPk6GOANpBsq
+ 74mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=CQNC5tcnBn2sqXfCRtfQO1Epq9bHKf0uPXF2miAwK8c=;
- b=Nbo6raYsAsWQ60RXy6y4jVRlrbJ6X1Lo6sdZN/9NoPAG1z0McitPLBxcTZM8K1ivXO
- VQmLS6oSfW4bjmVxDU+nOLV95JIorZau0+5ZUAtXCDWVIzsVeoTkINKpCT4lMX/d1Xgu
- uL+gLP/a2N/LED3zkohPch3CZ056ctvMWH1CAnGIOzbFqDQ3k0JnFEyKLsQGhoP/PTtB
- EvKdu3HR+dJc56/97lyV2FAssrnBv6X7pBSAGhyskTD4BR1nJ8oe/7OcH1QT7L4yDF6v
- ZEN9bejUEfHtd7U5GzBUfRtoEE0yrIWy9CTNbmBC4mDi+RMgw9WiF5hs251zwY6nyOQt
- UkOg==
-X-Gm-Message-State: AOAM530ZCv0r1VW5KBBSGu2QZv+WoMue6azw/iHJSxuiMVWfmDUfSWxA
- 7uJ9ze0Hct1PerfGicIXOHU=
-X-Google-Smtp-Source: ABdhPJyPW3mc2rl6LjDNVIo7U/7GXPuRodp/tiEJiegxksa2IqC/S5vF1kHBS0G+Zgd1fxT0kjpidw==
-X-Received: by 2002:aa7:d550:: with SMTP id u16mr9565282edr.72.1621604153975; 
- Fri, 21 May 2021 06:35:53 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:b48f:ff97:fb4c:5b1d?
- ([2a02:908:1252:fb60:b48f:ff97:fb4c:5b1d])
- by smtp.gmail.com with ESMTPSA id df8sm3942018edb.58.2021.05.21.06.35.52
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 21 May 2021 06:35:52 -0700 (PDT)
-Subject: Re: [PATCH] drm/amdgpu: Fix inconsistent indenting
-To: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, alexander.deucher@amd.com
-References: <1621590628-75988-1-git-send-email-jiapeng.chong@linux.alibaba.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <09e40764-1d3a-0dfe-b278-5b5ce04670a9@gmail.com>
-Date: Fri, 21 May 2021 15:35:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=cq2iTH/te0U2nr8qul2JQysPZQf1AYXW9IfYdcASNrs=;
+ b=L7cd6DSFgU/mWBJemcKwGfyhWmQmgKAVWsErpk9Est82ZwkVpgHCvQM/Zf76BTabyf
+ YWdnqByHRiHtuVaCsjNsUfB2JKVFb+QIRbNOLZsdf+J9HVrgmBW+KXniVCCZO7RjuGl8
+ YvV/iy+MFJrBmqaN809q59uWglGULBHIIn7F28RlnaTU4LTiSk9dIuW/Q5r7UtytcxvY
+ Oqz0m7uqu+czaAgvkESr9B2ofxrnBdmgd8pylyn/25LmSqW3hSNEV2AECKKjCImYLWDx
+ ZDjT7/X+MK7MebUiM8ssuPdPO8XTE+mS/zBaI88S911ANXb/TdMNbpQ+0OOcsOPikau3
+ 2J7g==
+X-Gm-Message-State: AOAM533SqS4awj4xvoZt+8yl2li6b0BuilsyuuPnETqT4UXdN7VqFulO
+ 5fDeDpifRcqW+WFZSUtu2mngwGg/ct0rElcUU6Galyr8
+X-Google-Smtp-Source: ABdhPJyHegH/FpubAhjcaodryG4vZZt2y1gqoIF+OXM2ufZ6Zbjq2dKClQOZJw3jSHfqN6v5JoSlF/MGJ/PsGmEp7ng=
+X-Received: by 2002:a05:6808:249:: with SMTP id
+ m9mr2174027oie.120.1621604843050; 
+ Fri, 21 May 2021 06:47:23 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1621590628-75988-1-git-send-email-jiapeng.chong@linux.alibaba.com>
-Content-Language: en-US
+References: <20210520155614.309986-1-alexander.deucher@amd.com>
+ <1afdccca-8659-8fee-5ec6-17645198f0b3@amd.com>
+In-Reply-To: <1afdccca-8659-8fee-5ec6-17645198f0b3@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 21 May 2021 09:47:12 -0400
+Message-ID: <CADnq5_Oo2LSXwc49Kpv7qtvEUZdeivJQ4-BqQsk6FbR5e2wpWA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/amdgpu/acpi: unify ATCS handling (v3)
+To: Lijo Lazar <lijo.lazar@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,51 +61,383 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, christian.koenig@amd.com,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, sumit.semwal@linaro.org, linux-media@vger.kernel.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMjEuMDUuMjEgdW0gMTE6NTAgc2NocmllYiBKaWFwZW5nIENob25nOgo+IEVsaW1pbmF0ZSB0
-aGUgZm9sbG93IHNtYXRjaCB3YXJuaW5nOgo+Cj4gZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
-c2RtYV92NV8wLmM6NDQ5Cj4gc2RtYV92NV8wX3JpbmdfZW1pdF9tZW1fc3luYygpIHdhcm46IGlu
-Y29uc2lzdGVudCBpbmRlbnRpbmcuCj4KPiBSZXBvcnRlZC1ieTogQWJhY2kgUm9ib3QgPGFiYWNp
-QGxpbnV4LmFsaWJhYmEuY29tPgo+IFNpZ25lZC1vZmYtYnk6IEppYXBlbmcgQ2hvbmcgPGppYXBl
-bmcuY2hvbmdAbGludXguYWxpYmFiYS5jb20+CgpSZXZpZXdlZC1ieTogQ2hyaXN0aWFuIEvDtm5p
-ZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgoKPiAtLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9h
-bWQvYW1kZ3B1L3NkbWFfdjVfMC5jIHwgMTMgKysrKysrLS0tLS0tLQo+ICAgMSBmaWxlIGNoYW5n
-ZWQsIDYgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9zZG1hX3Y1XzAuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQv
-YW1kZ3B1L3NkbWFfdjVfMC5jCj4gaW5kZXggNzVkNzMxMC4uYzQ1ZTFiMCAxMDA2NDQKPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9zZG1hX3Y1XzAuYwo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1L3NkbWFfdjVfMC5jCj4gQEAgLTQ0MCwyMCArNDQwLDE5IEBAIHN0
-YXRpYyB2b2lkIHNkbWFfdjVfMF9yaW5nX2VtaXRfaWIoc3RydWN0IGFtZGdwdV9yaW5nICpyaW5n
-LAo+ICAgICovCj4gICBzdGF0aWMgdm9pZCBzZG1hX3Y1XzBfcmluZ19lbWl0X21lbV9zeW5jKHN0
-cnVjdCBhbWRncHVfcmluZyAqcmluZykKPiAgIHsKPiAtICAgIHVpbnQzMl90IGdjcl9jbnRsID0K
-PiAtCQkgICAgU0RNQV9HQ1JfR0wyX0lOViB8IFNETUFfR0NSX0dMMl9XQiB8IFNETUFfR0NSX0dM
-TV9JTlYgfAo+IC0JCQlTRE1BX0dDUl9HTDFfSU5WIHwgU0RNQV9HQ1JfR0xWX0lOViB8IFNETUFf
-R0NSX0dMS19JTlYgfAo+IC0JCQlTRE1BX0dDUl9HTElfSU5WKDEpOwo+ICsJdWludDMyX3QgZ2Ny
-X2NudGwgPSBTRE1BX0dDUl9HTDJfSU5WIHwgU0RNQV9HQ1JfR0wyX1dCIHwgU0RNQV9HQ1JfR0xN
-X0lOViB8Cj4gKwkJCSAgICBTRE1BX0dDUl9HTDFfSU5WIHwgU0RNQV9HQ1JfR0xWX0lOViB8IFNE
-TUFfR0NSX0dMS19JTlYgfAo+ICsJCQkgICAgU0RNQV9HQ1JfR0xJX0lOVigxKTsKPiAgIAo+ICAg
-CS8qIGZsdXNoIGVudGlyZSBjYWNoZSBMMC9MMS9MMiwgdGhpcyBjYW4gYmUgb3B0aW1pemVkIGJ5
-IHBlcmZvcm1hbmNlIHJlcXVpcmVtZW50ICovCj4gICAJYW1kZ3B1X3Jpbmdfd3JpdGUocmluZywg
-U0RNQV9QS1RfSEVBREVSX09QKFNETUFfT1BfR0NSX1JFUSkpOwo+ICAgCWFtZGdwdV9yaW5nX3dy
-aXRlKHJpbmcsIFNETUFfUEtUX0dDUl9SRVFfUEFZTE9BRDFfQkFTRV9WQV8zMV83KDApKTsKPiAg
-IAlhbWRncHVfcmluZ193cml0ZShyaW5nLCBTRE1BX1BLVF9HQ1JfUkVRX1BBWUxPQUQyX0dDUl9D
-T05UUk9MXzE1XzAoZ2NyX2NudGwpIHwKPiAtCQkJU0RNQV9QS1RfR0NSX1JFUV9QQVlMT0FEMl9C
-QVNFX1ZBXzQ3XzMyKDApKTsKPiArCQkJICBTRE1BX1BLVF9HQ1JfUkVRX1BBWUxPQUQyX0JBU0Vf
-VkFfNDdfMzIoMCkpOwo+ICAgCWFtZGdwdV9yaW5nX3dyaXRlKHJpbmcsIFNETUFfUEtUX0dDUl9S
-RVFfUEFZTE9BRDNfTElNSVRfVkFfMzFfNygwKSB8Cj4gLQkJCVNETUFfUEtUX0dDUl9SRVFfUEFZ
-TE9BRDNfR0NSX0NPTlRST0xfMThfMTYoZ2NyX2NudGwgPj4gMTYpKTsKPiArCQkJICBTRE1BX1BL
-VF9HQ1JfUkVRX1BBWUxPQUQzX0dDUl9DT05UUk9MXzE4XzE2KGdjcl9jbnRsID4+IDE2KSk7Cj4g
-ICAJYW1kZ3B1X3Jpbmdfd3JpdGUocmluZywgU0RNQV9QS1RfR0NSX1JFUV9QQVlMT0FENF9MSU1J
-VF9WQV80N18zMigwKSB8Cj4gLQkJCVNETUFfUEtUX0dDUl9SRVFfUEFZTE9BRDRfVk1JRCgwKSk7
-Cj4gKwkJCSAgU0RNQV9QS1RfR0NSX1JFUV9QQVlMT0FENF9WTUlEKDApKTsKPiAgIH0KPiAgIAo+
-ICAgLyoqCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwph
-bWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+On Fri, May 21, 2021 at 3:12 AM Lijo Lazar <lijo.lazar@amd.com> wrote:
+>
+>
+>
+> On 5/20/2021 9:26 PM, Alex Deucher wrote:
+> > Treat it like ATIF and check both the dGPU and APU for
+> > the method.  This is required because ATCS may be hung
+> > off of the APU in ACPI on A+A systems.
+> >
+> > v2: add back accidently removed ACPI handle check.
+> > v3: Fix incorrect atif check (Colin)
+> >      Fix uninitialized variable (Colin)
+> >
+> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> > ---
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu.h      |  17 +--
+> >   drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c | 128 ++++++++++++++++-------
+> >   2 files changed, 93 insertions(+), 52 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > index b6435479cac8..ece1aee5a667 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> > @@ -268,6 +268,7 @@ struct amdgpu_irq_src;
+> >   struct amdgpu_fpriv;
+> >   struct amdgpu_bo_va_mapping;
+> >   struct amdgpu_atif;
+> > +struct amdgpu_atcs;
+> >   struct kfd_vm_fault_info;
+> >   struct amdgpu_hive_info;
+> >   struct amdgpu_reset_context;
+> > @@ -681,20 +682,6 @@ struct amdgpu_vram_scratch {
+> >       u64                             gpu_addr;
+> >   };
+> >
+> > -/*
+> > - * ACPI
+> > - */
+> > -struct amdgpu_atcs_functions {
+> > -     bool get_ext_state;
+> > -     bool pcie_perf_req;
+> > -     bool pcie_dev_rdy;
+> > -     bool pcie_bus_width;
+> > -};
+> > -
+> > -struct amdgpu_atcs {
+> > -     struct amdgpu_atcs_functions functions;
+> > -};
+> > -
+> >   /*
+> >    * CGS
+> >    */
+> > @@ -825,7 +812,7 @@ struct amdgpu_device {
+> >       struct amdgpu_i2c_chan          *i2c_bus[AMDGPU_MAX_I2C_BUS];
+> >       struct debugfs_blob_wrapper     debugfs_vbios_blob;
+> >       struct amdgpu_atif              *atif;
+> > -     struct amdgpu_atcs              atcs;
+> > +     struct amdgpu_atcs              *atcs;
+> >       struct mutex                    srbm_mutex;
+> >       /* GRBM index mutex. Protects concurrent access to GRBM index */
+> >       struct mutex                    grbm_idx_mutex;
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> > index 6cf6231057fc..29708b5685ad 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c
+> > @@ -72,12 +72,25 @@ struct amdgpu_atif {
+> >       struct amdgpu_dm_backlight_caps backlight_caps;
+> >   };
+> >
+> > +struct amdgpu_atcs_functions {
+> > +     bool get_ext_state;
+> > +     bool pcie_perf_req;
+> > +     bool pcie_dev_rdy;
+> > +     bool pcie_bus_width;
+> > +};
+> > +
+> > +struct amdgpu_atcs {
+> > +     acpi_handle handle;
+> > +
+> > +     struct amdgpu_atcs_functions functions;
+> > +};
+> > +
+> >   /* Call the ATIF method
+> >    */
+> >   /**
+> >    * amdgpu_atif_call - call an ATIF method
+> >    *
+> > - * @atif: acpi handle
+> > + * @atif: atif structure
+> >    * @function: the ATIF function to execute
+> >    * @params: ATIF function params
+> >    *
+> > @@ -237,6 +250,35 @@ static acpi_handle amdgpu_atif_probe_handle(acpi_handle dhandle)
+> >       return handle;
+> >   }
+> >
+> > +static acpi_handle amdgpu_atcs_probe_handle(acpi_handle dhandle)
+> > +{
+> > +     acpi_handle handle = NULL;
+> > +     char acpi_method_name[255] = { 0 };
+> > +     struct acpi_buffer buffer = { sizeof(acpi_method_name), acpi_method_name };
+> > +     acpi_status status;
+> > +
+> > +     /* For PX/HG systems, ATCS and ATPX are in the iGPU's namespace, on dGPU only
+> > +      * systems, ATIF is in the dGPU's namespace.
+> > +      */
+> > +     status = acpi_get_handle(dhandle, "ATCS", &handle);
+> > +     if (ACPI_SUCCESS(status))
+> > +             goto out;
+> > +
+> > +     if (amdgpu_has_atpx()) {
+> > +             status = acpi_get_handle(amdgpu_atpx_get_dhandle(), "ATCS",
+> > +                                      &handle);
+> > +             if (ACPI_SUCCESS(status))
+> > +                     goto out;
+> > +     }
+> > +
+> > +     DRM_DEBUG_DRIVER("No ATCS handle found\n");
+> > +     return NULL;
+> > +out:
+> > +     acpi_get_name(handle, ACPI_FULL_PATHNAME, &buffer);
+> > +     DRM_DEBUG_DRIVER("Found ATCS handle %s\n", acpi_method_name);
+> > +     return handle;
+> > +}
+> > +
+> >   /**
+> >    * amdgpu_atif_get_notification_params - determine notify configuration
+> >    *
+> > @@ -486,14 +528,15 @@ static int amdgpu_atif_handler(struct amdgpu_device *adev,
+> >   /**
+> >    * amdgpu_atcs_call - call an ATCS method
+> >    *
+> > - * @handle: acpi handle
+> > + * @atcs: atcs structure
+> >    * @function: the ATCS function to execute
+> >    * @params: ATCS function params
+> >    *
+> >    * Executes the requested ATCS function (all asics).
+> >    * Returns a pointer to the acpi output buffer.
+> >    */
+> > -static union acpi_object *amdgpu_atcs_call(acpi_handle handle, int function,
+> > +static union acpi_object *amdgpu_atcs_call(struct amdgpu_atcs *atcs,
+> > +                                        int function,
+> >                                          struct acpi_buffer *params)
+> >   {
+> >       acpi_status status;
+> > @@ -517,7 +560,7 @@ static union acpi_object *amdgpu_atcs_call(acpi_handle handle, int function,
+> >               atcs_arg_elements[1].integer.value = 0;
+> >       }
+> >
+> > -     status = acpi_evaluate_object(handle, "ATCS", &atcs_arg, &buffer);
+> > +     status = acpi_evaluate_object(atcs->handle, "ATCS", &atcs_arg, &buffer);
+> >
+> >       /* Fail only if calling the method fails and ATIF is supported */
+> >       if (ACPI_FAILURE(status) && status != AE_NOT_FOUND) {
+> > @@ -551,7 +594,6 @@ static void amdgpu_atcs_parse_functions(struct amdgpu_atcs_functions *f, u32 mas
+> >   /**
+> >    * amdgpu_atcs_verify_interface - verify ATCS
+> >    *
+> > - * @handle: acpi handle
+> >    * @atcs: amdgpu atcs struct
+> >    *
+> >    * Execute the ATCS_FUNCTION_VERIFY_INTERFACE ATCS function
+> > @@ -559,15 +601,14 @@ static void amdgpu_atcs_parse_functions(struct amdgpu_atcs_functions *f, u32 mas
+> >    * (all asics).
+> >    * returns 0 on success, error on failure.
+> >    */
+> > -static int amdgpu_atcs_verify_interface(acpi_handle handle,
+> > -                                     struct amdgpu_atcs *atcs)
+> > +static int amdgpu_atcs_verify_interface(struct amdgpu_atcs *atcs)
+> >   {
+> >       union acpi_object *info;
+> >       struct atcs_verify_interface output;
+> >       size_t size;
+> >       int err = 0;
+> >
+> > -     info = amdgpu_atcs_call(handle, ATCS_FUNCTION_VERIFY_INTERFACE, NULL);
+> > +     info = amdgpu_atcs_call(atcs, ATCS_FUNCTION_VERIFY_INTERFACE, NULL);
+> >       if (!info)
+> >               return -EIO;
+> >
+> > @@ -604,8 +645,10 @@ static int amdgpu_atcs_verify_interface(acpi_handle handle,
+> >    */
+> >   bool amdgpu_acpi_is_pcie_performance_request_supported(struct amdgpu_device *adev)
+> >   {
+> > -     struct amdgpu_atcs *atcs = &adev->atcs;
+> > +     struct amdgpu_atcs *atcs = adev->atcs;
+> >
+> > +     if (!atcs)
+> > +             return false;
+> >       if (atcs->functions.pcie_perf_req && atcs->functions.pcie_dev_rdy)
+> >               return true;
+> >
+> > @@ -623,19 +666,15 @@ bool amdgpu_acpi_is_pcie_performance_request_supported(struct amdgpu_device *ade
+> >    */
+> >   int amdgpu_acpi_pcie_notify_device_ready(struct amdgpu_device *adev)
+> >   {
+> > -     acpi_handle handle;
+> >       union acpi_object *info;
+> > -     struct amdgpu_atcs *atcs = &adev->atcs;
+> > +     struct amdgpu_atcs *atcs = adev->atcs;
+> >
+> > -     /* Get the device handle */
+> > -     handle = ACPI_HANDLE(&adev->pdev->dev);
+> > -     if (!handle)
+> > +     if (!atcs)
+> >               return -EINVAL;
+> > -
+> >       if (!atcs->functions.pcie_dev_rdy)
+> >               return -EINVAL;
+> >
+> > -     info = amdgpu_atcs_call(handle, ATCS_FUNCTION_PCIE_DEVICE_READY_NOTIFICATION, NULL);
+> > +     info = amdgpu_atcs_call(atcs, ATCS_FUNCTION_PCIE_DEVICE_READY_NOTIFICATION, NULL);
+> >       if (!info)
+> >               return -EIO;
+> >
+> > @@ -658,21 +697,18 @@ int amdgpu_acpi_pcie_notify_device_ready(struct amdgpu_device *adev)
+> >   int amdgpu_acpi_pcie_performance_request(struct amdgpu_device *adev,
+> >                                        u8 perf_req, bool advertise)
+> >   {
+> > -     acpi_handle handle;
+> >       union acpi_object *info;
+> > -     struct amdgpu_atcs *atcs = &adev->atcs;
+> > +     struct amdgpu_atcs *atcs = adev->atcs;
+> >       struct atcs_pref_req_input atcs_input;
+> >       struct atcs_pref_req_output atcs_output;
+> >       struct acpi_buffer params;
+> >       size_t size;
+> >       u32 retry = 3;
+> >
+> > -     if (amdgpu_acpi_pcie_notify_device_ready(adev))
+> > +     if (!atcs)
+> >               return -EINVAL;
+> >
+> > -     /* Get the device handle */
+> > -     handle = ACPI_HANDLE(&adev->pdev->dev);
+> > -     if (!handle)
+> > +     if (amdgpu_acpi_pcie_notify_device_ready(adev))
+> >               return -EINVAL;
+> >
+> >       if (!atcs->functions.pcie_perf_req)
+> > @@ -692,7 +728,7 @@ int amdgpu_acpi_pcie_performance_request(struct amdgpu_device *adev,
+> >       params.pointer = &atcs_input;
+> >
+> >       while (retry--) {
+> > -             info = amdgpu_atcs_call(handle, ATCS_FUNCTION_PCIE_PERFORMANCE_REQUEST, &params);
+> > +             info = amdgpu_atcs_call(atcs, ATCS_FUNCTION_PCIE_PERFORMANCE_REQUEST, &params);
+> >               if (!info)
+> >                       return -EIO;
+> >
+> > @@ -768,32 +804,26 @@ static int amdgpu_acpi_event(struct notifier_block *nb,
+> >    */
+> >   int amdgpu_acpi_init(struct amdgpu_device *adev)
+> >   {
+> > -     acpi_handle handle, atif_handle;
+> > +     acpi_handle handle, atif_handle, atcs_handle;
+> >       struct amdgpu_atif *atif;
+> > -     struct amdgpu_atcs *atcs = &adev->atcs;
+> > -     int ret;
+> > +     struct amdgpu_atcs *atcs;
+> > +     int ret = 0;
+> >
+> >       /* Get the device handle */
+> >       handle = ACPI_HANDLE(&adev->pdev->dev);
+> >
+> >       if (!adev->bios || !handle)
+> > -             return 0;
+> > -
+> > -     /* Call the ATCS method */
+> > -     ret = amdgpu_atcs_verify_interface(handle, atcs);
+> > -     if (ret) {
+> > -             DRM_DEBUG_DRIVER("Call to ATCS verify_interface failed: %d\n", ret);
+> > -     }
+> > +             return ret;
+>
+> Is this return ok? Is it possible not to have ACPI handle for the dGPU,
+> but has a valid handle for iGPU - like ATIF/ATCS functions that exist in
+> iGPU space?
+
+We are just checking for an ACPI handle here.  Presumably if the
+device were part of the platform it would have an ACPI handle.  ATIF
+and ATCS are only relevant to devices which are part of the platform.
+E.g., they wouldn't apply to a card plugged into a PCIe slot or
+thunderbolt.
+
+Alex
+
+>
+> --
+> Thanks,
+> Lijo
+>
+> >       /* Probe for ATIF, and initialize it if found */
+> >       atif_handle = amdgpu_atif_probe_handle(handle);
+> >       if (!atif_handle)
+> > -             goto out;
+> > +             goto atcs;
+> >
+> >       atif = kzalloc(sizeof(*atif), GFP_KERNEL);
+> >       if (!atif) {
+> >               DRM_WARN("Not enough memory to initialize ATIF\n");
+> > -             goto out;
+> > +             goto atcs;
+> >       }
+> >       atif->handle = atif_handle;
+> >
+> > @@ -802,7 +832,7 @@ int amdgpu_acpi_init(struct amdgpu_device *adev)
+> >       if (ret) {
+> >               DRM_DEBUG_DRIVER("Call to ATIF verify_interface failed: %d\n", ret);
+> >               kfree(atif);
+> > -             goto out;
+> > +             goto atcs;
+> >       }
+> >       adev->atif = atif;
+> >
+> > @@ -811,7 +841,8 @@ int amdgpu_acpi_init(struct amdgpu_device *adev)
+> >               if (amdgpu_device_has_dc_support(adev)) {
+> >   #if defined(CONFIG_DRM_AMD_DC)
+> >                       struct amdgpu_display_manager *dm = &adev->dm;
+> > -                     atif->bd = dm->backlight_dev;
+> > +                     if (dm->backlight_dev)
+> > +                             atif->bd = dm->backlight_dev;
+> >   #endif
+> >               } else {
+> >                       struct drm_encoder *tmp;
+> > @@ -863,6 +894,28 @@ int amdgpu_acpi_init(struct amdgpu_device *adev)
+> >               atif->backlight_caps.caps_valid = false;
+> >       }
+> >
+> > +atcs:
+> > +     /* Probe for ATCS, and initialize it if found */
+> > +     atcs_handle = amdgpu_atcs_probe_handle(handle);
+> > +     if (!atcs_handle)
+> > +             goto out;
+> > +
+> > +     atcs = kzalloc(sizeof(*atcs), GFP_KERNEL);
+> > +     if (!atcs) {
+> > +             DRM_WARN("Not enough memory to initialize ATCS\n");
+> > +             goto out;
+> > +     }
+> > +     atcs->handle = atcs_handle;
+> > +
+> > +     /* Call the ATCS method */
+> > +     ret = amdgpu_atcs_verify_interface(atcs);
+> > +     if (ret) {
+> > +             DRM_DEBUG_DRIVER("Call to ATCS verify_interface failed: %d\n", ret);
+> > +             kfree(atcs);
+> > +             goto out;
+> > +     }
+> > +     adev->atcs = atcs;
+> > +
+> >   out:
+> >       adev->acpi_nb.notifier_call = amdgpu_acpi_event;
+> >       register_acpi_notifier(&adev->acpi_nb);
+> > @@ -893,6 +946,7 @@ void amdgpu_acpi_fini(struct amdgpu_device *adev)
+> >   {
+> >       unregister_acpi_notifier(&adev->acpi_nb);
+> >       kfree(adev->atif);
+> > +     kfree(adev->atcs);
+> >   }
+> >
+> >   /**
+> >
+>
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
