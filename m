@@ -2,37 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D7D338E9F5
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 May 2021 16:50:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1440138EA0D
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 May 2021 16:51:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7E476E879;
-	Mon, 24 May 2021 14:50:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 302296E87D;
+	Mon, 24 May 2021 14:51:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 845C06E870;
- Mon, 24 May 2021 14:50:39 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8612B61585;
- Mon, 24 May 2021 14:50:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB63F6E87B;
+ Mon, 24 May 2021 14:51:05 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D653961629;
+ Mon, 24 May 2021 14:51:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1621867839;
- bh=k5C6B80V97/999w9lzY6hsrf7kvKwJWQtz5GjPSoiEQ=;
+ s=k20201202; t=1621867865;
+ bh=uezxJvycNkTzWWdG2Ib8ONvFnB0mypIVT8Dl0Jn9muc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=NW5XykB43nvs9YK2vOiQLnhR1Lk0YgFI6vyh/bSV64uHqFEfb3Q3teFeFV7i4mZX4
- Qpg4W81BjEZtj8uk47vq4a8ZetcPSG44M39jFeI9ysp45qNhMKI0of7iGOj3vN8nVP
- bfxEfVJqHejQhdMV/mqlCtDbD44Xit0Y9LxXof7E0TDZeQnmFMEL0Uj+ff/iZzSyaR
- c7+TdGAGeXUGrubv4MHUIE9nsjIXICSUeSQxeNmswmWKLWXWlrvXB91Dg8OX9hK3Lb
- iN6xpFmPLCOhonzgTKSx5cXBau05rfMHUlduxLPHVbvIVZVV5NPTEdrTF/ZdFSFeMd
- pVXohdo7VNS4A==
+ b=NQ2tGJiYw7gm0aUm3oLI0FYEKsA9yV4s1mIjqqiiZipJxO8OgSb0fSAvzYH7HMsp9
+ RdwTTu8SKv6EU/OD3XlrguRzoc2Q/FjB1jPz6tSclvsWItt5RNM6lv0WmkE2FLHZoK
+ 2DysFvcLaZZIulUmtTCFQgtQCCR5gIGPLY9xKCz62I36yg1rF9knLjb0TQ7az+lOi0
+ 1sLDiLJ52FGijglQtuC5U5cN90cF966FUH2QUUHG2i6vnCp4EygrMAWK1QkEHZpk4X
+ wljeQcvkTTD5ZJQaHNQyCdrBDWSySJnHu80RsKhgV6JCKbBKohTMZkn4x+EzjPpvVN
+ bBEg0JyGY/6qA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 25/25] drm/amdgpu: Fix a use-after-free
-Date: Mon, 24 May 2021 10:50:08 -0400
-Message-Id: <20210524145008.2499049-25-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 21/21] drm/amdgpu: Fix a use-after-free
+Date: Mon, 24 May 2021 10:50:40 -0400
+Message-Id: <20210524145040.2499322-21-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210524145008.2499049-1-sashal@kernel.org>
-References: <20210524145008.2499049-1-sashal@kernel.org>
+In-Reply-To: <20210524145040.2499322-1-sashal@kernel.org>
+References: <20210524145040.2499322-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -79,13 +79,12 @@ bWQuY29tPgpTaWduZWQtb2ZmLWJ5OiBTYXNoYSBMZXZpbiA8c2FzaGFsQGtlcm5lbC5vcmc+Ci0t
 LQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3R0bS5jIHwgMSArCiAxIGZpbGUg
 Y2hhbmdlZCwgMSBpbnNlcnRpb24oKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1k
 L2FtZGdwdS9hbWRncHVfdHRtLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
-dHRtLmMKaW5kZXggNzU3ZmE0ODZhYWM0Li41MDgwN2Q2MjFlY2EgMTAwNjQ0Ci0tLSBhL2RyaXZl
+dHRtLmMKaW5kZXggZDA1N2JjMjliZjRjLi5iODRlZjIyOTVkNGYgMTAwNjQ0Ci0tLSBhL2RyaXZl
 cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfdHRtLmMKQEAgLTEyNzcsNiArMTI3Nyw3IEBAIHN0YXRpYyB2b2lk
-IGFtZGdwdV90dG1fdHRfdW5wb3B1bGF0ZShzdHJ1Y3QgdHRtX3R0ICp0dG0pCiAJaWYgKGd0dCAm
-JiBndHQtPnVzZXJwdHIpIHsKIAkJYW1kZ3B1X3R0bV90dF9zZXRfdXNlcl9wYWdlcyh0dG0sIE5V
-TEwpOwogCQlrZnJlZSh0dG0tPnNnKTsKKwkJdHRtLT5zZyA9IE5VTEw7CiAJCXR0bS0+cGFnZV9m
-bGFncyAmPSB+VFRNX1BBR0VfRkxBR19TRzsKIAkJcmV0dXJuOwogCX0KLS0gCjIuMzAuMgoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWls
-aW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+YW1kL2FtZGdwdS9hbWRncHVfdHRtLmMKQEAgLTEwMTAsNiArMTAxMCw3IEBAIHN0YXRpYyB2b2lk
+IGFtZGdwdV90dG1fdHRfdW5wb3B1bGF0ZShzdHJ1Y3QgdHRtX3R0ICp0dG0pCiAKIAlpZiAoZ3R0
+ICYmIGd0dC0+dXNlcnB0cikgewogCQlrZnJlZSh0dG0tPnNnKTsKKwkJdHRtLT5zZyA9IE5VTEw7
+CiAJCXR0bS0+cGFnZV9mbGFncyAmPSB+VFRNX1BBR0VfRkxBR19TRzsKIAkJcmV0dXJuOwogCX0K
+LS0gCjIuMzAuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
