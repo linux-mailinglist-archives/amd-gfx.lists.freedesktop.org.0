@@ -2,37 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D5D838EA14
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 May 2021 16:51:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92A5C38EA19
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 May 2021 16:51:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09D926E87E;
-	Mon, 24 May 2021 14:51:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACCD86E885;
+	Mon, 24 May 2021 14:51:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 045E76E87E;
- Mon, 24 May 2021 14:51:30 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0152561601;
- Mon, 24 May 2021 14:51:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CF486E883;
+ Mon, 24 May 2021 14:51:50 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7AC806191D;
+ Mon, 24 May 2021 14:51:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1621867889;
- bh=LOYDeiLrhcDP4zwaZTt1168ZKju0XGi4RobW7B2KpGU=;
+ s=k20201202; t=1621867910;
+ bh=Joz1eCpODLqPQKgdaHCknTXdIpMinnHu/FUByIrYEDg=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Oy0yA/cNPM7sgKuInXwnr4mciaANRQE2NWnu4PrRA/amWwa7lI6TF2TRX3eRjYToB
- q53L2Q/RL0ROGSEZ51zXulwxyEBndD9uw+ZjvRPkXvzUF3I6GY/u4ZwIvsgjY7LeN6
- wYh/8lZ3dwdwNhe2SaVi25eCqfm/Ykx4VUXcAvruNB4kBvCq2zGUYzWFmZGIHB4XR9
- tKLJszIIMIQY9Vara8zpQ5MEN5YrPBOpEbS920RxkIzVRMGrx1DAERimtPrJXA5r5B
- e6PB4dKwZOQEKYrkSM7piqm9B/OJTislB7cc6iu4+JRBQ8C0jCpPHkXpsPGvwtOyWl
- O4KmIyErbwrIg==
+ b=WEO703QcCjGlbeWYtFxdFQPusQIst0+7Ic/sZFvGXeVuJsYEWEBqwaJityhA9ajUu
+ SrRsPdjOa+ZqHiWp+BHqzQyKo5+UWsan7qv6tc6cB/q2RF/QHkGtDXMb2pk3uQ3FqU
+ ZPphXAj5k4lwocYLRWVNe1KXJuKFIZ/2oNQApw3uOrDBCpy/HeOk/416X4cKW4uYDx
+ fvsXbwvbkM/f6tIflFAcp4UH8+kTVdG4Y5jNoLF9MoTQThJJu5p9nguD+znTOG/O8M
+ 7IKqLcvPlNWP9aPc65cyZPplD0AQ/diVhWys/Xix3jmlPlYDvr72kmNZd2AVucvULk
+ jQgTvbdB0YTsA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 19/19] drm/amdgpu: Fix a use-after-free
-Date: Mon, 24 May 2021 10:51:06 -0400
-Message-Id: <20210524145106.2499571-19-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.4 16/16] drm/amdgpu: Fix a use-after-free
+Date: Mon, 24 May 2021 10:51:30 -0400
+Message-Id: <20210524145130.2499829-16-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210524145106.2499571-1-sashal@kernel.org>
-References: <20210524145106.2499571-1-sashal@kernel.org>
+In-Reply-To: <20210524145130.2499829-1-sashal@kernel.org>
+References: <20210524145130.2499829-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -79,9 +79,9 @@ bWQuY29tPgpTaWduZWQtb2ZmLWJ5OiBTYXNoYSBMZXZpbiA8c2FzaGFsQGtlcm5lbC5vcmc+Ci0t
 LQogZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3R0bS5jIHwgMSArCiAxIGZpbGUg
 Y2hhbmdlZCwgMSBpbnNlcnRpb24oKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1k
 L2FtZGdwdS9hbWRncHVfdHRtLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
-dHRtLmMKaW5kZXggNzI3MWUzZjMyZDgyLi5hYjA0MWFlNThiMjAgMTAwNjQ0Ci0tLSBhL2RyaXZl
+dHRtLmMKaW5kZXggNmJlYjNlNzZlMWM5Li4wMTRiODcxNDM4MzcgMTAwNjQ0Ci0tLSBhL2RyaXZl
 cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfdHRtLmMKQEAgLTg4Niw2ICs4ODYsNyBAQCBzdGF0aWMgdm9pZCBh
+YW1kL2FtZGdwdS9hbWRncHVfdHRtLmMKQEAgLTczNyw2ICs3MzcsNyBAQCBzdGF0aWMgdm9pZCBh
 bWRncHVfdHRtX3R0X3VucG9wdWxhdGUoc3RydWN0IHR0bV90dCAqdHRtKQogCiAJaWYgKGd0dCAm
 JiBndHQtPnVzZXJwdHIpIHsKIAkJa2ZyZWUodHRtLT5zZyk7CisJCXR0bS0+c2cgPSBOVUxMOwog
 CQl0dG0tPnBhZ2VfZmxhZ3MgJj0gflRUTV9QQUdFX0ZMQUdfU0c7CiAJCXJldHVybjsKIAl9Ci0t
