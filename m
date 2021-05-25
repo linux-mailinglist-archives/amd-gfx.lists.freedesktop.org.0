@@ -2,96 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1712438FF13
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 May 2021 12:30:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A466039012B
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 May 2021 14:42:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AE916E9E6;
-	Tue, 25 May 2021 10:29:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EB606EA04;
+	Tue, 25 May 2021 12:42:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2052.outbound.protection.outlook.com [40.107.244.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 973FE6E9E8
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 May 2021 10:29:03 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bk2iTOybViINw80Ue0ebM7aVG/0RVJyQn4qfcFpdyKo5ByPaTV48Qa9ssZHXuAY6ENC2afK7HbYYfYRA8RyFJ+AaYaf6tu1mIsb/oIySB3bP3PWLgjZElTnZ3rZ+6lNFB5YOpO/dzk2hgwsc6strwfTQ8XR0mnwkAfTmlR1uRcHCEpwu1o7weHt7JDyZaIpoRvUjRsojMXm0xPnjDPLWxNviUMTMsnlQ0gCvcLvL1Sxr1svBJY3JZYwoV++23LYMoq0DY2lepUBd85vzmCoVN+dtae1f081g/QzTJAkjEPxBK6pllkqSJX0+ouuAs/bsBv0V4iiFbhljtTXsywKrtQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qICGnACgoMO9NzOMZ/jTmRaP0B4MryxThM+F4+aPit4=;
- b=Vo0KoaZltqHUW2TDtFZP8anTxXkzkCc3FZoM0345zImRVFgerEutjgXPdQZIonRfz8QbF2TZMy3u8MeqyJzXjUcH+lU+mGAxtb6Uve6C1GG9vPP+YrAP/CjcOq4kxdbEM58A4vedsr6QLE4X187lwx+ecfs1A9RkbXUMmrhPdJezRoc0qZaWV5l/sn/G/wtdUjnFze+nclXQyZcH2NU5XMjQG+mmSVBfhXokBYj0/aE2SrcK7pd7GCKYqgXaP3O40KTpkhpvQeGv8VJfaZ+80ZyrOQZtkHT/K1paCPjet8kPP3PjQ2twSlYJbUUNd1pIM9k6WugEz8Z+oRq+WyAn6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qICGnACgoMO9NzOMZ/jTmRaP0B4MryxThM+F4+aPit4=;
- b=KfgCUZQBOl2cBuyRACS8kmBdotuKsNdRNjxMTKaYWFXm6cMHMwb+Kq86h9wttryWhK+2iz7iwJ+XjbVwgTAabAy1C/krpKYmGpygfK03dBapSNI4u1uA4nvQnGb8M6fZRDFm6agxQSHbzAaLEmcG5GRP4NDnPxhaINYCgNkmZNs=
-Received: from CO2PR04CA0131.namprd04.prod.outlook.com (2603:10b6:104:7::33)
- by BL0PR12MB2499.namprd12.prod.outlook.com (2603:10b6:207:43::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.26; Tue, 25 May
- 2021 10:29:02 +0000
-Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
- (2603:10b6:104:7:cafe::15) by CO2PR04CA0131.outlook.office365.com
- (2603:10b6:104:7::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20 via Frontend
- Transport; Tue, 25 May 2021 10:29:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4129.25 via Frontend Transport; Tue, 25 May 2021 10:29:01 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Tue, 25 May
- 2021 05:29:00 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Tue, 25 May
- 2021 05:29:00 -0500
-Received: from z-bu18.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4 via Frontend
- Transport; Tue, 25 May 2021 05:28:59 -0500
-From: Peng Ju Zhou <PengJu.Zhou@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: Change IP init sequence to support PSP program
- IH_RB_CNTL on NV12 SRIOV
-Date: Tue, 25 May 2021 18:28:52 +0800
-Message-ID: <20210525102852.2983-1-PengJu.Zhou@amd.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: daadfe9c-2d3d-4212-e968-08d91f67ea1d
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2499:
-X-Microsoft-Antispam-PRVS: <BL0PR12MB2499E4DCB1D7BC72451EBB08F8259@BL0PR12MB2499.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:660;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TilQ0ptMWOJOHSuPvrVl5WDus1hiGS8UwH8Rbax97Cm7xISZZeOnizC6gCfCi9EJUgR+JV8JMpP1q0zNiHfJ14RHmgoooADLI1LHOJHP7/KaPrUa4cQoyndAgaoxSlx35vl14S0nPgi/iGimm6UFEGNf0R6xT0WA6efPPPLJ9uEsqQ0TUJwZjohbO1t5Y+UgRz0MNAigqrJaJnzDbHdwSdvykU15RKZ1UoHpczZ98tFk4ByUZ+NyIir/ADG/UObYKKtwMxPC2IGnTVEfgJiQptKy2cfk2K0MVpjrXBM0BxH6DqrZ5UVacs2JVI3Cw5azrE1jqUDnP8cQSCEuChUmMiTqRtTzp1GNuG082FwkONJPNbIvY++23jmihz6oQVyOvJxJOrSgtaQPI+gfoE68bCkLdG5myZk746t3mD3KcLL5AfmuRP3gXlZaHEKjoz30RBxM0lTYPnKxoc4jGU7RGyxpqHCp/6MrCxh5WskIMnc/71C2YevXEUkBtik0Y/yUGzcPxcwR5XiKFMTpsYtQygO5HUttFGeoIYB3bRAUNc8SEIg1jJdl7oqw2DBXzm9XakpehoejsW/iD75MVEXLgtSb0MuVWBU23Ur7wzvOBCFtEubiQ446aFm+faOA5sROflj6PkfnkFcjKS3q+37kibSWIt469Zh4Zi12Rplz9wNB0kRkWQxN6yMPCeV26BIl
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(136003)(39860400002)(376002)(396003)(36840700001)(46966006)(26005)(186003)(336012)(70586007)(2616005)(86362001)(478600001)(82310400003)(316002)(426003)(5660300002)(4326008)(1076003)(7696005)(6666004)(6916009)(8936002)(82740400003)(2906002)(83380400001)(8676002)(81166007)(47076005)(356005)(70206006)(36756003)(36860700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2021 10:29:01.7898 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: daadfe9c-2d3d-4212-e968-08d91f67ea1d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2499
+Received: from out30-57.freemail.mail.aliyun.com
+ (out30-57.freemail.mail.aliyun.com [115.124.30.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1D9F6E9F7;
+ Tue, 25 May 2021 10:40:45 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R881e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04423;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=12; SR=0;
+ TI=SMTPD_---0Ua47xFf_1621939218; 
+Received: from
+ j63c13417.sqa.eu95.tbsite.net(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0Ua47xFf_1621939218) by smtp.aliyun-inc.com(127.0.0.1);
+ Tue, 25 May 2021 18:40:42 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: alexander.deucher@amd.com
+Subject: [PATCH v2] amdgpu: remove unreachable code
+Date: Tue, 25 May 2021 18:40:14 +0800
+Message-Id: <1621939214-57004-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 1.8.3.1
+X-Mailman-Approved-At: Tue, 25 May 2021 12:42:35 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,42 +39,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, airlied@linux.ie,
+ Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, sumit.semwal@linaro.org,
+ linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, christian.koenig@amd.com, linux-media@vger.kernel.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-To enable PSP program IH_RB_CNTL,
-the PSP IP should be initialized before IH IP, otherwise,
-it will hit psp NULL pointer.
+In the function amdgpu_uvd_cs_msg(), every branch in the switch
+statement will have a return, so the code below the switch statement
+will not be executed.
 
-Signed-off-by: Peng Ju Zhou <PengJu.Zhou@amd.com>
+Eliminate the follow smatch warning:
+
+drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c:845 amdgpu_uvd_cs_msg() warn:
+ignoring unreachable code.
+
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
 ---
- drivers/gpu/drm/amd/amdgpu/nv.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+Changes in v2:
+  -For the follow advice: https://lore.kernel.org/patchwork/patch/1435074/
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 437db0783b64..27ba0408a2aa 100644
---- a/drivers/gpu/drm/amd/amdgpu/nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -849,8 +849,13 @@ int nv_set_ip_blocks(struct amdgpu_device *adev)
- 	case CHIP_NAVI12:
- 		amdgpu_device_ip_block_add(adev, &nv_common_ip_block);
- 		amdgpu_device_ip_block_add(adev, &gmc_v10_0_ip_block);
--		amdgpu_device_ip_block_add(adev, &navi10_ih_ip_block);
--		amdgpu_device_ip_block_add(adev, &psp_v11_0_ip_block);
-+		if (!amdgpu_sriov_vf(adev)) {
-+			amdgpu_device_ip_block_add(adev, &navi10_ih_ip_block);
-+			amdgpu_device_ip_block_add(adev, &psp_v11_0_ip_block);
-+		} else {
-+			amdgpu_device_ip_block_add(adev, &psp_v11_0_ip_block);
-+			amdgpu_device_ip_block_add(adev, &navi10_ih_ip_block);
-+		}
- 		if (adev->firmware.load_type == AMDGPU_FW_LOAD_PSP)
- 			amdgpu_device_ip_block_add(adev, &smu_v11_0_ip_block);
- 		if (adev->enable_virtual_display || amdgpu_sriov_vf(adev))
+ drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
+index 82f0542..b32ed85 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
+@@ -840,7 +840,6 @@ static int amdgpu_uvd_cs_msg(struct amdgpu_uvd_cs_ctx *ctx,
+ 
+ 	default:
+ 		DRM_ERROR("Illegal UVD message type (%d)!\n", msg_type);
+-		return -EINVAL;
+ 	}
+ 	BUG();
+ 	return -EINVAL;
 -- 
-2.17.1
+1.8.3.1
 
 _______________________________________________
 amd-gfx mailing list
