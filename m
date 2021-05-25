@@ -1,40 +1,70 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 997A2390127
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 May 2021 14:42:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CFCA39014A
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 May 2021 14:47:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2603898F5;
-	Tue, 25 May 2021 12:42:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BA1B6EA07;
+	Tue, 25 May 2021 12:47:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from szxga05-in.huawei.com (szxga05-in.huawei.com [45.249.212.191])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E03D6E059;
- Tue, 25 May 2021 12:32:55 +0000 (UTC)
-Received: from dggems703-chm.china.huawei.com (unknown [172.30.72.58])
- by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4FqD0W5PZzzQs3D;
- Tue, 25 May 2021 20:29:15 +0800 (CST)
-Received: from dggpeml500023.china.huawei.com (7.185.36.114) by
- dggems703-chm.china.huawei.com (10.3.19.180) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 25 May 2021 20:32:31 +0800
-Received: from localhost.localdomain (10.69.192.56) by
- dggpeml500023.china.huawei.com (7.185.36.114) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 25 May 2021 20:32:31 +0800
-From: Shaokun Zhang <zhangshaokun@hisilicon.com>
-To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
-Subject: [PATCH] drm/radeon/evergreen: Remove the repeated declaration
-Date: Tue, 25 May 2021 20:32:24 +0800
-Message-ID: <1621945944-52797-1-git-send-email-zhangshaokun@hisilicon.com>
-X-Mailer: git-send-email 2.7.4
+Received: from userp2130.oracle.com (userp2130.oracle.com [156.151.31.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E9506EA06;
+ Tue, 25 May 2021 12:47:27 +0000 (UTC)
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+ by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 14PCdZng092275;
+ Tue, 25 May 2021 12:47:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
+ bh=0fsajLiKq3dAG0qs/eZDP0WUC0DG6tj2wIx7UTbk6ug=;
+ b=luEooYaQm2gZWD1cQgsISLJxeae76NyOxubEbc/uR1pKnWq3Q9ZbMGNxE2vmZhUzQ/77
+ edoHDh/U3461ghgsGLjklW+CgP4kjNC1aH/JSo/ii++DVQIgm/sKhDptBwC0doIyNu7P
+ Ts4WmqOF084yy/RoJwRUm/0Qdw+HK5gj9DeJjdhz1PFxZKdZyL8u7291+vSwjbb0KMOD
+ Lnx6+8wCaIP2fACBtlZ7O/znA0JShXsuWK4fZF0ichWqy/AVfoxXzZx4OebAMT1BT2c+
+ IBwHooHzEtI7R9dBYRfbxOOMfh4qHLEoEJuaX4418+h4VIogdP6aaiI2boO4HofU1MUV RQ== 
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
+ by userp2130.oracle.com with ESMTP id 38q3q8wcxd-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 25 May 2021 12:47:19 +0000
+Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
+ by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 14PCerbe064934;
+ Tue, 25 May 2021 12:47:18 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+ by aserp3020.oracle.com with ESMTP id 38reh9snkq-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 25 May 2021 12:47:18 +0000
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [127.0.0.1])
+ by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 14PClHLx110318;
+ Tue, 25 May 2021 12:47:17 GMT
+Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
+ by aserp3020.oracle.com with ESMTP id 38reh9snjt-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 25 May 2021 12:47:17 +0000
+Received: from abhmp0002.oracle.com (abhmp0002.oracle.com [141.146.116.8])
+ by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 14PClAbP000784;
+ Tue, 25 May 2021 12:47:10 GMT
+Received: from mwanda (/10.175.166.49) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Tue, 25 May 2021 12:47:10 +0000
+Date: Tue, 25 May 2021 15:46:55 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: Felix Kuehling <Felix.Kuehling@amd.com>
+Subject: [PATCH 1/2] drm/amdgpu: add missing unreserve on error
+Message-ID: <YKzxvyKEl/gNPg/r@mwanda>
 MIME-Version: 1.0
-X-Originating-IP: [10.69.192.56]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- dggpeml500023.china.huawei.com (7.185.36.114)
-X-CFilter-Loop: Reflected
-X-Mailman-Approved-At: Tue, 25 May 2021 12:42:35 +0000
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
+X-Proofpoint-GUID: mpE-O_OflR3KcX0cJ71_sicTnI4ZeKql
+X-Proofpoint-ORIG-GUID: mpE-O_OflR3KcX0cJ71_sicTnI4ZeKql
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9994
+ signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ mlxscore=0 clxscore=1011
+ malwarescore=0 bulkscore=0 impostorscore=0 phishscore=0 spamscore=0
+ adultscore=0 priorityscore=1501 mlxlogscore=999 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2104190000
+ definitions=main-2105250078
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,33 +76,46 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Shaokun Zhang <zhangshaokun@hisilicon.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: David Airlie <airlied@linux.ie>, Oak Zeng <Oak.Zeng@amd.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Ramesh Errabolu <Ramesh.Errabolu@amd.com>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-RnVuY3Rpb24gJ2V2ZXJncmVlbl9wcmludF9ncHVfc3RhdHVzX3JlZ3MnIGlzIGRlY2xhcmVkIHR3
-aWNlLCByZW1vdmUKdGhlIHJlcGVhdGVkIGRlY2xhcmF0aW9uLgoKQ2M6IEFsZXggRGV1Y2hlciA8
-YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4KQ2M6ICJDaHJpc3RpYW4gS8O2bmlnIiA8Y2hyaXN0
-aWFuLmtvZW5pZ0BhbWQuY29tPgpTaWduZWQtb2ZmLWJ5OiBTaGFva3VuIFpoYW5nIDx6aGFuZ3No
-YW9rdW5AaGlzaWxpY29uLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2V2ZXJncmVl
-bi5oIHwgMSAtCiAxIGZpbGUgY2hhbmdlZCwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9yYWRlb24vZXZlcmdyZWVuLmggYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9u
-L2V2ZXJncmVlbi5oCmluZGV4IDQwMjVhNGU0NzRkMS4uYjA3YmVmZTE0NDU4IDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2V2ZXJncmVlbi5oCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9yYWRlb24vZXZlcmdyZWVuLmgKQEAgLTQ1LDcgKzQ1LDYgQEAgdm9pZCBzdW1vX3JsY19maW5p
-KHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2KTsKIGludCBzdW1vX3JsY19pbml0KHN0cnVjdCBy
-YWRlb25fZGV2aWNlICpyZGV2KTsKIHZvaWQgZXZlcmdyZWVuX2dwdV9wY2lfY29uZmlnX3Jlc2V0
-KHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2KTsKIHUzMiBldmVyZ3JlZW5fZ2V0X251bWJlcl9v
-Zl9kcmFtX2NoYW5uZWxzKHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2KTsKLXZvaWQgZXZlcmdy
-ZWVuX3ByaW50X2dwdV9zdGF0dXNfcmVncyhzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRldik7CiB1
-MzIgZXZlcmdyZWVuX2dwdV9jaGVja19zb2Z0X3Jlc2V0KHN0cnVjdCByYWRlb25fZGV2aWNlICpy
-ZGV2KTsKIGludCBldmVyZ3JlZW5fcmxjX3Jlc3VtZShzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRl
-dik7CiBzdHJ1Y3QgZXZlcmdyZWVuX3Bvd2VyX2luZm8gKmV2ZXJncmVlbl9nZXRfcGkoc3RydWN0
-IHJhZGVvbl9kZXZpY2UgKnJkZXYpOwotLSAKMi43LjQKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vYW1kLWdmeAo=
+The amdgpu_bo_unreserve() has to be done on the error path as well.
+
+Fixes: b4f0f97b8f5f ("drm/amdgpu: Move kfd_mem_attach outside reservation")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index 928e8d57cd08..68109908a869 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+@@ -624,11 +624,10 @@ kfd_mem_attach_userptr(struct amdgpu_device *adev, struct kgd_mem *mem,
+ 				       0, ttm_bo_type_sg,
+ 				       mem->bo->tbo.base.resv,
+ 				       &gobj);
++	amdgpu_bo_unreserve(mem->bo);
+ 	if (ret)
+ 		return ret;
+ 
+-	amdgpu_bo_unreserve(mem->bo);
+-
+ 	*bo = gem_to_amdgpu_bo(gobj);
+ 	(*bo)->parent = amdgpu_bo_ref(mem->bo);
+ 
+-- 
+2.30.2
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
