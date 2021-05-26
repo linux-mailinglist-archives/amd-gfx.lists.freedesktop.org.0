@@ -1,62 +1,114 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F38C1391820
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 May 2021 14:57:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B0E3912D5
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 May 2021 10:48:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B47E96ECE2;
-	Wed, 26 May 2021 12:57:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D41F26EC46;
+	Wed, 26 May 2021 08:48:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
- [IPv6:2a00:1450:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02E2A6EC36
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 May 2021 08:47:57 +0000 (UTC)
-Received: by mail-wm1-x330.google.com with SMTP id
- u4-20020a05600c00c4b02901774b80945cso15026431wmm.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 May 2021 01:47:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=AktsaW6Bskrl1AG9i/afTuE+QfmnEvj7VSG37dmiSWQ=;
- b=AMLIuKLP7eSD0sQl6i4Ap0vsy36DUSOgzVtp8L5oSEfnpTJCzDcp/yKF22mI0y26sa
- SpDRKYEjS2uXTV5SIW5Vt8N8WRp8mz/NdmqBk3bbvU0awuGVjIZf8aKWVcK80HsUbptz
- RBz5KT8u+J8qZUe3iXi9/qnh67ZzNWd16LXytB8ttHMVFungJYt+R/wb8iI3y55ckGjo
- iKNvXoLB5a9wf23OAC6Jl3Gbg1005Vt3ykvMblCgbv4f3URaUYHZxKliCVHtiqPP2cgA
- gPQ8tMpzPPzPdJdyo/90eMDMW1QWpa13GO/7syQKyh+U67CCcZBpf2LETCS7N+LhXIpS
- ci6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=AktsaW6Bskrl1AG9i/afTuE+QfmnEvj7VSG37dmiSWQ=;
- b=mzEIHNCQAazR+MgXmIfmaC9t10pXN/wyieNaORqFMXmSbGo8rJtblKFTWhMMt7/mBA
- OTJWrFcknZakfWeZOarmw9ghQXS4XTicgrTrpgkgEydunJKoobyfwTnhm6I6hhrX8dHz
- eaS2tf4BlXUUjssSp6Vx7S8AM5S0IwDUGUJL/g+YlBwQnmHSWaSB+udGmoN0ysdiYoMc
- tCs9UsO+6wbH12C1jVfAzSpS1xDqpu0g7D5CLxDOSP939wOXuF34jybjecU9LPv5aoeV
- WG1UT75LEUqBZUa3tGBwkomP2gE84HLRHlzZWqkSs3nnx+QoLUgRUSAiJe9VoayPYjG6
- 7ixA==
-X-Gm-Message-State: AOAM530h1GZpRTU1ZvWZND6CcPMSiV3qFtObakuXyLfmzLsYkQGmf3ZH
- ftqrxqQzxGeKqaq9WAs6PSrVwQ==
-X-Google-Smtp-Source: ABdhPJwx3JNUrEk+A41Ghrk79W/6tF7/o6fr6xpd7rM4y6GJ9Wa2Ujsktlv5HTFdW68nwOBkfQ7m0Q==
-X-Received: by 2002:a1c:5443:: with SMTP id p3mr28003511wmi.101.1622018875645; 
- Wed, 26 May 2021 01:47:55 -0700 (PDT)
-Received: from dell.default ([91.110.221.223])
- by smtp.gmail.com with ESMTPSA id l18sm18911918wrt.97.2021.05.26.01.47.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 May 2021 01:47:55 -0700 (PDT)
-From: Lee Jones <lee.jones@linaro.org>
-To: lee.jones@linaro.org
-Subject: [PATCH 24/34] drm/amd/display/modules/hdcp/hdcp_psp: Remove unused
- function 'mod_hdcp_hdcp1_get_link_encryption_status()'
-Date: Wed, 26 May 2021 09:47:16 +0100
-Message-Id: <20210526084726.552052-25-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210526084726.552052-1-lee.jones@linaro.org>
-References: <20210526084726.552052-1-lee.jones@linaro.org>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2086.outbound.protection.outlook.com [40.107.243.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41B756EC3C
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 May 2021 08:48:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=V77ZFj0gzcCugrswGONUOHrMjSCWGbv7TJa/UB+HV7HH4nWvTnQ4Gjg1LRDZDLGXRuaawzRgnsdaaATSLKn6PfWIH4ZfGuuQtITQ0AAkHV1C02Q70xHgO5yN37DgL5crQ85g19C2RiiGPWuYkqn9i3lH2Trl5NLkGf+E3pgEb3ptPyn6NPzjttkONK6y7wMcmEsojpFtlp/gVndoj9RezPoPcsKLuLcHfJV08OOBLS742mGx9bx/E2pUUbwDkZBGG/Zce2A4Uhy0kEbw79sqzhQroCBZ676Cr0H629KjoKamUdJrNJAXxkt2rMpoIeasQI9qUvf+MN3nzyOzshPikA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0F1XLBsv/78lhwh1p0hxunAlJNx2zYakB2Ey/e+I9eQ=;
+ b=WdsqJkjHm1EdP+Ab3ufKO5buQ5C9AyaQoW9ICgQy9iMB4wFoS27h1GfTnb7bQ4UMgCIwLIZviaUJJlgkuVhVgffJidT4kdmEIip2rJdg7bkr6t+D7GavAuDNFLfyCZ8sPcdAUj03WFDC7kBkMZ1ZLU+7e4hYPMA21oF7ngkkei7Emgd9MBWqR8B9AavZYenpm0nLXNfn8Zq42sSmYXWUWNBkEt+F4z77k8szDabxflICJVnqazZxl9E7vDkU7Ov0sOYv65FmZLwZDz2AmcbS/3UKi23TEbeWjis+KcQh9xLcl7HJ6xsSH/0Rxut+7OwYGLAU5dwHFJv+cKPzeCRYLQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0F1XLBsv/78lhwh1p0hxunAlJNx2zYakB2Ey/e+I9eQ=;
+ b=OUpTJTpFPOpuR5OQ430msACm3+Y5DRtIsHQGYaTBacxsisLfdqipBAn4WOvwjwE2RiRJRRUFjj7gYT2aV2ZGV1UT1edztSCXWj/XemWprJ34FaJoEZ94jBxdbab9ZfnE+E80dEEOmMPt53lEJte8g6hZHRjdO+k2ahe+u462I3I=
+Received: from DM4PR12MB5136.namprd12.prod.outlook.com (2603:10b6:5:393::23)
+ by DM4PR12MB5232.namprd12.prod.outlook.com (2603:10b6:5:39c::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.21; Wed, 26 May
+ 2021 08:48:03 +0000
+Received: from DM4PR12MB5136.namprd12.prod.outlook.com
+ ([fe80::4074:4943:244:a5fa]) by DM4PR12MB5136.namprd12.prod.outlook.com
+ ([fe80::4074:4943:244:a5fa%6]) with mapi id 15.20.4150.027; Wed, 26 May 2021
+ 08:48:03 +0000
+From: "Das, Nirmoy" <Nirmoy.Das@amd.com>
+To: "Zhang, Morris" <Shiwu.Zhang@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH v2] drm/amdgpu: fix metadata_size for ubo ioctl queries
+Thread-Topic: [PATCH v2] drm/amdgpu: fix metadata_size for ubo ioctl queries
+Thread-Index: AQHXUdzHPw60lU3buEWuuRBv+0/Doar1c8fQ
+Date: Wed, 26 May 2021 08:48:03 +0000
+Message-ID: <DM4PR12MB513675AC97734E16B6D88DAD8B249@DM4PR12MB5136.namprd12.prod.outlook.com>
+References: <20210526031054.1122-1-shiwu.zhang@amd.com>
+In-Reply-To: <20210526031054.1122-1-shiwu.zhang@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-05-26T08:48:01Z; 
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
+ Only-AIP 2.0;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=fbba394b-4e0a-4d18-bc90-2ae5141d8c1a;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
+authentication-results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [2003:c5:8f26:4300:d522:207b:ae82:4dad]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 4031f3bf-c67c-44af-70fa-08d92022f990
+x-ms-traffictypediagnostic: DM4PR12MB5232:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM4PR12MB523247879561BF0EFC89EB618B249@DM4PR12MB5232.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1775;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: cDu19ATza03HhkPOaGI83hVmEsDkxfa/ytIaWq9sBjLqEMyPBAlVBJKR/BcBYI9Oht1ZWayvVD/MwLcSkLWoeWDFP2A4dKbDgaz6VTkpa17mZN6Mrd9K606i7EqbEZiNAix+ZLOtg4rzYF2I8DlYWhIbGDpsEfxwoyhlEQC0XggwE7v1iSN9/c4h3ofpOI9iM+k2aGIBcw5pJdGwueVKaU56M8khFdmGGqd70Y03x96JhaMDutZ1R0i7bnhld8O13GczzBT+DBGKiba27Euv/OPlpJsLYFl2O2qDsptwppdw4RYHKBCkT90QqP6NXBHCTpe51lCB12ScsTuuZajw3tK/QbpC38Q5ziejXeb8lGq25gb5IHzRSUY2p7xpWsWuA8gYDgMQq+IzQhZIngGQJywNZzv/2sghoccz/5+jbUG1LTx6VrT5kKVJik4rdpFi5jV3U8mIcY4G01S2s6ezvcfG5MxvnoV5pvnIl/tjrJ+Wr7tuUP6ZF8rmcMsZn/skRd5jUg7KBg6M5AdCNP85xCUBEefucaixYcxWgupsLKT0oX/7bgxxajfEuq4kEhH4LJAu0EjXbQXxLu9cX5paARFksWUioqfC2aejrJ0t1wA=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5136.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(136003)(39860400002)(376002)(346002)(366004)(52536014)(5660300002)(66476007)(66946007)(66556008)(64756008)(76116006)(33656002)(66446008)(9686003)(71200400001)(86362001)(2906002)(83380400001)(186003)(478600001)(53546011)(6506007)(8936002)(110136005)(316002)(122000001)(38100700002)(7696005)(8676002)(55016002);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?Jh4vdXtrvyLy020Rv7RiSYskBBmBoN7rp9k0HkvnehuXPRKFDZwAKUy91fud?=
+ =?us-ascii?Q?LpMW8dPXepdsY7AXI5MPmLTorXDnO4TU/c+QRWl7gGnqrSvY/nIwLA1ebNGL?=
+ =?us-ascii?Q?1O1yn2xRWdLyJDu8ooB/P95NQmSntnpnZjbRPMkOhQDAN+zxAowudCCHNlL0?=
+ =?us-ascii?Q?BgQTo4M5gToxsRAZVRhRFtFS9eBmcvr1CdIW7PUp+ATTtKzCzkBXlPXcUYhF?=
+ =?us-ascii?Q?MveH459OrrSKkjHeWsu/tDpBx2woDSZxMFGtRpk2hYyPD+G6OR+CqfqNDfiJ?=
+ =?us-ascii?Q?utdWPWx1ktnmIhtHvq79mXYFkfP4HL6XQYsP2KR1AlGrFhCGPPziC4jaEFR4?=
+ =?us-ascii?Q?X2zsPSCAO5kWtKKi0va/l4kSJAnCufJlF7Di6bXiFwj/uhxEmdBOtDQuCUvL?=
+ =?us-ascii?Q?q1O1UORTZO35SecBqZmOI4qevOL6YMiw1kKtaT6euRdu/0lVzgcaW2ULK8L4?=
+ =?us-ascii?Q?A7A5utS8EwrgNTmNXWu/t2PVrKN5zqBrZgI0Qb+v5m+VElI/3i0s4vznwvDg?=
+ =?us-ascii?Q?gmgffC2Hmx41k+JXbdtqBRQn89P3TutqqVcjSNypWu2VWMq0n4V6/vTrPau9?=
+ =?us-ascii?Q?Rdh7h1FawW7b5BouaEv9zWunMahWLYmJmp9U4oqVcBHOU5ke+XwhKIuZi3vl?=
+ =?us-ascii?Q?oMGg81Crhx//2COtLapb7ooEESdGoQq8QPtfF+nx0VrPeaYRQUxQ8ZkvRtVB?=
+ =?us-ascii?Q?roN08RMHmI9cbUlLMsgau4rznp/5xW36ENH4Wn0vqKRjK8OMNNHEZtwNqRBs?=
+ =?us-ascii?Q?2gywJePpJmJBXKeypEBsW22uAVwkhEB01umoPUF4+uRTmMbXNLDLUWCYs2ZT?=
+ =?us-ascii?Q?4wmhYJuuHWHdGbK57xGYe0jw4b1ywPo1J/DNhaIeRCjlIbTRtXoTdNPWvv+k?=
+ =?us-ascii?Q?UwSs5IepEl/EhChtsYI9fT9qzxxQe+JOrGJ2cuwZ8ptMEj9IfQcOOIVqTUCP?=
+ =?us-ascii?Q?kozYXsrf8XTwWQrDsk9yqlrl9JTMnDcDnfxJapVXmUeeJXENblJ1MRz7eD7a?=
+ =?us-ascii?Q?T5YFx0VMS8/sG/KWsLy/hX05avL2SXIwd+H1QqdQzTIYxS9bKFzDWKlAI8ss?=
+ =?us-ascii?Q?e5EuCAxvgrLe/hZJMI4d5WXnT9OZ2b4owhwuyDPxaHvH+SGv+ZZF5fnV5035?=
+ =?us-ascii?Q?ZKVi/m20BGdFhVK47VyCXO+6GTNOKSP5APm/Aec1TQbSS6S4AC9EHJkbV7aE?=
+ =?us-ascii?Q?aT2FVbDY0xLRskFYKyL3LUPMqGE/cDlKQhIvc09mp9SD+LtxxRGXD8fCl5me?=
+ =?us-ascii?Q?C2WUhe2jBmGCWqPslrPGtNGwSz62CjvqRCWGk7y7jjo6munO2k8dM+USKbng?=
+ =?us-ascii?Q?sxcSA1ppc4Mx5YTZYKPw5k5sisa+sSrVh3OHiHGqfzA4O51Y4j1HP7sm2RjL?=
+ =?us-ascii?Q?sHsNYNA=3D?=
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 26 May 2021 12:57:23 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5136.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4031f3bf-c67c-44af-70fa-08d92022f990
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 May 2021 08:48:03.6092 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ctOB1VVN5auVporcSsNZWYcWMq3XKMdOvg7rl8OZPU6EzHkvjgCEJ8T7aJh+gt3HBoZNF9ZrgEbRSXUj3sXy2g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5232
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,46 +120,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rml4ZXMgdGhlIGZvbGxvd2luZyBXPTEga2VybmVsIGJ1aWxkIHdhcm5pbmcocyk6CgogZHJpdmVy
-cy9ncHUvZHJtL2FtZC9hbWRncHUvLi4vZGlzcGxheS9tb2R1bGVzL2hkY3AvaGRjcF9wc3AuYzoz
-NzQ6MjI6IHdhcm5pbmc6IG5vIHByZXZpb3VzIHByb3RvdHlwZSBmb3Ig4oCYbW9kX2hkY3BfaGRj
-cDFfZ2V0X2xpbmtfZW5jcnlwdGlvbl9zdGF0dXPigJkgWy1XbWlzc2luZy1wcm90b3R5cGVzXQoK
-Q2M6IEhhcnJ5IFdlbnRsYW5kIDxoYXJyeS53ZW50bGFuZEBhbWQuY29tPgpDYzogTGVvIExpIDxz
-dW5wZW5nLmxpQGFtZC5jb20+CkNjOiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFt
-ZC5jb20+CkNjOiAiQ2hyaXN0aWFuIEvDtm5pZyIgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4K
-Q2M6IERhdmlkIEFpcmxpZSA8YWlybGllZEBsaW51eC5pZT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRh
-bmllbEBmZndsbC5jaD4KQ2M6IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCkNjOiBkcmkt
-ZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnClNpZ25lZC1vZmYtYnk6IExlZSBKb25lcyA8bGVl
-LmpvbmVzQGxpbmFyby5vcmc+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L21vZHVs
-ZXMvaGRjcC9oZGNwX3BzcC5jIHwgMTMgLS0tLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDEz
-IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9t
-b2R1bGVzL2hkY3AvaGRjcF9wc3AuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9tb2R1
-bGVzL2hkY3AvaGRjcF9wc3AuYwppbmRleCAyNmY5NmMwNWUwZWM4Li4wNjkxMGQyZmQ1N2EwIDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvbW9kdWxlcy9oZGNwL2hkY3Bf
-cHNwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L21vZHVsZXMvaGRjcC9oZGNw
-X3BzcC5jCkBAIC0zNzEsMTkgKzM3MSw2IEBAIGVudW0gbW9kX2hkY3Bfc3RhdHVzIG1vZF9oZGNw
-X2hkY3AxX2xpbmtfbWFpbnRlbmFuY2Uoc3RydWN0IG1vZF9oZGNwICpoZGNwKQogCXJldHVybiBz
-dGF0dXM7CiB9CiAKLWVudW0gbW9kX2hkY3Bfc3RhdHVzIG1vZF9oZGNwX2hkY3AxX2dldF9saW5r
-X2VuY3J5cHRpb25fc3RhdHVzKHN0cnVjdCBtb2RfaGRjcCAqaGRjcCwKLQkJCQkJCQkgICAgICAg
-ZW51bSBtb2RfaGRjcF9lbmNyeXB0aW9uX3N0YXR1cyAqZW5jcnlwdGlvbl9zdGF0dXMpCi17Ci0J
-KmVuY3J5cHRpb25fc3RhdHVzID0gTU9EX0hEQ1BfRU5DUllQVElPTl9TVEFUVVNfSERDUF9PRkY7
-Ci0KLQlpZiAobW9kX2hkY3BfaGRjcDFfbGlua19tYWludGVuYW5jZShoZGNwKSAhPSBNT0RfSERD
-UF9TVEFUVVNfU1VDQ0VTUykKLQkJcmV0dXJuIE1PRF9IRENQX1NUQVRVU19GQUlMVVJFOwotCi0J
-KmVuY3J5cHRpb25fc3RhdHVzID0gTU9EX0hEQ1BfRU5DUllQVElPTl9TVEFUVVNfSERDUDFfT047
-Ci0KLQlyZXR1cm4gTU9EX0hEQ1BfU1RBVFVTX1NVQ0NFU1M7Ci19Ci0KIGVudW0gbW9kX2hkY3Bf
-c3RhdHVzIG1vZF9oZGNwX2hkY3AyX2NyZWF0ZV9zZXNzaW9uKHN0cnVjdCBtb2RfaGRjcCAqaGRj
-cCkKIHsKIAlzdHJ1Y3QgcHNwX2NvbnRleHQgKnBzcCA9IGhkY3AtPmNvbmZpZy5wc3AuaGFuZGxl
-OwotLSAKMi4zMS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+[AMD Official Use Only]
+
+Reviewed-by: Nirmoy Das <nirmoy.das@amd.com>
+
+-----Original Message-----
+From: Zhang, Morris <Shiwu.Zhang@amd.com> 
+Sent: Wednesday, May 26, 2021 5:11 AM
+To: amd-gfx@lists.freedesktop.org; Das, Nirmoy <Nirmoy.Das@amd.com>
+Subject: [PATCH v2] drm/amdgpu: fix metadata_size for ubo ioctl queries
+
+Although the kfd_ioctl_get_dmabuf_info() still fail it will indicate the caller right metadat_size useful for the same kfd ioctl next time.
+
+Signed-off-by: Shiwu Zhang <shiwu.zhang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index 3f85ba8222ef..2d876e1eaa7c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -1213,6 +1213,9 @@ int amdgpu_bo_get_metadata(struct amdgpu_bo *bo, void *buffer,
+ 
+ 	BUG_ON(bo->tbo.type == ttm_bo_type_kernel);
+ 	ubo = to_amdgpu_bo_user(bo);
++	if (metadata_size)
++		*metadata_size = ubo->metadata_size;
++
+ 	if (buffer) {
+ 		if (buffer_size < ubo->metadata_size)
+ 			return -EINVAL;
+@@ -1221,8 +1224,6 @@ int amdgpu_bo_get_metadata(struct amdgpu_bo *bo, void *buffer,
+ 			memcpy(buffer, ubo->metadata, ubo->metadata_size);
+ 	}
+ 
+-	if (metadata_size)
+-		*metadata_size = ubo->metadata_size;
+ 	if (flags)
+ 		*flags = ubo->metadata_flags;
+ 
+--
+2.17.1
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
