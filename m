@@ -1,54 +1,55 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00100392090
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 May 2021 21:08:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2967C3920DC
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 May 2021 21:29:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 750886E50E;
-	Wed, 26 May 2021 19:08:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 975536E7D7;
+	Wed, 26 May 2021 19:29:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com
- [IPv6:2607:f8b0:4864:20::22a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DE976E50E
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 May 2021 19:08:14 +0000 (UTC)
-Received: by mail-oi1-x22a.google.com with SMTP id c196so2564184oib.9
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 May 2021 12:08:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=FZtcI192k1h7O1bxJqVvAlksUJlYcgtyVwuoikHseMw=;
- b=lALfFEc7Y6xQk3+FqncwF3MCOAN+mq1sl2xa/i/0z9tnghKY++lzNeKCnQye3WCv9d
- 877mz+mlyWKUliM+OX6m/dCZqxLoQANuLBG8TloqkX0FZ0OJooVqzcJhmvB86bWA8cnL
- SgFAFlY3AvTPDTav/8vnZ9g/0mgMqcap26ABZDqCcyoVe3v5Zhdv3hZWCETFobQ2Oyx0
- yMfcIzx7iGJ5aVo9ddYNUe4qwBOeEM0i9lJ/ZxxPZV3CbIml5gCF4AQgAJfOC57v28Nz
- RN6hImCGuCnB2iInr8o89q8/XnSVFwhDkGyl59npWXaz5up7mW0zfDJ651Q/xy36DJsu
- v1wQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=FZtcI192k1h7O1bxJqVvAlksUJlYcgtyVwuoikHseMw=;
- b=MQG9SKpiiKEhAeKnP2VQtBY4OL9hQyxrlGOxdYo4DOpfHaWKn0+6Nr2iJy0a47xD4O
- SsB3mCZVjFjyIglSmcxSDA30LhBT/n3o92DCm/z7pofBxgJurXgQAufD7mbED2mkGLAS
- llpuCy+EwPsQDyIa/uYC3h/iOsknIgIzyI/lCtTBXUKoDhOodtKPJ0lTZSovmK5i5MKq
- GCAVppFJW1CR77XdV013KVwTOdvY6kwDU7UFWqQnLEYEQKF/YHkD3hGyLLJWIYLoEKnr
- YBdXzUJeN6QyDgOki9nDMTfI7vykp+wEPawGkMCoBnIF0NCYNW5yAtMSadHBcvcBIqP3
- cQgA==
-X-Gm-Message-State: AOAM532vIqpYaK/Ur8kfqIeLTnk/VnT8DXRgwczKZmYCc1EauJezywTv
- 4aoY+M6VzeSrJTAod1hMTbyyCsZhQJxcmLh+e/8=
-X-Google-Smtp-Source: ABdhPJydhO5qOqxCZ0okale+hfpUc7S5IXqNYLqMZpWR7EK/eCaPEAHIpRTcEbpUGo2lDvkA/yueZVdPsiaJcXQLI+A=
-X-Received: by 2002:a05:6808:1592:: with SMTP id
- t18mr2948814oiw.123.1622056093598; 
- Wed, 26 May 2021 12:08:13 -0700 (PDT)
+X-Greylist: delayed 467 seconds by postgrey-1.36 at gabe;
+ Wed, 26 May 2021 19:29:00 UTC
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BE206E7D7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 May 2021 19:29:00 +0000 (UTC)
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+ (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id D7E4E1FD2E;
+ Wed, 26 May 2021 19:21:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1622056871; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=K+JRyDtb43BK8hz5sxtefi1nsKcbhydV8fxocpZ+PH4=;
+ b=JEhs7MtgZiPRF+vg409OxyR5gfxPdEETSplBVwvwEF9qnrLONQpFyTFFIuN6RUTeF7UP1O
+ I73KAFLCE+D4xn1OTGF1ysWrhIt6bov4hStzwmU+RlNexqREFctO1+Qvk0ZL/lRBI/XEQO
+ brnEknd5WYLR87BAnC4W6q1PZQfmRZ0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1622056871;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=K+JRyDtb43BK8hz5sxtefi1nsKcbhydV8fxocpZ+PH4=;
+ b=/VM3ExnbBXtJ+AvE5bqz4CL+/5vlTfQ1jhH634EIZnJ3zfIHMTyWAmvbr7nzvhzd7D9Eud
+ 0uITj5Ohy3rZm/DQ==
+Received: from director2.suse.de (director2.suse-dmz.suse.de [192.168.254.72])
+ by imap.suse.de (Postfix) with ESMTPSA id 95EC211A98;
+ Wed, 26 May 2021 19:21:11 +0000 (UTC)
+Subject: Re: [PATCH 0/4] drm: Finally retire struct drm_format_name_buf
+To: airlied@linux.ie, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, alexander.deucher@amd.com, christian.koenig@amd.com,
+ sakari.ailus@linux.intel.com
+References: <20210516121315.30321-1-tzimmermann@suse.de>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <057a9a16-3ed7-b159-22d7-33f1dc523d14@suse.de>
+Date: Wed, 26 May 2021 21:21:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-References: <20210526101310.1872892-1-xin2.li@amd.com>
-In-Reply-To: <20210526101310.1872892-1-xin2.li@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 26 May 2021 15:08:02 -0400
-Message-ID: <CADnq5_MZK5B0KYw3Kd_Motkw5gyuOdzNJA+avCKw2a2b1qz02w@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: Fix Gstreamer api vaapih264enc missing
-To: "Li, Xin (Justin)" <xin2.li@amd.com>
+In-Reply-To: <20210516121315.30321-1-tzimmermann@suse.de>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,118 +61,112 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Alex . Deucher" <alexander.deucher@amd.com>,
- "Frank . Min" <Frank.Min@amd.com>,
- "Christian . Konig" <christian.koenig@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0871815374=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 26, 2021 at 6:13 AM Li, Xin (Justin) <xin2.li@amd.com> wrote:
->
-> since vcn decoding ring is not required, so just disable it.
->
-> Cc: Alex.Deucher <alexander.deucher@amd.com>
-> Cc: Christian.Konig <christian.koenig@amd.com>
-> Signed-off-by: Li.Xin.Justin <xin2.li@amd.com>
-> Signed-off-by: Frank.Min <Frank.Min@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c |  6 +++---
->  drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c   | 25 ++++++++++++++-----------
->  2 files changed, 17 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> index 524e4fe5efe8..614e6b06e94e 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> @@ -427,7 +427,9 @@ static int amdgpu_hw_ip_info(struct amdgpu_device *adev,
->                         if (adev->uvd.harvest_config & (1 << i))
->                                 continue;
->
-> -                       if (adev->vcn.inst[i].ring_dec.sched.ready)
-> +                       if (adev->vcn.inst[i].ring_dec.sched.ready ||
-> +                               (adev->asic_type == CHIP_NAVI12 &&
-> +                               amdgpu_sriov_vf(adev)))
->                                 ++num_rings;
->                 }
->                 ib_start_alignment = 16;
-> @@ -770,8 +772,6 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
->                         dev_info->ids_flags |= AMDGPU_IDS_FLAGS_FUSION;
->                 if (amdgpu_mcbp || amdgpu_sriov_vf(adev))
->                         dev_info->ids_flags |= AMDGPU_IDS_FLAGS_PREEMPTION;
-> -               if (amdgpu_is_tmz(adev))
-> -                       dev_info->ids_flags |= AMDGPU_IDS_FLAGS_TMZ;
->
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0871815374==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="MI1sSn2GKxbjEmxRDTmzleGqKZcAUJUKO"
 
-This looks unrelated and should be dropped.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--MI1sSn2GKxbjEmxRDTmzleGqKZcAUJUKO
+Content-Type: multipart/mixed; boundary="dX6T4z4iU9tsVAV89Djob5TO4xnerYbx6";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: airlied@linux.ie, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, alexander.deucher@amd.com, christian.koenig@amd.com,
+ sakari.ailus@linux.intel.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <057a9a16-3ed7-b159-22d7-33f1dc523d14@suse.de>
+Subject: Re: [PATCH 0/4] drm: Finally retire struct drm_format_name_buf
+References: <20210516121315.30321-1-tzimmermann@suse.de>
+In-Reply-To: <20210516121315.30321-1-tzimmermann@suse.de>
 
->                 vm_size = adev->vm_manager.max_pfn * AMDGPU_GPU_PAGE_SIZE;
->                 vm_size -= AMDGPU_VA_RESERVED_SIZE;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-> index 8af567c546db..dc8a36766c4a 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
-> @@ -220,17 +220,20 @@ static int vcn_v2_0_hw_init(void *handle)
->  {
->         struct amdgpu_device *adev = (struct amdgpu_device *)handle;
->         struct amdgpu_ring *ring = &adev->vcn.inst->ring_dec;
-> -       int i, r;
-> +       int i, r = -1;
->
->         adev->nbio.funcs->vcn_doorbell_range(adev, ring->use_doorbell,
->                                              ring->doorbell_index, 0);
->
-> -       if (amdgpu_sriov_vf(adev))
-> +       if (amdgpu_sriov_vf(adev)) {
->                 vcn_v2_0_start_sriov(adev);
-> -
-> -       r = amdgpu_ring_test_helper(ring);
-> -       if (r)
-> -               goto done;
-> +               if (adev->asic_type == CHIP_NAVI12)
-> +                       ring->sched.ready = false;
-> +       } else {
-> +               r = amdgpu_ring_test_helper(ring);
-> +               if (r)
-> +                       goto done;
-> +       }
->
->         //Disable vcn decode for sriov
->         if (amdgpu_sriov_vf(adev))
-> @@ -245,8 +248,11 @@ static int vcn_v2_0_hw_init(void *handle)
->
->  done:
->         if (!r)
-> -               DRM_INFO("VCN decode and encode initialized successfully(under %s).\n",
-> -                       (adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG)?"DPG Mode":"SPG Mode");
-> +               DRM_INFO("VCN %s encode initialized successfully(under %s).\n",
-> +                       (adev->asic_type == CHIP_NAVI12 &&
-> +                               amdgpu_sriov_vf(adev))?"":"decode and",
-> +                       (adev->pg_flags &
-> +                               AMD_PG_SUPPORT_VCN_DPG)?"DPG Mode":"SPG Mode");
->
->         return r;
->  }
-> @@ -1721,9 +1727,6 @@ int vcn_v2_0_dec_ring_test_ring(struct amdgpu_ring *ring)
->         unsigned i;
->         int r;
->
-> -       if (amdgpu_sriov_vf(adev))
-> -               return 0;
-> -
->         WREG32(adev->vcn.inst[ring->me].external.scratch9, 0xCAFEDEAD);
->         r = amdgpu_ring_alloc(ring, 4);
->         if (r)
+--dX6T4z4iU9tsVAV89Djob5TO4xnerYbx6
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+ping for further a-bs / r-bs
+
+Am 16.05.21 um 14:13 schrieb Thomas Zimmermann:
+> This is a cleanup patchset to remove drm_format_name_buf et al. There
+> are two instances in drivers that need to be replaced with the %4cc
+> printk format modifier. Patch 3 was left over back from an earlier
+> patchset. [1] Patch 4 removes struct drm_format_name_buf.
+>=20
+> I built-tested with drm-tip. The patchsetcan be mered through drm-misc.=
+
+>=20
+> [1] https://lore.kernel.org/dri-devel/20210216155723.17109-1-sakari.ail=
+us@linux.intel.com/
+>=20
+> Sakari Ailus (1):
+>    drm: Remove drm_get_format_name()
+>=20
+> Thomas Zimmermann (3):
+>    drm/amdgpu: Use %p4cc to print 4CC format
+>    drm/simpledrm: Use %p4cc to print 4CC format
+>    drm/fourcc: Remove struct drm_format_buf_name
+>=20
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_display.c |  7 ++----
+>   drivers/gpu/drm/drm_fourcc.c                | 25 --------------------=
+-
+>   drivers/gpu/drm/tiny/simpledrm.c            |  6 ++---
+>   include/drm/drm_fourcc.h                    |  9 --------
+>   4 files changed, 4 insertions(+), 43 deletions(-)
+>=20
 > --
-> 2.25.1
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+> 2.31.1
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--dX6T4z4iU9tsVAV89Djob5TO4xnerYbx6--
+
+--MI1sSn2GKxbjEmxRDTmzleGqKZcAUJUKO
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmCun6cFAwAAAAAACgkQlh/E3EQov+C/
+3w/+L8qbXyDeMUaqfn8SYyXoj3Px0NPnKYvufflVQXnNXTq3NkP4s3BeWCDYsKeat5uLCgJx9Uj7
+wtBdtvI7Nh+bCSZR55KHL02hu0iSiaNM+Tnj34sJ9pSo+gWiDx8YgDCYtOFRjw6xmElVsuPieZs8
+ciQXr5cHc0kCFHdArQD0ECbt8xqmrlXC8SqlE3c5vWhNFnIKv19LLG/Ns2r2HN3IxYXH1qRNT8lH
+ErFmbuuV0Udxir6TMgBeD8obXs/rF1XAfVWNPVPVPnRWweyBW13xhRq2sSsenXC68e1jqTCxCu9n
+/WhrxXWLYIAB1Ip7jjKrA8c0sUr8ycYKm3fLkppa5uXqaZxOR2SsiVMCYjNTFToEBsnTD4TolBzp
+CmQvC1bTymI0GgtJadhE6hL50gIIOxMy1XWMGTHqIT610pBmDFdoN0+JABkvzCf+mVvOaa3H+YJb
+7ZGnSlMdpWvLelckSx7bXH1xRvrAYbHanKR+yzMHpKKxvnHLulf1SocfJMOpfttbGDMqFS8fN791
+vDH6rgEyRI78YDrplC4S6jDT+qdwtES+bNHFhrTQRtgefxi3uAic10cwpMZ2nrL9vt+Ck0B0WemS
+sO/KObixvB+odf7XC865fIYTIQmWHRkv4WQBakFSp6aCGKByHpVQzSjPfKjK4hXWy0TTS73loipc
+SpI=
+=NRYE
+-----END PGP SIGNATURE-----
+
+--MI1sSn2GKxbjEmxRDTmzleGqKZcAUJUKO--
+
+--===============0871815374==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0871815374==--
