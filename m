@@ -2,64 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB9A43917AD
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 May 2021 14:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A7FE39187C
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 May 2021 15:04:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 560926E4A2;
-	Wed, 26 May 2021 12:44:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BC25897E0;
+	Wed, 26 May 2021 13:04:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
- [IPv6:2a00:1450:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 499406E4A2
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 May 2021 12:44:10 +0000 (UTC)
-Received: by mail-wm1-x329.google.com with SMTP id
- n5-20020a1c72050000b0290192e1f9a7e1so432718wmc.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 May 2021 05:44:10 -0700 (PDT)
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com
+ [IPv6:2607:f8b0:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95114897E0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 May 2021 13:04:20 +0000 (UTC)
+Received: by mail-ot1-x332.google.com with SMTP id
+ h24-20020a9d64180000b029036edcf8f9a6so923175otl.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 May 2021 06:04:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-transfer-encoding:content-language;
- bh=BRmhB5aN/yVDY4wIdaHP/dNZeCpCgz5VuiuyJz6KLxw=;
- b=cAUalqGXArmkUXaFT57+SPba9U8mzJV5QspD+FKFj1w4Y/lySx3xBh5o0UohZztynJ
- 6EoU1vsXek7392Vjofd2r6M9qFJK8/voHyviNvwJaQsVQLftTKR+8QabYAa7pLPjhxSZ
- r/ZpnRoO9URa4Ag+/e2NW1/IGep5qQ3zcElv97pNbRHqYKYWpoyc5tnDAxe4pCcPpNBn
- 1vfbqcVlAwx3U5VnszO6RwOfPtFY+7d/6x05izFx0fajoimOWw0hLFOMBJyB/O9dX4GE
- KNN3iE1gAR+E5aIpn1rfBBSfzLRpxMpnaOTdWxiIfd+L032FdTfvt3gS/wY0MG1DUVKh
- BSmw==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=E7lnBn6gtlT4pHAbocCm3Lz5cROgKSEt1zW2UhsRNFI=;
+ b=N4o2MbOkwX4N0r3k2gB3PeYsVMBzlC0IkDyQRWRTVQsw1mOl/XIieTQ4keLeUTN1gQ
+ XIP9hXxS73gcjIQWU31mk82jnD0QMJbH3c3yNgsWL+PhRDRGxUz0Ie8X76StBC32uYKR
+ ZKzS8intaS8Ef9YQHr5HEopT+GVDdHOv4tnzk8DptYhVolWvxka+5v1oomrM4A4/Qe+L
+ F/LwOwyAhqNgfkIbcYilSndIMc0U6Hbnw20iD1wQTubi4O8cw75ykO/ZAqjOkxXqc6ET
+ ojj4JGDjXqtpyFlW/8GPLYSAWWzWiA32SBogu6igBRUua9dQwUroj++4/KahOY5le48a
+ fNbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=BRmhB5aN/yVDY4wIdaHP/dNZeCpCgz5VuiuyJz6KLxw=;
- b=b/f9QoMA7NWHEjFLlzN4GfUH2GOzibOwpnZR0MiBTfhoeeC7c+ZItDJsu9gu074O7w
- RyrKQJ9HzwW3unrxtnv8nXfXmcOBWlppRfQR3YqRQ2k5nzvMO1PJ1XxqYVHfEL883F/E
- Tz5k7WT6QazHYfI0J+5eYcRE5EH+QrtHV137m7gFfZkRS1zt18FQlDuk+uMMVJxYKWiK
- QupaXH0FASaUcDr0mEIoUJjYdfsrqX781//TpfQIqijWwCg+dBbtTyh/C+EzlFyJIryx
- BB7cHyJ+xAz0Jc/E7/+1ewZh4T/vl8kTLDo+Ew1nb76d3RD3KTPGrj7bL/65rUnSnB7T
- LphQ==
-X-Gm-Message-State: AOAM5334JC+Hx5UubJKA3RmpfI8cWHCU7XY17T41QBIAw0hxQfxyqEVi
- Ouphh8WGpocjJ/864nzTf/Y=
-X-Google-Smtp-Source: ABdhPJxeShJczo9oCAdFRX5ub+jlSEF4FeoqITQ+O/fcd0moJBM/7I/c3XhyBHMTQpTkijcNxkSBDw==
-X-Received: by 2002:a1c:9d4b:: with SMTP id g72mr2152087wme.111.1622033049044; 
- Wed, 26 May 2021 05:44:09 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:3ecd:562c:67c6:4afe?
- ([2a02:908:1252:fb60:3ecd:562c:67c6:4afe])
- by smtp.gmail.com with ESMTPSA id b81sm6912890wmd.18.2021.05.26.05.44.08
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 26 May 2021 05:44:08 -0700 (PDT)
-Subject: Re: [PATCH] free the metadata buffer for sg type BOs as well
-To: Shiwu Zhang <shiwu.zhang@amd.com>, amd-gfx@lists.freedesktop.org,
- nirmoy.das@amd.com
-References: <20210526034625.5805-1-shiwu.zhang@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <152919d2-6ded-3121-1be5-a423cfd3b531@gmail.com>
-Date: Wed, 26 May 2021 14:44:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=E7lnBn6gtlT4pHAbocCm3Lz5cROgKSEt1zW2UhsRNFI=;
+ b=VJjKh5PHAZBh2XGdF0fm6NdDtnhTpwJpxkfMXcgensmVJRrKECa5LvLS6XA3K7Irw/
+ AV86+mgmSF9xG/Gy0I+uKZ65IBXuZkeaJ8Y2wFfbZwbBo4CPnqUVQB8kqisoNkM8WDhQ
+ 1khqtiPashRyHpbR+MsegsiSynT6Rx6gxa4hiZItTxphuchmzQ+6+uzsfGZBN35vUdPf
+ Yca8uI4E+dhnfAfoPmo9ixSPFdD8d9P80HHbpiS74K7x5St4bl6GqWFXnmVTosW7KvCT
+ Z1EkI/Ei+B8Vghp5gwLHRS+K7TB1wc9XjN/W3C/DsIIX2eTbFOmDxYDf6sSIE6L3Z5n2
+ aTTQ==
+X-Gm-Message-State: AOAM533/wcNNr1xz35eaNcsm+qr6P2XJtf39qZWv2tCfyfsDeGlUHcqx
+ CxNM2sapP5Vi9WnD0vuQD4vGiV1IfzJ+lchqCMU=
+X-Google-Smtp-Source: ABdhPJyUTbGpxfBhXTVlkB+FThDSERlUlUmFQhLgidMk6hw9zImL9wcXdhPrSSNIrS7LUNzkRbGqn7lY3T+n80aANOc=
+X-Received: by 2002:a9d:6548:: with SMTP id q8mr2269164otl.311.1622034259946; 
+ Wed, 26 May 2021 06:04:19 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210526034625.5805-1-shiwu.zhang@amd.com>
-Content-Language: en-US
+References: <20210526080625.1210268-1-Xiaojian.Du@amd.com>
+In-Reply-To: <20210526080625.1210268-1-Xiaojian.Du@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 26 May 2021 09:04:07 -0400
+Message-ID: <CADnq5_PDMSye=Be98YpeGf5Vi_2Zr-N2byKuMtCvhzuuTwm9qg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/pm: retain the fine grain tuning parameters after
+ resume
+To: Xiaojian Du <Xiaojian.Du@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,26 +61,87 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ Anatoli.Antonovitch@amd.com, Huang Rui <ray.huang@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, Pavan.Ramayanam@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-WW91IG5lZWQgYSBjb21taXQgbWVzc2FnZS4KCkFtIDI2LjA1LjIxIHVtIDA1OjQ2IHNjaHJpZWIg
-U2hpd3UgWmhhbmc6Cj4gU2lnbmVkLW9mZi1ieTogU2hpd3UgWmhhbmcgPHNoaXd1LnpoYW5nQGFt
-ZC5jb20+CgpXaXRoIHRoYXQgZml4ZWQgdGhlIHBhdGNoIGlzIFJldmlld2VkLWJ5OiBDaHJpc3Rp
-YW4gS8O2bmlnIAo8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgoKPiAtLS0KPiAgIGRyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9vYmplY3QuYyB8IDIgKy0KPiAgIDEgZmlsZSBjaGFu
-Z2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9vYmplY3QuYyBiL2RyaXZlcnMvZ3B1L2RybS9h
-bWQvYW1kZ3B1L2FtZGdwdV9vYmplY3QuYwo+IGluZGV4IDJkODc2ZTFlYWE3Yy4uZTlmODcwMWZk
-MDQ2IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9vYmpl
-Y3QuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9vYmplY3QuYwo+
-IEBAIC05NSw3ICs5NSw3IEBAIHN0YXRpYyB2b2lkIGFtZGdwdV9ib19kZXN0cm95KHN0cnVjdCB0
-dG1fYnVmZmVyX29iamVjdCAqdGJvKQo+ICAgCX0KPiAgIAlhbWRncHVfYm9fdW5yZWYoJmJvLT5w
-YXJlbnQpOwo+ICAgCj4gLQlpZiAoYm8tPnRiby50eXBlID09IHR0bV9ib190eXBlX2RldmljZSkg
-ewo+ICsJaWYgKGJvLT50Ym8udHlwZSAhPSB0dG1fYm9fdHlwZV9rZXJuZWwpIHsKPiAgIAkJdWJv
-ID0gdG9fYW1kZ3B1X2JvX3VzZXIoYm8pOwo+ICAgCQlrZnJlZSh1Ym8tPm1ldGFkYXRhKTsKPiAg
-IAl9CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQt
-Z2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+On Wed, May 26, 2021 at 4:06 AM Xiaojian Du <Xiaojian.Du@amd.com> wrote:
+>
+> This patch is to retain the fine grain tuning parameters after resume for
+> legacy APU, it will cover Raven/Raven2/Picasso.
+>
+> Signed-off-by: Xiaojian Du <Xiaojian.Du@amd.com>
+> ---
+>  .../amd/pm/powerplay/hwmgr/hardwaremanager.c  |  3 ++-
+>  .../drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c  | 21 +++++++++++++++++++
+>  2 files changed, 23 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hardwaremanager.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hardwaremanager.c
+> index 25b5831a15cd..370deae7b054 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hardwaremanager.c
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/hardwaremanager.c
+> @@ -82,7 +82,8 @@ int phm_enable_dynamic_state_management(struct pp_hwmgr *hwmgr)
+>
+>         /* Skip for suspend/resume case */
+>         if (!hwmgr->pp_one_vf && smum_is_dpm_running(hwmgr)
+> -           && !amdgpu_passthrough(adev) && adev->in_suspend) {
+> +           && !amdgpu_passthrough(adev) && adev->in_suspend
+> +               && !adev->apu_flags) {
+
+Might be clearer to check (asic_type != CHIP_RAVEN) here rather than
+apu_flags.  Makes it more clear what you are checking for.  With that
+fixed,
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+
+Alex
+
+>                 pr_info("dpm has been enabled\n");
+>                 return 0;
+>         }
+> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
+> index f5fe540cd536..8f71f6a4bb49 100644
+> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
+> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu10_hwmgr.c
+> @@ -377,6 +377,27 @@ static int smu10_enable_gfx_off(struct pp_hwmgr *hwmgr)
+>
+>  static int smu10_enable_dpm_tasks(struct pp_hwmgr *hwmgr)
+>  {
+> +       struct amdgpu_device *adev = hwmgr->adev;
+> +       struct smu10_hwmgr *smu10_data = (struct smu10_hwmgr *)(hwmgr->backend);
+> +       int ret = -EINVAL;
+> +
+> +       if (adev->in_suspend) {
+> +               pr_info("restore the fine grain parameters\n");
+> +
+> +               ret = smum_send_msg_to_smc_with_parameter(hwmgr,
+> +                                       PPSMC_MSG_SetHardMinGfxClk,
+> +                                       smu10_data->gfx_actual_soft_min_freq,
+> +                                       NULL);
+> +               if (ret)
+> +                       return ret;
+> +               ret = smum_send_msg_to_smc_with_parameter(hwmgr,
+> +                                       PPSMC_MSG_SetSoftMaxGfxClk,
+> +                                       smu10_data->gfx_actual_soft_max_freq,
+> +                                       NULL);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+>         return 0;
+>  }
+>
+> --
+> 2.25.1
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
