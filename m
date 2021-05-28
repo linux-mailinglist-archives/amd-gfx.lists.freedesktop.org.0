@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB4B3394907
-	for <lists+amd-gfx@lfdr.de>; Sat, 29 May 2021 01:06:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6757394902
+	for <lists+amd-gfx@lfdr.de>; Sat, 29 May 2021 01:06:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 443786F636;
-	Fri, 28 May 2021 23:06:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2906A6F587;
+	Fri, 28 May 2021 23:06:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2062.outbound.protection.outlook.com [40.107.243.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 132586F636
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 May 2021 23:06:54 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1anam02on2044.outbound.protection.outlook.com [40.107.96.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 629F06F631
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 May 2021 23:06:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZsfUvklYELMO/qrhTXLm5r6tatm+9+ZA6C0jX2P33QhurvDGyWILe3HiL3cEoIK/sJl6CL1aLXLrdlg3KbUxnIbp1wj+jmf42LqRwwZj6RsULEAbcr37uEcR5ZYEs48OQ5/YJxT92g5+v8RFkPWRMzIRiqQjHcOVquvuJDtYkhipob0KCShXvZK9UX86RM3p4utFxDLFgllFp6eFiH1jOgQEa8b0RLpn9UQKxK9HrdRhlzwQ5+6Ipnl+GSoiLQwGNkJZ5TOIHbBHr8SJOKxQS6ExpyRndw40a3kZX9CyIHuahDCEQbIkT2Lo/+5RBvca5/EHvavSbZLu/WAHcuiYWA==
+ b=ch1V4M+4ahPk0gWVJsKc0z/1ib1RJp1JMXasDKNOmMift4w94EeIF6T2FiyjlNlb0JsquQDPUWC6JmzMSxdBG0LF8jtH9zakKfBKG4Z1bk14ntAZ4274F3bfnV9QB27FdlHfto2L6BbwUvID3pHWIlFj9MaiGDi+yITJ/SU+sLZuMMpudImDtCHQ1GmbDNTRRNJl9RIZn9pmPLgRejfzvH9nFB0xxg9jzYvca+dbq8+k7QeGp2rgw6fDazRH7SvyjcQ4Tz6jRGCmTgZ/zW2tloI4RqJu5JfD2Fhwc63WCVo/CFYcrRs1lTWmoRhdq0u0WNOxSeEsfI/DR0oerS8kbQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jlA9LzGzlMfRzXkyOoy6vGsdHaWYrycbhZa+Vng14W0=;
- b=hbnup4caEBz/2n15F2RJuV0RHd6b9uNsGcOHkh8lyo6Olq/c/a4cFNHPgiRDjOE9H2dnJ9jderBz+IGFET4Kc5sv21X5+mIsrqqAXwQVlEQ2VSEBKO9z/fvrozA5XoWIX57iAen3gGmj8Tu7PcSTKsovjTW6bJGex+7c9d+dZYXSZWgTU7Vc7nqvVAjK8+wrNwWkRwG4n1BX4q8626CGTjsLh/0uR5ljAuusQwj2xss+2Tghf9V1ogSgTdVnErPT/sMSQ2icxfRLA5sHIodz2UCuvBp/eIBUly+6XV9C4HqzA4+EkylCip+aENC3gEXPsn6A8JNYLYybbfERUlkluQ==
+ bh=GZRFyS3HhM5dRboSb25kuKH4dmOVLQ055BCk7jk4i4w=;
+ b=aN5I1fzAxerlJbx4SDj8DvCkiM1D8vpmLP3j+EkJb7YF24GQ7jDMNy1sdrWdGJfe/9l+5Wjy+dfPuRCPbhQqTH03dCgT33JZGZUStXc6ESEH5uTLdynnSKGKNQzaOchPm+gdlmuTxKOYGcqVmdaEqUE28c15Ecvy2oELZdNSgA6fgpI4MoeiQcYQRrSezuSvKJH7DD2HQvVrl7Ef1ITe6qqUdHiWHE6bBj6rp6CbDtrZYjBYRdLzDpqdupEeFIL6pL9RH48w85s614Fbi7cC8qEG4snVG5Nnxuv7CdZY3VNxjmcBMuW/TpNPsXLMZ3Mf6PARJS3dl4Xh8ti1+WRt5A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jlA9LzGzlMfRzXkyOoy6vGsdHaWYrycbhZa+Vng14W0=;
- b=JU6oE5R/G3EXclvaH8/YBtFvp7CKYKycXUFCeMG82bghB0HNw0AuB9ZTsqTXYcN+uglwXQJn9SuYv4Nhr22G1zxZVFx1DjtiiLkuS+qtiumb+kduuANbX+LNSrq/iC6iIbfT0fZZDE3Gd2qre2sbAxrpSweT3vQ8HGSg9+21HJw=
-Received: from MWHPR04CA0068.namprd04.prod.outlook.com (2603:10b6:300:6c::30)
- by MWHPR12MB1551.namprd12.prod.outlook.com (2603:10b6:301:9::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.21; Fri, 28 May
- 2021 23:06:40 +0000
+ bh=GZRFyS3HhM5dRboSb25kuKH4dmOVLQ055BCk7jk4i4w=;
+ b=sm6q/5yL0F6SEfYNUYWb+katlRb+6+gOXaf+n3YdrFjNCSwOuK6ldX3AGWKFPntOv1aw/RVQGKrV22pMgJLIUHTBKtqOHtN9Sy9pOOmHWu4V/VKmy6KWrANI9DCLvtyVDzQPkYCPDUGAgHsB943h1us/eIWHtONLfUySBi9Slw4=
+Received: from MWHPR04CA0053.namprd04.prod.outlook.com (2603:10b6:300:6c::15)
+ by MN2PR12MB2944.namprd12.prod.outlook.com (2603:10b6:208:ae::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.24; Fri, 28 May
+ 2021 23:06:41 +0000
 Received: from CO1NAM11FT038.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:6c:cafe::94) by MWHPR04CA0068.outlook.office365.com
- (2603:10b6:300:6c::30) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:300:6c:cafe::b0) by MWHPR04CA0053.outlook.office365.com
+ (2603:10b6:300:6c::15) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20 via Frontend
- Transport; Fri, 28 May 2021 23:06:40 +0000
+ Transport; Fri, 28 May 2021 23:06:41 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -52,13 +52,13 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from dapowell-ubuntu-200400-1.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Fri, 28 May 2021 18:06:37 -0500
+ 15.1.2242.4; Fri, 28 May 2021 18:06:38 -0500
 From: Darren Powell <darren.powell@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/6] amdgpu/pm: modify Powerplay API get_power_limit to use
- new pp_power enums
-Date: Fri, 28 May 2021 19:06:18 -0400
-Message-ID: <20210528230621.16468-4-darren.powell@amd.com>
+Subject: [PATCH 4/6] amdgpu/pm: modify and add smu_get_power_limit to
+ Powerplay API
+Date: Fri, 28 May 2021 19:06:19 -0400
+Message-ID: <20210528230621.16468-5-darren.powell@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210528230621.16468-1-darren.powell@amd.com>
 References: <20210528230621.16468-1-darren.powell@amd.com>
@@ -68,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 94c5ce4d-b818-4e33-b114-08d9222d40c2
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1551:
-X-Microsoft-Antispam-PRVS: <MWHPR12MB1551709B1E0FA55FEC436695F0229@MWHPR12MB1551.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:341;
+X-MS-Office365-Filtering-Correlation-Id: 77fc640f-e710-4e16-884d-08d9222d411a
+X-MS-TrafficTypeDiagnostic: MN2PR12MB2944:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB29449A3CA2D1C4C348BC2FDFF0229@MN2PR12MB2944.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:345;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OXweZdhaC2Yvwtf6ozge3PGE0keoznItL8S74boOgG/kg7Wr8Mlk7W2GXIUk6+qUMJ4ymb7JiafHrYXLBUXNJnHRrltgFH1mZg2SJkTMQ49IZF92gc40bN0KU8nnvV09PWDdgiT3ZcU1M1igoUSUhz3rvHsksdGgPS5Hn5smYzYYwqi4IsqWfhZCH6yHMqHCFMMhbETP1vE7RbjfREAOZ71p21imd9eLmXPoHqSbE6fdixnSPeiLzdUnQSqtb8mtqO81LOU/Z5cgl+ybbFnSc6v3LzzX/9GVFKlo693CYghHkqxpc8m2ol8EJWp8oFePQlQtXabzMpjdB0gw1RSv8YrZ2dkQU5KQJ+i/lK+fUTuz0BQuPDN4WYe2KpV78qX69Zfx/ahjYrffgPot0mja1mw1ngHq7Nc1SobggwAbRkGgA9h2eriBRwptdSXCk2uZ/jhy8mD18Kw0aPV5gnaYMl/cNYpFhi9x86la8Epyf4LEYnlkqGKXEHk6mYcSZls7P/Anu8SZclM/Mta/3w2tlfvrn/IQKsouUiU8gZLsODfiJut2XYPpi/Bk5iQyysBNIWdTWtXrVZt70ROG+S6tjboiog/QUc2u24oUr5pILXJ8UFp71hjnsU5ixImoEjoroMyMCe91pyqb8jOBME5D8vyGWl4PWAufwwNzXIHJunD52UWoLPhxl8dD7f+cbq39
+X-Microsoft-Antispam-Message-Info: 2MyKslXRpAfKqUjZ+YsCTaZCMtRiR5j5adYwjX3dkr0qnz+tn31mwBfyE04VWAA/3qkZUg2MRAp8ldFOxBd2FOQvFkKl+jpYOtjDnqGBEoFaIkbDXnwilr4Vbd1Ji9+2GruDy9VLCur0cnkT3o7fxx7WexpSJD7BeEVIerKGf0vrNtwY9nKegvV/VEUGCoLTME6MpBe8sE9ORvV7YJRybyCuAligj3piO56LIoaNR8L9u3DQbxXb5eOJixkwpUoSJOFucaBInDzQ7ACZ4+PIck7MMAiUlE+f4ojJX2Dy2NWhMNbyK5MbFvNH5XjKrGplcj8yyGWN3OE0SVIdHUV16yOZbr0ZKMhXlnrtAaTar2u09L1nGIUDHusmnUX89ailOFkQmxzIVG4nHm7fNy5AGFxSQqPq7GS+gpBfEvHxKNCWJexFZzVvdG6rnCgs4SJrxiZLq42EcSazmX7GDatEhCvFqbv4AwdgA/065oecJcDU0ySCV0EiwszEYuWYoCRKkgB7wqU2oOjxO6i/osKx+fi+5qMGyFn9UG2hk0sGPEug9Z5BQz3hTJGDrThhMX++nFJzGG0pTyuwdbpGmnEZZuBbWbIbf9+SRnj+dkQQ809YSJuYca4zzQFeZzVmVF2GD8WUyX5VHedh+88kEY4HN2ayI3eUZWRPpXSU8TsUyPH/y2bYWscCeotwgoOoP+hi
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(376002)(136003)(396003)(346002)(46966006)(36840700001)(47076005)(83380400001)(70206006)(478600001)(36860700001)(4326008)(8676002)(6666004)(81166007)(36756003)(2906002)(6916009)(426003)(82740400003)(2616005)(7696005)(186003)(316002)(82310400003)(5660300002)(26005)(16526019)(86362001)(336012)(8936002)(44832011)(356005)(1076003)(70586007)(36900700001);
+ SFS:(4636009)(39860400002)(346002)(396003)(376002)(136003)(36840700001)(46966006)(36860700001)(426003)(6916009)(4326008)(6666004)(478600001)(2906002)(47076005)(8936002)(8676002)(7696005)(316002)(82310400003)(86362001)(356005)(1076003)(82740400003)(16526019)(186003)(81166007)(70206006)(2616005)(70586007)(83380400001)(336012)(5660300002)(36756003)(44832011)(26005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2021 23:06:40.3360 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94c5ce4d-b818-4e33-b114-08d9222d40c2
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2021 23:06:40.9127 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 77fc640f-e710-4e16-884d-08d9222d411a
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT038.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1551
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB2944
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,18 +106,9 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
- updated {amd_pm_funcs}->get_power_limit() signature
- rewrote pp_get_power_limit to use new enums
- pp_get_power_limit now returns -EOPNOTSUPP for unknown power limit
- update calls to {amd_pm_funcs}->get_power_limit()
-
-* Test Notes
-* testing hardware was NAVI10 (tests SMU path)
-** needs testing on VANGOGH
-** needs testing on SMU < 11
-** ie, one of
- TOPAZ, FIJI, TONGA, POLARIS10, POLARIS11, POLARIS12, VEGAM, CARRIZO,
- STONEY, VEGA10, VEGA12,VEGA20, RAVEN, BONAIRE, HAWAII
+ modify args of smu_get_power_limit to match Powerplay API .get_power_limit
+ add smu_get_power_limit to Powerplay API swsmu_pm_funcs
+ remove special handling of smu in amdgpu_hwmon_show_power_cap*
 
 * Test
  AMDGPU_PCI_ADDR=`lspci -nn | grep "VGA\|Display" | cut -d " " -f 1`
@@ -131,165 +122,93 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Signed-off-by: Darren Powell <darren.powell@amd.com>
 ---
- .../gpu/drm/amd/include/kgd_pp_interface.h    |  5 +--
- drivers/gpu/drm/amd/pm/amdgpu_pm.c            | 27 ++++++++-------
- .../gpu/drm/amd/pm/powerplay/amd_powerplay.c  | 33 ++++++++++++-------
- 3 files changed, 41 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c        | 18 +++---------------
+ drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h   |  2 +-
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c |  4 +++-
+ 3 files changed, 7 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/include/kgd_pp_interface.h b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-index ddbf802ea8ad..369a72f03e92 100644
---- a/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-+++ b/drivers/gpu/drm/amd/include/kgd_pp_interface.h
-@@ -305,8 +305,9 @@ struct amd_pm_funcs {
- 				uint32_t block_type, bool gate);
- 	int (*set_clockgating_by_smu)(void *handle, uint32_t msg_id);
- 	int (*set_power_limit)(void *handle, uint32_t n);
--	int (*get_power_limit)(void *handle, uint32_t *limit, uint32_t *max_limit,
--			bool default_limit);
-+	int (*get_power_limit)(void *handle, uint32_t *limit,
-+			enum pp_power_limit_level pp_limit_level,
-+			enum pp_power_sample_window sample_window);
- 	int (*get_power_profile_mode)(void *handle, char *buf);
- 	int (*set_power_profile_mode)(void *handle, long *input, uint32_t size);
- 	int (*set_fine_grain_clk_vol)(void *handle, uint32_t type, long *input, uint32_t size);
 diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index f7b45803431d..0098c8b55bb4 100644
+index 0098c8b55bb4..44715848705a 100644
 --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
 +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -2718,8 +2718,8 @@ static ssize_t amdgpu_hwmon_show_power_cap_max(struct device *dev,
- 	struct amdgpu_device *adev = dev_get_drvdata(dev);
- 	const struct amd_pm_funcs *pp_funcs = adev->powerplay.pp_funcs;
- 	enum pp_power_sample_window sample_window = to_sensor_dev_attr(attr)->index;
-+	enum pp_power_limit_level pp_limit_level = PP_PWR_LIMIT_MAX;
- 	uint32_t limit;
--	uint32_t max_limit = 0;
- 	ssize_t size;
- 	int r;
- 
-@@ -2735,12 +2735,13 @@ static ssize_t amdgpu_hwmon_show_power_cap_max(struct device *dev,
+@@ -2734,11 +2734,7 @@ static ssize_t amdgpu_hwmon_show_power_cap_max(struct device *dev,
+ 		return r;
  	}
  
- 	if (is_support_sw_smu(adev)) {
--		smu_get_power_limit(&adev->smu, &limit, PP_PWR_LIMIT_MAX, sample_window);
-+		smu_get_power_limit(&adev->smu, &limit,
-+				    pp_limit_level, sample_window);
+-	if (is_support_sw_smu(adev)) {
+-		smu_get_power_limit(&adev->smu, &limit,
+-				    pp_limit_level, sample_window);
+-		size = snprintf(buf, PAGE_SIZE, "%u\n", limit * 1000000);
+-	} else if (pp_funcs && pp_funcs->get_power_limit) {
++	if (pp_funcs && pp_funcs->get_power_limit) {
+ 		pp_funcs->get_power_limit(adev->powerplay.pp_handle, &limit,
+ 					  pp_limit_level, sample_window);
  		size = snprintf(buf, PAGE_SIZE, "%u\n", limit * 1000000);
- 	} else if (pp_funcs && pp_funcs->get_power_limit) {
--		pp_funcs->get_power_limit(adev->powerplay.pp_handle,
--				&limit, &max_limit, true);
--		size = snprintf(buf, PAGE_SIZE, "%u\n", max_limit * 1000000);
-+		pp_funcs->get_power_limit(adev->powerplay.pp_handle, &limit,
-+					  pp_limit_level, sample_window);
-+		size = snprintf(buf, PAGE_SIZE, "%u\n", limit * 1000000);
- 	} else {
- 		size = snprintf(buf, PAGE_SIZE, "\n");
- 	}
-@@ -2758,6 +2759,7 @@ static ssize_t amdgpu_hwmon_show_power_cap(struct device *dev,
- 	struct amdgpu_device *adev = dev_get_drvdata(dev);
- 	const struct amd_pm_funcs *pp_funcs = adev->powerplay.pp_funcs;
- 	enum pp_power_sample_window sample_window = to_sensor_dev_attr(attr)->index;
-+	enum pp_power_limit_level pp_limit_level = PP_PWR_LIMIT_CURRENT;
- 	uint32_t limit;
- 	ssize_t size;
- 	int r;
-@@ -2774,11 +2776,12 @@ static ssize_t amdgpu_hwmon_show_power_cap(struct device *dev,
+@@ -2775,11 +2771,7 @@ static ssize_t amdgpu_hwmon_show_power_cap(struct device *dev,
+ 		return r;
  	}
  
- 	if (is_support_sw_smu(adev)) {
--		smu_get_power_limit(&adev->smu, &limit, PP_PWR_LIMIT_CURRENT, sample_window);
-+		smu_get_power_limit(&adev->smu, &limit,
-+				    pp_limit_level, sample_window);
+-	if (is_support_sw_smu(adev)) {
+-		smu_get_power_limit(&adev->smu, &limit,
+-				    pp_limit_level, sample_window);
+-		size = snprintf(buf, PAGE_SIZE, "%u\n", limit * 1000000);
+-	} else if (pp_funcs && pp_funcs->get_power_limit) {
++	if (pp_funcs && pp_funcs->get_power_limit) {
+ 		pp_funcs->get_power_limit(adev->powerplay.pp_handle, &limit,
+ 					  pp_limit_level, sample_window);
  		size = snprintf(buf, PAGE_SIZE, "%u\n", limit * 1000000);
- 	} else if (pp_funcs && pp_funcs->get_power_limit) {
--		pp_funcs->get_power_limit(adev->powerplay.pp_handle,
--				&limit, NULL, false);
-+		pp_funcs->get_power_limit(adev->powerplay.pp_handle, &limit,
-+					  pp_limit_level, sample_window);
- 		size = snprintf(buf, PAGE_SIZE, "%u\n", limit * 1000000);
- 	} else {
- 		size = snprintf(buf, PAGE_SIZE, "\n");
-@@ -2797,6 +2800,7 @@ static ssize_t amdgpu_hwmon_show_power_cap_default(struct device *dev,
- 	struct amdgpu_device *adev = dev_get_drvdata(dev);
- 	const struct amd_pm_funcs *pp_funcs = adev->powerplay.pp_funcs;
- 	enum pp_power_sample_window sample_window = to_sensor_dev_attr(attr)->index;
-+	enum pp_power_limit_level pp_limit_level = PP_PWR_LIMIT_DEFAULT;
- 	uint32_t limit;
- 	ssize_t size;
- 	int r;
-@@ -2813,11 +2817,12 @@ static ssize_t amdgpu_hwmon_show_power_cap_default(struct device *dev,
+@@ -2816,11 +2808,7 @@ static ssize_t amdgpu_hwmon_show_power_cap_default(struct device *dev,
+ 		return r;
  	}
  
- 	if (is_support_sw_smu(adev)) {
--		smu_get_power_limit(&adev->smu, &limit, PP_PWR_LIMIT_DEFAULT, sample_window);
-+		smu_get_power_limit(&adev->smu, &limit,
-+				    pp_limit_level, sample_window);
+-	if (is_support_sw_smu(adev)) {
+-		smu_get_power_limit(&adev->smu, &limit,
+-				    pp_limit_level, sample_window);
+-		size = snprintf(buf, PAGE_SIZE, "%u\n", limit * 1000000);
+-	} else if (pp_funcs && pp_funcs->get_power_limit) {
++	if (pp_funcs && pp_funcs->get_power_limit) {
+ 		pp_funcs->get_power_limit(adev->powerplay.pp_handle, &limit,
+ 					  pp_limit_level, sample_window);
  		size = snprintf(buf, PAGE_SIZE, "%u\n", limit * 1000000);
- 	} else if (pp_funcs && pp_funcs->get_power_limit) {
--		pp_funcs->get_power_limit(adev->powerplay.pp_handle,
--				&limit, NULL, true);
-+		pp_funcs->get_power_limit(adev->powerplay.pp_handle, &limit,
-+					  pp_limit_level, sample_window);
- 		size = snprintf(buf, PAGE_SIZE, "%u\n", limit * 1000000);
- 	} else {
- 		size = snprintf(buf, PAGE_SIZE, "\n");
-diff --git a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-index c73504e998e5..7ef7d2db3629 100644
---- a/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-+++ b/drivers/gpu/drm/amd/pm/powerplay/amd_powerplay.c
-@@ -1035,31 +1035,42 @@ static int pp_set_power_limit(void *handle, uint32_t limit)
+diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
+index b97b960c2eac..9636a023387f 100644
+--- a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
++++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
+@@ -1260,7 +1260,7 @@ enum smu_cmn2asic_mapping_type {
+ 	[profile] = {1, (workload)}
+ 
+ #if !defined(SWSMU_CODE_LAYER_L2) && !defined(SWSMU_CODE_LAYER_L3) && !defined(SWSMU_CODE_LAYER_L4)
+-int smu_get_power_limit(struct smu_context *smu,
++int smu_get_power_limit(void *handle,
+ 			uint32_t *limit,
+ 			enum pp_power_limit_level pp_limit_level,
+ 			enum pp_power_sample_window sample_window);
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index 44c1baa2748d..5671abd58bcf 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -2166,11 +2166,12 @@ static int smu_set_fan_speed_rpm(void *handle, uint32_t speed)
+ 	return ret;
  }
  
- static int pp_get_power_limit(void *handle, uint32_t *limit,
--		uint32_t *max_limit, bool default_limit)
-+			      enum pp_power_limit_level pp_limit_level,
-+			      enum pp_power_sample_window sample_window)
+-int smu_get_power_limit(struct smu_context *smu,
++int smu_get_power_limit(void *handle,
+ 			uint32_t *limit,
+ 			enum pp_power_limit_level pp_limit_level,
+ 			enum pp_power_sample_window sample_window)
  {
- 	struct pp_hwmgr *hwmgr = handle;
-+	int ret = 0;
- 
- 	if (!hwmgr || !hwmgr->pm_en ||!limit)
- 		return -EINVAL;
- 
-+	if (sample_window != PP_PWR_WINDOW_DEFAULT)
-+		return -EOPNOTSUPP;
-+
- 	mutex_lock(&hwmgr->smu_lock);
- 
--	if (default_limit) {
--		*limit = hwmgr->default_power_limit;
--		if (max_limit) {
--			*max_limit = *limit;
-+	switch (pp_limit_level) {
-+		case PP_PWR_LIMIT_CURRENT:
-+			*limit = hwmgr->power_limit;
-+			break;
-+		case PP_PWR_LIMIT_DEFAULT:
-+			*limit = hwmgr->default_power_limit;
-+			break;
-+		case PP_PWR_LIMIT_MAX:
-+			*limit = hwmgr->default_power_limit;
- 			if (hwmgr->od_enabled) {
--				*max_limit *= (100 + hwmgr->platform_descriptor.TDPODLimit);
--				*max_limit /= 100;
-+				*limit *= (100 + hwmgr->platform_descriptor.TDPODLimit);
-+				*limit /= 100;
- 			}
--		}
-+			break;
-+		default:
-+			ret = -EOPNOTSUPP;
-+			break;
- 	}
--	else
--		*limit = hwmgr->power_limit;
- 
- 	mutex_unlock(&hwmgr->smu_lock);
- 
--	return 0;
-+	return ret;
- }
- 
- static int pp_display_configuration_change(void *handle,
++	struct smu_context *smu = handle;
+ 	enum smu_ppt_limit_level limit_level;
+ 	uint32_t limit_type;
+ 	int ret = 0;
+@@ -3009,6 +3010,7 @@ static const struct amd_pm_funcs swsmu_pm_funcs = {
+ 	.load_firmware           = smu_load_microcode,
+ 	.set_powergating_by_smu  = smu_dpm_set_power_gate,
+ 	.set_power_limit         = smu_set_power_limit,
++	.get_power_limit         = smu_get_power_limit,
+ 	.get_power_profile_mode  = smu_get_power_profile_mode,
+ 	.set_power_profile_mode  = smu_set_power_profile_mode,
+ 	.odn_edit_dpm_table      = smu_od_edit_dpm_table,
 -- 
 2.25.1
 
