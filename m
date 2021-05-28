@@ -1,41 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A23423947B4
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 May 2021 22:01:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C7173947B6
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 May 2021 22:01:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 260906E56A;
-	Fri, 28 May 2021 20:01:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F21D36F624;
+	Fri, 28 May 2021 20:01:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2087.outbound.protection.outlook.com [40.107.92.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 223586E56A
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 May 2021 20:01:27 +0000 (UTC)
+ (mail-bn7nam10on2065.outbound.protection.outlook.com [40.107.92.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF886F624
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 May 2021 20:01:25 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OfIaGww+pYEL+4JMbhVnCDY/y9tY4/iXOpjLLccJ4dbt7Pp08t8AQv3kH2ZpOHaWopLS3jFXevQrozMqchXZFtbUEjooj8ZAtQUo5Kj4YtGWCm6mNx6nrUZctYYCJLTmzVL7NS5T0YQk1SnXV3eUK9pRvTIG3OqaHkvRb/FL2dqcmRxCBBiCMYgdJdxwqH9gZaB7s6OrXf4bx1PO5f6h3TMF4KV0Sbh8JNiBS+JQuf1EVeossQ+NXnQGfKYWvY08n4vdwH8a7G5pCj2caioT7f8a3oeDys2oPM7cHJhKEoec9FqCECXp0bHXcHi6JbssTkji+z9Zu/VyKhRbxKCWug==
+ b=Fnll2qKb6zi4yGQT0LSFgHBGSm1BGh1GycpKiojAVpG/EVnlN8PZ6RFvF2Cj/27uAkVyIcOQ6RFuJe1B3OIirjPiUkoDPBjb7gkK0SjEpI0ii/1nK5MPz+WH5lpdXiMoIteDekK8EREofw/nv5XJn6054oUNutbcLuQ1zRHkbJnAd93yDeGjA2nkgjeSu7MwegUSq7KE25P1FPnDyB/e1J1oCAVkaO44gfshJWWnD+QdHlgoQBKZR+k8jBttBFgjUxDSnnws5DdVjKUyCGCHs9UUhhCiR0F8J4iUxpZCZUWCwbL6W+J//FDaTAdyQXmqJMNo9QsMCSac9/r4uzSNWA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hEOa5q3dMrfNe04pz6Cj2pmpaH3pndf10GHBz56p/nM=;
- b=chaqlTNL3/NRAglvimZdlsLtnjOAV/GIpJDf3sZbf63g1clwu3nb91OWzom6PwLNsPVnKw3++pPg4OP2vV4VyTKBRr0VjvrQUrRoN53Ypkd98pGQoWGyjmZOQ/iQbF3QQPg4y0weWrjbMb3yHPSIg0T3/EBnw4GeCMFVsm6MTJA3fqk6zRGLcUHADRGseDN/2QqADxDlryPhZJ43bUuyAh9G4OieLCnZZqJRcFLqTDYx/8u6zG4/XATczSig6+xFZ+gSF4xaxyiFGt+gAaTuVb5wnu6dDG5UajjlgdIR9OlQB3qhcLKl7JjPY1gBsjUGADdIL9smpaUBfHrwQwWwrg==
+ bh=Uwg35nUjLDV/IU45Gqhi7p1JPWhCOIFiBbuJRd2r9Fo=;
+ b=Z/90jniOfMdn5qexP9tr03MbZrgUbLqOB8VLmgICllYzgr81he4vzM0g2fKu/XRQuELKyNUjoLpFcHPLJq5/VpvnheaJ8tUmKZEpV2y0AQfp2ljrbVLr3Ua2SF0SDFEGjXpziEzeSOg3lsr7k7Zv9fVcG+B0H/BQS+g1So5LElx6o+QM/mjvUNN/yIWwa6hfml85QIO4xioJueRbd2R6eDBJGL5PIaw5XlkTcTp+Fq1ULOEN1Ivel+3dFYdBn7t9hTXVLYdTkeUGpkJ9WHH+yb1DMnoN71SqVUaVtVnzJJYFDdZy5OrTwP5N0HTMv2pGTOrNJk5+4YEAp/wuLVG6MQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=none sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hEOa5q3dMrfNe04pz6Cj2pmpaH3pndf10GHBz56p/nM=;
- b=PvSoAKFAmtTAEh+0+LSHhCZs5dY9KDgFGZTPNgal5Bo7tRPFaxMciNr1pRNCitBmvICJ8MWXhkGnQQaIEnUjTvKoH84wqfz41s5r4P0wMgPT92RoBb+H/woeHpy0BN9SqLOvHJVoylwJZkNxoh40iter1sm2L1YbJzbaaiHDj9g=
-Received: from MWHPR17CA0068.namprd17.prod.outlook.com (2603:10b6:300:93::30)
- by MWHPR1201MB2524.namprd12.prod.outlook.com (2603:10b6:300:eb::13)
+ bh=Uwg35nUjLDV/IU45Gqhi7p1JPWhCOIFiBbuJRd2r9Fo=;
+ b=X0BfXM2/FezsboqyT9jZJmY7/+HVKpE/8MB2BAQmtAmvF4FfzNG7DW3AIaWMuykZVkHrEmkaA+WZNGhI+P/4x2uF4TK9ohuRQcnOMWGH1s/IaFor7oY4Z11n7aiqQs8V6vMRLl/ZiWhX2Byu86dk7dgqyTEq2l0x9GKzfdhxUz8=
+Received: from MWHPR03CA0017.namprd03.prod.outlook.com (2603:10b6:300:117::27)
+ by BN7PR12MB2723.namprd12.prod.outlook.com (2603:10b6:408:2d::30)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20; Fri, 28 May
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.25; Fri, 28 May
  2021 20:01:21 +0000
-Received: from CO1NAM11FT008.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:93:cafe::72) by MWHPR17CA0068.outlook.office365.com
- (2603:10b6:300:93::30) with Microsoft SMTP Server (version=TLS1_2,
+Received: from CO1NAM11FT003.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:117:cafe::9) by MWHPR03CA0017.outlook.office365.com
+ (2603:10b6:300:117::27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20 via Frontend
  Transport; Fri, 28 May 2021 20:01:21 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -46,18 +46,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT008.mail.protection.outlook.com (10.13.175.191) with Microsoft SMTP
+ CO1NAM11FT003.mail.protection.outlook.com (10.13.175.93) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4150.30 via Frontend Transport; Fri, 28 May 2021 20:01:21 +0000
+ 15.20.4150.30 via Frontend Transport; Fri, 28 May 2021 20:01:20 +0000
 Received: from grasider-dev.hitronhub.home (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Fri, 28 May 2021 15:01:17 -0500
+ 15.1.2242.4; Fri, 28 May 2021 15:01:18 -0500
 From: Graham Sider <Graham.Sider@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 7/8] drm/amd/pm: Add renoir throttler translation
-Date: Fri, 28 May 2021 15:58:14 -0400
-Message-ID: <20210528195815.2615-7-Graham.Sider@amd.com>
+Subject: [PATCH v2 8/8] drm/amd/pm: Add aldebaran throttler translation
+Date: Fri, 28 May 2021 15:58:15 -0400
+Message-ID: <20210528195815.2615-8-Graham.Sider@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210528195815.2615-1-Graham.Sider@amd.com>
 References: <20210528195815.2615-1-Graham.Sider@amd.com>
@@ -67,27 +67,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c2fb07a2-24ce-47a2-70f1-08d922135d68
-X-MS-TrafficTypeDiagnostic: MWHPR1201MB2524:
-X-Microsoft-Antispam-PRVS: <MWHPR1201MB2524B13B2174C0AD7C8DC8608A229@MWHPR1201MB2524.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
+X-MS-Office365-Filtering-Correlation-Id: 0f4a44ed-ee55-46da-d069-08d922135d07
+X-MS-TrafficTypeDiagnostic: BN7PR12MB2723:
+X-Microsoft-Antispam-PRVS: <BN7PR12MB27232BE1B3E3507F6C0D95B58A229@BN7PR12MB2723.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1122;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LUc8+MeV+Uxy61qTKr6uGe6IKPQoP+VxHibhRdcyVqs282ZYck4r621itepXDjwSbLqrHHIYSu14VGBzU9z4k79JsJ35jkArS0lUyYBelmoHMhxl7Jv9oEZ7pphuHfFEqRH9mzeSfIJV5H1ArtvIyEgnZkmLlHJ+ZbQCBZY/EqVUvs69dPTfPlboyabPClzcNYLIZFCnlTQ/cpD8FZ65c6RtkqKNHsMqNR4VejToVifU65WF2STnPn+gVIPazf9AYt3TRqXYHuhPYmSPJ6oqfC5p1+feJFAHypkb49mGVoqeW+QgtBuhyjBuEnu7/KjdN0fKJRMvPLx5tK1bsazgwAE8hf+9ygiN1Zz1QA0Icg4JuJXIYlHz1Oiv7Gjy5slJB7xx1iHA/AeLyIfm95J/Vq18syJTLPEL130tu8DomXvE0G9Al4Q2F1dnr2gZxRVqRLF6Qg/G3ArbSC06rfhKxgubkpR7kXa7YP3pLdGRwugP7lvm0G+59TBrb688vm/EGJdVT3Vd7saji5Lj/uYfafPC6bA/7iz5iTaw9xCnw/9efq/qNZt7nGFsdUyBaJCddFm2B2zH9fU2zH1EX/p+dnYROpI8h0N3BiK4b4lv0N8qJYzMuA8EWePsqzbbAD6Rb5836ptkjPifhMPuMbMb+5Dzj1s5CRQQ4oitdJzS+0XU9hW5/oSIRGzLZZ71gkIe
+X-Microsoft-Antispam-Message-Info: Em2CMR7XCE4BfzV3lLm51wED5L5ZrYS8dUr7qRvRXQMunF5dFIQ64Qs0mtc+1U6uGxmcC5ey8MTFoAIYhH2d2X+/y5BVxXVsIdtV4lBw5okQShyJK2H4zcXOojkZTzzvsgOgbZocD+ElQbAAr0ZWRuSHO9klh/vyJnvkpgXBJWrlSEqJyki5lX5zG4wIBmPJ3dsMNRGO2ZlBxEUeSiCH1ZrUmE8lln5GPxc3U7qDLrqqzUKRd5llaJHUQ/FKyYZ5prERV4Uf4Rsj4a87v4DuuS9RzPntaC2W+Kyc4fTAtZGsqZnQU39LoMxjI7XTC26rksulUdo1lD8G6et19FI4claBitLtTfvIaBRjIintEAOK4LEsYuW29sGT7UTMOPgQ1vJccHvzGhBOs1jVLniJHJtZEbqqQU2zMhPJaDX3Lxm82AFLpdVIcf3/fbhK0z1G01i6gS8rbevVMpZo9F8SEuQK8i44NJ+Hv2Kxwez5Xt3kqNySA9J3AH4LCo774DhK4hIWgwxl6HU8c68zYBhBQKF/0sU6szG7uS3IdFwgmiZt3JJYAqOaIatyX/eW0yqmF7EfDeIz+vSr8qklaW6kdoiRAz8hiPeTDGQjmHF9oXCZ4IKhtZeBvKlxduGVD22arilL5WviLXTaJKzVvoy2jCP6Y3V1d4VbB/OU44CXS1k/0td/qheOBDzko6G28qib
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(346002)(396003)(376002)(36840700001)(46966006)(1076003)(316002)(2906002)(83380400001)(81166007)(336012)(82740400003)(356005)(8936002)(54906003)(4326008)(82310400003)(2616005)(8676002)(426003)(36860700001)(26005)(6666004)(70586007)(16526019)(186003)(5660300002)(86362001)(70206006)(478600001)(47076005)(36756003)(6916009)(36900700001);
+ SFS:(4636009)(376002)(396003)(136003)(39860400002)(346002)(46966006)(36840700001)(8936002)(2616005)(4326008)(82740400003)(6666004)(82310400003)(81166007)(478600001)(86362001)(2906002)(356005)(47076005)(83380400001)(36860700001)(36756003)(316002)(1076003)(6916009)(54906003)(336012)(26005)(186003)(16526019)(8676002)(70206006)(426003)(70586007)(5660300002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2021 20:01:21.4775 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c2fb07a2-24ce-47a2-70f1-08d922135d68
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2021 20:01:20.8512 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0f4a44ed-ee55-46da-d069-08d922135d07
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT008.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT003.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB2524
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR12MB2723
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,31 +107,31 @@ Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 Perform dependent to independent throttle status translation
-for renoir.
+for aldebaran.
 
 Signed-off-by: Graham Sider <Graham.Sider@amd.com>
 ---
- .../gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c   | 50 +++++++++++++++++--
- 1 file changed, 45 insertions(+), 5 deletions(-)
+ .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    | 46 +++++++++++++++++--
+ 1 file changed, 41 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-index 1c399c4ab4dc..50c03fc413de 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
-@@ -153,7 +153,7 @@ static int renoir_init_smc_tables(struct smu_context *smu)
- 	if (!smu_table->watermarks_table)
- 		goto err2_out;
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+index 7a1abb3d6a7a..a83f1c4673aa 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+@@ -213,7 +213,7 @@ static int aldebaran_tables_init(struct smu_context *smu)
+ 		return -ENOMEM;
+ 	smu_table->metrics_time = 0;
  
--	smu_table->gpu_metrics_table_size = sizeof(struct gpu_metrics_v2_1);
-+	smu_table->gpu_metrics_table_size = sizeof(struct gpu_metrics_v2_2);
+-	smu_table->gpu_metrics_table_size = sizeof(struct gpu_metrics_v1_2);
++	smu_table->gpu_metrics_table_size = sizeof(struct gpu_metrics_v1_3);
  	smu_table->gpu_metrics_table = kzalloc(smu_table->gpu_metrics_table_size, GFP_KERNEL);
- 	if (!smu_table->gpu_metrics_table)
- 		goto err3_out;
-@@ -170,6 +170,44 @@ static int renoir_init_smc_tables(struct smu_context *smu)
- 	return -ENOMEM;
+ 	if (!smu_table->gpu_metrics_table) {
+ 		kfree(smu_table->metrics_table);
+@@ -517,6 +517,40 @@ static int aldebaran_freqs_in_same_level(int32_t frequency1,
+ 	return (abs(frequency1 - frequency2) <= EPSILON);
  }
  
-+static uint64_t renoir_get_indep_throttler_status(
++static uint64_t aldebaran_get_indep_throttler_status(
 +					uint32_t dep_status)
 +{
 +	if (dep_status == 0)
@@ -140,76 +140,72 @@ index 1c399c4ab4dc..50c03fc413de 100644
 +	uint64_t indep_status = 0;
 +
 +	indep_status |= smu_u64_throttler_bit(dep_status,
-+			SMU_THROTTLER_SPL_BIT, THROTTLER_STATUS_BIT_SPL);
++			SMU_THROTTLER_PPT0_BIT, THROTTLER_PPT0_BIT);
 +	indep_status |= smu_u64_throttler_bit(dep_status,
-+			SMU_THROTTLER_FPPT_BIT, THROTTLER_STATUS_BIT_FPPT);
++			SMU_THROTTLER_PPT1_BIT, THROTTLER_PPT1_BIT);
 +	indep_status |= smu_u64_throttler_bit(dep_status,
-+			SMU_THROTTLER_SPPT_BIT, THROTTLER_STATUS_BIT_SPPT);
++			SMU_THROTTLER_TDC_GFX_BIT, THROTTLER_TDC_GFX_BIT);
 +	indep_status |= smu_u64_throttler_bit(dep_status,
-+			SMU_THROTTLER_SPPT_APU_BIT, THROTTLER_STATUS_BIT_SPPT_APU);
++			SMU_THROTTLER_TDC_SOC_BIT, THROTTLER_TDC_SOC_BIT);
 +	indep_status |= smu_u64_throttler_bit(dep_status,
-+			SMU_THROTTLER_TEMP_CORE_BIT, THROTTLER_STATUS_BIT_THM_CORE);
++			SMU_THROTTLER_TDC_MEM_BIT, THROTTLER_TDC_HBM_BIT);
 +	indep_status |= smu_u64_throttler_bit(dep_status,
-+			SMU_THROTTLER_TEMP_VR_GFX_BIT, THROTTLER_STATUS_BIT_THM_GFX);
++			SMU_THROTTLER_TEMP_GPU_BIT, THROTTLER_TEMP_GPU_BIT);
 +	indep_status |= smu_u64_throttler_bit(dep_status,
-+			SMU_THROTTLER_TEMP_VR_SOC_BIT, THROTTLER_STATUS_BIT_THM_SOC);
++			SMU_THROTTLER_TEMP_MEM_BIT, THROTTLER_TEMP_MEM_BIT);
 +	indep_status |= smu_u64_throttler_bit(dep_status,
-+			SMU_THROTTLER_TDC_VDD_BIT, THROTTLER_STATUS_BIT_TDC_VDD);
++			SMU_THROTTLER_TEMP_VR_GFX_BIT, THROTTLER_TEMP_VR_GFX_BIT);
 +	indep_status |= smu_u64_throttler_bit(dep_status,
-+			SMU_THROTTLER_TDC_SOC_BIT, THROTTLER_STATUS_BIT_TDC_SOC);
++			SMU_THROTTLER_TEMP_VR_SOC_BIT, THROTTLER_TEMP_VR_SOC_BIT);
 +	indep_status |= smu_u64_throttler_bit(dep_status,
-+			SMU_THROTTLER_PROCHOT_CPU_BIT, THROTTLER_STATUS_BIT_PROCHOT_CPU);
++			SMU_THROTTLER_TEMP_VR_MEM_BIT, THROTTLER_TEMP_VR_MEM_BIT);
 +	indep_status |= smu_u64_throttler_bit(dep_status,
-+			SMU_THROTTLER_PROCHOT_GFX_BIT, THROTTLER_STATUS_BIT_PROCHOT_GFX);
-+	indep_status |= smu_u64_throttler_bit(dep_status,
-+			SMU_THROTTLER_EDC_CPU_BIT, THROTTLER_STATUS_BIT_EDC_CPU);
-+	indep_status |= smu_u64_throttler_bit(dep_status,
-+			SMU_THROTTLER_EDC_GFX_BIT, THROTTLER_STATUS_BIT_EDC_GFX);
++			SMU_THROTTLER_APCC_BIT, THROTTLER_APCC_BIT);
 +
 +	return indep_status;
 +}
 +
- /*
-  * This interface just for getting uclk ultimate freq and should't introduce
-  * other likewise function result in overmuch callback.
-@@ -1264,8 +1302,8 @@ static ssize_t renoir_get_gpu_metrics(struct smu_context *smu,
- 				      void **table)
+ static int aldebaran_get_smu_metrics_data(struct smu_context *smu,
+ 					  MetricsMember_t member,
+ 					  uint32_t *value)
+@@ -1713,8 +1747,8 @@ static ssize_t aldebaran_get_gpu_metrics(struct smu_context *smu,
+ 					 void **table)
  {
  	struct smu_table_context *smu_table = &smu->smu_table;
--	struct gpu_metrics_v2_1 *gpu_metrics =
--		(struct gpu_metrics_v2_1 *)smu_table->gpu_metrics_table;
-+	struct gpu_metrics_v2_2 *gpu_metrics =
-+		(struct gpu_metrics_v2_2 *)smu_table->gpu_metrics_table;
+-	struct gpu_metrics_v1_2 *gpu_metrics =
+-		(struct gpu_metrics_v1_2 *)smu_table->gpu_metrics_table;
++	struct gpu_metrics_v1_3 *gpu_metrics =
++		(struct gpu_metrics_v1_3 *)smu_table->gpu_metrics_table;
  	SmuMetrics_t metrics;
- 	int ret = 0;
+ 	int i, ret = 0;
  
-@@ -1273,7 +1311,7 @@ static ssize_t renoir_get_gpu_metrics(struct smu_context *smu,
+@@ -1724,7 +1758,7 @@ static ssize_t aldebaran_get_gpu_metrics(struct smu_context *smu,
  	if (ret)
  		return ret;
  
--	smu_cmn_init_soft_gpu_metrics(gpu_metrics, 2, 1);
-+	smu_cmn_init_soft_gpu_metrics(gpu_metrics, 2, 2);
+-	smu_cmn_init_soft_gpu_metrics(gpu_metrics, 1, 2);
++	smu_cmn_init_soft_gpu_metrics(gpu_metrics, 1, 3);
  
- 	gpu_metrics->temperature_gfx = metrics.GfxTemperature;
- 	gpu_metrics->temperature_soc = metrics.SocTemperature;
-@@ -1311,6 +1349,8 @@ static ssize_t renoir_get_gpu_metrics(struct smu_context *smu,
- 	gpu_metrics->current_l3clk[1] = metrics.L3Frequency[1];
+ 	gpu_metrics->temperature_edge = metrics.TemperatureEdge;
+ 	gpu_metrics->temperature_hotspot = metrics.TemperatureHotspot;
+@@ -1755,6 +1789,8 @@ static ssize_t aldebaran_get_gpu_metrics(struct smu_context *smu,
+ 	gpu_metrics->current_dclk0 = metrics.CurrClock[PPCLK_DCLK];
  
  	gpu_metrics->throttle_status = metrics.ThrottlerStatus;
 +	gpu_metrics->indep_throttle_status =
-+		renoir_get_indep_throttler_status(metrics.ThrottlerStatus);
++			aldebaran_get_indep_throttler_status(metrics.ThrottlerStatus);
  
- 	gpu_metrics->fan_pwm = metrics.FanPwm;
+ 	gpu_metrics->current_fan_speed = 0;
  
-@@ -1318,7 +1358,7 @@ static ssize_t renoir_get_gpu_metrics(struct smu_context *smu,
+@@ -1776,7 +1812,7 @@ static ssize_t aldebaran_get_gpu_metrics(struct smu_context *smu,
  
  	*table = (void *)gpu_metrics;
  
--	return sizeof(struct gpu_metrics_v2_1);
-+	return sizeof(struct gpu_metrics_v2_2);
+-	return sizeof(struct gpu_metrics_v1_2);
++	return sizeof(struct gpu_metrics_v1_3);
  }
  
- static int renoir_gfx_state_change_set(struct smu_context *smu, uint32_t state)
+ static int aldebaran_mode2_reset(struct smu_context *smu)
 -- 
 2.17.1
 
