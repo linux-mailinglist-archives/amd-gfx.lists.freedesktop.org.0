@@ -1,108 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8108F39416B
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 May 2021 12:56:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B5DE394B9E
+	for <lists+amd-gfx@lfdr.de>; Sat, 29 May 2021 12:20:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA29A6ECBA;
-	Fri, 28 May 2021 10:56:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D01226EDBE;
+	Sat, 29 May 2021 10:20:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2073.outbound.protection.outlook.com [40.107.223.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74BE96EE98
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 May 2021 10:56:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ITWyw/tFnfWgB7UTfKngKJ8WDOm8JpOv2bUK4PNyQW6Roax0KXNESFOcyRWqjAUoBQdYqD111sKpTyuNOfqf/rV8P44qnizzEfjSDguxSfaPefEMMXSVISYjKpQNJK2gzDorq428+Lo29R/ZvrKMhl0+r3k1GU19VS9AQ0hQuHULRT2EoqCjPzmycT9sd36PFY6vXNi5C28dwU12qYEwKzyf9JfHh/D31em2w0Vx4203+3nEAF/7CKHdPGfVzzoCMLDA3mKSbJ19eBs6g9ZN5RzIfHY3Z6AjfBmaUrgad8YEVmhk++0M+axmVFiSnRqQJ3EtBwu3UYYgTQ3tXzE8hw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5n3W9/co+Pyxfr8XeSBcCsVWdHRTgoZ+gAGShdRdAV8=;
- b=T4sgfV3UZIbRZnHqiVrhzMnYqDnMOOu7eMWR4N1lWCAFKrdMwl6cxwHsbx4qlaCVRtnn3xptZw1p/nRxky1cC116iOm+IJEUDf1vNBFJLbjSOU0qtLk3MWqTKwx6SkKqC986PkT9hbznjCqNxn9nOPJo08QfAwwUPz+khEQrgSqaYomqU2hQ+jnrMawKYIqyiCY+KbnF1urXPZobo2yzKy0w9mIlbp2dlGLdUd6mnyvw5ekm9X5Gz5ERmPO0/kfzLhevBkQbn1868VhNu6/IYsWsadzjYaaxPdxo15wmZKA0SfoTaUO3Ta+sEhEa3n4x9Z4HWUzrWJO0bGz0zCkMMg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5n3W9/co+Pyxfr8XeSBcCsVWdHRTgoZ+gAGShdRdAV8=;
- b=VUZjnj05y74pY6TiM4fIh3zkIuI3edYYlYBtWNwsy2OA8a+ODVzLGih45vBS73BrG/MMysKvr4jlYyRZzOpQy1E8gi0JW+k7+biSbIvs1QJ0bJsqWiOt9TXuf1K9a2sD65ol/1DIILwDOLOg0UT/h6dhreHWIC64oKokKTcuY0I=
-Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5136.namprd12.prod.outlook.com (2603:10b6:5:393::23)
- by DM8PR12MB5416.namprd12.prod.outlook.com (2603:10b6:8:28::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4150.27; Fri, 28 May
- 2021 10:56:45 +0000
-Received: from DM4PR12MB5136.namprd12.prod.outlook.com
- ([fe80::4074:4943:244:a5fa]) by DM4PR12MB5136.namprd12.prod.outlook.com
- ([fe80::4074:4943:244:a5fa%6]) with mapi id 15.20.4173.022; Fri, 28 May 2021
- 10:56:45 +0000
-From: Nirmoy Das <nirmoy.das@amd.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v2 6/6] drm/amdgpu: do not allocate entries separately
-Date: Fri, 28 May 2021 12:56:23 +0200
-Message-Id: <20210528105623.28148-6-nirmoy.das@amd.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210528105623.28148-1-nirmoy.das@amd.com>
-References: <20210528105623.28148-1-nirmoy.das@amd.com>
-X-Originating-IP: [217.86.100.114]
-X-ClientProxiedBy: PR3P189CA0081.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:102:b4::26) To DM4PR12MB5136.namprd12.prod.outlook.com
- (2603:10b6:5:393::23)
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1F866E233;
+ Fri, 28 May 2021 12:13:00 +0000 (UTC)
+Received: from dggemv711-chm.china.huawei.com (unknown [172.30.72.56])
+ by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4Fs3RD2xBCzYqKB;
+ Fri, 28 May 2021 20:10:16 +0800 (CST)
+Received: from dggema769-chm.china.huawei.com (10.1.198.211) by
+ dggemv711-chm.china.huawei.com (10.1.198.66) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.1.2176.2; Fri, 28 May 2021 20:12:57 +0800
+Received: from localhost (10.174.179.215) by dggema769-chm.china.huawei.com
+ (10.1.198.211) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 28
+ May 2021 20:12:56 +0800
+From: YueHaibing <yuehaibing@huawei.com>
+To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
+ <Xinhui.Pan@amd.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+ <Dennis.Li@amd.com>, <jonathan.kim@amd.com>
+Subject: [PATCH -next] drm/amdgpu: use DEVICE_ATTR_*() macro
+Date: Fri, 28 May 2021 20:12:47 +0800
+Message-ID: <20210528121247.23168-1-yuehaibing@huawei.com>
+X-Mailer: git-send-email 2.10.2.windows.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from brihaspati.fritz.box (217.86.100.114) by
- PR3P189CA0081.EURP189.PROD.OUTLOOK.COM (2603:10a6:102:b4::26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4173.20 via Frontend Transport; Fri, 28 May 2021 10:56:44 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 75eca678-e3d9-49b4-5cd3-08d921c748bc
-X-MS-TrafficTypeDiagnostic: DM8PR12MB5416:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM8PR12MB54168FED997E6B8E97C5CCCF8B229@DM8PR12MB5416.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DSGqj9rfRsVBPWmY3eVNnu5ttIhA/VzolO95OU1hAMnAspZ95XNjrPdMEGYfzEfpg0RPfTS2kqZu9DYtAkl72hDguk+qN5BDpHGZFaHo2qnADLAcHkUPdIGWiQUWU5cnhN9rZM7+OeWwZ1Htjzwc3jEuLP9juGf1PNdnNkWhRXViH66UNKFy1JgKccDoanut4PBGbwcvnPcQgfOzmMXMoK0py59gRlhrYGKsETGipiWXMbv3pQtt7wE2ybBtWwLcMbdmt5ul0r4cpqhkTCzY7joV6+0aMKtc8nea4ermV6IK3UyiMiLnnRfjii72jNOTMlg2/0XiQEKLtnOrQdfPB5xD/C6R5OXxZCLsgb1F3x7pLQ9sUzSgiH68Hx7H+6tFpEElPoBdXDIorEF1xFZXpOIYuKb7J1BrLE2zFN4jFU/NoxjmLINpTEu9YFRisMeuyMG1kaG8jUxsvgqSMJ3d1JduoTLiqE9S+ygbJZYIcgEywPVoSS2q79+5r/65Rmd7ssh8DSp5fmpawozs5kdrXt7fJeXl6nApPZ10A5L1kIOSqELzDh3ZZCGpCzM1/tISWAusUSEo52ItxLQJVmUiFounbSIICdT3KlakdBL1msvBL5ycYKowDS5UMg+G6gIESHFyBLJ0i7+byARd+W0VObtHYrQ01wmv6vZS0xHXdrM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5136.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(39850400004)(366004)(346002)(136003)(376002)(6486002)(2906002)(6512007)(38350700002)(38100700002)(6916009)(36756003)(44832011)(16526019)(5660300002)(66476007)(186003)(66556008)(66946007)(86362001)(956004)(2616005)(26005)(8936002)(83380400001)(6506007)(478600001)(52116002)(1076003)(8676002)(6666004)(316002)(4326008);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?KWD3WY3HURBT7VbeQvl7wjASC+i4s8XPoUvoiVrYZMmrNlQOcSZi9sGTnwae?=
- =?us-ascii?Q?QrHPu0rHSnO7LY7W0KF/I0DRZtn84XWZa4qAotU7hgL9idIDK70Zqa3L7UNT?=
- =?us-ascii?Q?qNUlKPzchHQ61B8gH+7N1TEzG8SgsB1TTC+PF6IVsHF103Ew/xt0VenT4F4c?=
- =?us-ascii?Q?c1Wv4z4nwsQ/8gMWLeNcAK+x/glBPngSXfo+bF+cASr4qoCFaecQuXhgHqSM?=
- =?us-ascii?Q?gg2S09gD/vN57jub1odg37hj6CnSgLafg2YPN3kFO5mL+Oysajq8/+npBKwe?=
- =?us-ascii?Q?l+cGEdza5875sprFEW2OCEScijENugXLTRkk0alrqxSKKRe57l30eKXxRBye?=
- =?us-ascii?Q?+iLy3QqK/iuOiEWgO0U3gu4P8AZ4inD9MBaIXYIN89jfM+zqVfzbotSd/XRT?=
- =?us-ascii?Q?5UF6e3OPcw9RCrwBa1yTWfv+8F2asnBruRYFoqOolYG40Xfz9igMWtbXVoNI?=
- =?us-ascii?Q?FN887AtkTHCjfMrVGyQPTx4ZoH1fcGAfhAb5M/io6EGLvw5CHME79E8GxCcL?=
- =?us-ascii?Q?vE4Iu+h1QrOzm8Ut5F8FTsvpXcgJQg9WIhipTwuSJdDUEGiqO+HY0cBJsLPu?=
- =?us-ascii?Q?tU6KhduRyzfzBGGzKt4jq39PSV/IDJPLCP1L9A91bd/NRqFqIRmTK7e0XtBe?=
- =?us-ascii?Q?S3JlapGh8x5NUmYCS/KexSPFguAeJhbfpLAdO+WIGEu+vb6rrZNykRwjT3A6?=
- =?us-ascii?Q?9ZhepTmxmpNPArI6XOIlbNMGQMYyRHPxCc3DGDBJdv5BIqGH3/BRTdwPkKID?=
- =?us-ascii?Q?Zn8PEm4AVplcqbgxppyyGe09HJ3Y+AGh6KAMlh3GFStfsZjihTQFDC0+A3NN?=
- =?us-ascii?Q?kpQpUPdDT/0y0zNG6Uv1iO/eLZZAAUKJQJTGT4mDDWJHeamihurXOR6qLGQv?=
- =?us-ascii?Q?VLr34zD81NSuKJtVrQ79aA2SLgA4MsKooCOczoEu88tpIxqGApGAz2H2BN2t?=
- =?us-ascii?Q?r0TOk2Cvj6oFwEzUvUkMTYfxhNPoRt2RW0OE+c4ZpsqUHZp7aAmcFxqdHfqL?=
- =?us-ascii?Q?5VwYkbk1tVhq6zjWQUWNmgUv95Z/zQeV7mRklMwPSUcldyy7TeiMmkSP4L8j?=
- =?us-ascii?Q?Vg/CMNBxlqPJcdRcYmePiGy7No0zMMEa7oK9SU+gTsiKBRQ2YnVVdNpYcwUI?=
- =?us-ascii?Q?YSuJGne6FiwEjJcVTU2K+o0WvxtRycVGIiAv74r2q5y/K7rjgOV1TstOCd0F?=
- =?us-ascii?Q?sBjqTApn9n5KC/dN+3gUL5zNFN+b1csqO/bVdFrdv3wE+5wOfzP+fUNeRESw?=
- =?us-ascii?Q?5328BR7oujaJ3LHWttFgbymRlIY6GHW5m+WIaxwAfx9MInniAS3Nhj2aM5W1?=
- =?us-ascii?Q?lVKX9di6Vjb1JYqRjiSfSSAT?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75eca678-e3d9-49b4-5cd3-08d921c748bc
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5136.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2021 10:56:45.3353 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NBPkAEVsFoFxH31kfnwibq9KzD2HWVOe/6HZ7DsLOx5LWF37Y1Xa+j0n4yP/V0xP0BZRhiDMfxmRwLrXVHHJ3w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5416
+X-Originating-IP: [10.174.179.215]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ dggema769-chm.china.huawei.com (10.1.198.211)
+X-CFilter-Loop: Reflected
+X-Mailman-Approved-At: Sat, 29 May 2021 10:20:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,99 +48,401 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, Nirmoy Das <nirmoy.das@amd.com>,
- Christian.Koenig@amd.com
+Cc: YueHaibing <yuehaibing@huawei.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Allocate PD/PT entries while allocating VM BOs and use that
-instead of allocating those entries separately.
+Use DEVICE_ATTR_*() helper instead of plain DEVICE_ATTR(),
+which makes the code a bit shorter and easier to read.
 
-v2: create a new var for num entries.
-
-Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 34 +++++++++++++++-----------
- 1 file changed, 20 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c |  8 ++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c   | 28 +++++++--------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c  | 16 ++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c      | 17 +++------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c      |  8 ++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 38 ++++++++------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c     | 14 ++++----
+ drivers/gpu/drm/amd/amdgpu/df_v3_6.c         |  7 ++--
+ 8 files changed, 54 insertions(+), 82 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 223c63342ecd..7e478ffb7fdf 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -877,6 +877,7 @@ static int amdgpu_vm_pt_create(struct amdgpu_device *adev,
- 	struct amdgpu_bo *bo;
- 	struct dma_resv *resv;
- 	int r;
-+	unsigned int num_entries;
-
- 	memset(&bp, 0, sizeof(bp));
-
-@@ -886,7 +887,14 @@ static int amdgpu_vm_pt_create(struct amdgpu_device *adev,
- 	bp.domain = amdgpu_bo_get_preferred_pin_domain(adev, bp.domain);
- 	bp.flags = AMDGPU_GEM_CREATE_VRAM_CONTIGUOUS |
- 		AMDGPU_GEM_CREATE_CPU_GTT_USWC;
--	bp.bo_ptr_size = sizeof(struct amdgpu_bo_vm);
-+
-+	if (level < AMDGPU_VM_PTB)
-+		num_entries = amdgpu_vm_num_entries(adev, level);
-+	else
-+		num_entries = 0;
-+
-+	bp.bo_ptr_size = struct_size((*vmbo), entries, num_entries);
-+
- 	if (vm->use_cpu_for_update)
- 		bp.flags |= AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED;
-
-@@ -957,19 +965,14 @@ static int amdgpu_vm_alloc_pts(struct amdgpu_device *adev,
- 	struct amdgpu_bo_vm *pt;
- 	int r;
-
--	if (cursor->level < AMDGPU_VM_PTB && !entry->entries) {
--		unsigned num_entries;
--
--		num_entries = amdgpu_vm_num_entries(adev, cursor->level);
--		entry->entries = kvmalloc_array(num_entries,
--						sizeof(*entry->entries),
--						GFP_KERNEL | __GFP_ZERO);
--		if (!entry->entries)
--			return -ENOMEM;
--	}
--
--	if (entry->base.bo)
-+	if (entry->base.bo) {
-+		if (cursor->level < AMDGPU_VM_PTB)
-+			entry->entries =
-+				to_amdgpu_bo_vm(entry->base.bo)->entries;
-+		else
-+			entry->entries = NULL;
- 		return 0;
-+	}
-
- 	r = amdgpu_vm_pt_create(adev, vm, cursor->level, immediate, &pt);
- 	if (r)
-@@ -981,6 +984,10 @@ static int amdgpu_vm_alloc_pts(struct amdgpu_device *adev,
- 	pt_bo = &pt->bo;
- 	pt_bo->parent = amdgpu_bo_ref(cursor->parent->base.bo);
- 	amdgpu_vm_bo_base_init(&entry->base, vm, pt_bo);
-+	if (cursor->level < AMDGPU_VM_PTB)
-+		entry->entries = pt->entries;
-+	else
-+		entry->entries = NULL;
-
- 	r = amdgpu_vm_clear_bo(adev, vm, pt, immediate);
- 	if (r)
-@@ -1010,7 +1017,6 @@ static void amdgpu_vm_free_table(struct amdgpu_vm_pt *entry)
- 		amdgpu_bo_unref(&shadow);
- 		amdgpu_bo_unref(&entry->base.bo);
- 	}
--	kvfree(entry->entries);
- 	entry->entries = NULL;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
+index 96b7bb13a2dd..38ee4db1d841 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
+@@ -1754,9 +1754,8 @@ static uint32_t cail_reg_read(struct card_info *info, uint32_t reg)
+ 	return r;
  }
-
---
-2.31.1
+ 
+-static ssize_t amdgpu_atombios_get_vbios_version(struct device *dev,
+-						 struct device_attribute *attr,
+-						 char *buf)
++static ssize_t vbios_version_show(struct device *dev,
++				  struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -1765,8 +1764,7 @@ static ssize_t amdgpu_atombios_get_vbios_version(struct device *dev,
+ 	return sysfs_emit(buf, "%s\n", ctx->vbios_version);
+ }
+ 
+-static DEVICE_ATTR(vbios_version, 0444, amdgpu_atombios_get_vbios_version,
+-		   NULL);
++static DEVICE_ATTR_RO(vbios_version);
+ 
+ static struct attribute *amdgpu_vbios_version_attrs[] = {
+ 	&dev_attr_vbios_version.attr,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 2fe4bdf5aa6f..fc516d905e50 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -134,8 +134,8 @@ const char *amdgpu_asic_name[] = {
+  * number of replays as a sum of the NAKs generated and NAKs received
+  */
+ 
+-static ssize_t amdgpu_device_get_pcie_replay_count(struct device *dev,
+-		struct device_attribute *attr, char *buf)
++static ssize_t pcie_replay_count_show(struct device *dev,
++				      struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -144,8 +144,7 @@ static ssize_t amdgpu_device_get_pcie_replay_count(struct device *dev,
+ 	return sysfs_emit(buf, "%llu\n", cnt);
+ }
+ 
+-static DEVICE_ATTR(pcie_replay_count, S_IRUGO,
+-		amdgpu_device_get_pcie_replay_count, NULL);
++static DEVICE_ATTR_RO(pcie_replay_count);
+ 
+ static void amdgpu_device_get_pcie_info(struct amdgpu_device *adev);
+ 
+@@ -159,8 +158,8 @@ static void amdgpu_device_get_pcie_info(struct amdgpu_device *adev);
+  * NOTE: This is only available for certain server cards
+  */
+ 
+-static ssize_t amdgpu_device_get_product_name(struct device *dev,
+-		struct device_attribute *attr, char *buf)
++static ssize_t product_name_show(struct device *dev,
++				 struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -168,8 +167,7 @@ static ssize_t amdgpu_device_get_product_name(struct device *dev,
+ 	return sysfs_emit(buf, "%s\n", adev->product_name);
+ }
+ 
+-static DEVICE_ATTR(product_name, S_IRUGO,
+-		amdgpu_device_get_product_name, NULL);
++static DEVICE_ATTR_RO(product_name);
+ 
+ /**
+  * DOC: product_number
+@@ -181,8 +179,8 @@ static DEVICE_ATTR(product_name, S_IRUGO,
+  * NOTE: This is only available for certain server cards
+  */
+ 
+-static ssize_t amdgpu_device_get_product_number(struct device *dev,
+-		struct device_attribute *attr, char *buf)
++static ssize_t product_number_show(struct device *dev,
++				   struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -190,8 +188,7 @@ static ssize_t amdgpu_device_get_product_number(struct device *dev,
+ 	return sysfs_emit(buf, "%s\n", adev->product_number);
+ }
+ 
+-static DEVICE_ATTR(product_number, S_IRUGO,
+-		amdgpu_device_get_product_number, NULL);
++static DEVICE_ATTR_RO(product_number);
+ 
+ /**
+  * DOC: serial_number
+@@ -203,8 +200,8 @@ static DEVICE_ATTR(product_number, S_IRUGO,
+  * NOTE: This is only available for certain server cards
+  */
+ 
+-static ssize_t amdgpu_device_get_serial_number(struct device *dev,
+-		struct device_attribute *attr, char *buf)
++static ssize_t serial_number_show(struct device *dev,
++				  struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -212,8 +209,7 @@ static ssize_t amdgpu_device_get_serial_number(struct device *dev,
+ 	return sysfs_emit(buf, "%s\n", adev->serial);
+ }
+ 
+-static DEVICE_ATTR(serial_number, S_IRUGO,
+-		amdgpu_device_get_serial_number, NULL);
++static DEVICE_ATTR_RO(serial_number);
+ 
+ /**
+  * amdgpu_device_supports_px - Is the device a dGPU with ATPX power control
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+index 6a84c9778cc0..16d7fdc53388 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+@@ -43,9 +43,8 @@ struct amdgpu_gtt_node {
+  * The file mem_info_gtt_total is used for this, and returns the total size of
+  * the GTT block, in bytes
+  */
+-static ssize_t amdgpu_mem_info_gtt_total_show(struct device *dev,
+-					      struct device_attribute *attr,
+-					      char *buf)
++static ssize_t mem_info_gtt_total_show(struct device *dev,
++				       struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -63,9 +62,8 @@ static ssize_t amdgpu_mem_info_gtt_total_show(struct device *dev,
+  * The file mem_info_gtt_used is used for this, and returns the current used
+  * size of the GTT block, in bytes
+  */
+-static ssize_t amdgpu_mem_info_gtt_used_show(struct device *dev,
+-					     struct device_attribute *attr,
+-					     char *buf)
++static ssize_t mem_info_gtt_used_show(struct device *dev,
++				      struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -75,10 +73,8 @@ static ssize_t amdgpu_mem_info_gtt_used_show(struct device *dev,
+ 	return sysfs_emit(buf, "%llu\n", amdgpu_gtt_mgr_usage(man));
+ }
+ 
+-static DEVICE_ATTR(mem_info_gtt_total, S_IRUGO,
+-	           amdgpu_mem_info_gtt_total_show, NULL);
+-static DEVICE_ATTR(mem_info_gtt_used, S_IRUGO,
+-	           amdgpu_mem_info_gtt_used_show, NULL);
++static DEVICE_ATTR_RO(mem_info_gtt_total);
++static DEVICE_ATTR_RO(mem_info_gtt_used);
+ 
+ static struct attribute *amdgpu_gtt_mgr_attributes[] = {
+ 	&dev_attr_mem_info_gtt_total.attr,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index 3ff76cbaec8d..ce3e554d2e2d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -2985,9 +2985,8 @@ static int psp_set_powergating_state(void *handle,
+ 	return 0;
+ }
+ 
+-static ssize_t psp_usbc_pd_fw_sysfs_read(struct device *dev,
+-					 struct device_attribute *attr,
+-					 char *buf)
++static ssize_t usbc_pd_fw_show(struct device *dev,
++			       struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -3011,10 +3010,8 @@ static ssize_t psp_usbc_pd_fw_sysfs_read(struct device *dev,
+ 	return sysfs_emit(buf, "%x\n", fw_ver);
+ }
+ 
+-static ssize_t psp_usbc_pd_fw_sysfs_write(struct device *dev,
+-						       struct device_attribute *attr,
+-						       const char *buf,
+-						       size_t count)
++static ssize_t usbc_pd_fw_store(struct device *dev, struct device_attribute *attr,
++				const char *buf, size_t count)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -3086,11 +3083,7 @@ void psp_copy_fw(struct psp_context *psp, uint8_t *start_addr, uint32_t bin_size
+ 	drm_dev_exit(idx);
+ }
+ 
+-static DEVICE_ATTR(usbc_pd_fw, S_IRUGO | S_IWUSR,
+-		   psp_usbc_pd_fw_sysfs_read,
+-		   psp_usbc_pd_fw_sysfs_write);
+-
+-
++static DEVICE_ATTR_RW(usbc_pd_fw);
+ 
+ const struct amd_ip_funcs psp_ip_funcs = {
+ 	.name = "psp",
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index c2c791ca00f4..2e1ccf13cea8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -1150,8 +1150,8 @@ static ssize_t amdgpu_ras_sysfs_badpages_read(struct file *f,
+ 	return s;
+ }
+ 
+-static ssize_t amdgpu_ras_sysfs_features_read(struct device *dev,
+-		struct device_attribute *attr, char *buf)
++static ssize_t features_show(struct device *dev,
++			     struct device_attribute *attr, char *buf)
+ {
+ 	struct amdgpu_ras *con =
+ 		container_of(attr, struct amdgpu_ras, features_attr);
+@@ -1360,8 +1360,8 @@ void amdgpu_ras_debugfs_create_all(struct amdgpu_device *adev)
+ /* ras fs */
+ static BIN_ATTR(gpu_vram_bad_pages, S_IRUGO,
+ 		amdgpu_ras_sysfs_badpages_read, NULL, 0);
+-static DEVICE_ATTR(features, S_IRUGO,
+-		amdgpu_ras_sysfs_features_read, NULL);
++static DEVICE_ATTR_RO(features);
++
+ static int amdgpu_ras_fs_init(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+index 07e007dbff7c..a33210ea9b2f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+@@ -54,8 +54,8 @@ to_amdgpu_device(struct amdgpu_vram_mgr *mgr)
+  * The file mem_info_vram_total is used for this and returns the total
+  * amount of VRAM in bytes
+  */
+-static ssize_t amdgpu_mem_info_vram_total_show(struct device *dev,
+-		struct device_attribute *attr, char *buf)
++static ssize_t mem_info_vram_total_show(struct device *dev,
++					struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -71,8 +71,8 @@ static ssize_t amdgpu_mem_info_vram_total_show(struct device *dev,
+  * The file mem_info_vis_vram_total is used for this and returns the total
+  * amount of visible VRAM in bytes
+  */
+-static ssize_t amdgpu_mem_info_vis_vram_total_show(struct device *dev,
+-		struct device_attribute *attr, char *buf)
++static ssize_t mem_info_vis_vram_total_show(struct device *dev,
++					    struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -88,9 +88,8 @@ static ssize_t amdgpu_mem_info_vis_vram_total_show(struct device *dev,
+  * The file mem_info_vram_used is used for this and returns the total
+  * amount of currently used VRAM in bytes
+  */
+-static ssize_t amdgpu_mem_info_vram_used_show(struct device *dev,
+-					      struct device_attribute *attr,
+-					      char *buf)
++static ssize_t mem_info_vram_used_show(struct device *dev,
++				       struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -108,9 +107,8 @@ static ssize_t amdgpu_mem_info_vram_used_show(struct device *dev,
+  * The file mem_info_vis_vram_used is used for this and returns the total
+  * amount of currently used visible VRAM in bytes
+  */
+-static ssize_t amdgpu_mem_info_vis_vram_used_show(struct device *dev,
+-						  struct device_attribute *attr,
+-						  char *buf)
++static ssize_t mem_info_vis_vram_used_show(struct device *dev,
++					   struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -128,9 +126,8 @@ static ssize_t amdgpu_mem_info_vis_vram_used_show(struct device *dev,
+  * The file mem_info_vram_vendor is used for this and returns the name of the
+  * vendor.
+  */
+-static ssize_t amdgpu_mem_info_vram_vendor(struct device *dev,
+-					   struct device_attribute *attr,
+-					   char *buf)
++static ssize_t mem_info_vram_vendor_show(struct device *dev,
++					 struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -161,16 +158,11 @@ static ssize_t amdgpu_mem_info_vram_vendor(struct device *dev,
+ 	}
+ }
+ 
+-static DEVICE_ATTR(mem_info_vram_total, S_IRUGO,
+-		   amdgpu_mem_info_vram_total_show, NULL);
+-static DEVICE_ATTR(mem_info_vis_vram_total, S_IRUGO,
+-		   amdgpu_mem_info_vis_vram_total_show,NULL);
+-static DEVICE_ATTR(mem_info_vram_used, S_IRUGO,
+-		   amdgpu_mem_info_vram_used_show, NULL);
+-static DEVICE_ATTR(mem_info_vis_vram_used, S_IRUGO,
+-		   amdgpu_mem_info_vis_vram_used_show, NULL);
+-static DEVICE_ATTR(mem_info_vram_vendor, S_IRUGO,
+-		   amdgpu_mem_info_vram_vendor, NULL);
++static DEVICE_ATTR_RO(mem_info_vram_total);
++static DEVICE_ATTR_RO(mem_info_vis_vram_total);
++static DEVICE_ATTR_RO(mem_info_vram_used);
++static DEVICE_ATTR_RO(mem_info_vis_vram_used);
++static DEVICE_ATTR_RO(mem_info_vram_vendor);
+ 
+ static struct attribute *amdgpu_vram_mgr_attributes[] = {
+ 	&dev_attr_mem_info_vram_total.attr,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+index 8567d5d77346..764bfa69f7bb 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+@@ -209,9 +209,8 @@ struct kobj_type amdgpu_xgmi_hive_type = {
+ 	.default_attrs = amdgpu_xgmi_hive_attrs,
+ };
+ 
+-static ssize_t amdgpu_xgmi_show_device_id(struct device *dev,
+-				     struct device_attribute *attr,
+-				     char *buf)
++static ssize_t xgmi_device_id_show(struct device *dev,
++				   struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -221,9 +220,8 @@ static ssize_t amdgpu_xgmi_show_device_id(struct device *dev,
+ }
+ 
+ #define AMDGPU_XGMI_SET_FICAA(o)	((o) | 0x456801)
+-static ssize_t amdgpu_xgmi_show_error(struct device *dev,
+-				      struct device_attribute *attr,
+-				      char *buf)
++static ssize_t xgmi_error_show(struct device *dev,
++			       struct device_attribute *attr, char *buf)
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+@@ -249,8 +247,8 @@ static ssize_t amdgpu_xgmi_show_error(struct device *dev,
+ }
+ 
+ 
+-static DEVICE_ATTR(xgmi_device_id, S_IRUGO, amdgpu_xgmi_show_device_id, NULL);
+-static DEVICE_ATTR(xgmi_error, S_IRUGO, amdgpu_xgmi_show_error, NULL);
++static DEVICE_ATTR_RO(xgmi_device_id);
++static DEVICE_ATTR_RO(xgmi_error);
+ 
+ static int amdgpu_xgmi_sysfs_add_dev_info(struct amdgpu_device *adev,
+ 					 struct amdgpu_hive_info *hive)
+diff --git a/drivers/gpu/drm/amd/amdgpu/df_v3_6.c b/drivers/gpu/drm/amd/amdgpu/df_v3_6.c
+index 14514a145c17..44abb4404fba 100644
+--- a/drivers/gpu/drm/amd/amdgpu/df_v3_6.c
++++ b/drivers/gpu/drm/amd/amdgpu/df_v3_6.c
+@@ -188,9 +188,8 @@ static int df_v3_6_perfmon_arm_with_retry(struct amdgpu_device *adev,
+ }
+ 
+ /* get the number of df counters available */
+-static ssize_t df_v3_6_get_df_cntr_avail(struct device *dev,
+-		struct device_attribute *attr,
+-		char *buf)
++static ssize_t df_cntr_avail_show(struct device *dev,
++				  struct device_attribute *attr, char *buf)
+ {
+ 	struct amdgpu_device *adev;
+ 	struct drm_device *ddev;
+@@ -209,7 +208,7 @@ static ssize_t df_v3_6_get_df_cntr_avail(struct device *dev,
+ }
+ 
+ /* device attr for available perfmon counters */
+-static DEVICE_ATTR(df_cntr_avail, S_IRUGO, df_v3_6_get_df_cntr_avail, NULL);
++static DEVICE_ATTR_RO(df_cntr_avail);
+ 
+ static void df_v3_6_query_hashes(struct amdgpu_device *adev)
+ {
+-- 
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
