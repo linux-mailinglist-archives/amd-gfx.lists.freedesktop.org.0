@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA4023990B9
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:50:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BCD73990BB
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:50:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5240A6EDA3;
-	Wed,  2 Jun 2021 16:50:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F5706ED9F;
+	Wed,  2 Jun 2021 16:50:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2064.outbound.protection.outlook.com [40.107.236.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A3146EDA6
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Jun 2021 16:50:31 +0000 (UTC)
+ (mail-bn8nam11on2057.outbound.protection.outlook.com [40.107.236.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B72006EDA9
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Jun 2021 16:50:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BWsN4M0zgcvnqaHJg+sD02RcQvRoVGAfRAes9pOrnAN7IP3Gbb4oasUAArHPxUp2mdFRw9RL2f+MkaszMaPVQgVeYxIetSMlwWWHclbmvae9OxhmFVe0S6I+j/whN3aQ14aj83xoWi6LJskhXBwBxZ+OR7mWlDlR/IKf7mN2i3boMmKdQOPg0o0ORiO+UGyAyfDKKbbQkC/dgNuDRF30cNBnOA+qN780WtHu6lf6EfgyAyDqFVusLSDKPQah+/+cfdzUzOxvMAN9uL5w3e1513mhqNaqEmmzf+2cyRAMyuJa8PAa7hxevMa3e0KPBVwlobQAqKmrnBu8aMZIO7t/fg==
+ b=NmKFSWd/tBCMWaEV0mC7g9nFFMpTUBdEZUnzUnCBGoa1B8PoTP0CLY+qMuiZ2QP4FXkcp6KfDeZ90tC6jUrpGV40MVxB3dnNPOzrPR1SiXlsFyMVr8PfCM7mR2Xz6Hqr5qHnY03/kyp97WRYYcdfXQIKNiV+6dAmtejEkh+tOg/CTtVeN613bSEpIqA7TTtUgcykx2f99tPlRAUzNaHSwHBNKd+uFUHBfBqI6j7vfaEZbXmd+sn7lOj1GrxmJGCo5raHixNwD7n73YBBAVIoMOISoYoRcwKo2GbdNA1yMgiRj3Kn+yAec3rdw7Mg6FAQBLfjsImi7ZSOVCs9SsKd0A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OU41J2zhGiYrHg8hhxUquIGj9Ar3NLkTJR22yhuKXas=;
- b=ctBp8wL/f0yISY/hw66R38o9FSbfa2wWA8m12zQSyrXjlY1l9Iho/FlNdM1BW7jMjEgzVxOAkzphWj9M2LRsMkewnYGBmwSIPamGDAx6mk9IOEjpGdvaz6oybEF9m2PlkSAWrwPqbEnx21BosMlTnXm8N5u3+AvX0Ufyo/Ert49EFkp/3hdSwGFs8fWxFtttUZy/NFBvCCvZSZPubC5WnSpbPlzWyu4WO1kTROdqjzHUaFF6aYSReXrIVi/hyJvdMeZ9YEG6kHwvKpjZMrlplDUAgoCRMMWyc5toqDmnto3ZSe9prgtQ5CvzQ/kwF6VPbzNDXhm4eX/4qjKXgXNtZw==
+ bh=C+cq8KLSDuZG02/uIdmZqhVfuZw7Nl1I//GlQD1QJns=;
+ b=VZZge/SitRu8KWpfNmOye93kEuYIDUJxDhpauXMhL3Na6dGYBu3abgJ+IcoH4KlUwDb+IYU7qkb82Apgz54c6I01hAxi5KjTYyyhg6Nuk62KwRmw7hEQDXeF/PoTc3S8j2r6KK8HvkMPnlx/z1XX19uDa595HT0qB+wMfyGnb+BqsX9pXKeIDi3kSOxhM47/rhrNWKb3ZsfauEQq7j4OT2ET+7hQBZzlVbIhl+KZ4+Km3xPOHZrwJZ1LJP06u513PkYIyffBK0UBDIgF8bLFRH03HClFq97anXW8Agknwe+z6MrbYUtCn0X/vgO73flZo/XGkz7hWccn9+XUdM1F1A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OU41J2zhGiYrHg8hhxUquIGj9Ar3NLkTJR22yhuKXas=;
- b=qrbD99uFdDZIOMuLaqj6IMWbYYTB5qxMWMaFa7efUEmUtDxRG7DHKa5q59zdAuHqxWOp92+xpR5Aa6QJkqEu/J8gI1d0qT81aRqjaxMrkPHxgIECIJEdIG8j88aOXx4ds+O2pEEaZ0NDXYH7eDF9AdJSHhVQtSbakNz/1Bs5UBQ=
+ bh=C+cq8KLSDuZG02/uIdmZqhVfuZw7Nl1I//GlQD1QJns=;
+ b=goUGEm3AoJxzSc08ayMYUlc6WP0b5zuReiTB78KjBeQJJD5wS/HwXp6C4Ddy1fEa0pH+BWMJRojE9FRPKUm/r1WxUNJV5nKUSOvLX5RNriri0DTV179StrXVCEfrMBP/nJy6fY3xqj7OikDPdVCSIxAvqsmAyKdeOI45hOsCkds=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,17 +34,17 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
  by BL0PR12MB4675.namprd12.prod.outlook.com (2603:10b6:207:35::26)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20; Wed, 2 Jun
- 2021 16:50:28 +0000
+ 2021 16:50:30 +0000
 Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  ([fe80::25f7:664:3a8f:25b6]) by MN2PR12MB4488.namprd12.prod.outlook.com
  ([fe80::25f7:664:3a8f:25b6%7]) with mapi id 15.20.4173.030; Wed, 2 Jun 2021
- 16:50:28 +0000
+ 16:50:30 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 40/89] drm/amd/pm: add vcn/jepg enable functions for yellow
- carp
-Date: Wed,  2 Jun 2021 12:48:19 -0400
-Message-Id: <20210602164908.2848791-40-alexander.deucher@amd.com>
+Subject: [PATCH 41/89] drm/amdgpu/jpeg: Remove harvest checking on
+ CHIP_YELLOW_CARP
+Date: Wed,  2 Jun 2021 12:48:20 -0400
+Message-Id: <20210602164908.2848791-41-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210602164908.2848791-1-alexander.deucher@amd.com>
 References: <20210602164908.2848791-1-alexander.deucher@amd.com>
@@ -60,50 +60,50 @@ Received: from localhost.localdomain (192.161.79.207) by
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.9 via Frontend
  Transport; Wed, 2 Jun 2021 16:49:56 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e0d2cd8a-d8cf-4b73-bce9-08d925e673a1
+X-MS-Office365-Filtering-Correlation-Id: 7b40cc53-9172-4103-9328-08d925e67403
 X-MS-TrafficTypeDiagnostic: BL0PR12MB4675:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BL0PR12MB4675578E297ECDC68B08CE7BF73D9@BL0PR12MB4675.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1824;
+X-Microsoft-Antispam-PRVS: <BL0PR12MB4675C4683178FFBBDB599F2CF73D9@BL0PR12MB4675.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:389;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /+A6Vqqw7r8ySGtdKwYGmEjM9U16eLaYA7DEJnd+vslUG/e8NLI406cIx8eOYUt6dO5ueeL6qbpI3Zr/btV1TIx+tyWyPH+b9fURSI2gSEAvQiF9q1v75n40UvR450m0ZSOZiZMyBJNl43Dbpu8tPtRWUfTzVGpWo6wYXflTHf6US/nwsi1tDB+yiU6mlN2HkQ6JMtQY+3BBP5vOT+P5pxOWDGUfQr0RucRLvN122ehZTLvACzz5Glw/kV6VEtw5zgAKhBzUvdHwMZu6uEXnpYRlfqGrdMVE2fUJ1j94BGIzSjkNeYKjwROMVnL9M2wI9SLF2uBC18+jAdQog7EskPr6wifgCsokndqAbgZXaJ77467+rZZY5JW5EriW546W7KGGKxg1hb5dkYqbvnTCjzuLOT6Euth6lNoAHGqIWxaZ/D7xn2xXHzpUYYQHGcvA8yF1t61kbJ+ojt0MvIrDi3tZKALBPV3IhK96O+tzSgwDGFzMd6UP5y45UWMPzRHv+yN3P2f226r8HZHYlxqXXOWBkExpE/irTjopmKK4S4pc22mXDLDeYtwfUK2EOFg5e9Uu84jxCMeYWI54jV7JL50qxy6OP2sPbVmob/oOQqu4VaqCZXNonfga4EXnfZqkRhZ5Dde2Fnczx2bp2ASI2Qosge7BK8vYrQTKNM+4zAFbWaki0OZcAM+9aHU0i3Jp
+X-Microsoft-Antispam-Message-Info: 4Ak8kx2Bf3Y77Aq3/+4Sm5/XlrXmUqLNC/mdqiAyayWaeu3vcnmJr8eLjj1itSxHrlD3hZG7pR7E5VhS/SXjOrLNH6wLinKjm5kjbEgXoqJ6nnqtzT+2FUT7fGGH6MNUycpkf+Q4LvP6g2qGroN2CvKQM4nmwBlI4vY6+Ch9Y7pCQToPubzcYta6rdAtCdMd25yy0ZuCxkdB4oXrfb1PqUt8i4PeQp07ObqccQd2QVRy++pzhushjL5kFJeYfFGpICo7xBctQUBbGQTsRs7oZxJLGbMJFb5In3Fe0RZvZYMhHcTsNb9SYwbcKSin7AVsnJxWcMucQZG5RrrQoI6lFLJd826hL79IB9se+5eGImQFh2Q8Xpz+4XxhdbQoLaoInlL+/uxG4NZHGMQIiReYTp8dMhTAZVJ4z8EQY64RhWQ/Z5pbTsrIplxKLpYiO+a4bmzkRAeEa86KcidkLl8G4SM/CRAgAQ2k7WyxqNHQ4T7b+NZcdxtO2k6ytzDPK/AtuRkTcl5gzeesNBvMAncvaG0hxrHsMjDrSMKi7EuL/6o43TPnR3EQzlj2VadVkTsbx6J+PZ7ZCHKCBqdKbV7378EdiaeJp3UuYtADIGtHZyjjA6Af5xP1fhEdy75KpT3pmJKZI0CkAbtl8BI5Pj0pzXmv/ST2UfsEct6QwSCsHQQOmC3PDBKL+RQTJ+8LYgaa
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(136003)(346002)(396003)(376002)(39860400002)(366004)(52116002)(6486002)(956004)(6666004)(26005)(5660300002)(6506007)(2616005)(36756003)(6512007)(478600001)(38350700002)(66476007)(66556008)(83380400001)(8676002)(2906002)(4326008)(86362001)(1076003)(16526019)(316002)(186003)(54906003)(6916009)(66946007)(38100700002)(8936002)(69590400013);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?ElXLR8vdwfLdoGCbFTWM42BSYRcJatzobX9URQIfZp7M3nFTK9wdpYTAI6L5?=
- =?us-ascii?Q?BxWW9vYtzQVjaz5w9DTlsyf4rLMAXM356Lm1z2/9Yq3TDSUv/2XBFVPL6luV?=
- =?us-ascii?Q?oZILX2yLAhOY4yUunogBKL/9ztGIVE8zwojhXokl6bnh9yJIzuAuC+8v5C8M?=
- =?us-ascii?Q?9XtW2YtZ5XoVcTk2oXMqrE2Q1jcKI9pdCjUT5zuA1m+liROtANGKuA801A5n?=
- =?us-ascii?Q?T+/zji8gUr+KPqpkTG9QhuuRkewbAEGVPrh6zCxhHwKn+PPKxplsskTyqP/V?=
- =?us-ascii?Q?JgSB+OtSHoRMQysmjGR12ZcF88LP3zjTXBhi/72ZIUMA+N+KDJgpMtz1Z94r?=
- =?us-ascii?Q?nbo08G27k8+hSP4hU2kLRoWqfxpGYzQunE+BUOIgBAoA/7L64oZG2dvy6ha+?=
- =?us-ascii?Q?3W+ExmpxSpbseVl0EbRGzeMfmaDRyWOJqYZVeW23B6PwLT66hPoqjhNdHjeA?=
- =?us-ascii?Q?u5TzS0aKtbWtLZaZqVP4BLOMhRt7YOWX9djAV1qceLVjySWM9TAu671bjIza?=
- =?us-ascii?Q?F21AiTaB9MBHHNuRdIy9XMYr/hVK0SDxBKSbXtoWpYOH2ggOYbAVRvfPvUQq?=
- =?us-ascii?Q?4JIx6AGR9OUWP/WMfgTtHekwfDNsqnCAaoB+DwWMvhxzV8mP2bpthjobCsbw?=
- =?us-ascii?Q?SvWSu1P8IuY5HBC6KsS1nhRGc4U0jkubMkdvP8/JkH/Gp687DeeDDyvWYHYM?=
- =?us-ascii?Q?FOTWNlI6jOTKGkAWSefmlNGENp/47ifXJoaO7psF7VxekV4f1CRPGRdQNBTA?=
- =?us-ascii?Q?uPJbRKqTqx1hYLxqYYGDVWuvTkZttsy6Cjz52LnTcGkI4CwwqD0X6+t187pN?=
- =?us-ascii?Q?tkF1An1pfcN4kmTkhirnhuM18CFzrGRiLH4spJ2fvEI9MP2AcIoODOiWWKNW?=
- =?us-ascii?Q?WgNGam/bCFjCg23rjUuovHwrHDnGJhYf/dhFUc/dp3mYPbaIQU64WAEy3Gka?=
- =?us-ascii?Q?PV448gzL3UX4+0jtU78ZhvpsuE9Bl3WjoaGuZ7LQTevlUvVJOWyWxN0vPtl8?=
- =?us-ascii?Q?s3OuiqWJx2W0TUnrXj5wgErICEMMqwtDmbaHax0Rc5BV27nVIF8E5OdQFB2a?=
- =?us-ascii?Q?1JWICPihz9jCbe7frdHKPlW2ElAiOIWvzxv6r3i6QwVCuy/S8uUbxWbLVCvO?=
- =?us-ascii?Q?6j8aLkjr2p3gL5EU3P8+U/B0xXFmHeX1gfWE1TNpfeJsJJYIa2ffGdq5l7R2?=
- =?us-ascii?Q?pZ/cmOvNuzEfFZkQs8Kbnmfr7ziBa9DFk3bhQitlNoRtT2eMW0EB3V04WFoV?=
- =?us-ascii?Q?wG7ZvzDpzR7BUbov/H8pFoOoD7hwzCL9GezPDqScSxSZSP9QPJYgcHA/Imwz?=
- =?us-ascii?Q?YH4mnp5k48chKp9TPqfQg0MJ?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?88rbaQfPKbFXcRDDg4b1akShUabjb9bxFK8FUCnahlgpa5oMYSZuAp7jT5T3?=
+ =?us-ascii?Q?I8LiCPIofWxaYwB0LM1unkOmKlAm3Jb/Cuo3uwU7kPVxdmAcQW7XQOpuLFob?=
+ =?us-ascii?Q?2jf6vHrbhd0J4yIZm/HZiJddc9HnNjz5QUm7eobpUJu8y3i1Kei7NMT0lf7k?=
+ =?us-ascii?Q?QEJqxwMtfl8OEbJxyzhboTzpj60BDOm42Agg5nGmrg0d8rxkD4klSymfdhDJ?=
+ =?us-ascii?Q?ZSh9hg9I9NXvQy5eLwRGjmIA4e5Zvc3lswB3YCC2W6UQLQFHY5P9P5ZwrYTq?=
+ =?us-ascii?Q?pCmaldgnNELKlniUYJB0x/MFoP6wuK99wmTDjZHFPve9l0vEjLYkOBnOgl16?=
+ =?us-ascii?Q?3s//1jWW6rDlxYfT8MQfRWX7/xrXJfEQcmpmuWEhUDER0KJV5QUs+yqXa46P?=
+ =?us-ascii?Q?rAZqcExHossFMU8ieOl7C4jY7jr96vckiZ4bMNWwsHry9bgG4sJ7qZTgRHFm?=
+ =?us-ascii?Q?Gq7eM+2bfXfYJF2VwT8hyh8DQBoZjQfxU/fhmMdi1BOMUV7NR763ji0YtFUy?=
+ =?us-ascii?Q?2USqC3GU9L4hECkuBfYc8ANMdFF6fPrEowKLWawUiXyRdv1leK+sfWytbbvh?=
+ =?us-ascii?Q?f3ibKPRMDEVapYMbMSt5eONOj7bkx/QdQtIBrooKshOdkI0RKZcSpNvQ11vc?=
+ =?us-ascii?Q?5u6f4mjgHJNUmaQiFHi0t+PjltD8BIxDHdbxzwQu4SpIOVZ+dBsnQmQl5+hF?=
+ =?us-ascii?Q?7QmBsypdos14D3IiZ38u+idd4OlZU9BZP5xKtM3w+ZpRMH3VTXQir3amEUtl?=
+ =?us-ascii?Q?Ukdjd2p9WBphjmnY5QWRkpTpRl9mf1meFNHRtD789DR3zRRX7W+4yoGMd46+?=
+ =?us-ascii?Q?RlXbxcLZTuLZj+j9l6keYBtSHQtCxaTHOlo0fngTNQoa58s3qYKE4aNV0rAc?=
+ =?us-ascii?Q?QrfmyWnUynIN4NTlqw3Uom0K1R9Q+i9zhRTvkdB1f/TUac3MonESo1SccnR7?=
+ =?us-ascii?Q?nb8VE90plB/rSaDqB1itGzcaCxFPMCOO+cHM1+aKGxNSuFmBVUstKqXw+82F?=
+ =?us-ascii?Q?2yI8nNX9IaARliRzbEBL1OHut7zgD40e2+FwkU4t3+oET7kD1GvB/8zKWKB9?=
+ =?us-ascii?Q?+h+tx0YLwYWBp0p+Ooau/FvHXEQmO4tSx5jGoCQYhXqSKgoMssiQ+sYnvQAu?=
+ =?us-ascii?Q?0n1gK846tStyPRa6XZKZ8R+iDmtviAn1eQaDkeK/6ja8ahkChIqesqF7vmfJ?=
+ =?us-ascii?Q?S3lPSflUGN0YzkTKWq8WTT6JU0TqAwo95X7BEOtpA0msfh8EZSE2GCaF19QK?=
+ =?us-ascii?Q?QNo0By7+b4H/4Gg7aKicNLbn3RZStN3zb0EJQlnxUZzFQdcGT7dmFR4/dVb/?=
+ =?us-ascii?Q?3q5ae6QSXF4mAbCNlSfr9gto?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e0d2cd8a-d8cf-4b73-bce9-08d925e673a1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b40cc53-9172-4103-9328-08d925e67403
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:49:56.3884 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:49:57.0694 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: C4KddPRPhWOYgqcOrDkTcLHTwQ6JEcKaqz6nARjdHEvZJrKiJ99CIxBd5gX27mY3az5sZVqP96zH7AHpT0AqJQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: loZwXLlSDaJeOcRJbok2NRlDAT6RnG5uc+bvO4XDB3Vju+c3UHKBDMOHiYwXzHbJZDGVOd9xjKhFlvjt7sQ/EQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4675
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -117,79 +117,47 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alex Deucher <alexander.deucher@amd.com>, Huang Rui <ray.huang@amd.com>,
- Leo Liu <leo.liu@amd.com>, Aaron Liu <aaron.liu@amd.com>,
- James Zhu <James.Zhu@amd.com>
+ James Zhu <James.Zhu@amd.com>, Leo Liu <leo.liu@amd.com>,
+ Aaron Liu <aaron.liu@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Huang Rui <ray.huang@amd.com>
+From: James Zhu <James.Zhu@amd.com>
 
-This patch is to add vcn/jepg enable functions to power up/down them
-with smu messages. VCN/JEPG are poweroff by default.
+Register CC_UVD_HARVESTING is obsolete on CHIP_YELLOW_CARP.
 
-Signed-off-by: Huang Rui <ray.huang@amd.com>
-Reviewed-by: James Zhu <James.Zhu@amd.com>
-Tested-by: James Zhu <James.Zhu@amd.com>
+Signed-off-by: James Zhu <James.Zhu@amd.com>
 Reviewed-by: Leo Liu <leo.liu@amd.com>
 Reviewed-by: Aaron Liu <aaron.liu@amd.com>
+Acked-by: Huang Rui <ray.huang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c  | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-index 1e83adad556a..8cc0f8c28263 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-@@ -124,6 +124,37 @@ static int yellow_carp_init_smc_tables(struct smu_context *smu)
- 	return -ENOMEM;
- }
- 
-+static int yellow_carp_dpm_set_vcn_enable(struct smu_context *smu, bool enable)
-+{
-+	int ret = 0;
-+
-+	/* vcn dpm on is a prerequisite for vcn power gate messages */
-+	if (enable)
-+		ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_PowerUpVcn,
-+						      0, NULL);
-+	else
-+		ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_PowerDownVcn,
-+						      0, NULL);
-+
-+	return ret;
-+}
-+
-+static int yellow_carp_dpm_set_jpeg_enable(struct smu_context *smu, bool enable)
-+{
-+	int ret = 0;
-+
-+	if (enable)
-+		ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_PowerUpJpeg,
-+						      0, NULL);
-+	else
-+		ret = smu_cmn_send_smc_msg_with_param(smu,
-+						      SMU_MSG_PowerDownJpeg, 0,
-+						      NULL);
-+
-+	return ret;
-+}
-+
-+
- static bool yellow_carp_is_dpm_running(struct smu_context *smu)
+diff --git a/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c b/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
+index bd77794315bc..01c242c5abc3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/jpeg_v3_0.c
+@@ -49,10 +49,13 @@ static int jpeg_v3_0_set_powergating_state(void *handle,
+ static int jpeg_v3_0_early_init(void *handle)
  {
- 	struct amdgpu_device *adev = smu->adev;
-@@ -159,6 +190,8 @@ static const struct pptable_funcs yellow_carp_ppt_funcs = {
- 	.fini_smc_tables = smu_v13_0_1_fini_smc_tables,
- 	.send_smc_msg_with_param = smu_cmn_send_smc_msg_with_param,
- 	.send_smc_msg = smu_cmn_send_smc_msg,
-+	.dpm_set_vcn_enable = yellow_carp_dpm_set_vcn_enable,
-+	.dpm_set_jpeg_enable = yellow_carp_dpm_set_jpeg_enable,
- 	.set_default_dpm_table = smu_v13_0_1_set_default_dpm_tables,
- 	.is_dpm_running = yellow_carp_is_dpm_running,
- 	.get_enabled_mask = smu_cmn_get_enabled_32_bits_mask,
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+-	u32 harvest = RREG32_SOC15(JPEG, 0, mmCC_UVD_HARVESTING);
+ 
+-	if (harvest & CC_UVD_HARVESTING__UVD_DISABLE_MASK)
+-		return -ENOENT;
++	if (adev->asic_type != CHIP_YELLOW_CARP) {
++		u32 harvest = RREG32_SOC15(JPEG, 0, mmCC_UVD_HARVESTING);
++
++		if (harvest & CC_UVD_HARVESTING__UVD_DISABLE_MASK)
++			return -ENOENT;
++	}
+ 
+ 	adev->jpeg.num_jpeg_inst = 1;
+ 
 -- 
 2.31.1
 
