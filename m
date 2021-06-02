@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F5EB399095
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:49:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE674399099
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:49:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C217F6ED80;
-	Wed,  2 Jun 2021 16:49:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D37E6ED88;
+	Wed,  2 Jun 2021 16:49:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2058.outbound.protection.outlook.com [40.107.220.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 602196ED1A
+ (mail-co1nam11on2072.outbound.protection.outlook.com [40.107.220.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F04946ED1A
  for <amd-gfx@lists.freedesktop.org>; Wed,  2 Jun 2021 16:49:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F7F2fSrqauOMnO0XYfm7EAW+NfUr2qmgNOvwozDWrJxkUxlaDBJSqEV9uLcknUZInsPJLKymNbBNJZAAVMjqGmKdMC0YDQTelzk93YpbgIvifuQh8IR3M9FbZs16hlf2j76uT2iqBbPF5OFVTE/z6kOMojUvA1GBDtbFx+XyYzmsTRCb3idIJEHxCBHRw0UhuzD7eNcf/6HfS3/h/JM/1qlQU/ognRgGnXMmV653VgxdIO3zVyIl0vrA5G9h8kCsGjbKzGQjZBL9faG7b2Zz8ubUbzYnMved7wpNu7VHP96glHkTar/fH31ylDoOOO5QazqqtKuxE8uZrPcxSI9+tA==
+ b=ONU3Z9ekc82/dr8axgeK6LrItPO5JFjaVY1/mVHF0w84/ppD0NKkqHcrRZSo1y2DeqEJf/mPWYkX7rJg3CGlBRK8wt9N46Pu8hWnIyo5tsOgNHFsvdBXgD0LpQgC/Z6ZKOKPkDzL3HJjxf6VbqDqt0qSxxFqUAox4vhjscPjckzcCMI74FcwsRTjItJew7nD/4UFeRJnJVyi16Q70PC02tmfhT0z9kLAvs8lbov9GPvQXb5pHR83hg97iNx1Wkrjk80yJpkszA38CTuPIbRC6JfsMGg7pU+PkA5yJBvE8NtuYPKFOUaDlmHenbRf+KxBcMiKvDgR03N1CKKXc/HHfA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1ik651xd0UoNsaPlD0F+NUYU7xV6pLbs3O8EApXk1Eg=;
- b=gSZyNSjGDByNu5l7xCrb5yUnS/t3Ja2/8qJwZ7/tmjvq42AeIw3DuNoralSSzh3MGU4HODpJFH3+sa79Fo3qo+2MtUz5W5wtNZ1IsdIXkT07U5t26ySv7s+YBJ6+y9JKMigaY3pGP4JORlFzDD9oCaB0TO/GxoqU6XuVago6FrX6oQlXgRRlh+XFJORzzFYguC5CK+HXQHQr4hFl4gheqUuQkd3moHN9UQexlyQlRROUqfSb14NYDSRmVmhPIOUiMhycqe0XqOw+Q73ChL6CaKRg6+ULJxK19VmCVjn/Gya+EEYO2Xjvm5qON7/UoZAzCKrX3db7OhIEfTIqhuAkkA==
+ bh=Qplmo0yg5FJwHnnOhlZT4+OFYiPRxTgVXT6fkylCWgY=;
+ b=JYvjI0OIMXsQ86fK2SEaPhfYKhIPS7lSXdx7/x2CY6lfC2at9NeS6L27PFXc9wq54zsgMUita8HN8oelxbyHxqH2X+tMZ67If2xlSWWzkbuE30UQoiXUsAvKLzFA4Rf6jr5ebf1pTgPkDne1bJtidVnSc+uQyqbPGIV7Su6ELa9DzRthhAinpB8BLeRn9I3aNPyxKR7isMNGPphbTqrW1OVpBQn0YAWrvkAjfd0zockN1CeUa5lwNgSIq3AyPHqKC491zhENcuZKr1KNh/aujl7RxU99udq6CTWGHWDWHU9tqNvPc43awlhrhhu6sEV6xsKRPq8/CkWLcf9wbWbpUg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1ik651xd0UoNsaPlD0F+NUYU7xV6pLbs3O8EApXk1Eg=;
- b=FdwoJ/HVmO69jTvmqWnwWBXf4GcphRtb40LBl1yxrsA57I16XWVocsX1WvatWyXmLgLr4eKshd/XhCbrY0eC+rkqTOmAYzddwzBltGv7OW37DXXH2Y5FHLHMYZPyC5JUg29/sPRqgvt4UW19vq1KCwPFXljfKlpw2DX8BugArPY=
+ bh=Qplmo0yg5FJwHnnOhlZT4+OFYiPRxTgVXT6fkylCWgY=;
+ b=y6hh3om1lN9X89NvKt6M6Qeh402XDT6kJvb6LUzbcXLa3gMdfGT9a4myKtC7c1IjJV0EjYaG+rgImb2OZY15abkXeNFNuYH3O/AyEO7xAB3NSxWZdOV8VxuB2cip9F2uzEeYPvysFSBagiSlncb9rv+iqXgS1AXJLXDSQC+EZxs=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -41,10 +41,10 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  16:49:39 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 16/89] drm/amdgpu/pm: add smu v13.0.1 firmware header for
- yellow carp (V4)
-Date: Wed,  2 Jun 2021 12:47:55 -0400
-Message-Id: <20210602164908.2848791-16-alexander.deucher@amd.com>
+Subject: [PATCH 17/89] drm/amdgpu/pm: add smu v13.0.1 smc header for yellow
+ carp (v2)
+Date: Wed,  2 Jun 2021 12:47:56 -0400
+Message-Id: <20210602164908.2848791-17-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210602164908.2848791-1-alexander.deucher@amd.com>
 References: <20210602164908.2848791-1-alexander.deucher@amd.com>
@@ -58,52 +58,52 @@ Received: from localhost.localdomain (192.161.79.207) by
  MN2PR13CA0007.namprd13.prod.outlook.com (2603:10b6:208:160::20) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.9 via Frontend
- Transport; Wed, 2 Jun 2021 16:49:38 +0000
+ Transport; Wed, 2 Jun 2021 16:49:39 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0a4b046c-f845-4722-c796-08d925e6695a
+X-MS-Office365-Filtering-Correlation-Id: d76b31ca-8c51-40b7-79e3-08d925e669b5
 X-MS-TrafficTypeDiagnostic: MN2PR12MB4077:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4077376EB1D005DD73E6E5DEF73D9@MN2PR12MB4077.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB40778ED50104964C4979BE45F73D9@MN2PR12MB4077.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nCVjqrnA7Tl+8hdyI+6iV8pW5iEvkjS0P847qlYrqYhxowLmJftSSIDhyFcLqf7LLifQ27o4F8t/7DjevvSbS1a5HnMDjhlFPk9EwYaSAUxr80OSvJflbxNx9uuqSYDJUHYwl/VtY+8TGMxGvVxRFX+YT+J5LJWWFmXIEDPFp5ETTwQVtJA57tYpf14+PuK+v2LYAQQP3L8tsRg1arQpVs1i4RskbvUrJWtrWxGT9Ady2MOfa71dFyZdBfJR+txo9eSJiD8yfFa+1TPlK39Wwj+4UV5OBd1fo5gshrRBxwC0L+2EQy3WVUJX1np0R1beRibMYdj0nZeNf/7A2uM6yHLvx0TeJkAWOpTJ+gKlwCPOQBWy0lPjwk5jFXYYjAy/FYy2HLug13LDB/+9eu9TBlt1XIdJdUPKJLOYGKM0YqrpyhcQ5+FnPnZ+0OAU5riG92vQQDSmjY3VTTJF5WtqZQxx1MYTPW7zwdRBOuO7m9e2sCkfALnH0nUipa4SVnShxOP7z+hXHCmsYinbZy+58Vz2vSGO3LXoE7OjlhviIadWyG+LVS75gKV7Ikyew+CjzXM51kiwixhBRT3qzg1MoHISnLHwzh7c1EUoYzCFcyPoWW8FVMbLEgSa4xwDEH/GMd2HMg17VwmbFOFd8I9LWZqzXzYAmQFYTOhb0T4sTTWXmUWmTOQkxQUhQcRBKM/p
+X-Microsoft-Antispam-Message-Info: kzXo3mGPCvbrU3WgeRJ2oNBOWulmVC26zT6dxshRwd6/PZZ2v4YGiisYYV5aK8G47fcFUUqK7cpQCRnYg7ywUhPvXiMwTib5FZ/EH3bIBms+tgfWMCw+lCYk71YMyyy+4XhTuUU3bopPzd32MFsdHKateOlMfS96HvG4i9dXp6jtpFRB6TcchHuC5Z6x19lnn0Oq1pNd5vLuBY4d9gtMFEwOpC7vZnvgzPx7UbEc8/x34TNMy8AtmFHxeP963LxPwen+inAmvLLfsn8Z3eyimy9+NaORvqoUefFuKhqEZjR2jt2Lv72B3D+jZc7zAuUcntcmHdt4W8DtO25mZSDf31uheT3B9vhiTpyHKdl18kwpZNa2u2Pt5Ke4k2t5Wri2JMbWuqgPRiCca0Mnm8gSo0VpcONl9+emZXOdPVPtKONNSgfgymjg2TlB1qlstZHsdXrOWOGDazMezbnSQvukYMuLgw+pZB5QHQkVPipQQbQc4+xZhO4VXMQWbahOp2Zr36+iuf75/P1mn0NgtGzMUJYSGcg+PK0Xf3nPGqfib/pWnNPi4TZthl/UhL26jvWljuzzHF1TBaR9F0EJ/7sjhrLM5f26flkhUufr26CkOw1kYj+uOrY9jNRWECVgZHz+DzM/Z5OEZrZfbzUBs6n1eUz+ZmcqO81yXvgLNxojGtbaZe/ySj8ZUd2K+qUWZc7V
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(366004)(136003)(376002)(346002)(396003)(39850400004)(8676002)(54906003)(4326008)(19627235002)(5660300002)(8936002)(6666004)(478600001)(316002)(83380400001)(16526019)(1076003)(6506007)(956004)(2616005)(52116002)(66946007)(26005)(66476007)(66556008)(2906002)(6916009)(38100700002)(38350700002)(36756003)(86362001)(6512007)(186003)(6486002)(69590400013);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?zrX+YfMao7xfGDknk030q3auwPLPWIi5pWkDNhh2AMA59X/y2veub6G6j9Md?=
- =?us-ascii?Q?YKy1x+ajtX9MNh9oCJtHiwejnBbmcB2ifU3/wiXcC7kwcaUKtHa8BxsEwRLc?=
- =?us-ascii?Q?Xdc0AxcR8c7tfhD2lKmpkwVRNew1+tU5WZgUGx+epfv0xY2zgJ3twK7AKCov?=
- =?us-ascii?Q?aDE59bVsLaaDS/lc11zGWvrbfX4x+B+qO+fnXMAKYPfxHbIHqozvsRdwvRHD?=
- =?us-ascii?Q?SjEUHik8uRl4uUZq3wPrvyoIOCujHdf+z6Ey8qSGfrjUOEf4jNPCIpM9/PGZ?=
- =?us-ascii?Q?py0l8hAGRi6hltvO8ptETvoO9wapulGcHwhH4qj89P1YJqzWzj4Udb2RyCQF?=
- =?us-ascii?Q?zcEIfGI7mC5oc5mdGK9/5KQdsGIXDuwm7F6ChCvQ55ueerqMaqt5OMfWcLyC?=
- =?us-ascii?Q?ZadL09vIx/MO3ffUgibMSdq15G9yEkgEayrOWpLK1p94bTmLifXhpKgC0XNS?=
- =?us-ascii?Q?JAWasbhwXme1jovbmz8FwWZHluLd+0pgocG+fmQKlyXCz9JOLA8OSQP+kn7Y?=
- =?us-ascii?Q?jUsZ5sTcuKeNI732yKoDNyPOk8kVBB1YjoLxUnooOhfBei0F1p2en7uSRmc6?=
- =?us-ascii?Q?HS1oXKFXi1usbPs8u0Z9mpMfBVqib/aARqtY0rWMYRs7lS9pLQMOzWQHdwhZ?=
- =?us-ascii?Q?xTJgBYdD4kQUvUfihL0m0cNkMx/puAwo9h8i95E0MSTR38qEH+b/dnp0XSYa?=
- =?us-ascii?Q?DtHj2ehYrW5FsoS5c0L9LkaMy8VNPh0Vqv9iHQf3QQ5IURsQxAzgk7s5mij8?=
- =?us-ascii?Q?XAIjDcIWX5rMWHgP6J/wODCsOzdzIctcltipAdS/2AjBO+eTGfGuW2qZZlzQ?=
- =?us-ascii?Q?4PpM59B+UH8wqnczkCj20t6SAa8V04fiCAU/swhumDgsVrxgR0JtAq6bQeWI?=
- =?us-ascii?Q?FrXPpgMHlYyYf4+t3e/3WJ/xf6fCwq3XdHJAp7ROUxs6Tq7SjsXhJeedzrWh?=
- =?us-ascii?Q?1L74Nu1a+iev6gjfSamFPKZEa4niDRgK21rAi2soELviSlwWDXU+VuRudbRn?=
- =?us-ascii?Q?GxTKzTY59Fo/XZFVJMwDjr1geeYUYrVmhzuHWiiHTTmA5ylwDNw1oXwn+LB7?=
- =?us-ascii?Q?EUpsQEhFZw144gMC/IkIRvGrwinY3u+kUrf2M5v1/BQXNX7IaZsibmQAnlHM?=
- =?us-ascii?Q?ntfc1pPWv5NQUbcvcUY6kjECMcZkfJVpkQtRVKRqY/qmnrOImdJeJ0fg3ekR?=
- =?us-ascii?Q?UvKKMKfZPYCIyeF0xMCE9Cepgn01M8f7BOCapfhAFmPlPiPH++NVmDG+s0Id?=
- =?us-ascii?Q?89GLu5yBvbUhC/TfQ8CkJGof1xNuT2WNkupP1romi8ee1VkYXU7jXoFLJBjg?=
- =?us-ascii?Q?bbkWPmUUd6tWJlVnsw3vaToJ?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?MUD6YUtVxR/TBoWBmzyqucL0b8Y3aWkn/fChu0yc4H05KtujHGGbLRcDmMes?=
+ =?us-ascii?Q?+U7uzktUq404ap8Uv9lRQsoV+bx2895aIUv9CgFGq6oBjgoWcoPGpfczc4g/?=
+ =?us-ascii?Q?vI6DsD+zqjSgc30Z2v711ss1NWsZIMsKLI7X7nZufhf/ymfRhIV3IOZD13hl?=
+ =?us-ascii?Q?HlLeR1mkYiLpaYefDoS0rNNxLqfy+dRs+H2KZwWEEGt6tYsm4Q4Zpo4/Cgt7?=
+ =?us-ascii?Q?S0mqOxFbJsr82VOoQMpZoo/SnzVXDRnxjmJaH4d1KKZDs8RFfm0/W4bo3Ppa?=
+ =?us-ascii?Q?6jdov+6FWdkz+4UE+zziBP0aoHdbw9tNiiKyeGOhCMyGA7+xY4uOlGih8I3Y?=
+ =?us-ascii?Q?S7cijvzjAifLy6saH2ag/B4q0nFksI1R9aXLZAmyQu+c/cJjsYBMVWr4zRAY?=
+ =?us-ascii?Q?E/iXEzuDppX4A/E+J9/dc8Q4YiPrOO1MbbNF/6EmZG8g8far8hF6t6dM/uBX?=
+ =?us-ascii?Q?7at5blfNMhfuZTbcY36QsXJjHi/ShibAozbhZb36kISYm3QKI45I4OcIYBz/?=
+ =?us-ascii?Q?IW5YgqsgPGNkPTTPwcVLD1Ia3obHKi17FTC8bl0Uea76vEXZFYMBSOmJtK+2?=
+ =?us-ascii?Q?z7D4WWqHUSv05Im+v8WuUeVlLot1RLdDuDQa2hmkbsTe1fKzSpMVvGvWvsSt?=
+ =?us-ascii?Q?9BRt5zNkfm5+ZGMHfctreXEx3r2MrloFoEGERCXUwleTF2r+PvcWHANqDjph?=
+ =?us-ascii?Q?jrQnfFFmYe78ozH5n1dZAxjL8IIPOJGG9lluee4ZU7MouxWeMtNPplP/Mrkl?=
+ =?us-ascii?Q?HWmMyXu/8sRM0cuYCSenLCtwcLdXERYswyvKk1mh+ZIt+7F3wOFKdGn8MyFQ?=
+ =?us-ascii?Q?ZWkGga7huOWAlmaZ4V16Sf9zY6mPOSwVAYeB+qKVhBmol4jS5YMPEQnTFQ76?=
+ =?us-ascii?Q?awKJ2SSnEwMAut88Moo3nwXgPF+IaEvtR0Xtfq0LTBjrFnGPoh0A0YZi9MK1?=
+ =?us-ascii?Q?62sUYG9hu5ES1Ss+dSw1e6JQ5qTw34VghDINO1CXGfbJkfyXAi9V9UeUjisa?=
+ =?us-ascii?Q?C8v7IwrWV0Rqjlx5QUVWbqBfgl5OjfqpREz5O+xqTmv65eCcMnFu3eL270qs?=
+ =?us-ascii?Q?hWkoZBzHHa+Wfo/CxxpXz0iQWnUWO9BeE+NyRXN7EyarLV5NG187baGpLir7?=
+ =?us-ascii?Q?ZQOA/dOfJMjdP9jlHi8Wvr0mAyXacd8U/RjVwp+ohQES1G6Y5FnCPl4wb8Ny?=
+ =?us-ascii?Q?nR3TSFPWtCUN/v3mmtQjK8gZP5ot1fzJEo1gvuhBDvzE2GOG/Nawzx0oY6Bi?=
+ =?us-ascii?Q?Rv8xIplJoreiJbqcf+1EQiGDVx81uBacnnlQ+zYbrc6MdOrTKisSGPowFma6?=
+ =?us-ascii?Q?/Zu2lqhzj5fxqmdQy4Gs6C64?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0a4b046c-f845-4722-c796-08d925e6695a
+X-MS-Exchange-CrossTenant-Network-Message-Id: d76b31ca-8c51-40b7-79e3-08d925e669b5
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:49:39.1262 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:49:39.8102 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sUP1oxNzWSt6LY49NKrEvNSUcfL4OYZ3lotHZGg9nmOEhZVu0923T/aBwewslegOi6GUEM+m8gPwPfikGkLc+Q==
+X-MS-Exchange-CrossTenant-UserPrincipalName: VI43CcctCAQYjMjRbPMllrDwS9g4aYgK1ti1p8fc0PtmOffMdEWDBqs4Izld7dK3hzJSIR/WEYO7lmRxgWsZ+w==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4077
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -125,23 +125,25 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Aaron Liu <aaron.liu@amd.com>
 
-This patch is to add smu v13.0.1 firmware header for yellow carp.
+This patch is to add smu v13.0.1 smc header for yellow carp.
+
+v2: squash in updates (Alex)
 
 Signed-off-by: Aaron Liu <aaron.liu@amd.com>
 Acked-by: Alex Deucher <alexander.deucher@amd.com>
 Reviewed-by: Huang Rui <ray.huang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/pm/inc/smu_v13_0_1_pmfw.h | 139 ++++++++++++++++++
- 1 file changed, 139 insertions(+)
- create mode 100644 drivers/gpu/drm/amd/pm/inc/smu_v13_0_1_pmfw.h
+ .../gpu/drm/amd/pm/inc/smu_v13_0_1_ppsmc.h    | 97 +++++++++++++++++++
+ 1 file changed, 97 insertions(+)
+ create mode 100644 drivers/gpu/drm/amd/pm/inc/smu_v13_0_1_ppsmc.h
 
-diff --git a/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1_pmfw.h b/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1_pmfw.h
+diff --git a/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1_ppsmc.h b/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1_ppsmc.h
 new file mode 100644
-index 000000000000..5627de734246
+index 000000000000..1d3447991d0c
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1_pmfw.h
-@@ -0,0 +1,139 @@
++++ b/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1_ppsmc.h
+@@ -0,0 +1,97 @@
 +/*
 + * Copyright 2020 Advanced Micro Devices, Inc.
 + *
@@ -165,120 +167,78 @@ index 000000000000..5627de734246
 + *
 + */
 +
-+#ifndef __SMU_V13_0_1_PMFW_H__
-+#define __SMU_V13_0_1_PMFW_H__
++#ifndef SMU_13_0_1_PPSMC_H
++#define SMU_13_0_1_PPSMC_H
 +
-+#include "smu13_driver_if_yellow_carp.h"
++/** @def PPS_PMFW_IF_VER 
++* PPS (PPLib) to PMFW IF version 1.0
++*/
++#define PPS_PMFW_IF_VER "1.0" ///< Major.Minor 
 +
-+#pragma pack(push, 1)
++/** @defgroup ResponseCodes PMFW Response Codes: 
++*  @{
++*/
++#define PPSMC_Result_OK                    0x1  ///< Message Response OK 
++#define PPSMC_Result_Failed                0xFF ///< Message Response Failed 
++#define PPSMC_Result_UnknownCmd            0xFE ///< Message Response Unknown Command 
++#define PPSMC_Result_CmdRejectedPrereq     0xFD ///< Message Response Command Failed Prerequisite
++#define PPSMC_Result_CmdRejectedBusy       0xFC ///< Message Response Command Rejected due to PMFW is busy. Sender should retry sending this message
++/** @}*/
 +
-+#define ENABLE_DEBUG_FEATURES
-+
-+// Firmware features 
-+// Feature Control Defines
-+#define FEATURE_CCLK_DPM_BIT                 0
-+#define FEATURE_FAN_CONTROLLER_BIT           1
-+#define FEATURE_DATA_CALCULATION_BIT         2
-+#define FEATURE_PPT_BIT                      3
-+#define FEATURE_TDC_BIT                      4
-+#define FEATURE_THERMAL_BIT                  5
-+#define FEATURE_FIT_BIT                      6
-+#define FEATURE_EDC_BIT                      7
-+#define FEATURE_PLL_POWER_DOWN_BIT           8
-+#define FEATURE_ULV_BIT                      9
-+#define FEATURE_VDDOFF_BIT                  10
-+#define FEATURE_VCN_DPM_BIT                 11
-+#define FEATURE_CSTATE_BOOST_BIT            12
-+#define FEATURE_FCLK_DPM_BIT                13
-+#define FEATURE_SOCCLK_DPM_BIT              14
-+#define FEATURE_MP0CLK_DPM_BIT              15
-+#define FEATURE_LCLK_DPM_BIT                16
-+#define FEATURE_SHUBCLK_DPM_BIT             17
-+#define FEATURE_DCFCLK_DPM_BIT              18
-+#define FEATURE_GFX_DPM_BIT                 19
-+#define FEATURE_DS_GFXCLK_BIT               20
-+#define FEATURE_DS_SOCCLK_BIT               21
-+#define FEATURE_DS_LCLK_BIT                 22
-+#define FEATURE_DS_DCFCLK_BIT               23
-+#define FEATURE_DS_SHUBCLK_BIT              24
-+#define FEATURE_GFX_TEMP_VMIN_BIT           25
-+#define FEATURE_ZSTATES_BIT                 26
-+#define FEATURE_WHISPER_MODE_BIT            27
-+#define FEATURE_DS_FCLK_BIT                 28
-+#define FEATURE_DS_SMNCLK_BIT               29
-+#define FEATURE_DS_MP1CLK_BIT               30
-+#define FEATURE_DS_MP0CLK_BIT               31
-+#define FEATURE_CLK_LOW_POWER_BIT           32
-+#define FEATURE_FUSE_PG_BIT                 33
-+#define FEATURE_GFX_DEM_BIT                 34
-+#define FEATURE_PSI_BIT                     35
-+#define FEATURE_PROCHOT_BIT                 36
-+#define FEATURE_CPUOFF_BIT                  37
-+#define FEATURE_STAPM_BIT                   38
-+#define FEATURE_S0I3_BIT                    39
-+#define FEATURE_DF_LIGHT_CSTATE             40   // shift the order or DFCstate annd DF light Cstate
-+#define FEATURE_PERF_LIMIT_BIT              41
-+#define FEATURE_CORE_DLDO_BIT               42
-+#define FEATURE_RSMU_LOW_POWER_BIT          43
-+#define FEATURE_SMN_LOW_POWER_BIT           44
-+#define FEATURE_THM_LOW_POWER_BIT           45
-+#define FEATURE_SMUIO_LOW_POWER_BIT         46
-+#define FEATURE_MP1_LOW_POWER_BIT           47
-+#define FEATURE_DS_VCN_BIT                  48
-+#define FEATURE_CPPC_BIT                    49
-+#define FEATURE_CPPC_PREFERRED_CORES        50
-+#define FEATURE_SMART_SHIFT_BIT             51
-+#define FEATURE_DF_CSTATES_BIT              52
-+#define FEATURE_MSMU_LOW_POWER_BIT          53
-+#define FEATURE_SOC_VOLTAGE_MON_BIT         54
-+#define FEATURE_ATHUB_PG_BIT                55
-+#define FEATURE_VDDOFF_ECO_BIT              56
-+#define FEATURE_ZSTATES_ECO_BIT             57
-+#define FEATURE_CC6_BIT                     58
-+#define FEATURE_DS_UMCCLK_BIT               59
-+#define FEATURE_DS_HSPCLK_BIT               60 
-+#define NUM_FEATURES                        61
-+
-+typedef struct {
-+  // MP1_EXT_SCRATCH0
-+  uint32_t DpmHandlerID         : 8;
-+  uint32_t ActivityMonitorID    : 8;
-+  uint32_t DpmTimerID           : 8;
-+  uint32_t DpmHubID             : 4;
-+  uint32_t DpmHubTask           : 4;
-+  // MP1_EXT_SCRATCH1
-+  uint32_t GfxoffStatus         : 8;
-+  uint32_t GfxStatus            : 2;
-+  uint32_t CpuOff               : 2;
-+  uint32_t VddOff               : 1;
-+  uint32_t InUlv                : 1;
-+  uint32_t InWhisperMode        : 1;
-+  uint32_t spare0               : 1;
-+  uint32_t ZstateStatus         : 4;
-+  uint32_t spare1               :12;
-+  // MP1_EXT_SCRATCH2
-+  uint32_t P2JobHandler         :24;
-+  uint32_t RsmuPmiP2FinishedCnt : 8;
-+  // MP1_EXT_SCRATCH3
-+  uint32_t PostCode             :32;
-+  // MP1_EXT_SCRATCH4
-+  uint32_t MsgPortBusy          :15;
-+  uint32_t RsmuPmiP1Pending     : 1;
-+  uint32_t DfCstateExitPending  : 1;
-+  uint32_t Pc6EntryPending      : 1;
-+  uint32_t Pc6ExitPending       : 1;
-+  uint32_t WarmResetPending     : 1;
-+  uint32_t Mp0ClkPending        : 1;
-+  uint32_t spare2               : 3;
-+  uint32_t RsmuPmiP2PendingCnt  : 8;
-+  // MP1_EXT_SCRATCH5
-+  uint32_t IdleMask             :32;
-+  // MP1_EXT_SCRATCH6 = RTOS threads' status
-+  // MP1_EXT_SCRATCH7 = RTOS Current Job
-+} FwStatus_t;
-+
-+
-+#pragma pack(pop)
++/** @defgroup definitions Message definitions
++*  @{
++*/
++#define PPSMC_MSG_TestMessage                   0x01 ///< To check if PMFW is alive and responding. Requirement specified by PMFW team 
++#define PPSMC_MSG_GetSmuVersion                 0x02 ///< Get PMFW version
++#define PPSMC_MSG_GetDriverIfVersion            0x03 ///< Get PMFW_DRIVER_IF version
++#define PPSMC_MSG_EnableGfxOff                  0x04 ///< Enable GFXOFF
++#define PPSMC_MSG_DisableGfxOff                 0x05 ///< Disable GFXOFF
++#define PPSMC_MSG_PowerDownVcn                  0x06 ///< Power down VCN
++#define PPSMC_MSG_PowerUpVcn                    0x07 ///< Power up VCN; VCN is power gated by default
++#define PPSMC_MSG_SetHardMinVcn                 0x08 ///< For wireless display
++#define PPSMC_MSG_SetSoftMinGfxclk              0x09 ///< Set SoftMin for GFXCLK, argument is frequency in MHz
++#define PPSMC_MSG_ActiveProcessNotify           0x0A ///< Set active work load type
++#define PPSMC_MSG_ForcePowerDownGfx             0x0B ///< Force power down GFX, i.e. enter GFXOFF
++#define PPSMC_MSG_PrepareMp1ForUnload           0x0C ///< Prepare PMFW for GFX driver unload
++#define PPSMC_MSG_SetDriverDramAddrHigh         0x0D ///< Set high 32 bits of DRAM address for Driver table transfer
++#define PPSMC_MSG_SetDriverDramAddrLow          0x0E ///< Set low 32 bits of DRAM address for Driver table transfer 
++#define PPSMC_MSG_TransferTableSmu2Dram         0x0F ///< Transfer driver interface table from PMFW SRAM to DRAM
++#define PPSMC_MSG_TransferTableDram2Smu         0x10 ///< Transfer driver interface table from DRAM to PMFW SRAM
++#define PPSMC_MSG_GfxDeviceDriverReset          0x11 ///< Request GFX mode 2 reset
++#define PPSMC_MSG_GetEnabledSmuFeatures         0x12 ///< Get enabled features in PMFW
++#define PPSMC_MSG_SetHardMinSocclkByFreq        0x13 ///< Set hard min for SOC CLK
++#define PPSMC_MSG_SetSoftMinFclk                0x14 ///< Set hard min for FCLK
++#define PPSMC_MSG_SetSoftMinVcn                 0x15 ///< Set soft min for VCN clocks (VCLK and DCLK)
++#define PPSMC_MSG_SPARE0                        0x16 ///< Spared
++#define PPSMC_MSG_GetGfxclkFrequency            0x17 ///< Get GFX clock frequency
++#define PPSMC_MSG_GetFclkFrequency              0x18 ///< Get FCLK frequency
++#define PPSMC_MSG_AllowGfxOff                   0x19 ///< Inform PMFW of allowing GFXOFF entry
++#define PPSMC_MSG_DisallowGfxOff                0x1A ///< Inform PMFW of disallowing GFXOFF entry
++#define PPSMC_MSG_SetSoftMaxGfxClk              0x1B ///< Set soft max for GFX CLK
++#define PPSMC_MSG_SetHardMinGfxClk              0x1C ///< Set hard min for GFX CLK
++#define PPSMC_MSG_SetSoftMaxSocclkByFreq        0x1D ///< Set soft max for SOC CLK
++#define PPSMC_MSG_SetSoftMaxFclkByFreq          0x1E ///< Set soft max for FCLK
++#define PPSMC_MSG_SetSoftMaxVcn                 0x1F ///< Set soft max for VCN clocks (VCLK and DCLK)
++#define PPSMC_MSG_SetPowerLimitPercentage       0x20 ///< Set power limit percentage
++#define PPSMC_MSG_PowerDownJpeg                 0x21 ///< Power down Jpeg
++#define PPSMC_MSG_PowerUpJpeg                   0x22 ///< Power up Jpeg; VCN is power gated by default
++#define PPSMC_MSG_SetHardMinFclkByFreq          0x23 ///< Set hard min for FCLK
++#define PPSMC_MSG_SetSoftMinSocclkByFreq        0x24 ///< Set soft min for SOC CLK
++#define PPSMC_MSG_AllowZstates                  0x25 ///< Inform PMFM of allowing Zstate entry, i.e. no Miracast activity
++#define PPSMC_MSG_DisallowZstates               0x26 ///< Inform PMFW of disallowing Zstate entry, i.e. there is Miracast activity
++#define PPSMC_MSG_RequestActiveWgp              0x27 ///< Request GFX active WGP number
++#define PPSMC_MSG_QueryActiveWgp                0x28 ///< Query the anumber of active WGP number
++#define PPSMC_Message_Count                     0x29 ///< Total number of PPS messages
++/** @}*/
++ 
++/** @enum Mode_Reset_e 
++* Mode reset type, argument for PPSMC_MSG_GfxDeviceDriverReset 
++*/ 
++typedef enum {
++  MODE1_RESET = 1,  ///< Mode reset type 1
++  MODE2_RESET = 2   ///< Mode reset type 2
++} Mode_Reset_e;    
++/** @}*/
 +
 +#endif
 -- 
