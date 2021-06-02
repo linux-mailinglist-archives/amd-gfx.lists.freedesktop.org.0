@@ -1,37 +1,37 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 301CD3990CB
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:50:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E143D3990CF
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:50:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 552966EDBA;
-	Wed,  2 Jun 2021 16:50:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A5B36EDC5;
+	Wed,  2 Jun 2021 16:50:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2062.outbound.protection.outlook.com [40.107.223.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AAF56EDBC
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Jun 2021 16:50:41 +0000 (UTC)
+ (mail-dm6nam11on2066.outbound.protection.outlook.com [40.107.223.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D3C36EDC0
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Jun 2021 16:50:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EkFCX6tKkVdIyPtbeDv2YA+FeJu6zAi5DHDhc6dKX4Grn0BR0hbY6AfZcP+GpcddejezPOXBlAhtUfb2KxY9Q8qvpePK2pD6wyu4ITK2zHXTAaQFzViNXnbt1jwuq+YjzuV4i1rATyXCV45DJIse6XuNhOzTgnFCZrYLd6u9kLdVv6Wkr5IW1G16V6/kxzk0o1ysEGmwGVfQJhM/avj9atf11YpGTaKl3PHiniUSvrp0ft5UGS+dwaLmSZK+BpDcom62rpmxypFbSL73rMYwt+VsIJxu/Joi9Uz8qZXji9P6sn9g0qZwx+M9kD1Q6jeQsYycGxb4Al5hyThhJjCavA==
+ b=Gt0CUZCn+zLaZXNS0tHqjHJ2aCBrHYRJL74ajItAHtb/W6PlhDz5gOfuf6RKhRgl4swBk6TBeQztN2rsIqqEafdPtPOw/nfWKhMGZwpmv+E6wEJz25AibQxnOKfo0h/OppAftJTrf1fb3F4Mx7eJ8qUveU2IfpamaRuf/6jpGxzFSkIeueZ/d4fZbb+5rG3FMVaai4hsF2uoQA57hF1O4NcmSHWL0s9B7e5/XAPXPd+MVQipnJMrG+w/zdKxUzeUn9s39ySJ74AUpPmF6pwpiglxsr624ow3C8Jdn59wvnTQtnBPhnWCsNHCtOpNJ717ZDDwgD9IFLjjX81R74F/FA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ORfagO/69ragbixpJAhYQS1uc3u+nm7L9nO0Feo74mw=;
- b=F4FhUbvwarsdzrE2bAZGbY76X5wf3ovuD5at5pM+ThBH0nyoLlBqBQWgFXh1RdDCyXB54j6RpDjukREv3cFyx34LSaWvVQSeD3INfrdiSdkJWUONznqHcC7ejIzeIGl0nj9g0uOKg3UJ8lKZS/fRxbGN0JYu4TL6I5pCT0ZmRLh+8rctra7VU2598OwazTW8yxdaApQp5vneQ1vT6PLvIK5fkwHjMJBWTAfJInswjH+LtRKKsiFxE3EirVpbXflbxVYIsKoi1BPJ2DgvmutxfTkIiu/7jvcbuoTqbsyZsPYZmm4J3srrXsOmxXGB5nclK7LB3xXQw7fwKR4PdibYBQ==
+ bh=3DiL872HXk3IhNyOIG76NeJO3M6e+tTyOIOsHwY4UBo=;
+ b=lT/YJthHWB+FewYEhcTXtl5CzbruCYO0Q+4ugoEECVPX4iH4plgyLSZuku38PEG3nZ4A3KxdUNGFY4tXbbGMw77PJ87VNWBXwP43n2MTzJUL4kIDkVbClo1HPNsL2/xfrFD2mfqpcLP8+uBBfiv4mXcIn9W6M5/7uoR/78K0wKXnUxqliUHEn0WLdeJEPEuXtm2nitVHEJ7X2kDnZ2bP8k1Uk5SfaENM0ICq1LAUq59XO56rrjF+N0ZqwQfSshW3qkSiW4V0SIZNBqYGwvpJ1mZtyVNki0bdgeJOq+goXEHIf5aGCuIPkPhcHS15gqtIk7ODtM/32871etMQZUlK1g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ORfagO/69ragbixpJAhYQS1uc3u+nm7L9nO0Feo74mw=;
- b=T53rUbHpCpzTdANHWVsOeD9rNknmH9HXw48p6VO20D4rzutXzMY9BzBxHQKk8nPn4zbr7Ak41kQwa458S/MF9nZwxPUJ0pRGvVpHR9DPHFtN02evzJ1ItLS9gDASDb6i5jXmWKEtnkLfdgGdNY4tOVxzTXc0iic/UadbSyfYrMg=
+ bh=3DiL872HXk3IhNyOIG76NeJO3M6e+tTyOIOsHwY4UBo=;
+ b=fRMy6baaEEWWTu/Ok9ag/wgAreGxoL5s5Esp638bkPNQbBJiI28bSV7qEdU398rfxcwwluDYvmqROq4HPABrA3JvYT1A9LQ97Ov9fRv6omNrjyQucbKm2zzen4kShKCJQMFP9p1L74H276dyhmGsKY0COP6XomluSFkbwUGHMsA=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
- by MN2PR12MB4534.namprd12.prod.outlook.com (2603:10b6:208:24f::10)
+ by BL0PR12MB2434.namprd12.prod.outlook.com (2603:10b6:207:4d::28)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.20; Wed, 2 Jun
  2021 16:50:40 +0000
@@ -41,9 +41,10 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  16:50:40 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 58/89] drm/amdgpu: Load TA firmware for yellow carp
-Date: Wed,  2 Jun 2021 12:48:37 -0400
-Message-Id: <20210602164908.2848791-58-alexander.deucher@amd.com>
+Subject: [PATCH 59/89] drm/amd/pm: add callback to get bootup values for
+ yellow carp
+Date: Wed,  2 Jun 2021 12:48:38 -0400
+Message-Id: <20210602164908.2848791-59-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210602164908.2848791-1-alexander.deucher@amd.com>
 References: <20210602164908.2848791-1-alexander.deucher@amd.com>
@@ -57,53 +58,53 @@ Received: from localhost.localdomain (192.161.79.207) by
  MN2PR13CA0007.namprd13.prod.outlook.com (2603:10b6:208:160::20) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.9 via Frontend
- Transport; Wed, 2 Jun 2021 16:50:07 +0000
+ Transport; Wed, 2 Jun 2021 16:50:08 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0fc6e5de-6ad7-4f8c-c150-08d925e67aaa
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4534:
+X-MS-Office365-Filtering-Correlation-Id: 4599ea1a-f102-4c48-4fb3-08d925e67afe
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2434:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4534F12654E0E5169D440074F73D9@MN2PR12MB4534.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
+X-Microsoft-Antispam-PRVS: <BL0PR12MB243455EB33F511DBC534D1F3F73D9@BL0PR12MB2434.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DJrp6AueGytN7OkX7tXr0cjcZJxGoAcIy3kwcvfq5fBi6sACicQVBqO3DDcO7HiOlKU7K8hAHAMYp35rJjQrdxWY0fV6Ac2tiDdy3gIkWyGJPkOcPvouUMhZJX3oazqZzsVs5HJO/H0YssA7BDtBpvu+vFb6JydmNKzOeq+gwPCu4TXcoUz3MALD9JHftawjsGS9tIKw8F7YAl+vZlwzJMuGSNQ97JMO468TehGPHC4PZDD7RbHhISnLMKMLYZTi3turcuPbz7tML0E7fo2NuakoKNwbS6rxpMf7TEwIojzAZZHP+T8yCz5TMeDd3f3Vpu1mdnm5LZ1Ezn/7z+SRoNFkoC4dexXzeZOzMgRoyGgJ6uDHzcy5snfHrUp9MPFJSHDMZoFAOXU1lgQZD9/c5kCTWNcmZsxheAgU+8Em8jya9pDZnxAykJl3VBvf2Tq5YidT9+ChW+CDiNGbt7zQ/Yi14zUHkhfBJFmiW7gTni4uGtaCWay6P8OA3Jrgw+FaymTOn9Pzqixp4XAoEwfZLHjpiyR56d+TP/e8Td37oO6piPCQ/nE2fSUMyvycRvSc+q8A0BWy9TemokpVaHKpzrazHBuXONBhIzLru8PxWDUSb2q64VKXT8eM1W1+R2R6f3ipWcQQzZOwuudizeUlIYR2iHbhBOFdTuDoeQIlyKuD2LQqq0F4GEZSlVLlIhO7
+X-Microsoft-Antispam-Message-Info: cE/AJhAi0pgYcgdKUqirAS1d057EVGwXup/DS3f/+LVIQ9+9lEViGRRTMmGb/wEjxWVmJKuF3rq8qXpUovMrnhwiNLVwQ67H/dxRpGOSpaAHd7G1X6t3hwb+/xeNCmla90zmyzu+FTmTsuJwElw/vc3cOF/+rj1PQzZadifuDPpkg/DID1iln4xyId6JLoDqaV4OguQvveR0mqZY6m5NxjWGIyi5o4gpFkCK2/jzX9l0douE9RLWCY72Qm0th/+XD2JFEeTk2RK1bsKhEULlnzcM71DY89gTuUXltkQrukc4Ah7qBSbz0wfSIEBkfB9kKHqhE1kyeMY3Ehk+UJDKEXkrnjhIJT5cYrN1e3KeW59s1VTx69bx5gNe9rT5e2ELJP0oGERanw37s+tbr0Cibv/QhLj0Oirz3sAx2oiv1deQuKMvqLZGrk7hu7hy7YdVmu+otZRAwGwp5agn4iJnCcpOkSB9d5p7WbV6lKcRn+WnAG1N4ix0cg/e0TSp++EoOhPz8jZqkD+FsDilzYL2BxoLroMcX0nPwwrx/8htGYuAX2cJTXIQujCvHlPbQ0eeN5edgsgSCgr61z7xsu05Evi0dKvjnYZVsgdFy6yxJxh9wznNpOXYJ/zae1ekGJH5jMK61NyX+YO+OjlHQN/ZleehTitzqQdslbT9Z4rHW0XdAkX2wens5W577ddZpoDT
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(346002)(39860400002)(136003)(376002)(366004)(1076003)(8676002)(2906002)(8936002)(4326008)(2616005)(956004)(38350700002)(478600001)(38100700002)(66946007)(66476007)(66556008)(36756003)(54906003)(6486002)(52116002)(6916009)(316002)(6512007)(6506007)(16526019)(26005)(6666004)(5660300002)(186003)(86362001)(69590400013);
+ SFS:(4636009)(366004)(136003)(396003)(346002)(376002)(39850400004)(52116002)(6486002)(6916009)(66476007)(66556008)(316002)(66946007)(36756003)(54906003)(86362001)(5660300002)(16526019)(186003)(6506007)(6512007)(26005)(6666004)(83380400001)(1076003)(8676002)(956004)(4326008)(2616005)(478600001)(38350700002)(38100700002)(2906002)(8936002)(69590400013);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?P8p5YVmzuErrUs7jQUkM2Vghha25cloweu9oj2aRBCZgn0IgX+Kgo7H+t1Jl?=
- =?us-ascii?Q?wi6lXSTer/X3Pb0QI1rkeYES2/7JS1NbxBjtPtwr8MIu5SAOFQYK3p7MF4Xr?=
- =?us-ascii?Q?SRatoQ6Yx7sU7FFSaEaXry/GAA5NHwSfmjktGJrZ7d1+izBWHxWLcl86/bf2?=
- =?us-ascii?Q?PFJK5o+6rgYpcg3QhPvcTWjZetdc7q44qcIaVihdb2xt7h/9xcqGo9zNSk3F?=
- =?us-ascii?Q?4t0qE9Gs1tEakZLHz5bpPeG03Hq2bwyvUfIGfUVrcmbI0kkDySpw9pcMqa2S?=
- =?us-ascii?Q?4K25ZkbuWoxKqozxAm8LbH3YDrI85SVXFKGCElsvZiKkqXiqYcKTNGzeF05t?=
- =?us-ascii?Q?dMX2R7/O5V6J6g4BKbp7oEyd6BAHWwWubkb5FJwegQGFyu8cs6H45uG42WV0?=
- =?us-ascii?Q?pL98vEqsTktA2Q0Gg9qh+NjARZ4Dj12tSsjO/8PHUpM03jG31zr1//SzmamC?=
- =?us-ascii?Q?yDn8eQRw+uTb8brv6SaN0TCBKLYtnYCaotut/v/aDhzMRiO3KvzxiP9M8fhE?=
- =?us-ascii?Q?AXlMl6i5Wm7XtqC1YRsMr8ula6+nCzQlE20pl+2foqMf/9OM5kFES5zmeBld?=
- =?us-ascii?Q?8BmKc3CUhWJ4OW3/q5LOwW/69Oll5nuQeberryfOpoR05DVCnBrc+UnBDi0E?=
- =?us-ascii?Q?EaopiZ8OoQHq/zusIi7IhaNxQSa4B2ooInGXBcM/R2Bb/QCO0mhpZdjSeZOP?=
- =?us-ascii?Q?BmIX+BMnTz0Q3vi21owEPk/T2eNYGwNq+DSFRpm7AlwQcHa/MA+0J2JsMktK?=
- =?us-ascii?Q?r3XMHMHo6LGFkPyy1zODGbRc/sftGW27GWan2Zxk/h+4QT7mLhdIfF8wDbOs?=
- =?us-ascii?Q?S2WroJu04MIAnCE7y0VHDgbqSs0Y4eC2rACXpJKUuiNrsr3XmSDOGAKr0zmi?=
- =?us-ascii?Q?HgvpTrLxMH67M7YRHhP77BTnw0mrV/bfk83rBNfsjrs745NjfWthv730i4T/?=
- =?us-ascii?Q?u5zch4b7bxOjtm9bhRHzG2scPBiSHhJ056P1E+JEEsv6FkdwYDpCDJmSGot4?=
- =?us-ascii?Q?o7P9Ub8tbfTV8tRt26nwWK1PBRUxJA4G8nYb5xth+DxppId7JyouxlhoQZGU?=
- =?us-ascii?Q?pUuD31cgqh3Ec6Rvxhjx60BYXbQpFn98kAYizMX9jLdjVJ4ZfeDeqNpKWBCO?=
- =?us-ascii?Q?iQYNt3S9/Qkbp1hV1jxe4Jsw3hvZSricdCbTTrSG3x1ZYPPNDXEIqfYWoCwz?=
- =?us-ascii?Q?qntnN9NpupccSBkP95xHUv2TWUD20ks83uGo/8NrPeaOmAnTCIQ2UQURTm8D?=
- =?us-ascii?Q?P1ZUoi15mSNWRHLY0+VrSA/dxeS6UDHOFunklfXGr9U5TylK+SlsxseV4Sjd?=
- =?us-ascii?Q?QELx9Usd5NO/hremhdO+Jo00?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?UBQEWej9rfQnb78eWsm/FTGAHgWiFTPXblYSfBONHYHqytC3w7S7rnuY2KsD?=
+ =?us-ascii?Q?Zky4m2W25Xm+gR3Yww+KO84mJ4vTiE7eZnHV51Y3rPgxLWEuofXKx+y/aGix?=
+ =?us-ascii?Q?296vOtwMxOU4BIiGm4mEHglBgBIQdI6yP4k49S0fphE4wvUx9HChWkNYt+uS?=
+ =?us-ascii?Q?Gih+RYPNHV1MGQDM10NDKyh5QZGijwUGs0/jTPtfUPNm8ivJF0dP2llffg4P?=
+ =?us-ascii?Q?TwLekHH44EEOD4yFOiUV/LAydNKOMqYuNVfeR7ZmnrBgk8YJ5EWI0lTn8Ezv?=
+ =?us-ascii?Q?g3oZEYH0aAAl0nvlVqb8ZlqiTUtrgwKjmGUAtJ06HSEaCsFsnQVaQSiGfDtq?=
+ =?us-ascii?Q?DAPHSeHr8xpHBCRGClD58RdNpDpYz6jTgF8ogWdCYniaoGsKk7PZVuel8i9t?=
+ =?us-ascii?Q?BJFQFBjj9x0btPgFzElWBaDTsCQm7c6HPlYolxO6DCCban7HzG8EZXiVm8dc?=
+ =?us-ascii?Q?ce1q+7d7mKqvIfo2pMNRLs6GomRhIBb+yH1Gl2fTgr0wZEkUvwHJIlqEI4Zx?=
+ =?us-ascii?Q?9eiXsflqCmzhYjADAadxIo5UtAmdGEU1kRiodrPk7pL84A51iUvyyqnnb84O?=
+ =?us-ascii?Q?3igOeTq7DHvyak0phkFSUe5YQsyNELY7wGS6Yhs36xdXK3ZXdEi7gAq/RttX?=
+ =?us-ascii?Q?Pc7IWFqDv4ZPj7w1XkypjlEah6B5cg8aLAXmCz1X61uJ+pps5k4fn2egDZts?=
+ =?us-ascii?Q?PYyq7S9E9nOqSnvMnPiDPqfdaSlTSsy2Fphk8L79goDQX6w2dAl/oJ0PXFl2?=
+ =?us-ascii?Q?PIejjGwOtTHqnX80gs0SdgC/qxHHQ+7+cvPsMkdzk0GCpsutinUYi8gUT2u9?=
+ =?us-ascii?Q?ZCcBwzuTNnoYQ5hqe35XzoysMPEY4u3xsEGpSyDSXMGBdIy+bw1XdqwP1k6J?=
+ =?us-ascii?Q?5M6PIpgsJj+Bu4AaDt5CCpRtRUtnYbOBEQc3iyuBHHyg2am/EPZXIJTkFFHI?=
+ =?us-ascii?Q?rJL+GtRw6ErDC2gAUFQMIQRGjnyMzqF0dRJ2LDhWWiCq8MHP6BT1FAdkbhqv?=
+ =?us-ascii?Q?OfcETZaf5OwaMSnMHyzsnIAV+xXEIVQFm8gkqSqY18taSDx7avz8y4y6wLLf?=
+ =?us-ascii?Q?Sa7WhsGYdFl0CFOVBBW6wU/w2K888kVgGPO4VSTzWMQLQ2sn4Vb1VGGHJjgk?=
+ =?us-ascii?Q?/4VLQHUZsU2shexNGLI+SVBebvhylInqn4QnI+dmlrCT6fi5hRFrnMq75sgH?=
+ =?us-ascii?Q?g8tuqBYqlBf32+jK4pIqbVctr2NwfK1hO38VIzq2E8AVVQiJSL0AIeZTPoN5?=
+ =?us-ascii?Q?QKQl46CVLAIgde40pLydQwYieRwltCGeQA9352nO9FlEyP70/hP/zQbHvU8R?=
+ =?us-ascii?Q?HYfRKWQiaL942Fml9yNcVTCZ?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0fc6e5de-6ad7-4f8c-c150-08d925e67aaa
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4599ea1a-f102-4c48-4fb3-08d925e67afe
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:50:08.1786 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:50:08.7720 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ViKNeAV7LiaB0k4nQ2dZfVGYKu2UZ7WIVB0Nx1pwGHh5AhrM9WPgA6eT/lw78BspFLtVZyTicoCyTOz9DPlCeA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4534
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9RCzfDI4tGPqaN21VcFXImnvtoJCtNd3wkyh3Ek4UeiYzg/IPnyJuxX+W29V7E36t9Jq49dixs1T3woRqqjAtQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2434
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,47 +117,205 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alex Deucher <alexander.deucher@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- Aaron Liu <aaron.liu@amd.com>
+ Xiaomeng Hou <Xiaomeng.Hou@amd.com>, Huang Rui <ray.huang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+From: Xiaomeng Hou <Xiaomeng.Hou@amd.com>
 
-Add TA firmware to module firmware list for yellow carp and call
-psp_init_ta_microcode to parse the TA firmware for HDCP support.
+Add get_vbios_bootup_values function to get the bootup values for yellow
+carp.
 
-Cc: Aaron Liu <aaron.liu@amd.com>
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Signed-off-by: Xiaomeng Hou <Xiaomeng.Hou@amd.com>
+Reviewed-by: Huang Rui <ray.huang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/psp_v13_0.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/amd/pm/inc/smu_v13_0_1.h      |   2 +
+ .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_1.c  | 136 ++++++++++++++++++
+ .../drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c  |   1 +
+ 3 files changed, 139 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
-index 2b4916ab684e..c8949add88f3 100644
---- a/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/psp_v13_0.c
-@@ -33,6 +33,7 @@ MODULE_FIRMWARE("amdgpu/aldebaran_sos.bin");
- MODULE_FIRMWARE("amdgpu/aldebaran_ta.bin");
- MODULE_FIRMWARE("amdgpu/yellow_carp_asd.bin");
- MODULE_FIRMWARE("amdgpu/yellow_carp_toc.bin");
-+MODULE_FIRMWARE("amdgpu/yellow_carp_ta.bin");
+diff --git a/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1.h b/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1.h
+index 065f3d27b2b8..b6c976a4d578 100644
+--- a/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1.h
++++ b/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1.h
+@@ -46,6 +46,8 @@ int smu_v13_0_1_check_fw_version(struct smu_context *smu);
  
- static int psp_v13_0_init_microcode(struct psp_context *psp)
+ int smu_v13_0_1_fini_smc_tables(struct smu_context *smu);
+ 
++int smu_v13_0_1_get_vbios_bootup_values(struct smu_context *smu);
++
+ int smu_v13_0_1_set_default_dpm_tables(struct smu_context *smu);
+ 
+ int smu_v13_0_1_set_driver_table_location(struct smu_context *smu);
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_1.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_1.c
+index dfbb527b25cb..61917b49f2bf 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_1.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_1.c
+@@ -29,6 +29,10 @@
+ #include "smu_v13_0_1.h"
+ #include "soc15_common.h"
+ #include "smu_cmn.h"
++#include "atomfirmware.h"
++#include "amdgpu_atomfirmware.h"
++#include "amdgpu_atombios.h"
++#include "atom.h"
+ 
+ #include "asic_reg/mp/mp_13_0_1_offset.h"
+ #include "asic_reg/mp/mp_13_0_1_sh_mask.h"
+@@ -122,6 +126,138 @@ int smu_v13_0_1_fini_smc_tables(struct smu_context *smu)
+ 	return 0;
+ }
+ 
++static int smu_v13_0_1_atom_get_smu_clockinfo(struct amdgpu_device *adev,
++						uint8_t clk_id,
++						uint8_t syspll_id,
++						uint32_t *clk_freq)
++{
++	struct atom_get_smu_clock_info_parameters_v3_1 input = {0};
++	struct atom_get_smu_clock_info_output_parameters_v3_1 *output;
++	int ret, index;
++
++	input.clk_id = clk_id;
++	input.syspll_id = syspll_id;
++	input.command = GET_SMU_CLOCK_INFO_V3_1_GET_CLOCK_FREQ;
++	index = get_index_into_master_table(atom_master_list_of_command_functions_v2_1,
++					    getsmuclockinfo);
++
++	ret = amdgpu_atom_execute_table(adev->mode_info.atom_context, index,
++					(uint32_t *)&input);
++	if (ret)
++		return -EINVAL;
++
++	output = (struct atom_get_smu_clock_info_output_parameters_v3_1 *)&input;
++	*clk_freq = le32_to_cpu(output->atom_smu_outputclkfreq.smu_clock_freq_hz) / 10000;
++
++	return 0;
++}
++
++int smu_v13_0_1_get_vbios_bootup_values(struct smu_context *smu)
++{
++	int ret, index;
++	uint16_t size;
++	uint8_t frev, crev;
++	struct atom_common_table_header *header;
++	struct atom_firmware_info_v3_4 *v_3_4;
++	struct atom_firmware_info_v3_3 *v_3_3;
++	struct atom_firmware_info_v3_1 *v_3_1;
++
++	index = get_index_into_master_table(atom_master_list_of_data_tables_v2_1,
++					    firmwareinfo);
++
++	ret = amdgpu_atombios_get_data_table(smu->adev, index, &size, &frev, &crev,
++					     (uint8_t **)&header);
++	if (ret)
++		return ret;
++
++	if (header->format_revision != 3) {
++		dev_err(smu->adev->dev, "unknown atom_firmware_info version! for smu13\n");
++		return -EINVAL;
++	}
++
++	switch (header->content_revision) {
++	case 0:
++	case 1:
++	case 2:
++		v_3_1 = (struct atom_firmware_info_v3_1 *)header;
++		smu->smu_table.boot_values.revision = v_3_1->firmware_revision;
++		smu->smu_table.boot_values.gfxclk = v_3_1->bootup_sclk_in10khz;
++		smu->smu_table.boot_values.uclk = v_3_1->bootup_mclk_in10khz;
++		smu->smu_table.boot_values.socclk = 0;
++		smu->smu_table.boot_values.dcefclk = 0;
++		smu->smu_table.boot_values.vddc = v_3_1->bootup_vddc_mv;
++		smu->smu_table.boot_values.vddci = v_3_1->bootup_vddci_mv;
++		smu->smu_table.boot_values.mvddc = v_3_1->bootup_mvddc_mv;
++		smu->smu_table.boot_values.vdd_gfx = v_3_1->bootup_vddgfx_mv;
++		smu->smu_table.boot_values.cooling_id = v_3_1->coolingsolution_id;
++		break;
++	case 3:
++		v_3_3 = (struct atom_firmware_info_v3_3 *)header;
++		smu->smu_table.boot_values.revision = v_3_3->firmware_revision;
++		smu->smu_table.boot_values.gfxclk = v_3_3->bootup_sclk_in10khz;
++		smu->smu_table.boot_values.uclk = v_3_3->bootup_mclk_in10khz;
++		smu->smu_table.boot_values.socclk = 0;
++		smu->smu_table.boot_values.dcefclk = 0;
++		smu->smu_table.boot_values.vddc = v_3_3->bootup_vddc_mv;
++		smu->smu_table.boot_values.vddci = v_3_3->bootup_vddci_mv;
++		smu->smu_table.boot_values.mvddc = v_3_3->bootup_mvddc_mv;
++		smu->smu_table.boot_values.vdd_gfx = v_3_3->bootup_vddgfx_mv;
++		smu->smu_table.boot_values.cooling_id = v_3_3->coolingsolution_id;
++		break;
++	case 4:
++	default:
++		v_3_4 = (struct atom_firmware_info_v3_4 *)header;
++		smu->smu_table.boot_values.revision = v_3_4->firmware_revision;
++		smu->smu_table.boot_values.gfxclk = v_3_4->bootup_sclk_in10khz;
++		smu->smu_table.boot_values.uclk = v_3_4->bootup_mclk_in10khz;
++		smu->smu_table.boot_values.socclk = 0;
++		smu->smu_table.boot_values.dcefclk = 0;
++		smu->smu_table.boot_values.vddc = v_3_4->bootup_vddc_mv;
++		smu->smu_table.boot_values.vddci = v_3_4->bootup_vddci_mv;
++		smu->smu_table.boot_values.mvddc = v_3_4->bootup_mvddc_mv;
++		smu->smu_table.boot_values.vdd_gfx = v_3_4->bootup_vddgfx_mv;
++		smu->smu_table.boot_values.cooling_id = v_3_4->coolingsolution_id;
++		break;
++	}
++
++	smu->smu_table.boot_values.format_revision = header->format_revision;
++	smu->smu_table.boot_values.content_revision = header->content_revision;
++
++	smu_v13_0_1_atom_get_smu_clockinfo(smu->adev,
++					(uint8_t)SMU11_SYSPLL0_SOCCLK_ID,
++					(uint8_t)0,
++					&smu->smu_table.boot_values.socclk);
++
++	smu_v13_0_1_atom_get_smu_clockinfo(smu->adev,
++					(uint8_t)SMU11_SYSPLL0_DCEFCLK_ID,
++					(uint8_t)0,
++					&smu->smu_table.boot_values.dcefclk);
++
++	smu_v13_0_1_atom_get_smu_clockinfo(smu->adev,
++					(uint8_t)SMU11_SYSPLL0_ECLK_ID,
++					(uint8_t)0,
++					&smu->smu_table.boot_values.eclk);
++
++	smu_v13_0_1_atom_get_smu_clockinfo(smu->adev,
++					(uint8_t)SMU11_SYSPLL0_VCLK_ID,
++					(uint8_t)0,
++					&smu->smu_table.boot_values.vclk);
++
++	smu_v13_0_1_atom_get_smu_clockinfo(smu->adev,
++					(uint8_t)SMU11_SYSPLL0_DCLK_ID,
++					(uint8_t)0,
++					&smu->smu_table.boot_values.dclk);
++
++	if ((smu->smu_table.boot_values.format_revision == 3) &&
++	    (smu->smu_table.boot_values.content_revision >= 2))
++		smu_v13_0_1_atom_get_smu_clockinfo(smu->adev,
++						(uint8_t)SMU11_SYSPLL1_0_FCLK_ID,
++						(uint8_t)SMU11_SYSPLL1_2_ID,
++						&smu->smu_table.boot_values.fclk);
++
++	return 0;
++}
++
+ int smu_v13_0_1_set_default_dpm_tables(struct smu_context *smu)
  {
-@@ -64,6 +65,9 @@ static int psp_v13_0_init_microcode(struct psp_context *psp)
- 		if (err)
- 			return err;
- 		err = psp_init_toc_microcode(psp, chip_name);
-+		if (err)
-+			return err;
-+		err = psp_init_ta_microcode(psp, chip_name);
- 		if (err)
- 			return err;
- 		break;
+ 	struct smu_table_context *smu_table = &smu->smu_table;
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
+index d9b3cb7d7ca5..bded5c297a08 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
+@@ -820,6 +820,7 @@ static const struct pptable_funcs yellow_carp_ppt_funcs = {
+ 	.check_fw_version = smu_v13_0_1_check_fw_version,
+ 	.init_smc_tables = yellow_carp_init_smc_tables,
+ 	.fini_smc_tables = smu_v13_0_1_fini_smc_tables,
++	.get_vbios_bootup_values = smu_v13_0_1_get_vbios_bootup_values,
+ 	.system_features_control = yellow_carp_system_features_control,
+ 	.send_smc_msg_with_param = smu_cmn_send_smc_msg_with_param,
+ 	.send_smc_msg = smu_cmn_send_smc_msg,
 -- 
 2.31.1
 
