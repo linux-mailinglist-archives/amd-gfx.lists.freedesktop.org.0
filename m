@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A030D39909E
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:49:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56F313990A3
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:49:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F5766ED26;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A30606ED91;
 	Wed,  2 Jun 2021 16:49:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-BN8-obe.outbound.protection.outlook.com
  (mail-bn8nam12on2052.outbound.protection.outlook.com [40.107.237.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4AE66ED87
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE2BD6ED8E
  for <amd-gfx@lists.freedesktop.org>; Wed,  2 Jun 2021 16:49:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fJwSCwBms2eusiYGM3tPYaS4IUQV55l8hKxO4pdQ0lgAZDVzG49ji7OL+g+G1T8MFcH2ejMshbwdaevs1zasV/nqjoyCknhCP0LE3byuQWj2tjK9e5bgF/7ekEbkpx5ZmqeyBJ6GH7Hzl3K5D5P1njfNPOu37M/+fdT9y6JDETqUp9dwH7SZIzYEs5yWg1jZtvFn5vBlLs5xNviLPeKbzzno5DPxqK3VojBbEeFxXuKExtOoMp8wa84tj+PQt5l+DtF8HcIP65bVX/aUnCM6Kh29gVsUolRCoHgh0PtHM+PYN7qRorsthhXid6lxlCLTf8xntpaqUoUUEzhpBswY+g==
+ b=kaz7Mw7UV9Ufw9dLDWUy/5jB+1WIPgZcHA/tenantWFbX10PuyFAgGB0pHiap36Q9Y4NgQMIq7Zk5Ksh6+fb6EYSSYElFVply5hHsaZABCP7b1dtxu86+25di4KlY4KclLzVsrU+k+vygdDdtXb3/4Cfs1gVwKq5UGwMKtgNZy/Gr1PAHz5DfM2IhDKS+QnVWz4YWp/YBxI9JaTSbLaAaiMz7DCwbkmkGwoIDXHIks53haZxrcoiDXAKBjc206fYOF/8kJdD1B36HMKN9mKfS+IorEsDUlkSBjAebKqLGf3iLq8PW+DUY24WIH4+OBrxKMg0nwogeatwj7MCJ/LZiw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jHokLHyIT6CKTsKWB//YN63fw8h3ix+88zvhqQwyLDE=;
- b=aEaFRpavN5QKq9fJFSK6xVtugEtlkfCEsCrThGE93ug5i7h6jlnqx/Ge1FmtpRc4QtnNtFDshP6h+4dx9XqJ0PzgQQ1lWQHfkS2jY9HG2npbz+kYPdHZINYQAGDB/YGbGUYN2s5bgtnvlfnHqs/WX3mNC3p/crmBJQZEErNUVLbYwGbF/p99fQuYA8lsFjPYjQchQV5DBReD993DntjvjzEIvlyo8QDJyEdirJzB3/2l9Fz/oFtp9YCytERhc1bpd0TZQ17U/Wmax8zxuQkXketwJV6dBJcEQtWGCBu7IOnnimOgUh9nFag/Kc1ZgVFPPCfx4HyDaydC7zFl8+salg==
+ bh=pGgnPj6/YpiLQbcqBXee83eeZ7EHgO2k8xJrh0tAOHs=;
+ b=MJoD/KLvSfOadAlS+NA5VxwulJawHvuiXMezJXemJVopfJcZVOF/oA3gBQ5XFJyeufrpoLUl03UD+oErCyssB/q/94EtBMg1G30+VTXvRQLWaH9P2TZVnuhpej+bo3qo4yg9ZfcgtPE71ARhSyrS9bESZZNbujukb0UuCDas7R9hi2KdgzeqWOTJAkkc7cHA63OqF+ROQOatXVIeb17ByoALprqymPTRDuhEsQkjivTCzgCpuHmoNQ4O+ADVMdaV5pAZ8NDDCRJ2XCYclr9kH+UHKwA4lWrvZDDqFpVjsX7Tvs6dguYifP1bSrSCfycp2BtJohunVg87qHaOp0Pv8A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jHokLHyIT6CKTsKWB//YN63fw8h3ix+88zvhqQwyLDE=;
- b=hdm4dTolyzqIkpz/iQpNgnI4f0jnfSp25dzCEnzutfVdHEdxpH0Wym1Qz1kN5rzeZOK9pkbT/9FWXdFlfF3IM8JJM88/yB+RzQmHhCGe9axZGaAW4yH44YfK3e2v3PRKOaBMnouunfw3bbQ0T/dhvmc+sKR4t3gb1K+Vq4CAl0w=
+ bh=pGgnPj6/YpiLQbcqBXee83eeZ7EHgO2k8xJrh0tAOHs=;
+ b=VCG25+wsJi1HKniLLCJ4RJbPtERmO9rKNi2+bFCK0hvIEgJPUvHg6pfE8q+8lyEL6L7JDupINJct/miGR/qs4G3kk7RRj73djuyzAAjVqnSnZFpR3bCO7zJ1w2xhKbvRiNL0v+2RHaMvA8Z4FObkcuYvekpG2lF5ZpXwaDRzOWM=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -41,10 +41,10 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  16:49:44 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 23/89] drm/amdgpu: introduce a stolen reserved buffer to
- protect specific buffer region (v2)
-Date: Wed,  2 Jun 2021 12:48:02 -0400
-Message-Id: <20210602164908.2848791-23-alexander.deucher@amd.com>
+Subject: [PATCH 24/89] drm/amdgpu: reserved buffer is not needed with ip
+ discovery enabled
+Date: Wed,  2 Jun 2021 12:48:03 -0400
+Message-Id: <20210602164908.2848791-24-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210602164908.2848791-1-alexander.deucher@amd.com>
 References: <20210602164908.2848791-1-alexander.deucher@amd.com>
@@ -58,52 +58,52 @@ Received: from localhost.localdomain (192.161.79.207) by
  MN2PR13CA0007.namprd13.prod.outlook.com (2603:10b6:208:160::20) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.9 via Frontend
- Transport; Wed, 2 Jun 2021 16:49:43 +0000
+ Transport; Wed, 2 Jun 2021 16:49:44 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ebbf2248-7277-4e57-49cb-08d925e66c2f
+X-MS-Office365-Filtering-Correlation-Id: dc7dabe7-43cb-44b7-7b7a-08d925e66ca5
 X-MS-TrafficTypeDiagnostic: MN2PR12MB4063:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB406396CE23AC4B12CA1661D5F73D9@MN2PR12MB4063.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:328;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4063E46215F7B9C54A47B56EF73D9@MN2PR12MB4063.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:194;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UmGHFLfe0oTjnR0LhJzv5Rp57cYk6WS7vjlYi7vy5QCjSp2Wi3MyNMopcC4og+DUHfytIzW37IoU1wSMvcEFYryNXHZ44bdWbiEcMsQb6BBB5FOd8rb9TEijpCzerqupE2So4HIwTFZpspu+U/hZErUPMriB3a5V04UpTAuDuMS+Dd47ge3amKstYR6aBlOmyl5EneySP4O4R5mOwyBuCSUof8KCBsQ4u5EPD8Kw8ZpLIknetpjwyDRQRW+E4LllTh4w/FwooeuqHGbnnGW8mZbS+Lg44F08Rw0JTNO/1HGPLvDtmSDQO5sKaIaAORdN5zewsQtvsRsmGimpLbg7any3VApMqdqi8jwcpv+iFSVKZ9RZxZPcp7EpmllpotRFCMT5X3Y9JmPEZQavwLCRDwUC41JlZH+Wsn1nnXfXwIZEKiLwlPL0HaB8JWNZRwVYASlIgrI7iWenuUJ6+Fx6YKOPEUC7bxLtL4iIsHWJ0+zetxFmLRlNv94IoWRZvcod/moVEQhTZm4dTb45TLX0oIjLc+V4+Pb4FaeG6aSDXR2GPmyeOs2Jz+8Hoc8Gv4rBIwAcNNXFPUnbzlT/My/WQoJ6E+SZfu7yJMaz9Cl5R3ztWin90AeB6HtQh0DRTSrvS8W6ShPafBBzg4eViSBcu4ySRfp48zFgFwQyLbMjnnPtsL4jMbxFT9AlY0eW6oX9
+X-Microsoft-Antispam-Message-Info: 1XjFGu5VXmg+ZQ65lumNT1uV2oqTzupuJ+tbT3fS6HWbDjskTblJEsMpkV8cryQZW+MZ7SgEDkDdP2uhNxaIXtB7tVtwD317J3g4yb7XaSo5xqhFnfTUjFWa/h/JnB4UUSqIeh8NE4UHmIq3qz4NwVB41M9KFvmgN6k1GTkV6Uk1s0kHYYrFoo9IMH2QgjYKqOKNxdGi/8RBmxv6nMT81JdMBuiZxNx6j1BwPTGH4XrAkny4CfcTTA+D93IMHiWhTlicLO9FJLBnW36otf7SBEwnG/1g8R2L4VJyBr0RyUiS2XvU0SKWdIJRm78RPRvJUFRgJS7n6RUSPffWLva0kwap3cbOe7wqYSXgmVkpGWKGXyawvMA0MJNUELXDg386ECofh2B6hhfbsslBRnLjzM+JNESV4l/C6OUiyWkMG7DsiJFuk7hkbANCbyDrek3Ey1NnKFeofndP1kTRgdcLvq+TSu4N0GfbhzUSDx8eUJBOM48B82myKmEFIrYjoV5fDr+834pAzV9Rt/Zr7zLBNo1aH9tkNIgye3OY6s6ap9lCynI6VCzcDQ4W32RhFbHiwgnZlkWXtvSBJdW+9U+a9cnSxNEs5WJWTVo0eSz+p4+eMzU5K2SWSWRV90B0zdqJ5iRP9YSpuFLIGeXE9B1TqrnR6ay0UyOQxau8H44TSYSrUqitF+YhBifsqvrrA0JG
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(396003)(346002)(376002)(366004)(136003)(39850400004)(54906003)(16526019)(186003)(316002)(4326008)(52116002)(38350700002)(66476007)(86362001)(478600001)(38100700002)(2616005)(956004)(36756003)(6506007)(6916009)(2906002)(8936002)(6486002)(6512007)(1076003)(66556008)(6666004)(5660300002)(8676002)(83380400001)(66946007)(26005)(69590400013);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?NJ/QUO8vZ6fpobiyGKoPkK72DlWrxVLTQN+8Nu44ZE6MeoO/ooBMQQoD806W?=
- =?us-ascii?Q?CVWHq3vZcdhbcuE37+s4GjiJxkqvLjFH4qHaGocIWfPLaCkRTrecrrSkwzke?=
- =?us-ascii?Q?5k4apLQ+9uZdMJpxqX0/kh/TNQAU3zsPa0MElIhCYz5I43bZXiGtXtMyn51Z?=
- =?us-ascii?Q?BYCAxEzLDWfp5meuTuGrCSgcWTyVq7u++RIRIO3fXiGygrSCLKPzYAyAynWl?=
- =?us-ascii?Q?RNWHoWauXqbe5bE5btmUJeCI+FOqg6qjOfE+oV60n9G8UhwMwoBGS6ytyisJ?=
- =?us-ascii?Q?rpSS1xqQShNN6NA0MqxaEAXOjoJQ/fq6YSVKh7pB0odRvaXw5yQJCK8krLI0?=
- =?us-ascii?Q?wjSGmjaMwdwtSguvAom1XWbQish3DoYHSZs7TBlLozdbn1Sxcaoqfz+jDaPx?=
- =?us-ascii?Q?kFgL8MJbUbYBxg6Yv9y86VffXS9pBdHT9vWog5DW+ke+1BsIjfuHFGc3uHeQ?=
- =?us-ascii?Q?NlwTLU2BkCafOPw+70Y6xnfas50/JkvPK4TMpc1626U3/TaNa6JBsVy1m6+w?=
- =?us-ascii?Q?ewumiaiFOUE6mivljFG6z6thMk9f7NMmmOIEluCMXvTiKmhQCMho0ffYoC/8?=
- =?us-ascii?Q?gyQwOYSnCl9gBhT2MBX8QDBjKGEajdYUNqi+QNsbeQKTMOGKjY8ikZwdc2Fl?=
- =?us-ascii?Q?PzQT0Wo2xW/W8TP9jNj69oCgSRzintvi2Q/01ZMSzRHH6Pr+ItI3skYL+hzG?=
- =?us-ascii?Q?jWfPxsxNiWPcEkb0ac/rVY0Je9Y2quJ4j/LnQAhtWUjBff4F2t0+TOWxfq2R?=
- =?us-ascii?Q?LZ6H7dA5aQ/hztHFhGkmhc3qsWIBhXFkSaQSJN8cs87F/3HnrweJCsHRgqLY?=
- =?us-ascii?Q?uAYSJ+TcMJbijx2oQYsKM9EIBO7QO1MJnxpWNzzc7tn3nc9OOP2+3TKmYGRb?=
- =?us-ascii?Q?cim1TFTwWDWBiYuIoiGfFlTwebiXc0wnmq3gvHu4n3X3BO3sSWnmdjRzoW36?=
- =?us-ascii?Q?v3FkLzmQgvf+FMFdW6g4ej0eppa0/nn3oMaq5/2SjE/dVjt5oD6qwBA3g5Mt?=
- =?us-ascii?Q?tnAEPfm8dszR2fKr705+bUp13YPB1dB+8VLBm4pS8ECEbhaSKu1XS80k8nFB?=
- =?us-ascii?Q?SCEdSw3yJ2RobIKX8/AJpR4JpMgrsPNJVRzMyE/AoJ1QVOJYxXqsV+MKM+z4?=
- =?us-ascii?Q?ZcqcYld9wedChjt/SyljbV5ZGq9W27K+K6FhNtU5BiM0P2ZElO4tTD8YS18G?=
- =?us-ascii?Q?du7TspHlg3h9rJbjtImzC9LcYgYC09dKaWdZ1F1X/3TqFh4UK4lJQ9aOx6Hq?=
- =?us-ascii?Q?cI6gvyvr+YFOupDc63ygXfTRnIFKJw3ipMMqBFBQP4ZyNzL5sqED2UFtyote?=
- =?us-ascii?Q?31JaDDYyOfL4J7NsQ4nQTl5f?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?nd1DPMTodFvljipTZQrNkmxBqZdfJ1CXfTjfmoL/BtjAu//ikDNRM4nKTFuo?=
+ =?us-ascii?Q?OReykZ6s2xtLo6dRF506T//IQWPn1LMpNtAGNjATJZlB0dHAhx5SezBjqjY+?=
+ =?us-ascii?Q?Wvjah9FdLZ3k0rGb6yVjfWYCJVY0NICD4q9XxoWYiRX2bJ0doGlewSblf7bE?=
+ =?us-ascii?Q?qQVNfRMy0IAkgBQMdzaNPXDocdRWs0BOw0Q+IiWW5w8XcVVuVWqTruKuJUyH?=
+ =?us-ascii?Q?GAWe2Kov8VAe86JVoxKAQaRvH8u2DSg2Cy4L71ZWY/PvpUEIWkJsiUyh7zOK?=
+ =?us-ascii?Q?a3dscajf+YL/PMhbgp1fgSDnD7aFD4hXlZio3tLgtkEm1Km5LwzOc3/ixOUT?=
+ =?us-ascii?Q?/oqsEUPx1yAurSlyn7siav44xKcvQI62Qvg4ITf4EZBB29IZKYut4N4F8Gox?=
+ =?us-ascii?Q?6leUx5InkaUm1J3ncGB2aVhwQMNnihTVktaj5frx5/TkV/kZ050uMJmTlemB?=
+ =?us-ascii?Q?Fg9/FILmk0NUpfYyLs0JnUkcvFb3JrMtQd+qiHUbc7XtGsjFYUbLMhp5fIcy?=
+ =?us-ascii?Q?+l2ig6NMLvFuWfX2mMNlWI8apOvVo1UeLguV/QFVYRiTQF4rNgjC9Q5RDZIQ?=
+ =?us-ascii?Q?Ko/m82/2gx83QH05ZMX53FZ5mUE/1kzfau4Muip6q/TbJ54bK678wr+9zDXb?=
+ =?us-ascii?Q?acNSK4fAWF/ytqFh+4HhMrpiSH5tOAUUdQYzF1nM7vfscLMMXLaktk83rVka?=
+ =?us-ascii?Q?u+zuQ4Czz+omudQ5UfqvvRzW/7CB1vZUMa4e9aU4g1OkbStT9zc54omnrkYe?=
+ =?us-ascii?Q?f/dHod36+wA+12wb0BP/+EcckinzFdLt7UdFpHrD9efIgI7m7xJYgRMv+03g?=
+ =?us-ascii?Q?PsDILmDzx5Y6Y0w6cMnhe1I0dow8xIDSDg/Sh5yEvLuPkx83OkCYhwyQMnn4?=
+ =?us-ascii?Q?Tho0/G3n63KUNcyaOUE+dmRiOx93siAq9Jpp02HdDeVoNNLVQS0fDgT7Xmya?=
+ =?us-ascii?Q?Dcjy7YQEWqb/AW5b/lcfabBm5wdbzSLecztL3HqY2YBZSedywbfE+euptq78?=
+ =?us-ascii?Q?bCAXhvB5lKMYOz+rJfY95W22OuCVSGWE1PB6TdMEEORTWZvkDqUikEcLhIH3?=
+ =?us-ascii?Q?j8zo9Y1y+F1sjjbrpcYnLvGw5JeRUHRTeCevqxLR1S6GHw7Lm/A2WBsgvxik?=
+ =?us-ascii?Q?7Vjw5oYwYgI9U06JTh3cpKXplIdJQRpy7Db/bbUfGpIjeL6gyvmFbg15y3bV?=
+ =?us-ascii?Q?LSlv4aOLsL6tpFry7lG2m2plEyQ2nHnSGrUAndl+NBpuDlcNS8tvZqXfNszh?=
+ =?us-ascii?Q?5//q+mgMfewOa7rxI9WZiMVxbb5zkQgX3bU7A+wuxjFmbbeWhkEb8sFkr5lV?=
+ =?us-ascii?Q?6IlVyg9IxaBATfRpt5yIewTM?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ebbf2248-7277-4e57-49cb-08d925e66c2f
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc7dabe7-43cb-44b7-7b7a-08d925e66ca5
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:49:44.0217 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:49:44.6948 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1DFvH0EPt1qJjIAtuuTPVOFIvM4CkOoZSHLTwOzClnW5qFM+ZHWk5z4NyCxYGqiiMuIaQhewTILtmvUD+wzACQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: zn5hEcbyijAsdnKNjRMCUELyiWd9WvRGeoD+SHVO13kUTr7glL1QMQXkNo3Z2TQgtn8eRSGMsZIrZhz5JbTxLw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4063
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -123,117 +123,43 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Huang Rui <ray.huang@amd.com>
+From: Aaron Liu <aaron.liu@amd.com>
 
-Some ASICs such as Yellow Carp needs to reserve a region of video memory
-to avoid access from driver. So this patch is to introduce a stolen
-reserved buffer to protect specific buffer region.
+When IP discovery enabled, the reserved buffer has been alloacted.
 
-v2: free this buffer in amdgpu_ttm_fini.
-
-Signed-off-by: Huang Rui <ray.huang@amd.com>
-Acked-and-Tested-by: Aaron Liu <aaron.liu@amd.com>
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Aaron Liu <aaron.liu@amd.com>
+Reviewed-by: Huang Rui <ray.huang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 16 ++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 10 ++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h |  4 ++++
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  |  1 +
- 5 files changed, 32 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index 0fad971e663b..f1460acbab3d 100644
+index f1460acbab3d..3014985cbf47 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -777,3 +777,19 @@ uint64_t amdgpu_gmc_vram_cpu_pa(struct amdgpu_device *adev, struct amdgpu_bo *bo
+@@ -782,14 +782,17 @@ void amdgpu_gmc_get_reserved_allocation(struct amdgpu_device *adev)
  {
- 	return amdgpu_bo_gpu_offset(bo) - adev->gmc.vram_start + adev->gmc.aper_base;
+ 	/* Some ASICs need to reserve a region of video memory to avoid access
+ 	 * from driver */
++	adev->mman.stolen_reserved_offset = 0;
++	adev->mman.stolen_reserved_size = 0;
++
+ 	switch (adev->asic_type) {
+ 	case CHIP_YELLOW_CARP:
+-		adev->mman.stolen_reserved_offset = 0x1ffb0000;
+-		adev->mman.stolen_reserved_size = 64 * PAGE_SIZE;
++		if (amdgpu_discovery == 0) {
++			adev->mman.stolen_reserved_offset = 0x1ffb0000;
++			adev->mman.stolen_reserved_size = 64 * PAGE_SIZE;
++		}
+ 		break;
+ 	default:
+-		adev->mman.stolen_reserved_offset = 0;
+-		adev->mman.stolen_reserved_size = 0;
+ 		break;
+ 	}
  }
-+
-+void amdgpu_gmc_get_reserved_allocation(struct amdgpu_device *adev)
-+{
-+	/* Some ASICs need to reserve a region of video memory to avoid access
-+	 * from driver */
-+	switch (adev->asic_type) {
-+	case CHIP_YELLOW_CARP:
-+		adev->mman.stolen_reserved_offset = 0x1ffb0000;
-+		adev->mman.stolen_reserved_size = 64 * PAGE_SIZE;
-+		break;
-+	default:
-+		adev->mman.stolen_reserved_offset = 0;
-+		adev->mman.stolen_reserved_size = 0;
-+		break;
-+	}
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-index 6aa1d52d3aee..e55201134a01 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-@@ -332,6 +332,7 @@ amdgpu_gmc_set_vm_fault_masks(struct amdgpu_device *adev, int hub_type,
- 			      bool enable);
- 
- void amdgpu_gmc_get_vbios_allocations(struct amdgpu_device *adev);
-+void amdgpu_gmc_get_reserved_allocation(struct amdgpu_device *adev);
- 
- void amdgpu_gmc_init_pdb0(struct amdgpu_device *adev);
- uint64_t amdgpu_gmc_vram_mc2pa(struct amdgpu_device *adev, uint64_t mc_addr);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 786650a4a493..74037271e91e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1740,6 +1740,13 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
- 				       NULL);
- 	if (r)
- 		return r;
-+	r = amdgpu_bo_create_kernel_at(adev, adev->mman.stolen_reserved_offset,
-+				       adev->mman.stolen_reserved_size,
-+				       AMDGPU_GEM_DOMAIN_VRAM,
-+				       &adev->mman.stolen_reserved_memory,
-+				       NULL);
-+	if (r)
-+		return r;
- 
- 	DRM_INFO("amdgpu: %uM of VRAM memory ready\n",
- 		 (unsigned) (adev->gmc.real_vram_size / (1024 * 1024)));
-@@ -1809,6 +1816,9 @@ void amdgpu_ttm_fini(struct amdgpu_device *adev)
- 	amdgpu_bo_free_kernel(&adev->mman.stolen_extended_memory, NULL, NULL);
- 	/* return the IP Discovery TMR memory back to VRAM */
- 	amdgpu_bo_free_kernel(&adev->mman.discovery_memory, NULL, NULL);
-+	if (adev->mman.stolen_reserved_size)
-+		amdgpu_bo_free_kernel(&adev->mman.stolen_reserved_memory,
-+				      NULL, NULL);
- 	amdgpu_ttm_fw_reserve_vram_fini(adev);
- 
- 	if (adev->mman.aper_base_kaddr)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-index 2877a924086f..951a77099659 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-@@ -84,6 +84,10 @@ struct amdgpu_mman {
- 	struct amdgpu_bo	*stolen_extended_memory;
- 	bool			keep_stolen_vga_memory;
- 
-+	struct amdgpu_bo	*stolen_reserved_memory;
-+	uint64_t		stolen_reserved_offset;
-+	uint64_t		stolen_reserved_size;
-+
- 	/* discovery */
- 	uint8_t				*discovery_bin;
- 	uint32_t			discovery_tmr_size;
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-index e9fc8d21f3d1..716d2849ca16 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-@@ -936,6 +936,7 @@ static int gmc_v10_0_sw_init(void *handle)
- 		return r;
- 
- 	amdgpu_gmc_get_vbios_allocations(adev);
-+	amdgpu_gmc_get_reserved_allocation(adev);
- 
- 	/* Memory manager */
- 	r = amdgpu_bo_init(adev);
 -- 
 2.31.1
 
