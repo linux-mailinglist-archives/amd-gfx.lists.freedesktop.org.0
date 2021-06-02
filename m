@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 562B63990E4
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:51:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81FD73990EE
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:51:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 763536EDC7;
-	Wed,  2 Jun 2021 16:51:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E4A06EDE3;
+	Wed,  2 Jun 2021 16:51:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2075.outbound.protection.outlook.com [40.107.223.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F2A06EDD7
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Jun 2021 16:51:21 +0000 (UTC)
+ (mail-dm6nam11on2046.outbound.protection.outlook.com [40.107.223.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88FF66EDD3
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Jun 2021 16:51:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KgvuZ4tP1B+kdK2AwXfPlhDkMcpzVyMoKA3Pdc+kYdAVAsTl2pc/Vs+zNOCYV9BekMV+rvzVJ5Y5S6w7sn6fRYPj/c+npzrq6SZB48ExNNL9tdrJjfIRZM6/MhJEPJ38uG6KoGaSq9JytTjMiaVS4LkjH1lYAe7ZhR4M0y6K9EZ2in26oCVOeqYh672c3IOeId299STmMbU9CP6l+HNvR/Ye2sA28ahXmEQlsTB+vYDAIvEfYpVisGSXbJm8Hudk99so1EnwzWPDdjlkyDSYWVCCtJItaIvOtPspSfHEnoK1v84gdHe/iUevkV40Xkfw7xt3Q+pwyLjkbaUAqyVYUA==
+ b=T/dLDmvp9hixuv1snNpZ6a+b6+mEjxlNfSafXmMjdvwSqT0hPTSkBVbI0fSwQJiAXmEkFO/yXgJx58ipsMPoCakMXW3tLRBdBosGeSm5THn1mragc9USwvMPpfGjCx7radYwRvJjrNxAFHtDO39q8bVC2SpcMAWVEPnBUsWBOZXSA/IBYzG2AzetrtWXEmnkS+q5T3N9Q6bhEkSKAqLpq1XUDHNQDJnoir3lMSbFr8SuLC+oPNh2LqrDDz1HJxzQV5X++wt6vOjk/c4immPc/l2dqEinSgVRAQr/D2oMQ7PHQEqF7jcxyj0Nb0s/Kr50bgTrOwBwebq+SxH7qEmQeA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aD7ARki4G2EJg76vBru9szPf5juz0GEuDyLCStKb3Eg=;
- b=JtY7k0+NVEec1EE17Fc/DKB7PQtNndOgF2jnLKWiDeD+YzCq3hV/4ZW9gdFLD5Tj5R/ft1W/o6GnjF+r4fYMu3bkFMOH1ammom9K0hJhF+PE13Ukw5xgMILPcNi7V78HIviEjSeO9NH1Z7tr03xpTf1Fka8QBoSkRfO0O6vI1eVaFoM8wNZ47cR6dYvfLpoPzIsZ2bQ27bj+U0NEH/Ewkrb7BQMMzU9RIBthHLW7xz0csPAeQ8giCu33djGehv7d/DBrV+2qOiu05F/67c+p4VQ7zyFMSyNzawi7gHfNOw4XVVPNFmXSBgHflb7uxvwNUxigNyaeM7fq/78ec8mwfg==
+ bh=+FTARA0D2oV0R1p3zPHPH7/cHBbH17oy//2ML07+V9k=;
+ b=Sm4hjssf2CXjWHFqfM+o8EamoMKorPpW2bqIXyUht52p1fyJVxXFOeJuodM+8oQ1Iik9iK05OM3ZzvsyHoXoT+vXHVrXrAuGedQdU9gg5fV+0FNB9PmWuaGlUKfZoZsyhH60OKy9iGSsNc2U1dMuFZya1rdPcOyJe3wzYnKLRAxXQgKezohKT+PExvlImif93fA9H92FbVU5OWu08RvW7N6+tLyxkZur+cZqMmj5aBt5CTxQ2XBErVaNC8FedO/J8goQ2kxXWAzqvGp29bSWA84fc7NyiC9P1HE+D5HeEAQRflA8G+llbuyHIyzX2De8Rk36pNKznhTms/zJF9t7AA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aD7ARki4G2EJg76vBru9szPf5juz0GEuDyLCStKb3Eg=;
- b=ejOFpT24BrvqosgigFDYeiZW7dAdSZ7d/isTOjqRSJRegYmatXLCzj4+eagiugv+ZA8VGe9lC8c6UgNEnjCdO5hTd7Sy8oZ+PejVYFW65/FjVsy4/4ccbtbSu72BSQl3N+X6d0wKlSrlix6fAD4WjQ2W9GkIoNVvq6XhAEExhZI=
+ bh=+FTARA0D2oV0R1p3zPHPH7/cHBbH17oy//2ML07+V9k=;
+ b=bH0C8c9lchNJh0XoKRy7EUrliuyJg08lFoKjCJ3sfNk+8a2ZKEOp4L467eQ5IfC0+H/aSLmkkMgtQ/gOQ46N2ihmr7JcyFink6P18AA96mhsMPJ+0+tBBP4WfZBh92pprNzT/mrNbwMuHeDblvNYirZle9gh5yqSU2xAPlxfd3M=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -41,9 +41,9 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  16:51:19 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 73/89] drm/amd/display: Add DCN3.1 DIO
-Date: Wed,  2 Jun 2021 12:48:52 -0400
-Message-Id: <20210602164908.2848791-73-alexander.deucher@amd.com>
+Subject: [PATCH 74/89] drm/amd/display: Add DCN3.1 OPTC
+Date: Wed,  2 Jun 2021 12:48:53 -0400
+Message-Id: <20210602164908.2848791-74-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210602164908.2848791-1-alexander.deucher@amd.com>
 References: <20210602164908.2848791-1-alexander.deucher@amd.com>
@@ -59,50 +59,50 @@ Received: from localhost.localdomain (192.161.79.207) by
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.9 via Frontend
  Transport; Wed, 2 Jun 2021 16:50:18 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e4d527ab-f4ad-4912-db4e-08d925e680e4
+X-MS-Office365-Filtering-Correlation-Id: 041bf041-b85a-4a12-463d-08d925e6813d
 X-MS-TrafficTypeDiagnostic: MN2PR12MB4534:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB453472357ED12C545F755B6BF73D9@MN2PR12MB4534.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB453461D5CD0B9160A85D0A14F73D9@MN2PR12MB4534.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: A+Jktd8ECXhXuv9QjHf8S+9T0/htJJyWX+3viO3P2OciL53p3CfJa/DvFQ3f7reqySIULoloT82vaBFZEg6FM2mXX6cROeO0F4meZERMk75/mZUdAeKFCdK+noR55O9JoNLeKqSsK3thJgstcgG6bFWax0brNhjBtGkBgGmIVvrjyh+3iaCxD+dwSwsLe9KwUT4+WB1qeEDaBOV7RQmeAOLXF/BJCsUwgyrWAX9yqGb78uHSOPhqZ1MqpX62cE9tPB0hs46LZsqrIWkAEjF05kvcxpfFAIafYQ/tu7gxYG2ne8x6pV7OdiKl9iUn7oZZEl3LRvY8En8KW0JEFyzPzfENcBFStHQkP7Gg/F+e9EE57nPekj5m5nZoCUwY4FtVsx1Lx2j3L933Myo/WZ2WaupYMdt4qYWaPElEu2gWXNBJCXWe6RmDK1O4g3FcDoKwOnnFppzJ1Q5sZYmHHl+FayJWP4bdKz2M6mCrqqfUr5xrel/8SheVsz0BMbKdfaCHuaW6xmx83QPSvdoXnfuhdvofNA/8nSWOzBZ7viTj57kCH+8xS3YeOhHX36621B2NQXrE/p/6U31pg6q0vdn7Zc/VnTtsAUMZv0k4PfbFUukmD+czEeGVDH8lmnVw0iybOTjON9MEOHa4TNf8pz9aSOLmQ8BqXbiUDkUSW+OsDdCPC+VIF6kZeN7Aih5oV06o
+X-Microsoft-Antispam-Message-Info: Gb0KWZdhlyeJ1pFVRzPznkxvhNm5ixOgJCdtAcAYOAIZxdNHb9g+x6IL46NDKeRvrNeGhDlAgk6nYbeE7qAScVtc3ODsmAyD+s+G4IZJHQp0Ph+n+ZqEkCjwph+jbpuOasmWWLsluajb3xvjh7wAqMyYGAyqONy99KRUxqIUa5T725vlya7w1ZVYloq7pLpvZ2MJNdHSDlYoLXtPsxz1fS6dyqJam1vABSy9Ct+xLcj9JzGS4r7HRK9d/u/3WNfvFtJd7iFFLHoMkj+a28/yFTdpEw46hRF12rm7j3r6yK2Sv1L9OE5gQbuz1Q7dL4dXWMf9FJ2U61VJXV8dT5NDpmuItxkHfRh3f0jMCZDIEFhXIWB+nrS8B4G94rqOQ4Lowld/TMCZpMYfJleh5+Utk06MdRIkChbvjJEch+9/nT16jhYmeVOVKvDFDXQjmQ/hrYU2jxvjHjrsOPSeUZ3gN7MfXpax5LY/97FixaRyWdbkMGHBqkl6hqWoT02DLQxQvYFlA4yx97ITKjBRVP4qO05DydeThaXWuUzN6AVwyOrh06JHRnAblzTuF8E+5rOQ/RV1fhZlPQ8Y+7bGIOWAE0iaqZ/+5ol4tcKNLZkJSypW9/51dpvZq9j+6uXbK2zmBUgZcg0vtcrgzrSC+cKIm3pVEDE6Kt6y79Mhrin9F58FqVFuSlsY3l3Zw5pwhqqf
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(396003)(346002)(39860400002)(136003)(376002)(366004)(30864003)(1076003)(8676002)(2906002)(8936002)(4326008)(2616005)(956004)(38350700002)(478600001)(38100700002)(83380400001)(66946007)(66476007)(66556008)(36756003)(54906003)(6486002)(52116002)(6916009)(316002)(6512007)(6506007)(16526019)(26005)(6666004)(5660300002)(186003)(86362001)(69590400013);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?fKMjxZum0G+hgOK4mzEJbUt2k0BKW5BW+T4qBV24Dd67JENTTX3vzy3KFCEN?=
- =?us-ascii?Q?AI4zHQGWKrpOXlEA+grGjvQXntYomn40l5yi+ea5VeUh2UQSzppFHw8wluU1?=
- =?us-ascii?Q?g/UJpMPDjPcMMvf2juwNj4MRYvVurCxLLq1kvPiCvBZgxI9qajeytMQQRb3R?=
- =?us-ascii?Q?RR8piLOJjmoAYAVlx3shu3d6wvCJxOFoJEGZxxA+vDE8xsixpHt/htOcF2uL?=
- =?us-ascii?Q?exh+3lNF+3I0roSRpkkQPw/pJr6lpKdfSgZwKmfIkWwYgcMuxUR7FUJ9qlW0?=
- =?us-ascii?Q?CFUKa0J/5kz9xuY/aYRH96+1S2q8kUqkfluHdbPY31ONtlG2rwTeKUNXQFGL?=
- =?us-ascii?Q?zxNg7Kf1fPYd7Vw1ZktugbP67eaTafr/sd2cSdB+t8eZuFm87unT9olSHePd?=
- =?us-ascii?Q?Ss3opkVen3bFFWWUqVeWkqm9qaF6QSbBQsC8p+fmox46uG5euRvu9yKlHaCz?=
- =?us-ascii?Q?VIIEn7JGN7cc6bPsgXPGWdqEqWKBUTZPWyN9CJGplRXLYvwOkYC9q1AKTD2j?=
- =?us-ascii?Q?YGZJehBzaZxtwx5vmnqMNkPfaQuC7j5F6pZgoC5d0YbkCXueqWx55n8OobGp?=
- =?us-ascii?Q?SBKXsfrBsaPK0V8QFtH9FtMhA60LQF5FFII/Z65zJPmrcnPzeXgbd5yi5Mza?=
- =?us-ascii?Q?gjb/8zE5ra/jwMhSqb5zP5n3x5sR664WjM6kFOTH2TWZ2lmK4NwZ7zmNr8u1?=
- =?us-ascii?Q?OOL1zdM+ZH7CooRhT2KiFw1a8FO2sG23X86Ecj8bjKjDGbYQHOE9joxbtZ7d?=
- =?us-ascii?Q?ftniK0Mruncjl7VbNe/G1jdhI6t9phgGaK4turuF32ptQ8THT0TPcXMT3hIi?=
- =?us-ascii?Q?tc3fzOWtAdvRTFDaHqU0+KXsLNS+G28sCCdo9IQzpVpF47aFW+uqSRV0BxlN?=
- =?us-ascii?Q?aRPYR/In8MBpcdkfNGciJDZoC6qC7fdYmaHr/ngPwbppKz8l32GgJgYolztQ?=
- =?us-ascii?Q?RwnYYbM3EOgHKWVeT/x8fKjEgBHRmiXb0884GUu1b073FmEb0pPd4DHuPmTR?=
- =?us-ascii?Q?WiB4xjpWRtQJ3cc5oReOlqfkhkswzke4Qu9ZCSF5FOcmWbuR80AQklenin12?=
- =?us-ascii?Q?gg6uTPDqQYg+L4+kbIJclOzuJV7yuaf66djEu6UvrwWAidAHflWjFImgMu9z?=
- =?us-ascii?Q?5h9tSxaQuQmnjn45hSwStL6G/DwUZbLmRv8m26e/jS1CiNvOqr5GA6d7Pqjv?=
- =?us-ascii?Q?LDRUsHUMxt/3rPb+5PnXoEqn3pUl7RKXQ26n/S6UTWbz7eNR+Ih4OH02cU8I?=
- =?us-ascii?Q?2sRPkbFS8iqLqpihOmqw/aGxOD0e9iOW+nVPL5c26h0+MNGMClE+2Ur1eFmW?=
- =?us-ascii?Q?G0AvMt3dmEJS2pjjhG6Vvp73?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?dtlwt/9qWN7nuuTF3cUaVXC/6vX0pzhGPC2sor2ZIdrtMlBURyhKC9g4mG8h?=
+ =?us-ascii?Q?Myir8n6DEWCTXfaHHzyJkoXjpQbyBRGApbUpszyYe1dw6QSVugWXEYhp/byY?=
+ =?us-ascii?Q?g2hxuNlsLX5trdS+q8afxoNdf0wheVQ3S3L4s/X/reJds62WdHuEIwf25Wnm?=
+ =?us-ascii?Q?7KtrPZw5eKHp7FUmIfeZCNWZVzey2pLY7cbCHQ0GRy71zxBaB0u+3jvMscuY?=
+ =?us-ascii?Q?KqJU012SvEnAlvHjdPp578i5Fb5xVAMOh2y06TYCoM+0OQRa0PghOvKpwmww?=
+ =?us-ascii?Q?4NFvchDKS0NtV1d9XHOOP20tp5SS7E0za4faKbNA9rKs6nzFsYoVdmskmeua?=
+ =?us-ascii?Q?I5aiLWaxZuW3r7kEVUvkD7iubP0i+Zm/evwbUn7PjI1xI1oEAEIYwPj+e6Q2?=
+ =?us-ascii?Q?YxXsJKodhSmyOyx3TpoXe0VKc2SjHIu0dIUh+nouiEKJnNKVbg2AIG5VVlkr?=
+ =?us-ascii?Q?H92P7vD+njhwPKfwDXCNjD2pExKoLZ9Uq0lbv7AkKRHBg/OmiJRlKwVasnej?=
+ =?us-ascii?Q?bRHkHIsDr+w7+j7Zc2HohYqHozaYHifdZxL7jAMf/6S2vrSajb6lVq2nWxs4?=
+ =?us-ascii?Q?iTkva3OTLAkdJgT9JibTnJtBjR9jHpMuVLcGAPALAJyeZdnyks3jmeo+bf8M?=
+ =?us-ascii?Q?aUyCx1z3mRBKKZZWsxVDsjX1E5zv+EFQA/Pzk4jGyS8WnR8G+u7agigyZ0+k?=
+ =?us-ascii?Q?7avHKYPwcKxYfWzCzBmPXdJNu+SzufiZt6T7VMGlmWcwH4szO3lgecn85GpH?=
+ =?us-ascii?Q?u0b1VayX+JlFDMpl0c8UANXfiLhLVAQz8ACCiX5ihAeGAEvGlIeWRu/xfj99?=
+ =?us-ascii?Q?MybabAojjp+6fPsCwJaWaw6T7ouPwGkLIhH0NjsEDOVdtd2SjNTlkRLDRV01?=
+ =?us-ascii?Q?pzjIX/1SUdmWxMs53FW+aVz3EtWTrUYQvMBtXZx0r/RAgzdixyTYsvtkrTGT?=
+ =?us-ascii?Q?+493uQrbQx5tH8pcDJEyk3um654YDP+jmABh0X3K6tiC38Rd3Ttx6e/XIj6f?=
+ =?us-ascii?Q?wBaT8rmCQ4P50Av4nIkJJDVShyoqjFBokViHXyF3mdYgaMHoa0eZdI+6l4IP?=
+ =?us-ascii?Q?pdgrbP04LSWJkZxvOEdhTCX0RrJgRIxWRmi5dfstfiKt3g2DcvMqWcgrIWDo?=
+ =?us-ascii?Q?4rITb8dK63g9ZCOpmD73yKTbMUOhpcGs2vsiJWxP4Rc+KQLFBW4zJ55jLIJW?=
+ =?us-ascii?Q?wo0dZHj3QJuCnb9plQslx5hVOo4tFn40zVC6WdP4UGfSSljnnWsEiTq5ufE1?=
+ =?us-ascii?Q?fIBqSUUvKvkW8cVrRkZir6gHKk51IXxwrbe1PyfW7vSZ+6AoBH+wPJ+8xklp?=
+ =?us-ascii?Q?7RQ6mwC2C/LdeEEc0d/tLHud?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e4d527ab-f4ad-4912-db4e-08d925e680e4
+X-MS-Exchange-CrossTenant-Network-Message-Id: 041bf041-b85a-4a12-463d-08d925e6813d
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:50:18.6984 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:50:19.2470 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AAzNR+0pG2tFL/SxvLAA58eRczoEEs/Uw029sOksHq7x0uK3mq9h1lWR+0rqg/luSCHCAosq2xRoSXXGAP6Qyg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: X3pBYK3ITg3kKSrFgkDgn4k8tut7CCMJeng/MheY7oIkTaZkoRpciy3AqbhlQGNPgtJyJ8wU4h5ulSNgDzOXWA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4534
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -124,143 +124,85 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
-Add support for the DIO (Display IO) block of DCN3.1 which controls
-legacy HDMI/DP stream/link encoding.
+Add support for programming the DCN3.1 OPTC (Output Timing Controller)
 
 HW Blocks:
 
+    +--------+
+    |  MPC   |
+    +--------+
+        |
+        v
+    +-------+
+    |  OPP  |
+    +-------+
+        |
+        v
+    +--------+
+    |  OPTC  |
+    +--------+
+        |
+        v
     +--------+       +--------+
     |  DIO   |       |  DCCG  |
     +--------+       +--------+
 
-Includes some updates to core logic for link encoder assignment and
-future support for new high bandwidth output.
+There are no changes to OPP or MPC for DCN3.1, so the diagram will
+include them in this patch.
 
 Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link.c |  14 +
- .../gpu/drm/amd/display/dc/core/dc_resource.c |  10 +
- .../amd/display/dc/dcn10/dcn10_link_encoder.h |  20 +
- .../display/dc/dcn31/dcn31_dio_link_encoder.c | 412 ++++++++++++++++++
- .../display/dc/dcn31/dcn31_dio_link_encoder.h | 246 +++++++++++
- .../drm/amd/display/dc/inc/hw/link_encoder.h  |  14 +
- 6 files changed, 716 insertions(+)
- create mode 100644 drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dio_link_encoder.c
- create mode 100644 drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dio_link_encoder.h
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.c |  11 +
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.h |   2 +
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_optc.c | 287 ++++++++++++++++++
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_optc.h | 259 ++++++++++++++++
+ .../amd/display/dc/inc/hw/timing_generator.h  |   4 +
+ 5 files changed, 563 insertions(+)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.h
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index c07b45c021d5..31ba40746a2f 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -2875,8 +2875,16 @@ bool dc_link_setup_psr(struct dc_link *link,
- 	psr_context->psr_level.u32all = 0;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
+index 677663cc7bff..9bc97e9c48c2 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c
+@@ -968,6 +968,17 @@ void optc1_set_drr(
+ 	}
+ }
  
- 	/*skip power down the single pipe since it blocks the cstate*/
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_1)
-+	if (link->ctx->asic_id.chip_family >= FAMILY_RV) {
-+		psr_context->psr_level.bits.SKIP_CRTC_DISABLE = true;
-+		if (link->ctx->asic_id.chip_family == FAMILY_YELLOW_CARP && !dc->debug.disable_z10)
-+			psr_context->psr_level.bits.SKIP_CRTC_DISABLE = false;
-+	}
-+#else
- 	if (link->ctx->asic_id.chip_family >= FAMILY_RV)
- 		psr_context->psr_level.bits.SKIP_CRTC_DISABLE = true;
-+#endif
- 
- 	/* SMU will perform additional powerdown sequence.
- 	 * For unsupported ASICs, set psr_level flag to skip PSR
-@@ -3208,8 +3216,14 @@ static void update_psp_stream_config(struct pipe_ctx *pipe_ctx, bool dpms_off)
- 				dp_get_panel_mode(pipe_ctx->stream->link);
- 
- 		config.otg_inst = (uint8_t) pipe_ctx->stream_res.tg->inst;
-+		/*stream_enc_inst*/
- 		config.dig_fe = (uint8_t) pipe_ctx->stream_res.stream_enc->stream_enc_inst;
- 		config.dig_be = pipe_ctx->stream->link->link_enc_hw_inst;
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_1)
-+		config.stream_enc_idx = pipe_ctx->stream_res.stream_enc->id - ENGINE_ID_DIGA;
-+		config.link_enc_idx = pipe_ctx->stream->link->link_enc->transmitter - TRANSMITTER_UNIPHY_A;
-+		config.phy_idx = pipe_ctx->stream->link->link_enc->transmitter - TRANSMITTER_UNIPHY_A;
-+#endif
- 		config.dpms_off = dpms_off;
- 		config.dm_stream_ctx = pipe_ctx->stream->dm_stream_context;
- 		config.assr_enabled = (panel_mode == DP_PANEL_MODE_EDP);
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index cd864cc83539..56188cd30d62 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -2114,6 +2114,16 @@ enum dc_status dc_validate_global_state(
- 
- 	if (!new_ctx)
- 		return DC_ERROR_UNEXPECTED;
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_1)
++void optc1_set_vtotal_min_max(struct timing_generator *optc, int vtotal_min, int vtotal_max)
++{
++	struct optc *optc1 = DCN10TG_FROM_TG(optc);
 +
-+	/*
-+	 * Update link encoder to stream assignment.
-+	 * TODO: Split out reason allocation from validation.
-+	 */
-+	if (dc->res_pool->funcs->link_encs_assign)
-+		dc->res_pool->funcs->link_encs_assign(
-+			dc, new_ctx, new_ctx->streams, new_ctx->stream_count);
-+#endif
++	REG_SET(OTG_V_TOTAL_MAX, 0,
++		OTG_V_TOTAL_MAX, vtotal_max);
++
++	REG_SET(OTG_V_TOTAL_MIN, 0,
++		OTG_V_TOTAL_MIN, vtotal_min);
++}
++
+ static void optc1_set_test_pattern(
+ 	struct timing_generator *optc,
+ 	/* TODO: replace 'controller_dp_test_pattern' by 'test_pattern_mode'
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.h
+index cabfe83fd634..a6b74907fe8d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.h
+@@ -666,6 +666,8 @@ void optc1_set_drr(
+ 	struct timing_generator *optc,
+ 	const struct drr_params *params);
  
- 	if (dc->res_pool->funcs->validate_global) {
- 		result = dc->res_pool->funcs->validate_global(dc, new_ctx);
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.h
-index 3e1a582e4b88..ba47553081a7 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_link_encoder.h
-@@ -160,6 +160,14 @@ struct dcn10_link_enc_registers {
- 	uint32_t PHYA_LINK_CNTL2;
- 	uint32_t PHYB_LINK_CNTL2;
- 	uint32_t PHYC_LINK_CNTL2;
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_1)
-+	uint32_t DIO_LINKA_CNTL;
-+	uint32_t DIO_LINKB_CNTL;
-+	uint32_t DIO_LINKC_CNTL;
-+	uint32_t DIO_LINKD_CNTL;
-+	uint32_t DIO_LINKE_CNTL;
-+	uint32_t DIO_LINKF_CNTL;
-+#endif
- };
- 
- #define LE_SF(reg_name, field_name, post_fix)\
-@@ -459,17 +467,29 @@ struct dcn10_link_enc_registers {
- 	type DPCS_TX_DATA_SWAP_10_BIT;\
- 	type DPCS_TX_DATA_ORDER_INVERT_18_BIT;\
- 	type RDPCS_TX_CLK_EN
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_1)
-+#define DCN31_LINK_ENCODER_REG_FIELD_LIST(type) \
-+	type ENC_TYPE_SEL;\
-+	type HPO_DP_ENC_SEL;\
-+	type HPO_HDMI_ENC_SEL
-+#endif
- 
- struct dcn10_link_enc_shift {
- 	DCN_LINK_ENCODER_REG_FIELD_LIST(uint8_t);
- 	DCN20_LINK_ENCODER_REG_FIELD_LIST(uint8_t);
- 	DCN30_LINK_ENCODER_REG_FIELD_LIST(uint8_t);
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_1)
-+	DCN31_LINK_ENCODER_REG_FIELD_LIST(uint8_t);
-+#endif
- };
- 
- struct dcn10_link_enc_mask {
- 	DCN_LINK_ENCODER_REG_FIELD_LIST(uint32_t);
- 	DCN20_LINK_ENCODER_REG_FIELD_LIST(uint32_t);
- 	DCN30_LINK_ENCODER_REG_FIELD_LIST(uint32_t);
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_1)
-+	DCN31_LINK_ENCODER_REG_FIELD_LIST(uint32_t);
-+#endif
- };
- 
- struct dcn10_link_encoder {
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dio_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dio_link_encoder.c
++void optc1_set_vtotal_min_max(struct timing_generator *optc, int vtotal_min, int vtotal_max);
++
+ void optc1_set_static_screen_control(
+ 	struct timing_generator *optc,
+ 	uint32_t event_triggers,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.c
 new file mode 100644
-index 000000000000..b281a4ad152a
+index 000000000000..a4b1d98f0007
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dio_link_encoder.c
-@@ -0,0 +1,412 @@
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.c
+@@ -0,0 +1,287 @@
 +/*
 + * Copyright 2012-15 Advanced Micro Devices, Inc.
 + *
@@ -286,399 +228,274 @@ index 000000000000..b281a4ad152a
 + *
 + */
 +
++#include "dcn31_optc.h"
 +
++#include "dcn30/dcn30_optc.h"
 +#include "reg_helper.h"
-+
-+#include "core_types.h"
-+#include "link_encoder.h"
-+#include "dcn31_dio_link_encoder.h"
-+#include "stream_encoder.h"
-+#include "i2caux_interface.h"
-+#include "dc_bios_types.h"
-+
-+#include "gpio_service_interface.h"
-+
-+#include "link_enc_cfg.h"
-+#include "dc_dmub_srv.h"
-+
-+#define CTX \
-+	enc10->base.ctx
-+#define DC_LOGGER \
-+	enc10->base.ctx->logger
++#include "dc.h"
++#include "dcn_calc_math.h"
 +
 +#define REG(reg)\
-+	(enc10->link_regs->reg)
++	optc1->tg_regs->reg
++
++#define CTX \
++	optc1->base.ctx
 +
 +#undef FN
 +#define FN(reg_name, field_name) \
-+	enc10->link_shift->field_name, enc10->link_mask->field_name
++	optc1->tg_shift->field_name, optc1->tg_mask->field_name
 +
-+#define IND_REG(index) \
-+	(enc10->link_regs->index)
-+
-+#define AUX_REG(reg)\
-+	(enc10->aux_regs->reg)
-+
-+#define AUX_REG_READ(reg_name) \
-+		dm_read_reg(CTX, AUX_REG(reg_name))
-+
-+#define AUX_REG_WRITE(reg_name, val) \
-+			dm_write_reg(CTX, AUX_REG(reg_name), val)
-+
-+void dcn31_link_encoder_set_dio_phy_mux(
-+	struct link_encoder *enc,
-+	enum encoder_type_select sel,
-+	uint32_t hpo_inst)
++static void optc31_set_odm_combine(struct timing_generator *optc, int *opp_id, int opp_cnt,
++		struct dc_crtc_timing *timing)
 +{
-+	struct dcn10_link_encoder *enc10 = TO_DCN10_LINK_ENC(enc);
++	struct optc *optc1 = DCN10TG_FROM_TG(optc);
++	int mpcc_hactive = (timing->h_addressable + timing->h_border_left + timing->h_border_right)
++			/ opp_cnt;
++	uint32_t memory_mask = 0;
++	int mem_count_per_opp = (mpcc_hactive + 2559) / 2560;
 +
-+	switch (enc->transmitter) {
-+	case TRANSMITTER_UNIPHY_A:
-+		if (sel == ENCODER_TYPE_HDMI_FRL)
-+			REG_UPDATE(DIO_LINKA_CNTL,
-+					HPO_HDMI_ENC_SEL, hpo_inst);
-+		else if (sel == ENCODER_TYPE_DP_128B132B)
-+			REG_UPDATE(DIO_LINKA_CNTL,
-+					HPO_DP_ENC_SEL, hpo_inst);
-+		REG_UPDATE(DIO_LINKA_CNTL,
-+				ENC_TYPE_SEL, sel);
-+		break;
-+	case TRANSMITTER_UNIPHY_B:
-+		if (sel == ENCODER_TYPE_HDMI_FRL)
-+			REG_UPDATE(DIO_LINKB_CNTL,
-+					HPO_HDMI_ENC_SEL, hpo_inst);
-+		else if (sel == ENCODER_TYPE_DP_128B132B)
-+			REG_UPDATE(DIO_LINKB_CNTL,
-+					HPO_DP_ENC_SEL, hpo_inst);
-+		REG_UPDATE(DIO_LINKB_CNTL,
-+				ENC_TYPE_SEL, sel);
-+		break;
-+	case TRANSMITTER_UNIPHY_C:
-+		if (sel == ENCODER_TYPE_HDMI_FRL)
-+			REG_UPDATE(DIO_LINKC_CNTL,
-+					HPO_HDMI_ENC_SEL, hpo_inst);
-+		else if (sel == ENCODER_TYPE_DP_128B132B)
-+			REG_UPDATE(DIO_LINKC_CNTL,
-+					HPO_DP_ENC_SEL, hpo_inst);
-+		REG_UPDATE(DIO_LINKC_CNTL,
-+				ENC_TYPE_SEL, sel);
-+		break;
-+	case TRANSMITTER_UNIPHY_D:
-+		if (sel == ENCODER_TYPE_HDMI_FRL)
-+			REG_UPDATE(DIO_LINKD_CNTL,
-+					HPO_HDMI_ENC_SEL, hpo_inst);
-+		else if (sel == ENCODER_TYPE_DP_128B132B)
-+			REG_UPDATE(DIO_LINKD_CNTL,
-+					HPO_DP_ENC_SEL, hpo_inst);
-+		REG_UPDATE(DIO_LINKD_CNTL,
-+				ENC_TYPE_SEL, sel);
-+		break;
-+	case TRANSMITTER_UNIPHY_E:
-+		if (sel == ENCODER_TYPE_HDMI_FRL)
-+			REG_UPDATE(DIO_LINKE_CNTL,
-+					HPO_HDMI_ENC_SEL, hpo_inst);
-+		else if (sel == ENCODER_TYPE_DP_128B132B)
-+			REG_UPDATE(DIO_LINKE_CNTL,
-+					HPO_DP_ENC_SEL, hpo_inst);
-+		REG_UPDATE(DIO_LINKE_CNTL,
-+				ENC_TYPE_SEL, sel);
-+		break;
-+	case TRANSMITTER_UNIPHY_F:
-+		if (sel == ENCODER_TYPE_HDMI_FRL)
-+			REG_UPDATE(DIO_LINKF_CNTL,
-+					HPO_HDMI_ENC_SEL, hpo_inst);
-+		else if (sel == ENCODER_TYPE_DP_128B132B)
-+			REG_UPDATE(DIO_LINKF_CNTL,
-+					HPO_DP_ENC_SEL, hpo_inst);
-+		REG_UPDATE(DIO_LINKF_CNTL,
-+				ENC_TYPE_SEL, sel);
-+		break;
-+	default:
-+		/* Do nothing */
-+		break;
++	/* Assume less than 6 pipes */
++	if (opp_cnt == 4) {
++		if (mem_count_per_opp == 1)
++			memory_mask = 0xf;
++		else {
++			ASSERT(mem_count_per_opp == 2);
++			memory_mask = 0xff;
++		}
++	} else if (mem_count_per_opp == 1)
++		memory_mask = 0x1 << (opp_id[0] * 2) | 0x1 << (opp_id[1] * 2);
++	else if (mem_count_per_opp == 2)
++		memory_mask = 0x3 << (opp_id[0] * 2) | 0x3 << (opp_id[1] * 2);
++	else if (mem_count_per_opp == 3)
++		memory_mask = 0x77;
++	else if (mem_count_per_opp == 4)
++		memory_mask = 0xff;
++
++	if (REG(OPTC_MEMORY_CONFIG))
++		REG_SET(OPTC_MEMORY_CONFIG, 0,
++			OPTC_MEM_SEL, memory_mask);
++
++	if (opp_cnt == 2) {
++		REG_SET_3(OPTC_DATA_SOURCE_SELECT, 0,
++				OPTC_NUM_OF_INPUT_SEGMENT, 1,
++				OPTC_SEG0_SRC_SEL, opp_id[0],
++				OPTC_SEG1_SRC_SEL, opp_id[1]);
++	} else if (opp_cnt == 4) {
++		REG_SET_5(OPTC_DATA_SOURCE_SELECT, 0,
++				OPTC_NUM_OF_INPUT_SEGMENT, 3,
++				OPTC_SEG0_SRC_SEL, opp_id[0],
++				OPTC_SEG1_SRC_SEL, opp_id[1],
++				OPTC_SEG2_SRC_SEL, opp_id[2],
++				OPTC_SEG3_SRC_SEL, opp_id[3]);
++	}
++
++	REG_UPDATE(OPTC_WIDTH_CONTROL,
++			OPTC_SEGMENT_WIDTH, mpcc_hactive);
++
++	REG_SET(OTG_H_TIMING_CNTL, 0, OTG_H_TIMING_DIV_MODE, opp_cnt - 1);
++	optc1->opp_count = opp_cnt;
++}
++
++/**
++ * Enable CRTC
++ * Enable CRTC - call ASIC Control Object to enable Timing generator.
++ */
++static bool optc31_enable_crtc(struct timing_generator *optc)
++{
++	struct optc *optc1 = DCN10TG_FROM_TG(optc);
++
++	/* opp instance for OTG, 1 to 1 mapping and odm will adjust */
++	REG_UPDATE(OPTC_DATA_SOURCE_SELECT,
++			OPTC_SEG0_SRC_SEL, optc->inst);
++
++	/* VTG enable first is for HW workaround */
++	REG_UPDATE(CONTROL,
++			VTG0_ENABLE, 1);
++
++	REG_SEQ_START();
++
++	/* Enable CRTC */
++	REG_UPDATE_2(OTG_CONTROL,
++			OTG_DISABLE_POINT_CNTL, 2,
++			OTG_MASTER_EN, 1);
++
++	REG_SEQ_SUBMIT();
++	REG_SEQ_WAIT_DONE();
++
++	return true;
++}
++
++/* disable_crtc - call ASIC Control Object to disable Timing generator. */
++static bool optc31_disable_crtc(struct timing_generator *optc)
++{
++	struct optc *optc1 = DCN10TG_FROM_TG(optc);
++
++	/* disable otg request until end of the first line
++	 * in the vertical blank region
++	 */
++	REG_UPDATE(OTG_CONTROL,
++			OTG_MASTER_EN, 0);
++
++	REG_UPDATE(CONTROL,
++			VTG0_ENABLE, 0);
++
++	/* CRTC disabled, so disable  clock. */
++	REG_WAIT(OTG_CLOCK_CONTROL,
++			OTG_BUSY, 0,
++			1, 100000);
++
++	return true;
++}
++
++static bool optc31_immediate_disable_crtc(struct timing_generator *optc)
++{
++	struct optc *optc1 = DCN10TG_FROM_TG(optc);
++
++	REG_UPDATE_2(OTG_CONTROL,
++			OTG_DISABLE_POINT_CNTL, 0,
++			OTG_MASTER_EN, 0);
++
++	REG_UPDATE(CONTROL,
++			VTG0_ENABLE, 0);
++
++	/* CRTC disabled, so disable  clock. */
++	REG_WAIT(OTG_CLOCK_CONTROL,
++			OTG_BUSY, 0,
++			1, 100000);
++
++	return true;
++}
++
++static void optc31_set_drr(
++	struct timing_generator *optc,
++	const struct drr_params *params)
++{
++	struct optc *optc1 = DCN10TG_FROM_TG(optc);
++
++	if (params != NULL &&
++		params->vertical_total_max > 0 &&
++		params->vertical_total_min > 0) {
++
++		if (params->vertical_total_mid != 0) {
++
++			REG_SET(OTG_V_TOTAL_MID, 0,
++				OTG_V_TOTAL_MID, params->vertical_total_mid - 1);
++
++			REG_UPDATE_2(OTG_V_TOTAL_CONTROL,
++					OTG_VTOTAL_MID_REPLACING_MAX_EN, 1,
++					OTG_VTOTAL_MID_FRAME_NUM,
++					(uint8_t)params->vertical_total_mid_frame_num);
++
++		}
++
++		optc->funcs->set_vtotal_min_max(optc, params->vertical_total_min - 1, params->vertical_total_max - 1);
++
++		/*
++		 * MIN_MASK_EN is gone and MASK is now always enabled.
++		 *
++		 * To get it to it work with manual trigger we need to make sure
++		 * we program the correct bit.
++		 */
++		REG_UPDATE_4(OTG_V_TOTAL_CONTROL,
++				OTG_V_TOTAL_MIN_SEL, 1,
++				OTG_V_TOTAL_MAX_SEL, 1,
++				OTG_FORCE_LOCK_ON_EVENT, 0,
++				OTG_SET_V_TOTAL_MIN_MASK, (1 << 1)); /* TRIGA */
++
++		// Setup manual flow control for EOF via TRIG_A
++		optc->funcs->setup_manual_trigger(optc);
++
++	} else {
++		REG_UPDATE_4(OTG_V_TOTAL_CONTROL,
++				OTG_SET_V_TOTAL_MIN_MASK, 0,
++				OTG_V_TOTAL_MIN_SEL, 0,
++				OTG_V_TOTAL_MAX_SEL, 0,
++				OTG_FORCE_LOCK_ON_EVENT, 0);
++
++		optc->funcs->set_vtotal_min_max(optc, 0, 0);
 +	}
 +}
 +
-+void enc31_hw_init(struct link_encoder *enc)
-+{
-+	struct dcn10_link_encoder *enc10 = TO_DCN10_LINK_ENC(enc);
-+
-+/*
-+	00 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__1to2 : 1/2
-+	01 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__3to4 : 3/4
-+	02 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__7to8 : 7/8
-+	03 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__15to16 : 15/16
-+	04 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__31to32 : 31/32
-+	05 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__63to64 : 63/64
-+	06 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__127to128 : 127/128
-+	07 - DP_AUX_DPHY_RX_DETECTION_THRESHOLD__255to256 : 255/256
-+*/
-+
-+/*
-+	AUX_REG_UPDATE_5(AUX_DPHY_RX_CONTROL0,
-+	AUX_RX_START_WINDOW = 1 [6:4]
-+	AUX_RX_RECEIVE_WINDOW = 1 default is 2 [10:8]
-+	AUX_RX_HALF_SYM_DETECT_LEN  = 1 [13:12] default is 1
-+	AUX_RX_TRANSITION_FILTER_EN = 1 [16] default is 1
-+	AUX_RX_ALLOW_BELOW_THRESHOLD_PHASE_DETECT [17] is 0  default is 0
-+	AUX_RX_ALLOW_BELOW_THRESHOLD_START [18] is 1  default is 1
-+	AUX_RX_ALLOW_BELOW_THRESHOLD_STOP [19] is 1  default is 1
-+	AUX_RX_PHASE_DETECT_LEN,  [21,20] = 0x3 default is 3
-+	AUX_RX_DETECTION_THRESHOLD [30:28] = 1
-+*/
-+	AUX_REG_WRITE(AUX_DPHY_RX_CONTROL0, 0x103d1110);
-+
-+	AUX_REG_WRITE(AUX_DPHY_TX_CONTROL, 0x21c7a);
-+
-+	//AUX_DPHY_TX_REF_CONTROL'AUX_TX_REF_DIV HW default is 0x32;
-+	// Set AUX_TX_REF_DIV Divider to generate 2 MHz reference from refclk
-+	// 27MHz -> 0xd
-+	// 100MHz -> 0x32
-+	// 48MHz -> 0x18
-+
-+#ifdef CLEANUP_FIXME
-+	/*from display_init*/
-+	REG_WRITE(RDPCSTX_DEBUG_CONFIG, 0);
-+#endif
-+
-+	// Set TMDS_CTL0 to 1.  This is a legacy setting.
-+	REG_UPDATE(TMDS_CTL_BITS, TMDS_CTL0, 1);
-+
-+	/*HW default is 5*/
-+	REG_UPDATE(RDPCSTX_CNTL,
-+			RDPCS_TX_FIFO_RD_START_DELAY, 4);
-+
-+	dcn10_aux_initialize(enc10);
-+}
-+
-+static const struct link_encoder_funcs dcn31_link_enc_funcs = {
-+	.read_state = link_enc2_read_state,
-+	.validate_output_with_stream =
-+			dcn30_link_encoder_validate_output_with_stream,
-+	.hw_init = enc31_hw_init,
-+	.setup = dcn10_link_encoder_setup,
-+	.enable_tmds_output = dcn10_link_encoder_enable_tmds_output,
-+	.enable_dp_output = dcn31_link_encoder_enable_dp_output,
-+	.enable_dp_mst_output = dcn31_link_encoder_enable_dp_mst_output,
-+	.disable_output = dcn31_link_encoder_disable_output,
-+	.dp_set_lane_settings = dcn10_link_encoder_dp_set_lane_settings,
-+	.dp_set_phy_pattern = dcn10_link_encoder_dp_set_phy_pattern,
-+	.update_mst_stream_allocation_table =
-+		dcn10_link_encoder_update_mst_stream_allocation_table,
-+	.psr_program_dp_dphy_fast_training =
-+			dcn10_psr_program_dp_dphy_fast_training,
-+	.psr_program_secondary_packet = dcn10_psr_program_secondary_packet,
-+	.connect_dig_be_to_fe = dcn10_link_encoder_connect_dig_be_to_fe,
-+	.enable_hpd = dcn10_link_encoder_enable_hpd,
-+	.disable_hpd = dcn10_link_encoder_disable_hpd,
-+	.is_dig_enabled = dcn10_is_dig_enabled,
-+	.destroy = dcn10_link_encoder_destroy,
-+	.fec_set_enable = enc2_fec_set_enable,
-+	.fec_set_ready = enc2_fec_set_ready,
-+	.fec_is_active = enc2_fec_is_active,
-+	.get_dig_frontend = dcn10_get_dig_frontend,
-+	.get_dig_mode = dcn10_get_dig_mode,
-+	.is_in_alt_mode = dcn20_link_encoder_is_in_alt_mode,
-+	.get_max_link_cap = dcn20_link_encoder_get_max_link_cap,
-+	.set_dio_phy_mux = dcn31_link_encoder_set_dio_phy_mux,
++static struct timing_generator_funcs dcn31_tg_funcs = {
++		.validate_timing = optc1_validate_timing,
++		.program_timing = optc1_program_timing,
++		.setup_vertical_interrupt0 = optc1_setup_vertical_interrupt0,
++		.setup_vertical_interrupt1 = optc1_setup_vertical_interrupt1,
++		.setup_vertical_interrupt2 = optc1_setup_vertical_interrupt2,
++		.program_global_sync = optc1_program_global_sync,
++		.enable_crtc = optc31_enable_crtc,
++		.disable_crtc = optc31_disable_crtc,
++		.immediate_disable_crtc = optc31_immediate_disable_crtc,
++		/* used by enable_timing_synchronization. Not need for FPGA */
++		.is_counter_moving = optc1_is_counter_moving,
++		.get_position = optc1_get_position,
++		.get_frame_count = optc1_get_vblank_counter,
++		.get_scanoutpos = optc1_get_crtc_scanoutpos,
++		.get_otg_active_size = optc1_get_otg_active_size,
++		.set_early_control = optc1_set_early_control,
++		/* used by enable_timing_synchronization. Not need for FPGA */
++		.wait_for_state = optc1_wait_for_state,
++		.set_blank_color = optc3_program_blank_color,
++		.did_triggered_reset_occur = optc1_did_triggered_reset_occur,
++		.triplebuffer_lock = optc3_triplebuffer_lock,
++		.triplebuffer_unlock = optc2_triplebuffer_unlock,
++		.enable_reset_trigger = optc1_enable_reset_trigger,
++		.enable_crtc_reset = optc1_enable_crtc_reset,
++		.disable_reset_trigger = optc1_disable_reset_trigger,
++		.lock = optc3_lock,
++		.is_locked = optc1_is_locked,
++		.unlock = optc1_unlock,
++		.lock_doublebuffer_enable = optc3_lock_doublebuffer_enable,
++		.lock_doublebuffer_disable = optc3_lock_doublebuffer_disable,
++		.enable_optc_clock = optc1_enable_optc_clock,
++		.set_drr = optc31_set_drr,
++		.set_vtotal_min_max = optc1_set_vtotal_min_max,
++		.set_static_screen_control = optc1_set_static_screen_control,
++		.program_stereo = optc1_program_stereo,
++		.is_stereo_left_eye = optc1_is_stereo_left_eye,
++		.tg_init = optc3_tg_init,
++		.is_tg_enabled = optc1_is_tg_enabled,
++		.is_optc_underflow_occurred = optc1_is_optc_underflow_occurred,
++		.clear_optc_underflow = optc1_clear_optc_underflow,
++		.setup_global_swap_lock = NULL,
++		.get_crc = optc1_get_crc,
++		.configure_crc = optc2_configure_crc,
++		.set_dsc_config = optc3_set_dsc_config,
++		.set_dwb_source = NULL,
++		.set_odm_bypass = optc3_set_odm_bypass,
++		.set_odm_combine = optc31_set_odm_combine,
++		.get_optc_source = optc2_get_optc_source,
++		.set_out_mux = optc3_set_out_mux,
++		.set_drr_trigger_window = optc3_set_drr_trigger_window,
++		.set_vtotal_change_limit = optc3_set_vtotal_change_limit,
++		.set_gsl = optc2_set_gsl,
++		.set_gsl_source_select = optc2_set_gsl_source_select,
++		.set_vtg_params = optc1_set_vtg_params,
++		.program_manual_trigger = optc2_program_manual_trigger,
++		.setup_manual_trigger = optc2_setup_manual_trigger,
++		.get_hw_timing = optc1_get_hw_timing,
 +};
 +
-+void dcn31_link_encoder_construct(
-+	struct dcn20_link_encoder *enc20,
-+	const struct encoder_init_data *init_data,
-+	const struct encoder_feature_support *enc_features,
-+	const struct dcn10_link_enc_registers *link_regs,
-+	const struct dcn10_link_enc_aux_registers *aux_regs,
-+	const struct dcn10_link_enc_hpd_registers *hpd_regs,
-+	const struct dcn10_link_enc_shift *link_shift,
-+	const struct dcn10_link_enc_mask *link_mask)
++void dcn31_timing_generator_init(struct optc *optc1)
 +{
-+	struct bp_encoder_cap_info bp_cap_info = {0};
-+	const struct dc_vbios_funcs *bp_funcs = init_data->ctx->dc_bios->funcs;
-+	enum bp_result result = BP_RESULT_OK;
-+	struct dcn10_link_encoder *enc10 = &enc20->enc10;
++	optc1->base.funcs = &dcn31_tg_funcs;
 +
-+	enc10->base.funcs = &dcn31_link_enc_funcs;
-+	enc10->base.ctx = init_data->ctx;
-+	enc10->base.id = init_data->encoder;
++	optc1->max_h_total = optc1->tg_mask->OTG_H_TOTAL + 1;
++	optc1->max_v_total = optc1->tg_mask->OTG_V_TOTAL + 1;
 +
-+	enc10->base.hpd_source = init_data->hpd_source;
-+	enc10->base.connector = init_data->connector;
-+
-+	enc10->base.preferred_engine = ENGINE_ID_UNKNOWN;
-+
-+	enc10->base.features = *enc_features;
-+
-+	enc10->base.transmitter = init_data->transmitter;
-+
-+	/* set the flag to indicate whether driver poll the I2C data pin
-+	 * while doing the DP sink detect
-+	 */
-+
-+/*	if (dal_adapter_service_is_feature_supported(as,
-+		FEATURE_DP_SINK_DETECT_POLL_DATA_PIN))
-+		enc10->base.features.flags.bits.
-+			DP_SINK_DETECT_POLL_DATA_PIN = true;*/
-+
-+	enc10->base.output_signals =
-+		SIGNAL_TYPE_DVI_SINGLE_LINK |
-+		SIGNAL_TYPE_DVI_DUAL_LINK |
-+		SIGNAL_TYPE_LVDS |
-+		SIGNAL_TYPE_DISPLAY_PORT |
-+		SIGNAL_TYPE_DISPLAY_PORT_MST |
-+		SIGNAL_TYPE_EDP |
-+		SIGNAL_TYPE_HDMI_TYPE_A;
-+
-+	/* For DCE 8.0 and 8.1, by design, UNIPHY is hardwired to DIG_BE.
-+	 * SW always assign DIG_FE 1:1 mapped to DIG_FE for non-MST UNIPHY.
-+	 * SW assign DIG_FE to non-MST UNIPHY first and MST last. So prefer
-+	 * DIG is per UNIPHY and used by SST DP, eDP, HDMI, DVI and LVDS.
-+	 * Prefer DIG assignment is decided by board design.
-+	 * For DCE 8.0, there are only max 6 UNIPHYs, we assume board design
-+	 * and VBIOS will filter out 7 UNIPHY for DCE 8.0.
-+	 * By this, adding DIGG should not hurt DCE 8.0.
-+	 * This will let DCE 8.1 share DCE 8.0 as much as possible
-+	 */
-+
-+	enc10->link_regs = link_regs;
-+	enc10->aux_regs = aux_regs;
-+	enc10->hpd_regs = hpd_regs;
-+	enc10->link_shift = link_shift;
-+	enc10->link_mask = link_mask;
-+
-+	switch (enc10->base.transmitter) {
-+	case TRANSMITTER_UNIPHY_A:
-+		enc10->base.preferred_engine = ENGINE_ID_DIGA;
-+	break;
-+	case TRANSMITTER_UNIPHY_B:
-+		enc10->base.preferred_engine = ENGINE_ID_DIGB;
-+	break;
-+	case TRANSMITTER_UNIPHY_C:
-+		enc10->base.preferred_engine = ENGINE_ID_DIGC;
-+	break;
-+	case TRANSMITTER_UNIPHY_D:
-+		enc10->base.preferred_engine = ENGINE_ID_DIGD;
-+	break;
-+	case TRANSMITTER_UNIPHY_E:
-+		enc10->base.preferred_engine = ENGINE_ID_DIGE;
-+	break;
-+	case TRANSMITTER_UNIPHY_F:
-+		enc10->base.preferred_engine = ENGINE_ID_DIGF;
-+	break;
-+	default:
-+		ASSERT_CRITICAL(false);
-+		enc10->base.preferred_engine = ENGINE_ID_UNKNOWN;
-+	}
-+
-+	/* default to one to mirror Windows behavior */
-+	enc10->base.features.flags.bits.HDMI_6GB_EN = 1;
-+
-+	result = bp_funcs->get_encoder_cap_info(enc10->base.ctx->dc_bios,
-+						enc10->base.id, &bp_cap_info);
-+
-+	/* Override features with DCE-specific values */
-+	if (result == BP_RESULT_OK) {
-+		enc10->base.features.flags.bits.IS_HBR2_CAPABLE =
-+				bp_cap_info.DP_HBR2_EN;
-+		enc10->base.features.flags.bits.IS_HBR3_CAPABLE =
-+				bp_cap_info.DP_HBR3_EN;
-+		enc10->base.features.flags.bits.HDMI_6GB_EN = bp_cap_info.HDMI_6GB_EN;
-+		enc10->base.features.flags.bits.DP_IS_USB_C =
-+				bp_cap_info.DP_IS_USB_C;
-+	} else {
-+		DC_LOG_WARNING("%s: Failed to get encoder_cap_info from VBIOS with error code %d!\n",
-+				__func__,
-+				result);
-+	}
-+	if (enc10->base.ctx->dc->debug.hdmi20_disable) {
-+		enc10->base.features.flags.bits.HDMI_6GB_EN = 0;
-+	}
++	optc1->min_h_blank = 32;
++	optc1->min_v_blank = 3;
++	optc1->min_v_blank_interlace = 5;
++	optc1->min_h_sync_width = 4;
++	optc1->min_v_sync_width = 1;
 +}
 +
-+void dcn31_link_encoder_construct_minimal(
-+	struct dcn20_link_encoder *enc20,
-+	struct dc_context *ctx,
-+	const struct encoder_feature_support *enc_features,
-+	const struct dcn10_link_enc_registers *link_regs,
-+	enum engine_id eng_id)
-+{
-+	struct dcn10_link_encoder *enc10 = &enc20->enc10;
-+
-+	enc10->base.funcs = &dcn31_link_enc_funcs;
-+	enc10->base.ctx = ctx;
-+	enc10->base.id.type = OBJECT_TYPE_ENCODER;
-+	enc10->base.hpd_source = HPD_SOURCEID_UNKNOWN;
-+	enc10->base.connector.type = OBJECT_TYPE_CONNECTOR;
-+	enc10->base.preferred_engine = eng_id;
-+	enc10->base.features = *enc_features;
-+	enc10->base.transmitter = TRANSMITTER_UNKNOWN;
-+	enc10->link_regs = link_regs;
-+
-+	enc10->base.output_signals =
-+		SIGNAL_TYPE_DISPLAY_PORT |
-+		SIGNAL_TYPE_DISPLAY_PORT_MST |
-+		SIGNAL_TYPE_EDP;
-+}
-+
-+void dcn31_link_encoder_enable_dp_output(
-+	struct link_encoder *enc,
-+	const struct dc_link_settings *link_settings,
-+	enum clock_source_id clock_source)
-+{
-+	struct dcn10_link_encoder *enc10 = TO_DCN10_LINK_ENC(enc);
-+
-+	/* Enable transmitter and encoder. */
-+	if (!link_enc_cfg_is_transmitter_mappable(enc->ctx->dc->current_state, enc)) {
-+
-+		dcn20_link_encoder_enable_dp_output(enc, link_settings, clock_source);
-+
-+	} else {
-+
-+		/** @todo Handle transmitter with programmable mapping to link encoder. */
-+	}
-+}
-+
-+void dcn31_link_encoder_enable_dp_mst_output(
-+	struct link_encoder *enc,
-+	const struct dc_link_settings *link_settings,
-+	enum clock_source_id clock_source)
-+{
-+	struct dcn10_link_encoder *enc10 = TO_DCN10_LINK_ENC(enc);
-+
-+	/* Enable transmitter and encoder. */
-+	if (!link_enc_cfg_is_transmitter_mappable(enc->ctx->dc->current_state, enc)) {
-+
-+		dcn10_link_encoder_enable_dp_mst_output(enc, link_settings, clock_source);
-+
-+	} else {
-+
-+		/** @todo Handle transmitter with programmable mapping to link encoder. */
-+	}
-+}
-+
-+void dcn31_link_encoder_disable_output(
-+	struct link_encoder *enc,
-+	enum signal_type signal)
-+{
-+	struct dcn10_link_encoder *enc10 = TO_DCN10_LINK_ENC(enc);
-+
-+	/* Disable transmitter and encoder. */
-+	if (!link_enc_cfg_is_transmitter_mappable(enc->ctx->dc->current_state, enc)) {
-+
-+		dcn10_link_encoder_disable_output(enc, signal);
-+
-+	} else {
-+
-+		/** @todo Handle transmitter with programmable mapping to link encoder. */
-+	}
-+}
-+
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dio_link_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dio_link_encoder.h
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.h b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.h
 new file mode 100644
-index 000000000000..32d146312838
+index 000000000000..d8ef2f0d0c95
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dio_link_encoder.h
-@@ -0,0 +1,246 @@
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_optc.h
+@@ -0,0 +1,259 @@
 +/*
 + * Copyright 2012-15 Advanced Micro Devices, Inc.
 + *
@@ -686,7 +503,7 @@ index 000000000000..32d146312838
 + * copy of this software and associated documentation files (the "Software"),
 + * to deal in the Software without restriction, including without limitation
 + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ *  and/or sell copies of the Software, and to permit persons to whom the
++ * and/or sell copies of the Software, and to permit persons to whom the
 + * Software is furnished to do so, subject to the following conditions:
 + *
 + * The above copyright notice and this permission notice shall be included in
@@ -704,259 +521,262 @@ index 000000000000..32d146312838
 + *
 + */
 +
-+#ifndef __DC_LINK_ENCODER__DCN31_H__
-+#define __DC_LINK_ENCODER__DCN31_H__
++#ifndef __DC_OPTC_DCN31_H__
++#define __DC_OPTC_DCN31_H__
 +
-+#include "dcn30/dcn30_dio_link_encoder.h"
++#include "dcn10/dcn10_optc.h"
 +
++#define OPTC_COMMON_REG_LIST_DCN3_1(inst) \
++	SRI(OTG_VSTARTUP_PARAM, OTG, inst),\
++	SRI(OTG_VUPDATE_PARAM, OTG, inst),\
++	SRI(OTG_VREADY_PARAM, OTG, inst),\
++	SRI(OTG_MASTER_UPDATE_LOCK, OTG, inst),\
++	SRI(OTG_GLOBAL_CONTROL0, OTG, inst),\
++	SRI(OTG_GLOBAL_CONTROL1, OTG, inst),\
++	SRI(OTG_GLOBAL_CONTROL2, OTG, inst),\
++	SRI(OTG_GLOBAL_CONTROL4, OTG, inst),\
++	SRI(OTG_DOUBLE_BUFFER_CONTROL, OTG, inst),\
++	SRI(OTG_H_TOTAL, OTG, inst),\
++	SRI(OTG_H_BLANK_START_END, OTG, inst),\
++	SRI(OTG_H_SYNC_A, OTG, inst),\
++	SRI(OTG_H_SYNC_A_CNTL, OTG, inst),\
++	SRI(OTG_H_TIMING_CNTL, OTG, inst),\
++	SRI(OTG_V_TOTAL, OTG, inst),\
++	SRI(OTG_V_BLANK_START_END, OTG, inst),\
++	SRI(OTG_V_SYNC_A, OTG, inst),\
++	SRI(OTG_V_SYNC_A_CNTL, OTG, inst),\
++	SRI(OTG_CONTROL, OTG, inst),\
++	SRI(OTG_STEREO_CONTROL, OTG, inst),\
++	SRI(OTG_3D_STRUCTURE_CONTROL, OTG, inst),\
++	SRI(OTG_STEREO_STATUS, OTG, inst),\
++	SRI(OTG_V_TOTAL_MAX, OTG, inst),\
++	SRI(OTG_V_TOTAL_MIN, OTG, inst),\
++	SRI(OTG_V_TOTAL_CONTROL, OTG, inst),\
++	SRI(OTG_TRIGA_CNTL, OTG, inst),\
++	SRI(OTG_FORCE_COUNT_NOW_CNTL, OTG, inst),\
++	SRI(OTG_STATIC_SCREEN_CONTROL, OTG, inst),\
++	SRI(OTG_STATUS_FRAME_COUNT, OTG, inst),\
++	SRI(OTG_STATUS, OTG, inst),\
++	SRI(OTG_STATUS_POSITION, OTG, inst),\
++	SRI(OTG_NOM_VERT_POSITION, OTG, inst),\
++	SRI(OTG_M_CONST_DTO0, OTG, inst),\
++	SRI(OTG_M_CONST_DTO1, OTG, inst),\
++	SRI(OTG_CLOCK_CONTROL, OTG, inst),\
++	SRI(OTG_VERTICAL_INTERRUPT0_CONTROL, OTG, inst),\
++	SRI(OTG_VERTICAL_INTERRUPT0_POSITION, OTG, inst),\
++	SRI(OTG_VERTICAL_INTERRUPT1_CONTROL, OTG, inst),\
++	SRI(OTG_VERTICAL_INTERRUPT1_POSITION, OTG, inst),\
++	SRI(OTG_VERTICAL_INTERRUPT2_CONTROL, OTG, inst),\
++	SRI(OTG_VERTICAL_INTERRUPT2_POSITION, OTG, inst),\
++	SRI(OPTC_INPUT_CLOCK_CONTROL, ODM, inst),\
++	SRI(OPTC_DATA_SOURCE_SELECT, ODM, inst),\
++	SRI(OPTC_INPUT_GLOBAL_CONTROL, ODM, inst),\
++	SRI(CONTROL, VTG, inst),\
++	SRI(OTG_VERT_SYNC_CONTROL, OTG, inst),\
++	SRI(OTG_GSL_CONTROL, OTG, inst),\
++	SRI(OTG_CRC_CNTL, OTG, inst),\
++	SRI(OTG_CRC0_DATA_RG, OTG, inst),\
++	SRI(OTG_CRC0_DATA_B, OTG, inst),\
++	SRI(OTG_CRC0_WINDOWA_X_CONTROL, OTG, inst),\
++	SRI(OTG_CRC0_WINDOWA_Y_CONTROL, OTG, inst),\
++	SRI(OTG_CRC0_WINDOWB_X_CONTROL, OTG, inst),\
++	SRI(OTG_CRC0_WINDOWB_Y_CONTROL, OTG, inst),\
++	SR(GSL_SOURCE_SELECT),\
++	SRI(OTG_TRIGA_MANUAL_TRIG, OTG, inst),\
++	SRI(OTG_GLOBAL_CONTROL1, OTG, inst),\
++	SRI(OTG_GLOBAL_CONTROL2, OTG, inst),\
++	SRI(OTG_GSL_WINDOW_X, OTG, inst),\
++	SRI(OTG_GSL_WINDOW_Y, OTG, inst),\
++	SRI(OTG_VUPDATE_KEEPOUT, OTG, inst),\
++	SRI(OTG_DSC_START_POSITION, OTG, inst),\
++	SRI(OTG_DRR_TRIGGER_WINDOW, OTG, inst),\
++	SRI(OTG_DRR_V_TOTAL_CHANGE, OTG, inst),\
++	SRI(OPTC_DATA_FORMAT_CONTROL, ODM, inst),\
++	SRI(OPTC_BYTES_PER_PIXEL, ODM, inst),\
++	SRI(OPTC_WIDTH_CONTROL, ODM, inst),\
++	SRI(OPTC_MEMORY_CONFIG, ODM, inst),\
++	SRI(OTG_CRC_CNTL2, OTG, inst),\
++	SR(DWB_SOURCE_SELECT)
 +
-+#define LE_DCN31_REG_LIST(id)\
-+	LE_DCN3_REG_LIST(id),\
-+	SRI(DP_DPHY_INTERNAL_CTRL, DP, id), \
-+	SR(DIO_LINKA_CNTL), \
-+	SR(DIO_LINKB_CNTL), \
-+	SR(DIO_LINKC_CNTL), \
-+	SR(DIO_LINKD_CNTL), \
-+	SR(DIO_LINKE_CNTL), \
-+	SR(DIO_LINKF_CNTL)
++#define OPTC_COMMON_MASK_SH_LIST_DCN3_1(mask_sh)\
++	SF(OTG0_OTG_VSTARTUP_PARAM, VSTARTUP_START, mask_sh),\
++	SF(OTG0_OTG_VUPDATE_PARAM, VUPDATE_OFFSET, mask_sh),\
++	SF(OTG0_OTG_VUPDATE_PARAM, VUPDATE_WIDTH, mask_sh),\
++	SF(OTG0_OTG_VREADY_PARAM, VREADY_OFFSET, mask_sh),\
++	SF(OTG0_OTG_MASTER_UPDATE_LOCK, OTG_MASTER_UPDATE_LOCK, mask_sh),\
++	SF(OTG0_OTG_MASTER_UPDATE_LOCK, UPDATE_LOCK_STATUS, mask_sh),\
++	SF(OTG0_OTG_GLOBAL_CONTROL0, MASTER_UPDATE_LOCK_DB_START_X, mask_sh),\
++	SF(OTG0_OTG_GLOBAL_CONTROL0, MASTER_UPDATE_LOCK_DB_END_X, mask_sh),\
++	SF(OTG0_OTG_GLOBAL_CONTROL0, MASTER_UPDATE_LOCK_DB_EN, mask_sh),\
++	SF(OTG0_OTG_GLOBAL_CONTROL1, MASTER_UPDATE_LOCK_DB_START_Y, mask_sh),\
++	SF(OTG0_OTG_GLOBAL_CONTROL1, MASTER_UPDATE_LOCK_DB_END_Y, mask_sh),\
++	SF(OTG0_OTG_GLOBAL_CONTROL2, OTG_MASTER_UPDATE_LOCK_SEL, mask_sh),\
++	SF(OTG0_OTG_GLOBAL_CONTROL4, DIG_UPDATE_POSITION_X, mask_sh),\
++	SF(OTG0_OTG_GLOBAL_CONTROL4, DIG_UPDATE_POSITION_Y, mask_sh),\
++	SF(OTG0_OTG_DOUBLE_BUFFER_CONTROL, OTG_UPDATE_PENDING, mask_sh),\
++	SF(OTG0_OTG_H_TOTAL, OTG_H_TOTAL, mask_sh),\
++	SF(OTG0_OTG_H_BLANK_START_END, OTG_H_BLANK_START, mask_sh),\
++	SF(OTG0_OTG_H_BLANK_START_END, OTG_H_BLANK_END, mask_sh),\
++	SF(OTG0_OTG_H_SYNC_A, OTG_H_SYNC_A_START, mask_sh),\
++	SF(OTG0_OTG_H_SYNC_A, OTG_H_SYNC_A_END, mask_sh),\
++	SF(OTG0_OTG_H_SYNC_A_CNTL, OTG_H_SYNC_A_POL, mask_sh),\
++	SF(OTG0_OTG_V_TOTAL, OTG_V_TOTAL, mask_sh),\
++	SF(OTG0_OTG_V_BLANK_START_END, OTG_V_BLANK_START, mask_sh),\
++	SF(OTG0_OTG_V_BLANK_START_END, OTG_V_BLANK_END, mask_sh),\
++	SF(OTG0_OTG_V_SYNC_A, OTG_V_SYNC_A_START, mask_sh),\
++	SF(OTG0_OTG_V_SYNC_A, OTG_V_SYNC_A_END, mask_sh),\
++	SF(OTG0_OTG_V_SYNC_A_CNTL, OTG_V_SYNC_A_POL, mask_sh),\
++	SF(OTG0_OTG_V_SYNC_A_CNTL, OTG_V_SYNC_MODE, mask_sh),\
++	SF(OTG0_OTG_CONTROL, OTG_MASTER_EN, mask_sh),\
++	SF(OTG0_OTG_CONTROL, OTG_START_POINT_CNTL, mask_sh),\
++	SF(OTG0_OTG_CONTROL, OTG_DISABLE_POINT_CNTL, mask_sh),\
++	SF(OTG0_OTG_CONTROL, OTG_FIELD_NUMBER_CNTL, mask_sh),\
++	SF(OTG0_OTG_CONTROL, OTG_OUT_MUX, mask_sh),\
++	SF(OTG0_OTG_STEREO_CONTROL, OTG_STEREO_EN, mask_sh),\
++	SF(OTG0_OTG_STEREO_CONTROL, OTG_STEREO_SYNC_OUTPUT_LINE_NUM, mask_sh),\
++	SF(OTG0_OTG_STEREO_CONTROL, OTG_STEREO_SYNC_OUTPUT_POLARITY, mask_sh),\
++	SF(OTG0_OTG_STEREO_CONTROL, OTG_STEREO_EYE_FLAG_POLARITY, mask_sh),\
++	SF(OTG0_OTG_STEREO_CONTROL, OTG_DISABLE_STEREOSYNC_OUTPUT_FOR_DP, mask_sh),\
++	SF(OTG0_OTG_STEREO_STATUS, OTG_STEREO_CURRENT_EYE, mask_sh),\
++	SF(OTG0_OTG_3D_STRUCTURE_CONTROL, OTG_3D_STRUCTURE_EN, mask_sh),\
++	SF(OTG0_OTG_3D_STRUCTURE_CONTROL, OTG_3D_STRUCTURE_V_UPDATE_MODE, mask_sh),\
++	SF(OTG0_OTG_3D_STRUCTURE_CONTROL, OTG_3D_STRUCTURE_STEREO_SEL_OVR, mask_sh),\
++	SF(OTG0_OTG_V_TOTAL_MAX, OTG_V_TOTAL_MAX, mask_sh),\
++	SF(OTG0_OTG_V_TOTAL_MIN, OTG_V_TOTAL_MIN, mask_sh),\
++	SF(OTG0_OTG_V_TOTAL_CONTROL, OTG_V_TOTAL_MIN_SEL, mask_sh),\
++	SF(OTG0_OTG_V_TOTAL_CONTROL, OTG_V_TOTAL_MAX_SEL, mask_sh),\
++	SF(OTG0_OTG_V_TOTAL_CONTROL, OTG_FORCE_LOCK_ON_EVENT, mask_sh),\
++	SF(OTG0_OTG_V_TOTAL_CONTROL, OTG_SET_V_TOTAL_MIN_MASK, mask_sh),\
++	SF(OTG0_OTG_V_TOTAL_CONTROL, OTG_VTOTAL_MID_REPLACING_MIN_EN, mask_sh),\
++	SF(OTG0_OTG_V_TOTAL_CONTROL, OTG_VTOTAL_MID_REPLACING_MAX_EN, mask_sh),\
++	SF(OTG0_OTG_FORCE_COUNT_NOW_CNTL, OTG_FORCE_COUNT_NOW_CLEAR, mask_sh),\
++	SF(OTG0_OTG_FORCE_COUNT_NOW_CNTL, OTG_FORCE_COUNT_NOW_MODE, mask_sh),\
++	SF(OTG0_OTG_FORCE_COUNT_NOW_CNTL, OTG_FORCE_COUNT_NOW_OCCURRED, mask_sh),\
++	SF(OTG0_OTG_TRIGA_CNTL, OTG_TRIGA_SOURCE_SELECT, mask_sh),\
++	SF(OTG0_OTG_TRIGA_CNTL, OTG_TRIGA_SOURCE_PIPE_SELECT, mask_sh),\
++	SF(OTG0_OTG_TRIGA_CNTL, OTG_TRIGA_RISING_EDGE_DETECT_CNTL, mask_sh),\
++	SF(OTG0_OTG_TRIGA_CNTL, OTG_TRIGA_FALLING_EDGE_DETECT_CNTL, mask_sh),\
++	SF(OTG0_OTG_TRIGA_CNTL, OTG_TRIGA_POLARITY_SELECT, mask_sh),\
++	SF(OTG0_OTG_TRIGA_CNTL, OTG_TRIGA_FREQUENCY_SELECT, mask_sh),\
++	SF(OTG0_OTG_TRIGA_CNTL, OTG_TRIGA_DELAY, mask_sh),\
++	SF(OTG0_OTG_TRIGA_CNTL, OTG_TRIGA_CLEAR, mask_sh),\
++	SF(OTG0_OTG_STATIC_SCREEN_CONTROL, OTG_STATIC_SCREEN_EVENT_MASK, mask_sh),\
++	SF(OTG0_OTG_STATIC_SCREEN_CONTROL, OTG_STATIC_SCREEN_FRAME_COUNT, mask_sh),\
++	SF(OTG0_OTG_STATUS_FRAME_COUNT, OTG_FRAME_COUNT, mask_sh),\
++	SF(OTG0_OTG_STATUS, OTG_V_BLANK, mask_sh),\
++	SF(OTG0_OTG_STATUS, OTG_V_ACTIVE_DISP, mask_sh),\
++	SF(OTG0_OTG_STATUS_POSITION, OTG_HORZ_COUNT, mask_sh),\
++	SF(OTG0_OTG_STATUS_POSITION, OTG_VERT_COUNT, mask_sh),\
++	SF(OTG0_OTG_NOM_VERT_POSITION, OTG_VERT_COUNT_NOM, mask_sh),\
++	SF(OTG0_OTG_M_CONST_DTO0, OTG_M_CONST_DTO_PHASE, mask_sh),\
++	SF(OTG0_OTG_M_CONST_DTO1, OTG_M_CONST_DTO_MODULO, mask_sh),\
++	SF(OTG0_OTG_CLOCK_CONTROL, OTG_BUSY, mask_sh),\
++	SF(OTG0_OTG_CLOCK_CONTROL, OTG_CLOCK_EN, mask_sh),\
++	SF(OTG0_OTG_CLOCK_CONTROL, OTG_CLOCK_ON, mask_sh),\
++	SF(OTG0_OTG_CLOCK_CONTROL, OTG_CLOCK_GATE_DIS, mask_sh),\
++	SF(OTG0_OTG_VERTICAL_INTERRUPT0_CONTROL, OTG_VERTICAL_INTERRUPT0_INT_ENABLE, mask_sh),\
++	SF(OTG0_OTG_VERTICAL_INTERRUPT0_POSITION, OTG_VERTICAL_INTERRUPT0_LINE_START, mask_sh),\
++	SF(OTG0_OTG_VERTICAL_INTERRUPT0_POSITION, OTG_VERTICAL_INTERRUPT0_LINE_END, mask_sh),\
++	SF(OTG0_OTG_VERTICAL_INTERRUPT1_CONTROL, OTG_VERTICAL_INTERRUPT1_INT_ENABLE, mask_sh),\
++	SF(OTG0_OTG_VERTICAL_INTERRUPT1_POSITION, OTG_VERTICAL_INTERRUPT1_LINE_START, mask_sh),\
++	SF(OTG0_OTG_VERTICAL_INTERRUPT2_CONTROL, OTG_VERTICAL_INTERRUPT2_INT_ENABLE, mask_sh),\
++	SF(OTG0_OTG_VERTICAL_INTERRUPT2_POSITION, OTG_VERTICAL_INTERRUPT2_LINE_START, mask_sh),\
++	SF(ODM0_OPTC_INPUT_CLOCK_CONTROL, OPTC_INPUT_CLK_EN, mask_sh),\
++	SF(ODM0_OPTC_INPUT_CLOCK_CONTROL, OPTC_INPUT_CLK_ON, mask_sh),\
++	SF(ODM0_OPTC_INPUT_CLOCK_CONTROL, OPTC_INPUT_CLK_GATE_DIS, mask_sh),\
++	SF(ODM0_OPTC_INPUT_GLOBAL_CONTROL, OPTC_UNDERFLOW_OCCURRED_STATUS, mask_sh),\
++	SF(ODM0_OPTC_INPUT_GLOBAL_CONTROL, OPTC_UNDERFLOW_CLEAR, mask_sh),\
++	SF(VTG0_CONTROL, VTG0_ENABLE, mask_sh),\
++	SF(VTG0_CONTROL, VTG0_FP2, mask_sh),\
++	SF(VTG0_CONTROL, VTG0_VCOUNT_INIT, mask_sh),\
++	SF(OTG0_OTG_VERT_SYNC_CONTROL, OTG_FORCE_VSYNC_NEXT_LINE_OCCURRED, mask_sh),\
++	SF(OTG0_OTG_VERT_SYNC_CONTROL, OTG_FORCE_VSYNC_NEXT_LINE_CLEAR, mask_sh),\
++	SF(OTG0_OTG_VERT_SYNC_CONTROL, OTG_AUTO_FORCE_VSYNC_MODE, mask_sh),\
++	SF(OTG0_OTG_GSL_CONTROL, OTG_GSL0_EN, mask_sh),\
++	SF(OTG0_OTG_GSL_CONTROL, OTG_GSL1_EN, mask_sh),\
++	SF(OTG0_OTG_GSL_CONTROL, OTG_GSL2_EN, mask_sh),\
++	SF(OTG0_OTG_GSL_CONTROL, OTG_GSL_MASTER_EN, mask_sh),\
++	SF(OTG0_OTG_GSL_CONTROL, OTG_GSL_FORCE_DELAY, mask_sh),\
++	SF(OTG0_OTG_GSL_CONTROL, OTG_GSL_CHECK_ALL_FIELDS, mask_sh),\
++	SF(OTG0_OTG_CRC_CNTL, OTG_CRC_CONT_EN, mask_sh),\
++	SF(OTG0_OTG_CRC_CNTL, OTG_CRC0_SELECT, mask_sh),\
++	SF(OTG0_OTG_CRC_CNTL, OTG_CRC_EN, mask_sh),\
++	SF(OTG0_OTG_CRC0_DATA_RG, CRC0_R_CR, mask_sh),\
++	SF(OTG0_OTG_CRC0_DATA_RG, CRC0_G_Y, mask_sh),\
++	SF(OTG0_OTG_CRC0_DATA_B, CRC0_B_CB, mask_sh),\
++	SF(OTG0_OTG_CRC0_WINDOWA_X_CONTROL, OTG_CRC0_WINDOWA_X_START, mask_sh),\
++	SF(OTG0_OTG_CRC0_WINDOWA_X_CONTROL, OTG_CRC0_WINDOWA_X_END, mask_sh),\
++	SF(OTG0_OTG_CRC0_WINDOWA_Y_CONTROL, OTG_CRC0_WINDOWA_Y_START, mask_sh),\
++	SF(OTG0_OTG_CRC0_WINDOWA_Y_CONTROL, OTG_CRC0_WINDOWA_Y_END, mask_sh),\
++	SF(OTG0_OTG_CRC0_WINDOWB_X_CONTROL, OTG_CRC0_WINDOWB_X_START, mask_sh),\
++	SF(OTG0_OTG_CRC0_WINDOWB_X_CONTROL, OTG_CRC0_WINDOWB_X_END, mask_sh),\
++	SF(OTG0_OTG_CRC0_WINDOWB_Y_CONTROL, OTG_CRC0_WINDOWB_Y_START, mask_sh),\
++	SF(OTG0_OTG_CRC0_WINDOWB_Y_CONTROL, OTG_CRC0_WINDOWB_Y_END, mask_sh),\
++	SF(OTG0_OTG_TRIGA_MANUAL_TRIG, OTG_TRIGA_MANUAL_TRIG, mask_sh),\
++	SF(GSL_SOURCE_SELECT, GSL0_READY_SOURCE_SEL, mask_sh),\
++	SF(GSL_SOURCE_SELECT, GSL1_READY_SOURCE_SEL, mask_sh),\
++	SF(GSL_SOURCE_SELECT, GSL2_READY_SOURCE_SEL, mask_sh),\
++	SF(OTG0_OTG_GLOBAL_CONTROL2, MANUAL_FLOW_CONTROL_SEL, mask_sh),\
++	SF(OTG0_OTG_GLOBAL_CONTROL2, GLOBAL_UPDATE_LOCK_EN, mask_sh),\
++	SF(OTG0_OTG_GSL_WINDOW_X, OTG_GSL_WINDOW_START_X, mask_sh),\
++	SF(OTG0_OTG_GSL_WINDOW_X, OTG_GSL_WINDOW_END_X, mask_sh), \
++	SF(OTG0_OTG_GSL_WINDOW_Y, OTG_GSL_WINDOW_START_Y, mask_sh),\
++	SF(OTG0_OTG_GSL_WINDOW_Y, OTG_GSL_WINDOW_END_Y, mask_sh),\
++	SF(OTG0_OTG_VUPDATE_KEEPOUT, OTG_MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_EN, mask_sh), \
++	SF(OTG0_OTG_VUPDATE_KEEPOUT, MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_START_OFFSET, mask_sh), \
++	SF(OTG0_OTG_VUPDATE_KEEPOUT, MASTER_UPDATE_LOCK_VUPDATE_KEEPOUT_END_OFFSET, mask_sh), \
++	SF(OTG0_OTG_GSL_CONTROL, OTG_GSL_MASTER_MODE, mask_sh), \
++	SF(OTG0_OTG_GSL_CONTROL, OTG_MASTER_UPDATE_LOCK_GSL_EN, mask_sh), \
++	SF(OTG0_OTG_DSC_START_POSITION, OTG_DSC_START_POSITION_X, mask_sh), \
++	SF(OTG0_OTG_DSC_START_POSITION, OTG_DSC_START_POSITION_LINE_NUM, mask_sh),\
++	SF(ODM0_OPTC_DATA_SOURCE_SELECT, OPTC_SEG0_SRC_SEL, mask_sh),\
++	SF(ODM0_OPTC_DATA_SOURCE_SELECT, OPTC_SEG1_SRC_SEL, mask_sh),\
++	SF(ODM0_OPTC_DATA_SOURCE_SELECT, OPTC_SEG2_SRC_SEL, mask_sh),\
++	SF(ODM0_OPTC_DATA_SOURCE_SELECT, OPTC_SEG3_SRC_SEL, mask_sh),\
++	SF(ODM0_OPTC_DATA_SOURCE_SELECT, OPTC_NUM_OF_INPUT_SEGMENT, mask_sh),\
++	SF(ODM0_OPTC_MEMORY_CONFIG, OPTC_MEM_SEL, mask_sh),\
++	SF(ODM0_OPTC_DATA_FORMAT_CONTROL, OPTC_DATA_FORMAT, mask_sh),\
++	SF(ODM0_OPTC_DATA_FORMAT_CONTROL, OPTC_DSC_MODE, mask_sh),\
++	SF(ODM0_OPTC_BYTES_PER_PIXEL, OPTC_DSC_BYTES_PER_PIXEL, mask_sh),\
++	SF(ODM0_OPTC_WIDTH_CONTROL, OPTC_DSC_SLICE_WIDTH, mask_sh),\
++	SF(ODM0_OPTC_WIDTH_CONTROL, OPTC_SEGMENT_WIDTH, mask_sh),\
++	SF(DWB_SOURCE_SELECT, OPTC_DWB0_SOURCE_SELECT, mask_sh),\
++	SF(DWB_SOURCE_SELECT, OPTC_DWB1_SOURCE_SELECT, mask_sh),\
++	SF(OTG0_OTG_DRR_TRIGGER_WINDOW, OTG_DRR_TRIGGER_WINDOW_START_X, mask_sh),\
++	SF(OTG0_OTG_DRR_TRIGGER_WINDOW, OTG_DRR_TRIGGER_WINDOW_END_X, mask_sh),\
++	SF(OTG0_OTG_DRR_V_TOTAL_CHANGE, OTG_DRR_V_TOTAL_CHANGE_LIMIT, mask_sh),\
++	SF(OTG0_OTG_H_TIMING_CNTL, OTG_H_TIMING_DIV_MODE, mask_sh),\
++	SF(OTG0_OTG_DOUBLE_BUFFER_CONTROL, OTG_DRR_TIMING_DBUF_UPDATE_MODE, mask_sh),\
++	SF(OTG0_OTG_CRC_CNTL2, OTG_CRC_DSC_MODE, mask_sh),\
++	SF(OTG0_OTG_CRC_CNTL2, OTG_CRC_DATA_STREAM_COMBINE_MODE, mask_sh),\
++	SF(OTG0_OTG_CRC_CNTL2, OTG_CRC_DATA_STREAM_SPLIT_MODE, mask_sh),\
++	SF(OTG0_OTG_CRC_CNTL2, OTG_CRC_DATA_FORMAT, mask_sh)
 +
-+#define LINK_ENCODER_MASK_SH_LIST_DCN31(mask_sh) \
-+	LINK_ENCODER_MASK_SH_LIST_DCN10(mask_sh),\
-+	LE_SF(DP0_DP_DPHY_CNTL, DPHY_FEC_EN, mask_sh),\
-+	LE_SF(DP0_DP_DPHY_CNTL, DPHY_FEC_READY_SHADOW, mask_sh),\
-+	LE_SF(DP0_DP_DPHY_CNTL, DPHY_FEC_ACTIVE_STATUS, mask_sh),\
-+	LE_SF(DIG0_TMDS_CTL_BITS, TMDS_CTL0, mask_sh), \
-+	LE_SF(DP_AUX0_AUX_DPHY_RX_CONTROL0, AUX_RX_START_WINDOW, mask_sh),\
-+	LE_SF(DP_AUX0_AUX_DPHY_RX_CONTROL0, AUX_RX_HALF_SYM_DETECT_LEN, mask_sh),\
-+	LE_SF(DP_AUX0_AUX_DPHY_RX_CONTROL0, AUX_RX_TRANSITION_FILTER_EN, mask_sh),\
-+	LE_SF(DP_AUX0_AUX_DPHY_RX_CONTROL0, AUX_RX_ALLOW_BELOW_THRESHOLD_PHASE_DETECT, mask_sh),\
-+	LE_SF(DP_AUX0_AUX_DPHY_RX_CONTROL0, AUX_RX_ALLOW_BELOW_THRESHOLD_START, mask_sh),\
-+	LE_SF(DP_AUX0_AUX_DPHY_RX_CONTROL0, AUX_RX_ALLOW_BELOW_THRESHOLD_STOP, mask_sh),\
-+	LE_SF(DP_AUX0_AUX_DPHY_RX_CONTROL0, AUX_RX_PHASE_DETECT_LEN, mask_sh),\
-+	LE_SF(DP_AUX0_AUX_DPHY_RX_CONTROL0, AUX_RX_DETECTION_THRESHOLD, mask_sh), \
-+	LE_SF(DP_AUX0_AUX_DPHY_TX_CONTROL, AUX_TX_PRECHARGE_LEN, mask_sh),\
-+	LE_SF(DP_AUX0_AUX_DPHY_TX_CONTROL, AUX_TX_PRECHARGE_SYMBOLS, mask_sh),\
-+	LE_SF(DP_AUX0_AUX_DPHY_TX_CONTROL, AUX_MODE_DET_CHECK_DELAY, mask_sh),\
-+	LE_SF(DP_AUX0_AUX_DPHY_RX_CONTROL1, AUX_RX_PRECHARGE_SKIP, mask_sh),\
-+	LE_SF(DP_AUX0_AUX_DPHY_RX_CONTROL1, AUX_RX_TIMEOUT_LEN, mask_sh),\
-+	LE_SF(DP_AUX0_AUX_DPHY_RX_CONTROL1, AUX_RX_TIMEOUT_LEN_MUL, mask_sh),\
-+	LE_SF(DIO_LINKA_CNTL, ENC_TYPE_SEL, mask_sh),\
-+	LE_SF(DIO_LINKA_CNTL, HPO_DP_ENC_SEL, mask_sh),\
-+	LE_SF(DIO_LINKA_CNTL, HPO_HDMI_ENC_SEL, mask_sh)
++void dcn31_timing_generator_init(struct optc *optc1);
 +
-+#define DPCS_DCN31_REG_LIST(id) \
-+	SRI(TMDS_CTL_BITS, DIG, id), \
-+	SRI(RDPCSTX_PHY_CNTL3, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL4, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL5, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL6, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL7, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL8, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL9, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL10, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL11, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL12, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL13, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL14, RDPCSTX, id), \
-+	SRI(RDPCSTX_CNTL, RDPCSTX, id), \
-+	SRI(RDPCSTX_CLOCK_CNTL, RDPCSTX, id), \
-+	SRI(RDPCSTX_INTERRUPT_CONTROL, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL0, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_CNTL2, RDPCSTX, id), \
-+	SRI(RDPCS_TX_CR_ADDR, RDPCSTX, id), \
-+	SRI(RDPCS_TX_CR_DATA, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_FUSE0, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_FUSE1, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_FUSE2, RDPCSTX, id), \
-+	SRI(RDPCSTX_PHY_FUSE3, RDPCSTX, id), \
-+	SR(RDPCSTX0_RDPCSTX_SCRATCH), \
-+	SRI(RDPCSTX_PHY_RX_LD_VAL, RDPCSTX, id),\
-+	SRI(RDPCSTX_DMCU_DPALT_DIS_BLOCK_REG, RDPCSTX, id)
-+
-+#define DPCS_DCN31_MASK_SH_LIST(mask_sh)\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX0_CLK_RDY, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX0_DATA_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX1_CLK_RDY, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX1_DATA_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX2_CLK_RDY, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX2_DATA_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX3_CLK_RDY, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX3_DATA_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL4, RDPCS_PHY_DP_TX0_TERM_CTRL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL4, RDPCS_PHY_DP_TX1_TERM_CTRL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL4, RDPCS_PHY_DP_TX2_TERM_CTRL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL4, RDPCS_PHY_DP_TX3_TERM_CTRL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL11, RDPCS_PHY_DP_MPLLB_MULTIPLIER, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL5, RDPCS_PHY_DP_TX0_WIDTH, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL5, RDPCS_PHY_DP_TX0_RATE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL5, RDPCS_PHY_DP_TX1_WIDTH, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL5, RDPCS_PHY_DP_TX1_RATE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DP_TX2_PSTATE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DP_TX3_PSTATE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DP_TX2_MPLL_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DP_TX3_MPLL_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DPALT_DP4, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL6, RDPCS_PHY_DPALT_DISABLE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL7, RDPCS_PHY_DP_MPLLB_FRACN_QUOT, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL7, RDPCS_PHY_DP_MPLLB_FRACN_DEN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL8, RDPCS_PHY_DP_MPLLB_SSC_PEAK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL9, RDPCS_PHY_DP_MPLLB_SSC_UP_SPREAD, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL9, RDPCS_PHY_DP_MPLLB_SSC_STEPSIZE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL10, RDPCS_PHY_DP_MPLLB_FRACN_REM, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL11, RDPCS_PHY_DP_REF_CLK_MPLLB_DIV, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL11, RDPCS_PHY_HDMI_MPLLB_HDMI_DIV, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL12, RDPCS_PHY_DP_MPLLB_SSC_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL12, RDPCS_PHY_DP_MPLLB_DIV5_CLK_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL12, RDPCS_PHY_DP_MPLLB_TX_CLK_DIV, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL12, RDPCS_PHY_DP_MPLLB_WORD_DIV2_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL12, RDPCS_PHY_DP_MPLLB_STATE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL13, RDPCS_PHY_DP_MPLLB_DIV_CLK_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL13, RDPCS_PHY_DP_MPLLB_DIV_MULTIPLIER, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL14, RDPCS_PHY_DP_MPLLB_FRACN_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL14, RDPCS_PHY_DP_MPLLB_PMIX_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CNTL, RDPCS_TX_FIFO_LANE0_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CNTL, RDPCS_TX_FIFO_LANE1_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CNTL, RDPCS_TX_FIFO_LANE2_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CNTL, RDPCS_TX_FIFO_LANE3_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CNTL, RDPCS_TX_FIFO_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CNTL, RDPCS_TX_FIFO_RD_START_DELAY, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_EXT_REFCLK_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_SRAMCLK_BYPASS, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_SRAMCLK_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_SRAMCLK_CLOCK_ON, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_SYMCLK_DIV2_CLOCK_ON, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_SYMCLK_DIV2_GATE_DIS, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_CLOCK_CNTL, RDPCS_SYMCLK_DIV2_EN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX0_DISABLE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX1_DISABLE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX2_DISABLE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX3_DISABLE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX0_REQ, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX1_REQ, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX2_REQ, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX3_REQ, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX0_ACK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX1_ACK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX2_ACK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX3_ACK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX0_RESET, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX1_RESET, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX2_RESET, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL3, RDPCS_PHY_DP_TX3_RESET, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_PHY_RESET, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_PHY_CR_MUX_SEL, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_PHY_REF_RANGE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_SRAM_BYPASS, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_SRAM_EXT_LD_DONE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_PHY_HDMIMODE_ENABLE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL0, RDPCS_SRAM_INIT_DONE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_CNTL2, RDPCS_PHY_DP4_POR, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_INTERRUPT_CONTROL, RDPCS_REG_FIFO_ERROR_MASK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_INTERRUPT_CONTROL, RDPCS_TX_FIFO_ERROR_MASK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_INTERRUPT_CONTROL, RDPCS_DPALT_DISABLE_TOGGLE_MASK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_INTERRUPT_CONTROL, RDPCS_DPALT_4LANE_TOGGLE_MASK, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCS_TX_CR_ADDR, RDPCS_TX_CR_ADDR, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCS_TX_CR_DATA, RDPCS_TX_CR_DATA, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_MPLLB_V2I, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_TX0_EQ_MAIN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_TX0_EQ_PRE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_TX0_EQ_POST, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE0, RDPCS_PHY_DP_MPLLB_FREQ_VCO, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE1, RDPCS_PHY_DP_MPLLB_CP_INT, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE1, RDPCS_PHY_DP_MPLLB_CP_PROP, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE1, RDPCS_PHY_DP_TX1_EQ_MAIN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE1, RDPCS_PHY_DP_TX1_EQ_PRE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE1, RDPCS_PHY_DP_TX1_EQ_POST, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE2, RDPCS_PHY_DP_TX2_EQ_MAIN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE2, RDPCS_PHY_DP_TX2_EQ_PRE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE2, RDPCS_PHY_DP_TX2_EQ_POST, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DP_TX3_EQ_MAIN, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DCO_FINETUNE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DCO_RANGE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DP_TX3_EQ_PRE, mask_sh),\
-+	LE_SF(RDPCSTX0_RDPCSTX_PHY_FUSE3, RDPCS_PHY_DP_TX3_EQ_POST, mask_sh)
-+
-+void dcn31_link_encoder_construct(
-+	struct dcn20_link_encoder *enc20,
-+	const struct encoder_init_data *init_data,
-+	const struct encoder_feature_support *enc_features,
-+	const struct dcn10_link_enc_registers *link_regs,
-+	const struct dcn10_link_enc_aux_registers *aux_regs,
-+	const struct dcn10_link_enc_hpd_registers *hpd_regs,
-+	const struct dcn10_link_enc_shift *link_shift,
-+	const struct dcn10_link_enc_mask *link_mask);
-+
-+/*
-+ * Create a minimal link encoder object with no dc_link object associated with it.
-+ */
-+void dcn31_link_encoder_construct_minimal(
-+	struct dcn20_link_encoder *enc20,
-+	struct dc_context *ctx,
-+	const struct encoder_feature_support *enc_features,
-+	const struct dcn10_link_enc_registers *link_regs,
-+	enum engine_id eng_id);
-+
-+void dcn31_link_encoder_set_dio_phy_mux(
-+	struct link_encoder *enc,
-+	enum encoder_type_select sel,
-+	uint32_t hpo_inst);
-+
-+/*
-+ * Enable DP transmitter and its encoder.
-+ */
-+void dcn31_link_encoder_enable_dp_output(
-+	struct link_encoder *enc,
-+	const struct dc_link_settings *link_settings,
-+	enum clock_source_id clock_source);
-+
-+/*
-+ * Enable DP transmitter and its encoder in MST mode.
-+ */
-+void dcn31_link_encoder_enable_dp_mst_output(
-+	struct link_encoder *enc,
-+	const struct dc_link_settings *link_settings,
-+	enum clock_source_id clock_source);
-+
-+/*
-+ * Disable transmitter and its encoder.
-+ */
-+void dcn31_link_encoder_disable_output(
-+	struct link_encoder *enc,
-+	enum signal_type signal);
-+
-+#endif /* __DC_LINK_ENCODER__DCN31_H__ */
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/link_encoder.h b/drivers/gpu/drm/amd/display/dc/inc/hw/link_encoder.h
-index 80bc99500645..f643fe3ed064 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/link_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/link_encoder.h
-@@ -127,6 +127,14 @@ struct link_enc_state {
++#endif /* __DC_OPTC_DCN31_H__ */
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h b/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h
+index 9ff68b67780c..a77eb9cd049f 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/timing_generator.h
+@@ -173,6 +173,9 @@ struct timing_generator_funcs {
  
- };
- 
+ 	bool (*enable_crtc)(struct timing_generator *tg);
+ 	bool (*disable_crtc)(struct timing_generator *tg);
 +#if defined(CONFIG_DRM_AMD_DC_DCN3_1)
-+	enum encoder_type_select {
-+		ENCODER_TYPE_DIG = 0,
-+		ENCODER_TYPE_HDMI_FRL = 1,
-+		ENCODER_TYPE_DP_128B132B = 2
-+	};
++	bool (*immediate_disable_crtc)(struct timing_generator *tg);
 +#endif
-+
- struct link_encoder_funcs {
- 	void (*read_state)(
- 			struct link_encoder *enc, struct link_enc_state *s);
-@@ -185,6 +193,12 @@ struct link_encoder_funcs {
- 
- 	enum signal_type (*get_dig_mode)(
- 		struct link_encoder *enc);
-+#if defined(CONFIG_DRM_AMD_DC_DCN3_1)
-+	void (*set_dio_phy_mux)(
-+		struct link_encoder *enc,
-+		enum encoder_type_select sel,
-+		uint32_t hpo_inst);
-+#endif
- };
- 
- /*
+ 	bool (*is_counter_moving)(struct timing_generator *tg);
+ 	void (*get_position)(struct timing_generator *tg,
+ 				struct crtc_position *position);
+@@ -223,6 +226,7 @@ struct timing_generator_funcs {
+ 	void (*enable_advanced_request)(struct timing_generator *tg,
+ 					bool enable, const struct dc_crtc_timing *timing);
+ 	void (*set_drr)(struct timing_generator *tg, const struct drr_params *params);
++	void (*set_vtotal_min_max)(struct timing_generator *optc, int vtotal_min, int vtotal_max);
+ 	void (*set_static_screen_control)(struct timing_generator *tg,
+ 						uint32_t event_triggers,
+ 						uint32_t num_frames);
 -- 
 2.31.1
 
