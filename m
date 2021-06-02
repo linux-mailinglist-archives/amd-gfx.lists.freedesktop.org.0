@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 588FD3990C5
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:50:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA37F3990C9
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:50:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AC016EDB5;
-	Wed,  2 Jun 2021 16:50:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C5936EDB9;
+	Wed,  2 Jun 2021 16:50:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-DM6-obe.outbound.protection.outlook.com
  (mail-dm6nam12on2048.outbound.protection.outlook.com [40.107.243.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B49B66EDD3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D71E66EDB5
  for <amd-gfx@lists.freedesktop.org>; Wed,  2 Jun 2021 16:50:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Tns3TB8JUkKlnhar6gRIrn9iKMFo9rosNAeT/VPhkea+ijHoi1UUfCDNOc9+4I3bqF4r93TgtU6f4nM+Qxr4c6sM2gV7eCQeJjWEl5zZvwKGmjgKRlUoulO/a+Gu7ZEusuUmX2AH2B/FFt/PHD75KfkwrGq0u+jQS/Vm6TRB24J+21urxQIBKoCf6P2nOjoEx/QgbRnDlIX3qwkFK6uHusrw3YbfR28ZQJXb2nwCBzDeBNbJHCL8xXwF/MwAbf2SDvqu8yNRcID9Kdgme4aCrW0iEgWkwUu5+FXc4dn831OtORC5fLyJ/cMmOkHyeiyx6xR1COrJSKDy7ld8CUx//Q==
+ b=Y+p87DHUvNL7GuAVR7XBOcqZK90a2R2SXTBwdQbyB2G4jwCmoyKKcCIo63mQ30TVbZFHI0+OYnSG8i6ip2cEKvmBGDBa2N4Wa18QZQFCB3h2wgiUQw7+RGNQlO7LSzDjaHSWVmaq1DzAmYAVag6g8dIuASNr96M7LQj2e3i3jXVoiEvKQuSiy5nuT9TDmODs6vVf2JEYsnxKwm6BkkkyIddjs9JAd2UgYYdM15OY69snxyHcGh8q6/Jp1mZUbnmYsJmZPb1Y8QbjuXXrnREAvhpJIJ6sRAMR8K+5+BfjYgF/fTKVm35uJAKpDnDeMISM2AqxCr3LiJx9PO4dkwdPIA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nGOu+l72Hn6rNNfILh1kx1M96V//c67GKLaNfWCD8Fo=;
- b=l0NqoZsK0BTGv6EeZJ2m+0oZX4kYVVynTuWDoSyTm2tgZW9VY3Kl9ndVciUrnpPOyi/LqWBZLY4TZnzrlVzK432Qz3DV65wGvKNmHG9Hkc9lvrwlUPW1CbsJj8lRUzqRMTSTgONdRbuZSOyL6Dibcz3syGYHn7c1rbx30AxA7F61MLNmlUwE4EZggYyjTJwd+hbF451PqyoLY4xTxOCnvy/mFbY2XfFDtQ47T0vWHgnGAy803aMNzfYXmof6iR1MOr7qZ92YFkGxP1CN/8aokDEcp0M311Uo74+Ku5rqNKaeMfvfdiEX5IVLQNwm0Tt3oWDRfbecoDStjOBXUNVB4w==
+ bh=UWpMd9fSUlC/dyNSGEjEBkjwNJ/AndPjFh6Kl4WURp8=;
+ b=hMT92slnCF+7yZsqIVzhsdxsf131ELyhe5083UuHN366W/nZt69bLWLjtCg2UG7VIkEJYkBw/kYbh4Dgb8/hqL2BtnXEy+QcDCXK9tyY+USXVLqihCtmnYJ+TmIvMnG6v4vkPrcVVpQ38w2myu2tqsncrnVRAEnOiLRkrqwRGNS8YZKd8UIfwtKbgX1cRVjwj0rhiu2/fdqSP+ebgmllKh0co1D0Fg+2k9zxrY2mGgSFDTp1hnJINeUi/D+K/2OrTG8zkjwE2Xua7A4WBH6KbSqPS+5j43k2CZPoNIJ1jvO4eNXarxIfWIw3EVArQFWKL1oHOQf0KS1NB27RvqFOPg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nGOu+l72Hn6rNNfILh1kx1M96V//c67GKLaNfWCD8Fo=;
- b=gW3mP5krJKjTNiiiwvuJZcCrqj721kS3S/NCmnNNmlU5UPsvgs1QN1vCpcVTAXYcKNa7plFPCsIHsgcIYvzwaJbObOb+ASLyKSx/Amff/8h7BgNLNmn6Gb/Wxkl+H6aUiDV050/AInf9uNuSCpwHeRKZoS8wLvT2ydE431ldZU8=
+ bh=UWpMd9fSUlC/dyNSGEjEBkjwNJ/AndPjFh6Kl4WURp8=;
+ b=oX5A0p1Msc8HGLCGLxlQ8X25wmD98RDGCng8604I1m75DC5h0ucqM7FBUrJj2u0BBiFGgdkbi5+rvn1tE40jvHTextJQQOang6S+37zR1H2XuPamY+kpzK2MvQeDgNODzPfaOwAc/A7YvllHl1Lbn9oscVOApMe1S21GMd0xyJ8=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,17 +34,16 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
  by MN2PR12MB4487.namprd12.prod.outlook.com (2603:10b6:208:264::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.24; Wed, 2 Jun
- 2021 16:50:35 +0000
+ 2021 16:50:37 +0000
 Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  ([fe80::25f7:664:3a8f:25b6]) by MN2PR12MB4488.namprd12.prod.outlook.com
  ([fe80::25f7:664:3a8f:25b6%7]) with mapi id 15.20.4173.030; Wed, 2 Jun 2021
- 16:50:35 +0000
+ 16:50:37 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 52/89] drm/amd/pm: add support to get dpm clock value for
- yellow carp
-Date: Wed,  2 Jun 2021 12:48:31 -0400
-Message-Id: <20210602164908.2848791-52-alexander.deucher@amd.com>
+Subject: [PATCH 53/89] drm/amd/pm: add feature map for yellow carp
+Date: Wed,  2 Jun 2021 12:48:32 -0400
+Message-Id: <20210602164908.2848791-53-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210602164908.2848791-1-alexander.deucher@amd.com>
 References: <20210602164908.2848791-1-alexander.deucher@amd.com>
@@ -58,52 +57,52 @@ Received: from localhost.localdomain (192.161.79.207) by
  MN2PR13CA0007.namprd13.prod.outlook.com (2603:10b6:208:160::20) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.9 via Frontend
- Transport; Wed, 2 Jun 2021 16:50:03 +0000
+ Transport; Wed, 2 Jun 2021 16:50:04 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8d740026-72b4-413c-7e79-08d925e67860
+X-MS-Office365-Filtering-Correlation-Id: 4fc7e9be-7f27-4d7a-1346-08d925e678b2
 X-MS-TrafficTypeDiagnostic: MN2PR12MB4487:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB44870D2A56C10FCB13B5D979F73D9@MN2PR12MB4487.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2582;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB44871AD26B2846F7AA0BA19EF73D9@MN2PR12MB4487.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PcbgIMocok0dgSDEf1azZHQA48plEEDmrRjpf86cD0bEULpakTtjMTlZnTiRlKkrnN2IXY2/5AmwVDVt6db/VJ9rbWgoWrwjvlcNOvRPPJSKAW3Ac4gYps4ciPXG0AWZ/iak9bBbk6nPJv2hL6Wgwb66xBcZ6iSkTQNuFeTurkMgbEpl9OdCJT68YE9U3cO+5kUfZmnp8k7ghoBP/chOG/ess5gIHnrpR7EQtHbtDnMCacAl+wstrqa/BLnWYLtnoqSJrRYMbEjawYt+6bV2Lh7hJQFRkpGAG9q1fHGrnBuJeHvaDq156EQ31F5uVwmjSqturV03M9gO6ehXjlOaLgsBorBgJNpJsgklRq9ZysKhFBQ901jqIZsb4UETypdCE94jCSnDvSlB8srUjtFPTIXWKInE64JFUtc6jFEGrjt6XQRn7F5ZKRUkt/MrBfoBkrK3I6ih4GzotCs0QcM6enzlDw/K7LajBjI9ChzJ1ku2mY75W58GUrku45ZcFUzmJD/2ePvdsItEapavOrHuZ+I859nkvlX5qjZivNo1YFXwFL7HPPOG+1q8DOVMYt4X8MZT44+92OqMbfBSS1z0VsuNaS8woWAy4B/r0EuqIJawyRDb3KqdGQ6iwoV2hSpqldJQ3j3ZfHkB68Icbjt9ftJK4HBdv/LwEKdj2lGt8Sqnlli6wXSFdyxQsGqthV0Z
+X-Microsoft-Antispam-Message-Info: kHKIg6381VNPEs63cdOnBEkktRmG6USv3D0Qn3SUwqlKhWI6BOHAIkX1C5iVr8CKRixjGEnCppxZsyJhMyGzFKu8Ocv1U6O8V6iJ1KshR6uNHdMdNqqQTEztbOEiLS5eEaCG0Jr8gxt17Q4x/ilUbSdXYf1Zz/2Vu/dqmLJnthfSJfxsK8GkyFbYTQmiwhkc2kW15yY0NsTG851BQ2rfFuwu4rO+mafphtARW98vj6cy58Bf/kFAYRvTQ+RmZPKthwq9Lh8WqViafa1vdA+Vwurco9TMcoqtljIW+ucbBgLZns5B18xfxPR2dPPUGCl1BtTFaYKpmDVjHd7X8OOqHNPOrN6F2d5X1KjUa/FTrCpzRUr2sC6Q0ne//9Ie7TKmOBUpjxefEOa8T5p4w+7IpBTZPKK04TnqxW4qp5Z7m1zlxhMsF5UpRzfHs/D3/HqOIewhjQ19Wt8yW8hA7WFrxjrzTq4CQq+Iv8LDNvF3wq2znMyHIetLCcpZZ8ZZanTP4kx6ZcZiq1Uuym1uXM2729LbnX30rlwnrYRuG4AHpzIWS10I3sAD7ilIFePC7bNILwHsBAFbFxthgjaMWj4/sLoXlNIuJ4CyHYei3c5nDgFkm/A4e9sYHkdbCkMgY7eCuA5LIXnMwn2JxaqpyVrl82MCaV79gkSDrHsGECFP9SQt4YfwSD5vLRHL+nvXqLgc
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(366004)(346002)(39860400002)(376002)(396003)(136003)(86362001)(54906003)(1076003)(8676002)(478600001)(6916009)(6506007)(2906002)(38350700002)(8936002)(316002)(6666004)(36756003)(66476007)(52116002)(16526019)(186003)(26005)(83380400001)(5660300002)(6512007)(6486002)(4326008)(956004)(2616005)(66556008)(38100700002)(66946007)(69590400013);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?1Ze/AFhfJvSJdi++gV64guReWyjbsKeXA36aRNff6t1C1WIjE2T3Nuwudsr+?=
- =?us-ascii?Q?R1o2Fo/5qdEBRKF8D9+iWCr6VyAvGwsg7bX95GTR8p7x9y95pMHf/GT9pSPZ?=
- =?us-ascii?Q?UVDj2fuwMEYHFVDAUz6YS3PLu7duXcZoh4PxR8XOQLR2NDh8CTNzrGI9pENr?=
- =?us-ascii?Q?Tvz3RHB19WcLIp0cH3uNMmkcDZJ/md3kZnrTac6CgPlJP8Jnt79H2VUqhh38?=
- =?us-ascii?Q?LsbygmZlOda0OL9sJkog+FwTaedv4E9Lt53bgVqrolfUiKlyfGIwXGc6E7SL?=
- =?us-ascii?Q?AzhRfOo6Zln3wMR8OBqwkV4zWseC5r8MXzCwzeBEPq7NkHXOytZ859f4b08q?=
- =?us-ascii?Q?K1NwWAW5MeAWOW+VpoZkdEHjRlqzTAtXyeQlI5Xbb9DjLrt6O1kVUhua0toT?=
- =?us-ascii?Q?Zghs6ZOem0Ac1RRj0ANp/MrYaho6sbjjcipEbGeFdOpbIf2KPfTJ7L+2vvVN?=
- =?us-ascii?Q?uzhgHB5cPslRjMbsUoHy2WF0mTwpGcISRhAO8FzI9O+RR6vVuoTOyJ8y6f9T?=
- =?us-ascii?Q?S9/0hleZPFQgzwb6ge6Km8uSQ7XtwQdv03tJSB/+zHvn1SJ63/3daNsuXKlc?=
- =?us-ascii?Q?pkB5VPcVLh7ymc8Wrchv8lleXs4aEWlnD4O3ojqGE6C84w9oBk2e3EnZrqJl?=
- =?us-ascii?Q?qjOIsyzSa97qKMjaZwcmbCmkQSru/j36Pg9egyXccxG6gvUPeN9c3uv+xio/?=
- =?us-ascii?Q?g6Y8UEOz7Z97JkK+juxJN+5k1L7zyeHd5o8qg8q1mltMLMqnMKzCwcnP91Ja?=
- =?us-ascii?Q?QkCi2F0jEzgUTRCi0B4H+Q7hgBJHo6v4ru174nk3TD+g8YWDeJVZpEs3nykl?=
- =?us-ascii?Q?r+bOBSey+wxSvLtCVLGuS/RJWqM7jQNcZ93Cs2QB6o3/NfG/VWjG5/DzHrjV?=
- =?us-ascii?Q?+YVzDA/Xbm4JU9T4TRIqgeyZ2FEQRDJLoNSRNGgG0pJ4lhGWObbSnpozcznR?=
- =?us-ascii?Q?Bn4V74GstYawEdo9WZy9Tfval2MlULgGCQU6tWjmD8RhKWdewEgpTvF6kvZr?=
- =?us-ascii?Q?DOuh9824vQmmF6degl5RL395m5ZpYTUMWpBB9AEyrBsoRXez6ttJbLsCNLc4?=
- =?us-ascii?Q?OEAWH0T/x8Ffb6m0KoRsryU+dBu8qLUmNHyjTa5w6y1WGZ+WjvpfXnxLpZsv?=
- =?us-ascii?Q?3E0W5PsEIapjFmkw73jPPm+T6qjGme7NKrysJNk/QFftjPirvyNbMwQXhMgu?=
- =?us-ascii?Q?RJxpNGciCW2JNqPcISeNHTQbHtl+3CHt4xj60GLL2DUmJ8vMB+rIYgBRqqsM?=
- =?us-ascii?Q?1ki5Lph7dAv1Q83NMYp/+WAxgQsBN98INvWZan9j0gUVzHeydW2UfXNYXiSz?=
- =?us-ascii?Q?KixIrSMpp1ARO1XbPv4UcKzd?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?tYws1Pmsx1lv4tF+ZkqKkmjoY+u+hueYI3KEBEy8AzyXQyOxkPDPvy5ZKX7b?=
+ =?us-ascii?Q?SPcg66h5LJ80uPMkdFEwU93wFGPAxHZv9R5vIvW2xO6yM6OT0aVY9/Pp/P7y?=
+ =?us-ascii?Q?ihjEVXP7boZHoEO7mB2B+xuyB44KiweToep1O2AsQUTvQifZZ8yY8JneBEMZ?=
+ =?us-ascii?Q?YJczbYRHSwzTGPWmpBJyH6JjJIylkHCQpS2TYxADDA7u7jyvPkRAXXFcGhh4?=
+ =?us-ascii?Q?K2KaIBroQZR19dlxWvxYUEEw6URWDu7izzJxt8YFiaBRNh/hCKW8sVmA921l?=
+ =?us-ascii?Q?6OakwcOhGeFBnwy/Zs7GU9Pc8untbY22Iq3oUuH9LHE3uyT1FUUrCZWKvap8?=
+ =?us-ascii?Q?n84pfhvYnvfb5AyWQKFt2YF89c21OYIIyA6e+EKn7FotFUEplRsKw8g7oqBg?=
+ =?us-ascii?Q?aVCzN0fDgqmYyOKpqawKndj82JXJulJZgW6nAT/WZ6k/2G/pXVZXoQ4e9MgV?=
+ =?us-ascii?Q?57c4HJumQsVD9bDJrsVIsAUp+W36XA+XYMpuGyOHuiy1SUGt4Ujj5vc3kQts?=
+ =?us-ascii?Q?mVWMPha3w+afcqRR4yo3Kza3x9Xrgp3HM4b1yuzk/xIspoWXcykekPfFCezG?=
+ =?us-ascii?Q?b3/POFTsyf/XH+/B+aL6JDUNW7ng/se13GRY8o7rRoVmLw6b/YsLC+0FlcOl?=
+ =?us-ascii?Q?UH+uPWXKrNgg11FLRT4xpZPcKUUiKFnR1DEATnzTW+BA1nDbA1oqlvn19G7O?=
+ =?us-ascii?Q?gS3g7fS2QrqG/9OvNKt1MJooSfmiL9Y/38qcTBq8vKr9oJFThrJilQyjkYZU?=
+ =?us-ascii?Q?Q2m1zCjAB6I756JS6wWp4ACv/M1jDb0i6b5LF+IXDoj0prQsZ8p/lZtwaf+Y?=
+ =?us-ascii?Q?nE010+GZpxDns6BeTeSFKYkTT3AvKdtY/2J+e+LpinsmC645VKT4XRuuBd8u?=
+ =?us-ascii?Q?FZ/p3rzFRh5Ih6MT0g1uGH3wnoSOZnGgxHRdsFDjropRDA02u1NiuE+8eomU?=
+ =?us-ascii?Q?7jSP7CxPFmI2f7Hqt9ASNl0YhqfZhWApsuHHqGrKuhVWj0+KrqBqzmavrOCU?=
+ =?us-ascii?Q?uf0W4jqnA9oCFzDKiL/a8Zgcm/NSRWz/Xs5hXd1C0YgN44FJN8nbaiKSiIG+?=
+ =?us-ascii?Q?yyLT7qqTeN9nEb79GgMt097SYmtY110lBR3m4mPdV5fkWYNgTXcaC02p51H/?=
+ =?us-ascii?Q?Wc7BcOs2sJWuV8S/Wsx5bcDrzi7V9Ei3quL3cUonLKmNgAqpSvkoXqYev+dD?=
+ =?us-ascii?Q?7sTzPNORCSMT6BFImITAZw5VvupqY/FgR+g1IJIs9P/y61d709pMJOk+JrYn?=
+ =?us-ascii?Q?mWtr+G+OOrXFwU8o5bBVd8PqEIWr98puQ6aC+ApRn4Z4wRqkaSD/Hq2vmOCa?=
+ =?us-ascii?Q?kHN2IBiiEbd4pfnF2uiEFIJf?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d740026-72b4-413c-7e79-08d925e67860
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4fc7e9be-7f27-4d7a-1346-08d925e678b2
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:50:04.3434 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:50:04.8910 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MsYtuuSNMZ1M03FQPLUw7rFk5Sl5aOaOHr4/IPZuwa/nJsO3jaCHOhpFhcJmY+Xsp7llE1v6DIV4cE3Kf5PVBg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: rpQEouOf0ttl5DuemFCaJ0m58VRI3tX11kUS/rfq0B1rIUTJRNvVVvlxVH6O6yqn8oXeLvwGVtmzeQXZtkp+fw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4487
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -117,8 +116,7 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alex Deucher <alexander.deucher@amd.com>,
- Xiaomeng Hou <Xiaomeng.Hou@amd.com>, Huang Rui <ray.huang@amd.com>,
- Kevin Wang <kevin1.wang@amd.com>
+ Xiaomeng Hou <Xiaomeng.Hou@amd.com>, Kevin Wang <kevin1.wang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
@@ -126,170 +124,75 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Xiaomeng Hou <Xiaomeng.Hou@amd.com>
 
-Implement the sysfs API for getting values of pp dpm
-clocks(pp_dpm_socclk/mclk/fclk/vclk/dclk) for yellow carp.
+Add feature map for yellow carp.
 
 Signed-off-by: Xiaomeng Hou <Xiaomeng.Hou@amd.com>
 Reviewed-by: Kevin Wang <kevin1.wang@amd.com>
-Reviewed-by: Huang Rui <ray.huang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- .../drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c  | 128 +++++++++++++++++-
- 1 file changed, 127 insertions(+), 1 deletion(-)
+ .../drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c  | 42 +++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-index fa871df86d86..211cc9bf1ca9 100644
+index 211cc9bf1ca9..ff75f18c99a3 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-@@ -458,10 +458,113 @@ static int yellow_carp_od_edit_dpm_table(struct smu_context *smu, enum PP_OD_DPM
- 	return ret;
- }
+@@ -75,6 +75,47 @@ static struct cmn2asic_msg_mapping yellow_carp_message_map[SMU_MSG_MAX_COUNT] =
+ 	MSG_MAP(SetSoftMinSocclkByFreq,         PPSMC_MSG_SetSoftMinSocclkByFreq,	1),
+ };
  
-+static int yellow_carp_get_current_clk_freq(struct smu_context *smu,
-+						enum smu_clk_type clk_type,
-+						uint32_t *value)
-+{
-+	MetricsMember_t member_type;
++static struct cmn2asic_mapping yellow_carp_feature_mask_map[SMU_FEATURE_COUNT] = {
++	FEA_MAP(CCLK_DPM),
++	FEA_MAP(FAN_CONTROLLER),
++	FEA_MAP(PPT),
++	FEA_MAP(TDC),
++	FEA_MAP(THERMAL),
++	FEA_MAP(ULV),
++	FEA_MAP(VCN_DPM),
++	FEA_MAP_REVERSE(FCLK),
++	FEA_MAP_REVERSE(SOCCLK),
++	FEA_MAP(LCLK_DPM),
++	FEA_MAP(SHUBCLK_DPM),
++	FEA_MAP(DCFCLK_DPM),
++	FEA_MAP_HALF_REVERSE(GFX),
++	FEA_MAP(DS_GFXCLK),
++	FEA_MAP(DS_SOCCLK),
++	FEA_MAP(DS_LCLK),
++	FEA_MAP(DS_DCFCLK),
++	FEA_MAP(DS_FCLK),
++	FEA_MAP(DS_MP1CLK),
++	FEA_MAP(DS_MP0CLK),
++	FEA_MAP(GFX_DEM),
++	FEA_MAP(PSI),
++	FEA_MAP(PROCHOT),
++	FEA_MAP(CPUOFF),
++	FEA_MAP(STAPM),
++	FEA_MAP(S0I3),
++	FEA_MAP(PERF_LIMIT),
++	FEA_MAP(CORE_DLDO),
++	FEA_MAP(RSMU_LOW_POWER),
++	FEA_MAP(SMN_LOW_POWER),
++	FEA_MAP(THM_LOW_POWER),
++	FEA_MAP(SMUIO_LOW_POWER),
++	FEA_MAP(MP1_LOW_POWER),
++	FEA_MAP(DS_VCN),
++	FEA_MAP(CPPC),
++	FEA_MAP(DF_CSTATES),
++	FEA_MAP(MSMU_LOW_POWER),
++	FEA_MAP(ATHUB_PG),
++};
 +
-+	switch (clk_type) {
-+	case SMU_SOCCLK:
-+		member_type = METRICS_AVERAGE_SOCCLK;
-+		break;
-+	case SMU_VCLK:
-+	    member_type = METRICS_AVERAGE_VCLK;
-+		break;
-+	case SMU_DCLK:
-+		member_type = METRICS_AVERAGE_DCLK;
-+		break;
-+	case SMU_MCLK:
-+		member_type = METRICS_AVERAGE_UCLK;
-+		break;
-+	case SMU_FCLK:
-+		return smu_cmn_send_smc_msg_with_param(smu,
-+				SMU_MSG_GetFclkFrequency, 0, value);
-+	default:
-+		break;
-+	}
-+
-+	return yellow_carp_get_smu_metrics_data(smu, member_type, value);
-+}
-+
-+static int yellow_carp_get_dpm_level_count(struct smu_context *smu,
-+						enum smu_clk_type clk_type,
-+						uint32_t *count)
-+{
-+	DpmClocks_t *clk_table = smu->smu_table.clocks_table;
-+
-+	switch (clk_type) {
-+	case SMU_SOCCLK:
-+		*count = clk_table->NumSocClkLevelsEnabled;
-+		break;
-+	case SMU_VCLK:
-+		*count = clk_table->VcnClkLevelsEnabled;
-+		break;
-+	case SMU_DCLK:
-+		*count = clk_table->VcnClkLevelsEnabled;
-+		break;
-+	case SMU_MCLK:
-+		*count = clk_table->NumDfPstatesEnabled;
-+		break;
-+	case SMU_FCLK:
-+		*count = clk_table->NumDfPstatesEnabled;
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+static int yellow_carp_get_dpm_freq_by_index(struct smu_context *smu,
-+						enum smu_clk_type clk_type,
-+						uint32_t dpm_level,
-+						uint32_t *freq)
-+{
-+	DpmClocks_t *clk_table = smu->smu_table.clocks_table;
-+
-+	if (!clk_table || clk_type >= SMU_CLK_COUNT)
-+		return -EINVAL;
-+
-+	switch (clk_type) {
-+	case SMU_SOCCLK:
-+		if (dpm_level >= clk_table->NumSocClkLevelsEnabled)
-+			return -EINVAL;
-+		*freq = clk_table->SocClocks[dpm_level];
-+		break;
-+	case SMU_VCLK:
-+		if (dpm_level >= clk_table->VcnClkLevelsEnabled)
-+			return -EINVAL;
-+		*freq = clk_table->VClocks[dpm_level];
-+		break;
-+	case SMU_DCLK:
-+		if (dpm_level >= clk_table->VcnClkLevelsEnabled)
-+			return -EINVAL;
-+		*freq = clk_table->DClocks[dpm_level];
-+		break;
-+	case SMU_UCLK:
-+	case SMU_MCLK:
-+		if (dpm_level >= clk_table->NumDfPstatesEnabled)
-+			return -EINVAL;
-+		*freq = clk_table->DfPstateTable[dpm_level].MemClk;
-+		break;
-+	case SMU_FCLK:
-+		if (dpm_level >= clk_table->NumDfPstatesEnabled)
-+			return -EINVAL;
-+		*freq = clk_table->DfPstateTable[dpm_level].FClk;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static int yellow_carp_print_clk_levels(struct smu_context *smu,
- 				enum smu_clk_type clk_type, char *buf)
+ static struct cmn2asic_mapping yellow_carp_table_map[SMU_TABLE_COUNT] = {
+ 	TAB_MAP_VALID(WATERMARKS),
+ 	TAB_MAP_VALID(SMU_METRICS),
+@@ -648,6 +689,7 @@ void yellow_carp_set_ppt_funcs(struct smu_context *smu)
  {
--	int size = 0;
-+	int i, size = 0, ret = 0;
-+	uint32_t cur_value = 0, value = 0, count = 0;
- 
- 	switch (clk_type) {
- 	case SMU_OD_SCLK:
-@@ -476,10 +579,33 @@ static int yellow_carp_print_clk_levels(struct smu_context *smu,
- 		size += sprintf(buf + size, "SCLK: %7uMhz %10uMhz\n",
- 						smu->gfx_default_hard_min_freq, smu->gfx_default_soft_max_freq);
- 		break;
-+	case SMU_SOCCLK:
-+	case SMU_VCLK:
-+	case SMU_DCLK:
-+	case SMU_MCLK:
-+	case SMU_FCLK:
-+		ret = yellow_carp_get_current_clk_freq(smu, clk_type, &cur_value);
-+		if (ret)
-+			goto print_clk_out;
-+
-+		ret = yellow_carp_get_dpm_level_count(smu, clk_type, &count);
-+		if (ret)
-+			goto print_clk_out;
-+
-+		for (i = 0; i < count; i++) {
-+			ret = yellow_carp_get_dpm_freq_by_index(smu, clk_type, i, &value);
-+			if (ret)
-+				goto print_clk_out;
-+
-+			size += sprintf(buf + size, "%d: %uMhz %s\n", i, value,
-+					cur_value == value ? "*" : "");
-+		}
-+		break;
- 	default:
- 		break;
- 	}
- 
-+print_clk_out:
- 	return size;
+ 	smu->ppt_funcs = &yellow_carp_ppt_funcs;
+ 	smu->message_map = yellow_carp_message_map;
++	smu->feature_map = yellow_carp_feature_mask_map;
+ 	smu->table_map = yellow_carp_table_map;
+ 	smu->is_apu = true;
  }
- 
 -- 
 2.31.1
 
