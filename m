@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E147A3990A2
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:49:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 436AA39909D
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Jun 2021 18:49:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A69506ED93;
-	Wed,  2 Jun 2021 16:49:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9472F6ED87;
+	Wed,  2 Jun 2021 16:49:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2071.outbound.protection.outlook.com [40.107.220.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA1B46ED1A
- for <amd-gfx@lists.freedesktop.org>; Wed,  2 Jun 2021 16:49:41 +0000 (UTC)
+ (mail-co1nam11on2049.outbound.protection.outlook.com [40.107.220.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 913E96ED7E
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Jun 2021 16:49:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L5WCT0dz1CI+QoiAyYWpNWRUipy+uKZ/Du1GwNnohSYDsNS1G6AZCesLa47icaaQaPEyJlv5niJbTG/sUdvqO3MBEWxmIOJtDVyoKlsIgkOqwX+7ioTcNlU7if6B/+ASP5EXe9VtnO3XQLv053hopDFgtUau7+AXdYMfI6LHd67rtoGbIBWLcXXBQCLKODqalyTr3/mjdsI55nrKajJbqeRQ+Mqic2uiHAfrwDyzssZsnAYsy0eju52YakIQNLq7dlqm+8jo6YxLNAalTGlzF+MnVVrX9z9SsZSqBmNG/FYPLAfe269b54IxVYR39Zp/JtjKpWFcByEtp1gFxRG2Fg==
+ b=YZ4oLof1Qv9lgRoZVnw1akSbZ43Vk9s58XhPYat6U2hnFoB8ypeArG/MULRIknJ9iqtBHjOl+4TiNJ2irQnhxTVxb3M1+VtjXbNNcvvpuwnCAaxlAti21zTL0vtoWNMVcOw7YHiLARCFecdxoiEuGQGlNJAorGf5Ng8GsXSFt0eWvrvmURH+2ARgIpGIepR0YuN3T6nZGEXs/WlF1LshkMCcQVTEGYmaextrcSBzxbhBXZS6FTTpJauVtDk8bPfU3XWbNueHLmOhGOD/4XzTLIqiiS/rLNUXOBXpvn8zoOoNqcdUBeL3Vjrrh4alQPzLix0ebWF2os9zH2gZOzb/Mw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+4oinhi52japCA+raRkdQ11om6+nYiffIKBiH1rJ+kw=;
- b=auZsr83qZthvgx30lLvoFMvzt7u9qs78bW8p2sgGyhv/4WTJpheD2yKCYX4lZnGJIZK3Gpg4a+RsqMy8ldeA6VL5/+1MM1K1TMuycZnSsxYR8iuL8/wpJZiB5btfP4Qzg6QOETXAwdtvqP7szq81HJpeCgicCafH7Cq94DZiHyYHrS6351/FggyoSKehwbdVmfxnlRGHKEY7+6hCUWPN+X2NtfHNvbb35NVEMsnugb6tUaPNjtOypidF3oPp8DPpsz2ISVt2CFM7V+BTyC0+wuNS3P9MnJtqKdkUGQDTJ9ikHJwP5Atxzw97DPkhyNU1/dAy7/zb3iHSqDqfVEHwiA==
+ bh=mB+jYG4GpaQQNsVLVaArJ5QLo8eBrXsAJ8uQmZbETrI=;
+ b=k+2PVkjHVek35ECrEkDXsNr7Dy+izqmLkXh1zlCU944+hXNTEhajLB3jU1hiQtPcW8K/6sY+yG22K5wPclAZUtd8prW0TfqowgOSDJSNexSvRjgmjdAKKt1RG7igeMeGdos5C+Hjfd28q/oGMlyy0YmvJK0zimaZfFKiOdeTF9SmUpO903uDmWkAfi7rjoef+1fHWwTYtUyQI1zhONEVwgAy2rM/0/0RLcNRlAcXWv6B/BYqE8BBbCoMrf62+wCQVlGzVrrofuv9kgU2PPRB0TREUkF0QPZCW3rCE2eQNaaMnvOgh9EiAiC22OaTZ3J4yPgWXw887rQY1t+zG58bjg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+4oinhi52japCA+raRkdQ11om6+nYiffIKBiH1rJ+kw=;
- b=zdqXzAmC8uQjU0U8kKFaYgQ1n4iFaPRDY0UX6wZQZ+q3QNQC2KvurB9XEd5wxadC9Bxm0Bw8rfPjrDyTAcmVhewrHj+qpXT5oAG6WZ7oljx+6YUNSM4esjZz/NTqDG8lL5DZyXLb4urMNMDooRCw0H/FitNP2cXsTwxMWyYWN4A=
+ bh=mB+jYG4GpaQQNsVLVaArJ5QLo8eBrXsAJ8uQmZbETrI=;
+ b=Q6Yqk5ECRqurjbYCr2880JCExdj3FtoNA/mR1y1ege9hfCwKqIh5FgsDICX7Zb9mJ47SLgCr5YK1n3DTtOS9UPBlCRRbwRiCleHjfrUYvIHVxrrS8JF/q5eAKbvWkQEqRmfEs2Gw7sgZjcV0d0VNtj3AATiJfGcxxo6ACarRDgA=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,16 +34,16 @@ Received: from MN2PR12MB4488.namprd12.prod.outlook.com (2603:10b6:208:24e::19)
  by MN2PR12MB4077.namprd12.prod.outlook.com (2603:10b6:208:1da::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.21; Wed, 2 Jun
- 2021 16:49:40 +0000
+ 2021 16:49:41 +0000
 Received: from MN2PR12MB4488.namprd12.prod.outlook.com
  ([fe80::25f7:664:3a8f:25b6]) by MN2PR12MB4488.namprd12.prod.outlook.com
  ([fe80::25f7:664:3a8f:25b6%7]) with mapi id 15.20.4173.030; Wed, 2 Jun 2021
- 16:49:40 +0000
+ 16:49:41 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 18/89] drm/amd/pm: add smu13 ip support for moment(V3)
-Date: Wed,  2 Jun 2021 12:47:57 -0400
-Message-Id: <20210602164908.2848791-18-alexander.deucher@amd.com>
+Subject: [PATCH 19/89] drm/amd/pm: add yellow_carp_ppt implementation(V3)
+Date: Wed,  2 Jun 2021 12:47:58 -0400
+Message-Id: <20210602164908.2848791-19-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210602164908.2848791-1-alexander.deucher@amd.com>
 References: <20210602164908.2848791-1-alexander.deucher@amd.com>
@@ -59,50 +59,50 @@ Received: from localhost.localdomain (192.161.79.207) by
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.9 via Frontend
  Transport; Wed, 2 Jun 2021 16:49:40 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3e6bb729-7f05-43e4-d8dc-08d925e66a29
+X-MS-Office365-Filtering-Correlation-Id: fd4c3690-873c-4d35-e044-08d925e66a9a
 X-MS-TrafficTypeDiagnostic: MN2PR12MB4077:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4077B5761EF1559ABFEB32ABF73D9@MN2PR12MB4077.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-Microsoft-Antispam-PRVS: <MN2PR12MB4077F3C13F23ADD175EB00B7F73D9@MN2PR12MB4077.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lUbzRJab6cmXYwjdZ7V1vBax8/vc4zdYZHDFAhpfSpQVw+ZD6xRgFbw5YQHkD2yg06TmXVpeOd/6P2icrJ3Ir/4ND2OPC7gZ9nV6jGatbZWYI+bscUDHy82I4lY1ophnU6u7HWqpQbpniOelI+ajdZqeUOpErJNrTk2L+jiC/bUxjhB4k/nZtWnIf6+ipn6TsW/WCXfkhzu5Md29y/lxExO11rK/z2mlpKLhLHgI6hKJplyxAz8iNFfT+CgBCdD+e8xrH74Ui2k0uKzaQU3Nb7wPFYk6KD8/BkaVp+Fm/CpYPpVfGI6P0SU+YRmPhi2BG/CA7g+7EoxEEv5U3+0XdHLG+DCxIUrfJvS3/WbgCZu5HWoCKb13m4KmxL2SQlN3Lq+ziiP9i5M0/VHPZWKAlaQ1bOWExeiPP/ccZQsLgVNUV+4UsGHmRQX++BZTW3B5Y3VAZKngWHb8sKJ9GPc08lM8OJQ7qINZhRLPUXOY5g70/XUI7I37JEYvzg3BAm5GNcqSs28i8+fK4f3uEsWnV8hFp6uOlhX/T/awrgJh//bypDuqovqRqte4qpY8uAMlfMNJAjehYkq62NCWaD/NxXaij6IGwJRqyy65TCm4dzx5Z2X+k5x3w2D54WZ+2T/LSzmtBl0waUjKld+OI/dpbQoTOvm3F6jH5dDqX25VxR+u7u/VngwdcJVkqIJkqGu0
+X-Microsoft-Antispam-Message-Info: CixgHdaz+lVCVrEIOoBlUBqGkPQwo2hvMIsFOnwiT34pFbKdddN9va00l7MK0z1o/CXrI5HjZ8a5UjUhDMU6xMK7qp4qi6LqcP3v8FDTC2iBBLSE64eYPkkQqzE7TlCYRyyZU6hAESSXge5pGSrv3Iupb+1omLpM14g+lieq8TUog25yFIrjmNzoV9E9hcr5Tv0SMQu/QL2OPYaWY3NFmiqVYXTpWMLabl3ySMVT+7zWXGSaDSo2bqaUIsm3TknVCi25HjtDU91N4LtaA02wtMFcapQHrnoYVvWtWJMPhpOBz6vc4iwcrrQ9XcUqW0VpKfe3dbpt2Kc0EOLxp+kgRjv+LO+z5QTpt+oLedJi8rIBq00uYSjT3BH0FaFb1hYKI1vHNFdaG39sG4tYq8Om1ZYLNTAUoGTOMrb7r0YqrIfoWPxY79NnMwkbctPqNRSMQSaTbEDkNbrT3t8gALl9IsB3p0ILj80/1WZEqtkHDeo/+dksh9pxtJy5w38oxTHIBRXGDskG83LGBZO8uzxlQWpIFcaUCEk42lHHdGubkUtgsk/Y8cohrZOBjWvPeH6pvoBDoPcvFulAnqQLqNxBEbAQzV4Z4sbYQzSyYdJQbSW/60Fknf+M4MKNC+k3XxC2Z5yy1W9dHBQLMi1SKVWrwSt++MyiUvx5YdC4jmX3zNbuMPkLK9kjAimyRKbKOvrD
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB4488.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(366004)(136003)(376002)(346002)(396003)(39850400004)(8676002)(54906003)(4326008)(5660300002)(8936002)(6666004)(478600001)(316002)(83380400001)(16526019)(1076003)(6506007)(956004)(2616005)(52116002)(66946007)(26005)(66476007)(66556008)(2906002)(6916009)(38100700002)(38350700002)(36756003)(86362001)(6512007)(186003)(6486002)(69590400013);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?PF0CUk2p1tufUajlKH7D9LqO9Qd08eWCnJbDXhXQLKZoeMFhkBpay9H0pB66?=
- =?us-ascii?Q?BY+6z0Glqq3dtzvO26UCXWTMeUJjaLbI7JU/hRjC0Qq/Idudz1GgtyCZNJl4?=
- =?us-ascii?Q?wDLYu98e3ef2U0sX7cnq3KCSueDWzv+FJuxYzzf8+vSXf0TN2ap092Cz16I6?=
- =?us-ascii?Q?kGInqDnnJRDMClrWZifi8jzX5KTS8LwuKbnE5Q+6N53xzN7ZBxuMI1Y5JY6i?=
- =?us-ascii?Q?qB/n8LzWW0okaIhKhipS2QYEu5DMLhk0OgHCTz9jDeQF0tYXj7C99zjzWepu?=
- =?us-ascii?Q?2HcEc1OuiuDE/2doWtGx7u6IQAten/ob9vZ5L9fPSwY3HlY2Yq+BcL4+HDQ9?=
- =?us-ascii?Q?3ewfXcVgJvCrBnDhww41b7UA0WasX+CjX8TkMCtlPJ3UvqOmaWz0Zojf6m5E?=
- =?us-ascii?Q?OXlS73PFUH7Fo8F6fhnDQMjBBGfHFsymtFmd/sR7HxSQFEkOP4VDnqg3s9Zr?=
- =?us-ascii?Q?GNfQsFh6/tGZdMymdcyxPNr8EHYTepbHvqrDzSP13rYbOKrt5/BGA4t+3UFs?=
- =?us-ascii?Q?lrBaQHhZmWiHsbofW1ZdE+b3rydSY8Xsf9WG2lhExvX1GD/e6PAdqgq2A95g?=
- =?us-ascii?Q?7insUA02A04xDLP597aobKCeBRlk0az2qWrIbP9FOEgjC68vv5p9heKKWGfG?=
- =?us-ascii?Q?C6s77lD/Cq1HkTg6ab2yZPuiNu9g391Yf1DGem+ST1uIEwXD3i9X6nnQsVfY?=
- =?us-ascii?Q?STC2L0DT3icCNj6x6RYgBEunuo3HEMohf2juHvTkzjgdhOlUYPERdbxDRBtc?=
- =?us-ascii?Q?unD0+5i0auWv4WcfQzwoJG3XGiDJzmLXh1kacNszlSOgrN8c3raSODBpY+TO?=
- =?us-ascii?Q?KaV4WD9l4BARKP6IMSBLoYoECRJYW4Ji6CY815RQJPriNw3z+s6tOCP3MoDX?=
- =?us-ascii?Q?qXDfsDwbKZN3VryR0UWUQ1Zompgm2w/KARSK/M29kXp3eiYSeTZ5bCbyWxiS?=
- =?us-ascii?Q?IH0dOjB9YHJcJaSHDgVgJYAvTQ6EgvB4vLH0HkfUvv4JU6dpU3P0MufctLvU?=
- =?us-ascii?Q?ZD1UPX20/3Z+miPrbEkmbg1QYe5bo22Oh7LQF6/HrCiDxLVprclIRBcvr3ld?=
- =?us-ascii?Q?dxQcdSdzkH2t10kgYgzejwiRiTDiBp04+hQbpFJUcj43nBpbwD3hXeMcwrJ5?=
- =?us-ascii?Q?oWWmKlCQCT3gz2Jq8PoeotM0phRLM2UoTADBlfW6URbr3aUb8YdPG8FCnlML?=
- =?us-ascii?Q?85C1WyWkV+E4i1U6I6D/5iw7SqpRYbq+mx1rAmIN1ZV8g9DMNbAv2d495wZZ?=
- =?us-ascii?Q?pzIDkTG2uDhlHx1PWrQN5/U2dup3IyqRRkuH3bzskLM8ijmCZ1dG9yl2NzBh?=
- =?us-ascii?Q?z6D7MV31C6M2YFLLIUexxfkx?=
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?0WHhlgaNtXbR3EsMY6yI6nguzZCSKUXUhzPUPMYrUU8JTKknU0QS4kiAE4+c?=
+ =?us-ascii?Q?WvqXxW8i+he/iRIMhAa/cArkKYv1+wi+ZqZzfXek4WbaHciW9wcBcuXtuSXK?=
+ =?us-ascii?Q?iQ7HCYAkeNlNu3PhVzi7Wef4/oBoK+sNq42K0wtQ4OIJFj0pfepV2RH2O+oo?=
+ =?us-ascii?Q?5gmnkgb2ZkVA1+7JJXNDYLyFuXl5iHdY7aWqTaGDU2OMFjIHent6lgIkcGdw?=
+ =?us-ascii?Q?8buZKla94cE5yXbOLg8OXOrf2+UyUL9NpgKU9FtWqlBEL6UG0h91XxT/8rVn?=
+ =?us-ascii?Q?X3dxFr5VN8meaHOCatn3m/21/iCmXVD4jiByVhjO8sALxeK7uYR602Rg5dTf?=
+ =?us-ascii?Q?t8XscLtVK42ntC1IOk3Rc64XBubrD8QJm8TujCpewqck/L8lQw2se15V5YoC?=
+ =?us-ascii?Q?3kadkvZWg3Z/LbYtOHH7cITDbtBGjR7W6ZsPspAzVcHz7SZMLe3Tzs6uo/ou?=
+ =?us-ascii?Q?3RoGe+YjNpyK9TZ7LX3y2KDc10zalkbcpe9g7ATFiSScxXtpx0UYoHbQe6Fk?=
+ =?us-ascii?Q?FCciwqjpdxO/L3xvMOoUKWQRIvLFFazFx+dHZXEHICoWVOhg2ZIWisA7ogqX?=
+ =?us-ascii?Q?NQxfVKrIsGaXPWvyDCJV1LGdTbfTRgpGmI/w+M0z8Vg3BOO6bjB1HbrNlFeP?=
+ =?us-ascii?Q?mWhJqZD5vZV368aa7Tw93WFzgu0WhotJxVoLiUl9zGIcINTJo2YRQbWYCRuw?=
+ =?us-ascii?Q?tHfYu2pdQg0Rfdto07Kc22mE90TEhWw6xJgUPWxS9KXl0EPmSOmVg3yJ89Ey?=
+ =?us-ascii?Q?ZWqqVawvsU+vz4+VKwL1TswBtbMr6hzQ3uhA0MHDMTqBzmyuN6IXiJr9+pXf?=
+ =?us-ascii?Q?rY44iWTG9r6rrqcAyoT/r0esXKunHvGLBeRRfXBq5TYtVTEBP/nZctnyxbyf?=
+ =?us-ascii?Q?oXIOea/I0OUB+qiqB3RRPp4gSJpQXag3Am7Zxhk0CZfx/lDXhCOwDWyb4A1L?=
+ =?us-ascii?Q?j3TBj75VOBcSXNucMtrPoQHfH5sZ0C/eEDfmkj+psUNjpdbXMf+4OTjQkQdp?=
+ =?us-ascii?Q?SkKM8He3xUt1q1zI1b4L0Tr0nlSrPq0vkTjvHCjFdRUKGK/BRH4PZTrBQsDY?=
+ =?us-ascii?Q?2LE2YZJLApZGYv4Dh6qnbzzezP1tfsmibp3+rFCnzbWxR6uS2l/7UMSaDrMO?=
+ =?us-ascii?Q?+uRWoIuVyTUOypLXKFqSfxVgfw1FwUWWsONKPItClIk6ne4gQN/57MPO/qea?=
+ =?us-ascii?Q?4jiIFHcYJyrQAI8C5aPwSLXyhbH8qwI/oFtypyUCQp9lke7B3D5aJGA50XnA?=
+ =?us-ascii?Q?W5lcBHrD3VyiehiSzITh6V9PL1JTpn0j4TMuiHaHPemSY0lOfuP/TaSmDmtY?=
+ =?us-ascii?Q?RHtFnxtzlTRDK/jynX0AdoA7?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e6bb729-7f05-43e4-d8dc-08d925e66a29
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd4c3690-873c-4d35-e044-08d925e66a9a
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4488.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:49:40.6286 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2021 16:49:41.2419 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xjNCJBAAHCWYSqVG/3RWsmBECGQ7t9DHPCRkOCs7Y1AhG5A+sIJToctsg4BPDkiQKTAy5qVoop49G46LfFlCaw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: eDv5tDdQKRP0A9CW1KrZABUdGOtlA+QyD8Tlf3RrOs4WAH63WJnXcG6L3BSxB2OWumJTn3QJ058k37wEq77vFQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4077
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -124,10 +124,8 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Aaron Liu <aaron.liu@amd.com>
 
-For supporting yellow carp, we need to add smu13 ip
-support for the moment.
-
-V2: add smu_v13_0_1.c|h dedicated for apu.
+yellow_carp_ppt is swsmu layer 2 code for yellow carp.
+V2: rename smu_v13_0 to smu_v13_0_1
 V3: cleanup code.
 
 Signed-off-by: Aaron Liu <aaron.liu@amd.com>
@@ -136,103 +134,32 @@ Reviewed-by: Huang Rui <ray.huang@amd.com>
 Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h       |   1 +
- drivers/gpu/drm/amd/pm/inc/smu_v13_0_1.h      |  52 +++++++
  drivers/gpu/drm/amd/pm/swsmu/smu13/Makefile   |   2 +-
- .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_1.c  | 131 ++++++++++++++++++
- 4 files changed, 185 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/amd/pm/inc/smu_v13_0_1.h
- create mode 100644 drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_1.c
+ .../drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c  | 163 ++++++++++++++++++
+ .../drm/amd/pm/swsmu/smu13/yellow_carp_ppt.h  |  28 +++
+ 3 files changed, 192 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
+ create mode 100644 drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.h
 
-diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
-index 71adb9e76a95..bc55af477d1c 100644
---- a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
-+++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
-@@ -1275,6 +1275,7 @@ extern const struct amd_ip_funcs smu_ip_funcs;
- extern const struct amdgpu_ip_block_version smu_v11_0_ip_block;
- extern const struct amdgpu_ip_block_version smu_v12_0_ip_block;
- extern const struct amdgpu_ip_block_version smu_v13_0_ip_block;
-+extern const struct amdgpu_ip_block_version smu_v13_0_1_ip_block;
- 
- bool is_support_sw_smu(struct amdgpu_device *adev);
- bool is_support_cclk_dpm(struct amdgpu_device *adev);
-diff --git a/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1.h b/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1.h
-new file mode 100644
-index 000000000000..b2e9258dc06c
---- /dev/null
-+++ b/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1.h
-@@ -0,0 +1,52 @@
-+/*
-+ * Copyright 2020 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ */
-+#ifndef __SMU_V13_0_1_H__
-+#define __SMU_V13_0_1_H__
-+
-+#include "amdgpu_smu.h"
-+
-+#define SMU13_0_1_DRIVER_IF_VERSION_INV 0xFFFFFFFF
-+#define SMU13_0_1_DRIVER_IF_VERSION_YELLOW_CARP 0x3
-+
-+/* MP Apertures */
-+#define MP0_Public			0x03800000
-+#define MP0_SRAM			0x03900000
-+#define MP1_Public			0x03b00000
-+#define MP1_SRAM			0x03c00004
-+
-+/* address block */
-+#define smnMP1_FIRMWARE_FLAGS		0x3010024
-+
-+
-+#if defined(SWSMU_CODE_LAYER_L2) || defined(SWSMU_CODE_LAYER_L3)
-+
-+int smu_v13_0_1_check_fw_status(struct smu_context *smu);
-+
-+int smu_v13_0_1_check_fw_version(struct smu_context *smu);
-+
-+int smu_v13_0_1_fini_smc_tables(struct smu_context *smu);
-+
-+int smu_v13_0_1_set_default_dpm_tables(struct smu_context *smu);
-+
-+#endif
-+#endif
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/Makefile b/drivers/gpu/drm/amd/pm/swsmu/smu13/Makefile
-index 652b4e554378..0fb3ddc251e4 100644
+index 0fb3ddc251e4..9b3a8503f5cd 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/Makefile
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/Makefile
 @@ -23,7 +23,7 @@
  # Makefile for the 'smu manager' sub-component of powerplay.
  # It provides the smu management services for the driver.
  
--SMU13_MGR = smu_v13_0.o aldebaran_ppt.o
-+SMU13_MGR = smu_v13_0.o aldebaran_ppt.o smu_v13_0_1.o
+-SMU13_MGR = smu_v13_0.o aldebaran_ppt.o smu_v13_0_1.o
++SMU13_MGR = smu_v13_0.o aldebaran_ppt.o smu_v13_0_1.o yellow_carp_ppt.o
  
  AMD_SWSMU_SMU13MGR = $(addprefix $(AMD_SWSMU_PATH)/smu13/,$(SMU13_MGR))
  
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_1.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_1.c
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
 new file mode 100644
-index 000000000000..6ad2fcb2af2f
+index 000000000000..fd6b3f043efb
 --- /dev/null
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0_1.c
-@@ -0,0 +1,131 @@
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
+@@ -0,0 +1,163 @@
 +/*
 + * Copyright 2020 Advanced Micro Devices, Inc.
 + *
@@ -253,20 +180,19 @@ index 000000000000..6ad2fcb2af2f
 + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 + * OTHER DEALINGS IN THE SOFTWARE.
++ *
 + */
 +
-+//#include <linux/reboot.h>
-+
-+#define SWSMU_CODE_LAYER_L3
++#define SWSMU_CODE_LAYER_L2
 +
 +#include "amdgpu.h"
 +#include "amdgpu_smu.h"
 +#include "smu_v13_0_1.h"
-+#include "soc15_common.h"
++#include "smu13_driver_if_yellow_carp.h"
++#include "yellow_carp_ppt.h"
++#include "smu_v13_0_1_ppsmc.h"
++#include "smu_v13_0_1_pmfw.h"
 +#include "smu_cmn.h"
-+
-+#include "asic_reg/mp/mp_13_0_1_offset.h"
-+#include "asic_reg/mp/mp_13_0_1_sh_mask.h"
 +
 +/*
 + * DO NOT use these for err/warn/info/debug messages.
@@ -278,92 +204,159 @@ index 000000000000..6ad2fcb2af2f
 +#undef pr_info
 +#undef pr_debug
 +
-+int smu_v13_0_1_check_fw_status(struct smu_context *smu)
-+{
-+	struct amdgpu_device *adev = smu->adev;
-+	uint32_t mp1_fw_flags;
++static struct cmn2asic_msg_mapping yellow_carp_message_map[SMU_MSG_MAX_COUNT] = {
++	MSG_MAP(TestMessage,                    PPSMC_MSG_TestMessage,			1),
++	MSG_MAP(GetSmuVersion,                  PPSMC_MSG_GetSmuVersion,		1),
++	MSG_MAP(GetDriverIfVersion,             PPSMC_MSG_GetDriverIfVersion,		1),
++	MSG_MAP(EnableGfxOff,                   PPSMC_MSG_EnableGfxOff,			1),
++	MSG_MAP(AllowGfxOff,                    PPSMC_MSG_AllowGfxOff,			1),
++	MSG_MAP(DisallowGfxOff,                 PPSMC_MSG_DisallowGfxOff,		1),
++	MSG_MAP(PowerDownVcn,                   PPSMC_MSG_PowerDownVcn,			1),
++	MSG_MAP(PowerUpVcn,                     PPSMC_MSG_PowerUpVcn,			1),
++	MSG_MAP(SetHardMinVcn,                  PPSMC_MSG_SetHardMinVcn,		1),
++	MSG_MAP(ActiveProcessNotify,            PPSMC_MSG_ActiveProcessNotify,		1),
++	MSG_MAP(SetDriverDramAddrHigh,          PPSMC_MSG_SetDriverDramAddrHigh,	1),
++	MSG_MAP(SetDriverDramAddrLow,           PPSMC_MSG_SetDriverDramAddrLow,		1),
++	MSG_MAP(TransferTableSmu2Dram,          PPSMC_MSG_TransferTableSmu2Dram,	1),
++	MSG_MAP(TransferTableDram2Smu,          PPSMC_MSG_TransferTableDram2Smu,	1),
++	MSG_MAP(GfxDeviceDriverReset,           PPSMC_MSG_GfxDeviceDriverReset,		1),
++	MSG_MAP(GetEnabledSmuFeatures,          PPSMC_MSG_GetEnabledSmuFeatures,	1),
++	MSG_MAP(SetHardMinSocclkByFreq,         PPSMC_MSG_SetHardMinSocclkByFreq,	1),
++	MSG_MAP(SetSoftMinVcn,                  PPSMC_MSG_SetSoftMinVcn,		1),
++	MSG_MAP(GetGfxclkFrequency,             PPSMC_MSG_GetGfxclkFrequency,		1),
++	MSG_MAP(GetFclkFrequency,               PPSMC_MSG_GetFclkFrequency,		1),
++	MSG_MAP(SetSoftMaxGfxClk,               PPSMC_MSG_SetSoftMaxGfxClk,		1),
++	MSG_MAP(SetHardMinGfxClk,               PPSMC_MSG_SetHardMinGfxClk,		1),
++	MSG_MAP(SetSoftMaxSocclkByFreq,         PPSMC_MSG_SetSoftMaxSocclkByFreq,	1),
++	MSG_MAP(SetSoftMaxFclkByFreq,           PPSMC_MSG_SetSoftMaxFclkByFreq,		1),
++	MSG_MAP(SetSoftMaxVcn,                  PPSMC_MSG_SetSoftMaxVcn,		1),
++	MSG_MAP(SetPowerLimitPercentage,        PPSMC_MSG_SetPowerLimitPercentage,	1),
++	MSG_MAP(PowerDownJpeg,                  PPSMC_MSG_PowerDownJpeg,		1),
++	MSG_MAP(PowerUpJpeg,                    PPSMC_MSG_PowerUpJpeg,			1),
++	MSG_MAP(SetHardMinFclkByFreq,           PPSMC_MSG_SetHardMinFclkByFreq,		1),
++	MSG_MAP(SetSoftMinSocclkByFreq,         PPSMC_MSG_SetSoftMinSocclkByFreq,	1),
++};
 +
-+	mp1_fw_flags = RREG32_PCIE(MP1_Public |
-+				   (smnMP1_FIRMWARE_FLAGS & 0xffffffff));
-+
-+	if ((mp1_fw_flags & MP1_FIRMWARE_FLAGS__INTERRUPTS_ENABLED_MASK) >>
-+	    MP1_FIRMWARE_FLAGS__INTERRUPTS_ENABLED__SHIFT)
-+		return 0;
-+
-+	return -EIO;
-+}
-+
-+int smu_v13_0_1_check_fw_version(struct smu_context *smu)
-+{
-+	uint32_t if_version = 0xff, smu_version = 0xff;
-+	uint16_t smu_major;
-+	uint8_t smu_minor, smu_debug;
-+	int ret = 0;
-+
-+	ret = smu_cmn_get_smc_version(smu, &if_version, &smu_version);
-+	if (ret)
-+		return ret;
-+
-+	smu_major = (smu_version >> 16) & 0xffff;
-+	smu_minor = (smu_version >> 8) & 0xff;
-+	smu_debug = (smu_version >> 0) & 0xff;
-+
-+	switch (smu->adev->asic_type) {
-+	case CHIP_YELLOW_CARP:
-+		smu->smc_driver_if_version = SMU13_0_1_DRIVER_IF_VERSION_YELLOW_CARP;
-+		break;
-+
-+	default:
-+		dev_err(smu->adev->dev, "smu unsupported asic type:%d.\n", smu->adev->asic_type);
-+		smu->smc_driver_if_version = SMU13_0_1_DRIVER_IF_VERSION_INV;
-+		break;
-+	}
-+
-+	dev_info(smu->adev->dev, "smu fw reported version = 0x%08x (%d.%d.%d)\n",
-+			 smu_version, smu_major, smu_minor, smu_debug);
-+
-+	/*
-+	 * 1. if_version mismatch is not critical as our fw is designed
-+	 * to be backward compatible.
-+	 * 2. New fw usually brings some optimizations. But that's visible
-+	 * only on the paired driver.
-+	 * Considering above, we just leave user a warning message instead
-+	 * of halt driver loading.
-+	 */
-+	if (if_version != smu->smc_driver_if_version) {
-+		dev_info(smu->adev->dev, "smu driver if version = 0x%08x, smu fw if version = 0x%08x, "
-+			 "smu fw version = 0x%08x (%d.%d.%d)\n",
-+			 smu->smc_driver_if_version, if_version,
-+			 smu_version, smu_major, smu_minor, smu_debug);
-+		dev_warn(smu->adev->dev, "SMU driver if version not matched\n");
-+	}
-+
-+	return ret;
-+}
-+
-+int smu_v13_0_1_fini_smc_tables(struct smu_context *smu)
++static struct cmn2asic_mapping yellow_carp_table_map[SMU_TABLE_COUNT] = {
++	TAB_MAP_VALID(WATERMARKS),
++	TAB_MAP_VALID(SMU_METRICS),
++	TAB_MAP_VALID(CUSTOM_DPM),
++	TAB_MAP_VALID(DPMCLOCKS),
++};
++	
++static int yellow_carp_init_smc_tables(struct smu_context *smu)
 +{
 +	struct smu_table_context *smu_table = &smu->smu_table;
++	struct smu_table *tables = smu_table->tables;
 +
-+	kfree(smu_table->clocks_table);
-+	smu_table->clocks_table = NULL;
++	SMU_TABLE_INIT(tables, SMU_TABLE_WATERMARKS, sizeof(Watermarks_t),
++		PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
++	SMU_TABLE_INIT(tables, SMU_TABLE_DPMCLOCKS, sizeof(DpmClocks_t),
++		PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
++	SMU_TABLE_INIT(tables, SMU_TABLE_SMU_METRICS, sizeof(SmuMetrics_t),
++		PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
 +
-+	kfree(smu_table->metrics_table);
-+	smu_table->metrics_table = NULL;
++	smu_table->clocks_table = kzalloc(sizeof(DpmClocks_t), GFP_KERNEL);
++	if (!smu_table->clocks_table)
++		goto err0_out;
 +
-+	kfree(smu_table->watermarks_table);
-+	smu_table->watermarks_table = NULL;
++	smu_table->metrics_table = kzalloc(sizeof(SmuMetrics_t), GFP_KERNEL);
++	if (!smu_table->metrics_table)
++		goto err1_out;
++	smu_table->metrics_time = 0;
++
++	smu_table->watermarks_table = kzalloc(sizeof(Watermarks_t), GFP_KERNEL);
++	if (!smu_table->watermarks_table)
++		goto err2_out;
++
++	smu_table->gpu_metrics_table_size = sizeof(struct gpu_metrics_v2_0);
++	smu_table->gpu_metrics_table = kzalloc(smu_table->gpu_metrics_table_size, GFP_KERNEL);
++	if (!smu_table->gpu_metrics_table)
++		goto err3_out;
 +
 +	return 0;
++
++err3_out:
++	kfree(smu_table->watermarks_table);
++err2_out:
++	kfree(smu_table->metrics_table);
++err1_out:
++	kfree(smu_table->clocks_table);
++err0_out:
++	return -ENOMEM;
 +}
 +
-+int smu_v13_0_1_set_default_dpm_tables(struct smu_context *smu)
++static bool yellow_carp_is_dpm_running(struct smu_context *smu)
 +{
-+	struct smu_table_context *smu_table = &smu->smu_table;
++	struct amdgpu_device *adev = smu->adev;
 +
-+	return smu_cmn_update_table(smu, SMU_TABLE_DPMCLOCKS, 0, smu_table->clocks_table, false);
++	/*
++	 * Until now, the pmfw hasn't exported the interface of SMU
++	 * feature mask to APU SKU so just force on all the feature
++	 * at early initial stage.
++	 */
++	if (adev->in_suspend)
++		return false;
++	else
++		return true;
++
 +}
 +
++static const struct pptable_funcs yellow_carp_ppt_funcs = {
++	.check_fw_status = smu_v13_0_1_check_fw_status,
++	.check_fw_version = smu_v13_0_1_check_fw_version,
++	.init_smc_tables = yellow_carp_init_smc_tables,
++	.fini_smc_tables = smu_v13_0_1_fini_smc_tables,
++	.send_smc_msg_with_param = smu_cmn_send_smc_msg_with_param,
++	.send_smc_msg = smu_cmn_send_smc_msg,
++	.set_default_dpm_table = smu_v13_0_1_set_default_dpm_tables,
++	.is_dpm_running = yellow_carp_is_dpm_running,
++	.get_pp_feature_mask = smu_cmn_get_pp_feature_mask,
++	.set_pp_feature_mask = smu_cmn_set_pp_feature_mask,
++	.disable_all_features_with_exception = smu_cmn_disable_all_features_with_exception,
++};
++
++void yellow_carp_set_ppt_funcs(struct smu_context *smu)
++{
++	smu->ppt_funcs = &yellow_carp_ppt_funcs;
++	smu->message_map = yellow_carp_message_map;
++	smu->table_map = yellow_carp_table_map;
++	smu->is_apu = true;
++}
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.h b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.h
+new file mode 100644
+index 000000000000..b3ad8352c68a
+--- /dev/null
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.h
+@@ -0,0 +1,28 @@
++/*
++ * Copyright 2020 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++#ifndef __YELLOW_CARP_PPT_H__
++#define __YELLOW_CARP_PPT_H__
++
++extern void yellow_carp_set_ppt_funcs(struct smu_context *smu);
++
++#endif
 -- 
 2.31.1
 
