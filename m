@@ -1,42 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D045339A44F
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Jun 2021 17:17:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBE4339A451
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Jun 2021 17:17:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD9BD6F4A2;
-	Thu,  3 Jun 2021 15:17:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11B406F4A6;
+	Thu,  3 Jun 2021 15:17:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam08on2072.outbound.protection.outlook.com [40.107.101.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C72566F4A1
- for <amd-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 15:17:39 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2049.outbound.protection.outlook.com [40.107.93.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D50F6F4A3
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 15:17:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ay0XqvPhbcJ1yJVrbM0f08Ak6yBJg8oS49GUrEwhOq8s2m+AFI13EzlE/I0VP466cFqOpI6ZwcIQzsQGwwH8/EOB6SYj7kUlU+uO0P/XbvLRVuey/J4mA6geiShU3khu0mapKX/crT/CjhLEyIdT+mtJiOp0Q1lNrQi9ZKnAt8T8oAtVxxO64JQqM6xX/qXem3U1AD1WRNjXz/iPRZc/Ol+Ie7LQfpKDRUT76kBAId98GBRPtWk5hbHS8W2WR67NP3sog7zlBrux/KHnOu1WnGdDxMSXAK53ctNdU3tuih5lJxzrhBd0j73slwaJwcUUyxHWqCld+/ok2WcTDkdxMw==
+ b=iftIbpIk0612xOmgfsWv91nY24WCgXSZ+EbqT/xkgDwtAXivqsnMg8NqvmpQ74V1sC1mDJ+MVlhuOS/Lcu1nY/kimATYxjvPgeQus+FXjxh10MiGeYDbLKN8f3lc1eYFM792Tjh8QfiOd6MPW8f0eRaMiWHYjUya6DdO4EMwd61eDC5Ez3B7Cz/VFXn76/YIkzWUo8g3JVBwtivj9m5/65/wXJL4FQ3jTY/KdqyMWnXpND0tdQFXdrD8BGS5ImWaPynNiqhQ2FkSBEoZTTBnjc5Jm12DcEQNITpDyODrw9ctksqpx7rwY+QpMB3f0KQHnQFSuvbBwrV6ZfTs0Z3buA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N8Gy02qq1onN84XVK6IHMIqmtrPyWtmH4ZEGOrWC0os=;
- b=Z/EQ6uc8Zi7etppqLhFIoX6/KtyCH03fS1NXzbG4My3ajRiq1Y9MiAXmnzXPaDCy6RA2slFVYeHuiKoED/wH3RyIQciZDWNm7gFoBg8H6LiFfaU/CYGd220x4Cw9omimcR8oysrYhKOuKnzG1I645+69vVHXnHJYYZGBiITLfXYjNDxJv/4YDCXnhYDDzRLeKzbYkfJYAWAg2sasrnjTE8q22E+RE4S7+U1JyebG5mmbQ8KnqHGB3a1cCva4D8XUb/3zjD1Jxq2ibi1vV1le86ijrs4GUfDd1ibJ+K5p+7xeRkJrEQQHJj3zp+6IIAbiMzt2Lag65aK1HZc540EB/A==
+ bh=ak7fSGVKUO25mveeBHZxzCi9tZGYY6OD2nSYUUygS6I=;
+ b=K0a8/49j882igHWNh/Iw+LDMFVqKVLWk5+kAGM/x+2vaALL5QJ8VQ1omi98Cli2tGrilDl6HRRao8FMQEiLx20scu9gJj+e8P5JTMVtkBF/1P7SpvmmwConuioN/Ehc4k3pIM4EUnILRLhNMOpN0V4NT1XaNmqz3TDqAzmmlxpaDR8zsPobT/jIRPR5FBiUdzqUqVTF7UxoqhQR0zS2wNSvu84SKB7Hn7h1ivS3DtmLU6cUV+oG89yBAjGLbx9JsGK250mMexhqn8ax5Y+oCWxu4atZkPJ1q5auIWlt/chG5ht2ePuJTuoL5ciA6ldR2p0Rru/UpaZvnsTXuJMnFsQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N8Gy02qq1onN84XVK6IHMIqmtrPyWtmH4ZEGOrWC0os=;
- b=pAq1Pzxnz1Rir2Tm5fxdwXsU4J6T3mxskB23kWxWZu7S3hzeFlmq9ExYv/OJZQspm2Gh5w0KrYjuLtrDHqaUSUZMCqXucGOVirNBlmKwDUY5/wPABxYJf9A8MO6FCp6bEfeKjs07Wc+EgsuNQWCnDNDN5FyPGX4katU3XwneZz0=
-Received: from DM5PR2201CA0019.namprd22.prod.outlook.com (2603:10b6:4:14::29)
- by BN8PR12MB3171.namprd12.prod.outlook.com (2603:10b6:408:99::18)
+ bh=ak7fSGVKUO25mveeBHZxzCi9tZGYY6OD2nSYUUygS6I=;
+ b=Sb4TwrfhdxtQWI1As7bjJNrebd+y94U76FdpAfRfai4ZBHa2xxcp69pkaNqN+7tZvIRur/F1uWjOUJ363iAsd/sQy6qCV57Y5Z++N2kZYzA0OwW/8njnd9FgyYGYlbe8XaFGBUYGC0gtzJqM5pJxWbUui8IOGgyVmdEz08Nh4V0=
+Received: from DM5PR2201CA0020.namprd22.prod.outlook.com (2603:10b6:4:14::30)
+ by BYAPR12MB3094.namprd12.prod.outlook.com (2603:10b6:a03:db::23)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.20; Thu, 3 Jun
- 2021 15:17:38 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.22; Thu, 3 Jun
+ 2021 15:17:39 +0000
 Received: from DM6NAM11FT066.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:14:cafe::58) by DM5PR2201CA0019.outlook.office365.com
- (2603:10b6:4:14::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.22 via Frontend
+ (2603:10b6:4:14:cafe::70) by DM5PR2201CA0020.outlook.office365.com
+ (2603:10b6:4:14::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.15 via Frontend
  Transport; Thu, 3 Jun 2021 15:17:38 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
@@ -48,16 +48,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT066.mail.protection.outlook.com (10.13.173.179) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4195.22 via Frontend Transport; Thu, 3 Jun 2021 15:17:37 +0000
+ 15.20.4195.22 via Frontend Transport; Thu, 3 Jun 2021 15:17:38 +0000
 Received: from grasider-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Thu, 3 Jun 2021
- 10:17:32 -0500
+ 10:17:33 -0500
 From: Graham Sider <Graham.Sider@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v4 3/9] drm/amd/pm: Add common throttler translation func
-Date: Thu, 3 Jun 2021 11:16:36 -0400
-Message-ID: <20210603151642.14014-3-Graham.Sider@amd.com>
+Subject: [PATCH v4 4/9] drm/amd/pm: Add arcturus throttler translation
+Date: Thu, 3 Jun 2021 11:16:37 -0400
+Message-ID: <20210603151642.14014-4-Graham.Sider@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210603151642.14014-1-Graham.Sider@amd.com>
 References: <20210603151642.14014-1-Graham.Sider@amd.com>
@@ -67,27 +67,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ab254f3e-5677-4425-5582-08d926a2b907
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3171:
-X-Microsoft-Antispam-PRVS: <BN8PR12MB31719A8D6CEEF72113E3FA418A3C9@BN8PR12MB3171.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
+X-MS-Office365-Filtering-Correlation-Id: e718ed50-8d57-4d23-5d19-08d926a2b98f
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3094:
+X-Microsoft-Antispam-PRVS: <BYAPR12MB3094AE4298AD1F1EA325F8788A3C9@BYAPR12MB3094.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bI9THBpIbFLAXVDo0rDZCXPJ2v5ByR1/Fy/iWNgHe/0zBcfPQiX/6hB/6xi6Lvt9er2io/LOxID5C5ekTDHAporcSjIPti/IWIdPq6hcwfyGKMc72wPy9VojUG+gE0vZ5B0zq+q4rlMyZq2/H2qdzj5LA78BgQYB8G15SZSjiXIfabGChTpoZyOwxZqA89in0AlqOoA7JDa/F4CBb2urhrEolo7OMs6uXcBxgCVdte7niaD1VbTx8R26lpLd5wiBWzAWHKrpLY166agB/WYAdMHOnd6UM83WRRHdnPBCq/KnVx4l9rSYDTd1IiiXUtzzgD/QSDvRCjsTP3iaR7Xn0X4VlB7MTWMDSpAZoic2Tkx3337UZYts+6qwXmXNEdnFyAOajy6ismqXnHMBs7dfTPZfdN8n9RIYRJRFaHRxurGNsk+NJWnM4gxcqRA5te5quVA6MUMuY1u9eUH0KR3f+IQf2ijaDgK/KwJGSD8nx8dllhIFF5kpl0E01tYACyYOLJlFJXxGmoSdAGSP2f3K8mJBORe3GJCYyj92mEPpHdjZ/0rg+elZB1jFqgeeg2h+YvLo1IjI5GBrBUiD4R6qVbjqTWUdWq0kbXLOSqB6KULqXR6bVpJ9wryWPDCssUil2Og5L9kedi+nhl+iU3y8AKFDZLqt4qatJ4AXKiZrkmySd3dg59YQk/K7LrVmABYu
+X-Microsoft-Antispam-Message-Info: VylARpHYPX+PbaY2BZgVJdIlKdbZBfoINPC2Xu3b53GgIY9GjxmfvkzHAlnzbZzqQqCaMCB4UrrdatCIoOvnDmZKhcVw2J/B1Djg1/IXBRbTK5ShkCtgYOfWohrkLluB9krpnZ1oKg1KyNF7B002wsVIIE0zDCYQgQoUIqpo5wrKgK59wXjExMBWZmHVxMCSivrTfcJribWlwzTQaU++OBekrbrdq8AYHtqG/40yfe5xW+qUjriJjvHpYdAqW+2bx/i34runmcSEAJT1hCbhGVb0cRrbdi59Rlqb0gejw+ROW7ui99TjRLGc6+VZ5N/AeRmUklI5/6TS4T5uRuxslSsQ3mrd3gpzXvkqs0Bhm1U1if+fg936vVDolmI7hR7dhwu5N2iU0OCMzBId+a+QgSnlQ5F3f1OSZ+J8eTKg785FAjiBQvNkPvmk4kt4kCzzXMxWZMqlNt6IJh4keRe8liAhW3DM8gUJtE9wqMtKA0caVSucCHLREESQBYySiGrCdUU7tjc6dRZ0SWFd4SXUEu9AQYdRiIa8QH3leNj/cok5YrilFpSjM4MuBv1mHUgWKtGgQO0a0uPasTZWZchwAZk73OvpKnmp9BTYlPs28gw2LoHAPtrI3pp3uTO/yxuNZGWK3cqxNTWB/dVujqB4d24bvU45m1vE1Jw2NAkWOPXtavutksf64v76JhTwRt87
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(136003)(376002)(39860400002)(396003)(46966006)(36840700001)(83380400001)(86362001)(4326008)(356005)(5660300002)(478600001)(82310400003)(1076003)(316002)(54906003)(70586007)(26005)(336012)(36860700001)(82740400003)(6916009)(81166007)(8936002)(8676002)(2616005)(7696005)(426003)(70206006)(186003)(2906002)(36756003)(16526019)(47076005)(36900700001);
+ SFS:(4636009)(376002)(136003)(396003)(346002)(39860400002)(36840700001)(46966006)(186003)(6916009)(16526019)(7696005)(356005)(81166007)(4326008)(426003)(86362001)(336012)(82740400003)(26005)(47076005)(316002)(2616005)(8676002)(36756003)(8936002)(54906003)(83380400001)(478600001)(36860700001)(5660300002)(82310400003)(70586007)(2906002)(70206006)(1076003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2021 15:17:37.9419 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab254f3e-5677-4425-5582-08d926a2b907
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2021 15:17:38.8334 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e718ed50-8d57-4d23-5d19-08d926a2b98f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT066.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3171
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3094
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,54 +106,93 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Defines smu_cmn_get_indep_throttler_status which performs ASIC
-independent translation given a corresponding lookup table.
+Perform dependent to independent throttle status translation
+for arcturus.
 
 Signed-off-by: Graham Sider <Graham.Sider@amd.com>
 ---
- drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c | 13 +++++++++++++
- drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h |  4 ++++
- 2 files changed, 17 insertions(+)
+ .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c | 33 ++++++++++++++++---
+ 1 file changed, 28 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-index 01645537d9ab..269a42c0536a 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-@@ -398,6 +398,19 @@ int smu_cmn_get_enabled_32_bits_mask(struct smu_context *smu,
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+index 1735a96dd307..9a8ae9e3fc39 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+@@ -211,6 +211,26 @@ static const struct cmn2asic_mapping arcturus_workload_map[PP_SMC_POWER_PROFILE_
+ 	WORKLOAD_MAP(PP_SMC_POWER_PROFILE_CUSTOM,		WORKLOAD_PPLIB_CUSTOM_BIT),
+ };
  
++static const uint8_t arcturus_throttler_map[] = {
++	[THROTTLER_TEMP_EDGE_BIT]	= (SMU_THROTTLER_TEMP_EDGE_BIT),
++	[THROTTLER_TEMP_HOTSPOT_BIT]	= (SMU_THROTTLER_TEMP_HOTSPOT_BIT),
++	[THROTTLER_TEMP_MEM_BIT]	= (SMU_THROTTLER_TEMP_MEM_BIT),
++	[THROTTLER_TEMP_VR_GFX_BIT]	= (SMU_THROTTLER_TEMP_VR_GFX_BIT),
++	[THROTTLER_TEMP_VR_MEM_BIT]	= (SMU_THROTTLER_TEMP_VR_MEM_BIT),
++	[THROTTLER_TEMP_VR_SOC_BIT]	= (SMU_THROTTLER_TEMP_VR_SOC_BIT),
++	[THROTTLER_TDC_GFX_BIT]		= (SMU_THROTTLER_TDC_GFX_BIT),
++	[THROTTLER_TDC_SOC_BIT]		= (SMU_THROTTLER_TDC_SOC_BIT),
++	[THROTTLER_PPT0_BIT]		= (SMU_THROTTLER_PPT0_BIT),
++	[THROTTLER_PPT1_BIT]		= (SMU_THROTTLER_PPT1_BIT),
++	[THROTTLER_PPT2_BIT]		= (SMU_THROTTLER_PPT2_BIT),
++	[THROTTLER_PPT3_BIT]		= (SMU_THROTTLER_PPT3_BIT),
++	[THROTTLER_PPM_BIT]		= (SMU_THROTTLER_PPM_BIT),
++	[THROTTLER_FIT_BIT]		= (SMU_THROTTLER_FIT_BIT),
++	[THROTTLER_APCC_BIT]		= (SMU_THROTTLER_APCC_BIT),
++	[THROTTLER_VRHOT0_BIT]		= (SMU_THROTTLER_VRHOT0_BIT),
++	[THROTTLER_VRHOT1_BIT]		= (SMU_THROTTLER_VRHOT1_BIT),
++};
++
+ static int arcturus_tables_init(struct smu_context *smu)
+ {
+ 	struct smu_table_context *smu_table = &smu->smu_table;
+@@ -237,7 +257,7 @@ static int arcturus_tables_init(struct smu_context *smu)
+ 		return -ENOMEM;
+ 	smu_table->metrics_time = 0;
+ 
+-	smu_table->gpu_metrics_table_size = sizeof(struct gpu_metrics_v1_1);
++	smu_table->gpu_metrics_table_size = sizeof(struct gpu_metrics_v1_3);
+ 	smu_table->gpu_metrics_table = kzalloc(smu_table->gpu_metrics_table_size, GFP_KERNEL);
+ 	if (!smu_table->gpu_metrics_table) {
+ 		kfree(smu_table->metrics_table);
+@@ -2275,8 +2295,8 @@ static ssize_t arcturus_get_gpu_metrics(struct smu_context *smu,
+ 					void **table)
+ {
+ 	struct smu_table_context *smu_table = &smu->smu_table;
+-	struct gpu_metrics_v1_1 *gpu_metrics =
+-		(struct gpu_metrics_v1_1 *)smu_table->gpu_metrics_table;
++	struct gpu_metrics_v1_3 *gpu_metrics =
++		(struct gpu_metrics_v1_3 *)smu_table->gpu_metrics_table;
+ 	SmuMetrics_t metrics;
+ 	int ret = 0;
+ 
+@@ -2286,7 +2306,7 @@ static ssize_t arcturus_get_gpu_metrics(struct smu_context *smu,
+ 	if (ret)
+ 		return ret;
+ 
+-	smu_cmn_init_soft_gpu_metrics(gpu_metrics, 1, 1);
++	smu_cmn_init_soft_gpu_metrics(gpu_metrics, 1, 3);
+ 
+ 	gpu_metrics->temperature_edge = metrics.TemperatureEdge;
+ 	gpu_metrics->temperature_hotspot = metrics.TemperatureHotspot;
+@@ -2315,6 +2335,9 @@ static ssize_t arcturus_get_gpu_metrics(struct smu_context *smu,
+ 	gpu_metrics->current_dclk0 = metrics.CurrClock[PPCLK_DCLK];
+ 
+ 	gpu_metrics->throttle_status = metrics.ThrottlerStatus;
++	gpu_metrics->indep_throttle_status =
++			smu_cmn_get_indep_throttler_status(metrics.ThrottlerStatus,
++							   arcturus_throttler_map);
+ 
+ 	gpu_metrics->current_fan_speed = metrics.CurrFanSpeed;
+ 
+@@ -2327,7 +2350,7 @@ static ssize_t arcturus_get_gpu_metrics(struct smu_context *smu,
+ 
+ 	*table = (void *)gpu_metrics;
+ 
+-	return sizeof(struct gpu_metrics_v1_1);
++	return sizeof(struct gpu_metrics_v1_3);
  }
  
-+uint64_t smu_cmn_get_indep_throttler_status(
-+					const unsigned long dep_status,
-+					const uint8_t *throttler_map)
-+{
-+	uint64_t indep_status = 0;
-+	uint8_t dep_bit = 0;
-+
-+	for_each_set_bit(dep_bit, &dep_status, 32)
-+		indep_status |= 1ULL << throttler_map[dep_bit];
-+
-+	return indep_status;
-+}
-+
- int smu_cmn_feature_update_enable_state(struct smu_context *smu,
- 					uint64_t feature_mask,
- 					bool enabled)
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
-index da6ff6f024f9..c57ce2b2cdc6 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
-@@ -60,6 +60,10 @@ int smu_cmn_get_enabled_32_bits_mask(struct smu_context *smu,
- 					uint32_t *feature_mask,
- 					uint32_t num);
- 
-+uint64_t smu_cmn_get_indep_throttler_status(
-+					const unsigned long dep_status,
-+					const uint8_t *throttler_map);
-+
- int smu_cmn_feature_update_enable_state(struct smu_context *smu,
- 					uint64_t feature_mask,
- 					bool enabled);
+ static const struct pptable_funcs arcturus_ppt_funcs = {
 -- 
 2.17.1
 
