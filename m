@@ -2,57 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ACF2399FDC
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Jun 2021 13:34:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C9B39A178
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Jun 2021 14:50:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ED286E270;
-	Thu,  3 Jun 2021 11:34:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B8766F472;
+	Thu,  3 Jun 2021 12:50:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
- [IPv6:2a00:1450:4864:20::62f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46A1E6E270
- for <amd-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 11:34:05 +0000 (UTC)
-Received: by mail-ej1-x62f.google.com with SMTP id k25so3218748eja.9
- for <amd-gfx@lists.freedesktop.org>; Thu, 03 Jun 2021 04:34:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to; bh=6HvIM789SubGuMYbkNpXgOUOzv2hDzoCVUlTW74s4fU=;
- b=Icz+hjCozpAbugnKTylUiZbczne6xNvCGiJZU4Ly+Y0sTLpTodbh9k4gjcGfRsjGg/
- no7FFQmnsdBfKr9sK4hrwdOb1O14S9safSd/B9yMITPwQlvWCp+FhIUkoUgp/bmsqz9c
- 88sMh5y11ExAwXNyPJkPGgqwn4tfntMA/Y84s=
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
+ [IPv6:2a00:1450:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B09ED6EDBE
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 11:52:38 +0000 (UTC)
+Received: by mail-wm1-x332.google.com with SMTP id
+ l11-20020a05600c4f0bb029017a7cd488f5so3573584wmq.0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 03 Jun 2021 04:52:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=date:from:to:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=Nxij94IMFMsp61zYWJS5XKMycKfWOvntSLUdgR9Luec=;
+ b=PP1Vx2P7z4p7uzC7frRq63E4x3I08msTGMShcvAdEGFQwbgoSQLam6TY7qFtZnfrip
+ sZ2vdZz58OMVJtBV+LV7UtfH3hRj1TGjasngZ2KltASWY+0UFk1GkCFvbmMy1zh8VBMP
+ dPoAp8/Papp6e6Y9syxE5WTIn3EkF63IUFXhjOyvBnTk1EZXXSJ1zWN+ZFpLmyfRRgmV
+ zaZeW5clEklapwp4mQNAksAoChe6wCnp4zD6/sK7bIoELjiqOV1BWj7Fd7qq0A12wR59
+ YBj4xTZnnoKIwJpwtS8WL69eLi0TYKCyPQcOnDWAOzYthTaMGxq+z6P1knTVhENqAX1n
+ l+Kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :content-transfer-encoding:in-reply-to;
- bh=6HvIM789SubGuMYbkNpXgOUOzv2hDzoCVUlTW74s4fU=;
- b=KyaLDdbSoPm9vXjPG7v8gKWekkqVptZvPYiGHgpgWDPDNxo5X2bMzGyBeLXxrVJdmf
- AAkufMRe6TFsf6jzMcbw2dfT68XoMkMyrUembhw2XM1cmjTaXNeKGrL6o2OY7SMXL/3C
- iYki/MtCkVmjYWQi8AsqjXw+Wqk9tCpZTl5ndsNYJuJV8E0bszTG7rKeG4DFDXVwD9DX
- o4SMUwiZI4vU1GDo2SzeNn5nmoZ9PupkeWndR1rTCBz8UyDDK0xbbBrEJ4hHta2Onx6H
- 3VUkImJR+4igVa6Xx6xadJZNOjsuDhrK3tXlz/sOqg0yb/c6nXvnMXUCwEwzYSXdyfMO
- ERbg==
-X-Gm-Message-State: AOAM5307FNRZyXNV3gxztnQ8IMtmh0N5DXXjja9m+mUzrfONWXY4ZtYL
- W4Wv7wv8Vhi+tfXHLM+ZeD2iKQ==
-X-Google-Smtp-Source: ABdhPJyCwjLRS9cmLZJ0uTIlfsEVYF9kSAF6LM5y2zAtZNY0+nXGguY0rzWF/YLHqYcWC2qrUHt3Fw==
-X-Received: by 2002:a17:906:51d8:: with SMTP id
- v24mr23819138ejk.264.1622720043762; 
- Thu, 03 Jun 2021 04:34:03 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id p7sm1638842edw.43.2021.06.03.04.34.01
+ h=x-gm-message-state:date:from:to:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=Nxij94IMFMsp61zYWJS5XKMycKfWOvntSLUdgR9Luec=;
+ b=f9miD+9hsqNzm/plnerUiJJKPmZYpjbKC8h2C94T6LmsS9CXomiOEwED/N1e0kLJJt
+ R5vTDFNGev0tvtNsgq1Pmvken3B6GgemjYWZPyqSwjQGdb23OvLNnChZovZj1zFh6Bil
+ 23ohyf9dz5Ke2s2MdnlRxa+7kkRzU/68CEIpDDPjvT2yQ9CNNz9tTwIJl+2demP+muxj
+ BRto5fSH4whW2sXO1TtKJ8EGAZutf9aCcjjS498855+s4wIZHKGyFEPuNm6YG6ZeYuOU
+ 25LwmwkqFPtPZb/hlEK6IGqIDUg7VoT/iZJJYzAHzgosGMjzlxECU4A8QLPaGfG6KlUw
+ X1bQ==
+X-Gm-Message-State: AOAM533+aeBl48dyK+Lba9d1NciMpn3I9XOgUiiUzCSbHgtORmZXuXJp
+ WSPkYs9PfI/UERb6Q19CZl2T5Q==
+X-Google-Smtp-Source: ABdhPJy5Njm66nMjE/L6HCMm1K6dzFQlD8FyCcfSndwd7kIwe0+i4mO9AXShjFboYjDIKB2XcsUlUA==
+X-Received: by 2002:a05:600c:4e8b:: with SMTP id
+ f11mr4461550wmq.40.1622721157306; 
+ Thu, 03 Jun 2021 04:52:37 -0700 (PDT)
+Received: from dell ([91.110.221.214])
+ by smtp.gmail.com with ESMTPSA id h9sm2479488wmb.35.2021.06.03.04.52.35
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Jun 2021 04:34:03 -0700 (PDT)
-Date: Thu, 3 Jun 2021 13:34:00 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Lee Jones <lee.jones@linaro.org>
-Subject: Re: [RESEND 00/26] Rid W=1 warnings from GPU
-Message-ID: <YLi+KJrLjKbdXLxH@phenom.ffwll.local>
-Mail-Followup-To: Lee Jones <lee.jones@linaro.org>,
- linux-kernel@vger.kernel.org, Adam Jackson <ajax@redhat.com>,
- Ajay Kumar <ajaykumar.rs@samsung.com>,
- Akshu Agarwal <akshua@gmail.com>,
+ Thu, 03 Jun 2021 04:52:36 -0700 (PDT)
+Date: Thu, 3 Jun 2021 12:52:34 +0100
+From: Lee Jones <lee.jones@linaro.org>
+To: linux-kernel@vger.kernel.org, Adam Jackson <ajax@redhat.com>,
+ Ajay Kumar <ajaykumar.rs@samsung.com>, Akshu Agarwal <akshua@gmail.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  Alistair Popple <apopple@nvidia.com>, amd-gfx@lists.freedesktop.org,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
@@ -62,14 +61,11 @@ Mail-Followup-To: Lee Jones <lee.jones@linaro.org>,
  Christian Koenig <christian.koenig@amd.com>,
  Chun-Kuang Hu <chunkuang.hu@kernel.org>,
  David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Eric Anholt <eric@anholt.net>,
- Fabien Dessenne <fabien.dessenne@st.com>,
- freedreno@lists.freedesktop.org,
- Hans de Goede <hdegoede@redhat.com>,
+ Eric Anholt <eric@anholt.net>, Fabien Dessenne <fabien.dessenne@st.com>,
+ freedreno@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
  Harry Wentland <harry.wentland@amd.com>,
  Huang Rui <ray.huang@amd.com>, Hyun Kwon <hyun.kwon@xilinx.com>,
- Inki Dae <inki.dae@samsung.com>,
- Jagan Teki <jagan@amarulasolutions.com>,
+ Inki Dae <inki.dae@samsung.com>, Jagan Teki <jagan@amarulasolutions.com>,
  Joonyoung Shim <jy0922.shim@samsung.com>,
  Krishna Manikandan <mkrishn@codeaurora.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -83,20 +79,21 @@ Mail-Followup-To: Lee Jones <lee.jones@linaro.org>,
  Marek Szyprowski <m.szyprowski@samsung.com>,
  Matthias Brugger <matthias.bgg@gmail.com>,
  Mauro Rossi <issor.oruam@gmail.com>,
- Michal Simek <michal.simek@xilinx.com>,
- nouveau@lists.freedesktop.org,
+ Michal Simek <michal.simek@xilinx.com>, nouveau@lists.freedesktop.org,
  Philipp Zabel <p.zabel@pengutronix.de>,
  Rob Clark <robdclark@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
  Sean Paul <sean@poorly.run>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- Stephen Boyd <swboyd@chromium.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
+ Stephen Boyd <swboyd@chromium.org>, Sumit Semwal <sumit.semwal@linaro.org>,
  Thierry Reding <thierry.reding@gmail.com>,
  Vincent Abriou <vincent.abriou@st.com>
+Subject: Re: [RESEND 00/26] Rid W=1 warnings from GPU
+Message-ID: <20210603115234.GA2435141@dell>
 References: <20210602143300.2330146-1-lee.jones@linaro.org>
+ <YLi+KJrLjKbdXLxH@phenom.ffwll.local>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210602143300.2330146-1-lee.jones@linaro.org>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
+In-Reply-To: <YLi+KJrLjKbdXLxH@phenom.ffwll.local>
+X-Mailman-Approved-At: Thu, 03 Jun 2021 12:50:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,197 +105,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- Mauro Rossi <issor.oruam@gmail.com>, dri-devel@lists.freedesktop.org,
- Eric Anholt <eric@anholt.net>, Huang Rui <ray.huang@amd.com>,
- Rob Clark <robdclark@gmail.com>, Fabien Dessenne <fabien.dessenne@st.com>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
- Kuogee Hsieh <khsieh@codeaurora.org>, Sam Ravnborg <sam@ravnborg.org>,
- Ajay Kumar <ajaykumar.rs@samsung.com>,
- Chandan Uddaraju <chandanu@codeaurora.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Ben Widawsky <ben@bwidawsk.net>,
- linux-samsung-soc@vger.kernel.org, Joonyoung Shim <jy0922.shim@samsung.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
- Vincent Abriou <vincent.abriou@st.com>, Alistair Popple <apopple@nvidia.com>,
- Michal Simek <michal.simek@xilinx.com>, amd-gfx@lists.freedesktop.org,
- Sumit Semwal <sumit.semwal@linaro.org>, Ben Skeggs <bskeggs@redhat.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Jagan Teki <jagan@amarulasolutions.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Leo Li <sunpeng.li@amd.com>,
- linux-arm-msm@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
- Inki Dae <inki.dae@samsung.com>, Hans de Goede <hdegoede@redhat.com>,
- Akshu Agarwal <akshua@gmail.com>, Matthias Brugger <matthias.bgg@gmail.com>,
- Sean Paul <sean@poorly.run>, linux-arm-kernel@lists.infradead.org,
- Krishna Manikandan <mkrishn@codeaurora.org>, Hyun Kwon <hyun.kwon@xilinx.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>, linux-kernel@vger.kernel.org,
- Kyungmin Park <kyungmin.park@samsung.com>, linaro-mm-sig@lists.linaro.org,
- Adam Jackson <ajax@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>, linux-mediatek@lists.infradead.org,
- linux-media@vger.kernel.org, freedreno@lists.freedesktop.org,
- Christian Koenig <christian.koenig@amd.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 02, 2021 at 03:32:34PM +0100, Lee Jones wrote:
-> Some off these patches have been knocking around for a while.
-> =
-
-> Who will hoover them up please?
-> =
-
-> This set is part of a larger effort attempting to clean-up W=3D1
-> kernel builds, which are currently overwhelmingly riddled with
-> niggly little warnings.
-> =
-
-> Lee Jones (26):
->   drm/mediatek/mtk_disp_color: Strip incorrect doc and demote header
->   drm/mediatek/mtk_disp_gamma: Strip and demote non-conformant
->     kernel-doc header
->   drm/mediatek/mtk_disp_ovl: Strip and demote non-conformant header
->   drm/mediatek/mtk_disp_rdma: Strip and demote non-conformant kernel-doc
->     header
->   drm/sti/sti_hdmi_tx3g4c28phy: Provide function names for kernel-doc
->     headers
->   drm/sti/sti_hda: Provide missing function names
->   drm/sti/sti_tvout: Provide a bunch of missing function names
->   drm/sti/sti_hqvdp: Fix incorrectly named function 'sti_hqvdp_vtg_cb()'
->   drm/msm/disp/dpu1/dpu_encoder_phys_cmd: Remove unused variable
->     'cmd_enc'
->   drm/msm/disp/dpu1/dpu_hw_interrupts: Demote a bunch of kernel-doc
->     abuses
->   drm/msm/disp/dpu1/dpu_plane: Fix a couple of naming issues
->   drm/msm/msm_gem: Demote kernel-doc abuses
->   drm/msm/dp/dp_catalog: Correctly document param 'dp_catalog'
->   drm/msm/dp/dp_link: Fix some potential doc-rot
->   drm/nouveau/nvkm/subdev/mc/tu102: Make functions called by reference
->     static
->   drm/amd/display/dc/dce/dce_transform: Remove superfluous
->     re-initialisation of DCFE_MEM_LIGHT_SLEEP_CNTL,
->   drm/xlnx/zynqmp_disp: Fix incorrectly named enum
->     'zynqmp_disp_layer_id'
->   drm/xlnx/zynqmp_dp: Fix incorrectly name function 'zynqmp_dp_train()'
->   drm/ttm/ttm_tt: Demote non-conformant kernel-doc header
->   drm/panel/panel-raspberrypi-touchscreen: Demote kernel-doc abuse
->   drm/panel/panel-sitronix-st7701: Demote kernel-doc abuse
->   drm/vgem/vgem_drv: Standard comment blocks should not use kernel-doc
->     format
->   drm/exynos/exynos7_drm_decon: Fix incorrect naming of
->     'decon_shadow_protect_win()'
->   drm/exynos/exynos_drm_ipp: Fix documentation for
->     'exynos_drm_ipp_get_{caps,res}_ioctl()'
->   drm/vboxvideo/hgsmi_base: Place function names into headers
->   drm/vboxvideo/modesetting: Provide function names for prototype
->     headers
-
-Except for msm (Rob Clark promised on irc he'll pick them up for 5.14
-soon) and amd (Alex is on top of things I think) I picked them all up and
-merged into drm-misc-next.
-
-Thanks, Daniel
-
-> =
-
->  .../drm/amd/display/dc/dce/dce_transform.h    |  3 +-
->  drivers/gpu/drm/exynos/exynos7_drm_decon.c    |  2 +-
->  drivers/gpu/drm/exynos/exynos_drm_ipp.c       |  4 +--
->  drivers/gpu/drm/mediatek/mtk_disp_color.c     |  3 +-
->  drivers/gpu/drm/mediatek/mtk_disp_gamma.c     |  4 +--
->  drivers/gpu/drm/mediatek/mtk_disp_ovl.c       |  3 +-
->  drivers/gpu/drm/mediatek/mtk_disp_rdma.c      |  4 +--
->  .../drm/msm/disp/dpu1/dpu_encoder_phys_cmd.c  |  4 ---
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c | 32 +++++++++----------
->  drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c     |  4 +--
->  drivers/gpu/drm/msm/dp/dp_catalog.c           |  2 +-
->  drivers/gpu/drm/msm/dp/dp_link.c              |  6 ++--
->  drivers/gpu/drm/msm/msm_gem.c                 |  4 +--
->  .../gpu/drm/nouveau/nvkm/subdev/mc/tu102.c    |  6 ++--
->  .../drm/panel/panel-raspberrypi-touchscreen.c |  2 +-
->  drivers/gpu/drm/panel/panel-sitronix-st7701.c |  2 +-
->  drivers/gpu/drm/sti/sti_hda.c                 |  6 ++--
->  drivers/gpu/drm/sti/sti_hdmi_tx3g4c28phy.c    |  4 +--
->  drivers/gpu/drm/sti/sti_hqvdp.c               |  2 +-
->  drivers/gpu/drm/sti/sti_tvout.c               | 18 +++++------
->  drivers/gpu/drm/ttm/ttm_tt.c                  |  2 +-
->  drivers/gpu/drm/vboxvideo/hgsmi_base.c        | 19 +++++++----
->  drivers/gpu/drm/vboxvideo/modesetting.c       | 20 +++++++-----
->  drivers/gpu/drm/vgem/vgem_drv.c               |  2 +-
->  drivers/gpu/drm/xlnx/zynqmp_disp.c            |  2 +-
->  drivers/gpu/drm/xlnx/zynqmp_dp.c              |  2 +-
->  26 files changed, 80 insertions(+), 82 deletions(-)
-> =
-
-> Cc: Adam Jackson <ajax@redhat.com>
-> Cc: Ajay Kumar <ajaykumar.rs@samsung.com>
-> Cc: Akshu Agarwal <akshua@gmail.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Alistair Popple <apopple@nvidia.com>
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> Cc: Benjamin Gaignard <benjamin.gaignard@linaro.org>
-> Cc: Ben Skeggs <bskeggs@redhat.com>
-> Cc: Ben Widawsky <ben@bwidawsk.net>
-> Cc: Chandan Uddaraju <chandanu@codeaurora.org>
-> Cc: Christian Koenig <christian.koenig@amd.com>
-> Cc: "Christian K=F6nig" <christian.koenig@amd.com>
-> Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: Eric Anholt <eric@anholt.net>
-> Cc: Fabien Dessenne <fabien.dessenne@st.com>
-> Cc: freedreno@lists.freedesktop.org
-> Cc: Hans de Goede <hdegoede@redhat.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Huang Rui <ray.huang@amd.com>
-> Cc: Hyun Kwon <hyun.kwon@xilinx.com>
-> Cc: Inki Dae <inki.dae@samsung.com>
-> Cc: Jagan Teki <jagan@amarulasolutions.com>
-> Cc: Joonyoung Shim <jy0922.shim@samsung.com>
-> Cc: Krishna Manikandan <mkrishn@codeaurora.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Cc: Kuogee Hsieh <khsieh@codeaurora.org>
-> Cc: Kyungmin Park <kyungmin.park@samsung.com>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Leo Li <sunpeng.li@amd.com>
-> Cc: linaro-mm-sig@lists.linaro.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: linux-mediatek@lists.infradead.org
-> Cc: linux-media@vger.kernel.org
-> Cc: linux-samsung-soc@vger.kernel.org
-> Cc: Marek Szyprowski <m.szyprowski@samsung.com>
-> Cc: Matthias Brugger <matthias.bgg@gmail.com>
-> Cc: Mauro Rossi <issor.oruam@gmail.com>
-> Cc: Michal Simek <michal.simek@xilinx.com>
-> Cc: nouveau@lists.freedesktop.org
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Rob Clark <robdclark@gmail.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Seung-Woo Kim <sw0312.kim@samsung.com>
-> Cc: Stephen Boyd <swboyd@chromium.org>
-> Cc: Sumit Semwal <sumit.semwal@linaro.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Vincent Abriou <vincent.abriou@st.com>
-> -- =
-
-> 2.31.1
-> =
-
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+T24gVGh1LCAwMyBKdW4gMjAyMSwgRGFuaWVsIFZldHRlciB3cm90ZToKCj4gT24gV2VkLCBKdW4g
+MDIsIDIwMjEgYXQgMDM6MzI6MzRQTSArMDEwMCwgTGVlIEpvbmVzIHdyb3RlOgo+ID4gU29tZSBv
+ZmYgdGhlc2UgcGF0Y2hlcyBoYXZlIGJlZW4ga25vY2tpbmcgYXJvdW5kIGZvciBhIHdoaWxlLgo+
+ID4gCj4gPiBXaG8gd2lsbCBob292ZXIgdGhlbSB1cCBwbGVhc2U/Cj4gPiAKPiA+IFRoaXMgc2V0
+IGlzIHBhcnQgb2YgYSBsYXJnZXIgZWZmb3J0IGF0dGVtcHRpbmcgdG8gY2xlYW4tdXAgVz0xCj4g
+PiBrZXJuZWwgYnVpbGRzLCB3aGljaCBhcmUgY3VycmVudGx5IG92ZXJ3aGVsbWluZ2x5IHJpZGRs
+ZWQgd2l0aAo+ID4gbmlnZ2x5IGxpdHRsZSB3YXJuaW5ncy4KPiA+IAo+ID4gTGVlIEpvbmVzICgy
+Nik6Cj4gPiAgIGRybS9tZWRpYXRlay9tdGtfZGlzcF9jb2xvcjogU3RyaXAgaW5jb3JyZWN0IGRv
+YyBhbmQgZGVtb3RlIGhlYWRlcgo+ID4gICBkcm0vbWVkaWF0ZWsvbXRrX2Rpc3BfZ2FtbWE6IFN0
+cmlwIGFuZCBkZW1vdGUgbm9uLWNvbmZvcm1hbnQKPiA+ICAgICBrZXJuZWwtZG9jIGhlYWRlcgo+
+ID4gICBkcm0vbWVkaWF0ZWsvbXRrX2Rpc3Bfb3ZsOiBTdHJpcCBhbmQgZGVtb3RlIG5vbi1jb25m
+b3JtYW50IGhlYWRlcgo+ID4gICBkcm0vbWVkaWF0ZWsvbXRrX2Rpc3BfcmRtYTogU3RyaXAgYW5k
+IGRlbW90ZSBub24tY29uZm9ybWFudCBrZXJuZWwtZG9jCj4gPiAgICAgaGVhZGVyCj4gPiAgIGRy
+bS9zdGkvc3RpX2hkbWlfdHgzZzRjMjhwaHk6IFByb3ZpZGUgZnVuY3Rpb24gbmFtZXMgZm9yIGtl
+cm5lbC1kb2MKPiA+ICAgICBoZWFkZXJzCj4gPiAgIGRybS9zdGkvc3RpX2hkYTogUHJvdmlkZSBt
+aXNzaW5nIGZ1bmN0aW9uIG5hbWVzCj4gPiAgIGRybS9zdGkvc3RpX3R2b3V0OiBQcm92aWRlIGEg
+YnVuY2ggb2YgbWlzc2luZyBmdW5jdGlvbiBuYW1lcwo+ID4gICBkcm0vc3RpL3N0aV9ocXZkcDog
+Rml4IGluY29ycmVjdGx5IG5hbWVkIGZ1bmN0aW9uICdzdGlfaHF2ZHBfdnRnX2NiKCknCj4gPiAg
+IGRybS9tc20vZGlzcC9kcHUxL2RwdV9lbmNvZGVyX3BoeXNfY21kOiBSZW1vdmUgdW51c2VkIHZh
+cmlhYmxlCj4gPiAgICAgJ2NtZF9lbmMnCj4gPiAgIGRybS9tc20vZGlzcC9kcHUxL2RwdV9od19p
+bnRlcnJ1cHRzOiBEZW1vdGUgYSBidW5jaCBvZiBrZXJuZWwtZG9jCj4gPiAgICAgYWJ1c2VzCj4g
+PiAgIGRybS9tc20vZGlzcC9kcHUxL2RwdV9wbGFuZTogRml4IGEgY291cGxlIG9mIG5hbWluZyBp
+c3N1ZXMKPiA+ICAgZHJtL21zbS9tc21fZ2VtOiBEZW1vdGUga2VybmVsLWRvYyBhYnVzZXMKPiA+
+ICAgZHJtL21zbS9kcC9kcF9jYXRhbG9nOiBDb3JyZWN0bHkgZG9jdW1lbnQgcGFyYW0gJ2RwX2Nh
+dGFsb2cnCj4gPiAgIGRybS9tc20vZHAvZHBfbGluazogRml4IHNvbWUgcG90ZW50aWFsIGRvYy1y
+b3QKPiA+ICAgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbWMvdHUxMDI6IE1ha2UgZnVuY3Rpb25z
+IGNhbGxlZCBieSByZWZlcmVuY2UKPiA+ICAgICBzdGF0aWMKPiA+ICAgZHJtL2FtZC9kaXNwbGF5
+L2RjL2RjZS9kY2VfdHJhbnNmb3JtOiBSZW1vdmUgc3VwZXJmbHVvdXMKPiA+ICAgICByZS1pbml0
+aWFsaXNhdGlvbiBvZiBEQ0ZFX01FTV9MSUdIVF9TTEVFUF9DTlRMLAo+ID4gICBkcm0veGxueC96
+eW5xbXBfZGlzcDogRml4IGluY29ycmVjdGx5IG5hbWVkIGVudW0KPiA+ICAgICAnenlucW1wX2Rp
+c3BfbGF5ZXJfaWQnCj4gPiAgIGRybS94bG54L3p5bnFtcF9kcDogRml4IGluY29ycmVjdGx5IG5h
+bWUgZnVuY3Rpb24gJ3p5bnFtcF9kcF90cmFpbigpJwo+ID4gICBkcm0vdHRtL3R0bV90dDogRGVt
+b3RlIG5vbi1jb25mb3JtYW50IGtlcm5lbC1kb2MgaGVhZGVyCj4gPiAgIGRybS9wYW5lbC9wYW5l
+bC1yYXNwYmVycnlwaS10b3VjaHNjcmVlbjogRGVtb3RlIGtlcm5lbC1kb2MgYWJ1c2UKPiA+ICAg
+ZHJtL3BhbmVsL3BhbmVsLXNpdHJvbml4LXN0NzcwMTogRGVtb3RlIGtlcm5lbC1kb2MgYWJ1c2UK
+PiA+ICAgZHJtL3ZnZW0vdmdlbV9kcnY6IFN0YW5kYXJkIGNvbW1lbnQgYmxvY2tzIHNob3VsZCBu
+b3QgdXNlIGtlcm5lbC1kb2MKPiA+ICAgICBmb3JtYXQKPiA+ICAgZHJtL2V4eW5vcy9leHlub3M3
+X2RybV9kZWNvbjogRml4IGluY29ycmVjdCBuYW1pbmcgb2YKPiA+ICAgICAnZGVjb25fc2hhZG93
+X3Byb3RlY3Rfd2luKCknCj4gPiAgIGRybS9leHlub3MvZXh5bm9zX2RybV9pcHA6IEZpeCBkb2N1
+bWVudGF0aW9uIGZvcgo+ID4gICAgICdleHlub3NfZHJtX2lwcF9nZXRfe2NhcHMscmVzfV9pb2N0
+bCgpJwo+ID4gICBkcm0vdmJveHZpZGVvL2hnc21pX2Jhc2U6IFBsYWNlIGZ1bmN0aW9uIG5hbWVz
+IGludG8gaGVhZGVycwo+ID4gICBkcm0vdmJveHZpZGVvL21vZGVzZXR0aW5nOiBQcm92aWRlIGZ1
+bmN0aW9uIG5hbWVzIGZvciBwcm90b3R5cGUKPiA+ICAgICBoZWFkZXJzCj4gCj4gRXhjZXB0IGZv
+ciBtc20gKFJvYiBDbGFyayBwcm9taXNlZCBvbiBpcmMgaGUnbGwgcGljayB0aGVtIHVwIGZvciA1
+LjE0Cj4gc29vbikgYW5kIGFtZCAoQWxleCBpcyBvbiB0b3Agb2YgdGhpbmdzIEkgdGhpbmspIEkg
+cGlja2VkIHRoZW0gYWxsIHVwIGFuZAo+IG1lcmdlZCBpbnRvIGRybS1taXNjLW5leHQuCgpTdXBl
+cnN0YXIhICBUaGFua3MgRGFuaWVsLgoKLS0gCkxlZSBKb25lcyBb5p2O55C85pavXQpTZW5pb3Ig
+VGVjaG5pY2FsIExlYWQgLSBEZXZlbG9wZXIgU2VydmljZXMKTGluYXJvLm9yZyDilIIgT3BlbiBz
+b3VyY2Ugc29mdHdhcmUgZm9yIEFybSBTb0NzCkZvbGxvdyBMaW5hcm86IEZhY2Vib29rIHwgVHdp
+dHRlciB8IEJsb2cKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
