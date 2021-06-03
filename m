@@ -1,43 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA22D399899
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Jun 2021 05:31:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C8783998A4
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Jun 2021 05:37:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B0066F384;
-	Thu,  3 Jun 2021 03:31:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F5046F387;
+	Thu,  3 Jun 2021 03:37:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-m121144.qiye.163.com (mail-m121144.qiye.163.com
- [115.236.121.144])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 502136F382;
- Thu,  3 Jun 2021 03:29:18 +0000 (UTC)
-Received: from vivo-HP-ProDesk-680-G4-PCI-MT.vivo.xyz (unknown [58.251.74.232])
- by mail-m121144.qiye.163.com (Hmail) with ESMTPA id 83B74AC03B3;
- Thu,  3 Jun 2021 11:29:15 +0800 (CST)
-From: Wan Jiabing <wanjiabing@vivo.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Felix Kuehling <Felix.Kuehling@amd.com>,
- Nirmoy Das <nirmoy.das@amd.com>, Dave Airlie <airlied@redhat.com>,
- Philip Yang <Philip.Yang@amd.com>,
- Mihir Bhogilal Patel <Mihir.Patel@amd.com>, Roy Sun <Roy.Sun@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm: amdgpu: Remove unneeded semicolon in amdgpu_vm.c
-Date: Thu,  3 Jun 2021 11:28:59 +0800
-Message-Id: <1622690940-10972-1-git-send-email-wanjiabing@vivo.com>
-X-Mailer: git-send-email 2.7.4
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
- oVCBIfWUFZGUseTlZPHR1CSRlDQkMZQxpVEwETFhoSFyQUDg9ZV1kWGg8SFR0UWUFZT0tIVUpKS0
- hKQ1VLWQY+
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NyI6Vio5MD8QKxVLNCMpMENM
- Qj0aCS9VSlVKTUlJTUJLQk5NT0tNVTMWGhIXVQwaFRESGhkSFRw7DRINFFUYFBZFWVdZEgtZQVlO
- Q1VJTkpVTE9VSUhJWVdZCAFZQUlISkk3Bg++
-X-HM-Tid: 0a79cfeb0322b039kuuu83b74ac03b3
-X-Mailman-Approved-At: Thu, 03 Jun 2021 03:31:08 +0000
+Received: from cstnet.cn (smtp48.cstnet.cn [159.226.251.48])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C11EF6F387
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Jun 2021 03:37:15 +0000 (UTC)
+Received: by ajax-webmail-APP-13 (Coremail) ; Thu, 3 Jun 2021 11:37:12 +0800
+ (GMT+08:00)
+X-Originating-IP: [159.226.43.53]
+Date: Thu, 3 Jun 2021 11:37:12 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: "Chen Lei" <chenlei18s@ict.ac.cn>
+To: "Alex Deucher" <alexdeucher@gmail.com>
+Subject: Re: Re: Re: [BUG] Data race when use PACKET3_DMA_DATA?
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.13 build 20210104(ab8c30b6)
+ Copyright (c) 2002-2021 www.mailtech.cn cnic.cn
+In-Reply-To: <CADnq5_PN+-N+QCuAGJeyEHLJ_WuX_vUf=fDgjruwHcKtD15v0Q@mail.gmail.com>
+References: <30855000.34f9.179ccbc8079.Coremail.chenlei18s@ict.ac.cn>
+ <CADnq5_Mg+kVrXNLsNW8ZYS9JMmch4Jg5iAzOdCqyPru8UpmctA@mail.gmail.com>
+ <66ba8554.40b87.179cf463340.Coremail.chenlei18s@ict.ac.cn>
+ <CADnq5_PN+-N+QCuAGJeyEHLJ_WuX_vUf=fDgjruwHcKtD15v0Q@mail.gmail.com>
+MIME-Version: 1.0
+Message-ID: <1d273190.41b52.179cff24956.Coremail.chenlei18s@ict.ac.cn>
+X-Coremail-Locale: en_US
+X-CM-TRANSID: twCowAAX_ZZoTrhgnNEIAA--.42575W
+X-CM-SenderInfo: hfkh0zthlrm2g6lf3hldfou0/1tbiCgkBBVz4jqMDDAABsA
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+ CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+ daVFxhVjvjDU=
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,37 +47,77 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wan Jiabing <wanjiabing@vivo.com>
-MIME-Version: 1.0
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fix following coccicheck warning:
-./drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c:1726:2-3: Unneeded semicolon
+I had seperated the dispatch packet and DMA DATA packet into 2 IBs, and called the amdgpu_cs_ioctl twice. 
+If I was not mistaken, the `amdgpu_ib_schedule` would emit fence packets for each amdgpu_cs_ioctl call. 
+Did I need to insert the fence packet explicitly after the dispatch packet?
 
-Signed-off-by: Wan Jiabing <wanjiabing@vivo.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index 2460371..231745b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -1723,7 +1723,7 @@ int amdgpu_vm_bo_update_mapping(struct amdgpu_device *adev,
- 
- 		amdgpu_res_next(&cursor, num_entries * AMDGPU_GPU_PAGE_SIZE);
- 		start = tmp;
--	};
-+	}
- 
- 	r = vm->update_funcs->commit(&params, fence);
- 
--- 
-2.7.4
-
+&gt; -----Original Messages-----
+&gt; From: "Alex Deucher" <alexdeucher@gmail.com>
+&gt; Sent Time: 2021-06-03 10:11:46 (Thursday)
+&gt; To: "Chen Lei" <chenlei18s@ict.ac.cn>
+&gt; Cc: "amd-gfx list" <amd-gfx@lists.freedesktop.org>
+&gt; Subject: Re: Re: [BUG] Data race when use PACKET3_DMA_DATA?
+&gt; 
+&gt; On Wed, Jun 2, 2021 at 8:29 PM Chen Lei <chenlei18s@ict.ac.cn> wrote:
+&gt; &gt;
+&gt; &gt; Hi Alex. Thanks for your quick reply.
+&gt; &gt; I first submit the OpenCL kernel packet and then submit the DMA DATA packet. And the OpenCL kernel reads the value written by the DMA DATA packet.
+&gt; &gt; If I understand you correctly, that is because the CP engine continues on to process the DMA DATA packet after launching the OpenCL kernel. If so, is there any way to sync the CP engine until the OpenCL kernel is complete?
+&gt; &gt;
+&gt; 
+&gt; Once the kernel has been dispatched to the shader cores, the CP will
+&gt; continue to execute packets in the queue.  If you want it to wait for
+&gt; the pipeline to drain you'll need to insert a fence packet (e.g.,
+&gt; RELEASE_MEM).
+&gt; 
+&gt; Alex
+&gt; 
+&gt; &gt;
+&gt; &gt; &gt; -----Original Messages-----
+&gt; &gt; &gt; From: "Alex Deucher" <alexdeucher@gmail.com>
+&gt; &gt; &gt; Sent Time: 2021-06-02 21:37:51 (Wednesday)
+&gt; &gt; &gt; To: "Chen Lei" <chenlei18s@ict.ac.cn>
+&gt; &gt; &gt; Cc: "amd-gfx list" <amd-gfx@lists.freedesktop.org>
+&gt; &gt; &gt; Subject: Re: [BUG] Data race when use PACKET3_DMA_DATA?
+&gt; &gt; &gt;
+&gt; &gt; &gt; On Wed, Jun 2, 2021 at 8:44 AM Chen Lei <chenlei18s@ict.ac.cn> wrote:
+&gt; &gt; &gt; &gt;
+&gt; &gt; &gt; &gt; Hi, I noticed that there are two ways to do DMA for amd gpu: the SDMA copy packet and the PM4 dma packet.
+&gt; &gt; &gt; &gt;
+&gt; &gt; &gt; &gt; I had tested the PM4 dma packet:  PACKET3_DMA_DATA. In most of time, it works.
+&gt; &gt; &gt; &gt;
+&gt; &gt; &gt; &gt; But when I launch an OpenCL kernel followed by a host-to-gpu DMA packet, it seems that the OpenCL kernel read the new value written by the following DMA packet.
+&gt; &gt; &gt; &gt;
+&gt; &gt; &gt; &gt; Both the OpenCL kernel and the PM4 dma packet are submitted using the amdgpu_cs_ioctl, and they are submitted to the same ring.
+&gt; &gt; &gt; &gt;
+&gt; &gt; &gt; &gt; I was not family with the hardware details. According to my understanding, because the ring is FIFO, there is no need for any explicit synchronization between the OpenCL kernel launch packet and the dma packet. So the result looked weird. And when I add the synchronization(i.e. amdgpu_cs_wait_ioctl) before the dma packet, everything is OK.
+&gt; &gt; &gt; &gt;
+&gt; &gt; &gt; &gt; Was it a hardware bug or did I miss something?
+&gt; &gt; &gt; &gt;
+&gt; &gt; &gt;
+&gt; &gt; &gt; The CP DMA engine is separate from the various CP micro engines.  When
+&gt; &gt; &gt; there is a DMA DATA packet, the DMA operation is offloaded to the CP
+&gt; &gt; &gt; DMA engine and the CP engine that processed the packet continues on to
+&gt; &gt; &gt; the next packet.  You need to use the ENGINE_SEL and CP_SYNC bits in
+&gt; &gt; &gt; the DMA DATA packet to specify the behavior you want.  The ENGINE_SEL
+&gt; &gt; &gt; bit selects which CP engine processes the packet (PFP or ME) and the
+&gt; &gt; &gt; CP_SYNC bit stops further packet processing on the selected engine
+&gt; &gt; &gt; until the DMA is complete.
+&gt; &gt; &gt;
+&gt; &gt; &gt; Alex
+&gt; &gt; </chenlei18s@ict.ac.cn></amd-gfx@lists.freedesktop.org></chenlei18s@ict.ac.cn></alexdeucher@gmail.com>
+&gt; &gt; _______________________________________________
+&gt; &gt; amd-gfx mailing list
+&gt; &gt; amd-gfx@lists.freedesktop.org
+&gt; &gt; https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+</chenlei18s@ict.ac.cn></amd-gfx@lists.freedesktop.org></chenlei18s@ict.ac.cn></alexdeucher@gmail.com>
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
