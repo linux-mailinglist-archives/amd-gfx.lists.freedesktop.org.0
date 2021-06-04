@@ -2,45 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64C2339BE5C
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Jun 2021 19:17:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1ADD39BE70
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Jun 2021 19:19:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD7D26F633;
-	Fri,  4 Jun 2021 17:17:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11D2A6F629;
+	Fri,  4 Jun 2021 17:19:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from srv6.fidu.org (srv6.fidu.org [159.69.62.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2835A6F630;
- Fri,  4 Jun 2021 17:17:38 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id C4870C800C7;
- Fri,  4 Jun 2021 19:17:36 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
-Received: from srv6.fidu.org ([127.0.0.1])
- by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10026)
- with LMTP id UjdKLgPEp6l6; Fri,  4 Jun 2021 19:17:36 +0200 (CEST)
-Received: from wsembach-tuxedo.fritz.box
- (p200300E37f2e2a0038b625C68b541A92.dip0.t-ipconnect.de
- [IPv6:2003:e3:7f2e:2a00:38b6:25c6:8b54:1a92])
- (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPA id 6255FC800CB;
- Fri,  4 Jun 2021 19:17:36 +0200 (CEST)
-From: Werner Sembach <wse@tuxedocomputers.com>
-To: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
- christian.koenig@amd.com, airlied@linux.ie, daniel@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org
-Subject: [PATCH 4/4] drm/i915/display: Add handling for new "active bpc"
- property
-Date: Fri,  4 Jun 2021 19:17:23 +0200
-Message-Id: <20210604171723.10276-5-wse@tuxedocomputers.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210604171723.10276-1-wse@tuxedocomputers.com>
-References: <20210604171723.10276-1-wse@tuxedocomputers.com>
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com
+ [IPv6:2607:f8b0:4864:20::c2f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C82C56F629;
+ Fri,  4 Jun 2021 17:19:28 +0000 (UTC)
+Received: by mail-oo1-xc2f.google.com with SMTP id
+ q20-20020a4a6c140000b029024915d1bd7cso745551ooc.12; 
+ Fri, 04 Jun 2021 10:19:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=LOI6wvAzaGYd8kqemXzTNGyTEREL1+gKJT9TY9+po4w=;
+ b=PMcm+m0QV24OruZ57oXcb0P09vCXAE854+eIezs8Cw/sfSmzAtpUDumAIIYi+cUcI+
+ IEWQtAH9uMev8my+b3douUqO5tOzJVqEXv/uQHkXsuCDoqNT7NbDayA7+JkWhNydGnYw
+ uMFh5/Ivcz2xP9/w+8Q40almV/q9QgS8hl628EfbQ3z8YVD5iLbodf9zhUEKpJgSHXz2
+ 8DoFf/hMk9QvMJoHC5l5GT2G8iYcDjejZ7ovMsFl0GHQUWgABYC1zXy8fKWUS4qs6p7p
+ x5ilIm9KjCG6US2OZR/9auwGnom2efnTN3kmV482IcSJmVf8+hxI6kOBEymNjj993xjw
+ wu9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=LOI6wvAzaGYd8kqemXzTNGyTEREL1+gKJT9TY9+po4w=;
+ b=JTozIZrPq8/8fj4YIXe12r0VtYXPhhbMeh4P5QvC0ARtVvd6oczFnun5n0i+arCxd9
+ E4uCblK/GpQXQyfiDcJUSenpgEDFiBsTOz93Hk/5zVIV5yJdG7alz7+zZPLqtIdHsgyn
+ eEYuAOSxNqe821HkXxYEoejWBqB1MRyZ0ok9Ke7X5h+6RM2dyrFim0wQZ4WxczCOmT0j
+ hWtYUH+Zo6stsx4uWB/Po2u/oTHAE5Lh4hmRl8uJ0vJ9BEA2GggJovnM3JIb/NNlIfJI
+ UQDMJpgwIGfkTNgT00lZXk3ppaM6146JpQJYyatIfa7XgrHJqNcm2u2MDcsvz7BzV4to
+ w1Vw==
+X-Gm-Message-State: AOAM533MD5LqugajD4TP1mp6ukhCF2gI66nOW6orHr1PY6HtqR0TiliR
+ DozrT2SpJF60Sg/9AvC/uCaQ8lqSz3bjgE/y5z8=
+X-Google-Smtp-Source: ABdhPJybHagCp5avGzAYCedTNRzoZD7xTPDNemYCX6J7vz75/ba1WW5jrhOpgCd+WTXOur81Mdd2tG+fUa4gkeWfjHs=
+X-Received: by 2002:a4a:8c09:: with SMTP id u9mr4402516ooj.72.1622827168120;
+ Fri, 04 Jun 2021 10:19:28 -0700 (PDT)
 MIME-Version: 1.0
+References: <87o8cnfr3s.wl-chenli@uniontech.com>
+ <87im2ufhyz.wl-chenli@uniontech.com>
+ <0689a006-a0a2-698a-12d8-cb11156e469a@gmail.com>
+ <877djacbfx.wl-chenli@uniontech.com>
+ <c4941cb6-8c40-aad1-e61a-2786ba1ab225@gmail.com>
+ <871r9ic9a7.wl-chenli@uniontech.com>
+In-Reply-To: <871r9ic9a7.wl-chenli@uniontech.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 4 Jun 2021 13:19:17 -0400
+Message-ID: <CADnq5_ODqHuBxXQJfmxvG1sJpf6pQfhGvNnEXWbC+Lav4cexgw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] radeon: fix coding issues reported from sparse
+To: Chen Li <chenli@uniontech.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,110 +66,76 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Werner Sembach <wse@tuxedocomputers.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This commits implements the "active bpc" drm property for the Intel GPU driver.
-
-Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 13 +++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c      |  8 ++++++--
- drivers/gpu/drm/i915/display/intel_dp_mst.c  |  4 +++-
- drivers/gpu/drm/i915/display/intel_hdmi.c    |  4 +++-
- 4 files changed, 25 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 64e9107d70f7..f7898d9d7438 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -10164,6 +10164,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
- 	struct intel_crtc *crtc;
-+	struct drm_connector *connector;
-+	struct drm_connector_state *new_conn_state;
- 	u64 put_domains[I915_MAX_PIPES] = {};
- 	intel_wakeref_t wakeref = 0;
- 	int i;
-@@ -10324,6 +10326,17 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	}
- 	intel_runtime_pm_put(&dev_priv->runtime_pm, state->wakeref);
- 
-+	/* Extract information from crtc to communicate it to userspace as connector properties */
-+	for_each_new_connector_in_state(&state->base, connector, new_conn_state, i) {
-+		struct drm_crtc *crtc = new_conn_state->crtc;
-+		if (crtc) {
-+			new_crtc_state = to_intel_crtc_state(drm_atomic_get_new_crtc_state(&state->base, crtc));
-+			new_conn_state->active_bpc = new_crtc_state->pipe_bpp / 3;
-+		}
-+		else
-+			new_conn_state->active_bpc = 0;
-+	}
-+
- 	/*
- 	 * Defer the cleanup of the old state to a separate worker to not
- 	 * impede the current task (userspace for blocking modesets) that
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 642c60f3d9b1..67826ba976ed 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4671,10 +4671,14 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
- 		intel_attach_force_audio_property(connector);
- 
- 	intel_attach_broadcast_rgb_property(connector);
--	if (HAS_GMCH(dev_priv))
-+	if (HAS_GMCH(dev_priv)) {
- 		drm_connector_attach_max_bpc_property(connector, 6, 10);
--	else if (DISPLAY_VER(dev_priv) >= 5)
-+		drm_connector_attach_active_bpc_property(connector, 6, 10);
-+	}
-+	else if (DISPLAY_VER(dev_priv) >= 5) {
- 		drm_connector_attach_max_bpc_property(connector, 6, 12);
-+		drm_connector_attach_active_bpc_property(connector, 6, 12);
-+	}
- 
- 	/* Register HDMI colorspace for case of lspcon */
- 	if (intel_bios_is_lspcon_present(dev_priv, port)) {
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 2daa3f67791e..5a1869dc2210 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -844,8 +844,10 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
- 	 */
- 	connector->max_bpc_property =
- 		intel_dp->attached_connector->base.max_bpc_property;
--	if (connector->max_bpc_property)
-+	if (connector->max_bpc_property) {
- 		drm_connector_attach_max_bpc_property(connector, 6, 12);
-+		drm_connector_attach_active_bpc_property(connector, 6, 12);
-+	}
- 
- 	return connector;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index d69f0a6dc26d..8af78b27b6ce 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2463,8 +2463,10 @@ intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *c
- 		drm_object_attach_property(&connector->base,
- 			connector->dev->mode_config.hdr_output_metadata_property, 0);
- 
--	if (!HAS_GMCH(dev_priv))
-+	if (!HAS_GMCH(dev_priv)) {
- 		drm_connector_attach_max_bpc_property(connector, 8, 12);
-+		drm_connector_attach_active_bpc_property(connector, 8, 12);
-+	}
- }
- 
- /*
--- 
-2.25.1
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+QXBwbGllZC4gIFRoYW5rcyEKCkFsZXgKCk9uIEZyaSwgSnVuIDQsIDIwMjEgYXQgNzo1MyBBTSBD
+aGVuIExpIDxjaGVubGlAdW5pb250ZWNoLmNvbT4gd3JvdGU6Cj4KPgo+IEFsc28gZml4IHNvbWUg
+Y29kaW5nIGlzc3VlcyByZXBvcnRlZCBmcm9tIHNwYXJzZS4KPgo+IFNpZ25lZC1vZmYtYnk6IENo
+ZW4gTGkgPGNoZW5saUB1bmlvbnRlY2guY29tPgo+IEFja2VkLWJ5OiBDaHJpc3RpYW4gS8O2bmln
+IDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9yYWRl
+b24vcmFkZW9uX3V2ZC5jIHwgMjQgKysrKysrKysrKysrKy0tLS0tLS0tLS0tCj4gIDEgZmlsZSBj
+aGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspLCAxMSBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl91dmQuYyBiL2RyaXZlcnMvZ3B1L2RybS9y
+YWRlb24vcmFkZW9uX3V2ZC5jCj4gaW5kZXggZGZhOWZkYmU5OGRhLi44NWExZjJjMzE3NDkgMTAw
+NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fdXZkLmMKPiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl91dmQuYwo+IEBAIC0xNTIsOSArMTUyLDExIEBA
+IGludCByYWRlb25fdXZkX2luaXQoc3RydWN0IHJhZGVvbl9kZXZpY2UgKnJkZXYpCj4KPiAgICAg
+ICAgICAgICAgICAgICAgICAgICByZGV2LT51dmQuZndfaGVhZGVyX3ByZXNlbnQgPSB0cnVlOwo+
+Cj4gLSAgICAgICAgICAgICAgICAgICAgICAgZmFtaWx5X2lkID0gbGUzMl90b19jcHUoaGRyLT51
+Y29kZV92ZXJzaW9uKSAmIDB4ZmY7Cj4gLSAgICAgICAgICAgICAgICAgICAgICAgdmVyc2lvbl9t
+YWpvciA9IChsZTMyX3RvX2NwdShoZHItPnVjb2RlX3ZlcnNpb24pID4+IDI0KSAmIDB4ZmY7Cj4g
+LSAgICAgICAgICAgICAgICAgICAgICAgdmVyc2lvbl9taW5vciA9IChsZTMyX3RvX2NwdShoZHIt
+PnVjb2RlX3ZlcnNpb24pID4+IDgpICYgMHhmZjsKPiArICAgICAgICAgICAgICAgICAgICAgICBm
+YW1pbHlfaWQgPSAoX19mb3JjZSB1MzIpKGhkci0+dWNvZGVfdmVyc2lvbikgJiAweGZmOwo+ICsg
+ICAgICAgICAgICAgICAgICAgICAgIHZlcnNpb25fbWFqb3IgPSAobGUzMl90b19jcHUoKF9fZm9y
+Y2UgX19sZTMyKShoZHItPnVjb2RlX3ZlcnNpb24pKQo+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgID4+IDI0KSAmIDB4ZmY7Cj4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgdmVyc2lvbl9taW5vciA9IChsZTMyX3RvX2NwdSgoX19mb3JjZSBf
+X2xlMzIpKGhkci0+dWNvZGVfdmVyc2lvbikpCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPj4gOCkgJiAweGZmOwo+ICAgICAgICAgICAg
+ICAgICAgICAgICAgIERSTV9JTkZPKCJGb3VuZCBVVkQgZmlybXdhcmUgVmVyc2lvbjogJXUuJXUg
+RmFtaWx5IElEOiAldVxuIiwKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB2ZXJz
+aW9uX21ham9yLCB2ZXJzaW9uX21pbm9yLCBmYW1pbHlfaWQpOwo+Cj4gQEAgLTc5MSwxNyArNzkz
+LDE3IEBAIGludCByYWRlb25fdXZkX2dldF9jcmVhdGVfbXNnKHN0cnVjdCByYWRlb25fZGV2aWNl
+ICpyZGV2LCBpbnQgcmluZywKPiAgICAgICAgICAgICAgICAgcmV0dXJuIHI7Cj4KPiAgICAgICAg
+IC8qIHN0aXRjaCB0b2dldGhlciBhbiBVVkQgY3JlYXRlIG1zZyAqLwo+IC0gICAgICAgd3JpdGVs
+KGNwdV90b19sZTMyKDB4MDAwMDBkZTQpLCAmbXNnWzBdKTsKPiArICAgICAgIHdyaXRlbCgoX19m
+b3JjZSB1MzIpY3B1X3RvX2xlMzIoMHgwMDAwMGRlNCksICZtc2dbMF0pOwo+ICAgICAgICAgd3Jp
+dGVsKDB4MCwgKHZvaWQgX19pb21lbSAqKSZtc2dbMV0pOwo+IC0gICAgICAgd3JpdGVsKGNwdV90
+b19sZTMyKGhhbmRsZSksICZtc2dbMl0pOwo+ICsgICAgICAgd3JpdGVsKChfX2ZvcmNlIHUzMilj
+cHVfdG9fbGUzMihoYW5kbGUpLCAmbXNnWzJdKTsKPiAgICAgICAgIHdyaXRlbCgweDAsICZtc2db
+M10pOwo+ICAgICAgICAgd3JpdGVsKDB4MCwgJm1zZ1s0XSk7Cj4gICAgICAgICB3cml0ZWwoMHgw
+LCAmbXNnWzVdKTsKPiAgICAgICAgIHdyaXRlbCgweDAsICZtc2dbNl0pOwo+IC0gICAgICAgd3Jp
+dGVsKGNwdV90b19sZTMyKDB4MDAwMDA3ODApLCAmbXNnWzddKTsKPiAtICAgICAgIHdyaXRlbChj
+cHVfdG9fbGUzMigweDAwMDAwNDQwKSwgJm1zZ1s4XSk7Cj4gKyAgICAgICB3cml0ZWwoKF9fZm9y
+Y2UgdTMyKWNwdV90b19sZTMyKDB4MDAwMDA3ODApLCAmbXNnWzddKTsKPiArICAgICAgIHdyaXRl
+bCgoX19mb3JjZSB1MzIpY3B1X3RvX2xlMzIoMHgwMDAwMDQ0MCksICZtc2dbOF0pOwo+ICAgICAg
+ICAgd3JpdGVsKDB4MCwgJm1zZ1s5XSk7Cj4gLSAgICAgICB3cml0ZWwoY3B1X3RvX2xlMzIoMHgw
+MWIzNzAwMCksICZtc2dbMTBdKTsKPiArICAgICAgIHdyaXRlbCgoX19mb3JjZSB1MzIpY3B1X3Rv
+X2xlMzIoMHgwMWIzNzAwMCksICZtc2dbMTBdKTsKPiAgICAgICAgIGZvciAoaSA9IDExOyBpIDwg
+MTAyNDsgKytpKQo+ICAgICAgICAgICAgICAgICB3cml0ZWwoMHgwLCAmbXNnW2ldKTsKPgo+IEBA
+IC04MjcsOSArODI5LDkgQEAgaW50IHJhZGVvbl91dmRfZ2V0X2Rlc3Ryb3lfbXNnKHN0cnVjdCBy
+YWRlb25fZGV2aWNlICpyZGV2LCBpbnQgcmluZywKPiAgICAgICAgICAgICAgICAgcmV0dXJuIHI7
+Cj4KPiAgICAgICAgIC8qIHN0aXRjaCB0b2dldGhlciBhbiBVVkQgZGVzdHJveSBtc2cgKi8KPiAt
+ICAgICAgIHdyaXRlbChjcHVfdG9fbGUzMigweDAwMDAwZGU0KSwgJm1zZ1swXSk7Cj4gLSAgICAg
+ICB3cml0ZWwoY3B1X3RvX2xlMzIoMHgwMDAwMDAwMiksICZtc2dbMV0pOwo+IC0gICAgICAgd3Jp
+dGVsKGNwdV90b19sZTMyKGhhbmRsZSksICZtc2dbMl0pOwo+ICsgICAgICAgd3JpdGVsKChfX2Zv
+cmNlIHUzMiljcHVfdG9fbGUzMigweDAwMDAwZGU0KSwgJm1zZ1swXSk7Cj4gKyAgICAgICB3cml0
+ZWwoKF9fZm9yY2UgdTMyKWNwdV90b19sZTMyKDB4MDAwMDAwMDIpLCAmbXNnWzFdKTsKPiArICAg
+ICAgIHdyaXRlbCgoX19mb3JjZSB1MzIpY3B1X3RvX2xlMzIoaGFuZGxlKSwgJm1zZ1syXSk7Cj4g
+ICAgICAgICB3cml0ZWwoMHgwLCAmbXNnWzNdKTsKPiAgICAgICAgIGZvciAoaSA9IDQ7IGkgPCAx
+MDI0OyArK2kpCj4gICAgICAgICAgICAgICAgIHdyaXRlbCgweDAsICZtc2dbaV0pOwo+IC0tCj4g
+Mi4zMS4xCj4KPgo+Cj4KPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCj4gYW1kLWdmeCBtYWlsaW5nIGxpc3QKPiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+YW1kLWdmeApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwph
+bWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
