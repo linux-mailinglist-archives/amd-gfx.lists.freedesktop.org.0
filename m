@@ -1,55 +1,55 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AB8039BE4E
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Jun 2021 19:16:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3580639BE4D
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Jun 2021 19:16:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0382D6F621;
-	Fri,  4 Jun 2021 17:16:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 921B16F620;
+	Fri,  4 Jun 2021 17:16:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com
- [IPv6:2607:f8b0:4864:20::834])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95C3E6E12A
- for <amd-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 16:59:43 +0000 (UTC)
-Received: by mail-qt1-x834.google.com with SMTP id c15so7491888qte.6
- for <amd-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 09:59:43 -0700 (PDT)
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com
+ [IPv6:2607:f8b0:4864:20::734])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A87016E2E3
+ for <amd-gfx@lists.freedesktop.org>; Fri,  4 Jun 2021 17:01:12 +0000 (UTC)
+Received: by mail-qk1-x734.google.com with SMTP id j184so10005352qkd.6
+ for <amd-gfx@lists.freedesktop.org>; Fri, 04 Jun 2021 10:01:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=bh04H7Tcy+Yj9VMjnrHi1k31kTkyYQ9k7jX6b4bdZfw=;
- b=C6Zw4MMP63rzKfA7qlVqEcesd/tAoSiqWlvgE+anqg/Gyg+3tA5SN7znWdKVzOplLD
- 4M0mnc5RJk55rwrZ9zPrvPsDPUj2eYB5eR7O87CO56MFGK2kSxughd0abuAkV0IPSPQ6
- RQAKfLGRTQ4f0+lTh9pyTeKs6QBIqOGkqz0xs=
+ bh=BGzgBBj+z7PRSvopoFnEzwSVcBq6cac87MWPH9c271c=;
+ b=hb5yBCjsFJeLR2baatk1JenukVjMILCBQjiB/W/GVgm7EC0qn9QTvfCZg8L1BNAuso
+ tTGY2Vl9BZaxus2kwipO5Xy57SJjx3Wn1M1902jR3e0sX//KPWDNzJqjR1S59xKFwd05
+ C+0xMnv4NGM7a6mwa0+rObTK9/kz4Dg1IJ11g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=bh04H7Tcy+Yj9VMjnrHi1k31kTkyYQ9k7jX6b4bdZfw=;
- b=ljM/3paWBzfY+qtmoCHS5FDWiYwfiD7omQZ35yVIkNfRoi1sOdWsdtcjR+wqb1ZJ5D
- LFd/6xDYERHFWtlFn1g32EcWsJHSb2lEJ4dlFxqY+4aTICCALVXuBN14vFkOAFFi+ap/
- +zCwoJSlvjbwxrMLdHFjeXki30ryCfmY5fMbWtt3lUupyT7vppbCtphh+3Rr9r/e7kcm
- XSPfdQeZ7hw14bBi+1xCV49FwR/2W3R7gDJlSj9p7DEP8dQtt7UcqZX5evj9oRzf0X26
- ETJ/yj3kMegl3odC4Pc0M9wpg5Eygle9ycSO5kg0+B0gz0v/iqgUo6nOxCTrDTlNnoS1
- FFFA==
-X-Gm-Message-State: AOAM533VOXOP2d82GWquPcVwemO2INanhAVcwlwbgXW8HGxlLrQIB/q/
- syyKZYd2HLkY47GywDxuS7nm+T4SfgSbhQ==
-X-Google-Smtp-Source: ABdhPJxYVXfJLm2LsTzKrH6wYmuyscFqtBbSN+dVKkvwurFsDkXTZkWQLKpE9plljFl7tAg8PQ71eg==
-X-Received: by 2002:a05:622a:3c6:: with SMTP id
- k6mr5480762qtx.341.1622825982348; 
- Fri, 04 Jun 2021 09:59:42 -0700 (PDT)
+ bh=BGzgBBj+z7PRSvopoFnEzwSVcBq6cac87MWPH9c271c=;
+ b=Fs741/PaCHmYwVPfDDfbn2x9FOlV9i4WZbYcd4Rvl0acK2KlGFCwhaUrgNF0ztHBpL
+ lRmU2it6iU+jP9i9EGKJMTbMI7eqAEpNVtaXAbeEr4PhbJbDQFVILFPWHIBxpFDb5N8F
+ GA8fAd1mEAkUqYoHAOoO8CY28a/kzXbECzB1W6vABdMAL1QOLWTW49CqG9a6ij3Cb9f9
+ cDik4XiSMsrgj8Bja6fIVYssOFnhH5d5HJoZJ7yejIHBtoKFQz/4mm/oCVp67LVXs1om
+ KNkqUlHeBdCBeG4NoEIKbrSLZtdCHS2VvP8RGUHb9OX/ZXGel8tpFt7KFst/l5nJ8uN/
+ h8Jw==
+X-Gm-Message-State: AOAM532yPV48UEqqPrP/BtE0EbGffpts7VoXPGFdBY1zRuV2u5s4dXiv
+ 8kfE49qJyH+OJx2Mi6t2vCgaMgMNAU9L8pkt
+X-Google-Smtp-Source: ABdhPJwqmMjNuy+P5ohnOHfO03P8J+dUefvZrguugeVdw3+KNtJigED28nM3ceNItkiMZQrpgovuyg==
+X-Received: by 2002:a37:b4c:: with SMTP id 73mr5319465qkl.130.1622826070571;
+ Fri, 04 Jun 2021 10:01:10 -0700 (PDT)
 Received: from markyacoub.nyc.corp.google.com
  ([2620:0:1003:416:a12b:207e:d5a0:e673])
- by smtp.gmail.com with ESMTPSA id j127sm4421788qke.90.2021.06.04.09.59.41
+ by smtp.gmail.com with ESMTPSA id i4sm3448005qke.36.2021.06.04.10.01.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Jun 2021 09:59:41 -0700 (PDT)
+ Fri, 04 Jun 2021 10:01:10 -0700 (PDT)
 From: Mark Yacoub <markyacoub@chromium.org>
 To: amd-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH] Verify Gamma & Degamma LUT sizes in amdgpu_dm_atomic_check
-Date: Fri,  4 Jun 2021 12:59:38 -0400
-Message-Id: <20210604165938.2022663-1-markyacoub@chromium.org>
+Subject: [PATCH] drm/amd/display: Verify Gamma & Degamma LUT sizes in
+ amdgpu_dm_atomic_check
+Date: Fri,  4 Jun 2021 13:01:07 -0400
+Message-Id: <20210604170107.2023162-1-markyacoub@chromium.org>
 X-Mailer: git-send-email 2.32.0.rc1.229.g3e70b5a671-goog
 MIME-Version: 1.0
 X-Mailman-Approved-At: Fri, 04 Jun 2021 17:16:27 +0000
@@ -80,6 +80,7 @@ unexpected and larger sizes wouldn't slip through.
 TEST: IGT:kms_color::pipe-invalid-gamma-lut-sizes
 
 Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+Change-Id: I9d513a38e8ac2af1b4bf802e1feb1a4d726fba4c
 ---
  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  3 ++
  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  1 +
