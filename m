@@ -1,45 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9726939D558
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Jun 2021 08:48:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B4B839D5A6
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Jun 2021 09:12:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B07B6E21A;
-	Mon,  7 Jun 2021 06:47:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5DF36E2EF;
+	Mon,  7 Jun 2021 07:12:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC4FC6E1E6;
- Mon,  7 Jun 2021 06:47:57 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id 671CDC800E1;
- Mon,  7 Jun 2021 08:47:56 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
-Received: from srv6.fidu.org ([127.0.0.1])
- by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id PWdw0pNodT0v; Mon,  7 Jun 2021 08:47:56 +0200 (CEST)
-Received: from [IPv6:2003:e3:7f4f:6000:f5f4:4cdd:8015:9770]
- (p200300E37F4f6000F5F44cDd80159770.dip0.t-ipconnect.de
- [IPv6:2003:e3:7f4f:6000:f5f4:4cdd:8015:9770])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPSA id 09E4FC800DF;
- Mon,  7 Jun 2021 08:47:56 +0200 (CEST)
-Subject: Re: [PATCH 4/4] drm/i915/display: Add handling for new "active bpc"
- property
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-References: <20210604171723.10276-1-wse@tuxedocomputers.com>
- <20210604171723.10276-5-wse@tuxedocomputers.com> <YLpjTMegcjT22vQE@intel.com>
-From: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <bd6a27e7-3ae5-ecb1-2fef-e5f8c1b6a2ac@tuxedocomputers.com>
-Date: Mon, 7 Jun 2021 08:47:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from smtp.smtpout.orange.fr (smtp06.smtpout.orange.fr
+ [80.12.242.128])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D47716E48B
+ for <amd-gfx@lists.freedesktop.org>; Sat,  5 Jun 2021 09:14:21 +0000 (UTC)
+Received: from localhost.localdomain ([86.243.172.93]) by mwinf5d86 with ME
+ id DM6o2500821Fzsu03M6oW4; Sat, 05 Jun 2021 11:06:49 +0200
+X-ME-Helo: localhost.localdomain
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sat, 05 Jun 2021 11:06:49 +0200
+X-ME-IP: 86.243.172.93
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@linux.ie, daniel@ffwll.ch
+Subject: [PATCH] drm/amdgpu: Fix a a typo in a comment
+Date: Sat,  5 Jun 2021 11:06:45 +0200
+Message-Id: <ea7ecbef546a03ef71d65bfe82608bb347e6f3c2.1622883895.git.christophe.jaillet@wanadoo.fr>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <YLpjTMegcjT22vQE@intel.com>
-Content-Language: en-US
+X-Mailman-Approved-At: Mon, 07 Jun 2021 07:12:50 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,100 +39,38 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mripard@kernel.org, daniel@ffwll.ch, sunpeng.li@amd.com,
- intel-gfx@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
- maarten.lankhorst@linux.intel.com, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, airlied@linux.ie, jani.nikula@linux.intel.com,
- amd-gfx@lists.freedesktop.org, tzimmermann@suse.de, rodrigo.vivi@intel.com,
- alexander.deucher@amd.com, harry.wentland@amd.com, christian.koenig@amd.com
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ kernel-janitors@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-CkFtIDA0LjA2LjIxIHVtIDE5OjMwIHNjaHJpZWIgVmlsbGUgU3lyasOkbMOkOgo+IE9uIEZyaSwg
-SnVuIDA0LCAyMDIxIGF0IDA3OjE3OjIzUE0gKzAyMDAsIFdlcm5lciBTZW1iYWNoIHdyb3RlOgo+
-PiBUaGlzIGNvbW1pdHMgaW1wbGVtZW50cyB0aGUgImFjdGl2ZSBicGMiIGRybSBwcm9wZXJ0eSBm
-b3IgdGhlIEludGVsIEdQVSBkcml2ZXIuCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IFdlcm5lciBTZW1i
-YWNoIDx3c2VAdHV4ZWRvY29tcHV0ZXJzLmNvbT4KPj4gLS0tCj4+ICAgZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAxMyArKysrKysrKysrKysrCj4+ICAgZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jICAgICAgfCAgOCArKysrKystLQo+
-PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMgIHwgIDQgKysr
-LQo+PiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jICAgIHwgIDQg
-KysrLQo+PiAgIDQgZmlsZXMgY2hhbmdlZCwgMjUgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMo
-LSkKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMK
-Pj4gaW5kZXggNjRlOTEwN2Q3MGY3Li5mNzg5OGQ5ZDc0MzggMTAwNjQ0Cj4+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4+IEBAIC0xMDE2NCw2ICsxMDE2
-NCw4IEBAIHN0YXRpYyB2b2lkIGludGVsX2F0b21pY19jb21taXRfdGFpbChzdHJ1Y3QgaW50ZWxf
-YXRvbWljX3N0YXRlICpzdGF0ZSkKPj4gICAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
-cml2ID0gdG9faTkxNShkZXYpOwo+PiAgIAlzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqbmV3X2Ny
-dGNfc3RhdGUsICpvbGRfY3J0Y19zdGF0ZTsKPj4gICAJc3RydWN0IGludGVsX2NydGMgKmNydGM7
-Cj4+ICsJc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcjsKPj4gKwlzdHJ1Y3QgZHJtX2Nv
-bm5lY3Rvcl9zdGF0ZSAqbmV3X2Nvbm5fc3RhdGU7Cj4+ICAgCXU2NCBwdXRfZG9tYWluc1tJOTE1
-X01BWF9QSVBFU10gPSB7fTsKPj4gICAJaW50ZWxfd2FrZXJlZl90IHdha2VyZWYgPSAwOwo+PiAg
-IAlpbnQgaTsKPj4gQEAgLTEwMzI0LDYgKzEwMzI2LDE3IEBAIHN0YXRpYyB2b2lkIGludGVsX2F0
-b21pY19jb21taXRfdGFpbChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkKPj4gICAJ
-fQo+PiAgIAlpbnRlbF9ydW50aW1lX3BtX3B1dCgmZGV2X3ByaXYtPnJ1bnRpbWVfcG0sIHN0YXRl
-LT53YWtlcmVmKTsKPj4gICAKPj4gKwkvKiBFeHRyYWN0IGluZm9ybWF0aW9uIGZyb20gY3J0YyB0
-byBjb21tdW5pY2F0ZSBpdCB0byB1c2Vyc3BhY2UgYXMgY29ubmVjdG9yIHByb3BlcnRpZXMgKi8K
-Pj4gKwlmb3JfZWFjaF9uZXdfY29ubmVjdG9yX2luX3N0YXRlKCZzdGF0ZS0+YmFzZSwgY29ubmVj
-dG9yLCBuZXdfY29ubl9zdGF0ZSwgaSkgewo+PiArCQlzdHJ1Y3QgZHJtX2NydGMgKmNydGMgPSBu
-ZXdfY29ubl9zdGF0ZS0+Y3J0YzsKPj4gKwkJaWYgKGNydGMpIHsKPj4gKwkJCW5ld19jcnRjX3N0
-YXRlID0gdG9faW50ZWxfY3J0Y19zdGF0ZShkcm1fYXRvbWljX2dldF9uZXdfY3J0Y19zdGF0ZSgm
-c3RhdGUtPmJhc2UsIGNydGMpKTsKPiBpbnRlbF9hdG9taWNfZ2V0X25ld19jcnRjX3N0YXRlKCkK
-VGhhbmtzLCB3aWxsIHVzZSB0aGF0Lgo+Cj4+ICsJCQluZXdfY29ubl9zdGF0ZS0+YWN0aXZlX2Jw
-YyA9IG5ld19jcnRjX3N0YXRlLT5waXBlX2JwcCAvIDM7Cj4+ICsJCX0KPj4gKwkJZWxzZQo+PiAr
-CQkJbmV3X2Nvbm5fc3RhdGUtPmFjdGl2ZV9icGMgPSAwOwo+PiArCX0KPiBUaGlzIGFsc28gc2Vl
-bXMgdG9vIGxhdGUuIEkgdGhpbmsgdGhlIHdob2xlIHRoaW5nIHNob3VsZCBiZQo+IGRvbmUgc29t
-ZXdoZXJlIGFyb3VuZCB0aGUgbm9ybWFsIHN3YXBfc3RhdGUoKSBzdHVmZi4KT2ssIHdpbGwgbG9v
-ayBpbnRvIGl0Lgo+Cj4+ICsKPj4gICAJLyoKPj4gICAJICogRGVmZXIgdGhlIGNsZWFudXAgb2Yg
-dGhlIG9sZCBzdGF0ZSB0byBhIHNlcGFyYXRlIHdvcmtlciB0byBub3QKPj4gICAJICogaW1wZWRl
-IHRoZSBjdXJyZW50IHRhc2sgKHVzZXJzcGFjZSBmb3IgYmxvY2tpbmcgbW9kZXNldHMpIHRoYXQK
-Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+PiBpbmRleCA2NDJjNjBm
-M2Q5YjEuLjY3ODI2YmE5NzZlZCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kcC5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZHAuYwo+PiBAQCAtNDY3MSwxMCArNDY3MSwxNCBAQCBpbnRlbF9kcF9hZGRfcHJvcGVy
-dGllcyhzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLCBzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29u
-bmVjdAo+PiAgIAkJaW50ZWxfYXR0YWNoX2ZvcmNlX2F1ZGlvX3Byb3BlcnR5KGNvbm5lY3Rvcik7
-Cj4+ICAgCj4+ICAgCWludGVsX2F0dGFjaF9icm9hZGNhc3RfcmdiX3Byb3BlcnR5KGNvbm5lY3Rv
-cik7Cj4+IC0JaWYgKEhBU19HTUNIKGRldl9wcml2KSkKPj4gKwlpZiAoSEFTX0dNQ0goZGV2X3By
-aXYpKSB7Cj4+ICAgCQlkcm1fY29ubmVjdG9yX2F0dGFjaF9tYXhfYnBjX3Byb3BlcnR5KGNvbm5l
-Y3RvciwgNiwgMTApOwo+PiAtCWVsc2UgaWYgKERJU1BMQVlfVkVSKGRldl9wcml2KSA+PSA1KQo+
-PiArCQlkcm1fY29ubmVjdG9yX2F0dGFjaF9hY3RpdmVfYnBjX3Byb3BlcnR5KGNvbm5lY3Rvciwg
-NiwgMTApOwo+PiArCX0KPj4gKwllbHNlIGlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikgPj0gNSkg
-ewo+PiAgIAkJZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfbWF4X2JwY19wcm9wZXJ0eShjb25uZWN0b3Is
-IDYsIDEyKTsKPj4gKwkJZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfYWN0aXZlX2JwY19wcm9wZXJ0eShj
-b25uZWN0b3IsIDYsIDEyKTsKPj4gKwl9Cj4+ICAgCj4+ICAgCS8qIFJlZ2lzdGVyIEhETUkgY29s
-b3JzcGFjZSBmb3IgY2FzZSBvZiBsc3Bjb24gKi8KPj4gICAJaWYgKGludGVsX2Jpb3NfaXNfbHNw
-Y29uX3ByZXNlbnQoZGV2X3ByaXYsIHBvcnQpKSB7Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kcF9tc3QuYwo+PiBpbmRleCAyZGFhM2Y2Nzc5MWUuLjVhMTg2OWRjMjIx
-MCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9t
-c3QuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5j
-Cj4+IEBAIC04NDQsOCArODQ0LDEwIEBAIHN0YXRpYyBzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqaW50
-ZWxfZHBfYWRkX21zdF9jb25uZWN0b3Ioc3RydWN0IGRybV9kcF9tc3RfdG9wb2xvCj4+ICAgCSAq
-Lwo+PiAgIAljb25uZWN0b3ItPm1heF9icGNfcHJvcGVydHkgPQo+PiAgIAkJaW50ZWxfZHAtPmF0
-dGFjaGVkX2Nvbm5lY3Rvci0+YmFzZS5tYXhfYnBjX3Byb3BlcnR5Owo+PiAtCWlmIChjb25uZWN0
-b3ItPm1heF9icGNfcHJvcGVydHkpCj4+ICsJaWYgKGNvbm5lY3Rvci0+bWF4X2JwY19wcm9wZXJ0
-eSkgewo+PiAgIAkJZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfbWF4X2JwY19wcm9wZXJ0eShjb25uZWN0
-b3IsIDYsIDEyKTsKPj4gKwkJZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfYWN0aXZlX2JwY19wcm9wZXJ0
-eShjb25uZWN0b3IsIDYsIDEyKTsKPj4gKwl9Cj4+ICAgCj4+ICAgCXJldHVybiBjb25uZWN0b3I7
-Cj4+ICAgCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2hkbWkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jCj4+IGlu
-ZGV4IGQ2OWYwYTZkYzI2ZC4uOGFmNzhiMjdiNmNlIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYwo+PiBAQCAtMjQ2Myw4ICsyNDYzLDEwIEBAIGludGVs
-X2hkbWlfYWRkX3Byb3BlcnRpZXMoc3RydWN0IGludGVsX2hkbWkgKmludGVsX2hkbWksIHN0cnVj
-dCBkcm1fY29ubmVjdG9yICpjCj4+ICAgCQlkcm1fb2JqZWN0X2F0dGFjaF9wcm9wZXJ0eSgmY29u
-bmVjdG9yLT5iYXNlLAo+PiAgIAkJCWNvbm5lY3Rvci0+ZGV2LT5tb2RlX2NvbmZpZy5oZHJfb3V0
-cHV0X21ldGFkYXRhX3Byb3BlcnR5LCAwKTsKPj4gICAKPj4gLQlpZiAoIUhBU19HTUNIKGRldl9w
-cml2KSkKPj4gKwlpZiAoIUhBU19HTUNIKGRldl9wcml2KSkgewo+PiAgIAkJZHJtX2Nvbm5lY3Rv
-cl9hdHRhY2hfbWF4X2JwY19wcm9wZXJ0eShjb25uZWN0b3IsIDgsIDEyKTsKPj4gKwkJZHJtX2Nv
-bm5lY3Rvcl9hdHRhY2hfYWN0aXZlX2JwY19wcm9wZXJ0eShjb25uZWN0b3IsIDgsIDEyKTsKPj4g
-Kwl9Cj4+ICAgfQo+PiAgIAo+PiAgIC8qCj4+IC0tIAo+PiAyLjI1LjEKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1k
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+s/than/then/
+
+Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+index 89ebbf363e27..1476236f5c7c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
+@@ -662,7 +662,7 @@ static int amdgpu_cs_sync_rings(struct amdgpu_cs_parser *p)
+  * @error:	error number
+  * @backoff:	indicator to backoff the reservation
+  *
+- * If error is set than unvalidate buffer, otherwise just free memory
++ * If error is set then unvalidate buffer, otherwise just free memory
+  * used by parsing context.
+  **/
+ static void amdgpu_cs_parser_fini(struct amdgpu_cs_parser *parser, int error,
+-- 
+2.30.2
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
