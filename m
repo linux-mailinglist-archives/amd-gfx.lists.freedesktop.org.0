@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B43439CD51
-	for <lists+amd-gfx@lfdr.de>; Sun,  6 Jun 2021 07:00:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDCDA39CD55
+	for <lists+amd-gfx@lfdr.de>; Sun,  6 Jun 2021 07:00:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45E566E511;
-	Sun,  6 Jun 2021 05:00:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 064006E520;
+	Sun,  6 Jun 2021 05:00:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2048.outbound.protection.outlook.com [40.107.94.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10B646E511
- for <amd-gfx@lists.freedesktop.org>; Sun,  6 Jun 2021 05:00:46 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam08on2082.outbound.protection.outlook.com [40.107.102.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 631F66E514
+ for <amd-gfx@lists.freedesktop.org>; Sun,  6 Jun 2021 05:00:47 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kBEPf//IPcqLYVIyBhIWgkSoQMqgMw09PZyUh5bUz1Xf7I/0kiJJYkuiEdhagDS3LQ3e1qWVLE823Qz1wG2L+23NmczgWlLYJcqI9uxlv5Jo/V9r/duz5IVEfs2nJsx2D88vhMvawcqGCACJNZ045kEzrXI7bL2RpXrj3RdQtiDLYinGXccnxo56DZpApvUlXeQKlJorKI6NbAi92xYPXjom5FCnkY1sMy83dd5uiutq77EGFDGJryDJYf1xrQt4Xc2PoCLHm4od4UVTwSgl4sNYFyZrYUnMFPDsUV7t8NgSgu8zyhxhU9ECh0ZFnrSwT4lyqJQup8lR4x/61/NokA==
+ b=SGOdTMVDoYBfFgUiRrJAarwvzwanCeeJZC2cz8RtdThq3/lrvEWQ+z5Py+Xp+px6f3BPnfzAqeFRWzGUPzzdWRlZ7eipu5IixQcD0guLFMp87/QOB9QKrlPbe7Ty1Kgh/lwK6GUa7poIjye5nEe1iMTFOF3+c8jeWyaOr2QQe+leE+oQRuaKQb5Z9gH6UwnsEGsQVKzpuHRQou5Mme+bd7L6d98AeTLYAZEoYx9wwDFIHHDaKvhWGyZvSLIIY4FQMZRfNCHswyfjordXTPAal97zrrBljONNmi7y26LBELJkzPYkUiPyosTIXrDGy8Wfp52P+7ipOv+qfcDN42IQ+A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t7OxxXKLT0/1D2jPY8K+6COCt/qmTxzSf341+Ih3Orc=;
- b=nY1oLfC8T2s5I5go1WgkPI0jxi2HUglN8gP0JmeXqF4cFwE8QIj+12ujXsIsUBr/HzSfSO7m8lB6DNpgY7Ur51bVLIc5tvjmVlhJXeJy802RUfv0GnDz+mxAWQDSbelWGjheh1eCE3hrMN7U9oT94301ciu4moKy35oSFDFfLrLlAGq7xe/MxEzxApgt4suBjhAVB5nsd4Dn92cT7TK7/XwRdrl3fHrwXHnY0vjdrGSJNv1uf+RCdwuuaf1dub3D+ABLAldh5gOI+D4aIBtgqeJ4Sm2ddqqIRf7ypEGoWKz8b2E+/MRLxiB+fnowe87jhrm39UqVgb3sW4pI5NGO4g==
+ bh=F1NocWZDz9i2hs3E3kak90RbWlXvdMJrfou54cgBt1A=;
+ b=aCPZYCP7TtlWyJ6chwJkG5ijKHfja4UrPxMmy3iDNKoglezpZ6h00WGbOyHz360mNwQ+tDvgSXAya8zYrisBh9M/uZruni3ZeViI7z026UxwHUbtl3mHysCr5PNelJlCF0VlGGg3gtd2HsOs1ktyh1Nh/RfIfo+EjmFRAAkHBemf1anjm/F0sslLr0BFQOGUoWExMx73FdBS+t6XYBx6UATG1D7R+pkNMwQzpjVxMx0FAdVBy8gJJ8SAjZETJlyz3RAXLMbbJuyssEq+Z1Jb7eKdPzF//FjdykHMRQ+B1gm7LksLJPr5nFTOHxZDTS6gYl4AFJT15uhim1raVelN6g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t7OxxXKLT0/1D2jPY8K+6COCt/qmTxzSf341+Ih3Orc=;
- b=S1Tt1CJ8aICyBcs7GdUy7gchZ/YaSzWmoN+lG835JAS5z2Gpjf+cmFwcwoj9Ao+6tHYxMCwnjU+fidKxZ6gPQ3m/Sy+Ipx28c0catF/Vm6y2rSSrfmQYr5NVgusEGJP2JPe997E45hu4X5kf/B4a7LiJ8kfik15/Ad1EJmKt2pY=
-Received: from CO2PR04CA0116.namprd04.prod.outlook.com (2603:10b6:104:7::18)
- by BL0PR12MB4754.namprd12.prod.outlook.com (2603:10b6:208:8e::26) with
+ bh=F1NocWZDz9i2hs3E3kak90RbWlXvdMJrfou54cgBt1A=;
+ b=T1vUTjP0zcVycDwXyqGOhz5CeiSFaht7UOlPAMEHxb6tO0anZ829dc4e6DyvX9VqNP2o14UQwQV4/dkny4wkTisXtphIk9ROgoGASPn+Wi/wZVe1SQkT5NzmX4IsFT/ZoyeZO7hZ5QoUk3NwvTUxy2fTDV5ae3ahUZ0fCGvtvSw=
+Received: from CO2PR04CA0122.namprd04.prod.outlook.com (2603:10b6:104:7::24)
+ by MN2PR12MB3471.namprd12.prod.outlook.com (2603:10b6:208:c8::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.20; Sun, 6 Jun
- 2021 05:00:42 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.24; Sun, 6 Jun
+ 2021 05:00:44 +0000
 Received: from CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
- (2603:10b6:104:7:cafe::b) by CO2PR04CA0116.outlook.office365.com
- (2603:10b6:104:7::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.15 via Frontend
- Transport; Sun, 6 Jun 2021 05:00:42 +0000
+ (2603:10b6:104:7:cafe::21) by CO2PR04CA0122.outlook.office365.com
+ (2603:10b6:104:7::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.20 via Frontend
+ Transport; Sun, 6 Jun 2021 05:00:43 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,44 +48,47 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT064.mail.protection.outlook.com (10.13.175.77) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4195.22 via Frontend Transport; Sun, 6 Jun 2021 05:00:41 +0000
+ 15.20.4195.22 via Frontend Transport; Sun, 6 Jun 2021 05:00:43 +0000
 Received: from dapowell-ubuntu-200400-1.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Sun, 6 Jun 2021 00:00:40 -0500
+ 15.1.2242.4; Sun, 6 Jun 2021 00:00:41 -0500
 From: Darren Powell <darren.powell@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v3 0/6] Modify smu_get_power_limit to implement Powerplay API
-Date: Sun, 6 Jun 2021 01:00:17 -0400
-Message-ID: <20210606050023.4124-1-darren.powell@amd.com>
+Subject: [PATCH 1/6] amdgpu/pm: reorder definition of swsmu_pm_funcs for
+ readability
+Date: Sun, 6 Jun 2021 01:00:18 -0400
+Message-ID: <20210606050023.4124-2-darren.powell@amd.com>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210606050023.4124-1-darren.powell@amd.com>
+References: <20210606050023.4124-1-darren.powell@amd.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c440ed55-581e-43e5-39de-08d928a808c1
-X-MS-TrafficTypeDiagnostic: BL0PR12MB4754:
-X-Microsoft-Antispam-PRVS: <BL0PR12MB47548172C35CD80895992C3EF0399@BL0PR12MB4754.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:541;
+X-MS-Office365-Filtering-Correlation-Id: 4af8601e-dda9-40c6-2d3b-08d928a809b2
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3471:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB34718F33801FAD2777902D10F0399@MN2PR12MB3471.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VJVoR8HwfYyXASNtYcWbI+gf4DvV5TupTOMean3yDWZf2QfB+tBhcjTiD3UuHw6oLLFtKhym73KhPvqEzi06yi314YKrBlqKy7yR2bfWQFdEbzpvNmAsJoLhIa02dt3LOYCmh7gZqaIQdzXW16aOjnbqvr8yVodMeS/k/QNfm9nZpApBLLSkHCVMpZYkJEfBHUo88xvcckgMPFw1DsaDpn3T/JIZauFO0a7qQhTemddNvJVDKk3nWmhepxwoVtygYW9H9CzFaN+wCmXPnlwPVda0E0Y7VS8RLranEgioI4OWHN7y7iCOdvQM/LNNtcSjPWJ7XDc5Ip8bi6foPDqxRjOOz0f9nmgjo5rFohemIcmMomlZVlOEDGNpEhrpgrbKdUji/npYhjSQTR0IvLfssVZzfEgcgN0sHrN+djNPqG7Cp14Ac67LOvR0HcNeCCpeRbbBiWS0FObmond020kfveFJKKwKs8/yc7TL1jlIGbS1ske2ZXyod2kx9cd2YPHR+Funf1C0WOa4exumLiNqSZUe9xBJpfD4+qC8AWZJabJXxc0LRzIybDUAYfDKNgj8yLfzqvlYffuGKTttQI8rMe7xOo0Y0jsMvusFjCavQYPkKhRFwm7cLVje5lsnt2HE7VstCecDStIUm0JU6vQcwnwjS5ORbhSBe+FGt872VHPhlVz5U1H3nO+B0mbXL7Cx
+X-Microsoft-Antispam-Message-Info: f91dgICZmaWU3X9etNj/ndm6oOBTfA3Z3/95QRhEbNiaNyC8YWWasbx+vBbziNJfQhQ5IhJV/gn1dMUX/ghY5bQ/4XSye3O419FVvAoCndcps1mq+txwji/A0YrJ3Jk6KFYiCUlY7yeZu4fmAjgUxiEHWhgFEiZlf2oOISV4pY5vSbuvFjwrL+IaHqZVICPWlj2g4nDSDcEkUwGtygO7HPV12qbSLyEjXr7VmklLqACyDSMas4Rd0rUo1izH1r9exZa1eWAqKySbTASv/bu7GHQH+iltOWtoutpRVaUkst1tX+4Za5hyHSS/2FO5NQ/Zf4PRUc5Wt8nYuogBw8F4qm2YCF3gF9cdPmjlocEOz9/EQdDDn1dr4c8tKpeTZTfDD3DpCcFZBPhGi9fXIo+vhlXAq8q9AworX9RlMQw1IDDhFyfdp2GOClyPeWAsbWAskRGV7YryqYRWfmVTCM9BVwQaIN0DFmuALW++EhXJUA4NnhxWqKxy69q6Igz6ozsLcIo49fsF2fRZUjZFmztBsqpl6BAXnxVGof99dJMtFU2umLhK85A9CpFkzop6skdv9dfFCKL1c5eLLU3nFQxLe7at3y+247XEIWprJF7limDwM5esqmreopRxz/8BMy5yFABP9E81unDBbsYQmmVc2VENEgsjpaI+Q143CW3QSLa1R4rlD0CfDG0wCFGGCloM
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(396003)(39860400002)(136003)(376002)(46966006)(36840700001)(6916009)(478600001)(16526019)(70586007)(2906002)(186003)(26005)(5660300002)(36756003)(47076005)(2616005)(70206006)(82310400003)(336012)(8936002)(86362001)(44832011)(8676002)(81166007)(83380400001)(7696005)(6666004)(356005)(82740400003)(4326008)(36860700001)(426003)(1076003)(316002)(36900700001);
+ SFS:(4636009)(136003)(346002)(39860400002)(396003)(376002)(36840700001)(46966006)(70206006)(316002)(16526019)(478600001)(47076005)(186003)(1076003)(8676002)(70586007)(7696005)(36860700001)(2906002)(336012)(5660300002)(6666004)(82740400003)(4326008)(82310400003)(81166007)(356005)(426003)(2616005)(26005)(44832011)(8936002)(36756003)(86362001)(83380400001)(6916009)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2021 05:00:41.4584 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c440ed55-581e-43e5-39de-08d928a808c1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2021 05:00:43.0365 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4af8601e-dda9-40c6-2d3b-08d928a809b2
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4754
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3471
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,93 +106,88 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Match the order of definition to the structure's declaration to
+help with locating included and missing functions of the API
 
-=== Description ===
-modify smu_get_power_limit to implement Powerplay API
+Signed-off-by: Darren Powell <darren.powell@amd.com>
+---
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 48 +++++++++++------------
+ 1 file changed, 24 insertions(+), 24 deletions(-)
 
- v3: renamed enum pp_power_sample_window to enum pp_power_limit
- v2: rewrote the patchset to use two enums as args to get_power
-
-=== Test System ===
-* DESKTOP(AMD FX-8350 + NAVI10(731F/ca), BIOS: F2)
- + ISO(Ubuntu 20.04.1 LTS)
- + Kernel(5.11.0-custom-fdoagd5f)
-
-=== Patch Summary ===
-   linux: (git@gitlab.freedesktop.org:agd5f) origin/amd-staging-drm-next @ 3ac16cf10525
-    + 1a7ee0a2bc79 amdgpu/pm: reorder definition of swsmu_pm_funcs for readability
-    + 3d0481caced7 amdgpu/pm: clean up smu_get_power_limit function signature
-    + 593d896cf90c amdgpu/pm: modify Powerplay API get_power_limit to use new pp_power enums
-    + 45339b7190fc amdgpu/pm: modify and add smu_get_power_limit to Powerplay API
-    + 8f4be6d2a9df amdgpu/pm: handle return value for get_power_limit
-    + a2e5f8ecd04f amdgpu/pm: add kernel documentation for smu_get_power_limit
-
-=== Tests ===
-==== get_power_limit Test ====
-* Test 
- AMDGPU_PCI_ADDR=`lspci -nn | grep "VGA\|Display" | cut -d " " -f 1`
- AMDGPU_HWMON=`ls -la /sys/class/hwmon | grep $AMDGPU_PCI_ADDR | cut -d " " -f 11`
- HWMON_DIR=/sys/class/hwmon/${AMDGPU_HWMON}
-
- lspci -nn | grep "VGA\|Display" ; \
- echo "=== power1 cap ===" ; cat $HWMON_DIR/power1_cap ;           \
- echo "=== power1 cap max ===" ; cat $HWMON_DIR/power1_cap_max ;   \
- echo "=== power1 cap def ===" ; cat $HWMON_DIR/power1_cap_default
-
-==== Documentation Test ====
-* Insert temp documentation
-** Documentation/gpu/amdgpu.rst
- vi Documentation/gpu/amdgpu.rst
-** added text to start
-------------START------------
-Documentation Testing
-=====================
-
-Power Limit
------------
-.. kernel-doc:: drivers/gpu/drm/amd/include/kgd_pp_interface.h
-   :doc: amdgpu_pp_power
-
-.. kernel-doc:: drivers/gpu/drm/amd/include/kgd_pp_interface.h
-   :identifiers: pp_power_limit_level
-
-.. kernel-doc:: drivers/gpu/drm/amd/include/kgd_pp_interface.h
-   :identifiers: pp_power_type
-
-.. kernel-doc:: drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
-   :identifiers: smu_get_power_limit
--------------END-------------
-
-* Setup
- cd ~/workspace/linux
- . sphinx_2.4.4/bin/activate
-
-* Build
- export SPHINXDOCLOG=sphinx.build.log
- cp $SPHINXDOCLOG{,.old}
- time make -j 8 htmldocs |& tee $SPHINXDOCLOG
-
-* View
- firefox file:///home/dapowell/workspace/linux/Documentation/output/gpu/amdgpu.html
-
-Darren Powell (6):
-  amdgpu/pm: reorder definition of swsmu_pm_funcs for readability
-  amdgpu/pm: clean up smu_get_power_limit function signature
-  amdgpu/pm: modify Powerplay API get_power_limit to use new pp_power
-    enums
-  amdgpu/pm: modify and add smu_get_power_limit to Powerplay API
-  amdgpu/pm: handle return value for get_power_limit
-  amdgpu/pm: add kernel documentation for smu_get_power_limit
-
- .../gpu/drm/amd/include/kgd_pp_interface.h    | 47 ++++++++-
- drivers/gpu/drm/amd/pm/amdgpu_pm.c            | 64 +++++++------
- drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h       |  5 +-
- .../gpu/drm/amd/pm/powerplay/amd_powerplay.c  | 33 ++++---
- drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 96 +++++++++++++------
- 5 files changed, 172 insertions(+), 73 deletions(-)
-
-
-base-commit: f60839821f77d6db48bfc986e0391b70b31fede8
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index 6aab65c684ba..1b8321d12c8a 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -2969,6 +2969,8 @@ static const struct amd_pm_funcs swsmu_pm_funcs = {
+ 	.get_fan_control_mode    = smu_get_fan_control_mode,
+ 	.set_fan_speed_percent   = smu_set_fan_speed_percent,
+ 	.get_fan_speed_percent   = smu_get_fan_speed_percent,
++	.force_clock_level       = smu_force_ppclk_levels,
++	.print_clock_levels      = smu_print_ppclk_levels,
+ 	.force_performance_level = smu_force_performance_level,
+ 	.read_sensor             = smu_read_sensor,
+ 	.get_performance_level   = smu_get_performance_level,
+@@ -2981,38 +2983,36 @@ static const struct amd_pm_funcs swsmu_pm_funcs = {
+ 	.switch_power_profile    = smu_switch_power_profile,
+ 	/* export to amdgpu */
+ 	.dispatch_tasks          = smu_handle_dpm_task,
++	.load_firmware           = smu_load_microcode,
+ 	.set_powergating_by_smu  = smu_dpm_set_power_gate,
+ 	.set_power_limit         = smu_set_power_limit,
++	.get_power_profile_mode  = smu_get_power_profile_mode,
++	.set_power_profile_mode  = smu_set_power_profile_mode,
+ 	.odn_edit_dpm_table      = smu_od_edit_dpm_table,
+ 	.set_mp1_state           = smu_set_mp1_state,
++	.gfx_state_change_set    = smu_gfx_state_change_set,
+ 	/* export to DC */
+-	.get_sclk                = smu_get_sclk,
+-	.get_mclk                = smu_get_mclk,
+-	.enable_mgpu_fan_boost   = smu_enable_mgpu_fan_boost,
+-	.get_asic_baco_capability = smu_get_baco_capability,
+-	.set_asic_baco_state     = smu_baco_set_state,
+-	.get_ppfeature_status    = smu_sys_get_pp_feature_mask,
+-	.set_ppfeature_status    = smu_sys_set_pp_feature_mask,
+-	.asic_reset_mode_2       = smu_mode2_reset,
+-	.set_df_cstate           = smu_set_df_cstate,
+-	.set_xgmi_pstate         = smu_set_xgmi_pstate,
+-	.get_gpu_metrics         = smu_sys_get_gpu_metrics,
+-	.set_power_profile_mode  = smu_set_power_profile_mode,
+-	.get_power_profile_mode  = smu_get_power_profile_mode,
+-	.force_clock_level       = smu_force_ppclk_levels,
+-	.print_clock_levels      = smu_print_ppclk_levels,
+-	.get_uclk_dpm_states     = smu_get_uclk_dpm_states,
+-	.get_dpm_clock_table     = smu_get_dpm_clock_table,
+-	.display_configuration_change        = smu_display_configuration_change,
+-	.get_clock_by_type_with_latency      = smu_get_clock_by_type_with_latency,
+-	.display_clock_voltage_request       = smu_display_clock_voltage_request,
+-	.set_active_display_count            = smu_set_display_count,
+-	.set_min_deep_sleep_dcefclk          = smu_set_deep_sleep_dcefclk,
++	.get_sclk                         = smu_get_sclk,
++	.get_mclk                         = smu_get_mclk,
++	.display_configuration_change     = smu_display_configuration_change,
++	.get_clock_by_type_with_latency   = smu_get_clock_by_type_with_latency,
++	.display_clock_voltage_request    = smu_display_clock_voltage_request,
++	.enable_mgpu_fan_boost            = smu_enable_mgpu_fan_boost,
++	.set_active_display_count         = smu_set_display_count,
++	.set_min_deep_sleep_dcefclk       = smu_set_deep_sleep_dcefclk,
++	.get_asic_baco_capability         = smu_get_baco_capability,
++	.set_asic_baco_state              = smu_baco_set_state,
++	.get_ppfeature_status             = smu_sys_get_pp_feature_mask,
++	.set_ppfeature_status             = smu_sys_set_pp_feature_mask,
++	.asic_reset_mode_2                = smu_mode2_reset,
++	.set_df_cstate                    = smu_set_df_cstate,
++	.set_xgmi_pstate                  = smu_set_xgmi_pstate,
++	.get_gpu_metrics                  = smu_sys_get_gpu_metrics,
+ 	.set_watermarks_for_clock_ranges     = smu_set_watermarks_for_clock_ranges,
+ 	.display_disable_memory_clock_switch = smu_display_disable_memory_clock_switch,
+ 	.get_max_sustainable_clocks_by_dc    = smu_get_max_sustainable_clocks_by_dc,
+-	.load_firmware           = smu_load_microcode,
+-	.gfx_state_change_set    = smu_gfx_state_change_set,
++	.get_uclk_dpm_states              = smu_get_uclk_dpm_states,
++	.get_dpm_clock_table              = smu_get_dpm_clock_table,
+ 	.get_smu_prv_buf_details = smu_get_prv_buffer_details,
+ };
+ 
 -- 
 2.31.1
 
