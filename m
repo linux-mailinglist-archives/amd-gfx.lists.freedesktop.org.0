@@ -1,123 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C52239E6BD
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Jun 2021 20:37:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D333739E6D8
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Jun 2021 20:48:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B28856E544;
-	Mon,  7 Jun 2021 18:37:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 692456E0A2;
+	Mon,  7 Jun 2021 18:48:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2070.outbound.protection.outlook.com [40.107.93.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF4776E544
- for <amd-gfx@lists.freedesktop.org>; Mon,  7 Jun 2021 18:37:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZF0eAA8/oBRNVYZfCYBLtDZg3N4Uw+1SnMC7BYmy7UnWvokAVbmX1xBg4qBBg03gexToaMLI2M5lfQI887r/vX6MaA7h/WcuEgddWlqYl1UrtowyBTV83csCIPOihEsFApCpXj10fdT5u6SouG5UqR/gNoyDfUI9wckBcUK+Y/EaH/5HA46EWqIM4HhkXQzJOt7idJ5R0yCV3zA/im59PLTDi45g58DFlsYzEesn7PZoQ+fn+uQJ76oxEfqESE5ivpLL5ovZ2KrTf8q8syPes33mz0w6DVLYGNR/9LX/C9wwT2IkASISV6suWoXtE4TP+9kw2V/RV/AJaDfuy+X6XQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+dceLo6RM65fx+mwqjIhzL8K3qu1b0M0rBpX2LJIG4s=;
- b=QCUa8T3afl1iJZ7KgaRHevxSjkybGZsBkoJTAhnW37vSmfaADATqOoxnYgrJZk6kdeXgU1v3SsG9D6iddoXaGN/0JYt9qHvsmyXYlNqw+Z3PG3f2pKbkFtJx6/ei4RLkZ+bW1YmhV1whZ3OdkNWDQ6ZMxY0zGs9W2eCtQDbXVPnrNovuB97zHun1eWtq3VYODAOuLFLvwCe0Rka392/sypksh4++kixDUda4EjQnXVsvxJDyK5Emvp1Jhc2wTHlXj3WcO2t03wYhZQt9AYQLsPqed7alqBQNGPaso02uwZkG8CrSKs3/6E7QiBeOrBNPccJBNZrk+OH0xG/GXukrIg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+dceLo6RM65fx+mwqjIhzL8K3qu1b0M0rBpX2LJIG4s=;
- b=vLiQ3VlbUxYfJTw/OUw/Fr9WWGgMrTrTmEKNYTmdm0TORTpJNWw3TchPUBr6FL6yABmPXp8JLQJPMXz5xpsj3nDVolLy+1FqtR/7kt9d0db81nbHtkp75DSG8Wrv/ey9VVLkQwYKu37JNZVTjFD61nYkwJSnGqH6fKj51VjBsEE=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
- by CO6PR12MB5443.namprd12.prod.outlook.com (2603:10b6:303:13a::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.23; Mon, 7 Jun
- 2021 18:37:12 +0000
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::f455:b0b4:439:2753]) by CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::f455:b0b4:439:2753%3]) with mapi id 15.20.4195.030; Mon, 7 Jun 2021
- 18:37:12 +0000
-Subject: Re: [PATCH] drm/amd/display: Fix overlay validation by considering
- cursors
-To: Sean Paul <seanpaul@google.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com
+ [IPv6:2607:f8b0:4864:20::b31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C94A6E9B5
+ for <amd-gfx@lists.freedesktop.org>; Mon,  7 Jun 2021 18:46:15 +0000 (UTC)
+Received: by mail-yb1-xb31.google.com with SMTP id q21so26428408ybg.8
+ for <amd-gfx@lists.freedesktop.org>; Mon, 07 Jun 2021 11:46:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=QIG3l40TEJFF67EfkI91xDyKWiHnEpo6YhYb6QmUCZQ=;
+ b=sQPZpgVs+MtpKWTI4IRzZ3PJuLTu8qMa9vFrwBqnKk8VMHZBK4B/PyvBEp7xXPfdWB
+ 6i1hdpQai4otr+8F0DTFqq0NISDZ7rYYrhr8AdmYEgdZm+XbCIkhCq/0b1pYC5TN/qNm
+ A7TuXsJbspbuxOQO1/H6l1xCNptpGX75sanXPRfx02sFt/jjk3ZNVG0rdKpFR2ew/N2E
+ xCTuCnXgMLCPR0RVlgjqVjpA2dy2VfgU9hA3y7/hLucTWeQujUSlFrLUSqApCBagYUgi
+ Fsi3FFAYWtl0eAOzDmYoMoIqTTTsG4t/qg01j8HxoCvUCf1R8xiqg+bN8M5X+CMkjrkE
+ rkTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=QIG3l40TEJFF67EfkI91xDyKWiHnEpo6YhYb6QmUCZQ=;
+ b=WpiZWQrg99ywEaAFOu2szx0ST+cVScGOZTjB9ragcKiGiV0Q3jhQlI0JK8yDAax0Ti
+ B1j0lr8+WXKuqbAK+J51tIopwSzRFNbF66QWNgY2Af+Yabad303+ql6p9IjPa0d2Gqe7
+ N87ugp8+QgS1+GPy+7c5xOHCUlROYi88ggjGEZ20F3os0zGoHKycEp2kBfML5nTtMJYk
+ h1MKLmtNu4JMj5ucioWUCyt7gzRj6WtNCfVK8ckunXVJriNji/PgAfC0Wl4DRUZy+yFu
+ 87U6tgRszU/6NHd1xvWWttKme0ZSh6Jk0JuoPSBiY3vdz7k4z84UejL34RG1jZRZrOaJ
+ 3Ebw==
+X-Gm-Message-State: AOAM532OHsZhRaJEtyxT7V+Dp76hiGsVoSi1QAnHGkpJUyhlrAThszvg
+ pCjdp0qGFcgwrM3MH7S6lkSvuFVettPpQyUZBHel+Q==
+X-Google-Smtp-Source: ABdhPJx+OQCWtMm0fHPwxlQfxhpmczRZhatDuyLB+jDHY4B8+R3MEIarur8WMWzdZd/rNVnxrCZ3Dv3jaAexjNiZhQQ=
+X-Received: by 2002:a25:ba0c:: with SMTP id t12mr25141889ybg.158.1623091574121; 
+ Mon, 07 Jun 2021 11:46:14 -0700 (PDT)
+MIME-Version: 1.0
 References: <20210514114734.687096-1-Rodrigo.Siqueira@amd.com>
  <857025a9-2ac0-ed37-bc9e-a2be9e1780a9@amd.com>
  <CAC0gqY77ztqBfi3g_JYPVEqmahXVJ+bGePMK40WaPmgm4m6gVw@mail.gmail.com>
  <CAJUqKUrM6jrUrZkcfF=R7vNeoj4KvwymwM4tMVy09ndsPci-9Q@mail.gmail.com>
  <20210518185806.gsrzfcxcwo6o47kc@outlook.office365.com>
  <CAOw6vbLBTW03h1-amysV0rAn3YiT6z0C6jds5vPMz1rAEcDGow@mail.gmail.com>
-From: Harry Wentland <harry.wentland@amd.com>
-Message-ID: <517b3280-f7aa-eab3-472e-5e23ad5dc243@amd.com>
-Date: Mon, 7 Jun 2021 14:37:07 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
-In-Reply-To: <CAOw6vbLBTW03h1-amysV0rAn3YiT6z0C6jds5vPMz1rAEcDGow@mail.gmail.com>
-Content-Language: en-US
-X-Originating-IP: [198.200.67.154]
-X-ClientProxiedBy: YQBPR01CA0136.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:1::36) To CO6PR12MB5427.namprd12.prod.outlook.com
- (2603:10b6:5:358::13)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.50.3] (198.200.67.154) by
- YQBPR01CA0136.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c01:1::36) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4195.27 via Frontend Transport; Mon, 7 Jun 2021 18:37:10 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5ea35a19-5950-4822-4f13-08d929e3439c
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5443:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CO6PR12MB5443859260FB013CE7FB2CA68C389@CO6PR12MB5443.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1051;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5YXHiYhlbnFbHAyc9itWDy7YYbrY8J5JuODR+hloHJur64hFD7PhZ6SpTw3kOJAE35WuQ7TZJNDB+qNnNhqmwzm9+N0YEOyMEodnP50SKejZfADW7gBtHldf1rIwC/T9dyJg595t8j07qCulJTH+b3JJ03XIstLG6v7iqRLX886ULX2l50gZOqU8HQpnrdau1GtVXoemOsj/qXb2nwXXn9SJaHq4DueRvMIhpdy8XjaHfypBhdwO3UxP5ilyXKokpoYtywlOfSoFKWQDIN6gHDEiWi8r6yfAHe1icb8QEi/S2oEnfeQeLjsqQYQYSYv9tqtVahVoLAQwqOU408WF2pVGmhYTN56R8hjk6jtsIO1/NGHgSJKFtOz7jb47+AHGFZYh+2byhS1FnS74iTT02gqakrKEX6Xau7R4gWTL/p/s67hQGRAnYPhdRgL3IByI++xOC/HeICPm95eH9PXQDBEIU60T3rXSnDXQOa4wBA/GxqgFez4q+lnPhfkb1SafwRaEviTgzAYsJhlZFBQHLuLv3oO+JZ/+Ll5p0BrnFHZL/YfVa7CUKsJFI+6BB1Pij3AU5b31rZMeDrVjXFTmfvCyotbpTBeNhpcv6TpuobAE7h3ZUaTX+xEBjqeFT2t8PyIlLH5GBHCLUu6YwpiR97NWfbLdmRKk5xs1L5RT3sW7kvaNCQinEb6siL7rYBSMiJsFsb+GBx3r5d1FGX1NeMg6BL96Jz5pvmLUEqtCNiAVwoOuk2h7itob6yKoTACZtEzvpm5uaXgGewjEB1lyfVut4FnTqNWCArftAP7x5i8Op8EgSaAhr6hAxfPHYEbq
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(39860400002)(366004)(136003)(396003)(346002)(31686004)(66476007)(186003)(5660300002)(316002)(26005)(36756003)(31696002)(16576012)(86362001)(38100700002)(2616005)(2906002)(956004)(110136005)(66946007)(54906003)(53546011)(6666004)(478600001)(966005)(44832011)(83380400001)(6636002)(8676002)(8936002)(6486002)(4326008)(66556008)(16526019)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?a2dWQnduaUVvZTRVbTNCZkhjZFdzQjB3SW1xT3dJa2srRVpQbk5wSUdQeGRq?=
- =?utf-8?B?b05qbkZ4cnlPWllJM1c3aHU1ZHpZaEFUMVlXMWIzZGhLU2lFemRTVzIxMjVY?=
- =?utf-8?B?ZERnakp5ZGduVHFRL1hTRUhKNWNDOHZhWUdYTWg4NFlvMDhtUjhDM3BzNnRF?=
- =?utf-8?B?QVJ6eTlybGlmWXhhaGx0bmJHTHhLS2s4d0cwUHFKd0JSUzA3QmoxRmxzNWFO?=
- =?utf-8?B?VlNUWDJPTVUxVFhDWnFOeWdmRDBBRU9jMVRpaXYydE1aWjJDdzZIR05POWlm?=
- =?utf-8?B?TzZZSWdEVHQvQ3BhZ1BpdkQvc05GQys5RVkvdkhySks1Nm9Vc0RHeG5rQnMr?=
- =?utf-8?B?QWdwQS9jb3ZLTmNxTHREQjRtS0FDOWszRGJMbnFlQjhmdXNmTmF3U05taU50?=
- =?utf-8?B?OCs3czVaakFmbzcwbDJSTXBIWDZockUxZGtEMk5XQlNTc2J4cGdnYkk0OGUx?=
- =?utf-8?B?czRhUkNhVlI4RTc3MUk4YnRDdnVyQm1ZRFNQN09yM25uYjdkcUVDSi9JVG5P?=
- =?utf-8?B?V21XRDIvelRQMFdwMVA4VzBxVmk0YmZJeU90OUxXL3dRZTBORlRGTDBhR3kz?=
- =?utf-8?B?eVN2SFJUZDZNK1ZTT2RkbHhjRWJzQUdQYXY4SUVHRktJR2xxa3FScnBuNzRF?=
- =?utf-8?B?aS9iUjhWTFVpNUpJZDBqei9wZHdTM0MvTGFaMXF5VnUrV21FY1VnelRjRWYw?=
- =?utf-8?B?YUJCTHdvNmZZTHJUbXpGWkYwdUk3c08zNXU0ZEFTSVA5VEZ1KzNacFJENlc2?=
- =?utf-8?B?Uzd5WkJDMk1GNEozT0g5T3o0elFxdmxaN3JrV09MWTlPN2Q2OGI1TXdpNkdq?=
- =?utf-8?B?SHZUYkpSaXEzWG05alExTjRhUWpoY2QrOXF3TkppOXk1aUdYYkxSaDNCeE5s?=
- =?utf-8?B?bFNsR216WHNxRGN3OG1HN1FDbFF3YnBGdW8walpTdXZja3ZseG12THh1dVAr?=
- =?utf-8?B?TmVoMDVWaHhhY01KTlljYVJETFFmSER4SW8xSldKd3d6SmJJR044MllUbFlx?=
- =?utf-8?B?cHJBVG96cDJRbXFmUWlWSUVaT0tmWXFmNHlDNGJZa2ladjcwY0xOMFNxcmxa?=
- =?utf-8?B?Tmt3THgwQjhLS0RQOUx3eUk3d3VZbUI5eVNzRXhzalZqa0YyYUxGbGdoL0pm?=
- =?utf-8?B?VFZmQXM3ck03U0RTT2tSTENod3RpQzltZmZtSjZ1TG80M3BnMWhyV05MR2cv?=
- =?utf-8?B?QjVNR25NUlZMVitvVjM5THFpd3VlNmlqU1dESTZiSktnRGNkTkZiZzFrZndo?=
- =?utf-8?B?SjdYcEc5M0RjakdpS1BscUFQYjhjZzV5QUZ4WlAybTBhMXh5TVZydjVmTXlt?=
- =?utf-8?B?YncrRlNQSVZ2VnR5NUw2R3pGUVRCN3RLVFZ6dG9zclFRaHpwNEZVUWo0U2hX?=
- =?utf-8?B?T3BrRHRNWWtjWkpsOUhzbERxQWpDSVIxSS81UlN4NEtvdzFaQnRkMjkwbkVZ?=
- =?utf-8?B?Z0NvV0JYN0NJOUM4T3J1aEdSTnUva3VvejFsRytycjNEcElqNldpOEdqZE5P?=
- =?utf-8?B?UjNhTFpzVE1GV09uaHB0anpFVndIbzV3MWFvdUhmVXRWeXpOYkZzcHVFckVX?=
- =?utf-8?B?Y3I3VzJTTGlIM05JMWhiTjhYZytxTkIyRmUzRzlkL1M4QXBqYnVjdlVOR3Br?=
- =?utf-8?B?YTFxbmJBa1dtbVA2MkJZU05laUc0b1IvYmJ5bzlZa25zemJOSjNlZ1ExTnlj?=
- =?utf-8?B?akNVRlN1eHRPYmd5TXhrdC82OHVKSHc0VHdyMzhka0FqdW5QVnBQaDhZUGFv?=
- =?utf-8?Q?F+PHPXjkZHV/5N57jo3OtS2Oo5i7+b9ne236q2F?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ea35a19-5950-4822-4f13-08d929e3439c
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2021 18:37:12.0060 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IsfWFI87VwtIETPQl/CRsw7ZD5yyo/SLZ9e6pYFemMOHdBhOkaik0JQODliVwNqskifxFMs+LIeq+yfqJpg4yg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5443
+ <517b3280-f7aa-eab3-472e-5e23ad5dc243@amd.com>
+In-Reply-To: <517b3280-f7aa-eab3-472e-5e23ad5dc243@amd.com>
+From: Sean Paul <seanpaul@google.com>
+Date: Mon, 7 Jun 2021 14:45:37 -0400
+Message-ID: <CAOw6vb+SAOsp-2Da6UMf+Xgx7V=P3MDjFqm1tjRyV6bZk_HPyg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: Fix overlay validation by considering
+ cursors
+To: Harry Wentland <harry.wentland@amd.com>
+X-Mailman-Approved-At: Mon, 07 Jun 2021 18:48:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,156 +68,434 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Mark Yacoub <markyacoub@chromium.org>, "Tianci . Yin" <tianci.yin@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
  amd-gfx list <amd-gfx@lists.freedesktop.org>,
  Daniel Wheeler <daniel.wheeler@amd.com>, Nicholas Choi <nicholas.choi@amd.com>,
  Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
  Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>,
  Mark Yacoub <markyacoub@google.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0445997105=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2021-06-07 2:19 p.m., Sean Paul wrote:
-> On Tue, May 18, 2021 at 2:58 PM Rodrigo Siqueira
-> <Rodrigo.Siqueira@amd.com> wrote:
->>
->> On 05/14, Mark Yacoub wrote:
->>> On Fri, May 14, 2021 at 12:31 PM Mark Yacoub <markyacoub@google.com> wrote:
->>>>
->>>> On Fri, May 14, 2021 at 11:28 AM Harry Wentland <harry.wentland@amd.com> wrote:
->>>>>
->>>>> On 2021-05-14 7:47 a.m., Rodrigo Siqueira wrote:
->>>>>> A few weeks ago, we saw a two cursor issue in a ChromeOS system. We
->>>>>> fixed it in the commit:
->>>>>>
->>>>>>  drm/amd/display: Fix two cursor duplication when using overlay
->>>>>>  (read the commit message for more details)
->>>>>>
->>>>>> After this change, we noticed that some IGT subtests related to
->>>>>> kms_plane and kms_plane_scaling started to fail. After investigating
->>>>>> this issue, we noticed that all subtests that fail have a primary plane
->>>>>> covering the overlay plane, which is currently rejected by amdgpu dm.
->>>>>> Fail those IGT tests highlight that our verification was too broad and
->>>>>> compromises the overlay usage in our drive. This patch fixes this issue
->>> nit: s/drive/driver?
->>>>>> by ensuring that we only reject commits where the primary plane is not
->>>>>> fully covered by the overlay when the cursor hardware is enabled. With
->>>>>> this fix, all IGT tests start to pass again, which means our overlay
->>>>>> support works as expected.
->>>>>>
->>>>>> Cc: Tianci.Yin <tianci.yin@amd.com>
->>>>>> Cc: Harry Wentland <harry.wentland@amd.com>
->>>>>> Cc: Nicholas Choi <nicholas.choi@amd.com>
->>>>>> Cc: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
->>>>>> Cc: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
->>>>>> Cc: Mark Yacoub <markyacoub@google.com>
->>>>>> Cc: Daniel Wheeler <daniel.wheeler@amd.com>
->>>>>>
->>>>>> Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
->>>>>> ---
->>>>>>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 +++++++++-
->>>>>>  1 file changed, 9 insertions(+), 1 deletion(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>>>>> index ccd67003b120..9c2537a17a7b 100644
->>>>>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>>>>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
->>>>>> @@ -10067,7 +10067,7 @@ static int validate_overlay(struct drm_atomic_state *state)
->>>>>>       int i;
->>>>>>       struct drm_plane *plane;
->>>>>>       struct drm_plane_state *old_plane_state, *new_plane_state;
->>>>>> -     struct drm_plane_state *primary_state, *overlay_state = NULL;
->>>>>> +     struct drm_plane_state *primary_state, *cursor_state, *overlay_state = NULL;
->>>>>>
->>>>>>       /* Check if primary plane is contained inside overlay */
->>>>>>       for_each_oldnew_plane_in_state_reverse(state, plane, old_plane_state, new_plane_state, i) {
->>>>>> @@ -10097,6 +10097,14 @@ static int validate_overlay(struct drm_atomic_state *state)
->>>>>>       if (!primary_state->crtc)
->>>>>>               return 0;
->>>>>>
->>>>>> +     /* check if cursor plane is enabled */
->>>>>> +     cursor_state = drm_atomic_get_plane_state(state, overlay_state->crtc->cursor);
->>>>>> +     if (IS_ERR(cursor_state))
->>>>>> +             return PTR_ERR(cursor_state);
->>>>>> +
->>>>>> +     if (drm_atomic_plane_disabling(plane->state, cursor_state))
->>>>>> +             return 0;
->>>>>> +
->>>>>
->>>>> I thought this breaks Chrome's compositor since it can't handle an atomic commit rejection
->>>>> based solely on whether a cursor is enabled or not.
->>> For context: To use overlays (the old/current async way), Chrome tests
->>> if an overlay strategy will work by doing an atomic commit with a TEST
->>> flag to check if the combination would work. If it works, it flags
->>> this planes configuration as valid. As it's valid, it performs an
->>> atomic page flip (which could also include the cursor).
->>> So to Harry's point, you would pass an atomic test but fail on an
->>> atomic page flip with the exact same configuration that's been flagged
->>> as valid. Failing a pageflip causes Chrome to crash (Reset the GPU
->>> process cause something went horribly wrong when it shouldn't).
->>
->> Hi Mark and Sean,
->>
->> I don't know if I fully comprehended the scenario which in my patch
->> might cause a ChromeOS crash, but this is what I understood:
->>
-> 
-> Chrome compositor only does an atomic test when the layout geometry
-> changes (ie: plane is added/removed/resized/moved). This does not take
-> into consideration the cursor. Once the atomic test has been validated
-> for a given layout geometry (set of planes/fbs along with their sizes
-> and locations), Chrome assumes this will continue to be valid.
-> 
-> So the situation I'm envisioning is if the cursor is hidden, an
-> overlay-based strategy will pass in the kernel. If at any time the
-> cursor becomes visible, the kernel will start failing commits which
-> causes Chrome's GPU process to crash.
-> 
-> In general I'm uneasy with using the cursor in the atomic check since
-> it feels like it could be racy independent of the issue above. I
-> haven't dove into the helper code enough to prove it, just a
-> spidey-sense.
-> 
+--===============0445997105==
+Content-Type: multipart/alternative; boundary="000000000000b72d4e05c4317430"
 
-Isn't the cursor supposed to be just another plane? If so, shouldn't
-adding/removing the cursor trigger an atomic test?
+--000000000000b72d4e05c4317430
+Content-Type: text/plain; charset="UTF-8"
+
+On Mon, Jun 7, 2021 at 2:37 PM Harry Wentland <harry.wentland@amd.com>
+wrote:
+
+> On 2021-06-07 2:19 p.m., Sean Paul wrote:
+> > On Tue, May 18, 2021 at 2:58 PM Rodrigo Siqueira
+> > <Rodrigo.Siqueira@amd.com> wrote:
+> >>
+> >> On 05/14, Mark Yacoub wrote:
+> >>> On Fri, May 14, 2021 at 12:31 PM Mark Yacoub <markyacoub@google.com>
+> wrote:
+> >>>>
+> >>>> On Fri, May 14, 2021 at 11:28 AM Harry Wentland <
+> harry.wentland@amd.com> wrote:
+> >>>>>
+> >>>>> On 2021-05-14 7:47 a.m., Rodrigo Siqueira wrote:
+> >>>>>> A few weeks ago, we saw a two cursor issue in a ChromeOS system. We
+> >>>>>> fixed it in the commit:
+> >>>>>>
+> >>>>>>  drm/amd/display: Fix two cursor duplication when using overlay
+> >>>>>>  (read the commit message for more details)
+> >>>>>>
+> >>>>>> After this change, we noticed that some IGT subtests related to
+> >>>>>> kms_plane and kms_plane_scaling started to fail. After investigating
+> >>>>>> this issue, we noticed that all subtests that fail have a primary
+> plane
+> >>>>>> covering the overlay plane, which is currently rejected by amdgpu
+> dm.
+> >>>>>> Fail those IGT tests highlight that our verification was too broad
+> and
+> >>>>>> compromises the overlay usage in our drive. This patch fixes this
+> issue
+> >>> nit: s/drive/driver?
+> >>>>>> by ensuring that we only reject commits where the primary plane is
+> not
+> >>>>>> fully covered by the overlay when the cursor hardware is enabled.
+> With
+> >>>>>> this fix, all IGT tests start to pass again, which means our overlay
+> >>>>>> support works as expected.
+> >>>>>>
+> >>>>>> Cc: Tianci.Yin <tianci.yin@amd.com>
+> >>>>>> Cc: Harry Wentland <harry.wentland@amd.com>
+> >>>>>> Cc: Nicholas Choi <nicholas.choi@amd.com>
+> >>>>>> Cc: Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>
+> >>>>>> Cc: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+> >>>>>> Cc: Mark Yacoub <markyacoub@google.com>
+> >>>>>> Cc: Daniel Wheeler <daniel.wheeler@amd.com>
+> >>>>>>
+> >>>>>> Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> >>>>>> ---
+> >>>>>>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 10 +++++++++-
+> >>>>>>  1 file changed, 9 insertions(+), 1 deletion(-)
+> >>>>>>
+> >>>>>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> >>>>>> index ccd67003b120..9c2537a17a7b 100644
+> >>>>>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> >>>>>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> >>>>>> @@ -10067,7 +10067,7 @@ static int validate_overlay(struct
+> drm_atomic_state *state)
+> >>>>>>       int i;
+> >>>>>>       struct drm_plane *plane;
+> >>>>>>       struct drm_plane_state *old_plane_state, *new_plane_state;
+> >>>>>> -     struct drm_plane_state *primary_state, *overlay_state = NULL;
+> >>>>>> +     struct drm_plane_state *primary_state, *cursor_state,
+> *overlay_state = NULL;
+> >>>>>>
+> >>>>>>       /* Check if primary plane is contained inside overlay */
+> >>>>>>       for_each_oldnew_plane_in_state_reverse(state, plane,
+> old_plane_state, new_plane_state, i) {
+> >>>>>> @@ -10097,6 +10097,14 @@ static int validate_overlay(struct
+> drm_atomic_state *state)
+> >>>>>>       if (!primary_state->crtc)
+> >>>>>>               return 0;
+> >>>>>>
+> >>>>>> +     /* check if cursor plane is enabled */
+> >>>>>> +     cursor_state = drm_atomic_get_plane_state(state,
+> overlay_state->crtc->cursor);
+> >>>>>> +     if (IS_ERR(cursor_state))
+> >>>>>> +             return PTR_ERR(cursor_state);
+> >>>>>> +
+> >>>>>> +     if (drm_atomic_plane_disabling(plane->state, cursor_state))
+> >>>>>> +             return 0;
+> >>>>>> +
+> >>>>>
+> >>>>> I thought this breaks Chrome's compositor since it can't handle an
+> atomic commit rejection
+> >>>>> based solely on whether a cursor is enabled or not.
+> >>> For context: To use overlays (the old/current async way), Chrome tests
+> >>> if an overlay strategy will work by doing an atomic commit with a TEST
+> >>> flag to check if the combination would work. If it works, it flags
+> >>> this planes configuration as valid. As it's valid, it performs an
+> >>> atomic page flip (which could also include the cursor).
+> >>> So to Harry's point, you would pass an atomic test but fail on an
+> >>> atomic page flip with the exact same configuration that's been flagged
+> >>> as valid. Failing a pageflip causes Chrome to crash (Reset the GPU
+> >>> process cause something went horribly wrong when it shouldn't).
+> >>
+> >> Hi Mark and Sean,
+> >>
+> >> I don't know if I fully comprehended the scenario which in my patch
+> >> might cause a ChromeOS crash, but this is what I understood:
+> >>
+> >
+> > Chrome compositor only does an atomic test when the layout geometry
+> > changes (ie: plane is added/removed/resized/moved). This does not take
+> > into consideration the cursor. Once the atomic test has been validated
+> > for a given layout geometry (set of planes/fbs along with their sizes
+> > and locations), Chrome assumes this will continue to be valid.
+> >
+> > So the situation I'm envisioning is if the cursor is hidden, an
+> > overlay-based strategy will pass in the kernel. If at any time the
+> > cursor becomes visible, the kernel will start failing commits which
+> > causes Chrome's GPU process to crash.
+> >
+> > In general I'm uneasy with using the cursor in the atomic check since
+> > it feels like it could be racy independent of the issue above. I
+> > haven't dove into the helper code enough to prove it, just a
+> > spidey-sense.
+> >
+>
+> Isn't the cursor supposed to be just another plane? If so, shouldn't
+> adding/removing the cursor trigger an atomic test?
+>
+>
+Chrome is using legacy cursor.
+
+Yes it will trigger an atomic test in the kernel, and that atomic test will
+fail. Unfortunately Chrome does not expect a failure so it will crash.
+
+Sean
+
 
 Is Chrome's compositor doing cursor update through legacy IOCTLs or
-through the ATOMIC IOCTL?
+> through the ATOMIC IOCTL?
+>
+> Thanks,
+> Harry
+>
+> > Sean
+> >
+> >> There is a chance that we pass the atomic check
+> >> (DRM_MODE_ATOMIC_TEST_ONLY - TEST) but fails in the atomic page flip
+> >> because, after use TEST, the compositor might slightly change the commit
+> >> config by adding the cursor. The reason behind that came from the
+> >> assumption that adds the cursor in the atomic commit config after the
+> >> test is harmless. Is my understand correct? Please, correct me if I'm
+> >> wrong.
+> >>
+> >> If the above reasoning is correct, I think the compositor should not
+> >> assume anything extra from what it got from the atomic check.
+> >>
+> >> Best Regards,
+> >> Siqueira
+> >>
+> >>>>>
+> >>>>> Harry
+> >>>>>
+> >>>>>>       /* Perform the bounds check to ensure the overlay plane
+> covers the primary */
+> >>>>>>       if (primary_state->crtc_x < overlay_state->crtc_x ||
+> >>>>>>           primary_state->crtc_y < overlay_state->crtc_y ||
+> >>>>>>
+> >>>>>
+> >>
+> >> --
+> >> Rodrigo Siqueira
+> >> https://siqueira.tech/>
+>
 
-Thanks,
-Harry
+--000000000000b72d4e05c4317430
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> Sean
-> 
->> There is a chance that we pass the atomic check
->> (DRM_MODE_ATOMIC_TEST_ONLY - TEST) but fails in the atomic page flip
->> because, after use TEST, the compositor might slightly change the commit
->> config by adding the cursor. The reason behind that came from the
->> assumption that adds the cursor in the atomic commit config after the
->> test is harmless. Is my understand correct? Please, correct me if I'm
->> wrong.
->>
->> If the above reasoning is correct, I think the compositor should not
->> assume anything extra from what it got from the atomic check.
->>
->> Best Regards,
->> Siqueira
->>
->>>>>
->>>>> Harry
->>>>>
->>>>>>       /* Perform the bounds check to ensure the overlay plane covers the primary */
->>>>>>       if (primary_state->crtc_x < overlay_state->crtc_x ||
->>>>>>           primary_state->crtc_y < overlay_state->crtc_y ||
->>>>>>
->>>>>
->>
->> --
->> Rodrigo Siqueira
->> https://siqueira.tech/>
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun 7, 2021 at 2:37 PM Harry =
+Wentland &lt;<a href=3D"mailto:harry.wentland@amd.com">harry.wentland@amd.c=
+om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+">On 2021-06-07 2:19 p.m., Sean Paul wrote:<br>
+&gt; On Tue, May 18, 2021 at 2:58 PM Rodrigo Siqueira<br>
+&gt; &lt;<a href=3D"mailto:Rodrigo.Siqueira@amd.com" target=3D"_blank">Rodr=
+igo.Siqueira@amd.com</a>&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; On 05/14, Mark Yacoub wrote:<br>
+&gt;&gt;&gt; On Fri, May 14, 2021 at 12:31 PM Mark Yacoub &lt;<a href=3D"ma=
+ilto:markyacoub@google.com" target=3D"_blank">markyacoub@google.com</a>&gt;=
+ wrote:<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; On Fri, May 14, 2021 at 11:28 AM Harry Wentland &lt;<a hre=
+f=3D"mailto:harry.wentland@amd.com" target=3D"_blank">harry.wentland@amd.co=
+m</a>&gt; wrote:<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; On 2021-05-14 7:47 a.m., Rodrigo Siqueira wrote:<br>
+&gt;&gt;&gt;&gt;&gt;&gt; A few weeks ago, we saw a two cursor issue in a Ch=
+romeOS system. We<br>
+&gt;&gt;&gt;&gt;&gt;&gt; fixed it in the commit:<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 drm/amd/display: Fix two cursor duplication =
+when using overlay<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 (read the commit message for more details)<b=
+r>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; After this change, we noticed that some IGT subtes=
+ts related to<br>
+&gt;&gt;&gt;&gt;&gt;&gt; kms_plane and kms_plane_scaling started to fail. A=
+fter investigating<br>
+&gt;&gt;&gt;&gt;&gt;&gt; this issue, we noticed that all subtests that fail=
+ have a primary plane<br>
+&gt;&gt;&gt;&gt;&gt;&gt; covering the overlay plane, which is currently rej=
+ected by amdgpu dm.<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Fail those IGT tests highlight that our verificati=
+on was too broad and<br>
+&gt;&gt;&gt;&gt;&gt;&gt; compromises the overlay usage in our drive. This p=
+atch fixes this issue<br>
+&gt;&gt;&gt; nit: s/drive/driver?<br>
+&gt;&gt;&gt;&gt;&gt;&gt; by ensuring that we only reject commits where the =
+primary plane is not<br>
+&gt;&gt;&gt;&gt;&gt;&gt; fully covered by the overlay when the cursor hardw=
+are is enabled. With<br>
+&gt;&gt;&gt;&gt;&gt;&gt; this fix, all IGT tests start to pass again, which=
+ means our overlay<br>
+&gt;&gt;&gt;&gt;&gt;&gt; support works as expected.<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Cc: Tianci.Yin &lt;<a href=3D"mailto:tianci.yin@am=
+d.com" target=3D"_blank">tianci.yin@amd.com</a>&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Cc: Harry Wentland &lt;<a href=3D"mailto:harry.wen=
+tland@amd.com" target=3D"_blank">harry.wentland@amd.com</a>&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Cc: Nicholas Choi &lt;<a href=3D"mailto:nicholas.c=
+hoi@amd.com" target=3D"_blank">nicholas.choi@amd.com</a>&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Cc: Bhawanpreet Lakha &lt;<a href=3D"mailto:bhawan=
+preet.lakha@amd.com" target=3D"_blank">bhawanpreet.lakha@amd.com</a>&gt;<br=
+>
+&gt;&gt;&gt;&gt;&gt;&gt; Cc: Nicholas Kazlauskas &lt;<a href=3D"mailto:Nich=
+olas.Kazlauskas@amd.com" target=3D"_blank">Nicholas.Kazlauskas@amd.com</a>&=
+gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Cc: Mark Yacoub &lt;<a href=3D"mailto:markyacoub@g=
+oogle.com" target=3D"_blank">markyacoub@google.com</a>&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Cc: Daniel Wheeler &lt;<a href=3D"mailto:daniel.wh=
+eeler@amd.com" target=3D"_blank">daniel.wheeler@amd.com</a>&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Signed-off-by: Rodrigo Siqueira &lt;<a href=3D"mai=
+lto:Rodrigo.Siqueira@amd.com" target=3D"_blank">Rodrigo.Siqueira@amd.com</a=
+>&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; ---<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu=
+_dm.c | 10 +++++++++-<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 1 file changed, 9 insertions(+), 1 deletion(=
+-)<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm=
+/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c<br>
+&gt;&gt;&gt;&gt;&gt;&gt; index ccd67003b120..9c2537a17a7b 100644<br>
+&gt;&gt;&gt;&gt;&gt;&gt; --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu=
+_dm.c<br>
+&gt;&gt;&gt;&gt;&gt;&gt; +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu=
+_dm.c<br>
+&gt;&gt;&gt;&gt;&gt;&gt; @@ -10067,7 +10067,7 @@ static int validate_overla=
+y(struct drm_atomic_state *state)<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0int i;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct drm_plane *plane;=
+<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0struct drm_plane_state *=
+old_plane_state, *new_plane_state;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; -=C2=A0 =C2=A0 =C2=A0struct drm_plane_state *prima=
+ry_state, *overlay_state =3D NULL;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; +=C2=A0 =C2=A0 =C2=A0struct drm_plane_state *prima=
+ry_state, *cursor_state, *overlay_state =3D NULL;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/* Check if primary plan=
+e is contained inside overlay */<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0for_each_oldnew_plane_in=
+_state_reverse(state, plane, old_plane_state, new_plane_state, i) {<br>
+&gt;&gt;&gt;&gt;&gt;&gt; @@ -10097,6 +10097,14 @@ static int validate_overl=
+ay(struct drm_atomic_state *state)<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (!primary_state-&gt;c=
+rtc)<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0return 0;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; +=C2=A0 =C2=A0 =C2=A0/* check if cursor plane is e=
+nabled */<br>
+&gt;&gt;&gt;&gt;&gt;&gt; +=C2=A0 =C2=A0 =C2=A0cursor_state =3D drm_atomic_g=
+et_plane_state(state, overlay_state-&gt;crtc-&gt;cursor);<br>
+&gt;&gt;&gt;&gt;&gt;&gt; +=C2=A0 =C2=A0 =C2=A0if (IS_ERR(cursor_state))<br>
+&gt;&gt;&gt;&gt;&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0r=
+eturn PTR_ERR(cursor_state);<br>
+&gt;&gt;&gt;&gt;&gt;&gt; +<br>
+&gt;&gt;&gt;&gt;&gt;&gt; +=C2=A0 =C2=A0 =C2=A0if (drm_atomic_plane_disablin=
+g(plane-&gt;state, cursor_state))<br>
+&gt;&gt;&gt;&gt;&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0r=
+eturn 0;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; +<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; I thought this breaks Chrome&#39;s compositor since it=
+ can&#39;t handle an atomic commit rejection<br>
+&gt;&gt;&gt;&gt;&gt; based solely on whether a cursor is enabled or not.<br=
+>
+&gt;&gt;&gt; For context: To use overlays (the old/current async way), Chro=
+me tests<br>
+&gt;&gt;&gt; if an overlay strategy will work by doing an atomic commit wit=
+h a TEST<br>
+&gt;&gt;&gt; flag to check if the combination would work. If it works, it f=
+lags<br>
+&gt;&gt;&gt; this planes configuration as valid. As it&#39;s valid, it perf=
+orms an<br>
+&gt;&gt;&gt; atomic page flip (which could also include the cursor).<br>
+&gt;&gt;&gt; So to Harry&#39;s point, you would pass an atomic test but fai=
+l on an<br>
+&gt;&gt;&gt; atomic page flip with the exact same configuration that&#39;s =
+been flagged<br>
+&gt;&gt;&gt; as valid. Failing a pageflip causes Chrome to crash (Reset the=
+ GPU<br>
+&gt;&gt;&gt; process cause something went horribly wrong when it shouldn&#3=
+9;t).<br>
+&gt;&gt;<br>
+&gt;&gt; Hi Mark and Sean,<br>
+&gt;&gt;<br>
+&gt;&gt; I don&#39;t know if I fully comprehended the scenario which in my =
+patch<br>
+&gt;&gt; might cause a ChromeOS crash, but this is what I understood:<br>
+&gt;&gt;<br>
+&gt; <br>
+&gt; Chrome compositor only does an atomic test when the layout geometry<br=
+>
+&gt; changes (ie: plane is added/removed/resized/moved). This does not take=
+<br>
+&gt; into consideration the cursor. Once the atomic test has been validated=
+<br>
+&gt; for a given layout geometry (set of planes/fbs along with their sizes<=
+br>
+&gt; and locations), Chrome assumes this will continue to be valid.<br>
+&gt; <br>
+&gt; So the situation I&#39;m envisioning is if the cursor is hidden, an<br=
+>
+&gt; overlay-based strategy will pass in the kernel. If at any time the<br>
+&gt; cursor becomes visible, the kernel will start failing commits which<br=
+>
+&gt; causes Chrome&#39;s GPU process to crash.<br>
+&gt; <br>
+&gt; In general I&#39;m uneasy with using the cursor in the atomic check si=
+nce<br>
+&gt; it feels like it could be racy independent of the issue above. I<br>
+&gt; haven&#39;t dove into the helper code enough to prove it, just a<br>
+&gt; spidey-sense.<br>
+&gt; <br>
+<br>
+Isn&#39;t the cursor supposed to be just another plane? If so, shouldn&#39;=
+t<br>
+adding/removing the cursor trigger an atomic test?<br>
+<br></blockquote><div><br></div><div>Chrome is using legacy cursor.</div><d=
+iv><br></div><div>Yes it will trigger an atomic test in the kernel, and tha=
+t atomic test will fail. Unfortunately Chrome does not expect a failure so =
+it will crash.</div><div><br></div><div>Sean</div><div><br></div><div><br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex">
+Is Chrome&#39;s compositor doing cursor update through legacy IOCTLs or<br>
+through the ATOMIC IOCTL?<br>
+<br>
+Thanks,<br>
+Harry<br>
+<br>
+&gt; Sean<br>
+&gt; <br>
+&gt;&gt; There is a chance that we pass the atomic check<br>
+&gt;&gt; (DRM_MODE_ATOMIC_TEST_ONLY - TEST) but fails in the atomic page fl=
+ip<br>
+&gt;&gt; because, after use TEST, the compositor might slightly change the =
+commit<br>
+&gt;&gt; config by adding the cursor. The reason behind that came from the<=
+br>
+&gt;&gt; assumption that adds the cursor in the atomic commit config after =
+the<br>
+&gt;&gt; test is harmless. Is my understand correct? Please, correct me if =
+I&#39;m<br>
+&gt;&gt; wrong.<br>
+&gt;&gt;<br>
+&gt;&gt; If the above reasoning is correct, I think the compositor should n=
+ot<br>
+&gt;&gt; assume anything extra from what it got from the atomic check.<br>
+&gt;&gt;<br>
+&gt;&gt; Best Regards,<br>
+&gt;&gt; Siqueira<br>
+&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; Harry<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0/* Perform the bounds ch=
+eck to ensure the overlay plane covers the primary */<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (primary_state-&gt;cr=
+tc_x &lt; overlay_state-&gt;crtc_x ||<br>
+&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0primary_st=
+ate-&gt;crtc_y &lt; overlay_state-&gt;crtc_y ||<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; --<br>
+&gt;&gt; Rodrigo Siqueira<br>
+&gt;&gt; <a href=3D"https://siqueira.tech/" rel=3D"noreferrer" target=3D"_b=
+lank" class=3D"cremed">https://siqueira.tech/</a>&gt;<br>
+</blockquote></div></div>
+
+--000000000000b72d4e05c4317430--
+
+--===============0445997105==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============0445997105==--
