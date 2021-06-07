@@ -2,123 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FF7D39D599
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Jun 2021 09:10:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EE7C39D5F7
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Jun 2021 09:27:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 815726E288;
-	Mon,  7 Jun 2021 07:10:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C6996E39B;
+	Mon,  7 Jun 2021 07:27:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2065.outbound.protection.outlook.com [40.107.223.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BAAF6E288
- for <amd-gfx@lists.freedesktop.org>; Mon,  7 Jun 2021 07:10:00 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2085.outbound.protection.outlook.com [40.107.236.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D89B6E39B
+ for <amd-gfx@lists.freedesktop.org>; Mon,  7 Jun 2021 07:27:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EvG0pwyvhUaqeNcW+muHGfYy2X87eHhA/1SvgCdrKhou8d6nKNJL2GEULBOG9gyqyEWjFeIEL7PoP9E1mbh03Pdcupdy/QNK79mI/yC/IhxEo1cBxAokv8nBvlT7YUJ9f4L9hFSkJHRwJ/I+L00XnGTKXJokOk780+y4RJeyfEa7VnpHmyInVavdGtfj6d6hSDXJueO1Fim713Aij1TZTNOx3TAT8NM5PcvGftQael1zCX6AvSo36WACkfMAvAYK2MwTiPkspiqbbv5jqR2WGYz+LtJxvxIdwInELy3RA6GR4QVLUUmnRU+eRipkShgUDm1zAb3KTtmOpr6ZtSr4Bg==
+ b=kcYk0R4jQ/q9tsXSfjYNo0yHiGXWm3S1HvOsJwm4FWzuKQp7xhKH0q9w9R0VdOCOWjp0wbAwV7/5UVq2U10qbouPEIbpgf4NlMFHpkbkKMaangYUGkQ9AGsV4/bDNLOhown1gRiC28HnVh78R6DQkyhqPM07+8a1XuTXESzg6Pc3zi9cXQAKDBPgyAPTkkvwAHzcNVuNdSGK/f3mFpdOOEPSX7dPc+YcUtWbksybvrUH50IVvkmCKD0sWF4u+csKBL/ofZcUxLo4izDt1HNBeEyqmQh9sRZJPcaSZ+Hi8DGXri88Txg+yoX8ahVtlY3R+3YyLbj4Fa5Dvag/aF+X8g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7eDWgXAoGnmiK+CCk1YMmGOgVranMli3eIx0Gpvk3Hw=;
- b=VNuSVjdoKJawteCgNwph8S3x2GNR1g7tZdGCQyoykANs84ruOJswRoDgcuggO87I8UiGvF/UuMR5JvyKO3F7wsxKYq538MA4bPk35/treKcquNyCBNBMCKzwPXCgeQoES7pr6W7LgJMqi2wU216OzRLvEBMkGx48O4T/F7gM9qNlMXP4Wf8KBKayJda7t8yEhOkMRV1P3C15vTI1CYNQ0qsOM1C2QZx71hPCKgTeb7pLVqMcpZX7D3uXwctgXPP2TPSaazmAUI08dPSvoLfcu3hW4CMDoyUeanZY1xFfGGkOxV6MZRhBW4jZpb/5Hf39hm+lnArZemC4r+sdO/MueQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=PRvx6KZHedrCQUcdEFEup3uLBPWdp53jIhq1eZsBBBY=;
+ b=F8Uh5tgX57/no3cJ/f2WrthlhzS/J6ob84zYq4by/5baYLZbQNJbVyUS0S7YaURRAgweAQFQ2MZb/1XNLkWsHEuX6nctAgt9DHKRMbEzmcMeT+kVWJ/ce671WW041/uM+qdMS1nmYjXpTaneD9PLqMZg40Fx5TRNtzEt4aimvkstg/indEinvs/80y35NwFEUfdPJImH1A/DA5FArGxqf47VGaFmOxiKovbPmAqj8o6dO6iNV/sX2+sUOkSH8+6NBM/Jkk5k3CpbWOI6NWFavjBHu3KWcSqVK0gTQrXHF7hssnxkeHebIHPsU/0cK/pTeslYPeA4kLss126VxB2VZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7eDWgXAoGnmiK+CCk1YMmGOgVranMli3eIx0Gpvk3Hw=;
- b=BIidQQX5PFcSNWyJjDYL+jFILIGvutPtp46dw3MIXpIVOvNE+5+q9qhpVO4/Gpzmw/eB4pLL2F13ghy268fQ3xst1zgXrT7TcurgsPtn5uTBur/SoEwZuGUOROPcQogmaVu4GVWdTPfewmEsbhlTvsgU680s9O9K7hxiD1uppPQ=
-Received: from DM6PR12MB2619.namprd12.prod.outlook.com (2603:10b6:5:45::18) by
- DM5PR12MB2357.namprd12.prod.outlook.com (2603:10b6:4:b7::14) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4195.27; Mon, 7 Jun 2021 07:09:58 +0000
-Received: from DM6PR12MB2619.namprd12.prod.outlook.com
- ([fe80::14a7:9460:4e5f:880d]) by DM6PR12MB2619.namprd12.prod.outlook.com
- ([fe80::14a7:9460:4e5f:880d%5]) with mapi id 15.20.4195.030; Mon, 7 Jun 2021
- 07:09:58 +0000
-From: "Quan, Evan" <Evan.Quan@amd.com>
-To: "Lazar, Lijo" <Lijo.Lazar@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH V2 3/5] drm/amdgpu: correct the audio function initial
- Dstate
-Thread-Topic: [PATCH V2 3/5] drm/amdgpu: correct the audio function initial
- Dstate
-Thread-Index: AQHXWShI2cmU50EErkCn+1pTBWP5HasDxpMAgARYN2A=
-Date: Mon, 7 Jun 2021 07:09:58 +0000
-Message-ID: <DM6PR12MB26192ED08114610E8BDAC953E4389@DM6PR12MB2619.namprd12.prod.outlook.com>
-References: <20210604095823.1403271-1-evan.quan@amd.com>
- <20210604095823.1403271-3-evan.quan@amd.com>
- <b55d9c52-cadf-fbb3-1ed0-8b99dc972b6c@amd.com>
-In-Reply-To: <b55d9c52-cadf-fbb3-1ed0-8b99dc972b6c@amd.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-06-07T07:09:55Z; 
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
- Only-AIP 2.0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=2f68b287-531e-4357-9b1a-ba75e10c90ea;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [165.204.134.244]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 94363917-d9f9-4a7a-8be5-08d929834291
-x-ms-traffictypediagnostic: DM5PR12MB2357:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR12MB235703DEDEB0E07F644B24E2E4389@DM5PR12MB2357.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: fNiIuKuLN51Xn9c+Qob7e4HvwGNc+lVaQcs+jjdB/v4As7WXpldbip4Nc/XDhVyS9fHIn38E6Fwilu2/3jJAtQ2OGJXB00hZrF2CxKY0kmArjBumPYCKF+DZlpkBPcfBibf0tRsrqvSYbSbOCb9iq4r20h3EOWwTGC82qEsDENc1Lqsr/HS9v5WB+S6dZ89WHB2PlqM7/eEmx7v2GecspOVFi1GHx7M4ab5PVGY2RkwLCj0KRMbniTtP8Q6tC4+NUwoYx7LK7dxANEhwc/9/KIocv5SCwaMY5HA2c0cyJmWUWwC/JiqcopJN19m+1Cneqog87AZHmxwuP5EVcrJwXYkZmZm55o/o29OpSKH4/6WGHhc6D955OlsVbHJbSaTkGBoXtVYq0odFmrwJrR30YKdfW0NCRFfB9Wz3Ky13bopcZ0ZUCZCShlfakRtO3XV0JjffNjOhFQGgJjGjqeCgv9N3lriczqNryr5HuT0osnoG6xjAOw2OVu+V1ntq7nTksBj0+dq4E5e8B2ZFjJ2iqDKac/bsj0771XzhFbOaKIE5Zk2TErsHLvFFFumLD4zOd1Qd1U/KyBC83HIhYpfI8NPA9yWdUCHPtoJDWV63hCQ=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB2619.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(39860400002)(366004)(396003)(136003)(376002)(52536014)(186003)(9686003)(110136005)(33656002)(316002)(8676002)(8936002)(53546011)(26005)(6506007)(55016002)(7696005)(86362001)(2906002)(83380400001)(38100700002)(5660300002)(71200400001)(76116006)(122000001)(66946007)(66476007)(66446008)(478600001)(66556008)(64756008)(4326008);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?utf-8?B?TXdSYmZSTjJWdUlTZHQ5RlVrWWVNU2R3dldWMVRjK0RLSUdCenVDWlJ4Vm9U?=
- =?utf-8?B?MlZ4N01lWGVOT1psZXFNTHFVZnJrR1Q3OVhjMElHZHNuSUZhNGRnMkhXMzUy?=
- =?utf-8?B?VU5XdnlKaGFxalBwYnJWeGdXS0JBN0dUbEtoZFh6WlcwRnZsYlNINnU1ZVBY?=
- =?utf-8?B?MTRuOS9UR1pNb3pyRlM2dTJUcGJ0bHFINFlLR3ExQzdSRFhzSnhoL3VyMGtC?=
- =?utf-8?B?M2d2bFA2N3p3YXBaSUpKU3hKekRwOCtQMGhSL3cyK3RPSlgrWFp4K0piQ3l0?=
- =?utf-8?B?UjRUYXNET0tJRVFzL2ttcDg0dlZucWl1WTZ2S0NvTTBIWnJEeUJjSUNXdGR3?=
- =?utf-8?B?ZnUvdFVYdVc4UHFiTjkvdGlNSmVBWmlkNEp6L3hlTWNDQnR1UUIyaWhKeDE2?=
- =?utf-8?B?R1VoMEI5c244dDA0K3g0UzVjWUtDZjl4MTdkSC9JRUltUU1LakNKaGVkbzBr?=
- =?utf-8?B?VTNkSERCS3orQXpKNVlLYlpwUzZtRjhhWkdHbkxzTEhVbEl4bHZmbDlac1FW?=
- =?utf-8?B?KzFXUzV4VUxEbE1BakNZYW1nTnZxMUxkUVpUR2NCZ2FhSStnNnRKa21mb3VJ?=
- =?utf-8?B?NXJ6Ni9BR1J6VDNxSFFVSXVvMGZaOG0zeGNwbEI2NW45MC84b1E5TTgydnhO?=
- =?utf-8?B?NHlCUVh1NHpRRmtwcUNheFhiMHFobnZ3QlBYdnZyWUFXUGNsZ1MzR2dNbkhj?=
- =?utf-8?B?YU1wN3IxcnZWVFM2d0tRK0V4SnFJcVQxZFRQbndDeHE2MjdBc1FrdW9Va3hM?=
- =?utf-8?B?YUZYaHNyL2NCMVVGREljLzdDNXF1ZkxvdndhSnFwbStsOHNtZk5xdnY3bWhr?=
- =?utf-8?B?em80VWhtM0R0RnFDRC9MT3VnY3IweWI4NXkyMEZtSmJ2K2h6S1diemV5Vkt2?=
- =?utf-8?B?ZlJoWkc0SDVlQWtBVzlvbS9LVDVBVFdYUGFyNWdHWFIwOWtWY2VzNGc1NGow?=
- =?utf-8?B?NjlCbUczVlZlQzZuMnRqRlc5bWRFT2hDNWI3WEF0RkFud04rM2dZZ2V2LzAy?=
- =?utf-8?B?bUIvMlFsZ1M2MmRhcTR5L21QRU84MWc1RWZWOHMxWGYzVHVoMExZY3cya1k0?=
- =?utf-8?B?V1EwS0lEVjBLSDkwTi9idWJuUnBjYWxqNnNtcHFRbXIzUXhrVm1IUUl0ajU1?=
- =?utf-8?B?QVFpYiszZ2hEMDdSUDZrTG85NlZhRDdXaElMRVVJUEY0S2p6d2xoRmVjbnhX?=
- =?utf-8?B?ajJtRUYxVGVHT09HTVN5dW56ZHNnL0k2NTVlNy9VSUFEbDJyVHREVkhBQ0dR?=
- =?utf-8?B?MHFXTUV0aWx5bUpLWllHbW9WOTVVYTJlSjZtdkMzQ2NLMlVJSEMvUmtVOUl3?=
- =?utf-8?B?cTZORUVTamtrNTY2ZmhSRXgrK0JtZnFUaWRVYTUwZFJSbk9CUWt1dFFvNTBi?=
- =?utf-8?B?NjM4dmtNMEIxenFXYmhRZHVieEw4clRiK1hPUjViTmRRODN5aURoNTVISERH?=
- =?utf-8?B?ZVFvN3h5SmNVZU9RRUxyU2JFd1FZRmFkQU05OHlCYXFqdEhhWkxEeUxnci9B?=
- =?utf-8?B?QXRNRjFaU2grWWJHWlJHWlBwQnFidzIyaVJXdVdXaUFXT3YzSWZQOU5Cci9B?=
- =?utf-8?B?WlRLbUh3dnd1bHd1ZlBSYzBTZmU2d2wzYUhJdUdYbnB3SlB3ZGoyUnYrUENE?=
- =?utf-8?B?RWp4Y1NDZTVPckhrNTZUdTdjZ0JGajVxTHo1VWFhUC9TcU1RcG90R3Z4WFBO?=
- =?utf-8?B?Y2VJbjRGQ3JYQUR6anRYNzIrazJIbWQ0eVRIV2V6OTA3Y1luOGpsNlJ4VnZ0?=
- =?utf-8?Q?kuPFVziCvZMYWQtKrvC4F65SBTryelmvCgROqxJ?=
+ bh=PRvx6KZHedrCQUcdEFEup3uLBPWdp53jIhq1eZsBBBY=;
+ b=BDxeFO0mbPQ0t5YQsaUD5gXfFNn7ZCQBajEkQOEZc9+skV1J0SpRY/0xODv2bKRRhSAVrvcivSDEQIqyD8kt/rh6Dgcd1X7UBCoYndw+XkgHhg4nffmPV0E2RwTzYXl05dbI+kjbUEsbzk8BH34GyiSzVdtyZW/v24uM2ZMkXUk=
+Received: from MWHPR11CA0036.namprd11.prod.outlook.com (2603:10b6:300:115::22)
+ by DM6PR12MB3769.namprd12.prod.outlook.com (2603:10b6:5:14a::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.25; Mon, 7 Jun
+ 2021 07:27:00 +0000
+Received: from CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:115:cafe::27) by MWHPR11CA0036.outlook.office365.com
+ (2603:10b6:300:115::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.15 via Frontend
+ Transport; Mon, 7 Jun 2021 07:26:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT064.mail.protection.outlook.com (10.13.175.77) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4195.22 via Frontend Transport; Mon, 7 Jun 2021 07:26:59 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 7 Jun 2021
+ 02:26:58 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 7 Jun 2021
+ 02:26:58 -0500
+Received: from ubuntuBBNew.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.4 via Frontend
+ Transport; Mon, 7 Jun 2021 02:26:56 -0500
+From: Jack Zhang <Jack.Zhang1@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <christian.koenig@amd.com>,
+ <Andrey.Grodzovsky@amd.com>, <Monk.Liu@amd.com>, <Emily.Deng@amd.com>
+Subject: [PATCH] drm/amd/amdgpu embed hw_fence into amdgpu_job
+Date: Mon, 7 Jun 2021 15:26:49 +0800
+Message-ID: <20210607072649.222118-1-Jack.Zhang1@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 85ded5a7-cadb-4bad-92cf-08d92985a30c
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3769:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3769B7A861596652482C961DBB389@DM6PR12MB3769.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:565;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PBe5aKKfWBd17jEJaZ+L6PG2Hy1X4yHXdrzm4HCA2w3kXCUAVe6cFUIiEDBHTw547d0U2SVe9q52NFMIV6lhScw4JkmnaChDF9wnxkDFmfwpH/fj0eUU7LMA9MrGQEzI1wEVyqaJvAQLdHO2kf8kqQ+Z03/BUIRQTh25hzyCdZ4O19QX8faHf/oVZamZBiWEnoo4FUn93pd8S1oGJBl+IzE7V+USxsh1jg6p2XX0lYXKGFdHyyU8C6r8iz5JR4pXRXyVQu2pHer0ZluSGO4nn6Vop/rfIVKfhZEZlr/ahPhuyNDbIlP1VzN4b7QC3KEOVqARJu6bLb5yCHszGX+vBFZHTjhQGy1dc9Kh8LeFngREnc2JKckqUtX8t/mTO6z4XbEzKNwXGPvXWmLjiydcH4O5jAJ3N7xZ0BveiCmLjoK4IYAc8HSaLwMK8znoXJFIgG0Nlp5oXxI/IgIxZzJgzaeC/OUFLgVT0K7OJVQVRkzS/peaZmw6sIPlBPV7Qrl+S6n+8H6D8SWjZ4mHvWctZiLaw0rSze77iHVnDlLwE+r+o+oZ3wgnTCPC2o4vqMSZFEC5qQsdYQRfCXD3SxTcgmswFnngjjhVxIK+wAvii4qLNjdMeeGRQeLTCFWo+TPlZc3RSa+JUQkh1A8qf0+NJ1vYGMysechjF5wzmtTRlWdhiVAY5V7wYBzXS1wOrG/E
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(396003)(346002)(376002)(39860400002)(136003)(46966006)(36840700001)(36860700001)(83380400001)(8936002)(70586007)(70206006)(336012)(2616005)(82740400003)(86362001)(6666004)(8676002)(82310400003)(26005)(186003)(81166007)(6636002)(2906002)(356005)(110136005)(36756003)(316002)(1076003)(30864003)(478600001)(7696005)(47076005)(5660300002)(426003)(4326008)(36900700001);
+ DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2619.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94363917-d9f9-4a7a-8be5-08d929834291
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jun 2021 07:09:58.3205 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ThTASfX8DX6BsptXnX0YQygOnJoGtcqCHatVuG8fF9egpCr01y8oMCxp7DaPf2+1
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2357
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2021 07:26:59.0966 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85ded5a7-cadb-4bad-92cf-08d92985a30c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3769
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,123 +102,317 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: Jack Zhang <Jack.Zhang1@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only]
+Why: Previously hw fence is alloced separately with job.
+It caused historical lifetime issues and corner cases.
+The ideal situation is to take fence to manage both job
+and fence's lifetime, and simplify the design of gpu-scheduler.
 
+How:
+We propose to embed hw_fence into amdgpu_job.
+1. We cover the normal job submission by this method.
+2. For ib_test, and submit without a parent job keep the
+legacy way to create a hw fence separately.
 
+Signed-off-by: Jack Zhang <Jack.Zhang1@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c  |  1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c   | 64 ++++++++++++++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c      |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c     | 35 +++++++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.h     |  4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h    |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c      |  2 +-
+ 8 files changed, 82 insertions(+), 30 deletions(-)
 
-> -----Original Message-----
-> From: Lazar, Lijo <Lijo.Lazar@amd.com>
-> Sent: Friday, June 4, 2021 8:24 PM
-> To: Quan, Evan <Evan.Quan@amd.com>; amd-gfx@lists.freedesktop.org
-> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
-> Subject: Re: [PATCH V2 3/5] drm/amdgpu: correct the audio function initial
-> Dstate
-> 
-> 
-> 
-> On 6/4/2021 3:28 PM, Evan Quan wrote:
-> > On driver loading, the ASIC is in D0 state. The bundled audio function
-> > should be in the same state also.
-> >
-> > Change-Id: I136e196be7633e95883a7f6c33963f7583e9bad1
-> > Signed-off-by: Evan Quan <evan.quan@amd.com>
-> > ---
-> > V1->V2:
-> >    - Lijo: include the code in a seperate API for better readability
-> >    - limit the change for Navi10 and later dGPUs
-> >    - comments more about the background
-> > ---
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 40
-> +++++++++++++++++++++++++
-> >   1 file changed, 40 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> > index c354ffa62483..e9f2161738d1 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-> > @@ -123,6 +123,22 @@ void amdgpu_register_gpu_instance(struct
-> amdgpu_device *adev)
-> >   	mutex_unlock(&mgpu_info.mutex);
-> >   }
-> >
-> > +static void amdgpu_get_audio_func(struct amdgpu_device *adev) {
-> > +	struct pci_dev *p = NULL;
-> > +
-> > +	p = pci_get_domain_bus_and_slot(pci_domain_nr(adev->pdev-
-> >bus),
-> > +			adev->pdev->bus->number, 1);
-> > +	if (p) {
-> > +		pm_runtime_get_sync(&p->dev);
-> > +
-> > +		pm_runtime_mark_last_busy(&p->dev);
-> > +		pm_runtime_put_autosuspend(&p->dev);
-> > +
-> > +		pci_dev_put(p);
-> > +	}
-> > +}
-> > +
-> >   /**
-> >    * amdgpu_driver_load_kms - Main load function for KMS.
-> >    *
-> > @@ -212,9 +228,33 @@ int amdgpu_driver_load_kms(struct
-> amdgpu_device *adev, unsigned long flags)
-> >
-> 	DPM_FLAG_MAY_SKIP_RESUME);
-> >   		pm_runtime_use_autosuspend(dev->dev);
-> >   		pm_runtime_set_autosuspend_delay(dev->dev, 5000);
-> > +
-> >   		pm_runtime_allow(dev->dev);
-> > +
-> >   		pm_runtime_mark_last_busy(dev->dev);
-> >   		pm_runtime_put_autosuspend(dev->dev);
-> > +
-> > +		/*
-> > +		 * For runpm implemented via BACO, PMFW will handle the
-> > +		 * timing for BACO in and out:
-> > +		 *   - put ASIC into BACO state only when both video and
-> > +		 *     audio functions are in D3 state.
-> > +		 *   - pull ASIC out of BACO state when either video or
-> > +		 *     audio function is in D0 state.
-> > +		 * Also, at startup, PMFW assumes both functions are in
-> > +		 * D0 state.
-> > +		 *
-> > +		 * So if snd driver was loaded prior to amdgpu driver
-> > +		 * and audio function was put into D3 state behind PMFW's
-> > +		 * back, the BACO may not correctly kicks in and out.
-> > +		 *
-> > +		 * Via amdgpu_get_audio_func() below, the audio function
-> > +		 * is guarded to be in D0 correctly.
-> > +		 */
-> 
-> On a second look at the comments - should runpm _get on audio dev be
-> done before doing device_init (so that it's in D0 while FW is getting
-> loaded) and put done here?
-[Quan, Evan] It does not matter as long as all those are performed before  .runtime_suspend() kicks.
-The issue around here is : if the audio dev is already in D3 state before PMFW alive, during .runtime_suspend there will be no Dstate transfer(D0->D3). Thus no interrupt will go to PMFW and PMFW will be not aware of the audio dev D3 state. With the proper audio dev D3 state, the baco state will never kick in.
-Via the amdgpu_get_audio_func(), the audio dev is put into D0 state. Then on the succeeding .runtime_suspend(), there will be Dstate transfer(D0->D3) and thus interrupt for PMFW.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+index d2812182fd3d..2515b811d626 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+@@ -639,7 +639,6 @@ int amdgpu_amdkfd_submit_ib(struct kgd_dev *kgd, enum kgd_engine_type engine,
+ 	ret = dma_fence_wait(f, false);
+ 
+ err_ib_sched:
+-	dma_fence_put(f);
+ 	amdgpu_job_free(job);
+ err:
+ 	return ret;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+index 7b98a4771872..f2c1f32f40ea 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+@@ -1444,7 +1444,7 @@ static void amdgpu_ib_preempt_mark_partial_job(struct amdgpu_ring *ring)
+ 			continue;
+ 		}
+ 		job = to_amdgpu_job(s_job);
+-		if (preempted && job->fence == fence)
++		if (preempted && (&job->hw_fence) == fence)
+ 			/* mark the job as preempted */
+ 			job->preemption_status |= AMDGPU_IB_PREEMPTED;
+ 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+index 4a3e3329d621..1c0562b888bd 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+@@ -133,25 +133,40 @@ static u32 amdgpu_fence_read(struct amdgpu_ring *ring)
+  * Emits a fence command on the requested ring (all asics).
+  * Returns 0 on success, -ENOMEM on failure.
+  */
+-int amdgpu_fence_emit(struct amdgpu_ring *ring, struct dma_fence **f,
++int amdgpu_fence_emit(struct amdgpu_ring *ring, struct dma_fence **f, struct amdgpu_job *job,
+ 		      unsigned flags)
+ {
+ 	struct amdgpu_device *adev = ring->adev;
+-	struct amdgpu_fence *fence;
++	struct dma_fence *fence;
++	struct amdgpu_fence *am_fence;
+ 	struct dma_fence __rcu **ptr;
+ 	uint32_t seq;
+ 	int r;
+ 
+-	fence = kmem_cache_alloc(amdgpu_fence_slab, GFP_KERNEL);
+-	if (fence == NULL)
+-		return -ENOMEM;
++	if (job == NULL) {
++		/* create a sperate hw fence */
++		am_fence = kmem_cache_alloc(amdgpu_fence_slab, GFP_KERNEL);
++		if (am_fence == NULL)
++			return -ENOMEM;
++		fence = &am_fence->base;
++		am_fence->ring = ring;
++	} else {
++		/* take use of job-embedded fence */
++		fence = &job->hw_fence;
++		job->ring = ring;
++	}
+ 
+ 	seq = ++ring->fence_drv.sync_seq;
+-	fence->ring = ring;
+-	dma_fence_init(&fence->base, &amdgpu_fence_ops,
++	dma_fence_init(fence, &amdgpu_fence_ops,
+ 		       &ring->fence_drv.lock,
+ 		       adev->fence_context + ring->idx,
+ 		       seq);
++
++	if (job != NULL) {
++		/* mark this fence has a parent job */
++		fence->flags |= 0x1000;
++	}
++
+ 	amdgpu_ring_emit_fence(ring, ring->fence_drv.gpu_addr,
+ 			       seq, flags | AMDGPU_FENCE_FLAG_INT);
+ 	pm_runtime_get_noresume(adev_to_drm(adev)->dev);
+@@ -174,9 +189,9 @@ int amdgpu_fence_emit(struct amdgpu_ring *ring, struct dma_fence **f,
+ 	/* This function can't be called concurrently anyway, otherwise
+ 	 * emitting the fence would mess up the hardware ring buffer.
+ 	 */
+-	rcu_assign_pointer(*ptr, dma_fence_get(&fence->base));
++	rcu_assign_pointer(*ptr, dma_fence_get(fence));
+ 
+-	*f = &fence->base;
++	*f = fence;
+ 
+ 	return 0;
+ }
+@@ -648,8 +663,18 @@ static const char *amdgpu_fence_get_driver_name(struct dma_fence *fence)
+ 
+ static const char *amdgpu_fence_get_timeline_name(struct dma_fence *f)
+ {
+-	struct amdgpu_fence *fence = to_amdgpu_fence(f);
+-	return (const char *)fence->ring->name;
++	struct amdgpu_ring *ring;
++
++	if (f->flags & 0x1000) {
++		struct amdgpu_job *job = container_of(f, struct amdgpu_job, hw_fence);
++
++		ring = job->ring;
++	} else {
++		struct amdgpu_fence *fence;
++
++		ring = to_amdgpu_fence(f)->ring;
++	}
++	return (const char *)ring->name;
+ }
+ 
+ /**
+@@ -683,8 +708,20 @@ static bool amdgpu_fence_enable_signaling(struct dma_fence *f)
+ static void amdgpu_fence_free(struct rcu_head *rcu)
+ {
+ 	struct dma_fence *f = container_of(rcu, struct dma_fence, rcu);
+-	struct amdgpu_fence *fence = to_amdgpu_fence(f);
+-	kmem_cache_free(amdgpu_fence_slab, fence);
++
++	if (f->flags & 0x1000) {
++	/* free job if fence has a parent job */
++		struct amdgpu_job *job;
++
++		job = container_of(f, struct amdgpu_job, hw_fence);
++		kfree(job);
++	} else {
++	/* free fence_slab if it's separated fence*/
++		struct amdgpu_fence *fence;
++
++		fence = to_amdgpu_fence(f);
++		kmem_cache_free(amdgpu_fence_slab, fence);
++	}
+ }
+ 
+ /**
+@@ -708,6 +745,7 @@ static const struct dma_fence_ops amdgpu_fence_ops = {
+ 	.release = amdgpu_fence_release,
+ };
+ 
++
+ /*
+  * Fence debugfs
+  */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+index 4b92ac648ff6..57df7d27962e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+@@ -290,7 +290,7 @@ int amdgpu_ib_schedule(struct amdgpu_ring *ring, unsigned num_ibs,
+ 				       fence_flags | AMDGPU_FENCE_FLAG_64BIT);
+ 	}
+ 
+-	r = amdgpu_fence_emit(ring, f, fence_flags);
++	r = amdgpu_fence_emit(ring, f, job, fence_flags);
+ 	if (r) {
+ 		dev_err(adev->dev, "failed to emit fence (%d)\n", r);
+ 		if (job && job->vmid)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+index a99a5f4d213f..eca6481c3eca 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.c
+@@ -114,11 +114,16 @@ void amdgpu_job_free_resources(struct amdgpu_job *job)
+ {
+ 	struct amdgpu_ring *ring = to_amdgpu_ring(job->base.sched);
+ 	struct dma_fence *f;
++	struct dma_fence *hw_fence;
+ 	unsigned i;
+ 
+-	/* use sched fence if available */
+-	f = job->base.s_fence ? &job->base.s_fence->finished : job->fence;
++	if (job->hw_fence.ops == NULL)
++		hw_fence = job->external_hw_fence;
++	else
++		hw_fence = &job->hw_fence;
+ 
++	/* use sched fence if available */
++	f = job->base.s_fence ? &job->base.s_fence->finished : hw_fence;
+ 	for (i = 0; i < job->num_ibs; ++i)
+ 		amdgpu_ib_free(ring->adev, &job->ibs[i], f);
+ }
+@@ -129,20 +134,27 @@ static void amdgpu_job_free_cb(struct drm_sched_job *s_job)
+ 
+ 	drm_sched_job_cleanup(s_job);
+ 
+-	dma_fence_put(job->fence);
+ 	amdgpu_sync_free(&job->sync);
+ 	amdgpu_sync_free(&job->sched_sync);
+-	kfree(job);
++
++    /* only put the hw fence if has embedded fence */
++	if (job->hw_fence.ops != NULL)
++		dma_fence_put(&job->hw_fence);
++	else
++		kfree(job);
+ }
+ 
+ void amdgpu_job_free(struct amdgpu_job *job)
+ {
+ 	amdgpu_job_free_resources(job);
+-
+-	dma_fence_put(job->fence);
+ 	amdgpu_sync_free(&job->sync);
+ 	amdgpu_sync_free(&job->sched_sync);
+-	kfree(job);
++
++	/* only put the hw fence if has embedded fence */
++	if (job->hw_fence.ops != NULL)
++		dma_fence_put(&job->hw_fence);
++	else
++		kfree(job);
+ }
+ 
+ int amdgpu_job_submit(struct amdgpu_job *job, struct drm_sched_entity *entity,
+@@ -171,11 +183,14 @@ int amdgpu_job_submit_direct(struct amdgpu_job *job, struct amdgpu_ring *ring,
+ 
+ 	job->base.sched = &ring->sched;
+ 	r = amdgpu_ib_schedule(ring, job->num_ibs, job->ibs, NULL, fence);
+-	job->fence = dma_fence_get(*fence);
++	/* record external_hw_fence for direct submit */
++	job->external_hw_fence = dma_fence_get(*fence);
+ 	if (r)
+ 		return r;
+ 
+ 	amdgpu_job_free(job);
++	dma_fence_put(*fence);
++
+ 	return 0;
+ }
+ 
+@@ -237,10 +252,8 @@ static struct dma_fence *amdgpu_job_run(struct drm_sched_job *sched_job)
+ 		if (r)
+ 			DRM_ERROR("Error scheduling IBs (%d)\n", r);
+ 	}
+-	/* if gpu reset, hw fence will be replaced here */
+-	dma_fence_put(job->fence);
+-	job->fence = dma_fence_get(fence);
+ 
++	dma_fence_get(fence);
+ 	amdgpu_job_free_resources(job);
+ 
+ 	fence = r ? ERR_PTR(r) : fence;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+index 81caac9b958a..92324c978534 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_job.h
+@@ -46,7 +46,9 @@ struct amdgpu_job {
+ 	struct amdgpu_sync	sync;
+ 	struct amdgpu_sync	sched_sync;
+ 	struct amdgpu_ib	*ibs;
+-	struct dma_fence	*fence; /* the hw fence */
++	struct dma_fence	hw_fence;
++	struct amdgpu_ring *ring;
++	struct dma_fence	*external_hw_fence;
+ 	uint32_t		preamble_status;
+ 	uint32_t                preemption_status;
+ 	uint32_t		num_ibs;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+index 56acec1075ac..55f5ba8dbfa2 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+@@ -117,7 +117,7 @@ int amdgpu_fence_driver_start_ring(struct amdgpu_ring *ring,
+ 				   unsigned irq_type);
+ void amdgpu_fence_driver_suspend(struct amdgpu_device *adev);
+ void amdgpu_fence_driver_resume(struct amdgpu_device *adev);
+-int amdgpu_fence_emit(struct amdgpu_ring *ring, struct dma_fence **fence,
++int amdgpu_fence_emit(struct amdgpu_ring *ring, struct dma_fence **fence, struct amdgpu_job *job,
+ 		      unsigned flags);
+ int amdgpu_fence_emit_polling(struct amdgpu_ring *ring, uint32_t *s,
+ 			      uint32_t timeout);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 968b751c0da1..15840a5a5454 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -1150,7 +1150,7 @@ int amdgpu_vm_flush(struct amdgpu_ring *ring, struct amdgpu_job *job,
+ 		amdgpu_gmc_emit_pasid_mapping(ring, job->vmid, job->pasid);
+ 
+ 	if (vm_flush_needed || pasid_mapping_needed) {
+-		r = amdgpu_fence_emit(ring, &fence, 0);
++		r = amdgpu_fence_emit(ring, &fence, NULL, 0);
+ 		if (r)
+ 			return r;
+ 	}
+-- 
+2.25.1
 
-BR
-Evan
-> 
-> Thanks,
-> Lijo
-> 
-> > +		if (amdgpu_device_supports_baco(dev) &&
-> > +		    !(adev->flags & AMD_IS_APU) &&
-> > +		    (adev->asic_type >= CHIP_NAVI10))
-> > +			amdgpu_get_audio_func(adev);
-> >   	}
-> >
-> >   	if (amdgpu_acpi_smart_shift_update(dev,
-> AMDGPU_SS_DRV_LOAD))
-> >
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
