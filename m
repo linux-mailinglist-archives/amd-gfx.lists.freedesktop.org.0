@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D506D39EDBA
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Jun 2021 06:34:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06E9239EDBC
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Jun 2021 06:35:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FDDA6EA96;
-	Tue,  8 Jun 2021 04:34:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 249B46EA98;
+	Tue,  8 Jun 2021 04:35:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2041.outbound.protection.outlook.com [40.107.220.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11FA56EA96
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Jun 2021 04:34:50 +0000 (UTC)
+ (mail-co1nam11on2077.outbound.protection.outlook.com [40.107.220.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59D086EA97
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Jun 2021 04:34:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bN1wqBcbj/vRUBR/+j2ALII9VfpZDorUdXAMJ8zxNvmbJz9xh2RUqOCiuuD2wc9YDhajWu5Ogkus+lUw0BSE7+s954B54D+BMFgd3NMreJM6oe30s4jTnr7IntAHfz9RDyNlBM9WGtyJDjRpOIR07Zc478O4gnnHBLltq2VuLLNY3XmAcPFHRqftPHLxZkNuIonkDnA78TI/2Zw7ZSJSBiYDR8WrEnA1GBosd14l1fE5eRNevkGekqCNeWH/KxHuUAAmLmk60ip+Cfdwq8UrsAM7dXRSC/IRLZCVdV+qBeGTnnK5XCjAIHUFRrZU9zuqv79tzBMKEsQAxUJjWQf4tw==
+ b=T4H1gXz3IpFVXx7YQdzrtH2VOVsOK6w12HRRRjPkIug0yDJRANFNTTpMQGgS2P3UErm4jWXXoxluI8750EtNRKcZOuio/D9EE70STx8Dq/YG0I0YkEkHwa+DQuDvOiwd+cRM5TPMm2bnqtDQeR+f/RebjqUO7PRo05HtiqChRoklyg0LESq7/mFUh+8Bgo65fpZQNgu3EKVM8WFz31VKzKF4+j9wveGXVmbYj93os/YyAtBqxdUGzDPAwFFQ+HXOYT5+1EIuVr8BCTWwlM6ybxigeO3QhN6gkcdOe0MwJS3QdGSG2s8ILDGotTCGh65S7Tk4DIo3DJsU3/hzPCLYiQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IxVdNRU7VFQ23/MJ/u11kd9UP3SKcN05SFupuNsTHzY=;
- b=TYNYSQiR+ST+3RvvZUzzJQPnELOd7B4Dli4jGSahtIALlYmfqFPyrV854t+MugESdaf2zs/2PhBoNGgkCxTyjqyk91w9emc/8tmiib+EWEvC1aCeN2FJftvx2ZT+ztguSefVFbfRR/yft1TU6/Z3BYR2ATMlnGJqoHhVHFgYTC5DBbk0ZIBshkmboxP9PswyXZCMhwV8a90GuDSHr+0AtR6jfE4XZuGEYVd/5W8TH7BQ024bE9+NzKxkeAKu80pEsrFjDuFe5g0GWE0pdaX6PIzyQ0ls1BSj0hxhydKcugh/kO0KIZ9iOh2wh32HqLvgfaSUbHuxx+nyTZKR7qOrGA==
+ bh=iWZ44ZqvFccioYaD2MFAIPI6K1OCwd7uC2lXMBUzA78=;
+ b=PG9MUGb7DgGx9MNc5ELTvQBqUurFnrz3dpiYLk+M0Nqu+9sy13t2UVLg99BGk/z683d1wE0s8KIuL+z886gz5ov5OxyzccmadxnvSsxNXC8MEND6f86zKvJUoMSDUihn9UfMzeyt3LDFeEG9Je2CFYAUrMuPXwFX+CYnRVwaPOQ4y1FuotfPe2laz3VafPHVF1T/8/4FzFsfAzmVf4cdTYc7oqgslYoxtYc9/TNrkZf8V0zDFnhThtxwHbr459+K4v3Bj95xEZ1e5itn/F+Dvi1hFYUqFFGfcPBXiLioHhauENCNyTRdjKORIPLJuLRaV7/kiEcchLLTnCdZa1rYSQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IxVdNRU7VFQ23/MJ/u11kd9UP3SKcN05SFupuNsTHzY=;
- b=y68R0pjakGjNxzso5ypk9S7xw7x6UssjkGQByqTo/ihOB3WKq+dtmP+OH6jrBkkAWnKmjSbwMwR2ITBD+NnS7cr5VaiF6BVWW389GqAVdpPV/5gZJP0K5wv3YWv9EIkdG6DCio6KoayfIeCrraII5nEhhnaPt9/hKxcebNPTAAQ=
-Received: from BN0PR03CA0035.namprd03.prod.outlook.com (2603:10b6:408:e7::10)
- by DM6PR12MB4958.namprd12.prod.outlook.com (2603:10b6:5:20a::8) with
+ bh=iWZ44ZqvFccioYaD2MFAIPI6K1OCwd7uC2lXMBUzA78=;
+ b=h0sZhELmv3+rJyn6j0jC+fsVJy/Qf4rgRppCBfjqoZH4Us/K+/yVivlusubi8/3knbxc9uPlULRVLpazSlZratLpoEy+reeLQYMvo1IyCLA8uXoqcsfiLvWbixuvtDordDj4jK1iPrjDeN5b2VH+GHqwu/X8Hp9NnmNVVWHd9xQ=
+Received: from BN0PR04CA0139.namprd04.prod.outlook.com (2603:10b6:408:ed::24)
+ by BN6PR12MB1521.namprd12.prod.outlook.com (2603:10b6:405:f::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.20; Tue, 8 Jun
- 2021 04:34:48 +0000
-Received: from BN8NAM11FT024.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e7:cafe::c6) by BN0PR03CA0035.outlook.office365.com
- (2603:10b6:408:e7::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.20 via Frontend
- Transport; Tue, 8 Jun 2021 04:34:48 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.27; Tue, 8 Jun
+ 2021 04:34:55 +0000
+Received: from BN8NAM11FT025.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:ed:cafe::e0) by BN0PR04CA0139.outlook.office365.com
+ (2603:10b6:408:ed::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.21 via Frontend
+ Transport; Tue, 8 Jun 2021 04:34:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,47 +46,49 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT024.mail.protection.outlook.com (10.13.177.38) with Microsoft SMTP
+ BN8NAM11FT025.mail.protection.outlook.com (10.13.177.136) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4195.22 via Frontend Transport; Tue, 8 Jun 2021 04:34:48 +0000
+ 15.20.4195.22 via Frontend Transport; Tue, 8 Jun 2021 04:34:54 +0000
 Received: from equan-buildpc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 7 Jun 2021
- 23:34:46 -0500
+ 23:34:52 -0500
 From: Evan Quan <evan.quan@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH V3 1/5] drm/amd/pm: drop the incomplete fix for Navi14 runpm
- issue
-Date: Tue, 8 Jun 2021 12:34:27 +0800
-Message-ID: <20210608043431.1855151-1-evan.quan@amd.com>
+Subject: [PATCH V3 2/5] drm/amd/pm: correct the runpm handling for BACO
+ supported ASIC
+Date: Tue, 8 Jun 2021 12:34:28 +0800
+Message-ID: <20210608043431.1855151-2-evan.quan@amd.com>
 X-Mailer: git-send-email 2.29.0
+In-Reply-To: <20210608043431.1855151-1-evan.quan@amd.com>
+References: <20210608043431.1855151-1-evan.quan@amd.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0f53b176-95f8-46e5-5027-08d92a36bfa9
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4958:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4958507AE7BDC937D871B589E4379@DM6PR12MB4958.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: d1c83bf0-1e68-4f4a-ce2a-08d92a36c380
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1521:
+X-Microsoft-Antispam-PRVS: <BN6PR12MB1521AF2246A54FF2DFE020EBE4379@BN6PR12MB1521.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 83lQp+FD5p5evywZy7aMwwyQSGX1K2bMSjwcU8D5StiUlibWoiMuF8OCeZyqTQ3gl8O2vxHNBC+9KjNKdgJhpf8drG34Gp0+K2Jw2rqJhY9Q7KW+bl2ci8tV3hXrXaRaT/KIBVnlKdodf8tQhkfAFWn1VyzdXN5/KBch0/p4S5Ri4YPjMpXnmd9n3UO9qBNgZ1hQj88KY2MTioz4UrwfU9QfeSsnp4v6jTX7lrwFJsF9N9s5F3DZpe8XC0U9TfoANp4mrvzjZ82k4SZ+JCvuQgxHDmXzJf/c7bC0Vqdj5zGX7rwG7O0ChjHpWmC0EttGyvJb4ywMZ85KVzTCqXnK7cjDBDyIJQodREyV7xXrsabvr5VFAdB+PACR9mV8FhN8u88/8xC7BHKYAWlZqNosTZx7NsORw6f3DeNygiVsWIGis4201rCYWNykPvJiqAigiFMV3jtJPhKeQT3uwuULrA5/FH7ow5pklYEWy+qWDdPf+UAgti5P3zIb2HXoLNx8TUVxyANF4FWOtft1FqUZny5vWdKYGSp6nKG0xTTGN0oew2GFP1qGdXEy1/OCS6BpeNKlKxDvoqByg9wORnPWeU99Xrra30EGy/UfBn8QYa9v+CQ5bbzE3DeYoY7j5UOlYDQ4wOTH1fi0kFmsPIHnXyMHcet6jUdTA4uFLM8Zs6QEWJ0ArDv1otglc40RnW1Zzy3WganJRC2uEu9ugUW09irfkIxmvrTw8tGfSaP1lJyRG1u6yDwm9SoHVSdWlbjfjJPzQFfAUaasAIBUrk5yT6w3LJ+9CJrh/QG778U62DL/tdX79kvSyylMVqCLeQ/0
+X-Microsoft-Antispam-Message-Info: 5oBK/GOZgfSqqI/cdu3MCnFxrIG5ERYen3CIeF5aQUv+IBFUL+4j7++O29bRwKhPrIYU0s9yE1Gxfe2VmIsAdEU/PwaEyVh+sE7RiFkvxJBh1One/7UzvTj/e+d4lxHMUb1GkJ5hU97nj8yAbcGHHstwNSmV76P3bQctWdxwKwRBpRv1Th7BKdS274oA72w6KcR3UkLtHUQBrdkf0JEwxWAxytyG8rDqe15fy+dyl0j+dEUYTykRZ7M8B+/vSrPtdmxisw3BgGE7yLgyij8T/2+V6Q1Qyf0dYLpZkSubmMU3zzMdJVKFcBgzBBn2t6wd8zGox/0X4Znl8ry9iWZgRgCy2F0kGXm2tGGLMK8uZ0NA2pNochsJqDvuKjIPeynsMdTNJ7rTlEYsIpNrZnatGkzVN2QQvpaLwhgat6zktm4oNLV8Oq1qcuLIIHtBVPLgt6IwWijcU+Pl3Td62AJlfiBLPNbkA36dDaXLLxGfHhSASJVNwef/anorviierdZANfAOTzzQmKP2vp05O5YaNYEagGy92t4zSFCp9P4Ad4Wiql9M49aYdF9YOpN5/5sA4zN4k7oMwxJ/KL9bEL5K+AjqWqgtu/4iTkfLyiM6LZVTWDH60qhTijH+o1sa0rdAVa3PDwjkqjmYLPlZMq2aDRloX4vPzmBIgSg6eccfb40OMq3qqCBJdwwLPciKZC6K
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(396003)(39860400002)(376002)(136003)(36840700001)(46966006)(70206006)(70586007)(81166007)(8676002)(5660300002)(83380400001)(7696005)(54906003)(1076003)(6666004)(2616005)(36860700001)(8936002)(36756003)(86362001)(336012)(426003)(356005)(82310400003)(44832011)(16526019)(26005)(966005)(186003)(47076005)(6916009)(4326008)(2906002)(82740400003)(478600001)(316002)(19627235002)(36900700001);
+ SFS:(4636009)(376002)(396003)(346002)(136003)(39860400002)(46966006)(36840700001)(54906003)(81166007)(6916009)(82740400003)(8676002)(356005)(47076005)(70206006)(70586007)(44832011)(7696005)(6666004)(478600001)(426003)(26005)(5660300002)(36756003)(2906002)(186003)(16526019)(2616005)(82310400003)(86362001)(83380400001)(36860700001)(66574015)(1076003)(316002)(8936002)(4326008)(336012)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2021 04:34:48.1341 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f53b176-95f8-46e5-5027-08d92a36bfa9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2021 04:34:54.5800 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d1c83bf0-1e68-4f4a-ce2a-08d92a36c380
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT024.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT025.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4958
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1521
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,77 +107,158 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-As the fix by adding PPSMC_MSG_PrepareMp1ForUnload is proved to
-be incomplete. Another fix(see link below) has been sent out.
-Link: https://lore.kernel.org/linux-pci/20210602021255.939090-1-evan.quan@amd.com/
+Via the fSMC_MSG_ArmD3 message, PMFW can properly act on the
+Dstate change. Driver involvement for determining the timing for
+BACO enter/exit is not needed.
 
-Change-Id: I2a39688cdf9009885594663cd9ec99d4cfca0088
+Change-Id: Id9ab5e308ff1873888d0acd822c71b0a303fbb01
 Signed-off-by: Evan Quan <evan.quan@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c       |  5 +---
- .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 26 +------------------
- 2 files changed, 2 insertions(+), 29 deletions(-)
+V1->V2:
+  - limit the changes for Navi1x and Sienna_Cichlid which support
+    the fSMC_MSG_ArmD3 message
+---
+ drivers/gpu/drm/amd/pm/inc/smu_v11_0.h        |  3 +++
+ .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 27 +++++++++++++++++--
+ .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   | 27 +++++++++++++++++--
+ .../gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c    | 11 ++------
+ 4 files changed, 55 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index 47ceb783e2a5..0e632eda4d10 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -2180,10 +2180,7 @@ static int psp_load_smu_fw(struct psp_context *psp)
- 	if ((amdgpu_in_reset(adev) &&
- 	     ras && adev->ras_enabled &&
- 	     (adev->asic_type == CHIP_ARCTURUS ||
--	      adev->asic_type == CHIP_VEGA20)) ||
--	     (adev->in_runpm &&
--	      adev->asic_type >= CHIP_NAVI10 &&
--	      adev->asic_type <= CHIP_NAVI12)) {
-+	      adev->asic_type == CHIP_VEGA20))) {
- 		ret = amdgpu_dpm_set_mp1_state(adev, PP_MP1_STATE_UNLOAD);
- 		if (ret) {
- 			DRM_WARN("Failed to set MP1 state prepare for reload\n");
+diff --git a/drivers/gpu/drm/amd/pm/inc/smu_v11_0.h b/drivers/gpu/drm/amd/pm/inc/smu_v11_0.h
+index a3b28979bc82..1962a5877191 100644
+--- a/drivers/gpu/drm/amd/pm/inc/smu_v11_0.h
++++ b/drivers/gpu/drm/amd/pm/inc/smu_v11_0.h
+@@ -244,6 +244,9 @@ int smu_v11_0_baco_set_state(struct smu_context *smu, enum smu_baco_state state)
+ int smu_v11_0_baco_enter(struct smu_context *smu);
+ int smu_v11_0_baco_exit(struct smu_context *smu);
+ 
++int smu_v11_0_baco_set_armd3_sequence(struct smu_context *smu,
++				      enum smu_v11_0_baco_seq baco_seq);
++
+ int smu_v11_0_mode1_reset(struct smu_context *smu);
+ 
+ int smu_v11_0_get_dpm_ultimate_freq(struct smu_context *smu, enum smu_clk_type clk_type,
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-index 695c65767258..267fbbdbff94 100644
+index 267fbbdbff94..038b5f3c87b4 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-@@ -446,30 +446,6 @@ static int navi10_store_powerplay_table(struct smu_context *smu)
+@@ -2243,6 +2243,29 @@ static int navi10_overdrive_get_gfx_clk_base_voltage(struct smu_context *smu,
  	return 0;
  }
  
--static int navi10_set_mp1_state(struct smu_context *smu,
--				enum pp_mp1_state mp1_state)
--{
++static int navi10_baco_enter(struct smu_context *smu)
++{
++	struct amdgpu_device *adev = smu->adev;
++
++	if (adev->in_runpm)
++		return smu_v11_0_baco_set_armd3_sequence(smu, BACO_SEQ_BACO);
++	else
++		return smu_v11_0_baco_enter(smu);
++}
++
++static int navi10_baco_exit(struct smu_context *smu)
++{
++	struct amdgpu_device *adev = smu->adev;
++
++	if (adev->in_runpm) {
++		/* Wait for PMFW handling for the Dstate change */
++		msleep(10);
++		return smu_v11_0_baco_set_armd3_sequence(smu, BACO_SEQ_ULPS);
++	} else {
++		return smu_v11_0_baco_exit(smu);
++	}
++}
++
+ static int navi10_set_default_od_settings(struct smu_context *smu)
+ {
+ 	OverDriveTable_t *od_table =
+@@ -3081,8 +3104,8 @@ static const struct pptable_funcs navi10_ppt_funcs = {
+ 	.baco_is_support = smu_v11_0_baco_is_support,
+ 	.baco_get_state = smu_v11_0_baco_get_state,
+ 	.baco_set_state = smu_v11_0_baco_set_state,
+-	.baco_enter = smu_v11_0_baco_enter,
+-	.baco_exit = smu_v11_0_baco_exit,
++	.baco_enter = navi10_baco_enter,
++	.baco_exit = navi10_baco_exit,
+ 	.get_dpm_ultimate_freq = smu_v11_0_get_dpm_ultimate_freq,
+ 	.set_soft_freq_limited_range = smu_v11_0_set_soft_freq_limited_range,
+ 	.set_default_od_settings = navi10_set_default_od_settings,
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+index a9e35c1255f9..9debeec1a85c 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
+@@ -2109,6 +2109,29 @@ static int sienna_cichlid_run_btc(struct smu_context *smu)
+ 	return smu_cmn_send_smc_msg(smu, SMU_MSG_RunDcBtc, NULL);
+ }
+ 
++static int sienna_cichlid_baco_enter(struct smu_context *smu)
++{
++	struct amdgpu_device *adev = smu->adev;
++
++	if (adev->in_runpm)
++		return smu_v11_0_baco_set_armd3_sequence(smu, BACO_SEQ_BACO);
++	else
++		return smu_v11_0_baco_enter(smu);
++}
++
++static int sienna_cichlid_baco_exit(struct smu_context *smu)
++{
++	struct amdgpu_device *adev = smu->adev;
++
++	if (adev->in_runpm) {
++		/* Wait for PMFW handling for the Dstate change */
++		msleep(10);
++		return smu_v11_0_baco_set_armd3_sequence(smu, BACO_SEQ_ULPS);
++	} else {
++		return smu_v11_0_baco_exit(smu);
++	}
++}
++
+ static bool sienna_cichlid_is_mode1_reset_supported(struct smu_context *smu)
+ {
+ 	struct amdgpu_device *adev = smu->adev;
+@@ -3884,8 +3907,8 @@ static const struct pptable_funcs sienna_cichlid_ppt_funcs = {
+ 	.baco_is_support = smu_v11_0_baco_is_support,
+ 	.baco_get_state = smu_v11_0_baco_get_state,
+ 	.baco_set_state = smu_v11_0_baco_set_state,
+-	.baco_enter = smu_v11_0_baco_enter,
+-	.baco_exit = smu_v11_0_baco_exit,
++	.baco_enter = sienna_cichlid_baco_enter,
++	.baco_exit = sienna_cichlid_baco_exit,
+ 	.mode1_reset_is_support = sienna_cichlid_is_mode1_reset_supported,
+ 	.mode1_reset = smu_v11_0_mode1_reset,
+ 	.get_dpm_ultimate_freq = sienna_cichlid_get_dpm_ultimate_freq,
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
+index e1e1c268f661..388c5cb5c647 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/smu_v11_0.c
+@@ -1474,7 +1474,8 @@ int smu_v11_0_set_azalia_d3_pme(struct smu_context *smu)
+ 	return smu_cmn_send_smc_msg(smu, SMU_MSG_BacoAudioD3PME, NULL);
+ }
+ 
+-static int smu_v11_0_baco_set_armd3_sequence(struct smu_context *smu, enum smu_v11_0_baco_seq baco_seq)
++int smu_v11_0_baco_set_armd3_sequence(struct smu_context *smu,
++				      enum smu_v11_0_baco_seq baco_seq)
+ {
+ 	return smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_ArmD3, baco_seq, NULL);
+ }
+@@ -1578,16 +1579,8 @@ int smu_v11_0_baco_set_state(struct smu_context *smu, enum smu_baco_state state)
+ 
+ int smu_v11_0_baco_enter(struct smu_context *smu)
+ {
 -	struct amdgpu_device *adev = smu->adev;
--	uint32_t mp1_fw_flags;
--	int ret = 0;
--
--	ret = smu_cmn_set_mp1_state(smu, mp1_state);
--	if (ret)
--		return ret;
--
--	if (mp1_state == PP_MP1_STATE_UNLOAD) {
--		mp1_fw_flags = RREG32_PCIE(MP1_Public |
--					   (smnMP1_FIRMWARE_FLAGS & 0xffffffff));
--
--		mp1_fw_flags &= ~MP1_FIRMWARE_FLAGS__INTERRUPTS_ENABLED_MASK;
--
--		WREG32_PCIE(MP1_Public |
--			    (smnMP1_FIRMWARE_FLAGS & 0xffffffff), mp1_fw_flags);
+ 	int ret = 0;
+ 
+-	/* Arcturus does not need this audio workaround */
+-	if (adev->asic_type != CHIP_ARCTURUS) {
+-		ret = smu_v11_0_baco_set_armd3_sequence(smu, BACO_SEQ_BACO);
+-		if (ret)
+-			return ret;
 -	}
 -
--	return 0;
--}
--
- static int navi10_setup_pptable(struct smu_context *smu)
- {
- 	int ret = 0;
-@@ -3122,7 +3098,7 @@ static const struct pptable_funcs navi10_ppt_funcs = {
- 	.get_fan_parameters = navi10_get_fan_parameters,
- 	.post_init = navi10_post_smu_init,
- 	.interrupt_work = smu_v11_0_interrupt_work,
--	.set_mp1_state = navi10_set_mp1_state,
-+	.set_mp1_state = smu_cmn_set_mp1_state,
- };
- 
- void navi10_set_ppt_funcs(struct smu_context *smu)
+ 	ret = smu_v11_0_baco_set_state(smu, SMU_BACO_STATE_ENTER);
+ 	if (ret)
+ 		return ret;
 -- 
 2.29.0
 
