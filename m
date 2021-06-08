@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0120F3A062B
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Jun 2021 23:40:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D5723A062E
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Jun 2021 23:40:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C3706EC42;
-	Tue,  8 Jun 2021 21:40:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D3C86EC48;
+	Tue,  8 Jun 2021 21:40:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2061.outbound.protection.outlook.com [40.107.220.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 696C86EC42
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Jun 2021 21:40:26 +0000 (UTC)
+ (mail-co1nam11on2063.outbound.protection.outlook.com [40.107.220.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F22116EC42
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Jun 2021 21:40:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oe+yP0Tvi5FItcFfBzWjRZwAWF279mhamaUV3T++RjkxYPXcqcWz9GgPOCSgtMt9KCB9xO2bEKrMOs1FF6IbmZzhojxbYhlgGkfwLc52hkaqIc59wdaDFObuB8pNpMMWcZ2AFeGKPJecraaeoab0g9hAComGT317zGo/AIvSBsoYk7hKuMH5bGv+448XFVAvnKTnQbtTWsPhIkrV2jIM+9iVn5ggoKYvlHNiZ0w1pkGVHO7Qg++xZ7Kr9hJsT+XkqtD+1Jm+VZi0rLP5+aK7RuOEZ9ULwB2//mHInhoatHZciFbcPKYQYSRC+VcBjs7wCJHBmd7xfxYxv3AlJ/WBxg==
+ b=WvAXLnu8VyipMMAR6Q/1L9EkNOdzGo2jZ5wzSJVRgRiuk1212uYv1zE9unvBu59t5jYEyeFkc7OXq492Qx0CJs3MvtWMBpE+OQW9m235Vw74cYipZSR8pTlUnlcu3dLYOzMKMCDPeXJgE8BpHOEg7sSCC3BE0acNkLYj+qR4kr/VkZlXHSsBp2g+b0tHE/maMN3sui52MAjq29GVLzk+uG0Ebp8m9qrSu3oB9cy5gLGuMRumuUh2pOFt8BOASW7N+HdTbqKUivU2kuNKD9Hck83hFj2wWz0TjhdMfPdi11zoUbohNxtH2J/spJicdtEpgTA3RjPoEeyMqeFXmwc/8A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BwQ5zqqXSksgrFXJy7VbzrVZ8oYIbWHnNFoy4P2w17s=;
- b=nPZ8r/ZQuBJ4skrBVBTLuxYqeM45X2zYjbOtjcdnT6Xp4y/wormgr/3NmlB2n5vkK5wj5huXeM0RAi366EfVufEPXGWwvEBFQq7CDMoUTo73d5c6NLrYi4C3u7IMyYLNRG3Sfxn7WOCxYMZ7s3NoTCJg8JmPm1WQBPNnjgqNlnEfwQVv+/eYT4QrmiwnkNWPX8Kwsf7DRxwHKFh0ORY+46KeOaAaBaleShlT9jO1E8iz+szVMF4Zl2hCRNLMHTeDuZDkAElWp5d7oTaOvYwlXDMVkSr3fYBlkCJI05+3a4skQSscgOv0uRugH+8Ebem0nJoDtY3j9Z4HNqt107zy9Q==
+ bh=LbRPA2VuZ81oofoQi5m9O4Fiqdsm45fhogk2iOksRIo=;
+ b=LIDleKIK8p8SIvVmYVKQVZLSQDG7IVjLT+YMpYU7as1GbmgBLknkXc+74v2YEZ0ExSdyZeJxSWmeGmE5Ei9ejZIz8f2GL2Xald/pQB1TxoyQ0m99xLmBwg/eGL3DhxES1bTNAukxGP2GnH+ztfJo+xvltfK5Gg1XAtIrE38yxEdqsPD1T+Plo7EjHUDPVBfE+xo/1kSIz4QTopOS47A2jEU5xCcke3iBM8PIm/wH4Srk7MWli8qUbgc6WaSb4hGplUmLErisq/1jVJpoOZdIjiaAD1El/lgk1FXqz4jnskqbETf5l5BVWixHsWv0vv5CwXmu0MIaEUr+9LcAa58sWA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BwQ5zqqXSksgrFXJy7VbzrVZ8oYIbWHnNFoy4P2w17s=;
- b=m7v1B3r/6VJgp4QEI3d/Lyc3bb4jga/W4yDRWNmkeMCZwaWJ4ltYghG3/WOSHqfg7zoBkcnJ0BSoa7Xb3iAfH/6d9SnJjjn35rd08nzNpeJMnswqe5sG6zKBCHSAUqDxQHFNQZGa/YnQx9seuEX+ajJmUlMpfibhQUzGCDiAqUk=
+ bh=LbRPA2VuZ81oofoQi5m9O4Fiqdsm45fhogk2iOksRIo=;
+ b=5QddpHIKUcJ7yjSvXMonbfnXmbcXVabwa0ZkW291PDjbjLZZu6HGeOXXt4epWyuBBzguDGOpQbYK5ReGwuA7kYZFd5z44z3w8tA9eg1ul9NuLv68LP8TO3A3OcdQ0N3wsWbYjSurI8AkuQMd8LXT9pXmeMNlGxhq5GeSGqnSK84=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,16 +34,16 @@ Received: from DM6PR12MB3962.namprd12.prod.outlook.com (2603:10b6:5:1ce::21)
  by DM6PR12MB4435.namprd12.prod.outlook.com (2603:10b6:5:2a6::23) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.24; Tue, 8 Jun
- 2021 21:40:25 +0000
+ 2021 21:40:26 +0000
 Received: from DM6PR12MB3962.namprd12.prod.outlook.com
  ([fe80::142:82e3:7e9d:55a0]) by DM6PR12MB3962.namprd12.prod.outlook.com
  ([fe80::142:82e3:7e9d:55a0%6]) with mapi id 15.20.4195.030; Tue, 8 Jun 2021
- 21:40:25 +0000
+ 21:40:26 +0000
 From: Luben Tuikov <luben.tuikov@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 16/40] drm/amd/pm: SMU I2C: Return number of messages processed
-Date: Tue,  8 Jun 2021 17:39:30 -0400
-Message-Id: <20210608213954.5517-17-luben.tuikov@amd.com>
+Subject: [PATCH 17/40] drm/amdgpu/pm: ADD I2C quirk adapter table
+Date: Tue,  8 Jun 2021 17:39:31 -0400
+Message-Id: <20210608213954.5517-18-luben.tuikov@amd.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210608213954.5517-1-luben.tuikov@amd.com>
 References: <20210608213954.5517-1-luben.tuikov@amd.com>
@@ -56,53 +56,53 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from localhost.localdomain (108.162.138.69) by
  YTBPR01CA0029.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::42) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4219.21 via Frontend Transport; Tue, 8 Jun 2021 21:40:24 +0000
+ 15.20.4219.21 via Frontend Transport; Tue, 8 Jun 2021 21:40:25 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1a2b5319-2073-4715-d6fb-08d92ac6069f
+X-MS-Office365-Filtering-Correlation-Id: 7cb37d0f-dc6c-4618-b304-08d92ac60732
 X-MS-TrafficTypeDiagnostic: DM6PR12MB4435:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB443598FFACEE93A0C8719EAC99379@DM6PR12MB4435.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB44351E9EDB11F8EDB2A2560499379@DM6PR12MB4435.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1923;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hrUA4r7TlERzXqAPi4Le/oFQg/XJx/E6xrV0LI9joiKV63/X1keEfen97WrudjIvYi3V09Rgs4cPjZCQCsIY94u7R6HdCMBOQOecp8HIUG1L5YFO+Cneb5gd2at8CVNDeDQrvE7WE3p1sWM/c75132M0N11RmmhpZP5lR11yuCfKFaPCGez73msv11OBdSzA5uzC7GqgQzXOrgKDYxOiSOhZXLNZElHpImcFrzH9GtODEA2fcACoXTXNf737NwE+eFLVvdgAk4VkIUf5wfdcK+6igFr9oe02yq2h4MfyUb1Yj384dJxw4wWmcCRiN/PkKAmYKP2/jzXvaDAiviPxdkvXSYJUqqT4xiIbI9PYDBT7ubL8df8KAm6FmyTo6R2aUJRia3tgwXrNIBeS/3LKdj79zY6GnUGDGdX/X+XNmV8A7iZlAmJ4eQccWv0ikpyyMoKzIMuh+qXr3wRUR3DEMRPDbf01swaoFEt8tLmx/uKy2+IsXgpOozrUfn+RgAkse219bJFjSyhOgQWipzr/ix+YNuDUEszQNX7TQaABDeN0ljK2PIIvLBCndufPNtvlvVfHBx3kSA02ziMVCBL1v2ew9JyaV1D0L7FWUCTgoo28MvynwM8ZPC0fOEiaeEDVZ9xb4p6zIGTnO7Tiw9pE+TXxSLItL2inl8O8FfaGjXfVC55090iyF6UedB2iu5bw
+X-Microsoft-Antispam-Message-Info: gTuLNlw38waE6sNM51hI0KRvfQhTo6TTGNgRqj+sQUgMOuzT76wN7lEXkNSfcGWicd0I5KmER65zINd0KelQDSs1XtQEE7tpjhe0wl8xP0ZkXo6oJT5y1wTyCTjAoGcjiiMEqCqico3spn37rFi5d049jsQc0bThJ4Z+G1+dlnY0miW10b1jniaxs1unwvjab/AQcjIKRKFCtCPck3k2ZSCxIScJv2MgIbpqLy91GOcy098m5WQwNSS/zPwb4tWEadWvqr5CJKpmx2D2exr6aoZPohAvhax2K2u6f68W/VoLbb4VA1nI3Bq6ihUOmtbR2qwCvWiSWiKlcbez+FFXH6MzDufsiAKkxrM1ObzAhli9dS0AXDBwsNAVIHw2gxAz3FTpGWcx0kEgVKfmBGKyESY90+vysljzz9u6E3DDUZ2gTYrv9PXpT0FKwMaNMgbSnT8Eblw9QCNsQmfUovfF3+u8TVd8WFW7Nav/zx1kyxSJbUEL+QJHZ8qQRRwGAA9q3yMzuZRopPCjcpi0ca1OEYZX/6IxPxIROh8oPiWQ1rPD34eCaFoaCV5/Tz/4oiAh9irvjhRO73gOZ0i4GDTTfCPvduHVx8uGOO2nUNcUqIJNgWup8D6pI/l/SAmL5p/T91fnlOwhdJDqpFbTbvgfwAN5KQwNDtlyZ3jyPLhHqd2M1u47zJyYIWLetwtOKIZL
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB3962.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(396003)(346002)(366004)(376002)(39850400004)(15650500001)(6916009)(8676002)(6506007)(6512007)(36756003)(6486002)(66476007)(38100700002)(38350700002)(26005)(6666004)(16526019)(1076003)(8936002)(2906002)(54906003)(316002)(4326008)(66946007)(186003)(5660300002)(66556008)(83380400001)(52116002)(2616005)(956004)(55236004)(44832011)(86362001)(478600001)(69590400013);
+ SFS:(4636009)(136003)(396003)(346002)(366004)(376002)(39850400004)(6916009)(8676002)(6506007)(6512007)(36756003)(6486002)(66476007)(38100700002)(38350700002)(26005)(6666004)(16526019)(1076003)(8936002)(2906002)(54906003)(316002)(4326008)(66946007)(186003)(5660300002)(66556008)(52116002)(2616005)(956004)(55236004)(44832011)(86362001)(478600001)(69590400013);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Tl36oimS1u1gQtdK6Ir5I0vteLmE+IcmfG7ifKLye0NN/qJvgdwr2a4rlHY4?=
- =?us-ascii?Q?1qQxtRes3g1SI+RDDU0lrgmjp7luUGsSSKczQE8B+myfsSoFM25WTyy3CuEc?=
- =?us-ascii?Q?sWvmT40jaKkuhnBPaWjt4VC1+XDPjenEvYQ/WhqXyTouC6kD/xVKhJjVgx0r?=
- =?us-ascii?Q?UWfAt7jKXKMAdpHcj8D66ENwaLmIAGf+UVNbDbQaE76MK2syOVH+NIuLus7n?=
- =?us-ascii?Q?h4icAmxq5gtSQoTiZzvsPfC5ebeDn+vYO78ZPZWY43omZ94ClqzPISDQ1DiZ?=
- =?us-ascii?Q?gUEVW/AoiDJ8ce95nKkfMBup/SnLaZGTGYX00u1GiVzohKlSE7Oe2lO3Uyhd?=
- =?us-ascii?Q?1k/lIfYS+k0fxkljRReH3Bw24d1Qfye6f00GQidmKKviVCr0PEaEGyDfiMQx?=
- =?us-ascii?Q?uttCeUYdtkuba/xzBkE/JirzkkmqqEV0YL7kTQnbvGd2BVpVH4ZGv0DuW+g2?=
- =?us-ascii?Q?1agbZTbHRXIcZgUrYQNBiMJuZ9Ds++EM9mG29xe34oav+SMEIYcT8RFhIp1f?=
- =?us-ascii?Q?46S52tlEOQdM6gArT7aNwBuQ4sbRipXt7Hrhy5iw3xPAx8Gn2N3eVTmckntn?=
- =?us-ascii?Q?oIXWaRFVbubBEZWhFSPYaIlwedwZc3/w7Phxif20nFVigTXgBdwxldSBnvdx?=
- =?us-ascii?Q?SUbS/4gliRiWStizi0RA0v+bs/wQoOUr5CD5Ccsj/VNybiNbWr+xMWURtNXF?=
- =?us-ascii?Q?WICoIH5AdN4jbp2KOcpRfTG1UTcGpFX0Oc6r2muOewh5db3GxSTZRfIZzCZN?=
- =?us-ascii?Q?Z2WRJTEsvkIAOgcGbvzQpr9XjMmS8/D3/KOj5wuKJaRYY6az6/8kEq7siTGq?=
- =?us-ascii?Q?3qAUXkj1/xY7DveBaO6K3dvVTK9TII9O40TFBZ2hu/CCMrxFS7Y6M1UpTXFB?=
- =?us-ascii?Q?WVIbn/jC2PGLqMslznnVwJVgZ0jmH40klfNRzg9mg9NkP5/ACBDPvWyqoO8h?=
- =?us-ascii?Q?nB/63vmeF0D8rGodKiI3FpnVT9jmA73rw6g779fPVuCmwIFc504ZyANs8JVS?=
- =?us-ascii?Q?YeSy4GADCWYwkIv2JqUpv2PJWPS7G6dGX3iz1Df9sHpJjJLs4mcMrnDR6pGh?=
- =?us-ascii?Q?z4yOidOa/o9AAmTZVdYXQiVb+DJvUw9QoeWUWmPzV/F6/HysfWaTZZCjkxDf?=
- =?us-ascii?Q?QwnPll/APMVR2SCFzCqpGBSPPvOfk1CZy4HDTVuuJNKnSYlyOTie7DsHNue5?=
- =?us-ascii?Q?rU2RDZqECBKyGk+1CSYfKiIPtMZc1Bog305E3FOtsUuCiIa1Se5SvUfuz2Qi?=
- =?us-ascii?Q?nq1N3ocB33e41XfjtWUaPGG+JlXVBh+8dXCoxmFgPmiim4gUyo9fF9ZFvE5X?=
- =?us-ascii?Q?jkGGSQYsSlb68b57EXWnZhNa?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?o3nB/ZQmKgpO09MuhuXoxMaRNn+twhhruvzToYv+vIZzJNm9ykKHJ+46OmyE?=
+ =?us-ascii?Q?rta9z+os3ZiGeI6H1QeS4fRrcgg/Gh+v3Fw/3hF74Bu8UqfMZPwhsG9dLroY?=
+ =?us-ascii?Q?DqFM3P+YxPUAzOVpb9uBEhNm9dqwA+jFLPD++8HGCpqrjmz4JxIRnl3rapND?=
+ =?us-ascii?Q?zy7ZItIQ5MLqqtqv1Tk8dsc0X0wzfZ5SEoYkg1ZpgmsDcRhNyyRHGV8Ebu8k?=
+ =?us-ascii?Q?Fxj9ZoXe+Iwm1QJzWpco/OD5nVObKo9ToJNUVxO1NG7cE/YEoL6lh6kcdFNm?=
+ =?us-ascii?Q?9FFS6oMdQoTyiv8ISBNsIYj47wvitGmuxqXzjjmZa4R1alc0JrsxHVappTRL?=
+ =?us-ascii?Q?M1J4hGaO3Z1rJccr7fsN8FMVNmKOoh8RMNEg0wYc3QQLjf9vd+/I4rRQ0CxF?=
+ =?us-ascii?Q?nD3z7xrKSEV01t/jd7XUoxiPSXb5OLSP4xluQ8GMg1++g443eviIW/Jjp8/R?=
+ =?us-ascii?Q?qd1wxS3skrhoWSKTGGIyXVvgWi1h9T1oT9AWcwOjRIPM1WGLtqrvWOYbm/0W?=
+ =?us-ascii?Q?fQF6AEjfFJjsvUmT5yEKqoeIR8ZO16notGPXaPJWj6l9W7uBpQRQJgGUSO0l?=
+ =?us-ascii?Q?gjV1QKNpD6JFrCe9dw1Hi7y5/XCd/7+F9XXaBtDm6Afi92Gh7iDugQi8B7//?=
+ =?us-ascii?Q?BFKF95IIcTGXVKdD9FJlYUScRyMIQH72X+zTX58TNVrUuVhTqhCyTI1nMkxZ?=
+ =?us-ascii?Q?2djaqzCnKP4oqojbm6sleFp+LxyjarqWMel9GEJ6audVfnfkoqsNuU/tv1ZC?=
+ =?us-ascii?Q?qEaYZ6lyRYOeDVs3Q7zcWeG3S7qMDQ3RC92VXIePSYTM0o6/Gx3tg+Mn5q1a?=
+ =?us-ascii?Q?OdUABzv8eHjqI20/eHD1yAJUkLAIAkRXJcqEIBY59CgeF96za5IRcoiVjbFY?=
+ =?us-ascii?Q?p0MYY7ez5HvLn9JghyS3f8QVoZyt+3zjCzNY2vnbsDbRz8JXoS4GyuPRlRMH?=
+ =?us-ascii?Q?aS0ZUmRsrFQphBMAmA85IZPQMUMNWXKN5g4f3xe0l7G1iwWyiCRfcKVpTNoE?=
+ =?us-ascii?Q?41Vp3SToGDN121/W4XQcNPDjTfQngD3pNvXrdSbyhuTgfHNU6MJXHc6CQXU7?=
+ =?us-ascii?Q?l+989y/+dUy7sQ8Eb38w1KZLKk2uVGs4O2i2fOwmqHMVaK1UDFz/R37jTRRS?=
+ =?us-ascii?Q?2ze7VYUYUbYfeN4wv71eB3px41e1pQ1PDf9FfpuBz+KTwnB+yGrr0dT8kYER?=
+ =?us-ascii?Q?Ve9Xfbidb/UccHDYUMU6zx4b36v2NtZs/veb8AsG/QKk4YcqSuNISdRGJ3wu?=
+ =?us-ascii?Q?zzgB5Cpa34nMBnRjqy5HFgGyFSwREwX/tmidnD/b7ukwmRvI1dmgrUADqAQ2?=
+ =?us-ascii?Q?d/ypZ5E44ZhObHo5zv7Qb1n9?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1a2b5319-2073-4715-d6fb-08d92ac6069f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7cb37d0f-dc6c-4618-b304-08d92ac60732
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3962.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2021 21:40:25.3884 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2021 21:40:26.4119 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yr7rmq+nvkOgDzcQGnoTe/JmOjvoaQ8i5bTzS3Bp3OxDSfHiGYIHC2dCY5U2SlAt
+X-MS-Exchange-CrossTenant-UserPrincipalName: NlAPyps0Sat09IBNlvMzy7EtAGs/mFYznD5R1XaeuGfAkj7WnMuDlan5U5lCRUWA
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4435
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -127,8 +127,7 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
 
-Fix from number of processed bytes to number of
-processed I2C messages.
+To be used by kernel clients of the adapter.
 
 Cc: Jean Delvare <jdelvare@suse.de>
 Cc: Alexander Deucher <Alexander.Deucher@amd.com>
@@ -137,299 +136,88 @@ Cc: Lijo Lazar <Lijo.Lazar@amd.com>
 Cc: Stanley Yang <Stanley.Yang@amd.com>
 Cc: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+Suggested-by: Lazar Lijo <Lijo.Lazar@amd.com>
 Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
 Reviewed-by: Luben Tuikov <luben.tuikov@amd.com>
 ---
- .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c | 43 +++++++++++--------
- .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 43 +++++++++++--------
- .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   | 43 +++++++++++--------
- 3 files changed, 75 insertions(+), 54 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c       | 7 +++++++
+ drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c         | 6 ++++++
+ drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 6 ++++++
+ 3 files changed, 19 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-index 235e83e9f0feb7..409299a608e1b3 100644
+index 409299a608e1b3..c2d6d7c8129593 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-@@ -1913,9 +1913,8 @@ static int arcturus_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	struct smu_table_context *smu_table = &adev->smu.smu_table;
- 	struct smu_table *table = &smu_table->driver_table;
- 	SwI2cRequest_t *req, *res = (SwI2cRequest_t *)table->cpu_addr;
--	u16 bytes_to_transfer, remaining_bytes, msg_bytes;
--	u16 available_bytes = MAX_SW_I2C_COMMANDS;
--	int i, j, r, c;
-+	short available_bytes = MAX_SW_I2C_COMMANDS;
-+	int i, j, r, c, num_done = 0;
- 	u8 slave;
+@@ -2004,6 +2004,12 @@ static const struct i2c_algorithm arcturus_i2c_algo = {
+ 	.functionality = arcturus_i2c_func,
+ };
  
- 	/* only support a single slave addr per transaction */
-@@ -1923,8 +1922,15 @@ static int arcturus_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	for (i = 0; i < num; i++) {
- 		if (slave != msgs[i].addr)
- 			return -EINVAL;
--		bytes_to_transfer += min(msgs[i].len, available_bytes);
--		available_bytes -= bytes_to_transfer;
 +
-+		available_bytes -= msgs[i].len;
-+		if (available_bytes >= 0) {
-+			num_done++;
-+		} else {
-+			/* This message and all the follwing won't be processed */
-+			available_bytes += msgs[i].len;
-+			break;
-+		}
- 	}
- 
- 	req = kzalloc(sizeof(*req), GFP_KERNEL);
-@@ -1934,24 +1940,28 @@ static int arcturus_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	req->I2CcontrollerPort = 1;
- 	req->I2CSpeed = I2C_SPEED_FAST_400K;
- 	req->SlaveAddress = slave << 1; /* 8 bit addresses */
--	req->NumCmds = bytes_to_transfer;
-+	req->NumCmds = MAX_SW_I2C_COMMANDS - available_bytes;;
- 
--	remaining_bytes = bytes_to_transfer;
- 	c = 0;
--	for (i = 0; i < num; i++) {
-+	for (i = 0; i < num_done; i++) {
- 		struct i2c_msg *msg = &msgs[i];
- 
--		msg_bytes = min(msg->len, remaining_bytes);
--		for (j = 0; j < msg_bytes; j++) {
-+		for (j = 0; j < msg->len; j++) {
- 			SwI2cCmd_t *cmd = &req->SwI2cCmds[c++];
- 
--			remaining_bytes--;
- 			if (!(msg[i].flags & I2C_M_RD)) {
- 				/* write */
- 				cmd->CmdConfig |= I2C_CMD_WRITE;
- 				cmd->RegisterAddr = msg->buf[j];
- 			}
--			if (!remaining_bytes)
++static const struct i2c_adapter_quirks arcturus_i2c_control_quirks = {
++	.max_read_len = MAX_SW_I2C_COMMANDS,
++	.max_write_len = MAX_SW_I2C_COMMANDS,
++};
 +
-+			/*
-+			 * Insert STOP if we are at the last byte of either last
-+			 * message for the transaction or the client explicitly
-+			 * requires a STOP at this particular message.
-+			 */
-+			if ((j == msg->len -1 ) &&
-+			    ((i == num_done - 1) || (msg[i].flags & I2C_M_STOP)))
- 				cmd->CmdConfig |= CMDCONFIG_STOP_MASK;
+ static int arcturus_i2c_control_init(struct smu_context *smu, struct i2c_adapter *control)
+ {
+ 	struct amdgpu_device *adev = to_amdgpu_device(control);
+@@ -2013,6 +2019,7 @@ static int arcturus_i2c_control_init(struct smu_context *smu, struct i2c_adapter
+ 	control->class = I2C_CLASS_SPD | I2C_CLASS_HWMON;
+ 	control->dev.parent = &adev->pdev->dev;
+ 	control->algo = &arcturus_i2c_algo;
++	control->quirks = &arcturus_i2c_control_quirks;
+ 	snprintf(control->name, sizeof(control->name), "AMDGPU SMU");
  
- 			if ((j == 0) && !(msg[i].flags & I2C_M_NOSTART))
-@@ -1964,21 +1974,18 @@ static int arcturus_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	if (r)
- 		goto fail;
- 
--	remaining_bytes = bytes_to_transfer;
- 	c = 0;
--	for (i = 0; i < num; i++) {
-+	for (i = 0; i < num_done; i++) {
- 		struct i2c_msg *msg = &msgs[i];
- 
--		msg_bytes = min(msg->len, remaining_bytes);
--		for (j = 0; j < msg_bytes; j++) {
-+		for (j = 0; j < msg->len; j++) {
- 			SwI2cCmd_t *cmd = &res->SwI2cCmds[c++];
- 
--			remaining_bytes--;
- 			if (msg[i].flags & I2C_M_RD)
- 				msg->buf[j] = cmd->Data;
- 		}
- 	}
--	r = bytes_to_transfer;
-+	r = num_done;
- 
- fail:
- 	kfree(req);
+ 	res = i2c_add_adapter(control);
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-index b94c5a1d3eb756..4010b891f25678 100644
+index 4010b891f25678..56000463f64e45 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-@@ -2708,9 +2708,8 @@ static int navi10_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	struct smu_table_context *smu_table = &adev->smu.smu_table;
- 	struct smu_table *table = &smu_table->driver_table;
- 	SwI2cRequest_t *req, *res = (SwI2cRequest_t *)table->cpu_addr;
--	u16 bytes_to_transfer, remaining_bytes, msg_bytes;
--	u16 available_bytes = MAX_SW_I2C_COMMANDS;
--	int i, j, r, c;
-+	short available_bytes = MAX_SW_I2C_COMMANDS;
-+	int i, j, r, c, num_done = 0;
- 	u8 slave;
+@@ -2799,6 +2799,11 @@ static const struct i2c_algorithm navi10_i2c_algo = {
+ 	.functionality = navi10_i2c_func,
+ };
  
- 	/* only support a single slave addr per transaction */
-@@ -2718,8 +2717,15 @@ static int navi10_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	for (i = 0; i < num; i++) {
- 		if (slave != msgs[i].addr)
- 			return -EINVAL;
--		bytes_to_transfer += min(msgs[i].len, available_bytes);
--		available_bytes -= bytes_to_transfer;
++static const struct i2c_adapter_quirks navi10_i2c_control_quirks = {
++	.max_read_len = MAX_SW_I2C_COMMANDS,
++	.max_write_len = MAX_SW_I2C_COMMANDS,
++};
 +
-+		available_bytes -= msgs[i].len;
-+		if (available_bytes >= 0) {
-+			num_done++;
-+		} else {
-+			/* This message and all the follwing won't be processed */
-+			available_bytes += msgs[i].len;
-+			break;
-+		}
- 	}
+ static int navi10_i2c_control_init(struct smu_context *smu, struct i2c_adapter *control)
+ {
+ 	struct amdgpu_device *adev = to_amdgpu_device(control);
+@@ -2809,6 +2814,7 @@ static int navi10_i2c_control_init(struct smu_context *smu, struct i2c_adapter *
+ 	control->dev.parent = &adev->pdev->dev;
+ 	control->algo = &navi10_i2c_algo;
+ 	snprintf(control->name, sizeof(control->name), "AMDGPU SMU");
++	control->quirks = &navi10_i2c_control_quirks;
  
- 	req = kzalloc(sizeof(*req), GFP_KERNEL);
-@@ -2729,24 +2735,28 @@ static int navi10_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	req->I2CcontrollerPort = 1;
- 	req->I2CSpeed = I2C_SPEED_FAST_400K;
- 	req->SlaveAddress = slave << 1; /* 8 bit addresses */
--	req->NumCmds = bytes_to_transfer;
-+	req->NumCmds = MAX_SW_I2C_COMMANDS - available_bytes;;
- 
--	remaining_bytes = bytes_to_transfer;
- 	c = 0;
--	for (i = 0; i < num; i++) {
-+	for (i = 0; i < num_done; i++) {
- 		struct i2c_msg *msg = &msgs[i];
- 
--		msg_bytes = min(msg->len, remaining_bytes);
--		for (j = 0; j < msg_bytes; j++) {
-+		for (j = 0; j < msg->len; j++) {
- 			SwI2cCmd_t *cmd = &req->SwI2cCmds[c++];
- 
--			remaining_bytes--;
- 			if (!(msg[i].flags & I2C_M_RD)) {
- 				/* write */
- 				cmd->CmdConfig |= I2C_CMD_WRITE;
- 				cmd->RegisterAddr = msg->buf[j];
- 			}
--			if (!remaining_bytes)
-+
-+			/*
-+			 * Insert STOP if we are at the last byte of either last
-+			 * message for the transaction or the client explicitly
-+			 * requires a STOP at this particular message.
-+			 */
-+			if ((j == msg->len -1 ) &&
-+			    ((i == num_done - 1) || (msg[i].flags & I2C_M_STOP)))
- 				cmd->CmdConfig |= CMDCONFIG_STOP_MASK;
- 
- 			if ((j == 0) && !(msg[i].flags & I2C_M_NOSTART))
-@@ -2759,21 +2769,18 @@ static int navi10_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	if (r)
- 		goto fail;
- 
--	remaining_bytes = bytes_to_transfer;
- 	c = 0;
--	for (i = 0; i < num; i++) {
-+	for (i = 0; i < num_done; i++) {
- 		struct i2c_msg *msg = &msgs[i];
- 
--		msg_bytes = min(msg->len, remaining_bytes);
--		for (j = 0; j < msg_bytes; j++) {
-+		for (j = 0; j < msg->len; j++) {
- 			SwI2cCmd_t *cmd = &res->SwI2cCmds[c++];
- 
--			remaining_bytes--;
- 			if (msg[i].flags & I2C_M_RD)
- 				msg->buf[j] = cmd->Data;
- 		}
- 	}
--	r = bytes_to_transfer;
-+	r = num_done;
- 
- fail:
- 	kfree(req);
+ 	res = i2c_add_adapter(control);
+ 	if (res)
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-index 2fa667a86c1a54..d5b750d84112fa 100644
+index d5b750d84112fa..86804f3b0a951b 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-@@ -3396,9 +3396,8 @@ static int sienna_cichlid_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	struct smu_table_context *smu_table = &adev->smu.smu_table;
- 	struct smu_table *table = &smu_table->driver_table;
- 	SwI2cRequest_t *req, *res = (SwI2cRequest_t *)table->cpu_addr;
--	u16 bytes_to_transfer, remaining_bytes, msg_bytes;
--	u16 available_bytes = MAX_SW_I2C_COMMANDS;
--	int i, j, r, c;
-+	short available_bytes = MAX_SW_I2C_COMMANDS;
-+	int i, j, r, c, num_done = 0;
- 	u8 slave;
+@@ -3487,6 +3487,11 @@ static const struct i2c_algorithm sienna_cichlid_i2c_algo = {
+ 	.functionality = sienna_cichlid_i2c_func,
+ };
  
- 	/* only support a single slave addr per transaction */
-@@ -3406,8 +3405,15 @@ static int sienna_cichlid_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	for (i = 0; i < num; i++) {
- 		if (slave != msgs[i].addr)
- 			return -EINVAL;
--		bytes_to_transfer += min(msgs[i].len, available_bytes);
--		available_bytes -= bytes_to_transfer;
++static const struct i2c_adapter_quirks sienna_cichlid_i2c_control_quirks = {
++	.max_read_len = MAX_SW_I2C_COMMANDS,
++	.max_write_len = MAX_SW_I2C_COMMANDS,
++};
 +
-+		available_bytes -= msgs[i].len;
-+		if (available_bytes >= 0) {
-+			num_done++;
-+		} else {
-+			/* This message and all the follwing won't be processed */
-+			available_bytes += msgs[i].len;
-+			break;
-+		}
- 	}
+ static int sienna_cichlid_i2c_control_init(struct smu_context *smu, struct i2c_adapter *control)
+ {
+ 	struct amdgpu_device *adev = to_amdgpu_device(control);
+@@ -3497,6 +3502,7 @@ static int sienna_cichlid_i2c_control_init(struct smu_context *smu, struct i2c_a
+ 	control->dev.parent = &adev->pdev->dev;
+ 	control->algo = &sienna_cichlid_i2c_algo;
+ 	snprintf(control->name, sizeof(control->name), "AMDGPU SMU");
++	control->quirks = &sienna_cichlid_i2c_control_quirks;
  
- 	req = kzalloc(sizeof(*req), GFP_KERNEL);
-@@ -3417,24 +3423,28 @@ static int sienna_cichlid_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	req->I2CcontrollerPort = 1;
- 	req->I2CSpeed = I2C_SPEED_FAST_400K;
- 	req->SlaveAddress = slave << 1; /* 8 bit addresses */
--	req->NumCmds = bytes_to_transfer;
-+	req->NumCmds = MAX_SW_I2C_COMMANDS - available_bytes;;
- 
--	remaining_bytes = bytes_to_transfer;
- 	c = 0;
--	for (i = 0; i < num; i++) {
-+	for (i = 0; i < num_done; i++) {
- 		struct i2c_msg *msg = &msgs[i];
- 
--		msg_bytes = min(msg->len, remaining_bytes);
--		for (j = 0; j < msg_bytes; j++) {
-+		for (j = 0; j < msg->len; j++) {
- 			SwI2cCmd_t *cmd = &req->SwI2cCmds[c++];
- 
--			remaining_bytes--;
- 			if (!(msg[i].flags & I2C_M_RD)) {
- 				/* write */
- 				cmd->CmdConfig |= CMDCONFIG_READWRITE_MASK;
- 				cmd->ReadWriteData = msg->buf[j];
- 			}
--			if (!remaining_bytes)
-+
-+			/*
-+			 * Insert STOP if we are at the last byte of either last
-+			 * message for the transaction or the client explicitly
-+			 * requires a STOP at this particular message.
-+			 */
-+			if ((j == msg->len -1 ) &&
-+			    ((i == num_done - 1) || (msg[i].flags & I2C_M_STOP)))
- 				cmd->CmdConfig |= CMDCONFIG_STOP_MASK;
- 
- 			if ((j == 0) && !(msg[i].flags & I2C_M_NOSTART))
-@@ -3447,21 +3457,18 @@ static int sienna_cichlid_i2c_xfer(struct i2c_adapter *i2c_adap,
- 	if (r)
- 		goto fail;
- 
--	remaining_bytes = bytes_to_transfer;
- 	c = 0;
--	for (i = 0; i < num; i++) {
-+	for (i = 0; i < num_done; i++) {
- 		struct i2c_msg *msg = &msgs[i];
- 
--		msg_bytes = min(msg->len, remaining_bytes);
--		for (j = 0; j < msg_bytes; j++) {
-+		for (j = 0; j < msg->len; j++) {
- 			SwI2cCmd_t *cmd = &res->SwI2cCmds[c++];
- 
--			remaining_bytes--;
- 			if (msg[i].flags & I2C_M_RD)
- 				msg->buf[j] = cmd->ReadWriteData;
- 		}
- 	}
--	r = bytes_to_transfer;
-+	r = num_done;
- 
- fail:
- 	kfree(req);
+ 	res = i2c_add_adapter(control);
+ 	if (res)
 -- 
 2.32.0
 
