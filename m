@@ -1,41 +1,33 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D23FD3A1224
-	for <lists+amd-gfx@lfdr.de>; Wed,  9 Jun 2021 13:16:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 744953A16B0
+	for <lists+amd-gfx@lfdr.de>; Wed,  9 Jun 2021 16:12:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 569356E5CF;
-	Wed,  9 Jun 2021 11:16:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D6476E41A;
+	Wed,  9 Jun 2021 14:11:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D76C36E5CF;
- Wed,  9 Jun 2021 11:16:52 +0000 (UTC)
-IronPort-SDR: ocNkKiRsqUDb2nez9Xhz2x5y9Efrp2VgKU4XuflILo1frjUyGNRAqNvzBgrY6hnQHzMSr9oOii
- kW87JAZOUUFg==
-X-IronPort-AV: E=McAfee;i="6200,9189,10009"; a="192160292"
-X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="192160292"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2021 04:16:52 -0700
-IronPort-SDR: U6fbddEJv5cOiIk7cxc8wYmoj05vfgSyUf9GZSeYJVrLGgpQjF+XHPWl5d+1V+xlBg4O9i7TZS
- fOWneR9uhZew==
-X-IronPort-AV: E=Sophos;i="5.83,260,1616482800"; d="scan'208";a="482344477"
-Received: from ochaldek-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.34.111])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2021 04:16:49 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Simon Ser <contact@emersion.fr>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 1/4] drm/sysfs: introduce drm_sysfs_connector_hotplug_event
-In-Reply-To: <mpYHCnsBfIaxJEM7yrUVKKcVHXnFDEUtoK5NbmwA@cp4-web-034.plabs.ch>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <mpYHCnsBfIaxJEM7yrUVKKcVHXnFDEUtoK5NbmwA@cp4-web-034.plabs.ch>
-Date: Wed, 09 Jun 2021 14:16:46 +0300
-Message-ID: <871r9b1e5d.fsf@intel.com>
-MIME-Version: 1.0
+Received: from out30-45.freemail.mail.aliyun.com
+ (out30-45.freemail.mail.aliyun.com [115.124.30.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3169F89F73;
+ Wed,  9 Jun 2021 10:05:36 +0000 (UTC)
+X-Alimail-AntiSpam: AC=PASS; BC=-1|-1; BR=01201311R201e4; CH=green; DM=||false|;
+ DS=||; FP=0|-1|-1|-1|0|-1|-1|-1; HT=e01e04423;
+ MF=jiapeng.chong@linux.alibaba.com; NM=1; PH=DS; RN=11; SR=0;
+ TI=SMTPD_---0UbrAIWb_1623233128; 
+Received: from
+ j63c13417.sqa.eu95.tbsite.net(mailfrom:jiapeng.chong@linux.alibaba.com
+ fp:SMTPD_---0UbrAIWb_1623233128) by smtp.aliyun-inc.com(127.0.0.1);
+ Wed, 09 Jun 2021 18:05:33 +0800
+From: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+To: harry.wentland@amd.com
+Subject: [PATCH] drm/amd/display: Fix duplicate included clk_mgr.h
+Date: Wed,  9 Jun 2021 18:05:21 +0800
+Message-Id: <1623233121-97926-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+X-Mailer: git-send-email 1.8.3.1
+X-Mailman-Approved-At: Wed, 09 Jun 2021 14:11:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,88 +39,45 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, michel@daenzer.net, pekka.paalanen@collabora.com
+Cc: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>, sunpeng.li@amd.com,
+ Xinhui.Pan@amd.com, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, airlied@linux.ie,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch, alexander.deucher@amd.com,
+ christian.koenig@amd.com
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 09 Jun 2021, Simon Ser <contact@emersion.fr> wrote:
-> This function sends a hotplug uevent with a CONNECTOR property.
->
-> Signed-off-by: Simon Ser <contact@emersion.fr>
-> ---
->  drivers/gpu/drm/drm_sysfs.c | 25 +++++++++++++++++++++++++
->  include/drm/drm_sysfs.h     |  1 +
->  2 files changed, 26 insertions(+)
->
-> diff --git a/drivers/gpu/drm/drm_sysfs.c b/drivers/gpu/drm/drm_sysfs.c
-> index 968a9560b4aa..6b52a53c0c3e 100644
-> --- a/drivers/gpu/drm/drm_sysfs.c
-> +++ b/drivers/gpu/drm/drm_sysfs.c
-> @@ -343,6 +343,31 @@ void drm_sysfs_hotplug_event(struct drm_device *dev)
->  }
->  EXPORT_SYMBOL(drm_sysfs_hotplug_event);
->  
-> +/**
-> + * drm_sysfs_connector_hotplug_event - generate a DRM uevent for any connector
-> + * change
-> + * @connector: connector which has changed
-> + *
-> + * Send a uevent for the DRM connector specified by @connector. This will send
-> + * a uevent with the properties HOTPLUG=1 and CONNECTOR.
-> + */
-> +void drm_sysfs_connector_hotplug_event(struct drm_connector *connector)
-> +{
-> +	struct drm_device *dev = connector->dev;
-> +	char hotplug_str[] = "HOTPLUG=1", conn_id[21];
-> +	char *envp[] = { hotplug_str, conn_id, NULL };
-> +
-> +	snprintf(conn_id, ARRAY_SIZE(conn_id),
+Clean up the following includecheck warning:
 
-Semantically should be sizeof(conn_id) though the result is the same. (I
-guess this is copy-paste from drm_sysfs_connector_status_event().)
+./drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c: clk_mgr.h is
+included more than once.
 
-> +		 "CONNECTOR=%u", connector->base.id);
-> +
-> +	drm_dbg(connector->dev,
+No functional change.
 
-drm_dbg_kms?
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
+---
+ drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-> +		"generating hotplug event for [CONNECTOR:%d:%s]\n",
-> +		connector->base.id, connector->name);
-
-A matter of taste, but seems like in a lot of places we tend to stick
-the [CONNECTOR:%d:%s] at the beginning of the string. So if you have
-back-to-back messages related to the same connector, they get aligned
-and are easy to spot.
-
-BR,
-Jani.
-
-> +
-> +	kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
-> +}
-> +EXPORT_SYMBOL(drm_sysfs_connector_hotplug_event);
-> +
->  /**
->   * drm_sysfs_connector_status_event - generate a DRM uevent for connector
->   * property status change
-> diff --git a/include/drm/drm_sysfs.h b/include/drm/drm_sysfs.h
-> index d454ef617b2c..6273cac44e47 100644
-> --- a/include/drm/drm_sysfs.h
-> +++ b/include/drm/drm_sysfs.h
-> @@ -11,6 +11,7 @@ int drm_class_device_register(struct device *dev);
->  void drm_class_device_unregister(struct device *dev);
->  
->  void drm_sysfs_hotplug_event(struct drm_device *dev);
-> +void drm_sysfs_connector_hotplug_event(struct drm_connector *connector);
->  void drm_sysfs_connector_status_event(struct drm_connector *connector,
->  				      struct drm_property *property);
->  #endif
-
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
+index c0e544d..1007051 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
+@@ -33,7 +33,6 @@
+ #include "clk_mgr.h"
+ #include "reg_helper.h"
+ #include "abm.h"
+-#include "clk_mgr.h"
+ #include "hubp.h"
+ #include "dchubbub.h"
+ #include "timing_generator.h"
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+1.8.3.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
