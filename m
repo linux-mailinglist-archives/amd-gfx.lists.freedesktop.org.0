@@ -2,117 +2,118 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98F7B3A1066
-	for <lists+amd-gfx@lfdr.de>; Wed,  9 Jun 2021 12:48:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F653A11D8
+	for <lists+amd-gfx@lfdr.de>; Wed,  9 Jun 2021 12:56:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80D886E5AB;
-	Wed,  9 Jun 2021 10:48:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C605C6E5B2;
+	Wed,  9 Jun 2021 10:56:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A835A6E56A
- for <amd-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 10:48:54 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2060.outbound.protection.outlook.com [40.107.244.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E61296E5B2
+ for <amd-gfx@lists.freedesktop.org>; Wed,  9 Jun 2021 10:56:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RUttnZ2AakRQ1qlDz3JhAryU4vmGbni0g44JmZ5kz6FnJzKFQgOuuP4xQf4jP4D4wiUXKMvdaqF5PwlSFyLgs9or4q5wrUhvKWetZfnu+DR6uTEsaV4LUZIbxmvBM0/gvTK/a3ROuxe+nE+B6eF459kP9G2sQndL+WY+uQ1mWlHp2E1W8v2Vexa73F4gYnHXX05Vwezyq0xrU9XpXYsZ+srdKw7Zcm2PexIREf6JaM3apr2NBLVtvMsOKMDVB+k/OTMOIJVFsITx/hE1y92vBlsVmc1PA9Trdv6f2OxziyfS+9WNwpdWz73NVy8vXMFGrroSiJKUfTer0ZRz65g4Eg==
+ b=BSyA5zhq3k+K0dmYF2RoaAGD9SBeBVw7lnGVNnTaO9n3EM0iBbloG4ESM9M6aQTlF2jt6LlQSrkKqATSUeJEV9LoCNgBr/7fm9rL4hjC2sIS/RAMLg5FWrqtlV2iLBKbIqwnew0oZdH60T3ssEpRR1UbBJaGDlEyAOeqw754xGgfXx91CSGMR4UUDmdO5s5fKVXJ5pDzEtJdIRtQJ18yJ8pbvU4tbXO47WSddYYZqthXQXUiEjOzx4KCaT9BowSPJ2dhKu8jF5hOCZKLQINVFMCNPBWLqJyB0wpuyFR6cQNLCaPY3BloOb6gFipPIcZxmiQ/44Uj8Wc6ZMz5iLvdog==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pTUtrv0XawF+LRd3/RCZ4/N5GI3U7KTn7nRv/dmSnhI=;
- b=auW9HeUU8HH3SlfQyW3iaP5OS7ih1e4lAv7M2i+omGqUrRRqOEDbESIh8BTVE1vdO3PFIwdJWdcwkY8eC7V+mGrR3W2Y9TFrngVXj5tPCvY/P2ZGqWJspG2QWp81nK0UewUWEB2Se0b9XNJGSX3h3g1mVrV2wh1HbhR5c8dQNJmIMHAvYqgNHzdMzRQnMNP6Rwy2BH8zTpG0zR+MO0nYmmFJfkhmz50fDcRG2dEQHNnBn8JyXLBWoQ2EaLgnoFCHi1CZF03LyXVN8PesOaI2yCU+yXTv+ZcxtPCFiAxEGqz34QqSE0wqKDaQs9gnTlogQ47F5b73/EOGpZ3Msd0Jyg==
+ bh=ckPHqrYZdublbJLvDn/v59cxNhCELMiakkdUVCH8QyA=;
+ b=WzVrhVqTnKr2iMXfJqydonEexn2YK3HtLv4uZwwbpSp+rmpbXsH3OENLHq0GC7j2+C8wcL3L6RcAy06UfzhAfMrNL/2U3rOXHE8OWLgKZGTCoaO4p7MaKce0eB75uPo+llAAN7qW1UwvrR5TYkkOUG4kY+NcVxyTLtTmPmQhZNUDVPuXv5wn3RZ4/Xe6DO9011uIzlmzHdD/cA8K09cquEYGW1m1mnI2UmsY+ikZ25bdJfhYOfOirhx97Q0BFkDD7CCJL57rpG+Eqe46kHLoE32LSxgeK8Ylwj90rKDB4+1jjMzhEnY84N0sKmhQsDtq+POTNzvCyRocrWevaUn5qg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pTUtrv0XawF+LRd3/RCZ4/N5GI3U7KTn7nRv/dmSnhI=;
- b=LGREapTs4cxMUO/udrvVMwkzOwIQXJU1yt/UYeRAYQUya77FsO3WcKT0RYxre5fhdrNj/37wuuXP2VJr49UCJYQxR1kC8DyNlbHhmGuU+5spnpuRyvUVwPH/v15AWPwtXqKG+lLeEz1ST8loypO/OkIUFTZVG01L7i9MRyzo7ik=
-Received: from DM5PR12MB2517.namprd12.prod.outlook.com (2603:10b6:4:bb::13) by
- DM6PR12MB3785.namprd12.prod.outlook.com (2603:10b6:5:1cd::18) with
+ bh=ckPHqrYZdublbJLvDn/v59cxNhCELMiakkdUVCH8QyA=;
+ b=Wyhm0ODul8IlD58Wae4jzjd8dvSQXn2OUxI279s3U+nCxkN+QRNaAtAY4G7eJZmrahmNhQn+8Qtz43FLk147xLhsepWE3AJl+odmCTAcxSGiqwapGkv39bnQ3QhAqiw8OgD8qBJfb87PcINL/7+fzzsBwhs2Yg04hd5Qb4rZAtc=
+Received: from DM8PR12MB5478.namprd12.prod.outlook.com (2603:10b6:8:29::12) by
+ DM8PR12MB5477.namprd12.prod.outlook.com (2603:10b6:8:35::10) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4195.23; Wed, 9 Jun 2021 10:48:52 +0000
-Received: from DM5PR12MB2517.namprd12.prod.outlook.com
- ([fe80::8d83:baf6:c6c6:9ac3]) by DM5PR12MB2517.namprd12.prod.outlook.com
- ([fe80::8d83:baf6:c6c6:9ac3%3]) with mapi id 15.20.4195.024; Wed, 9 Jun 2021
- 10:48:52 +0000
-From: "Zhu, James" <James.Zhu@amd.com>
-To: =?iso-8859-1?Q?Christian_K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- "Zhang, Boyuan" <Boyuan.Zhang@amd.com>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amdgpu/vcn: drop gfxoff control for VCN2+
-Thread-Topic: [PATCH] drm/amdgpu/vcn: drop gfxoff control for VCN2+
-Thread-Index: AQHXW9vJewbkYgfsVE23TSd01p5zC6sJEXGAgAClEYCAAcu0Yw==
-Date: Wed, 9 Jun 2021 10:48:52 +0000
-Message-ID: <DM5PR12MB2517BB49EBDF4C52FDF16EA7E4369@DM5PR12MB2517.namprd12.prod.outlook.com>
-References: <20210607202841.2120465-1-alexander.deucher@amd.com>
- <DM6PR12MB4843FC5C5BF8086C627A0BC887389@DM6PR12MB4843.namprd12.prod.outlook.com>,
- <558a24e0-3057-873b-e7fe-261975f9dc40@gmail.com>
-In-Reply-To: <558a24e0-3057-873b-e7fe-261975f9dc40@gmail.com>
+ 15.20.4195.24; Wed, 9 Jun 2021 10:56:14 +0000
+Received: from DM8PR12MB5478.namprd12.prod.outlook.com
+ ([fe80::3c63:9408:f8c:ee96]) by DM8PR12MB5478.namprd12.prod.outlook.com
+ ([fe80::3c63:9408:f8c:ee96%3]) with mapi id 15.20.4195.030; Wed, 9 Jun 2021
+ 10:56:14 +0000
+From: "Zhou, Peng Ju" <PengJu.Zhou@amd.com>
+To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Deucher, 
+ Alexander" <Alexander.Deucher@amd.com>
+Subject: RE: [PATCH 2/2] drm/amd/amdgpu: add instance_number check in
+ amdgpu_discovery_get_ip_version
+Thread-Topic: [PATCH 2/2] drm/amd/amdgpu: add instance_number check in
+ amdgpu_discovery_get_ip_version
+Thread-Index: AQHXWGUhvMwMHMv+KECau9PTnYnNJ6sIN1KwgANTeVA=
+Date: Wed, 9 Jun 2021 10:56:14 +0000
+Message-ID: <DM8PR12MB5478A0F90B4FEB580B0A823CF8369@DM8PR12MB5478.namprd12.prod.outlook.com>
+References: <20210603104208.5725-1-PengJu.Zhou@amd.com>
+ <20210603104208.5725-2-PengJu.Zhou@amd.com>
+ <DM8PR12MB54782FB82F87D2E11A7ADCC3F8389@DM8PR12MB5478.namprd12.prod.outlook.com>
+In-Reply-To: <DM8PR12MB54782FB82F87D2E11A7ADCC3F8389@DM8PR12MB5478.namprd12.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=True;
+msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-06-09T10:56:11Z; 
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
+ Only-AIP 2.0;
  MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-06-09T10:48:51.119Z;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD-Official
- Use
- Only; MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard; 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [209.141.175.84]
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=1d42ffb4-96aa-47b2-affc-8ea80d3ea924;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
+authentication-results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+x-originating-ip: [165.204.134.244]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bf2e35a4-2563-44d6-38da-08d92b342be8
-x-ms-traffictypediagnostic: DM6PR12MB3785:
+x-ms-office365-filtering-correlation-id: 6ae76f98-97a6-4c33-4484-08d92b35334e
+x-ms-traffictypediagnostic: DM8PR12MB5477:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR12MB378570365FEF3B9FB850E9A3E4369@DM6PR12MB3785.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-microsoft-antispam-prvs: <DM8PR12MB547753DFA4E0956F151214C3F8369@DM8PR12MB5477.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: OlE2ysCj1oHEzRTe0OLrwUIrOJMI/JZWdQwjLgqG/6S50sJKK/LkHNQ6c7jnsVb1GzZCkt+UIJx2+PzncrI/kRTte8pY64yTGNHL4cmtwQkMonmIKKlANuISGr1suu+krSB34MiBMlzESftSwha4CWPjegOoKIL9fAG4Le7cS3yFSQug2KD/1ui3VAxvXXK44qPxm5PrJl66651BYwN+23G4S3AsOs5WKot9YlZ6qbd4q6htlnGc0pvREtKKY2HK6OCw9oeo4pSsUskayn5eEpQzaAZwpn5OppRle9vsnPqJgpV4HKAqY9YNHYsCe79sYfvYHc4MsoEui3fks3C6TioDIWnOB5f9ujV8q4MjcpwZbctULdb97yMR9SsoDClHkJlFYpR/BF5HMk/6Pw3JqejO0OTrUwofywVLQleDXrUb6/159GlUPJmbSnnpejNIEL7A9s5Ofapoh2cEHMChczdQxn4CT3QmtrAnGWUJjRFWi1RbRGasKrrXBsuFOiBPT1Lpe8dwSKIJfN/NaQP6f3gOo5a6RUfLXN8eRqCQHS065DQ0OeGTqnETnT5ksrd0AzUlD2ipDohRJUVqoi6aF2u1StrrTuYz9ZjbAHXWFnNEpiNy1DaSCKBWTis7OmK2JaQzHLHCrXGnuI1ckQY/SA==
+x-microsoft-antispam-message-info: JTmfmH3hGlTS/yyJoBY/w41B564a8fdCaqkRnXUsAMhwlWI0U27slh8Y+RBMDeV6jDZEOY4CXzY1YBVqjqqXldi9j88yrWwBYrjYYFMjGQMHnfAYlSEleXk8UOv8c1CmZrgVGjdTduEmjzo2BYor45wDDiR0EXOu5KYDDLaKYnW1qnlR+MeQJvo/jjUfA2/2JN4iugtoV32kiiXFzls02eVrN91MO2SRK96ee0ylBpp2PSqDPqZ7Zp4/YUUbv91D8uqsNThTNbQgpKpjUppttTjOuZbivqpFituKA3UeGCqhnWiAwgXPSmkAf/5iYAJMmIL/QQazgMso5kY4bc0+wYzy6zBk6qevdfoy5edE9GWdToYAHSn8xWQbU/ngA7Ka8rSb02VdIORv0QZtNFE9mbraxG+Q8tuvcDhgAdWAI0VJAW0vaaXJW5U0G4VQJOJhHzDkzBiXsD94et/RSaKXDAbP59cEYGBEJuP66MKr/qU6N9yd0fVJNwduxSA7FbKGHFHIrVtCZtttjQWDVbNr0du5Z8FBLRiCbD87IlXDmB4zfgb9Ki+dDMaQRDhNjJJhDgHsc7gc7r35Nqf3yOYLU6/gBPKYQFTXyxxTFFa3pZo=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB2517.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(366004)(136003)(396003)(376002)(346002)(76116006)(8936002)(86362001)(91956017)(478600001)(45080400002)(66556008)(966005)(52536014)(66446008)(316002)(122000001)(55016002)(2906002)(7696005)(9686003)(186003)(110136005)(166002)(26005)(66946007)(66476007)(33656002)(5660300002)(83380400001)(19627405001)(64756008)(6506007)(8676002)(71200400001)(66574015)(53546011)(38100700002);
+ IPV:NLI; SFV:NSPM; H:DM8PR12MB5478.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(136003)(376002)(39860400002)(366004)(346002)(33656002)(86362001)(316002)(7696005)(6636002)(84040400003)(110136005)(186003)(122000001)(478600001)(83380400001)(26005)(4326008)(38100700002)(9686003)(66476007)(76116006)(71200400001)(2906002)(66446008)(66556008)(5660300002)(64756008)(55016002)(52536014)(66946007)(8936002)(6506007)(53546011)(8676002);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?XX6YXVhhNIvhGezRuFVxg95NnpILm9JeuVVuXvPjuKYoop+7AXABBnDvEH?=
- =?iso-8859-1?Q?w8OHKFHNTsMkpQ/wijfu5O6U73EfCNw5lU/1rzAHWu0KdaWTY233OKbviP?=
- =?iso-8859-1?Q?nKMS6Q0tVL1rREUVTX5XK/w6YAHW+Fp+0CAALX3zGsZU7EiB8ScWW1GopG?=
- =?iso-8859-1?Q?EaQa5chh0A09RNRRYAqUtmYwETL7+BJVJiXzfXKh8FivgDCVPiN93bQf4R?=
- =?iso-8859-1?Q?P971wJnQDSJ+RCumCRnMo578YnpLhw6zwTT3xvqpm3gKIkNzirNDpNo6+v?=
- =?iso-8859-1?Q?Xg770lr0R0MU5oZQA+n3pYFaQixz2bxHMeDyCsogEuAsqUoaIpoasPNIAo?=
- =?iso-8859-1?Q?aVa4ev0GBdGt39nxdiUtran0cMMQ2xVjmref8WtEEgJ9vgaVhZLyEm32aa?=
- =?iso-8859-1?Q?v+JQnVMMZmj3kJ+attoIB95pzpB/sYgg3+r5eupXSCxe+8t8SYr3SQr60L?=
- =?iso-8859-1?Q?xKK6ARiR6AbB7KqC7rMj9UjjMKsjazTVx3+IvDi5TsUPc6yPo+mm6lFkWX?=
- =?iso-8859-1?Q?IwK4dBUtoNuBUM+JEL4h8miT1agGBdkBaoSxyRrJXnX7iD4R31qLhJJaBo?=
- =?iso-8859-1?Q?/f+YqoV32JbSagoozBufZy1n7niZdl/lYHaad3zhQ+D8csrLrHCbK7Uizo?=
- =?iso-8859-1?Q?BVkCk0AwI2nN0dzgYBFa1yLkMIwCWlv471s0RP8tswKp9R2eL1uWxZGHbn?=
- =?iso-8859-1?Q?Pr/N4K7kWKNPg2gU3FhNHPK5OREzhkM984kLDXxR0S+FiPTQPEQGSQTKRz?=
- =?iso-8859-1?Q?xxkAO+o5PDJl47YC9EfSKN6AM4q6QYXsrQsi4OgtKl8g4LpXB6BmxAMl2L?=
- =?iso-8859-1?Q?jO9tZ7r+9RrojW0Z7dg8LoBZ97K3E5cUjSu3ImwEZ58YftYiMIfmXKwavg?=
- =?iso-8859-1?Q?LcZ83fqzK5bwUk+9V+x0OnYRfc37DpG0MbYvF5Y1snpsfML+wDnOYoKEdt?=
- =?iso-8859-1?Q?pC5HOWE5gkg1dIu+ZQ+EqTvN0E7oDlew5FFjHMJnj86STP4wazX4SZb7cj?=
- =?iso-8859-1?Q?tKGP9p7xA8h1fqBXupjMBOIQocTIDyXsTkxX+R7AGPwEmqvAYzY7eEJcnS?=
- =?iso-8859-1?Q?RWFeww2Sfg4oHVPIGiqvd7L/NMgoisI7X0v6yTeZCzJwZjm1UIebLFWV0K?=
- =?iso-8859-1?Q?C9NXQqcgGOJLtsmsZaMFnq+aEbkc8M9J+U+r280xFN8h6LyD8wWM8Rdy1M?=
- =?iso-8859-1?Q?23ldgnO1x7kRfMWeprM9/q4P5xXs7rc5Xe9J+JXfK6IaiZgSW4XTeQiuBO?=
- =?iso-8859-1?Q?CgGcuxXwD+i29cabdp3QF0ZT/VybftXSRfxTrgpxyhwWd1mdm+A8XSQ//A?=
- =?iso-8859-1?Q?Zl0eTzCoS6yMBQEG8na/cKbpfRqtkKdUU3diQeR9V/QoA5/sq7f1EbNSw2?=
- =?iso-8859-1?Q?dhWHcIAo+O?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?XJ5PCdxwABKPQhYLoVMr83lF4CubNuQ8tTRR0k/ukPlMNdnbjFidDDMGfOPA?=
+ =?us-ascii?Q?Ff5LOA2+pDUKFPv8j39mEbwE+yPt/OfKpDmKuFHzXf0tYjdzTuRY+3sgZ28f?=
+ =?us-ascii?Q?Q/hbPOnKJvYlLGsuIAkI5ek9NE8IfOAUkvkhAPKpf2KWkuGwTRXfNZ/kiDd/?=
+ =?us-ascii?Q?G+bZDmVcfpan5EzRTPufEhJKPZLeIiN/B3SS6H62fh83Yoz7xRf8GcMXi3Af?=
+ =?us-ascii?Q?pSCcE4iM5sg6l456ExS4v9+3H3RwgWfaj3xsXbk6kSVS1y483Rf/W2dbPYW/?=
+ =?us-ascii?Q?c8pgt4Z1hkjJEfUesFF34OScN58HSJMMJ1ra5ZrEXbA/sr8Qxab6G0TfZ5aO?=
+ =?us-ascii?Q?FTReOsUXTGts+TP1tKsl/XgGkg597iGh4g3JtKPVRntznYQN545cr/MMk877?=
+ =?us-ascii?Q?5Pa6KRYNcGgAIOuA84uh85H8JDZnoJtjhgANf4+KhNdoYwABiV+1fB0AcD/M?=
+ =?us-ascii?Q?7cGF6/Ee+vSbK/cdcSFaaHGFd34bKv5SqafcGR/WUWda2Le/QBI3qylFljdi?=
+ =?us-ascii?Q?Rv6eOvKo5qI7o7pY8qAt7te7/Oohp+C/2ly/9I0/CWE7kCNvOvbAP+v0o4Wq?=
+ =?us-ascii?Q?l4s0aH8JQ1wAV9v6eymX3w5t4Xh63ngXhTF0KXtdi111Ie/s9Iyuv7azx+T4?=
+ =?us-ascii?Q?SipjA5a0OtmCIV3PDGTC6uV+tG3x7rhVY6vjcmoKhZW1GWlv373VLAMuwuzW?=
+ =?us-ascii?Q?FS3QvZQtQ0rLXiiw1SVDxOJ1f+nB9T/NawfQyZA0kqJzyc5gXPcE1PTFGL0A?=
+ =?us-ascii?Q?l0tk2lr4kZ7e5spZESNscS8ong6EBINK/GkFrQ0RnwSDjgrlZGtgpO7N/PAY?=
+ =?us-ascii?Q?BhMkIY0/Qkl+vNB2lo7wkeiJqJgpyTFys0VwWmc+WigSaRy2Gbe8Em8o5rq3?=
+ =?us-ascii?Q?/OG0ZqePqKSWcUTEBbJ88CpP7rtRrMWrdS+tbK7dlEW3TXVQXsdG5Y4Log0K?=
+ =?us-ascii?Q?sHi22CnUg/9Hjam1JntDohwT0y8PuU/eOjF6JCaFRPa7yQBSAjeWJrR26fgT?=
+ =?us-ascii?Q?9bylkUWt9R7S+/+w7EWXIVuPULxwojeAIADSwqLtHMPdSmm/5SU8ZKb+rHBa?=
+ =?us-ascii?Q?xMEdSnbgQVA3Iu2CfGO1JfrrORdq8nz8tg24V+fklLkNAV/hHZvE3MAbFHmw?=
+ =?us-ascii?Q?Lwg0jk1V0lDKkFN4hbvjRWsk0rKEPvV7ke/HoSb4lU0LsZfMuYugEmW5NzQe?=
+ =?us-ascii?Q?+Ex0cvKPaXFaNKvxDaUpyyMFGRqxbithJk8Y5x0AgxjEqCf9rfMzOmcdvywf?=
+ =?us-ascii?Q?wICBmiZ178BfaagqaXdCMLYRt6Q9t3PVX62jDDcPWtA2YZ9b6eQogHs5JGGv?=
+ =?us-ascii?Q?epnd3UsGs9P0gE/go8+UpEdB?=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB2517.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf2e35a4-2563-44d6-38da-08d92b342be8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jun 2021 10:48:52.2649 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR12MB5478.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ae76f98-97a6-4c33-4484-08d92b35334e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jun 2021 10:56:14.2728 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jxXTX59/LUPs1MEpijq4C4xDSSRsUrmxoRrrL61ncZAwnBUfGTZvu51DZaAbvdkg
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3785
+X-MS-Exchange-CrossTenant-userprincipalname: x+kknpgiY9hsipED3PGo4GHuFbQx8wAcHtiNowHn27imdfEEI2xgQINGWwIH1PeKft33LmzQhjVpFzCDWB0TOA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5477
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,339 +125,121 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1221432019=="
+Cc: "Zhang, Bokun" <Bokun.Zhang@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============1221432019==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM5PR12MB2517BB49EBDF4C52FDF16EA7E4369DM5PR12MB2517namp_"
-
---_000_DM5PR12MB2517BB49EBDF4C52FDF16EA7E4369DM5PR12MB2517namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
 [AMD Official Use Only]
 
-Reviewed-by: James Zhu <James.Zhu@amd.com>
+Ping on this series
 
+--------------------------
+Pengju Zhou
 
-Thanks & Best Regards!
-
-
-James Zhu
-
-________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Christia=
-n K=F6nig <ckoenig.leichtzumerken@gmail.com>
-Sent: Tuesday, June 8, 2021 3:23 AM
-To: Zhang, Boyuan <Boyuan.Zhang@amd.com>; Deucher, Alexander <Alexander.Deu=
-cher@amd.com>; amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org=
->
-Subject: Re: [PATCH] drm/amdgpu/vcn: drop gfxoff control for VCN2+
-
-Acked-by: Christian K=F6nig <christian.koenig@amd.com>
-
-Am 07.06.21 um 23:32 schrieb Zhang, Boyuan:
-> [AMD Official Use Only]
->
-> Patch is
-> Reviewed-by: Boyuan Zhang <Boyuan.Zhang@amd.com>
->
-> Thanks,
-> Boyuan
->
 > -----Original Message-----
-> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex D=
-eucher
-> Sent: June 7, 2021 4:29 PM
-> To: amd-gfx@lists.freedesktop.org
-> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>
-> Subject: [PATCH] drm/amdgpu/vcn: drop gfxoff control for VCN2+
->
-> Drop disabling of gfxoff during VCN use.  This allows gfxoff to kick in a=
-nd potentially save power if the user is not using gfx for color space conv=
-ersion or scaling.
->
-> VCN1.0 had a bug which prevented it from working properly with gfxoff, so=
- we disabled it while using VCN.  That said, most apps today use gfx for sc=
-aling and color space conversion rather than overlay planes so it was gener=
-ally in use anyway. This was fixed on VCN2+, but since we mostly use gfx fo=
-r color space conversion and scaling and rapidly powering up/down gfx can n=
-egate the advantages of gfxoff, we left gfxoff disabled. As more applicatio=
-ns use overlay planes for color space conversion and scaling, this starts t=
-o be a win, so go ahead and leave gfxoff enabled.
->
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 2 --
->   1 file changed, 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/am=
-d/amdgpu/amdgpu_vcn.c
-> index 1dc11dbd62b7..647d2c31e8bd 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-> @@ -393,7 +393,6 @@ static void amdgpu_vcn_idle_work_handler(struct work_=
-struct *work)
->          }
->
->          if (!fences && !atomic_read(&adev->vcn.total_submission_cnt)) {
-> -               amdgpu_gfx_off_ctrl(adev, true);
->                  amdgpu_device_ip_set_powergating_state(adev, AMD_IP_BLOC=
-K_TYPE_VCN,
->                         AMD_PG_STATE_GATE);
->                  r =3D amdgpu_dpm_switch_power_profile(adev, PP_SMC_POWER=
-_PROFILE_VIDEO, @@ -413,7 +412,6 @@ void amdgpu_vcn_ring_begin_use(struct a=
-mdgpu_ring *ring)
->          atomic_inc(&adev->vcn.total_submission_cnt);
->
->          if (!cancel_delayed_work_sync(&adev->vcn.idle_work)) {
-> -               amdgpu_gfx_off_ctrl(adev, false);
->                  r =3D amdgpu_dpm_switch_power_profile(adev, PP_SMC_POWER=
-_PROFILE_VIDEO,
->                                  true);
->                  if (r)
-> --
-> 2.31.1
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists=
-.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D04%7C01%7Cjames.=
-zhu%40amd.com%7Ccf628d25d7704545c4a108d92a4e428c%7C3dd8961fe4884e608e11a82d=
-994e183d%7C0%7C0%7C637587337878810926%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wL=
-jAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DhN=
-8cuKAmvSK8b2%2B3uhT%2Fb6I6QnKlhIhZkjO6XeD6%2Bgg%3D&amp;reserved=3D0
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists=
-.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D04%7C01%7Cjames.=
-zhu%40amd.com%7Ccf628d25d7704545c4a108d92a4e428c%7C3dd8961fe4884e608e11a82d=
-994e183d%7C0%7C0%7C637587337878810926%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wL=
-jAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DhN=
-8cuKAmvSK8b2%2B3uhT%2Fb6I6QnKlhIhZkjO6XeD6%2Bgg%3D&amp;reserved=3D0
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
-reedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=3D04%7C01%7Cjames.zh=
-u%40amd.com%7Ccf628d25d7704545c4a108d92a4e428c%7C3dd8961fe4884e608e11a82d99=
-4e183d%7C0%7C0%7C637587337878810926%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjA=
-wMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DhN8c=
-uKAmvSK8b2%2B3uhT%2Fb6I6QnKlhIhZkjO6XeD6%2Bgg%3D&amp;reserved=3D0
-
---_000_DM5PR12MB2517BB49EBDF4C52FDF16EA7E4369DM5PR12MB2517namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#0000FF;margin:15pt;" al=
-ign=3D"Left">
-[AMD Official Use Only]<br>
-</p>
-<br>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<font size=3D"2"><span style=3D"font-size:11pt"><font size=3D"2"><span styl=
-e=3D"font-size:11pt">Reviewed-by:
-</span></font>James Zhu &lt;James.Zhu@amd.com&gt;</span></font><br>
-</div>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div id=3D"Signature">
-<div>
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; color=
-:#000000; font-family:Calibri,Arial,Helvetica,sans-serif">
-<p style=3D"margin-top: 0px; margin-bottom: 0px;">Thanks &amp; Best Regards=
-!</p>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;"><br>
-</p>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;">James Zhu<br>
-</p>
-</div>
-</div>
-</div>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx-b=
-ounces@lists.freedesktop.org&gt; on behalf of Christian K=F6nig &lt;ckoenig=
-.leichtzumerken@gmail.com&gt;<br>
-<b>Sent:</b> Tuesday, June 8, 2021 3:23 AM<br>
-<b>To:</b> Zhang, Boyuan &lt;Boyuan.Zhang@amd.com&gt;; Deucher, Alexander &=
-lt;Alexander.Deucher@amd.com&gt;; amd-gfx@lists.freedesktop.org &lt;amd-gfx=
-@lists.freedesktop.org&gt;<br>
-<b>Subject:</b> Re: [PATCH] drm/amdgpu/vcn: drop gfxoff control for VCN2+</=
-font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Acked-by: Christian K=F6nig &lt;christian.koenig@a=
-md.com&gt;<br>
-<br>
-Am 07.06.21 um 23:32 schrieb Zhang, Boyuan:<br>
-&gt; [AMD Official Use Only]<br>
-&gt;<br>
-&gt; Patch is<br>
-&gt; Reviewed-by: Boyuan Zhang &lt;Boyuan.Zhang@amd.com&gt;<br>
-&gt;<br>
-&gt; Thanks,<br>
-&gt; Boyuan<br>
-&gt;<br>
-&gt; -----Original Message-----<br>
-&gt; From: amd-gfx &lt;amd-gfx-bounces@lists.freedesktop.org&gt; On Behalf =
-Of Alex Deucher<br>
-&gt; Sent: June 7, 2021 4:29 PM<br>
-&gt; To: amd-gfx@lists.freedesktop.org<br>
-&gt; Cc: Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;<br>
-&gt; Subject: [PATCH] drm/amdgpu/vcn: drop gfxoff control for VCN2+<br>
-&gt;<br>
-&gt; Drop disabling of gfxoff during VCN use.&nbsp; This allows gfxoff to k=
-ick in and potentially save power if the user is not using gfx for color sp=
-ace conversion or scaling.<br>
-&gt;<br>
-&gt; VCN1.0 had a bug which prevented it from working properly with gfxoff,=
- so we disabled it while using VCN.&nbsp; That said, most apps today use gf=
-x for scaling and color space conversion rather than overlay planes so it w=
-as generally in use anyway. This was fixed
- on VCN2+, but since we mostly use gfx for color space conversion and scali=
-ng and rapidly powering up/down gfx can negate the advantages of gfxoff, we=
- left gfxoff disabled. As more applications use overlay planes for color sp=
-ace conversion and scaling, this
- starts to be a win, so go ahead and leave gfxoff enabled.<br>
-&gt;<br>
-&gt; Signed-off-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
-&gt; ---<br>
-&gt;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 2 --<br>
-&gt;&nbsp;&nbsp; 1 file changed, 2 deletions(-)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm=
-/amd/amdgpu/amdgpu_vcn.c<br>
-&gt; index 1dc11dbd62b7..647d2c31e8bd 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c<br>
-&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c<br>
-&gt; @@ -393,7 +393,6 @@ static void amdgpu_vcn_idle_work_handler(struct wo=
-rk_struct *work)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!fences &amp=
-;&amp; !atomic_read(&amp;adev-&gt;vcn.total_submission_cnt)) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; amdgpu_gfx_off_ctrl(adev, true);<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_device_ip_set_powergating_state(adev=
-, AMD_IP_BLOCK_TYPE_VCN,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A=
-MD_PG_STATE_GATE);<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_dpm_switch_power_profile(adev,=
- PP_SMC_POWER_PROFILE_VIDEO, @@ -413,7 +412,6 @@ void amdgpu_vcn_ring_begin=
-_use(struct amdgpu_ring *ring)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; atomic_inc(&amp;=
-adev-&gt;vcn.total_submission_cnt);<br>
-&gt;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!cancel_dela=
-yed_work_sync(&amp;adev-&gt;vcn.idle_work)) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; amdgpu_gfx_off_ctrl(adev, false);<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D amdgpu_dpm_switch_power_profile(adev,=
- PP_SMC_POWER_PROFILE_VIDEO,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; true);<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r)<br>
-&gt; --<br>
-&gt; 2.31.1<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; amd-gfx mailing list<br>
-&gt; amd-gfx@lists.freedesktop.org<br>
-&gt; <a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps=
-%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=
-=3D04%7C01%7Cjames.zhu%40amd.com%7Ccf628d25d7704545c4a108d92a4e428c%7C3dd89=
-61fe4884e608e11a82d994e183d%7C0%7C0%7C637587337878810926%7CUnknown%7CTWFpbG=
-Zsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C=
-1000&amp;amp;sdata=3DhN8cuKAmvSK8b2%2B3uhT%2Fb6I6QnKlhIhZkjO6XeD6%2Bgg%3D&a=
-mp;amp;reserved=3D0">
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
-reedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D04%7C01%7Cjame=
-s.zhu%40amd.com%7Ccf628d25d7704545c4a108d92a4e428c%7C3dd8961fe4884e608e11a8=
-2d994e183d%7C0%7C0%7C637587337878810926%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4=
-wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;amp;sdat=
-a=3DhN8cuKAmvSK8b2%2B3uhT%2Fb6I6QnKlhIhZkjO6XeD6%2Bgg%3D&amp;amp;reserved=
-=3D0</a><br>
-&gt; _______________________________________________<br>
-&gt; amd-gfx mailing list<br>
-&gt; amd-gfx@lists.freedesktop.org<br>
-&gt; <a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps=
-%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=
-=3D04%7C01%7Cjames.zhu%40amd.com%7Ccf628d25d7704545c4a108d92a4e428c%7C3dd89=
-61fe4884e608e11a82d994e183d%7C0%7C0%7C637587337878810926%7CUnknown%7CTWFpbG=
-Zsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C=
-1000&amp;amp;sdata=3DhN8cuKAmvSK8b2%2B3uhT%2Fb6I6QnKlhIhZkjO6XeD6%2Bgg%3D&a=
-mp;amp;reserved=3D0">
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.f=
-reedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D04%7C01%7Cjame=
-s.zhu%40amd.com%7Ccf628d25d7704545c4a108d92a4e428c%7C3dd8961fe4884e608e11a8=
-2d994e183d%7C0%7C0%7C637587337878810926%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4=
-wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;amp;sdat=
-a=3DhN8cuKAmvSK8b2%2B3uhT%2Fb6I6QnKlhIhZkjO6XeD6%2Bgg%3D&amp;amp;reserved=
-=3D0</a><br>
-<br>
-_______________________________________________<br>
-amd-gfx mailing list<br>
-amd-gfx@lists.freedesktop.org<br>
-<a href=3D"https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2=
-F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=3D04%=
-7C01%7Cjames.zhu%40amd.com%7Ccf628d25d7704545c4a108d92a4e428c%7C3dd8961fe48=
-84e608e11a82d994e183d%7C0%7C0%7C637587337878810926%7CUnknown%7CTWFpbGZsb3d8=
-eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&a=
-mp;amp;sdata=3DhN8cuKAmvSK8b2%2B3uhT%2Fb6I6QnKlhIhZkjO6XeD6%2Bgg%3D&amp;amp=
-;reserved=3D0">https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%=
-3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;amp;data=
-=3D04%7C01%7Cjames.zhu%40amd.com%7Ccf628d25d7704545c4a108d92a4e428c%7C3dd89=
-61fe4884e608e11a82d994e183d%7C0%7C0%7C637587337878810926%7CUnknown%7CTWFpbG=
-Zsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C=
-1000&amp;amp;sdata=3DhN8cuKAmvSK8b2%2B3uhT%2Fb6I6QnKlhIhZkjO6XeD6%2Bgg%3D&a=
-mp;amp;reserved=3D0</a><br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_DM5PR12MB2517BB49EBDF4C52FDF16EA7E4369DM5PR12MB2517namp_--
-
---===============1221432019==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> From: Zhou, Peng Ju <PengJu.Zhou@amd.com>
+> Sent: Monday, June 7, 2021 4:13 PM
+> To: Zhou, Peng Ju <PengJu.Zhou@amd.com>; amd-gfx@lists.freedesktop.org;
+> Deucher, Alexander <Alexander.Deucher@amd.com>
+> Cc: Zhang, Bokun <Bokun.Zhang@amd.com>
+> Subject: RE: [PATCH 2/2] drm/amd/amdgpu: add instance_number check in
+> amdgpu_discovery_get_ip_version
+> 
+> [AMD Official Use Only]
+> 
+> Hi Alex
+> The following patch series were ported from amd-staging-dkms to fix VCN IB
+> test fail.
+> Can you help to review it?
+> 
+> [PATCH 1/2] drm/amd/amdgpu: Use IP discovery data to determine VCN
+> enablement instead of MMSCH [PATCH 2/2] drm/amd/amdgpu: add
+> instance_number check in amdgpu_discovery_get_ip_version
+> 
+> 
+> ----------------------------------------------------------------------
+> BW
+> Pengju Zhou
+> 
+> 
+> 
+> > -----Original Message-----
+> > From: Peng Ju Zhou <PengJu.Zhou@amd.com>
+> > Sent: Thursday, June 3, 2021 6:42 PM
+> > To: amd-gfx@lists.freedesktop.org
+> > Cc: Zhou, Peng Ju <PengJu.Zhou@amd.com>; Zhang, Bokun
+> > <Bokun.Zhang@amd.com>
+> > Subject: [PATCH 2/2] drm/amd/amdgpu: add instance_number check in
+> > amdgpu_discovery_get_ip_version
+> >
+> > The original code returns IP version of instantce_0 for every IP. This
+> > implementation may be correct for most of IPs.
+> >
+> > However, for certain IP block (VCN for example), it may have 2
+> > instances and both of them have the same hw_id, BUT they have
+> > different revision number
+> > (0 and 1).
+> >
+> > In this case, the original amdgpu_discovery_get_ip_version cannot
+> > correct reflects the result and returns false information
+> >
+> > Signed-off-by: Bokun Zhang <Bokun.Zhang@amd.com>
+> > Signed-off-by: Peng Ju Zhou <PengJu.Zhou@amd.com>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 4 ++--
+> > drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h | 2 +-
+> >  2 files changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> > index 99255c2f08f4..f949ed8bfd9e 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> > @@ -325,7 +325,7 @@ int amdgpu_discovery_reg_base_init(struct
+> > amdgpu_device *adev)
+> >  	return 0;
+> >  }
+> >
+> > -int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int
+> > hw_id,
+> > +int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int
+> > +hw_id, int number_instance,
+> >  				    int *major, int *minor, int *revision)  {
+> >  	struct binary_header *bhdr;
+> > @@ -357,7 +357,7 @@ int amdgpu_discovery_get_ip_version(struct
+> > amdgpu_device *adev, int hw_id,
+> >  		for (j = 0; j < num_ips; j++) {
+> >  			ip = (struct ip *)(adev->mman.discovery_bin +
+> ip_offset);
+> >
+> > -			if (le16_to_cpu(ip->hw_id) == hw_id) {
+> > +			if ((le16_to_cpu(ip->hw_id) == hw_id) && (ip-
+> > >number_instance ==
+> > +number_instance)) {
+> >  				if (major)
+> >  					*major = ip->major;
+> >  				if (minor)
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
+> > index 1b1ae21b1037..02e340cd3a38 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
+> > @@ -30,7 +30,7 @@
+> >  void amdgpu_discovery_fini(struct amdgpu_device *adev);  int
+> > amdgpu_discovery_reg_base_init(struct amdgpu_device *adev);  void
+> > amdgpu_discovery_harvest_ip(struct amdgpu_device *adev); -int
+> > amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int hw_id,
+> > +int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int
+> > +hw_id, int number_instance,
+> >                                      int *major, int *minor, int
+> > *revision);  int amdgpu_discovery_get_gfx_info(struct amdgpu_device
+> > *adev);
+> >
+> > --
+> > 2.17.1
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============1221432019==--
