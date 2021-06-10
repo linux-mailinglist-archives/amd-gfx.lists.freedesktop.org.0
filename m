@@ -2,53 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A1D63A34BB
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Jun 2021 22:21:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 760623A34C6
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Jun 2021 22:22:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88B466EDCC;
-	Thu, 10 Jun 2021 20:21:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F06376EDD0;
+	Thu, 10 Jun 2021 20:22:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
- [IPv6:2607:f8b0:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD38F6EDCC
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 20:21:32 +0000 (UTC)
-Received: by mail-oi1-x233.google.com with SMTP id t140so3505474oih.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 13:21:32 -0700 (PDT)
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com
+ [IPv6:2607:f8b0:4864:20::236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08B926EDD0
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 20:22:40 +0000 (UTC)
+Received: by mail-oi1-x236.google.com with SMTP id w127so3447383oig.12
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 13:22:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ekUZCdfzyh1KFCDBffmsViX3CMJbzWxZQOsX1EDEW2s=;
- b=ZymXiSYFBgbwdLnpQR6UkB2sWnTFtt+12XEm5FkIy0ue/1XLRgvFLHxdMFBltAzAR5
- hRYGByHX/wWJq1dWXTn0VUpr/albPf5Ku9ZQne+21Vjdkduq5Cj3Cdqt3oeImFzC4UI/
- a+ft+12Q6nql/mVLvAqo5td8EPWsyzdvVZK8YKM6STFbeKTCJxb7ZUxqGwfjVIzWLRHq
- dZbcCZLzbXdM8r0kv2EZDAuD6irw8ok4cHs42IjZbDh5j1s9Xr1QDwKry4ka1k39Tvqs
- FxOQXBy8cwNiXFm5MuUbzi3uPaUvXJ6OTPaBRNOOs0KtIHeeCtvMBPl/DQ3uEjoBEs0f
- 4NRA==
+ :cc; bh=4i/3hPXi28JQS3dK0U0abRDzx2bBXT8YKARol6hXIU4=;
+ b=jh23fnmToweDzjZINKySx3yS5M0dfbbSGR9ZArxZmF6tLt1834wE6/XHUlc9zgtYJP
+ XNx0sXQbSa+6uSswQmLEvFBoR6pb7vlpwqL1qWKAccWyJk2pIWyn6GjT2EwY2z9yWRD3
+ AjMockDDH/oHoab3vqPGhaE/E2jaNMZxG691oYjzjZQE3jzp50TXppkOmPMys+u3UeUp
+ 6T2e6D9Y+am/J6ILYlPof03YjLmnKtkUZCJ+iQLQck57HOY/h56tr055gmqOLbR6ZTkH
+ 3WCHgS7z3DrA22nv3t+arhnFLs75DAHliwpunxQQouSrWPyJ3bUCbZAmiyF+nMCvZBq1
+ /Csg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=ekUZCdfzyh1KFCDBffmsViX3CMJbzWxZQOsX1EDEW2s=;
- b=DdBmSQQxEr60GsaRi4EutqEGJSJq8VBW1LU/NgOlQwDQaKUfCgc5Ei9UiWrLxSUlr1
- WWRnkan/uwB3qVaZ/wx18B5b4zYiXZG0vwVAg52+Ot71VXgyirXDFj+ekMnE0dkd/QMT
- xbJHFWP1EIfhcWmg9DneREXMK2dhX83s7WUMCuQI5WsDFW7q4T0vqCEscSuK6KdBnicG
- HSTAbNqFAYJ9BPAeZ4hVJMGz3CUv8yZ3oA68nRIsgb8vl/0xnWFwfYrDCd2XzEf2ooX9
- Yw5Ov4ACpsUc1YTWl3lwA/Wt11o6rCG0T2hfo5OtQ6yZOpaScjlJkHpagtLraLbBpjXl
- XIkg==
-X-Gm-Message-State: AOAM5322v28TqZ4If7S9DQPDsj6KoJiT2YijF0sPuJE/thnQ75j52UIa
- V9vUz12IGqq5cM67AOsrHj/yYKtoFifPxHH7wsQ=
-X-Google-Smtp-Source: ABdhPJwomqtXt3PMQaA5rGvG7rjZa1Nrb3Nd6sFkZy+hfB+nK4NlbficKvbxH3xmpsg2Gq/x21a5G9J68D5tuOtMkM8=
-X-Received: by 2002:a05:6808:c3:: with SMTP id t3mr10753038oic.5.1623356492154; 
- Thu, 10 Jun 2021 13:21:32 -0700 (PDT)
+ bh=4i/3hPXi28JQS3dK0U0abRDzx2bBXT8YKARol6hXIU4=;
+ b=sBZ/H9SN74b7vbMhsoHhyKc3g0INDYpSuPP4xpqHsL7P5CBbb2spy4WGctDP5GDuWp
+ 6nLLh8aveZSPljqU5grN+gvE9qkbHEK1aCmkqHbA+1A2yRhWxkSNzJmO8IebH3jD6FWG
+ 1j4OHfb0dfOaf5Wu0J1Iw5/5X1y5K3oL7Ck/gdU72c8z34pZyPpwRhZJ4u1JyhUAHIg2
+ oc7NMYp4y08B9HLE6iW8PKVg/vsw+l8YY9nigT3Az5m50jtUQNPXCMxS0HDy9/3s1w9Y
+ KOVDnImIbFIkQD5Nn0AaoY3nfaae35stgnchh7uAEOZvs+z91+sGtdLcW7Tt0YqWk1fa
+ xAuA==
+X-Gm-Message-State: AOAM530WE+DZLtTBiHpAfoLoKWpdOmZ2XFgh+mMYrTjT/S9XvNmwV6YQ
+ v7Y6xMjR32Xr5AG8ZZ6JSCSs4YFZySoKgJmhXkU=
+X-Google-Smtp-Source: ABdhPJxU0SLLaS15111kUuVOLYMZAmUUAvQuTytJtp+LLLT0gpWSNg5zvzU5q9b9HwGfqV4hAQjji4q+skCyFkKmjAU=
+X-Received: by 2002:a05:6808:14c9:: with SMTP id
+ f9mr186723oiw.120.1623356560397; 
+ Thu, 10 Jun 2021 13:22:40 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210608213954.5517-1-luben.tuikov@amd.com>
- <20210608213954.5517-15-luben.tuikov@amd.com>
-In-Reply-To: <20210608213954.5517-15-luben.tuikov@amd.com>
+ <20210608213954.5517-16-luben.tuikov@amd.com>
+In-Reply-To: <20210608213954.5517-16-luben.tuikov@amd.com>
 From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 10 Jun 2021 16:21:21 -0400
-Message-ID: <CADnq5_PJE5_ogdxEDcj8WoSmVFWMnfu-u4x-5vVLdvdrocbkiA@mail.gmail.com>
-Subject: Re: [PATCH 14/40] drm/amdgpu: Drop i > 0 restriction for issuing
- RESTART
+Date: Thu, 10 Jun 2021 16:22:29 -0400
+Message-ID: <CADnq5_OwyjrQf=UOFGiLfKH3tixNpj8z_OsRySBsthn9WQ39ag@mail.gmail.com>
+Subject: Re: [PATCH 15/40] drm/amdgpu: Send STOP for the last byte of msg only
 To: Luben Tuikov <luben.tuikov@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,10 +74,13 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 On Tue, Jun 8, 2021 at 5:40 PM Luben Tuikov <luben.tuikov@amd.com> wrote:
 >
 > From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-
-Needs a commit message.  With that fixed:
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
-
+>
+> Let's just ignore the I2C_M_STOP hint from upper
+> layer for SMU I2C code as there is no clean
+> mapping between single per I2C message STOP flag
+> at the kernel I2C layer and the SMU, per each byte
+> STOP flag. We will just by default set it at the
+> end of the SMU I2C message.
 >
 > Cc: Jean Delvare <jdelvare@suse.de>
 > Cc: Alexander Deucher <Alexander.Deucher@amd.com>
@@ -86,53 +89,66 @@ Acked-by: Alex Deucher <alexander.deucher@amd.com>
 > Cc: Stanley Yang <Stanley.Yang@amd.com>
 > Cc: Hawking Zhang <Hawking.Zhang@amd.com>
 > Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+> Suggested-by: Lazar Lijo <Lijo.Lazar@amd.com>
 > Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
 > Reviewed-by: Luben Tuikov <luben.tuikov@amd.com>
+
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+
 > ---
->  drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c       | 2 +-
->  drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c         | 2 +-
->  drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c       | 4 ++--
+>  drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c         | 4 ++--
+>  drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 4 ++--
+>  3 files changed, 6 insertions(+), 6 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-> index 73e261260b76e6..72b02025b07e06 100644
+> index 72b02025b07e06..235e83e9f0feb7 100644
 > --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
 > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-> @@ -1954,7 +1954,7 @@ static int arcturus_i2c_xfer(struct i2c_adapter *i2c_adap,
->                         if ((msg[i].flags & I2C_M_STOP) ||
->                             (!remaining_bytes))
+> @@ -1951,9 +1951,9 @@ static int arcturus_i2c_xfer(struct i2c_adapter *i2c_adap,
+>                                 cmd->CmdConfig |= I2C_CMD_WRITE;
+>                                 cmd->RegisterAddr = msg->buf[j];
+>                         }
+> -                       if ((msg[i].flags & I2C_M_STOP) ||
+> -                           (!remaining_bytes))
+> +                       if (!remaining_bytes)
 >                                 cmd->CmdConfig |= CMDCONFIG_STOP_MASK;
-> -                       if ((i > 0) && (j == 0) && !(msg[i].flags & I2C_M_NOSTART))
-> +                       if ((j == 0) && !(msg[i].flags & I2C_M_NOSTART))
+> +
+>                         if ((j == 0) && !(msg[i].flags & I2C_M_NOSTART))
 >                                 cmd->CmdConfig |= CMDCONFIG_RESTART_BIT;
 >                 }
->         }
 > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-> index 5dc48e557c2bad..289d09a5d711b9 100644
+> index 289d09a5d711b9..b94c5a1d3eb756 100644
 > --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
 > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-> @@ -2749,7 +2749,7 @@ static int navi10_i2c_xfer(struct i2c_adapter *i2c_adap,
->                         if ((msg[i].flags & I2C_M_STOP) ||
->                             (!remaining_bytes))
+> @@ -2746,9 +2746,9 @@ static int navi10_i2c_xfer(struct i2c_adapter *i2c_adap,
+>                                 cmd->CmdConfig |= I2C_CMD_WRITE;
+>                                 cmd->RegisterAddr = msg->buf[j];
+>                         }
+> -                       if ((msg[i].flags & I2C_M_STOP) ||
+> -                           (!remaining_bytes))
+> +                       if (!remaining_bytes)
 >                                 cmd->CmdConfig |= CMDCONFIG_STOP_MASK;
-> -                       if ((i > 0) && (j == 0) && !(msg[i].flags & I2C_M_NOSTART))
-> +                       if ((j == 0) && !(msg[i].flags & I2C_M_NOSTART))
+> +
+>                         if ((j == 0) && !(msg[i].flags & I2C_M_NOSTART))
 >                                 cmd->CmdConfig |= CMDCONFIG_RESTART_BIT;
 >                 }
->         }
 > diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-> index fdbc54622dbfbf..e8e57462ce9d64 100644
+> index e8e57462ce9d64..2fa667a86c1a54 100644
 > --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
 > +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-> @@ -3437,7 +3437,7 @@ static int sienna_cichlid_i2c_xfer(struct i2c_adapter *i2c_adap,
->                         if ((msg[i].flags & I2C_M_STOP) ||
->                             (!remaining_bytes))
+> @@ -3434,9 +3434,9 @@ static int sienna_cichlid_i2c_xfer(struct i2c_adapter *i2c_adap,
+>                                 cmd->CmdConfig |= CMDCONFIG_READWRITE_MASK;
+>                                 cmd->ReadWriteData = msg->buf[j];
+>                         }
+> -                       if ((msg[i].flags & I2C_M_STOP) ||
+> -                           (!remaining_bytes))
+> +                       if (!remaining_bytes)
 >                                 cmd->CmdConfig |= CMDCONFIG_STOP_MASK;
-> -                       if ((i > 0) && (j == 0) && !(msg[i].flags & I2C_M_NOSTART))
-> +                       if ((j == 0) && !(msg[i].flags & I2C_M_NOSTART))
+> +
+>                         if ((j == 0) && !(msg[i].flags & I2C_M_NOSTART))
 >                                 cmd->CmdConfig |= CMDCONFIG_RESTART_BIT;
 >                 }
->         }
 > --
 > 2.32.0
 >
