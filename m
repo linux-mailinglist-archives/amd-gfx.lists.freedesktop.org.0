@@ -2,121 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCB9C3A2577
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Jun 2021 09:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35AD93A25EB
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Jun 2021 09:55:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C93D89CBC;
-	Thu, 10 Jun 2021 07:28:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9C2B6EB8E;
+	Thu, 10 Jun 2021 07:55:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2049.outbound.protection.outlook.com [40.107.220.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF45689CBC
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 07:28:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HUY39XCtC3hKAZfnC5Bva7vVYJQhDoUXRvx/Sx6S87fzhNHSdZ+T6nAjYzEz1j/fHzjy6uP89rSeyNxGb7wgQmTbjIlk0C7ffpJaPkxrytUSsEtsuOllL3UZe9e+UHmZbKOpJ3rnYRHsaKAFMVIqO5Z0DITFChd8FuPkivfel6W6yNp1Vfg/RZK4BMdZLtk/KK981g3y6x4etSspkXqTWb19+h1dhPJjv2AfyRC4I2DqzW5tf6rpDSB1Yloe0Zfe9Uv8kUrY3z1xmI3bUsTRveHtjY8wfVWH2W69anugMmN+ACWxIqfT+NoCAylbGdbWAzmeU/cJo9Fv8wgoewiebQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vbBiGsjOZiNceNIDX290KlpSSveVAPaTEPM8HuiRyOo=;
- b=G1dQ2fIsiWLjlqcPIo5S9CxgzGWbpmP01RrB24Ze12rQj9es+0vwo3fVaUR7g/ALD4V/EwZD8IgHR8D76rp4EVWU7n3OHhEaubWVlYP2W13dTrxgf41Bbt1lMgXLfDG2nb0TwgUullLvBORuKrCTpq1Vrft309PqtDxJJJGtd9SaW70fJkEwp/2t9yLc/L+1OhlfRbXxgFiSdkbkmts2kdLpQ7kHaZrdUYrf5Iq9hidc/fBbpbS+XmFJnwJ9eP7aa23rXrKxwBHabE/Qz/9wUzietUjdqBg+AJexnu2igaZMs5w2NTJYYkTxJMgQLU0i28wqVINi9zeUlOuo5wU4FQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vbBiGsjOZiNceNIDX290KlpSSveVAPaTEPM8HuiRyOo=;
- b=Rsd5D43sGlFZ1kmLvU+ykCc3v+TyCXw6GYA9qpGRaqiDNjQSuR6KSbT0Z9AN7+ja0h43lUyQpdL59f7qg8THXsccPHpaUPbaIc9yIqfGi6oxactYz38ZJ3wuXVDnkFs/fZ+1+w4EZ1/h6WvpuAaVctJ0AoMrhz02CpEhPh8eCHQ=
-Received: from DM4PR12MB5072.namprd12.prod.outlook.com (2603:10b6:5:38b::22)
- by DM6PR12MB5519.namprd12.prod.outlook.com (2603:10b6:5:1b5::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.23; Thu, 10 Jun
- 2021 07:28:41 +0000
-Received: from DM4PR12MB5072.namprd12.prod.outlook.com
- ([fe80::9d6f:2218:2f3c:a383]) by DM4PR12MB5072.namprd12.prod.outlook.com
- ([fe80::9d6f:2218:2f3c:a383%3]) with mapi id 15.20.4219.022; Thu, 10 Jun 2021
- 07:28:41 +0000
-From: "Chen, Horace" <Horace.Chen@amd.com>
-To: "Wang, YuBiao" <YuBiao.Wang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amdgpu: reset psp ring wptr during ring_create
-Thread-Topic: [PATCH] drm/amdgpu: reset psp ring wptr during ring_create
-Thread-Index: AQHXXNvhN0K1NWw8V0qNMm/IzYxFY6sM2rKA
-Date: Thu, 10 Jun 2021 07:28:41 +0000
-Message-ID: <DM4PR12MB507207057E1BF5A20E53C6EEE1359@DM4PR12MB5072.namprd12.prod.outlook.com>
-References: <20210609030145.1215878-1-YuBiao.Wang@amd.com>
-In-Reply-To: <20210609030145.1215878-1-YuBiao.Wang@amd.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-06-10T07:28:37Z; 
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
- Only-AIP 2.0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=e152133e-c718-47dd-ad2e-00009689150e;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_enabled: true
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_setdate: 2021-06-10T07:28:37Z
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_method: Standard
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_name: AMD Official Use
- Only-AIP 2.0
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_actionid: 49008e4c-ce4f-43fb-994b-0000c2ae0d39
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_contentbits: 0
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-originating-ip: [165.204.134.244]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d2a77f9e-3022-4130-c0ee-08d92be15f1a
-x-ms-traffictypediagnostic: DM6PR12MB5519:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR12MB55191B0AE38ABCAA025EFE67E1359@DM6PR12MB5519.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1186;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Ga4ycHQMGqcIS1S+ZmdruVthU8tHa+No93Lf3iBKrG9/yojx4tQ4E3coyPYAp1oFTti/qxb9hdLI7DNhvpEhmGcaeMBziYMP/6SfblPkdOIm0d91I2UwmlJ/6VQnrC83yoN+A0ELEOny5VbpMg0rotrRWr19Q6Pp8maIw1zMwKV3Rg/mk9Jew3ajqrYCzP17XzYxmDxLFgEeHezd3uDg2YPeakFtyJfKob2zEVoeZYyEpc9p7PW+6ioZBTcchQsx9ozbBLGU4fK8IK+aECwc/tumXsUWq/qMsKzpVEExGNYHA4AmcAxN5sLzW5VSKISF/xaqGb6WBUD9bMKx0kEev16z2mALGR2XkVFPKEpGRBmQ+S2SqlEtOd+Y7Ly+R4J2nu36/lIN9SaAyI4P3vTO4t+1alrQThl4bm1fenffCGVffMHmUmkd2Kb5RbaZ1bObSnQlLvMAt2jOCZkGhWCd+bt4niL/YBqc9Pf+HCNdImUlOwWdmjapO9Uvwz6yybcZzmjWfJlBp8UZ0BrWqrxEL2n/PZIM8MiRnNq3iH9wRhgnyAf+ItUVjJkz2zzFdpiWawuG+puYvwlTLu62KqxhHLTilvPdM1Wooo0gl1IPv41z+c+yr3lY0o9+yZhE0XW1x0xVtIhu6JfBtz57qxCO2A==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5072.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(376002)(396003)(366004)(346002)(76116006)(66946007)(33656002)(9686003)(8936002)(7696005)(6506007)(86362001)(26005)(53546011)(45080400002)(83380400001)(66476007)(66556008)(64756008)(66446008)(478600001)(186003)(4326008)(55016002)(2906002)(966005)(316002)(122000001)(52536014)(71200400001)(5660300002)(8676002)(54906003)(38100700002)(110136005);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?nw5l1/7sc6ZoZivyaO7v/s6PPuZlqGIpBXR8OzpUqu8a4zTxZ9vAZfYT8stA?=
- =?us-ascii?Q?8cOtkeDA/+SO0pjblh4sqYbWpYPXKRO0qtSkWCaiqoz4cjkpqs9yksatMpVB?=
- =?us-ascii?Q?gtn5sLn3ap1zQ2PaGMTybBTG1ZavVeWygaIagQYx0AjOeabXlDexqlflVpB0?=
- =?us-ascii?Q?ebvAz98lyf7kOH2wCh3DeS2V5L6wQJu1LrMAhkCxBtDEzwEdveOBqa6AGRU5?=
- =?us-ascii?Q?Yfjap2SdYDxmyYmqyfHRMXBxaHSJz0MySsYP8ksBlv3oAFUg6wuHKiu+Kah/?=
- =?us-ascii?Q?UtRM0VoNH9CX73dO+NSKXbR8w2mFw9/BJIuB+a4Q5A/OqydRvegtNoXs+GyZ?=
- =?us-ascii?Q?0OiOZucdaGE2Xhr4Chlp4Fobuno9VXmOPZIj37sb13niA3Xwt80yPblWlfyN?=
- =?us-ascii?Q?jftX0RT59KI/9ZwlVAdVFzosM7R+Ko/BX8btmSSf5weuHYH5hsURMuwVpDzZ?=
- =?us-ascii?Q?2+SKpjG6sLSQhg55MO/27RuDbt+zLf14wLNoWwnPg5ZdrOj8IIVFyo4bmaPO?=
- =?us-ascii?Q?4yHcMF6vcwhEBl1sX4viqTV+DbYtVXxqSV0mF5qzsflbbORrL6y3MfgTeEEY?=
- =?us-ascii?Q?IJ6MMBi7XKu5zndITqrUGqKzGB4o3Hz2noQof14xHLkw3A6Z8srotEHJyJkw?=
- =?us-ascii?Q?wUXHIOmgfvABQLK7MJRQijfeHlMsydy/cQAXz1NgiYNvmj+zMeITiWlz/CXF?=
- =?us-ascii?Q?rIr0IlWD7+kHBbwYNpCYzBflMBx9ao5fenmN1MGPi7pQ9dbyOex72R4cHIzF?=
- =?us-ascii?Q?4aH8gC4f1uLCMsN9Tg43PyXUrc5xjOszG8UEYS/oIhw0JD5W9/nIziOqJEbq?=
- =?us-ascii?Q?B2oB9Rt10sZeo0bz0h7L5XV7MK162Uyrw2TCoKCYFncMmptJcM6tybiQnDLL?=
- =?us-ascii?Q?HYJtbqmV4oQVD+MpKkmwDZaWCzKINjha/yDPUVESZoZMF0Ur1jdd6p5X5FKt?=
- =?us-ascii?Q?9GeCmvqMM6lgi5dM4b53yguJKHB+ztMjDYJLGBBSNCwEib8eein7cfELFSIT?=
- =?us-ascii?Q?bCeRjDLJ0++iwGvUbDTjCl6UbwFVIqfJY9cQOYibXUde5kCNbLYW3rh7mI5H?=
- =?us-ascii?Q?7thFLH4eiA4LdSyps9EoUZGVZxln8XjGPzWnaxW+5E/L9/xg5sDFb4+cXdKF?=
- =?us-ascii?Q?ZFwbokqA9lxjBByCHoMzsun+IFvJSB0O4mZW1+Z1WvMDtT4vtf4A9DIWFOBt?=
- =?us-ascii?Q?tWVs9kp+IoJqC4ePCHXUD5prAFXEcW2pwJVlVkTTruu8yeT1/59GIznVq4hq?=
- =?us-ascii?Q?KYtrCz17nMvwSgiGAbKlQRDZFD8KiGRa0Xy7ZpoRuGR3S/jDArV6Q3n5+3S8?=
- =?us-ascii?Q?4fpBqN5Ph1oxNLnM+tvhfKPh?=
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com
+ [IPv6:2a00:1450:4864:20::231])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 063666EB8E;
+ Thu, 10 Jun 2021 07:55:40 +0000 (UTC)
+Received: by mail-lj1-x231.google.com with SMTP id r16so3640034ljc.0;
+ Thu, 10 Jun 2021 00:55:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=SA5Ivb0CCE59h380OTMfIw4pEztiT4MRBNH8ti8EjRg=;
+ b=UsnB/8xogJHe8G+HURPvdy9xSpG3q17OyaxwZos6B9OkmHr3UPdrILT14c6jXIojl+
+ k5fcp7oj/ZZ4j8DZKt7NTp+68VQAGcq0bmTDzQkGiLUhW1EFMYyqQq7N3CE/WtRuE3+N
+ KySdDSuuW9EhDIiadb2Cda85fZ0GYtk7gGNqinLYGI6q5xKPVMNkf4/K27+ljIX9Kklt
+ 1UP11UZos81azcTn+0kTCJIZ5/jqxpc2h0qgfmWeoDJVWxAYQ0Q3SmLGnvN91VSLi4T3
+ 7ABgyeXmcLUdBik/48NVhn3oixQ7Qrmhr0TRdaWTyCPzEFA/eFbg1qmsReEJ+lgBg4Ca
+ Z+MQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=SA5Ivb0CCE59h380OTMfIw4pEztiT4MRBNH8ti8EjRg=;
+ b=tMNS1gOaQIxWAIs1Fe6BxbIfIZJIcI2rC6V91yTkD0RE99Fxruh4p+Cwbk2LvSFVlg
+ iPZTDZGqNmyTbxOwRTnRC2A+1M79/dvBaVwCdA+kr2mpbr3o3nONGCCDgPjDBK+vJHRL
+ 76lqd4mxyL78/McqLPAr4ujWLUmjOPETSNk/44lrnkUHakjDjXPBpbTXKKr7FOGIuGqq
+ KvV5xSFE4Wf1JtdMeubVtBC755HbTtT7+HQTgl+f3y7GpMlfxk4xXH25W/oh+EGvFlAP
+ al1uXdiZ1smo4THdOAucdMArwvRR4S2wUexlcZdx9+wV+8fmmikOFlv0cRU9/+etIanh
+ akuA==
+X-Gm-Message-State: AOAM530tXMhG5f9EBE3Juo7Jqyzj/0w7x4Rnpdsxjd3+Z0jqgBPO2RVs
+ /bNDJecOp9cibxKVMW9TAos=
+X-Google-Smtp-Source: ABdhPJx3RpDRGm7QQl5Suj8t19KY4oI1aFylsWb1rF9ssiZz1Ey/gILxkTKcx5cMo6mviJKQNFnryg==
+X-Received: by 2002:a05:651c:514:: with SMTP id
+ o20mr1227077ljp.201.1623311738293; 
+ Thu, 10 Jun 2021 00:55:38 -0700 (PDT)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id r8sm240527lfc.90.2021.06.10.00.55.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 10 Jun 2021 00:55:37 -0700 (PDT)
+Date: Thu, 10 Jun 2021 10:55:24 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Werner Sembach <wse@tuxedocomputers.com>
+Subject: Re: [PATCH v2 2/7] drm/uAPI: Add "active bpc" as feedback channel
+ for "max bpc" drm property
+Message-ID: <20210610105524.4dd2a40f@eldfell>
+In-Reply-To: <20210608174320.37429-3-wse@tuxedocomputers.com>
+References: <20210608174320.37429-1-wse@tuxedocomputers.com>
+ <20210608174320.37429-3-wse@tuxedocomputers.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5072.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2a77f9e-3022-4130-c0ee-08d92be15f1a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jun 2021 07:28:41.1596 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oNKn4LMQY3Men0JRJD3uAB8y+vYNw3CU1s9kN34lfQILMiVKggcI27lLHd20tVJI
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB5519
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,72 +67,252 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Wang, YuBiao" <YuBiao.Wang@amd.com>, "Grodzovsky,
- Andrey" <Andrey.Grodzovsky@amd.com>, "Xiao, Jack" <Jack.Xiao@amd.com>, "Xu,
- Feifei" <Feifei.Xu@amd.com>, "Wang, Kevin\(Yang\)" <Kevin1.Wang@amd.com>,
- "Zhang, Hawking" <Hawking.Zhang@amd.com>, "Tuikov,
- Luben" <Luben.Tuikov@amd.com>, "Deucher, 
- Alexander" <Alexander.Deucher@amd.com>, "Quan, Evan" <Evan.Quan@amd.com>,
- "Koenig, Christian" <Christian.Koenig@amd.com>, "Liu, Monk" <Monk.Liu@amd.com>,
- Xiaojie Yuan <xiaojie.yuan@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Mario Kleiner <mario.kleiner.de@gmail.com>, amd-gfx@lists.freedesktop.org,
+ tzimmermann@suse.de, intel-gfx@lists.freedesktop.org, sunpeng.li@amd.com,
+ dri-devel@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
+ maarten.lankhorst@linux.intel.com, linux-kernel@vger.kernel.org,
+ mripard@kernel.org, airlied@linux.ie, jani.nikula@linux.intel.com,
+ daniel@ffwll.ch, rodrigo.vivi@intel.com, alexander.deucher@amd.com,
+ harry.wentland@amd.com, christian.koenig@amd.com
+Content-Type: multipart/mixed; boundary="===============1189174289=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only]
+--===============1189174289==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/G9gjPWkKmqwLWKB6JjVFNYP"; protocol="application/pgp-signature"
 
-Reviewed-by: Horace Chen <horace.chen@amd.com>
+--Sig_/G9gjPWkKmqwLWKB6JjVFNYP
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of YuBiao Wang
-Sent: Wednesday, June 9, 2021 11:02 AM
-To: amd-gfx@lists.freedesktop.org
-Cc: Wang, YuBiao <YuBiao.Wang@amd.com>; Grodzovsky, Andrey <Andrey.Grodzovsky@amd.com>; Xiao, Jack <Jack.Xiao@amd.com>; Xu, Feifei <Feifei.Xu@amd.com>; Chen, Horace <Horace.Chen@amd.com>; Wang, Kevin(Yang) <Kevin1.Wang@amd.com>; Xiaojie Yuan <xiaojie.yuan@amd.com>; Tuikov, Luben <Luben.Tuikov@amd.com>; Deucher, Alexander <Alexander.Deucher@amd.com>; Quan, Evan <Evan.Quan@amd.com>; Koenig, Christian <Christian.Koenig@amd.com>; Liu, Monk <Monk.Liu@amd.com>; Zhang, Hawking <Hawking.Zhang@amd.com>
-Subject: [PATCH] drm/amdgpu: reset psp ring wptr during ring_create
+On Tue,  8 Jun 2021 19:43:15 +0200
+Werner Sembach <wse@tuxedocomputers.com> wrote:
 
-[Why]
-psp ring wptr is not initialized properly in ring_create, which would lead to psp failure after several gpu reset.
+> Add a new general drm property "active bpc" which can be used by graphic =
+drivers
+> to report the applied bit depth per pixel back to userspace.
+>=20
+> While "max bpc" can be used to change the color depth, there was no way t=
+o check
+> which one actually got used. While in theory the driver chooses the best/=
+highest
+> color depth within the max bpc setting a user might not be fully aware wh=
+at his
+> hardware is or isn't capable off. This is meant as a quick way to double =
+check
+> the setup.
+>=20
+> In the future, automatic color calibration for screens might also depend =
+on this
+> information being available.
+>=20
+> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> ---
+>  drivers/gpu/drm/drm_atomic_uapi.c |  2 ++
+>  drivers/gpu/drm/drm_connector.c   | 41 +++++++++++++++++++++++++++++++
+>  include/drm/drm_connector.h       | 15 +++++++++++
+>  3 files changed, 58 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atom=
+ic_uapi.c
+> index 268bb69c2e2f..7ae4e40936b5 100644
+> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> @@ -873,6 +873,8 @@ drm_atomic_connector_get_property(struct drm_connecto=
+r *connector,
+>  		*val =3D 0;
+>  	} else if (property =3D=3D connector->max_bpc_property) {
+>  		*val =3D state->max_requested_bpc;
+> +	} else if (property =3D=3D connector->active_bpc_property) {
+> +		*val =3D state->active_bpc;
+>  	} else if (connector->funcs->atomic_get_property) {
+>  		return connector->funcs->atomic_get_property(connector,
+>  				state, property, val);
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connec=
+tor.c
+> index 7631f76e7f34..c0c3c09bfed0 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -1195,6 +1195,14 @@ static const struct drm_prop_enum_list dp_colorspa=
+ces[] =3D {
+>   *	drm_connector_attach_max_bpc_property() to create and attach the
+>   *	property to the connector during initialization.
+>   *
+> + * active bpc:
+> + *	This read-only range property tells userspace the pixel color bit dep=
+th
+> + *	actually used by the hardware display engine on "the cable" on a
+> + *	connector. The chosen value depends on hardware capabilities, both
+> + *	display engine and connected monitor, and the "max bpc" property.
+> + *	Drivers shall use drm_connector_attach_active_bpc_property() to insta=
+ll
+> + *	this property.
+> + *
 
-[How]
-Set ring_wptr to zero in psp_ring_create.
+This description is now clear to me, but I wonder, is it also how
+others understand it wrt. dithering?
 
-Signed-off-by: YuBiao Wang <YuBiao.Wang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/psp_v11_0.c | 1 +  drivers/gpu/drm/amd/amdgpu/psp_v3_1.c  | 1 +
- 2 files changed, 2 insertions(+)
+Dithering done on monitor is irrelevant, because we are talking about
+"on the cable" pixels. But since we are talking about "on the cable"
+pixels, also dithering done by the display engine must not factor in.
+Should the dithering done by display engine result in higher "active
+bpc" number than what is actually transmitted on the cable?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-index 0fd1ed918627..3e6218799a0c 100644
---- a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
-@@ -468,6 +468,7 @@ static int psp_v11_0_ring_create(struct psp_context *psp,
- 	struct amdgpu_device *adev = psp->adev;
- 
- 	if (amdgpu_sriov_vf(adev)) {
-+		ring->ring_wptr = 0;
- 		ret = psp_v11_0_ring_stop(psp, ring_type);
- 		if (ret) {
- 			DRM_ERROR("psp_v11_0_ring_stop_sriov failed!\n"); diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c b/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c
-index 908664a5774b..be05d9cbd41e 100644
---- a/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/psp_v3_1.c
-@@ -231,6 +231,7 @@ static int psp_v3_1_ring_create(struct psp_context *psp,
- 	psp_v3_1_reroute_ih(psp);
- 
- 	if (amdgpu_sriov_vf(adev)) {
-+		ring->ring_wptr = 0;
- 		ret = psp_v3_1_ring_stop(psp, ring_type);
- 		if (ret) {
- 			DRM_ERROR("psp_v3_1_ring_stop_sriov failed!\n");
---
-2.25.1
+I cannot guess what userspace would want exactly. I think the
+strict "on the cable" interpretation is a safe bet, because it then
+gives a lower limit on observed bpc. Dithering settings should be
+exposed with other KMS properties, so userspace can factor those in.
+But to be absolutely sure, we'd have to ask some color management
+experts.
 
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Flists.freedesktop.org%2Fmailman%2Flistinfo%2Famd-gfx&amp;data=04%7C01%7Chorace.chen%40amd.com%7Cf0c4d8c71e76407bef2008d92af30323%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637588045485244771%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=eozuFP5rS0dwOstJwqjeMWA%2BbhXAfjFDMRi1G%2FISzFI%3D&amp;reserved=0
+Cc'ing Mario in case he has an opinion.
+
+Since "active bpc" is related to "max bpc", the both should follow the
+same definition. Do they do that now?
+
+Maybe a clarifying note about interaction with dithering would still be
+good to have here.
+
+
+I recall reading some comments from you about having problems with
+making this immutable. Is it properly immutable now?
+
+That is, drm_info reports the property as "(immutable)".
+https://github.com/ascent12/drm_info
+
+If we are not sure if DSC could result in lower observed bpc than
+"active bpc", then DSC state would need to be exposed as a KMS property
+too, with a note that it invalidates what "active bpc" shows. Or maybe
+"active bpc" should be "unknown" in that case?
+
+
+Thanks,
+pq
+
+>   * Connectors also have one standardized atomic property:
+>   *
+>   * CRTC_ID:
+> @@ -2150,6 +2158,39 @@ int drm_connector_attach_max_bpc_property(struct d=
+rm_connector *connector,
+>  }
+>  EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
+> =20
+> +/**
+> + * drm_connector_attach_active_bpc_property - attach "active bpc" proper=
+ty
+> + * @connector: connector to attach active bpc property on.
+> + * @min: The minimum bit depth supported by the connector.
+> + * @max: The maximum bit depth supported by the connector.
+> + *
+> + * This is used to check the applied bit depth on a connector.
+> + *
+> + * Returns:
+> + * Zero on success, negative errno on failure.
+> + */
+> +int drm_connector_attach_active_bpc_property(struct drm_connector *conne=
+ctor,
+> +					  int min, int max)
+> +{
+> +	struct drm_device *dev =3D connector->dev;
+> +	struct drm_property *prop;
+> +
+> +	prop =3D connector->active_bpc_property;
+> +	if (!prop) {
+> +		prop =3D drm_property_create_range(dev, 0, "active bpc", min, max);
+> +		if (!prop)
+> +			return -ENOMEM;
+> +
+> +		connector->active_bpc_property =3D prop;
+> +	}
+> +
+> +	drm_object_attach_property(&connector->base, prop, 0);
+> +	connector->state->active_bpc =3D 0;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_connector_attach_active_bpc_property);
+> +
+>  /**
+>   * drm_connector_set_vrr_capable_property - sets the variable refresh ra=
+te
+>   * capable property for a connector
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index 1922b278ffad..c58cba2b6afe 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -781,6 +781,13 @@ struct drm_connector_state {
+>  	 */
+>  	u8 max_bpc;
+> =20
+> +	/**
+> +	 * @active_bpc: Read only property set by the GPU driver to the actually
+> +	 * applied bit depth of the pixels after evaluating all hardware
+> +	 * limitations.
+> +	 */
+> +	u8 active_bpc;
+> +
+>  	/**
+>  	 * @hdr_output_metadata:
+>  	 * DRM blob property for HDR output metadata
+> @@ -1380,6 +1387,12 @@ struct drm_connector {
+>  	 */
+>  	struct drm_property *max_bpc_property;
+> =20
+> +	/**
+> +	 * @active_bpc_property: Default connector property for the active bpc
+> +	 * to be driven out of the connector.
+> +	 */
+> +	struct drm_property *active_bpc_property;
+> +
+>  #define DRM_CONNECTOR_POLL_HPD (1 << 0)
+>  #define DRM_CONNECTOR_POLL_CONNECT (1 << 1)
+>  #define DRM_CONNECTOR_POLL_DISCONNECT (1 << 2)
+> @@ -1698,6 +1711,8 @@ int drm_connector_set_panel_orientation_with_quirk(
+>  	int width, int height);
+>  int drm_connector_attach_max_bpc_property(struct drm_connector *connecto=
+r,
+>  					  int min, int max);
+> +int drm_connector_attach_active_bpc_property(struct drm_connector *conne=
+ctor,
+> +					  int min, int max);
+> =20
+>  /**
+>   * struct drm_tile_group - Tile group metadata
+
+
+--Sig_/G9gjPWkKmqwLWKB6JjVFNYP
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIyBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmDBxWwACgkQI1/ltBGq
+qqdx6Q/2Jx5o//7FCgMeDEoDPr3pod+Wxo2MlOMa8WmeEgg/7A4nmr0Of/btoEof
+IwDEbBZvN9gJIz0vA4GaLKNOjRFHek9l2ur6TsQ292J6CoC/MJclpee511ImuaCl
+a0GGw9vwcmUJLUInvM6fwcEzi9Vb+dj1H2VNqRq56QcpgX/+WjW5AkMc0LtsD+qi
+hs2DAnvHkTuaocgY7gCjLMlE9sBwmNUByzpvsl2Nwnn994hdUP2SylTXBJ5cm06j
+BKqEbFelKajhQzscjre7vU4d7EKalm7bKT83BubXg6Q3GAqYMMJhQU7IrH7YQPf4
+Ns+Yjw93SxM8V/Gesyu7ZTh6Nclz51oDpcWZZB5GIDXpQWr58+Fa8H+ZgXxSVP59
+A49M1SAjdmttofu0H1YCijuboKSlHOlq85zHJmIl/TRhMEqbKiej5Z4z/4FtjIHl
+HfiXcJIa2iWYcNYGeSktgFf0tu55+X06usqAippPXr8jiU0dYHeuHGrQjenKPWLg
+ooSpWddnrQgFpNhGOdtpiKHpYwWaob9P5tcgaEjt+lvGzJR2mDBi8IBAfBIWE7VZ
+qDRnSfZb0/0tWMftwxnTlbyv2Zyp9/aIaLShx3SmVmRVUzFK+oVwgXINju8Io+h/
+fiOW3tUyC43DGNqVoBYglrGDGeyrjv8z9s2HQ3JfJlWapvLRaw==
+=ap5H
+-----END PGP SIGNATURE-----
+
+--Sig_/G9gjPWkKmqwLWKB6JjVFNYP--
+
+--===============1189174289==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============1189174289==--
