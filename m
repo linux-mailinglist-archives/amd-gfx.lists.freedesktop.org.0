@@ -1,98 +1,97 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D72B3A30A8
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Jun 2021 18:29:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D44F83A30AA
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Jun 2021 18:29:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8408B6ED8A;
-	Thu, 10 Jun 2021 16:29:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 302C46ED9A;
+	Thu, 10 Jun 2021 16:29:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2047.outbound.protection.outlook.com [40.107.244.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80AF56ED95
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 16:29:37 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CE936ED95
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Jun 2021 16:29:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jlaxn7rhG9yVL5iou3Tkrt2C073WmKi5JqsjUvlhtI0XXd+i4HE8cMtnYvUR+GxfW5ZSXa9YOhVM0LL/O/TxcttlMX4PBLWSeoA4pOyFeEg7TlmDLV6/HkzSrN63S+nOAXLpFrt5gO9EtDepXn80pr4R4H4ugi8ncyL6TMqOs2WIUFIcyHOnLdwnK0KE9Lug748c4RbdhrDPhpT5Yd1qIbU/tdq5Ml5ZFvAXJPw1PcrzOul1c7mCoZdIMQ+tQWY2/t9gLythg31XGeoDISBqqU14XgtkhVUUzM20t38d0RqQLLfTzwhxTGPvrkeKeCcgMIMWr1/TlIjoILLXSOaJ4A==
+ b=MgwfMwrvaOjjBfjYrfFYqb2F7Pes0XYvdS4MXA+EX8aHiBn1dhIs41OwPxrmk3gy9zO6N3Z1ey1kc5M3p4Scz4c89ILe4sMfAMWmx359Bh8HgskrShFFOoIBZ0NXUw+fimxgJqLeCs5rqnmdjVNemdFmIc/mlimrgaeLjxQmvsbaPD5XLDgSP2QhmS374lO+PflJcYUtHGkzQQbxjIcE5R8Hsdag5FOuVz+yY8ATHvsAqz90mvwfTzRpCpzzk7JKk0FqEl2jL1WLD8ikoVynzzel5+5oKynMh3JYr05Ioz9C0qbWjxM+HNOkJUxKAqdSy3bayEevz+dQ8dbOLKP87A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3G3gz9mTziIC3ImzVOA9O0tvSEWTgdRv4TIT9ObphU0=;
- b=eRMcS9V5dRF8Ak/5/t7rA05VXdMKrEKCJdcF8iaEpQcI4N3htUDPzGn7wcFS9IpnB8wY7Vh5yXQRkDFWibRWcVXOj1Xud4tCx4iEk0PZTu+oTz2rhAGeUx0xNHhPnYN4GyctmF/7FpTeoHiPwVNE0YhWxXm7iMvFa1IjFFgRMN4+G943sYxcHZDka8Mza1rwMMq7JOziEYw5WQZxEuzfRP4DeFbuORGvybhPOS258hR0ctv+zD0n+K7vHAzTnYMFjetFRgYKwEUG+/yqpctp0t1tA6/XE2sKUm2XXQ4vA7JiWozFeHqD+FGEWkzFOSpZ7+JHvy8MdfLp+9fQedWyIg==
+ bh=9IfmzUi0pYjZrOgdoYB7iK4UJqv5OyMbOKLcCUEa4jE=;
+ b=GodTKGZOnC8vTB6bJqBJP3nc/PNv8MPue2icGcdFFUyUtTbh5TtvOz4VuwjLnmNtaOTO5Y8ZvfHnwG8TdWVsPpJ7VhH786gCDBcLEy3SE+//cD2VFB56jCrU9D6iPFa0DicrCjCLBsjzJwIrVNxj1VeQotOTqvvRydqCbmYbGjq1Z843zrmgi7zxnBUIJhHoENmdtWz4JkFecv1W6CqcR90UgqIw5P8VnwFHFq8kGb5m/RH/LTYrxTXd3TbpI/pj0FcAVO/qIHySRWJkDI3GMOt7fEjGN5GDI9WXAuBrXNb5DiA57Phi1UI8s5omOq/vrC5U0pFz6JMjcOe8rX+1GA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3G3gz9mTziIC3ImzVOA9O0tvSEWTgdRv4TIT9ObphU0=;
- b=Vm/T33votHeoWdbNece92k6bsU1xn5Lw9f7E60l3rkqCZr/MWGCf/6nfKj/744vM1TKMSv/KAVkQELdy8n07oTSQhitE0sUKQx6cvKduDVii4hyxv9ODeXnN3TdGbMbuBnPXCd8+vLUdmMBEnqnmNVBoHHqzXJmPsQYt83RKSwg=
-Received: from MW4PR04CA0292.namprd04.prod.outlook.com (2603:10b6:303:89::27)
- by MN2PR12MB3920.namprd12.prod.outlook.com (2603:10b6:208:168::16)
+ bh=9IfmzUi0pYjZrOgdoYB7iK4UJqv5OyMbOKLcCUEa4jE=;
+ b=wfneCw+YXHabghdBAyxSrZR+6qP+MNmD+oeMywSKuEyvTwEtpeelFnAqzUNgZDJdFVXcmc4Wl3RBDE6d7AjzIl2Ba6Ce/xfcF1iYRB4VcbhlsqTwbiVKSb7tZMFQeLGlWVbAHEscKQ5tkC2dVBaMxzFYPqN1Q+6HwZctqcK9lkk=
+Received: from MWHPR21CA0026.namprd21.prod.outlook.com (2603:10b6:300:129::12)
+ by BL1PR12MB5206.namprd12.prod.outlook.com (2603:10b6:208:31c::5)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.20; Thu, 10 Jun
- 2021 16:29:35 +0000
-Received: from CO1NAM11FT027.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:89:cafe::e5) by MW4PR04CA0292.outlook.office365.com
- (2603:10b6:303:89::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21 via Frontend
- Transport; Thu, 10 Jun 2021 16:29:35 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.22; Thu, 10 Jun
+ 2021 16:29:36 +0000
+Received: from CO1NAM11FT024.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:129:cafe::fa) by MWHPR21CA0026.outlook.office365.com
+ (2603:10b6:300:129::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.5 via Frontend
+ Transport; Thu, 10 Jun 2021 16:29:36 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
  header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT027.mail.protection.outlook.com (10.13.174.224) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1NAM11FT024.mail.protection.outlook.com (10.13.174.162) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4219.21 via Frontend Transport; Thu, 10 Jun 2021 16:29:34 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.4219.21 via Frontend Transport; Thu, 10 Jun 2021 16:29:35 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Thu, 10 Jun
- 2021 11:29:32 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 11:29:33 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Thu, 10 Jun
- 2021 09:29:31 -0700
+ 2021 09:29:33 -0700
 Received: from Bumblebee.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.4 via Frontend
- Transport; Thu, 10 Jun 2021 11:29:30 -0500
+ Transport; Thu, 10 Jun 2021 11:29:32 -0500
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 15/24] drm/amd/display: Always write repeater mode regardless
- of LTTPR
-Date: Thu, 10 Jun 2021 12:28:29 -0400
-Message-ID: <20210610162838.287723-16-Anson.Jacob@amd.com>
+Subject: [PATCH 16/24] drm/amd/display: Improve logic for is_lttpr_present
+Date: Thu, 10 Jun 2021 12:28:30 -0400
+Message-ID: <20210610162838.287723-17-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210610162838.287723-1-Anson.Jacob@amd.com>
 References: <20210610162838.287723-1-Anson.Jacob@amd.com>
 MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e757229e-1c7e-46a5-0643-08d92c2cef07
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3920:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB39209116717F5B7824E102DAEB359@MN2PR12MB3920.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
+X-MS-Office365-Filtering-Correlation-Id: 9f8516d1-5074-402d-d053-08d92c2cef61
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5206:
+X-Microsoft-Antispam-PRVS: <BL1PR12MB5206245EC64E857BB9E4A9FCEB359@BL1PR12MB5206.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0PO2u3MtLtQ5J+3elm+ZZkXm1yr5dS3CHXr0XhscyMjQQmKbXUiGamH8QESbKMbrFPCjUDHmBFw1WNZheV+7Z/sA50OmtlF01MmjKSUiBb8mdoLJmfqjs6KvXF+cZsG6Kw0Y4FnpnYBNhPtMKKuW5lvOqPyB8dPtjJjnk076K81K9LDahWx4lfYpGlF+2F2HSJ2oZqI7PMyP7rK2is3dBfwPwsvP8YEuTw5//y0mrzah1OsyL8IUOzE6cmEeMD3vjFsvXROLS7KSepsfw73MnobUfi+V84QnLjDNPfezrQftrf2VDrpuJNP2v/oSiCkXmT2ma6OekJdIOiseQU7ZLZecwQ7kOJ/MfmiqqsSj33Q+xsUiDTD9/htJuLX524pf0ruvSJK0lQzewEoargGIifzQduSg0wrEE4jP0n193P1u48gZtchgl2fARn41Exdh4wtMB2+9mSM8O+UgS4rL7uS2xpLz6w94TzqgO37cVEEHHTPOVYSqBpiQ9UzKINXoo+GaNm6jrsPsZCjCq+XvQuE5rfNFDt6tELybWEq4tjq46CEPI1CexZ/cv4l4JxqPtbMmv1h7V9LzMsoVqAmDKarl7P0Mxv2rwnxkjwWOptNdqR1Abqh5ypWA1COK35gpr3BmFXqixC1NhpEQliGgAAT6Ar9ixFmO4xG2CONGaMCLMPcN3usNgrRIyaEb6+Z7Pq2drdv2jPWDFllG0ZQVdw==
+X-Microsoft-Antispam-Message-Info: KcmHPHUpiQ06uZkJoJhfwtRv84NjBB5JhIEbNQqUF/r5jnM6KTRzKisUd4M694TOJ6NlbFz+gYiio9hSrEy5VD9tndMxYveMl4wH1rDtK2aDCpKtlv3jSdVqNUFSW44MbdebZavOY3Ib+ILGUZ6957OfB9F+SCfkETmY2ih3pGc2wXCQjMm9bdvgYku2vybIQrFmIa9L1gIoIxyd2TFu2ofRBA5tC0+/wOVkEFwMg3AevEUGenZeZmZgFIlax+OUACrh7BzB7zad0H4s3q5iJx304vkYDitB5idHr5em5Sqh3uKwAZQel4fVTjAEtQYJAf0rFms/iCUv/nvq+BYEJ7zQd0l/vpadg0ae5nIRa7h5t5KtKcQUGlK1iRUXo0rxcyxC8jWWf1JGNRCCXps22ei3f19YlKZW+61goSYUjE/ckjxPEmnXeBIyzGo8vVgiDaBIhvNgcFSUMlJOhIC2mtKgjn5XPdSri8QS6yrSWBsnj7qXZ3fxDiSKx3KVW0Knknm33bxnO+ce8YFT4V7oHyow0NtXk9jf2bxdCavyVrTh8i+RDhlNAwaLr/29jjhN0tzFAb2kL3zvZuFLDWgzfHeaIzENeTHzeyAuxd55QJZDswED+DJRuFQq2bVbzSGPHad69Je6GH07yF5iVcaLR/81ZdV59pHs1HTPNt05JIhf6m+m7mj/aK491b/UVnf1
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(346002)(376002)(136003)(396003)(46966006)(36840700001)(70206006)(7696005)(83380400001)(316002)(47076005)(6916009)(2906002)(70586007)(2616005)(8676002)(1076003)(478600001)(5660300002)(54906003)(4326008)(26005)(36860700001)(36756003)(186003)(336012)(81166007)(86362001)(356005)(426003)(82310400003)(8936002)(82740400003)(26953001)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(346002)(396003)(376002)(39860400002)(136003)(36840700001)(46966006)(316002)(70206006)(54906003)(70586007)(8936002)(81166007)(82740400003)(83380400001)(8676002)(478600001)(86362001)(356005)(186003)(82310400003)(7696005)(47076005)(1076003)(6916009)(2906002)(5660300002)(2616005)(26005)(36860700001)(426003)(4326008)(36756003)(336012)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2021 16:29:34.8484 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e757229e-1c7e-46a5-0643-08d92c2cef07
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2021 16:29:35.4374 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9f8516d1-5074-402d-d053-08d92c2cef61
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT027.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT024.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3920
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5206
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,41 +116,36 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Wesley Chalmers <Wesley.Chalmers@amd.com>
 
 [WHY]
-SCR for DP2.0 requires that LT be performed with PHY_REPEATER_MODE
-programmed to 0x55 (Transparent) whenever PHY_REPEATER_CNT is any value
-other than 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, or 0x01.
+DP specifies that an LTTPR device is only present if PHY_REPEATER_CNT is
+0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, or 0x01.
+
+All other values should be considered no LTTPRs present.
 
 [HOW]
-Write Non-Transparent (0xAA) to PHY_REPEATER_MODE when LTTPRs detected and Non-Transparent is
-requested.
-Write Transparent in all other cases.
+Function dp_convert_to_count already does this check. Use it to determine
+if PHY_REPEATER_CNT is a valid LTTPR count.
 
 Signed-off-by: Wesley Chalmers <Wesley.Chalmers@amd.com>
 Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index 586f05a6cd77..c68b49a14f88 100644
+index c68b49a14f88..7e52bb3047bc 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -1618,11 +1618,10 @@ enum dc_status dpcd_configure_lttpr_mode(struct dc_link *link, struct link_train
- {
- 	enum dc_status status = DC_OK;
+@@ -3699,8 +3699,7 @@ bool dp_retrieve_lttpr_cap(struct dc_link *link)
+ 								DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
  
--	if (lt_settings->lttpr_mode == LTTPR_MODE_TRANSPARENT)
--		status = configure_lttpr_mode_transparent(link);
--
--	else if (lt_settings->lttpr_mode == LTTPR_MODE_NON_TRANSPARENT)
-+	if (lt_settings->lttpr_mode == LTTPR_MODE_NON_TRANSPARENT)
- 		status = configure_lttpr_mode_non_transparent(link, lt_settings);
-+	else
-+		status = configure_lttpr_mode_transparent(link);
- 
- 	return status;
- }
+ 		/* Attempt to train in LTTPR transparent mode if repeater count exceeds 8. */
+-		is_lttpr_present = (link->dpcd_caps.lttpr_caps.phy_repeater_cnt > 0 &&
+-				link->dpcd_caps.lttpr_caps.phy_repeater_cnt < 0xff &&
++		is_lttpr_present = (dp_convert_to_count(link->dpcd_caps.lttpr_caps.phy_repeater_cnt) != 0 &&
+ 				link->dpcd_caps.lttpr_caps.max_lane_count > 0 &&
+ 				link->dpcd_caps.lttpr_caps.max_lane_count <= 4 &&
+ 				link->dpcd_caps.lttpr_caps.revision.raw >= 0x14);
 -- 
 2.25.1
 
