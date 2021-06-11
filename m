@@ -2,97 +2,97 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A5EB3A3C91
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Jun 2021 09:06:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 549E63A3CBD
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Jun 2021 09:16:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B4336EE33;
-	Fri, 11 Jun 2021 07:06:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF1676EE34;
+	Fri, 11 Jun 2021 07:16:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2047.outbound.protection.outlook.com [40.107.244.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C821C6EE32
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Jun 2021 07:06:00 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2076.outbound.protection.outlook.com [40.107.93.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D87E06EE34
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Jun 2021 07:16:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LzO8qz1/kORzMRvWM1X1PmMZVix5MSOCYcoeyvG3OZyEQ3BEzl9xwIQAZQCAbEJ4/yRMHYuhEKzGcu7Q4A+n2/eacXDnx+E8Cc8kpiKVHLnNuh2YpL3q8N4AWEw9bvynZTA3ejLF7Q0cIB6SBHED0Oqh7CwPM3NroYLJo6/5HBFjIDrnx6K4MSmXP3M3RtPDfFScat8cCeY3hXZKz0Qoxf8GRvf+LqmWWDB9ia79Oxl+Mi5fwFxwH5dXA43D0z57wpYNCNU6ou6mIMOv2H/7qe7KxUYiNuI+h+/wmdJM92FD/iWaRO5VDlTul46gp1ueGteyPPqsMrf0u2Tna6bscw==
+ b=JUrcMWK45BO3HCFWNSZnwDHQRcTCZj+sQd9MxEBdVHnc/8PuzPxe6UoKDMXbha+Yzh3rLRMRlDe4CINMdYKlOomAEbtBHIsQuirQGlZRkL9uKOFCyBhRlhWDKPoEEQv5SqET8D1BKSJd6635zj4EJ2uqhQcL5LW2lQ6hd9ysNdpBQIfcCzSPwCPrnW4SvV/zhuVaPhen/jOyw3NK73O5TbxHu8VfNFMhWax03lE7euysYKJJJWrSFviDty7XfleXieLZiugKl0NK8zKXdtsTJR/OuDmcEhXtdlAnnfb97pHr36hamvvEspu0itug1SalnhFo9mpRFHnPpOo68wMESQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b1ZJ2S9eNZlgLOTPVD7o8gBJYqPZ8Qm3dnytYxgOtlY=;
- b=H3v+snKpjxgBdKKvSvxzi2ccLH7YC5xeoAEU+KHrxcSTMKzPNwKkH1zVhWYydb1QujbSZ3m8EAQHGVNdf+jTE15pxKZ+O7zTjvmmRLTXHxX0BVcynlz/n2eydhkUdhZXPqxQSNv1pdvRBJklceiKfXW9Dn3scjKnVIWcT5NApKroQ3f7+8KwE2yP5/V9wgTU4l5x4AzyeoCJiQQ9P86bEQD+0fyt/hsxgkmrd5Xd8CLcNjMFnR/456YGS4IvjuuUgvzMztbw7WCt82sz6EIOWq/qW6PobQ+Jvud6JMsbCoNwcWo4IiyZvYbo6y3rzaG01M7SQJrEs472i73fyESrxQ==
+ bh=T9f6zpRdvx4Wh8ZoFqQgIdDR//Vb5idynR6NKbkO8+w=;
+ b=UFvILvoVDVVTeYhMRHaG8vgG/IuybZcwNEJTbHsI3P2W1gAM/k5tV5YQZAg1fwDbAQDI6/j5W/UvYXU4i8Ti8iIKTA98uoCS+xg/6yYG97q2LndlpN9qkFCA+EuCFGccZfTT4NK7RwTmsLvsGCz9RppSRxjvBU+Owjt2+IcC2tL+c0Ifzh9vRvB818PqRQIAcgYMfnwIAQIpUaD59JukIwRHp/Axy7fiF+CXixABFnt5TQdNDC7o7SOL7U73SSg/gdQfHeSC00FTJAeNtitbm54hTG6QeJj5IotqCCI++sNZI44HKEUIbPF0NdbjWhWm/Lxndq48Tu4jzgr+yR+e9A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b1ZJ2S9eNZlgLOTPVD7o8gBJYqPZ8Qm3dnytYxgOtlY=;
- b=VLlhxgzN686d4VDxDKSd0uUTGGwM/g1T1JPwRvwk5G6HwPfpylc2PuPMoLcN2lw6leXK7ST7Fyu4NiIgbX3L9eUuSslvTJlCEuUHyN6jRSZ5/SDl+FlTH0z6A5gM0aCt5YydtIAVo2oS8278g6TbTRaFCOGJnViZcmE3V7bovA0=
-Received: from BN9PR03CA0970.namprd03.prod.outlook.com (2603:10b6:408:109::15)
- by BL0PR12MB4692.namprd12.prod.outlook.com (2603:10b6:208:82::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21; Fri, 11 Jun
- 2021 07:05:59 +0000
-Received: from BN8NAM11FT038.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:109:cafe::2f) by BN9PR03CA0970.outlook.office365.com
- (2603:10b6:408:109::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21 via Frontend
- Transport; Fri, 11 Jun 2021 07:05:59 +0000
+ bh=T9f6zpRdvx4Wh8ZoFqQgIdDR//Vb5idynR6NKbkO8+w=;
+ b=snBnqITXrUZYUeOfbFIp5wAvFa6DiBif+GSePdakCNHxmJSqRxrMTJYgC185a0uevzfj645PWt4RZr45Y226TIOOqE5pU3TSzxSgP/kCwKLbPkmkL58VgPuuuFa5HzYm/DH5Wl+LWV0gIh84Xp16x8nOfPhyOPnqUCtqqajf6IU=
+Received: from MW4PR03CA0360.namprd03.prod.outlook.com (2603:10b6:303:dc::35)
+ by DM6PR12MB3993.namprd12.prod.outlook.com (2603:10b6:5:1c5::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.22; Fri, 11 Jun
+ 2021 07:16:09 +0000
+Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:dc:cafe::98) by MW4PR03CA0360.outlook.office365.com
+ (2603:10b6:303:dc::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.20 via Frontend
+ Transport; Fri, 11 Jun 2021 07:16:09 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
  header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT038.mail.protection.outlook.com (10.13.176.246) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4219.21 via Frontend Transport; Fri, 11 Jun 2021 07:05:59 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ 15.20.4219.21 via Frontend Transport; Fri, 11 Jun 2021 07:16:09 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 11 Jun
+ 2021 02:16:08 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 11 Jun
+ 2021 00:16:07 -0700
+Received: from yajunl-gv.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 11 Jun
- 2021 02:05:58 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 11 Jun
- 2021 02:05:58 -0500
-Received: from hawzhang-System-Product.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.4
- via Frontend Transport; Fri, 11 Jun 2021 02:05:57 -0500
-From: Hawking Zhang <Hawking.Zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 8/8] drm/amdgpu: disable DRAM memory training when GECC is
- enabled
-Date: Fri, 11 Jun 2021 15:05:46 +0800
-Message-ID: <1623395146-2162-8-git-send-email-Hawking.Zhang@amd.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1623395146-2162-1-git-send-email-Hawking.Zhang@amd.com>
-References: <1623395146-2162-1-git-send-email-Hawking.Zhang@amd.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4 via Frontend
+ Transport; Fri, 11 Jun 2021 02:16:06 -0500
+From: Dennis Li <Dennis.Li@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <Alexander.Deucher@amd.com>,
+ <felix.kuehling@amd.com>, <Hawking.Zhang@amd.com>, <christian.koenig@amd.com>
+Subject: [PATCH] drm/amdgpu: enable support error injection broadcast to all
+ instances
+Date: Fri, 11 Jun 2021 15:15:57 +0800
+Message-ID: <20210611071557.12344-1-Dennis.Li@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 19d5e675-e019-4d6b-a944-08d92ca75d9d
-X-MS-TrafficTypeDiagnostic: BL0PR12MB4692:
-X-Microsoft-Antispam-PRVS: <BL0PR12MB4692F936027CCD0884489A8BFC349@BL0PR12MB4692.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Office365-Filtering-Correlation-Id: bb180e92-e4b4-4eb3-591e-08d92ca8c93f
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3993:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB399309602D36E2D47C2B0EADED349@DM6PR12MB3993.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2150;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ffOnI9lDJPeiYYsv2W6fqr/uKwAFnQOhRmeHt62ILu/k0LX2tVuCqm3/WIsYwhVMqHvaJR2lvjWvQfvZhuBBEKhTGIaaOpVBccBzlAQHmlXtVyEEuucUSMnv3iT20HbhFD8YUX4L0fiZGTEmVjC0GvbayYxIsqagbSAWFd74CtdnrmedxmK2ZM3HLFIkrMQNv1hpxc/ja94/G109TcDE3MskUwsJszzGznCckmM0jGYM4NNXXFKCdhurlRbGfOODan1zvewxe4hBFXh+3VcuNPVGB2UCtloS45KS0v/NeJZhRj0MFXlXOQb7S1mtQbJZ1w9KLRwLalZFTEZuE4aMLZovd4/8aqak0+hQVTLdqX2Y5hJqkXLGRf94XjI8P0JlMsiu9CX+IPVpfzcDlpY1RujwdTT+5621r8YR6rnV4cXV6uy40OTQejP07e7H9HzfUu8k24nSZxt4K/nKw8dtOEjz0erV8Vrc8oXrbemYhe9QgoKXYvhe8/WCUteIpOLnrcq+vuwsPbHT1afRlGDfXMdMFRrk/HA06NeAl5caKTcXFJ/yEMcyR0hdKZx/8Pv4iRo50pZ9Nve6siJJCNNbaxXgypqSOK6bDwvF2s8XCMdCnd4ca/bNnjqh/1OflUWvs/Lzxf958z0myiZac59++Y9ch3gK1uRWlIBIywJRAYPtXhpoa5VfAFGgbDxob5Mm
+X-Microsoft-Antispam-Message-Info: AxptwZteHWVP9XY/1kb+3sC2tZHrrok67Tr3X4ycbGpbFMj/JYCuTw6E++ZbomSKkwT0cVwTm0Vj1RfeO+fGUITPceNYXJDXp/8em8hKedulsToEaBguNjSZSA34oEhq1gymZJo7dR/T8rgprued/SMtyJE5SFvQ80hRiLvBVicrBqBN/yXpBbMQJCBY2aoT7FBqj1UjrO+9WJSX0N3RlhNP01xAqiaTtkw+fcCh6esoh4Fz6TMjiE1M4IBOL89I+OVPXNDxsVSr89xUthknZwA/WRQnWV6cwyATNwwwT2y89UDl3Fu5IVckEcFRvJL3RkdckNDOIq5AfYD8aiYa63bZU99WjqGtuUCLcQLcJEcFdOucW56yfKnIeOG67xXSFzsRER8gwRbAc5BhRi5tmQJSkZKMyHnXy6iwA3kbikMAPs/1xNebW34ox6hvq+6jO+G+XM1JS77lB9puw17Bal4jBDLXlexB5MDl9uPFigM1u0M9nXfKjM/d1vM1+NdcHOZ7epW2AxsxN/XMoCtFsRIrAHUO8YCCvb7PmetHs+S7oLR1qAdVvc7ZtdmpEByd6miXd7KQvDhXGOQEv6+cf7HYq2i0yD04eNYtwmSLfAnfBwAQ5rTtBIfNCd6kuHQ2MFAJcGcMYBQUysguNDP1o+7DaFEXW/NoUf9j4OB49WHo1WoTqU48jD+tHFKcdt2HGuru2cRFyIaI6x5MHxWeVQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(376002)(396003)(136003)(346002)(39860400002)(46966006)(36840700001)(2616005)(5660300002)(82740400003)(36860700001)(6916009)(4326008)(70586007)(26005)(336012)(186003)(7696005)(426003)(47076005)(2906002)(316002)(6666004)(8936002)(36756003)(81166007)(8676002)(356005)(86362001)(70206006)(82310400003)(83380400001)(478600001)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(376002)(136003)(346002)(39860400002)(396003)(46966006)(36840700001)(82310400003)(36756003)(70206006)(8936002)(316002)(36860700001)(6666004)(356005)(5660300002)(1076003)(4326008)(70586007)(4744005)(86362001)(26005)(2906002)(47076005)(6636002)(336012)(186003)(478600001)(83380400001)(82740400003)(8676002)(7696005)(2616005)(110136005)(426003)(81166007)(36900700001)(2101003);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2021 07:05:59.0970 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19d5e675-e019-4d6b-a944-08d92ca75d9d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2021 07:16:09.0586 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb180e92-e4b4-4eb3-591e-08d92ca8c93f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT038.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4692
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3993
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,116 +104,33 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Dennis Li <Dennis.Li@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-GECC and G6 mem training are mutually exclusive
-functionalities. VBIOS/PSP will set the flag
-(BOOT_CFG_FEATURE_TWO_STAGE_DRAM_TRAINING) in
-runtime database to indicate whether dram memory
-training need to be disabled or not.
+when the address is -1, TA will do error injection for all instances of
+the specail sram.
 
-For Navi1x families, two stage mem training is always
-enabled.
+Signed-off-by: Dennis Li <Dennis.Li@amd.com>
 
-Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Reviewed-by: John Clements <john.clements@amd.com>
-Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 47 ++++++++++++++++++-------
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h |  1 +
- 2 files changed, 35 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index 28f95c5cd373..7e0e676a9959 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -238,6 +238,7 @@ static int psp_sw_init(void *handle)
- 	struct psp_context *psp = &adev->psp;
- 	int ret;
- 	struct psp_runtime_boot_cfg_entry boot_cfg_entry;
-+	struct psp_memory_training_context *mem_training_ctx = &psp->mem_train_ctx;
- 
- 	if (!amdgpu_sriov_vf(adev)) {
- 		ret = psp_init_microcode(psp);
-@@ -250,18 +251,36 @@ static int psp_sw_init(void *handle)
- 	memset(&boot_cfg_entry, 0, sizeof(boot_cfg_entry));
- 	if (psp_get_runtime_db_entry(adev,
- 				PSP_RUNTIME_ENTRY_TYPE_BOOT_CONFIG,
--				&boot_cfg_entry))
-+				&boot_cfg_entry)) {
- 		psp->boot_cfg_bitmask = boot_cfg_entry.boot_cfg_bitmask;
-+		if ((psp->boot_cfg_bitmask) &
-+		    BOOT_CFG_FEATURE_TWO_STAGE_DRAM_TRAINING) {
-+			/* If psp runtime database exists, then
-+			 * only enable two stage memory training
-+			 * when TWO_STAGE_DRAM_TRAINING bit is set
-+			 * in runtime database */
-+			mem_training_ctx->enable_mem_training = true;
-+		}
- 
--	ret = psp_memory_training_init(psp);
--	if (ret) {
--		DRM_ERROR("Failed to initialize memory training!\n");
--		return ret;
-+	} else {
-+		/* If psp runtime database doesn't exist or
-+		 * is invalid, force enable two stage memory
-+		 * training */
-+		mem_training_ctx->enable_mem_training = true;
- 	}
--	ret = psp_mem_training(psp, PSP_MEM_TRAIN_COLD_BOOT);
--	if (ret) {
--		DRM_ERROR("Failed to process memory training!\n");
--		return ret;
-+
-+	if (mem_training_ctx->enable_mem_training) {
-+		ret = psp_memory_training_init(psp);
-+		if (ret) {
-+			DRM_ERROR("Failed to initialize memory training!\n");
-+			return ret;
-+		}
-+
-+		ret = psp_mem_training(psp, PSP_MEM_TRAIN_COLD_BOOT);
-+		if (ret) {
-+			DRM_ERROR("Failed to process memory training!\n");
-+			return ret;
-+		}
- 	}
- 
- 	if (adev->asic_type == CHIP_NAVI10 || adev->asic_type == CHIP_SIENNA_CICHLID) {
-@@ -2676,10 +2695,12 @@ static int psp_resume(void *handle)
- 
- 	DRM_INFO("PSP is resuming...\n");
- 
--	ret = psp_mem_training(psp, PSP_MEM_TRAIN_RESUME);
--	if (ret) {
--		DRM_ERROR("Failed to process memory training!\n");
--		return ret;
-+	if (psp->mem_train_ctx.enable_mem_training) {
-+		ret = psp_mem_training(psp, PSP_MEM_TRAIN_RESUME);
-+		if (ret) {
-+			DRM_ERROR("Failed to process memory training!\n");
-+			return ret;
-+		}
- 	}
- 
- 	mutex_lock(&adev->firmware.mutex);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-index 2bd85b505f2c..0b514ba31e42 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-@@ -224,6 +224,7 @@ struct psp_memory_training_context {
- 
- 	enum psp_memory_training_init_flag init;
- 	u32 training_cnt;
-+	bool enable_mem_training;
- };
- 
- /** PSP runtime DB **/
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index 885a78301bbf..c828ce9525d4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -402,8 +402,9 @@ static ssize_t amdgpu_ras_debugfs_ctrl_write(struct file *f, const char __user *
+ 		ret = amdgpu_ras_feature_enable(adev, &data.head, 1);
+ 		break;
+ 	case 2:
+-		if ((data.inject.address >= adev->gmc.mc_vram_size) ||
+-		    (data.inject.address >= RAS_UMC_INJECT_ADDR_LIMIT)) {
++		if ((data.inject.address != (uint64_t)-1) &&
++			((data.inject.address >= adev->gmc.mc_vram_size) ||
++		    (data.inject.address >= RAS_UMC_INJECT_ADDR_LIMIT))) {
+ 			dev_warn(adev->dev, "RAS WARN: input address "
+ 					"0x%llx is invalid.",
+ 					data.inject.address);
 -- 
 2.17.1
 
