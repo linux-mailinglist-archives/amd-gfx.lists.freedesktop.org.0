@@ -1,97 +1,98 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1684E3A3C8E
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Jun 2021 09:06:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B11543A3C92
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Jun 2021 09:06:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 958596EE2E;
-	Fri, 11 Jun 2021 07:05:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 233EB6EE35;
+	Fri, 11 Jun 2021 07:06:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2050.outbound.protection.outlook.com [40.107.223.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 452F86EE2E
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Jun 2021 07:05:57 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam07on2082.outbound.protection.outlook.com [40.107.95.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3D5A6EE34
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Jun 2021 07:06:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RC9abfFHnE8H0hpZBLROVGKMkGobZ2ah8srahz4770GHfPyGG2ZJ8zXCaO8GRHqsKl0Xsm/0vb8tetEvl5EpivIEUbPwd73/W8P+ko6XGx+rH5gkHet+goi3sLkJi5HLfzshMaybpyqSH4V/o9xUqOxNPaSJ5ckvZQ658ML15E+svBGufwcRbLHV6k6yk9E9pOQtGtUvR0kI/Hum7w6D+SP4hntIw0UOr8klTZZtHx+Qpf/qPp9r78qExC3tQ5+NSQTgKub8Fg2SK2t+TduyCVeOrg4B/SaykPW0PrDFFRfZZnXhu3Tpy7lbnBmBPqMh2LIpYaakINGoCz/lgeoSkQ==
+ b=PNMqsMMlWAdEDIigNbyw74QkH0IfpDJtTL0q8nnBnsMEknqgmq5irAzBgLqjwERsS+MzfN2b5VbNdFp6f37bKaUCHxLeiYhaeRqcfFK71VytM854wrhlEEzwwYfFUcy7B0TRYhlIlwvYc2IzK76NHwHOPP2HfQjL/J/uRUk3Tp3wzQnJfDCIyRBVFcCoxFXzRb4KXr5103Pfjh6okl7yvSQwgTUwiaXiNgoGrCMHeQzTdfTCKoEy/pLNqHkxV8MuwdHffkw/3/gKybfwLWGtIbwVM/VJzNuqfRBiLwZT48EMbRknsXNEsUIhfn4Elj0iH0sQz01imIchfdZAnvSw4Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rN+L6uEun2bkPlzMEzGutPDYu77KUPQzAcul1liZOuo=;
- b=R1tOUyipUg1LgSmWdR5v/QVMF8XJAlZKthHr1kYCQ77KWW9ibHFo5uidITYBxuNeduRlx2h75XyfWL3YyfpCy4VVZomiOZELHH14mW5Inu6ODTLtRdk86grN25h9nufUIAP1NbyHiBysUE67L5rKUT4Svs6FmpD5/gGzQ7WzY+ET2KEeRg8t9BfhEP0EpM5LuP5qiZK4qn4HwfZvJSrNgM0dc0D3P0ZzCVQOs+dTVmXsRVpGHGoLE/TlV3pqH7E3dfNPlILg0zNuZ3kDBW1zxw+IrthtLnYZa5lrq3KWUK5lNp3avZ+NGRhe4rqBCZsM8WVkPCHtKnmYavfyS731eA==
+ bh=1iozEOaY7rY525poOTEjjCOW5i+0V3TV837lUz+PgMI=;
+ b=RS7gWN0yaOyAfnmTBY3n9bXbTcr/FF5nCkw/QdmE0wm4lw5Mi9W0ROqiVEtjC95LMobwVyw8XWWRCXVqrp7qCcAILzS+J5btAzQExd7Dwh5x+YAyC5ZqOxPOhwHFB7noui4+9gxHH8X7wp2ixlpCZJJSkNFBu08cDFyUmfjYoEqjuB+lbJtYg9BHW/7r3OvzIMjHFHgAexf8MH81JcxAAaJFrRnWO7D8QORakM6CqbnDNt5wnrM/pTWM2+1hQDADrAl3uDRF0350aJ6ebVfI9ZlQ/CYiVbljgvrA+5e6rtlVvXteQW0oh9U+UtyvpHcBaCDkRj489jB+FjHcV8HgYA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rN+L6uEun2bkPlzMEzGutPDYu77KUPQzAcul1liZOuo=;
- b=UNIbwYYnACN+Dc6jz5SAbUSjEutIbVsIPFFe2cGt6tds6ycJiFZhNuwQkinJhymXJ8R4hmZyphgCmbPeat7J++b9I4zRjOmDnW/1ZSCcNLzP6OPDchqS68lNEljcXRF0q71eXxOutsrK1IQzFI3uteq7wtxPVWTmKlaYlzw8ouk=
-Received: from CO1PR15CA0088.namprd15.prod.outlook.com (2603:10b6:101:20::32)
- by CH2PR12MB5529.namprd12.prod.outlook.com (2603:10b6:610:36::13)
+ bh=1iozEOaY7rY525poOTEjjCOW5i+0V3TV837lUz+PgMI=;
+ b=TQGdE9vM6set8t0yltlkOP2jFKDSpaLkzdR1KMrqVAsmsPyleW8vS+OI/AGsFo6sfsS8hW8nkLd2if+Yw4gXwlKNFeNJaf4WaAnqxi8SZqTcBPuyUvB96OjobH0la+KZDYb9Jb44+/CseEXjoQUiE9rNAUI9JGMURIiMVfDqjt4=
+Received: from BN9PR03CA0763.namprd03.prod.outlook.com (2603:10b6:408:13a::18)
+ by BN8PR12MB3025.namprd12.prod.outlook.com (2603:10b6:408:66::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.22; Fri, 11 Jun
- 2021 07:05:55 +0000
-Received: from CO1NAM11FT020.eop-nam11.prod.protection.outlook.com
- (2603:10b6:101:20:cafe::e9) by CO1PR15CA0088.outlook.office365.com
- (2603:10b6:101:20::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21 via Frontend
- Transport; Fri, 11 Jun 2021 07:05:55 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4173.26; Fri, 11 Jun
+ 2021 07:05:56 +0000
+Received: from BN8NAM11FT054.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:13a:cafe::8f) by BN9PR03CA0763.outlook.office365.com
+ (2603:10b6:408:13a::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.20 via Frontend
+ Transport; Fri, 11 Jun 2021 07:05:56 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
  header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT020.mail.protection.outlook.com (10.13.174.149) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT054.mail.protection.outlook.com (10.13.177.102) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4219.21 via Frontend Transport; Fri, 11 Jun 2021 07:05:55 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.4219.21 via Frontend Transport; Fri, 11 Jun 2021 07:05:56 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 11 Jun
- 2021 02:05:55 -0500
+ 2021 02:05:56 -0500
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
  (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 11 Jun
- 2021 02:05:54 -0500
+ 2021 02:05:56 -0500
 Received: from hawzhang-System-Product.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.4
- via Frontend Transport; Fri, 11 Jun 2021 02:05:53 -0500
+ via Frontend Transport; Fri, 11 Jun 2021 02:05:55 -0500
 From: Hawking Zhang <Hawking.Zhang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 5/8] drm/amdgpu: add psp runtime db structures
-Date: Fri, 11 Jun 2021 15:05:43 +0800
-Message-ID: <1623395146-2162-5-git-send-email-Hawking.Zhang@amd.com>
+Subject: [PATCH 6/8] drm/amdgpu: add helper function to query psp runtime db
+ entry (v2)
+Date: Fri, 11 Jun 2021 15:05:44 +0800
+Message-ID: <1623395146-2162-6-git-send-email-Hawking.Zhang@amd.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1623395146-2162-1-git-send-email-Hawking.Zhang@amd.com>
 References: <1623395146-2162-1-git-send-email-Hawking.Zhang@amd.com>
 MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e10f214d-a32d-4c6b-ac4e-08d92ca75b8c
-X-MS-TrafficTypeDiagnostic: CH2PR12MB5529:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB5529676D72F4AC478845E0C0FC349@CH2PR12MB5529.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
+X-MS-Office365-Filtering-Correlation-Id: 2a1193b7-50ff-45a7-a8ad-08d92ca75c2c
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3025:
+X-Microsoft-Antispam-PRVS: <BN8PR12MB302512CDE00167223AC897B4FC349@BN8PR12MB3025.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: r+GEw9+aHQkA6QnS4EkKAtMzEEm2DKtDPOOA5gpXYAfFFuObi76qJrROvFMrJzRPRz0mKYlSdI5r9opABrz/dlbgFJXETDq+NuKemcwy1MR/BVLPEIVw/jXLlNkhkCOmFyFbRho8gHJXhLGvcsDPiiETxP6LKPAVZB5nNIlZtBWbZqTHpAzX3p4w/dT28dC+YbcBpQEA9tT/UXd2Th7ox9aslV+M7sfOFLwbkRohRBk30U+/Ax5V/xmmfhZe/Dv9PVJbppQx20lMMtTttCZraaJBKc/HFuBNDWVomDosv0zVG0RldKXf5E1g1oQcypLfOneZ5wKC2+VccumFAY5AudMRLZ0kzpFQQdIwxHP4YFmQCUvWzoIjbSj/KTWYGh+eZL9KvSMsEysJJ/8eDUuDUzwZQm4Vbd83+NH+MqiPYnScXaj2aRc++0lItjMyCRVKsQlEB+/GJD1g2p9x9KRt3PZtSBlBGg8O+aFuS+8KfYgdtS4VlSf7l4qPKb/nCGmnBllkNAJjkNoxMu41nB7z2/0FTbGRlyOzTQPJ1yxIDIrUe3Uq4CAprLg9BfqbKnp23NISlrqrtyVkqy0/UzWAsmfqAiZteSRPocAxsjrJ2DfDtHiLFjaYOOYblLrsXY6bWxtzPRrmpNZr6CcNERKWGIOAxHtcPtoZChBdj20ySl3PXoq763gXhiR9kbGOd7Rs
+X-Microsoft-Antispam-Message-Info: 2XmVjOECqtEAb4nPLOo4nJpYnRhks7pkcqlQ70gyc0c4MR+EQeVTgtGyTkXqFtI6jWAVILws7Ckj6Iyq7KO4ZCqBWUECWy2Iyf3Fj7PbZSz0mAFz2fmfqTrtLo7KNnTOu+/hXQbqNzH4hnX1IH67kZDMsChivabeF+tTAsTl6iGTjGMV1ySGsfF0t5yq488Wj4CuZqU1ld7J9APJVzShfAPHJqXRYExiAF4yTzbSq3D0bc64rvI415/JhBWgXG7QS9bsCgCVQivVf2Y/kUJCgEmP+zAdYtcfvFXyRScQc9IoMpmMY3ahxPKp1IK5rV8FYY/eQCxZOKmTYQXm3gDLOkCH+A+HljukMQYustAT/aTeKXHpdYam3UHsiCokKGinIkpZWFgW3KXOXwUmQswCe3nE3C1R2fpK4DtFRH7kQt7IwxOlYAgaW9RH00+6WvcWj0wb4ludv0TKYLcWYZ1VYvYBWNU7r/HKwi3VDjlg32EDbV+plO272HToupYUDTUyyfz/qCuRKWZZE8vBIppj909hTk4BVHiLcP7SMmBMZh2fjHbh5MKEftmxNDHWYQq1j0+fk8Hknpw+TE0b3JnXqqWvCkpMGE8Gfsf9pi+0qaQd94CUdqIkWGo3JN/cYENu3KJNdPJfvtzRv1k/Xz0UjEbo9VD8tkEvtBle2JeCm5Ovr0G2mPNMHVp7E9yZ0Nv2
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(346002)(376002)(136003)(396003)(36840700001)(46966006)(8936002)(426003)(336012)(36860700001)(82310400003)(2616005)(70206006)(8676002)(2906002)(316002)(356005)(86362001)(6666004)(7696005)(47076005)(6916009)(478600001)(70586007)(5660300002)(26005)(4326008)(186003)(36756003)(81166007)(82740400003)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(136003)(396003)(39860400002)(346002)(376002)(46966006)(36840700001)(8676002)(8936002)(7696005)(6666004)(356005)(2616005)(478600001)(26005)(316002)(6916009)(4326008)(426003)(336012)(81166007)(86362001)(186003)(36860700001)(47076005)(70206006)(5660300002)(83380400001)(82740400003)(82310400003)(36756003)(2906002)(70586007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2021 07:05:55.5133 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e10f214d-a32d-4c6b-ac4e-08d92ca75b8c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2021 07:05:56.6797 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2a1193b7-50ff-45a7-a8ad-08d92ca75c2c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT020.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT054.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB5529
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3025
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,81 +110,100 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-PSP runtime database is used to share various
-boot up information with driver.
+PSP will dump various boot up information into a
+portion of local frame buffer, called runtime database.
+The helper function is used for driver to query those
+shared information.
+
+v2: init ret and check !ret to exit loop as soon as
+found the entry
 
 Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Reviewed-by: John Clements <john.clements@amd.com>
 Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h | 54 +++++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 68 +++++++++++++++++++++++++
+ 1 file changed, 68 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-index 46a5328e00e0..4dad9b539f06 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-@@ -226,6 +226,60 @@ struct psp_memory_training_context {
- 	u32 training_cnt;
- };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index ab4e89186186..dc786c91ec9d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -164,6 +164,74 @@ static int psp_memory_training_init(struct psp_context *psp)
+ 	return ret;
+ }
  
-+/** PSP runtime DB **/
-+#define PSP_RUNTIME_DB_SIZE_IN_BYTES		0x10000
-+#define PSP_RUNTIME_DB_OFFSET			0x100000
-+#define PSP_RUNTIME_DB_COOKIE_ID		0x0ed5
-+#define PSP_RUNTIME_DB_VER_1			0x0100
-+#define PSP_RUNTIME_DB_DIAG_ENTRY_MAX_COUNT	0x40
++/*
++ * Helper funciton to query psp runtime database entry
++ *
++ * @adev: amdgpu_device pointer
++ * @entry_type: the type of psp runtime database entry
++ * @db_entry: runtime database entry pointer
++ *
++ * Return false if runtime database doesn't exit or entry is invalid
++ * or true if the specific database entry is found, and copy to @db_entry
++ */
++static bool psp_get_runtime_db_entry(struct amdgpu_device *adev,
++				     enum psp_runtime_entry_type entry_type,
++				     void *db_entry)
++{
++	uint64_t db_header_pos, db_dir_pos;
++	struct psp_runtime_data_header db_header = {0};
++	struct psp_runtime_data_directory db_dir = {0};
++	bool ret = false;
++	int i;
 +
-+enum psp_runtime_entry_type {
-+	PSP_RUNTIME_ENTRY_TYPE_INVALID		= 0x0,
-+	PSP_RUNTIME_ENTRY_TYPE_TEST		= 0x1,
-+	PSP_RUNTIME_ENTRY_TYPE_MGPU_COMMON	= 0x2,  /* Common mGPU runtime data */
-+	PSP_RUNTIME_ENTRY_TYPE_MGPU_WAFL	= 0x3,  /* WAFL runtime data */
-+	PSP_RUNTIME_ENTRY_TYPE_MGPU_XGMI	= 0x4,  /* XGMI runtime data */
-+	PSP_RUNTIME_ENTRY_TYPE_BOOT_CONFIG	= 0x5,  /* Boot Config runtime data */
-+};
++	db_header_pos = adev->gmc.mc_vram_size - PSP_RUNTIME_DB_OFFSET;
++	db_dir_pos = db_header_pos + sizeof(struct psp_runtime_data_header);
 +
-+/* PSP runtime DB header */
-+struct psp_runtime_data_header {
-+	/* determine the existence of runtime db */
-+	uint16_t cookie;
-+	/* version of runtime db */
-+	uint16_t version;
-+};
++	/* read runtime db header from vram */
++	amdgpu_device_vram_access(adev, db_header_pos, (uint32_t *)&db_header,
++			sizeof(struct psp_runtime_data_header), false);
 +
-+/* PSP runtime DB entry */
-+struct psp_runtime_entry {
-+	/* type of runtime db entry */
-+	uint32_t entry_type;
-+	/* offset of entry in bytes */
-+	uint16_t offset;
-+	/* size of entry in bytes */
-+	uint16_t size;
-+};
++	if (db_header.cookie != PSP_RUNTIME_DB_COOKIE_ID) {
++		/* runtime db doesn't exist, exit */
++		dev_warn(adev->dev, "PSP runtime database doesn't exist\n");
++		return false;
++	}
 +
-+/* PSP runtime DB directory */
-+struct psp_runtime_data_directory {
-+	/* number of valid entries */
-+	uint16_t			entry_count;
-+	/* db entries*/
-+	struct psp_runtime_entry	entry_list[PSP_RUNTIME_DB_DIAG_ENTRY_MAX_COUNT];
-+};
++	/* read runtime database entry from vram */
++	amdgpu_device_vram_access(adev, db_dir_pos, (uint32_t *)&db_dir,
++			sizeof(struct psp_runtime_data_directory), false);
 +
-+/* PSP runtime DB boot config feature bitmask */
-+enum psp_runtime_boot_cfg_feature {
-+	BOOT_CFG_FEATURE_GECC                       = 0x1,
-+	BOOT_CFG_FEATURE_TWO_STAGE_DRAM_TRAINING    = 0x2,
-+};
++	if (db_dir.entry_count >= PSP_RUNTIME_DB_DIAG_ENTRY_MAX_COUNT) {
++		/* invalid db entry count, exit */
++		dev_warn(adev->dev, "Invalid PSP runtime database entry count\n");
++		return false;
++	}
 +
-+/* PSP runtime DB boot config entry */
-+struct psp_runtime_boot_cfg_entry {
-+	uint32_t boot_cfg_bitmask;
-+	uint32_t reserved;
-+};
++	/* look up for requested entry type */
++	for (i = 0; i < db_dir.entry_count && !ret; i++) {
++		if (db_dir.entry_list[i].entry_type == entry_type) {
++			switch (entry_type) {
++			case PSP_RUNTIME_ENTRY_TYPE_BOOT_CONFIG:
++				if (db_dir.entry_list[i].size < sizeof(struct psp_runtime_boot_cfg_entry)) {
++					/* invalid db entry size */
++					dev_warn(adev->dev, "Invalid PSP runtime database entry size\n");
++					return false;
++				}
++				/* read runtime database entry */
++				amdgpu_device_vram_access(adev, db_header_pos + db_dir.entry_list[i].offset,
++							  (uint32_t *)db_entry, sizeof(struct psp_runtime_boot_cfg_entry), false);
++				ret = true;
++				break;
++			default:
++				ret = false;
++				break;
++			}
++		}
++	}
 +
- struct psp_context
++	return ret;
++}
++
+ static int psp_sw_init(void *handle)
  {
- 	struct amdgpu_device            *adev;
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
 -- 
 2.17.1
 
