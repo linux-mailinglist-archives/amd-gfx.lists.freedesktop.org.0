@@ -2,69 +2,90 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E47D3A3CB1
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Jun 2021 09:14:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7CA53A3C8B
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Jun 2021 09:05:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D77F06E1A7;
-	Fri, 11 Jun 2021 07:14:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D00236E5CA;
+	Fri, 11 Jun 2021 07:05:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com
- [66.111.4.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C29416EDC1;
- Thu, 10 Jun 2021 17:12:37 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailout.nyi.internal (Postfix) with ESMTP id 3A9A55C00F3;
- Thu, 10 Jun 2021 13:12:35 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute3.internal (MEProxy); Thu, 10 Jun 2021 13:12:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm3; bh=k4Xbq0MZeyr/siSHgjGs2zB3Mgm
- ZUFZ9ifle0Pu+Vug=; b=Lg/yHrNSHGkbmMF0w/0DOobwYzU5oRggsJnVdUKbZTh
- ElxLIMEkfq92WPmTfRzkJzu6wwDnWFtP+neuSEXBq7cGBkr49kjsWWqI2e3QFuWj
- IyxmRpHgLftdZpcf67fhhzsg/FnIVIkFs3MJeGhGjujNIXjPBWzDd+L1UAKiRkSI
- 8s+f4t6MOld5We1ubHyJTevtZ4Z5YaqzmQGs6fzmugVUE+98/vhDVteeJgWlOkdG
- ok+M6dBIfuckODMnQVLLCMVUjoRhKrws+X5CLzMquWCXEuacm5UuTc/0L+lD77v7
- trJzYTwgyfomXqBlbqqgrGTpfzgV53JQNR9jrrjGFNw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=k4Xbq0
- MZeyr/siSHgjGs2zB3MgmZUFZ9ifle0Pu+Vug=; b=DYOpe91EgMWtpXhgkwLvHl
- ND7k1PQngGt3IuNxeCehkj/Ygs1qaHV2toRCp/bAh7b5ncLtnUXvJIcI6n4dHWLI
- 9WcRlVzu41ym0Nk8oSlviVe9FBKLo1tu2RE6eW2QF83NbZN/30HXixxCOqgTrZhp
- dLsp5XLJhglsg6h/T4sYbrtUUrYfSi+j6Iugw7EBQfnrI62zvYWBxK1QwS+sTBBb
- 0jsoI7dpbvPM14kC/mgQuT/QFGTtjcEs8emJe5tS2lYMKzC8rAAXZJbDf7pYi+vr
- nr05ZC3LM+34r2fM3K7k9OxOcb7SoRUQPfNJeYkcNm4EJ8qEcQB8jRprLOWcGBWA
- ==
-X-ME-Sender: <xms:AkjCYJoTH8V2cPpCZR1Q-k5tnHtP-sAzvEijCtEu65NmUZI-yrvzqg>
- <xme:AkjCYLrQxb92_TRQJJRQTziT4YnviWDfos4iVC-VMMFC68ioYV50mX71b8G3Uv-GY
- VjWZoNl8RjgHI3YKJA>
-X-ME-Received: <xmr:AkjCYGNTmQ94AKF0e2fQFwLYLehqLP0mciNVH22rKNo1kCT0XNYCmL6v6Z5k9-cabeQxwLpttJ4TBJqgjeOQIgRoEuIb1AbCltvV>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedufedguddtkecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecunecujfgurhepfffhvffukfhfgggtuggjsehgtd
- erredttddvnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegt
- vghrnhhordhtvggthheqnecuggftrfgrthhtvghrnhepleekgeehhfdutdeljefgleejff
- ehfffgieejhffgueefhfdtveetgeehieehgedunecuvehluhhsthgvrhfuihiivgeptden
- ucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:AkjCYE7fWmO3JB-WE0lIqyX8L__N-x1eg17_w6c3Cn-tCJLAFpSyew>
- <xmx:AkjCYI7sfK7y0fbZP8wusUmLpeXLxjpsV7OB9UGKNg_k1V-ITPaBBA>
- <xmx:AkjCYMjohj8UvwUrG91bgs0n0cIKyk3tpKDf_c6bz6AgdkjTZEhyKA>
- <xmx:A0jCYCSPe7z1NU9S_aIbMI79DFc4UaQToPAjg2RJho4JxiwPaieaPQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 10 Jun 2021 13:12:33 -0400 (EDT)
-Date: Thu, 10 Jun 2021 19:12:31 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: Simon Ser <contact@emersion.fr>
-Subject: Re: [PATCH v2 1/7] drm/sysfs: introduce
- drm_sysfs_connector_hotplug_event
-Message-ID: <20210610171231.ub2peqqotupamqwt@gilmour>
-References: <I7ivMNimkOH0GJ5SVonqiNBfYEunXBeQpK7ehs64Bk@cp4-web-028.plabs.ch>
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2074.outbound.protection.outlook.com [40.107.237.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96E356E580
+ for <amd-gfx@lists.freedesktop.org>; Fri, 11 Jun 2021 07:05:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=B9DdXcepCT98mxtVmNVVNqxwkApgNLWxwnVGacYA0deqNLI3LVCGfeLq5oL1IkP9zfcbGa6kgB6FNH+34afJpTXwS8dmXuU0hgWfq6o9urYo6WIgEMV0MFBpAQxHYYcCqGvSfnxwLupVQXNKYldUbq9TbvEjVhRWo4948ro61nDIJR/fGeBkDhz5YbsFpuTIaxF1fWr72soBtpXtvyB6B6APZZQjhxB5H/DlGG28IWLZ+jf9jm1hWvatBMRCtfaYOEqM+4LK9oVW1x+O5pHaiT/7vjMYcLash3p6GnNH1tCdHBDriCtUcAggfVjhsghLSt649dMKjL8zb0lWz9Si9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aniGI39vVF84y10w3Alf3i1rGc3zLKCb64E7Nw3qkZM=;
+ b=NIOFagB26qBHyvYra838LFFR0M+Vs1+PTVghpFXG0M3W1k5X39xaFKldOqbcnfoYT4cXEffy7WPxaCdFaJ57zrl84OR05Ht9XsvuU7OJgEhh1wAIXfr9RPNAhbcCcLiipphM1qkKMy5EGm9WHTluyanwTjguciU7ugDhyyPC8Gh/3qYDVTK1ouford7FH06GSDUdh81oAb5oySZG/n2AAJW2Jv/nldonFq+lU37RUb+z4WfutOb/PwgzbSXq0m6hv0jzidLYKOAUUDWU3vQITcz+WYaudflbn1vsMyYzlTnAzwri1/YcbPpD5N3eYHL8hk0Nk6+YTaiUuRLGhifonw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aniGI39vVF84y10w3Alf3i1rGc3zLKCb64E7Nw3qkZM=;
+ b=4cpF6KFRL39UKxCjxf2ORIQ+oHlJPgPHlc0dIyD+687S611bYbRLkvfym6Olg1omfccqrlpiYAn4yRkynVWxOZnsrp0k+M/D0JB5h8NU4PIvpYlaUodIfaFDkOfJZTggQfL2+ElggXWbXhBQDiqWFRean3ZwM6eA/HcepmS5X4w=
+Received: from BN9PR03CA0583.namprd03.prod.outlook.com (2603:10b6:408:10d::18)
+ by CO6PR12MB5425.namprd12.prod.outlook.com (2603:10b6:303:13e::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.22; Fri, 11 Jun
+ 2021 07:05:50 +0000
+Received: from BN8NAM11FT065.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:10d:cafe::53) by BN9PR03CA0583.outlook.office365.com
+ (2603:10b6:408:10d::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21 via Frontend
+ Transport; Fri, 11 Jun 2021 07:05:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT065.mail.protection.outlook.com (10.13.177.63) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4219.21 via Frontend Transport; Fri, 11 Jun 2021 07:05:50 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 11 Jun
+ 2021 02:05:50 -0500
+Received: from hawzhang-System-Product.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.4
+ via Frontend Transport; Fri, 11 Jun 2021 02:05:49 -0500
+From: Hawking Zhang <Hawking.Zhang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/8] drm/amdgpu: update psp gfx i/f to support dynamic GECC
+Date: Fri, 11 Jun 2021 15:05:39 +0800
+Message-ID: <1623395146-2162-1-git-send-email-Hawking.Zhang@amd.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <I7ivMNimkOH0GJ5SVonqiNBfYEunXBeQpK7ehs64Bk@cp4-web-028.plabs.ch>
-X-Mailman-Approved-At: Fri, 11 Jun 2021 07:14:56 +0000
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f6ec94ed-186f-4fca-d012-08d92ca75880
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5425:
+X-Microsoft-Antispam-PRVS: <CO6PR12MB542599B5F4E69A1FD9DAFE34FC349@CO6PR12MB5425.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2201;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Mco4AkxWUF+inqhgypjRv9gIDtwJa95F4lV4btqgZH5wM0Md48ubEXrXhc4ZvrdL+1b6PwYeTdilPPKnTAxxQrfl97OyYQddIUyG68Biv1JslCDOANwRuqX6IVmY++kzZFiwGE2sC9LoIoJQ5YFP7C1kexhlgYcm7oRAJI8Z/MZihoppmJteF53rygHD0JPgWkSopr4kQ0dpXpe0s+xM/8MhMAH+IWzgPA1YS0K5ASh9XBm7aPK9teOXbRrF4vvAAJ1CVD402gG/0vw5rzu5L6/eBKEJiEaVRWFCpggWx0KqkdK8l5zl3E7g8+odPMB00Vv9oOa6z8GGyLAqzSIDxyP1zS3NSLq5ZVnYaB8ZnsGvj2Gvqxw1mzbFT+r62QaEXSpIIgTK2bHTM1xGNuTFYhFBBSUGZsqCncQlM7figh0AvyJAO+/fNvzi3WB+YKve8Nk33Oj14fIoOf04MmK+OvePgHlSfS1MS/+O/q7PvWg4rGe7x2K7YbqBJeDYsFjdhqJs8CYgqLNtcNKt3VvsLjIbW21J46pd8iKopxeElJHu3Aj1TmnfGlsFvSbxAnAVgG6ukGGIARbL2onbpShxTSICbf8tgLBZ5H9vh4tIK/ZSbBfxVvfuuGI9RjZ5ZH17FCuIWvajfotcdl2OwBeLpk7ozBDc3PN30RD/mmu9RBAeyGvN5oX+ug3QK2UchCdc
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(136003)(396003)(376002)(39860400002)(346002)(36840700001)(46966006)(6666004)(7696005)(26005)(83380400001)(36756003)(4326008)(36860700001)(2906002)(186003)(478600001)(86362001)(426003)(5660300002)(82740400003)(2616005)(356005)(82310400003)(316002)(81166007)(8676002)(47076005)(70206006)(70586007)(336012)(6916009)(8936002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jun 2021 07:05:50.5203 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6ec94ed-186f-4fca-d012-08d92ca75880
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT065.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5425
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,100 +97,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: pekka.paalanen@collabora.com, michel@daenzer.net,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- alexander.deucher@amd.com, intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0936230167=="
+Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+psp_gfx_uresp_bootcfg is used to inform driver
+bootcfg settings maintained by tOS
 
---===============0936230167==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ufyejact7gc2j5jl"
-Content-Disposition: inline
+Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Reviewed-by: John Clements <john.clements@amd.com>
+Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-
---ufyejact7gc2j5jl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Wed, Jun 09, 2021 at 09:23:27PM +0000, Simon Ser wrote:
-> This function sends a hotplug uevent with a CONNECTOR property.
->=20
-> Signed-off-by: Simon Ser <contact@emersion.fr>
-> ---
->  drivers/gpu/drm/drm_sysfs.c | 25 +++++++++++++++++++++++++
->  include/drm/drm_sysfs.h     |  1 +
->  2 files changed, 26 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/drm_sysfs.c b/drivers/gpu/drm/drm_sysfs.c
-> index 968a9560b4aa..8423e44c3035 100644
-> --- a/drivers/gpu/drm/drm_sysfs.c
-> +++ b/drivers/gpu/drm/drm_sysfs.c
-> @@ -343,6 +343,31 @@ void drm_sysfs_hotplug_event(struct drm_device *dev)
->  }
->  EXPORT_SYMBOL(drm_sysfs_hotplug_event);
-> =20
-> +/**
-> + * drm_sysfs_connector_hotplug_event - generate a DRM uevent for any con=
-nector
-> + * change
-> + * @connector: connector which has changed
-> + *
-> + * Send a uevent for the DRM connector specified by @connector. This wil=
-l send
-> + * a uevent with the properties HOTPLUG=3D1 and CONNECTOR.
-> + */
-> +void drm_sysfs_connector_hotplug_event(struct drm_connector *connector)
-> +{
-> +	struct drm_device *dev =3D connector->dev;
-> +	char hotplug_str[] =3D "HOTPLUG=3D1", conn_id[21];
-> +	char *envp[] =3D { hotplug_str, conn_id, NULL };
-> +
-> +	snprintf(conn_id, sizeof(conn_id),
-> +		 "CONNECTOR=3D%u", connector->base.id);
-> +
-> +	drm_dbg_kms(connector->dev,
-> +		    "[CONNECTOR:%d:%s] generating connector hotplug event\n",
-> +		    connector->base.id, connector->name);
-> +
-> +	kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
-> +}
-> +EXPORT_SYMBOL(drm_sysfs_connector_hotplug_event);
-
-Would it make sense to call sysfs_notify on the status file?
-
-It would allow to call poll() on the status file in sysfs and skipping
-udev in simple cases?
-
-Maxime
-
---ufyejact7gc2j5jl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYMJH/gAKCRDj7w1vZxhR
-xUtrAQDFUIur00mMdrxIVN6MOu4KsThQEweTCubJAJtwubTVLQEA4fPruqoGYmCk
-yXhHF9nNWYOcSspUTdZl4LnNgqK9EQM=
-=Gl6o
------END PGP SIGNATURE-----
-
---ufyejact7gc2j5jl--
-
---===============0936230167==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h b/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
+index f6d3180febc4..dd0dce254901 100644
+--- a/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
++++ b/drivers/gpu/drm/amd/amdgpu/psp_gfx_if.h
+@@ -332,11 +332,16 @@ struct psp_gfx_uresp_fwar_db_info
+     uint32_t fwar_db_addr_hi;
+ };
+ 
++/* Command-specific response for boot config. */
++struct psp_gfx_uresp_bootcfg {
++	uint32_t boot_cfg;	/* boot config data */
++};
++
+ /* Union of command-specific responses for GPCOM ring. */
+-union psp_gfx_uresp
+-{
+-    struct psp_gfx_uresp_reserved reserved;
+-    struct psp_gfx_uresp_fwar_db_info fwar_db_info;
++union psp_gfx_uresp {
++	struct psp_gfx_uresp_reserved		reserved;
++	struct psp_gfx_uresp_bootcfg		boot_cfg;
++	struct psp_gfx_uresp_fwar_db_info	fwar_db_info;
+ };
+ 
+ /* Structure of GFX Response buffer.
+-- 
+2.17.1
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0936230167==--
