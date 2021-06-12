@@ -2,68 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75A233A5DAB
-	for <lists+amd-gfx@lfdr.de>; Mon, 14 Jun 2021 09:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F41723A5DC9
+	for <lists+amd-gfx@lfdr.de>; Mon, 14 Jun 2021 09:38:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 041F589D58;
-	Mon, 14 Jun 2021 07:25:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF3A089D64;
+	Mon, 14 Jun 2021 07:37:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
- [IPv6:2a00:1450:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A56B89D5C;
- Mon, 14 Jun 2021 07:25:47 +0000 (UTC)
-Received: by mail-ej1-x634.google.com with SMTP id ce15so14906717ejb.4;
- Mon, 14 Jun 2021 00:25:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=3S+6hdJy8zT5PHSGGEV92GAMPcCN8sAp6uvhaz0ZJbw=;
- b=DHNz9DF2Lc5rbJmGSKKv6zQcGKUrdUQ1ZAAHNs71gFIa86bAhrrWXsTYm3GEx27PVv
- omhouq8DkKXMBKzHqZWpgg9+T/iLFNr+eiN4u11sLzmq5uYi1pg/beZSNl4fLvdM7MK7
- oAuaeuhXli26Q2sO1x6NdwoXh5JN8VXMPyVZI6y89n6kOxxNv1OpDTWpQtKCwj8YE0jc
- RM1lMAYNFihi3EoOP98tDFslenzPRvXjXrTNASuDd2J6aDe93Uf0GYspoe1wo+SBb0sx
- AoRlNLeS/H2TqTcBVWmhTJ8q3S3xGDv6h0QMa5OWrJSZcuWnfZNUHrZwGJLPTq2K5Uw/
- caaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=3S+6hdJy8zT5PHSGGEV92GAMPcCN8sAp6uvhaz0ZJbw=;
- b=Te6JgyYuZUZQS31QSMXLB0//aot2GIrDbOhFNzS4202qERUwyrILFBlP5eJtGWT0p8
- Ofpwr/T+jcfIS7KSHL2+dKIYeK2/hDy2jP+7jCdc2Ua7uRPfTs+yPVGPCET1DK3j0pbT
- lsJOqPzeviTJ9NO1DzRByJrGqbCZxoiV/yfKEiRv1gIOh7dWRth5WdutcwhCIjUY3BMS
- JZhOX/MeUt40PUEKB8Sc0GgaLw8n0DGivUj98Ackcf5jTnbVctCme6ttlFl8AcbX6Yyk
- ca7DFog3QolW7ivCmDN1+owbdNJlXTc0Nbq/6MgcDI41VpEVCNsWCTC7+63szl6ToGdv
- wxEA==
-X-Gm-Message-State: AOAM530CP02pS50TLjg1WCZXr32IpNuHzHn69EZw0mbA2CVx6qSiOSKR
- uMxf1h24eQPtTYBmRs8Y6pYxUsbXUSE=
-X-Google-Smtp-Source: ABdhPJzEBzFWqZ5/EYN1uIEqO2n2lnL/whIG/xnmXtmDd1cPtizEqPSu9Zl+hGhvV52wQMTL8C0cDQ==
-X-Received: by 2002:a17:906:b6c5:: with SMTP id
- ec5mr13913525ejb.290.1623655546017; 
- Mon, 14 Jun 2021 00:25:46 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:798b:5008:13f6:30a9?
- ([2a02:908:1252:fb60:798b:5008:13f6:30a9])
- by smtp.gmail.com with ESMTPSA id w8sm148647edc.39.2021.06.14.00.25.45
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 14 Jun 2021 00:25:45 -0700 (PDT)
-Subject: Re: [PATCH 6/7] drm/amdgpu: unwrap fence chains in the explicit sync
- fence
-To: Daniel Vetter <daniel@ffwll.ch>
-References: <20210610091800.1833-1-christian.koenig@amd.com>
- <20210610091800.1833-7-christian.koenig@amd.com>
- <YMMnzbky0W72PH1d@phenom.ffwll.local>
- <51256567-84d3-76a9-31aa-aee96d01364a@gmail.com>
- <YMN+211wnBJJIj1I@phenom.ffwll.local>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <1ee8f984-783a-7522-fe4f-1a9593004828@gmail.com>
-Date: Mon, 14 Jun 2021 09:25:44 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from smtprelay.hostedemail.com (smtprelay0195.hostedemail.com
+ [216.40.44.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76A766E233;
+ Sat, 12 Jun 2021 15:42:32 +0000 (UTC)
+Received: from omf05.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+ by smtprelay07.hostedemail.com (Postfix) with ESMTP id 93289181D341E;
+ Sat, 12 Jun 2021 15:42:31 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by
+ omf05.hostedemail.com (Postfix) with ESMTPA id 6F4BAB2798; 
+ Sat, 12 Jun 2021 15:42:29 +0000 (UTC)
+Message-ID: <48a056adabd8f70444475352f617914cef504a45.camel@perches.com>
+Subject: [PATCH V2] treewide: Add missing semicolons to __assign_str uses
+From: Joe Perches <joe@perches.com>
+To: Steven Rostedt <rostedt@goodmis.org>
+Date: Sat, 12 Jun 2021 08:42:27 -0700
+In-Reply-To: <20210604122128.0d348960@oasis.local.home>
+References: <cover.1621024265.git.bristot@redhat.com>
+ <2c59beee3b36b15592bfbb9f26dee7f8b55fd814.1621024265.git.bristot@redhat.com>
+ <20210603172902.41648183@gandalf.local.home>
+ <1e068d21106bb6db05b735b4916bb420e6c9842a.camel@perches.com>
+ <20210604122128.0d348960@oasis.local.home>
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
-In-Reply-To: <YMN+211wnBJJIj1I@phenom.ffwll.local>
-Content-Language: en-US
+X-Spam-Status: No, score=-2.88
+X-Stat-Signature: naut8xoa6f3fyo7799wa7ej8dchz71sq
+X-Rspamd-Server: rspamout04
+X-Rspamd-Queue-Id: 6F4BAB2798
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX1/CIdPhjk9thDh+AeVl0mUrCY9Ae99aWoA=
+X-HE-Tag: 1623512549-116996
+X-Mailman-Approved-At: Mon, 14 Jun 2021 07:37:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,141 +51,669 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: linux-nfs@vger.kernel.org, lima@lists.freedesktop.org,
+ linux-rdma@vger.kernel.org, netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ amd-gfx@lists.freedesktop.org, linux-media@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-QW0gMTEuMDYuMjEgdW0gMTc6MTggc2NocmllYiBEYW5pZWwgVmV0dGVyOgo+IE9uIEZyaSwgSnVu
-IDExLCAyMDIxIGF0IDEyOjA5OjE5UE0gKzAyMDAsIENocmlzdGlhbiBLw7ZuaWcgd3JvdGU6Cj4+
-IEFtIDExLjA2LjIxIHVtIDExOjA3IHNjaHJpZWIgRGFuaWVsIFZldHRlcjoKPj4+IE9uIFRodSwg
-SnVuIDEwLCAyMDIxIGF0IDExOjE3OjU5QU0gKzAyMDAsIENocmlzdGlhbiBLw7ZuaWcgd3JvdGU6
-Cj4+Pj4gVW53cmFwIGEgdGhlIGV4cGxpY2l0IGZlbmNlIGlmIGl0IGlzIGEgZG1hX2ZlbmNlX2No
-YWluIGFuZAo+Pj4+IHN5bmMgdG8gdGhlIGZpcnN0IGZlbmNlIG5vdCBtYXRjaGluZyB0aGUgb3du
-ZXIgcnVsZXMuCj4+Pj4KPj4+PiBTaWduZWQtb2ZmLWJ5OiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJp
-c3RpYW4ua29lbmlnQGFtZC5jb20+Cj4+Pj4gLS0tCj4+Pj4gICAgZHJpdmVycy9ncHUvZHJtL2Ft
-ZC9hbWRncHUvYW1kZ3B1X3N5bmMuYyB8IDExOCArKysrKysrKysrKysrLS0tLS0tLS0tLQo+Pj4+
-ICAgIDEgZmlsZSBjaGFuZ2VkLCA2OCBpbnNlcnRpb25zKCspLCA1MCBkZWxldGlvbnMoLSkKPj4+
-Pgo+Pj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfc3lu
-Yy5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3N5bmMuYwo+Pj4+IGluZGV4
-IDFiMmNlY2NhZjViMC4uODYyZWIzYzFjNGM1IDEwMDY0NAo+Pj4+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9zeW5jLmMKPj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9hbWRncHVfc3luYy5jCj4+Pj4gQEAgLTI4LDYgKzI4LDggQEAKPj4+PiAgICAg
-KiAgICBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Cj4+Pj4gICAg
-ICovCj4+Pj4gKyNpbmNsdWRlIDxsaW51eC9kbWEtZmVuY2UtY2hhaW4uaD4KPj4+PiArCj4+Pj4g
-ICAgI2luY2x1ZGUgImFtZGdwdS5oIgo+Pj4+ICAgICNpbmNsdWRlICJhbWRncHVfdHJhY2UuaCIK
-Pj4+PiAgICAjaW5jbHVkZSAiYW1kZ3B1X2FtZGtmZC5oIgo+Pj4+IEBAIC0xODYsNiArMTg4LDU1
-IEBAIGludCBhbWRncHVfc3luY192bV9mZW5jZShzdHJ1Y3QgYW1kZ3B1X3N5bmMgKnN5bmMsIHN0
-cnVjdCBkbWFfZmVuY2UgKmZlbmNlKQo+Pj4+ICAgIAlyZXR1cm4gYW1kZ3B1X3N5bmNfZmVuY2Uo
-c3luYywgZmVuY2UpOwo+Pj4+ICAgIH0KPj4+PiArLyogRGV0ZXJtaW5lIGJhc2VkIG9uIHRoZSBv
-d25lciBhbmQgbW9kZSBpZiB3ZSBzaG91bGQgc3luYyB0byBhIGZlbmNlIG9yIG5vdCAqLwo+Pj4+
-ICtzdGF0aWMgYm9vbCBhbWRncHVfc3luY190ZXN0X2ZlbmNlKHN0cnVjdCBhbWRncHVfZGV2aWNl
-ICphZGV2LAo+Pj4+ICsJCQkJICAgZW51bSBhbWRncHVfc3luY19tb2RlIG1vZGUsCj4+Pj4gKwkJ
-CQkgICB2b2lkICpvd25lciwgc3RydWN0IGRtYV9mZW5jZSAqZikKPj4+PiArewo+Pj4+ICsJdm9p
-ZCAqZmVuY2Vfb3duZXIgPSBhbWRncHVfc3luY19nZXRfb3duZXIoZik7Cj4+Pj4gKwo+Pj4+ICsJ
-LyogQWx3YXlzIHN5bmMgdG8gbW92ZXMsIG5vIG1hdHRlciB3aGF0ICovCj4+Pj4gKwlpZiAoZmVu
-Y2Vfb3duZXIgPT0gQU1ER1BVX0ZFTkNFX09XTkVSX1VOREVGSU5FRCkKPj4+PiArCQlyZXR1cm4g
-dHJ1ZTsKPj4+PiArCj4+Pj4gKwkvKiBXZSBvbmx5IHdhbnQgdG8gdHJpZ2dlciBLRkQgZXZpY3Rp
-b24gZmVuY2VzIG9uCj4+Pj4gKwkgKiBldmljdCBvciBtb3ZlIGpvYnMuIFNraXAgS0ZEIGZlbmNl
-cyBvdGhlcndpc2UuCj4+Pj4gKwkgKi8KPj4+PiArCWlmIChmZW5jZV9vd25lciA9PSBBTURHUFVf
-RkVOQ0VfT1dORVJfS0ZEICYmCj4+Pj4gKwkgICAgb3duZXIgIT0gQU1ER1BVX0ZFTkNFX09XTkVS
-X1VOREVGSU5FRCkKPj4+PiArCQlyZXR1cm4gZmFsc2U7Cj4+Pj4gKwo+Pj4+ICsJLyogTmV2ZXIg
-c3luYyB0byBWTSB1cGRhdGVzIGVpdGhlci4gKi8KPj4+PiArCWlmIChmZW5jZV9vd25lciA9PSBB
-TURHUFVfRkVOQ0VfT1dORVJfVk0gJiYKPj4+PiArCSAgICBvd25lciAhPSBBTURHUFVfRkVOQ0Vf
-T1dORVJfVU5ERUZJTkVEKQo+Pj4+ICsJCXJldHVybiBmYWxzZTsKPj4+PiArCj4+Pj4gKwkvKiBJ
-Z25vcmUgZmVuY2VzIGRlcGVuZGluZyBvbiB0aGUgc3luYyBtb2RlICovCj4+Pj4gKwlzd2l0Y2gg
-KG1vZGUpIHsKPj4+PiArCWNhc2UgQU1ER1BVX1NZTkNfQUxXQVlTOgo+Pj4+ICsJCXJldHVybiB0
-cnVlOwo+Pj4+ICsKPj4+PiArCWNhc2UgQU1ER1BVX1NZTkNfTkVfT1dORVI6Cj4+Pj4gKwkJaWYg
-KGFtZGdwdV9zeW5jX3NhbWVfZGV2KGFkZXYsIGYpICYmCj4+Pj4gKwkJICAgIGZlbmNlX293bmVy
-ID09IG93bmVyKQo+Pj4+ICsJCQlyZXR1cm4gZmFsc2U7Cj4+Pj4gKwkJYnJlYWs7Cj4+Pj4gKwo+
-Pj4+ICsJY2FzZSBBTURHUFVfU1lOQ19FUV9PV05FUjoKPj4+PiArCQlpZiAoYW1kZ3B1X3N5bmNf
-c2FtZV9kZXYoYWRldiwgZikgJiYKPj4+PiArCQkgICAgZmVuY2Vfb3duZXIgIT0gb3duZXIpCj4+
-Pj4gKwkJCXJldHVybiBmYWxzZTsKPj4+PiArCQlicmVhazsKPj4+PiArCj4+Pj4gKwljYXNlIEFN
-REdQVV9TWU5DX0VYUExJQ0lUOgo+Pj4+ICsJCXJldHVybiBmYWxzZTsKPj4+PiArCX0KPj4+PiAr
-Cj4+Pj4gKwlXQVJOKGRlYnVnX2V2aWN0aW9ucyAmJiBmZW5jZV9vd25lciA9PSBBTURHUFVfRkVO
-Q0VfT1dORVJfS0ZELAo+Pj4+ICsJICAgICAiQWRkaW5nIGV2aWN0aW9uIGZlbmNlIHRvIHN5bmMg
-b2JqIik7Cj4+Pj4gKwlyZXR1cm4gdHJ1ZTsKPj4+PiArfQo+Pj4+ICsKPj4+PiAgICAvKioKPj4+
-PiAgICAgKiBhbWRncHVfc3luY19yZXN2IC0gc3luYyB0byBhIHJlc2VydmF0aW9uIG9iamVjdAo+
-Pj4+ICAgICAqCj4+Pj4gQEAgLTIxMSw2NyArMjYyLDM0IEBAIGludCBhbWRncHVfc3luY19yZXN2
-KHN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2LCBzdHJ1Y3QgYW1kZ3B1X3N5bmMgKnN5bmMsCj4+
-Pj4gICAgCS8qIGFsd2F5cyBzeW5jIHRvIHRoZSBleGNsdXNpdmUgZmVuY2UgKi8KPj4+PiAgICAJ
-ZiA9IGRtYV9yZXN2X2V4Y2xfZmVuY2UocmVzdik7Cj4+Pj4gLQlyID0gYW1kZ3B1X3N5bmNfZmVu
-Y2Uoc3luYywgZik7Cj4+Pj4gKwlkbWFfZmVuY2VfY2hhaW5fZm9yX2VhY2goZiwgZikgewo+Pj4g
-SmFzb24gaGFzIHNvbWUgaGVscGVyIGZvciBkZWVwLXdhbGtpbmcgZmVuY2UgY2hhaW5zL2FycmF5
-cyBoZXJlIEkgdGhpbmsuCj4+PiBNaWdodCB3YW50IHRvIGxvb2sgaW50byB0aGF0LCBzbyB0aGF0
-IHdlIGhhdmUgc29tZSBjb25zaXN0ZW5jeSBpbiBob3cgd2UKPj4+IHBpbGUgdXAgbXVsdGlwbGUg
-ZXhjbHVzaXZlIGZlbmNlcy4KPj4gV2VsbCB0aG9zZSBoZWxwZXJzIGFyZSBub3QgZnJvbSBKYXNv
-biwgYnV0IGZyb20gbWUgOikKPj4KPj4gQnV0IG5vLCBmb3Igbm93IHRoZSBkZWVwIGluc3BlY3Rp
-b24gaXMgbm90IHJlYWxseSBoZWxwZnVsIGhlcmUgc2luY2UKPj4gZ3JhYmJpbmcgYSByZWZlcmVu
-Y2UgdG8gYSBjZXJ0YWluIGNoYWluIG5vZGUgaXMgd2hhdCB0aGF0IG1ha2VzIHRoZSBoYW5kbGlu
-Zwo+PiBlYXNpZXIgYW5kIGZhc3RlciBoZXJlLgo+Pgo+PiBUaGlua2luZyBtb3JlIGFib3V0IGl0
-IHRoYXQgc2hvdWxkIGFsc28gbWFrZSBpdCBwb3NzaWJsZSBmb3IgdGhlIGdhcmJhZ2UKPj4gY29s
-bGVjdGlvbiB0byBraWNrIGluIHByb3Blcmx5Lgo+IEhtIHRoaXMgaXMgdHJpY2t5IHRvIHJlYXNv
-biBhYm91dCwgYnV0IHllYWggd2l0aCB0aGlzIGhlcmUgaXQncyBhIHRydWUKPiBjaGFpbiwgYW5k
-IHlvdSBqdXN0IG5lZWQgdG8gY29ubmVjdCB0aGVtLiBCdXQgdGhlbiBpZiBhIGJ1ZmZlciBpcyBv
-bgo+IG11bHRpcGxlIGVuZ2luZXMsIGNvbGxhcHNpbmcgdGhpbmdzIGRvd24gb2NjYXNpb25hbGx5
-IG1pZ2h0IGJlIHVzZWZ1bC4KPgo+IEJ1dCBtYXliZSB3ZSBuZWVkIHRvIGRvIHRoYXQgaW4gdGhl
-IGJpZ2dlciByZXdvcmsgd2hlcmUgZXhjbHVzaXZlIGZlbmNlcwo+IGFyZSBhbHNvIGp1c3QgaW4g
-dGhlIGRtYV9mZW5jZV9saXN0IHdpdGggYSAidGhpcyBpcyBhbiBleGNsdXNpdmUgb25lIGJ0dyIK
-PiB0YWcuCj4KPiBJIHRoaW5rIGZvciB0aGUgdmsgaW1wb3J0IGNhc2UgZG9pbmcgdGhlIGRlZXAg
-c2NhbiBtYWtlcyBtb3JlIHNlbnNlLCBpdCdzCj4gYSBvbmNlLXBlci1mcmFtZSB0aGluZywgYW5k
-IHRoZXJlJ3MgYSBtdWNoIGJpZ2dlciBjaGFuY2UgdGhhdCB5b3UgaGF2ZSBhCj4gcGlsZSBvZiBm
-ZW5jZXMgZnJvbSBkaWZmZXJlbnQgZW5naW5lcyBvbiBpdCBhbHJlYWR5LgoKVGhlIHByb2JsZW0g
-d2l0aCBKYXNvbnMgSU9DVEwgaXMgdGhhdCB5b3UgKm11c3QqIGRvIGEgZGVlcCBkaXZlIGFuZCAK
-ZmxhdHRlbiBvdXQgdGhlIGZlbmNlcy4KCk90aGVyd2lzZSBzb21lYm9keSBjb3VsZCB1c2UgaXQg
-dG8gY3JlYXRlIGEgZGVlcCBmZW5jZSBzdHJ1Y3R1cmUgd2l0aCAKZG1hX2ZlbmNlX2FycmF5cyBj
-b250YWluaW5nIGRtYV9mZW5jZV9hcnJheXMsIGNvbnRhaW5pbmcgCmRtYV9mZW5jZV9hcnJheXMg
-ZXRjLi4uCgpXaGVuIHlvdSB0aGVuIHJlbGVhc2UgdGhhdCBzdHJ1Y3R1cmUgeW91IG92ZXJ3cml0
-ZSBrZXJuZWwgc3RhY2sgYmVjYXVzZSAKdGhlIGRtYV9mZW5jZV9hcnJheSBkb2VzIGEgZG1hX2Zl
-bmNlX3B1dCgpIG9uIGl0J3MgZW50cmllcyA6KQoKVGhlIGRtYV9mZW5jZV9jaGFpbiBjb250YWlu
-ZXIgaXMgaW50ZW50aW9uYWxseSBtYWRlIGluIGEgd2F5IHRvIHByZXZlbnQgCnRoYXQuCgo+IEkg
-dGhpbmsgYSBjb21tZW50IGV4cGxhaW5pbmcgd2h5IHdlIHRoaW5rIGRlZXAgc2NhbiBpc24ndCBh
-IGdvb2QgaWRlYSBoZXJlCj4gd291bGQgYmUgZ29vZCwganVzdCBzbyB3ZSBjYW4gYXBwcmVjaWF0
-ZSBvdXIgZm9vbGlzaG5lc3Mgd2hlbiBpdCBhbGwgZ29lcwo+IHdyb25nIDotKQoKT2ssIGdvb2Qg
-cG9pbnQuCgpUaGFua3MsCkNocmlzdGlhbi4KCj4gLURhbmllbAo+Cj4KPj4+IEFueXdheSBwcmV0
-dHkgbXVjaCBvbmUgb2YgdGhlIHZlcnNpb25zIEkgaGFkIGluIG1pbmQgdG9vLCBleGNlcHQgSSBk
-aWRuJ3QKPj4+IHR5cGUgaXQgdXAuCj4+Pgo+Pj4gQWNrZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRh
-bmllbC52ZXR0ZXJAZmZ3bGwuY2g+Cj4+IFRoYW5rcywKPj4gQ2hyaXN0aWFuLgo+Pgo+Pj4+ICsJ
-CXN0cnVjdCBkbWFfZmVuY2VfY2hhaW4gKmNoYWluID0gdG9fZG1hX2ZlbmNlX2NoYWluKGYpOwo+
-Pj4+ICsKPj4+PiArCQlpZiAoYW1kZ3B1X3N5bmNfdGVzdF9mZW5jZShhZGV2LCBtb2RlLCBvd25l
-ciwgY2hhaW4gPwo+Pj4+ICsJCQkJCSAgIGNoYWluLT5mZW5jZSA6IGYpKSB7Cj4+Pj4gKwkJCXIg
-PSBhbWRncHVfc3luY19mZW5jZShzeW5jLCBmKTsKPj4+PiArCQkJZG1hX2ZlbmNlX3B1dChmKTsK
-Pj4+PiArCQkJaWYgKHIpCj4+Pj4gKwkJCQlyZXR1cm4gcjsKPj4+PiArCQkJYnJlYWs7Cj4+Pj4g
-KwkJfQo+Pj4+ICsJfQo+Pj4+ICAgIAlmbGlzdCA9IGRtYV9yZXN2X3NoYXJlZF9saXN0KHJlc3Yp
-Owo+Pj4+IC0JaWYgKCFmbGlzdCB8fCByKQo+Pj4+IC0JCXJldHVybiByOwo+Pj4+ICsJaWYgKCFm
-bGlzdCkKPj4+PiArCQlyZXR1cm4gMDsKPj4+PiAgICAJZm9yIChpID0gMDsgaSA8IGZsaXN0LT5z
-aGFyZWRfY291bnQ7ICsraSkgewo+Pj4+IC0JCXZvaWQgKmZlbmNlX293bmVyOwo+Pj4+IC0KPj4+
-PiAgICAJCWYgPSByY3VfZGVyZWZlcmVuY2VfcHJvdGVjdGVkKGZsaXN0LT5zaGFyZWRbaV0sCj4+
-Pj4gICAgCQkJCQkgICAgICBkbWFfcmVzdl9oZWxkKHJlc3YpKTsKPj4+PiAtCQlmZW5jZV9vd25l
-ciA9IGFtZGdwdV9zeW5jX2dldF9vd25lcihmKTsKPj4+PiAtCj4+Pj4gLQkJLyogQWx3YXlzIHN5
-bmMgdG8gbW92ZXMsIG5vIG1hdHRlciB3aGF0ICovCj4+Pj4gLQkJaWYgKGZlbmNlX293bmVyID09
-IEFNREdQVV9GRU5DRV9PV05FUl9VTkRFRklORUQpIHsKPj4+PiArCQlpZiAoYW1kZ3B1X3N5bmNf
-dGVzdF9mZW5jZShhZGV2LCBtb2RlLCBvd25lciwgZikpIHsKPj4+PiAgICAJCQlyID0gYW1kZ3B1
-X3N5bmNfZmVuY2Uoc3luYywgZik7Cj4+Pj4gICAgCQkJaWYgKHIpCj4+Pj4gLQkJCQlicmVhazsK
-Pj4+PiAtCQl9Cj4+Pj4gLQo+Pj4+IC0JCS8qIFdlIG9ubHkgd2FudCB0byB0cmlnZ2VyIEtGRCBl
-dmljdGlvbiBmZW5jZXMgb24KPj4+PiAtCQkgKiBldmljdCBvciBtb3ZlIGpvYnMuIFNraXAgS0ZE
-IGZlbmNlcyBvdGhlcndpc2UuCj4+Pj4gLQkJICovCj4+Pj4gLQkJaWYgKGZlbmNlX293bmVyID09
-IEFNREdQVV9GRU5DRV9PV05FUl9LRkQgJiYKPj4+PiAtCQkgICAgb3duZXIgIT0gQU1ER1BVX0ZF
-TkNFX09XTkVSX1VOREVGSU5FRCkKPj4+PiAtCQkJY29udGludWU7Cj4+Pj4gLQo+Pj4+IC0JCS8q
-IE5ldmVyIHN5bmMgdG8gVk0gdXBkYXRlcyBlaXRoZXIuICovCj4+Pj4gLQkJaWYgKGZlbmNlX293
-bmVyID09IEFNREdQVV9GRU5DRV9PV05FUl9WTSAmJgo+Pj4+IC0JCSAgICBvd25lciAhPSBBTURH
-UFVfRkVOQ0VfT1dORVJfVU5ERUZJTkVEKQo+Pj4+IC0JCQljb250aW51ZTsKPj4+PiAtCj4+Pj4g
-LQkJLyogSWdub3JlIGZlbmNlcyBkZXBlbmRpbmcgb24gdGhlIHN5bmMgbW9kZSAqLwo+Pj4+IC0J
-CXN3aXRjaCAobW9kZSkgewo+Pj4+IC0JCWNhc2UgQU1ER1BVX1NZTkNfQUxXQVlTOgo+Pj4+IC0J
-CQlicmVhazsKPj4+PiAtCj4+Pj4gLQkJY2FzZSBBTURHUFVfU1lOQ19ORV9PV05FUjoKPj4+PiAt
-CQkJaWYgKGFtZGdwdV9zeW5jX3NhbWVfZGV2KGFkZXYsIGYpICYmCj4+Pj4gLQkJCSAgICBmZW5j
-ZV9vd25lciA9PSBvd25lcikKPj4+PiAtCQkJCWNvbnRpbnVlOwo+Pj4+IC0JCQlicmVhazsKPj4+
-PiAtCj4+Pj4gLQkJY2FzZSBBTURHUFVfU1lOQ19FUV9PV05FUjoKPj4+PiAtCQkJaWYgKGFtZGdw
-dV9zeW5jX3NhbWVfZGV2KGFkZXYsIGYpICYmCj4+Pj4gLQkJCSAgICBmZW5jZV9vd25lciAhPSBv
-d25lcikKPj4+PiAtCQkJCWNvbnRpbnVlOwo+Pj4+IC0JCQlicmVhazsKPj4+PiAtCj4+Pj4gLQkJ
-Y2FzZSBBTURHUFVfU1lOQ19FWFBMSUNJVDoKPj4+PiAtCQkJY29udGludWU7Cj4+Pj4gKwkJCQly
-ZXR1cm4gcjsKPj4+PiAgICAJCX0KPj4+PiAtCj4+Pj4gLQkJV0FSTihkZWJ1Z19ldmljdGlvbnMg
-JiYgZmVuY2Vfb3duZXIgPT0gQU1ER1BVX0ZFTkNFX09XTkVSX0tGRCwKPj4+PiAtCQkgICAgICJB
-ZGRpbmcgZXZpY3Rpb24gZmVuY2UgdG8gc3luYyBvYmoiKTsKPj4+PiAtCQlyID0gYW1kZ3B1X3N5
-bmNfZmVuY2Uoc3luYywgZik7Cj4+Pj4gLQkJaWYgKHIpCj4+Pj4gLQkJCWJyZWFrOwo+Pj4+ICAg
-IAl9Cj4+Pj4gLQlyZXR1cm4gcjsKPj4+PiArCXJldHVybiAwOwo+Pj4+ICAgIH0KPj4+PiAgICAv
-KioKPj4+PiAtLSAKPj4+PiAyLjI1LjEKPj4+PgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9hbWQtZ2Z4Cg==
+The __assign_str macro has an unusual ending semicolon but the vast
+majority of uses of the macro already have semicolon termination.
+
+$ git grep -P '\b__assign_str\b' | wc -l
+551
+$ git grep -P '\b__assign_str\b.*;' | wc -l
+480
+
+Add semicolons to the __assign_str() uses without semicolon termination
+and all the other uses without semicolon termination via additional defines
+that are equivalent to __assign_str() with the eventual goal of removing
+the semicolon from the __assign_str() macro definition.
+
+Link: https://lore.kernel.org/lkml/1e068d21106bb6db05b735b4916bb420e6c9842a.camel@perches.com/
+
+Signed-off-by: Joe Perches <joe@perches.com>
+---
+
+V2: Remove semicolon addition to #define VIF_ASSIGN as every use of
+    this macro already has a semicolon termination.
+
+Compiled x84-64 allyesconfig
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h          | 14 ++++----
+ drivers/gpu/drm/lima/lima_trace.h                  |  2 +-
+ drivers/infiniband/hw/hfi1/trace_misc.h            |  4 +--
+ drivers/infiniband/hw/hfi1/trace_rc.h              |  4 +--
+ drivers/infiniband/hw/hfi1/trace_tid.h             |  6 ++--
+ drivers/infiniband/hw/hfi1/trace_tx.h              |  8 ++---
+ drivers/infiniband/sw/rdmavt/trace_cq.h            |  4 +--
+ drivers/infiniband/sw/rdmavt/trace_mr.h            |  2 +-
+ drivers/infiniband/sw/rdmavt/trace_qp.h            |  4 +--
+ drivers/infiniband/sw/rdmavt/trace_rc.h            |  2 +-
+ drivers/infiniband/sw/rdmavt/trace_tx.h            |  4 +--
+ drivers/misc/mei/mei-trace.h                       |  6 ++--
+ .../net/ethernet/marvell/octeontx2/af/rvu_trace.h  | 12 +++----
+ drivers/net/fjes/fjes_trace.h                      |  4 +--
+ drivers/usb/cdns3/cdnsp-trace.h                    |  2 +-
+ fs/nfs/nfs4trace.h                                 |  6 ++--
+ fs/nfs/nfstrace.h                                  |  4 +--
+ include/trace/events/btrfs.h                       |  2 +-
+ include/trace/events/dma_fence.h                   |  4 +--
+ include/trace/events/rpcgss.h                      |  4 +--
+ include/trace/events/sunrpc.h                      | 40 +++++++++++-----------
+ 21 files changed, 69 insertions(+), 69 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
+index 0527772fe1b80..d855cb53c7e09 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
+@@ -176,10 +176,10 @@ TRACE_EVENT(amdgpu_cs_ioctl,
+ 
+ 	    TP_fast_assign(
+ 			   __entry->sched_job_id = job->base.id;
+-			   __assign_str(timeline, AMDGPU_JOB_GET_TIMELINE_NAME(job))
++			   __assign_str(timeline, AMDGPU_JOB_GET_TIMELINE_NAME(job));
+ 			   __entry->context = job->base.s_fence->finished.context;
+ 			   __entry->seqno = job->base.s_fence->finished.seqno;
+-			   __assign_str(ring, to_amdgpu_ring(job->base.sched)->name)
++			   __assign_str(ring, to_amdgpu_ring(job->base.sched)->name);
+ 			   __entry->num_ibs = job->num_ibs;
+ 			   ),
+ 	    TP_printk("sched_job=%llu, timeline=%s, context=%u, seqno=%u, ring_name=%s, num_ibs=%u",
+@@ -201,10 +201,10 @@ TRACE_EVENT(amdgpu_sched_run_job,
+ 
+ 	    TP_fast_assign(
+ 			   __entry->sched_job_id = job->base.id;
+-			   __assign_str(timeline, AMDGPU_JOB_GET_TIMELINE_NAME(job))
++			   __assign_str(timeline, AMDGPU_JOB_GET_TIMELINE_NAME(job));
+ 			   __entry->context = job->base.s_fence->finished.context;
+ 			   __entry->seqno = job->base.s_fence->finished.seqno;
+-			   __assign_str(ring, to_amdgpu_ring(job->base.sched)->name)
++			   __assign_str(ring, to_amdgpu_ring(job->base.sched)->name);
+ 			   __entry->num_ibs = job->num_ibs;
+ 			   ),
+ 	    TP_printk("sched_job=%llu, timeline=%s, context=%u, seqno=%u, ring_name=%s, num_ibs=%u",
+@@ -229,7 +229,7 @@ TRACE_EVENT(amdgpu_vm_grab_id,
+ 
+ 	    TP_fast_assign(
+ 			   __entry->pasid = vm->pasid;
+-			   __assign_str(ring, ring->name)
++			   __assign_str(ring, ring->name);
+ 			   __entry->vmid = job->vmid;
+ 			   __entry->vm_hub = ring->funcs->vmhub,
+ 			   __entry->pd_addr = job->vm_pd_addr;
+@@ -424,7 +424,7 @@ TRACE_EVENT(amdgpu_vm_flush,
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-			   __assign_str(ring, ring->name)
++			   __assign_str(ring, ring->name);
+ 			   __entry->vmid = vmid;
+ 			   __entry->vm_hub = ring->funcs->vmhub;
+ 			   __entry->pd_addr = pd_addr;
+@@ -525,7 +525,7 @@ TRACE_EVENT(amdgpu_ib_pipe_sync,
+ 			     ),
+ 
+ 	    TP_fast_assign(
+-			   __assign_str(ring, sched_job->base.sched->name)
++			   __assign_str(ring, sched_job->base.sched->name);
+ 			   __entry->id = sched_job->base.id;
+ 			   __entry->fence = fence;
+ 			   __entry->ctx = fence->context;
+diff --git a/drivers/gpu/drm/lima/lima_trace.h b/drivers/gpu/drm/lima/lima_trace.h
+index 3a430e93d384c..494b9790b1daf 100644
+--- a/drivers/gpu/drm/lima/lima_trace.h
++++ b/drivers/gpu/drm/lima/lima_trace.h
+@@ -24,7 +24,7 @@ DECLARE_EVENT_CLASS(lima_task,
+ 		__entry->task_id = task->base.id;
+ 		__entry->context = task->base.s_fence->finished.context;
+ 		__entry->seqno = task->base.s_fence->finished.seqno;
+-		__assign_str(pipe, task->base.sched->name)
++		__assign_str(pipe, task->base.sched->name);
+ 		),
+ 
+ 	TP_printk("task=%llu, context=%u seqno=%u pipe=%s",
+diff --git a/drivers/infiniband/hw/hfi1/trace_misc.h b/drivers/infiniband/hw/hfi1/trace_misc.h
+index 8db2253523ffe..93338988b9220 100644
+--- a/drivers/infiniband/hw/hfi1/trace_misc.h
++++ b/drivers/infiniband/hw/hfi1/trace_misc.h
+@@ -63,7 +63,7 @@ TRACE_EVENT(hfi1_interrupt,
+ 			     __array(char, buf, 64)
+ 			     __field(int, src)
+ 			     ),
+-	    TP_fast_assign(DD_DEV_ASSIGN(dd)
++	    TP_fast_assign(DD_DEV_ASSIGN(dd);
+ 			   is_entry->is_name(__entry->buf, 64,
+ 					     src - is_entry->start);
+ 			   __entry->src = src;
+@@ -100,7 +100,7 @@ TRACE_EVENT(hfi1_fault_opcode,
+ 			     __field(u32, qpn)
+ 			     __field(u8, opcode)
+ 			     ),
+-	    TP_fast_assign(DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device))
++	    TP_fast_assign(DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device));
+ 			   __entry->qpn = qp->ibqp.qp_num;
+ 			   __entry->opcode = opcode;
+ 			   ),
+diff --git a/drivers/infiniband/hw/hfi1/trace_rc.h b/drivers/infiniband/hw/hfi1/trace_rc.h
+index 1ebca37862e06..5f49e1eeb2116 100644
+--- a/drivers/infiniband/hw/hfi1/trace_rc.h
++++ b/drivers/infiniband/hw/hfi1/trace_rc.h
+@@ -70,7 +70,7 @@ DECLARE_EVENT_CLASS(hfi1_rc_template,
+ 			__field(u32, r_psn)
+ 			),
+ 		    TP_fast_assign(
+-			DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device))
++			DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device));
+ 			__entry->qpn = qp->ibqp.qp_num;
+ 			__entry->s_flags = qp->s_flags;
+ 			__entry->psn = psn;
+@@ -130,7 +130,7 @@ DECLARE_EVENT_CLASS(/* rc_ack */
+ 		__field(u32, lpsn)
+ 	),
+ 	TP_fast_assign(/* assign */
+-		DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device))
++		DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device));
+ 		__entry->qpn = qp->ibqp.qp_num;
+ 		__entry->aeth = aeth;
+ 		__entry->psn = psn;
+diff --git a/drivers/infiniband/hw/hfi1/trace_tid.h b/drivers/infiniband/hw/hfi1/trace_tid.h
+index 985ffa9cc958f..d129b81959599 100644
+--- a/drivers/infiniband/hw/hfi1/trace_tid.h
++++ b/drivers/infiniband/hw/hfi1/trace_tid.h
+@@ -886,7 +886,7 @@ DECLARE_EVENT_CLASS(/* sender_info */
+ 		__field(u8, s_retry)
+ 	),
+ 	TP_fast_assign(/* assign */
+-		DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device))
++		DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device));
+ 		__entry->qpn = qp->ibqp.qp_num;
+ 		__entry->state = qp->state;
+ 		__entry->s_cur = qp->s_cur;
+@@ -1285,7 +1285,7 @@ DECLARE_EVENT_CLASS(/* rc_rcv_err */
+ 		__field(int, diff)
+ 	),
+ 	TP_fast_assign(/* assign */
+-		DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device))
++		DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device));
+ 		__entry->qpn = qp->ibqp.qp_num;
+ 		__entry->s_flags = qp->s_flags;
+ 		__entry->state = qp->state;
+@@ -1574,7 +1574,7 @@ DECLARE_EVENT_CLASS(/* tid_ack */
+ 		__field(u32, resync_psn)
+ 	),
+ 	TP_fast_assign(/* assign */
+-		DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device))
++		DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device));
+ 		__entry->qpn = qp->ibqp.qp_num;
+ 		__entry->aeth = aeth;
+ 		__entry->psn = psn;
+diff --git a/drivers/infiniband/hw/hfi1/trace_tx.h b/drivers/infiniband/hw/hfi1/trace_tx.h
+index d44fc54858b90..f1922a7619fe8 100644
+--- a/drivers/infiniband/hw/hfi1/trace_tx.h
++++ b/drivers/infiniband/hw/hfi1/trace_tx.h
+@@ -120,7 +120,7 @@ DECLARE_EVENT_CLASS(hfi1_qpsleepwakeup_template,
+ 		    __field(unsigned long, iow_flags)
+ 		    ),
+ 		    TP_fast_assign(
+-		    DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device))
++		    DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device));
+ 		    __entry->flags = flags;
+ 		    __entry->qpn = qp->ibqp.qp_num;
+ 		    __entry->s_flags = qp->s_flags;
+@@ -868,7 +868,7 @@ TRACE_EVENT(
+ 		__field(int, send_flags)
+ 	),
+ 	TP_fast_assign(
+-		DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device))
++		DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device));
+ 		__entry->wqe = wqe;
+ 		__entry->wr_id = wqe->wr.wr_id;
+ 		__entry->qpn = qp->ibqp.qp_num;
+@@ -904,7 +904,7 @@ DECLARE_EVENT_CLASS(
+ 		__field(bool, flag)
+ 	),
+ 	TP_fast_assign(
+-		DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device))
++		DD_DEV_ASSIGN(dd_from_ibdev(qp->ibqp.device));
+ 		__entry->qpn = qp->ibqp.qp_num;
+ 		__entry->flag = flag;
+ 	),
+@@ -952,7 +952,7 @@ DECLARE_EVENT_CLASS(/* AIP  */
+ 		__field(u8, stopped)
+ 	),
+ 	TP_fast_assign(/* assign */
+-		DD_DEV_ASSIGN(txq->priv->dd)
++		DD_DEV_ASSIGN(txq->priv->dd);
+ 		__entry->txq = txq;
+ 		__entry->sde = txq->sde;
+ 		__entry->head = txq->tx_ring.head;
+diff --git a/drivers/infiniband/sw/rdmavt/trace_cq.h b/drivers/infiniband/sw/rdmavt/trace_cq.h
+index e3c416c6f900f..91bc192cee5e4 100644
+--- a/drivers/infiniband/sw/rdmavt/trace_cq.h
++++ b/drivers/infiniband/sw/rdmavt/trace_cq.h
+@@ -85,7 +85,7 @@ DECLARE_EVENT_CLASS(rvt_cq_template,
+ 				     __field(int, comp_vector_cpu)
+ 				     __field(u32, flags)
+ 				     ),
+-		    TP_fast_assign(RDI_DEV_ASSIGN(cq->rdi)
++		    TP_fast_assign(RDI_DEV_ASSIGN(cq->rdi);
+ 				   __entry->ip = cq->ip;
+ 				   __entry->cqe = attr->cqe;
+ 				   __entry->comp_vector = attr->comp_vector;
+@@ -123,7 +123,7 @@ DECLARE_EVENT_CLASS(
+ 		__field(u32, imm)
+ 	),
+ 	TP_fast_assign(
+-		RDI_DEV_ASSIGN(cq->rdi)
++		RDI_DEV_ASSIGN(cq->rdi);
+ 		__entry->wr_id = wc->wr_id;
+ 		__entry->status = wc->status;
+ 		__entry->opcode = wc->opcode;
+diff --git a/drivers/infiniband/sw/rdmavt/trace_mr.h b/drivers/infiniband/sw/rdmavt/trace_mr.h
+index 95b8a0e3b8bdb..c5b675ca4fa08 100644
+--- a/drivers/infiniband/sw/rdmavt/trace_mr.h
++++ b/drivers/infiniband/sw/rdmavt/trace_mr.h
+@@ -195,7 +195,7 @@ TRACE_EVENT(
+ 		__field(uint, sg_offset)
+ 	),
+ 	TP_fast_assign(
+-		RDI_DEV_ASSIGN(ib_to_rvt(to_imr(ibmr)->mr.pd->device))
++		RDI_DEV_ASSIGN(ib_to_rvt(to_imr(ibmr)->mr.pd->device));
+ 		__entry->ibmr_iova = ibmr->iova;
+ 		__entry->iova = to_imr(ibmr)->mr.iova;
+ 		__entry->user_base = to_imr(ibmr)->mr.user_base;
+diff --git a/drivers/infiniband/sw/rdmavt/trace_qp.h b/drivers/infiniband/sw/rdmavt/trace_qp.h
+index c32d21cc615e4..800cec8bb3c76 100644
+--- a/drivers/infiniband/sw/rdmavt/trace_qp.h
++++ b/drivers/infiniband/sw/rdmavt/trace_qp.h
+@@ -65,7 +65,7 @@ DECLARE_EVENT_CLASS(rvt_qphash_template,
+ 		__field(u32, bucket)
+ 	),
+ 	TP_fast_assign(
+-		RDI_DEV_ASSIGN(ib_to_rvt(qp->ibqp.device))
++		RDI_DEV_ASSIGN(ib_to_rvt(qp->ibqp.device));
+ 		__entry->qpn = qp->ibqp.qp_num;
+ 		__entry->bucket = bucket;
+ 	),
+@@ -97,7 +97,7 @@ DECLARE_EVENT_CLASS(
+ 		__field(u32, to)
+ 	),
+ 	TP_fast_assign(
+-		RDI_DEV_ASSIGN(ib_to_rvt(qp->ibqp.device))
++		RDI_DEV_ASSIGN(ib_to_rvt(qp->ibqp.device));
+ 		__entry->qpn = qp->ibqp.qp_num;
+ 		__entry->hrtimer = &qp->s_rnr_timer;
+ 		__entry->s_flags = qp->s_flags;
+diff --git a/drivers/infiniband/sw/rdmavt/trace_rc.h b/drivers/infiniband/sw/rdmavt/trace_rc.h
+index c47357af20998..9de52e1380251 100644
+--- a/drivers/infiniband/sw/rdmavt/trace_rc.h
++++ b/drivers/infiniband/sw/rdmavt/trace_rc.h
+@@ -71,7 +71,7 @@ DECLARE_EVENT_CLASS(rvt_rc_template,
+ 			__field(u32, r_psn)
+ 			),
+ 		    TP_fast_assign(
+-			RDI_DEV_ASSIGN(ib_to_rvt(qp->ibqp.device))
++			RDI_DEV_ASSIGN(ib_to_rvt(qp->ibqp.device));
+ 			__entry->qpn = qp->ibqp.qp_num;
+ 			__entry->s_flags = qp->s_flags;
+ 			__entry->psn = psn;
+diff --git a/drivers/infiniband/sw/rdmavt/trace_tx.h b/drivers/infiniband/sw/rdmavt/trace_tx.h
+index d963ca755828f..cb96be0f8f194 100644
+--- a/drivers/infiniband/sw/rdmavt/trace_tx.h
++++ b/drivers/infiniband/sw/rdmavt/trace_tx.h
+@@ -111,7 +111,7 @@ TRACE_EVENT(
+ 		__field(int, wr_num_sge)
+ 	),
+ 	TP_fast_assign(
+-		RDI_DEV_ASSIGN(ib_to_rvt(qp->ibqp.device))
++		RDI_DEV_ASSIGN(ib_to_rvt(qp->ibqp.device));
+ 		__entry->wqe = wqe;
+ 		__entry->wr_id = wqe->wr.wr_id;
+ 		__entry->qpn = qp->ibqp.qp_num;
+@@ -170,7 +170,7 @@ TRACE_EVENT(
+ 		__field(int, send_flags)
+ 	),
+ 	TP_fast_assign(
+-		RDI_DEV_ASSIGN(ib_to_rvt(qp->ibqp.device))
++		RDI_DEV_ASSIGN(ib_to_rvt(qp->ibqp.device));
+ 		__entry->wqe = wqe;
+ 		__entry->wr_id = wqe->wr.wr_id;
+ 		__entry->qpn = qp->ibqp.qp_num;
+diff --git a/drivers/misc/mei/mei-trace.h b/drivers/misc/mei/mei-trace.h
+index df758033dc937..fe46ff2b9d69f 100644
+--- a/drivers/misc/mei/mei-trace.h
++++ b/drivers/misc/mei/mei-trace.h
+@@ -26,7 +26,7 @@ TRACE_EVENT(mei_reg_read,
+ 		__field(u32, val)
+ 	),
+ 	TP_fast_assign(
+-		__assign_str(dev, dev_name(dev))
++		__assign_str(dev, dev_name(dev));
+ 		__entry->reg  = reg;
+ 		__entry->offs = offs;
+ 		__entry->val = val;
+@@ -45,7 +45,7 @@ TRACE_EVENT(mei_reg_write,
+ 		__field(u32, val)
+ 	),
+ 	TP_fast_assign(
+-		__assign_str(dev, dev_name(dev))
++		__assign_str(dev, dev_name(dev));
+ 		__entry->reg = reg;
+ 		__entry->offs = offs;
+ 		__entry->val = val;
+@@ -64,7 +64,7 @@ TRACE_EVENT(mei_pci_cfg_read,
+ 		__field(u32, val)
+ 	),
+ 	TP_fast_assign(
+-		__assign_str(dev, dev_name(dev))
++		__assign_str(dev, dev_name(dev));
+ 		__entry->reg  = reg;
+ 		__entry->offs = offs;
+ 		__entry->val = val;
+diff --git a/drivers/net/ethernet/marvell/octeontx2/af/rvu_trace.h b/drivers/net/ethernet/marvell/octeontx2/af/rvu_trace.h
+index e6609068e81be..64aa7d350df16 100644
+--- a/drivers/net/ethernet/marvell/octeontx2/af/rvu_trace.h
++++ b/drivers/net/ethernet/marvell/octeontx2/af/rvu_trace.h
+@@ -21,7 +21,7 @@ TRACE_EVENT(otx2_msg_alloc,
+ 			     __field(u16, id)
+ 			     __field(u64, size)
+ 	    ),
+-	    TP_fast_assign(__assign_str(dev, pci_name(pdev))
++	    TP_fast_assign(__assign_str(dev, pci_name(pdev));
+ 			   __entry->id = id;
+ 			   __entry->size = size;
+ 	    ),
+@@ -36,7 +36,7 @@ TRACE_EVENT(otx2_msg_send,
+ 			     __field(u16, num_msgs)
+ 			     __field(u64, msg_size)
+ 	    ),
+-	    TP_fast_assign(__assign_str(dev, pci_name(pdev))
++	    TP_fast_assign(__assign_str(dev, pci_name(pdev));
+ 			   __entry->num_msgs = num_msgs;
+ 			   __entry->msg_size = msg_size;
+ 	    ),
+@@ -52,7 +52,7 @@ TRACE_EVENT(otx2_msg_check,
+ 			     __field(u16, rspid)
+ 			     __field(int, rc)
+ 	    ),
+-	    TP_fast_assign(__assign_str(dev, pci_name(pdev))
++	    TP_fast_assign(__assign_str(dev, pci_name(pdev));
+ 			   __entry->reqid = reqid;
+ 			   __entry->rspid = rspid;
+ 			   __entry->rc = rc;
+@@ -69,8 +69,8 @@ TRACE_EVENT(otx2_msg_interrupt,
+ 			     __string(str, msg)
+ 			     __field(u64, intr)
+ 	    ),
+-	    TP_fast_assign(__assign_str(dev, pci_name(pdev))
+-			   __assign_str(str, msg)
++	    TP_fast_assign(__assign_str(dev, pci_name(pdev));
++			   __assign_str(str, msg);
+ 			   __entry->intr = intr;
+ 	    ),
+ 	    TP_printk("[%s] mbox interrupt %s (0x%llx)\n", __get_str(dev),
+@@ -84,7 +84,7 @@ TRACE_EVENT(otx2_msg_process,
+ 			     __field(u16, id)
+ 			     __field(int, err)
+ 	    ),
+-	    TP_fast_assign(__assign_str(dev, pci_name(pdev))
++	    TP_fast_assign(__assign_str(dev, pci_name(pdev));
+ 			   __entry->id = id;
+ 			   __entry->err = err;
+ 	    ),
+diff --git a/drivers/net/fjes/fjes_trace.h b/drivers/net/fjes/fjes_trace.h
+index 9237b69d8e217..6437ddbd7842e 100644
+--- a/drivers/net/fjes/fjes_trace.h
++++ b/drivers/net/fjes/fjes_trace.h
+@@ -232,7 +232,7 @@ TRACE_EVENT(fjes_hw_start_debug_err,
+ 		 __string(err, err)
+ 	),
+ 	TP_fast_assign(
+-		__assign_str(err, err)
++		__assign_str(err, err);
+ 	),
+ 	TP_printk("%s", __get_str(err))
+ );
+@@ -258,7 +258,7 @@ TRACE_EVENT(fjes_hw_stop_debug_err,
+ 		 __string(err, err)
+ 	),
+ 	TP_fast_assign(
+-		__assign_str(err, err)
++		__assign_str(err, err);
+ 	),
+ 	TP_printk("%s", __get_str(err))
+ );
+diff --git a/drivers/usb/cdns3/cdnsp-trace.h b/drivers/usb/cdns3/cdnsp-trace.h
+index 5aa88ca012de1..6a2571c6aa9ed 100644
+--- a/drivers/usb/cdns3/cdnsp-trace.h
++++ b/drivers/usb/cdns3/cdnsp-trace.h
+@@ -138,7 +138,7 @@ DECLARE_EVENT_CLASS(cdnsp_log_simple,
+ 		__string(text, msg)
+ 	),
+ 	TP_fast_assign(
+-		__assign_str(text, msg)
++		__assign_str(text, msg);
+ 	),
+ 	TP_printk("%s", __get_str(text))
+ );
+diff --git a/fs/nfs/nfs4trace.h b/fs/nfs/nfs4trace.h
+index 2ef75caad6dab..7a2567aa2b86d 100644
+--- a/fs/nfs/nfs4trace.h
++++ b/fs/nfs/nfs4trace.h
+@@ -625,7 +625,7 @@ TRACE_EVENT(nfs4_state_mgr,
+ 
+ 		TP_fast_assign(
+ 			__entry->state = clp->cl_state;
+-			__assign_str(hostname, clp->cl_hostname)
++			__assign_str(hostname, clp->cl_hostname);
+ 		),
+ 
+ 		TP_printk(
+@@ -1637,7 +1637,7 @@ DECLARE_EVENT_CLASS(nfs4_inode_callback_event,
+ 				__entry->fileid = 0;
+ 				__entry->dev = 0;
+ 			}
+-			__assign_str(dstaddr, clp ? clp->cl_hostname : "unknown")
++			__assign_str(dstaddr, clp ? clp->cl_hostname : "unknown");
+ 		),
+ 
+ 		TP_printk(
+@@ -1694,7 +1694,7 @@ DECLARE_EVENT_CLASS(nfs4_inode_stateid_callback_event,
+ 				__entry->fileid = 0;
+ 				__entry->dev = 0;
+ 			}
+-			__assign_str(dstaddr, clp ? clp->cl_hostname : "unknown")
++			__assign_str(dstaddr, clp ? clp->cl_hostname : "unknown");
+ 			__entry->stateid_seq =
+ 				be32_to_cpu(stateid->seqid);
+ 			__entry->stateid_hash =
+diff --git a/fs/nfs/nfstrace.h b/fs/nfs/nfstrace.h
+index ae513e1718fe5..8a224871be74c 100644
+--- a/fs/nfs/nfstrace.h
++++ b/fs/nfs/nfstrace.h
+@@ -1423,8 +1423,8 @@ DECLARE_EVENT_CLASS(nfs_xdr_event,
+ 			__entry->version = task->tk_client->cl_vers;
+ 			__entry->error = error;
+ 			__assign_str(program,
+-				     task->tk_client->cl_program->name)
+-			__assign_str(procedure, task->tk_msg.rpc_proc->p_name)
++				     task->tk_client->cl_program->name);
++			__assign_str(procedure, task->tk_msg.rpc_proc->p_name);
+ 		),
+ 
+ 		TP_printk(
+diff --git a/include/trace/events/btrfs.h b/include/trace/events/btrfs.h
+index 76e0be7e14d05..8cf61e42900e8 100644
+--- a/include/trace/events/btrfs.h
++++ b/include/trace/events/btrfs.h
+@@ -1093,7 +1093,7 @@ TRACE_EVENT(btrfs_trigger_flush,
+ 		__entry->flags	= flags;
+ 		__entry->bytes	= bytes;
+ 		__entry->flush	= flush;
+-		__assign_str(reason, reason)
++		__assign_str(reason, reason);
+ 	),
+ 
+ 	TP_printk_btrfs("%s: flush=%d(%s) flags=%llu(%s) bytes=%llu",
+diff --git a/include/trace/events/dma_fence.h b/include/trace/events/dma_fence.h
+index 64e92d56c6a8f..3963e79ca7b42 100644
+--- a/include/trace/events/dma_fence.h
++++ b/include/trace/events/dma_fence.h
+@@ -23,8 +23,8 @@ DECLARE_EVENT_CLASS(dma_fence,
+ 	),
+ 
+ 	TP_fast_assign(
+-		__assign_str(driver, fence->ops->get_driver_name(fence))
+-		__assign_str(timeline, fence->ops->get_timeline_name(fence))
++		__assign_str(driver, fence->ops->get_driver_name(fence));
++		__assign_str(timeline, fence->ops->get_timeline_name(fence));
+ 		__entry->context = fence->context;
+ 		__entry->seqno = fence->seqno;
+ 	),
+diff --git a/include/trace/events/rpcgss.h b/include/trace/events/rpcgss.h
+index ffdbe6f85da8b..b2a2672e66322 100644
+--- a/include/trace/events/rpcgss.h
++++ b/include/trace/events/rpcgss.h
+@@ -152,7 +152,7 @@ DECLARE_EVENT_CLASS(rpcgss_ctx_class,
+ 	TP_fast_assign(
+ 		__entry->cred = gc;
+ 		__entry->service = gc->gc_service;
+-		__assign_str(principal, gc->gc_principal)
++		__assign_str(principal, gc->gc_principal);
+ 	),
+ 
+ 	TP_printk("cred=%p service=%s principal='%s'",
+@@ -535,7 +535,7 @@ TRACE_EVENT(rpcgss_upcall_msg,
+ 	),
+ 
+ 	TP_fast_assign(
+-		__assign_str(msg, buf)
++		__assign_str(msg, buf);
+ 	),
+ 
+ 	TP_printk("msg='%s'", __get_str(msg))
+diff --git a/include/trace/events/sunrpc.h b/include/trace/events/sunrpc.h
+index d02e01a27b690..861f199896c6a 100644
+--- a/include/trace/events/sunrpc.h
++++ b/include/trace/events/sunrpc.h
+@@ -154,8 +154,8 @@ TRACE_EVENT(rpc_clnt_new,
+ 		__entry->client_id = clnt->cl_clid;
+ 		__assign_str(addr, xprt->address_strings[RPC_DISPLAY_ADDR]);
+ 		__assign_str(port, xprt->address_strings[RPC_DISPLAY_PORT]);
+-		__assign_str(program, program)
+-		__assign_str(server, server)
++		__assign_str(program, program);
++		__assign_str(server, server);
+ 	),
+ 
+ 	TP_printk("client=%u peer=[%s]:%s program=%s server=%s",
+@@ -180,8 +180,8 @@ TRACE_EVENT(rpc_clnt_new_err,
+ 
+ 	TP_fast_assign(
+ 		__entry->error = error;
+-		__assign_str(program, program)
+-		__assign_str(server, server)
++		__assign_str(program, program);
++		__assign_str(server, server);
+ 	),
+ 
+ 	TP_printk("program=%s server=%s error=%d",
+@@ -284,8 +284,8 @@ TRACE_EVENT(rpc_request,
+ 		__entry->client_id = task->tk_client->cl_clid;
+ 		__entry->version = task->tk_client->cl_vers;
+ 		__entry->async = RPC_IS_ASYNC(task);
+-		__assign_str(progname, task->tk_client->cl_program->name)
+-		__assign_str(procname, rpc_proc_name(task))
++		__assign_str(progname, task->tk_client->cl_program->name);
++		__assign_str(procname, rpc_proc_name(task));
+ 	),
+ 
+ 	TP_printk("task:%u@%u %sv%d %s (%ssync)",
+@@ -494,10 +494,10 @@ DECLARE_EVENT_CLASS(rpc_reply_event,
+ 		__entry->task_id = task->tk_pid;
+ 		__entry->client_id = task->tk_client->cl_clid;
+ 		__entry->xid = be32_to_cpu(task->tk_rqstp->rq_xid);
+-		__assign_str(progname, task->tk_client->cl_program->name)
++		__assign_str(progname, task->tk_client->cl_program->name);
+ 		__entry->version = task->tk_client->cl_vers;
+-		__assign_str(procname, rpc_proc_name(task))
+-		__assign_str(servername, task->tk_xprt->servername)
++		__assign_str(procname, rpc_proc_name(task));
++		__assign_str(servername, task->tk_xprt->servername);
+ 	),
+ 
+ 	TP_printk("task:%u@%d server=%s xid=0x%08x %sv%d %s",
+@@ -622,8 +622,8 @@ TRACE_EVENT(rpc_stats_latency,
+ 		__entry->task_id = task->tk_pid;
+ 		__entry->xid = be32_to_cpu(task->tk_rqstp->rq_xid);
+ 		__entry->version = task->tk_client->cl_vers;
+-		__assign_str(progname, task->tk_client->cl_program->name)
+-		__assign_str(procname, rpc_proc_name(task))
++		__assign_str(progname, task->tk_client->cl_program->name);
++		__assign_str(procname, rpc_proc_name(task));
+ 		__entry->backlog = ktime_to_us(backlog);
+ 		__entry->rtt = ktime_to_us(rtt);
+ 		__entry->execute = ktime_to_us(execute);
+@@ -669,15 +669,15 @@ TRACE_EVENT(rpc_xdr_overflow,
+ 			__entry->task_id = task->tk_pid;
+ 			__entry->client_id = task->tk_client->cl_clid;
+ 			__assign_str(progname,
+-				     task->tk_client->cl_program->name)
++				     task->tk_client->cl_program->name);
+ 			__entry->version = task->tk_client->cl_vers;
+-			__assign_str(procedure, task->tk_msg.rpc_proc->p_name)
++			__assign_str(procedure, task->tk_msg.rpc_proc->p_name);
+ 		} else {
+ 			__entry->task_id = 0;
+ 			__entry->client_id = 0;
+-			__assign_str(progname, "unknown")
++			__assign_str(progname, "unknown");
+ 			__entry->version = 0;
+-			__assign_str(procedure, "unknown")
++			__assign_str(procedure, "unknown");
+ 		}
+ 		__entry->requested = requested;
+ 		__entry->end = xdr->end;
+@@ -735,9 +735,9 @@ TRACE_EVENT(rpc_xdr_alignment,
+ 		__entry->task_id = task->tk_pid;
+ 		__entry->client_id = task->tk_client->cl_clid;
+ 		__assign_str(progname,
+-			     task->tk_client->cl_program->name)
++			     task->tk_client->cl_program->name);
+ 		__entry->version = task->tk_client->cl_vers;
+-		__assign_str(procedure, task->tk_msg.rpc_proc->p_name)
++		__assign_str(procedure, task->tk_msg.rpc_proc->p_name);
+ 
+ 		__entry->offset = offset;
+ 		__entry->copied = copied;
+@@ -1107,9 +1107,9 @@ TRACE_EVENT(xprt_retransmit,
+ 		__entry->xid = be32_to_cpu(rqst->rq_xid);
+ 		__entry->ntrans = rqst->rq_ntrans;
+ 		__assign_str(progname,
+-			     task->tk_client->cl_program->name)
++			     task->tk_client->cl_program->name);
+ 		__entry->version = task->tk_client->cl_vers;
+-		__assign_str(procedure, task->tk_msg.rpc_proc->p_name)
++		__assign_str(procedure, task->tk_msg.rpc_proc->p_name);
+ 	),
+ 
+ 	TP_printk(
+@@ -1842,7 +1842,7 @@ TRACE_EVENT(svc_xprt_accept,
+ 
+ 	TP_fast_assign(
+ 		__assign_str(addr, xprt->xpt_remotebuf);
+-		__assign_str(protocol, xprt->xpt_class->xcl_name)
++		__assign_str(protocol, xprt->xpt_class->xcl_name);
+ 		__assign_str(service, service);
+ 	),
+ 
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
