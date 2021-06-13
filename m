@@ -1,36 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B7713A5DCA
-	for <lists+amd-gfx@lfdr.de>; Mon, 14 Jun 2021 09:38:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFBB73A5DC8
+	for <lists+amd-gfx@lfdr.de>; Mon, 14 Jun 2021 09:37:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33CFB89D7F;
-	Mon, 14 Jun 2021 07:37:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32D2489D60;
+	Mon, 14 Jun 2021 07:37:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DF7E6E3BB;
- Sat, 12 Jun 2021 23:11:09 +0000 (UTC)
-Received: from rorschach.local.home (cpe-66-24-58-225.stny.res.rr.com
- [66.24.58.225])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 57A66610C8;
- Sat, 12 Jun 2021 23:11:08 +0000 (UTC)
-Date: Sat, 12 Jun 2021 19:11:07 -0400
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Joe Perches <joe@perches.com>
-Subject: Re: [PATCH V2] treewide: Add missing semicolons to __assign_str uses
-Message-ID: <20210612191107.24c1bfbb@rorschach.local.home>
-In-Reply-To: <48a056adabd8f70444475352f617914cef504a45.camel@perches.com>
-References: <cover.1621024265.git.bristot@redhat.com>
- <2c59beee3b36b15592bfbb9f26dee7f8b55fd814.1621024265.git.bristot@redhat.com>
- <20210603172902.41648183@gandalf.local.home>
- <1e068d21106bb6db05b735b4916bb420e6c9842a.camel@perches.com>
- <20210604122128.0d348960@oasis.local.home>
- <48a056adabd8f70444475352f617914cef504a45.camel@perches.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com
+ [IPv6:2607:f8b0:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C5036E0CD;
+ Sun, 13 Jun 2021 11:20:48 +0000 (UTC)
+Received: by mail-pf1-x42d.google.com with SMTP id p13so8400382pfw.0;
+ Sun, 13 Jun 2021 04:20:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=km7fFSoakwLzBL2K4C+XOrORhJcE9EZrDxM5qTTgCOg=;
+ b=EVJ4IsPbyK9Sj8w5NYgL4BjGXMDVJ/sTd/Sf8kbEd+6MvzMRLCpjdOYBSH6+WVO3AK
+ oVScYkOnPrjZYQGfznN9DxDHEgzZZalD2qAa+g9IJBC2ucq6GxuUFPG1jvEyl9UFzpcs
+ P2qssZdMyqAhxklk3sP0DFHwCtV52Oxjl/XCIGn3ftmvJ7ZMwk/phuCLwwRUK8QmJVLg
+ 6o9ZztKWVtu7VvJW1uq/sLWMoC+vz3TnKoaD1RAO1V2eRAQDRA7APrMfOfrN5I4Kmoax
+ qXdLYV3FEzS55cVcEeGFW9kIKvU9XX3lAwqJPQXoy2xSFPULA/9ga2BFKhyAyftunyAy
+ KqCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=km7fFSoakwLzBL2K4C+XOrORhJcE9EZrDxM5qTTgCOg=;
+ b=OIJWMKHtMBE/we91vdrZRPH+bk1bvY6VdP60R6ZLkWrYFtmg3Rd7fqHpwmE3nzV4ul
+ v2vExDtq9NOVvnhRtwM+z47L1fQA3nflCaZQyPMD1mLIgbdW5w9YDus/Akbe7nd0OXGD
+ pG+e1h8BfZECNe5czjQoVs3RB3l9uHvZ7ZTP40CCzaF3xKuShKq2JjEIY44Hq1OnMyWA
+ t8WR/cFxJdOnuCm6w9HeqyqfEUpXtFWS6coL0kHI2Vf7TvpRn2qMhznDen0kOlqt3oLM
+ v6LtoOH6u0YhNYem6UVvL6AF2fX6LJHnxF/Zv7nJmjyvhyx0qSNavEI7XTuJ6crCSzRL
+ L2BA==
+X-Gm-Message-State: AOAM530jLUYEuEbrfFgPZqmgbg3mBA/3KzQmq4lAB0nHNrCFoXHw8dCR
+ OAetAA6Z18Y2L0Mo5kl0US4=
+X-Google-Smtp-Source: ABdhPJzUiGJ1yIHs4EorvIoB5w2vzkEzl8kzr/5ccH+zbckWpdu6tvfVwa1iOirPhvkpacyDXQwCtg==
+X-Received: by 2002:a63:b10:: with SMTP id 16mr12369772pgl.90.1623583248107;
+ Sun, 13 Jun 2021 04:20:48 -0700 (PDT)
+Received: from localhost.localdomain ([209.58.129.97])
+ by smtp.gmail.com with ESMTPSA id l5sm9392162pff.20.2021.06.13.04.20.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 13 Jun 2021 04:20:47 -0700 (PDT)
+From: Dwaipayan Ray <dwaipayanray1@gmail.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, airlied@linux.ie,
+ daniel@ffwll.ch
+Subject: [PATCH --next] drm/amd/amdgpu: Fix kernel doc warnings
+Date: Sun, 13 Jun 2021 16:50:34 +0530
+Message-Id: <20210613112034.19235-1-dwaipayanray1@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 14 Jun 2021 07:37:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -44,38 +65,86 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-nfs@vger.kernel.org, lima@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- amd-gfx@lists.freedesktop.org, linux-media@vger.kernel.org
+Cc: lukas.bulwahn@gmail.com, Dwaipayan Ray <dwaipayanray1@gmail.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 12 Jun 2021 08:42:27 -0700
-Joe Perches <joe@perches.com> wrote:
+Commit cb1c81467af3 ("drm/ttm: flip the switch for driver
+allocated resources v2") changed few ttm_resource pointer names.
+The corresponding kernel doc comments were not updated, which
+produces few kernel doc build warnings of the type:
 
-> The __assign_str macro has an unusual ending semicolon but the vast
-> majority of uses of the macro already have semicolon termination.
-> 
-> $ git grep -P '\b__assign_str\b' | wc -l
-> 551
-> $ git grep -P '\b__assign_str\b.*;' | wc -l
-> 480
-> 
-> Add semicolons to the __assign_str() uses without semicolon termination
-> and all the other uses without semicolon termination via additional defines
-> that are equivalent to __assign_str() with the eventual goal of removing
-> the semicolon from the __assign_str() macro definition.
-> 
-> Link: https://lore.kernel.org/lkml/1e068d21106bb6db05b735b4916bb420e6c9842a.camel@perches.com/
+./drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c:193: warning: Excess
+function parameter 'mem' description in 'amdgpu_gtt_mgr_del'
 
-FYI, please send new patches as new threads. Otherwise it is likely to
-be missed.
+Rename the kernel doc function arguments to match the prototype.
 
--- Steve
+Signed-off-by: Dwaipayan Ray <dwaipayanray1@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c  | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 6 +++---
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+index ec96e0b26b11..fa88273364b3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+@@ -118,7 +118,7 @@ bool amdgpu_gtt_mgr_has_gart_addr(struct ttm_resource *res)
+  * @man: TTM memory type manager
+  * @tbo: TTM BO we need this range for
+  * @place: placement flags and restrictions
+- * @mem: the resulting mem object
++ * @res: the resulting TTM memory object
+  *
+  * Dummy, allocate the node but no space for it yet.
+  */
+@@ -184,7 +184,7 @@ static int amdgpu_gtt_mgr_new(struct ttm_resource_manager *man,
+  * amdgpu_gtt_mgr_del - free ranges
+  *
+  * @man: TTM memory type manager
+- * @mem: TTM memory object
++ * @res: TTM memory object
+  *
+  * Free the allocated GTT again.
+  */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+index 436ec246a7da..f06813f04e8c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+@@ -361,7 +361,7 @@ static void amdgpu_vram_mgr_virt_start(struct ttm_resource *mem,
+  * @man: TTM memory type manager
+  * @tbo: TTM BO we need this range for
+  * @place: placement flags and restrictions
+- * @mem: the resulting mem object
++ * @res: the resulting TTM memory object
+  *
+  * Allocate VRAM for the given BO.
+  */
+@@ -482,7 +482,7 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
+  * amdgpu_vram_mgr_del - free ranges
+  *
+  * @man: TTM memory type manager
+- * @mem: TTM memory object
++ * @res: TTM memory object
+  *
+  * Free the allocated VRAM again.
+  */
+@@ -517,7 +517,7 @@ static void amdgpu_vram_mgr_del(struct ttm_resource_manager *man,
+  * amdgpu_vram_mgr_alloc_sgt - allocate and fill a sg table
+  *
+  * @adev: amdgpu device pointer
+- * @mem: TTM memory object
++ * @res: TTM memory object
+  * @offset: byte offset from the base of VRAM BO
+  * @length: number of bytes to export in sg_table
+  * @dev: the other device
+-- 
+2.28.0
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
