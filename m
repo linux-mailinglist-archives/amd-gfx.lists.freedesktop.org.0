@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED9E83A6D83
-	for <lists+amd-gfx@lfdr.de>; Mon, 14 Jun 2021 19:47:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93C0F3A6D7E
+	for <lists+amd-gfx@lfdr.de>; Mon, 14 Jun 2021 19:46:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF24A6E10D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 984F36E106;
 	Mon, 14 Jun 2021 17:46:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2054.outbound.protection.outlook.com [40.107.220.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EDEE6E0FB
+ (mail-co1nam11on2075.outbound.protection.outlook.com [40.107.220.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF1CD6E0F6
  for <amd-gfx@lists.freedesktop.org>; Mon, 14 Jun 2021 17:46:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XiGAY80FhsEycnsd+v3v75pTi1qP0cZ4idapIdSFlUJntLYghJGa1KkcpadQTDQCIEevvVpIEtzxrTjSN63WmeMrNp82gZWD4BjDQn1IcgKrdZ1m4rkfcKVgcKDeE6zT1SBu1f1aFOBQWweSJAai3pOfWByPRyqQZ058RHaMOOSM5h6G5cln+zz7Z8FunMwQjRenxdVbk7FgZfPkcUbgyPYr1SPOVLv1XcF68DVZLteDRo/y1bs41CJAGKhafS4OXgrfkTJH0RiKlmnX4xv1Bt/vgSEOVCsfiR+JzVIKKiQHJSWFJAJeQPZu+ZLY30tFdCtA7/mQFUg1zYTxwmC6PA==
+ b=mEvcA9xjnNgjbqgKGGkyxR2LfAHh7gRtT1zQOeCPe6VMWJR9rmU8Sjo4E2iZ9F/AY7J68DapDWsikn1Gffwo8pU30JfMM1fA+2d9tMW2bYQhHfPjHL5DFIwIlo5B2KUGgNnqX+DKc60kigHMBkMLKfR6e/6VgWa0Ncdzdx9YjLEIg8MkY6RmVdQHR6g27zHEQC16kvOZ2IeGPfF/7WmAtoqnfO7Jz+AnYnX5Mob6gp+YKWdoXv6w/5uh1mCXjk3utKQiyRP+Ss30iGy4XAAw//ITo2ov4aUbDa2zQoxk8BkhQRgxpowSo+CFeH04G0ZOHCU/4vvS7C3NsaAGxt3y3g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g1maoMhmHNrV/idgsmZu9RGm7aGeoRT9KQGiNyG68+o=;
- b=KcGK3gW7ubItOvyPfjZ0pNfTynLRe2IqYyBD99ak3kHcUjuYI0U/2GkBtKAWYgsLj/SYvozDpiRwm154tpZEtG/ipu/fTauk3oXDBdA/hQOkGJpCaIJ7mIqzYiPhQNZZG8hdSc/bkkZDsF+3FNZ7AuzVRy84tV37JhgPTCHn6HQV+VlnbiEt4O1xwGSK1TRAcydDLbWH1ooYBsMt55OoRkz/KHy8fzggS/o+WjZ0/ZvT7w04F/+k39F6QfIssroq8Tv+DnUA6MxmVZMcvwtd+FDyZQa9s58udurs5WxV1Qu09E/asSoGJqBI3mqcjCeHlb7BYa3rqlGLwUxvqGY4qw==
+ bh=hBn5h4/eThbcfg8inUYyZ54eguWhCQzRNz/g8O6Saoo=;
+ b=HoXs4nrBBPwvbgGiwMJPlcFhdKiB/CXl0W10QcAutLScFyT4jsQF7oO6ffRlksTOwOIip6VCcLDqjk0u3IFCS92ml9sT7VJl0l/Jx9xXkUST7F89D2PL5m10nYAHPF+0qciXksrlb6jlWqiIIsWRc8m5ab+COjngLHG/iGy+3VRGiC52gz41+wmU2NBZ4GDXYSIybMibfQEZ8bmlBfBEUCyHhPfdqno1P80QzvAYJvnWqor1UlFtQxEMsaxIyFM+aTwOsdTpvlt2f5YHmwa7+fHQXP0S7vcI+gBYqHI25pDzO8UZ+3QhO4kmwVbIxDgZ4fXNIv6uZCniVgzNgBaphA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g1maoMhmHNrV/idgsmZu9RGm7aGeoRT9KQGiNyG68+o=;
- b=RDfNJDaBQHCGau50qDMaHpfX75CPFsahubA9UQkKP7Y3sO/d9aF3IXHxXcI52eY3ZYGVozlWGtXAD82/3qLm8V1NmTBHwbJQyvBK1PS7r0aqudykS/wZjW6/BEvWeuInF3IEVkgjUPdZrCrlhGV87T99FvUOHasoV5kBLFP5t5Y=
+ bh=hBn5h4/eThbcfg8inUYyZ54eguWhCQzRNz/g8O6Saoo=;
+ b=kcTj36QTyCOZ/49A6ZR9osszhPWvZiwAp3CbNi6fH9EUVGJGheKxBBBn1nJqneinK9diLJkcpirT+hBh7iEN3X2KLJA4lgRUoFsdyO9sKfupXeemwjticmzQH3kO5XLtALrXuhKVBDyjk7xlUwr0F2eILTeOewqPAlGZ6Zn5eR0=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -38,13 +38,13 @@ Received: from DM6PR12MB3962.namprd12.prod.outlook.com (2603:10b6:5:1ce::21)
 Received: from DM6PR12MB3962.namprd12.prod.outlook.com
  ([fe80::142:82e3:7e9d:55a0]) by DM6PR12MB3962.namprd12.prod.outlook.com
  ([fe80::142:82e3:7e9d:55a0%6]) with mapi id 15.20.4219.025; Mon, 14 Jun 2021
- 17:46:51 +0000
+ 17:46:52 +0000
 From: Luben Tuikov <luben.tuikov@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 05/40] drm/amdgpu: add new helper for handling EEPROM i2c
- transfers
-Date: Mon, 14 Jun 2021 13:45:57 -0400
-Message-Id: <20210614174632.20818-6-luben.tuikov@amd.com>
+Subject: [PATCH 06/40] drm/amdgpu/ras: switch ras eeprom handling to use
+ generic helper
+Date: Mon, 14 Jun 2021 13:45:58 -0400
+Message-Id: <20210614174632.20818-7-luben.tuikov@amd.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210614174632.20818-1-luben.tuikov@amd.com>
 References: <20210614174632.20818-1-luben.tuikov@amd.com>
@@ -57,53 +57,53 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from localhost.localdomain (108.162.138.69) by
  YTXPR0101CA0019.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00::32) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4219.21 via Frontend Transport; Mon, 14 Jun 2021 17:46:50 +0000
+ 15.20.4219.21 via Frontend Transport; Mon, 14 Jun 2021 17:46:51 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e3248dbc-3e35-4cdc-3963-08d92f5c63e8
+X-MS-Office365-Filtering-Correlation-Id: aa020e44-c15f-4189-6eba-08d92f5c6453
 X-MS-TrafficTypeDiagnostic: DM6PR12MB4748:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB47482B6F618E63088E844B8899319@DM6PR12MB4748.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4748CBD0FBE789C8E6F73F5499319@DM6PR12MB4748.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 02KsxhJWrgxI5oiRENflfwkdkuzBLR6FNVMavKZkTWjbwS3zFz5rJF9sZZG5aLLpeSQmmUCUt55JSLSnq5dNHoC6Q5xhm6ZNEMNHpjFdJ8kYwvVMnKTOolCYw6Ki5zW4sUC0njNbn4BPujlfyKld93dsjC0QigfTCI2gR2V1izXT7e90ivvln1W0CR6szpd2VHeTcKQ9o1gVKViTAR2wQK5EyntnG6arI6ujA/hAXvt1/673TFTwkzS5c9RO4PoFAc2sWv+C3PYhqnk+jtHCb+Q6ZWmh0xS0NiF0xwLL0b3Tihiqx5PbJLHqts1Ovt5mFPC3cwBLhi/BNU+J9uQ01UWiifMj0lSNM72j/vKo3o5gIntF8Yykea8V725HymlFTxxqBhW7RcyYUh3nBjEWqcOygpCbhv6wAFaLYEm9MAcjD4tXv8oM/eouVLvzTV1sBnn/tUI67D9BqO/qNT+NEgGxmqWfxTrm1qrkpKWRyR+SdskYiTy9WuiU5C+s6nvvCuXcrMTGeYXXlbTD+A9fLbCE6OBXxLzXJ7PkJOWwAY/Mc9talwju5AVHn6KdiEMaZ+cJ0li0R9dRXE9dhj0BBUoDzbHmlrs98ABVhUupIB6OIzboXmbMcr8pwYAtp/4j7UnBhSnZ2W16w9nLoawT9vHlEuuAdyCtdN1Lt2D/GReEaWKYnMceOghrW415sqqc
+X-Microsoft-Antispam-Message-Info: d92JVFpzV7lEhsLfPpKGQvD07kvqQatUJkdWdATYFCJ8kDaX/SNtzfGfCcAenK7sygNBf9yVqE8270dtHmwRi8mg9Hpxc3iFPLw507AxGuu2YIflIc0HUPlivjtgDHN8/ZdaZu1wV9jwcBa+vivIOH6VzlkX8r8Xq7PftEP4rLruGXQGebX3PWCvIsflOw7RZnqPDPS07fu36WhAaGBai8V1JGQysHvCjw7fYSYB2oeYVZjcgR4NjZnky4V2YSB+q0Jb6x9LmfaCxPnKQawoTMPQKzLYcvhCZ01UBgnMlM6Oc5SC916tIE6ldColBqYK2tANtfUy8H4DstyoQMbjNKQZ+BEDX9lVzOUy3kbDNdtFt6N+2h05HOpfu+UfXgz2OHgwkBECabfxjXsexSn5lyigTIG95KZMFyKuFguYvpyQpuZ+VE9t5ltOdIPNUrMrfc0OTXHKD5aHa5DShg2Nc3I33ZfB2nrQ7S8/Ggv9EShfmVIw74S6OKs+2m+epXYMl4m+bXIXg8Z5eXykL919MOat3NiRUN0K9bwSIWj7W7nJRSIl20hXoUUHQhO03DWMBezP0iIJ5v4KmiglcMQRqMmjrF3iHuMbUC7Yi2hboWGetXJMNASxgR+mssfbGx2wTZAxWSVim6rF3RfsbAlm7PzC9JdgKvr4ycKsmzklqorQh2Cg36L1qRI0zoXke+JFoz+gAIk97aOUQZK4b8vo0A==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB3962.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(136003)(376002)(396003)(366004)(39860400002)(316002)(1076003)(26005)(6512007)(16526019)(186003)(4326008)(38100700002)(8676002)(54906003)(2616005)(956004)(2906002)(8936002)(66946007)(6916009)(38350700002)(478600001)(83380400001)(6506007)(5660300002)(52116002)(44832011)(86362001)(55236004)(6486002)(66476007)(66556008)(36756003)(69590400013);
+ SFS:(4636009)(346002)(136003)(376002)(396003)(366004)(39860400002)(316002)(1076003)(26005)(6512007)(16526019)(186003)(4326008)(38100700002)(8676002)(54906003)(2616005)(956004)(2906002)(8936002)(66946007)(6916009)(38350700002)(478600001)(83380400001)(6506007)(5660300002)(52116002)(44832011)(86362001)(55236004)(6486002)(66476007)(66556008)(36756003)(69590400013)(41533002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dR5dyxQhMno1CqTQyYEMG3z6mMJhwwmynF8OIGDKQZ+WmF/G+z2Sx49X+Mdf?=
- =?us-ascii?Q?ARMdzRuSK5TZpfKZLmHsk+OKNwAgXBrtGnL5KgjaAuNkbMFj0/oYCaaxXdVq?=
- =?us-ascii?Q?PpJlrOvPLY4LEsBH48gFmbNM9S7PgUz7BHR/mPwDg7JbI2Swh5d1qNK4HT7c?=
- =?us-ascii?Q?trJfq0zR5fm1NKY2IjdRtEsFw0VjrnR2rrRy5r4TzeGO7UfDm4KLj5C/XWgO?=
- =?us-ascii?Q?tDOjQC7qT+W70Vz4IYQl9F7TyfSCzU9te64bbUPxXvAebwyW1cMKsjKUs68f?=
- =?us-ascii?Q?lab7Q/TxZrPss0CqrPp+ym+25zT8VqkYaEtvmE2wxrmFbSr9gWsX7Fnkhfq9?=
- =?us-ascii?Q?xqEbp9vDwO9XZvj+JmAEON/XCyzMaUmciciexlLTLCT9vagjNXbC/4Kz0gve?=
- =?us-ascii?Q?voq2JZRfxBie2wc3LMpBegZ8xgbFx4PIKIMKbUswYY31btsLpZz+cEpBL7SQ?=
- =?us-ascii?Q?fumIigVyvd5f6Jy1iFdFtmaC6USRgl4jnt1tWey/82zAn1cyHpo8QCeXsa7F?=
- =?us-ascii?Q?VXhLZn+hwX6xefNmpBBnivWR9SwNx6hTyKyTuywL01iu5taocIKkLf9JEa8v?=
- =?us-ascii?Q?xbzyWzHjbYG9po2xu7MB32GROPskjDdKNCiVqdWgOn1H57UUgvlBSGzbUSpq?=
- =?us-ascii?Q?zwVx6cuzSKPKpKaM1JegcGDE+LEDZyRhgYwgfzzY1eT67CDMrP/fQAsYJph7?=
- =?us-ascii?Q?U5JdZ4p1f16yHwZjg3DYyLvsdKqM6QPi1k8f5P0KBzz4/q/mlUh5eb+2OLB5?=
- =?us-ascii?Q?AQSxmjBTpoXW2OfyxUPhoRUOkUe+1hmWkY03ayoUfcoxJLOuAP4QZeVPxhQK?=
- =?us-ascii?Q?sqETu/rfAp7ZxjsfrTADiVQ8eIghIePuKeyhxlIP2TQ6BMkUxeWzGEtx92M/?=
- =?us-ascii?Q?lNnYQaFMilX91vLlZX8itEakevGPgjaRtknUQ0msg4g1xcrlfiypo9JAwI8b?=
- =?us-ascii?Q?k5WJY4j/pFACzLPfCl/qUsv+UnZ0ylkXzyk8xL9gVrUgDCyBT85GTKD3JR7r?=
- =?us-ascii?Q?7qcxGqTL91lJgyjsSqnNHFIn9DpInLt671KKq557kkMh/s2VE5NzCr5RwfyW?=
- =?us-ascii?Q?q+pZHnS3lAlIXIDFInHSnrq04eiI55mWk2emyRk20oj2UmD/IBBguix0fNSr?=
- =?us-ascii?Q?hSEeDdML/lTY7uKvi0lOO5ZUdgDprERXePPGJzQh9O8etBNrsDOq2g1P82x5?=
- =?us-ascii?Q?MKa9fvtlQG69h9/yupRdpTBla797LRWz2tq6+t0KXTKRXfMWUi9jS+l2H0+m?=
- =?us-ascii?Q?ypx/GVgtDG4ENPZELbZ5sXPjab1kSOMz/OH6DbK8KOpy/W9NBQwVSGYU0YHi?=
- =?us-ascii?Q?l57JIoYv8AqusR3iccBT2DAI?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2c/A4I86xsXd1PhCyff9SkBGiH+lXjiI/rWr0I/7ND20ZOrmoszqWY0MvEaB?=
+ =?us-ascii?Q?VBMbOvpQiMPFyMnCxuYm8r6QSGAOlQPrOoRIX3Bv5dKly2PK/lTCBv2NFxIV?=
+ =?us-ascii?Q?wodUJXtN0GfqBDj1t3zoQjnjNAcTQChg9TkNA8xbfTRVkyFyWbWpon/7ccBX?=
+ =?us-ascii?Q?3gxSyuwuY0Z4/iQ3rwp+9jR7yNMSYAiuyhZXc4NpGnTk1E0k8lpwy40Mwkro?=
+ =?us-ascii?Q?Gk/UCFqTFW2Z4ZXtaYNNNuL33CZl7athK89pAPvEkN5UDAydIyawCqajVfkr?=
+ =?us-ascii?Q?qVE8VCniZCxOLVuSGcRdfA8aApW2tC5H8feXsE8HUsot9QmJxrM4JHqqk+7M?=
+ =?us-ascii?Q?CpUC0KJgKraSuCDezbg/NwzuXuoWC21dz4d73fNZwNmQ+il4KhVA+VC5Rp6a?=
+ =?us-ascii?Q?vdI/gi3OZOvaCFHg4aPJNeqivqmKnYIfAB2PqTHi088V5bxqCbqH0k1WA612?=
+ =?us-ascii?Q?TxUads4orDnT+I5TNks8rpi5EPdvEWanI8rdnveno0rlTKGZnzu8oOcphWJJ?=
+ =?us-ascii?Q?AgssmCQBcutASn6HrpLwdA0Eaf61r7BKlbfm89IiDBXQ1TTa3VrhdAMK3U92?=
+ =?us-ascii?Q?gyZRLR3HImJVNuutjUZHwLSQRkTQE0xH8CoQKx1ZY3tqj1r1HO0RTfukD/or?=
+ =?us-ascii?Q?zi/rDF5IbAef+ZTaBhjk+8Va4qA+e0lc9iTgcmTqNjfgh1l3ds8jKZb/yBdz?=
+ =?us-ascii?Q?FzkLB+Bc/jx9Vv6O+LkYo5RUsyaydEoFgwUsQC138rA04EhLmlTUWqQYlJEV?=
+ =?us-ascii?Q?63YnOeSILYIeDqwoBs9aqsWbkNvkcW8tYF8FTIqGMMIZSf8Su/Kqky7DpHUc?=
+ =?us-ascii?Q?TRUrN+AotkJoz/84lfrCLjzeUXOFtPMTpsH+T3/AKxSoa/o3cuSNn09DuWwA?=
+ =?us-ascii?Q?bBPrCknANEVGVyE/ETNQfbmdO0JtgGnxfDJIZLIzoZWKW/OrCa1jb5ylgedt?=
+ =?us-ascii?Q?YZb7XJ6cs/BRAsUFjvk+EA0hqKKV1kTDrC7dFA//fvRTqr5Kjy5+KlQtFLpQ?=
+ =?us-ascii?Q?qtzvT48OJ1u+ZV22qc/wF/rEsuJKrFb18sgGN4+T74BCsuEuLcR2ArXkYRV9?=
+ =?us-ascii?Q?3PAN8CS6BSmttjHB5EmhVbn/mbjegGi8/LHg5to2ILk8sUPPi0BvhchZF9wk?=
+ =?us-ascii?Q?LehYGxVU7aZTeYY9oMUAZcenQi3K2Q5uv+FqsLQAJ6KY96T6Ty0/8YJsh5zG?=
+ =?us-ascii?Q?O2le+APv1FJEmyfSJuYtFEy7UwilMv0rkZXcAVEz6cS1Dw/5CPDBWWqMzz42?=
+ =?us-ascii?Q?tajEra0FeAW97a0hA/N5c2c/1ZershOgBGUqSjNBneHvybHw6kDKamuvkD1r?=
+ =?us-ascii?Q?KdqBKmJFIrk+6oc0c4HVLcTd?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e3248dbc-3e35-4cdc-3963-08d92f5c63e8
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa020e44-c15f-4189-6eba-08d92f5c6453
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3962.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2021 17:46:51.0635 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2021 17:46:51.7551 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nuFgWpDNad6Ejx5gNqnnL1V1Hvuum3xCu1GlhuiaONpFA6qUjUDf8Zlo9teSMtD2
+X-MS-Exchange-CrossTenant-UserPrincipalName: S3nFcTwFr4HBN+NIXA0dKLIxrhXkwtVdcHE6Y8b6Gigw7TShoLCdIY6h48lTvrxb
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4748
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -125,146 +125,201 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Alex Deucher <alexander.deucher@amd.com>
 
-Encapsulates the i2c protocol handling so other parts of the
-driver can just tell it the offset and size of data to write.
+Use the new helper rather than doing i2c transfers directly.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Reviewed-by: Luben Tuikov <luben.tuikov@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/Makefile        |  3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.c | 67 ++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.h | 34 +++++++++++
- 3 files changed, 103 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.c
- create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.h
+ .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c    | 86 ++++++-------------
+ 1 file changed, 28 insertions(+), 58 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
-index c56320e78c0e1f..7d292485ca7cf2 100644
---- a/drivers/gpu/drm/amd/amdgpu/Makefile
-+++ b/drivers/gpu/drm/amd/amdgpu/Makefile
-@@ -57,7 +57,8 @@ amdgpu-y += amdgpu_device.o amdgpu_kms.o \
- 	amdgpu_xgmi.o amdgpu_csa.o amdgpu_ras.o amdgpu_vm_cpu.o \
- 	amdgpu_vm_sdma.o amdgpu_discovery.o amdgpu_ras_eeprom.o amdgpu_nbio.o \
- 	amdgpu_umc.o smu_v11_0_i2c.o amdgpu_fru_eeprom.o amdgpu_rap.o \
--	amdgpu_fw_attestation.o amdgpu_securedisplay.o amdgpu_hdp.o
-+	amdgpu_fw_attestation.o amdgpu_securedisplay.o amdgpu_hdp.o \
-+	amdgpu_eeprom.o
- 
- amdgpu-$(CONFIG_PROC_FS) += amdgpu_fdinfo.o
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.c
-new file mode 100644
-index 00000000000000..10551660343278
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.c
-@@ -0,0 +1,67 @@
-+/*
-+ * Copyright 2021 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ */
-+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+index f40c871da0c623..e22a0b45f70108 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+@@ -26,6 +26,7 @@
+ #include "amdgpu_ras.h"
+ #include <linux/bits.h>
+ #include "atom.h"
 +#include "amdgpu_eeprom.h"
-+#include "amdgpu.h"
+ 
+ #define EEPROM_I2C_TARGET_ADDR_VEGA20		0xA0
+ #define EEPROM_I2C_TARGET_ADDR_ARCTURUS		0xA8
+@@ -148,22 +149,13 @@ static int __update_table_header(struct amdgpu_ras_eeprom_control *control,
+ {
+ 	int ret = 0;
+ 	struct amdgpu_device *adev = to_amdgpu_device(control);
+-	struct i2c_msg msg = {
+-			.addr	= 0,
+-			.flags	= 0,
+-			.len	= EEPROM_ADDRESS_SIZE + EEPROM_TABLE_HEADER_SIZE,
+-			.buf	= buff,
+-	};
+ 
+-
+-	*(uint16_t *)buff = EEPROM_HDR_START;
+-	__encode_table_header_to_buff(&control->tbl_hdr, buff + EEPROM_ADDRESS_SIZE);
+-
+-	msg.addr = control->i2c_address;
++	__encode_table_header_to_buff(&control->tbl_hdr, buff);
+ 
+ 	/* i2c may be unstable in gpu reset */
+ 	down_read(&adev->reset_sem);
+-	ret = i2c_transfer(&adev->pm.smu_i2c, &msg, 1);
++	ret = amdgpu_eeprom_xfer(&adev->pm.smu_i2c, control->i2c_address,
++				 EEPROM_HDR_START, buff, EEPROM_TABLE_HEADER_SIZE, false);
+ 	up_read(&adev->reset_sem);
+ 
+ 	if (ret < 1)
+@@ -289,15 +281,9 @@ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control,
+ {
+ 	int ret = 0;
+ 	struct amdgpu_device *adev = to_amdgpu_device(control);
+-	unsigned char buff[EEPROM_ADDRESS_SIZE + EEPROM_TABLE_HEADER_SIZE] = { 0 };
++	unsigned char buff[EEPROM_TABLE_HEADER_SIZE] = { 0 };
+ 	struct amdgpu_ras_eeprom_table_header *hdr = &control->tbl_hdr;
+ 	struct amdgpu_ras *ras = amdgpu_ras_get_context(adev);
+-	struct i2c_msg msg = {
+-			.addr	= 0,
+-			.flags	= I2C_M_RD,
+-			.len	= EEPROM_ADDRESS_SIZE + EEPROM_TABLE_HEADER_SIZE,
+-			.buf	= buff,
+-	};
+ 
+ 	*exceed_err_limit = false;
+ 
+@@ -313,9 +299,9 @@ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control,
+ 
+ 	mutex_init(&control->tbl_mutex);
+ 
+-	msg.addr = control->i2c_address;
+ 	/* Read/Create table header from EEPROM address 0 */
+-	ret = i2c_transfer(&adev->pm.smu_i2c, &msg, 1);
++	ret = amdgpu_eeprom_xfer(&adev->pm.smu_i2c, control->i2c_address,
++				 EEPROM_HDR_START, buff, EEPROM_TABLE_HEADER_SIZE, true);
+ 	if (ret < 1) {
+ 		DRM_ERROR("Failed to read EEPROM table header, ret:%d", ret);
+ 		return ret;
+@@ -442,6 +428,7 @@ static uint32_t __correct_eeprom_dest_address(uint32_t curr_address)
+ 
+ bool amdgpu_ras_eeprom_check_err_threshold(struct amdgpu_device *adev)
+ {
 +
-+#define EEPROM_OFFSET_LENGTH 2
+ 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
+ 
+ 	if (!__is_ras_eeprom_supported(adev))
+@@ -470,11 +457,11 @@ int amdgpu_ras_eeprom_process_recods(struct amdgpu_ras_eeprom_control *control,
+ 					    int num)
+ {
+ 	int i, ret = 0;
+-	struct i2c_msg *msgs, *msg;
+ 	unsigned char *buffs, *buff;
+ 	struct eeprom_table_record *record;
+ 	struct amdgpu_device *adev = to_amdgpu_device(control);
+ 	struct amdgpu_ras *ras = amdgpu_ras_get_context(adev);
++	u16 slave_addr;
+ 
+ 	if (!__is_ras_eeprom_supported(adev))
+ 		return 0;
+@@ -486,12 +473,6 @@ int amdgpu_ras_eeprom_process_recods(struct amdgpu_ras_eeprom_control *control,
+ 
+ 	mutex_lock(&control->tbl_mutex);
+ 
+-	msgs = kcalloc(num, sizeof(*msgs), GFP_KERNEL);
+-	if (!msgs) {
+-		ret = -ENOMEM;
+-		goto free_buff;
+-	}
+-
+ 	/*
+ 	 * If saved bad pages number exceeds the bad page threshold for
+ 	 * the whole VRAM, update table header to mark the BAD GPU tag
+@@ -521,9 +502,8 @@ int amdgpu_ras_eeprom_process_recods(struct amdgpu_ras_eeprom_control *control,
+ 	 * 256b
+ 	 */
+ 	for (i = 0; i < num; i++) {
+-		buff = &buffs[i * (EEPROM_ADDRESS_SIZE + EEPROM_TABLE_RECORD_SIZE)];
++		buff = &buffs[i * EEPROM_TABLE_RECORD_SIZE];
+ 		record = &records[i];
+-		msg = &msgs[i];
+ 
+ 		control->next_addr = __correct_eeprom_dest_address(control->next_addr);
+ 
+@@ -531,20 +511,26 @@ int amdgpu_ras_eeprom_process_recods(struct amdgpu_ras_eeprom_control *control,
+ 		 * Update bits 16,17 of EEPROM address in I2C address by setting them
+ 		 * to bits 1,2 of Device address byte
+ 		 */
+-		msg->addr = control->i2c_address |
+-			        ((control->next_addr & EEPROM_ADDR_MSB_MASK) >> 15);
+-		msg->flags	= write ? 0 : I2C_M_RD;
+-		msg->len	= EEPROM_ADDRESS_SIZE + EEPROM_TABLE_RECORD_SIZE;
+-		msg->buf	= buff;
+-
+-		/* Insert the EEPROM dest addess, bits 0-15 */
+-		buff[0] = ((control->next_addr >> 8) & 0xff);
+-		buff[1] = (control->next_addr & 0xff);
++		slave_addr = control->i2c_address |
++			((control->next_addr & EEPROM_ADDR_MSB_MASK) >> 15);
+ 
+ 		/* EEPROM table content is stored in LE format */
+ 		if (write)
+-			__encode_table_record_to_buff(control, record, buff + EEPROM_ADDRESS_SIZE);
++			__encode_table_record_to_buff(control, record, buff);
 +
-+int amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap,
-+		       u16 slave_addr, u16 eeprom_addr,
-+		       u8 *eeprom_buf, u16 bytes, bool read)
-+{
-+	u8 eeprom_offset_buf[2];
-+	u16 bytes_transferred;
-+	struct i2c_msg msgs[] = {
-+		{
-+			.addr = slave_addr,
-+			.flags = 0,
-+			.len = EEPROM_OFFSET_LENGTH,
-+			.buf = eeprom_offset_buf,
-+		},
-+		{
-+			.addr = slave_addr,
-+			.flags = read ? I2C_M_RD: 0,
-+			.len = bytes,
-+			.buf = eeprom_buf,
++		/* i2c may be unstable in gpu reset */
++		down_read(&adev->reset_sem);
++		ret = amdgpu_eeprom_xfer(&adev->pm.smu_i2c, slave_addr,
++					 control->next_addr, buff,
++					 EEPROM_TABLE_RECORD_SIZE, write ? false : true);
++		up_read(&adev->reset_sem);
+ 
++		if (ret < 1) {
++			DRM_ERROR("Failed to process EEPROM table records, ret:%d", ret);
++
++			/* TODO Restore prev next EEPROM address ? */
++			goto free_buff;
 +		}
-+	};
-+	int r;
-+
-+	msgs[0].buf[0] = ((eeprom_addr >> 8) & 0xff);
-+	msgs[0].buf[1] = (eeprom_addr & 0xff);
-+
-+	while (msgs[1].len) {
-+		r = i2c_transfer(i2c_adap, msgs, ARRAY_SIZE(msgs));
-+		if (r <= 0)
-+			return r;
-+		bytes_transferred = r - EEPROM_OFFSET_LENGTH;
-+		eeprom_addr += bytes_transferred;
-+		msgs[0].buf[0] = ((eeprom_addr >> 8) & 0xff);
-+		msgs[0].buf[1] = (eeprom_addr & 0xff);
-+		msgs[1].buf += bytes_transferred;
-+		msgs[1].len -= bytes_transferred;
-+	}
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.h
-new file mode 100644
-index 00000000000000..9301e5678910ad
---- /dev/null
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.h
-@@ -0,0 +1,34 @@
-+/*
-+ * Copyright 2021 Advanced Micro Devices, Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ */
-+
-+#ifndef _AMDGPU_EEPROM_H
-+#define _AMDGPU_EEPROM_H
-+
-+#include <linux/i2c.h>
-+
-+int amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap,
-+		       u16 slave_addr, u16 eeprom_addr,
-+		       u8 *eeprom_buf, u16 bytes, bool read);
-+
-+
-+#endif
+ 		/*
+ 		 * The destination EEPROM address might need to be corrected to account
+ 		 * for page or entire memory wrapping
+@@ -552,25 +538,12 @@ int amdgpu_ras_eeprom_process_recods(struct amdgpu_ras_eeprom_control *control,
+ 		control->next_addr += EEPROM_TABLE_RECORD_SIZE;
+ 	}
+ 
+-	/* i2c may be unstable in gpu reset */
+-	down_read(&adev->reset_sem);
+-	ret = i2c_transfer(&adev->pm.smu_i2c, msgs, num);
+-	up_read(&adev->reset_sem);
+-
+-	if (ret < 1) {
+-		DRM_ERROR("Failed to process EEPROM table records, ret:%d", ret);
+-
+-		/* TODO Restore prev next EEPROM address ? */
+-		goto free_msgs;
+-	}
+-
+-
+ 	if (!write) {
+ 		for (i = 0; i < num; i++) {
+-			buff = &buffs[i*(EEPROM_ADDRESS_SIZE + EEPROM_TABLE_RECORD_SIZE)];
++			buff = &buffs[i*EEPROM_TABLE_RECORD_SIZE];
+ 			record = &records[i];
+ 
+-			__decode_table_record_from_buff(control, record, buff + EEPROM_ADDRESS_SIZE);
++			__decode_table_record_from_buff(control, record, buff);
+ 		}
+ 	}
+ 
+@@ -600,9 +573,6 @@ int amdgpu_ras_eeprom_process_recods(struct amdgpu_ras_eeprom_control *control,
+ 		/* ret = -EIO; */
+ 	}
+ 
+-free_msgs:
+-	kfree(msgs);
+-
+ free_buff:
+ 	kfree(buffs);
+ 
 -- 
 2.32.0
 
