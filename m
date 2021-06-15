@@ -1,39 +1,38 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 810123A84D9
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Jun 2021 17:50:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FBAE3A84DB
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Jun 2021 17:50:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CCBA6E422;
-	Tue, 15 Jun 2021 15:50:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EA066E41D;
+	Tue, 15 Jun 2021 15:50:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61BC36E41B;
- Tue, 15 Jun 2021 15:50:35 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4519361874;
- Tue, 15 Jun 2021 15:50:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75BC06E41D;
+ Tue, 15 Jun 2021 15:50:47 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 678736162A;
+ Tue, 15 Jun 2021 15:50:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1623772235;
- bh=XIYvHSSButC67HzU6fduVakbD0ni65gR3K7el6VrxOs=;
+ s=k20201202; t=1623772247;
+ bh=6i1YjUFRA8gMsuP5+Mq6nTgsQgS+2zzqxMkUp3Q3QnE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=sDOU8b41Y6YUrOQjDjQQEFbWkBVTuHfZ1zyEFNroc6MSdWe7Ak8MqxylVqa9G6qy6
- KnI5PkdDD8QA5E6NM1ditguWA8DHl7bMyPVmQhz3CPo2MkF2lVJ/M29CxE/S27Xz/9
- FCR6Jj03kX+6kCc23zzjmstshnGkSwr0TIxwrPFlUvok3sUD94YR+UJzdtQpw8sD4I
- ++jCE+rMVJBNmcR7DDxLbAQy6CGGBfsHCSE/7oSWAPnLq1yyvcQzrGFCaofvCU301z
- d0EzvhwetBrOvXJtDAMggc9Xq5rhuULaVH3vDjK7m1Z6sejxJfCLaS3HTmZTAiP87Y
- DWlWl7//5JLAg==
+ b=uce+PbJDCo3hHRtQgT3i1tm209dTwLYPgaY8EruAi9saj61VPDMLYxnYGKye0go5W
+ TIR71hfZ+0IpBc+UF/gD4Kgf/i6lGqh9KMMnUKLNEEW8fQjPQIEOovaMQCh0wh9P4c
+ /rrvZlHbSa1eeqD5V1FQ1gE5Z+7cUougnl8Q7I5KtZtOmhOUpHTig3Qs3OhiNi2atP
+ ruH87MT0HVAhAYSNbD+a7O5n+F070gz5N8GMywQ4ZVTVGIymCU4eugCvEuVWzGq6Nz
+ vHWRe6K8KusItraX7P1legONRZJFiEsOmgTpReBrg8GyylixP0Jdbjr7sEeA/9E9jw
+ oHhPs2b4l/MYw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 5/8] radeon: use memcpy_to/fromio for UVD fw
- upload
-Date: Tue, 15 Jun 2021 11:50:24 -0400
-Message-Id: <20210615155027.63048-5-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.9 5/5] radeon: use memcpy_to/fromio for UVD fw upload
+Date: Tue, 15 Jun 2021 11:50:39 -0400
+Message-Id: <20210615155039.63348-5-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210615155027.63048-1-sashal@kernel.org>
-References: <20210615155027.63048-1-sashal@kernel.org>
+In-Reply-To: <20210615155039.63348-1-sashal@kernel.org>
+References: <20210615155039.63348-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -73,8 +72,8 @@ ZXIuZGV1Y2hlckBhbWQuY29tPgpTaWduZWQtb2ZmLWJ5OiBTYXNoYSBMZXZpbiA8c2FzaGFsQGtl
 cm5lbC5vcmc+Ci0tLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fdXZkLmMgfCA0ICsr
 LS0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZm
 IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fdXZkLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vcmFkZW9uL3JhZGVvbl91dmQuYwppbmRleCA5NWY0ZGI3MGRkMjIuLmZkZTljNjllY2M4
-NiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fdXZkLmMKKysrIGIv
+dS9kcm0vcmFkZW9uL3JhZGVvbl91dmQuYwppbmRleCAxNjIzOWIwN2NlNDUuLjI2MTA5MTllYjcw
+OSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fdXZkLmMKKysrIGIv
 ZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fdXZkLmMKQEAgLTI4Niw3ICsyODYsNyBAQCBp
 bnQgcmFkZW9uX3V2ZF9yZXN1bWUoc3RydWN0IHJhZGVvbl9kZXZpY2UgKnJkZXYpCiAJaWYgKHJk
 ZXYtPnV2ZC52Y3B1X2JvID09IE5VTEwpCiAJCXJldHVybiAtRUlOVkFMOwogCi0JbWVtY3B5KHJk
