@@ -2,95 +2,117 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 097183A9E04
-	for <lists+amd-gfx@lfdr.de>; Wed, 16 Jun 2021 16:47:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 480C73AA0F5
+	for <lists+amd-gfx@lfdr.de>; Wed, 16 Jun 2021 18:11:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 543A96E5A2;
-	Wed, 16 Jun 2021 14:47:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 850CD6E04B;
+	Wed, 16 Jun 2021 16:11:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam08on2049.outbound.protection.outlook.com [40.107.102.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D72B6E5A2
- for <amd-gfx@lists.freedesktop.org>; Wed, 16 Jun 2021 14:47:05 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1anam02on2064.outbound.protection.outlook.com [40.107.96.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03A426E0DE
+ for <amd-gfx@lists.freedesktop.org>; Wed, 16 Jun 2021 16:11:37 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K8osNbBu6LYBYBIW1kvXQ8CSk/gWfOzHEuwTvHUn/9mtxWZPouNGBf5LZ8q6GxOZAZ8cSvjP0+bu3Z+DgNKVMiDxO0fHD5rGUJdpyLBKOfhgNB8dY/c+u++OGeTEH4sb4CyeDLKq3sUUj7OUw0rwvNljadiUDpLaLAdp4nS+By+3xDTOHcxtBW1egOecvx9qFGfN4yXWY3rKk3HokopORsrMAGc2v1hediIT8JnUPkV4Phl57wvedxSSNx8eY4nOkec6chfICSRwtFATuEXokxwi4lbIQofsT6LNi8RTkvyyI/4Ay1Y8rXujWs0H/raQUBOvi4o/lQxKUezdssm38A==
+ b=V3Ayqhr205zGNgl4PK2s5yCt7FEJmwkRRroU82Klm7LTy8dkeRE4cvgKHF0LkM2LARvgVg6HWxOzZjn5zhOMKUL8JFE6GOk2e2TrrgRyFKcScsGN/NgzO99k6qASOfQwhbd/yAHashhLv0g3OefqnvJisnXDG3mT0BU3hahKxTu6P6chjvHCfeigcigvL3A2xr+paXFT0YaT+hMy5ztfenN3YRp1VVeJHltcQbhciQDcSCkgkLfWs6LUjE9oRPEibfP6bNLz5H0Gf05cHAmU3dcKuOq9lqWkB3Oo2WpxK8ZAgSMo4VXJK2HO6RDVWcW4BHo/pIlzAMIA0A8mI/XhAA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k4e7PguGOCAZkUEIFh0ILoB2Yv3AbICm3+7O1RVHMTA=;
- b=Z881iLrScJKHf31XcILUsQLY4bEjvUwybC6OcdSDYpVhpbl+enSAk5Y05kt6yvBFsvM54IOMk6/Aab4+JEDKN8vcCBpiGcrLF6tVxEcNo5ji3/SN9B4a5wYtlqU4/MA/WqypV00wwpnWk2m4izfl6XAHZZP5iFwIWlrhPaButUjkfItsvFInvP9c3eRWWYkY2z9U1nb+e+NnRz9OV/JibQEVArQzDWmNShhbXQ+KzsZ4hEKg5DyzO7w5FDpFdeUZK0k76kmuuJYZmacC/A7G4riffj6+lTgUUglWN0mK2JuKU9vvF1Fybj8H95a3e2xKU4EECBaENKVCEi/7HGjN5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=FeAx9wJYUZcArwL5t/Rsqu/r7+uSTJ2DS0S8KAiNE74=;
+ b=kJweSU7WgyfsVtdPei7MpN6JAz2+2jv2Y5o4fo2GBvEfNBTrc0agT+ZT5UKMyJRPRLExI3bI9gS68S+/YZkAnDCglvi4+opEh3VdNMCcKsDT13Roh41dgLlElOq5t9RivyewLXO/YkxHIFrUwOsulXLVjLj0Ivv6yii7BH0VVcQIKSEHlWVDwwHe6pwLGl/XvgouLde105lIRnJlChEmmLFcR7/rx1QnDeY5OzcIYgIqGnf9xi27bj0f6+IeDavFBGtGH4O+EC3v4T+tkN/VLud5vd0TQQ4tJta9P+khy9YiqoopOeIwssRx5ZdTejEQH4FVeBV3/yhgx75CZSMa0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k4e7PguGOCAZkUEIFh0ILoB2Yv3AbICm3+7O1RVHMTA=;
- b=KQ6/2KpbX10v7QibUzoLDhrFbSuqv0hOHOd2NU9TirDSfVQyFkFnOcY9WxLVKtapETnEa2hYz7HspwnQT3vT7lZNB7/UZl+0hpmL8w9IrI3/yHKwYfq8HVsKGmWZ7yRl+FISuGutHBJVJ62n/DtQCl6syTkRsDtunf354OxHNb0=
-Received: from BN6PR14CA0019.namprd14.prod.outlook.com (2603:10b6:404:79::29)
- by CH2PR12MB3719.namprd12.prod.outlook.com (2603:10b6:610:2c::16)
+ bh=FeAx9wJYUZcArwL5t/Rsqu/r7+uSTJ2DS0S8KAiNE74=;
+ b=FsU/xOx/FOKGoxywORxx46bk82i+UAdC6Ox1fBVQwjJi8QMRUw87WRAsvNmRWNrUkTq4Q2FqDP/1as0p4zxc8NBluJ7qGkjpnbBz/8QyJj4Il8MKhTFZLgTSP4wk6gIiS9ppO1+aGQVy3OK4EpKhu9quT6W9P4nR91KPIwoNmEE=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from CH0PR12MB5284.namprd12.prod.outlook.com (2603:10b6:610:d7::13)
+ by CH0PR12MB5331.namprd12.prod.outlook.com (2603:10b6:610:d6::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.24; Wed, 16 Jun
- 2021 14:47:03 +0000
-Received: from BN8NAM11FT020.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:79:cafe::cf) by BN6PR14CA0019.outlook.office365.com
- (2603:10b6:404:79::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.16 via Frontend
- Transport; Wed, 16 Jun 2021 14:47:03 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN8NAM11FT020.mail.protection.outlook.com (10.13.176.223) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4242.16 via Frontend Transport; Wed, 16 Jun 2021 14:47:03 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Wed, 16 Jun
- 2021 09:47:03 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Wed, 16 Jun
- 2021 09:47:02 -0500
-Received: from elite-desk-aura.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.4 via
- Frontend Transport; Wed, 16 Jun 2021 09:47:02 -0500
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.18; Wed, 16 Jun
+ 2021 16:11:35 +0000
+Received: from CH0PR12MB5284.namprd12.prod.outlook.com
+ ([fe80::d0db:6a71:2ea5:26ad]) by CH0PR12MB5284.namprd12.prod.outlook.com
+ ([fe80::d0db:6a71:2ea5:26ad%4]) with mapi id 15.20.4219.025; Wed, 16 Jun 2021
+ 16:11:35 +0000
+Subject: Re: [PATCH] drm/amd/display: Add Freesync video documentation
+To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Sean Paul <seanpaul@chromium.org>
+References: <20210610124818.216221-1-Rodrigo.Siqueira@amd.com>
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/display: Increase stutter watermark for dcn302 and
- dcn303
-Date: Wed, 16 Jun 2021 10:47:02 -0400
-Message-ID: <20210616144702.56505-1-aurabindo.pillai@amd.com>
-X-Mailer: git-send-email 2.32.0
+Message-ID: <0bbde9bc-367f-1afc-ec7c-d1f688745fc9@amd.com>
+Date: Wed, 16 Jun 2021 12:11:32 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+In-Reply-To: <20210610124818.216221-1-Rodrigo.Siqueira@amd.com>
+Content-Language: en-US
+X-Originating-IP: [165.204.84.11]
+X-ClientProxiedBy: BN6PR17CA0014.namprd17.prod.outlook.com
+ (2603:10b6:404:65::24) To CH0PR12MB5284.namprd12.prod.outlook.com
+ (2603:10b6:610:d7::13)
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.254.34.187] (165.204.84.11) by
+ BN6PR17CA0014.namprd17.prod.outlook.com (2603:10b6:404:65::24) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4242.15 via Frontend Transport; Wed, 16 Jun 2021 16:11:34 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 525f6ff1-5d76-432f-0737-08d930d59ae5
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3719:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB3719FDCF3083E7192601D9B98B0F9@CH2PR12MB3719.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2201;
+X-MS-Office365-Filtering-Correlation-Id: 406d2fb3-12a9-40d6-c276-08d930e169d1
+X-MS-TrafficTypeDiagnostic: CH0PR12MB5331:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CH0PR12MB53317CFC5E9D7762DB71C30A8B0F9@CH0PR12MB5331.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:619;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9aidUtdNCn7LqVOex2XXBUq66H4DrrpN2KyPpu3BV/bKgNLDT8VZyeW9g6UWGpGKpICKtsUfwK+PYHvw5OgkMfCw3slsu+RD/rzcgwIpm0Ryv8dRnJuZn094lkUCtEV/mx8eaUcOM2v5qNkdTTjHA37AHZ2RvYz1AnbJbGNppD/6wK5nF4qH4wt6/totuZjVK9hD4oHsSTJqp1DvIJxdqVQX/fkOLSnX39x8Se82Ib+z0pQYLmdC44ZOliO+FEPXr1M9yUOtNRuBVaEW0oIC4dxFm1ls9w6XeMgbB9qZqxtlDyy6+5x/1snCloxGZtbs/2IYC7VFfGuqgYAH+uFlWu/X/q+cC49D8IxfiUUms+mXtzboGtjxNl1AgMTAC/5MSnXZlbz4eOMmCF4/pRBVYP0TRoU+orcqOIGbj0tjQjLBq25Mdi3NvwcNse4BvVEz5R9HpfcTQWUvY7g+seKHiBvki/XWIjGq5kFraVi13MQYOS3tvORxLyLVd3KNPBidySdfBHNj7y71LBppkq0cf8euvUKHlDhWxNezZvY5HpImvwg23mz4QTYQM0tIVWaQ9PtUvgQn0uGI0PVaQWAQK2DfE5FNkRdGLfwigyghf3lzY8CU/EnF6+CboENjpkXYcNtKSo1/fEcT41w7K87YGOdgxOQripAqQAzIOsYLH6OawSe756/sx+6NGCbfHecz
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(376002)(136003)(396003)(39860400002)(46966006)(36840700001)(44832011)(36860700001)(186003)(82310400003)(47076005)(6916009)(70206006)(426003)(36756003)(82740400003)(478600001)(26005)(7696005)(86362001)(356005)(336012)(4326008)(2616005)(81166007)(83380400001)(70586007)(8676002)(5660300002)(2906002)(1076003)(316002)(8936002)(36900700001);
+X-Microsoft-Antispam-Message-Info: FSNQbBewJbb+EpMSeB49GFhVv/uxz0eRK3bqYg0LyF+XGmnU0cgPIzdvU3VOIe0iniI72BghjUklEoh8kHYMtNUIr8XhTpVVlPOpEbD1r+WtlqNCw7ZaVABi2/TCx2WmWzFLXFtov4YJ6Ifgl16pPnfUYfrmwJ2VITj3LjKlkq62kTBFI/KsIG5whInHncbc726tHsHKVxNUmyxq9zjGftJwIsvio8CwpsnzclYHBAawHPVM7jDGW3B8cT4OCGEhbOaMkrXLQap+ZTytqeJOQlmK6SJzhj3qm4xJpAflnweW+QEMr8/pLYebVx6SzBzmJrGnICR1PVJGXum42cwKZwE8bBrU8YWVuXbaHpN6MLIJfuUbHZwK29o3RO9OQ79Dsb+fJvynbT7BSWt1UqYb8EkmlqtBhaZPQutyqzVRSYEQM+2zEdmsO0pInZ0gDtHEf0tnpoawXdQbP4TLFwzuvOmZQwKeZ9GDYFVZMl821gGlkqI3FJGSZF/q/Fi1fqA8te8PNArrbP2XKRHAnL6p30oQHM7NFR0lzempO/qCpxzMVvNs2ErhMUOskcNGijL959v1LDKUkLSgZZye33zk17TYY/OKpxKpMNoPT2r8TFyJyb63sWnWQtwFbllcKj2wNrx3xRJew3fG2nR2Wk89L9dd74CiRc2jM+RHCPyjLB9SCfRezawFzw7Yd//A6EPk
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR12MB5284.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(39860400002)(346002)(376002)(136003)(396003)(366004)(26005)(8936002)(316002)(478600001)(186003)(83380400001)(86362001)(4326008)(31696002)(16576012)(2906002)(31686004)(6486002)(36756003)(16526019)(8676002)(2616005)(38100700002)(53546011)(66476007)(66946007)(66556008)(956004)(110136005)(5660300002)(44832011)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SU9IdEVFUFp2MThNQjUrOE9RcEVMOTRlUVFoV3U3bDkrVjNVNmRzRFlab3Nh?=
+ =?utf-8?B?Q2pKSnVuY0MxYUt5WnI2OGtaUkpkOHJCY3kyd1A2MVJ4aVdsbXRUN2dSc05a?=
+ =?utf-8?B?SmMrWEwydmgySVdpR3k3anRxZE1iY3FLb1FNWnV4RXJqMEkyL3VSaW40eUsz?=
+ =?utf-8?B?WkErSEhYNzRKQ1U0Zi85aXFFQ0tpNFE5UnkzNS9yV1g1cEVMK1Zzc1puMFJO?=
+ =?utf-8?B?SVI0QXRTVzVNNDZqSUhNN25XZUdwZllKRGhEYXVOQURyQXFpcy9YTzZGekVJ?=
+ =?utf-8?B?WitlMWZzNWp1VUUwQjVoaThlMEtudGFqM2xGbEFIMFora2pwVjR2QktxZ2VY?=
+ =?utf-8?B?eENwQ2RCbTR3OHZGS1E1UE1aT0pKMWgwZmFwWmYvZXk5VUxVazNINEI5ZVp4?=
+ =?utf-8?B?ZlQzT3VWZ2FwaWladkJkN1ROTkZhTnFiVDhBWlF1UUZ2em5aQUtYZDNEVmdv?=
+ =?utf-8?B?Y21xOGpZbVU1L3NOckV5RmxrbFErNElYTlFieEcydVFIUDA1M2RHNG9tTEQ5?=
+ =?utf-8?B?ZElhZ1Y2Z2c0ZFNiU1ExcEZ0Ly9yVUkwVlNYbm5tNnVxbDM3TG8vaUxXRkMv?=
+ =?utf-8?B?VGpDNTNWVzA3a24rMDRYWDAzdXRsbExycDVWamJwMVorOWpPVDYrMmJEL1Vr?=
+ =?utf-8?B?ZFh4M1ZtT2JFUUliYWtOd3kwTUNRTXlWWTdENElDbmxzUmVzV0tQakhMYWd2?=
+ =?utf-8?B?QjFCTE9FUm9rY3YxRER2RXA4N2JkTHFVd0dwTEpWb2RJUHRrNVREVm5GM29w?=
+ =?utf-8?B?ZHhDVnJpeWwwNmYzZEh0V2VMU1lyeUFqRHMxL2ZxM0YxdWJmNWp5dFowNlpH?=
+ =?utf-8?B?QlQvSTNXNW42MjhmM2hRK2h0VXc5K0I5aVN5MmNDTmF6M0NNWWpreG5BVXFi?=
+ =?utf-8?B?SU84TlhwYVlITkZrTTU0V2JONW5aWVZxajFRdTJtSHNndUlkMlg4R3VTWDhy?=
+ =?utf-8?B?RGhOeWNQYkUvckNlbW1helJZVkh6TnIyQno2MDlTOS9mUnY4d2x1eTdZRUlk?=
+ =?utf-8?B?dzNlb0J6WWxwaHlpRTdveXdQOEhxakEyTGVDZnROc0RSUmR0WS9LbEpsYWZZ?=
+ =?utf-8?B?cHROMEsrb0FtWFNzbXdFby9RaVk3ZHEwZVdVT21saXRLTE5nUElOT3NyWXd1?=
+ =?utf-8?B?Y2ZCRUxyOTl4c0xzVFBvRWZQWFN2Nmtkc1hTamIzNGZTRmM4NVpWWmNzS3lY?=
+ =?utf-8?B?QWVBRjdrK0ZNTVh1Z0FjSndOenhWWkQyUjNPWFBBcHpZUloyaVFJNXhBZnMw?=
+ =?utf-8?B?YjRnNGY3cUpGckE1OTZKaHE0R3IxUVBLcGRrcFlBTW1IZlNLRFVpZGN2L3d6?=
+ =?utf-8?B?L21WOFoxWkJYRnJBb1ZTSVdOZkJoam1WUTdPVm1nYktMbXRDUnZhckZXcGgv?=
+ =?utf-8?B?aUVtRkdKSkZrYVZjNEk3T1BDbUxWR2RQdXV6eFN2ZzBxdUM3dE4wdlVIWjF2?=
+ =?utf-8?B?Titwb2xzRW5aZjJZNGVrbWFIWVJtdzBXMVk2SkNqTEM4OEhTVE1nVFRYb2tB?=
+ =?utf-8?B?dTY3Q21CYzVIN1FYS245T3M1QzhWTzVQNXVoR2JOMlRMMUpDWTlsVkcvRlFu?=
+ =?utf-8?B?VUJDb3VpSFI1NkFJS2s4ZUxNV2xPVUVMVFpCYTduQkpzTlhCelcxdEFSNVl5?=
+ =?utf-8?B?WDNlZEh0czRvTGhHOVRwY042bUJValdXY3BaeTJtVWtMMGhjSGRWK21ock5N?=
+ =?utf-8?B?Sm9xYnNYaStpMENuMFQ4V3pxUU5Td2dJZ0g2c0s1eXdnOEFsT3hMUFlLMUR1?=
+ =?utf-8?Q?98tTFO5fA3h+iYK8ZJf6K6GJTrU8DtVckXquUqd?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2021 14:47:03.4084 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 525f6ff1-5d76-432f-0737-08d930d59ae5
+X-MS-Exchange-CrossTenant-Network-Message-Id: 406d2fb3-12a9-40d6-c276-08d930e169d1
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR12MB5284.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2021 16:11:35.2358 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT020.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3719
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: y7pjPjIcvCs4FNTJkwIYR0IwDyqAVgQmNzTuVklw2vKuqVwadNvRCARhlBMhLqB2hF/7T1YREGB8V/bdRUjEhw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5331
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,58 +124,145 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: aurabindo.pillai@amd.com
-Content-Type: text/plain; charset="us-ascii"
+Cc: Harry Wentland <Harry.Wentland@amd.com>, amd-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-Current watermarks end up programming lowers watermarks which
-results in screen flickering and underflow for certain modes like 1440p.
+Hi Siqueira,
 
-[How]
-Add 11us to stutter exit & stutter enter plus exit watermark.
+Please see inline comments.
 
-Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c | 4 ++--
- drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+On 2021-06-10 8:48 a.m., Rodrigo Siqueira wrote:
+> Recently, we added support for an experimental feature named Freesync
+> video; for more details on that, refer to:
+> 
+> commit a372f4abecb1 ("drm/amd/display: Skip modeset for front porch change")
+> commit 952bc47fb2ca ("drm/amd/display: Add freesync video modes based on preferred modes")
+> commit d03ee581eee6 ("drm/amd/display: Add module parameter for freesync video mode")
+> 
+> Nevertheless, we did not document it in detail in our driver. This
+> commit introduces a kernel-doc and expands the module parameter
+> description.
+> 
+> Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+> Cc: Sean Paul <seanpaul@chromium.org>
+> Cc: Harry Wentland <Harry.Wentland@amd.com>
+> Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> ---
+>   Documentation/gpu/amdgpu-dc.rst               |  6 ++++
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       | 17 +++++++++--
+>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 30 +++++++++++++++++++
+>   3 files changed, 51 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/gpu/amdgpu-dc.rst b/Documentation/gpu/amdgpu-dc.rst
+> index cc89b0fc11df..f7ff7e1309de 100644
+> --- a/Documentation/gpu/amdgpu-dc.rst
+> +++ b/Documentation/gpu/amdgpu-dc.rst
+> @@ -66,3 +66,9 @@ Display Core
+>   ============
+>   
+>   **WIP**
+> +
+> +FreeSync Video
+> +--------------
+> +
+> +.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +   :doc: FreeSync Video
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> index 3de1accb060e..561c7ead4a5c 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> @@ -836,8 +836,21 @@ module_param_named(tmz, amdgpu_tmz, int, 0444);
+>   
+>   /**
+>    * DOC: freesync_video (uint)
+> - * Enabled the optimization to adjust front porch timing to achieve seamless mode change experience
+> - * when setting a freesync supported mode for which full modeset is not needed.
+> + * Enable the optimization to adjust front porch timing to achieve seamless
+> + * mode change experience when setting a freesync supported mode for which full
+> + * modeset is not needed.
+> + *
+> + * The Display core will add a set of modes derived from the base FreeSync
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-index b16d19a25d88..628b227f0a13 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-@@ -164,8 +164,8 @@ struct _vcs_dpi_soc_bounding_box_st dcn3_02_soc = {
- 
- 		.min_dcfclk = 500.0, /* TODO: set this to actual min DCFCLK */
- 		.num_states = 1,
--		.sr_exit_time_us = 15.5,
--		.sr_enter_plus_exit_time_us = 20,
-+		.sr_exit_time_us = 26.5,
-+		.sr_enter_plus_exit_time_us = 31,
- 		.urgent_latency_us = 4.0,
- 		.urgent_latency_pixel_data_only_us = 4.0,
- 		.urgent_latency_pixel_mixed_with_vm_data_us = 4.0,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
-index 758f89ba0192..88b609c32b0a 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
-@@ -146,8 +146,8 @@ struct _vcs_dpi_soc_bounding_box_st dcn3_03_soc = {
- 
- 		.min_dcfclk = 500.0, /* TODO: set this to actual min DCFCLK */
- 		.num_states = 1,
--		.sr_exit_time_us = 15.5,
--		.sr_enter_plus_exit_time_us = 20,
-+		.sr_exit_time_us = 26.5,
-+		.sr_enter_plus_exit_time_us = 31,
- 		.urgent_latency_us = 4.0,
- 		.urgent_latency_pixel_data_only_us = 4.0,
- 		.urgent_latency_pixel_mixed_with_vm_data_us = 4.0,
--- 
-2.32.0
+Nitpick, s/core/Core
 
+> + * video mode into the corresponding connector's mode list based on commonly
+> + * used refresh rates and VRR range of the connected display, when users enable
+> + * this feature. From the userspace perspective, they can see a seamless mode
+> + * change experience when the change between different refresh rates under the
+> + * same resolution. Additionally, userspace applications such as Video playback
+> + * can read this modeset list and change the refresh rate based on the video
+> + * frame rate.
+
+Maybe add one more line here to indicate that userspace applications can not only read the mode 
+list, but also add new modes as necessary, like "They can also derive an appropriate mode for a 
+particular refresh rate based on the FreeSync Mode and add it to the connector's mode list".
+
+> + *
+> + * Note: This is an experimental feature.
+> + *
+>    * The default value: 0 (off).
+>    */
+>   MODULE_PARM_DESC(
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 54dfa245b656..710ee3954062 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -5718,6 +5718,36 @@ static void apply_dsc_policy_for_stream(struct amdgpu_dm_connector *aconnector,
+>   }
+>   #endif
+>   
+> +/**
+> + * DOC: FreeSync Video
+> + *
+> + * When a userspace application wants to play a video, the content follows a
+> + * standard format definition that usually specifies the FPS for that format.
+> + * The below list illustrates some video format and the expected FPS,
+> + * respectively:
+> + *
+> + * - TV/NTSC (23.976 FPS)
+> + * - Cinema (24 FPS)
+> + * - TV/PAL (25 FPS)
+> + * - TV/NTSC (29.97 FPS)
+> + * - TV/NTSC (30 FPS)
+> + * - Cinema HFR (48 FPS)
+> + * - TV/PAL (50 FPS)
+> + * - Commonly used (60 FPS)
+> + * - Multiples of 24 (48,72,96 FPS)
+> + *
+> + * The list of standards video format is not huge and can be added to the
+
+s/standards/standard
+
+> + * connector modeset list beforehand. With that, userspace can leverage
+> + * FreeSync to extends the front porch in order to attain the target refresh
+> + * rate. Such a switch will happen seamlessly, without screen blanking or
+> + * reprogramming of the output in any other way. If the userspace requests a
+> + * modesetting change compatible with FreeSync modes that only differ in the
+> + * refresh rate, DC will skip the full update and avoid blink during the
+> + * transition. For example, the video player can change the modesetting from
+> + * 60Hz to 30Hz for playing TV/NTSC content when it goes full screen without
+> + * causing any display blink. This same concept can be applied to a mode
+
+Nitpick, is blink or blank more appropriate?
+
+> + * setting change.
+> + */
+>   static struct drm_display_mode *
+>   get_highest_refresh_rate_mode(struct amdgpu_dm_connector *aconnector,
+>   			  bool use_probed_modes)
+> 
+
+With or without these comments addressed, the patch is:
+Reviewed by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+
+
+--
+
+Thanks & Regards,
+Aurabindo
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
