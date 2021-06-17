@@ -1,93 +1,114 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 649433AAEF4
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Jun 2021 10:40:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91C033AAF9B
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Jun 2021 11:23:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B97F86E8C5;
-	Thu, 17 Jun 2021 08:40:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FE2B6E8E6;
+	Thu, 17 Jun 2021 09:23:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C464D6E8C7
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Jun 2021 08:40:02 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2073.outbound.protection.outlook.com [40.107.92.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67BD46E8D7
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Jun 2021 09:23:08 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VFRjuVAqpQ+N+15jRw3R6VFJAfpGjSFPPaIVj4qRVka7Jxh8zqzq+sz5yE8BEBcK6T+nwXT0PFuo7blwJWxxz3PSbmCnveChcfIllxyaGhrXe1gCsE2Yk+zGaLgg7bx6bQIo473nBds0Nj8AU/UOY3s6gh/LVV85HvtciXBabUvlt32IDEU9Ys3Nc9MmE2blfrTPr7d2ah7yjNpoMGTxaGyRW0VpStkYbRwL6WcrpFE4IwRy3DebYmkT38/hgKvn5NKUji6+peLnK+9Ls+Y6zdjVUwQjXd2mo5a8tMpfc1KgXTCAyIAFNM5CNssNHFqD69aS373vYGee74ApBKsZzA==
+ b=HdCGZWJQHStNZd6LGu9hlsyYsnctY+FRyYb13QBs102/+/pT0jzPFb9MAWZPnf1kjH66aqleaCSsRtstjQrm0wsEymPoAoOeMH+Qe44lKcNUKsXS51LV+SxSbRAPYKLvoqnFspsHLm6LV2OjnpptiwyYU+c/cAyn7ff2BhQc2ezcD9wAFGh7LY3cEY2wdSQJYAqjuJgF7OVGiZbL5c49u8zGKNZ/oiD1+yJXpNLBFRZSWPsvF/6aRkE9LeiFCE0usUv5o8TyifQAgXuOiZ+VIZaMhE+9TTNabQkCMgUOQ3a9w/1B3/DgcgTAr+LX3js6b97cHtZYV3IcRiqPJSj/ow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zUy4JDWdHi9lGYSSPhQtpudzL5r8lwONsP6TYo6KAyo=;
- b=amIUxKboQ8YS5v1fnslLNpKdF71QAODniEudhYcbS5CPVHnQwaSvKtAsNtK8dgvHSB3sq6cZ3Q2n+xSRaE1+3mPjkcP/+RGeq3dM2qL1+9OpyqpiTKSRCqiGPgr+ZA4lz5lPK0caCyGnaOsMp8d6T+lJIxWb3tnrgDRshWj8PVvdYKVegGW7He+U/RhsWkbfYOI1pcsyrkUCvnKlzEQVls8o+cYUVHRZv5P5KCto4al74OfsXPj/gzS/zx4nLl1T7k7r3nNHgBFVBmRTeDoBi4SkwPhS8Iqg7UXuUknBf4xobkZGi3Eyhbm3OEvyhiFlvp7Vv+6OjuqhCAUoFmQ69w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=8ijANQUitQ++Bx7waY1dJTb2OpbD6T06woJmH96p69M=;
+ b=Vk3V27Eg2CMjU2VXVSuOFQcvDcD2wSEVWsLxY52FFgrssFW43iXPRxpGDzSfnIXshyKJ3BIyBzemw9Olvk7RsnMbB5aiwTXgUGtrdySC8W1g2qrJ2VZGZcV+j9NrxgkTMJyH35RX5WEyWmODkaF8UV1OBrYF0DzN0FVQIWPvholEHmcGfonUqtIeUy7P6Q/5okPA1lfo6Vr9yWX7PzYsF+lQifYMzuxeeYMZe4pn3Ux2KHRzqMywXm68FfMbnH80rVvEp4I488grtvTur7czwnNZjmi2atD/PlmJot56FNnMo+IxPDiQZNM64YNqLvxgx5V+iiL1ZiIrNtQC/oAXgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zUy4JDWdHi9lGYSSPhQtpudzL5r8lwONsP6TYo6KAyo=;
- b=XSPcd3eMGWswyO4FZIcCCwUWK95entw2H3bd+6A07Qpi5Tdk5YKW5QFKxSE7OSRv/+2q4GWCZDLf4NQAtgMlHw4R33zRndApGgQi0MFT3/1Q12G2KSOVbyNRfqxNeHrhrKJ2FdTCqJCNgVvQWLNkaszrwy9wxClT+lM929wECYU=
-Received: from BN9PR03CA0605.namprd03.prod.outlook.com (2603:10b6:408:106::10)
- by CY4PR12MB1495.namprd12.prod.outlook.com (2603:10b6:910:e::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.22; Thu, 17 Jun
- 2021 08:40:00 +0000
-Received: from BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:106:cafe::2a) by BN9PR03CA0605.outlook.office365.com
- (2603:10b6:408:106::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19 via Frontend
- Transport; Thu, 17 Jun 2021 08:40:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT068.mail.protection.outlook.com (10.13.177.69) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4242.16 via Frontend Transport; Thu, 17 Jun 2021 08:40:00 +0000
-Received: from equan-buildpc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Thu, 17 Jun
- 2021 03:39:58 -0500
-From: Evan Quan <evan.quan@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH V2 7/7] drm/amdgpu: update HDP LS settings
-Date: Thu, 17 Jun 2021 16:39:23 +0800
-Message-ID: <20210617083923.421052-7-evan.quan@amd.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20210617083923.421052-1-evan.quan@amd.com>
-References: <20210617083923.421052-1-evan.quan@amd.com>
-MIME-Version: 1.0
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f43632cb-24d9-42f8-7349-08d9316b7e8c
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1495:
-X-Microsoft-Antispam-PRVS: <CY4PR12MB149567A1686896C5BC36BB75E40E9@CY4PR12MB1495.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7cj3LTyo6Oj5XZT6662byTm+hzmSKWO8RlUGJdI4SYDi/WoYDFGslgO8Cldq0SOtX6g9dBfAVum4cmynsQ8k13w/nLqyjSF59G4P+fXDOmTiL3XeckCVvCj4teyJ8FTBhW/huPh07QaQpwgEv9ShJgaRGyljGTpH2NfkaV19uHxnbqViRPH7177RS2Noufq56c/Am+zzUqKFI7figiAdTEYaozypf6G+xVLhrKthDY2P3OR5APS+w25dIk2J1Zbwtj4bgbELj2ijFoG8xPUNJ1X9imPEvwVZ5Jo9NCwMesulZwYiDLncbGVTxeWP4tLeDgoo7Q9GubRkr/L6apTBtUPN1UAETg8gUDqz97fWgoZfkCabDUBzJhKPpotOt/3SdtO7VT13dnIBIfqHb+2yR//55BLf6FppcDbWVWm3EvHrX9fOaSapH4rPbwu40NpPdXt1VZwaE/0CJvXg3DBhoYdxfuB88Mb3/RAcaZKyxXcASGrc/hfdwtVFDf+G3kxTdc24sA4NGwyV9muL0zhurS3ekPFg+blTEFoZxVrfDkXD9R4EKMWsJtW4455gHIVPu3SfMrRqtmB6OhESUNyWeQI0Zq43QqL6jSiShblbEzG2P7K5YcFL35XveeNxIM2xEcsRNr+LSYlKTRD3oxBp3yTGwxeLUNtbopJEzMpiwZpyJAGUSjd28RGqYfZQHq7o
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(346002)(136003)(396003)(376002)(46966006)(36840700001)(4326008)(6916009)(186003)(2906002)(8676002)(82310400003)(36756003)(2616005)(7696005)(316002)(44832011)(16526019)(82740400003)(8936002)(83380400001)(26005)(70206006)(70586007)(47076005)(478600001)(81166007)(356005)(5660300002)(36860700001)(54906003)(336012)(86362001)(1076003)(426003)(6666004)(36900700001);
+ bh=8ijANQUitQ++Bx7waY1dJTb2OpbD6T06woJmH96p69M=;
+ b=OoZ7QYVARkZQuENnBJrHnhCYELXuXBiT7CZsNNslDxIMY1cWU+8JKgcz5KJRuQVKWb+DtiIjKEai+8rblBdiUogKEMUXfoAflWlhz4cqxqGe0D+S7J7mWXdMz2FuhGw4A5UaAJxGJICacNj/6zizpgEZXLtqXB8YFOGuixBmXN0=
+Received: from BL1PR12MB5269.namprd12.prod.outlook.com (2603:10b6:208:30b::20)
+ by BL1PR12MB5240.namprd12.prod.outlook.com (2603:10b6:208:319::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19; Thu, 17 Jun
+ 2021 09:23:01 +0000
+Received: from BL1PR12MB5269.namprd12.prod.outlook.com
+ ([fe80::d9d7:2d92:acc3:e3c3]) by BL1PR12MB5269.namprd12.prod.outlook.com
+ ([fe80::d9d7:2d92:acc3:e3c3%4]) with mapi id 15.20.4242.021; Thu, 17 Jun 2021
+ 09:23:01 +0000
+From: "Liu, Monk" <Monk.Liu@amd.com>
+To: "Zha, YiFan(Even)" <Yifan.Zha@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amd/pm: Disable SMU messages in navi10 sriov
+Thread-Topic: [PATCH] drm/amd/pm: Disable SMU messages in navi10 sriov
+Thread-Index: AQHXXq9zgBgun8wVEkqaam6ynKkcj6sX90sQ
+Date: Thu, 17 Jun 2021 09:23:01 +0000
+Message-ID: <BL1PR12MB5269A9D50BA47BEC6567901B840E9@BL1PR12MB5269.namprd12.prod.outlook.com>
+References: <20210611104911.121779-1-Yifan.Zha@amd.com>
+In-Reply-To: <20210611104911.121779-1-Yifan.Zha@amd.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-06-17T09:22:57Z; 
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
+ Only-AIP 2.0;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=ab1d9dbd-8a73-4fc6-865a-79596830aa66;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
+authentication-results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [165.204.134.244]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 07fe4676-f5e6-4a60-8e9d-08d9317180f4
+x-ms-traffictypediagnostic: BL1PR12MB5240:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BL1PR12MB5240150E02E91B75D07E6362840E9@BL1PR12MB5240.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2449;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: qeOcp42/kp+T2daruQWH6M3TOJod7844EfA/RwDtOZbLLBf2IwL4LG4p47eR/SiRvwLdNbUCcj2+a0aeYbXGTaykaTvJ52+GeUXBlT1x5HzjjqLHxeDWK36aEEeKWbkY1Sp+yzgWZrHAmEEFp4ZPMn5cfagTGjcinapEzJ2JYjqZwJkVi5MJ8oDsX1P/3U+mDP/aua4wzWnu78BWFqzUCyh0IJY1UfxGLw4Oc7VGpYP68mTD+9XhYPjT+AGf2q3NGq4v6vxMPZyZ2unwmMUq9kx4X3N11KrJhyjmILl/uO4r/BYgWaNG22OPlzZVJQ+c8ATx+NFgxKaB4arWEiySoQOfZK2RQly1G6yjcp/iH4cSAWTFdSqU7J0vdCgLPfaIkugi4FP+XeULFab9+XsXdjZtdfi4Gh8Zn4Uj4GgMO9+tAWfUR51EfIT4XOTMmQuXzA5j4VRIxe+KsCLEzLklh5ZLFSTBBoIwSCacE3i4l+SEfEUVSFK2t5zHfJX9zjTKflITZtxmdyF7GuQCGnWEWK0FZSpwS+RU3RzyXR2bF8NxuElkXuln/SoO1iChCj8zB1aPN5vtRyD89dNbFEWr0MyruNGHqrBkl7IF/uXaATk=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5269.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(376002)(136003)(346002)(366004)(39860400002)(66946007)(2906002)(8676002)(55016002)(110136005)(7696005)(83380400001)(33656002)(9686003)(54906003)(316002)(8936002)(86362001)(76116006)(186003)(66446008)(64756008)(66556008)(66476007)(4326008)(71200400001)(5660300002)(478600001)(15650500001)(52536014)(6506007)(53546011)(38100700002)(122000001)(26005);
  DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?c72fSiXfpowbjBGMrd6JyoaX+DT1m2tFckdBOk5qcJJP29LVEd4PDI7mV7av?=
+ =?us-ascii?Q?mUpR+JoR7VA3ZKBkWhqznuFul79C/TOBwtZ9AJbuc4uVcuHN0zspl8EhKRDS?=
+ =?us-ascii?Q?T2Eb4ZY7b8crV7uK13M5IIdba2wuclXcEJirGGGj/wQ3R+Pn+FOurPlIrBYE?=
+ =?us-ascii?Q?u2Z6x11lYTgBhhi/sdlhoVy6rWob3wId6QyK7XbVi2WZqsvglkp1RpK8B1Y3?=
+ =?us-ascii?Q?pzaVSvvB0ctN0R6wAaH5Lv7RcNY/oS2RxIC+/ygR3qeidFv/8xoaniv76gQ1?=
+ =?us-ascii?Q?ZjbRp4ls1q1DmsELw/CTuRLZVHZqRP3hQX2l0wx+czmjSEsyRDpth3UZXmTX?=
+ =?us-ascii?Q?c8zNWTt1uLeyht4hiS8+vNaW0rzwgU6WJSSNJO/x+ElQ0Ow5hq9VDr4MthUa?=
+ =?us-ascii?Q?UMglmgQ/IvkWBEe2ra/m3L2Og+flQ00RUYPAT/bUTNtYb5E4gxOuMoBRStIr?=
+ =?us-ascii?Q?yool2iLJyZ5tVNchTXnzmSbMzf/6XALp0aqKgPiy2YBIAwr1us9dBeILNRhE?=
+ =?us-ascii?Q?B+JrRbOFbGQtEvi9tkuDMjk5018+WDGKPl5T+UGkNzQLTleEs+UVMmrvMauI?=
+ =?us-ascii?Q?smVzORLm7M/9d7TlR3Yy7DE/J0swEFnj65GQ+kUF6hpZJtPMAAUKxFVsmGZM?=
+ =?us-ascii?Q?/BawYFlF4CM1517FUSSAH3pg+PdfeaFENv2P8aCR6vLEYsmz0pfMAvfwT3V+?=
+ =?us-ascii?Q?RzB2WquC7tQWzFn5KrDNUscRnM4tmC3Fy6J1fiuVa/8dYpMigTdS4bBbyE0W?=
+ =?us-ascii?Q?N+UEuy3cHDmH74QjkdvvrrtdBONOgZQ3xurROrf2xU2JDCXzd0LSiSsAn3iG?=
+ =?us-ascii?Q?HvGsmBIbZtE+GYcYllylSHLqtaeWYYmDTJboAVf0c+Fo0dq929oIpYwJ8fXs?=
+ =?us-ascii?Q?Xdlj5R1XlJOj054suC6wtnnknscovkOML4xdzqCAACoNxp8rnh1ppu2SSVY6?=
+ =?us-ascii?Q?zwWJjcibcMeHbwJ6T0yASBIvpe9OcLl4m3W48PQEvnhzHZJU/cMtfsH6gHmy?=
+ =?us-ascii?Q?epsMe51WiHaxrXtrbPHJmOq2tagBg9B+IbewhA4tSa2yQVvh9emAC5gw07ZI?=
+ =?us-ascii?Q?L5pq9wjN2oKlJIKYxZkDEl5M4uGX6rKxem6iM3YGDYOk3z42cd7cKTn6XDVJ?=
+ =?us-ascii?Q?u27RMcZ0+mLEO+Vpr2VxB1GlFFZEtJ20DvFBD/UNr5DisjWPKypbK1RL6SMp?=
+ =?us-ascii?Q?zqrkIEhdmJ8tVy8HucDSiUHZ1kX103L2RIw/K3ZLT7RDIIGOi4Z/yDdDCYRP?=
+ =?us-ascii?Q?3FWE7ofmTVhxopdDrfDM13CZiosdQiqnkKcoLP76JrIBR4rci8wgRYNSRLQy?=
+ =?us-ascii?Q?Dao2V6EFWnEn/gvUgUwnIkn8?=
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2021 08:40:00.3601 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f43632cb-24d9-42f8-7349-08d9316b7e8c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1495
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5269.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07fe4676-f5e6-4a60-8e9d-08d9317180f4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jun 2021 09:23:01.3067 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ED3t/KPE1VDntBFH0d7XcLPbWgHta3BqiC9cXoUA4CZUhoUqa3Gh1vqRpLa0/XL/
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5240
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,121 +120,62 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Evan Quan <evan.quan@amd.com>
+Cc: "Chen, JingWen" <JingWen.Chen2@amd.com>, "Zha,
+ YiFan\(Even\)" <Yifan.Zha@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Avoid unnecessary register programming on feature disablement.
+[AMD Official Use Only]
 
-Change-Id: Ia8ad4fb28cb23f80ddcf1399eace284e4d33bd90
-Signed-off-by: Evan Quan <evan.quan@amd.com>
+Reviewed-by: Monk Liu <monk.liu@amd.com>
+
+Thanks 
+
+------------------------------------------
+Monk Liu | Cloud-GPU Core team
+------------------------------------------
+
+-----Original Message-----
+From: Yifan Zha <Yifan.Zha@amd.com> 
+Sent: Friday, June 11, 2021 6:49 PM
+To: amd-gfx@lists.freedesktop.org
+Cc: Liu, Monk <Monk.Liu@amd.com>; Chen, JingWen <JingWen.Chen2@amd.com>; Zha, YiFan(Even) <Yifan.Zha@amd.com>
+Subject: [PATCH] drm/amd/pm: Disable SMU messages in navi10 sriov
+
+[Why]
+sriov vf send unsupported SMU message lead to fail.
+
+[How]
+disable related messages in sriov.
+
+Signed-off-by: Yifan Zha <Yifan.Zha@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c | 85 +++++++++++++++------------
- 1 file changed, 48 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c b/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c
-index 7a15e669b68d..5793977953cc 100644
---- a/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/hdp_v5_0.c
-@@ -90,45 +90,56 @@ static void hdp_v5_0_update_mem_power_gating(struct amdgpu_device *adev,
- 					 RC_MEM_POWER_SD_EN, 0);
- 	WREG32_SOC15(HDP, 0, mmHDP_MEM_POWER_CTRL, hdp_mem_pwr_cntl);
- 
--	/* only one clock gating mode (LS/DS/SD) can be enabled */
--	if (adev->cg_flags & AMD_CG_SUPPORT_HDP_LS) {
--		hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl,
--						 HDP_MEM_POWER_CTRL,
--						 IPH_MEM_POWER_LS_EN, enable);
--		hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl,
--						 HDP_MEM_POWER_CTRL,
--						 RC_MEM_POWER_LS_EN, enable);
--	} else if (adev->cg_flags & AMD_CG_SUPPORT_HDP_DS) {
--		hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl,
--						 HDP_MEM_POWER_CTRL,
--						 IPH_MEM_POWER_DS_EN, enable);
--		hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl,
--						 HDP_MEM_POWER_CTRL,
--						 RC_MEM_POWER_DS_EN, enable);
--	} else if (adev->cg_flags & AMD_CG_SUPPORT_HDP_SD) {
--		hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl,
--						 HDP_MEM_POWER_CTRL,
--						 IPH_MEM_POWER_SD_EN, enable);
--		/* RC should not use shut down mode, fallback to ds */
--		hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl,
--						 HDP_MEM_POWER_CTRL,
--						 RC_MEM_POWER_DS_EN, enable);
--	}
--
--	/* confirmed that IPH_MEM_POWER_CTRL_EN and RC_MEM_POWER_CTRL_EN have to
--	 * be set for SRAM LS/DS/SD */
--	if (adev->cg_flags & (AMD_CG_SUPPORT_HDP_LS | AMD_CG_SUPPORT_HDP_DS |
--			      AMD_CG_SUPPORT_HDP_SD)) {
--		hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl, HDP_MEM_POWER_CTRL,
--						 IPH_MEM_POWER_CTRL_EN, 1);
--		hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl, HDP_MEM_POWER_CTRL,
--						 RC_MEM_POWER_CTRL_EN, 1);
-+	/* Already disabled above. The actions below are for "enabled" only */
-+	if (enable) {
-+		/* only one clock gating mode (LS/DS/SD) can be enabled */
-+		if (adev->cg_flags & AMD_CG_SUPPORT_HDP_LS) {
-+			hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl,
-+							 HDP_MEM_POWER_CTRL,
-+							 IPH_MEM_POWER_LS_EN, 1);
-+			hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl,
-+							 HDP_MEM_POWER_CTRL,
-+							 RC_MEM_POWER_LS_EN, 1);
-+		} else if (adev->cg_flags & AMD_CG_SUPPORT_HDP_DS) {
-+			hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl,
-+							 HDP_MEM_POWER_CTRL,
-+							 IPH_MEM_POWER_DS_EN, 1);
-+			hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl,
-+							 HDP_MEM_POWER_CTRL,
-+							 RC_MEM_POWER_DS_EN, 1);
-+		} else if (adev->cg_flags & AMD_CG_SUPPORT_HDP_SD) {
-+			hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl,
-+							 HDP_MEM_POWER_CTRL,
-+							 IPH_MEM_POWER_SD_EN, 1);
-+			/* RC should not use shut down mode, fallback to ds  or ls if allowed */
-+			if (adev->cg_flags & AMD_CG_SUPPORT_HDP_DS)
-+				hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl,
-+								 HDP_MEM_POWER_CTRL,
-+								 RC_MEM_POWER_DS_EN, 1);
-+			else if (adev->cg_flags & AMD_CG_SUPPORT_HDP_LS)
-+				hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl,
-+								 HDP_MEM_POWER_CTRL,
-+								 RC_MEM_POWER_LS_EN, 1);
-+		}
-+
-+		/* confirmed that IPH_MEM_POWER_CTRL_EN and RC_MEM_POWER_CTRL_EN have to
-+		 * be set for SRAM LS/DS/SD */
-+		if (adev->cg_flags & (AMD_CG_SUPPORT_HDP_LS | AMD_CG_SUPPORT_HDP_DS |
-+				      AMD_CG_SUPPORT_HDP_SD)) {
-+			hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl, HDP_MEM_POWER_CTRL,
-+							 IPH_MEM_POWER_CTRL_EN, 1);
-+			hdp_mem_pwr_cntl = REG_SET_FIELD(hdp_mem_pwr_cntl, HDP_MEM_POWER_CTRL,
-+							 RC_MEM_POWER_CTRL_EN, 1);
-+			WREG32_SOC15(HDP, 0, mmHDP_MEM_POWER_CTRL, hdp_mem_pwr_cntl);
-+		}
- 	}
- 
--	WREG32_SOC15(HDP, 0, mmHDP_MEM_POWER_CTRL, hdp_mem_pwr_cntl);
--
--	/* restore IPH & RC clock override after clock/power mode changing */
--	WREG32_SOC15(HDP, 0, mmHDP_CLK_CNTL, hdp_clk_cntl1);
-+	/* disable IPH & RC clock override after clock/power mode changing */
-+	hdp_clk_cntl = REG_SET_FIELD(hdp_clk_cntl, HDP_CLK_CNTL,
-+				     IPH_MEM_CLK_SOFT_OVERRIDE, 0);
-+	hdp_clk_cntl = REG_SET_FIELD(hdp_clk_cntl, HDP_CLK_CNTL,
-+				     RC_MEM_CLK_SOFT_OVERRIDE, 0);
-+	WREG32_SOC15(HDP, 0, mmHDP_CLK_CNTL, hdp_clk_cntl);
- }
- 
- static void hdp_v5_0_update_medium_grain_clock_gating(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+index 78fe13183e8b..e1b019115e92 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
+@@ -80,10 +80,10 @@ static struct cmn2asic_msg_mapping navi10_message_map[SMU_MSG_MAX_COUNT] = {
+ 	MSG_MAP(SetAllowedFeaturesMaskHigh,	PPSMC_MSG_SetAllowedFeaturesMaskHigh,	0),
+ 	MSG_MAP(EnableAllSmuFeatures,		PPSMC_MSG_EnableAllSmuFeatures,		0),
+ 	MSG_MAP(DisableAllSmuFeatures,		PPSMC_MSG_DisableAllSmuFeatures,	0),
+-	MSG_MAP(EnableSmuFeaturesLow,		PPSMC_MSG_EnableSmuFeaturesLow,		1),
+-	MSG_MAP(EnableSmuFeaturesHigh,		PPSMC_MSG_EnableSmuFeaturesHigh,	1),
+-	MSG_MAP(DisableSmuFeaturesLow,		PPSMC_MSG_DisableSmuFeaturesLow,	1),
+-	MSG_MAP(DisableSmuFeaturesHigh,		PPSMC_MSG_DisableSmuFeaturesHigh,	1),
++	MSG_MAP(EnableSmuFeaturesLow,		PPSMC_MSG_EnableSmuFeaturesLow,		0),
++	MSG_MAP(EnableSmuFeaturesHigh,		PPSMC_MSG_EnableSmuFeaturesHigh,	0),
++	MSG_MAP(DisableSmuFeaturesLow,		PPSMC_MSG_DisableSmuFeaturesLow,	0),
++	MSG_MAP(DisableSmuFeaturesHigh,		PPSMC_MSG_DisableSmuFeaturesHigh,	0),
+ 	MSG_MAP(GetEnabledSmuFeaturesLow,	PPSMC_MSG_GetEnabledSmuFeaturesLow,	1),
+ 	MSG_MAP(GetEnabledSmuFeaturesHigh,	PPSMC_MSG_GetEnabledSmuFeaturesHigh,	1),
+ 	MSG_MAP(SetWorkloadMask,		PPSMC_MSG_SetWorkloadMask,		1),
 -- 
-2.29.0
-
+2.25.1
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
