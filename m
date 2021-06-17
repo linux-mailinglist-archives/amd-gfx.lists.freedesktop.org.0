@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4043AAEF1
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Jun 2021 10:40:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C21BB3AAEF5
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Jun 2021 10:40:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD8356E8C1;
-	Thu, 17 Jun 2021 08:39:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB08E6E8C6;
+	Thu, 17 Jun 2021 08:40:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2064.outbound.protection.outlook.com [40.107.236.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55D396E8C1
- for <amd-gfx@lists.freedesktop.org>; Thu, 17 Jun 2021 08:39:58 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2067.outbound.protection.outlook.com [40.107.94.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B89D56E8C5
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Jun 2021 08:40:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LdRc/ikZY2OrWYiu6TVXvy/XGqxOFwzLHxGrnoNWYRflUtJxzLWtJJ7zBuH+hMdgn89GZw5Vodo+64yPw1+7N7v+2hgthwJTxguniWsBp9rc+YdsXjqm6+H2fLOgdJSx1eJiMxoRxGu33U9MHtNTGZF4fW4eUjdFa6K1qPVRmQg9pAlYo4mBfJoVSKNbMfOUabQW26RZzQQuKfWWtoIagNFjGwdjkQsHy26IqI4ZtpTpGXVei7iTChhxZ3dJ/qu1MCebJEg58ELFjaONDENd4MXQQWW522aNNR33E+FZzY95nCZnSq7qNBkFeR5JQ9DbisF5ZXerc35b4m1TIdx7Eg==
+ b=mAszPJ7RR2JQpUPkDZrY5SnLf/3dcj8ZRU6JlIH3YIBvYBQMTv0qZzC6xYfk2IUl20sJ/tkzLFcRmIw1VcOCrUofr7IPC0vMKlFsZq4Uepp2GYMlVobYf1Wx+Jjl/nhLNRSLGKTzyAIuPtEXr+4IDRK3ZtxO7BK+5LXHVb61CUdVlio/bINorWjCZBvZBHwLgFfPmnEdPhNMXy9n11gBilbb1TsnH4nQh6ZbxSqqJ21idhngcH9NUq6Vvi0DwPR6np54pSbv/c19FSolduhMEquJ7ZdpoKvZ7RjowOFH30FKgAIXRqyJOdY26fztDpZ2ToCaqykaqDI0TSyYGAdKAA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4tV7/9o+QGcLPZaWz4w3AQ6WpBRWaqsKr7qiwEgbkgA=;
- b=J5a/qZIGDwafWB6KuWRx1B9c8SG/8RGJ/EPlqYuGnPPURWjwJehmwo8Tgi0Q3Klb2EdcejjQVpBp++BEIGUnWAtwRBf1/md927J5nxeLXjjQrP3iFWFwjYmTBGT24lG3xH7XH1ilWwbUQapq0QycrxFGnYRHdPFgZFY8JDTkagpjPqpH62eJlyi6ZoPq3gBA7MCBrNkRPK8XhIDlUBlZ7M61Sw1STJDWr8vq11WtK0kmpqZmZDlMA2rVRva8Y2N4rj50dW9vKZqZz+VFRvQU9U8ta/4hW7x0lFio24syKNBgj80amIusbkdeViVSgrTqSYG12n1I4c2u83NNtgUPwA==
+ bh=mwE+/WgVKBRtazhGccNFLcknlcNhJZEjkVJApB5aFfc=;
+ b=jTIDU8bIzKWXbBW/LrubPWyDMvGoB+bDiaGB+BTW+M+ydvgRXI1fqVY8cFT/A1AWiR9KQHzVpj5W5B8TjItbMHDr+pFr1OWCXHpxlFtlwjBLAf3QaxMj4nmWrKMc/7wxP2rYOr27vUc+9tFKVqRcCYAi1D7sPvJTi+PcDDqQWNBs32ZbLtEcdrQRx1yEjz7LsDa3IvA2psBR1mF2ViKr66L0h97uDBvq2s3ZKK4d6PmN3IaHPsGnC5r6lESHzB8Adwj1Fxq8M729om8/FDqyG6Tf+1uyJlm/jx8IN2KQgO49+ZOJCjRWvqltu5nC8kX/GmfKnlh60XhoYdq49NLu7g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4tV7/9o+QGcLPZaWz4w3AQ6WpBRWaqsKr7qiwEgbkgA=;
- b=h2F2/ShjbklMElg7bztYqwVhw8VBx01r7AnVd9a22xnLlDwuc/+UTA7O4Z1aSQtSTOqEwFIIta17F3Uyz5sMu8tVrOJUiuLrrqnZaW4eRDFi0JaVfIz4x1Q2YRdUkSAk4UC4C10dHplABJlNgAMx/E87rGKTY/No+s+ju8f3jRQ=
-Received: from BN9PR03CA0133.namprd03.prod.outlook.com (2603:10b6:408:fe::18)
- by DM6PR12MB2986.namprd12.prod.outlook.com (2603:10b6:5:39::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.16; Thu, 17 Jun
- 2021 08:39:56 +0000
-Received: from BN8NAM11FT011.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:fe:cafe::19) by BN9PR03CA0133.outlook.office365.com
- (2603:10b6:408:fe::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.18 via Frontend
- Transport; Thu, 17 Jun 2021 08:39:56 +0000
+ bh=mwE+/WgVKBRtazhGccNFLcknlcNhJZEjkVJApB5aFfc=;
+ b=kYDHIg6kGqQODR66znq7qPEe09BNApbIQVDAycHT9FM5wwgp1Ogwob6wD3Onbs/X/sZXjbK2mqMcHtqyyGFvCt3hA2oCoF0r2ZiyG1/y8PXl/gaa9Q/IXvzJs4ycMlnGj4B8SIN/XiGxAQxtnEtHPZn+Mrx9kfH8vGGCK+mkSAU=
+Received: from BN6PR1701CA0024.namprd17.prod.outlook.com
+ (2603:10b6:405:15::34) by BN8PR12MB4625.namprd12.prod.outlook.com
+ (2603:10b6:408:71::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.15; Thu, 17 Jun
+ 2021 08:39:57 +0000
+Received: from BN8NAM11FT058.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:405:15:cafe::36) by BN6PR1701CA0024.outlook.office365.com
+ (2603:10b6:405:15::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19 via Frontend
+ Transport; Thu, 17 Jun 2021 08:39:57 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,19 +46,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT011.mail.protection.outlook.com (10.13.176.140) with Microsoft SMTP
+ BN8NAM11FT058.mail.protection.outlook.com (10.13.177.58) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4242.16 via Frontend Transport; Thu, 17 Jun 2021 08:39:56 +0000
+ 15.20.4242.16 via Frontend Transport; Thu, 17 Jun 2021 08:39:57 +0000
 Received: from equan-buildpc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Thu, 17 Jun
- 2021 03:39:54 -0500
+ 2021 03:39:55 -0500
 From: Evan Quan <evan.quan@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH V2 4/7] drm/amdgpu: fix the hang caused by PCIe link width
- switch
-Date: Thu, 17 Jun 2021 16:39:20 +0800
-Message-ID: <20210617083923.421052-4-evan.quan@amd.com>
+Subject: [PATCH V2 5/7] drm/amdgpu: correct clock gating settings on feature
+ unsupported
+Date: Thu, 17 Jun 2021 16:39:21 +0800
+Message-ID: <20210617083923.421052-5-evan.quan@amd.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20210617083923.421052-1-evan.quan@amd.com>
 References: <20210617083923.421052-1-evan.quan@amd.com>
@@ -68,27 +68,27 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f206e68f-7e19-4f72-a000-08d9316b7bf9
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2986:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB298669AF4CA7BD755BBECB32E40E9@DM6PR12MB2986.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Office365-Filtering-Correlation-Id: 5473432c-bde3-419f-4059-08d9316b7ce0
+X-MS-TrafficTypeDiagnostic: BN8PR12MB4625:
+X-Microsoft-Antispam-PRVS: <BN8PR12MB4625C40272E9F5B49AD37670E40E9@BN8PR12MB4625.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TqDd89rtXhfuFKcoWjtrWzVrEjEbxRJn+/WLmzTx+sDI7DgdOIXKtsVZ2uPk7jsdY8DFI22UEY3hTDzX1u4CBCJ65hwOtDBaEIU6gHJ2aiV1o7lhcynSP8wyqeiTbpHz3ueU5niuyOGY7fR+vwk2m8nhpaqyD3P4nvmVN15QPWdQvz7DipJ1dPn3uLRwnjNwmECl1fM7aVv5A7NBnFqJ0tKXQkb9K4Npz3IBSgRyC0px/gGQQXbkoKIeku2m0X7LxlHdHyy+3dhGeSRcPb+05qHu0MeSdNtOwMT+RwEfqn/lbDpWEZrm+FxVaX/bWn7JjQG62fO+2TqmJkHjlnQYT/IcTJTIa157eAA9HEywmaVtCe37jMQzNfbINEEQt4CIG5azKlZbrIrb7tj/sR0mMOiqBk9GAClTQrWkyY/+IJY5RdmaGazB7b1mRyozbdWMbs4yvnuptRbZ1c++U6xswF89fg5LK0BRZU/dAs1n+SnmlHg47HgYV7DRfIrCKH3M6wrVUdo26PLqCEi3+LijsFbVfk5hcivcK2FiUfzeKr2vATLwPko2GZYRf9zptkygtz5xm9QWgbv/v+MNXUmz1O2PscP8+SvnRvCftU3akjYneNpzsTzyJlEIYKwLDjbJ8J6TiZPrfq/39hb4FKJAao2UaQuXwFnsbWhNk+wbG+p1esKB/qL2j+q88fKmRQt+
+X-Microsoft-Antispam-Message-Info: AN4GCCtxc/B/vqEpODWzRyZoQxVszB5a5eMBsdLPxaR2/tTaN+jksPZncwQLfG88aliI0KCRDnxTmAmjmlg+GHyaBKm1zarly+aNdVpJeKFAAL204wpBkvROaoDDoU8KIv7Zk9ET2qW4DiGEti8eb5mKKBXuhedwv0jYOOaF9U5DFzJ7eW2/ieYtLE3+d7JxMafN7HjJLsJu/kSGmaCFoVMqD8Ku58more+Yyco7h512IWl4+T4a9/uKykOO59Y9stDykeWgIH4jKJvbslYtZWXUzrVhcdpdFR9k4e7yDp9BWF9Reo09ammixx8rAqHao2AxaHM35EGh8Ebc/ZPAfWxNGaOaugfiCCK40huakI5vlHXhSTLK5at6FKbPas+8mR26b2gxsUJjRFEa5jTagksPHHDSMXu099t61JROj0vAjrlOx5iT7WrByWEsbkmQy15l3rnVx14wsTEb4TmPad7wwFs9eq89OKA4MLoD/CsVLHQ/4iGE5Wzkv55jKCKYQ3mWR9fc+IHGrhBEL7MM6JYv2mhKuDLmujpXwNY7pKLeqlloqmTRD4vvXOnEdolKwYtfGKwdLSqbwLwVGW4p7Lw0p7e4EwwcbR0eVZFdF2axhIpJXYeqhsPVi0aGuBN2Y9J9doAkpph+2jHhWzpKs2Sqo9/ntub6CzjD0WLKamk61ZD9skHpB2RtymuE8Ppr
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(136003)(346002)(39860400002)(396003)(376002)(36840700001)(46966006)(81166007)(186003)(82740400003)(8936002)(16526019)(6666004)(426003)(478600001)(356005)(70586007)(86362001)(2906002)(70206006)(36860700001)(44832011)(6916009)(82310400003)(54906003)(4326008)(83380400001)(7696005)(26005)(316002)(47076005)(5660300002)(336012)(1076003)(2616005)(36756003)(8676002)(36900700001);
+ SFS:(4636009)(376002)(136003)(39860400002)(346002)(396003)(36840700001)(46966006)(81166007)(316002)(86362001)(478600001)(70206006)(8936002)(2616005)(70586007)(30864003)(36860700001)(82310400003)(82740400003)(7696005)(426003)(336012)(6916009)(54906003)(8676002)(356005)(47076005)(83380400001)(186003)(6666004)(16526019)(2906002)(5660300002)(44832011)(36756003)(1076003)(26005)(4326008)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2021 08:39:56.0414 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f206e68f-7e19-4f72-a000-08d9316b7bf9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jun 2021 08:39:57.5519 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5473432c-bde3-419f-4059-08d9316b7ce0
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT011.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT058.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2986
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB4625
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,51 +106,291 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SMU had set all the necessary fields for a link width switch
-but the width switch wasn't occurring because the link was idle
-in the L1 state. Setting LC_L1_RECONFIG_EN=0x1 will allow width
-switches to also be initiated while in L1 instead of waiting until
-the link is back in L0.
+Clock gating setting is still performed even when the corresponding
+CG feature is not supported. And the tricky part is disablement is
+actually performed no matter for enablement or disablement request.
+That seems not logically right.
+Considering HW should already properly take care of the CG state, we
+will just skip the corresponding clock gating setting when the feature
+is not supported.
 
-Change-Id: I6315681f6fb194036b20991512dd88fa65bc0d56
+Change-Id: Ic0995cf3de9f36b59316a90a28b7c95a08f4dccd
 Signed-off-by: Evan Quan <evan.quan@amd.com>
 ---
-V1->V2:
-  - limit the change for Navi10 only
----
- drivers/gpu/drm/amd/amdgpu/nv.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/athub_v2_0.c  | 12 +++--
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c   | 69 ++++++++++++++++++------
+ drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c  | 10 +++-
+ drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c   | 10 +++-
+ drivers/gpu/drm/amd/amdgpu/smuio_v11_0.c |  5 +-
+ 5 files changed, 83 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 2e1d12369cec..f31c331a1c48 100644
---- a/drivers/gpu/drm/amd/amdgpu/nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -1432,6 +1432,15 @@ static void nv_apply_lc_spc_mode_wa(struct amdgpu_device *adev)
- 	}
- }
- 
-+static void nv_apply_l1_link_width_reconfig_wa(struct amdgpu_device *adev)
-+{
-+	uint32_t reg_data = 0;
-+
-+	reg_data = RREG32_PCIE(smnPCIE_LC_LINK_WIDTH_CNTL);
-+	reg_data |= PCIE_LC_LINK_WIDTH_CNTL__LC_L1_RECONFIG_EN_MASK;
-+	WREG32_PCIE(smnPCIE_LC_LINK_WIDTH_CNTL, reg_data);
-+}
-+
- static int nv_common_hw_init(void *handle)
+diff --git a/drivers/gpu/drm/amd/amdgpu/athub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/athub_v2_0.c
+index 5b90efd6f6d0..3ac505d954c4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/athub_v2_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/athub_v2_0.c
+@@ -36,9 +36,12 @@ athub_v2_0_update_medium_grain_clock_gating(struct amdgpu_device *adev,
  {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-@@ -1440,6 +1449,9 @@ static int nv_common_hw_init(void *handle)
- 	     (adev->asic_type <= CHIP_NAVI12))
- 		nv_apply_lc_spc_mode_wa(adev);
+ 	uint32_t def, data;
  
-+	if (adev->asic_type == CHIP_NAVI10)
-+		nv_apply_l1_link_width_reconfig_wa(adev);
++	if (!(adev->cg_flags & AMD_CG_SUPPORT_MC_MGCG))
++		return;
 +
- 	/* enable pcie gen2/3 link */
- 	nv_pcie_gen3_enable(adev);
- 	/* enable aspm */
+ 	def = data = RREG32_SOC15(ATHUB, 0, mmATHUB_MISC_CNTL);
+ 
+-	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_MC_MGCG))
++	if (enable)
+ 		data |= ATHUB_MISC_CNTL__CG_ENABLE_MASK;
+ 	else
+ 		data &= ~ATHUB_MISC_CNTL__CG_ENABLE_MASK;
+@@ -53,10 +56,13 @@ athub_v2_0_update_medium_grain_light_sleep(struct amdgpu_device *adev,
+ {
+ 	uint32_t def, data;
+ 
++	if (!((adev->cg_flags & AMD_CG_SUPPORT_MC_LS) &&
++	       (adev->cg_flags & AMD_CG_SUPPORT_HDP_LS)))
++		return;
++
+ 	def = data = RREG32_SOC15(ATHUB, 0, mmATHUB_MISC_CNTL);
+ 
+-	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_MC_LS) &&
+-	    (adev->cg_flags & AMD_CG_SUPPORT_HDP_LS))
++	if (enable)
+ 		data |= ATHUB_MISC_CNTL__CG_MEM_LS_ENABLE_MASK;
+ 	else
+ 		data &= ~ATHUB_MISC_CNTL__CG_MEM_LS_ENABLE_MASK;
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 5cfd4800d5be..7d9464611d26 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -7786,8 +7786,11 @@ static void gfx_v10_0_update_medium_grain_clock_gating(struct amdgpu_device *ade
+ {
+ 	uint32_t data, def;
+ 
++	if (!(adev->cg_flags & AMD_CG_SUPPORT_GFX_MGCG))
++		return;
++
+ 	/* It is disabled by HW by default */
+-	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_GFX_MGCG)) {
++	if (enable) {
+ 		/* 0 - Disable some blocks' MGCG */
+ 		WREG32_SOC15(GC, 0, mmGRBM_GFX_INDEX, 0xe0000000);
+ 		WREG32_SOC15(GC, 0, mmCGTT_WD_CLK_CTRL, 0xff000000);
+@@ -7854,22 +7857,34 @@ static void gfx_v10_0_update_3d_clock_gating(struct amdgpu_device *adev,
+ {
+ 	uint32_t data, def;
+ 
++	if (!(adev->cg_flags & (AMD_CG_SUPPORT_GFX_3D_CGCG | AMD_CG_SUPPORT_GFX_3D_CGLS)))
++		return;
++
+ 	/* Enable 3D CGCG/CGLS */
+-	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_GFX_3D_CGCG)) {
++	if (enable) {
+ 		/* write cmd to clear cgcg/cgls ov */
+ 		def = data = RREG32_SOC15(GC, 0, mmRLC_CGTT_MGCG_OVERRIDE);
++
+ 		/* unset CGCG override */
+-		data &= ~RLC_CGTT_MGCG_OVERRIDE__GFXIP_GFX3D_CG_OVERRIDE_MASK;
++		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_3D_CGCG)
++			data &= ~RLC_CGTT_MGCG_OVERRIDE__GFXIP_GFX3D_CG_OVERRIDE_MASK;
++
+ 		/* update CGCG and CGLS override bits */
+ 		if (def != data)
+ 			WREG32_SOC15(GC, 0, mmRLC_CGTT_MGCG_OVERRIDE, data);
++
+ 		/* enable 3Dcgcg FSM(0x0000363f) */
+ 		def = RREG32_SOC15(GC, 0, mmRLC_CGCG_CGLS_CTRL_3D);
+-		data = (0x36 << RLC_CGCG_CGLS_CTRL_3D__CGCG_GFX_IDLE_THRESHOLD__SHIFT) |
+-			RLC_CGCG_CGLS_CTRL_3D__CGCG_EN_MASK;
++		data = 0;
++
++		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_3D_CGCG)
++			data = (0x36 << RLC_CGCG_CGLS_CTRL_3D__CGCG_GFX_IDLE_THRESHOLD__SHIFT) |
++				RLC_CGCG_CGLS_CTRL_3D__CGCG_EN_MASK;
++
+ 		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_3D_CGLS)
+ 			data |= (0x000F << RLC_CGCG_CGLS_CTRL_3D__CGLS_REP_COMPANSAT_DELAY__SHIFT) |
+ 				RLC_CGCG_CGLS_CTRL_3D__CGLS_EN_MASK;
++
+ 		if (def != data)
+ 			WREG32_SOC15(GC, 0, mmRLC_CGCG_CGLS_CTRL_3D, data);
+ 
+@@ -7882,9 +7897,14 @@ static void gfx_v10_0_update_3d_clock_gating(struct amdgpu_device *adev,
+ 	} else {
+ 		/* Disable CGCG/CGLS */
+ 		def = data = RREG32_SOC15(GC, 0, mmRLC_CGCG_CGLS_CTRL_3D);
++
+ 		/* disable cgcg, cgls should be disabled */
+-		data &= ~(RLC_CGCG_CGLS_CTRL_3D__CGCG_EN_MASK |
+-			  RLC_CGCG_CGLS_CTRL_3D__CGLS_EN_MASK);
++		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_3D_CGCG)
++			data &= ~RLC_CGCG_CGLS_CTRL_3D__CGCG_EN_MASK;
++
++		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_3D_CGLS)
++			data &= ~RLC_CGCG_CGLS_CTRL_3D__CGLS_EN_MASK;
++
+ 		/* disable cgcg and cgls in FSM */
+ 		if (def != data)
+ 			WREG32_SOC15(GC, 0, mmRLC_CGCG_CGLS_CTRL_3D, data);
+@@ -7896,25 +7916,35 @@ static void gfx_v10_0_update_coarse_grain_clock_gating(struct amdgpu_device *ade
+ {
+ 	uint32_t def, data;
+ 
+-	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGCG)) {
++	if (!(adev->cg_flags & (AMD_CG_SUPPORT_GFX_CGCG | AMD_CG_SUPPORT_GFX_CGLS)))
++		return;
++
++	if (enable) {
+ 		def = data = RREG32_SOC15(GC, 0, mmRLC_CGTT_MGCG_OVERRIDE);
++
+ 		/* unset CGCG override */
+-		data &= ~RLC_CGTT_MGCG_OVERRIDE__GFXIP_CGCG_OVERRIDE_MASK;
++		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGCG)
++			data &= ~RLC_CGTT_MGCG_OVERRIDE__GFXIP_CGCG_OVERRIDE_MASK;
++
+ 		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGLS)
+ 			data &= ~RLC_CGTT_MGCG_OVERRIDE__GFXIP_CGLS_OVERRIDE_MASK;
+-		else
+-			data |= RLC_CGTT_MGCG_OVERRIDE__GFXIP_CGLS_OVERRIDE_MASK;
++
+ 		/* update CGCG and CGLS override bits */
+ 		if (def != data)
+ 			WREG32_SOC15(GC, 0, mmRLC_CGTT_MGCG_OVERRIDE, data);
+ 
+ 		/* enable cgcg FSM(0x0000363F) */
+ 		def = RREG32_SOC15(GC, 0, mmRLC_CGCG_CGLS_CTRL);
+-		data = (0x36 << RLC_CGCG_CGLS_CTRL__CGCG_GFX_IDLE_THRESHOLD__SHIFT) |
+-			RLC_CGCG_CGLS_CTRL__CGCG_EN_MASK;
++		data = 0;
++
++		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGCG)
++			data = (0x36 << RLC_CGCG_CGLS_CTRL__CGCG_GFX_IDLE_THRESHOLD__SHIFT) |
++				RLC_CGCG_CGLS_CTRL__CGCG_EN_MASK;
++
+ 		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGLS)
+ 			data |= (0x000F << RLC_CGCG_CGLS_CTRL__CGLS_REP_COMPANSAT_DELAY__SHIFT) |
+ 				RLC_CGCG_CGLS_CTRL__CGLS_EN_MASK;
++
+ 		if (def != data)
+ 			WREG32_SOC15(GC, 0, mmRLC_CGCG_CGLS_CTRL, data);
+ 
+@@ -7926,8 +7956,14 @@ static void gfx_v10_0_update_coarse_grain_clock_gating(struct amdgpu_device *ade
+ 			WREG32_SOC15(GC, 0, mmCP_RB_WPTR_POLL_CNTL, data);
+ 	} else {
+ 		def = data = RREG32_SOC15(GC, 0, mmRLC_CGCG_CGLS_CTRL);
++
+ 		/* reset CGCG/CGLS bits */
+-		data &= ~(RLC_CGCG_CGLS_CTRL__CGCG_EN_MASK | RLC_CGCG_CGLS_CTRL__CGLS_EN_MASK);
++		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGCG)
++			data &= ~RLC_CGCG_CGLS_CTRL__CGCG_EN_MASK;
++
++		if (adev->cg_flags & AMD_CG_SUPPORT_GFX_CGLS)
++			data &= ~RLC_CGCG_CGLS_CTRL__CGLS_EN_MASK;
++
+ 		/* disable cgcg and cgls in FSM */
+ 		if (def != data)
+ 			WREG32_SOC15(GC, 0, mmRLC_CGCG_CGLS_CTRL, data);
+@@ -7939,7 +7975,10 @@ static void gfx_v10_0_update_fine_grain_clock_gating(struct amdgpu_device *adev,
+ {
+ 	uint32_t def, data;
+ 
+-	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_GFX_FGCG)) {
++	if (!(adev->cg_flags & AMD_CG_SUPPORT_GFX_FGCG))
++		return;
++
++	if (enable) {
+ 		def = data = RREG32_SOC15(GC, 0, mmRLC_CGTT_MGCG_OVERRIDE);
+ 		/* unset FGCG override */
+ 		data &= ~RLC_CGTT_MGCG_OVERRIDE__GFXIP_FGCG_OVERRIDE_MASK;
+diff --git a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
+index f7e93bbc4e15..7ded6b2f058e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v2_0.c
+@@ -568,6 +568,9 @@ static void mmhub_v2_0_update_medium_grain_clock_gating(struct amdgpu_device *ad
+ {
+ 	uint32_t def, data, def1, data1;
+ 
++	if (!(adev->cg_flags & AMD_CG_SUPPORT_MC_MGCG))
++		return;
++
+ 	switch (adev->asic_type) {
+ 	case CHIP_SIENNA_CICHLID:
+ 	case CHIP_NAVY_FLOUNDER:
+@@ -582,7 +585,7 @@ static void mmhub_v2_0_update_medium_grain_clock_gating(struct amdgpu_device *ad
+ 		break;
+ 	}
+ 
+-	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_MC_MGCG)) {
++	if (enable) {
+ 		data |= MM_ATC_L2_MISC_CG__ENABLE_MASK;
+ 
+ 		data1 &= ~(DAGB0_CNTL_MISC2__DISABLE_WRREQ_CG_MASK |
+@@ -627,6 +630,9 @@ static void mmhub_v2_0_update_medium_grain_light_sleep(struct amdgpu_device *ade
+ {
+ 	uint32_t def, data;
+ 
++	if (!(adev->cg_flags & AMD_CG_SUPPORT_MC_LS))
++		return;
++
+ 	switch (adev->asic_type) {
+ 	case CHIP_SIENNA_CICHLID:
+ 	case CHIP_NAVY_FLOUNDER:
+@@ -639,7 +645,7 @@ static void mmhub_v2_0_update_medium_grain_light_sleep(struct amdgpu_device *ade
+ 		break;
+ 	}
+ 
+-	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_MC_LS))
++	if (enable)
+ 		data |= MM_ATC_L2_MISC_CG__MEM_LS_ENABLE_MASK;
+ 	else
+ 		data &= ~MM_ATC_L2_MISC_CG__MEM_LS_ENABLE_MASK;
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+index 05ddec7ba7e2..791cc48752e3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+@@ -218,8 +218,11 @@ static void nbio_v2_3_update_medium_grain_clock_gating(struct amdgpu_device *ade
+ {
+ 	uint32_t def, data;
+ 
++	if (!(adev->cg_flags & AMD_CG_SUPPORT_BIF_MGCG))
++		return;
++
+ 	def = data = RREG32_PCIE(smnCPM_CONTROL);
+-	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_BIF_MGCG)) {
++	if (enable) {
+ 		data |= (CPM_CONTROL__LCLK_DYN_GATE_ENABLE_MASK |
+ 			 CPM_CONTROL__TXCLK_DYN_GATE_ENABLE_MASK |
+ 			 CPM_CONTROL__TXCLK_LCNT_GATE_ENABLE_MASK |
+@@ -244,8 +247,11 @@ static void nbio_v2_3_update_medium_grain_light_sleep(struct amdgpu_device *adev
+ {
+ 	uint32_t def, data;
+ 
++	if (!(adev->cg_flags & AMD_CG_SUPPORT_BIF_LS))
++		return;
++
+ 	def = data = RREG32_PCIE(smnPCIE_CNTL2);
+-	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_BIF_LS)) {
++	if (enable) {
+ 		data |= (PCIE_CNTL2__SLV_MEM_LS_EN_MASK |
+ 			 PCIE_CNTL2__MST_MEM_LS_EN_MASK |
+ 			 PCIE_CNTL2__REPLAY_MEM_LS_EN_MASK);
+diff --git a/drivers/gpu/drm/amd/amdgpu/smuio_v11_0.c b/drivers/gpu/drm/amd/amdgpu/smuio_v11_0.c
+index e9c474c217ec..b6f1322f908c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/smuio_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/smuio_v11_0.c
+@@ -43,9 +43,12 @@ static void smuio_v11_0_update_rom_clock_gating(struct amdgpu_device *adev, bool
+ 	if (adev->flags & AMD_IS_APU)
+ 		return;
+ 
++	if (!(adev->cg_flags & AMD_CG_SUPPORT_ROM_MGCG))
++		return;
++
+ 	def = data = RREG32_SOC15(SMUIO, 0, mmCGTT_ROM_CLK_CTRL0);
+ 
+-	if (enable && (adev->cg_flags & AMD_CG_SUPPORT_ROM_MGCG))
++	if (enable)
+ 		data &= ~(CGTT_ROM_CLK_CTRL0__SOFT_OVERRIDE0_MASK |
+ 			CGTT_ROM_CLK_CTRL0__SOFT_OVERRIDE1_MASK);
+ 	else
 -- 
 2.29.0
 
