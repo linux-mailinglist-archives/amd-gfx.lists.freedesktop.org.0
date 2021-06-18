@@ -1,94 +1,98 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA0B73AD13D
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Jun 2021 19:35:37 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A0773AD138
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Jun 2021 19:35:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 581636EA4B;
-	Fri, 18 Jun 2021 17:35:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73A706E134;
+	Fri, 18 Jun 2021 17:35:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam08on2053.outbound.protection.outlook.com [40.107.100.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58EAD6EA4A
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2079.outbound.protection.outlook.com [40.107.94.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44D3A6E134
  for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 17:35:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b0RXCmom0WGiA7PqKZKuMiHQLX+IKaJnxSuZdQWhi+GHIzQocRyohH3JVcCH5VvOJqKTSclYpYYn/xfEDrAJzaBVLBUsSPvuPSB5xvRdmQ8pEdzB62Wqrwk6L73+K+tSRb8PouCYHdw4X1MyZC3d2Q/qciC1qH+kN1CR5OVX531d1iPX4GvFWL/Yo1eHGckifvyaibrScpJewiccD7WGh16+UdmMC4gFtWR+Xm3kqr1z8uAU5rsBZP2/XUuThBn/ln/7bZmZgeVgYA4P8Gn6VeB15gaGY13BKptZFnpV5BDpkgAhKOM2pTryshFil0LkhPF7xTkwH/DTZDAKBu8eyg==
+ b=f96tO5r6UAWeD1amGuAfRFtYfSC/B24HpbIXFHj4ggu3aaWkbTwKxULRDh5vmuJfzG7dni0CqGLPeSVjfd88//wCrgW8L6HQx89JRDfMyC7RTCe7gFwsVVSCZQ9RmKUa0LIu74nlgDYCkG7yz4AAPwK/9mhm4mONU0Ph0++ZNTbJ7yzM5F6BXLgUkuDimTMeHfjFzbwWMNlmmTYE1+x4o6gPRf/ZnzpuBHLNQ9gZeUCqElTWrzTnV1xtE3B4LYf3LUigTFEM6Mjdmwjd8r7y6R8HEROdBEmaPlSsEIBZQAY6PNfCyZNQgdD6guI/50D0MbZbCH95VI1QbYoS+Bf7Yg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6U5lO8//QslXzABE7L2ltpu3jDUHnYHkZ7GGFR04HHU=;
- b=bXk4S+gIINxH3V7Xs6EqYS2ZtIh9Oey8aGztKJ/MnDs6Axv6yyOk+pijG1EubzhnCJT2Dvafsf5Ji1D6wcWgyRNQ/7TbQBY5u+dMy3ZJuQ+tv8XHpNM1NZfGqxbWy1gQu8gCjCXVIUNXk/ocLt83D0aNqOZC0i7D8bsckQVTVBYyzglRj9VqS0y6ufYIoMTo0VA4lF5atvIStsU/enDOCOMiv/AAbFCoZmMHdNPVjpbXtGUJY7i0wH+6yWqobkv14cGyhx90GX2NWu0+KlYoWHrePA4dowfS9DOK0JdXnNPD3zEORRG4E7V7dzFLRMs2YfwT/Eg8Xltw64FHdb5vxQ==
+ bh=Mu74rGBX9w7iat/LRU3aWKe20eUEGUO0OpvEUgyCjAM=;
+ b=kCWBsXi9etUa7jsstRWzv2F2fOyD+1XUL0FFMAUOBtITsZ5KwgkD2Sv0lN8lP3bKMrjHHCADedQRu+41wFnZ0G/+hcEIunmdsWxf2ov8SsLw5XTLC6Cj86IPU9u0V+wIvlLbckAptwl95ySvNlaQgorkEch2dZyFyDOGU2fmE7wz64t0kAPM5YBN6OtxLij7cFsabfaMcmnsJ2owNGSqYCtdeDhu0hFUq8+5VC1WOXO76ZfLoaCj5R2ORY9t9kDgNmfdkRvXA3ZLBdrHNeQRIb5Z2DZJoSrifKUaq5sBa/qEDXfu3JsJMo1Wvu3bUp8g3eE7qQ8bJnlXUzaOHy3PIw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6U5lO8//QslXzABE7L2ltpu3jDUHnYHkZ7GGFR04HHU=;
- b=D1N2Vv8syFzWy4LcOItycaMknoTtwZ0ZCO5ViAPPjiwmcfhIy3QbQ3bZpvM/TXlzIVC2O5AuwkiR7FpZf2LiTUJr32zLFDjz3+fjKzCyq0b0TbeTbcDR5dsepzeoPuVGOIALNQk0dQtNYoV658cwM4KCmMxwcBOX2PwXDoYJRII=
-Received: from BN0PR04CA0181.namprd04.prod.outlook.com (2603:10b6:408:e9::6)
- by MN2PR12MB3950.namprd12.prod.outlook.com (2603:10b6:208:16d::10) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=Mu74rGBX9w7iat/LRU3aWKe20eUEGUO0OpvEUgyCjAM=;
+ b=w7XsbZEYiuO5Y8qt89rxc8MjQtCaQGVmWh224NU2WRWsIM/Epv9eyu42uIT7/mhYuay8IWcJwOuMOZ2rKQx6lRSIIYBYSqjjSWufVbXS45DyZRLDSHXcKa/QMhQNgtnmR+vFiR3eomtGIwaNC9dvH6ge3TeR2fQPiuq7BBfnDew=
+Received: from MWHPR10CA0056.namprd10.prod.outlook.com (2603:10b6:300:2c::18)
+ by SJ0PR12MB5454.namprd12.prod.outlook.com (2603:10b6:a03:304::19)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.16; Fri, 18 Jun
- 2021 17:35:28 +0000
-Received: from BN8NAM11FT030.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e9:cafe::cb) by BN0PR04CA0181.outlook.office365.com
- (2603:10b6:408:e9::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19 via Frontend
- Transport; Fri, 18 Jun 2021 17:35:28 +0000
+ 2021 17:35:30 +0000
+Received: from CO1NAM11FT009.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:2c:cafe::b1) by MWHPR10CA0056.outlook.office365.com
+ (2603:10b6:300:2c::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.16 via Frontend
+ Transport; Fri, 18 Jun 2021 17:35:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
  header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN8NAM11FT030.mail.protection.outlook.com (10.13.177.146) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT009.mail.protection.outlook.com (10.13.175.61) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4242.16 via Frontend Transport; Fri, 18 Jun 2021 17:35:28 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.4242.16 via Frontend Transport; Fri, 18 Jun 2021 17:35:30 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 18 Jun
- 2021 12:35:27 -0500
+ 2021 12:35:29 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 18 Jun
+ 2021 10:35:28 -0700
 Received: from bindu-HP-EliteDesk-705-G4-MT.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.4
- via Frontend Transport; Fri, 18 Jun 2021 12:35:26 -0500
+ via Frontend Transport; Fri, 18 Jun 2021 12:35:28 -0500
 From: Bindu Ramamurthy <bindu.r@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 01/12] drm/amd/display: Multiplane cursor position incorrect
- when plane rotated
-Date: Fri, 18 Jun 2021 13:35:03 -0400
-Message-ID: <20210618173514.430647-2-bindu.r@amd.com>
+Subject: [PATCH 02/12] drm/amd/display: Clamp VStartup value at DML
+ calculations time
+Date: Fri, 18 Jun 2021 13:35:04 -0400
+Message-ID: <20210618173514.430647-3-bindu.r@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210618173514.430647-1-bindu.r@amd.com>
 References: <20210618173514.430647-1-bindu.r@amd.com>
 MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ae303e4f-45fd-4bab-0d38-08d9327f76c1
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3950:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB3950E0F2CB4BE2AA6877DBB9F50D9@MN2PR12MB3950.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3383;
+X-MS-Office365-Filtering-Correlation-Id: 29826462-aa7f-4e51-02ba-08d9327f77ef
+X-MS-TrafficTypeDiagnostic: SJ0PR12MB5454:
+X-Microsoft-Antispam-PRVS: <SJ0PR12MB545496BB62FA1F6B3016C8B7F50D9@SJ0PR12MB5454.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5cMMmvcIU56cKAgcNMVGt1vmjM9hJOWvGrawP8BqrGGJCK26qEe2zehi4ZQSj/fcMT4JfVfC48eVOGIuYzenwQ9Ez6Sy/9YHi/ftQq8IR2JHCoVif+XOsRGmzAy9Hwizwt7M0UrePfXxBsm7XU4s3hnwHnMXM/uAQg1mlfkZ+HFcBXha3Pmbrq++P8MbZsgnTk7bZBTUkYurHZ3cUp9OaZcVDBKFjFZtYyeHM1ZtxR5g4HcaiG+LDQvOajWw/BIgOfe5EXObEsE6B4JZyz7zjhfXHYrs19ORKRHIcHuwDKWr3olnrBk5owod7wwCy/UBIQQ0F191tZh928w7LzT+tZviIpC/p7lFLSe0Xwu17TmPBiOG4i+7gKp+Mj7TlA2D+tgzF6XMXP022L/jrq5+Fp7zwUF3EQnW3tH6eTcXnnmYfM9WXeCXkkOiFTzjzzgv/seLsvos8aNSm1V+D7+uJSJG6Ize6+D2xt7uHLUtv9oLozSEDamvuD44epP59xupLjMEoGilkoO53zdHVV2DwhngzCs19DHNxFUx/n8KZDL8D1Uj0gnOAXaqyvJfuqXZ1ggP/fIAkHlQNYjPmen11oIKiB1H//qDZqcQBlZmw3s46vW5eJIelzlV4QCvGy8j3SfoV9LsAmyevattNYEUCNN4oxfIdJIcyUAp2J0JUm1T8dpqddNfWL5dg/nn2SF9
+X-Microsoft-Antispam-Message-Info: xKuBAF66a2DWTOPqOtsAOoZdWcyu6BmdQgLT4F/j3LAPumU/j2kye6b4wsGMneZSA3AmvKPDa9aJzVFcH530H/1C/bBi1Arco45rIz0Do7bqQIaKUCOc6MbfS4i9pWJmmDoBwTvi6PrrUYLFwfBDh8qdIWM+T372JlwAPYAnqNoL54ztwL/zYRHiEJCslCaZnNO0cMbFURgkvEkqpQxyeB/+/ScKJOUAZHGFk4GTpCGNscNjZbakuYOCHf31cCI6V+UECItgS0mWMmQIbdliRTZTQYRySMTGqCNevSxnJcYUHyYzsdcj64+R/p5G3uXd6hZVzyPwYfOzoLJpFkt1MCBcO0KFxEnC8DkXmL213ZkuiIlkWaZx2J+5wiMCpaVOI9Osh5yzX891Zd9/OvgXDlA1pFVqO2DvFZv72mm5Hc0wRTrS7KucrNE9t/gIVoUWvB0FkQ4XlHieDhyY0YoZ6k4yHQNiwqDmffk0pshSIoKPk1CXWxojPL8JYwDiHdNVZMx73yFGSrs25Kg8UcpOco+tt/OOs8n+a79dECJG5vfQo+k1xnHMPpl1Xk3WBDZTxxp+ccLofcxQSLEwCTpFYnmdPo9hAkndk4ULQGhnG0mW6dYC16nV9wiJglyE8oEMQ+IuqpXszFiBYa6m6h7U2fSebH5BhLTFZJqaIHCPFXa/1lrtdFUJDvxx/g9X1Ax4
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(54906003)(6916009)(336012)(8676002)(2616005)(5660300002)(426003)(8936002)(47076005)(6666004)(186003)(86362001)(83380400001)(26005)(36860700001)(7696005)(36756003)(498600001)(82310400003)(70206006)(4326008)(70586007)(2906002)(81166007)(356005)(1076003)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(46966006)(36840700001)(336012)(47076005)(4326008)(426003)(36860700001)(2616005)(70206006)(54906003)(498600001)(8936002)(83380400001)(186003)(26005)(356005)(1076003)(6916009)(8676002)(7696005)(2906002)(5660300002)(70586007)(36756003)(86362001)(82310400003)(81166007)(6666004)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2021 17:35:28.3804 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae303e4f-45fd-4bab-0d38-08d9327f76c1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2021 17:35:30.2474 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 29826462-aa7f-4e51-02ba-08d9327f77ef
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT030.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT009.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3950
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5454
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,59 +104,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aric Cyr <aric.cyr@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Jun
- Lei <Jun.Lei@amd.com>, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+Cc: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Eryk.Brol@amd.com,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, Nikola Cornij <nikola.cornij@amd.com>,
+ Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
+ bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+From: Nikola Cornij <nikola.cornij@amd.com>
 
-[Why]
-When video plane is rotate the cursor position is incorrect and not
-matching the desktop location.
+[why]
+Some timings with a large VBlank cause the value to overflow the
+register related, while also producing other wrong values in DML output.
 
-[How]
-When a plane is rotated 90 or 270 degrees, the src_rect.width and height
-should be swapped when determining the scaling factor compared to the
-dst_rect.
+[how]
+Clamp VStartup at the DCN3.1 maximum value
 
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Signed-off-by: Nikola Cornij <nikola.cornij@amd.com>
+Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 Acked-by: Bindu Ramamurthy <bindu.r@amd.com>
 ---
- .../drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+ .../gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c    | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index 5d54900f7b61..c545eddabdcc 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -3245,10 +3245,17 @@ void dcn10_set_cursor_position(struct pipe_ctx *pipe_ctx)
- 	 * about the actual size being incorrect, that's a limitation of
- 	 * the hardware.
- 	 */
--	x_pos = (x_pos - x_plane) * pipe_ctx->plane_state->src_rect.width /
--			pipe_ctx->plane_state->dst_rect.width;
--	y_pos = (y_pos - y_plane) * pipe_ctx->plane_state->src_rect.height /
--			pipe_ctx->plane_state->dst_rect.height;
-+	if (param.rotation == ROTATION_ANGLE_90 || param.rotation == ROTATION_ANGLE_270) {
-+		x_pos = (x_pos - x_plane) * pipe_ctx->plane_state->src_rect.height /
-+				pipe_ctx->plane_state->dst_rect.width;
-+		y_pos = (y_pos - y_plane) * pipe_ctx->plane_state->src_rect.width /
-+				pipe_ctx->plane_state->dst_rect.height;
-+	} else {
-+		x_pos = (x_pos - x_plane) * pipe_ctx->plane_state->src_rect.width /
-+				pipe_ctx->plane_state->dst_rect.width;
-+		y_pos = (y_pos - y_plane) * pipe_ctx->plane_state->src_rect.height /
-+				pipe_ctx->plane_state->dst_rect.height;
-+	}
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
+index 06fac59a3d40..718d5a99dada 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
+@@ -2668,6 +2668,8 @@ static void DISPCLKDPPCLKDCFCLKDeepSleepPrefetchParametersWatermarksAndPerforman
+ 												(double) v->WritebackDelay[v->VoltageLevel][k]
+ 														/ (v->HTotal[k] / v->PixelClock[k]),
+ 												1));
++		if (v->MaxVStartupLines[k] > 1023)
++			v->MaxVStartupLines[k] = 1023;
  
- 	/**
- 	 * If the cursor's source viewport is clipped then we need to
+ #ifdef __DML_VBA_DEBUG__
+ 		dml_print("DML::%s: k=%d MaxVStartupLines = %d\n", __func__, k, v->MaxVStartupLines[k]);
+@@ -5064,6 +5066,8 @@ void dml31_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 																/ (v->HTotal[k]
+ 																		/ v->PixelClock[k]),
+ 														1.0));
++				if (v->MaximumVStartup[i][j][k] > 1023)
++					v->MaximumVStartup[i][j][k] = 1023;
+ 				v->MaxMaxVStartup[i][j] = dml_max(v->MaxMaxVStartup[i][j], v->MaximumVStartup[i][j][k]);
+ 			}
+ 		}
 -- 
 2.25.1
 
