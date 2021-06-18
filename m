@@ -2,97 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A92823AD13A
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Jun 2021 19:35:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35F753AD13F
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Jun 2021 19:35:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA416EA4A;
-	Fri, 18 Jun 2021 17:35:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B02B56EA4E;
+	Fri, 18 Jun 2021 17:35:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2076.outbound.protection.outlook.com [40.107.244.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30AF36E134
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 17:35:33 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2083.outbound.protection.outlook.com [40.107.220.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26C3E6EA4A
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 17:35:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GEnervr7rcSpf1zN8zTuyl+pEAXsJ4BW4uLVTiyssdCTjmW5YV3jbWn59cWycCPBhI7fCtOKfqsDUU6ZaMr83lqHecBoAb8nwpOTKps/JsSn5L61EMI9sAoWIAro+f3nelk3TMorie2g5Z86GKVYBNlanTct5OinyDIMjb0CnZzP78QBlT0iWbgQYe/UGwU2bAzVDkvMwuLsRYKkEHSnj9GUJAgR8rc4Q/qZ6CiGs1KF5RFnlwb95+RLbi153b/ZKr3RyN8z5oi9gRRK3bnt6qsatIbTJlwlawYxejbWefn0b2SfKqALuDQrqZwm80t9YliYe1PjRAe5EVVQX0S+ng==
+ b=Iudr3s3K93B5RMipz/L9ObnPCatPuD91JN0aTA4q/dXbqNKJU4W6veKMlGgfY2k871bpQdi304bWHUbFhb2ZhFsAxSiZtIXjOlO5w6CboujA0tLtT5N66K/Qmr4zDT8Ld52zCcty3cwOGd9eQzg2mzd4pPl6byq/EVZT3FVVtbFQ0bA61bAjhjqVpohaM672qKC/ZPLSG2IpHAVN75Mmo3ObUFJ7a9onCOJoNUYDg1/Yb5BZf9rsCqWVhnRQLKnnGeMAImPaitb5SWSql0cxeDLslb3r0VVp9YT2lEIRBuMfYitgxO8X0wIsM7PxeY12LJwShJq5mhpETbtTLR2cOA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wAJWoQD38eUT4XPHXphAlkeCTUUoovNb8sr/KyParMM=;
- b=Jx01d2jb65DHSTDhJ0biXyrd/YsjX5kOTvuCU6ED7JLcZinW2oPYRvlXV8QKELEp1UQ55Gy6MLVfRaHSfmlJe5h60FMcXc1KBQR4ig5fNF7M5qa9gmyO9K9QFjY9rlTu6xhAmpG9pJ406ncLwZwzhqPBSyRzHRgoJ4Ci3DmAZjSM9JRcnqyL0Ica+mmE+B+tId+uADnskhVwN0laltYBU8J5Pm1FIL074lsVDW1mm/Ko9GMF2+NgsVUGv12C/kOfQHUSA07pFUZ37+nCkv3/JW+1d5SH8gxP7AAfyKrsLTrhfO6t/NfKu60/NpTagDYe03vKNjdiXJ0bjCxslOYDxw==
+ bh=CHjqizFoIGB4lN+W/hhPuXbCdtcb2w0iU/Sp1ioUr+Q=;
+ b=CTqn+ZJN08UldEiw6r16EyLFS1qHFxk7vARv6SDgYzerU4tVgRWGGXs/fCn4YjErC5p/cXwn65CN5WKiZsEmy475ZNtFKepG2bH1YbSQjHA2GACyzDpeVqx5ay3kRhZrSLO0Qpi5wAob8CQM8DO+WBkIhgqBOAeVcMQq+iconNLRoY0wBzHloQbk5KES44/L7lobWjyIQmh/mgUheZI69W4WxapzfJRGLHaXZbSNJDkNB9NB/SV5/gmLzitIuYjQE8clb2dwcjhMbNT5b+vBb6paTQGkgMwcHLgwrhrjgcAyvecTBQh+gI4NmtyNjfCACblyND+AhM6aukazh1GOog==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wAJWoQD38eUT4XPHXphAlkeCTUUoovNb8sr/KyParMM=;
- b=Tz5JoGVPj4ruU5FyGRzPu+QaV52GByT2sQC8namM0Ofrh9NdjUOppbUTwCcTrj7qL8zkKiLTspKETHMWlqAp1bmgRExK9Hu91AvDQ4/c2wDa0If8pp1fE+ohXnsKxqXf63LKUtEUx5P3/wcBvE6QI14u5mMs1gnKqX37+3Gyt4w=
-Received: from MWHPR10CA0064.namprd10.prod.outlook.com (2603:10b6:300:2c::26)
- by BL0PR12MB2500.namprd12.prod.outlook.com (2603:10b6:207:4e::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19; Fri, 18 Jun
- 2021 17:35:31 +0000
-Received: from CO1NAM11FT009.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:2c:cafe::1e) by MWHPR10CA0064.outlook.office365.com
- (2603:10b6:300:2c::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.15 via Frontend
- Transport; Fri, 18 Jun 2021 17:35:31 +0000
+ bh=CHjqizFoIGB4lN+W/hhPuXbCdtcb2w0iU/Sp1ioUr+Q=;
+ b=kB7ncY23Bo5yyaCV4cERjLsE+ShYJujlylR94m9oaqVNheGcBMiazI8Rk1LLBmQKoExukWFVt9xS6oeJr9eoUYtnAVwTMJku5ViGmDAOiOcxO0YAB0zdV4JYSenPYOhQJuLVnCSIQG/0c8OZeqOrGGSaijeUkurdwNX/sE7PjMg=
+Received: from BN9PR03CA0724.namprd03.prod.outlook.com (2603:10b6:408:110::9)
+ by DM5PR12MB1804.namprd12.prod.outlook.com (2603:10b6:3:112::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.21; Fri, 18 Jun
+ 2021 17:35:32 +0000
+Received: from BN8NAM11FT043.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:110::4) by BN9PR03CA0724.outlook.office365.com
+ (2603:10b6:408:110::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.18 via Frontend
+ Transport; Fri, 18 Jun 2021 17:35:32 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
  header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT009.mail.protection.outlook.com (10.13.175.61) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT043.mail.protection.outlook.com (10.13.177.218) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4242.16 via Frontend Transport; Fri, 18 Jun 2021 17:35:31 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.4242.16 via Frontend Transport; Fri, 18 Jun 2021 17:35:32 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 18 Jun
- 2021 12:35:30 -0500
+ 2021 12:35:31 -0500
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
  (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 18 Jun
- 2021 10:35:30 -0700
+ 2021 10:35:31 -0700
 Received: from bindu-HP-EliteDesk-705-G4-MT.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.4
- via Frontend Transport; Fri, 18 Jun 2021 12:35:29 -0500
+ via Frontend Transport; Fri, 18 Jun 2021 12:35:30 -0500
 From: Bindu Ramamurthy <bindu.r@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 03/12] drm/amd/display: Clear lane settings after LTTPRs have
- been trained
-Date: Fri, 18 Jun 2021 13:35:05 -0400
-Message-ID: <20210618173514.430647-4-bindu.r@amd.com>
+Subject: [PATCH 04/12] drm/amd/display: Fix incorrect variable name
+Date: Fri, 18 Jun 2021 13:35:06 -0400
+Message-ID: <20210618173514.430647-5-bindu.r@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210618173514.430647-1-bindu.r@amd.com>
 References: <20210618173514.430647-1-bindu.r@amd.com>
 MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 31b7653b-f0b5-4a4f-955e-08d9327f7876
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2500:
-X-Microsoft-Antispam-PRVS: <BL0PR12MB250047737DED9E7CC10A572AF50D9@BL0PR12MB2500.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Office365-Filtering-Correlation-Id: 4ddbbf73-dd7f-497f-e2f6-08d9327f78ed
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1804:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1804B3D3BC0128620A456DE7F50D9@DM5PR12MB1804.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1360;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: y7EgZcAQg+xtGmyVGqbyaRdUi/a79O7Kd2ZTHFEYDXL3i752lArj4Y3Kuyv5oOX0irj1yjF2sN5bdCVxs+FY3hksMq8QNYfuQCL1ZwI1ihwKcbI95tyByWTkgeJQ4jRgvQw+QSa5oiVbYWU9pIPfJ0MDGaAwZbMvaGIMWj2leYQYVLibfFZkdp4oAomH6LQO2WMorkli82kxg4XbuRqAqBXX91QHKKlIK45P9R4Da6oyb2qXs0qDeyLsx8cbzbwkobIEsOlSIi7Leu7DEWnmtkuJkY4zMTv2LroCAgS8VslKsC0twxZr79M+bry1Z+D944Zp0v1lkPogAS1Qbn1ebrlyvC2on3+2KzlEP5YiUtxc2ql4de/wWWtmelpO0O/FLdlB4sMP6ojuiKrSXepyO2hapz6nlTkqb5uetCZp5LSqaoydo6Qvx8D4uL2K/lOnzwnmfRpFuTcYZUfA66mqz7jenfe0uvIbNySISIRhh6zwwyJ+VNZM5yQBpVkYucIoLwbTq/adaYloRWYVsvYJgIO6QRwEh1tdyPryUBntz7LudgDcgWjp7C1QqY+ix6NtlY/1eNr2cgh1QKMEivjiVnc1mDTzDfoTMukaOtRzU++REE9wDhXoIwRxvh/11UDoKa8HpnqaIhh1212i/fYSG5iHGDnVpXb3yD2lSCpacJJSVvtrf/JVOHA+ZbBQjCh9
+X-Microsoft-Antispam-Message-Info: xqldmplhMyXY4CDwgRP9wBtwJl5iCNZrvlDJNRuANKjjvvg2qcKCfHrfn9UEYw6Mm7K1qmu4RiPx0nBIQa2o8ATLUyuS8iOvdB6+fK8qnqt1///EGSNjhkSDVZZO8u14YsolDTOTkJ5Rxfu2GEHMPU1b7DBsVHLmWi0pnjRbvEA4uYyq9iT5c5pwrrxLxQVpLhJAfooJoJ2tTBpF5LAZrOt/LcxwfhgeeA+BB0S+DSe2wiRY9U3I6ee4ENaa5mnFj9UkQJH2Mm7iiL/bQGXuJCF5/Ic/lbMj7fUI0JBSWjkX6m5a9gnHocHEjWG6/BuKIC+D8OpsPjt9Hs1DruqfdyUtJVA1i/PfxkclyOG5JuXIXUQ0LUXA1/tKUYHyWbyR+WwdS5e5NLLwKF3XO1Wxj3WVKbQHtmxq4EL090LyidcoI+Tp0vpygiqf3lrmwPPvnrATvx/01e6mehGfDZxYyHcMXAKe55z/vKwzlRQ9wyJP1Dd4IPBmLoow2Qi7+aTL4nQPucl0ayQUDpzO6mQIcqQqukTzU2ioIGHtm0xRuYYlBDeYIZdxhd6xllui2UD0rKkUm/ub/qpKrIfg9o3U695qNiSrvVnbBUKuw4mbouBaJ6AKdsYdMaIatHeYPWT2ALWiMKeoqz2+kFtWcacZcsi3xC3qZTFw1lnWyKTdDroSD88ju7Mbk684eD8xHE7U
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(376002)(396003)(346002)(46966006)(36840700001)(70586007)(70206006)(36860700001)(47076005)(82310400003)(26005)(2616005)(316002)(426003)(8676002)(6916009)(186003)(2906002)(1076003)(5660300002)(356005)(81166007)(86362001)(7696005)(54906003)(83380400001)(82740400003)(478600001)(6666004)(336012)(4326008)(36756003)(8936002)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(46966006)(36840700001)(86362001)(70206006)(4326008)(186003)(6666004)(2616005)(54906003)(498600001)(6916009)(26005)(7696005)(70586007)(2906002)(5660300002)(82310400003)(336012)(36756003)(426003)(1076003)(8676002)(83380400001)(8936002)(81166007)(47076005)(356005)(36860700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2021 17:35:31.1369 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31b7653b-f0b5-4a4f-955e-08d9327f7876
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2021 17:35:32.0297 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ddbbf73-dd7f-497f-e2f6-08d9327f78ed
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT009.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT043.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2500
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1804
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,56 +103,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Martin Tsai <martin.tsai@amd.com>, Eryk.Brol@amd.com, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Wenjing Liu <Wenjing.Liu@amd.com>, Anson.Jacob@amd.com,
- Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+Cc: Ashley Thomas <Ashley.Thomas2@amd.com>,
+ Wesley Chalmers <Wesley.Chalmers@amd.com>, Eryk.Brol@amd.com,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
+ Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Martin Tsai <martin.tsai@amd.com>
+From: Wesley Chalmers <Wesley.Chalmers@amd.com>
 
-[Why]
-The voltage swing has to start from the minimum level when transmit TPS1 over
-Main-Link in clock recovery sequence.
-The lane settings from current design will inherit the existing VS/PE values
-that could be adjusted by Repeater X, and to use the adjusted voltage swing level
-in Repeater X-1 or DPRX could violate DP specs.
+[WHY]
+extended_end_address can only be calculated from the extended_address and
+extended_size
 
-[How]
-To reset VS from lane settings after LTTPRs have been trained to meet the requirement.
-
-Signed-off-by: Martin Tsai <martin.tsai@amd.com>
-Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
+Signed-off-by: Wesley Chalmers <Wesley.Chalmers@amd.com>
+Reviewed-by: Ashley Thomas <Ashley.Thomas2@amd.com>
 Acked-by: Bindu Ramamurthy <bindu.r@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dpcd.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index 5ecbe525b676..4326ac577756 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -1664,6 +1664,7 @@ static enum link_training_result dp_perform_8b_10b_link_training(
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dpcd.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dpcd.c
+index 27ec1e6e9c43..fe234760a0f5 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dpcd.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dpcd.c
+@@ -152,7 +152,7 @@ static void dpcd_reduce_address_range(
+ 		const uint32_t reduced_size)
+ {
+ 	const uint32_t reduced_end_address = END_ADDRESS(reduced_address, reduced_size);
+-	const uint32_t extended_end_address = END_ADDRESS(reduced_address, extended_size);
++	const uint32_t extended_end_address = END_ADDRESS(extended_address, extended_size);
+ 	const uint32_t offset = reduced_address - extended_address;
  
- 	uint8_t repeater_cnt;
- 	uint8_t repeater_id;
-+	uint8_t lane = 0;
- 
- 	if (link->ctx->dc->work_arounds.lt_early_cr_pattern)
- 		start_clock_recovery_pattern_early(link, lt_settings, DPRX);
-@@ -1694,6 +1695,9 @@ static enum link_training_result dp_perform_8b_10b_link_training(
- 
- 			repeater_training_done(link, repeater_id);
- 		}
-+
-+		for (lane = 0; lane < (uint8_t)lt_settings->link_settings.lane_count; lane++)
-+			lt_settings->lane_settings[lane].VOLTAGE_SWING = VOLTAGE_SWING_LEVEL0;
- 	}
- 
- 	if (status == LINK_TRAINING_SUCCESS) {
+ 	if (extended_end_address == reduced_end_address && extended_address == reduced_address)
 -- 
 2.25.1
 
