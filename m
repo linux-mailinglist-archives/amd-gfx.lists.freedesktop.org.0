@@ -2,97 +2,54 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F323AD141
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Jun 2021 19:35:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C2EF3AD160
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Jun 2021 19:41:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2D2C6EA4D;
-	Fri, 18 Jun 2021 17:35:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 620676EA51;
+	Fri, 18 Jun 2021 17:41:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2056.outbound.protection.outlook.com [40.107.243.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C4066EA4D
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 17:35:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=obPq8XGQZcYTbWlJcOAfz5Mu+LSnEFrQBzWoLRTwBSEEo3XqYhEcOWYnVq7L0WKdkEWguy5qjYyqs/fVmhKRBYwSqWJv6yD1WiY/SUBighJ6knIKbz7GbHqnjZLoZX7d5R0n/QeYEvyeiIqKwhJFd863Pzpg3BWVTBY5RZXNBnv6ZC+nAHEh0Fu5ot9o4PnRm7g1UknJ0j/0CLPK3EtuWgKPeEoGqKErfAmytiQeSJ8ZYwwfimOQtCgT2kuQEHwnLQPU+KR83om8SizNBlF8Cmu67mdjcLaiqM2AiKsLBIQfOCXL4oAR99lmUwZU1IggIjMAPmSnypDSnTeDu2hFmQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RFX6Sr8LOt3A67/lmVI5F3l69aq/JyEmk5QKKyKS8kw=;
- b=FXPKRq+d0lVP3biif4rF2sirk6QA1g7Z/dMEGHdSCC8dquY1dLL3TEWG/sBJA4tRssW2b49lci1hnEXywnvrqnHYndQhB9Wxo7c7jYlBz8IG5osHBGhr+4DmdvlheS9x5sduToBi4twmNgAz46+G2cxlJO++HaRVPsjMGWghmmmpICVenqi//YfSVw8jGx6fDn64KuZpdDJXONxT9UxHtPb8xTejpdpZL5gImVZ8+X2r6C2lPd63Syee3tGL5yT4OyBgf4NXY2J7YHcgcX+OgfMXDYrBCtdmdjRTGjoiDMzTXUWFcvMAu+NUyCeq5HbNvXfYwQXDKOW5pf1+mQYlLQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RFX6Sr8LOt3A67/lmVI5F3l69aq/JyEmk5QKKyKS8kw=;
- b=nhqXqyixsj+0g60jpVPOQlAYXXISPFLygX8VHz+DuVc8Sygb23grNbrlqem5orxO2fqGTNbdE23vEWzIpzt0k1FlccbDf6L/XBntyUbhL7IOtYOhWI2r5711/nOR+NNr1FK2lwu+3H0/lJkeZ38GlKZQd3oMK5GlAyI0bYB5dyU=
-Received: from MWHPR11CA0047.namprd11.prod.outlook.com (2603:10b6:300:115::33)
- by CH2PR12MB3734.namprd12.prod.outlook.com (2603:10b6:610:2a::31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.21; Fri, 18 Jun
- 2021 17:35:43 +0000
-Received: from CO1NAM11FT027.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:115:cafe::ce) by MWHPR11CA0047.outlook.office365.com
- (2603:10b6:300:115::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19 via Frontend
- Transport; Fri, 18 Jun 2021 17:35:43 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT027.mail.protection.outlook.com (10.13.174.224) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4242.16 via Frontend Transport; Fri, 18 Jun 2021 17:35:42 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 18 Jun
- 2021 12:35:41 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 18 Jun
- 2021 12:35:40 -0500
-Received: from bindu-HP-EliteDesk-705-G4-MT.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.4
- via Frontend Transport; Fri, 18 Jun 2021 12:35:39 -0500
-From: Bindu Ramamurthy <bindu.r@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 07/12] drm/amd/display: get refclk from
- MICROSECOND_TIME_BASE_DIV HW register
-Date: Fri, 18 Jun 2021 13:35:09 -0400
-Message-ID: <20210618173514.430647-8-bindu.r@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210618173514.430647-1-bindu.r@amd.com>
-References: <20210618173514.430647-1-bindu.r@amd.com>
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com
+ [IPv6:2607:f8b0:4864:20::c29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA6F46EA52
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 17:41:50 +0000 (UTC)
+Received: by mail-oo1-xc29.google.com with SMTP id
+ x22-20020a4a62160000b0290245cf6b7feeso2638144ooc.13
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 10:41:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=788q5XztB2C8+v/50NK5mXQJdzLrPOMMB/uqV5bDUbs=;
+ b=JkuPTgyKdQvUnTMs6KalqR/3F4vm0h3GOgBxGgpkYoVwf00q+OWRgKt6h/KtDNW9X/
+ CiTC6cm51IAiML4N98CP3CDMfC84crmoL+U2XA/TkEuNK2IN2euaIUikK2eUVK8fV6EX
+ 1EhzRLhDk2xs257inkaEFbsuZ+WQ0Op+be8LdvSzhJLTkRgNBQ3kZ2hdV911cLds7e9M
+ khMnrQ+fIpe5XQOmriWGpd1cp4mPY+C2j/WNYsigSX0zHt533P7g0rZ5x5qYvxvtt0rs
+ 7SrmvrOTFXImuaLllDpfLvDD13bytvoenxBVAf6+ksBGBW/HNQ+18aGFIYZRVfguI6z3
+ a9Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=788q5XztB2C8+v/50NK5mXQJdzLrPOMMB/uqV5bDUbs=;
+ b=hCfnJuTCdrzq/eeODoY3vjbwMhWMPkyEIq6G5cVqxfob7W9fJdEGQmrU61nWUBvhq7
+ W2V2JrXLkL0vufdfZBj0PLywAvMlr4IHuSbOYQCEpnDDMBUdoVmUTGHfWORbLyJ71E6u
+ NXYrrX5S+a0c0F70/bNKt3gsKFviwjYNuCVXivd5dXKd8k5O175c19fj+BFn8tGb5Og4
+ 1F0K2qPYDlFl0mlPtcQpmsEVdKhtVj9P1+bzfc/dwpt28VagOaBcVPZ7n4lntlTHR4r1
+ GBtyYze2LNsKV+JaF/+sQ7QVJVQwY/ll4sWS2GOk2ppow4cDOXqvjaJ6Gk9Qm88h//qe
+ Iv7A==
+X-Gm-Message-State: AOAM533JWfpyt8lyh9aZIxF/TzlwwEbFQpn9mBi8xd7r2EEE1Fz7BsIS
+ j14ZmyLyqxH/wmsnw7xdSYKzOQ2EVPBPyKo4dsc=
+X-Google-Smtp-Source: ABdhPJyCqzYxF3yJXeSgJP9krcJf4P4YJvUxV07k4/IakGy0nQJl6SAMMU5hsNemKg8JxvGTJaL0UD1AV/RhiJMtEgE=
+X-Received: by 2002:a4a:acc8:: with SMTP id c8mr3215333oon.72.1624038110283;
+ Fri, 18 Jun 2021 10:41:50 -0700 (PDT)
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 246e4403-1c33-42e9-e861-08d9327f7f6f
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3734:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB3734966FB568A5F9D080307EF50D9@CH2PR12MB3734.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:246;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /yiVZPYuW94AwrAYwqRliA5PwbR7Dhp0SKfwQPOEHHTd2LORO1Dm2dojMf5TevE9D7ElmZeK3y+HoDeQNlavhAwORB5ZXYMqZbUtKwtVqSC/wBzo9XWJnnj7IElrACQSRFS2gYFyat/bFvx2N7XQ/g7K8pZxNMBSvPZLhdFNRo6T5DwxICAjk2g6O92nMO0eZTdqp8kZmQHP3GL84TycOliUFv8rvX8FiVB+BbAnraXbEaqNPt/jFuVRB3kEJ6DUvxijW0w3ZKQGQYlqttF5DAgA8GBOcnAijC2NFDS1Lamv6AoE9elY1p/A/TEURwEbwkTse9HMOyx9FUg+stN/LmGai0ohYV5KginK6n6Fe9zVO8gfgKvHo/IgTRq4lh920uA/r7v6Yejx7OfhSlVDbcG2tU500OdtvrEk2PcTL/99F5mewEHHzYa82Dnp3yycvMwJMTMOsf5voGW8WODq2L0E7BJUrKEBE8UuKA2BvcOX0kFVprXHEOSyphkHeEZpoNox1F1Fze+ikQ3FruXw/b+jIjZiHUy196wF6AQnEw2kkshFZWDb0a+hY7HsGtVeiWAByYqD+v2arxk9udRTTe8w7QR9Ld2O0ufgpOMjH9MKDjUIOnW/lrWpD8c/Vfg8WyUmrajaGhgUM4F+g/+HQvHcml/aD1uMuRpFqZgS1TunrvoIWJKETe92S3Huortd
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(376002)(136003)(396003)(346002)(39860400002)(36840700001)(46966006)(2906002)(2616005)(336012)(426003)(86362001)(36756003)(356005)(81166007)(4326008)(36860700001)(47076005)(83380400001)(82740400003)(82310400003)(6916009)(5660300002)(54906003)(186003)(70586007)(7696005)(478600001)(316002)(1076003)(70206006)(8936002)(8676002)(26005)(6666004)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2021 17:35:42.8362 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 246e4403-1c33-42e9-e861-08d9327f7f6f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT027.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3734
+References: <20210618022337.2661813-1-yifan1.zhang@amd.com>
+In-Reply-To: <20210618022337.2661813-1-yifan1.zhang@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 18 Jun 2021 13:41:39 -0400
+Message-ID: <CADnq5_NY0eLo4J0VT6Z0E-17F65b0hvVr671wFQhXJksbqFzdw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: Revert enlarging CP_MEC_DOORBELL_RANGE
+ patches.
+To: Yifan Zhang <yifan1.zhang@amd.com>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,95 +61,79 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Charlene Liu <Charlene.Liu@amd.com>, Chris Park <Chris.Park@amd.com>,
- Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com,
- Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
- Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>, bindu.r@amd.com
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Charlene Liu <Charlene.Liu@amd.com>
+Probably better to revert each patch individually for upstream.  With
+that changed,
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 
-[why]
-recent VBIOS dce_infotable reference clock change caused a I2c regression.
-instead of relying on vbios, let's get it from HW directly.
+Alex
 
-Signed-off-by: Charlene Liu <Charlene.Liu@amd.com>
-Reviewed-by: Chris Park <Chris.Park@amd.com>
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
-Acked-by: Bindu Ramamurthy <bindu.r@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c | 13 ++++++++++---
- drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.h |  3 +++
- 2 files changed, 13 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
-index a524f471e0d7..6d1b01c267b7 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.c
-@@ -264,18 +264,25 @@ static void set_speed(
- 	struct dce_i2c_hw *dce_i2c_hw,
- 	uint32_t speed)
- {
--	uint32_t xtal_ref_div = 0;
-+	uint32_t xtal_ref_div = 0, ref_base_div = 0;
- 	uint32_t prescale = 0;
-+	uint32_t i2c_ref_clock = 0;
- 
- 	if (speed == 0)
- 		return;
- 
--	REG_GET(MICROSECOND_TIME_BASE_DIV, XTAL_REF_DIV, &xtal_ref_div);
-+	REG_GET_2(MICROSECOND_TIME_BASE_DIV, MICROSECOND_TIME_BASE_DIV, &ref_base_div,
-+		XTAL_REF_DIV, &xtal_ref_div);
- 
- 	if (xtal_ref_div == 0)
- 		xtal_ref_div = 2;
- 
--	prescale = ((dce_i2c_hw->reference_frequency * 2) / xtal_ref_div) / speed;
-+	if (ref_base_div == 0)
-+		i2c_ref_clock = (dce_i2c_hw->reference_frequency * 2);
-+	else
-+		i2c_ref_clock = ref_base_div * 1000;
-+
-+	prescale = (i2c_ref_clock / xtal_ref_div) / speed;
- 
- 	if (dce_i2c_hw->masks->DC_I2C_DDC1_START_STOP_TIMING_CNTL)
- 		REG_UPDATE_N(SPEED, 3,
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.h b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.h
-index 2309f2bb162c..3f45ecd189a2 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.h
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_i2c_hw.h
-@@ -139,6 +139,7 @@ enum {
- 	I2C_SF(DC_I2C_DATA, DC_I2C_INDEX, mask_sh),\
- 	I2C_SF(DC_I2C_DATA, DC_I2C_INDEX_WRITE, mask_sh),\
- 	I2C_SF(MICROSECOND_TIME_BASE_DIV, XTAL_REF_DIV, mask_sh),\
-+	I2C_SF(MICROSECOND_TIME_BASE_DIV, MICROSECOND_TIME_BASE_DIV, mask_sh),\
- 	I2C_SF(DC_I2C_ARBITRATION, DC_I2C_REG_RW_CNTL_STATUS, mask_sh)
- 
- #define I2C_COMMON_MASK_SH_LIST_DCE110(mask_sh)\
-@@ -182,6 +183,7 @@ struct dce_i2c_shift {
- 	uint8_t DC_I2C_INDEX;
- 	uint8_t DC_I2C_INDEX_WRITE;
- 	uint8_t XTAL_REF_DIV;
-+	uint8_t MICROSECOND_TIME_BASE_DIV;
- 	uint8_t DC_I2C_DDC1_SEND_RESET_LENGTH;
- 	uint8_t DC_I2C_REG_RW_CNTL_STATUS;
- 	uint8_t I2C_LIGHT_SLEEP_FORCE;
-@@ -225,6 +227,7 @@ struct dce_i2c_mask {
- 	uint32_t DC_I2C_INDEX;
- 	uint32_t DC_I2C_INDEX_WRITE;
- 	uint32_t XTAL_REF_DIV;
-+	uint32_t MICROSECOND_TIME_BASE_DIV;
- 	uint32_t DC_I2C_DDC1_SEND_RESET_LENGTH;
- 	uint32_t DC_I2C_REG_RW_CNTL_STATUS;
- 	uint32_t I2C_LIGHT_SLEEP_FORCE;
--- 
-2.25.1
-
+On Thu, Jun 17, 2021 at 10:23 PM Yifan Zhang <yifan1.zhang@amd.com> wrote:
+>
+> Revert "drm/amdgpu/gfx9: fix the doorbell missing when in CGPG issue."
+> Revert "drm/amdgpu/gfx10: enlarge CP_MEC_DOORBELL_RANGE_UPPER to cover full doorbell."
+>
+> This revert commits:
+> a3b4cfb09aa9e73cc48caff77efc161a396aeddb.
+> feae47198886d0df7b43876916a0e4366f159b45
+>
+> Reason for revert: side effect of enlarging CP_MEC_DOORBELL_RANGE may
+> cause some APUs fail to enter gfxoff in certain user cases.
+>
+> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 6 +-----
+>  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c  | 6 +-----
+>  2 files changed, 2 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> index 7bfe6f9d3a52..15ae9e33b925 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+> @@ -6974,12 +6974,8 @@ static int gfx_v10_0_kiq_init_register(struct amdgpu_ring *ring)
+>         if (ring->use_doorbell) {
+>                 WREG32_SOC15(GC, 0, mmCP_MEC_DOORBELL_RANGE_LOWER,
+>                         (adev->doorbell_index.kiq * 2) << 2);
+> -               /* If GC has entered CGPG, ringing doorbell > first page doesn't
+> -                * wakeup GC. Enlarge CP_MEC_DOORBELL_RANGE_UPPER to workaround
+> -                * this issue.
+> -                */
+>                 WREG32_SOC15(GC, 0, mmCP_MEC_DOORBELL_RANGE_UPPER,
+> -                       (adev->doorbell.size - 4));
+> +                       (adev->doorbell_index.userqueue_end * 2) << 2);
+>         }
+>
+>         WREG32_SOC15(GC, 0, mmCP_HQD_PQ_DOORBELL_CONTROL,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> index 922420a2c102..044076ec1d03 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> @@ -3675,12 +3675,8 @@ static int gfx_v9_0_kiq_init_register(struct amdgpu_ring *ring)
+>         if (ring->use_doorbell) {
+>                 WREG32_SOC15(GC, 0, mmCP_MEC_DOORBELL_RANGE_LOWER,
+>                                         (adev->doorbell_index.kiq * 2) << 2);
+> -               /* If GC has entered CGPG, ringing doorbell > first page doesn't
+> -                * wakeup GC. Enlarge CP_MEC_DOORBELL_RANGE_UPPER to workaround
+> -                * this issue.
+> -                */
+>                 WREG32_SOC15(GC, 0, mmCP_MEC_DOORBELL_RANGE_UPPER,
+> -                                       (adev->doorbell.size - 4));
+> +                                       (adev->doorbell_index.userqueue_end * 2) << 2);
+>         }
+>
+>         WREG32_SOC15_RLC(GC, 0, mmCP_HQD_PQ_DOORBELL_CONTROL,
+> --
+> 2.25.1
+>
+> _______________________________________________
+> amd-gfx mailing list
+> amd-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
