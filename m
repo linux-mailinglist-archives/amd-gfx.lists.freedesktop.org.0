@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A63973AD140
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Jun 2021 19:35:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0DC93AD142
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Jun 2021 19:35:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B9366EA4C;
-	Fri, 18 Jun 2021 17:35:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 245806EA50;
+	Fri, 18 Jun 2021 17:35:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2052.outbound.protection.outlook.com [40.107.92.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99E5B6EA4D
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 17:35:40 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam08on2088.outbound.protection.outlook.com [40.107.101.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 626786EA50
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 17:35:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=O9e6Tkm1hEO2GowLnwRvPkM474xYR73tGplOiv70GL40Ep0SnRFJjXjBvRrLYGGji12tamCnp2BjYk1ob0HbNqUqcob60StzaxyNazEBPrPgnNluyABinaxaIe2weycSGqtd0cOH1JBnv7wixqqI9CtYz+mpkdCOttZinUxD1qARI8+GugUMLLIMEDeN5N9rTv9T/CycPQBO2lKo7gkt9HWTyh7QfzQlXBLq0DRPybG5DN9YZGa+bXFEpHAnRXczjNewhInrrcMhPNoCKAXRWF57Po85IeCgHpo2l9XokknfEMAYyb7P7rU9t3Z2m5S+LsJGRP8//ibw1RR8HlTlpg==
+ b=I4kzQmTeHALPNNPAwfdEEplNsW8CkY4IdUf1BCK3Ox+gmT39wg/cFLpo5SKIgqM4p6MlOx8AWMjb+idmwrJivaJYMoqi35BHdGDXCddwejmShs0ZeAjbhiAEguIpYGUWZWpq6KL4oj3+LjPiALuYspGO+oR9sERgz47sDqFPKa86HDIqfIiYNFgHoNllik0NSlbb7MtGrHeIOsj+x8qlGX02mWuFKw9wwvoMpG86Gch1H8skqaeXwlLH8i7GgA/ohAqBGzSsGIYOVUy3ds6JNmdVJ/r96YL65UqsOPYfegUxIr4RG3NWnypVXxnIu+x/Wv8sJnyspHx2MADuiHkoeQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KXlbyaxmXZ7tAu4WAHyasEcREuHrVaelxidf8mBO5fo=;
- b=n7iZDZAcIo9WbGLN/R6kzqzKeImxjgTQtULnVcGNjScu1htClDcG6RzhM147aV8poF+5SBphsF83pJZ8/Hwr4puAN1t4fAVjt7ysByfYTJXO3GJGWRQdglmo6nlOlvkJ34gfjeLLWEhDWNO0gca6tRyoW4xaEzl5QODcTiXCXvSUsaAwed/mYXMSCNyREzYQx+zmTmA7bakJ22QrPf7qrNqwq13zBJXKqv4sV0CrTmmqruO8zP8UsHRFh7MfP+r2tp4YJJ9q0HzWMkKs06xX7Ok7x5MWv1rZzW6XiBZatnYfI40RRD5euKGbEa+CBvY4S+YUD6Y1t9AE4ldrbjd4oQ==
+ bh=tzrm+8+i7rXzg9VcDndGF8jHftUgTZRNoj1wo+iBZws=;
+ b=ISfcaIw63kfg/6OBKNLMageV7JiDioFAIN+3deeIQuUpyKueWuMLNAYcn14nB4DG9oWouOz4i3rvUJdSrMSo6XCO9rPvdAOo3xchoVh9dlpMud1hyKVKByUlO4nR08HVghEibwKk8/cJ2geZfcx6+YRSjH/oEHskjTbn+AtkIpSmjXSwYmBxHfEdjJSasHq21Rlsbqf8XU8/vtVQkf9OjFf4EnNDcSvsI3n7Hntqism6R8ky60jYKawluv52kqG6Vs8S3pFJt7/THzJFS7IUKxijjZqlHm5YMVMU18JL1Qe8USO49U2N6mB9/nXLLXuMNCrh5ADw8+QLqSMt+jwZyQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KXlbyaxmXZ7tAu4WAHyasEcREuHrVaelxidf8mBO5fo=;
- b=jNd8NacPA6mlsjFJGtzwiNDGpqKhn5xrDG0zJZvi4LX7JjRjJl3LYj4BuRW55HbmRoqHEzQqXTdM0FZYmEi3C7kL9/8oAAFcavYRiXy1bjDWpiARn6b/GybSkzVrxzsjJ1evfFh/ESAH0vHoM1N98MgFC1w6sz+MPYfzyXLxMBY=
-Received: from BN6PR1701CA0021.namprd17.prod.outlook.com
- (2603:10b6:405:15::31) by DM5PR12MB1564.namprd12.prod.outlook.com
- (2603:10b6:4:f::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19; Fri, 18 Jun
- 2021 17:35:38 +0000
-Received: from BN8NAM11FT009.eop-nam11.prod.protection.outlook.com
- (2603:10b6:405:15:cafe::91) by BN6PR1701CA0021.outlook.office365.com
- (2603:10b6:405:15::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.15 via Frontend
- Transport; Fri, 18 Jun 2021 17:35:38 +0000
+ bh=tzrm+8+i7rXzg9VcDndGF8jHftUgTZRNoj1wo+iBZws=;
+ b=VMrAzPnG+l/ePU4hrbcL9OqqyY4PwzBOEju+EkAWRuQKj6Ae/2EtIxKASI4cec8Bd4XxhwJjxevPwPvyWYusaEoIl5GJWNEEPnO5A8rPmncfro/PxTXVLYi36VFdBCt7ldPKMhc5FoooX9Hf2BiwY9ucyzGbvAxz2J9tNrsE2yk=
+Received: from BN0PR04CA0143.namprd04.prod.outlook.com (2603:10b6:408:ed::28)
+ by MN2PR12MB2863.namprd12.prod.outlook.com (2603:10b6:208:103::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.16; Fri, 18 Jun
+ 2021 17:35:47 +0000
+Received: from BN8NAM11FT050.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:ed:cafe::7d) by BN0PR04CA0143.outlook.office365.com
+ (2603:10b6:408:ed::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.21 via Frontend
+ Transport; Fri, 18 Jun 2021 17:35:47 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,53 +46,52 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN8NAM11FT009.mail.protection.outlook.com (10.13.176.65) with Microsoft SMTP
+ BN8NAM11FT050.mail.protection.outlook.com (10.13.177.5) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4242.16 via Frontend Transport; Fri, 18 Jun 2021 17:35:38 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
+ 15.20.4242.16 via Frontend Transport; Fri, 18 Jun 2021 17:35:47 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 18 Jun
- 2021 12:35:37 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 12:35:39 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 18 Jun
- 2021 10:35:37 -0700
+ 2021 12:35:39 -0500
 Received: from bindu-HP-EliteDesk-705-G4-MT.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.4
- via Frontend Transport; Fri, 18 Jun 2021 12:35:31 -0500
+ via Frontend Transport; Fri, 18 Jun 2021 12:35:37 -0500
 From: Bindu Ramamurthy <bindu.r@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 05/12] drm/amd/display: get socBB from VBIOS for dcn302 and
- dcn303
-Date: Fri, 18 Jun 2021 13:35:07 -0400
-Message-ID: <20210618173514.430647-6-bindu.r@amd.com>
+Subject: [PATCH 06/12] drm/amd/display: Delay PSR entry
+Date: Fri, 18 Jun 2021 13:35:08 -0400
+Message-ID: <20210618173514.430647-7-bindu.r@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210618173514.430647-1-bindu.r@amd.com>
 References: <20210618173514.430647-1-bindu.r@amd.com>
 MIME-Version: 1.0
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1fd8a319-544c-45e2-d067-08d9327f7cc1
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1564:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB156449FA14BC632F8F477E50F50D9@DM5PR12MB1564.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Office365-Filtering-Correlation-Id: e6533613-4a34-415c-bf80-08d9327f8258
+X-MS-TrafficTypeDiagnostic: MN2PR12MB2863:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB28638D8786B3539C9D1AC652F50D9@MN2PR12MB2863.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1148;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YQ4QQU05fpJZuk4nvIY0VUgvbX6/BZL99NeC0EvkPcQs3njwo7kp9Dm03gnmP22W/UbaZotmDqxID4aolgIY9YzWhAWmaybo7F2MQJcqIEUOvRLUVbT3HLm2vC6BAwNeJPVEi4XVkFIv+2SRNjWFYBOQByMnheMBByNNEpkQzAsdKpTBdcgGKc2zuFQozmgWOGkg4swmoMTQMpsJtfQa8NOZO/2T+pfDK+Rm5Pp6gUcMxM6aB5xoQbYU5+sVIU8OFBpbFn6yaTOfsTeylnuCNtyXwDdCBI30ja9H2j0zHwWWwKyGIQbg0f+EdrtnqFEK4lTTN7iAmTjeDc1GtZOF3t/xW3dDZ0ZNQPHQ5zAjLsjoJGBeBLjPLPKzuHSUCsGFImMaAdGyCdwalfAKy4vN9uaWuP+W8Syu2pbF9HaEwkMVrhgAoiS08ofDQa1jkHrXIPb4tlG0sz0ZSrr6Chj9E92vQCR8Psd9eObyM2vtEmgrFxUz7giYIO6T8Etpb/zpvmVWK1GBS3CJX0xH4RPPc7lkl8Y+WSIIeGwK6XaKf0L2A0I8T+Y4lbb8dDHBK1sAatDIgG8wS+//HLr9X605WKkjxuIA5dZTcuIIHkqq6P85x0slsQpEFj/aJiNUMKCqHT5mHxzjDtfR56aNH32vtNusavlK/GqUh4MsuStOQsDYmyeUw/G0g5d1uZy195lP
+X-Microsoft-Antispam-Message-Info: 8kJV4fNm8d5YwU1l7S9fOIRU+r3eOh71fn2DlYW0wINbWAd8G/8YV4MBUwFl02NywtJ7Z5vcO9RtUkbNWKFYkJKhIOJ0EsT+SkPNn5rTmKiCQNeAlsqx+mrIszX/MJ1DKaqtb4J5VoDjBVwUfjGfd66bgXge4L90VqC4SF/buElC142Sky2RNP24v5ERQUfkA2uDABcWDnXE+yEcv6njAJB214E0elxUWuMmsLItsnWnpjkfuoQmBylXex8tg83EE+g8kTAZf5gLyiNjCv/OIePqigowxhm6SjQ7suBEwpekBdPt2r+FrFqV/GvMHT3MHnb2QuSACeJwl5uO+VxKsvXFFm+WjsQMBdmf5j6jziAFis5343slci36ogOEd4CUb3+w8Ik2QKdA2y0JxzP6iRAGxu2jlN11gVUTA+5Cgf4lk3ya9+MJpGRCX92pnEnvRxSd/mbLVGHhvYSRHVJwKZ6G4xWdHkIPAcNfQv7y4gssKnn2JsA0Yvl2KnhXEa407o/ejKyELmJUMGkjSPckzWcQRly9upXvd28fsR0tlq5EqKV1p8IxDwy4xrjc9gRI/4bK09e0UOHoPISoOfBCyninyq0FJbLDoXqN+HXzXiihcCOW+PEuThx820nZp7kg1q3NPvoJje46cnJOvlKJaW5XhPwQm0Pi06LhlUvEsUrTBjM8Wlxpwo2MfX5WW7ec
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(376002)(346002)(396003)(136003)(39860400002)(36840700001)(46966006)(36756003)(316002)(336012)(4326008)(47076005)(2616005)(426003)(356005)(70586007)(5660300002)(86362001)(82740400003)(36860700001)(2906002)(8676002)(7696005)(82310400003)(26005)(70206006)(54906003)(478600001)(83380400001)(81166007)(186003)(1076003)(8936002)(6666004)(6916009)(36900700001);
+ SFS:(4636009)(346002)(376002)(39860400002)(136003)(396003)(46966006)(36840700001)(426003)(6666004)(7696005)(6916009)(336012)(8936002)(82740400003)(186003)(1076003)(4326008)(2906002)(36860700001)(47076005)(36756003)(478600001)(70586007)(26005)(81166007)(82310400003)(356005)(86362001)(83380400001)(54906003)(2616005)(316002)(5660300002)(8676002)(70206006)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2021 17:35:38.4508 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1fd8a319-544c-45e2-d067-08d9327f7cc1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2021 17:35:47.8295 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6533613-4a34-415c-bf80-08d9327f8258
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT009.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT050.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1564
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB2863
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,99 +104,91 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Eryk.Brol@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Bhawanpreet.Lakha@amd.com,
- bindu.r@amd.com
+ Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Roman Li <roman.li@amd.com>,
+ Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Hersen Wu <hersenxs.wu@amd.com>,
+ Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aurabindo Pillai <aurabindo.pillai@amd.com>
+From: Roman Li <roman.li@amd.com>
 
-[why]
-Some SOC BB paramters may vary per SKU, and it does
-not make sense for driver to hardcode these values.
-This change was added for dcn30 and dcn301, but not
-for dcn302 and dcn303
+[Why]
+After panel power up, if PSR entry attempted too early,
+PSR state may get stuck in transition.
+This could happen if the panel is not ready
+to respond to the SDP PSR entry message.
+In this case dmub f/w is unable to abort PSR entry
+since abortion is not permitted after the SDP has been sent.
 
-[how]
-Parse the values from VBIOS if available, and use
-them if valid
-Fixes: "drm/amd/display: get socBB from VBIOS"
+[How]
+Skip 5 pageflips before PSR enable.
 
-Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Roman Li <roman.li@amd.com>
+Reviewed-by: Hersen Wu <hersenxs.wu@amd.com>
 Acked-by: Bindu Ramamurthy <bindu.r@amd.com>
 ---
- .../amd/display/dc/dcn302/dcn302_resource.c   | 20 +++++++++++++++++++
- .../amd/display/dc/dcn303/dcn303_resource.c   | 20 +++++++++++++++++++
- 2 files changed, 40 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c     | 10 +++++++++-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h     |  2 ++
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.h |  3 +++
+ 3 files changed, 14 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-index 628b227f0a13..16a75ba0ca82 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
-@@ -1102,6 +1102,26 @@ static bool init_soc_bounding_box(struct dc *dc,  struct resource_pool *pool)
- 	loaded_ip->max_num_dpp = pool->pipe_count;
- 	loaded_ip->clamp_min_dcfclk = dc->config.clamp_min_dcfclk;
- 	dcn20_patch_bounding_box(dc, loaded_bb);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index c3fbe35f07b9..0b21d011802e 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -5967,6 +5967,8 @@ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
+ 				stream->use_vsc_sdp_for_colorimetry = true;
+ 		}
+ 		mod_build_vsc_infopacket(stream, &stream->vsc_infopacket);
++		aconnector->psr_skip_count = AMDGPU_DM_PSR_ENTRY_DELAY;
 +
-+	if (dc->ctx->dc_bios->funcs->get_soc_bb_info) {
-+		struct bp_soc_bb_info bb_info = { 0 };
+ 	}
+ finish:
+ 	dc_sink_release(sink);
+@@ -8814,7 +8816,13 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_state *state,
+ 		else if ((acrtc_state->update_type == UPDATE_TYPE_FAST) &&
+ 				acrtc_state->stream->link->psr_settings.psr_feature_enabled &&
+ 				!acrtc_state->stream->link->psr_settings.psr_allow_active) {
+-			amdgpu_dm_psr_enable(acrtc_state->stream);
++			struct amdgpu_dm_connector *aconn = (struct amdgpu_dm_connector *)
++					acrtc_state->stream->dm_stream_context;
 +
-+		if (dc->ctx->dc_bios->funcs->get_soc_bb_info(
-+			    dc->ctx->dc_bios, &bb_info) == BP_RESULT_OK) {
-+			if (bb_info.dram_clock_change_latency_100ns > 0)
-+				dcn3_02_soc.dram_clock_change_latency_us =
-+					bb_info.dram_clock_change_latency_100ns * 10;
-+
-+			if (bb_info.dram_sr_enter_exit_latency_100ns > 0)
-+				dcn3_02_soc.sr_enter_plus_exit_time_us =
-+					bb_info.dram_sr_enter_exit_latency_100ns * 10;
-+
-+			if (bb_info.dram_sr_exit_latency_100ns > 0)
-+				dcn3_02_soc.sr_exit_time_us =
-+					bb_info.dram_sr_exit_latency_100ns * 10;
-+		}
-+	}
-+
- 	return true;
- }
++			if (aconn->psr_skip_count > 0)
++				aconn->psr_skip_count--;
++			else
++				amdgpu_dm_psr_enable(acrtc_state->stream);
+ 		}
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
-index 88b609c32b0a..34b89464ae02 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
-@@ -1028,6 +1028,26 @@ static bool init_soc_bounding_box(struct dc *dc,  struct resource_pool *pool)
- 	loaded_ip->max_num_dpp = pool->pipe_count;
- 	loaded_ip->clamp_min_dcfclk = dc->config.clamp_min_dcfclk;
- 	dcn20_patch_bounding_box(dc, loaded_bb);
+ 		mutex_unlock(&dm->dc_lock);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+index 64cf5afbde6a..57996c364940 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
+@@ -509,6 +509,8 @@ struct amdgpu_dm_connector {
+ 	struct dsc_preferred_settings dsc_settings;
+ 	/* Cached display modes */
+ 	struct drm_display_mode freesync_vid_base;
 +
-+	if (dc->ctx->dc_bios->funcs->get_soc_bb_info) {
-+		struct bp_soc_bb_info bb_info = { 0 };
-+
-+		if (dc->ctx->dc_bios->funcs->get_soc_bb_info(
-+			    dc->ctx->dc_bios, &bb_info) == BP_RESULT_OK) {
-+			if (bb_info.dram_clock_change_latency_100ns > 0)
-+				dcn3_03_soc.dram_clock_change_latency_us =
-+					bb_info.dram_clock_change_latency_100ns * 10;
-+
-+			if (bb_info.dram_sr_enter_exit_latency_100ns > 0)
-+				dcn3_03_soc.sr_enter_plus_exit_time_us =
-+					bb_info.dram_sr_enter_exit_latency_100ns * 10;
-+
-+			if (bb_info.dram_sr_exit_latency_100ns > 0)
-+				dcn3_03_soc.sr_exit_time_us =
-+					bb_info.dram_sr_exit_latency_100ns * 10;
-+		}
-+	}
-+
- 	return true;
- }
++	int psr_skip_count;
+ };
  
+ #define to_amdgpu_dm_connector(x) container_of(x, struct amdgpu_dm_connector, base)
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.h
+index 57bbb80421e8..6806b3c9c84b 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_psr.h
+@@ -28,6 +28,9 @@
+ 
+ #include "amdgpu.h"
+ 
++/* the number of pageflips before enabling psr */
++#define AMDGPU_DM_PSR_ENTRY_DELAY 5
++
+ void amdgpu_dm_set_psr_caps(struct dc_link *link);
+ bool amdgpu_dm_psr_enable(struct dc_stream_state *stream);
+ bool amdgpu_dm_link_setup_psr(struct dc_stream_state *stream);
 -- 
 2.25.1
 
