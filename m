@@ -2,90 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C84153AE39B
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Jun 2021 09:01:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B97E83AE3DB
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Jun 2021 09:09:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6BDC89C97;
-	Mon, 21 Jun 2021 07:01:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 119B189D67;
+	Mon, 21 Jun 2021 07:09:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2082.outbound.protection.outlook.com [40.107.93.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EF7A89C97
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 07:01:02 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Xu7mGbu9GLz2d6N9Oh2lcfm1RbK6EcxoY2imXJkm5n5gs1bR+4I5WwrTu2SceH2kRoeVKNXtNHT7MhGRHljz5W9QxRB33MbGl8wmJOq8zLYxT75/LQ+SrklfUFTrS1O0YPeZG3bxa3/JOqv7yvC71JpfHiffTJDPeL3J5pqb7D0Ctk7TwlDlgg5QOvpO+L3F93RzcT7OYmui2Hhbxk8lfH3h/gm+qoxIpecwsj6y6zRjilaELs0zdY1r8uM9tdwmhhvW2DrCvLe5LQOlXMRGy4Lp6RxqpwjNcibCOsS40+QZpz4pD2pMuPskKN/n9nQDXKLWCgv2QQQkZVHjSUf9Tw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xhoj06bICdwYFuINWwLveX3MDd9VddyJKHubBUSkFb4=;
- b=ZfHaf3frxlbk5Uw78EF22dV52m85xWc+6HjpbjQY+6a/4wz5ArLsDAUA8T2k4D8ArTPX237v3tQkhDBjzrZFKsEz1Nmg29pIDAOPnZtjD0O0CR3p2nvLb/ap12y5JTu88OXaosyTp8170P6aNa+Zc7bEODoNU8qbV0PpI4qlL0tKX/KEGpc8JGcqe0w9RW7qPyGnlWWcVbGgYDmCxFl1liKbKaw6ailTR/uMIRxfu12Nug8bsrZKAa1h0AU2TDuXmPY8Z5wm/1pCDF2p/Rn7kC9nG0fFAD8iVbNHkmj4dhET++VzPIXO1QQ03VphSZ2w/w9saCsFy657qCC2EoE2Ag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xhoj06bICdwYFuINWwLveX3MDd9VddyJKHubBUSkFb4=;
- b=p+oUns4WvYmyol4DIFy8aYim7+hwPFv1ErUUpM8XWmpNtu26XwLVS95DUiwHyEr2uTxYTvC/ZKdRiKg2ah/WUwOo1jDDLPPUChiPCRrMbrqy2wlyLERC8+b8FIkKN1b1XwbIUfbKgBpaW5PdvvWY5a5Z5VllGmmKYi8VXZLuQxg=
-Received: from DM5PR1401CA0016.namprd14.prod.outlook.com (2603:10b6:4:4a::26)
- by DM4PR12MB5101.namprd12.prod.outlook.com (2603:10b6:5:390::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19; Mon, 21 Jun
- 2021 07:00:59 +0000
-Received: from DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:4a:cafe::4b) by DM5PR1401CA0016.outlook.office365.com
- (2603:10b6:4:4a::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.16 via Frontend
- Transport; Mon, 21 Jun 2021 07:00:59 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT067.mail.protection.outlook.com (10.13.172.76) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4242.16 via Frontend Transport; Mon, 21 Jun 2021 07:00:59 +0000
-Received: from equan-buildpc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 21 Jun
- 2021 02:00:57 -0500
-From: Evan Quan <evan.quan@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH V3 1/7] drm/amdgpu: correct tcp harvest setting
-Date: Mon, 21 Jun 2021 15:00:34 +0800
-Message-ID: <20210621070040.494336-1-evan.quan@amd.com>
-X-Mailer: git-send-email 2.29.0
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com
+ [IPv6:2607:f8b0:4864:20::d32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C24C76E986
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 08:46:23 +0000 (UTC)
+Received: by mail-io1-xd32.google.com with SMTP id k11so5070080ioa.5
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Jun 2021 01:46:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=semihalf-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=oCkAPeADNlD30dtyMxWQj6bi3FwZFRDFbIwfBCBHIJg=;
+ b=OREbKGDpCVfmXaU5WImRuocE+I3mgclxrXibPia26wWv18pLgiykzKzqJhg0MlOPo2
+ QX6hMAB/e23Vb9Drdtq5ajJJfumF3dPdS+kEORUYEo1LrAUPmLgpTqHV0YPfuCmv+sCv
+ V1zu1ukO3uZeU72DGA4pJDFwBN8GRbLoFUzjQpb6XMw5Vwx+2w5hrU9vy64yxxcEvzz4
+ jvZbI3KhoB7kL6eiIWv5X9uLgeLWh8JRD6UGci1SS6kg+Gv47pH2ZQfYI0k/eibikhZh
+ D7df32/5pyuX5wyzyCZApQiqwUzeN+O5M1IDpKIpxgLcS28OFFu26bzv5gdrmaEIp1gS
+ n+2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=oCkAPeADNlD30dtyMxWQj6bi3FwZFRDFbIwfBCBHIJg=;
+ b=ojtG5k3jtdNkxCMuwGrYh/PE/vePQ11jKi6fhNUg2rhZxPtfB+hTULDSO19pBqZAib
+ ViW69L5KCfKL3O/+QrKHDRBpcQ2ZSEwonOKNfiaVJQm8ld6eHeavfg2UNFwm2hpwb/jp
+ LKXFwYEAqaTynr9h2UZsWDeaiz+ladR9JHmzyUdetBlrA+nxk0k3jyu1Q3sF8FYgls9M
+ qHSgg3A/cZhKrDcJSazDpEfca3OP1nBLyLO7M+zdYcoU9aPEzlsk9vi2BoFuiF3dp0gi
+ T2NDp9EwRAePiu3+pfChQJx+0yuymL+0OjdxkNHYzzPeRIspwRFyThQKdQf2DwnTcq2e
+ FL1A==
+X-Gm-Message-State: AOAM530D1gtZfYD2StSxGJAOQ1vfFSCZZUeV3vzF0WHvgSIZyt5CrMTu
+ AJAxypQuTlYIsol9hHs9s2HSVPMfJLcFBbhBUdaC
+X-Google-Smtp-Source: ABdhPJwO7nzNasC2RvD07xmbZvFuYWt+Qrx8+76qN8/3D3ngN/x1pPnImlATl6uKvKLTNlbLFbEzp3LxNIfyLGieeS8=
+X-Received: by 2002:a02:a784:: with SMTP id e4mr2286752jaj.18.1624005982919;
+ Fri, 18 Jun 2021 01:46:22 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 912e0d4f-7733-4115-da9f-08d934825331
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5101:
-X-Microsoft-Antispam-PRVS: <DM4PR12MB5101EF18E0424C9270AA1757E40A9@DM4PR12MB5101.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3383;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7uwCBQn5y8QaWXQbP28/3aFiDFrA81pBJt8XTVLmYdp0MtIlTySvL8ps7jpM9nqPIQtwF4WY33ejnzRR+tyopIMS6cl1Vm8C63y5y/sBcSKFvGYUwrtCEluIpwyhpdVfqi3dKcMA3aw1k1/kVQHLZG99FoZUVcVFwpEgtrILWNzYtGEwlD0IYUd4I/UOs+XzjumUTSlLii3ozcdheVCMUtwu4TdshRfPClXSbCH1pwTSQ2Y8iBAZS2hDSoAZlmGmrK+tIia5qLghEg1Z8TsYJyKNSazSRyOlwGYr/skfqjRNF5T28GOseZ/aQOAYCMdGKuA8xe0z6EXvEZDq1egyQWgDQcFpy10A+T/5aWW4MyTJn6goOhP4jDpPcVGpe0cR47J1mWdqwCFMeForZ4BPB2bavZeuXdmxDNf0Pt1VQkR4y7BvcKgSqmvCtTxxVtmVnzz8OWsopQ/+HQclF27TM1aoB7xJcqxtLL9oPZEsdmrkvoWJrP8XVaDDZ3olyp2LQDFHC/1dFSZgf9iS3aGXcDHrthlmR98Jo+ddt+ILY5h/0kGzlnepX33Fl+Ob2bPVohSH9qFBu2lHQHql4UMHjvHcq/oYJaAliZ3VX7sbDn79nr58kIpowjWPpw1Rnf6bZwq0iUnNAm9Aj5+HAl2ObFz2hVvrYEI6EFFUVQWmdWJgckbJQOlLYu41sOPi1YT/
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(376002)(396003)(39860400002)(346002)(136003)(46966006)(36840700001)(44832011)(4326008)(6916009)(186003)(83380400001)(26005)(316002)(7696005)(6666004)(16526019)(478600001)(86362001)(70206006)(70586007)(2616005)(1076003)(81166007)(356005)(54906003)(336012)(36756003)(426003)(2906002)(82310400003)(8936002)(5660300002)(8676002)(36860700001)(47076005)(82740400003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2021 07:00:59.4705 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 912e0d4f-7733-4115-da9f-08d934825331
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5101
+References: <20210617081843.26987-1-lb@semihalf.com>
+ <99e54dc1-d73c-1cef-a062-f46bcff3a74e@daenzer.net>
+In-Reply-To: <99e54dc1-d73c-1cef-a062-f46bcff3a74e@daenzer.net>
+From: =?UTF-8?Q?=C5=81ukasz_Bartosik?= <lb@semihalf.com>
+Date: Fri, 18 Jun 2021 10:46:11 +0200
+Message-ID: <CAK8ByeJWnXAbJVDtmMAfW1hQ6SzzfTUiK96pTU1=cQxVCNQJCw@mail.gmail.com>
+Subject: Re: [PATCH v1] drm/amdgpu: fix framebuffer memory use after free
+To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>
+X-Mailman-Approved-At: Mon, 21 Jun 2021 07:09:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,165 +65,63 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Lijo.Lazar@amd.com,
- Evan Quan <evan.quan@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: upstream@semihalf.com, amd-gfx@lists.freedesktop.org,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add missing settings for SQC bits. And correct some confusing logics
-around active wgp bitmap calculation.
-
-Change-Id: If4992e175fd61d5609b00328cbe21f487517d039
-Signed-off-by: Evan Quan <evan.quan@amd.com>
----
-V1->V2:
-  - restore correct tcp_harvest setting for NV10 and NV12
-  - move asic type guard upper layer for better readability
----
- drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 103 ++++++++++++++-----------
- 1 file changed, 57 insertions(+), 46 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-index 15ae9e33b925..384b95fbad8b 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
-@@ -5090,47 +5090,50 @@ static void gfx_v10_0_tcp_harvest(struct amdgpu_device *adev)
- 		4 + /* RMI */
- 		1); /* SQG */
- 
--	if (adev->asic_type == CHIP_NAVI10 ||
--	    adev->asic_type == CHIP_NAVI14 ||
--	    adev->asic_type == CHIP_NAVI12) {
--		mutex_lock(&adev->grbm_idx_mutex);
--		for (i = 0; i < adev->gfx.config.max_shader_engines; i++) {
--			for (j = 0; j < adev->gfx.config.max_sh_per_se; j++) {
--				gfx_v10_0_select_se_sh(adev, i, j, 0xffffffff);
--				wgp_active_bitmap = gfx_v10_0_get_wgp_active_bitmap_per_sh(adev);
--				/*
--				 * Set corresponding TCP bits for the inactive WGPs in
--				 * GCRD_SA_TARGETS_DISABLE
--				 */
--				gcrd_targets_disable_tcp = 0;
--				/* Set TCP & SQC bits in UTCL1_UTCL0_INVREQ_DISABLE */
--				utcl_invreq_disable = 0;
--
--				for (k = 0; k < max_wgp_per_sh; k++) {
--					if (!(wgp_active_bitmap & (1 << k))) {
--						gcrd_targets_disable_tcp |= 3 << (2 * k);
--						utcl_invreq_disable |= (3 << (2 * k)) |
--							(3 << (2 * (max_wgp_per_sh + k)));
--					}
-+	mutex_lock(&adev->grbm_idx_mutex);
-+	for (i = 0; i < adev->gfx.config.max_shader_engines; i++) {
-+		for (j = 0; j < adev->gfx.config.max_sh_per_se; j++) {
-+			gfx_v10_0_select_se_sh(adev, i, j, 0xffffffff);
-+			wgp_active_bitmap = gfx_v10_0_get_wgp_active_bitmap_per_sh(adev);
-+			/*
-+			 * Set corresponding TCP bits for the inactive WGPs in
-+			 * GCRD_SA_TARGETS_DISABLE
-+			 */
-+			gcrd_targets_disable_tcp = 0;
-+			/* Set TCP & SQC bits in UTCL1_UTCL0_INVREQ_DISABLE */
-+			utcl_invreq_disable = 0;
-+
-+			for (k = 0; k < max_wgp_per_sh; k++) {
-+				if (!(wgp_active_bitmap & (1 << k))) {
-+					gcrd_targets_disable_tcp |= 3 << (2 * k);
-+					gcrd_targets_disable_tcp |= 1 << (k + (max_wgp_per_sh * 2));
-+					utcl_invreq_disable |= (3 << (2 * k)) |
-+						(3 << (2 * (max_wgp_per_sh + k)));
- 				}
--
--				tmp = RREG32_SOC15(GC, 0, mmUTCL1_UTCL0_INVREQ_DISABLE);
--				/* only override TCP & SQC bits */
--				tmp &= 0xffffffff << (4 * max_wgp_per_sh);
--				tmp |= (utcl_invreq_disable & utcl_invreq_disable_mask);
--				WREG32_SOC15(GC, 0, mmUTCL1_UTCL0_INVREQ_DISABLE, tmp);
--
--				tmp = RREG32_SOC15(GC, 0, mmGCRD_SA_TARGETS_DISABLE);
--				/* only override TCP bits */
--				tmp &= 0xffffffff << (2 * max_wgp_per_sh);
--				tmp |= (gcrd_targets_disable_tcp & gcrd_targets_disable_mask);
--				WREG32_SOC15(GC, 0, mmGCRD_SA_TARGETS_DISABLE, tmp);
- 			}
--		}
- 
--		gfx_v10_0_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff);
--		mutex_unlock(&adev->grbm_idx_mutex);
-+			tmp = RREG32_SOC15(GC, 0, mmUTCL1_UTCL0_INVREQ_DISABLE);
-+			/* only override TCP & SQC bits */
-+			if (adev->asic_type == CHIP_NAVI14)
-+				tmp &= 0xff000000;
-+			else
-+				tmp &=0xfff00000;
-+			tmp |= (utcl_invreq_disable & utcl_invreq_disable_mask);
-+			WREG32_SOC15(GC, 0, mmUTCL1_UTCL0_INVREQ_DISABLE, tmp);
-+
-+			tmp = RREG32_SOC15(GC, 0, mmGCRD_SA_TARGETS_DISABLE);
-+			/* only override TCP & SQC bits */
-+			if (adev->asic_type == CHIP_NAVI14)
-+				tmp &= 0xfffc0000;
-+			else
-+				tmp &= 0xffff8000;
-+			tmp |= (gcrd_targets_disable_tcp & gcrd_targets_disable_mask);
-+			WREG32_SOC15(GC, 0, mmGCRD_SA_TARGETS_DISABLE, tmp);
-+		}
- 	}
-+
-+	gfx_v10_0_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff);
-+	mutex_unlock(&adev->grbm_idx_mutex);
- }
- 
- static void gfx_v10_0_get_tcc_info(struct amdgpu_device *adev)
-@@ -7408,7 +7411,10 @@ static int gfx_v10_0_hw_init(void *handle)
- 	 * init golden registers and rlc resume may override some registers,
- 	 * reconfig them here
- 	 */
--	gfx_v10_0_tcp_harvest(adev);
-+	if (adev->asic_type == CHIP_NAVI10 ||
-+	    adev->asic_type == CHIP_NAVI14 ||
-+	    adev->asic_type == CHIP_NAVI12)
-+		gfx_v10_0_tcp_harvest(adev);
- 
- 	r = gfx_v10_0_cp_resume(adev);
- 	if (r)
-@@ -9328,17 +9334,22 @@ static void gfx_v10_0_set_user_wgp_inactive_bitmap_per_sh(struct amdgpu_device *
- 
- static u32 gfx_v10_0_get_wgp_active_bitmap_per_sh(struct amdgpu_device *adev)
- {
--	u32 data, wgp_bitmask;
--	data = RREG32_SOC15(GC, 0, mmCC_GC_SHADER_ARRAY_CONFIG);
--	data |= RREG32_SOC15(GC, 0, mmGC_USER_SHADER_ARRAY_CONFIG);
-+	u32 disabled_mask =
-+		~amdgpu_gfx_create_bitmask(adev->gfx.config.max_cu_per_sh >> 1);
-+	u32 efuse_setting = 0;
-+	u32 vbios_setting = 0;
-+
-+	efuse_setting = RREG32_SOC15(GC, 0, mmCC_GC_SHADER_ARRAY_CONFIG);
-+	efuse_setting &= CC_GC_SHADER_ARRAY_CONFIG__INACTIVE_WGPS_MASK;
-+	efuse_setting >>= CC_GC_SHADER_ARRAY_CONFIG__INACTIVE_WGPS__SHIFT;
- 
--	data &= CC_GC_SHADER_ARRAY_CONFIG__INACTIVE_WGPS_MASK;
--	data >>= CC_GC_SHADER_ARRAY_CONFIG__INACTIVE_WGPS__SHIFT;
-+	vbios_setting = RREG32_SOC15(GC, 0, mmGC_USER_SHADER_ARRAY_CONFIG);
-+	vbios_setting &= GC_USER_SHADER_ARRAY_CONFIG__INACTIVE_WGPS_MASK;
-+	vbios_setting >>= GC_USER_SHADER_ARRAY_CONFIG__INACTIVE_WGPS__SHIFT;
- 
--	wgp_bitmask =
--		amdgpu_gfx_create_bitmask(adev->gfx.config.max_cu_per_sh >> 1);
-+	disabled_mask |= efuse_setting | vbios_setting;
- 
--	return (~data) & wgp_bitmask;
-+	return (~disabled_mask);
- }
- 
- static u32 gfx_v10_0_get_cu_active_bitmap_per_sh(struct amdgpu_device *adev)
--- 
-2.29.0
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+Y3p3LiwgMTcgY3plIDIwMjEgbyAxNjoxOCBNaWNoZWwgRMOkbnplciA8bWljaGVsQGRhZW56ZXIu
+bmV0PiBuYXBpc2HFgihhKToKPgo+IE9uIDIwMjEtMDYtMTcgMTA6MTggYS5tLiwgTHVrYXN6IEJh
+cnRvc2lrIHdyb3RlOgo+ID4gV2l0aCBvcHRpb24gQ09ORklHX0RFQlVHX0xJU1QgZW5hYmxlZCB0
+aGUga2VybmVsIGxvZ3Mgc2hvdyBsaXN0X2FkZAo+ID4gY29ycnVwdGlvbiB3YXJuaW5nLiBUaGUg
+d2FybmluZyBvcmlnaW5hdGVzIGZyb20gZHJtX2ZyYW1lYnVmZmVyX2luaXQoKQo+ID4gZnVuY3Rp
+b24gd2hpY2ggYWRkcyBmcmFtZWJ1ZmZlciB0byBhIGZyYW1lYnVmZmVycyBsaXN0IGFuZCBpcyBj
+YWxsZWQgYnkKPiA+IGFtZGdwdV9kaXNwbGF5X2dlbV9mYl92ZXJpZnlfYW5kX2luaXQoKS4KPiA+
+IElmIGFtZGdwdV9kaXNwbGF5X2dlbV9mYl92ZXJpZnlfYW5kX2luaXQoKSBlbmNvdW50ZXJzIGFu
+IGVycm9yIGFmdGVyCj4gPiBjYWxsaW5nIGRybV9mcmFtZWJ1ZmZlcl9pbml0KCkgdGhlbiBmcmFt
+ZWJ1ZmZlciBtZW1vcnkgaXMgcmVsZWFzZWQKPiA+IGluIGFtZGdwdV9kaXNwbGF5X3VzZXJfZnJh
+bWVidWZmZXJfY3JlYXRlKCkgd2l0aG91dCByZW1vdmluZyBmcmFtZWJ1ZmZlcgo+ID4gZnJvbSB0
+aGUgbGlzdCB3aGVyZSBpdCB3YXMgYWRkZWQuIFJldXNlIG9mIHRoYXQgbWVtb3J5IGJ5IGFueSBv
+dGhlcgo+ID4gcGFydHkgY2F1c2UgY29ycnVwdGlvbiBvZiB0aGUgZnJhbWVidWZmZXJzIGxpbmtl
+ZCBsaXN0LiBUaGlzIGZpeCByZW1vdmVzCj4gPiBmcmFtZWJ1ZmZlciBmcm9tIHRoZSBsaW5rZWQg
+bGlzdCBhbmQgdW5yZWdpc3RlcnMgaXQgaW4gY2FzZSBvZiBmYWlsdXJlLgo+ID4KPiA+IFsuLi5d
+Cj4gPgo+ID4gRml4ZXM6IDZlZWQ5NWIwMGI0NSAoImRybS9hbWQvZGlzcGxheTogU3RvcmUgdGls
+aW5nX2ZsYWdzIGluIHRoZSBmcmFtZWJ1ZmZlci4iKQo+Cj4gSSBkaWRuJ3QgcmVhbGl6ZSB0aGVy
+ZSB3YXMgYWxyZWFkeSBhbiBpc3N1ZSBiZWZvcmUgZjI1ODkwN2ZkZDgzNWUgImRybS9hbWRncHU6
+IFZlcmlmeSBibyBzaXplIGNhbiBmaXQgZnJhbWVidWZmZXIgc2l6ZSBvbiBpbml0LiIuIExvb2tp
+bmcgYXQKPiB0aGUgR2l0IGhpc3RvcnkgYWdhaW4sIEkgYWdyZWUgdGhlcmUncyBhbHJlYWR5IGF0
+IGxlYXN0IGEgdGhlb3JldGljYWwgaXNzdWUgaW4gNS4xMSwgdGhvdWdoIEkgc3VzcGVjdCBpdCdz
+IGhhcmRlciB0byBoaXQgaW4gcHJhY3RpY2UuCj4KPgo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1k
+L2FtZGdwdS9hbWRncHVfZGlzcGxheS5jCj4gPiBpbmRleCBjMTM5ODVmYjM1YmUuLjkzMzE5MDI4
+MWI5MSAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9k
+aXNwbGF5LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kaXNw
+bGF5LmMKPiA+IEBAIC0xMDg1LDE0ICsxMDg1LDE3IEBAIGludCBhbWRncHVfZGlzcGxheV9nZW1f
+ZmJfdmVyaWZ5X2FuZF9pbml0KAo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgICBtb2RlX2Nt
+ZC0+bW9kaWZpZXJbMF0pOwo+ID4KPiA+ICAgICAgICAgICAgICAgcmV0ID0gLUVJTlZBTDsKPiA+
+IC0gICAgICAgICAgICAgZ290byBlcnI7Cj4gPiArICAgICAgICAgICAgIGdvdG8gZXJyX2ZiX2Ns
+ZWFudXA7Cj4gPiAgICAgICB9Cj4gPgo+ID4gICAgICAgcmV0ID0gYW1kZ3B1X2Rpc3BsYXlfZnJh
+bWVidWZmZXJfaW5pdChkZXYsIHJmYiwgbW9kZV9jbWQsIG9iaik7Cj4gPiAgICAgICBpZiAocmV0
+KQo+ID4gLSAgICAgICAgICAgICBnb3RvIGVycjsKPiA+ICsgICAgICAgICAgICAgZ290byBlcnJf
+ZmJfY2xlYW51cDsKPiA+Cj4gPiAgICAgICByZXR1cm4gMDsKPiA+ICtlcnJfZmJfY2xlYW51cDoK
+PiA+ICsgICAgIGRybV9mcmFtZWJ1ZmZlcl91bnJlZ2lzdGVyX3ByaXZhdGUoJnJmYi0+YmFzZSk7
+Cj4gPiArICAgICBkcm1fZnJhbWVidWZmZXJfY2xlYW51cCgmcmZiLT5iYXNlKTsKPiA+ICBlcnI6
+Cj4gPiAgICAgICBkcm1fZGJnX2ttcyhkZXYsICJGYWlsZWQgdG8gdmVyaWZ5IGFuZCBpbml0IGdl
+bSBmYjogJWRcbiIsIHJldCk7Cj4gPiAgICAgICByZmItPmJhc2Uub2JqWzBdID0gTlVMTDsKPiA+
+Cj4KPiBUaGVyZSdzIGEgc2ltaWxhciBpc3N1ZSBpbiBhbWRncHVfZGlzcGxheV9nZW1fZmJfaW5p
+dC4gaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNoLzQzOTU0Mi8gZml4ZXMg
+dGhhdCBhcyB3ZWxsLCBhbmQgc2VlbXMgc2ltcGxlciAodGhvdWdoIEknbSBiaWFzZWQgb2J2aW91
+c2x5IDopLgoKSSBhZ3JlZSB5b3VyIHBhdGNoIGlzIHNpbXBsZXIgYW5kIGNvdmVycyBtb3JlIGNh
+c2VzLCBidXQgSU1ITyBteQphcHByb2FjaCB3aXRoIGV4cGxpY2l0IGZyYW1lYnVmZmVyIGNsZWFu
+dXAgaGFzIHRoZSBhZHZhbnRhZ2UKdGhhdCBpdCB3aWxsIGJlIGhhcmQgdG8gbWlzcyBpbiBjYXNl
+IG9mIGZ1dHVyZSBjb2RlIHJlb3JnYW5pemF0aW9ucyBpbgp0aGF0IGFyZWEuCgo+Cj4KPiBOZWl0
+aGVyIHBhdGNoIGNhbiBiZSB0cml2aWFsbHkgY2hlcnJ5IHBpY2tlZCBmb3IgZml4aW5nIHRoZSBp
+c3N1ZSBpbiA1LjExLzUuMTIgZHVlIHRvIGYyNTg5MDdmZGQ4MzVlLgo+Cj4KPiAtLQo+IEVhcnRo
+bGluZyBNaWNoZWwgRMOkbnplciAgICAgICAgICAgICAgIHwgICAgICAgICAgICAgICBodHRwczov
+L3JlZGhhdC5jb20KPiBMaWJyZSBzb2Z0d2FyZSBlbnRodXNpYXN0ICAgICAgICAgICAgIHwgICAg
+ICAgICAgICAgTWVzYSBhbmQgWCBkZXZlbG9wZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9hbWQtZ2Z4Cg==
