@@ -1,46 +1,95 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73BB63AE3E0
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Jun 2021 09:09:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8A5A3AE39C
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Jun 2021 09:01:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C0B489D99;
-	Mon, 21 Jun 2021 07:09:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3667689C9A;
+	Mon, 21 Jun 2021 07:01:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-m176233.qiye.163.com (mail-m176233.qiye.163.com
- [59.111.176.233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB10A89CE3;
- Mon, 21 Jun 2021 01:34:18 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256;
- b=O7JOUViPH58toSHBRUGmwW0M9jOOSyOZKrenBo1/mSvbKs05dsH2f0iGZwc8+QcDUzqvJ+PdVxPi4mRct8KDwSWRbQBisHX17llaxhD4opEFJidhYvovbV5EzFMHA0y7CtbhBQu08kq8XbXqf0NyjeDCT06sDZt+wve8z44OAb0=;
- s=default; c=relaxed/relaxed; d=vivo.com; v=1;
- bh=nA77dwefWlFxLZGJhY5jKVIiNZ7p4Um7DetRWYuu1+s=;
- h=date:mime-version:subject:message-id:from;
-Received: from vivo.com (localhost [127.0.0.1])
- by mail-m176233.qiye.163.com (Hmail) with ESMTP id EAE418C00C9;
- Mon, 21 Jun 2021 09:33:41 +0800 (CST)
-Message-ID: <AFIAWADvD1*BeRWHpwhmBaqG.3.1624239221938.Hmail.bernard@vivo.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: =?UTF-8?B?UmU6UmU6IFtQQVRDSCAwLzRdIGRlbGV0ZSB1c2VsZXNzIGZ1bmN0aW9uIHJldHVybiB2YWx1ZXMgJiByZW1vdmUgbWVhbmluZ2xlc3MgaWYocikgY2hlY2sgY29kZQ==?=
-X-Priority: 3
-X-Mailer: HMail Webmail Server V2.0 Copyright (c) 2016-163.com
-X-Originating-IP: 58.213.83.158
-In-Reply-To: <e6c51c79-52ae-5591-45c7-382d1a8f2b5d@amd.com>
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam08on20616.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7e8b::616])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B15589C9A
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 07:01:09 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=i7pCQLzISBT+zHJdAhMDIiPS93e2tP672yFWD184I1lz3gHDbBXvfJgLXB3N04RbFE2EfWbpyGntSGHZdr9celDUMgZjQqooj/BObrx9VC6OhlUw9mA3vLniK6LI7dP3WamL3z4rQR6yj4qzty9ZtPtyDuinbdZOiSDEj8xBIswZQVHvwW+zKJTS0uStd03MsUPYgM3NEZ+xxLTWoTASRUToZt9AKDaCu/mWySK5dkaSJL8FRqaEwBvXsfIxRyQ6g6jML2UQjlx2saS2A576yi6jD37ZpyUg4vFb99DNNusKaZUebIAfIeJVh9KfHJKG16siu2Rofkap/21mz/QR5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TXcASLdmwE5XSdD88B4NvZ4T+T+xaJEJ03M9liZDamw=;
+ b=EGVNh2761B5ABZV0Sprcb7jqI5nR0zHLjk9ADBeSFd+mcceMe2I+UuTpMEQK7Nmf2kCsIhOU+r8IKkNxlEn2ZNWYoE+BG9vSHo+fHtHWwB0FL1SbWVJS/fqgXy4vv84j4mM1/6K31UX8TbI75EY/Bjmk0dW4GbDrenjXkd+Zo3ObnFecoaBhyoOo7WP3x81c/lBAsbXO/NQ0i81L2tZB1lgTc+ZpaasDdLx8yxAHCLQbMmtgZhQ6QhJXIlmHv/M3psjh+68SzskUl09Frw0FGMFBDOYCUqUzg9DT/EnSPbTar4Tq5aAF9KQaWfk98MO/6/4rCdLBNRJE7V3jqfQUjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TXcASLdmwE5XSdD88B4NvZ4T+T+xaJEJ03M9liZDamw=;
+ b=TnPwlOkheMIFyawhoXp3Ax/9MzEvpDlZyLw/VOWoMminrgTv6es8YDSfoOvhfLunn0FfsKy1mxxzEnY2x3r7RRMUwxdEKLuSfzDAg47v+Dh412ZwiLsAzfQxz+pahDWch9G1vmEtPAUpjfQnJ2hefiUt056zU7n0RyQykJtJhvQ=
+Received: from DS7PR03CA0265.namprd03.prod.outlook.com (2603:10b6:5:3b3::30)
+ by BN9PR12MB5066.namprd12.prod.outlook.com (2603:10b6:408:133::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.18; Mon, 21 Jun
+ 2021 07:01:05 +0000
+Received: from DM6NAM11FT033.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b3:cafe::4a) by DS7PR03CA0265.outlook.office365.com
+ (2603:10b6:5:3b3::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.15 via Frontend
+ Transport; Mon, 21 Jun 2021 07:01:05 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT033.mail.protection.outlook.com (10.13.172.221) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4242.16 via Frontend Transport; Mon, 21 Jun 2021 07:01:04 +0000
+Received: from equan-buildpc.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 21 Jun
+ 2021 02:01:02 -0500
+From: Evan Quan <evan.quan@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH V3 2/7] drm/amdgpu: fix Navi1x tcp power gating hang when
+ issuing lightweight invalidaiton
+Date: Mon, 21 Jun 2021 15:00:35 +0800
+Message-ID: <20210621070040.494336-2-evan.quan@amd.com>
+X-Mailer: git-send-email 2.29.0
+In-Reply-To: <20210621070040.494336-1-evan.quan@amd.com>
+References: <20210621070040.494336-1-evan.quan@amd.com>
 MIME-Version: 1.0
-Received: from bernard@vivo.com( [58.213.83.158) ] by ajax-webmail (
- [127.0.0.1] ) ; Mon, 21 Jun 2021 09:33:41 +0800 (GMT+08:00)
-From: Bernard <bernard@vivo.com>
-Date: Mon, 21 Jun 2021 09:33:41 +0800 (GMT+08:00)
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
- oVCBIfWUFZQh5DT1ZOSUxKQ0JDHUhPH0JVEwETFhoSFyQUDg9ZV1kWGg8SFR0UWUFZT0tIVUpKS0
- 9ISFVLWQY+
-X-HM-Sender-Digest: e1kJHlYWEh9ZQU1PT0hCS0xPSU5ON1dZDB4ZWUEPCQ4eV1kSHx4VD1lB
- WUc6PTI6LDo*DT9KUTkeKSwzCwwTFjkaCjxVSFVKTUlPSUhCSUlJSU5KVTMWGhIXVRkeCRUaCR87
- DRINFFUYFBZFWVdZEgtZQVlOQ1VJSkhVQ0hVSk5DWVdZCAFZQU9CTU43Bg++
-X-HM-Tid: 0a7a2c33acd1d9abkuwseae418c00c9
-X-Mailman-Approved-At: Mon, 21 Jun 2021 07:09:08 +0000
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3b3c053b-0757-4cba-ea95-08d93482566f
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5066:
+X-Microsoft-Antispam-PRVS: <BN9PR12MB506633E956C2109DE30B882BE40A9@BN9PR12MB5066.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3383;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ZN9IROiDkb5ZrrUVxczLsyP2sVQDS41gEgPGJRMmeXbIl1kJaYdC+EOz9POnpvdlr0u3YtY4UP4/Hy5STMUH0uzTk7AuiQrcflok9xQBgxCGpowMl4g/NO4jR05a6QiVmUDGID1J+9KWsWMF4DxGG9Q0JTOLitLMcIeEgW8jHtkobccZGrGWfveffZ7yxXBrAH9E/qFqMVF4hp92cnyhq5VlpTfJG5Md299pmQA4dsjSJxPR4+n4oL+2FmbvFto/vW3BjUXY+AqTb/Qzg5Z4ntycuxCk/b2EaRDULIq28nTpMGZBJ+ad4+irWr/0FUAob5rN6H8jm1gvctL6MYCwkOhkGgOFAe0hZ1OMv+TIhEvb6Hw3auT1lzrlfB8+dVZ+ocVY2IYd9++44YyLx37ouf3BQBOeah5XIXmGZbJ6jnd6RNcYJQ2uFADX0QK4tNiojxnjufQGuO286h2VmfrEW0FOPr2OGzdlMBvuWhAPwItdd/RrcgEGA8+ckXHthxlW/ABcjFgieViLuNILr0NHNR3Kebf25xJ2H60po0oOMo0ReRKNAwJwSYjLWS4hxGQ7VsDHvRDjQDTdlb4Ud4nSLMjf0Fn4z54Y/Y83ro8F69m4dWpa6Y1FcYiSgrSKQ+3jcb7SmbFzNSbb9L2q7+gwWeYEwjviblug0vNkIy5Y28qlVgnZ7Vkeh9ZqtYvQmvaRyjnWcco5UgNreXF7I+uzg3UovNdKJaZRmQPQMbUvow0=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(136003)(346002)(376002)(39860400002)(396003)(36840700001)(46966006)(2616005)(316002)(7696005)(186003)(426003)(86362001)(26005)(16526019)(47076005)(336012)(4326008)(6666004)(44832011)(82740400003)(36860700001)(5660300002)(36756003)(356005)(82310400003)(83380400001)(478600001)(81166007)(70206006)(54906003)(70586007)(8936002)(1076003)(8676002)(6916009)(2906002)(16393002)(32563001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2021 07:01:04.9114 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b3c053b-0757-4cba-ea95-08d93482566f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT033.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5066
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,51 +101,142 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Alexander.Deucher@amd.com, Lijo.Lazar@amd.com,
+ Evan Quan <evan.quan@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-CkZyb206ICJDaHJpc3RpYW4gS8O2bmlnIiA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgpEYXRl
-OiAyMDIxLTA2LTIxIDAwOjU5OjI3ClRvOiAgQmVybmFyZCBaaGFvIDxiZXJuYXJkQHZpdm8uY29t
-PixBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+LERhdmlkIEFpcmxpZSA8
-YWlybGllZEBsaW51eC5pZT4sRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPixhbWQtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZyxkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnLGxp
-bnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcKU3ViamVjdDogUmU6IFtQQVRDSCAwLzRdIGRlbGV0
-ZSB1c2VsZXNzIGZ1bmN0aW9uIHJldHVybiB2YWx1ZXMgJiByZW1vdmUgbWVhbmluZ2xlc3MgaWYo
-cikgY2hlY2sgY29kZT5BbSAxOS4wNi4yMSB1bSAwODo0MyBzY2hyaWViIEJlcm5hcmQgWmhhbzoK
-Pj4gRnVuY3Rpb24gcmFkZW9uX2ZlbmNlX2RyaXZlcl9pbml0IGFsd2F5cyByZXR1cm5zIHN1Y2Nl
-c3MsCj4+IHRoZSBmdW5jdGlvbiB0eXBlIG1heWJlIGNvdWxlIGJlIGNoYW5nZWQgdG8gdm9pZC4K
-Pj4gVGhpcyBwYXRjaCBzZXJpZXMgd2lsbCBmaXJzdCBkZWxldGUgdGhlIGNoZWNrIG9mIHRoZSBy
-ZXR1cm4KPj4gdmFsdWUgb2YgdGhlIGZ1bmN0aW9uIGNhbGwgcmFkZW9uX2ZlbmNlX2RyaXZlcl9p
-bml0LCB0aGVuLAo+PiBvcHRpbWlzZSB0aGUgZnVuY3Rpb24gZGVjbGFyYXRpb24gYW5kIGZ1bmN0
-aW9uIHRvIHZvaWQgdHlwZS4KPgo+UGxlYXNlIG1lcmdlIGFsbCBvZiB0aGlzIGludG8gYSBzaW5n
-bGUgcGF0Y2gsIEkgZG9uJ3Qgc2VlIGFueSBwb2ludCAKPnNlcGFyYXRpbmcgdGhpcy4KPgo+Q2hy
-aXN0aWFuLgoKSGkKU3VyZSwgaSB3aWxsIHJlc3VibWl0IG9uZSBuZXcgcHRhY2gsIHRoYW5rcyEK
-QlIvL0Jlcm5hcmQKCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IEJlcm5hcmQgWmhhbyA8YmVybmFyZEB2
-aXZvLmNvbT4KPj4KPj4gQmVybmFyZCBaaGFvICg0KToKPj4gICAgZHJtL3JhZGVvbjogcmVtb3Zl
-IG1lYW5pbmdsZXNzIGlmKHIpIGNoZWNrIGNvZGUKPj4gICAgZHJtL3JhZGVvbjogcmVtb3ZlIG1l
-YW5pbmdsZXNzIGlmKHIpIGNoZWNrIGNvZGUKPj4gICAgZHJtL3JhZGVvbjogcmVtb3ZlIG1lYW5p
-bmdsZXNzIGlmKHIpIGNoZWNrIGNvZGUKPj4gICAgZHJtL3JhZGVvbjogZGVsZXRlIHVzZWxlc3Mg
-cmV0dXJuIHZhbHVlcwo+Pgo+PiAgIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vY2lrLmMgICAgICAg
-ICAgfCA0ICstLS0KPj4gICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2V2ZXJncmVlbi5jICAgIHwg
-NCArLS0tCj4+ICAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9uaS5jICAgICAgICAgICB8IDQgKy0t
-LQo+PiAgIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcjEwMC5jICAgICAgICAgfCA0ICstLS0KPj4g
-ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3IzMDAuYyAgICAgICAgIHwgNCArLS0tCj4+ICAgZHJp
-dmVycy9ncHUvZHJtL3JhZGVvbi9yNDIwLmMgICAgICAgICB8IDUgKy0tLS0KPj4gICBkcml2ZXJz
-L2dwdS9kcm0vcmFkZW9uL3I1MjAuYyAgICAgICAgIHwgNCArLS0tCj4+ICAgZHJpdmVycy9ncHUv
-ZHJtL3JhZGVvbi9yNjAwLmMgICAgICAgICB8IDQgKy0tLQo+PiAgIGRyaXZlcnMvZ3B1L2RybS9y
-YWRlb24vcmFkZW9uLmggICAgICAgfCAyICstCj4+ICAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9y
-YWRlb25fZmVuY2UuYyB8IDUgKy0tLS0KPj4gICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JzNDAw
-LmMgICAgICAgIHwgNCArLS0tCj4+ICAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yczYwMC5jICAg
-ICAgICB8IDQgKy0tLQo+PiAgIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcnM2OTAuYyAgICAgICAg
-fCA0ICstLS0KPj4gICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3J2NTE1LmMgICAgICAgIHwgNCAr
-LS0tCj4+ICAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9ydjc3MC5jICAgICAgICB8IDQgKy0tLQo+
-PiAgIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vc2kuYyAgICAgICAgICAgfCA0ICstLS0KPj4gICAx
-NiBmaWxlcyBjaGFuZ2VkLCAxNiBpbnNlcnRpb25zKCspLCA0OCBkZWxldGlvbnMoLSkKPj4KPgoN
-Cg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdm
-eCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+Fix TCP hang when a lightweight invalidation happens on Navi1x.
+
+Change-Id: I5000fefa9ec48a5e863372d298354bed1562b332
+Signed-off-by: Evan Quan <evan.quan@amd.com>
+---
+V1->V2:
+  - Alex: use ARRAY_SIZE instead of hard code
+  - limit the changes for Navi1x only
+---
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 95 ++++++++++++++++++++++++++
+ 1 file changed, 95 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 384b95fbad8b..b170d5fb8993 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -7971,6 +7971,97 @@ static void gfx_v10_0_update_fine_grain_clock_gating(struct amdgpu_device *adev,
+ 	}
+ }
+ 
++static void gfx_v10_0_apply_medium_grain_clock_gating_workaround(struct amdgpu_device *adev)
++{
++	uint32_t reg_data = 0;
++	uint32_t reg_idx = 0;
++	uint32_t i;
++
++	const uint32_t tcp_ctrl_regs[] = {
++		mmCGTS_SA0_WGP00_CU0_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP00_CU1_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP01_CU0_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP01_CU1_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP02_CU0_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP02_CU1_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP10_CU0_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP10_CU1_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP11_CU0_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP11_CU1_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP12_CU0_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP12_CU1_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP00_CU0_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP00_CU1_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP01_CU0_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP01_CU1_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP02_CU0_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP02_CU1_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP10_CU0_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP10_CU1_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP11_CU0_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP11_CU1_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP12_CU0_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP12_CU1_TCP_CTRL_REG
++	};
++
++	const uint32_t tcp_ctrl_regs_nv12[] = {
++		mmCGTS_SA0_WGP00_CU0_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP00_CU1_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP01_CU0_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP01_CU1_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP02_CU0_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP02_CU1_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP10_CU0_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP10_CU1_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP11_CU0_TCP_CTRL_REG,
++		mmCGTS_SA0_WGP11_CU1_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP00_CU0_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP00_CU1_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP01_CU0_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP01_CU1_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP02_CU0_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP02_CU1_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP10_CU0_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP10_CU1_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP11_CU0_TCP_CTRL_REG,
++		mmCGTS_SA1_WGP11_CU1_TCP_CTRL_REG,
++	};
++
++	const uint32_t sm_ctlr_regs[] = {
++		mmCGTS_SA0_QUAD0_SM_CTRL_REG,
++		mmCGTS_SA0_QUAD1_SM_CTRL_REG,
++		mmCGTS_SA1_QUAD0_SM_CTRL_REG,
++		mmCGTS_SA1_QUAD1_SM_CTRL_REG
++	};
++
++	if (adev->asic_type == CHIP_NAVI12) {
++		for (i = 0; i < ARRAY_SIZE(tcp_ctrl_regs_nv12); i++) {
++			reg_idx = adev->reg_offset[GC_HWIP][0][mmCGTS_SA0_WGP00_CU0_TCP_CTRL_REG_BASE_IDX] +
++				  tcp_ctrl_regs_nv12[i];
++			reg_data = RREG32(reg_idx);
++			reg_data |= CGTS_SA0_WGP00_CU0_TCP_CTRL_REG__TCPI_LS_OVERRIDE_MASK;
++			WREG32(reg_idx, reg_data);
++		}
++	} else {
++		for (i = 0; i < ARRAY_SIZE(tcp_ctrl_regs); i++) {
++			reg_idx = adev->reg_offset[GC_HWIP][0][mmCGTS_SA0_WGP00_CU0_TCP_CTRL_REG_BASE_IDX] +
++				  tcp_ctrl_regs[i];
++			reg_data = RREG32(reg_idx);
++			reg_data |= CGTS_SA0_WGP00_CU0_TCP_CTRL_REG__TCPI_LS_OVERRIDE_MASK;
++			WREG32(reg_idx, reg_data);
++		}
++	}
++
++	for (i = 0; i < ARRAY_SIZE(sm_ctlr_regs); i++) {
++		reg_idx = adev->reg_offset[GC_HWIP][0][mmCGTS_SA0_QUAD0_SM_CTRL_REG_BASE_IDX] +
++			  sm_ctlr_regs[i];
++		reg_data = RREG32(reg_idx);
++		reg_data &= ~CGTS_SA0_QUAD0_SM_CTRL_REG__SM_MODE_MASK;
++		reg_data |= 2 << CGTS_SA0_QUAD0_SM_CTRL_REG__SM_MODE__SHIFT;
++		WREG32(reg_idx, reg_data);
++	}
++}
++
+ static int gfx_v10_0_update_gfx_clock_gating(struct amdgpu_device *adev,
+ 					    bool enable)
+ {
+@@ -7987,6 +8078,10 @@ static int gfx_v10_0_update_gfx_clock_gating(struct amdgpu_device *adev,
+ 		gfx_v10_0_update_3d_clock_gating(adev, enable);
+ 		/* ===  CGCG + CGLS === */
+ 		gfx_v10_0_update_coarse_grain_clock_gating(adev, enable);
++
++		if ((adev->asic_type >= CHIP_NAVI10) &&
++		     (adev->asic_type <= CHIP_NAVI12))
++			gfx_v10_0_apply_medium_grain_clock_gating_workaround(adev);
+ 	} else {
+ 		/* CGCG/CGLS should be disabled before MGCG/MGLS
+ 		 * ===  CGCG + CGLS ===
+-- 
+2.29.0
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
