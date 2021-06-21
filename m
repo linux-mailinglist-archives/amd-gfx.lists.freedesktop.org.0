@@ -2,45 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC7873AE9C2
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Jun 2021 15:09:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82C643AE9D8
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Jun 2021 15:15:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ED626E039;
-	Mon, 21 Jun 2021 13:09:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1CBC6E081;
+	Mon, 21 Jun 2021 13:14:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-m17639.qiye.163.com (mail-m17639.qiye.163.com
- [59.111.176.39])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B89F26E038;
- Mon, 21 Jun 2021 13:05:13 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256;
- b=XrKDj8IEgtkpM15BDVv4hgbjZ9IN2KhSRJ+BHmkSrofbacJMnluDCThJe0PEKAb/Q6bSKSmH7xhFWD5XPBdoB5qTS2RNiLyLJfToUrwgKhNyit+c7Vzfmzo4Fz5SWQGBJrgwF915cGxLv46qTwPladQT4vKWPV7KivekEiD5zUc=;
- s=default; c=relaxed/relaxed; d=vivo.com; v=1;
- bh=yxAkafkCRfhNT5L+2RWhBZApWLyDFY9XeNhel1f5fe4=;
- h=date:mime-version:subject:message-id:from;
-Received: from ubuntu.localdomain (unknown [36.152.145.181])
- by mail-m17639.qiye.163.com (Hmail) with ESMTPA id 1592A380128;
- Mon, 21 Jun 2021 21:05:10 +0800 (CST)
-From: Bernard Zhao <bernard@vivo.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/radeon: delete useless function return values & remove
- meaningless if(r) check code
-Date: Mon, 21 Jun 2021 06:05:07 -0700
-Message-Id: <20210621130508.29511-1-bernard@vivo.com>
-X-Mailer: git-send-email 2.31.0
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
+ [IPv6:2a00:1450:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9914D6E081;
+ Mon, 21 Jun 2021 13:14:58 +0000 (UTC)
+Received: by mail-ej1-x62d.google.com with SMTP id gn32so1325486ejc.2;
+ Mon, 21 Jun 2021 06:14:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-transfer-encoding:content-language;
+ bh=g9KkfTDVm23JtZIvLIP9VLFqfjPUY5iB/GbhgG8cLMM=;
+ b=vTy8A+9nafnuDunjIDd4Kw5i54e18ysZG8ACwZUsHC3jhZQ5ykmqodZANlff/9K/l5
+ xHhB0j621x7dOKN0Js5v6xmOR+9bGcKIzX1sMSHtdYntVzjJTDTq0b2h8d/tKdYf7Gvo
+ k7F3zfdIojg1Pok3rAfeh3wNfoluqLAIL5V+mz0QCAO2VUfdzsxgqA+KsI1OSsWJuPqD
+ rHVp1803xMdQIOgP93s94eLvEq4dUTZzjmFj/LzxNr8OpSrqJXFyQx0kLafAyvh9MDt5
+ XNOzTKXk4cMGy32mArPZljWNUMxkZTOEPfSZIdmH35JOjaGXmEAhTGONM/gAc50yWADx
+ 1UxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=g9KkfTDVm23JtZIvLIP9VLFqfjPUY5iB/GbhgG8cLMM=;
+ b=VVt6riBqpbDxBWEtqyO//k2+fIIluQN5KMfkB/p9MwiopwHaYL87EmEyWD/QA50XOd
+ 9471KepBjeZAOkuIkjri9WCvqmQt5MWHvK9ep3SBk/y3K2PXyH92vBeLpg1HKpYPyZoB
+ dNiIKrsTmk4GkcqlRfBiQRgVLMDTS30P2yrEzFUfC3IeKoHHZpcvDt7JzfpT27jdKCXU
+ GBZjzfVaepigGaVHnHwTuILDfk1mxUp8bHPqV+aWc9aDknLCT4d+RiujIwq+EAwxblw6
+ moKOQz5lcWUeHn00yP8RAWC7+NuUmK7xNKjBFnCGDpJb5VlasrrK53949Bbt6QAE+4tO
+ W70Q==
+X-Gm-Message-State: AOAM530eXNd+TCyVf5DvUSGzkwkwKwff2mDQtMneDtm8/sL5LzF+fXGJ
+ GLUdqnwu6XgTmmhjyecJHfOxqL7jpug=
+X-Google-Smtp-Source: ABdhPJw7UOpkpVETkGgcEQ+88p7i7WZ6TCsGVEAzQBQYJbhzRbQ040X/+rhkp86UGkPgHVKCFhvTqg==
+X-Received: by 2002:a17:906:fcad:: with SMTP id
+ qw13mr7684542ejb.209.1624281297327; 
+ Mon, 21 Jun 2021 06:14:57 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:aae5:6e05:c:d69?
+ ([2a02:908:1252:fb60:aae5:6e05:c:d69])
+ by smtp.gmail.com with ESMTPSA id q9sm10702070edv.31.2021.06.21.06.14.56
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 21 Jun 2021 06:14:56 -0700 (PDT)
+Subject: Re: [PATCH] drm/radeon: delete useless function return values &
+ remove meaningless if(r) check code
+To: Bernard Zhao <bernard@vivo.com>, Alex Deucher
+ <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=c3=b6nig?=
+ <christian.koenig@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20210621130508.29511-1-bernard@vivo.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <626348b5-a3c5-4a86-ca9f-ec41cc82044d@gmail.com>
+Date: Mon, 21 Jun 2021 15:14:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
- oVCBIfWUFZGU4aSFZKHkpISB4eQ09LQ01VEwETFhoSFyQUDg9ZV1kWGg8SFR0UWUFZT0tIVUpKS0
- hOSFVLWQY+
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NCo6SDo*HD8CPjg2M0MWNw8X
- FExPCzxVSlVKTUlPSUNLTEpLTUtOVTMWGhIXVRkeCRUaCR87DRINFFUYFBZFWVdZEgtZQVlITVVK
- TklVSk9OVUpDSllXWQgBWUFKS0NMSTcG
-X-HM-Tid: 0a7a2eacbc71d994kuws1592a380128
-X-Mailman-Approved-At: Mon, 21 Jun 2021 13:09:01 +0000
+In-Reply-To: <20210621130508.29511-1-bernard@vivo.com>
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,290 +75,190 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bernard Zhao <bernard@vivo.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Function radeon_fence_driver_init always returns success,
-the function type maybe coule be changed to void.
-This patch first delete the check of the return
-value of the function call radeon_fence_driver_init, then,
-optimise the function declaration and function to void type.
-
-Signed-off-by: Bernard Zhao <bernard@vivo.com>
----
- drivers/gpu/drm/radeon/cik.c          | 4 +---
- drivers/gpu/drm/radeon/evergreen.c    | 4 +---
- drivers/gpu/drm/radeon/ni.c           | 4 +---
- drivers/gpu/drm/radeon/r100.c         | 4 +---
- drivers/gpu/drm/radeon/r300.c         | 4 +---
- drivers/gpu/drm/radeon/r420.c         | 5 +----
- drivers/gpu/drm/radeon/r520.c         | 4 +---
- drivers/gpu/drm/radeon/r600.c         | 4 +---
- drivers/gpu/drm/radeon/radeon.h       | 2 +-
- drivers/gpu/drm/radeon/radeon_fence.c | 5 +----
- drivers/gpu/drm/radeon/rs400.c        | 4 +---
- drivers/gpu/drm/radeon/rs600.c        | 4 +---
- drivers/gpu/drm/radeon/rs690.c        | 4 +---
- drivers/gpu/drm/radeon/rv515.c        | 4 +---
- drivers/gpu/drm/radeon/rv770.c        | 4 +---
- drivers/gpu/drm/radeon/si.c           | 4 +---
- 16 files changed, 16 insertions(+), 48 deletions(-)
-
-diff --git a/drivers/gpu/drm/radeon/cik.c b/drivers/gpu/drm/radeon/cik.c
-index 42a8afa839cb..f6cf0b8fdd83 100644
---- a/drivers/gpu/drm/radeon/cik.c
-+++ b/drivers/gpu/drm/radeon/cik.c
-@@ -8584,9 +8584,7 @@ int cik_init(struct radeon_device *rdev)
- 	radeon_get_clock_info(rdev->ddev);
- 
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r)
--		return r;
-+	radeon_fence_driver_init(rdev);
- 
- 	/* initialize memory controller */
- 	r = cik_mc_init(rdev);
-diff --git a/drivers/gpu/drm/radeon/evergreen.c b/drivers/gpu/drm/radeon/evergreen.c
-index 8e9e88bf1f43..36a888e1b179 100644
---- a/drivers/gpu/drm/radeon/evergreen.c
-+++ b/drivers/gpu/drm/radeon/evergreen.c
-@@ -5208,9 +5208,7 @@ int evergreen_init(struct radeon_device *rdev)
- 	/* Initialize clocks */
- 	radeon_get_clock_info(rdev->ddev);
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r)
--		return r;
-+	radeon_fence_driver_init(rdev);
- 	/* initialize AGP */
- 	if (rdev->flags & RADEON_IS_AGP) {
- 		r = radeon_agp_init(rdev);
-diff --git a/drivers/gpu/drm/radeon/ni.c b/drivers/gpu/drm/radeon/ni.c
-index ab7bd3080217..4a364ca7a1be 100644
---- a/drivers/gpu/drm/radeon/ni.c
-+++ b/drivers/gpu/drm/radeon/ni.c
-@@ -2375,9 +2375,7 @@ int cayman_init(struct radeon_device *rdev)
- 	/* Initialize clocks */
- 	radeon_get_clock_info(rdev->ddev);
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r)
--		return r;
-+	radeon_fence_driver_init(rdev);
- 	/* initialize memory controller */
- 	r = evergreen_mc_init(rdev);
- 	if (r)
-diff --git a/drivers/gpu/drm/radeon/r100.c b/drivers/gpu/drm/radeon/r100.c
-index fcfcaec25a9e..aa6800b0e198 100644
---- a/drivers/gpu/drm/radeon/r100.c
-+++ b/drivers/gpu/drm/radeon/r100.c
-@@ -4056,9 +4056,7 @@ int r100_init(struct radeon_device *rdev)
- 	/* initialize VRAM */
- 	r100_mc_init(rdev);
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r)
--		return r;
-+	radeon_fence_driver_init(rdev);
- 	/* Memory manager */
- 	r = radeon_bo_init(rdev);
- 	if (r)
-diff --git a/drivers/gpu/drm/radeon/r300.c b/drivers/gpu/drm/radeon/r300.c
-index 92643dfdd8a8..621ff174dff3 100644
---- a/drivers/gpu/drm/radeon/r300.c
-+++ b/drivers/gpu/drm/radeon/r300.c
-@@ -1549,9 +1549,7 @@ int r300_init(struct radeon_device *rdev)
- 	/* initialize memory controller */
- 	r300_mc_init(rdev);
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r)
--		return r;
-+	radeon_fence_driver_init(rdev);
- 	/* Memory manager */
- 	r = radeon_bo_init(rdev);
- 	if (r)
-diff --git a/drivers/gpu/drm/radeon/r420.c b/drivers/gpu/drm/radeon/r420.c
-index 1ed4407b91aa..7e6320e8c6a0 100644
---- a/drivers/gpu/drm/radeon/r420.c
-+++ b/drivers/gpu/drm/radeon/r420.c
-@@ -425,10 +425,7 @@ int r420_init(struct radeon_device *rdev)
- 	r300_mc_init(rdev);
- 	r420_debugfs(rdev);
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r) {
--		return r;
--	}
-+	radeon_fence_driver_init(rdev);
- 	/* Memory manager */
- 	r = radeon_bo_init(rdev);
- 	if (r) {
-diff --git a/drivers/gpu/drm/radeon/r520.c b/drivers/gpu/drm/radeon/r520.c
-index fc78e64ae727..6cbcaa845192 100644
---- a/drivers/gpu/drm/radeon/r520.c
-+++ b/drivers/gpu/drm/radeon/r520.c
-@@ -299,9 +299,7 @@ int r520_init(struct radeon_device *rdev)
- 	r520_mc_init(rdev);
- 	rv515_debugfs(rdev);
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r)
--		return r;
-+	radeon_fence_driver_init(rdev);
- 	/* Memory manager */
- 	r = radeon_bo_init(rdev);
- 	if (r)
-diff --git a/drivers/gpu/drm/radeon/r600.c b/drivers/gpu/drm/radeon/r600.c
-index 7444dc0e0c0e..ca3fcae2adb5 100644
---- a/drivers/gpu/drm/radeon/r600.c
-+++ b/drivers/gpu/drm/radeon/r600.c
-@@ -3282,9 +3282,7 @@ int r600_init(struct radeon_device *rdev)
- 	/* Initialize clocks */
- 	radeon_get_clock_info(rdev->ddev);
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r)
--		return r;
-+	radeon_fence_driver_init(rdev);
- 	if (rdev->flags & RADEON_IS_AGP) {
- 		r = radeon_agp_init(rdev);
- 		if (r)
-diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
-index 56ed5634cebe..8a15f490a390 100644
---- a/drivers/gpu/drm/radeon/radeon.h
-+++ b/drivers/gpu/drm/radeon/radeon.h
-@@ -384,7 +384,7 @@ struct radeon_fence {
- };
- 
- int radeon_fence_driver_start_ring(struct radeon_device *rdev, int ring);
--int radeon_fence_driver_init(struct radeon_device *rdev);
-+void radeon_fence_driver_init(struct radeon_device *rdev);
- void radeon_fence_driver_fini(struct radeon_device *rdev);
- void radeon_fence_driver_force_completion(struct radeon_device *rdev, int ring);
- int radeon_fence_emit(struct radeon_device *rdev, struct radeon_fence **fence, int ring);
-diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/radeon/radeon_fence.c
-index 0d8ef2368adf..b2ce642ca4fa 100644
---- a/drivers/gpu/drm/radeon/radeon_fence.c
-+++ b/drivers/gpu/drm/radeon/radeon_fence.c
-@@ -905,9 +905,8 @@ static void radeon_fence_driver_init_ring(struct radeon_device *rdev, int ring)
-  * Not all asics have all rings, so each asic will only
-  * start the fence driver on the rings it has using
-  * radeon_fence_driver_start_ring().
-- * Returns 0 for success.
-  */
--int radeon_fence_driver_init(struct radeon_device *rdev)
-+void radeon_fence_driver_init(struct radeon_device *rdev)
- {
- 	int ring;
- 
-@@ -917,8 +916,6 @@ int radeon_fence_driver_init(struct radeon_device *rdev)
- 	}
- 
- 	radeon_debugfs_fence_init(rdev);
--
--	return 0;
- }
- 
- /**
-diff --git a/drivers/gpu/drm/radeon/rs400.c b/drivers/gpu/drm/radeon/rs400.c
-index 8423bcc3302b..6383f7a34bd8 100644
---- a/drivers/gpu/drm/radeon/rs400.c
-+++ b/drivers/gpu/drm/radeon/rs400.c
-@@ -555,9 +555,7 @@ int rs400_init(struct radeon_device *rdev)
- 	/* initialize memory controller */
- 	rs400_mc_init(rdev);
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r)
--		return r;
-+	radeon_fence_driver_init(rdev);
- 	/* Memory manager */
- 	r = radeon_bo_init(rdev);
- 	if (r)
-diff --git a/drivers/gpu/drm/radeon/rs600.c b/drivers/gpu/drm/radeon/rs600.c
-index 5bf26058eec0..b2d22e25eee1 100644
---- a/drivers/gpu/drm/radeon/rs600.c
-+++ b/drivers/gpu/drm/radeon/rs600.c
-@@ -1132,9 +1132,7 @@ int rs600_init(struct radeon_device *rdev)
- 	rs600_mc_init(rdev);
- 	r100_debugfs_rbbm_init(rdev);
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r)
--		return r;
-+	radeon_fence_driver_init(rdev);
- 	/* Memory manager */
- 	r = radeon_bo_init(rdev);
- 	if (r)
-diff --git a/drivers/gpu/drm/radeon/rs690.c b/drivers/gpu/drm/radeon/rs690.c
-index 7bc302a89232..14fb0819b8c1 100644
---- a/drivers/gpu/drm/radeon/rs690.c
-+++ b/drivers/gpu/drm/radeon/rs690.c
-@@ -850,9 +850,7 @@ int rs690_init(struct radeon_device *rdev)
- 	rs690_mc_init(rdev);
- 	rv515_debugfs(rdev);
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r)
--		return r;
-+	radeon_fence_driver_init(rdev);
- 	/* Memory manager */
- 	r = radeon_bo_init(rdev);
- 	if (r)
-diff --git a/drivers/gpu/drm/radeon/rv515.c b/drivers/gpu/drm/radeon/rv515.c
-index 46a53dd38079..63fb06e8e2d7 100644
---- a/drivers/gpu/drm/radeon/rv515.c
-+++ b/drivers/gpu/drm/radeon/rv515.c
-@@ -648,9 +648,7 @@ int rv515_init(struct radeon_device *rdev)
- 	rv515_mc_init(rdev);
- 	rv515_debugfs(rdev);
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r)
--		return r;
-+	radeon_fence_driver_init(rdev);
- 	/* Memory manager */
- 	r = radeon_bo_init(rdev);
- 	if (r)
-diff --git a/drivers/gpu/drm/radeon/rv770.c b/drivers/gpu/drm/radeon/rv770.c
-index 88e29ebaad46..74499307285b 100644
---- a/drivers/gpu/drm/radeon/rv770.c
-+++ b/drivers/gpu/drm/radeon/rv770.c
-@@ -1941,9 +1941,7 @@ int rv770_init(struct radeon_device *rdev)
- 	/* Initialize clocks */
- 	radeon_get_clock_info(rdev->ddev);
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r)
--		return r;
-+	radeon_fence_driver_init(rdev);
- 	/* initialize AGP */
- 	if (rdev->flags & RADEON_IS_AGP) {
- 		r = radeon_agp_init(rdev);
-diff --git a/drivers/gpu/drm/radeon/si.c b/drivers/gpu/drm/radeon/si.c
-index d0e94b10e4c0..013e44ed0f39 100644
---- a/drivers/gpu/drm/radeon/si.c
-+++ b/drivers/gpu/drm/radeon/si.c
-@@ -6857,9 +6857,7 @@ int si_init(struct radeon_device *rdev)
- 	radeon_get_clock_info(rdev->ddev);
- 
- 	/* Fence driver */
--	r = radeon_fence_driver_init(rdev);
--	if (r)
--		return r;
-+	radeon_fence_driver_init(rdev);
- 
- 	/* initialize memory controller */
- 	r = si_mc_init(rdev);
--- 
-2.31.0
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+QW0gMjEuMDYuMjEgdW0gMTU6MDUgc2NocmllYiBCZXJuYXJkIFpoYW86Cj4gRnVuY3Rpb24gcmFk
+ZW9uX2ZlbmNlX2RyaXZlcl9pbml0IGFsd2F5cyByZXR1cm5zIHN1Y2Nlc3MsCj4gdGhlIGZ1bmN0
+aW9uIHR5cGUgbWF5YmUgY291bGUgYmUgY2hhbmdlZCB0byB2b2lkLgo+IFRoaXMgcGF0Y2ggZmly
+c3QgZGVsZXRlIHRoZSBjaGVjayBvZiB0aGUgcmV0dXJuCj4gdmFsdWUgb2YgdGhlIGZ1bmN0aW9u
+IGNhbGwgcmFkZW9uX2ZlbmNlX2RyaXZlcl9pbml0LCB0aGVuLAo+IG9wdGltaXNlIHRoZSBmdW5j
+dGlvbiBkZWNsYXJhdGlvbiBhbmQgZnVuY3Rpb24gdG8gdm9pZCB0eXBlLgo+Cj4gU2lnbmVkLW9m
+Zi1ieTogQmVybmFyZCBaaGFvIDxiZXJuYXJkQHZpdm8uY29tPgoKUmV2aWV3ZWQtYnk6IENocmlz
+dGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KCj4gLS0tCj4gICBkcml2ZXJz
+L2dwdS9kcm0vcmFkZW9uL2Npay5jICAgICAgICAgIHwgNCArLS0tCj4gICBkcml2ZXJzL2dwdS9k
+cm0vcmFkZW9uL2V2ZXJncmVlbi5jICAgIHwgNCArLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vcmFk
+ZW9uL25pLmMgICAgICAgICAgIHwgNCArLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3Ix
+MDAuYyAgICAgICAgIHwgNCArLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3IzMDAuYyAg
+ICAgICAgIHwgNCArLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3I0MjAuYyAgICAgICAg
+IHwgNSArLS0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yNTIwLmMgICAgICAgICB8IDQg
+Ky0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yNjAwLmMgICAgICAgICB8IDQgKy0tLQo+
+ICAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb24uaCAgICAgICB8IDIgKy0KPiAgIGRyaXZl
+cnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2ZlbmNlLmMgfCA1ICstLS0tCj4gICBkcml2ZXJzL2dw
+dS9kcm0vcmFkZW9uL3JzNDAwLmMgICAgICAgIHwgNCArLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0v
+cmFkZW9uL3JzNjAwLmMgICAgICAgIHwgNCArLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9u
+L3JzNjkwLmMgICAgICAgIHwgNCArLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3J2NTE1
+LmMgICAgICAgIHwgNCArLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3J2NzcwLmMgICAg
+ICAgIHwgNCArLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3NpLmMgICAgICAgICAgIHwg
+NCArLS0tCj4gICAxNiBmaWxlcyBjaGFuZ2VkLCAxNiBpbnNlcnRpb25zKCspLCA0OCBkZWxldGlv
+bnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL2Npay5jIGIvZHJp
+dmVycy9ncHUvZHJtL3JhZGVvbi9jaWsuYwo+IGluZGV4IDQyYThhZmE4MzljYi4uZjZjZjBiOGZk
+ZDgzIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vY2lrLmMKPiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vcmFkZW9uL2Npay5jCj4gQEAgLTg1ODQsOSArODU4NCw3IEBAIGludCBj
+aWtfaW5pdChzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRldikKPiAgIAlyYWRlb25fZ2V0X2Nsb2Nr
+X2luZm8ocmRldi0+ZGRldik7Cj4gICAKPiAgIAkvKiBGZW5jZSBkcml2ZXIgKi8KPiAtCXIgPSBy
+YWRlb25fZmVuY2VfZHJpdmVyX2luaXQocmRldik7Cj4gLQlpZiAocikKPiAtCQlyZXR1cm4gcjsK
+PiArCXJhZGVvbl9mZW5jZV9kcml2ZXJfaW5pdChyZGV2KTsKPiAgIAo+ICAgCS8qIGluaXRpYWxp
+emUgbWVtb3J5IGNvbnRyb2xsZXIgKi8KPiAgIAlyID0gY2lrX21jX2luaXQocmRldik7Cj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vZXZlcmdyZWVuLmMgYi9kcml2ZXJzL2dw
+dS9kcm0vcmFkZW9uL2V2ZXJncmVlbi5jCj4gaW5kZXggOGU5ZTg4YmYxZjQzLi4zNmE4ODhlMWIx
+NzkgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9ldmVyZ3JlZW4uYwo+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vZXZlcmdyZWVuLmMKPiBAQCAtNTIwOCw5ICs1MjA4
+LDcgQEAgaW50IGV2ZXJncmVlbl9pbml0KHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2KQo+ICAg
+CS8qIEluaXRpYWxpemUgY2xvY2tzICovCj4gICAJcmFkZW9uX2dldF9jbG9ja19pbmZvKHJkZXYt
+PmRkZXYpOwo+ICAgCS8qIEZlbmNlIGRyaXZlciAqLwo+IC0JciA9IHJhZGVvbl9mZW5jZV9kcml2
+ZXJfaW5pdChyZGV2KTsKPiAtCWlmIChyKQo+IC0JCXJldHVybiByOwo+ICsJcmFkZW9uX2ZlbmNl
+X2RyaXZlcl9pbml0KHJkZXYpOwo+ICAgCS8qIGluaXRpYWxpemUgQUdQICovCj4gICAJaWYgKHJk
+ZXYtPmZsYWdzICYgUkFERU9OX0lTX0FHUCkgewo+ICAgCQlyID0gcmFkZW9uX2FncF9pbml0KHJk
+ZXYpOwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL25pLmMgYi9kcml2ZXJz
+L2dwdS9kcm0vcmFkZW9uL25pLmMKPiBpbmRleCBhYjdiZDMwODAyMTcuLjRhMzY0Y2E3YTFiZSAx
+MDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL25pLmMKPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vcmFkZW9uL25pLmMKPiBAQCAtMjM3NSw5ICsyMzc1LDcgQEAgaW50IGNheW1hbl9p
+bml0KHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2KQo+ICAgCS8qIEluaXRpYWxpemUgY2xvY2tz
+ICovCj4gICAJcmFkZW9uX2dldF9jbG9ja19pbmZvKHJkZXYtPmRkZXYpOwo+ICAgCS8qIEZlbmNl
+IGRyaXZlciAqLwo+IC0JciA9IHJhZGVvbl9mZW5jZV9kcml2ZXJfaW5pdChyZGV2KTsKPiAtCWlm
+IChyKQo+IC0JCXJldHVybiByOwo+ICsJcmFkZW9uX2ZlbmNlX2RyaXZlcl9pbml0KHJkZXYpOwo+
+ICAgCS8qIGluaXRpYWxpemUgbWVtb3J5IGNvbnRyb2xsZXIgKi8KPiAgIAlyID0gZXZlcmdyZWVu
+X21jX2luaXQocmRldik7Cj4gICAJaWYgKHIpCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9yYWRlb24vcjEwMC5jIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yMTAwLmMKPiBpbmRleCBm
+Y2ZjYWVjMjVhOWUuLmFhNjgwMGIwZTE5OCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+cmFkZW9uL3IxMDAuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcjEwMC5jCj4gQEAg
+LTQwNTYsOSArNDA1Niw3IEBAIGludCByMTAwX2luaXQoc3RydWN0IHJhZGVvbl9kZXZpY2UgKnJk
+ZXYpCj4gICAJLyogaW5pdGlhbGl6ZSBWUkFNICovCj4gICAJcjEwMF9tY19pbml0KHJkZXYpOwo+
+ICAgCS8qIEZlbmNlIGRyaXZlciAqLwo+IC0JciA9IHJhZGVvbl9mZW5jZV9kcml2ZXJfaW5pdChy
+ZGV2KTsKPiAtCWlmIChyKQo+IC0JCXJldHVybiByOwo+ICsJcmFkZW9uX2ZlbmNlX2RyaXZlcl9p
+bml0KHJkZXYpOwo+ICAgCS8qIE1lbW9yeSBtYW5hZ2VyICovCj4gICAJciA9IHJhZGVvbl9ib19p
+bml0KHJkZXYpOwo+ICAgCWlmIChyKQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFk
+ZW9uL3IzMDAuYyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcjMwMC5jCj4gaW5kZXggOTI2NDNk
+ZmRkOGE4Li42MjFmZjE3NGRmZjMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVv
+bi9yMzAwLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3IzMDAuYwo+IEBAIC0xNTQ5
+LDkgKzE1NDksNyBAQCBpbnQgcjMwMF9pbml0KHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2KQo+
+ICAgCS8qIGluaXRpYWxpemUgbWVtb3J5IGNvbnRyb2xsZXIgKi8KPiAgIAlyMzAwX21jX2luaXQo
+cmRldik7Cj4gICAJLyogRmVuY2UgZHJpdmVyICovCj4gLQlyID0gcmFkZW9uX2ZlbmNlX2RyaXZl
+cl9pbml0KHJkZXYpOwo+IC0JaWYgKHIpCj4gLQkJcmV0dXJuIHI7Cj4gKwlyYWRlb25fZmVuY2Vf
+ZHJpdmVyX2luaXQocmRldik7Cj4gICAJLyogTWVtb3J5IG1hbmFnZXIgKi8KPiAgIAlyID0gcmFk
+ZW9uX2JvX2luaXQocmRldik7Cj4gICAJaWYgKHIpCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9yYWRlb24vcjQyMC5jIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yNDIwLmMKPiBpbmRl
+eCAxZWQ0NDA3YjkxYWEuLjdlNjMyMGU4YzZhMCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vcmFkZW9uL3I0MjAuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcjQyMC5jCj4g
+QEAgLTQyNSwxMCArNDI1LDcgQEAgaW50IHI0MjBfaW5pdChzdHJ1Y3QgcmFkZW9uX2RldmljZSAq
+cmRldikKPiAgIAlyMzAwX21jX2luaXQocmRldik7Cj4gICAJcjQyMF9kZWJ1Z2ZzKHJkZXYpOwo+
+ICAgCS8qIEZlbmNlIGRyaXZlciAqLwo+IC0JciA9IHJhZGVvbl9mZW5jZV9kcml2ZXJfaW5pdChy
+ZGV2KTsKPiAtCWlmIChyKSB7Cj4gLQkJcmV0dXJuIHI7Cj4gLQl9Cj4gKwlyYWRlb25fZmVuY2Vf
+ZHJpdmVyX2luaXQocmRldik7Cj4gICAJLyogTWVtb3J5IG1hbmFnZXIgKi8KPiAgIAlyID0gcmFk
+ZW9uX2JvX2luaXQocmRldik7Cj4gICAJaWYgKHIpIHsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL3JhZGVvbi9yNTIwLmMgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3I1MjAuYwo+IGlu
+ZGV4IGZjNzhlNjRhZTcyNy4uNmNiY2FhODQ1MTkyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9yYWRlb24vcjUyMC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yNTIwLmMK
+PiBAQCAtMjk5LDkgKzI5OSw3IEBAIGludCByNTIwX2luaXQoc3RydWN0IHJhZGVvbl9kZXZpY2Ug
+KnJkZXYpCj4gICAJcjUyMF9tY19pbml0KHJkZXYpOwo+ICAgCXJ2NTE1X2RlYnVnZnMocmRldik7
+Cj4gICAJLyogRmVuY2UgZHJpdmVyICovCj4gLQlyID0gcmFkZW9uX2ZlbmNlX2RyaXZlcl9pbml0
+KHJkZXYpOwo+IC0JaWYgKHIpCj4gLQkJcmV0dXJuIHI7Cj4gKwlyYWRlb25fZmVuY2VfZHJpdmVy
+X2luaXQocmRldik7Cj4gICAJLyogTWVtb3J5IG1hbmFnZXIgKi8KPiAgIAlyID0gcmFkZW9uX2Jv
+X2luaXQocmRldik7Cj4gICAJaWYgKHIpCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9y
+YWRlb24vcjYwMC5jIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yNjAwLmMKPiBpbmRleCA3NDQ0
+ZGMwZTBjMGUuLmNhM2ZjYWUyYWRiNSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFk
+ZW9uL3I2MDAuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcjYwMC5jCj4gQEAgLTMy
+ODIsOSArMzI4Miw3IEBAIGludCByNjAwX2luaXQoc3RydWN0IHJhZGVvbl9kZXZpY2UgKnJkZXYp
+Cj4gICAJLyogSW5pdGlhbGl6ZSBjbG9ja3MgKi8KPiAgIAlyYWRlb25fZ2V0X2Nsb2NrX2luZm8o
+cmRldi0+ZGRldik7Cj4gICAJLyogRmVuY2UgZHJpdmVyICovCj4gLQlyID0gcmFkZW9uX2ZlbmNl
+X2RyaXZlcl9pbml0KHJkZXYpOwo+IC0JaWYgKHIpCj4gLQkJcmV0dXJuIHI7Cj4gKwlyYWRlb25f
+ZmVuY2VfZHJpdmVyX2luaXQocmRldik7Cj4gICAJaWYgKHJkZXYtPmZsYWdzICYgUkFERU9OX0lT
+X0FHUCkgewo+ICAgCQlyID0gcmFkZW9uX2FncF9pbml0KHJkZXYpOwo+ICAgCQlpZiAocikKPiBk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb24uaCBiL2RyaXZlcnMvZ3B1
+L2RybS9yYWRlb24vcmFkZW9uLmgKPiBpbmRleCA1NmVkNTYzNGNlYmUuLjhhMTVmNDkwYTM5MCAx
+MDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbi5oCj4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb24uaAo+IEBAIC0zODQsNyArMzg0LDcgQEAgc3RydWN0
+IHJhZGVvbl9mZW5jZSB7Cj4gICB9Owo+ICAgCj4gICBpbnQgcmFkZW9uX2ZlbmNlX2RyaXZlcl9z
+dGFydF9yaW5nKHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2LCBpbnQgcmluZyk7Cj4gLWludCBy
+YWRlb25fZmVuY2VfZHJpdmVyX2luaXQoc3RydWN0IHJhZGVvbl9kZXZpY2UgKnJkZXYpOwo+ICt2
+b2lkIHJhZGVvbl9mZW5jZV9kcml2ZXJfaW5pdChzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRldik7
+Cj4gICB2b2lkIHJhZGVvbl9mZW5jZV9kcml2ZXJfZmluaShzdHJ1Y3QgcmFkZW9uX2RldmljZSAq
+cmRldik7Cj4gICB2b2lkIHJhZGVvbl9mZW5jZV9kcml2ZXJfZm9yY2VfY29tcGxldGlvbihzdHJ1
+Y3QgcmFkZW9uX2RldmljZSAqcmRldiwgaW50IHJpbmcpOwo+ICAgaW50IHJhZGVvbl9mZW5jZV9l
+bWl0KHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2LCBzdHJ1Y3QgcmFkZW9uX2ZlbmNlICoqZmVu
+Y2UsIGludCByaW5nKTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRl
+b25fZmVuY2UuYyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2ZlbmNlLmMKPiBpbmRl
+eCAwZDhlZjIzNjhhZGYuLmIyY2U2NDJjYTRmYSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vcmFkZW9uL3JhZGVvbl9mZW5jZS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9y
+YWRlb25fZmVuY2UuYwo+IEBAIC05MDUsOSArOTA1LDggQEAgc3RhdGljIHZvaWQgcmFkZW9uX2Zl
+bmNlX2RyaXZlcl9pbml0X3Jpbmcoc3RydWN0IHJhZGVvbl9kZXZpY2UgKnJkZXYsIGludCByaW5n
+KQo+ICAgICogTm90IGFsbCBhc2ljcyBoYXZlIGFsbCByaW5ncywgc28gZWFjaCBhc2ljIHdpbGwg
+b25seQo+ICAgICogc3RhcnQgdGhlIGZlbmNlIGRyaXZlciBvbiB0aGUgcmluZ3MgaXQgaGFzIHVz
+aW5nCj4gICAgKiByYWRlb25fZmVuY2VfZHJpdmVyX3N0YXJ0X3JpbmcoKS4KPiAtICogUmV0dXJu
+cyAwIGZvciBzdWNjZXNzLgo+ICAgICovCj4gLWludCByYWRlb25fZmVuY2VfZHJpdmVyX2luaXQo
+c3RydWN0IHJhZGVvbl9kZXZpY2UgKnJkZXYpCj4gK3ZvaWQgcmFkZW9uX2ZlbmNlX2RyaXZlcl9p
+bml0KHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2KQo+ICAgewo+ICAgCWludCByaW5nOwo+ICAg
+Cj4gQEAgLTkxNyw4ICs5MTYsNiBAQCBpbnQgcmFkZW9uX2ZlbmNlX2RyaXZlcl9pbml0KHN0cnVj
+dCByYWRlb25fZGV2aWNlICpyZGV2KQo+ICAgCX0KPiAgIAo+ICAgCXJhZGVvbl9kZWJ1Z2ZzX2Zl
+bmNlX2luaXQocmRldik7Cj4gLQo+IC0JcmV0dXJuIDA7Cj4gICB9Cj4gICAKPiAgIC8qKgo+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JzNDAwLmMgYi9kcml2ZXJzL2dwdS9k
+cm0vcmFkZW9uL3JzNDAwLmMKPiBpbmRleCA4NDIzYmNjMzMwMmIuLjYzODNmN2EzNGJkOCAxMDA2
+NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JzNDAwLmMKPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vcmFkZW9uL3JzNDAwLmMKPiBAQCAtNTU1LDkgKzU1NSw3IEBAIGludCByczQwMF9p
+bml0KHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2KQo+ICAgCS8qIGluaXRpYWxpemUgbWVtb3J5
+IGNvbnRyb2xsZXIgKi8KPiAgIAlyczQwMF9tY19pbml0KHJkZXYpOwo+ICAgCS8qIEZlbmNlIGRy
+aXZlciAqLwo+IC0JciA9IHJhZGVvbl9mZW5jZV9kcml2ZXJfaW5pdChyZGV2KTsKPiAtCWlmIChy
+KQo+IC0JCXJldHVybiByOwo+ICsJcmFkZW9uX2ZlbmNlX2RyaXZlcl9pbml0KHJkZXYpOwo+ICAg
+CS8qIE1lbW9yeSBtYW5hZ2VyICovCj4gICAJciA9IHJhZGVvbl9ib19pbml0KHJkZXYpOwo+ICAg
+CWlmIChyKQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JzNjAwLmMgYi9k
+cml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JzNjAwLmMKPiBpbmRleCA1YmYyNjA1OGVlYzAuLmIyZDIy
+ZTI1ZWVlMSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JzNjAwLmMKPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JzNjAwLmMKPiBAQCAtMTEzMiw5ICsxMTMyLDcg
+QEAgaW50IHJzNjAwX2luaXQoc3RydWN0IHJhZGVvbl9kZXZpY2UgKnJkZXYpCj4gICAJcnM2MDBf
+bWNfaW5pdChyZGV2KTsKPiAgIAlyMTAwX2RlYnVnZnNfcmJibV9pbml0KHJkZXYpOwo+ICAgCS8q
+IEZlbmNlIGRyaXZlciAqLwo+IC0JciA9IHJhZGVvbl9mZW5jZV9kcml2ZXJfaW5pdChyZGV2KTsK
+PiAtCWlmIChyKQo+IC0JCXJldHVybiByOwo+ICsJcmFkZW9uX2ZlbmNlX2RyaXZlcl9pbml0KHJk
+ZXYpOwo+ICAgCS8qIE1lbW9yeSBtYW5hZ2VyICovCj4gICAJciA9IHJhZGVvbl9ib19pbml0KHJk
+ZXYpOwo+ICAgCWlmIChyKQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3Jz
+NjkwLmMgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JzNjkwLmMKPiBpbmRleCA3YmMzMDJhODky
+MzIuLjE0ZmIwODE5YjhjMSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3Jz
+NjkwLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JzNjkwLmMKPiBAQCAtODUwLDkg
+Kzg1MCw3IEBAIGludCByczY5MF9pbml0KHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2KQo+ICAg
+CXJzNjkwX21jX2luaXQocmRldik7Cj4gICAJcnY1MTVfZGVidWdmcyhyZGV2KTsKPiAgIAkvKiBG
+ZW5jZSBkcml2ZXIgKi8KPiAtCXIgPSByYWRlb25fZmVuY2VfZHJpdmVyX2luaXQocmRldik7Cj4g
+LQlpZiAocikKPiAtCQlyZXR1cm4gcjsKPiArCXJhZGVvbl9mZW5jZV9kcml2ZXJfaW5pdChyZGV2
+KTsKPiAgIAkvKiBNZW1vcnkgbWFuYWdlciAqLwo+ICAgCXIgPSByYWRlb25fYm9faW5pdChyZGV2
+KTsKPiAgIAlpZiAocikKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9ydjUx
+NS5jIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9ydjUxNS5jCj4gaW5kZXggNDZhNTNkZDM4MDc5
+Li42M2ZiMDZlOGUyZDcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9ydjUx
+NS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9ydjUxNS5jCj4gQEAgLTY0OCw5ICs2
+NDgsNyBAQCBpbnQgcnY1MTVfaW5pdChzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRldikKPiAgIAly
+djUxNV9tY19pbml0KHJkZXYpOwo+ICAgCXJ2NTE1X2RlYnVnZnMocmRldik7Cj4gICAJLyogRmVu
+Y2UgZHJpdmVyICovCj4gLQlyID0gcmFkZW9uX2ZlbmNlX2RyaXZlcl9pbml0KHJkZXYpOwo+IC0J
+aWYgKHIpCj4gLQkJcmV0dXJuIHI7Cj4gKwlyYWRlb25fZmVuY2VfZHJpdmVyX2luaXQocmRldik7
+Cj4gICAJLyogTWVtb3J5IG1hbmFnZXIgKi8KPiAgIAlyID0gcmFkZW9uX2JvX2luaXQocmRldik7
+Cj4gICAJaWYgKHIpCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcnY3NzAu
+YyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcnY3NzAuYwo+IGluZGV4IDg4ZTI5ZWJhYWQ0Ni4u
+NzQ0OTkzMDcyODViIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcnY3NzAu
+Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcnY3NzAuYwo+IEBAIC0xOTQxLDkgKzE5
+NDEsNyBAQCBpbnQgcnY3NzBfaW5pdChzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRldikKPiAgIAkv
+KiBJbml0aWFsaXplIGNsb2NrcyAqLwo+ICAgCXJhZGVvbl9nZXRfY2xvY2tfaW5mbyhyZGV2LT5k
+ZGV2KTsKPiAgIAkvKiBGZW5jZSBkcml2ZXIgKi8KPiAtCXIgPSByYWRlb25fZmVuY2VfZHJpdmVy
+X2luaXQocmRldik7Cj4gLQlpZiAocikKPiAtCQlyZXR1cm4gcjsKPiArCXJhZGVvbl9mZW5jZV9k
+cml2ZXJfaW5pdChyZGV2KTsKPiAgIAkvKiBpbml0aWFsaXplIEFHUCAqLwo+ICAgCWlmIChyZGV2
+LT5mbGFncyAmIFJBREVPTl9JU19BR1ApIHsKPiAgIAkJciA9IHJhZGVvbl9hZ3BfaW5pdChyZGV2
+KTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9zaS5jIGIvZHJpdmVycy9n
+cHUvZHJtL3JhZGVvbi9zaS5jCj4gaW5kZXggZDBlOTRiMTBlNGMwLi4wMTNlNDRlZDBmMzkgMTAw
+NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9zaS5jCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL3JhZGVvbi9zaS5jCj4gQEAgLTY4NTcsOSArNjg1Nyw3IEBAIGludCBzaV9pbml0KHN0
+cnVjdCByYWRlb25fZGV2aWNlICpyZGV2KQo+ICAgCXJhZGVvbl9nZXRfY2xvY2tfaW5mbyhyZGV2
+LT5kZGV2KTsKPiAgIAo+ICAgCS8qIEZlbmNlIGRyaXZlciAqLwo+IC0JciA9IHJhZGVvbl9mZW5j
+ZV9kcml2ZXJfaW5pdChyZGV2KTsKPiAtCWlmIChyKQo+IC0JCXJldHVybiByOwo+ICsJcmFkZW9u
+X2ZlbmNlX2RyaXZlcl9pbml0KHJkZXYpOwo+ICAgCj4gICAJLyogaW5pdGlhbGl6ZSBtZW1vcnkg
+Y29udHJvbGxlciAqLwo+ICAgCXIgPSBzaV9tY19pbml0KHJkZXYpOwoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1k
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
