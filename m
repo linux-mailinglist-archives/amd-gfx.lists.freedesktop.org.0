@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFAA83AF1AF
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B2F53AF1AD
 	for <lists+amd-gfx@lfdr.de>; Mon, 21 Jun 2021 19:13:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0873B6E2C8;
-	Mon, 21 Jun 2021 17:13:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 912C16E270;
+	Mon, 21 Jun 2021 17:13:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2071.outbound.protection.outlook.com [40.107.220.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74CB16E252
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 17:13:40 +0000 (UTC)
+ (mail-co1nam11on2059.outbound.protection.outlook.com [40.107.220.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67BA46E270
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 17:13:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OQVKEtYBSzzxY91lBxWz/PIXKjb5iEQ747COFU/VT08o+jgVzlOH7QDDBu7CRuGFiTOBRMAoe6GS7a0kxSaKAgxIeHdtpgOU6ZaV0n+D5MtSt7+P0Qf1qKPwEU+FQF27IOPmGX2rYmROCM02JRTXUeUv6MrmK/btXYJ9xt6WqtYvLBDNPbc3Rn0hyzNuXKBKegATy1IiaJ/YSiQvHxRep2grsw6txIjdOdof7LkQzQEfKZDRgdqh1vCmYnoGkGFvGCwqGK4KJUszxuyOs4y5HJPQfcD1P/DZPvlZ+02Wq+EG5hnAVIqrlwi0ehnmCXiXQZyHFOqeEypCRn9Yo90Lgg==
+ b=YItqBkbAsw71rWpge1Tbw+UFGH1b7VYzyaHXM0KGgDkt0Zv+tRCBXFEyNKGl3x58wdC2YvIgwPYNOald8d/VRjQb20nBIvWY2TtMTFqZKSLhOzNNdpICSQ89vU6ahuSqNw89nJENvgOgyrVVr/JKfMdfuhdLhIUp17irwQcTEHKdJd2FA242u+ZNEIKA8Q2A0S8sXNEGv10aSkU26taGUp6TYHaMJx7lu2E4uMlw+koo0BZbO/s+IO/CytYddzLaHF0fAEthRo797nSHc4DZamBtjZ3HrzIMYypYlV/NSLw9iaDd8RaFKgR05G4crGP6JRKO7tKAxjnKRC39llBVsw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u2kLsvZUDmFGFKvu8otpLGeMGBZX5VhoJ8Vzbw+MVos=;
- b=DdX3VsZyd46cZqtrbERDqvkM8TMH6n8OjNA6eO0EoOKxOx7G0rHbRDTt5iKfiR0GqoLvOlUAEAoHVfcHZod4Whw6QEAK0G+3eOWHAju7LX/WYNW6h8iGNMc1qeqV2R6Sy78GBwaUc91j0s08IKGTLL8EKTDFxHL2OhP+4ovYXAmBSRbtLv0L1Vh+0j2MRQajPtRhB4TQbju/DLuBNBh4//R6ZcMv6S4npjFoMKDrtW23El9IbCz0TkTaJ6u6uKGFoRML66GWuOcw78V6Nn7ri4tux5y9vpPgg6d5GIJW9XPXtMlDVCqlWxfOBOnHBs4/D/Jfv4HAvJIBaHMRzPi/rw==
+ bh=8wDHqnmP9DYQpAmVvuqoRMatR+WdN+Yq77IgmWJnpTQ=;
+ b=Mh4J6wxlKo+QOjSNZNrfxR3pcXCQZjjXguiow02OCZW/3pNGdNQFN91Fsz0u3cn5ZiHEuvD2pzXMnEBvCJSvqZjx61W71t3sJpkFRPZ/zXxREbqd7kYdrUemli9KJ/rrSgu+dYP11NqqKPBltVWAWhKXeIz5r5sjoBkxFhWk4ITxnm9w4CZp4L0PpujHsGZpCX4s1ZOurdit+XyU5u8f+wrIKK6YecwUZfvUUz8qkHD2qxrMKURRC832cvCdcQZXVDm7KB73ju95OncK5PJ60R3KV+Z6VR4Xmlo3TYisGu0QRhbO8rj5i+QApWv1npYLQns8l9CPafO5eokt1x4U3g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u2kLsvZUDmFGFKvu8otpLGeMGBZX5VhoJ8Vzbw+MVos=;
- b=dYY3Kktal3ypNaqGWwgjllY0YwVGpSHyXYQJB5umUiY81MWkpl+lRQfL30lzPSWK4wuggXeSjtFU6KKWG10qKQ4Lrg/Gr27x9czIVCeyZh/VGCv4OFYtTzZf4Pn4ZH30zOTauyJzqwFi+2O4Ye9MpvrQuxBWBMPlzyfdZoapGMI=
+ bh=8wDHqnmP9DYQpAmVvuqoRMatR+WdN+Yq77IgmWJnpTQ=;
+ b=3OhsOUUPtbfhGRztc/YDiJypZWuj8StxaLsx9jvct1fsnLFMPvOW0TuhIiMJJMls7BWygNqBPtlloyjqnbdJEwwuZPChtDhNhYwHIh5eaQ1dhNZRVbRtxkF6zLX7iUqQSc0859ErhLFdFQZ8I3pHXZ87dQGSu5412LQfBgobJvI=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,16 +34,16 @@ Received: from DM6PR12MB3962.namprd12.prod.outlook.com (2603:10b6:5:1ce::21)
  by DM6PR12MB2985.namprd12.prod.outlook.com (2603:10b6:5:116::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.16; Mon, 21 Jun
- 2021 17:13:37 +0000
+ 2021 17:13:39 +0000
 Received: from DM6PR12MB3962.namprd12.prod.outlook.com
  ([fe80::142:82e3:7e9d:55a0]) by DM6PR12MB3962.namprd12.prod.outlook.com
  ([fe80::142:82e3:7e9d:55a0%6]) with mapi id 15.20.4242.023; Mon, 21 Jun 2021
- 17:13:37 +0000
+ 17:13:39 +0000
 From: Luben Tuikov <luben.tuikov@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 41/43] drm/amdgpu: Fix koops when accessing RAS EEPROM
-Date: Mon, 21 Jun 2021 13:12:19 -0400
-Message-Id: <20210621171221.5720-42-luben.tuikov@amd.com>
+Subject: [PATCH 42/43] drm/amdgpu: Use a single loop
+Date: Mon, 21 Jun 2021 13:12:20 -0400
+Message-Id: <20210621171221.5720-43-luben.tuikov@amd.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210621171221.5720-1-luben.tuikov@amd.com>
 References: <20210621171221.5720-1-luben.tuikov@amd.com>
@@ -58,51 +58,51 @@ Received: from localhost.localdomain (108.162.138.69) by
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.20.4242.15 via Frontend Transport; Mon, 21 Jun 2021 17:13:07 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 51332c90-15fe-4968-5632-08d934d7d6c1
+X-MS-Office365-Filtering-Correlation-Id: 87e1f0f7-e1f3-48f9-aadc-08d934d7d71e
 X-MS-TrafficTypeDiagnostic: DM6PR12MB2985:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB29851509E29BB7A662F52391990A9@DM6PR12MB2985.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2150;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB2985A9EDFC983B3D337348AD990A9@DM6PR12MB2985.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2276;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pQTFyqUIYapH2Mz6W1r4qBor9i82yafAyxfD6DPZsDoDl/OPEc/ew/br0Uda1nSG0Sb4IcPvp1Mhhznr8wKMgBTgW7X15z0/we+a8n1LAKiDxVBTd9YBDN0fNftlQIssry3ZzzoYIgyjrfr5zfW+4X+XvAlgjLKp1NjkIKsYufPO4KOsYjrgSd+Lj7jbwvhwlY0NGPi5jX1ICdj00mBm5uoU4ELMID8qiDuQHNdKN/Niq9z56k0SF7nGHS4U/jtTIJtFuJIQFZaKTluPZdcpZdpiIoNLz/1ciQpA9nRkVvuyKAVqSPNjifjgihSkIR1efe1QMQpN2MIHJP92XKU1y35WnCTZlrgb3P+Q9j6Y0BVe6V/7CeL6q0a6Bj5qQj+qrqb0szhZsBoWCprb4BTTJXMivlMdRH6UmF7avw+1RBDSDYQp9N4pyep25j+ceAZk/WufRlErVlbu+mcXTKkaQPNPZg71RdGUW9BLvsLLzprvlPAcPtI5AIv8aWEkhmonZ111YxEFMBzSEdH/zkDFJ8NIsXsGhlJRSKu5kPiIEtbZPSbux1PpEhhwoky8L6x8+FU/dPOXLuLdyZCQypclikf/lQf34qL5f2rImW7wSLXKtrJyxhb6LZpdAhTl1cazeAhlDquOtJ0lRS/yk7UTP6fRAgxgEiJBfqaA75aSgVvRXqQA5PRuteqVxRC563MY
+X-Microsoft-Antispam-Message-Info: /+ahEJ9d61vNlUBN0db9TkUX0Yac33Fu1IyJwyRpdSwIcxKFpyqJsybqiYqp8XTZp095DxEDHLVe3s9gg/VkoDuFLbdveg5gptNd5/s3t3rKn0QbjJX3ms/p18WJQKOwk0/GwENwVLLc5rKB5r2ZG8BkT2E4PJH35oWoA7YltUB6lErlqczz9zLpH/MSSC4J4oWmY7lQN54Ni87gqU3qGChTTsRtjzrPOvy/F0O6s803/g+uzSHrp5sgmXp0F/eyEA79XbWsUHSNDSLJ3f2PvmkkvBZqCTayN89hhbA4K4//Fno6LHp5U/3dxvHYbETF42jy7ZZFzs+7VIzSpajXRIBeDdTVCLQ3PZYDmIHV1DLmYJzIk2jRPKvv3sET0iAH2QrKZfpl8DVXyz6AUTpeGtmk3kgC0VaH4Xtr8cH7TmnziwFTcfMpQRlXN3eqbrsr8CvA8IT65+Jotzwku4UlwtENXR+irD5RNyUVURQvLpeWxlFQpLbOprmXmWvMXoGQvOiLNqOTvaDLp4vuxtDsv34sVU6y8/T7dNrJKz7C/QuPY5zx1qZ9/lWtBNI6N0H4uHpUYar7zJAimNFMzZ98TxFROSnng21GVE6EhNqNC101QFasNBOMYumBls5gyYtbSW+3nE9QsWNbO8RMrohhM1X1tcvFwp5y9GLt7cqYuidLjXk/rzKunnj7W4w6ZYdN
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB3962.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(346002)(39860400002)(376002)(136003)(396003)(366004)(6666004)(55236004)(8676002)(316002)(6506007)(6486002)(54906003)(44832011)(8936002)(478600001)(66476007)(66946007)(956004)(2616005)(6512007)(66556008)(2906002)(52116002)(36756003)(38100700002)(38350700002)(86362001)(5660300002)(186003)(4326008)(1076003)(83380400001)(26005)(16526019)(6916009)(69590400013);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?JlkN9+sRYE4XL+fw374ZCARWaObYAnkaPJ+D4iTnOBECGugJHDbIY3agObgG?=
- =?us-ascii?Q?Na07OYSMoVIGPAeJyRDPjF8uKRd6eTmMEqlKTFWvMS8ARFhg7EuT/2/cM5aC?=
- =?us-ascii?Q?DdJVLrgw4CxNwbzocFPOaIs9DX/KBiKhyCpZ9/iJ7iR1h7LVxgS1Lm38tCPO?=
- =?us-ascii?Q?KGVHurDuoZ8nBzrC8Jc5OWOiFiKcX/UR5ruGn3lxaK6T2B4I+byzCnyJ6lFq?=
- =?us-ascii?Q?GiQEgG/M58xzs0jfrajXwZO7TzKqJZt52jTk0mpMVYP79QT1oyuLRZEZKRRe?=
- =?us-ascii?Q?ecAsk3DI8n0zU7qjo112veAAw1L+M910kxCEklyKFpAEYbZrP064de50iiBq?=
- =?us-ascii?Q?Z7Pm5DLrakecdgyXYm5AWHxqjK4FzlSDE7o0lZ4fhOCs1PGreEjDaoul3oKj?=
- =?us-ascii?Q?9jn8QhWwag7Kg+87bt0b8aJJ40hOdcwnCrhQ3rITuZkx/5julZc8/NEryepo?=
- =?us-ascii?Q?XcS1Ci+QNrYX8w/2XVgooKeWglv8HEkT51VH18CC85uzRdEateua38870VO4?=
- =?us-ascii?Q?Xr8csJy3HJLS4LFlFPH8ka6F8pnzdxqTsDiF0cc2duQxT2JVlrwDkdGz4UUh?=
- =?us-ascii?Q?ICKqChjLyBMUzuAWei8KpprsZeyQQNs4Q9JjE3Rx5ocE6/NDqhALKQjstYvV?=
- =?us-ascii?Q?Clrzspt/jt9RAPyNSlvPlhJcSt7+JEQtQ5G/+adnglWqC4lgSxpYdHuyGqg3?=
- =?us-ascii?Q?apXBg9QVM2nZClMk1NaldPLq3Y1Mp7lfiQrmqBl73vs3UudxgvT0JzyVhdzX?=
- =?us-ascii?Q?rrwMXYhLnLm+d15d9wAnWlgSP3/I1QrhDqLU0K2uS84eI/PruucSK7iu9Rac?=
- =?us-ascii?Q?4tEs2YaEdil+yBLJANuRoo1XUUvnpvYHEGQvecMDLEGtgri/I/0M8KURm2oz?=
- =?us-ascii?Q?T9GUZ8bYeeY0Iar1CXXI+JrJ8QZEIVvCyIYdiMAapC5tQNf+SnN2Z0J1py8b?=
- =?us-ascii?Q?Svk9ib8dYihBdKbhIXj174xHcn2g8/zVRTQtrdDTh5VLd7japWTxR0NizFvC?=
- =?us-ascii?Q?3lbWJlypfChLIdlgVU5RSZOTtXrG18DK4BCrIRHrIAs6ymBw9Gne16T98jkY?=
- =?us-ascii?Q?o317B2ig1+mZ+zzqPgSJzAGFivRYyUY4H1UfF7b2PTM5jsAS3zcw3B2oWejx?=
- =?us-ascii?Q?bJJUpgXo6r0EI0HhA2z2jrlB33sGk005A8tZ91nIYx/qzZ5NKpWdmqGaiUsB?=
- =?us-ascii?Q?KsLu0CCslHPU90jEkbMjpovpGk+xMVeSgQcz3qZdr075LMznvSfF0naxTtVf?=
- =?us-ascii?Q?VeyEOY7FpWMbXp0QjWJCiNsBggZ2rCAGh35PKsBdPTk2RrA/yymKwWdZ11w3?=
- =?us-ascii?Q?itQROxOrVBnZ2L+vjc6/wVB/?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QPn+lrQ7QnW8lZ2N/Kr0o9EwaWosPjPwEoPSwllqOuwFAZM8uvpnRNz/3Wdm?=
+ =?us-ascii?Q?fmTw8I52GpuoOgNZXT9L2Ce0skQ9iQRMcVioXTZ55c7ktTGSgxgH5fKdfyey?=
+ =?us-ascii?Q?/8TQJR2JzR0jteyuO38gqufm9tnhR9RqxfrIvy7noALj65odckd/lLShNlSE?=
+ =?us-ascii?Q?xqvyDX+SQMvZtF0fR+bd3zSyrilc0Ln8ljBmVbf8quZE4Kujs6tRNL9/ykku?=
+ =?us-ascii?Q?28FeJGH+5nC9G3yVCGbIVhQWaOmPx1FlijeOrPdMFEdLNP7PXdGF9BVAu1Zp?=
+ =?us-ascii?Q?GH90eojNYwZ8AM0tpSSeOFyzYb+HGP8PunVQJxAQon6MntpUZHUmVA5YXqN6?=
+ =?us-ascii?Q?LrsHFp2U7Z+dJiDxFCczQQ+J4pN9brOLy484ThNug7vTpK3VIhQdMb9RwJby?=
+ =?us-ascii?Q?Bv5PbH8ScA9keVk4BK3MOn8xxUEqXz+qGjPyZGhpZfDJ35Hn9By/eSUcCRvx?=
+ =?us-ascii?Q?KHcC0D0qy5TdLfuSnIXaF7Sai6w9kEhu0ckv4ytzFG8pNkF+v4Cq68vw+LuV?=
+ =?us-ascii?Q?K4dX5qzkkx9ob/KFIPdPSsnRPk6G80RGo10IiapDBroGrF2sbvHUVJ+UVCIk?=
+ =?us-ascii?Q?5spAgkmad+W5zhb1lB+ig4WBIj+EknP8x2GLpz7zpIp3BYm7YJePMQiI7A/k?=
+ =?us-ascii?Q?FCQvhUp1T2pjHdQcoBu5jm7BsVVPf2JvTTbYhmf6Dkr7K+MXIiIkvyzVPsoC?=
+ =?us-ascii?Q?8M9hTi0h06EWWC1ynpVbObswI2sEnhieU0ztgxvQkyWLM39q2N+BPF5NUIsG?=
+ =?us-ascii?Q?NnesCpd8VYxFVIxZ66LfC+90Cb+BYKCo3LsIDkw60J1cJOLTA0cVx3TbDJkF?=
+ =?us-ascii?Q?714sRcbSY4x+nW3ZQlJSZwDhWjQn+BIC7d1W6vgHcq1Yia1xueQQQMuTbnGx?=
+ =?us-ascii?Q?2sAJxPbDEsPBnDGP7w7mxX8PMVvDMxB1og58isFqJQ+ckLm2b/LobXp7WOTa?=
+ =?us-ascii?Q?BlIDeZePtgE67eRwJOBBnWrTNZiRz//URHPQbHPluArJhK8W+LbS/2vDjTeH?=
+ =?us-ascii?Q?x0AEDkT7zAxYxLno7NWkJSnxc9KrmT3jp4u2mZrGNqCvuJMWhldJ7ty7nR/N?=
+ =?us-ascii?Q?vhOKGmHTcjc4v3UHncY+be+jzdmGnTJ4421DTJUCNv2gMy3x6MbybXpneQIf?=
+ =?us-ascii?Q?xSzCnL7v3cpJSijN3lzhG0rF0W6/EFc/mOzrRWNxz3pSVBc0hv5PzRXrQeFT?=
+ =?us-ascii?Q?6D5gE0hehRto1mz9s+gn46sr6EgF6tUsEKNPPuPgGmxX4hUrWVzs8d3MJ7Qe?=
+ =?us-ascii?Q?Lvda4h7kOwHMVLCgX/styPOaBTIpgKXFaF2v2GVwyCE/ltRQ7fYkxsHe6+P9?=
+ =?us-ascii?Q?b28ag7TsBVjopXWyp7jzB6a+?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51332c90-15fe-4968-5632-08d934d7d6c1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87e1f0f7-e1f3-48f9-aadc-08d934d7d71e
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3962.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2021 17:13:07.6213 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2021 17:13:08.2229 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1+RkC7cBj05AvjE1mZgVxCAP4vruFqMtnftamMd1GQtPOv9Wasz5k7+91Z5R+cSq
+X-MS-Exchange-CrossTenant-UserPrincipalName: Wk/6eSgrWy9DjkdZlnZH+3pTPFfx0SmR9pOy0IC7J2aSmQ9ozmANQQRBRL95RIz/
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2985
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -116,70 +116,112 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alexander Deucher <Alexander.Deucher@amd.com>,
- Luben Tuikov <luben.tuikov@amd.com>, John Clements <john.clements@amd.com>,
- Hawking Zhang <Hawking.Zhang@amd.com>
+ Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>,
+ Luben Tuikov <luben.tuikov@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Debugfs RAS EEPROM files are available when
-the ASIC supports RAS, and when the debugfs is
-enabled, an also when "ras_enable" module
-parameter is set to 0. However in this case,
-we get a kernel oops when accessing some of
-the "ras_..." controls in debugfs. The reason
-for this is that struct amdgpu_ras::adev is
-unset. This commit sets it, thus enabling access
-to those facilities. Note that this facilitates
-EEPROM access and not necessarily RAS features or
-functionality.
+In smu_v11_0_i2c_transmit() use a single loop to
+transmit bytes, instead of two nested loops.
 
 Cc: Alexander Deucher <Alexander.Deucher@amd.com>
-Cc: John Clements <john.clements@amd.com>
-Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
 Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
-Acked-by: Alexander Deucher <Alexander.Deucher@amd.com>
+Reviewed-by: Alexander Deucher <Alexander.Deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 16 ++++++++++++----
- 1 file changed, 12 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c | 72 ++++++++++------------
+ 1 file changed, 34 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index edf4c02d075f48..c6ae63893dbdb2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -1947,11 +1947,20 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
- 	bool exc_err_limit = false;
- 	int ret;
+diff --git a/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c b/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c
+index 7f48ee020bc03e..751ea2517c4380 100644
+--- a/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c
++++ b/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c
+@@ -243,49 +243,45 @@ static uint32_t smu_v11_0_i2c_transmit(struct i2c_adapter *control,
+ 	/* Clear status bits */
+ 	smu_v11_0_i2c_clear_status(control);
  
--	if (adev->ras_enabled && con)
--		data = &con->eh_data;
--	else
-+	if (!con)
-+		return 0;
+-
+ 	timeout_counter = jiffies + msecs_to_jiffies(20);
+ 
+ 	while (numbytes > 0) {
+ 		reg = RREG32_SOC15(SMUIO, 0, mmCKSVII2C_IC_STATUS);
+-		if (REG_GET_FIELD(reg, CKSVII2C_IC_STATUS, TFNF)) {
+-			do {
+-				reg = REG_SET_FIELD(reg, CKSVII2C_IC_DATA_CMD, DAT, data[bytes_sent]);
+-
+-				/* Final message, final byte, must
+-				 * generate a STOP, to release the
+-				 * bus, i.e. don't hold SCL low.
+-				 */
+-				if (numbytes == 1 && i2c_flag & I2C_M_STOP)
+-					reg = REG_SET_FIELD(reg,
+-							    CKSVII2C_IC_DATA_CMD,
+-							    STOP, 1);
+-
+-				if (bytes_sent == 0 && i2c_flag & I2C_X_RESTART)
+-					reg = REG_SET_FIELD(reg,
+-							    CKSVII2C_IC_DATA_CMD,
+-							    RESTART, 1);
+-
+-				/* Write */
+-				reg = REG_SET_FIELD(reg, CKSVII2C_IC_DATA_CMD, CMD, 0);
+-				WREG32_SOC15(SMUIO, 0, mmCKSVII2C_IC_DATA_CMD, reg);
+-
+-				/* Record that the bytes were transmitted */
+-				bytes_sent++;
+-				numbytes--;
+-
+-				reg = RREG32_SOC15(SMUIO, 0, mmCKSVII2C_IC_STATUS);
+-
+-			} while (numbytes &&  REG_GET_FIELD(reg, CKSVII2C_IC_STATUS, TFNF));
+-		}
++		if (!REG_GET_FIELD(reg, CKSVII2C_IC_STATUS, TFNF)) {
++			/*
++			 * We waited for too long for the transmission
++			 * FIFO to become not-full.  Exit the loop
++			 * with error.
++			 */
++			if (time_after(jiffies, timeout_counter)) {
++				ret |= I2C_SW_TIMEOUT;
++				goto Err;
++			}
++		} else {
++			reg = REG_SET_FIELD(reg, CKSVII2C_IC_DATA_CMD, DAT,
++					    data[bytes_sent]);
+ 
+-		/*
+-		 * We waited too long for the transmission FIFO to become not-full.
+-		 * Exit the loop with error.
+-		 */
+-		if (time_after(jiffies, timeout_counter)) {
+-			ret |= I2C_SW_TIMEOUT;
+-			goto Err;
++			/* Final message, final byte, must generate a
++			 * STOP to release the bus, i.e. don't hold
++			 * SCL low.
++			 */
++			if (numbytes == 1 && i2c_flag & I2C_M_STOP)
++				reg = REG_SET_FIELD(reg,
++						    CKSVII2C_IC_DATA_CMD,
++						    STOP, 1);
 +
-+	/* Allow access to RAS EEPROM via debugfs, when the ASIC
-+	 * supports RAS and debugfs is enabled, but when
-+	 * adev->ras_enabled is unset, i.e. when "ras_enable"
-+	 * module parameter is set to 0.
-+	 */
-+	con->adev = adev;
++			if (bytes_sent == 0 && i2c_flag & I2C_X_RESTART)
++				reg = REG_SET_FIELD(reg,
++						    CKSVII2C_IC_DATA_CMD,
++						    RESTART, 1);
 +
-+	if (!adev->ras_enabled)
- 		return 0;
++			/* Write */
++			reg = REG_SET_FIELD(reg, CKSVII2C_IC_DATA_CMD, CMD, 0);
++			WREG32_SOC15(SMUIO, 0, mmCKSVII2C_IC_DATA_CMD, reg);
++
++			/* Record that the bytes were transmitted */
++			bytes_sent++;
++			numbytes--;
+ 		}
+ 	}
  
-+	data = &con->eh_data;
- 	*data = kmalloc(sizeof(**data), GFP_KERNEL | __GFP_ZERO);
- 	if (!*data) {
- 		ret = -ENOMEM;
-@@ -1961,7 +1970,6 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
- 	mutex_init(&con->recovery_lock);
- 	INIT_WORK(&con->recovery_work, amdgpu_ras_do_recovery);
- 	atomic_set(&con->in_recovery, 0);
--	con->adev = adev;
- 
- 	max_eeprom_records_count = amdgpu_ras_eeprom_max_record_count();
- 	amdgpu_ras_validate_threshold(adev, max_eeprom_records_count);
 -- 
 2.32.0
 
