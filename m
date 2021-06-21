@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA6A93AF197
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Jun 2021 19:12:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48E803AF1A0
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Jun 2021 19:13:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F8C06E283;
-	Mon, 21 Jun 2021 17:12:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C001A6E243;
+	Mon, 21 Jun 2021 17:13:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2045.outbound.protection.outlook.com [40.107.220.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFADB89FCE
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 17:12:52 +0000 (UTC)
+ (mail-co1nam11on2083.outbound.protection.outlook.com [40.107.220.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43E7A6E245
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 17:12:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SeBhf1SQKIvFDkHovMbalqujMK9A5MUHvRcNTeZHgyPIfOj86nl8jY9nW+7sSCo4sGAKPqwnMfKMD2nVwRayV3fl4x4VMTv6Fv14AZMu+x5TLBKb2sFlit7XdHdpHZsnLjbF874cbiIdGGROnY7mUUbVmVy6eY1+s/cTRMqmPQESGv0rjNsWWAh2ulDist7Jl5iOtyCIWbMDg+pepWX/cikUp2je9kQxAtOXvsM4CAeBklqtj2bPVnB4m+osOa27oHilL5LJYO3wg70M3w3FeepgOZCsKLYYJJPTU7V5+MxqkJrMF9kVdV+JGRGwklOSyKGgqRJ5mCfgm6Z1qYqRoA==
+ b=g0AGZTq0O+LVa8ZQe3Ax85HUkOavBO3qA/JBM1gUDJ03dsy7caBuV74aJlj8vWRihUfOb5I6DBnZcoZIpTmibLEh6DoLonIDSnGghGbVe6/qx0PohUu6S0+D7U7RjwnPqTSt8B5LGD1mtarGlytmzt/yuy2sCzh4sgxFrRLffwqEsGaPgJ96bOctkIBWqwdbzCB1MF30+DAuVQOuguK3xKcwPpcr3bRzVFIL0amr+/3TjZ4yp6blV0BIQiZF34X4sJktDFMGVv8HgIDLzUfzaNe4hJ4EsRNuWpMfwka3GeUWuxbug62ELAM+QNT5vWfW3CIAboVPFP6YmjOFyAQw5Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=viOrTLzaDzuEsGPjo5JWL1nH71S5qAuohpg8S9TDhjM=;
- b=eU0IsTx9sJK7xSlCsO/Ln5iDLX6aP0Xc9tFk/f7uaM6QTlUdYLJYFn02iNbielVCt3aBz+CiaDn3yoSHYzmK6dUe8lkhkrBsK9z7iaVN+RCByO4tAD76dl0XPtBM1+dRWlK85BbZ86GOednvRJtM1lPrluLLWHp7qkz3jfxFK8mXmQArhRvhTjWFPIn9nD5AoEkuqJY/CjEUS7FLaZtZCtm4Q/XsfTnMnDgjlPD/xoLRYWUbh9pi3qQ8ngiBKIelmK7GzJAlRKh27amIsu+rF6umj8OFYQP9meBbxQ2rCxaUfiM0FGtk74oKYLvixj4Qqu6cDZ1hhMuqFnFRq/TL2Q==
+ bh=0ssrUyPCcFmbN4ljQsq87W8kjtn/fxeH9UveSO7GnXE=;
+ b=IZqq5P5cYfZhCcLbcgDvDuy/YsJW79xp6IM2yk64o6dCpRoikMrFklDeela/SnZrT79unzUs1vzh6+oj8E/QdErbOr6ySLJNuftpUbE4AUyoPZbUTYxgw1tzbf1WXdccE+Gdj/wiH4reOVg53i8eRKVbIKLKuuV7TudFDe8yOqVOJR99F/c7ZdN7XlJTMw3Sz4WQiDSWa0zjnsfMeBnFwXLwQxT98zS12mE58sPbIiCYvxOLjmoa691dvmELU2FL9GuzVHdMLTe0ankxQybpmQgXlw4INZoP7Zlqp2+CIxuhO4AgvUeWcfrvSBJlz7vgYBkCNwqU5T+bUdktVci98Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=viOrTLzaDzuEsGPjo5JWL1nH71S5qAuohpg8S9TDhjM=;
- b=axu13hs1Lb7VAiMZTR3cU4GgH9wkCgt2YPSRLLKUzzZHyJyWFPTpaO9AdW7SPffQyqhxVKV9p9lijoR+1J4WKR9s1hLpK2sv0C2fQyaaqsf/LUXUjV0PtfMdn9kJ/flxmXALkPDkVxkKMfZ84m2jGwwNrXpfNTyKwErvPtk5RG8=
+ bh=0ssrUyPCcFmbN4ljQsq87W8kjtn/fxeH9UveSO7GnXE=;
+ b=uZd/l05yzGLoBJeAN0ib16AEAXVZAPqK73cT/1pEBUlfDcI5zCSQauRla7dhCGL3cOPftjfhzUB1YQOaf23GDHt+Lft85OUkaiFl+HYvqvOBEcc7lhxkupWEqyuJXfh5rD1sdtac2gLBcgdGOORcQtSgawS7krc2PtqskoZCSkU=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,16 +34,16 @@ Received: from DM6PR12MB3962.namprd12.prod.outlook.com (2603:10b6:5:1ce::21)
  by DM6PR12MB3865.namprd12.prod.outlook.com (2603:10b6:5:1c4::14) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.21; Mon, 21 Jun
- 2021 17:12:51 +0000
+ 2021 17:12:52 +0000
 Received: from DM6PR12MB3962.namprd12.prod.outlook.com
  ([fe80::142:82e3:7e9d:55a0]) by DM6PR12MB3962.namprd12.prod.outlook.com
  ([fe80::142:82e3:7e9d:55a0%6]) with mapi id 15.20.4242.023; Mon, 21 Jun 2021
- 17:12:51 +0000
+ 17:12:52 +0000
 From: Luben Tuikov <luben.tuikov@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 21/43] drm/amdgpu: I2C EEPROM full memory addressing
-Date: Mon, 21 Jun 2021 13:11:59 -0400
-Message-Id: <20210621171221.5720-22-luben.tuikov@amd.com>
+Subject: [PATCH 22/43] drm/amdgpu: RAS and FRU now use 19-bit I2C address
+Date: Mon, 21 Jun 2021 13:12:00 -0400
+Message-Id: <20210621171221.5720-23-luben.tuikov@amd.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210621171221.5720-1-luben.tuikov@amd.com>
 References: <20210621171221.5720-1-luben.tuikov@amd.com>
@@ -56,53 +56,53 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from localhost.localdomain (108.162.138.69) by
  YT1PR01CA0054.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2e::23) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4242.15 via Frontend Transport; Mon, 21 Jun 2021 17:12:50 +0000
+ 15.20.4242.15 via Frontend Transport; Mon, 21 Jun 2021 17:12:51 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0e0d9ad1-0a88-4b3b-adfb-08d934d7cd21
+X-MS-Office365-Filtering-Correlation-Id: 7ec0274e-bc8d-4853-b5f4-08d934d7cda9
 X-MS-TrafficTypeDiagnostic: DM6PR12MB3865:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB38650C0D6E78FBD7045AE73E990A9@DM6PR12MB3865.namprd12.prod.outlook.com>
+X-Microsoft-Antispam-PRVS: <DM6PR12MB386581FC960451E17B87AF17990A9@DM6PR12MB3865.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nV+rhACxmXd38KauRICX5K1fGqp6Pf+DillNNguxz6AXlKijEfnC5t6YfkUxtl8Dd5cd/Lzx55r8mK/x9lBFf2v1494aoS7aWvwMfM+wd/FtjTiz5lmpNVcOKFHmy67mPl9H1UDwjJ0r1K/HRTsTdU0d9qoz985/e0U957ycJp8Y2VIjxhQS2xQUlZ2ys6XCHtVKSbG/GBGRyUlS4j2MoxQ0zGx4BmVZA/3VbGTIkNuAB979iJVLZO/0RXs6xFRrK6+rYs4bCXqpwslmzyZDiUP/tvrYPPNYg3qBIVC2x22ct0zgxFIzC97xOh3MBS2Wi6zuQQgl+5M0/43oK84f8QqCVYHoIJpXCrxCQtBO9pAAg5UnzmMHf3O7k9tbg9J5WBKaK6mAel7BU2X0uyo4cnR3y0TCtSqwRgZaC6JF5HKFJTg80yFZLCet2TMQMvazsMDrL3Cs9AukATyWBcyp+molE/JcMAkAQYNZq7u6sVQVEqAHHwnOeY0IM6ucuMOsuwEd3SgQoZpOkshPRGPB+V4VlCO3VooBB2tLqN1SVI+zu6pwBPymIuDz/x0AFp2wtR55Qrr+eOR5ZjPkfdGXzPBl8j1/UZ4jFznEnJwFCH9hfCDb3BuxXNUPp+/BXfrRQFxOIxcqMp2gpmqY4zOTjDVTEdjedWW/eoApGU4H++yTctlaBZDtHtua4prGzR2s
+X-Microsoft-Antispam-Message-Info: 1BYJF4vKxCinAXWE6UFQS+f327pJYO5VAdWYiV317mx7DYhNxFI1LMpkaXEVvkyY2DYx6fYIS1jWasVP34WZ1MQOA8aFRop+FgHNF3umpVcmjSfB6EXAEMU6cwa0Yryb94ZY/lGbTQHKfQkpSezIMuvCRE0rRhJlKA0AUQQxc8DhE6At0Ey7YF1xfHeBBZq78eYbVtmB8rGwDISzU8bTE5iewGSrhCUZwCUovVEIT7xC/YdxenZETqTA9hlbEfwAO8/m6ANmMicn81g9xg8Ff+8RSQOGxI7sbrq7+8iVdAaJuX5pI/LPubf0BenRsotxQdJWzv+m10fZXkuesZRjppiLXF0wpAoxi6A1H2Yt5zcjwEBZ8mRSwQisRXZ6JrLJcnQAZV+cICKWNLyyGhq6qe43jv44rnnatU2AW6n/y8eD+agO/z44wBCWFAX8WX4QqhRNAH2tG78yGxbby4Vl8h03qV1N9GVHXGBs6JvsnKcZ0rOvUGeLynKZEkatBF6FJ2btxofVWIqmPqDm5FSu9sBrH4S9oHrsIdJ5wbmSVD1usfLwEgMB+R3Zb0KCcWfjf/1RPvIuZZQM9s2tUXq1HVHoylsl69/7RCqk+4osyz1N6aM6ivvakgwG5l+abalPEjZL1CfPKFFSOIIEMaOWFQYR5f40C72/AUKcLz2BJhKKhX62OBuk7h9k70gNgZBJx7GEDkIwGBkDFC5fk6VlenQMEFVl5StcXU7r0wlYN0MGGlTsIkKUQ3+R+JPA+bkK3ftmziUtOWFSUCzt2Ocfq+mC5aDrcP0mEGK6H+rllPL15PyvMtRaOiWBAVuXQggf
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB3962.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(366004)(39860400002)(376002)(346002)(396003)(478600001)(44832011)(54906003)(52116002)(316002)(66556008)(6916009)(66476007)(66946007)(8676002)(2906002)(5660300002)(956004)(26005)(6512007)(83380400001)(1076003)(8936002)(38100700002)(38350700002)(186003)(6486002)(2616005)(16526019)(55236004)(36756003)(86362001)(6506007)(4326008)(69590400013);
+ SFS:(4636009)(136003)(366004)(39860400002)(376002)(346002)(396003)(478600001)(44832011)(54906003)(966005)(52116002)(316002)(66556008)(6916009)(66476007)(66946007)(8676002)(2906002)(5660300002)(956004)(26005)(6512007)(6666004)(83380400001)(1076003)(8936002)(30864003)(38100700002)(38350700002)(186003)(6486002)(2616005)(16526019)(55236004)(36756003)(86362001)(6506007)(4326008)(69590400013);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2moCy7T7gtxKwRQIRzRdVpHn2Y4c5Tqb9a3wr6XWBE3+YSrDNEdadr5jvTZN?=
- =?us-ascii?Q?aNYU5H/aYGICZqTx+auPyvLD4nmdnyMZ5QufhBIMOQoEWK56Zm8X78AFG2bD?=
- =?us-ascii?Q?IhIr79iln6/1ErDBxSMPbZl8hG5Jx42XuQcw00PIVZceoGJr+SRVQ5mc1/XL?=
- =?us-ascii?Q?5Zws+QQdKSR26Ufu2PT5NNaTlH9cz0teqxYqNIIsvTrf0YEztNinFBas5fiJ?=
- =?us-ascii?Q?T40MbcYvqP71ee/Db6sHzsutLF6f9lGHBkrb0RtFblIii8U4kQvb1D1HlOQB?=
- =?us-ascii?Q?oHhHKvi6PpJIbmhHeA1sL2bO1EnK7MkpT+HdCU1wF8QoQWE187shG2ahYcbY?=
- =?us-ascii?Q?nasvMPikdKjlKYsZo+9ixTWneHroEPCgUyEwH9pFGVSxnKqG03BEV0HXojKC?=
- =?us-ascii?Q?8WX0GxfjQiRQRKF1rfkW6wyAaeTbXYu+0dMs9d+hgDbzqK6dH+qMz4gUHBP3?=
- =?us-ascii?Q?HAHSQc86VnBZi4T0YRUmcUwK1TiGOPnwCU+2FeW7tsB5IDhmXikAyHJd1c+o?=
- =?us-ascii?Q?gnvchP3dXyLGpdLLvY2S44Hddtay5WHlSg18kko83YT+pO5eSa/VhPlwRHrf?=
- =?us-ascii?Q?TYNOFh06O4l24YENi1dFPCd6N0l1Y/QaWKVO8N3Aj4dDi5LdGjJu3HDX6ncR?=
- =?us-ascii?Q?e/0ujFDl8sVbPdVbbKgcG471c+fue7BaSYCOKTp7CBnWm/YKPWP8xrbPmqWF?=
- =?us-ascii?Q?GVZTfDPSnzB93TkPzmwQaWJUyppXGUOYPeJl8yuSa6rQlnaYVCA13oZB2vJW?=
- =?us-ascii?Q?TGhpKfSVd5JEMvdB7BxttGRd0NdulXjgIerAb5xGbtljJuh7Uhf8LkJMGzIo?=
- =?us-ascii?Q?5tPK+RiLaOfMUB6PG1uFSor4y14Cf1AmIqsylG5MmHJAA8fuiItwVBBxcc7y?=
- =?us-ascii?Q?o2svpm6Wks7iVphzyMxZ23CXF0Kv5rXw+YgeNXNLxINYfX91xgcteDWVXsxa?=
- =?us-ascii?Q?4g7P0HcMM0rmlvMMBuF2qmQW+ceipXWDCmKCQnjQR653/WwjxP8UIhV2I4+Q?=
- =?us-ascii?Q?rvHS0sh9phsM8DMDn5iynmLS8hNkfumpa0In/96rkxHRx2VOBR2yKdzsBo+t?=
- =?us-ascii?Q?HN6drnilZkxjt4XG1h7rkWB6+9D3opfjwvrBWUQf9oSVAZDqfErC0Olj2H71?=
- =?us-ascii?Q?d1BvsyEFVbNpOZc59f7o3K8GTwI3fjWmlPzGMbxqzLLjrtdTkjJ6/DYfsWAj?=
- =?us-ascii?Q?Ez7uWUGHBwLuD8XFw/yj9HSKyShDC82Lmbt+D/K+e789NarPFqch7FLlnBiH?=
- =?us-ascii?Q?hDK8Y/cCV5XBwio4zpCZ8zS3qnSB62OaUiWYCeFMQsmcTmlORWuB98qFIlqv?=
- =?us-ascii?Q?ue85SUAj58lqFcFE2IfTiIcz?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Bt1BVsQmr8nxz8FLflc7b16ElKWAsfaWqPgkxFyTJumBouls8bIXPqytsnDF?=
+ =?us-ascii?Q?tEGp8hOnAoJ5vXY7WC8Z541YFasjEI/RdcQj0OKDCi09lkdpZfwbe/qWocxe?=
+ =?us-ascii?Q?Rl2QRu+1QlQ3tDKmbq7ydPTeCeLYGemorxcj+pFhfizSy2sfoZULOK4MSmhQ?=
+ =?us-ascii?Q?Icx/5drbSdXE2RYGN3jatmdF/40HRAcwOFXUpKoGwq/ceKwp1QMMfo7kInoJ?=
+ =?us-ascii?Q?yyLIAyP2Q8ECZcEw31SrWEbG0p9mNqNaOFVfdEt7J+vKo7BABYGmKtDbboK7?=
+ =?us-ascii?Q?0ZkEV4SylZ2kifx34dCb8W/fjBpl5bw7G1WLiY6f6EhAlMNs1O/YOVDnv4Bz?=
+ =?us-ascii?Q?0W5Ja4PJ8CGYwdINnfz8hzjdaBigsXn9w1hKbTNw10PhGOXZroQgl3N+Z1Rh?=
+ =?us-ascii?Q?4tLBiqKd8roDOGd6spFUzX+3mNUYyRdw4n2T8Pp2x/x57eZd8Z3EcIXTGol5?=
+ =?us-ascii?Q?qnbjpETeE2DPIKTmx03Al58ccBRNIXWFq9AJn5twN5PqvMS4r85fAFhx53+I?=
+ =?us-ascii?Q?Txtkp+foT3W9pYIqTuk0euR+CCy7AkD1CmpspXqJlwJUAnCVT4WgogWJ4Mdv?=
+ =?us-ascii?Q?Wz1nc4CYRQCpbxFQhfD6FLgG1ayQU3BaA3FP0lYWG0lBm1c/0mAH6ya7sXmx?=
+ =?us-ascii?Q?VT2PB0ryKXApsKq/MAdnhn//EOcywIBRbhYtredBSpKKJeEnpHNG7JXrhcoX?=
+ =?us-ascii?Q?kbrRD/vaOCQTCrARPanjaWNB8Jc4b2vYfhGSu/z+v49kugiBwtp0a64+o1uh?=
+ =?us-ascii?Q?c08l5BOgL2MZO35cERgyT4mdW7exY7KpyhboGaA6uDLquh8V1OwweRPiFUJ6?=
+ =?us-ascii?Q?JEOFV2gvLyyFxSGVRPugbZkpfGG0eVj7NezNQDUI7YVQXKruCepzQBDATtee?=
+ =?us-ascii?Q?7Zc4T/BKWmT11hZ5RGYU0QXJdaAVONZGgofbMlmdFB/8gbiLHPMxdGZN0Mun?=
+ =?us-ascii?Q?rXHm/Bt2BaZw5MaIpAHs+Kkh8ZVU7s9qaC2oig0A0Ie2Kbs2taaTDue1NERV?=
+ =?us-ascii?Q?Ka/ezTA+nHoJo0ps2zqiwvcwu/I1E8yzmQWdwKeHU1+nkqNv3435rhaQ52wp?=
+ =?us-ascii?Q?5KoVNWjov6XW0w4EQOKtPceuH9BTcR9X1ijo+hneIT4SRnaupkEvleMrL8h7?=
+ =?us-ascii?Q?xf8ZS/dlsozleZVqNKMOTrgzN8g1HIA9Cdo0J+EoxUulKFZk7imW7RJR2Ow1?=
+ =?us-ascii?Q?Ai5CFKQFhhBT3Uh3BO1wDPfXq/jSpCVfB/adEaJEAZq05u9yX7WK9+C7bSwr?=
+ =?us-ascii?Q?bYoR1B3XnvPHafADaP4WIUjApIQ4h2p12R6/XYht1vDXZVj6CrxmC+iHQVYq?=
+ =?us-ascii?Q?7koS6hRuDUYmn032vvzvGIa4?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e0d9ad1-0a88-4b3b-adfb-08d934d7cd21
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ec0274e-bc8d-4853-b5f4-08d934d7cda9
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3962.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2021 17:12:51.4874 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2021 17:12:52.4529 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1IPDn//WZhjTFWDSWwstcLQW3AXT3RZPFZn9UKusz+v6oFl0LrwR2sh0U8IPe69x
+X-MS-Exchange-CrossTenant-UserPrincipalName: kYDotLAHzBY/UYViWoOfnb1OFRg3CQwm99M4rkE39ZV03fbQd0j3sG2CLABQGGSc
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3865
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -118,29 +118,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Cc: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>,
  Lijo Lazar <Lijo.Lazar@amd.com>, Luben Tuikov <luben.tuikov@amd.com>,
  Stanley Yang <Stanley.Yang@amd.com>,
- Alexander Deucher <Alexander.Deucher@amd.com>, Jean Delvare <jdelvare@suse.de>,
+ Alexander Deucher <Alexander.Deucher@amd.com>,
+ John Clements <john.clements@amd.com>, Jean Delvare <jdelvare@suse.de>,
  Hawking Zhang <Hawking.Zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-* "eeprom_addr" is now 32-bit wide.
-* Remove "slave_addr" from the I2C EEPROM driver
-  interface. The I2C EEPROM Device Type Identifier
-  is fixed at 1010b, and the rest of the bits
-  of the Device Address Byte/Device Select Code,
-  are memory address bits, where the first three
-  of those bits are the hardware selection bits.
-  All this is now a 19-bit address and passed
-  as "eeprom_addr". This abstracts the I2C bus
-  for EEPROM devices for this I2C EEPROM driver.
-  Now clients only pass the 19-bit EEPROM memory
-  address, to the I2C EEPROM driver, as the 32-bit
-  "eeprom_addr", from which they want to read from
-  or write to.
+Convert RAS and FRU code to use the 19-bit I2C
+memory address and remove all "slave_addr", as
+this is now absolved into the 19-bit address.
 
 Cc: Jean Delvare <jdelvare@suse.de>
+Cc: John Clements <john.clements@amd.com>
 Cc: Alexander Deucher <Alexander.Deucher@amd.com>
 Cc: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
 Cc: Lijo Lazar <Lijo.Lazar@amd.com>
@@ -149,196 +140,294 @@ Cc: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
 Acked-by: Alexander Deucher <Alexander.Deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.c | 88 +++++++++++++++++-----
- drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.h |  4 +-
- 2 files changed, 72 insertions(+), 20 deletions(-)
+ .../gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c    | 19 ++---
+ .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c    | 82 +++++++------------
+ .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h    |  2 +-
+ 3 files changed, 39 insertions(+), 64 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.c
-index 94aeda1c7f8ca0..a5a87affedabf1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.c
-@@ -24,7 +24,7 @@
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
+index 2b854bc6ae34bb..69b9559f840ac3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fru_eeprom.c
+@@ -29,8 +29,8 @@
+ #include "amdgpu_fru_eeprom.h"
  #include "amdgpu_eeprom.h"
- #include "amdgpu.h"
  
--/* AT24CM02 has a 256-byte write page size.
-+/* AT24CM02 and M24M02-R have a 256-byte write page size.
-  */
- #define EEPROM_PAGE_BITS   8
- #define EEPROM_PAGE_SIZE   (1U << EEPROM_PAGE_BITS)
-@@ -32,20 +32,72 @@
+-#define I2C_PRODUCT_INFO_ADDR		0x56
+-#define I2C_PRODUCT_INFO_OFFSET		0xC0
++#define FRU_EEPROM_MADDR        0x60000
++#define I2C_PRODUCT_INFO_OFFSET 0xC0
  
- #define EEPROM_OFFSET_SIZE 2
- 
--static int __amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap,
--				u16 slave_addr, u16 eeprom_addr,
-+/* EEPROM memory addresses are 19-bits long, which can
-+ * be partitioned into 3, 8, 8 bits, for a total of 19.
-+ * The upper 3 bits are sent as part of the 7-bit
-+ * "Device Type Identifier"--an I2C concept, which for EEPROM devices
-+ * is hard-coded as 1010b, indicating that it is an EEPROM
-+ * device--this is the wire format, followed by the upper
-+ * 3 bits of the 19-bit address, followed by the direction,
-+ * followed by two bytes holding the rest of the 16-bits of
-+ * the EEPROM memory address. The format on the wire for EEPROM
-+ * devices is: 1010XYZD, A15:A8, A7:A0,
-+ * Where D is the direction and sequenced out by the hardware.
-+ * Bits XYZ are memory address bits 18, 17 and 16.
-+ * These bits are compared to how pins 1-3 of the part are connected,
-+ * depending on the size of the part, more on that later.
-+ *
-+ * Note that of this wire format, a client is in control
-+ * of, and needs to specify only XYZ, A15:A8, A7:0, bits,
-+ * which is exactly the EEPROM memory address, or offset,
-+ * in order to address up to 8 EEPROM devices on the I2C bus.
-+ *
-+ * For instance, a 2-Mbit I2C EEPROM part, addresses all its bytes,
-+ * using an 18-bit address, bit 17 to 0 and thus would use all but one bit of
-+ * the 19 bits previously mentioned. The designer would then not connect
-+ * pins 1 and 2, and pin 3 usually named "A_2" or "E2", would be connected to
-+ * either Vcc or GND. This would allow for up to two 2-Mbit parts on
-+ * the same bus, where one would be addressable with bit 18 as 1, and
-+ * the other with bit 18 of the address as 0.
-+ *
-+ * For a 2-Mbit part, bit 18 is usually known as the "Chip Enable" or
-+ * "Hardware Address Bit". This bit is compared to the load on pin 3
-+ * of the device, described above, and if there is a match, then this
-+ * device responds to the command. This way, you can connect two
-+ * 2-Mbit EEPROM devices on the same bus, but see one contiguous
-+ * memory from 0 to 7FFFFh, where address 0 to 3FFFF is in the device
-+ * whose pin 3 is connected to GND, and address 40000 to 7FFFFh is in
-+ * the 2nd device, whose pin 3 is connected to Vcc.
-+ *
-+ * This addressing you encode in the 32-bit "eeprom_addr" below,
-+ * namely the 19-bits "XYZ,A15:A0", as a single 19-bit address. For
-+ * instance, eeprom_addr = 0x6DA01, is 110_1101_1010_0000_0001, where
-+ * XYZ=110b, and A15:A0=DA01h. The XYZ bits become part of the device
-+ * address, and the rest of the address bits are sent as the memory
-+ * address bytes.
-+ *
-+ * That is, for an I2C EEPROM driver everything is controlled by
-+ * the "eeprom_addr".
-+ *
-+ * P.S. If you need to write, lock and read the Identification Page,
-+ * (M24M02-DR device only, which we do not use), change the "7" to
-+ * "0xF" in the macro below, and let the client set bit 20 to 1 in
-+ * "eeprom_addr", and set A10 to 0 to write into it, and A10 and A1 to
-+ * 1 to lock it permanently.
-+ */
-+#define MAKE_I2C_ADDR(_aa) ((0xA << 3) | (((_aa) >> 16) & 7))
-+
-+static int __amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap, u32 eeprom_addr,
- 				u8 *eeprom_buf, u16 buf_size, bool read)
+ static bool is_fru_eeprom_supported(struct amdgpu_device *adev)
  {
- 	u8 eeprom_offset_buf[EEPROM_OFFSET_SIZE];
- 	struct i2c_msg msgs[] = {
- 		{
--			.addr = slave_addr,
- 			.flags = 0,
- 			.len = EEPROM_OFFSET_SIZE,
- 			.buf = eeprom_offset_buf,
- 		},
- 		{
--			.addr = slave_addr,
- 			.flags = read ? I2C_M_RD : 0,
- 		},
- 	};
-@@ -58,6 +110,8 @@ static int __amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap,
- 	      buf_size -= len, eeprom_addr += len, eeprom_buf += len) {
- 		/* Set the EEPROM address we want to write to/read from.
- 		 */
-+		msgs[0].addr = MAKE_I2C_ADDR(eeprom_addr);
-+		msgs[1].addr = msgs[0].addr;
- 		msgs[0].buf[0] = (eeprom_addr >> 8) & 0xff;
- 		msgs[0].buf[1] = eeprom_addr & 0xff;
+@@ -62,12 +62,11 @@ static bool is_fru_eeprom_supported(struct amdgpu_device *adev)
+ }
  
-@@ -71,7 +125,7 @@ static int __amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap,
- 			 * over).
- 			 *
- 			 * As per the AT24CM02 EEPROM spec, after
--			 * writing into a page, the I2C driver MUST
-+			 * writing into a page, the I2C driver should
- 			 * terminate the transfer, i.e. in
- 			 * "i2c_transfer()" below, with a STOP
- 			 * condition, so that the self-timed write
-@@ -91,17 +145,20 @@ static int __amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap,
- 		msgs[1].len = len;
- 		msgs[1].buf = eeprom_buf;
- 
-+		/* This constitutes a START-STOP transaction.
-+		 */
- 		r = i2c_transfer(i2c_adap, msgs, ARRAY_SIZE(msgs));
- 		if (r < ARRAY_SIZE(msgs))
- 			break;
- 
- 		if (!read) {
--			/* According to the AT24CM02 EEPROM spec the
--			 * length of the self-writing cycle, tWR, is
--			 * 10 ms.
-+			/* According to EEPROM specs the length of the
-+			 * self-writing cycle, tWR (tW), is 10 ms.
- 			 *
--			 * TODO Improve to wait for first ACK for slave address after
--			 * internal write cycle done.
-+			 * TODO: Use polling on ACK, aka Acknowledge
-+			 * Polling, to minimize waiting for the
-+			 * internal write cycle to complete, as it is
-+			 * usually smaller than tWR (tW).
- 			 */
- 			msleep(10);
- 		}
-@@ -113,7 +170,6 @@ static int __amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap,
- /**
-  * amdgpu_eeprom_xfer -- Read/write from/to an I2C EEPROM device
-  * @i2c_adap: pointer to the I2C adapter to use
-- * @slave_addr: I2C address of the slave device
-  * @eeprom_addr: EEPROM address from which to read/write
-  * @eeprom_buf: pointer to data buffer to read into/write from
-  * @buf_size: the size of @eeprom_buf
-@@ -121,8 +177,7 @@ static int __amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap,
-  *
-  * Returns the number of bytes read/written; -errno on error.
-  */
--int amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap,
--		       u16 slave_addr, u16 eeprom_addr,
-+int amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap, u32 eeprom_addr,
- 		       u8 *eeprom_buf, u16 buf_size, bool read)
+ static int amdgpu_fru_read_eeprom(struct amdgpu_device *adev, uint32_t addrptr,
+-			   unsigned char *buff)
++				  unsigned char *buff)
  {
- 	const struct i2c_adapter_quirks *quirks = i2c_adap->quirks;
-@@ -136,7 +191,7 @@ int amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap,
- 		limit = quirks->max_write_len;
+ 	int ret, size;
  
- 	if (limit == 0) {
--		return __amdgpu_eeprom_xfer(i2c_adap, slave_addr, eeprom_addr,
-+		return __amdgpu_eeprom_xfer(i2c_adap, eeprom_addr,
- 					    eeprom_buf, buf_size, read);
- 	} else if (limit <= EEPROM_OFFSET_SIZE) {
- 		dev_err_ratelimited(&i2c_adap->dev,
-@@ -157,8 +212,7 @@ int amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap,
- 		      buf_size -= ps, eeprom_addr += ps, eeprom_buf += ps) {
- 			ps = min(limit, buf_size);
+-	ret = amdgpu_eeprom_xfer(&adev->pm.smu_i2c, I2C_PRODUCT_INFO_ADDR,
+-				 addrptr, buff, 1, true);
++	ret = amdgpu_eeprom_xfer(&adev->pm.smu_i2c, addrptr, buff, 1, true);
+ 	if (ret < 1) {
+ 		DRM_WARN("FRU: Failed to get size field");
+ 		return ret;
+@@ -78,8 +77,8 @@ static int amdgpu_fru_read_eeprom(struct amdgpu_device *adev, uint32_t addrptr,
+ 	 */
+ 	size = buff[0] - I2C_PRODUCT_INFO_OFFSET;
  
--			r = __amdgpu_eeprom_xfer(i2c_adap,
--						 slave_addr, eeprom_addr,
-+			r = __amdgpu_eeprom_xfer(i2c_adap, eeprom_addr,
- 						 eeprom_buf, ps, read);
- 			if (r < 0)
- 				return r;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.h
-index 9301e5678910ad..417472be2712e6 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eeprom.h
-@@ -26,9 +26,7 @@
+-	ret = amdgpu_eeprom_xfer(&adev->pm.smu_i2c, I2C_PRODUCT_INFO_ADDR,
+-				 addrptr + 1, buff, size, true);
++	ret = amdgpu_eeprom_xfer(&adev->pm.smu_i2c, addrptr + 1, buff, size,
++				 true);
+ 	if (ret < 1) {
+ 		DRM_WARN("FRU: Failed to get data field");
+ 		return ret;
+@@ -91,8 +90,8 @@ static int amdgpu_fru_read_eeprom(struct amdgpu_device *adev, uint32_t addrptr,
+ int amdgpu_fru_get_product_info(struct amdgpu_device *adev)
+ {
+ 	unsigned char buff[34];
+-	int addrptr, size;
+-	int len;
++	u32 addrptr;
++	int size, len;
  
- #include <linux/i2c.h>
+ 	if (!is_fru_eeprom_supported(adev))
+ 		return 0;
+@@ -115,7 +114,7 @@ int amdgpu_fru_get_product_info(struct amdgpu_device *adev)
+ 	 * Bytes 8-a are all 1-byte and refer to the size of the entire struct,
+ 	 * and the language field, so just start from 0xb, manufacturer size
+ 	 */
+-	addrptr = 0xb;
++	addrptr = FRU_EEPROM_MADDR + 0xb;
+ 	size = amdgpu_fru_read_eeprom(adev, addrptr, buff);
+ 	if (size < 1) {
+ 		DRM_ERROR("Failed to read FRU Manufacturer, ret:%d", size);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+index 2b981e96ce5b9e..f316fb11b16d9e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+@@ -28,11 +28,11 @@
+ #include "atom.h"
+ #include "amdgpu_eeprom.h"
  
--int amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap,
--		       u16 slave_addr, u16 eeprom_addr,
-+int amdgpu_eeprom_xfer(struct i2c_adapter *i2c_adap, u32 eeprom_addr,
- 		       u8 *eeprom_buf, u16 bytes, bool read);
+-#define EEPROM_I2C_TARGET_ADDR_VEGA20		0x50
+-#define EEPROM_I2C_TARGET_ADDR_ARCTURUS		0x54
+-#define EEPROM_I2C_TARGET_ADDR_ARCTURUS_D342	0x50
+-#define EEPROM_I2C_TARGET_ADDR_SIENNA_CICHLID   0x50
+-#define EEPROM_I2C_TARGET_ADDR_ALDEBARAN        0x50	       
++#define EEPROM_I2C_MADDR_VEGA20         0x0
++#define EEPROM_I2C_MADDR_ARCTURUS       0x40000
++#define EEPROM_I2C_MADDR_ARCTURUS_D342  0x0
++#define EEPROM_I2C_MADDR_SIENNA_CICHLID 0x0
++#define EEPROM_I2C_MADDR_ALDEBARAN      0x0
  
+ /*
+  * The 2 macros bellow represent the actual size in bytes that
+@@ -58,7 +58,6 @@
+ #define EEPROM_HDR_START 0
+ #define EEPROM_RECORD_START (EEPROM_HDR_START + EEPROM_TABLE_HEADER_SIZE)
+ #define EEPROM_MAX_RECORD_NUM ((EEPROM_SIZE_BYTES - EEPROM_TABLE_HEADER_SIZE) / EEPROM_TABLE_RECORD_SIZE)
+-#define EEPROM_ADDR_MSB_MASK GENMASK(17, 8)
+ 
+ #define to_amdgpu_device(x) (container_of(x, struct amdgpu_ras, eeprom_control))->adev
+ 
+@@ -74,43 +73,43 @@ static bool __is_ras_eeprom_supported(struct amdgpu_device *adev)
+ }
+ 
+ static bool __get_eeprom_i2c_addr_arct(struct amdgpu_device *adev,
+-				       uint16_t *i2c_addr)
++				       struct amdgpu_ras_eeprom_control *control)
+ {
+ 	struct atom_context *atom_ctx = adev->mode_info.atom_context;
+ 
+-	if (!i2c_addr || !atom_ctx)
++	if (!control || !atom_ctx)
+ 		return false;
+ 
+ 	if (strnstr(atom_ctx->vbios_version,
+ 	            "D342",
+ 		    sizeof(atom_ctx->vbios_version)))
+-		*i2c_addr = EEPROM_I2C_TARGET_ADDR_ARCTURUS_D342;
++		control->i2c_address = EEPROM_I2C_MADDR_ARCTURUS_D342;
+ 	else
+-		*i2c_addr = EEPROM_I2C_TARGET_ADDR_ARCTURUS;
++		control->i2c_address = EEPROM_I2C_MADDR_ARCTURUS;
+ 
+ 	return true;
+ }
+ 
+ static bool __get_eeprom_i2c_addr(struct amdgpu_device *adev,
+-				  uint16_t *i2c_addr)
++				  struct amdgpu_ras_eeprom_control *control)
+ {
+-	if (!i2c_addr)
++	if (!control)
+ 		return false;
+ 
+ 	switch (adev->asic_type) {
+ 	case CHIP_VEGA20:
+-		*i2c_addr = EEPROM_I2C_TARGET_ADDR_VEGA20;
++		control->i2c_address = EEPROM_I2C_MADDR_VEGA20;
+ 		break;
+ 
+ 	case CHIP_ARCTURUS:
+-		return __get_eeprom_i2c_addr_arct(adev, i2c_addr);
++		return __get_eeprom_i2c_addr_arct(adev, control);
+ 
+ 	case CHIP_SIENNA_CICHLID:
+-		*i2c_addr = EEPROM_I2C_TARGET_ADDR_SIENNA_CICHLID;
++		control->i2c_address = EEPROM_I2C_MADDR_SIENNA_CICHLID;
+ 		break;
+ 
+ 	case CHIP_ALDEBARAN:
+-		*i2c_addr = EEPROM_I2C_TARGET_ADDR_ALDEBARAN;
++		control->i2c_address = EEPROM_I2C_MADDR_ALDEBARAN;
+ 		break;
+ 
+ 	default:
+@@ -154,8 +153,9 @@ static int __update_table_header(struct amdgpu_ras_eeprom_control *control,
+ 
+ 	/* i2c may be unstable in gpu reset */
+ 	down_read(&adev->reset_sem);
+-	ret = amdgpu_eeprom_xfer(&adev->pm.smu_i2c, control->i2c_address,
+-				 EEPROM_HDR_START, buff, EEPROM_TABLE_HEADER_SIZE, false);
++	ret = amdgpu_eeprom_xfer(&adev->pm.smu_i2c,
++				 control->i2c_address + EEPROM_HDR_START,
++				 buff, EEPROM_TABLE_HEADER_SIZE, false);
+ 	up_read(&adev->reset_sem);
+ 
+ 	if (ret < 1)
+@@ -277,7 +277,7 @@ int amdgpu_ras_eeprom_reset_table(struct amdgpu_ras_eeprom_control *control)
+ }
+ 
+ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control,
+-			bool *exceed_err_limit)
++			   bool *exceed_err_limit)
+ {
+ 	int ret = 0;
+ 	struct amdgpu_device *adev = to_amdgpu_device(control);
+@@ -294,14 +294,15 @@ int amdgpu_ras_eeprom_init(struct amdgpu_ras_eeprom_control *control,
+ 	if (!adev->pm.smu_i2c.algo)
+ 		return -ENOENT;
+ 
+-	if (!__get_eeprom_i2c_addr(adev, &control->i2c_address))
++	if (!__get_eeprom_i2c_addr(adev, control))
+ 		return -EINVAL;
+ 
+ 	mutex_init(&control->tbl_mutex);
+ 
+ 	/* Read/Create table header from EEPROM address 0 */
+-	ret = amdgpu_eeprom_xfer(&adev->pm.smu_i2c, control->i2c_address,
+-				 EEPROM_HDR_START, buff, EEPROM_TABLE_HEADER_SIZE, true);
++	ret = amdgpu_eeprom_xfer(&adev->pm.smu_i2c,
++				 control->i2c_address + EEPROM_HDR_START,
++				 buff, EEPROM_TABLE_HEADER_SIZE, true);
+ 	if (ret < 1) {
+ 		DRM_ERROR("Failed to read EEPROM table header, ret:%d", ret);
+ 		return ret;
+@@ -395,8 +396,6 @@ static void __decode_table_record_from_buff(struct amdgpu_ras_eeprom_control *co
+ 
+ /*
+  * When reaching end of EEPROM memory jump back to 0 record address
+- * When next record access will go beyond EEPROM page boundary modify bits A17/A8
+- * in I2C selector to go to next page
+  */
+ static uint32_t __correct_eeprom_dest_address(uint32_t curr_address)
+ {
+@@ -409,20 +408,6 @@ static uint32_t __correct_eeprom_dest_address(uint32_t curr_address)
+ 		return EEPROM_RECORD_START;
+ 	}
+ 
+-	/*
+-	 * To check if we overflow page boundary  compare next address with
+-	 * current and see if bits 17/8 of the EEPROM address will change
+-	 * If they do start from the next 256b page
+-	 *
+-	 * https://www.st.com/resource/en/datasheet/m24m02-dr.pdf sec. 5.1.2
+-	 */
+-	if ((curr_address & EEPROM_ADDR_MSB_MASK) != (next_address & EEPROM_ADDR_MSB_MASK)) {
+-		DRM_DEBUG_DRIVER("Reached end of EEPROM memory page, jumping to next: %lx",
+-				(next_address & EEPROM_ADDR_MSB_MASK));
 -
- #endif
+-		return  (next_address & EEPROM_ADDR_MSB_MASK);
+-	}
+-
+ 	return curr_address;
+ }
+ 
+@@ -452,22 +437,20 @@ bool amdgpu_ras_eeprom_check_err_threshold(struct amdgpu_device *adev)
+ }
+ 
+ int amdgpu_ras_eeprom_process_recods(struct amdgpu_ras_eeprom_control *control,
+-					    struct eeprom_table_record *records,
+-					    bool write,
+-					    int num)
++				     struct eeprom_table_record *records,
++				     bool write, int num)
+ {
+ 	int i, ret = 0;
+ 	unsigned char *buffs, *buff;
+ 	struct eeprom_table_record *record;
+ 	struct amdgpu_device *adev = to_amdgpu_device(control);
+ 	struct amdgpu_ras *ras = amdgpu_ras_get_context(adev);
+-	u16 slave_addr;
+ 
+ 	if (!__is_ras_eeprom_supported(adev))
+ 		return 0;
+ 
+ 	buffs = kcalloc(num, EEPROM_ADDRESS_SIZE + EEPROM_TABLE_RECORD_SIZE,
+-			 GFP_KERNEL);
++			GFP_KERNEL);
+ 	if (!buffs)
+ 		return -ENOMEM;
+ 
+@@ -507,22 +490,15 @@ int amdgpu_ras_eeprom_process_recods(struct amdgpu_ras_eeprom_control *control,
+ 
+ 		control->next_addr = __correct_eeprom_dest_address(control->next_addr);
+ 
+-		/*
+-		 * Update bits 16,17 of EEPROM address in I2C address by setting them
+-		 * to bits 1,2 of Device address byte
+-		 */
+-		slave_addr = control->i2c_address |
+-			((control->next_addr & EEPROM_ADDR_MSB_MASK) >> 15);
+-
+ 		/* EEPROM table content is stored in LE format */
+ 		if (write)
+ 			__encode_table_record_to_buff(control, record, buff);
+ 
+ 		/* i2c may be unstable in gpu reset */
+ 		down_read(&adev->reset_sem);
+-		ret = amdgpu_eeprom_xfer(&adev->pm.smu_i2c, slave_addr,
+-					 control->next_addr, buff,
+-					 EEPROM_TABLE_RECORD_SIZE, write ? false : true);
++		ret = amdgpu_eeprom_xfer(&adev->pm.smu_i2c,
++					 control->i2c_address + control->next_addr,
++					 buff, EEPROM_TABLE_RECORD_SIZE, !write);
+ 		up_read(&adev->reset_sem);
+ 
+ 		if (ret < 1) {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+index 17872117097455..4c4c3d840a35c5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+@@ -44,11 +44,11 @@ struct amdgpu_ras_eeprom_table_header {
+ 
+ struct amdgpu_ras_eeprom_control {
+ 	struct amdgpu_ras_eeprom_table_header tbl_hdr;
++	u32 i2c_address; /* Base I2C 19-bit memory address */
+ 	uint32_t next_addr;
+ 	unsigned int num_recs;
+ 	struct mutex tbl_mutex;
+ 	uint32_t tbl_byte_sum;
+-	uint16_t i2c_address; // 8-bit represented address
+ };
+ 
+ /*
 -- 
 2.32.0
 
