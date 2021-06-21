@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AA293AF1B1
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Jun 2021 19:13:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 882113AF1A6
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Jun 2021 19:13:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DC146E2D7;
-	Mon, 21 Jun 2021 17:13:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16FB86E249;
+	Mon, 21 Jun 2021 17:13:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2072.outbound.protection.outlook.com [40.107.220.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B77CD6E249
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 17:13:33 +0000 (UTC)
+ (mail-co1nam11on2049.outbound.protection.outlook.com [40.107.220.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32AFC6E249
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Jun 2021 17:13:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k6rdjU0kHK0iuYjp/JRXK/UdIqEnK6NTZwBg4v/nXpxiD1uDu0BamiwjyvJR+GBHeTcL5IXZ1c6/jNCPwqbgRp8J9XJzt/Td7Qk+mMajtc6BAPF7k9VqEGm+v08dHVYCY9OwpB23dItsPlxBGsPhHZ+vd9GspYVVNZx1VfZx2BJaUgf5ITeiwizoeMvfFHbW4IZ22CgPL6XJ1DmjR1mAJYI8/Qo5/YrD/BFMIEYEoNFjhIV8itPsx7/bG7QfCQ7GikLJyhqgkdPvqmhTP/HaUlzqlUkKtK8jmDy0ioetvSPdGVUMEjtW3Zr2s6rrw6x/zahWefvKTuFd2By37qkdug==
+ b=NzhCOIbyU96T10kOh3qSHyF5hmmTOEKMJfmvI1cpWNGpJs8iYcUjJn0/Mpdp4UxcpC9tKJOjm58gH7rx6BsVhaItE3y6JkUL9yFOBV81a3Uai4j+HXP1kRKh41I74xrj2jA+3tnPl4DvaGnUljWtjUNo9gLWsp8jA04fFCFXmdpqjmDSYPKT6znRUqFKJk+epncoK5EjxGVQsVfpiVoNC1TsdDDDq66zVte4y5YryqdNoYXIfcLdhjpCIlBYHRvABVqn+LBUkZkX5stslgcNo6aXK/9i2dGRJW2o5sAwVccImiACu2dvrMgtXme5NdgHmzHUjoWZW1fhxbT916httA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hKU2TroRTEksvwYFCf0dbjhy4jhEWHNcgzEXK+sBoR8=;
- b=JQV726Eo2ru9g9Pe+7EgtziSfbNrBIHWaMr3+A2Q9F4YDUR6VkYJ0m+ydGF1TQ8wYEyoUSdz6Ocvt4AWhHSjS1JTGe3vlXRfou8niTN3xgRV8U7WTG2jro6ab8Y7cwZgsUJ8csxWxEkL/wzEnVtkb17yKQLSTOHJB+H1+/vtm1L0S9oionQVzaeFRceCdP2WqxWvth+C7rgUI9xRv6kIOv7vb+7Z9t+wX+MVjDHE66ON1pvAGVOq51sa0itYZCmBfzzwrFJZCD0z0c3wZR2Q5AZGZxFs5DRJjyEcuLvCEyE3wsUEg+id08bnWbSs3948n6AdiAnmKRrh+ioaz4PfHA==
+ bh=x6AzTUSeL0geVeI/eXTYBVsV+f6Cafrk0q3jzVEBwWs=;
+ b=ANT91NJizWIYxeckgiT0uFe2hqvzLjwPh0dbdnRHxeYp8vIWqIh6NHGNpEh3QalqQPAVxTUC9VU4d9H2q9cMed4VVIKAfqjgYE+GgoIu1feBqolMaL9F0S4vYhCNq6AXfMXTTJWoDlnA6gF0yF93E9ixhPAOMAe37m5zsPeH7kyhlz7GkRvivCQWcsX/ooMe7CrOGLRQtaJ/ZAp3QkCnPjt2IwMGaJBhoEMkwdcAdrHJ7Mo9pnbNOoa7ayTsyPISwf9dZIDi9f4rzUnymqj+3Ouzo6gOs7Ci/JcI+QVmMSE3mOLyQ/hNUvSOTKENjsC2Xg27bLEGKt3DduNZNJYMfg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hKU2TroRTEksvwYFCf0dbjhy4jhEWHNcgzEXK+sBoR8=;
- b=J5o/o07RO/z5l563IJ5ELA+zhGuRsMW464HJ4iI8glhGs1WLEvE3cLkj65sW1/ToUixEDzKsT0kQ54sEMEyCCbiLCi69hSvn2X4e31y/yU/hHJfXWcBixo8a8OW2qIS+/cl2ymglLlR0VqGuX5PeH5/t8hrmle/cNu2Q2WmTkXk=
+ bh=x6AzTUSeL0geVeI/eXTYBVsV+f6Cafrk0q3jzVEBwWs=;
+ b=LWkOCfq7jlFGYqqAU8J+1R+5S/Kp7PpdezVIz3SwQmZ88h2sFUP/hRnT1lIQ3tLG9uAn34BfL9OdicvmHdj7x37B0kAkPhADJRLTLzQgRcpv9NL2sT7IcRSsAqFUqlYWAu/XrmAQX9QDteXMAy4qFabcmHERGIdzV2au7Tm2zk8=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -41,9 +41,9 @@ Received: from DM6PR12MB3962.namprd12.prod.outlook.com
  17:13:32 +0000
 From: Luben Tuikov <luben.tuikov@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 34/43] drm/amdgpu: Simplify RAS EEPROM checksum calculations
-Date: Mon, 21 Jun 2021 13:12:12 -0400
-Message-Id: <20210621171221.5720-35-luben.tuikov@amd.com>
+Subject: [PATCH 35/43] drm/amdgpu: Use explicit cardinality for clarity
+Date: Mon, 21 Jun 2021 13:12:13 -0400
+Message-Id: <20210621171221.5720-36-luben.tuikov@amd.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210621171221.5720-1-luben.tuikov@amd.com>
 References: <20210621171221.5720-1-luben.tuikov@amd.com>
@@ -56,60 +56,53 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from localhost.localdomain (108.162.138.69) by
  YT1PR01CA0054.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2e::23) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4242.15 via Frontend Transport; Mon, 21 Jun 2021 17:13:02 +0000
+ 15.20.4242.15 via Frontend Transport; Mon, 21 Jun 2021 17:13:03 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 83fd06ab-6ecc-4754-9181-08d934d7d3e4
+X-MS-Office365-Filtering-Correlation-Id: e4191ccf-f01d-49d5-2a0e-08d934d7d458
 X-MS-TrafficTypeDiagnostic: DM6PR12MB2985:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB29851A2945E14DE9DE95B539990A9@DM6PR12MB2985.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
+X-Microsoft-Antispam-PRVS: <DM6PR12MB29854CE124CA05027082384B990A9@DM6PR12MB2985.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: M4G4bBdxl84tyBoUTAgv8b4oAIE1NL35CPDxWOjd7VUAERnmjIM++NQlsMu0QzdyY1Z00pKF1i4xGHswgokp2GcI+yCsw7nGgJ6Dve/aeZf6dYvNVzGJBXwab/+vWTvPPEPyBX7HFoa/drnzc61/eBHKUzHRThatCnaN8EAj+E3CAX5gn1z5oEFl8PJsH6sK4gBopYgO3BgFhiuJs65nYTbWBzj17N32xNjM+jQCjQziSQ9yxtAb7Y+GD3yrGUtSMBGNHkRkjgT3IpOY7Z7dLtWeEF/77DPalxKd/f4TtVX4mPJDnTxxnK5lXuB7OuuX7n5nhjkzypziMPmpgN0ZCsVOvVSgmfKSeHEx7CpRo7tfbFLz5cdzrJMxm5IUUG1qWMlBaRufifqiiOwHDcviZdGGeKgFDql5d0vpcyNHklRvf7Dw+EEL0eGo7O9GXUL0vjyvnvo1pHSVsTyQ4r9i6Gk+6WqSFNjy+Hz8PcafH5An0d8tFo3qGbZPF1O7hcHs+RoG1E8lxUG4mbrWk4Rk6NSAQVmeU+Y+k0uldOELkPXvkaIv3PWYz1LX5SvxB6jvDS/qX9ijOje8k+HnTwY7fljVWnNVw1XBA4shda1Fd4lqfVj+5HAljYm8x54UH4xJMcEHdLTLObM3F2fyD1EmvrcTRtGdCk4WrnxLiF8115c=
+X-Microsoft-Antispam-Message-Info: FOSduU4E7ztrPHd9s3E0fRqu9LfEWX5wMoJ+WNiNP3rM6jvUYC1yCEeOzwUQdcDUXpHpc/8AuU7NfvjFwgcF0OmfH7tIOlBlhvm3wCJ4O8Hd/47E3q1YxQ9BrCLrEKsaEYqddwQRhy77Hne+6Eb/B2DNAvBeAoSRAXC1kAKbi0CA23D5JtctbJSJSfpgWiB7TFq6Gflz8XLdqDL0udgZ6Fx07negm8m5YRQBVYOMOnNvlNYPKT5H9iUENvqm/4t4/F996h6Kvp9k2efkvuCpMb5OWNaHRv6UEgo6iNu8YxvOzgpi2gwnMJHSfBH6kPAqpJe21wh6WVsDbl913yNhibMD2Eri3xRdXP4VCiCyiKIQbjmNxa3iiSS8Ssd726ckvIQEcEBU6UnVNvb6hMXhxywdguNP7XGQCp0P0JWSTXv8Qnyv5VnKiBylJpjJIr7itjfd0ezbgoVOSyE7EGLhtecWt4cwOhdINWpjCG+t4UuKzMbxRs3cAdmnpE6PeHvaxZhX/U/Ny39IAkmDOelV0vhalUR/pI/2oSjSLrb2kNAUynxgQFuLo/jr5CCIK730xQZvt5MIxMYxWz8gg3ZmlCMbHyJ8A/U9gu0DutGgkkbBj0XdH8iAciwLo26HPZGDghk2oOhkTyFQb0GwWJ3Z8qbG9W2BqYDPj82SMIAtV9/F1gvTiD3T4E82cnLWKTu9
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB3962.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(39860400002)(376002)(136003)(396003)(366004)(6666004)(55236004)(8676002)(316002)(6506007)(6486002)(54906003)(44832011)(8936002)(478600001)(66476007)(66946007)(956004)(2616005)(6512007)(66556008)(2906002)(52116002)(36756003)(38100700002)(38350700002)(86362001)(5660300002)(186003)(4326008)(1076003)(83380400001)(26005)(16526019)(6916009);
+ SFS:(4636009)(346002)(39860400002)(376002)(136003)(396003)(366004)(6666004)(55236004)(8676002)(316002)(6506007)(6486002)(54906003)(44832011)(8936002)(478600001)(66476007)(66946007)(956004)(2616005)(6512007)(66556008)(2906002)(52116002)(36756003)(38100700002)(38350700002)(86362001)(5660300002)(186003)(4326008)(1076003)(83380400001)(26005)(16526019)(6916009)(69590400013);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Qzg3NlhaSmk4dGlDL0VUZXdGMldsUFVnNVMxSTNDRmswdFZ2aHRnSVVYWWlT?=
- =?utf-8?B?S1N6dlExY2pYSCs1L0xxbCtyWUtrUDlOQlVkUzUzTlV0MDFrQ1dPRGZQbVQw?=
- =?utf-8?B?SzFOaHRVVkRJM2lnYy8wRjBIbVZzRU9zMndTZGExZlJwYk8yTkFmZFdYendY?=
- =?utf-8?B?cDYyZmtpRVF5dzVmd0YrOFlPK1R3alRnUDJuUmcySnZpN1Z6L0czbHk5dnZK?=
- =?utf-8?B?TkZXeFdjVk5SeTlBS1UvRzVTbEo0YVJzUzUyc1RpQzZmNVFmckc3WVg1REhW?=
- =?utf-8?B?QlQrVTlEaU4wL1ljTVZpcHpBRWJFMExpU0FYVHIveVYxVUFUVFRoZkNCUmJF?=
- =?utf-8?B?SitDQU1TdWU5NWNoaWpxVExTWEtJby9vSmlVRW5zVWV1TjdmOVdDNUh3bzFJ?=
- =?utf-8?B?UDFZVHo3ZUdZRHR6SVBCZFZPMkQ3VkpzQTMrd3RESTZLRVFxMkUrb1dIbGhB?=
- =?utf-8?B?OXljRFhOZ0c0MCtudmtrZm5qQy9pOEcxcGs2TE54V1hpZkZHV3FXKzlUNUNl?=
- =?utf-8?B?alNFY21TQ3hCbnZIekxTRnExb2Fyckt1MExGVnNHdk1zckt5NVNUb0dCTG5W?=
- =?utf-8?B?OFYzWXloM3RrczRUTU5nS052bW8xU05RQVIxN3FnKzNKK2RJeTluQ295QjNt?=
- =?utf-8?B?dkIyVzkzZDNXNXhtaERsbEFmOXh3K0Q0YURmSkVSNjR4dXFBaXNxaHB1ajZW?=
- =?utf-8?B?MVlUSytBMENEOER0MFZwY3JkK3VhRXhrbldoZExkcFpuM041M0p2TCtKQXRx?=
- =?utf-8?B?TnZMZVUyVzEyZmtnclpUWFdqOGhYSUhmczFVV1FOWGhJUTBCWkcwdmRvMU55?=
- =?utf-8?B?cERJc2Y3bHVpOW4yUCt6UVFveldsQlNsYURnMEwrcm5wT05hMTVnWGR6eDVn?=
- =?utf-8?B?K2pQT0NTdzY5blZrc2puTjdncEhvcmx5MjY5am92dzcvMUpobnlHdk1UZFNr?=
- =?utf-8?B?dGtDQjZROHo3WWpzQ2xjM0Z5VklrYi80T0hwb2oxR0w0WW5SRWV5RG5vdXhl?=
- =?utf-8?B?RUswcjV5NVpnOVlYY25HQjBSemw0WmtQaWs1Qk14YWRDMk5lNlNzOG55N2M3?=
- =?utf-8?B?WEJUMy9xVnl4d2ZQa0Q0cnIwRVNmaTNNMk8xdXhHOG1Jd1h0VnFxT0tkNTVz?=
- =?utf-8?B?VmdkL0g5TGxKSUNvZEVnTWlWMVlmdHIvVGZmNHp1VnlPQXpWSnJ5aTFIZkMr?=
- =?utf-8?B?dzRBUHRuVE44eTNYZDU3aWdMY3hPUkg1N2t4aTZ4K2JKNy9xS3lDcVVEVDlF?=
- =?utf-8?B?SWs2RDNYdmlTS3J3K01UQ3dINE1XaUpwNE1CMGlWRU13WkhsYlgzQ0laYkVJ?=
- =?utf-8?B?b1hjWnptRFQ0dTBnbkh6dkxEbUdGdElmQWsxL25WWk1yVWZPUEpqQTRmS1Fs?=
- =?utf-8?B?aEx2eGRaQ0g3Rlp6dkowMXd0VjY0WkhBS25HNi9ya0Jkak9wSjh4ZlhJK0tp?=
- =?utf-8?B?RWFESUVRazFrakhUaHdSWEFITG14U1p5ZUlMNUlhcW1TWDQrWWxaajd5VGJP?=
- =?utf-8?B?N1R3UW1VTlo3MkdqYURFZ1dpT3o2NnkxTkl2emdtSjdiR2xxeDRFRG5Ydjc0?=
- =?utf-8?B?ZCswQ2FJdFRMUk9FZzhBbXVFTkNCNzlaRFRoRmV3REt6MVIxSm5sakdUOGsw?=
- =?utf-8?B?alFqdVNzRjN2RkVKd3E2RDk0Q0FmRlBBNko1TlF5bmVRekM0WGVHTHBNdUY2?=
- =?utf-8?B?VnUzaS9lWXVMaE00ZzR2RDZxdVpQUVFlbDlQOVo4dEZKczVlMnF4ZlRmbG8w?=
- =?utf-8?Q?jvaqkjzhgFXtQldwLk4FvL0+zUq/p22OJm7LXyJ?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3TNJAnTdlFiohrhxG8JyfWPSgIAX68Gg524kAcOShTt4fNQuAJBO1aSQmHId?=
+ =?us-ascii?Q?CmWZfLTgkCvaFF5sTXSODDbX0p5EKFlocujY3c14gqmB0ZEEyITygn0jqXnD?=
+ =?us-ascii?Q?M4gX3GD2iEu3CNOA4oqy4fZgUSmfXzWLSATJ8bIVoTwWwEQfsZN6cq3ic9xL?=
+ =?us-ascii?Q?PrFR/4j+Q317K88kI2XFh+IMARpUYEAMZcPZISvMM1X1vkN7/DnR+694sRaJ?=
+ =?us-ascii?Q?12a0DU1601tTmamh9TV9SLf6I724zTrD+6O8nqMDH1R8pdOP0Vj/N2mK+2uW?=
+ =?us-ascii?Q?IAW/6+9NIU5djbyF5mMwFAMgwznNFIIYMt4TFDCWF6JaCiotukWoxuYfPxOB?=
+ =?us-ascii?Q?sMeRS02SBpU///V5ponLDAvWKJomPY8Y1y9eUtc5tM+VsVEWTWVMnReFUvUq?=
+ =?us-ascii?Q?2BSMq5yXVtaGvW1Ku6pQ8ki0iXnZSJDDGQAgb/u2Gdwm2ESshQZQi0do0cy+?=
+ =?us-ascii?Q?P20jTbcQTnqq/BkSJq74VLOuKZhCnAX2qnssetyOMufMc977it/469i+PCRq?=
+ =?us-ascii?Q?DyxdRORRiCaEqNUM0zb8cL3U+owZOf5Z11xKsMZo2erHXJPzQEaI5YDmlHnU?=
+ =?us-ascii?Q?eE8hYbMwgxZr2QovVhzQKzHAIziqH+lFfWVVNUPHLzcmqOdeDXcKbXlV61wD?=
+ =?us-ascii?Q?bMtqwTZqh4S8fYzv3wtEUutV+GGZWWjFBaAmg27zHwUDgfy6tmlC8+TY046/?=
+ =?us-ascii?Q?SOj2bkTYPK2KSb0TikUKdpMK9xjbk0J+TbT0yFfqu4P1Ezb+8x39kuS6FSVd?=
+ =?us-ascii?Q?hhdmxefxccwO+x+0LeR/BO79DNjfgvP0PLEhxb9epWH8GOTPVMQ8JKM705iM?=
+ =?us-ascii?Q?onEeDAvTwR1rNngErMRC8dMuBfifZDvNLByrXsbs62xo9cXF3xSZ1qcuiM1P?=
+ =?us-ascii?Q?oiquPR/m4iMg3lGQl+Xw1nFxU5ciZc3s+VvyEeXgkEwHgex/YJRN7lHnUyCa?=
+ =?us-ascii?Q?OnGNJDEEIwmQE9AC9/eqp4iEwkw1JVkWv3bueqjkBsYnii7ez5vnyutr35HB?=
+ =?us-ascii?Q?5L5z5RjRFaYyaw0VnwcLYdMZyhmwnBShXg9rmzXnkJ7t2jc0dPmnBt3arTa2?=
+ =?us-ascii?Q?f31JF1VmEJwixWBKhjrI573x6VFlWoadnZmBqw4VYwiLcA9i3Qt2NT8sVv0C?=
+ =?us-ascii?Q?QM8g7MIzgx3ha4GXUpRKtf5J1MT99WvSMHUT7CvfISV/9XSZ9OWjHuxjLzS3?=
+ =?us-ascii?Q?8ZyCynMsboJcnPr4bQ4cJLBMw0rFw26XZ9naTXHfIEDkadzq9N6Yy1YPCHHL?=
+ =?us-ascii?Q?w6y9cyQcDE5WQMllahvZlZejH24KMfZNQPZC0Erera1FxLneqEIV+tFV5WEK?=
+ =?us-ascii?Q?T7vHv5xVYSLmobKqyABc9il7?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 83fd06ab-6ecc-4754-9181-08d934d7d3e4
+X-MS-Exchange-CrossTenant-Network-Message-Id: e4191ccf-f01d-49d5-2a0e-08d934d7d458
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3962.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2021 17:13:02.8959 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2021 17:13:03.6345 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ofI94mcqY26vSx7tKDbK4Fff7oCZMn+3pH4DJ3maWbUgBc1C24uO+5MVtjNV5SA9
+X-MS-Exchange-CrossTenant-UserPrincipalName: mSXOKKIQ8Nl7tC0ncB/7uO6waMJSWnOw71hE/E1tar7mfzSAhVJhjEIF4saOet+z
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2985
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -123,145 +116,233 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alexander Deucher <Alexander.Deucher@amd.com>,
- Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>,
- Luben Tuikov <luben.tuikov@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Luben Tuikov <luben.tuikov@amd.com>, John Clements <john.clements@amd.com>,
+ Guchun Chen <guchun.chen@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-UmVuYW1lIHVwZGF0ZV90YWJsZV9oZWFkZXIoKSB0bwp3cml0ZV90YWJsZV9oZWFkZXIoKSBhcyB0
-aGlzIGZ1bmN0aW9uIGlzIGFjdHVhbGx5CndyaXRpbmcgaXQgdG8gRUVQUk9NLgoKVXNlIGtlcm5l
-bCB0eXBlczsgdXNlIHU4IHRvIGNhcnJ5IGFyb3VuZCB0aGUKY2hlY2tzdW0sIGluIG9yZGVyIHRv
-IHRha2UgYWR2YW50YWdlIG9mIGFyaXRobWV0aWMKbW9kdWxvIDgtYml0cyAoMjU2KS4KClRpZHkg
-dXAgdG8gODAgY29sdW1ucy4KCldoZW4gdXBkYXRpbmcgdGhlIGNoZWNrc3VtLCBqdXN0IHJlY2Fs
-Y3VsYXRlIHRoZQp3aG9sZSB0aGluZy4KCkNjOiBBbGV4YW5kZXIgRGV1Y2hlciA8QWxleGFuZGVy
-LkRldWNoZXJAYW1kLmNvbT4KQ2M6IEFuZHJleSBHcm9kem92c2t5IDxBbmRyZXkuR3JvZHpvdnNr
-eUBhbWQuY29tPgpTaWduZWQtb2ZmLWJ5OiBMdWJlbiBUdWlrb3YgPGx1YmVuLnR1aWtvdkBhbWQu
-Y29tPgpBY2tlZC1ieTogQWxleGFuZGVyIERldWNoZXIgPEFsZXhhbmRlci5EZXVjaGVyQGFtZC5j
-b20+Ci0tLQogLi4uL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzX2VlcHJvbS5jICAgIHwg
-OTggKysrKysrKysrLS0tLS0tLS0tLQogLi4uL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFz
-X2VlcHJvbS5oICAgIHwgIDIgKy0KIDIgZmlsZXMgY2hhbmdlZCwgNTAgaW5zZXJ0aW9ucygrKSwg
-NTAgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
-YW1kZ3B1X3Jhc19lZXByb20uYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9y
-YXNfZWVwcm9tLmMKaW5kZXggN2QwZjllMWU2MmRjNGYuLjU0ZWYzMTU5NGFjY2Q5IDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzX2VlcHJvbS5jCisrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9yYXNfZWVwcm9tLmMKQEAgLTE0MSw4
-ICsxNDEsOCBAQCBzdGF0aWMgdm9pZCBfX2RlY29kZV90YWJsZV9oZWFkZXJfZnJvbV9idWZmKHN0
-cnVjdCBhbWRncHVfcmFzX2VlcHJvbV90YWJsZV9oZWFkZQogCWhkci0+Y2hlY2tzdW0JICAgICAg
-PSBsZTMyX3RvX2NwdShwcFs0XSk7CiB9CiAKLXN0YXRpYyBpbnQgX191cGRhdGVfdGFibGVfaGVh
-ZGVyKHN0cnVjdCBhbWRncHVfcmFzX2VlcHJvbV9jb250cm9sICpjb250cm9sLAotCQkJCSB1bnNp
-Z25lZCBjaGFyICpidWZmKQorc3RhdGljIGludCBfX3dyaXRlX3RhYmxlX2hlYWRlcihzdHJ1Y3Qg
-YW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCAqY29udHJvbCwKKwkJCQl1bnNpZ25lZCBjaGFyICpi
-dWZmKQogewogCWludCByZXQgPSAwOwogCXN0cnVjdCBhbWRncHVfZGV2aWNlICphZGV2ID0gdG9f
-YW1kZ3B1X2RldmljZShjb250cm9sKTsKQEAgLTE2Miw2OSArMTYyLDc0IEBAIHN0YXRpYyBpbnQg
-X191cGRhdGVfdGFibGVfaGVhZGVyKHN0cnVjdCBhbWRncHVfcmFzX2VlcHJvbV9jb250cm9sICpj
-b250cm9sLAogCXJldHVybiByZXQ7CiB9CiAKLXN0YXRpYyB1aW50MzJfdCAgX19jYWxjX2hkcl9i
-eXRlX3N1bShzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCAqY29udHJvbCkKK3N0YXRp
-YyB1OCBfX2NhbGNfaGRyX2J5dGVfc3VtKGNvbnN0IHN0cnVjdCBhbWRncHVfcmFzX2VlcHJvbV9j
-b250cm9sICpjb250cm9sKQogewogCWludCBpOwotCXVpbnQzMl90IHRibF9zdW0gPSAwOworCXU4
-IGhkcl9zdW0gPSAwOworCXU4ICAqcDsKKwlzaXplX3Qgc3o7CiAKIAkvKiBIZWFkZXIgY2hlY2tz
-dW0sIHNraXAgY2hlY2tzdW0gZmllbGQgaW4gdGhlIGNhbGN1bGF0aW9uICovCi0JZm9yIChpID0g
-MDsgaSA8IHNpemVvZihjb250cm9sLT50YmxfaGRyKSAtIHNpemVvZihjb250cm9sLT50YmxfaGRy
-LmNoZWNrc3VtKTsgaSsrKQotCQl0Ymxfc3VtICs9ICooKCh1bnNpZ25lZCBjaGFyICopJmNvbnRy
-b2wtPnRibF9oZHIpICsgaSk7CisJc3ogPSBzaXplb2YoY29udHJvbC0+dGJsX2hkcikgLSBzaXpl
-b2YoY29udHJvbC0+dGJsX2hkci5jaGVja3N1bSk7CisJcCA9ICh1OCAqKSAmY29udHJvbC0+dGJs
-X2hkcjsKKwlmb3IgKGkgPSAwOyBpIDwgc3o7IGkrKywgcCsrKQorCQloZHJfc3VtICs9ICpwOwog
-Ci0JcmV0dXJuIHRibF9zdW07CisJcmV0dXJuIGhkcl9zdW07CiB9CiAKLXN0YXRpYyB1aW50MzJf
-dCAgX19jYWxjX3JlY3NfYnl0ZV9zdW0oc3RydWN0IGVlcHJvbV90YWJsZV9yZWNvcmQgKnJlY29y
-ZHMsCi0JCQkJICAgICAgaW50IG51bSkKK3N0YXRpYyB1OCBfX2NhbGNfcmVjc19ieXRlX3N1bShj
-b25zdCBzdHJ1Y3QgZWVwcm9tX3RhYmxlX3JlY29yZCAqcmVjb3JkLAorCQkJICAgICAgIGNvbnN0
-IGludCBudW0pCiB7CiAJaW50IGksIGo7Ci0JdWludDMyX3QgdGJsX3N1bSA9IDA7CisJdTggIHRi
-bF9zdW0gPSAwOworCisJaWYgKCFyZWNvcmQpCisJCXJldHVybiAwOwogCiAJLyogUmVjb3JkcyBj
-aGVja3N1bSAqLwogCWZvciAoaSA9IDA7IGkgPCBudW07IGkrKykgewotCQlzdHJ1Y3QgZWVwcm9t
-X3RhYmxlX3JlY29yZCAqcmVjb3JkID0gJnJlY29yZHNbaV07CisJCXU4ICpwID0gKHU4ICopICZy
-ZWNvcmRbaV07CiAKLQkJZm9yIChqID0gMDsgaiA8IHNpemVvZigqcmVjb3JkKTsgaisrKSB7Ci0J
-CQl0Ymxfc3VtICs9ICooKCh1bnNpZ25lZCBjaGFyICopcmVjb3JkKSArIGopOwotCQl9CisJCWZv
-ciAoaiA9IDA7IGogPCBzaXplb2YoKnJlY29yZCk7IGorKywgcCsrKQorCQkJdGJsX3N1bSArPSAq
-cDsKIAl9CiAKIAlyZXR1cm4gdGJsX3N1bTsKIH0KIAotc3RhdGljIGlubGluZSB1aW50MzJfdCAg
-X19jYWxjX3RibF9ieXRlX3N1bShzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCAqY29u
-dHJvbCwKLQkJCQkgIHN0cnVjdCBlZXByb21fdGFibGVfcmVjb3JkICpyZWNvcmRzLCBpbnQgbnVt
-KQorc3RhdGljIGlubGluZSB1OAorX19jYWxjX3RibF9ieXRlX3N1bShzdHJ1Y3QgYW1kZ3B1X3Jh
-c19lZXByb21fY29udHJvbCAqY29udHJvbCwKKwkJICAgIHN0cnVjdCBlZXByb21fdGFibGVfcmVj
-b3JkICpyZWNvcmRzLCBpbnQgbnVtKQogewotCXJldHVybiBfX2NhbGNfaGRyX2J5dGVfc3VtKGNv
-bnRyb2wpICsgX19jYWxjX3JlY3NfYnl0ZV9zdW0ocmVjb3JkcywgbnVtKTsKKwlyZXR1cm4gX19j
-YWxjX2hkcl9ieXRlX3N1bShjb250cm9sKSArCisJCV9fY2FsY19yZWNzX2J5dGVfc3VtKHJlY29y
-ZHMsIG51bSk7CiB9CiAKLS8qIENoZWNrc3VtID0gMjU2IC0oKHN1bSBvZiBhbGwgdGFibGUgZW50
-cmllcykgbW9kIDI1NinCoCovCiBzdGF0aWMgdm9pZCBfX3VwZGF0ZV90YmxfY2hlY2tzdW0oc3Ry
-dWN0IGFtZGdwdV9yYXNfZWVwcm9tX2NvbnRyb2wgKmNvbnRyb2wsCi0JCQkJICBzdHJ1Y3QgZWVw
-cm9tX3RhYmxlX3JlY29yZCAqcmVjb3JkcywgaW50IG51bSwKLQkJCQkgIHVpbnQzMl90IG9sZF9o
-ZHJfYnl0ZV9zdW0pCisJCQkJICBzdHJ1Y3QgZWVwcm9tX3RhYmxlX3JlY29yZCAqcmVjb3Jkcywg
-aW50IG51bSkKIHsKLQkvKgotCSAqIFRoaXMgd2lsbCB1cGRhdGUgdGhlIHRhYmxlIHN1bSB3aXRo
-IG5ldyByZWNvcmRzLgotCSAqCi0JICogVE9ETzogV2hhdCBoYXBwZW5zIHdoZW4gdGhlIEVFUFJP
-TSB0YWJsZSBpcyB0byBiZSB3cmFwcGVkIGFyb3VuZAotCSAqIGFuZCBvbGQgcmVjb3JkcyBmcm9t
-IHN0YXJ0IHdpbGwgZ2V0IG92ZXJyaWRkZW4uCi0JICovCi0KLQkvKiBuZWVkIHRvIHJlY2FsY3Vs
-YXRlIHVwZGF0ZWQgaGVhZGVyIGJ5dGUgc3VtICovCi0JY29udHJvbC0+dGJsX2J5dGVfc3VtIC09
-IG9sZF9oZHJfYnl0ZV9zdW07Ci0JY29udHJvbC0+dGJsX2J5dGVfc3VtICs9IF9fY2FsY190Ymxf
-Ynl0ZV9zdW0oY29udHJvbCwgcmVjb3JkcywgbnVtKTsKKwl1OCB2OwogCi0JY29udHJvbC0+dGJs
-X2hkci5jaGVja3N1bSA9IDI1NiAtIChjb250cm9sLT50YmxfYnl0ZV9zdW0gJSAyNTYpOworCWNv
-bnRyb2wtPnRibF9ieXRlX3N1bSA9IF9fY2FsY190YmxfYnl0ZV9zdW0oY29udHJvbCwgcmVjb3Jk
-cywgbnVtKTsKKwkvKiBBdm9pZCAzMi1iaXQgc2lnbiBleHRlbnNpb24uICovCisJdiA9IC1jb250
-cm9sLT50YmxfYnl0ZV9zdW07CisJY29udHJvbC0+dGJsX2hkci5jaGVja3N1bSA9IHY7CiB9CiAK
-LS8qIHRhYmxlIHN1bSBtb2QgMjU2ICsgY2hlY2tzdW0gbXVzdCBlcXVhbHMgMjU2ICovCi1zdGF0
-aWMgYm9vbCBfX3ZhbGlkYXRlX3RibF9jaGVja3N1bShzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21f
-Y29udHJvbCAqY29udHJvbCwKLQkJCSAgICBzdHJ1Y3QgZWVwcm9tX3RhYmxlX3JlY29yZCAqcmVj
-b3JkcywgaW50IG51bSkKK3N0YXRpYyBib29sIF9fdmVyaWZ5X3RibF9jaGVja3N1bShzdHJ1Y3Qg
-YW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCAqY29udHJvbCwKKwkJCQkgIHN0cnVjdCBlZXByb21f
-dGFibGVfcmVjb3JkICpyZWNvcmRzLAorCQkJCSAgaW50IG51bSkKIHsKKwl1OCByZXN1bHQ7CisK
-IAljb250cm9sLT50YmxfYnl0ZV9zdW0gPSBfX2NhbGNfdGJsX2J5dGVfc3VtKGNvbnRyb2wsIHJl
-Y29yZHMsIG51bSk7CiAKLQlpZiAoY29udHJvbC0+dGJsX2hkci5jaGVja3N1bSArIChjb250cm9s
-LT50YmxfYnl0ZV9zdW0gJSAyNTYpICE9IDI1NikgewotCQlEUk1fV0FSTigiQ2hlY2tzdW0gbWlz
-bWF0Y2gsIGNoZWNrc3VtOiAldSAiLCBjb250cm9sLT50YmxfaGRyLmNoZWNrc3VtKTsKKwlyZXN1
-bHQgPSAodTgpY29udHJvbC0+dGJsX2hkci5jaGVja3N1bSArIGNvbnRyb2wtPnRibF9ieXRlX3N1
-bTsKKwlpZiAocmVzdWx0KSB7CisJCURSTV9XQVJOKCJSQVMgdGFibGUgY2hlY2tzdW0gbWlzbWF0
-Y2g6IHN0b3JlZDoweCUwMlggd2FudHM6MHglMDJoaFgiLAorCQkJIGNvbnRyb2wtPnRibF9oZHIu
-Y2hlY2tzdW0sCisJCQkgLWNvbnRyb2wtPnRibF9ieXRlX3N1bSk7CiAJCXJldHVybiBmYWxzZTsK
-IAl9CiAKQEAgLTIzMiw4ICsyMzcsOCBAQCBzdGF0aWMgYm9vbCBfX3ZhbGlkYXRlX3RibF9jaGVj
-a3N1bShzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCAqY29udHJvbCwKIH0KIAogc3Rh
-dGljIGludCBhbWRncHVfcmFzX2VlcHJvbV9jb3JyZWN0X2hlYWRlcl90YWcoCi0JCQkJc3RydWN0
-IGFtZGdwdV9yYXNfZWVwcm9tX2NvbnRyb2wgKmNvbnRyb2wsCi0JCQkJdWludDMyX3QgaGVhZGVy
-KQorCXN0cnVjdCBhbWRncHVfcmFzX2VlcHJvbV9jb250cm9sICpjb250cm9sLAorCXVpbnQzMl90
-IGhlYWRlcikKIHsKIAl1bnNpZ25lZCBjaGFyIGJ1ZmZbUkFTX1RBQkxFX0hFQURFUl9TSVpFXTsK
-IAlzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21fdGFibGVfaGVhZGVyICpoZHIgPSAmY29udHJvbC0+
-dGJsX2hkcjsKQEAgLTI0Myw3ICsyNDgsNyBAQCBzdGF0aWMgaW50IGFtZGdwdV9yYXNfZWVwcm9t
-X2NvcnJlY3RfaGVhZGVyX3RhZygKIAogCW11dGV4X2xvY2soJmNvbnRyb2wtPnRibF9tdXRleCk7
-CiAJaGRyLT5oZWFkZXIgPSBoZWFkZXI7Ci0JcmV0ID0gX191cGRhdGVfdGFibGVfaGVhZGVyKGNv
-bnRyb2wsIGJ1ZmYpOworCXJldCA9IF9fd3JpdGVfdGFibGVfaGVhZGVyKGNvbnRyb2wsIGJ1ZmYp
-OwogCW11dGV4X3VubG9jaygmY29udHJvbC0+dGJsX211dGV4KTsKIAogCXJldHVybiByZXQ7CkBA
-IC0yNjIsMTEgKzI2Nyw5IEBAIGludCBhbWRncHVfcmFzX2VlcHJvbV9yZXNldF90YWJsZShzdHJ1
-Y3QgYW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCAqY29udHJvbCkKIAloZHItPmZpcnN0X3JlY19v
-ZmZzZXQgPSBSQVNfUkVDT1JEX1NUQVJUOwogCWhkci0+dGJsX3NpemUgPSBSQVNfVEFCTEVfSEVB
-REVSX1NJWkU7CiAKLQljb250cm9sLT50YmxfYnl0ZV9zdW0gPSAwOwotCV9fdXBkYXRlX3RibF9j
-aGVja3N1bShjb250cm9sLCBOVUxMLCAwLCAwKTsKKwlfX3VwZGF0ZV90YmxfY2hlY2tzdW0oY29u
-dHJvbCwgTlVMTCwgMCk7CiAJY29udHJvbC0+bmV4dF9hZGRyID0gUkFTX1JFQ09SRF9TVEFSVDsK
-LQotCXJldCA9IF9fdXBkYXRlX3RhYmxlX2hlYWRlcihjb250cm9sLCBidWZmKTsKKwlyZXQgPSBf
-X3dyaXRlX3RhYmxlX2hlYWRlcihjb250cm9sLCBidWZmKTsKIAogCW11dGV4X3VubG9jaygmY29u
-dHJvbC0+dGJsX211dGV4KTsKIApAQCAtNTIxLDggKzUyNCw2IEBAIHN0YXRpYyBpbnQgYW1kZ3B1
-X3Jhc19lZXByb21feGZlcihzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCAqY29udHJv
-bCwKIAl9CiAKIAlpZiAod3JpdGUpIHsKLQkJdWludDMyX3Qgb2xkX2hkcl9ieXRlX3N1bSA9IF9f
-Y2FsY19oZHJfYnl0ZV9zdW0oY29udHJvbCk7Ci0KIAkJLyoKIAkJICogVXBkYXRlIHRhYmxlIGhl
-YWRlciB3aXRoIHNpemUgYW5kIENSQyBhbmQgYWNjb3VudCBmb3IgdGFibGUKIAkJICogd3JhcCBh
-cm91bmQgd2hlcmUgdGhlIGFzc3VtcHRpb24gaXMgdGhhdCB3ZSB0cmVhdCBpdCBhcyBlbXB0eQpA
-QCAtNTM3LDEwICs1MzgsOSBAQCBzdGF0aWMgaW50IGFtZGdwdV9yYXNfZWVwcm9tX3hmZXIoc3Ry
-dWN0IGFtZGdwdV9yYXNfZWVwcm9tX2NvbnRyb2wgKmNvbnRyb2wsCiAJCQljb250cm9sLT50Ymxf
-aGRyLnRibF9zaXplID0gUkFTX1RBQkxFX0hFQURFUl9TSVpFICsKIAkJCWNvbnRyb2wtPm51bV9y
-ZWNzICogUkFTX1RBQkxFX1JFQ09SRF9TSVpFOwogCi0JCV9fdXBkYXRlX3RibF9jaGVja3N1bShj
-b250cm9sLCByZWNvcmRzLCBudW0sIG9sZF9oZHJfYnl0ZV9zdW0pOwotCi0JCV9fdXBkYXRlX3Rh
-YmxlX2hlYWRlcihjb250cm9sLCBidWZmcyk7Ci0JfSBlbHNlIGlmICghX192YWxpZGF0ZV90Ymxf
-Y2hlY2tzdW0oY29udHJvbCwgcmVjb3JkcywgbnVtKSkgeworCQlfX3VwZGF0ZV90YmxfY2hlY2tz
-dW0oY29udHJvbCwgcmVjb3JkcywgbnVtKTsKKwkJX193cml0ZV90YWJsZV9oZWFkZXIoY29udHJv
-bCwgYnVmZnMpOworCX0gZWxzZSBpZiAoIV9fdmVyaWZ5X3RibF9jaGVja3N1bShjb250cm9sLCBy
-ZWNvcmRzLCBudW0pKSB7CiAJCURSTV9XQVJOKCJFRVBST00gVGFibGUgY2hlY2tzdW0gbWlzbWF0
-Y2ghIik7CiAJCS8qIFRPRE8gVW5jb21tZW50IHdoZW4gRUVQUk9NIHJlYWQvd3JpdGUgaXMgcmVs
-bGlhYmxlICovCiAJCS8qIHJldCA9IC1FSU87ICovCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vYW1kL2FtZGdwdS9hbWRncHVfcmFzX2VlcHJvbS5oIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
-bWRncHUvYW1kZ3B1X3Jhc19lZXByb20uaAppbmRleCBmYTljNTA5YThlMmYyYi4uNDkwNmVkOWZi
-OGNkZDMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9yYXNf
-ZWVwcm9tLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3Jhc19lZXBy
-b20uaApAQCAtNDgsNyArNDgsNyBAQCBzdHJ1Y3QgYW1kZ3B1X3Jhc19lZXByb21fY29udHJvbCB7
-CiAJdWludDMyX3QgbmV4dF9hZGRyOwogCXVuc2lnbmVkIGludCBudW1fcmVjczsKIAlzdHJ1Y3Qg
-bXV0ZXggdGJsX211dGV4OwotCXVpbnQzMl90IHRibF9ieXRlX3N1bTsKKwl1OCB0YmxfYnl0ZV9z
-dW07CiB9OwogCiAvKgotLSAKMi4zMi4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2FtZC1nZngK
+RAS_MAX_RECORD_NUM may mean the maximum record
+number, as in the maximum house number on your
+street, or it may mean the maximum number of
+records, as in the count of records, which is also
+a number. To make this distinction whether the
+number is ordinal (index) or cardinal (count),
+rename this macro to RAS_MAX_RECORD_COUNT.
+
+This makes it easy to understand what it refers
+to, especially when we compute quantities such as,
+how many records do we have left in the table,
+especially when there are so many other numbers,
+quantities and numerical macros around.
+
+Also rename the long,
+amdgpu_ras_eeprom_get_record_max_length() to the
+more succinct and clear,
+amdgpu_ras_eeprom_max_record_count().
+
+When computing the threshold, which also deals
+with counts, i.e. "how many", use cardinal
+"max_eeprom_records_count", than the quantitative
+"max_eeprom_records_len".
+
+Simplify the logic here and there, as well.
+
+Cc: Guchun Chen <guchun.chen@amd.com>
+Cc: John Clements <john.clements@amd.com>
+Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Alexander Deucher <Alexander.Deucher@amd.com>
+Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
+Acked-by: Alexander Deucher <Alexander.Deucher@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  9 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       | 50 ++++++++-----------
+ .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c    |  8 +--
+ .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h    |  2 +-
+ 4 files changed, 30 insertions(+), 39 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 80dab0c6e19ebb..406043c9906425 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -868,11 +868,10 @@ MODULE_PARM_DESC(reset_method, "GPU reset method (-1 = auto (default), 0 = legac
+ module_param_named(reset_method, amdgpu_reset_method, int, 0444);
+ 
+ /**
+- * DOC: bad_page_threshold (int)
+- * Bad page threshold is to specify the threshold value of faulty pages
+- * detected by RAS ECC, that may result in GPU entering bad status if total
+- * faulty pages by ECC exceed threshold value and leave it for user's further
+- * check.
++ * DOC: bad_page_threshold (int) Bad page threshold is specifies the
++ * threshold value of faulty pages detected by RAS ECC, which may
++ * result in the GPU entering bad status when the number of total
++ * faulty pages by ECC exceeds the threshold value.
+  */
+ MODULE_PARM_DESC(bad_page_threshold, "Bad page threshold(-1 = auto(default value), 0 = disable bad page retirement)");
+ module_param_named(bad_page_threshold, amdgpu_bad_page_threshold, int, 0444);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index 64054a825b7421..c7ad90483f21d3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -71,8 +71,8 @@ const char *ras_block_string[] = {
+ /* inject address is 52 bits */
+ #define	RAS_UMC_INJECT_ADDR_LIMIT	(0x1ULL << 52)
+ 
+-/* typical ECC bad page rate(1 bad page per 100MB VRAM) */
+-#define RAS_BAD_PAGE_RATE		(100 * 1024 * 1024ULL)
++/* typical ECC bad page rate is 1 bad page per 100MB VRAM */
++#define RAS_BAD_PAGE_COVER              (100 * 1024 * 1024ULL)
+ 
+ enum amdgpu_ras_retire_page_reservation {
+ 	AMDGPU_RAS_RETIRE_PAGE_RESERVED,
+@@ -1841,27 +1841,24 @@ int amdgpu_ras_save_bad_pages(struct amdgpu_device *adev)
+ static int amdgpu_ras_load_bad_pages(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_ras_eeprom_control *control =
+-					&adev->psp.ras.ras->eeprom_control;
+-	struct eeprom_table_record *bps = NULL;
+-	int ret = 0;
++		&adev->psp.ras.ras->eeprom_control;
++	struct eeprom_table_record *bps;
++	int ret;
+ 
+ 	/* no bad page record, skip eeprom access */
+-	if (!control->num_recs || (amdgpu_bad_page_threshold == 0))
+-		return ret;
++	if (control->num_recs == 0 || amdgpu_bad_page_threshold == 0)
++		return 0;
+ 
+ 	bps = kcalloc(control->num_recs, sizeof(*bps), GFP_KERNEL);
+ 	if (!bps)
+ 		return -ENOMEM;
+ 
+-	if (amdgpu_ras_eeprom_read(control, bps, control->num_recs)) {
++	ret = amdgpu_ras_eeprom_read(control, bps, control->num_recs);
++	if (ret)
+ 		dev_err(adev->dev, "Failed to load EEPROM table records!");
+-		ret = -EIO;
+-		goto out;
+-	}
+-
+-	ret = amdgpu_ras_add_bad_pages(adev, bps, control->num_recs);
++	else
++		ret = amdgpu_ras_add_bad_pages(adev, bps, control->num_recs);
+ 
+-out:
+ 	kfree(bps);
+ 	return ret;
+ }
+@@ -1901,11 +1898,9 @@ static bool amdgpu_ras_check_bad_page(struct amdgpu_device *adev,
+ }
+ 
+ static void amdgpu_ras_validate_threshold(struct amdgpu_device *adev,
+-					uint32_t max_length)
++					  uint32_t max_count)
+ {
+ 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
+-	int tmp_threshold = amdgpu_bad_page_threshold;
+-	u64 val;
+ 
+ 	/*
+ 	 * Justification of value bad_page_cnt_threshold in ras structure
+@@ -1926,18 +1921,15 @@ static void amdgpu_ras_validate_threshold(struct amdgpu_device *adev,
+ 	 *      take no effect.
+ 	 */
+ 
+-	if (tmp_threshold < -1)
+-		tmp_threshold = -1;
+-	else if (tmp_threshold > max_length)
+-		tmp_threshold = max_length;
++	if (amdgpu_bad_page_threshold < 0) {
++		u64 val = adev->gmc.mc_vram_size;
+ 
+-	if (tmp_threshold == -1) {
+-		val = adev->gmc.mc_vram_size;
+-		do_div(val, RAS_BAD_PAGE_RATE);
++		do_div(val, RAS_BAD_PAGE_COVER);
+ 		con->bad_page_cnt_threshold = min(lower_32_bits(val),
+-						max_length);
++						  max_count);
+ 	} else {
+-		con->bad_page_cnt_threshold = tmp_threshold;
++		con->bad_page_cnt_threshold = min_t(int, max_count,
++						    amdgpu_bad_page_threshold);
+ 	}
+ }
+ 
+@@ -1945,7 +1937,7 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
+ 	struct ras_err_handler_data **data;
+-	uint32_t max_eeprom_records_len = 0;
++	u32  max_eeprom_records_count = 0;
+ 	bool exc_err_limit = false;
+ 	int ret;
+ 
+@@ -1965,8 +1957,8 @@ int amdgpu_ras_recovery_init(struct amdgpu_device *adev)
+ 	atomic_set(&con->in_recovery, 0);
+ 	con->adev = adev;
+ 
+-	max_eeprom_records_len = amdgpu_ras_eeprom_get_record_max_length();
+-	amdgpu_ras_validate_threshold(adev, max_eeprom_records_len);
++	max_eeprom_records_count = amdgpu_ras_eeprom_max_record_count();
++	amdgpu_ras_validate_threshold(adev, max_eeprom_records_count);
+ 
+ 	/* Todo: During test the SMU might fail to read the eeprom through I2C
+ 	 * when the GPU is pending on XGMI reset during probe time
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+index 54ef31594accd9..21e1e59e4857ff 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+@@ -54,7 +54,7 @@
+ #define RAS_TBL_SIZE_BYTES      (256 * 1024)
+ #define RAS_HDR_START           0
+ #define RAS_RECORD_START        (RAS_HDR_START + RAS_TABLE_HEADER_SIZE)
+-#define RAS_MAX_RECORD_NUM      ((RAS_TBL_SIZE_BYTES - RAS_TABLE_HEADER_SIZE) \
++#define RAS_MAX_RECORD_COUNT    ((RAS_TBL_SIZE_BYTES - RAS_TABLE_HEADER_SIZE) \
+ 				 / RAS_TABLE_RECORD_SIZE)
+ 
+ #define to_amdgpu_device(x) (container_of(x, struct amdgpu_ras, eeprom_control))->adev
+@@ -532,7 +532,7 @@ static int amdgpu_ras_eeprom_xfer(struct amdgpu_ras_eeprom_control *control,
+ 		 * TODO - Check the assumption is correct
+ 		 */
+ 		control->num_recs += num;
+-		control->num_recs %= RAS_MAX_RECORD_NUM;
++		control->num_recs %= RAS_MAX_RECORD_COUNT;
+ 		control->tbl_hdr.tbl_size += RAS_TABLE_RECORD_SIZE * num;
+ 		if (control->tbl_hdr.tbl_size > RAS_TBL_SIZE_BYTES)
+ 			control->tbl_hdr.tbl_size = RAS_TABLE_HEADER_SIZE +
+@@ -568,9 +568,9 @@ int amdgpu_ras_eeprom_write(struct amdgpu_ras_eeprom_control *control,
+ 	return amdgpu_ras_eeprom_xfer(control, records, num, true);
+ }
+ 
+-inline uint32_t amdgpu_ras_eeprom_get_record_max_length(void)
++inline uint32_t amdgpu_ras_eeprom_max_record_count(void)
+ {
+-	return RAS_MAX_RECORD_NUM;
++	return RAS_MAX_RECORD_COUNT;
+ }
+ 
+ /* Used for testing if bugs encountered */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+index 4906ed9fb8cdd3..504729b8053759 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.h
+@@ -88,7 +88,7 @@ int amdgpu_ras_eeprom_read(struct amdgpu_ras_eeprom_control *control,
+ int amdgpu_ras_eeprom_write(struct amdgpu_ras_eeprom_control *control,
+ 			    struct eeprom_table_record *records, const u32 num);
+ 
+-inline uint32_t amdgpu_ras_eeprom_get_record_max_length(void);
++inline uint32_t amdgpu_ras_eeprom_max_record_count(void);
+ 
+ void amdgpu_ras_eeprom_test(struct amdgpu_ras_eeprom_control *control);
+ 
+-- 
+2.32.0
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
