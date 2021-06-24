@@ -1,28 +1,26 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2834F3B3D5B
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Jun 2021 09:28:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE0CC3B3D5A
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Jun 2021 09:28:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 534116ECDD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39ADC6ECDC;
 	Fri, 25 Jun 2021 07:28:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 884D86EAB4;
- Thu, 24 Jun 2021 08:12:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8CCC6EB86;
+ Thu, 24 Jun 2021 13:22:26 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 01CD167373; Thu, 24 Jun 2021 10:12:38 +0200 (CEST)
-Date: Thu, 24 Jun 2021 10:12:37 +0200
+ id 6FB1567373; Thu, 24 Jun 2021 15:22:23 +0200 (CEST)
+Date: Thu, 24 Jun 2021 15:22:23 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Subject: Re: [Linaro-mm-sig] [PATCH v3 1/2] habanalabs: define uAPI to
  export FD for DMA-BUF
-Message-ID: <20210624081237.GA30289@lst.de>
-References: <20210622154027.GS1096940@ziepe.ca>
- <09df4a03-d99c-3949-05b2-8b49c71a109e@amd.com>
- <20210622160538.GT1096940@ziepe.ca>
+Message-ID: <20210624132223.GA22258@lst.de>
+References: <20210622160538.GT1096940@ziepe.ca>
  <d600a638-9e55-6249-b574-0986cd5cea1e@gmail.com>
  <20210623182435.GX1096940@ziepe.ca>
  <CAFCwf111O0_YB_tixzEUmaKpGAHMNvMaOes2AfMD4x68Am4Yyg@mail.gmail.com>
@@ -30,9 +28,11 @@ References: <20210622154027.GS1096940@ziepe.ca>
  <CAFCwf12tW_WawFfAfrC8bgVhTRnDA7DuM+0V8w3JsUZpA2j84w@mail.gmail.com>
  <20210624053421.GA25165@lst.de>
  <9571ac7c-3a58-b013-b849-e26c3727e9b2@amd.com>
+ <20210624081237.GA30289@lst.de>
+ <899fe0ce-b6d7-c138-04b6-4b12405f8d93@amd.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <9571ac7c-3a58-b013-b849-e26c3727e9b2@amd.com>
+In-Reply-To: <899fe0ce-b6d7-c138-04b6-4b12405f8d93@amd.com>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Fri, 25 Jun 2021 07:28:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -64,46 +64,35 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jun 24, 2021 at 10:07:14AM +0200, Christian K=F6nig wrote:
-> The key point is that accessing the underlying pages even when DMA-bufs a=
-re =
+On Thu, Jun 24, 2021 at 11:52:47AM +0200, Christian K=F6nig wrote:
+> I've already converted a bunch of the GPU drivers, but there are at least=
+ 6 =
 
-> backed by system memory is illegal. Daniel even created a patch which =
+> GPU still needing to be fixed and on top of that comes VA-API and a few =
 
-> mangles the page pointers in sg_tables used by DMA-buf to make sure that =
+> others.
+>
+> What are your plans for the DMA mapping subsystem?
 
-> people don't try to use them.
+Building a new API that allows batched DMA mapping without the scatterlist.
+The main input for my use case would be bio_vecs, but I plan to make it
+a little flexible, and the output would be a list of [dma_addr,len]
+tuples, with the API being flexible enough to just return a single
+[dma_addr,len] for the common IOMMU coalescing case.
 
-Which is another goddamn layering violation of a subsystem that has no
-business at all poking into the scatterlist structure, yes.
+>
+>> Btw, one thing I noticed when looking over the dma-buf instances is that
+>> there is a lot of duplicated code for creating a sg_table from pages,
+>> and then mapping it.  It would be good if we could move toward common
+>> helpers instead of duplicating that all over again.
+>
+> Can you give an example?
 
-> So the conclusion is that using sg_table in the DMA-buf framework was jus=
-t =
+Take a look at the get_sg_table and put_sg_table helpers in udmabuf.
+Those would also be useful in armda, i915, tegra, gntdev-dmabuf, mbochs
+in one form or another.
 
-> the wrong data structure and we should have invented a new one.
-
-I think so.
-
-> But then people would have complained that we have a duplicated =
-
-> infrastructure (which is essentially true).
-
-I doubt it.  At least if you had actually talked to the relevant people.
-Which seems to be a major issue with what is going on GPU land.
-
-> My best plan to get out of this mess is that we change the DMA-buf =
-
-> interface to use an array of dma_addresses instead of the sg_table object =
-
-> and I have already been working on this actively the last few month.
-
-Awesome!  I have a bit of related work on the DMA mapping subsystems, so
-let's sync up as soon as you have some first sketches.
-
-Btw, one thing I noticed when looking over the dma-buf instances is that
-there is a lot of duplicated code for creating a sg_table from pages,
-and then mapping it.  It would be good if we could move toward common
-helpers instead of duplicating that all over again.
+Similar for variants that use a contigous regions.
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
