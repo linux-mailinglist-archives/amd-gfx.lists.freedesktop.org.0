@@ -1,28 +1,26 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E943B2831
-	for <lists+amd-gfx@lfdr.de>; Thu, 24 Jun 2021 09:06:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29E1B3B2833
+	for <lists+amd-gfx@lfdr.de>; Thu, 24 Jun 2021 09:06:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 028E26EA1B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 998B66EA20;
 	Thu, 24 Jun 2021 07:06:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AB366E9E5;
- Thu, 24 Jun 2021 05:34:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB90E6E9E4;
+ Thu, 24 Jun 2021 05:40:08 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 02FF167373; Thu, 24 Jun 2021 07:34:22 +0200 (CEST)
-Date: Thu, 24 Jun 2021 07:34:21 +0200
+ id 5BF4867373; Thu, 24 Jun 2021 07:40:04 +0200 (CEST)
+Date: Thu, 24 Jun 2021 07:40:03 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Oded Gabbay <oded.gabbay@gmail.com>
 Subject: Re: [Linaro-mm-sig] [PATCH v3 1/2] habanalabs: define uAPI to
  export FD for DMA-BUF
-Message-ID: <20210624053421.GA25165@lst.de>
-References: <20210622152343.GO1096940@ziepe.ca>
- <3fabe8b7-7174-bf49-5ffe-26db30968a27@amd.com>
- <20210622154027.GS1096940@ziepe.ca>
+Message-ID: <20210624054003.GB25165@lst.de>
+References: <20210622154027.GS1096940@ziepe.ca>
  <09df4a03-d99c-3949-05b2-8b49c71a109e@amd.com>
  <20210622160538.GT1096940@ziepe.ca>
  <d600a638-9e55-6249-b574-0986cd5cea1e@gmail.com>
@@ -30,9 +28,11 @@ References: <20210622152343.GO1096940@ziepe.ca>
  <CAFCwf111O0_YB_tixzEUmaKpGAHMNvMaOes2AfMD4x68Am4Yyg@mail.gmail.com>
  <20210623185045.GY1096940@ziepe.ca>
  <CAFCwf12tW_WawFfAfrC8bgVhTRnDA7DuM+0V8w3JsUZpA2j84w@mail.gmail.com>
+ <20210623193456.GZ1096940@ziepe.ca>
+ <CAFCwf13vM2T-eJUu42ht5jdXpRCF3UZh0Ow=vwN9QqZ=KNUBsQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <CAFCwf12tW_WawFfAfrC8bgVhTRnDA7DuM+0V8w3JsUZpA2j84w@mail.gmail.com>
+In-Reply-To: <CAFCwf13vM2T-eJUu42ht5jdXpRCF3UZh0Ow=vwN9QqZ=KNUBsQ@mail.gmail.com>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Thu, 24 Jun 2021 07:06:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -64,16 +64,30 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 23, 2021 at 10:00:29PM +0300, Oded Gabbay wrote:
-> I understand the argument and I agree that for the generic case, the
-> top of the stack can't assume anything.
-> Having said that, in this case the SGL is encapsulated inside a dma-buf object.
+On Wed, Jun 23, 2021 at 10:39:48PM +0300, Oded Gabbay wrote:
+> hmm, I thought using dma_map_resource will solve the IOMMU issues, no ?
+> We talked about it yesterday, and you said that it will "work"
+> (although I noticed a tone of reluctance when you said that).
+> 
+> If I use dma_map_resource to set the addresses inside the SGL before I
+> export the dma-buf, and guarantee no one will use the SGL in the
+> dma-buf for any other purpose than device p2p, what else is needed ?
 
-But the scatterlist is defined to have a valid page.  If in dma-bufs you
-can't do that dmabufs are completely broken.  Apparently the gpu folks
-can somehow live with that and deal with the pitfals, but for dma-buf
-users outside of their little fiefdom were they arbitrarily break rules
-it simply is not acceptable.
+dma_map_resource works in the sense of that helps with mapping an
+arbitrary phys_addr_t for DMA.  It does not take various pitfalls of
+PCI P2P into account, such as the offset between the CPU physical
+address and the PCIe bus address, or the whole support of mapping between
+two devices behding a switch and not going through the limited root
+port support.
+
+Comparing dma_direct_map_resource/iommu_dma_map_resource with
+with pci_p2pdma_map_sg_attrs/__pci_p2pdma_map_sg should make that
+very clear.
+
+So if you want a non-page based mapping you need a "resource"-level
+version of pci_p2pdma_map_sg_attrs.  Which totall doable, and in fact
+mostly trivial.  But no one has even looked into providing one and just
+keeps arguing.
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
