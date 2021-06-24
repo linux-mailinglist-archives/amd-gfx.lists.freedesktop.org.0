@@ -1,29 +1,38 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 935293B2832
-	for <lists+amd-gfx@lfdr.de>; Thu, 24 Jun 2021 09:06:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8E943B2831
+	for <lists+amd-gfx@lfdr.de>; Thu, 24 Jun 2021 09:06:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6596B6EA1E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 028E26EA1B;
 	Thu, 24 Jun 2021 07:06:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 844806E9E3;
- Thu, 24 Jun 2021 05:30:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AB366E9E5;
+ Thu, 24 Jun 2021 05:34:25 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 244BF68AFE; Thu, 24 Jun 2021 07:30:49 +0200 (CEST)
-Date: Thu, 24 Jun 2021 07:30:48 +0200
+ id 02FF167373; Thu, 24 Jun 2021 07:34:22 +0200 (CEST)
+Date: Thu, 24 Jun 2021 07:34:21 +0200
 From: Christoph Hellwig <hch@lst.de>
-To: Felix Kuehling <felix.kuehling@amd.com>
-Subject: Re: [PATCH v3 0/8] Support DEVICE_GENERIC memory in migrate_vma_*
-Message-ID: <20210624053048.GB25004@lst.de>
-References: <20210617151705.15367-1-alex.sierra@amd.com>
- <YM9NXrGlhdp0qb7S@mit.edu> <905418d1-9099-0ea8-a6e6-84cc8ef3d0b0@amd.com>
+To: Oded Gabbay <oded.gabbay@gmail.com>
+Subject: Re: [Linaro-mm-sig] [PATCH v3 1/2] habanalabs: define uAPI to
+ export FD for DMA-BUF
+Message-ID: <20210624053421.GA25165@lst.de>
+References: <20210622152343.GO1096940@ziepe.ca>
+ <3fabe8b7-7174-bf49-5ffe-26db30968a27@amd.com>
+ <20210622154027.GS1096940@ziepe.ca>
+ <09df4a03-d99c-3949-05b2-8b49c71a109e@amd.com>
+ <20210622160538.GT1096940@ziepe.ca>
+ <d600a638-9e55-6249-b574-0986cd5cea1e@gmail.com>
+ <20210623182435.GX1096940@ziepe.ca>
+ <CAFCwf111O0_YB_tixzEUmaKpGAHMNvMaOes2AfMD4x68Am4Yyg@mail.gmail.com>
+ <20210623185045.GY1096940@ziepe.ca>
+ <CAFCwf12tW_WawFfAfrC8bgVhTRnDA7DuM+0V8w3JsUZpA2j84w@mail.gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <905418d1-9099-0ea8-a6e6-84cc8ef3d0b0@amd.com>
+In-Reply-To: <CAFCwf12tW_WawFfAfrC8bgVhTRnDA7DuM+0V8w3JsUZpA2j84w@mail.gmail.com>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Thu, 24 Jun 2021 07:06:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -37,31 +46,34 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Sierra <alex.sierra@amd.com>, rcampbell@nvidia.com,
- Theodore Ts'o <tytso@mit.edu>, amd-gfx@lists.freedesktop.org,
- linux-xfs@vger.kernel.org, linux-mm@kvack.org, jglisse@redhat.com,
- dri-devel@lists.freedesktop.org, jgg@nvidia.com, akpm@linux-foundation.org,
- linux-ext4@vger.kernel.org, hch@lst.de
+Cc: linux-rdma <linux-rdma@vger.kernel.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ sleybo@amazon.com, Oded Gabbay <ogabbay@kernel.org>,
+ Gal Pressman <galpress@amazon.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Christoph Hellwig <hch@lst.de>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Doug Ledford <dledford@redhat.com>,
+ Tomer Tayar <ttayar@habana.ai>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Greg KH <gregkh@linuxfoundation.org>, Alex Deucher <alexander.deucher@amd.com>,
+ Leon Romanovsky <leonro@nvidia.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jun 23, 2021 at 05:49:55PM -0400, Felix Kuehling wrote:
-> For the reference counting changes we could use the dax driver with hmem 
-> and use efi_fake_mem on the kernel command line to create some 
-> DEVICE_GENERIC pages. I'm open to suggestions for good user mode tests to 
-> exercise dax functionality on this type of memory.
->
-> For the migration helper changes we could modify or parametrize 
-> lib/hmm_test.c to create DEVICE_GENERIC pages instead of DEVICE_PRIVATE. 
-> Then run tools/testing/selftests/vm/hmm-tests.c.
+On Wed, Jun 23, 2021 at 10:00:29PM +0300, Oded Gabbay wrote:
+> I understand the argument and I agree that for the generic case, the
+> top of the stack can't assume anything.
+> Having said that, in this case the SGL is encapsulated inside a dma-buf object.
 
-We'll also need a real in-tree user of the enhanced DEVICE_GENERIC memory.
-So while the refcounting cleanups early in the series are something I'd
-really like to see upstream as soon as everything is sorted out, the
-actual bits that can't only be used by your updated driver should wait
-for that.
+But the scatterlist is defined to have a valid page.  If in dma-bufs you
+can't do that dmabufs are completely broken.  Apparently the gpu folks
+can somehow live with that and deal with the pitfals, but for dma-buf
+users outside of their little fiefdom were they arbitrarily break rules
+it simply is not acceptable.
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
