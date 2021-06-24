@@ -1,96 +1,40 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 379423B3CCD
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Jun 2021 08:44:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2834F3B3D5B
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Jun 2021 09:28:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 620C46ECC8;
-	Fri, 25 Jun 2021 06:44:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 534116ECDD;
+	Fri, 25 Jun 2021 07:28:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2070.outbound.protection.outlook.com [40.107.220.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1006F6ECC8
- for <amd-gfx@lists.freedesktop.org>; Fri, 25 Jun 2021 06:44:34 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BnoKfOy9fd0SJ/1Gnl8lG0lgJm4XL5x+ypKtt4am7exeDSVnJp3h4u5IsQ17APV1mcW1AITahF+vjfR9WdNbyKtPvTce/Ngqk8p0uCsMytDzesVtHrXplSFFjGcA0E9hg2Ija5mFv8hG4zpxrwndozljwUcvX3LqxYF9dXOsWl5Gj7haqYiNwynB1UxVNS+nLJh4zsz9T3SnhRXgMl92rujqeS9j2zWas0gUupie8SUqc46X3YtAYETdy01ENRthAzF4/Wu6+D0tNRDQMkceKksL6yXT6gsfipjokFvRdNtulBheAwb0aMw6asXO5QrpRgip594Dmnf7cjLQYx9x7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ghCgtUQOPH4z/yyBNsPK8ekeOcZMXg35muDiQrLNiHg=;
- b=h4acEhTQhtiR7PYHUNA31qtxDJPOGGP4kC2+CRuVfZGhwZHBiNN6lg5lV+rqCpZaXZvHqF+TsRyPYx3ftQTisOLzNx9GqXPu/zQ5s2VGAewKPtzBFJbKyfs+9J/fMwMre/FAotAAeXDVlc2em+nGBG3McPy/raloDzdUszXFCJM7UWR7VRG1DHxdU9VoZEUOl0allIwXWRW8CTB26tZnovHwx++NljiPu1z3UTuHoYxUeyChUlbn+rlOy0Wk5fbYqUs4o92Bm1uIR4UpIaPz0Fd3a+Hqr1lTNUSSdAuz18MyUKg+Naw3yjKx1k2WEGH7rL9AvNSO9tkvjgrYnhoWsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ghCgtUQOPH4z/yyBNsPK8ekeOcZMXg35muDiQrLNiHg=;
- b=tRmULsc7mHxq4falRzRPtukaiXlXS/fJq2o3pUdbhHPjkZ3oA/TOYxeORIjum/UpOMY03S7fw2JhNKQCQ9fVFdD0Lwzpl4dLiIKZd/Sh1M/OJCfHtWd26WmauZik7N7QksoUqgbAeyjad23OxK3heno+soiouMvzoWwVWI1iUIo=
-Received: from DM5PR21CA0018.namprd21.prod.outlook.com (2603:10b6:3:ac::28) by
- BN9PR12MB5292.namprd12.prod.outlook.com (2603:10b6:408:105::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4242.23; Fri, 25 Jun 2021 06:44:33 +0000
-Received: from DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:ac:cafe::6f) by DM5PR21CA0018.outlook.office365.com
- (2603:10b6:3:ac::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.4 via Frontend
- Transport; Fri, 25 Jun 2021 06:44:33 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT011.mail.protection.outlook.com (10.13.172.108) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4264.18 via Frontend Transport; Fri, 25 Jun 2021 06:44:32 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 25 Jun
- 2021 01:44:30 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 25 Jun
- 2021 01:44:30 -0500
-Received: from z-bu18.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4 via Frontend
- Transport; Fri, 25 Jun 2021 01:44:29 -0500
-From: Peng Ju Zhou <PengJu.Zhou@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v3] drm/amdgpu: Restore msix after FLR
-Date: Fri, 25 Jun 2021 14:44:22 +0800
-Message-ID: <20210625064422.30590-1-PengJu.Zhou@amd.com>
-X-Mailer: git-send-email 2.17.1
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 884D86EAB4;
+ Thu, 24 Jun 2021 08:12:42 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 01CD167373; Thu, 24 Jun 2021 10:12:38 +0200 (CEST)
+Date: Thu, 24 Jun 2021 10:12:37 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Subject: Re: [Linaro-mm-sig] [PATCH v3 1/2] habanalabs: define uAPI to
+ export FD for DMA-BUF
+Message-ID: <20210624081237.GA30289@lst.de>
+References: <20210622154027.GS1096940@ziepe.ca>
+ <09df4a03-d99c-3949-05b2-8b49c71a109e@amd.com>
+ <20210622160538.GT1096940@ziepe.ca>
+ <d600a638-9e55-6249-b574-0986cd5cea1e@gmail.com>
+ <20210623182435.GX1096940@ziepe.ca>
+ <CAFCwf111O0_YB_tixzEUmaKpGAHMNvMaOes2AfMD4x68Am4Yyg@mail.gmail.com>
+ <20210623185045.GY1096940@ziepe.ca>
+ <CAFCwf12tW_WawFfAfrC8bgVhTRnDA7DuM+0V8w3JsUZpA2j84w@mail.gmail.com>
+ <20210624053421.GA25165@lst.de>
+ <9571ac7c-3a58-b013-b849-e26c3727e9b2@amd.com>
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 847f2f99-c711-4a00-ec9c-08d937a4b07e
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5292:
-X-Microsoft-Antispam-PRVS: <BN9PR12MB5292309087935695C55300ABF8069@BN9PR12MB5292.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3044;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: op96XsA7V/PoFxBSkBiEdBfc/I6xUh3EYoeUNzsV8MuhDQw09E+WKanF0oZxFrG56+SH7uJ0Nqv/vPilaN7RhZhfTYN7TbPzC10hx5SGh88bLH6QXLYY8RoUub+zpyBY3RSKwYF8t9odS1W0fy1ihlCa7CDLW6wq6L3GtN2A6vOqiZrt618pU9/f16AFKXxJzBlm2HdeLwI76oZjAcLiQrBhTNsiLIj/oSefQqWh2nF97yYiDMh87We/XnjwF3t+vzbkf5o9wDlV9kifAEZrphP2yJ2znV7TyKnBg8Ig3FS1o+acm886AqKHmmXCY9Li4J7PHJoztpHhNfEDbcj8MYoVGeFofOIi6u3JVElO8ynD3Mb3KazLdHT2EJ/nN7YJKmvEX4115wkMhNri2VopgN+mfXaNzYh4fTAA2IFVW9jIko4D7tCn01AaKdaTX+PD9wRMYT6urjjQMwfd80jxQI8pQga4CF2ZKYSfZlqFNKLVizndPIkIJYWeWpHTBGCQkgBOi70sG1e4IewB+/nIc7y6X/Ex+Cvg27WS4hCviOxyU/g4WulQc/RZwR2TVrrB4M2JhhDb1LCpZGAThPuOc66g03RyINgJ7B0RvpuiTLfB1ji9YtSjqy2OQ7h1a6ytqqnB+3gUxO+0zqGOwUSP85Yz59/tNnTLa100Yec7QURJOi7W6I51Z9NUbLz2aDjQC22xaksCCqCHSs5vGjvzl0Jpx/bjw/0171OwPDFfB98=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(376002)(346002)(136003)(396003)(46966006)(36840700001)(8676002)(6666004)(7696005)(54906003)(426003)(8936002)(5660300002)(316002)(2906002)(478600001)(70586007)(70206006)(2616005)(336012)(4326008)(1076003)(186003)(47076005)(86362001)(26005)(36756003)(6916009)(82310400003)(81166007)(82740400003)(356005)(36860700001)(83380400001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2021 06:44:32.3768 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 847f2f99-c711-4a00-ec9c-08d937a4b07e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5292
+Content-Disposition: inline
+In-Reply-To: <9571ac7c-3a58-b013-b849-e26c3727e9b2@amd.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+X-Mailman-Approved-At: Fri, 25 Jun 2021 07:28:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,54 +46,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Emily.Deng" <Emily.Deng@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Oded Gabbay <oded.gabbay@gmail.com>,
+ linux-rdma <linux-rdma@vger.kernel.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ sleybo@amazon.com, Oded Gabbay <ogabbay@kernel.org>,
+ Gal Pressman <galpress@amazon.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Doug Ledford <dledford@redhat.com>,
+ Tomer Tayar <ttayar@habana.ai>, amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Greg KH <gregkh@linuxfoundation.org>, Alex Deucher <alexander.deucher@amd.com>,
+ Leon Romanovsky <leonro@nvidia.com>, Christoph Hellwig <hch@lst.de>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: "Emily.Deng" <Emily.Deng@amd.com>
+On Thu, Jun 24, 2021 at 10:07:14AM +0200, Christian K=F6nig wrote:
+> The key point is that accessing the underlying pages even when DMA-bufs a=
+re =
 
-After FLR, the msix will be cleared, so need to re-enable it.
+> backed by system memory is illegal. Daniel even created a patch which =
 
-Signed-off-by: Emily.Deng <Emily.Deng@amd.com>
-Signed-off-by: Peng Ju Zhou <PengJu.Zhou@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+> mangles the page pointers in sg_tables used by DMA-buf to make sure that =
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-index 90f50561b43a..26e63cb5d8d5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c
-@@ -277,6 +277,16 @@ static bool amdgpu_msi_ok(struct amdgpu_device *adev)
- 	return true;
- }
- 
-+void amdgpu_restore_msix(struct amdgpu_device *adev)
-+{
-+	u16 ctrl;
-+
-+	pci_read_config_word(adev->pdev, adev->pdev->msix_cap + PCI_MSIX_FLAGS, &ctrl);
-+	ctrl &= ~PCI_MSIX_FLAGS_ENABLE;
-+	pci_write_config_word(adev->pdev, adev->pdev->msix_cap + PCI_MSIX_FLAGS, ctrl);
-+	ctrl |= PCI_MSIX_FLAGS_ENABLE;
-+	pci_write_config_word(adev->pdev, adev->pdev->msix_cap + PCI_MSIX_FLAGS, ctrl);
-+}
- /**
-  * amdgpu_irq_init - initialize interrupt handling
-  *
-@@ -558,6 +568,7 @@ void amdgpu_irq_gpu_reset_resume_helper(struct amdgpu_device *adev)
- {
- 	int i, j, k;
- 
-+	amdgpu_restore_msix(adev);
- 	for (i = 0; i < AMDGPU_IRQ_CLIENTID_MAX; ++i) {
- 		if (!adev->irq.client[i].sources)
- 			continue;
--- 
-2.17.1
+> people don't try to use them.
 
+Which is another goddamn layering violation of a subsystem that has no
+business at all poking into the scatterlist structure, yes.
+
+> So the conclusion is that using sg_table in the DMA-buf framework was jus=
+t =
+
+> the wrong data structure and we should have invented a new one.
+
+I think so.
+
+> But then people would have complained that we have a duplicated =
+
+> infrastructure (which is essentially true).
+
+I doubt it.  At least if you had actually talked to the relevant people.
+Which seems to be a major issue with what is going on GPU land.
+
+> My best plan to get out of this mess is that we change the DMA-buf =
+
+> interface to use an array of dma_addresses instead of the sg_table object =
+
+> and I have already been working on this actively the last few month.
+
+Awesome!  I have a bit of related work on the DMA mapping subsystems, so
+let's sync up as soon as you have some first sketches.
+
+Btw, one thing I noticed when looking over the dma-buf instances is that
+there is a lot of duplicated code for creating a sg_table from pages,
+and then mapping it.  It would be good if we could move toward common
+helpers instead of duplicating that all over again.
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
