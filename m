@@ -1,33 +1,30 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF7C13B2829
-	for <lists+amd-gfx@lfdr.de>; Thu, 24 Jun 2021 09:06:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 935293B2832
+	for <lists+amd-gfx@lfdr.de>; Thu, 24 Jun 2021 09:06:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C19606E849;
-	Thu, 24 Jun 2021 07:06:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6596B6EA1E;
+	Thu, 24 Jun 2021 07:06:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from yyz.mikelr.com (yyz.mikelr.com [170.75.163.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFE816E9E3;
- Thu, 24 Jun 2021 04:52:05 +0000 (UTC)
-Received: from glidewell.localnet (198-84-194-208.cpe.teksavvy.com
- [198.84.194.208])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (Client did not present a certificate)
- by yyz.mikelr.com (Postfix) with ESMTPSA id 2E7E54FA68;
- Thu, 24 Jun 2021 00:52:02 -0400 (EDT)
-From: Mikel Rychliski <mikel@mikelr.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Subject: Re: [PATCH v2] drm/radeon: Fix NULL dereference when updating memory
- stats
-Date: Thu, 24 Jun 2021 00:52:01 -0400
-Message-ID: <12410445.c4f2iDpdjA@glidewell>
-In-Reply-To: <085b7f51-15b8-42e0-fcf0-66da839542c8@amd.com>
-References: <20210622212613.16302-1-mikel@mikelr.com>
- <085b7f51-15b8-42e0-fcf0-66da839542c8@amd.com>
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 844806E9E3;
+ Thu, 24 Jun 2021 05:30:53 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 244BF68AFE; Thu, 24 Jun 2021 07:30:49 +0200 (CEST)
+Date: Thu, 24 Jun 2021 07:30:48 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Felix Kuehling <felix.kuehling@amd.com>
+Subject: Re: [PATCH v3 0/8] Support DEVICE_GENERIC memory in migrate_vma_*
+Message-ID: <20210624053048.GB25004@lst.de>
+References: <20210617151705.15367-1-alex.sierra@amd.com>
+ <YM9NXrGlhdp0qb7S@mit.edu> <905418d1-9099-0ea8-a6e6-84cc8ef3d0b0@amd.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <905418d1-9099-0ea8-a6e6-84cc8ef3d0b0@amd.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Thu, 24 Jun 2021 07:06:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -40,40 +37,31 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- David Airlie <airlied@linux.ie>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Alex Sierra <alex.sierra@amd.com>, rcampbell@nvidia.com,
+ Theodore Ts'o <tytso@mit.edu>, amd-gfx@lists.freedesktop.org,
+ linux-xfs@vger.kernel.org, linux-mm@kvack.org, jglisse@redhat.com,
+ dri-devel@lists.freedesktop.org, jgg@nvidia.com, akpm@linux-foundation.org,
+ linux-ext4@vger.kernel.org, hch@lst.de
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wednesday, June 23, 2021 2:55:04 AM EDT Christian K=F6nig wrote:
-> Please rather keep the new resource as parameter here and update before
-> adjusting bo->resource.
-> =
+On Wed, Jun 23, 2021 at 05:49:55PM -0400, Felix Kuehling wrote:
+> For the reference counting changes we could use the dax driver with hmem 
+> and use efi_fake_mem on the kernel command line to create some 
+> DEVICE_GENERIC pages. I'm open to suggestions for good user mode tests to 
+> exercise dax functionality on this type of memory.
+>
+> For the migration helper changes we could modify or parametrize 
+> lib/hmm_test.c to create DEVICE_GENERIC pages instead of DEVICE_PRIVATE. 
+> Then run tools/testing/selftests/vm/hmm-tests.c.
 
-> This way you also don't need to export radeon_update_memory_usage().
-
-I wasn't sure exactly what you intended with the request to "update before
-adjusting bo->resource".
-
-Assuming the statistics update is done as part of radeon_bo_move_notify(), =
-I =
-
-believe that function cannot be called any earlier in radeon_bo_move(). If =
-it =
-
-were, the source object would be invalidated before it moved.
-
-So I assume you're suggesting updating the memory usage earlier in =
-
-bo_move_notify (before the early return for ghost objects).
-
-Thanks,
-Mikel
+We'll also need a real in-tree user of the enhanced DEVICE_GENERIC memory.
+So while the refcounting cleanups early in the series are something I'd
+really like to see upstream as soon as everything is sorted out, the
+actual bits that can't only be used by your updated driver should wait
+for that.
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
