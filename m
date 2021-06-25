@@ -2,55 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A91DC3B3D5C
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Jun 2021 09:28:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 669F93B3D59
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Jun 2021 09:28:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 690E56ECDE;
-	Fri, 25 Jun 2021 07:28:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 910EB6E0E5;
+	Fri, 25 Jun 2021 07:28:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com
- [IPv6:2607:f8b0:4864:20::72f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4107D6E084
- for <amd-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 19:54:13 +0000 (UTC)
-Received: by mail-qk1-x72f.google.com with SMTP id c23so16632789qkc.10
- for <amd-gfx@lists.freedesktop.org>; Thu, 24 Jun 2021 12:54:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=yLU/znLEYcMatLvsNLPxqHr+hLgDBPcs6sZq6gszBjg=;
- b=GQbv7pRK0BnAbmi0dbOfDIfyOww+e6i3XhyjehX6SPR4oipgAUrJveJSK3UwZb3aC0
- wh9veSVnT1OOviK4NmDD6bu9SUxgr0Jx8os+6VCEAitgkNQdBPx65/0UfkhXD8hrSZDk
- Uood+37czLlByvNi+TV4mJ68VrXGDp0yeYr/Y=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=yLU/znLEYcMatLvsNLPxqHr+hLgDBPcs6sZq6gszBjg=;
- b=QIACtfcL03odp9hlhAX+DDe+OAOwsQ+2RD4REcDbfjba0Ydg7TaeEBfUWhCjpNDRN4
- Imn9JFxhPXvICWLWxsq2qyq97x3/2h/kChued3HW91qI1s847oqTgDlzDACt7fpcEEkj
- 6MUSoYf2QcQP3gYT6y1ePXqkf5J1eu4x7/h7ORn1gzVPFpIGtekkwjYsPEzMnvy48d39
- hE7LChkPchQ9qL94vmb8caQSBwtmP2Bm3rO2hkyjNGdZ5dg3a9QO+GXgL30weZ5PlWhj
- huMh+5mPE5gvmhOTaFBs5SjJlq8h+tIrlu5kcO2LtDe5e3ka58/WOkbcMxEkirtoarzQ
- J+2Q==
-X-Gm-Message-State: AOAM530jwJqhFFEc1aD6q5C97gZX5OYCdtgh6jg0b3Adh4PjiktW72aa
- ukp28oEsktObg1gk+gnHVWNl0HvmDQR8Vg==
-X-Google-Smtp-Source: ABdhPJztKqcMb0v95sMPx7DTu8CCq0Hfd1OWdIvL1I+D4kvV3S6vcRrooHytimFLHkfruxfHlmKGMg==
-X-Received: by 2002:a05:620a:414a:: with SMTP id
- k10mr7303374qko.37.1624564452264; 
- Thu, 24 Jun 2021 12:54:12 -0700 (PDT)
-Received: from markyacoub.nyc.corp.google.com
- ([2620:0:1003:416:6bf4:ce97:2a5a:b53c])
- by smtp.gmail.com with ESMTPSA id h5sm3298458qkg.122.2021.06.24.12.54.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 24 Jun 2021 12:54:11 -0700 (PDT)
-From: Mark Yacoub <markyacoub@chromium.org>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amd/display: Remove assignments in if clauses.
-Date: Thu, 24 Jun 2021 15:54:03 -0400
-Message-Id: <20210624195403.1050871-1-markyacoub@chromium.org>
-X-Mailer: git-send-email 2.32.0.93.g670b81a890-goog
+X-Greylist: delayed 531 seconds by postgrey-1.36 at gabe;
+ Fri, 25 Jun 2021 01:45:51 UTC
+Received: from smtphy.263.net (syd-smtp02.263.net [13.237.61.158])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B211F6E9D8;
+ Fri, 25 Jun 2021 01:45:51 +0000 (UTC)
+Received: from smtp.263.net (unknown [211.157.147.162])
+ by smtphy.263.net (Postfix) with ESMTPS id 0C92E1200A1;
+ Fri, 25 Jun 2021 09:36:59 +0800 (CST)
+Received: from regular1.263xmail.com (unknown [192.168.165.182])
+ by smtp.263.net (Postfix) with ESMTP id 613B9231;
+ Fri, 25 Jun 2021 09:36:50 +0800 (CST)
+Received: from localhost (unknown [192.168.167.137])
+ by regular1.263xmail.com (Postfix) with ESMTP id 9BE94E65;
+ Fri, 25 Jun 2021 09:36:45 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED: 0
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from bj-wm-cp-9 (unknown [192.168.167.113])
+ by smtp.263.net (postfix) whith ESMTP id
+ P14259T140505477224192S1624585005531423_; 
+ Fri, 25 Jun 2021 09:36:45 +0800 (CST)
+X-UNIQUE-TAG: <5dc28952703ead30559dc3583043fc9e>
+X-RL-SENDER: huqiqiao@uniontech.com
+X-SENDER: huqiqiao@uniontech.com
+X-LOGIN-NAME: wmsendmail@net263.com
+X-FST-TO: ckoenig.leichtzumerken@gmail.com
+X-RCPT-COUNT: 6
+X-SENDER-IP: 192.168.167.113
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Date: Fri, 25 Jun 2021 09:36:45 +0800 (CST)
+From: =?UTF-8?B?6IOh5aWH5ben?= <huqiqiao@uniontech.com>
+To: =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZyA=?= <ckoenig.leichtzumerken@gmail.com>, 
+ =?UTF-8?B?YWlybGllZCA=?= <airlied@linux.ie>, 
+ =?UTF-8?B?ZGFuaWVsIA==?= <daniel@ffwll.ch>
+Message-ID: <1588518222.11998.1624585005279.JavaMail.xmail@bj-wm-cp-9>
+References: <20210623091242.12861-1-huqiqiao@uniontech.com>,
+ <e18c2147-cc19-7493-5feb-de28e3102d3f@gmail.com>
+Subject: =?UTF-8?B?UmU6UmU6IFtQQVRDSF0gZHJtL2FtZGdwdTp1c2Uga3ZjYWxsb2MgaW5zdGVhZCBvZiBrdm1hbGxvY19hcnJheQ==?=
 MIME-Version: 1.0
+X-Send-Individually: 0
+X-Reply-Previous-EmailId: 
+X-SENDER-IP: 58.240.82.166
+X-Priority: 3
 X-Mailman-Approved-At: Fri, 25 Jun 2021 07:28:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,56 +68,76 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, Mark Yacoub <markyacoub@chromium.org>,
- seanpaul@chromium.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?B?YW1kLWdmeCA=?= <amd-gfx@lists.freedesktop.org>,
+ =?UTF-8?B?ZHJpLWRldmVsIA==?= <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?B?bGludXgta2VybmVsIA==?= <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1766308830=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fixes Commit a46b6bd5 (drm/amd/display: Verify Gamma & Degamma LUT sizes
-in amdgpu_dm_atomic_check)
+--===============1766308830==
+Content-Type: text/html;  charset=utf-8
+Content-Transfer-Encoding: base64
 
-Tested on Zork: IGT:kms_color
+PHN0eWxlPnRhYmxlLmN1c3RvbVRhYmxlQ2xhc3NOYW1lIHttYXJnaW4tYm90dG9tOiAxMHB4O2Jv
+cmRlci1jb2xsYXBzZTogY29sbGFwc2U7ZGlzcGxheTogdGFibGU7fS5jdXN0b21UYWJsZUNsYXNz
+TmFtZSB0ZCwgLmN1c3RvbVRhYmxlQ2xhc3NOYW1lIHRoIHtib3JkZXI6IDFweCBzb2xpZCAjZGRk
+O308L3N0eWxlPjxwIHN0eWxlPSJtYXJnaW46MHB4OyI+PGJyPjwvcD48cCBzdHlsZT0ibWFyZ2lu
+OjBweDsiPk9LLCBJJ2xsIHJldmlzZSBpdCBhbmQgc3VibWl0IGl0IGFnYWluPC9wPjxwIHN0eWxl
+PSJtYXJnaW46MHB4OyI+PGJyPjwvcD48cCBzdHlsZT0ibWFyZ2luOjBweDsiPkdlb3JnZS48L3A+
+PHAgc3R5bGU9Im1hcmdpbjowcHg7Ij48YnI+DQogJm5ic3A7PC9wPjxkaXYgc3R5bGU9InBhZGRp
+bmc6NXB4O3BhZGRpbmctbGVmdDowcHg7Ym9yZGVyLXRvcDpzb2xpZCAjOTk5IDEuMHB0O2ZvbnQt
+ZmFtaWx5OiBhcmlhbDsgZm9udC1zaXplOjEycHg7bWFyZ2luLWJvdHRvbToyMHB4OyI+PHAgc3R5
+bGU9Im1hcmdpbjowcHg7Ij48c3Ryb25nPkZyb206PC9zdHJvbmc+ICJDaHJpc3RpYW4gS8O2bmln
+ICZsdDtja29lbmlnLmxlaWNodHp1bWVya2VuQGdtYWlsLmNvbSZndDsiPC9wPjxwIHN0eWxlPSJt
+YXJnaW46MHB4OyI+PHN0cm9uZz5Ubzo8L3N0cm9uZz4gImh1cWlxaWFvICZsdDtodXFpcWlhb0B1
+bmlvbnRlY2guY29tJmd0OyIsImFpcmxpZWQgJmx0O2FpcmxpZWRAbGludXguaWUmZ3Q7IiwiZGFu
+aWVsICZsdDtkYW5pZWxAZmZ3bGwuY2gmZ3Q7IjwvcD48cCBzdHlsZT0ibWFyZ2luOjBweDsiPjxz
+dHJvbmc+Q0M6PC9zdHJvbmc+ICJkcmktZGV2ZWwgJmx0O2RyaS1kZXZlbEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcmZ3Q7IiwiYW1kLWdmeCAmbHQ7YW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcm
+Z3Q7IiwibGludXgta2VybmVsICZsdDtsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnJmd0OyI8
+L3A+PHAgc3R5bGU9Im1hcmdpbjowcHg7Ij48c3Ryb25nPlNlbnQ6PC9zdHJvbmc+IDIwMjEtMDYt
+MjQgMjE6MTQ8L3A+PHAgc3R5bGU9Im1hcmdpbjowcHg7Ij48c3Ryb25nPlN1YmplY3Q6PC9zdHJv
+bmc+IFJlOiBbUEFUQ0hdIGRybS9hbWRncHU6dXNlIGt2Y2FsbG9jIGluc3RlYWQgb2Yga3ZtYWxs
+b2NfYXJyYXk8L3A+PC9kaXY+PHAgc3R5bGU9Im1hcmdpbjowcHg7Ij48YnI+DQogJm5ic3A7PGJy
+PkFtIDIzLjA2LjIxIHVtIDExOjEyIHNjaHJpZWIgaHVxaXFpYW86ICZuYnNwOzxicj4mZ3Q7IGt2
+bWFsbG9jX2FycmF5ICsgX19HRlBfWkVSTyBpcyB0aGUgc2FtZSB3aXRoIGt2Y2FsbG9jLiAmbmJz
+cDs8YnI+Jmd0OyAmbmJzcDs8YnI+Jmd0OyBTaWduZWQtb2ZmLWJ5OiBodXFpcWlhbyAmbHQ7aHVx
+aXFpYW9AdW5pb250ZWNoLmNvbSZndDsgJm5ic3A7PGJyPiZndDsgLS0tICZuYnNwOzxicj4mZ3Q7
+IGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV92bS5jIHwgNSArKy0tLSAmbmJzcDs8
+YnI+Jmd0OyAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKSAm
+bmJzcDs8YnI+Jmd0OyAmbmJzcDs8YnI+Jmd0OyBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvYW1kZ3B1X3ZtLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
+cHVfdm0uYyAmbmJzcDs8YnI+Jmd0OyBpbmRleCA5YWNlZTRhNWIyYmEuLjUwZWRjNzM1MjViMCAx
+MDA2NDQgJm5ic3A7PGJyPiZndDsgLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
+Z3B1X3ZtLmMgJm5ic3A7PGJyPiZndDsgKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1X3ZtLmMgJm5ic3A7PGJyPiZndDsgQEAgLTkwOCw5ICs5MDgsOCBAQCBzdGF0aWMgaW50
+IGFtZGdwdV92bV9hbGxvY19wdHMoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYsICZuYnNwOzxi
+cj4mZ3Q7IHVuc2lnbmVkIG51bV9lbnRyaWVzOyAmbmJzcDs8YnI+Jmd0OyANCiAmbmJzcDs8YnI+
+Jmd0OyBudW1fZW50cmllcyA9IGFtZGdwdV92bV9udW1fZW50cmllcyhhZGV2LCBjdXJzb3ItJmd0
+O2xldmVsKTsgJm5ic3A7PGJyPiZndDsgLSBlbnRyeS0mZ3Q7ZW50cmllcyA9IGt2bWFsbG9jX2Fy
+cmF5KG51bV9lbnRyaWVzLCAmbmJzcDs8YnI+Jmd0OyAtIHNpemVvZigqZW50cnktJmd0O2VudHJp
+ZXMpLCAmbmJzcDs8YnI+Jmd0OyAtIEdGUF9LRVJORUwgfCBfX0dGUF9aRVJPKTsgJm5ic3A7PGJy
+PiZndDsgKyBlbnRyeS0mZ3Q7ZW50cmllcyA9IGt2Y2FsbG9jKG51bV9lbnRyaWVzLCAmbmJzcDs8
+YnI+Jmd0OyArIHNpemVvZigqZW50cnktJmd0O2VudHJpZXMpLCBHRlBfS0VSTkVMKTsgJm5ic3A7
+PGJyPg0KICZuYnNwOzxicj5Tb3VuZHMgbGlrZSBhIGdvb2QgaWRlYSBpbiBnZW5lcmFsLCBidXQg
+dGhlIGluZGVudGF0aW9uIG9uIHRoZSBzZWNvbmQgDQogJm5ic3A7PGJyPmxpbmUgc2VlbXMgdG8g
+YmUgb2YuICZuYnNwOzxicj4NCiAmbmJzcDs8YnI+Q2hyaXN0aWFuLiAmbmJzcDs8YnI+DQogJm5i
+c3A7PGJyPiZndDsgaWYgKCFlbnRyeS0mZ3Q7ZW50cmllcykgJm5ic3A7PGJyPiZndDsgcmV0dXJu
+IC1FTk9NRU07ICZuYnNwOzxicj4mZ3Q7IH0gJm5ic3A7PGJyPg0KICZuYnNwOzxicj4NCiAmbmJz
+cDs8YnI+DQogJm5ic3A7PGJyPg0KIDwvcD4=
 
-Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c       | 3 ++-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c | 3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 91e13ae388b7f..c0cc4ca5fdf60 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -7792,7 +7792,8 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
- 		    old_crtc_state->vrr_enabled == new_crtc_state->vrr_enabled)
- 			continue;
- 
--		if ((ret = amdgpu_dm_verify_lut_sizes(new_crtc_state)))
-+		ret = amdgpu_dm_verify_lut_sizes(new_crtc_state);
-+		if (ret)
- 			goto fail;
- 
- 		if (!new_crtc_state->enable)
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-index 9543b10e7e0bf..6acc460a3e982 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-@@ -342,7 +342,8 @@ int amdgpu_dm_update_crtc_color_mgmt(struct dm_crtc_state *crtc)
- 	bool is_legacy;
- 	int r;
- 
--	if ((r = amdgpu_dm_verify_lut_sizes(&crtc->base)))
-+	r = amdgpu_dm_verify_lut_sizes(&crtc->base);
-+	if (r)
- 		return r;
- 
- 	degamma_lut = __extract_blob_lut(crtc->base.degamma_lut, &degamma_size);
--- 
-2.32.0.93.g670b81a890-goog
+
+--===============1766308830==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+
+--===============1766308830==--
