@@ -1,58 +1,91 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C143B3B70FC
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Jun 2021 12:52:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 557D63B70C8
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Jun 2021 12:34:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E170789FF9;
-	Tue, 29 Jun 2021 10:52:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68AB289D64;
+	Tue, 29 Jun 2021 10:34:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com
- [IPv6:2607:f8b0:4864:20::102e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F6D16E364
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 01:28:08 +0000 (UTC)
-Received: by mail-pj1-x102e.google.com with SMTP id
- pf4-20020a17090b1d84b029016f6699c3f2so819344pjb.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 28 Jun 2021 18:28:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=sdAmp65hciYeluIbPve30oHR/GPcy6OyyGVJziF+xHE=;
- b=ajlC3Y2BbwpJvb//BGwKk0iVmUKdgr6EEkltyLi6EKddugzIYMyVm811CxYaTI5RZ3
- XRN3lZcqg0qg+ZKvi6Csnfs2+RUTbc+LchNfBOOelhMYtnA1/2shvLGUzCo6Cz8I6y6n
- Wgb5Dyeh2Nax5GQ3GRJeG23tObPIf5m6B4JIc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=sdAmp65hciYeluIbPve30oHR/GPcy6OyyGVJziF+xHE=;
- b=gzDawjVdsCVSDjvVzDfUCYOWa4RxEqDZ+d7CAmmxXeBzi3DcDmfrn0eGKG3Q7ijOqm
- 1LtuX7tp7swPH/XxpGxTpuZH2OqCUMOwmmM3KlRGDchi17irjSQYtRUkD2yCO/SpmWFh
- rlTG15ekjD22jQbOva2vxeu5MqPvYosuFcdztT6RW/h6Scugu1Jekkii4m/t7J0RHpiQ
- 1G1cgMeFFOoX3blkClX6d2sYwJSPKzKnHja6RtSLVV5xHq/6+Q2jkVLs4BojwXOkDLhg
- LpzCgOprT5pY40eaw1kF9rm/5fR4wVTMiKPJPUf088NeqcpN36TXjWhr0PGzfEEhMIUD
- ojpw==
-X-Gm-Message-State: AOAM5312e7G5EVZPAF/Yl7zId7GH7eyFPh+RET880ngL6zhGlMI8r7hr
- /JX3vqHVm29QAyKH9Bq0Mh0jbts28gEdvA==
-X-Google-Smtp-Source: ABdhPJxeHRsy5dAA1iYKi4mxjymB6XbfjeJZ1igdinqFlEjY7nzYbW2LIcSh8iUm3CRRIRAqczWUSA==
-X-Received: by 2002:a17:90a:ba94:: with SMTP id
- t20mr16441598pjr.11.1624930087449; 
- Mon, 28 Jun 2021 18:28:07 -0700 (PDT)
-Received: from localhost ([2401:fa00:9:14:7a14:49d8:be7f:e60e])
- by smtp.gmail.com with UTF8SMTPSA id u10sm15664815pfh.123.2021.06.28.18.28.01
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 28 Jun 2021 18:28:06 -0700 (PDT)
-From: Reka Norman <rekanorman@chromium.org>
-X-Google-Original-From: Reka Norman <rekanorman@google.com>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amd/display: Respect CONFIG_FRAME_WARN=0 in dml Makefile
-Date: Tue, 29 Jun 2021 11:27:18 +1000
-Message-Id: <20210629112647.1.I7813d8e7298aa1a1c6bee84e6fd44a82ca24805c@changeid>
-X-Mailer: git-send-email 2.32.0.93.g670b81a890-goog
+X-Greylist: delayed 4503 seconds by postgrey-1.36 at gabe;
+ Tue, 29 Jun 2021 10:34:39 UTC
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com
+ [185.132.182.106])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3410089CFA;
+ Tue, 29 Jun 2021 10:34:39 +0000 (UTC)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+ by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
+ 15T9CNdD011848; Tue, 29 Jun 2021 11:18:52 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=X80iUh6QaVW3Kbhqm1Aj0gKrTFwcCwrTAiEMB/p3SAE=;
+ b=M/Gpy87EawNbKSyujei9NTa2BHd1JzRtJKVCH/vGpuB6iraaPrj9PBwQUVfPYsXuEi4b
+ U89GAVJiC3lC/DeWbQZw4SzKasVUu1BcPrrJ7NZxZM/Smb2odqyFeMS6jULMOgYVGCCC
+ 7shI7zTjLrdvIi8p8jGiR0A6FaS4SklEqli6BK9D/Mj3iOJjHrxGKf+6SCFwQH4pwaNm
+ FIfKIo1Zm3wn5NTvQkCPDKPrXkwNoscqO+xFO6IthXTt+0IG3S0BxM/PWWed4gkPPOVt
+ ebi8/NeZQMSpte6HtHZ0b399eEymWAv+MRO6617GH2iDTs8JEBlA/XIWEgcBFur5uiNf 4w== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+ by mx07-00178001.pphosted.com with ESMTP id 39fc116d9j-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 29 Jun 2021 11:18:52 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+ by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C74F710002A;
+ Tue, 29 Jun 2021 11:18:46 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+ by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5D8BF21BF75;
+ Tue, 29 Jun 2021 11:18:46 +0200 (CEST)
+Received: from lmecxl0951.lme.st.com (10.75.127.49) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 29 Jun
+ 2021 11:18:43 +0200
+Subject: Re: [PATCH v4 19/27] drm/stm: Don't set struct drm_device.irq_enabled
+To: Thomas Zimmermann <tzimmermann@suse.de>, <daniel@ffwll.ch>,
+ <airlied@linux.ie>, <alexander.deucher@amd.com>,
+ <christian.koenig@amd.com>, <Xinhui.Pan@amd.com>,
+ <james.qian.wang@arm.com>, <liviu.dudau@arm.com>,
+ <mihail.atanassov@arm.com>, <brian.starkey@arm.com>,
+ <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+ <inki.dae@samsung.com>, <jy0922.shim@samsung.com>,
+ <sw0312.kim@samsung.com>, <kyungmin.park@samsung.com>,
+ <krzysztof.kozlowski@canonical.com>, <xinliang.liu@linaro.org>,
+ <tiantao6@hisilicon.com>, <john.stultz@linaro.org>,
+ <kong.kongxinwei@hisilicon.com>, <puck.chen@hisilicon.com>,
+ <laurentiu.palcu@oss.nxp.com>, <l.stach@pengutronix.de>,
+ <p.zabel@pengutronix.de>, <shawnguo@kernel.org>,
+ <s.hauer@pengutronix.de>, <kernel@pengutronix.de>,
+ <festevam@gmail.com>, <linux-imx@nxp.com>, <chunkuang.hu@kernel.org>,
+ <matthias.bgg@gmail.com>, <bskeggs@redhat.com>, <tomba@kernel.org>,
+ <hjc@rock-chips.com>, <heiko@sntech.de>, <philippe.cornu@foss.st.com>,
+ <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+ <wens@csie.org>, <jernej.skrabec@gmail.com>,
+ <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+ <jyri.sarha@iki.fi>, <emma@anholt.net>,
+ <linux-graphics-maintainer@vmware.com>, <zackr@vmware.com>,
+ <hyun.kwon@xilinx.com>, <laurent.pinchart@ideasonboard.com>,
+ <michal.simek@xilinx.com>, <jani.nikula@linux.intel.com>,
+ <rodrigo.vivi@intel.com>, <linux@armlinux.org.uk>,
+ <kieran.bingham+renesas@ideasonboard.com>,
+ <rodrigosiqueiramelo@gmail.com>, <melissa.srw@gmail.com>,
+ <hamohammed.sa@gmail.com>
+References: <20210625082222.3845-1-tzimmermann@suse.de>
+ <20210625082222.3845-20-tzimmermann@suse.de>
+From: yannick Fertre <yannick.fertre@foss.st.com>
+Message-ID: <1c946098-bf82-4028-1543-ba9e4f960aa3@foss.st.com>
+Date: Tue, 29 Jun 2021 11:18:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 29 Jun 2021 10:52:36 +0000
+In-Reply-To: <20210625082222.3845-20-tzimmermann@suse.de>
+Content-Language: en-US
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391, 18.0.790
+ definitions=2021-06-29_05:2021-06-25,
+ 2021-06-29 signatures=0
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,71 +97,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Reka Norman <rekanorman@google.com>, Will Deacon <will@kernel.org>,
- David Airlie <airlied@linux.ie>, Daniel Kolesa <daniel@octaforge.org>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Huang Rui <ray.huang@amd.com>, Daniel Vetter <daniel@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: linux-samsung-soc@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-sunxi@lists.linux.dev, linux-rockchip@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, linux-tegra@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Setting CONFIG_FRAME_WARN=0 should disable 'stack frame larger than'
-warnings. This is useful for example in KASAN builds. Make the dml
-Makefile respect this config.
+Hello Thomas,
+thanks for the patch.
 
-Fixes the following build warnings with CONFIG_KASAN=y and
-CONFIG_FRAME_WARN=0:
+Tested-by: Yannick Fertre <yannick.fertre@foss.st.com>
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn30/display_mode_vba_30.c:3642:6:
-warning: stack frame size of 2216 bytes in function
-'dml30_ModeSupportAndSystemConfigurationFull' [-Wframe-larger-than=]
-drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn31/display_mode_vba_31.c:3957:6:
-warning: stack frame size of 2568 bytes in function
-'dml31_ModeSupportAndSystemConfigurationFull' [-Wframe-larger-than=]
+Best regards
 
-Signed-off-by: Reka Norman <rekanorman@google.com>
----
 
- drivers/gpu/drm/amd/display/dc/dml/Makefile | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-index d34024fd798a..45862167e6ce 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
-+++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-@@ -50,6 +50,10 @@ dml_ccflags += -msse2
- endif
- endif
- 
-+ifneq ($(CONFIG_FRAME_WARN),0)
-+frame_warn_flag := -Wframe-larger-than=2048
-+endif
-+
- CFLAGS_$(AMDDALPATH)/dc/dml/display_mode_lib.o := $(dml_ccflags)
- 
- ifdef CONFIG_DRM_AMD_DC_DCN
-@@ -60,9 +64,9 @@ CFLAGS_$(AMDDALPATH)/dc/dml/dcn20/display_mode_vba_20v2.o := $(dml_ccflags)
- CFLAGS_$(AMDDALPATH)/dc/dml/dcn20/display_rq_dlg_calc_20v2.o := $(dml_ccflags)
- CFLAGS_$(AMDDALPATH)/dc/dml/dcn21/display_mode_vba_21.o := $(dml_ccflags)
- CFLAGS_$(AMDDALPATH)/dc/dml/dcn21/display_rq_dlg_calc_21.o := $(dml_ccflags)
--CFLAGS_$(AMDDALPATH)/dc/dml/dcn30/display_mode_vba_30.o := $(dml_ccflags) -Wframe-larger-than=2048
-+CFLAGS_$(AMDDALPATH)/dc/dml/dcn30/display_mode_vba_30.o := $(dml_ccflags) $(frame_warn_flag)
- CFLAGS_$(AMDDALPATH)/dc/dml/dcn30/display_rq_dlg_calc_30.o := $(dml_ccflags)
--CFLAGS_$(AMDDALPATH)/dc/dml/dcn31/display_mode_vba_31.o := $(dml_ccflags) -Wframe-larger-than=2048
-+CFLAGS_$(AMDDALPATH)/dc/dml/dcn31/display_mode_vba_31.o := $(dml_ccflags) $(frame_warn_flag)
- CFLAGS_$(AMDDALPATH)/dc/dml/dcn31/display_rq_dlg_calc_31.o := $(dml_ccflags)
- CFLAGS_$(AMDDALPATH)/dc/dml/display_mode_lib.o := $(dml_ccflags)
- CFLAGS_REMOVE_$(AMDDALPATH)/dc/dml/display_mode_vba.o := $(dml_rcflags)
--- 
-2.32.0.93.g670b81a890-goog
-
+On 6/25/21 10:22 AM, Thomas Zimmermann wrote:
+> The field drm_device.irq_enabled is only used by legacy drivers
+> with userspace modesetting. Don't set it in stm.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> ---
+>   drivers/gpu/drm/stm/ltdc.c | 3 ---
+>   1 file changed, 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
+> index 08b71248044d..e9c5a52f041a 100644
+> --- a/drivers/gpu/drm/stm/ltdc.c
+> +++ b/drivers/gpu/drm/stm/ltdc.c
+> @@ -1339,9 +1339,6 @@ int ltdc_load(struct drm_device *ddev)
+>   		goto err;
+>   	}
+>   
+> -	/* Allow usage of vblank without having to call drm_irq_install */
+> -	ddev->irq_enabled = 1;
+> -
+>   	clk_disable_unprepare(ldev->pixel_clk);
+>   
+>   	pinctrl_pm_select_sleep_state(ddev->dev);
+> 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
