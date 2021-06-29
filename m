@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3CBD3B75EE
-	for <lists+amd-gfx@lfdr.de>; Tue, 29 Jun 2021 17:54:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C91C3B75F3
+	for <lists+amd-gfx@lfdr.de>; Tue, 29 Jun 2021 17:55:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D182D89E32;
-	Tue, 29 Jun 2021 15:54:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8665289F3C;
+	Tue, 29 Jun 2021 15:54:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2046.outbound.protection.outlook.com [40.107.223.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF7F589E32
- for <amd-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 15:54:52 +0000 (UTC)
+ (mail-dm6nam11on2088.outbound.protection.outlook.com [40.107.223.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEE8989F33
+ for <amd-gfx@lists.freedesktop.org>; Tue, 29 Jun 2021 15:54:55 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Fco7JLgrJblA4xkzcSnBcwHZwT5TPTte/Dr4nGbNY+0B+MjJZZCZGS/Y2NUS6ecya+oA0qH4is38vxk/FUIirh1QICuwxXOlC1nKdL+yD5RSalPo9MOeIrCm4H3Kpq706vKVGXsCpxUwfAQX5++nakeaUAAwwQFt6n/tfPq/k07nlxL9jDGo+BK4gwoC0ErblEmD/8qVMdJM53sNYxX7pGf+t4CTpwtwjMO5Jw2d+R1W4zlRaaDcf3zmldVFbfoeADZA71pAvKsB56hl4fX72dXp8BVSvCIBoIMDi5fCyBfqUH4cJTHL7FZTH1wqIPTvnW/m88J4+JlnZIZ22vp0kg==
+ b=UT1FDXf64nroH5yKLmpM93ewxccOabvOqrXIW7K2bqu6ee0Hdax+HvXa1J9uIjo0DU0Jt7SZ9Fbi57DuXv/HG2bpss2PsHa+90xS4sFdBnS+1ccYLL945tf/u40qHz0xyGY3z4d+zCsD/hXxN0sBS4d1fq4YjLNC8LphrcMAarCjkR7XeeaPP28w06SiTAQ5X7YiNXLMAti1/J1xjTQ4weY0NLI7/uFlXB30680GIbTayxQj8QeqDqa+4ONN5XPWxlSvMhDDKY3whUixuSbUbQo7AQue4K5rMl3QyW0xHuDZlC7MPg8bM9RoCohr60aV+x+kS/QeCWGJMbczbbAI5Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8xJ/1Ha1efhOUZaYHuBPvyvHswnOXWtkM75XqU1a/es=;
- b=JBorcntFIPQzZ2FB302Cc/MTi6ZCikarcJOWye+a8OO//3lhHvaksNaMjp+KDxFL6wOUKKiNRq7VgcVuiQPY0Ud08z7+xzptxCOMm2lc5pKFrgTHZ4df9P4p4oNpZEvfBE66n5UBvdncGxTacYLJpRhKhRznGJ0NVEAmGTNIwe0+tbRkWzNRvhEJo7KSAFwB8CzPLVHi+3Dxr9pxfpdpP6JJ2lO1dpKGfYtbQiiYtl0PffidJGykVRj7em1vU66ssVReX2ai2sqP/ym913UIZEq91ztSj3VrH8VluyYpXQ63VPAm4DYnTyx8E77MkMxwYAMWkNb66Z+T6CZn2wdfIA==
+ bh=FlUp1l3yattIhSnPuSbHYul6b3l64r6SMVoC4VVvs64=;
+ b=Hqxxcj2RsDcJVWDZQoXeCwWftat4awBeFmjQjdLiv4YbTulY6kJIx/9ZXJZ6oBTUOLvXQCIZnmgk6kpQPkRLjb+x/eXoIWo8tjQqiceTQQ7BxkSuTh5CZIvrIHT2REUSy8DfdWCfEKDoGVBpQv92kToq98nZx+iDuCFNt7wWxeKL+tbtpHRi1IIwcPc3p+6mFbltGfq+aaGW/nuAHXxbGdp74oO54JMVIw2P3qUXdmRewTus6pNwv3OXAAb9taXsZcQRHQlkhFmYgyWbKrKasawhBwz09almKyD6+XHKo5cfI/W08NH6HlQwf9JstLjEW9j9Yz1X1pXnkUJZVOBbow==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8xJ/1Ha1efhOUZaYHuBPvyvHswnOXWtkM75XqU1a/es=;
- b=xU005JHlYWKzPJ5UVGy5DotphXWL3nAgqH3uYlNec5VQxLexCI0CxwPAdTeIuwEh+hmS2tt2JECn8PRSVrPoxC/0qU2kXEhhKv5Sh2+TU/pPxmTkd5tB04+g3AYLHUnkfabj4W6rEgC59oQBUSRUplg1deO8B7pp4HBb8yITa98=
-Received: from DM5PR13CA0035.namprd13.prod.outlook.com (2603:10b6:3:7b::21) by
- DM6PR12MB3561.namprd12.prod.outlook.com (2603:10b6:5:3e::26) with
+ bh=FlUp1l3yattIhSnPuSbHYul6b3l64r6SMVoC4VVvs64=;
+ b=WUeCZ25OqvmxhPtsb6ZHmsPw0A3+bnvuW1OP8zclp4onLjEIQLIO59xidkscbXARZabSnDcC6jG8A0Tn8Ltl6GrDtV5EcWCTRO9VxzFOd8BL18wl71RBj1+TWxDEUaqiB96BOTQ4mYuS7iy2/XDmH+dehzv0FbOr18Ymx9L+YRY=
+Received: from DM5PR15CA0034.namprd15.prod.outlook.com (2603:10b6:4:4b::20) by
+ CH2PR12MB5513.namprd12.prod.outlook.com (2603:10b6:610:68::13) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4242.22; Tue, 29 Jun 2021 15:54:50 +0000
-Received: from DM6NAM11FT033.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:7b:cafe::37) by DM5PR13CA0035.outlook.office365.com
- (2603:10b6:3:7b::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.12 via Frontend
- Transport; Tue, 29 Jun 2021 15:54:50 +0000
+ 15.20.4264.19; Tue, 29 Jun 2021 15:54:53 +0000
+Received: from DM6NAM11FT004.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:4:4b:cafe::89) by DM5PR15CA0034.outlook.office365.com
+ (2603:10b6:4:4b::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.19 via Frontend
+ Transport; Tue, 29 Jun 2021 15:54:53 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,19 +46,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT033.mail.protection.outlook.com (10.13.172.221) with Microsoft SMTP
+ DM6NAM11FT004.mail.protection.outlook.com (10.13.172.217) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4264.18 via Frontend Transport; Tue, 29 Jun 2021 15:54:50 +0000
+ 15.20.4264.18 via Frontend Transport; Tue, 29 Jun 2021 15:54:53 +0000
 Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Tue, 29 Jun
- 2021 10:54:49 -0500
+ 2021 10:54:50 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 01/12] drm/amd/display: isolate link training setting override
- to its own function
-Date: Tue, 29 Jun 2021 11:54:11 -0400
-Message-ID: <20210629155422.26118-2-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 02/12] drm/amd/display: DMUB Outbound Interrupt Process-X86
+Date: Tue, 29 Jun 2021 11:54:12 -0400
+Message-ID: <20210629155422.26118-3-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210629155422.26118-1-Rodrigo.Siqueira@amd.com>
 References: <20210629155422.26118-1-Rodrigo.Siqueira@amd.com>
@@ -68,27 +67,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a8b91278-6a92-475b-ea4e-08d93b163aae
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3561:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB35616F527749BC278A0AE6E098029@DM6PR12MB3561.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-MS-Office365-Filtering-Correlation-Id: 62eb3b1f-1d41-4c2b-0a85-08d93b163c3d
+X-MS-TrafficTypeDiagnostic: CH2PR12MB5513:
+X-Microsoft-Antispam-PRVS: <CH2PR12MB5513357B72C6DC29D9EDC5E898029@CH2PR12MB5513.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Iz06HH6EACXqmETEPd8AruMmcY+TVnlRYvZwGVES9ahqAawV6Nj6Jy3/4rYzgHU64Z1C8RCT7qCHxy4XLGBKYhPDAOFvCz01m0amBzmZzBf5svICSj+41cc38VQDPwtJNGp5ZwLEtLhuixMFPGekpDQuayjOj7mqjCfDpcPyPot/yhS43TDRv0qXOlE0AaPqOLnd4oD5nQ7wDjO/QyGxJgcjE49yXaVnq30ohnwOB0Gax8jyUt3b7OCfFV8qTOEvH3m7of5JiUa6P5AbiAw9zORFtyFq3aqwnFA2hEKKFR+xkfgOplVfNRRBL1mHT66OQ3BnXIqDEYU6/zAZyob4OQzI3gfrrELN1e6do4pi0MsNu3qJi63WHmEQ1Zl9ARPYGr8tFBMcx/U3K0/xxC/A9KRulkS8iyElFDKRbiJeQ4C/oJeEZa9FhthUosnB+ed043hpNgu5/t+ctLy+BLADDyYHEXLaPKK9wDH4Mcp41yR1OoAfY/nt7TiMc1M9fcs3ATF5Q8SXv3e76KkKD/G3pcrSX9LazSy2lH5kzt90vw6kOaliNFGQAJf1AGRDR2Snf8LW60LXveAbelGavrS29KHYeZUR3yDE8KkUhr6DAWsntyV4iq+AYKY4ryyycDP/qS7Cf/oa2IOkVjxgYiwA4Z8dQ9YnV99Uwm+94FACcYKVynLmB0k6E7sVLK3o4leIwaQP7/zFdoTDvtCFN0rhZooqAHV0rjZr3CRx5Vr44fg=
+X-Microsoft-Antispam-Message-Info: XzgH16MnZFrd48S1wGXJ6+oRrRHdX7fN6WIfTsyvGBQqqK+a12JGsLhuBa3GiJh34gJwlv03QGeO56kaROtDeU+0cm825gclOTgZbXJ48eMFowpIzaVz+QhGEj3K80MMw82kde4tYzh9rzwdeqy9fS/qItSpdF0EfbpM3x3zwrlUktzW5TzS0YDMqIvCi9EqP9R8gFzEtSdsW9m77TxPYGRqsmFPJRooYjIjDcG2Gg9jUJxxN/P9Idi5dTB2T4oJWsJgVTZxQlMkvG/8WWDozqGHz5x+ZgOuinOqx16njodG8+RLmqLfjzlisZATBQY2+98ovyWP0xUiIIRgivR70wTM8mclwgZKYQZB5bL2i48l+6jni/7mWcnieNwQju/yFVUwoqz8v6+Z3oG+BCjwnh3LFBoXP+1sy8xsMf4ezrMs086U908friesHW8G//EWrrRvbeRyHLOVJxhRKGDDw7lSWRuzQ69uEGcbAEW53m+r7Ioi426Bn0floBWwtnHsR27Qrg08wqm0B1PyFUzoOE+01gTNDRCtX9vk92/EXislxrvVcAX5IwCAxPf85m4Pa6PggPOzWt/Zy3nZ02qqtRG87q2D+0ffYAOdNF6rzuqwNWMHJ+gPuHYKRuBlttmMtzkhuBQO7uGA86FLd+bUjIVzJHO+X71fL4oEVgig36f92BMlNkkAqIeSXkJJ8tp5//d5AQFWfhRfAQ6zDJbmWP7dPPuSIQ1uFDLYQHZHotY=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39850400004)(376002)(396003)(346002)(136003)(36840700001)(46966006)(83380400001)(36756003)(336012)(6666004)(2616005)(16526019)(426003)(81166007)(186003)(82740400003)(82310400003)(2906002)(356005)(6916009)(8676002)(47076005)(316002)(70206006)(36860700001)(86362001)(5660300002)(478600001)(1076003)(8936002)(70586007)(4326008)(54906003)(26005)(36900700001);
+ SFS:(4636009)(346002)(39860400002)(376002)(136003)(396003)(46966006)(36840700001)(426003)(4326008)(26005)(70206006)(8676002)(70586007)(336012)(36756003)(5660300002)(82310400003)(82740400003)(8936002)(186003)(16526019)(36860700001)(6916009)(47076005)(6666004)(478600001)(316002)(54906003)(2906002)(1076003)(2616005)(30864003)(86362001)(81166007)(356005)(83380400001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2021 15:54:50.8427 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8b91278-6a92-475b-ea4e-08d93b163aae
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2021 15:54:53.4419 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 62eb3b1f-1d41-4c2b-0a85-08d93b163c3d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT033.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT004.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3561
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB5513
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,233 +100,269 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, Wenjing Liu <wenjing.liu@amd.com>,
- Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
- George Shen <George.Shen@amd.com>, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+ Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
+ Chun-Liang Chang <Chun-Liang.Chang@amd.com>, Jun Lei <Jun.Lei@amd.com>,
+ Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wenjing Liu <wenjing.liu@amd.com>
+From: Chun-Liang Chang <Chun-Liang.Chang@amd.com>
 
-There is a difference between our default behavior and override
-behavior. For default behavior we need to decide link training settings
-within specs' limitation and mandates.
-For override behavior we do not need to follow all these requirements.
-We are isolating override decision to its own function to maintain the
-integrity of our specs compliant default behavior.
+[Why]
+dmub would notify x86 response time violation by GPINT_DATAOUT
 
-Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
-Reviewed-by: George Shen <George.Shen@amd.com>
+[How]
+1. Use GPINT_DATAOUT to trigger x86 interrupt
+2. Register GPINT_DATAOUT interrupt handler.
+3. Trigger ACR while GPINT_DATAOUT occurred.
+
+Signed-off-by: Chun-Liang Chang <Chun-Liang.Chang@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 113 ++++++++----------
- .../gpu/drm/amd/display/dc/inc/dc_link_dp.h   |   1 -
- 2 files changed, 53 insertions(+), 61 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_stat.c | 24 +++++++++++++++++++
+ drivers/gpu/drm/amd/display/dc/dc_stat.h      |  1 +
+ drivers/gpu/drm/amd/display/dc/irq_types.h    |  2 +-
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h   | 18 ++++++++++++++
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn31.c | 15 ++++++++++++
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn31.h | 13 ++++++++--
+ .../gpu/drm/amd/display/dmub/src/dmub_srv.c   | 17 +++++++++++++
+ .../include/asic_reg/dcn/dcn_3_1_2_sh_mask.h  |  4 ++++
+ 8 files changed, 91 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index b8832bdde2bc..5c3f78b2f1de 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -1241,29 +1241,15 @@ enum link_training_result dp_check_link_loss_status(
- static inline void decide_8b_10b_training_settings(
- 	 struct dc_link *link,
- 	const struct dc_link_settings *link_setting,
--	const struct dc_link_training_overrides *overrides,
- 	struct link_training_settings *lt_settings)
- {
--	uint32_t lane;
--
- 	memset(lt_settings, '\0', sizeof(struct link_training_settings));
- 
- 	/* Initialize link settings */
- 	lt_settings->link_settings.use_link_rate_set = link_setting->use_link_rate_set;
- 	lt_settings->link_settings.link_rate_set = link_setting->link_rate_set;
--
--	if (link->preferred_link_setting.link_rate != LINK_RATE_UNKNOWN)
--		lt_settings->link_settings.link_rate = link->preferred_link_setting.link_rate;
--	else
--		lt_settings->link_settings.link_rate = link_setting->link_rate;
--
--	if (link->preferred_link_setting.lane_count != LANE_COUNT_UNKNOWN)
--		lt_settings->link_settings.lane_count = link->preferred_link_setting.lane_count;
--	else
--		lt_settings->link_settings.lane_count = link_setting->lane_count;
--
--	/*@todo[vdevulap] move SS to LS, should not be handled by displaypath*/
--
-+	lt_settings->link_settings.link_rate = link_setting->link_rate;
-+	lt_settings->link_settings.lane_count = link_setting->lane_count;
- 	/* TODO hard coded to SS for now
- 	 * lt_settings.link_settings.link_spread =
- 	 * dal_display_path_is_ss_supported(
-@@ -1271,30 +1257,52 @@ static inline void decide_8b_10b_training_settings(
- 	 * LINK_SPREAD_05_DOWNSPREAD_30KHZ :
- 	 * LINK_SPREAD_DISABLED;
- 	 */
--	/* Initialize link spread */
--	if (link->dp_ss_off)
--		lt_settings->link_settings.link_spread = LINK_SPREAD_DISABLED;
--	else if (overrides->downspread != NULL)
--		lt_settings->link_settings.link_spread
--			= *overrides->downspread
--			? LINK_SPREAD_05_DOWNSPREAD_30KHZ
--			: LINK_SPREAD_DISABLED;
--	else
--		lt_settings->link_settings.link_spread = LINK_SPREAD_05_DOWNSPREAD_30KHZ;
--
-+	lt_settings->link_settings.link_spread = link->dp_ss_off ?
-+			LINK_SPREAD_DISABLED : LINK_SPREAD_05_DOWNSPREAD_30KHZ;
- 	lt_settings->lttpr_mode = link->lttpr_mode;
-+	lt_settings->cr_pattern_time = get_cr_training_aux_rd_interval(link, link_setting);
-+	lt_settings->eq_pattern_time = get_eq_training_aux_rd_interval(link, link_setting);
-+	lt_settings->pattern_for_cr = decide_cr_training_pattern(link_setting);
-+	lt_settings->pattern_for_eq = decide_eq_training_pattern(link, link_setting);
-+	lt_settings->enhanced_framing = 1;
-+	lt_settings->should_set_fec_ready = true;
-+}
- 
--	/* Initialize lane settings overrides */
-+void dp_decide_training_settings(
-+		struct dc_link *link,
-+		const struct dc_link_settings *link_settings,
-+		struct link_training_settings *lt_settings)
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stat.c b/drivers/gpu/drm/amd/display/dc/core/dc_stat.c
+index 31761f3595a6..28ef9760fa34 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_stat.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_stat.c
+@@ -62,3 +62,27 @@ void dc_stat_get_dmub_notification(const struct dc *dc, struct dmub_notification
+ 	status = dmub_srv_stat_get_notification(dmub, notify);
+ 	ASSERT(status == DMUB_STATUS_OK);
+ }
++
++/**
++ *****************************************************************************
++ *  Function: dc_stat_get_dmub_dataout
++ *
++ *  @brief
++ *		Calls dmub layer to retrieve dmub gpint dataout
++ *
++ *  @param
++ *		[in] dc: dc structure
++ *		[in] dataout: dmub gpint dataout
++ *
++ *  @return
++ *     None
++ *****************************************************************************
++ */
++void dc_stat_get_dmub_dataout(const struct dc *dc, uint32_t *dataout)
 +{
-+	if (dp_get_link_encoding_format(link_settings) == DP_8b_10b_ENCODING)
-+		decide_8b_10b_training_settings(link, link_settings, lt_settings);
++	struct dmub_srv *dmub = dc->ctx->dmub_srv->dmub;
++	enum dmub_status status;
++
++	status = dmub_srv_get_gpint_dataout(dmub, dataout);
++	ASSERT(status == DMUB_STATUS_OK);
 +}
-+
-+static void override_training_settings(
-+		struct dc_link *link,
-+		const struct dc_link_training_overrides *overrides,
-+		struct link_training_settings *lt_settings)
-+{
-+	uint32_t lane;
-+
-+	/* Override link settings */
-+	if (link->preferred_link_setting.link_rate != LINK_RATE_UNKNOWN)
-+		lt_settings->link_settings.link_rate = link->preferred_link_setting.link_rate;
-+	if (link->preferred_link_setting.lane_count != LANE_COUNT_UNKNOWN)
-+		lt_settings->link_settings.lane_count = link->preferred_link_setting.lane_count;
-+
-+	/* Override link spread */
-+	if (!link->dp_ss_off && overrides->downspread != NULL)
-+		lt_settings->link_settings.link_spread = *overrides->downspread ?
-+				LINK_SPREAD_05_DOWNSPREAD_30KHZ
-+				: LINK_SPREAD_DISABLED;
-+
-+	/* Override lane settings */
- 	if (overrides->voltage_swing != NULL)
- 		lt_settings->voltage_swing = overrides->voltage_swing;
--
- 	if (overrides->pre_emphasis != NULL)
- 		lt_settings->pre_emphasis = overrides->pre_emphasis;
--
- 	if (overrides->post_cursor2 != NULL)
- 		lt_settings->post_cursor2 = overrides->post_cursor2;
--
--	/* Initialize lane settings (VS/PE/PC2) */
- 	for (lane = 0; lane < LANE_COUNT_DP_MAX; lane++) {
- 		lt_settings->lane_settings[lane].VOLTAGE_SWING =
- 			lt_settings->voltage_swing != NULL ?
-@@ -1313,45 +1321,22 @@ static inline void decide_8b_10b_training_settings(
- 	/* Initialize training timings */
- 	if (overrides->cr_pattern_time != NULL)
- 		lt_settings->cr_pattern_time = *overrides->cr_pattern_time;
--	else
--		lt_settings->cr_pattern_time = get_cr_training_aux_rd_interval(link, link_setting);
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_stat.h b/drivers/gpu/drm/amd/display/dc/dc_stat.h
+index 2a000ba54ddb..aacbfd786c6c 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_stat.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_stat.h
+@@ -38,5 +38,6 @@
+ #include "dmub/dmub_srv.h"
  
- 	if (overrides->eq_pattern_time != NULL)
- 		lt_settings->eq_pattern_time = *overrides->eq_pattern_time;
--	else
--		lt_settings->eq_pattern_time = get_eq_training_aux_rd_interval(link, link_setting);
+ void dc_stat_get_dmub_notification(const struct dc *dc, struct dmub_notification *notify);
++void dc_stat_get_dmub_dataout(const struct dc *dc, uint32_t *dataout);
  
- 	if (overrides->pattern_for_cr != NULL)
- 		lt_settings->pattern_for_cr = *overrides->pattern_for_cr;
--	else
--		lt_settings->pattern_for_cr = decide_cr_training_pattern(link_setting);
- 	if (overrides->pattern_for_eq != NULL)
- 		lt_settings->pattern_for_eq = *overrides->pattern_for_eq;
--	else
--		lt_settings->pattern_for_eq = decide_eq_training_pattern(link, link_setting);
- 
- 	if (overrides->enhanced_framing != NULL)
- 		lt_settings->enhanced_framing = *overrides->enhanced_framing;
--	else
--		lt_settings->enhanced_framing = 1;
- 
- 	if (link->preferred_training_settings.fec_enable != NULL)
- 		lt_settings->should_set_fec_ready = *link->preferred_training_settings.fec_enable;
--	else
--		lt_settings->should_set_fec_ready = true;
--}
+ #endif /* _DC_STAT_H_ */
+diff --git a/drivers/gpu/drm/amd/display/dc/irq_types.h b/drivers/gpu/drm/amd/display/dc/irq_types.h
+index 5f9346622301..b3edd7e618a6 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq_types.h
++++ b/drivers/gpu/drm/amd/display/dc/irq_types.h
+@@ -152,7 +152,7 @@ enum dc_irq_source {
+ 	DC_IRQ_SOURCE_DC6_VLINE1,
+ 	DC_IRQ_SOURCE_DMCUB_OUTBOX,
+ 	DC_IRQ_SOURCE_DMCUB_OUTBOX0,
 -
--void dp_decide_training_settings(
--		struct dc_link *link,
--		const struct dc_link_settings *link_settings,
--		const struct dc_link_training_overrides *overrides,
--		struct link_training_settings *lt_settings)
--{
--	if (dp_get_link_encoding_format(link_settings) == DP_8b_10b_ENCODING)
--		decide_8b_10b_training_settings(link, link_settings, overrides, lt_settings);
++	DC_IRQ_SOURCE_DMCUB_GENERAL_DATAOUT,
+ 	DAL_IRQ_SOURCES_NUMBER
+ };
+ 
+diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+index abbf7ae584c9..caf961bb633f 100644
+--- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+@@ -352,6 +352,8 @@ struct dmub_srv_hw_funcs {
+ 
+ 	uint32_t (*get_gpint_response)(struct dmub_srv *dmub);
+ 
++	uint32_t (*get_gpint_dataout)(struct dmub_srv *dmub);
++
+ 	void (*send_inbox0_cmd)(struct dmub_srv *dmub, union dmub_inbox0_data_register data);
+ 	uint32_t (*get_current_time)(struct dmub_srv *dmub);
+ 
+@@ -676,6 +678,22 @@ dmub_srv_send_gpint_command(struct dmub_srv *dmub,
+ enum dmub_status dmub_srv_get_gpint_response(struct dmub_srv *dmub,
+ 					     uint32_t *response);
+ 
++/**
++ * dmub_srv_get_gpint_dataout() - Queries the GPINT DATAOUT.
++ * @dmub: the dmub service
++ * @dataout: the data for the GPINT DATAOUT
++ *
++ * Returns the response code for the last GPINT DATAOUT interrupt.
++ *
++ * Can be called after software initialization.
++ *
++ * Return:
++ *   DMUB_STATUS_OK - success
++ *   DMUB_STATUS_INVALID - unspecified error
++ */
++enum dmub_status dmub_srv_get_gpint_dataout(struct dmub_srv *dmub,
++					     uint32_t *dataout);
++
+ /**
+  * dmub_flush_buffer_mem() - Read back entire frame buffer region.
+  * This ensures that the write from x86 has been flushed and will not
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
+index 8c886ece71f6..4fb9423fd880 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
+@@ -305,6 +305,21 @@ uint32_t dmub_dcn31_get_gpint_response(struct dmub_srv *dmub)
+ 	return REG_READ(DMCUB_SCRATCH7);
  }
  
--
- uint8_t dp_convert_to_count(uint8_t lttpr_repeater_count)
++uint32_t dmub_dcn31_get_gpint_dataout(struct dmub_srv *dmub)
++{
++	uint32_t dataout = REG_READ(DMCUB_GPINT_DATAOUT);
++
++	REG_UPDATE(DMCUB_INTERRUPT_ENABLE, DMCUB_GPINT_IH_INT_EN, 0);
++
++	REG_WRITE(DMCUB_GPINT_DATAOUT, 0);
++	REG_UPDATE(DMCUB_INTERRUPT_ACK, DMCUB_GPINT_IH_INT_ACK, 1);
++	REG_UPDATE(DMCUB_INTERRUPT_ACK, DMCUB_GPINT_IH_INT_ACK, 0);
++
++	REG_UPDATE(DMCUB_INTERRUPT_ENABLE, DMCUB_GPINT_IH_INT_EN, 1);
++
++	return dataout;
++}
++
+ union dmub_fw_boot_status dmub_dcn31_get_fw_boot_status(struct dmub_srv *dmub)
  {
- 	switch (lttpr_repeater_count) {
-@@ -1581,6 +1566,9 @@ bool dc_link_dp_perform_link_training_skip_aux(
- 	dp_decide_training_settings(
- 			link,
- 			link_setting,
-+			&lt_settings);
-+	override_training_settings(
-+			link,
- 			&link->preferred_training_settings,
- 			&lt_settings);
+ 	union dmub_fw_boot_status status;
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.h b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.h
+index 2829c3e9a310..868119b0c566 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.h
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.h
+@@ -103,11 +103,15 @@ struct dmub_srv;
+ 	DMUB_SR(DMCUB_SCRATCH14) \
+ 	DMUB_SR(DMCUB_SCRATCH15) \
+ 	DMUB_SR(DMCUB_GPINT_DATAIN1) \
++	DMUB_SR(DMCUB_GPINT_DATAOUT) \
+ 	DMUB_SR(CC_DC_PIPE_DIS) \
+ 	DMUB_SR(MMHUBBUB_SOFT_RESET) \
+ 	DMUB_SR(DCN_VM_FB_LOCATION_BASE) \
+ 	DMUB_SR(DCN_VM_FB_OFFSET) \
+-	DMUB_SR(DMCUB_TIMER_CURRENT)
++	DMUB_SR(DMCUB_TIMER_CURRENT) \
++	DMUB_SR(DMCUB_DATA_WRITE_FAULT_ADDR) \
++	DMUB_SR(DMCUB_INTERRUPT_ENABLE) \
++	DMUB_SR(DMCUB_INTERRUPT_ACK)
  
-@@ -1726,6 +1714,9 @@ enum link_training_result dc_link_dp_perform_link_training(
- 	dp_decide_training_settings(
- 			link,
- 			link_settings,
-+			&lt_settings);
-+	override_training_settings(
-+			link,
- 			&link->preferred_training_settings,
- 			&lt_settings);
+ #define DMUB_DCN31_FIELDS() \
+ 	DMUB_SF(DMCUB_CNTL, DMCUB_ENABLE) \
+@@ -138,7 +142,10 @@ struct dmub_srv;
+ 	DMUB_SF(CC_DC_PIPE_DIS, DC_DMCUB_ENABLE) \
+ 	DMUB_SF(MMHUBBUB_SOFT_RESET, DMUIF_SOFT_RESET) \
+ 	DMUB_SF(DCN_VM_FB_LOCATION_BASE, FB_BASE) \
+-	DMUB_SF(DCN_VM_FB_OFFSET, FB_OFFSET)
++	DMUB_SF(DCN_VM_FB_OFFSET, FB_OFFSET) \
++	DMUB_SF(DMCUB_INBOX0_WPTR, DMCUB_INBOX0_WPTR) \
++	DMUB_SF(DMCUB_INTERRUPT_ENABLE, DMCUB_GPINT_IH_INT_EN) \
++	DMUB_SF(DMCUB_INTERRUPT_ACK, DMCUB_GPINT_IH_INT_ACK)
  
-@@ -1940,11 +1931,13 @@ enum link_training_result dc_link_dp_sync_lt_attempt(
- 	bool fec_enable = false;
+ struct dmub_srv_dcn31_reg_offset {
+ #define DMUB_SR(reg) uint32_t reg;
+@@ -212,6 +219,8 @@ bool dmub_dcn31_is_gpint_acked(struct dmub_srv *dmub,
  
- 	dp_decide_training_settings(
--		link,
--		link_settings,
--		lt_overrides,
--		&lt_settings);
--
-+			link,
-+			link_settings,
-+			&lt_settings);
-+	override_training_settings(
-+			link,
-+			lt_overrides,
-+			&lt_settings);
- 	/* Setup MST Mode */
- 	if (lt_overrides->mst_enable)
- 		set_dp_mst_mode(link, *lt_overrides->mst_enable);
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h b/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h
-index e2b58ec9912d..01c3a31be191 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/dc_link_dp.h
-@@ -174,7 +174,6 @@ bool dp_set_dsc_on_rx(struct pipe_ctx *pipe_ctx, bool enable);
- void dp_decide_training_settings(
- 	struct dc_link *link,
- 	const struct dc_link_settings *link_setting,
--	const struct dc_link_training_overrides *overrides,
- 	struct link_training_settings *lt_settings);
+ uint32_t dmub_dcn31_get_gpint_response(struct dmub_srv *dmub);
  
- /* Convert PHY repeater count read from DPCD uint8_t. */
++uint32_t dmub_dcn31_get_gpint_dataout(struct dmub_srv *dmub);
++
+ void dmub_dcn31_enable_dmub_boot_options(struct dmub_srv *dmub, const struct dmub_srv_hw_params *params);
+ 
+ void dmub_dcn31_skip_dmub_panel_power_sequence(struct dmub_srv *dmub, bool skip);
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+index fd7e996ab1d7..d560e31ecab6 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+@@ -223,6 +223,7 @@ static bool dmub_srv_hw_setup(struct dmub_srv *dmub, enum dmub_asic asic)
+ 		funcs->set_gpint = dmub_dcn31_set_gpint;
+ 		funcs->is_gpint_acked = dmub_dcn31_is_gpint_acked;
+ 		funcs->get_gpint_response = dmub_dcn31_get_gpint_response;
++		funcs->get_gpint_dataout = dmub_dcn31_get_gpint_dataout;
+ 		funcs->get_fw_status = dmub_dcn31_get_fw_boot_status;
+ 		funcs->enable_dmub_boot_options = dmub_dcn31_enable_dmub_boot_options;
+ 		funcs->skip_dmub_panel_power_sequence = dmub_dcn31_skip_dmub_panel_power_sequence;
+@@ -720,6 +721,22 @@ enum dmub_status dmub_srv_get_gpint_response(struct dmub_srv *dmub,
+ 	return DMUB_STATUS_OK;
+ }
+ 
++enum dmub_status dmub_srv_get_gpint_dataout(struct dmub_srv *dmub,
++					     uint32_t *dataout)
++{
++	*dataout = 0;
++
++	if (!dmub->sw_init)
++		return DMUB_STATUS_INVALID;
++
++	if (!dmub->hw_funcs.get_gpint_dataout)
++		return DMUB_STATUS_INVALID;
++
++	*dataout = dmub->hw_funcs.get_gpint_dataout(dmub);
++
++	return DMUB_STATUS_OK;
++}
++
+ enum dmub_status dmub_srv_get_fw_boot_status(struct dmub_srv *dmub,
+ 					     union dmub_fw_boot_status *status)
+ {
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_sh_mask.h
+index e5fd0121ceff..a9d553ef26c0 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_sh_mask.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_sh_mask.h
+@@ -5971,6 +5971,7 @@
+ #define DMCUB_INTERRUPT_ENABLE__DMCUB_GPINT1_INT_EN__SHIFT                                                    0xb
+ #define DMCUB_INTERRUPT_ENABLE__DMCUB_GPINT2_INT_EN__SHIFT                                                    0xc
+ #define DMCUB_INTERRUPT_ENABLE__DMCUB_UNDEFINED_ADDRESS_FAULT_INT_EN__SHIFT                                   0xd
++#define DMCUB_INTERRUPT_ENABLE__DMCUB_GPINT_IH_INT_EN__SHIFT                                                  0x11
+ #define DMCUB_INTERRUPT_ENABLE__DMCUB_TIMER0_INT_EN_MASK                                                      0x00000001L
+ #define DMCUB_INTERRUPT_ENABLE__DMCUB_TIMER1_INT_EN_MASK                                                      0x00000002L
+ #define DMCUB_INTERRUPT_ENABLE__DMCUB_INBOX0_READY_INT_EN_MASK                                                0x00000004L
+@@ -5985,6 +5986,7 @@
+ #define DMCUB_INTERRUPT_ENABLE__DMCUB_GPINT1_INT_EN_MASK                                                      0x00000800L
+ #define DMCUB_INTERRUPT_ENABLE__DMCUB_GPINT2_INT_EN_MASK                                                      0x00001000L
+ #define DMCUB_INTERRUPT_ENABLE__DMCUB_UNDEFINED_ADDRESS_FAULT_INT_EN_MASK                                     0x00002000L
++#define DMCUB_INTERRUPT_ENABLE__DMCUB_GPINT_IH_INT_EN_MASK                                                    0x00020000L
+ //DMCUB_INTERRUPT_ACK
+ #define DMCUB_INTERRUPT_ACK__DMCUB_TIMER0_INT_ACK__SHIFT                                                      0x0
+ #define DMCUB_INTERRUPT_ACK__DMCUB_TIMER1_INT_ACK__SHIFT                                                      0x1
+@@ -6000,6 +6002,7 @@
+ #define DMCUB_INTERRUPT_ACK__DMCUB_GPINT1_INT_ACK__SHIFT                                                      0xb
+ #define DMCUB_INTERRUPT_ACK__DMCUB_GPINT2_INT_ACK__SHIFT                                                      0xc
+ #define DMCUB_INTERRUPT_ACK__DMCUB_UNDEFINED_ADDRESS_FAULT_ACK__SHIFT                                         0xd
++#define DMCUB_INTERRUPT_ACK__DMCUB_GPINT_IH_INT_ACK__SHIFT                                                    0x11
+ #define DMCUB_INTERRUPT_ACK__DMCUB_TIMER0_INT_ACK_MASK                                                        0x00000001L
+ #define DMCUB_INTERRUPT_ACK__DMCUB_TIMER1_INT_ACK_MASK                                                        0x00000002L
+ #define DMCUB_INTERRUPT_ACK__DMCUB_INBOX0_READY_INT_ACK_MASK                                                  0x00000004L
+@@ -6014,6 +6017,7 @@
+ #define DMCUB_INTERRUPT_ACK__DMCUB_GPINT1_INT_ACK_MASK                                                        0x00000800L
+ #define DMCUB_INTERRUPT_ACK__DMCUB_GPINT2_INT_ACK_MASK                                                        0x00001000L
+ #define DMCUB_INTERRUPT_ACK__DMCUB_UNDEFINED_ADDRESS_FAULT_ACK_MASK                                           0x00002000L
++#define DMCUB_INTERRUPT_ACK__DMCUB_GPINT_IH_INT_ACK_MASK                                                      0x00020000L
+ //DMCUB_INTERRUPT_STATUS
+ #define DMCUB_INTERRUPT_STATUS__DMCUB_TIMER0_INT_STAT__SHIFT                                                  0x0
+ #define DMCUB_INTERRUPT_STATUS__DMCUB_TIMER1_INT_STAT__SHIFT                                                  0x1
 -- 
 2.25.1
 
