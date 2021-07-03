@@ -1,109 +1,107 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D59633BA632
-	for <lists+amd-gfx@lfdr.de>; Sat,  3 Jul 2021 01:05:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BC8B3BA66C
+	for <lists+amd-gfx@lfdr.de>; Sat,  3 Jul 2021 02:25:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98EB46E216;
-	Fri,  2 Jul 2021 23:05:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE5446E155;
+	Sat,  3 Jul 2021 00:25:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2054.outbound.protection.outlook.com [40.107.223.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BCF26E216;
- Fri,  2 Jul 2021 23:05:12 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2058.outbound.protection.outlook.com [40.107.244.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0F9089B4D
+ for <amd-gfx@lists.freedesktop.org>; Sat,  3 Jul 2021 00:25:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OfLtsv7FBgS6ZKJWG3GfunZXSB3uUDEiZn3CyzZSGUSh6KglSXdRcaSlW73AaLuAbqnL74Nk5oXDvE1jye4WgmH74XHgpv4CivEZ0xlT81NyKatytM3o7YoVpwlbNgfi/qPlpNJ9HEzMDgiucTslKz4V78pinjLIRPFBSiodqpHerJvkUDzrDNPPXmi4fJ7ofGz+6UjlE0cZxTtthN5oJtSwEVMz8glWZNoJ0IJ+QWS6+9viLpFmVoamk9qDauZSdRVejNI+E2w8ukNsFAJhub5QermG/06ipXiRzsurIA17UV8gTM4obNVshzHT824y5MSCpA1q+MGehE3KrzVL3w==
+ b=dAaYc3pyNAcKvqLjLVzOGDK15SwMI9dgRO1lImgHNyVtFpWYcN3W/cIjQKWgaqq91PAFVDvtJGoBJqqHWBpoWfjPMPalC8Wy9NUHVrjdk37i7l+2+QVeaPp8eIpJ6mQupuXriDU9O/+MZNh2hChsIn6JhZWatNHPEVErWtDR2vK6sQnRNAzI4hFiOcI7k1z1+h5kZRkCGjFnbgXp5E27Hvv8mW8nH93LEPMZSN8I5jwmEjaGbjDhK5a53jH+gdKgoKnKt18C2IOrxbmMQVa/AZ2iNHnk43R179zEybkB2sZVZ0hec5wDQVhFy/2waf8EcQwRTnhwvWNjKgcrnOQZJA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qDj49dAYvo4b6H+hnVy2At5BIDxumBxIfqo5cWFIZSU=;
- b=Ksfs/KKi/U9qES1B10/xbS8QoyIfeaMpdE//21zfmln13RXz4yIXWEL8ggwz8AW6pPYNP4Dc5Tu6bmKdNZmekI7L67EztmRy4tA4Tw1uDlrggKmEietH1pgJn6h1j/MRScZsvx5X2c09cY9LU2MqUJzxjHogm641KP04cngKhHsmF2xA0qzvZ765RRJ4SGwqqf3BC56O0a6raHM7P1DYw0SZARRRQ3Ya0T2eyznD2z/vi0KysLF2ZWOIt7kHLqpNTGm1RaJrIomyJqLer0dl9cOO9GGyuGEUP0a/KF0pR2+ShaSmkOiPu6Dqfq3DjWTcCvT8bWBn3Bo7RYoFP6BEMw==
+ bh=RxsNpwo+t3qDW47YSqdivseP+piVEyn8VxYzFKHN6oM=;
+ b=ctcLjudoBdxQ0e7FkOzfeFFbXBWmuJNqwAVyFmulSk9hVP6Zbt0Bsl668fcktUq6iKVQUf/8pbT3NSNdjpax39QTjofOwgxWFQLuWotuWWLx5nfX+kVXxyyYY8GfR38hJ4xSRH11Xf20GKJ0LbeFyNM06R7UL4UGqDMAYM9+yB5dN+9VBLwI3Dt3lFyV92vClmE5JVh3LswRnfimx4xU/Th7i3LRf3YZDd6DnncBGVbC/9IK6n8F1zx9gQgbr49wWuvEYqZMykA+UO62+zXMDkdultrNywzOIY1r2qQTY8hE/z+ZDQXkHlv1ta+6H7kG37gcxGfiUNzirYYyeJwq2g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qDj49dAYvo4b6H+hnVy2At5BIDxumBxIfqo5cWFIZSU=;
- b=pi/gbA3Ei1dISb2ICXpVxRdKz6A28caqKy8fKp9f7F0HUHNLfdFd+a3skt8qqSZlI0Hd1FBXpay1XtWkrFymCns29H55Mr+OFOeFSshwDiHMbzjw4JKgCvTYMVd4u3WlR4T2HJD4024iViGLgZLoNuH+3uJGKRkZXGKwUpS0Aaw=
+ bh=RxsNpwo+t3qDW47YSqdivseP+piVEyn8VxYzFKHN6oM=;
+ b=wBLIMmF8Y/Ox/NWKG1Ag1PvfKjC+0H6aZl93UU6DP/SxtTQrdEM0zCwggu1f2QUbq3a9/SkUHdLLbNm7dDssWk1Ymgrnz/tC8f7MkSogZxR9t4B5b6A8pD0SmCh7XxpmCMj/btbDnwv1FbZcDanYAkniKfQWnzz7iDJxUnnHAac=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
 Received: from DM6PR12MB3962.namprd12.prod.outlook.com (2603:10b6:5:1ce::21)
- by DM5PR1201MB2504.namprd12.prod.outlook.com (2603:10b6:3:e3::22) with
+ by DM5PR12MB1353.namprd12.prod.outlook.com (2603:10b6:3:76::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.21; Fri, 2 Jul
- 2021 23:05:10 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.23; Sat, 3 Jul
+ 2021 00:25:24 +0000
 Received: from DM6PR12MB3962.namprd12.prod.outlook.com
  ([fe80::50f2:699c:121d:f257]) by DM6PR12MB3962.namprd12.prod.outlook.com
- ([fe80::50f2:699c:121d:f257%4]) with mapi id 15.20.4287.023; Fri, 2 Jul 2021
- 23:05:10 +0000
+ ([fe80::50f2:699c:121d:f257%4]) with mapi id 15.20.4287.023; Sat, 3 Jul 2021
+ 00:25:24 +0000
 From: Luben Tuikov <luben.tuikov@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: Return error if no RAS
-Date: Fri,  2 Jul 2021 19:04:55 -0400
-Message-Id: <20210702230455.31196-1-luben.tuikov@amd.com>
+Subject: [PATCH 1/2] drm/amd/pm: Add I2C quirk table to Aldebaran
+Date: Fri,  2 Jul 2021 20:25:08 -0400
+Message-Id: <20210703002509.59476-1-luben.tuikov@amd.com>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <a836cafa-86a9-3d72-1f02-f9f2d58ee127@amd.com>
-References: <a836cafa-86a9-3d72-1f02-f9f2d58ee127@amd.com>
-X-Originating-IP: [108.162.138.69]
-X-ClientProxiedBy: YT1PR01CA0059.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:2e::28) To DM6PR12MB3962.namprd12.prod.outlook.com
+X-Originating-IP: [165.204.84.11]
+X-ClientProxiedBy: YT1PR01CA0038.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2e::7) To DM6PR12MB3962.namprd12.prod.outlook.com
  (2603:10b6:5:1ce::21)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (108.162.138.69) by
- YT1PR01CA0059.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2e::28) with Microsoft
+Received: from localhost.localdomain.amd.com (165.204.84.11) by
+ YT1PR01CA0038.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2e::7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4287.23 via Frontend Transport; Fri, 2 Jul 2021 23:05:09 +0000
+ 15.20.4287.23 via Frontend Transport; Sat, 3 Jul 2021 00:25:23 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: edf4c41b-ecc1-4e6f-39fb-08d93dadd73b
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB2504:
+X-MS-Office365-Filtering-Correlation-Id: 73619683-95f7-4fa2-fab3-08d93db90cf7
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1353:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB2504BB845ACA6FE22B0F6FD0991F9@DM5PR1201MB2504.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
+X-Microsoft-Antispam-PRVS: <DM5PR12MB13533D2B65E82DD8491ECAC6991E9@DM5PR12MB1353.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:93;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GutNB8pW9AHtFn5MaNXexJ/VhwcJRUFmc7TG2aI4g+IyMA+1SWllQer7MtXdgptsGADL7ZMWtCiZDhev7EfOp+6qfkFfljvUFJAr7TGUWNi8wOvq+ZNBtIE9iiHranQnctwFbNK8+H3nAI0vRTM114OvIDUAYuureEITs4Ty++2FB1gYCzVIpV6Uyn5GkX1R7OJhQIPxxSrdXa1380F6T7DUOMrEzGG2MHP681V2nu+wbqNRDXWqikSxanp9joU7agFI2vRo5E7kN2p/PPWZdsL2mhWQWue+CmAYZE5lUjS/KQjvioPylDrBsgaLUB/Nv0vDxxKgo1TBGqhkux1IubySJVyRIXvgzm0CjhOSvCly1XMHdtoW3CENrBrQJLYLeF5f1X+f4ph5czvpAjgng/IdJPpoODrloOl8XkYBJT6ozt4LyXr/EVP+SVoFtFXE2XgoFbs6DOdIccyUqzVnuNoQj+ukWCZiGNEKazlfovNMRixyWpE4zcP04ow5MwmnlhMzh3mnFYkPbuv75wqfGwYScHP1zni/m89z019ITjQUm9H8nVhqionIA34ZryDxnEsihBfKl2SK0xOiad7hxgLxTGlZTaQXEx+YHNszT26ggJT2lCsd0hmhCsluQzC29bwAgr/cCXZXGl2fs4N2elW0vEBZAgKTVmYN8uRtPrcamMrUEOoibyoXNOYPkWsxEtUmDWRVGU7xHL3nFDn/CCtKwtWDjzz9ymN+ZYCVOxk=
+X-Microsoft-Antispam-Message-Info: VL440rkGRq0eNUAuJwz+nyYBK6+jylkH3no7zTJPplIU+Ahf6wA0Nd5gZEA/QhFgEsWyPbf+vmjkqdZdBUFbRZ8v/ZzpUiISTGS8Q9jQ0dVJ/1u69cBEfZer9SGHadVYSbCOaCiAa3lN+ZMDY8QBwYXwfOIGDFSawrc8QWQvzKIY5lijak+ynifyYNAsDMen9XcvMVUCNB77ez1uTN7hVcFCXiAUWzF/Z5zr+Yl6wbY4B4BhagzllA2ty+WzuoMiFHeYYlsBSaoyWY4OblSgJGDD2qk2+O3HVYQa7i9kax3SQ/lLOMqdq6xWm5yUmgP/iMzmFP1sjlMoRKBIud8QUhaQr9WL6vDxvtcyifktdm0If5Z+uOpo922APU+bOfiRAurzJzex7BZDJjGPMj7dSIh78UeZUfVQIA71jc4OY+xLyPRf0YS5WuT8b2LveDmI9ujXc2qRn6SuAHThvizNNrTR78XA/NNujIcJ1VaagV8NtvKG4/A7RAwIlp+sQHCgQh8gnmzUdCGWWYKDOnTlzVFqq/8Ozj9oP1kUBIH1qhNQrSKH3hJ1S3H/cEZSusfCgfX5GwobrMnLuh+0KAcKiGAx/9/SLqQwUJtowiRbWuxseJRkv0+om0eLdAlaxYIjzK2bdIwL/zp1fc5/3sqJSCOCAfZhKbwIH5j+Goo+PtorYm5eCLbHnrYn0Xt1mZqpCw0CPsIhdBX/hwCzDJ00Kw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB3962.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(346002)(39860400002)(396003)(376002)(136003)(6666004)(6506007)(66476007)(316002)(83380400001)(55236004)(38350700002)(86362001)(38100700002)(4326008)(66946007)(5660300002)(6916009)(54906003)(478600001)(66556008)(1076003)(2616005)(52116002)(6486002)(44832011)(6512007)(36756003)(186003)(956004)(8936002)(2906002)(8676002)(26005)(16526019)(69590400013);
+ SFS:(4636009)(376002)(346002)(136003)(366004)(396003)(39860400002)(2906002)(956004)(5660300002)(316002)(44832011)(8936002)(66946007)(6916009)(36756003)(54906003)(8676002)(4326008)(2616005)(66476007)(66556008)(52116002)(1076003)(6486002)(16526019)(186003)(26005)(38100700002)(38350700002)(86362001)(478600001)(6666004)(7696005);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dNq4w6ABhgVY2m50rk8nZ5qjRIzksf8U+h0eKFIYHfnjCziXB0MMH69/lxRq?=
- =?us-ascii?Q?rKVn3NtypBSCzlgXJi1pELtketeKxb19jYz/p71d7GG7sk1ztxLfBHBwPN3i?=
- =?us-ascii?Q?3jhai0SyEcAmF9ncIktxu147fytLKGYDACb1ONAFPSQKeIb6E2YOYZuSLxo/?=
- =?us-ascii?Q?PBrN4+H3WlGYtT2OmD+qXXkFix4TIu4fmmwU2/F4C+1jGhlhvEoa80jim2jV?=
- =?us-ascii?Q?RmmRhdHAx7DddlOsiOnu+IxbL1OrepDKUdiNS7INDZ41dCB0LQfS8Z0tVBqY?=
- =?us-ascii?Q?aZAH3LaELmPILWsegCE5ZlJhb1zCDv6hOe0uw4uURFwwh9pWww+cev3i8RV8?=
- =?us-ascii?Q?fZ1c61gVARHMd5HrXJjDH0/L6lqFiXaWVMgcWBfBtODhZCfnV3nhnCzjUuD7?=
- =?us-ascii?Q?X/EX3LjV6jwdC/xH0BhYSSsFvPB7gEjcu0/ql5tjOzLP0GOJay9jOHtN4KmW?=
- =?us-ascii?Q?vcZaD0Kicyukf13nLoFFz/iG29MnKlwmABs/tbj7kdMe+bX+Y/GCjbOb1I9B?=
- =?us-ascii?Q?fwwwJXYl5cG7SKZpG7rPMGuG9037Vlpb8fsZusniiwXvTAJGqAAyYVl/8ysD?=
- =?us-ascii?Q?mN4Y6QMc8mrGh5BogUxBI8cvxNXeCvsAqjGsE+jE+itGvwy6A52jelqyhZPR?=
- =?us-ascii?Q?Owxo9InmQn5zsBaVyFGGuj3FivI4WM7pdv9vHC7UyQNz4m8EYFxfJV3TeAe5?=
- =?us-ascii?Q?1MimTJ9RQnLzn0yZO2oq1f0nyWe1Zm/FHHX8JTjruzyjmxLTAul+3DdHtjKY?=
- =?us-ascii?Q?xGqgqjrNTIyPalbik87BU3MdMMJbehcXNXjOB6ywYrVq/TYSZ0O9P/VcdqXO?=
- =?us-ascii?Q?sQHggLOgIC/ZfwSfMql0REYit/P7jODjykyUOmwJaYvFlqig0Qf5LIbeim2V?=
- =?us-ascii?Q?LD2GEvsuNmPciNw5UHrfVWdF0RRGD+tsGrBhG+v02MGBv3LC9aJXcpP1JXrO?=
- =?us-ascii?Q?Mgb22NotRWAyx+xcEVoDMxr9/mz9C01rbJFpmdZtuu26h8ADHsn2OOuANQcV?=
- =?us-ascii?Q?5pTj41+bTKnVzfNzKKtc7tw8T/QynSR+qEEjLbdIdSCExBYCOREQFHto3hVZ?=
- =?us-ascii?Q?xic1c5dD8g7mtAqp2GNnXZ0CyMV9xrulSVHvp7LzjWqfgFwyd+i21DpPQASk?=
- =?us-ascii?Q?BzypDrMc59dVDfb/MHKFEHr7i0xQ+pRW27olBwiuuBvQeTw+KkS6Z73RBEwL?=
- =?us-ascii?Q?gKswEWHPS8InE4JedeG/NeoOCnI6yysHDUcbPDWT9c5U5VRcxdxS7At4umwf?=
- =?us-ascii?Q?smBcF1ja6LmsaAUmX5oMk5zIEt+W7Gi0A8yoIXPRGHqJXJI8GiYQImE4t4AW?=
- =?us-ascii?Q?Dr0EnbJatXJJ5QoJ/MW1kGWg?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?OBA7qPkqQgqji5UfdNpgdhZNqNq6NFvwZ5O7lV4GeS6oxEhXi7YaKbBE8AiZ?=
+ =?us-ascii?Q?PRwAbqcmYeKkD+ZVlAkqcMHul0H5FG+2XWdHHrUkuUdg84ihxLUSCZnyktZf?=
+ =?us-ascii?Q?ckpd2djm1T39V5p66RmPHqz8RosIQeJ98rAQCwzdbNm4ifqtJwJyaXHHhEwE?=
+ =?us-ascii?Q?mzgKyhlRheQQd0RHfugVBoAo2LSkqstpJGYtejL7MYtWfWAfA/SCUbiuSsvt?=
+ =?us-ascii?Q?QYyIooTeOPPlStgQOlM2oO3P/2yQXR9UICYCuEhBlRQL11pR9iCbhlhRlt6R?=
+ =?us-ascii?Q?dJagnyS9D0vaicsgYjnfZOmhCM31kkGXtVfZUseHhJSvf8/lzGL2BreAlNfz?=
+ =?us-ascii?Q?2LlmzSOlpMiDb/5HeOuSoHYgp91guwG957TrQIHUuQLq1HnsBlLw6+JvbHqZ?=
+ =?us-ascii?Q?89KLK7ihUGNKwD2j7qKxXI2qfWfN7sxpLVA3hTbNA2QTpyV0sGw5MegRpPtX?=
+ =?us-ascii?Q?bVUvJ4Y2tz+sWQ9nLobbtIwwYmPuNWVvOqGK4SMJK6FgaVBxn+wzsYL8V/Sd?=
+ =?us-ascii?Q?HCSOF/F/fhHejAr2QmEESX6nu8DKUyjqaV1ZuHu7+SSKTVNgDBbDrPifjJdz?=
+ =?us-ascii?Q?1/y3xCQ6bJJB3rpg8V7XZMQhdtooBioQjFRYjQQfqtKrL40S8Vinjus3WB4q?=
+ =?us-ascii?Q?+ohcxs0raBWPJWySLsOWoW94q6bqQG3hLkz3wG6d1iNWIKMClnLomq7FKNEX?=
+ =?us-ascii?Q?jbr+V0CgAP9L1fWNUoEMuEG/tNd6iXU2j0ylEljQAdWe3wqKhilBUDn0DVrY?=
+ =?us-ascii?Q?AHOI6Fk3131fIhDeIVwFKJ97ra+wbYLI/UuQjtdaLAFEcPPjNvEI4RL2BiYq?=
+ =?us-ascii?Q?vhNZHAzjzYHwV4Vz03V4Kd1sdQA/3EyGrpoehUk5tMEzamFsuA6DJ2CtX4r0?=
+ =?us-ascii?Q?3WObYLenEZLHUJZ9I5U/yKeXt0P5w53fpXZ+OJFW+eSvW/lskE3UcpopVTtP?=
+ =?us-ascii?Q?yXu++IG7Qn4FukccjSwYIvwGU6f6LQ5jG3jN4M9Dk2Ii3o4ztlNZqKzEnTnk?=
+ =?us-ascii?Q?IkYcNMzguNeScZkesMtOtTwwIP5rR1cupC7EGmAcr/9IcTBPGyKcvZ/oFys8?=
+ =?us-ascii?Q?myi2xcJMW8R+PKjM8+/3WxxBmVoTUh6rCRS+WX4P4SzUFK7qxhf08/pLa4Dk?=
+ =?us-ascii?Q?rWyyjE6t/ZedbkUiiZFLOtK2pTsYKo2HzQLXeyHxhUL35yO8hHav4aWyPMv4?=
+ =?us-ascii?Q?gvFNlGjWn9HWECd+nDmN7tQKtF9Z3yVqRX2oq4C2D2tSzt5BmVl39sVEaZEH?=
+ =?us-ascii?Q?JYGBHLbcy9g91SdtrTTbvjacCuGHPSZN5mXwd2cDQ0ek4oStmZQNcBO9zrCn?=
+ =?us-ascii?Q?N5pJzG/k8qLVKWvbJR/xYLbE?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: edf4c41b-ecc1-4e6f-39fb-08d93dadd73b
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73619683-95f7-4fa2-fab3-08d93db90cf7
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3962.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jul 2021 23:05:10.1044 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2021 00:25:24.8156 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AxJCt2qFrI2oFT03yZatDAHTcOoHudzbJ2VHXJ5bu5nS6MlFyiMgwU7dXAGrxWBK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB2504
+X-MS-Exchange-CrossTenant-UserPrincipalName: Y1Hb30WPdUIBdambbMW3Y3u1FpS15SIkxKI3s8/iYz0HoLMkalwjuJDdaFq4AFTA
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1353
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,164 +113,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Luben Tuikov <luben.tuikov@amd.com>, guchun.chen@amd.com, airlied@linux.ie,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Xinhui.Pan@amd.com,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel@lists.freedesktop.org, nirmoy.das@amd.com, Stanley.Yang@amd.com,
- Tom Rix <trix@redhat.com>, Alexander Deucher <Alexander.Deucher@amd.com>,
- John Clements <john.clements@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Dennis.Li@amd.com, Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>,
+ Lijo Lazar <Lijo.Lazar@amd.com>, Luben Tuikov <luben.tuikov@amd.com>,
+ Alexander Deucher <Alexander.Deucher@amd.com>,
+ John Clements <john.clements@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In amdgpu_ras_query_error_count() return an error
-if the device doesn't support RAS. This prevents
-that function from having to always set the values
-of the integer pointers (if set), and thus
-prevents function side effects--always to have to
-set values of integers if integer pointers set,
-regardless of whether RAS is supported or
-not--with this change this side effect is
-mitigated.
-
-Also, if no pointers are set, don't count, since
-we've no way of reporting the counts.
-
-Also, give this function a kernel-doc.
+Add I2C quirk table to Aldebaran.
 
 Cc: Alexander Deucher <Alexander.Deucher@amd.com>
+Cc: Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>
+Cc: Lijo Lazar <Lijo.Lazar@amd.com>
 Cc: John Clements <john.clements@amd.com>
 Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-Reported-by: Tom Rix <trix@redhat.com>
-Fixes: a46751fbcde505 ("drm/amdgpu: Fix RAS function interface")
 Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 49 ++++++++++++++++++-------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h |  6 +--
- 2 files changed, 38 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index c6ae63893dbdb2..ed698b2be79023 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -813,7 +813,7 @@ static int amdgpu_ras_enable_all_features(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+index f30edf862b86d1..c1c7aefa9d8fdc 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+@@ -1509,6 +1509,14 @@ static const struct i2c_algorithm aldebaran_i2c_algo = {
+ 	.functionality = aldebaran_i2c_func,
+ };
  
- /* query/inject/cure begin */
- int amdgpu_ras_query_error_status(struct amdgpu_device *adev,
--	struct ras_query_if *info)
-+				  struct ras_query_if *info)
- {
- 	struct ras_manager *obj = amdgpu_ras_find_obj(adev, &info->head);
- 	struct ras_err_data err_data = {0, 0, 0, NULL};
-@@ -1047,17 +1047,32 @@ int amdgpu_ras_error_inject(struct amdgpu_device *adev,
- 	return ret;
- }
- 
--/* get the total error counts on all IPs */
--void amdgpu_ras_query_error_count(struct amdgpu_device *adev,
--				  unsigned long *ce_count,
--				  unsigned long *ue_count)
-+/**
-+ * amdgpu_ras_query_error_count -- Get error counts of all IPs
-+ * adev: pointer to AMD GPU device
-+ * ce_count: pointer to an integer to be set to the count of correctible errors.
-+ * ue_count: pointer to an integer to be set to the count of uncorrectible
-+ * errors.
-+ *
-+ * If set, @ce_count or @ue_count, count and return the corresponding
-+ * error counts in those integer pointers. Return 0 if the device
-+ * supports RAS. Return -EINVAL if the device doesn't support RAS.
-+ */
-+int amdgpu_ras_query_error_count(struct amdgpu_device *adev,
-+				 unsigned long *ce_count,
-+				 unsigned long *ue_count)
- {
- 	struct amdgpu_ras *con = amdgpu_ras_get_context(adev);
- 	struct ras_manager *obj;
- 	unsigned long ce, ue;
- 
- 	if (!adev->ras_enabled || !con)
--		return;
-+		return -EINVAL;
++static const struct i2c_adapter_quirks aldebaran_i2c_control_quirks = {
++	.flags = I2C_AQ_COMB | I2C_AQ_COMB_SAME_ADDR,
++	.max_read_len  = MAX_SW_I2C_COMMANDS,
++	.max_write_len = MAX_SW_I2C_COMMANDS,
++	.max_comb_1st_msg_len = 2,
++	.max_comb_2nd_msg_len = MAX_SW_I2C_COMMANDS - 2,
++};
 +
-+	/* Don't count since no reporting.
-+	 */
-+	if (!ce_count && !ue_count)
-+		return 0;
+ static int aldebaran_i2c_control_init(struct smu_context *smu, struct i2c_adapter *control)
+ {
+ 	struct amdgpu_device *adev = to_amdgpu_device(control);
+@@ -1519,6 +1527,7 @@ static int aldebaran_i2c_control_init(struct smu_context *smu, struct i2c_adapte
+ 	control->dev.parent = &adev->pdev->dev;
+ 	control->algo = &aldebaran_i2c_algo;
+ 	snprintf(control->name, sizeof(control->name), "AMDGPU SMU");
++	control->quirks = &aldebaran_i2c_control_quirks;
  
- 	ce = 0;
- 	ue = 0;
-@@ -1065,9 +1080,11 @@ void amdgpu_ras_query_error_count(struct amdgpu_device *adev,
- 		struct ras_query_if info = {
- 			.head = obj->head,
- 		};
-+		int res;
- 
--		if (amdgpu_ras_query_error_status(adev, &info))
--			return;
-+		res = amdgpu_ras_query_error_status(adev, &info);
-+		if (res)
-+			return res;
- 
- 		ce += info.ce_count;
- 		ue += info.ue_count;
-@@ -1078,6 +1095,8 @@ void amdgpu_ras_query_error_count(struct amdgpu_device *adev,
- 
- 	if (ue_count)
- 		*ue_count = ue;
-+
-+	return 0;
- }
- /* query/inject/cure end */
- 
-@@ -2145,9 +2164,10 @@ static void amdgpu_ras_counte_dw(struct work_struct *work)
- 
- 	/* Cache new values.
- 	 */
--	amdgpu_ras_query_error_count(adev, &ce_count, &ue_count);
--	atomic_set(&con->ras_ce_count, ce_count);
--	atomic_set(&con->ras_ue_count, ue_count);
-+	if (amdgpu_ras_query_error_count(adev, &ce_count, &ue_count) == 0) {
-+		atomic_set(&con->ras_ce_count, ce_count);
-+		atomic_set(&con->ras_ue_count, ue_count);
-+	}
- 
- 	pm_runtime_mark_last_busy(dev->dev);
- Out:
-@@ -2320,9 +2340,10 @@ int amdgpu_ras_late_init(struct amdgpu_device *adev,
- 
- 	/* Those are the cached values at init.
- 	 */
--	amdgpu_ras_query_error_count(adev, &ce_count, &ue_count);
--	atomic_set(&con->ras_ce_count, ce_count);
--	atomic_set(&con->ras_ue_count, ue_count);
-+	if (amdgpu_ras_query_error_count(adev, &ce_count, &ue_count) == 0) {
-+		atomic_set(&con->ras_ce_count, ce_count);
-+		atomic_set(&con->ras_ue_count, ue_count);
-+	}
- 
- 	return 0;
- cleanup:
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-index 283afd791db107..4d9c63f2f37718 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-@@ -491,9 +491,9 @@ int amdgpu_ras_request_reset_on_boot(struct amdgpu_device *adev,
- void amdgpu_ras_resume(struct amdgpu_device *adev);
- void amdgpu_ras_suspend(struct amdgpu_device *adev);
- 
--void amdgpu_ras_query_error_count(struct amdgpu_device *adev,
--				  unsigned long *ce_count,
--				  unsigned long *ue_count);
-+int amdgpu_ras_query_error_count(struct amdgpu_device *adev,
-+				 unsigned long *ce_count,
-+				 unsigned long *ue_count);
- 
- /* error handling functions */
- int amdgpu_ras_add_bad_pages(struct amdgpu_device *adev,
+ 	res = i2c_add_adapter(control);
+ 	if (res)
+
+base-commit: 81dfdb3e6a907ced8f915da3c65632f7a1616985
 -- 
 2.32.0
 
