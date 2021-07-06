@@ -1,39 +1,39 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37C463BCEDE
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jul 2021 13:26:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FAAF3BCF21
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jul 2021 13:27:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76F7D6E44F;
-	Tue,  6 Jul 2021 11:26:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 870136E456;
+	Tue,  6 Jul 2021 11:27:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8603E6E44C;
- Tue,  6 Jul 2021 11:26:47 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6B91161EF6;
- Tue,  6 Jul 2021 11:26:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A1286E455;
+ Tue,  6 Jul 2021 11:27:55 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9270E61D99;
+ Tue,  6 Jul 2021 11:27:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1625570807;
- bh=oIr9xYI+G5Elf4HGQenNpItBKjF/lPCc8SszNoGqv9k=;
+ s=k20201202; t=1625570875;
+ bh=vXYDH9K+6se0soj7y+zLJcB1T3Flabi/5hQ0OnzmT0Y=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=hoqRmuJbKVWRn3IQzC1ipwC4SM8zqrtdkqTOgKjTh8wjwqJuBcII7V3KcCw60wMj1
- 9EUKcr3zqH2ezo2VMLbYBVBmPjktBZpU9E9CNUV584x0GH1pZrz9hz/uT9GkWA8rQL
- UtIZ1M9CX8H8ENg0GsF7MJ06AwynntpTMiJlmtA4aU+KCo9O0rZM7YWTFXN9X0b7LP
- VmudohmBDzo5UVs6T/Urcb+J7ne7/IkLX2h0GJmL5XdTEQw3RV7g8fGRpyTujnyoGI
- m2IbxcnzKsjIj5nYoiiES9zUgzISG7HYYwHVqawg0lOOuoIHU3GPiAX5haJxWNUgYi
- wEVMuGjOzyMaw==
+ b=gC9YJYJxt4mmfr++LX6HQMfTwjT/5P0m1rSJyUaHl6uLuAaWCoDatmqPyhhXk06NU
+ lsBnRkosvTe1PcVR0CfLhfMqgV2lEsbHrpqsUNltJXHy+fx77D8tbHYwE0mMiy4Uaw
+ eHMyAqzRRi7I/XWxbcySEC9EJqpg/JdUbVKYnqpH53RmavV5a1FJ4wGr8xxR1ikBVp
+ BT+1D/c4abCb5DS28yBvkKyiZ0seHesJ2YpxaQoR2L/bkroRd8bYlYe2L+cMGhZl25
+ 22Ijp/Qv6KNX0uXW+G/2iPbY+aoqeaT/MpAAn4W5PBbirEZOzWM6+i5B5IHU5osFWn
+ J/VYHqUNlkCgw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 06/55] drm/amd/display: fix use_max_lb flag for
- 420 pixel formats
-Date: Tue,  6 Jul 2021 07:25:49 -0400
-Message-Id: <20210706112638.2065023-6-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 04/45] drm/amd/amdgpu/sriov disable all ip hw
+ status by default
+Date: Tue,  6 Jul 2021 07:27:08 -0400
+Message-Id: <20210706112749.2065541-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210706112638.2065023-1-sashal@kernel.org>
-References: <20210706112638.2065023-1-sashal@kernel.org>
+In-Reply-To: <20210706112749.2065541-1-sashal@kernel.org>
+References: <20210706112749.2065541-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -48,54 +48,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stylon Wang <stylon.wang@amd.com>, Sasha Levin <sashal@kernel.org>,
- Aric Cyr <Aric.Cyr@amd.com>, amd-gfx@lists.freedesktop.org,
- Daniel Wheeler <daniel.wheeler@amd.com>,
- Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>
+Cc: Sasha Levin <sashal@kernel.org>, Jack Zhang <Jack.Zhang1@amd.com>,
+ dri-devel@lists.freedesktop.org, Emily Deng <Emily.Deng@amd.com>,
+ amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+From: Jack Zhang <Jack.Zhang1@amd.com>
 
-[ Upstream commit 8809a7a4afe90ad9ffb42f72154d27e7c47551ae ]
+[ Upstream commit 95ea3dbc4e9548d35ab6fbf67675cef8c293e2f5 ]
 
-Right now the flag simply selects memory config 0 when flag is true
-however 420 modes benefit more from memory config 3.
+Disable all ip's hw status to false before any hw_init.
+Only set it to true until its hw_init is executed.
 
-Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
-Acked-by: Stylon Wang <stylon.wang@amd.com>
-Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+The old 5.9 branch has this change but somehow the 5.11 kernrel does
+not have this fix.
+
+Without this change, sriov tdr have gfx IB test fail.
+
+Signed-off-by: Jack Zhang <Jack.Zhang1@amd.com>
+Review-by: Emily Deng <Emily.Deng@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c
-index 321af9af95e8..8f5246308d26 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c
-@@ -476,10 +476,13 @@ static enum lb_memory_config dpp1_dscl_find_lb_memory_config(struct dcn10_dpp *d
- 	int vtaps_c = scl_data->taps.v_taps_c;
- 	int ceil_vratio = dc_fixpt_ceil(scl_data->ratios.vert);
- 	int ceil_vratio_c = dc_fixpt_ceil(scl_data->ratios.vert_c);
--	enum lb_memory_config mem_cfg = LB_MEMORY_CONFIG_0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index bc746a6e0ecc..076b22c44122 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -1823,7 +1823,7 @@ static int amdgpu_sriov_reinit_early(struct amdgpu_device *adev)
+ 		AMD_IP_BLOCK_TYPE_IH,
+ 	};
  
--	if (dpp->base.ctx->dc->debug.use_max_lb)
--		return mem_cfg;
-+	if (dpp->base.ctx->dc->debug.use_max_lb) {
-+		if (scl_data->format == PIXEL_FORMAT_420BPP8
-+				|| scl_data->format == PIXEL_FORMAT_420BPP10)
-+			return LB_MEMORY_CONFIG_3;
-+		return LB_MEMORY_CONFIG_0;
-+	}
+-	for (i = 0; i < ARRAY_SIZE(ip_order); i++) {
++	for (i = 0; i < adev->num_ip_blocks; i++) {
+ 		int j;
+ 		struct amdgpu_ip_block *block;
  
- 	dpp->base.caps->dscl_calc_lb_num_partitions(
- 			scl_data, LB_MEMORY_CONFIG_1, &num_part_y, &num_part_c);
 -- 
 2.30.2
 
