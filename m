@@ -2,57 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAD423BDB60
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jul 2021 18:33:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C39E23BDB61
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jul 2021 18:33:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7D706E51C;
-	Tue,  6 Jul 2021 16:32:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29B436E523;
+	Tue,  6 Jul 2021 16:32:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
- [85.215.255.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33C696E041;
- Tue,  6 Jul 2021 15:34:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1625585624;
- s=strato-dkim-0002; d=xenosoft.de;
- h=In-Reply-To:Date:Message-ID:References:Cc:To:From:Subject:Cc:Date:
- From:Subject:Sender;
- bh=VtEf5K4xr2ikQZZXeBeWremiLZpJOnqMXAXhE1aplqg=;
- b=M3k/QbYtdWsM891khv0YO4wrWoIg4FE9pj8cHUkmDLO+eMAuUMYvSgA3ZZNWZhosPr
- 3FiFf1sKzN2KbT+DGw8HuNOSZhEVTpinccXgAYRa7dS5gautgtHXzTPZGpECQ/rhcgxo
- OFDFoYes/jwt1BHUT61nn0dJlLzuRzXkQZnmfbU0UWAIdqBtOnx/QlRVdd46dPCEVNuR
- OUrYuZLp9I7Rq/o6INIpdh5fvY5cr1JGfKF76QNkWcDg5VDz9fi+veznSKfSUTwHAnyi
- 5A0FhJ54RLE/rApgl2N2/fy5wyE05OIIfT1U5Q8573Fq9WuASdqC150JydeAPgtsLqn9
- TA0Q==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGM4l4Hio94KKxRySfLxnHvJzedV4hZUmZXAXbYUBWF2x3OBR490ekaIAVREn8CoDlreD"
-X-RZG-CLASS-ID: mo00
-Received: from [IPv6:2a01:598:a972:569d:25d0:f684:fc1b:518a]
- by smtp.strato.de (RZmta 47.28.1 AUTH)
- with ESMTPSA id D02c3ax66FXhRqj
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
- (Client did not present a certificate);
- Tue, 6 Jul 2021 17:33:43 +0200 (CEST)
-Subject: Re: Xorg doesn't work anymore after the latest DRM updates
-From: Christian Zigotzky <chzigotzky@xenosoft.de>
-To: "Das, Nirmoy" <nirmoy.das@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-References: <20210509224926.GA31035@embeddedor>
- <CADnq5_OWk+rXK5xrwu0YOMVC45WyQgFQBTUNkcF8oO3ucp+=XQ@mail.gmail.com>
- <ba5f2a73-58e8-6b3e-4048-bb19f238be51@embeddedor.com>
- <4e0a3130-4c20-aa8a-f32a-6c3f0d9cd6f8@xenosoft.de>
- <345042b3-7b96-63d9-d4a5-f31c4441ddaf@amd.com>
- <d22b9f68-3692-2819-33a4-123b7182daf3@xenosoft.de>
-Message-ID: <1a269f97-7260-4860-dfe7-c723b73fd909@xenosoft.de>
-Date: Tue, 6 Jul 2021 17:33:42 +0200
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89D816E0C5;
+ Tue,  6 Jul 2021 15:36:51 +0000 (UTC)
+Received: from 1.general.cking.uk.vpn ([10.172.193.212])
+ by youngberry.canonical.com with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
+ (envelope-from <colin.king@canonical.com>)
+ id 1m0n7x-0007LE-Rt; Tue, 06 Jul 2021 15:36:49 +0000
+To: Philip Yang <Philip.Yang@amd.com>, Felix Kuehling
+ <Felix.Kuehling@amd.com>, Alex Deucher <alexander.deucher@amd.com>
+From: Colin Ian King <colin.king@canonical.com>
+Subject: re: drm/amdkfd: implement counters for vm fault and migration
+Message-ID: <d4710cb9-d463-5245-127d-4cfa1bc704d2@canonical.com>
+Date: Tue, 6 Jul 2021 16:36:45 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <d22b9f68-3692-2819-33a4-123b7182daf3@xenosoft.de>
-Content-Language: de-DE
-X-Mailman-Approved-At: Tue, 06 Jul 2021 16:32:46 +0000
+Content-Language: en-US
+X-Mailman-Approved-At: Tue, 06 Jul 2021 16:32:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,161 +40,258 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Darren Stevens <darren@stevens-zone.net>, "R.T.Dickinson" <rtd2@xtra.co.nz>,
- LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- mad skateman <madskateman@gmail.com>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Christian Zigotzky <info@xenosoft.de>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: David Airlie <airlied@linux.ie>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-SGkgTmlybW95LAoKVGhpcyBwYXRjaCB3b3JrcyEgVGhhbmtzIGEgbG90ISBXZSB0ZXN0ZWQgaXQg
-b24gYW4gQS1FT04gQW1pZ2FPbmUgClg1MDAwLzIwIHRvZGF5LgoKU2NyZWVuc2hvdDogCmh0dHA6
-Ly93d3cuc2thdGVtYW4ubmwvd3AtY29udGVudC91cGxvYWRzLzIwMjEvMDcvU2NyZWVuc2hvdC1h
-dC0yMDIxLTA3LTA2LTExMzIzNy5wbmcKCkNoZWVycywKQ2hyaXN0aWFuCgpPbiAwNSBKdWx5IDIw
-MjEgYXQgMDY6NDggcG0sIENocmlzdGlhbiBaaWdvdHpreSB3cm90ZToKPiBIaSBOaXJtb3ksCj4K
-PiBNYW55IHRoYW5rcyBmb3IgdGhpcyBpbmZvcm1hdGlvbi4gV2Ugd2lsbCB0ZXN0IHRoaXMgcGF0
-Y2ggYXNhcC4KPgo+IEhhdmUgYSBuaWNlIGRheSwKPiBDaHJpc3RpYW4KPgo+IE9uIDA1IEp1bHkg
-MjAyMSBhdCAxMDoyNnBtLCBOaXJtb3kgd3JvdGU6Cj4gPiBIaSBDaHJpc3RpYW4sCj4gPgo+ID4K
-PiA+IFRoaXMgaXNzdWUgbG9va3Mgc2ltaWxhciB0byB0aGUgb25lIE1pa2VsIFJ5Y2hsaXNraSBm
-aXhlZCByZWNlbnRsecKgIAo+IDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Bh
-dGNoLzQ0MDc5MS4gTGV0IHVzIGtub3cgaWYgdGhpcyAKPiBoZWxwcy4KPiA+Cj4gPgo+ID4gUmVn
-YXJkcywKPiA+Cj4gPiBOaXJtb3kKPiA+Cj4gPiBPbiA3LzMvMjAyMSA5OjMwIEFNLCBDaHJpc3Rp
-YW4gWmlnb3R6a3kgd3JvdGU6Cj4gPj4gSGkgQWxsLAo+ID4+Cj4gPj4gWG9yZyBkb2Vzbid0IHdv
-cmsgYW55bW9yZSBhZnRlciB0aGUgbGF0ZXN0IERSTSB1cGRhdGVzLiBbMV0KPiA+Pgo+ID4+IEVy
-cm9yIG1lc3NhZ2VzOgo+ID4+Cj4gPj4gSnVsIDAzIDA4OjU0OjUxIEZpZW5peCBzeXN0ZW1kWzFd
-OiBTdGFydGluZyBMaWdodCBEaXNwbGF5IE1hbmFnZXIuLi4KPiA+PiBKdWwgMDMgMDg6NTQ6NTEg
-Rmllbml4IHN5c3RlbWRbMV06IFN0YXJ0ZWQgTGlnaHQgRGlzcGxheSBNYW5hZ2VyLgo+ID4+IEp1
-bCAwMyAwODo1NDo1MSBGaWVuaXgga2VybmVsOiBCVUc6IEtlcm5lbCBOVUxMIHBvaW50ZXIgZGVy
-ZWZlcmVuY2UgCj4gb24gcmVhZCBhdCAweDAwMDAwMDEwCj4gPj4gSnVsIDAzIDA4OjU0OjUxIEZp
-ZW5peCBrZXJuZWw6IEZhdWx0aW5nIGluc3RydWN0aW9uIGFkZHJlc3M6IAo+IDB4YzAwMDAwMDAw
-MDYzMDc1MAo+ID4+IEp1bCAwMyAwODo1NDo1MSBGaWVuaXgga2VybmVsOiBPb3BzOiBLZXJuZWwg
-YWNjZXNzIG9mIGJhZCBhcmVhLCAKPiBzaWc6IDExIFsjMV0KPiA+PiBKdWwgMDMgMDg6NTQ6NTEg
-Rmllbml4IGtlcm5lbDogQkUgUEFHRV9TSVpFPTRLIFBSRUVNUFQgU01QIAo+IE5SX0NQVVM9NCBD
-b3JlTmV0IEdlbmVyaWMKPiA+PiBKdWwgMDMgMDg6NTQ6NTEgRmllbml4IGtlcm5lbDogTW9kdWxl
-cyBsaW5rZWQgaW46IGFsZ2lmX3NrY2lwaGVyIAo+IGJuZXAgdHVuZXJfc2ltcGxlIHR1bmVyX3R5
-cGVzIHRlYTU3NjcgdHVuZXIgdGRhNzQzMiB0dmF1ZGlvIG1zcDM0MDAgCj4gYnR0diB0ZWE1NzV4
-IHR2ZWVwcm9tIHZpZGVvYnVmX2RtYV9zZyB2aWRlb2J1Zl9jb3JlIHJjX2NvcmUgdmlkZW9kZXYg
-Cj4gbWMgYnR1c2IgYnRydGwgYnRiY20gYnRpbnRlbCBibHVldG9vdGggZWNkaF9nZW5lcmljIGVj
-YyAKPiB1aW9fcGRydl9nZW5pcnEgdWlvCj4gPj4gSnVsIDAzIDA4OjU0OjUxIEZpZW5peCBrZXJu
-ZWw6IENQVTogMyBQSUQ6IDQzMDAgQ29tbTogWG9yZy53cmFwIE5vdCAKPiB0YWludGVkIDUuMTQu
-MC1hM19BLUVPTl9YNTAwMC0wNzYzNy1nM2RiZGIzOGUyODY5LWRpcnR5ICMxCj4gPj4gSnVsIDAz
-IDA4OjU0OjUxIEZpZW5peCBrZXJuZWw6IE5JUDrCoCBjMDAwMDAwMDAwNjMwNzUwIExSOiAKPiBj
-MDAwMDAwMDAwNjBmZWRjIENUUjogYzAwMDAwMDAwMDYzMDcyOAo+ID4+IEp1bCAwMyAwODo1NDo1
-MSBGaWVuaXgga2VybmVsOiBSRUdTOiBjMDAwMDAwMDhkOTAzNDcwIFRSQVA6IDAzMDAgCj4gTm90
-IHRhaW50ZWQgKDUuMTQuMC1hM19BLUVPTl9YNTAwMC0wNzYzNy1nM2RiZGIzOGUyODY5LWRpcnR5
-KQo+ID4+IEp1bCAwMyAwODo1NDo1MSBGaWVuaXgga2VybmVsOiBNU1I6wqAgMDAwMDAwMDA4MDAy
-OTAwMiA8Q0UsRUUsTUU+wqAgCj4gQ1I6IDIwMDAwMjIywqAgWEVSOiAyMDAwMDAwMAo+ID4+IEp1
-bCAwMyAwODo1NDo1MSBGaWVuaXgga2VybmVsOiBERUFSOiAwMDAwMDAwMDAwMDAwMDEwIEVTUjog
-Cj4gMDAwMDAwMDAwMDAwMDAwMCBJUlFNQVNLOiAwCj4gPj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBHUFIwMDogYzAwMDAwMDAw
-MDYwZmVkYyAKPiBjMDAwMDAwMDhkOTAzNzEwIGMwMDAwMDAwMDE5MGM0MDAgYzAwMDAwMDA4NWQ1
-OWMwMAo+ID4+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgR1BSMDQ6IGMwMDAwMDAwOGQ5MDM1YjggCj4gZmZmZmZmZmZmZmZmZmZm
-ZiBjMDAwMDAwMDg3MGE0OTAwIGMwMDAwMDAwODViNjJkMDAKPiA+PsKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEdQUjA4OiAwMDAw
-MDAwMDAwMDAwMDBmIAo+IDAwMDAwMDAwMDAwMDAwMDAgYzAwMDAwMDAwMDYzMDcyOCAwMDAwMDAw
-MDAwMDAwMDAzCj4gPj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBHUFIxMjogMDAwMDAwMDAyMDAwMDIyMiAKPiBjMDAwMDAwMDNm
-ZmZlYWMwIDAwMDAwMDAwZmZlNTEwNzAgMDAwMDAwMDAwMDg2MDA3Ywo+ID4+wqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgR1BSMTY6
-IDAwMDAwMDAwMDA4NjI4MjAgCj4gMDAwMDAwMDBmZmI3ZWM2OCAwMDAwMDAwMDAwMDAwMDAwIDAw
-MDAwMDAwZmZmZmZmZmYKPiA+PsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEdQUjIwOiAwMDAwMDAwMGMwNDA2NGEwIAo+IDAwMDAw
-MDAwMDA0NTAwODggMDAwMDAwMDBmZmNhNzllNCA1ZGVhZGJlZWYwMDAwMTIyCj4gPj7CoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBH
-UFIyNDogNWRlYWRiZWVmMDAwMDEwMCAKPiAwMDAwMDAwMDAwMDAwMDAwIGMwMDAwMDAwODc2MDI4
-ZjAgYzAwMDAwMDA4MGJkNDAwMAo+ID4+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgR1BSMjg6IGMwMDAwMDAwODc2MDNjNDggCj4g
-YzAwMDAwMDA4NWQ1OWQ3OCBjMDAwMDAwMDg1ZDU5YzAwIGMwMDAwMDAwODVkNTljNzgKPiA+PiBK
-dWwgMDMgMDg6NTQ6NTEgRmllbml4IGtlcm5lbDogTklQIFtjMDAwMDAwMDAwNjMwNzUwXSAKPiAu
-cmFkZW9uX3R0bV9ib19kZXN0cm95KzB4MjgvMHhjMAo+ID4+IEp1bCAwMyAwODo1NDo1MSBGaWVu
-aXgga2VybmVsOiBMUiBbYzAwMDAwMDAwMDYwZmVkY10gCj4gLnR0bV9ib19wdXQrMHgyZWMvMHgz
-NDQKPiA+PiBKdWwgMDMgMDg6NTQ6NTEgRmllbml4IGtlcm5lbDogQ2FsbCBUcmFjZToKPiA+PiBK
-dWwgMDMgMDg6NTQ6NTEgRmllbml4IGtlcm5lbDogW2MwMDAwMDAwOGQ5MDM3MTBdIAo+IFtjMDAw
-MDAwMDAwNjBmYmU0XSAudHRtX2JvX2NsZWFudXBfbWVtdHlwZV91c2UrMHg1NC8weDYwICh1bnJl
-bGlhYmxlKQo+ID4+IEp1bCAwMyAwODo1NDo1MSBGaWVuaXgga2VybmVsOiBbYzAwMDAwMDA4ZDkw
-Mzc5MF0gCj4gW2MwMDAwMDAwMDA2MGZlZGNdIC50dG1fYm9fcHV0KzB4MmVjLzB4MzQ0Cj4gPj4g
-SnVsIDAzIDA4OjU0OjUxIEZpZW5peCBrZXJuZWw6IFtjMDAwMDAwMDhkOTAzODIwXSAKPiBbYzAw
-MDAwMDAwMDYzMGI1MF0gLnJhZGVvbl9ib191bnJlZisweDI4LzB4M2MKPiA+PiBKdWwgMDMgMDg6
-NTQ6NTEgRmllbml4IGtlcm5lbDogW2MwMDAwMDAwOGQ5MDM4YTBdIAo+IFtjMDAwMDAwMDAwNmQx
-ZjZjXSAucmFkZW9uX3ZtX2ZpbmkrMHgxYjAvMHgxYjgKPiA+PiBKdWwgMDMgMDg6NTQ6NTEgRmll
-bml4IGtlcm5lbDogW2MwMDAwMDAwOGQ5MDM5NDBdIAo+IFtjMDAwMDAwMDAwNjE4ZTM4XSAucmFk
-ZW9uX2RyaXZlcl9wb3N0Y2xvc2Vfa21zKzB4MTI4LzB4MTc4Cj4gPj4gSnVsIDAzIDA4OjU0OjUx
-IEZpZW5peCBrZXJuZWw6IFtjMDAwMDAwMDhkOTAzOWUwXSAKPiBbYzAwMDAwMDAwMDVkZWIxNF0g
-LmRybV9maWxlX2ZyZWUrMHgxZDgvMHgyNzgKPiA+PiBKdWwgMDMgMDg6NTQ6NTEgRmllbml4IGtl
-cm5lbDogW2MwMDAwMDAwOGQ5MDNhYTBdIAo+IFtjMDAwMDAwMDAwNWRlZjAwXSAuZHJtX3JlbGVh
-c2UrMHg2NC8weGM4Cj4gPj4gSnVsIDAzIDA4OjU0OjUxIEZpZW5peCBrZXJuZWw6IFtjMDAwMDAw
-MDhkOTAzYjMwXSAKPiBbYzAwMDAwMDAwMDE3NjM2Y10gLl9fZnB1dCsweDExYy8weDI1Ywo+ID4+
-IEp1bCAwMyAwODo1NDo1MSBGaWVuaXgga2VybmVsOiBbYzAwMDAwMDA4ZDkwM2JkMF0gCj4gW2Mw
-MDAwMDAwMDAwOGIxZThdIC50YXNrX3dvcmtfcnVuKzB4YTQvMHhiYwo+ID4+IEp1bCAwMyAwODo1
-NDo1MSBGaWVuaXgga2VybmVsOiBbYzAwMDAwMDA4ZDkwM2M3MF0gCj4gW2MwMDAwMDAwMDAwMDRi
-ZjRdIC5kb19ub3RpZnlfcmVzdW1lKzB4MTQ0LzB4MmYwCj4gPj4gSnVsIDAzIDA4OjU0OjUxIEZp
-ZW5peCBrZXJuZWw6IFtjMDAwMDAwMDhkOTAzZDcwXSAKPiBbYzAwMDAwMDAwMDAwYjM4MF0gLnN5
-c2NhbGxfZXhpdF9wcmVwYXJlKzB4MTEwLzB4MTMwCj4gPj4gSnVsIDAzIDA4OjU0OjUxIEZpZW5p
-eCBrZXJuZWw6IFtjMDAwMDAwMDhkOTAzZTEwXSAKPiBbYzAwMDAwMDAwMDAwMDY4OF0gc3lzdGVt
-X2NhbGxfY29tbW9uKzB4MTAwLzB4MWZjCj4gPj4gSnVsIDAzIDA4OjU0OjUxIEZpZW5peCBrZXJu
-ZWw6IC0tLSBpbnRlcnJ1cHQ6IGMwMCBhdCAweDNmNGY1OAo+ID4+IEp1bCAwMyAwODo1NDo1MSBG
-aWVuaXgga2VybmVsOiBOSVA6wqAgMDAwMDAwMDAwMDNmNGY1OCBMUjogCj4gMDAwMDAwMDAwMDNm
-NGYyYyBDVFI6IDAwMDAwMDAwMDAwMDAwMDAKPiA+PiBKdWwgMDMgMDg6NTQ6NTEgRmllbml4IGtl
-cm5lbDogUkVHUzogYzAwMDAwMDA4ZDkwM2U4MCBUUkFQOiAwYzAwIAo+IE5vdCB0YWludGVkICg1
-LjE0LjAtYTNfQS1FT05fWDUwMDAtMDc2MzctZzNkYmRiMzhlMjg2OS1kaXJ0eSkKPiA+PiBKdWwg
-MDMgMDg6NTQ6NTEgRmllbml4IGtlcm5lbDogTVNSOsKgIDAwMDAwMDAwMDAwMmQwMDIgCj4gPENF
-LEVFLFBSLE1FPsKgIENSOiAyMDAwMDQyMMKgIFhFUjogMDAwMDAwMDAKPiA+PiBKdWwgMDMgMDg6
-NTQ6NTEgRmllbml4IGtlcm5lbDogSVJRTUFTSzogMAo+ID4+wqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgR1BSMDA6IDAwMDAwMDAw
-MDAwMDAwMDYgCj4gMDAwMDAwMDBmZmNhNjZhMCAwMDAwMDAwMGY3OThhMzEwIDAwMDAwMDAwMDAw
-MDAwMDAKPiA+PsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIEdQUjA0OiAwMDAwMDAwMDAwMDAwMDAwIAo+IDAwMDAwMDAwMDAwMDAw
-MDAgMDAwMDAwMDAwMDAwMDAwMCAwMDAwMDAwMDAwMDAwMDAwCj4gPj7CoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBHUFIwODogMDAw
-MDAwMDAwMDAwMDAwMCAKPiAwMDAwMDAwMDAwMDAwMDAwIDAwMDAwMDAwMDAwMDAwMDAgMDAwMDAw
-MDAwMDAwMDAwMAo+ID4+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgR1BSMTI6IDAwMDAwMDAwMDAwMDAwMDAgCj4gMDAwMDAwMDAw
-MDQ0ZmZmNCAwMDAwMDAwMGZmZTUxMDcwIDAwMDAwMDAwMDA4NjAwN2MKPiA+PsKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEdQUjE2
-OiAwMDAwMDAwMDAwODYyODIwIAo+IDAwMDAwMDAwZmZiN2VjNjggMDAwMDAwMDAwMDAwMDAwMCAw
-MDAwMDAwMGZmZmZmZmZmCj4gPj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBHUFIyMDogMDAwMDAwMDBjMDQwNjRhMCAKPiAwMDAw
-MDAwMDAwNDUwMDg4IDAwMDAwMDAwZmZjYTc5ZTQgMDAwMDAwMDAwMDQzMTdhYwo+ID4+wqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-R1BSMjQ6IDAwMDAwMDAwMDA0MzE3YjggCj4gMDAwMDAwMDBmZmNhNjZkMCAwMDAwMDAwMDAwMDAw
-MDAxIDAwMDAwMDAwZmZjYTY3M2MKPiA+PsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEdQUjI4OiAwMDAwMDAwMDAwMDAwMDAxIAo+
-IDAwMDAwMDAwMDAwMDAwMDAgMDAwMDAwMDAwMDQxY2ZmNCAwMDAwMDAwMDAwMDAwMDAzCj4gPj4g
-SnVsIDAzIDA4OjU0OjUxIEZpZW5peCBrZXJuZWw6IE5JUCBbMDAwMDAwMDAwMDNmNGY1OF0gMHgz
-ZjRmNTgKPiA+PiBKdWwgMDMgMDg6NTQ6NTEgRmllbml4IGtlcm5lbDogTFIgWzAwMDAwMDAwMDAz
-ZjRmMmNdIDB4M2Y0ZjJjCj4gPj4gSnVsIDAzIDA4OjU0OjUxIEZpZW5peCBrZXJuZWw6IC0tLSBp
-bnRlcnJ1cHQ6IGMwMAo+ID4+IEp1bCAwMyAwODo1NDo1MSBGaWVuaXgga2VybmVsOiBJbnN0cnVj
-dGlvbiBkdW1wOgo+ID4+IEp1bCAwMyAwODo1NDo1MSBGaWVuaXgga2VybmVsOiA0MGMyZmZmNCA0
-ZTgwMDAyMCA3YzA4MDJhNiBmYmMxZmZmMCAKPiBmODAxMDAxMCAzYmMzZmY4OCBmYmUxZmZmOCAz
-OGEwZmZmZgo+ID4+IEp1bCAwMyAwODo1NDo1MSBGaWVuaXgga2VybmVsOiBmODIxZmY4MSA3Yzdm
-MWI3OCBlOTIzMDE2OCA3ZmMzZjM3OCAKPiA8ODA4OTAwMTA+IDRiZmZmZjUxIGU4N2YwMjA4IDM4
-NjMxZGY4Cj4gPj4gSnVsIDAzIDA4OjU0OjUxIEZpZW5peCBrZXJuZWw6IC0tLVsgZW5kIHRyYWNl
-IGRkZjczZDJkNzAwNTgzODAgXS0tLQo+ID4+IEp1bCAwMyAwODo1NDo1MSBGaWVuaXgga2VybmVs
-Ogo+ID4+IEp1bCAwMyAwODo1NDo1MSBGaWVuaXggc3lzdGVtZFsxXTogbGlnaHRkbS5zZXJ2aWNl
-OiBNYWluIHByb2Nlc3MgCj4gZXhpdGVkLCBjb2RlPWV4aXRlZCwgc3RhdHVzPTEvRkFJTFVSRQo+
-ID4+IEp1bCAwMyAwODo1NDo1MSBGaWVuaXggc3lzdGVtZFsxXTogbGlnaHRkbS5zZXJ2aWNlOiBG
-YWlsZWQgd2l0aCAKPiByZXN1bHQgJ2V4aXQtY29kZScuCj4gPj4gSnVsIDAzIDA4OjU0OjUxIEZp
-ZW5peCBhdmFoaS1kYWVtb25bMzg1N106IFJlZ2lzdGVyaW5nIG5ldyBhZGRyZXNzIAo+IHJlY29y
-ZCBmb3IgMmEwMjo4MTA5Ojg5YzA6ZWJmYzpkMzcyOmYwNmM6OTI0Nzo3ZDU0IG9uIGVuUDQwOTZw
-NHM0LiouCj4gPj4gSnVsIDAzIDA4OjU0OjUxIEZpZW5peCBzeXN0ZW1kWzFdOiBsaWdodGRtLnNl
-cnZpY2U6IFNjaGVkdWxlZCAKPiByZXN0YXJ0IGpvYiwgcmVzdGFydCBjb3VudGVyIGlzIGF0IDEu
-Cj4gPj4gSnVsIDAzIDA4OjU0OjUxIEZpZW5peCBzeXN0ZW1kWzFdOiBTdG9wcGVkIExpZ2h0IERp
-c3BsYXkgTWFuYWdlci4KPiA+Pgo+ID4+IC0tLS0KPiA+PiBTeXN0ZW1zOiBBLUVPTiBBbWlnYU9u
-ZSBYMTAwMCBhbmQgWDUwMDAgd2l0aCBSYWRlb24gSEQ2OTcwIGdyYXBoaWNzIAo+IGNhcmRzLiBb
-Ml0gWzNdIFs0XQo+ID4+Cj4gPj4gVGhlIGJpZ2dlc3QgcHJvYmxlbSBpcywgdGhhdCBJIGRvbid0
-IGhhdmUgdGltZSBmb3IgYmlzZWN0aW5nIGFuZCAKPiBmaXhpbmcgdGhpcyBpc3N1ZS4KPiA+Pgo+
-ID4+IENoZWVycywKPiA+PiBDaHJpc3RpYW4KPiA+Pgo+ID4+IFsxXSAKPiBodHRwczovL2dpdC5r
-ZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC90b3J2YWxkcy9saW51eC5naXQvY29t
-bWl0Lz9pZD1lMDU4YTg0YmZkZGM0MmJhMzU2YTIzMTZmMmNmMTE0MTk3NDYyNWM5Cj4gPj4gWzJd
-IGh0dHA6Ly93aWtpLmFtaWdhLm9yZy9pbmRleC5waHA/dGl0bGU9WDUwMDAKPiA+PiBbM10gaHR0
-cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQW1pZ2FPbmVfWDEwMDAKPiA+PiBbNF0gaHR0cHM6
-Ly9mb3J1bS5oeXBlcmlvbi1lbnRlcnRhaW5tZW50LmNvbS92aWV3dG9waWMucGhwP2Y9NTgmdD00
-Mzc4Cj4KPgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-YW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+Hi,
+
+Static analysis with Coverity on linux-next has found a potential null
+pointer dereference in function svm_range_restore_pages in
+drivers/gpu/drm/amd/amdkfd/kfd_svm.c from the following commit:
+
+commit d4ebc2007040a0aff01bfe1b194085d3867328fd
+Author: Philip Yang <Philip.Yang@amd.com>
+Date:   Tue Jun 22 00:12:32 2021 -0400
+
+    drm/amdkfd: implement counters for vm fault and migration
+
+The analysis is as follows:
+
+2397 int
+2398 svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
+2399                        uint64_t addr)
+2400{
+2401        struct mm_struct *mm = NULL;
+2402        struct svm_range_list *svms;
+2403        struct svm_range *prange;
+2404        struct kfd_process *p;
+2405        uint64_t timestamp;
+2406        int32_t best_loc;
+2407        int32_t gpuidx = MAX_GPU_INSTANCE;
+2408        bool write_locked = false;
+2409        int r = 0;
+2410
+
+    1. Condition !(adev->kfd.dev->pgmap.type != 0), taking false branch.
+
+2411        if (!KFD_IS_SVM_API_SUPPORTED(adev->kfd.dev)) {
+2412                pr_debug("device does not support SVM\n");
+2413                return -EFAULT;
+2414        }
+2415
+2416        p = kfd_lookup_process_by_pasid(pasid);
+
+    2. Condition !p, taking false branch.
+
+2417        if (!p) {
+2418                pr_debug("kfd process not founded pasid 0x%x\n", pasid);
+2419                return -ESRCH;
+2420        }
+
+    3. Condition !p->xnack_enabled, taking false branch.
+
+2421        if (!p->xnack_enabled) {
+2422                pr_debug("XNACK not enabled for pasid 0x%x\n", pasid);
+2423                return -EFAULT;
+2424        }
+2425        svms = &p->svms;
+2426
+
+    4. Condition 0 /* __builtin_types_compatible_p() */, taking false
+branch.
+    5. Condition 1 /* __builtin_types_compatible_p() */, taking true branch.
+    6. Falling through to end of if statement.
+    7. Condition !!branch, taking false branch.
+    8. Condition ({...; !!branch;}), taking false branch.
+
+2427        pr_debug("restoring svms 0x%p fault address 0x%llx\n", svms,
+addr);
+2428
+2429        mm = get_task_mm(p->lead_thread);
+
+    9. Condition !mm, taking false branch.
+
+2430        if (!mm) {
+2431                pr_debug("svms 0x%p failed to get mm\n", svms);
+2432                r = -ESRCH;
+2433                goto out;
+2434        }
+2435
+2436        mmap_read_lock(mm);
+2437retry_write_locked:
+2438        mutex_lock(&svms->lock);
+2439        prange = svm_range_from_addr(svms, addr, NULL);
+
+    10. Condition !prange, taking true branch.
+    18. Condition !prange, taking true branch.
+2440        if (!prange) {
+    11. Condition 0 /* __builtin_types_compatible_p() */, taking false
+branch.
+    12. Condition 1 /* __builtin_types_compatible_p() */, taking true
+branch.
+    13. Falling through to end of if statement.
+    14. Condition !!branch, taking false branch.
+    15. Condition ({...; !!branch;}), taking false branch.
+    19. Condition 0 /* __builtin_types_compatible_p() */, taking false
+branch.
+    20. Condition 1 /* __builtin_types_compatible_p() */, taking true
+branch.
+    21. Falling through to end of if statement.
+    22. Condition !!branch, taking false branch.
+    23. Condition ({...; !!branch;}), taking false branch.
+
+2441                pr_debug("failed to find prange svms 0x%p address
+[0x%llx]\n",
+2442                         svms, addr);
+
+    16. Condition !write_locked, taking true branch.
+    24. Condition !write_locked, taking false branch.
+
+2443                if (!write_locked) {
+2444                        /* Need the write lock to create new range
+with MMU notifier.
+2445                         * Also flush pending deferred work to make
+sure the interval
+2446                         * tree is up to date before we add a new range
+2447                         */
+2448                        mutex_unlock(&svms->lock);
+2449                        mmap_read_unlock(mm);
+2450                        mmap_write_lock(mm);
+2451                        write_locked = true;
+
+    17. Jumping to label retry_write_locked.
+
+2452                        goto retry_write_locked;
+2453                }
+2454                prange = svm_range_create_unregistered_range(adev,
+p, mm, addr);
+
+    25. Condition !prange, taking true branch.
+    26. var_compare_op: Comparing prange to null implies that prange
+might be null.
+
+2455                if (!prange) {
+
+    27. Condition 0 /* __builtin_types_compatible_p() */, taking false
+branch.
+    28. Condition 1 /* __builtin_types_compatible_p() */, taking true
+branch.
+    29. Falling through to end of if statement.
+    30. Condition !!branch, taking false branch.
+    31. Condition ({...; !!branch;}), taking false branch.
+
+2456                        pr_debug("failed to create unregistered
+range svms 0x%p address [0x%llx]\n",
+2457                                 svms, addr);
+2458                        mmap_write_downgrade(mm);
+2459                        r = -EFAULT;
+
+    32. Jumping to label out_unlock_svms.
+
+2460                        goto out_unlock_svms;
+2461                }
+2462        }
+2463        if (write_locked)
+2464                mmap_write_downgrade(mm);
+2465
+2466        mutex_lock(&prange->migrate_mutex);
+2467
+2468        if (svm_range_skip_recover(prange)) {
+2469                amdgpu_gmc_filter_faults_remove(adev, addr, pasid);
+2470                goto out_unlock_range;
+2471        }
+2472
+2473        timestamp = ktime_to_us(ktime_get()) -
+prange->validate_timestamp;
+2474        /* skip duplicate vm fault on different pages of same range */
+2475        if (timestamp < AMDGPU_SVM_RANGE_RETRY_FAULT_PENDING) {
+2476                pr_debug("svms 0x%p [0x%lx %lx] already restored\n",
+2477                         svms, prange->start, prange->last);
+2478                goto out_unlock_range;
+2479        }
+2480
+2481        best_loc = svm_range_best_restore_location(prange, adev,
+&gpuidx);
+2482        if (best_loc == -1) {
+2483                pr_debug("svms %p failed get best restore loc [0x%lx
+0x%lx]\n",
+2484                         svms, prange->start, prange->last);
+2485                r = -EACCES;
+2486                goto out_unlock_range;
+2487        }
+2488
+2489        pr_debug("svms %p [0x%lx 0x%lx] best restore 0x%x, actual
+loc 0x%x\n",
+2490                 svms, prange->start, prange->last, best_loc,
+2491                 prange->actual_loc);
+2492
+2493        if (prange->actual_loc != best_loc) {
+2494                if (best_loc) {
+2495                        r = svm_migrate_to_vram(prange, best_loc, mm);
+2496                        if (r) {
+2497                                pr_debug("svm_migrate_to_vram failed
+(%d) at %llx, falling back to system memory\n",
+2498                                         r, addr);
+2499                                /* Fallback to system memory if
+migration to
+2500                                 * VRAM failed
+2501                                 */
+2502                                if (prange->actual_loc)
+2503                                        r =
+svm_migrate_vram_to_ram(prange, mm);
+2504                                else
+2505                                        r = 0;
+2506                        }
+2507                } else {
+2508                        r = svm_migrate_vram_to_ram(prange, mm);
+2509                }
+2510                if (r) {
+2511                        pr_debug("failed %d to migrate svms %p
+[0x%lx 0x%lx]\n",
+2512                                 r, svms, prange->start, prange->last);
+2513                        goto out_unlock_range;
+2514                }
+2515        }
+2516
+2517        r = svm_range_validate_and_map(mm, prange, gpuidx, false,
+false);
+2518        if (r)
+2519                pr_debug("failed %d to map svms 0x%p [0x%lx 0x%lx]
+to gpus\n",
+2520                         r, svms, prange->start, prange->last);
+2521
+2522out_unlock_range:
+2523        mutex_unlock(&prange->migrate_mutex);
+2524out_unlock_svms:
+2525        mutex_unlock(&svms->lock);
+2526        mmap_read_unlock(mm);
+2527
+
+    Dereference after null check (FORWARD_NULL)
+    33. var_deref_model: Passing null pointer prange to
+svm_range_count_fault, which dereferences it.
+
+2528        svm_range_count_fault(adev, p, prange, gpuidx);
+
+
+The jump in line 2460 to out_unlock_svms will occur if prange is null,
+however, calling svm_range_count_fault with a null prange will cause a
+null pointer deference when it calls svm_range_get_pdd_by_adev and
+dereferences the pointer as follows:
+
+    p = container_of(prange->svms, struct kfd_process, svms);
+
+Colin
+
+_______________________________________________
+amd-gfx mailing list
+amd-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/amd-gfx
