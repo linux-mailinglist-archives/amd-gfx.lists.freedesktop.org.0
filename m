@@ -2,54 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A80C83BD78C
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jul 2021 15:17:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AFE13BD808
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jul 2021 15:52:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8104C6E47A;
-	Tue,  6 Jul 2021 13:17:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE5736E4BB;
+	Tue,  6 Jul 2021 13:52:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com
- [IPv6:2607:f8b0:4864:20::32f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3D556E471
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jul 2021 13:17:12 +0000 (UTC)
-Received: by mail-ot1-x32f.google.com with SMTP id
- 59-20020a9d0ac10000b0290462f0ab0800so21471203otq.11
- for <amd-gfx@lists.freedesktop.org>; Tue, 06 Jul 2021 06:17:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=U9D/asRW8RIRRhOKKkNY/c0bgyv3JnZBPRvStuSKb28=;
- b=cB9WV9sNtYm4EIQPRYYsOGXCyC85KX4IvPilkqi+DXH4BpSsZyGkNpW3uSI8JnhhUm
- Uoplzu3pWcmKt7UBmyg4GG/1Ehm8EZCdN1AUKXSFMtmPdYVFA4tSUwyZPyO+z/eahKfZ
- PrBc3UQ6AHFgqTPV3OhYjDG9m5j2bWR34qSio=
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com
+ [IPv6:2607:f8b0:4864:20::72d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBDA06E49D
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jul 2021 13:44:32 +0000 (UTC)
+Received: by mail-qk1-x72d.google.com with SMTP id 9so1218734qkf.3
+ for <amd-gfx@lists.freedesktop.org>; Tue, 06 Jul 2021 06:44:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=nYMSUda7V/DmmAuzip7JbF6LIDuj8UtQ05rEhsj9lGA=;
+ b=V36CzWcFqXgQrH0S61JBopqFYw86l1KRRiKJIfDMvpGLy4yCd9hRFVr0veacKuzH9C
+ Zgqj20uE9eKfAWLyfKmwP+hpUiApugYVKPIUd+EFXMxS/jWvnL3mn8mSgjzu4iIFPcKJ
+ 45inefBONCCkx8NgDhSgPV+1arRfzXXcfRNx3yJokZyujlPZfXzS0at11zwyPuA+RpQv
+ wjKe6ehncM5CybBy6YVtafHvR9nArwr4etCQhsgoD72pN8YiB6jEe/6xvn5lmExqOPcd
+ l2ikCxlts7bnffEllKLPSylZMJUJm44orkIDc9OCKJTeMjFkIgoY/LXb3bYUCoqdKvKg
+ KJhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=U9D/asRW8RIRRhOKKkNY/c0bgyv3JnZBPRvStuSKb28=;
- b=DUB+7Ru7VD41/23iK15/W5wmceM1P0tEZbVyd57rKvfuvNIDdmO3Q2tzLGGVp03AJv
- QI9wYrMGql3iDUdTJftzedGZQW1teZNdQvCUQgvhLKptUumQnIvCssJepuROhxRdLeOb
- FveDO44tFIb1yytM3l+mjzsW6YEvNSW+kdYKmyVh/l3dDRabV1I0iYHJnLQqNSt4gL68
- xkU0vv8t7iZAVCUAR0B20aiDTqsI8aPP/EIgEhLvTnJGntjhvtjR+YpGjMJfFZUAX+Z5
- q8Udv6eyee1kUYGIcSl5W9/Wz/nJwvgoS/tK8LYFG08DLUN1EEUgMPSmEPxb1clCoql/
- 4npw==
-X-Gm-Message-State: AOAM531g9f1vsVfOzNKuoehbuFvvAQT80c7aJwN7awYRrBefK5vG0ALS
- sp0sFJOPMDWP+OSt4LpqHlGz3GA7vITzsPS2nF1E4Q==
-X-Google-Smtp-Source: ABdhPJyhU38uAVUSjr8gRwHKDTIhLNjZ02bjGpdJaQ/Zri9HQUmeedc5h+sEGm5UwpWhHyQGUQa0Ps8orpOzhY8rJNs=
-X-Received: by 2002:a05:6830:2366:: with SMTP id
- r6mr14854251oth.188.1625577431903; 
- Tue, 06 Jul 2021 06:17:11 -0700 (PDT)
-MIME-Version: 1.0
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=nYMSUda7V/DmmAuzip7JbF6LIDuj8UtQ05rEhsj9lGA=;
+ b=CjgFOszszAzuMybmvLzE6Kgq+D1SrEV4SQpGIMPRhHNk8EkeBG7sPZYbk69vyo4r1X
+ edCe182wyQlIdCHRqS1ibOtDIo+vpSTaK4NIbLIWVCLNo9Luc9gIPTqJi6ZmBB+6WpgP
+ LJtIiRMVMcXIM/wjVig5Hbl1xsb8E/F9qPD+Nm7Sy/Zf9JIZGdlglok4peVE5EMSaH36
+ 2Qe7dHaAnNDDpiHEhCFhIhdV2H05T7XxePZUD5f+u2foQHV2CPUuoAnBkZHUkyA8IAPK
+ dZ8l9XfyZ1TGLXOJ9zY5e03Lf8USb82MHitTAnBCwaZTBFI1nmj6BWEIMMs3ilLKXrZY
+ kiWw==
+X-Gm-Message-State: AOAM5322BNIOZyRqpWpVgU3dOZ1BUcdjDnwJk8apO9cfk3zs3zkCuF3b
+ MAfjt923BnQHlnCvIcxuj1ICmQ==
+X-Google-Smtp-Source: ABdhPJwbPsdj5abBUwRj+0D+UPcg9LktUa6esBS7MFcNQJN0mzluRvDbxhBXY3stdAxEO20KouenjQ==
+X-Received: by 2002:a37:68c6:: with SMTP id
+ d189mr20223444qkc.186.1625579071862; 
+ Tue, 06 Jul 2021 06:44:31 -0700 (PDT)
+Received: from ziepe.ca ([206.223.160.26])
+ by smtp.gmail.com with ESMTPSA id v5sm6919384qkh.39.2021.07.06.06.44.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 06 Jul 2021 06:44:31 -0700 (PDT)
+Received: from jgg by mlx with local (Exim 4.94) (envelope-from <jgg@ziepe.ca>)
+ id 1m0lNG-004Qag-41; Tue, 06 Jul 2021 10:44:30 -0300
+Date: Tue, 6 Jul 2021 10:44:30 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [PATCH v4 0/2] Add p2p via dmabuf to habanalabs
+Message-ID: <20210706134430.GL4604@ziepe.ca>
 References: <20210705130314.11519-1-ogabbay@kernel.org>
  <YOQXBWpo3whVjOyh@phenom.ffwll.local>
- <20210706122110.GA18273@lst.de> <YORLTmyoXDtoM9Ta@phenom.ffwll.local>
- <CAFCwf114KEH-kO6w+nmbqKKdaGuqy3iOpHJi=5ZWqT3cgDm4Cw@mail.gmail.com>
-In-Reply-To: <CAFCwf114KEH-kO6w+nmbqKKdaGuqy3iOpHJi=5ZWqT3cgDm4Cw@mail.gmail.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Tue, 6 Jul 2021 15:17:00 +0200
-Message-ID: <CAKMK7uHfCbNQJwbXgLC9ibk71kVG7TBK4bfFxzX82ziSgqG9nw@mail.gmail.com>
-Subject: Re: [Linaro-mm-sig] [PATCH v4 0/2] Add p2p via dmabuf to habanalabs
-To: Oded Gabbay <oded.gabbay@gmail.com>
+ <CAFCwf10_rTYL2Fy6tCRVAUCf4-6_TtcWCv5gEEkGnQ0KxqMUBg@mail.gmail.com>
+ <CAKMK7uEAJZUHNLreBB839BZOfnTGNU4rCx-0k55+67Nbxtdx3A@mail.gmail.com>
+ <CAKMK7uHpKFVm55O_NB=WYCsv0iUt92ZUn6eCzifH=unbhe3J8g@mail.gmail.com>
+ <CAKMK7uFGr=ugyKj0H3ctbh28Jnr25vAgXPBaDBMmfErCxYVo3w@mail.gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uFGr=ugyKj0H3ctbh28Jnr25vAgXPBaDBMmfErCxYVo3w@mail.gmail.com>
+X-Mailman-Approved-At: Tue, 06 Jul 2021 13:52:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,19 +74,18 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Gal Pressman <galpress@amazon.com>, sleybo@amazon.com,
- linux-rdma <linux-rdma@vger.kernel.org>,
+Cc: Oded Gabbay <oded.gabbay@gmail.com>, Gal Pressman <galpress@amazon.com>,
+ sleybo@amazon.com, linux-rdma <linux-rdma@vger.kernel.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Oded Gabbay <ogabbay@kernel.org>,
  "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
  Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
  Sumit Semwal <sumit.semwal@linaro.org>,
  "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, Doug Ledford <dledford@redhat.com>,
+ Doug Ledford <dledford@redhat.com>, Christoph Hellwig <hch@lst.de>,
  amd-gfx list <amd-gfx@lists.freedesktop.org>,
  Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@gmail.com>,
- Christoph Hellwig <hch@lst.de>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
  Leon Romanovsky <leonro@nvidia.com>,
  Linux Media Mailing List <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
@@ -81,108 +93,64 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 6, 2021 at 2:46 PM Oded Gabbay <oded.gabbay@gmail.com> wrote:
->
-> On Tue, Jul 6, 2021 at 3:23 PM Daniel Vetter <daniel@ffwll.ch> wrote:
-> >
-> > On Tue, Jul 06, 2021 at 02:21:10PM +0200, Christoph Hellwig wrote:
-> > > On Tue, Jul 06, 2021 at 10:40:37AM +0200, Daniel Vetter wrote:
-> > > > > Greg, I hope this will be good enough for you to merge this code.
-> > > >
-> > > > So we're officially going to use dri-devel for technical details review
-> > > > and then Greg for merging so we don't have to deal with other merge
-> > > > criteria dri-devel folks have?
-> > > >
-> > > > I don't expect anything less by now, but it does make the original claim
-> > > > that drivers/misc will not step all over accelerators folks a complete
-> > > > farce under the totally-not-a-gpu banner.
-> > > >
-> > > > This essentially means that for any other accelerator stack that doesn't
-> > > > fit the dri-devel merge criteria, even if it's acting like a gpu and uses
-> > > > other gpu driver stuff, you can just send it to Greg and it's good to go.
-> > > >
-> > > > There's quite a lot of these floating around actually (and many do have
-> > > > semi-open runtimes, like habanalabs have now too, just not open enough to
-> > > > be actually useful). It's going to be absolutely lovely having to explain
-> > > > to these companies in background chats why habanalabs gets away with their
-> > > > stack and they don't.
-> > >
-> > > FYI, I fully agree with Daniel here.  Habanlabs needs to open up their
-> > > runtime if they want to push any additional feature in the kernel.
-> > > The current situation is not sustainable.
-> Well, that's like, your opinion...
->
-> >
-> > Before anyone replies: The runtime is open, the compiler is still closed.
-> > This has become the new default for accel driver submissions, I think
-> > mostly because all the interesting bits for non-3d accelerators are in the
-> > accel ISA, and no longer in the runtime. So vendors are fairly happy to
-> > throw in the runtime as a freebie.
-> >
-> > It's still incomplete, and it's still useless if you want to actually hack
-> > on the driver stack.
-> > -Daniel
-> > --
-> I don't understand what's not sustainable here.
->
-> There is zero code inside the driver that communicates or interacts
-> with our TPC code (TPC is the Tensor Processing Core).
-> Even submitting works to the TPC is done via a generic queue
-> interface. And that queue IP is common between all our engines
-> (TPC/DMA/NIC). The driver provides all the specs of that queue IP,
-> because the driver's code is handling that queue. But why is the TPC
-> compiler code even relevant here ?
+On Tue, Jul 06, 2021 at 02:07:16PM +0200, Daniel Vetter wrote:
 
-Can I use the hw how it's intended to be used without it?
+> On the "rdma-core" idea, afaik rdma NIC do not have fully programmable
+> cores in their hw, for which you'd need some kind of compiler to make
+> use of the hardware and the interfaces the kernel provides? So not
+> really compareable, but also my understanding is that rdma-core does
+> actually allow you to reasonable use&drive all the hw features and
+> kernel interfaces fully.
 
-If the answer is no, then essentially what you're doing with your
-upstream driver is getting all the benefits of an upstream driver,
-while upstream gets nothing. We can't use your stack, not as-is. Sure
-we can use the queue, but we can't actually submit anything
-interesting. And I'm pretty sure the point of your hw is to do more
-than submit no-op packets to a queue.
+The whole HPC stack has speciality compilers of course. OpenMP, PGAS,
+etc. These compilers map onto library primitives that eventually boil
+down into rdma-core calls. Even the HW devices have various
+programmability that are being targetted with compilers now. People
+are making NIC devices with ARM cores/etc - P4 is emerging for some
+packet processing tasks.
 
-This is all "I want my cake and eat it too" approach to upstreaming,
-and it's totally fine attitude to have, but if you don't see why
-there's maybe an different side to it then I don't get what you're
-arguing. Upstream isn't free lunch for nothing.
+rdma-core can drive all the kernel interfaces with at least an ioctl
+wrapper, and it has a test suite that tries to cover this. It does not
+exercise the full HW capability, programmability, etc of every single
+device.
 
-Frankly I'm starting to assume you're arguing this all in bad faith
-just because habanalabds doesn't want to actually have an open driver
-stack, so any attack is good, no matter what. Which is also what
-everyone else does who submits their accel driver to upstream, and
-which gets us back to the starting point of this sub-thread of me
-really appreciation how this will improve background discussions going
-forward for everyone.
+I actually don't entirely know what everyone has built on top of
+rdma-core, or how I'd try to map it the DRI ideas you are trying to
+explain.
 
-Like if the requirement for accel drivers truly is that you can submit
-a dummy command to the queues then I have about 5-10 drivers at least
-I could merge instantly. For something like the intel gpu driver it
-would be about 50 lines of code (including all the structure boiler
-plate the ioctls require)in userspace to submit a dummy queue command.
-GPU and accel vendors would really love that, because it would allow
-them to freeload on upstream and do essentially nothing in return.
+Should we ban all Intel RDMA drivers because they are shipping
+proprietary Intel HPC compilers and proprietary Intel MPI which drives
+their RDMA HW? Or is that OK because there are open analogs for some
+of that stuff? And yes, the open versions are inferior in various
+metrics.
 
-And we'd end up with an unmaintainable disaster of a gpu or well
-accelerator subsystem because there's nothing you can change or
-improve because all the really useful bits of the stack are closed.
-And ofc that's not any companies problem anymore, so ofc you with the
-habanalabs hat on don't care and call this *extreme*.
+Pragmatically what I want to see is enough RDMA common/open user space
+to understand the uAPI and thus more about how the kernel driver
+works. Forcing everyone into rdma-core has already prevented a number
+of uAPI mistakes in drivers that would have been bad - so at least
+this level really is valuable.
 
-> btw, you can today see our TPC code at
-> https://github.com/HabanaAI/Habana_Custom_Kernel
-> There is a link there to the TPC user guide and link to download the
-> LLVM compiler.
+> So we actually want less on dri-devel, because for compute/accel chips
+> we're currently happy with a vendor userspace. It just needs to be
+> functional and complete, and open in its entirety.
 
-I got stuck clicking links before I found the source for that llvm
-compiler. Can you give me a direct link to the repo with sourcecode
-instead please?
+In a sense yes: DRI doesn't insist on a single code base to act as the
+kernel interface, but that is actually the thing that has brought the
+most value to RDMA, IMHO.
 
-Thanks, Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+We've certainly had some interesting successes because of this. The
+first submission for AWS's EFA driver proposed to skip the rdma-core
+step, which was rejected. However since EFA has been in that ecosystem
+it has benefited greatly, I think.
+
+However, in another sense no: RDMA hasn't been blocking, say Intel,
+just because they have built proprietary stuff on top of our open
+stack.
+
+Honestly, I think GPU is approaching this backwards. Wayland should
+have been designed to prevent proprietary userspace stacks.
+
+Jason
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
