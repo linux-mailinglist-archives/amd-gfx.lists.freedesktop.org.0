@@ -1,71 +1,115 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D303BC6F9
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jul 2021 09:09:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A4EB3BC753
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jul 2021 09:37:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CB3C898CC;
-	Tue,  6 Jul 2021 07:09:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B305289998;
+	Tue,  6 Jul 2021 07:37:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com
- [IPv6:2a00:1450:4864:20::244])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F27D3898C4;
- Tue,  6 Jul 2021 07:09:47 +0000 (UTC)
-Received: by mail-lj1-x244.google.com with SMTP id q4so27762759ljp.13;
- Tue, 06 Jul 2021 00:09:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=XTwFZwCKVq9Sz5cd3f/6YRq5RojDWHq5cppUZPQkbP4=;
- b=RkvvDEF2uuX1+YlI6AUAdIvz8aAz2luib+bPJWFYjswXxACwdMeAFhf1O5iongluds
- CmV9H5WDQ+PNDmFlW4HUeOhlHsUFIemDftA9rVi8HkYUDmRUY7FtVxpmxRj0MDUiZ6I3
- SqXFJhEGl0KCNvNzSULVw90p0mHCPv/+M7LTTK0RwwuH1qJSDuGtXKT99ZIklkF19GT8
- 5mR14wOrL5+z5NX7jh/ZO1472pEMku3Nn+MHn3knQztdpPMSdMKT20/zPVzqc+Sam72o
- 8zY+QCzZ3lbGj8jOHI8dE0AFJ8BCYvCF3lBFdo29WxeZQgZmmybvJ4KaHcWXu70ob847
- fohg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=XTwFZwCKVq9Sz5cd3f/6YRq5RojDWHq5cppUZPQkbP4=;
- b=OZ560cXbJ//mypWVvx4De3OPMnskGjjT2R0LqCC/helhFRab24WFMzrDXhyzOKp+BW
- 6624gKiohNkrdrKe3NyHA45x0Cih0kB8L7Og91EPC40tVH4LkiwjMFEvFJQDUjcUaI2q
- v9ycJc5ZxYTn8kmMbUXCpJRWsrmMnTxcaOwpjtNZxYbyWStKAAemkGCIRLmdLNyVCsu6
- pW6f5gSEnNWZjGkFGiXOSXIbd25haij2Cs7d2laZbb8fmbmnIDb99KrXYTOi7lhL6Uf6
- VH3Xi9NOoUBepxHz/tSQcKYIGQFMhqwOjdJFDmWFWmKGQmQApHMOnZ6+RrzGhRY10cPS
- ELow==
-X-Gm-Message-State: AOAM530Cndi804DMlUYmvPa6xLTGIsqJdncJUb9KjNTv815rv0AGECga
- kVvkKPeWMrJIr8F+xlKdQ9c=
-X-Google-Smtp-Source: ABdhPJx7oakSSjCc2PwbGlv8Ixe0ENwl8BCsPbYEqtToms1n55+qyNuPUCo5DbyKLOTHVYr1gmFVEQ==
-X-Received: by 2002:a05:651c:178b:: with SMTP id
- bn11mr13993658ljb.43.1625555386111; 
- Tue, 06 Jul 2021 00:09:46 -0700 (PDT)
-Received: from eldfell ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id m25sm272683lfo.12.2021.07.06.00.09.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 06 Jul 2021 00:09:45 -0700 (PDT)
-Date: Tue, 6 Jul 2021 10:09:42 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Werner Sembach <wse@tuxedocomputers.com>
-Subject: Re: [PATCH v4 12/17] drm/uAPI: Add "preferred color format" drm
- property as setting for userspace
-Message-ID: <20210706100942.3754a8e3@eldfell>
-In-Reply-To: <102bf05f-7081-c53b-ab0b-f2698c7540e9@tuxedocomputers.com>
-References: <20210618091116.14428-1-wse@tuxedocomputers.com>
- <20210618091116.14428-13-wse@tuxedocomputers.com>
- <20210622101516.6a53831c@eldfell>
- <jIDQ2rRRMWlhDDPf08Z8xZlEE8HTBx7fHsylFdK0joSSFVyES8D444Giyiji9zbIm7dU4QpbsXZLvIDTbGW0wEoUWKsMEI4evizn0UdGMvM=@emersion.fr>
- <20210629141712.21f00c38@eldfell>
- <6d8716e0-e68a-e7b7-a341-a7471c413e9c@tuxedocomputers.com>
- <20210630114133.47397e2f@eldfell>
- <d3674d49-8bca-7ecf-1735-7bff2d9d526e@tuxedocomputers.com>
- <20210701110714.61f3e2af@eldfell>
- <b7144386-a98b-faf9-b425-c1157d9d0241@tuxedocomputers.com>
- <20210701162446.14f4f577@eldfell>
- <102bf05f-7081-c53b-ab0b-f2698c7540e9@tuxedocomputers.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2043.outbound.protection.outlook.com [40.107.94.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4CA589998
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jul 2021 07:37:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XdhWpUk/5wvzhteCxKrijQ2du5CSQXi9jfK8yFUSpxbfnLV3+KTCH0XI5N5AStxK9cDcFl6Y49ttGBLNs1b9XEzrzL3h18U7LPoikogZ9h1DU98+v9Dn7qVuBt5VttPc3hmkZsmQozJVM3uWhbnjNOcs0ZefUafXDegW0pemMwRWpTXYpBBNdBkqdO0kGrh8CZmv20ZQDNayx+QXOC+HBVjlcim3FGY7m38uw1CDaXafw9GiPvYU0exOcHBb7zZZoLWvcBZ5PkWBht/W+eg7dfIP37TLJYX6WrV79n2wxztPwL/6EqWP6okkkXtFPAvCrozBOvhztf7zQ58sUEzK3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=O4P0ttVAdsWuKlqpN4hWJJMwC+tP1/khsHsmU3TxADE=;
+ b=X4JiZg7pg8NwTB5MSQ9Z8Lmn+8Dh6p7+EzD40lvCRTnC6wH6aHtdh9TqIHWhwebbX6MCBzGfAYjzkaUA1q5rkmKHr3Qujk6+Sjwlt/ekN012h07YXqo5h4A6uWcgS/MoOTLvgNERcHNVLhFjEVFPRTQOPI7J1Igd6liHKj5BwVZNhyrSiYghl5qpExad8tO0EvhpL/qa5pZIwcsZxorZedVeZ8EL3bj9aJJbKHNFO99JY5CTHgqvfKFUQ59S7Q96A/xuz+IvAk3a+dza6vxROsiR76mqktcpWnV7k84L+hxwI5UGp3eYIZEeYDm3ssrXyhIfdmSpht2jxrihB44NnQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=O4P0ttVAdsWuKlqpN4hWJJMwC+tP1/khsHsmU3TxADE=;
+ b=O53vmTB0P99IDbbKmksRYTKwpSMAgUIXYX4oCBS5XpdmqzDyCM59b/XJK379FKl0rmeTj4ItjYl35Wt+KwyT9h4yDnEpuT+y/rVik9LUKABp91TBCAg6kiqpSMeOQpjUKljqeIzEyKIUBETFaP8tjj/tLRaCM8zaCRU/YS04VB4=
+Received: from BL1PR12MB5269.namprd12.prod.outlook.com (2603:10b6:208:30b::20)
+ by BL0PR12MB5539.namprd12.prod.outlook.com (2603:10b6:208:1c3::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.23; Tue, 6 Jul
+ 2021 07:37:01 +0000
+Received: from BL1PR12MB5269.namprd12.prod.outlook.com
+ ([fe80::d9d7:2d92:acc3:e3c3]) by BL1PR12MB5269.namprd12.prod.outlook.com
+ ([fe80::d9d7:2d92:acc3:e3c3%3]) with mapi id 15.20.4287.033; Tue, 6 Jul 2021
+ 07:37:01 +0000
+From: "Liu, Monk" <Monk.Liu@amd.com>
+To: "Chen, JingWen" <JingWen.Chen2@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amdgpu: SRIOV flr_work should take write_lock
+Thread-Topic: [PATCH] drm/amdgpu: SRIOV flr_work should take write_lock
+Thread-Index: AQHXbiALslv+2KqizECj9AYYycjRLKst5vaAgAewIHA=
+Date: Tue, 6 Jul 2021 07:37:01 +0000
+Message-ID: <BL1PR12MB5269FBD0D75DAF5881865B1E841B9@BL1PR12MB5269.namprd12.prod.outlook.com>
+References: <20210701022256.763468-1-Jingwen.Chen2@amd.com>
+ <20210701101233.wlskqc2kjzwhiudv@wayne-build>
+In-Reply-To: <20210701101233.wlskqc2kjzwhiudv@wayne-build>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-07-06T07:36:59Z; 
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
+ Only-AIP 2.0;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=be54ae76-f9ec-44a1-8838-cae8422a11db;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
+authentication-results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+x-originating-ip: [165.204.134.244]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b622e601-6866-4fa8-a521-08d94050d7e7
+x-ms-traffictypediagnostic: BL0PR12MB5539:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BL0PR12MB5539A56357005D96162880CC841B9@BL0PR12MB5539.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: DnWL+4+UPYO2cBgkHgWc/WF/Q0xXhbOtZ6vutpvUotr7TcfFL3Q3yY6oTnn9N8lONoXth8rjTPTFhvLgoa9auvEeuuYs42FqYWjZG4kr5JMhvpfIzCE/bebBThzVYWrQuYUB+dV/R5kI7qy2bfvhXA4NhbsWjUu6sgGSQDeQQ+OJM9PmTEYQ4N9/o+CV0A3DPc1pf3rBV+CPHLQQN7HI7lP8A9GHJPdnw6THDZxW55BJ0JH4GdqiAhSoOZWZkR1XBuOr4OWLCevKZv2Fm8kk4O2umYBx1SiXPU0mB72+CmyGObvJaJxMkqLwjQd8HtNVr7EeVXY/zCXR942VQfd3ximAFk69Vwv22LqnQDu5ERVNhCJQiehVn7hszI2N3kspcZCQomeA9gKaolhCl3A/pQzJk46IA3AmpRkcjC0/eXQFQx9tPbDQFrAbI+O87W9YTBdHe6ax40dshy2E+Z5i5QIBzG2p4XIbw3x/Lf2tUcz60lD6rFhIbh78VMLocNGIfEuHVSRKSNbjieigitOAF71CsFvNXGKVggAVTwVYcJgghFernGGGIpAaRyh162KUmHWgDSLNusb7tDfyhvk80CKeNyDozLUPAkEceWu62whlR8buHmJIkf9q2rezLQUn7KQS7M6nynbay1tqy1bFLA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5269.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(136003)(366004)(346002)(39860400002)(396003)(26005)(71200400001)(86362001)(8936002)(122000001)(4326008)(5660300002)(9686003)(2906002)(66476007)(316002)(83380400001)(478600001)(8676002)(76116006)(52536014)(38100700002)(186003)(7696005)(66556008)(64756008)(6506007)(53546011)(66946007)(66446008)(55016002)(110136005)(33656002);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?POu6po24KImPNYP2f8YQZaEYFWIvksO3EFAiV8Kvpf2+yP8UO80eBooYOLmb?=
+ =?us-ascii?Q?7Si0yexYkThZ2pvN94OuGMSp7HLmjVfZDu90OyYdTDaO5ZQRNaRRDEkC9nP5?=
+ =?us-ascii?Q?bwo59VxxKrenFU7wAI5L83+3YMalSRErQLIdAPbDd4LjvYmtoF0w5XYe06gr?=
+ =?us-ascii?Q?WRztu6faYgjbDjmHnETsoKn43sanYbTN0oOxiyHRPNoSzxymfuNX0srOx9Lt?=
+ =?us-ascii?Q?igY96zG7mu4AX7L8Z+nRfcOTALsAmpEmU9pLYrxj1b8suZfCLNqzDxv2zo64?=
+ =?us-ascii?Q?lD9RqYMXhU1NoF2CQJa3fDVVLOusY3RjBR9E6X7gcTd3S0+omMFcCs0P7hr5?=
+ =?us-ascii?Q?ocPNFH8sOdIAeVF9L3xozHvwIJpPaK6Hn7SmVOZaC9kwbye2i27xqceThESs?=
+ =?us-ascii?Q?Vw7oWIg7nhwJFe+MUeY5U3Zi0eHRQolCgqn0B8ID3Y991gtUYFJqP+b4AwJK?=
+ =?us-ascii?Q?KBSXqJ+uXpo7YIiqqEbX6Wr/8r8YaAORhjtB/h37AcCxLlwW5tKix4f0piUF?=
+ =?us-ascii?Q?9M1+yUhYv7CYKPoqPpVKWt2XTMlm+7K7JAdRViGixeWtMuPEz4FsIgGFTP9f?=
+ =?us-ascii?Q?rM9yPjJbd7WCHAAT3lAsPkMesoWBeznYlRCxY2ht2q+lAkySJCdO7q24P1BR?=
+ =?us-ascii?Q?L9775hHXz5dwvy11fwV1hAQvHKXKDerhlVZ2R/HUreZy6F1yiVQvyUGgFYBf?=
+ =?us-ascii?Q?9FD+hUp3ANkmdx/grvRYjkGuBEMEuavkMB2sNz9LMCr6lufMRKEvAXir+3VA?=
+ =?us-ascii?Q?t9LmEVOk2s8tek7V3LRrKuBSo9oAdIjCY9BEaNuzjGyvQOsjZHE7ZMIwsIaG?=
+ =?us-ascii?Q?ZsJ8b8V5ivFsf1Y8TDTujcPecUd+C+Lh8CLZK+7rAEMpzq98JMmVOHNmU0sl?=
+ =?us-ascii?Q?qd+9a3/w8gK8wrP4AeFW1akALRiNumtgtvPu4a/06jbgfoI2NMOBzK26gtbt?=
+ =?us-ascii?Q?o8Ukg3mk2zF74vPcyRcQfbum/hJGyVic00FBpfm0rf7RN9wIozMu3TQx4Pyw?=
+ =?us-ascii?Q?vZyzLKEQMitE2IRba0IhHoeepdjubyv8/6B/8D3AhuM1kTS22HFLiAQAHYTh?=
+ =?us-ascii?Q?1ToJsnxzALJ4iOqroYCZvAwKtDaE8rnI8G04SYVYfLpudXnNmyoeqlWdOl/1?=
+ =?us-ascii?Q?QEr6OsDKk86gXEysqu8r+gowmA4cmHhgKJsJqPZUuC5q0jd82PZr/+ifVmBV?=
+ =?us-ascii?Q?DFcxVbbLXJs+z6QzlkGyX23euVDBY6HOalTilOK0SafjLK/yAXjlvIVGovHe?=
+ =?us-ascii?Q?c9ITt8LJh8z/RcHHUp3PSdwv5sITYIF4/PoNZiDgFhRl7yHq7L3EN0+yHN2d?=
+ =?us-ascii?Q?4NiXqgoeRqkJL7c9+wYBgC6m?=
 MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5269.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b622e601-6866-4fa8-a521-08d94050d7e7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jul 2021 07:37:01.2723 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: saGg7nIk1AAmWuyy8Z/e2cgk1PEl2iPiWL4eGB+/pwtR3o1poKhFQ6VA0/8+8hbq
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB5539
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,336 +121,99 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- airlied@linux.ie, amd-gfx@lists.freedesktop.org, tzimmermann@suse.de,
- rodrigo.vivi@intel.com, alexander.deucher@amd.com, christian.koenig@amd.com
-Content-Type: multipart/mixed; boundary="===============0253560179=="
+Cc: "Chen, Horace" <Horace.Chen@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---===============0253560179==
-Content-Type: multipart/signed; boundary="Sig_/z2Dax/eoTBxuhffMJDUbe+M";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+[AMD Official Use Only]
 
---Sig_/z2Dax/eoTBxuhffMJDUbe+M
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Mon Liu <monk.liu@amd.com>
 
-On Mon, 5 Jul 2021 17:49:42 +0200
-Werner Sembach <wse@tuxedocomputers.com> wrote:
+Thanks 
 
-> Am 01.07.21 um 15:24 schrieb Pekka Paalanen:
-> > On Thu, 1 Jul 2021 14:50:13 +0200
-> > Werner Sembach <wse@tuxedocomputers.com> wrote:
-> > =20
-> >> Am 01.07.21 um 10:07 schrieb Pekka Paalanen:
-> >> =20
-> >>> On Wed, 30 Jun 2021 11:20:18 +0200
-> >>> Werner Sembach <wse@tuxedocomputers.com> wrote:
-> >>>   =20
-> >>>> Am 30.06.21 um 10:41 schrieb Pekka Paalanen:
-> >>>>   =20
-> >>>>> On Tue, 29 Jun 2021 13:39:18 +0200
-> >>>>> Werner Sembach <wse@tuxedocomputers.com> wrote:
-> >>>>>     =20
-> >>>>>> Am 29.06.21 um 13:17 schrieb Pekka Paalanen:     =20
-> >>>>>>> On Tue, 29 Jun 2021 08:12:54 +0000
-> >>>>>>> Simon Ser <contact@emersion.fr> wrote:
-> >>>>>>>        =20
-> >>>>>>>> On Tuesday, June 22nd, 2021 at 09:15, Pekka Paalanen <ppaalanen@=
-gmail.com> wrote:
-> >>>>>>>>        =20
-> >>>>>>>>> yes, I think this makes sense, even if it is a property that on=
-e can't
-> >>>>>>>>> tell for sure what it does before hand.
-> >>>>>>>>>
-> >>>>>>>>> Using a pair of properties, preference and active, to ask for s=
-omething
-> >>>>>>>>> and then check what actually worked is good for reducing the
-> >>>>>>>>> combinatorial explosion caused by needing to "atomic TEST_ONLY =
-commit"
-> >>>>>>>>> test different KMS configurations. Userspace has a better chanc=
-e of
-> >>>>>>>>> finding a configuration that is possible.
-> >>>>>>>>>
-> >>>>>>>>> OTOH, this has the problem than in UI one cannot tell the user =
-in
-> >>>>>>>>> advance which options are truly possible. Given that KMS proper=
-ties are
-> >>>>>>>>> rarely completely independent, and in this case known to depend=
- on
-> >>>>>>>>> several other KMS properties, I think it is good enough to know=
- after
-> >>>>>>>>> the fact.
-> >>>>>>>>>
-> >>>>>>>>> If a driver does not use what userspace prefers, there is no wa=
-y to
-> >>>>>>>>> understand why, or what else to change to make it happen. That =
-problem
-> >>>>>>>>> exists anyway, because TEST_ONLY commits do not give useful fee=
-dback
-> >>>>>>>>> but only a yes/no.     =20
-> >>>>>>>> By submitting incremental atomic reqs with TEST_ONLY (i.e. only =
-changing one
-> >>>>>>>> property at a time), user-space can discover which property make=
-s the atomic
-> >>>>>>>> commit fail.     =20
-> >>>>>>> That works if the properties are independent of each other. Color
-> >>>>>>> range, color format, bpc and more may all be interconnected,
-> >>>>>>> allowing only certain combinations to work.
-> >>>>>>>
-> >>>>>>> If all these properties have "auto" setting too, then it would be
-> >>>>>>> possible to probe each property individually, but that still does=
- not
-> >>>>>>> tell which combinations are valid.
-> >>>>>>>
-> >>>>>>> If you probe towards a certain configuration by setting the prope=
-rties
-> >>>>>>> one by one, then depending on the order you pick the properties, =
-you
-> >>>>>>> may come to a different conclusion on which property breaks the
-> >>>>>>> configuration.     =20
-> >>>>>> My mind crossed another point that must be considered: When plugin=
- in
-> >>>>>> a Monitor a list of possible Resolutions+Framerate combinations is
-> >>>>>> created for xrandr and other userspace (I guess by atomic checks? =
-but
-> >>>>>> I don't know).     =20
-> >>>>> Hi,
-> >>>>>
-> >>>>> I would not think so, but I hope to be corrected if I'm wrong.
-> >>>>>
-> >>>>> My belief is that the driver collects a list of modes from EDID, so=
-me
-> >>>>> standard modes, and maybe some other hardcoded modes, and then
-> >>>>> validates each entry against all the known limitations like vertical
-> >>>>> and horizontal frequency limits, discarding modes that do not fit.
-> >>>>>
-> >>>>> Not all limitations are known during that phase, which is why KMS
-> >>>>> property "link-status" exists. When userspace actually programs a m=
-ode
-> >>>>> (not a TEST_ONLY commit), the link training may fail. The kernel pr=
-unes
-> >>>>> the mode from the list and sets the link status property to signal
-> >>>>> failure, and sends a hotplug uevent. Userspace needs to re-check the
-> >>>>> mode list and try again.
-> >>>>>
-> >>>>> That is a generic escape hatch for when TEST_ONLY commit succeeds, =
-but
-> >>>>> in reality the hardware cannot do it, you just cannot know until you
-> >>>>> actually try for real. It causes end user visible flicker if it hap=
-pens
-> >>>>> on an already running connector, but since it usually happens when
-> >>>>> turning a connector on to begin with, there is no flicker to be see=
-n,
-> >>>>> just a small delay in finding a mode that works.
-> >>>>>     =20
-> >>>>>> During this drm
-> >>>>>> properties are already considered, which is no problem atm because=
- as
-> >>>>>> far as i can tell there is currently no drm property that would ma=
-ke
-> >>>>>> a certain Resolutions+Framerate combination unreachable that would=
- be
-> >>>>>> possible with everything on default.     =20
-> >>>>> I would not expect KMS properties to be considered at all. It would
-> >>>>> reject modes that are actually possible if the some KMS properties =
-were
-> >>>>> changed. So at least going forward, current KMS property values can=
-not
-> >>>>> factor in.     =20
-> >>>> At least the debugfs variable "force_yuv420_output" did change the=20
-> >>>> available modes here:=20
-> >>>> https://elixir.bootlin.com/linux/v5.13/source/drivers/gpu/drm/amd/di=
-splay/amdgpu_dm/amdgpu_dm.c#L5165=20
-> >>>> before my patch=20
-> >>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/c=
-ommit/?id=3D68eb3ae3c63708f823aeeb63bb15197c727bd9bf   =20
-> >>> Hi,
-> >>>
-> >>> debugfs is not proper UAPI, so we can just ignore it. Display servers
-> >>> cannot be expected to poke in debugfs. Debugfs is not even supposed to
-> >>> exist in production systems, but I'm sure people use it for hacking
-> >>> stuff. But that's all it is for: developer testing and hacking.   =20
-> >> e.g. Ubuntu has it active by default, but only read (and writable) by =
-root. =20
-> > Hi,
-> >
-> > that's normal, yes. Root can do damage anyway, and it's useful for
-> > debugging. KMS clients OTOH often do not run as root.
-> > =20
-> >>>   =20
-> >>>> Forcing a color format via a DRM property in this function would=20
-> >>>> reintroduce the problem.   =20
-> >>> The property would need to be defined differently because its presence
-> >>> could otherwise break existing userspace. Well, I suppose it could
-> >>> break existing userspace no matter what, so we would need the generic
-> >>> "reset to sane defaults" mechanism first IMO.
-> >>>
-> >>> DRM has client caps for exposing video modes that old userspace might
-> >>> not expect, to avoid breaking old userspace. Care needs to be taken
-> >>> with all new UAPI, because if a kernel upgrade makes something wrong,
-> >>> it's the kernel's fault no matter what userspace is doing, in princip=
-le.   =20
-> >> Can you give me a link describing how I define this caps? =20
-> > I don't have any, but you can find all the existing ones by grepping
-> > for DRM_CLIENT_CAP_.
-> >
-> > I'm not saying that we need it, but mentioning them as a possible
-> > workaround if userspace breakage seems imminent or is proven.
-> > =20
-> >>> Debugfs has no problem breaking userspace AFAIU, since it's not proper
-> >>> UAPI.
-> >>>   =20
-> >>>> And I think i915 driver works similar in this regard.
-> >>>>   =20
-> >>>>>     =20
-> >>>>>> However for example forcing YCbCr420 encoding would limit the
-> >>>>>> available resolutions (my screen for example only supports YCbCr420
-> >>>>>> on 4k@60 and @50Hz and on no other resolution or frequency (native=
- is
-> >>>>>> 2560x1440@144Hz).
-> >>>>>>
-> >>>>>> So would a "force color format" that does not get resetted on
-> >>>>>> repluging/reenabling a monitor break the output, for example, of an
-> >>>>>> not updated xrandr, unaware of this new property?     =20
-> >>>>> Yes, not because the mode list would be missing the mode, but becau=
-se
-> >>>>> actually setting the mode would fail.     =20
-> >>>> Well, like described above, I think the mode would actually be missi=
-ng,=20
-> >>>> which is also an unexpected behavior from a user perspective.   =20
-> >>> I think that is not how the property should work.
-> >>>
-> >>> If KMS properties would affect the list of modes, then userspace would
-> >>> need to set the properties for real (TEST_ONLY cannot change anything)
-> >>> and re-fetch the mode lists (maybe there is a hotplug event, maybe
-> >>> not). That workflow just doesn't work.   =20
-> >> The properties are set before the list is created in the first place.
-> >> Because, in my example, the properties get set before the monitor is
-> >> plugged in and the list can only be created as soon as the monitor is
-> >> plugged in. =20
-> > That's just an accident, it's not what I mean.
-> >
-> > What I mean is, we cannot have the KMS properties affect the list of
-> > modes, because then userspace that want to use specific values on those
-> > properties would have to program those properties first, and then get
-> > the list of modes. KMS UAPI does not work that way AFAIK.
-> >
-> > If the initial mode list is created on hotplug like you say, then the
-> > initial list could already be missing some modes that would be valid if
-> > some KMS properties had different values. =20
->=20
-> Depends if the mode list is created by TEST_ONLY:
+------------------------------------------
+Monk Liu | Cloud-GPU Core team
+------------------------------------------
 
-Hi,
+-----Original Message-----
+From: Jingwen Chen <Jingwen.Chen2@amd.com> 
+Sent: Thursday, July 1, 2021 6:13 PM
+To: amd-gfx@lists.freedesktop.org
+Cc: Liu, Monk <Monk.Liu@amd.com>; Chen, Horace <Horace.Chen@amd.com>
+Subject: Re: [PATCH] drm/amdgpu: SRIOV flr_work should take write_lock
 
-I'm pretty sure it's not created by any kind of atomic test probing,
-exactly because some properties might affect the result. Also because
-of legacy: the mode lists predate atomic by far. It just doesn't make
-sense to prune the mode list based on current arbitrary property values.
+ping..
 
-The function drm_helper_probe_single_connector_modes() looks relevant
-to me. It has a big comment that seems to point towards more things to
-look at.
-
-
-Thanks,
-pq
-
-> - The force properties should return false on TEST_ONLY
->=20
-> - The force properties should not prevent the mode from showing up in the=
- list
->=20
-> If the list is created by TEST_ONLY both things can't be fulfilled at the=
- same time obviously.
->=20
-> I hope some can give more insights or has an idea how the properties coul=
-d work best.
->=20
-> > =20
-> >>> A very interesting question is when should link-status failure not dr=
-op
-> >>> the current mode from the mode list, if other KMS properties affect t=
-he
-> >>> bandwidth etc. requirements of the mode. That mechanism is engineered
-> >>> for old userspace that doesn't actually handle link-status but does
-> >>> handle hotplug, so the hotplug triggers re-fetching the mode list and
-> >>> userspace maybe trying again with a better luck since the offending
-> >>> mode is gone. How to keep that working when introducing KMS properties
-> >>> forcing the cable format, I don't know.
-> >>>
-> >>> As long as the other affecting KMS properties are all "auto", the
-> >>> driver will probably exhaust all possibilities to make the mode work
-> >>> before signalling link-status failure and pruning the mode.
-> >>> Theoretically, as I have no idea what drivers actually do.   =20
-> >> Isn't that exactly how the "preferred color format" property works in
-> >> my patchset now? =20
-> > There was an argument that "preferred" with no guarantees is not
-> > useful enough. So I'm considering the force property instead.
-> > The problem is, "auto" is not the only possible value.
-> >
-> > When the value is not "auto", should link failure drop the mode or not?
-> > Userspace might change the value back to "auto" next time. If you
-> > dropped the mode, it would be gone. If you didn't drop the mode,
-> > userspace might be stuck picking the same non-working mode again and
-> > again if it doesn't know about the force mode property.
-> >
-> > You could argue that changing the value back to "auto" needs to reset
-> > the mode list, but that only gets us back to the "need to set
-> > properties before getting mode list".
-> >
-> > Maybe there needs to be an assumption that if "force color format" is
-> > not "auto", then link failure does not drop modes and userspace knows
-> > to handle this. Messy.
-> >
-> > I'm afraid I just don't know to give any clear answer. It's also
-> > possible that, as I'm not a kernel dev, I have some false assumptions
-> > here.
-> >
-> >
-> > Thanks,
-> > pq
-> > _______________________________________________
-> > amd-gfx mailing list
-> > amd-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/amd-gfx =20
-
-
---Sig_/z2Dax/eoTBxuhffMJDUbe+M
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmDkAbYACgkQI1/ltBGq
-qqcPQw/9HbDu7ifTsttDDq9v9WlV542lloLz89NaONco2iQ/EntkKQAVGOJ3wc9q
-63lQRmektjAlLfWc6Wdq0JLVrxfgEKezXK+3HGWL7PMH2QxClzBVNwmYR/9cJnUi
-gh+4R55sp6sKS476ifc+Qha4lfsOmb0UUY8Q3VKQFavCpLauiw9d5M+rVGZvviSP
-ym0sitWiTw7N8opt6ybAaEjgDJBWCmBIf/0i2lTBiN+jWsPoNO8P1PuGh+MGQ+c6
-rAxPWlQCD7FJspz78tOifVCWzyAibZbt+QzRuEfNIuLhBGvAyajBlD5ssx4pVPWK
-yWbsw9Nn1MVfyNoAUUa3MeolFxdGSlZYaG5kDMUL9rl63A6ETrRGmnh3B61+dT8p
-CSFE1cYuGdcrB4T9hc7x69bGU/AWflpknfVYD/xuRjoCr9QTDFzbzf020nA3oy7R
-r3VLWqikz6jtM/YLnKhcJN5Hmgi31unx8OukC/j75kqQWSECKTYxeInk21TNByAb
-oqOx3gPMK/1JdBePlxNhODCmKqwWtWQHnx5rKf2PW3LJF34Nvh8sinq9PnWPc/O1
-M69sjUq4SI0WpOelJ5daT2Of0/uHywym45+i3T2urzehr6DMpF4HG+tt4eQJRWLD
-X/Nx+k2wDbUwoeSDX1T/tyceWJcoVz4Zh7g1ICKv/RVBZk09prw=
-=NVpM
------END PGP SIGNATURE-----
-
---Sig_/z2Dax/eoTBxuhffMJDUbe+M--
-
---===============0253560179==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+On Thu Jul 01, 2021 at 10:22:57AM +0800, Jingwen Chen wrote:
+> [Why]
+> If flr_work takes read_lock, then other threads who takes read_lock 
+> can access hardware when host is doing vf flr.
+> 
+> [How]
+> flr_work should take write_lock to avoid this case.
+> 
+> Signed-off-by: Jingwen Chen <Jingwen.Chen2@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c | 4 ++--  
+> drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c | 4 ++--
+>  2 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c 
+> b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
+> index 3ee481557fc9..ff2307d7ee0f 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
+> @@ -252,7 +252,7 @@ static void xgpu_ai_mailbox_flr_work(struct work_struct *work)
+>  	 * otherwise the mailbox msg will be ruined/reseted by
+>  	 * the VF FLR.
+>  	 */
+> -	if (!down_read_trylock(&adev->reset_sem))
+> +	if (!down_write_trylock(&adev->reset_sem))
+>  		return;
+>  
+>  	amdgpu_virt_fini_data_exchange(adev);
+> @@ -268,7 +268,7 @@ static void xgpu_ai_mailbox_flr_work(struct 
+> work_struct *work)
+>  
+>  flr_done:
+>  	atomic_set(&adev->in_gpu_reset, 0);
+> -	up_read(&adev->reset_sem);
+> +	up_write(&adev->reset_sem);
+>  
+>  	/* Trigger recovery for world switch failure if no TDR */
+>  	if (amdgpu_device_should_recover_gpu(adev)
+> diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c 
+> b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
+> index 48e588d3c409..9f7aac435d69 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
+> @@ -273,7 +273,7 @@ static void xgpu_nv_mailbox_flr_work(struct work_struct *work)
+>  	 * otherwise the mailbox msg will be ruined/reseted by
+>  	 * the VF FLR.
+>  	 */
+> -	if (!down_read_trylock(&adev->reset_sem))
+> +	if (!down_write_trylock(&adev->reset_sem))
+>  		return;
+>  
+>  	amdgpu_virt_fini_data_exchange(adev);
+> @@ -289,7 +289,7 @@ static void xgpu_nv_mailbox_flr_work(struct 
+> work_struct *work)
+>  
+>  flr_done:
+>  	atomic_set(&adev->in_gpu_reset, 0);
+> -	up_read(&adev->reset_sem);
+> +	up_write(&adev->reset_sem);
+>  
+>  	/* Trigger recovery for world switch failure if no TDR */
+>  	if (amdgpu_device_should_recover_gpu(adev)
+> --
+> 2.25.1
+> 
+Best Regards,
+JingWen Chen
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
-
---===============0253560179==--
