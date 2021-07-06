@@ -2,56 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E2253BDAE4
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jul 2021 18:07:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A55393BDB5F
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jul 2021 18:32:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5F406E514;
-	Tue,  6 Jul 2021 16:07:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A66ED6E529;
+	Tue,  6 Jul 2021 16:32:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com
- [IPv6:2607:f8b0:4864:20::234])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB2D6E514
- for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jul 2021 16:07:29 +0000 (UTC)
-Received: by mail-oi1-x234.google.com with SMTP id w74so3232641oiw.8
- for <amd-gfx@lists.freedesktop.org>; Tue, 06 Jul 2021 09:07:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=7/d4XeaSNsVFlRZLAg8ZLZgaOUGNlKetyWckEAHUwuk=;
- b=f8dtLu2S3sJkSa9ZSHeuZep5p+/9fucE28hhiRStm3/kTJF5pTTLjufnGsshWPsReU
- sFoXOfLWKXyR0MqHTYAI1P/1tSDs/Z+hXT0+kZeRKZQRFpopyYIqJp1KFyNWIf1sbbbh
- MoJw7B3g6qMCsyWaOODx7tdFuro/50BL7StMI=
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com
+ [IPv6:2607:f8b0:4864:20::f35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AA1389E5F
+ for <amd-gfx@lists.freedesktop.org>; Tue,  6 Jul 2021 14:23:59 +0000 (UTC)
+Received: by mail-qv1-xf35.google.com with SMTP id g15so7406587qvi.13
+ for <amd-gfx@lists.freedesktop.org>; Tue, 06 Jul 2021 07:23:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=YFV6rk8SCk3lOjLONoCa6QpHpLH5GrV0fP6FZz2KGC4=;
+ b=i36XoWKRqU8KJek9jwEW2vzH1kXRjuehGEigeg5Akp/37tkny8vakSr0jIAXiOGu1u
+ GHL0ilRliQ9oc9iQmH0an9uV7JDwd/mzX3DacIwdaf7HcjAKD8DG/JUXrWtMORT34TXg
+ BYTz5cnKNmWDAd3HuxUJ6kG/qwZoiWbpmkdvRPgflY5DbEzGQI/QtT0N02w4M1gse04r
+ jsMypKxf5auUb2hsbqD5cFX7qeepAXsueX82eDVDxqpjWSWLMJVdOufDNgfIs7QguF2V
+ gCqp8r5nbz2rp8BmskQCVyWGVWJsMkQ7QtZ+ygTqYTusq6gu7yTTPo1WNdN0ZZrvKsSb
+ lqLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=7/d4XeaSNsVFlRZLAg8ZLZgaOUGNlKetyWckEAHUwuk=;
- b=gcs+55rowpBKk+pGdNPdZ+PhTOM0L8AOaUofbxIDj9F2ZCANecsRQVEurma6EGQxfR
- VhWpPFxcX1c+MdVZaZ8/uPMD3tkgw7tuDSKYn0BSBlY4ereteb9LHLDrrF/GeHW00vLf
- 28bJigf21YVIRv81dtKhkUpwmZmjE6aFGnyCxeBhAxWALmEoaDgbLISsxU5zkplxnLGG
- t5UfnbNR2DfAyGap9c+Zk4dStuLA2FP+4OWBzJZMDMlkNRuWfe6+pEUhTTm5BjK0rNx+
- 0jcS81yfO4fDPiL7crXANkd4nA8+UJI+q4neBRrS695eCbLH15SjHakPteZhtLHDHD5k
- TxkA==
-X-Gm-Message-State: AOAM531eroNGQUx+sCkRAwVs48nXIVGm1Zq1i0CBbgSEI2HVeJyuU3gJ
- ne3LiIXVQXb7ZwWjTkSVKPbYBKLnGyPkB/Z+iCIKVA==
-X-Google-Smtp-Source: ABdhPJyni2s1akvYMUuRqmzUdWsnoOqSRFuCqyMWJzwLyK6OBSwh9Okh9BIirnjonQbsC2vx54cSUlgVRGLUS1EfrOA=
-X-Received: by 2002:aca:5793:: with SMTP id l141mr1008420oib.14.1625587648875; 
- Tue, 06 Jul 2021 09:07:28 -0700 (PDT)
-MIME-Version: 1.0
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=YFV6rk8SCk3lOjLONoCa6QpHpLH5GrV0fP6FZz2KGC4=;
+ b=tXLCGmY/suF+Etc6Cq10rdG1G/Zu26X/mwiPLTok8hvjECU3m7XIAfnNwT93FYWrcY
+ A5CCUeK4SekVpuLE5IIIKuoMt+ZFRJHgDCuxO5pHeqQLGbrxLkUn7tHim8ntfzRSzxp0
+ 14b19/1fhd7ijiF4VEWCbDRddzAFxc7Vhb2h/jgIx1N2dc9ixg/LH6kxX8gq+/AMYyYP
+ IIX3dgBykOg0IQgsQA2EifYxlHvQD3hAaVz8FHbm9jXBSTcoOsIsqyIlDtwKrfoVQn01
+ Tr34DAMm04wbjkwSPZNBahQiwstMmEKwG9WU20qNS1ly+HG9HO9+XTZFBfp69QNzv8BZ
+ f17Q==
+X-Gm-Message-State: AOAM530YFBM4bVxH5YWUs8oXekvK+IZYadHwwudBYHvqWl6Qd2jLbBHf
+ HdRnOkp7umVkYHvTOw0Y3mRc6g==
+X-Google-Smtp-Source: ABdhPJz1CsC+M5B6A7qlNZPYOtCZ1RD0GqU6WwjApjr7wLD9E1k97rwxhSXS/QrhzlkoPkDPUTVSHw==
+X-Received: by 2002:a0c:c401:: with SMTP id r1mr18387245qvi.46.1625581438559; 
+ Tue, 06 Jul 2021 07:23:58 -0700 (PDT)
+Received: from ziepe.ca ([206.223.160.26])
+ by smtp.gmail.com with ESMTPSA id b25sm6994985qkk.111.2021.07.06.07.23.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 06 Jul 2021 07:23:58 -0700 (PDT)
+Received: from jgg by mlx with local (Exim 4.94) (envelope-from <jgg@ziepe.ca>)
+ id 1m0lzR-004RHF-1S; Tue, 06 Jul 2021 11:23:57 -0300
+Date: Tue, 6 Jul 2021 11:23:57 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [PATCH v4 0/2] Add p2p via dmabuf to habanalabs
+Message-ID: <20210706142357.GN4604@ziepe.ca>
 References: <20210705130314.11519-1-ogabbay@kernel.org>
  <YOQXBWpo3whVjOyh@phenom.ffwll.local>
  <CAFCwf10_rTYL2Fy6tCRVAUCf4-6_TtcWCv5gEEkGnQ0KxqMUBg@mail.gmail.com>
  <CAKMK7uEAJZUHNLreBB839BZOfnTGNU4rCx-0k55+67Nbxtdx3A@mail.gmail.com>
- <20210706142357.GN4604@ziepe.ca>
- <CAKMK7uELNzwUe+hhVWRg=Pk5Wt_vOOX922H48Kd6dTyO2PeBbg@mail.gmail.com>
- <20210706152542.GP4604@ziepe.ca>
- <CAKMK7uH7Ar6+uAOU_Sj-mf89V9WCru+66CV5bO9h-WAAv7Mgdg@mail.gmail.com>
-In-Reply-To: <CAKMK7uH7Ar6+uAOU_Sj-mf89V9WCru+66CV5bO9h-WAAv7Mgdg@mail.gmail.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Tue, 6 Jul 2021 18:07:17 +0200
-Message-ID: <CAKMK7uGvO0h7iZ3vKGe8GouESkr79y1gP1JXbfV82sRiaT-d1A@mail.gmail.com>
-Subject: Re: [PATCH v4 0/2] Add p2p via dmabuf to habanalabs
-To: Jason Gunthorpe <jgg@ziepe.ca>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uEAJZUHNLreBB839BZOfnTGNU4rCx-0k55+67Nbxtdx3A@mail.gmail.com>
+X-Mailman-Approved-At: Tue, 06 Jul 2021 16:32:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,7 +82,7 @@ Cc: Oded Gabbay <oded.gabbay@gmail.com>, Gal Pressman <galpress@amazon.com>,
  Doug Ledford <dledford@redhat.com>, Christoph Hellwig <hch@lst.de>,
  amd-gfx list <amd-gfx@lists.freedesktop.org>,
  Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@gmail.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
  Leon Romanovsky <leonro@nvidia.com>,
  Linux Media Mailing List <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
@@ -82,47 +90,37 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jul 6, 2021 at 5:49 PM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> On Tue, Jul 6, 2021 at 5:25 PM Jason Gunthorpe <jgg@ziepe.ca> wrote:
-> > I'm not sure about this all or nothing approach. AFAIK DRM has the
-> > worst problems with out of tree drivers right now.
->
-> Well I guess someone could stand up a drivers/totally-not-gpu and just
-> let the flood in. Even duplicated drivers and everything included,
-> because the vendor drivers are better. Worth a shot, we've practically
-> started this already, I'm just not going to help with the cleanup.
+On Tue, Jul 06, 2021 at 12:36:51PM +0200, Daniel Vetter wrote:
 
-tbh I think at this point someone should just do that. Ideally with
-some boundary like please don't use dma-fence or dma-buf and stuff
-like that so drivers/gpu doesn't ever have to deal with the fallout.
-But way too many people think that somehow you magically get the other
-90% of an open accel stack if you're just friendly enough and merge
-the kernel driver, so we really should just that experiment in
-upstream and watch it pan out in reality.
+> If that means AI companies don't want to open our their hw specs
+> enough to allow that, so be it - all you get in that case is
+> offloading the kernel side  of the stack for convenience, with zero
+> long term prospects to ever make this into a cross vendor subsystem
+> stack that does something useful.
 
-Minimally it would be some great entertainment :-)
+I don't think this is true at all - nouveau is probably the best
+example.
 
-Also on your claim that drivers/gpu is a non-upstream disaster: I've
-also learned that that for drivers/rdma there's the upstream driver,
-and then there's the out-of-tree hackjob the vendor actually supports.
-So seems to be about the same level of screwed up, if you ask the
-vendor they tell you the upstream driver isn't a thing they care about
-and it's just done for a bit of goodwill. Except if you have enormous
-amounts of volume, then suddenly it's an option ... Minus the fw issue
-for nvidia, upstream does support all the gpus you can buy right now
-and that can run on linux with some vendor driver (aka excluding apple
-M1 and ofc upcoming products from most vendors).
+nouveau reverse engineered a userspace stack for one of these devices.
 
-drivers/accel otoh is mostly out-of-tree, because aside from Greg
-mergin habanalabs no one is bold enough anymore to just merge them
-all. There's lots of those going around that would be ready for
-picking. And they've been continously submitted to upstream over the
-years, even before the entire habanalabs thing.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+How much further ahead would they have been by now if they had a
+vendor supported, fully featured, open kernel driver to build the
+userspace upon?
+
+> open up your hw enough for that, I really don't see the point in
+> merging such a driver, it'll be an unmaintainable stack by anyone else
+> who's not having access to those NDA covered specs and patents and
+> everything.
+
+My perspective from RDMA is that the drivers are black boxes. I can
+hack around the interface layers but there is a lot of wild stuff in
+there that can't be understood without access to the HW documentation.
+
+I think only HW that has open specs, like say NVMe, can really be
+properly community oriented. Otherwise we have to work in a community
+partnership with the vendor.
+
+Jason
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
