@@ -1,36 +1,36 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 692013BCB93
-	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jul 2021 13:14:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 564FF3BCB9C
+	for <lists+amd-gfx@lfdr.de>; Tue,  6 Jul 2021 13:15:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFB9489FF9;
-	Tue,  6 Jul 2021 11:14:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67B9F6E060;
+	Tue,  6 Jul 2021 11:15:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0FC689FD9;
- Tue,  6 Jul 2021 11:14:35 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9609B61C22;
- Tue,  6 Jul 2021 11:14:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5C7C6E05A;
+ Tue,  6 Jul 2021 11:15:03 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B5C1561A14;
+ Tue,  6 Jul 2021 11:15:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1625570075;
- bh=0TEEtHfReXo4F18sk6Sba1Yo0FUOojEbgub7tLSmUa8=;
+ s=k20201202; t=1625570103;
+ bh=woZHgorVR7Q0m33QF4ihy7qs1+znD/0nAYjA2QP/kTQ=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=iCpXyx7L0jR7bktVkMadi60TFGGuMg4Gmjjl33732LHbvxAYyHF0nfm0runM/6WCs
- lrCnl3opPB39nnVosNK0DdJwDvJt/ELuoURTG7XNVRu4FBF4kNWn4S+Hq9d/3Pf1ml
- FDhc9d80pmWwELvBtwqEK2Y+DYrZ5MnRWB+KqGazVEUtcAeEJbA1nwy+WNLxnTCnv/
- G4URyARd8KX/5eXa6LYiNcvk3yur4XxKTP5hH+vEU9QUSgrnrmz9Dyp5BdVr0aGbOt
- 4bqLqAbxwH6Mko6fiM4AF4899XcMqtk7bL5H9386AIhZogUDKAYOJq1QsW8VR+gr01
- 0xeP2z+3oJoQw==
+ b=Ize0dZTODvAeupeSDMYUtdXXCB/tfgFhrbT3QhhEP1T6HxO+3y2nk4He4V2d2oOim
+ 68QW0T8CN5D7IwZf+buAvrpLBe8HETW5n9jWzyIKkxWL2En/qEEn9vqwN1i7/6gnee
+ +4DB1AVsWwtR6s9KIcVxYuekTx0/Rt6ZmyOVMhoBTdSoebhng+l74nSuD91VfN10Ge
+ hY+BJMubt8BPJJG/Zdghy+abp7lQ9mPfsgooz9g+on2xU64719ZAGJHaJFjMqiZEC6
+ N/76Vxt1K/hNyucJjSYJU09zpPhcR/rZPmGRjpwZ3RKNQOLldy/4bGQu4H54rb195N
+ TVz4kxYpb1kmw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.13 017/189] drm/amd/display: fix use_max_lb flag for
- 420 pixel formats
-Date: Tue,  6 Jul 2021 07:11:17 -0400
-Message-Id: <20210706111409.2058071-17-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.13 037/189] drm/amdgpu/display: restore the
+ backlight on modeset (v2)
+Date: Tue,  6 Jul 2021 07:11:37 -0400
+Message-Id: <20210706111409.2058071-37-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210706111409.2058071-1-sashal@kernel.org>
 References: <20210706111409.2058071-1-sashal@kernel.org>
@@ -48,54 +48,47 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stylon Wang <stylon.wang@amd.com>, Sasha Levin <sashal@kernel.org>,
- Aric Cyr <Aric.Cyr@amd.com>, amd-gfx@lists.freedesktop.org,
- Daniel Wheeler <daniel.wheeler@amd.com>,
- Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+From: Alex Deucher <alexander.deucher@amd.com>
 
-[ Upstream commit 8809a7a4afe90ad9ffb42f72154d27e7c47551ae ]
+[ Upstream commit 7230362c78d441020a47d7d5ca81f8a3d07bd9f0 ]
 
-Right now the flag simply selects memory config 0 when flag is true
-however 420 modes benefit more from memory config 3.
+To stay consistent with the user's setting.
 
-Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
-Acked-by: Stylon Wang <stylon.wang@amd.com>
-Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+v2: rebase on multi-eDP support
+
+Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1337
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c
-index efa86d5c6847..98ab4b776924 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c
-@@ -496,10 +496,13 @@ static enum lb_memory_config dpp1_dscl_find_lb_memory_config(struct dcn10_dpp *d
- 	int vtaps_c = scl_data->taps.v_taps_c;
- 	int ceil_vratio = dc_fixpt_ceil(scl_data->ratios.vert);
- 	int ceil_vratio_c = dc_fixpt_ceil(scl_data->ratios.vert_c);
--	enum lb_memory_config mem_cfg = LB_MEMORY_CONFIG_0;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 875fd187463e..62663e287b21 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -8967,6 +8967,12 @@ static void amdgpu_dm_atomic_commit_tail(struct drm_atomic_state *state)
+ 	/* Update audio instances for each connector. */
+ 	amdgpu_dm_commit_audio(dev, state);
  
--	if (dpp->base.ctx->dc->debug.use_max_lb)
--		return mem_cfg;
-+	if (dpp->base.ctx->dc->debug.use_max_lb) {
-+		if (scl_data->format == PIXEL_FORMAT_420BPP8
-+				|| scl_data->format == PIXEL_FORMAT_420BPP10)
-+			return LB_MEMORY_CONFIG_3;
-+		return LB_MEMORY_CONFIG_0;
-+	}
- 
- 	dpp->base.caps->dscl_calc_lb_num_partitions(
- 			scl_data, LB_MEMORY_CONFIG_1, &num_part_y, &num_part_c);
++#if defined(CONFIG_BACKLIGHT_CLASS_DEVICE) ||		\
++	defined(CONFIG_BACKLIGHT_CLASS_DEVICE_MODULE)
++	/* restore the backlight level */
++	if (dm->backlight_dev)
++		amdgpu_dm_backlight_set_level(dm, dm->brightness[0]);
++#endif
+ 	/*
+ 	 * send vblank event on all events not handled in flip and
+ 	 * mark consumed event for drm_atomic_helper_commit_hw_done
 -- 
 2.30.2
 
