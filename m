@@ -2,37 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D8C93C37AC
-	for <lists+amd-gfx@lfdr.de>; Sun, 11 Jul 2021 01:50:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5CFC3C37F8
+	for <lists+amd-gfx@lfdr.de>; Sun, 11 Jul 2021 01:50:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0218B6EB70;
-	Sat, 10 Jul 2021 23:50:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 376066EB78;
+	Sat, 10 Jul 2021 23:50:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 875BC6EB68;
- Sat, 10 Jul 2021 23:50:01 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 88269613BE;
- Sat, 10 Jul 2021 23:50:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 931356EB76;
+ Sat, 10 Jul 2021 23:50:54 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 93228610A2;
+ Sat, 10 Jul 2021 23:50:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1625961001;
+ s=k20201202; t=1625961054;
  bh=CcTgJfVEmbNFgL0EvxomN/vMbIEdDbKcKAhs6s8IAmo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=MsZdCaMdrTATtwA/7hcqxb7MrcSBcX0PLr6/yQVS/yIxnzGWB+ygtA1cq64+nvVtf
- Wxyfads/OLfFklb27YF//Smko1qtdS9/UPKMFfkOOHFYY0gmgEG7IspKr2e2UO1syf
- n197Vw9Yhy1uA9ni1bLqKekpoS3Khdj7MwoT+453lcJyzPBGre4YtdAMeQkKwW6x5O
- Y/poUm4QWHmuutC7aA2YMKBTzrg6gnowfdB1QnRywCQVKcNrnurhSeKTFqzu3GkXun
- IklJVCQYRxHnAnzxmt3BLxwP8tvSA4VqrVhOyKi0VkUXdGicaOB0WHFiPkge7o4eiw
- ymcyeV/NgXEBA==
+ b=b5MsQ8W2SD5ViYI5Q16oDMuvkre6kkoTiEfxCBt0zFKQhEvdv9JeKm6w6+O5RKr4T
+ 7VbimkfxTdJe+RC7CImdCAcPi70PTFSM6x2XtLnpXapsywWTrpRGYhqsslKk4kk6jy
+ CNJl/iYMPfWZ6Jq3cSjtqroTK7ct9uiUC8Mw8ZqqnpDO/MIF7mpWY/jL/X1ffHrzwQ
+ kiIfMmDgvYwCXUQkQorHJlx062UAJoepudW6m44FPxT0dcBMA/NoByYKv9qkpud3I6
+ FLvhYgn1yFafz2S2QwQa+6vpoXTF8XV9zh75SpvMhENt6DL2me/X+6jOcB9f+TQlJj
+ Pa3hIsBiGjZKw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.12 32/43] drm/amdkfd: fix sysfs kobj leak
-Date: Sat, 10 Jul 2021 19:49:04 -0400
-Message-Id: <20210710234915.3220342-32-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 28/37] drm/amdkfd: fix sysfs kobj leak
+Date: Sat, 10 Jul 2021 19:50:06 -0400
+Message-Id: <20210710235016.3221124-28-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210710234915.3220342-1-sashal@kernel.org>
-References: <20210710234915.3220342-1-sashal@kernel.org>
+In-Reply-To: <20210710235016.3221124-1-sashal@kernel.org>
+References: <20210710235016.3221124-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
