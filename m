@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1245E3C45D0
-	for <lists+amd-gfx@lfdr.de>; Mon, 12 Jul 2021 09:18:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 799623C4611
+	for <lists+amd-gfx@lfdr.de>; Mon, 12 Jul 2021 10:36:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40DD089B78;
-	Mon, 12 Jul 2021 07:18:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C166689B60;
+	Mon, 12 Jul 2021 08:36:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtprelay.hostedemail.com (smtprelay0070.hostedemail.com
- [216.40.44.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1840C89AAE;
- Sun, 11 Jul 2021 23:46:26 +0000 (UTC)
-Received: from omf19.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
- by smtprelay02.hostedemail.com (Postfix) with ESMTP id 2031B2289C;
- Sun, 11 Jul 2021 23:46:25 +0000 (UTC)
-Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by
- omf19.hostedemail.com (Postfix) with ESMTPA id D810E20D75C; 
- Sun, 11 Jul 2021 23:46:23 +0000 (UTC)
-Message-ID: <111b2612313dc85eb6cffb5ec93423e92aadef15.camel@perches.com>
-Subject: Re: drm/amd/display: Simplify hdcp validate_bksv
-From: Joe Perches <joe@perches.com>
-To: kernel test robot <lkp@intel.com>, Bhawanpreet Lakha
- <Bhawanpreet.Lakha@amd.com>
-Date: Sun, 11 Jul 2021 16:46:22 -0700
-In-Reply-To: <202107120638.fhBzNbDi-lkp@intel.com>
-References: <d3a180c3dc8db68a25440edf466cfeddcaae5a64.camel@perches.com>
- <202107120638.fhBzNbDi-lkp@intel.com>
-User-Agent: Evolution 3.40.0-1 
+Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.180])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D88D289B60
+ for <amd-gfx@lists.freedesktop.org>; Mon, 12 Jul 2021 08:36:45 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by netline-mail3.netline.ch (Postfix) with ESMTP id E4A5D20201D;
+ Mon, 12 Jul 2021 10:36:44 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
+Received: from netline-mail3.netline.ch ([127.0.0.1])
+ by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id oH9pgYYYCVaL; Mon, 12 Jul 2021 10:36:44 +0200 (CEST)
+Received: from thor (24.99.2.85.dynamic.wline.res.cust.swisscom.ch
+ [85.2.99.24])
+ by netline-mail3.netline.ch (Postfix) with ESMTPA id 9C25620201C;
+ Mon, 12 Jul 2021 10:36:44 +0200 (CEST)
+Received: from localhost ([::1]) by thor with esmtp (Exim 4.94.2)
+ (envelope-from <michel@daenzer.net>)
+ id 1m2rQh-000a5Q-IV; Mon, 12 Jul 2021 10:36:43 +0200
+To: Ketsui <esgwpl@gmail.com>
+References: <YOqiQmAUTBWjbVb6@mainframe.localdomain>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
+Subject: Re: AMDGPU error: "[drm:amdgpu_dm_atomic_commit_tail [amdgpu]]
+ *ERROR* Waiting for fences timed out!"
+Message-ID: <e89834cd-a51b-a756-2fec-0dc0a3865d38@daenzer.net>
+Date: Mon, 12 Jul 2021 10:36:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-Rspamd-Server: rspamout05
-X-Rspamd-Queue-Id: D810E20D75C
-X-Spam-Status: No, score=-0.78
-X-Stat-Signature: 4w3xb16q81jdos9h7m1m6o7oixokhp8p
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Session-ID: U2FsdGVkX19RtmqfZkbsFeCZmvi7tQ9HuVjqDlNgdx4=
-X-HE-Tag: 1626047183-174502
-X-Mailman-Approved-At: Mon, 12 Jul 2021 07:18:38 +0000
+In-Reply-To: <YOqiQmAUTBWjbVb6@mainframe.localdomain>
+Content-Language: en-CA
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,67 +49,31 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kbuild-all@lists.01.org, Kees Cook <keescook@chromium.org>,
- LKML <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, amd-gfx@lists.freedesktop.org,
- Alex Deucher <alexander.deucher@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: amd-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2021-07-12 at 07:02 +0800, kernel test robot wrote:
-> Hi Joe,
-> =
-
-> I love your patch! Yet something to improve:
-> =
-
-> [auto build test ERROR on drm-intel/for-linux-next]
-> [also build test ERROR on drm-exynos/exynos-drm-next linus/master next-20=
-210709]
-> [cannot apply to kees/for-next/pstore tegra-drm/drm/tegra/for-next drm/dr=
-m-next v5.13]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch]
-> =
-
-> url:    https://github.com/0day-ci/linux/commits/Joe-Perches/drm-amd-disp=
-lay-Simplify-hdcp-validate_bksv/20210712-034708
-> base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-> config: i386-randconfig-a003-20210712 (attached as .config)
-> compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-> reproduce (this is a W=3D1 build):
-> =A0=A0=A0=A0=A0=A0=A0=A0# https://github.com/0day-ci/linux/commit/66fae2c=
-1becdcb71c95f2c6a6413de4dfe1deb51
-> =A0=A0=A0=A0=A0=A0=A0=A0git remote add linux-review https://github.com/0d=
-ay-ci/linux
-> =A0=A0=A0=A0=A0=A0=A0=A0git fetch --no-tags linux-review Joe-Perches/drm-=
-amd-display-Simplify-hdcp-validate_bksv/20210712-034708
-> =A0=A0=A0=A0=A0=A0=A0=A0git checkout 66fae2c1becdcb71c95f2c6a6413de4dfe1d=
-eb51
-> =A0=A0=A0=A0=A0=A0=A0=A0# save the attached .config to linux build tree
-> =A0=A0=A0=A0=A0=A0=A0=A0make W=3D1 ARCH=3Di386 =
-
-> =
-
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
-> =
-
-> All errors (new ones prefixed by >>, old ones prefixed by <<):
-> =
-
-> > > ERROR: modpost: "__popcountdi2" [drivers/gpu/drm/amd/amdgpu/amdgpu.ko=
-] undefined!
-
-curious.
-
-Anyone know why?
-
-
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+T24gMjAyMS0wNy0xMSA5OjQ4IGEubS4sIEtldHN1aSB3cm90ZToKPj4gU28gZmFyLCBzbyBnb29k
+OyBubyBoYW5nIGluIGEgd2Vlay4gSSdsbCB0cnkgdGhlIHJlc3Qgb2YgdGhlIG5ldyBmaXJtd2Fy
+ZSBhcyB3ZWxsIG5vdywgd2lsbCBmb2xsb3cgdXAgaWYgdGhlcmUncyBhIGhhbmcgYWdhaW4uCj4g
+Cj4gSSd2ZSBub3RpY2VkIHRoYXQgdGhlIFZNX0wyX1BST1RFQ1RJT05fRkFVTFRfU1RBVFVTIGVy
+cm9yIGRvZXNuJ3QgYWx3YXlzIHJlc3VsdCBpbiBhIGhhbmcsIGxvb2tpbmcgdGhyb3VnaCBteSBq
+b3VybmFsIEkgY2FuIHNlZQo+IG1heWJlIGEgZG96ZW4gb2YgdGhlbSBzcHJlYWQgb3V0IGFjcm9z
+cyBtdWx0aXBsZSBib290cyBidXQgbXkgc3lzdGVtIG9ubHkgYmVjYW1lIG5vbi1mdW5jdGlvbmFs
+IGxpa2UgdHdvIHRpbWVzIHNvIGZhciAoSSBrbm93Cj4gYmVjYXVzZSBJIGhhdmUgdGhlIGRtZXNn
+IHdoZW4gdGhlIGhhbmdzIGhhcHBlbmVkIHNhdmVkLCB5b3UgY2FuIGZpbmQgdGhlbSBhdHRhY2hl
+ZCB0byB0aGlzIG1haWwpLgo+IAo+IFRvIG1ha2UgbXlzZWxmIGNsZWFyLCBJIGhhdmVuJ3QgYWN0
+dWFsbHkgaGFkIGEgaGFuZyB0b28gd2l0aCB0aGUgbmV3IGZpcm13YXJlcyBldmVuIHRob3VnaCB0
+aGVzZSBtZXNzYWdlcyBzdGlsbCBhcHBlYXIgb24gbXkgZG1lc2csCj4gc29ycnkgaWYgbXkgZmVl
+ZGJhY2sgZ2F2ZSB0aGUgd3JvbmcgaW1wcmVzc2lvbi4KCkknbSBjb3VudGluZyBzb2Z0IHJlY292
+ZXJlZCBoYW5ncyBhcyBoYW5ncyBmb3IgdGhlIHB1cnBvc2Ugb2YgdGhpcyBpc3N1ZS4gSS5lLiB3
+aGVuIEkgd3JpdGUgIm5vIGhhbmciIEkgbWVhbiBubyBzb2Z0IHJlY292ZXJlZCBvbmVzIGVpdGhl
+ci4gSWYgSSBoaXQgYSBzb2Z0IHJlY292ZXJlZCBoYW5nLCBJIGNvbnNpZGVyIHRoYXQgc2V0dXAg
+YmFkLgoKCi0tIApFYXJ0aGxpbmcgTWljaGVsIETDpG56ZXIgICAgICAgICAgICAgICB8ICAgICAg
+ICAgICAgICAgaHR0cHM6Ly9yZWRoYXQuY29tCkxpYnJlIHNvZnR3YXJlIGVudGh1c2lhc3QgICAg
+ICAgICAgICAgfCAgICAgICAgICAgICBNZXNhIGFuZCBYIGRldmVsb3BlcgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAph
+bWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
