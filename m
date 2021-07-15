@@ -2,34 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 626933CB150
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jul 2021 06:07:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 422483CB14F
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jul 2021 06:07:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC5806E8ED;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 794516E8EC;
 	Fri, 16 Jul 2021 04:07:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C674B6E88B
- for <amd-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 18:51:40 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1CFE0613CC;
- Thu, 15 Jul 2021 18:51:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0E906E89E
+ for <amd-gfx@lists.freedesktop.org>; Thu, 15 Jul 2021 19:00:42 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2705D61411;
+ Thu, 15 Jul 2021 19:00:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1626375099;
- bh=MgamP868/Zj+DqI7rtnk4hFbHLVm/gY445+0wZNPZlE=;
+ s=korg; t=1626375642;
+ bh=EGz4e5SLuBHfeNsdavJb+QjlZ8PNnhysJZHoaxwkzak=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=L83WaBE1fxFqp7f5n3GPnO4Z8owkNbSDhsfoO3zGVJoLZosv2R/vwE2exLiUJOALh
- qXrATmQ5nT17dgxzt2aIvjft89pLm8qWbB99yjV/nHA3cgz/eaVjecgb7gIGlX6cqI
- vBbUvc1aIVirYAnd8WuzNNFD92fQn+9x0JRDr7h0=
+ b=tqL7l6TxA6o13SX/ZigeZGVdvdJFeazHc/NXuBxz4H4mGIn9BreglHpD5r0qpyUND
+ 5YLnZhQcMjOda4TV0UY0qsVTcZDWith7rXRQcvRbTMtjE9airuZoAo+/xlfVKnRvcO
+ roV/TmIfVzI4EsAD0uSgPs8Z/f+zMOm11HFOwnKU=
 From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To: linux-kernel@vger.kernel.org
-Subject: [PATCH 5.10 160/215] drm/amd/display: Reject non-zero src_y and src_x
+Subject: [PATCH 5.12 175/242] drm/amd/display: Reject non-zero src_y and src_x
  for video planes
-Date: Thu, 15 Jul 2021 20:38:52 +0200
-Message-Id: <20210715182627.809638053@linuxfoundation.org>
+Date: Thu, 15 Jul 2021 20:38:57 +0200
+Message-Id: <20210715182624.027757405@linuxfoundation.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210715182558.381078833@linuxfoundation.org>
-References: <20210715182558.381078833@linuxfoundation.org>
+In-Reply-To: <20210715182551.731989182@linuxfoundation.org>
+References: <20210715182551.731989182@linuxfoundation.org>
 User-Agent: quilt/0.66
 MIME-Version: 1.0
 X-Mailman-Approved-At: Fri, 16 Jul 2021 04:07:08 +0000
@@ -79,7 +79,7 @@ Ci0tLQogZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYyB8
 ICAgMTcgKysrKysrKysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCsp
 CgotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5j
 CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMK
-QEAgLTM3MDIsNiArMzcwMiwyMyBAQCBzdGF0aWMgaW50IGZpbGxfZGNfc2NhbGluZ19pbmZvKGNv
+QEAgLTM4ODQsNiArMzg4NCwyMyBAQCBzdGF0aWMgaW50IGZpbGxfZGNfc2NhbGluZ19pbmZvKGNv
 bnN0IHN0CiAJICAgICBzY2FsaW5nX2luZm8tPnNyY19yZWN0LnkgIT0gMCkpCiAJCXJldHVybiAt
 RUlOVkFMOwogCisJLyoKKwkgKiBGb3IgcmVhc29ucyB3ZSBkb24ndCAoeWV0KSBmdWxseSB1bmRl
 cnN0YW5kIGEgbm9uLXplcm8KKwkgKiBzcmNfeSBjb29yZGluYXRlIGludG8gYW4gTlYxMiBidWZm
