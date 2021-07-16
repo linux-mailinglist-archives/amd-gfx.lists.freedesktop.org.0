@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E2653CB07A
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jul 2021 03:34:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7A733CB078
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jul 2021 03:34:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A91E6E8DF;
-	Fri, 16 Jul 2021 01:34:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 885576E8DE;
+	Fri, 16 Jul 2021 01:34:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-DM6-obe.outbound.protection.outlook.com
  (mail-dm6nam11on2050.outbound.protection.outlook.com [40.107.223.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07CCD6E8DB
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 206E06E8DD
  for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 01:34:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N9juxvHlM49IgNhbhvQrsNSHQRHoji/tygnYyT9zCJDjgJOQCho9UUlTlUlRLpF+rA+6EVYN8JZuRIjMhwD7rjjG8ritq/icYtSIAcBC6EcMrNDYmh2HYArjhanknn/2JaixUtSFbKtXrzUZUkuuJP+0d7OvjGA56PD0AuARgPbwelrHus7XbIZhVtRuGxZHJSQT1tQFmI/9AHMyZ7gJILp9H9w+5ElXkNCWT+EokWOb/Z/zwtlFMkVHgRUwBVAo/XJ7Cxae/Cs2Xkb4ztH+1PGSu+1G/Rr8xCdCVszMgretGI2d40E0T0pALbC+NQwlbc0M1Ow+PDLPsIqFTxgrMQ==
+ b=fg+tV/er3cniK2A6ljXAEXVDkDBIeNw4lsQ6EH71bsjzfv37VbA11DW0Dye8VJsMhG5x+nS5qr5snQIfcTLnFegNW9O9aDky5UXjR1PbjcvnkLA2puEeDcGcVPwhCf2ZDm5V7q/mmMoSbPE4ugFJ228h/b0kyLxZDuQtODA1r4u3Am5Wpf+O+vhgeA2o+hZ1fcyka2UGqx1W6UGaSnZqKUtUyKFRQWwemZIQ3/qyGry842i4Gb3kViGwD7qsUs+7ukzF/Wo4Jfsom1YhWh5IkgoHJeGxnyWYTTwq02mqbT93zbNi8s3AYVHsbKVj3I0SzuYovnsupgAW7HFiSxzLXQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sSo4f0Y2IlscCPmjHPvotxeKbnfNPdbS6C+Yoyj9r8E=;
- b=L6DiBd5KaYyDG3d90g3Ed6RxLpOaMDiGBPXMkyGAgyRFJQjauUyUcMirjGG6V8lYNc1OvaQLZ86aLB5VJLEKgOeYUMd02YLjvTjPe7TFQfuzutiWhJYjigXWBJlPDvEriW5vfNvEJJlixn633YHDx9798KIH3JZ1AQsAyyQjRIImCc2DBahfL2nkdPbx7j36v8ji2Dio/jv3OtCq+u6mFt3yuKfOxw+72g1KmYnL3941ntKWMWP4N4WKpFLktxZB3eLmMiH/GFpA+1jU/TPKzEf2d260EU81nOw1L8CMN/hRZ+xrn1ElbcbIq9zMPXNiQtVNgzl5D5GdNKvO/SGMUA==
+ bh=8/1q7sdaZbhOST/JZGGlo19iLkQIgHzU8/X2+k89nqU=;
+ b=lTSXkNlPwTFT9mks/Kix+Ckg0oL5Hk/MicId0/d/zsEsRBW7tLlQvpAFiIDF+Q1GU11EFI6qSqBPvboxfzMZftvZua9eIzqxl21kNOxXbtHonpbwhHtdUOxk4WISAdTQ2nGrt4a0373+VGn498qX7VCEZKHelHiYQv118SGUbCu8SyUT3EjTZvYTRtC770oYcLgWQ2+2pks5xVUi1Z3G/3LbmdBm+BAOpXcOfOHqEBFBi7axLcKUhm7f4Lw3Ks4V9DgCiNbl321/zmqUMWB0wzSoB+XMaW9z+2Dd+APECKd65nfUYulekZIgRbOlT+gTw7VNCHfebYjOAxAhG2o3LQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sSo4f0Y2IlscCPmjHPvotxeKbnfNPdbS6C+Yoyj9r8E=;
- b=IpDVFqg+g/50LRZC8hen2SZb5DgjhiMIMj4MpUmETPfe3VV18dV3vciAoXvJPl/+Pz5+HSwEE/liOjuviVUVr/b16DK7n2okFTARzapML70E2fKM3Hq3I1caZQfNhNMTRShZY/3ImX7kxMfZe0DLankK8FyNhAyZaxHwtJk5QHw=
+ bh=8/1q7sdaZbhOST/JZGGlo19iLkQIgHzU8/X2+k89nqU=;
+ b=wTJDIXhQTEKanltidLi8LglWshRgNrjVhx6YKaoPxYopTvRKSeR7b8VlJWc0yV4mxF86ogTx1Hy/b+ZMrU5ydm6wNDzPzj1aDjT1gUPziuDCGoIDT3tI5X3Dyui4rIM9Woc7+2fNXfixHgVF6cQo0KL8dypER9omtrgW0THALPg=
 Received: from DM6PR07CA0069.namprd07.prod.outlook.com (2603:10b6:5:74::46) by
  DM8PR12MB5415.namprd12.prod.outlook.com (2603:10b6:8:25::5) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4287.27; Fri, 16 Jul 2021 01:34:42 +0000
+ 15.20.4287.27; Fri, 16 Jul 2021 01:34:43 +0000
 Received: from DM6NAM11FT049.eop-nam11.prod.protection.outlook.com
  (2603:10b6:5:74:cafe::4a) by DM6PR07CA0069.outlook.office365.com
  (2603:10b6:5:74::46) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.22 via Frontend
- Transport; Fri, 16 Jul 2021 01:34:42 +0000
+ Transport; Fri, 16 Jul 2021 01:34:43 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,16 +48,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT049.mail.protection.outlook.com (10.13.172.188) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4331.21 via Frontend Transport; Fri, 16 Jul 2021 01:34:41 +0000
+ 15.20.4331.21 via Frontend Transport; Fri, 16 Jul 2021 01:34:42 +0000
 Received: from ozeng-develop.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Thu, 15 Jul
  2021 20:34:40 -0500
 From: Oak Zeng <Oak.Zeng@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 4/5] drm/amdkfd: Set priv_queue to NULL after it is freed
-Date: Thu, 15 Jul 2021 20:34:32 -0500
-Message-ID: <1626399273-21347-5-git-send-email-Oak.Zeng@amd.com>
+Subject: [PATCH 5/5] drm/amdkfd: Fix a concurrency issue during kfd recovery
+Date: Thu, 15 Jul 2021 20:34:33 -0500
+Message-ID: <1626399273-21347-6-git-send-email-Oak.Zeng@amd.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1626399273-21347-1-git-send-email-Oak.Zeng@amd.com>
 References: <1626399273-21347-1-git-send-email-Oak.Zeng@amd.com>
@@ -67,21 +67,21 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8bfe8098-6df7-47b2-0f40-08d947f9e258
+X-MS-Office365-Filtering-Correlation-Id: 5c1e0990-f9d6-47c7-7d8f-08d947f9e2c1
 X-MS-TrafficTypeDiagnostic: DM8PR12MB5415:
-X-Microsoft-Antispam-PRVS: <DM8PR12MB5415156AAAE03724AFB2589280119@DM8PR12MB5415.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:923;
+X-Microsoft-Antispam-PRVS: <DM8PR12MB5415A8A0CFDA986FE5267CB780119@DM8PR12MB5415.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0coSrpgyXjF3wdJPuEvFq98+QjO531xYP5qQPgvtE8lG8nhPFptcXes2twSQEOQZWcvPOBWN0natlOnbltCuPjRw6UpsNZWcDoMmqUR2H48kqLRsJKaFxxiFAuaBpNYIYjU4o7TYg6EovdCQL6b5lc+iWXXphkpYevG8ym2sHAghl6YEV3yb8zgvrmEmaSthZIKCGmxUYBrtLgx8hVm1gYpvG5NCSHvWJqqBYUk0xMRHSQZliGp/GzOIiZtOMJ2ZFLyROKruH9Hu69TZNMLOrHA3CwDT6vTP0bK3zUjar0QGHe280EZdDwbhwb7LgZLUadG4HNvbEU4sHtvN4KuGNGamAik8LHQ1kvGwcyyxAgEklAb8f5SRV1uMTd8351LwG992e2idaKx2N1Q/MAMvnLMogt+5MjtN/3fhY0LwRgRky22JIKVVI6W8lDmMn0p3123zMdJ4AASQ42FbfgbUBg6nwKyBBU+oAJm6KOaPSMF1oXPZhUoGwu0V+IFiJOx3xx6hZ1ciaj7Re1MZsGCIwKZrrYmaGd0rprj1KjgbvlXet7kQDjf7Olp8N8gbl3cqV1QgYwrxEF1e78iaFnGiDD+NWWBBZl9QQSheDqFeWvRdTz++kyCcL0o97x0CUkiOgZ6xDa1qjhQYIGPELrX86lIFWHSItWuEQT5eaCsqdlfKajTAr36kJ0DPi5ge4KeJ2M03fRIzl5ocv6qYrJhenj265DpoNx1EbUfdHholtLI=
+X-Microsoft-Antispam-Message-Info: WPcycfv/7HjWSwmJ+k30kl4AzgqGiy8/SvOeUlrwb/h3h7solxr7FYmd7zgJ4JKliQmAj/NohuJBTSH0uEV8l6hJ9Kn5GBpU1RgPFcC2qldRc0I9mz7bUnNC9X13WtaFVpn0hGV0ogRpX2hToMi1rOIU+TAr4PIcSjLJeayCrLboFAsqVLhw6L1MLTXyjeqVL4uW77mrBIScmAWFJEUedi5ljatW5bAe/7jspaSaTgJV9+Pu+BrITQXE1mg1QEUSj9jV3z4IOqmy1KXvdyECbCV09BL/cImuJHNQzAalS5RqqLGbXPmD9bCaB7NDPb0wJF6lhc9a9kpUD2bNBJd0hrz+Fk3BJxU9007bJj5uPBWaZmVXcpE6rPI2mMuJX7CPXosOEJ+H3qznfkd1KuMUkZTKsW9Qzcp2R/tDfkIWKcUP3CpzsZoLSKtwykEpoaAmJMkI4cALjxSrKxMpY6AVBdRpoxrzO0zH7R/rHy/USrPSXsRQDyXdEWESC96OuGJSfVjhDTKYDr4IDEyaCPYBJeGlz0wQoV/BZ3rHC8Qb+QMt8b3+tps2X/RN5SqrboIdf1NTtJQLeGVfCJzu6xpteLckPOlolPHSGZ173w9M8YsOigLVkzq5sMuDmCbHAKJrUZN2yhgnH6cDnP8A/e8KmgSxmcvYJ4VNpMYxSm0pxzg5beOeHliNNdMnLtJ85zipVCCBqgCd6DXZosfxWup93RilQzKmY99103/iSMobjy0=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(39860400002)(396003)(376002)(136003)(36840700001)(46966006)(6916009)(82740400003)(186003)(316002)(70206006)(82310400003)(70586007)(81166007)(16526019)(336012)(2616005)(426003)(7696005)(5660300002)(36756003)(26005)(83380400001)(6666004)(356005)(47076005)(86362001)(2906002)(4744005)(54906003)(36860700001)(478600001)(4326008)(8676002)(8936002)(36900700001);
+ SFS:(4636009)(346002)(39860400002)(396003)(376002)(136003)(36840700001)(46966006)(6916009)(82740400003)(186003)(316002)(70206006)(82310400003)(70586007)(81166007)(16526019)(336012)(2616005)(426003)(7696005)(5660300002)(36756003)(26005)(83380400001)(6666004)(356005)(47076005)(86362001)(2906002)(54906003)(36860700001)(478600001)(4326008)(8676002)(8936002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2021 01:34:41.8446 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8bfe8098-6df7-47b2-0f40-08d947f9e258
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2021 01:34:42.5356 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c1e0990-f9d6-47c7-7d8f-08d947f9e2c1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
@@ -107,26 +107,120 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This variable will be used to determine whether packet
-manager is initialized or not, in a future patch.
+start_cpsch and stop_cpsch can be called during kfd device
+initialization or during gpu reset/recovery. So they can
+run concurrently. Currently in start_cpsch and stop_cpsch,
+pm_init and pm_uninit is not protected by the dpm lock.
+Imagine such a case that user use packet manager's function
+to submit a pm4 packet to hang hws (ie through command
+cat /sys/class/kfd/kfd/topology/nodes/1/gpu_id | sudo tee
+/sys/kernel/debug/kfd/hang_hws), while kfd device is under
+device reset/recovery so packet manager can be not initialized.
+There will be unpredictable protection fault in such case.
+
+This patch moves pm_init/uninit inside the dpm lock and check
+packet manager is initialized before using packet manager
+function.
 
 Signed-off-by: Oak Zeng <Oak.Zeng@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c               |  8 +-------
+ drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 10 ++++++++--
+ drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c       |  3 +++
+ 3 files changed, 12 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
-index d8e940f..b130cc0 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
-@@ -278,6 +278,7 @@ void pm_uninit(struct packet_manager *pm, bool hanging)
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index c51402b..adc2342 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -1383,18 +1383,12 @@ void kgd2kfd_smi_event_throttle(struct kfd_dev *kfd, uint32_t throttle_bitmask)
+  */
+ int kfd_debugfs_hang_hws(struct kfd_dev *dev)
  {
- 	mutex_destroy(&pm->lock);
- 	kernel_queue_uninit(pm->priv_queue, hanging);
-+	pm->priv_queue = NULL;
+-	int r = 0;
+-
+ 	if (dev->dqm->sched_policy != KFD_SCHED_POLICY_HWS) {
+ 		pr_err("HWS is not enabled");
+ 		return -EINVAL;
+ 	}
+ 
+-	r = pm_debugfs_hang_hws(&dev->dqm->dpm);
+-	if (!r)
+-		r = dqm_debugfs_execute_queues(dev->dqm);
+-
+-	return r;
++	return dqm_debugfs_execute_queues(dev->dqm);
  }
  
- int pm_send_set_resources(struct packet_manager *pm,
+ #endif
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index f2984d3..44136d2 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -1164,6 +1164,7 @@ static int start_cpsch(struct device_queue_manager *dqm)
+ 
+ 	retval = 0;
+ 
++	dqm_lock(dqm);
+ 	retval = pm_init(&dqm->dpm, dqm);
+ 	if (retval)
+ 		goto fail_packet_manager_init;
+@@ -1186,7 +1187,6 @@ static int start_cpsch(struct device_queue_manager *dqm)
+ 
+ 	init_interrupts(dqm);
+ 
+-	dqm_lock(dqm);
+ 	/* clear hang status when driver try to start the hw scheduler */
+ 	dqm->is_hws_hang = false;
+ 	dqm->is_resetting = false;
+@@ -1199,6 +1199,7 @@ static int start_cpsch(struct device_queue_manager *dqm)
+ fail_set_sched_resources:
+ 	pm_uninit(&dqm->dpm, false);
+ fail_packet_manager_init:
++	dqm_unlock(dqm);
+ 	return retval;
+ }
+ 
+@@ -1211,12 +1212,12 @@ static int stop_cpsch(struct device_queue_manager *dqm)
+ 		unmap_queues_cpsch(dqm, KFD_UNMAP_QUEUES_FILTER_ALL_QUEUES, 0);
+ 	hanging = dqm->is_hws_hang || dqm->is_resetting;
+ 	dqm->sched_running = false;
+-	dqm_unlock(dqm);
+ 
+ 	pm_release_ib(&dqm->dpm);
+ 
+ 	kfd_gtt_sa_free(dqm->dev, dqm->fence_mem);
+ 	pm_uninit(&dqm->dpm, hanging);
++	dqm_unlock(dqm);
+ 
+ 	return 0;
+ }
+@@ -2104,6 +2105,11 @@ int dqm_debugfs_execute_queues(struct device_queue_manager *dqm)
+ 	int r = 0;
+ 
+ 	dqm_lock(dqm);
++	r = pm_debugfs_hang_hws(&dqm->dpm);
++	if (r) {
++		dqm_unlock(dqm);
++		return r;
++	}
+ 	dqm->active_runlist = true;
+ 	r = execute_queues_cpsch(dqm, KFD_UNMAP_QUEUES_FILTER_ALL_QUEUES, 0);
+ 	dqm_unlock(dqm);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
+index b130cc0..0123e64 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
+@@ -448,6 +448,9 @@ int pm_debugfs_hang_hws(struct packet_manager *pm)
+ 	uint32_t *buffer, size;
+ 	int r = 0;
+ 
++	if (!pm->priv_queue)
++		return -EBUSY;
++
+ 	size = pm->pmf->query_status_size;
+ 	mutex_lock(&pm->lock);
+ 	kq_acquire_packet_buffer(pm->priv_queue,
 -- 
 2.7.4
 
