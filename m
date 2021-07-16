@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E50D3CBAAE
-	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jul 2021 18:43:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEF903CBAB0
+	for <lists+amd-gfx@lfdr.de>; Fri, 16 Jul 2021 18:43:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D53366E9C3;
-	Fri, 16 Jul 2021 16:43:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F6106E9C5;
+	Fri, 16 Jul 2021 16:43:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2058.outbound.protection.outlook.com [40.107.244.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C50786E9C3
- for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 16:43:26 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2058.outbound.protection.outlook.com [40.107.92.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D6FF6E9C4
+ for <amd-gfx@lists.freedesktop.org>; Fri, 16 Jul 2021 16:43:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cfk4aalRoTLNqyixa740x/OwyTwSLr6sFCOofc4v6H2BJcHPRYg3UwZb7+aldZUp+61EG+uXIMuFVaepyAzEFSZ0kjF41Y9MgcAZ4zCy0Y2p061phyV0jbV1oxumgbL4PUz4JA425h+37vpB0NvSA1M+DWFkMWhCpmwBH62Mc3JDpu/rOcuxzeVEYvj840xrXRubu6RUpYfclwud2zrOD1sLYTfsZuyf5u89PERbMmiluObvIK/m1RtMYS7t9/bq2wYHDkc0VSQ8MaL2zSRRHy2iz+F0hF7RZ61+XCiVxMATj3DRhXR6EhWIBqxiE3qdD+UaVEyGpr0or9UkjqjSKQ==
+ b=VfWkyfE0k4KpNnbPWCT6JFL1zU1KX1Lpg/GwOoEWvIG4JnNQweN641Pr83w4+6H9rWfDlDEhJTATrPcB/AwZ64Li0qDJGqD9g8SkEUEGW01ck/+1RfIPUmGNxzZMc8dqwkvKqs4qnvDTkxV7r3Oz6OVuNRpZsKLkN4E8+sgnU/4OXyvsm9Owt4vzMkVzNAH9L/X4nCC4ZIjJkERlnA7FBd6AsoDbclVSmSGlCBNkKE/qytlwIIe8lAcL8ithIdR7IZbonJoMRFVl4YZsDfTMBZb5GoKUur/RWVu6SV3p9Y1AaI2db0L+6oPAuqfEgF5OPDAp1Ws1r2F0dPS130kDKQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=i1zT3+J7j5zdRHKb0krZgOpxxYoy9p1W61CIKJ+eUWU=;
- b=DwwtKD4UtioMcLUUk07rqq8gIOVwoGMqKvwgnSbNN2xhy09ALO0hcnhtC+PuVn4VQsra5ulShSDHkoBaoBxG25xYiSTWCPvtL896e70OEdCNHxmgu5eASY9Yr80JhUEaDbNQPUBfKFapDkMONPrP+n2yJ2OFJuvtCu2Qp9hL6I7a8/Cw+8yvnSPwdb58qko8q9flyJf6LkLrbv0HAaoQlg3tDM6NnvYnVdElbN2zcO8EsIHn1LWHSEOJ5LZ6sV5QxpRyuoYgEcY2q1AwGg5uXg5coADZzHDmCI2mfQ4tz9S1pKMaOT7ofd0sz2ruqEEcMCCkLJePjqCi1XxeR5mEeA==
+ bh=MwxjNacUnw0oOKL0gqsPv5JDy88k2eQuRP9AV/a+7cE=;
+ b=RZ/+ogC1/i02F+Pe1TY57tkILxuiYrT7Z9V3FmjtNh4CZtLZGP+rHg4kic7szi5413BV81lh2g579ctf7UOudKDTVFVKRBjZgn2XnASA6/RhoTzRt67TRIJIlvJbHPYgnTfizCbRqLAzVzSBulwP3Neg9fET1sQ5VgvL/l0zUVr0sy7bThUtQH5XuAPzZsGCfOkknB68RVoZsytiAK1oFX2Y5UybIbFQF6v/k0pflN61rIxS+X1KD1fSrnLusJkg2xhSgbY8QpX55Mj9oJX+6xDfirL1+hpHpOCw3deTrajoNEHrVmFqVKb5zOHq2ZAgEOKFY/N2CKk3s/Apd8732Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=i1zT3+J7j5zdRHKb0krZgOpxxYoy9p1W61CIKJ+eUWU=;
- b=QXWpiUo3Mz3f6unknTWvYMi4J6yXckJ1+otOBtJv6wVaojUL2DYPAlyH/fTomcNYT4YPUJUOrAGyIvkz7Fmw7Y5To3zZm8xjm+deI81XtCJwY5yTHu+TYIQHoTrk5wPEcXs8cd0kUzKGs0Q+tJ5yKSFBkRpcAXpn4AxzTnUodcc=
-Received: from DM5PR07CA0134.namprd07.prod.outlook.com (2603:10b6:3:13e::24)
- by DM5PR12MB2535.namprd12.prod.outlook.com (2603:10b6:4:b5::26) with
+ bh=MwxjNacUnw0oOKL0gqsPv5JDy88k2eQuRP9AV/a+7cE=;
+ b=UDn/lqhEoGHkXCNGZUL9qHyuVbUWDE8UUBhEYoSbrCOiHq0NUL3CRsWgWbNVyp0CdnYsieKHE38UUaagQbWgrqVh7z5jQZaHrtlLWuyZ2T/X+tLMCtb0cYkC1Q4UMnwD0e0Bmhd1yIVjGi8esryJ6TvdhW9Z1X0xOwiMXtMqucE=
+Received: from DM5PR07CA0141.namprd07.prod.outlook.com (2603:10b6:3:13e::31)
+ by CY4PR1201MB0151.namprd12.prod.outlook.com (2603:10b6:910:1e::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.19; Fri, 16 Jul
- 2021 16:43:24 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.23; Fri, 16 Jul
+ 2021 16:43:25 +0000
 Received: from DM6NAM11FT018.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:13e::4) by DM5PR07CA0134.outlook.office365.com
- (2603:10b6:3:13e::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.22 via Frontend
- Transport; Fri, 16 Jul 2021 16:43:24 +0000
+ (2603:10b6:3:13e:cafe::92) by DM5PR07CA0141.outlook.office365.com
+ (2603:10b6:3:13e::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.21 via Frontend
+ Transport; Fri, 16 Jul 2021 16:43:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,46 +48,48 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT018.mail.protection.outlook.com (10.13.172.110) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4331.21 via Frontend Transport; Fri, 16 Jul 2021 16:43:24 +0000
+ 15.20.4331.21 via Frontend Transport; Fri, 16 Jul 2021 16:43:25 +0000
 Received: from jonathan-KFD.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 16 Jul
- 2021 11:43:23 -0500
+ 2021 11:43:24 -0500
 From: Jonathan Kim <jonathan.kim@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 1/3] drm/amdgpu: add psp command to get num xgmi links between
- direct peers
-Date: Fri, 16 Jul 2021 12:43:10 -0400
-Message-ID: <20210716164312.896939-1-jonathan.kim@amd.com>
+Subject: [PATCH 2/3] drm/amdkfd: report xgmi bandwidth between direct peers to
+ the kfd
+Date: Fri, 16 Jul 2021 12:43:11 -0400
+Message-ID: <20210716164312.896939-2-jonathan.kim@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210716164312.896939-1-jonathan.kim@amd.com>
+References: <20210716164312.896939-1-jonathan.kim@amd.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 015e1450-e390-4769-28e6-08d94878d45b
-X-MS-TrafficTypeDiagnostic: DM5PR12MB2535:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB2535F25289460E1400DB072D85119@DM5PR12MB2535.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Office365-Filtering-Correlation-Id: fc7b187c-a13b-413c-6a1c-08d94878d50f
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB0151:
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB01510FF6D618F7B9E917B72D85119@CY4PR1201MB0151.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /LwgZ7l/ovQCQ3UoNUNV4ajbKQyyDVWcAIHCmoh3gKHHuzP3QnPB5zTt8RM108tYQs/Z63sx4BINXLfj543Cy+uEgF2B87umkndCu5xU2v0eqVPBaSKbVski8gwxxbJwTBBJY0fW2wCX/B8Gh2QDiwru3OkV+9BXFBWUfEYo8ddkFntnRTRd4Hhe0H/+/xUIdg+K9GvB7XYyxgVoozIPlJt2EK58r/thxY0/EfHcy/u0qYtYkoYY8suGQ7u0580LiGVs5FsvxPsBAo2rg0RQlfBc4MHUiqZxID0xzTJ+O17MNINvjp2LCSBXC/g3i5mw5QFuZ5XOtKGenL+wSk4dEaWMKvnf/dGyR8n/p31PQiYKDG/mEw6XDjDWBPyYsjnOMF0wfOPZG0PdKAVkPz2yDrakMD28Ur1atRWF0xwVxLueEWr0tIxnOtzF1jjBL6ftwNGYEzV2ZzMnKMNineO07evZavo7NF+dubUpTXsz+qUXcpznG2AdhsvNfj9+QrYtKcAM57vuNkKwO/MLVo1MHh817nofbQ12lvE/dLwsgCiOBeyxxWu4a5YihOn/by/mfMs6Vw3uLwg/NZ9sm67QB8SMdiNCqmRgp9+TZ5lJ6v26VhqI9/T1X7dAw2gosx0ydCvzsGVT+3PJxiLV55+WbvlCXNnz70rUDmVmn2h0yJLkuLzz/lulix8ANplKSRiDYLzlS4eAGnnJhzWLWAB8yhtO9x/nmqLVNQ57srKU4HM=
+X-Microsoft-Antispam-Message-Info: KmIr6qMpYwhYfC8gXS2PJ4SFJtGRS9YDdq9uJlYN9pBsMlLYdn54a0Y4hUb4yj8dy2fEttCkkixNxD8CzwAnEfdODoDnAxDeoogKet01AsMYZKhkwcnCZce8vUXCRFmUhKoME4CgZrs1OKuDVc8SCvq6G7wy80vTJttGsFnIxWlY4S/pX2e/n2hY8sAJ0zSpN/nIrNg1AjP5GPGpmLbaODuIN7EVpux25thRs9gYdkWrvBN9+/+/ItEkNBVgUoAegXkBYLoE/yT4zOnT4PD18tmgGfytSRvV+5pkSN5qv+WUICqM5aiYU5zB+44SEI/pAUGmTkCSOV4p89fLOhlNu2yUlWiPdpxYRXyfB/z+N6R+EzQv74F9ILFc8IPiclwz3x/hx4bf6570aVBhN+lBRLXqjgu2KjJhueTzOmjdnoasZ7Qy78ZpfUF2rB21J9WBU8zZnnxRfQULrCYHCHBmv6yUvv7TgAA4JE/9qyPFfiSbW1z1rvGT+VoJxcnUaH/dQkxtjVdKfdae7ADJgdMddA7J03UxsxQ1/O/cu+4PMSNNnnJnKF+KyJ/q9cCn+dI3vbRVpkbZvq1j8SjsRuVGh8Ah9lys3BW+Vz0J3CzGjfWFrGFTBYWjOqxphBVFM7ZFy69QddOWc70xDlzspgxzKjB9GktYg/8Fk9Ugoeq3wkzvfgg2ZsxTZeFcmFo9S996wFQ9JSUmoCWnTbq50socofvIVs6arfzZebw+Ctzgav0=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(346002)(136003)(396003)(376002)(46966006)(36840700001)(356005)(86362001)(82740400003)(47076005)(5660300002)(36860700001)(8936002)(6916009)(4326008)(1076003)(83380400001)(82310400003)(81166007)(44832011)(8676002)(2906002)(6666004)(336012)(316002)(478600001)(70206006)(36756003)(70586007)(2616005)(426003)(54906003)(16526019)(26005)(186003)(7696005)(36900700001);
+ SFS:(4636009)(376002)(346002)(136003)(396003)(39860400002)(36840700001)(46966006)(6916009)(82310400003)(7696005)(4326008)(36860700001)(83380400001)(426003)(5660300002)(82740400003)(70586007)(6666004)(70206006)(336012)(8676002)(44832011)(2616005)(36756003)(8936002)(16526019)(86362001)(2906002)(478600001)(81166007)(26005)(1076003)(47076005)(356005)(54906003)(316002)(186003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2021 16:43:24.4575 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 015e1450-e390-4769-28e6-08d94878d45b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jul 2021 16:43:25.6379 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc7b187c-a13b-413c-6a1c-08d94878d50f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT018.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2535
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0151
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,115 +107,131 @@ Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The TA can now be invoked to provide the number of xgmi links connecting
-a direct source and destination peer.
-Non-direct peers will report zero links.
+Report the min/max bandwidth in megabytes to the kfd for direct
+xgmi connections only.
+
+v2: change reporting from num links to bandwidth
 
 Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 23 +++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h |  1 +
- drivers/gpu/drm/amd/amdgpu/ta_xgmi_if.h | 14 +++++++++++++-
- 3 files changed, 37 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c | 23 ++++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h |  1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c   | 12 +++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h   |  2 ++
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c      | 12 +++++++++++
+ 5 files changed, 50 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index dfb481a0780f..4d6752ec8adc 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -1074,6 +1074,12 @@ int psp_xgmi_get_node_id(struct psp_context *psp, uint64_t *node_id)
- 	return 0;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+index bfab2f9fdd17..3978578a1c49 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+@@ -553,6 +553,29 @@ uint8_t amdgpu_amdkfd_get_xgmi_hops_count(struct kgd_dev *dst, struct kgd_dev *s
+ 	return  (uint8_t)ret;
  }
  
-+static bool psp_xgmi_peer_link_info_supported(struct psp_context *psp)
++int amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(struct kgd_dev *dst, struct kgd_dev *src, bool is_min)
 +{
-+	return psp->adev->asic_type == CHIP_ALDEBARAN &&
-+				psp->ta_xgmi_ucode_version >= 0x2000000b;
-+}
++	struct amdgpu_device *adev = (struct amdgpu_device *)dst, *peer_adev;
++	int num_links;
 +
- int psp_xgmi_get_topology_info(struct psp_context *psp,
- 			       int number_devices,
- 			       struct psp_xgmi_topology_info *topology)
-@@ -1117,6 +1123,23 @@ int psp_xgmi_get_topology_info(struct psp_context *psp,
- 		topology->nodes[i].sdma_engine = topology_info_output->nodes[i].sdma_engine;
- 	}
- 
-+	/* Invoke xgmi ta again to get the link information */
-+	if (psp_xgmi_peer_link_info_supported(psp)) {
-+		struct ta_xgmi_cmd_get_peer_link_info_output *link_info_output;
++	if (adev->asic_type != CHIP_ALDEBARAN)
++		return 0;
 +
-+		xgmi_cmd->cmd_id = TA_COMMAND_XGMI__GET_PEER_LINKS;
++	if (src)
++		peer_adev = (struct amdgpu_device *)src;
 +
-+		ret = psp_xgmi_invoke(psp, TA_COMMAND_XGMI__GET_PEER_LINKS);
-+
-+		if (ret)
-+			return ret;
-+
-+		link_info_output = &xgmi_cmd->xgmi_out_message.get_link_info;
-+		for (i = 0; i < topology->num_nodes; i++)
-+			topology->nodes[i].num_links =
-+					link_info_output->nodes[i].num_links;
++	num_links = is_min ? 1 : amdgpu_xgmi_get_num_links(adev, peer_adev);
++	if (num_links < 0) {
++		DRM_ERROR("amdgpu: failed to get xgmi num links between node %d and %d. ret = %d\n",
++			adev->gmc.xgmi.physical_node_id,
++			peer_adev->gmc.xgmi.physical_node_id, num_links);
++		num_links = 0;
 +	}
 +
- 	return 0;
++	/* Aldebaran xGMI DPM is defeatured so assume x16 x 25Gbps for bandwidth. */
++	return (num_links * 16 * 25000)/BITS_PER_BYTE;
++}
++
+ uint64_t amdgpu_amdkfd_get_mmio_remap_phys_addr(struct kgd_dev *kgd)
+ {
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)kgd;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+index 81264517d532..e12fccb2d2c4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+@@ -226,6 +226,7 @@ uint32_t amdgpu_amdkfd_get_num_gws(struct kgd_dev *kgd);
+ uint32_t amdgpu_amdkfd_get_asic_rev_id(struct kgd_dev *kgd);
+ int amdgpu_amdkfd_get_noretry(struct kgd_dev *kgd);
+ uint8_t amdgpu_amdkfd_get_xgmi_hops_count(struct kgd_dev *dst, struct kgd_dev *src);
++int amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(struct kgd_dev *dst, struct kgd_dev *src, bool is_min);
+ 
+ /* Read user wptr from a specified user address space with page fault
+  * disabled. The memory must be pinned and mapped to the hardware when
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+index 8567d5d77346..258cf86b32f6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+@@ -486,6 +486,18 @@ int amdgpu_xgmi_get_hops_count(struct amdgpu_device *adev,
+ 	return	-EINVAL;
  }
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-index 200d19139e73..f5b967b18e3f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
-@@ -116,6 +116,7 @@ struct psp_xgmi_node_info {
- 	uint8_t					num_hops;
- 	uint8_t					is_sharing_enabled;
- 	enum ta_xgmi_assigned_sdma_engine	sdma_engine;
-+	uint8_t					num_links;
- };
- 
- struct psp_xgmi_topology_info {
-diff --git a/drivers/gpu/drm/amd/amdgpu/ta_xgmi_if.h b/drivers/gpu/drm/amd/amdgpu/ta_xgmi_if.h
-index ac2c27b7630c..cce7127afeaa 100644
---- a/drivers/gpu/drm/amd/amdgpu/ta_xgmi_if.h
-+++ b/drivers/gpu/drm/amd/amdgpu/ta_xgmi_if.h
-@@ -33,7 +33,8 @@ enum ta_command_xgmi {
- 	TA_COMMAND_XGMI__GET_NODE_ID			= 0x01,
- 	TA_COMMAND_XGMI__GET_HIVE_ID			= 0x02,
- 	TA_COMMAND_XGMI__GET_GET_TOPOLOGY_INFO		= 0x03,
--	TA_COMMAND_XGMI__SET_TOPOLOGY_INFO		= 0x04
-+	TA_COMMAND_XGMI__SET_TOPOLOGY_INFO		= 0x04,
-+	TA_COMMAND_XGMI__GET_PEER_LINKS			= 0x0B
- };
- 
- /* XGMI related enumerations */
-@@ -75,6 +76,11 @@ struct ta_xgmi_node_info {
- 	enum ta_xgmi_assigned_sdma_engine	sdma_engine;
- };
- 
-+struct ta_xgmi_peer_link_info {
-+	uint64_t				node_id;
-+	uint8_t					num_links;
-+};
++int amdgpu_xgmi_get_num_links(struct amdgpu_device *adev,
++		struct amdgpu_device *peer_adev)
++{
++	struct psp_xgmi_topology_info *top = &adev->psp.xgmi_context.top_info;
++	int i;
 +
- struct ta_xgmi_cmd_initialize_output {
- 	uint32_t	status;
- };
-@@ -97,6 +103,11 @@ struct ta_xgmi_cmd_get_topology_info_output {
- 	struct ta_xgmi_node_info	nodes[TA_XGMI__MAX_CONNECTED_NODES];
- };
- 
-+struct ta_xgmi_cmd_get_peer_link_info_output {
-+	uint32_t			num_nodes;
-+	struct ta_xgmi_peer_link_info	nodes[TA_XGMI__MAX_CONNECTED_NODES];
-+};
++	for (i = 0 ; i < top->num_nodes; ++i)
++		if (top->nodes[i].node_id == peer_adev->gmc.xgmi.node_id)
++			return top->nodes[i].num_links;
++	return	-EINVAL;
++}
 +
- struct ta_xgmi_cmd_set_topology_info_input {
- 	uint32_t			num_nodes;
- 	struct ta_xgmi_node_info	nodes[TA_XGMI__MAX_CONNECTED_NODES];
-@@ -115,6 +126,7 @@ union ta_xgmi_cmd_output {
- 	struct ta_xgmi_cmd_get_node_id_output		get_node_id;
- 	struct ta_xgmi_cmd_get_hive_id_output		get_hive_id;
- 	struct ta_xgmi_cmd_get_topology_info_output	get_topology_info;
-+	struct ta_xgmi_cmd_get_peer_link_info_output	get_link_info;
- };
- /**********************************************************/
+ int amdgpu_xgmi_add_device(struct amdgpu_device *adev)
+ {
+ 	struct psp_xgmi_topology_info *top_info;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h
+index 12969c0830d5..d2189bf7d428 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.h
+@@ -59,6 +59,8 @@ int amdgpu_xgmi_remove_device(struct amdgpu_device *adev);
+ int amdgpu_xgmi_set_pstate(struct amdgpu_device *adev, int pstate);
+ int amdgpu_xgmi_get_hops_count(struct amdgpu_device *adev,
+ 		struct amdgpu_device *peer_adev);
++int amdgpu_xgmi_get_num_links(struct amdgpu_device *adev,
++		struct amdgpu_device *peer_adev);
+ uint64_t amdgpu_xgmi_get_relative_phy_addr(struct amdgpu_device *adev,
+ 					   uint64_t addr);
+ static inline bool amdgpu_xgmi_same_hive(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+index c6b02aee4993..40ce6239c813 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+@@ -1989,6 +1989,13 @@ static int kfd_fill_gpu_direct_io_link_to_cpu(int *avail_size,
+ 		sub_type_hdr->flags |= CRAT_IOLINK_FLAGS_BI_DIRECTIONAL;
+ 		sub_type_hdr->io_interface_type = CRAT_IOLINK_TYPE_XGMI;
+ 		sub_type_hdr->num_hops_xgmi = 1;
++		if (adev->asic_type == CHIP_ALDEBARAN) {
++			sub_type_hdr->minimum_bandwidth_mbs =
++					amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(
++							kdev->kgd, NULL, true);
++			sub_type_hdr->maximum_bandwidth_mbs =
++					sub_type_hdr->minimum_bandwidth_mbs;
++		}
+ 	} else {
+ 		sub_type_hdr->io_interface_type = CRAT_IOLINK_TYPE_PCIEXPRESS;
+ 	}
+@@ -2033,6 +2040,11 @@ static int kfd_fill_gpu_xgmi_link_to_gpu(int *avail_size,
+ 	sub_type_hdr->proximity_domain_to = proximity_domain_to;
+ 	sub_type_hdr->num_hops_xgmi =
+ 		amdgpu_amdkfd_get_xgmi_hops_count(kdev->kgd, peer_kdev->kgd);
++	sub_type_hdr->maximum_bandwidth_mbs =
++		amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(kdev->kgd, peer_kdev->kgd, false);
++	sub_type_hdr->minimum_bandwidth_mbs = sub_type_hdr->maximum_bandwidth_mbs ?
++		amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(kdev->kgd, NULL, true) : 0;
++
+ 	return 0;
+ }
  
 -- 
 2.25.1
