@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39B7D3CC97F
-	for <lists+amd-gfx@lfdr.de>; Sun, 18 Jul 2021 16:06:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCD733CC97B
+	for <lists+amd-gfx@lfdr.de>; Sun, 18 Jul 2021 16:06:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2644189DFD;
-	Sun, 18 Jul 2021 14:06:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF2DA89DEC;
+	Sun, 18 Jul 2021 14:06:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2072.outbound.protection.outlook.com [40.107.244.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89B3389DE3
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2073.outbound.protection.outlook.com [40.107.237.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D54089DE3
  for <amd-gfx@lists.freedesktop.org>; Sun, 18 Jul 2021 14:06:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R+/b44SEBrJCp/n1n6mqdg3Bp/3TJEyTbfffVJ38UdERsIzLQIrM1PWX91uOVQ5Mj9hNTztB/YdkfJn9R/r+Xjnv5s7LLa5lKs/GGeBQq1mFlObzkSRTYOvAh5m3UqnuXGISqZPMhBmpCgiHM9Jk1FQjyK8r03X9Nxxg3SeAOnaAKnj1WX5gmzr+3a0qvu6A4n0ZLoJYeU0Lptms8ORXZnJa6iHPaD9ITqfKYdUB1uTPailXYn91jeVRjQlOd9YSN6E/D42A+JbHJqZg2GgJ3ERUqTtdodpQ0bJI1v+aWh6+SSN+2XS4bAIZRbTWp6EN6MrwYc9Guw5JUxEVzr87FA==
+ b=CM+3ENAlv5or0q72957OFCMCSz5gWxMBkzgZRX5NQRlNb4cmg0O2z63bJjUWN9YOQWRiT14VStNoFK+Wl2J7o7tYzibRsvW3cayPFgOi54VM5fiSuLF4Zjpc9SKj/+H//R5pFCTgEk8e8oJYSnXRXnhA8V7M+61lYqeO+4oMbDDxKxI48Q2nJDTg+R0xxqyaNGTUdNof2xlgrHUch672qnPKK3AD6fo2eApVCP0zZG0VeDefuqMWfwjujVaRpmLjhM3hZAPYef6htZsdEWjGcM9UkEpNhJ81MRJE3cptBLsYz3kUeHvz6XS/Kv7l+3jCLHgHRwdW1xHaJ964E9jxGw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RT1tzRtzELrE8JTE1Uz++ZqttY97K3YbVaHREGl7jsc=;
- b=Z2dZ0seCBnvqk3HbFWx0i7HHnI9O7IZWFwyNCt1SrFrIpEmGmCR0pw1Us3R1P8A+nhQQCttI+CebHgGxWVUnvnA6PWC6XgQY/OGVal1rDm7m82+mQHJAA+3jFWcPCmpLdAXx0fb26cx1SDL1/bjeehkPEuT0kqtoom+bRC3y8uTQGZgzfLPvNn0GvImak+lIi5vCwi0CzMU6dOf4HtpbcaYIcQ7+rD9reWi7Ym+0VyqQJ0iNMY8vOXcTn5hifcY09lORmbv8KPct2KAVRbseGNX7rvTfEMpJo8lSpYsqOWLCIeSNZyCyviKNzhs8cJ3uF+fAC05IOKVXh8mE3O1XrQ==
+ bh=Ht93eC1X17+FJB0W0XJd/rsW6QcK5kVfJM5PEdDpTIo=;
+ b=mB1S0OARzhkW2Xsm7uUN0avNx5JbNwow342Sek0LokUeTk0cy72qO4+8utRMEL35uMDiO44zD6QZgyY4RzB0DuQPUzQOrF+mSjItegt1+OIPy31f4qZ+WSfu6CP5/1IgE1uQLzyoRpgjLwpVJktpLHg64VN8bIY3gLCf536+rcI2Ncfg8WvVg9d2BN8zW9cf26vEjaCY9YW3Buzzl6s14jEqknSW0i5Qzi8DcAG7OvI8Pg4ZWazhkUUo7I+B0Jc6jfr85F77xoEoX8I/4D302dGJmLi9B0lxNxOlltfElsO7bp/xWKbZ8qnjl5aZhF4JWc2f8ZHi4xZmrrCFdmscSQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RT1tzRtzELrE8JTE1Uz++ZqttY97K3YbVaHREGl7jsc=;
- b=FjSswgMz6Pn0IWACLyb0kAAfsYq8VbtYL54PEtBOEDVL6ytWc8kXAGdvBqw+2B5pJRaHf1RvUT/T6StxTPFxlSP2R4l5SOEJwzkYKO+/DgghsYOZTK2cKs7YjbjHAts6fPwLf3pMLChag8h9ETnXTsMwIeOBtnBDEFzybMVOi1A=
-Received: from MW3PR05CA0004.namprd05.prod.outlook.com (2603:10b6:303:2b::9)
- by BN8PR12MB2962.namprd12.prod.outlook.com (2603:10b6:408:47::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.22; Sun, 18 Jul
- 2021 14:06:26 +0000
+ bh=Ht93eC1X17+FJB0W0XJd/rsW6QcK5kVfJM5PEdDpTIo=;
+ b=tDz/JrCp0Gkj3V6sSO31RDrRhQQ6KJaRpsct6zumij7eRR9gDjxFApxDA408aNZT+VdJukGVlQ9BuYnIInTBvUlzqCk9jPMe8o+Q6NkaVV3FrbgGI19uJuJ8M+x20Mp7yX+h/jZQ43fOoQgx/LW10eTV8mOtcFRlrYDkHay584o=
+Received: from MW3PR05CA0021.namprd05.prod.outlook.com (2603:10b6:303:2b::26)
+ by CY4PR12MB1240.namprd12.prod.outlook.com (2603:10b6:903:3f::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.23; Sun, 18 Jul
+ 2021 14:06:27 +0000
 Received: from CO1NAM11FT034.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:2b:cafe::6e) by MW3PR05CA0004.outlook.office365.com
- (2603:10b6:303:2b::9) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:303:2b:cafe::79) by MW3PR05CA0021.outlook.office365.com
+ (2603:10b6:303:2b::26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.9 via Frontend
- Transport; Sun, 18 Jul 2021 14:06:26 +0000
+ Transport; Sun, 18 Jul 2021 14:06:27 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,16 +48,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT034.mail.protection.outlook.com (10.13.174.248) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4331.21 via Frontend Transport; Sun, 18 Jul 2021 14:06:26 +0000
+ 15.20.4331.21 via Frontend Transport; Sun, 18 Jul 2021 14:06:27 +0000
 Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Sun, 18 Jul
  2021 09:06:24 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 03/32] drm/amd/display: Fix timer_per_pixel unit error
-Date: Sun, 18 Jul 2021 10:05:41 -0400
-Message-ID: <20210718140610.1584616-4-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 04/32] drm/amd/display: Prevent Diags from entering S2
+Date: Sun, 18 Jul 2021 10:05:42 -0400
+Message-ID: <20210718140610.1584616-5-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210718140610.1584616-1-Rodrigo.Siqueira@amd.com>
 References: <20210718140610.1584616-1-Rodrigo.Siqueira@amd.com>
@@ -67,28 +67,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e406b322-0ae7-4109-f451-08d949f53b68
-X-MS-TrafficTypeDiagnostic: BN8PR12MB2962:
-X-Microsoft-Antispam-PRVS: <BN8PR12MB2962A09E5A9349B0D7174F2998E09@BN8PR12MB2962.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-MS-Office365-Filtering-Correlation-Id: 5a8c6587-d90a-4038-0fdf-08d949f53c14
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1240:
+X-Microsoft-Antispam-PRVS: <CY4PR12MB12409E04C130CFCD0C8D3D4898E09@CY4PR12MB1240.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:335;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bCcA7GlkI1v4QU8+xVh/d2L4WyaNCm44yxaDB0mptsP+AVrwpXMgkvtR8xke3gdww9zL79yllNX5Jqh0JEHujWNnnfmmE6cteFUFUx41A1NrhpN52/cqnmjkTGzO0wAgCvh6KmFUF3vyotyzLnPr19ud8jweNHjYVPXErmCyMJUtNPg3KUjzTnF5n+7dZkpjK9OXVy3z9X6v8tUvW0I19N8JkDQJ0OrO17AY+FmKZIitPCB4dDIXQ5ny1kduQKZsbwn5qJQrMc2pmopkrp31UHKTiGs/e+4lpiw6jzjnGMKn3O4oYvTXU5gDLHDhn77Mn9uGw2oxZDFnnZHbuVMtFP+6ca8SwdAvCxR6rPGnCIkQob2huTubNVkOgcm3SMD8yTB7trtqM+cgFhikJrxS+FZlkTYlQ0R8eghrzVbsXD6F9F6PqOU9/+SrWjmcGa4UgJukLEFvMbBXEcfDjRrAM8sJ5fJzXvOvL7/zZ2MALf8AWE6Jq8Tl60Bs9P2bVQ+mlm276M0qkls2HlT7k2LqW3SYDJygfQisC4VmFmLxWQO1nw95bScwktYHOkn7GQl/pco4WirCPOa6PAjMEJfdb4NLlGamEgtxPSKaUK0IUE7X0YLcL/6mWN2gUfj3WZ4tQOC4nA47OvlapsvQtmFAXmPIBkb92l4dUzEGv84j94GhkkYjHuuCQf7cKuj8ub8z3dQcUIzMNiFIVh1XRntMu4hjdmiGOSYaQqjAtxXIO1k=
+X-Microsoft-Antispam-Message-Info: TgrpwTG86bqwAc8tGj1gXLeqVQzx3APf49TRjnK6RSBMC8+Y5YVFD1CxkWsd0ldJ13pkliiY0ED9HVD4TQSb6/g/mZDXVFhnMND7C8YRM6JJQvE27lK/ioL2D9xDJoeYDw2QaF6ntgK1MQCN5rlLS1YmIMr6KvqRaOHZmOEMfXLbqNuNWMf4i+pJLBhkxpGH6ZYIbCQtR0NmZqX5kHQVNqRgbR5pPu+Gvdb4MAMYD7MEGlGExy/5lRzT+q3YXFaTUm76Rrq/u5zUHzqskKvm9+Upa7RaY4wo8/yEH1wJQr6rvVCy8RFYdVN1NX/wAt/bpQ+7f9jELKOOXJDmsqZxdqOJcgwMv1tlIjXjJmqTyb/bn6B4sA2TjO5LKROy9jP9qgqPbIPdKqrrI9QscwjSGITv8dPi0XzZ+GHseblagaMuT3FCc4bbf210XN8gEQ3YaRSjOnX6a2nMeWlADN1VYp/oNfvUwsQaGHl//RlpOyQ3jSNiiqRRU1Uz7qAKhLd96yWaKVuYszEEUd1rXQYR2aJ1Cq3SdjacgbegNVICJA3hoVj8v3UJexrhXOCrNhXPATWf3i11KWQ28w565BMRa+j5NBAXVnPOgX16MVolt+O7+QnRzbFbeVd3Snf4/6Ox0Jmc4QzMamUoE7nfrTdk7EAkar1KGMVti1NBiIotfy0SmZoAgZzTiUVhYN0I+/tQ9HfdpCJIdnec0duoaTzVaOfmzn8J6NbhvsyWXm5fM3Q=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(376002)(39860400002)(346002)(396003)(136003)(46966006)(36840700001)(1076003)(82310400003)(86362001)(47076005)(8676002)(81166007)(82740400003)(6666004)(36860700001)(2906002)(316002)(356005)(83380400001)(478600001)(26005)(70206006)(70586007)(54906003)(36756003)(186003)(16526019)(8936002)(4326008)(5660300002)(6916009)(426003)(336012)(2616005)(36900700001);
+ SFS:(4636009)(376002)(396003)(346002)(39860400002)(136003)(36840700001)(46966006)(316002)(36756003)(1076003)(2906002)(47076005)(6666004)(16526019)(36860700001)(82310400003)(356005)(81166007)(5660300002)(4326008)(8676002)(54906003)(8936002)(6916009)(336012)(426003)(478600001)(86362001)(186003)(82740400003)(2616005)(70206006)(26005)(70586007)(83380400001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2021 14:06:26.0476 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e406b322-0ae7-4109-f451-08d949f53b68
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2021 14:06:27.1689 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a8c6587-d90a-4038-0fdf-08d949f53c14
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT034.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2962
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1240
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,44 +100,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Oliver Logush <oliver.logush@amd.com>, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
+Cc: Sunpeng.Li@amd.com, Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
+ Mikita Lipski <mikita.lipski@amd.com>, Bhawanpreet.Lakha@amd.com,
  bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Oliver Logush <oliver.logush@amd.com>
+From: Mikita Lipski <mikita.lipski@amd.com>
 
 [why]
-The units of the time_per_pixel variable were incorrect, this had to be
-changed for the code to properly function.
+Lowering clocks when entering S2 Idle state causes DMUB to hang with
+Diags.
 
 [how]
-The change was very straightforward, only required one line of code to
-be changed where the calculation was done.
+Do not enter S2 optimization with Diags on dcn301 to prevent DMUB hang.
 
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Oliver Logush <oliver.logush@amd.com>
+Signed-off-by: Mikita Lipski <mikita.lipski@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index 1b05a37b674d..ac981aa92d7d 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -2460,7 +2460,7 @@ void dcn20_set_mcif_arb_params(
- 				wb_arb_params->cli_watermark[k] = get_wm_writeback_urgent(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
- 				wb_arb_params->pstate_watermark[k] = get_wm_writeback_dram_clock_change(&context->bw_ctx.dml, pipes, pipe_cnt) * 1000;
- 			}
--			wb_arb_params->time_per_pixel = 16.0 / context->res_ctx.pipe_ctx[i].stream->phy_pix_clk; /* 4 bit fraction, ms */
-+			wb_arb_params->time_per_pixel = 16.0 * 1000 / (context->res_ctx.pipe_ctx[i].stream->phy_pix_clk / 1000); /* 4 bit fraction, ms */
- 			wb_arb_params->slice_lines = 32;
- 			wb_arb_params->arbitration_slice = 2;
- 			wb_arb_params->max_scaled_time = dcn20_calc_max_scaled_time(wb_arb_params->time_per_pixel,
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c
+index c636b589d69d..7046da14bb2a 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn301/vg_clk_mgr.c
+@@ -114,7 +114,7 @@ void vg_update_clocks(struct clk_mgr *clk_mgr_base,
+ 
+ 			display_count = vg_get_active_display_cnt_wa(dc, context);
+ 			/* if we can go lower, go lower */
+-			if (display_count == 0) {
++			if (display_count == 0 && !IS_DIAG_DC(dc->ctx->dce_environment)) {
+ 				union display_idle_optimization_u idle_info = { 0 };
+ 
+ 				idle_info.idle_info.df_request_disabled = 1;
 -- 
 2.25.1
 
