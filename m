@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 801063CC984
-	for <lists+amd-gfx@lfdr.de>; Sun, 18 Jul 2021 16:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C00413CC981
+	for <lists+amd-gfx@lfdr.de>; Sun, 18 Jul 2021 16:06:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FDD36E060;
-	Sun, 18 Jul 2021 14:06:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A21F89E15;
+	Sun, 18 Jul 2021 14:06:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam07on2047.outbound.protection.outlook.com [40.107.212.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2CE989E15
- for <amd-gfx@lists.freedesktop.org>; Sun, 18 Jul 2021 14:06:34 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2049.outbound.protection.outlook.com [40.107.220.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E8C789E0D
+ for <amd-gfx@lists.freedesktop.org>; Sun, 18 Jul 2021 14:06:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bOpKxxr4GkQ59R9AfoXT8Ydv4YcZROXNuGD2zODzhFodFZKC8S9TE4TrgV9CQLHTaCxSw3djFnmtqLWmAXuP0jGIpEiEOxRTgJ7W2cCpkBK8d7FJKUBPQOLAcYwSEIOCQtvB3MemZXg5zaXcfw2XA4XFmHp9LCS2DPusdoXg/YqjR+uvvkfEr8MXBggvU2oDKJIlac5r0LwufTqfxd4mV9znc1F/ItR5GiyKQBkN6VVvb3ocYZr1j2PDZ1Md/I05ai7gKudaL3m82NvhwYFx/aKv0vAkuGD7ak1Lpxy5X4/4N61qgKv32MaWd8b+KTTYGPnuMmT0uTvtBAKgi2w9yA==
+ b=LwuszU0pVhNm5wdwsjCuEieV7mpZJlwMCgq1wh2siNAIcbWxxU54DQ8L51K3pW0c6vkCUt0H8U3QnHVide9ZYtDaNRp1Nlt31eS7YOyHZ4njWe5uW6OU0Loxmrga/VlMJNstJFYFmMntCDwRBqi2NOjzztsJNYoQq5pmeCFxIrt61enQiIgbv1Eu7+c2PNGJtTHlcrOqHk8W0I7iuoXU2H9bd8veCEqEDXImoJB/EEoQ9a1xzjuIBFSB4ysrmWq43CrvOMpOVwzjimF6nnJNRD4H5Wj+IfqcIhruxmwFYxBQIN6qUxUaXLr8QOfIgWl4IkD6SCDCelhv6j52/EIe/g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7w1XzFrEqoNraC7k4RTStRHIsaNO2LHeIjQEZQamCVY=;
- b=cKi7EXuBjJdc/CMyxxPPN6LNgDK7gMGPaMnvcR+2pBFmiEKvCLYWAGXTi9ieABA7JaUDnV2WsgWSQ7lamF6E41rGXQ6bZlb0tcKO4LrpCbWj8WQXxai7/PgXHameMQZ5PJ8a1j/e6+iAgo5eTUn2e/OtPuPA9kn+2nx3093QdtzihPp5ff5WiCugSDRTrRpL5wtsEhqgNp9qYsiWgogdqT1hI84zuSqgtnP/psG6xCUniCfCtu0Ehau4rZko2h8MzVSnKINyd8NKdLZ+CuxFSrBPwlp7wjjeZ1yagSkKPcoQPCfV+jPvKBApuAcKGn7LKYUJDqGusb5437rfNnjlSw==
+ bh=tda+68Ytb5kE0nfBJm/CwXELo1S0cRnyMFSW+ppvT+I=;
+ b=ac3oqLeSHo6qM/0x7i427xVVfc8Yg78n8uFKTyhpCBaB2BdzoFpLGVBvNV8tKZ8eoD7z9n4pXoIyTvY+9FRoFjjAv09oK1MvVuVAFO5ZkSQObEH58KkRd+OtgudFQCxpWaLbJQw58BrcSkPVLhcOka3J9Vhl/UWbarkIdCuXomAdQ5SmacCIN2kA7/aoIVg6Absi6ro5MdYHnzP83o02Hro2+Obqyp9LLg7SW/XBeD5chEz6WNOGi7OD5lCxy8BWu1eOqF28K2W3sRwuAVeCEAtcZR691tFbvZZNS5RWC8rAQTxz7oXK7uQ/LYyK9dkERq3NVl6tSJlLb5dACiIi/A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7w1XzFrEqoNraC7k4RTStRHIsaNO2LHeIjQEZQamCVY=;
- b=u4gcqAslIX1uFA1scJ6JLylWTwT7hRb/uM/Uh/E4xY5bkjLRigQzoev0Ia2NhWDJ8hGyrTk/Fn7dBQkInyz02+ha3ZRES29CToi4rZ7k9Wwa/jp1d9NYqERxQ7GHykoPkoSQBDpsGIeC2kSsrnV0+xIlPsLTZ8J8MRA0srUiK5w=
-Received: from MW3PR05CA0009.namprd05.prod.outlook.com (2603:10b6:303:2b::14)
- by MWHPR1201MB0109.namprd12.prod.outlook.com (2603:10b6:301:52::14)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=tda+68Ytb5kE0nfBJm/CwXELo1S0cRnyMFSW+ppvT+I=;
+ b=t1lpLAi/y3kFY1sOlRc0ZwZ5FaQUlxzrPf3TPoIUHTtFbMhyj/9xSdoGNtofyLuc80ku9ySFhcNVEs/Xr6ag1DOf+jyRy1huZQjx4uIGWAAoNSAnIZSNVFOog5+xk37SN2v0Tu6iZHQdYvKTBtFffTg6AhaPGxnIbUWC1mWq3Ls=
+Received: from MW3PR05CA0026.namprd05.prod.outlook.com (2603:10b6:303:2b::31)
+ by CH0PR12MB5090.namprd12.prod.outlook.com (2603:10b6:610:bd::8) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.21; Sun, 18 Jul
- 2021 14:06:29 +0000
+ 2021 14:06:30 +0000
 Received: from CO1NAM11FT034.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:2b:cafe::5c) by MW3PR05CA0009.outlook.office365.com
- (2603:10b6:303:2b::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.10 via Frontend
- Transport; Sun, 18 Jul 2021 14:06:29 +0000
+ (2603:10b6:303:2b:cafe::c2) by MW3PR05CA0026.outlook.office365.com
+ (2603:10b6:303:2b::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.11 via Frontend
+ Transport; Sun, 18 Jul 2021 14:06:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -55,10 +55,9 @@ Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB04.amd.com
  2021 09:06:27 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 07/32] drm/amd/display: Extend dmub_cmd_psr_copy_settings_data
- struct
-Date: Sun, 18 Jul 2021 10:05:45 -0400
-Message-ID: <20210718140610.1584616-8-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 08/32] drm/amd/display: remove compbuf size wait
+Date: Sun, 18 Jul 2021 10:05:46 -0400
+Message-ID: <20210718140610.1584616-9-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210718140610.1584616-1-Rodrigo.Siqueira@amd.com>
 References: <20210718140610.1584616-1-Rodrigo.Siqueira@amd.com>
@@ -68,28 +67,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 91684cf3-cf43-4494-e3b4-08d949f53d61
-X-MS-TrafficTypeDiagnostic: MWHPR1201MB0109:
-X-Microsoft-Antispam-PRVS: <MWHPR1201MB0109053EC53E960477AA519D98E09@MWHPR1201MB0109.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3044;
+X-MS-Office365-Filtering-Correlation-Id: 1405a3a9-aab9-4e3a-bf86-08d949f53db7
+X-MS-TrafficTypeDiagnostic: CH0PR12MB5090:
+X-Microsoft-Antispam-PRVS: <CH0PR12MB509020FD4EAC4364EBC35D7A98E09@CH0PR12MB5090.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1850;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GQKyBOqVAya6mU4DvnoQZ/MZfffl5fGeeQcqw3HAbpf7S9S2NSRRAcH05oLr9tKWcR/YL94jkr+P/VnYWtZCRwtO0S/KPjxuW6ckXjQmrfKcjUY3Xm8PdkNfBh8l1j5O5Ows3jFP+AolsE6dWBppf9HphfAf8TDaTy7dt++GNcEf7E9lWElj60Td/DY6VV4MskLDFCqGMsp7HvdKCkZvpwdsHqnsAVX9p9q3KGgMzh/60tcGW4hMCJjOoAOW8qroZUsRHfIo2caJml5igWZdSu4DhAD302AtO85c2QZCnRmEnUCK85Xufbg+DTdZQ76Hd3aAynOgaijG7TqZo5a8UqVkc5RHNWPosjrEXdRKJKKKO2gQCxsoPB4d3ogltdhUkhPK4ad7o+kYOVzUyF95wMnMkUXF+zRYVg9RoZAoFu2wAF6oTn8NfiP2b75z4zqJG1mJrPVrKsiDelrx2r7nojqYde83tUNsiuXi6Qvmwho1jXr1/+P0qw+5Lqj3yNrVJVdYLSJOULbQOxpKkOb1TneT6R6FQVHyz3fNdXz8i1s0F1mYGBXa0RvYnm1vrGWW5CHhisfMn5RMlnPZkBwVp1yPPTJ0Y2Q98JJNmUxHR48T89QMt6BHJQy9KUArYAEXSTl/I5EZQf61L2a61n+CxbiNCOUuSiZ/mOnIWz3nwh/oNcKcbObWoi6RaeKt+N3qoIMHigcn0j+ysnZKdoewavVpzQRsj5D8pGoW9D9Csbc=
+X-Microsoft-Antispam-Message-Info: wE/syFnwgRHoyhAELyB/fSKaOsgP5BD8LtkZOTUd6L4fptBBfnMSgJFwFxleSwBWGwAXsBSxVFKA0/Lv0qLF79Gf3o8pszopX8iAWPhLT+6y8NApHqSXFACHCKMY9KPKbDX2epkcukchRg1lklCu5d21qoy4Zf1xLqeC/ibMgvP+9ZQnIQUV2wvmVMtOLvueKh9y123S8xy9oNF6B9sz21LxRPnDs0vI5VONad38MMbplDaXJPutP5XYsXGP1Ukgb/Y4ZOvJ7PvZEm18tk55frdwa6DoM3Ap7DB/oEne2O8cvdSDmXYB0CYOFvaIVMWkkDVTnzNU2bCXXKGFpd+giE8Xb8SBTg5n7zFgJbEZYsAEaYYXPP4TVYeFu1V9aOdy2onYJIE73y2EnWeIa8YPo2QcDYM/ZETd75+ECBoneZPZeENA76p8KNI2KrnV3k8AiHgYsx6V+/DNLg4219x1J5dMMXCgcf1vqxX7xMIltn+hoHLZZFUMO6+3yhh78v60k924EUhJHnvm8qN9BQrYP7moIuL2vMEcVXQZSQ5cx7BGizH4XRTECh0ZzIRDE+OJ2B3tn3clIUZHFVMXsIaFifan0PHRfMBR3tuMSYswTljGewHSCjqhIOlEx1u/sN3nrzTNJhtxBPQfcVM3yLg/ZnBp+JIMSzGw2zUMyakyLK9pRIFvUv9ggu+ugQgwABX7EQYjANS//R11iE+BiUmYlj05xH51+JvBMmkNEw4VRtA=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(396003)(136003)(376002)(39860400002)(346002)(46966006)(36840700001)(2906002)(426003)(70206006)(16526019)(70586007)(36860700001)(186003)(82740400003)(478600001)(82310400003)(47076005)(8936002)(81166007)(356005)(8676002)(26005)(6916009)(2616005)(316002)(336012)(54906003)(36756003)(5660300002)(86362001)(4326008)(6666004)(4744005)(1076003)(36900700001);
+ SFS:(4636009)(39860400002)(136003)(346002)(396003)(376002)(36840700001)(46966006)(356005)(5660300002)(70206006)(47076005)(82310400003)(336012)(70586007)(426003)(86362001)(2616005)(6666004)(36860700001)(82740400003)(4326008)(1076003)(36756003)(81166007)(54906003)(8936002)(2906002)(83380400001)(186003)(478600001)(16526019)(6916009)(8676002)(26005)(316002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2021 14:06:29.3557 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 91684cf3-cf43-4494-e3b4-08d949f53d61
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jul 2021 14:06:29.9184 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1405a3a9-aab9-4e3a-bf86-08d949f53db7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT034.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0109
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5090
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,39 +100,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ian Chen <ian.chen@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com, Anson.Jacob@amd.com,
- Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com, bindu.r@amd.com
+Cc: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, Qingqing.Zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, Bhawanpreet.Lakha@amd.com,
+ bindu.r@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Ian Chen <ian.chen@amd.com>
+From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 
-Reserve padding bytes for new feature implementation
+This tends to take miliseconds in certain scenarios and we'd rather not
+wait that long. Due to how this interacts with det size update and
+locking waiting should not be necessary as compbuf updates before
+unlock.
+
+Add a watch for config error instead as that is something we actually do
+care about.
 
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Ian Chen <ian.chen@amd.com>
+Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 ---
- drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.h | 1 +
+ drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hubbub.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hubbub.h | 1 +
+ 3 files changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index 98bda0e3a6c3..53e3d7d573ca 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -1409,6 +1409,10 @@ struct dmub_cmd_psr_copy_settings_data {
- 	 * Currently the support is only for 0 or 1
- 	 */
- 	uint8_t panel_inst;
-+	/**
-+	 * Explicit padding to 4 byte boundary.
-+	 */
-+	uint8_t pad3[4];
- };
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.h
+index 32fb22daf4a2..39485bdeb90e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hubbub.h
+@@ -319,6 +319,7 @@ struct dcn_hubbub_registers {
+ 		type DET3_SIZE_CURRENT;\
+ 		type COMPBUF_SIZE;\
+ 		type COMPBUF_SIZE_CURRENT;\
++		type CONFIG_ERROR;\
+ 		type COMPBUF_RESERVED_SPACE_64B;\
+ 		type COMPBUF_RESERVED_SPACE_ZS;\
+ 		type DCHUBBUB_ARB_ALLOW_SR_ENTER_WATERMARK_Z8_A;\
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hubbub.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hubbub.c
+index b5a7fa67958b..2043528d3490 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hubbub.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hubbub.c
+@@ -124,8 +124,8 @@ static void dcn31_program_compbuf_size(struct hubbub *hubbub, unsigned int compb
+ 		ASSERT(hubbub2->det0_size + hubbub2->det1_size + hubbub2->det2_size
+ 				+ hubbub2->det3_size + compbuf_size_segments <= hubbub2->crb_size_segs);
+ 		REG_UPDATE(DCHUBBUB_COMPBUF_CTRL, COMPBUF_SIZE, compbuf_size_segments);
+-		REG_WAIT(DCHUBBUB_COMPBUF_CTRL, COMPBUF_SIZE_CURRENT, compbuf_size_segments, 1, 100);
+ 		hubbub2->compbuf_size_segments = compbuf_size_segments;
++		ASSERT(REG_GET(DCHUBBUB_COMPBUF_CTRL, CONFIG_ERROR, &compbuf_size_segments) && !compbuf_size_segments);
+ 	}
+ }
  
- /**
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hubbub.h b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hubbub.h
+index 298858d8259b..e3a654bf04e8 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hubbub.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hubbub.h
+@@ -98,6 +98,7 @@
+ 	HUBBUB_SF(DCHUBBUB_DET3_CTRL, DET3_SIZE_CURRENT, mask_sh),\
+ 	HUBBUB_SF(DCHUBBUB_COMPBUF_CTRL, COMPBUF_SIZE, mask_sh),\
+ 	HUBBUB_SF(DCHUBBUB_COMPBUF_CTRL, COMPBUF_SIZE_CURRENT, mask_sh),\
++	HUBBUB_SF(DCHUBBUB_COMPBUF_CTRL, CONFIG_ERROR, mask_sh),\
+ 	HUBBUB_SF(COMPBUF_RESERVED_SPACE, COMPBUF_RESERVED_SPACE_64B, mask_sh),\
+ 	HUBBUB_SF(COMPBUF_RESERVED_SPACE, COMPBUF_RESERVED_SPACE_ZS, mask_sh),\
+ 	HUBBUB_SF(DCHUBBUB_ARB_ALLOW_SR_ENTER_WATERMARK_Z8_A, DCHUBBUB_ARB_ALLOW_SR_ENTER_WATERMARK_Z8_A, mask_sh), \
 -- 
 2.25.1
 
