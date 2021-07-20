@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 166C43CF55E
+	by mail.lfdr.de (Postfix) with ESMTPS id 901FA3CF55F
 	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jul 2021 09:35:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C8D56E241;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 952C26E23D;
 	Tue, 20 Jul 2021 07:35:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE5666E250
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 06:07:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=zY/bA1mmo80mAzxM6Dqf7zbj0hsJZEwAfFA84ALlcz8=; b=Ihy/jz+o+4KAUoA6iHjBE2hAIk
- 1KVtU50DJksORf+Jgi5tF72tnslR5cy7hHwFbg9m7p15Ox9epP3q7P1aAIqa8EqnS0VDizf62TOX8
- yTS1k/oalIUSYym8s3k8gJyn8NPkVn0yVB3AKiCbxd3CA9TTXjsmChIWKQOFj0RetzQG31RxSqktC
- gIqCg8mhmOKnxxrckhaLumo0Tn0rzbL6d/AiBBKnkftU2JBJOWUgEtF9UsqXrmmjhT0EJOSSFqTbU
- cEPJOh95bDAyO13/oCQR4yM+1i36dMG7CETXN1DMt/PiE2YB04CURN5mvt/KZGh1m5QyBxbe9Wqqv
- Kc4ETxvg==;
-Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat
- Linux)) id 1m5iu3-007oH6-Lz; Tue, 20 Jul 2021 06:06:56 +0000
-Date: Tue, 20 Jul 2021 07:06:51 +0100
-From: Christoph Hellwig <hch@infradead.org>
-To: Anson Jacob <Anson.Jacob@amd.com>
-Subject: Re: [RFC 2/2] drm/amd/display: Use PPC FPU functions
-Message-ID: <YPZn+wqulTHSR+h2@infradead.org>
-References: <20210719195211.520428-1-Anson.Jacob@amd.com>
- <20210719195211.520428-3-Anson.Jacob@amd.com>
+X-Greylist: delayed 1856 seconds by postgrey-1.36 at gabe;
+ Tue, 20 Jul 2021 07:21:32 UTC
+Received: from baidu.com (mx21.baidu.com [220.181.3.85])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0BB856E150
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 07:21:32 +0000 (UTC)
+Received: from BJHW-Mail-Ex01.internal.baidu.com (unknown [10.127.64.11])
+ by Forcepoint Email with ESMTPS id 969EAFD35FF82B9BC42D;
+ Tue, 20 Jul 2021 14:34:42 +0800 (CST)
+Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
+ BJHW-Mail-Ex01.internal.baidu.com (10.127.64.11) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.14; Tue, 20 Jul 2021 14:34:42 +0800
+Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.14; Tue, 20 Jul 2021 14:34:41 +0800
+From: Cai Huoqing <caihuoqing@baidu.com>
+To: <Felix.Kuehling@amd.com>, <alexander.deucher@amd.com>,
+ <christian.koenig@amd.com>, <Xinhui.Pan@amd.com>, <airlied@linux.ie>,
+ <daniel@ffwll.ch>
+Subject: [PATCH] drm/amdkfd: move PTR_ERR under IS_ERR() condition
+Date: Tue, 20 Jul 2021 14:34:35 +0800
+Message-ID: <20210720063435.373-1-caihuoqing@baidu.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210719195211.520428-3-Anson.Jacob@amd.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- casper.infradead.org. See http://www.infradead.org/rpr.html
+X-Originating-IP: [172.31.63.8]
+X-ClientProxiedBy: BC-Mail-Ex14.internal.baidu.com (172.31.51.54) To
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
 X-Mailman-Approved-At: Tue, 20 Jul 2021 07:35:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,25 +49,50 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Harry.Wentland@amd.com, Sunpeng.Li@amd.com, mpe@ellerman.id.au,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- amd-gfx@lists.freedesktop.org, Bhawanpreet.Lakha@amd.com,
- Aurabindo.Pillai@amd.com, paulus@samba.org, christophe.leroy@csgroup.eu,
- benh@kernel.crashing.org, linuxppc-dev@lists.ozlabs.org, bindu.r@amd.com
+Cc: Cai Huoqing <caihuoqing@baidu.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
->  #define DC_FP_END() kernel_fpu_end()
->  #elif defined(CONFIG_PPC64)
->  #include <asm/switch_to.h>
-> +#define DC_FP_START() kernel_fpu_begin()
-> +#define DC_FP_END() kernel_fpu_end()
->  #endif
+no need to get error code when IS_ERR is false
 
-Please use the same header as x86 in your first patch and then kill
-this ifdefered and the DC_FP_START/DC_FP_END definitions entirely.
+Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+index e48acdd03c1a..710659b3c1f0 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+@@ -72,16 +72,18 @@ int kfd_chardev_init(void)
+                goto err_register_chrdev;
+
+        kfd_class = class_create(THIS_MODULE, kfd_dev_name);
+-       err = PTR_ERR(kfd_class);
+-       if (IS_ERR(kfd_class))
++       if (IS_ERR(kfd_class)) {
++               err = PTR_ERR(kfd_class);
+                goto err_class_create;
++       }
+
+        kfd_device = device_create(kfd_class, NULL,
+                                        MKDEV(kfd_char_dev_major, 0),
+                                        NULL, kfd_dev_name);
+-       err = PTR_ERR(kfd_device);
+-       if (IS_ERR(kfd_device))
++       if (IS_ERR(kfd_device)) {
++               err = PTR_ERR(kfd_device);
+                goto err_device_create;
++       }
+
+        return 0;
+
+--
+2.25.1
+
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
