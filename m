@@ -1,32 +1,32 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4CBC3CFDD6
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jul 2021 17:44:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD4B93CFDD9
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jul 2021 17:44:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1CD76E432;
-	Tue, 20 Jul 2021 15:44:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6CE26E437;
+	Tue, 20 Jul 2021 15:44:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2070.outbound.protection.outlook.com [40.107.94.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59CA46E432
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 15:44:14 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2040.outbound.protection.outlook.com [40.107.237.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73B9E6E436
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 15:44:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=myhuzq8eSowvYnsXYQBsGw9avX7LAnqpPokA2h/vfdjag9Lk/RumDINpxtnYAV/axvTYLQSBBBqCwJ2zYRWy/TW/Jgo9Qr4SuQAd8x0s5D6AYammv83ieufTBRmuHR1CO93iY3wSAcwsHCzU9TATBAw6K2DFaa1bNJiFuBvF++qsPhqkas4epQLfoDCnHtcGsFCgrXcgo1qQnT2bXKz3RY3kQxkkIm9m8fVgq5Yp5FZJXdS4C/aUkCrmlmkgfA/E3Y7HuyUO+BGkmaDcQy3TSIfJ96ruieEYCvYu+Vwt2PjQEABsKJ20M4YZ6Bqi27UB+1ScUlQ4PaDc0svatguMBw==
+ b=aeSz47gdbLhPVVNcYEgzHGHAUMQeaNN5ZfJSr92tmaTbs5XJQDiEvKyLz88yI+nr2LRZhi6sR7gaJM87vMZGATiz5lEA8XEiD0STd3MaGCe+/P4VmtcbG+Rc/CWpzh2WlmigoZ2Mr/ltNGvvdIIQ6T4ZVXvz8kUc3f0ivE3Ihe6cRwsE1nDmvPyWfiYKT06Kq37Rzdm6Yf5/TpwjAJBwwUM0t6trQayLZqKdG1tAhfAZn6yv1TElhLWf+7U92PWZ/fzy/CrV0If8IrC9rjea9LB9aGnd2Oaq3r7fWjbLUBmVeAuP+7qTEjdRH1EKMB6l0mRYsaZXoAszaBjHMpS/Mg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K8HUD+JHguvsQWLAfJwBGazJCGyVS96A5+2yQZ4a71U=;
- b=KDvHq45KKUwRaWuAkdu8v44Jfr3iHWIA+Ucv8TtRwVo54YjauwPdxFRnKbjsN5jAnkNRBKkvmNK3ZcyxxRtz8fDQJuITEqYSq9WIc7but5yCIMA2j/0eNMiyUYFjRK45jn1BgGmw7rwFDHQGkdETl+IouI2MY02Tbz8ku1yDxb0PIxxSeW5liJja8iPRhC93gj2t0Uf46fboNoqvVGnK7gZUXnUBjUx+HDoy+tO1BHFBKNJFcxl4b/DbwFW0In1hnbxVlp6WldBkFMtY9QbXhcO1gG5s+OoFU8LQVnH1xNikihyy+0WG6Ujn1iedYvQqSluF534PWwa7aGwPUyplAg==
+ bh=6FaJOlRS2AS0QIk+sgm5mpa8k9j95womKm9xPtmju5o=;
+ b=H8pBSLjJkv5hnU/nCBXXvsdLIfC5ct2b1md6T0RKpK6jgPd4/q2PDGXjTYqxFf0WbCEplKhcd98DHXAsfFjHAgv0wR0vTxd/fckfB5XuSzQOmitO8nCuL9uVgd+aJom6SF5J8iV18f8+v7PNLcCLfw/3UoGnMtYozARP3jf5LhErj385COx78vNEn5e4u1T0Ey2SQN2Ie0UZKLbrimRIozr35giFiHROeAMAtip/2nlHH2k3Y6ksYNA1b0kU/JPSda3xyhZexAyGqgPDMmhAVnIGr5FYTed29hGRDzGgc4L+jKf5caaTPjj7JLPthV8sBUCNih3lrfM8AwR+iVET6Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K8HUD+JHguvsQWLAfJwBGazJCGyVS96A5+2yQZ4a71U=;
- b=FXYwWPoVQkncJyg6i/GkBkjCx2NGaXLPBqP1XxqAKzWzFMdMJhur44s35JjQOu9jPDRBH0+eXn/859YsA5tLpvVKCqvak/4WrYYZkt/XOZ6kPvh1ZPAe977EhDIkK64O1wK3i9kXoxnVuDR4UyS4ZK0h8U1fP1fbjXj3qRpjpJ8=
+ bh=6FaJOlRS2AS0QIk+sgm5mpa8k9j95womKm9xPtmju5o=;
+ b=F/a13zItihruDtyYYOPdc/CcjYTJlYozfhXfvtmL6W3HR1BOXwQe0IuYLhIO0PkMczDW1zLjaq7bEhsxbByg6vs/BiV7du0+pENgAIJ4u980Pi/hbywkmnfTIhjDRU2wv9C0HD/cYTvb4AIOG7lAJ1KulkQ/pc8Oe2BlKlz4ccQ=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,16 +34,16 @@ Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
  by BL1PR12MB5288.namprd12.prod.outlook.com (2603:10b6:208:314::23)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.21; Tue, 20 Jul
- 2021 15:44:13 +0000
+ 2021 15:44:14 +0000
 Received: from BL1PR12MB5144.namprd12.prod.outlook.com
  ([fe80::8cb6:59d6:24d0:4dc3]) by BL1PR12MB5144.namprd12.prod.outlook.com
  ([fe80::8cb6:59d6:24d0:4dc3%9]) with mapi id 15.20.4331.034; Tue, 20 Jul 2021
- 15:44:13 +0000
+ 15:44:14 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 10/29] drm/amdgpu: add cyan_skillfish support in gmc v10
-Date: Tue, 20 Jul 2021 11:43:30 -0400
-Message-Id: <20210720154349.1599827-11-alexander.deucher@amd.com>
+Subject: [PATCH 11/29] drm/amdgpu: add cyan_skillfish support in gfx v10
+Date: Tue, 20 Jul 2021 11:43:31 -0400
+Message-Id: <20210720154349.1599827-12-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210720154349.1599827-1-alexander.deucher@amd.com>
 References: <20210720154349.1599827-1-alexander.deucher@amd.com>
@@ -55,54 +55,54 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from tr4.amd.com (165.204.84.11) by
  MN2PR01CA0024.prod.exchangelabs.com (2603:10b6:208:10c::37) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4331.22 via Frontend Transport; Tue, 20 Jul 2021 15:44:12 +0000
+ 15.20.4331.22 via Frontend Transport; Tue, 20 Jul 2021 15:44:13 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1b8ac7ee-9b62-42ad-c87c-08d94b9538f4
+X-MS-Office365-Filtering-Correlation-Id: b6292619-a113-4e18-96b8-08d94b953983
 X-MS-TrafficTypeDiagnostic: BL1PR12MB5288:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BL1PR12MB5288B1326C5BD450CC17DDC7F7E29@BL1PR12MB5288.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
+X-Microsoft-Antispam-PRVS: <BL1PR12MB52885222A4769BD5F188340BF7E29@BL1PR12MB5288.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:628;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wsmT1XBCTCtvNYmnSzhzyscKiFS2ZEkOU0Ya17BNsD8lq7ixm8Oj0SwKnzupfb3EMvuJYjuISoBG9KcURKqrXWiOPPrIfhBd9DGKQrH95saSObr8roYKPbNtTqRIIcLgFkhUnZ/rE/NyrS31TSrN1j6VI9/i3V/OFv05xs8LwI1Giu8E9BFawSsJkZQtnc4ZwhmUwUwafY7hMYI61JbZFKah0jUwB2Rgsld2kVEVJJFKOlSsAHb0TLscu0jW4YsKIvjFSw82lIak0vEXHh4A7YNWfWvH0t050/jJjPKV3IJlrPh5arUqAeE/wMU2qC45UdjFjRYPzJbtHS7T/LzqdIGVqI7bFwSwcKlm5eBerS17dgmiF/WyuRwxxPP9tcwXntdwsL2MJF64yoRuKi50OX6G//wQFq1r1U6bYwrYyhn357h3lcwNVVh93mVHF1SAqrwo5jlXGQ5FokLiONFQ/w8IGmrdI3yLvBo/xlN/tbuRjzC3g+LGR9toRR+oKignlDJ8Jvi9w2hV3/J0s8LkGaFyzWgihKIKgQiikaZlFkNlRVMJvJUNnQ4i8aJDOmBuqyQBm1CbitbLLqQdbpD4A1FG2bw1uRvGU0PS1jXuEnvEBa5toN9NeJBZPqWMHUDETQbN2aqMw1bf+gQF8CFVZ+2GklUmNgFC0R4hFRktNrA/r+kX8rn8YWtWRK9NxSN+xeCYC3yhPTMzqLxRBab7hw==
+X-Microsoft-Antispam-Message-Info: faQu5mhWB2RvU4vzCdytGLfI4lEdCG2fDWYOzA95lIAPv+5X4zapSPgwyyqjNrK4eEW3LfEmyapFoOPst97WoNdie77RK/lEPzI/gIxibGE9EUwIf6HWtKU9dQ2cbyxj9zgHqCgyIhWSSE93QumchwkunlR5EZQ2aW23YDPe0aErnvnJDEHl+aLEyO7QC0mzwrojOczqLJs/0uRFCNuczpxQd6Bjbntejk8wfegLvw1lOfddQLOjwTa5koTMR2hgDZz2cT4fU98GiMjpHtJ1Cfff2cd5L+imO83caJH93FcBy5HDWb/45CUdGXx74yxd7dhaQksaG/v6Q1A9vI1cGkWc7sa/tTOWoMdCUa6IKTjcL0CwAHC/Hzv7LQvI3VpWEj5lRl/1QK9MesmnsZiDt05ba5F/kiN6UkIEYuSJDQTUn6JDxpC7El1rI0FOajNnUteZCaNDC23kBOGk/HAzU/5IsGcKtLDNbBSParSmcSt505eKyrhhtkLxNBZok38gWPOlX2WdGNr0hzF0kQs6O5DOx3D9YCVF8d4hBtzsgCSj35h/GQ2YEAyoqvTlKauQe7KFny8OhlA5PXN/kuGilOysQyBp3/9R6kIcIhkI4cEKm76baxrWjAGThGzRRRU0UJnK7P1y7B9bB6uV6i4HP1RothJX13rPHWdSTtKd8KUH5c8V88eDI+kcGdjKlaMXZ/ysTemyFJhMSdNYi6I91w==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(396003)(39860400002)(136003)(366004)(376002)(346002)(6666004)(66946007)(66476007)(54906003)(1076003)(86362001)(2906002)(6486002)(38350700002)(38100700002)(8936002)(316002)(478600001)(36756003)(66556008)(6916009)(26005)(186003)(5660300002)(8676002)(4326008)(956004)(52116002)(7696005)(2616005);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GDDQzocaC89wyZa9MdDK07CEiP5QWkWpXPXn9A/+Tk7PnOecJngqz/4rsYHd?=
- =?us-ascii?Q?jcMOTPJGUC6/G3c9E/6BIuU8D+Ow00YfQ8176XwvS9aPQ/TyJ8XIuQlJTvjq?=
- =?us-ascii?Q?7+0ctp2m9X6gFt22YO5sPeIG0QsDJQiRdMUVBOAxhpu2XSq6wuXUnleVUgYQ?=
- =?us-ascii?Q?CDrDdJu0B1nOBbiHDoinrwOxPMXzTNL8Y2gUaw4M0Rd7J+iCMeIcn9MgfN4r?=
- =?us-ascii?Q?hs/C4Vfhv6Z0HuewoCT8kzIEdia9xLd7Ae4BKmrjakG+L1/K8X4mIWRwXOzF?=
- =?us-ascii?Q?oQTtMjNX6X4/RibZ44cjQ+w0/Dz7Sb7deWm/s6zF9UDckFtHY3vyBewvtYeO?=
- =?us-ascii?Q?yjv48+Nh9lXWvW6rI54alO+Uw1W1SYzMvOTAN+suVD8n57F5ZnY+xnvnL/og?=
- =?us-ascii?Q?0szPJQAoaCE9IYd8BXspj5YjT4wfEn+N+g4JyXHt/SELD1hWmbuCtEDga1Ss?=
- =?us-ascii?Q?5Hxd5DTEE6ub4Gjdkw5UZSt02XseLbTyulCj+x/qN8A4E5jAAG3FT6ehrc3Q?=
- =?us-ascii?Q?5r7xE7nMaHk/NQCluOKCpa6AqOCrxWD1EDg2DlfNipqYq32hGNMwDgyDShXz?=
- =?us-ascii?Q?CP1sz8GZZ7YDT2+EqRaZfacxbYpg9gSzFidZxH09Rf+NY8OO0ev2DoukrV5v?=
- =?us-ascii?Q?uQLVBPd3yi3gYjjC/L/kcWFdTiTwIJs/D2FWgIFbMZ8chzMI8g3Nb1qhxQsE?=
- =?us-ascii?Q?lC5wED/QFgKgOT1joqGW9ZFJlCnyPhxEK3MNDzPfGSBrcCewCu0Am4t2bl+U?=
- =?us-ascii?Q?uYOeyibfhzWIzmN2hfX6rSJ8v7jkBifVnstk7Sv7MFRhZwCXy8jSEpl/aaqa?=
- =?us-ascii?Q?y4Pa7NtHLi+r407lRpUnQOoz6EovR9Qo24rA26WbZHvey8gdBNOOmn4jXX1/?=
- =?us-ascii?Q?rJqiNdaF3Dgg45abknYlt9XB/FaoDUBz2TSS9a58+plp9h3dRVMwKzPeYs7x?=
- =?us-ascii?Q?yNzJvCnIqjsJ52F673SBVb76zJNd4rXLUYfyH9G0OLGlq7Sp9YPRteEVElgQ?=
- =?us-ascii?Q?D6RHlqYIw7bD2zWVTgzsfnGkSritFTKKakjlm4h1TC6CjQ1NzmSOJzdDDvGR?=
- =?us-ascii?Q?WT9OU8HXOtvnbC6Y1O5QNn7gL/5od2HHGTMzuMTOcO2N/1leHmUYQXBf6taP?=
- =?us-ascii?Q?WhwiDIH0fwN+LdA5L4JOcd7P4xd82LP57kSp3rMPvKzeVTjXnfbd/Jx/J5z1?=
- =?us-ascii?Q?XZjUFY28GCzs6cNitXip0hFoRrc35+UjxC/Hrq7S/zc3NuCMaMVXMSTH6O/8?=
- =?us-ascii?Q?FH41EsdEmOADxFP/CMiCmtXeb4yz8Jc4vCOXrzxOt5ONfRDzLQsSn4gwuESJ?=
- =?us-ascii?Q?OGJTzkolnk0LtcRIy7IqMtXV?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GM7dYLbolQmzsFMzvC9qu2YhMaqJDRdnPlWr9O8rioDBqBjInPhQk8+9uhmR?=
+ =?us-ascii?Q?LH7GNvA1Od7H9Xg98IgB7tGv2lfZkR+3kSngpDeciQcyiLM013rjd0Q0ugad?=
+ =?us-ascii?Q?oKso/VBDk9jCzRxRxTrJIpMFu05C27/jZooxoRu/9HIZeF23rBtk7QDfhGLn?=
+ =?us-ascii?Q?6Rr+4JuLqVneiM7lCojbQig6a2uAUff+b6PMCr5lBN4L9R0vRryileUErZQf?=
+ =?us-ascii?Q?B/fdgkYTWiy1DyiKkCClXhFjzEecazvgqCAgOYVCWWm7+ZQ5he9rLff5zrPk?=
+ =?us-ascii?Q?gLhFqhIlEuwq28CEC8PUUI0LStFyJDK8lMqs/swegm9YHyzHw4uKsobexYhj?=
+ =?us-ascii?Q?zXCXZZ6Tnv8qT3pY868XyBUeoSsSFJFDeXacWoKQeZ013xrQXY+KCj+oMlNG?=
+ =?us-ascii?Q?dJuHT4cliOH1sKRM4d1ExKX+GzlaF0rTUUtHIfwllSDk9x1XoEGet25lVZe+?=
+ =?us-ascii?Q?tIi8krpy1Ze/ymlDHGeesbR5R1gaaS17WQu/YP1Z83nJDiIM8XcAdX9CdyQH?=
+ =?us-ascii?Q?UX2lsp3/Z752YwMKOE8nRA+yCBczOSgfYpiKZ8Rk5oHisuOPaexU9CELum8M?=
+ =?us-ascii?Q?/CWuEPK2Fl+RVVmPuY2pUVK0XOCcL6kn28Igo6U92vAAOlg6kIjRkCEBazRA?=
+ =?us-ascii?Q?bODacn2vEeUn4OLWwUPy1foyYUAWF7X5dXB+Hn3OltZT5+gk7YbiAwUBSH1E?=
+ =?us-ascii?Q?sLMT/ppj8+Qbu+ZcHJIzmnYUQgcWIi1zVG0KBzJ59d1H9XMShcaIKQqG6upM?=
+ =?us-ascii?Q?pajjHriJRaD/ev3Xuuj5Tnv5iebD0O8FAwJ7zLz2jav252wPvaIFkWSvBXUA?=
+ =?us-ascii?Q?loTQyvpF6bEEyGA/qp2T8vFNbPhGLuVB+/Sk2TLF4uwPqwR1sp9axRQx9Yfj?=
+ =?us-ascii?Q?pqrZAxWNrZl8XSVnduuvDjK0YVWnn6MNyuiseDOX+yl/TTFN4YcnVNmlPm/l?=
+ =?us-ascii?Q?GeHxc08P12Qb8HpoHFJjklyEfLLar6w6/QXqBHCujr4CRmWrh4DylzMWwkSP?=
+ =?us-ascii?Q?P0/SsjARJmgAV/+u9FjNiYiFPEEsenHYxTYXEMbLMuIEPSTuBWwFf7V3IP0M?=
+ =?us-ascii?Q?y6YJSES3jmzJpsd7C7PaG1WLoZWudOXW/QJ/HBGg45uyAq6HJtQjTRbqkKeF?=
+ =?us-ascii?Q?pRuFNCXjuPB5SHGjzOVUnXecvRt0YGAlHh6pIKd44CgpqXsPP/ncTzNCYqxN?=
+ =?us-ascii?Q?N5r2QOuM0kuzT74qzK+qVfiXD9lQEqMb2wVGcmdGrK+dmWRAxX3tMBcnqCXi?=
+ =?us-ascii?Q?KZTGqZrod/w9zt6ZgM+9cq4Y/rYMZb72MmU4rl/FbpLQ/QZ96j+3rXK5DyOl?=
+ =?us-ascii?Q?eMbpEOwIotBkr2kJZ4VaNSgk?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b8ac7ee-9b62-42ad-c87c-08d94b9538f4
+X-MS-Exchange-CrossTenant-Network-Message-Id: b6292619-a113-4e18-96b8-08d94b953983
 X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2021 15:44:12.9931 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2021 15:44:13.8991 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iSxRMF1qbNPlOpuPlHX62wLtXk1k+ou3WPbmR/UO6HgCMLAK8aqi77dOzqMEYxTAX0UDoqCRw6SC0IuNVdSnQw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: tCocQtCW5BIDWVww1Q2HBUtt9hkK3/44vfnuKrvt4x0mSV7vETPMTXpjjZFT0XOGUFR9bo1nqfMDuW3fAhxBnw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5288
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -124,43 +124,75 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Tao Zhou <tao.zhou1@amd.com>
 
-Add gmc support for cyan_skillfish.
+Add gfx support for cyan_skillfish.
 
 Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
 Reviewed-by: Hawking Zhang <Hawking.Zhang@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-index a3dc730eca4e..1bcc69fec11e 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-@@ -810,6 +810,7 @@ static int gmc_v10_0_mc_init(struct amdgpu_device *adev)
- 		case CHIP_DIMGREY_CAVEFISH:
- 		case CHIP_BEIGE_GOBY:
- 		case CHIP_YELLOW_CARP:
-+		case CHIP_CYAN_SKILLFISH:
- 		default:
- 			adev->gmc.gart_size = 512ULL << 20;
- 			break;
-@@ -879,6 +880,7 @@ static int gmc_v10_0_sw_init(void *handle)
- 	case CHIP_DIMGREY_CAVEFISH:
- 	case CHIP_BEIGE_GOBY:
- 	case CHIP_YELLOW_CARP:
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+index 47b348a7fbab..2808c8bd174a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v10_0.c
+@@ -3528,6 +3528,8 @@ static const struct soc15_reg_golden golden_settings_gc_10_3_5[] = {
+ 	 (SH_MEM_RETRY_MODE_ALL << SH_MEM_CONFIG__RETRY_MODE__SHIFT) | \
+ 	 (3 << SH_MEM_CONFIG__INITIAL_INST_PREFETCH__SHIFT))
+ 
++/* TODO: pending on golden setting value of gb address config */
++#define CYAN_SKILLFISH_GB_ADDR_CONFIG_GOLDEN 0x00100044
+ 
+ static void gfx_v10_0_set_ring_funcs(struct amdgpu_device *adev);
+ static void gfx_v10_0_set_irq_funcs(struct amdgpu_device *adev);
+@@ -3925,6 +3927,7 @@ static void gfx_v10_0_check_fw_write_wait(struct amdgpu_device *adev)
+ 	case CHIP_NAVI10:
+ 	case CHIP_NAVI12:
+ 	case CHIP_NAVI14:
 +	case CHIP_CYAN_SKILLFISH:
- 		adev->num_vmhubs = 2;
- 		/*
- 		 * To fulfill 4-level page support,
-@@ -997,6 +999,7 @@ static void gmc_v10_0_init_golden_registers(struct amdgpu_device *adev)
- 	case CHIP_DIMGREY_CAVEFISH:
- 	case CHIP_BEIGE_GOBY:
- 	case CHIP_YELLOW_CARP:
-+	case CHIP_CYAN_SKILLFISH:
+ 		if ((adev->gfx.me_fw_version >= 0x00000046) &&
+ 		    (adev->gfx.me_feature_version >= 27) &&
+ 		    (adev->gfx.pfp_fw_version >= 0x00000068) &&
+@@ -4644,6 +4647,14 @@ static void gfx_v10_0_gpu_early_init(struct amdgpu_device *adev)
+ 		adev->gfx.config.gb_addr_config_fields.num_pkrs =
+ 			1 << REG_GET_FIELD(gb_addr_config, GB_ADDR_CONFIG, NUM_PKRS);
  		break;
++	case CHIP_CYAN_SKILLFISH:
++		adev->gfx.config.max_hw_contexts = 8;
++		adev->gfx.config.sc_prim_fifo_size_frontend = 0x20;
++		adev->gfx.config.sc_prim_fifo_size_backend = 0x100;
++		adev->gfx.config.sc_hiz_tile_fifo_size = 0x30;
++		adev->gfx.config.sc_earlyz_tile_fifo_size = 0x4C0;
++		gb_addr_config = CYAN_SKILLFISH_GB_ADDR_CONFIG_GOLDEN;
++		break;
  	default:
+ 		BUG();
  		break;
+@@ -4748,6 +4759,7 @@ static int gfx_v10_0_sw_init(void *handle)
+ 	case CHIP_NAVI10:
+ 	case CHIP_NAVI14:
+ 	case CHIP_NAVI12:
++	case CHIP_CYAN_SKILLFISH:
+ 		adev->gfx.me.num_me = 1;
+ 		adev->gfx.me.num_pipe_per_me = 1;
+ 		adev->gfx.me.num_queue_per_pipe = 1;
+@@ -7712,6 +7724,7 @@ static int gfx_v10_0_early_init(void *handle)
+ 	case CHIP_NAVI10:
+ 	case CHIP_NAVI14:
+ 	case CHIP_NAVI12:
++	case CHIP_CYAN_SKILLFISH:
+ 		adev->gfx.num_gfx_rings = GFX10_NUM_GFX_RINGS_NV1X;
+ 		break;
+ 	case CHIP_SIENNA_CICHLID:
+@@ -9472,6 +9485,7 @@ static void gfx_v10_0_set_rlc_funcs(struct amdgpu_device *adev)
+ 	case CHIP_DIMGREY_CAVEFISH:
+ 	case CHIP_BEIGE_GOBY:
+ 	case CHIP_YELLOW_CARP:
++	case CHIP_CYAN_SKILLFISH:
+ 		adev->gfx.rlc.funcs = &gfx_v10_0_rlc_funcs;
+ 		break;
+ 	case CHIP_NAVI12:
 -- 
 2.31.1
 
