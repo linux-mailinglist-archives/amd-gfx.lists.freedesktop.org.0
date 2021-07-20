@@ -2,64 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 950C93CF45F
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jul 2021 08:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0ADC3CF560
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jul 2021 09:35:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C1846E098;
-	Tue, 20 Jul 2021 06:17:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E96B26E283;
+	Tue, 20 Jul 2021 07:35:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEBB96E098
- for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 06:17:27 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id i94so24702914wri.4
- for <amd-gfx@lists.freedesktop.org>; Mon, 19 Jul 2021 23:17:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=YUv373TRbJzpXEjq3/HXrealkqxY3Zrlb077s3lFdTo=;
- b=bOgMs8/xCj3eL2F7zv7VyLj1GImGnX1zf134Xe6YHmA2mts3mLnezy0+UqqSc5zAQr
- rZTYdWF62QMA9Y2AQ9c84CetJ/S9098g1PKmMOTPQsf1Z8qHfW59aSXlBo3gZGfnTHAs
- ZMJF69i0jYBhucxfkoNoN6oQ3ljI8kCA9Mzkot6CtiTX0pNx/Ftgc08KVtmq83kRi8TY
- Zu74g2JPRQSTs+Yfhs+fQ8xzLKYK77YcT2p/vvL3UdrjMb503/9KWYdDpS/9mIxAd3+h
- 1lt6uIfOVzluOff/N/ZIJVD1o+J/Hnlc6V49Ch8ASNlS94shqy4wgbnAywPZAL56SnHQ
- A5QA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=YUv373TRbJzpXEjq3/HXrealkqxY3Zrlb077s3lFdTo=;
- b=o9DeeBSZp5Iv31s4ehjMcun/UVCo8AsRCHC+Z+dPLB8lkNGzFs4w2xx2nkb+GSlQPO
- rAmrroO9ls9SG50UEvnbcixXuX7R2OId6uB8hQ7zN7Ji/jCJ1OmlIDIXf4cXawvkT/w8
- NpkEfsbST+24Nrl/K3H8UFSdzQOaqMjMGAvHLkRySKKNj9Dwfyrd8+r6TcH8BW+8aj32
- 8wyMoUl4r8JZguVnl+QskXDNUHjSdna3s8LeAFwsmsK8j28LQREnJKc+e2w+w4Sf9E5z
- kXTZUj7htiLeOqQ59vxX+1Y30ldfisuTSQ6KrUBn7T8i2OvgD+7/DcqoJl5KyWzxQ0sn
- xnwg==
-X-Gm-Message-State: AOAM533RiXuNw3ldm/ZtVGdtpvFG4uC7nyFSNLK4swYbxrnhkxJtUL+S
- RTKyLN4Ej6Nb6Sr2PWpy+Ng=
-X-Google-Smtp-Source: ABdhPJwrP8qAYB5H7g+4sskeYriO2f1L15Hn6rZR7pEzSwo+pLKcVZRB8fz5WUDNgJkBh3jw60V5TA==
-X-Received: by 2002:adf:e40e:: with SMTP id g14mr34880575wrm.413.1626761846576; 
- Mon, 19 Jul 2021 23:17:26 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:8651:5b5e:8648:2fd0?
- ([2a02:908:1252:fb60:8651:5b5e:8648:2fd0])
- by smtp.gmail.com with ESMTPSA id o19sm9990450wmr.18.2021.07.19.23.17.25
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 19 Jul 2021 23:17:26 -0700 (PDT)
-Subject: Re: [RFC 0/2] Add generic FPU api similar to x86
-To: Anson Jacob <Anson.Jacob@amd.com>, mpe@ellerman.id.au,
- benh@kernel.crashing.org, paulus@samba.org, christophe.leroy@csgroup.eu,
- linuxppc-dev@lists.ozlabs.org, amd-gfx@lists.freedesktop.org
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C18006E0AC
+ for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 06:05:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=xo2+BXQHItnxNJhVgG4zVbHYnMLsWJSV/TYOAQ+LULo=; b=PlZqnYBfjarsc8dkKeEA6qDvnn
+ EkEdH+uR1mGSy+NzSb0UqFrT9stVKc1KdGeLOpo2ihsIjh+VHV1EqpXjdFQWb9AY7rOMbZJXOOZhn
+ 1h3MB5xJ27u0Of29QELCsxqdzVeJxNMHNp//J1G/jBQ7+9ej5xkCyFRNTer0JNpfwqWZspKyx3hPw
+ opwkZ5soOWPHENTN5kAiuMvolFMNwkfVjBnBHKfm/NniA2k1y8Vy1Kz9PsoNmcFaVYCptAAphuNLy
+ oKrmX6kAha1Tk9aWjFqVOd82NHJAOOWYw12i61EMBQkzJBLRP4wHQa8j4wcyymTim8cLoyvKtkngL
+ PM730Bng==;
+Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat
+ Linux)) id 1m5irU-007oCE-Hk; Tue, 20 Jul 2021 06:04:20 +0000
+Date: Tue, 20 Jul 2021 07:04:12 +0100
+From: Christoph Hellwig <hch@infradead.org>
+To: Anson Jacob <Anson.Jacob@amd.com>
+Subject: Re: [RFC 1/2] ppc/fpu: Add generic FPU api similar to x86
+Message-ID: <YPZnXDQLwV70qyrb@infradead.org>
 References: <20210719195211.520428-1-Anson.Jacob@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <cd330e45-f8e0-8751-813a-98f1810881c1@gmail.com>
-Date: Tue, 20 Jul 2021 08:17:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ <20210719195211.520428-2-Anson.Jacob@amd.com>
 MIME-Version: 1.0
-In-Reply-To: <20210719195211.520428-1-Anson.Jacob@amd.com>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <20210719195211.520428-2-Anson.Jacob@amd.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ casper.infradead.org. See http://www.infradead.org/rpr.html
+X-Mailman-Approved-At: Tue, 20 Jul 2021 07:35:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,39 +49,26 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, Aurabindo.Pillai@amd.com,
- Harry.Wentland@amd.com, bindu.r@amd.com
+Cc: Harry.Wentland@amd.com, Sunpeng.Li@amd.com, mpe@ellerman.id.au,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ amd-gfx@lists.freedesktop.org, Bhawanpreet.Lakha@amd.com,
+ Aurabindo.Pillai@amd.com, paulus@samba.org, christophe.leroy@csgroup.eu,
+ benh@kernel.crashing.org, linuxppc-dev@lists.ozlabs.org, bindu.r@amd.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-While you already CCed a bunch of people stuff like that needs to go to 
-the appropriate mailing list and not just amd-gfx.
+On Mon, Jul 19, 2021 at 03:52:10PM -0400, Anson Jacob wrote:
+> - Add kernel_fpu_begin & kernel_fpu_end API as x86
+> - Add logic similar to x86 to ensure fpu
+>   begin/end call correctness
+> - Add kernel_fpu_enabled to know if FPU is enabled
+> 
+> Signed-off-by: Anson Jacob <Anson.Jacob@amd.com>
 
-Especially LKML so that other core devs can take a look as well.
-
-Regards,
-Christian.
-
-Am 19.07.21 um 21:52 schrieb Anson Jacob:
-> This is an attempt to have generic FPU enable/disable
-> calls similar to x86.
-> So that we can simplify gpu/drm/amd/display/dc/os_types.h
->
-> Also adds FPU correctness logic seen in x86.
->
-> Anson Jacob (2):
->    ppc/fpu: Add generic FPU api similar to x86
->    drm/amd/display: Use PPC FPU functions
->
->   arch/powerpc/include/asm/switch_to.h      |  29 ++---
->   arch/powerpc/kernel/process.c             | 130 ++++++++++++++++++++++
->   drivers/gpu/drm/amd/display/dc/os_types.h |  28 +----
->   3 files changed, 139 insertions(+), 48 deletions(-)
->
-
+All the x86 FPU support is EXPORT_SYMBOL_GPL for a good reason, so
+please stick to that.
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
