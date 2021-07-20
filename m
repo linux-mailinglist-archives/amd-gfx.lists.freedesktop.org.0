@@ -2,31 +2,31 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 155343CFDDC
-	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jul 2021 17:44:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EF273CFDDB
+	for <lists+amd-gfx@lfdr.de>; Tue, 20 Jul 2021 17:44:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFAFB6E431;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C79796E42F;
 	Tue, 20 Jul 2021 15:44:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-DM3-obe.outbound.protection.outlook.com
  (mail-dm3nam07on2086.outbound.protection.outlook.com [40.107.95.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14D316E436
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E3D66E438
  for <amd-gfx@lists.freedesktop.org>; Tue, 20 Jul 2021 15:44:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Yqntg+HPDi3tTaeayEvaWDNI/++GyqFaksg95wWWIe6/OiW9spiVRa8c+DKAehAYUeqpej7z7vsjoVNRLL8r5HRvPFvInuInC/sTBXti5C/cx7mbmobXYtLm5J2L3j6OqeS1oG2CV4uvMweT40hWid99jTyMFGjGLc7q2768zAMWF9WNRRNRvssdje6lUKcza+YLLtYICZKZlW7kVnNcfp/mQ7VnMOlO52+jz8d5miN5gejVdgMqSiP3AC08cLfkbk1K5tcBcEhUSj2zAs8qYouDsD22D+pFLfDeg4l/T6H47oteqsGAHtTxR+hLTxEDt1RdETnY/B6+aTUYHlFcHg==
+ b=SPupwYrF/wsqVpioctJp0/63rw5xLgpT9q8QoUSTXcuSw22ah5qfUifmTEcCDzZRtpVF6muej7pcrc1GapuCgeYXi3Ya43IEFeJIkyV9JoN3ODBuE5q6Fc4cao4qYFc6sMGwxQNSY2FeC3YWPFqYRXZe60ZwbKkH/PUxg5yLYexptENi69w14NEkpEZ52aU8xMz/msYHSunTrqMLTByINTe4hqPaxGQ/M9I23AmjN9oIcqTEX5V99nmWP0DpW+8CiEo60AFiu0oxqP0486CfRH6QqoQ1K8CkZlkJnpYzgUbnEDYorCO11GUXbwOFqK5K+JM7izR3z5CZDT5zn2i4ZQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/lz5lkowF4mYVr97SGuNIpMOLA1A8qFzJSSGO0ojTlg=;
- b=QUUNzFivohqZaKC1Mo6/97OH783VCBRjRlR4G1RXk13qy1SJ1BEvloYhu3LaJshbOx7taExLzDbcOEH+olfacQ4ISAkDokSU1/8nkwf6OPBfI/Sf16dg9EPw9mq3TS9oXp/HjECm861Ukl2Kn3eRMx1qnM2jxyG/S9dYZmq73C7tElTDfKrLUAkFV9sitaUavHwxRcq3HBURvlW1BbAAVYQvmPB6LSEJPMMCC4yQEOGh/0nbK05a2kI43XSliYIwKhvhxcxlkq+PBHG5kNwnhp2sC2DrXmco2I2FEHY3DCh+jPXVApyLuxUMdijA9O70gC/EO9vHJpS7HIwnx/os7g==
+ bh=syDRLrii7P9uDPr3NJ/pN1/desaIhYNI2AcCYiuvzO4=;
+ b=C1/wpRzNcNpikjOeIJa7kZb7J9nhI/cURhK3thyzjMLWq+vkxaeMX6DX/fP3dd03TTRz5sD5RkfUNmkIXBu5Yvmvx6SlgGr5hy+VKqZ5vFPoECMY/zqs3bGrlG4OART1lTt93llDUG1YG0Ccpn3P9UDDiQ1RwGL0ovIw6nPFhREzNkq58TovKytCxwPTIICb7n/DJCXfr0oXEfd/gAmnNcBwwF3v5lfOtK9oIy5qGEooW4Tf6ce3BfPoC5DGvugQK9t6PGfUqqc0Wbl4ztjSQB45+kkgS5SA3MRueDTb3Pjegq5T9I/Mp1eUKLgJMknncnXfjRjMBI5h/XQLSW6mGQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/lz5lkowF4mYVr97SGuNIpMOLA1A8qFzJSSGO0ojTlg=;
- b=wUJJWgFdFLhtsXTTSO83ooq1pLJkY+FKtQwstRT8MPh9kbL7y8lE68xaPwCPep/lCw/dzc2bU5ykJS5zTghe3xVKNpBhSWJx/pPuR7G8v1GdkN+hbq+oRH1uuw3pvRs861lN5qO613g4HZX8ZEV1jzN3O+HfhVmKm7+1TCPjUfw=
+ bh=syDRLrii7P9uDPr3NJ/pN1/desaIhYNI2AcCYiuvzO4=;
+ b=J3CZUVOjKz4OOsnfKg3cjDCJB0xlIuRthKeXq+Mh9W81S42HZ8fDC3EhP7d+4np4SnwDK7Q9MznEWwMnxfLN0wQrLAraE7oZ677Fy9gpjGfbhGXG9bc11EhMckJZ06/LI9TR6ysl9WTM9q24ahLCvKOzjawBN6dUgx6LzijkIrw=
 Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
  header.d=none; lists.freedesktop.org;
  dmarc=none action=none header.from=amd.com;
@@ -34,16 +34,16 @@ Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
  by BL1PR12MB5349.namprd12.prod.outlook.com (2603:10b6:208:31f::7)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.29; Tue, 20 Jul
- 2021 15:44:16 +0000
+ 2021 15:44:17 +0000
 Received: from BL1PR12MB5144.namprd12.prod.outlook.com
  ([fe80::8cb6:59d6:24d0:4dc3]) by BL1PR12MB5144.namprd12.prod.outlook.com
  ([fe80::8cb6:59d6:24d0:4dc3%9]) with mapi id 15.20.4331.034; Tue, 20 Jul 2021
- 15:44:16 +0000
+ 15:44:17 +0000
 From: Alex Deucher <alexander.deucher@amd.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH 14/29] drm/amdkfd: enable cyan_skillfish KFD
-Date: Tue, 20 Jul 2021 11:43:34 -0400
-Message-Id: <20210720154349.1599827-15-alexander.deucher@amd.com>
+Subject: [PATCH 15/29] drm/amdgpu: add chip early init for cyan_skillfish
+Date: Tue, 20 Jul 2021 11:43:35 -0400
+Message-Id: <20210720154349.1599827-16-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210720154349.1599827-1-alexander.deucher@amd.com>
 References: <20210720154349.1599827-1-alexander.deucher@amd.com>
@@ -55,54 +55,54 @@ X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from tr4.amd.com (165.204.84.11) by
  MN2PR01CA0024.prod.exchangelabs.com (2603:10b6:208:10c::37) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4331.22 via Frontend Transport; Tue, 20 Jul 2021 15:44:15 +0000
+ 15.20.4331.22 via Frontend Transport; Tue, 20 Jul 2021 15:44:16 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 63ea8157-eb2f-4589-e5cf-08d94b953b07
+X-MS-Office365-Filtering-Correlation-Id: d32ee392-b472-432b-ca9b-08d94b953b95
 X-MS-TrafficTypeDiagnostic: BL1PR12MB5349:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BL1PR12MB5349D11B666F976C2A55E7B7F7E29@BL1PR12MB5349.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:142;
+X-Microsoft-Antispam-PRVS: <BL1PR12MB53493CE5CDE78CB733EDF9BBF7E29@BL1PR12MB5349.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2512;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZydUzmRZ+mhh8KDTNt4qqC9tRYqBF/+iFIg6jFyjzM4EPJK3YYbWtXHCxXAb4zIuHmv5WBxQuRZzFQVQTcVFr34VBOucgMRJlLuSmcGQFbmxf7VTLSRHr/QgNwtiiTcp162Lt4C9dBNjsq2TokDYoG+ecIVh/9ye3l9IV/Ef8H2s4cuyFReIYUp36s+o0zECLeH+ho0kInfkYwovWrktNZyK2D4Ojbsa+WEDsHSTtO3tY31I1+uLKf2cJFuDMn3qDNTu6+oFWRxxmxSEL3H9wpWT5u3yPgcjOa2FNjAktYISZBUIuc9F5N9OEJ5L8m2ldhpWULyyKTGCOk0F+vXA0O+PGy8IvJgCu3Hz4WCAo/SDBnJsuCSS398eruj2tfYFKQ3B6AVHm8g//VlBLn6ivfdFT/+BMtYRPLtPTZCjnKT5hAuZGR3vqDcQKsxSnVPfj1dRb8Enu77H9J3/PUT/2oABDy3ceIfzBTTZw4yYlXl5VXsG7g7k23dhgh0oaYt+66w9biL3+ox9vbHDPzCAJfT7nmJ0AIPRGEqhC366KMRZ9U3RwEVq0hEk5IqsiZOerL6R0InipeeNHSlh3XC3m73OYSpKE2BnwqVcq23Usfl6S4nQPefnTlTIUP08j5xifehWoDojU9McZp8okr1U3wh1BQd8LpJbflxf5NhNGyyrj2uZx4pC/a3qGR1kPiSL
+X-Microsoft-Antispam-Message-Info: eLdktlD0L8wkwsxDy6hrpeUwYH5ELHyS/XgcSBV1AwMBvFPzIEwyo1MhjmFBzCAniokqGyx9/QWA9pcRw6QIxRfpXk6kGSvhfrOjE2g3yYb24vl/Ya/H/1EBrCcVgg+eyqF318laP3mK6yOAcmWp/mWblqhytQ1OZc5t8sIEz8q3ZtI7AhvXpITbklMVVGO44N4s8w1NXLUd3aq3Ga57MZDFemQQ+oCR/XbMcIGhr5uHBD1nQ8dOIYrfXQNGFJm/wguiH/RZrLwZIkufK+MjhsobciE8iJ3/S3PDAqAJzdVZszu2xL56BqJs+wmdtUpZahi7QCckM+ZLe5TyDJAK4L1wz2BdcvAUPGdbA3guI80KKxBkC+kX+AGJIw/WQ9l2RAbkfQ1XHufyBrubM1pN+UUipM+xM6KxpCd9kxLNlUV7Us9Azan0xYu2QqyxYXXJ1TkdUmxVYQ02ElpLnd7GOJPf1aQDZ81Ig5dNTGescMbg2lSJwbfhFA4z4x1tuUsJFIwcfSidQ7EvOK7Qt7ni7DcKGdx+DBEtrPDSnjpQnClWXy65BMMweWjTcnbh6pYAnVwkf7w3/wZlpdpkb5h2ju4K9HyXVk29808N2P4ShU26Jx04qd6/mLaGamMTsZBaRv41mscCwUMrJn/KPDaPOzXaKePQsb0S4twtH3jzszGsXeNFOnPxLCNh8UYnfVCz2u3yP531l4NWFftERb5hIg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(346002)(376002)(396003)(39860400002)(136003)(2616005)(86362001)(6916009)(38100700002)(6486002)(54906003)(6666004)(956004)(478600001)(316002)(1076003)(4326008)(52116002)(2906002)(66946007)(38350700002)(66476007)(5660300002)(8936002)(36756003)(7696005)(66556008)(8676002)(26005)(186003);
+ SFS:(4636009)(366004)(346002)(376002)(396003)(39860400002)(136003)(2616005)(86362001)(6916009)(38100700002)(6486002)(54906003)(6666004)(4744005)(956004)(478600001)(316002)(1076003)(4326008)(52116002)(2906002)(66946007)(38350700002)(66476007)(5660300002)(8936002)(36756003)(7696005)(66556008)(8676002)(26005)(186003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9ZzPe47fVoIDA34ZKo1eywxTSllWJZM+JWDYW7ZrGuBOApSGR0WFfCdimLbL?=
- =?us-ascii?Q?llgZ+lNPPpFElfz34lC86U8Gh9hoGqcD2kuomUwbBWC6qSguueQSjjoLHR7/?=
- =?us-ascii?Q?LblP4ZV3el8BmS3+xPjevOOI/gOJ7CLRsnHpQ46SQr3fVJGP+ockuLyNAnup?=
- =?us-ascii?Q?rGV/3bYlGFfaZXZZglTiL+0mgjwRVYw3xth+SdtbtluadX4CnC0vur3xbe5v?=
- =?us-ascii?Q?56gVJC03FhetEfy22GsRfxsvzzWurTy1biaLSotIuTk4XC8qNwFEkwPIT7t3?=
- =?us-ascii?Q?DOXn7licKYou9lxp7dcEnXeNQNg2EtTIHOJwQY+aN2hsah2REfphVxxPctCa?=
- =?us-ascii?Q?YsWhR2XSWnaG8uNMUE0BInSr0YyfeBzJrirqSVKSkCAsGfyngpsDaS1iEtsm?=
- =?us-ascii?Q?7rGUGpU+f2/4cMSyd2mHHOVkNyP5xXFZ4Psl4SXGMLP5CbP4VPqFgrhSLibq?=
- =?us-ascii?Q?Hl6dBIpbsjUbGHbsC/js/NCtzxTR63PKdwBBnObC+eAFCHQgGiVmLIWtiezS?=
- =?us-ascii?Q?fCNwRZJ/hsvCv6EtaqvqxRVlzI3WaNudG5dmWWnnDRtqjqQoUJB1cVgHmAAj?=
- =?us-ascii?Q?6N4d8WeM6keXG2eQU/gT9/TNUszl1PiU66w8qNdCpbA9jdj5KLyBjQrMahxO?=
- =?us-ascii?Q?/xvuB9dqUgagpvBSal+b2BXKYVPvsrTbNRPAY6W3e0+GmnBMYJNqW0eQ/ob6?=
- =?us-ascii?Q?5RbbLI4tp767a2xv3LL4tYR9IWLx6v4RzM2WQXHXIH4B0+Pnaj8xig4SOGxl?=
- =?us-ascii?Q?K7nnnLx3U2lAtTvswbfAmp9jpgcVN1/PWKi9UgmpWPZZR+Yy3rnev0ZrtzEM?=
- =?us-ascii?Q?NkkXmdr8TKQBfohSorebzAY9zlCId0gyMwu2G2HloDOIyiAGhDKO/tiZdgdy?=
- =?us-ascii?Q?sypLOm9njsPCpHuAlBWOQQx89ejcuGkxKYewEgfTuq7glmbIXpzxJ2VUpeA+?=
- =?us-ascii?Q?zpMJXUNWHD+5dLFLHYdCpZ3ORlp/OuHuAvN7w6FXXMGKF8cXCt9ABxuPxkLa?=
- =?us-ascii?Q?qbX7kCARj75dq/iGf7WsLZ/mrt7hj9GF8NYUpMa3WGIs49JeJ16PqjTGjM0X?=
- =?us-ascii?Q?ZIjZpKXWWhjfgPNn/3IzvU1hzM1Ls7fYTbcNGnOCpIV7EbKjF1WTygr9nI8X?=
- =?us-ascii?Q?YFGMSob81tNWnUzuuUrU5hzRSjlks5WMLYKC8J9TB/SJUjSC/QS6CMxBXEuX?=
- =?us-ascii?Q?CmKdn8BdPoAREuAuASSjdf4LI2woMJEuKb1XX7UhgSpQvP/5loEmpqQ67wlG?=
- =?us-ascii?Q?hxwq3v2/EO+8ADhG2Gba9zMrogaiYgvzek+MCsb19uDhglRK1/skreEsvRoH?=
- =?us-ascii?Q?MfVKsgbP+AqjuXhzkHt8IEqB?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xrD9QdGNd3f7ieffUd5CHZpdwSk5whYXaMV1K3MCM2dPm0g25BlHS4BYifEC?=
+ =?us-ascii?Q?KFlLVXSNidyrretFy0k3/GzwRaLXbuE3E44kl66uSfpl7PSVyc13gNNpQta4?=
+ =?us-ascii?Q?US8Mpm3CVdlkqtlP+whYiNFI3rN32QeFkbedTsyMDLi28DVNCmt+DaGpqhlI?=
+ =?us-ascii?Q?GgaRuxM/H4x6sozM4s5TF6f6vqnsE967EJ3XsfSOBl8ZJdH0PkEl9Qu4BiXK?=
+ =?us-ascii?Q?0m3Cuvhv9mpYClDRY1aDDmk48AQ4FJdt6eG0AxQhCE+6tdeYQ/+evRikpoeN?=
+ =?us-ascii?Q?uFHOMKguPeCLQMLkErgGMV08yWmnDLIaggT3OfRN6bMe68zrNDWk4DlBDwmG?=
+ =?us-ascii?Q?AFWBbX7nWY0EyN1o2sDEW4qOHaqCUZs5zV4ccQRqHGUlxYyQXSDVFurhfUaT?=
+ =?us-ascii?Q?FJ/GcTRbCCpgFwkVOQyjRV2uUBwi47syJmDtjN95Exas+Kt3JSnc3HJG1NOr?=
+ =?us-ascii?Q?tevDfp1DHdWBvk7MliOPVeuK6MF3YqRFTzofVEnvIOLeUh6PB3NH9wQ40CNq?=
+ =?us-ascii?Q?/ZM18gvcsyQzhK3AQXdLP9jRCPDQYtXavuL8jRHAAXKCKDXx8ZsqgjEChDb1?=
+ =?us-ascii?Q?iINyTa0keeCO7mj3rrZN27mP6B2P7n7cpjpE4YtbwfARotV+q+LaniCO5pyl?=
+ =?us-ascii?Q?E5fTiFlcgI7g+vrgPsnWhZ9kEEIxCHsC8mA8BORkIWENbzXBGvXfQTEmOstp?=
+ =?us-ascii?Q?XU9Tk3nNQK/lVFgJIC03Em/X20eWY8dZIeK0imYNDdAC6N/s5SO040Y0jOjg?=
+ =?us-ascii?Q?L9d6AvayTvRmmAiBjrL+mAgzOvkX2qC9A9dHwJF8D06Ck1flPA2tp7TjmwPa?=
+ =?us-ascii?Q?/QTK02zMG1Bhf/Rf442a2AxJrNB+v+9p4F5zad3NbcuJiwGs2LF9AEEz6rmR?=
+ =?us-ascii?Q?yJCnOBrq2PX/Yrd4MPVTHB0BLHyImVPqvgJo3mDT1O5e5VsqfVvHvwnvDmtr?=
+ =?us-ascii?Q?qp5/jWS+vk6l20oP4gbSA1BFwNUoMMGmD5In/9VKUyjP9ezoE0nGF7keJ5m5?=
+ =?us-ascii?Q?YJeKzKmphgU7tuNOtD224BBGG5MHe4bNW6SkEk5SfiZLU5dlY+8sh5+Us1Uz?=
+ =?us-ascii?Q?YG2aMkS5RW3GD0bqLMQJ0XIg/NWZYCznK3i0+4Bh2eR1jkyJy6PIGXUVffXV?=
+ =?us-ascii?Q?Vwu5kU9zIGghKFaGUPwCJPu3v6MxqdK81SH/7k+xusDSsuJQ+iI3yPFTJNTM?=
+ =?us-ascii?Q?8GnM9RR88VhbSblqydUo7RAwrrGUUFkmevrG5/AAN4qNb0+HT3dh2MTMbwbh?=
+ =?us-ascii?Q?i7a8TxKBhC8/b4rchaSVFiL05gQedsNXdE6mzwwGuG07AFlBl1dDfiuC9MdF?=
+ =?us-ascii?Q?fxJifHKITYOlT8HHhza45PNX?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 63ea8157-eb2f-4589-e5cf-08d94b953b07
+X-MS-Exchange-CrossTenant-Network-Message-Id: d32ee392-b472-432b-ca9b-08d94b953b95
 X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2021 15:44:16.4250 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2021 15:44:17.3609 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ApqaiHdAcjCUqAMVptD3Jwp1QjkB3aC1dlvwdEb8wOTS+LSa1f83BFhCIoObljlkQoAGd3tCwQhBI+3ewUB/dQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: YL4/ZNogrVkWy7SfBl4gfMwheWt6p5/7TSGQX0DQ0cPTdBaZba+bKTF+AdJ7/EwFlbmCxow5+He9UAy5hbAIGg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5349
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -123,124 +123,30 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Tao Zhou <tao.zhou1@amd.com>
 
-Add KFD support for cyan_skillfish.
+Set cg/pg flags and rev id for cyan_skillfish.
 
 Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_crat.c         |  1 +
- drivers/gpu/drm/amd/amdkfd/kfd_device.c       | 20 +++++++++++++++++++
- .../drm/amd/amdkfd/kfd_device_queue_manager.c |  1 +
- drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c  |  1 +
- .../gpu/drm/amd/amdkfd/kfd_packet_manager.c   |  1 +
- drivers/gpu/drm/amd/amdkfd/kfd_topology.c     |  1 +
- 6 files changed, 25 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/nv.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-index c6b02aee4993..6c381367ac87 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-@@ -1404,6 +1404,7 @@ static int kfd_fill_gpu_cache_info(struct kfd_dev *kdev,
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 837c101ce5d9..41eb97e7b47c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -1401,6 +1401,11 @@ static int nv_common_early_init(void *handle)
+ 			AMD_PG_SUPPORT_JPEG;
+ 		adev->external_rev_id = adev->rev_id + 0x01;
  		break;
- 	case CHIP_NAVI10:
- 	case CHIP_NAVI12:
 +	case CHIP_CYAN_SKILLFISH:
- 		pcache_info = navi10_cache_info;
- 		num_of_cache_types = ARRAY_SIZE(navi10_cache_info);
- 		break;
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index 9e4a05e937f0..dc6fbca1826d 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -84,6 +84,7 @@ static const struct kfd2kgd_calls *kfd2kgd_funcs[] = {
- 	[CHIP_DIMGREY_CAVEFISH] = &gfx_v10_3_kfd2kgd,
- 	[CHIP_BEIGE_GOBY] = &gfx_v10_3_kfd2kgd,
- 	[CHIP_YELLOW_CARP] = &gfx_v10_3_kfd2kgd,
-+	[CHIP_CYAN_SKILLFISH] = &gfx_v10_kfd2kgd,
- };
- 
- #ifdef KFD_SUPPORT_IOMMU_V2
-@@ -596,6 +597,24 @@ static const struct kfd_device_info yellow_carp_device_info = {
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-+static const struct kfd_device_info cyan_skillfish_device_info = {
-+        .asic_family = CHIP_CYAN_SKILLFISH,
-+        .asic_name = "cyan_skillfish",
-+        .max_pasid_bits = 16,
-+        .max_no_of_hqd  = 24,
-+        .doorbell_size  = 8,
-+        .ih_ring_entry_size = 8 * sizeof(uint32_t),
-+        .event_interrupt_class = &event_interrupt_class_v9,
-+        .num_of_watch_points = 4,
-+        .mqd_size_aligned = MQD_SIZE_ALIGNED,
-+        .needs_iommu_device = false,
-+        .supports_cwsr = true,
-+        .needs_pci_atomics = true,
-+        .num_sdma_engines = 2,
-+        .num_xgmi_sdma_engines = 0,
-+        .num_sdma_queues_per_engine = 8,
-+};
-+
- /* For each entry, [0] is regular and [1] is virtualisation device. */
- static const struct kfd_device_info *kfd_supported_devices[][2] = {
- #ifdef KFD_SUPPORT_IOMMU_V2
-@@ -625,6 +644,7 @@ static const struct kfd_device_info *kfd_supported_devices[][2] = {
- 	[CHIP_DIMGREY_CAVEFISH] = {&dimgrey_cavefish_device_info, &dimgrey_cavefish_device_info},
- 	[CHIP_BEIGE_GOBY] = {&beige_goby_device_info, &beige_goby_device_info},
- 	[CHIP_YELLOW_CARP] = {&yellow_carp_device_info, NULL},
-+	[CHIP_CYAN_SKILLFISH] = {&cyan_skillfish_device_info, NULL},
- };
- 
- static int kfd_gtt_sa_init(struct kfd_dev *kfd, unsigned int buf_size,
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index 16a1713808c2..08c4070c73dc 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -1946,6 +1946,7 @@ struct device_queue_manager *device_queue_manager_init(struct kfd_dev *dev)
- 	case CHIP_DIMGREY_CAVEFISH:
- 	case CHIP_BEIGE_GOBY:
- 	case CHIP_YELLOW_CARP:
-+	case CHIP_CYAN_SKILLFISH:
- 		device_queue_manager_init_v10_navi10(&dqm->asic_ops);
- 		break;
++		adev->cg_flags = 0;
++		adev->pg_flags = 0;
++		adev->external_rev_id = adev->rev_id + 0x82;
++		break;
  	default:
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c b/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
-index a9b329f0f862..2e86692def19 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_flat_memory.c
-@@ -422,6 +422,7 @@ int kfd_init_apertures(struct kfd_process *process)
- 			case CHIP_DIMGREY_CAVEFISH:
- 			case CHIP_BEIGE_GOBY:
- 			case CHIP_YELLOW_CARP:
-+			case CHIP_CYAN_SKILLFISH:
- 				kfd_init_apertures_v9(pdd, id);
- 				break;
- 			default:
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
-index d8e940f03102..34a864fecd5f 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager.c
-@@ -251,6 +251,7 @@ int pm_init(struct packet_manager *pm, struct device_queue_manager *dqm)
- 	case CHIP_DIMGREY_CAVEFISH:
- 	case CHIP_BEIGE_GOBY:
- 	case CHIP_YELLOW_CARP:
-+	case CHIP_CYAN_SKILLFISH:
- 		pm->pmf = &kfd_v9_pm_funcs;
- 		break;
- 	case CHIP_ALDEBARAN:
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-index b1ce072aa20b..f934a1883a7d 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-@@ -1424,6 +1424,7 @@ int kfd_topology_add_device(struct kfd_dev *gpu)
- 	case CHIP_DIMGREY_CAVEFISH:
- 	case CHIP_BEIGE_GOBY:
- 	case CHIP_YELLOW_CARP:
-+	case CHIP_CYAN_SKILLFISH:
- 		dev->node_props.capability |= ((HSA_CAP_DOORBELL_TYPE_2_0 <<
- 			HSA_CAP_DOORBELL_TYPE_TOTALBITS_SHIFT) &
- 			HSA_CAP_DOORBELL_TYPE_TOTALBITS_MASK);
+ 		/* FIXME: not supported yet */
+ 		return -EINVAL;
 -- 
 2.31.1
 
