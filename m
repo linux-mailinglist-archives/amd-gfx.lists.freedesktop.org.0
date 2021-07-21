@@ -1,43 +1,67 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6F153D09B6
-	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jul 2021 09:29:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D423D0A7C
+	for <lists+amd-gfx@lfdr.de>; Wed, 21 Jul 2021 10:30:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 586526E30D;
-	Wed, 21 Jul 2021 07:29:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C67D66E913;
+	Wed, 21 Jul 2021 08:30:21 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B81E76E90D
- for <amd-gfx@lists.freedesktop.org>; Wed, 21 Jul 2021 06:58:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=2Tg6rDmREVX1ceiTKGgiYnKUFpoX6FiU/JNm2fWqBkw=; b=t3hopBQTUruM/ENRFxNyEOoUC+
- 5oJEQnciSH7H7I8MBiuNHyNhq7XNi/0H9lWN4pG4JSoChs5UkzgXC23DuhuRBWouYCC04xOkyZ1xV
- rR+ywDmkEKE0nnaaZ5dg8qfF0i8IuE7hW6GwCxdzrrEd18zJIIHurdno+HOqRNXejciU760Nh3WQx
- 3AOh2nuu5mW+eF0HaQSNswWOgds534d05ahBQ3vI0rR4UkVwl5iObPL+K+tNrdsch3TtjxYoxhGnS
- hW5Qq+sSJ88nW4YhTG3gLQZhM3cY/AdifCtrpRz3dSoygFIOUXVfb1SJ8YEApxUrgC5VPetggN9c3
- 7B06dTQQ==;
-Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat
- Linux)) id 1m66BG-008tyJ-Id; Wed, 21 Jul 2021 06:58:13 +0000
-Date: Wed, 21 Jul 2021 07:58:10 +0100
-From: Christoph Hellwig <hch@infradead.org>
-To: Anson Jacob <Anson.Jacob@amd.com>
-Subject: Re: [RFC v2 1/2] ppc/fpu: Add generic FPU api similar to x86
-Message-ID: <YPfFgkD+kcRaH8Ow@infradead.org>
-References: <20210721044801.840501-1-Anson.Jacob@amd.com>
- <20210721044801.840501-2-Anson.Jacob@amd.com>
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
+ [IPv6:2a00:1450:4864:20::42a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63E496E8D0;
+ Wed, 21 Jul 2021 08:30:20 +0000 (UTC)
+Received: by mail-wr1-x42a.google.com with SMTP id c15so1224977wrs.5;
+ Wed, 21 Jul 2021 01:30:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=yUJHVWQTlhcEWMO4DydR2xNVcklNcrzSF7aJbrXgfvg=;
+ b=GwdmBlYvKMUbfBL/G94R3vphXcZlpRXLWB5bF6QGSKL6pV85wsV22JWa094sGOGZ7g
+ P7qZ2LHJQBo4PwG/TNgCHOaSgH2i2SjcyzRNDuX20bIJxYhvzaR4zaGWcHvYfz7FosQ1
+ +yN7E9DcdXpiJYZyNTefp+5fVA6/p0Iih4ldiljoRyOGgUM/UJfxsJv02X3wzob4Rndq
+ IFXhZkCFEChrGwQ0t0RNvLKWhe0VX5MuIqQGR6jl1KGLr0E0wvw3SXlB/oyfvLUR0i77
+ BLKvwGfPp8i9fxGt49K+cQN7ANcz5BjuZM8eJYMmSGGv2iBwzBMt/VngBYxrBWcVPqtB
+ SFaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=yUJHVWQTlhcEWMO4DydR2xNVcklNcrzSF7aJbrXgfvg=;
+ b=QVG+z32ihdZiZyAC+TXXqgHdxQgCwvLrvO48rlX3wa1s3W9Nmvsz0AxyTDlBuqMpFE
+ /TSVz9EOTiTOm1zK0y5HNRNlBdtgDbyie591cQJekHBo8tBIMAPY6CWGgB31azywLS+e
+ X6T722oETBip0oLgJSa4LZ5YnB5o58s882RTbjYUPsWJ1rLgYXrrMkSQP+8wVe7DjqkQ
+ iGQEzR2R7nDNaX53QhBsjc1+0mCUtTDpCtYZKgM2+Cz4qrFxun5O/dw8iybgWqBQ4JlV
+ wkaemjzw52WdVtsFLk3FZe/ohTsNNhanQngsJen1UyZBVD0SPW7CK9IauZqR0j1rr/D8
+ ao3w==
+X-Gm-Message-State: AOAM531SPMlzgTmo03pzs0LXmA6z9BrDEl1CPSmd4Q7MuF5/s4G2bet2
+ w9/4D+UeuBq2Kx/mGlrhcdw=
+X-Google-Smtp-Source: ABdhPJw/bXojKZq/3rBVxc6LypfZ1k0EVFJuDmJugmtJ7S6ZqIPs+VTOFVKLsKXR1S8VTaSs6Vqj4A==
+X-Received: by 2002:adf:b605:: with SMTP id f5mr41299570wre.419.1626856219104; 
+ Wed, 21 Jul 2021 01:30:19 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:9bcf:837a:d18c:dc66?
+ ([2a02:908:1252:fb60:9bcf:837a:d18c:dc66])
+ by smtp.gmail.com with ESMTPSA id w3sm26068057wrt.55.2021.07.21.01.30.17
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 21 Jul 2021 01:30:18 -0700 (PDT)
+Subject: Re: [PATCH 1/7] vgaarb: remove VGA_DEFAULT_DEVICE
+To: Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+References: <20210716061634.2446357-1-hch@lst.de>
+ <20210716061634.2446357-2-hch@lst.de>
+ <f171831b-3281-5a5a-04d3-2d69cb77f1a2@amd.com>
+ <YPbUvIYmu3WfyM2C@phenom.ffwll.local>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <81094b7d-1846-9d43-dc58-44ff9bd60995@gmail.com>
+Date: Wed, 21 Jul 2021 10:30:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210721044801.840501-2-Anson.Jacob@amd.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- casper.infradead.org. See http://www.infradead.org/rpr.html
-X-Mailman-Approved-At: Wed, 21 Jul 2021 07:29:54 +0000
+In-Reply-To: <YPbUvIYmu3WfyM2C@phenom.ffwll.local>
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,93 +73,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bhawanpreet.Lakha@amd.com, Harry Wentland <harry.wentland@amd.com>,
- Sunpeng.Li@amd.com, mpe@ellerman.id.au, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, roman.li@amd.com,
- Christoph Hellwig <hch@infradead.org>, Aurabindo.Pillai@amd.com,
- paulus@samba.org, christophe.leroy@csgroup.eu, benh@kernel.crashing.org,
- linuxppc-dev@lists.ozlabs.org, Christian K??nig <christian.koenig@amd.com>,
- bindu.r@amd.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, kvm@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Alex Williamson <alex.williamson@redhat.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
+ Christoph Hellwig <hch@lst.de>, Ben Skeggs <bskeggs@redhat.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> +
-> +/*
-> + * Use kernel_fpu_begin/end() if you intend to use FPU in kernel context. It
-> + * disables preemption so be careful if you intend to use it for long periods
-> + * of time.
-> + * TODO: If you intend to use the FPU in irq/softirq you need to check first with
-> + * irq_fpu_usable() if it is possible.
-
-Please avoid the overly lone lines comments.
-
-> +extern bool kernel_fpu_enabled(void);
-> +extern void kernel_fpu_begin(void);
-> +extern void kernel_fpu_end(void);
-
-No need for the externs.
-
-> +/*
-> + * Track whether the kernel is using the FPU state
-> + * currently.
-
-This all fits on a single line.
-
-> +static bool fpu_support(void)
-> +{
-> +	if (cpu_has_feature(CPU_FTR_VSX_COMP)) {
-> +		return true;
-> +	} else if (cpu_has_feature(CPU_FTR_ALTIVEC_COMP)) {
-> +		return true;
-> +	} else if (!cpu_has_feature(CPU_FTR_FPU_UNAVAILABLE)) {
-> +		return true;
-> +	}
-
-No need for the braces, or else after a return.  In fact this could
-be simplified down to:
-
-	return cpu_has_feature(CPU_FTR_VSX_COMP) ||
-		cpu_has_feature(CPU_FTR_ALTIVEC_COMP) ||
-		cpu_has_feature(CPU_FTR_FPU_UNAVAILABLE));
-
-> +	preempt_disable();
-> +
-> +#ifdef CONFIG_VSX
-> +	if (cpu_has_feature(CPU_FTR_VSX_COMP)) {
-> +		enable_kernel_vsx();
-> +		return;
-> +	}
-> +#endif
-> +
-> +#ifdef CONFIG_ALTIVEC
-> +	if (cpu_has_feature(CPU_FTR_ALTIVEC_COMP)) {
-> +		enable_kernel_altivec();
-> +		return;
-> +	}
-> +#endif
-> +
-> +#ifdef CONFIG_PPC_FPU
-> +	if (!cpu_has_feature(CPU_FTR_FPU_UNAVAILABLE)) {
-> +		enable_kernel_fp();
-> +		return;
-> +	}
-> +#endif
-
-All the features are defined away if not supported (and we already rely
-on that in fpu_support()).  So this could become:
-
-	if (cpu_has_feature(CPU_FTR_VSX_COMP))
-		enable_kernel_vsx();
-	else if (cpu_has_feature(CPU_FTR_ALTIVEC_COMP))
-		enable_kernel_altivec();
-	else if (!cpu_has_feature(CPU_FTR_FPU_UNAVAILABLE))
-		enable_kernel_fp();
-
-Same for the disable path.
-_______________________________________________
-amd-gfx mailing list
-amd-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+CgpBbSAyMC4wNy4yMSB1bSAxNTo1MCBzY2hyaWViIERhbmllbCBWZXR0ZXI6Cj4gT24gRnJpLCBK
+dWwgMTYsIDIwMjEgYXQgMDk6MTQ6MDJBTSArMDIwMCwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToK
+Pj4gQW0gMTYuMDcuMjEgdW0gMDg6MTYgc2NocmllYiBDaHJpc3RvcGggSGVsbHdpZzoKPj4+IFRo
+ZSBkZWZpbmUgaXMgZW50aXJlbHkgdW51c2VkLgo+Pj4KPj4+IFNpZ25lZC1vZmYtYnk6IENocmlz
+dG9waCBIZWxsd2lnIDxoY2hAbHN0LmRlPgo+PiBJJ20gbm90IGFuIGV4cGVydCBmb3IgdGhpcyBw
+YXJ0aWN1bGFyIGNvZGUsIGJ1dCBhdCBsZWFzdCBvZiBoYW5kIGV2ZXJ5dGhpbmcKPj4geW91IGRv
+IGhlcmUgbWFrZXMgdG90YWxseSBzZW5zZS4KPj4KPj4gV2hvbGUgc2VyaWVzIGlzIEFja2VkLWJ5
+OiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Cj4gQ2FyZSB0byBh
+bHNvIHB1c2ggdGhpcyBpbnRvIGRybS1taXNjLW5leHQgc2luY2UgeW91IGxvb2tlZCBhbHJlYWR5
+PwoKRG9uZS4KCkNocmlzdGlhbi4KCj4gLURhbmllbAo+Cj4+IFJlZ2FyZHMsCj4+IENocmlzdGlh
+bi4KPj4KPj4+IC0tLQo+Pj4gICAgaW5jbHVkZS9saW51eC92Z2FhcmIuaCB8IDYgLS0tLS0tCj4+
+PiAgICAxIGZpbGUgY2hhbmdlZCwgNiBkZWxldGlvbnMoLSkKPj4+Cj4+PiBkaWZmIC0tZ2l0IGEv
+aW5jbHVkZS9saW51eC92Z2FhcmIuaCBiL2luY2x1ZGUvbGludXgvdmdhYXJiLmgKPj4+IGluZGV4
+IGRjNmRkY2U5MjA2Ni4uMjZlYzhhMDU3ZDJhIDEwMDY0NAo+Pj4gLS0tIGEvaW5jbHVkZS9saW51
+eC92Z2FhcmIuaAo+Pj4gKysrIGIvaW5jbHVkZS9saW51eC92Z2FhcmIuaAo+Pj4gQEAgLTQyLDEy
+ICs0Miw2IEBACj4+PiAgICAjZGVmaW5lIFZHQV9SU1JDX05PUk1BTF9JTyAgICAgMHgwNAo+Pj4g
+ICAgI2RlZmluZSBWR0FfUlNSQ19OT1JNQUxfTUVNICAgIDB4MDgKPj4+IC0vKiBQYXNzaW5nIHRo
+YXQgaW5zdGVhZCBvZiBhIHBjaV9kZXYgdG8gdXNlIHRoZSBzeXN0ZW0gImRlZmF1bHQiCj4+PiAt
+ICogZGV2aWNlLCB0aGF0IGlzIHRoZSBvbmUgdXNlZCBieSB2Z2Fjb24uIEFyY2hzIHdpbGwgcHJv
+YmFibHkKPj4+IC0gKiBoYXZlIHRvIHByb3ZpZGUgdGhlaXIgb3duIHZnYV9kZWZhdWx0X2Rldmlj
+ZSgpOwo+Pj4gLSAqLwo+Pj4gLSNkZWZpbmUgVkdBX0RFRkFVTFRfREVWSUNFICAgICAoTlVMTCkK
+Pj4+IC0KPj4+ICAgIHN0cnVjdCBwY2lfZGV2Owo+Pj4gICAgLyogRm9yIHVzZSBieSBjbGllbnRz
+ICovCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQt
+Z2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
