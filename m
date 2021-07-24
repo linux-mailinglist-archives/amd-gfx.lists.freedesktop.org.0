@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 437323D44B9
-	for <lists+amd-gfx@lfdr.de>; Sat, 24 Jul 2021 06:11:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 632EF3D44BB
+	for <lists+amd-gfx@lfdr.de>; Sat, 24 Jul 2021 06:11:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC99D6FE5E;
-	Sat, 24 Jul 2021 04:11:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53B176FE60;
+	Sat, 24 Jul 2021 04:11:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2063.outbound.protection.outlook.com [40.107.244.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73B736FE5E
- for <amd-gfx@lists.freedesktop.org>; Sat, 24 Jul 2021 04:11:32 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam08on2081.outbound.protection.outlook.com [40.107.102.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AF886FE5F
+ for <amd-gfx@lists.freedesktop.org>; Sat, 24 Jul 2021 04:11:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e6oVasemRt/wfJtxmx4MgeyiuqCCWCdGS9GfHYr1s8A9tJAo9JMUD8X/V0xjjseOBSEyqniC6QhTZMRhPcGX0vuQctbk6Igjzd7SGXg2XizZImtglUdoxw7fU6EwrgEi/1s4BeXinrI54o8PYilzcH8uACitf971MXup8NhnNsTAFeil3Qr1FpQNR4w14f+oVqlfq6vtyVXeZ7Oy/Px06/cLX15ZFM1Kv9LZF6/WjoQ/wjWUlcGbtNix315H019qcrxkxNX++ZZOo8FrgDRyNIpS0tNfftejY8TvNUG58YvQ5xYbzKrUfZeO8Zz+s3pmOaVvGB6M1VbNT1VWLliA1A==
+ b=lkeWyLLdq4bggZc3wuOhGP66E2gYTksZENCB2F3a7S5wtaZvihQkfa85SOuxOsCYV5T1YvgqXkzgdM/GomIxeRRGMdD1/qjXu+p7QBDPpulyYgydQ+ziSIZBpGGUn7NDUDxSQ8P9+rkFEI8Ip12VWuPXtNMdMy/5Js5WPnUxj4HabnboHRkeLWjR6MWJZgJy14+8S1cPyAWbEtlpltoggpR+hwMUBGxt0HBFIcWkbRiRIQIyuRabfF0e0GkDM47YdyJ7GgHjynfUcaudcxRRdbQ3eHVapzpep0rlgLLSICd5IK4ysz42dm8r7V4RPlrou/NXgyhsqi/yOdlIt9QGoA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wwKRebJQ9d2yMsWDR2bCg3ts1bkZdDdpIvZOQNDkQNA=;
- b=glSx0loRB4jLpbXuLwu+nRErqNlZ8XO0ttcMuCocPUMFG9DkSYwadU3vPnYrx7d01O0MCmUUJOaLW0pHiPKr95uVGJpRtOnGun3gv9kUkXQwnUnDwfCk9+2Mw7Be1bTYL5QEuaKQ0XixOb8MRwL8UZ9WpexI6CAejTB1RH3GNfNNJQFTkRcqC4TBc6bVt3q3o+DYceQFOZYxgz8CnmnnJ+BhSRDa8/VVFYt/zAaHsN1rTpHrOFreT9ux8Uzk5uf+8dXDO0FqB9km8wHmo0ZUJQH2eW0xTGoMDWkwf2RVwhoiwRXR2rj5CqgdTGR/TumB/eVQKaREcIBulF8BzVq48Q==
+ bh=QDnqjaFUpB3bm7nVn74qMdDiYdfwRU0DO+/wui65ooo=;
+ b=WHBNOBFvj+Rx2ZcHb6heL3Vzomst904LfJ1MSBdhUboVu09N/BjJ0PrgQqfO2iDubklpO5paawxltBlcTgHMCtIcbiJijZYypYHDf31cEzQt+F0+eYcwEv3iT4bov1r8THjY65s0QnBl36voedzB3wf/NSj7afHtErWbftwHF3BHQlNrO+p/BxV+V0YGHdQ61qKa0wwAEsE4rZqlvrMT2PAHz2H1Z8UMLsksn/TFQRKa5NpdDq+dhAkI7Z76PYEzhkabRm34Au0VxaiQXLs+IoOQy/uTOVp6l9ML4OC94T705RqaFsxfuWbrJE9RkDhsa2zbRJMUBOVpd4kWGXRpsQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wwKRebJQ9d2yMsWDR2bCg3ts1bkZdDdpIvZOQNDkQNA=;
- b=iTqp/5qfMcpocaDyIiqnUpiECKYiEop0Do+eM1AKkddnZ9hLbuZN1SivBbTKUg19mH7ZMkVkVxJNVqcENpSggPPk37ZNZaGP77GJeGNR23w5iNT15sh6Yrz7Eo3mZ/ZT3c96vU6obg2LZlIjhJXGmFDH38bFDkC5aFGjLbZxtVs=
-Received: from BN6PR22CA0045.namprd22.prod.outlook.com (2603:10b6:404:37::31)
- by BL1PR12MB5254.namprd12.prod.outlook.com (2603:10b6:208:31e::21)
+ bh=QDnqjaFUpB3bm7nVn74qMdDiYdfwRU0DO+/wui65ooo=;
+ b=tyzFpqJlgAXzg6HoPg9VZT/BkL8vjqsrSs/+uC5FzlyvAU2PUUobskgrZos48yXp1yHPkjWCeNs0KGA5aHsdkjlnbaFOIDcfZSoF+TlR9NT4F4/FTUXgsTwrG+VJOdB9e+iAxEQVUHJ3xOCgu2GNyEsn2NzDXSvnOrXuC0yb/gQ=
+Received: from BN9PR03CA0637.namprd03.prod.outlook.com (2603:10b6:408:13b::12)
+ by MWHPR1201MB2509.namprd12.prod.outlook.com (2603:10b6:300:e5::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.28; Sat, 24 Jul
- 2021 04:11:30 +0000
-Received: from BN8NAM11FT037.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:37:cafe::8b) by BN6PR22CA0045.outlook.office365.com
- (2603:10b6:404:37::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.24 via Frontend
- Transport; Sat, 24 Jul 2021 04:11:30 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.26; Sat, 24 Jul
+ 2021 04:11:34 +0000
+Received: from BN8NAM11FT032.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:13b:cafe::4) by BN9PR03CA0637.outlook.office365.com
+ (2603:10b6:408:13b::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.26 via Frontend
+ Transport; Sat, 24 Jul 2021 04:11:33 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,18 +46,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT037.mail.protection.outlook.com (10.13.177.182) with Microsoft SMTP
+ BN8NAM11FT032.mail.protection.outlook.com (10.13.177.88) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4352.24 via Frontend Transport; Sat, 24 Jul 2021 04:11:30 +0000
+ 15.20.4352.24 via Frontend Transport; Sat, 24 Jul 2021 04:11:33 +0000
 Received: from solomon-t14.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 23 Jul
- 2021 23:11:26 -0500
+ 2021 23:11:30 -0500
 From: Solomon Chiu <solomon.chiu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/14] drm/amd/display: add update authentication interface
-Date: Sat, 24 Jul 2021 12:09:55 +0800
-Message-ID: <20210724041001.3875757-9-solomon.chiu@amd.com>
+Subject: [PATCH 09/14] drm/amd/display: remove unused functions
+Date: Sat, 24 Jul 2021 12:09:56 +0800
+Message-ID: <20210724041001.3875757-10-solomon.chiu@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210724041001.3875757-4-solomon.chiu@amd.com>
 References: <20210724041001.3875757-4-solomon.chiu@amd.com>
@@ -67,28 +67,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: db23e156-57a9-446f-2809-08d94e591d58
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5254:
-X-Microsoft-Antispam-PRVS: <BL1PR12MB525406FBC05330A1373FCC8F97E69@BL1PR12MB5254.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Office365-Filtering-Correlation-Id: 5fc83655-d1c7-47e0-bc36-08d94e591f98
+X-MS-TrafficTypeDiagnostic: MWHPR1201MB2509:
+X-Microsoft-Antispam-PRVS: <MWHPR1201MB25096B2D7F2CA56F784517C497E69@MWHPR1201MB2509.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1443;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gUsgYY6yk3bmu5VGjSwJVW4OcLuZLKH0/1bVBWUSjO6l2NGWE7lmuE9FgMGiieBeqEQM3+TxPS43Kkw+DdoHDJdZBkaGMA+Zh90NF16sksSBlIyEbLMylPQqCCnEqDGZRo0N7IYRtUkHWq36PeXNP/91P3Kah4Q1ALcvMskmzK/SwIwoJGPBVC81Z44HOIQRDlHs2Q2YOB9jkL7BhOJrRpWzygDwq4JY2CEAFYZXV0TlwTDqHUeYf1hCNUc753GSRglPEZD5TkSkLB9qdWKXErYtAuk6JwZ2Mez3YJM3i3yBhExFvbdw/VfFS+k8Eru7ybwqtVvuI58hyQ7zkTRHt+HYnBA32LQ7Joum7iu9glUgd3GEfQUiBuCsTSvlqkEjatbJLm5b1iEk3uBWEMMs815k1gZrpAtUW7V/pr0ld6Wih9gYho4F//tNR3NH0CaXvdnO7ly6ENlypg9kVr3McAt5TQWvsjnMNZGxy1ouqHE15ORPmNT7VRChNUAS/WNMroaEz6mp1MgqyiXOtolPVwahkOmnH8tJPXefjZ9t4qygLTTdei8StLSjl4EWUyz41op1SHYnGbHk14jVwBagx5KVolTzAaaGrODxffhpixz8LXxFq1Gq251fzKOZ25FlOBNTdfN+N6XChrXtzarU/gB8goxjZqA+K5Wx6djo31HK/54dO5OFRPM6dH7iFr1KDw88fvUMdtaqVm1JUqw/XtubAUM/TyGTuM+jflyhvuE=
+X-Microsoft-Antispam-Message-Info: 12QMlu6K9RA8QW4/hNk+Tz8bW0dg+H77mgr6PlMDIKX6hrEaWeAISNnaobT7kKv+kcKQd7lhJFoYL9YHQXnAtutPVvYJ6txMLTSwXZbfKLlcn7DCG7NGiJlIXrip7k1EhcW7PAq1j+i7Nc6Ebev6/5uOxdZDBKhyiQdCoE3DzAu8B/esDGQXq1oAthIizXiS7bxM72OhsVvIa27R3D6K/ig9jKQ49W5ACm+E4WEUrloIaSrTMMONkm+YT4bmrq+Moxg6p3D7Hc7UCoACA/S0rQ+ip6dvyDtixj6OfdYQskd/GjxUxE6g8ldf59kfJ5KV7pevs2G3oc+eTEZ6tSAGozQECC8sbN/FpjFJcuydt81gvP87o1mwenEw5iEOQr6bc/vxGq57/KTgq7xE0B/eNY0wy/pnwdLuSAGZvEh2/vSK3wudCUzrLUe/KDXntVDNUkJV3Dqe5MGscE9N05a7cktar3wYA7SSAGfZyISVNd1ieJLLzJoVsFHAFf05xDGhlr75RP94lL1d7Kz/OUQDYh0rZIC1kC7b4Lf5RSE59Ezd7tMIL/Sk9j+FGWYtyGBD8pqcilC4gOQPduK83cfHtH4ynt8DjbUOaE8udX1Q4lcfmn9PYDtAoHmT34iq8SHqngnrfNlP2p93v78CvKSRHIkn7JTkydn/QGXUGecziH/4ovH/SwtmgsGnOW6frpxB3drqUbvrVdKr+EgNc57U9nQDQ7OdS9w3kxWvJwoLQdk=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(6916009)(336012)(81166007)(70206006)(508600001)(8676002)(44832011)(6666004)(2616005)(70586007)(54906003)(426003)(316002)(4326008)(8936002)(186003)(47076005)(7696005)(26005)(2906002)(86362001)(16526019)(36860700001)(5660300002)(83380400001)(356005)(15650500001)(36756003)(1076003)(82310400003)(36900700001);
+ SFS:(4636009)(39860400002)(376002)(346002)(136003)(396003)(46966006)(36840700001)(54906003)(7696005)(8676002)(81166007)(2616005)(6916009)(5660300002)(4326008)(44832011)(316002)(86362001)(426003)(26005)(70586007)(6666004)(70206006)(36756003)(478600001)(47076005)(1076003)(2906002)(82310400003)(83380400001)(356005)(186003)(336012)(16526019)(82740400003)(36860700001)(8936002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2021 04:11:30.0478 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: db23e156-57a9-446f-2809-08d94e591d58
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jul 2021 04:11:33.8255 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5fc83655-d1c7-47e0-bc36-08d94e591f98
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT037.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT032.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5254
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB2509
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,149 +112,243 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 From: Wenjing Liu <wenjing.liu@amd.com>
 
 [why]
-Previously to toggle authentication, we need to remove and
-add the same display back with modified adjustment.
-This method will toggle DTM state without actual hardware changes.
-This is not per design and would cause potential issues in the long run.
-
-[how]
-We are creating a dedicated interface that does the same thing as
-remove and add back the display without changing DTM state.
+It has been decided that opm state query support will be dropped.
+Therefore link encryption enabled and save current encryption states
+won't be used anymore and there are no foreseeable usages in the future.
+We will remove these two interfaces for clean up.
 
 Acked-by: Solomon Chiu <solomon.chiu@amd.com>
 Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 ---
- .../gpu/drm/amd/display/modules/hdcp/hdcp.c   | 64 +++++++++++++++++--
- .../drm/amd/display/modules/inc/mod_hdcp.h    | 11 +++-
- 2 files changed, 69 insertions(+), 6 deletions(-)
+ .../amd/display/amdgpu_dm/amdgpu_dm_hdcp.c    |  4 +-
+ .../gpu/drm/amd/display/modules/hdcp/hdcp.c   |  6 ---
+ .../gpu/drm/amd/display/modules/hdcp/hdcp.h   |  2 -
+ .../display/modules/hdcp/hdcp1_execution.c    |  6 ---
+ .../display/modules/hdcp/hdcp2_execution.c    |  3 --
+ .../drm/amd/display/modules/hdcp/hdcp_psp.c   | 53 ++++++++-----------
+ .../drm/amd/display/modules/inc/mod_hdcp.h    |  1 -
+ 7 files changed, 22 insertions(+), 53 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
+index e63c6885c757..8e39e9245d06 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c
+@@ -655,10 +655,8 @@ struct hdcp_workqueue *hdcp_create_workqueue(struct amdgpu_device *adev, struct
+ 		INIT_DELAYED_WORK(&hdcp_work[i].property_validate_dwork, event_property_validate);
+ 
+ 		hdcp_work[i].hdcp.config.psp.handle = &adev->psp;
+-		if (dc->ctx->dce_version == DCN_VERSION_3_1) {
++		if (dc->ctx->dce_version == DCN_VERSION_3_1)
+ 			hdcp_work[i].hdcp.config.psp.caps.dtm_v3_supported = 1;
+-			hdcp_work[i].hdcp.config.psp.caps.opm_state_query_supported = false;
+-		}
+ 		hdcp_work[i].hdcp.config.ddc.handle = dc_get_link_at_index(dc, i);
+ 		hdcp_work[i].hdcp.config.ddc.funcs.write_i2c = lp_write_i2c;
+ 		hdcp_work[i].hdcp.config.ddc.funcs.read_i2c = lp_read_i2c;
 diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
-index b963226e8af4..2bcab9c9b96e 100644
+index 2bcab9c9b96e..06d60f031a06 100644
 --- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
 +++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.c
-@@ -39,8 +39,12 @@ static void push_error_status(struct mod_hdcp *hdcp,
- 
- 	if (is_hdcp1(hdcp)) {
- 		hdcp->connection.hdcp1_retry_count++;
-+		if (hdcp->connection.hdcp1_retry_count == MAX_NUM_OF_ATTEMPTS)
-+			hdcp->connection.link.adjust.hdcp1.disable = 1;
- 	} else if (is_hdcp2(hdcp)) {
- 		hdcp->connection.hdcp2_retry_count++;
-+		if (hdcp->connection.hdcp2_retry_count == MAX_NUM_OF_ATTEMPTS)
-+			hdcp->connection.link.adjust.hdcp2.disable = 1;
- 	}
- }
- 
-@@ -59,8 +63,7 @@ static uint8_t is_cp_desired_hdcp1(struct mod_hdcp *hdcp)
- 		}
+@@ -315,9 +315,6 @@ enum mod_hdcp_status mod_hdcp_add_display(struct mod_hdcp *hdcp,
+ 		goto out;
  	}
  
--	return (hdcp->connection.hdcp1_retry_count < MAX_NUM_OF_ATTEMPTS) &&
--			is_auth_needed &&
-+	return is_auth_needed &&
- 			!hdcp->connection.link.adjust.hdcp1.disable &&
- 			!hdcp->connection.is_hdcp1_revoked;
- }
-@@ -80,8 +83,7 @@ static uint8_t is_cp_desired_hdcp2(struct mod_hdcp *hdcp)
- 		}
+-	/* save current encryption states to restore after next authentication */
+-	mod_hdcp_save_current_encryption_states(hdcp);
+-
+ 	/* reset existing authentication status */
+ 	status = reset_authentication(hdcp, output);
+ 	if (status != MOD_HDCP_STATUS_SUCCESS)
+@@ -364,9 +361,6 @@ enum mod_hdcp_status mod_hdcp_remove_display(struct mod_hdcp *hdcp,
+ 		goto out;
  	}
  
--	return (hdcp->connection.hdcp2_retry_count < MAX_NUM_OF_ATTEMPTS) &&
--			is_auth_needed &&
-+	return is_auth_needed &&
- 			!hdcp->connection.link.adjust.hdcp2.disable &&
- 			!hdcp->connection.is_hdcp2_revoked;
+-	/* save current encryption states to restore after next authentication */
+-	mod_hdcp_save_current_encryption_states(hdcp);
+-
+ 	/* stop current authentication */
+ 	status = reset_authentication(hdcp, output);
+ 	if (status != MOD_HDCP_STATUS_SUCCESS)
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
+index 3ce91db560d1..7123f0915706 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp.h
+@@ -331,8 +331,6 @@ enum mod_hdcp_status mod_hdcp_add_display_to_topology(
+ 		struct mod_hdcp *hdcp, struct mod_hdcp_display *display);
+ enum mod_hdcp_status mod_hdcp_remove_display_from_topology(
+ 		struct mod_hdcp *hdcp, uint8_t index);
+-bool mod_hdcp_is_link_encryption_enabled(struct mod_hdcp *hdcp);
+-void mod_hdcp_save_current_encryption_states(struct mod_hdcp *hdcp);
+ enum mod_hdcp_status mod_hdcp_hdcp1_create_session(struct mod_hdcp *hdcp);
+ enum mod_hdcp_status mod_hdcp_hdcp1_destroy_session(struct mod_hdcp *hdcp);
+ enum mod_hdcp_status mod_hdcp_hdcp1_validate_rx(struct mod_hdcp *hdcp);
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
+index de872e7958b0..6ec918af3bff 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp1_execution.c
+@@ -266,9 +266,6 @@ static enum mod_hdcp_status authenticated(struct mod_hdcp *hdcp,
+ 	mod_hdcp_execute_and_set(mod_hdcp_hdcp1_link_maintenance,
+ 			&input->link_maintenance, &status,
+ 			hdcp, "link_maintenance");
+-
+-	if (status != MOD_HDCP_STATUS_SUCCESS)
+-		mod_hdcp_save_current_encryption_states(hdcp);
+ out:
+ 	return status;
  }
-@@ -392,6 +394,60 @@ enum mod_hdcp_status mod_hdcp_remove_display(struct mod_hdcp *hdcp,
+@@ -447,9 +444,6 @@ static enum mod_hdcp_status authenticated_dp(struct mod_hdcp *hdcp,
+ 		mod_hdcp_execute_and_set(check_no_reauthentication_request_dp,
+ 				&input->reauth_request_check, &status,
+ 				hdcp, "reauth_request_check");
+-
+-	if (status != MOD_HDCP_STATUS_SUCCESS)
+-		mod_hdcp_save_current_encryption_states(hdcp);
+ out:
+ 	return status;
+ }
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
+index 117c6b45f718..91c22b96ebde 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp2_execution.c
+@@ -571,9 +571,6 @@ static enum mod_hdcp_status authenticated(struct mod_hdcp *hdcp,
+ 	}
+ 
+ 	process_rxstatus(hdcp, event_ctx, input, &status);
+-
+-	if (status != MOD_HDCP_STATUS_SUCCESS)
+-		mod_hdcp_save_current_encryption_states(hdcp);
+ out:
+ 	return status;
+ }
+diff --git a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c
+index 1b02056bc8bd..ade86a042398 100644
+--- a/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c
++++ b/drivers/gpu/drm/amd/display/modules/hdcp/hdcp_psp.c
+@@ -45,7 +45,7 @@ static void hdcp2_message_init(struct mod_hdcp *hdcp,
+ 	in->process.msg3_desc.msg_size = 0;
+ }
+ 
+-static enum mod_hdcp_status mod_hdcp_remove_display_from_topology_v2(
++static enum mod_hdcp_status remove_display_from_topology_v2(
+ 		struct mod_hdcp *hdcp, uint8_t index)
+ {
+ 	struct psp_context *psp = hdcp->config.psp.handle;
+@@ -81,7 +81,7 @@ static enum mod_hdcp_status mod_hdcp_remove_display_from_topology_v2(
  	return status;
  }
  
-+enum mod_hdcp_status mod_hdcp_update_authentication(struct mod_hdcp *hdcp,
-+		uint8_t index,
-+		struct mod_hdcp_link_adjustment *link_adjust,
-+		struct mod_hdcp_display_adjustment *display_adjust,
-+		struct mod_hdcp_output *output)
+-static enum mod_hdcp_status mod_hdcp_remove_display_from_topology_v3(
++static enum mod_hdcp_status remove_display_from_topology_v3(
+ 		struct mod_hdcp *hdcp, uint8_t index)
+ {
+ 	struct psp_context *psp = hdcp->config.psp.handle;
+@@ -107,7 +107,7 @@ static enum mod_hdcp_status mod_hdcp_remove_display_from_topology_v3(
+ 	psp_dtm_invoke(psp, dtm_cmd->cmd_id);
+ 
+ 	if (dtm_cmd->dtm_status != TA_DTM_STATUS__SUCCESS) {
+-		status = mod_hdcp_remove_display_from_topology_v2(hdcp, index);
++		status = remove_display_from_topology_v2(hdcp, index);
+ 		if (status != MOD_HDCP_STATUS_SUCCESS)
+ 			display->state = MOD_HDCP_DISPLAY_INACTIVE;
+ 	} else {
+@@ -120,20 +120,7 @@ static enum mod_hdcp_status mod_hdcp_remove_display_from_topology_v3(
+ 	return status;
+ }
+ 
+-enum mod_hdcp_status mod_hdcp_remove_display_from_topology(
+-		struct mod_hdcp *hdcp, uint8_t index)
+-{
+-	enum mod_hdcp_status status = MOD_HDCP_STATUS_UPDATE_TOPOLOGY_FAILURE;
+-
+-	if (hdcp->config.psp.caps.dtm_v3_supported)
+-		status = mod_hdcp_remove_display_from_topology_v3(hdcp, index);
+-	else
+-		status = mod_hdcp_remove_display_from_topology_v2(hdcp, index);
+-
+-	return status;
+-}
+-
+-static enum mod_hdcp_status mod_hdcp_add_display_to_topology_v2(
++static enum mod_hdcp_status add_display_to_topology_v2(
+ 		struct mod_hdcp *hdcp, struct mod_hdcp_display *display)
+ {
+ 	struct psp_context *psp = hdcp->config.psp.handle;
+@@ -180,7 +167,7 @@ static enum mod_hdcp_status mod_hdcp_add_display_to_topology_v2(
+ 	return status;
+ }
+ 
+-static enum mod_hdcp_status mod_hdcp_add_display_to_topology_v3(
++static enum mod_hdcp_status add_display_to_topology_v3(
+ 		struct mod_hdcp *hdcp, struct mod_hdcp_display *display)
+ {
+ 	struct psp_context *psp = hdcp->config.psp.handle;
+@@ -220,7 +207,7 @@ static enum mod_hdcp_status mod_hdcp_add_display_to_topology_v3(
+ 	psp_dtm_invoke(psp, dtm_cmd->cmd_id);
+ 
+ 	if (dtm_cmd->dtm_status != TA_DTM_STATUS__SUCCESS) {
+-		status = mod_hdcp_add_display_to_topology_v2(hdcp, display);
++		status = add_display_to_topology_v2(hdcp, display);
+ 		if (status != MOD_HDCP_STATUS_SUCCESS)
+ 			display->state = MOD_HDCP_DISPLAY_INACTIVE;
+ 	} else {
+@@ -232,15 +219,28 @@ static enum mod_hdcp_status mod_hdcp_add_display_to_topology_v3(
+ 	return status;
+ }
+ 
++enum mod_hdcp_status mod_hdcp_remove_display_from_topology(
++		struct mod_hdcp *hdcp, uint8_t index)
 +{
-+	enum mod_hdcp_status status = MOD_HDCP_STATUS_SUCCESS;
-+	struct mod_hdcp_display *display = NULL;
++	enum mod_hdcp_status status = MOD_HDCP_STATUS_UPDATE_TOPOLOGY_FAILURE;
 +
-+	HDCP_TOP_INTERFACE_TRACE_WITH_INDEX(hdcp, index);
-+	memset(output, 0, sizeof(struct mod_hdcp_output));
++	if (hdcp->config.psp.caps.dtm_v3_supported)
++		status = remove_display_from_topology_v3(hdcp, index);
++	else
++		status = remove_display_from_topology_v2(hdcp, index);
 +
-+	/* find display in connection */
-+	display = get_active_display_at_index(hdcp, index);
-+	if (!display) {
-+		status = MOD_HDCP_STATUS_DISPLAY_NOT_FOUND;
-+		goto out;
-+	}
-+
-+	/* skip if no changes */
-+	if (memcmp(link_adjust, &hdcp->connection.link.adjust,
-+			sizeof(struct mod_hdcp_link_adjustment)) == 0 &&
-+			memcmp(display_adjust, &display->adjust,
-+					sizeof(struct mod_hdcp_display_adjustment)) == 0) {
-+		status = MOD_HDCP_STATUS_SUCCESS;
-+		goto out;
-+	}
-+
-+	/* stop current authentication */
-+	status = reset_authentication(hdcp, output);
-+	if (status != MOD_HDCP_STATUS_SUCCESS)
-+		goto out;
-+
-+	/* clear retry counters */
-+	reset_retry_counts(hdcp);
-+
-+	/* reset error trace */
-+	memset(&hdcp->connection.trace, 0, sizeof(hdcp->connection.trace));
-+
-+	/* set new adjustment */
-+	hdcp->connection.link.adjust = *link_adjust;
-+	display->adjust = *display_adjust;
-+
-+	/* request authentication when connection is not reset */
-+	if (current_state(hdcp) != HDCP_UNINITIALIZED)
-+		/* wait 100ms to debounce simultaneous updates for different indices */
-+		callback_in_ms(100, output);
-+
-+out:
-+	if (status != MOD_HDCP_STATUS_SUCCESS)
-+		push_error_status(hdcp, status);
 +	return status;
 +}
 +
- enum mod_hdcp_status mod_hdcp_query_display(struct mod_hdcp *hdcp,
- 		uint8_t index, struct mod_hdcp_display_query *query)
+ enum mod_hdcp_status mod_hdcp_add_display_to_topology(struct mod_hdcp *hdcp,
+ 					       struct mod_hdcp_display *display)
  {
+ 	enum mod_hdcp_status status = MOD_HDCP_STATUS_SUCCESS;
+ 
+ 	if (hdcp->config.psp.caps.dtm_v3_supported)
+-		status = mod_hdcp_add_display_to_topology_v3(hdcp, display);
++		status = add_display_to_topology_v3(hdcp, display);
+ 	else
+-		status = mod_hdcp_add_display_to_topology_v2(hdcp, display);
++		status = add_display_to_topology_v2(hdcp, display);
+ 
+ 	return status;
+ }
+@@ -1021,14 +1021,3 @@ enum mod_hdcp_status mod_hdcp_hdcp2_validate_stream_ready(struct mod_hdcp *hdcp)
+ 	mutex_unlock(&psp->hdcp_context.mutex);
+ 	return status;
+ }
+-
+-bool mod_hdcp_is_link_encryption_enabled(struct mod_hdcp *hdcp)
+-{
+-	/* unsupported */
+-	return true;
+-}
+-
+-void mod_hdcp_save_current_encryption_states(struct mod_hdcp *hdcp)
+-{
+-	/* unsupported */
+-}
 diff --git a/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h b/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
-index c590493fd293..c1b485f5fb71 100644
+index c1b485f5fb71..a6eb86de8d5c 100644
 --- a/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
 +++ b/drivers/gpu/drm/amd/display/modules/inc/mod_hdcp.h
-@@ -282,15 +282,22 @@ enum mod_hdcp_status mod_hdcp_setup(struct mod_hdcp *hdcp,
- /* called per link on link destroy */
- enum mod_hdcp_status mod_hdcp_teardown(struct mod_hdcp *hdcp);
+@@ -123,7 +123,6 @@ enum mod_hdcp_display_state {
  
--/* called per display on cp_desired set to true */
-+/* called per display after stream is enabled */
- enum mod_hdcp_status mod_hdcp_add_display(struct mod_hdcp *hdcp,
- 		struct mod_hdcp_link *link, struct mod_hdcp_display *display,
- 		struct mod_hdcp_output *output);
+ struct mod_hdcp_psp_caps {
+ 	uint8_t dtm_v3_supported;
+-	uint8_t opm_state_query_supported;
+ };
  
--/* called per display on cp_desired set to false */
-+/* called per display before stream is disabled */
- enum mod_hdcp_status mod_hdcp_remove_display(struct mod_hdcp *hdcp,
- 		uint8_t index, struct mod_hdcp_output *output);
- 
-+/* called per display to apply new authentication adjustment */
-+enum mod_hdcp_status mod_hdcp_update_authentication(struct mod_hdcp *hdcp,
-+		uint8_t index,
-+		struct mod_hdcp_link_adjustment *link_adjust,
-+		struct mod_hdcp_display_adjustment *display_adjust,
-+		struct mod_hdcp_output *output);
-+
- /* called to query hdcp information on a specific index */
- enum mod_hdcp_status mod_hdcp_query_display(struct mod_hdcp *hdcp,
- 		uint8_t index, struct mod_hdcp_display_query *query);
+ enum mod_hdcp_display_disable_option {
 -- 
 2.25.1
 
