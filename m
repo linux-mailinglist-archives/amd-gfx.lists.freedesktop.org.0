@@ -2,150 +2,91 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C1D03D9494
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jul 2021 19:52:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 081303D91A8
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jul 2021 17:18:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B35F6E32F;
-	Wed, 28 Jul 2021 17:52:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 866E56E09C;
+	Wed, 28 Jul 2021 15:17:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
- Wed, 28 Jul 2021 15:18:18 UTC
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com
- [68.232.153.233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACC2A6E1A5;
- Wed, 28 Jul 2021 15:18:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
- t=1627485499; x=1659021499;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=GlPawDKn+tgwgVuSiCv2mWtF4ddTrtC2DzvZGqGqL3c=;
- b=SjvL+HvdmTtyIsgccqSkSQ5jnkA2Kkuy+zWxfE7qUBObnE/vd9NfXgyi
- L8PiAo+Jor3ANffpwOuPqk3Y0I6aaUB8SGcRopD9AnRPwUv6a9wVlfJ5k
- DKboattdm0scm15pbOUk4StaoNxzvsRriIH9/G0Bn300zsq9pVcLRpYbS
- hds01NGnFYPbEmuHJFhpVPZaJNAU2Q1RVCzokYtOQIrqdDWWNdHlBMn05
- PkZ+qs12vY9skb8KMcX54aLl1MNe+B8MaUahd+gPnu1Jwry6gneuIH8uq
- EabMKoVvkvBLGFMxe9QjxuxPYXZWVEbgzWf992lp354yYQZ90YDPMwY1b Q==;
-IronPort-SDR: UASToKUbgbjKLQ4YAVjXEITdjT9Ms/vSLtGgFt2YbH7wWR0olBK86rhtS9EgwUBPoL8CijW+GM
- KX9YXD8td4k/JcMZ2WXYlJwN1aN6bgpY0cShv/M1S4AW3uoAJphCeH/ydnRTbz7XCIG14+ciff
- pOc4acehH4XsCDmZfDM96RkUr/+8+XpxU6QGPXiTYIg8PwVk5y26XtYBFQSaS/9lL8+LFd1//U
- xvbpcR92VPvdEoaYk9qYz5TmaN9jY6y3ne5CF13dF213eNe+7OcBl0WQcN9envqNM70SzDL8Ql
- rZM+nLBfNr6rJnq1A1ZGdphC
-X-IronPort-AV: E=Sophos;i="5.84,276,1620716400"; d="scan'208";a="130153875"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 28 Jul 2021 08:11:11 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Wed, 28 Jul 2021 08:11:10 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server
- (version=TLS1_2, 
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2 via Frontend
- Transport; Wed, 28 Jul 2021 08:11:10 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2064.outbound.protection.outlook.com [40.107.243.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AAF46E09C
+ for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jul 2021 15:17:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=H5vrU8ythGUbbkXyetLjCjNzccALPeYtjZdS3YSrS5F9/sUZEr+XrhSdebpr3wtdumgs4kQXT9GqNbyL0IxOkN+OSYMxGHcQAYt5DMW2OXKFd9v9zLl26MmdJPHVmmfDCdeyNsfHtqWr4fDJ2CtoScK457ttGGZcHpYG7mHhyiX2dZBKjthNYWSdf/3n5R5sAT2GwhwNV2Kes+rjtLCyk/OQcZabVJTTt0e8kUUzwkOfT013JaA7pWkITFXxSdWlrPIrzSnqRjUWaxSvj51ECc6aMs8xb/+iiZbCfqdN31uRjdbKfyPXnZuG/CgVHKIOgnhthoJq3JxFfZcdZ0Y+bw==
+ b=dY3/hKA6YhI+rs/l8y87IMpw+NhKu/Q6OJVzOAp1eh6Q7zncELBry92iyhljo/YyhRdWpg6m1J8l/A+GVGBR8UgjbOyCGVHeo691Qejqd6i5FK85Tw9WjtFbg3pUi2BKBidNWwMnBDuRSd7/PeWW1l1xI86fIL34nYEom+lY8i3AIzdOTrJyXKLFe6aghGQXnrl0yDKehTSnv3IJ0bbaeesDaJDw38ad2fevUoYzyYyRBEEE56UZzt/jfkizmXnr2AopLlwm+rHpdegRXc4/XDMUVeILhJIbQprKfq+/PUPwYPAZppaedlnO8s7WTXx1DWDXQQnhSt1nPQu/WsqmgQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GlPawDKn+tgwgVuSiCv2mWtF4ddTrtC2DzvZGqGqL3c=;
- b=Q9oiRtnzrZ/ElWZ7j7t5Qvk7xxbRhB2c9OFLP3t38YvvlO7T9stbW5uuM/TXSZm06Ca+HDIuOLWbf0hxGNfhG0In8OQN2VEb+AkVn9vAo1zv5bUhS5soI6C4PpOYh/CG13uubwV2HSNcl6uobBe31LPUlzqFz2BID6YAxzDcidt2kpYCdRWRgoo5StSGWa02tUxvCGE/bUOcvkHCVJUcHlmO8y6mO6b40anPih4ZDIMlVsSld7RV1iDC7tfJkkHXr0cEgZayLIz24LGOXfev3ac3yvvrI0LnQKms8lqPhB+6CIRux4LP9Po/0SI0UGWIhR98Chcv4qIjoCLRmpuN+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
+ bh=B+RBAySRhRmgig2Otc+laAaezhC3P9QJTLwPdpD2Y18=;
+ b=Eoi+Yp0uEsZGU1YIPCHtNhPvuSgi3PNlwUD3ykyqJrq7+iwTYstPE31nZByCnWY3nD8s3QQec/K9xLa+WKWa5oG4aDv+suI18R+/AiCWZxvMrnhol/+JJqoiusthTd1CIP2tyBntBT0/oUTa/Euot1kGtSLDR6jpMBwdrptcLnnIeViM7tXi9GX9ngjGmBwuFAdGfNZhuZHHMrOQh0bZqyYWZ59s++xDZYsOOY3ivQJQvZOWFkjl4Iql3YKEihX779kHF2cyHEpl/s0V0Rq1ZFFqnMxeJegUMj5IdNOQ9amly+bDNdnFaTdSKnIsZd6XI2AlZj1vIg3LmI4RGT1qKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GlPawDKn+tgwgVuSiCv2mWtF4ddTrtC2DzvZGqGqL3c=;
- b=Xa37YYQoZkU6VHSJdX9FtH7EI9WGkkifJcUbNsbESm8OMfQUlZVqUvpP9e/dQnz0rJX9N/xI9oQ2t/iF4sjVA4ovAqcu0EHLRIjOsyL7AB7soFWTjKIF5dFEDiU3b2JFRV0zYDSUnfFiVZQbxXUOsdV8vZrXdHnA9VIoEWqvXvo=
-Received: from BY5PR11MB4007.namprd11.prod.outlook.com (2603:10b6:a03:189::28)
- by SJ0PR11MB5168.namprd11.prod.outlook.com (2603:10b6:a03:2dc::7)
+ bh=B+RBAySRhRmgig2Otc+laAaezhC3P9QJTLwPdpD2Y18=;
+ b=dMFNIy3yt6uZfb55VY/TxsZ8EIFru1iks9mDbKvgLiEWc7+kk+VgG8o0wbP2fmmPGsBzyT84n/78IUffDuuiR9Fdq/TwzyaymhRV2ZXGDuptxUoikp6Ns3Z9BGU/BcjdO5JWfQSxEmkbdelNw0biwGltuRSRvnv4LG+/QdQT5fw=
+Received: from MW4PR03CA0276.namprd03.prod.outlook.com (2603:10b6:303:b5::11)
+ by BN8PR12MB3620.namprd12.prod.outlook.com (2603:10b6:408:49::27)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.18; Wed, 28 Jul
- 2021 15:11:08 +0000
-Received: from BY5PR11MB4007.namprd11.prod.outlook.com
- ([fe80::e478:6b2c:f71e:65bf]) by BY5PR11MB4007.namprd11.prod.outlook.com
- ([fe80::e478:6b2c:f71e:65bf%5]) with mapi id 15.20.4373.018; Wed, 28 Jul 2021
- 15:11:08 +0000
-From: <Dan.Sneddon@microchip.com>
-To: <sam@ravnborg.org>, <tzimmermann@suse.de>, <Dan.Sneddon@microchip.com>
-Subject: Re: [PATCH 03/14] drm/atmel-hlcdc: Convert to Linux IRQ interfaces
-Thread-Topic: [PATCH 03/14] drm/atmel-hlcdc: Convert to Linux IRQ interfaces
-Thread-Index: AQHXg7j3kajdLBgx2U2WcmMzDSjJJqtYfiKA
-Date: Wed, 28 Jul 2021 15:11:08 +0000
-Message-ID: <e28b1a2f-015c-c81b-eb64-5323df9ed35d@microchip.com>
-References: <20210727182721.17981-1-tzimmermann@suse.de>
- <20210727182721.17981-4-tzimmermann@suse.de> <YQFi96yaYbTG4OO7@ravnborg.org>
-In-Reply-To: <YQFi96yaYbTG4OO7@ravnborg.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-authentication-results: ravnborg.org; dkim=none (message not signed)
- header.d=none; ravnborg.org; dmarc=none action=none header.from=microchip.com; 
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 77373543-5365-4973-81d8-08d951d9edad
-x-ms-traffictypediagnostic: SJ0PR11MB5168:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <SJ0PR11MB5168548BE43F7F3E73EF44E0E1EA9@SJ0PR11MB5168.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Pbvmu+fvCAn8i9D1UIDU7t96ABcCdEWMJp9Gn1oTaxIOmxKv45CjG/UZeNQ14rGClF5tQaT0OUA8+Ihpxc2KKHVJP4gidzCyME256SXl/2bBktjrnBekKSsIG00JXXgsAYobFsQt1aO7PWEjs16aXHM8938mIGI1qITMii/WIM9C3kwOESQpPtwE4blKcJsQ/RWKDgFNDAgLuuTT5ObN0RO2mEDpmJBSOeZQaGphebLvEetowqsM2L9wI/1X+QuWYSV2n4vvhnSVMJdEA3wG0isfnd2IIY5qN+xzfCJKQWTA/oec4Ipm3artGgZta/iUD5jwKHL3vELNwq2xptMOByT2vq+AhoFnTM+I4m6rOohal+/GzKhlSA6g6b9HPn57w3QReZcJLtx3x/2e8mxBQH10GI0FtHOQu3FuYxFoDnAoiVQwWARqZx0Q+7UbBoq9wZY99JGBPvSdvJIasOakubCK7pjrCQYUPR4ND6raHFphv0XUDMBAPIodzYXepta90gZRn1tUBYv1MloqIvP9bSaD1/kPKAk2XCIdF4ZTj3eJ1PrSKrfmWKqri4shBet4g88xikL13bY8FCF6onNSDoqRlovrYNC2dfRUtQDxukmLpyQfbyOLNipDb0GQlJV+nHUCusI41bribNuslUV9NScU5xjV3qyI5FOdTFhL+UVllTAWJ1SGviwC4Q7FnOqWyKYj+ctrCTD4L0ZyFwG55nY6R+IbaFcSSaob/G/8BFRQMJtnhpO8GQxUIN2rjnoMR8ppyByNHMsu7o+enxub+RL3oJdrYqhdIsTzxlbhflRog60XSrpGdeZX5DewVXXF
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB4007.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(376002)(136003)(346002)(366004)(396003)(39860400002)(53546011)(5660300002)(7416002)(6486002)(8936002)(26005)(186003)(8676002)(2906002)(36756003)(31686004)(54906003)(6512007)(316002)(966005)(83380400001)(66556008)(71200400001)(122000001)(64756008)(86362001)(6506007)(110136005)(66476007)(66446008)(38100700002)(31696002)(91956017)(478600001)(38070700005)(4326008)(2616005)(76116006)(66946007)(45980500001)(43740500002)(10090945008);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MmRKWUtvd3hUTytOZ3JvZnl6ZUVxYjJ0MmRrcEZJU1dWdXlVVnZyZnh4NEs3?=
- =?utf-8?B?YlhkdFZ2MG1QbmFkVlJuLzhtWFB0ZE43bjRqOXZ1ZlA5NlFTWU9vSDg1Rmtx?=
- =?utf-8?B?aGdBWlZHN3pHVm9YSWZVaFZMREFKUzBEUTJRM1o0LzZ3Q3l6Q0tzV29zYVNZ?=
- =?utf-8?B?emdIYkE3OGtNUEl5eWF2MzdtRDh4bzBubjIxcjJaTExOaWRGQi9GeWJoVmEy?=
- =?utf-8?B?akJobzJ6V2ZaalIzL2hEKzh4d0tvWEFUMDYxcE9VZGEzSE53SVQ3TTNqTWRW?=
- =?utf-8?B?a242aHRzblFNTjJkRmpjYjZ0eW9sdWNUb0plb1VZQ3FLV0NrWHZhMjlUMW1J?=
- =?utf-8?B?b2RaeENOajFYTUVJWkgrNUFrNEhnSFQxeVhDZ3pLSTRqbzBlM0ZWNWN6Qk9x?=
- =?utf-8?B?SVRZZkNrWFN4Zmg1UEFTTlAwRWdTZW1nQy9tSlZjTDdrWHMvaXVRSExOOVA1?=
- =?utf-8?B?U3ZPMVFJc3dkNTllTGdzTEpWS3ltQ09vbWZKVzJTUFdZTFg4ZWEvZU5mNlBo?=
- =?utf-8?B?SWZacENZdTN4TFNhNG5zWTZpckFkQkw1RFR1ejJ0ZDZIWlJhV1pjSExSeEhF?=
- =?utf-8?B?YUxiblFuVnIvY3d3Z2JGSkdoTzRRSTdzeXhHdTVVbVZEcE5aVlMxeE1Ua2lN?=
- =?utf-8?B?Nkp4QVhTZ0VWTzd6ODVVZU1kTGlmQ3hkZ1YzVGloYy9aNXJWWXFNZkhXazVP?=
- =?utf-8?B?Rk5LdDhXRXdtcUVmcTRwSkVkUERhNlNmcU9Ha0NLNkJ1Y24waVBMbTY2eVlS?=
- =?utf-8?B?NXdXWWhjOGJhM29rbzdBTitiUG5vS1FxMXg4cy9Nck9DYnk3YnBKSThxS0NO?=
- =?utf-8?B?cGlFeEpXUmNTUkNFbCtKT3hrQU14dXRHM05aWVFYc2F4enhwWnpMQjd1VnZo?=
- =?utf-8?B?RVcxcHI2YzhLelRuKzV3c3dEVDg5a2pnQ2N4Y3h5OFR2ZElMRFhXLzFIdmlF?=
- =?utf-8?B?Yk9CN2hheEtnYzZteEdZYnRUOTEyd0IwYmkxR3RqVXNEdnc3b0JXSkJjOTFI?=
- =?utf-8?B?ZVlJRk5CYS9WTFdzZHZaSkxJdVdCTVZ5elFoWTQ5ZmZ2dVNhY2FiTnBWZktJ?=
- =?utf-8?B?dFJkcGE2UFYzdlJHdEZ6VVBJNk1FK1F6SHg5c2pGQ3VxSG1mQlVISTNITE5J?=
- =?utf-8?B?Y2x6ZFNNcjBZNWcvdy9OeDVEK1ppTmxyaW1SaUwvT0M5VzZzZTdPbDNxcGV0?=
- =?utf-8?B?REtWYWlvMW5hU1B3T0htMk1leEc0Y3UxQ0FGOVgwSGxENjRVTS8vSjYzVlhN?=
- =?utf-8?B?czJYNElQTnNLNnh4OTNuSk5KRVVnV1ErMEpDMlNIV2M0UWpCbUk3Mm0wQmZn?=
- =?utf-8?B?dmVTa1MwbXY4SGNtcjhDRTBGRExsS2Z2aENQclZlSDdHWUp1QmU2Rm5IQm9k?=
- =?utf-8?B?VUVsZ3U4a2tVM01vNEJKZXdiMzVrbnUxQ3FOMWVqY1MyUDE1ZWVvQnp5NGsw?=
- =?utf-8?B?ZGtHRGp3ZUlCNVJKcmw3SjFMbU5EYjVmbHpSbG5xVDhoQ1drL0ZtUU5Va055?=
- =?utf-8?B?eU5IYUc2QWZucWFvb3d4YUhFOHlHRUpDcXpER0ZNYXJOaWZVUjcrNFFXUHJh?=
- =?utf-8?B?ZSsrYUNiLysxUjJHVC9oMG9JajhUSGdMc1l2V1ArUC9RKzJBSkpFTkw3SElj?=
- =?utf-8?B?S0JvNS9BNjFncWtrZmVZcEJJN1FoaHRNaTE5OWdhUUxESk5zdzZkbmx5V2pk?=
- =?utf-8?B?ZEtjYzBiNXIrVGx1WGhjT1pSeExDWXZ2WktZcWNSQk0vOFg1T3dueGR1RE9N?=
- =?utf-8?Q?vvNNoQEk1jUaCFKvcsv3TAg+RpCBSuiVOgy+kWi?=
-Content-ID: <9527976352521042B6E4A04A608B8B9E@namprd11.prod.outlook.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.20; Wed, 28 Jul
+ 2021 15:17:55 +0000
+Received: from CO1NAM11FT005.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:b5:cafe::2f) by MW4PR03CA0276.outlook.office365.com
+ (2603:10b6:303:b5::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4352.29 via Frontend
+ Transport; Wed, 28 Jul 2021 15:17:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT005.mail.protection.outlook.com (10.13.174.147) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4373.18 via Frontend Transport; Wed, 28 Jul 2021 15:17:54 +0000
+Received: from localhost.localdomain.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Wed, 28 Jul 2021 10:17:53 -0500
+From: Luben Tuikov <luben.tuikov@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amd/pm: Fix a bug in semaphore double-lock
+Date: Wed, 28 Jul 2021 11:17:40 -0400
+Message-ID: <20210728151740.100794-1-luben.tuikov@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4007.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77373543-5365-4973-81d8-08d951d9edad
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2021 15:11:08.6040 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lmhwHxjfk8eSsmOPXaYMB95ZXQ9/yy/u3lwGWNrxXVuAzZofUW4f4XFlj0nlHno4FOvvMaMf7BYuNFfHQa5dpMgdjprC054xj/MCDlkhbLk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5168
-X-Mailman-Approved-At: Wed, 28 Jul 2021 17:52:02 +0000
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 14dbcc89-99f5-4d3c-dc3b-08d951dadf8d
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3620:
+X-Microsoft-Antispam-PRVS: <BN8PR12MB3620C97AD9BAAC1E2C393A4499EA9@BN8PR12MB3620.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: IIRW8CEXIZpbMcbXMNRmD4ONyujFEBR300Zy54s4Th9Zd2rXsqsMBGi0MysApP3zZOtgDw8P1Is37QSGP/AsbRUQFyPAlG86QbEv/s3dPj/uGlDjRLd521iWDp7cQoU3DKXirl2st5MlK0LdoRphWStN3HyYhuh6dcqr4e7gm4QHd2fYd1Sr3ExOXMqQeUker7CWxvqVCzYbVEcOKV3zICLjKWgNpsPEfY6UnzVqQdgz5l+s+Is3C+91Ix5vC5OTunmT6TDf1b/xBWeUFLf5K0FHLVPO5bNkZdK1hLy157pqlR/QOGpmZCOhdA2DdlGtHSCYzjXr/fwckU4I5wonP7V2qiPW20sJcekk5aywYuLr7qnG9TqwsrSDf9U8XctHJHfehufmReGF2/XjzdqrwoJs5eSTHl8PRak5bJmJ2BagN/G8ETo0z4oNn02LQCF32zxPHY+LpFHeylRU4WVAMHtHjH7RNUCqb3JFPu+ra3NaehYG+E3TENh51jd4Dc4n1OwQ5lQErp6YaMpGnNk7dlPXfbMd8qn4szwJQghSKIpepDtusWxiecgKvVVAJLd+XKDnlxiX8pTosmm3WZdsop4/A+zOeoVEeoB08Kkm2OSD0ZkJUInlrbelpvB11j2iBoFTeIM5fZqgOqLt3COZt8XgE2f7GmzguEJR08XhDNh3J+T6chirveN2znNyFNyDP7EKw2ot42EjY+VrJxjxmro+h6E95nOWtyeY5EbYYBQ=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(136003)(396003)(39860400002)(376002)(346002)(36840700001)(46966006)(336012)(86362001)(70586007)(1076003)(36860700001)(7696005)(70206006)(36756003)(6916009)(83380400001)(44832011)(82310400003)(8676002)(16526019)(8936002)(2616005)(2906002)(82740400003)(316002)(26005)(47076005)(478600001)(186003)(356005)(5660300002)(81166007)(6666004)(54906003)(426003)(4326008)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jul 2021 15:17:54.3453 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14dbcc89-99f5-4d3c-dc3b-08d951dadf8d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT005.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3620
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,191 +98,50 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, liviu.dudau@arm.com, stefan@agner.ch,
- amd-gfx@lists.freedesktop.org, anitha.chrisanthus@intel.com,
- patrik.r.jakobsson@gmail.com, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, daniel@ffwll.ch, edmund.j.dea@intel.com,
- s.hauer@pengutronix.de, alison.wang@nxp.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, dri-devel@lists.freedesktop.org, sean@poorly.run,
- linux-arm-kernel@lists.infradead.org, tomba@kernel.org, bbrezillon@kernel.org,
- jyri.sarha@iki.fi, Nicolas.Ferre@microchip.com, christian.koenig@amd.com,
- robdclark@gmail.com, kernel@pengutronix.de, alexander.deucher@amd.com,
- shawnguo@kernel.org, brian.starkey@arm.com
+Cc: Alex Deucher <Alexander.Deucher@amd.com>,
+ Luben Tuikov <luben.tuikov@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Changfeng Zhu <Changfeng.Zhu@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 7/28/21 7:00 AM, Sam Ravnborg wrote:
-> [You don't often get email from sam@ravnborg.org. Learn why this is important at http://aka.ms/LearnAboutSenderIdentification.]
-> 
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> 
-> Hi Dan,
-> 
-> I hope you can fine to test this patch from Thomas.
-> If this works then we can forget about my attempt to do the same.
+Fix a bug in smu_cmn_send_msg_without_waiting() in
+that this function does not need to take the
+smu->message_lock mutex in order to send a message
+down to the SMU. The mutex is acquired by the
+caller of this function instead.
 
-I'll test this as soon as I can and let you know.
+Cc: Alex Deucher <Alexander.Deucher@amd.com>
+Cc: Changfeng Zhu <Changfeng.Zhu@amd.com>
+Cc: Huang Rui <ray.huang@amd.com>
+Fixes: e070ba49f3a764 ("drm/amd/pm: Fix a bug communicating with the SMU (v5)")
+---
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-Thanks,
-Dan
-> 
-> Hi Thomas,
-> 
-> IRQ_NOTCONNECTED check seems redundant, as mentioned in another patch
-> already.
-> 
-> With that considered:
-> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-> 
-> We shall wait for testing from Dan before you apply it as I had made a
-> similar patch that failed to work. I assume my patch was buggy but I
-> prefer to be sure.
-> 
->          Sam
-> 
-> On Tue, Jul 27, 2021 at 08:27:10PM +0200, Thomas Zimmermann wrote:
->> Drop the DRM IRQ midlayer in favor of Linux IRQ interfaces. DRM's
->> IRQ helpers are mostly useful for UMS drivers. Modern KMS drivers
->> don't benefit from using it. DRM IRQ callbacks are now being called
->> directly or inlined.
->>
->> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->> ---
->>   drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c | 85 ++++++++++++--------
->>   1 file changed, 52 insertions(+), 33 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
->> index f09b6dd8754c..cfa8c2c9c8aa 100644
->> --- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
->> +++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
->> @@ -22,7 +22,6 @@
->>   #include <drm/drm_fb_helper.h>
->>   #include <drm/drm_gem_cma_helper.h>
->>   #include <drm/drm_gem_framebuffer_helper.h>
->> -#include <drm/drm_irq.h>
->>   #include <drm/drm_probe_helper.h>
->>   #include <drm/drm_vblank.h>
->>
->> @@ -557,6 +556,56 @@ static irqreturn_t atmel_hlcdc_dc_irq_handler(int irq, void *data)
->>        return IRQ_HANDLED;
->>   }
->>
->> +static void atmel_hlcdc_dc_irq_postinstall(struct drm_device *dev)
->> +{
->> +     struct atmel_hlcdc_dc *dc = dev->dev_private;
->> +     unsigned int cfg = 0;
->> +     int i;
->> +
->> +     /* Enable interrupts on activated layers */
->> +     for (i = 0; i < ATMEL_HLCDC_MAX_LAYERS; i++) {
->> +             if (dc->layers[i])
->> +                     cfg |= ATMEL_HLCDC_LAYER_STATUS(i);
->> +     }
->> +
->> +     regmap_write(dc->hlcdc->regmap, ATMEL_HLCDC_IER, cfg);
->> +}
->> +
->> +static void atmel_hlcdc_dc_irq_disable(struct drm_device *dev)
->> +{
->> +     struct atmel_hlcdc_dc *dc = dev->dev_private;
->> +     unsigned int isr;
->> +
->> +     regmap_write(dc->hlcdc->regmap, ATMEL_HLCDC_IDR, 0xffffffff);
->> +     regmap_read(dc->hlcdc->regmap, ATMEL_HLCDC_ISR, &isr);
->> +}
->> +
->> +static int atmel_hlcdc_dc_irq_install(struct drm_device *dev, unsigned int irq)
->> +{
->> +     int ret;
->> +
->> +     if (irq == IRQ_NOTCONNECTED)
->> +             return -ENOTCONN;
->> +
->> +     atmel_hlcdc_dc_irq_disable(dev);
->> +
->> +     ret = request_irq(irq, atmel_hlcdc_dc_irq_handler, 0, dev->driver->name, dev);
->> +     if (ret)
->> +             return ret;
->> +
->> +     atmel_hlcdc_dc_irq_postinstall(dev);
->> +
->> +     return 0;
->> +}
->> +
->> +static void atmel_hlcdc_dc_irq_uninstall(struct drm_device *dev)
->> +{
->> +     struct atmel_hlcdc_dc *dc = dev->dev_private;
->> +
->> +     atmel_hlcdc_dc_irq_disable(dev);
->> +     free_irq(dc->hlcdc->irq, dev);
->> +}
->> +
->>   static const struct drm_mode_config_funcs mode_config_funcs = {
->>        .fb_create = drm_gem_fb_create,
->>        .atomic_check = drm_atomic_helper_check,
->> @@ -647,7 +696,7 @@ static int atmel_hlcdc_dc_load(struct drm_device *dev)
->>        drm_mode_config_reset(dev);
->>
->>        pm_runtime_get_sync(dev->dev);
->> -     ret = drm_irq_install(dev, dc->hlcdc->irq);
->> +     ret = atmel_hlcdc_dc_irq_install(dev, dc->hlcdc->irq);
->>        pm_runtime_put_sync(dev->dev);
->>        if (ret < 0) {
->>                dev_err(dev->dev, "failed to install IRQ handler\n");
->> @@ -676,7 +725,7 @@ static void atmel_hlcdc_dc_unload(struct drm_device *dev)
->>        drm_mode_config_cleanup(dev);
->>
->>        pm_runtime_get_sync(dev->dev);
->> -     drm_irq_uninstall(dev);
->> +     atmel_hlcdc_dc_irq_uninstall(dev);
->>        pm_runtime_put_sync(dev->dev);
->>
->>        dev->dev_private = NULL;
->> @@ -685,40 +734,10 @@ static void atmel_hlcdc_dc_unload(struct drm_device *dev)
->>        clk_disable_unprepare(dc->hlcdc->periph_clk);
->>   }
->>
->> -static int atmel_hlcdc_dc_irq_postinstall(struct drm_device *dev)
->> -{
->> -     struct atmel_hlcdc_dc *dc = dev->dev_private;
->> -     unsigned int cfg = 0;
->> -     int i;
->> -
->> -     /* Enable interrupts on activated layers */
->> -     for (i = 0; i < ATMEL_HLCDC_MAX_LAYERS; i++) {
->> -             if (dc->layers[i])
->> -                     cfg |= ATMEL_HLCDC_LAYER_STATUS(i);
->> -     }
->> -
->> -     regmap_write(dc->hlcdc->regmap, ATMEL_HLCDC_IER, cfg);
->> -
->> -     return 0;
->> -}
->> -
->> -static void atmel_hlcdc_dc_irq_uninstall(struct drm_device *dev)
->> -{
->> -     struct atmel_hlcdc_dc *dc = dev->dev_private;
->> -     unsigned int isr;
->> -
->> -     regmap_write(dc->hlcdc->regmap, ATMEL_HLCDC_IDR, 0xffffffff);
->> -     regmap_read(dc->hlcdc->regmap, ATMEL_HLCDC_ISR, &isr);
->> -}
->> -
->>   DEFINE_DRM_GEM_CMA_FOPS(fops);
->>
->>   static const struct drm_driver atmel_hlcdc_dc_driver = {
->>        .driver_features = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
->> -     .irq_handler = atmel_hlcdc_dc_irq_handler,
->> -     .irq_preinstall = atmel_hlcdc_dc_irq_uninstall,
->> -     .irq_postinstall = atmel_hlcdc_dc_irq_postinstall,
->> -     .irq_uninstall = atmel_hlcdc_dc_irq_uninstall,
->>        DRM_GEM_CMA_DRIVER_OPS,
->>        .fops = &fops,
->>        .name = "atmel-hlcdc",
->> --
->> 2.32.0
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+index a0e2111eb7838c..415be74df28c7f 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+@@ -259,7 +259,6 @@ int smu_cmn_send_msg_without_waiting(struct smu_context *smu,
+ 	if (smu->adev->no_hw_access)
+ 		return 0;
+ 
+-	mutex_lock(&smu->message_lock);
+ 	reg = __smu_cmn_poll_stat(smu);
+ 	res = __smu_cmn_reg2errno(smu, reg);
+ 	if (reg == SMU_RESP_NONE ||
+@@ -269,7 +268,6 @@ int smu_cmn_send_msg_without_waiting(struct smu_context *smu,
+ 	__smu_cmn_send_msg(smu, msg_index, param);
+ 	res = 0;
+ Out:
+-	mutex_unlock(&smu->message_lock);
+ 	return res;
+ }
+ 
+-- 
+2.32.0
 
 _______________________________________________
 amd-gfx mailing list
