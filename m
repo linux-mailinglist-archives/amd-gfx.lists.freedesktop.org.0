@@ -2,54 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 208B73D8EE4
-	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jul 2021 15:22:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0442B3D8F01
+	for <lists+amd-gfx@lfdr.de>; Wed, 28 Jul 2021 15:27:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F52D6E051;
-	Wed, 28 Jul 2021 13:21:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A8C56E1D2;
+	Wed, 28 Jul 2021 13:27:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com
- [IPv6:2607:f8b0:4864:20::235])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0DE56E051
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jul 2021 13:21:57 +0000 (UTC)
-Received: by mail-oi1-x235.google.com with SMTP id o20so3647499oiw.12
- for <amd-gfx@lists.freedesktop.org>; Wed, 28 Jul 2021 06:21:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Qj3Fqf0U5fEA/MhT4e8HiR/Ogs65SJFFl/Qc+nbEe3U=;
- b=OdgWrnxh440UN3g6KWt0T6OQat2M4coRHUH7KMBu2HPvWGykm4IvjXVKzJgWylP1Jw
- l9DW3BlzC/MZ9lT/zyJQinQ7lXyUMuntnFXDbiXtfitj0lZWtwFgsmV4U7kmyQRUAYdk
- NTOM2s6qXXBCDCsxDLKpXLAkXc6zSgchPS1m9irUurLcB1rQ33JcN+7mJcC3j9FjKjjT
- 627QAM9vDELN1zGWXvPa99qCcklOxRbv1Iurq2BMJ+vwvEUGaai69jD/s1ArUBpDx2hW
- DOx3LjqVRsaAnD7KSUAtlAaQ6ngQ9+wJRzi87KBFaamqLqgbfVKol9HhCgvo1EbZYw2M
- V7TQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Qj3Fqf0U5fEA/MhT4e8HiR/Ogs65SJFFl/Qc+nbEe3U=;
- b=SptLYBeUMR5ac/WNXjLFhDZKLWDtDZBrcDSnB6+eedZLRbUnansBg9Pyt2z/L0U6P1
- HDc92wqvN3L8Q4hCISGoeY97sOWLMRsqX31WdgnCQrX9CTID5De7tHKBQv2KxuBqLLlK
- tFWxeykfWfGsVnkA6ccJLP1CGly1uL4SO7O05Tirkn2wKaQKdhJE7ZSN5md+RKMYzgfa
- yhY2ybW+akuIMneRz6ZFuUJULes/VgPyUNGLIgHhhCfWRDs0Ys7p7epF29mquovOgGN1
- Y541evN2zrmMb4eYhXlH/9OTnKq8fYWZiFZKtofqnx2TSNJlPx3BoZrvFNUi9NOp5eFr
- EX4Q==
-X-Gm-Message-State: AOAM533ibk0AR3fx/iLiGymcJnFSA8UowlxjYPu4AISTbmHwuIjKXSyI
- X4/yay8iGOG3jg81d/9+H+2CJTEaHw04iecUI6k=
-X-Google-Smtp-Source: ABdhPJyc0gzgRvQ6absHeY7nl49MbdCdKtNoLEdSg+LPH3zzz0GTo+i7zt/zDpaVYQClnWm/dzSHtXv9j59m0ZfUV2g=
-X-Received: by 2002:a05:6808:1390:: with SMTP id
- c16mr18211214oiw.123.1627478517109; 
- Wed, 28 Jul 2021 06:21:57 -0700 (PDT)
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B76AB6E953;
+ Wed, 28 Jul 2021 13:26:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=wyV5oHahoyFyDlkMKSruinnsahdkugSgLawjHfbEEjQ=; b=CxvZX41K0o1QkS+QNIrwd0eOBe
+ mqQ6PrksWIat6lXJKZPun+q1pAOQx0xLcn0dXI0f5/QwQmDJVibY4qE3c7TAdHgsIiPO3KhQic7GW
+ 1eyfOJ6+e5m0vdD3PZ+UIsWjdf71Rv+qjxbud/TVWu09HUCIEgoxhatZ/TSoyrl9g8w0xVsK0qnJb
+ Ssgb2vj86C8FXbvbGsNNF9o/MH3FUfh7M9nUfPwhEPmwHvq/+B3ENaQ00GINALSLZBrB8jUNO3eAN
+ ZD343FSM3tMyDXd6949QP8wSOuEJ0mt327HB6lpEtnWhWjFhF6Z9hGOLbHanuC9ie9QiNGCSpAJVM
+ Xwq8/NVQ==;
+Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat
+ Linux)) id 1m8jWV-00G5AN-CH; Wed, 28 Jul 2021 13:23:16 +0000
+Date: Wed, 28 Jul 2021 14:22:59 +0100
+From: Christoph Hellwig <hch@infradead.org>
+To: Tom Lendacky <thomas.lendacky@amd.com>
+Subject: Re: [PATCH 02/11] x86/sev: Add an x86 version of prot_guest_has()
+Message-ID: <YQFaM7nOhD2d6SUQ@infradead.org>
+References: <cover.1627424773.git.thomas.lendacky@amd.com>
+ <b3e929a77303dd47fd2adc2a1011009d3bfcee20.1627424774.git.thomas.lendacky@amd.com>
 MIME-Version: 1.0
-References: <20210728063613.3334-1-Changfeng.Zhu@amd.com>
-In-Reply-To: <20210728063613.3334-1-Changfeng.Zhu@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 28 Jul 2021 09:21:46 -0400
-Message-ID: <CADnq5_N_bhbpi83Y3RSh_f3AcQmDzdfNTHCMDR5j44uVEjiKbg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: set default noretry=1 to fix kfd SVM issues
- for raven
-To: Changfeng <Changfeng.Zhu@amd.com>
+Content-Disposition: inline
+In-Reply-To: <b3e929a77303dd47fd2adc2a1011009d3bfcee20.1627424774.git.thomas.lendacky@amd.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ casper.infradead.org. See http://www.infradead.org/rpr.html
+X-Mailman-Approved-At: Wed, 28 Jul 2021 13:27:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,78 +49,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Yifan Zhang <Yifan1.Zhang@amd.com>, "Kuehling,
- Felix" <Felix.Kuehling@amd.com>, Huang Rui <Ray.Huang@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: linux-efi@vger.kernel.org, Brijesh Singh <brijesh.singh@amd.com>,
+ kvm@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ platform-driver-x86@vger.kernel.org, linux-s390@vger.kernel.org,
+ Andi Kleen <ak@linux.intel.com>, x86@kernel.org, amd-gfx@lists.freedesktop.org,
+ Ingo Molnar <mingo@redhat.com>, linux-graphics-maintainer@vmware.com,
+ Tianyu Lan <Tianyu.Lan@microsoft.com>, Borislav Petkov <bp@alien8.de>,
+ Andy Lutomirski <luto@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ kexec@lists.infradead.org, linux-kernel@vger.kernel.org,
+ iommu@lists.linux-foundation.org, linux-fsdevel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jul 28, 2021 at 2:36 AM Changfeng <Changfeng.Zhu@amd.com> wrote:
->
-> From: changzhu <Changfeng.Zhu@amd.com>
->
-> From: Changfeng <Changfeng.Zhu@amd.com>
->
-> It can't find any issues with noretry=1 except two SVM migrate issues.
-> Oppositely, it will cause most SVM cases fail with noretry=0.
-> The two SVM migrate issues also happen with noretry=0. So it can set
-> default noretry=1 for raven firstly to fix most SVM fails.
->
-> Change-Id: Idb5cb3c1a04104013e4ab8aed2ad4751aaec4bbc
-> Signed-off-by: Changfeng <Changfeng.Zhu@amd.com>
+On Tue, Jul 27, 2021 at 05:26:05PM -0500, Tom Lendacky via iommu wrote:
+> Introduce an x86 version of the prot_guest_has() function. This will be
+> used in the more generic x86 code to replace vendor specific calls like
+> sev_active(), etc.
+> 
+> While the name suggests this is intended mainly for guests, it will
+> also be used for host memory encryption checks in place of sme_active().
+> 
+> The amd_prot_guest_has() function does not use EXPORT_SYMBOL_GPL for the
+> same reasons previously stated when changing sme_active(), sev_active and
 
-I would suggest testing this on a wide variety of raven systems,
-including some OEM ones if possible.  Last time we did this it caused
-tons of stability issues with raven systems.
-
-Alex
-
-
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 15 ++++++++-------
->  1 file changed, 8 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-> index 09edfb64cce0..d7f69dbd48e6 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-> @@ -606,19 +606,20 @@ void amdgpu_gmc_noretry_set(struct amdgpu_device *adev)
->                  * noretry = 0 will cause kfd page fault tests fail
->                  * for some ASICs, so set default to 1 for these ASICs.
->                  */
-> +       case CHIP_RAVEN:
-> +               /*
-> +                * TODO: Raven currently can fix most SVM issues with
-> +                * noretry =1. However it has two issues with noretry = 1
-> +                * on kfd migrate tests. It still needs to root causes
-> +                * with these two migrate fails on raven with noretry = 1.
-> +                */
->                 if (amdgpu_noretry == -1)
->                         gmc->noretry = 1;
->                 else
->                         gmc->noretry = amdgpu_noretry;
->                 break;
-> -       case CHIP_RAVEN:
->         default:
-> -               /* Raven currently has issues with noretry
-> -                * regardless of what we decide for other
-> -                * asics, we should leave raven with
-> -                * noretry = 0 until we root cause the
-> -                * issues.
-> -                *
-> +               /*
->                  * default this to 0 for now, but we may want
->                  * to change this in the future for certain
->                  * GPUs as it can increase performance in
-> --
-> 2.17.1
->
-> _______________________________________________
-> amd-gfx mailing list
-> amd-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/amd-gfx
+None of that applies here as none of the callers get pulled into
+random macros.  The only case of that is sme_me_mask through
+sme_mask, but that's not something this series replaces as far as I can
+tell.
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
