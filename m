@@ -2,43 +2,67 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BD713DB0AC
-	for <lists+amd-gfx@lfdr.de>; Fri, 30 Jul 2021 03:39:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 379893DABBC
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Jul 2021 21:18:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 084256EEAA;
-	Fri, 30 Jul 2021 01:38:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0CBA6EE31;
+	Thu, 29 Jul 2021 19:18:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from fanzine.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED43F6EE2D;
- Thu, 29 Jul 2021 19:01:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
- s=20170329; 
- h=MIME-Version:Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID;
- bh=iEnu2V13dWd3Tk47Au3q+xCArofi4eI3XAUeIwTJOvs=; 
- b=Bq6P3gjfltLAMg8g14Q1pHEmF2If2n8x3JwoczYJUXnz4MWIU9UqEiwFINnS/KtxkXX21rkziMlpGqYzcyAj+OgmcHKVWGhgIK01xwAbujqghtArDEldpi1+2L5lxX+9FerK2IuYa+IBWb2b+dzrhMsDm/gsbZY2rmhRiSRmeemyM5TMOpl8DwRIi0cSpo0xvqZOU/VmJTK769RUM9F0bCXumkDqJE+UMhb+T10e0YlHA90Ds0sfbOfnf/lUQjrtWYdEXgTBZUEoGwSDNDadOdOpK6F0cd190X6k01MC825KE10HBYmLpMmjqvdbTbRnFmfsUS7S0415lpcePyukyA==;
-Received: from 152.red-88-9-105.dynamicip.rima-tde.net ([88.9.105.152]
- helo=[192.168.2.252]) by fanzine.igalia.com with esmtpsa 
- (Cipher TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim)
- id 1m9BHs-000134-IJ; Thu, 29 Jul 2021 21:01:44 +0200
-Message-ID: <c002b2564f430cea5fae1270c85ac471bf53afb7.camel@igalia.com>
-Subject: Re: [Mesa-dev] Requests For Proposals for hosting XDC 2022 are now
- open
-From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias@igalia.com>
-To: "events@lists.x.org" <events@lists.x.org>, 
- "xorg-devel@lists.freedesktop.org"
- <xorg-devel@lists.freedesktop.org>, wayland-devel@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, mesa-dev@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org
-Date: Thu, 29 Jul 2021 21:01:34 +0200
-In-Reply-To: <f5ee80e067e79dff0b2d65c67dbb83b9be70014f.camel@igalia.com>
-References: <95ec2c414f7dd1ea5685184435b95430e1709047.camel@igalia.com>
- <f5ee80e067e79dff0b2d65c67dbb83b9be70014f.camel@igalia.com>
-User-Agent: Evolution 3.40.3 (3.40.3-1.fc34) 
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DD0B6EE31;
+ Thu, 29 Jul 2021 19:18:33 +0000 (UTC)
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id DE36B1FD6C;
+ Thu, 29 Jul 2021 19:18:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1627586311; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ARi7fzuP6PspqOeeSxIq7f++s/zF6k625nFKZfwFtBY=;
+ b=KsG6VOhcgqdVeyqYhniNovQGNCc1rM1BVsnW7Tu3idQfSVON7/FrE7sBEhzvCfDf5fPPou
+ r8p2JRdLAGbxUw6iboJ0UMMTNFpnqkV584up9x5KvJrd4nOkn3ZJ5bGxO0DVSI/c7CtBdV
+ kM73nyRjX+p30DK+2gYtiSeONxj9sHw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1627586311;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=ARi7fzuP6PspqOeeSxIq7f++s/zF6k625nFKZfwFtBY=;
+ b=PnOg9mOoda2BHjNEHphWHZ3PsVj5irQTGyAoXXZ+3hb2iy0d7cMsljAzjdkoG2nRRe8TQT
+ UHhhtCs/na9gD1AQ==
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id 159FC13756;
+ Thu, 29 Jul 2021 19:18:31 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap1.suse-dmz.suse.de with ESMTPSA id umyQAwf/AmFiaAAAGKfGzw
+ (envelope-from <tzimmermann@suse.de>); Thu, 29 Jul 2021 19:18:31 +0000
+Subject: Re: [PATCH 03/14] drm/atmel-hlcdc: Convert to Linux IRQ interfaces
+To: Sam Ravnborg <sam@ravnborg.org>, Dan.Sneddon@microchip.com
+References: <20210727182721.17981-4-tzimmermann@suse.de>
+ <YQFi96yaYbTG4OO7@ravnborg.org>
+ <e28b1a2f-015c-c81b-eb64-5323df9ed35d@microchip.com>
+ <YQF7bKyeup8n3awU@ravnborg.org>
+ <3d2f6b84-dd07-d925-a8b8-2bfd5fc736d9@microchip.com>
+ <YQGdxtV0BGZ8VOpm@ravnborg.org>
+ <2f04b986-6b41-62f9-1587-23818b841655@suse.de>
+ <793514f6-0270-771b-fe36-f82edf4e5fd2@microchip.com>
+ <YQGrMH36Udg3eKQY@ravnborg.org>
+ <dcc5cd1e-d0de-bdda-32f3-623b85085756@microchip.com>
+ <YQG5+/9lPexU3Dn3@ravnborg.org>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <1df22406-2e91-c15a-49dc-1cf33522a142@suse.de>
+Date: Thu, 29 Jul 2021 21:18:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 30 Jul 2021 01:38:53 +0000
+In-Reply-To: <YQG5+/9lPexU3Dn3@ravnborg.org>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,125 +74,162 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "board@foundation.x.org" <board@foundation.x.org>
-Content-Type: multipart/mixed; boundary="===============0183962569=="
+Cc: airlied@linux.ie, liviu.dudau@arm.com, stefan@agner.ch,
+ amd-gfx@lists.freedesktop.org, anitha.chrisanthus@intel.com,
+ patrik.r.jakobsson@gmail.com, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, daniel@ffwll.ch, edmund.j.dea@intel.com,
+ s.hauer@pengutronix.de, alison.wang@nxp.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, dri-devel@lists.freedesktop.org, sean@poorly.run,
+ linux-arm-kernel@lists.infradead.org, tomba@kernel.org, bbrezillon@kernel.org,
+ jyri.sarha@iki.fi, Nicolas.Ferre@microchip.com, christian.koenig@amd.com,
+ robdclark@gmail.com, kernel@pengutronix.de, alexander.deucher@amd.com,
+ shawnguo@kernel.org, brian.starkey@arm.com
+Content-Type: multipart/mixed; boundary="===============1405871058=="
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1405871058==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="7KdZdn9qKKUSuKkMys46FDSsbCZWJFWg8"
 
---===============0183962569==
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-JoibIQI5zrLH+tK95jc7"
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--7KdZdn9qKKUSuKkMys46FDSsbCZWJFWg8
+Content-Type: multipart/mixed; boundary="k8RKRzHP1SDzHIj8TPo5gmhRo3stMnzU2";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Sam Ravnborg <sam@ravnborg.org>, Dan.Sneddon@microchip.com
+Cc: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
+ christian.koenig@amd.com, liviu.dudau@arm.com, brian.starkey@arm.com,
+ bbrezillon@kernel.org, Nicolas.Ferre@microchip.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, stefan@agner.ch,
+ alison.wang@nxp.com, patrik.r.jakobsson@gmail.com,
+ anitha.chrisanthus@intel.com, robdclark@gmail.com, edmund.j.dea@intel.com,
+ sean@poorly.run, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, jyri.sarha@iki.fi, tomba@kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org
+Message-ID: <1df22406-2e91-c15a-49dc-1cf33522a142@suse.de>
+Subject: Re: [PATCH 03/14] drm/atmel-hlcdc: Convert to Linux IRQ interfaces
+References: <20210727182721.17981-4-tzimmermann@suse.de>
+ <YQFi96yaYbTG4OO7@ravnborg.org>
+ <e28b1a2f-015c-c81b-eb64-5323df9ed35d@microchip.com>
+ <YQF7bKyeup8n3awU@ravnborg.org>
+ <3d2f6b84-dd07-d925-a8b8-2bfd5fc736d9@microchip.com>
+ <YQGdxtV0BGZ8VOpm@ravnborg.org>
+ <2f04b986-6b41-62f9-1587-23818b841655@suse.de>
+ <793514f6-0270-771b-fe36-f82edf4e5fd2@microchip.com>
+ <YQGrMH36Udg3eKQY@ravnborg.org>
+ <dcc5cd1e-d0de-bdda-32f3-623b85085756@microchip.com>
+ <YQG5+/9lPexU3Dn3@ravnborg.org>
+In-Reply-To: <YQG5+/9lPexU3Dn3@ravnborg.org>
 
-
---=-JoibIQI5zrLH+tK95jc7
-Content-Type: text/plain; charset="UTF-8"
+--k8RKRzHP1SDzHIj8TPo5gmhRo3stMnzU2
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
-Remember before enjoying your holiday that the deadline for XDC 2022
-proposals is *September 1st, 2021* :-)
+Hi
 
-Feel free to submit your proposal before, so we can give you early
-feedback on it!
-
-Sam
-
-On Thu, 2021-07-01 at 18:14 +0200, Samuel Iglesias Gons=C3=A1lvez wrote:
-> This is a reminder that the call for proposals for hosting XDC 2022
-> period finishes in two months.
+Am 28.07.21 um 22:11 schrieb Sam Ravnborg:
+> Hi Dan,
 >=20
-> Be sure to prepare your submission before you leave on holiday!
+>>>
+>>> I think I got it - we need to set irq_enabled to true.
+>>> The documentation says so:
+>>> "
+>>>            * @irq_enabled:
+>>>            *
+>>>            * Indicates that interrupt handling is enabled, specifical=
+ly vblank
+>>>            * handling. Drivers which don't use drm_irq_install() need=
+ to set this
+>>>            * to true manually.
+>>> "
+>>>
+>>> Can you try to add the following line:
+>>>
+>>>
+>>> +static int atmel_hlcdc_dc_irq_install(struct drm_device *dev, unsign=
+ed int irq)
+>>> +{
+>>> +       int ret;
+>>> +
+>>> +       if (irq =3D=3D IRQ_NOTCONNECTED)
+>>> +               return -ENOTCONN;
+>>> +
+>>>
+>>>           dev->irq_enabled =3D true;                <=3D THIS LINE
+>>>
+>>>
+>>> +       atmel_hlcdc_dc_irq_disable(dev);
+>>> +
+>>> +       ret =3D request_irq(irq, atmel_hlcdc_dc_irq_handler, 0, dev->=
+driver->name, dev);
+>>> +       if (ret)
+>>> +               return ret;
+>>>
+>>> I hope this fixes it.
+>>
+>> It does!  With the irq_enabled line added everything is looking good.
+
+Are you sure, you're testing with the latest drm-misc-next or drm-tip?=20
+Because using irq_enabled is deprecated and the flag was recently=20
+replaced by commit 1e4cd78ed493 ("drm: Don't test for IRQ support in=20
+VBLANK ioctls").
+
+Best regards
+Thomas
+
 >=20
-> Sam
+> Great, thanks for testing.
 >=20
-> On Thu, 2021-05-20 at 12:15 +0200, Samuel Iglesias Gons=C3=A1lvez wrote:
-> > Hello everyone!
-> >=20
-> > The X.org board is soliciting proposals to host XDC in 2022. Since
-> > XDC 2021 is being held in Europe this year (although virtually),
-> > we've
-> > decided to host in North America. However, the board is open to
-> > other
-> > locations, especially if there's an interesting co-location with
-> > another conference.
-> >=20
-> > Of course though, due to the ongoing COVID-19 pandemic it's not yet
-> > clear whether or not it will be possible to host XDC 2022 in
-> > person,
-> > although is seems very likely. Because of this, we would like to
-> > make it clear that sponsors should prepare for both the possibility
-> > of an in person conference, and the possibility of a virtual
-> > conference. We will work with organizers on coming up with a
-> > deadline for deciding whether or not we'll be going virtual, likely
-> > sometime around July 2022.
-> >=20
-> > If you're considering hosting XDC, we've assembled a wiki page with
-> > what's generally expected and needed:
-> >=20
-> > https://www.x.org/wiki/Events/RFP/
-> >=20
-> > When submitting your proposal, please make sure to include at least
-> > the
-> > key information about the potential location in question, possible
-> > dates along with estimated costs. Proposals can be submitted to
-> > board
-> > at foundation.x.org until the deadline of *September 1st, 2021*.=C2=A0
-> >=20
-> > Additionally, an quirk early heads-up to the board if you're
-> > considering hosting would be appreciated, in case we need to adjust
-> > the
-> > schedule a bit. Also, earlier is better since there generally will
-> > be
-> > a
-> > bit of Q&A with organizers.
-> >=20
-> > And if you just have some questions about what organizing XDC
-> > entails,
-> > please feel free to chat with previous organizers, or someone from
-> > the
-> > board.
-> >=20
-> > Thanks,
-> >=20
-> > Sam
-> >=20
-> > _______________________________________________
-> > mesa-dev mailing list
-> > mesa-dev@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/mesa-dev
+> Thomas - I assume you will do a re-spin and there is likely some fixes
+> for the applied IRQ conversions too.
 >=20
-> _______________________________________________
-> mesa-dev mailing list
-> mesa-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
+> Note - irq_enabled must be cleared if request_irq fails. I did not
+> include this in the testing here.
+>=20
+> 	Sam
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
 
---=-JoibIQI5zrLH+tK95jc7
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+--k8RKRzHP1SDzHIj8TPo5gmhRo3stMnzU2--
+
+--7KdZdn9qKKUSuKkMys46FDSsbCZWJFWg8
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAmEC+w4ACgkQf/S6MvF9
-w0NE9RAAhftJFlMlh6LVSXN2Ez53ZwKl30J9rV+EJLEze+/nkNg/vXJbeaAfjOGC
-dgIVbn5bBylrv3T3tYnwAO4VtbuLwu016c1OTpcl4bqZ1c73Uj1WKYQ+yP0LXNMV
-HFVk1kI2cBdoF791QevvAp872E2xyyH2Zm9EW0zqoNJuktm31yLyW2FIC3snBcQi
-P0saE+SEJKtg1RQuKlGow5JUbH6kmsXno8aY6p/vXE5BIwAZX7CCqXPzDYj+SXgf
-fSbi0jEJneL/GhRGHcv3HbPCCTvx8g/kBkXOmIQe2yfYBCwIIG5x0UYqO7f6jWnN
-tUgTD2iCyB2rMbK4ODIY4XPUYa4n2fBCRbJ27WngBMjejuiRfDvH8bsWJVafkOJV
-likkzpY1sbrVcocP5vYgHObsOIBFE72aGZWHNOR310Zqacd/bLVM78E9crHT7FSw
-SJlFIBOywh6EED0aCoc+1/nJ7ta9KDrVrSOFoFa0WWK6QKaqpEiyLfwEoU3zizKi
-shFPfFPpvL18GDWWGah12qntQbx0TVx8/bRAwoqusVw6A65V6SebeEBxhCYMzcS3
-OJDMhH7Jcw13P6O/w52Ox2sRO9u3ANYNz8fbujE2cmQ/8WQqvBbU/m8M19/Bh8BO
-EeCRGMQsCN84+r8nVS+0dDmwe85Weu0Elbkrt2mZvJ4WyWjZOVg=
-=rA1c
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmEC/wYFAwAAAAAACgkQlh/E3EQov+B2
+7Q//UVCwvB5dM0KBGIxYZP4EX3WE120wH55oAGYqSC297HYUYtiK0ao/Tnl3VjwrBTpVtys/tufE
+Ytjsrbt3HqISjsU+ii3u87Ep/0p6Fd6RfqjH8JzzRSt8COjfNPdAGmlyugZvS0fwfywgZw/4FCP6
+dg0Jhzft+YzF3XsF8I3/2C+xOGlV/85T2OY+WHNLjXfrD8Q4YaK+0Kd05P/HIIJscHeR/ttRsmdB
+WyxCwb1wiYYfNb2lfet/slXQo5LqSSVZwsO06DDFxg6PvrhMls7mB+q8jZnsMJ3llI7NQm9UXkn/
+Qy2fGTBQIcgI7n2avq7cBEwdRMupuqCli43/tk+TLGJuiKoa/dT8e88E+ktm6zCIDq9/qv0I1JyU
+o7ccJI6aVI8fgQROHEPkBXqnZgDFAPJMnejjErb7mLvfCdrPb1E0yTH1yHlu3hAqA+BTWUsxD+HQ
+AYWEK07ne2rn7x5rzJivWXvZBaFzf3RqU5SO0h+pjLW0Reez3l8AlvXwt/rjdug0TtEpNv0J9XyV
+1hnCNvBn24cQ2TrL0ETZ9GNljADsV416eECymXsLG2/A8sescEJ6LVjjXTaMo12G/1rlduaBSF5U
+JWMQR7qWFMRmfU/xaN+ccZXxe+JwWAfsnhRWmuDYgUWyQXparjHKTUshRg+BmBvB+Sl9CIFhDYln
+Duw=
+=lqN7
 -----END PGP SIGNATURE-----
 
---=-JoibIQI5zrLH+tK95jc7--
+--7KdZdn9qKKUSuKkMys46FDSsbCZWJFWg8--
 
-
---===============0183962569==
+--===============1405871058==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -179,5 +240,4 @@ amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/amd-gfx
 
---===============0183962569==--
-
+--===============1405871058==--
