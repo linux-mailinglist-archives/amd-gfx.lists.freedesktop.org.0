@@ -2,41 +2,119 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D674F3DA4CB
-	for <lists+amd-gfx@lfdr.de>; Thu, 29 Jul 2021 15:56:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D553B3D9FB8
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Jul 2021 10:39:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D21E26ECC5;
-	Thu, 29 Jul 2021 13:56:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A4346ECED;
+	Thu, 29 Jul 2021 08:39:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 1122 seconds by postgrey-1.36 at gabe;
- Thu, 29 Jul 2021 08:37:06 UTC
-Received: from baidu.com (mx20.baidu.com [111.202.115.85])
- by gabe.freedesktop.org (Postfix) with ESMTP id C5A336ECD3
- for <amd-gfx@lists.freedesktop.org>; Thu, 29 Jul 2021 08:37:06 +0000 (UTC)
-Received: from BC-Mail-Ex19.internal.baidu.com (unknown [172.31.51.13])
- by Forcepoint Email with ESMTPS id 71700B40EBD0355AA955;
- Thu, 29 Jul 2021 16:21:09 +0800 (CST)
-Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
- BC-Mail-Ex19.internal.baidu.com (172.31.51.13) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2242.12; Thu, 29 Jul 2021 16:21:09 +0800
-Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
- BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.14; Thu, 29 Jul 2021 16:21:08 +0800
-From: Cai Huoqing <caihuoqing@baidu.com>
-To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <Xinhui.Pan@amd.com>
-Subject: [PATCH] gpu/drm/radeon: Fix typo in comments
-Date: Thu, 29 Jul 2021 16:20:46 +0800
-Message-ID: <20210729082046.1786-1-caihuoqing@baidu.com>
-X-Mailer: git-send-email 2.17.1
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam08on2059.outbound.protection.outlook.com [40.107.101.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 711396ECEE
+ for <amd-gfx@lists.freedesktop.org>; Thu, 29 Jul 2021 08:39:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VYBCn7IyCPcSdutYmT21orQJUDLg8pd9LlrfIS/Iie58Ai6vjv+HhhQaM9647MbimWFLm/0o9AXw1Cegdl1MOf5fyLBT45BgCOAQgTr7yn8zXsvcYBo6KlF8GIWZpoqvrZofW/6Eg1x1n2KfxIAc3ivb68gsvZOLWS8d2mPJAdK3sTE1sFW2npk51eahrOCmHUGq3i8/tSX91deYtOiD0/x6L67B4PURYKdU+kbLZ2/rVwcL8QQCGrNrlTboAVielItJaIcQ8HK8y3MB+bq46lvFBh4YciVnywCKs59aJ2PVXrinFCelCCEeM7ONtVj5+mCD4/lZuJO56P4HmxDTww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/Mh4IZSv36P2KqG3UYCLCqVuzmC8Ktk5sf3LgqvDxEg=;
+ b=dj1KfVV1RbZcNGxJ0XQaNrpS0gcHjzbeAhPAmaYtpBq2/yKo2rXzgRi1z+k4U2h+O5K46LDo55R9WcHg9qB8uH3Bp/ZjQOhfBK/GsRjqzJ5kTfYHbsl2vcXw6yeCNXFLjz04JurTUxZJRSXNBIs78DDjI5FtwbN0lGL7rhFk49xLOCidoPEIBO1R5UEV+D9EqQKaw8I7j4w0Z6xK4pnFP/m8x82M+lCuZXTpoVARDrrgTMCBdO7UBeVxqUBSfk4cqTnk0Y1BbGesLUIXvh5rcHQgBA644FTXzXtnwUosJWVeGZNJXPkv7o0ZmbTA1AyebDZmLn9xS0n9p/wmNhV32g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/Mh4IZSv36P2KqG3UYCLCqVuzmC8Ktk5sf3LgqvDxEg=;
+ b=I7gRQV858Dv9lZqBu2NZ/OwTDTGz4YSEAUFRnxM681fKMOrxAWSynlcvUgnl79pf2mZ8qxmG4xgSAzpf6okPsHNIeTxG5WsCVy2HIZ6ZO9yIWOf0mdhb3tT5525DHXEgjTgFmaAOD00NwdOcezo2hlcWwtrnzvt0Zqsu4F1z7Wk=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from BL1PR12MB5349.namprd12.prod.outlook.com (2603:10b6:208:31f::7)
+ by BL1PR12MB5319.namprd12.prod.outlook.com (2603:10b6:208:317::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.20; Thu, 29 Jul
+ 2021 08:39:31 +0000
+Received: from BL1PR12MB5349.namprd12.prod.outlook.com
+ ([fe80::9991:fa53:1b0a:372c]) by BL1PR12MB5349.namprd12.prod.outlook.com
+ ([fe80::9991:fa53:1b0a:372c%4]) with mapi id 15.20.4373.020; Thu, 29 Jul 2021
+ 08:39:31 +0000
+Subject: Re: [PATCH v3] drm/amdgpu: fix the doorbell missing when in CGPG
+ issue for renoir.
+To: Yifan Zhang <yifan1.zhang@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20210729075523.2557382-1-yifan1.zhang@amd.com>
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+Message-ID: <9cb5858b-dc4a-6895-b96f-e85242417000@amd.com>
+Date: Thu, 29 Jul 2021 14:09:19 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
+In-Reply-To: <20210729075523.2557382-1-yifan1.zhang@amd.com>
+Content-Language: en-US
+X-ClientProxiedBy: BM1PR0101CA0057.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:19::19) To BL1PR12MB5349.namprd12.prod.outlook.com
+ (2603:10b6:208:31f::7)
 MIME-Version: 1.0
-X-Originating-IP: [172.31.63.8]
-X-ClientProxiedBy: BC-Mail-Ex27.internal.baidu.com (172.31.51.21) To
- BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
-X-Mailman-Approved-At: Thu, 29 Jul 2021 13:56:14 +0000
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.31.157.114] (165.204.158.249) by
+ BM1PR0101CA0057.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:19::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.17 via Frontend
+ Transport; Thu, 29 Jul 2021 08:39:29 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d50c69d0-3e84-494e-72cb-08d9526c623c
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5319:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BL1PR12MB5319F2CB4C5B752CEAE89C4097EB9@BL1PR12MB5319.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2150;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 9aL/gnoRgluC26pWgZ6jJ4euJfd57f/zxtmzp8IiYcqfRQSfVrCgML/QY8bDiuqFAtF0RJgrw2FvG2OVO9ALj57I6OXph0GFidkYcX+SRzGVzNUym7lNVE4NVXO2lQ8dnXaWCqze+z7GH2SA1lVten0jXB3a11GzYV84XkQqeeXcV4JgJtjkArtScHJ1s4CTjPHkvlb0b0Tc9tygiGLAIcN4DkI/hkklVaxIURirSDK3fbv4PINIyEhcwlnBsviPaOqzMEZgz5kGs+/fj7JGb9KkVHjIufwPb4UeredM9e1zSaZAElgzDXRwlCO5DE+TrFzkb6JbVa0b8ASAQzxOuMLIICNvzLjInoWqtQT0wlNfx4OrOHhsHVYQ3BZIXPSPhfs+UE98mBpPl6NQ8RVCHPk3KM2vrweX0V4IKC9/21p0J0ujPfqmzaKcRVcxhon783KmEJ8ElTGRDSJRAaG0ehgbEwomCH84HLUdfVMndDbSTeGviaEn6pP7v0XZdMtZHmXmI4pKl5uYm0tj/qdyczXEEu6xEBBD6ISQWsQOV2QfildCdG3A1stwhd60H+oU8z1+XC3vih5wjRs3atCKJlLhAA58zlpZ4UWSsqV2IN3d+uPU5KhuzVMqfl61k1mLC7dqek250CD/nJ3OYtShVEvDacawcEtgiDOSOrxOPVjs3kD5KIch0Nna2/WXG3U8Amj8loXEp747whgbPCpZe1FrszEMEktMhtn4rKwMnHM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5349.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(376002)(39860400002)(396003)(366004)(136003)(26005)(66476007)(66556008)(5660300002)(31686004)(66946007)(2906002)(6666004)(2616005)(186003)(86362001)(31696002)(53546011)(478600001)(83380400001)(38100700002)(316002)(36756003)(8936002)(16576012)(8676002)(956004)(6486002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RktkUU5wclVOR0F3ZDJNN3FIekt2WEI4bWFWWWdNZFFFTWdjSTJYbmZZTjR6?=
+ =?utf-8?B?d3A2Q3dITEJCRHVmZkY4WGcvUVgyZkRjY2k0VXo2ME9kV2Nreml2MEZ3cVBT?=
+ =?utf-8?B?WWtZdDZ2aFltS1BlVkVOajBKUXZDZEJyMm53L3RKR1FkbndDUWNEM1RPdEE2?=
+ =?utf-8?B?bkNCYkpWVVB5cG81RldOeTBReGcyU3hzbnBZNlNzdjRjb1FnMnZIc2p0cVZS?=
+ =?utf-8?B?WkY4WklwUXhlWWl2bHlsUWRxRnJlZiszZ3hUZndzZ2pXdEQzem9kSncxVTFo?=
+ =?utf-8?B?bXluRFdPU3RmZjJMSWxnbkx1ZDBOUzVFSFB6cHh0TnpBbk9kT3JTV2drekFD?=
+ =?utf-8?B?ZGFlaEEwdWJLS1FWVVJVUTJKM1NQME1FbGt2VExSd0Z5dU9RTjMyY3BlYWtR?=
+ =?utf-8?B?dGcrbkExUkxvbzFReW5TM1UyMXVVd1Z4QTZxdjl5VTVHM3NNL3ZVTForSzl3?=
+ =?utf-8?B?UjhxNWNnVWNkaXNGMU1UVjVsaWU5dXFXdkxrVVVzakdOS0FQWjlsREN1WEw2?=
+ =?utf-8?B?cTc5bGtWdm9IUEZBeFhwRTBnNVIrTWZuc05wR00rcUpRSVp5OFJhT0JmTndO?=
+ =?utf-8?B?ZzR6bTVuNC8wdlRhdTV4RDJoWGl3bXMySHJRNElDMklxaXJnY2ExNHBQNHZ1?=
+ =?utf-8?B?czNrdjJSRlBDK3h6SlpSRFlTRkxmMHRsZXVpN01ScjY1TVVyLzhFL3Vja0ZR?=
+ =?utf-8?B?dEJFcjRrK3pGWXRJakFyTkF5RzdTT1FVUjl4aWVPcGZhQjBFOXNRNmo1N2xn?=
+ =?utf-8?B?L2M5bkhNQkxiQmNYUmVtUEw1VG4zVUdHRGZDUGN1bXFIOHRWMG50TCtOZ1pp?=
+ =?utf-8?B?Wi9MRkVsRytQSHphN0Rhd3RKSlUvdnFYYnZiOW56M1d4bHkwL09iVGxHV29J?=
+ =?utf-8?B?VkJkSlc4cThHWjBmYy9Xb2lvb3Q2K0VsVUFoL254REFqMjlPelZnVEVkU01u?=
+ =?utf-8?B?THpVNHBsbWxQdUVHMVJadllUU3c4L1ltQXdHcERWdzdaQmwxY2YyREhROGVa?=
+ =?utf-8?B?OXpCUkxwY0dBN1h6c2VDM0ZEY1AwV1R6d2w5S0F0aDg5ZVVtaTN4R21WSkR2?=
+ =?utf-8?B?TFpCMWRQbnQvc2JpbWdUT3dHKzZ4NW5kbmJoa1JBZStoVktWbG9CWXhjdTYy?=
+ =?utf-8?B?SUZ3V0FoL2cvaXQ1QW05azFiR0JoOGIvS3MxSnRYQ0JldGhkU042Rjk0YkNJ?=
+ =?utf-8?B?SFlveXdiZlFPZ01obkhUT0EzalRpcW5mZndyQTJxS21TNUFRMWNocGI2V05z?=
+ =?utf-8?B?ZHd6bVhWZEtNalBkYjViZEpDV3RFQk9mOTVnSmIyZzZTNEJPTEc0TVFCWC84?=
+ =?utf-8?B?NkFwemxUYWNtUEZHTW8xQ01tS2dKZXMzTU5WN0Z0SlZWSGpsL0ZTbTFiNkQr?=
+ =?utf-8?B?SWpYL0VSMjFIOUVtMnk1QnFwVkR5cmNpT1pnOVRYdjFUdDNNY0xlN2xFanpJ?=
+ =?utf-8?B?Zm1MTXZOa1ZPc25xV0wvbTdBYXFqMCtwc01ublRSdkZVcHFjdTR6QTNXVGRQ?=
+ =?utf-8?B?c3FJdlJsbWdpdFh4YURWV1MrMW9WMWtnSXBxSWJROWhMSEwxVm8wL1MvYmlz?=
+ =?utf-8?B?SUloaEFmaG9WTXRNVjlNeVptLzZSeGJ2TDY2Y0VSTDZ6UXY0UGJ6NTU0K00z?=
+ =?utf-8?B?UmYzWXJtYUJ4bjJwblNrMnYvcHN3N21jVXpiT21SS0F5MjNFaUFyQnhDTkNo?=
+ =?utf-8?B?T0J3dEk3OHR4MTlxYlpoazBHRlpyQXcrdjBrOEM1dDM1MGtESlVBbE5xeHZ5?=
+ =?utf-8?Q?/M3rs15c0AA3G01TDen7zA7mb/xzEenF9Hwp2Qq?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d50c69d0-3e84-494e-72cb-08d9526c623c
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5349.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2021 08:39:31.0886 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SmVPdp5dpaZICf4688ZpGqIgsljTNdzPofAJPSeYJTb1L7IjWz0N0wrmybBvagzF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5319
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,94 +126,60 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cai Huoqing <caihuoqing@baidu.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Remove the repeated word 'the' from comments
 
-Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
----
- drivers/gpu/drm/radeon/atombios.h      | 4 ++--
- drivers/gpu/drm/radeon/r300_reg.h      | 2 +-
- drivers/gpu/drm/radeon/radeon_device.c | 2 +-
- drivers/gpu/drm/radeon/radeon_fence.c  | 2 +-
- drivers/gpu/drm/radeon/radeon_vm.c     | 2 +-
- 5 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/radeon/atombios.h b/drivers/gpu/drm/radeon/atombios.h
-index 4b86e8b45009..83e8b8547f9b 100644
---- a/drivers/gpu/drm/radeon/atombios.h
-+++ b/drivers/gpu/drm/radeon/atombios.h
-@@ -2802,8 +2802,8 @@ ucMaxNBVoltageHigh:     Voltage regulator dependent PWM value. High 8 bits of  t
- ucMinNBVoltageHigh:     Voltage regulator dependent PWM value. High 8 bits of the value for the min voltage.Set this one to 0x00 if VC without PWM or no VC at all.
- 
- 
--usInterNBVoltageLow:    Voltage regulator dependent PWM value. The value makes the the voltage >=Min NB voltage but <=InterNBVoltageHigh. Set this to 0x0000 if VC without PWM or no VC at all.
--usInterNBVoltageHigh:   Voltage regulator dependent PWM value. The value makes the the voltage >=InterNBVoltageLow but <=Max NB voltage.Set this to 0x0000 if VC without PWM or no VC at all.
-+usInterNBVoltageLow:    Voltage regulator dependent PWM value. The value makes the voltage >=Min NB voltage but <=InterNBVoltageHigh. Set this to 0x0000 if VC without PWM or no VC at all.
-+usInterNBVoltageHigh:   Voltage regulator dependent PWM value. The value makes the voltage >=InterNBVoltageLow but <=Max NB voltage.Set this to 0x0000 if VC without PWM or no VC at all.
- */
- 
- 
-diff --git a/drivers/gpu/drm/radeon/r300_reg.h b/drivers/gpu/drm/radeon/r300_reg.h
-index 00c0d2ba22d3..60d5413bafa1 100644
---- a/drivers/gpu/drm/radeon/r300_reg.h
-+++ b/drivers/gpu/drm/radeon/r300_reg.h
-@@ -353,7 +353,7 @@
- #       define R300_PVS_CNTL_1_PROGRAM_START_SHIFT   0
- #       define R300_PVS_CNTL_1_POS_END_SHIFT         10
- #       define R300_PVS_CNTL_1_PROGRAM_END_SHIFT     20
--/* Addresses are relative the the vertex program parameters area. */
-+/* Addresses are relative the vertex program parameters area. */
- #define R300_VAP_PVS_CNTL_2                 0x22D4
- #       define R300_PVS_CNTL_2_PARAM_OFFSET_SHIFT 0
- #       define R300_PVS_CNTL_2_PARAM_COUNT_SHIFT  16
-diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-index cec03238e14d..ac8c3251b616 100644
---- a/drivers/gpu/drm/radeon/radeon_device.c
-+++ b/drivers/gpu/drm/radeon/radeon_device.c
-@@ -406,7 +406,7 @@ void radeon_doorbell_free(struct radeon_device *rdev, u32 doorbell)
- 
- /*
-  * radeon_wb_*()
-- * Writeback is the the method by which the the GPU updates special pages
-+ * Writeback is the method by which the GPU updates special pages
-  * in memory with the status of certain GPU events (fences, ring pointers,
-  * etc.).
-  */
-diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/radeon/radeon_fence.c
-index 18f2c2e0dfb3..e9c47ec28ade 100644
---- a/drivers/gpu/drm/radeon/radeon_fence.c
-+++ b/drivers/gpu/drm/radeon/radeon_fence.c
-@@ -50,7 +50,7 @@
-  * for GPU/CPU synchronization.  When the fence is written,
-  * it is expected that all buffers associated with that fence
-  * are no longer in use by the associated ring on the GPU and
-- * that the the relevant GPU caches have been flushed.  Whether
-+ * that the relevant GPU caches have been flushed.  Whether
-  * we use a scratch register or memory location depends on the asic
-  * and whether writeback is enabled.
-  */
-diff --git a/drivers/gpu/drm/radeon/radeon_vm.c b/drivers/gpu/drm/radeon/radeon_vm.c
-index 36a38adaaea9..bb53016f3138 100644
---- a/drivers/gpu/drm/radeon/radeon_vm.c
-+++ b/drivers/gpu/drm/radeon/radeon_vm.c
-@@ -41,7 +41,7 @@
-  * (uncached system pages).
-  * Each VM has an ID associated with it and there is a page table
-  * associated with each VMID.  When execting a command buffer,
-- * the kernel tells the the ring what VMID to use for that command
-+ * the kernel tells the ring what VMID to use for that command
-  * buffer.  VMIDs are allocated dynamically as commands are submitted.
-  * The userspace drivers maintain their own address space and the kernel
-  * sets up their pages tables accordingly when they submit their
--- 
-2.25.1
+On 7/29/2021 1:25 PM, Yifan Zhang wrote:
+> If GC has entered CGPG, ringing doorbell > first page doesn't wakeup GC.
+> Enlarge CP_MEC_DOORBELL_RANGE_UPPER to workaround this issue.
+> 
+> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 13 ++++++++++++-
+>   1 file changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> index 03acc777adf7..a35f1d041a85 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> @@ -3675,7 +3675,18 @@ static int gfx_v9_0_kiq_init_register(struct amdgpu_ring *ring)
+>   	if (ring->use_doorbell) {
+>   		WREG32_SOC15(GC, 0, mmCP_MEC_DOORBELL_RANGE_LOWER,
+>   					(adev->doorbell_index.kiq * 2) << 2);
+> -		WREG32_SOC15(GC, 0, mmCP_MEC_DOORBELL_RANGE_UPPER,
+> +		/* In renoir, if GC has entered CGPG, ringing doorbell > first page
+> +		 * doesn't wakeup GC. Enlarge CP_MEC_DOORBELL_RANGE_UPPER to
+> +		 * workaround this issue. And this change has to align with firmware
+> +		 * update.
+> +		 */
+> +		if ((adev->asic_type == CHIP_RENOIR) &&
+> +		    (adev->gfx.me_fw_version >= 0x000000a5) &&
+> +		    (adev->gfx.me_feature_version >= 52))
+> +			WREG32_SOC15(GC, 0, mmCP_MEC_DOORBELL_RANGE_UPPER,
+> +					(adev->doorbell.size - 4));
 
+For better readability, perhaps
+	
+	if (extended_doorbell_range(adev))
+		...
+	else
+		...
+
+and move the ASIC and FW version check inside extended_doorbell_range.
+
+Thanks,
+Lijo
+
+> +		else
+> +			WREG32_SOC15(GC, 0, mmCP_MEC_DOORBELL_RANGE_UPPER,
+>   					(adev->doorbell_index.userqueue_end * 2) << 2);
+>   	}
+>   
+> 
 _______________________________________________
 amd-gfx mailing list
 amd-gfx@lists.freedesktop.org
