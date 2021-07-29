@@ -2,32 +2,35 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CBDA3DA4CE
-	for <lists+amd-gfx@lfdr.de>; Thu, 29 Jul 2021 15:56:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D674F3DA4CB
+	for <lists+amd-gfx@lfdr.de>; Thu, 29 Jul 2021 15:56:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C51D16ED34;
-	Thu, 29 Jul 2021 13:56:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D21E26ECC5;
+	Thu, 29 Jul 2021 13:56:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from baidu.com (mx21.baidu.com [220.181.3.85])
- by gabe.freedesktop.org (Postfix) with ESMTP id 265F16ECEB
- for <amd-gfx@lists.freedesktop.org>; Thu, 29 Jul 2021 08:34:08 +0000 (UTC)
-Received: from BC-Mail-Ex23.internal.baidu.com (unknown [172.31.51.17])
- by Forcepoint Email with ESMTPS id 003B523FF937B0D4569B;
- Thu, 29 Jul 2021 16:18:21 +0800 (CST)
+X-Greylist: delayed 1122 seconds by postgrey-1.36 at gabe;
+ Thu, 29 Jul 2021 08:37:06 UTC
+Received: from baidu.com (mx20.baidu.com [111.202.115.85])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C5A336ECD3
+ for <amd-gfx@lists.freedesktop.org>; Thu, 29 Jul 2021 08:37:06 +0000 (UTC)
+Received: from BC-Mail-Ex19.internal.baidu.com (unknown [172.31.51.13])
+ by Forcepoint Email with ESMTPS id 71700B40EBD0355AA955;
+ Thu, 29 Jul 2021 16:21:09 +0800 (CST)
 Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
- BC-Mail-Ex23.internal.baidu.com (172.31.51.17) with Microsoft SMTP Server
+ BC-Mail-Ex19.internal.baidu.com (172.31.51.13) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2242.12; Thu, 29 Jul 2021 16:18:21 +0800
+ 15.1.2242.12; Thu, 29 Jul 2021 16:21:09 +0800
 Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
  BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.14; Thu, 29 Jul 2021 16:18:21 +0800
+ 15.1.2308.14; Thu, 29 Jul 2021 16:21:08 +0800
 From: Cai Huoqing <caihuoqing@baidu.com>
-To: <harry.wentland@amd.com>, <sunpeng.li@amd.com>
-Subject: [PATCH] drm/amd/display: Fix typo in comments
-Date: Thu, 29 Jul 2021 16:18:14 +0800
-Message-ID: <20210729081814.1738-1-caihuoqing@baidu.com>
+To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
+ <Xinhui.Pan@amd.com>
+Subject: [PATCH] gpu/drm/radeon: Fix typo in comments
+Date: Thu, 29 Jul 2021 16:20:46 +0800
+Message-ID: <20210729082046.1786-1-caihuoqing@baidu.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-Originating-IP: [172.31.63.8]
@@ -56,115 +59,80 @@ Remove the repeated word 'the' from comments
 
 Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_resource.c             | 2 +-
- .../gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c | 2 +-
- .../drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c   | 2 +-
- .../gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c | 2 +-
- .../gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c | 2 +-
- .../gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c | 2 +-
- drivers/gpu/drm/amd/display/dc/dml/dml1_display_rq_dlg_calc.c | 4 ++--
- 7 files changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/radeon/atombios.h      | 4 ++--
+ drivers/gpu/drm/radeon/r300_reg.h      | 2 +-
+ drivers/gpu/drm/radeon/radeon_device.c | 2 +-
+ drivers/gpu/drm/radeon/radeon_fence.c  | 2 +-
+ drivers/gpu/drm/radeon/radeon_vm.c     | 2 +-
+ 5 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index 1596f6b7fed7..7f12ca902f7d 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -1030,7 +1030,7 @@ bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx)
+diff --git a/drivers/gpu/drm/radeon/atombios.h b/drivers/gpu/drm/radeon/atombios.h
+index 4b86e8b45009..83e8b8547f9b 100644
+--- a/drivers/gpu/drm/radeon/atombios.h
++++ b/drivers/gpu/drm/radeon/atombios.h
+@@ -2802,8 +2802,8 @@ ucMaxNBVoltageHigh:     Voltage regulator dependent PWM value. High 8 bits of  t
+ ucMinNBVoltageHigh:     Voltage regulator dependent PWM value. High 8 bits of the value for the min voltage.Set this one to 0x00 if VC without PWM or no VC at all.
  
- 	/* Timing borders are part of vactive that we are also supposed to skip in addition
- 	 * to any stream dst offset. Since dm logic assumes dst is in addressable
--	 * space we need to add the the left and top borders to dst offsets temporarily.
-+	 * space we need to add the left and top borders to dst offsets temporarily.
- 	 * TODO: fix in DM, stream dst is supposed to be in vactive
- 	 */
- 	pipe_ctx->stream->dst.x += timing->h_border_left;
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c
-index 799bae229e67..2091dd8c252d 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20.c
-@@ -488,7 +488,7 @@ static void get_meta_and_pte_attr(struct display_mode_lib *mode_lib,
- 	log2_meta_req_bytes = 6; // meta request is 64b and is 8x8byte meta element
  
- 	// each 64b meta request for dcn is 8x8 meta elements and
--	// a meta element covers one 256b block of the the data surface.
-+	// a meta element covers one 256b block of the data surface.
- 	log2_meta_req_height = log2_blk256_height + 3; // meta req is 8x8 byte, each byte represent 1 blk256
- 	log2_meta_req_width = log2_meta_req_bytes + 8 - log2_bytes_per_element
- 			- log2_meta_req_height;
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c
-index 6a6d5970d1d5..1a0c14e465fa 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_rq_dlg_calc_20v2.c
-@@ -488,7 +488,7 @@ static void get_meta_and_pte_attr(struct display_mode_lib *mode_lib,
- 	log2_meta_req_bytes = 6; // meta request is 64b and is 8x8byte meta element
+-usInterNBVoltageLow:    Voltage regulator dependent PWM value. The value makes the the voltage >=Min NB voltage but <=InterNBVoltageHigh. Set this to 0x0000 if VC without PWM or no VC at all.
+-usInterNBVoltageHigh:   Voltage regulator dependent PWM value. The value makes the the voltage >=InterNBVoltageLow but <=Max NB voltage.Set this to 0x0000 if VC without PWM or no VC at all.
++usInterNBVoltageLow:    Voltage regulator dependent PWM value. The value makes the voltage >=Min NB voltage but <=InterNBVoltageHigh. Set this to 0x0000 if VC without PWM or no VC at all.
++usInterNBVoltageHigh:   Voltage regulator dependent PWM value. The value makes the voltage >=InterNBVoltageLow but <=Max NB voltage.Set this to 0x0000 if VC without PWM or no VC at all.
+ */
  
- 	// each 64b meta request for dcn is 8x8 meta elements and
--	// a meta element covers one 256b block of the the data surface.
-+	// a meta element covers one 256b block of the data surface.
- 	log2_meta_req_height = log2_blk256_height + 3; // meta req is 8x8 byte, each byte represent 1 blk256
- 	log2_meta_req_width = log2_meta_req_bytes + 8 - log2_bytes_per_element
- 			- log2_meta_req_height;
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
-index dc1c81a6e377..287e31052b30 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_rq_dlg_calc_21.c
-@@ -482,7 +482,7 @@ static void get_meta_and_pte_attr(
- 	log2_meta_req_bytes = 6; // meta request is 64b and is 8x8byte meta element
  
- 	// each 64b meta request for dcn is 8x8 meta elements and
--	// a meta element covers one 256b block of the the data surface.
-+	// a meta element covers one 256b block of the data surface.
- 	log2_meta_req_height = log2_blk256_height + 3; // meta req is 8x8 byte, each byte represent 1 blk256
- 	log2_meta_req_width = log2_meta_req_bytes + 8 - log2_bytes_per_element
- 			- log2_meta_req_height;
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c
-index 04601a767a8f..0d934fae1c3a 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn30/display_rq_dlg_calc_30.c
-@@ -549,7 +549,7 @@ static void get_meta_and_pte_attr(struct display_mode_lib *mode_lib,
- 	log2_meta_req_bytes = 6; // meta request is 64b and is 8x8byte meta element
+diff --git a/drivers/gpu/drm/radeon/r300_reg.h b/drivers/gpu/drm/radeon/r300_reg.h
+index 00c0d2ba22d3..60d5413bafa1 100644
+--- a/drivers/gpu/drm/radeon/r300_reg.h
++++ b/drivers/gpu/drm/radeon/r300_reg.h
+@@ -353,7 +353,7 @@
+ #       define R300_PVS_CNTL_1_PROGRAM_START_SHIFT   0
+ #       define R300_PVS_CNTL_1_POS_END_SHIFT         10
+ #       define R300_PVS_CNTL_1_PROGRAM_END_SHIFT     20
+-/* Addresses are relative the the vertex program parameters area. */
++/* Addresses are relative the vertex program parameters area. */
+ #define R300_VAP_PVS_CNTL_2                 0x22D4
+ #       define R300_PVS_CNTL_2_PARAM_OFFSET_SHIFT 0
+ #       define R300_PVS_CNTL_2_PARAM_COUNT_SHIFT  16
+diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
+index cec03238e14d..ac8c3251b616 100644
+--- a/drivers/gpu/drm/radeon/radeon_device.c
++++ b/drivers/gpu/drm/radeon/radeon_device.c
+@@ -406,7 +406,7 @@ void radeon_doorbell_free(struct radeon_device *rdev, u32 doorbell)
  
- 				 // each 64b meta request for dcn is 8x8 meta elements and
--				 // a meta element covers one 256b block of the the data surface.
-+				 // a meta element covers one 256b block of the data surface.
- 	log2_meta_req_height = log2_blk256_height + 3; // meta req is 8x8 byte, each byte represent 1 blk256
- 	log2_meta_req_width = log2_meta_req_bytes + 8 - log2_bytes_per_element
- 		- log2_meta_req_height;
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c
-index 3def093ef88e..c23905bc733a 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_rq_dlg_calc_31.c
-@@ -563,7 +563,7 @@ static void get_meta_and_pte_attr(
- 	log2_meta_req_bytes = 6;	// meta request is 64b and is 8x8byte meta element
- 
- 	// each 64b meta request for dcn is 8x8 meta elements and
--	// a meta element covers one 256b block of the the data surface.
-+	// a meta element covers one 256b block of the data surface.
- 	log2_meta_req_height = log2_blk256_height + 3;	// meta req is 8x8 byte, each byte represent 1 blk256
- 	log2_meta_req_width = log2_meta_req_bytes + 8 - log2_bytes_per_element - log2_meta_req_height;
- 	meta_req_width = 1 << log2_meta_req_width;
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dml1_display_rq_dlg_calc.c b/drivers/gpu/drm/amd/display/dc/dml/dml1_display_rq_dlg_calc.c
-index 414da64f5734..8f2b1684c231 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dml1_display_rq_dlg_calc.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dml1_display_rq_dlg_calc.c
-@@ -456,7 +456,7 @@ static void dml1_rq_dlg_get_row_heights(
- 	log2_meta_req_bytes = 6; /* meta request is 64b and is 8x8byte meta element */
- 
- 	/* each 64b meta request for dcn is 8x8 meta elements and
--	 * a meta element covers one 256b block of the the data surface.
-+	 * a meta element covers one 256b block of the data surface.
- 	 */
- 	log2_meta_req_height = log2_blk256_height + 3; /* meta req is 8x8 */
- 	log2_meta_req_width = log2_meta_req_bytes + 8 - log2_bytes_per_element
-@@ -718,7 +718,7 @@ static void get_surf_rq_param(
- 	log2_meta_req_bytes = 6; /* meta request is 64b and is 8x8byte meta element */
- 
- 	/* each 64b meta request for dcn is 8x8 meta elements and
--	 * a meta element covers one 256b block of the the data surface.
-+	 * a meta element covers one 256b block of the data surface.
- 	 */
- 	log2_meta_req_height = log2_blk256_height + 3; /* meta req is 8x8 byte, each byte represent 1 blk256 */
- 	log2_meta_req_width = log2_meta_req_bytes + 8 - log2_bytes_per_element
+ /*
+  * radeon_wb_*()
+- * Writeback is the the method by which the the GPU updates special pages
++ * Writeback is the method by which the GPU updates special pages
+  * in memory with the status of certain GPU events (fences, ring pointers,
+  * etc.).
+  */
+diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/radeon/radeon_fence.c
+index 18f2c2e0dfb3..e9c47ec28ade 100644
+--- a/drivers/gpu/drm/radeon/radeon_fence.c
++++ b/drivers/gpu/drm/radeon/radeon_fence.c
+@@ -50,7 +50,7 @@
+  * for GPU/CPU synchronization.  When the fence is written,
+  * it is expected that all buffers associated with that fence
+  * are no longer in use by the associated ring on the GPU and
+- * that the the relevant GPU caches have been flushed.  Whether
++ * that the relevant GPU caches have been flushed.  Whether
+  * we use a scratch register or memory location depends on the asic
+  * and whether writeback is enabled.
+  */
+diff --git a/drivers/gpu/drm/radeon/radeon_vm.c b/drivers/gpu/drm/radeon/radeon_vm.c
+index 36a38adaaea9..bb53016f3138 100644
+--- a/drivers/gpu/drm/radeon/radeon_vm.c
++++ b/drivers/gpu/drm/radeon/radeon_vm.c
+@@ -41,7 +41,7 @@
+  * (uncached system pages).
+  * Each VM has an ID associated with it and there is a page table
+  * associated with each VMID.  When execting a command buffer,
+- * the kernel tells the the ring what VMID to use for that command
++ * the kernel tells the ring what VMID to use for that command
+  * buffer.  VMIDs are allocated dynamically as commands are submitted.
+  * The userspace drivers maintain their own address space and the kernel
+  * sets up their pages tables accordingly when they submit their
 -- 
 2.25.1
 
