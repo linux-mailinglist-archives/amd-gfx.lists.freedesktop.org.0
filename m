@@ -2,67 +2,50 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EABD43DC513
-	for <lists+amd-gfx@lfdr.de>; Sat, 31 Jul 2021 10:38:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C9F53DC7C7
+	for <lists+amd-gfx@lfdr.de>; Sat, 31 Jul 2021 20:50:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A4A76E7EF;
-	Sat, 31 Jul 2021 08:38:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 975776E8DF;
+	Sat, 31 Jul 2021 18:50:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com
- [IPv6:2607:f8b0:4864:20::633])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 413EE6E30D;
- Sat, 31 Jul 2021 08:13:28 +0000 (UTC)
-Received: by mail-pl1-x633.google.com with SMTP id m11so1631997plx.4;
- Sat, 31 Jul 2021 01:13:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=pSqWDBwjSHpo0CpUmYzJgqTp6C8xaprSXoTH68RUk9A=;
- b=uByXvFJLrQigPJrd54cWKzjfeHhmv/59d2ORQVsOva+5sc8NUkvICieZBg18ItO2Bl
- H+jyxMqxtR0naDcAwKzLvkcaHmdzHLlTRV2Qd5tSi0sHOfJJSg7jY/ebFfZeOmmti3qi
- 1vVVuxwkQwYobrzkHkFpnjjzAjyaH6FXU2fi77dkQQkKugCrqjK1T9MFCse+PXzQRtIY
- XP0TZajX/Rxe7SI2zQ5gYjE3+38td6o/gj0n5cl9efRbBGYGQYjXqzIiEadVQx9HQlGx
- ta+9+0HadNRRG8JvzJnzj1NnY2ljjQUf+MbJ1vsR007GS4MkFmVY6+qUL3xODTt8ppuZ
- CEMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=pSqWDBwjSHpo0CpUmYzJgqTp6C8xaprSXoTH68RUk9A=;
- b=YSR40jj48n1d/y5i70+iEC3RIKFlqPi9fUK5W8P+v/FqW+63ltflRpGBV5sxibozDc
- qUmTIHHpkgMXUceAEdMcE1X9H3NP03PiWFiUIb715Sj5BU5oPaXGr4fANxHCe1Jxiptg
- zLBv84NUudP3ocTF6J84HAIOT88E8mgVyysbzPBYKJa1KxzT3YD4EqFwq64iFeG00M/c
- RA5X1lC9gwfb0Y4oH+geluXqkH00lE0wXBKNuoR5M8nwht9+8w2y2IY3WUoAjs1sG3FA
- M7lQSSME2UfRK+j8TzSLvDscjDsa3dpcQb4US1z6rTIf/N1L1kuQH+FetsNsrIRZU1qo
- ZLKQ==
-X-Gm-Message-State: AOAM533QnZdrsp0dnVzqbByaPd1dnLXVKqlNIBQ4x3QV2Ypgm4/khq9A
- CAUqf5Vg0gW7CjOTbXqEjlg=
-X-Google-Smtp-Source: ABdhPJw3sUv7SWXCtHAKD2+0aZD/9TU7DS9fJq1J3MW2qhUDFcv1S/rMnj/DfvR5PrG6iihq7vzA3Q==
-X-Received: by 2002:a62:30c5:0:b029:31e:fa6d:1738 with SMTP id
- w188-20020a6230c50000b029031efa6d1738mr6786010pfw.55.1627719207841; 
- Sat, 31 Jul 2021 01:13:27 -0700 (PDT)
-Received: from localhost.localdomain ([45.135.186.29])
- by smtp.gmail.com with ESMTPSA id c7sm5314475pgq.22.2021.07.31.01.13.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 31 Jul 2021 01:13:27 -0700 (PDT)
-From: Tuo Li <islituo@gmail.com>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@linux.ie, daniel@ffwll.ch, sumit.semwal@linaro.org,
- airlied@redhat.com, Felix.Kuehling@amd.com, Oak.Zeng@amd.com,
- nirmoy.das@amd.com, tzimmermann@suse.de, Philip.Yang@amd.com
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, baijiaju1990@gmail.com,
- Tuo Li <islituo@gmail.com>, TOTE Robot <oslab@tsinghua.edu.cn>
-Subject: [PATCH] drm/amdgpu: fix possible null-pointer dereference in
- amdgpu_ttm_tt_unpopulate()
-Date: Sat, 31 Jul 2021 01:13:06 -0700
-Message-Id: <20210731081306.86523-1-islituo@gmail.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mx2.smtp.larsendata.com (mx2.smtp.larsendata.com
+ [91.221.196.228])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30C796E8DD
+ for <amd-gfx@lists.freedesktop.org>; Sat, 31 Jul 2021 18:50:08 +0000 (UTC)
+Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
+ by mx2.smtp.larsendata.com (Halon) with ESMTPS
+ id 2a153144-f230-11eb-8d1a-0050568cd888;
+ Sat, 31 Jul 2021 18:50:24 +0000 (UTC)
+Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net
+ [80.162.45.141])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: sam@ravnborg.org)
+ by mail01.mxhotel.dk (Postfix) with ESMTPSA id ED887194B0F;
+ Sat, 31 Jul 2021 20:50:27 +0200 (CEST)
+Date: Sat, 31 Jul 2021 20:50:02 +0200
+X-Report-Abuse-To: abuse@mxhotel.dk
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
+ christian.koenig@amd.com, liviu.dudau@arm.com,
+ brian.starkey@arm.com, bbrezillon@kernel.org,
+ nicolas.ferre@microchip.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, stefan@agner.ch, alison.wang@nxp.com,
+ patrik.r.jakobsson@gmail.com, anitha.chrisanthus@intel.com,
+ robdclark@gmail.com, edmund.j.dea@intel.com, sean@poorly.run,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ jyri.sarha@iki.fi, tomba@kernel.org, linux-arm-msm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 00/14] drm: Make DRM's IRQ helpers legacy
+Message-ID: <YQWbWjV5TYzp+5C4@ravnborg.org>
+References: <20210727182721.17981-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 31 Jul 2021 08:38:48 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210727182721.17981-1-tzimmermann@suse.de>
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,43 +60,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-The variable ttm is assigned to the variable gtt, and the variable gtt
-is checked in:
-  if (gtt && gtt->userptr)
+Hi Thomas,
 
-This indicates that both ttm and gtt can be NULL.
-If so, a null-pointer dereference will occur:
-  if (ttm->page_flags & TTM_PAGE_FLAG_SG)
+On Tue, Jul 27, 2021 at 08:27:07PM +0200, Thomas Zimmermann wrote:
+> DRM's IRQ helpers are only helpful for old, non-KMS drivers. Move
+> the code behind CONFIG_DRM_LEGACY. Convert KMS drivers to Linux
+> IRQ interfaces.
+> 
+> DRM provides IRQ helpers for setting up, receiving and removing IRQ
+> handlers. It's an abstraction over plain Linux functions. The code
+> is mid-layerish with several callbacks to hook into the rsp drivers.
+> Old UMS driver have their interrupts enabled via ioctl, so these
+> abstractions makes some sense. Modern KMS manage all their interrupts
+> internally. Using the DRM helpers adds indirection without benefits.
+> 
+> Most KMs drivers already use Linux IRQ functions instead of DRM's
+> abstraction layer. Patches 1 to 12 convert the remaining ones.
+> The patches also resolve a bug for devices without assigned interrupt
+> number. DRM helpers don't test for IRQ_NOTCONNECTED, so drivers do
+> not detect if the device has no interrupt assigned.
+> 
+> Patch 13 removes an unused function.
+> 
+> Patch 14 moves the DRM IRQ helpers behind CONFIG_DRM_LEGACY. Only
+> the old non-KMS drivers still use the functionality.
+> 
+> Thomas Zimmermann (14):
+>   drm/amdgpu: Convert to Linux IRQ interfaces
+>   drm/arm/hdlcd: Convert to Linux IRQ interfaces
+>   drm/atmel-hlcdc: Convert to Linux IRQ interfaces
+>   drm/fsl-dcu: Convert to Linux IRQ interfaces
+>   drm/gma500: Convert to Linux IRQ interfaces
+>   drm/kmb: Convert to Linux IRQ interfaces
+>   drm/msm: Convert to Linux IRQ interfaces
+>   drm/mxsfb: Convert to Linux IRQ interfaces
+>   drm/radeon: Convert to Linux IRQ interfaces
+>   drm/tidss: Convert to Linux IRQ interfaces
+>   drm/tilcdc: Convert to Linux IRQ interfaces
+>   drm/vc4: Convert to Linux IRQ interfaces
+>   drm: Remove unused devm_drm_irq_install()
+>   drm: IRQ midlayer is now legacy
 
-Also, some null-pointer dereferences will occur in the function
-ttm_pool_free() which is called in:
-  return ttm_pool_free(&adev->mman.bdev.pool, ttm);
+With the irq_enabled confusion out of the way I want to re-address two
+issues here that I know you have answered but I am just not convinced.
 
-To fix these possible null-pointer dereferences, the function returns
-when ttm is NULL.
+1) IRQ_NOTCONNECTED
 
-Reported-by: TOTE Robot <oslab@tsinghua.edu.cn>
-Signed-off-by: Tuo Li <islituo@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+We do not have this check in drm_irq today and we should avoid spreading
+it all over. We are either carrying it forever or we wil lsee patches
+floating in to drop the check again.
+The current use in the kernel is minimal:
+https://elixir.bootlin.com/linux/latest/A/ident/IRQ_NOTCONNECTED
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 3a55f08e00e1..0216ca085f11 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1146,7 +1146,10 @@ static void amdgpu_ttm_tt_unpopulate(struct ttm_device *bdev,
- 	struct amdgpu_ttm_tt *gtt = (void *)ttm;
- 	struct amdgpu_device *adev;
- 
--	if (gtt && gtt->userptr) {
-+	if (ttm == NULL)
-+		return;
-+
-+	if (gtt->userptr) {
- 		amdgpu_ttm_tt_set_user_pages(ttm, NULL);
- 		kfree(ttm->sg);
- 		ttm->sg = NULL;
--- 
-2.25.1
+So as a minimum drop it from atmel_hlcdc and preferably from the rest as
+it is really not used. (Speaking as atmel_hlcdc maintainer)
 
+
+2) devm_request_irq()
+
+We are moving towards managed allocation so we do not fail to free
+resources. And an irq has a lifetime equal the device itself - so an
+obvious cnadidate for devm_request_irq.
+If we do not introduce it now we will see a revisit of this later.
+I can be convinced to wait with this as we will have to do much more in
+each driver, but I cannot see any good arguments to avoid the more
+modern way to use devm_request_irq.
+
+	Sam
