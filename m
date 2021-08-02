@@ -1,68 +1,47 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A270E3DD0D5
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Aug 2021 08:56:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1437E3DD198
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Aug 2021 09:57:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A488489BCD;
-	Mon,  2 Aug 2021 06:56:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B1E16E245;
+	Mon,  2 Aug 2021 07:57:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
- [IPv6:2a00:1450:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A68489BCD
- for <amd-gfx@lists.freedesktop.org>; Mon,  2 Aug 2021 06:56:30 +0000 (UTC)
-Received: by mail-wr1-x432.google.com with SMTP id b7so20176294wri.8
- for <amd-gfx@lists.freedesktop.org>; Sun, 01 Aug 2021 23:56:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:references:from:message-id:date:user-agent:mime-version
- :in-reply-to:content-transfer-encoding:content-language;
- bh=yeSVxj7EF0cPl932g2XuUfW6GP4JL0o1D9Bzv1O3HdY=;
- b=MupxM240GzH9TSMfJOYjqHbwFDJG5tT3Wfp/fyeP6VquhnkvbT6Quy+ZrS8daRKWSK
- ATsWwgprYlcGWWS5u1gggf8Qb2zC9Y2uBvyty0SnQt7g5S6qOd47XczapLH3p2zxo2oZ
- sGlW3VR8MTNLhqMCEnn0UyONUD6FVzfLy6KSX2iF+oLrEb2ES3XWj146/HNDS5bMzA3E
- dnchZyIRUmn+SoDRgr3eZQvejeydEgFLhI6PDevXK+iVYgdDVB0suN2/j5qOXgqTHgn/
- b7xiHWtcDmUdVsyXb5+o5hjCbRK5WuHy5gL36Ks1Trzf7rb5TwnZh6yFYcPWM7qo9mf2
- 7+eQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=yeSVxj7EF0cPl932g2XuUfW6GP4JL0o1D9Bzv1O3HdY=;
- b=VurU35GuW/gC0Wz8FJsPJhg9njCLoGNXx/JhyhcBKX9OUSrQjcYikcitSc20vgM+mb
- l0yni96Wjalp3vvsU3hYvgq2gC6UROkTc0UPSk+hgNtDE1OJjUhcf1TGflSzuRdDRBHa
- RLkQKS0n6J2LWtLWwIbcrinzf6i+xGm8zghFnwCyCGXjQwBKmFtEHkooObO+sZa6t5GW
- UQdhEN0ndII7z1rWML+pfHOwFgLLVecR1+Unq/wBsu2ranXr+nzDezknw2hkOc1DTOaq
- 7fj0VcIPetCKTbgtMzDFWIJNkEhOFofYz0/xlIoqJfVwFhXUiK9W/XAETswN96Z9vGnO
- HUwQ==
-X-Gm-Message-State: AOAM533iQ600aTn0qd/DM5ddBayxAnpNqXPg3mDoS/ipnMM0CHTR9HOD
- ZmB0+6xBB+yyExz58DgSbyk=
-X-Google-Smtp-Source: ABdhPJycPZCp9CO5gO7pRhfZbplvb6+ZB5o+KbvBGTxUfUeZzLlMb/IedWoHnTbXGE9DolnMbJwjLw==
-X-Received: by 2002:a5d:4688:: with SMTP id u8mr15900103wrq.65.1627887388826; 
- Sun, 01 Aug 2021 23:56:28 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:765:cc03:c018:5233?
- ([2a02:908:1252:fb60:765:cc03:c018:5233])
- by smtp.gmail.com with ESMTPSA id t17sm10073185wru.94.2021.08.01.23.56.27
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 01 Aug 2021 23:56:28 -0700 (PDT)
-Subject: Re: [PATCH] drm/amdgpu: avoid over-handle of fence driver fini in s3
- test (v2)
-To: Guchun Chen <guchun.chen@amd.com>, amd-gfx@lists.freedesktop.org,
- Likun.Gao@amd.com, christian.koenig@amd.com, Hawking.Zhang@amd.com,
- alexander.deucher@amd.com
-References: <20210802051602.23822-1-guchun.chen@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <b7218d98-9eb1-2d41-157a-bc417ef496ab@gmail.com>
-Date: Mon, 2 Aug 2021 08:56:29 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <20210802051602.23822-1-guchun.chen@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-Greylist: delayed 549 seconds by postgrey-1.36 at gabe;
+ Mon, 02 Aug 2021 07:41:56 UTC
+Received: from mail-m17655.qiye.163.com (mail-m17655.qiye.163.com
+ [59.111.176.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE5C16E1F4
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Aug 2021 07:41:56 +0000 (UTC)
+Received: from ubuntu.localdomain (unknown [36.152.145.182])
+ by mail-m17655.qiye.163.com (Hmail) with ESMTPA id 717234014F;
+ Mon,  2 Aug 2021 15:32:44 +0800 (CST)
+From: zhouchuangao <zhouchuangao@vivo.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ John Clements <john.clements@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ Jinzhou Su <Jinzhou.Su@amd.com>, Wenhui Sheng <Wenhui.Sheng@amd.com>,
+ Victor Zhao <Victor.Zhao@amd.com>, Kevin Wang <kevin1.wang@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: zhouchuangao <zhouchuangao@vivo.com>
+Subject: [PATCH] gpu/drm/amd: Remove duplicated include of drm_drv.h
+Date: Mon,  2 Aug 2021 00:32:32 -0700
+Message-Id: <1627889555-56431-1-git-send-email-zhouchuangao@vivo.com>
+X-Mailer: git-send-email 2.7.4
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+ kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWUJCSktWH0hPQ0JNGR9PHU
+ 5LVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MjY6Shw*Gj9MPTMKKjY#KDIi
+ NC4wFCxVSlVKTUlMQ0NCTk1OTUJMVTMWGhIXVQETFA4YEw4aFRwaFDsNEg0UVRgUFkVZV1kSC1lB
+ WUhNVUpOSVVKT05VSkNJWVdZCAFZQUlOS083Bg++
+X-HM-Tid: 0a7b05c77c4eda01kuws717234014f
+X-Mailman-Approved-At: Mon, 02 Aug 2021 07:57:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,129 +56,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 02.08.21 um 07:16 schrieb Guchun Chen:
-> In amdgpu_fence_driver_hw_fini, no need to call drm_sched_fini to stop
-> scheduler in s3 test, otherwise, fence related failure will arrive
-> after resume. To fix this and for a better clean up, move drm_sched_fini
-> from fence_hw_fini to fence_sw_fini, as it's part of driver shutdown, and
-> should never be called in hw_fini.
->
-> v2: rename amdgpu_fence_driver_init to amdgpu_fence_driver_sw_init,
-> to keep sw_init and sw_fini paired.
->
-> Fixes: cd87a6dcf6af drm/amdgpu: adjust fence driver enable sequence
-> Suggested-by: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Guchun Chen <guchun.chen@amd.com>
+Duplicate include header file <drm/drm_drv.h>
+line 28: #include <drm/drm_drv.h>
+line 44: #include <drm/drm_drv.h>
 
-It's a bit ambiguous now what fence_drv.initialized means, but I think 
-we can live with that for now.
+Signed-off-by: zhouchuangao <zhouchuangao@vivo.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-Patch is Reviewed-by: Christian König <christian.koenig@amd.com>.
-
-Regards,
-Christian.
-
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  5 ++---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c  | 12 +++++++-----
->   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h   |  4 ++--
->   3 files changed, 11 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index b1d2dc39e8be..9e53ff851496 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -3646,9 +3646,9 @@ int amdgpu_device_init(struct amdgpu_device *adev,
->   
->   fence_driver_init:
->   	/* Fence driver */
-> -	r = amdgpu_fence_driver_init(adev);
-> +	r = amdgpu_fence_driver_sw_init(adev);
->   	if (r) {
-> -		dev_err(adev->dev, "amdgpu_fence_driver_init failed\n");
-> +		dev_err(adev->dev, "amdgpu_fence_driver_sw_init failed\n");
->   		amdgpu_vf_error_put(adev, AMDGIM_ERROR_VF_FENCE_INIT_FAIL, 0, 0);
->   		goto failed;
->   	}
-> @@ -3988,7 +3988,6 @@ int amdgpu_device_resume(struct drm_device *dev, bool fbcon)
->   	}
->   	amdgpu_fence_driver_hw_init(adev);
->   
-> -
->   	r = amdgpu_device_ip_late_init(adev);
->   	if (r)
->   		return r;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> index 49c5c7331c53..7495911516c2 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> @@ -498,7 +498,7 @@ int amdgpu_fence_driver_init_ring(struct amdgpu_ring *ring,
->   }
->   
->   /**
-> - * amdgpu_fence_driver_init - init the fence driver
-> + * amdgpu_fence_driver_sw_init - init the fence driver
->    * for all possible rings.
->    *
->    * @adev: amdgpu device pointer
-> @@ -509,13 +509,13 @@ int amdgpu_fence_driver_init_ring(struct amdgpu_ring *ring,
->    * amdgpu_fence_driver_start_ring().
->    * Returns 0 for success.
->    */
-> -int amdgpu_fence_driver_init(struct amdgpu_device *adev)
-> +int amdgpu_fence_driver_sw_init(struct amdgpu_device *adev)
->   {
->   	return 0;
->   }
->   
->   /**
-> - * amdgpu_fence_driver_fini - tear down the fence driver
-> + * amdgpu_fence_driver_hw_fini - tear down the fence driver
->    * for all possible rings.
->    *
->    * @adev: amdgpu device pointer
-> @@ -531,8 +531,7 @@ void amdgpu_fence_driver_hw_fini(struct amdgpu_device *adev)
->   
->   		if (!ring || !ring->fence_drv.initialized)
->   			continue;
-> -		if (!ring->no_scheduler)
-> -			drm_sched_fini(&ring->sched);
-> +
->   		/* You can't wait for HW to signal if it's gone */
->   		if (!drm_dev_is_unplugged(&adev->ddev))
->   			r = amdgpu_fence_wait_empty(ring);
-> @@ -560,6 +559,9 @@ void amdgpu_fence_driver_sw_fini(struct amdgpu_device *adev)
->   		if (!ring || !ring->fence_drv.initialized)
->   			continue;
->   
-> +		if (!ring->no_scheduler)
-> +			drm_sched_fini(&ring->sched);
-> +
->   		for (j = 0; j <= ring->fence_drv.num_fences_mask; ++j)
->   			dma_fence_put(ring->fence_drv.fences[j]);
->   		kfree(ring->fence_drv.fences);
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> index 27adffa7658d..9c11ced4312c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-> @@ -106,7 +106,6 @@ struct amdgpu_fence_driver {
->   	struct dma_fence		**fences;
->   };
->   
-> -int amdgpu_fence_driver_init(struct amdgpu_device *adev);
->   void amdgpu_fence_driver_force_completion(struct amdgpu_ring *ring);
->   
->   int amdgpu_fence_driver_init_ring(struct amdgpu_ring *ring,
-> @@ -115,9 +114,10 @@ int amdgpu_fence_driver_init_ring(struct amdgpu_ring *ring,
->   int amdgpu_fence_driver_start_ring(struct amdgpu_ring *ring,
->   				   struct amdgpu_irq_src *irq_src,
->   				   unsigned irq_type);
-> +void amdgpu_fence_driver_hw_init(struct amdgpu_device *adev);
->   void amdgpu_fence_driver_hw_fini(struct amdgpu_device *adev);
-> +int amdgpu_fence_driver_sw_init(struct amdgpu_device *adev);
->   void amdgpu_fence_driver_sw_fini(struct amdgpu_device *adev);
-> -void amdgpu_fence_driver_hw_init(struct amdgpu_device *adev);
->   int amdgpu_fence_emit(struct amdgpu_ring *ring, struct dma_fence **fence,
->   		      unsigned flags);
->   int amdgpu_fence_emit_polling(struct amdgpu_ring *ring, uint32_t *s,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index 3ec5099..05f864f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -41,8 +41,6 @@
+ #include "amdgpu_securedisplay.h"
+ #include "amdgpu_atomfirmware.h"
+ 
+-#include <drm/drm_drv.h>
+-
+ static int psp_sysfs_init(struct amdgpu_device *adev);
+ static void psp_sysfs_fini(struct amdgpu_device *adev);
+ 
+-- 
+2.7.4
 
