@@ -2,75 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C83133DD197
-	for <lists+amd-gfx@lfdr.de>; Mon,  2 Aug 2021 09:57:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B307C3DCEC7
+	for <lists+amd-gfx@lfdr.de>; Mon,  2 Aug 2021 04:53:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53F626E1F4;
-	Mon,  2 Aug 2021 07:57:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3A896E2D8;
+	Mon,  2 Aug 2021 02:53:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com
- [IPv6:2607:f8b0:4864:20::1031])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30C016E171;
- Mon,  2 Aug 2021 02:47:31 +0000 (UTC)
-Received: by mail-pj1-x1031.google.com with SMTP id
- mz5-20020a17090b3785b0290176ecf64922so29414777pjb.3; 
- Sun, 01 Aug 2021 19:47:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=XGbL8VwPWjiS4yy4Pnm/5ti4pl6SnxB74geqfXf2DB8=;
- b=LT7iIak5S9eMVKEPZD7f0f9GaeTpf9fgxki9F73OG5+doNYssSWZ0f3lw9FdaLyodW
- H+VftdRCAibeNawcMs/+wyMV07jxOnbL2d85GMVLWLny7/IBriAfc+cOb+mHA6nW71Sx
- +5e9Xv+cfGX0tEiE7nHyJMElLi5Km8LSwGXHcZwBfY9cpcGfgAR2+q2AjdJQ1aNq95mA
- ewqlpUaBT5mu9mYGHzlsh+9ZPR9mbnKe/5Nn193sVNPYJMVvCowTFjQMzJcfWdZF/BM9
- ebe+OlZy1qPrEgPHdxuZBs0OXp5M+PrN3KdfC165JaM+goeJQfUbsVmboOQDq396IF8R
- 8SPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=XGbL8VwPWjiS4yy4Pnm/5ti4pl6SnxB74geqfXf2DB8=;
- b=mLAKxHmAtYhpg5xQfh1Lox5Fv/VxXzR11NbUfx0vipc2JBu5XJM5+6ToaBqnh2ssGZ
- 92agpcz5EbFfWfoj1whRqvo5nkJMfajaGpr9akisf3ylk859f5FOWFd4zM7+ppoKslIE
- fYKOzPaw90BrPdSdRcjfEdwNSHjCXfH47kqEEw/AiyGpBfBgILJrzt1b2kcUOGCCbreW
- Y6vYwMG4eLsHPJYWYlDE1yY879nQxoq6OIZ98rq/cZX83hv949LUSKMCMMAPS4gFYrjr
- xZui2/Tl7ZjGiGOsJ3m9knuPYNBUZBZw52cUTdbaYi6RiHkawrw0AnzXj5DeABANnB6R
- LYcg==
-X-Gm-Message-State: AOAM533zG5MxqlOCsms93MKvuF7aSQmMM+fgRlx1iUO7dcWQaJ8LdeOQ
- 4WgNpJb4fBoK2YkeUR5rlkI=
-X-Google-Smtp-Source: ABdhPJxgLjle+X21msmkhScpohfSjneeqWivm7M3aHQYJvRXfoBdbPMfQOdSLJPQMzM3M/tZB5hKow==
-X-Received: by 2002:a17:903:20c1:b029:12c:4a37:5cbb with SMTP id
- i1-20020a17090320c1b029012c4a375cbbmr12001050plb.57.1627872450825; 
- Sun, 01 Aug 2021 19:47:30 -0700 (PDT)
-Received: from [10.106.0.86] ([45.135.186.29])
- by smtp.gmail.com with ESMTPSA id l14sm9517229pfd.58.2021.08.01.19.47.26
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 01 Aug 2021 19:47:30 -0700 (PDT)
-Subject: Re: [PATCH] drm/amdgpu: fix possible null-pointer dereference in
- amdgpu_ttm_tt_populate()
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, airlied@linux.ie, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, Xinhui.Pan@amd.com, baijiaju1990@gmail.com,
- alexander.deucher@amd.com, Philip.Yang@amd.com,
- TOTE Robot <oslab@tsinghua.edu.cn>, sumit.semwal@linaro.org,
- daniel@ffwll.ch, Felix.Kuehling@amd.com, airlied@redhat.com,
- Oak.Zeng@amd.com, nirmoy.das@amd.com, tzimmermann@suse.de
-References: <20210731080437.74539-1-islituo@gmail.com>
- <53ef6ff7-f793-5de4-4ab4-0efbfbfc0a54@amd.com>
-From: Li Tuo <islituo@gmail.com>
-Message-ID: <fc060208-89b5-51aa-c956-adf7c42d6b79@gmail.com>
-Date: Mon, 2 Aug 2021 10:47:24 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1anam02on2087.outbound.protection.outlook.com [40.107.96.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB4476E2D8
+ for <amd-gfx@lists.freedesktop.org>; Mon,  2 Aug 2021 02:53:49 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=j1oo0mvzfQUUtgwN6Fl3O6yqDQ0olfaT+ASdPbLmG0nKlumHQQVNS1wVViqFrmAEiWI/5u2mQVABHWvFExnu9rOHGuRXsWESUnRxXA/7iOsr19Eickg0AUPyURNIX+dxIUQgaBR7M8L5Q+Ef+OR/0s9HJrVu19z/kYek2fHPlhmXoBU6tieF4CFB/44B+ZrDGBmK5FZPDl+XloJZXcVMdMjmQwnTPlD6J6TcfIxbViP8oi9vPPNprVpFZFjj93x25vwyNpmKwRB+TrAjQjtm/7Pptj3WYTWknFGuCH2D2LP+r9yJ9STst2iCpv2G5fvcLDiQMKqjZMKelH7OlMuuRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=k/XZdrnoxqn8nUibQw/eMhXpNCuJYwD5v8Nec968YG4=;
+ b=NbbMTI6INYa/DZ8QFQR0RpRyXq79iE157p3EXU1YLrpoqf6Ah4HluJbuBJZbYuChgQq9CH7Exhc0iXOvwKM3ygYcyh6oOAl/wgM1sAShMxYaxssb9/URbV1ax/qu+htwivjoi534Uc2qhE+zxRj3MvzXh4DkW+qFIBHmz+UAP7ns5U6K5GgDPU6JKmmEld31nor1vqvgFSL4vabsCkaR/+AWzktX/JZD08FlE3/N77bhwN0GBkoGUxALVmE3ZV3dib2nw4p/Zb2Xe9+OiQ4Xld0+xxK0017yr0ObtGUtbWz9n35jBQl8nEgUCmO9zZYlAg/wzso/W0LpK82DatwWEg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=k/XZdrnoxqn8nUibQw/eMhXpNCuJYwD5v8Nec968YG4=;
+ b=H47D5sWGvlLYjIcfAn15MPeVgrilUiSgw474rhqxNzRwa9jI5qM8VpMZsrUiuVEl412C5gwOxUlfSipJzOJe3xRumgWVdekExUMuNfdYczNrBpat4Ko9nwGoFrwHHckIlOOHM5yQ/PWorceZSPAZUkvFiaH0pW/N/WfOheKEWWw=
+Received: from MWHPR14CA0042.namprd14.prod.outlook.com (2603:10b6:300:12b::28)
+ by SA0PR12MB4462.namprd12.prod.outlook.com (2603:10b6:806:95::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.22; Mon, 2 Aug
+ 2021 02:53:48 +0000
+Received: from CO1NAM11FT018.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:12b:cafe::ab) by MWHPR14CA0042.outlook.office365.com
+ (2603:10b6:300:12b::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.18 via Frontend
+ Transport; Mon, 2 Aug 2021 02:53:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT018.mail.protection.outlook.com (10.13.175.16) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4373.18 via Frontend Transport; Mon, 2 Aug 2021 02:53:47 +0000
+Received: from kevin-ws.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Sun, 1 Aug
+ 2021 21:53:42 -0500
+From: Kevin Wang <kevin1.wang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <lijo.lazar@amd.com>
+CC: Kevin Wang <kevin1.wang@amd.com>
+Subject: [PATCH] drm/amd/pm: correct aldebaran smu feature mapping
+ FEATURE_DATA_CALCULATIONS
+Date: Mon, 2 Aug 2021 10:53:31 +0800
+Message-ID: <20210802025331.727141-1-kevin1.wang@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <53ef6ff7-f793-5de4-4ab4-0efbfbfc0a54@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Mailman-Approved-At: Mon, 02 Aug 2021 07:57:01 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4f2bc9c7-d5f7-4e25-32e1-08d95560c00e
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4462:
+X-Microsoft-Antispam-PRVS: <SA0PR12MB446245D515E34B0ABBA77EB8A2EF9@SA0PR12MB4462.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:296;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: beHbpI3IEX9shgLwU3pVFKCm4FcRWlArRq0nUDJBkSH2KqFCkeAF3XSX+EVTAZ7+s+AvJ4MP8GWi6VrTJoc95i/cGDXSzX3do4GRLxI3PfH6NH4GoM4EVXRrKJEnO8Kol2VXlvYcVjG7y+19CNvZbYn+5bc2dS1avVgcxQaqqbRaNeQ58sb/0PS2A6VptM1T0+YKDmvxr9QKUsYrE1BKLAUZ3tWf25yfFrfUvDvVwO9reaL3mDKF3C+xnf2vbCMJ0egIPUMeRZpn0eTKu3M/noUtXK30xXfKTDZO1reJujqQ0c15Y42srvwLJOpJBfMJLDSUSPrRMkjmIDsJHG7aZMEVbI0ElnImWr9Tx4pU3DZJgdsK5V1wgPwP1TdcPopt2jfH4yupIm98p3jp78arsHR7YLShb04f7V+QXduNbTpiFKG6ExaFU7cdufCX2gtd4y/i6DoxpecR1PSWvvGRUpIeb5ES7qKdGBt0aDwK1n9Oce3k3ZfawhMWt6lR8JNnKruLqNR/GkbPaVQX9qX0jDVvEDKovBvtXzKoJlf4YLKHWV8hbWNOLbDFVAxfL9DDe1WH2nUfZ9ed21HeXiiG5cD53BaFdQ5N0VVtUpoRcZmatDreaQL3tv93jsT2IHfip1kccsUQEcRm7CcMWl3nbYNAGIk6PhG95PNadDCS8OUDRRIDysj9WXhYUxe1My5bhYy8lOwTxQMTPZZ4IfiR0ceC7yzaMjQHlRfPJkorTZg=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(346002)(376002)(136003)(396003)(39860400002)(36840700001)(46966006)(36860700001)(186003)(336012)(478600001)(16526019)(8936002)(82310400003)(316002)(8676002)(47076005)(110136005)(6636002)(1076003)(83380400001)(6666004)(82740400003)(36756003)(426003)(70206006)(81166007)(4326008)(2906002)(26005)(356005)(70586007)(86362001)(2616005)(5660300002)(7696005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2021 02:53:47.5314 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f2bc9c7-d5f7-4e25-32e1-08d95560c00e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT018.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4462
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,61 +105,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Thanks for your feedback! We will remove the null tests according to 
-your advice and prepare a V2 patch.
+correct smu feature mapping: FEATURE_DATA_CALCULATIONS
 
-Best wishes,
-Tuo Li
+Signed-off-by: Kevin Wang <kevin1.wang@amd.com>
+---
+ drivers/gpu/drm/amd/pm/inc/smu_types.h             | 1 +
+ drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c | 3 +--
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-On 2021/8/2 1:19, Christian König wrote:
-> Am 31.07.21 um 10:04 schrieb Tuo Li:
->> The variable ttm is assigned to the variable gtt, and the variable gtt
->> is checked in:
->>    if (gtt && gtt->userptr)
->>
->> This indicates that both ttm and gtt can be NULL.
->> If so, a null-pointer dereference will occur:
->>    if (ttm->page_flags & TTM_PAGE_FLAG_SG)
->>
->> Also, some null-pointer dereferences will occur in the function
->> ttm_pool_alloc() which is called in:
->>    return ttm_pool_alloc(&adev->mman.bdev.pool, ttm, ctx);
->>
->> To fix these possible null-pointer dereferences, the function returns
->> -EINVAL when ttm is NULL.
->
-> NAK, the NULL test is just a leftover from when the objects where 
-> distinct.
->
-> Please remove the NULL test instead.
->
-> Regards,
-> Christian.
->
->>
->> Reported-by: TOTE Robot <oslab@tsinghua.edu.cn>
->> Signed-off-by: Tuo Li <islituo@gmail.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 5 ++++-
->>   1 file changed, 4 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> index 3a55f08e00e1..80440f799c09 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
->> @@ -1120,8 +1120,11 @@ static int amdgpu_ttm_tt_populate(struct 
->> ttm_device *bdev,
->>       struct amdgpu_device *adev = amdgpu_ttm_adev(bdev);
->>       struct amdgpu_ttm_tt *gtt = (void *)ttm;
->>   +    if (ttm == NULL)
->> +        return -EINVAL;
->> +
->>       /* user pages are bound by amdgpu_ttm_tt_pin_userptr() */
->> -    if (gtt && gtt->userptr) {
->> +    if (gtt->userptr) {
->>           ttm->sg = kzalloc(sizeof(struct sg_table), GFP_KERNEL);
->>           if (!ttm->sg)
->>               return -ENOMEM;
->
+diff --git a/drivers/gpu/drm/amd/pm/inc/smu_types.h b/drivers/gpu/drm/amd/pm/inc/smu_types.h
+index 1d3765b873df..6239c30fcd5f 100644
+--- a/drivers/gpu/drm/amd/pm/inc/smu_types.h
++++ b/drivers/gpu/drm/amd/pm/inc/smu_types.h
+@@ -282,6 +282,7 @@ enum smu_clk_type {
+        __SMU_DUMMY_MAP(TDC),                           	\
+        __SMU_DUMMY_MAP(THERMAL),                       	\
+        __SMU_DUMMY_MAP(GFX_PER_CU_CG),                 	\
++       __SMU_DUMMY_MAP(DATA_CALCULATIONS),                 	\
+        __SMU_DUMMY_MAP(RM),                            	\
+        __SMU_DUMMY_MAP(DS_DCEFCLK),                    	\
+        __SMU_DUMMY_MAP(ACDC),                          	\
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+index 856eeaf293b8..4af602d6ee02 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+@@ -64,7 +64,6 @@
+ 
+ #define FEATURE_MASK(feature) (1ULL << feature)
+ #define SMC_DPM_FEATURE ( \
+-			  FEATURE_MASK(FEATURE_DATA_CALCULATIONS) | \
+ 			  FEATURE_MASK(FEATURE_DPM_GFXCLK_BIT)	| \
+ 			  FEATURE_MASK(FEATURE_DPM_UCLK_BIT)	| \
+ 			  FEATURE_MASK(FEATURE_DPM_SOCCLK_BIT)	| \
+@@ -150,7 +149,7 @@ static const struct cmn2asic_mapping aldebaran_clk_map[SMU_CLK_COUNT] = {
+ };
+ 
+ static const struct cmn2asic_mapping aldebaran_feature_mask_map[SMU_FEATURE_COUNT] = {
+-	ALDEBARAN_FEA_MAP(SMU_FEATURE_DPM_PREFETCHER_BIT, 		FEATURE_DATA_CALCULATIONS),
++	ALDEBARAN_FEA_MAP(SMU_FEATURE_DATA_CALCULATIONS_BIT, 		FEATURE_DATA_CALCULATIONS),
+ 	ALDEBARAN_FEA_MAP(SMU_FEATURE_DPM_GFXCLK_BIT, 			FEATURE_DPM_GFXCLK_BIT),
+ 	ALDEBARAN_FEA_MAP(SMU_FEATURE_DPM_UCLK_BIT, 			FEATURE_DPM_UCLK_BIT),
+ 	ALDEBARAN_FEA_MAP(SMU_FEATURE_DPM_SOCCLK_BIT, 			FEATURE_DPM_SOCCLK_BIT),
+-- 
+2.25.1
 
