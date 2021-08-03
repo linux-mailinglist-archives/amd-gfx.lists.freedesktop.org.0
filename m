@@ -1,54 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E88F3DE972
-	for <lists+amd-gfx@lfdr.de>; Tue,  3 Aug 2021 11:07:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90EAB3DEEC0
+	for <lists+amd-gfx@lfdr.de>; Tue,  3 Aug 2021 15:09:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CA896E838;
-	Tue,  3 Aug 2021 09:07:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3939289854;
+	Tue,  3 Aug 2021 13:09:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3ECE6E826;
- Tue,  3 Aug 2021 09:07:19 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 4B42D220CE;
- Tue,  3 Aug 2021 09:07:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1627981638; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=M70ybIL4oCFvQet3byWP0PwROzfybAx6FSGp2onwFB4=;
- b=ytl6aHBagHGlHrbtUXFJrerghhym+HX8KZ4B99RupbIKW3EWKITh9Z156M5L6TlmzeGVkL
- K/uxtB6UNiXurDLsevLWiqKV4sRQjkRXs9xVC0uRuTUDxTw2Y8ChRzGNTE9RZJRpKxtZ8O
- 7awdAI9QKo+UWrpXc1Caj3db7eaE+mY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1627981638;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=M70ybIL4oCFvQet3byWP0PwROzfybAx6FSGp2onwFB4=;
- b=pl/BloMaZpn/AwDXyVajHTVvKz+eIvwUedSzk191X0Osp5UiaNJOA56lOmOZl5eoye7T5r
- G32Dd7vb68jjyWDg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 7D5FD13CC4;
- Tue,  3 Aug 2021 09:07:17 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id YLNqHUUHCWFVJQAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Tue, 03 Aug 2021 09:07:17 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
- christian.koenig@amd.com, liviu.dudau@arm.com, brian.starkey@arm.com,
- sam@ravnborg.org, bbrezillon@kernel.org, nicolas.ferre@microchip.com,
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com
+ [IPv6:2a00:1450:4864:20::231])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B6656E0A6
+ for <amd-gfx@lists.freedesktop.org>; Tue,  3 Aug 2021 09:37:32 +0000 (UTC)
+Received: by mail-lj1-x231.google.com with SMTP id a7so27384368ljq.11
+ for <amd-gfx@lists.freedesktop.org>; Tue, 03 Aug 2021 02:37:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=SK6Ob07YJlX0nTWImG5cDSOjubg9maW6J2sNRF3yaOY=;
+ b=FBF9KtmjCa4uE0h2AteVPxiHyctdT6XJKIMbXtjO/tEd2nTSV/YeGyPiRGpkuIvk4D
+ MIsUvmdLlN3oN6mclWG7afHoXK1c0LZjelfP0qDlPGcdSNdDBmBndm2Wjg2EFLjBi1sQ
+ NW8SX1btq/CrnfYYRiGJRs/IQHazS4i8tNYH1NJBnBtQGSHrv5cZJkHSdmCXPVZmenua
+ ikIpDlNesEvw+jbsMZ/kYJWaEh1Oxgu4eltNTq+dQAVMq3x+D5m1idjwyeQjL4/mqJ8Q
+ XpT0GMgKd7iBnpTACGTS/qZReSNt1jD/grlVuRsommifNHDzZgq1Co7tOou7ch99y/6v
+ HiYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=SK6Ob07YJlX0nTWImG5cDSOjubg9maW6J2sNRF3yaOY=;
+ b=iqmQs8Y3hQJleqtyr2V2Qftbm6buO+QM4iQVVITsARNivpGXTt07TZ1Q8zhEdinREB
+ 7sqdKqee+Z113d4DoxB3sViHdg53DjI0WT1TZvr0Lpw6pcPV8/p+Uv263VW05odA/uET
+ kvXvHbsC6ZHe+YvH3DcGC6sNzYKcn4dfeacj3o0oOhQybHTcOuDMeBM52GBDZ3QTW8i0
+ +pz2q8yu9S/JpFAXG33zekmhywRV/iO6BWkR3NyDZZERf1R36MMQIDZHjPReP7VNMRtu
+ G7Hzg317SyjonyKu8tk/nqNa5r5bLsKHbUKjirfLvBmUOyA9B+yjEsWzTuwaYG2LZHEu
+ nxoQ==
+X-Gm-Message-State: AOAM533riDAKzMN78FiUSF9+uQK9hVpjc9BpliJHWxquJQt+CHyT8/w/
+ NJpuGGZcLWQDKKit8kn0aFYjJA==
+X-Google-Smtp-Source: ABdhPJwfzeu1HZdLhzyas+uFWAQ6XGdYcgkubYxUqCC4cyCTAVYruEGRSEc4hbVySR5Fttx49rvpQw==
+X-Received: by 2002:a05:651c:2051:: with SMTP id
+ t17mr13734385ljo.118.1627983450529; 
+ Tue, 03 Aug 2021 02:37:30 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+ by smtp.gmail.com with ESMTPSA id g17sm748572lfv.210.2021.08.03.02.37.29
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 03 Aug 2021 02:37:30 -0700 (PDT)
+Subject: Re: [PATCH v2 07/14] drm/msm: Convert to Linux IRQ interfaces
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@linux.ie, alexander.deucher@amd.com, christian.koenig@amd.com,
+ liviu.dudau@arm.com, brian.starkey@arm.com, sam@ravnborg.org,
+ bbrezillon@kernel.org, nicolas.ferre@microchip.com,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org, stefan@agner.ch,
  alison.wang@nxp.com, patrik.r.jakobsson@gmail.com,
  anitha.chrisanthus@intel.com, robdclark@gmail.com, edmund.j.dea@intel.com,
@@ -57,15 +60,20 @@ To: daniel@ffwll.ch, airlied@linux.ie, alexander.deucher@amd.com,
  Dan.Sneddon@microchip.com, tomi.valkeinen@ideasonboard.com
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 14/14] drm: IRQ midlayer is now legacy
-Date: Tue,  3 Aug 2021 11:07:04 +0200
-Message-Id: <20210803090704.32152-15-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210803090704.32152-1-tzimmermann@suse.de>
+ freedreno@lists.freedesktop.org
 References: <20210803090704.32152-1-tzimmermann@suse.de>
+ <20210803090704.32152-8-tzimmermann@suse.de>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <1f5f285a-b923-16ff-2ca1-6f92e22ffcab@linaro.org>
+Date: Tue, 3 Aug 2021 12:37:29 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210803090704.32152-8-tzimmermann@suse.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Tue, 03 Aug 2021 13:09:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,422 +88,206 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hide the DRM midlayer behind CONFIG_DRM_LEGACY, make functions use
-the prefix drm_legacy_, and move declarations to drm_legacy.h.
-In struct drm_device, move the fields irq and irq_enabled behind
-CONFIG_DRM_LEGACY.
+On 03/08/2021 12:06, Thomas Zimmermann wrote:
+> Drop the DRM IRQ midlayer in favor of Linux IRQ interfaces. DRM's
+> IRQ helpers are mostly useful for UMS drivers. Modern KMS drivers
+> don't benefit from using it.
+> 
+> DRM IRQ callbacks are now being called directly or inlined.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-All callers have been updated.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
----
- drivers/gpu/drm/drm_irq.c         | 63 ++++---------------------------
- drivers/gpu/drm/drm_legacy_misc.c |  3 +-
- drivers/gpu/drm/drm_vblank.c      |  8 ++--
- drivers/gpu/drm/i810/i810_dma.c   |  3 +-
- drivers/gpu/drm/mga/mga_dma.c     |  2 +-
- drivers/gpu/drm/mga/mga_drv.h     |  1 -
- drivers/gpu/drm/r128/r128_cce.c   |  3 +-
- drivers/gpu/drm/via/via_mm.c      |  3 +-
- include/drm/drm_device.h          | 18 ++-------
- include/drm/drm_drv.h             | 44 ++-------------------
- include/drm/drm_irq.h             | 31 ---------------
- include/drm/drm_legacy.h          |  3 ++
- 12 files changed, 27 insertions(+), 155 deletions(-)
- delete mode 100644 include/drm/drm_irq.h
+Rob should probably also give his blessing on this patch though.
 
-diff --git a/drivers/gpu/drm/drm_irq.c b/drivers/gpu/drm/drm_irq.c
-index dc6e38fa8a48..13e1d5c4ec82 100644
---- a/drivers/gpu/drm/drm_irq.c
-+++ b/drivers/gpu/drm/drm_irq.c
-@@ -60,46 +60,14 @@
- #include <drm/drm.h>
- #include <drm/drm_device.h>
- #include <drm/drm_drv.h>
--#include <drm/drm_irq.h>
-+#include <drm/drm_legacy.h>
- #include <drm/drm_print.h>
- #include <drm/drm_vblank.h>
- 
- #include "drm_internal.h"
- 
--/**
-- * DOC: irq helpers
-- *
-- * The DRM core provides very simple support helpers to enable IRQ handling on a
-- * device through the drm_irq_install() and drm_irq_uninstall() functions. This
-- * only supports devices with a single interrupt on the main device stored in
-- * &drm_device.dev and set as the device paramter in drm_dev_alloc().
-- *
-- * These IRQ helpers are strictly optional. Since these helpers don't automatically
-- * clean up the requested interrupt like e.g. devm_request_irq() they're not really
-- * recommended.
-- */
--
--/**
-- * drm_irq_install - install IRQ handler
-- * @dev: DRM device
-- * @irq: IRQ number to install the handler for
-- *
-- * Initializes the IRQ related data. Installs the handler, calling the driver
-- * &drm_driver.irq_preinstall and &drm_driver.irq_postinstall functions before
-- * and after the installation.
-- *
-- * This is the simplified helper interface provided for drivers with no special
-- * needs.
-- *
-- * @irq must match the interrupt number that would be passed to request_irq(),
-- * if called directly instead of using this helper function.
-- *
-- * &drm_driver.irq_handler is called to handle the registered interrupt.
-- *
-- * Returns:
-- * Zero on success or a negative error code on failure.
-- */
--int drm_irq_install(struct drm_device *dev, int irq)
-+#if IS_ENABLED(CONFIG_DRM_LEGACY)
-+static int drm_legacy_irq_install(struct drm_device *dev, int irq)
- {
- 	int ret;
- 	unsigned long sh_flags = 0;
-@@ -144,24 +112,8 @@ int drm_irq_install(struct drm_device *dev, int irq)
- 
- 	return ret;
- }
--EXPORT_SYMBOL(drm_irq_install);
- 
--/**
-- * drm_irq_uninstall - uninstall the IRQ handler
-- * @dev: DRM device
-- *
-- * Calls the driver's &drm_driver.irq_uninstall function and unregisters the IRQ
-- * handler.  This should only be called by drivers which used drm_irq_install()
-- * to set up their interrupt handler.
-- *
-- * Note that for kernel modesetting drivers it is a bug if this function fails.
-- * The sanity checks are only to catch buggy user modesetting drivers which call
-- * the same function through an ioctl.
-- *
-- * Returns:
-- * Zero on success or a negative error code on failure.
-- */
--int drm_irq_uninstall(struct drm_device *dev)
-+int drm_legacy_irq_uninstall(struct drm_device *dev)
- {
- 	unsigned long irqflags;
- 	bool irq_enabled;
-@@ -207,9 +159,8 @@ int drm_irq_uninstall(struct drm_device *dev)
- 
- 	return 0;
- }
--EXPORT_SYMBOL(drm_irq_uninstall);
-+EXPORT_SYMBOL(drm_legacy_irq_uninstall);
- 
--#if IS_ENABLED(CONFIG_DRM_LEGACY)
- int drm_legacy_irq_control(struct drm_device *dev, void *data,
- 			   struct drm_file *file_priv)
- {
-@@ -238,13 +189,13 @@ int drm_legacy_irq_control(struct drm_device *dev, void *data,
- 		    ctl->irq != irq)
- 			return -EINVAL;
- 		mutex_lock(&dev->struct_mutex);
--		ret = drm_irq_install(dev, irq);
-+		ret = drm_legacy_irq_install(dev, irq);
- 		mutex_unlock(&dev->struct_mutex);
- 
- 		return ret;
- 	case DRM_UNINST_HANDLER:
- 		mutex_lock(&dev->struct_mutex);
--		ret = drm_irq_uninstall(dev);
-+		ret = drm_legacy_irq_uninstall(dev);
- 		mutex_unlock(&dev->struct_mutex);
- 
- 		return ret;
-diff --git a/drivers/gpu/drm/drm_legacy_misc.c b/drivers/gpu/drm/drm_legacy_misc.c
-index 83db43b7a25e..d4c5434062d7 100644
---- a/drivers/gpu/drm/drm_legacy_misc.c
-+++ b/drivers/gpu/drm/drm_legacy_misc.c
-@@ -35,7 +35,6 @@
- 
- #include <drm/drm_device.h>
- #include <drm/drm_drv.h>
--#include <drm/drm_irq.h>
- #include <drm/drm_print.h>
- 
- #include "drm_internal.h"
-@@ -78,7 +77,7 @@ int drm_legacy_setup(struct drm_device * dev)
- void drm_legacy_dev_reinit(struct drm_device *dev)
- {
- 	if (dev->irq_enabled)
--		drm_irq_uninstall(dev);
-+		drm_legacy_irq_uninstall(dev);
- 
- 	mutex_lock(&dev->struct_mutex);
- 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index bba6781cc48f..3e260f3e2863 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -1739,10 +1739,10 @@ static void drm_wait_vblank_reply(struct drm_device *dev, unsigned int pipe,
- 
- static bool drm_wait_vblank_supported(struct drm_device *dev)
- {
--	if  (IS_ENABLED(CONFIG_DRM_LEGACY)) {
--		if (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)))
--			return dev->irq_enabled;
--	}
-+#if IS_ENABLED(CONFIG_DRM_LEGACY)
-+	if (unlikely(drm_core_check_feature(dev, DRIVER_LEGACY)))
-+		return dev->irq_enabled;
-+#endif
- 	return drm_dev_has_vblank(dev);
- }
- 
-diff --git a/drivers/gpu/drm/i810/i810_dma.c b/drivers/gpu/drm/i810/i810_dma.c
-index d78c82af367c..9fb4dd63342f 100644
---- a/drivers/gpu/drm/i810/i810_dma.c
-+++ b/drivers/gpu/drm/i810/i810_dma.c
-@@ -38,7 +38,6 @@
- #include <drm/drm_drv.h>
- #include <drm/drm_file.h>
- #include <drm/drm_ioctl.h>
--#include <drm/drm_irq.h>
- #include <drm/drm_print.h>
- #include <drm/i810_drm.h>
- 
-@@ -209,7 +208,7 @@ static int i810_dma_cleanup(struct drm_device *dev)
- 	 * is freed, it's too late.
- 	 */
- 	if (drm_core_check_feature(dev, DRIVER_HAVE_IRQ) && dev->irq_enabled)
--		drm_irq_uninstall(dev);
-+		drm_legacy_irq_uninstall(dev);
- 
- 	if (dev->dev_private) {
- 		int i;
-diff --git a/drivers/gpu/drm/mga/mga_dma.c b/drivers/gpu/drm/mga/mga_dma.c
-index 403efc1f1a7c..331c2f0da57a 100644
---- a/drivers/gpu/drm/mga/mga_dma.c
-+++ b/drivers/gpu/drm/mga/mga_dma.c
-@@ -949,7 +949,7 @@ static int mga_do_cleanup_dma(struct drm_device *dev, int full_cleanup)
- 	 * is freed, it's too late.
- 	 */
- 	if (dev->irq_enabled)
--		drm_irq_uninstall(dev);
-+		drm_legacy_irq_uninstall(dev);
- 
- 	if (dev->dev_private) {
- 		drm_mga_private_t *dev_priv = dev->dev_private;
-diff --git a/drivers/gpu/drm/mga/mga_drv.h b/drivers/gpu/drm/mga/mga_drv.h
-index 84395d81ab9b..f61401c70b90 100644
---- a/drivers/gpu/drm/mga/mga_drv.h
-+++ b/drivers/gpu/drm/mga/mga_drv.h
-@@ -38,7 +38,6 @@
- #include <drm/drm_device.h>
- #include <drm/drm_file.h>
- #include <drm/drm_ioctl.h>
--#include <drm/drm_irq.h>
- #include <drm/drm_legacy.h>
- #include <drm/drm_print.h>
- #include <drm/drm_sarea.h>
-diff --git a/drivers/gpu/drm/r128/r128_cce.c b/drivers/gpu/drm/r128/r128_cce.c
-index 2a2933c16308..c04d84a69dd2 100644
---- a/drivers/gpu/drm/r128/r128_cce.c
-+++ b/drivers/gpu/drm/r128/r128_cce.c
-@@ -39,7 +39,6 @@
- 
- #include <drm/drm_device.h>
- #include <drm/drm_file.h>
--#include <drm/drm_irq.h>
- #include <drm/drm_legacy.h>
- #include <drm/drm_print.h>
- #include <drm/r128_drm.h>
-@@ -603,7 +602,7 @@ int r128_do_cleanup_cce(struct drm_device *dev)
- 	 * is freed, it's too late.
- 	 */
- 	if (dev->irq_enabled)
--		drm_irq_uninstall(dev);
-+		drm_legacy_irq_uninstall(dev);
- 
- 	if (dev->dev_private) {
- 		drm_r128_private_t *dev_priv = dev->dev_private;
-diff --git a/drivers/gpu/drm/via/via_mm.c b/drivers/gpu/drm/via/via_mm.c
-index dae1bacd86c1..c9afa1a51f23 100644
---- a/drivers/gpu/drm/via/via_mm.c
-+++ b/drivers/gpu/drm/via/via_mm.c
-@@ -29,7 +29,6 @@
- 
- #include <drm/drm_device.h>
- #include <drm/drm_file.h>
--#include <drm/drm_irq.h>
- #include <drm/via_drm.h>
- 
- #include "via_drv.h"
-@@ -86,7 +85,7 @@ int via_final_context(struct drm_device *dev, int context)
- 	/* Last context, perform cleanup */
- 	if (list_is_singular(&dev->ctxlist)) {
- 		DRM_DEBUG("Last Context\n");
--		drm_irq_uninstall(dev);
-+		drm_legacy_irq_uninstall(dev);
- 		via_cleanup_futex(dev_priv);
- 		via_do_cleanup_map(dev);
- 	}
-diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-index f588f967bb14..604b1d1b2d72 100644
---- a/include/drm/drm_device.h
-+++ b/include/drm/drm_device.h
-@@ -191,20 +191,6 @@ struct drm_device {
- 	 */
- 	struct list_head clientlist;
- 
--	/**
--	 * @irq_enabled:
--	 *
--	 * Indicates that interrupt handling is enabled, specifically vblank
--	 * handling. Drivers which don't use drm_irq_install() need to set this
--	 * to true manually.
--	 */
--	bool irq_enabled;
--
--	/**
--	 * @irq: Used by the drm_irq_install() and drm_irq_unistall() helpers.
--	 */
--	int irq;
--
- 	/**
- 	 * @vblank_disable_immediate:
- 	 *
-@@ -372,6 +358,10 @@ struct drm_device {
- 
- 	/* Scatter gather memory */
- 	struct drm_sg_mem *sg;
-+
-+	/* IRQs */
-+	bool irq_enabled;
-+	int irq;
- #endif
- };
- 
-diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-index b439ae1921b8..0cd95953cdf5 100644
---- a/include/drm/drm_drv.h
-+++ b/include/drm/drm_drv.h
-@@ -137,10 +137,6 @@ enum drm_driver_feature {
- 	 * @DRIVER_HAVE_IRQ:
- 	 *
- 	 * Legacy irq support. Only for legacy drivers. Do not use.
--	 *
--	 * New drivers can either use the drm_irq_install() and
--	 * drm_irq_uninstall() helper functions, or roll their own irq support
--	 * code by calling request_irq() directly.
- 	 */
- 	DRIVER_HAVE_IRQ			= BIT(30),
- 	/**
-@@ -271,42 +267,6 @@ struct drm_driver {
- 	 */
- 	void (*release) (struct drm_device *);
- 
--	/**
--	 * @irq_handler:
--	 *
--	 * Interrupt handler called when using drm_irq_install(). Not used by
--	 * drivers which implement their own interrupt handling.
--	 */
--	irqreturn_t(*irq_handler) (int irq, void *arg);
--
--	/**
--	 * @irq_preinstall:
--	 *
--	 * Optional callback used by drm_irq_install() which is called before
--	 * the interrupt handler is registered. This should be used to clear out
--	 * any pending interrupts (from e.g. firmware based drives) and reset
--	 * the interrupt handling registers.
--	 */
--	void (*irq_preinstall) (struct drm_device *dev);
--
--	/**
--	 * @irq_postinstall:
--	 *
--	 * Optional callback used by drm_irq_install() which is called after
--	 * the interrupt handler is registered. This should be used to enable
--	 * interrupt generation in the hardware.
--	 */
--	int (*irq_postinstall) (struct drm_device *dev);
--
--	/**
--	 * @irq_uninstall:
--	 *
--	 * Optional callback used by drm_irq_uninstall() which is called before
--	 * the interrupt handler is unregistered. This should be used to disable
--	 * interrupt generation in the hardware.
--	 */
--	void (*irq_uninstall) (struct drm_device *dev);
--
- 	/**
- 	 * @master_set:
- 	 *
-@@ -504,6 +464,10 @@ struct drm_driver {
- 	int (*dma_ioctl) (struct drm_device *dev, void *data, struct drm_file *file_priv);
- 	int (*dma_quiescent) (struct drm_device *);
- 	int (*context_dtor) (struct drm_device *dev, int context);
-+	irqreturn_t (*irq_handler)(int irq, void *arg);
-+	void (*irq_preinstall)(struct drm_device *dev);
-+	int (*irq_postinstall)(struct drm_device *dev);
-+	void (*irq_uninstall)(struct drm_device *dev);
- 	u32 (*get_vblank_counter)(struct drm_device *dev, unsigned int pipe);
- 	int (*enable_vblank)(struct drm_device *dev, unsigned int pipe);
- 	void (*disable_vblank)(struct drm_device *dev, unsigned int pipe);
-diff --git a/include/drm/drm_irq.h b/include/drm/drm_irq.h
-deleted file mode 100644
-index 53634b988f57..000000000000
---- a/include/drm/drm_irq.h
-+++ /dev/null
-@@ -1,31 +0,0 @@
--/*
-- * Copyright 2016 Intel Corp.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice (including the next
-- * paragraph) shall be included in all copies or substantial portions of the
-- * Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * VA LINUX SYSTEMS AND/OR ITS SUPPLIERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-- */
--
--#ifndef _DRM_IRQ_H_
--#define _DRM_IRQ_H_
--
--struct drm_device;
--
--int drm_irq_install(struct drm_device *dev, int irq);
--int drm_irq_uninstall(struct drm_device *dev);
--#endif
-diff --git a/include/drm/drm_legacy.h b/include/drm/drm_legacy.h
-index b17e79e12bc2..58dc8d8cc907 100644
---- a/include/drm/drm_legacy.h
-+++ b/include/drm/drm_legacy.h
-@@ -192,6 +192,9 @@ do {										\
- void drm_legacy_idlelock_take(struct drm_lock_data *lock);
- void drm_legacy_idlelock_release(struct drm_lock_data *lock);
- 
-+/* drm_irq.c */
-+int drm_legacy_irq_uninstall(struct drm_device *dev);
-+
- /* drm_pci.c */
- 
- #ifdef CONFIG_PCI
+> ---
+>   drivers/gpu/drm/msm/msm_drv.c | 113 ++++++++++++++++++++--------------
+>   drivers/gpu/drm/msm/msm_kms.h |   2 +-
+>   2 files changed, 69 insertions(+), 46 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+> index 1594ae39d54f..a332b09a5a11 100644
+> --- a/drivers/gpu/drm/msm/msm_drv.c
+> +++ b/drivers/gpu/drm/msm/msm_drv.c
+> @@ -14,7 +14,6 @@
+>   #include <drm/drm_drv.h>
+>   #include <drm/drm_file.h>
+>   #include <drm/drm_ioctl.h>
+> -#include <drm/drm_irq.h>
+>   #include <drm/drm_prime.h>
+>   #include <drm/drm_of.h>
+>   #include <drm/drm_vblank.h>
+> @@ -201,6 +200,71 @@ void msm_rmw(void __iomem *addr, u32 mask, u32 or)
+>   	msm_writel(val | or, addr);
+>   }
+>   
+> +static irqreturn_t msm_irq(int irq, void *arg)
+> +{
+> +	struct drm_device *dev = arg;
+> +	struct msm_drm_private *priv = dev->dev_private;
+> +	struct msm_kms *kms = priv->kms;
+> +
+> +	BUG_ON(!kms);
+> +
+> +	return kms->funcs->irq(kms);
+> +}
+> +
+> +static void msm_irq_preinstall(struct drm_device *dev)
+> +{
+> +	struct msm_drm_private *priv = dev->dev_private;
+> +	struct msm_kms *kms = priv->kms;
+> +
+> +	BUG_ON(!kms);
+> +
+> +	kms->funcs->irq_preinstall(kms);
+> +}
+> +
+> +static int msm_irq_postinstall(struct drm_device *dev)
+> +{
+> +	struct msm_drm_private *priv = dev->dev_private;
+> +	struct msm_kms *kms = priv->kms;
+> +
+> +	BUG_ON(!kms);
+> +
+> +	if (kms->funcs->irq_postinstall)
+> +		return kms->funcs->irq_postinstall(kms);
+> +
+> +	return 0;
+> +}
+> +
+> +static int msm_irq_install(struct drm_device *dev, unsigned int irq)
+> +{
+> +	int ret;
+> +
+> +	if (irq == IRQ_NOTCONNECTED)
+> +		return -ENOTCONN;
+> +
+> +	msm_irq_preinstall(dev);
+> +
+> +	ret = request_irq(irq, msm_irq, 0, dev->driver->name, dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = msm_irq_postinstall(dev);
+> +	if (ret) {
+> +		free_irq(irq, dev);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void msm_irq_uninstall(struct drm_device *dev)
+> +{
+> +	struct msm_drm_private *priv = dev->dev_private;
+> +	struct msm_kms *kms = priv->kms;
+> +
+> +	kms->funcs->irq_uninstall(kms);
+> +	free_irq(kms->irq, dev);
+> +}
+> +
+>   struct msm_vblank_work {
+>   	struct work_struct work;
+>   	int crtc_id;
+> @@ -265,7 +329,7 @@ static int msm_drm_uninit(struct device *dev)
+>   	}
+>   
+>   	/* We must cancel and cleanup any pending vblank enable/disable
+> -	 * work before drm_irq_uninstall() to avoid work re-enabling an
+> +	 * work before msm_irq_uninstall() to avoid work re-enabling an
+>   	 * irq after uninstall has disabled it.
+>   	 */
+>   
+> @@ -294,7 +358,7 @@ static int msm_drm_uninit(struct device *dev)
+>   	drm_mode_config_cleanup(ddev);
+>   
+>   	pm_runtime_get_sync(dev);
+> -	drm_irq_uninstall(ddev);
+> +	msm_irq_uninstall(ddev);
+>   	pm_runtime_put_sync(dev);
+>   
+>   	if (kms && kms->funcs)
+> @@ -553,7 +617,7 @@ static int msm_drm_init(struct device *dev, const struct drm_driver *drv)
+>   
+>   	if (kms) {
+>   		pm_runtime_get_sync(dev);
+> -		ret = drm_irq_install(ddev, kms->irq);
+> +		ret = msm_irq_install(ddev, kms->irq);
+>   		pm_runtime_put_sync(dev);
+>   		if (ret < 0) {
+>   			DRM_DEV_ERROR(dev, "failed to install IRQ handler\n");
+> @@ -662,43 +726,6 @@ static void msm_postclose(struct drm_device *dev, struct drm_file *file)
+>   	context_close(ctx);
+>   }
+>   
+> -static irqreturn_t msm_irq(int irq, void *arg)
+> -{
+> -	struct drm_device *dev = arg;
+> -	struct msm_drm_private *priv = dev->dev_private;
+> -	struct msm_kms *kms = priv->kms;
+> -	BUG_ON(!kms);
+> -	return kms->funcs->irq(kms);
+> -}
+> -
+> -static void msm_irq_preinstall(struct drm_device *dev)
+> -{
+> -	struct msm_drm_private *priv = dev->dev_private;
+> -	struct msm_kms *kms = priv->kms;
+> -	BUG_ON(!kms);
+> -	kms->funcs->irq_preinstall(kms);
+> -}
+> -
+> -static int msm_irq_postinstall(struct drm_device *dev)
+> -{
+> -	struct msm_drm_private *priv = dev->dev_private;
+> -	struct msm_kms *kms = priv->kms;
+> -	BUG_ON(!kms);
+> -
+> -	if (kms->funcs->irq_postinstall)
+> -		return kms->funcs->irq_postinstall(kms);
+> -
+> -	return 0;
+> -}
+> -
+> -static void msm_irq_uninstall(struct drm_device *dev)
+> -{
+> -	struct msm_drm_private *priv = dev->dev_private;
+> -	struct msm_kms *kms = priv->kms;
+> -	BUG_ON(!kms);
+> -	kms->funcs->irq_uninstall(kms);
+> -}
+> -
+>   int msm_crtc_enable_vblank(struct drm_crtc *crtc)
+>   {
+>   	struct drm_device *dev = crtc->dev;
+> @@ -1051,10 +1078,6 @@ static const struct drm_driver msm_driver = {
+>   	.open               = msm_open,
+>   	.postclose           = msm_postclose,
+>   	.lastclose          = drm_fb_helper_lastclose,
+> -	.irq_handler        = msm_irq,
+> -	.irq_preinstall     = msm_irq_preinstall,
+> -	.irq_postinstall    = msm_irq_postinstall,
+> -	.irq_uninstall      = msm_irq_uninstall,
+>   	.dumb_create        = msm_gem_dumb_create,
+>   	.dumb_map_offset    = msm_gem_dumb_map_offset,
+>   	.prime_handle_to_fd = drm_gem_prime_handle_to_fd,
+> diff --git a/drivers/gpu/drm/msm/msm_kms.h b/drivers/gpu/drm/msm/msm_kms.h
+> index 086a2d59b8c8..9de7c42e1071 100644
+> --- a/drivers/gpu/drm/msm/msm_kms.h
+> +++ b/drivers/gpu/drm/msm/msm_kms.h
+> @@ -150,7 +150,7 @@ struct msm_kms {
+>   	const struct msm_kms_funcs *funcs;
+>   	struct drm_device *dev;
+>   
+> -	/* irq number to be passed on to drm_irq_install */
+> +	/* irq number to be passed on to msm_irq_install */
+>   	int irq;
+>   
+>   	/* mapper-id used to request GEM buffer mapped for scanout: */
+> 
+
+
 -- 
-2.32.0
-
+With best wishes
+Dmitry
