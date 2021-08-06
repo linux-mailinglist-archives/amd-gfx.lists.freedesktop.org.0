@@ -2,52 +2,36 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62DF43E2AEC
-	for <lists+amd-gfx@lfdr.de>; Fri,  6 Aug 2021 14:50:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F7CA3E2D3C
+	for <lists+amd-gfx@lfdr.de>; Fri,  6 Aug 2021 17:09:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99F156E11E;
-	Fri,  6 Aug 2021 12:50:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 715776E33F;
+	Fri,  6 Aug 2021 15:09:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-relay-canonical-1.canonical.com
- (smtp-relay-canonical-1.canonical.com [185.125.188.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCC8B6E8DC;
- Fri,  6 Aug 2021 11:16:17 +0000 (UTC)
-Received: from localhost (1.general.cking.uk.vpn [10.172.193.212])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
- SHA256) (No client certificate requested)
- by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id BDD7940643; 
- Fri,  6 Aug 2021 11:16:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
- s=20210705; t=1628248575;
- bh=K45ys8L4xpEH11ycYMqx65JY8D/NZO6D2I6izRFfqSQ=;
- h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type;
- b=DbKJ6NXpyHS7Z4kymvh06e4xGVUc+/yPsDHdsRSaREBxhB5LfgLdaySs9Zac5BW5/
- kLdpE6Kwrz5uvGe89Jf3/Ry+408QWbOwV6Ege7VV3eIDafjhbLxE0rmQ4ugs4szmTL
- miRxov5oY6+OXPwIYiNzvnIVtwYz4UtxRnMJaTyH67Jt35xgrrxZmHVehuixp2ZksD
- 9qQLnC/2y3cNmiNkaPKMM3Lmt8Qt4HpZ0j47N89c2GmciAvbcaud5LD8LZ/tnOX7gX
- 8IMQpWYyJTqGa7QDQ36otWa1Uef5zOCWVbZH/01lJ8ySqNd0qFoMxkRTn2gPMeINvM
- P2b7yDENeoZNQ==
-From: Colin King <colin.king@canonical.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui.Pan@amd.com, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Jun Lei <Jun.Lei@amd.com>,
- Jimmy Kizito <Jimmy.Kizito@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/amd/display: Remove redundant initialization of variable
- eng_id
-Date: Fri,  6 Aug 2021 12:16:15 +0100
-Message-Id: <20210806111615.11803-1-colin.king@canonical.com>
-X-Mailer: git-send-email 2.31.1
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CE756E08C
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Aug 2021 14:30:17 +0000 (UTC)
+Received: from relay3-d.mail.gandi.net (unknown [217.70.183.195])
+ by mslow1.mail.gandi.net (Postfix) with ESMTP id 23A5DC258D
+ for <amd-gfx@lists.freedesktop.org>; Fri,  6 Aug 2021 14:30:15 +0000 (UTC)
+Received: (Authenticated sender: hadess@hadess.net)
+ by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 6E3EF60010;
+ Fri,  6 Aug 2021 14:29:52 +0000 (UTC)
+Message-ID: <3524e3fb29d40003e59645a9ee5364ac62d34879.camel@hadess.net>
+Subject: Re: Power-saving/performance toggles for amdgpu
+From: Bastien Nocera <hadess@hadess.net>
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Date: Fri, 06 Aug 2021 16:29:51 +0200
+In-Reply-To: <CADnq5_NdfbJ9RAqMMxLYfvC70QPyuTQ8ggRZM2uYZAOuQx_vSQ@mail.gmail.com>
+References: <36ccfc64de628c060a736b8e05ae076246b686fc.camel@hadess.net>
+ <CADnq5_NdfbJ9RAqMMxLYfvC70QPyuTQ8ggRZM2uYZAOuQx_vSQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.2 (3.40.2-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 06 Aug 2021 12:50:25 +0000
+X-Mailman-Approved-At: Fri, 06 Aug 2021 15:09:34 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,31 +46,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Colin Ian King <colin.king@canonical.com>
+Nearly a year later, hello again, :)
 
-The variable eng_id is being initialized with a value that is never
-read, it is being re-assigned on the next statment. The assignment
-is redundant and can be removed.
+On Mon, 2020-09-14 at 01:46 -0400, Alex Deucher wrote:
+> On older radeons (e.g., pre-GCN hardware), there were separate power
+> states for battery and AC, but these asics are supported by the radeon
+> kernel driver.  None of the hardware supported by amdgpu exposes
+> anything like that anymore.  The rest is mainly for profiling and
+> debugging.  For more information see the relevant kernel
+> documentation:
+> https://www.kernel.org/doc/html/latest/gpu/amdgpu.html#gpu-power-thermal-controls-and-monitoring
+> I don't think there is anything you'd want to tweak there.
 
-Addresses-Coverity: ("Unused value")
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
----
- drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Is the power_dpm_force_performance_level sysfs property for the amdgpu
+driver not something that one could tweak?
+https://www.kernel.org/doc/html/latest/gpu/amdgpu.html#power-dpm-force-performance-level
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-index 1a89d565c92e..de80a9ea4cfa 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-@@ -305,7 +305,7 @@ struct link_encoder *link_enc_cfg_get_next_avail_link_enc(
- 	const struct dc_state *state)
- {
- 	struct link_encoder *link_enc = NULL;
--	enum engine_id eng_id = ENGINE_ID_UNKNOWN;
-+	enum engine_id eng_id;
- 
- 	eng_id = find_first_avail_link_enc(dc->ctx, state);
- 	if (eng_id != ENGINE_ID_UNKNOWN)
--- 
-2.31.1
+System76's own power management daemon changes it:
+https://github.com/pop-os/system76-power/blob/master/src/radeon.rs
+
+So I'm wondering whether it would have any effect, for example, I would
+expect setting "high" when a performance mode is requested so that
+there's little latency in terms of frequency switching, "low" to force
+minimal power draw in a power saving mode, and "auto" the rest of the
+time.
+
+Cheers
 
