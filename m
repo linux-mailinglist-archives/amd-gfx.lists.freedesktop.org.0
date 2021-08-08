@@ -1,46 +1,96 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 365E43E40A6
-	for <lists+amd-gfx@lfdr.de>; Mon,  9 Aug 2021 09:03:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C90963E3913
+	for <lists+amd-gfx@lfdr.de>; Sun,  8 Aug 2021 07:30:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CBAA89BAE;
-	Mon,  9 Aug 2021 07:03:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C308A89CDD;
+	Sun,  8 Aug 2021 05:30:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6067B89CD5;
- Sat,  7 Aug 2021 23:38:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-ID:Content-Description:In-Reply-To:References;
- bh=mi1wUIUriQLxRPB3k06DSpLuLSdOL9Du9D9ZElPFQIk=; b=xm3MRgt2UfWjsugdvTPkxsCOe3
- Y8OlIL7DBy83Wjcq+K6+xRZ3gmZ8mwf35XAOYCtmGcnRpOgxGRaD4bfGMVkUzlNv4ug7xjWAWVDef
- I785yp9IhyC0Uar+c2lyBBtMKPSqWzp8MmL4NGFqpAy3G7hawnGJwqqoLzdObCs3Fw8hl2l1ZqKtl
- xBjd9a/rz0thnZG0gfrjOiigkf6iUr+dZxTeNtRZQ16nLVWN+R/xpka8wP1eu+kPws+26wLdMDpPB
- sMP8en3KvtXIHSkLLaasPD+q5a5G50WgofjxTWXkF0Fut4A//ApCHdYFriXX57h5ojJo0CAqiPebD
- svejTQ9Q==;
-Received: from [2601:1c0:6280:3f0::aa0b] (helo=bombadil.infradead.org)
- by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1mCVtr-00FJdd-3N; Sat, 07 Aug 2021 23:38:43 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: linux-kernel@vger.kernel.org
-Cc: Randy Dunlap <rdunlap@infradead.org>, kernel test robot <lkp@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, Dennis Li <Dennis.Li@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: fix kernel-doc warnings on non-kernel-doc comments
-Date: Sat,  7 Aug 2021 16:38:42 -0700
-Message-Id: <20210807233842.13545-1-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.31.1
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2041.outbound.protection.outlook.com [40.107.93.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E6AC89C86
+ for <amd-gfx@lists.freedesktop.org>; Sun,  8 Aug 2021 05:30:40 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jXUphSJ6yrJx7l2AbQrYJDuFf+DqirtyFFSmI3tmo91UclJ3YtJShCCpX+cOAXIbJmnbGsFU03If5xCaxu6H+dfbPH0SPU3dYSUOZ3M8RYwH5GpMkHcsT0Lk9nUeRin8zFitScM/pXSsQJ0VHx2ke4xXTVFG0INmYkf4lmBSxWmiCtDTPOvZEa9eGeTUiYmQ8gQRZbe5p/o6YYw+/FSvZlQOQntnqOhmffxSrGv19prbiZUQPjsamfDnGp2calensz5pnTaQdYNlwoJtwvJdMLB37ei9/HociRl/aXk1kLCdGRfxiKIEqPYY+MNqs1YFuxuhgtEQ/aFBlr20d6HouA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lF4NnR+Rp5pp8Jhf9oKRmwnLq5C///NIEuPWSgQHMJg=;
+ b=ifrzTLTzG5FsREf7+N/Iep7UytTfUqhYiLlinn1Cffhs4sAMijG+TP5Hky0sOCaT2lCR1YdKE364YROM5/kyfcaSOp6JxI3G0NHGTCden/zWD5E/25tqs5tPOtXV7t0wchx81oAAWt5O6PFey+vyQAedrb/UTf0AmogfETwi6PCEeIptWH8fKZZzAoLrFGk+3AwaY4o4lagw01anKNzOSC3X+Nx0HXYDEolmApl9PZvrVaPkxiWpKJABOnNAa43VyfEZjrn5onVPxCFxDwxSgufCQa8ClkQPl+NZngrKxmjeCi4E5ulT7GcBsGESJS3ezvNtSnQNeEu3WN9uxv83dg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lF4NnR+Rp5pp8Jhf9oKRmwnLq5C///NIEuPWSgQHMJg=;
+ b=TgiuItGxvXTzw2u+dWmljaOMFqR8g1tlmHcOS28c9Eb/qMXHiVa+ybp00z36P/5KPO5QRSTbiNDvCRvhqq9t3pC16/kEbvyrtZ/0O9WvMZl+BG1FUBGjrSu6LqrXoLQR6vS138NLQJDBLIFZnLzgD5db/fhF4TyEA3BKw1s1Gqw=
+Received: from BN9PR03CA0328.namprd03.prod.outlook.com (2603:10b6:408:112::33)
+ by CY4PR12MB1144.namprd12.prod.outlook.com (2603:10b6:903:3f::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.21; Sun, 8 Aug
+ 2021 05:30:35 +0000
+Received: from BN8NAM11FT019.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:112:cafe::e4) by BN9PR03CA0328.outlook.office365.com
+ (2603:10b6:408:112::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.17 via Frontend
+ Transport; Sun, 8 Aug 2021 05:30:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT019.mail.protection.outlook.com (10.13.176.158) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4394.16 via Frontend Transport; Sun, 8 Aug 2021 05:30:35 +0000
+Received: from dapowell-ubuntu-200400-1.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Sun, 8 Aug 2021 00:30:34 -0500
+From: Darren Powell <darren.powell@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Darren Powell <darren.powell@amd.com>
+Subject: [PATCH v2 0/3] Replace usage of sprintf with sysfs_emit in swsmu
+ powerplay
+Date: Sun, 8 Aug 2021 01:30:16 -0400
+Message-ID: <20210808053019.3310-1-darren.powell@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 09 Aug 2021 07:03:47 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4aec9f4a-2601-4a49-4271-08d95a2da5f8
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1144:
+X-Microsoft-Antispam-PRVS: <CY4PR12MB1144798F11787B0177D9803EF0F59@CY4PR12MB1144.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:317;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: u3O4RIog1NC6MoOoCAR9isTc6rBpUwvFS56liKK67naYYoeiPQ76iFXWaxMOxzimAyY5O1yBNLuWEVBExGGvkALV2t65HHSoF3u6UVJiOB6NlQ1QhXL/49V97ijOUlJQmY1MKH3BN6q66uvoB9Hhdktw7k3HV43p7wvd1KG9JzhBDO/Guh5nGyUz50b2EGXuJx3FEJv3wfWcQLJ/vxSg9AAulg4Mejd8RzyxbqdvX5IlJJczSHMN1LSOhtcKnlGgWfO0H6L7hKneRjt45oxfhe0pBkyXKCgqVESRFbukxWD76qIM6mCyln151XqDvICfUEksJArN2YNQWGykv/j7iSTPPBN7451h2L1aGjVJlpbBb5oCEI9uplCOL+ehCO8Q0oIPONgUbkKplzqBXekPcPOlLOH4cL0MYozRdn7jzQB77Aeyyod7xD5WXSvFWFXSvyLOtdmGX9opBg9XC1ceBN9HiB+MwglQPI9EhdDnBDc6XI1wF5cy0U/7ifzWxC/0VEhXu0iTyxCkqzyaq8eepkwtw1xFtoxqI9VHvMiQjYMXQSUapM8YFSHrV+ZRz2h18dxgyRnE/NR3gfEZE0DFH7fm1xmKpVL0+sJeFhtkPwyvcQXr9tPZO7juW8Vj3G5SsWoEkrNzBFKVmTS8yDoHTR4NPjKjHx/R3mkHqYdPTDqSo5F7ouBM1KjzfVIVq8LfP+O45LhM/L8PKAPIMwdbJBXdR6Mctzno7+9lczJorRdzsVnovGQidpbFvBNVsEUMdqfG7jFz0KI2WwE6Qc3qlA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(376002)(346002)(396003)(39860400002)(136003)(46966006)(36840700001)(47076005)(8936002)(81166007)(8676002)(83380400001)(356005)(86362001)(4326008)(6916009)(2906002)(316002)(82740400003)(478600001)(26005)(5660300002)(70206006)(36756003)(336012)(70586007)(82310400003)(36860700001)(426003)(44832011)(34070700002)(2616005)(6666004)(16526019)(1076003)(7696005)(186003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2021 05:30:35.3744 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4aec9f4a-2601-4a49-4271-08d95a2da5f8
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT019.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1144
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,55 +105,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Don't use "begin kernel-doc notation" (/**) for comments that are
-not kernel-doc. This eliminates warnings reported by the 0day bot.
 
-drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c:89: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * This shader is used to clear VGPRS and LDS, and also write the input
-drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c:209: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * The below shaders are used to clear SGPRS, and also write the input
-drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c:301: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * This shader is used to clear the uninitiated sgprs after the above
+=== Description ===
+Replace usage of sprintf with sysfs_emit in swsmu powerplay
 
-Fixes: 0e0036c7d13b ("drm/amdgpu: fix no full coverage issue for gprs initialization")
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Reported-by: kernel test robot <lkp@intel.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>
-Cc: Dennis Li <Dennis.Li@amd.com>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
----
- drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c |    6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+  v2: rebased on 2f56b0d631eb
 
---- linux-next-20210806.orig/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c
-+++ linux-next-20210806/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c
-@@ -85,7 +85,7 @@ static const struct soc15_reg_golden gol
- 	SOC15_REG_GOLDEN_VALUE(GC, 0, regTCI_CNTL_3, 0xff, 0x20),
- };
- 
--/**
-+/*
-  * This shader is used to clear VGPRS and LDS, and also write the input
-  * pattern into the write back buffer, which will be used by driver to
-  * check whether all SIMDs have been covered.
-@@ -206,7 +206,7 @@ const struct soc15_reg_entry vgpr_init_r
- 	{ SOC15_REG_ENTRY(GC, 0, regCOMPUTE_STATIC_THREAD_MGMT_SE7), 0xffffffff },
- };
- 
--/**
-+/*
-  * The below shaders are used to clear SGPRS, and also write the input
-  * pattern into the write back buffer. The first two dispatch should be
-  * scheduled simultaneously which make sure that all SGPRS could be
-@@ -302,7 +302,7 @@ const struct soc15_reg_entry sgpr96_init
- 	{ SOC15_REG_ENTRY(GC, 0, regCOMPUTE_STATIC_THREAD_MGMT_SE7), 0xffffffff },
- };
- 
--/**
-+/*
-  * This shader is used to clear the uninitiated sgprs after the above
-  * two dispatches, because of hardware feature, dispath 0 couldn't clear
-  * top hole sgprs. Therefore need 4 waves per SIMD to cover these sgprs
+=== Test System ===
+* DESKTOP(AMD FX-8350 + NAVI10(731F/ca), BIOS: F2)
+ + ISO(Ubuntu 20.04.2 LTS)
+ + Kernel(5.13.0-gb1d634be9673-fdoagd5f)
+
+
+=== Patch Summary ===
+   linux: (git@gitlab.freedesktop.org:agd5f) origin/amd-staging-drm-next @ 2f56b0d631eb
+    + c4a20b3363cd amdgpu/pm: Replace navi10 usage of sprintf with sysfs_emit
+    + cd2e3983959b amdgpu/pm: Replace smu11 usage of sprintf with sysfs_emit
+    + bd82d29a9635 amdgpu/pm: Replace smu12/13 usage of sprintf with sysfs_emit
+
+
+=== General Test for each platform ===
+AMDGPU_PCI_ADDR=`lspci -nn | grep "VGA\|Display" | cut -d " " -f 1`
+AMDGPU_HWMON=`ls -la /sys/class/hwmon | grep $AMDGPU_PCI_ADDR | awk '{print $9}'`
+HWMON_DIR=/sys/class/hwmon/${AMDGPU_HWMON}
+LOGFILE=pp_printf.test.log
+
+lspci -nn | grep "VGA\|Display"  > $LOGFILE
+FILES="pp_dpm_sclk
+pp_sclk_od
+pp_mclk_od
+pp_dpm_pcie
+pp_od_clk_voltage
+pp_power_profile_mode "
+
+for f in $FILES
+do
+  echo === $f === >> $LOGFILE
+  cat $HWMON_DIR/device/$f >> $LOGFILE
+done
+cat $LOGFILE
+
+Darren Powell (3):
+  amdgpu/pm: Replace navi10 usage of sprintf with sysfs_emit
+  amdgpu/pm: Replace smu11 usage of sprintf with sysfs_emit
+  amdgpu/pm: Replace smu12/13 usage of sprintf with sysfs_emit
+
+ .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c | 26 ++++----
+ .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 61 ++++++++++---------
+ .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   | 34 +++++------
+ .../gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c  | 46 +++++++-------
+ .../gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c   | 20 +++---
+ .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    | 21 +++----
+ .../drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c  | 14 ++---
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c        |  6 +-
+ 8 files changed, 115 insertions(+), 113 deletions(-)
+
+
+base-commit: 2f56b0d631eba0e76cfc789d85cc5632256ad42d
+-- 
+2.32.0
+
