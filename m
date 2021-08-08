@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D751B3E3911
-	for <lists+amd-gfx@lfdr.de>; Sun,  8 Aug 2021 07:30:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 087203E3914
+	for <lists+amd-gfx@lfdr.de>; Sun,  8 Aug 2021 07:30:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 542BE89C86;
-	Sun,  8 Aug 2021 05:30:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C808F89CFA;
+	Sun,  8 Aug 2021 05:30:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2048.outbound.protection.outlook.com [40.107.220.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D6AC89C86
- for <amd-gfx@lists.freedesktop.org>; Sun,  8 Aug 2021 05:30:39 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2081.outbound.protection.outlook.com [40.107.237.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 006C889CE0
+ for <amd-gfx@lists.freedesktop.org>; Sun,  8 Aug 2021 05:30:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MrElEkaEAG6zxGQz0IJ+aRAQMEK5Wz+HK3+geS2HabHA+hu3YYtlrnzUC8dqASJaNTszVzoIKR0RB14NGhCorMfPPIEYIRMSpRCG2emb6xPJODDXRqUUbS3Jnw9qsloFGzeCfY6xIpJoE8fHM7xRjfYCGFbhvfqj+Vjkn5veGy/66dExJlfVO7q+FeFL9LRil/7NRrW+tgOOAxYR8wYWbOSMt9SBb3tHIR/2sMrLjeqnQzwiaFHmMeLocO9lmXzw6EEBoN0spgQxx5AwemfTYwS8m3z4DcQ+YXpYTTOrcGeuYcMR1Rcwdj7vJELCgNYgAORQeh0/9pgpkR3zyLXXRA==
+ b=crnR4xcI4kp+Rzu4KZ7upRaCaaEAn4bOBTMGnt8Q/+Yod4fqAeMdr99ICQNj9mXpOsVOz74p0tyFyEro+0nfc2Hb9M6ABMS1jJisXerRjOCE1W3HKDQPK+73tQUAdW/oXNwIiFlCZDfQh/As96/cwP1YKReb9DkbHK3SkZnCg5XZ3lXQyyaDLKlDyzYhNtYvjtIoF+vRr7GQZTBzUo+rM9zTo/8Ad746/7E+qEFtsazUfIkeBUfLQbkJcG2WTBeHzfYGTYVgUk6mOenxgPH+By7bJbLxamfI3ZchH2RvRf8AWNk27qdsP8Qf0WiKJ1nO2q0cMumMtrkbfdv9pHUyQg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZQ3h6nC2VGwW9ycltPu3/AmIOeNmzNiSPoQRC1QK3KE=;
- b=Dpgoa15u5IJAnq6QQB5NSaTyvozJ6Cay4VhM2LLKdZGk9PKI8SEZCwuikNKBkgw9Fgjq31xsFp+yaCquEGq3ak3+bj6NogR4uT3yRTWuxSOwIu22fJi7lJGy2JaJv10Q3vl+tqzJjr8J3TfTjwFcRZGMl5TPU9BRUMZJlbQPEgbCSvqev96mBe3uZeKSzBpSz1uYq2VB+uThEOU/nsIbTH8ESpFCAML6oYXmWByWDc20Id/2sxnwSPYEnBB9M4a28AUJblNHaVjsDRZ6dr9sE4DuiCaDezJrldXHFDrULMimI1T3uXnr7//yx0tH6BH9kZsDT729yoaeh17qO73vgw==
+ bh=vNp+4scF08fNn9FGHN7/7qexF9DEKbGpvgwPrPdiI5s=;
+ b=ahvIIKCypNuZx3WLx/qZLpe3ZZf6hD9wnXykcNdgM0g572oec8oaovc85P1ELZbR58vZ/NDi2+acWeV3r4dCUmyT6zoeE4bRzN0ItEzK+6gmE2pbTVkRidLQbggAdSCE+d5/0hrUyI8s6ViClZVMyy8PaVNgVtpMdROey92VmUuzHwz/YtJS23y5jPKCy8BnxgTy/y/d5SOFj70tTzaFK74n95zXCAiydeeq0y/MnQfzwOEU3loqhJU75xy/UyhMbPUNgKcYqIsv6R9gk0eBNa9istkl5RtPB6HaSNY3nLPqUCblYknPQS7D8khb7z1zTaJbzlLwuABl9mUSVe7A/A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZQ3h6nC2VGwW9ycltPu3/AmIOeNmzNiSPoQRC1QK3KE=;
- b=XEWHPActACto/OolKVLG49kA086V5tW728r0YggtuRQRc1tWjMfjiHoenk756IY8DoAQ3EHJkpFxx2RC98EkZvYONT7t+qTTRyZrxXmQaPHDdlZSnxsQGFx4H0MNZ7+FC24g8od893noKmRxvrceZJaHsIonKMNH46zAgEF9zAM=
-Received: from BN9PR03CA0325.namprd03.prod.outlook.com (2603:10b6:408:112::30)
- by SN6PR12MB2848.namprd12.prod.outlook.com (2603:10b6:805:77::30)
+ bh=vNp+4scF08fNn9FGHN7/7qexF9DEKbGpvgwPrPdiI5s=;
+ b=aX60oMIwgsC6NQteTUVrWvYGxH3ZbyQT0diXFp6KX042Xy+uNtO3GnndedYZrMUdqx0Aa2RGyl5WvDq550g8B5qgFMdB2g+PbVGK9VQSfLyPNVoXCw1uXwnaSmUZFEJcGCX2e/5Xrwm9QWPCUcseGZIrTcw4c0vTgLtNdcgoMz8=
+Received: from BN9PR03CA0304.namprd03.prod.outlook.com (2603:10b6:408:112::9)
+ by BY5PR12MB4178.namprd12.prod.outlook.com (2603:10b6:a03:20e::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.17; Sun, 8 Aug
- 2021 05:30:36 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.18; Sun, 8 Aug
+ 2021 05:30:41 +0000
 Received: from BN8NAM11FT019.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:112:cafe::bb) by BN9PR03CA0325.outlook.office365.com
- (2603:10b6:408:112::30) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:408:112:cafe::f3) by BN9PR03CA0304.outlook.office365.com
+ (2603:10b6:408:112::9) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15 via Frontend
- Transport; Sun, 8 Aug 2021 05:30:36 +0000
+ Transport; Sun, 8 Aug 2021 05:30:40 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,17 +48,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT019.mail.protection.outlook.com (10.13.176.158) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4394.16 via Frontend Transport; Sun, 8 Aug 2021 05:30:36 +0000
+ 15.20.4394.16 via Frontend Transport; Sun, 8 Aug 2021 05:30:40 +0000
 Received: from dapowell-ubuntu-200400-1.amd.com (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Sun, 8 Aug 2021 00:30:35 -0500
+ 15.1.2242.12; Sun, 8 Aug 2021 00:30:36 -0500
 From: Darren Powell <darren.powell@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Darren Powell <darren.powell@amd.com>
-Subject: [PATCH 2/3] amdgpu/pm: Replace smu11 usage of sprintf with sysfs_emit
-Date: Sun, 8 Aug 2021 01:30:18 -0400
-Message-ID: <20210808053019.3310-3-darren.powell@amd.com>
+Subject: [PATCH 3/3] amdgpu/pm: Replace smu12/13 usage of sprintf with
+ sysfs_emit
+Date: Sun, 8 Aug 2021 01:30:19 -0400
+Message-ID: <20210808053019.3310-4-darren.powell@amd.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210808053019.3310-1-darren.powell@amd.com>
 References: <20210808053019.3310-1-darren.powell@amd.com>
@@ -70,28 +71,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c972ec36-4458-4f96-8488-08d95a2da6a3
-X-MS-TrafficTypeDiagnostic: SN6PR12MB2848:
-X-Microsoft-Antispam-PRVS: <SN6PR12MB284838EE247A032A55102C46F0F59@SN6PR12MB2848.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:248;
+X-MS-Office365-Filtering-Correlation-Id: 89c96a69-44f6-492b-6b95-08d95a2da93c
+X-MS-TrafficTypeDiagnostic: BY5PR12MB4178:
+X-Microsoft-Antispam-PRVS: <BY5PR12MB417833D8A5C1BD61FD37CAD4F0F59@BY5PR12MB4178.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:261;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SXgGtiZ0LR98wd6bDrXjU7Y0pWLidBUzVi1ufyoTJp9pAF0OnGpDEghHchz5wZREioz7K8rxMuUblR6TGgzd9kXns5XKlj0pEQls2sJJ1lggEc23yV8vJNgG2+EtHM4iX+xVdPq856Kvlx8pQ/wfPtyKugPFhsUoaS8geBOkIu5YPCsAHwnkr6kuSEvQBjsaMGMPpBTOqr9Orz4VfQzJKE5/89ifnNnBg5Y2uyi+s7dUUfRoWiKv3w5QglJWIoIB1i/2ZmSDr1RTjT4476jwABIxnyd93hgGZKuEqjxRLJXP9rLDqQjua5FPWYjU6uscuWIwXgDhtN3DUZ5+XZpK+QRIpIioG8+a7BbxdWeyug0dEyfmwXgbd/BLeRLuggsYksI5JQdl7GKa2O7/x7RvH20bUhTBni6MJXuiHngvlkMqC5SZi85jk0QPJ/c8scNVnXihPdx1LDqKXsyOoo8vyvme9fTc7MyPG16jFg2D9wwyGkKWylV2+o4SQt0EVuh9Q49Y6EutphdOGpfZQrOB46F5fw5KdshMyREX4mKASocpMSC3WR1NJRIRxFbprRLsKf3A2ZpSrrrF9qXVEvw5+LwckVLAkP5vVvv7f1ZFwQMcw0sgNQ78W6nsnUBG402GUG2kebd0RidId650vT8lV6+ZiJV/hN1WFuxSg4Q+ObKYm7m2igUTkNipAj+LmjSJ3tTUqDMXnIoC1THrDTHsybiLzMLnzi+J1SDI/lF8Cd11M9xZ4WLzqgGlua+1/Kq4h+47WAOt8SZRvV1ef5369Q==
+X-Microsoft-Antispam-Message-Info: v9mHenq1U5kK2tnkSblkLPGLE59AU7ZFq1ZX4f+/pI/zC/nBKP6ykhYQXOhOKhq2OPs2XlZZnxbUvzRwaEmPbAoxJY07VBThbPPoMbW0Ans6/y/XBbpP8V8ooQQSrkw3UBl/9QeFE400F0YJ1aeHUqu7JRZGl+UTSAwAx0HqkvbZih5TQNkqL/6AzEz9P0WW80aFv+jie2w5Scj118g7+ok2XJUqWPLOfXP03JC9qrH+PceP1s1svJz4XkW9s7Mg72uG+7Y2QHhCcq8MCgrsyQl872D/MJbePSkXjyi+9MC65yuEneM/4VKfVk1Cn/QujxMTO7kgOenR0nmvZox+CmEAkAya6I0u+3eZg5ge1WYBVv8AL+OTlr2I3CM1kQZGAnXzZivWhqEhXmUv8fHlYuU4XnCKDaPq3wGnhpsQdJ2XcXA5uZ7k2gG/l/ZUNL1io5qlgOG/hw/AEbQU/h6blJmlRkm1ubxmay0IqnX1dSQ6VhHLU9RP5c1risrVoxnZlI8XLGuODTgitJ/DMEy/x1nN+5KzbJ1WJiiFWSpwRJHISL+G+Yi+T6eFhhh1M6gVYS7uyTZE8xB4ceZNu1brG/q4M9NDU0m55mqSHZyz082cvoRUGXu8rR1aESq2lTL+ZtxoxzYXEdj4Kjqz/p1O27d2DiwGB+PQzLvb5+K5JgGqonEQkW2CJzUFr2o2m+4kHNlgc3Oh9wtoEqjWzr0UjsY/6PWq6sah0BdGbfZZHSIXDo8Z9DO2l47MqxyFzbT3c3TR44mXnleM72MudmvIrg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(136003)(376002)(396003)(39860400002)(346002)(36840700001)(46966006)(70586007)(5660300002)(8676002)(2616005)(70206006)(44832011)(478600001)(426003)(47076005)(336012)(34070700002)(36860700001)(356005)(82310400003)(6666004)(2906002)(81166007)(1076003)(4326008)(86362001)(7696005)(83380400001)(82740400003)(8936002)(36756003)(26005)(186003)(30864003)(316002)(16526019)(6916009)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(82310400003)(47076005)(34070700002)(6916009)(508600001)(4326008)(2616005)(70206006)(81166007)(70586007)(86362001)(2906002)(7696005)(6666004)(316002)(336012)(426003)(356005)(1076003)(83380400001)(16526019)(186003)(26005)(8936002)(8676002)(5660300002)(44832011)(36756003)(36860700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2021 05:30:36.4958 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c972ec36-4458-4f96-8488-08d95a2da6a3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2021 05:30:40.8543 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 89c96a69-44f6-492b-6b95-08d95a2da93c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT019.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2848
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4178
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,10 +107,10 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
- modification of smu11 files
-  arcturus_ppt.c
-  sienna_cichlid_ppt.c
-  vangogh_ppt.c
+ initial modification of files
+  renoir_ppt.c
+  aldebaran_ppt.c
+  yellow_carp_ppt.c
 
 === Test ===
 AMDGPU_PCI_ADDR=`lspci -nn | grep "VGA\|Display" | cut -d " " -f 1`
@@ -130,296 +131,53 @@ cat $LOGFILE
 
 Signed-off-by: Darren Powell <darren.powell@amd.com>
 ---
- .../gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c | 26 +++++------
- .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   | 34 +++++++-------
- .../gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c  | 46 +++++++++----------
- 3 files changed, 53 insertions(+), 53 deletions(-)
+ .../gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c   | 20 +++++++++---------
+ .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    | 21 +++++++++----------
+ .../drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c  | 14 ++++++-------
+ 3 files changed, 27 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-index 6ec8492f71f5..8ab58781ae13 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
-@@ -756,7 +756,7 @@ static int arcturus_print_clk_levels(struct smu_context *smu,
- 	uint32_t gen_speed, lane_width;
- 
- 	if (amdgpu_ras_intr_triggered())
--		return snprintf(buf, PAGE_SIZE, "unavailable\n");
-+		return sysfs_emit(buf, "unavailable\n");
- 
- 	dpm_context = smu_dpm->dpm_context;
- 
-@@ -780,7 +780,7 @@ static int arcturus_print_clk_levels(struct smu_context *smu,
- 		 * And it's safe to assume that is always the current clock.
- 		 */
- 		for (i = 0; i < clocks.num_levels; i++)
--			size += sprintf(buf + size, "%d: %uMhz %s\n", i,
-+			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i,
- 					clocks.data[i].clocks_in_khz / 1000,
- 					(clocks.num_levels == 1) ? "*" :
- 					(arcturus_freqs_in_same_level(
-@@ -803,7 +803,7 @@ static int arcturus_print_clk_levels(struct smu_context *smu,
- 		}
- 
- 		for (i = 0; i < clocks.num_levels; i++)
--			size += sprintf(buf + size, "%d: %uMhz %s\n",
-+			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
- 				i, clocks.data[i].clocks_in_khz / 1000,
- 				(clocks.num_levels == 1) ? "*" :
- 				(arcturus_freqs_in_same_level(
-@@ -826,7 +826,7 @@ static int arcturus_print_clk_levels(struct smu_context *smu,
- 		}
- 
- 		for (i = 0; i < clocks.num_levels; i++)
--			size += sprintf(buf + size, "%d: %uMhz %s\n",
-+			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
- 				i, clocks.data[i].clocks_in_khz / 1000,
- 				(clocks.num_levels == 1) ? "*" :
- 				(arcturus_freqs_in_same_level(
-@@ -849,7 +849,7 @@ static int arcturus_print_clk_levels(struct smu_context *smu,
- 		}
- 
- 		for (i = 0; i < single_dpm_table->count; i++)
--			size += sprintf(buf + size, "%d: %uMhz %s\n",
-+			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
- 				i, single_dpm_table->dpm_levels[i].value,
- 				(clocks.num_levels == 1) ? "*" :
- 				(arcturus_freqs_in_same_level(
-@@ -872,7 +872,7 @@ static int arcturus_print_clk_levels(struct smu_context *smu,
- 		}
- 
- 		for (i = 0; i < single_dpm_table->count; i++)
--			size += sprintf(buf + size, "%d: %uMhz %s\n",
-+			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
- 				i, single_dpm_table->dpm_levels[i].value,
- 				(clocks.num_levels == 1) ? "*" :
- 				(arcturus_freqs_in_same_level(
-@@ -895,7 +895,7 @@ static int arcturus_print_clk_levels(struct smu_context *smu,
- 		}
- 
- 		for (i = 0; i < single_dpm_table->count; i++)
--			size += sprintf(buf + size, "%d: %uMhz %s\n",
-+			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
- 				i, single_dpm_table->dpm_levels[i].value,
- 				(clocks.num_levels == 1) ? "*" :
- 				(arcturus_freqs_in_same_level(
-@@ -906,7 +906,7 @@ static int arcturus_print_clk_levels(struct smu_context *smu,
- 	case SMU_PCIE:
- 		gen_speed = smu_v11_0_get_current_pcie_link_speed_level(smu);
- 		lane_width = smu_v11_0_get_current_pcie_link_width_level(smu);
--		size += sprintf(buf + size, "0: %s %s %dMhz *\n",
-+		size += sysfs_emit_at(buf, size, "0: %s %s %dMhz *\n",
- 				(gen_speed == 0) ? "2.5GT/s," :
- 				(gen_speed == 1) ? "5.0GT/s," :
- 				(gen_speed == 2) ? "8.0GT/s," :
-@@ -1272,11 +1272,11 @@ static int arcturus_get_power_profile_mode(struct smu_context *smu,
- 		return result;
- 
- 	if (smu_version >= 0x360d00)
--		size += sprintf(buf + size, "%16s %s %s %s %s %s %s %s %s %s %s\n",
-+		size += sysfs_emit_at(buf, size, "%16s %s %s %s %s %s %s %s %s %s %s\n",
- 			title[0], title[1], title[2], title[3], title[4], title[5],
- 			title[6], title[7], title[8], title[9], title[10]);
- 	else
--		size += sprintf(buf + size, "%16s\n",
-+		size += sysfs_emit_at(buf, size, "%16s\n",
- 			title[0]);
- 
- 	for (i = 0; i <= PP_SMC_POWER_PROFILE_CUSTOM; i++) {
-@@ -1302,11 +1302,11 @@ static int arcturus_get_power_profile_mode(struct smu_context *smu,
- 			}
- 		}
- 
--		size += sprintf(buf + size, "%2d %14s%s\n",
-+		size += sysfs_emit_at(buf, size, "%2d %14s%s\n",
- 			i, profile_name[i], (i == smu->power_profile_mode) ? "*" : " ");
- 
- 		if (smu_version >= 0x360d00) {
--			size += sprintf(buf + size, "%19s %d(%13s) %7d %7d %7d %7d %7d %7d %7d %7d %7d\n",
-+			size += sysfs_emit_at(buf, size, "%19s %d(%13s) %7d %7d %7d %7d %7d %7d %7d %7d %7d\n",
- 				" ",
- 				0,
- 				"GFXCLK",
-@@ -1320,7 +1320,7 @@ static int arcturus_get_power_profile_mode(struct smu_context *smu,
- 				activity_monitor.Gfx_PD_Data_error_coeff,
- 				activity_monitor.Gfx_PD_Data_error_rate_coeff);
- 
--			size += sprintf(buf + size, "%19s %d(%13s) %7d %7d %7d %7d %7d %7d %7d %7d %7d\n",
-+			size += sysfs_emit_at(buf, size, "%19s %d(%13s) %7d %7d %7d %7d %7d %7d %7d %7d %7d\n",
- 				" ",
- 				1,
- 				"UCLK",
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-index 90e40aacb8f6..cc8bc500ea0d 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-@@ -1089,7 +1089,7 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
- 				if (ret)
- 					goto print_clk_out;
- 
--				size += sprintf(buf + size, "%d: %uMhz %s\n", i, value,
-+				size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i, value,
- 						cur_value == value ? "*" : "");
- 			}
- 		} else {
-@@ -1111,7 +1111,7 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
- 			}
- 
- 			for (i = 0; i < count; i++) {
--				size += sprintf(buf + size, "%d: %uMhz %s\n", i, freq_values[i],
-+				size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i, freq_values[i],
- 						cur_value  == freq_values[i] ? "*" : "");
- 			}
- 
-@@ -1122,7 +1122,7 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
- 		lane_width = smu_v11_0_get_current_pcie_link_width_level(smu);
- 		GET_PPTABLE_MEMBER(LclkFreq, &table_member);
- 		for (i = 0; i < NUM_LINK_LEVELS; i++)
--			size += sprintf(buf + size, "%d: %s %s %dMhz %s\n", i,
-+			size += sysfs_emit_at(buf, size, "%d: %s %s %dMhz %s\n", i,
- 					(dpm_context->dpm_tables.pcie_table.pcie_gen[i] == 0) ? "2.5GT/s," :
- 					(dpm_context->dpm_tables.pcie_table.pcie_gen[i] == 1) ? "5.0GT/s," :
- 					(dpm_context->dpm_tables.pcie_table.pcie_gen[i] == 2) ? "8.0GT/s," :
-@@ -1145,8 +1145,8 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
- 		if (!sienna_cichlid_is_od_feature_supported(od_settings, SMU_11_0_7_ODCAP_GFXCLK_LIMITS))
- 			break;
- 
--		size += sprintf(buf + size, "OD_SCLK:\n");
--		size += sprintf(buf + size, "0: %uMhz\n1: %uMhz\n", od_table->GfxclkFmin, od_table->GfxclkFmax);
-+		size += sysfs_emit_at(buf, size, "OD_SCLK:\n");
-+		size += sysfs_emit_at(buf, size, "0: %uMhz\n1: %uMhz\n", od_table->GfxclkFmin, od_table->GfxclkFmax);
- 		break;
- 
- 	case SMU_OD_MCLK:
-@@ -1156,8 +1156,8 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
- 		if (!sienna_cichlid_is_od_feature_supported(od_settings, SMU_11_0_7_ODCAP_UCLK_LIMITS))
- 			break;
- 
--		size += sprintf(buf + size, "OD_MCLK:\n");
--		size += sprintf(buf + size, "0: %uMhz\n1: %uMHz\n", od_table->UclkFmin, od_table->UclkFmax);
-+		size += sysfs_emit_at(buf, size, "OD_MCLK:\n");
-+		size += sysfs_emit_at(buf, size, "0: %uMhz\n1: %uMHz\n", od_table->UclkFmin, od_table->UclkFmax);
- 		break;
- 
- 	case SMU_OD_VDDGFX_OFFSET:
-@@ -1173,22 +1173,22 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
- 		     (smu_version < 0x003a2900))
- 			break;
- 
--		size += sprintf(buf + size, "OD_VDDGFX_OFFSET:\n");
--		size += sprintf(buf + size, "%dmV\n", od_table->VddGfxOffset);
-+		size += sysfs_emit_at(buf, size, "OD_VDDGFX_OFFSET:\n");
-+		size += sysfs_emit_at(buf, size, "%dmV\n", od_table->VddGfxOffset);
- 		break;
- 
- 	case SMU_OD_RANGE:
- 		if (!smu->od_enabled || !od_table || !od_settings)
- 			break;
- 
--		size = sprintf(buf, "%s:\n", "OD_RANGE");
-+		size = sysfs_emit(buf, "%s:\n", "OD_RANGE");
- 
- 		if (sienna_cichlid_is_od_feature_supported(od_settings, SMU_11_0_7_ODCAP_GFXCLK_LIMITS)) {
- 			sienna_cichlid_get_od_setting_range(od_settings, SMU_11_0_7_ODSETTING_GFXCLKFMIN,
- 							    &min_value, NULL);
- 			sienna_cichlid_get_od_setting_range(od_settings, SMU_11_0_7_ODSETTING_GFXCLKFMAX,
- 							    NULL, &max_value);
--			size += sprintf(buf + size, "SCLK: %7uMhz %10uMhz\n",
-+			size += sysfs_emit_at(buf, size, "SCLK: %7uMhz %10uMhz\n",
- 					min_value, max_value);
- 		}
- 
-@@ -1197,7 +1197,7 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
- 							    &min_value, NULL);
- 			sienna_cichlid_get_od_setting_range(od_settings, SMU_11_0_7_ODSETTING_UCLKFMAX,
- 							    NULL, &max_value);
--			size += sprintf(buf + size, "MCLK: %7uMhz %10uMhz\n",
-+			size += sysfs_emit_at(buf, size, "MCLK: %7uMhz %10uMhz\n",
- 					min_value, max_value);
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
+index 9a9c24a6ec35..b39138041141 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
+@@ -510,16 +510,16 @@ static int renoir_print_clk_levels(struct smu_context *smu,
+ 						0, &max);
+ 			if (ret)
+ 				return ret;
+-			size += sprintf(buf + size, "OD_RANGE\nSCLK: %10uMhz %10uMhz\n", min, max);
++			size += sysfs_emit_at(buf, size, "OD_RANGE\nSCLK: %10uMhz %10uMhz\n", min, max);
  		}
  		break;
-@@ -1420,7 +1420,7 @@ static int sienna_cichlid_get_power_profile_mode(struct smu_context *smu, char *
- 	if (!buf)
- 		return -EINVAL;
- 
--	size += sprintf(buf + size, "%16s %s %s %s %s %s %s %s %s %s %s\n",
-+	size += sysfs_emit_at(buf, size, "%16s %s %s %s %s %s %s %s %s %s %s\n",
- 			title[0], title[1], title[2], title[3], title[4], title[5],
- 			title[6], title[7], title[8], title[9], title[10]);
- 
-@@ -1440,10 +1440,10 @@ static int sienna_cichlid_get_power_profile_mode(struct smu_context *smu, char *
- 			return result;
- 		}
- 
--		size += sprintf(buf + size, "%2d %14s%s:\n",
-+		size += sysfs_emit_at(buf, size, "%2d %14s%s:\n",
- 			i, profile_name[i], (i == smu->power_profile_mode) ? "*" : " ");
- 
--		size += sprintf(buf + size, "%19s %d(%13s) %7d %7d %7d %7d %7d %7d %7d %7d %7d\n",
-+		size += sysfs_emit_at(buf, size, "%19s %d(%13s) %7d %7d %7d %7d %7d %7d %7d %7d %7d\n",
- 			" ",
- 			0,
- 			"GFXCLK",
-@@ -1457,7 +1457,7 @@ static int sienna_cichlid_get_power_profile_mode(struct smu_context *smu, char *
- 			activity_monitor->Gfx_PD_Data_error_coeff,
- 			activity_monitor->Gfx_PD_Data_error_rate_coeff);
- 
--		size += sprintf(buf + size, "%19s %d(%13s) %7d %7d %7d %7d %7d %7d %7d %7d %7d\n",
-+		size += sysfs_emit_at(buf, size, "%19s %d(%13s) %7d %7d %7d %7d %7d %7d %7d %7d %7d\n",
- 			" ",
- 			1,
- 			"SOCCLK",
-@@ -1471,7 +1471,7 @@ static int sienna_cichlid_get_power_profile_mode(struct smu_context *smu, char *
- 			activity_monitor->Fclk_PD_Data_error_coeff,
- 			activity_monitor->Fclk_PD_Data_error_rate_coeff);
- 
--		size += sprintf(buf + size, "%19s %d(%13s) %7d %7d %7d %7d %7d %7d %7d %7d %7d\n",
-+		size += sysfs_emit_at(buf, size, "%19s %d(%13s) %7d %7d %7d %7d %7d %7d %7d %7d %7d\n",
- 			" ",
- 			2,
- 			"MEMLK",
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-index 18681dc458da..b3f2390696cc 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-@@ -592,28 +592,28 @@ static int vangogh_print_legacy_clk_levels(struct smu_context *smu,
- 	switch (clk_type) {
  	case SMU_OD_SCLK:
  		if (smu_dpm_ctx->dpm_level == AMD_DPM_FORCED_LEVEL_MANUAL) {
--			size = sprintf(buf, "%s:\n", "OD_SCLK");
--			size += sprintf(buf + size, "0: %10uMhz\n",
-+			size = sysfs_emit(buf, "%s:\n", "OD_SCLK");
-+			size += sysfs_emit_at(buf, size, "0: %10uMhz\n",
- 			(smu->gfx_actual_hard_min_freq > 0) ? smu->gfx_actual_hard_min_freq : smu->gfx_default_hard_min_freq);
--			size += sprintf(buf + size, "1: %10uMhz\n",
-+			size += sysfs_emit_at(buf, size, "1: %10uMhz\n",
- 			(smu->gfx_actual_soft_max_freq > 0) ? smu->gfx_actual_soft_max_freq : smu->gfx_default_soft_max_freq);
+ 			min = (smu->gfx_actual_hard_min_freq > 0) ? smu->gfx_actual_hard_min_freq : smu->gfx_default_hard_min_freq;
+ 			max = (smu->gfx_actual_soft_max_freq > 0) ? smu->gfx_actual_soft_max_freq : smu->gfx_default_soft_max_freq;
+-			size += sprintf(buf + size, "OD_SCLK\n");
+-			size += sprintf(buf + size, "0:%10uMhz\n", min);
+-			size += sprintf(buf + size, "1:%10uMhz\n", max);
++			size += sysfs_emit_at(buf, size, "OD_SCLK\n");
++			size += sysfs_emit_at(buf, size, "0:%10uMhz\n", min);
++			size += sysfs_emit_at(buf, size, "1:%10uMhz\n", max);
  		}
  		break;
- 	case SMU_OD_CCLK:
- 		if (smu_dpm_ctx->dpm_level == AMD_DPM_FORCED_LEVEL_MANUAL) {
--			size = sprintf(buf, "CCLK_RANGE in Core%d:\n",  smu->cpu_core_id_select);
--			size += sprintf(buf + size, "0: %10uMhz\n",
-+			size = sysfs_emit(buf, "CCLK_RANGE in Core%d:\n",  smu->cpu_core_id_select);
-+			size += sysfs_emit_at(buf, size, "0: %10uMhz\n",
- 			(smu->cpu_actual_soft_min_freq > 0) ? smu->cpu_actual_soft_min_freq : smu->cpu_default_soft_min_freq);
--			size += sprintf(buf + size, "1: %10uMhz\n",
-+			size += sysfs_emit_at(buf, size, "1: %10uMhz\n",
- 			(smu->cpu_actual_soft_max_freq > 0) ? smu->cpu_actual_soft_max_freq : smu->cpu_default_soft_max_freq);
+ 	case SMU_GFXCLK:
+@@ -536,12 +536,12 @@ static int renoir_print_clk_levels(struct smu_context *smu,
+ 			else
+ 				i = 1;
+ 
+-			size += sprintf(buf + size, "0: %uMhz %s\n", min,
++			size += sysfs_emit_at(buf, size, "0: %uMhz %s\n", min,
+ 					i == 0 ? "*" : "");
+-			size += sprintf(buf + size, "1: %uMhz %s\n",
++			size += sysfs_emit_at(buf, size, "1: %uMhz %s\n",
+ 					i == 1 ? cur_value : RENOIR_UMD_PSTATE_GFXCLK,
+ 					i == 1 ? "*" : "");
+-			size += sprintf(buf + size, "2: %uMhz %s\n", max,
++			size += sysfs_emit_at(buf, size, "2: %uMhz %s\n", max,
+ 					i == 2 ? "*" : "");
  		}
- 		break;
- 	case SMU_OD_RANGE:
- 		if (smu_dpm_ctx->dpm_level == AMD_DPM_FORCED_LEVEL_MANUAL) {
--			size = sprintf(buf, "%s:\n", "OD_RANGE");
--			size += sprintf(buf + size, "SCLK: %7uMhz %10uMhz\n",
-+			size = sysfs_emit(buf, "%s:\n", "OD_RANGE");
-+			size += sysfs_emit_at(buf, size, "SCLK: %7uMhz %10uMhz\n",
- 				smu->gfx_default_hard_min_freq, smu->gfx_default_soft_max_freq);
--			size += sprintf(buf + size, "CCLK: %7uMhz %10uMhz\n",
-+			size += sysfs_emit_at(buf, size, "CCLK: %7uMhz %10uMhz\n",
- 				smu->cpu_default_soft_min_freq, smu->cpu_default_soft_max_freq);
- 		}
- 		break;
-@@ -656,14 +656,14 @@ static int vangogh_print_legacy_clk_levels(struct smu_context *smu,
+ 		return size;
+@@ -588,14 +588,14 @@ static int renoir_print_clk_levels(struct smu_context *smu,
  				return ret;
  			if (!value)
  				continue;
@@ -433,65 +191,10 @@ index 18681dc458da..b3f2390696cc 100644
  		if (!cur_value_match_level)
 -			size += sprintf(buf + size, "   %uMhz *\n", cur_value);
 +			size += sysfs_emit_at(buf, size, "   %uMhz *\n", cur_value);
- 		break;
- 	default:
- 		break;
-@@ -691,28 +691,28 @@ static int vangogh_print_clk_levels(struct smu_context *smu,
- 	switch (clk_type) {
- 	case SMU_OD_SCLK:
- 		if (smu_dpm_ctx->dpm_level == AMD_DPM_FORCED_LEVEL_MANUAL) {
--			size = sprintf(buf, "%s:\n", "OD_SCLK");
--			size += sprintf(buf + size, "0: %10uMhz\n",
-+			size = sysfs_emit(buf, "%s:\n", "OD_SCLK");
-+			size += sysfs_emit_at(buf, size, "0: %10uMhz\n",
- 			(smu->gfx_actual_hard_min_freq > 0) ? smu->gfx_actual_hard_min_freq : smu->gfx_default_hard_min_freq);
--			size += sprintf(buf + size, "1: %10uMhz\n",
-+			size += sysfs_emit_at(buf, size, "1: %10uMhz\n",
- 			(smu->gfx_actual_soft_max_freq > 0) ? smu->gfx_actual_soft_max_freq : smu->gfx_default_soft_max_freq);
- 		}
- 		break;
- 	case SMU_OD_CCLK:
- 		if (smu_dpm_ctx->dpm_level == AMD_DPM_FORCED_LEVEL_MANUAL) {
--			size = sprintf(buf, "CCLK_RANGE in Core%d:\n",  smu->cpu_core_id_select);
--			size += sprintf(buf + size, "0: %10uMhz\n",
-+			size = sysfs_emit(buf, "CCLK_RANGE in Core%d:\n",  smu->cpu_core_id_select);
-+			size += sysfs_emit_at(buf, size, "0: %10uMhz\n",
- 			(smu->cpu_actual_soft_min_freq > 0) ? smu->cpu_actual_soft_min_freq : smu->cpu_default_soft_min_freq);
--			size += sprintf(buf + size, "1: %10uMhz\n",
-+			size += sysfs_emit_at(buf, size, "1: %10uMhz\n",
- 			(smu->cpu_actual_soft_max_freq > 0) ? smu->cpu_actual_soft_max_freq : smu->cpu_default_soft_max_freq);
- 		}
- 		break;
- 	case SMU_OD_RANGE:
- 		if (smu_dpm_ctx->dpm_level == AMD_DPM_FORCED_LEVEL_MANUAL) {
--			size = sprintf(buf, "%s:\n", "OD_RANGE");
--			size += sprintf(buf + size, "SCLK: %7uMhz %10uMhz\n",
-+			size = sysfs_emit(buf, "%s:\n", "OD_RANGE");
-+			size += sysfs_emit_at(buf, size, "SCLK: %7uMhz %10uMhz\n",
- 				smu->gfx_default_hard_min_freq, smu->gfx_default_soft_max_freq);
--			size += sprintf(buf + size, "CCLK: %7uMhz %10uMhz\n",
-+			size += sysfs_emit_at(buf, size, "CCLK: %7uMhz %10uMhz\n",
- 				smu->cpu_default_soft_min_freq, smu->cpu_default_soft_max_freq);
- 		}
- 		break;
-@@ -755,14 +755,14 @@ static int vangogh_print_clk_levels(struct smu_context *smu,
- 				return ret;
- 			if (!value)
- 				continue;
--			size += sprintf(buf + size, "%d: %uMhz %s\n", i, value,
-+			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i, value,
- 					cur_value == value ? "*" : "");
- 			if (cur_value == value)
- 				cur_value_match_level = true;
- 		}
  
- 		if (!cur_value_match_level)
--			size += sprintf(buf + size, "   %uMhz *\n", cur_value);
-+			size += sysfs_emit_at(buf, size, "   %uMhz *\n", cur_value);
  		break;
  	default:
- 		break;
-@@ -1035,7 +1035,7 @@ static int vangogh_get_power_profile_mode(struct smu_context *smu,
+@@ -1118,7 +1118,7 @@ static int renoir_get_power_profile_mode(struct smu_context *smu,
  		if (workload_type < 0)
  			continue;
  
@@ -500,6 +203,142 @@ index 18681dc458da..b3f2390696cc 100644
  			i, profile_name[i], (i == smu->power_profile_mode) ? "*" : " ");
  	}
  
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+index 562783d0302f..c8eefacfdd37 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+@@ -735,14 +735,14 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
+ 	uint32_t min_clk, max_clk;
+ 
+ 	if (amdgpu_ras_intr_triggered())
+-		return snprintf(buf, PAGE_SIZE, "unavailable\n");
++		return sysfs_emit(buf, "unavailable\n");
+ 
+ 	dpm_context = smu_dpm->dpm_context;
+ 
+ 	switch (type) {
+ 
+ 	case SMU_OD_SCLK:
+-		size = sprintf(buf, "%s:\n", "GFXCLK");
++		size = sysfs_emit(buf, "%s:\n", "GFXCLK");
+ 		fallthrough;
+ 	case SMU_SCLK:
+ 		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_GFXCLK, &now);
+@@ -779,8 +779,7 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
+ 		 */
+ 		if (display_levels == clocks.num_levels) {
+ 			for (i = 0; i < clocks.num_levels; i++)
+-				size += sprintf(
+-					buf + size, "%d: %uMhz %s\n", i,
++				size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i,
+ 					freq_values[i],
+ 					(clocks.num_levels == 1) ?
+ 						"*" :
+@@ -790,14 +789,14 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
+ 							 ""));
+ 		} else {
+ 			for (i = 0; i < display_levels; i++)
+-				size += sprintf(buf + size, "%d: %uMhz %s\n", i,
++				size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i,
+ 						freq_values[i], i == 1 ? "*" : "");
+ 		}
+ 
+ 		break;
+ 
+ 	case SMU_OD_MCLK:
+-		size = sprintf(buf, "%s:\n", "MCLK");
++		size = sysfs_emit(buf, "%s:\n", "MCLK");
+ 		fallthrough;
+ 	case SMU_MCLK:
+ 		ret = aldebaran_get_current_clk_freq_by_table(smu, SMU_UCLK, &now);
+@@ -814,7 +813,7 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
+ 		}
+ 
+ 		for (i = 0; i < clocks.num_levels; i++)
+-			size += sprintf(buf + size, "%d: %uMhz %s\n",
++			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
+ 					i, clocks.data[i].clocks_in_khz / 1000,
+ 					(clocks.num_levels == 1) ? "*" :
+ 					(aldebaran_freqs_in_same_level(
+@@ -837,7 +836,7 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
+ 		}
+ 
+ 		for (i = 0; i < clocks.num_levels; i++)
+-			size += sprintf(buf + size, "%d: %uMhz %s\n",
++			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
+ 					i, clocks.data[i].clocks_in_khz / 1000,
+ 					(clocks.num_levels == 1) ? "*" :
+ 					(aldebaran_freqs_in_same_level(
+@@ -860,7 +859,7 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
+ 		}
+ 
+ 		for (i = 0; i < single_dpm_table->count; i++)
+-			size += sprintf(buf + size, "%d: %uMhz %s\n",
++			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
+ 					i, single_dpm_table->dpm_levels[i].value,
+ 					(clocks.num_levels == 1) ? "*" :
+ 					(aldebaran_freqs_in_same_level(
+@@ -883,7 +882,7 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
+ 		}
+ 
+ 		for (i = 0; i < single_dpm_table->count; i++)
+-			size += sprintf(buf + size, "%d: %uMhz %s\n",
++			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
+ 					i, single_dpm_table->dpm_levels[i].value,
+ 					(clocks.num_levels == 1) ? "*" :
+ 					(aldebaran_freqs_in_same_level(
+@@ -906,7 +905,7 @@ static int aldebaran_print_clk_levels(struct smu_context *smu,
+ 		}
+ 
+ 		for (i = 0; i < single_dpm_table->count; i++)
+-			size += sprintf(buf + size, "%d: %uMhz %s\n",
++			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n",
+ 					i, single_dpm_table->dpm_levels[i].value,
+ 					(clocks.num_levels == 1) ? "*" :
+ 					(aldebaran_freqs_in_same_level(
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
+index 0cfeb9fc7c03..0f17c2522c85 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
+@@ -572,7 +572,7 @@ static int yellow_carp_get_power_profile_mode(struct smu_context *smu,
+ 		if (workload_type < 0)
+ 			continue;
+ 
+-		size += sprintf(buf + size, "%2d %14s%s\n",
++		size += sysfs_emit_at(buf, size, "%2d %14s%s\n",
+ 			i, profile_name[i], (i == smu->power_profile_mode) ? "*" : " ");
+ 	}
+ 
+@@ -1054,15 +1054,15 @@ static int yellow_carp_print_clk_levels(struct smu_context *smu,
+ 
+ 	switch (clk_type) {
+ 	case SMU_OD_SCLK:
+-		size = sprintf(buf, "%s:\n", "OD_SCLK");
+-		size += sprintf(buf + size, "0: %10uMhz\n",
++		size = sysfs_emit(buf, "%s:\n", "OD_SCLK");
++		size += sysfs_emit_at(buf, size, "0: %10uMhz\n",
+ 		(smu->gfx_actual_hard_min_freq > 0) ? smu->gfx_actual_hard_min_freq : smu->gfx_default_hard_min_freq);
+-		size += sprintf(buf + size, "1: %10uMhz\n",
++		size += sysfs_emit_at(buf, size, "1: %10uMhz\n",
+ 		(smu->gfx_actual_soft_max_freq > 0) ? smu->gfx_actual_soft_max_freq : smu->gfx_default_soft_max_freq);
+ 		break;
+ 	case SMU_OD_RANGE:
+-		size = sprintf(buf, "%s:\n", "OD_RANGE");
+-		size += sprintf(buf + size, "SCLK: %7uMhz %10uMhz\n",
++		size = sysfs_emit(buf, "%s:\n", "OD_RANGE");
++		size += sysfs_emit_at(buf, size, "SCLK: %7uMhz %10uMhz\n",
+ 						smu->gfx_default_hard_min_freq, smu->gfx_default_soft_max_freq);
+ 		break;
+ 	case SMU_SOCCLK:
+@@ -1083,7 +1083,7 @@ static int yellow_carp_print_clk_levels(struct smu_context *smu,
+ 			if (ret)
+ 				goto print_clk_out;
+ 
+-			size += sprintf(buf + size, "%d: %uMhz %s\n", i, value,
++			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i, value,
+ 					cur_value == value ? "*" : "");
+ 		}
+ 		break;
 -- 
 2.32.0
 
