@@ -1,98 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7E9B3E3919
-	for <lists+amd-gfx@lfdr.de>; Sun,  8 Aug 2021 07:33:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B6883E40A4
+	for <lists+amd-gfx@lfdr.de>; Mon,  9 Aug 2021 09:03:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8411089D4F;
-	Sun,  8 Aug 2021 05:33:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F8B089895;
+	Mon,  9 Aug 2021 07:03:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2067.outbound.protection.outlook.com [40.107.220.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2783F89D43
- for <amd-gfx@lists.freedesktop.org>; Sun,  8 Aug 2021 05:33:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=H4kjdIEiQQrYxITIJPfZh4OnFslMDie1qdiv2q2Bp/rC4CKo3PQYSJZNrBLq2jJ2vE1ahzjtzVV9szHV2c+ck/CtXSBxnMs+Ea9vUPIOG5ZopUQcl/1dmjLTt0S3NyBcyCLx8EbXLwTQuM3nK+Ha60wnoiv51NTHC//n0nGTiKhQE8EElblgbvn83QETEvHiOmlDFdIWTY6MfCHJ71uCvdLThfTYSoQm3D33XcnyxpajLms6wt5+nhG9zlknxE+0qfRvkPVOOlprAj27urC8LIfFcV/xuZtVP34+VYG7gbtcv0DmCovV+G/iJRAfz8jFr+Wl9UcbkdQZiNU2/rueWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZcPI6k0cMDpy8nZDqj+brHnwwIx1+IV1bCRSTFWSMIM=;
- b=gIsJdoFnUiNEDTHZh4oRIxwwycfGZBnYJGVkwOFvs9KB8ZgkrKP/8dNRJlkUWG6JW8R8LK6RjUZ/x8tduA9do11IITNa1liNw7KrcHsu+czZopZiD7Y36aBDgPAKy8jHyJvgKTKtlRoRGpzw++UNo3nzjoJciPGPKvpNIJFxkpg5BdesnmmiS9kf9MW08kf03VdY119gmk0pOoF2Fjrl4tW+oAjoohAdZUHhR3M3Vw56wc7fquGLpafwvXdkXTjJDr6VsuSlSNjvJv1gD16dp20tnrKYHQf8migJDQAdApiUK9ZgElj+UsBio7DAeD1nrBFrUuMjpKddU3YEqtPB6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZcPI6k0cMDpy8nZDqj+brHnwwIx1+IV1bCRSTFWSMIM=;
- b=ntrnuApCPvsIfsbJmoX3tGS5VgwJnmtynmQsmbuusNux866KTY1geDclW+siVlhUXhS+6MMfc3VhhiMtChy4Zfn3ZXFy5Txh9hZBPUw+ZcZJ1OTZpxXE6G9TJXxFoIt0BYkdKj1+Qjiaz7NmYu3gU3XNAckvnhiZaYXAowm6irA=
-Received: from BN6PR18CA0018.namprd18.prod.outlook.com (2603:10b6:404:121::28)
- by DM6PR12MB2841.namprd12.prod.outlook.com (2603:10b6:5:49::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.19; Sun, 8 Aug
- 2021 05:33:27 +0000
-Received: from BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:121:cafe::23) by BN6PR18CA0018.outlook.office365.com
- (2603:10b6:404:121::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.15 via Frontend
- Transport; Sun, 8 Aug 2021 05:33:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT008.mail.protection.outlook.com (10.13.177.95) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4394.16 via Frontend Transport; Sun, 8 Aug 2021 05:33:27 +0000
-Received: from dapowell-ubuntu-200400-1.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Sun, 8 Aug 2021 00:33:26 -0500
-From: Darren Powell <darren.powell@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Darren Powell <darren.powell@amd.com>
-Subject: [PATCH 4/4] amdgpu/pm: Replace amdgpu_pm usage of sprintf with
- sysfs_emit
-Date: Sun, 8 Aug 2021 01:33:12 -0400
-Message-ID: <20210808053312.3423-5-darren.powell@amd.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210808053312.3423-1-darren.powell@amd.com>
-References: <20210808053312.3423-1-darren.powell@amd.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D73A08999C;
+ Mon,  9 Aug 2021 01:42:00 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10070"; a="212749994"
+X-IronPort-AV: E=Sophos;i="5.84,305,1620716400"; d="scan'208";a="212749994"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2021 18:41:59 -0700
+X-IronPort-AV: E=Sophos;i="5.84,305,1620716400"; d="scan'208";a="670624711"
+Received: from ctrondse-mobl.amr.corp.intel.com (HELO
+ skuppusw-mobl5.amr.corp.intel.com) ([10.212.77.4])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2021 18:41:57 -0700
+Subject: Re: [PATCH 00/11] Implement generic prot_guest_has() helper function
+To: Tom Lendacky <thomas.lendacky@amd.com>, linux-kernel@vger.kernel.org,
+ x86@kernel.org, linuxppc-dev@lists.ozlabs.org, linux-s390@vger.kernel.org,
+ iommu@lists.linux-foundation.org, kvm@vger.kernel.org,
+ linux-efi@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-graphics-maintainer@vmware.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, kexec@lists.infradead.org,
+ linux-fsdevel@vger.kernel.org
+Cc: Borislav Petkov <bp@alien8.de>, Brijesh Singh <brijesh.singh@amd.com>,
+ Joerg Roedel <joro@8bytes.org>, Andi Kleen <ak@linux.intel.com>,
+ Tianyu Lan <Tianyu.Lan@microsoft.com>, Andy Lutomirski <luto@kernel.org>,
+ Ard Biesheuvel <ardb@kernel.org>, Baoquan He <bhe@redhat.com>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Dave Hansen <dave.hansen@linux.intel.com>,
+ Dave Young <dyoung@redhat.com>, David Airlie <airlied@linux.ie>,
+ Heiko Carstens <hca@linux.ibm.com>, Ingo Molnar <mingo@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Michael Ellerman <mpe@ellerman.id.au>,
+ Paul Mackerras <paulus@samba.org>, Peter Zijlstra <peterz@infradead.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Vasily Gorbik <gor@linux.ibm.com>,
+ Will Deacon <will@kernel.org>
+References: <cover.1627424773.git.thomas.lendacky@amd.com>
+From: "Kuppuswamy, Sathyanarayanan"
+ <sathyanarayanan.kuppuswamy@linux.intel.com>
+Message-ID: <0d75f283-50b7-460d-3165-185cb955bd70@linux.intel.com>
+Date: Sun, 8 Aug 2021 18:41:54 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b9e5bdab-eee1-45f6-8d6a-08d95a2e0c75
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2841:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB2841063F99E40D3DAC843028F0F59@DM6PR12MB2841.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:240;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uuMv0YZJHiJ27iJFQYQlBotZ+MN89A/riv1yVOsZuTI19/MxtNRv5svPjz3VHnVH5nnFKvtKq+sIfK5229qVw5Xs06RY5fOLdZCDijB2xAW2e8cdK7kFtjSBu4g+07Vmt8sk+joEvaCVeMC7/Vb7FdGZl35kJz6JlYnASa5WlR4YhJ0oLyWpwYlGjRxC41Fsl3umMQmrpOFfAoFnSDvFg+iMVzaLYxSlASDnWJpz1TNVWTjc/AQS+NqFGK6kYsDpdTV8IxG8S8J1Pt7ULTD91AH1+uIBbQJ5qGMy1yZglOuIa0U92QVT/CoVMs8gferfQLkGtU7VQhfoHKGwpe98TjU/1LG6oCSerxon1jd7TSg3mNjtP+K/jrTz0O9D/hahhIIYZnuXF1g//CLYG2dCp1/IqQp8URjw2mNzXUsmvbB8dL9zk49RzjOgiHfoWgTg9QjyuChG4LzGU3GFPH0pBUGmWyG1RgjarPQHzx7q1XKpIGEphaDz9JOuU3YxfUABn9SX1dZlGwvRtfYCCf9B/KC4m0HxGgRJtkO3bxRPmsCGXSpeVJzGJlR6yzzxaci0Ul/5tgCCMgIs3qjdwn2gTNMMhPKZicTCfwGF5QWVlL1/22wIombbWHi2k07LfetmJk6UaXjFtEviRF3Ya8P8iYkG2SAqQzfPu6CAK9ljM7Yz4FaOZqSlfF+hx/mgDa0Xvlsv6xO4w7x1MgEmuhSApOYTcc0Lvrr1DAOpU32xQgqpch/T6QL20ZNOULA+Rq/vcNa4hY6lZ4auQ1eLyUduxQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(136003)(346002)(39860400002)(376002)(396003)(36840700001)(46966006)(86362001)(83380400001)(356005)(36756003)(70206006)(34070700002)(6666004)(7696005)(82310400003)(16526019)(26005)(70586007)(336012)(478600001)(36860700001)(186003)(2906002)(82740400003)(81166007)(6916009)(8936002)(8676002)(47076005)(316002)(2616005)(1076003)(5660300002)(4326008)(44832011)(426003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2021 05:33:27.3222 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b9e5bdab-eee1-45f6-8d6a-08d95a2e0c75
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2841
+In-Reply-To: <cover.1627424773.git.thomas.lendacky@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 09 Aug 2021 07:03:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,111 +72,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
- replacing printfs with sysfs_emit
+Hi Tom,
 
-=== Test ===
-AMDGPU_PCI_ADDR=`lspci -nn | grep "VGA\|Display" | cut -d " " -f 1`
-AMDGPU_HWMON=`ls -la /sys/class/hwmon | grep $AMDGPU_PCI_ADDR | awk '{print $9}'`
-HWMON_DIR=/sys/class/hwmon/${AMDGPU_HWMON}
-LOGFILE=pp_printf.test.log
+On 7/27/21 3:26 PM, Tom Lendacky wrote:
+> This patch series provides a generic helper function, prot_guest_has(),
+> to replace the sme_active(), sev_active(), sev_es_active() and
+> mem_encrypt_active() functions.
+> 
+> It is expected that as new protected virtualization technologies are
+> added to the kernel, they can all be covered by a single function call
+> instead of a collection of specific function calls all called from the
+> same locations.
+> 
+> The powerpc and s390 patches have been compile tested only. Can the
+> folks copied on this series verify that nothing breaks for them.
 
-lspci -nn | grep "VGA\|Display"  > $LOGFILE
-FILES="pwm1_enable
-pwm1_min
-pwm1_max
-pwm1
-fan1_input
-fan1_target
-fan1_enable
-power1_cap_min "
+With this patch set, select ARCH_HAS_PROTECTED_GUEST and set
+CONFIG_AMD_MEM_ENCRYPT=n, creates following error.
 
-for f in $FILES
-do
-  echo === $f === >> $LOGFILE
-  cat $HWMON_DIR/device/$f >> $LOGFILE
-done
-cat $LOGFILE
+ld: arch/x86/mm/ioremap.o: in function `early_memremap_is_setup_data':
+arch/x86/mm/ioremap.c:672: undefined reference to `early_memremap_decrypted'
 
-Signed-off-by: Darren Powell <darren.powell@amd.com>
----
- drivers/gpu/drm/amd/pm/amdgpu_pm.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+It looks like early_memremap_is_setup_data() is not protected with
+appropriate config.
 
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index 769f58d5ae1a..4ee5d4d6aa7e 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -2379,7 +2379,7 @@ static ssize_t amdgpu_hwmon_get_pwm1_enable(struct device *dev,
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
- 	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
--	return sprintf(buf, "%u\n", pwm_mode);
-+	return sysfs_emit(buf, "%u\n", pwm_mode);
- }
- 
- static ssize_t amdgpu_hwmon_set_pwm1_enable(struct device *dev,
-@@ -2424,14 +2424,14 @@ static ssize_t amdgpu_hwmon_get_pwm1_min(struct device *dev,
- 					 struct device_attribute *attr,
- 					 char *buf)
- {
--	return sprintf(buf, "%i\n", 0);
-+	return sysfs_emit(buf, "%i\n", 0);
- }
- 
- static ssize_t amdgpu_hwmon_get_pwm1_max(struct device *dev,
- 					 struct device_attribute *attr,
- 					 char *buf)
- {
--	return sprintf(buf, "%i\n", 255);
-+	return sysfs_emit(buf, "%i\n", 255);
- }
- 
- static ssize_t amdgpu_hwmon_set_pwm1(struct device *dev,
-@@ -2517,7 +2517,7 @@ static ssize_t amdgpu_hwmon_get_pwm1(struct device *dev,
- 
- 	speed = (speed * 255) / 100;
- 
--	return sprintf(buf, "%i\n", speed);
-+	return sysfs_emit(buf, "%i\n", speed);
- }
- 
- static ssize_t amdgpu_hwmon_get_fan1_input(struct device *dev,
-@@ -2550,7 +2550,7 @@ static ssize_t amdgpu_hwmon_get_fan1_input(struct device *dev,
- 	if (err)
- 		return err;
- 
--	return sprintf(buf, "%i\n", speed);
-+	return sysfs_emit(buf, "%i\n", speed);
- }
- 
- static ssize_t amdgpu_hwmon_get_fan1_min(struct device *dev,
-@@ -2647,7 +2647,7 @@ static ssize_t amdgpu_hwmon_get_fan1_target(struct device *dev,
- 	if (err)
- 		return err;
- 
--	return sprintf(buf, "%i\n", rpm);
-+	return sysfs_emit(buf, "%i\n", rpm);
- }
- 
- static ssize_t amdgpu_hwmon_set_fan1_target(struct device *dev,
-@@ -2729,7 +2729,7 @@ static ssize_t amdgpu_hwmon_get_fan1_enable(struct device *dev,
- 	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
- 	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
- 
--	return sprintf(buf, "%i\n", pwm_mode == AMD_FAN_CTRL_AUTO ? 0 : 1);
-+	return sysfs_emit(buf, "%i\n", pwm_mode == AMD_FAN_CTRL_AUTO ? 0 : 1);
- }
- 
- static ssize_t amdgpu_hwmon_set_fan1_enable(struct device *dev,
-@@ -2899,7 +2899,7 @@ static ssize_t amdgpu_hwmon_show_power_cap_min(struct device *dev,
- 					 struct device_attribute *attr,
- 					 char *buf)
- {
--	return sprintf(buf, "%i\n", 0);
-+	return sysfs_emit(buf, "%i\n", 0);
- }
- 
- 
+
+> 
+> Cc: Andi Kleen <ak@linux.intel.com>
+> Cc: Andy Lutomirski <luto@kernel.org>
+> Cc: Ard Biesheuvel <ardb@kernel.org>
+> Cc: Baoquan He <bhe@redhat.com>
+> Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+> Cc: Borislav Petkov <bp@alien8.de>
+> Cc: Christian Borntraeger <borntraeger@de.ibm.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Dave Hansen <dave.hansen@linux.intel.com>
+> Cc: Dave Young <dyoung@redhat.com>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Heiko Carstens <hca@linux.ibm.com>
+> Cc: Ingo Molnar <mingo@redhat.com>
+> Cc: Joerg Roedel <joro@8bytes.org>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Michael Ellerman <mpe@ellerman.id.au>
+> Cc: Paul Mackerras <paulus@samba.org>
+> Cc: Peter Zijlstra <peterz@infradead.org>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Vasily Gorbik <gor@linux.ibm.com>
+> Cc: VMware Graphics <linux-graphics-maintainer@vmware.com>
+> Cc: Will Deacon <will@kernel.org>
+> 
+> ---
+> 
+> Patches based on:
+>    https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git master
+>    commit 79e920060fa7 ("Merge branch 'WIP/fixes'")
+> 
+> Tom Lendacky (11):
+>    mm: Introduce a function to check for virtualization protection
+>      features
+>    x86/sev: Add an x86 version of prot_guest_has()
+>    powerpc/pseries/svm: Add a powerpc version of prot_guest_has()
+>    x86/sme: Replace occurrences of sme_active() with prot_guest_has()
+>    x86/sev: Replace occurrences of sev_active() with prot_guest_has()
+>    x86/sev: Replace occurrences of sev_es_active() with prot_guest_has()
+>    treewide: Replace the use of mem_encrypt_active() with
+>      prot_guest_has()
+>    mm: Remove the now unused mem_encrypt_active() function
+>    x86/sev: Remove the now unused mem_encrypt_active() function
+>    powerpc/pseries/svm: Remove the now unused mem_encrypt_active()
+>      function
+>    s390/mm: Remove the now unused mem_encrypt_active() function
+> 
+>   arch/Kconfig                               |  3 ++
+>   arch/powerpc/include/asm/mem_encrypt.h     |  5 --
+>   arch/powerpc/include/asm/protected_guest.h | 30 +++++++++++
+>   arch/powerpc/platforms/pseries/Kconfig     |  1 +
+>   arch/s390/include/asm/mem_encrypt.h        |  2 -
+>   arch/x86/Kconfig                           |  1 +
+>   arch/x86/include/asm/kexec.h               |  2 +-
+>   arch/x86/include/asm/mem_encrypt.h         | 13 +----
+>   arch/x86/include/asm/protected_guest.h     | 27 ++++++++++
+>   arch/x86/kernel/crash_dump_64.c            |  4 +-
+>   arch/x86/kernel/head64.c                   |  4 +-
+>   arch/x86/kernel/kvm.c                      |  3 +-
+>   arch/x86/kernel/kvmclock.c                 |  4 +-
+>   arch/x86/kernel/machine_kexec_64.c         | 19 +++----
+>   arch/x86/kernel/pci-swiotlb.c              |  9 ++--
+>   arch/x86/kernel/relocate_kernel_64.S       |  2 +-
+>   arch/x86/kernel/sev.c                      |  6 +--
+>   arch/x86/kvm/svm/svm.c                     |  3 +-
+>   arch/x86/mm/ioremap.c                      | 16 +++---
+>   arch/x86/mm/mem_encrypt.c                  | 60 +++++++++++++++-------
+>   arch/x86/mm/mem_encrypt_identity.c         |  3 +-
+>   arch/x86/mm/pat/set_memory.c               |  3 +-
+>   arch/x86/platform/efi/efi_64.c             |  9 ++--
+>   arch/x86/realmode/init.c                   |  8 +--
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  4 +-
+>   drivers/gpu/drm/drm_cache.c                |  4 +-
+>   drivers/gpu/drm/vmwgfx/vmwgfx_drv.c        |  4 +-
+>   drivers/gpu/drm/vmwgfx/vmwgfx_msg.c        |  6 +--
+>   drivers/iommu/amd/init.c                   |  7 +--
+>   drivers/iommu/amd/iommu.c                  |  3 +-
+>   drivers/iommu/amd/iommu_v2.c               |  3 +-
+>   drivers/iommu/iommu.c                      |  3 +-
+>   fs/proc/vmcore.c                           |  6 +--
+>   include/linux/mem_encrypt.h                |  4 --
+>   include/linux/protected_guest.h            | 37 +++++++++++++
+>   kernel/dma/swiotlb.c                       |  4 +-
+>   36 files changed, 218 insertions(+), 104 deletions(-)
+>   create mode 100644 arch/powerpc/include/asm/protected_guest.h
+>   create mode 100644 arch/x86/include/asm/protected_guest.h
+>   create mode 100644 include/linux/protected_guest.h
+> 
+
 -- 
-2.32.0
-
+Sathyanarayanan Kuppuswamy
+Linux Kernel Developer
