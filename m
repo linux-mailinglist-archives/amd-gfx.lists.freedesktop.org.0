@@ -1,67 +1,95 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 645C63E4700
-	for <lists+amd-gfx@lfdr.de>; Mon,  9 Aug 2021 15:59:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 268D33E462A
+	for <lists+amd-gfx@lfdr.de>; Mon,  9 Aug 2021 15:09:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69CB389BBE;
-	Mon,  9 Aug 2021 13:59:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E35B89BFB;
+	Mon,  9 Aug 2021 13:09:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
- [IPv6:2a00:1450:4864:20::430])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A497895C3;
- Mon,  9 Aug 2021 12:01:25 +0000 (UTC)
-Received: by mail-wr1-x430.google.com with SMTP id c9so21033084wri.8;
- Mon, 09 Aug 2021 05:01:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=i4If4cpP4LPIaPQs636VHmaLTFfgMpoUmseK3DeS8Y0=;
- b=gE/LA37GWYJJf00sk9Rv7LV4oh2eDaoHMclKUUCqHwhHXETfKaQGoSgdeMsvWxs1Fn
- iAN+gqjRVb32zuHbu8gv5PQ8hw0wWvS8w6l0QeAZmQaG0MX2w7s7cvOZ1jAJN246/HUS
- AsAjqFcg/kIC1Sp6HsWX3JAkwAwsStHjDp0nj5DWEC57jXfFd46IwTs6EcrhaHed4k8u
- j8ZhlgWjoEeNJ6vgB4fhO3USZSYu0/nBtkAIQT3fNyqv/LNhnm9iqlutL7apvDyoZ3x6
- yMtrhUtaTbDCYyMObF9P08AX+rMd98IPI7MmATkzOPwh79Du58owcEt48dxTiF3lWtnp
- eXhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=i4If4cpP4LPIaPQs636VHmaLTFfgMpoUmseK3DeS8Y0=;
- b=HCQfmT5Z4fJCkAsRWK5KUvZyYEWgnWEED2WTMvXNZqUWP9QRondRJsNbMsJ/43oRO8
- Lszswo77Vqx2WeWkMQU9eAGbbjGZ0KmRqXc5el79N4bFDKGddlrZxhtA5NqP96vNzyt+
- g1gaU1zy4eLUrHLe9e1MPpALNkPAslqNDrCZ51+dHFLIoapbHarsI7dobSxOcmIPhLAL
- hP0CQ2hrPbgdmqWOO16u9mfvAkDruBEEwbX+72HwejRsDSS6MWdmUXqC9VtW6F3SOuN/
- 6P+IqmLyT4HMIsBG/eekUwKxMGUOBJRZstv1u+qjHJHxe56QEWfB3CnrjLP7YecGMhJF
- mN8Q==
-X-Gm-Message-State: AOAM532yNuJ2AsrJAwTs9Tibq+qMyh1exbNSgmaH9Zo5fwrCz+UXAN0K
- qP6jcj7S96u1O5f6nV2BS9Y=
-X-Google-Smtp-Source: ABdhPJz2+xJ2R2cWN2HTp440376o4s3BF7cxkmZov7B1XkOSTkldojCEYJretPMpEuTrnFiMfbMgyA==
-X-Received: by 2002:adf:f80f:: with SMTP id s15mr24570467wrp.330.1628510484098; 
- Mon, 09 Aug 2021 05:01:24 -0700 (PDT)
-Received: from icebear.localdomain ([170.253.11.129])
- by smtp.gmail.com with ESMTPSA id g198sm26028771wme.0.2021.08.09.05.01.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 09 Aug 2021 05:01:23 -0700 (PDT)
-From: "=?UTF-8?q?Sergio=20Migu=C3=A9ns=20Iglesias?=" <lonyelon@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Sergio=20Migu=C3=A9ns=20Iglesias?=
- <sergio@lony.xyz>
-To: alexander.deucher@amd.com
-Cc: christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@linux.ie,
- daniel@ffwll.ch, Hawking.Zhang@amd.com, Felix.Kuehling@amd.com,
- ray.huang@amd.com, lee.jones@linaro.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- =?UTF-8?q?Sergio=20Migu=C3=A9ns=20Iglesias?= <sergio@lony.xyz>
-Subject: [PATCH] drm/amdgpu: Removed unnecessary if statement
-Date: Mon,  9 Aug 2021 14:00:50 +0200
-Message-Id: <20210809120050.679048-1-sergio@lony.xyz>
-X-Mailer: git-send-email 2.32.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3344D899A5;
+ Mon,  9 Aug 2021 13:09:11 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 06B8861004;
+ Mon,  9 Aug 2021 13:09:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1628514551;
+ bh=YzG7BnFCln4Yyp6LxrxvxeyUMj5GmzMjIhVfIPMKSYc=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=B8pvYpwPzQ18zhH2+y0BGlUA/OJhSA/B0e0InC/nca080ep3tJvTyYkjw4iA0bIXy
+ YJkfsyL7WJqFEvGlYZsDdfkS8W4gkzs2dxMYwyXUt2VpcSaAsgcNhIj8ai/6CAVUZ2
+ ldHAUzQEOhshkYgfdQv79fOgiKArwiLUzaIB6uXf33e9Dwx6fJNaNUWADrL3Q2AY27
+ Bl9LecINy6PsqQyvEgFzW02xNT9GIlS0Tp9TuaVC5l/yfox0JcJblrMOq9WQey5+Yx
+ UjWS8SLAwRaq9m1jBvtg7XtqOaG9lvGylZ+m8LNCf4Md/cmndcHE0D+U5Qp6wYUHub
+ B20Q3cXMUBSvw==
+Received: by mail-wr1-f52.google.com with SMTP id k29so8563403wrd.7;
+ Mon, 09 Aug 2021 06:09:10 -0700 (PDT)
+X-Gm-Message-State: AOAM530HpmV+f8Lh1ZWrTeqml6bwZ6koMhJehP2RdxsiCeeG/g/Hr4PY
+ pnLbIq1I4YazeQco2P15ALRqmfHsVz9MYathnA==
+X-Google-Smtp-Source: ABdhPJzottn9lR1w4Ou5tspJmaMhExuHvfqLuRluAKs7dQZoer2iHn4k6bWFWu6HusN3FgH38v3t3o0558IoBlRW8NU=
+X-Received: by 2002:a17:906:4156:: with SMTP id
+ l22mr6919385ejk.75.1628514539014; 
+ Mon, 09 Aug 2021 06:08:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 09 Aug 2021 13:59:23 +0000
+References: <20210625082222.3845-1-tzimmermann@suse.de>
+ <20210625082222.3845-14-tzimmermann@suse.de>
+In-Reply-To: <20210625082222.3845-14-tzimmermann@suse.de>
+From: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date: Mon, 9 Aug 2021 21:08:48 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8Y7VZm2JWtPXVGfsPQ-j72wMULQJHCHdmQEV+a=TyW1Q@mail.gmail.com>
+Message-ID: <CAAOTY_8Y7VZm2JWtPXVGfsPQ-j72wMULQJHCHdmQEV+a=TyW1Q@mail.gmail.com>
+Subject: Re: [PATCH v4 13/27] drm/mediatek: Don't set struct
+ drm_device.irq_enabled
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Xinhui.Pan@amd.com, james.qian.wang@arm.com, liviu.dudau@arm.com, 
+ mihail.atanassov@arm.com, brian.starkey@arm.com, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Inki Dae <inki.dae@samsung.com>, Joonyoung Shim <jy0922.shim@samsung.com>, 
+ Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ krzysztof.kozlowski@canonical.com, xinliang.liu@linaro.org, 
+ tiantao6@hisilicon.com, john.stultz@linaro.org, kong.kongxinwei@hisilicon.com, 
+ puck.chen@hisilicon.com, Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, 
+ Lucas Stach <l.stach@pengutronix.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, 
+ NXP Linux Team <linux-imx@nxp.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, 
+ Tomi Valkeinen <tomba@kernel.org>, Sandy Huang <hjc@rock-chips.com>, 
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Yannick Fertre <yannick.fertre@foss.st.com>,
+ Philippe Cornu <philippe.cornu@foss.st.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, jonathanh@nvidia.com, 
+ Jyri Sarha <jyri.sarha@iki.fi>, emma@anholt.net,
+ linux-graphics-maintainer@vmware.com, 
+ zackr@vmware.com, hyun.kwon@xilinx.com, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, michal.simek@xilinx.com, 
+ jani.nikula@linux.intel.com, rodrigo.vivi@intel.com, 
+ Russell King <linux@armlinux.org.uk>, kieran.bingham+renesas@ideasonboard.com, 
+ Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>,
+ Melissa Wen <melissa.srw@gmail.com>, 
+ Haneen Mohammed <hamohammed.sa@gmail.com>, amd-gfx@lists.freedesktop.org, 
+ DRI Development <dri-devel@lists.freedesktop.org>, 
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ linux-samsung-soc@vger.kernel.org, 
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
+ nouveau@lists.freedesktop.org, 
+ linux-rockchip@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org, 
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,27 +104,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-There was an "if" statement that did nothing so it was removed.
+Hi, Thomas:
 
-Signed-off-by: Sergio Miguéns Iglesias <sergio@lony.xyz>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c | 3 ---
- 1 file changed, 3 deletions(-)
+Thomas Zimmermann <tzimmermann@suse.de> =E6=96=BC 2021=E5=B9=B46=E6=9C=8825=
+=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=884:22=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> The field drm_device.irq_enabled is only used by legacy drivers
+> with userspace modesetting. Don't set it in mediatek.
+>
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
-index 09b048647523..5eb3869d029e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
-@@ -273,9 +273,6 @@ static int amdgpufb_create(struct drm_fb_helper *helper,
- 	return 0;
- 
- out:
--	if (abo) {
--
--	}
- 	if (fb && ret) {
- 		drm_gem_object_put(gobj);
- 		drm_framebuffer_unregister_private(fb);
--- 
-2.32.0
+Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 6 ------
+>  1 file changed, 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
+iatek/mtk_drm_drv.c
+> index b46bdb8985da..9b60bec33d3b 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -270,12 +270,6 @@ static int mtk_drm_kms_init(struct drm_device *drm)
+>                 goto err_component_unbind;
+>         }
+>
+> -       /*
+> -        * We don't use the drm_irq_install() helpers provided by the DRM
+> -        * core, so we need to set this manually in order to allow the
+> -        * DRM_IOCTL_WAIT_VBLANK to operate correctly.
+> -        */
+> -       drm->irq_enabled =3D true;
+>         ret =3D drm_vblank_init(drm, MAX_CRTC);
+>         if (ret < 0)
+>                 goto err_component_unbind;
+> --
+> 2.32.0
+>
