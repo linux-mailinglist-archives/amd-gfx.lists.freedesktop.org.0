@@ -2,62 +2,76 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34ACF3E842B
-	for <lists+amd-gfx@lfdr.de>; Tue, 10 Aug 2021 22:14:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D273E87CC
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Aug 2021 03:55:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA62589F5B;
-	Tue, 10 Aug 2021 20:14:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4FCC89E1B;
+	Wed, 11 Aug 2021 01:55:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 715A08913B;
- Tue, 10 Aug 2021 20:09:07 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10072"; a="202152495"
-X-IronPort-AV: E=Sophos;i="5.84,310,1620716400"; d="scan'208";a="202152495"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2021 13:09:06 -0700
-X-IronPort-AV: E=Sophos;i="5.84,310,1620716400"; d="scan'208";a="515971399"
-Received: from pdmuelle-desk2.amr.corp.intel.com (HELO
- skuppusw-mobl5.amr.corp.intel.com) ([10.213.166.202])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2021 13:09:05 -0700
-Subject: Re: [PATCH 07/11] treewide: Replace the use of mem_encrypt_active()
- with prot_guest_has()
-To: Tom Lendacky <thomas.lendacky@amd.com>, linux-kernel@vger.kernel.org,
- x86@kernel.org, linuxppc-dev@lists.ozlabs.org, linux-s390@vger.kernel.org,
- iommu@lists.linux-foundation.org, kvm@vger.kernel.org,
- linux-efi@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-graphics-maintainer@vmware.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kexec@lists.infradead.org,
- linux-fsdevel@vger.kernel.org
-Cc: Borislav Petkov <bp@alien8.de>, Brijesh Singh <brijesh.singh@amd.com>,
- Joerg Roedel <joro@8bytes.org>, Andi Kleen <ak@linux.intel.com>,
- Tianyu Lan <Tianyu.Lan@microsoft.com>, Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Dave Hansen <dave.hansen@linux.intel.com>,
- Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Will Deacon <will@kernel.org>, Dave Young <dyoung@redhat.com>,
- Baoquan He <bhe@redhat.com>,
- "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>
-References: <cover.1627424773.git.thomas.lendacky@amd.com>
- <029791b24c6412f9427cfe6ec598156c64395964.1627424774.git.thomas.lendacky@amd.com>
- <166f30d8-9abb-02de-70d8-6e97f44f85df@linux.intel.com>
- <4b885c52-f70a-147e-86bd-c71a8f4ef564@amd.com>
-From: "Kuppuswamy, Sathyanarayanan"
- <sathyanarayanan.kuppuswamy@linux.intel.com>
-Message-ID: <4f9effcb-055b-51ee-6722-c9f0cc1d8acf@linux.intel.com>
-Date: Tue, 10 Aug 2021 13:09:02 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.11.0
+Received: from smtp-relay-canonical-0.canonical.com
+ (smtp-relay-canonical-0.canonical.com [185.125.188.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE50C6E067
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Aug 2021 01:14:27 +0000 (UTC)
+Received: from mail-oi1-f200.google.com (mail-oi1-f200.google.com
+ [209.85.167.200])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPS id B06B83F33F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Aug 2021 01:14:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1628644465;
+ bh=nISQzOZa6zcD12Xe056xt64Hvu89twdTcdXwDxpYBdE=;
+ h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+ To:Cc:Content-Type;
+ b=aLcIVfimfkrPyABDjGLozWH7GWLna1qVIiJqUikyPdwRmIyN86kiIP+8xSoY2POK+
+ 3fXPcIVLbU7sg+QbCGFup9B5McrL6ZQHk83yvI3Q1foEQs55G04IekOMBk7r0Yj3Y3
+ +7i1aqfaeqmZLAHeFhqjWdwzs6ODNCNJV/Kmx1DTyOWhZ1W0HXYnsJTBDE4xU+hYqp
+ DitElaT7MnUpGDk/xYabfmuB2xkjvNSGTrpCfkzOyUP0c0lJ6fJONJiAUKgEGa/oX2
+ zQLMMcGsVvZrQixUYCxi8oeDzjn3CMH7eezgbToQWAUZbdjakyLE0S+dYo2L8Quteh
+ 4N/U7rsHPIk/Q==
+Received: by mail-oi1-f200.google.com with SMTP id
+ u77-20020acac4500000b029025c7e6f8b64so570031oif.6
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 18:14:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=nISQzOZa6zcD12Xe056xt64Hvu89twdTcdXwDxpYBdE=;
+ b=KYeFHg9RQtD1itp4UjouLF9+r5Mnzuz7Ng2ltW0KEnRe/bsYkj+BJAtMw7oJL6MvOs
+ 3X2VMVHoqRlv9ZjnUW79QLGC7+N03urfptsgYPFn4MDi/IeR0R2nFbKDR5qByc8yNIk+
+ vaO3zwrjUe7aC6u07PYAqRGMa04kkKc3leqM5rZyApEx0+BBnOn309AIomeSglh5Ujtb
+ PHWDqMYT//T5DZfHSSBH2GVkwEKW/EJkJdEzOAtwZeb5/DObreEP+A/0REDXk1pE3dGZ
+ NEdjXmvKBBGVZdy9LDbaCliC1Vtrd54OsVjkw4/tz+SXurvpJTfXWrhW2lnsJ0aa5Z6Q
+ 9row==
+X-Gm-Message-State: AOAM533YsmOmLqoUvvctzO6rQr9Ji74u23rlWeJ7RZq5zEe0RUjxPXRY
+ vh0rr2vjugLkGGdPzZZoqJbSBZvbmmie0yK22IqE/GNYFd4REAynseMe+Iph98ojxDmJv/nAni7
+ TJVhP/e5xX2uLarKYwBzlDHI0Sr8cQgfxm+b0w09AtLKWJxmNRY4T2hAj4FQ=
+X-Received: by 2002:a9d:6c46:: with SMTP id g6mr23381892otq.3.1628644464236;
+ Tue, 10 Aug 2021 18:14:24 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxZBgHAZv0MChutunOZ8oJQDdJLDjS2s3UeV9U0p+LvkKKS+wnye9XlLZxIVnH9mBfn4B7DP3OAt121DDqTHFA=
+X-Received: by 2002:a9d:6c46:: with SMTP id g6mr23381879otq.3.1628644463938;
+ Tue, 10 Aug 2021 18:14:23 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <4b885c52-f70a-147e-86bd-c71a8f4ef564@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 10 Aug 2021 20:14:21 +0000
+References: <CAJB-X+V5SLikZgkesXCoQ=EufSbj6ABLxKEtO71OSRwyJ1175Q@mail.gmail.com>
+ <CAJB-X+Xh1F_7WBvSDOJrtHYZX4YN4WRnLNnrqEG-zPC3h0HEwg@mail.gmail.com>
+ <CADnq5_OXvhKajHW6yKde6mQHy=B3RZN4BYV-FYdnzNOoObqH+g@mail.gmail.com>
+ <CA+EcB1MYQOBypQN6Ktdu52sfqg1N-sfzurSeTQDW1kPz9H+iUw@mail.gmail.com>
+ <CAJB-X+UD7-aSKP1Ozc2UUbOZ5MYY6wD5jMUY3+MeS_KKQzaxdA@mail.gmail.com>
+ <CADnq5_MhrwFe1aW=A6_XbaskpSmfYzU1PcCeXTc99=iYC+EW+A@mail.gmail.com>
+In-Reply-To: <CADnq5_MhrwFe1aW=A6_XbaskpSmfYzU1PcCeXTc99=iYC+EW+A@mail.gmail.com>
+From: Koba Ko <koba.ko@canonical.com>
+Date: Wed, 11 Aug 2021 09:14:12 +0800
+Message-ID: <CAJB-X+UDjBBe7Od=EnoJCtNcQaWOogatxn1fXKRb+vckE0AjEA@mail.gmail.com>
+Subject: Re: Req: about Polaris with RKL platform
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: Mario Limonciello <superm1@gmail.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, 
+ Anthony Wong <anthony.wong@canonical.com>, "Feng,
+ Kenneth" <Kenneth.Feng@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Wed, 11 Aug 2021 01:55:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,61 +86,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Aug 10, 2021 at 11:09 PM Alex Deucher <alexdeucher@gmail.com> wrote:
+>
+> On Tue, Aug 10, 2021 at 12:57 AM Koba Ko <koba.ko@canonical.com> wrote:
+> >
+> > On Tue, Aug 10, 2021 at 12:45 PM Mario Limonciello <superm1@gmail.com> wrote:
+> > >
+> > >
+> > >
+> > > On Mon, Aug 9, 2021 at 9:37 AM Alex Deucher <alexdeucher@gmail.com> wrote:
+> > >>
+> > >> On Mon, Aug 9, 2021 at 9:59 AM Koba Ko <koba.ko@canonical.com> wrote:
+> > >> >
+> > >> > Previously, AMD had an issue about noise  with AMD-DG on the RKL platform
+> > >> > AMD provided a parameter.
+> > >> > #modprobe amdgpu ppfeaturemask=0xfff7bffb
+> > >> >
+> > >> >  I thought it's better to check and assign values in amd gpu.
+> > >> > Have a trouble determining the type of pch(RKL or else),
+> > >> > search in amd drm driver and can't find any about this.
+> > >> > Would someone please guide me? if there's an existing function.
+> > >> >
+> > >> > here's a proposal, check RKL PCH in amd driver,
+> > >> > the pch definitions must be splitted off from intel_pch.h in i915
+> > >> > folder to include/drm/intel_pch_definition.h
+> > >>
+> > >> Yes, something like that would work.
+> > >
+> > >
+> > > Can the issue that prompted this also happen with other ASIC with the
+> > > newer SMU families?  If so, should it probably be added to all of them
+> > > or further up in the code where the mask normally gets set from module
+> > > parameters to add the extra check there.
+> >
+> > Would amd guys please clarify this?
+> >
+> > Currently as i known,
+> > for smu series, amd upstream this commit only for smu7 and also
+> > provide modue parameters.
+> > 1.https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=9d03730ecbc5afabfda26d4dbb014310bc4ea4d9
+> > 2. #modprobe amdgpu ppfeaturemask=0xfff7bffb
+>
+> SMU7-based and vega10/12/20 asics require this.  Newer parts were
+> fixed in SMU firmware:
+> navi10:
+> https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/amdgpu/navi10_smc.bin?id=4fe6e53b96095101eebe4639cd2e2b6ecd84650d
+> navi14:
+> https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/amdgpu/navi14_smc.bin?id=8ab7abaf63e95c29e04e5811cb24730a81486096
+> for newer asics, 21.10 and newer firmwares.  E.g.,
+> https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/commit/amdgpu/sienna_cichlid_smc.bin?id=ef5ea5d1d3f0a72a92e0a09f6cff253560374a39
+>
+With thie commit,
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=9d03730ecbc5afabfda26d4dbb014310bc4ea4d9
+For SMU7-based, the module parameter is still necessary, right?
 
-
-On 8/10/21 12:48 PM, Tom Lendacky wrote:
-> On 8/10/21 1:45 PM, Kuppuswamy, Sathyanarayanan wrote:
->>
->>
->> On 7/27/21 3:26 PM, Tom Lendacky wrote:
->>> diff --git a/arch/x86/kernel/head64.c b/arch/x86/kernel/head64.c
->>> index de01903c3735..cafed6456d45 100644
->>> --- a/arch/x86/kernel/head64.c
->>> +++ b/arch/x86/kernel/head64.c
->>> @@ -19,7 +19,7 @@
->>>    #include <linux/start_kernel.h>
->>>    #include <linux/io.h>
->>>    #include <linux/memblock.h>
->>> -#include <linux/mem_encrypt.h>
->>> +#include <linux/protected_guest.h>
->>>    #include <linux/pgtable.h>
->>>      #include <asm/processor.h>
->>> @@ -285,7 +285,7 @@ unsigned long __head __startup_64(unsigned long
->>> physaddr,
->>>         * there is no need to zero it after changing the memory encryption
->>>         * attribute.
->>>         */
->>> -    if (mem_encrypt_active()) {
->>> +    if (prot_guest_has(PATTR_MEM_ENCRYPT)) {
->>>            vaddr = (unsigned long)__start_bss_decrypted;
->>>            vaddr_end = (unsigned long)__end_bss_decrypted;
->>
->>
->> Since this change is specific to AMD, can you replace PATTR_MEM_ENCRYPT with
->> prot_guest_has(PATTR_SME) || prot_guest_has(PATTR_SEV). It is not used in
->> TDX.
-> 
-> This is a direct replacement for now. I think the change you're requesting
-> should be done as part of the TDX support patches so it's clear why it is
-> being changed.
-
-Ok. I will include it part of TDX changes.
-
-> 
-> But, wouldn't TDX still need to do something with this shared/unencrypted
-> area, though? Or since it is shared, there's actually nothing you need to
-> do (the bss decrpyted section exists even if CONFIG_AMD_MEM_ENCRYPT is not
-> configured)?
-
-Kirill had a requirement to turn on CONFIG_AMD_MEM_ENCRYPT for adding lazy
-accept support in TDX guest kernel. Kirill, can you add details here?
-
-> 
-> Thanks,
-> Tom
-> 
->>
-
--- 
-Sathyanarayanan Kuppuswamy
-Linux Kernel Developer
+> Alex
+>
+>
+> >
+> > >
+> > >>
+> > >> Alex
+> > >>
+> > >>
+> > >> >
+> > >> > > --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> > >> > > +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+> > >> > > @@ -1629,7 +1629,7 @@ static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
+> > >> > >
+> > >> > >         data->mclk_dpm_key_disabled = hwmgr->feature_mask & PP_MCLK_DPM_MASK ? false : true;
+> > >> > >         data->sclk_dpm_key_disabled = hwmgr->feature_mask & PP_SCLK_DPM_MASK ? false : true;
+> > >> > > -       data->pcie_dpm_key_disabled = hwmgr->feature_mask & PP_PCIE_DPM_MASK ? false : true;
+> > >> > > +       data->pcie_dpm_key_disabled = is_rkl_pch() || !(hwmgr->feature_mask & PP_PCIE_DPM_MASK);
+> > >> > >         /* need to set voltage control types before EVV patching */
+> > >> > >         data->voltage_control = SMU7_VOLTAGE_CONTROL_NONE;
+> > >> > >         data->vddci_control = SMU7_VOLTAGE_CONTROL_NONE;
+> > >
+> > >
+> > >
+> > > --
+> > > Mario Limonciello
+> > > superm1@gmail.com
