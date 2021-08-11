@@ -1,122 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 205B23E8D7B
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Aug 2021 11:47:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E26513E92F0
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Aug 2021 15:46:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 608F06E101;
-	Wed, 11 Aug 2021 09:47:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7299897E8;
+	Wed, 11 Aug 2021 13:46:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2089.outbound.protection.outlook.com [40.107.96.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F5ED6E101
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Aug 2021 09:47:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cuTN8X1WM0Ga0KBJCqxc8gjIgu4w+a+CntttcEbjVaD5eDACAOm42VSlwhnhl6lQCshh1aAhefHYDLjKM99SmWH+9FU8KsA24U5LKdt3SyFEfw9pci5kHADBP/XAIp2VAgD+r6n1HOtqX7GYIB5htS4HGLPxRUQOGaGReW3s6x39pTsmGwD1NQMWwrgsy64c2rc3imVFxjQu1r4LATPbgcNsJsPUk3GR0oHOgpMAugWs9ksQS5mdekrCq5irj6M5RNS61M1oqDTrF5QvVzuPaiP9YmM1kMjsv6MErwbyjvtUiKjhIZnHh7jAjMSK+U/y/pOIE/xEfmO+q9l8qYIfvw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=11clsf1My69x8n76p1I8mYKdWdQv4OmxUfsKbuURzYw=;
- b=HA/edMu+fBqyN857Nyv+HnIBIqHtFYKxzkFsUNhdGBHx4ux/yglUoWUnA/w8q4VCXoxFer2V7Yb6eg7X2D68djcrIGIsIBpUEetmOlgBhQN92bdoYBej3e4kjyeQtLAbYzgxkM7bVD3nfPjY+oATQiS6+mtudPQhxl1OH4C9UnAAseaX/0Ly+DSKczKyuCdSa705iROjreEqfrwuW3fcEpwZwChaTUML/GFIZs6Fn7v9d+Q2QaH0iUkNiYWlpr7NpCjTJHiRtTN8MmbhlImefdDT3yTj2iohR8FC1i/LHyFbG9+A7lJNQMXCPQ1VEilDQFtNLOCeAM4TJRIw8zTxxQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=11clsf1My69x8n76p1I8mYKdWdQv4OmxUfsKbuURzYw=;
- b=lE7IhJmTCtuXzbWaGcaw81yUbIJ26ROhQf+CBEBzXFSAgkZicxadxn2Q2CG74vu9VioA570XEXXoumc+/4+tA8GRixsmbGDXCMViC5f4XXFOPrqWrdJQArK1prpE0mhiBe4OkVrCITOUHsI3wCj/ZUgSzBz5q+0t2Ydb6TPpMCw=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5349.namprd12.prod.outlook.com (2603:10b6:208:31f::7)
- by BL0PR12MB5553.namprd12.prod.outlook.com (2603:10b6:208:1c9::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.15; Wed, 11 Aug
- 2021 09:47:41 +0000
-Received: from BL1PR12MB5349.namprd12.prod.outlook.com
- ([fe80::152:9dd3:45a4:eeb6]) by BL1PR12MB5349.namprd12.prod.outlook.com
- ([fe80::152:9dd3:45a4:eeb6%4]) with mapi id 15.20.4415.016; Wed, 11 Aug 2021
- 09:47:41 +0000
-Subject: Re: [PATCH 5/5] drm/amd/pm: change pp_dpm_sclk/mclk/fclk attribute is
- RO for aldebaran
-To: Kevin Wang <kevin1.wang@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: kenneth.feng@amd.com, frank.min@amd.com, hawking.zhang@amd.com
-References: <20210811083323.1084225-1-kevin1.wang@amd.com>
- <20210811083323.1084225-5-kevin1.wang@amd.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-Message-ID: <a90deb95-6ab2-d1cd-b290-5cf1347b7c73@amd.com>
-Date: Wed, 11 Aug 2021 15:17:29 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
-In-Reply-To: <20210811083323.1084225-5-kevin1.wang@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN1PR01CA0079.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c00:1::19) To BL1PR12MB5349.namprd12.prod.outlook.com
- (2603:10b6:208:31f::7)
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com
+ [IPv6:2607:f8b0:4864:20::635])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C83AB6E0A2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Aug 2021 04:10:10 +0000 (UTC)
+Received: by mail-pl1-x635.google.com with SMTP id q2so960283plr.11
+ for <amd-gfx@lists.freedesktop.org>; Tue, 10 Aug 2021 21:10:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=/wJfRZLEp+ItaTTKtybUVmvtpffSN0Nq150cjRjLrEQ=;
+ b=Yt29gfp+B7nTWKlA5BBiyzBSgLpJ/zduU+YJZkiQa3yBpCB3/Ffth3ub10wahvqlUN
+ ce5bwXsSO5BHGm68qvaERm8CwcGwI/TkPf557y7zeU8wbE8V01MQ4ASHnuLlHxHchqpP
+ AYDbTwgNmsYNsdcf55k+EISVJ8wvPXmOj6W+4xTquEBfdXNwPfNqfpiAl9gpAeyUbc3u
+ 3zt0GVCLD5aFtWTSngNece1HV0Ic66PDZvA6b/WgkNOjE+7CZvA5rtL8hmQTDXqnT1z6
+ prE1B1iCLW2g0NHSqU7OlOnH/EGaKKZDwhOAERScj2S3yYxqhnbNi0ODaLftEL5fbe3z
+ p3ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=/wJfRZLEp+ItaTTKtybUVmvtpffSN0Nq150cjRjLrEQ=;
+ b=GVa1icmdw5ftiHXHClEcJO7cKGQeS0z/aDG7Al4PJGpsp2I2cA0R0SscWmAn2loa8L
+ y7X29yCRX+2OQt5rgkrm7sA/u6l8d6ovboE/RKxFLMBqcYWcS7KhfBA26O/33TybsD1X
+ EOHF+58Yljhcu1Np6iNndTrG+1WMFMEsdEcZmt882py7Rcpp26YrkRsOHy6ReF4AWPwG
+ aLbjkI3MkDHXf616OH70VX4YNnhhZRl5YxYMf3e0LkiK/YZ9k3NKJ3oQM1Ol4K6CxvLC
+ sS6rIcl1H9ezZtf6mwE2+ShZN2BuUHhiYNThFNiH/0mboc8TQULjlLmeFz4lJswjFD6g
+ 9cSg==
+X-Gm-Message-State: AOAM533inDZ/K/Gl0rlq/xOy+UkgbpiUh6XZWb+/BjpsqT9mgTdfC3uM
+ oQqfzN22pTTcUWns0wAt1D4=
+X-Google-Smtp-Source: ABdhPJxHF2JTfMzbFZ6ciYU2zB1hy3ZcG4eci0A8afkG/3n+hAR1K2/VkWJ4VKFqg4/Bmd8/EG8i2g==
+X-Received: by 2002:a17:90a:d251:: with SMTP id
+ o17mr35125391pjw.200.1628655010203; 
+ Tue, 10 Aug 2021 21:10:10 -0700 (PDT)
+Received: from localhost.localdomain ([45.135.186.103])
+ by smtp.gmail.com with ESMTPSA id w11sm30636011pgk.34.2021.08.10.21.10.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 10 Aug 2021 21:10:09 -0700 (PDT)
+From: Tuo Li <islituo@gmail.com>
+To: harry.wentland@amd.com, sunpeng.li@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@linux.ie,
+ daniel@ffwll.ch, Jun.Lei@amd.com, Rodrigo.Siqueira@amd.com,
+ eryk.brol@amd.com, aric.cyr@amd.com, vladimir.stempen@amd.com,
+ alvin.lee2@amd.com, qingqing.zhuo@amd.com, isabel.zhang@amd.com,
+ sung.lee@amd.com, Samson.Tam@amd.com, paul.hsieh@amd.com,
+ wyatt.wood@amd.com
+Cc: amd-gfx@lists.freedesktop.org, baijiaju1990@gmail.com,
+ Tuo Li <islituo@gmail.com>, TOTE Robot <oslab@tsinghua.edu.cn>
+Subject: [PATCH v2] drm/display: fix possible null-pointer dereference in
+ dcn10_set_clock()
+Date: Tue, 10 Aug 2021 21:07:03 -0700
+Message-Id: <20210811040703.4770-1-islituo@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [172.31.157.114] (165.204.158.249) by
- PN1PR01CA0079.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c00:1::19) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4415.15 via Frontend Transport; Wed, 11 Aug 2021 09:47:39 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 46900f3a-cd6e-4721-8164-08d95cad0fc0
-X-MS-TrafficTypeDiagnostic: BL0PR12MB5553:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BL0PR12MB5553333BE62A6E6B4E76A43A97F89@BL0PR12MB5553.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:923;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Hr4UECMhPK6Bn6M12Is6HRMygcCyAmRT+1nvFeR2Dl/CUWkPf/6WdO6S4g1x/WNTr8Xp/tt2JfOzEP5a1qA3n1mlWKqmJAfZgSFULRbmO0pNXM+bdYkU1LvZnHX1H38LelEJppjK6AjdcxHboqNuu5bYdoh6/LUIQkKZwy3UN3fbkS3noq3JVaawHa+Mgjo3uEB7YbIT7htxRm6OYT6EW5H6gaLEzLMEP1vIVSVaBPHW7EpdF11JAuvq5k9KjnG+qqDa8DWW2KWrRNepxZyNvyCjmjg4slNTikmiDlz2kx1sDZ+S4bmZv81BNlMLJh8GtQRBEbMSHS5JhL8cyZLVctaBsDjW0+7mmJbrZzGrsQrgApgLVG4t4wSfFZJUuyLBDsHQ5ckN6rTYcMez0kJkFCcr4P3dsqzhf2O9WddDyBh8NF/gUiLUazR/ykH57afFlZp4t5l2AYV8FDG5L8Az+AcArRSZHTGqDdclLOkQ5nY6vx7wDlhJaufPttQR6+EEK0J4SllX5P4iMr9lRFGVehxH++y1UQyNx7hIjFu/1mQh2SGpniAVe3Ko5GvvGovpgu8yuFhAEKawQSBW42vEMIs8vNGlimS7dohnNeY2IOl15rIqcreZCppG6pmU9JBJZ2QigYgm7l4O0tEelMbnIut8D9gQZHdp3e3to9MXEnYKPyQiEBHDwyoqjzokifIkhS3ri3LEUHWk6IX7RCNUG7GmndQmm8frNrcrpDFfoT0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5349.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(8936002)(8676002)(36756003)(66946007)(4326008)(66556008)(38100700002)(316002)(53546011)(6666004)(26005)(508600001)(16576012)(2906002)(31686004)(186003)(2616005)(956004)(86362001)(83380400001)(66476007)(5660300002)(6486002)(31696002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MW8vRXc1ZE5wOUxwRHBOZkR0b21vcmFNSVRMWlk0K0pMbWFDckp2eHpOSE1D?=
- =?utf-8?B?M0ZwaE83VDA2M1R0RUdLWEs0SllhR2c4MExxaW4reHJrbjhCNUlLUjZZTDNv?=
- =?utf-8?B?b0QwdHJxMkZxYVdzUVpxbzFnQkNrclJIejNXbGgrQmdySlF4UFlYMHo5STZW?=
- =?utf-8?B?dklid1RxVldpa2g3OEVwRkNpVmUyZ01Rc1B2Y3k4Ym5wVDlRWDFqZWdrMFJV?=
- =?utf-8?B?TXdxU1M4YkRSb3FITTZ4dnlHSnRPcHlzWTBmRWNmUXBWcWV6WjhoaTU2N1hH?=
- =?utf-8?B?YmdKMW4ybGkrZFlrYjRVdnpNRTB5V01tT0dVUXphRmdFcHJZemtLSVlzRDFB?=
- =?utf-8?B?VWowaWZvOHowZkZMcWE5Wm9kK2ltZThFVEFtbktLMU5PNzE0QkpDOXROcTNR?=
- =?utf-8?B?cXM3azI2UUZiQldITGQ1RXRHZnFiNzBxRnM4d3RIZE0rOGVqNEN2UmVqT2Uv?=
- =?utf-8?B?TGVmY0M1SmlLSzBaR3dCNGFlMEQ4OGVCWWMyd2R4S2JlQm5MUkU4dmxOU0t4?=
- =?utf-8?B?NzVyU0pWZXlNMEV4OXloelVXQnBIYm5KOGF5RkNJdXpHUHRMN3krenExczl5?=
- =?utf-8?B?NUE2MW9UNmVTaFVrL3NOaE9rdHQyZDV2NkxRakJSZnVlY1dYcXJJdEtOb0tO?=
- =?utf-8?B?eElmbmdud21IM2xQNUZMdnZNWkswRlc0SllnVUQrME5LMkN3dWlHK3BTS2JV?=
- =?utf-8?B?UVpqR0Q2dm5MNDN5cHg2QWtaczZjQTU1cUswSlUrMXdYcU1jM2xCdVNObVU1?=
- =?utf-8?B?eGhmYklGaFB0RkczT2g3Wmt2MDB6ckErNDl5K1FPS3IxTE9XbWZmNXAvSUM0?=
- =?utf-8?B?T3RZRlBoUUpVL043TmhBcTBtQzFSV24zQ1NuYlhsWk53YTlwZ0V2OElvTExT?=
- =?utf-8?B?TW04RUZNOWJFUlE5N2IzSnhvVkxpTUsybllVUWZKRHlQck10Q2ErSGRMamZj?=
- =?utf-8?B?MmpqVzdLQzhVVzBDd2Q2ZkxIYktpWkhlRVNFZnhYeHJsRkxZVmRuRDVXQUtN?=
- =?utf-8?B?b3lrRFlPZVYzRHpEWWF2OStNM3o2aEU2WmVIT0lRakJkNDJhem1VdXhoRWM3?=
- =?utf-8?B?amUwZ25PaWNUMEdOTEFzOTl0QXUyMnl1ZXJKeUJsNjlUQ1Nab2E4ckFDdXBH?=
- =?utf-8?B?bENWeVhiTGlqcDBBMGQ1clo2dERDaWFDaTlVV2tIamVnMmc2S2lDcGFjLy9k?=
- =?utf-8?B?dXFCOHJRT3pKVFVGRWZpaWNON1ZQaFNTdi9IbGtpWnNHMkNtZHUzcDllWTdJ?=
- =?utf-8?B?Y0czcmRPUm4xVDNDeWdNaGtudzNHYXBzV2hmL09pVlc0MDNwY2pTNHZOcDVu?=
- =?utf-8?B?MTk3aTFPME9pUmhkaEI4K2NOMlRFQmljSHp1UGNZcG5DQ3B2VTlsV1FoQmlo?=
- =?utf-8?B?WGgzMStERDFkUyt2aml6TzNUcC8raVRzbnJ4WmJxdUJaRG9wWjdmUkhSRjhJ?=
- =?utf-8?B?Z0pKN094amJMMitIZFBsc0tkRDFVdVZ2dE1MZUk2a0xXOFBhOFFDdkJHQk5o?=
- =?utf-8?B?N2F1M3hJOE1wc0FzRU1vb0hTSEFFbjllU1lWblRHZjBwTEROK0VHVGRQVFBG?=
- =?utf-8?B?TDNma3pRaUwvTDJLbGgvc1lIR3hHZXhXMnVweW1UakJ5MUJGaVUzS0JrMWFy?=
- =?utf-8?B?QnJEZVE0bWMra3FEeitkNHA5VnhiQUlyMy9YS1pFVU1oUERJem9QWmNSYm1G?=
- =?utf-8?B?eXUxQWRuNG5OODFWWEx2MDc1dHpnR2huQzZYejBHQ0dmQVJLbnZzYVZ4OEZr?=
- =?utf-8?Q?CR6ak/r7g12x0aBjyXEQ/2zXX9c+W/SaNSTVAZx?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46900f3a-cd6e-4721-8164-08d95cad0fc0
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5349.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2021 09:47:41.4122 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: N2LJ+0JsTwu+WTQ0XX673W/HBWYHozKJXP8I3LBwocpb/pF1/ZmY8gu848/KqclK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB5553
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 11 Aug 2021 13:46:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,43 +78,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+The variable dc->clk_mgr is checked in:
+  if (dc->clk_mgr && dc->clk_mgr->funcs->get_clock)
 
-On 8/11/2021 2:03 PM, Kevin Wang wrote:
-> the following clock is only support voltage DPM, change attribute to RO:
-> 1. pp_dpm_sclk
-> 2. pp_dpm_mclk
-> 3. pp_dpm_fclk
-> 
-> Signed-off-by: Kevin Wang <kevin1.wang@amd.com>
-> ---
->   drivers/gpu/drm/amd/pm/amdgpu_pm.c | 9 +++++++--
->   1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> index 769f58d5ae1a..f894b34418df 100644
-> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> @@ -2094,14 +2094,19 @@ static int default_attr_update(struct amdgpu_device *adev, struct amdgpu_device_
->   			*states = ATTR_STATE_UNSUPPORTED;
->   	}
->   
-> -	if (asic_type == CHIP_ARCTURUS) {
-> -		/* Arcturus does not support standalone mclk/socclk/fclk level setting */
-> +	switch (asic_type) {
-> +	case CHIP_ARCTURUS:
-> +	case CHIP_ALDEBARAN:
-> +		/* the Mi series card does not support standalone mclk/socclk/fclk level setting */
->   		if (DEVICE_ATTR_IS(pp_dpm_mclk) ||
->   		    DEVICE_ATTR_IS(pp_dpm_socclk) ||
->   		    DEVICE_ATTR_IS(pp_dpm_fclk)) {
->   			dev_attr->attr.mode &= ~S_IWUGO;
->   			dev_attr->store = NULL;
->   		}
-> +		break;
-> +	default:
-> +		break;
->   	}
->   
->   	if (DEVICE_ATTR_IS(pp_dpm_dcefclk)) {
-> 
+This indicates dc->clk_mgr can be NULL.
+However, it is dereferenced in:
+    if (!dc->clk_mgr->funcs->get_clock)
+
+To fix this null-pointer dereference, check dc->clk_mgr and the function
+pointer dc->clk_mgr->funcs->get_clock earlier, and return if one of them
+is NULL.
+
+Reported-by: TOTE Robot <oslab@tsinghua.edu.cn>
+Signed-off-by: Tuo Li <islituo@gmail.com>
+---
+v2:
+* Move the check of function pointer dc->clk_mgr->funcs->get_clock earlier
+and return if it is NULL.
+  Thank Chen, Guchun for helpful advice.
+---
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
+index c545eddabdcc..03e1c643502e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
+@@ -3631,13 +3631,12 @@ enum dc_status dcn10_set_clock(struct dc *dc,
+ 	struct dc_clock_config clock_cfg = {0};
+ 	struct dc_clocks *current_clocks = &context->bw_ctx.bw.dcn.clk;
+ 
+-	if (dc->clk_mgr && dc->clk_mgr->funcs->get_clock)
+-				dc->clk_mgr->funcs->get_clock(dc->clk_mgr,
+-						context, clock_type, &clock_cfg);
+-
+-	if (!dc->clk_mgr->funcs->get_clock)
++	if (!dc->clk_mgr || !dc->clk_mgr->funcs->get_clock)
+ 		return DC_FAIL_UNSUPPORTED_1;
+ 
++	dc->clk_mgr->funcs->get_clock(dc->clk_mgr,
++		context, clock_type, &clock_cfg);
++
+ 	if (clk_khz > clock_cfg.max_clock_khz)
+ 		return DC_FAIL_CLK_EXCEED_MAX;
+ 
+@@ -3655,7 +3654,7 @@ enum dc_status dcn10_set_clock(struct dc *dc,
+ 	else
+ 		return DC_ERROR_UNEXPECTED;
+ 
+-	if (dc->clk_mgr && dc->clk_mgr->funcs->update_clocks)
++	if (dc->clk_mgr->funcs->update_clocks)
+ 				dc->clk_mgr->funcs->update_clocks(dc->clk_mgr,
+ 				context, true);
+ 	return DC_OK;
+-- 
+2.25.1
+
