@@ -1,118 +1,126 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69F743E878C
-	for <lists+amd-gfx@lfdr.de>; Wed, 11 Aug 2021 03:15:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B1783E8904
+	for <lists+amd-gfx@lfdr.de>; Wed, 11 Aug 2021 05:52:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95D666E067;
-	Wed, 11 Aug 2021 01:15:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFEDB6E0A1;
+	Wed, 11 Aug 2021 03:52:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2050.outbound.protection.outlook.com [40.107.93.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3ABC26E067
- for <amd-gfx@lists.freedesktop.org>; Wed, 11 Aug 2021 01:15:11 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2073.outbound.protection.outlook.com [40.107.92.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA81C6E09F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 11 Aug 2021 03:52:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c8PcM48TmuCz2R5xcNIY3UYZNlUwQnHQ8vVwKJb7P7lQEREQkSZFva2vVpB2UJuHEMj6SLzdsQY3TUBwQZCOIphiWu6C6bz8XoBDzUaoHe27rH2CDmSXoGgtCnpub0UVDufcrAqAo7R+Hw8BluirNskway1keFwARaJk4I4WzBaHaQw9KH4+fCUFbe/QYhP6vJ3l5ffi21b8hV7Rx3c1lLZRNE8V3KhOG0TPPw4baNORxP5zIxVhvGba9SFh0IBSyy2LNpeHlsHRk8E4t+sWW0rlT2BoM1hfJRtI96EFk3LLNuiu8GQVnhpqlWlLpNkjEBDji2UPSjxyNFYFjy+gyQ==
+ b=EO4l338FUyFNoROD1Re4dZ93tmZV2efXKSnnMoeVAuASEDO/VobGZoH1Uy78a88E58u8Bc6FoFRrddTYVkswPc2oWqnNr22ttUHxBWp0gCwOXPp/8JRQiuWRuiYpAmR5m5vcilkddRBUX6nOMKAR5KNicRZ1wDZZr48Ib/2uXk0lGxDPyEYhNLIrJdpG/x3ZemeYWs0Z6mVlunG62eJ72+X70yROOKiBRatdoXKxUBWO8uQk71nyL95eAsZAsGRw/ULF/OPBePL8Q0PoNrcXuSCbxjpw0H2bKmqKAjsZmqOyzWKURJRZgFSyHhP6vIeO6l6N+uOwGo5/rx12EVVIvg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XC4V8WXcWtLqhyjF2bMZ3QmMei5ya2eRCWlZkYS2QPc=;
- b=BaCeX9NBpAtPaJ9nvdM1MiYstcpoNrSQ+LOh77Xpd7pPyF4Gzy7JEaBZzZnXFsp57DUJGmbjWbf27v82fioDIdwm4z3hyaBjad2QNA3MalJg3WPBTGldj+mCTH3utk02IGz73bzQiCHblPK+KzqZD0WOhpPiRbLal5hoFf20AvNbX8iD18uRdtamXwEzPXN2ld9iRo23LYIQOQi4/QRNiN3y3Go66TaroWTuYbP+ERb4HAywK+3QY32IZ+kD6695vSgyFavQncSr88ASPlb1fo3nnY+ORjnmcIok4OlVkVkH9puO9V9aDWSdipuMIX5GIg1ndkUGy3yg1CWzS/8iFQ==
+ bh=lHypq+ATpDf6f5NQJmOPCF3HzToEiz/H4EoNKFuP5vE=;
+ b=hh/zMe+8HH2rik+/352afvhr80ifuOjOO2fJMuc6TAIm5zWYJVD2c2ijoviAbQakIjNZ8tmJzg2u7OxWF2IOynzeKQIN6f9mNZgEMjfpDh0q1LPT4pMKp/3llr7va3vl23ovs8tU4fcdun1m4rEjA/wGLZibTprivbKgw+hwgeGTnWeEQuDVxHg15pjFIySOzkPTpbbkDsuBJGcNQYFDLctImnyOWzKCHrJ2G7k6DET330WUhJs2heIV/183qs/pd5SP8r87Hhx+PiYmb6A9RoM8aUTQLyKUl15NoSf1RW4ZERnkFZkY1UTI5RhfX6lGNg79k/Ww9c31hXBu5Reuyw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XC4V8WXcWtLqhyjF2bMZ3QmMei5ya2eRCWlZkYS2QPc=;
- b=0fPenG4FZnSmyyxfQWtlOSyzMl1G6XvLuSmMvhL2cniMBy4I0Xn4vtc5tnbxe7ps3VAPN3bYILZg+4hLqBj0D+7Lc9mwe7iJM1JBr/k0yY8svhe+JoVIPl6Zab6JUXEzMLgRKEh6ECehz03vpx6gS481H1ARHrE/F33dfCFci64=
-Received: from DM6PR12MB2761.namprd12.prod.outlook.com (20.176.118.91) by
- DM5PR1201MB0138.namprd12.prod.outlook.com (10.174.107.21) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4394.17; Wed, 11 Aug 2021 01:15:09 +0000
-Received: from DM6PR12MB2761.namprd12.prod.outlook.com
- ([fe80::99e0:f44b:512e:f7a6]) by DM6PR12MB2761.namprd12.prod.outlook.com
- ([fe80::99e0:f44b:512e:f7a6%7]) with mapi id 15.20.4415.014; Wed, 11 Aug 2021
- 01:15:09 +0000
-From: "Kasiviswanathan, Harish" <Harish.Kasiviswanathan@amd.com>
-To: "Joshi, Mukul" <Mukul.Joshi@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-CC: "Kuehling, Felix" <Felix.Kuehling@amd.com>, "Cornwall, Jay"
- <Jay.Cornwall@amd.com>, "Joshi, Mukul" <Mukul.Joshi@amd.com>
-Subject: RE: [PATCH] drm/amdkfd: CWSR with software scheduler
-Thread-Topic: [PATCH] drm/amdkfd: CWSR with software scheduler
-Thread-Index: AQHXjV7lejSx0kVw3USLzatEjt7N/KttgAow
-Date: Wed, 11 Aug 2021 01:15:08 +0000
-Message-ID: <DM6PR12MB27613B1C5C6926052F80A81B8CF89@DM6PR12MB2761.namprd12.prod.outlook.com>
-References: <20210809204048.2735-1-mukul.joshi@amd.com>
-In-Reply-To: <20210809204048.2735-1-mukul.joshi@amd.com>
-Accept-Language: en-US
+ bh=lHypq+ATpDf6f5NQJmOPCF3HzToEiz/H4EoNKFuP5vE=;
+ b=Tjz8HdzcocDv2GzJt/O5WKhPCAQiZ8wL3uvyZutGHUJVm/296JPjbP040quSJsHw6Ir//hxOUrNs+/KPoAQg/Q94pw5qGa7dUL7Lg0dBY4uzKfjQDQbvHzfEE+iAzirwM81wo0pjSi4nTAnpmwD1xBqgba94OxKwqBGuKU6eA34=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from BN9PR12MB5035.namprd12.prod.outlook.com (2603:10b6:408:134::8)
+ by BN9PR12MB5306.namprd12.prod.outlook.com (2603:10b6:408:103::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.19; Wed, 11 Aug
+ 2021 03:52:02 +0000
+Received: from BN9PR12MB5035.namprd12.prod.outlook.com
+ ([fe80::e8b5:25a3:551b:6fa7]) by BN9PR12MB5035.namprd12.prod.outlook.com
+ ([fe80::e8b5:25a3:551b:6fa7%8]) with mapi id 15.20.4394.023; Wed, 11 Aug 2021
+ 03:52:02 +0000
+Subject: Re: [PATCH] drm/amdgpu/vcn:enable priority queues for encoder
+To: "Das, Nirmoy" <nirmoy.das@amd.com>, leo.liu@amd.com,
+ Christian.Koenig@amd.com
+Cc: Alexander.Deucher@amd.com, amd-gfx list <amd-gfx@lists.freedesktop.org>
+References: <20210810070954.4480-1-satyajit.sahu@amd.com>
+ <782566d7-4b9b-9595-fd26-94dfb2406161@amd.com>
+ <05a3c762-87a4-b5ca-23b1-771cc09d61b5@amd.com>
+ <7491d253-7cc6-d115-4ab6-ace48af647ef@amd.com>
+From: "Sahu, Satyajit" <satyajit.sahu@amd.com>
+Message-ID: <fdee6466-44cd-ea14-df8f-2219e8387dc6@amd.com>
+Date: Wed, 11 Aug 2021 09:21:52 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.12.0
+In-Reply-To: <7491d253-7cc6-d115-4ab6-ace48af647ef@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-08-11T01:15:06Z; 
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
- Only-AIP 2.0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=9ccec323-9df5-475a-a808-02e53911fc4c;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 546f8fad-59e9-4609-2fb1-08d95c657634
-x-ms-traffictypediagnostic: DM5PR1201MB0138:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR1201MB0138F5FC5ADB8A08B1E5E63E8CF89@DM5PR1201MB0138.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4502;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: nFAVsETDulUw26iDghd8TLM4l5FKObEtDVBzsBO5wZ9IuOjQUot9iRXqDBArUMaXB2fMJlyv+6+LLGsBJvH3N+ctrKmauZpU02SF0H3rn2vxkHSMbhQ90XKSIfzmHde0Ydu9ZHtHFlui6JBhhtOZfDpqdS+e4MSE9X93xETjISTj4Azh6c/0yRyNEcdXSa+ujAJ6lwtaeedumeCg3peK34HiEbkTHnu58oRmxfAcjjx1LaH3mAwGbvRYyYZOY609151iSMu3e/+1xWjfT2MSFyVXtaPYybXJc0yfFe8TWJUPH3FS986nuuVuAo4QzGfyb/C0k1gFGmLKYEF9OeGLxOE53VGASa7h7YUHdG+wfocZaCEjlj2aZUVsAOBI0jdK41nVRxv8G0/3pZtn47QZ8vw9eELb0wUQiK7sPEu6vSA9s5hB4KndLmkzCINcKuOSP69x1OCcWhN1AFOHbU59MLxLq/3q/a89PZGnZy3KJnteQAlCwtDTkP+KHCa9tNWSG6RJ8tSoRKk9rXB0JZjy8ynDVZWcYJ8tJDVr8Ct0C0L7bCUgplZ7PdQ46XW3heE8dIjmeEIZFDvqs/dEsU9Y+4GQXXT9ro9GrgZcl8Rf8kWh/CJqgMOqmLaR/1dUngphZM364usCQNPlD9IIzFEv/RpImmWl/l7ujt7sVDAx20ckZ+ZrzNvY9JaA2zbw56/4wSjxeaviol3gzZ+pdBwlMA==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB2761.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(366004)(39860400002)(396003)(376002)(136003)(8936002)(8676002)(5660300002)(316002)(122000001)(2906002)(83380400001)(38100700002)(33656002)(54906003)(66946007)(7696005)(86362001)(478600001)(76116006)(110136005)(4326008)(52536014)(55016002)(9686003)(71200400001)(66556008)(66446008)(64756008)(66476007)(53546011)(186003)(6506007)(38070700005);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?1t26geX6Srb6VwNDhNabjuHHYO2ms1zkyzPhjPOaie5Qfw6msJSxk2IQiMN9?=
- =?us-ascii?Q?cDSVBrWrj3fcr5MEOAcg7qQydVkfYKNEQdQjjaDTTM70f1qL8TxYWsSiMhze?=
- =?us-ascii?Q?xNvNKlLmzaoT56s16fcEzWqeHlTi5s4fYh9MuvbIrH2BokSf5tBsi/bko908?=
- =?us-ascii?Q?7+eHtE2vZ8vhOQYp1G0v7KkwALC92gzQ2t2xykDIMXOjvxVbV7iEKiHsqXKf?=
- =?us-ascii?Q?GIdjq2Cj+U25mC0q+AE6PHySzso/kyhEwqG543HptsfEeen2Ey2B9jnmhscg?=
- =?us-ascii?Q?QiBRXfquGoYxStT4lpFMZx0Y42ZF6AxjF0ej69jpdr0H21bELceb4+zrgYvJ?=
- =?us-ascii?Q?IrmSTJ3g+8DhSY8iTHRgx9TeRyYyAycARhR/B9qiIaC9H+LePqm/qrkoASQh?=
- =?us-ascii?Q?hJjZOjFlP0mH2An3g8EzXOwMFm5K0ETlv/6XQm34KLCvW3j6RNGVOu04+Id7?=
- =?us-ascii?Q?JPOk5Qqka2J0lHx3RLCIo5fV+pmsDYSBYRp0QI5AtgW9dhsL8Ak2v332OxTB?=
- =?us-ascii?Q?rvrojjCIdLwF/zbl0ilVMETfAQndr1+ketRxcWhZ9fwBr8X3ARzgQ+cop+Yb?=
- =?us-ascii?Q?537PGOHdM6ZfVkceX844h8zWPpRWwC3YJPjdtaxnF5OHTlsOJv67CiYsZpXx?=
- =?us-ascii?Q?mo80WV52r/oHdcKlpgJV6qyEMGJVqsgw2a1F49qD/xF+EBBdebaQtakiGomH?=
- =?us-ascii?Q?ic2aKN+W3hfCZFzSMm1TYU4m5XR58iYr11Uslad2bYJOdXVpDPKMPImLUmBN?=
- =?us-ascii?Q?eawJbqV4H4A9JN8OnbUi/7Fx3yTdOAC/hotUzUPpDmyOC/NcDGElv1KvdJg5?=
- =?us-ascii?Q?gR+FR1/dnHQUe1BVf611ezDbIHsUSVL4sEiLUfpS7ktcverZ+QTuDO+No6j7?=
- =?us-ascii?Q?Hu4KF+nCY42vn2USb5DioBM5zcS1bvltOpbHXNsBjWO2OK6Ygzqh121EKfjq?=
- =?us-ascii?Q?cwftHF/6pGs4PFWEVrn/mbdnynlLb6uCeDeGE5y/yTh3V/TrUDvyxPL5xIj+?=
- =?us-ascii?Q?fL9Ih7EJ13GmIqYUZUnwIUFSfbcwm4m+jiU0Y4VTOj74UUKSXhwgpTdGnFY/?=
- =?us-ascii?Q?Aw/6HZVxyVaWIiqQHrxuQN/J7ycdz0MJ97iTGoqo8PInzENKu68HP3mBjxKj?=
- =?us-ascii?Q?ZSlLXfWf8sMT1G9tfln6FI92gxQb6URQQUF8xRRaULLWKjYVYHooDreLUc5U?=
- =?us-ascii?Q?a2zj6a81XJPlqzUu58I6jTcgEAs0Dw+zPEDbq21OQL/qmPNo1kEqXpvo2oad?=
- =?us-ascii?Q?av3jYtPD1QnsfnDjKEbfV2wRYCSvJPez3OvKpWNCE9a9dt+3eU9j4ITQxtL/?=
- =?us-ascii?Q?DvvBc1+ooFZj7LE53aAs0wTFKqL95jA76p35D/YtGkyo3+tW/WDsGXq9RFC6?=
- =?us-ascii?Q?qtTgxQcznz3qVH6Sg2EeSBJNA6Wc?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: MA1PR0101CA0006.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:21::16) To BN9PR12MB5035.namprd12.prod.outlook.com
+ (2603:10b6:408:134::8)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.31] (136.185.157.209) by
+ MA1PR0101CA0006.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:21::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.15 via Frontend
+ Transport; Wed, 11 Aug 2021 03:52:00 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 870981c7-722c-4769-2dd8-08d95c7b60a5
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5306:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BN9PR12MB530609A2E16821655724B96BF5F89@BN9PR12MB5306.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: e6XN9FPMBpxA/SEYcTVPWrkyM51lbcyJlEfXhcBN9mC3eabQjistC4zazjV+I5hgqXwjmbWMxN8cyi2KzJ2J2U8v+9gBoSlBktJEUOU4HcV6BJsSNLzdG41UqNjKPtiJ8ohJvhcQm2jAqvUSs6Gq6No4OuVfg4cRc1WuDFVIevzmjpiIPMFEds/Cr0it0A6dMNrfahHtb96NsUa5EStRND7oXx3YWSVouRgq1zsgJCRt7GEGoMDZEdtya976pIlfRMVDPZg6EgShyD/TCV9DYVVhpYC8NJOqTMx8j+xzAi2wKHSQrsp0bAkgoyqK92lqrOdcQYN4Xr21Ec8Y5kJ0Mg/2JNH3sP2g3urFylOUfUULlyPnxusgaV9xSdLXaYgx056y+3vuRLGnYz9FxnGeOlPQgPLgX/bC8Um2S0m4vsQq5tdM+LtpnsuQ7myDSB50O/ooOvusZbLYmZmvkDeLZVcoiuTHeckZRKgZPJ11/uHAv9En4qB2Elv676yBxw89uGshintT07CAnAG9xInrtJKr76Sv9f+Hb6kH/5fWpO2PZK1tvEBxUAv8WJ0BNy++r3Zg9bP+wd6uHqAXkaVtzb5XmHNoOWo+e2kfRqlq1U5c9TTbJip2uFHlDsKORMRGz2vVRRWGLfLZRxAUgOkZ38R0H5pgQCxkBrXGih/MZ+0+d/L/9hGrhRX/QZOiy8DbdkZEO/dMJ/9npUKxHYJURiZvlfLb3oWxC28jjRxFA7sVxQglcOusB99N/hMlMLuE6IIJFPJ/WOFcc4kDdShaTltNhMoazHDI5wn/cTsEpUiXXC8WHna/CPGPi6sOmpO4
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5035.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(39860400002)(376002)(396003)(346002)(136003)(8676002)(966005)(26005)(316002)(31686004)(8936002)(83380400001)(53546011)(38100700002)(16576012)(66476007)(66556008)(6486002)(36756003)(4326008)(31696002)(66946007)(6666004)(5660300002)(478600001)(2616005)(6636002)(186003)(2906002)(86362001)(956004)(30864003)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bVNYRUZTcG9OWnc2YlJNU3BRZk5WTnczbm1RWVlQVVAzSHN2T1E2NVJXRHFB?=
+ =?utf-8?B?andCdlNhQzZDRm9SZEtmOHpCVVR3bTVoQ09LS0U2V0YyaVpTaWJIc3A5Vk1M?=
+ =?utf-8?B?cHVVeGswUmhHZlZpemJSWFRyRHJxYitLWjIvaThFZGxvUVcvcFV3ZU42L3Fl?=
+ =?utf-8?B?M0k3WCtHTXRQbG5nc3dJV2ZJOUdBTHNuWlJPaE1QSHUyM3c3WUJsN1JPT3N2?=
+ =?utf-8?B?L3NtdUVJWTg4azNXckliaHlnWnRER0hxb3lqYU9xb0FRd2YyRWl2aXJlOVl5?=
+ =?utf-8?B?Z3hGbEVnZzlCcmkvTFM0OGpnMGVJMGdVVHBCVytlU1VCaGx5UStDZjM2NFc2?=
+ =?utf-8?B?aldFb1JFWCt6em11MndQQmJwbHJuQ3hhME55SVRBVUlwcDl6aWt3TEUrMGY0?=
+ =?utf-8?B?cmptTDh3RWxUK0hqRlRoUkRVMXc3RkpqMlNGNklKc1JuckYraWw0N05zWXZD?=
+ =?utf-8?B?ZkFXeU1rNC9paWU1WkxudGsvRm81UmQ5ME01K2hKMmZiVXVHK1BRSkZva3pN?=
+ =?utf-8?B?WHc5RVhyU1pTcllEb2F2N3pqZWIvQ0VuVmsxcmt2TUpldmNlR1ZrWGVuemVB?=
+ =?utf-8?B?ZWtuUGNoYmZEQk56UHBESXREYWpBeDZwbnN3WnRBVjk0VXF6SEtaNlVhejJq?=
+ =?utf-8?B?eGxUaXRuUFRneXhaTzdWWEZsUUlwYm1lb2R1UmNrcnYrNzFpMjIzbng3TkpT?=
+ =?utf-8?B?cDRoWkZYejlkbFQ3YUlhN2Z2WUk2RDZnYlorRTZxd0dzbE1nK2F1MHVDajcx?=
+ =?utf-8?B?b3dpeTEvS1IyR29mZStXUG9obnlGNjFWZDc4OTVQcVJmVmpsbGNMZ1ByeUp2?=
+ =?utf-8?B?cEMvc0tjRnFPazBoTEhXaTN4a3dMNGNramlmeGMybmY3bEZIeExvUEVudWo5?=
+ =?utf-8?B?YkdEQlBQM2ZTT1lzWjhYbzcrMnhxWmdydDRqWm4zQk91RkN4NXQwd3VZcFFq?=
+ =?utf-8?B?NkxWVWllelBucFVRc3N3Y01WYXhFa0xCWi9iTWdGLzRjTEdySkN1eXZyOTND?=
+ =?utf-8?B?d2VCZFlCUjkvYTBkZXhyVlNzQy9xQkZkRG5ZSHRzS2o5eEYwSzF1cHNhZkFC?=
+ =?utf-8?B?VVIrT0tuM0pKSHBnMkpqZG5nMVNLcm1va3BYcnRXcE1sZG9FY3l4TDdKcjVy?=
+ =?utf-8?B?WFZzZldFV2dmRlRnS213ZnZKMzdtQklRQkNEeVFENzZ2QldnekxqM0wvdTdK?=
+ =?utf-8?B?ZDV6STNkbXB1RFh3a3dDSnEya3U4ZzluNnNmQkVBZUxGYktPaGhKQ1QzL0Q3?=
+ =?utf-8?B?dDRnbURuQ0dYTWV4T3FVdXpQWjhQdkhuZ213U01odVd4cmdlazJjQnJqUTA3?=
+ =?utf-8?B?VVBET3l5L3BWc2JsQWE5N3BvTUNWTno2YzJtNmk3bzAva09QRFZneWY5eTJW?=
+ =?utf-8?B?VTM1TWEwL2JjNUU3c3BCc1BMRVl0Q1VtR0w1SUpQbkoxcU9vZEt5RU1mdjFF?=
+ =?utf-8?B?SzZrM0Z0Um1qdTR2Y3p3aVJJZmNxVFhURHRFQ3hNbXRQUXk3UDh4Y0xKRWY0?=
+ =?utf-8?B?aWoxMk5GUHY1Z20rcWh1YTFLV0tXelBQNkFhU2NDS3hudDNTMVc3TVdWbDgy?=
+ =?utf-8?B?aHdldmpXWkx5WHpCQXFVb1RKbENRelRiUFN5eDdVU2luVjVPdytpYSt3NFZZ?=
+ =?utf-8?B?eUVES3dJTGMwNTNOTzY2WURUZ3k0Y0k3UWo5Z3FuOS9VVUdMK2FiV0VMRDRo?=
+ =?utf-8?B?UzEyTFpOTEZCVEg1UVU4TnVRT0pkdnlHRDdWbVNMdWZLeW9wZG5TYU9qRlhF?=
+ =?utf-8?Q?WH8TjJldErrBFEX/UoOmaR3y72SDqrUp+RaDXU5?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 870981c7-722c-4769-2dd8-08d95c7b60a5
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5035.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2761.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 546f8fad-59e9-4609-2fb1-08d95c657634
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Aug 2021 01:15:09.2680 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qF/y+bom41yyoJQJLOtWggNsZK2NiKkWB6PAwzurrXzLJ+2Fym0hnBV30PKbusUodzvBgHQMzKkumqDP+RF7tQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0138
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2021 03:52:02.6625 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nwNi6khByGzNHYSYi+4PV05LuikuBDr4F97PV/3y/oOGu7bWO9d+HL8Qb74RqlfU
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5306
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,305 +135,401 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only]
 
-Just few comments inline. With that acknowledged Reviewed-by: Harish Kasivi=
-swanathan <Harish.Kasiviswanathan@amd.com>
+On 8/10/2021 6:12 PM, Das, Nirmoy wrote:
+>
+> On 8/10/2021 11:38 AM, Sahu, Satyajit wrote:
+>>
+>> On 8/10/2021 2:01 PM, Das, Nirmoy wrote:
+>>>
+>>> On 8/10/2021 9:09 AM, Satyajit Sahu wrote:
+>>>> VCN and VCE support multiple queues with different priority.
+>>>> Use differnt encoder queue based on the priority set by UMD.
+>>>>
+>>>> Signed-off-by: Satyajit Sahu <satyajit.sahu@amd.com>
+>>>> ---
+>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c   | 35 
+>>>> +++++++++++++++++++++--
+>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c |  2 +-
+>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c   | 14 +++++++++
+>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h   |  9 ++++++
+>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c   | 14 +++++++++
+>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h   |  8 ++++++
+>>>>   drivers/gpu/drm/amd/amdgpu/vce_v2_0.c     |  4 ++-
+>>>>   drivers/gpu/drm/amd/amdgpu/vce_v3_0.c     |  4 ++-
+>>>>   drivers/gpu/drm/amd/amdgpu/vce_v4_0.c     |  4 ++-
+>>>>   drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c     |  4 ++-
+>>>>   drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c     |  4 ++-
+>>>>   drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c     |  4 ++-
+>>>>   drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c     |  5 ++--
+>>>>   13 files changed, 99 insertions(+), 12 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c 
+>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+>>>> index e7a010b7ca1f..b0ae2b45c7c3 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+>>>> @@ -73,15 +73,44 @@ static enum gfx_pipe_priority 
+>>>> amdgpu_ctx_sched_prio_to_compute_prio(enum drm_sch
+>>>>       }
+>>>>   }
+>>>>   +static enum gfx_pipe_priority 
+>>>> amdgpu_ctx_sched_prio_to_vcn_prio(enum drm_sched_priority prio)
+>>>> +{
+>>>> +    switch (prio) {
+>>>> +    case DRM_SCHED_PRIORITY_HIGH:
+>>>> +        return AMDGPU_VCN_ENC_PRIO_HIGH;
+>>>> +    case DRM_SCHED_PRIORITY_KERNEL:
+>>>> +        return AMDGPU_VCN_ENC_PRIO_VERY_HIGH;
+>>>> +    default:
+>>>> +        return AMDGPU_VCN_ENC_PRIO_NORMAL;
+>>>> +    }
+>>>> +}
+>>>> +
+>>>> +static enum gfx_pipe_priority 
+>>>> amdgpu_ctx_sched_prio_to_vce_prio(enum drm_sched_priority prio)
+>>>> +{
+>>>> +    switch (prio) {
+>>>> +    case DRM_SCHED_PRIORITY_HIGH:
+>>>> +        return AMDGPU_VCE_ENC_PRIO_HIGH;
+>>>> +    case DRM_SCHED_PRIORITY_KERNEL:
+>>>> +        return AMDGPU_VCE_ENC_PRIO_VERY_HIGH;
+>>>> +    default:
+>>>> +        return AMDGPU_VCE_ENC_PRIO_NORMAL;
+>>>> +    }
+>>>> +}
+>>>> +
+>>>>   static unsigned int amdgpu_ctx_prio_sched_to_hw(struct 
+>>>> amdgpu_device *adev,
+>>>>                            enum drm_sched_priority prio,
+>>>>                            u32 hw_ip)
+>>>>   {
+>>>>       unsigned int hw_prio;
+>>>>   -    hw_prio = (hw_ip == AMDGPU_HW_IP_COMPUTE) ?
+>>>> -            amdgpu_ctx_sched_prio_to_compute_prio(prio) :
+>>>> -            AMDGPU_RING_PRIO_DEFAULT;
+>>>> +    if (hw_ip == AMDGPU_HW_IP_COMPUTE)
+>>>> +        hw_prio = amdgpu_ctx_sched_prio_to_compute_prio(prio);
+>>>> +    else if (hw_ip == AMDGPU_HW_IP_VCN_ENC)
+>>>> +        hw_prio = amdgpu_ctx_sched_prio_to_vcn_prio(prio);
+>>>> +    else if (hw_ip == AMDGPU_HW_IP_VCE)
+>>>> +        hw_prio = amdgpu_ctx_sched_prio_to_vce_prio(prio);
+>>>> +    else
+>>>> +        hw_prio = AMDGPU_RING_PRIO_DEFAULT;
+>>>>       hw_ip = array_index_nospec(hw_ip, AMDGPU_HW_IP_NUM);
+>>>>       if (adev->gpu_sched[hw_ip][hw_prio].num_scheds == 0)
+>>>>           hw_prio = AMDGPU_RING_PRIO_DEFAULT;
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c 
+>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
+>>>> index b7d861ed5284..4087acb6b8bb 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_sched.c
+>>>> @@ -37,7 +37,7 @@ int amdgpu_to_sched_priority(int amdgpu_priority,
+>>>>   {
+>>>>       switch (amdgpu_priority) {
+>>>>       case AMDGPU_CTX_PRIORITY_VERY_HIGH:
+>>>> -        *prio = DRM_SCHED_PRIORITY_HIGH;
+>>>> +        *prio = DRM_SCHED_PRIORITY_KERNEL;
+>>>
+>>>
+>>> This change looks unrelated to the patch. AFAIK KERNEL priority is 
+>>> reserved for kernel tasks, userspace shouldn't be able to set this 
+>>> privilege priority.
+>>>
+>>>
+>>> Regards,
+>>>
+>>> Nirmoy
+>>
+>> VCE has 3 rings (General purpose, Low latency and Real time). From 
+>> the user side when priority VERY_HIGH(1023) is set, real time should 
+>> be chosen, if available. That is the reason i have mapped 
+>> AMDGPU_CTX_PRIORITY_VERY_HIGH to DRM_SCHED_PRIORITY_KERNEL.
+>
+>
+> How are low latency and real-time ring deffer ? Do we have usecase for 
+> all three types of ring ?
+>
+>
+> Apart from the priority name there is another issue with using 
+> DRM_SCHED_PRIORITY_KERNEL, jobs with kernel priority will not be 
+> punished[1]
+>
+> [1] 
+> https://elixir.bootlin.com/linux/v5.13.9/source/drivers/gpu/drm/scheduler/sched_main.c#L939 
+>
+>
+>
+> May be we should have DRM_SCHED_PRIORITY_VERY_HIGH ?
+>
+>
+> Regards,
+>
+> Nirmoy
 
------Original Message-----
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Mukul Jo=
-shi
-Sent: Monday, August 9, 2021 4:41 PM
-To: amd-gfx@lists.freedesktop.org
-Cc: Kuehling, Felix <Felix.Kuehling@amd.com>; Cornwall, Jay <Jay.Cornwall@a=
-md.com>; Joshi, Mukul <Mukul.Joshi@amd.com>
-Subject: [PATCH] drm/amdkfd: CWSR with software scheduler
+Low latency and real time rings are different rings with different 
+priorities. Adding DRM_SCHED_PRIORITY_VERY_HIGH sounds good. I will send 
+the patch again with that modification.
 
-This patch adds support to program trap handler settings
-when loading driver with software scheduler (sched_policy=3D2).
 
-Signed-off-by: Mukul Joshi <mukul.joshi@amd.com>
-Suggested-by: Jay Cornwall <Jay.Cornwall@amd.com>
----
- .../drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c    | 31 +++++++++++++++++
- .../drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10_3.c  | 31 +++++++++++++++++
- .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c | 33 ++++++++++++++++++-
- .../drm/amd/amdkfd/kfd_device_queue_manager.c | 20 +++++++++--
- .../gpu/drm/amd/include/kgd_kfd_interface.h   |  3 ++
- 5 files changed, 115 insertions(+), 3 deletions(-)
+regards,
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c b/drivers/g=
-pu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c
-index 491acdf92f73..960acf68150a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c
-@@ -560,6 +560,9 @@ static int kgd_hqd_destroy(struct kgd_dev *kgd, void *m=
-qd,
- 	case KFD_PREEMPT_TYPE_WAVEFRONT_RESET:
- 		type =3D RESET_WAVES;
- 		break;
-+	case KFD_PREEMPT_TYPE_WAVEFRONT_SAVE:
-+		type =3D SAVE_WAVES;
-+		break;
- 	default:
- 		type =3D DRAIN_PIPE;
- 		break;
-@@ -754,6 +757,33 @@ static void set_vm_context_page_table_base(struct kgd_=
-dev *kgd, uint32_t vmid,
- 	adev->gfxhub.funcs->setup_vm_pt_regs(adev, vmid, page_table_base);
- }
-=20
-+static void program_trap_handler_settings(struct kgd_dev *kgd,
-+		uint32_t vmid, uint64_t tba_addr, uint64_t tma_addr)
-+{
-+	struct amdgpu_device *adev =3D get_amdgpu_device(kgd);
-+
-+	lock_srbm(kgd, 0, 0, 0, vmid);
-+
-+	/*
-+	 * Program TBA registers
-+	 */
-+	WREG32(SOC15_REG_OFFSET(GC, 0, mmSQ_SHADER_TBA_LO),
-+			lower_32_bits(tba_addr >> 8));
-+	WREG32(SOC15_REG_OFFSET(GC, 0, mmSQ_SHADER_TBA_HI),
-+			upper_32_bits(tba_addr >> 8) |
-+			(1 << SQ_SHADER_TBA_HI__TRAP_EN__SHIFT));
-+
-+	/*
-+	 * Program TMA registers
-+	 */
-+	WREG32(SOC15_REG_OFFSET(GC, 0, mmSQ_SHADER_TMA_LO),
-+			lower_32_bits(tma_addr >> 8));
-+	WREG32(SOC15_REG_OFFSET(GC, 0, mmSQ_SHADER_TMA_HI),
-+			upper_32_bits(tma_addr >> 8));
-+
-+	unlock_srbm(kgd);
-+}
-+
- const struct kfd2kgd_calls gfx_v10_kfd2kgd =3D {
- 	.program_sh_mem_settings =3D kgd_program_sh_mem_settings,
- 	.set_pasid_vmid_mapping =3D kgd_set_pasid_vmid_mapping,
-@@ -774,4 +804,5 @@ const struct kfd2kgd_calls gfx_v10_kfd2kgd =3D {
- 	.get_atc_vmid_pasid_mapping_info =3D
- 			get_atc_vmid_pasid_mapping_info,
- 	.set_vm_context_page_table_base =3D set_vm_context_page_table_base,
-+	.program_trap_handler_settings =3D program_trap_handler_settings,
+Satyajit
 
-[HK]: Naming  not consistent. program_trap_handler_settings, program_trap_h=
-andler_settings_v10_3 and kgd_gfx_v9_program_trap_handler_settings
-
- };
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10_3.c b/drivers=
-/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10_3.c
-index 1f5620cc3570..dac0d751d5af 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10_3.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10_3.c
-@@ -537,6 +537,9 @@ static int hqd_destroy_v10_3(struct kgd_dev *kgd, void =
-*mqd,
- 	case KFD_PREEMPT_TYPE_WAVEFRONT_RESET:
- 		type =3D RESET_WAVES;
- 		break;
-+	case KFD_PREEMPT_TYPE_WAVEFRONT_SAVE:
-+		type =3D SAVE_WAVES;
-+		break;
- 	default:
- 		type =3D DRAIN_PIPE;
- 		break;
-@@ -658,6 +661,33 @@ static void set_vm_context_page_table_base_v10_3(struc=
-t kgd_dev *kgd, uint32_t v
- 	adev->gfxhub.funcs->setup_vm_pt_regs(adev, vmid, page_table_base);
- }
-=20
-+static void program_trap_handler_settings_v10_3(struct kgd_dev *kgd,
-+			uint32_t vmid, uint64_t tba_addr, uint64_t tma_addr)
-+{
-+	struct amdgpu_device *adev =3D get_amdgpu_device(kgd);
-+
-+	lock_srbm(kgd, 0, 0, 0, vmid);
-+
-+	/*
-+	 * Program TBA registers
-+	 */
-+	WREG32(SOC15_REG_OFFSET(GC, 0, mmSQ_SHADER_TBA_LO),
-+			lower_32_bits(tba_addr >> 8));
-+	WREG32(SOC15_REG_OFFSET(GC, 0, mmSQ_SHADER_TBA_HI),
-+			upper_32_bits(tba_addr >> 8) |
-+			(1 << SQ_SHADER_TBA_HI__TRAP_EN__SHIFT));
-+
-+	/*
-+	 * Program TMA registers
-+	 */
-+	WREG32(SOC15_REG_OFFSET(GC, 0, mmSQ_SHADER_TMA_LO),
-+			lower_32_bits(tma_addr >> 8));
-+	WREG32(SOC15_REG_OFFSET(GC, 0, mmSQ_SHADER_TMA_HI),
-+			 upper_32_bits(tma_addr >> 8));
-+
-+	unlock_srbm(kgd);
-+}
-+
- #if 0
- uint32_t enable_debug_trap_v10_3(struct kgd_dev *kgd,
- 				uint32_t trap_debug_wave_launch_mode,
-@@ -820,6 +850,7 @@ const struct kfd2kgd_calls gfx_v10_3_kfd2kgd =3D {
- 	.address_watch_get_offset =3D address_watch_get_offset_v10_3,
- 	.get_atc_vmid_pasid_mapping_info =3D NULL,
- 	.set_vm_context_page_table_base =3D set_vm_context_page_table_base_v10_3,
-+	.program_trap_handler_settings =3D program_trap_handler_settings_v10_3,
- #if 0
- 	.enable_debug_trap =3D enable_debug_trap_v10_3,
- 	.disable_debug_trap =3D disable_debug_trap_v10_3,
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c b/drivers/gp=
-u/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-index ed3014fbb563..154244916727 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
-@@ -42,7 +42,8 @@
- enum hqd_dequeue_request_type {
- 	NO_ACTION =3D 0,
- 	DRAIN_PIPE,
--	RESET_WAVES
-+	RESET_WAVES,
-+	SAVE_WAVES
- };
-=20
- static inline struct amdgpu_device *get_amdgpu_device(struct kgd_dev *kgd)
-@@ -566,6 +567,9 @@ int kgd_gfx_v9_hqd_destroy(struct kgd_dev *kgd, void *m=
-qd,
- 	case KFD_PREEMPT_TYPE_WAVEFRONT_RESET:
- 		type =3D RESET_WAVES;
- 		break;
-+	case KFD_PREEMPT_TYPE_WAVEFRONT_SAVE:
-+		type =3D SAVE_WAVES;
-+		break;
- 	default:
- 		type =3D DRAIN_PIPE;
- 		break;
-@@ -878,6 +882,32 @@ void kgd_gfx_v9_get_cu_occupancy(struct kgd_dev *kgd, =
-int pasid,
- 				adev->gfx.cu_info.max_waves_per_simd;
- }
-=20
-+static void kgd_gfx_v9_program_trap_handler_settings(struct kgd_dev *kgd,
-+                        uint32_t vmid, uint64_t tba_addr, uint64_t tma_add=
-r)
-+{
-+	struct amdgpu_device *adev =3D get_amdgpu_device(kgd);
-+
-+	lock_srbm(kgd, 0, 0, 0, vmid);
-+
-+	/*
-+	 * Program TBA registers
-+	 */
-+	WREG32(SOC15_REG_OFFSET(GC, 0, mmSQ_SHADER_TBA_LO),
-+                        lower_32_bits(tba_addr >> 8));
-+	WREG32(SOC15_REG_OFFSET(GC, 0, mmSQ_SHADER_TBA_HI),
-+                        upper_32_bits(tba_addr >> 8));
-+
-+	/*
-+	 * Program TMA registers
-+	 */
-+	WREG32(SOC15_REG_OFFSET(GC, 0, mmSQ_SHADER_TMA_LO),
-+			lower_32_bits(tma_addr >> 8));
-+	WREG32(SOC15_REG_OFFSET(GC, 0, mmSQ_SHADER_TMA_HI),
-+			upper_32_bits(tma_addr >> 8));
-+
-+	unlock_srbm(kgd);
-+}
-+
- const struct kfd2kgd_calls gfx_v9_kfd2kgd =3D {
- 	.program_sh_mem_settings =3D kgd_gfx_v9_program_sh_mem_settings,
- 	.set_pasid_vmid_mapping =3D kgd_gfx_v9_set_pasid_vmid_mapping,
-@@ -899,4 +929,5 @@ const struct kfd2kgd_calls gfx_v9_kfd2kgd =3D {
- 			kgd_gfx_v9_get_atc_vmid_pasid_mapping_info,
- 	.set_vm_context_page_table_base =3D kgd_gfx_v9_set_vm_context_page_table_=
-base,
- 	.get_cu_occupancy =3D kgd_gfx_v9_get_cu_occupancy,
-+	.program_trap_handler_settings =3D kgd_gfx_v9_program_trap_handler_settin=
-gs,
- };
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/driver=
-s/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index a972ef5eae68..6fd6b2248992 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -211,6 +211,14 @@ static void deallocate_doorbell(struct qcm_process_dev=
-ice *qpd,
- 	WARN_ON(!old);
- }
-=20
-+static void program_trap_handler_settings(struct device_queue_manager *dqm=
-,
-+				struct qcm_process_device *qpd)
-+{
-+	return dqm->dev->kfd2kgd->program_trap_handler_settings(
-+						dqm->dev->kgd, qpd->vmid,
-+						qpd->tba_addr, qpd->tma_addr);
-
-[HK]: Since, this is not defined for all GFX generations, safer to check if=
- function pointer is not NULL. I see it is called only VEGA10+
-
-+}
-+
- static int allocate_vmid(struct device_queue_manager *dqm,
- 			struct qcm_process_device *qpd,
- 			struct queue *q)
-@@ -241,6 +249,10 @@ static int allocate_vmid(struct device_queue_manager *=
-dqm,
-=20
- 	program_sh_mem_settings(dqm, qpd);
-=20
-+	if (dqm->dev->device_info->asic_family >=3D CHIP_VEGA10 &&
-+	    dqm->dev->cwsr_enabled)
-+		program_trap_handler_settings(dqm, qpd);
-+
- 	/* qpd->page_table_base is set earlier when register_process()
- 	 * is called, i.e. when the first queue is created.
- 	 */
-@@ -582,7 +594,9 @@ static int update_queue(struct device_queue_manager *dq=
-m, struct queue *q)
- 		}
-=20
- 		retval =3D mqd_mgr->destroy_mqd(mqd_mgr, q->mqd,
--				KFD_PREEMPT_TYPE_WAVEFRONT_DRAIN,
-+				(dqm->dev->cwsr_enabled?
-+				 KFD_PREEMPT_TYPE_WAVEFRONT_SAVE:
-+				KFD_PREEMPT_TYPE_WAVEFRONT_DRAIN),
- 				KFD_UNMAP_LATENCY_MS, q->pipe, q->queue);
- 		if (retval) {
- 			pr_err("destroy mqd failed\n");
-@@ -675,7 +689,9 @@ static int evict_process_queues_nocpsch(struct device_q=
-ueue_manager *dqm,
- 			continue;
-=20
- 		retval =3D mqd_mgr->destroy_mqd(mqd_mgr, q->mqd,
--				KFD_PREEMPT_TYPE_WAVEFRONT_DRAIN,
-+				(dqm->dev->cwsr_enabled?
-+				 KFD_PREEMPT_TYPE_WAVEFRONT_SAVE:
-+				KFD_PREEMPT_TYPE_WAVEFRONT_DRAIN),
- 				KFD_UNMAP_LATENCY_MS, q->pipe, q->queue);
- 		if (retval && !ret)
- 			/* Return the first error, but keep going to
-diff --git a/drivers/gpu/drm/amd/include/kgd_kfd_interface.h b/drivers/gpu/=
-drm/amd/include/kgd_kfd_interface.h
-index 95c656d205ed..c84bd7b2cf59 100644
---- a/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
-+++ b/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
-@@ -44,6 +44,7 @@ struct kgd_mem;
- enum kfd_preempt_type {
- 	KFD_PREEMPT_TYPE_WAVEFRONT_DRAIN =3D 0,
- 	KFD_PREEMPT_TYPE_WAVEFRONT_RESET,
-+	KFD_PREEMPT_TYPE_WAVEFRONT_SAVE
- };
-=20
- struct kfd_vm_fault_info {
-@@ -298,6 +299,8 @@ struct kfd2kgd_calls {
-=20
- 	void (*get_cu_occupancy)(struct kgd_dev *kgd, int pasid, int *wave_cnt,
- 			int *max_waves_per_cu);
-+	void (*program_trap_handler_settings)(struct kgd_dev *kgd,
-+			uint32_t vmid, uint64_t tba_addr, uint64_t tma_addr);
- };
-=20
- #endif	/* KGD_KFD_INTERFACE_H_INCLUDED */
---=20
-2.17.1
+>
+>
+>>
+>> regards,
+>>
+>> Satyajit
+>>
+>>>
+>>>>           break;
+>>>>       case AMDGPU_CTX_PRIORITY_HIGH:
+>>>>           *prio = DRM_SCHED_PRIORITY_HIGH;
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c 
+>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+>>>> index 1ae7f824adc7..9d59ca31bc22 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c
+>>>> @@ -1168,3 +1168,17 @@ int amdgpu_vce_ring_test_ib(struct 
+>>>> amdgpu_ring *ring, long timeout)
+>>>>       amdgpu_bo_free_kernel(&bo, NULL, NULL);
+>>>>       return r;
+>>>>   }
+>>>> +
+>>>> +enum vce_enc_ring_priority get_vce_ring_prio(int index)
+>>>> +{
+>>>> +    switch(index) {
+>>>> +    case 0:
+>>>> +        return AMDGPU_VCE_ENC_PRIO_NORMAL;
+>>>> +    case 1:
+>>>> +        return AMDGPU_VCE_ENC_PRIO_HIGH;
+>>>> +    case 2:
+>>>> +        return AMDGPU_VCE_ENC_PRIO_VERY_HIGH;
+>>>> +    default:
+>>>> +        return AMDGPU_VCE_ENC_PRIO_NORMAL;
+>>>> +    }
+>>>> +}
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h 
+>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h
+>>>> index d6d83a3ec803..f5265f385890 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vce.h
+>>>> @@ -32,6 +32,13 @@
+>>>>     #define AMDGPU_VCE_FW_53_45    ((53 << 24) | (45 << 16))
+>>>>   +enum vce_enc_ring_priority {
+>>>> +    AMDGPU_VCE_ENC_PRIO_NORMAL = 1,
+>>>> +    AMDGPU_VCE_ENC_PRIO_HIGH,
+>>>> +    AMDGPU_VCE_ENC_PRIO_VERY_HIGH,
+>>>> +    AMDGPU_VCE_ENC_PRIO_MAX
+>>>> +};
+>>>> +
+>>>>   struct amdgpu_vce {
+>>>>       struct amdgpu_bo    *vcpu_bo;
+>>>>       uint64_t        gpu_addr;
+>>>> @@ -72,4 +79,6 @@ void amdgpu_vce_ring_end_use(struct amdgpu_ring 
+>>>> *ring);
+>>>>   unsigned amdgpu_vce_ring_get_emit_ib_size(struct amdgpu_ring *ring);
+>>>>   unsigned amdgpu_vce_ring_get_dma_frame_size(struct amdgpu_ring 
+>>>> *ring);
+>>>>   +enum vce_enc_ring_priority get_vce_ring_prio(int index);
+>>>> +
+>>>>   #endif
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c 
+>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+>>>> index 6780df0fb265..ca6cc07a726b 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+>>>> @@ -951,3 +951,17 @@ int amdgpu_vcn_enc_ring_test_ib(struct 
+>>>> amdgpu_ring *ring, long timeout)
+>>>>         return r;
+>>>>   }
+>>>> +
+>>>> +enum vcn_enc_ring_priority get_vcn_enc_ring_prio(int index)
+>>>> +{
+>>>> +    switch(index) {
+>>>> +    case 0:
+>>>> +        return AMDGPU_VCN_ENC_PRIO_NORMAL;
+>>>> +    case 1:
+>>>> +        return AMDGPU_VCN_ENC_PRIO_HIGH;
+>>>> +    case 2:
+>>>> +        return AMDGPU_VCN_ENC_PRIO_VERY_HIGH;
+>>>> +    default:
+>>>> +        return AMDGPU_VCN_ENC_PRIO_NORMAL;
+>>>> +    }
+>>>> +}
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h 
+>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+>>>> index d74c62b49795..bf14ee54f774 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+>>>> @@ -290,6 +290,13 @@ enum vcn_ring_type {
+>>>>       VCN_UNIFIED_RING,
+>>>>   };
+>>>>   +enum vcn_enc_ring_priority {
+>>>> +    AMDGPU_VCN_ENC_PRIO_NORMAL = 1,
+>>>> +    AMDGPU_VCN_ENC_PRIO_HIGH,
+>>>> +    AMDGPU_VCN_ENC_PRIO_VERY_HIGH,
+>>>> +    AMDGPU_VCN_ENC_PRIO_MAX
+>>>> +};
+>>>> +
+>>>>   int amdgpu_vcn_sw_init(struct amdgpu_device *adev);
+>>>>   int amdgpu_vcn_sw_fini(struct amdgpu_device *adev);
+>>>>   int amdgpu_vcn_suspend(struct amdgpu_device *adev);
+>>>> @@ -307,5 +314,6 @@ int amdgpu_vcn_dec_sw_ring_test_ib(struct 
+>>>> amdgpu_ring *ring, long timeout);
+>>>>     int amdgpu_vcn_enc_ring_test_ring(struct amdgpu_ring *ring);
+>>>>   int amdgpu_vcn_enc_ring_test_ib(struct amdgpu_ring *ring, long 
+>>>> timeout);
+>>>> +enum vcn_enc_ring_priority get_vcn_enc_ring_prio(int index);
+>>>>     #endif
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c 
+>>>> b/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
+>>>> index c7d28c169be5..2b6b7f1a77b9 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/vce_v2_0.c
+>>>> @@ -431,10 +431,12 @@ static int vce_v2_0_sw_init(void *handle)
+>>>>           return r;
+>>>>         for (i = 0; i < adev->vce.num_rings; i++) {
+>>>> +        unsigned int hw_prio = get_vce_ring_prio(i);
+>>>> +
+>>>>           ring = &adev->vce.ring[i];
+>>>>           sprintf(ring->name, "vce%d", i);
+>>>>           r = amdgpu_ring_init(adev, ring, 512, &adev->vce.irq, 0,
+>>>> -                     AMDGPU_RING_PRIO_DEFAULT, NULL);
+>>>> +                     hw_prio, NULL);
+>>>>           if (r)
+>>>>               return r;
+>>>>       }
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c 
+>>>> b/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
+>>>> index 3b82fb289ef6..5ce182a837f3 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/vce_v3_0.c
+>>>> @@ -440,10 +440,12 @@ static int vce_v3_0_sw_init(void *handle)
+>>>>           return r;
+>>>>         for (i = 0; i < adev->vce.num_rings; i++) {
+>>>> +        unsigned int hw_prio = get_vce_ring_prio(i);
+>>>> +
+>>>>           ring = &adev->vce.ring[i];
+>>>>           sprintf(ring->name, "vce%d", i);
+>>>>           r = amdgpu_ring_init(adev, ring, 512, &adev->vce.irq, 0,
+>>>> -                     AMDGPU_RING_PRIO_DEFAULT, NULL);
+>>>> +                     hw_prio, NULL);
+>>>>           if (r)
+>>>>               return r;
+>>>>       }
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c 
+>>>> b/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
+>>>> index 90910d19db12..c085defaabfe 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/vce_v4_0.c
+>>>> @@ -463,6 +463,8 @@ static int vce_v4_0_sw_init(void *handle)
+>>>>       }
+>>>>         for (i = 0; i < adev->vce.num_rings; i++) {
+>>>> +        unsigned int hw_prio = get_vce_ring_prio(i);
+>>>> +
+>>>>           ring = &adev->vce.ring[i];
+>>>>           sprintf(ring->name, "vce%d", i);
+>>>>           if (amdgpu_sriov_vf(adev)) {
+>>>> @@ -478,7 +480,7 @@ static int vce_v4_0_sw_init(void *handle)
+>>>>                   ring->doorbell_index = 
+>>>> adev->doorbell_index.uvd_vce.vce_ring2_3 * 2 + 1;
+>>>>           }
+>>>>           r = amdgpu_ring_init(adev, ring, 512, &adev->vce.irq, 0,
+>>>> -                     AMDGPU_RING_PRIO_DEFAULT, NULL);
+>>>> +                     hw_prio, NULL);
+>>>>           if (r)
+>>>>               return r;
+>>>>       }
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c 
+>>>> b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
+>>>> index 121ee9f2b8d1..f471c65d78bc 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
+>>>> @@ -145,10 +145,12 @@ static int vcn_v1_0_sw_init(void *handle)
+>>>>           SOC15_REG_OFFSET(UVD, 0, mmUVD_NO_OP);
+>>>>         for (i = 0; i < adev->vcn.num_enc_rings; ++i) {
+>>>> +        unsigned int hw_prio = get_vcn_enc_ring_prio(i);
+>>>> +
+>>>>           ring = &adev->vcn.inst->ring_enc[i];
+>>>>           sprintf(ring->name, "vcn_enc%d", i);
+>>>>           r = amdgpu_ring_init(adev, ring, 512, 
+>>>> &adev->vcn.inst->irq, 0,
+>>>> -                     AMDGPU_RING_PRIO_DEFAULT, NULL);
+>>>> +                     hw_prio, NULL);
+>>>>           if (r)
+>>>>               return r;
+>>>>       }
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c 
+>>>> b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
+>>>> index f4686e918e0d..06978d5a93c7 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_0.c
+>>>> @@ -159,6 +159,8 @@ static int vcn_v2_0_sw_init(void *handle)
+>>>>       adev->vcn.inst->external.nop = SOC15_REG_OFFSET(UVD, 0, 
+>>>> mmUVD_NO_OP);
+>>>>         for (i = 0; i < adev->vcn.num_enc_rings; ++i) {
+>>>> +        unsigned int hw_prio = get_vcn_enc_ring_prio(i);
+>>>> +
+>>>>           ring = &adev->vcn.inst->ring_enc[i];
+>>>>           ring->use_doorbell = true;
+>>>>           if (!amdgpu_sriov_vf(adev))
+>>>> @@ -167,7 +169,7 @@ static int vcn_v2_0_sw_init(void *handle)
+>>>>               ring->doorbell_index = 
+>>>> (adev->doorbell_index.vcn.vcn_ring0_1 << 1) + 1 + i;
+>>>>           sprintf(ring->name, "vcn_enc%d", i);
+>>>>           r = amdgpu_ring_init(adev, ring, 512, 
+>>>> &adev->vcn.inst->irq, 0,
+>>>> -                     AMDGPU_RING_PRIO_DEFAULT, NULL);
+>>>> +                     hw_prio, NULL);
+>>>>           if (r)
+>>>>               return r;
+>>>>       }
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c 
+>>>> b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
+>>>> index e0c0c3734432..fba453ca74fa 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v2_5.c
+>>>> @@ -194,6 +194,8 @@ static int vcn_v2_5_sw_init(void *handle)
+>>>>               return r;
+>>>>             for (i = 0; i < adev->vcn.num_enc_rings; ++i) {
+>>>> +            unsigned int hw_prio = get_vcn_enc_ring_prio(i);
+>>>> +
+>>>>               ring = &adev->vcn.inst[j].ring_enc[i];
+>>>>               ring->use_doorbell = true;
+>>>>   @@ -203,7 +205,7 @@ static int vcn_v2_5_sw_init(void *handle)
+>>>>               sprintf(ring->name, "vcn_enc_%d.%d", j, i);
+>>>>               r = amdgpu_ring_init(adev, ring, 512,
+>>>>                            &adev->vcn.inst[j].irq, 0,
+>>>> -                         AMDGPU_RING_PRIO_DEFAULT, NULL);
+>>>> +                         hw_prio, NULL);
+>>>>               if (r)
+>>>>                   return r;
+>>>>           }
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c 
+>>>> b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+>>>> index 3d18aab88b4e..f5baf7321b0d 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v3_0.c
+>>>> @@ -224,6 +224,8 @@ static int vcn_v3_0_sw_init(void *handle)
+>>>>               return r;
+>>>>             for (j = 0; j < adev->vcn.num_enc_rings; ++j) {
+>>>> +            unsigned int hw_prio = get_vcn_enc_ring_prio(j);
+>>>> +
+>>>>               /* VCN ENC TRAP */
+>>>>               r = amdgpu_irq_add_id(adev, amdgpu_ih_clientid_vcns[i],
+>>>>                   j + VCN_2_0__SRCID__UVD_ENC_GENERAL_PURPOSE, 
+>>>> &adev->vcn.inst[i].irq);
+>>>> @@ -239,8 +241,7 @@ static int vcn_v3_0_sw_init(void *handle)
+>>>>               }
+>>>>               sprintf(ring->name, "vcn_enc_%d.%d", i, j);
+>>>>               r = amdgpu_ring_init(adev, ring, 512, 
+>>>> &adev->vcn.inst[i].irq, 0,
+>>>> -                         AMDGPU_RING_PRIO_DEFAULT,
+>>>> - &adev->vcn.inst[i].sched_score);
+>>>> +                         hw_prio, &adev->vcn.inst[i].sched_score);
+>>>>               if (r)
+>>>>                   return r;
+>>>>           }
