@@ -2,100 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C17073EB06C
-	for <lists+amd-gfx@lfdr.de>; Fri, 13 Aug 2021 08:35:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 802403EB11C
+	for <lists+amd-gfx@lfdr.de>; Fri, 13 Aug 2021 09:09:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ABA06E51B;
-	Fri, 13 Aug 2021 06:35:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE50C6E53E;
+	Fri, 13 Aug 2021 07:09:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2072.outbound.protection.outlook.com [40.107.92.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA826E51B
- for <amd-gfx@lists.freedesktop.org>; Fri, 13 Aug 2021 06:35:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ibaYHtTQHVuQTderoK2cCxyi/lKFdT53AtWvc6Yq6X6K+WIpz0fYLlvRk9X9/HIdtyJAaG841KVIYLDeGyzfdRHAF/I6dGd01C8X71gykk7pfk2yxh+WWPeZtj6Tn1J1foDEX2LrEopLnPOZnNPxXM6isaYM03cAWyxOJAZlSDSpONbclLUUgICPKhYW7TPd16fCRbSSlXn0aB0K7c1mvtoPJBAwCcyn7NkGVe8tWM4ftmAgJOYUgNdf2McYOlS+zSXHw2d8fILvXHlt2asqH9ZFj2t7mXXqjVHGwy4c9FCHZWKYZxVml/35Bn3ICYytwPcqxAU03AmqnI0MzYvuPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ueSjKO9JKYrfcq/ondxVPuHzSiqE5Q4PTu2/0KWM9vI=;
- b=mQjL4zLm1BBGnLArG1SQMsEmxoG1+Li8G3acKxVozxOrSnnLLMx/zlHK3rBR2Er3h4nrdoUAcUUmJg637YZVpn9+qxuGuLbXdP7OH+XEkpFOZ9SbwrVO3XEfVl/be377ur3J+gvFHCpbhHkqNcLVDniHc/SJ7hik6ANW8zW1X0fyK7ixEa66ALlmf+OlrPb13DyldcGQYGsAbIN7c2whkI1YL/V38SKmImO8JVZiNA/MFk3L0Xi3hZmM4k2ExmZ/hgclfDuBqlXAp/j6zqPUa9M/mv03beeKZ7HgB3FeHdmFLEngf+hWz1f6QQ1xSV666kw1a5JS9XnA1331blk2vg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ueSjKO9JKYrfcq/ondxVPuHzSiqE5Q4PTu2/0KWM9vI=;
- b=RWPfum5RL9Hf4V85xO08heKoVdbf029RdBAlRSlm4mr6OpNKFHYlNIp6tG1vGr/vUSS31rEC5Lii6RDjvJXFFq59g8sydV0XBFbR3FqwzzKVLAy7YrFTQmZ5ozRAss23aVLUTvV3lGUdsKzq9ZABR5FvEQsPCk8MjdMpe5U67X8=
-Received: from DM6PR07CA0081.namprd07.prod.outlook.com (2603:10b6:5:337::14)
- by CY4PR12MB1941.namprd12.prod.outlook.com (2603:10b6:903:11a::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.17; Fri, 13 Aug
- 2021 06:35:55 +0000
-Received: from DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:337:cafe::cd) by DM6PR07CA0081.outlook.office365.com
- (2603:10b6:5:337::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.16 via Frontend
- Transport; Fri, 13 Aug 2021 06:35:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT009.mail.protection.outlook.com (10.13.173.20) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4415.14 via Frontend Transport; Fri, 13 Aug 2021 06:35:54 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Fri, 13 Aug
- 2021 01:35:53 -0500
-Received: from wayne-System-Product-Name.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.12
- via Frontend Transport; Fri, 13 Aug 2021 01:35:51 -0500
-From: Wayne Lin <Wayne.Lin@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
- <Bhawanpreet.Lakha@amd.com>, <Rodrigo.Siqueira@amd.com>,
- <Aurabindo.Pillai@amd.com>, <Qingqing.Zhuo@amd.com>, <bindu.r@amd.com>,
- <Anson.Jacob@amd.com>, Aric Cyr <aric.cyr@amd.com>, Wayne Lin
- <wayne.lin@amd.com>
-Subject: [PATCH 7/7] drm/amd/display: 3.2.149
-Date: Fri, 13 Aug 2021 14:35:02 +0800
-Message-ID: <20210813063502.3106309-8-Wayne.Lin@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210813063502.3106309-1-Wayne.Lin@amd.com>
-References: <20210813063502.3106309-1-Wayne.Lin@amd.com>
+Received: from fanzine.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4764E6E51C;
+ Fri, 13 Aug 2021 06:42:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+ s=20170329; 
+ h=MIME-Version:Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID;
+ bh=2BDYHROUGREoCWD93TahQhvltPOcCQ9Rqb/VhTH2opE=; 
+ b=Mv8o2IQqonJgFKICzXh2FrFhFwTUonW8QwaIUORNoLJB5AMK7lvVvI8n2SEPIRzhVOSmNvMxz4C0+vaLxtyxV0VEyuAgUJytiAIvGq5lRwYLUn9VtK2VXLqZt12dSXUoPvhfVfmIeLJbBEYBBJycRNZ9GrGe91h2R+O9vqK6GIj/HgKNfWYlk9y2I3lQLgv7Pz6kzQ90uXh6idNLc96IUclje5ZJzjoxE4oHh5TTG5nWeV4qIVeaX0o6y3ypFaPo48eq7mXQlEvr8ZUUvdDi8q6jkMWZsW/T1r2+FvKcvgIfYe1NKt9OCfAMPC6GrpHBig6UT+q+Chhh6N9HAHP9HQ==;
+Received: from 152.red-88-9-105.dynamicip.rima-tde.net ([88.9.105.152]
+ helo=[192.168.2.252]) by fanzine.igalia.com with esmtpsa 
+ (Cipher TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim)
+ id 1mEQtK-0004jz-LK; Fri, 13 Aug 2021 08:42:06 +0200
+Message-ID: <472cd2efff2a53809dc2e8ec0ece7f475256005d.camel@igalia.com>
+Subject: Re: [Mesa-dev] Requests For Proposals for hosting XDC 2022 are now
+ open
+From: Samuel Iglesias =?ISO-8859-1?Q?Gons=E1lvez?= <siglesias@igalia.com>
+To: "events@lists.x.org" <events@lists.x.org>, 
+ "xorg-devel@lists.freedesktop.org"
+ <xorg-devel@lists.freedesktop.org>, wayland-devel@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, mesa-dev@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, libre-soc-dev@lists.libre-soc.org
+Cc: "board@foundation.x.org" <board@foundation.x.org>
+Date: Fri, 13 Aug 2021 08:41:56 +0200
+In-Reply-To: <c002b2564f430cea5fae1270c85ac471bf53afb7.camel@igalia.com>
+References: <95ec2c414f7dd1ea5685184435b95430e1709047.camel@igalia.com>
+ <f5ee80e067e79dff0b2d65c67dbb83b9be70014f.camel@igalia.com>
+ <c002b2564f430cea5fae1270c85ac471bf53afb7.camel@igalia.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+ protocol="application/pgp-signature"; boundary="=-HussvbpJOUQoFuLCPOPI"
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c9d11c2a-5d1a-4c20-75e4-08d95e249a2f
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1941:
-X-Microsoft-Antispam-PRVS: <CY4PR12MB1941B5266EAEF984ADF79E7BFCFA9@CY4PR12MB1941.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yDfMfaH1G5MVUKut/fysM+YICxWbAzDT2+QbCVrVsXUI7cDXiXc/6ECdDolM6IPj+8G2nTdOU5oz7/7jlFzKZzYhplNkY4XCSqJ6/p4o5lkYCpCzWTqQL7z7+bggO7f8RlVZ4yx+8o8v+UuLCkxNoUv2WA7SOxSh+Au5HR52Yatmt/uZACZiMewDz0HkJA+otu35Kc7TxO0EpMHBGkeqmIennKHqijuxhNCMEDjGmVJ4cl/MMgos0tg4V/lTGhWXvjGVo7wlsd+KLWpZBE1Oq2fnJuZ0Dsn6yUK8a9TY8GMxakPxM+62o46L5KbhOUy0nIad27PsGeVa2tCv8hPzAD401MlOr3NhkOVnIMldN4YaOmDlcTZQjVZ/rJMHI9N3tSTVxjUl6PEcAIwg4sHgt0qM9RInV4BlIqzNtbLqIlutOT4XsA5vnFuIraw5SZHpmndNLGbKXFJfxqez2qnUQSpb4XtEwZ3u9yHzJJiNJpLlP6mWN3SFw0j1SZUdvvuhh/XZ+oZgB4aJdR831N7QClyC5eFeIQuex4U6QtM7UEu0ITu0b9JkFnGgx+U1sKowpPqypT4gkbo5xotsxCH7EFREK7aQlq8AbYt7dvfRt8PFtflRh1PjdKHsx53ycyxDo0IIr23hCeQlCkhpxfNmyTCgpsC8ELf0pRPxEozP+OV9Rl0zYuoxqUCtFqrrM+gtQdEQoU+adk5HmiNYQGxUeiqTRXnsKN5UG1RylyRAwSzlz8cNPAxzP7BRZ4ygzqnRAMDt1kKpIBGCzaUPYbunMw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(36756003)(508600001)(4744005)(8936002)(36860700001)(186003)(2906002)(6666004)(5660300002)(81166007)(2616005)(356005)(7696005)(336012)(26005)(82310400003)(86362001)(34020700004)(54906003)(316002)(1076003)(83380400001)(4326008)(47076005)(6916009)(426003)(70206006)(8676002)(70586007)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2021 06:35:54.7331 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9d11c2a-5d1a-4c20-75e4-08d95e249a2f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1941
+X-Mailman-Approved-At: Fri, 13 Aug 2021 07:09:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,34 +57,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
 
-This version brings along following fixes:
-* Ensure DCN save init registers after VM setup
-* Fix multi-display support for idle opt workqueue
-* Use vblank control events for PSR enable/disable
-* Create default dc_sink when fail reading EDID under MST
+--=-HussvbpJOUQoFuLCPOPI
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Aric Cyr <aric.cyr@amd.com>
-Acked-by: Wayne Lin <wayne.lin@amd.com>
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
----
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Deadline is at the end of this month. Do not forget to submit your XDC
+2022 hosting proposal!
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 0494e6dcf4dc..3ab52d9a82cf 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -45,7 +45,7 @@
- /* forward declaration */
- struct aux_payload;
- 
--#define DC_VER "3.2.148"
-+#define DC_VER "3.2.149"
- 
- #define MAX_SURFACES 3
- #define MAX_PLANES 6
--- 
-2.25.1
+Sam
+
+On Thu, 2021-07-29 at 21:01 +0200, Samuel Iglesias Gons=C3=A1lvez wrote:
+> Remember before enjoying your holiday that the deadline for XDC 2022
+> proposals is *September 1st, 2021* :-)
+>=20
+> Feel free to submit your proposal before, so we can give you early
+> feedback on it!
+>=20
+> Sam
+>=20
+> On Thu, 2021-07-01 at 18:14 +0200, Samuel Iglesias Gons=C3=A1lvez wrote:
+> > This is a reminder that the call for proposals for hosting XDC 2022
+> > period finishes in two months.
+> >=20
+> > Be sure to prepare your submission before you leave on holiday!
+> >=20
+> > Sam
+> >=20
+> > On Thu, 2021-05-20 at 12:15 +0200, Samuel Iglesias Gons=C3=A1lvez wrote=
+:
+> > > Hello everyone!
+> > >=20
+> > > The X.org board is soliciting proposals to host XDC in 2022.
+> > > Since
+> > > XDC 2021 is being held in Europe this year (although virtually),
+> > > we've
+> > > decided to host in North America. However, the board is open to
+> > > other
+> > > locations, especially if there's an interesting co-location with
+> > > another conference.
+> > >=20
+> > > Of course though, due to the ongoing COVID-19 pandemic it's not
+> > > yet
+> > > clear whether or not it will be possible to host XDC 2022 in
+> > > person,
+> > > although is seems very likely. Because of this, we would like to
+> > > make it clear that sponsors should prepare for both the
+> > > possibility
+> > > of an in person conference, and the possibility of a virtual
+> > > conference. We will work with organizers on coming up with a
+> > > deadline for deciding whether or not we'll be going virtual,
+> > > likely
+> > > sometime around July 2022.
+> > >=20
+> > > If you're considering hosting XDC, we've assembled a wiki page
+> > > with
+> > > what's generally expected and needed:
+> > >=20
+> > > https://www.x.org/wiki/Events/RFP/
+> > >=20
+> > > When submitting your proposal, please make sure to include at
+> > > least
+> > > the
+> > > key information about the potential location in question,
+> > > possible
+> > > dates along with estimated costs. Proposals can be submitted to
+> > > board
+> > > at foundation.x.org until the deadline of *September 1st, 2021*.=C2=
+=A0
+> > >=20
+> > > Additionally, an quirk early heads-up to the board if you're
+> > > considering hosting would be appreciated, in case we need to
+> > > adjust
+> > > the
+> > > schedule a bit. Also, earlier is better since there generally
+> > > will
+> > > be
+> > > a
+> > > bit of Q&A with organizers.
+> > >=20
+> > > And if you just have some questions about what organizing XDC
+> > > entails,
+> > > please feel free to chat with previous organizers, or someone
+> > > from
+> > > the
+> > > board.
+> > >=20
+> > > Thanks,
+> > >=20
+> > > Sam
+> > >=20
+> > > _______________________________________________
+> > > mesa-dev mailing list
+> > > mesa-dev@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/mesa-dev
+> >=20
+> > _______________________________________________
+> > mesa-dev mailing list
+> > mesa-dev@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/mesa-dev
+>=20
+> _______________________________________________
+> mesa-dev mailing list
+> mesa-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
+
+
+--=-HussvbpJOUQoFuLCPOPI
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEQP+ZAvaXWkfuKXiEf/S6MvF9w0MFAmEWFDQACgkQf/S6MvF9
+w0PpBQ/+LKbsYVBGGMAGgaH52TYRAurvN22z9+7CzfCioK4x2ebgtKaGwXs7C4en
+htjd5yFiaEQQJpjOx7l3J4eVjs75qmZNws3QwU20Dadl2TrbOgpStlLL3xY/U6iX
+WCuWQiyACbDjdb5Cwd1F+0rne1r/FBwf/uLkYlIslvSGdp9Ryl/wkV3GFDc+ptIv
+PAiIyye2wpRdJAWP6peqYiW6fB/iohOJdInic/hgZ1ajPCafiH/3NPwFWmo64cWH
+FEpnEmu82KOk22sSnSWZx0gei2krv/u+rnlKvKGi6Fs5PWEEg1SDRRy7I2kpUCsr
+Kz0y+9I7fWYii+CKphENwcmLjTqRvpEZguqukfzwtr7aap1fwQuVETgvtCDFDUle
+6v0tkP0nbQrV/TqH/8xE2h+2zVKhM+w2eCFNIjDyTxKcPTgLL2yrIzF123Iwk6QF
+4aoNhSMY2X6+5N23ksjTB3iWzaPNofz3yBlwUz09z4ZK/2H8a/2RSCOojYYdx8B5
+asadkS+o2HoCbv7kZfCdi+yKT3AlAGKgQokWoIY0r4KGxakXeTC3HWVmLVdRiNaM
+aZPNhvLXeS6onZDyQsneCQNdNX5/YVGXJm77dso1p7y2oSFmdICTIYIK2R5ma4N+
+bOp6NhIABv5Sfjabt1vAWof9PH18RxvwWjtX1IpSPzSHaGtBdkM=
+=ZcQa
+-----END PGP SIGNATURE-----
+
+--=-HussvbpJOUQoFuLCPOPI--
 
