@@ -2,52 +2,57 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 447EC3ECF17
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Aug 2021 09:13:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 898193ECF24
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Aug 2021 09:14:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D93D89C29;
-	Mon, 16 Aug 2021 07:13:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6061D89C46;
+	Mon, 16 Aug 2021 07:14:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D1D86E8B2;
- Fri, 13 Aug 2021 17:19:53 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10075"; a="215325875"
-X-IronPort-AV: E=Sophos;i="5.84,319,1620716400"; d="scan'208";a="215325875"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2021 10:19:52 -0700
-X-IronPort-AV: E=Sophos;i="5.84,319,1620716400"; d="scan'208";a="639860653"
-Received: from amadatha-mobl.amr.corp.intel.com (HELO
- skuppusw-mobl5.amr.corp.intel.com) ([10.212.72.8])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Aug 2021 10:19:51 -0700
-Subject: Re: [PATCH v2 02/12] mm: Introduce a function to check for
- virtualization protection features
-To: Tom Lendacky <thomas.lendacky@amd.com>, linux-kernel@vger.kernel.org,
- x86@kernel.org, linuxppc-dev@lists.ozlabs.org, linux-s390@vger.kernel.org,
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E2EA6E8D0;
+ Sat, 14 Aug 2021 15:24:31 +0000 (UTC)
+Received: from zn.tnic (p200300ec2f1db9002f4996680da31890.dip0.t-ipconnect.de
+ [IPv6:2003:ec:2f1d:b900:2f49:9668:da3:1890])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 8C4181EC0570;
+ Sat, 14 Aug 2021 17:24:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+ t=1628954665;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+ bh=sbUZXYrGBCnkdsaMVDuLw+c4h20LmEtsdOYx/LANX0Q=;
+ b=C00yjn7cBmQqRpOaWrEEj5l68AxFibYiJHAi3z1eBk5RnJifb6ywdjAO9bEEyQcQGDqW2O
+ EISCtsZnVhg2cwZvHYBEu32siB+BgLQO9Fc7VRjIta+kozXWnAdLDck7yaUcVc1AXUpVdO
+ qhH8pNHGUmDKEa/M9P+kxf+ZpIhdVbo=
+Date: Sat, 14 Aug 2021 17:25:03 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Tom Lendacky <thomas.lendacky@amd.com>
+Cc: linux-kernel@vger.kernel.org, x86@kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-s390@vger.kernel.org,
  iommu@lists.linux-foundation.org, kvm@vger.kernel.org,
  linux-efi@vger.kernel.org, platform-driver-x86@vger.kernel.org,
  linux-graphics-maintainer@vmware.com, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, kexec@lists.infradead.org,
- linux-fsdevel@vger.kernel.org
-Cc: Borislav Petkov <bp@alien8.de>, Brijesh Singh <brijesh.singh@amd.com>,
+ linux-fsdevel@vger.kernel.org, Brijesh Singh <brijesh.singh@amd.com>,
  Joerg Roedel <joro@8bytes.org>, Andi Kleen <ak@linux.intel.com>,
- Tianyu Lan <Tianyu.Lan@microsoft.com>, Joerg Roedel <jroedel@suse.de>
+ Sathyanarayanan Kuppuswamy <sathyanarayanan.kuppuswamy@linux.intel.com>,
+ Tianyu Lan <Tianyu.Lan@microsoft.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>
+Subject: Re: [PATCH v2 01/12] x86/ioremap: Selectively build arch override
+ encryption functions
+Message-ID: <YRfgTzhKCn7otSzy@zn.tnic>
 References: <cover.1628873970.git.thomas.lendacky@amd.com>
- <482fe51f1671c1cd081039801b03db7ec0036332.1628873970.git.thomas.lendacky@amd.com>
-From: "Kuppuswamy, Sathyanarayanan"
- <sathyanarayanan.kuppuswamy@linux.intel.com>
-Message-ID: <d8448241-86f3-c582-87fd-5a0cab95a32f@linux.intel.com>
-Date: Fri, 13 Aug 2021 10:19:48 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.11.0
+ <a4338245609a6be63b162e3516d3f6614db782a4.1628873970.git.thomas.lendacky@amd.com>
 MIME-Version: 1.0
-In-Reply-To: <482fe51f1671c1cd081039801b03db7ec0036332.1628873970.git.thomas.lendacky@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Mon, 16 Aug 2021 07:12:59 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <a4338245609a6be63b162e3516d3f6614db782a4.1628873970.git.thomas.lendacky@amd.com>
+X-Mailman-Approved-At: Mon, 16 Aug 2021 07:13:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,29 +67,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 8/13/21 9:59 AM, Tom Lendacky wrote:
-> In prep for other protected virtualization technologies, introduce a
-> generic helper function, prot_guest_has(), that can be used to check
-> for specific protection attributes, like memory encryption. This is
-> intended to eliminate having to add multiple technology-specific checks
-> to the code (e.g. if (sev_active() || tdx_active())).
+On Fri, Aug 13, 2021 at 11:59:20AM -0500, Tom Lendacky wrote:
+> In prep for other uses of the prot_guest_has() function besides AMD's
+> memory encryption support, selectively build the AMD memory encryption
+> architecture override functions only when CONFIG_AMD_MEM_ENCRYPT=y. These
+> functions are:
+> - early_memremap_pgprot_adjust()
+> - arch_memremap_can_ram_remap()
 > 
-> Reviewed-by: Joerg Roedel<jroedel@suse.de>
-> Co-developed-by: Andi Kleen<ak@linux.intel.com>
-> Signed-off-by: Andi Kleen<ak@linux.intel.com>
-> Co-developed-by: Kuppuswamy Sathyanarayanan<sathyanarayanan.kuppuswamy@linux.intel.com>
-> Signed-off-by: Kuppuswamy Sathyanarayanan<sathyanarayanan.kuppuswamy@linux.intel.com>
-> Signed-off-by: Tom Lendacky<thomas.lendacky@amd.com>
+> Additionally, routines that are only invoked by these architecture
+> override functions can also be conditionally built. These functions are:
+> - memremap_should_map_decrypted()
+> - memremap_is_efi_data()
+> - memremap_is_setup_data()
+> - early_memremap_is_setup_data()
+> 
+> And finally, phys_mem_access_encrypted() is conditionally built as well,
+> but requires a static inline version of it when CONFIG_AMD_MEM_ENCRYPT is
+> not set.
+> 
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Ingo Molnar <mingo@redhat.com>
+> Cc: Borislav Petkov <bp@alien8.de>
+> Cc: Dave Hansen <dave.hansen@linux.intel.com>
+> Cc: Andy Lutomirski <luto@kernel.org>
+> Cc: Peter Zijlstra <peterz@infradead.org>
+> Signed-off-by: Tom Lendacky <thomas.lendacky@amd.com>
 > ---
->   arch/Kconfig                    |  3 +++
->   include/linux/protected_guest.h | 35 +++++++++++++++++++++++++++++++++
->   2 files changed, 38 insertions(+)
->   create mode 100644 include/linux/protected_guest.h
+>  arch/x86/include/asm/io.h | 8 ++++++++
+>  arch/x86/mm/ioremap.c     | 2 +-
+>  2 files changed, 9 insertions(+), 1 deletion(-)
 
-Reviewed-by: Kuppuswamy Sathyanarayanan <sathyanarayanan.kuppuswamy@linux.intel.com>
+LGTM.
 
 -- 
-Sathyanarayanan Kuppuswamy
-Linux Kernel Developer
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
