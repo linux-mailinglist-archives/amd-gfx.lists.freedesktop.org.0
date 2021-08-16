@@ -1,32 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93B4E3ED4C5
-	for <lists+amd-gfx@lfdr.de>; Mon, 16 Aug 2021 15:05:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A70573ED4C4
+	for <lists+amd-gfx@lfdr.de>; Mon, 16 Aug 2021 15:05:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A53189EBB;
-	Mon, 16 Aug 2021 13:05:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33B3F89EB8;
+	Mon, 16 Aug 2021 13:05:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mk.mickynum.top (unknown [103.45.185.195])
- by gabe.freedesktop.org (Postfix) with ESMTP id 27D7C89CAF
- for <amd-gfx@lists.freedesktop.org>; Mon, 16 Aug 2021 07:52:02 +0000 (UTC)
-Received: from PC-20201006RZHT (14.156.47.4) by mk.mickynum.top id
- h38cia0e97c2 for <amd-gfx@lists.freedesktop.org>;
- Mon, 16 Aug 2021 15:51:00 +0800 (envelope-from <mk1@mk.mickynum.top>)
-From: "Mike Huang" <feiyuecable@163.com>
-Subject: Re:AOC HDMI cable(1m to 300m)
-To: amd-gfx@lists.freedesktop.org
-Content-Type: text/html; charset=UTF-8
+X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
+ Mon, 16 Aug 2021 08:29:30 UTC
+Received: from omta012.uswest2.a.cloudfilter.net
+ (omta012.uswest2.a.cloudfilter.net [35.164.127.235])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9D9D89BB2;
+ Mon, 16 Aug 2021 08:29:26 +0000 (UTC)
+Received: from cxr.smtp.a.cloudfilter.net ([10.0.17.211]) by cmsmtp with ESMTP
+ id FWt1myDJgfFugFXswmJoZZ; Mon, 16 Aug 2021 08:22:19 +0000
+Received: from ws ([24.255.45.226]) by cmsmtp with ESMTPSA
+ id FXsum0KTngQ8tFXsvmxHvt; Mon, 16 Aug 2021 08:22:18 +0000
+Authentication-Results: cox.net; auth=pass (LOGIN)
+ smtp.auth=1i5t5.duncan@cox.net
+X-Authority-Analysis: v=2.4 cv=FL3ee8ks c=1 sm=1 tr=0 ts=611a203a
+ a=rsvNbDP3XdDalhZof1p64w==:117 a=rsvNbDP3XdDalhZof1p64w==:17
+ a=kj9zAlcOel0A:10 a=kviXuzpPAAAA:8 a=pGLkceISAAAA:8 a=eDshZfXNHJhCtg_awq0A:9
+ a=CjuIK1q_8ugA:10 a=qrIFiuKZe2vaD64auk6j:22
+Date: Mon, 16 Aug 2021 01:22:16 -0700
+From: Duncan <1i5t5.duncan@cox.net>
+To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Jason
+ Ekstrand <jason@jlekstrand.net>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>, Christian =?UTF-8?B?S8O2bmln?=
+ <christian.koenig@amd.com>, Pan Xinhui <Xinhui.Pan@amd.com>, Linux Kernel
+ list <linux-kernel@vger.kernel.org>
+Subject: Re: [REGRESSION][BISECTED] 5.14.0-rc4 thru rc6 69de4421bb broke
+Message-ID: <20210816012216.47babaf6@ws>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Date: Mon, 16 Aug 2021 15:50:57 +0800
-X-Priority: 3
-X-MSMail-Priority: Normal
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.3790.4913
-Content-Disposition: inline
-X-Mailman-Approved-At: Mon, 16 Aug 2021 13:05:08 +0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfCA3p6Qy/wdzqHs2PjXrZSSeKX9Nsa+a9Ghxem2WRUDKFpKUbJGHjwtymlrLt9LZdlkwJqp3wocaxP7mIMnO+zY5CmXUAvVzPoKhkAgMlT9oMVJTAGIt
+ wmLakeIEKEyGd4fEwGvJAyQQiOOiiLyn8AbEfGuif2QO9lKos5n4f1esG0vYu1E2B5sI7KoKadKSq47h3WA6WFDxkHK9xl/l0mA7tPDJKU8gkrWhRkWf15iM
+ ndjxsV2fdquCTLibHuqIkk70wLJyrhLhhvGniBa8/P1QeoPDGexH2Mc31dcm+pQO6lfCcl5MlxyF7Vm1+j6fBx5T65rpCuJ+nUySHTmSmK0OzEXWNSzl3Fqi
+ 4wansc1n/owTuZyJT8O2/3KINbjr6bGyNdCbjtu6EprodJ5/Vz5uK14q30iC+uMHjZdufoEb6h9tt64aH+CrPQBAmm5JSg==
+X-Mailman-Approved-At: Mon, 16 Aug 2021 13:05:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,114 +54,72 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: feiyuecable@163.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-Message-Id: <20210816130518.5A53189EBB@gabe.freedesktop.org>
 
-PCFET0NUWVBFIEhUTUwgUFVCTElDICItLy9XM0MvL0RURCBIVE1MIDQuMCBUcmFuc2l0aW9uYWwv
-L0VOIj4NCjxIVE1MPjxIRUFEPg0KPE1FVEEgbmFtZT1HRU5FUkFUT1IgY29udGVudD0iTVNIVE1M
-IDExLjAwLjk2MDAuMTk2OTkiPjwvSEVBRD4NCjxCT0RZPg0KPERJVj4NCjxESVYgc3R5bGU9IkxJ
-TkUtSEVJR0hUOiAyM3B4OyBmb250LXN0cmV0Y2g6IG5vcm1hbCI+RGVhciBGcmllbmQsPC9ESVY+
-DQo8RElWIHN0eWxlPSJMSU5FLUhFSUdIVDogMjNweDsgZm9udC1zdHJldGNoOiBub3JtYWwiPjxC
-Uj48L0RJVj4NCjxESVYgc3R5bGU9IkxJTkUtSEVJR0hUOiAyM3B4OyBmb250LXN0cmV0Y2g6IG5v
-cm1hbCI+R29vZCBkYXkuPC9ESVY+DQo8RElWIHN0eWxlPSJMSU5FLUhFSUdIVDogMjNweDsgZm9u
-dC1zdHJldGNoOiBub3JtYWwiPjxCUj48L0RJVj4NCjxESVYgc3R5bGU9IkxJTkUtSEVJR0hUOiAy
-M3B4OyBmb250LXN0cmV0Y2g6IG5vcm1hbCI+SSBhbSBNaWtlIGZyb20gQ2hpbmEsd2UgYXJlIGEg
-Y2FibGUgbWFudWZhY3R1cmVyIGZvciBtYW55IGtpbmRzIG9mIGNhYmxlcyxtYXkgSSBjaGVjayBp
-ZiB5b3UgYXJlIGludGVyZXN0ZWQmbmJzcDt0byBidXkmbmJzcDt0aGUgQU9DIGZpYmVyIEhETUkg
-Y2FibGU/aXQgc3VwcG9ydCA0Sy82MEh6IGZyb20gMW0gdG8gMzAwbSxpZiBpbnRlcmVzdGVkIHRv
-IHRyeSwmbmJzcDtwbGVhc2UgY29udGFjdCB1cyBmcmVlbHkgdG8gZ2V0IG1vcmUgZGV0YWlscyx0
-aGFua3MuPC9ESVY+DQo8RElWIHN0eWxlPSJMSU5FLUhFSUdIVDogMjNweDsgZm9udC1zdHJldGNo
-OiBub3JtYWwiPiZuYnNwOzwvRElWPjwvRElWPjxCUj48U1BBTiBzdHlsZT0iRk9OVC1TSVpFOiAx
-NHB4OyBGT05ULUZBTUlMWTogQXJpYWw7IFdISVRFLVNQQUNFOiBub3JtYWw7IFdPUkQtU1BBQ0lO
-RzogMHB4OyBURVhULVRSQU5TRk9STTogbm9uZTsgRkxPQVQ6IG5vbmU7IEZPTlQtV0VJR0hUOiA0
-MDA7IENPTE9SOiByZ2IoMCwwLDApOyBGT05ULVNUWUxFOiBub3JtYWw7IE9SUEhBTlM6IDI7IFdJ
-RE9XUzogMjsgRElTUExBWTogaW5saW5lICFpbXBvcnRhbnQ7IExFVFRFUi1TUEFDSU5HOiBub3Jt
-YWw7IFRFWFQtSU5ERU5UOiAwcHg7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9u
-dC12YXJpYW50LWNhcHM6IG5vcm1hbDsgLXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0aDogMHB4OyB0
-ZXh0LWRlY29yYXRpb24tc3R5bGU6IGluaXRpYWw7IHRleHQtZGVjb3JhdGlvbi1jb2xvcjogaW5p
-dGlhbCI+LS08L1NQQU4+PEJSIHN0eWxlPSJGT05ULVNJWkU6IDE0cHg7IEZPTlQtRkFNSUxZOiBB
-cmlhbDsgV0hJVEUtU1BBQ0U6IG5vcm1hbDsgV09SRC1TUEFDSU5HOiAwcHg7IFRFWFQtVFJBTlNG
-T1JNOiBub25lOyBGT05ULVdFSUdIVDogNDAwOyBDT0xPUjogcmdiKDAsMCwwKTsgRk9OVC1TVFlM
-RTogbm9ybWFsOyBPUlBIQU5TOiAyOyBXSURPV1M6IDI7IExFVFRFUi1TUEFDSU5HOiBub3JtYWw7
-IFRFWFQtSU5ERU5UOiAwcHg7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12
-YXJpYW50LWNhcHM6IG5vcm1hbDsgLXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0aDogMHB4OyB0ZXh0
-LWRlY29yYXRpb24tc3R5bGU6IGluaXRpYWw7IHRleHQtZGVjb3JhdGlvbi1jb2xvcjogaW5pdGlh
-bCI+DQo8RElWIHN0eWxlPSJGT05ULVNJWkU6IDE0cHg7IEZPTlQtRkFNSUxZOiBBcmlhbDsgV0hJ
-VEUtU1BBQ0U6IG5vcm1hbDsgV09SRC1TUEFDSU5HOiAwcHg7IFRFWFQtVFJBTlNGT1JNOiBub25l
-OyBGT05ULVdFSUdIVDogNDAwOyBDT0xPUjogcmdiKDAsMCwwKTsgRk9OVC1TVFlMRTogbm9ybWFs
-OyBPUlBIQU5TOiAyOyBXSURPV1M6IDI7IExFVFRFUi1TUEFDSU5HOiBub3JtYWw7IFRFWFQtSU5E
-RU5UOiAwcHg7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWNh
-cHM6IG5vcm1hbDsgLXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0aDogMHB4OyB0ZXh0LWRlY29yYXRp
-b24tc3R5bGU6IGluaXRpYWw7IHRleHQtZGVjb3JhdGlvbi1jb2xvcjogaW5pdGlhbCI+PEI+Qi5S
-ZWdhcmRzPC9CPjwvRElWPg0KPERJViBzdHlsZT0iRk9OVC1TSVpFOiAxNHB4OyBGT05ULUZBTUlM
-WTogQXJpYWw7IFdISVRFLVNQQUNFOiBub3JtYWw7IFdPUkQtU1BBQ0lORzogMHB4OyBURVhULVRS
-QU5TRk9STTogbm9uZTsgRk9OVC1XRUlHSFQ6IDQwMDsgQ09MT1I6IHJnYigwLDAsMCk7IEZPTlQt
-U1RZTEU6IG5vcm1hbDsgT1JQSEFOUzogMjsgV0lET1dTOiAyOyBMRVRURVItU1BBQ0lORzogbm9y
-bWFsOyBURVhULUlOREVOVDogMHB4OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZv
-bnQtdmFyaWFudC1jYXBzOiBub3JtYWw7IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsg
-dGV4dC1kZWNvcmF0aW9uLXN0eWxlOiBpbml0aWFsOyB0ZXh0LWRlY29yYXRpb24tY29sb3I6IGlu
-aXRpYWwiPjxCPk1pa2UgSHVhbmc8L0I+PC9ESVY+DQo8RElWIHN0eWxlPSJGT05ULVNJWkU6IDE0
-cHg7IEZPTlQtRkFNSUxZOiBBcmlhbDsgV0hJVEUtU1BBQ0U6IG5vcm1hbDsgV09SRC1TUEFDSU5H
-OiAwcHg7IFRFWFQtVFJBTlNGT1JNOiBub25lOyBGT05ULVdFSUdIVDogNDAwOyBDT0xPUjogcmdi
-KDAsMCwwKTsgRk9OVC1TVFlMRTogbm9ybWFsOyBPUlBIQU5TOiAyOyBXSURPV1M6IDI7IExFVFRF
-Ui1TUEFDSU5HOiBub3JtYWw7IFRFWFQtSU5ERU5UOiAwcHg7IGZvbnQtdmFyaWFudC1saWdhdHVy
-ZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWNhcHM6IG5vcm1hbDsgLXdlYmtpdC10ZXh0LXN0cm9r
-ZS13aWR0aDogMHB4OyB0ZXh0LWRlY29yYXRpb24tc3R5bGU6IGluaXRpYWw7IHRleHQtZGVjb3Jh
-dGlvbi1jb2xvcjogaW5pdGlhbCI+PEI+U2FsZXMgTWFuYWdlcjwvQj48L0RJVj4NCjxESVYgc3R5
-bGU9IkZPTlQtU0laRTogMTRweDsgRk9OVC1GQU1JTFk6IEFyaWFsOyBXSElURS1TUEFDRTogbm9y
-bWFsOyBXT1JELVNQQUNJTkc6IDBweDsgVEVYVC1UUkFOU0ZPUk06IG5vbmU7IEZPTlQtV0VJR0hU
-OiA0MDA7IENPTE9SOiByZ2IoMCwwLDApOyBGT05ULVNUWUxFOiBub3JtYWw7IE9SUEhBTlM6IDI7
-IFdJRE9XUzogMjsgTEVUVEVSLVNQQUNJTkc6IG5vcm1hbDsgVEVYVC1JTkRFTlQ6IDBweDsgZm9u
-dC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQtY2Fwczogbm9ybWFsOyAt
-d2Via2l0LXRleHQtc3Ryb2tlLXdpZHRoOiAwcHg7IHRleHQtZGVjb3JhdGlvbi1zdHlsZTogaW5p
-dGlhbDsgdGV4dC1kZWNvcmF0aW9uLWNvbG9yOiBpbml0aWFsIj48Qj5FLW1haWw6PFNQQU4+Jm5i
-c3A7PC9TUEFOPjwvQj48U1BBTiBzdHlsZT0iQ09MT1I6IHJnYigwLDAsMjU1KSI+PEI+PEEgaHJl
-Zj0ibWFpbHRvOmEyNThtaWtlQDE2My5jb20iPmEyNThtaWtlQDE2My5jb208L0E+PFU+Jm5ic3A7
-IDwvVT4mYW1wOyA8QSBocmVmPSJtYWlsdG86RmVpeXVlY2FibGVAMTYzLmNvbSI+RmVpeXVlY2Fi
-bGVAMTYzLmNvbTwvQT48L0I+PC9TUEFOPjwvRElWPg0KPERJViBzdHlsZT0iRk9OVC1TSVpFOiAx
-NHB4OyBGT05ULUZBTUlMWTogQXJpYWw7IFdISVRFLVNQQUNFOiBub3JtYWw7IFdPUkQtU1BBQ0lO
-RzogMHB4OyBURVhULVRSQU5TRk9STTogbm9uZTsgRk9OVC1XRUlHSFQ6IDQwMDsgQ09MT1I6IHJn
-YigwLDAsMCk7IEZPTlQtU1RZTEU6IG5vcm1hbDsgT1JQSEFOUzogMjsgV0lET1dTOiAyOyBMRVRU
-RVItU1BBQ0lORzogbm9ybWFsOyBURVhULUlOREVOVDogMHB4OyBmb250LXZhcmlhbnQtbGlnYXR1
-cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1jYXBzOiBub3JtYWw7IC13ZWJraXQtdGV4dC1zdHJv
-a2Utd2lkdGg6IDBweDsgdGV4dC1kZWNvcmF0aW9uLXN0eWxlOiBpbml0aWFsOyB0ZXh0LWRlY29y
-YXRpb24tY29sb3I6IGluaXRpYWwiPjxCIHN0eWxlPSJMSU5FLUhFSUdIVDogMjNweCI+RG9uZ2d1
-YW4gQ2hhbmdBbiBGZWl5dWUgRWxlY3Ryb25pYyBGYWN0b3J5PC9CPjwvRElWPg0KPERJViBzdHls
-ZT0iRk9OVC1TSVpFOiAxNHB4OyBGT05ULUZBTUlMWTogQXJpYWw7IFdISVRFLVNQQUNFOiBub3Jt
-YWw7IFdPUkQtU1BBQ0lORzogMHB4OyBURVhULVRSQU5TRk9STTogbm9uZTsgRk9OVC1XRUlHSFQ6
-IDQwMDsgQ09MT1I6IHJnYigwLDAsMCk7IEZPTlQtU1RZTEU6IG5vcm1hbDsgT1JQSEFOUzogMjsg
-V0lET1dTOiAyOyBMRVRURVItU1BBQ0lORzogbm9ybWFsOyBURVhULUlOREVOVDogMHB4OyBmb250
-LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1jYXBzOiBub3JtYWw7IC13
-ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsgdGV4dC1kZWNvcmF0aW9uLXN0eWxlOiBpbml0
-aWFsOyB0ZXh0LWRlY29yYXRpb24tY29sb3I6IGluaXRpYWwiPjxCPlRlbDombmJzcDs8L0I+MDA4
-Ni03NjktODEyMDMzMjc8Qj48U1BBTj4mbmJzcDs8L1NQQU4+Jm5ic3A7ICZuYnNwOyZuYnNwOzwv
-Qj48U1BBTiBzdHlsZT0iTElORS1IRUlHSFQ6IDIzcHgiPjxCPlNreXBlIElEPC9CPjogZmVpeXVl
-Y2FibGU8U1BBTj4mbmJzcDs8U1BBTiBzdHlsZT0iRk9OVC1TSVpFOiAxNHB4OyBGT05ULUZBTUlM
-WTogQXJpYWw7IFdISVRFLVNQQUNFOiBub3JtYWw7IFdPUkQtU1BBQ0lORzogMHB4OyBURVhULVRS
-QU5TRk9STTogbm9uZTsgRk9OVC1XRUlHSFQ6IDQwMDsgQ09MT1I6IHJnYigwLDAsMCk7IEZPTlQt
-U1RZTEU6IG5vcm1hbDsgT1JQSEFOUzogMjsgV0lET1dTOiAyOyBMRVRURVItU1BBQ0lORzogbm9y
-bWFsOyBMSU5FLUhFSUdIVDogMjNweDsgVEVYVC1JTkRFTlQ6IDBweDsgZm9udC12YXJpYW50LWxp
-Z2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQtY2Fwczogbm9ybWFsOyAtd2Via2l0LXRleHQt
-c3Ryb2tlLXdpZHRoOiAwcHg7IHRleHQtZGVjb3JhdGlvbi1zdHlsZTogaW5pdGlhbDsgdGV4dC1k
-ZWNvcmF0aW9uLWNvbG9yOiBpbml0aWFsIj48Qj5XZWJzaXRlOiZuYnNwOzwvQj48L1NQQU4+PEEg
-c3R5bGU9IkZPTlQtU0laRTogMTJweDsgRk9OVC1GQU1JTFk6IEFyaWFsLCBIZWx2ZXRpY2EsIHNh
-bnMtc2VyaWY7IFdISVRFLVNQQUNFOiBub3JtYWw7IFdPUkQtU1BBQ0lORzogMHB4OyBURVhULVRS
-QU5TRk9STTogbm9uZTsgRk9OVC1XRUlHSFQ6IDQwMDsgQ09MT1I6IHJnYigwLDAsMjU1KTsgRk9O
-VC1TVFlMRTogbm9ybWFsOyBPVVRMSU5FLVNUWUxFOiBub25lOyBPUlBIQU5TOiAyOyBXSURPV1M6
-IDI7IExFVFRFUi1TUEFDSU5HOiBub3JtYWw7IExJTkUtSEVJR0hUOiAxNXB4OyBURVhULUlOREVO
-VDogMHB4OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1jYXBz
-OiBub3JtYWw7IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweCIgaHJlZj0iaHR0cDovL3d3
-dy5nbG9iYWxzb3VyY2VzLmNvbS9zaS9GTC9Eb25nZ3Vhbi1DaGFuZydBbi82MDA4ODUwNTA4MTQ3
-L0hvbWVwYWdlLmh0bSI+aHR0cDovL3d3dy5nbG9iYWxzb3VyY2VzLmNvbS9mZWl5dWUuY288L0E+
-PC9TUEFOPjwvU1BBTj48L0RJVj4NCjxESVYgc3R5bGU9IkZPTlQtU0laRTogMTRweDsgRk9OVC1G
-QU1JTFk6IEFyaWFsOyBXSElURS1TUEFDRTogbm9ybWFsOyBXT1JELVNQQUNJTkc6IDBweDsgVEVY
-VC1UUkFOU0ZPUk06IG5vbmU7IEZPTlQtV0VJR0hUOiA0MDA7IENPTE9SOiByZ2IoMCwwLDApOyBG
-T05ULVNUWUxFOiBub3JtYWw7IE9SUEhBTlM6IDI7IFdJRE9XUzogMjsgTEVUVEVSLVNQQUNJTkc6
-IG5vcm1hbDsgVEVYVC1JTkRFTlQ6IDBweDsgZm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFs
-OyBmb250LXZhcmlhbnQtY2Fwczogbm9ybWFsOyAtd2Via2l0LXRleHQtc3Ryb2tlLXdpZHRoOiAw
-cHg7IHRleHQtZGVjb3JhdGlvbi1zdHlsZTogaW5pdGlhbDsgdGV4dC1kZWNvcmF0aW9uLWNvbG9y
-OiBpbml0aWFsIj48Qj5GYWN0b3J5IGFkZHJlc3M6Jm5ic3A7PC9CPjxCPk5vLjgsdGhlIDJuZCBz
-dHJlZXQsWWluc2hhIFJvYWQsWGlhYmlhbixDaGFuZydBbiBUb3duLERvbmd1YW4sR3Vhbmdkb25n
-LENoaW5hLjwvQj48L0RJVj48QlI+PC9CT0RZPjwvSFRNTD4NCg==
+Duncan posted on Mon, 16 Aug 2021 07:58:37 +0000 as excerpted:
+
+> Mikael Pettersson posted on Tue, 03 Aug 2021 08:54:18 +0200 as
+> excerpted:
+>> On Mon, Aug 2, 2021 at 8:29 PM Duncan <j.duncan@cox.net> wrote:
+>>> Mikael Pettersson <mikpelinux@gmail.com> wrote...
+>>> > Booting 5.14.0-rc4 on my box with Radeon graphics breaks with
+>>> >
+>>> > [drm:radeon_ttm_init [radeon]] *ERROR* failed initializing buffer
+>>> > object driver(-19).
+>>> > radeon 0000:01:00.0: Fatal error during GPU init
+>>>
+>>> Seeing this here too.  amdgpu on polaris-11, on an old amd-fx6100
+>>> system.
+>>>
+>>> > after which the screen goes black for the rest of kernel boot and
+>>> > early user-space init.
+>>>
+>>> *NOT* seeing that.  However, I have boot messages turned on by
+>>> default and I see them as usual, only it stays in vga-console mode
+>>> instead of switching to framebuffer after early-boot. I'm guessing
+>>> MP has a high-res boot-splash which doesn't work in vga mode, thus
+>>> the black-screen until the login shows up.
+>> 
+>> Yes, I have the Fedora boot splash enabled.
+>> 
+>>> > Once the console login shows up the screen is in some legacy
+>>> > low-res mode and Xorg can't be started.
+>>> >
+>>> > A git bisect between v5.14-rc3 (good) and v5.14-rc4 (bad)
+>>> > identified
+>>> >
+>>> > # first bad commit: [69de4421bb4c103ef42a32bafc596e23918c106f]
+>>> > drm/ttm: Initialize debugfs from ttm_global_init()
+>>> >
+>>> > Reverting that from 5.14.0-rc4 gives me a working kernel again.
+>>> >
+>>> > Note that I have # CONFIG_DEBUG_FS is not set
+>>>
+>>> That all matches here, including the unset CONFIG_DEBUG_FS and
+>>> confirming the revert on 5.14.0-rc4 works.
+>> 
+>> Thanks for the confirmation.
+> 
+> 69de44d1bb introduced a regression in rc4, reported to the list on
+> August 2, that's still there in rc6.  It's also reported on kernel
+> bugzilla as bug #214000.  No maintainer response either on-list or to
+> the bug.  The commit was general ttm and the original post went to
+> dri-devel and kernel,
+> Jason E. and Daniel V., but all three user reports I've seen so far
+> (two on-list and the bug reporter) are on amdgpu or radeon, so in an
+> effort to at least get a response and hopefully a fix before release,
+> I'm adding the amdgpu/radeon list and maintainers.
+> 
+> The bugzilla report confirmed that CONFIG_DEBUG_FS=y AND
+> CONFIG_DEBUG_FS_ALLOW_ALL=y were *both* required to get a working
+> kernel after that commit.  I and I believe the on-list reporter just
+> reverted the commit in question, and kept our CONFIG_DEBUG_FS=n.
+
+Trying again. I apologize if anyone gets this twice but I don't think
+the first one made it at all (buggy client).
+
+-- 
+Duncan - List replies preferred.   No HTML msgs.
+"Every nonfree program has a lord, a master --
+and if you use the program, he is your master."  Richard Stallman
