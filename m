@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F7EB3EECC8
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Aug 2021 14:49:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 363FA3EECC7
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Aug 2021 14:49:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B55C06E190;
-	Tue, 17 Aug 2021 12:49:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3BB46E18E;
+	Tue, 17 Aug 2021 12:49:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C8136E157;
- Tue, 17 Aug 2021 10:05:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF67B6E158;
+ Tue, 17 Aug 2021 10:22:00 +0000 (UTC)
 Received: from zn.tnic (p200300ec2f1175001ae0093e4550657c.dip0.t-ipconnect.de
  [IPv6:2003:ec:2f11:7500:1ae0:93e:4550:657c])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 95A9E1EC054F;
- Tue, 17 Aug 2021 12:05:26 +0200 (CEST)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 2B8E41EC054F;
+ Tue, 17 Aug 2021 12:21:55 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
- t=1629194726;
+ t=1629195715;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
- bh=G4eAMTLu2hDkmoQ61+xUHXsjuZXklNaVdRb9b01R0LQ=;
- b=Ezlf7E6kfbk0wj1UX675PJCY/0eAzfm/7wQ3tUGxLlaOWwjDy3wVFlLkLlMNFvuVYmxMAN
- rZSuujCI9mCbXFtsrDcS2WemZquPZaiynSjn8JL5aSXkmF+a+fD163HXMC9x07FG8oGDik
- Bg4RCUoOLPaIIAXfzgh6O65GYecZeCA=
-Date: Tue, 17 Aug 2021 12:06:10 +0200
+ bh=1X4BsSgXR6fbLSuR6qMW32reDmK7N3Yo2urSU0QF5lM=;
+ b=lpCfJRL3J/Wnm269L3OKoCHONoluPmlzJfJpOhctCqjqZucjxjgrEhfFU+dBCsYrUX9hdD
+ 65itruzBqAaQO/sR4O6+e9rxfZKSO3QhoNUJVkUBsFIiKAtYdX2I4937fDaEHZuSoyKC/2
+ aUmz92C0im7LBiW9dGwuZuH6T9Or6uo=
+Date: Tue, 17 Aug 2021 12:22:33 +0200
 From: Borislav Petkov <bp@alien8.de>
 To: Tom Lendacky <thomas.lendacky@amd.com>
 Cc: linux-kernel@vger.kernel.org, x86@kernel.org,
@@ -39,17 +39,16 @@ Cc: linux-kernel@vger.kernel.org, x86@kernel.org,
  linux-fsdevel@vger.kernel.org, Brijesh Singh <brijesh.singh@amd.com>,
  Joerg Roedel <joro@8bytes.org>, Andi Kleen <ak@linux.intel.com>,
  Sathyanarayanan Kuppuswamy <sathyanarayanan.kuppuswamy@linux.intel.com>,
- Tianyu Lan <Tianyu.Lan@microsoft.com>,
- Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>
-Subject: Re: [PATCH v2 07/12] x86/sev: Replace occurrences of sev_es_active()
- with prot_guest_has()
-Message-ID: <YRuKEhzOh8pO4He1@zn.tnic>
+ Tianyu Lan <Tianyu.Lan@microsoft.com>, Joerg Roedel <jroedel@suse.de>
+Subject: Re: [PATCH v2 09/12] mm: Remove the now unused mem_encrypt_active()
+ function
+Message-ID: <YRuN6QhdIQtlluUh@zn.tnic>
 References: <cover.1628873970.git.thomas.lendacky@amd.com>
- <0b8480d93b5090fcc34cf5d5035d4d89aa765d79.1628873970.git.thomas.lendacky@amd.com>
+ <83e4a62108eec470ac0b3f2510b982794d2b7989.1628873970.git.thomas.lendacky@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <0b8480d93b5090fcc34cf5d5035d4d89aa765d79.1628873970.git.thomas.lendacky@amd.com>
+In-Reply-To: <83e4a62108eec470ac0b3f2510b982794d2b7989.1628873970.git.thomas.lendacky@amd.com>
 X-Mailman-Approved-At: Tue, 17 Aug 2021 12:49:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,26 +64,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 13, 2021 at 11:59:26AM -0500, Tom Lendacky wrote:
-> Replace occurrences of sev_es_active() with the more generic
-> prot_guest_has() using PATTR_GUEST_PROT_STATE, except for in
-> arch/x86/kernel/sev*.c and arch/x86/mm/mem_encrypt*.c where PATTR_SEV_ES
-> will be used. If future support is added for other memory encyrption
-> techonologies, the use of PATTR_GUEST_PROT_STATE can be updated, as
-> required, to specifically use PATTR_SEV_ES.
+On Fri, Aug 13, 2021 at 11:59:28AM -0500, Tom Lendacky wrote:
+> The mem_encrypt_active() function has been replaced by prot_guest_has(),
+> so remove the implementation.
 > 
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Ingo Molnar <mingo@redhat.com>
-> Cc: Borislav Petkov <bp@alien8.de>
+> Reviewed-by: Joerg Roedel <jroedel@suse.de>
 > Signed-off-by: Tom Lendacky <thomas.lendacky@amd.com>
 > ---
->  arch/x86/include/asm/mem_encrypt.h | 2 --
->  arch/x86/kernel/sev.c              | 6 +++---
->  arch/x86/mm/mem_encrypt.c          | 7 +++----
->  arch/x86/realmode/init.c           | 3 +--
->  4 files changed, 7 insertions(+), 11 deletions(-)
+>  include/linux/mem_encrypt.h | 4 ----
+>  1 file changed, 4 deletions(-)
+> 
+> diff --git a/include/linux/mem_encrypt.h b/include/linux/mem_encrypt.h
+> index 5c4a18a91f89..ae4526389261 100644
+> --- a/include/linux/mem_encrypt.h
+> +++ b/include/linux/mem_encrypt.h
+> @@ -16,10 +16,6 @@
+>  
+>  #include <asm/mem_encrypt.h>
+>  
+> -#else	/* !CONFIG_ARCH_HAS_MEM_ENCRYPT */
+> -
+> -static inline bool mem_encrypt_active(void) { return false; }
+> -
+>  #endif	/* CONFIG_ARCH_HAS_MEM_ENCRYPT */
+>  
+>  #ifdef CONFIG_AMD_MEM_ENCRYPT
+> -- 
 
-Same comments to this one as for the previous two.
+This one wants to be part of the previous patch.
 
 -- 
 Regards/Gruss,
