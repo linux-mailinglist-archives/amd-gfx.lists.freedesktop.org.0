@@ -1,98 +1,38 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F8733EE5B5
-	for <lists+amd-gfx@lfdr.de>; Tue, 17 Aug 2021 06:30:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84B273EE70D
+	for <lists+amd-gfx@lfdr.de>; Tue, 17 Aug 2021 09:15:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 780226E0F3;
-	Tue, 17 Aug 2021 04:30:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 176146E103;
+	Tue, 17 Aug 2021 07:15:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2072.outbound.protection.outlook.com [40.107.223.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 365786E0F3
- for <amd-gfx@lists.freedesktop.org>; Tue, 17 Aug 2021 04:30:24 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ykid5fkUNFYdrTOl8+oO2RHpYvMKbBBiy6fAGuAmgWtySue6tCftQ1wl/wzoZ91uh6eSrYjeXbwTAOVYJK6/T1KGbFATicdO8wUZHQWHDeNkNF5TShPe6X2kxSulB35aHGhmcoh0fo1CIoMCofVhCwEBWHBpmJufRGj/+ZIjXW5ddk5r7mfF3p5uMGCCz1Rn7xjlHaJLDv+d+yo0QpzNpgfCPYWCPyGXAzLf5h6MTodwWyEy9dQL5nLtL2+zihVlfQ5XJeRDML/3jcnMxSBD2+Xjq8MNMJajpqLwlLyq8gQjvq7wpaeYfFGJZU8d1ujMrcBxbsM3A2G40fpt47E7gg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lbsbMMYJnjcgSJxXkAl3vbt4lL8XBP8pguLULb9N71A=;
- b=TeV5Jf+IWRvKwTp+u8rAAwmry8q3QTc7+4Xxkxt9nI+3uX0oj2sIMUxOYeCQVqwIRjhEgkCRKONACAuGkJ1ivjPtyUp+D1E16FYqX6xNxPFTakmcxJPLbZdzBJQPTtQDdBXcYTqqgqXvnBA5uGC9r8rY9dd1ycAFkU3s2PnwLDgjMT23Bkwhbuk1xmiMAdGWhSj+lar62C+7XgapIdMf1+dvCMr9TYbm8GMhpnGYHq2CqGLTaEZxGTTg+aLpq+KwxIl9YN/tNDV8ZWvY9vl4RONL6HqSyQAKt3Z2fpscjVl+1cYv9EjJ6xOqJ+faANJB6yPbcCntOh3ESNBXiuba9w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lbsbMMYJnjcgSJxXkAl3vbt4lL8XBP8pguLULb9N71A=;
- b=zNgH+yS/8hIbcxbgQGYiocnPtl/FOV9u5YC3d6JD6uiqeEoh94sWotMjQILTNDwMG4YXcuKmninCngbUUHAqJGBYhgZZUVnw/cw0xqMrkCQlK8zayW0EnUFidZQz4n9ZJPpsMxKZIBb4AhI4FYOgB/tudvN37xnpUc16Jpi/fwY=
-Received: from DM5PR19CA0038.namprd19.prod.outlook.com (2603:10b6:3:9a::24) by
- MWHPR1201MB2541.namprd12.prod.outlook.com (2603:10b6:300:e5::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.16; Tue, 17 Aug
- 2021 04:30:22 +0000
-Received: from DM6NAM11FT036.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:9a:cafe::df) by DM5PR19CA0038.outlook.office365.com
- (2603:10b6:3:9a::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.14 via Frontend
- Transport; Tue, 17 Aug 2021 04:30:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT036.mail.protection.outlook.com (10.13.172.64) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4415.16 via Frontend Transport; Tue, 17 Aug 2021 04:30:22 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Mon, 16 Aug
- 2021 23:30:21 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Mon, 16 Aug
- 2021 23:30:21 -0500
-Received: from hawzhang-System-Product.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.12
- via Frontend Transport; Mon, 16 Aug 2021 23:30:20 -0500
-From: Hawking Zhang <Hawking.Zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Hawking Zhang <Hawking.Zhang@amd.com>
-Subject: [PATCH] drm/amdgpu: increase max xgmi physical node for aldebaran
-Date: Tue, 17 Aug 2021 12:30:14 +0800
-Message-ID: <1629174614-2218-1-git-send-email-Hawking.Zhang@amd.com>
-X-Mailer: git-send-email 2.7.4
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9ECA6E101;
+ Tue, 17 Aug 2021 05:47:50 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id C7A586736F; Tue, 17 Aug 2021 07:47:47 +0200 (CEST)
+Date: Tue, 17 Aug 2021 07:47:47 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Felix Kuehling <felix.kuehling@amd.com>
+Cc: Christoph Hellwig <hch@lst.de>, Alex Sierra <alex.sierra@amd.com>,
+ akpm@linux-foundation.org, linux-mm@kvack.org, rcampbell@nvidia.com,
+ linux-ext4@vger.kernel.org, linux-xfs@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ jgg@nvidia.com, jglisse@redhat.com
+Subject: Re: [PATCH v6 04/13] drm/amdkfd: add SPM support for SVM
+Message-ID: <20210817054747.GA4895@lst.de>
+References: <20210813063150.2938-1-alex.sierra@amd.com>
+ <20210813063150.2938-5-alex.sierra@amd.com> <20210815091000.GB25067@lst.de>
+ <0ecf3253-5c77-e982-981a-b340ff705838@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 574ab17a-9748-4a5b-7182-08d96137ba02
-X-MS-TrafficTypeDiagnostic: MWHPR1201MB2541:
-X-Microsoft-Antispam-PRVS: <MWHPR1201MB254125BEB8E996F7C5E1D874FCFE9@MWHPR1201MB2541.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1388;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8BBp6yliHpH1iEaUWIfClV4ur6725MT75yTv3rukrNKIe1Wl3RVhvr9rH85QNw5efc4qzkEtkPtUkcLAMXkT8Dtllf/d2hOBWZmIIdbcISv9cPvjsmZ6IREE8zsIPgzNl0lf3tEdMuGVkfVlDy18dXaICeLSyGlGjnmwTs3bIdXY5+oCk9ZzKoGd1t62DUo3fu8IiVdL14HmkXhyR7zOP246rWSlhltMWHO69EivanRMeRg3uraQOSiZ6fOEPQDTkwq2PlRnjcjX1aJ+oJ7jtawxlYTeQ/TXhy7aZBzQAHSBywl0gJ8PdmVPGsXmMvCnGPSERo9+osHd/aTUMjVLDruFMLBwO8aKIa1aMj+T4eu2mg1SQ96wpi8u4baszEIwGfducTL4AOcS8t9YrEoqFsMFV6ja10dNyU+b4uYzvZFqLVA1VppXJRwJops4b0vchcjg9GPj9xkFNEATclUNdMR5CWYV2PGjPb+rRudCULT6FOgFKfXOlDvP2OdLWAJ0cjFU8hICspDfh59fVWVYsa9oTvOWgTTpGFU6FumgPRinv2GbDe95i0U3O3LQBRBcKb7B7pzssV/j0NYXe1GvvgoI16Fd/ZpwVopfrh5z5K6e1qzBpkJ4EAnndpnk2FgkKB/Z9t7gJBUoajKtJi4D/3Ig+pjT1yJmgLFZVRS44OflfUPP4YL70dHGGmrBzwTGeR2DmzfwIOD/3e+ND4ae8Vz5Lyaa3QJHkKu73hnjwSSYuikY4oRie1H4aUB5xykGLbjtvtehw/oub20nwf54CA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(136003)(396003)(39860400002)(376002)(46966006)(36840700001)(186003)(70206006)(26005)(6666004)(34020700004)(82310400003)(478600001)(336012)(86362001)(5660300002)(6916009)(2616005)(36756003)(8676002)(8936002)(81166007)(2906002)(36860700001)(70586007)(82740400003)(47076005)(4326008)(426003)(356005)(83380400001)(316002)(4744005)(7696005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Aug 2021 04:30:22.0514 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 574ab17a-9748-4a5b-7182-08d96137ba02
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT036.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB2541
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0ecf3253-5c77-e982-981a-b340ff705838@amd.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+X-Mailman-Approved-At: Tue, 17 Aug 2021 07:15:23 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,30 +47,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-aldebaran supports up to 16 xgmi physical nodes.
+On Mon, Aug 16, 2021 at 02:54:30PM -0400, Felix Kuehling wrote:
+> I think you're right. We only need the start and end address from
+> lookup_resource and we already know that anyway. It means we can drop
+> patch 3 from the series.
+> 
+> Just to be sure, we'll confirm that the end address determined by our
+> driver matches the one from lookup_resource (coming from the system
+> address map in the system BIOS). If there were a mismatch, it would
+> probably be a bug (in the driver or the BIOS) that we'd need to fix anyway.
 
-Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
-Reviewed-by: John Clements <john.clements@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/gfxhub_v1_1.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+Or rather that the driver claimed area is smaller or the same as the
+bios range.  No harm (except for potential peformance implications) when
+you don't use all of it.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_1.c b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_1.c
-index 8fca72e..497b86c 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_1.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfxhub_v1_1.c
-@@ -75,9 +75,8 @@ int gfxhub_v1_1_get_xgmi_info(struct amdgpu_device *adev)
- 		max_physical_node_id     = 7;
- 		break;
- 	case CHIP_ALDEBARAN:
--		/* just using duplicates for Aldebaran support, revisit later */
--		max_num_physical_nodes   = 8;
--		max_physical_node_id     = 7;
-+		max_num_physical_nodes   = 16;
-+		max_physical_node_id     = 15;
- 		break;
- 	default:
- 		return -EINVAL;
--- 
-2.7.4
+> I don't really see the "mess" you're talking about. Including the above,
+> there are only 3 conditional statements in that function that are not
+> error-handling related:
+> 
+>         /* Page migration works on Vega10 or newer */
+>         if (kfddev->device_info->asic_family < CHIP_VEGA10)
+>                 return -EINVAL;
+> ...
+>         if (xgmi_connected_to_cpu)
+>                 res = lookup_resource(&iomem_resource, adev->gmc.aper_base);
+>         else
+>                 res = devm_request_free_mem_region(adev->dev, &iomem_resource, size);
+> ...
+>         pgmap->type = xgmi_connected_to_cpu ?
+>                                 MEMORY_DEVICE_GENERIC : MEMORY_DEVICE_PRIVATE;
+> 
 
+Plus the devm_release_mem_region error handling that is currently missing.
