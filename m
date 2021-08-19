@@ -2,30 +2,30 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1A783F1A28
-	for <lists+amd-gfx@lfdr.de>; Thu, 19 Aug 2021 15:16:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D22AA3F1A26
+	for <lists+amd-gfx@lfdr.de>; Thu, 19 Aug 2021 15:16:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 330566E92B;
-	Thu, 19 Aug 2021 13:15:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B36C96E8C7;
+	Thu, 19 Aug 2021 13:15:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from casper.infradead.org (casper.infradead.org
  [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED83E6E4AF;
- Thu, 19 Aug 2021 09:48:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3CF26E89A;
+ Thu, 19 Aug 2021 09:54:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
  References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=NIZCsGrRQbuo1Iii34pN1v0m0SpMM+x4PkA8jTWERkg=; b=q25frNr0RfbqC0fjoCxNp5/U9p
- XnS1Itp1kpFsNA/GpDu0yM5K5YaejGcpknYJqfk8EgGP6+4iHFTTLMsGRjmoCzrQgPNE5f0aWiJMP
- QQ9tLG/1QdIBzMpXUBSA5pPGezmjPq0CJwrYYk/ziy5TebK/nnSrHMZcfb2uIjCNLa4oakg80HoTF
- YSz/UGMzIuFO8B1+V7x8S7PTgRuTau4iALVZWpphyWlovh+/DBjKAy4vaUD6UbIXav3hhIt7y7OBs
- dRqDYFfcQQ/aBbwuYMYcW8088vlsXsee7dROmQFMco7Esnk7wRaXkBLBwlTa2FrZ/OuYJHiz30tR2
- lqk0CO2A==;
+ bh=30I+7nEm5zbvXFaNjeCP/URwvn0lUxkdZ8/N2SFqU4g=; b=hdp6qYYIiawPbHWzGgJGbeGDoL
+ TskujUOUgkw5fqQ32Dq09FqOv51wvLWbNrcrdw3wg7CGsAtqwE0y+rW5EzXhdMJx/nO7U+/vDSAxy
+ ZGC4r6aC4wc44wp1pn/5iT/tBmcMPk/3CafPQ6Y6Tjjhb6zYRI/6S5OA4cG/Qk8BIe9OYWnnx7d8w
+ 7GhnTeyRi2ZmTBFWwHRyV84JdQ6eKrGvxUZFLENaT0zcmJ62SNY0OjvyFBg+eHiiFyXh1CKCQ5zLg
+ 4phvLD2DSvHmVFPqRiYmTfBtb2/AVqElq02npejAimvBLZXPdunESEx0AVEqb2PzRTbXPbtdOrilL
+ U+nUWJXA==;
 Received: from hch by casper.infradead.org with local (Exim 4.94.2 #2 (Red Hat
- Linux)) id 1mGedJ-004t0t-0g; Thu, 19 Aug 2021 09:46:56 +0000
-Date: Thu, 19 Aug 2021 10:46:45 +0100
+ Linux)) id 1mGejF-004tP2-Ci; Thu, 19 Aug 2021 09:53:07 +0000
+Date: Thu, 19 Aug 2021 10:52:53 +0100
 From: Christoph Hellwig <hch@infradead.org>
 To: Tom Lendacky <thomas.lendacky@amd.com>
 Cc: linux-kernel@vger.kernel.org, x86@kernel.org,
@@ -38,16 +38,19 @@ Cc: linux-kernel@vger.kernel.org, x86@kernel.org,
  Brijesh Singh <brijesh.singh@amd.com>,
  Joerg Roedel <joro@8bytes.org>, Andi Kleen <ak@linux.intel.com>,
  Sathyanarayanan Kuppuswamy <sathyanarayanan.kuppuswamy@linux.intel.com>,
- Tianyu Lan <Tianyu.Lan@microsoft.com>, Joerg Roedel <jroedel@suse.de>
-Subject: Re: [PATCH v2 02/12] mm: Introduce a function to check for
- virtualization protection features
-Message-ID: <YR4ohWC4/cLsuCvv@infradead.org>
+ Tianyu Lan <Tianyu.Lan@microsoft.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Joerg Roedel <jroedel@suse.de>
+Subject: Re: [PATCH v2 03/12] x86/sev: Add an x86 version of prot_guest_has()
+Message-ID: <YR4p9TqKTLdN1A96@infradead.org>
 References: <cover.1628873970.git.thomas.lendacky@amd.com>
- <482fe51f1671c1cd081039801b03db7ec0036332.1628873970.git.thomas.lendacky@amd.com>
+ <7d55bac0cf2e73f53816bce3a3097877ed9663f3.1628873970.git.thomas.lendacky@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <482fe51f1671c1cd081039801b03db7ec0036332.1628873970.git.thomas.lendacky@amd.com>
+In-Reply-To: <7d55bac0cf2e73f53816bce3a3097877ed9663f3.1628873970.git.thomas.lendacky@amd.com>
 X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
  casper.infradead.org. See http://www.infradead.org/rpr.html
 X-Mailman-Approved-At: Thu, 19 Aug 2021 13:15:57 +0000
@@ -65,12 +68,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Aug 13, 2021 at 11:59:21AM -0500, Tom Lendacky wrote:
-> +#define PATTR_MEM_ENCRYPT		0	/* Encrypted memory */
-> +#define PATTR_HOST_MEM_ENCRYPT		1	/* Host encrypted memory */
-> +#define PATTR_GUEST_MEM_ENCRYPT		2	/* Guest encrypted memory */
-> +#define PATTR_GUEST_PROT_STATE		3	/* Guest encrypted state */
+On Fri, Aug 13, 2021 at 11:59:22AM -0500, Tom Lendacky wrote:
+> While the name suggests this is intended mainly for guests, it will
+> also be used for host memory encryption checks in place of sme_active().
 
-Please write an actual detailed explanaton of what these mean, that
-is what implications it has on the kernel.
+Which suggest that the name is not good to start with.  Maybe protected
+hardware, system or platform might be a better choice?
 
+> +static inline bool prot_guest_has(unsigned int attr)
+> +{
+> +#ifdef CONFIG_AMD_MEM_ENCRYPT
+> +	if (sme_me_mask)
+> +		return amd_prot_guest_has(attr);
+> +#endif
+> +
+> +	return false;
+> +}
+
+Shouldn't this be entirely out of line?
+
+> +/* 0x800 - 0x8ff reserved for AMD */
+> +#define PATTR_SME			0x800
+> +#define PATTR_SEV			0x801
+> +#define PATTR_SEV_ES			0x802
+
+Why do we need reservations for a purely in-kernel namespace?
+
+And why are you overoading a brand new generic API with weird details
+of a specific implementation like this?
