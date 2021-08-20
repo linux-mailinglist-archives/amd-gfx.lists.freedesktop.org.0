@@ -1,45 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 340E93F374D
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Aug 2021 01:30:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65CE03F3749
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Aug 2021 01:30:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80D5F6EB31;
-	Fri, 20 Aug 2021 23:30:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A92756EB2C;
+	Fri, 20 Aug 2021 23:30:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 876 seconds by postgrey-1.36 at gabe;
- Fri, 20 Aug 2021 23:30:25 UTC
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (unknown
- [40.107.236.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 316386EB31
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Aug 2021 23:30:25 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2045.outbound.protection.outlook.com [40.107.236.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B10646EB2C
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Aug 2021 23:30:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h2FXixUcat5kKlrDnUjTAMbCX3cPLJyoxitUVAVZQmjfGM9s6b3xpM84kk6tKzDW9AHzz27LP++95KnpIjku0zaT04L1F2y8KrGlyzmh8oOtXzCdj+lovSzLUq1LnOfnR5sWXVhSm+BZht+dMnCEwRmySTIS6D4dP6EcA7eSCwYg9FeQ1lxKxsl0fIZdBuuHMbW6FeRqOCBtBVSvP/+0tlhdQNH6qcz88eny46oDOFu3JjX2A4Ti0hkEj4AqphPIDptWWQY5TgxPWMv96TYJTlhSP92wEYK1Mx4mODCgg80rNV3Kdo6W3Y3GlYnysC/O6EHzdmcU6nOWt+AXhwbs3A==
+ b=dWampircES0lGE7MVNYdliSTVtP/ZB3kVQ2DTNDBKp3p+qxlHOiZZzefkr1ZthY4tzasq9PB7u5Nz2AX3My/H1yOyASBwnKupjK99KXWZWNrAQMWeNCzoV54DmNXEEOEt+yZ3uzF7YoiY8ydEXDQR6MnMQ1UtckPInyL0I21QLyxI8QR6a5/CcGGbmJLB0JIwc2cdAxoDgHTc0wpqm9J4BRFScSUVwONLNl3nEvzbVFXfNMz5Tpxl6/JZukj/ER9D3zwqwM+r+VdXN7XZwKUWUA30gjqFkhRszFyXRJzGqBlu996AZucUysz0aLIA9ChDPLvLlsGGKbIjwzGgtgVoA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5BFx32ABToDthud4/8Dp/KqVxyqLsu+eIAve3QBs0LU=;
- b=QAY7Dm/4KEnYMBMYRFjXYJd0dCsYNsFzyWNMb/ewkBqGKVM7v+xAWkrNdYRRiUZLxXGvZUi0SQtido+/hZEjpmlvNhJcs9q/n/O3uT/d9vWRpolojtvxopwpSvhnK3S5oBI7HuMMM2yAeTA+/0vtcqzVIXyDtVerCNVlUEyHXmVYomNNMD/+nuM6eqOKLP84qYLvksyTMiLLom3Yoncjt4OcMmFJhlm51d3HhjT+oa5sv0jDtLnqiUXg1g4ItL3P7CWsKZbmcX1k6/0D5IECIsZeLD3VkCCATLN48bI0sIGMKJZu6UB5iZlITXJvI4IqtTdGry50NQZdS0jj1dyT6g==
+ bh=8TK3qxcgfLnDXMZIFVNaH+Mkvhom/APcC5svtZB/uCY=;
+ b=CIwQwqSJtwkaTfKkrlM80nkE+0JnyuwzF+LltE8MVVLI6jIvtpbJmaDYkbKeBetw1zOdyB3Et9VYOAXdtzBb7Uwi25ogaEOfHyjGMBvdikGOS5FUFO4EAZDhrcacxUdceY4YlqR3MwCTAC4YgtfEZk3OLOZTT5kXTF6X8tIDWTlPM2JU9REJYv+x6YBAOHzier39hGjF5N7n4T1hRcrCu1cF/b/w7GeGnnWf4+1jZXzYmYz+sbiTslpUtKboqZ+TB4mkP594lwoFonhDZSqhdb40YDcpVh3+zzJmCGJwDZH+kBgUnqc7HhF5zwHlrgEpYMbM8nuQCR9DTBzzp7PZiQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5BFx32ABToDthud4/8Dp/KqVxyqLsu+eIAve3QBs0LU=;
- b=M8lApC3QgcqYbeJU/MJP3pBMV13W0HJsal98AGQJdx1vA+SGe9czOkl+Qmkf5VpVLzoSn7jJsBsOEBUVoQk+SGVmebhUVjQkkJ8yRkhL83txVerb5rvAaYWgtgmAeIqhRQ75Xq/8J8UZ43ngRVEdWmBfSqkB/BkXJ+WoH2KEyWU=
-Received: from BN6PR22CA0025.namprd22.prod.outlook.com (2603:10b6:404:37::11)
- by SA0PR12MB4480.namprd12.prod.outlook.com (2603:10b6:806:99::10)
+ bh=8TK3qxcgfLnDXMZIFVNaH+Mkvhom/APcC5svtZB/uCY=;
+ b=I0cfnXEOXsemuiL+l4dkRp+eOQNoBRwX5NjM+FDBbTfmt1FrX5fE6lV66NtZDZMyl4my+zqu7wnWVgAJz6yZD2wfcnXIaRLKomRbZNYo6XeszS/YodYhijnlm6+3GaMY/LZ3HsaDKS9Efecrqt5TJ/quQj18zKPKTQDmzEdrqv4=
+Received: from BN9PR03CA0323.namprd03.prod.outlook.com (2603:10b6:408:112::28)
+ by BY5PR12MB3938.namprd12.prod.outlook.com (2603:10b6:a03:1af::31)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Fri, 20 Aug
- 2021 23:15:40 +0000
-Received: from BN8NAM11FT018.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:37:cafe::55) by BN6PR22CA0025.outlook.office365.com
- (2603:10b6:404:37::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.21; Fri, 20 Aug
+ 2021 23:15:42 +0000
+Received: from BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:112:cafe::c6) by BN9PR03CA0323.outlook.office365.com
+ (2603:10b6:408:112::28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19 via Frontend
- Transport; Fri, 20 Aug 2021 23:15:40 +0000
+ Transport; Fri, 20 Aug 2021 23:15:41 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,24 +46,24 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT018.mail.protection.outlook.com (10.13.176.89) with Microsoft SMTP
+ BN8NAM11FT068.mail.protection.outlook.com (10.13.177.69) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4436.19 via Frontend Transport; Fri, 20 Aug 2021 23:15:40 +0000
+ 15.20.4436.19 via Frontend Transport; Fri, 20 Aug 2021 23:15:41 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Fri, 20 Aug
- 2021 18:15:38 -0500
+ 2021 18:15:40 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Bhawanpreet.Lakha@amd.com>, <Rodrigo.Siqueira@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
- <roman.li@amd.com>, <Anson.Jacob@amd.com>, Roman Li <Roman.Li@amd.com>,
- <stable@vger.kernel.org>
-Subject: [PATCH 05/10] drm/amd/display: Limit max DSC target bpp for specific
- monitors
-Date: Fri, 20 Aug 2021 19:15:15 -0400
-Message-ID: <20210820231520.1243509-5-qingqing.zhuo@amd.com>
+ <roman.li@amd.com>, <Anson.Jacob@amd.com>, Aurabindo Pillai
+ <aurabindo.pillai@amd.com>, Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Subject: [PATCH 06/10] drm/amd/display: Add emulated sink support for updating
+ FS
+Date: Fri, 20 Aug 2021 19:15:16 -0400
+Message-ID: <20210820231520.1243509-6-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210820231520.1243509-1-qingqing.zhuo@amd.com>
 References: <20210820231520.1243509-1-qingqing.zhuo@amd.com>
@@ -77,28 +75,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e22e4b58-0483-4d65-02a4-08d964306d7a
-X-MS-TrafficTypeDiagnostic: SA0PR12MB4480:
-X-Microsoft-Antispam-PRVS: <SA0PR12MB4480FE0310BF2B4ED658B549FBC19@SA0PR12MB4480.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
+X-MS-Office365-Filtering-Correlation-Id: f2082678-2315-4125-82fd-08d964306e2b
+X-MS-TrafficTypeDiagnostic: BY5PR12MB3938:
+X-Microsoft-Antispam-PRVS: <BY5PR12MB393899484D7CE867B4D34748FBC19@BY5PR12MB3938.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Q9Jz0SKGcqgRUIUZfQqBYGWNcYrWoh4Hmq34UzUrn8yAEuF5+r1Ev5XKr7IniNxeRw6T8891I8bcrboa9+9XAArYNn6V7zoQJ67rRPXsvGP1BXXe0kYdRPy4gqy/tN3XCyT+XBBh4eg73uopzpaXEvYx7XSZNvormFZyy7ixE7lU8Lk2LMT+vDMiOn5RE9D4kGRs2eOofteH6gA6NXmz+4X1Ks3STk6BsE96yLh3yyLGYmokBqL0dv2vHserxM7uOOm4wE3rQkllalLxqBBXihThbKCqinY3V1yQCaMVCe2HE0GMYQ7ddN42rOdh6N/lf/t4KmhsMQ4844CaiQY83cP16Gks0A2SD3ClOk5VN1ED4N7cmB1wWeUtwTlkL1W/fCx3QVuHPTnwUOfzMhVBfbvmFb7b0hNVHnTKOvu4hp/tQA/rhKQkmLjGfIlv77yjjMUyuoGDmx/+68K/oxpbd4wVeWLxHE0Hys6crXe+23dl7XgUiBjqTW8c2CQ1dE+ThLF5VCTjuEQjUcCdYCAzsrwpEuwB1t5k4s8l+6bdyz56C+RC0jvWB2ji3pnmdTLqVefqSD8tb/bO5hZe+GzMb2anAxFdIo35iPuxEoCDP+bdKZ1Kah3mp/hM5yrjFAixAp7C1PeSFRrX2u/3Q+UTrU5QJ9GS4A7wsOFfi6p503e+qR8U7GbvP15Xxh86Wrc7Au8PYqdTA2JCNTUMYvuG12ynX57DfTwMLY6syUgC+jT0syKvPC0Qy4w6HrlUG2NVqZt765EzKyayJJa3pKye0A==
+X-Microsoft-Antispam-Message-Info: sd6t+XPiZk0tBweBJlsPfZBWzAhfkVENyXXBHLyzg5KIU1sTtKW5OGWo40X/DAdS5ugG3TDpAMgs5r2Ucq5VaTXefTcYOcf6Whb6EANgO8g7u+OmBuatwUf8iMWBbAlD9ivWSCDS8SqBKQ6TpGJcBgY+qTaZoUw2JHXMJcK3zY0pvJww6nUYpiufbxMkpVIpE6cw09VlycgWrKMKCu8gyj+8/SLbtIGcJgAwefmrdpF0xH97nR/o+OoNctdIBA/3XOi8n3fL1k/sDvFtqO/y75aeVzj8cEVtgBuwOmnGayx2MmZ4Y+expj0ksxnKgSMzJUMD0lbMm2i7lQd+/R6cdUgEwjuQCqLWzY25F9HnYSSxyotEItdNa4nmOc9/QADxOM2REg6WHnA3P8lZJb7ke4kOl8ezd9xvyMnh4NRqeHvX4d8YWMFljuIcuaojjcBnmYWIC5gyPJCIjhQp8fFpqWHdXQraO6e87IzLNlnuHpeEUnVv8C+sLpxVi9sSKToiYEWIc06mn/KuWsRp1A1InBk+6jmK/3bcrijCgT7Ks0pkx9hm+J6lWkkxAaKxx0g5jF+hPN+8Pl3/xHf9VUg7MK5+Qsiibyb7rVOvWyeHk4lZo2wPlgJ5LaJPd6RG9XwKu0fom5zPGRSrcBr/mFsV76AbO8WU/nfR5T+3Mh82P684N7eHz1pyM0SmIC3Xy7Y+4hJ2YL5N2HWkBQKd/ati1H6MAxgCXU8Wf/Pj1U+Ma0elD2pAUzRbcN94OuSpG/7nUP5pGcVpEnvEqJBN+PR63A==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(70586007)(336012)(82310400003)(2616005)(70206006)(426003)(34020700004)(54906003)(356005)(86362001)(2906002)(6916009)(44832011)(8676002)(16526019)(186003)(508600001)(81166007)(26005)(5660300002)(47076005)(316002)(8936002)(4326008)(36860700001)(6666004)(36756003)(1076003)(83380400001)(36900700001);
+ SFS:(4636009)(36840700001)(46966006)(70206006)(54906003)(1076003)(81166007)(316002)(8676002)(336012)(4326008)(2616005)(34020700004)(8936002)(70586007)(36756003)(6666004)(82310400003)(36860700001)(86362001)(426003)(6916009)(186003)(5660300002)(44832011)(83380400001)(16526019)(508600001)(2906002)(356005)(47076005)(26005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2021 23:15:40.7116 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e22e4b58-0483-4d65-02a4-08d964306d7a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2021 23:15:41.8759 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2082678-2315-4125-82fd-08d964306e2b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT018.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4480
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3938
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,76 +111,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Roman Li <Roman.Li@amd.com>
+From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 
 [Why]
-Some monitors exhibit corruption at 16bpp DSC.
+When forced modes are used during certain IGT tests,
+without a real connector, dc_sink would be null when
+standard modes are added by the driver. Calling the
+function to update freesync capabilities at this
+point will result in an error being printed
 
 [How]
-- Add helpers for patching edid caps.
-- Use it for limiting DSC target bitrate to 15bpp for known monitors
+Use emulated sink when available. If both the normal
+and emulated sink are not available, set all freesync
+parameters to 0.
 
-Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: Roman Li <Roman.Li@amd.com>
-Cc: stable@vger.kernel.org
+Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 ---
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 35 +++++++++++++++++++
- 1 file changed, 35 insertions(+)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 20 +++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index 6fee12c91ef5..d793eec69d61 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -40,6 +40,39 @@
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index e5ff59e2fc7c..e1e57e7465a7 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -10917,6 +10917,7 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
+ 	struct amdgpu_dm_connector *amdgpu_dm_connector =
+ 			to_amdgpu_dm_connector(connector);
+ 	struct dm_connector_state *dm_con_state = NULL;
++	struct dc_sink *sink = amdgpu_dm_connector->dc_sink;
  
- #include "dm_helpers.h"
+ 	struct drm_device *dev = connector->dev;
+ 	struct amdgpu_device *adev = drm_to_adev(dev);
+@@ -10928,28 +10929,31 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
+ 		goto update;
+ 	}
  
-+struct monitor_patch_info {
-+	unsigned int manufacturer_id;
-+	unsigned int product_id;
-+	void (*patch_func)(struct dc_edid_caps *edid_caps, unsigned int param);
-+	unsigned int patch_param;
-+};
-+static void set_max_dsc_bpp_limit(struct dc_edid_caps *edid_caps, unsigned int param);
+-	if (!edid) {
++	sink = amdgpu_dm_connector->dc_sink ?
++		amdgpu_dm_connector->dc_sink :
++		amdgpu_dm_connector->dc_em_sink;
 +
-+static const struct monitor_patch_info monitor_patch_table[] = {
-+{0x6D1E, 0x5BBF, set_max_dsc_bpp_limit, 15},
-+{0x6D1E, 0x5B9A, set_max_dsc_bpp_limit, 15},
-+};
-+
-+static void set_max_dsc_bpp_limit(struct dc_edid_caps *edid_caps, unsigned int param)
-+{
-+	if (edid_caps)
-+		edid_caps->panel_patch.max_dsc_target_bpp_limit = param;
-+}
-+
-+static int amdgpu_dm_patch_edid_caps(struct dc_edid_caps *edid_caps)
-+{
-+	int i, ret = 0;
-+
-+	for (i = 0; i < ARRAY_SIZE(monitor_patch_table); i++)
-+		if ((edid_caps->manufacturer_id == monitor_patch_table[i].manufacturer_id)
-+			&&  (edid_caps->product_id == monitor_patch_table[i].product_id)) {
-+			monitor_patch_table[i].patch_func(edid_caps, monitor_patch_table[i].patch_param);
-+			ret++;
-+		}
-+
-+	return ret;
-+}
-+
- /* dm_helpers_parse_edid_caps
-  *
-  * Parse edid caps
-@@ -125,6 +158,8 @@ enum dc_edid_status dm_helpers_parse_edid_caps(
- 	kfree(sads);
- 	kfree(sadb);
++	if (!edid || !sink) {
+ 		dm_con_state = to_dm_connector_state(connector->state);
  
-+	amdgpu_dm_patch_edid_caps(edid_caps);
-+
- 	return result;
- }
+ 		amdgpu_dm_connector->min_vfreq = 0;
+ 		amdgpu_dm_connector->max_vfreq = 0;
+ 		amdgpu_dm_connector->pixel_clock_mhz = 0;
++		connector->display_info.monitor_range.min_vfreq = 0;
++		connector->display_info.monitor_range.max_vfreq = 0;
++		freesync_capable = false;
  
+ 		goto update;
+ 	}
+ 
+ 	dm_con_state = to_dm_connector_state(connector->state);
+ 
+-	if (!amdgpu_dm_connector->dc_sink) {
+-		DRM_ERROR("dc_sink NULL, could not add free_sync module.\n");
+-		goto update;
+-	}
+ 	if (!adev->dm.freesync_module)
+ 		goto update;
+ 
+ 
+-	if (amdgpu_dm_connector->dc_sink->sink_signal == SIGNAL_TYPE_DISPLAY_PORT
+-		|| amdgpu_dm_connector->dc_sink->sink_signal == SIGNAL_TYPE_EDP) {
++	if (sink->sink_signal == SIGNAL_TYPE_DISPLAY_PORT
++		|| sink->sink_signal == SIGNAL_TYPE_EDP) {
+ 		bool edid_check_required = false;
+ 
+ 		if (edid) {
+@@ -10996,7 +11000,7 @@ void amdgpu_dm_update_freesync_caps(struct drm_connector *connector,
+ 				freesync_capable = true;
+ 			}
+ 		}
+-	} else if (edid && amdgpu_dm_connector->dc_sink->sink_signal == SIGNAL_TYPE_HDMI_TYPE_A) {
++	} else if (edid && sink->sink_signal == SIGNAL_TYPE_HDMI_TYPE_A) {
+ 		i = parse_hdmi_amd_vsdb(amdgpu_dm_connector, edid, &vsdb_info);
+ 		if (i >= 0 && vsdb_info.freesync_supported) {
+ 			timing  = &edid->detailed_timings[i];
 -- 
 2.25.1
 
