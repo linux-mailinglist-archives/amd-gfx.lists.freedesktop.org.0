@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4D4D3F374A
-	for <lists+amd-gfx@lfdr.de>; Sat, 21 Aug 2021 01:30:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7FD33F374C
+	for <lists+amd-gfx@lfdr.de>; Sat, 21 Aug 2021 01:30:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DA456EB2D;
-	Fri, 20 Aug 2021 23:30:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 061A26EB30;
+	Fri, 20 Aug 2021 23:30:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2058.outbound.protection.outlook.com [40.107.243.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A4926EB2D
- for <amd-gfx@lists.freedesktop.org>; Fri, 20 Aug 2021 23:30:04 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1anam02on2068.outbound.protection.outlook.com [40.107.96.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 730896EB30
+ for <amd-gfx@lists.freedesktop.org>; Fri, 20 Aug 2021 23:30:14 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Gzd7MwwJb1b1yYTejCzPPE8QRre9+xvyDiui+Slbv2ZS2l2m1wdpUUHA+MNXf3NWt9ycgGw6oV+siX+2A9InFWxF/5GGcpQY3GkbzRGGTA0stJwSx8yxRN3/2uFneW8UTQuOhaSDS2o0QM32V9qqX8gj0u2UVebCMaHEDZmpTV2JkV07Gwy45PEkWMEeSE9rKD6z3XSteTSl9Syu79BOk/IBIRIlzHdBtIBOTQfR251EEyR7Aj86/01+dvi6xYfSlWIXi0XF6nQD77I0CpUlSu3BW7NJlmesguF5n5cZ9Dd/AuQ5aXbMY/qdRIebEP/H82Xx90il7v9SsSxUklCSnQ==
+ b=ePj+zT5Av6ZIDKdDCp/jN9m862ifelE59ntxscj/MMTQqx9NZS/4ngqf8MCbwGi4w8tC7WziXl7PQxtxvj2Yqz7pIQVz32pKj+KFTteYreiynE7uSmyHGFz1jD/PqZfkGXxAcWalIDUzDZmE9jA45cYloibpxXHJmph8N0n2jM8UeSp24CTnKXJ5mA0z1rG89xi+d9BoYJJwrn5SDwtf34HZCSoBk32hx9DIIYGmuxCimTc3my14/6NGBNkillggaqe51ewfmsboEPB0jAopWCUjHqJSBrnlNRj1NBy3j4jpc+qcKVpL61/QYdv8Mv6fkR63/Eh9psINVWrs5LuXAA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QC3RmP7+iWW7Jse0K2nv3uGFZ1cyL22khvHgJyDtoKs=;
- b=PCTTukVsi5d9Qmca8O2CLpMfH/NBdM5ZVsVdgEC3zgLemQknAPPjUh/AKBoegrEDj5Bn3xHL8i0m+/zxe2Aodp6GcRfULadHGtCYGgo7nxqp9/h9s4FP7Szmqw9gGogYiD3sUWwR9TTgvLTA+xnRqQVqVbg2qetwXOOGjSl5FWvJ6m6/xSsY+MwRItVLsWnU9Eog4A34he/Uv8CO14Bo3iqiceHEaCrOnKru97lNB/jSPTTK8QTMW1YR9dfw8kiyLPk0hHlx2qmA3S2MhUGz1awr0u5pWmqQo4sux+Gj0F4TQUzqRbE1oIYoorXNmOIGGhqNtbnWDfToNjJeeWxOWA==
+ bh=Cubz+Dz5K9NwzDjQxxxo6dLCyVOTc79aJz9YE+EI+fI=;
+ b=OFOTchlVoJgErTgU+LiMrKNiRYCvs91sR/aN9xAxLMLrIG986iPlTtiy3u8X42xw1+s/TJP1BT1TZzTfIQ+9rRCqNeuBSBOWkNi/tmWoijTK8TtHr595Qzc0fFT1K4k/mwC0x3rEYlTXbFBV0ziRlSN5qS2vyts8Df4vckkpCD3xhDR76VQJ4E0NZR0looz9Gn0Jtz8iaCe212kQ/Um1wKTIYN5JmuDbOVrJ5wZcuw4fv1OLcYXNBXqPu0HPQUxX5oiYP5EG6jz6bcN9pYQPDDP4Fht9jJZpkrna7yvVp1aEhw6cnz12UGwrSf6bAw+g2aW026vmfd/99MJpIpjvGw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QC3RmP7+iWW7Jse0K2nv3uGFZ1cyL22khvHgJyDtoKs=;
- b=16l2ZqUYzg8yVuqPK5kPs5DGvNE9sYzfSMJsGym92b+0v4wLSlPVRoBz+T/G55ixpVvw27NFDcuf2UQaivR/G9fcPEQ9pt9nYYa1JoQJQvzCwNdRq9Ow2c3Dzyg8voePMvb2NmDtpMx2qOIUeKvOxRzspi4WKFERZsInv6hVoro=
-Received: from BN9PR03CA0485.namprd03.prod.outlook.com (2603:10b6:408:130::10)
- by MN2PR12MB3022.namprd12.prod.outlook.com (2603:10b6:208:ce::32)
+ bh=Cubz+Dz5K9NwzDjQxxxo6dLCyVOTc79aJz9YE+EI+fI=;
+ b=XGCIn9p/QiqKnyI0n5adOUdqn57Iv3qADXvRPsFajakRElVkIpQ83Lm1RMQb7L6zZlPfXmICjgnPVq6MY8M1uqjIEd3I+uhs7FBlwOf4GZjB0hCnYq+yDtQh02vD3Zn3JKQtvkGgj1eMG17OIHDM5S4nTGZk7n4qLN65r5N+DKc=
+Received: from BN9PR03CA0586.namprd03.prod.outlook.com (2603:10b6:408:10d::21)
+ by MN2PR12MB3854.namprd12.prod.outlook.com (2603:10b6:208:16a::27)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.18; Fri, 20 Aug
- 2021 23:15:38 +0000
-Received: from BN8NAM11FT006.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:130:cafe::5) by BN9PR03CA0485.outlook.office365.com
- (2603:10b6:408:130::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Fri, 20 Aug
+ 2021 23:15:39 +0000
+Received: from BN8NAM11FT036.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:10d:cafe::cc) by BN9PR03CA0586.outlook.office365.com
+ (2603:10b6:408:10d::21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19 via Frontend
- Transport; Fri, 20 Aug 2021 23:15:38 +0000
+ Transport; Fri, 20 Aug 2021 23:15:39 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,23 +46,22 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT006.mail.protection.outlook.com (10.13.177.21) with Microsoft SMTP
+ BN8NAM11FT036.mail.protection.outlook.com (10.13.177.168) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4436.19 via Frontend Transport; Fri, 20 Aug 2021 23:15:38 +0000
+ 15.20.4436.19 via Frontend Transport; Fri, 20 Aug 2021 23:15:39 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Fri, 20 Aug
- 2021 18:15:35 -0500
+ 2021 18:15:37 -0500
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Bhawanpreet.Lakha@amd.com>, <Rodrigo.Siqueira@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
- <roman.li@amd.com>, <Anson.Jacob@amd.com>, Michael Strauss
- <michael.strauss@amd.com>, Eric Yang <Eric.Yang2@amd.com>
-Subject: [PATCH 03/10] drm/amd/display: Set min dcfclk if pipe count is 0
-Date: Fri, 20 Aug 2021 19:15:13 -0400
-Message-ID: <20210820231520.1243509-3-qingqing.zhuo@amd.com>
+ <roman.li@amd.com>, <Anson.Jacob@amd.com>, Roman Li <Roman.Li@amd.com>
+Subject: [PATCH 04/10] drm/amd/display: Use max target bpp override option
+Date: Fri, 20 Aug 2021 19:15:14 -0400
+Message-ID: <20210820231520.1243509-4-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210820231520.1243509-1-qingqing.zhuo@amd.com>
 References: <20210820231520.1243509-1-qingqing.zhuo@amd.com>
@@ -74,28 +73,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e3f38118-c4e2-4b4d-0f76-08d964306be2
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3022:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB30229FE563FDE0B2932846ECFBC19@MN2PR12MB3022.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Office365-Filtering-Correlation-Id: cbce4f37-7aac-4a78-49ce-08d964306c78
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3854:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3854A4938A6F52F5FDE81C55FBC19@MN2PR12MB3854.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xW2cjQYXjPBmI2kUVqKyWearkgNCARdfX99GkW87LQsEdUHZW8pNvjPtfDl0GjuJf+BS8AQNIFRMpcYIRwp0VulSHCnHHrCIVGvGpc7cuuUYqCYuVga9lkQaGX4Rk1MkXgLUzP+m10wp30rJzWsSz+WNdrbaJTwLu6Sn3yHARsBRGat3DzY8HHhFAh8y6jG752DozghKpj2n7a8+Wq17UEZtyFdThG8lSG/gz+RbTDK5Zo6bCMNWQLIF6mdk1iUas0AcUFxvw6m3W02hzyXd5cjlR0o2XEOfYIw28Svz7jL7OBiQ/vkH/2pNZD870UouVCIFLEqBwu3Rq/q4MtMFmi99QAKDC6JiK4n+vNexWcaRcEPviM03G5GLJcr0SVr4XlHPlqP8rRNelGUoNW4FmzdKi45u4pxitNArXjKjHbQaMMBTSvnH8B3/waQT+tSAKO0kUd7FwW46fm9dMHGou2tfUSvvsoZZDUYC6gRHLiy6psPg3ON7El5/EsyPYSIiiZc4LMr82Asca6pxwtFZ5F2AAVsKlVHaJJ01e9NujdwvBPfXzOSVqIewk2lpwFxwnsygpuOyLT2LCdez3qZQXgETtxwdeLqT2cWOEk7BfB7sGjdopGqr9o2Y9wc3A78wu5Zlm28A/fBvrF+aSiLUed85kNK8XOGgYL1d75B/8D38407qEzbqBrKi8ohJKl5Bo7icWSt/ztXVG+s3eSX98W+gS10IMsU0gjOH+vMF6h3rFU5Putok8PLYva+vj4yDs7skHNE8quHY78VIa5UlbQWY55H/nmh85W/gRe2Kv1A=
+X-Microsoft-Antispam-Message-Info: bMPVXfIod1yvmhAxFOFU+6XGHPHeY/4sXHeTDM5gV0laAKHUxULWYv9jayL25duTwkpL+8wfMFdUJPJ9dieEh5L3GrhKHiKsh67EmAwIIYDO2v1aRTUfsZ1ddYgiU9/sAA3CIJ3/hPA+0DqYokshgTtD/sbRVJWrsJ6kP+7NSqk4/msZhC1Er3rqRbi4rmaubMIb7HkN4qAWx9ixF2aJO4P/Mi77HgZu1oG8+VL79IYBii1+77I+yuXzVhx5Xwa5X574HLbmgsi2+Ul3mAQhjR0FU0A8tQ9h+JUjNp8wDLG9LYbx/x/cjrtNxm7Q+xUE+aDA/icvHQVOz1IomY4MbbTdj6XCfdso8rgeboAaN6WzU5xZs20ZOgUU4Smuebiw+ktUCutb/IZSXtYTQn1FO/TSQiwPcM6o4pRAFUE8V/4vfl+89wVGpEH/QJ4cAWkW37fli+7Xi9RXiQfJM/znf7li5PQ/TAn0SklgUM04SlDnLJAUJzCnua2cyLMfCa4v9a3EFrCMslfDInnzWvfjhL1x228IK6zGsYDp52pevGxvzjfvgljRl5dby+vh1e1Wf0NyXB4V7Qs3jeLCrGcUHQc7PTD2enmRLvve5XOGDKd1u7XJKVvAGAKzW9zq3eC1FiM4EhqGp16EbvQpbM4D+tyq2NKFNCpk+8dcgljWemWqpuRZVfYGnYE8MsXuKr4WbtYxT53Mh9Wzp3iOSeMEqfbmCC4pTs9m3ZFqy8xDx42+xuh9dO9zY24nj3RyMJwGGJ6dCia70CgtwTOAkHONGQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(376002)(396003)(136003)(346002)(36840700001)(46966006)(8676002)(426003)(336012)(44832011)(83380400001)(36860700001)(82740400003)(34020700004)(2906002)(6916009)(81166007)(70586007)(2616005)(478600001)(8936002)(26005)(356005)(86362001)(70206006)(82310400003)(316002)(16526019)(5660300002)(186003)(4326008)(6666004)(47076005)(54906003)(1076003)(36756003)(40753002)(36900700001);
+ SFS:(4636009)(376002)(39860400002)(346002)(396003)(136003)(36840700001)(46966006)(4326008)(82310400003)(36756003)(6916009)(1076003)(356005)(83380400001)(186003)(8936002)(336012)(81166007)(36860700001)(82740400003)(34020700004)(26005)(5660300002)(2616005)(478600001)(70586007)(70206006)(44832011)(316002)(426003)(47076005)(6666004)(86362001)(16526019)(8676002)(54906003)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2021 23:15:38.0401 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e3f38118-c4e2-4b4d-0f76-08d964306be2
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2021 23:15:39.0236 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cbce4f37-7aac-4a78-49ce-08d964306c78
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT006.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT036.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3022
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3854
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,147 +109,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Michael Strauss <michael.strauss@amd.com>
+From: Roman Li <Roman.Li@amd.com>
 
-[WHY]
-Clocks don't get recalculated in 0 stream/0 pipe configs,
-blocking S0i3 if dcfclk gets high enough
+[Why]
+Max target bpp override is an option for working around
+DSC issues. It is supported on DC level, but was not
+used in DM.
 
-[HOW]
-Create DCN31 copy of DCN30 bandwidth validation func which
-doesn't entirely skip validation in 0 pipe scenarios
+[How]
+Use actual option value instead of 0.
 
-Override dcfclk to vlevel 0/min value during validation if pipe
-count is 0
-
-Reviewed-by: Eric Yang <Eric.Yang2@amd.com>
+Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Signed-off-by: Michael Strauss <michael.strauss@amd.com>
+Signed-off-by: Roman Li <Roman.Li@amd.com>
 ---
- .../drm/amd/display/dc/dcn30/dcn30_resource.c |  2 +-
- .../drm/amd/display/dc/dcn30/dcn30_resource.h |  7 +++
- .../drm/amd/display/dc/dcn31/dcn31_resource.c | 63 ++++++++++++++++++-
- 3 files changed, 70 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c         | 8 +++++++-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c   | 4 ++--
+ 2 files changed, 9 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index 28e15ebf2f43..1333f0541f1b 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -1856,7 +1856,7 @@ static struct pipe_ctx *dcn30_find_split_pipe(
- 	return pipe;
- }
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 162a8208f74f..e5ff59e2fc7c 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -5753,9 +5753,15 @@ static void apply_dsc_policy_for_stream(struct amdgpu_dm_connector *aconnector,
+ {
+ 	struct drm_connector *drm_connector = &aconnector->base;
+ 	uint32_t link_bandwidth_kbps;
++	uint32_t max_dsc_target_bpp_limit_override = 0;
  
--static noinline bool dcn30_internal_validate_bw(
-+noinline bool dcn30_internal_validate_bw(
- 		struct dc *dc,
- 		struct dc_state *context,
- 		display_e2e_pipe_params_st *pipes,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
-index b754b89beadf..b92e4cc0232f 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.h
-@@ -55,6 +55,13 @@ unsigned int dcn30_calc_max_scaled_time(
+ 	link_bandwidth_kbps = dc_link_bandwidth_kbps(aconnector->dc_link,
+ 							dc_link_get_link_cap(aconnector->dc_link));
++
++	if (stream->link && stream->link->local_sink)
++		max_dsc_target_bpp_limit_override =
++			stream->link->local_sink->edid_caps.panel_patch.max_dsc_target_bpp_limit;
++	
+ 	/* Set DSC policy according to dsc_clock_en */
+ 	dc_dsc_policy_set_enable_dsc_when_not_needed(
+ 		aconnector->dsc_settings.dsc_force_enable == DSC_CLK_FORCE_ENABLE);
+@@ -5765,7 +5771,7 @@ static void apply_dsc_policy_for_stream(struct amdgpu_dm_connector *aconnector,
+ 		if (dc_dsc_compute_config(aconnector->dc_link->ctx->dc->res_pool->dscs[0],
+ 						dsc_caps,
+ 						aconnector->dc_link->ctx->dc->debug.dsc_min_slice_height_override,
+-						0,
++						max_dsc_target_bpp_limit_override,
+ 						link_bandwidth_kbps,
+ 						&stream->timing,
+ 						&stream->timing.dsc_cfg)) {
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+index 1bcba6943fd7..705f2e67edb5 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+@@ -547,7 +547,7 @@ static void set_dsc_configs_from_fairness_vars(struct dsc_mst_fairness_params *p
+ 					params[i].sink->ctx->dc->res_pool->dscs[0],
+ 					&params[i].sink->dsc_caps.dsc_dec_caps,
+ 					params[i].sink->ctx->dc->debug.dsc_min_slice_height_override,
+-					0,
++					params[i].sink->edid_caps.panel_patch.max_dsc_target_bpp_limit,
+ 					0,
+ 					params[i].timing,
+ 					&params[i].timing->dsc_cfg)) {
+@@ -579,7 +579,7 @@ static int bpp_x16_from_pbn(struct dsc_mst_fairness_params param, int pbn)
+ 			param.sink->ctx->dc->res_pool->dscs[0],
+ 			&param.sink->dsc_caps.dsc_dec_caps,
+ 			param.sink->ctx->dc->debug.dsc_min_slice_height_override,
+-			0,
++			param.sink->edid_caps.panel_patch.max_dsc_target_bpp_limit,
+ 			(int) kbps, param.timing, &dsc_config);
  
- bool dcn30_validate_bandwidth(struct dc *dc, struct dc_state *context,
- 		bool fast_validate);
-+bool dcn30_internal_validate_bw(
-+		struct dc *dc,
-+		struct dc_state *context,
-+		display_e2e_pipe_params_st *pipes,
-+		int *pipe_cnt_out,
-+		int *vlevel_out,
-+		bool fast_validate);
- void dcn30_calculate_wm_and_dlg(
- 		struct dc *dc, struct dc_state *context,
- 		display_e2e_pipe_params_st *pipes,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-index 3f92f27dac20..49563cfabdcd 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-@@ -1647,6 +1647,15 @@ static void dcn31_calculate_wm_and_dlg_fp(
- 	if (context->bw_ctx.dml.soc.min_dcfclk > dcfclk)
- 		dcfclk = context->bw_ctx.dml.soc.min_dcfclk;
- 
-+	/* We don't recalculate clocks for 0 pipe configs, which can block
-+	 * S0i3 as high clocks will block low power states
-+	 * Override any clocks that can block S0i3 to min here
-+	 */
-+	if (pipe_cnt == 0) {
-+		context->bw_ctx.bw.dcn.clk.dcfclk_khz = dcfclk; // always should be vlevel 0
-+		return;
-+	}
-+
- 	pipes[0].clks_cfg.voltage = vlevel;
- 	pipes[0].clks_cfg.dcfclk_mhz = dcfclk;
- 	pipes[0].clks_cfg.socclk_mhz = context->bw_ctx.dml.soc.clock_limits[vlevel].socclk_mhz;
-@@ -1772,6 +1781,58 @@ static void dcn31_calculate_wm_and_dlg(
- 	DC_FP_END();
- }
- 
-+bool dcn31_validate_bandwidth(struct dc *dc,
-+		struct dc_state *context,
-+		bool fast_validate)
-+{
-+	bool out = false;
-+
-+	BW_VAL_TRACE_SETUP();
-+
-+	int vlevel = 0;
-+	int pipe_cnt = 0;
-+	display_e2e_pipe_params_st *pipes = kzalloc(dc->res_pool->pipe_count * sizeof(display_e2e_pipe_params_st), GFP_KERNEL);
-+	DC_LOGGER_INIT(dc->ctx->logger);
-+
-+	BW_VAL_TRACE_COUNT();
-+
-+	out = dcn30_internal_validate_bw(dc, context, pipes, &pipe_cnt, &vlevel, fast_validate);
-+
-+	// Disable fast_validate to set min dcfclk in alculate_wm_and_dlg
-+	if (pipe_cnt == 0)
-+		fast_validate = false;
-+
-+	if (!out)
-+		goto validate_fail;
-+
-+	BW_VAL_TRACE_END_VOLTAGE_LEVEL();
-+
-+	if (fast_validate) {
-+		BW_VAL_TRACE_SKIP(fast);
-+		goto validate_out;
-+	}
-+
-+	dc->res_pool->funcs->calculate_wm_and_dlg(dc, context, pipes, pipe_cnt, vlevel);
-+
-+	BW_VAL_TRACE_END_WATERMARKS();
-+
-+	goto validate_out;
-+
-+validate_fail:
-+	DC_LOG_WARNING("Mode Validation Warning: %s failed alidation.\n",
-+		dml_get_status_message(context->bw_ctx.dml.vba.ValidationStatus[context->bw_ctx.dml.vba.soc.num_states]));
-+
-+	BW_VAL_TRACE_SKIP(fail);
-+	out = false;
-+
-+validate_out:
-+	kfree(pipes);
-+
-+	BW_VAL_TRACE_FINISH();
-+
-+	return out;
-+}
-+
- static struct dc_cap_funcs cap_funcs = {
- 	.get_dcc_compression_cap = dcn20_get_dcc_compression_cap
- };
-@@ -1854,7 +1915,7 @@ static struct resource_funcs dcn31_res_pool_funcs = {
- 	.link_encs_assign = link_enc_cfg_link_encs_assign,
- 	.link_enc_unassign = link_enc_cfg_link_enc_unassign,
- 	.panel_cntl_create = dcn31_panel_cntl_create,
--	.validate_bandwidth = dcn30_validate_bandwidth,
-+	.validate_bandwidth = dcn31_validate_bandwidth,
- 	.calculate_wm_and_dlg = dcn31_calculate_wm_and_dlg,
- 	.update_soc_for_wm_a = dcn31_update_soc_for_wm_a,
- 	.populate_dml_pipes = dcn31_populate_dml_pipes_from_context,
+ 	return dsc_config.bits_per_pixel;
 -- 
 2.25.1
 
