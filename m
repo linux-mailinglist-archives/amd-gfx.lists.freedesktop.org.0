@@ -1,60 +1,34 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACDE03F4B70
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 456113F4B6D
 	for <lists+amd-gfx@lfdr.de>; Mon, 23 Aug 2021 15:07:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E885A89D86;
-	Mon, 23 Aug 2021 13:07:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4891689DBF;
+	Mon, 23 Aug 2021 13:07:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com
- [IPv6:2a00:1450:4864:20::633])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7451B6EB4C;
- Sat, 21 Aug 2021 08:21:53 +0000 (UTC)
-Received: by mail-ej1-x633.google.com with SMTP id w5so25044730ejq.2;
- Sat, 21 Aug 2021 01:21:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=DLNxIQ4b36nOK8YiQqh9tj6nRfmDkfjYUObbVW/rzuE=;
- b=Fr6EEYIqKzlYJL29Bk6kAN0wVc2ohjHDeSEBJJ3s89jdf/bzRME8wKYuaxRVpDvTSr
- Pa/dLXpP5vKCZaSha5zbjNYyynxqvwGWy2/6TlZmVK6YSIiD3oYytqubmQZfh7RpGovV
- 6LYX4aOeXx5pavlsuD+yrLBrQQ4AyPo8SmrZMPzO9ViEAqDtNmRrzd90PMStPy608oEi
- 1suZXYDqceKxL83xTQcSWZ+8QBWDy5Z/tilnWr4cUWTl8fbXU1cKmtrn/jY9Qd7WXrM9
- ZT6LwHr39F8K7aJSOtu91mjN+c28v96xOW93LJjj5mS6SpVDhXsbVP1rtCb99SNx39oy
- RVyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=DLNxIQ4b36nOK8YiQqh9tj6nRfmDkfjYUObbVW/rzuE=;
- b=ShKAHCLuoiBBg602BNYieSBOkk44dxH8H1d2BDuX4AOlKpGM7UQ6ZWrDqQHtEXOYGE
- EsokfwKZls34FshKdY1LAVo4UWKZCorUvgiVTMXqx5kE8V2JSAQuzXxrSUjK4AgQVmDf
- o7rgdBr5poxUuWXrs9GMBnOQ6ZGAI1/kyf8kA9cb8NSLCRUWX9Tz4zPF2kBPE5om4c9M
- PsNkDvxO5nHFUm9vrpzrZhIqSiBmwQFG0VOE4fyRbqKe9TzcGHpcXMCjS14lSzMlSNHl
- vzB8YxarhEHt3I/w2XF6LdXTeMgtK3o6IDk245wJ3CPVw9WDsJD65z3PzTdq49F7xy/F
- siqQ==
-X-Gm-Message-State: AOAM5311wRrHdMmISqy/rmHZd9Vho11XXBqVshLHktjx+2NPxYXG3I5i
- XUJCS4ne4gqPIGopKEyeauoIOwemEMnIDg==
-X-Google-Smtp-Source: ABdhPJxkIkynxwDeHi53+v+uOYVEfg0/kL1L316cPovUVthOvnCB/ud9O4FzhIVP8auxpcmvbFQzUA==
-X-Received: by 2002:a17:907:2b09:: with SMTP id
- gc9mr26430452ejc.49.1629534112230; 
- Sat, 21 Aug 2021 01:21:52 -0700 (PDT)
-Received: from robot.. ([2a02:2f0d:b800:ab00:6398:283c:6862:f51e])
- by smtp.gmail.com with ESMTPSA id r27sm4888327edb.66.2021.08.21.01.21.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 21 Aug 2021 01:21:51 -0700 (PDT)
-From: Liviu Cheru <liviucheru@gmail.com>
-X-Google-Original-From: Liviu Cheru <liviu.cheru@gmail.com>
-To: airlied@linux.ie
-Cc: alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- liviu.cheru@gmail.com
-Subject: [PATCH] gpu: drm: amd: amdgpu: Fixed a few warnings
-Date: Sat, 21 Aug 2021 11:21:41 +0300
-Message-Id: <20210821082141.8608-1-liviu.cheru@gmail.com>
+X-Greylist: delayed 1350 seconds by postgrey-1.36 at gabe;
+ Sun, 22 Aug 2021 21:53:28 UTC
+Received: from out.smtpout.orange.fr (out02.smtpout.orange.fr [193.252.22.211])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0BBE589E43
+ for <amd-gfx@lists.freedesktop.org>; Sun, 22 Aug 2021 21:53:28 +0000 (UTC)
+Received: from pop-os.home ([90.126.253.178]) by mwinf5d51 with ME
+ id klPS250073riaq203lPSkT; Sun, 22 Aug 2021 23:23:27 +0200
+X-ME-Helo: pop-os.home
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sun, 22 Aug 2021 23:23:27 +0200
+X-ME-IP: 90.126.253.178
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@linux.ie, daniel@ffwll.ch
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Subject: [PATCH] drm/radeon: switch from 'pci_' to 'dma_' API
+Date: Sun, 22 Aug 2021 23:23:25 +0200
+Message-Id: <1187ca1dbaa74ca4a87db9496061243e9a810faa.1629667363.git.christophe.jaillet@wanadoo.fr>
 X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -73,60 +47,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fixed warnings regarding SPDX license, using "unsigned" instead
-of "unsigned int", wrong function parameter name for the
-documentation and a space between the function name and "(".
+The wrappers in include/linux/pci-dma-compat.h should go away.
 
-Signed-off-by: Liviu Cheru <liviu.cheru@gmail.com>
+The patch has been generated with the coccinelle script below.
+
+It has been compile tested.
+
+@@
+@@
+-    PCI_DMA_BIDIRECTIONAL
++    DMA_BIDIRECTIONAL
+
+@@
+@@
+-    PCI_DMA_TODEVICE
++    DMA_TO_DEVICE
+
+@@
+@@
+-    PCI_DMA_FROMDEVICE
++    DMA_FROM_DEVICE
+
+@@
+@@
+-    PCI_DMA_NONE
++    DMA_NONE
+
+@@
+expression e1, e2, e3;
+@@
+-    pci_alloc_consistent(e1, e2, e3)
++    dma_alloc_coherent(&e1->dev, e2, e3, GFP_)
+
+@@
+expression e1, e2, e3;
+@@
+-    pci_zalloc_consistent(e1, e2, e3)
++    dma_alloc_coherent(&e1->dev, e2, e3, GFP_)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_free_consistent(e1, e2, e3, e4)
++    dma_free_coherent(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_map_single(e1, e2, e3, e4)
++    dma_map_single(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_unmap_single(e1, e2, e3, e4)
++    dma_unmap_single(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4, e5;
+@@
+-    pci_map_page(e1, e2, e3, e4, e5)
++    dma_map_page(&e1->dev, e2, e3, e4, e5)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_unmap_page(e1, e2, e3, e4)
++    dma_unmap_page(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_map_sg(e1, e2, e3, e4)
++    dma_map_sg(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_unmap_sg(e1, e2, e3, e4)
++    dma_unmap_sg(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_dma_sync_single_for_cpu(e1, e2, e3, e4)
++    dma_sync_single_for_cpu(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_dma_sync_single_for_device(e1, e2, e3, e4)
++    dma_sync_single_for_device(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_dma_sync_sg_for_cpu(e1, e2, e3, e4)
++    dma_sync_sg_for_cpu(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2, e3, e4;
+@@
+-    pci_dma_sync_sg_for_device(e1, e2, e3, e4)
++    dma_sync_sg_for_device(&e1->dev, e2, e3, e4)
+
+@@
+expression e1, e2;
+@@
+-    pci_dma_mapping_error(e1, e2)
++    dma_mapping_error(&e1->dev, e2)
+
+@@
+expression e1, e2;
+@@
+-    pci_set_dma_mask(e1, e2)
++    dma_set_mask(&e1->dev, e2)
+
+@@
+expression e1, e2;
+@@
+-    pci_set_consistent_dma_mask(e1, e2)
++    dma_set_coherent_mask(&e1->dev, e2)
+
+Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+If needed, see post from Christoph Hellwig on the kernel-janitors ML:
+   https://marc.info/?l=kernel-janitors&m=158745678307186&w=4
+---
+ drivers/gpu/drm/radeon/radeon_device.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-index 795fa7445abe..af1abb281c6d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
- /*
-  * Copyright 2009 Jerome Glisse.
-  * All Rights Reserved.
-@@ -129,7 +130,7 @@ void amdgpu_bo_placement_from_domain(struct amdgpu_bo *abo, u32 domain)
- 	u32 c = 0;
- 
- 	if (domain & AMDGPU_GEM_DOMAIN_VRAM) {
--		unsigned visible_pfn = adev->gmc.visible_vram_size >> PAGE_SHIFT;
-+		unsigned int visible_pfn = adev->gmc.visible_vram_size >> PAGE_SHIFT;
- 
- 		places[c].fpfn = 0;
- 		places[c].lpfn = 0;
-@@ -731,7 +732,7 @@ int amdgpu_bo_validate(struct amdgpu_bo *bo)
- /**
-  * amdgpu_bo_add_to_shadow_list - add a BO to the shadow list
-  *
-- * @bo: BO that will be inserted into the shadow list
-+ * @vmbo: BO that will be inserted into the shadow list
-  *
-  * Insert a BO to the shadow list.
-  */
-@@ -957,7 +958,7 @@ int amdgpu_bo_pin_restricted(struct amdgpu_bo *bo, u32 domain,
- 		bo->flags |= AMDGPU_GEM_CREATE_CPU_ACCESS_REQUIRED;
- 	amdgpu_bo_placement_from_domain(bo, domain);
- 	for (i = 0; i < bo->placement.num_placement; i++) {
--		unsigned fpfn, lpfn;
-+		unsigned int fpfn, lpfn;
- 
- 		fpfn = min_offset >> PAGE_SHIFT;
- 		lpfn = max_offset >> PAGE_SHIFT;
-@@ -1175,7 +1176,7 @@ void amdgpu_bo_get_tiling_flags(struct amdgpu_bo *bo, u64 *tiling_flags)
-  * Returns:
-  * 0 for success or a negative error code on failure.
-  */
--int amdgpu_bo_set_metadata (struct amdgpu_bo *bo, void *metadata,
-+int amdgpu_bo_set_metadata(struct amdgpu_bo *bo, void *metadata,
- 			    uint32_t metadata_size, uint64_t flags)
+diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
+index ac8c3251b616..4f0fbf667431 100644
+--- a/drivers/gpu/drm/radeon/radeon_device.c
++++ b/drivers/gpu/drm/radeon/radeon_device.c
+@@ -785,7 +785,7 @@ int radeon_dummy_page_init(struct radeon_device *rdev)
+ 	if (rdev->dummy_page.page == NULL)
+ 		return -ENOMEM;
+ 	rdev->dummy_page.addr = dma_map_page(&rdev->pdev->dev, rdev->dummy_page.page,
+-					0, PAGE_SIZE, PCI_DMA_BIDIRECTIONAL);
++					0, PAGE_SIZE, DMA_BIDIRECTIONAL);
+ 	if (dma_mapping_error(&rdev->pdev->dev, rdev->dummy_page.addr)) {
+ 		dev_err(&rdev->pdev->dev, "Failed to DMA MAP the dummy page\n");
+ 		__free_page(rdev->dummy_page.page);
+@@ -808,8 +808,8 @@ void radeon_dummy_page_fini(struct radeon_device *rdev)
  {
- 	struct amdgpu_bo_user *ubo;
+ 	if (rdev->dummy_page.page == NULL)
+ 		return;
+-	pci_unmap_page(rdev->pdev, rdev->dummy_page.addr,
+-			PAGE_SIZE, PCI_DMA_BIDIRECTIONAL);
++	dma_unmap_page(&rdev->pdev->dev, rdev->dummy_page.addr, PAGE_SIZE,
++		       DMA_BIDIRECTIONAL);
+ 	__free_page(rdev->dummy_page.page);
+ 	rdev->dummy_page.page = NULL;
+ }
 -- 
 2.30.2
 
