@@ -2,122 +2,118 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AF4B3F44D6
-	for <lists+amd-gfx@lfdr.de>; Mon, 23 Aug 2021 08:17:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE6763F4567
+	for <lists+amd-gfx@lfdr.de>; Mon, 23 Aug 2021 08:58:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A01AA89873;
-	Mon, 23 Aug 2021 06:17:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A933889C51;
+	Mon, 23 Aug 2021 06:58:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2055.outbound.protection.outlook.com [40.107.93.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C10E489873;
- Mon, 23 Aug 2021 06:17:35 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2083.outbound.protection.outlook.com [40.107.223.83])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF59A89C51
+ for <amd-gfx@lists.freedesktop.org>; Mon, 23 Aug 2021 06:58:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DHgWkN9MXLcAURBDkYFb/I4I1XthGmS9aG09kMAXE23XpJxSu2nBGcMvEHXxcTL1sgjMzFk4mFTtSiPafgDhfsxSBjlULCHd+6VbwW/b1COZri3tWeAAEIkiAqSv8gao26cOLKMhYayxyDHtlWso3FNZEUgTMd1MazSPvhH1zX3Jjo9WjcluDTC7gQCNWMiRsVzi/oJTPkiOwXH8Sw+MTvP2kGdqMwe2vWjaEsoDaQchpG7MZ6RRgEtxhQ5RaUrbzJnsISEWIG0EwPdYQY6R7idCFULAujHjfo6YoZy2PSL/l9M1fSOOLNd/1oI8VXVPAUwXQY1FtfQJXq2w4EXWQA==
+ b=Cj31pnnO45D6eFaj0tGMJ5uxWgAxEwPf+O+mVj9nWaecyun7RK/coP1/B8uitdGVeLM3aG0iGgX5yqzZTXONGZD/mWzcAWaRZBMSc5x2R4mbtBdqVrI+fz8nhDWfWwD/Ye1mpPVBN20P9NDPPIWCgo3Y7gQmT3+c/TBetHaqz5B+GBRNtIaQxoAOeA7c5+LHl5ZuPtFP+sjSN1PUZGhxCCrRnrcg5uaP93Eq7EKxfRrte7fkFZbhWCc5axFShp62Oi6SsaeISZdSV+fxl2N5f9TZHvyHqOExnILa/jKt5P3ipM2wuLqwtHu01u4HYUFumKo77qJZYuDGBzv9NTq4LA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8VQgYHl390qqAgGIT96LLWcaCg53KiWGlF3AQgInWG4=;
- b=ihRk5TPSf4Z+Goxb/mzScqJat59BwjWerQeqbt0tB2oApdBE5x/I8o4S+pNJxiXGPma+HRHo5tQxMbB9R3AQrD6BaKT9ZjOqIslNoOJSabdrgAs4dVT3dbUwc8YOqrv4eX0ESbPivy1W73UtUuR5fTAZ4p2lruNRFaoMGTD6eZUO7d0PSnTFIrLbNigCoLvvM38rYNfrt1GTQLAOSqtTuHn72KOoWDhtjNVr5w1obLTMBTSvmi+X8UhhmIZbWLsViDpubIyo+XOR8AaAUxzeZwVJe/QMstKpf7XnRm5m9E5nsQNO07ffrKbuuw0pqan9pzV583V1IzFUBFD7wjasgg==
+ bh=4zsRXX4G9Zv1V4W/oyIJsZEOgCUlGt76eFiYGzGxNAI=;
+ b=PKQ7r2VRN1aWpXyE3vE6IFsRJMZlSeF/7ItCap2oKZscyGzrwFxfjDlboYWrN6ifX4nfJySgUGP0f1j0Wyqji+ZwjNTuupVKJTstO6DTgzluW53V3r32y8/Rgxe7loj2sgOa0qR4aZM5k3YmnNmOw8gb2NObks2ZQUBRfCo10pK5yvCyYILE5l+e2zc52V4ffsiLOgj8P+jbCZqsGrlj3OalRqtDShOgR5ot7m+mpphsmkA4NSFuKdr5ub41UP1rIQc7z9/+6fbz0r0sJLWCKQAdlAQJ7H3bUgbkuLd87/6M2E62aDALKmiaB7OCku8VQ9qAvYaBuHj/osb3y7TyCg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8VQgYHl390qqAgGIT96LLWcaCg53KiWGlF3AQgInWG4=;
- b=KZWXuREZs0y8NLEqTX38ktnG0udAZOsTT/tvq0fd36i8T4eC4hPJ2cyuoH+3elNwMkG4fUsWifnKGzB4R6J68QFsaneZv5vah94UeUGKG9oUUmsM+qfckwttjwA3zifl+2mUnPojvzg5rpVKW2J65ZoDuktcLOIIK6x269A9oEg=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=amd.com;
+ bh=4zsRXX4G9Zv1V4W/oyIJsZEOgCUlGt76eFiYGzGxNAI=;
+ b=kcWkwSTNtuSLVfc1wnLDS+hSNM8v9crWCIXk50/Zo09DAci+OQzShjt3y0BfFgFJNnKYVAWlkdcL1k7OwAGnOH03K1xKdjcAwYVPpiwMiO8/ZGyNhgg8yOrkQMbdnhoXwisEqRozBp4EJqlJMrzaBjfzlLckMKjvSS7rBBR2kBM=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
 Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
- by MN2PR12MB4224.namprd12.prod.outlook.com (2603:10b6:208:1dd::8)
+ by BL0PR12MB4913.namprd12.prod.outlook.com (2603:10b6:208:1c7::20)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Mon, 23 Aug
- 2021 06:17:34 +0000
+ 2021 06:25:38 +0000
 Received: from MN2PR12MB3775.namprd12.prod.outlook.com
  ([fe80::dce2:96e5:aba2:66fe]) by MN2PR12MB3775.namprd12.prod.outlook.com
  ([fe80::dce2:96e5:aba2:66fe%6]) with mapi id 15.20.4436.024; Mon, 23 Aug 2021
- 06:17:34 +0000
-Subject: Re: [PATCH] drm/radeon: switch from 'pci_' to 'dma_' API
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- alexander.deucher@amd.com, Xinhui.Pan@amd.com, airlied@linux.ie,
- daniel@ffwll.ch
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
-References: <1187ca1dbaa74ca4a87db9496061243e9a810faa.1629667363.git.christophe.jaillet@wanadoo.fr>
+ 06:25:38 +0000
+Subject: Re: Voltage control on Southern Island GPU using radeon driver
+To: Evans Jahja <evansjahja13@gmail.com>, amd-gfx@lists.freedesktop.org
+References: <CAAq5pW_7Tv=qzTeUkTuMZMwq+FN63Qmz3pXCiwMx5R4Gbg89bA@mail.gmail.com>
 From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <cd7b5eb2-24c1-d54d-d6dd-c529d3eb140f@amd.com>
-Date: Mon, 23 Aug 2021 08:17:28 +0200
+Message-ID: <a4db54d0-9978-035a-538e-7c51d8082037@amd.com>
+Date: Mon, 23 Aug 2021 08:25:34 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
-In-Reply-To: <1187ca1dbaa74ca4a87db9496061243e9a810faa.1629667363.git.christophe.jaillet@wanadoo.fr>
+In-Reply-To: <CAAq5pW_7Tv=qzTeUkTuMZMwq+FN63Qmz3pXCiwMx5R4Gbg89bA@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-X-ClientProxiedBy: AM0PR02CA0028.eurprd02.prod.outlook.com
- (2603:10a6:208:3e::41) To MN2PR12MB3775.namprd12.prod.outlook.com
+X-ClientProxiedBy: PR3P191CA0029.EURP191.PROD.OUTLOOK.COM
+ (2603:10a6:102:54::34) To MN2PR12MB3775.namprd12.prod.outlook.com
  (2603:10b6:208:159::19)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
 Received: from [192.168.178.21] (91.14.161.181) by
- AM0PR02CA0028.eurprd02.prod.outlook.com (2603:10a6:208:3e::41) with Microsoft
+ PR3P191CA0029.EURP191.PROD.OUTLOOK.COM (2603:10a6:102:54::34) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4436.19 via Frontend Transport; Mon, 23 Aug 2021 06:17:32 +0000
+ 15.20.4436.19 via Frontend Transport; Mon, 23 Aug 2021 06:25:38 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d230a880-5c0e-43d1-33d6-08d965fdb214
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4224:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB422410FC73AF814B73A20D1C83C49@MN2PR12MB4224.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-MS-Office365-Filtering-Correlation-Id: e8823828-114d-4855-2a2b-08d965fed306
+X-MS-TrafficTypeDiagnostic: BL0PR12MB4913:
+X-Microsoft-Antispam-PRVS: <BL0PR12MB49135E8D40AE7008260B0D8C83C49@BL0PR12MB4913.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dazxLpm2WRpGZcvLOkrF5mvYzSVDl+mV7B1IJFNN1yVkjF5dWdThN0i94qpNtxnD0oegX60dt96vdc5A/h6Lpl9Zov4HZ14V+i7eEsOhut6Kyr/rFcIJqyVEAaIDf0qqLPkxDQuA/AJzKr568iMuaAMZV1n3AIsIKuOQ/73ENUWAhgApGJXialHlvIIGU4kPlCadI1s3XhWWglU6AIc64yNiWrpEJ8GkXhIPhLTSQz/DM7/fnwpOsPRAEKGumkxe4wM7fepeul0dRRS2cISES4qrB7AV0EcxGLWhZNUgVdojUfk1pHVehAj13RK5vCEZK5QcoDhoGlrDSTzNKutygKaz+Po/mF7+xpIl3J3TSDRnFLsTAMkO+4ieQRPmaK/mN5FJ/S5fOWSROSZoyA6VVGVS8hDEFn1Ei4Sf8cDlP4VCcBXp63I1Gf23Rh4sI9nD6lSMeI3SejLFCcYiS1BGzjeMpEcjCkS5P+VTnBV8eHSLBQ05N06KRB16TsUASFxVORqbGIo9oo4OwpwxlrGfDDb+3ZXjknckTEB0PFWkTLcDc7ETsvokvjEvB8DbHbxPep1y8c4z4TCHXQmfkj08Mn/2tvS/6eF5BTPyaO8HgfYU1wynklcNrlWZuE+TaqWbPPBVN1K7rji0d6RPDJVqJMIRdM0qNd/o1IjgHvHo5SpyJfq/UV0seNQh/vC48p/j6oj6jXd9D64Dug3fgliMPL7o9yabYwaE+LJIZlWJNPKAXdm8qlS4/gfXS0dF1dnsDp2biOvriKB0RYFmNQYHcImMF92C4uIcMx9JcKg0ALiUFALMpUN+zxZ+wnmalA7B
+X-Microsoft-Antispam-Message-Info: fcKFASSAnqgZ49Xu4R3hk1qdcb43Okigxvr0zU0xrsoWo1M8Y9fGkOxbPZuMtk8FaEIHk3AuKfNursygxfnj55FmRiPTujbZcsGSY17upkWnDAripw8QtWYhqYJo0vNTY1IYjJAcj4KfXYAL9ik21fUW99Z15tFqqt0ZI1E9nONp+YPHWnkBlxCGnrOSRsYet//tK+X7n5rlALZ82V1548aLu3SBC85CcCX7ouryJn1lHtk8jg8iZgb2HdyAnDp1CyNexNBzCp65uJw2/B8sQyof6+quGh+NqZjTjaqWwFXk2rQwRJIC+XDwOwQetf9dAkWNYCTpLkmfI5K/w/0cpjbXqD9uz8cQqbXUz3bQvX3RHWtnjKZYIFrJgyPGlnf3boXxXqLDDoc0GLXoiOzgzIjrKTSfEhdGAjVuqrw8mHwF6ZYPNJHrb7zj795C48HGSq27J4ZYU6VQ/NGmztsH8Wt+5uoxSGn9hmthZHGihnoAxClmTRRVfPgxJjf52aPV9zLcoywkwzxTYUzCdAnMuhnzPFdGcD4Hh0UaaCfwM0yC8jY0Fh4bHXv3RV/ZU0tzANz3ngNDVjtcy7jcRczqVxpYjg8mgSU1s2bPIZOG70uwNDiK5dRone10KFAFsGYV8P7zvw/tjUo7xrfJIervzMOPYojnYi4AT994b1Y1ZFgL9tzcUTIOX1z0L+ZEo/MwrsiURTO2shqRRz4cxLPMQh/W3BDOYeJFgZTbNeX9dQE=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(396003)(136003)(346002)(376002)(39860400002)(16576012)(66556008)(316002)(38100700002)(2906002)(66476007)(2616005)(4326008)(36756003)(8676002)(966005)(86362001)(6666004)(31686004)(5660300002)(8936002)(186003)(26005)(66946007)(31696002)(478600001)(956004)(6486002)(83380400001)(43740500002)(45980500001);
+ SFS:(4636009)(366004)(6486002)(956004)(2616005)(8676002)(38100700002)(8936002)(36756003)(66946007)(66556008)(66476007)(2906002)(83380400001)(26005)(186003)(16576012)(316002)(508600001)(31696002)(6666004)(5660300002)(31686004)(86362001)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VE02cHR3Sm9lMkZDaTFheW1WYWZYcjBrN1M2MmtDRGZPOGE0ZWxOLzFtaXVL?=
- =?utf-8?B?MDhmTmNyUmVtNWdQMzFBN01ITGMwMXYvaUhvSkptODJabkcwdW9oczBMaE0y?=
- =?utf-8?B?eERUVWhMQ0kwdkpUWG5LTjVpa1VwVTk4UDhkLzg5YVljN09oekM2OHJoQTBZ?=
- =?utf-8?B?cWZSaTE0SUc3bmtROEVJQWwyZHFTMzhjSEhxZ1YycW9kK3U1Z3dqSS9XbDlx?=
- =?utf-8?B?Z0VEL0I0bEFXcWtsYmVvRGdXZUcybkNJRm5LTkY3RUZYT2RSRFBtZmFnc21L?=
- =?utf-8?B?WnhTNEF3b0JpdGF6aG1tVU1ZTVdEU3I4TzZwOHlPUTF5OUhlTUN3T0VxbUhl?=
- =?utf-8?B?ZlIwQTNkUnh6UGh1ejAxeExlV3RKOFAwWlAwWVR5SERkQmZVaVM2cXN0UlNv?=
- =?utf-8?B?RGhhbnFxQU55eHg4V21vMFpiSGUvVm4rSnFlYWpuWW9uRDhKQ1RZNFdxL0dQ?=
- =?utf-8?B?S0d3MjY0aE93SU9wdk9SV0dubjAyTXQ5ekI1eDFEOVBqdTkzK09oSENXUnJL?=
- =?utf-8?B?WWFRb3BESFhMVVZvSFFMWVUzM2ZHNjV4S3JUTHFIbWZMZXdtVlNZWnEzakJj?=
- =?utf-8?B?VW1JbGVwOGxkMm42RzVKK2RlVEFIcHg4ZVdZSHNOZXdRZ1FOWUtTQ0xDcjZh?=
- =?utf-8?B?aU0vcWdXSy9CKzNMNXRhNXBBSmxBcjZobHdUY1QxOFh3bGgrM3RVaHMzQ1J6?=
- =?utf-8?B?SWpBSVVjNkZGdmFuMDV0SUJYeFNVL3Rhd0RkY2lsOFhaWWpTQU9uS1UzSWRB?=
- =?utf-8?B?N3pUWFhwbjZhNitqdzVjOUNEUXA4SzNBUmJua3laRVRkQnAzY3BUYk15djR0?=
- =?utf-8?B?NHRxODhSWkVpT2NTQTJqQkZqYTJmUndKMENZaFpaS1h0MDdjWkdQSDlTUlVJ?=
- =?utf-8?B?aTZrNlFPbk40QzdjcjN0L1NIWEJ6UTVabXczOGZDb2FBU0RDcUxyaFo1NG5r?=
- =?utf-8?B?U3ZLU3ZJUHd5Z01Fc0E1SHNuSGNxblJIUW82MDJIZ3Q3OHV0VnNVYVVhWDkx?=
- =?utf-8?B?R215YjgrME8rUWtTTTQwSHFOTUQ5SURFek0wRi9EUThIMFJ2RzFGRXh0REhT?=
- =?utf-8?B?c290NjdZN0M0dWVpcXJFZ1V3NHd6OUM3MlhaSGs1b202bkJtcWJiRUhoY0FE?=
- =?utf-8?B?SFRPRVhNcmd5eXIrcW9WaDdoR0J2c2c5d2E2OUV1RU5SWExxT0NkbitZTnZq?=
- =?utf-8?B?ekZYTGlzRXZ6STU4ak9ITDZRWEl5aVZCR3VJSjRLSE5uUzRUTkRXUFhldSt4?=
- =?utf-8?B?V1M5bmNtbVJxcVJ1YURCM1IwQjkvVHlESFhBUWRZUjVjZDAvdlJlUi8vVG01?=
- =?utf-8?B?RnhFRURvZkFoR1Q2aElFaFdqTU5NbE9qTmIyYU9EbjdDU1c0T1hSM1FySDJa?=
- =?utf-8?B?ZHFVTlRibHg2ZGNzVkRoR05jclcxU0pMNHpIYlgvRThMRjBjK202YllIVlVL?=
- =?utf-8?B?ZTdZN2dkQmtXcUNrQWJFWXYzT3g1Y0d1bll3V2p2eDNWVHpWRDFEUGczNGtX?=
- =?utf-8?B?eTc5SGFVVGkya2c3NUQwRWVIamZuS2NlcVJTa1VNSXZQR3RteXU0MzFmclU2?=
- =?utf-8?B?NERuclVUZVZRVk9wWFQ2cTQwTlVDRjRTVUFhWDVQWXhoVTRNa3ZQalp6dlB5?=
- =?utf-8?B?YU4wanY1SXNJcExoYVl4a000WTd5cXI0MHdpQVJxRG1UVlRXdUwrRkFjbTFH?=
- =?utf-8?B?Rk9jUW5FTnZYMTlUZi80TXZZb0xBZ1JjcjJ3SjBCOXJnNHhtaHY2UlA4b0U1?=
- =?utf-8?Q?DrfY85oduxkJpM8sSE0DDVusSOYM3fIyWLSUaJ9?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eitWY1lxNlhaRlZ4YmloK0N5UGt6a1pUYzlvQmtmMVJ5NVBNNkozcm5PWDZY?=
+ =?utf-8?B?OFhHaVZOYWw5VVd0RzFzYzFLMlU0U2p1c1hSSEhwdlRxUjRacWozdUw3OFdU?=
+ =?utf-8?B?UVRIVDY3ZGtQeURsb0JsZnZLVkxWS0JHZVJOT1hVZjBDRzRjQ2hYRmJ4dWJr?=
+ =?utf-8?B?bWpMUW1XNFlXcUlyNXJST0Zyb0hZL2hmMnlMeWxyWURScDdONVRDTFp5TEw4?=
+ =?utf-8?B?WjJjbDQvcFFuZVlCc0JNc3psaUZFUzN4OTNDVzNKSmVzRW1haVc5RGNXYXU3?=
+ =?utf-8?B?bkl0Z01CWnRKTTAxV2k1Ymx6NVF1THBja0pDRkRuZnZoOVEyakwxbEdIQTZY?=
+ =?utf-8?B?SXRPNGV2dXUwZlBvVEQ4RVlwazZGRElJcFp6aDJ6aEpvSzFYUlpzSG5FNGwz?=
+ =?utf-8?B?S2d2RVhyRTI5ZGNWdGtCN3RtUEFkWFc0UUVpSk15K3lrTmlmUGFmK0twQ2gy?=
+ =?utf-8?B?Z1FOY2QwcFU5TG43VXVoQ0p2WWVsSGVvQ1dvaWY4cHVsNWZoYUVVc2JmWmQ2?=
+ =?utf-8?B?aWdyZndxVXdEU3dVeHg0V243K1VhOXdDYjJ3YitiYzRBc0d2cUF6ckUvRklY?=
+ =?utf-8?B?TnJiOXgwRG5KVEptWTZQdlRCMWRUZXJCUHdYMnlkWHZBVmdOazRpVHFpK1o4?=
+ =?utf-8?B?V29YR01PK21yVEVzVW1leU5LVDRkUmVpWXEreDVHRXJTMWVORFNoRCtJVENZ?=
+ =?utf-8?B?QmRjcmdVcFFoUHlYdzRCMHkzQ0cvdWtaVjJpU05lRHdSRWExaHUveXh5eFE5?=
+ =?utf-8?B?Q2Uwb1p3SzdBSXk5dUNBOWpPQjFCU2V1c2g3algyb0NNM3dvaDNNWFpxUjlu?=
+ =?utf-8?B?WWo3TG1jRlRDQXZVMmdzL0I3Uzh3RWF4T2xYbGgvNEdqZGtaaHVuQXlQNVFz?=
+ =?utf-8?B?eU0rQWZpMTMwQ1NVMVdoZFhaRDhJSmxzd2lzQVhLMjVxLzRUS1hpMkpYT25h?=
+ =?utf-8?B?RWIydHliN1VEUzdnZDhpUXJkSzRyNURUbkd6cHFMSkdiRHVBOXlYYUJHR0Ry?=
+ =?utf-8?B?dlJFM3BOMStxWkZqL1o2OFRPU3RhOHhXYnVDY3dJYkNlRThzSWxvTjBKTTdH?=
+ =?utf-8?B?aHJiOFNZWDl3WHNRcjByTnhmSWpmNW5EUG5Hd090WHExZWVHL3pNUGIyeGZN?=
+ =?utf-8?B?azV4RnkrLzUxQ2RaKzQ2VXJnVGRnekJTMkZ6d2U3RGlnaFdMRGdmcGcrajBn?=
+ =?utf-8?B?bVc3YUJxSGJ6RW5Qd3g1c01TT1lycnJQUWV0eEdVTW1CcFBkZ0RPNWFOd0gx?=
+ =?utf-8?B?OWpibzh2ZUFGRzhUN0QvUmg1UG02bDVhSFBzeFcvcEpZY0Exa3hCVkF1L00r?=
+ =?utf-8?B?ek9jaWZJaTZSd0VlSFVPeDhRdm1UWkJDUnU3RVB3dnZBYzJZb2JNcWEvSEdQ?=
+ =?utf-8?B?K1JnUTVXZkVMaWVSTHlkeXp0ZGV2QnUyanhEOElDSUlUNjJQNDBma2ZFcmdK?=
+ =?utf-8?B?NVY4dW9oQmc3bzRDUWJ0Tzd3VGdZc0ltMTIzY0ZzVy96c3J3SVlJZWE2Skg2?=
+ =?utf-8?B?ZUFjbmdjdTNTWXlaQXBJWmkxcXVWbDJsaFh6RGNJcVZnWTlJSHU3anAwN1c4?=
+ =?utf-8?B?eVdKRTVUOGI5VVVxZGNMeHlKaDlka0dYeUc1VFN6dGxVVHBucFRBeGpVNlRZ?=
+ =?utf-8?B?OE5rN21Hd0p4cDJRWUJJU0V2MzFoRGJpSUkwTzJMMnNLYjBqUDRiMnRmTVcv?=
+ =?utf-8?B?NnJrazg2ZHJXelBvYTNuZDIxTDZJUkpBa29TeXpsYjZGekh1UG1IZDIrVzhD?=
+ =?utf-8?Q?PNDfwumNqKC8IoGXeUq2mEzdfayuZnzky1GMuD7?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d230a880-5c0e-43d1-33d6-08d965fdb214
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8823828-114d-4855-2a2b-08d965fed306
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2021 06:17:34.0504 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2021 06:25:38.7929 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FxNhoWrYWq0o32Yivb8k5so5+RCKPHFIJZl2oH2C+eLEdv+lX/tB9CJhkxNFYFpG
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4224
+X-MS-Exchange-CrossTenant-UserPrincipalName: Law7Iooy/frpJjaQKhU3iMnRD/hXuDD9DCQG3IdF641lAhlrCfzSp6Tp9S+RvfY1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4913
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,167 +128,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 22.08.21 um 23:23 schrieb Christophe JAILLET:
-> The wrappers in include/linux/pci-dma-compat.h should go away.
->
-> The patch has been generated with the coccinelle script below.
->
-> It has been compile tested.
->
-> @@
-> @@
-> -    PCI_DMA_BIDIRECTIONAL
-> +    DMA_BIDIRECTIONAL
->
-> @@
-> @@
-> -    PCI_DMA_TODEVICE
-> +    DMA_TO_DEVICE
->
-> @@
-> @@
-> -    PCI_DMA_FROMDEVICE
-> +    DMA_FROM_DEVICE
->
-> @@
-> @@
-> -    PCI_DMA_NONE
-> +    DMA_NONE
->
-> @@
-> expression e1, e2, e3;
-> @@
-> -    pci_alloc_consistent(e1, e2, e3)
-> +    dma_alloc_coherent(&e1->dev, e2, e3, GFP_)
->
-> @@
-> expression e1, e2, e3;
-> @@
-> -    pci_zalloc_consistent(e1, e2, e3)
-> +    dma_alloc_coherent(&e1->dev, e2, e3, GFP_)
->
-> @@
-> expression e1, e2, e3, e4;
-> @@
-> -    pci_free_consistent(e1, e2, e3, e4)
-> +    dma_free_coherent(&e1->dev, e2, e3, e4)
->
-> @@
-> expression e1, e2, e3, e4;
-> @@
-> -    pci_map_single(e1, e2, e3, e4)
-> +    dma_map_single(&e1->dev, e2, e3, e4)
->
-> @@
-> expression e1, e2, e3, e4;
-> @@
-> -    pci_unmap_single(e1, e2, e3, e4)
-> +    dma_unmap_single(&e1->dev, e2, e3, e4)
->
-> @@
-> expression e1, e2, e3, e4, e5;
-> @@
-> -    pci_map_page(e1, e2, e3, e4, e5)
-> +    dma_map_page(&e1->dev, e2, e3, e4, e5)
->
-> @@
-> expression e1, e2, e3, e4;
-> @@
-> -    pci_unmap_page(e1, e2, e3, e4)
-> +    dma_unmap_page(&e1->dev, e2, e3, e4)
->
-> @@
-> expression e1, e2, e3, e4;
-> @@
-> -    pci_map_sg(e1, e2, e3, e4)
-> +    dma_map_sg(&e1->dev, e2, e3, e4)
->
-> @@
-> expression e1, e2, e3, e4;
-> @@
-> -    pci_unmap_sg(e1, e2, e3, e4)
-> +    dma_unmap_sg(&e1->dev, e2, e3, e4)
->
-> @@
-> expression e1, e2, e3, e4;
-> @@
-> -    pci_dma_sync_single_for_cpu(e1, e2, e3, e4)
-> +    dma_sync_single_for_cpu(&e1->dev, e2, e3, e4)
->
-> @@
-> expression e1, e2, e3, e4;
-> @@
-> -    pci_dma_sync_single_for_device(e1, e2, e3, e4)
-> +    dma_sync_single_for_device(&e1->dev, e2, e3, e4)
->
-> @@
-> expression e1, e2, e3, e4;
-> @@
-> -    pci_dma_sync_sg_for_cpu(e1, e2, e3, e4)
-> +    dma_sync_sg_for_cpu(&e1->dev, e2, e3, e4)
->
-> @@
-> expression e1, e2, e3, e4;
-> @@
-> -    pci_dma_sync_sg_for_device(e1, e2, e3, e4)
-> +    dma_sync_sg_for_device(&e1->dev, e2, e3, e4)
->
-> @@
-> expression e1, e2;
-> @@
-> -    pci_dma_mapping_error(e1, e2)
-> +    dma_mapping_error(&e1->dev, e2)
->
-> @@
-> expression e1, e2;
-> @@
-> -    pci_set_dma_mask(e1, e2)
-> +    dma_set_mask(&e1->dev, e2)
->
-> @@
-> expression e1, e2;
-> @@
-> -    pci_set_consistent_dma_mask(e1, e2)
-> +    dma_set_coherent_mask(&e1->dev, e2)
->
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Hi Evans,
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
+in general the voltage tables are stored in the atombios and the best 
+advice I can give you is to first double check if there isn't an updated 
+BIOS for your hardware.
 
-Should we pick them up or do you want to push them upstream?
+But Alex is the expert on power management, especially for those older 
+hardware generations. Maybe he has another idea what to try.
 
 Regards,
 Christian.
 
-> ---
-> If needed, see post from Christoph Hellwig on the kernel-janitors ML:
->     https://marc.info/?l=kernel-janitors&m=158745678307186&w=4
-> ---
->   drivers/gpu/drm/radeon/radeon_device.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
+Am 23.08.21 um 03:56 schrieb Evans Jahja:
+> Hi, I have a HAINAN GPU below:
 >
-> diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-> index ac8c3251b616..4f0fbf667431 100644
-> --- a/drivers/gpu/drm/radeon/radeon_device.c
-> +++ b/drivers/gpu/drm/radeon/radeon_device.c
-> @@ -785,7 +785,7 @@ int radeon_dummy_page_init(struct radeon_device *rdev)
->   	if (rdev->dummy_page.page == NULL)
->   		return -ENOMEM;
->   	rdev->dummy_page.addr = dma_map_page(&rdev->pdev->dev, rdev->dummy_page.page,
-> -					0, PAGE_SIZE, PCI_DMA_BIDIRECTIONAL);
-> +					0, PAGE_SIZE, DMA_BIDIRECTIONAL);
->   	if (dma_mapping_error(&rdev->pdev->dev, rdev->dummy_page.addr)) {
->   		dev_err(&rdev->pdev->dev, "Failed to DMA MAP the dummy page\n");
->   		__free_page(rdev->dummy_page.page);
-> @@ -808,8 +808,8 @@ void radeon_dummy_page_fini(struct radeon_device *rdev)
->   {
->   	if (rdev->dummy_page.page == NULL)
->   		return;
-> -	pci_unmap_page(rdev->pdev, rdev->dummy_page.addr,
-> -			PAGE_SIZE, PCI_DMA_BIDIRECTIONAL);
-> +	dma_unmap_page(&rdev->pdev->dev, rdev->dummy_page.addr, PAGE_SIZE,
-> +		       DMA_BIDIRECTIONAL);
->   	__free_page(rdev->dummy_page.page);
->   	rdev->dummy_page.page = NULL;
->   }
+> lspci -nn
+> 0a:00.0 Display controller [0380]: Advanced Micro Devices, Inc. 
+> [AMD/ATI] Sun LE [Radeon HD 8550M / R5 M230] [1002:666f]
+>
+> I run linux 5.13.12 on Arch on a Lenovo B40-70 laptop.
+>
+> I'm trying to understand more on how voltage control works and how I 
+> can modify the voltage for doing overvoltage / undervoltage on my GPU. 
+> The reason is I am observing how running programs under high GPU load 
+> (glmark2) would lead to crashes when I use dpm=1 in either radeon or 
+> amdgpu driver, which seems to happen when I am reaching power level 4 
+> (sclk 900MHz), while a lighter program like glxgears could run and 
+> switch power levels  between 0,1,2 without issue under both drivers. I 
+> believe my laptop might be faulty, but I would like to take this 
+> opportunity to try fixing it from the driver's side so that it can run 
+> anyway, however limited.
+>
+> Right now, I have managed to increase the performance of my GPU by 
+> manually overwriting the sclk to 630MHz in all performance_levels in 
+> radeon_pm.c, which surprises me as overriding the clock was not 
+> possible for me to do previously via sysfs.
+>
+> I've managed to tweak both sclk and mclk (or so I believe), but I 
+> still cannot tweak the voltage (vddc). The reason is, if I increase 
+> the sclk to 650MHz, the lockup will happen again. Changing the 
+> pl->vddc  variable does not seem to do anything. After various tracing 
+> with printk, I understand that on my system:
+>
+> pi->voltage_control = radeon_atom_is_voltage_gpio(rdev, 
+> SET_VOLTAGE_TYPE_ASIC_VDDC,
+>    VOLTAGE_OBJ_GPIO_LUT)
+>
+> this returns false, while:
+>
+> si_pi->voltage_control_svi2 =
+> radeon_atom_is_voltage_gpio(rdev, SET_VOLTAGE_TYPE_ASIC_VDDC,
+>    VOLTAGE_OBJ_SVID2);
+>
+> This returns true, so I believe my system is using SVI2 somehow to set 
+> the voltage. Having no experience with SVI2, I read online and found 
+> out that SVI2 is a voltage regulator that uses Data / Clock pins to 
+> clock-in 8 bits of information and convert it to some voltage value 
+> between OFF, 0.5V -> 1.5V, offering fine control based on some look up 
+> table.
+>
+> My questions are as follows:
+> Is it possible for me to modify my system so that I can manually 
+> adjust the voltage to my GPU?
+>
+> Thank you very much in advance. This is the first time I deal with 
+> kernel drivers, so any guidance on the matter helps a lot.
+>
+> - Evans
+>
+>
 
