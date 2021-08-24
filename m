@@ -2,97 +2,124 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79E203F5BA8
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Aug 2021 12:06:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B96533F5D7F
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Aug 2021 13:56:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B74FE89C93;
-	Tue, 24 Aug 2021 10:06:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90C5289789;
+	Tue, 24 Aug 2021 11:56:26 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2043.outbound.protection.outlook.com [40.107.237.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B87A989C93
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 10:06:12 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2067.outbound.protection.outlook.com [40.107.92.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF33889718
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 11:56:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C+1U0Reepn/BMCCfrrzGRb8w7Ww70NIfhJoxArVn5tYHbgeKh8FKnnrx3Qt28Jhpmph/3ePMbk0YGoNNKAXO8WDyW8zv5n9M/hzWaJsoJWDki5tN34Z+dUeWhu9ZWydDY1HTC64Iguyhk1g18ShCmN1QsfBld7PRlzmfeYl7e0TMf+CFH2+ACOOJZ594iH5IUqZK7caJSUu10jz0plbNCwdRiXldhIUrhjAFz9oOUzkmH3kiIka+wbaW2FW52WVxyh+nPNuNB8AHBkiicUrIqOjDd1bA2eUFHIV1rfmoBtFdK/xwf6j19gCNFGOs3cTAdVIDFeMx6D+HhmE3zvL0wQ==
+ b=FrNcVEhQsq8HH3FDQ7308R1RUsQhPe14H/nYHkPtWjtXrD5PfAc2JNRnXIIwlgJnOR7EVrof4tKgTN4C1nws79RtcbTTvIHOWpSDIe8SwWBns7ZqUNvCn8Abf6A5jbF0Akt5L7/F7sOm/mqG88ojyeBvMTXNhhb93Fvc+78CMRpa3Kz31FLBUekDVvr4FSrJ2r0wcTkxyfVT/xBMlesXzJKYjbeRUhR+02ggmYxwDykRKg6V34qPAraOJYfs/k4ixvDP0E5jlWIT2pTo9Dfla5hbmoH4iY9NicDsCd+H9vSx0B274utZdCUMUBKSNjKk9aYdPLXuBCE99/B5NEn2Cw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ItsId2gYIy7QowJg71yp77eCtRrIFD0qcrO1wTN2T9k=;
- b=ePGTznKR4hE8f70NxKQC78O0kXzKkmiAMYg4Ucw8PRZh6nKHzwq0B3gM7DsQ8REfHZJbvVy/1QeAgAlf72ZOg6D6vf0yw2y3qwJpT/INuLWe84VHOjs4rIv+kx32SNIhyPuTdWwI6TbcFexEY9rqLxX3cPqjrfdSZGLrILYhPMayJW/CQgevmhAJ77W8ybkzImGElJncykYesi2XZEuoq4lLd7rtc3xIJOxgVzhvXs/192xlJnBYTwWxtyuN6SIAAUZ1+0Ogq+6tG3ncvVe0Lr2laik1pQ2l310oCdfs8PfrjvOrYMCZQvGklPpVqe5UO4nijDkbqFkY53qKmk9u+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=5ZFaYq1a6fk9MKCMEe0m0+DcdZpC9Il538YOsHuI37Y=;
+ b=jKdWXjOuxDKtcqXEbXzb0HFbZSz45C16lx48ASq+n861aFkb7yB6zO4hDRklPN7JYG1I1TJuPa42BsqoOgq/wdWIE7++76FLn69XIu9ZeCM5vGqKNfe1DxsSF3YI1h39/Dk9balZV9OmGgHr90yvIdrOyC4ggIeNQa3eCO8a/B5Vyf2xeZGr84Veb7AoV91IBTakcXZsBhUlB8P+v6yoFDp8zldvnXfd3YwiRUjHiZF9uhdmsgTnhDxNDlLc0e2q/3V+7T+kwK1f4013cB0DyDIID1yZPplq25VAVxLI2tT6a+tkxjs3XVEeOKjW3stkvTvD6ODudB7+PiuutMWxjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ItsId2gYIy7QowJg71yp77eCtRrIFD0qcrO1wTN2T9k=;
- b=xpkwN0xsduJYHrUVcnNfLghdjE+9f/IoaA2/CX8XmeNoTZOSZD2aD8H5hrjMzt9HNXI5B0Qc2E1jYBz25ISmAAUEoVrN8E4b1iCVc8rjgj1b/Gi/ScpASqU0x+zp4QvWbpYFoZwNuWouADNJtJm+jabOdRSSZcj9YC7Ryxtvga0=
-Received: from BN8PR15CA0045.namprd15.prod.outlook.com (2603:10b6:408:80::22)
- by DM4PR12MB5246.namprd12.prod.outlook.com (2603:10b6:5:399::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Tue, 24 Aug
- 2021 09:51:37 +0000
-Received: from BN8NAM11FT007.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:80:cafe::a5) by BN8PR15CA0045.outlook.office365.com
- (2603:10b6:408:80::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19 via Frontend
- Transport; Tue, 24 Aug 2021 09:51:37 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT007.mail.protection.outlook.com (10.13.177.109) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4436.19 via Frontend Transport; Tue, 24 Aug 2021 09:51:36 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Tue, 24 Aug
- 2021 04:51:36 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Tue, 24 Aug
- 2021 04:51:36 -0500
-Received: from monk-build.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2242.12 via Frontend
- Transport; Tue, 24 Aug 2021 04:51:35 -0500
-From: Monk Liu <Monk.Liu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Monk Liu <Monk.Liu@amd.com>
-Subject: [PATCH] drm/sched: fix the bug of time out calculation
-Date: Tue, 24 Aug 2021 17:51:32 +0800
-Message-ID: <1629798692-21361-1-git-send-email-Monk.Liu@amd.com>
-X-Mailer: git-send-email 2.7.4
+ bh=5ZFaYq1a6fk9MKCMEe0m0+DcdZpC9Il538YOsHuI37Y=;
+ b=ILWHC83hQJsetN5vHvIYO7QLQs8HltmyXq33wljrZME3ocOHXTyoX4G43XP1+cdqPaHlxv2W30TjAmVuUmVUPhiVUhvK3bpOywOlVE9dS+eDM3UuPFhuo+P1hsKF79nAXn5Sw1Kpqnx2E9bPrPZG4hMQV/WRFFdMNfk1V17OPhE=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by BL0PR12MB2450.namprd12.prod.outlook.com (2603:10b6:207:4d::32)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.22; Tue, 24 Aug
+ 2021 11:56:22 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::dce2:96e5:aba2:66fe]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::dce2:96e5:aba2:66fe%6]) with mapi id 15.20.4436.024; Tue, 24 Aug 2021
+ 11:56:22 +0000
+Subject: Re: [PATCH 1/5] drm/sched:add new priority level
+To: "Sharma, Shashank" <shashank.sharma@amd.com>,
+ Satyajit Sahu <satyajit.sahu@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: leo.liu@amd.com, Alexander.Deucher@amd.com, nirmoy.das@amd.com
+References: <20210824055510.1189185-1-satyajit.sahu@amd.com>
+ <66607af7-5310-629f-1851-df4b74cebf7d@amd.com>
+ <53fb0d0b-e9c3-3a79-9b17-87e4297737bb@amd.com>
+ <2952fe71-5948-de45-728f-5a606a8e9abe@amd.com>
+ <55f8f164-ece6-1e8f-1c8d-54cc47cf8bc0@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <4435519f-01a2-7344-9eb4-f9f27cb2f7c1@amd.com>
+Date: Tue, 24 Aug 2021 13:56:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+In-Reply-To: <55f8f164-ece6-1e8f-1c8d-54cc47cf8bc0@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-ClientProxiedBy: AM8P251CA0023.EURP251.PROD.OUTLOOK.COM
+ (2603:10a6:20b:21b::28) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.178.21] (91.14.161.181) by
+ AM8P251CA0023.EURP251.PROD.OUTLOOK.COM (2603:10a6:20b:21b::28) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4436.22 via Frontend Transport; Tue, 24 Aug 2021 11:56:21 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 34dfe19d-46b7-4176-895f-08d966e4c39a
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5246:
-X-Microsoft-Antispam-PRVS: <DM4PR12MB52463BBF303C1E0E66CA4E1E84C59@DM4PR12MB5246.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Office365-Filtering-Correlation-Id: 7781218d-d9f8-478b-0251-08d966f63141
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2450:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BL0PR12MB2450C30E0683899C39EDF3EC83C59@BL0PR12MB2450.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: A9fkaO66USjFbJ35cZ7zDZ3q2i/CTK3ahiNxyK6Z0K9EQZmn0PAUdi2zvQ6JGgOr7NZjY6BsRjIfljy77JdJ0RVDLXfXJgPkMAk/W0BAHBcLXzd93zFT9XenePOEl4nJ790/rsWAquFLq/pWg6Mf4uS/L6Xt7JTji11fFYCFOl5X1+wQQ/ViS3lEUJhSVj7XeUxTW43tF94HI/1X0HzWqRaBP25FP/gctCp7tp1zEQ95PVcodz0AJUQd8kmzTYYbUdcGmrtFrosM29lhS2RrwPVesdI+tAoSWg+g5HHkrEKYyL727GSh7u5+U65K3PKKtfuWnni+EZJAHaNl2szNmlkOIY5pAQ4DBfayw4sq4w8zHmxIXt9ClPE2FraYiu5VWbRX0bwgt64utXsLSiYbAYuLmWZtJxmCxEzCcMq3CTSb0erM1wXHGzxVrvIOx0nAzFH8rzTh1WwquUMFkIMSNlorr7vFX3O2SCCzX+C0jcHwjgJo+k9VxkEma1UTdi45MWrzW1y8UoCLpemEjKhrKfzhjZrHb3pVbjHMsnFraAsdywdF8RbLWZHuc/ObfW+es137OKIDr3vkLMFHJ4NQRonBT3QvX748evVMgisYteRwhNXxiSw8XZ1vM67G/nwDMPiZdNEmFUjUGx6eEdpwcUmWg/JLcAIRA+KTHrJmtUmFlzSsNsm+0tbtwWp1/bzUA4v2yVGpFSElrl7tyVhC+mX3KuxBnxFMjsexA/x/DHWfaoJmHLHwe9Hm9qsyhwn3Kf8/LalaqFQS54vEvsdbdg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(376002)(136003)(396003)(346002)(39860400002)(36840700001)(46966006)(186003)(70206006)(81166007)(4326008)(36860700001)(6666004)(70586007)(36756003)(8676002)(6916009)(26005)(83380400001)(8936002)(2906002)(336012)(7696005)(426003)(2616005)(478600001)(82310400003)(86362001)(34020700004)(5660300002)(316002)(82740400003)(47076005)(356005)(36900700001);
+X-Microsoft-Antispam-Message-Info: 9zEmhd4pfEhkkFTddAKgjXAsW+P8OKuy7TRg/N7DxT4p5wKqwW60EID35wNdN2kARZieW9JMHyeGlsElHxRiNW9zLS5STFwOOlARw267ww/GlsMK9oxu6QYFhVQ3PtHCZjiZZQdqf+bAfqxdyXs7vOlWZVbKXsje4A1oz+7jvVTlszQKrHpUpXqPH+T66hp8q5pfKfysXm9OR2V54W5FAxDUSoKSV0bBkpyZDHyRo0O4DaAJ8gWpq4VfXwOvjB6GdaYnsYxZK+W4b0i+QfbFGvQPNF3jvgFrylzomZGgx1HoZLSijukC4AsfemEXItowADzYtE3KyanLhbnDOLM0jNmX94PS8DUaoJkzr/J7fpDqQWMUQCuGG+YRiYGOaxeg55GHBlBErVyoEMUA4+f4epsEqzbKHU+J5uvZEwijhbNL3cYbJuimkM2PEb5t6Qr5EFA3Bfl5W/VOv+chn/2zzf+j686DBIJea9e7qOmHznLsaEbr8e+fBEJ3n0n6iUvc2w8uoQgcUFRGfh6ohl6kKQHO8yI0SeUjdOPd1gmz7dfz49mhR9Y4Gyl5pfaMXcGA4kEAhBhvLduhTGq3zM3g6Iaarb/jBwUTNPKZk0wnbX72szbOWehDKDDzi8vY3oRMY085NS24mrr7plkSji69O3lBUJ3iOXiOd5b5+0mum4HQeTwR5gZCajpOdVSLJQGCmyXrJ7IiBd0iTWZdgNFiRHsrXO29dczaCtxdM8voOsXbIBia+jsivt/yl1sZSvWI
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(366004)(396003)(39860400002)(376002)(346002)(86362001)(2906002)(6486002)(31686004)(16576012)(31696002)(66946007)(26005)(8936002)(5660300002)(956004)(66476007)(83380400001)(53546011)(66556008)(8676002)(36756003)(316002)(478600001)(110136005)(6666004)(4326008)(186003)(2616005)(38100700002)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q0p3czlrWnRMYW5TMU9NaFZnc0NuTTYwY2FrdVFCR1NFUXZ5ejU2RXp1bk43?=
+ =?utf-8?B?emIrMHhCYnoxdHNRbnYwL3ZZOXdNUnYyaWdxek41MUVENjZZV0hmKzVqaUxx?=
+ =?utf-8?B?UEZpc08vY0ZycHZrakhwNCtMclBvQlNkYjFaQXM1aXA1K0paS1dWMnVXNXA3?=
+ =?utf-8?B?azBQYWZwbkYwT3BsRy9kRDRNSTQwVjhsWWUyWHNwMEZYSGZKRFgzV01xMXkv?=
+ =?utf-8?B?dld5MmQydStNcldjc2RaY0ZBRzdxL2s1a2tTU3VvLzROWVd3Wmk4YlBoK0FU?=
+ =?utf-8?B?V1ZQdkl0L3poL25FNjRyQUgzMnovYkNEZDd2MTFLd3QrY0twelR5UGQrOUNV?=
+ =?utf-8?B?bzljODdMSlo2TU9FME5vaTdvNjA1c3BDSGgrM1pRRGQ4TktjUDdZamtJWVoz?=
+ =?utf-8?B?SFZvVTFzQkJUTHVaZCtkbXl0UzlZOXVxWTFRVlBoYUQwUno3N2wwY1E2bU0w?=
+ =?utf-8?B?UGlBUzdOSkJhSW9pK2dSKzgvbU95Rk5NbTF5eElsNys5RitzM3pQMGNQV1Zt?=
+ =?utf-8?B?YW51T0ZTckZxTXhCSTVua21zNTFXak9ndHZrTklDay93d2R6OXNyd3hoRUFQ?=
+ =?utf-8?B?UjZ6Z0xFL1FPTERCMGkzaXdXNmErMEU3QXpqbDhXcWVIMFQ1VUZ4L2FWOVNq?=
+ =?utf-8?B?L1J6TVhRTXBmUUcwSlJKWUt6ZVA1OGdhdGVqOCtaOUZVNTZqaUtReTFZd2lu?=
+ =?utf-8?B?Wlpmd3lMTnBJQWlhenZQM3JEUytkcFlVMWMvR29uMGlla3BrMU5qTXRBUHJV?=
+ =?utf-8?B?SHk1T3FFcldFbFpMQlJ2TldKRUpKR3h1OFRtcW9jNFk1Uy8wYVM5bmhrKytK?=
+ =?utf-8?B?OWlPVDlQcng2SmZ6RzhkTlQ0Z3hqMSsydkswWFBVNHdjOFNIWGxSK2dzcm1U?=
+ =?utf-8?B?ZnFHK0pMQktWTHJnelVwWVozUlYzU1pYdklTRHY3blRzSXQ1OS9iWG9zMGpk?=
+ =?utf-8?B?RGNENWR4ZFpqUWNFSlAyalpCT3VteEl2VXF0TnV4djFQMTYwTmJPOFZVcHJF?=
+ =?utf-8?B?dmgwMzVRWW81dERkZllDY1lUUW8xQWZXYUFLQTFOSmVSYnhIWmN4d2VtWTVM?=
+ =?utf-8?B?cDR4ZHl2Si9lV0NyV29aU1Y5ZEw2Y3lSMERhd1hWTzR1VzlwQzBsR0ZTdDZz?=
+ =?utf-8?B?eHg1MjFDMG92TWpQZkRyR05BRnY3T2g1TVpTazdoM0IxaWFpSTBheFQxUTJW?=
+ =?utf-8?B?L29vbXVYeFNmS0JlS0p2VkJObGJUTFdhZEpXNStZR3U2YmhOZWs4TElPMzBa?=
+ =?utf-8?B?MGk1aElqaEpLc0xYdUo5VllpSG9OMTg2cDNnY21MMVNocldWRmFHZkxMSy9s?=
+ =?utf-8?B?a1VndjNpMUJUdjlXZm9SUytGTFhKR0NSbjBPU2w2NnBvV1NVRmhyQjkrc1Fr?=
+ =?utf-8?B?a3dOK1NFK3Zjd1pEQklRSmFZNmZpWTY4a3hOMTk4OG9XQnFHbmg5TzNYYnk1?=
+ =?utf-8?B?ZFFoZnoxeG9ZNlQrdzByQW4vcUNqWk1OQ0NTNGs5eXNyamNKeis2aUY3TTBH?=
+ =?utf-8?B?RW1vVUxRbHloR3FiU20yRmx2SHRxSGp1MVYwRkpROVBtajVHbC9peVVkVkh3?=
+ =?utf-8?B?M2JmV09qay9xTEJHSkhzVVJvaUphZUZ5RS9HUXA2ZVBHRHRvOTNtUS9LaXVK?=
+ =?utf-8?B?cUhKNTBBOGpjUXFPQndEb0dQSTRJd1hnYnh4blo0eWo3dFRLMGptSTdwYmxj?=
+ =?utf-8?B?Y2YyNGdJZ3ZYOFkxRzdrZWdMVjVVTUhtdGpGbkMvY01tV2xKZDdyUk85SVpT?=
+ =?utf-8?Q?FUxQo2zgGYVbimAKQw/u2g3At6aazhCHo3J4jAC?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2021 09:51:36.9477 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34dfe19d-46b7-4176-895f-08d966e4c39a
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7781218d-d9f8-478b-0251-08d966f63141
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2021 11:56:22.5466 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT007.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5246
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eL9ZZoBBbKjVQ0N8sUL739JbsbJip3KF+/wdq1yx4LVHzXVtxQIDd8Km5/Bv5oc4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2450
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,48 +134,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-the original logic is wrong that the timeout will not be retriggerd
-after the previous job siganled, and that lead to the scenario that all
-jobs in the same scheduler shares the same timeout timer from the very
-begining job in this scheduler which is wrong.
+Am 24.08.21 um 11:45 schrieb Sharma, Shashank:
+> On 8/24/2021 2:25 PM, Christian König wrote:
+>> Nope that are two completely different things.
+>>
+>> The DRM_SCHED_PRIORITY_* exposes a functionality of the software 
+>> scheduler. E.g. we try to serve kernel queues first and if those are 
+>> empty we use high priority etc....
+>>
+>> But that functionality is completely independent from the hardware 
+>> priority handling. In other words you can different hardware queues 
+>> with priorities as well and each of them is served by a software 
+>> scheduler.
+>>
+>> In other words imagine the following setup: Two hardware queues, one 
+>> normal and one low latency. Each hardware queue is then feed by a 
+>> software scheduler with the priorities low,normal,high,kernel.
+>>
+>> This configuration then gives you 8 different priorities to use.
+>>
+>
+> Thanks for the details, I was under quite a different impression, this 
+> explanation helps.
 
-we should modify the timer everytime a previous job signaled.
+The problem is that we used the SW scheduler enum for the init_priority 
+and override_priority. Which is most likely a bad idea.
 
-Signed-off-by: Monk Liu <Monk.Liu@amd.com>
----
- drivers/gpu/drm/scheduler/sched_main.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+> I guess this also means that the HW queues are completely left to be 
+> managed by the core driver (Like AMDGPU or I915 etc) as of now, and 
+> the DRM framework only provides SW schedulers ?
 
-diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index a2a9536..fb27025 100644
---- a/drivers/gpu/drm/scheduler/sched_main.c
-+++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -235,6 +235,13 @@ static void drm_sched_start_timeout(struct drm_gpu_scheduler *sched)
- 		schedule_delayed_work(&sched->work_tdr, sched->timeout);
- }
- 
-+static void drm_sched_restart_timeout(struct drm_gpu_scheduler *sched)
-+{
-+	if (sched->timeout != MAX_SCHEDULE_TIMEOUT &&
-+	    !list_empty(&sched->pending_list))
-+		mod_delayed_work(system_wq, &sched->work_tdr, sched->timeout);
-+}
-+
- /**
-  * drm_sched_fault - immediately start timeout handler
-  *
-@@ -693,6 +700,11 @@ drm_sched_get_cleanup_job(struct drm_gpu_scheduler *sched)
- 	if (job && dma_fence_is_signaled(&job->s_fence->finished)) {
- 		/* remove job from pending_list */
- 		list_del_init(&job->list);
-+
-+		/* once the job deleted from pending list we should restart
-+		 * the timeout calculation for the next job.
-+		 */
-+		drm_sched_restart_timeout(sched);
- 		/* make the scheduled timestamp more accurate */
- 		next = list_first_entry_or_null(&sched->pending_list,
- 						typeof(*next), list);
--- 
-2.7.4
+Yes, exactly.
+
+> Does this suggest a scope of a common framework or abstraction layer 
+> for HW queues in DRM ? Most of the architectures/HW will atleast have 
+> a NORMAL and a higher priority work queue, and their drivers might be 
+> handling them in very similar ways.
+
+I don't think so. IIRC we even have generalized ring buffer functions in 
+the linux kernel which barely anybody uses because nearly every hw ring 
+buffer is different in one way or another.
+
+Christian.
+
+>
+> - Shashank
+>
+>> Regards,
+>> Christian.
+>>
+>> Am 24.08.21 um 10:32 schrieb Sharma, Shashank:
+>>> Hi Christian,
+>>> I am a bit curious here.
+>>>
+>>> I thought it would be a good idea to add a new SW priority level, so 
+>>> that any other driver can also utilize this SW infrastructure.
+>>>
+>>> So it could be like, if you have a HW which matches with SW priority 
+>>> levels, directly map your HW queue to the SW priority level, like:
+>>>
+>>> DRM_SCHED_PRIORITY_VERY_HIGH: mapped to a queue in HW reserved for 
+>>> real time or very high priority tasks, which can't be missed
+>>>
+>>> DRM_SCHED_PRIORITY_HIGH : mapped to a queue of High priority tasks, 
+>>> for better experience, like encode/decode operations.
+>>>
+>>> DRM_SCHED_PRIORITY_NORMAL: default, mapped to a queue of tasks 
+>>> without a priority context specified
+>>>
+>>> DRM_SCHED_PRIORITY_MIN: queue for specifically mentioned low 
+>>> priority tasks
+>>>
+>>> Depending on the HW we are running on, we can map these SW queues to 
+>>> corresponding HW queues, isn't it ?
+>>>
+>>> Regards
+>>> Shashank
+>>>
+>>> On 8/24/2021 11:40 AM, Christian König wrote:
+>>>> I haven't followed the previous discussion, but that looks like 
+>>>> this change is based on a misunderstanding.
+>>>>
+>>>> Those here are the software priorities used in the scheduler, but 
+>>>> what you are working on are the hardware priorities.
+>>>>
+>>>> That are two completely different things which we shouldn't mix up.
+>>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>> Am 24.08.21 um 07:55 schrieb Satyajit Sahu:
+>>>>> Adding a new priority level DRM_SCHED_PRIORITY_VERY_HIGH
+>>>>>
+>>>>> Signed-off-by: Satyajit Sahu <satyajit.sahu@amd.com>
+>>>>> ---
+>>>>>   include/drm/gpu_scheduler.h | 1 +
+>>>>>   1 file changed, 1 insertion(+)
+>>>>>
+>>>>> diff --git a/include/drm/gpu_scheduler.h 
+>>>>> b/include/drm/gpu_scheduler.h
+>>>>> index d18af49fd009..d0e5e234da5f 100644
+>>>>> --- a/include/drm/gpu_scheduler.h
+>>>>> +++ b/include/drm/gpu_scheduler.h
+>>>>> @@ -40,6 +40,7 @@ enum drm_sched_priority {
+>>>>>       DRM_SCHED_PRIORITY_MIN,
+>>>>>       DRM_SCHED_PRIORITY_NORMAL,
+>>>>>       DRM_SCHED_PRIORITY_HIGH,
+>>>>> +    DRM_SCHED_PRIORITY_VERY_HIGH,
+>>>>>       DRM_SCHED_PRIORITY_KERNEL,
+>>>>>       DRM_SCHED_PRIORITY_COUNT,
+>>>>
+>>
 
