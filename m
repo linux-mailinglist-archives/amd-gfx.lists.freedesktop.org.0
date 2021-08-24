@@ -1,42 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB7DC3F69BA
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Aug 2021 21:22:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 019D73F6A00
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Aug 2021 21:41:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B4346E0BE;
-	Tue, 24 Aug 2021 19:22:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B4C56E0D0;
+	Tue, 24 Aug 2021 19:40:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (unknown
- [40.107.212.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9F0C6E0BE
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 19:22:52 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2058.outbound.protection.outlook.com [40.107.220.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECFDC6E0D0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 19:40:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GvHxmv632FIctj38PekAlkaP3TuwEppOrM3KwXGu+XKzTYPSWvwCMkrFQJh+/pTHndkcFaxsKoSUwyX3Yt3J2170IlK5Pz90QPD0GTzdLk2cN/1SGU4toQZnAXb28l32lv1pBNa/351GgRtzb4h2qNagxauSvXgyTcMX3gn6T53kNtc3df3QeygRToSslI6i1BK+ZC6HgjUoqLsc4lVfuLFlrC/LeQUmCnWOjz1EHmW82l2etRc63Ow76c1GdZlBvCIZzxvWhLyEeJXGpN52wv5gv1bWX9zLZ7BZ30LhQAlMEFnbkLYwxaFdxs2GOjqZzZwel8M1awHx5tKTemTU4A==
+ b=Zrgk6gUwKpv30GjMLRn7xdQEJwzASHd4g0I0ke7oOYaQ9wHAj7VEzOK2e7JLe6ZDWWmCDPBlEacmKHkzPfxsYti++sftexDH021RvgaRAIvss4XilQGpQC02o7znbIdKLjCJb8uFnweU3WBbIlGQV+k06it7vFArYJEZ4nOJyejIDP0NJm9o7om50HgkBUZgo+pPFPbM88/lENYcEULO6RoiIAZsREQIFgL7tBwbyCCqsBkUuHVGmX/MkuV8bTioIo05cKEslfu8P7IyCnj/7rmJCFSfCeYezsbi9qXWojExoFceCTFoNN+AD0VjuoOBeS7N4NvgmVXUaMNJ3iWKXg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=edOHqBVPFA1gFtidl0BQjYfK8LsLkvFrxJcVFMyX10Y=;
- b=XLZqQknO9C64MXVfMzGwA6Qa8xiKOaumWnzCrK6B18vRh8PFW9IvQxXbabu9D4GqVhfvQull5cuTMylOrF0WhH0GeZ9GRFzB/kfzxX4iBaHrUnn0lXWiq9z6pnY6Qp1VEZZlN0ir5IK6+9Oj4MsbH7qdpHe9fHYk+RJT2PYaI3QyVRkeLM7re9795qrkOrqdQ0YhSYeAuezz29oEUOmfbrRnfczBCs66nev9IZ33VtkjhPHIMteywxdsIa47t9fm6VCZTXTj1vz3hmFa1EbRUNIeBkQKD57UVpzQERj8J77FImJBUOrHC/Zj9O0fJXg1JrP++c2i0/GY9i8M1psovA==
+ bh=CeAmgjl6gqfnKqzotAiLOQ7dHQJ6lI3ezes28cgG+OI=;
+ b=OZT2zT3uFiUvxQVcl2K6H8ebHGejBs8b/pU9B2dcjRSIMlDOYfKQB2QDTbLpBHWTPeauBImeoGhArMHYcKugcRQdyOPi1YQ9AMzuAZYcugZqBoqNxA2daGibyPv8StBMEGFYDVnRNxHlPQpS3uMwhyv6h0pb5eoWIOrwN8GsdQwMIH9lr9GnnNJE9w4BthqUutSDHWQGSKZD+DWlD+7ZUUHG1hSSg5Mlcga4atSb3AdrwTH7oxxQ3nKnqCyVqYrCed1oK4d83gYBHlROvmwHfNfD0uHmaThDdEfH1sHnngV2nIhEMcCkoPVDREoCNqwDtsYbezdDKwz9BnWc/x831Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=edOHqBVPFA1gFtidl0BQjYfK8LsLkvFrxJcVFMyX10Y=;
- b=KzqA8Icl9chYMTFwM61hyhO4wGuvKfKM30OefY7olX6nCPF5gnJTqPnFqwfC2Niv4g1O13uM6iHiLjiv/yl9c/Y/bRkGveHt7pJOHAjxPqnRAbmaln2orMmgC2uMPzawwdOJzMZCsgh8gq3GuprjRUlvz3IT28Q2m09STFMCnUY=
-Received: from DM6PR13CA0025.namprd13.prod.outlook.com (2603:10b6:5:bc::38) by
- MW3PR12MB4508.namprd12.prod.outlook.com (2603:10b6:303:5b::20) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4436.22; Tue, 24 Aug 2021 19:07:42 +0000
-Received: from DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:bc:cafe::71) by DM6PR13CA0025.outlook.office365.com
- (2603:10b6:5:bc::38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.6 via Frontend
+ bh=CeAmgjl6gqfnKqzotAiLOQ7dHQJ6lI3ezes28cgG+OI=;
+ b=hXFWUhtbZO2ZgbGJb6jyEpgYnRQy1MWz+s3pl5Oc5lan3GmZqU405eIqqlNkzVwZf+AFOnO2RrhyGQIHDI1Mp6eRzQKgCgtTe2SGItXR4iXq3UBtC7DV7L8elsRj8JfdDhmnL/0JyBJIERgcDgY3u0wPNcy3DffGH8uAntGj7rQ=
+Received: from DM5PR15CA0029.namprd15.prod.outlook.com (2603:10b6:4:4b::15) by
+ BL1PR12MB5207.namprd12.prod.outlook.com (2603:10b6:208:318::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.21; Tue, 24 Aug
+ 2021 19:07:42 +0000
+Received: from DM6NAM11FT036.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:4:4b:cafe::d9) by DM5PR15CA0029.outlook.office365.com
+ (2603:10b6:4:4b::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19 via Frontend
  Transport; Tue, 24 Aug 2021 19:07:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
@@ -46,21 +46,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT011.mail.protection.outlook.com (10.13.172.108) with Microsoft SMTP
+ DM6NAM11FT036.mail.protection.outlook.com (10.13.172.64) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.4436.19 via Frontend Transport; Tue, 24 Aug 2021 19:07:42 +0000
 Received: from dayatsin-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Tue, 24 Aug
- 2021 14:07:37 -0500
+ 2021 14:07:38 -0500
 From: David Yat Sin <david.yatsin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <felix.kuehling@amd.com>, <rajneesh.bhardwaj@amd.com>, David Yat Sin
  <david.yatsin@amd.com>
-Subject: [PATCH v2 17/18] Revert "drm/amdgpu: Remove verify_access shortcut
- for KFD BOs"
-Date: Tue, 24 Aug 2021 15:06:38 -0400
-Message-ID: <20210824190639.6288-18-david.yatsin@amd.com>
+Subject: [PATCH v2 18/18] drm/amdkfd: CRIU export kfd bos as prime dmabuf
+ objects
+Date: Tue, 24 Aug 2021 15:06:39 -0400
+Message-ID: <20210824190639.6288-19-david.yatsin@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210824190639.6288-1-david.yatsin@amd.com>
 References: <20210824190639.6288-1-david.yatsin@amd.com>
@@ -71,28 +71,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f3d306f0-34c9-4aaf-9cac-08d9673272e5
-X-MS-TrafficTypeDiagnostic: MW3PR12MB4508:
-X-Microsoft-Antispam-PRVS: <MW3PR12MB4508D5624384AF436DD8B8E695C59@MW3PR12MB4508.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:159;
+X-MS-Office365-Filtering-Correlation-Id: 82bc2ef2-a2d5-4b12-7a21-08d9673272ff
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5207:
+X-Microsoft-Antispam-PRVS: <BL1PR12MB5207CC8F61A1837DAFEDF51F95C59@BL1PR12MB5207.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: J4h69RWRomHQV1MhUwytAM7ABnQmBWcNDKMwma5UIWdFz9HZF0AWCtyVXe6iubNSCEOsXrN+JoWWGKTEjlz1bJtnCoP28iat1pFuVIXNLcuQw5gceEIoEfj5F/owU/JdY2tVuvstb+bxeZHEjaTa0TX/8Ifn52barYjfiRwlrkqErAFC/AmmQ9gOUAjeWBL+5nRNQ/jhu7IqumIqz1NVu+FGRCgFOesCtnT3MCgIpyRHVDGdcIrnQlQ8XC8PzRTMhu8l1K6UEgBd8Dhz+LG0vLkpek8Xz2nWWOf7pZ5njMwNBz3aP8QSPkvLKSG3Lew6Bq5hwao4Lsk5irpFXHk0Rb9QsFBI8S2j80SfuN05ambtGpYfqHkrlaI1bzEyJEKk+8Yy9JH5a0rWtCQsPNUeM524mu2g0RM3CODNuSTLB3urs6w8vmORKCRi0nVeAtX5dlNXugePH/MOIJcnfEAYVjqxBEro95iSy+YJYfFgnloStw4CLzE4+MFUu6yxhHJP2XW6ahY4w5QUeotiQ/lIKazfF04R4NvTd467SwjSV0XKMDnQeVQGuieZFXl9OkwRhrVGIWD5EhRz13Xzn1TRD759bD1OyL7c9GwfHQi82+U3jyNe6LEmdhWsGwMoxogUjoQkWBLvG0nMXLXHh/EKI5u1o+1ifpjG0pqi4gGK9TW1Q1ldOgGLx+YPdHXs2m/abusuCURlt+OHQlE8OqZjMwLfDWPSiw8cMQJYQlaMVX4=
+X-Microsoft-Antispam-Message-Info: OJJ7I8FRIAkp4ilYtyuDK08mQcZ2e7i00hmrCagKnM5EBLrkzEd6xSvb9BkUNM9TmpVxt5pAMZfZYsum+pxV5mz+QD/sOX/isUvtqJhGtoLdO/h/CSsd42x5AGbvnqODe96TZ309JgkO1irqP/FGTxcVOd1dCjmC1pIwLolEQJtGJ5COMgT7d6vs4qSCfEs8jFlMnH2ZPH1llGnFtAZ2fWtKAMD3FojDVL4RG7dv8t6NWYaNGlU+a+K0Rcov89eVQ2DGzId6O8R6pO04k9jyyNujET8+QG9BsAtIAXM80YNtZEfID9cGIl2D5q5BU3LzeoMnkmVXhKlDxPUUhgTTgMiCaaOTQ48vXASxjr1+H12tws7xj6h4M2JJGAS+JnIAYmxhBistmPHHJWKlhnYh5IODpq/6fSwncQLX4GxezXPhHE3e0rkaLg9yH6aJU/1Jli6Bt1zFDYxHDUfeduDy3QMz6Y7EKstqa8ZKmgEpDcwucJEOcKGI8VwTIqLIzHzTdOObWsop0e9zjke6607VLZ/2Qe0avzzmZISEX90IjSi1MtO2UFrmxW61YMXkxRe+JIqPOd/BWkZloiWCzoSNzGD0eaxIXntjyLF4xXaGb76POTK/CsjVgXKCsRjXE9dqMtMns8G3rXUvnI9OeqMjeJtlRACuo2fChrCzzOmALqNG3dulkErpJAR+7im+2zsnANy1E9xO/7KznorTZ+vohUvm66O8IHPE57s/ezJng0k=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(396003)(136003)(376002)(346002)(39860400002)(46966006)(36840700001)(8676002)(4326008)(47076005)(5660300002)(6916009)(70586007)(186003)(426003)(36860700001)(70206006)(82310400003)(356005)(8936002)(2906002)(16526019)(7696005)(82740400003)(81166007)(54906003)(26005)(15650500001)(478600001)(316002)(1076003)(2616005)(36756003)(86362001)(336012)(83380400001)(36900700001);
+ SFS:(4636009)(376002)(346002)(39860400002)(136003)(396003)(46966006)(36840700001)(7696005)(83380400001)(478600001)(54906003)(26005)(1076003)(36860700001)(4326008)(316002)(86362001)(6916009)(70206006)(70586007)(426003)(36756003)(81166007)(8936002)(356005)(8676002)(82740400003)(2906002)(47076005)(16526019)(2616005)(336012)(5660300002)(186003)(82310400003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2021 19:07:42.2252 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3d306f0-34c9-4aaf-9cac-08d9673272e5
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2021 19:07:42.4047 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 82bc2ef2-a2d5-4b12-7a21-08d9673272ff
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT036.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4508
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5207
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,34 +109,139 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
 
-This reverts commit 12ebe2b9df192a2a8580cd9ee3e9940c116913c8.
+KFD buffer objects do not associate a GEM handle with them so cannot
+directly be used with libdrm to initiate a system dma (sDMA) operation
+to speedup the checkpoint and restore operation so export them as dmabuf
+objects and use with libdrm helper (amdgpu_bo_import) to further process
+the sdma command submissions.
 
-This is just a temporary work around and will be dropped later.
+With sDMA, we see huge improvement in checkpoint and restore operations
+compared to the generic pci based access via host data path.
 
+Suggested-by: Felix Kuehling <felix.kuehling@amd.com>
 Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
 Signed-off-by: David Yat Sin <david.yatsin@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 57 ++++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 99ea29fd12bd..be7eb85af066 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -178,6 +178,13 @@ static int amdgpu_verify_access(struct ttm_buffer_object *bo, struct file *filp)
- {
- 	struct amdgpu_bo *abo = ttm_to_amdgpu_bo(bo);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+index 2d79bb6082dc..1a1039cc7f55 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+@@ -35,6 +35,7 @@
+ #include <linux/mman.h>
+ #include <linux/ptrace.h>
+ #include <linux/dma-buf.h>
++#include <linux/fdtable.h>
+ #include <asm/processor.h>
+ #include "kfd_priv.h"
+ #include "kfd_device_queue_manager.h"
+@@ -43,6 +44,7 @@
+ #include "amdgpu_amdkfd.h"
+ #include "kfd_smi_events.h"
+ #include "amdgpu_object.h"
++#include "amdgpu_dma_buf.h"
  
-+	/*
-+	 * Don't verify access for KFD BOs. They don't have a GEM
-+	 * object associated with them.
-+	 */
-+	if (abo->kfd_bo)
-+		return 0;
+ static long kfd_ioctl(struct file *, unsigned int, unsigned long);
+ static int kfd_open(struct inode *, struct file *);
+@@ -1899,6 +1901,33 @@ uint64_t get_process_num_bos(struct kfd_process *p)
+ 	return num_of_bos;
+ }
+ 
++static int criu_get_prime_handle(struct drm_gem_object *gobj, int flags,
++				      u32 *shared_fd)
++{
++	struct dma_buf *dmabuf;
++	int ret;
 +
- 	if (amdgpu_ttm_tt_get_usermm(bo->ttm))
- 		return -EPERM;
- 	return drm_vma_node_verify_access(&abo->tbo.base.vma_node,
++	dmabuf = amdgpu_gem_prime_export(gobj, flags);
++	if (IS_ERR(dmabuf)) {
++		ret = PTR_ERR(dmabuf);
++		pr_err("dmabuf export failed for the BO\n");
++		return ret;
++	}
++
++	ret = dma_buf_fd(dmabuf, flags);
++	if (ret < 0) {
++		pr_err("dmabuf create fd failed, ret:%d\n", ret);
++		goto out_free_dmabuf;
++	}
++
++	*shared_fd = ret;
++	return 0;
++
++out_free_dmabuf:
++	dma_buf_put(dmabuf);
++	return ret;
++}
++
+ static int criu_dump_bos(struct kfd_process *p, struct kfd_ioctl_criu_dumper_args *args)
+ {
+ 	struct kfd_criu_bo_bucket *bo_buckets;
+@@ -1968,6 +1997,14 @@ static int criu_dump_bos(struct kfd_process *p, struct kfd_ioctl_criu_dumper_arg
+ 					goto exit;
+ 				}
+ 			}
++			if (bo_bucket->alloc_flags & KFD_IOC_ALLOC_MEM_FLAGS_VRAM) {
++				ret = criu_get_prime_handle(&dumper_bo->tbo.base,
++						bo_bucket->alloc_flags &
++						KFD_IOC_ALLOC_MEM_FLAGS_WRITABLE ? DRM_RDWR : 0,
++						&bo_bucket->dmabuf_fd);
++				if (ret)
++					goto exit;
++			}
+ 			if (bo_bucket->alloc_flags & KFD_IOC_ALLOC_MEM_FLAGS_DOORBELL)
+ 				bo_bucket->offset = KFD_MMAP_TYPE_DOORBELL |
+ 					KFD_MMAP_GPU_ID(pdd->dev->id);
+@@ -1997,6 +2034,11 @@ static int criu_dump_bos(struct kfd_process *p, struct kfd_ioctl_criu_dumper_arg
+ 	}
+ 
+ exit:
++	while (ret && bo_index--) {
++		if (bo_buckets[bo_index].alloc_flags & KFD_IOC_ALLOC_MEM_FLAGS_VRAM)
++			close_fd(bo_buckets[bo_index].dmabuf_fd);
++	}
++
+ 	kvfree(bo_buckets);
+ 	return ret;
+ }
+@@ -2243,6 +2285,7 @@ static int criu_restore_bos(struct kfd_process *p, struct kfd_ioctl_criu_restore
+ 		struct kfd_criu_bo_priv_data *bo_priv;
+ 		struct kfd_dev *dev;
+ 		struct kfd_process_device *pdd;
++		struct kgd_mem *kgd_mem;
+ 		void *mem;
+ 		u64 offset;
+ 		int idr_handle;
+@@ -2390,6 +2433,16 @@ static int criu_restore_bos(struct kfd_process *p, struct kfd_ioctl_criu_restore
+ 		}
+ 
+ 		pr_debug("map memory was successful for the BO\n");
++		/* create the dmabuf object and export the bo */
++		kgd_mem = (struct kgd_mem *)mem;
++		if (bo_bucket->alloc_flags & KFD_IOC_ALLOC_MEM_FLAGS_VRAM) {
++			ret = criu_get_prime_handle(&kgd_mem->bo->tbo.base,
++						    DRM_RDWR,
++						    &bo_bucket->dmabuf_fd);
++			if (ret)
++				goto exit;
++		}
++
+ 	} /* done */
+ 
+ 	/* Flush TLBs after waiting for the page table updates to complete */
+@@ -2414,6 +2467,10 @@ static int criu_restore_bos(struct kfd_process *p, struct kfd_ioctl_criu_restore
+ 		ret = -EFAULT;
+ 
+ exit:
++	while (ret && i--) {
++		if (bo_buckets[i].alloc_flags & KFD_IOC_ALLOC_MEM_FLAGS_VRAM)
++			close_fd(bo_buckets[i].dmabuf_fd);
++	}
+ 	kvfree(objects);
+ 	return ret;
+ }
 -- 
 2.17.1
 
