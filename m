@@ -2,44 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 750183F69BB
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Aug 2021 21:22:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F13833F69B2
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Aug 2021 21:21:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AB8D6E0C2;
-	Tue, 24 Aug 2021 19:22:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71DF2897EE;
+	Tue, 24 Aug 2021 19:21:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 918 seconds by postgrey-1.36 at gabe;
- Tue, 24 Aug 2021 19:22:53 UTC
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (unknown
- [40.107.92.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC3796E0BE
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 19:22:53 +0000 (UTC)
+X-Greylist: delayed 845 seconds by postgrey-1.36 at gabe;
+ Tue, 24 Aug 2021 19:21:46 UTC
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (unknown
+ [40.107.94.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E1B2897EE
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 19:21:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e6G1lN/v40onLJGXbCDJl5KeUUOyorwNXwsm0cfyuo2VKl6E2imRjppE9n6u9fwUyZuoNowu8bcRWDgsoh6y7SjqwJD5B4DV5XsUyHky7VZlVhQXDEmls8ohEOQG6UlVEdhHEQ/NyHod5MAfJyFka9MdMQ597XD4VrNRzLFNLsw6YFPV3A9rmRkVfpr5jvAf+0BWGUFDoN9RuMSN3aWOby92qjusDd4eESwIJdmHMMEZIFkwgS1lfoyic4iPLmogty8m6kIjtrESlK0mlb3YEI0I2mm9w1dKOAtskPcBdXbC7p1xTMogu8lKb1s+QaaCrlkIAmP9tvJAZYZM+nUPPA==
+ b=bQ/c71V7W2PYstVLV7I35kNH7n34Xuk3EuFZAkhtH17aFGJiND0ImjpZ5gtciGHTiMiin4WMHx8tloqt730xz6nbyGw1qekC/5XsbIet9X4hFGUiQ7r340cxL0PnpWaenEptYTJUkhJs09tmYGabS3RrGg1bqxjS+1ivEXAk1k5P/V4O1FI7MczhyhdtZdYcvEOR8jJ7JfVoWFDdJYG+yuuz427d2HLSV0K3gnMmuPc/KhQCJ7pnKD0GpU/uDC1c4vNMeeW6M8I7S9p5DGxZwGLWmUBWFw3bjreqRE0quE2M8Nq9LTV69jfb1bfuym+cKwQeZQUZT0L6sNbbcpOu3A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M3GuaAMQVzZewhmJr2EKiLOkUu/y1eKJc7Bvl5LJ2eo=;
- b=GkhpOAs3mT8UC+sRIqUtAcnkemdwnwgodyHIPx1wOxIksdvhXnbZn/xylmxCSq5YxKiL0pJpaKrPnxMuzfdWO0kK31rtPqz+7cl2AHDhsE3pzIDJCO2mraOqUTJcfLPDbX2y8PAGEelLZk+zsDQPY+pAn9kdd97SGiZvd8cGxn+39ZWaUfJhSVrBG3Gx5mXzRgTnZrxwYM7UmF7KfwLvZrnONvmZLTNaphWGd/OuXYnQSK/KLb0SOpDHm1SJSMb7A8qqJilYbD8RPsLP6eubVsFN9HTVGpzXoiioqg5QxXU7McW8jGSnryeuHnRfcBywG7Crv+1XrqtmY8Aq6cxs3g==
+ bh=Z3cL0tp7gNsVRQ5Ep7L8CF58eM1SCLdCCF5a0tC9Q0E=;
+ b=hgonOHMUNFAgymXn0wiUsTXQHx95BGbKh9CiETZyeGms3ENr/foY+mwtuuOBuga1Z6/PvdH/dKIAp1hTWWLIyd3sP00jCV7AtcQQgHK50VpOCUBHKajm0XATpzEo63nUwr4JgujYnTgzxQLcoOMiZMgi7RN/v2DfrRuHlx4F+IvJUm5O2jPYf45HeSbtZPRx2uulEmp01bXcUNLwcSStWBu9IH0pF4QFIA1xc8J9SKKJNHFJ3g0wovKpmA2qCqpjLsMGhRSeOUjcaV010AHlqymQtFOGj7RL3kkuxGzt2wBRM7ogCU1OSijOVbuaMVEFbVcGZXUIGKv1emTk2iMQ6w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M3GuaAMQVzZewhmJr2EKiLOkUu/y1eKJc7Bvl5LJ2eo=;
- b=vB48iVOc+fOlbuUypyQ9tdUhD1BN1VTwrHOIQZGA897yQsNNt9lSiQJ+R03eHNp/KkeH02TmGouJoNYXn1s9IRHhbyoVWL24lu1DNAyB5X0I3PXfqtWxeSIcQe9PEsCDKgK1XeL0+V1uZK1yzJzYZ/iji3MJYLpoAZbH0A0WydI=
-Received: from DM6PR13CA0024.namprd13.prod.outlook.com (2603:10b6:5:bc::37) by
- DM5PR1201MB0121.namprd12.prod.outlook.com (2603:10b6:4:56::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4436.22; Tue, 24 Aug 2021 19:07:32 +0000
+ bh=Z3cL0tp7gNsVRQ5Ep7L8CF58eM1SCLdCCF5a0tC9Q0E=;
+ b=DN8ywkPE91AfEFZFqzAX49Hmm3NjUVyp3GWBUJy9qTIPgHJ0aM5qe8mgfgmn1ejK7r8LX00UGLl2MTiyvwqtsF9IOyGCVJlEQNa4DcOBD/3g5X2y1tLCBsvGTdE+oH/OYJuSlZ6/gzPi5Rju66+nR5bTvuUrq86e8Lol7fgBLWs=
+Received: from DM6PR13CA0011.namprd13.prod.outlook.com (2603:10b6:5:bc::24) by
+ BY5PR12MB4965.namprd12.prod.outlook.com (2603:10b6:a03:1c4::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.17; Tue, 24 Aug
+ 2021 19:07:33 +0000
 Received: from DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:bc:cafe::ed) by DM6PR13CA0024.outlook.office365.com
- (2603:10b6:5:bc::37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.9 via Frontend
- Transport; Tue, 24 Aug 2021 19:07:32 +0000
+ (2603:10b6:5:bc:cafe::af) by DM6PR13CA0011.outlook.office365.com
+ (2603:10b6:5:bc::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.6 via Frontend
+ Transport; Tue, 24 Aug 2021 19:07:33 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -50,18 +50,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT011.mail.protection.outlook.com (10.13.172.108) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4436.19 via Frontend Transport; Tue, 24 Aug 2021 19:07:32 +0000
+ 15.20.4436.19 via Frontend Transport; Tue, 24 Aug 2021 19:07:33 +0000
 Received: from dayatsin-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Tue, 24 Aug
- 2021 14:07:30 -0500
+ 2021 14:07:31 -0500
 From: David Yat Sin <david.yatsin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <felix.kuehling@amd.com>, <rajneesh.bhardwaj@amd.com>, David Yat Sin
  <david.yatsin@amd.com>
-Subject: [PATCH v2 01/18] x86/configs: CRIU update release defconfig
-Date: Tue, 24 Aug 2021 15:06:22 -0400
-Message-ID: <20210824190639.6288-2-david.yatsin@amd.com>
+Subject: [PATCH v2 02/18] x86/configs: CRIU update debug rock defconfig
+Date: Tue, 24 Aug 2021 15:06:23 -0400
+Message-ID: <20210824190639.6288-3-david.yatsin@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210824190639.6288-1-david.yatsin@amd.com>
 References: <20210824190639.6288-1-david.yatsin@amd.com>
@@ -72,28 +72,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b9102a49-4fba-4e71-bb2b-08d967326ce2
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB0121:
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB012142F51B02D4E87B8FC1B595C59@DM5PR1201MB0121.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:935;
+X-MS-Office365-Filtering-Correlation-Id: 4edccbe8-0025-47f6-0fba-08d967326d7d
+X-MS-TrafficTypeDiagnostic: BY5PR12MB4965:
+X-Microsoft-Antispam-PRVS: <BY5PR12MB496572ED78DE93CDED823E4395C59@BY5PR12MB4965.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: w5X6j9P4/xH+ukc//uoKYLL7L/a0DWm4TGXiNWoeEEXSM6O6rTXuBKwGBlrBSP/vJNLFiwGVecZbOtv2NuUcXDxxFPIcnUtpLNy+RLIW/dWo62o+gdTY0n9WpJOA/fA8GatR9D5E8mpHT+dvMUVkcDavvMhP2FlNYfFguLKUunthhhP9xHakJS4aWW9l2f3QFqhlQCRWs1lOHelFJRXlDCWoAWKqUw2k1pSPXHo5duVFixNp+aUToGMmEzcpJtkcmhPZ8yF8ay3Q9RrD4zefFHeoVJNXHYxs/DDzm9DYphtjJvAbjy8T/XxD6ESNJfVVQk6gLotMSqB5p5TVNN2cXlCquoCEnUMFZsQyS4oFgP5NRH7nFPMo9kMVPQYkRPeVX61qwwEVl2DtGMrUXYgprvdwTjkb5gSfdeAKuxXhmxjT/YNnYozMqgvTWW5HN1zFGKhqsILkZeBgatnkVAn2NhLQ7jdtztTHn/YbzKzTTldVULnOWpnSlHYJX8rNSKFST1O4DRgprmH27NI1Nm8oHFaWPcaLteXxA+zw8RfH2oqxa+94Pw9982Tv6QwtkEeXqZi7oe+2o3WahS7EecnogS+gUF0OB3uSVOj/DdjgUqC+gHBDCWH1L8tWQ/qUV/h9Fl7rlCeJocwjo7wicTtV4JoUo4dlF4Fz8LkxbjsKe3vj1Ctpg1iJ4QWSJWgOX3xdW46MutdhWwOxOG823CLQopHYQEZkMH6dvhK62gWHkv4=
+X-Microsoft-Antispam-Message-Info: BSxZ6xhG4jqMZ5uf+va0oi33Ejl+uew6YbQW/fV9gnvRezZiJF5kTqVxdtOJwS0ZyxJqv/wy3kkINiMq1amC+HxPvD4gHPg4afLOSl1ga6T7VTGQqAHBLTT8rGfHvDbKuZPi+xKdMqZxpqd/POkVNxeAeBS4tQhszVN5/f2V+O52/8Ctqv/uPbYOFiosAv+BaYNRKCjXPnkOZvueik/mHtykmxu3SX8+l1cK/MBkGl+bP1GQ8aZLa6VElvNvN53dpeW0CAtUAb96+2qHnuK+yCJyaTlubum93xAamnLCkfK6DbvmOa5jNEfkK381myKtBzrmec12IPPTEAHJHCOJYR5J3BQZKLa5sWJJLLnL4jH5CAPl7MAz+Bew9QrPHgKk6WcPfbheI4z1Qb6dr48Uz8H/0iu6x3UJcQDvXfEI5e676ro2pTq77CKac7xyjIfLR4Tof76Tnbdxgt9bQNESMp/JR6St1Gluv9/pDk0SxlzLIVpBtavYT1X8phIkGmClVtTgtP7AoG6FH2T8/d9kClCylfhhZJpKn1Tc0acJIKeRn1hNzPW+o8oucComEh4r4CnJcJF+pbm0iYhETWCZUvAeANaPDjoYzs/bjyjI/XgfkeUMB/nagfciwKHrLGmkmoAlkV6hWqOxLsCo8db6O3NVLzaaMUPf008cSwZpnCt+Ndg+KMamt2WfQ5t1L/0SfssRDTwUZM2gDrAYBkV7uWn9/iYw3CcVz8xCdL7tc50=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(136003)(346002)(396003)(376002)(39860400002)(46966006)(36840700001)(47076005)(16526019)(186003)(7696005)(86362001)(15650500001)(6916009)(81166007)(26005)(2906002)(478600001)(1076003)(8936002)(6666004)(8676002)(336012)(36756003)(5660300002)(426003)(4326008)(83380400001)(82310400003)(36860700001)(316002)(356005)(82740400003)(54906003)(70206006)(70586007)(2616005)(36900700001);
+ SFS:(4636009)(346002)(136003)(376002)(39860400002)(396003)(46966006)(36840700001)(356005)(2616005)(47076005)(4326008)(6666004)(82740400003)(2906002)(70586007)(70206006)(81166007)(316002)(5660300002)(6916009)(82310400003)(54906003)(36860700001)(26005)(186003)(86362001)(336012)(478600001)(426003)(16526019)(83380400001)(1076003)(66574015)(36756003)(7696005)(15650500001)(8676002)(8936002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2021 19:07:32.1400 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b9102a49-4fba-4e71-bb2b-08d967326ce2
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2021 19:07:33.1504 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4edccbe8-0025-47f6-0fba-08d967326d7d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0121
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4965
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,24 +110,31 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
 
-Update rock-rel_defconfig for monolithic kernel release that enables
-CRIU support with kfd.
+ - Update debug config for Checkpoint-Restore (CR) support
+ - Also include necessary options for CR with docker containers.
 
 Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
-(cherry picked from commit 4a6d309a82648a23a4fc0add83013ac6db6187d5)
 Signed-off-by: David Yat Sin <david.yatsin@amd.com>
 ---
- arch/x86/configs/rock-rel_defconfig | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+ arch/x86/configs/rock-dbg_defconfig | 53 ++++++++++++++++++-----------
+ 1 file changed, 34 insertions(+), 19 deletions(-)
 
-diff --git a/arch/x86/configs/rock-rel_defconfig b/arch/x86/configs/rock-rel_defconfig
-index 16fe62276006..9c46bb890879 100644
---- a/arch/x86/configs/rock-rel_defconfig
-+++ b/arch/x86/configs/rock-rel_defconfig
-@@ -1045,6 +1045,11 @@ CONFIG_PACKET_DIAG=m
+diff --git a/arch/x86/configs/rock-dbg_defconfig b/arch/x86/configs/rock-dbg_defconfig
+index 54688993d6e2..87951da7de6a 100644
+--- a/arch/x86/configs/rock-dbg_defconfig
++++ b/arch/x86/configs/rock-dbg_defconfig
+@@ -236,6 +236,7 @@ CONFIG_BPF_SYSCALL=y
+ CONFIG_ARCH_WANT_DEFAULT_BPF_JIT=y
+ # CONFIG_BPF_PRELOAD is not set
+ # CONFIG_USERFAULTFD is not set
++CONFIG_USERFAULTFD=y
+ CONFIG_ARCH_HAS_MEMBARRIER_SYNC_CORE=y
+ CONFIG_KCMP=y
+ CONFIG_RSEQ=y
+@@ -994,6 +995,11 @@ CONFIG_PACKET_DIAG=y
  CONFIG_UNIX=y
  CONFIG_UNIX_SCM=y
- CONFIG_UNIX_DIAG=m
+ CONFIG_UNIX_DIAG=y
 +CONFIG_SMC_DIAG=y
 +CONFIG_XDP_SOCKETS_DIAG=y
 +CONFIG_INET_MPTCP_DIAG=y
@@ -135,36 +142,89 @@ index 16fe62276006..9c46bb890879 100644
 +CONFIG_VSOCKETS_DIAG=y
  # CONFIG_TLS is not set
  CONFIG_XFRM=y
- CONFIG_XFRM_ALGO=m
-@@ -1089,7 +1094,7 @@ CONFIG_NET_FOU=m
- CONFIG_NET_FOU_IP_TUNNELS=y
- CONFIG_INET_AH=m
- CONFIG_INET_ESP=m
--# CONFIG_INET_ESP_OFFLOAD is not set
-+CONFIG_INET_ESP_OFFLOAD=m
- # CONFIG_INET_ESPINTCP is not set
- CONFIG_INET_IPCOMP=m
- CONFIG_INET_XFRM_TUNNEL=m
-@@ -1097,8 +1102,8 @@ CONFIG_INET_TUNNEL=m
- CONFIG_INET_DIAG=m
- CONFIG_INET_TCP_DIAG=m
- CONFIG_INET_UDP_DIAG=m
+ CONFIG_XFRM_ALGO=y
+@@ -1031,15 +1037,17 @@ CONFIG_SYN_COOKIES=y
+ # CONFIG_NET_IPVTI is not set
+ # CONFIG_NET_FOU is not set
+ # CONFIG_NET_FOU_IP_TUNNELS is not set
+-# CONFIG_INET_AH is not set
+-# CONFIG_INET_ESP is not set
+-# CONFIG_INET_IPCOMP is not set
+-CONFIG_INET_TUNNEL=y
+-CONFIG_INET_DIAG=y
+-CONFIG_INET_TCP_DIAG=y
+-# CONFIG_INET_UDP_DIAG is not set
 -# CONFIG_INET_RAW_DIAG is not set
 -# CONFIG_INET_DIAG_DESTROY is not set
++CONFIG_INET_AH=m
++CONFIG_INET_ESP=m
++CONFIG_INET_IPCOMP=m
++CONFIG_INET_ESP_OFFLOAD=m
++CONFIG_INET_TUNNEL=m
++CONFIG_INET_XFRM_TUNNEL=m
++CONFIG_INET_DIAG=m
++CONFIG_INET_TCP_DIAG=m
++CONFIG_INET_UDP_DIAG=m
 +CONFIG_INET_RAW_DIAG=m
-+CONFIG_INET_DIAG_DESTROY=m
++CONFIG_INET_DIAG_DESTROY=y
  CONFIG_TCP_CONG_ADVANCED=y
- CONFIG_TCP_CONG_BIC=m
+ # CONFIG_TCP_CONG_BIC is not set
  CONFIG_TCP_CONG_CUBIC=y
-@@ -1126,7 +1131,7 @@ CONFIG_IPV6_ROUTE_INFO=y
+@@ -1064,12 +1072,14 @@ CONFIG_TCP_MD5SIG=y
+ CONFIG_IPV6=y
+ # CONFIG_IPV6_ROUTER_PREF is not set
  # CONFIG_IPV6_OPTIMISTIC_DAD is not set
- CONFIG_INET6_AH=m
- CONFIG_INET6_ESP=m
+-CONFIG_INET6_AH=y
+-CONFIG_INET6_ESP=y
 -# CONFIG_INET6_ESP_OFFLOAD is not set
+-# CONFIG_INET6_ESPINTCP is not set
+-# CONFIG_INET6_IPCOMP is not set
+-# CONFIG_IPV6_MIP6 is not set
++CONFIG_INET6_AH=m
++CONFIG_INET6_ESP=m
 +CONFIG_INET6_ESP_OFFLOAD=m
- # CONFIG_INET6_ESPINTCP is not set
- CONFIG_INET6_IPCOMP=m
- CONFIG_IPV6_MIP6=m
++CONFIG_INET6_IPCOMP=m
++CONFIG_IPV6_MIP6=m
++CONFIG_INET6_XFRM_TUNNEL=m
++CONFIG_INET_DCCP_DIAG=m
++CONFIG_INET_SCTP_DIAG=m
+ # CONFIG_IPV6_ILA is not set
+ # CONFIG_IPV6_VTI is not set
+ CONFIG_IPV6_SIT=y
+@@ -1126,8 +1136,13 @@ CONFIG_NF_CT_PROTO_UDPLITE=y
+ # CONFIG_NF_CONNTRACK_SANE is not set
+ # CONFIG_NF_CONNTRACK_SIP is not set
+ # CONFIG_NF_CONNTRACK_TFTP is not set
+-# CONFIG_NF_CT_NETLINK is not set
+-# CONFIG_NF_CT_NETLINK_TIMEOUT is not set
++CONFIG_COMPAT_NETLINK_MESSAGES=y
++CONFIG_NF_CT_NETLINK=m
++CONFIG_NF_CT_NETLINK_TIMEOUT=m
++CONFIG_NF_CT_NETLINK_HELPER=m
++CONFIG_NETFILTER_NETLINK_GLUE_CT=y
++CONFIG_SCSI_NETLINK=y
++CONFIG_QUOTA_NETLINK_INTERFACE=y
+ CONFIG_NF_NAT=m
+ CONFIG_NF_NAT_REDIRECT=y
+ CONFIG_NF_NAT_MASQUERADE=y
+@@ -1971,7 +1986,7 @@ CONFIG_NETCONSOLE_DYNAMIC=y
+ CONFIG_NETPOLL=y
+ CONFIG_NET_POLL_CONTROLLER=y
+ # CONFIG_RIONET is not set
+-# CONFIG_TUN is not set
++CONFIG_TUN=y
+ # CONFIG_TUN_VNET_CROSS_LE is not set
+ CONFIG_VETH=y
+ # CONFIG_NLMON is not set
+@@ -3955,7 +3970,7 @@ CONFIG_MANDATORY_FILE_LOCKING=y
+ CONFIG_FSNOTIFY=y
+ CONFIG_DNOTIFY=y
+ CONFIG_INOTIFY_USER=y
+-# CONFIG_FANOTIFY is not set
++CONFIG_FANOTIFY=y
+ CONFIG_QUOTA=y
+ CONFIG_QUOTA_NETLINK_INTERFACE=y
+ # CONFIG_PRINT_QUOTA_WARNING is not set
 -- 
 2.17.1
 
