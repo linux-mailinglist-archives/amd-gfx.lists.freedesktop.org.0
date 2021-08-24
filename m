@@ -2,44 +2,44 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0428B3F69B7
-	for <lists+amd-gfx@lfdr.de>; Tue, 24 Aug 2021 21:22:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F7C53F69B4
+	for <lists+amd-gfx@lfdr.de>; Tue, 24 Aug 2021 21:22:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 520496E0CA;
-	Tue, 24 Aug 2021 19:22:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C318F6E0B8;
+	Tue, 24 Aug 2021 19:22:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 896 seconds by postgrey-1.36 at gabe;
- Tue, 24 Aug 2021 19:22:39 UTC
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (unknown
- [40.107.244.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E1206E0C2
- for <amd-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 19:22:39 +0000 (UTC)
+X-Greylist: delayed 860 seconds by postgrey-1.36 at gabe;
+ Tue, 24 Aug 2021 19:22:03 UTC
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (unknown
+ [40.107.223.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 741CC6E0B8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 24 Aug 2021 19:22:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gKPB2lefyhlXom2VehXYsWT8NbgoxxQrxFj/2uP0Qh0rb890248D5Yccc9s8KUFB/oapVmYQ9sYC9D4qObyKEoVZCvYPdujiMbUnYQvDEniJ4JPFDpyHR3zM5nX73IfQ3WWFcAHxBY58e2b7722GFkbKBbuJQEQM9j4ORmu0/9Zqma/+39fN4RQ/V1cLA0jvqNmySjugt3o8xoXmTKMuUyEdTPDpEPEAcv/7j0xNKrE2/wICqYRAdf91B7lm68VqPdArPq/TIbb+n7DEqafZPQ2/6xDbozQ4ox77L2xO3fml2JyT9NVkeVxQJXTzIRI7sUQJF6n9Gp7fGyqiEsTtAA==
+ b=acWWlkkGOQuO0RMhbYAawhicBdenTArMUWizJNLmD0nDfwiy584X2aZrk6ux1HP5/FF0a63V8foTyz1qX3MXJFjqMWurUrP3x5dgj0WNU3qpXmK2PSFN9r0w/e9d7rT7M20dNZ7VGWsgmaHn67fCc5tY6AhBiKmo6Yuo+LcV8soH/fNPKnH43hzae8KTWLagR1cxjv8cd7Uz5ynHpBVS3SOl/jvpJaRZJ61IkO5gr5qY/VJo+07s8i6d0H/KL/HICarRmqxUCk1DuVEXxtzjSvHpRsXsiN60ZNpu8JDcdx7bPgE8aO5J2mZ4QPegZvQk1o6DkleAnHmSw+23HVJgAg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aDzXDXrmFey3s+m+0vfWgGIQXFkOrWXOHG5jgjYCXpw=;
- b=OWWFeLoYJPcSRPDtwe3X+fB+RgKoS8+Y6A6n504Y7JMK9ILoG1IRcObWXOIdHhpt8G561e4IJ0eZCcNzVGhIuASI5XXOPvsUY2n9CF4BsKKu/DlRRuwPamDz6bArfXEmshH8M9d28RDkTN4S9ZQMxDg9/bVx7b70oqQNjt9yKZ9X7A1SRd903CZSr2LET1+3c9nKXOq+Kml7dU4G43zNguG6vhRv7GrM/8qxioRIHFKi21lUm/Af2I15U1b2LeIahrLM+NatYdR+eO5ZoJUCFugt2zK4Vbb72jwW4PHejuJE2qibwvPIsVjmuyOS6ctgCZfKgQY2iPFoBVZqMzfUaA==
+ bh=agV8D6R41tUCJqsFILodqp3a34LiN0uqzCPPZZn1ud8=;
+ b=VmNbCzw5MCn2R8u7K2t/zbhTyGuB03+Xq+VE5dddSlDq6TDtZ8TYv/KjLktIdN8KQ+nuydJXPorpd2Y0a9q+48GBlcmC6b8WPU1tgNATVFg8ToImgVZ3yG1/OF39+b7p1RRRp6hdsCHpsRcNZIsGkspO+LYxVjLSTWIcllwm6cOxYMg1Rrk1c71gOkqYvwlulev4y//TYAZTQNuGMTJHj2jpedxKFGXiCxVOHjYj+JJ/kc16FMBbqv0LqAec46IKW4g78Cl6BxE19hQMyrTKdV6LVCVe//reF852gtWgTD7HpFBecyNokuzsgiam293Qlcum86D5yq3x5PiCQ9VerQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aDzXDXrmFey3s+m+0vfWgGIQXFkOrWXOHG5jgjYCXpw=;
- b=YbA9dnU0qbFagA06JRgugI2uuZvfuoX22l8C/Cih0HEu2kmGHIX8l5arfU8gLZW+FtTDWiWsgwrEBySCzGw4WWUKoTWcTFSVZ6tX8fMaC+TRWVtIUEdeILk+ovUPZt1BLvy4KtQTIf3jF4NPvkFJtOzrmSObzQkXMWgt50yAvCs=
-Received: from DM6PR13CA0033.namprd13.prod.outlook.com (2603:10b6:5:bc::46) by
- BN9PR12MB5355.namprd12.prod.outlook.com (2603:10b6:408:104::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.16; Tue, 24 Aug
- 2021 19:07:40 +0000
-Received: from DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:bc:cafe::6e) by DM6PR13CA0033.outlook.office365.com
- (2603:10b6:5:bc::46) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.9 via Frontend
- Transport; Tue, 24 Aug 2021 19:07:40 +0000
+ bh=agV8D6R41tUCJqsFILodqp3a34LiN0uqzCPPZZn1ud8=;
+ b=yqGSKRadDu4Am0+6ebMwmyoW53E10Xtjx+NhtmYRGZLVM/I1GrSlP0QCukYiWMIKF2rla8Jn/QGxZPXLk16uEkJphACUcoI2jeihvgNErzs8fCfRB9/NF6RArwLhY/AK//aqlq7ds3+o2g4lOPVabQqT9SrZ6JXWH/H0Z0Wtd/0=
+Received: from DM5PR15CA0031.namprd15.prod.outlook.com (2603:10b6:4:4b::17) by
+ DM4PR12MB5246.namprd12.prod.outlook.com (2603:10b6:5:399::17) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4436.19; Tue, 24 Aug 2021 19:07:41 +0000
+Received: from DM6NAM11FT036.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:4:4b:cafe::fb) by DM5PR15CA0031.outlook.office365.com
+ (2603:10b6:4:4b::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.17 via Frontend
+ Transport; Tue, 24 Aug 2021 19:07:41 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,7 +48,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT011.mail.protection.outlook.com (10.13.172.108) with Microsoft SMTP
+ DM6NAM11FT036.mail.protection.outlook.com (10.13.172.64) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.4436.19 via Frontend Transport; Tue, 24 Aug 2021 19:07:40 +0000
 Received: from dayatsin-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
@@ -59,9 +59,9 @@ From: David Yat Sin <david.yatsin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <felix.kuehling@amd.com>, <rajneesh.bhardwaj@amd.com>, David Yat Sin
  <david.yatsin@amd.com>
-Subject: [PATCH v2 14/18] drm/amdkfd: CRIU dump/restore queue control stack
-Date: Tue, 24 Aug 2021 15:06:35 -0400
-Message-ID: <20210824190639.6288-15-david.yatsin@amd.com>
+Subject: [PATCH v2 15/18] drm/amdkfd: CRIU dump and restore events
+Date: Tue, 24 Aug 2021 15:06:36 -0400
+Message-ID: <20210824190639.6288-16-david.yatsin@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210824190639.6288-1-david.yatsin@amd.com>
 References: <20210824190639.6288-1-david.yatsin@amd.com>
@@ -72,28 +72,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4955d0af-7071-4efb-24d0-08d9673271d8
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5355:
-X-Microsoft-Antispam-PRVS: <BN9PR12MB5355515B114464A97D412DDD95C59@BN9PR12MB5355.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:80;
+X-MS-Office365-Filtering-Correlation-Id: 9008cdce-454a-4977-ddd7-08d967327213
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5246:
+X-Microsoft-Antispam-PRVS: <DM4PR12MB524663144CB9163F26D57FAA95C59@DM4PR12MB5246.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:121;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7PnODk9NH45VcqCd7yK3nw5mDdKCZPVTLfZlDMMxkxZXARIaHNj9TcmNMAAXhK3dt7CDG2juiNWq3Zqa65wFPXgt6JnLOWK0quCA24FWUcB0z3iaFv0Nslk9G8Wa/nMvEvC7mpBHCVvglQJBeB3udlieYNiMo0UuQvdvrpsjQPP+EMX75/TD22TkfUgRUz9v/wDMLndiO8E9KU1coH40KraitFuKOO0WhdYX7xuUzPxdt82SXn5/FYfo3WhRhyCQtRAgRpVM+ojhfidQ9ulHeT6/d5Sfe47OGqX2cS9+LtC/6/L6Bmj6hlUzUm0U88VGhDvpVf3bF0+au28nWh3ZZQ40ICnHThG9+N3+oT9w1VNAUGWuN6fIAG6vk30uHP1yCr8LytvA42+uXRcf1AFSOvMqwlqsVyjiESOkhZFeh33rgqDOQKwfqPBxNapcKrSMS96/GVflf0dt/zg5tazJgNIaNceZmsPwp/7qKi8JRaiFnDW/KuRdptxUozRAK7W4YanjKafNYfvZSnm9v6hSApWfoP15BkNzR42VOBiJWItiPOGYrMAHH+baCYmxokGxgU/uhpfodrZGkpsAlp9sObRzvauBwjzFDcpaz1vbwdoBdX2vSam3++uhUrizyIPxxxsT0VMLUaxF8FpP3CIy0Kfxlg0qyzBPKBaANGH5yqtIwTbQham9q0kITM+LKAFqAjzUUGYheXnLK6CD/vbsFQ3qAdkfULqBONoqEOa3YH1r3xYzvRsqz8jNOxi13SX8LVwkygHkZKqdBpLxgYI9fQ==
+X-Microsoft-Antispam-Message-Info: Eb+AfSvuPPGEMNkkrDAjq1kYO1R+eSxcIOMa4HvjPMvnxrSRXjLyjMAcNctj5kLuk3zfzrLuljqiI4e33NCYzE9VP1TokYGhQROBbFfwwkQyq/gaZuqNLwF4/96Kacg6IYkYoP4wltH3XFP7CImDfFZH2qQwkgUiLf/vIEq5+EKg4mqDkqWfRTA9Ak/jIsrPPcZIaOsR4XQqrOc3PWQY9VDCZ7jI5P/0U5ukxmkpEMf4KYtbfnTVIESl1G+nj1AiENF1lcHPcjhbVVkvMMJIIme8WZIb7MrlbjU0zmyg+lP6W2hNfhIfxKxw2i4JpgpfaROY00SW+JI7tI+ykm9p0E/YpGHsmcGLCSiAM7vfgMdD/Z5gPPxEFCF34gF/P/NFuBnTyM2+7+r8JGOQ+uH5+YhwdvbOyDin764KU++d3o+30gsR+dcL6nLZik2SdbIwKsAhfvcrP2FQAF+7QO9imY2lu6iXKfWUgu/fuYOTjzR0vU9kGUNpykhjzsx2Runpznj5/Fv6mRsAxQKkL6vcSKvGsuIWiTSyIjCdOXf/6Qfe0wiSMgOdJPKlHNdrUSSthqrBm52bX79uEMu6tO/xgbL3A7CiOwovpgduFEoyyRpyPxDdIjeaJO6zOWC4pQW4KSOD+pszdzQz65zbnLxMQkLi9OCkM9zoYAxHBOHVbGMSMrVHUl/VulCLsBRIRW0oJqWVsEBP91paZxeMy24juyjve5WhXtPS+wc0kena1Mk=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(376002)(346002)(136003)(396003)(46966006)(36840700001)(8676002)(36756003)(70206006)(7696005)(2616005)(6916009)(26005)(81166007)(5660300002)(47076005)(30864003)(83380400001)(8936002)(336012)(426003)(1076003)(36860700001)(478600001)(70586007)(82310400003)(82740400003)(4326008)(186003)(2906002)(16526019)(86362001)(54906003)(356005)(316002)(36900700001)(309714004);
+ SFS:(4636009)(346002)(396003)(136003)(376002)(39860400002)(36840700001)(46966006)(2616005)(478600001)(1076003)(47076005)(8936002)(7696005)(426003)(336012)(2906002)(82740400003)(356005)(5660300002)(316002)(86362001)(82310400003)(36860700001)(30864003)(4326008)(70586007)(36756003)(54906003)(186003)(70206006)(81166007)(26005)(8676002)(6916009)(83380400001)(16526019)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2021 19:07:40.4582 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4955d0af-7071-4efb-24d0-08d9673271d8
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2021 19:07:40.8586 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9008cdce-454a-4977-ddd7-08d967327213
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT036.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5355
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5246
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,668 +108,575 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Dump contents of queue control stacks on CRIU dump and restore them
-during CRIU restore.
+Add support to existing CRIU ioctl's to save and restore events during
+criu checkpoint and restore.
 
-(rajneesh: rebased to 5.11 and fixed merge conflict)
-Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
 Signed-off-by: David Yat Sin <david.yatsin@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c      |  2 +-
- drivers/gpu/drm/amd/amdkfd/kfd_dbgdev.c       |  2 +-
- .../drm/amd/amdkfd/kfd_device_queue_manager.c | 30 +++++++----
- .../drm/amd/amdkfd/kfd_device_queue_manager.h | 10 ++--
- drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h  |  8 ++-
- .../gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c  | 17 ++++--
- .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c  | 18 +++++--
- .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c   | 27 ++++++++--
- .../gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c   | 17 ++++--
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |  8 +--
- .../amd/amdkfd/kfd_process_queue_manager.c    | 52 ++++++++++++-------
- 11 files changed, 136 insertions(+), 55 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c |  61 +----
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c  | 322 +++++++++++++++++++++--
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h    |  20 +-
+ 3 files changed, 324 insertions(+), 79 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index fad17f9b13f6..dd0ecfe76c2b 100644
+index dd0ecfe76c2b..9f8e60c5c18c 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -313,7 +313,7 @@ static int kfd_ioctl_create_queue(struct file *filep, struct kfd_process *p,
- 			dev->id);
- 
- 	err = pqm_create_queue(&p->pqm, dev, filep, &q_properties, &queue_id, NULL,
--			       NULL, &doorbell_offset_in_process);
-+			NULL, NULL, &doorbell_offset_in_process);
- 	if (err != 0)
- 		goto err_create_queue;
- 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_dbgdev.c b/drivers/gpu/drm/amd/amdkfd/kfd_dbgdev.c
-index c6c0cd47e7f7..3c29e60b967f 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_dbgdev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_dbgdev.c
-@@ -185,7 +185,7 @@ static int dbgdev_register_diq(struct kfd_dbgdev *dbgdev)
- 	properties.type = KFD_QUEUE_TYPE_DIQ;
- 
- 	status = pqm_create_queue(dbgdev->pqm, dbgdev->dev, NULL,
--				&properties, &qid, NULL, NULL, NULL);
-+				&properties, &qid, NULL, NULL, NULL, NULL);
- 
- 	if (status) {
- 		pr_err("Failed to create DIQ\n");
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index 14199e467e96..5943dcf1720f 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -319,7 +319,8 @@ static int create_queue_nocpsch(struct device_queue_manager *dqm,
- 				struct queue *q,
- 				struct qcm_process_device *qpd,
- 				const struct kfd_criu_queue_priv_data *qd,
--				const void *restore_mqd)
-+				const void *restore_mqd,
-+				const void *restore_ctl_stack)
- {
- 	struct mqd_manager *mqd_mgr;
- 	int retval;
-@@ -380,8 +381,9 @@ static int create_queue_nocpsch(struct device_queue_manager *dqm,
+@@ -1008,51 +1008,11 @@ static int kfd_ioctl_create_event(struct file *filp, struct kfd_process *p,
+ 	 * through the event_page_offset field.
+ 	 */
+ 	if (args->event_page_offset) {
+-		struct kfd_dev *kfd;
+-		struct kfd_process_device *pdd;
+-		void *mem, *kern_addr;
+-		uint64_t size;
+-
+-		if (p->signal_page) {
+-			pr_err("Event page is already set\n");
+-			return -EINVAL;
+-		}
+-
+-		kfd = kfd_device_by_id(GET_GPU_ID(args->event_page_offset));
+-		if (!kfd) {
+-			pr_err("Getting device by id failed in %s\n", __func__);
+-			return -EINVAL;
+-		}
+-
+ 		mutex_lock(&p->mutex);
+-		pdd = kfd_bind_process_to_device(kfd, p);
+-		if (IS_ERR(pdd)) {
+-			err = PTR_ERR(pdd);
+-			goto out_unlock;
+-		}
+-
+-		mem = kfd_process_device_translate_handle(pdd,
+-				GET_IDR_HANDLE(args->event_page_offset));
+-		if (!mem) {
+-			pr_err("Can't find BO, offset is 0x%llx\n",
+-			       args->event_page_offset);
+-			err = -EINVAL;
+-			goto out_unlock;
+-		}
++		err = kfd_kmap_event_page(p, args->event_page_offset);
+ 		mutex_unlock(&p->mutex);
+-
+-		err = amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(kfd->kgd,
+-						mem, &kern_addr, &size);
+-		if (err) {
+-			pr_err("Failed to map event page to kernel\n");
++		if (err)
+ 			return err;
+-		}
+-
+-		err = kfd_event_page_set(p, kern_addr, size);
+-		if (err) {
+-			pr_err("Failed to set event page\n");
+-			return err;
+-		}
  	}
  
- 	if (qd)
--		mqd_mgr->restore_mqd(mqd_mgr, &q->mqd, q->mqd_mem_obj,
--				&q->gart_mqd_addr, &q->properties, restore_mqd);
-+		mqd_mgr->restore_mqd(mqd_mgr, &q->mqd, q->mqd_mem_obj, &q->gart_mqd_addr,
-+				     &q->properties, restore_mqd,
-+				     restore_ctl_stack, qd->ctl_stack_size);
- 	else
- 		mqd_mgr->init_mqd(mqd_mgr, &q->mqd, q->mqd_mem_obj,
- 					&q->gart_mqd_addr, &q->properties);
-@@ -1322,7 +1324,7 @@ static void destroy_kernel_queue_cpsch(struct device_queue_manager *dqm,
- static int create_queue_cpsch(struct device_queue_manager *dqm, struct queue *q,
- 			struct qcm_process_device *qpd,
- 			const struct kfd_criu_queue_priv_data *qd,
--			const void *restore_mqd)
-+			const void *restore_mqd, const void *restore_ctl_stack)
- {
- 	int retval;
- 	struct mqd_manager *mqd_mgr;
-@@ -1370,8 +1372,9 @@ static int create_queue_cpsch(struct device_queue_manager *dqm, struct queue *q,
- 	q->properties.is_evicted = !!qpd->evicted;
+ 	err = kfd_event_create(filp, p, args->event_type,
+@@ -1061,10 +1021,7 @@ static int kfd_ioctl_create_event(struct file *filp, struct kfd_process *p,
+ 				&args->event_page_offset,
+ 				&args->event_slot_index);
  
- 	if (qd)
--		mqd_mgr->restore_mqd(mqd_mgr, &q->mqd, q->mqd_mem_obj,
--				&q->gart_mqd_addr, &q->properties, restore_mqd);
-+		mqd_mgr->restore_mqd(mqd_mgr, &q->mqd, q->mqd_mem_obj, &q->gart_mqd_addr,
-+				     &q->properties, restore_mqd, restore_ctl_stack,
-+				     qd->ctl_stack_size);
- 	else
- 		mqd_mgr->init_mqd(mqd_mgr, &q->mqd, q->mqd_mem_obj,
- 					&q->gart_mqd_addr, &q->properties);
-@@ -1759,19 +1762,28 @@ static int get_wave_state(struct device_queue_manager *dqm,
- 
- static void get_queue_dump_info(struct device_queue_manager *dqm,
- 			const struct queue *q,
--			u32 *mqd_size)
-+			u32 *mqd_size,
-+			u32 *ctl_stack_size)
- {
- 	struct mqd_manager *mqd_mgr;
- 	enum KFD_MQD_TYPE mqd_type =
- 			get_mqd_type_from_queue_type(q->properties.type);
- 
-+	dqm_lock(dqm);
- 	mqd_mgr = dqm->mqd_mgrs[mqd_type];
- 	*mqd_size = mqd_mgr->mqd_size;
-+	*ctl_stack_size = 0;
-+
-+	if (q->properties.type == KFD_QUEUE_TYPE_COMPUTE && mqd_mgr->get_dump_info)
-+		mqd_mgr->get_dump_info(mqd_mgr, q->mqd, ctl_stack_size);
-+
-+	dqm_unlock(dqm);
+-	return err;
+-
+-out_unlock:
+-	mutex_unlock(&p->mutex);
++	pr_debug("Created event (id:0x%08x) (%s)\n", args->event_id, __func__);
+ 	return err;
  }
  
- static int dump_mqd(struct device_queue_manager *dqm,
- 			  const struct queue *q,
--			  void *mqd)
-+			  void *mqd,
-+			  void *ctl_stack)
- {
- 	struct mqd_manager *mqd_mgr;
- 	int r = 0;
-@@ -1791,7 +1803,7 @@ static int dump_mqd(struct device_queue_manager *dqm,
- 		goto dqm_unlock;
- 	}
+@@ -2009,6 +1966,8 @@ static int kfd_ioctl_criu_dumper(struct file *filep,
+ 		ret = kfd_criu_dump_queues(p, args);
+ 		break;
+ 	case KFD_CRIU_OBJECT_TYPE_EVENT:
++		ret = kfd_criu_dump_events(p, args);
++		break;
+ 	case KFD_CRIU_OBJECT_TYPE_DEVICE:
+ 	case KFD_CRIU_OBJECT_TYPE_SVM_RANGE:
+ 	default:
+@@ -2310,6 +2269,8 @@ static int kfd_ioctl_criu_restorer(struct file *filep,
+ 		ret = kfd_criu_restore_queues(p, args);
+ 		break;
+ 	case KFD_CRIU_OBJECT_TYPE_EVENT:
++		ret = kfd_criu_restore_events(filep, p, args);
++		break;
+ 	case KFD_CRIU_OBJECT_TYPE_DEVICE:
+ 	case KFD_CRIU_OBJECT_TYPE_SVM_RANGE:
+ 	default:
+@@ -2411,9 +2372,13 @@ static int kfd_ioctl_criu_process_info(struct file *filep,
+ 	args->queues_priv_data_size = queues_extra_data_size +
+ 				(args->total_queues * sizeof(struct kfd_criu_queue_priv_data));
  
--	mqd_mgr->dump_mqd(mqd_mgr, q->mqd, mqd);
-+	mqd_mgr->dump_mqd(mqd_mgr, q->mqd, mqd, ctl_stack);
- 
- dqm_unlock:
- 	dqm_unlock(dqm);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
-index ae4170aece6d..9d7d1308df71 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
-@@ -88,7 +88,8 @@ struct device_queue_manager_ops {
- 				struct queue *q,
- 				struct qcm_process_device *qpd,
- 				const struct kfd_criu_queue_priv_data *qd,
--				const void *restore_mqd);
-+				const void *restore_mqd,
-+				const void *restore_ctl_stack);
- 
- 	int	(*destroy_queue)(struct device_queue_manager *dqm,
- 				struct qcm_process_device *qpd,
-@@ -138,12 +139,13 @@ struct device_queue_manager_ops {
- 				  u32 *save_area_used_size);
- 
- 	void	(*get_queue_dump_info)(struct device_queue_manager *dqm,
--				  const struct queue *q,
--				  u32 *mqd_size);
-+				  const struct queue *q, u32 *mqd_size,
-+				  u32 *ctl_stack_size);
- 
- 	int	(*dump_mqd)(struct device_queue_manager *dqm,
- 				  const struct queue *q,
--				  void *mqd);
-+				  void *mqd,
-+				  void *ctl_stack);
+-	dev_dbg(kfd_device, "Num of bos:%llu queues:%u\n",
++	args->total_events = kfd_get_num_events(p);
++	args->events_priv_data_size = args->total_events * sizeof(struct kfd_criu_event_priv_data);
++
++	dev_dbg(kfd_device, "Num of bos:%llu queues:%u events:%u\n",
+ 				args->total_bos,
+-				args->total_queues);
++				args->total_queues,
++				args->total_events);
+ err_unlock:
+ 	mutex_unlock(&p->mutex);
+ 	return ret;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+index ba2c2ce0c55a..aacc55fa2af2 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_events.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_events.c
+@@ -53,9 +53,9 @@ struct kfd_signal_page {
+ 	uint64_t *kernel_address;
+ 	uint64_t __user *user_address;
+ 	bool need_to_free_pages;
++	uint64_t user_handle; /* Needed for CRIU dumped and restore */
  };
  
- struct device_queue_manager_asic_ops {
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
-index 497e6f874352..bb91b95b4970 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h
-@@ -98,12 +98,16 @@ struct mqd_manager {
- 				  u32 *ctl_stack_used_size,
- 				  u32 *save_area_used_size);
- 
--	void	(*dump_mqd)(struct mqd_manager *mm, void *mqd, void *mqd_dst);
-+	void	(*get_dump_info)(struct mqd_manager *mm, void *mqd, uint32_t *ctl_stack_size);
-+
-+	void	(*dump_mqd)(struct mqd_manager *mm, void *mqd, void *mqd_dst, void *ctl_stack_dst);
- 
- 	void	(*restore_mqd)(struct mqd_manager *mm, void **mqd,
- 				struct kfd_mem_obj *mqd_mem_obj, uint64_t *gart_addr,
- 				struct queue_properties *p,
--				const void *mqd_src);
-+				const void *mqd_src,
-+				const void *ctl_stack_src,
-+				const u32 ctl_stack_size);
- 
- #if defined(CONFIG_DEBUG_FS)
- 	int	(*debugfs_show_mqd)(struct seq_file *m, void *data);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
-index 1d000252080c..bf32c67b723a 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c
-@@ -275,7 +275,13 @@ static int destroy_mqd(struct mqd_manager *mm, void *mqd,
- 					pipe_id, queue_id);
+-
+ static uint64_t *page_slots(struct kfd_signal_page *page)
+ {
+ 	return page->kernel_address;
+@@ -92,7 +92,8 @@ static struct kfd_signal_page *allocate_signal_page(struct kfd_process *p)
  }
  
--static void dump_mqd(struct mqd_manager *mm, void *mqd, void *mqd_dst)
-+static void get_dump_info(struct mqd_manager *mm, void *mqd, u32 *ctl_stack_size)
-+{
-+	/* Control stack is stored in user mode */
-+	*ctl_stack_size = 0;
-+}
-+
-+static void dump_mqd(struct mqd_manager *mm, void *mqd, void *mqd_dst, void *ctl_stack_dst)
+ static int allocate_event_notification_slot(struct kfd_process *p,
+-					    struct kfd_event *ev)
++					    struct kfd_event *ev,
++					    const int *restore_id)
  {
- 	struct cik_mqd *m;
+ 	int id;
  
-@@ -287,7 +293,8 @@ static void dump_mqd(struct mqd_manager *mm, void *mqd, void *mqd_dst)
- static void restore_mqd(struct mqd_manager *mm, void **mqd,
- 			struct kfd_mem_obj *mqd_mem_obj, uint64_t *gart_addr,
- 			struct queue_properties *qp,
--			const void *mqd_src)
-+			const void *mqd_src,
-+			const void *ctl_stack_src, const u32 ctl_stack_size)
- {
- 	uint64_t addr;
- 	struct cik_mqd *m;
-@@ -309,7 +316,7 @@ static void restore_mqd(struct mqd_manager *mm, void **mqd,
- 	qp->is_active = 0;
+@@ -104,14 +105,19 @@ static int allocate_event_notification_slot(struct kfd_process *p,
+ 		p->signal_mapped_size = 256*8;
+ 	}
+ 
+-	/*
+-	 * Compatibility with old user mode: Only use signal slots
+-	 * user mode has mapped, may be less than
+-	 * KFD_SIGNAL_EVENT_LIMIT. This also allows future increase
+-	 * of the event limit without breaking user mode.
+-	 */
+-	id = idr_alloc(&p->event_idr, ev, 0, p->signal_mapped_size / 8,
+-		       GFP_KERNEL);
++	if (restore_id) {
++		id = idr_alloc(&p->event_idr, ev, *restore_id, *restore_id + 1,
++				GFP_KERNEL);
++	} else {
++		/*
++		 * Compatibility with old user mode: Only use signal slots
++		 * user mode has mapped, may be less than
++		 * KFD_SIGNAL_EVENT_LIMIT. This also allows future increase
++		 * of the event limit without breaking user mode.
++		 */
++		id = idr_alloc(&p->event_idr, ev, 0, p->signal_mapped_size / 8,
++				GFP_KERNEL);
++	}
+ 	if (id < 0)
+ 		return id;
+ 
+@@ -178,9 +184,8 @@ static struct kfd_event *lookup_signaled_event_by_partial_id(
+ 	return ev;
  }
  
--static void dump_mqd_sdma(struct mqd_manager *mm, void *mqd, void *mqd_dst)
-+static void dump_mqd_sdma(struct mqd_manager *mm, void *mqd, void *mqd_dst, void *ctl_stack_dst)
+-static int create_signal_event(struct file *devkfd,
+-				struct kfd_process *p,
+-				struct kfd_event *ev)
++static int create_signal_event(struct file *devkfd, struct kfd_process *p,
++				struct kfd_event *ev, const int *restore_id)
  {
- 	struct cik_sdma_rlc_registers *m;
+ 	int ret;
  
-@@ -321,7 +328,8 @@ static void dump_mqd_sdma(struct mqd_manager *mm, void *mqd, void *mqd_dst)
- static void restore_mqd_sdma(struct mqd_manager *mm, void **mqd,
- 				struct kfd_mem_obj *mqd_mem_obj, uint64_t *gart_addr,
- 				struct queue_properties *qp,
--				const void *mqd_src)
-+				const void *mqd_src,
-+				const void *ctl_stack_src, const u32 ctl_stack_size)
- {
- 	uint64_t addr;
- 	struct cik_sdma_rlc_registers *m;
-@@ -451,6 +459,7 @@ struct mqd_manager *mqd_manager_init_cik(enum KFD_MQD_TYPE type,
- 		mqd->update_mqd = update_mqd;
- 		mqd->destroy_mqd = destroy_mqd;
- 		mqd->is_occupied = is_occupied;
-+		mqd->get_dump_info = get_dump_info;
- 		mqd->dump_mqd = dump_mqd;
- 		mqd->restore_mqd = restore_mqd;
- 		mqd->mqd_size = sizeof(struct cik_mqd);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-index 0066a2cf5672..6dd06ee98b60 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c
-@@ -283,7 +283,13 @@ static int get_wave_state(struct mqd_manager *mm, void *mqd,
+@@ -193,7 +198,7 @@ static int create_signal_event(struct file *devkfd,
+ 		return -ENOSPC;
+ 	}
+ 
+-	ret = allocate_event_notification_slot(p, ev);
++	ret = allocate_event_notification_slot(p, ev, restore_id);
+ 	if (ret) {
+ 		pr_warn("Signal event wasn't created because out of kernel memory\n");
+ 		return ret;
+@@ -209,16 +214,22 @@ static int create_signal_event(struct file *devkfd,
  	return 0;
  }
  
--static void dump_mqd(struct mqd_manager *mm, void *mqd, void *mqd_dst)
-+static void get_dump_info(struct mqd_manager *mm, void *mqd, u32 *ctl_stack_size)
-+{
-+	/* Control stack is stored in user mode */
-+	*ctl_stack_size = 0;
-+}
+-static int create_other_event(struct kfd_process *p, struct kfd_event *ev)
++static int create_other_event(struct kfd_process *p, struct kfd_event *ev, const int *restore_id)
+ {
+-	/* Cast KFD_LAST_NONSIGNAL_EVENT to uint32_t. This allows an
+-	 * intentional integer overflow to -1 without a compiler
+-	 * warning. idr_alloc treats a negative value as "maximum
+-	 * signed integer".
+-	 */
+-	int id = idr_alloc(&p->event_idr, ev, KFD_FIRST_NONSIGNAL_EVENT_ID,
+-			   (uint32_t)KFD_LAST_NONSIGNAL_EVENT_ID + 1,
+-			   GFP_KERNEL);
++	int id;
 +
-+static void dump_mqd(struct mqd_manager *mm, void *mqd, void *mqd_dst, void *ctl_stack_dst)
- {
- 	struct v10_compute_mqd *m;
++	if (restore_id)
++		id = idr_alloc(&p->event_idr, ev, *restore_id, *restore_id + 1,
++			GFP_KERNEL);
++	else
++		/* Cast KFD_LAST_NONSIGNAL_EVENT to uint32_t. This allows an
++		 * intentional integer overflow to -1 without a compiler
++		 * warning. idr_alloc treats a negative value as "maximum
++		 * signed integer".
++		 */
++		id = idr_alloc(&p->event_idr, ev, KFD_FIRST_NONSIGNAL_EVENT_ID,
++				(uint32_t)KFD_LAST_NONSIGNAL_EVENT_ID + 1,
++				GFP_KERNEL);
  
-@@ -295,7 +301,8 @@ static void dump_mqd(struct mqd_manager *mm, void *mqd, void *mqd_dst)
- static void restore_mqd(struct mqd_manager *mm, void **mqd,
- 			struct kfd_mem_obj *mqd_mem_obj, uint64_t *gart_addr,
- 			struct queue_properties *qp,
--			const void *mqd_src)
-+			const void *mqd_src,
-+			const void *ctl_stack_src, const u32 ctl_stack_size)
- {
- 	uint64_t addr;
- 	struct v10_compute_mqd *m;
-@@ -405,7 +412,7 @@ static bool is_occupied_sdma(struct mqd_manager *mm, void *mqd,
- 	return mm->dev->kfd2kgd->hqd_sdma_is_occupied(mm->dev->kgd, mqd);
+ 	if (id < 0)
+ 		return id;
+@@ -295,8 +306,8 @@ static bool event_can_be_cpu_signaled(const struct kfd_event *ev)
+ 	return ev->type == KFD_EVENT_TYPE_SIGNAL;
  }
  
--static void dump_mqd_sdma(struct mqd_manager *mm, void *mqd, void *mqd_dst)
-+static void dump_mqd_sdma(struct mqd_manager *mm, void *mqd, void *mqd_dst, void *ctl_stack_dst)
+-int kfd_event_page_set(struct kfd_process *p, void *kernel_address,
+-		       uint64_t size)
++static int kfd_event_page_set(struct kfd_process *p, void *kernel_address,
++		       uint64_t size, uint64_t user_handle)
  {
- 	struct v10_sdma_mqd *m;
+ 	struct kfd_signal_page *page;
  
-@@ -417,7 +424,9 @@ static void dump_mqd_sdma(struct mqd_manager *mm, void *mqd, void *mqd_dst)
- static void restore_mqd_sdma(struct mqd_manager *mm, void **mqd,
- 			     struct kfd_mem_obj *mqd_mem_obj, uint64_t *gart_addr,
- 			     struct queue_properties *qp,
--			     const void *mqd_src)
-+			     const void *mqd_src,
-+			     const void *ctl_stack_src,
-+			     const u32 ctl_stack_size)
- {
- 	uint64_t addr;
- 	struct v10_sdma_mqd *m;
-@@ -478,6 +487,7 @@ struct mqd_manager *mqd_manager_init_v10(enum KFD_MQD_TYPE type,
- 		mqd->is_occupied = is_occupied;
- 		mqd->mqd_size = sizeof(struct v10_compute_mqd);
- 		mqd->get_wave_state = get_wave_state;
-+		mqd->get_dump_info = get_dump_info;
- 		mqd->dump_mqd = dump_mqd;
- 		mqd->restore_mqd = restore_mqd;
- #if defined(CONFIG_DEBUG_FS)
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-index 5b6beb69dfc2..db9f138e1135 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c
-@@ -338,21 +338,34 @@ static int get_wave_state(struct mqd_manager *mm, void *mqd,
+@@ -315,10 +326,55 @@ int kfd_event_page_set(struct kfd_process *p, void *kernel_address,
+ 
+ 	p->signal_page = page;
+ 	p->signal_mapped_size = size;
+-
++	p->signal_page->user_handle = user_handle;
  	return 0;
  }
  
--static void dump_mqd(struct mqd_manager *mm, void *mqd, void *mqd_dst)
-+static void get_dump_info(struct mqd_manager *mm, void *mqd, u32 *ctl_stack_size)
++int kfd_kmap_event_page(struct kfd_process *p, uint64_t event_page_offset)
 +{
-+	struct v9_mqd *m = get_mqd(mqd);
++	struct kfd_dev *kfd;
++	struct kfd_process_device *pdd;
++	void *mem, *kern_addr;
++	uint64_t size;
++	int err = 0;
 +
-+	*ctl_stack_size = m->cp_hqd_cntl_stack_size;
++	if (p->signal_page) {
++		pr_err("Event page is already set\n");
++		return -EINVAL;
++	}
++
++	kfd = kfd_device_by_id(GET_GPU_ID(event_page_offset));
++	if (!kfd) {
++		pr_err("Getting device by id failed in %s\n", __func__);
++		return -EINVAL;
++	}
++
++	pdd = kfd_bind_process_to_device(kfd, p);
++	if (IS_ERR(pdd))
++		return PTR_ERR(pdd);
++
++	mem = kfd_process_device_translate_handle(pdd,
++			GET_IDR_HANDLE(event_page_offset));
++	if (!mem) {
++		pr_err("Can't find BO, offset is 0x%llx\n", event_page_offset);
++		return -EINVAL;
++	}
++
++	err = amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(kfd->kgd,
++					mem, &kern_addr, &size);
++	if (err) {
++		pr_err("Failed to map event page to kernel\n");
++		return err;
++	}
++
++	err = kfd_event_page_set(p, kern_addr, size, event_page_offset);
++	if (err) {
++		pr_err("Failed to set event page\n");
++		return err;
++	}
++	return err;
 +}
 +
-+static void dump_mqd(struct mqd_manager *mm, void *mqd, void *mqd_dst, void *ctl_stack_dst)
- {
- 	struct v9_mqd *m;
-+	/* Control stack is located one page after MQD. */
-+	void *ctl_stack = (void *)((uintptr_t)mqd + PAGE_SIZE);
+ int kfd_event_create(struct file *devkfd, struct kfd_process *p,
+ 		     uint32_t event_type, bool auto_reset, uint32_t node_id,
+ 		     uint32_t *event_id, uint32_t *event_trigger_data,
+@@ -343,14 +399,14 @@ int kfd_event_create(struct file *devkfd, struct kfd_process *p,
+ 	switch (event_type) {
+ 	case KFD_EVENT_TYPE_SIGNAL:
+ 	case KFD_EVENT_TYPE_DEBUG:
+-		ret = create_signal_event(devkfd, p, ev);
++		ret = create_signal_event(devkfd, p, ev, NULL);
+ 		if (!ret) {
+ 			*event_page_offset = KFD_MMAP_TYPE_EVENTS;
+ 			*event_slot_index = ev->event_id;
+ 		}
+ 		break;
+ 	default:
+-		ret = create_other_event(p, ev);
++		ret = create_other_event(p, ev, NULL);
+ 		break;
+ 	}
  
- 	m = get_mqd(mqd);
- 
- 	memcpy(mqd_dst, m, sizeof(struct v9_mqd));
-+	memcpy(ctl_stack_dst, ctl_stack, m->cp_hqd_cntl_stack_size);
+@@ -366,6 +422,216 @@ int kfd_event_create(struct file *devkfd, struct kfd_process *p,
+ 	return ret;
  }
  
- static void restore_mqd(struct mqd_manager *mm, void **mqd,
- 			struct kfd_mem_obj *mqd_mem_obj, uint64_t *gart_addr,
--			struct queue_properties *qp, const void *mqd_src)
-+			struct queue_properties *qp,
-+			const void *mqd_src,
-+			const void *ctl_stack_src, u32 ctl_stack_size)
- {
- 	uint64_t addr;
- 	struct v9_mqd *m;
-+	void *ctl_stack;
- 
- 	m = (struct v9_mqd *) mqd_mem_obj->cpu_ptr;
- 	addr = mqd_mem_obj->gpu_addr;
-@@ -364,6 +377,9 @@ static void restore_mqd(struct mqd_manager *mm, void **mqd,
- 		*gart_addr = addr;
- 
- 	/* Control stack is located one page after MQD. */
-+	ctl_stack = (void *)((uintptr_t)*mqd + PAGE_SIZE);
-+	memcpy(ctl_stack, ctl_stack_src, ctl_stack_size);
-+
- 	m->cp_hqd_pq_doorbell_control =
- 		qp->doorbell_off <<
- 			CP_HQD_PQ_DOORBELL_CONTROL__DOORBELL_OFFSET__SHIFT;
-@@ -460,7 +476,7 @@ static bool is_occupied_sdma(struct mqd_manager *mm, void *mqd,
- 	return mm->dev->kfd2kgd->hqd_sdma_is_occupied(mm->dev->kgd, mqd);
- }
- 
--static void dump_mqd_sdma(struct mqd_manager *mm, void *mqd, void *mqd_dst)
-+static void dump_mqd_sdma(struct mqd_manager *mm, void *mqd, void *mqd_dst, void *ctl_stack_dst)
- {
- 	struct v9_sdma_mqd *m;
- 
-@@ -471,7 +487,9 @@ static void dump_mqd_sdma(struct mqd_manager *mm, void *mqd, void *mqd_dst)
- 
- static void restore_mqd_sdma(struct mqd_manager *mm, void **mqd,
- 			     struct kfd_mem_obj *mqd_mem_obj, uint64_t *gart_addr,
--			     struct queue_properties *qp, const void *mqd_src)
-+			     struct queue_properties *qp,
-+			     const void *mqd_src,
-+			     const void *ctl_stack_src, const u32 ctl_stack_size)
- {
- 	uint64_t addr;
- 	struct v9_sdma_mqd *m;
-@@ -530,6 +548,7 @@ struct mqd_manager *mqd_manager_init_v9(enum KFD_MQD_TYPE type,
- 		mqd->destroy_mqd = destroy_mqd;
- 		mqd->is_occupied = is_occupied;
- 		mqd->get_wave_state = get_wave_state;
-+		mqd->get_dump_info = get_dump_info;
- 		mqd->dump_mqd = dump_mqd;
- 		mqd->restore_mqd = restore_mqd;
- 		mqd->mqd_size = sizeof(struct v9_mqd);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
-index ae5e3edec92e..88f320abe850 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c
-@@ -303,7 +303,13 @@ static int get_wave_state(struct mqd_manager *mm, void *mqd,
- 	return 0;
- }
- 
--static void dump_mqd(struct mqd_manager *mm, void *mqd, void *mqd_dst)
-+static void get_dump_info(struct mqd_manager *mm, void *mqd, u32 *ctl_stack_size)
++static int criu_event_restore(struct file *devkfd, struct kfd_process *p,
++		      struct kfd_criu_event_bucket *ev_bucket,
++		      uint8_t *priv_datas)
 +{
-+	/* Control stack is stored in user mode */
-+	*ctl_stack_size = 0;
++	int ret = 0;
++	struct kfd_criu_event_priv_data *ev_priv;
++	struct kfd_event *ev;
++
++	ev_priv = (struct kfd_criu_event_priv_data *)(priv_datas + ev_bucket->priv_data_offset);
++
++	if (ev_priv->user_handle) {
++		ret = kfd_kmap_event_page(p, ev_priv->user_handle);
++		if (ret)
++			return ret;
++	}
++
++	ev = kzalloc(sizeof(*ev), GFP_KERNEL);
++	if (!ev)
++		return -ENOMEM;
++
++	ev->type = ev_priv->type;
++	ev->auto_reset = ev_priv->auto_reset;
++	ev->signaled = ev_priv->signaled;
++
++	init_waitqueue_head(&ev->wq);
++
++	mutex_lock(&p->event_mutex);
++	switch (ev->type) {
++	case KFD_EVENT_TYPE_SIGNAL:
++	case KFD_EVENT_TYPE_DEBUG:
++		ret = create_signal_event(devkfd, p, ev, &ev_priv->event_id);
++		break;
++	case KFD_EVENT_TYPE_MEMORY:
++		memcpy(&ev->memory_exception_data,
++			&ev_priv->memory_exception_data,
++			sizeof(struct kfd_hsa_memory_exception_data));
++
++		ev->memory_exception_data.gpu_id = ev_bucket->gpu_id;
++		ret = create_other_event(p, ev, &ev_priv->event_id);
++		break;
++	case KFD_EVENT_TYPE_HW_EXCEPTION:
++		memcpy(&ev->hw_exception_data,
++			&ev_priv->hw_exception_data,
++			sizeof(struct kfd_hsa_hw_exception_data));
++
++		ev->hw_exception_data.gpu_id = ev_bucket->gpu_id;
++		ret = create_other_event(p, ev, &ev_priv->event_id);
++		break;
++	}
++
++	if (ret)
++		kfree(ev);
++
++	mutex_unlock(&p->event_mutex);
++
++	return ret;
 +}
 +
-+static void dump_mqd(struct mqd_manager *mm, void *mqd, void *mqd_dst, void *ctl_stack_dst)
++static int criu_event_dump(struct kfd_process *p,
++		   struct kfd_criu_event_bucket *ev_buckets,
++		   uint32_t num_events)
++{
++	struct kfd_event *ev;
++	struct kfd_criu_event_priv_data *ev_privs;
++	uint32_t ev_id;
++	int i = 0;
++
++	/* Private data for first event starts after all ev_buckets */
++	ev_privs = (struct kfd_criu_event_priv_data *)((uint8_t *)ev_buckets +
++						   (num_events * (sizeof(*ev_buckets))));
++
++
++	idr_for_each_entry(&p->event_idr, ev, ev_id) {
++		struct kfd_criu_event_bucket *ev_bucket;
++		struct kfd_criu_event_priv_data *ev_priv;
++
++		if (i >= num_events) {
++			pr_err("Number of events exceeds number allocated\n");
++			return -ENOMEM;
++		}
++
++		ev_bucket = &ev_buckets[i];
++
++		/* Currently, all events have same size of private_data, but the current ioctl's
++		 * and CRIU plugin supports private_data of variable sizes
++		 */
++		ev_priv = &ev_privs[i];
++
++		ev_bucket->priv_data_offset = i * sizeof(*ev_priv);
++		ev_bucket->priv_data_size = sizeof(*ev_priv);
++
++		/* We store the user_handle with the first event */
++		if (i == 0 && p->signal_page)
++			ev_priv->user_handle = p->signal_page->user_handle;
++
++		ev_priv->event_id = ev->event_id;
++		ev_priv->auto_reset = ev->auto_reset;
++		ev_priv->type = ev->type;
++		ev_priv->signaled = ev->signaled;
++
++		/* We store the gpu_id in the bucket section so that the userspace CRIU plugin can
++		 * modify it if needed.
++		 */
++		if (ev_priv->type == KFD_EVENT_TYPE_MEMORY) {
++			memcpy(&ev_priv->memory_exception_data,
++				&ev->memory_exception_data,
++				sizeof(struct kfd_hsa_memory_exception_data));
++
++			ev_bucket->gpu_id = ev_priv->memory_exception_data.gpu_id;
++		} else if (ev_priv->type == KFD_EVENT_TYPE_HW_EXCEPTION) {
++			memcpy(&ev_priv->hw_exception_data,
++				&ev->hw_exception_data,
++				sizeof(struct kfd_hsa_hw_exception_data));
++
++			ev_bucket->gpu_id = ev_priv->hw_exception_data.gpu_id;
++		} else
++			ev_bucket->gpu_id = 0;
++
++		pr_debug("Dumped event[%d] id = 0x%08x auto_reset = %x type = %x signaled = %x\n",
++			  i,
++			  ev_priv->event_id,
++			  ev_priv->auto_reset,
++			  ev_priv->type,
++			  ev_priv->signaled);
++		i++;
++	}
++	return 0;
++}
++
++int kfd_criu_dump_events(struct kfd_process *p, struct kfd_ioctl_criu_dumper_args *args)
++{
++	struct kfd_criu_event_bucket *ev_buckets;
++	uint32_t num_events;
++	int ret =  0;
++
++	num_events = kfd_get_num_events(p);
++	if (args->num_objects != num_events) {
++		pr_err("Mismatch with number of events (current:%d user:%lld)\n",
++							num_events, args->num_objects);
++
++	}
++
++	if (args->objects_size != args->num_objects *
++				  (sizeof(*ev_buckets) + sizeof(struct kfd_criu_event_priv_data))) {
++		pr_err("Invalid objects size for events\n");
++		return -EINVAL;
++	}
++
++	ev_buckets = kvzalloc(args->objects_size, GFP_KERNEL);
++	if (!ev_buckets)
++		return -ENOMEM;
++
++	ret = criu_event_dump(p, ev_buckets, args->num_objects);
++	if (!ret) {
++		ret = copy_to_user((void __user *)args->objects, ev_buckets, args->objects_size);
++		if (ret) {
++			pr_err("Failed to copy events information to user\n");
++			ret = -EFAULT;
++		}
++	}
++	kvfree(ev_buckets);
++	return ret;
++}
++
++int kfd_criu_restore_events(struct file *filp, struct kfd_process *p,
++			struct kfd_ioctl_criu_restorer_args *args)
++{
++	int ret = 0, i;
++	uint8_t *objects, *private_data;
++	struct kfd_criu_event_bucket *ev_buckets;
++
++	objects = kvzalloc(args->objects_size, GFP_KERNEL);
++	if (!objects)
++		return -ENOMEM;
++
++	ret = copy_from_user(objects, (void __user *)args->objects, args->objects_size);
++	if (ret) {
++		pr_err("Failed to copy event information from user\n");
++		ret = -EFAULT;
++		goto exit;
++	}
++
++	ev_buckets = (struct kfd_criu_event_bucket *) objects;
++	private_data = (void *)(ev_buckets + args->num_objects);
++
++	for (i = 0; i < args->num_objects; i++) {
++		ret = criu_event_restore(filp, p, &ev_buckets[i], private_data);
++		if (ret) {
++			pr_err("Failed to restore event (%d)\n", ret);
++			goto exit;
++		}
++	}
++
++exit:
++	kvfree(ev_buckets);
++	return ret;
++}
++
++int kfd_get_num_events(struct kfd_process *p)
++{
++	struct kfd_event *ev;
++	uint32_t id;
++	u32 num_events = 0;
++
++	idr_for_each_entry(&p->event_idr, ev, id)
++		num_events++;
++
++	return num_events++;
++}
++
+ /* Assumes that p is current. */
+ int kfd_event_destroy(struct kfd_process *p, uint32_t event_id)
  {
- 	struct vi_mqd *m;
- 
-@@ -315,7 +321,8 @@ static void dump_mqd(struct mqd_manager *mm, void *mqd, void *mqd_dst)
- static void restore_mqd(struct mqd_manager *mm, void **mqd,
- 			struct kfd_mem_obj *mqd_mem_obj, uint64_t *gart_addr,
- 			struct queue_properties *qp,
--			const void *mqd_src)
-+			const void *mqd_src,
-+			const void *ctl_stack_src, const u32 ctl_stack_size)
- {
- 	uint64_t addr;
- 	struct vi_mqd *m;
-@@ -429,7 +436,7 @@ static bool is_occupied_sdma(struct mqd_manager *mm, void *mqd,
- 	return mm->dev->kfd2kgd->hqd_sdma_is_occupied(mm->dev->kgd, mqd);
- }
- 
--static void dump_mqd_sdma(struct mqd_manager *mm, void *mqd, void *mqd_dst)
-+static void dump_mqd_sdma(struct mqd_manager *mm, void *mqd, void *mqd_dst, void *ctl_stack_dst)
- {
- 	struct vi_sdma_mqd *m;
- 
-@@ -441,7 +448,8 @@ static void dump_mqd_sdma(struct mqd_manager *mm, void *mqd, void *mqd_dst)
- static void restore_mqd_sdma(struct mqd_manager *mm, void **mqd,
- 			     struct kfd_mem_obj *mqd_mem_obj, uint64_t *gart_addr,
- 			     struct queue_properties *qp,
--			     const void *mqd_src)
-+			     const void *mqd_src,
-+			     const void *ctl_stack_src, const u32 ctl_stack_size)
- {
- 	uint64_t addr;
- 	struct vi_sdma_mqd *m;
-@@ -500,6 +508,7 @@ struct mqd_manager *mqd_manager_init_vi(enum KFD_MQD_TYPE type,
- 		mqd->destroy_mqd = destroy_mqd;
- 		mqd->is_occupied = is_occupied;
- 		mqd->get_wave_state = get_wave_state;
-+		mqd->get_dump_info = get_dump_info;
- 		mqd->dump_mqd = dump_mqd;
- 		mqd->restore_mqd = restore_mqd;
- 		mqd->mqd_size = sizeof(struct vi_mqd);
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index 45be2daf49b3..b282aa9f9235 100644
+index b282aa9f9235..35023c5283fb 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -1120,6 +1120,7 @@ int pqm_create_queue(struct process_queue_manager *pqm,
- 			    unsigned int *qid,
- 			    const struct kfd_criu_queue_priv_data *q_data,
- 			    const void *restore_mqd,
-+			    const void *restore_ctl_stack,
- 			    uint32_t *p_doorbell_offset_in_process);
- int pqm_destroy_queue(struct process_queue_manager *pqm, unsigned int qid);
- int pqm_update_queue(struct process_queue_manager *pqm, unsigned int qid,
-@@ -1142,11 +1143,12 @@ int amdkfd_fence_wait_timeout(uint64_t *fence_addr,
- 			      uint64_t fence_value,
- 			      unsigned int timeout_ms);
- int pqm_get_queue_dump_info(struct process_queue_manager *pqm,
--			unsigned int qid,
--			u32 *mqd_size);
-+			    unsigned int qid,
-+			    u32 *mqd_size, u32 *ctl_stack_size);
- int pqm_dump_mqd(struct process_queue_manager *pqm,
- 		       unsigned int qid,
--		       void *dst_mqd);
-+		       void *dst_mqd,
-+		       void *dst_ctl_stack);
+@@ -1069,12 +1069,24 @@ struct kfd_criu_queue_priv_data {
+ };
  
- /* Packet Manager */
+ struct kfd_criu_event_priv_data {
+-	uint64_t reserved;
++	uint64_t user_handle;
++	uint32_t event_id;
++	uint32_t auto_reset;
++	uint32_t type;
++	uint32_t signaled;
++
++	union {
++		struct kfd_hsa_memory_exception_data memory_exception_data;
++		struct kfd_hsa_hw_exception_data hw_exception_data;
++	};
+ };
  
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-index b67d5dd3dda9..3b7747b7f388 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-@@ -209,6 +209,7 @@ int pqm_create_queue(struct process_queue_manager *pqm,
- 			    unsigned int *qid,
- 			    const struct kfd_criu_queue_priv_data *q_data,
- 			    const void *restore_mqd,
-+			    const void *restore_ctl_stack,
- 			    uint32_t *p_doorbell_offset_in_process)
- {
- 	int retval;
-@@ -273,7 +274,8 @@ int pqm_create_queue(struct process_queue_manager *pqm,
- 			goto err_create_queue;
- 		pqn->q = q;
- 		pqn->kq = NULL;
--		retval = dev->dqm->ops.create_queue(dev->dqm, q, &pdd->qpd, q_data, restore_mqd);
-+		retval = dev->dqm->ops.create_queue(dev->dqm, q, &pdd->qpd, q_data,
-+						    restore_mqd, restore_ctl_stack);
- 		print_queue(q);
- 		break;
+ int kfd_process_get_queue_info(struct kfd_process *p, uint32_t *num_queues, uint32_t *q_data_sizes);
+ int kfd_criu_dump_queues(struct kfd_process *p, struct kfd_ioctl_criu_dumper_args *args);
+ int kfd_criu_restore_queues(struct kfd_process *p, struct kfd_ioctl_criu_restorer_args *args);
++int kfd_criu_dump_events(struct kfd_process *p, struct kfd_ioctl_criu_dumper_args *args);
++int kfd_criu_restore_events(struct file *filp, struct kfd_process *p,
++			    struct kfd_ioctl_criu_restorer_args *args);
+ /* CRIU - End */
  
-@@ -293,7 +295,8 @@ int pqm_create_queue(struct process_queue_manager *pqm,
- 			goto err_create_queue;
- 		pqn->q = q;
- 		pqn->kq = NULL;
--		retval = dev->dqm->ops.create_queue(dev->dqm, q, &pdd->qpd, q_data, restore_mqd);
-+		retval = dev->dqm->ops.create_queue(dev->dqm, q, &pdd->qpd, q_data,
-+						    restore_mqd, restore_ctl_stack);
- 		print_queue(q);
- 		break;
- 	case KFD_QUEUE_TYPE_DIQ:
-@@ -532,13 +535,15 @@ int pqm_get_wave_state(struct process_queue_manager *pqm,
- static int get_queue_data_sizes(struct kfd_process_device *pdd,
- 				struct queue *q,
- 				uint32_t *cu_mask_size,
--				uint32_t *mqd_size)
-+				uint32_t *mqd_size,
-+				uint32_t *ctl_stack_size)
- {
- 	int ret;
+ /* Queue Context Management */
+@@ -1241,12 +1253,14 @@ void kfd_signal_iommu_event(struct kfd_dev *dev,
+ void kfd_signal_hw_exception_event(u32 pasid);
+ int kfd_set_event(struct kfd_process *p, uint32_t event_id);
+ int kfd_reset_event(struct kfd_process *p, uint32_t event_id);
+-int kfd_event_page_set(struct kfd_process *p, void *kernel_address,
+-		       uint64_t size);
++int kfd_kmap_event_page(struct kfd_process *p, uint64_t event_page_offset);
++
+ int kfd_event_create(struct file *devkfd, struct kfd_process *p,
+ 		     uint32_t event_type, bool auto_reset, uint32_t node_id,
+ 		     uint32_t *event_id, uint32_t *event_trigger_data,
+ 		     uint64_t *event_page_offset, uint32_t *event_slot_index);
++
++int kfd_get_num_events(struct kfd_process *p);
+ int kfd_event_destroy(struct kfd_process *p, uint32_t event_id);
  
- 	*cu_mask_size = sizeof(uint32_t) * (q->properties.cu_mask_count / 32);
- 
--	ret = pqm_get_queue_dump_info(&pdd->process->pqm, q->properties.queue_id, mqd_size);
-+	ret = pqm_get_queue_dump_info(&pdd->process->pqm, q->properties.queue_id, mqd_size,
-+				      ctl_stack_size);
- 	if (ret)
- 		pr_err("Failed to get queue dump info (%d)\n", ret);
- 
-@@ -562,13 +567,15 @@ int kfd_process_get_queue_info(struct kfd_process *p, uint32_t *num_queues, uint
- 				q->properties.type == KFD_QUEUE_TYPE_SDMA_XGMI) {
- 				u32 cu_mask_size;
- 				u32 mqd_size;
-+				u32 ctl_stack_size;
- 				int ret;
- 
--				ret = get_queue_data_sizes(pdd, q, &cu_mask_size, &mqd_size);
-+				ret = get_queue_data_sizes(pdd, q, &cu_mask_size, &mqd_size,
-+							   &ctl_stack_size);
- 				if (ret)
- 					return ret;
- 
--				data_sizes += cu_mask_size + mqd_size;
-+				data_sizes += cu_mask_size + mqd_size + ctl_stack_size;
- 				q_index++;
- 			} else {
- 				pr_err("Unsupported queue type (%d)\n", q->properties.type);
-@@ -588,11 +595,12 @@ static int criu_dump_queue(struct kfd_process_device *pdd,
- 			   void *private_data)
- {
- 	struct kfd_criu_queue_priv_data *q_data = (struct kfd_criu_queue_priv_data *) private_data;
--	uint8_t *cu_mask, *mqd;
-+	uint8_t *cu_mask, *mqd, *ctl_stack;
- 	int ret;
- 
- 	cu_mask = (void *)(q_data + 1);
- 	mqd = cu_mask + q_data->cu_mask_size;
-+	ctl_stack = mqd + q_data->mqd_size;
- 
- 	q_bucket->gpu_id = pdd->dev->id;
- 	q_data->type = q->properties.type;
-@@ -622,7 +630,7 @@ static int criu_dump_queue(struct kfd_process_device *pdd,
- 	if (q_data->cu_mask_size)
- 		memcpy(cu_mask, q->properties.cu_mask, q_data->cu_mask_size);
- 
--	ret = pqm_dump_mqd(&pdd->process->pqm, q->properties.queue_id, mqd);
-+	ret = pqm_dump_mqd(&pdd->process->pqm, q->properties.queue_id, mqd, ctl_stack);
- 	if (ret) {
- 		pr_err("Failed dump queue_mqd (%d)\n", ret);
- 		return ret;
-@@ -650,6 +658,7 @@ static int criu_dump_queues_device(struct kfd_process_device *pdd,
- 		uint64_t q_data_size;
- 		uint32_t cu_mask_size;
- 		uint32_t mqd_size;
-+		uint32_t ctl_stack_size;
- 
- 		if (q->properties.type != KFD_QUEUE_TYPE_COMPUTE &&
- 			q->properties.type != KFD_QUEUE_TYPE_SDMA &&
-@@ -661,11 +670,11 @@ static int criu_dump_queues_device(struct kfd_process_device *pdd,
- 
- 		memset(&q_bucket, 0, sizeof(q_bucket));
- 
--		ret = get_queue_data_sizes(pdd, q, &cu_mask_size, &mqd_size);
-+		ret = get_queue_data_sizes(pdd, q, &cu_mask_size, &mqd_size, &ctl_stack_size);
- 		if (ret)
- 			return ret;
- 
--		q_data_size = sizeof(*q_data) + cu_mask_size + mqd_size;
-+		q_data_size = sizeof(*q_data) + cu_mask_size + mqd_size + ctl_stack_size;
- 
- 		/* Increase local buffer space if needed */
- 		if (q_private_data_size < q_data_size) {
-@@ -681,8 +690,10 @@ static int criu_dump_queues_device(struct kfd_process_device *pdd,
- 
- 		q_data = (struct kfd_criu_queue_priv_data *)q_private_data;
- 
-+		/* data stored in this order: priv_data, cu_mask, mqd, ctl_stack */
- 		q_data->cu_mask_size = cu_mask_size;
- 		q_data->mqd_size = mqd_size;
-+		q_data->ctl_stack_size = ctl_stack_size;
- 
- 		ret = criu_dump_queue(pdd, q, &q_bucket, q_data);
- 		if (ret)
-@@ -739,8 +750,8 @@ int kfd_criu_dump_queues(struct kfd_process *p, struct kfd_ioctl_criu_dumper_arg
- 		return -EINVAL;
- 	}
- 
--	/* Queue private data size for each queue can vary in size as it also includes cu_mask, mqd.
--	 * First queue private data starts after all queue_buckets
-+	/* Queue private data size for each queue can vary in size as it also includes cu_mask, mqd
-+	 * and ctl_stack. First queue private data starts after all queue_buckets
- 	 */
- 
- 	queue_buckets = (struct kfd_criu_queue_bucket *)args->objects;
-@@ -805,16 +816,17 @@ static int criu_restore_queue(struct kfd_process *p,
- 			      void *private_data)
- {
- 	struct kfd_criu_queue_priv_data *q_data = (struct kfd_criu_queue_priv_data *) private_data;
--	uint8_t *cu_mask, *mqd;
-+	uint8_t *cu_mask, *mqd, *ctl_stack;
- 	struct queue_properties qp;
- 	unsigned int queue_id;
- 	int ret = 0;
- 
- 	pr_debug("Restoring Queue: gpu_id:%x queue_id:%u\n", q_bucket->gpu_id, q_data->q_id);
- 
--	/* data stored in this order: cu_mask, mqd */
-+	/* data stored in this order: cu_mask, mqd, ctl_stack */
- 	cu_mask = (void *)(q_data + 1);
- 	mqd = cu_mask + q_data->cu_mask_size;
-+	ctl_stack = mqd + q_data->mqd_size;
- 
- 	memset(&qp, 0, sizeof(qp));
- 	ret = set_queue_properties_from_criu(&qp, q_bucket, q_data, cu_mask);
-@@ -823,7 +835,7 @@ static int criu_restore_queue(struct kfd_process *p,
- 
- 	print_queue_properties(&qp);
- 
--	ret = pqm_create_queue(&p->pqm, dev, NULL, &qp, &queue_id, q_data, mqd, NULL);
-+	ret = pqm_create_queue(&p->pqm, dev, NULL, &qp, &queue_id, q_data, mqd, ctl_stack, NULL);
- 	if (ret) {
- 		pr_err("Failed to create new queue err:%d\n", ret);
- 		ret = -EINVAL;
-@@ -922,7 +934,8 @@ int kfd_criu_restore_queues(struct kfd_process *p, struct kfd_ioctl_criu_restore
- 
- int pqm_get_queue_dump_info(struct process_queue_manager *pqm,
- 			unsigned int qid,
--			u32 *mqd_size)
-+			u32 *mqd_size,
-+			u32 *ctl_stack_size)
- {
- 	struct process_queue_node *pqn;
- 
-@@ -938,12 +951,13 @@ int pqm_get_queue_dump_info(struct process_queue_manager *pqm,
- 	}
- 
- 	pqn->q->device->dqm->ops.get_queue_dump_info(pqn->q->device->dqm,
--						       pqn->q, mqd_size);
-+						       pqn->q, mqd_size,
-+						       ctl_stack_size);
- 	return 0;
- }
- 
- int pqm_dump_mqd(struct process_queue_manager *pqm,
--		       unsigned int qid, void *mqd)
-+		       unsigned int qid, void *mqd, void *ctl_stack)
- {
- 	struct process_queue_node *pqn;
- 
-@@ -959,7 +973,7 @@ int pqm_dump_mqd(struct process_queue_manager *pqm,
- 	}
- 
- 	return pqn->q->device->dqm->ops.dump_mqd(pqn->q->device->dqm,
--						       pqn->q, mqd);
-+						       pqn->q, mqd, ctl_stack);
- }
- 
- #if defined(CONFIG_DEBUG_FS)
+ void kfd_signal_vm_fault_event(struct kfd_dev *dev, u32 pasid,
 -- 
 2.17.1
 
