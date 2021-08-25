@@ -2,94 +2,126 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B702C3F779D
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Aug 2021 16:44:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 539D83F76E6
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Aug 2021 16:09:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07EDD6E25A;
-	Wed, 25 Aug 2021 14:44:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 698AB6E21D;
+	Wed, 25 Aug 2021 14:09:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2048.outbound.protection.outlook.com [40.107.244.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E33D86E25A
- for <amd-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 14:44:24 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam08on2066.outbound.protection.outlook.com [40.107.102.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E319F6E21C;
+ Wed, 25 Aug 2021 14:09:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nFpixejPMFLkrqzT9uTea3E+DVX0XfBJQF+CLyet0k+KoDE/YcAtojdeWI1yd1AMARw2TbwNi5XBVTfoVNSSn7lYlMuynmJY7hJrlyhduPVAE5tUmo+Bfpb+WmnICKsmDEa2f25J1Oc8HJDY0OmiKLxXqsje1kYhYMkWGOQa9+JA+EHTy7bFK2ExnGDVPmJGRS1iPlVBwrYEq9Mk/tHecy+tjRM03pSTZ8s5GNrC6SIgbfktsahIKeXs7GO3k0RTvV4tsVYn6OV/kZE64BYooNemcC+/Jv2i8idWHryZHOH1iyh+zOcJjuKkCFTnCEnfa8MAmGdRPTXkuZM6ZJ6TMw==
+ b=GRLoaT8Pn7sz+igOiPsoqfo0+eNL8test+hMRJY6Q4ouVG5bH4B/UJzh8efVu0g/Ks9IIBf9BS121uw3+gbdr+aHDzaHLUb33NCdsw7vVZxt+0prn6oFCUbq89WBowfBz6hCbY8sGr84LDYo3h/D2ewHKKcexLjmzwYmPJwVFqPgtjCbZl1RW5PQB05n3PZaHiSfTwrrqgXaJiLpoHWHBhYb0ZE6kV8+XzafpDl6WZCbZ+W7ELZIvN4t/DtBjW6qSJ1h19x8hoJmYPYz/4OBXNCRY1C+vquOipPdcQnb/bu3IfjT3ftHnIhLEZM9iLFBmxvrt3wcgFDWIMfGYzvwog==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yX9tSvWDAZ74l5KLcoHRV2Bv65Np/2lVyY6NPqZ0MlI=;
- b=Qv8zP5SNRAsM3dSH0Ykg1wt20vz6ERxJZS0Gvsp/9IrfmhZ5ynJ2bcc/JqPeZrtXAA+82+xbwg1LcG0+N/DPO5+qSuK8WBvGWYYNMscIIPpr9EPKJqGRHlYFasVl8MNQv9iZIegvDmOc+mlyELy8At1XyIkn7/y8Qc/zVHlVWLD8u9pF4Q12slRzdCSU8huCdGZzbgKbwZk7mh57B//ELWzISgwddAlNOl6vc3I40Zl18cCt0QbOg8DtcZzETochcaRjN799cW2fqWdUH9os8cTuqV50qUAQiWlm9McE7HOgefjSFodNiISOFaJUyC/j2kMcAvl6cfPa6UapyV94nA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=7AmS9PqHHsL8Ex0UsaMIpPhKf5z7B1OdA0G2RWCS4VA=;
+ b=Yn+6a3wGZjMRxh+kdhpvjtm2NvrYyj32p31xkSdFpAnElQ7Vs9k8lgKaACrMxv+WvbVTjWQ4rG0uuuMbundfvYhAGF6BAk7zr09JAiDtj5o9aZqIzPFAA78VlQsER0atZYafwAEQM/8mU4oJtG4JU6beOQK7MSteVuLUr+yg/tetGE2FWbmX0xZNgxwPmfJXyeRyxhJABtqdoxJRDrjkVyNFklEPYJrKjP9gGveH56MpgrY9tGMHwbI1jP0PnfvImdsv2q//D2v0CMEndGdSiMTCkAXAozBGtum+SnQU/c2LcfGUlHDvkm4vnJYctUcGNria+bmfi2FrmNE1Ttv7Mg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yX9tSvWDAZ74l5KLcoHRV2Bv65Np/2lVyY6NPqZ0MlI=;
- b=o8vKU68OOZiliFafr5D3OnhLbY55RHEqKoKuei7zrPzK4B8Wixn3VaxV+6l+Ayo/th5PNsfox3Bt5E2GFjPukQwaOZuQVCxmGnwrkNii8emSITykb3F15gDcE+Zxaz153r/255+LsAoFq5XAhwKUTJ4bpFkUgSeIe/vNSDWgJ4Q=
-Received: from BN9P222CA0015.NAMP222.PROD.OUTLOOK.COM (2603:10b6:408:10c::20)
- by BN8PR12MB2980.namprd12.prod.outlook.com (2603:10b6:408:62::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.22; Wed, 25 Aug
- 2021 13:09:34 +0000
-Received: from BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:10c:cafe::db) by BN9P222CA0015.outlook.office365.com
- (2603:10b6:408:10c::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19 via Frontend
- Transport; Wed, 25 Aug 2021 13:09:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT066.mail.protection.outlook.com (10.13.177.138) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4457.17 via Frontend Transport; Wed, 25 Aug 2021 13:09:34 +0000
-Received: from ws.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Wed, 25 Aug
- 2021 08:09:32 -0500
-From: Tom St Denis <tom.stdenis@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Tom St Denis <tom.stdenis@amd.com>
-Subject: [PATCH] drm/amd/amdgpu: New debugfs interface for MMIO registers (v4)
-Date: Wed, 25 Aug 2021 09:09:26 -0400
-Message-ID: <20210825130926.230698-1-tom.stdenis@amd.com>
-X-Mailer: git-send-email 2.31.1
+ bh=7AmS9PqHHsL8Ex0UsaMIpPhKf5z7B1OdA0G2RWCS4VA=;
+ b=2gl0shdoeAudRTd6gsbGFfB6bzKXJ3RLdmy7IPAU/G9YdcWO9XRbD0XTRyN34t5bVtamZoU7y6FvFlnpXRNS2ymr2yT9u0QhHOk5OBmYDpPhDTDakZd6Sk8hTQR3aIj4Juz9F1R0BMNV6ACmcUBn1zUGHtixbRzixyZNS/mJHQQ=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=amd.com;
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
+ by CO6PR12MB5443.namprd12.prod.outlook.com (2603:10b6:303:13a::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Wed, 25 Aug
+ 2021 13:53:18 +0000
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::e99e:c0a1:4e9d:322f]) by CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::e99e:c0a1:4e9d:322f%9]) with mapi id 15.20.4436.024; Wed, 25 Aug 2021
+ 13:53:18 +0000
+Subject: Re: [PATCH][next] drm/amd/display: fix spelling mistake "alidation"
+ -> "validation"
+To: Colin King <colin.king@canonical.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Xinhui.Pan@amd.com, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20210825113615.14555-1-colin.king@canonical.com>
+From: Harry Wentland <harry.wentland@amd.com>
+Message-ID: <feed4359-c682-bb13-5584-6f34bb9960eb@amd.com>
+Date: Wed, 25 Aug 2021 09:53:13 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+In-Reply-To: <20210825113615.14555-1-colin.king@canonical.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BN9PR03CA0430.namprd03.prod.outlook.com
+ (2603:10b6:408:113::15) To CO6PR12MB5427.namprd12.prod.outlook.com
+ (2603:10b6:5:358::13)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.254.43.216] (165.204.84.11) by
+ BN9PR03CA0430.namprd03.prod.outlook.com (2603:10b6:408:113::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19 via Frontend
+ Transport; Wed, 25 Aug 2021 13:53:16 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5b8a33fb-dc05-4aec-c099-08d967c9954d
-X-MS-TrafficTypeDiagnostic: BN8PR12MB2980:
-X-Microsoft-Antispam-PRVS: <BN8PR12MB29807FC5FD2FD9C9A6490ABEF7C69@BN8PR12MB2980.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Office365-Filtering-Correlation-Id: 6372a7d8-e4e6-40f6-597b-08d967cfb14a
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5443:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CO6PR12MB54432C3113F7E8A7500EF8D28CC69@CO6PR12MB5443.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:188;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KfgqR80uDJ4GF2Dq69kQjRV10+UlWDe0AaBQ3HhmhStdqfg5JCq+xiaeBfJkXXWZwCJhmQIRDa80jOkRjreIYUfY4Z+HC13kZpQfvRIRuHasL+WesO6uPFEuFRVdhz4eWaH34LbbOdu3zJqn8cjvL0F0kkYQvVMXTfsKEmlAKXwZ3GP7cSZ3GqTAMXatEBfdJH01gOEQIOcWbuonvc23mmN1gnrPBJdcHUVHrLdYSB22Hn4G7IpOm8KZxVAqCjyZ9FbjFuatwTEkEeAmCc4uGN0oEBQdMk/JWZT9hDN37UsYYIM/TGJ2qvjEOZ5VHPk5V2AdJa8xxeyhJZoW9qLF7V0DZiCuayerNhzD0ZcHH/sa0yAs9Jr2K7MEb2nnSm6GA38L32hodh5xs/+lNTl6SJjKcPk5uAMTaxCHRaih3GmBZbHfQzpAQQSg0TFMtw/NT0hvC70Eb54MMvdl7Tr/GcXz0uWnSImexGbkp3fcl003HLKsWpcYKmo2dOjOcNwNotx0P/ZlVLPx7jQgBGFICIQcil2sbez2NW7dQ4u26qxKaLaIzmL9CuBoCEYCLFAhzjcks+u+vZV4DGi1p4iDHewTxHpRL5b7PLHpYdcCU6/035c3vWu2xwTti6NuVVTUvoi6Cy/Iyncivr4H0v3lHElLeRD0MezEKd8F/HW1S4XmW5uS74OGIOt483kFPv8h0gUSDmirBZBJEve3553m14Q9PaI9o8/rs+Tkjx8YtDg=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(346002)(396003)(136003)(376002)(46966006)(36840700001)(478600001)(316002)(7696005)(6666004)(8936002)(16526019)(1076003)(2616005)(2906002)(5660300002)(186003)(6916009)(426003)(336012)(26005)(8676002)(36756003)(86362001)(4326008)(82740400003)(70586007)(70206006)(36860700001)(356005)(83380400001)(81166007)(82310400003)(47076005)(36900700001);
+X-Microsoft-Antispam-Message-Info: PaBN0wjEKLoDP4XiClTP4GAOgxsSRYX4nO98NKBciRC1qFwmquhNMr2joZ+D+UhBKn9pF9IaDsub6ifKUNso45Tk1RDZ/t19dTY2K7FsLxYy28L9fhR3q7uxEj7x33QP3Ky28AB+LmXBlpyU7xVtyiMidJYlaB53kQo97bmWrR4LKXRW/pNsbjK8/son/Zblc4GJCPhf16+1nGYcFQdiggcv81IYidxpCSRpi1uIc7+yIkKWgkwD6u8JXPo+EhzQMuzeIMT4WcelYa5OCJkJUJ1MXMF3wtEY+8K55I0aVfgQsjN/rP23orNEpU47bVx2f42IhqflqgHf1VnCGcv+USnEgWdRiOlUQOHh4dq2Ys7WbD9MCVKheriD6CgCgXWH3FsfohPQJoCrssXQn7DQPDcpwDByydBlv3GudzUMH3LbhgYWiJjiJGUUtuiNdtJo80S/79Ql7jsOUN95orCaRPZ0ucLK8pYJL/o/kjao3+kLZ14a2mcG2iiHlnLSObmlgM/R9DmSc0WfaqtD4r1DDR+P14CfinBEayIYHIwnWl8mnBICyax97wx9GbhVI/rgC4vgBpvjkoMYln1tpBcpV7inKtWBdsyHv1dICnF0QTKES0dfS7TPhlOKKZqIUlVnZiR6OMY82ZsKk/VSPyF+HS9LzPw9S3zkgRvvh3gHS1JTonscOqPxVrDFu4OrLOYSF3j1qxFyJPXObEovvUVWM1U1EWnQMt+pvYAiVcVAfT4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(346002)(366004)(396003)(39860400002)(136003)(83380400001)(2906002)(478600001)(4326008)(186003)(26005)(53546011)(36756003)(31686004)(38100700002)(2616005)(956004)(44832011)(5660300002)(316002)(8676002)(66946007)(110136005)(66476007)(6666004)(66556008)(16576012)(86362001)(31696002)(8936002)(6486002)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eUd2T3VwOTVRVHo4WmFGemE0Y0U4UVMvdWMzRlhmWWVacC9uY1J4ZDNCRVBl?=
+ =?utf-8?B?Qm85cmdnS0J5Ukh5ampYVTlKYk84K01nZ2JGVUdqVTRabXFLSzJub1dPeXJQ?=
+ =?utf-8?B?M3BRS1Zub0NvSnI3TzgyUTk2eEtkZExvTzVONzlBSSt2eUdNTUhFRlR2S2tT?=
+ =?utf-8?B?RjRpVUYxNFJpWG9ubWE3dWdxTjdvYkVVUkJuT0VXcHl1a3VHQmFva0dQbUFn?=
+ =?utf-8?B?d3VsakpEVWJORm5BQmJod2EzKzVCTmhROTVZVUplTE1NZFJUVWNrU2JCb0cx?=
+ =?utf-8?B?NTdIdDUyZXZsVDJYVmF3WnBwRlorZVg1OUl5OEF2VldTa2dyVkllejJtS3Vh?=
+ =?utf-8?B?RjVlYS9LMnJ5SFFGS0xCT3ZkMllWMXdtamRPSllHVEVBRlRGT29id2N5cnFZ?=
+ =?utf-8?B?VFVaRmpwM0xYdlJXQllydTQ2K3R1RmlDdUp4QzBTVUg5WHdMU0crenVmSVBP?=
+ =?utf-8?B?aTZHOGJiL2FTRTRSMkRNU1FabG9EQlh0dEdCbHNFb0NJUnlMN3ZZRnFrNFRo?=
+ =?utf-8?B?MFZXck1MaHBHbnNtMXFPQWNSMHoxc3pCSHBHSVhuWGtpck4xTFpwb3djYU03?=
+ =?utf-8?B?Y3RaZDFRa09iYzRCL1RUV2ZvOGZENEppRlJOMis0UzNaMmwwdWN1YTJXbmRh?=
+ =?utf-8?B?TkZOOGducHcrbmxTR1RYZHhmUWRmS1h4RnJRR1FZZWFoMmI5N1EzOW4xRTFZ?=
+ =?utf-8?B?ZU9sL1VoR3R1M0JZTEVwQVhDMTVpL0VJcGxBUTJ0Vk1SZFJJWFFFMVJyLys2?=
+ =?utf-8?B?RUdBWk5rM1RQOGgzTFZiaWYyYkswQ0daeVNNYUVGejFnZzhCNlJtNDNnSldF?=
+ =?utf-8?B?c0ZiM0lrTXdPQ0V1ZEc1R2gydWpXUzBiczRGSUtsL1FpQUVmQU9zVTlhblFK?=
+ =?utf-8?B?NWdOZUN0bXBENE1wNWRHZkZsRkF2NUQzdmFxYlNXMm1kY1dYVkNaOGp1Y1FO?=
+ =?utf-8?B?T2xlV3RWUnQ0c3pOd1hLaEg0ZHhmSGFEeVFQc0NZc01MMGlKQm9NcnJPY1I5?=
+ =?utf-8?B?c2M5c2N0SjRUWk9YQ2tjdG9uc0o4VjVSWkdDYTJVckowUVhwZWtwQ2RqMXJz?=
+ =?utf-8?B?QXpNdjg0T0dLMUZ0bkNKc3BLQ0poOGJWQUl3bFZnUWNXOTlZekIydEpVQ0hQ?=
+ =?utf-8?B?bGhWblJHc1JyT2docHNCTkFERlBkbC94SUVMbkk2K0IxWG1nd1Q1SC9BYWVm?=
+ =?utf-8?B?M2wxZktseC9jdkFWMGlYd0ZiUkdJdUFYWWt0TCtZY0VVVTNPaUdIL2lINlpE?=
+ =?utf-8?B?UXJ1eGZPM3daZEJVYURGZXMyZTVqNkZsYlNyZ0pFKzVXdWhidDlGTXlSVGxU?=
+ =?utf-8?B?am5URjh4YnhDcGlGcHRrN3p4dlo4c0Z0WEh4MUhvZ0g5R1VzaHQzWkw5bGpP?=
+ =?utf-8?B?ZkVSUG4wTnIraTBENG5uaUpuNmFaTkdTVDlSZVJ5UnRxZm5sY1J0ZXRBcVda?=
+ =?utf-8?B?ZDNmQXZRUTI3b2ZyY08rYWFlWDMxeEZEOUtSRm5sVEZpV1hTdmFoMGVIcG51?=
+ =?utf-8?B?UGxLeW9qMlhPMGVWR2hkSERPbTVPWFMyT0dqcGphTjQxMWd6VTQ4MFZCTVVQ?=
+ =?utf-8?B?QlNVcEJoWnM2WEhJVjlOMG42TVBDZDU4cXJ1dkZnUDhiSmorMHpGMlZLdWll?=
+ =?utf-8?B?L3E3U212cWFOTU02eHFFK1FPYURtUmxNQ0x4dG0vZmRVekFQQjdJamoxQUs3?=
+ =?utf-8?B?blJza3FIdkEyeVk4R1EwRVZzZVJibjZzVWtnT004TnA1QVU5ODhIWW42azZG?=
+ =?utf-8?Q?dITO672RBtteReIkmlxm4D4e2vb9eIm9hj9kB8O?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2021 13:09:34.0204 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b8a33fb-dc05-4aec-c099-08d967c9954d
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6372a7d8-e4e6-40f6-597b-08d967cfb14a
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2021 13:53:18.2525 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2980
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: O1YHaYs/u9kuSSfFAerN2RD+8TnKJQbWK3EFhBYTsmmzFCLgZ/laLnFrZrwVAu4NmVIXlT7mw67L28yXkxUFDg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5443
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,259 +136,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This new debugfs interface uses an IOCTL interface in order to pass
-along state information like SRBM and GRBM bank switching.  This
-new interface also allows a full 32-bit MMIO address range which
-the previous didn't.  With this new design we have room to grow
-the flexibility of the file as need be.
+On 2021-08-25 7:36 a.m., Colin King wrote:
+> From: Colin Ian King <colin.king@canonical.com>
+> 
+> There is a spelling mistake in a DC_LOG_WARNING message. Fix it.
+> 
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
 
-(v2): Move read/write to .read/.write, fix style, add comment
-      for IOCTL data structure
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 
-(v3): C style comments
+Harry
 
-(v4): use u32 in struct and remove offset variable
-
-Signed-off-by: Tom St Denis <tom.stdenis@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 158 ++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h |  29 ++++
- 2 files changed, 187 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-index 277128846dd1..6450f210f6c7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-@@ -279,6 +279,152 @@ static ssize_t amdgpu_debugfs_regs_write(struct file *f, const char __user *buf,
- 	return amdgpu_debugfs_process_reg_op(false, f, (char __user *)buf, size, pos);
- }
- 
-+static int amdgpu_debugfs_regs2_open(struct inode *inode, struct file *file)
-+{
-+	struct amdgpu_debugfs_regs2_data *rd;
-+
-+	rd = kzalloc(sizeof *rd, GFP_KERNEL);
-+	if (!rd)
-+		return -ENOMEM;
-+	rd->adev = file_inode(file)->i_private;
-+	file->private_data = rd;
-+
-+	return 0;
-+}
-+
-+static int amdgpu_debugfs_regs2_release(struct inode *inode, struct file *file)
-+{
-+	kfree(file->private_data);
-+	return 0;
-+}
-+
-+static ssize_t amdgpu_debugfs_regs2_op(struct file *f, char __user *buf, u32 offset, size_t size, int write_en)
-+{
-+	struct amdgpu_debugfs_regs2_data *rd = f->private_data;
-+	struct amdgpu_device *adev = rd->adev;
-+	ssize_t result = 0;
-+	int r;
-+	uint32_t value;
-+
-+	if (size & 0x3 || offset & 0x3)
-+		return -EINVAL;
-+
-+	if (rd->id.use_grbm) {
-+		if (rd->id.grbm.se == 0x3FF)
-+			rd->id.grbm.se = 0xFFFFFFFF;
-+		if (rd->id.grbm.sh == 0x3FF)
-+			rd->id.grbm.sh = 0xFFFFFFFF;
-+		if (rd->id.grbm.instance == 0x3FF)
-+			rd->id.grbm.instance = 0xFFFFFFFF;
-+	}
-+
-+	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
-+	if (r < 0) {
-+		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		return r;
-+	}
-+
-+	r = amdgpu_virt_enable_access_debugfs(adev);
-+	if (r < 0) {
-+		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+		return r;
-+	}
-+
-+	if (rd->id.use_grbm) {
-+		if ((rd->id.grbm.sh != 0xFFFFFFFF && rd->id.grbm.sh >= adev->gfx.config.max_sh_per_se) ||
-+		    (rd->id.grbm.se != 0xFFFFFFFF && rd->id.grbm.se >= adev->gfx.config.max_shader_engines)) {
-+			pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
-+			pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+			amdgpu_virt_disable_access_debugfs(adev);
-+			return -EINVAL;
-+		}
-+		mutex_lock(&adev->grbm_idx_mutex);
-+		amdgpu_gfx_select_se_sh(adev, rd->id.grbm.se,
-+								rd->id.grbm.sh,
-+								rd->id.grbm.instance);
-+	}
-+
-+	if (rd->id.use_srbm) {
-+		mutex_lock(&adev->srbm_mutex);
-+		amdgpu_gfx_select_me_pipe_q(adev, rd->id.srbm.me, rd->id.srbm.pipe,
-+									rd->id.srbm.queue, rd->id.srbm.vmid);
-+	}
-+
-+	if (rd->id.pg_lock)
-+		mutex_lock(&adev->pm.mutex);
-+
-+	while (size) {
-+		if (!write_en) {
-+			value = RREG32(offset >> 2);
-+			r = put_user(value, (uint32_t *)buf);
-+		} else {
-+			r = get_user(value, (uint32_t *)buf);
-+			if (!r)
-+				amdgpu_mm_wreg_mmio_rlc(adev, offset >> 2, value);
-+		}
-+		if (r) {
-+			result = r;
-+			goto end;
-+		}
-+		offset += 4;
-+		size -= 4;
-+		result += 4;
-+		buf += 4;
-+	}
-+end:
-+	if (rd->id.use_grbm) {
-+		amdgpu_gfx_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff);
-+		mutex_unlock(&adev->grbm_idx_mutex);
-+	}
-+
-+	if (rd->id.use_srbm) {
-+		amdgpu_gfx_select_me_pipe_q(adev, 0, 0, 0, 0);
-+		mutex_unlock(&adev->srbm_mutex);
-+	}
-+
-+	if (rd->id.pg_lock)
-+		mutex_unlock(&adev->pm.mutex);
-+
-+	/* in umr (the likely user of this) flags are set per file operation
-+	 * which means they're never "unset" explicitly.  To avoid breaking
-+	 * this convention we unset the flags after each operation
-+	 * flags are for a single call (need to be set for every read/write) */
-+	rd->id.use_grbm = 0;
-+	rd->id.use_srbm = 0;
-+	rd->id.pg_lock  = 0;
-+
-+	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
-+	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
-+
-+	amdgpu_virt_disable_access_debugfs(adev);
-+	return result;
-+}
-+
-+static long amdgpu_debugfs_regs2_ioctl(struct file *f, unsigned int cmd, unsigned long data)
-+{
-+	struct amdgpu_debugfs_regs2_data *rd = f->private_data;
-+
-+	switch (cmd) {
-+	case AMDGPU_DEBUGFS_REGS2_IOC_SET_STATE:
-+		if (copy_from_user(&rd->id, (struct amdgpu_debugfs_regs2_iocdata *)data, sizeof rd->id))
-+			return -EINVAL;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+	return 0;
-+}
-+
-+static ssize_t amdgpu_debugfs_regs2_read(struct file *f, char __user *buf, size_t size, loff_t *pos)
-+{
-+	return amdgpu_debugfs_regs2_op(f, buf, *pos, size, 0);
-+}
-+
-+static ssize_t amdgpu_debugfs_regs2_write(struct file *f, const char __user *buf, size_t size, loff_t *pos)
-+{
-+	return amdgpu_debugfs_regs2_op(f, (char __user *)buf, *pos, size, 1);
-+}
-+
- 
- /**
-  * amdgpu_debugfs_regs_pcie_read - Read from a PCIE register
-@@ -1091,6 +1237,16 @@ static ssize_t amdgpu_debugfs_gfxoff_read(struct file *f, char __user *buf,
- 	return result;
- }
- 
-+static const struct file_operations amdgpu_debugfs_regs2_fops = {
-+	.owner = THIS_MODULE,
-+	.unlocked_ioctl = amdgpu_debugfs_regs2_ioctl,
-+	.read = amdgpu_debugfs_regs2_read,
-+	.write = amdgpu_debugfs_regs2_write,
-+	.open = amdgpu_debugfs_regs2_open,
-+	.release = amdgpu_debugfs_regs2_release,
-+	.llseek = default_llseek
-+};
-+
- static const struct file_operations amdgpu_debugfs_regs_fops = {
- 	.owner = THIS_MODULE,
- 	.read = amdgpu_debugfs_regs_read,
-@@ -1148,6 +1304,7 @@ static const struct file_operations amdgpu_debugfs_gfxoff_fops = {
- 
- static const struct file_operations *debugfs_regs[] = {
- 	&amdgpu_debugfs_regs_fops,
-+	&amdgpu_debugfs_regs2_fops,
- 	&amdgpu_debugfs_regs_didt_fops,
- 	&amdgpu_debugfs_regs_pcie_fops,
- 	&amdgpu_debugfs_regs_smc_fops,
-@@ -1160,6 +1317,7 @@ static const struct file_operations *debugfs_regs[] = {
- 
- static const char *debugfs_regs_names[] = {
- 	"amdgpu_regs",
-+	"amdgpu_regs2",
- 	"amdgpu_regs_didt",
- 	"amdgpu_regs_pcie",
- 	"amdgpu_regs_smc",
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h
-index 141a8474e24f..dcf20859c866 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h
-@@ -22,6 +22,8 @@
-  * OTHER DEALINGS IN THE SOFTWARE.
-  *
-  */
-+#include <linux/ioctl.h>
-+#include <uapi/drm/amdgpu_drm.h>
- 
- /*
-  * Debugfs
-@@ -38,3 +40,30 @@ void amdgpu_debugfs_fence_init(struct amdgpu_device *adev);
- void amdgpu_debugfs_firmware_init(struct amdgpu_device *adev);
- void amdgpu_debugfs_gem_init(struct amdgpu_device *adev);
- int amdgpu_debugfs_wait_dump(struct amdgpu_device *adev);
-+
-+/*
-+ * MMIO debugfs IOCTL structure
-+ */
-+struct amdgpu_debugfs_regs2_iocdata {
-+	__u32 use_srbm, use_grbm, pg_lock;
-+	struct {
-+		__u32 se, sh, instance;
-+	} grbm;
-+	struct {
-+		__u32 me, pipe, queue, vmid;
-+	} srbm;
-+};
-+
-+/*
-+ * MMIO debugfs state data (per file* handle)
-+ */
-+struct amdgpu_debugfs_regs2_data {
-+	struct amdgpu_device *adev;
-+	struct amdgpu_debugfs_regs2_iocdata id;
-+};
-+
-+enum AMDGPU_DEBUGFS_REGS2_CMDS {
-+	AMDGPU_DEBUGFS_REGS2_CMD_SET_STATE=0,
-+};
-+
-+#define AMDGPU_DEBUGFS_REGS2_IOC_SET_STATE _IOWR(0x20, AMDGPU_DEBUGFS_REGS2_CMD_SET_STATE, struct amdgpu_debugfs_regs2_iocdata)
--- 
-2.31.1
+> ---
+>  drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
+> index 3223a1ff2292..91cbc0922ad4 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
+> @@ -1999,7 +1999,7 @@ bool dcn31_validate_bandwidth(struct dc *dc,
+>  	goto validate_out;
+>  
+>  validate_fail:
+> -	DC_LOG_WARNING("Mode Validation Warning: %s failed alidation.\n",
+> +	DC_LOG_WARNING("Mode Validation Warning: %s failed validation.\n",
+>  		dml_get_status_message(context->bw_ctx.dml.vba.ValidationStatus[context->bw_ctx.dml.vba.soc.num_states]));
+>  
+>  	BW_VAL_TRACE_SKIP(fail);
+> 
 
