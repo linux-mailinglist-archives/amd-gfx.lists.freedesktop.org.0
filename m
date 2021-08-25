@@ -1,86 +1,95 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F1123F7BDD
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Aug 2021 19:58:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEF553F7B89
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Aug 2021 19:27:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59C816E3EB;
-	Wed, 25 Aug 2021 17:57:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4C766E3E5;
+	Wed, 25 Aug 2021 17:27:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 349 seconds by postgrey-1.36 at gabe;
- Wed, 25 Aug 2021 17:18:52 UTC
-Received: from mx0b-00190b01.pphosted.com (mx0b-00190b01.pphosted.com
- [IPv6:2620:100:9005:57f::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FF3B6E3EE;
- Wed, 25 Aug 2021 17:18:51 +0000 (UTC)
-Received: from pps.filterd (m0122331.ppops.net [127.0.0.1])
- by mx0b-00190b01.pphosted.com (8.16.1.2/8.16.0.43) with SMTP id 17PG73hK003607;
- Wed, 25 Aug 2021 18:18:49 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akamai.com;
- h=subject : to :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=jan2016.eng;
- bh=4yn0oy8JsEetkmJH1qt8+NeoPl5RpCvCkxTeymmkeu8=;
- b=VlSK6+1hH5l2Yb77fXnQ6g4ksZO1d0TBYf1qvwgSU6kOcYivw5WUQpb1N4/JRm2EUt9G
- e3bJGL8LjDRfjN+sc1kVN7e+SJ9gnGiCCjByBjf0O61aMIJPcXtckb22/h0ysDYPbROW
- PrifL86bLPPSwczHgflnC5RQoElyVJFQHwbXP0qA7p8n6WyLapMMGk844M55b3tkq1KL
- 9CGSpZvt0ClRxJQRGgz6xLTVcuwuL51DPkTee47Ox3zyiSICIIyEY+z61FsdaDQfgTfE
- vjB29jUgnqHXmZzDPcLKTSGf+Ihs3KmVDRkzb0tJPT6NwnukpDy1Upoju77GiS2lK2mZ yg== 
-Received: from prod-mail-ppoint7
- (a72-247-45-33.deploy.static.akamaitechnologies.com [72.247.45.33] (may be
- forged)) by mx0b-00190b01.pphosted.com with ESMTP id 3anhh8mpsu-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 25 Aug 2021 18:18:48 +0100
-Received: from pps.filterd (prod-mail-ppoint7.akamai.com [127.0.0.1])
- by prod-mail-ppoint7.akamai.com (8.16.1.2/8.16.1.2) with SMTP id
- 17PHCpZk029748; Wed, 25 Aug 2021 13:18:48 -0400
-Received: from prod-mail-relay19.dfw02.corp.akamai.com ([172.27.165.173])
- by prod-mail-ppoint7.akamai.com with ESMTP id 3an3v2fbq9-1;
- Wed, 25 Aug 2021 13:18:48 -0400
-Received: from [0.0.0.0] (prod-ssh-gw01.bos01.corp.akamai.com [172.27.119.138])
- by prod-mail-relay19.dfw02.corp.akamai.com (Postfix) with ESMTP id C8B9A6007A; 
- Wed, 25 Aug 2021 17:18:44 +0000 (GMT)
-Subject: Re: [PATCH v6 00/11] use DYNAMIC_DEBUG to implement DRM.debug
-To: Jim Cromie <jim.cromie@gmail.com>, gregkh@linuxfoundation.org,
- seanpaul@chromium.org, jeyu@kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20210822222009.2035788-1-jim.cromie@gmail.com>
-From: Jason Baron <jbaron@akamai.com>
-Message-ID: <7017599d-8e11-7bda-90df-3cbf39ef8f3b@akamai.com>
-Date: Wed, 25 Aug 2021 13:18:44 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2060.outbound.protection.outlook.com [40.107.243.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73ADF6E3E5
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 17:27:09 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Cqb/3ivVkiseJZLoCRnFjajpczosEENQJavjalwC/sABRWGF6YolqxsVrKzRA6u28wtyUFMqi5JLLVWXD6+otKtpAEPFj6LaB3It/AccVXM+UsfZtDsRJDiDfO3vPY3Z2Q4fZKeFlwHkNdE83lCgyc1qarfJRwSeKoAnkS0K95vlBTqSSfVryALX2zMXRnYJxp3OXbU+GNKAlC07+TNtEkwlwwVRzir27wPDhtwWPMHTRHvHEia5t2EcntNGRmp/v5UKb1pRLcyvldEug9bvcYE7n79MDIAetpvdkzedTQIhtN2EvfWBkSBVWkXlEOi7TcC4e+BssMpvC5gZWlYong==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n/hxaLfbM7TcWOjc33v4C82DMHIj4Jxo40iV0r57nJs=;
+ b=Z+j0rdZYPKGdXNP5x23lB+2yADykEBYPiHVMZ9MTEICWQA+srh/cjWEXi1SxzSZ5j2ojh5XbWXoII+/Yx8JK1MNlmYmVcnGru+DZv7Tg0a+/KH7yJdYbsvEYEIKIeGwVtAQFopwR2yuTaY16kqEo+RhGEKsU2gAWPSwYXxbgImHtDfKHZLhIL84L7i/tMGCHk/uW2lOBfc2S1SIGuXvTPoiskuaBMEPZh0AlRqvvZSU6iZRHAGudCjxzuHWGWd86osiwhNQxyvPq6XZrjBo//p7nRxD+L9KamWEJbmwZhFNKh1A3R9e3niHo4JX5rC9gwJFbXr6npuB/Ee8bvzF25w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n/hxaLfbM7TcWOjc33v4C82DMHIj4Jxo40iV0r57nJs=;
+ b=Rm9hkKiwrfQtGuXPrdc+02Ed+8ZeUfFKGCQ0hXigqn9Q8uXNEJ25i8TdPcujS+haEay/ivlgZE7VBOh+aD1TLo99CN1vFuJO4rJCXu5QqGWso8viJhSIiJ+RKIryZVsxkDaAm7sl6bcbbo69mQCSeu7G9t+LOhaZKitfUplwcf8=
+Received: from BN6PR21CA0002.namprd21.prod.outlook.com (2603:10b6:404:8e::12)
+ by DM4PR12MB5310.namprd12.prod.outlook.com (2603:10b6:5:39e::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.21; Wed, 25 Aug
+ 2021 17:27:07 +0000
+Received: from BN8NAM11FT030.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:404:8e:cafe::56) by BN6PR21CA0002.outlook.office365.com
+ (2603:10b6:404:8e::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.1 via Frontend
+ Transport; Wed, 25 Aug 2021 17:27:07 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT030.mail.protection.outlook.com (10.13.177.146) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4457.17 via Frontend Transport; Wed, 25 Aug 2021 17:27:06 +0000
+Received: from ws.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Wed, 25 Aug
+ 2021 12:27:05 -0500
+From: Tom St Denis <tom.stdenis@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Tom St Denis <tom.stdenis@amd.com>
+Subject: [PATCH] drm/amd/amdgpu: New debugfs interface for MMIO registers (v5)
+Date: Wed, 25 Aug 2021 13:26:59 -0400
+Message-ID: <20210825172659.247530-1-tom.stdenis@amd.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210822222009.2035788-1-jim.cromie@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391, 18.0.790
- definitions=2021-08-25_06:2021-08-25,
- 2021-08-25 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0
- adultscore=0 malwarescore=0
- spamscore=0 mlxlogscore=999 phishscore=0 bulkscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2107140000
- definitions=main-2108250101
-X-Proofpoint-GUID: UoSSdnztWs5A6UFnB2lJ-dGQhhers6zK
-X-Proofpoint-ORIG-GUID: UoSSdnztWs5A6UFnB2lJ-dGQhhers6zK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.391,FMLib:17.0.607.475
- definitions=2021-08-25_07,2021-08-25_02,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0
- priorityscore=1501
- lowpriorityscore=0 phishscore=0 impostorscore=0 clxscore=1015 bulkscore=0
- malwarescore=0 suspectscore=0 mlxlogscore=999 adultscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2107140000
- definitions=main-2108250102
-X-Agari-Authentication-Results: mx.akamai.com;
- spf=${SPFResult} (sender IP is 72.247.45.33)
- smtp.mailfrom=jbaron@akamai.com smtp.helo=prod-mail-ppoint7
-X-Mailman-Approved-At: Wed, 25 Aug 2021 17:57:48 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 04a672e3-44ae-44aa-5829-08d967ed8fe4
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5310:
+X-Microsoft-Antispam-PRVS: <DM4PR12MB5310ECF6FA11305C4FA5E1B9F7C69@DM4PR12MB5310.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: WluxtYXEP4EVFFnbhdX3EpVexPmdh3eX/bbFH7+a7v6utzfyGnMs6zHPVCPOKj+whoOr96iO5t8Yj0hIkBHGVqdMb10smd1cFx8Evk6iI2sBIagBgQqiHmPM0dtZqq/vMWHEQHEKZAqMl7z2xR7UBG0ldp5jyRQhgBEsqm6ltgF0n/E+1L7K2bO6CwuhreF6zbLVQr9de74TNvfh/4UMHCvLRQ05v7GH1moCDfZmhMa9NXjlPrL4YI6WxvC1Gko6J/5lM6g99uGyd4U+NaVI2EEg5CmpDXTyS5/8Y+RMXfBOOYYxyF+3OJofjB1oKNXb7PAG1nfbhh4JowKtl9PLJ1I2ek9PuNEVyq4IuTV3lUPcz66bdnfdTlZWN8+3MoWkTQATX8iFx/PFQ64fd+b/B1818wH2lmH13tcOoAtgjPDkXWwTV6t6ojj8B2FyqeiU+qANL/wkNaebqX0k0xOtUGdeClUYtQgDP0C2Czs/zvzrKYT+yoBRZpufXRhqPih7rEyrbdSf234+9FsxUFauyqYjvFsInCQ4Zi2iZ29wR6h8bSDDKq04qLjFoTP465uvEhM9s6Xu+NTFMoUUWdptR4tZ18tjfa+nzIe2qw6l1FaIPyFnHtWhXKgojR0rHAuvtTBwQU7IrSduLJ4p1zcOL86kd52G+qKQecd/1lhT/9V4ybu7jpKdKxsf+B5ANbUQOwivd0OF52KWTZoBg8XSOJ3GvxJtiV3NsVzLoHv9WFw=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(396003)(346002)(376002)(39860400002)(136003)(36840700001)(46966006)(1076003)(82740400003)(426003)(8676002)(6666004)(70206006)(16526019)(336012)(26005)(356005)(186003)(70586007)(4326008)(7696005)(82310400003)(2906002)(86362001)(2616005)(478600001)(83380400001)(6916009)(316002)(36860700001)(8936002)(47076005)(36756003)(81166007)(5660300002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2021 17:27:06.8222 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04a672e3-44ae-44aa-5829-08d967ed8fe4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT030.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5310
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,68 +104,288 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This new debugfs interface uses an IOCTL interface in order to pass
+along state information like SRBM and GRBM bank switching.  This
+new interface also allows a full 32-bit MMIO address range which
+the previous didn't.  With this new design we have room to grow
+the flexibility of the file as need be.
 
+(v2): Move read/write to .read/.write, fix style, add comment
+      for IOCTL data structure
 
-On 8/22/21 6:19 PM, Jim Cromie wrote:
-> This patchset does 3 main things.
-> 
-> Adds DEFINE_DYNAMIC_DEBUG_CATEGORIES to define bitmap => category
-> control of pr_debugs, and to create their sysfs entries.
-> 
-> Uses it in amdgpu, i915 to control existing pr_debugs according to
-> their ad-hoc categorizations.
-> 
-> Plugs dyndbg into drm-debug framework, in a configurable manner.
-> 
-> v6: cleans up per v5 feedback, and adds RFC stuff:
-> 
-> - test_dynamic_debug.ko: uses tracer facility added in v5:8/9
-> - prototype print-once & rate-limiting
-> 
-> Hopefully adding RFC stuff doesnt distract too much.
+(v3): C style comments
 
+(v4): use u32 in struct and remove offset variable
 
-Hi Jim,
+(v5): Drop flag clearing in op function, use 0xFFFFFFFF for broadcast
+      instead of 0x3FF, use mutex for op/ioctl.
 
-Yeah, I feel like the RFC patches should be in a separate series
-unless there is a drm dependency for them?
+Signed-off-by: Tom St Denis <tom.stdenis@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 150 ++++++++++++++++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h |   1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_umr.h     |  51 +++++++
+ 3 files changed, 201 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_umr.h
 
-Thanks,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+index 277128846dd1..87766fef0b1c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+@@ -36,6 +36,7 @@
+ #include "amdgpu_rap.h"
+ #include "amdgpu_securedisplay.h"
+ #include "amdgpu_fw_attestation.h"
++#include "amdgpu_umr.h"
+ 
+ int amdgpu_debugfs_wait_dump(struct amdgpu_device *adev)
+ {
+@@ -279,6 +280,143 @@ static ssize_t amdgpu_debugfs_regs_write(struct file *f, const char __user *buf,
+ 	return amdgpu_debugfs_process_reg_op(false, f, (char __user *)buf, size, pos);
+ }
+ 
++static int amdgpu_debugfs_regs2_open(struct inode *inode, struct file *file)
++{
++	struct amdgpu_debugfs_regs2_data *rd;
++
++	rd = kzalloc(sizeof *rd, GFP_KERNEL);
++	if (!rd)
++		return -ENOMEM;
++	rd->adev = file_inode(file)->i_private;
++	file->private_data = rd;
++	mutex_init(&rd->lock);
++
++	return 0;
++}
++
++static int amdgpu_debugfs_regs2_release(struct inode *inode, struct file *file)
++{
++	kfree(file->private_data);
++	return 0;
++}
++
++static ssize_t amdgpu_debugfs_regs2_op(struct file *f, char __user *buf, u32 offset, size_t size, int write_en)
++{
++	struct amdgpu_debugfs_regs2_data *rd = f->private_data;
++	struct amdgpu_device *adev = rd->adev;
++	ssize_t result = 0;
++	int r;
++	uint32_t value;
++
++	if (size & 0x3 || offset & 0x3)
++		return -EINVAL;
++
++	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
++	if (r < 0) {
++		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
++		return r;
++	}
++
++	r = amdgpu_virt_enable_access_debugfs(adev);
++	if (r < 0) {
++		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
++		return r;
++	}
++
++	mutex_lock(&rd->lock);
++
++	if (rd->id.use_grbm) {
++		if ((rd->id.grbm.sh != 0xFFFFFFFF && rd->id.grbm.sh >= adev->gfx.config.max_sh_per_se) ||
++		    (rd->id.grbm.se != 0xFFFFFFFF && rd->id.grbm.se >= adev->gfx.config.max_shader_engines)) {
++			pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
++			pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
++			amdgpu_virt_disable_access_debugfs(adev);
++			mutex_unlock(&rd->lock);
++			return -EINVAL;
++		}
++		mutex_lock(&adev->grbm_idx_mutex);
++		amdgpu_gfx_select_se_sh(adev, rd->id.grbm.se,
++								rd->id.grbm.sh,
++								rd->id.grbm.instance);
++	}
++
++	if (rd->id.use_srbm) {
++		mutex_lock(&adev->srbm_mutex);
++		amdgpu_gfx_select_me_pipe_q(adev, rd->id.srbm.me, rd->id.srbm.pipe,
++									rd->id.srbm.queue, rd->id.srbm.vmid);
++	}
++
++	if (rd->id.pg_lock)
++		mutex_lock(&adev->pm.mutex);
++
++	while (size) {
++		if (!write_en) {
++			value = RREG32(offset >> 2);
++			r = put_user(value, (uint32_t *)buf);
++		} else {
++			r = get_user(value, (uint32_t *)buf);
++			if (!r)
++				amdgpu_mm_wreg_mmio_rlc(adev, offset >> 2, value);
++		}
++		if (r) {
++			result = r;
++			goto end;
++		}
++		offset += 4;
++		size -= 4;
++		result += 4;
++		buf += 4;
++	}
++end:
++	if (rd->id.use_grbm) {
++		amdgpu_gfx_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xffffffff);
++		mutex_unlock(&adev->grbm_idx_mutex);
++	}
++
++	if (rd->id.use_srbm) {
++		amdgpu_gfx_select_me_pipe_q(adev, 0, 0, 0, 0);
++		mutex_unlock(&adev->srbm_mutex);
++	}
++
++	if (rd->id.pg_lock)
++		mutex_unlock(&adev->pm.mutex);
++
++	mutex_unlock(&rd->lock);
++
++	pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
++	pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
++
++	amdgpu_virt_disable_access_debugfs(adev);
++	return result;
++}
++
++static long amdgpu_debugfs_regs2_ioctl(struct file *f, unsigned int cmd, unsigned long data)
++{
++	struct amdgpu_debugfs_regs2_data *rd = f->private_data;
++	int r;
++
++	switch (cmd) {
++	case AMDGPU_DEBUGFS_REGS2_IOC_SET_STATE:
++		mutex_lock(&rd->lock);
++		r = copy_from_user(&rd->id, (struct amdgpu_debugfs_regs2_iocdata *)data, sizeof rd->id);
++		mutex_unlock(&rd->lock);
++		return r ? -EINVAL : 0;
++	default:
++		return -EINVAL;
++	}
++	return 0;
++}
++
++static ssize_t amdgpu_debugfs_regs2_read(struct file *f, char __user *buf, size_t size, loff_t *pos)
++{
++	return amdgpu_debugfs_regs2_op(f, buf, *pos, size, 0);
++}
++
++static ssize_t amdgpu_debugfs_regs2_write(struct file *f, const char __user *buf, size_t size, loff_t *pos)
++{
++	return amdgpu_debugfs_regs2_op(f, (char __user *)buf, *pos, size, 1);
++}
++
+ 
+ /**
+  * amdgpu_debugfs_regs_pcie_read - Read from a PCIE register
+@@ -1091,6 +1229,16 @@ static ssize_t amdgpu_debugfs_gfxoff_read(struct file *f, char __user *buf,
+ 	return result;
+ }
+ 
++static const struct file_operations amdgpu_debugfs_regs2_fops = {
++	.owner = THIS_MODULE,
++	.unlocked_ioctl = amdgpu_debugfs_regs2_ioctl,
++	.read = amdgpu_debugfs_regs2_read,
++	.write = amdgpu_debugfs_regs2_write,
++	.open = amdgpu_debugfs_regs2_open,
++	.release = amdgpu_debugfs_regs2_release,
++	.llseek = default_llseek
++};
++
+ static const struct file_operations amdgpu_debugfs_regs_fops = {
+ 	.owner = THIS_MODULE,
+ 	.read = amdgpu_debugfs_regs_read,
+@@ -1148,6 +1296,7 @@ static const struct file_operations amdgpu_debugfs_gfxoff_fops = {
+ 
+ static const struct file_operations *debugfs_regs[] = {
+ 	&amdgpu_debugfs_regs_fops,
++	&amdgpu_debugfs_regs2_fops,
+ 	&amdgpu_debugfs_regs_didt_fops,
+ 	&amdgpu_debugfs_regs_pcie_fops,
+ 	&amdgpu_debugfs_regs_smc_fops,
+@@ -1160,6 +1309,7 @@ static const struct file_operations *debugfs_regs[] = {
+ 
+ static const char *debugfs_regs_names[] = {
+ 	"amdgpu_regs",
++	"amdgpu_regs2",
+ 	"amdgpu_regs_didt",
+ 	"amdgpu_regs_pcie",
+ 	"amdgpu_regs_smc",
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h
+index 141a8474e24f..6d4965b2d01e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h
+@@ -22,7 +22,6 @@
+  * OTHER DEALINGS IN THE SOFTWARE.
+  *
+  */
+-
+ /*
+  * Debugfs
+  */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umr.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_umr.h
+new file mode 100644
+index 000000000000..919d9d401750
+--- /dev/null
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umr.h
+@@ -0,0 +1,51 @@
++/*
++ * Copyright 2021 Advanced Micro Devices, Inc.
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ */
++#include <linux/ioctl.h>
++
++/*
++ * MMIO debugfs IOCTL structure
++ */
++struct amdgpu_debugfs_regs2_iocdata {
++	__u32 use_srbm, use_grbm, pg_lock;
++	struct {
++		__u32 se, sh, instance;
++	} grbm;
++	struct {
++		__u32 me, pipe, queue, vmid;
++	} srbm;
++};
++
++/*
++ * MMIO debugfs state data (per file* handle)
++ */
++struct amdgpu_debugfs_regs2_data {
++	struct amdgpu_device *adev;
++	struct mutex lock;
++	struct amdgpu_debugfs_regs2_iocdata id;
++};
++
++enum AMDGPU_DEBUGFS_REGS2_CMDS {
++	AMDGPU_DEBUGFS_REGS2_CMD_SET_STATE=0,
++};
++
++#define AMDGPU_DEBUGFS_REGS2_IOC_SET_STATE _IOWR(0x20, AMDGPU_DEBUGFS_REGS2_CMD_SET_STATE, struct amdgpu_debugfs_regs2_iocdata)
+-- 
+2.31.1
 
--Jason
-
-
-> 
-> Jim Cromie (11):
->   moduleparam: add data member to struct kernel_param
->   dyndbg: add DEFINE_DYNAMIC_DEBUG_CATEGORIES and callbacks
->   i915/gvt: remove spaces in pr_debug "gvt: core:" etc prefixes
->   i915/gvt: use DEFINE_DYNAMIC_DEBUG_CATEGORIES to create "gvt:core:"
->     etc categories
->   amdgpu: use DEFINE_DYNAMIC_DEBUG_CATEGORIES to control categorized
->     pr_debugs
->   drm_print: add choice to use dynamic debug in drm-debug
->   drm_print: instrument drm_debug_enabled
->   amdgpu_ucode: reduce number of pr_debug calls
->   nouveau: fold multiple DRM_DEBUG_DRIVERs together
->   dyndbg: RFC add debug-trace callback, selftest with it. RFC
->   dyndbg: RFC add print-once and print-ratelimited features. RFC.
-> 
->  drivers/gpu/drm/Kconfig                       |  13 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c     | 293 ++++++++-------
->  .../gpu/drm/amd/display/dc/core/dc_debug.c    |  44 ++-
->  drivers/gpu/drm/drm_print.c                   |  49 ++-
->  drivers/gpu/drm/i915/gvt/Makefile             |   4 +
->  drivers/gpu/drm/i915/gvt/debug.h              |  18 +-
->  drivers/gpu/drm/i915/i915_params.c            |  35 ++
->  drivers/gpu/drm/nouveau/nouveau_drm.c         |  36 +-
->  include/drm/drm_print.h                       | 148 ++++++--
->  include/linux/dynamic_debug.h                 |  81 ++++-
->  include/linux/moduleparam.h                   |  11 +-
->  lib/Kconfig.debug                             |  11 +
->  lib/Makefile                                  |   1 +
->  lib/dynamic_debug.c                           | 336 ++++++++++++++++--
->  lib/test_dynamic_debug.c                      | 279 +++++++++++++++
->  15 files changed, 1117 insertions(+), 242 deletions(-)
->  create mode 100644 lib/test_dynamic_debug.c
-> 
