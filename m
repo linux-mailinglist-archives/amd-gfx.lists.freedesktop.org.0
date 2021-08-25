@@ -1,20 +1,20 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DD7F3F751F
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Aug 2021 14:34:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5D273F7522
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Aug 2021 14:34:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A9136E201;
-	Wed, 25 Aug 2021 12:34:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94D806E207;
+	Wed, 25 Aug 2021 12:34:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A68F6E15A;
- Wed, 25 Aug 2021 07:35:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEB316E15A;
+ Wed, 25 Aug 2021 07:36:01 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 7A50267357; Wed, 25 Aug 2021 09:35:22 +0200 (CEST)
-Date: Wed, 25 Aug 2021 09:35:22 +0200
+ id E3CE667357; Wed, 25 Aug 2021 09:35:59 +0200 (CEST)
+Date: Wed, 25 Aug 2021 09:35:59 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Alex Sierra <alex.sierra@amd.com>
 Cc: akpm@linux-foundation.org, Felix.Kuehling@amd.com, linux-mm@kvack.org,
@@ -22,14 +22,14 @@ Cc: akpm@linux-foundation.org, Felix.Kuehling@amd.com, linux-mm@kvack.org,
  linux-xfs@vger.kernel.org, amd-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, hch@lst.de, jgg@nvidia.com,
  jglisse@redhat.com
-Subject: Re: [PATCH v1 01/14] ext4/xfs: add page refcount helper
-Message-ID: <20210825073522.GA29433@lst.de>
+Subject: Re: [PATCH v1 02/14] mm: remove extra ZONE_DEVICE struct page refcount
+Message-ID: <20210825073559.GB29433@lst.de>
 References: <20210825034828.12927-1-alex.sierra@amd.com>
- <20210825034828.12927-2-alex.sierra@amd.com>
+ <20210825034828.12927-3-alex.sierra@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210825034828.12927-2-alex.sierra@amd.com>
+In-Reply-To: <20210825034828.12927-3-alex.sierra@amd.com>
 User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Wed, 25 Aug 2021 12:34:20 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -46,18 +46,6 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Aug 24, 2021 at 10:48:15PM -0500, Alex Sierra wrote:
-> Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
-> Signed-off-by: Alex Sierra <alex.sierra@amd.com>
-> Reviewed-by: Christoph Hellwig <hch@lst.de>
-> ---
-> v3:
-> [AS]: rename dax_layout_is_idle_page func to dax_page_unused
-> 
-> v4:
-> [AS]: This ref count functionality was missing on fuse/dax.c.
-> ---
+Looks good,
 
-Not sure all tooling can cope with the two --- separators.  Personally
-I find these per-patch changelogs pretty annoying anyway, but others
-have different opinions.
+Reviewed-by: Christoph Hellwig <hch@lst.de>
