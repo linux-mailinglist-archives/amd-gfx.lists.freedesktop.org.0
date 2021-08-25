@@ -2,102 +2,98 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34C403F7BB2
-	for <lists+amd-gfx@lfdr.de>; Wed, 25 Aug 2021 19:49:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 808F73F7C3A
+	for <lists+amd-gfx@lfdr.de>; Wed, 25 Aug 2021 20:32:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5978C6E3F4;
-	Wed, 25 Aug 2021 17:49:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7E8B6E40D;
+	Wed, 25 Aug 2021 18:32:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam08on2049.outbound.protection.outlook.com [40.107.100.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDC4D6E3F4;
- Wed, 25 Aug 2021 17:49:04 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam07on2060.outbound.protection.outlook.com [40.107.212.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72D336E40D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 25 Aug 2021 18:32:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L94HSvLZfRi6AQzrzB8rHeSlzSUiP86AbnjH1OOvgpKk65tUc6rs8QtBNDOdoZ62BnJyUPOzMdX67B0kV7y3kNKW/c6yICdKixeEEgHq1vDbjZjJzv0OiGIf1Q/nab+Od9Od5ZE1EmEBsFKBXO3Lx1RgsU9Mf2oqjzxjSCPDOuJrDaRiHo9FxTOKon4JcjkvS7Glm/BrcCdmHPM9Hzrtcq262vQ0bY4BbEuQSLTV4Q5AIzco1Ogi8f4Xa/XtjUeMjdWmfMjvcIeQrThHkXpu54ut+kytfMpNsuPCDs9e6JvK/zt/jprIa941O4286GFsqUdKGyS5JjRe1lgIB55izQ==
+ b=ExyAMAA0oxwY9WyjbunWZwdqrbVd6ImWSrVnOTs3CdqqLT0sFJV96Xn/pYd61HYrFyBAjeXS1dACslw70gocnw6zE7C5OyQD1bo3P1qph3ct3/sgY8YFsBN+uCdX9vCNh2dOrUn1oQmiYkbyeLhwYqyfJ+2dQZBTVeJ5DCUGc9JnbC6uRtNkDF6OjxQKhm1fa8/ig/QXStw/4iLaNV+DgmXBBk+IFAleRQaMoZedNzYymUTjEepGn8odc+3QLYxiJl5bEDagwZc0gQxldFVC5OC26ra1qpyf468D9qKjzYyV9PqFECGC6vH4QICYssAZCIiFejjUu9JBUk4ywgoJTQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=836XBpZH3d+fdvKEqzLZQ9K3DZDuUGf5MVN4Xajae/U=;
- b=iQ3DEJe1rgZMRiobhuAx8RpzIQL5zb2yhwZtj0Enw9hmSzw0gag6v49qZX/ILzWTUuRdDN4erF9Qn1lS83507THQJo5y9oQyE02tVdrfabwLl9KthsX+hxCeYnrhJ4cOt7XCoSF2EBzgupQbUWpcKsbNhR2ehYpyPWOFGmsUZOTrz47LwiY1a2SsM7jLEDUvhhrOmVX3+ZbFP2TF4G2kWuug3fXilvylcgKIXDR7rIhqoSTL/dsT/4SE+XzU+rreANhEbSnwhJzVwa2pli6VXQFdEFqF5K/envRa6KZdGalb9APSjp5PcgB08QCKOyiKk6GVFzmvE3qlS/XVpr7efQ==
+ bh=/Aq4XvhKR31Zqgps8LvmEOdjcUdaM1F7bx4oAWNXu5k=;
+ b=OahyqRdmfIDncSuz9KBRF0W7pucVFHhiZxqhijpt7VCNvT782wLnJTb3a5kNNzjNGvcuLi1kEzaXx6w7oBu3pxDQ9DaqaBYePqVGwKBa0dnVpk5Uo//9494lNz+Aev/t0aEzZiwYi+fpd7rt8hnkPl08XY4MskeEX+BlXtpAFz0H5PlUAj/oJlPnwzIMA8dtAy4FAhxF/XVm2A8El/gKI1ui86t3efrllOopytSnais1brhM9b0S1uw5voq5sFOGnZLZmVrdtE/U2dLlzK/tJPcKZSnOJ5jGVov2+qpTA/afHfYjOyNgLXSFRhuIvltFFC3uFyKT9qIxdOfsEX4pZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.36) smtp.rcpttodomain=amd.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=nvidia.com; 
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=836XBpZH3d+fdvKEqzLZQ9K3DZDuUGf5MVN4Xajae/U=;
- b=Uf5FX7oqFx5m4K3QumLMI8Sc6QROdZUFouqpra7HvUCKDSG3HEA+icbSISQTT9JSoS3A0ljBJDniydPv3njc/8IhDpOEI25e6kCB6N0cV1FdaJ5QyZ2Mw8w5kZRje4eXTGwT8Y7O9wwX6wT3g93MyLeKD2PiAHDgnrGv2z+COSSwilDNirsvPmZAzffaVTXyIdN4mPhVaVnVERyssXDGgsW2wZG4fof5SWvKU+Lr+a/A67I5WN0KwVEFjT8jDvdr/+UieNwRNy7HGoK2zN4VkwTrHV0hpH0QPrS0mRxk+pHpEEcU05SYv2BjV3aN+pNp1nbg0tapYNwDqkEZinaQSg==
-Received: from DM5PR07CA0156.namprd07.prod.outlook.com (2603:10b6:3:ee::22) by
- DM8PR12MB5495.namprd12.prod.outlook.com (2603:10b6:8:33::12) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4436.22; Wed, 25 Aug 2021 17:49:03 +0000
-Received: from DM6NAM11FT034.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:ee:cafe::eb) by DM5PR07CA0156.outlook.office365.com
- (2603:10b6:3:ee::22) with Microsoft SMTP Server (version=TLS1_2,
+ bh=/Aq4XvhKR31Zqgps8LvmEOdjcUdaM1F7bx4oAWNXu5k=;
+ b=bgT3F6H7djOTFZ5Wt2sJEG7lg59nEwbNcAScoSNergG/lVu2pdgZRAKd/++BXvhBCHudDzB4bh9yG7Sckg7kQnRwg3lT/lXK8/Wf7bgogqb6VcIaMRHiNucSeyNPR3AkpkcdBb0dRDdbVixP+vobNX9fL4eF7QEv7wRJKygPup0=
+Received: from BN6PR1201CA0009.namprd12.prod.outlook.com
+ (2603:10b6:405:4c::19) by BY5PR12MB3985.namprd12.prod.outlook.com
+ (2603:10b6:a03:196::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.17; Wed, 25 Aug
+ 2021 18:18:34 +0000
+Received: from BN8NAM11FT043.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:405:4c:cafe::44) by BN6PR1201CA0009.outlook.office365.com
+ (2603:10b6:405:4c::19) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.17 via Frontend
- Transport; Wed, 25 Aug 2021 17:49:03 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.36)
- smtp.mailfrom=nvidia.com; amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.36 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.36; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.36) by
- DM6NAM11FT034.mail.protection.outlook.com (10.13.173.47) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4457.17 via Frontend Transport; Wed, 25 Aug 2021 17:49:02 +0000
-Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 25 Aug
- 2021 17:49:02 +0000
-Received: from rcampbell-test.nvidia.com (172.20.187.6) by mail.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1497.2 via Frontend
- Transport; Wed, 25 Aug 2021 17:49:02 +0000
-Subject: Re: [PATCH v1 02/14] mm: remove extra ZONE_DEVICE struct page refcount
-To: Vlastimil Babka <vbabka@suse.cz>, Alex Sierra <alex.sierra@amd.com>,
- <akpm@linux-foundation.org>, <Felix.Kuehling@amd.com>, <linux-mm@kvack.org>,
- <linux-ext4@vger.kernel.org>, <linux-xfs@vger.kernel.org>
-CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <hch@lst.de>, <jgg@nvidia.com>, <jglisse@redhat.com>
-References: <20210825034828.12927-1-alex.sierra@amd.com>
- <20210825034828.12927-3-alex.sierra@amd.com>
- <dbd0f54a-ad6c-97a2-17d7-826247424c97@suse.cz>
-From: Ralph Campbell <rcampbell@nvidia.com>
-Message-ID: <505e4fe4-241a-8205-d2ef-f603e9cc46c6@nvidia.com>
-Date: Wed, 25 Aug 2021 10:49:01 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Transport; Wed, 25 Aug 2021 18:18:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT043.mail.protection.outlook.com (10.13.177.218) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4457.17 via Frontend Transport; Wed, 25 Aug 2021 18:18:33 +0000
+Received: from localhost.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Wed, 25 Aug
+ 2021 13:18:31 -0500
+From: Luben Tuikov <luben.tuikov@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Luben Tuikov <luben.tuikov@amd.com>, John Clements
+ <john.clements@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, Alex Deucher
+ <Alexander.Deucher@amd.com>
+Subject: [PATCH 2/2] drm/amdgpu: Process any VBIOS RAS EEPROM address
+Date: Wed, 25 Aug 2021 14:18:12 -0400
+Message-ID: <20210825181812.4359-2-luben.tuikov@amd.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210825181812.4359-1-luben.tuikov@amd.com>
+References: <20210825181812.4359-1-luben.tuikov@amd.com>
 MIME-Version: 1.0
-In-Reply-To: <dbd0f54a-ad6c-97a2-17d7-826247424c97@suse.cz>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f60f875c-00f9-4d75-cfc8-08d967f0a062
-X-MS-TrafficTypeDiagnostic: DM8PR12MB5495:
-X-Microsoft-Antispam-PRVS: <DM8PR12MB5495C64B7D3FBA3447A5AAF3C2C69@DM8PR12MB5495.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Office365-Filtering-Correlation-Id: ddaa9a22-4b57-4799-1fb4-08d967f4bfcc
+X-MS-TrafficTypeDiagnostic: BY5PR12MB3985:
+X-Microsoft-Antispam-PRVS: <BY5PR12MB398500B0D7D3EFAE84DD222E99C69@BY5PR12MB3985.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: EUD9gLnj84NJTkTFCk9HSdNz/cRUsi1KSKwCAoDcNO3QWfBp6CawHcI3WLkRtFDJAzmZjFcCBSdCSgtPspHuPgtg4Q0Oo1g319KIjspMISuKp9sUN+7dzDIvVgDSuKQFlsCKAYniRMrzVYMj+UbC6e2q7vPakMS+wv+ok9XcAWzYdAa1q7pN1qN/sklbMADA/MzHzlpfZEoQ6M7JQwfJ3EsrUlhGJ9gLZN9ejit5ZqXb7EJKefpFCAwrJ3AMe2MoiNnXHdd/Dao6bJcR0P27rOf22wNRqGgCLCQn40dmk7+u4oi5V2bf2jmMW94PaueOvIu3d/EbmjKhDx/dIy6SU8YEm5r7Jv0YXgOkToTa2AhS8gBHocb0NPWYfl79egMkbeDVV5T5i6c1tUGWcsgadBwqOBJC78YIlwcibpas49utWk8k2c1Gtxh86wgMPid9qkepvhACzI79kUhjzhPHLvDKNEijoXn6D25j5tByC8z407BINNW5op+HKznbzSBQhbItHs+bu1V/lwDwbuGaqzWVbezMdpQ28JIn38YypNIe8OnTTb3gXZnH90LLs4oKDCkGh2hGpZWg5lI0ELZEiiVcAKoudZ+uCCJMll3cFAfUe+UusE4MD41BlNHIb5QKNQhor4a/c9hDGTR23lo5OQtBka6KjHlnzuIKLAE6X6OGdPqwcwupnTQlCkXah+aAqq9/Tjij1s/2SPQrjyE55sTMZmr3vamrxnSrOtBzV3jcRtewF1gZ7/s1PAUN3+ug
-X-Forefront-Antispam-Report: CIP:216.228.112.36; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:schybrid05.nvidia.com; CAT:NONE;
- SFS:(4636009)(376002)(346002)(39860400002)(136003)(396003)(36840700001)(46966006)(7636003)(478600001)(316002)(26005)(54906003)(110136005)(36906005)(82740400003)(31686004)(2616005)(53546011)(36756003)(336012)(86362001)(426003)(31696002)(70206006)(47076005)(7416002)(36860700001)(5660300002)(186003)(4326008)(8676002)(82310400003)(356005)(70586007)(2906002)(7696005)(8936002)(43740500002)(2101003);
+X-Microsoft-Antispam-Message-Info: jWFHGwS7dPWIAycxtOLn9fVOXBtrPhDulbYcbqj/Kfl8Y6fbFPiSu88vuf5v2lDYoPsANKdSW5fteKVz7Jb9rf9DEYSot2zWlsoQsdWwCfAAbtbN7iD4k3hFsmIr54FAh2hmXyRb06UYhxIslk+0NlGJyLo/TGlWYGXsOY0FBlt3tPM4Y60v16GGrzXEXbCA8sDPB2XazgR3SPPNQeZhuIMyAH4TzVf3Kw01xid8+zp8veJzRGo1/PtRV8Na7Mme2rRLuC/5awZZ2KSuEq2VtiHql88h6WrsrflHgV30YduLTkEujZYTR7LgVIPYQ/eWbs5bzP161cYElqoZB8pTn8kWb0boaYeNBG2GQCDhhfNyJdXuOX25ggqHJJm8fn1xRpzSSBp/JON/XiGXlvxIT+7t2YtOmKi4Ot7Ta2Cfq8Hv9bRk+ZtV0d6jj70eExfTYSbX7BhZcV7SlUoLq6ngESvu1mZsjKT2CPeNHVXiQ64rP+RWB85GoY0AaS16JM9px7ndn45mb8Nlv3mj4HjGYnW+j2LomGOp9xzMc97GCsU76ZXGsWgiQPeiMFFSdmk8wlXdplyNewJH0yi7TIHLyy2oj9p0U1QfojT8uMhnI17SHEIwBWxc55x6DjWM/gAygIcfItvM5zQy2q9mxmG/p/m5K2GeDU9WTeNREL5DNOSwNhH5HMigY/m6/zA4ykqDX66cuc5S4ZGtAgyGAMBFCnLMhDRwqi3ydUVxNHfjPJ8=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(46966006)(36840700001)(508600001)(5660300002)(4326008)(36756003)(8676002)(1076003)(356005)(2906002)(70586007)(47076005)(6666004)(82310400003)(36860700001)(83380400001)(186003)(54906003)(86362001)(316002)(2616005)(81166007)(70206006)(44832011)(336012)(426003)(7696005)(26005)(8936002)(6916009)(16526019)(36900700001);
  DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2021 17:49:02.9178 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f60f875c-00f9-4d75-cfc8-08d967f0a062
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.112.36];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT034.eop-nam11.prod.protection.outlook.com
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2021 18:18:33.6712 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ddaa9a22-4b57-4799-1fb4-08d967f4bfcc
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT043.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR12MB5495
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3985
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,35 +108,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+We can now process any RAS EEPROM address from
+VBIOS. Generalize so as to compute the top three
+bits of the 19-bit EEPROM address, from any byte
+returned as the "i2c address" from VBIOS.
 
-On 8/25/21 4:15 AM, Vlastimil Babka wrote:
-> On 8/25/21 05:48, Alex Sierra wrote:
->> From: Ralph Campbell <rcampbell@nvidia.com>
->>
->> ZONE_DEVICE struct pages have an extra reference count that complicates the
->> code for put_page() and several places in the kernel that need to check the
->> reference count to see that a page is not being used (gup, compaction,
->> migration, etc.). Clean up the code so the reference count doesn't need to
->> be treated specially for ZONE_DEVICE.
-> That's certainly welcome. I just wonder what was the reason to use 1 in the
-> first place and why it's no longer necessary?
+Cc: John Clements <john.clements@amd.com>
+Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+Cc: Alex Deucher <Alexander.Deucher@amd.com>
+Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
+---
+ .../gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c    | 25 ++++++++++---------
+ 1 file changed, 13 insertions(+), 12 deletions(-)
 
-I'm sure this is a long story that I don't know most of the history.
-I'm guessing that ZONE_DEVICE started out with a reference count of
-one since that is what most "normal" struct page pages start with.
-Then put_page() is used to free newly initialized struct pages to the
-slab/slob/slub page allocator.
-This made it easy to call get_page()/put_page() on ZONE_DEVICE pages
-since get_page() asserts that the caller has a reference.
-However, most drivers that create ZONE_DEVICE struct pages just insert
-a PTE into the user page tables and don't increment/decrement the
-reference count. MEMORY_DEVICE_FS_DAX used the >1 to 1 reference count
-transition to signal that a page was idle so that made put_page() a
-bit more complex. Then MEMORY_DEVICE_PRIVATE pages were added and this
-special casing of what "idle" meant got more complicated and more parts
-of mm had to check for is_device_private_page().
-My goal was to make ZONE_DEVICE struct pages reference counts be zero
-based and allocated/freed similar to the page allocator so that more
-of the mm code could be used, like THP ZONE_DEVICE pages, without special
-casing ZONE_DEVICE.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+index 194590252bb952..dc44c946a2442a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
+@@ -114,21 +114,22 @@ static bool __get_eeprom_i2c_addr_arct(struct amdgpu_device *adev,
+ static bool __get_eeprom_i2c_addr(struct amdgpu_device *adev,
+ 				  struct amdgpu_ras_eeprom_control *control)
+ {
++	u8 i2c_addr;
++
+ 	if (!control)
+ 		return false;
+ 
+-	control->i2c_address = 0;
+-
+-	if (amdgpu_atomfirmware_ras_rom_addr(adev, (uint8_t*)&control->i2c_address))
+-	{
+-		if (control->i2c_address == 0xA0)
+-			control->i2c_address = 0;
+-		else if (control->i2c_address == 0xA8)
+-			control->i2c_address = 0x40000;
+-		else {
+-			dev_warn(adev->dev, "RAS EEPROM I2C address not supported");
+-			return false;
+-		}
++	if (amdgpu_atomfirmware_ras_rom_addr(adev, &i2c_addr)) {
++		/* The address given by VBIOS is an 8-bit, wire-format
++		 * address, i.e. the most significant byte.
++		 *
++		 * Normalize it to a 19-bit EEPROM address. Remove the
++		 * device type identifier and make it a 7-bit address;
++		 * then make it a 19-bit EEPROM address. See top of
++		 * amdgpu_eeprom.c.
++		 */
++		i2c_addr = (i2c_addr & 0x0F) >> 1;
++		control->i2c_address = ((u32) i2c_addr) << 16;
+ 
+ 		return true;
+ 	}
+-- 
+2.32.0
 
