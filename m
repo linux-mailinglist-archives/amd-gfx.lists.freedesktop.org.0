@@ -1,67 +1,123 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4325D3F8521
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Aug 2021 12:13:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EA023F85CE
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Aug 2021 12:48:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFFAA6E5C1;
-	Thu, 26 Aug 2021 10:13:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 783756E5D2;
+	Thu, 26 Aug 2021 10:48:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
- [IPv6:2a00:1450:4864:20::331])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8FBC6E5C1
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 10:13:01 +0000 (UTC)
-Received: by mail-wm1-x331.google.com with SMTP id
- d22-20020a1c1d16000000b002e7777970f0so6470461wmd.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 03:13:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=c8qSs6TDILxbShimwRABHakOnMzCbggbxC7nToVMXs8=;
- b=h5qWJVTuSCERJ/SyD4uYypsVVTKPOytJoal9+pwsHvWib8OV7UumcaWbFCO2QPQLfA
- GeUIOwHwdp0L+faJr5ykDWo8/6ncTWYzsPMI4k+Jnd7AQjcnvWbYJm7GBZ7w4Sf4xax6
- Zlv/nvsjSRdjQzA9TSBfF+r+AlEdwaYGVGtH4EJ28XsD22pEcnN9W92sojniqLgIoxAw
- hqzZoUY8EoRTFarvaVp5q+Qs1KyAHBzutwpX6QYoVLM4HwYTAAuARr8+WDTTYyyG46vA
- lB02u7GKgHvPbir4UgdQpIroPifUgNxd7oerUtFcg9LEZmkjhQ9d5qea0W6WLN5V/tTV
- OvTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=c8qSs6TDILxbShimwRABHakOnMzCbggbxC7nToVMXs8=;
- b=oBI6K2BRSoSopEiGYVfaRYNXA/hGphA/4EhPoVem80IZXBvNFMmbthGS8+qUhnx6eg
- 3kAN9b6QyB9IreUwM0K+I3WKWnE6XomCOHJdtSVUf7g+nhr2RBgz6Oowul7miUyGStch
- 5CWag8wwd6E7YFWgsQQ68aMcqmnVYWW2UKRh0TX7Bf2nFXHwEgD0fj9dPR0zk3SWLW/t
- Blp/aqefYqMknLkvaZOj9hxBrMfnPBowDVEDR0Zc7V2roBgZj+01Dr67q6bLiTmN6ir+
- KicHjJLZ7nfH1I1fS6kjRgkOWLvJeZJU43ph/uqJEKbF+qhPIfr3lgv5mhOGu1gs38+j
- chgA==
-X-Gm-Message-State: AOAM53135ZMKbHVRKaJ8OioDc+tbqrmPVifo0Ksbd9ZK8ik/fAPZleot
- FElXNC+aVA964L6cUVtpGsA=
-X-Google-Smtp-Source: ABdhPJyBS/1K8gTnO9+IjFhYE9f8I13AclYQXINEUix2QnuyylzvzPTH4k2aJ/UH0zhfsaP+J7/0kw==
-X-Received: by 2002:a1c:29c3:: with SMTP id p186mr2840300wmp.22.1629972780333; 
- Thu, 26 Aug 2021 03:13:00 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:f034:47d2:6ee4:c70f?
- ([2a02:908:1252:fb60:f034:47d2:6ee4:c70f])
- by smtp.gmail.com with ESMTPSA id l1sm798911wrb.15.2021.08.26.03.12.59
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 26 Aug 2021 03:12:59 -0700 (PDT)
-Subject: Re: [PATCH] drm/amdgpu: correct comments in memory type managers
-To: Yifan Zhang <yifan1.zhang@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: christian.koenig@amd.com
-References: <20210826095937.1150894-1-yifan1.zhang@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <2b4091f2-7b63-70be-11f8-0a0eb5981ea4@gmail.com>
-Date: Thu, 26 Aug 2021 12:12:59 +0200
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2056.outbound.protection.outlook.com [40.107.237.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DE9B6E5CA
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 10:48:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hLHvfSTFF9P/UX+xtmWv5lGOAlyO0Xme3AL+vm2AQG+d5gAz09hh/EWpu3sgJb+Z5NrQivojF9qeFHHpKl01HaOJdsLsXuyo6JdiP90QxDchoNrkPhi93E63ZdRiUrx8mOvWwErpAjdPP2j0Y8aDJeBgB9Ui1OZ83DynK1f0c7nSbIFYEbl5fze01COvgEblFVi6TwS21gEjh5P/ZFWeHmpPptDKgUf2g5sS5W09gxvLou7pSDCooQGcjnqRUIAnsNsDknAgPgsTwYUIkI67DD5ezlBmgR9mOF/h67lJURT/XI7WnFp3YQ+/UsuNDbcry52MQ81hi8DG4yJOwrfBiA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wzh/owSKTXdT52o4C8+G1nBlYxkpX3LycAqrVyicCKQ=;
+ b=fh7gmPyOnRu39fpUAQzbyc6QYVfN6DJ6f110HZDE+DI7c3SMdlxHSZq237//UCBUDmOxbYLgYecN8orO4Cj/phutm3/ZqvoU0hB/3tMj3iKenZFVxmujtgA3oXKXYFk8S7R7AxWs8ANJ7c4LJImhTImzQ6Y9JDJpdnDXdVVTYhw7vyQYB1bDJjh01CVIMCAZM+Sq7gD6E5Biqa56iSGepX9lPVQBXmmWYmhcfzQuTznnb3zNxYANkvws3Nj6Cc/3D7tqzYr2Hny55za//SFOKJ8ze4kDvAjA/0d6lPdVP+U8tKPUgo8uRz98fce82+RYoD6lt1GHm0nF2i338G5Jxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wzh/owSKTXdT52o4C8+G1nBlYxkpX3LycAqrVyicCKQ=;
+ b=KN74IYzK/yRD9YVXLK9RKXhdU5f6HoZ9oNvwPu/NycUw2RHuWzWUUEmRbSrUj16dd23zJxHynrwkl9mKtpOc+/f7VTaRYnXghmNgJlMLo2ouEy0c36H9hlgEOPC1YUDIDUDVswYsiuhGo/XLPceqCEmphnNZNkZTfPzkh7/dC1E=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by MN2PR12MB3887.namprd12.prod.outlook.com (2603:10b6:208:168::32)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.18; Thu, 26 Aug
+ 2021 10:48:07 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::dce2:96e5:aba2:66fe]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::dce2:96e5:aba2:66fe%6]) with mapi id 15.20.4436.024; Thu, 26 Aug 2021
+ 10:48:07 +0000
+Subject: Re: [PATCH v2 1/1] drm/amdgpu: detach ring priority from gfx priority
+To: Nirmoy Das <nirmoy.das@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: lijo.lazar@amd.com, satyajit.sahu@amd.com
+References: <20210826100824.38041-1-nirmoy.das@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <0f3102bc-b5a4-b892-82a3-0e16f0bdcae6@amd.com>
+Date: Thu, 26 Aug 2021 12:48:02 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <20210826095937.1150894-1-yifan1.zhang@amd.com>
+In-Reply-To: <20210826100824.38041-1-nirmoy.das@amd.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
+X-ClientProxiedBy: PR2PR09CA0018.eurprd09.prod.outlook.com
+ (2603:10a6:101:16::30) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2a02:908:1252:fb60:53ec:f9bd:d7cc:10a9]
+ (2a02:908:1252:fb60:53ec:f9bd:d7cc:10a9) by
+ PR2PR09CA0018.eurprd09.prod.outlook.com (2603:10a6:101:16::30) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4457.20 via Frontend Transport; Thu, 26 Aug 2021 10:48:06 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 39acda57-f96d-4dcf-fc09-08d9687efd41
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3887:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MN2PR12MB388719929D0585B90C5C87A483C79@MN2PR12MB3887.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: XrWlceaMNWijMhwjrbP4ucpniMaIFABB7Ozm73ZHyrNMcKY4puMXPNtAeaVQIxav4rbU53w8BgIKCEukIWChpNMic4kByLJ5zlucR2Er1wT8CR2IAtoQGi8W/jFdyOywB9E3FGJDOkEXN71/44CjFi4eqAa8TwOmN12dFYu7fCmk/Jxc+h/iAHn2p0VzUUuaTJubjsVrhds3prKXRn248motOdo4fqRNsX7y/+giD54xtqs5FbvQIqcSZKb/OrqJOT+NEfHFI3a6+WHPyLGj5Vu+wEam6vDksFoVd9xvjRdLehhou3kBUS6nzZn6DLK3VgtmlXF97/u20NwvShrhc/x7Kf1XQQrFuLnq/VT5CeoB2Qed93YjbS9IZhq6JW+hcl2EZEXBjcj0YHCNptcikTAYdJT8/T8rqr8WZu02j4Kf2RoY+zk8XvLOdaxaJiI6UGgMmE7o7rRtG3uPykJ9M3dXhR7OnPMY8AbY9iT320cHQW0EkFtT7TqI2oqY8SCGQw1L5LkB6wOIuC1BmKQ6zKufRzHJbHMVWnaM02s+8lD95j1H73x04BvUy5QjHuSTETxnhb8kBw6HnMbdFwhMCvpz1rgoZ7JoWwyR+KtbyJMQO+4qgMAQmXB0hT0KwIns3AqMKjPqOAW+LdtJtWMa9lBn0pZKce8Si+oTB1vdeULmkhpC36UiXOCK3CEzIK4NylTu9Fpe4d8+ojJ33H1FCxGptSzIyKH1IAzdjJfSc2qJ3RJD/CKAsMAcKe4Rt2rf
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(39860400002)(396003)(136003)(376002)(366004)(5660300002)(31686004)(83380400001)(2906002)(2616005)(66476007)(66556008)(66946007)(478600001)(31696002)(316002)(6486002)(186003)(38100700002)(86362001)(4326008)(36756003)(6666004)(8936002)(8676002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TEpGbGhKMUFkQUpENnBENXo3LzVrVlJ6YXFnYncrOVFGOStyNmdKcEp5bEFR?=
+ =?utf-8?B?TjJkTlVTK3VhR0J1SFVOblVWNFBCcER6S0VReldhTmNFSnVQVlVVWjhVcDRB?=
+ =?utf-8?B?NUs1MFIvdGpJeUZYL0FIcDA5MlBob3lKcjI2QVQ1ZGNvYmdpOGJwUG5Qc21n?=
+ =?utf-8?B?bzY3cmxja29vcFJibVVqdmdLNzJ5SXEyVTNRV2Fja2JMZ2NyZDVhT2NCeEM3?=
+ =?utf-8?B?Um9nUFFzWW5UZ1BsU1BaOER5S0ZWRUZ3QXJxRHdUTGlzWjBvcGh6bFU4ajlw?=
+ =?utf-8?B?UGJsMU1rMkMva0NaUXJ5UWpWNHArODFSR3JlTS9yVzArVU1uQlU2RjlFYWt3?=
+ =?utf-8?B?QXZZc3JmT3QxWW56MC9tZSszQnZyanYwY01aa2h4QkV2NFdXZllGdGVXZUlQ?=
+ =?utf-8?B?Z05DdGdHODNRUFI0Zyt4aXBXUzBuM2l2N05FMkhBMEZIOWhUZWswQkxYdFRn?=
+ =?utf-8?B?VWlpc2I4OFU4TzFPMFVzanQzS1Nlbkk5L01qNjV6b0VsMVM5a3AzRTNwM3Yr?=
+ =?utf-8?B?Zm1nTTNaVitaVzFHUWVsaTlYdWJibWVVbVhmc091Zit6dTVFU2hBMTRLbWk2?=
+ =?utf-8?B?NkE4bGNmazZnTHIzVzlsZEp0Sk00K1d6TlRWeGw5YkJUY1VQLzh2WDhObFJl?=
+ =?utf-8?B?M2wwSEdpY2dCK2FTNzFlNTJUazc4UGYvSCswQWJEZUJWenVJTlNCVVRrek9X?=
+ =?utf-8?B?WUxLS3Fzd3hPNjdEZVQ4UUpUc2VBZnZKck5sTEt5QmZOeiswWnlMWEl4cWUv?=
+ =?utf-8?B?UGo1b2NhRzY0ODVzSGFMaStGczNvUGxXaXBBTEE4WnZOQ0U2NjZTenFGUjc0?=
+ =?utf-8?B?aEVaS3dzcnlOSWgvL0NucU5rcmtvN2hlcGNncnZYTFQyRkRTNjFIakkyL2hH?=
+ =?utf-8?B?d0ZDeGlCdmVJa2dmV0pPY3d1MmpJRDQ0VFBMZE1HWlNLTDhJaHhlbFpKTlU0?=
+ =?utf-8?B?ZS9JVGQrL0FHREptUmE3dG13WHlESllCZTMrNVNHRUF3QTFzOTFOMWNJb3hV?=
+ =?utf-8?B?eTlvTmhQNjVSeDRndUpaMm82WFVvUDhMcnVsVkNudTRONlVRVnZUVEhHMHZj?=
+ =?utf-8?B?Q0xveWxKOWpYRENhU0F4b01veENGZEZ0SnE3OVlla1VVSDYrRi9qYmVldkIx?=
+ =?utf-8?B?VUttNWh2eTZrbUxTSklXQ0h4bVkxU3FmbWh1RmlJQzdZMUxPdW1DSWhiS1Qy?=
+ =?utf-8?B?Y2FwWkVsbzd5eW5mSXVweStXQS9QOVhQUDE4ZysyeUdnOFcyNTNCa245VGFi?=
+ =?utf-8?B?dkVHdjBOQ3V6bCsvUStkZVoyZWdWSkpNVmxqVmFncmFZWW1XeWN3Rm1IMjlT?=
+ =?utf-8?B?MUhoQ21nUWpnYkQxVHRHMjBCRW0wajcweU1mc2hCRkVySHhwa25aZXBlV2pM?=
+ =?utf-8?B?YkZSb1AzdWdYYTJTaytJR3pDZWhJUnRxeFdSRXNaQUF0bFI5M0FnQkt5MDQz?=
+ =?utf-8?B?VkpLdyt0cFdwWGZGNjNkb1JkSnRBQm9ONUZvYk4vdTZ2YzJHdkJRdG5aUFd1?=
+ =?utf-8?B?Z1dueXRDMTZ1SHdUcUZyKzlEN3prVVRmT3F1d2FZb0tDMGJrTlVZZ2E0aGlC?=
+ =?utf-8?B?c3JOZGt1OC9OYUIwc2FXOG9lZURwK3dJZU1ldXU1NUdWaUNyVzZCcFJTaFdR?=
+ =?utf-8?B?QUVqalpwVFBJczRmMk9EYVB4aVRRRVpqTCtWaHJGTXdlTTNZQjc1V0J6RmtE?=
+ =?utf-8?B?VUttOWdFNndPZTdJM3FsMEFja0lrWFZRSVlxaXRsdHRjZldUaXJJUjZZNFVo?=
+ =?utf-8?B?Qmg5RjlCRlo5ZGV2QWo1amYvcGgrejdxUjBSTHF6dVZSNVVSV1NSeCtOc0tN?=
+ =?utf-8?B?U3ZHRnMwUVAvUkh1Q2FqWlVQZHQxU0w5UXpWUmhJZXg4YVpXZjA4YkNQb3ZW?=
+ =?utf-8?Q?m2VPBw/HUMsQF?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 39acda57-f96d-4dcf-fc09-08d9687efd41
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2021 10:48:07.5892 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OVMWOxiPaxPYgFlYBHi4reaHjsV3uRIeQQqa2TYohizhqnycLTe42jbEtc3lyVHI
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3887
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,74 +134,67 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
 
-Am 26.08.21 um 11:59 schrieb Yifan Zhang:
-> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+Am 26.08.21 um 12:08 schrieb Nirmoy Das:
+> Currently AMDGPU_RING_PRIO_MAX is redefinition of a
+> max gfx hwip priority, this won't work well when we will
+> have a hwip with different set of priorities than gfx.
+> Also, HW ring priorities are different from ring priorities.
+>
+> Create a global enum for ring priority levels which each
+> HWIP can use to define its own priority levels.
+>
+> Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+> Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h  | 5 ++---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h | 9 +++++++--
+>   2 files changed, 9 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+> index d43fe2ed8116..7f747a4291f3 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h
+> @@ -43,9 +43,8 @@
+>   #define AMDGPU_MAX_COMPUTE_QUEUES KGD_MAX_QUEUES
+>
+>   enum gfx_pipe_priority {
 
-At least a one line commit message would be nice. Something like "The 
-parameter was renamed."
+While at it can you add an amdgpu_ prefix before the enum name?
 
-With that done the patch is Reviewed-by: Christian König 
-<christian.koenig@amd.com>.
+And if the enum isn't really used maybe even replace the enum with defines?
 
-Regards,
+Thanks,
 Christian.
 
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c  | 4 ++--
->   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 6 +++---
->   2 files changed, 5 insertions(+), 5 deletions(-)
+> -	AMDGPU_GFX_PIPE_PRIO_NORMAL = 1,
+> -	AMDGPU_GFX_PIPE_PRIO_HIGH,
+> -	AMDGPU_GFX_PIPE_PRIO_MAX
+> +	AMDGPU_GFX_PIPE_PRIO_NORMAL = AMDGPU_RING_PRIO_1,
+> +	AMDGPU_GFX_PIPE_PRIO_HIGH = AMDGPU_RING_PRIO_2
+>   };
 >
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
-> index ec96e0b26b11..c18f16b3be9c 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
-> @@ -118,7 +118,7 @@ bool amdgpu_gtt_mgr_has_gart_addr(struct ttm_resource *res)
->    * @man: TTM memory type manager
->    * @tbo: TTM BO we need this range for
->    * @place: placement flags and restrictions
-> - * @mem: the resulting mem object
-> + * @res: the resulting mem object
->    *
->    * Dummy, allocate the node but no space for it yet.
->    */
-> @@ -184,7 +184,7 @@ static int amdgpu_gtt_mgr_new(struct ttm_resource_manager *man,
->    * amdgpu_gtt_mgr_del - free ranges
->    *
->    * @man: TTM memory type manager
-> - * @mem: TTM memory object
-> + * @res: TTM memory object
->    *
->    * Free the allocated GTT again.
->    */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> index 2fd77c36a1ff..7b2b0980ec41 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-> @@ -361,7 +361,7 @@ static void amdgpu_vram_mgr_virt_start(struct ttm_resource *mem,
->    * @man: TTM memory type manager
->    * @tbo: TTM BO we need this range for
->    * @place: placement flags and restrictions
-> - * @mem: the resulting mem object
-> + * @res: the resulting mem object
->    *
->    * Allocate VRAM for the given BO.
->    */
-> @@ -487,7 +487,7 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
->    * amdgpu_vram_mgr_del - free ranges
->    *
->    * @man: TTM memory type manager
-> - * @mem: TTM memory object
-> + * @res: TTM memory object
->    *
->    * Free the allocated VRAM again.
->    */
-> @@ -522,7 +522,7 @@ static void amdgpu_vram_mgr_del(struct ttm_resource_manager *man,
->    * amdgpu_vram_mgr_alloc_sgt - allocate and fill a sg table
->    *
->    * @adev: amdgpu device pointer
-> - * @mem: TTM memory object
-> + * @res: TTM memory object
->    * @offset: byte offset from the base of VRAM BO
->    * @length: number of bytes to export in sg_table
->    * @dev: the other device
+>   /* Argument for PPSMC_MSG_GpuChangeState */
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> index e713d31619fe..88d80eb3fea1 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> @@ -36,8 +36,13 @@
+>   #define AMDGPU_MAX_VCE_RINGS		3
+>   #define AMDGPU_MAX_UVD_ENC_RINGS	2
+>
+> -#define AMDGPU_RING_PRIO_DEFAULT	1
+> -#define AMDGPU_RING_PRIO_MAX		AMDGPU_GFX_PIPE_PRIO_MAX
+> +enum amdgpu_ring_priority_level {
+> +	AMDGPU_RING_PRIO_0,
+> +	AMDGPU_RING_PRIO_1,
+> +	AMDGPU_RING_PRIO_DEFAULT = 1,
+> +	AMDGPU_RING_PRIO_2,
+> +	AMDGPU_RING_PRIO_MAX
+> +};
+>
+>   /* some special values for the owner field */
+>   #define AMDGPU_FENCE_OWNER_UNDEFINED	((void *)0ul)
+> --
+> 2.32.0
+>
 
