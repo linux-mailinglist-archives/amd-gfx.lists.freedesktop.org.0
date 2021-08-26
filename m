@@ -2,72 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6021C3F7FA8
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Aug 2021 03:10:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F6BE3F7FAC
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Aug 2021 03:10:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEEE16E452;
-	Thu, 26 Aug 2021 01:10:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 467916E459;
+	Thu, 26 Aug 2021 01:10:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2070.outbound.protection.outlook.com [40.107.220.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C06D66E453
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 01:10:11 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2074.outbound.protection.outlook.com [40.107.223.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E84C6E455
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 01:10:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KZkGwMQ499mGoZG1+/iOF7zt7Mnq4QQh0Fd3JY5pyeJm2LBc97Z8nlFfzk3NalPP1dEjSdtwpx1+8i6X06mjWi+ioAJVak7Gv3RPEQ1/Y7z2Yw0A4MTQUeAzfTvLsD07rX1QE+rux8V91yBBBAISu23QY60DynAKpL+AqZD9iEdgynbr6Ez3XyA2gGr77R8LK7+uAipxbdWngG9MIfL/35E2ynQ2b5AEgLg5EPS8ZERlB0uqvsbhLed6tMbIbUA9peREQ60qDuYgV3qdtDKAB+0AiZb2tMFSIvgxPCxrqyPdsWCOUKQMIEeEg17W35yadyJYjHKrX/fvLYRHoKk9Rg==
+ b=T1CrYU9xYU1eK29uR/Duv8gm8sQbbKdSik9ENGVu7vCmKMGKMclnUKa79pcFRl7mb22Xz5BphAXjHina9exA9Vlf42WRVL6A6iLFPCJWErBVcqNANonQrFF0qbEGiJHfJp97Q4juKZOsq6+g/Hv83Mlu/O3j55FqXnQGEUxEBjzaud4NT3i7GnFHGq+lxi/MpMGMbMf4zE3z0WBWrDonOtgR025uFuRv/sA0E1g0ftk8h0RHl4hsac9InG8lTaU0CKrvxRjrUrKVrqfA53BGHMyHraQAHGNR81Tv4JFCNAlG1NzPzIf4FEx5nKrmq1cI4qy7k8bU7RU+emsUwx2G4Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=44yXU7nuuKpRgj0svW8oJ+GAjct6iDXfZis5dLxv7QY=;
- b=KaK6aeHM/hFdZANtZ+p/h8pf0NZ2Cz9dqM9emTyoJ2GCLDKEo8v2e3UGi2S2L9Fxz3geYxNzXFiLN2WK7EZUcT6JnQBcyfdMTFj7nwTPRgrz0cgjb/JL5c7G+IGAzv20QYnlYMvg2VM6xTLBoHBtmKV7vD2Clhk0UzLiVmH96Pjwe73+ZPJemQ8QfGolBVi1hsioLo8c6LnUYb0UrSImrGKoNXPmBgIHgUtUviRPDErRCCnA1Soz6d356fhPbYK3B4wpA5oydjPTfrLx5BBIJZMNXAIGmZvZ0sLbacJ+RVbBQOaCXDQH539G72+OrnFAcwL9p3BOiqkzf/UpiE44cA==
+ bh=q1TrZySr8OcVQEzCwHD76GrkHd1CPnw5b+4VsHi+T48=;
+ b=i2IBNjev8akFPMQbErdszgUQWew4H+lUvj/zECh5sAmMyxV7qmL0R9cuU9avYa3eQJEag5LfLxC4maYx4LLU7YTGyCyY8yLhmhxTpIC5cUXcaGm0XBNFapDLuhLs9v+qeyPdgjg4b3f4UH+2YuGRccLtjtR3WCFRocRzpWdDAS7ng0imJ13+xrrO8hctn9oY/J1YvEAiGeQd8o9iTkF83sSc/9qgmAv/dZ2vKBJhYzgJYsbyhGn61B9xk8VuR6IHKHw3NGiPAz2uaK5S2nZuPGbVqS3ajgT+4wGs5UBBqA1JpFGnNiq1RLGmwbVyUCiXWvS6+q3Oiqhb0wpj06oe8Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=44yXU7nuuKpRgj0svW8oJ+GAjct6iDXfZis5dLxv7QY=;
- b=qvl6lAC/TrR3LkBoK7bUko029emvg0IJepX18N8vP5Gap8JZZkVy2rBU+hj5MY8RmY0WIDmnEc8+3ROVTgrGsZhiR6o7x/IMo5hmIeoODLEDKEBUv8xt/boB5QFiUkBtM7zup2jvqZUm26WMqVx6JI2kITonJZWeEIKDSXa76sc=
-Received: from DM5PR08CA0043.namprd08.prod.outlook.com (2603:10b6:4:60::32) by
- DM5PR12MB1691.namprd12.prod.outlook.com (2603:10b6:4:8::11) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4436.22; Thu, 26 Aug 2021 01:10:09 +0000
-Received: from DM6NAM11FT012.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:60:cafe::7b) by DM5PR08CA0043.outlook.office365.com
- (2603:10b6:4:60::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.17 via Frontend
- Transport; Thu, 26 Aug 2021 01:10:09 +0000
+ bh=q1TrZySr8OcVQEzCwHD76GrkHd1CPnw5b+4VsHi+T48=;
+ b=493pLG+yjigd5YQjr1DhpnBk3TbKPp/XHvH8tiDuG7GnDM7CR2FSB5SjQSyFmhSkskPoLgcRB7/I746wRCSIOYhoEv7LAJUhzJyxSbjAtlAcG9dd8yZ+vUZvS4yyh09WB05ThXgCCyDtio51N1VJq5qkNJ7Iu4FaR7fAGHQ5EEI=
+Received: from MWHPR14CA0052.namprd14.prod.outlook.com (2603:10b6:300:81::14)
+ by DM6PR12MB2825.namprd12.prod.outlook.com (2603:10b6:5:75::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.23; Thu, 26 Aug
+ 2021 01:10:10 +0000
+Received: from CO1NAM11FT053.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:81:cafe::8a) by MWHPR14CA0052.outlook.office365.com
+ (2603:10b6:300:81::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.18 via Frontend
+ Transport; Thu, 26 Aug 2021 01:10:10 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
  header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT012.mail.protection.outlook.com (10.13.173.109) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1NAM11FT053.mail.protection.outlook.com (10.13.175.63) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4457.17 via Frontend Transport; Thu, 26 Aug 2021 01:10:08 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.4457.17 via Frontend Transport; Thu, 26 Aug 2021 01:10:09 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Wed, 25 Aug
- 2021 20:10:06 -0500
+ 2021 20:10:07 -0500
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
  (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Wed, 25 Aug
  2021 20:10:06 -0500
 Received: from elite-desk-aura.lan (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2242.12 via Frontend
- Transport; Wed, 25 Aug 2021 20:10:05 -0500
+ Transport; Wed, 25 Aug 2021 20:10:06 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <nicholas.kazlauskas@amd.com>,
- <alexander.deucher@amd.com>, <aurabindo.pillai@amd.com>, "Jerry (Fangzhi)
- Zuo" <Jerry.Zuo@amd.com>, <stable@vger.kernel.org>
-Subject: [PATCH 2/4] drm/amd/display: Update bounding box states (v2)
-Date: Wed, 25 Aug 2021 21:10:00 -0400
-Message-ID: <20210826011002.425361-2-aurabindo.pillai@amd.com>
+ <alexander.deucher@amd.com>, <aurabindo.pillai@amd.com>
+Subject: [PATCH 3/4] drm/amd/display: Remove duplicate dml init
+Date: Wed, 25 Aug 2021 21:10:01 -0400
+Message-ID: <20210826011002.425361-3-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210826011002.425361-1-aurabindo.pillai@amd.com>
 References: <20210826011002.425361-1-aurabindo.pillai@amd.com>
@@ -76,28 +75,28 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4b5ee877-601c-4bc7-a060-08d9682e3f28
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1691:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1691F1EB54EE154FE1DF40FA8BC79@DM5PR12MB1691.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
+X-MS-Office365-Filtering-Correlation-Id: c699f31b-b186-4217-f636-08d9682e3f9d
+X-MS-TrafficTypeDiagnostic: DM6PR12MB2825:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB28257479FFF9DCCB0B2F034E8BC79@DM6PR12MB2825.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:813;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: k7rUjZaFBEoRY/EAtJsinAB7WqerQvWUajVQEAgbo59Dsfz1qJKhFua+2TiQEwBqvbfgJP8enKdEi9XBE+hd9y0Gwm7pN+weDhWH8WvCPJ8toVsPoSUcMf3Ikdkg8So4fkgc1/LrWHREF6LTEJauZGn2cJF2mxw2tLEM2JPYrC7Hzn6Oes2NtK/p7Q4g9BqHk97SZ1UgrSMgJiPW24+ukhZdZG8kiOR2Q4WVXIPrOYoaO5iCm3KZdGf3PAn47+jndFs2WDjKRIcXZOorAAemGZzu+5J+rnFAKXGPiYWVsfa7L1bxco8ECrp+zn6c2A/ZR1CdKo3CUylI0cGpY7XgM+atcT2pR1x5Vk1EsyHyQjtefGH9d3Q8nN2EMMyQeKnKcsMlXda2LXrHczDnl2aoVNgMgWX2Lbd9GzG1sr0rSFBfR0TYBvFXsZLHFZbbx0EkAgll3T6rTqIwH2KJmMOgLuOCgwLY5EOkOTOvX4mmG2OcN+XKziZ3DnVdYjSb9fWAMpgRtZLNFK4j2ljLfyrE6ILl+uPgKHb6BYAMKipfA+SyBIBmiZSb3ljBLqu0k2Kq95QQx18fnKQ3NJq72zS7u78mnf5vRb3d4Crha0M8jvidWasEQbW9VGgEmucixeUbYoQSlUC2kBzQegXDn68Ua/hS52RoGQMBm3nY8+NcS+IYo4jUvFToswjm+3od7OmqWBU63vGeFSkP5suleUswvdNEH0n7I5wkaCorLFwL0UGKDKqRxYqLO2SceqJVgm17LKhNlweatSRqWue3pyMR3w==
+X-Microsoft-Antispam-Message-Info: aSw1KLn8pIhxr+Hzpe6+kv7UUHTf4quXlpvdhJ60DUd0noBMXYSkr8crqorOwFnMMGMGhxhz/UdPXWJEVOOwNpJXDNv84/Ii0Wt/jXdtRuyGb/Bfv20hUoeuNeLqESVPYTLIlob0KCpoah18PE+pKb2SIRBpcBzWZPbLi1grul5xgRA56I5mvM8HtNFSlPLoXUSQfbcHGzUSuIFtEmjyjmG+pOw55waPKF4Jm53d/koRNeEEE3RgGDvEPxTciV5W3zr3e327hyw7iddnPL5ZutRtxIQ/nSgVZwkIEp8+5yrOA28RewQ0VRbGVsZljqGKcKRNBiX46q+rHF6Ak7kMnzn7YrMP3UatMUtr6QrsKKYK4YSlkChPTv2EGPZYRiM59Y+9XdRLfXlL7GOSAIt5XW+OSr2Iy4Q0xidOC2aWeMcc7U+FfC2NV2bT1qLh+I36tTAN/36MVQamkKL50I7zvyby6DpvmzNlOpa9U5Kr1ZZCR0mPWOWgbjbrsawEiWFCMCQp4j62JnSxxFVafCdGJKxgSJ+OtQvQa3dTFXQbRYzkx7oYN+Y2yip90ZlPrr22zTkbFRkLB6Ywl2P79rsolE5B6TLKaVHkqFWLXh1KGhIdnlkyETev8NtKuwt/Zz5MNybQIho3ARHJVFjqFZaMGuMOgNk20ZWFf7XGbcoBiThjKRmUT7qDNMwxMxdQaiLt/gBVbrQ7UMKe/AUNEDQqEa6GNPeKKqFyDFyQljpcDZnKmVfZWej1UyKUjehWnUm36vUFUTE56GMsEJAJG8DyLg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(346002)(396003)(376002)(46966006)(36840700001)(70206006)(26005)(36756003)(82740400003)(6666004)(1076003)(70586007)(47076005)(2616005)(8936002)(6916009)(44832011)(82310400003)(36860700001)(81166007)(8676002)(356005)(83380400001)(426003)(186003)(336012)(4326008)(2906002)(86362001)(316002)(54906003)(5660300002)(478600001)(117716001)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(346002)(136003)(39860400002)(396003)(376002)(46966006)(36840700001)(8936002)(5660300002)(36756003)(8676002)(81166007)(36860700001)(4326008)(54906003)(426003)(1076003)(336012)(26005)(70586007)(70206006)(82740400003)(186003)(478600001)(83380400001)(47076005)(2906002)(6916009)(2616005)(6666004)(44832011)(356005)(316002)(86362001)(82310400003)(117716001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2021 01:10:08.4169 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4b5ee877-601c-4bc7-a060-08d9682e3f28
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2021 01:10:09.1208 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c699f31b-b186-4217-f636-08d9682e3f9d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT012.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT053.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1691
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2825
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,99 +111,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>
+[Why & How]
+DML is initialized again unnecessarily after its done conditionally.
+Remove the duplicate initialization
 
-[Why]
-Drop hardcoded dispclk, dppclk, phyclk
-
-[How]
-Read the corresponding values from clock table entries already populated.
-
-Signed-off-by: Jerry (Fangzhi) Zuo <Jerry.Zuo@amd.com>
 Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Cc: stable@vger.kernel.org
 ---
- .../drm/amd/display/dc/dcn30/dcn30_resource.c | 41 ++++++++++++++-----
- 1 file changed, 31 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c | 5 -----
+ 1 file changed, 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index 43ac6f42dd80..3d2443328345 100644
+index 3d2443328345..d090cb916767 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -2398,16 +2398,37 @@ void dcn30_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params
- 	dc->dml.soc.dispclk_dppclk_vco_speed_mhz = dc->clk_mgr->dentist_vco_freq_khz / 1000.0;
+@@ -2511,11 +2511,6 @@ void dcn30_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params
+ 		if (dc->current_state)
+ 			dml_init_instance(&dc->current_state->bw_ctx.dml, &dcn3_0_soc, &dcn3_0_ip, DML_PROJECT_DCN30);
+ 	}
+-
+-	/* re-init DML with updated bb */
+-	dml_init_instance(&dc->dml, &dcn3_0_soc, &dcn3_0_ip, DML_PROJECT_DCN30);
+-	if (dc->current_state)
+-		dml_init_instance(&dc->current_state->bw_ctx.dml, &dcn3_0_soc, &dcn3_0_ip, DML_PROJECT_DCN30);
+ }
  
- 	if (bw_params->clk_table.entries[0].memclk_mhz) {
-+		int max_dcfclk_mhz = 0, max_dispclk_mhz = 0, max_dppclk_mhz = 0, max_phyclk_mhz = 0;
-+
-+		for (i = 0; i < MAX_NUM_DPM_LVL; i++) {
-+			if (bw_params->clk_table.entries[i].dcfclk_mhz > max_dcfclk_mhz)
-+				max_dcfclk_mhz = bw_params->clk_table.entries[i].dcfclk_mhz;
-+			if (bw_params->clk_table.entries[i].dispclk_mhz > max_dispclk_mhz)
-+				max_dispclk_mhz = bw_params->clk_table.entries[i].dispclk_mhz;
-+			if (bw_params->clk_table.entries[i].dppclk_mhz > max_dppclk_mhz)
-+				max_dppclk_mhz = bw_params->clk_table.entries[i].dppclk_mhz;
-+			if (bw_params->clk_table.entries[i].phyclk_mhz > max_phyclk_mhz)
-+				max_phyclk_mhz = bw_params->clk_table.entries[i].phyclk_mhz;
-+		}
-+
-+		if (!max_dcfclk_mhz)
-+			max_dcfclk_mhz = dcn3_0_soc.clock_limits[0].dcfclk_mhz;
-+		if (!max_dispclk_mhz)
-+			max_dispclk_mhz = dcn3_0_soc.clock_limits[0].dispclk_mhz;
-+		if (!max_dppclk_mhz)
-+			max_dppclk_mhz = dcn3_0_soc.clock_limits[0].dppclk_mhz;
-+		if (!max_phyclk_mhz)
-+			max_phyclk_mhz = dcn3_0_soc.clock_limits[0].phyclk_mhz;
- 
--		if (bw_params->clk_table.entries[1].dcfclk_mhz > dcfclk_sta_targets[num_dcfclk_sta_targets-1]) {
-+		if (max_dcfclk_mhz > dcfclk_sta_targets[num_dcfclk_sta_targets-1]) {
- 			// If max DCFCLK is greater than the max DCFCLK STA target, insert into the DCFCLK STA target array
--			dcfclk_sta_targets[num_dcfclk_sta_targets] = bw_params->clk_table.entries[1].dcfclk_mhz;
-+			dcfclk_sta_targets[num_dcfclk_sta_targets] = max_dcfclk_mhz;
- 			num_dcfclk_sta_targets++;
--		} else if (bw_params->clk_table.entries[1].dcfclk_mhz < dcfclk_sta_targets[num_dcfclk_sta_targets-1]) {
-+		} else if (max_dcfclk_mhz < dcfclk_sta_targets[num_dcfclk_sta_targets-1]) {
- 			// If max DCFCLK is less than the max DCFCLK STA target, cap values and remove duplicates
- 			for (i = 0; i < num_dcfclk_sta_targets; i++) {
--				if (dcfclk_sta_targets[i] > bw_params->clk_table.entries[1].dcfclk_mhz) {
--					dcfclk_sta_targets[i] = bw_params->clk_table.entries[1].dcfclk_mhz;
-+				if (dcfclk_sta_targets[i] > max_dcfclk_mhz) {
-+					dcfclk_sta_targets[i] = max_dcfclk_mhz;
- 					break;
- 				}
- 			}
-@@ -2447,7 +2468,7 @@ void dcn30_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params
- 				dcfclk_mhz[num_states] = dcfclk_sta_targets[i];
- 				dram_speed_mts[num_states++] = optimal_uclk_for_dcfclk_sta_targets[i++];
- 			} else {
--				if (j < num_uclk_states && optimal_dcfclk_for_uclk[j] <= bw_params->clk_table.entries[1].dcfclk_mhz) {
-+				if (j < num_uclk_states && optimal_dcfclk_for_uclk[j] <= max_dcfclk_mhz) {
- 					dcfclk_mhz[num_states] = optimal_dcfclk_for_uclk[j];
- 					dram_speed_mts[num_states++] = bw_params->clk_table.entries[j++].memclk_mhz * 16;
- 				} else {
-@@ -2462,7 +2483,7 @@ void dcn30_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params
- 		}
- 
- 		while (j < num_uclk_states && num_states < DC__VOLTAGE_STATES &&
--				optimal_dcfclk_for_uclk[j] <= bw_params->clk_table.entries[1].dcfclk_mhz) {
-+				optimal_dcfclk_for_uclk[j] <= max_dcfclk_mhz) {
- 			dcfclk_mhz[num_states] = optimal_dcfclk_for_uclk[j];
- 			dram_speed_mts[num_states++] = bw_params->clk_table.entries[j++].memclk_mhz * 16;
- 		}
-@@ -2475,9 +2496,9 @@ void dcn30_update_bw_bounding_box(struct dc *dc, struct clk_bw_params *bw_params
- 			dcn3_0_soc.clock_limits[i].dram_speed_mts = dram_speed_mts[i];
- 
- 			/* Fill all states with max values of all other clocks */
--			dcn3_0_soc.clock_limits[i].dispclk_mhz = bw_params->clk_table.entries[1].dispclk_mhz;
--			dcn3_0_soc.clock_limits[i].dppclk_mhz  = bw_params->clk_table.entries[1].dppclk_mhz;
--			dcn3_0_soc.clock_limits[i].phyclk_mhz  = bw_params->clk_table.entries[1].phyclk_mhz;
-+			dcn3_0_soc.clock_limits[i].dispclk_mhz = max_dispclk_mhz;
-+			dcn3_0_soc.clock_limits[i].dppclk_mhz  = max_dppclk_mhz;
-+			dcn3_0_soc.clock_limits[i].phyclk_mhz  = max_phyclk_mhz;
- 			dcn3_0_soc.clock_limits[i].dtbclk_mhz = dcn3_0_soc.clock_limits[0].dtbclk_mhz;
- 			/* These clocks cannot come from bw_params, always fill from dcn3_0_soc[1] */
- 			/* FCLK, PHYCLK_D18, SOCCLK, DSCCLK */
+ static const struct resource_funcs dcn30_res_pool_funcs = {
 -- 
 2.30.2
 
