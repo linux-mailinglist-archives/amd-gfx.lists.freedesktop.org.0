@@ -2,120 +2,125 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79BD23F874E
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Aug 2021 14:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AC293F87B0
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Aug 2021 14:38:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D2146E822;
-	Thu, 26 Aug 2021 12:23:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3C556E830;
+	Thu, 26 Aug 2021 12:38:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 171622 seconds by postgrey-1.36 at gabe;
- Thu, 26 Aug 2021 12:23:02 UTC
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (unknown
- [40.107.237.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E06066E822
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 12:23:02 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2055.outbound.protection.outlook.com [40.107.236.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B2E06E830
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 12:38:48 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=A4QFV8GHSy3owa1OxQV787q8dmMLiAB9XPJ76EkkkdEsiKgJc/KkCdV2FEt6xDxkXsnQXGDq3voSC7Wg+qgMROTzYlB9rZvie2LbcM/kEUdwKom7HY/MqL6kKn56LEbyZQGid7uvvq/GLlL2QuO+lYdIAJh40Mg1rTdPoQrvphilMBXRfFIuqfOTpAqXyrpZJ8upyptcminTiob7W/WxRwWdpOwZ93G1adT81PSEfT+Ls5KahyYyHeVdTF8Nme0IARsYTJ/UtRGH2pP1nbSVYUmiCDCAZ7BljG4yJqOeu03ESIaf0l2LbrVihqQ4yARSsN6zGZQ4AdwD8NqgcCN6zw==
+ b=EtYkKROaFAJG2KzHDcl0Dt9mjWaIEYtjM4OU4Ws/XmRBxwt/9NsdU/NuKXnD9Pee4tp06ALv0wOSxQtgeExDiLupJGetb0Q7PzNMKtwfG84BFEPWq0UPbSH0n3xEob2Um8zdTl9cnFrGwViUdyr4edFsefavO4t+01hexMJYF16tRW/FcBysfXPpCzgmfvCqSa0DLp4kXJTLUYIKC0RIA4uurJepIgpG4MkYoRrRMb7hS7C8xAj9FSRefrURDSmY8LWnPwcV1SNjZFKfUdzb0z5N/6YvEOIDMq/tjDr3cOtV94SIdipwWkETdw/EHyYeXQu1uLoN2K1HA5sJFuIf8A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XISRQNWpoMoNaA36rv4iRbhr8VZIlL6zLP/Cs27lKCE=;
- b=IW7dpooevw5UPvZ0g6M0MMtfetsZJMoqZyS4q3+xVXJtSSVY/CILTZxm0+HsfrMtqXzw6uYg5HlRGNtp39ee95AHk/avp3Oo387SPDeVGASWOxfCM6vpXe/2WVRfMaZakaaehEIDLBxoTRgP+dFICVYNc7ohCQE9v/1B+qljv7L9VDX1OxBZzMkslbiV6WeImjI3FAiLrcSM0moWWObvaQ1uXILxv26AOJGjv4iYZoogSE8t8l4wNrLgr/nQ55MtfqCgc569m3mJkwkCQWwUexD/dKlz0fFodbrvmEefq5koxMlUbr1qSJlinq2vF1zzjnHDTmUscnSZIS83dGNrhA==
+ bh=wXmv4WxGzg0n9rlMpXJnzpjR7+TMaNpaanWLeH2RZnE=;
+ b=PJV6WKFuCEl6e9KYipbwsvRB76sHiOk12A1hxlYAiD3SnVQBXwsCBjKDV3V9hZfKYlH2kj2wUJ3n79IZZlosHHHsSrar1KGRPk6ehqGfPgnI/3YU0QYuzt02poWC3OD54QJ7xmQWbA57zZGjWXqpaI/uUyZusy5BiDEI42txEG/tZ3/N6HRkbxOwga243fC+Utdqop3P1kc7ycbo9yzShwx/4yYbY13lO3pxoGduzBunwIbwuf7c+EX5XZyio1pgX53dqj91fdELUOcR/lzAHyZWfxXLTcfy7QmDIPQ+/p3z+lnUdjd0yAAkmmL4NCzIMKGAwFPqE+QkGPrC8D2rVQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XISRQNWpoMoNaA36rv4iRbhr8VZIlL6zLP/Cs27lKCE=;
- b=zo/cJxGzWIbeYFmKqCwOK5fKug+EV7E/Mi9EmtiGbrKV1NIA+/sKniz65ulovWXODUCTj8TyH0WSCMYqBNj3ph/7a1BFWdhVg+avhRiXbAQNIr/nsDdTqRLSv9jzXD620g2wmqCupBzalv9e7gnOYQ/ypfm2q2wwuBYn2bqEQHo=
-Received: from DM6PR12MB3547.namprd12.prod.outlook.com (2603:10b6:5:18a::20)
- by DM5PR12MB1386.namprd12.prod.outlook.com (2603:10b6:3:77::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4436.22; Thu, 26 Aug 2021 12:22:59 +0000
-Received: from DM6PR12MB3547.namprd12.prod.outlook.com
- ([fe80::d9bd:9fce:27a0:e1be]) by DM6PR12MB3547.namprd12.prod.outlook.com
- ([fe80::d9bd:9fce:27a0:e1be%2]) with mapi id 15.20.4436.024; Thu, 26 Aug 2021
- 12:22:59 +0000
-From: "StDenis, Tom" <Tom.StDenis@amd.com>
-To: "Lazar, Lijo" <Lijo.Lazar@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/amd/amdgpu: New debugfs interface for MMIO registers
- (v5)
-Thread-Topic: [PATCH] drm/amd/amdgpu: New debugfs interface for MMIO registers
- (v5)
-Thread-Index: AQHXmdZuCB+yjCUtWE2SNVzYjE2lt6uFs3wAgAAARLeAAAHCAIAAALxN
-Date: Thu, 26 Aug 2021 12:22:59 +0000
-Message-ID: <DM6PR12MB35470F0FA108B66B49434B10F7C79@DM6PR12MB3547.namprd12.prod.outlook.com>
-References: <20210825172659.247530-1-tom.stdenis@amd.com>
- <4f68568f-6f38-a36d-397b-c9d1d03cf9e2@amd.com>
- <DM6PR12MB3547D401A95FC5CB86595348F7C79@DM6PR12MB3547.namprd12.prod.outlook.com>
- <eec9d9d5-aff6-5344-b15b-155a46a57e76@amd.com>
-In-Reply-To: <eec9d9d5-aff6-5344-b15b-155a46a57e76@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=True;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-08-26T12:22:58.855Z;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD
- Official Use
- Only; MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard; 
-authentication-results: amd.com; dkim=none (message not signed)
+ bh=wXmv4WxGzg0n9rlMpXJnzpjR7+TMaNpaanWLeH2RZnE=;
+ b=Yn8tUvTOtJLtfUHsyS32a8oHlyy2vv9jLavHxIXzI4Ax6NNOasn2+oB2NAAgxJpOK2aHwsI7/41wqNxcXxoE1BvWFNPEISrLuOdbNGP8dyELnMy9PZjZ4bYhQTZJa+ltfTRTr1JCQum1Qk0h3XfIR0PfM9kZR4ryTUmr48E1RP8=
+Authentication-Results: amd.com; dkim=none (message not signed)
  header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 515ec698-be5f-4360-3b35-08d9688c3e1e
-x-ms-traffictypediagnostic: DM5PR12MB1386:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR12MB1386180C832E42EB80FA48E2F7C79@DM5PR12MB1386.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: etK9KfMk/L9K0i92TcX7nC/ra8H2NlkML03b3xH9aLc9UtYOQbhCvT49vLFNtXphD0Y95km0Eka+JuJhmyKqwGnzNYx7lvKFcYRqL+UYQ2voVqhJsQJiGF3MpWYC+ln36IY8+OPM3WquVAaHNUgEQRPBFY9bLYseZ6zBTBGf1gFcQ3eDl+PkO9evg7I6gGbZT8d5HuLho12nAbmFnZ1raFXlmy/lPa/UJCfj3dAdyMfu+MX486VLKnGMn3LO957QKXAzhyBkduzLlq+vy2u7BtzWCcxqYfQLV3llBoxpfTRrRle0yY9W32DL6pHJye9ok/0yZOSS0fG6zlTghALAe/cGCJIJI2UjxlAbdRYKifSwXT3F0XDnrrBzudIiW3V4AucfnjBfgNBXZSBZuGC3Fv+IL9cBj7emX+6NiDdy6BnbQZPHX0iVzvLkGbjl233l+CkHta4E3++f3Z+igePiWKhK9d/Rprz3ZK5nk0CvFqmAnpSYfm4FUjHx96XWYwrGx2QppqlkDUpILxZ5UqBffyYW7AsKC0yfnFFSrPkBUzhA0I9HRrHHR1RVNocPlSDRJYuCrpw8vLBu2NaFJsNtrzVLVriUtPwWOd6hnhn8prOuCLiL+W/+3IW/VWR52fGuD4ZmSE5Qxudxqf/ZV1GT/Q5AWe9RQeUem7eXSyJ2/TBZVAAB6Nct+DvS5Z/I5RA9T2hleTp8OX4yjemKqcjsYg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3547.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(39860400002)(136003)(346002)(396003)(376002)(8676002)(30864003)(38070700005)(9686003)(8936002)(71200400001)(38100700002)(5660300002)(316002)(83380400001)(52536014)(110136005)(186003)(33656002)(122000001)(26005)(6506007)(66476007)(478600001)(64756008)(86362001)(66446008)(91956017)(2906002)(76116006)(66946007)(7696005)(53546011)(55016002)(66556008);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?8+7WFYLgwm2dHIjJJULW+8Sd2RR2hM2q4RiFa3dwoNOZ1LfA0OX2nuPI4b?=
- =?iso-8859-1?Q?7DXEyIpr6k/M9U8IgrKCNwRtL9jw6Qtej/P8M01GLn42Plo/hrpxNR2evF?=
- =?iso-8859-1?Q?hx5yy71T5r1GL7Mlr2roC2I/AszqB7MU7IN6H4RB9iRWnwKvgUaBeKrhIY?=
- =?iso-8859-1?Q?zw3AJhSKWFgLP3LpzvBWkqTFYbKXrvHeCuBGDb4kNW67RtfhePFhIaWgtO?=
- =?iso-8859-1?Q?nNfeCn1GL+O+82vxV313/t2N7DBTJ58WUzj/aSJDhphd/s9I1pSEudwVs6?=
- =?iso-8859-1?Q?Jg8INN3sJga6RoXX1b6R7w6OnJ7RpvUA+/fxU6GJOK/0RsYIL/g6g7pZSf?=
- =?iso-8859-1?Q?wnbzc1hW9zbDYvvYiq0B37zPicojiBoJLaVTHV51abXi6YL19K1TavrfAr?=
- =?iso-8859-1?Q?V66mUPdkA7iwkdD4JUT8Mu1G3NnNAUWJpb8aLYRay4VJa66xdHVbyOqiH9?=
- =?iso-8859-1?Q?r02WI6NYjOKH5wK9hJ40U5g3j42lpngFOKCcKodtl4H8k6Qpe6t67lSFf/?=
- =?iso-8859-1?Q?q43CJkngJvly6J8cABr46EBkMMHS8OBi+zeIPvS16VApiXD6y2XYjGmAPy?=
- =?iso-8859-1?Q?T8rBFYK84qPfYasvK4QEuTGCtY2fqo6UaSPcFq5GytzWAJOzZOhh26RhAC?=
- =?iso-8859-1?Q?68dHR62ywyLa+pWHbV5U2Y2u5b4bczefK6y+YbEnfNowf6FeYEr84DcqAb?=
- =?iso-8859-1?Q?cQx+63aRNnUtwb8MxJa3vwk8nb8aUu8nKT/S2o0SRXBFkwfs/Ncm1W/abc?=
- =?iso-8859-1?Q?sKpxyn5Fo1uuC6mxsgiZ69RTpiPIVp4EUrSaN6AhqT6wO+3nHZ4BlwZMpu?=
- =?iso-8859-1?Q?kP+Xu5PSQn9r9KgZ4r5W5zLO161LmiKl6sSoPxX29mYVVff5BcBSXRpXxI?=
- =?iso-8859-1?Q?SceTzcSn5tTwZMYamd7mYEyNWJiSHe11GUQRfHBAnkkbK/zncnYY152Xuq?=
- =?iso-8859-1?Q?gABVjX5Bgp3VdXUvifXZzQtoZGprif4FsfoD15LFZoDOvTLjWnGzcm1IEI?=
- =?iso-8859-1?Q?dl236VkwL2nbOJvmE3YicVfoJYwnv2ryQOGpB7kFO4W4q93s0neCjCmcDd?=
- =?iso-8859-1?Q?UDO6vqmDNjEOY5W/oz0pURellJSBf/bu++anA0l+acb1bMYripsAap1wSF?=
- =?iso-8859-1?Q?W3iXgUCyp4gWqwaw47e5zWmMC4Z6DK7CudxZTeVcae9DSsOXA8JopGmZBH?=
- =?iso-8859-1?Q?f4hXeGWRazdlj1ogyKOR15lSpVfSerYogMrsuLMERDWijxv7jvUHivlOGk?=
- =?iso-8859-1?Q?36ZUTR+9fDtCn/gqUMacKF7LAjVvy0zTnAZWuSMDf8yhfZ6oEnAykrRS7u?=
- =?iso-8859-1?Q?AJ93kIIJII+bYXLlJe8MyeRjcZsJZLp42JATh4Heo+ue/aQ=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by MN2PR12MB4566.namprd12.prod.outlook.com (2603:10b6:208:26a::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Thu, 26 Aug
+ 2021 12:24:29 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::dce2:96e5:aba2:66fe]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::dce2:96e5:aba2:66fe%6]) with mapi id 15.20.4436.024; Thu, 26 Aug 2021
+ 12:24:29 +0000
+Subject: Re: [PATCH 2/5] drm/amdgpu/vcn:set vcn encode ring priority level
+To: "Sharma, Shashank" <shashank.sharma@amd.com>,
+ Satyajit Sahu <satyajit.sahu@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: leo.liu@amd.com, Alexander.Deucher@amd.com, nirmoy.das@amd.com
+References: <20210826071307.136010-1-satyajit.sahu@amd.com>
+ <20210826071307.136010-2-satyajit.sahu@amd.com>
+ <2a818da4-dc8e-a9b6-c85e-9a6cfef8b537@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <82b91115-b2c8-f6bf-30bb-15da77e70d09@amd.com>
+Date: Thu, 26 Aug 2021 14:24:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+In-Reply-To: <2a818da4-dc8e-a9b6-c85e-9a6cfef8b537@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-ClientProxiedBy: PR3P193CA0043.EURP193.PROD.OUTLOOK.COM
+ (2603:10a6:102:51::18) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2a02:908:1252:fb60:1f1e:4529:2fc9:1857]
+ (2a02:908:1252:fb60:1f1e:4529:2fc9:1857) by
+ PR3P193CA0043.EURP193.PROD.OUTLOOK.COM (2603:10a6:102:51::18) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4436.23 via Frontend Transport; Thu, 26 Aug 2021 12:24:27 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4740112c-3b03-48fc-2164-08d9688c735e
+X-MS-TrafficTypeDiagnostic: MN2PR12MB4566:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MN2PR12MB456679E62DBF21FDF4A2561583C79@MN2PR12MB4566.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ggOEAwEV23iVSc7Q4BSufqk85dq5Uc+17WToMPTyMBwGZcUvotyvLf0g5ehcuBWIsUd6K7FoB4lpHiITx2+nnf2N/8pmoWsCMyApCclS5qvAzO96HUpm6NmYU0PUCBIdh+ysUxcsuuLDJEs2aDU97TWy0PwcWWqgFNGcHzlhb0VMSnBOFfsJySUPMZ//apD6hULK2iA4/hMNhNyG/dp1JYSz7FxYXXaSblyl+L7FSb/nE8ssa012hyg6d62cV8RtZoLLsqyQD7QQ6QGO5TTm3KFCfhl91vRBFY8DqcBdhwcJawttn+CXDxz0ERn6pN48o6KQ9/v3+FeRdjaLjGgi3Nl4bJRdiaSFgF8ERgrERyKnOdRsE31T8FxRI2xkgqndmK1wOIoVxhDSyLh2eJznZw72zd1on+MMA12WOeybrEp6Jgw7kdBISNFZYSDNVwEKqSzuLq/uCd/eRWDF47Lv9Z6SvtTXNopuq+NjwngMfvNfnCEN2paAi0LOaNSVxGGgBvfT/GJMmAzKHrRMSUzyWOScTSZ1JzTZgSdLXn/o8svxp1udBHo2FactnKatWEzCM/DEV5IqIVopIuBt/ftDxHo7ChOzO39/vc2aGlyZywNoWYhq1tKCl9k97JssCnpOgGrsT1srd0f6S/6W7viZGLsEki0txrylD2eGSpBSnanHh3FGn1SHUd9E8gXpqf98lL2MDkBjLF8I3xLXE6skba+tRgiTce/FQJ8XZ6uX3PE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(376002)(366004)(346002)(39860400002)(136003)(31696002)(8676002)(53546011)(31686004)(110136005)(66476007)(66946007)(66556008)(6486002)(2906002)(36756003)(316002)(2616005)(186003)(5660300002)(83380400001)(8936002)(86362001)(4326008)(6666004)(38100700002)(478600001)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bklEODB6M09pVldnS2lEZzZmZ3NIdzl5cW5VZWtwa0l2WHhYUzRUT1pMcFJE?=
+ =?utf-8?B?c2xHb29hWGZBY2E4TWlTOW8vUi9nU2lWemxVdTVnZEtCWWVwQVRLRWNvc214?=
+ =?utf-8?B?REROejNZdXRpTW5QZU1SZWxvUjlhcStGek1PSXZNTlZhKzZ3WWZGTWUvME1H?=
+ =?utf-8?B?TnUrNzNlQStGekRsbCtqdkl0N0c5RHJjV3VFUVVuZ1NreE13dkxuRGNHdUZh?=
+ =?utf-8?B?UHo3WmV4YjhrTFB0RGRKbTB5K1FOMW8wNzMrdnM3ZWxTdWVSTEs1S0l4cmV3?=
+ =?utf-8?B?VCtrclJWTFFlM3puSGVuNHo0anRzaG84aGpWQ01KRlVVQVM5UkJVeVpSSTha?=
+ =?utf-8?B?M0tDSWl5SFpmMm1MK010WkVOMmZtRmdaQU9BL1V2UkxsWGlCenoyNC9hL3du?=
+ =?utf-8?B?OE1Pb2c1bVQrbTJNVXdRT2M1RGNWMERJODQ0ek13enBtdjdhYUd0a1lvUDlz?=
+ =?utf-8?B?ZzZPbFF4UDJxbFBQeXhQY3duRnVXdEpBL1I2azlGRXp2dnUvVGFUeTY0b2J4?=
+ =?utf-8?B?VnlvYjdkTEF1bW5HRmxZVkN3am52eUVhUnhPQXlGcDd6ZUIzYzE4TGFnYkQ4?=
+ =?utf-8?B?Qzd4dElrbjYvanNxcVRFOURsaytyVEhoakppWXY4WVN2cmJvdWdLdmxIT3k3?=
+ =?utf-8?B?Qi9oRmg5QWJWSXQ4SXNPZnNJb21RT1pESm9aTm0ycStCaUV3Ti9WeklrTnlY?=
+ =?utf-8?B?aFZ3SU5wcEZTTEYvQzNEeGcvU0h4Y1BkRnlrK2xPeEF5cHJYK1ZmdkUxTlpP?=
+ =?utf-8?B?Nkpjc3NJUEdPNFNPWkN2aG5zaXJmNnBlNFgybGFWbWphY2EvUWhMTmNqRUVn?=
+ =?utf-8?B?TDQ4ZjkraEh4clJlRm5sVDNJL2VNL0xtN0MxaHhEZ3kvV2xJV0did3FOb3Bk?=
+ =?utf-8?B?a2NUa1d2RmZBOWtzNzExOE1Bc3ZCL212eXdxRUNzeXNhNytvN2Z5dDB3d2I5?=
+ =?utf-8?B?eWp5ajhtK0hQRkYrQ3U2c1dDZTYvV1lMT1kwNjZDWDBqSnJXZWtLbG54VHpJ?=
+ =?utf-8?B?eE1FYTBqMk1OcmZVYnk5Qy91TWFWWkRnVkxQcDFwNXJWNFpGMksyYngweStJ?=
+ =?utf-8?B?WTZmWXdIMVg4eXhRcHE1MWEvdVU0c1ptZGpHQ1JhU1ZsdktaVjJvRjBnVlo3?=
+ =?utf-8?B?dm5VVWF3U0graUhxY0hNSjUvK0FnMDFqcVYxSGpJdHdpd1pNakJOYzYwQUN2?=
+ =?utf-8?B?bVB2WHEwRkZMTHErdm5ZeDVnVm95cW9tcmJCY0h5bmQ0Q3NwbmwzN3YxWVVT?=
+ =?utf-8?B?RHZrcFU0S1hIV1I1QWNoSVB2NXl2aXJ4MDlEemZybGFmOTlQN21oQWdSUnpz?=
+ =?utf-8?B?dnZNemNaTWh2eWZlQTZjYUw1RUNRUFh3OGRRN2dlWWNWQ3FGQlhLMGhZdjdC?=
+ =?utf-8?B?WWFUS1FwUnhTRnBNY1JxUWQxRlNsOFpGaGFtQ1N2Qm5paHprWEEvZ043cmVH?=
+ =?utf-8?B?aXVmSndYRzlZWXhoQUVadHVIYlVaOHhrdEpJZW9QY002R0dvWWlnWE52cWtT?=
+ =?utf-8?B?U2tId09hYjlzdFlickdNVjIzaEZ1clcxQktIV3JkZXh0aEVXUUF3T1htSFZ2?=
+ =?utf-8?B?RFprNDRRMEhvV1VjNmpub24zaEgzTGRpRTlMWmMxL0NQckkxL0E1TTl5MGMy?=
+ =?utf-8?B?ZFUxWHdFOTI0NndWVGMrVWp4dkhvd1NyV0NPSHFqRUUyREtvMWVuank3cWJM?=
+ =?utf-8?B?QkRqRnZ5OC81MlNOVFhONlVSbWFRekxobFFES2RBT2x1b0tUUHdnS2tKeUZa?=
+ =?utf-8?B?NWZGSnZBWlZ6R29DY0pUY2tGNTZHdXBYdzFzUjBlM2lPbS8xcWpua1VkMTRE?=
+ =?utf-8?B?L1NzcGovaGRVRXpGa3pEUFFiZVE3Q29JTkljNjVLWWhweXdzdnlxSFNVOVBo?=
+ =?utf-8?Q?b5IniqM7O11IM?=
 X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4740112c-3b03-48fc-2164-08d9688c735e
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3547.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 515ec698-be5f-4360-3b35-08d9688c3e1e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Aug 2021 12:22:59.4195 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1/T5eWWTCyVmsrBmhpd84BdLulmhhzstcCywuHuIbyST/PwXz59aIH9DDqJlXkFopA8JW4Ppo9afMdD4BkADpg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1386
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2021 12:24:29.1753 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: V02JZrFK1gxnUnsWOn45cna8aJ/y/Dqkzn2KEz3bOBDnUGu8jT6cALdzFVBQ8w1t
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4566
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,386 +135,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only]
 
-The issue is someone can issue an ioctl WHILE a read/write is happening.  I=
-n that case a read could take a [say] SRBM lock but then never free it.
 
-Two threads racing operations WITH the lock in place just means the userspa=
-ce gets undefined outputs which from the kernel is fine.
-
-Tom
-
-________________________________________
-From: Lazar, Lijo <Lijo.Lazar@amd.com>
-Sent: Thursday, August 26, 2021 08:19
-To: StDenis, Tom; amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/amd/amdgpu: New debugfs interface for MMIO registe=
-rs (v5)
-
-If there are two threads using the same fd, I don't see anything that
-prevent this order
-
-        set_state (T1) // State1
-        set_state (T2) // State2
-        read (T1)
-        write (T2)
-
-If there are separate fds, I guess the device level mutex takes care anyway=
-.
-
-Thanks,
-Lijo
-
-On 8/26/2021 5:45 PM, StDenis, Tom wrote:
-> [AMD Official Use Only]
+Am 26.08.21 um 13:32 schrieb Sharma, Shashank:
+> Hi Satyajit,
 >
-> While umr uses this as a constant two-step dance that doesn't mean anothe=
-r user task couldn't misbehave.  Two threads firing read/write and IOCTL at=
- the same time could cause a lock imbalance.
->
-> As I remarked to Christian offline that's unlikely to happen since umr is=
- the only likely user of this it's still ideal to avoid potential race cond=
-itions as a matter of correctness.
->
-> Tom
->
-> ________________________________________
-> From: Lazar, Lijo <Lijo.Lazar@amd.com>
-> Sent: Thursday, August 26, 2021 08:12
-> To: StDenis, Tom; amd-gfx@lists.freedesktop.org
-> Subject: Re: [PATCH] drm/amd/amdgpu: New debugfs interface for MMIO regis=
-ters (v5)
->
->
->
-> On 8/25/2021 10:56 PM, Tom St Denis wrote:
->> This new debugfs interface uses an IOCTL interface in order to pass
->> along state information like SRBM and GRBM bank switching.  This
->> new interface also allows a full 32-bit MMIO address range which
->> the previous didn't.  With this new design we have room to grow
->> the flexibility of the file as need be.
+> On 8/26/2021 12:43 PM, Satyajit Sahu wrote:
+>> There are multiple rings available in VCN encode. Map each ring
+>> to different priority.
 >>
->> (v2): Move read/write to .read/.write, fix style, add comment
->>         for IOCTL data structure
->>
->> (v3): C style comments
->>
->> (v4): use u32 in struct and remove offset variable
->>
->> (v5): Drop flag clearing in op function, use 0xFFFFFFFF for broadcast
->>         instead of 0x3FF, use mutex for op/ioctl.
->>
->> Signed-off-by: Tom St Denis <tom.stdenis@amd.com>
+>> Signed-off-by: Satyajit Sahu <satyajit.sahu@amd.com>
 >> ---
->>    drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 150 +++++++++++++++++++=
-+
->>    drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h |   1 -
->>    drivers/gpu/drm/amd/amdgpu/amdgpu_umr.h     |  51 +++++++
->>    3 files changed, 201 insertions(+), 1 deletion(-)
->>    create mode 100644 drivers/gpu/drm/amd/amdgpu/amdgpu_umr.h
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 14 ++++++++++++++
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h |  9 +++++++++
+>>   2 files changed, 23 insertions(+)
 >>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_debugfs.c
->> index 277128846dd1..87766fef0b1c 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
->> @@ -36,6 +36,7 @@
->>    #include "amdgpu_rap.h"
->>    #include "amdgpu_securedisplay.h"
->>    #include "amdgpu_fw_attestation.h"
->> +#include "amdgpu_umr.h"
->>
->>    int amdgpu_debugfs_wait_dump(struct amdgpu_device *adev)
->>    {
->> @@ -279,6 +280,143 @@ static ssize_t amdgpu_debugfs_regs_write(struct fi=
-le *f, const char __user *buf,
->>        return amdgpu_debugfs_process_reg_op(false, f, (char __user *)buf=
-, size, pos);
->>    }
->>
->> +static int amdgpu_debugfs_regs2_open(struct inode *inode, struct file *=
-file)
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+>> index 6780df0fb265..ce40e7a3ce05 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+>> @@ -951,3 +951,17 @@ int amdgpu_vcn_enc_ring_test_ib(struct 
+>> amdgpu_ring *ring, long timeout)
+>>         return r;
+>>   }
+>> +
+>> +enum vcn_enc_ring_priority amdgpu_vcn_get_enc_ring_prio(int index)
 >> +{
->> +     struct amdgpu_debugfs_regs2_data *rd;
->> +
->> +     rd =3D kzalloc(sizeof *rd, GFP_KERNEL);
->> +     if (!rd)
->> +             return -ENOMEM;
->> +     rd->adev =3D file_inode(file)->i_private;
->> +     file->private_data =3D rd;
->> +     mutex_init(&rd->lock);
->> +
->> +     return 0;
->> +}
->> +
->> +static int amdgpu_debugfs_regs2_release(struct inode *inode, struct fil=
-e *file)
->> +{
->> +     kfree(file->private_data);
->> +     return 0;
->> +}
->> +
->> +static ssize_t amdgpu_debugfs_regs2_op(struct file *f, char __user *buf=
-, u32 offset, size_t size, int write_en)
->> +{
->> +     struct amdgpu_debugfs_regs2_data *rd =3D f->private_data;
->> +     struct amdgpu_device *adev =3D rd->adev;
->> +     ssize_t result =3D 0;
->> +     int r;
->> +     uint32_t value;
->> +
->> +     if (size & 0x3 || offset & 0x3)
->> +             return -EINVAL;
->> +
->> +     r =3D pm_runtime_get_sync(adev_to_drm(adev)->dev);
->> +     if (r < 0) {
->> +             pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
->> +             return r;
->> +     }
->> +
->> +     r =3D amdgpu_virt_enable_access_debugfs(adev);
->> +     if (r < 0) {
->> +             pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
->> +             return r;
->> +     }
->> +
->> +     mutex_lock(&rd->lock);
->> +
->> +     if (rd->id.use_grbm) {
->> +             if ((rd->id.grbm.sh !=3D 0xFFFFFFFF && rd->id.grbm.sh >=3D=
- adev->gfx.config.max_sh_per_se) ||
->> +                 (rd->id.grbm.se !=3D 0xFFFFFFFF && rd->id.grbm.se >=3D=
- adev->gfx.config.max_shader_engines)) {
->> +                     pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
->> +                     pm_runtime_put_autosuspend(adev_to_drm(adev)->dev)=
-;
->> +                     amdgpu_virt_disable_access_debugfs(adev);
->> +                     mutex_unlock(&rd->lock);
->> +                     return -EINVAL;
->> +             }
->> +             mutex_lock(&adev->grbm_idx_mutex);
->> +             amdgpu_gfx_select_se_sh(adev, rd->id.grbm.se,
->> +                                                             rd->id.grb=
-m.sh,
->> +                                                             rd->id.grb=
-m.instance);
->> +     }
->> +
->> +     if (rd->id.use_srbm) {
->> +             mutex_lock(&adev->srbm_mutex);
->> +             amdgpu_gfx_select_me_pipe_q(adev, rd->id.srbm.me, rd->id.s=
-rbm.pipe,
->> +                                                                     rd=
-->id.srbm.queue, rd->id.srbm.vmid);
->> +     }
->> +
->> +     if (rd->id.pg_lock)
->> +             mutex_lock(&adev->pm.mutex);
->> +
->> +     while (size) {
->> +             if (!write_en) {
->> +                     value =3D RREG32(offset >> 2);
->> +                     r =3D put_user(value, (uint32_t *)buf);
->> +             } else {
->> +                     r =3D get_user(value, (uint32_t *)buf);
->> +                     if (!r)
->> +                             amdgpu_mm_wreg_mmio_rlc(adev, offset >> 2,=
- value);
->> +             }
->> +             if (r) {
->> +                     result =3D r;
->> +                     goto end;
->> +             }
->> +             offset +=3D 4;
->> +             size -=3D 4;
->> +             result +=3D 4;
->> +             buf +=3D 4;
->> +     }
->> +end:
->> +     if (rd->id.use_grbm) {
->> +             amdgpu_gfx_select_se_sh(adev, 0xffffffff, 0xffffffff, 0xff=
-ffffff);
->> +             mutex_unlock(&adev->grbm_idx_mutex);
->> +     }
->> +
->> +     if (rd->id.use_srbm) {
->> +             amdgpu_gfx_select_me_pipe_q(adev, 0, 0, 0, 0);
->> +             mutex_unlock(&adev->srbm_mutex);
->> +     }
->> +
->> +     if (rd->id.pg_lock)
->> +             mutex_unlock(&adev->pm.mutex);
->> +
->> +     mutex_unlock(&rd->lock);
->> +
->> +     pm_runtime_mark_last_busy(adev_to_drm(adev)->dev);
->> +     pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
->> +
->> +     amdgpu_virt_disable_access_debugfs(adev);
->> +     return result;
->> +}
->> +
->> +static long amdgpu_debugfs_regs2_ioctl(struct file *f, unsigned int cmd=
-, unsigned long data)
->> +{
->> +     struct amdgpu_debugfs_regs2_data *rd =3D f->private_data;
->> +     int r;
->> +
->> +     switch (cmd) {
->> +     case AMDGPU_DEBUGFS_REGS2_IOC_SET_STATE:
->> +             mutex_lock(&rd->lock);
->> +             r =3D copy_from_user(&rd->id, (struct amdgpu_debugfs_regs2=
-_iocdata *)data, sizeof rd->id);
->> +             mutex_unlock(&rd->lock);
+>> +    switch(index) {
+>> +    case 0:
 >
-> As this is a two-step read/write, I don't think there is any protection
-> offered by having this mutex.
+> As discussed in the previous patches, its far better to have MACROS or 
+> enums instead of having 0/1/2 cases. As a matter of fact, we can 
+> always call it RING_0 RING_1 and so on.
+
+I strongly disagree. Adding macros or enums just to have names for the 
+numbered rings doesn't gives you any advantage at all. That's just extra 
+loc.
+
+We could use the ring pointers to identify a ring instead, but using the 
+switch here which is then used inside the init loop is perfectly fine.
+
+Regards,
+Christian.
+
 >
-> Thanks,
-> Lijo
 >
->> +             return r ? -EINVAL : 0;
->> +     default:
->> +             return -EINVAL;
->> +     }
->> +     return 0;
+> If this is being done just for the traditional reasons, we can have a 
+> separate patch to replace it across the driver as well.
+>
+> - Shashank
+>
+>
+>> +        return AMDGPU_VCN_ENC_PRIO_NORMAL;
+>> +    case 1:
+>> +        return AMDGPU_VCN_ENC_PRIO_HIGH;
+>> +    case 2:
+>> +        return AMDGPU_VCN_ENC_PRIO_VERY_HIGH;
+>> +    default:
+>> +        return AMDGPU_VCN_ENC_PRIO_NORMAL;
+>> +    }
 >> +}
->> +
->> +static ssize_t amdgpu_debugfs_regs2_read(struct file *f, char __user *b=
-uf, size_t size, loff_t *pos)
->> +{
->> +     return amdgpu_debugfs_regs2_op(f, buf, *pos, size, 0);
->> +}
->> +
->> +static ssize_t amdgpu_debugfs_regs2_write(struct file *f, const char __=
-user *buf, size_t size, loff_t *pos)
->> +{
->> +     return amdgpu_debugfs_regs2_op(f, (char __user *)buf, *pos, size, =
-1);
->> +}
->> +
->>
->>    /**
->>     * amdgpu_debugfs_regs_pcie_read - Read from a PCIE register
->> @@ -1091,6 +1229,16 @@ static ssize_t amdgpu_debugfs_gfxoff_read(struct =
-file *f, char __user *buf,
->>        return result;
->>    }
->>
->> +static const struct file_operations amdgpu_debugfs_regs2_fops =3D {
->> +     .owner =3D THIS_MODULE,
->> +     .unlocked_ioctl =3D amdgpu_debugfs_regs2_ioctl,
->> +     .read =3D amdgpu_debugfs_regs2_read,
->> +     .write =3D amdgpu_debugfs_regs2_write,
->> +     .open =3D amdgpu_debugfs_regs2_open,
->> +     .release =3D amdgpu_debugfs_regs2_release,
->> +     .llseek =3D default_llseek
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+>> index d74c62b49795..938ee73dfbfc 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+>> @@ -290,6 +290,13 @@ enum vcn_ring_type {
+>>       VCN_UNIFIED_RING,
+>>   };
+>>   +enum vcn_enc_ring_priority {
+>> +    AMDGPU_VCN_ENC_PRIO_NORMAL = 1,
+>> +    AMDGPU_VCN_ENC_PRIO_HIGH,
+>> +    AMDGPU_VCN_ENC_PRIO_VERY_HIGH,
+>> +    AMDGPU_VCN_ENC_PRIO_MAX
 >> +};
 >> +
->>    static const struct file_operations amdgpu_debugfs_regs_fops =3D {
->>        .owner =3D THIS_MODULE,
->>        .read =3D amdgpu_debugfs_regs_read,
->> @@ -1148,6 +1296,7 @@ static const struct file_operations amdgpu_debugfs=
-_gfxoff_fops =3D {
+>>   int amdgpu_vcn_sw_init(struct amdgpu_device *adev);
+>>   int amdgpu_vcn_sw_fini(struct amdgpu_device *adev);
+>>   int amdgpu_vcn_suspend(struct amdgpu_device *adev);
+>> @@ -308,4 +315,6 @@ int amdgpu_vcn_dec_sw_ring_test_ib(struct 
+>> amdgpu_ring *ring, long timeout);
+>>   int amdgpu_vcn_enc_ring_test_ring(struct amdgpu_ring *ring);
+>>   int amdgpu_vcn_enc_ring_test_ib(struct amdgpu_ring *ring, long 
+>> timeout);
+>>   +enum vcn_enc_ring_priority amdgpu_vcn_get_enc_ring_prio(int index);
+>> +
+>>   #endif
 >>
->>    static const struct file_operations *debugfs_regs[] =3D {
->>        &amdgpu_debugfs_regs_fops,
->> +     &amdgpu_debugfs_regs2_fops,
->>        &amdgpu_debugfs_regs_didt_fops,
->>        &amdgpu_debugfs_regs_pcie_fops,
->>        &amdgpu_debugfs_regs_smc_fops,
->> @@ -1160,6 +1309,7 @@ static const struct file_operations *debugfs_regs[=
-] =3D {
->>
->>    static const char *debugfs_regs_names[] =3D {
->>        "amdgpu_regs",
->> +     "amdgpu_regs2",
->>        "amdgpu_regs_didt",
->>        "amdgpu_regs_pcie",
->>        "amdgpu_regs_smc",
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h b/drivers/gpu/d=
-rm/amd/amdgpu/amdgpu_debugfs.h
->> index 141a8474e24f..6d4965b2d01e 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.h
->> @@ -22,7 +22,6 @@
->>     * OTHER DEALINGS IN THE SOFTWARE.
->>     *
->>     */
->> -
->>    /*
->>     * Debugfs
->>     */
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_umr.h b/drivers/gpu/drm/a=
-md/amdgpu/amdgpu_umr.h
->> new file mode 100644
->> index 000000000000..919d9d401750
->> --- /dev/null
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_umr.h
->> @@ -0,0 +1,51 @@
->> +/*
->> + * Copyright 2021 Advanced Micro Devices, Inc.
->> + *
->> + * Permission is hereby granted, free of charge, to any person obtainin=
-g a
->> + * copy of this software and associated documentation files (the "Softw=
-are"),
->> + * to deal in the Software without restriction, including without limit=
-ation
->> + * the rights to use, copy, modify, merge, publish, distribute, sublice=
-nse,
->> + * and/or sell copies of the Software, and to permit persons to whom th=
-e
->> + * Software is furnished to do so, subject to the following conditions:
->> + *
->> + * The above copyright notice and this permission notice shall be inclu=
-ded in
->> + * all copies or substantial portions of the Software.
->> + *
->> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPR=
-ESS OR
->> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABIL=
-ITY,
->> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT S=
-HALL
->> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGE=
-S OR
->> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE=
-,
->> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE O=
-R
->> + * OTHER DEALINGS IN THE SOFTWARE.
->> + *
->> + */
->> +#include <linux/ioctl.h>
->> +
->> +/*
->> + * MMIO debugfs IOCTL structure
->> + */
->> +struct amdgpu_debugfs_regs2_iocdata {
->> +     __u32 use_srbm, use_grbm, pg_lock;
->> +     struct {
->> +             __u32 se, sh, instance;
->> +     } grbm;
->> +     struct {
->> +             __u32 me, pipe, queue, vmid;
->> +     } srbm;
->> +};
->> +
->> +/*
->> + * MMIO debugfs state data (per file* handle)
->> + */
->> +struct amdgpu_debugfs_regs2_data {
->> +     struct amdgpu_device *adev;
->> +     struct mutex lock;
->> +     struct amdgpu_debugfs_regs2_iocdata id;
->> +};
->> +
->> +enum AMDGPU_DEBUGFS_REGS2_CMDS {
->> +     AMDGPU_DEBUGFS_REGS2_CMD_SET_STATE=3D0,
->> +};
->> +
->> +#define AMDGPU_DEBUGFS_REGS2_IOC_SET_STATE _IOWR(0x20, AMDGPU_DEBUGFS_R=
-EGS2_CMD_SET_STATE, struct amdgpu_debugfs_regs2_iocdata)
->>
+
