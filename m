@@ -1,60 +1,124 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2493E3F895D
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Aug 2021 15:49:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 062FA3F89A5
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Aug 2021 16:03:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B77D6E852;
-	Thu, 26 Aug 2021 13:49:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A4BF6E861;
+	Thu, 26 Aug 2021 14:03:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com
- [IPv6:2607:f8b0:4864:20::336])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E36256E852
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 13:49:23 +0000 (UTC)
-Received: by mail-ot1-x336.google.com with SMTP id
- v33-20020a0568300921b0290517cd06302dso3506663ott.13
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 06:49:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=5MqZ3FnG3JvhR2xYpRFWBSTA0QcVh19z5qBDZtxcnzQ=;
- b=eSgLR5nxR/hyjChfQziCGqj2HxfXzq+APWEyfU9xTUMcEmcOJshBjt6tiGIQWMx0BW
- h11SwevPpDa0y7EqAW2vfD64jOnVtMG0taEp0pzH/MzzKll5rrajWVQu1jIUFt0Qzs/A
- IO+cnByGSUUHzgq4XgH8W59KJdlR+2d4JS158OXDxfYQfV6/sxXRS7xDUwun4Y2M/lDE
- sGNiHIRRyxo+2CHuneh587zHI4iqdG9krPHXAzFYh0OgY4eaeznL42db8g/HmLELGagy
- 2ZDolgNi1SzESdJnziaMJAuBuesHsiX/3CgVg/bQ4sdib/29nwJq/vxwSCUYT1elcEhO
- quOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=5MqZ3FnG3JvhR2xYpRFWBSTA0QcVh19z5qBDZtxcnzQ=;
- b=ILhO5+84bTgHDwnLG3raTG7l0xGGH26rDJa7pMRYHY+U0wJ9ByEI3VB59dofQ3oTrN
- xMhpk4VikrfEzjjaRyyz5HVLrmCxZoscmaEZt5o3HqSNfjPx742c5ZniMyHUwlYk0Ihz
- C7sPwBfuPMYS5PhnyyPebHn6Br8TaHOVAswcdu2RqoTw63xEOtefR+4+Jmxx4P2PIAp9
- cVwGjjZqzAlQQKyAZcWlSXjwllP8yyNQbaDSWa0rRFGcpisO40qx2ohiQDDEXUXi1yyY
- YArbtRWpEAe5O0EFoO1e+W3ewFQUjRhlpyJyDPlyplHvyTkFoJjewdveRkh4TFy0G9KN
- eRDQ==
-X-Gm-Message-State: AOAM532fsfnBAAWdd3O1+l/6yTkgQuMJf90nSohZlxV55EkyKcVJEUV6
- V+TSCRzllOvVNEroeKTJXQzMmE1mk4E/0oCsQxnbpNrORrE=
-X-Google-Smtp-Source: ABdhPJzlmqKbPYu2muvW50kahXch+rN3amglw2TawUcUKEknxD1X6SDEOEdSC+C3ws0+Tl0N62qIYivZA8woAX10ZUk=
-X-Received: by 2002:a05:6830:1c69:: with SMTP id
- s9mr3372916otg.132.1629985763254; 
- Thu, 26 Aug 2021 06:49:23 -0700 (PDT)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2048.outbound.protection.outlook.com [40.107.223.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D09256E85F;
+ Thu, 26 Aug 2021 14:03:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Q1hU0EhJe2ysNpxjUKZWgKQhVysNcInVWFEKEaotWk0ei4/DxEdC2CvUnsWeFEPJHorhtLbCDAKr72sIG4RH24Jw7Abxzit+ysssDxtryR3rtPzWGtb6tGFIX4yV7M4MHFR20BXM/bnMoHacvIxyNIQ2KLQKf3Mv0DPzqtdCyO9WLWUeqhg5jTDyixmDr6WRq/Tg47VEZePpCnXHSYtKZIxVpZM7KJ3V98uorF34RkwIoEdu80qvGVwkIIgyWqnI6nypLbiXKslfIMtYysRplVEpoe76yW6ywNM0IXCRd09xryOGE2kGUpHpkox9CFRRxryacviF4x1hlm6i3vXmSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=beGz5NTfWtv+QwaFnP9ybAxwL4T/a6/XPUuS7wwq3FY=;
+ b=dvQf23PUU0FL4GFP23O9+7h6gYY+E1jZcitK19c3ll1HzCoA9gvU3//lqQDdU3pKgUGO4RXn/JLaxQbzGPqfnkn+o6ZWzWxjoIK8ziWaVHBy5OHhjDwlXgZsmY3wQtOV2cP/sSNFgZI4yfzmET9s8TEioEj3PbiW7GxDUTPsQsMpge8AdH/XOJo8ohiO7aPW67d7W6V+LXBereOQSpc+kKDJrVAXNpxh0udFLjnJWfasNN0LYpoYWaXB51PuL6JOVjU1euEC7bhwHB/uDG7jsEmP61wfDGBUKhIH9p+4lmN2CMECq3B+q+H4PGMQlmPwpmkHeBUidlQOkKsfMhhpUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=beGz5NTfWtv+QwaFnP9ybAxwL4T/a6/XPUuS7wwq3FY=;
+ b=LYZnNexxaZnxxKI2QjGSkBgA+TejRIZ5JzZQDdsINB4DoJTSEKWULeD83E1NVoxEcxJJod187KeSv32qmwClEYV92Vr8t+DY0Yz6WUAGZX9m4nvv3hdigCO2Uq3ngjWhI5UEt+zhiKNZhoIZDxfvwu1HBEAp0kESuDT1fvZ91z4=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from SN6PR12MB4623.namprd12.prod.outlook.com (2603:10b6:805:e9::17)
+ by SA0PR12MB4381.namprd12.prod.outlook.com (2603:10b6:806:70::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.19; Thu, 26 Aug
+ 2021 14:03:09 +0000
+Received: from SN6PR12MB4623.namprd12.prod.outlook.com
+ ([fe80::17c:7262:446:f400]) by SN6PR12MB4623.namprd12.prod.outlook.com
+ ([fe80::17c:7262:446:f400%5]) with mapi id 15.20.4436.024; Thu, 26 Aug 2021
+ 14:03:09 +0000
+Subject: Re: [PATCH] drm/sched: fix the bug of time out calculation(v3)
+To: Monk Liu <Monk.Liu@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+References: <1629953731-14629-1-git-send-email-Monk.Liu@amd.com>
+From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+Message-ID: <20419179-ee90-45aa-f4b8-b6bcb20a9c52@amd.com>
+Date: Thu, 26 Aug 2021 10:03:07 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+In-Reply-To: <1629953731-14629-1-git-send-email-Monk.Liu@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-ClientProxiedBy: YT3PR01CA0069.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:84::6) To SN6PR12MB4623.namprd12.prod.outlook.com
+ (2603:10b6:805:e9::17)
 MIME-Version: 1.0
-References: <20210826013523.394705-1-koba.ko@canonical.com>
- <20210826013523.394705-2-koba.ko@canonical.com>
- <CADnq5_N8PxXeYKbPaQNRJWKNxxOdhgto1Sh8YcrHU8+dA4+9DA@mail.gmail.com>
- <CAJB-X+UPDDwPKcztOmAamJ6kKmM18C5LJ3v0-_v9kSSomoNwVA@mail.gmail.com>
-In-Reply-To: <CAJB-X+UPDDwPKcztOmAamJ6kKmM18C5LJ3v0-_v9kSSomoNwVA@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 26 Aug 2021 09:49:12 -0400
-Message-ID: <CADnq5_Nh1x_rQF6-t1fxj=ma9WKiNRbKnP=MOv-g7woGvCzeKg@mail.gmail.com>
-Subject: Re: [PATCH V2 1/1] drm/amdgpu: Disable PCIE_DPM on Intel RKL Platform
-To: Koba Ko <koba.ko@canonical.com>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2607:fea8:3edf:49b0:80cf:5155:1abb:d396]
+ (2607:fea8:3edf:49b0:80cf:5155:1abb:d396) by
+ YT3PR01CA0069.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:84::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4457.18 via Frontend Transport; Thu, 26 Aug 2021 14:03:08 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cc1bac3e-5dd9-457c-1cd5-08d9689a3c26
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4381:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SA0PR12MB43819DD301CD11763770BD38EAC79@SA0PR12MB4381.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:475;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: m5n2yt7WTt5pZocxMo4wrYnxdtedjXHaMx19+1TiedImKEsq6+Jexb/NxOlmWpl5TCsKbHUccOZVmgPFq2Au2vjuNrWoha0ThJUxEwJ7T6gyvvicCpSUB7ct80bhX+z6bC9oMh6qOY+Rn03rinGjFLEYhAeku3rZwFEjffoCmnJ0Tz91+XZczUjhuGZwzC9DLgbVT4lhN8+iOhwhyc+1F0Jy8vLLgyzHkK2j7zFazkAdgzh4Ih3X/FiSH7dHQCPgFe2wW45+beP04ensnwVRldFFQmrOyh9otfkumvRQX3IlUvuYSpzqD8HPr9NPycea0whZ3DFUnYioug0L3Knaa7lLTtdYF8eVKBwbZwggdddv/9klKwV9U7Sc3hcHTjEUtfTkKE82MO3gcpILhLYxxIfv2utieV330n0dfFNdMIWXXz71Lthbd382DxCCBa9Eu/RYTO3m6clFsBRwJCJbB9PpshTdLzseye2YBJ+QUJ7u4C+Ux6pzoEoyOUAZELVxbrancSuTq7qDFSiMX3IiYjmpnC7NY32HzxhKWhfBY6LeYlxh3eSve8lTaupATtwbgCR/8UHwrNbzo+P6yGVIcqffrdJLSaUzhOJswWbcx7EwKHI+n//ANxyviPiqY4uiCkuF1HD9rD6CWxI59nxJ2rxn7d75rFL+f1PAUzL/6GhxI7vx+MqjZZTKJwmq8rRmwNchlcaX1SuBYJs2yTF7iQ2fRYY2m1KwZ5Keqn0/iJU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN6PR12MB4623.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(39860400002)(376002)(346002)(366004)(396003)(6486002)(66556008)(5660300002)(86362001)(186003)(450100002)(4326008)(31696002)(66946007)(66476007)(44832011)(8936002)(478600001)(2616005)(8676002)(2906002)(316002)(36756003)(31686004)(53546011)(83380400001)(38100700002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YXRObDFGenYwK1JNelVpKzVaYkZ6UlBOUmJ1eFBWYmxDbGM3OWFXQndjZDBW?=
+ =?utf-8?B?dWRwV09rU2swMWJoUmlqNnJzVWhjaHVpYUYzMFJyOGcreDhEU3dIL2lwK05o?=
+ =?utf-8?B?SEJnMFFOdEJ4RE5kRjQ3Q0F4Q1daM0dkY3BvUGxUZk9MNmFPVHBnWUZJcEla?=
+ =?utf-8?B?VzUrbFRyODFNMStJelJ2bmRDWDlOQnlhY2xHYjNZWUg4a3ZxVFhwMXBpWkZP?=
+ =?utf-8?B?Vi9za3NzU3hyS0pNY2QyNXBnR0FnbXNmYWoxZUhEY3BSbzFRSlRpTDk2MDVM?=
+ =?utf-8?B?bkZ0REdLRExqTEhXSEJoQ1ZiTVNXWnpjVmlKZzdPc01yTGRlaU1rQzdqTEdo?=
+ =?utf-8?B?STE3d3JkTjlPbW91Ry80WjlSM1Q1MEF5R3hPcTdiYlA1RFNlZzFtWFAxSE84?=
+ =?utf-8?B?cEtmdFA1M1V2aFFHT2I1MXZwc25DNVF0d0FXZ1RGTk1jWGk4VEQycnBianNr?=
+ =?utf-8?B?dlZXRmN1TG1DVC9WNnlSUVVhZm5ZeFFmMStHblJDcVhEZDQvNENFMzBZRkRv?=
+ =?utf-8?B?TE5pWlhBN0F3SHhYTFR4M0NEOFJCc3UzaTVMUkt0N3hXKzZFVHhyV2xhcGZG?=
+ =?utf-8?B?UllSYUExWlpWWjMwWVVhSkYvNVRmaUlFSTY0bTBmRGdSNDVEM2N0N2xmcG5r?=
+ =?utf-8?B?enlZeXhaUER6UlFiT0ZUbE1WRjlhYmFxU21QMzFEdXU4QnRYMzJkU0poc0Fx?=
+ =?utf-8?B?a1BiOXhxeVZJWHJCVXBYbnBvSGw5WmllaW53R3RHbm4ra3pvLzJyczBZOVk2?=
+ =?utf-8?B?UHlhUWJzNXY4ZEdCWVdxbmJLVE1Wcmc1Q1N6OFZYR2Y3dUd6MDR1V2lHNXFZ?=
+ =?utf-8?B?akx4TDBaMHc5eW9mYTdTTHJpWDV1QXVJTCtEZ3d5aDQrUktmd2dNLzRIcEJx?=
+ =?utf-8?B?RnVyRjgvQTNQaVJ2dFVPbmxuRVlQbXBUY1JVUFUyenlMQWlZOVlzbDdHOHlS?=
+ =?utf-8?B?c2NUdnk0R05iSWx2cmhXWjFmMVV0YURSQUNuT2gxSkxVREJ3RVNEajFxZ2NO?=
+ =?utf-8?B?TUhYMkpCUnBmalNLVHZSV2NVd1ZoTmZTLzJVZ0VsYThhbC9oajEzR2JwbHZh?=
+ =?utf-8?B?YjludElQZ1dKS1BvUmVvZVNvV3YxWU5FMU11N09qWlBubDFFUmptak50UDZB?=
+ =?utf-8?B?MXloaVdLbldYVUZ5RThOVzlqNURXK3dMRmZIbm9iWE9xamtLMk5RNTJlL0ZW?=
+ =?utf-8?B?ZGRIRVRpVVRMM1dUbTd6ME50STlYOGZPYktRVVdIbFluTDdnU0lQWlp4Tm04?=
+ =?utf-8?B?blRuWUN1YXZaTzBKYktFempITTZWa2ZnM3hWbkxqR3dlakwvNG5PNXlGekRJ?=
+ =?utf-8?B?VDg0bS9nd0VIc1QyM3A0UUxPbEdKRWh2UnRJMHVpcFlUNFNiVDBkTlVhUUl1?=
+ =?utf-8?B?c3pOWWQ0dktYbGg1NktvK1BuK2taVFZkV0V1T1NVOGxtQW5zU09EZ3Z3QmdX?=
+ =?utf-8?B?VE8zVnl0TTlleVdvTWZtcWsvN3N1YkozN25IUjY2elR5Z0xwUnB3L25PT2c4?=
+ =?utf-8?B?NWM1alhnNndZTEYxRkZUaXh3RWNNaDdWMmZKcnkwOXlNRnIyQzNjVFFLUXZW?=
+ =?utf-8?B?aXZadmZjQUJLbDRNakF2NlY5NUFFNGwxQnZ6Y3ZCMlVkQ3FSSVN6OHEvSUVJ?=
+ =?utf-8?B?U1FtQlEyZkJzUzcxbUhYNUx5VThKa095VlkvRmZVbjNlODhDZWFKRjZ1VzNx?=
+ =?utf-8?B?elhUcVpURDVWM2pTYWJiK21WUVlVbldyS2xVbXBMeWM3UW1mK2t2Z0I5dkJx?=
+ =?utf-8?B?Z2RKb3BwdnpvRzl5NDVSbUhHRHJPWnREeDBPbU9WTXMrSXV5VHZvY0hlNzZk?=
+ =?utf-8?B?VG9NajZkWUdWRzFYMDh5Q2hnRkRNQzJWdWk2NWtvSmdpZFZsbCtBTlVkTWlB?=
+ =?utf-8?Q?Tjn7DOnSX6VTK?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cc1bac3e-5dd9-457c-1cd5-08d9689a3c26
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR12MB4623.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2021 14:03:09.4597 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YinmDVD2v6tccNHKOrUVOnnGxhPgLty2S27IuFTtEVFjOEWzaPJAxX5aFzlakzrYPy2IA/RhMqq2I00/OU9djw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4381
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,94 +133,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 26, 2021 at 9:43 AM Koba Ko <koba.ko@canonical.com> wrote:
+
+On 2021-08-26 12:55 a.m., Monk Liu wrote:
+> issue:
+> in cleanup_job the cancle_delayed_work will cancel a TO timer
+> even the its corresponding job is still running.
 >
-> On Thu, Aug 26, 2021, 9:22 PM Alex Deucher <alexdeucher@gmail.com> wrote:
-> >
-> > On Wed, Aug 25, 2021 at 9:55 PM Koba Ko <koba.ko@canonical.com> wrote:
-> > >
-> > > AMD polaris GPUs have an issue about audio noise on RKL platform,
-> > > they provide a commit to fix but for SMU7-based GPU still
-> > > need another module parameter,
-> >
-> > For future readers, it might be better to provide a bit more detail in
-> > the patch description.  Something like:
-> >
-> > "Due to high latency in PCIE gen switching on RKL platforms, disable
-> > PCIE gen switching on polaris
-> > GPUs to avoid HDMI/DP audio issues."
-> >
-> > Alex
+> fix:
+> do not cancel the timer in cleanup_job, instead do the cancelling
+> only when the heading job is signaled, and if there is a "next" job
+> we start_timeout again.
 >
-> hi Alex,
-> because I'm not the issue owner and don't know the details, could you
-> please provide a full description?
-> I would like to add in the comment.
-
-How about this:
-
-Due to high latency in PCIE clock switching on RKL platforms,
-switching the PCIE clock dynamically at runtime can lead to HDMI/DP
-audio problems.  On newer asics this is handled in the SMU firmware.
-For SMU7-based asics, disable PCIE clock switching to avoid the issue.
-
-Alex
-
+> v2:
+> further cleanup the logic, and do the TDR timer cancelling if the signaled job
+> is the last one in its scheduler.
 >
-> >
-> > >
-> > > modprobe amdgpu ppfeaturemask=0xfff7bffb
-> > >
-> > > to avoid the module parameter, switch PCI_DPM by determining
-> > > intel platform in amd drm driver is a better way.
-> > >
-> > > Fixes: 1a31474cdb48 ("drm/amd/pm: workaround for audio noise issue")
-> > > Ref: https://lists.freedesktop.org/archives/amd-gfx/2021-August/067413.html
-> > > Signed-off-by: Koba Ko <koba.ko@canonical.com>
-> > > ---
-> > >  .../gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c   | 15 ++++++++++++++-
-> > >  1 file changed, 14 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-> > > index 0541bfc81c1b..6ce2a2046457 100644
-> > > --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-> > > +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
-> > > @@ -27,6 +27,7 @@
-> > >  #include <linux/pci.h>
-> > >  #include <linux/slab.h>
-> > >  #include <asm/div64.h>
-> > > +#include <asm/intel-family.h>
-> > >  #include <drm/amdgpu_drm.h>
-> > >  #include "ppatomctrl.h"
-> > >  #include "atombios.h"
-> > > @@ -1733,6 +1734,17 @@ static int smu7_disable_dpm_tasks(struct pp_hwmgr *hwmgr)
-> > >         return result;
-> > >  }
-> > >
-> > > +static bool intel_core_rkl_chk(void)
-> > > +{
-> > > +#ifdef CONFIG_X86_64
-> > > +       struct cpuinfo_x86 *c = &cpu_data(0);
-> > > +
-> > > +       return (c->x86 == 6 && c->x86_model == INTEL_FAM6_ROCKETLAKE);
-> > > +#else
-> > > +       return false;
-> > > +#endif
-> > > +}
-> > > +
-> > >  static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
-> > >  {
-> > >         struct smu7_hwmgr *data = (struct smu7_hwmgr *)(hwmgr->backend);
-> > > @@ -1758,7 +1770,8 @@ static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
-> > >
-> > >         data->mclk_dpm_key_disabled = hwmgr->feature_mask & PP_MCLK_DPM_MASK ? false : true;
-> > >         data->sclk_dpm_key_disabled = hwmgr->feature_mask & PP_SCLK_DPM_MASK ? false : true;
-> > > -       data->pcie_dpm_key_disabled = hwmgr->feature_mask & PP_PCIE_DPM_MASK ? false : true;
-> > > +       data->pcie_dpm_key_disabled =
-> > > +               intel_core_rkl_chk() || !(hwmgr->feature_mask & PP_PCIE_DPM_MASK);
-> > >         /* need to set voltage control types before EVV patching */
-> > >         data->voltage_control = SMU7_VOLTAGE_CONTROL_NONE;
-> > >         data->vddci_control = SMU7_VOLTAGE_CONTROL_NONE;
-> > > --
-> > > 2.25.1
-> > >
+> v3:
+> change the issue description
+> remove the cancel_delayed_work in the begining of the cleanup_job
+> recover the implement of drm_sched_job_begin.
+>
+> TODO:
+> 1)introduce pause/resume scheduler in job_timeout to serial the handling
+> of scheduler and job_timeout.
+> 2)drop the bad job's del and insert in scheduler due to above serialization
+> (no race issue anymore with the serialization)
+>
+> Signed-off-by: Monk Liu <Monk.Liu@amd.com>
+> ---
+>   drivers/gpu/drm/scheduler/sched_main.c | 25 ++++++++++---------------
+>   1 file changed, 10 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> index a2a9536..ecf8140 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -676,13 +676,7 @@ drm_sched_get_cleanup_job(struct drm_gpu_scheduler *sched)
+>   {
+>   	struct drm_sched_job *job, *next;
+>   
+> -	/*
+> -	 * Don't destroy jobs while the timeout worker is running  OR thread
+> -	 * is being parked and hence assumed to not touch pending_list
+> -	 */
+> -	if ((sched->timeout != MAX_SCHEDULE_TIMEOUT &&
+> -	    !cancel_delayed_work(&sched->work_tdr)) ||
+> -	    kthread_should_park())
+> +	if (kthread_should_park())
+>   		return NULL;
+
+
+I actually don't see why we need to keep the above,
+on the other side (in drm_sched_stop) we won't touch the pending list
+anyway until sched thread came to full stop (kthread_park). If you do 
+see a reason why
+this needed then a comment should be here i think.
+
+Andrey
+
+
+>   
+>   	spin_lock(&sched->job_list_lock);
+> @@ -693,17 +687,21 @@ drm_sched_get_cleanup_job(struct drm_gpu_scheduler *sched)
+>   	if (job && dma_fence_is_signaled(&job->s_fence->finished)) {
+>   		/* remove job from pending_list */
+>   		list_del_init(&job->list);
+> +
+> +		/* cancel this job's TO timer */
+> +		cancel_delayed_work(&sched->work_tdr);
+>   		/* make the scheduled timestamp more accurate */
+>   		next = list_first_entry_or_null(&sched->pending_list,
+>   						typeof(*next), list);
+> -		if (next)
+> +
+> +		if (next) {
+>   			next->s_fence->scheduled.timestamp =
+>   				job->s_fence->finished.timestamp;
+> -
+> +			/* start TO timer for next job */
+> +			drm_sched_start_timeout(sched);
+> +		}
+>   	} else {
+>   		job = NULL;
+> -		/* queue timeout for next job */
+> -		drm_sched_start_timeout(sched);
+>   	}
+>   
+>   	spin_unlock(&sched->job_list_lock);
+> @@ -791,11 +789,8 @@ static int drm_sched_main(void *param)
+>   					  (entity = drm_sched_select_entity(sched))) ||
+>   					 kthread_should_stop());
+>   
+> -		if (cleanup_job) {
+> +		if (cleanup_job)
+>   			sched->ops->free_job(cleanup_job);
+> -			/* queue timeout for next job */
+> -			drm_sched_start_timeout(sched);
+> -		}
+>   
+>   		if (!entity)
+>   			continue;
