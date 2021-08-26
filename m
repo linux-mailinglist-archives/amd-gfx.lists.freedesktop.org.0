@@ -1,119 +1,96 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C1513F8C94
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Aug 2021 18:59:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1A203F8D34
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Aug 2021 19:42:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3F026E030;
-	Thu, 26 Aug 2021 16:59:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E3D06E886;
+	Thu, 26 Aug 2021 17:42:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2059.outbound.protection.outlook.com [40.107.92.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B31846E879
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 16:59:11 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2061.outbound.protection.outlook.com [40.107.236.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 785736E88D
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 17:42:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WgoEJXy4i5xo3+mFSKgWcKdT1Ot9O6B5z7gZiIOH21YHic8913qK4AxFH6aeqbKN7kMQClvlPJAo0lR7hkeWUVb+SZ3ar9SffyvSXooKhiqvAYhHxllc/5gruXhB7+DlFRwKbU04g9M2xh1Ti99EuGTiNaHoSaWOKxlJy3IK0r2cLeYaZOi9DlpnqamiIX2QqoATDciS9McYCQvB+OLCOOPl4bg5WqsJUPr1MAZ14jc2X4+dZ/udfGjzXzxG0pF3u2lpxzrcPh0JNNhiz6LXNITSkW0nFMljyoPE9h0I227ciS8fVXI+QNH0Qdmfu4gA6FJECAASFGbHolq3HaCjHg==
+ b=feF6oSBtL762t+v2GVSUPzBvTptfNFoJ4UQn9H+sxjK0OAvOIYRswrz6EOPbr2sR6/4oU37KG0Jsw2hcQGSw9CmhGTIyy6fLFaHPHNzkxFkqd4Mg/D3WiinQhFcJSU0y02XIAKU26Iw1V6vZYvQLHEJPv7fmvxjeywj0A8mucUiG3KZzg+gUB0mGbqUlNQ7246YtAXbhDAtwSt+c/iqXp4KB9w+8zd16cL8t4RFAMiNBng5xCNOliJnqz5TvYxqIQoQX7x5730iga8byf5CSJpOeHuHJN/cEq9YWY7SATftYbUfdmU0sRQpvcQXddmR34XSxKOYA34TAOXvBBJl61Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E7UXGEI/5cj5zoYOUVrgT9L8926xG5UbhtkO0uWSWRc=;
- b=UxgP4F6lTas3dhShD/GD0ZTmm6YCUUAnTiR3+81ObfzGGywnIAReYhAqWfuihmS5x9DjBKcvjTTSmGFcvkYnt8A9BNwzB+QSzYHSY3sJ87ZMQmgDuuECKmGzvAZlkpVKmUiauia4GR/lGUA5peO3ntoBECBnJ0Hr7Hbdqn0aKyz3lkW8R8kjtwMVNF49F8iLZEiFhuRoPMCp4kFY5nrQtCHjKpoXAGJZaFhFeYL5e2SO/6sQ24MZVqjs2tn+3RawLvv+B5s20tPO9OxOiRG4E0utg+wg3rfWkaGE7g8xzH73vZTRuWrnUI1MCiM3C+Tj/jHcby/6Ms58NrzSF5I5Vw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=TxN+lumzoWmqeV1NKR8S0NtV/3Bxo1suG0cURv7GTM8=;
+ b=N/go5Zgv+tyBFrohWyeZM4wAa3fl0S2qDyxMLHC5Z0q9Zfl/3RzOdXgjEM3TUUS2vvEpGiLJn3NyckSsyr3eZY11I/AVlljOfeoHwAkxp9lenXToPFjICmXRP0aDeZES9gve8M1EjLeNae0M1ueWL2VxSiOsRVO3iHXUCTzSJxw5HL5tyEw1Qbl2JIe924vY1+tF2BVK0+WWYvqgQjb004DBAk8OYLBtMNrsbsjRtAFdC04IYVXMKGRmTOjm9Gnus48HDaA3jBaTYZmdzKT2drGGSWQTjoC54c+9gD6E0g8LdslIi/c5fk3acGQGM768n6Wp3sPV4zNLzdhAbKcpeQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E7UXGEI/5cj5zoYOUVrgT9L8926xG5UbhtkO0uWSWRc=;
- b=CJrvISz8Btcw7r0Tj2dv3f4D+fgd418ueQfMvwe6AGgUylX+JQNiRC/zg81Z1DAAwWxvqD8691WQAkbYJv3bGUMRPkAGCwk5CRH7jisNCipPfKsg9SAB980REZ3DXv2Cu7BFWaFZEN4RnY6oDrLNWyX6k8e4jymeI9A0eHKO674=
-Received: from CH2PR12MB4151.namprd12.prod.outlook.com (2603:10b6:610:78::16)
- by CH2PR12MB4327.namprd12.prod.outlook.com (2603:10b6:610:7d::13)
+ bh=TxN+lumzoWmqeV1NKR8S0NtV/3Bxo1suG0cURv7GTM8=;
+ b=bOP0M+d5WN9n9RVtWzvtm3ux6P1+u7k93bMSw1Ad+5a1T85HBmEx2m9nK9RHTE7wB+3pMDygrvp0umWudpmvzfVeBEWPQ+JOkyD4Br43mvEW1FDBVqBCr74anVMF1mVbcJ4+hz8gZjpD9ocuFSUMpaDta4GAoGM+atlPpph/STU=
+Received: from BN9PR03CA0559.namprd03.prod.outlook.com (2603:10b6:408:138::24)
+ by MN2PR12MB3982.namprd12.prod.outlook.com (2603:10b6:208:16c::31)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.20; Thu, 26 Aug
- 2021 16:59:09 +0000
-Received: from CH2PR12MB4151.namprd12.prod.outlook.com
- ([fe80::3ca9:a7fc:e46d:ab22]) by CH2PR12MB4151.namprd12.prod.outlook.com
- ([fe80::3ca9:a7fc:e46d:ab22%7]) with mapi id 15.20.4457.020; Thu, 26 Aug 2021
- 16:59:09 +0000
-From: "Wu, Hersen" <hersenxs.wu@amd.com>
-To: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "Lakha, Bhawanpreet" <Bhawanpreet.Lakha@amd.com>, "Siqueira, Rodrigo"
- <Rodrigo.Siqueira@amd.com>
-Subject: [PATCH] drm/amd/display: add dcn register DP_MSA_VBID_MISC for dcn1.x
- and dcn2.x
-Thread-Topic: [PATCH] drm/amd/display: add dcn register DP_MSA_VBID_MISC for
- dcn1.x and dcn2.x
-Thread-Index: Adeam6rz1or1EhI6SJmeHmo8N6tHTA==
-Date: Thu, 26 Aug 2021 16:59:09 +0000
-Message-ID: <CH2PR12MB41517A80B79301CC995E6977FDC79@CH2PR12MB4151.namprd12.prod.outlook.com>
-Accept-Language: en-CA, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-08-26T16:59:07Z; 
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
- Only-AIP 2.0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=7f893751-acca-4271-9bc0-0ee4a2ba3b83;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
-authentication-results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: cbb41a0f-d00f-4738-b054-08d968b2d280
-x-ms-traffictypediagnostic: CH2PR12MB4327:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CH2PR12MB43271ED4F18CB75B5A761B9FFDC79@CH2PR12MB4327.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1468;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: GmVQF6K+xvZo6AOlOFSNtRmo+u8EYtH2LWIzqXoXqb6jjf1kOL5LLhTNEfBhY2i5CaJKZXpgcntIO7t1TzGJvgobBjblNO/BoxXNiej75U/h0buwumnpGpsbtNUQKKrVDcTcUKlWgKa+GA95Hjo4twLK6ArOzBOLnt4femyzNz4vI0F1SURpHbbn1WYOW+hXyEdLKKpxrhUDT+eXMo2k+fXYrFuGfWF9+8Uev6hivHzP3wRA122H6Sf78+quhVdnvJjA5eX8D7IKewaxUM0Fg8p6k4oXg/6s5VKetcxT4vIhU7zmcAlOWOKiOL/2RLDabOb/yxtaB8fwrn2R95SZaHJc3XD9OcnkVbgElxwVte8gafUeIgO5S0zrhZ/vJZRHRn8d7pNMGdKa1pxsGx0ow9RDjMhHl/PdvlrU9/QINjOUDbJk6Q4t+qi+suHZGyCQMW2s/jwIapKeoPkoV1+7QyXBP2VCLUcKG5uigcWIBUF2o7hfL80Rdmf4Ab9LLebTB7ME2gqjCAycVEj8XhDvob/IfAjv11XBFLIdAXWEXhIEInwFlhVweBIwCUHLULjtxaFXowHfsh9W7vmc96hE/Lgv16x0f+GhA5nD72TnfrWbKYxH98/OuqGHl4yASLHbD5vbszQvokqlQaLeEaE2wc2jBRIad83iJnDK6KZHhXO70Ouc4ClsNls88unIe7kJ91B0fnHTi8ajK6NdJW9MDQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH2PR12MB4151.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(346002)(396003)(376002)(366004)(7696005)(478600001)(6506007)(53546011)(55016002)(76116006)(9686003)(316002)(54906003)(6916009)(33656002)(2906002)(186003)(64756008)(66556008)(66476007)(122000001)(66946007)(4326008)(86362001)(8676002)(71200400001)(8936002)(52536014)(38100700002)(38070700005)(5660300002)(66446008);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?/A6oPXV2gKGlA4E3PI15Eoe00uegKg04UH0UgICtBmgkYTS2cOOkyVzBEsu2?=
- =?us-ascii?Q?dhBnlwoyE4UJt0gryZUmGIXjD7zxPcQbAsokYaKjeiM+PwYfJe9dlb116RdM?=
- =?us-ascii?Q?JafL9SUiaYPHvq4a1whho8BDi3Xm3fZJRxgQsIqyONF99oOzal97CyLYZvP9?=
- =?us-ascii?Q?9dIFRKWlfsDDFPpix5UULSGIXGSOb9qDalmKnBPAhdtrnmRHoW70Hxw2vUfU?=
- =?us-ascii?Q?qMFdes9XGHmyixNGnV0TFuQwE/0AsTQYCHnzGIFPXILeVAO0tSe6UDFkZr4A?=
- =?us-ascii?Q?2oa0xWyrDVic+rE567eRQJkdCmB7ATb1/oRaSFHgD5Nlm3njbrRVK9FIqfiz?=
- =?us-ascii?Q?dJos8axdIrHsVYjOT6dAkMJttbZaLAzD/gB2f5BRmK3+ENsvamHhoJWhT/y/?=
- =?us-ascii?Q?ecBay0j129QiDj48fRE2YOjvl1aZlwDubBNHpzlE6WbfKFduBSwvQjWkKJys?=
- =?us-ascii?Q?6bQbkkXfalUI75EWokyoXCjWpzbyVbeW/eNCUEbY8zvwzYg1YATqdHH9oPrL?=
- =?us-ascii?Q?+DRyUTmtGVj6WpSp0TGUayvnvL9UZNaRg5pqwFgJXbaEt7L9kvuRZWCwroDW?=
- =?us-ascii?Q?L7dOdZ0IyqqI6qrzC0Z6wwyxNUUhkY/8B1S544Rg+XC8qFGIpN7fn00Ck9ti?=
- =?us-ascii?Q?rf47ZgtBfLWGotDFMzA2S1uPLE1ly6q77KRVBh+K/h35eN6fUKhm382AuepW?=
- =?us-ascii?Q?bA1VxvNRu4T8+sUmzozbS0YTkitTvB57inOhv1SBFnQ1zm/weejj/4B8Z7D+?=
- =?us-ascii?Q?Nn+Egms7iETgiQDqz600zFhuCJAFyLnajeGDzg48budFcNeQGLI4N3wwkBx/?=
- =?us-ascii?Q?hDoiGIGA4wqU9/WVC5WsvfdG4fr9G4fAmzm/lTq+kclLHzh6mYC7c/1TDw4p?=
- =?us-ascii?Q?Luy01wSQMv1LcDWaqFNapGOzxNSw1J63UTrRf+q1DZRrk0pa9F2PtbmcYwB6?=
- =?us-ascii?Q?RhlNauQqwZJC+lI3+LbWxssV9rK0VxnQWq/wD4F4fdGwgKANRk4EG/TrTUzo?=
- =?us-ascii?Q?317RNd7fULtq1Us8dvCxUD6FjrMQZXp0M8zMB/iAajGAwtLj2O/V56on790T?=
- =?us-ascii?Q?P+doXN0M0uVuuldR3ll1HgCRndYSUqOnJX/L5EOtXOb9mY/dcwCQvP52Ijrp?=
- =?us-ascii?Q?E/kPA12r1nyQF8XYmwOYnm15YPFTqzdlL0ZlA3fP3DQ//d6qFxv17br1y3pX?=
- =?us-ascii?Q?QAWSLhNbVVn/dUGi/5cgaOrnceUoCV1lEFrXSCMWexuX15yf3ge0H0C1QeLs?=
- =?us-ascii?Q?ZhYWRL9wf4v/jaAe9WOWoZPSioZhkQkhbwRktFPJ9BsRD5G9JUnBjDtvyU7s?=
- =?us-ascii?Q?mpYjirea/K9NZEOyyou3i6m1usXbBlXUAnIKqxN8eN8/QSYHKrOdVhGp3SoU?=
- =?us-ascii?Q?qNN6v0uyDOLjksvMhSw+9HJ9kpDa?=
-Content-Type: multipart/alternative;
- boundary="_000_CH2PR12MB41517A80B79301CC995E6977FDC79CH2PR12MB4151namp_"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.19; Thu, 26 Aug
+ 2021 17:27:42 +0000
+Received: from BN8NAM11FT010.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:138:cafe::8) by BN9PR03CA0559.outlook.office365.com
+ (2603:10b6:408:138::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.17 via Frontend
+ Transport; Thu, 26 Aug 2021 17:27:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT010.mail.protection.outlook.com (10.13.177.53) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4457.17 via Frontend Transport; Thu, 26 Aug 2021 17:27:41 +0000
+Received: from agrodzovsky-All-Series.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Thu, 26 Aug 2021 12:27:39 -0500
+From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>
+CC: <ckoenig.leichtzumerken@gmail.com>, Andrey Grodzovsky
+ <andrey.grodzovsky@amd.com>
+Subject: [PATCH v2 0/4] Various fixes to pass libdrm hotunplug tests
+Date: Thu, 26 Aug 2021 13:27:04 -0400
+Message-ID: <20210826172708.229134-1-andrey.grodzovsky@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8508e5e6-ceaa-4760-5329-08d968b6ceee
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3982:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB39822FF0820E32E9F6B014E6EAC79@MN2PR12MB3982.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4303;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /SsX7f6R2ji4RYmcuJVN9Jd0YkUB+7z0Wgch4tCg2LCla5JEACfk/Nyj1gEZcOItPLU4yCFkDjrNvHFrrp4EKQMed0Zr7v0kf/9G9xs6613DqkXMpxh1O5he0+cr5u1oXbs3FKhbZNTxq9+SRyiRwdOc/mA+O9gTSNxVJ32/eWnriQLL8ze+/rK55iMurVxzaHBU7kZ4A21bfyflwPqbDRNjDufocslbbRXStHWZlGnuUW69yRBjasnpAwBuiQnbTNMPFyeyWF4tqicrk1ty25B8WPyDXUnnskuuulywYt+aUdtW5PPl+pCVjs3mZIzIxHTWZ6VCMQuz1v/H4jKCy7u6E8tPLpjLcb0TA5Xswjpph+TOmb81Q5wPIQro1jHa2FcHcDp/rmLM5W1+qVhMfUeT3jY7wuW6LfZQswK+62JnjYepv8w0vTn9K9jNx8WZolEoSInMNvVjYe9YeHnQ7Eqyma+6Mn18t0sIRmO6OKFG/HIbbx08ucF0wzz6unuCpxXqm5TYx3rpLBS3bMdKcxqlClm37SRIzsXt4PcgB1QY12OYFxJ1zJgwytPbtUbosx85xqVXkmCPun/0mVAYKrAqCV0OG4QE7InZhPqKAlFvcgn6i5o+1MeM5UA1hB6T5B9gVLQH9iPl17z7XoCfnksoLSsqLtNfP5MW1tTuCA8Hzez614TPtw3w6/2IwGvSiEBi7X+tRNn6nG/y8PDPs/7vHWTpfHwOUVw6eIFHxfM=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(136003)(346002)(376002)(39860400002)(396003)(36840700001)(46966006)(966005)(86362001)(336012)(7696005)(36860700001)(426003)(478600001)(186003)(4744005)(16526019)(36756003)(26005)(83380400001)(356005)(2616005)(316002)(82310400003)(4326008)(70586007)(54906003)(110136005)(81166007)(70206006)(8676002)(5660300002)(1076003)(82740400003)(6666004)(44832011)(8936002)(47076005)(2906002)(36900700001);
+ DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4151.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cbb41a0f-d00f-4738-b054-08d968b2d280
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Aug 2021 16:59:09.3149 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: iW8ZCTE0PJvFbDtKDNNaRc1CoGTCjAl5EsFKuKMtAbJV6MZ5iPWJiSK8JLs8CSF6dgMZYFgXv4OeXNPulndfKw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4327
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2021 17:27:41.4268 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8508e5e6-ceaa-4760-5329-08d968b6ceee
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT010.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3982
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,155 +105,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_CH2PR12MB41517A80B79301CC995E6977FDC79CH2PR12MB4151namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Bunch of fixes to enable passing hotplug tests i previosly added
+here[1] with latest code. 
+Once accepted I will enable the tests on libdrm side.
 
-[AMD Official Use Only]
+[1] - https://gitlab.freedesktop.org/mesa/drm/-/merge_requests/172
 
-This patch add missing AMD ASIC register for DP programming in up stream.
+v2:
+Dropping VCE patch since relevant function already fixed in latest
+code.
+Moving IOMMU hnadling to TTM layer.
 
-From 05768b78865d9b41a1d35e9f8e34901321208f2a Mon Sep 17 00:00:00 2001
-From: Hersen Wu hersenwu@amd.com<mailto:hersenwu@amd.com>
-Date: Thu, 26 Aug 2021 12:49:08 -0400
-Subject: [PATCH] drm/amd/display: add dcn register DP_MSA_VBID_MISC for dcn=
-1.x
-and dcn2.x
+Andrey Grodzovsky (4):
+  drm/ttm: Create pinned list
+  drm/ttm: Clear all DMA mappings on demand
+  drm/amdgpu: drm/amdgpu: Handle IOMMU enabled case
+  drm/amdgpu: Add a UAPI flag for hot plug/unplug
 
-DP_MSA_VBID_MISC is missing in upstream. this register is needed
-for DP programming.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  2 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    |  3 +-
+ drivers/gpu/drm/ttm/ttm_bo.c               | 30 +++++++++++++--
+ drivers/gpu/drm/ttm/ttm_device.c           | 45 ++++++++++++++++++++++
+ drivers/gpu/drm/ttm/ttm_resource.c         |  1 +
+ include/drm/ttm/ttm_device.h               |  1 +
+ include/drm/ttm/ttm_resource.h             |  1 +
+ 7 files changed, 78 insertions(+), 5 deletions(-)
 
-Signed-off-by: Hersen Wu hersenwu@amd.com<mailto:hersenwu@amd.com>
----
-drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h | 1 +
-1 file changed, 1 insertion(+)
+-- 
+2.25.1
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h b/=
-drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h
-index 0d86df97878c..35acb3342e31 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.h
-@@ -73,6 +73,7 @@
-               SRI(HDMI_ACR_48_1, DIG, id),\
-               SRI(DP_DB_CNTL, DP, id), \
-               SRI(DP_MSA_MISC, DP, id), \
-+             SRI(DP_MSA_VBID_MISC, DP, id), \
-               SRI(DP_MSA_COLORIMETRY, DP, id), \
-               SRI(DP_MSA_TIMING_PARAM1, DP, id), \
-               SRI(DP_MSA_TIMING_PARAM2, DP, id), \
---
-2.17.1
-
---_000_CH2PR12MB41517A80B79301CC995E6977FDC79CH2PR12MB4151namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
-<p class=3D"msipheadera4477989" align=3D"Left" style=3D"margin:0"><span sty=
-le=3D"font-size:10.0pt;font-family:Arial;color:#0000FF">[AMD Official Use O=
-nly]</span></p>
-<br>
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">This patch add missing AMD ASIC register for DP prog=
-ramming in up stream.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">From 05768b78865d9b41a1d35e9f8e34901321208f2a Mon Se=
-p 17 00:00:00 2001<o:p></o:p></p>
-<p class=3D"MsoNormal">From: Hersen Wu <a href=3D"mailto:hersenwu@amd.com">=
-hersenwu@amd.com</a><o:p></o:p></p>
-<p class=3D"MsoNormal">Date: Thu, 26 Aug 2021 12:49:08 -0400<o:p></o:p></p>
-<p class=3D"MsoNormal">Subject: [PATCH] drm/amd/display: add dcn register D=
-P_MSA_VBID_MISC for dcn1.x<o:p></o:p></p>
-<p class=3D"MsoNormal">and dcn2.x<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">DP_MSA_VBID_MISC is missing in upstream. this regist=
-er is needed<o:p></o:p></p>
-<p class=3D"MsoNormal">for DP programming.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Signed-off-by: Hersen Wu <a href=3D"mailto:hersenwu@=
-amd.com">hersenwu@amd.com</a><o:p></o:p></p>
-<p class=3D"MsoNormal">---<o:p></o:p></p>
-<p class=3D"MsoNormal">drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_en=
-coder.h | 1 +<o:p></o:p></p>
-<p class=3D"MsoNormal">1 file changed, 1 insertion(+)<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dc=
-n10_stream_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_en=
-coder.h<o:p></o:p></p>
-<p class=3D"MsoNormal">index 0d86df97878c..35acb3342e31 100644<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_str=
-eam_encoder.h<o:p></o:p></p>
-<p class=3D"MsoNormal">+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_str=
-eam_encoder.h<o:p></o:p></p>
-<p class=3D"MsoNormal">@@ -73,6 +73,7 @@<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SRI(HDMI_ACR_48_1, DIG, id),\<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SRI(DP_DB_CNTL, DP, id), \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SRI(DP_MSA_MISC, DP, id), \<o:p></o:p></p>
-<p class=3D"MsoNormal">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; SRI(DP_MSA_VBID_MISC, DP, id), \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SRI(DP_MSA_COLORIMETRY, DP, id), \<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SRI(DP_MSA_TIMING_PARAM1, DP, id), \<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SRI(DP_MSA_TIMING_PARAM2, DP, id), \<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal">-- <o:p></o:p></p>
-<p class=3D"MsoNormal">2.17.1<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_CH2PR12MB41517A80B79301CC995E6977FDC79CH2PR12MB4151namp_--
