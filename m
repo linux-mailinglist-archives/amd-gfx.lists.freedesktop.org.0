@@ -2,66 +2,122 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A9F63F87E2
-	for <lists+amd-gfx@lfdr.de>; Thu, 26 Aug 2021 14:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F00B53F87FF
+	for <lists+amd-gfx@lfdr.de>; Thu, 26 Aug 2021 14:51:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DDEA6E83A;
-	Thu, 26 Aug 2021 12:46:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C93E6E841;
+	Thu, 26 Aug 2021 12:51:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
- [IPv6:2a00:1450:4864:20::636])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 884FC6E838
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 12:46:29 +0000 (UTC)
-Received: by mail-ej1-x636.google.com with SMTP id mf2so5980232ejb.9
- for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 05:46:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=c0DTn/gZFqqKIUgqNkUcsfHUyWmc+KSD/W5j4bOPTps=;
- b=LO8lp7H5krzAtKvdK8LmTRFax/kdawcvUN6EkNrS+Q5FfAnLmEMLkJpsP+LD1igd9C
- iL08POiHYm0jdaiJiFQoSwHY196JQ0P9c1/fB0FIt3JgN5+y2E3XTjsMEvqlOmGyGT7q
- NPWn3nTOqyJYU/Gy9UNCH+bQh4xTCVzbCkmic=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=c0DTn/gZFqqKIUgqNkUcsfHUyWmc+KSD/W5j4bOPTps=;
- b=FEDsdgSJz3qe36NjY+cKW2z2SGVuVjqxQAp+CsyfDLlI9LejBWnENUKQIiTbqqawwy
- tRyIX3Mu6orkfBcugaT0OkrshQCEnLn7Yvwpp9QJWtwmRNcV4zq8zxRK3zEYUeQMMXzB
- DRUZI9qMCq/XRAH8758cKCDbkZL9lFgPGLiIgovNrKdNAxFmTV5RTDaaU3UKvUQ1FuWD
- vyojsWZnT2Aym6X1CLRZhWsR84paWmToKGJyJlzXpdUHAj/kLlMLy6lsRocFRH3yoL8R
- mE7AER/d/qfXu14yDRs3p1UDIQoNKjhmDpTBVCJzmzdRHjWsrKW6i6nhQq9am1iMq6iG
- 0Z/w==
-X-Gm-Message-State: AOAM531BoLPq/Xm5aflzmzDrDEjsd/pdL0hs/mlACQAABOX7euxsZ4RX
- KKylnimG4gFpaqVzl1J90S2MQA==
-X-Google-Smtp-Source: ABdhPJwz+Sp9u8mHC0XN4h/fp4H/YM6bsFOOXPTQsn5c2N/kmZO7DCk7REanS8FVc4sD4aioxtIgiw==
-X-Received: by 2002:a17:906:9a4e:: with SMTP id
- aj14mr762492ejc.84.1629981988019; 
- Thu, 26 Aug 2021 05:46:28 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id k15sm879346eji.34.2021.08.26.05.46.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Aug 2021 05:46:27 -0700 (PDT)
-Date: Thu, 26 Aug 2021 14:46:25 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-Cc: "Liu, Monk" <Monk.Liu@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/sched: fix the bug of time out calculation(v3)
-Message-ID: <YSeNIe/LW7/2+7iz@phenom.ffwll.local>
-References: <1629953731-14629-1-git-send-email-Monk.Liu@amd.com>
- <e000dc1a-8fe8-ea69-e16b-bf0b64d773f2@gmail.com>
- <BL1PR12MB5269107A0A927EC3D7A7B6E784C79@BL1PR12MB5269.namprd12.prod.outlook.com>
- <7ad2d73a-cabd-b85b-0483-72a2177df86e@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2065.outbound.protection.outlook.com [40.107.220.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C25B76E840
+ for <amd-gfx@lists.freedesktop.org>; Thu, 26 Aug 2021 12:51:27 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YFakFPIx7NWu0LD1q9t4xsXGh7RmQiWnDaLmIIQRp8kUCAeUVxO7IjCT7/KvmsoI927ZnxER6NrJuWku0lZWtGcLpCMePrKwl7AxBrUDzBe2A+JkR5o9OJ4FRU1ERjRUWiyRs31Wv9tBx3RejodBIeZx7PkY7+ZnwW0N6FDXF8BBBhOtTrwhXYGeR8VeZP4dJy1n+JlzP0kcvIUKklouTvdIWLto+Q4vlJj7xZ0CAjiBzLvDLB1zye6YF0la5eeQHofUujLwNNRuPR95E0bDXy+038DVA6mr1XnE8MIiTJVR2vntiJBuIxEtNChx8o/BVMI2ltmcdAzzvmgXiCZ4Ww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=voptNexezWFCzrUTs9Gp29vOGb2jMsQTea2gqQG2ecg=;
+ b=YmLZGCNoH2akY4I+XQbQJw2VqhJiSvMLiPQTSDykwuUU74t64n28GDaF7pnogX0wDld7/oWv5MnLj/+6q0W2Xt6FYJhm3PHt315VBZeOBBUSpbMqXqGfFM+SoCF6PLc+xls3XrGAmpRgSmHUqthh26gybK5++ApwqyIE1Y1ZX3nRQe4pqS5iLCUZJYbv/wMKm2BT1Fj+Tm5RMdVvmv8q1IYzwogY2miww5i3jG7+f2JUiwZme7edsXjiUX85RDWGymDgDwNnnwdWJVAYtU+iGick7rS1nN6MfcYS6YaazdoKSppRnml/tMd2j/FKA/s8Yi6y+fk7aqlLK46QxcAv6w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=voptNexezWFCzrUTs9Gp29vOGb2jMsQTea2gqQG2ecg=;
+ b=pi+dszNUcej7+GzSRwGO4tGEONYRtnJ+4Be0Wo2FzHEVHG4RX7uv01DPGsuw1HArLt2rR5Wzvg2lyzZbKNTB0Z/NYOvf27zEV4p0Ag0/WgB4ErWKdY48Jd+QkM5tWV9O1GSZNcz6bpeVqwDgbqCHRq2IuPEhmIWcFS3u6cChceM=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from BN9PR12MB5035.namprd12.prod.outlook.com (2603:10b6:408:134::8)
+ by BN9PR12MB5035.namprd12.prod.outlook.com (2603:10b6:408:134::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Thu, 26 Aug
+ 2021 12:51:26 +0000
+Received: from BN9PR12MB5035.namprd12.prod.outlook.com
+ ([fe80::e8b5:25a3:551b:6fa7]) by BN9PR12MB5035.namprd12.prod.outlook.com
+ ([fe80::e8b5:25a3:551b:6fa7%7]) with mapi id 15.20.4436.024; Thu, 26 Aug 2021
+ 12:51:26 +0000
+Subject: Re: [PATCH 5/5] drm/amdgpu:schedule vce/vcn encode based on priority
+To: "Lazar, Lijo" <lijo.lazar@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: leo.liu@amd.com, Alexander.Deucher@amd.com, Christian.Koenig@amd.com,
+ shashank.sharma@amd.com, nirmoy.das@amd.com
+References: <20210826071307.136010-1-satyajit.sahu@amd.com>
+ <20210826071307.136010-5-satyajit.sahu@amd.com>
+ <e36f4512-3025-6abc-3afb-27d26e102be9@amd.com>
+From: "Sahu, Satyajit" <satyajit.sahu@amd.com>
+Message-ID: <bb48216b-c6bd-6f64-dcd9-397eafe5ca26@amd.com>
+Date: Thu, 26 Aug 2021 18:21:13 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+In-Reply-To: <e36f4512-3025-6abc-3afb-27d26e102be9@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <7ad2d73a-cabd-b85b-0483-72a2177df86e@gmail.com>
-X-Operating-System: Linux phenom 5.10.0-7-amd64 
+Content-Language: en-US
+X-ClientProxiedBy: PN1PR01CA0079.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c00:1::19) To BN9PR12MB5035.namprd12.prod.outlook.com
+ (2603:10b6:408:134::8)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [10.252.254.217] (165.204.158.249) by
+ PN1PR01CA0079.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c00:1::19) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4457.19 via Frontend Transport; Thu, 26 Aug 2021 12:51:23 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e3bacac6-3dd3-45c2-efe8-08d968903737
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5035:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BN9PR12MB50351EB14187F85542CF64F6F5C79@BN9PR12MB5035.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: XLoE2EkxVRD+ZLy6xiYlPPDKF2jSOoIomOGMiQtpRCsrqKV+bFr9o5PpHPBVRfgutzULUmR0HEnwocFqewtnbbLfHBPuJ5XPxJWtRFPPKF5cmZ7wdBkife42mGx4Al+gVPsZaGGwEIBwLEhAV3NgoCTfl/7C3bq5g15TdAz/UJ85n3Ngth7aWN1D0DAANzlyaM3qaRlqdlYMZuhcGMWY5oWTpXQfFPiqmrFRTKaVdI5Pi6N+JDmqsWpffH8unDPNxNBoMKjEbY/aRi7aHR7fwFkb9qZb3GDy+gJuCAJ+b0pES9dMqtx9LhNES4OenOBY43LRiTLyzLegfkL7eDxUcLkVLkVrPa2gaTcVutXOI8xbNw84ZDOwehNow8Z/McbT2nffHWj4Na8UWYVTwYM1HzUrYeGIl72s/NG45JfO/xdLAIT9ACHHUYpqUIhZkLCvENC7DFu6+enctcadmO1aME4eTBjQQwGSb4Qi7UzufW2Upret16HjiOfXB+jZPwLTjYz6cDxlXUKEkYZrTGUw9rmwsrY2OqV0WrBp/lf3AQbo8xO29GyX4iS6Bea+t8utJWsjf9clRhmAvUj/GFBR370US3CfojUG9T0sLd5C2ZNrKuMus8IOAsw78P+u5mLjtNfClL5mJISuda9VeWCHtmS0jq85MQWwPuMG6u9W9RsU2rX5FrstvUVnRd36QDdA6cnNM+Bl1Qp5P9Y/+MReBT1sCCtuyAXeyI8Rt0qE3+Q=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5035.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(396003)(366004)(136003)(39860400002)(376002)(16576012)(956004)(31686004)(86362001)(2616005)(31696002)(5660300002)(8676002)(38100700002)(2906002)(66946007)(66556008)(66476007)(4326008)(36756003)(8936002)(26005)(6666004)(186003)(316002)(6486002)(53546011)(478600001)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WG9RWmU5S2wrVlB2b04wOGpLeEw0NXBXd2xDaWZRQmtkak1ZSzhidEZoSzFj?=
+ =?utf-8?B?MVVxa2xQY0NtcGh3TFY3akh1QnVET0VjMmdsTFNqZVJjemVFQUJheW1TeXc0?=
+ =?utf-8?B?cjRFYXY3WFRsemNScS93Z1VpZU1PS24vZkdBVVRpaC8zWG1BOEJPWHdRM0FB?=
+ =?utf-8?B?WlJhYXJib2RtaCtMMWZrUXBSY2VUd3pJaGRtcXV3M0IyVzMyU2E2QmU1T25V?=
+ =?utf-8?B?dysydWJDbytPc2hWaTJpeHUxeFVlSzBQNzdwTnZPRHdYV0pLcVM0NytBZ0s2?=
+ =?utf-8?B?TkhzSC85bWdJaUxWblNObGpaWGM4eXN3eHJFdWRuM0lDTTQ4YitXMkNZUFli?=
+ =?utf-8?B?NE40OFgrd1BDY0VKSjBEdGVDTCtOU3ZScVZNRGg2ZFNFMnQ4Q2p4VER4YitN?=
+ =?utf-8?B?Wm1YamRkaVpQRkhNQU14ZktuSUpFNVRnQUN0ZGRKQ1d3Y1p3bmJtN2NkQnFt?=
+ =?utf-8?B?THB4bjVQbUl5TFB2dWhnY1pueHNHdlNBekFmUXQ4aWR3dnlITDNNbFFHRTF2?=
+ =?utf-8?B?NHdRMDRYUllUK3VqOTNndkU1WnZhNCs5ZUJmNkg5bldzQnl2Q2hhcTZ3RGhR?=
+ =?utf-8?B?QnM1Q20xY2VIVlFicTBZT0Y1NnAwdmEvMW9TcFQzemVMRzZnaGRreFV6TDhm?=
+ =?utf-8?B?ZmRIQTRaeFhxd1g2TUtpdjhKRmptdXJLQUp4MCt5RFplemxHOEFEeWZsdEFU?=
+ =?utf-8?B?eHJITVhjSkt3aGlyTCtISUFwRjRKZmYwd0tSeURBcktxeWVzMnRYY2NsMzc2?=
+ =?utf-8?B?SWxoRC9rOG9SNVl5enZlbjFiZmVKTk4rU0xlMzRmZGlmR3NJRDMycUNQYnEw?=
+ =?utf-8?B?ZWVPbDRIdHBxYXc3eno2N3p3K0V5Q3Z3QVkxTUtiUnU3Y3FrZmY2aWExenhO?=
+ =?utf-8?B?d2VUeGdYZElKOVBXVGVyWUdsaUJleDhQVEp1THIrb2RYM05lZHMvMHZrWHdG?=
+ =?utf-8?B?eVBXWUwzODhtbGcrZk8vWVNrRjZ2U2cvT1FBbURyNi9PUWU2bi9ITUZ1UFM3?=
+ =?utf-8?B?WCt1eG1MU3ZmSFRmaURaemVnRERpaHBENEZNb1VjemYzWTBNenpROFZHaTZR?=
+ =?utf-8?B?N2FBVWhqWFp3MjNpc2hRMHNDVmw3RWVDUDB2MVBwSjN4UXVNTEc3MGNVbjVx?=
+ =?utf-8?B?WlFwUkVuVCtjL3ZGZ0pwc2lLV1VKUjZBazZlQXNnQTVicCt1anRTaUhGdk1H?=
+ =?utf-8?B?M1ROeUhZeDk1TnpGU1ZIZ0xwUThqVVFmSHZtRHZYaU4xREpqTTNOYTRFR2c5?=
+ =?utf-8?B?QXRhT0Z6UU9VdXMyczZjVmdmQVNsL0doa2dPdHl0YUNPK0RnTTVrTlBsbkdx?=
+ =?utf-8?B?K3ZTNFpOSXZqWVZwNjRkYnVTY1hhZnNJSUVVeCszKzE3MWNOU3BmcEg5VVg0?=
+ =?utf-8?B?Sy9xNk00bmZ2d2ZHWUhrWE90Tm92VFFNMjA4VnlIdmJrd1doeWVCV1NQWTBE?=
+ =?utf-8?B?QmdGT3hzYVo4R0xPSWlXekFFUisvUitUWHFRcVd3TGlwRlBMaWlSa0gxWFBi?=
+ =?utf-8?B?akFWK1hwY1Z2bnpmZkZOK2QzOFo1c1NuV1B3VHhQMFo1Z2g2bXdjdVdBK0tm?=
+ =?utf-8?B?QVhGYTh0bmRWWlBtSDhtZVVWSEl0bHNUNG1UOGpuc0gwQWRRZ1BXTTF6V3Bp?=
+ =?utf-8?B?d1plMkQ4NVlYM29zUTNkZjNKOC9zVk1VYmcyaGVBSWRONFZMMG80dVUxTWU3?=
+ =?utf-8?B?OHZvRXpHNlEwV0VJeXcwZ3hVS1ZzZ3UyVEh4amI3UnVpK0N2R1Z5VGpmWVg1?=
+ =?utf-8?Q?6+8RqxzeOhyUTWAqfngPhQGnG9chAhMPezBQ7q3?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3bacac6-3dd3-45c2-efe8-08d968903737
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5035.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2021 12:51:26.2947 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xzgejKAu+quV/jPzLYBvBo/tbz1PTOYl5cjMdD4TezNdoBdKl+Ia3s62q9bNx3LN
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5035
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,142 +132,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Aug 26, 2021 at 02:37:40PM +0200, Christian K�nig wrote:
-> Am 26.08.21 um 13:55 schrieb Liu, Monk:
-> > [AMD Official Use Only]
-> > 
-> > > > I'm not sure if the work_tdr is initialized when a maximum timeout is specified. Please double check.
-> > Ok, will do
-> > 
-> > > > BTW: Can we please drop the "tdr" naming from the scheduler? That is just a timeout functionality and not related to recovery in any way.
-> > We even do not start hardware recovery in a lot of cases now (when wave kill is successfully).
-> > 
-> > Umm, sounds reasonable, I can rename it to "to" with another patch
-> 
-> Maybe more like job_timeout or timeout_work or something into that
-> direction.
 
-Yeah that's better. TO is even worse I think than TDR, which is at least
-somewhat well-known from the windows side.
+On 8/26/2021 5:31 PM, Lazar, Lijo wrote:
+>
+>
+> On 8/26/2021 12:43 PM, Satyajit Sahu wrote:
+>> Schedule the encode job in VCE/VCN encode ring
+>> based on the priority set by UMD.
+>>
+>> Signed-off-by: Satyajit Sahu <satyajit.sahu@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 30 +++++++++++++++++++++++++
+>>   1 file changed, 30 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+>> index c88c5c6c54a2..4e6e4b6ea471 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
+>> @@ -120,6 +120,30 @@ static enum gfx_pipe_priority 
+>> amdgpu_ctx_prio_to_compute_prio(int32_t prio)
+>>       }
+>>   }
+>>   +static enum gfx_pipe_priority 
+>> amdgpu_ctx_sched_prio_to_vce_prio(int32_t prio)
+>
+> Well, there it is..enum gfx_pipe_priority. I really thought there is 
+> some type check protection from compiler, looks like implicit 
+> conversion from integral type.
+>
+> Thanks,
+> Lijo
+>
+Will change the return type to amdgpu_ring_priority_level in v2 based on 
+the Nirmoy's patch.
 
-Also would be good to polish the commit message a bit, there's a few typos
-and confusing wording.
--Daniel
+regards,
 
-> 
-> Christian.
-> 
-> > 
-> > Thanks
-> > 
-> > ------------------------------------------
-> > Monk Liu | Cloud-GPU Core team
-> > ------------------------------------------
-> > 
-> > -----Original Message-----
-> > From: Christian K�nig <ckoenig.leichtzumerken@gmail.com>
-> > Sent: Thursday, August 26, 2021 6:09 PM
-> > To: Liu, Monk <Monk.Liu@amd.com>; amd-gfx@lists.freedesktop.org
-> > Cc: dri-devel@lists.freedesktop.org
-> > Subject: Re: [PATCH] drm/sched: fix the bug of time out calculation(v3)
-> > 
-> > Am 26.08.21 um 06:55 schrieb Monk Liu:
-> > > issue:
-> > > in cleanup_job the cancle_delayed_work will cancel a TO timer even the
-> > > its corresponding job is still running.
-> > Yeah, that makes a lot more sense.
-> > 
-> > > fix:
-> > > do not cancel the timer in cleanup_job, instead do the cancelling only
-> > > when the heading job is signaled, and if there is a "next" job we
-> > > start_timeout again.
-> > > 
-> > > v2:
-> > > further cleanup the logic, and do the TDR timer cancelling if the
-> > > signaled job is the last one in its scheduler.
-> > > 
-> > > v3:
-> > > change the issue description
-> > > remove the cancel_delayed_work in the begining of the cleanup_job
-> > > recover the implement of drm_sched_job_begin.
-> > > 
-> > > TODO:
-> > > 1)introduce pause/resume scheduler in job_timeout to serial the
-> > > handling of scheduler and job_timeout.
-> > > 2)drop the bad job's del and insert in scheduler due to above
-> > > serialization (no race issue anymore with the serialization)
-> > > 
-> > > Signed-off-by: Monk Liu <Monk.Liu@amd.com>
-> > > ---
-> > >    drivers/gpu/drm/scheduler/sched_main.c | 25 ++++++++++---------------
-> > >    1 file changed, 10 insertions(+), 15 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
-> > > b/drivers/gpu/drm/scheduler/sched_main.c
-> > > index a2a9536..ecf8140 100644
-> > > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > > @@ -676,13 +676,7 @@ drm_sched_get_cleanup_job(struct drm_gpu_scheduler *sched)
-> > >    {
-> > >    	struct drm_sched_job *job, *next;
-> > > -	/*
-> > > -	 * Don't destroy jobs while the timeout worker is running  OR thread
-> > > -	 * is being parked and hence assumed to not touch pending_list
-> > > -	 */
-> > > -	if ((sched->timeout != MAX_SCHEDULE_TIMEOUT &&
-> > > -	    !cancel_delayed_work(&sched->work_tdr)) ||
-> > > -	    kthread_should_park())
-> > > +	if (kthread_should_park())
-> > >    		return NULL;
-> > >    	spin_lock(&sched->job_list_lock);
-> > > @@ -693,17 +687,21 @@ drm_sched_get_cleanup_job(struct drm_gpu_scheduler *sched)
-> > >    	if (job && dma_fence_is_signaled(&job->s_fence->finished)) {
-> > >    		/* remove job from pending_list */
-> > >    		list_del_init(&job->list);
-> > > +
-> > > +		/* cancel this job's TO timer */
-> > > +		cancel_delayed_work(&sched->work_tdr);
-> > I'm not sure if the work_tdr is initialized when a maximum timeout is specified. Please double check.
-> > 
-> > BTW: Can we please drop the "tdr" naming from the scheduler? That is just a timeout functionality and not related to recovery in any way.
-> > 
-> > We even do not start hardware recovery in a lot of cases now (when wave kill is successfully).
-> > 
-> > Regards,
-> > Christian.
-> > 
-> > >    		/* make the scheduled timestamp more accurate */
-> > >    		next = list_first_entry_or_null(&sched->pending_list,
-> > >    						typeof(*next), list);
-> > > -		if (next)
-> > > +
-> > > +		if (next) {
-> > >    			next->s_fence->scheduled.timestamp =
-> > >    				job->s_fence->finished.timestamp;
-> > > -
-> > > +			/* start TO timer for next job */
-> > > +			drm_sched_start_timeout(sched);
-> > > +		}
-> > >    	} else {
-> > >    		job = NULL;
-> > > -		/* queue timeout for next job */
-> > > -		drm_sched_start_timeout(sched);
-> > >    	}
-> > >    	spin_unlock(&sched->job_list_lock);
-> > > @@ -791,11 +789,8 @@ static int drm_sched_main(void *param)
-> > >    					  (entity = drm_sched_select_entity(sched))) ||
-> > >    					 kthread_should_stop());
-> > > -		if (cleanup_job) {
-> > > +		if (cleanup_job)
-> > >    			sched->ops->free_job(cleanup_job);
-> > > -			/* queue timeout for next job */
-> > > -			drm_sched_start_timeout(sched);
-> > > -		}
-> > >    		if (!entity)
-> > >    			continue;
-> 
+Satyajit
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+>> +{
+>> +    switch (prio) {
+>> +    case AMDGPU_CTX_PRIORITY_HIGH:
+>> +        return AMDGPU_VCE_ENC_PRIO_HIGH;
+>> +    case AMDGPU_CTX_PRIORITY_VERY_HIGH:
+>> +        return AMDGPU_VCE_ENC_PRIO_VERY_HIGH;
+>> +    default:
+>> +        return AMDGPU_VCE_ENC_PRIO_NORMAL;
+>> +    }
+>> +}
+>> +
+>> +static enum gfx_pipe_priority 
+>> amdgpu_ctx_sched_prio_to_vcn_prio(int32_t prio)
+>> +{
+>> +    switch (prio) {
+>> +    case AMDGPU_CTX_PRIORITY_HIGH:
+>> +        return AMDGPU_VCN_ENC_PRIO_HIGH;
+>> +    case AMDGPU_CTX_PRIORITY_VERY_HIGH:
+>> +        return AMDGPU_VCN_ENC_PRIO_VERY_HIGH;
+>> +    default:
+>> +        return AMDGPU_VCN_ENC_PRIO_NORMAL;
+>> +    }
+>> +}
+>> +
+>>   static unsigned int amdgpu_ctx_get_hw_prio(struct amdgpu_ctx *ctx, 
+>> u32 hw_ip)
+>>   {
+>>       struct amdgpu_device *adev = ctx->adev;
+>> @@ -133,6 +157,12 @@ static unsigned int 
+>> amdgpu_ctx_get_hw_prio(struct amdgpu_ctx *ctx, u32 hw_ip)
+>>       case AMDGPU_HW_IP_COMPUTE:
+>>           hw_prio = amdgpu_ctx_prio_to_compute_prio(ctx_prio);
+>>           break;
+>> +    case AMDGPU_HW_IP_VCE:
+>> +        hw_prio = amdgpu_ctx_sched_prio_to_vce_prio(ctx_prio);
+>> +        break;
+>> +    case AMDGPU_HW_IP_VCN_ENC:
+>> +        hw_prio = amdgpu_ctx_sched_prio_to_vcn_prio(ctx_prio);
+>> +        break;
+>>       default:
+>>           hw_prio = AMDGPU_RING_PRIO_DEFAULT;
+>>           break;
+>>
