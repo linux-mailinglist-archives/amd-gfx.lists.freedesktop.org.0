@@ -2,98 +2,49 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC84F3F9925
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Aug 2021 14:44:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCC553F9A6F
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Aug 2021 15:47:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01D646E930;
-	Fri, 27 Aug 2021 12:44:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B8A66E96E;
+	Fri, 27 Aug 2021 13:47:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2048.outbound.protection.outlook.com [40.107.223.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE4496E930
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Aug 2021 12:44:05 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PSIG8zjSbp9H5jD1MlxIy4OGxibz3jd8mKgp8LVtkB8MALL5KioyZiR3JhWIcUo+ZHeuPsZUkyRlFLJ/tczRxDu2pqudDgEfGN1zlzblwIRaRdVnVmRyd0ZsCMHHs8rlhOfXjqp3n7K+DSz7KiwJYtH1SZSKe7RH000JbIWrhUJpQxv4sItyv637WcxSUuLgxWKg6ldp5KwOH9IUEG+yNYtVyvh5T9XzFBx/vBqb4wLQ5p+P2IoL+Q8O4Jp2JQkh9pe/K70XHxF7QvB0TZg5xpGdH7Z6JCokEd67vbQwtlBLMxJk6u49TxXl3L6OOlUXJx3BGoAOZsHu3Bgd8PhAdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=R6CUkp6DTT5izGq5X/GSTKqDQ2BRWVfDY76GMobfHYU=;
- b=Fth0Az6HopK/VJvpRs4Yh1oSBuEwDdY+Lqiz3mQwziVBHib+1GZTh5K2RCjIR9mThfmw/5vplj9nhqRIkbL4J7GmS4h5RhERB3TdcS1lCpjRF0vC1l9lJQ6D05F/i9M5YQHgGkJwgw6A09hAHX07J0VoLsyzb292ggTwhBkrX4Qdv1JfcOdm5yrd7RQe5Lr5bUzAtuHCFeu0k2EgWZ0U7vPm/DtvZyO9i4uBwD4Sqrv3CQYtbvgNUz+CXc5w6WlPulzSvM4P8+NeXPAqclmRHIB2520vjwxb/HsQX93ouIJxsJq0Bb2CIs1np8tFMGRsaTutE+vR8mjxFUyI3TjSwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=R6CUkp6DTT5izGq5X/GSTKqDQ2BRWVfDY76GMobfHYU=;
- b=d8Eo/7areMpWJCy3TEboeCxef1eobqiFHG1nyiFtwMyxBu300gtgEVzDATJURu1qzP5zxW+mSAPxhptkaHBLn5Jw3dAb/NbbEKggjs22nvwGtg7QpY07mqMzevbh17yudti5M+hJ/0WE4mwRLnmtx1V6VOddWbORXH2G75/3DSE=
-Received: from DM6PR07CA0057.namprd07.prod.outlook.com (2603:10b6:5:74::34) by
- MN2PR12MB3021.namprd12.prod.outlook.com (2603:10b6:208:c2::30) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4457.23; Fri, 27 Aug 2021 12:44:02 +0000
-Received: from DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:74:cafe::6e) by DM6PR07CA0057.outlook.office365.com
- (2603:10b6:5:74::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.17 via Frontend
- Transport; Fri, 27 Aug 2021 12:44:02 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT032.mail.protection.outlook.com (10.13.173.93) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4457.17 via Frontend Transport; Fri, 27 Aug 2021 12:44:02 +0000
-Received: from amd-Celadon-CZN.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Fri, 27 Aug
- 2021 07:43:59 -0500
-From: Satyajit Sahu <satyajit.sahu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <leo.liu@amd.com>, <Alexander.Deucher@amd.com>,
- <Christian.Koenig@amd.com>, <shashank.sharma@amd.com>, <nirmoy.das@amd.com>,
- <lijo.lazar@amd.com>, Satyajit Sahu <satyajit.sahu@amd.com>
-Subject: [PATCH v2 3/3] drm/amdgpu:schedule vce/vcn encode based on priority
-Date: Fri, 27 Aug 2021 18:13:00 +0530
-Message-ID: <20210827124300.14593-3-satyajit.sahu@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210827124300.14593-1-satyajit.sahu@amd.com>
-References: <20210827124300.14593-1-satyajit.sahu@amd.com>
+Received: from mail-4317.protonmail.ch (mail-4317.protonmail.ch [185.70.43.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FC436E931
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Aug 2021 13:47:22 +0000 (UTC)
+Date: Fri, 27 Aug 2021 13:47:18 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail; t=1630072039;
+ bh=2mpSyvRYN68a+AVrYi3b/7VbwUDdjjVaGKHjJkRpaKA=;
+ h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+ b=LMrrIPO2N0Klnu6OG0ZvHacfMN+Jo04BZspdZfFZ7fX9s0t6tm8BL0luhZq0em26J
+ cG2TQQ0z+EVoejbfnmB7Epdi6xtIEBy87WhcwIlULJfVATnXNTT/Vhp2jJHxWJ9laR
+ 5uOtoarN0rDwzgudmy/pim9MERYKph7CY/oVzj7Z7NYY+YSIywwuK6Dg3lt5rJZ8Qv
+ WKClU4Mam9x0YOHbcnS+DTeSv5x41mqQRCO/29nN6DHrcWKbjx7VMFdpEiUGH0azIE
+ jcC05w6zU40T2TIvhgetzhSLFeu4j28PZXexEOE/4LQPETULLcsZpuGWKufzgVEvPw
+ gJF5ue7qFZlQA==
+To: "Kazlauskas, Nicholas" <nicholas.kazlauskas@amd.com>
+From: Simon Ser <contact@emersion.fr>
+Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, amd-gfx@lists.freedesktop.org,
+ Sean Paul <seanpaul@chromium.org>, Hersen Wu <hersenxs.wu@amd.com>,
+ Harry Wentland <Harry.Wentland@amd.com>, Louis Li <Ching-shih.Li@amd.com>
+Subject: Re: [PATCH v2] drm/amd/display: Fix two cursor duplication when using
+ overlay
+Message-ID: <dyHqMa1Vv12hhoVMu0T4tJLDavAQh9ZyKNpwk9-GN8u_sdXYaQMLkxXXxrivyEeVOPbu7MDwj0QVMZowSxv70AHmYw3r_yWJbU4a5Bvt9U0=@emersion.fr>
+In-Reply-To: <ffd29136-d0e3-17a9-f01f-e81c44ae0284@amd.com>
+References: <20210414000604.3273048-1-Rodrigo.Siqueira@amd.com>
+ <SrcUnUUGJquVgjp9P79uV8sv6s-kMHG4wp0S3b4Nh9ksi29EIOye5edofuXkDLRvGfvkkRpQZ9JM7MNqew2B3kFUhaxsonDRXprkAYXaQUo=@emersion.fr>
+ <20210818131824.avczlw6ie3tfs76j@outlook.office365.com>
+ <Hm33HvRokytajvNBSyeseBTVWScQu0mPJVLvRcABYsahB6j3DjJwvelk-WgnIA2AlG1AU0wnGV3gvAgzDf5nmWYRjIS58gMjtdrG0m_kjhA=@emersion.fr>
+ <ffd29136-d0e3-17a9-f01f-e81c44ae0284@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cae163b9-350a-44e3-d09d-08d969585922
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3021:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB302194609B0DA812205442B0F5C89@MN2PR12MB3021.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SZ9HWUVxrj/LnP4wnsukysKSI2iV8ZYyX4UN62gHanneLj0E0nYph+z9FDpf7ozZ9bUfThkP2uzfrepdqB6wMbnlVj4RseCO/xu1wJc7se2XhgZPDWMslDK8+8yfsRcMRv3gkuCaWtSsVqSaFazFnN33Z+UjQmsjCVo6mkk7Atli5nVcnad/Y6/a0+M+MZ02iTxZdeBeuzQI2J1lTkXRqfjmDianwKW46mmhEvhF/Sy0QrazLc/0U0K6f6YpWk1GIEqwK7OjkPg7WBU1jxR56dMWRJNUOk9cCW5pvBLX3JF4q3CVOjkI/OS150cVdQrgxoVyssekATbaujKfLCVhm7jBgf3XG856GUkN6u8vl42Y42sAxB0T4DjEzt0wxvJKXdjqRFWc2sIQONfPHcGhuT7ACBb2a2nUYNFinxJDSDumVhPyGq2SEDm5sY1U8gnCtsmF/CnnQ1qHUBZNm1yPte3HbXav/X+A60ykDL8yo7v6njd1q6eXqe3LR/wF3Gh/lBgfht1BWLebmlceJ2zl8Sx1l6zYKvvXCCqZrAHbuXBhJqXDcs1qzqdOY1xWB9PlXYV9Vhl/ysB1fDr5pKLPA6eroqZSui9WAaEEtGoaWqf2uZ45r0Q/4P++fQwcz4eBbLGq9KPMT9nrDrfL9i4hnlHE0pWKXnTwSi7UAIiH/Tc942kFpn3QIF+NiR/ch864rtfdSWENbl9p7irEgY3Uj6xN2LbHf2RCyiXvT2SG0wY=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(136003)(39860400002)(376002)(396003)(36840700001)(46966006)(82740400003)(7696005)(6666004)(44832011)(36860700001)(5660300002)(86362001)(356005)(16526019)(4326008)(8936002)(478600001)(2906002)(336012)(426003)(47076005)(70206006)(26005)(186003)(81166007)(36756003)(1076003)(8676002)(316002)(6916009)(2616005)(54906003)(70586007)(82310400003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2021 12:44:02.2095 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cae163b9-350a-44e3-d09d-08d969585922
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT032.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3021
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+ autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+ mailout.protonmail.ch
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,51 +56,117 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Simon Ser <contact@emersion.fr>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Schedule the encode job in VCE/VCN encode ring
-based on the priority set by UMD.
+Hi Nicholas!
 
-Signed-off-by: Satyajit Sahu <satyajit.sahu@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+On Tuesday, August 24th, 2021 at 16:56, Kazlauskas, Nicholas <nicholas.kazl=
+auskas@amd.com> wrote:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-index 0d1928260650..468003583b2a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.c
-@@ -120,6 +120,18 @@ static enum amdgpu_gfx_pipe_priority amdgpu_ctx_prio_to_compute_prio(int32_t pri
- 	}
- }
- 
-+static enum amdgpu_ring_priority_level amdgpu_ctx_sched_prio_to_ring_prio(int32_t prio)
-+{
-+	switch (prio) {
-+	case AMDGPU_CTX_PRIORITY_HIGH:
-+		return AMDGPU_RING_PRIO_1;
-+	case AMDGPU_CTX_PRIORITY_VERY_HIGH:
-+		return AMDGPU_RING_PRIO_2;
-+	default:
-+		return AMDGPU_RING_PRIO_0;
-+	}
-+}
-+
- static unsigned int amdgpu_ctx_get_hw_prio(struct amdgpu_ctx *ctx, u32 hw_ip)
- {
- 	struct amdgpu_device *adev = ctx->adev;
-@@ -133,6 +145,10 @@ static unsigned int amdgpu_ctx_get_hw_prio(struct amdgpu_ctx *ctx, u32 hw_ip)
- 	case AMDGPU_HW_IP_COMPUTE:
- 		hw_prio = amdgpu_ctx_prio_to_compute_prio(ctx_prio);
- 		break;
-+	case AMDGPU_HW_IP_VCE:
-+	case AMDGPU_HW_IP_VCN_ENC:
-+		hw_prio = amdgpu_ctx_sched_prio_to_ring_prio(ctx_prio);
-+		break;
- 	default:
- 		hw_prio = AMDGPU_RING_PRIO_DEFAULT;
- 		break;
--- 
-2.25.1
+> It's easiest to under the hardware cursor as being constrained within
+> the DRM plane specifications. Each DRM plane maps to 1 (or 2) hardware
+> pipes and the cursor has to be drawn along with it. The cursor will
+> inherit the scale, bounds, and color management associated with the
+> underlying pipes.
 
+Ah, I see. So the reason why we need to draw the cursor twice is to
+accomodate for the case where it's visible on both the primary and
+overlay planes, e.g.
+
+=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90
+=E2=94=82Primary                     =E2=94=82
+=E2=94=82                            =E2=94=82
+=E2=94=82                            =E2=94=82
+=E2=94=82        =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=90           =E2=94=82
+=E2=94=82        =E2=94=82Cursor =E2=94=82           =E2=94=82
+=E2=94=82        =E2=94=82       =E2=94=82           =E2=94=82
+=E2=94=82        =E2=94=82   =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=90  =E2=94=82
+=E2=94=82        =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=BC=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=98        =E2=94=82  =E2=94=82
+=E2=94=82            =E2=94=82            =E2=94=82  =E2=94=82
+=E2=94=82            =E2=94=82            =E2=94=82  =E2=94=82
+=E2=94=82            =E2=94=82     Overlay=E2=94=82  =E2=94=82
+=E2=94=82            =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=98  =E2=94=82
+=E2=94=82                            =E2=94=82
+=E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
+
+Is that right?
+
+In the case where the cursor only intersects a single plane (either primary
+or overlay) we need to draw it once only.
+
+Since some KMS user-space (ChromeOS) uses the non-atomic cursor with the re=
+st
+of the atomic API, we need to always ensure that the cursor can be enabled =
+at
+any time, even if it's currently disabled.
+
+> Correct me if I'm wrong, but I think your usecase [1] falls under the
+> category where:
+> 1. Primary plane covers entire screen
+> 2. Overlay plane does not cover the entire screen
+> 3. Overlay plane is scaled
+
+(1) and (2) are correct, but (3) is not. My overlay plane isn't scaled, but=
+ my
+primary plane may be. That doesn't change the outcome: the unscaled cursor =
+can
+be painted onto the overlay pipe, but not onto the primary pipe.
+
+> I don't remember if DRM has a requirement that the cursor plane must be
+> topmost, but we can't enable [1] as long as it is.
+
+KMS has a standard "zpos" property [1], which may be mutable. So we could i=
+n
+theory set an immutable "zpos" for the primary plane and overlay plane, and
+allow user-space to change the "zpos" of the cursor plane to move it
+in-between.
+
+But for my use-case, I need the cursor plane to be painted on top of the
+overlay, so it'd only be useful when the cursor doesn't intersect the overl=
+ay.
+
+[1]: https://drmdb.emersion.fr/properties/4008636142/zpos
+
+> 1. You want to save power:
+>
+> You will burn additional power for the overlay pipe.
+>
+> But you will save power in use cases like video playback - where the
+> decoder produces the framebuffer and we can avoid a shader composited
+> copy with its associated GFX engine overhead and memory traffic.
+>
+> 2. You want more performance:
+>
+> You will burn additional power for the overlay pipe.
+>
+> On bandwidth constrained systems you can save significant memory
+> bandwidth by avoiding the shader composition by allowing for direct
+> scanout of game or other application buffers.
+>
+> Your usecase [1] falls under this category, but as an aside I discourage
+> trying to design usecases where the compositor requires the overlay for
+> functional purposes.
+
+My use-case actually falls under both (1) and (2). We want to leave as much
+bandwidth as possible for the game to use. We want to save power because we=
+'re
+running on battery.
+
+We don't _require_ KMS planes to run, we have a fallback composition path w=
+hich
+uses the compute queue. But we want to do as much as possible to use KMS pl=
+anes.
