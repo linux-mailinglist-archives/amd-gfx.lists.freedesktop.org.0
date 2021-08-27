@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DAA73F97B6
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Aug 2021 12:00:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 824873F9851
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Aug 2021 12:56:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 069356E90E;
-	Fri, 27 Aug 2021 10:00:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBE486E027;
+	Fri, 27 Aug 2021 10:56:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2042.outbound.protection.outlook.com [40.107.236.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 035436E90E
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Aug 2021 09:59:58 +0000 (UTC)
+ (mail-bn8nam11on2055.outbound.protection.outlook.com [40.107.236.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED32E6E027
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Aug 2021 10:56:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JdIlL8jZKysWah5Ql2ZIiwNPwYgUOXhIn/SNDg3teD10WA7nVvgAfVop8UuSKBeDQGFPVS4uG1icJjvvInY8uGGRIztnTjBd6l8D2nrOzKeRAb1sKH/eByI1d0C5LMLE8UfQ7nhgps8wkk+Xu+wVLBiFd8lGuSpWKIze+Ei2/7cplTO1jgslU8u59LRKKa2wMgXXpNHb6Gvtn91L4LKDFs3dv+/V+1QQ2zZI8kqW9THmfkmsHACVE8FP8hxc9qAT/9XjAON9woAdZSx86wLd6hAr181RoHa2xmU3tQCvXROsuZtKjLTi1Zmd+muj8ZbApk99jpowgxCU9iwOeFulaw==
+ b=giZTqwBIlToZuW0aQ3lRks+EgI4M0fuF8pg9RstxJXC2PEQsonN/oszn+t7xSkc2WZJIeH24DG3YO1kFZKXKPEaQ3gXHv2o5HBJJi2FFAvpMh6u8n9aRZvYNkR7QSLwZWSYJJOjJ0b5TtAUcHHYETfEQmx0CdEduwH0qM0L9roV0VtOEw9G0Fm8N/Iw9OKMKDLdeCahyTE6thhiGrj9RNkiPk63KGebzoTmwIUQg/7oyD13qowSWBtpdtWz9Q8eTTIMVhHupmPe1jfP4Zw5CLfo548feW1aa3qpuQ2/P5PFPymBooACR+iA8M/ClwZjq14NltdJ15qg4QcG47VBUpg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MXpn4UCpzmzc0Ec4SrTETGU97M3XPdGiwHUtFl83jWc=;
- b=VaPoDtR3tXpktBC3HRJ+z2sQyq1lAVHTxR1uIQo/jZ7DerguU+tYc2EmHXjXGPf2tDK73au4C4TO0sxginalPBOasw5IwWFC49fcPee6aY3vdtZDlsBnwoWMa6d/MXAcc12sbVlBGEgCK9uPK8qfPGovhdVk5qhu6pDlZIlBd5U2ZLCpB14KSNcBuC9W469+hSLWbaP20AeaqNpRwVrP25W8jjZKpj0zZoJ50JT/IdvHsQoIHNQ+R3yL/OoD9s7BHE8g/znFe8iKd3xds+urSP6xJIZhaV2hFHv5wJj2rfQejVRV3FQFcoMZAlP7RocjiPmr9IEPrk6KwwsV4wof+A==
+ bh=qipczX3u7h8AJlToGIbTHFQ+W5SLiadp7rZmdUIO1Yk=;
+ b=Og/T1I4i9NmSDIe8wSxK38X5wvsoXp6Z+t/392Dyy8ENgrNTWAK74VD2azd6DRN7fGIubYKw4K0yQvfYOGeTcgp8hJUCH2YJ3KzdJtiBuABSxEt2IyeN/36CFVzWG/OhAkTaQ6BquI7VmVeGRNVW9v2C8Q9/HawjkqPg7xUXLJBDawo4peRHG1HyQ6BHvkzRE8EWQzMOMG89hpRl9o9l2tB3hKVNmO1H2k+Jidxt07fTr8HYNprnKdJ1DcrXQJy/4tW6wCyKyu3HhCTEgr76XxPCvLVj6CHU2gvenQ3/2zrJ9it8z/JJsl39BdV3O68R6vKj2/1NUfsfaoI68xaE+w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MXpn4UCpzmzc0Ec4SrTETGU97M3XPdGiwHUtFl83jWc=;
- b=LRuwlepFs1Ab0SyGpB1uJL9Fl9b8n2p7VGNNZhr6KgD45dh9FnzHsumqNs1GCmk9vV5Lqoporgne0U1cve3SgZVzCLPGT2il2S4ZDuzanjYPMVjAoNIdBgnNti43UuU5ObzeQRIoaORvG/Aab33TaN11iRJKmjrweur8cNl21Tg=
-Received: from DM6PR13CA0051.namprd13.prod.outlook.com (2603:10b6:5:134::28)
- by DM6PR12MB4864.namprd12.prod.outlook.com (2603:10b6:5:209::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19; Fri, 27 Aug
- 2021 09:44:21 +0000
-Received: from DM6NAM11FT062.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:134:cafe::50) by DM6PR13CA0051.outlook.office365.com
- (2603:10b6:5:134::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.6 via Frontend
- Transport; Fri, 27 Aug 2021 09:44:21 +0000
+ bh=qipczX3u7h8AJlToGIbTHFQ+W5SLiadp7rZmdUIO1Yk=;
+ b=06g5za/eCZsfgrfE37U22+Iu82XELPt/pu8Lf+kSyMh/Sav5TfHOadk69jNtV5nPhjUEBca2Fk9b5oi3VNEABCRQkLYytFVsRvBRtCEFnYSjxORb6Rn9VPCrqQfAT2Gh4TFxBXBBU5Z+IguYHvmc736ykcMujDNGCWLhZ49GLq8=
+Received: from MWHPR22CA0072.namprd22.prod.outlook.com (2603:10b6:300:12a::34)
+ by BN9PR12MB5131.namprd12.prod.outlook.com (2603:10b6:408:118::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.22; Fri, 27 Aug
+ 2021 10:40:55 +0000
+Received: from CO1NAM11FT045.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:12a:cafe::ad) by MWHPR22CA0072.outlook.office365.com
+ (2603:10b6:300:12a::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.20 via Frontend
+ Transport; Fri, 27 Aug 2021 10:40:55 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,50 +46,52 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT062.mail.protection.outlook.com (10.13.173.40) with Microsoft SMTP
+ CO1NAM11FT045.mail.protection.outlook.com (10.13.175.181) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4457.17 via Frontend Transport; Fri, 27 Aug 2021 09:44:20 +0000
-Received: from canli.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Fri, 27 Aug
- 2021 04:44:18 -0500
-From: Candice Li <candice.li@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: John Clements <john.clements@amd.com>, Candice Li <candice.li@amd.com>
-Subject: [PATCH] drm/amd/amdgpu: consolidate PSP TA unload function
-Date: Fri, 27 Aug 2021 17:43:43 +0800
-Message-ID: <20210827094343.889-1-candice.li@amd.com>
+ 15.20.4457.17 via Frontend Transport; Fri, 27 Aug 2021 10:40:55 +0000
+Received: from guchchen-System-Product-Name.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Fri, 27 Aug 2021 05:40:52 -0500
+From: Guchun Chen <guchun.chen@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <Hawking.Zhang@amd.com>,
+ <christian.koenig@amd.com>, <andrey.grodzovsky@amd.com>,
+ <mike@fireburn.co.uk>, <alexander.deucher@amd.com>
+CC: Guchun Chen <guchun.chen@amd.com>
+Subject: [PATCH] drm/amdgpu: stop scheduler when calling hw_fini
+Date: Fri, 27 Aug 2021 18:40:38 +0800
+Message-ID: <20210827104038.4945-1-guchun.chen@amd.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a0e8938e-b2e9-41a0-18f1-08d9693f3ecf
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4864:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4864969AFBD88B971BA506C591C89@DM6PR12MB4864.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3044;
+X-MS-Office365-Filtering-Correlation-Id: fcd27be7-942d-4f01-29fa-08d969472629
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5131:
+X-Microsoft-Antispam-PRVS: <BN9PR12MB5131910A965954AF52674CFBF1C89@BN9PR12MB5131.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: beHlRqLGdiAepE2Dn/1D1RKEWHiZYOrdKTlk6I3BUTTjaRxOejlEa7Gg9wMZ1W3tUV1NYQgdfjOFDZxnZIQcJBaOfBJdu5Z5lYIOj7BHxd44LXjac5sKp0OwsTbMWgrR7Srd9bXB/WyUfvMd2ECddjSKlsyavZov4DvfHvcxA6wwgs1kSOLIn7K1Sbj2E1oVt2CAgM5gicfFGIOFhX9u59uoB5wnb2rzVGDofchcBdxdp+UjRMbgSKJVbMDn9IS3WG7sypZ6TEAuwy1VI32QtGmq8Ji0LyqB/gL4uq2zIw9dlhHsLTXEK1lGCGVP3MBDuN28IWXKL7vBtmuJDYNbMAlaR59N8mOkKkpE3UQrh/ioH7agvb9KEXG1RfDc8oseHcjM8Ydg2gvsDAXxeGyfgnmnAVu0KwzHNI+XsVcIUSZ7c14aRHooyj1aTlPwt42sYR5Ad1R4TKYSMy5tQIhTPsJ0QXWRjFcamBRFOtA8El4I/5s2TEkQBwNF2jwNRAeqVeSNzgCAI36bt4Qelh5WqlfJJNERs/p4vtSraZJecoc48xVXZWfqIks/3iIBzxpsgtp0izYtxrH90FLCK1kqkjNXuBSlS/KHbAt8SHh6NDO1CURirt5AXOTgrz/wcFtiQyw5Ci7QxF4mafHaJaG5YsrhQ7ZRFl3C3Fw+Y22ppt9mzNxNoutdWEaZiySJ1deAXR+hioV2muX1qwfQDp+fv0mg9/SPbElTOQssDt9zugc=
+X-Microsoft-Antispam-Message-Info: JNgAmYHaMVMLOjSE+H16m1b2KJuxcjDdyND9o//JJVLROATqpGTggHAqHV+XVmAyv2eQIB9GmtdiFd8DlJJT0Ec2vctan0SCf+9AWUN3f04n++xTdii4Wv6AQCeWYxZKweu+7e0NQ1SU8aMe7g4hxjJA/1pzOK29vojeUA/LMnL1DJlDL+C89bHyDnOaOZtnbEs7hKFDdS4kVz9u58SR0ZE/1iI4WZS2SMcCEqJUlwA4fREiFxbcUQaTjDQeIl7okX5NsXwFiHAERdCnLQeuKq3Ee6JG/XJ7qRrWV3fU/liY/W6N9RIp+c/uhz7McFXBLpgUKlJ7SPXBETS8Fp4zFhJC14FJajG4kmRt/WFQr8W4adLkiznbkVoV42cRe5VAqxI27r8QTtKizzB97SkOsRrg+/2gBjpW7viZ2AA86bTA6n6W0LXsZONO64IywaTt/BI3BY69ZJjR6c729A3n11xTcrQO8nEcMtyffMDiO7KdkHrEh1CPiHTEBIPiGj0V+y9KuAjV7EJxODhHKgVJHM9TalrCj5d7TCaxUbANUtOEsdmC9ZVa3DgGnbj8kxmvI5Be2kSQMNz7WbWBKt6u5TjA+4TuC3dIE9GUPUm3mTFImG2GhamjEEDkh14+Yz6tvx5CYqQbW4+xBkmyRnmaHnsEkPH8RODCCphxFww1w06xXGJNplz8NaGlprt1ws04p9Q9/ZgTsDuEpGrR4Nr+Hqso7xtFoTSiUnBF41HE4MI=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(396003)(136003)(346002)(376002)(39860400002)(36840700001)(46966006)(47076005)(4326008)(7696005)(426003)(81166007)(70586007)(356005)(70206006)(478600001)(6666004)(336012)(1076003)(316002)(16526019)(54906003)(8936002)(44832011)(8676002)(83380400001)(6916009)(5660300002)(186003)(36756003)(86362001)(82740400003)(36860700001)(2906002)(26005)(2616005)(82310400003)(36900700001);
+ SFS:(4636009)(376002)(39860400002)(136003)(396003)(346002)(46966006)(36840700001)(81166007)(6636002)(316002)(110136005)(86362001)(1076003)(336012)(2906002)(426003)(356005)(478600001)(82740400003)(7696005)(47076005)(4326008)(70586007)(5660300002)(83380400001)(16526019)(70206006)(186003)(8676002)(8936002)(36756003)(44832011)(82310400003)(66574015)(6666004)(26005)(2616005)(36860700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2021 09:44:20.6292 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a0e8938e-b2e9-41a0-18f1-08d9693f3ecf
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2021 10:40:55.1883 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fcd27be7-942d-4f01-29fa-08d969472629
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT062.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT045.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4864
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5131
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,284 +106,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Create common PSP TA unload function and replace all common TA unloading
-sequences.
+This gurantees no more work on the ring can be submitted
+to hardware in suspend/resume case, otherwise the ring will
+not be empty before suspend.
 
-Signed-off-by: Candice Li <candice.li@amd.com>
+Suggested-by: Christian König <christian.koenig@amd.com>
+Signed-off-by: Guchun Chen <guchun.chen@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 160 ++++++------------------
- 1 file changed, 40 insertions(+), 120 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index 23efdc67250272..243adce6de3654 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -46,6 +46,9 @@ static int psp_sysfs_init(struct amdgpu_device *adev);
- static void psp_sysfs_fini(struct amdgpu_device *adev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+index b439eb7d4177..d6e429e63604 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+@@ -552,6 +552,9 @@ void amdgpu_fence_driver_hw_fini(struct amdgpu_device *adev)
+ 		if (!ring || !ring->fence_drv.initialized)
+ 			continue;
  
- static int psp_load_smu_fw(struct psp_context *psp);
-+static int psp_ta_unload(struct psp_context *psp, uint32_t session_id);
-+static int psp_rap_terminate(struct psp_context *psp);
-+static int psp_securedisplay_terminate(struct psp_context *psp);
- 
- /*
-  * Due to DF Cstate management centralized to PMFW, the firmware
-@@ -829,10 +832,28 @@ static void psp_prep_ta_unload_cmd_buf(struct psp_gfx_cmd_resp *cmd,
- 	cmd->cmd.cmd_unload_ta.session_id = session_id;
- }
- 
-+static int psp_ta_unload(struct psp_context *psp, uint32_t session_id)
-+{
-+	int ret;
-+	struct psp_gfx_cmd_resp *cmd = acquire_psp_cmd_buf(psp);
++		if (!ring->no_scheduler)
++			drm_sched_stop(&ring->sched, NULL);
 +
-+	psp_prep_ta_unload_cmd_buf(cmd, session_id);
+ 		/* You can't wait for HW to signal if it's gone */
+ 		if (!drm_dev_is_unplugged(&adev->ddev))
+ 			r = amdgpu_fence_wait_empty(ring);
+@@ -611,6 +614,9 @@ void amdgpu_fence_driver_hw_init(struct amdgpu_device *adev)
+ 		if (!ring || !ring->fence_drv.initialized)
+ 			continue;
+ 
++		if (!ring->no_scheduler)
++			drm_sched_start(&ring->sched, false);
 +
-+	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
-+
-+	release_psp_cmd_buf(psp);
-+
-+	return ret;
-+}
-+
- static int psp_asd_unload(struct psp_context *psp)
-+{
-+	return psp_ta_unload(psp, psp->asd_context.session_id);
-+}
-+
-+static int psp_asd_terminate(struct psp_context *psp)
- {
- 	int ret;
--	struct psp_gfx_cmd_resp *cmd;
- 
- 	if (amdgpu_sriov_vf(psp->adev))
- 		return 0;
-@@ -840,17 +861,11 @@ static int psp_asd_unload(struct psp_context *psp)
- 	if (!psp->asd_context.asd_initialized)
- 		return 0;
- 
--	cmd = acquire_psp_cmd_buf(psp);
--
--	psp_prep_ta_unload_cmd_buf(cmd, psp->asd_context.session_id);
-+	ret = psp_asd_unload(psp);
- 
--	ret = psp_cmd_submit_buf(psp, NULL, cmd,
--				 psp->fence_buf_mc_addr);
- 	if (!ret)
- 		psp->asd_context.asd_initialized = false;
- 
--	release_psp_cmd_buf(psp);
--
- 	return ret;
- }
- 
-@@ -990,29 +1005,7 @@ static int psp_xgmi_load(struct psp_context *psp)
- 
- static int psp_xgmi_unload(struct psp_context *psp)
- {
--	int ret;
--	struct psp_gfx_cmd_resp *cmd;
--	struct amdgpu_device *adev = psp->adev;
--
--	/* XGMI TA unload currently is not supported on Arcturus/Aldebaran A+A */
--	if (adev->asic_type == CHIP_ARCTURUS ||
--		(adev->asic_type == CHIP_ALDEBARAN && adev->gmc.xgmi.connected_to_cpu))
--		return 0;
--
--	/*
--	 * TODO: bypass the unloading in sriov for now
--	 */
--
--	cmd = acquire_psp_cmd_buf(psp);
--
--	psp_prep_ta_unload_cmd_buf(cmd, psp->xgmi_context.context.session_id);
--
--	ret = psp_cmd_submit_buf(psp, NULL, cmd,
--				 psp->fence_buf_mc_addr);
--
--	release_psp_cmd_buf(psp);
--
--	return ret;
-+	return psp_ta_unload(psp, psp->xgmi_context.context.session_id);
- }
- 
- int psp_xgmi_invoke(struct psp_context *psp, uint32_t ta_cmd_id)
-@@ -1023,6 +1016,12 @@ int psp_xgmi_invoke(struct psp_context *psp, uint32_t ta_cmd_id)
- int psp_xgmi_terminate(struct psp_context *psp)
- {
- 	int ret;
-+	struct amdgpu_device *adev = psp->adev;
-+
-+	/* XGMI TA unload currently is not supported on Arcturus/Aldebaran A+A */
-+	if (adev->asic_type == CHIP_ARCTURUS ||
-+		(adev->asic_type == CHIP_ALDEBARAN && adev->gmc.xgmi.connected_to_cpu))
-+		return 0;
- 
- 	if (!psp->xgmi_context.context.initialized)
- 		return 0;
-@@ -1337,25 +1336,7 @@ static int psp_ras_load(struct psp_context *psp)
- 
- static int psp_ras_unload(struct psp_context *psp)
- {
--	int ret;
--	struct psp_gfx_cmd_resp *cmd;
--
--	/*
--	 * TODO: bypass the unloading in sriov for now
--	 */
--	if (amdgpu_sriov_vf(psp->adev))
--		return 0;
--
--	cmd = acquire_psp_cmd_buf(psp);
--
--	psp_prep_ta_unload_cmd_buf(cmd, psp->ras_context.context.session_id);
--
--	ret = psp_cmd_submit_buf(psp, NULL, cmd,
--			psp->fence_buf_mc_addr);
--
--	release_psp_cmd_buf(psp);
--
--	return ret;
-+	return psp_ta_unload(psp, psp->ras_context.context.session_id);
- }
- 
- int psp_ras_invoke(struct psp_context *psp, uint32_t ta_cmd_id)
-@@ -1644,24 +1625,7 @@ static int psp_hdcp_initialize(struct psp_context *psp)
- 
- static int psp_hdcp_unload(struct psp_context *psp)
- {
--	int ret;
--	struct psp_gfx_cmd_resp *cmd;
--
--	/*
--	 * TODO: bypass the unloading in sriov for now
--	 */
--	if (amdgpu_sriov_vf(psp->adev))
--		return 0;
--
--	cmd = acquire_psp_cmd_buf(psp);
--
--	psp_prep_ta_unload_cmd_buf(cmd, psp->hdcp_context.context.session_id);
--
--	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
--
--	release_psp_cmd_buf(psp);
--
--	return ret;
-+	return psp_ta_unload(psp, psp->hdcp_context.context.session_id);
- }
- 
- int psp_hdcp_invoke(struct psp_context *psp, uint32_t ta_cmd_id)
-@@ -1778,24 +1742,7 @@ static int psp_dtm_initialize(struct psp_context *psp)
- 
- static int psp_dtm_unload(struct psp_context *psp)
- {
--	int ret;
--	struct psp_gfx_cmd_resp *cmd;
--
--	/*
--	 * TODO: bypass the unloading in sriov for now
--	 */
--	if (amdgpu_sriov_vf(psp->adev))
--		return 0;
--
--	cmd = acquire_psp_cmd_buf(psp);
--
--	psp_prep_ta_unload_cmd_buf(cmd, psp->dtm_context.context.session_id);
--
--	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
--
--	release_psp_cmd_buf(psp);
--
--	return ret;
-+	return psp_ta_unload(psp, psp->dtm_context.context.session_id);
- }
- 
- int psp_dtm_invoke(struct psp_context *psp, uint32_t ta_cmd_id)
-@@ -1877,16 +1824,7 @@ static int psp_rap_load(struct psp_context *psp)
- 
- static int psp_rap_unload(struct psp_context *psp)
- {
--	int ret;
--	struct psp_gfx_cmd_resp *cmd = acquire_psp_cmd_buf(psp);
--
--	psp_prep_ta_unload_cmd_buf(cmd, psp->rap_context.context.session_id);
--
--	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
--
--	release_psp_cmd_buf(psp);
--
--	return ret;
-+	return psp_ta_unload(psp, psp->rap_context.context.session_id);
- }
- 
- static int psp_rap_initialize(struct psp_context *psp)
-@@ -1918,11 +1856,7 @@ static int psp_rap_initialize(struct psp_context *psp)
- 
- 	ret = psp_rap_invoke(psp, TA_CMD_RAP__INITIALIZE, &status);
- 	if (ret || status != TA_RAP_STATUS__SUCCESS) {
--		psp_rap_unload(psp);
--
--		psp_ta_free_shared_buf(&psp->rap_context.context.mem_context);
--
--		psp->rap_context.context.initialized = false;
-+		psp_rap_terminate(psp);
- 
- 		dev_warn(psp->adev->dev, "RAP TA initialize fail (%d) status %d.\n",
- 			 ret, status);
-@@ -2022,16 +1956,7 @@ static int psp_securedisplay_load(struct psp_context *psp)
- 
- static int psp_securedisplay_unload(struct psp_context *psp)
- {
--	int ret;
--	struct psp_gfx_cmd_resp *cmd = acquire_psp_cmd_buf(psp);
--
--	psp_prep_ta_unload_cmd_buf(cmd, psp->securedisplay_context.context.session_id);
--
--	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
--
--	release_psp_cmd_buf(psp);
--
--	return ret;
-+	return psp_ta_unload(psp, psp->securedisplay_context.context.session_id);
- }
- 
- static int psp_securedisplay_initialize(struct psp_context *psp)
-@@ -2066,12 +1991,7 @@ static int psp_securedisplay_initialize(struct psp_context *psp)
- 
- 	ret = psp_securedisplay_invoke(psp, TA_SECUREDISPLAY_COMMAND__QUERY_TA);
- 	if (ret) {
--		psp_securedisplay_unload(psp);
--
--		psp_ta_free_shared_buf(&psp->securedisplay_context.context.mem_context);
--
--		psp->securedisplay_context.context.initialized = false;
--
-+		psp_securedisplay_terminate(psp);
- 		dev_err(psp->adev->dev, "SECUREDISPLAY TA initialize fail.\n");
- 		return -EINVAL;
- 	}
-@@ -2721,7 +2641,7 @@ static int psp_hw_fini(void *handle)
- 		psp_hdcp_terminate(psp);
- 	}
- 
--	psp_asd_unload(psp);
-+	psp_asd_terminate(psp);
- 
- 	psp_tmr_terminate(psp);
- 	psp_ring_destroy(psp, PSP_RING_TYPE__KM);
-@@ -2779,9 +2699,9 @@ static int psp_suspend(void *handle)
- 		}
- 	}
- 
--	ret = psp_asd_unload(psp);
-+	ret = psp_asd_terminate(psp);
- 	if (ret) {
--		DRM_ERROR("Failed to unload asd\n");
-+		DRM_ERROR("Failed to terminate asd\n");
- 		return ret;
- 	}
- 
+ 		/* enable the interrupt */
+ 		if (ring->fence_drv.irq_src)
+ 			amdgpu_irq_get(adev, ring->fence_drv.irq_src,
 -- 
 2.17.1
 
