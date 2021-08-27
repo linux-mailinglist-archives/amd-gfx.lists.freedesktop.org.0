@@ -2,120 +2,70 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD1363F987A
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Aug 2021 13:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD79F3F995C
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Aug 2021 15:08:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 760AA6E924;
-	Fri, 27 Aug 2021 11:34:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 311FC6E932;
+	Fri, 27 Aug 2021 13:08:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2048.outbound.protection.outlook.com [40.107.92.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18D8D6E924
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Aug 2021 11:34:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L+jPwcmu87INFrT0SsaQhczII/OhvapqYfW0XQOlwBJTVvwQEFsqW5YIP5dbH0lISX1YWO4287+of4AAWZaF4rY2182IwJCrTcBYG/C51602fCUV/4IG3dHA8DYMWPagdDKUBoI2FLSqOuRSJhp2ri72mclOCcb7lpBijCGbhjT4X2B8Ec7V7uhmyAzDsLSGy1F39zeNkrly+jnCesDHxe1j9UOv5aosAQBPaB9uS/JzeuZWpKku22fcJ3+BGmXs/HAfxGPpZjXouiz3uYQPn5T7jEjk7RF8+ylQglmsfCIhikMh1p4GR4atPFUPMI+rYNkWpDuosO6jVAbRFE2JSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s1Hllp1dpfAAykgR8HuCYyeENmfD86fFb39+DjeE0zY=;
- b=Dlvl+1wPxIHU8B2IT6P7X76qEDlAY1lBRBGbRB7ZgeRYfp7QDxqnR6ePY7zKzXbLV+KjcoUhTj9OBEJ2X0XeNwe370GilOkBQ9MblEYGnxbzdLSZS32z/A0buZp6MKi9DQslbNJHeIJjd97oQB42UOw8/XSF3z/WEd1OS9KZgmQXruN0zvJIlj2iNGiWSpU9K81pjGdh7O5G1SYoQziJhI3YKI2SpgthW1+uhGt37vwVUCZvBym1GgI7f/88lWLQgNr92+sbTd9Cksua20ssBcBIZhjTkVuk36lKXCdnRtG56A9dvABRXnqkfzqsE0dH/rSv0sdQRYd0g13xIGUudA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s1Hllp1dpfAAykgR8HuCYyeENmfD86fFb39+DjeE0zY=;
- b=DEe5wQtVohWHlluxyBYwBH3cvRjgEsVsjwQG0XjAk2XN0xblEZ0ONzuaCqcPM/K7S579gx36s+TROdvWmwaTmlBR+tWBePxSiqGZS3hxgFBbd+eaE9GTpl/B238qJxk6G7tlHvJSDmnYa0Q4fwBZQj6KM2b6wnF3ml0VHZdE2sI=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from BY5PR12MB3764.namprd12.prod.outlook.com (2603:10b6:a03:1ac::17)
- by BY5PR12MB4084.namprd12.prod.outlook.com (2603:10b6:a03:205::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.23; Fri, 27 Aug
- 2021 11:34:44 +0000
-Received: from BY5PR12MB3764.namprd12.prod.outlook.com
- ([fe80::7917:19c:827d:49d7]) by BY5PR12MB3764.namprd12.prod.outlook.com
- ([fe80::7917:19c:827d:49d7%5]) with mapi id 15.20.4457.020; Fri, 27 Aug 2021
- 11:34:43 +0000
-Subject: Re: [PATCH] drm/amdgpu: stop scheduler when calling hw_fini
-To: Guchun Chen <guchun.chen@amd.com>, amd-gfx@lists.freedesktop.org,
- Hawking.Zhang@amd.com, andrey.grodzovsky@amd.com, mike@fireburn.co.uk,
- alexander.deucher@amd.com
-References: <20210827104038.4945-1-guchun.chen@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <5bc45025-b524-926f-736f-95e5b70ae8be@amd.com>
-Date: Fri, 27 Aug 2021 13:34:37 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-In-Reply-To: <20210827104038.4945-1-guchun.chen@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-ClientProxiedBy: PR0P264CA0150.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:100:1b::18) To BY5PR12MB3764.namprd12.prod.outlook.com
- (2603:10b6:a03:1ac::17)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 455C06E923;
+ Fri, 27 Aug 2021 11:26:50 +0000 (UTC)
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 9FC7C1FEEF;
+ Fri, 27 Aug 2021 11:26:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1630063608; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=osw1/L3jC/bJi7Ne7bqRTQrD2wzLGX9q4SiZmi3c+5Q=;
+ b=Oa5xd/Zm/qU2C1OGCyxqqfHFsWnr34ncOzeFSpN7OAEcyh/oBDc25De5Ypu97mk92Fc0l5
+ WfKmOa7dYLRYIZcYtnPhoEpaBPGwEnyMECO4HLqPo3i9W5b6PgbW9SBvsap3cevHLoRH1S
+ jI8R3lkYIFOL81JF5BIkcCoNehS8f/w=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1630063608;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=osw1/L3jC/bJi7Ne7bqRTQrD2wzLGX9q4SiZmi3c+5Q=;
+ b=FzDxaGDhy6qR/uZBhWz+4OmgNkcW1LFyB3SdMaSBkkoTAxuFt+y/OHOgFdQl5mJ/+3AY5j
+ 7vgGLDCeGDUJFmCA==
+Received: from imap1.suse-dmz.suse.de (imap1.suse-dmz.suse.de [192.168.254.73])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+ (No client certificate requested)
+ by imap1.suse-dmz.suse.de (Postfix) with ESMTPS id 770A213892;
+ Fri, 27 Aug 2021 11:26:48 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+ by imap1.suse-dmz.suse.de with ESMTPSA id B3tiHPjLKGEqRAAAGKfGzw
+ (envelope-from <vbabka@suse.cz>); Fri, 27 Aug 2021 11:26:48 +0000
+Message-ID: <6a2513ac-1ea1-ba54-9d57-487504c6c86d@suse.cz>
+Date: Fri, 27 Aug 2021 13:26:48 +0200
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.178.21] (91.14.161.181) by
- PR0P264CA0150.FRAP264.PROD.OUTLOOK.COM (2603:10a6:100:1b::18) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4457.17 via Frontend Transport; Fri, 27 Aug 2021 11:34:41 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 127938cc-5345-4fc8-072c-08d9694eaa1e
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4084:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BY5PR12MB4084AA86882F877182188F5283C89@BY5PR12MB4084.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Sbq4liJlKqXwMRR/uFn9W5fD+Jgakt7BJr+bSMB6dcFf7JSEx15hAhYtgSgG87XRL2VDf00bl17qNRX1qNzl/TBdoMqanEhTng/VAIMGKlKlBdfgAnqGiDZEz5FMuBwzr20YUBzjTfrxwK0ISkFUwezIDc/EYTJWz6n2X805FeD8e6EhMAFNsR1z38nod9VIzFrGJr0hHJ5r1/Gwo9A4N+YikaE9VQi/WdG9LmcnXg7VaHBsa1+NkkAxbfpI5qm0a7fMHrZUzNGj5yooBQ8Kyrmrs/oGaxr/Pl7PD5V3L4bFUcnF+t6yFVEJF6gOVLtEDnLjUp4OA6aqZjey3U/IoIlGjS1mza94zODLWpC1hIkHz4uanKjGNlU6wTYbZpWh6wRb+gCdhjFE45UJWr7OHM1CtiPvEKJ47yNXCM05ZgBLFqfvsR0/gU5npO20Nx5chxpJ/WLgN6aQ8lKigU2MoDDuV6lKC4o0cR8D4RQH9HrqvpdRx+HJgoWp/FElHr5ohFyMVMMtWnRw0SEuKtZ/YrbmcMvYa+p0KBV/A2teYH+p2QKQ4vqjwTCKH1mCJh6HibJmwnHeKqcsB3pE4CNdYanyrbMzkg42iUKyyewY0xuv8cHjNdJ7ZII5Mpk9qPvGMz2Tof+GCgHnRq+mM2ft7sHbNHpe9R9risHhlIhB1eE4MKeULjtUs4QNhy1XxEF2mtPB2NL51FPoyRmD2w5W2J9GtI+kC24EntQHeOVykteEy1Mk9FMfUrFqG8rf/0FA
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR12MB3764.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(39860400002)(396003)(136003)(366004)(376002)(186003)(36756003)(5660300002)(6666004)(8936002)(6636002)(26005)(38100700002)(2906002)(2616005)(956004)(31686004)(6486002)(16576012)(316002)(478600001)(86362001)(66574015)(31696002)(83380400001)(66946007)(66476007)(66556008)(8676002)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WkF2RnAwbDJHMUhSU0N2dVVMWlpYY2hadUpWOFNYeG8xM3hYdlNma0taUzlW?=
- =?utf-8?B?dUN4YXh6dXQ2VDF4dkxlblpYUk9GSlVlaEU0cVFCS1I0Wmlrams5QTFNNjFh?=
- =?utf-8?B?TDhud2xEeUhDd2l0VzIwcE1BNWVuMG5oRFJXbGluTVhiRGxmWm1VUlM1S2FO?=
- =?utf-8?B?NURDYkkxdjBKRjZvNkplUjB2Q1NGK0Z0YUdMVFphN2xEVkpPUXR4YTVicndM?=
- =?utf-8?B?cGkyME9MWEVLSWpvN0NHL1RSbGZqSmZ5Q1UrMFZKT2liNXppeTF0M3hKQ29T?=
- =?utf-8?B?aU9rczY0WU9lMjFvdUJhdno1RTdnYm5mRDJwNXA4K3VseVVpQmFxVDdGa0tj?=
- =?utf-8?B?T2pITTFQNW1aa25tS2ZXenlyelIwWTVFMm11WGp0WkNGRlJPY3ZzSGx4VDRM?=
- =?utf-8?B?V09FUXVpcHIzcXhJOVptVHNDWHpndEFlNlRNT0FTd1hSOVpRSkVITTRuSkJJ?=
- =?utf-8?B?VmhVUHRyNVRnZmY2VjhQRFJTMTJxc3Z2OGxNNXU4VWFFWE1BNElhS2thV1dI?=
- =?utf-8?B?YndyUm11VDN2T1RKQVBrY3JzMWxsM29RU1VRTG1hbmk4ZE0rZ1gwQVhNanpN?=
- =?utf-8?B?YTBUM0dESFdrajFLNE4wRTBOTytSbjJzSzVkQ3pXdVNYcFNaR0U2TkZCb2tL?=
- =?utf-8?B?RW5tVWdPbFlLc2tDWlpmeFY5dUtMTXFDSFJmQ2lYRzJmUVdkMVJkVnFTVzZD?=
- =?utf-8?B?RU0rc0hLWDc1ODcwYzhXbHFUOXl5cEtqTzIzcEJjQWlTZlhPOFFOcmZ0Nksx?=
- =?utf-8?B?QmJNeTBYeDBKVjM4WkxBQXpwU2lpNXI3SVZwYjJiRGZrRjQvOVI3SHZVRXpY?=
- =?utf-8?B?cjZPL1VmZEFrRTFocDNpYzNMSnpZTU9ob3dQNVZBbHRBb3JWT1dXQzdXdDhk?=
- =?utf-8?B?cGRUcko5RnpTQjZkSk5pTkhmSXpWU202MTdJbUVwWE4zRE01WDVueldjZ05Q?=
- =?utf-8?B?NW1TVmE1d2NZOXdlSVN4NUUyTzBvUXZDejlZbG05ZDdSN0U1amlQaE9TWWt0?=
- =?utf-8?B?c3lRdmdtUFQ0SXVOb3FUejkza0tBdWhkcU5LS293Qzg4U1NXWmJlbThFSjdC?=
- =?utf-8?B?bVVrSzFRWXk2NHVTN0tXMjd0bFdWclVuWDErdWY2YkgxcnVEZkphazJZQ25m?=
- =?utf-8?B?aStvSFRJTGNqemx2NUgxZDVXUmZ0MHpmM0x6R05IMURybEgrUG53b21MK1Fw?=
- =?utf-8?B?TkMvRE9nYTFrK2ZTNk1oTlo2NTlZK2RudTNzcEFmRzhMelNRWmNOWlhHdG1a?=
- =?utf-8?B?M2RWNytJNzA1b0NXbHZTOUt2WkVPbnZZS3JmYkk4bVhScjA2OWgvZ1ZSS0Vq?=
- =?utf-8?B?N1IxZ2ZhcmdtSXBSKzdGQlUwV0xXbVNZaHFRc3VRTlRVMFlRV2oyL1Qzc1lW?=
- =?utf-8?B?Q0Z5eFNMUXBEVEVzdk5VL2NpVnNDcEZaUXM2dHQ5Mk51WXFhTmFVUGpFbWFS?=
- =?utf-8?B?alVIVXdMY1R5K3QzS3YxZURIZE1hanJ2OC82QjZuME4vRnRLZGdFb2I1OU9J?=
- =?utf-8?B?bnpIS3VhenRpMWZHVjBxV21icGxpZ0RobVZKRkVZYVI5d2N5Rjk3ZFFsb09m?=
- =?utf-8?B?R0tDUHNSZERiODRaQVd5bmlzTmdPWVFjeU84RWRMMy9wcCsrYVNNejlsY0Rp?=
- =?utf-8?B?cXBleXBHbWVWV3M0ZHo5WFIwamM2cnRsWEpuSzlGUmdqUFNNL0tGNlQveUgr?=
- =?utf-8?B?ek1icWNTQ2JYTnNidzdyREkwZXgrd1dmSVVSYmZOU1pRejhlZGY1QkFNdXJN?=
- =?utf-8?Q?S5xD7Eox4KB4yCsk+xgUd+jXDNszfLUdv6OR5UA?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 127938cc-5345-4fc8-072c-08d9694eaa1e
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB3764.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2021 11:34:43.7023 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ILxAIncsKtwPoUWGwE0sQpDHXeaCU3zYuaV39Bc9fhITHhJNxfgbc9y1S77JiV7Y
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4084
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.0.2
+Subject: Re: [PATCH v1 02/14] mm: remove extra ZONE_DEVICE struct page refcount
+Content-Language: en-US
+To: Ralph Campbell <rcampbell@nvidia.com>, Alex Sierra <alex.sierra@amd.com>, 
+ akpm@linux-foundation.org, Felix.Kuehling@amd.com, linux-mm@kvack.org,
+ linux-ext4@vger.kernel.org, linux-xfs@vger.kernel.org
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ hch@lst.de, jgg@nvidia.com, jglisse@redhat.com
+References: <20210825034828.12927-1-alex.sierra@amd.com>
+ <20210825034828.12927-3-alex.sierra@amd.com>
+ <dbd0f54a-ad6c-97a2-17d7-826247424c97@suse.cz>
+ <505e4fe4-241a-8205-d2ef-f603e9cc46c6@nvidia.com>
+From: Vlastimil Babka <vbabka@suse.cz>
+In-Reply-To: <505e4fe4-241a-8205-d2ef-f603e9cc46c6@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Fri, 27 Aug 2021 13:08:39 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,46 +80,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In general that looks good to me, but what could be is that we now try 
-to stop/start the scheduler during reset twice.
+On 8/25/21 19:49, Ralph Campbell wrote:
+> 
+> On 8/25/21 4:15 AM, Vlastimil Babka wrote:
+>> On 8/25/21 05:48, Alex Sierra wrote:
+>>> From: Ralph Campbell <rcampbell@nvidia.com>
+>>>
+>>> ZONE_DEVICE struct pages have an extra reference count that complicates the
+>>> code for put_page() and several places in the kernel that need to check the
+>>> reference count to see that a page is not being used (gup, compaction,
+>>> migration, etc.). Clean up the code so the reference count doesn't need to
+>>> be treated specially for ZONE_DEVICE.
+>> That's certainly welcome. I just wonder what was the reason to use 1 in the
+>> first place and why it's no longer necessary?
+> 
+> I'm sure this is a long story that I don't know most of the history.
+> I'm guessing that ZONE_DEVICE started out with a reference count of
+> one since that is what most "normal" struct page pages start with.
+> Then put_page() is used to free newly initialized struct pages to the
+> slab/slob/slub page allocator.
+> This made it easy to call get_page()/put_page() on ZONE_DEVICE pages
+> since get_page() asserts that the caller has a reference.
+> However, most drivers that create ZONE_DEVICE struct pages just insert
+> a PTE into the user page tables and don't increment/decrement the
+> reference count. MEMORY_DEVICE_FS_DAX used the >1 to 1 reference count
+> transition to signal that a page was idle so that made put_page() a
+> bit more complex. Then MEMORY_DEVICE_PRIVATE pages were added and this
+> special casing of what "idle" meant got more complicated and more parts
+> of mm had to check for is_device_private_page().
+> My goal was to make ZONE_DEVICE struct pages reference counts be zero
+> based and allocated/freed similar to the page allocator so that more
+> of the mm code could be used, like THP ZONE_DEVICE pages, without special
+> casing ZONE_DEVICE.
 
-Andrey what do you think?
-
-Christian.
-
-Am 27.08.21 um 12:40 schrieb Guchun Chen:
-> This gurantees no more work on the ring can be submitted
-> to hardware in suspend/resume case, otherwise the ring will
-> not be empty before suspend.
->
-> Suggested-by: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Guchun Chen <guchun.chen@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c | 6 ++++++
->   1 file changed, 6 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> index b439eb7d4177..d6e429e63604 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-> @@ -552,6 +552,9 @@ void amdgpu_fence_driver_hw_fini(struct amdgpu_device *adev)
->   		if (!ring || !ring->fence_drv.initialized)
->   			continue;
->   
-> +		if (!ring->no_scheduler)
-> +			drm_sched_stop(&ring->sched, NULL);
-> +
->   		/* You can't wait for HW to signal if it's gone */
->   		if (!drm_dev_is_unplugged(&adev->ddev))
->   			r = amdgpu_fence_wait_empty(ring);
-> @@ -611,6 +614,9 @@ void amdgpu_fence_driver_hw_init(struct amdgpu_device *adev)
->   		if (!ring || !ring->fence_drv.initialized)
->   			continue;
->   
-> +		if (!ring->no_scheduler)
-> +			drm_sched_start(&ring->sched, false);
-> +
->   		/* enable the interrupt */
->   		if (ring->fence_drv.irq_src)
->   			amdgpu_irq_get(adev, ring->fence_drv.irq_src,
+Thanks for the explanation. I was afraid there was something more fundamental
+that required to catch the 2->1 refcount transition, seems like it's not. I
+agree with the simplification!
 
