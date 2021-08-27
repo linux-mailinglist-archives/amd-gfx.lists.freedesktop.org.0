@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEF3B3FA0D8
-	for <lists+amd-gfx@lfdr.de>; Fri, 27 Aug 2021 22:45:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6110E3FA0DE
+	for <lists+amd-gfx@lfdr.de>; Fri, 27 Aug 2021 22:45:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B0A56E9D7;
-	Fri, 27 Aug 2021 20:45:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE5AB6E9DC;
+	Fri, 27 Aug 2021 20:45:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam08on2076.outbound.protection.outlook.com [40.107.101.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E94AA6E9D7
- for <amd-gfx@lists.freedesktop.org>; Fri, 27 Aug 2021 20:45:17 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2060.outbound.protection.outlook.com [40.107.92.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41C896E9DD
+ for <amd-gfx@lists.freedesktop.org>; Fri, 27 Aug 2021 20:45:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Dbs1GjganK0kjMZoJgL6U4AlYVc5ovmyZ0yM+a/RqQZRZfTh+6lHwYUXZTBc6Bmh6nGSGGvX5HymKhoNzspIisl+M/uFUb9MV6BA4i5Xj9I2MYvyDSmGz0X9LqehrBW20iIow5qYX9BSyyFIKITZ8WakmYN7uAClEFznmDhg6A3tdg+MwvA/RwTZp5lQIHdAsHc9R4cFUfckyf3m/FN7BcSxcP4/TGvLeO9TS0lvdMX2UMuGsUIuaZrT5XG1YFsN5gYnK6mml8Ie3FRJrlpTVxhl55GPlV3u7V0wEc0p+nEwjmsnQv8wX378+jbMlkDSLDPutrkRIFHUyd+1cRWzdg==
+ b=gvTs1+HF8TGBrJSlSg9yw5NjA6+1a4sr4OkLrkwozoLdHQLSjQpVNDA80xA9N6u8knauiCci9B8erLnkdTzeiqsO4mbzf27acJ7My/4ikMGF4yKTithNGbLg/U3NOq8lzHlNYpIC3TUSjvCRrPHHPC/+yz+fiIIJ3xuiJxzVkfe7IrBpBmbQlrVw323/jbWBW5ncERWRL+nioycaeyyvPBqOgftEe1mdIWZNtnWJxgRGxZoe+JD+m+Bmxl68Ki5q5tC5czuVZ4q9p0kf0ok/FMruz0rn+GfsRSuPmCxlfYJDcBH5aKM5lqUDINQpc5IqbA5KozIyDpfjQpRn8GkXWQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7029E8Jl6eWubp0qR/rW2182Z7PN4Go8cwh2ErU5/jM=;
- b=mceIfemeSx2b/65oC3YstzKQ3Of22vWXWNTThKPb2utVyPdrAXZ/Sl+4hfMDo95miBsGUj7Gc4Qp9814eCOwnUwdPTEEQIb/EbMUQs5F3+sm6kVB1UwuAsFc3/Zj3k3QRZxEF5DJHHtHVdJm2Kx2hEfrwHa254Yabd6MjZOJeM0Aq5G9Vds7YELMJb5BYBxtXGyVLaHsmCupA1z/UH1SAHp/R3tCfeLzuEgKZxNQRw94YrcbprFvF2rq5UKg7iYdm7/+Ksf565C8+hbFTR+6ufvBk3CO/sG21vCcpsibJhlAhobp8uu56mZIq++IPdG2/dCCs3H06vj0J+CDlevmlQ==
+ bh=/Dg1OWqCTX63cdvfzVljkQ4gD3y6NZ+OikAcA3sw5D8=;
+ b=UtU1Y2E0SgAziv0YJh+m7kALdkK2oGy0mMzDklXPcR4HH1CZUtRrGEfj/pSvv5D3jfZYs6U56HHZqarPf0X/OOLd0rLQ5fKZy62vJGI4lbjm0rxUDEm+JE0ZgUWAoAPIa4n7bhwfs/zhveViEFsPztHcmsOYhLNO52iTyXc/BHa4oCEDwjJbZGoAQ6GZdZSuNwqZ6TjWRsBGshcK20P/thTmDUWFONLC7q0q9LoYzkq1e+JvO4yMZkhwd5l8bOSSfU2+4ouwcxxUXfP6E4t7KiWZS+fvT645JNhS1nYWspj1m5Rit311mVd8SSGIsnQS66/q3zjYfkJUjnBvk8Ccew==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7029E8Jl6eWubp0qR/rW2182Z7PN4Go8cwh2ErU5/jM=;
- b=koFlqlNz3FkoQ726Smzgd/i7LOGkbELTPesOifRn5JF5z1LV9EyB8s7tQNJEwBmNGP36MEQEx/EOKmRTOry/+xGwF/t4IUhShCryFrjxQEZ9OU1PGK6z7Z8UQ2tDCCrSDoXHHkdwCfiAi1E+wzGUbVyOHSzj/NlPZXxzzVWTB9E=
-Received: from MW4PR03CA0290.namprd03.prod.outlook.com (2603:10b6:303:b5::25)
- by DM6PR12MB5567.namprd12.prod.outlook.com (2603:10b6:5:1ba::8) with
+ bh=/Dg1OWqCTX63cdvfzVljkQ4gD3y6NZ+OikAcA3sw5D8=;
+ b=ad8LAkPib7CRvR2yYNI5DvB0stcaPM7mxo33nry9IEVa35mOHBNUC+oj8qHABlBQGea54i9bFeTtnigKnqvDfD3lR/cFJCELkZtuPbtqJrOkbGenm5Zgi7F/8rsnq2FfgdX8vNgampTSo+y1Cg7c53rt2bD/hMbwmz1tv3o85WE=
+Received: from MW4PR03CA0271.namprd03.prod.outlook.com (2603:10b6:303:b5::6)
+ by BN8PR12MB3540.namprd12.prod.outlook.com (2603:10b6:408:6c::33) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.16; Fri, 27 Aug
- 2021 20:29:29 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.22; Fri, 27 Aug
+ 2021 20:29:30 +0000
 Received: from CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:b5:cafe::ab) by MW4PR03CA0290.outlook.office365.com
- (2603:10b6:303:b5::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.21 via Frontend
- Transport; Fri, 27 Aug 2021 20:29:29 +0000
+ (2603:10b6:303:b5:cafe::2a) by MW4PR03CA0271.outlook.office365.com
+ (2603:10b6:303:b5::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.19 via Frontend
+ Transport; Fri, 27 Aug 2021 20:29:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -52,18 +52,17 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from DESKTOP-9DR2N9S.localdomain (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Fri, 27 Aug 2021 15:29:27 -0500
+ 15.1.2242.12; Fri, 27 Aug 2021 15:29:28 -0500
 From: Mikita Lipski <mikita.lipski@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Bhawanpreet.Lakha@amd.com>, <Rodrigo.Siqueira@amd.com>,
  <Aurabindo.Pillai@amd.com>, <Qingqing.Zhuo@amd.com>, <mikita.lipski@amd.com>, 
- <Anson.Jacob@amd.com>, Oliver Logush <oliver.logush@amd.com>, Charlene Liu
- <Charlene.Liu@amd.com>
-Subject: [PATCH 05/19] drm/amd/display: Drop unused privacy_mask setters and
- getters
-Date: Fri, 27 Aug 2021 16:28:56 -0400
-Message-ID: <20210827202910.20864-6-mikita.lipski@amd.com>
+ <Anson.Jacob@amd.com>, Wenjing Liu <wenjing.liu@amd.com>, George Shen
+ <George.Shen@amd.com>
+Subject: [PATCH 06/19] drm/amd/display: expose dsc overhead bw in dc dsc header
+Date: Fri, 27 Aug 2021 16:28:57 -0400
+Message-ID: <20210827202910.20864-7-mikita.lipski@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210827202910.20864-1-mikita.lipski@amd.com>
 References: <20210827202910.20864-1-mikita.lipski@amd.com>
@@ -75,28 +74,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d06ed80d-34ef-4f31-2ffb-08d969995f00
-X-MS-TrafficTypeDiagnostic: DM6PR12MB5567:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB5567BF1E996A8575F17DAB1EE4C89@DM6PR12MB5567.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1388;
+X-MS-Office365-Filtering-Correlation-Id: 64d49252-fb32-44da-438b-08d969995f60
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3540:
+X-Microsoft-Antispam-PRVS: <BN8PR12MB3540E503F7453FB18A6E5F56E4C89@BN8PR12MB3540.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Dob6r5O09u4jwJfGzEhLW9/8UufJrEFavdYLWr6DDNRdFY42Fj/C48u7lF5S6alv1BviLJTL3ym18Yc3V4yml14BCac0mloWSbCcE9xOIVyun1EuITvLkqWXJaZ2pqN7fhf2/ufkxHrzEIikY3MsvedB3mhP/u/G3HapwxiFzuoAvZrlLBqSrszHUlLAZl64NLls08SKQlRZdSkyz2IMNRH1KhO58boOZUlm7QdeziCzf3oJg52o9BsxQ+vfXLrB3m3o/UVq1DDxSd3+AiPkdbbfBwq7OwdXhhVEv0UyCmiILhBEK0h/T7TkEnton6wk+WlWH2jnTVSibqRE8OOEmBlq4OpzsO5lkgVqk8G6T11Xk1gNtUvHfvJUyC3AuTjtkXilQsbRzOHvqHIw79iKd3WE0xMCm88kyYjU1CpexNVXdWucWg6Z2KLYcFW0pmKjLBUP4B3+gjkU1cwbQyt4Dxe+RauPUPgxFZiSFXR8HvP2wKtbg3nWe4m+XCprPw3kWRYqwqffllX7ZC2FWwUgFeXjpAT+fliacOoK92q0uON5ZBzwyhjzN41vTrcu1bX9mb7zmTXcZ2H6i2ux13HChY0r/FzZAkIfpu1x4HEiwyKE32lxWu58RWBX3Oq5JHS3zrhAuWwLBUJvMc1lEn9F90VDGI5Fa0FHoroRoOUYebEDApIFPgbKR1Au+p35BpD3jZJ1tdSf0gX35VyWbuiBxFojotgNn+W2ZhO0qNezQmI=
+X-Microsoft-Antispam-Message-Info: yyhD2TIkB7TtR4BGRJCKPWSHfJCIUlpala2GjxQaT4JV6kwaF9Q4DYgOaYPPYgQx8up6jNJtOKyaaoVEdQ+DhwZB7WxjoP9Zp5WiTbd+MahZJQt5yaWJKkKt3cHBKpxcXUlTXJU5Nr1ohXh+h+8/sLYt27ldfhNsjATfsJ2XBSQV4G5xuj5UdvjOA5M7rNkyzMKkBq2KN+CgJU0wFgKQmsjyHmhXd95riWAXJh0d8smHMSXldxXwY/Letzcn8kun2d+LXx5aT6FvKin1PAZxI17zHyTYs6NocrHDSMD7119oDlfSqbLNJGny6lVdan2nB8yf8QxmuvXp8vKuhZneoYsS4Je1STaRy+2d0HIyIwOSbhtmky1b2phV9uvXw/KegrzSrKOVD2+iYvzuKL4vmWJBCJtD0SM/h1dVs4A0FpFdBoMMZVkDZGWJPQf6tbzA+8OGsjuXQBoaPbcBYKnLXZz0ZeiZ1W5TdnNsbUi3ANdgF5VTOPXpJ8HRv5HQnM90oxQBHMafKv2g5ai3y/DhlsiBF8XgKZngaIKSK8tf8KkALPXB+VBwy2oT87SqRzTGsgGwFW/aPj05zAp5jyAl50g/L/RbGttNR2i9dUnDsAFUqcZsIhNxDPfonSwy/K0WRNn/Rkp07fGSXN2OlBs/zu2Fjq7il77wnYd/bBQwmb2Odd43gbBVFH6UhmInXUQV0uegWcV/AIVE0bFIV2RPCvZ+c3O6V3tLSVNjdNCXCys=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(346002)(376002)(136003)(396003)(46966006)(36840700001)(4744005)(5660300002)(83380400001)(81166007)(478600001)(2616005)(6916009)(82310400003)(2906002)(356005)(316002)(44832011)(16526019)(426003)(26005)(36860700001)(86362001)(8936002)(8676002)(47076005)(6666004)(186003)(36756003)(336012)(1076003)(70586007)(54906003)(4326008)(70206006)(82740400003)(36900700001);
+ SFS:(4636009)(346002)(136003)(396003)(376002)(39860400002)(36840700001)(46966006)(478600001)(82310400003)(44832011)(2906002)(4326008)(81166007)(8676002)(8936002)(36756003)(356005)(70206006)(426003)(83380400001)(70586007)(6666004)(54906003)(316002)(336012)(82740400003)(2616005)(26005)(5660300002)(186003)(1076003)(16526019)(36860700001)(47076005)(6916009)(86362001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2021 20:29:29.2747 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d06ed80d-34ef-4f31-2ffb-08d969995f00
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2021 20:29:29.9113 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64d49252-fb32-44da-438b-08d969995f60
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB5567
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3540
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,35 +110,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Oliver Logush <oliver.logush@amd.com>
+From: Wenjing Liu <wenjing.liu@amd.com>
 
-[Why and How]
-dwbc_funcs.set/get_privacy_mask isn't being used anymore, drop it
+[why]
+DM needs to know how much overhead is added to DSC as result
+of AMD internal DSC limitation.
 
-Reviewed-by: Charlene Liu <Charlene.Liu@amd.com>
+Reviewed-by: George Shen <George.Shen@amd.com>
 Acked-by: Mikita Lipski <mikita.lipski@amd.com>
-Signed-off-by: Oliver Logush <oliver.logush@amd.com>
+Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/inc/hw/dwb.h | 6 ------
- 1 file changed, 6 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc_dsc.h     |  5 ++
+ drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c | 64 ++++++++++-----------
+ 2 files changed, 37 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/dwb.h b/drivers/gpu/drm/amd/display/dc/inc/hw/dwb.h
-index ec28cb9c3a8e..587bf4aef4bc 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/dwb.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/dwb.h
-@@ -220,12 +220,6 @@ struct dwbc_funcs {
- 		struct dwbc *dwbc,
- 		const struct dc_transfer_func *in_transfer_func_dwb_ogam);
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dsc.h b/drivers/gpu/drm/amd/display/dc/dc_dsc.h
+index 16cc76ce3739..c8cc6a448c36 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dsc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_dsc.h
+@@ -81,6 +81,11 @@ bool dc_dsc_compute_config(
+ uint32_t dc_dsc_stream_bandwidth_in_kbps(const struct dc_crtc_timing *timing,
+ 		uint32_t bpp_x16, uint32_t num_slices_h, bool is_dp);
  
--	void (*get_privacy_mask)(
--		struct dwbc *dwbc, uint32_t *mask_id);
++uint32_t dc_dsc_stream_bandwidth_overhead_in_kbps(
++		const struct dc_crtc_timing *timing,
++		const int num_slices_h,
++		const bool is_dp);
++
+ void dc_dsc_get_policy_for_timing(const struct dc_crtc_timing *timing,
+ 		uint32_t max_target_bpp_limit_override_x16,
+ 		struct dc_dsc_policy *policy);
+diff --git a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
+index f403d8e84a8c..8c04f9f42a3b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
++++ b/drivers/gpu/drm/amd/display/dc/dsc/dc_dsc.c
+@@ -261,32 +261,6 @@ static inline uint32_t dsc_div_by_10_round_up(uint32_t value)
+ 	return (value + 9) / 10;
+ }
+ 
+-static struct fixed31_32 compute_dsc_max_bandwidth_overhead(
+-		const struct dc_crtc_timing *timing,
+-		const int num_slices_h,
+-		const bool is_dp)
+-{
+-	struct fixed31_32 max_dsc_overhead;
+-	struct fixed31_32 refresh_rate;
 -
--	void (*set_privacy_mask)(
--		struct dwbc *dwbc, uint32_t mask_id);
+-	if (dsc_policy_disable_dsc_stream_overhead || !is_dp)
+-		return dc_fixpt_from_int(0);
 -
- 	//TODO: merge with output_transfer_func?
- 	bool (*dwb_ogam_set_input_transfer_func)(
- 		struct dwbc *dwbc,
+-	/* use target bpp that can take entire target bandwidth */
+-	refresh_rate = dc_fixpt_from_int(timing->pix_clk_100hz);
+-	refresh_rate = dc_fixpt_div_int(refresh_rate, timing->h_total);
+-	refresh_rate = dc_fixpt_div_int(refresh_rate, timing->v_total);
+-	refresh_rate = dc_fixpt_mul_int(refresh_rate, 100);
+-
+-	max_dsc_overhead = dc_fixpt_from_int(num_slices_h);
+-	max_dsc_overhead = dc_fixpt_mul_int(max_dsc_overhead, timing->v_total);
+-	max_dsc_overhead = dc_fixpt_mul_int(max_dsc_overhead, 256);
+-	max_dsc_overhead = dc_fixpt_div_int(max_dsc_overhead, 1000);
+-	max_dsc_overhead = dc_fixpt_mul(max_dsc_overhead, refresh_rate);
+-
+-	return max_dsc_overhead;
+-}
+-
+ static uint32_t compute_bpp_x16_from_target_bandwidth(
+ 		const uint32_t bandwidth_in_kbps,
+ 		const struct dc_crtc_timing *timing,
+@@ -294,14 +268,14 @@ static uint32_t compute_bpp_x16_from_target_bandwidth(
+ 		const uint32_t bpp_increment_div,
+ 		const bool is_dp)
+ {
+-	struct fixed31_32 overhead_in_kbps;
++	uint32_t overhead_in_kbps;
+ 	struct fixed31_32 effective_bandwidth_in_kbps;
+ 	struct fixed31_32 bpp_x16;
+ 
+-	overhead_in_kbps = compute_dsc_max_bandwidth_overhead(
++	overhead_in_kbps = dc_dsc_stream_bandwidth_overhead_in_kbps(
+ 				timing, num_slices_h, is_dp);
+ 	effective_bandwidth_in_kbps = dc_fixpt_from_int(bandwidth_in_kbps);
+-	effective_bandwidth_in_kbps = dc_fixpt_sub(effective_bandwidth_in_kbps,
++	effective_bandwidth_in_kbps = dc_fixpt_sub_int(effective_bandwidth_in_kbps,
+ 			overhead_in_kbps);
+ 	bpp_x16 = dc_fixpt_mul_int(effective_bandwidth_in_kbps, 10);
+ 	bpp_x16 = dc_fixpt_div_int(bpp_x16, timing->pix_clk_100hz);
+@@ -933,19 +907,45 @@ bool dc_dsc_compute_config(
+ uint32_t dc_dsc_stream_bandwidth_in_kbps(const struct dc_crtc_timing *timing,
+ 		uint32_t bpp_x16, uint32_t num_slices_h, bool is_dp)
+ {
+-	struct fixed31_32 overhead_in_kbps;
++	uint32_t overhead_in_kbps;
+ 	struct fixed31_32 bpp;
+ 	struct fixed31_32 actual_bandwidth_in_kbps;
+ 
+-	overhead_in_kbps = compute_dsc_max_bandwidth_overhead(
++	overhead_in_kbps = dc_dsc_stream_bandwidth_overhead_in_kbps(
+ 			timing, num_slices_h, is_dp);
+ 	bpp = dc_fixpt_from_fraction(bpp_x16, 16);
+ 	actual_bandwidth_in_kbps = dc_fixpt_from_fraction(timing->pix_clk_100hz, 10);
+ 	actual_bandwidth_in_kbps = dc_fixpt_mul(actual_bandwidth_in_kbps, bpp);
+-	actual_bandwidth_in_kbps = dc_fixpt_add(actual_bandwidth_in_kbps, overhead_in_kbps);
++	actual_bandwidth_in_kbps = dc_fixpt_add_int(actual_bandwidth_in_kbps, overhead_in_kbps);
+ 	return dc_fixpt_ceil(actual_bandwidth_in_kbps);
+ }
+ 
++uint32_t dc_dsc_stream_bandwidth_overhead_in_kbps(
++		const struct dc_crtc_timing *timing,
++		const int num_slices_h,
++		const bool is_dp)
++{
++	struct fixed31_32 max_dsc_overhead;
++	struct fixed31_32 refresh_rate;
++
++	if (dsc_policy_disable_dsc_stream_overhead || !is_dp)
++		return 0;
++
++	/* use target bpp that can take entire target bandwidth */
++	refresh_rate = dc_fixpt_from_int(timing->pix_clk_100hz);
++	refresh_rate = dc_fixpt_div_int(refresh_rate, timing->h_total);
++	refresh_rate = dc_fixpt_div_int(refresh_rate, timing->v_total);
++	refresh_rate = dc_fixpt_mul_int(refresh_rate, 100);
++
++	max_dsc_overhead = dc_fixpt_from_int(num_slices_h);
++	max_dsc_overhead = dc_fixpt_mul_int(max_dsc_overhead, timing->v_total);
++	max_dsc_overhead = dc_fixpt_mul_int(max_dsc_overhead, 256);
++	max_dsc_overhead = dc_fixpt_div_int(max_dsc_overhead, 1000);
++	max_dsc_overhead = dc_fixpt_mul(max_dsc_overhead, refresh_rate);
++
++	return dc_fixpt_ceil(max_dsc_overhead);
++}
++
+ void dc_dsc_get_policy_for_timing(const struct dc_crtc_timing *timing, uint32_t max_target_bpp_limit_override_x16, struct dc_dsc_policy *policy)
+ {
+ 	uint32_t bpc = 0;
 -- 
 2.25.1
 
