@@ -1,63 +1,73 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84BF33FB1C7
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Aug 2021 09:17:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A88BB3FB1C4
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Aug 2021 09:17:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD50789CF1;
-	Mon, 30 Aug 2021 07:17:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2AD889BA1;
+	Mon, 30 Aug 2021 07:17:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com
- [IPv6:2a00:1450:4864:20::230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8820989D66
- for <amd-gfx@lists.freedesktop.org>; Sun, 29 Aug 2021 17:34:52 +0000 (UTC)
-Received: by mail-lj1-x230.google.com with SMTP id q21so21602328ljj.6
- for <amd-gfx@lists.freedesktop.org>; Sun, 29 Aug 2021 10:34:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=+tyqDIpy9lHRPLEmWy2u7JRjZCjvRQis9Naz0mJ7yyE=;
- b=oySpogacRpk+LnLteHTL+o2IoGe71EsG5C/4mD9Ax0r26rFKnrzw9z2VMz7rcjWYdc
- fw15ujivpp8Md4Kz+u3+j5zTzZXJiQewWAE4GSmX9MTAvudRvByxHXJXNQdGFllvo7sQ
- UpzpElBsMS+G0kQ8F1v9FWXYIqJrnhEeHHG0whVXni+ClRcl/iR82bXJwuhzKEthXthJ
- ORUXsDpKMu73UHfW5j9naMJXJmM8qQFP6v/Ip8EsTMGtY3IatnNlmQYXvFgQIPS4W4AC
- mbTaJKjGXFD+yXlIHk3PXnXm4FqfLSp8OfbI2W2nH/bGqDrhsDDYoKIx17rBFZ4FBat4
- x2KA==
+Received: from smtp-relay-internal-0.canonical.com
+ (smtp-relay-internal-0.canonical.com [185.125.188.122])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A2DA89C84
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 02:02:06 +0000 (UTC)
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com
+ [209.85.215.198])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7A8D43F046
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 02:02:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1630288924;
+ bh=nlBTRUxEXbUOBqJd5SosHVt9AVv9qfD/t1JUhw1deas=;
+ h=From:To:Subject:Date:Message-Id:MIME-Version;
+ b=gLraJAoA9DoSq+UNXGZqYFBf5SOSE1/uh1ChB+1TO3QZnwnk6dC+97bv3ynTW8emj
+ J8UP+g5cI5ye1eA2gAdfvkOgLLBc1f99FvXJR/bq7o69Lzfmv+bPVHZjZxIP8lg47I
+ aDOIP/DICBDkbhnyk2jVDbfm2321pcmxBKgMjY5kV7vaRbiXE0AA9xXF9KIjbdyp+t
+ zMIUCBOB+0mguvModmQvdulDzhNNTlmQDH77OVfWXdjPhCMBdvX4rszxPRhfwGRjJX
+ 0YJOBuUAAAL6Ez0xVV3uzjN491uni8dubFaF0A4B09a4T7/jqh+acGx2GzO+qGqEH1
+ pZBjr/ODGBoQA==
+Received: by mail-pg1-f198.google.com with SMTP id
+ v33-20020a634821000000b002530e4cca7bso311113pga.10
+ for <amd-gfx@lists.freedesktop.org>; Sun, 29 Aug 2021 19:02:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=+tyqDIpy9lHRPLEmWy2u7JRjZCjvRQis9Naz0mJ7yyE=;
- b=m94p7T5U/0zpkDRBokhQ3ceOIna8DGS9HmH3kcASQ+1BrMaRucNzvZ4PXCMYuwBkoM
- X3XJ3guBw6sj+5lFl/HqJkxS9+4V6jOQT2eOzkW1KBHF2tZymbSSbxOLCzg/8tcR0UuS
- DB/mc5LhWI9+PUNA6UUQE7OupM+Yisks3qySiGf3Bo8TFV2MKaDzjvKNuu4VHG1cbI9c
- WmcsD1+BtVzqec9pGI1f4Ae4DUG4iVqCuUybk6hMC3c4q/SnkGyMvasLUDQJzpzyxIra
- SkeAXhlVlvgxvmffkFNFQPIRTcEIij6v2YxqzZZ5z9uGprzzvfjK8ekqxvvEXjmxFCbH
- j3nQ==
-X-Gm-Message-State: AOAM530Xt4owTjvP0PfFOmJQLpFFaH0QhRqjBDgdWkjMX8K5OG7kTTF/
- tKomReIEr1Kn4GcGgZ2Pudw=
-X-Google-Smtp-Source: ABdhPJxNAUdpNwROozWgJHg/GNiHjvth3ssRdC8Jhxxk0/TA5hltCIGQaZPDWWSVf9B733nuKb+aAA==
-X-Received: by 2002:a2e:8610:: with SMTP id a16mr17648219lji.66.1630258490789; 
- Sun, 29 Aug 2021 10:34:50 -0700 (PDT)
-Received: from kari-VirtualBox (85-23-89-224.bb.dnainternet.fi. [85.23.89.224])
- by smtp.gmail.com with ESMTPSA id r23sm1508814ljd.86.2021.08.29.10.34.49
+ h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=nlBTRUxEXbUOBqJd5SosHVt9AVv9qfD/t1JUhw1deas=;
+ b=PXN0+1XDfjqpfdUP15GPO5jSwjL//65AVnGxKzQ9p5y7cTXHsvQM/p7IMpshpXIkvb
+ Ong0L7Sa34ULOvq0GI5GjVZCHlE1iyAy4B4xdxSjo86UytgkxA+DSwM6TCveWcHCyNSn
+ NwFRW8fwUm1k0F9WVufvdCMML9LGIAt0rgQkd0rb85xEDklW0VTQ7p0Co6QCP+h9TGak
+ 7oCIWREXQvxvEwgzHLqb5j9nBakmfTFTMzOn0JSjsRrGhgQfjWY8DZRNTXI2mS0SyacQ
+ j1/6gbmtJXOe9a2T74+idPVSSvujgzYgtQ3LV3LZ4eB2g3Qf8yrEmQhjwVLHYDit7xZC
+ kLkA==
+X-Gm-Message-State: AOAM530z7UnZYNkPfYfHoqV1NbEshhMjAqLKe4UMDx0HP8pZIsH1o2l1
+ p7qRZc1StScAC2/1UUzdg/K5sGLRa1RyPxH8JTDdRrxvHiXfY/TI+JQ/xrTJbKMogpeLsjcABnh
+ 7oZUIp722InvEv3AKsXj+gSawCdnAVIF0ivqpJOByc58=
+X-Received: by 2002:a17:90a:74c6:: with SMTP id
+ p6mr14676957pjl.20.1630288922797; 
+ Sun, 29 Aug 2021 19:02:02 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw9P0sTiA1JkJ8NCAOoOXl85H4CEHbKoyquGk+v195VJ1JI5HtlyDR1YHW2Nd1Uqb/sduEY9A==
+X-Received: by 2002:a17:90a:74c6:: with SMTP id
+ p6mr14676925pjl.20.1630288922501; 
+ Sun, 29 Aug 2021 19:02:02 -0700 (PDT)
+Received: from canonical.com (61-220-137-34.HINET-IP.hinet.net.
+ [61.220.137.34])
+ by smtp.gmail.com with ESMTPSA id i8sm13231140pfo.117.2021.08.29.19.02.01
+ for <amd-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 29 Aug 2021 10:34:50 -0700 (PDT)
-Date: Sun, 29 Aug 2021 20:34:48 +0300
-From: Kari Argillander <kari.argillander@gmail.com>
-To: Skyler =?utf-8?Q?M=C3=A4ntysaari?= <lists@samip.fi>
-Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org
-Subject: Re: [drm/amdgpu] Driver crashes on 5.13.9 kernel
-Message-ID: <20210829173448.3cwk4rz6wfxfxdpj@kari-VirtualBox>
-References: <4ada1100-fbce-44e4-b69d-0f5196f86bcb@www.fastmail.com>
+ Sun, 29 Aug 2021 19:02:02 -0700 (PDT)
+From: Koba Ko <koba.ko@canonical.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH V4 0/1] drm/amdgpu: Disable PCIE_DPM on Intel RKL Platform
+Date: Mon, 30 Aug 2021 10:01:59 +0800
+Message-Id: <20210830020200.611574-1-koba.ko@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4ada1100-fbce-44e4-b69d-0f5196f86bcb@www.fastmail.com>
 X-Mailman-Approved-At: Mon, 30 Aug 2021 07:17:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,43 +83,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Aug 29, 2021 at 06:38:39PM +0300, Skyler Mäntysaari wrote:
-> Hello everyone on the list,
+Due to high latency in PCIE clock switching on RKL platforms,
+switching the PCIE clock dynamically at runtime can lead to HDMI/DP
+audio problems. On newer asics this is handled in the SMU firmware.
+For SMU7-based asics, disable PCIE clock switching to avoid the issue.
 
-This is universal kernel list and it is not read by many. I have added
-hopefully right list (amd-gfx@lists.freedesktop.org).
+AMD provide a parameter to disable PICE_DPM.
 
-> Subject: Re: [drm/amdgpu] Driver crashes on 5.13.9 kernel
+modprobe amdgpu ppfeaturemask=0xfff7bffb
 
-I have no influence or knowledge about this driver, but I still try to
-help because it seems good bug report. Have you test with 5.13.13 or
-5.14-rc7. Does this work with some other kernel? If needed can you git
-bisect if needed? You will probably get some support for it if needed.
+It's better to contorl PCIE_DPM in amd gpu driver,
+switch PCI_DPM by determining intel RKL platform for SMU7-based asics.
 
-	Argillander
+V4: Modify the patch comments.
+V3:
+1. Use IS_ENABLED()
+2. include conditionally for X86_64
+V2: Determine RKL by using intel core type&model.
 
-> I thought that this should probably be discussed here,  so I came
-> across weird issue to me which is driver crashing while trying to get
-> one of my monitors working on Gentoo.  I would like to ask here how
-> that would happen that the Display appears to jump from DisplayPort-6
-> (physical port) to DisplayPort-7 (which doesn't exist physically)? Has
-> anyone else experienced this?
-> 
-> It seems that the driver sees a rather large amount of inputs for the
-> GPU, even though I only have 4, 3 of which are DisplayPort, and the
-> issue monitor is also on DisplayPort. 
-> 
-> Hardware:
-> CPU: AMD Ryzen 5800X
-> GPU: AMD Radeon RX 6800
-> System Memory: 32GB of DDR4 3200Mhz
-> Display(s): BenQ Zowie XL2430 (1080p), DELL U2414H (1080p), DELL U2415 (1920x1200)
-> Type of Diplay Connection: All are connected via Display-Port
-> 
-> Related DRM issue:
-> https://gitlab.freedesktop.org/drm/amd/-/issues/1621 which includes
-> logs too.
-> 
-> 
-> Best regards,
-> Skyler Mäntysaari
+Koba Ko (1):
+  drm/amdgpu: Disable PCIE_DPM on Intel RKL Platform
+
+ .../gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c   | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
+
+--
+2.25.1
+
