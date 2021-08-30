@@ -2,70 +2,73 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A88BB3FB1C4
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Aug 2021 09:17:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3F0B3FB1C8
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Aug 2021 09:17:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2AD889BA1;
-	Mon, 30 Aug 2021 07:17:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E36689CF3;
+	Mon, 30 Aug 2021 07:17:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-relay-internal-0.canonical.com
- (smtp-relay-internal-0.canonical.com [185.125.188.122])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A2DA89C84
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 02:02:06 +0000 (UTC)
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com
- [209.85.215.198])
+Received: from smtp-relay-internal-1.canonical.com
+ (smtp-relay-internal-1.canonical.com [185.125.188.123])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB6E789C84
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 02:02:07 +0000 (UTC)
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com
+ [209.85.214.200])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7A8D43F046
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 02:02:04 +0000 (UTC)
+ by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 527634077C
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 02:02:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
- s=20210705; t=1630288924;
- bh=nlBTRUxEXbUOBqJd5SosHVt9AVv9qfD/t1JUhw1deas=;
- h=From:To:Subject:Date:Message-Id:MIME-Version;
- b=gLraJAoA9DoSq+UNXGZqYFBf5SOSE1/uh1ChB+1TO3QZnwnk6dC+97bv3ynTW8emj
- J8UP+g5cI5ye1eA2gAdfvkOgLLBc1f99FvXJR/bq7o69Lzfmv+bPVHZjZxIP8lg47I
- aDOIP/DICBDkbhnyk2jVDbfm2321pcmxBKgMjY5kV7vaRbiXE0AA9xXF9KIjbdyp+t
- zMIUCBOB+0mguvModmQvdulDzhNNTlmQDH77OVfWXdjPhCMBdvX4rszxPRhfwGRjJX
- 0YJOBuUAAAL6Ez0xVV3uzjN491uni8dubFaF0A4B09a4T7/jqh+acGx2GzO+qGqEH1
- pZBjr/ODGBoQA==
-Received: by mail-pg1-f198.google.com with SMTP id
- v33-20020a634821000000b002530e4cca7bso311113pga.10
- for <amd-gfx@lists.freedesktop.org>; Sun, 29 Aug 2021 19:02:04 -0700 (PDT)
+ s=20210705; t=1630288926;
+ bh=ql0s+QjpnPyqso7Ywb2HMLPII4+zn2mMzFfsFgd6ZIE=;
+ h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
+ MIME-Version;
+ b=QGTrInsHTxq84Q4hG5jBQsPIQYiO0TVSbY2cLzDw94wz1NdFWi/ObM3NqZwFVfxZI
+ gcoL/g/zUCsraQwULll/5igQ4MCzm81XhxH+S+3Hbs6V5jaXUuaOyClH16k3T6TYRY
+ 3E3kiknuzZtRDhncKJrixJEyTfC2riX30/9lpBKc0wTEhly1ECgEz8Rbli6iSq3QaI
+ wW9/tYuqmtfgSNlI3DDzvlF2PwxEb/q3pTRfkGgf28LZHUDaVsNyJitk9zOIY7XOax
+ 4cLTHqaQV02+j0QnXcOylko4G01skbJy28c4/ZwF4sYkWyy6OyVUkszspAUKVXfrHc
+ 3UEOxMojgCCGg==
+Received: by mail-pl1-f200.google.com with SMTP id
+ p7-20020a170902b087b029012c2879a885so1121970plr.6
+ for <amd-gfx@lists.freedesktop.org>; Sun, 29 Aug 2021 19:02:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=nlBTRUxEXbUOBqJd5SosHVt9AVv9qfD/t1JUhw1deas=;
- b=PXN0+1XDfjqpfdUP15GPO5jSwjL//65AVnGxKzQ9p5y7cTXHsvQM/p7IMpshpXIkvb
- Ong0L7Sa34ULOvq0GI5GjVZCHlE1iyAy4B4xdxSjo86UytgkxA+DSwM6TCveWcHCyNSn
- NwFRW8fwUm1k0F9WVufvdCMML9LGIAt0rgQkd0rb85xEDklW0VTQ7p0Co6QCP+h9TGak
- 7oCIWREXQvxvEwgzHLqb5j9nBakmfTFTMzOn0JSjsRrGhgQfjWY8DZRNTXI2mS0SyacQ
- j1/6gbmtJXOe9a2T74+idPVSSvujgzYgtQ3LV3LZ4eB2g3Qf8yrEmQhjwVLHYDit7xZC
- kLkA==
-X-Gm-Message-State: AOAM530z7UnZYNkPfYfHoqV1NbEshhMjAqLKe4UMDx0HP8pZIsH1o2l1
- p7qRZc1StScAC2/1UUzdg/K5sGLRa1RyPxH8JTDdRrxvHiXfY/TI+JQ/xrTJbKMogpeLsjcABnh
- 7oZUIp722InvEv3AKsXj+gSawCdnAVIF0ivqpJOByc58=
-X-Received: by 2002:a17:90a:74c6:: with SMTP id
- p6mr14676957pjl.20.1630288922797; 
- Sun, 29 Aug 2021 19:02:02 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJw9P0sTiA1JkJ8NCAOoOXl85H4CEHbKoyquGk+v195VJ1JI5HtlyDR1YHW2Nd1Uqb/sduEY9A==
-X-Received: by 2002:a17:90a:74c6:: with SMTP id
- p6mr14676925pjl.20.1630288922501; 
- Sun, 29 Aug 2021 19:02:02 -0700 (PDT)
+ h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=ql0s+QjpnPyqso7Ywb2HMLPII4+zn2mMzFfsFgd6ZIE=;
+ b=YCrXPLZ2jVtcvpMRvImJ7lM37QMwJASgvepn2yfhYZvybfwggQOI7+4EUx8txTUJcg
+ vM5u0m1U/kJGaqtnjT22YIUOj2/+wnYF+asvK2Vg0X6y2O7hIN56h6wkWOTpE9Ej8fuW
+ K3CpjK3+P/QjK7epy+UV7xWleCbOdo8EojgkLLo4cab+TF8s1Dql/qGfGGXx/pCzAxaE
+ ra8QpT8fMTnDAfBctTD7/VElEEEztUL04+vuSgjKb4b+cdm03y2NUcd1Rm6yuPtfk8lB
+ o3/WW431yaJzkIjo5IZl+4OBYVPxyR+xqMcBJwFHaS523SKwtpKK8/Pik5KdbbePDftt
+ w4XA==
+X-Gm-Message-State: AOAM532LeqvseWdn2+SFwL1ZzLo155vMyhjtmMWLd0D5zfv0gpHuIWHO
+ wnILa+qwwkbgSmpWhFH5hqhPhiDF5koRKOHRVx3sagQvglC/o6e5WaCvidGyre/opDP58GWtVUJ
+ 4Izc3notY58ClimgU9YuFH1lIoBkmu8pd6F+j4u/11kc=
+X-Received: by 2002:a17:90a:4a88:: with SMTP id
+ f8mr37174580pjh.226.1630288924605; 
+ Sun, 29 Aug 2021 19:02:04 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyjQE4NzN1JbWkDiuCYR0t5RPBcu2x81db21t+6+qktnbcmFEdt/BuXibnrXuY8DDLkHL1zFA==
+X-Received: by 2002:a17:90a:4a88:: with SMTP id
+ f8mr37174554pjh.226.1630288924287; 
+ Sun, 29 Aug 2021 19:02:04 -0700 (PDT)
 Received: from canonical.com (61-220-137-34.HINET-IP.hinet.net.
  [61.220.137.34])
- by smtp.gmail.com with ESMTPSA id i8sm13231140pfo.117.2021.08.29.19.02.01
+ by smtp.gmail.com with ESMTPSA id g7sm8590812pfj.70.2021.08.29.19.02.03
  for <amd-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 29 Aug 2021 19:02:02 -0700 (PDT)
+ Sun, 29 Aug 2021 19:02:04 -0700 (PDT)
 From: Koba Ko <koba.ko@canonical.com>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH V4 0/1] drm/amdgpu: Disable PCIE_DPM on Intel RKL Platform
-Date: Mon, 30 Aug 2021 10:01:59 +0800
-Message-Id: <20210830020200.611574-1-koba.ko@canonical.com>
+Subject: [PATCH V4 1/1] drm/amdgpu: Disable PCIE_DPM on Intel RKL Platform
+Date: Mon, 30 Aug 2021 10:02:00 +0800
+Message-Id: <20210830020200.611574-2-koba.ko@canonical.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210830020200.611574-1-koba.ko@canonical.com>
+References: <20210830020200.611574-1-koba.ko@canonical.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 30 Aug 2021 07:17:52 +0000
@@ -95,18 +98,55 @@ modprobe amdgpu ppfeaturemask=0xfff7bffb
 It's better to contorl PCIE_DPM in amd gpu driver,
 switch PCI_DPM by determining intel RKL platform for SMU7-based asics.
 
-V4: Modify the patch comments.
-V3:
-1. Use IS_ENABLED()
-2. include conditionally for X86_64
-V2: Determine RKL by using intel core type&model.
+Fixes: 1a31474cdb48 ("drm/amd/pm: workaround for audio noise issue")
+Ref: https://lists.freedesktop.org/archives/amd-gfx/2021-August/067413.html
+Signed-off-by: Koba Ko <koba.ko@canonical.com>
+---
+ .../gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
 
-Koba Ko (1):
-  drm/amdgpu: Disable PCIE_DPM on Intel RKL Platform
-
- .../gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c   | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
-
---
+diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+index 0541bfc81c1b..1d76cf7cd85d 100644
+--- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
++++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c
+@@ -27,6 +27,9 @@
+ #include <linux/pci.h>
+ #include <linux/slab.h>
+ #include <asm/div64.h>
++#if IS_ENABLED(CONFIG_X86_64)
++#include <asm/intel-family.h>
++#endif
+ #include <drm/amdgpu_drm.h>
+ #include "ppatomctrl.h"
+ #include "atombios.h"
+@@ -1733,6 +1736,17 @@ static int smu7_disable_dpm_tasks(struct pp_hwmgr *hwmgr)
+ 	return result;
+ }
+ 
++static bool intel_core_rkl_chk(void)
++{
++#if IS_ENABLED(CONFIG_X86_64)
++	struct cpuinfo_x86 *c = &cpu_data(0);
++
++	return (c->x86 == 6 && c->x86_model == INTEL_FAM6_ROCKETLAKE);
++#else
++	return false;
++#endif
++}
++
+ static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
+ {
+ 	struct smu7_hwmgr *data = (struct smu7_hwmgr *)(hwmgr->backend);
+@@ -1758,7 +1772,8 @@ static void smu7_init_dpm_defaults(struct pp_hwmgr *hwmgr)
+ 
+ 	data->mclk_dpm_key_disabled = hwmgr->feature_mask & PP_MCLK_DPM_MASK ? false : true;
+ 	data->sclk_dpm_key_disabled = hwmgr->feature_mask & PP_SCLK_DPM_MASK ? false : true;
+-	data->pcie_dpm_key_disabled = hwmgr->feature_mask & PP_PCIE_DPM_MASK ? false : true;
++	data->pcie_dpm_key_disabled =
++		intel_core_rkl_chk() || !(hwmgr->feature_mask & PP_PCIE_DPM_MASK);
+ 	/* need to set voltage control types before EVV patching */
+ 	data->voltage_control = SMU7_VOLTAGE_CONTROL_NONE;
+ 	data->vddci_control = SMU7_VOLTAGE_CONTROL_NONE;
+-- 
 2.25.1
 
