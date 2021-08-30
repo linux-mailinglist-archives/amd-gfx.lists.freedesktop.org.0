@@ -2,114 +2,114 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 020423FAFF1
-	for <lists+amd-gfx@lfdr.de>; Mon, 30 Aug 2021 05:08:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FE9A3FAFEB
+	for <lists+amd-gfx@lfdr.de>; Mon, 30 Aug 2021 04:54:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6C2389C97;
-	Mon, 30 Aug 2021 03:08:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C63D89D63;
+	Mon, 30 Aug 2021 02:54:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2050.outbound.protection.outlook.com [40.107.236.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2196A89C97
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 03:08:14 +0000 (UTC)
+ (mail-bn8nam11on2058.outbound.protection.outlook.com [40.107.236.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E50589D60
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 02:54:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jzB1++smxiGc3bu04ULQSK3NCWgdblZR3/lASYKyBBigmoajObl2TvnMaxm/0POx1HpokGBdGx1NX9hUQDYh6oTORrbtriCT5c10xYTUdGUHRPi+JB//6zpuVKaBDHIo8PKVSKg3tzAJL7K0b+NVIpezY30YkI7JQ1fcU8V+V/lcX4p2f+aAmTyboOt3hqVdRNalAGtgCE8YQ9otBVF+6TpMR6CvqwHSgEYMinRHe3NnIYmlzFlAYyPfXIQRZgZ4rsWH4+PR+pd3Bk8yb6kUqqYXCajBbmAyzsf5qR+wPOA2yJpnPNDnVijrdQSiPx2uCL94QHwhsrmidRliL5Blng==
+ b=QbZ/6hl25Euyg8W6GoEs0XEiKTEjypDqoxYBm8b7BFtg8NLlPGbAE0SVleV40ZAFqCl44x1S8ZPWtEuIJ4avUJa13HWWyXlwgY52idHlJ0l6CAbfBDwy2+QOkHdqvrSK0FpJPhTkjDdsouUISarVImuKQQOOAL+iVZktvDTkfrCixA47NVCslsBwfgAVfU5/caGDEzbRMj5avnlw++iQQdZKj5OUGt9zx6COnqLkrRaZhd8n+UkVijwqaQiLVWo5OsVa+KsEB/u2Q76wMmG7BFyhmCKh7eHCi/ifRvVvZ38Hy4Pz+jiWH3bcMiyBUq6ffMNOyOGLhAIh1KN52oSMBA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6mjutnXlBX3KbPHhQyffKf7HYJlUXBJfezAkWGVcmYc=;
- b=ac5TcV4U7izPPAPbsoQKC6mm5gOa/TPf4nLdPsX1itqROZVy8xRtUoleyBCjzEW4scpqTOn8Ks5jVncMBrSZMCryVA1RaVfBkue9lX8PG9iFDkQjA1tSIj6fRZjaspTg4TR+EwnxvLhwGcKyVajLs9x3GWLxXWDVShdcIaiUSOX/3A27POetXkn8UPqCjo8lkDj7zKAccKMn68vTOML4wLdD5aZGOeoqkOYvV0nRe2VVYe35A0PInsWpb6WhAtY6HUQSE8z4yg0T85reBc456dUl3CE6FPp0nHgJgaUgp8IG8heRGZR6nmRC8GS0PJF0eeZb4cm6XY3rvCcauTJ5sg==
+ bh=OV7yfSpOgNtoseCvmzBWF5PfBnvRTcNaj4simCnaHJE=;
+ b=L6qbwuGaokS+xGb6g/BztvjAvtmJlHO9w4Y8ek5sE2OLzwvqQrGVnI0uBiO9jpBkq7C8eKZRkUIsg2nUzBDSfHIorne2ldtb3lATEyqZg8Z0dxben2iNhxvsRGr4p7aF9ydJHDvZeUbbqTsevCnzzs2a/mLKKxQa1t21FrKzJr84ig9smJtkK+G2qrsfAPcrIp9Mlasd20EnWSBTsEyvmIk+Xouv3w0kNbPP0Ijwl6R+epLBzqFWYqOTp5JzKJF0cIj23rX8MAyjR6U6fXCUbnLjDIzEfcyKCt8EkG46S0LPcJrGKVeJjW+oLCYnoiixjVglz3YRlN/WaBcwrfTECA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6mjutnXlBX3KbPHhQyffKf7HYJlUXBJfezAkWGVcmYc=;
- b=J4a4bP3JplFmXTsXwlNU4fD78+SWAoH1zp0V5T59dArkIktB5qSpmbd5rQ+0D6jJ97aCwenWpX+mKDVyvk76OmscTNGM8kbE/io0OmrQTIOXKMMHOt6+2EHHsGS5360C3IMQVCpkm7uFaIwuH5c68q+AhHRmpxWHxAbMYuG6Jcw=
+ bh=OV7yfSpOgNtoseCvmzBWF5PfBnvRTcNaj4simCnaHJE=;
+ b=R7ZWUCrVIz+bdSdNgY1qVyizGVsMoymAWCCp2S2+Zp5jSVZ4LHYXh8KlGz7TJJlCaQni5IoTfrXMQUhza2lT5E7zjcivLKdjiUm2oZwZiwS50UCSj9DV6EoBVLO9cBV1omK2iUhZkCqAcK5ABKs/JceZBIkLd4cwoh03Za9E7Ng=
 Received: from BN9PR12MB5226.namprd12.prod.outlook.com (2603:10b6:408:11f::11)
  by BN9PR12MB5161.namprd12.prod.outlook.com (2603:10b6:408:11a::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.19; Mon, 30 Aug
- 2021 02:53:44 +0000
+ 2021 02:54:25 +0000
 Received: from BN9PR12MB5226.namprd12.prod.outlook.com
  ([fe80::a3:7688:bffe:880e]) by BN9PR12MB5226.namprd12.prod.outlook.com
  ([fe80::a3:7688:bffe:880e%3]) with mapi id 15.20.4457.024; Mon, 30 Aug 2021
- 02:53:44 +0000
+ 02:54:26 +0000
 From: "Clements, John" <John.Clements@amd.com>
 To: "Li, Candice" <Candice.Li@amd.com>, "amd-gfx@lists.freedesktop.org"
  <amd-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/amd/amdgpu: add mpio to ras block
-Thread-Topic: [PATCH] drm/amd/amdgpu: add mpio to ras block
-Thread-Index: AQHXnUhLoS0SrZWh/kGXKehQA7dcP6uLWeew
-Date: Mon, 30 Aug 2021 02:53:44 +0000
-Message-ID: <BN9PR12MB5226A97E0793016EE03DBF02FBCB9@BN9PR12MB5226.namprd12.prod.outlook.com>
-References: <20210830023914.13670-1-candice.li@amd.com>
-In-Reply-To: <20210830023914.13670-1-candice.li@amd.com>
+Subject: RE: [PATCH] drm/amd/amdgpu: consolidate PSP TA unload function
+Thread-Topic: [PATCH] drm/amd/amdgpu: consolidate PSP TA unload function
+Thread-Index: AQHXmyge8Afac9hvbUCpW9PcCj8JkauLXk3w
+Date: Mon, 30 Aug 2021 02:54:26 +0000
+Message-ID: <BN9PR12MB52269E27275DB46CA255C8C1FBCB9@BN9PR12MB5226.namprd12.prod.outlook.com>
+References: <20210827094343.889-1-candice.li@amd.com>
+In-Reply-To: <20210827094343.889-1-candice.li@amd.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-08-30T02:53:41Z; 
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-08-30T02:54:24Z; 
  MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
  MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
  Only-AIP 2.0;
  MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=36848324-a0d7-4270-a79f-dee504a6c098;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=a8c5ee8e-7b7e-46b6-8d45-d4f6705ad774;
  MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
 authentication-results: amd.com; dkim=none (message not signed)
  header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d7f03254-bd82-4ebe-a5d9-08d96b6161aa
+x-ms-office365-filtering-correlation-id: c28ebc52-6d5e-496e-45a0-08d96b617a99
 x-ms-traffictypediagnostic: BN9PR12MB5161:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BN9PR12MB51618F4D0403C7B991279ABCFBCB9@BN9PR12MB5161.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:133;
+x-microsoft-antispam-prvs: <BN9PR12MB51618247F872F73E5C60C853FBCB9@BN9PR12MB5161.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3044;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sp5ldHrTHKT/zBYPnVvc7KIl/3tBNWayvvORa0wXO2EZppLK8JceKW5531XrL6sxKnbF0/hwcoykizvhg+YX+/Z2NnkV7DyxOQCK3FC/Fsl6/6BsA6mnDK1W/ClRcqs+nbegJV7lRNcAtbHPi9y5fdiFyF/0O17eUwp1OBilU8V8HdLx5Cd2aZhVhd+NQSNWrLm+wCYDMfBZDjHNzoB3EgrRNS8vBvy1V2yw4cZOYzwlk7ojt6BJHiBZlOSGxIQJSsDFazq+kb41MoJ6VrzytJG4NFtv7iP0BKUOWXFgkuV4Shviy9ecX6vcl7Uw6lNDANVdevtRbnA/wgDxRchRTRst75kWlKJWELzB5fTcVQFAt271S/NUAbCWgsQbpsCw4zlQ1/ynz/Xf1JoHT2qD8Oz7K82E0eocG7So/b3Ty5eAzSgBTqkmn0p1F73lyb2DZuMAWHG651yhqpwJ0urqVw+CrgBvXDhwrFUMOw+eO8a4IZ8M0bjRKhz7KchKMI3+ZjHXXknzqywW41T2Tu5JnQ5BBzB4YJeK+esAwumnyoyV/KnkUcWBXi+/AiAMVfkwHAYx+uWQh0BQH4p1ieZfVZWOe6Q/UWAD5SflTabXVlY8yQfauyGCWz7AB9mLosx5zC0JpeMfueTfL3AkINJrYTIpRFtDdoBFruZN7LHwJOYxOKpKym9vjUHaNYTqZL3TdF4lxXNRzOT1mRFvEZNVVQ==
+x-microsoft-antispam-message-info: oLo52d8KUNvjgMENmumzzQ7NIUcLmpcxtaZUs2jKyPUZsb6TtJFsyMzLC8OtxqEYafw6I374zfDXnRQk6swAH1+M/m2L+3y/6KYK7nzdS8R4ACjt3GtqD0u4tQggoL/B6LPKVWvNAS/OqbDNFbEHTKSmaLlAI0v+/W+iACCe9o58mstDyXCvuhDEe/UgQwlGHTJEVJWnDIwe5CLabTVKc9RMVTmtto283+65V2MeKqoZt0V8iTGzrzdwQDhd/A/wX17jy8e4QIYMhT4mk4JDdyqmJnYyDDOukT3pL7eDRNaaR1HoodUJHxgXPSIUGFsyUFSXkAE3fQUT2Od85MBV+WXPEEzcMBu7MlfOxqakWjmb1hEZcRuceKiwvYX59ljwfUsc26VqAz+hHnZARqq+2FgAglM559ZnXL9G9Q9x6wR15SeliU3cEtIXVdJ8dD64c5J5c7C+41Ougi8e/cXln9aCX2zTu60NNfegmYzSm7K9tMeUJ9lB0hglI1RZWsuiOTx+iPi9eAehpUvPpDSuwIHgF3fqystMmCMob68x4vPJIu4bFUF/J1cXa9vJGlNbz2DBYKXRQPergNEfZBMt2iG2VS2BCFsKR+cVaITX9X0nH4K5Tw20mg5OVCLQioIyrmYOvXMXxRDDgjrGNfRditWpZE5VR5zZvT/7Ow2xFjxxFAAEAzS6+mHUqxHF+bd49zleTZLwTIm1fXHCNTRrvQ==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BN9PR12MB5226.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(4636009)(39860400002)(376002)(346002)(366004)(396003)(136003)(186003)(76116006)(8936002)(9686003)(2906002)(64756008)(66946007)(66556008)(66476007)(66446008)(26005)(55016002)(8676002)(71200400001)(33656002)(83380400001)(52536014)(86362001)(478600001)(38100700002)(38070700005)(6506007)(122000001)(316002)(53546011)(110136005)(5660300002)(7696005);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?BsDiMRFDQomSJ3V8O2YsIrOCxnBovLTiKpo6Lfi1FoeHIFPztaBRX9sMbO72?=
- =?us-ascii?Q?3NlILAjykMqq2k6wQpFgA4QUXBRmP2wX36p2u4Hp68ZDCvdQiVjMleweasN6?=
- =?us-ascii?Q?kELS+DgTpjWEuHLnbXbMfqSbUCioozqPNiEkk604EuR1Cey70vKNpbzd0t9l?=
- =?us-ascii?Q?T9RJv+dQ3+kSypcpiNM6El1BUTqpIHDEwqPhU1V3OKkCQQe5xyDqbfKVWQs+?=
- =?us-ascii?Q?1MPNb9WSpkDOCIXVLRu+gO72JFB3BMoKT/QTCNKPUb+X121g3Wk48DX0ZndZ?=
- =?us-ascii?Q?BjqbU3wVF5mnWe5n6vkhZTv3NWXa64D38XSsuxRuBXYm5jCZAViqvkNAUeh0?=
- =?us-ascii?Q?82NbEh8OkkAzWHa93jszqcDFCm5wM8BQYoqpl6simcK1o/vDxmY0mrm/Yt3r?=
- =?us-ascii?Q?tDtoIlaxZpM9kj/FOWOr0Gs8WyGyT2vPxb9OkkxxWvH9SuBM2yjhIFSKlSX/?=
- =?us-ascii?Q?+P48L6Dphwt0wjRmJchdPI8YpE00vvyAl5Ukm22NwaepIIiX5RqwFy+4LZQx?=
- =?us-ascii?Q?RfrOKk0CSJ//lJBALfYTVx+K8TYvWq5tRT5Gd/53V7wOT+bqnz8Gh6IBn6je?=
- =?us-ascii?Q?565MU8XQg9wLp3a0V9vgw3H+hIma5I65SCWAdo9qtQXPHy0ApkXmL3HEDCQS?=
- =?us-ascii?Q?fiB3x802LN2uhcw+Q8ba657JgGsNfPoZCoJty8+6aHoxyKUtxttNwllcjrRg?=
- =?us-ascii?Q?jBAq0UUKED5edixDgpvC3ul3VD88vqHXDq7/3a0HwhVyo/7/hRfFs8+ChlVq?=
- =?us-ascii?Q?zIc4lhSK969d+lz3oVyKSKPUASTP+b3ch1VAAXqBOewshK9sUaGBNMwPAlxJ?=
- =?us-ascii?Q?KG+DSos6KNy7apd5QpR/hKNlNYRtHRzV6+8BrFIKH7lWEmC066rPxyQDqiaD?=
- =?us-ascii?Q?Zes/AmRD8haO7HfQ9cknm4O7Bc3YwdWx6976ZWRwZnlEH/n4RHT0Vui3kq0Q?=
- =?us-ascii?Q?v5Fpwq+K33y2f2BuuON55vG0SR4yZ7Xgi7UEbZ45Stwub1Io3yyNPXxG5INO?=
- =?us-ascii?Q?WqZhR3Q/MKX3QS70qYGRWzRCui71/O4RDxxkm5UTMGbQ+wpauOskQ0cvtV3J?=
- =?us-ascii?Q?/V6KfmUBWbF55/HAnlUNwUSV4WTL82k1Ksi+Yu5Jj3t2w775/V7karTakncN?=
- =?us-ascii?Q?X1k/f0+UrwlRh7vJ0aT+m0gA9CAVPrHu02oW6ztVEtLX8auqcMno1u+Dt8OT?=
- =?us-ascii?Q?gZNTWbzzAANIXljxggDwYwVfpHkTu5GoObDfWoJwj+PhX+yWIlgI81rq02Ad?=
- =?us-ascii?Q?juRt3+nisyfLUdSzmTmKX1sByRcozj4/2JLuAhYKpMN9wWGsMUhTaL1ZFRMu?=
- =?us-ascii?Q?lGrw2o2lQK4ekUyK1wBFPBwC?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?eOvUhACsAHb3XjQ6XFWK5Ngj1SR/o8H0DLyTyTFpYghvwiHHG47F/8nSclLo?=
+ =?us-ascii?Q?PvdDxpbZz8e04+BCo2Rc/83uyK44S1PJXOSEnTJmwQ6F0wow85IMN7oVYFjK?=
+ =?us-ascii?Q?WUE54i+q1bX2xJ+M/QkpOSAoUsdFrZ3zVhDo8eNRQRpcx8jvfaYZhUICRbcA?=
+ =?us-ascii?Q?e59DIbbLIPdSnonNkcX++Tx31x9pJwl72uOKDhc/koBLaORSXf0iozCy7g7h?=
+ =?us-ascii?Q?uoNDHTh6DxzQSiyQQQstCNXH4HL0lBQRQJZjbUVA1QbgRfgnyoqdCHnf+NWC?=
+ =?us-ascii?Q?Tz1qbbZe6oKR02l9gFHqQgQSeVRdPX/enlb60Lv3CVmNxbDJwkIfWQvxKjzn?=
+ =?us-ascii?Q?Mhk/cj/QmJGrJqnOc27TFeQNz3Dzcn/nZUFMvuUgE9Ur1IfQV3EWUb6FMEbK?=
+ =?us-ascii?Q?QWXkBQSizv0AKQGorIQ8OJQhus/CHE0xeE4LGz4n1253pxuNhuB4ys0cxhYy?=
+ =?us-ascii?Q?oTSUVGPs+qgApPC2SwPXwyhRz89KlYzPEprji/gJ/mu2DlfQizSClOWToZSX?=
+ =?us-ascii?Q?HmfIglOc6lkuI2FgkWxAO9D0JHFZs4+Tr+iYQiUlugP7eTwpA0llz47zc+/e?=
+ =?us-ascii?Q?ufKHxFsDAgCPA1tKUjDRk91RNF5HBydYHMnJoKX1STJYrAweNB7EFjj1AMZp?=
+ =?us-ascii?Q?vwftCogQ9ovNfoysmYW7hZb1qE81sRKwua6shvIbuqETY7h31QRej/aC4k6j?=
+ =?us-ascii?Q?DJItQWXwLqNRRHZjhTIYWKCAyxg+ovQe7sKwUBttLMiv+iDqS2p5xNno4A/p?=
+ =?us-ascii?Q?L3uET30jSJfAZKKtP73tmNXgb3fEW2UlYWp8xXVojl16TZXlc9v4wwuFAMuI?=
+ =?us-ascii?Q?kNolIkC1w5u6HT1otLXEiwxOul+52OzGmavRr9TgtXeW957KSKKQeFXunM5a?=
+ =?us-ascii?Q?klSJXkxLHLT95Ugtg0he5+Gb1uGpLwzykpbXQGPIzo4O0lb7tbMOUWpAlCHr?=
+ =?us-ascii?Q?QfHuRb5gWvOINFL3Dn5d1LgP7Aul8cil15NTac3mUqxq2Jr9361PU5lkQlO5?=
+ =?us-ascii?Q?0EvcxMoSkutHoKoNIwZfgm2pFVhqtaUTvSAQbG+BZSafrY8B/f3mp3hr4IFe?=
+ =?us-ascii?Q?kMCyRZQ/cuDw/VVnlSIGfkOOQ+guoghkVxCmaTdmCvSQ56mZbrQnsVKoGjXM?=
+ =?us-ascii?Q?YDN1CGCGE3Vt0GqfDVdwg6L3Zl2kGgEK0yt5YJM+UoesuyPjTg3V+0M56tIQ?=
+ =?us-ascii?Q?X7xWuI8mdhveiI/bmSnvEOnmhmbuGeeWKf/IuT53E3RhjMkEvLikj/ZMlRf2?=
+ =?us-ascii?Q?e66fyFi4fa+HwOPCAsCWXI1VkovMOhXmwNPiCQWmWa9RZ4ImOF9qr0iSeaL8?=
+ =?us-ascii?Q?yuhVyI3fO8/hfvatiQgqTEdn?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5226.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d7f03254-bd82-4ebe-a5d9-08d96b6161aa
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Aug 2021 02:53:44.2566 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c28ebc52-6d5e-496e-45a0-08d96b617a99
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Aug 2021 02:54:26.0997 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Lt3ZvsyZzwW6t152DFCLqlD1rS26Qf2rwxMI1w/tBAFxlN+Cl6G3AJ6H4rksRWQbBQuuC0ON4I64KjSy11Zsyg==
+X-MS-Exchange-CrossTenant-userprincipalname: LI6hGp3w0wil4GjuzaM7w8/bc+SjSzBuldi1fiV99N5TVk1pcCfWZTcb4jAMrkYPoi9HNCOHUhsAt0v9hS2QHw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5161
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -131,58 +131,289 @@ Reviewed-by: John Clements <john.clements@amd.com>
 
 -----Original Message-----
 From: Li, Candice <Candice.Li@amd.com>=20
-Sent: Monday, August 30, 2021 10:39 AM
+Sent: Friday, August 27, 2021 5:44 PM
 To: amd-gfx@lists.freedesktop.org
 Cc: Clements, John <John.Clements@amd.com>; Li, Candice <Candice.Li@amd.com=
 >
-Subject: [PATCH] drm/amd/amdgpu: add mpio to ras block
+Subject: [PATCH] drm/amd/amdgpu: consolidate PSP TA unload function
 
-Add MPIO to RAS block
+Create common PSP TA unload function and replace all common TA unloading se=
+quences.
 
 Signed-off-by: Candice Li <candice.li@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 1 +  drivers/gpu/drm/amd/amdgpu/=
-amdgpu_ras.h | 2 ++  drivers/gpu/drm/amd/amdgpu/ta_ras_if.h  | 1 +
- 3 files changed, 4 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 160 ++++++------------------
+ 1 file changed, 40 insertions(+), 120 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/=
-amdgpu/amdgpu_ras.c
-index 96a8fd0ca1df31..77140821dc1126 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -61,6 +61,7 @@ const char *ras_block_string[] =3D {
- 	"mp0",
- 	"mp1",
- 	"fuse",
-+	"mpio",
- };
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/=
+amdgpu/amdgpu_psp.c
+index 23efdc67250272..243adce6de3654 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -46,6 +46,9 @@ static int psp_sysfs_init(struct amdgpu_device *adev);  s=
+tatic void psp_sysfs_fini(struct amdgpu_device *adev);
 =20
- #define ras_err_str(i) (ras_error_string[ffs(i)]) diff --git a/drivers/gpu=
-/drm/amd/amdgpu/amdgpu_ras.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-index eae604fd90b81a..1670467c205463 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h
-@@ -544,6 +544,8 @@ amdgpu_ras_block_to_ta(enum amdgpu_ras_block block) {
- 		return TA_RAS_BLOCK__MP1;
- 	case AMDGPU_RAS_BLOCK__FUSE:
- 		return TA_RAS_BLOCK__FUSE;
-+	case AMDGPU_RAS_BLOCK__MPIO:
-+		return TA_RAS_BLOCK__MPIO;
- 	default:
- 		WARN_ONCE(1, "RAS ERROR: unexpected block id %d\n", block);
- 		return TA_RAS_BLOCK__UMC;
-diff --git a/drivers/gpu/drm/amd/amdgpu/ta_ras_if.h b/drivers/gpu/drm/amd/a=
-mdgpu/ta_ras_if.h
-index 0f214a398dd8fd..532260fd64db14 100644
---- a/drivers/gpu/drm/amd/amdgpu/ta_ras_if.h
-+++ b/drivers/gpu/drm/amd/amdgpu/ta_ras_if.h
-@@ -73,6 +73,7 @@ enum ta_ras_block {
- 	TA_RAS_BLOCK__MP0,
- 	TA_RAS_BLOCK__MP1,
- 	TA_RAS_BLOCK__FUSE,
-+	TA_RAS_BLOCK__MPIO,
- 	TA_NUM_BLOCK_MAX
- };
+ static int psp_load_smu_fw(struct psp_context *psp);
++static int psp_ta_unload(struct psp_context *psp, uint32_t session_id);=20
++static int psp_rap_terminate(struct psp_context *psp); static int=20
++psp_securedisplay_terminate(struct psp_context *psp);
+=20
+ /*
+  * Due to DF Cstate management centralized to PMFW, the firmware @@ -829,1=
+0 +832,28 @@ static void psp_prep_ta_unload_cmd_buf(struct psp_gfx_cmd_resp=
+ *cmd,
+ 	cmd->cmd.cmd_unload_ta.session_id =3D session_id;  }
+=20
++static int psp_ta_unload(struct psp_context *psp, uint32_t session_id)=20
++{
++	int ret;
++	struct psp_gfx_cmd_resp *cmd =3D acquire_psp_cmd_buf(psp);
++
++	psp_prep_ta_unload_cmd_buf(cmd, session_id);
++
++	ret =3D psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
++
++	release_psp_cmd_buf(psp);
++
++	return ret;
++}
++
+ static int psp_asd_unload(struct psp_context *psp)
++{
++	return psp_ta_unload(psp, psp->asd_context.session_id); }
++
++static int psp_asd_terminate(struct psp_context *psp)
+ {
+ 	int ret;
+-	struct psp_gfx_cmd_resp *cmd;
+=20
+ 	if (amdgpu_sriov_vf(psp->adev))
+ 		return 0;
+@@ -840,17 +861,11 @@ static int psp_asd_unload(struct psp_context *psp)
+ 	if (!psp->asd_context.asd_initialized)
+ 		return 0;
+=20
+-	cmd =3D acquire_psp_cmd_buf(psp);
+-
+-	psp_prep_ta_unload_cmd_buf(cmd, psp->asd_context.session_id);
++	ret =3D psp_asd_unload(psp);
+=20
+-	ret =3D psp_cmd_submit_buf(psp, NULL, cmd,
+-				 psp->fence_buf_mc_addr);
+ 	if (!ret)
+ 		psp->asd_context.asd_initialized =3D false;
+=20
+-	release_psp_cmd_buf(psp);
+-
+ 	return ret;
+ }
+=20
+@@ -990,29 +1005,7 @@ static int psp_xgmi_load(struct psp_context *psp)
+=20
+ static int psp_xgmi_unload(struct psp_context *psp)  {
+-	int ret;
+-	struct psp_gfx_cmd_resp *cmd;
+-	struct amdgpu_device *adev =3D psp->adev;
+-
+-	/* XGMI TA unload currently is not supported on Arcturus/Aldebaran A+A */
+-	if (adev->asic_type =3D=3D CHIP_ARCTURUS ||
+-		(adev->asic_type =3D=3D CHIP_ALDEBARAN && adev->gmc.xgmi.connected_to_cp=
+u))
+-		return 0;
+-
+-	/*
+-	 * TODO: bypass the unloading in sriov for now
+-	 */
+-
+-	cmd =3D acquire_psp_cmd_buf(psp);
+-
+-	psp_prep_ta_unload_cmd_buf(cmd, psp->xgmi_context.context.session_id);
+-
+-	ret =3D psp_cmd_submit_buf(psp, NULL, cmd,
+-				 psp->fence_buf_mc_addr);
+-
+-	release_psp_cmd_buf(psp);
+-
+-	return ret;
++	return psp_ta_unload(psp, psp->xgmi_context.context.session_id);
+ }
+=20
+ int psp_xgmi_invoke(struct psp_context *psp, uint32_t ta_cmd_id) @@ -1023,=
+6 +1016,12 @@ int psp_xgmi_invoke(struct psp_context *psp, uint32_t ta_cmd_=
+id)  int psp_xgmi_terminate(struct psp_context *psp)  {
+ 	int ret;
++	struct amdgpu_device *adev =3D psp->adev;
++
++	/* XGMI TA unload currently is not supported on Arcturus/Aldebaran A+A */
++	if (adev->asic_type =3D=3D CHIP_ARCTURUS ||
++		(adev->asic_type =3D=3D CHIP_ALDEBARAN && adev->gmc.xgmi.connected_to_cp=
+u))
++		return 0;
+=20
+ 	if (!psp->xgmi_context.context.initialized)
+ 		return 0;
+@@ -1337,25 +1336,7 @@ static int psp_ras_load(struct psp_context *psp)
+=20
+ static int psp_ras_unload(struct psp_context *psp)  {
+-	int ret;
+-	struct psp_gfx_cmd_resp *cmd;
+-
+-	/*
+-	 * TODO: bypass the unloading in sriov for now
+-	 */
+-	if (amdgpu_sriov_vf(psp->adev))
+-		return 0;
+-
+-	cmd =3D acquire_psp_cmd_buf(psp);
+-
+-	psp_prep_ta_unload_cmd_buf(cmd, psp->ras_context.context.session_id);
+-
+-	ret =3D psp_cmd_submit_buf(psp, NULL, cmd,
+-			psp->fence_buf_mc_addr);
+-
+-	release_psp_cmd_buf(psp);
+-
+-	return ret;
++	return psp_ta_unload(psp, psp->ras_context.context.session_id);
+ }
+=20
+ int psp_ras_invoke(struct psp_context *psp, uint32_t ta_cmd_id) @@ -1644,2=
+4 +1625,7 @@ static int psp_hdcp_initialize(struct psp_context *psp)
+=20
+ static int psp_hdcp_unload(struct psp_context *psp)  {
+-	int ret;
+-	struct psp_gfx_cmd_resp *cmd;
+-
+-	/*
+-	 * TODO: bypass the unloading in sriov for now
+-	 */
+-	if (amdgpu_sriov_vf(psp->adev))
+-		return 0;
+-
+-	cmd =3D acquire_psp_cmd_buf(psp);
+-
+-	psp_prep_ta_unload_cmd_buf(cmd, psp->hdcp_context.context.session_id);
+-
+-	ret =3D psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
+-
+-	release_psp_cmd_buf(psp);
+-
+-	return ret;
++	return psp_ta_unload(psp, psp->hdcp_context.context.session_id);
+ }
+=20
+ int psp_hdcp_invoke(struct psp_context *psp, uint32_t ta_cmd_id) @@ -1778,=
+24 +1742,7 @@ static int psp_dtm_initialize(struct psp_context *psp)
+=20
+ static int psp_dtm_unload(struct psp_context *psp)  {
+-	int ret;
+-	struct psp_gfx_cmd_resp *cmd;
+-
+-	/*
+-	 * TODO: bypass the unloading in sriov for now
+-	 */
+-	if (amdgpu_sriov_vf(psp->adev))
+-		return 0;
+-
+-	cmd =3D acquire_psp_cmd_buf(psp);
+-
+-	psp_prep_ta_unload_cmd_buf(cmd, psp->dtm_context.context.session_id);
+-
+-	ret =3D psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
+-
+-	release_psp_cmd_buf(psp);
+-
+-	return ret;
++	return psp_ta_unload(psp, psp->dtm_context.context.session_id);
+ }
+=20
+ int psp_dtm_invoke(struct psp_context *psp, uint32_t ta_cmd_id) @@ -1877,1=
+6 +1824,7 @@ static int psp_rap_load(struct psp_context *psp)
+=20
+ static int psp_rap_unload(struct psp_context *psp)  {
+-	int ret;
+-	struct psp_gfx_cmd_resp *cmd =3D acquire_psp_cmd_buf(psp);
+-
+-	psp_prep_ta_unload_cmd_buf(cmd, psp->rap_context.context.session_id);
+-
+-	ret =3D psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
+-
+-	release_psp_cmd_buf(psp);
+-
+-	return ret;
++	return psp_ta_unload(psp, psp->rap_context.context.session_id);
+ }
+=20
+ static int psp_rap_initialize(struct psp_context *psp) @@ -1918,11 +1856,7=
+ @@ static int psp_rap_initialize(struct psp_context *psp)
+=20
+ 	ret =3D psp_rap_invoke(psp, TA_CMD_RAP__INITIALIZE, &status);
+ 	if (ret || status !=3D TA_RAP_STATUS__SUCCESS) {
+-		psp_rap_unload(psp);
+-
+-		psp_ta_free_shared_buf(&psp->rap_context.context.mem_context);
+-
+-		psp->rap_context.context.initialized =3D false;
++		psp_rap_terminate(psp);
+=20
+ 		dev_warn(psp->adev->dev, "RAP TA initialize fail (%d) status %d.\n",
+ 			 ret, status);
+@@ -2022,16 +1956,7 @@ static int psp_securedisplay_load(struct psp_context=
+ *psp)
+=20
+ static int psp_securedisplay_unload(struct psp_context *psp)  {
+-	int ret;
+-	struct psp_gfx_cmd_resp *cmd =3D acquire_psp_cmd_buf(psp);
+-
+-	psp_prep_ta_unload_cmd_buf(cmd, psp->securedisplay_context.context.sessio=
+n_id);
+-
+-	ret =3D psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
+-
+-	release_psp_cmd_buf(psp);
+-
+-	return ret;
++	return psp_ta_unload(psp,=20
++psp->securedisplay_context.context.session_id);
+ }
+=20
+ static int psp_securedisplay_initialize(struct psp_context *psp) @@ -2066,=
+12 +1991,7 @@ static int psp_securedisplay_initialize(struct psp_context *p=
+sp)
+=20
+ 	ret =3D psp_securedisplay_invoke(psp, TA_SECUREDISPLAY_COMMAND__QUERY_TA)=
+;
+ 	if (ret) {
+-		psp_securedisplay_unload(psp);
+-
+-		psp_ta_free_shared_buf(&psp->securedisplay_context.context.mem_context);
+-
+-		psp->securedisplay_context.context.initialized =3D false;
+-
++		psp_securedisplay_terminate(psp);
+ 		dev_err(psp->adev->dev, "SECUREDISPLAY TA initialize fail.\n");
+ 		return -EINVAL;
+ 	}
+@@ -2721,7 +2641,7 @@ static int psp_hw_fini(void *handle)
+ 		psp_hdcp_terminate(psp);
+ 	}
+=20
+-	psp_asd_unload(psp);
++	psp_asd_terminate(psp);
+=20
+ 	psp_tmr_terminate(psp);
+ 	psp_ring_destroy(psp, PSP_RING_TYPE__KM); @@ -2779,9 +2699,9 @@ static in=
+t psp_suspend(void *handle)
+ 		}
+ 	}
+=20
+-	ret =3D psp_asd_unload(psp);
++	ret =3D psp_asd_terminate(psp);
+ 	if (ret) {
+-		DRM_ERROR("Failed to unload asd\n");
++		DRM_ERROR("Failed to terminate asd\n");
+ 		return ret;
+ 	}
 =20
 --
 2.17.1
