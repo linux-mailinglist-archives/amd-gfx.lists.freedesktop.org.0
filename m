@@ -1,97 +1,66 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 666433FC5B0
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Aug 2021 12:36:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A53F3FC7E0
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Aug 2021 15:08:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A6A989B22;
-	Tue, 31 Aug 2021 10:35:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66DA3899D4;
+	Tue, 31 Aug 2021 13:08:00 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2082.outbound.protection.outlook.com [40.107.237.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AA5289A76;
- Tue, 31 Aug 2021 10:35:56 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gClb1cyd+JI+VyyqlIShsnscHMUWDEc0s9ZnRvMFtKpARNAAxwzkKJAriphbRoaGHZlsp5QfaLWn1sw0Diw+QOJGBZZjA7UZsfF3LEvIqf81vyY4OUxJidEIU4Dg48ij8GvWZIBzpI0oZS82h3y1bl4TLGH4vZI6D42ygZ8JyR2gtR4T7E/resAmSUMp2kSwZ1jbYR7m1rJL52Y+SDkj+IFq9MGiN7WaSry9AC2mT/Q++pxDxJ9+A22owfKo4+L5eR5akCp9Ko75KeT1k1akt7DWCnZyXuOU8Gx/2J33lp/t6Gnx3h737F6XhsCHNul48Uo3eWnzA6sX2kDu5Oqyaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+hfU2lFbTyWfIjkrWVPJwBFQGH/b/4syvDRFIkT8Wc0=;
- b=CVGnX3aOxCGUjDYKCKoVNyZPGblE9C4+kAUnDM1t2aFKQHokN5BldkGgYJLt++RZbVmKcn93G7M/Og6Vq/UxihggF67esqq0ObQ03q+q4fk0DU3pWmPGz+7sEjKtFG/4gOmtHqxtFV+yiFKEQw+gyjcwwjnSLnb0HFrjnEg/r5rObWamYF6RfvKA7aSgNA3lYp+0933Z1axyzftV1THiEhx4BFhA3Es+wcDdyB48dWrLDQfW9E66GJVcG98annDgtgQlMDNDoEEL2keifDUFXBZ+EWGBYKC3aEaGPqgO7B2fgefMgMxul5v13+LKUZIt3a4Vd46UkPv3Syk9EPbTWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+hfU2lFbTyWfIjkrWVPJwBFQGH/b/4syvDRFIkT8Wc0=;
- b=T8hpViN/8I/FCy9jgAFaAsu8IR21xgNtNse22d5F3E2XF453OJ8BAp7MRe+oHqfUvE8cirapk9SA9Kp7A9OvCv4BxKdByGeF95OA7XibCvkBQb4L8PzYw1Vi5aSlZvNauZaEAptgw/75nqJyOgc6QDVeuS2amEmHzHbLM4h4U7w=
-Received: from MWHPR01CA0041.prod.exchangelabs.com (2603:10b6:300:101::27) by
- DM5PR12MB1932.namprd12.prod.outlook.com (2603:10b6:3:10e::23) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4457.18; Tue, 31 Aug 2021 10:35:49 +0000
-Received: from CO1NAM11FT010.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:101:cafe::1) by MWHPR01CA0041.outlook.office365.com
- (2603:10b6:300:101::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.18 via Frontend
- Transport; Tue, 31 Aug 2021 10:35:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT010.mail.protection.outlook.com (10.13.175.88) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4457.17 via Frontend Transport; Tue, 31 Aug 2021 10:35:48 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Tue, 31 Aug
- 2021 05:35:46 -0500
-Received: from monk-build.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2242.12 via Frontend
- Transport; Tue, 31 Aug 2021 05:35:45 -0500
-From: Monk Liu <Monk.Liu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <dri-devel@lists.freedesktop.org>, Monk Liu <Monk.Liu@amd.com>, "jingwen
- chen" <jingwen.chen@amd.com>
-Subject: [PATCH 2/2] drm/sched: serialize job_timeout and scheduler
-Date: Tue, 31 Aug 2021 18:35:39 +0800
-Message-ID: <1630406139-19621-2-git-send-email-Monk.Liu@amd.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1630406139-19621-1-git-send-email-Monk.Liu@amd.com>
-References: <1630406139-19621-1-git-send-email-Monk.Liu@amd.com>
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com
+ [IPv6:2a00:1450:4864:20::22f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26EF489C0A
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 17:21:59 +0000 (UTC)
+Received: by mail-lj1-x22f.google.com with SMTP id i28so27176953ljm.7
+ for <amd-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 10:21:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=5o5eVa/D65IWc/Wg+t5VxQlOGV9cF34rB+LJ57J/HX4=;
+ b=AbT4fQMY8evNioe7bS2ZgMPICkmZO9rlEmyhbhH3DQ7H+k51ox2zQE9b3J4+71mO3w
+ lJmLaifpqmNxKzP/IB+N0sXlWuJ5xdboJu2esOvhmWMZzhmN+xAONOEOqDHy436zUrtP
+ 1WRbVKYpcD45qWUnYvzXOgh+RmcJ8ja80XcSRXno6QccXCkLsMiXS4D0lLlTsz6BMn07
+ Bg8rvVKOd8TkS0IPlIsp0lrSVaAVk/AIWeTHtcO3/mH/9/xoolvOljxm1XVichI8jnJM
+ p5/hbgjP6DSlAGUCj4YuG7bnfrMd7q9bKfM5t2bXZ8HPrPYyX2/p0w7XOgPoffHOHxHQ
+ KWxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=5o5eVa/D65IWc/Wg+t5VxQlOGV9cF34rB+LJ57J/HX4=;
+ b=q7cbBH/TaltULyIByAuToL5+mJwqOPruCLIzJ/FTlV/e6SWUGwAOVX2/Ba3VBbUuw2
+ 6aPsjqQnDK2RLQtG4JRXPHOSHKXD/QONR4pj8BGFa5c2PAtxSE05+pI7cvr2uKoJ/+cM
+ 8Buzu1OiMIKR/YLb7BQ3GvYoiupVoGPwIdx8ZllDAWweAJvYFpIPIpAUko91F43lQ5ne
+ fwLKB3JSbMIlH+OnmnW7G8yaMdoLcS05iSZLhFR5ZeB29BXhwbsHUzyjAoVWumFO8YrE
+ Q6jSusU3paLCthj6MkVzP1ZUzaZFFbqyycbzIbprGEF7jhD+QqYHA34JlsZRQSNjPWVM
+ qovQ==
+X-Gm-Message-State: AOAM532VidUwayDEkJvqnUYw8HUqFnxaJZtE5uPPnaSMeH0yjWI0jUGR
+ 4l8YDLkGlglfJ5iBb2DQ0zA=
+X-Google-Smtp-Source: ABdhPJwe7w9zR7dTsLfXrKe0TgaGffJeGK5jHfKncxWRV5n3Z5R7VcKHIA9UP37tCJ8VQK28vqLrvQ==
+X-Received: by 2002:a2e:8001:: with SMTP id j1mr21871927ljg.9.1630344117445;
+ Mon, 30 Aug 2021 10:21:57 -0700 (PDT)
+Received: from kari-VirtualBox (85-23-89-224.bb.dnainternet.fi. [85.23.89.224])
+ by smtp.gmail.com with ESMTPSA id t19sm1449850lfr.204.2021.08.30.10.21.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 30 Aug 2021 10:21:56 -0700 (PDT)
+Date: Mon, 30 Aug 2021 20:21:55 +0300
+From: Kari Argillander <kari.argillander@gmail.com>
+To: Skyler =?utf-8?Q?M=C3=A4ntysaari?= <lists@samip.fi>
+Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org
+Subject: Re: [drm/amdgpu] Driver crashes on 5.13.9 kernel
+Message-ID: <20210830172155.dxwdeh6em2smg2on@kari-VirtualBox>
+References: <4ada1100-fbce-44e4-b69d-0f5196f86bcb@www.fastmail.com>
+ <20210829173448.3cwk4rz6wfxfxdpj@kari-VirtualBox>
+ <4d3fd1cb-9b33-4598-b351-54ea455c2a6e@www.fastmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 44b2abc8-a0b5-4a5e-6fb3-08d96c6b1919
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1932:
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1932E006B2E7ABFA82FD206584CC9@DM5PR12MB1932.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ehIoXFVAPR7vECwngjFOPE/ZLQhN59e/YD0ydRhVdbii89Jm7OzQhSIol9IcfSs+w4/NxqOLL0Eytg5UVSq83v4XITAa12+gUcDYf3fqsX3Q9/jUd2Ptm+LVGKBHAqsHJAs+71ad2x9MR44Jf41vb1W44om2sc74dIPjHWSsIi4tgMChj+ZoEopXaPft76Co7ke6/b1JjGsOCGl1w2vl9gDJ88Aski3xnDU+/fy1JyEuDeTQuZZ9y5A8z1Tw60SG6FLx9wNYHJOpPoSm+PB3wPIAWaUZA+gKhgbrdIWal2AKEYfnAKkTY7PF32iBLfNo2PKXadtlHLB8qz5fzKlOYMFT2f90HXyGz7v5cqByA8GYhZ5MUYuHIGi3tnfiSWQcPd/4iLh4nE0cRsigm3SurvqvaAoson+EQtvw76hHp5spi5mDNE3jn8z8idfF3RViDawldFLHttB8OgJkVsSnlOr23fLctkIr+iln6uhdKXOD8s56lk1kKK7aXP9HeMQQahpZ+Vw7W1a8L2Elt9wL7Lws5T4u2OXsiMjhfRnfy57ir6J3R7bIzNAjC4biTJ+9gqnMLBdZip4sGMd6Yff426jnpg26+m7QmqpvQt8ELIH+ynLTZNm6PKUK7Uhu5eKmPdkl7mGXYSk/FitgxEDk+ktTo7G68xXPIUa134Zj+ZDdtBI8XMWjy7qSf0zAlU+j7f1ItkyIuaMc7JxluaoFbS5oQSw6Wxcp+9bGYhofLIw=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(39860400002)(376002)(396003)(136003)(46966006)(36840700001)(4326008)(81166007)(186003)(2906002)(356005)(82310400003)(478600001)(36860700001)(2616005)(8936002)(6666004)(26005)(82740400003)(426003)(336012)(83380400001)(47076005)(8676002)(70586007)(70206006)(6916009)(7696005)(450100002)(36756003)(86362001)(316002)(5660300002)(54906003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2021 10:35:48.6324 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 44b2abc8-a0b5-4a5e-6fb3-08d96c6b1919
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT010.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1932
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4d3fd1cb-9b33-4598-b351-54ea455c2a6e@www.fastmail.com>
+X-Mailman-Approved-At: Tue, 31 Aug 2021 13:07:59 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,62 +75,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-tested-by: jingwen chen <jingwen.chen@amd.com>
-Signed-off-by: Monk Liu <Monk.Liu@amd.com>
-Signed-off-by: jingwen chen <jingwen.chen@amd.com>
----
- drivers/gpu/drm/scheduler/sched_main.c | 24 ++++--------------------
- 1 file changed, 4 insertions(+), 20 deletions(-)
+On Mon, Aug 30, 2021 at 07:15:29PM +0300, Skyler Mäntysaari wrote:
+> I have tried kernel 5.13.13, without any difference and I haven't
+> tried with an older kernel, as this hardware is that new that I have
+> very little faith in less than 5.x kernel would even have support for
+> the needed GPU.
 
-diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index ecf8140..894fdb24 100644
---- a/drivers/gpu/drm/scheduler/sched_main.c
-+++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -319,19 +319,17 @@ static void drm_sched_job_timedout(struct work_struct *work)
- 	sched = container_of(work, struct drm_gpu_scheduler, work_tdr.work);
- 
- 	/* Protects against concurrent deletion in drm_sched_get_cleanup_job */
-+	if (!__kthread_should_park(sched->thread))
-+		kthread_park(sched->thread);
-+
- 	spin_lock(&sched->job_list_lock);
- 	job = list_first_entry_or_null(&sched->pending_list,
- 				       struct drm_sched_job, list);
- 
- 	if (job) {
--		/*
--		 * Remove the bad job so it cannot be freed by concurrent
--		 * drm_sched_cleanup_jobs. It will be reinserted back after sched->thread
--		 * is parked at which point it's safe.
--		 */
--		list_del_init(&job->list);
- 		spin_unlock(&sched->job_list_lock);
- 
-+		/* vendor's timeout_job should call drm_sched_start() */
- 		status = job->sched->ops->timedout_job(job);
- 
- 		/*
-@@ -393,20 +391,6 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
- 	kthread_park(sched->thread);
- 
- 	/*
--	 * Reinsert back the bad job here - now it's safe as
--	 * drm_sched_get_cleanup_job cannot race against us and release the
--	 * bad job at this point - we parked (waited for) any in progress
--	 * (earlier) cleanups and drm_sched_get_cleanup_job will not be called
--	 * now until the scheduler thread is unparked.
--	 */
--	if (bad && bad->sched == sched)
--		/*
--		 * Add at the head of the queue to reflect it was the earliest
--		 * job extracted.
--		 */
--		list_add(&bad->list, &sched->pending_list);
--
--	/*
- 	 * Iterate the job list from later to  earlier one and either deactive
- 	 * their HW callbacks or remove them from pending list if they already
- 	 * signaled.
--- 
-2.7.4
+Yeah might be. 
 
+> What do you mean with git bisect? I have checked that the crash
+> happens somewhere in the monitor connection code:
+
+If we found some older version which work. Then with git bisect we can
+track which patch made this bug. But if it never work then git bisect
+won't help.
+
+You may still want to test with 5.14 as it was released today.
+
+If that does not work then I cannot help more. It is still very
+important to know if it is also broken in 5.14. Hopefully someone will
+able to help you. 
+
+  Argillander
+
+> [ 9605.269927] Call Trace:
+> [ 9605.269931]  core_link_enable_stream+0x746/0x870 [amdgpu]
+> [ 9605.270038]  dce110_apply_ctx_to_hw+0x519/0x560 [amdgpu]
+> [ 9605.270146]  dc_commit_state+0x2f6/0xa50 [amdgpu]
+> [ 9605.270249]  amdgpu_dm_atomic_commit_tail+0x569/0x26a0 [amdgpu]
+> [ 9605.270326]  ? kfree+0xc3/0x460
+> [ 9605.270329]  ? dcn30_validate_bandwidth+0x11f/0x270 [amdgpu]
+> [ 9605.270402]  ? dcn30_validate_bandwidth+0x11f/0x270 [amdgpu]
+> [ 9605.270469]  ? dm_plane_helper_prepare_fb+0x19c/0x250 [amdgpu]
+> [ 9605.270542]  ? __cond_resched+0x16/0x40
+> [ 9605.270544]  ? __wait_for_common+0x3b/0x160
+> [ 9605.270545]  ? __raw_callee_save___native_queued_spin_unlock+0x11/0x1e
+> [ 9605.270548]  commit_tail+0x94/0x130 [drm_kms_helper]
+> [ 9605.270557]  drm_atomic_helper_commit+0x113/0x140 [drm_kms_helper]
+> [ 9605.270562]  drm_atomic_helper_set_config+0x70/0xb0 [drm_kms_helper]
+> [ 9605.270568]  drm_mode_setcrtc+0x1d3/0x6d0 [drm]
+> [ 9605.270582]  ? drm_mode_getcrtc+0x180/0x180 [drm]
+> [ 9605.270590]  drm_ioctl_kernel+0xaa/0xf0 [drm]
+> [ 9605.270600]  drm_ioctl+0x220/0x3c0 [drm]
+> [ 9605.270609]  ? drm_mode_getcrtc+0x180/0x180 [drm]
+> [ 9605.270618]  amdgpu_drm_ioctl+0x49/0x80 [amdgpu]
+> [ 9605.270673]  __x64_sys_ioctl+0x83/0xb0
+> [ 9605.270675]  do_syscall_64+0x40/0xb0
+> [ 9605.270677]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+> 
+> 
+> On Sun, Aug 29, 2021, at 20:34, Kari Argillander wrote:
+> > On Sun, Aug 29, 2021 at 06:38:39PM +0300, Skyler Mäntysaari wrote:
+> > > Hello everyone on the list,
+> > 
+> > This is universal kernel list and it is not read by many. I have added
+> > hopefully right list (amd-gfx@lists.freedesktop.org).
+> > 
+> > > Subject: Re: [drm/amdgpu] Driver crashes on 5.13.9 kernel
+> > 
+> > I have no influence or knowledge about this driver, but I still try to
+> > help because it seems good bug report. Have you test with 5.13.13 or
+> > 5.14-rc7. Does this work with some other kernel? If needed can you git
+> > bisect if needed? You will probably get some support for it if needed.
+> > 
+> > Argillander
+> > 
+> > > I thought that this should probably be discussed here,  so I came
+> > > across weird issue to me which is driver crashing while trying to get
+> > > one of my monitors working on Gentoo.  I would like to ask here how
+> > > that would happen that the Display appears to jump from DisplayPort-6
+> > > (physical port) to DisplayPort-7 (which doesn't exist physically)? Has
+> > > anyone else experienced this?
+> > > 
+> > > It seems that the driver sees a rather large amount of inputs for the
+> > > GPU, even though I only have 4, 3 of which are DisplayPort, and the
+> > > issue monitor is also on DisplayPort. 
+> > > 
+> > > Hardware:
+> > > CPU: AMD Ryzen 5800X
+> > > GPU: AMD Radeon RX 6800
+> > > System Memory: 32GB of DDR4 3200Mhz
+> > > Display(s): BenQ Zowie XL2430 (1080p), DELL U2414H (1080p), DELL U2415 (1920x1200)
+> > > Type of Diplay Connection: All are connected via Display-Port
+> > > 
+> > > Related DRM issue:
+> > > https://gitlab.freedesktop.org/drm/amd/-/issues/1621 which includes
+> > > logs too.
+> > > 
+> > > 
+> > > Best regards,
+> > > Skyler Mäntysaari
