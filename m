@@ -1,66 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A53F3FC7E0
-	for <lists+amd-gfx@lfdr.de>; Tue, 31 Aug 2021 15:08:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4B373FC7B9
+	for <lists+amd-gfx@lfdr.de>; Tue, 31 Aug 2021 14:59:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66DA3899D4;
-	Tue, 31 Aug 2021 13:08:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E01F989B62;
+	Tue, 31 Aug 2021 12:59:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com
- [IPv6:2a00:1450:4864:20::22f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26EF489C0A
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 17:21:59 +0000 (UTC)
-Received: by mail-lj1-x22f.google.com with SMTP id i28so27176953ljm.7
- for <amd-gfx@lists.freedesktop.org>; Mon, 30 Aug 2021 10:21:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
+ [IPv6:2a00:1450:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AEAF89B62
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Aug 2021 12:59:06 +0000 (UTC)
+Received: by mail-wr1-x434.google.com with SMTP id d26so27660578wrc.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 31 Aug 2021 05:59:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=5o5eVa/D65IWc/Wg+t5VxQlOGV9cF34rB+LJ57J/HX4=;
- b=AbT4fQMY8evNioe7bS2ZgMPICkmZO9rlEmyhbhH3DQ7H+k51ox2zQE9b3J4+71mO3w
- lJmLaifpqmNxKzP/IB+N0sXlWuJ5xdboJu2esOvhmWMZzhmN+xAONOEOqDHy436zUrtP
- 1WRbVKYpcD45qWUnYvzXOgh+RmcJ8ja80XcSRXno6QccXCkLsMiXS4D0lLlTsz6BMn07
- Bg8rvVKOd8TkS0IPlIsp0lrSVaAVk/AIWeTHtcO3/mH/9/xoolvOljxm1XVichI8jnJM
- p5/hbgjP6DSlAGUCj4YuG7bnfrMd7q9bKfM5t2bXZ8HPrPYyX2/p0w7XOgPoffHOHxHQ
- KWxg==
+ :content-disposition:in-reply-to;
+ bh=GjgE1dFQ4edJ2v2xHPe4TXgqcSr49ue1mbAkTOPjv74=;
+ b=ZUYsZ29QMPbBf9l6ZMTp2RIE2kWanliC4hDcCXgqRstqmgseZ0sa9W5ZCxLvGP6Xle
+ SUx3I5xd2A0O540+fiR5g1scFuFE+at0mUdj6arosfSdwnfrBDyk+5oKWA0DX0J+GIBB
+ 5lmBzRGEaRDyhZ7Is8Nd6i2j0mkXPFAEDEfhw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=5o5eVa/D65IWc/Wg+t5VxQlOGV9cF34rB+LJ57J/HX4=;
- b=q7cbBH/TaltULyIByAuToL5+mJwqOPruCLIzJ/FTlV/e6SWUGwAOVX2/Ba3VBbUuw2
- 6aPsjqQnDK2RLQtG4JRXPHOSHKXD/QONR4pj8BGFa5c2PAtxSE05+pI7cvr2uKoJ/+cM
- 8Buzu1OiMIKR/YLb7BQ3GvYoiupVoGPwIdx8ZllDAWweAJvYFpIPIpAUko91F43lQ5ne
- fwLKB3JSbMIlH+OnmnW7G8yaMdoLcS05iSZLhFR5ZeB29BXhwbsHUzyjAoVWumFO8YrE
- Q6jSusU3paLCthj6MkVzP1ZUzaZFFbqyycbzIbprGEF7jhD+QqYHA34JlsZRQSNjPWVM
- qovQ==
-X-Gm-Message-State: AOAM532VidUwayDEkJvqnUYw8HUqFnxaJZtE5uPPnaSMeH0yjWI0jUGR
- 4l8YDLkGlglfJ5iBb2DQ0zA=
-X-Google-Smtp-Source: ABdhPJwe7w9zR7dTsLfXrKe0TgaGffJeGK5jHfKncxWRV5n3Z5R7VcKHIA9UP37tCJ8VQK28vqLrvQ==
-X-Received: by 2002:a2e:8001:: with SMTP id j1mr21871927ljg.9.1630344117445;
- Mon, 30 Aug 2021 10:21:57 -0700 (PDT)
-Received: from kari-VirtualBox (85-23-89-224.bb.dnainternet.fi. [85.23.89.224])
- by smtp.gmail.com with ESMTPSA id t19sm1449850lfr.204.2021.08.30.10.21.56
+ :mime-version:content-disposition:in-reply-to;
+ bh=GjgE1dFQ4edJ2v2xHPe4TXgqcSr49ue1mbAkTOPjv74=;
+ b=M/DQNu0F8tGGF/Znc7dZr+O4Q9CtPCL8rBjyRzVlWBk+um2QafF0fXZMMXyaJX96Wz
+ oJaCQBcJqOYjnHkvD4VOuy9By0y+riDrRX8KhtyxK1oSJ/bmkGLwH5gQ4+jkdvUlbt8v
+ ubgg5rzGckUxztkz5EYcaTuWST2TRdWucJxLGGR5JGOh2hP6xSoeJnLbQTpwd4WHw4zB
+ 1mxiE2bGp4FJh7F9UMa3KKLpX7Yr43CNjG+ARfPRkGCmiI/jxSS4llZi9xNKhtxC9vFk
+ xC5cMlZgOPPYnov/K5UUvDtE4vmPLdWhJhsnmvxGQN7zEpwTo5jnsZRNP+oemmvfrEqH
+ Lzww==
+X-Gm-Message-State: AOAM530mo5kbWPzCkBbOyyWj+JkEjslwYkxGxITvfefL++y6zqBmyYiL
+ J2nKM2437j0IbnN7mYRycNI5bpDH0UXLLg==
+X-Google-Smtp-Source: ABdhPJxfFSaHSLUaelLcEP0tNYSLCg+cj/6FLyt9gjCnVBmviUCT0iX/bUurdbH7SReQ9bw/ZIy/aQ==
+X-Received: by 2002:a5d:456d:: with SMTP id a13mr31454642wrc.364.1630414744978; 
+ Tue, 31 Aug 2021 05:59:04 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id j207sm2665547wmj.40.2021.08.31.05.59.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 Aug 2021 10:21:56 -0700 (PDT)
-Date: Mon, 30 Aug 2021 20:21:55 +0300
-From: Kari Argillander <kari.argillander@gmail.com>
-To: Skyler =?utf-8?Q?M=C3=A4ntysaari?= <lists@samip.fi>
-Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org
-Subject: Re: [drm/amdgpu] Driver crashes on 5.13.9 kernel
-Message-ID: <20210830172155.dxwdeh6em2smg2on@kari-VirtualBox>
-References: <4ada1100-fbce-44e4-b69d-0f5196f86bcb@www.fastmail.com>
- <20210829173448.3cwk4rz6wfxfxdpj@kari-VirtualBox>
- <4d3fd1cb-9b33-4598-b351-54ea455c2a6e@www.fastmail.com>
+ Tue, 31 Aug 2021 05:59:04 -0700 (PDT)
+Date: Tue, 31 Aug 2021 14:59:02 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Monk Liu <Monk.Liu@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ jingwen chen <jingwen.chen@amd.com>
+Subject: Re: [PATCH 2/2] drm/sched: serialize job_timeout and scheduler
+Message-ID: <YS4nlkpjeitiwFy1@phenom.ffwll.local>
+References: <1630406139-19621-1-git-send-email-Monk.Liu@amd.com>
+ <1630406139-19621-2-git-send-email-Monk.Liu@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4d3fd1cb-9b33-4598-b351-54ea455c2a6e@www.fastmail.com>
-X-Mailman-Approved-At: Tue, 31 Aug 2021 13:07:59 +0000
+In-Reply-To: <1630406139-19621-2-git-send-email-Monk.Liu@amd.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,93 +70,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Aug 30, 2021 at 07:15:29PM +0300, Skyler Mäntysaari wrote:
-> I have tried kernel 5.13.13, without any difference and I haven't
-> tried with an older kernel, as this hardware is that new that I have
-> very little faith in less than 5.x kernel would even have support for
-> the needed GPU.
+Can we please have some actual commit message here, with detailed
+explanation of the race/bug/whatever, how you fix it and why this is the
+best option?
 
-Yeah might be. 
-
-> What do you mean with git bisect? I have checked that the crash
-> happens somewhere in the monitor connection code:
-
-If we found some older version which work. Then with git bisect we can
-track which patch made this bug. But if it never work then git bisect
-won't help.
-
-You may still want to test with 5.14 as it was released today.
-
-If that does not work then I cannot help more. It is still very
-important to know if it is also broken in 5.14. Hopefully someone will
-able to help you. 
-
-  Argillander
-
-> [ 9605.269927] Call Trace:
-> [ 9605.269931]  core_link_enable_stream+0x746/0x870 [amdgpu]
-> [ 9605.270038]  dce110_apply_ctx_to_hw+0x519/0x560 [amdgpu]
-> [ 9605.270146]  dc_commit_state+0x2f6/0xa50 [amdgpu]
-> [ 9605.270249]  amdgpu_dm_atomic_commit_tail+0x569/0x26a0 [amdgpu]
-> [ 9605.270326]  ? kfree+0xc3/0x460
-> [ 9605.270329]  ? dcn30_validate_bandwidth+0x11f/0x270 [amdgpu]
-> [ 9605.270402]  ? dcn30_validate_bandwidth+0x11f/0x270 [amdgpu]
-> [ 9605.270469]  ? dm_plane_helper_prepare_fb+0x19c/0x250 [amdgpu]
-> [ 9605.270542]  ? __cond_resched+0x16/0x40
-> [ 9605.270544]  ? __wait_for_common+0x3b/0x160
-> [ 9605.270545]  ? __raw_callee_save___native_queued_spin_unlock+0x11/0x1e
-> [ 9605.270548]  commit_tail+0x94/0x130 [drm_kms_helper]
-> [ 9605.270557]  drm_atomic_helper_commit+0x113/0x140 [drm_kms_helper]
-> [ 9605.270562]  drm_atomic_helper_set_config+0x70/0xb0 [drm_kms_helper]
-> [ 9605.270568]  drm_mode_setcrtc+0x1d3/0x6d0 [drm]
-> [ 9605.270582]  ? drm_mode_getcrtc+0x180/0x180 [drm]
-> [ 9605.270590]  drm_ioctl_kernel+0xaa/0xf0 [drm]
-> [ 9605.270600]  drm_ioctl+0x220/0x3c0 [drm]
-> [ 9605.270609]  ? drm_mode_getcrtc+0x180/0x180 [drm]
-> [ 9605.270618]  amdgpu_drm_ioctl+0x49/0x80 [amdgpu]
-> [ 9605.270673]  __x64_sys_ioctl+0x83/0xb0
-> [ 9605.270675]  do_syscall_64+0x40/0xb0
-> [ 9605.270677]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+On Tue, Aug 31, 2021 at 06:35:39PM +0800, Monk Liu wrote:
+> tested-by: jingwen chen <jingwen.chen@amd.com>
+> Signed-off-by: Monk Liu <Monk.Liu@amd.com>
+> Signed-off-by: jingwen chen <jingwen.chen@amd.com>
+> ---
+>  drivers/gpu/drm/scheduler/sched_main.c | 24 ++++--------------------
+>  1 file changed, 4 insertions(+), 20 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> index ecf8140..894fdb24 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -319,19 +319,17 @@ static void drm_sched_job_timedout(struct work_struct *work)
+>  	sched = container_of(work, struct drm_gpu_scheduler, work_tdr.work);
+>  
+>  	/* Protects against concurrent deletion in drm_sched_get_cleanup_job */
+> +	if (!__kthread_should_park(sched->thread))
+
+This is a __ function, i.e. considered internal, and it's lockless atomic,
+i.e. unordered. And you're not explaining why this works.
+
+Iow it's probably buggy, and an just unconditionally parking the kthread
+is probably the right thing to do. If it's not the right thing to do,
+there's a bug here for sure.
+-Daniel
+
+> +		kthread_park(sched->thread);
+> +
+>  	spin_lock(&sched->job_list_lock);
+>  	job = list_first_entry_or_null(&sched->pending_list,
+>  				       struct drm_sched_job, list);
+>  
+>  	if (job) {
+> -		/*
+> -		 * Remove the bad job so it cannot be freed by concurrent
+> -		 * drm_sched_cleanup_jobs. It will be reinserted back after sched->thread
+> -		 * is parked at which point it's safe.
+> -		 */
+> -		list_del_init(&job->list);
+>  		spin_unlock(&sched->job_list_lock);
+>  
+> +		/* vendor's timeout_job should call drm_sched_start() */
+>  		status = job->sched->ops->timedout_job(job);
+>  
+>  		/*
+> @@ -393,20 +391,6 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
+>  	kthread_park(sched->thread);
+>  
+>  	/*
+> -	 * Reinsert back the bad job here - now it's safe as
+> -	 * drm_sched_get_cleanup_job cannot race against us and release the
+> -	 * bad job at this point - we parked (waited for) any in progress
+> -	 * (earlier) cleanups and drm_sched_get_cleanup_job will not be called
+> -	 * now until the scheduler thread is unparked.
+> -	 */
+> -	if (bad && bad->sched == sched)
+> -		/*
+> -		 * Add at the head of the queue to reflect it was the earliest
+> -		 * job extracted.
+> -		 */
+> -		list_add(&bad->list, &sched->pending_list);
+> -
+> -	/*
+>  	 * Iterate the job list from later to  earlier one and either deactive
+>  	 * their HW callbacks or remove them from pending list if they already
+>  	 * signaled.
+> -- 
+> 2.7.4
 > 
-> On Sun, Aug 29, 2021, at 20:34, Kari Argillander wrote:
-> > On Sun, Aug 29, 2021 at 06:38:39PM +0300, Skyler Mäntysaari wrote:
-> > > Hello everyone on the list,
-> > 
-> > This is universal kernel list and it is not read by many. I have added
-> > hopefully right list (amd-gfx@lists.freedesktop.org).
-> > 
-> > > Subject: Re: [drm/amdgpu] Driver crashes on 5.13.9 kernel
-> > 
-> > I have no influence or knowledge about this driver, but I still try to
-> > help because it seems good bug report. Have you test with 5.13.13 or
-> > 5.14-rc7. Does this work with some other kernel? If needed can you git
-> > bisect if needed? You will probably get some support for it if needed.
-> > 
-> > Argillander
-> > 
-> > > I thought that this should probably be discussed here,  so I came
-> > > across weird issue to me which is driver crashing while trying to get
-> > > one of my monitors working on Gentoo.  I would like to ask here how
-> > > that would happen that the Display appears to jump from DisplayPort-6
-> > > (physical port) to DisplayPort-7 (which doesn't exist physically)? Has
-> > > anyone else experienced this?
-> > > 
-> > > It seems that the driver sees a rather large amount of inputs for the
-> > > GPU, even though I only have 4, 3 of which are DisplayPort, and the
-> > > issue monitor is also on DisplayPort. 
-> > > 
-> > > Hardware:
-> > > CPU: AMD Ryzen 5800X
-> > > GPU: AMD Radeon RX 6800
-> > > System Memory: 32GB of DDR4 3200Mhz
-> > > Display(s): BenQ Zowie XL2430 (1080p), DELL U2414H (1080p), DELL U2415 (1920x1200)
-> > > Type of Diplay Connection: All are connected via Display-Port
-> > > 
-> > > Related DRM issue:
-> > > https://gitlab.freedesktop.org/drm/amd/-/issues/1621 which includes
-> > > logs too.
-> > > 
-> > > 
-> > > Best regards,
-> > > Skyler Mäntysaari
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
