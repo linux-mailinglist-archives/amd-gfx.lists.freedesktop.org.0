@@ -2,96 +2,74 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 440CC3FEEE0
-	for <lists+amd-gfx@lfdr.de>; Thu,  2 Sep 2021 15:44:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0A423FEF6E
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 Sep 2021 16:28:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E27C86E500;
-	Thu,  2 Sep 2021 13:43:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E92026E51B;
+	Thu,  2 Sep 2021 14:28:12 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2042.outbound.protection.outlook.com [40.107.93.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DA916E500
- for <amd-gfx@lists.freedesktop.org>; Thu,  2 Sep 2021 13:43:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PQuIIQUnOtiSG/suqyyBeQYBnexUM7EDID9wEMaLDEij4bpJL+7AxCWc+4zzzud78kDUIHdpSaUP0o4dzUd3j/XgAq4YCm0MUF9Xok6bIADpRvEmngXsIF/zMIUgn4fFE/YFu4UUP+I0kQD2Ed3o2ZVdBXjE3NO4AUwgppFICH98n+KFp4ndSpojOtPtdWWU+M6aExwom5HufIe1BcjuOsRGKKq+HuzPLdZSVqNbWTs20n3IpAzJ3qs580dxwC72oqfjyJvSsV79EsbRPI0HYO9K6aexyvJiwd8Slp4XWYjNefkkLEcJ7GnQLuhBF8WZcK2cZ05QB76CZkQSOXDGaQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=Jybt/Miz902eWZ79Q/D0pW2xIPLSQblmHqmKayqY9Cg=;
- b=mA4gcBkNQv1bTNWyYA5zpcalMkQF5BuBjHxR0ZCD7ndP5931CdgbOPQXrcXUsUTCTKjkf114bi1hCj8NJ/bGpDQXd2DJnHfIxvcEmUjEBvJMqPRUGF8KnDpYnUKTif+ijckZP6LVL8O29upCMXfg2JuFbuKTsovhG0JSBMErqHPuQyMFK68a8l1psBRbWuoW6FX3w7bQG3ql8k+NjOM81AEPA35Hcy9QIXfFUqqw+nWdd7Jxv5uSQspdIRfhXIZZoTjD/grRH5T1vnYDj9XXC8Mzi0ugjT7DBF2DIRJgw7XImrUGoim29hgP2r8K5/8MvfM9Y5Lm3PdrZ1ACZ2LrJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Jybt/Miz902eWZ79Q/D0pW2xIPLSQblmHqmKayqY9Cg=;
- b=3bVTTD1P00sdA6jCTQF7Ji2IYVFq97Gv7gRB2m9XLDU/9yEZaNojCnvjZfqDq3Jk50I0HM69PMdjyhyF/9fhOxDcICiMJ1E6bTQjjg1ljmKuHvOf0lDRyVZRriIMbBs+EcGwFgB4Htek+xHogUbFeMK+ra1YhpBWJ2FLS4MMB9I=
-Received: from DS7PR03CA0111.namprd03.prod.outlook.com (2603:10b6:5:3b7::26)
- by DM6PR12MB4943.namprd12.prod.outlook.com (2603:10b6:5:1bc::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.21; Thu, 2 Sep
- 2021 13:43:56 +0000
-Received: from DM6NAM11FT063.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b7:cafe::28) by DS7PR03CA0111.outlook.office365.com
- (2603:10b6:5:3b7::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.19 via Frontend
- Transport; Thu, 2 Sep 2021 13:43:56 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT063.mail.protection.outlook.com (10.13.172.219) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4478.19 via Frontend Transport; Thu, 2 Sep 2021 13:43:55 +0000
-Received: from brihaspati.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Thu, 2 Sep
- 2021 08:43:54 -0500
-From: Nirmoy Das <nirmoy.das@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Christian.Koenig@amd.com>, Nirmoy Das <nirmoy.das@amd.com>
-Subject: [PATCH 2/2] drm/amdgpu: cleanup debugfs for amdgpu rings
-Date: Thu, 2 Sep 2021 15:43:37 +0200
-Message-ID: <20210902134337.3440-2-nirmoy.das@amd.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210902134337.3440-1-nirmoy.das@amd.com>
-References: <20210902134337.3440-1-nirmoy.das@amd.com>
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
+ [IPv6:2a00:1450:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94CC36E53E
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Sep 2021 14:28:11 +0000 (UTC)
+Received: by mail-wm1-x329.google.com with SMTP id
+ m25-20020a7bcb99000000b002e751bcb5dbso1496224wmi.5
+ for <amd-gfx@lists.freedesktop.org>; Thu, 02 Sep 2021 07:28:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=hZCB/ECgZExD91xtYKU6TE2ulgloDddyk+UQesxuiEE=;
+ b=Dm+xRGeOlgoBljYYTo+HTdzdgFk0aVouSkACQxmNDsPVnzQZMKM0CrRSVB68dA/685
+ 0TVJzOwVSWug9yV3Bn5MkB9yVeijfzpJ0uREJmyA+FGfLOLREH8fVGdfsrmgx8ad+sbB
+ RY5jA9lNN0nlvgR0ZcEr0oQvWUcDjph7LcVJc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=hZCB/ECgZExD91xtYKU6TE2ulgloDddyk+UQesxuiEE=;
+ b=q2cyGj9g97tixul7oC8zxbIR8Xspi3UK19yFey2rLzLtctGteYtI3PpcUBcgKyXAxZ
+ RbSA2JhGf3eHhlY+W+JstEKKSwvvT/5nB/0dFUpHYk69ERpyaQia0RxCXAtOlv5it3Cb
+ H+IKzlZdsPyGs5m1KxMngRHulr6aUvMSJ7CZ41Slz6PfNWtnMVXp1IBegPcqAA5FSlf0
+ F71Qpp9E6b/R7N+1QqX9n/oDGw7UJeNdu2gfBXtY1QKSpWe5Xf5v56gf9boRQYY8gL3W
+ 8kYHWqP7I5OyrmCdaDrBA3kpmZLVPlmvanOg4vGd9B90pV6N3Sr/8uAg4GGAelo51pQz
+ /rSQ==
+X-Gm-Message-State: AOAM533cePq0m4gSABBKx4D2i19h+xb4XeABv9NkffSxfAQ5Uwg6JlU0
+ HnEQZXEhizHlFrRRghsyBQgejg==
+X-Google-Smtp-Source: ABdhPJy481+4o02H8XF6+13TAeY5GiO10trj29YGcGrzJFqUbsreIVzhsiEAMpig9DmiqUBcZX3/NA==
+X-Received: by 2002:a7b:c005:: with SMTP id c5mr3427590wmb.59.1630592889857;
+ Thu, 02 Sep 2021 07:28:09 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id n4sm1966070wri.78.2021.09.02.07.28.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 02 Sep 2021 07:28:09 -0700 (PDT)
+Date: Thu, 2 Sep 2021 16:28:07 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexdeucher@gmail.com>,
+ Jingwen Chen <Jingwen.Chen2@amd.com>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ "monk.liu" <monk.liu@amd.com>, Christian Koenig <christian.koenig@amd.com>
+Subject: Re: [PATCH v2] Revert "drm/scheduler: Avoid accessing freed bad job."
+Message-ID: <YTDfd+ibZuxiispx@phenom.ffwll.local>
+References: <69cbf5bd-42c2-be55-a604-43f4ebba159d@amd.com>
+ <YR0Z7qtEti2hwZ7i@phenom.ffwll.local>
+ <b92c62f2-7b1c-d4d8-cb84-1b5ccc3e4bb1@amd.com>
+ <YR0cb43Wv8jGiIbb@phenom.ffwll.local>
+ <82782ff5-d2a7-a4a8-8526-d1ff231630ed@amd.com>
+ <YR4k0fPfUL5viMRY@phenom.ffwll.local>
+ <c1b7d154-55b0-1efd-4903-0d6730ccabb7@amd.com>
+ <YSdZDtXcjxE/SPpr@phenom.ffwll.local>
+ <YS4qhxIrcB0Ko3SB@phenom.ffwll.local>
+ <2ee688a4-338b-8180-1673-2fc73c7751ba@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4484b1a3-d8fd-401e-1963-08d96e17b597
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4943:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4943773B8FB2463A45CD45A38BCE9@DM6PR12MB4943.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:785;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sL+NdXt26q8w2pWYcOCoPTDGo3ZLaVsllM/cxyEjAUCiE+QdAKnCFKmWfYFvqwue2lVokGVbLQQi/ApJCr3PrvEWcfOe+gU2zxYmUmQHMMUefB0qppkdC0v1QntqJ2Y0Zo0OMKNcuMXFt1iOSHpGwZ+qCb334hbU+IBWQokdwQjBHzVROnTLzlE7oDQEkM0wTaUpYEg4gImVy2TI7gZT5AHB0BiQxHUlGYj4KYzju90bOGsGzkmcUqA0tRIWEFj7duHI4WNkdmGblvDMjxw25ojwwwm1qs2sHsp1pbSnHRXgX3kgYNvNNcJzNGlx7WeUVqj/NWICeKj3S69rNv8dXhsMPBaY+0DFvz/CoExnOlYiXwVItVegIRxNkgWuetoD+ex0OG1mGZOapBeR9p0XI1WVtyLuC/KlqZRgzTP66uFdrQGWds1HWnu8cSGKaC5qOBkVeKxBthMx7MUef5rn4KBWvQnwHYkRHv/M991oGdGTcgAZuXLQ5CeSCMci9Q42HsTgd1C0Ef3wQEqOsTqP98wwRHWrr6nZD/Hyid0BVNRYUvUWSN1oxebrVBPCehW7QJmQtBB7vxqwYFIZi1eA+38bBNzJyZwEIk+wHbyx85WD87P/1iClxPcNJv8VZoIvCOyOpz9BJi7PeWJruRZmtt3JAVZPdmqznlfDp9ITzCgdHjiHcWIk8opCNOnEa8dtaMp3/KwiDAxlYZ4qh3yQtp5rd4/gl5Y9zF9v2Jx4efc=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(396003)(346002)(376002)(136003)(46966006)(36840700001)(82310400003)(4326008)(316002)(26005)(81166007)(7696005)(5660300002)(47076005)(44832011)(54906003)(8936002)(6666004)(36860700001)(82740400003)(186003)(70586007)(2906002)(83380400001)(8676002)(2616005)(70206006)(1076003)(16526019)(86362001)(478600001)(6916009)(36756003)(336012)(356005)(426003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2021 13:43:55.8448 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4484b1a3-d8fd-401e-1963-08d96e17b597
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT063.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4943
+In-Reply-To: <2ee688a4-338b-8180-1673-2fc73c7751ba@amd.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,94 +84,260 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Use debugfs_create_file_size API for creating ring debugfs
-file, also cleanup surrounding code.
+On Tue, Aug 31, 2021 at 02:24:52PM -0400, Andrey Grodzovsky wrote:
+> 
+> On 2021-08-31 9:11 a.m., Daniel Vetter wrote:
+> > On Thu, Aug 26, 2021 at 11:04:14AM +0200, Daniel Vetter wrote:
+> > > On Thu, Aug 19, 2021 at 11:25:09AM -0400, Andrey Grodzovsky wrote:
+> > > > On 2021-08-19 5:30 a.m., Daniel Vetter wrote:
+> > > > > On Wed, Aug 18, 2021 at 10:51:00AM -0400, Andrey Grodzovsky wrote:
+> > > > > > On 2021-08-18 10:42 a.m., Daniel Vetter wrote:
+> > > > > > > On Wed, Aug 18, 2021 at 10:36:32AM -0400, Andrey Grodzovsky wrote:
+> > > > > > > > On 2021-08-18 10:32 a.m., Daniel Vetter wrote:
+> > > > > > > > > On Wed, Aug 18, 2021 at 10:26:25AM -0400, Andrey Grodzovsky wrote:
+> > > > > > > > > > On 2021-08-18 10:02 a.m., Alex Deucher wrote:
+> > > > > > > > > > 
+> > > > > > > > > > > + dri-devel
+> > > > > > > > > > > 
+> > > > > > > > > > > Since scheduler is a shared component, please add dri-devel on all
+> > > > > > > > > > > scheduler patches.
+> > > > > > > > > > > 
+> > > > > > > > > > > On Wed, Aug 18, 2021 at 7:21 AM Jingwen Chen <Jingwen.Chen2@amd.com> wrote:
+> > > > > > > > > > > > [Why]
+> > > > > > > > > > > > for bailing job, this commit will delete it from pending list thus the
+> > > > > > > > > > > > bailing job will never have a chance to be resubmitted even in advance
+> > > > > > > > > > > > tdr mode.
+> > > > > > > > > > > > 
+> > > > > > > > > > > > [How]
+> > > > > > > > > > > > after embeded hw_fence into amdgpu_job is done, the race condition that
+> > > > > > > > > > > > this commit tries to work around is completely solved.So revert this
+> > > > > > > > > > > > commit.
+> > > > > > > > > > > > This reverts commit 135517d3565b48f4def3b1b82008bc17eb5d1c90.
+> > > > > > > > > > > > v2:
+> > > > > > > > > > > > add dma_fence_get/put() around timedout_job to avoid concurrent delete
+> > > > > > > > > > > > during processing timedout_job
+> > > > > > > > > > > > 
+> > > > > > > > > > > > Signed-off-by: Jingwen Chen <Jingwen.Chen2@amd.com>
+> > > > > > > > > > > > ---
+> > > > > > > > > > > >       drivers/gpu/drm/scheduler/sched_main.c | 23 +++++------------------
+> > > > > > > > > > > >       1 file changed, 5 insertions(+), 18 deletions(-)
+> > > > > > > > > > > > 
+> > > > > > > > > > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > > > > > > > > index a2a953693b45..f9b9b3aefc4a 100644
+> > > > > > > > > > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > > > > > > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > > > > > > > > @@ -314,6 +314,7 @@ static void drm_sched_job_timedout(struct work_struct *work)
+> > > > > > > > > > > >       {
+> > > > > > > > > > > >              struct drm_gpu_scheduler *sched;
+> > > > > > > > > > > >              struct drm_sched_job *job;
+> > > > > > > > > > > > +       struct dma_fence *fence;
+> > > > > > > > > > > >              enum drm_gpu_sched_stat status = DRM_GPU_SCHED_STAT_NOMINAL;
+> > > > > > > > > > > > 
+> > > > > > > > > > > >              sched = container_of(work, struct drm_gpu_scheduler, work_tdr.work);
+> > > > > > > > > > > > @@ -325,11 +326,10 @@ static void drm_sched_job_timedout(struct work_struct *work)
+> > > > > > > > > > > > 
+> > > > > > > > > > > >              if (job) {
+> > > > > > > > > > > >                      /*
+> > > > > > > > > > > > -                * Remove the bad job so it cannot be freed by concurrent
+> > > > > > > > > > > > -                * drm_sched_cleanup_jobs. It will be reinserted back after sched->thread
+> > > > > > > > > > > > -                * is parked at which point it's safe.
+> > > > > > > > > > > > +                * Get job->s_fence->parent here to avoid concurrent delete during
+> > > > > > > > > > > > +                * processing timedout_job
+> > > > > > > > > > > >                       */
+> > > > > > > > > > > > -               list_del_init(&job->list);
+> > > > > > > > > > > > +               fence = dma_fence_get(job->s_fence->parent);
+> > > > > > > > > > While this is true for amdgpu, it has no meaning for other drivers for whom
+> > > > > > > > > > we haven't
+> > > > > > > > > > done the refactoring of embedding HW fence (parent) into the job structure.
+> > > > > > > > > > In fact thinking
+> > > > > > > > > > about it, unless you do the HW fence embedding for all the drivers using the
+> > > > > > > > > > scheduler you cannot
+> > > > > > > > > > revert this patch or you will just break them.
+> > > > > > > > > btw, why did you do that embedding? I do still have my patches with
+> > > > > > > > > dma_fence annotations floating around, but my idea at least was to fix
+> > > > > > > > > that issue with a mempool, not with embeddeding. What was the motivation
+> > > > > > > > > for embedding the wh fence?
+> > > > > > > > > -Daniel
+> > > > > > > > The motivation was 2 fold, avoid memory allocation during jobs submissions
+> > > > > > > > (HW fence allocation) because as Christian explained this leads to deadlock
+> > > > > > > > with
+> > > > > > > > mm code during evictions due to memory pressure (Christian can clarify if I
+> > > > > > > > messed
+> > > > > > > Yeah that's the exact same thing I've chased with my dma_fence
+> > > > > > > annotations, but thus far zero to none interested in getting it sorted. I
+> > > > > > > think it'd be good to have some cross-driver agreement on how this should
+> > > > > > > be solved before someone just charges ahead ...
+> > > > > > > 
+> > > > > > > > this explanation). Second is to exactly revert this patch because while it
+> > > > > > > > solved the issue
+> > > > > > > > described in the patch it created another with drivers who baildc out early
+> > > > > > > > during TDR handling
+> > > > > > > > for various reason and the job would just leak because it was already
+> > > > > > > > removed form pending list.
+> > > > > > > Can't we reinsert it before we restart the scheduler thread? It might need
+> > > > > > > a separate list for that due to the lockless queue tricks. Or am I
+> > > > > > > thinking about the wrong kind of "we lost the job"?
+> > > > > > > -Danile
+> > > > > > If you look at the original patch it would reinsert it even earlier - right
+> > > > > > after stopping the  SW scheduler thread, and even then it was to late for
+> > > > > > some drivers as they would decide to return back from their TDR handler even
+> > > > > > before that. It is solvable but in an ugly way as far as I see, you need to
+> > > > > > require each driver in his code to put the job back in the list if they do
+> > > > > > it before reaching the place where scheduler framework does it. Kind of
+> > > > > > spaghetti code seems to me.
+> > > > > Hm yeah I didn't realize this all happens before we stop the scheduler
+> > > > > thread.
+> > > > > 
+> > > > > Why can't we stop the scheduler thread first, so that there's guaranteed
+> > > > > no race? I've recently had a lot of discussions with panfrost folks about
+> > > > > their reset that spawns across engines, and without stopping the scheduler
+> > > > > thread first before you touch anything it's just plain impossible.
+> > > > 
+> > > > Talked with Christian on that, for each TDR we actually stop all the
+> > > > schedulers for all the rings and not only the hanged ring since
+> > > > ASIC reset will impact all the rings anyway. So we cannot allow
+> > > > other timeout handlers for other rings run in parallel to ours
+> > > > as they will stop/restart the threads we just stopped and rely
+> > > > on them being stopped. So it's all done with device wide lock
+> > > > inside the amdgpu tTDR handler. Only inside the locked
+> > > > section then we may stop/restart the scheduler threads.
+> > > > Christian also mentioned that you proposed at some point
+> > > > to serialize all TDR handling into single threading for all rings - this
+> > > > seems
+> > > > like something that could be used - we then don't need any
+> > > > locking against TDR handlers from other rings and then we may
+> > > > stop the scheduler thread as first step
+> > > > 
+> > > > 
+> > > > > I'm also still not understanding what exactly you guys have done,
+> > > > > can someone please dig out the the amdgpu patches that motivate all this
+> > > > > maybe that's clearer? A full explanation would still be good since I've
+> > > > > only started in scheduler stuff.
+> > > > 
+> > > > https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.freedesktop.org%2Fagd5f%2Flinux%2F-%2Fcommit%2Fde7515d43659f852590645a688f8d493e4a18141&amp;data=04%7C01%7Candrey.grodzovsky%40amd.com%7C94e4badd78c04cb74ad208d96c80debd%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637660123033001546%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=itjKBNUdOAyze1%2FOWJtBD7ed%2B8PBbB28QbJEddkc98w%3D&amp;reserved=0
+> > > Uh, it would have been really good if this was discussed a bit wider
+> > > beforehand. Now we have rather diverging approaches to this. Also would be
+> > > really good to resurrect the dma_fence annotations too.
+> > > 
+> > > Can you guys pls spend a bit of time on this? Shouldn't be to hard to type
+> > > up rfc conversion patches for the other drivers.
+> > Ping for this. Currently the hw fence is returned from the ->run_job
+> > callback, and that's not great design.
+> 
+> 
+> What's the problem you see there ?
 
-Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  4 +---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c    | 18 ++++++------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h    | 10 ++--------
- 3 files changed, 9 insertions(+), 23 deletions(-)
+For one, all other drivers work like that, and it's not great to be
+inconsistent. And it allows that inconsistent/wrong pattern to continue.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-index 60f46a4b0144..97d88f3e1c4c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-@@ -1734,9 +1734,7 @@ int amdgpu_debugfs_init(struct amdgpu_device *adev)
- 		if (!ring)
- 			continue;
- 
--		if (amdgpu_debugfs_ring_init(adev, ring)) {
--			DRM_ERROR("Failed to register debugfs file for rings !\n");
--		}
-+		amdgpu_debugfs_ring_init(adev, ring);
- 	}
- 
- 	amdgpu_ras_debugfs_create_all(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-index 0554576d3695..ab2351ba9574 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
-@@ -415,26 +415,20 @@ static const struct file_operations amdgpu_debugfs_ring_fops = {
- 
- #endif
- 
--int amdgpu_debugfs_ring_init(struct amdgpu_device *adev,
--			     struct amdgpu_ring *ring)
-+void amdgpu_debugfs_ring_init(struct amdgpu_device *adev,
-+			      struct amdgpu_ring *ring)
- {
- #if defined(CONFIG_DEBUG_FS)
- 	struct drm_minor *minor = adev_to_drm(adev)->primary;
--	struct dentry *ent, *root = minor->debugfs_root;
-+	struct dentry *root = minor->debugfs_root;
- 	char name[32];
- 
- 	sprintf(name, "amdgpu_ring_%s", ring->name);
-+	debugfs_create_file_size(name, S_IFREG | S_IRUGO, root, ring,
-+				 &amdgpu_debugfs_ring_fops,
-+				 ring->ring_size + 12);
- 
--	ent = debugfs_create_file(name,
--				  S_IFREG | S_IRUGO, root,
--				  ring, &amdgpu_debugfs_ring_fops);
--	if (IS_ERR(ent))
--		return PTR_ERR(ent);
--
--	i_size_write(ent->d_inode, ring->ring_size + 12);
--	ring->ent = ent;
- #endif
--	return 0;
- }
- 
- /**
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-index 88d80eb3fea1..4d380e79752c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
-@@ -253,10 +253,6 @@ struct amdgpu_ring {
- 	bool			has_compute_vm_bug;
- 	bool			no_scheduler;
- 	int			hw_prio;
--
--#if defined(CONFIG_DEBUG_FS)
--	struct dentry *ent;
--#endif
- };
- 
- #define amdgpu_ring_parse_cs(r, p, ib) ((r)->funcs->parse_cs((p), (ib)))
-@@ -356,8 +352,6 @@ static inline void amdgpu_ring_write_multiple(struct amdgpu_ring *ring,
- 
- int amdgpu_ring_test_helper(struct amdgpu_ring *ring);
- 
--int amdgpu_debugfs_ring_init(struct amdgpu_device *adev,
--			     struct amdgpu_ring *ring);
--void amdgpu_debugfs_ring_fini(struct amdgpu_ring *ring);
--
-+void amdgpu_debugfs_ring_init(struct amdgpu_device *adev,
-+			      struct amdgpu_ring *ring);
- #endif
+Second I'm not even sure you can embed the hw fence, because there's this
+job restarting going on. Which at least thus far allocated a new hw fence.
+So this needs considerations.
+
+> > If we embed it, then I think it should start existing latest from
+> > drm_sched_job_arm. Maybe not yet initialized, but at least allocated. So
+> > the right thing to do here is to have the hw fence as a pointer in
+> > struct drm_sched_job. And check in drm_sched_job_arm() that it's at least
+> > allocated.
+> 
+> 
+> Why we need to allocate the HW fence if it's embedded within a job struct ?
+
+the hw fence is a refcounted struct, and the drm_sched_job is a different
+struct. And we didn't have a dri-devel discussion about whether it's
+correct to conflate these two lifetimes, amdgpu folks simply hacked
+something together.
+
+> > Otherwise we're just diverging across drivers and tempting them to do the
+> > wrong thing with the current ->run_job callback interface.
+> 
+> 
+> Maybe we should switch from embedding in driver level job struct as it's now
+> to drm_sched_job and just leave the fence initialization to driver specific
+> code ?
+
+Maybe? Like I've not been involved in these discussion ont he amd side at
+all, I'm just noticing that we do have a now rather inconsistently used
+inteface across drivers. Which is no good.
+-Daniel
+
+> 
+> Andrey
+> 
+> 
+> > 
+> > Can you guys look into this?
+> > -Daniel
+> > 
+> > > > > Another thing I recently pondered for tdr races looking at i915 code is
+> > > > > whether the tdr should first block the completion fence for that job. My
+> > > > > motivation is to have a race-free error capture (if the completion races
+> > > > > then we might start evicting memory and everything goes boom), but maybe
+> > > > > that helps here too. Some kind of atomic "block this fence from
+> > > > > completing thing.
+> > > > > 
+> > > > > Or I'm I completely guessing in the wrong direction?
+> > > > 
+> > > > I think we already do it here - https://nam11.safelinks.protection.outlook.com/?url=https%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv5.14-rc1%2Fsource%2Fdrivers%2Fgpu%2Fdrm%2Fscheduler%2Fsched_main.c%23L410&amp;data=04%7C01%7Candrey.grodzovsky%40amd.com%7C94e4badd78c04cb74ad208d96c80debd%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637660123033001546%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=Maya0Mk1sAliheOv7fCM8bTC7qTOp74Agt1u67kYCJw%3D&amp;reserved=0
+> > > Ah yes this works becase drm/sched has separate hw fence from the logical
+> > > job fence.
+> > > -Daniel
+> > > 
+> > > > Andrey
+> > > > 
+> > > > 
+> > > > > -Daniel
+> > > > > 
+> > > > > > Andrey
+> > > > > > 
+> > > > > > 
+> > > > > > > > Andrey
+> > > > > > > > 
+> > > > > > > > 
+> > > > > > > > > > Andrey
+> > > > > > > > > > 
+> > > > > > > > > > 
+> > > > > > > > > > > >                      spin_unlock(&sched->job_list_lock);
+> > > > > > > > > > > > 
+> > > > > > > > > > > >                      status = job->sched->ops->timedout_job(job);
+> > > > > > > > > > > > @@ -342,6 +342,7 @@ static void drm_sched_job_timedout(struct work_struct *work)
+> > > > > > > > > > > >                              job->sched->ops->free_job(job);
+> > > > > > > > > > > >                              sched->free_guilty = false;
+> > > > > > > > > > > >                      }
+> > > > > > > > > > > > +               dma_fence_put(fence);
+> > > > > > > > > > > >              } else {
+> > > > > > > > > > > >                      spin_unlock(&sched->job_list_lock);
+> > > > > > > > > > > >              }
+> > > > > > > > > > > > @@ -392,20 +393,6 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
+> > > > > > > > > > > > 
+> > > > > > > > > > > >              kthread_park(sched->thread);
+> > > > > > > > > > > > 
+> > > > > > > > > > > > -       /*
+> > > > > > > > > > > > -        * Reinsert back the bad job here - now it's safe as
+> > > > > > > > > > > > -        * drm_sched_get_cleanup_job cannot race against us and release the
+> > > > > > > > > > > > -        * bad job at this point - we parked (waited for) any in progress
+> > > > > > > > > > > > -        * (earlier) cleanups and drm_sched_get_cleanup_job will not be called
+> > > > > > > > > > > > -        * now until the scheduler thread is unparked.
+> > > > > > > > > > > > -        */
+> > > > > > > > > > > > -       if (bad && bad->sched == sched)
+> > > > > > > > > > > > -               /*
+> > > > > > > > > > > > -                * Add at the head of the queue to reflect it was the earliest
+> > > > > > > > > > > > -                * job extracted.
+> > > > > > > > > > > > -                */
+> > > > > > > > > > > > -               list_add(&bad->list, &sched->pending_list);
+> > > > > > > > > > > > -
+> > > > > > > > > > > >              /*
+> > > > > > > > > > > >               * Iterate the job list from later to  earlier one and either deactive
+> > > > > > > > > > > >               * their HW callbacks or remove them from pending list if they already
+> > > > > > > > > > > > --
+> > > > > > > > > > > > 2.25.1
+> > > > > > > > > > > > 
+> > > -- 
+> > > Daniel Vetter
+> > > Software Engineer, Intel Corporation
+> > > https://nam11.safelinks.protection.outlook.com/?url=http%3A%2F%2Fblog.ffwll.ch%2F&amp;data=04%7C01%7Candrey.grodzovsky%40amd.com%7C94e4badd78c04cb74ad208d96c80debd%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637660123033001546%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=r7EGQcWGcRinVxmD%2F%2FIFA8WgRpYNnt7feQseD92U6kc%3D&amp;reserved=0
+
 -- 
-2.32.0
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
