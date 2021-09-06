@@ -2,129 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 270D740166D
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Sep 2021 08:37:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B3D940180E
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Sep 2021 10:34:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4621A897E9;
-	Mon,  6 Sep 2021 06:36:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0591C89AEB;
+	Mon,  6 Sep 2021 08:34:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2074.outbound.protection.outlook.com [40.107.220.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFE83897E3;
- Mon,  6 Sep 2021 06:36:54 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2086.outbound.protection.outlook.com [40.107.93.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB3D689AEB
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 Sep 2021 08:34:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J5E26iWrUSrYZs4Dp+2f16dHo6tO8DChvRSBnXunCLndSOkpTs2U6zlccsD6HjfyFdKUovobJXxu3+gtSsdSyhrJ7C4gZguaYk8a8yutBujwyZ9McxuybH9zgyTB0vrp2E/4W2QhzUxSmDMeN+3wd+YMcZ0yX6B3Q4RY3hTYkqZRE05Ec3ihSV40KugMmFMkS1hAqM40QguQHoxGnrPAc/+sLFYCyyaHfjFqq+IkfwcAD4YZJRB33TOGt9fgvW/WonV+YVMVOgVblwpcXRRgxiDs3D4oHcyLTYjQ2zmXMrxFl/xXkPeELXoChY43ZdywpmtxbO6k5FlTnWjzdFbP6Q==
+ b=jDV8pP37ttaFcC6xJNYxPhHu/LCy6MVn1IQ+udMxjVZTpqrbC6DwHFNlE1sT5Kgj9dtv86EThhL3GKMVtAme7qz3rkqUvhDDPfkVEbgQApPR3HPI/Ul6jz6LX+aUyiVCne4I0Xf3LV3QqNw2bBAAMAFwM3WzmIqaieXtKhnyFvkOONUWkS+PDejNlhp0nonvvMtdvB8BARffoZpd4oI8j9WEWQW8lssYpyVlGXJTYkPMBbzhY7q8uLxy8fwQjUKKZlT76kaVgfLAuelR6KZJmkuJV6FB1B+cC/ApeD9bUWXvaUopxlxCUNpxiJ+EjXdbBE+kRJ4AEPTxqGfc+NbF8Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=xYEZpD1VBho6H29aNQbp0vi2orQo2vp6QWOIYmeSZ/I=;
- b=U4kajlglSnFE1Kxl5OzuF28JL7cE7l1wd1OS4gw5Ix7HV5PPKbFEMZTrUHZY+b8J7KqkWhfph38p8pZ3noyJLSV4XFTdMVo2+DVzajEdUVEPoDgoRmHZ5umlFCQ35y8G9OSXYXVdYv/f9m8DAXKTGu6gBmeJJXaBmUPitr1ow46yk2gkm3etzigt2crxmyTNu7AVBarq0OwgwumuEiwYJUG++woLJbB9DgK53cH+QjQ29Y/3SWVw3QfmqV9W89XRgyzZ28ES5rSVkSABEIjFaupfMXHtPBVozLvdqHhjamFTm60bM1xZyDko7S7jTpwkdmT0wEQzRrV8kF7t5E3zIQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=cUm1NzQUCbjWICLC03PQiDVN47B9N01aTaEk6va/+f4=;
+ b=n3GjkPY99XyhuB496UsxQygPhGHAdQXi1XFLYhRoUEtztGm0GuZTAIAYL4BuOf+dad7WR8TtvOTDEg3O6SeHnbfDdY9MrURcALVs1eFdEpViFcfihTQT3IcsDw24LrLTg/jLJ7DO3BodjCp1fO4G1PzFbSlhe3dGCjk+yA/HGBgDb3dxaUGFO7TrQqaVrsoJDz/3Ngi1pgsyxbLFU10RhdpXiFpMmKgndubtnlPgDohdtiAK1yyty5xrRTFu6ypXxH/FGTTQ3qJeIN73kjUcp8+loGEbbr1Oo7p2y50bo/W4h7p/tWjYDE9jBgFppUDm+TIlXwrhYHccVl1K9UFeww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xYEZpD1VBho6H29aNQbp0vi2orQo2vp6QWOIYmeSZ/I=;
- b=zWLat9mhO05yNVtoeF0yRh7HTHmOGRL2nUijHHwkZQ/uzEjPrUjoyQkl1e8/GUo+uodUsqzz0wTLfk6eZ1dvLKX4o68xoIhq0qcXgTmQzGNlerK6PlBrW28g6Hid8wBo29U7ADQFSCTVVu/JhNnnEkS8sUx1Tw2VtDDuXIZ7fMg=
-Received: from BL1PR12MB5269.namprd12.prod.outlook.com (2603:10b6:208:30b::20)
- by BL1PR12MB5032.namprd12.prod.outlook.com (2603:10b6:208:30a::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.21; Mon, 6 Sep
- 2021 06:36:52 +0000
-Received: from BL1PR12MB5269.namprd12.prod.outlook.com
- ([fe80::acc6:c407:1353:6a]) by BL1PR12MB5269.namprd12.prod.outlook.com
- ([fe80::acc6:c407:1353:6a%5]) with mapi id 15.20.4478.025; Mon, 6 Sep 2021
- 06:36:52 +0000
-From: "Liu, Monk" <Monk.Liu@amd.com>
-To: Daniel Vetter <daniel@ffwll.ch>, "Koenig, Christian"
- <Christian.Koenig@amd.com>
-CC: Dave Airlie <airlied@gmail.com>, Alex Deucher <alexdeucher@gmail.com>,
- "Grodzovsky, Andrey" <Andrey.Grodzovsky@amd.com>, "Chen, JingWen"
- <JingWen.Chen2@amd.com>, DRI Development <dri-devel@lists.freedesktop.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Subject: RE: [diagnostic TDR mode patches] unify our solution
- opinions/suggestions in one thread
-Thread-Topic: [diagnostic TDR mode patches] unify our solution
- opinions/suggestions in one thread
-Thread-Index: Adeezw8WIoeNdpdaSO6/zguUPH+5CgAOtiEAAAQJJ3AACrFwAAAHXqOAABa9MsAACx8cgAAK2xGAALS3lIA=
-Date: Mon, 6 Sep 2021 06:36:52 +0000
-Message-ID: <BL1PR12MB5269F59E4548AD2CF85EC78084D29@BL1PR12MB5269.namprd12.prod.outlook.com>
-References: <BL1PR12MB526942160701B46D4B28EEEC84CD9@BL1PR12MB5269.namprd12.prod.outlook.com>
- <CAKMK7uHKX0rSVk_yBPo_KAEJ-UeLk5UxQ2kBdv+FD2j9zAjfZA@mail.gmail.com>
- <BL1PR12MB5269B303372A6251EDD1DC2C84CD9@BL1PR12MB5269.namprd12.prod.outlook.com>
- <CADnq5_PUvgt9Cv2L3G4GGBJv_WBhtOp8DN+3WMvoES_80UMKfQ@mail.gmail.com>
- <CAPM=9tz-66nXR8gbMucsBo5Q1VJ5AsrVZh4pF0r0WfFi7CQtzg@mail.gmail.com>
- <BL1PR12MB5269F6B279EDE278C8FDF90A84CE9@BL1PR12MB5269.namprd12.prod.outlook.com>
- <a1f2cfdf-e1af-e265-3d96-b8f5c47a0b84@amd.com>
- <CAKMK7uENdQRw+5a=A_C3V6BpzqhU1asL_Bnm34r5ZjPpqu=gfQ@mail.gmail.com>
-In-Reply-To: <CAKMK7uENdQRw+5a=A_C3V6BpzqhU1asL_Bnm34r5ZjPpqu=gfQ@mail.gmail.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-09-06T06:36:50Z; 
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
- Only-AIP 2.0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=51911ac3-7cd3-4ca4-b0df-098088d211d0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
-authentication-results: ffwll.ch; dkim=none (message not signed)
- header.d=none;ffwll.ch; dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ac3e9d9a-360f-4434-b6cb-08d97100b67e
-x-ms-traffictypediagnostic: BL1PR12MB5032:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BL1PR12MB50322976415055D49033301984D29@BL1PR12MB5032.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: zFT3n/5j0ZiFaPHA09dTL8hexbv3HAtmX4vQw4VknoN0hMCjRPpOsoL39v6d/g3RyAvt63I4l9NpDGhq+zNGLogv595azihEgWTuXiFRdh0UTd7RlbO+JeGfWCL6RYmdsXKus09Txyo9K/KCTu+kW63VL+gw2zTgG5tgV2vDOJ9Tzc1uCKt5SeS1TRAzZWuZ7qMfbhgbo68jsGeUEu1zvZb8LgUS5GB94zpSKRt+hGejEhe8pPcCvegtbzt5Zi7LoPDL9+9qA7xrcB4QHYyabl0/ZbQMS/cZbaOfzKWIPD20LesigeT6GT5TmSQZQQ5xb4jMHTCPVNrBTbqCPiYU73o4s1UwJtwkqLPwnR1WdwSUcS3ioP4FggTcrACI7Q87SYeqjGW4WWRy60EyvWIbXNVjQB750iZ7ZzdWTa/CwoncTjnbTptLMHeCvBesqsZNojwcavOuVa/OzxAiIXrXbWrYMz/ho3Mw6p1CwsR9YANXcZdE8nlr6gcj6UshbnMYciOo6BoGEoC3nkOlpVwlteU85KhUS56OQr1aZspQRmB9egVnrJyO15f7zxe96h9fTQAU6zOUwvd1iL5Lg5uiwO7Nq6EulCiy750hJpcVvZgpEjpmceXetVUE4VqlagKoxA8AvXko7owtOr+iUdzyKUGZTeXqGox5+iR/M8q/bvaDRbvPooG0sSMjVa1crTCh+ZTgb6trBKktz6BYvHDr3bA3QuKI/ykjO/J9f7YiNb/iHbDuv3P/gDLBeLRXgCdu25yaoS/PGyFkN8Dmt34ENFeJEzMR54/dmY8XEHzGVxUBXwpsE81NG9WRvkNeJXNyLv/nCjdh3/j0JOMrYaR8UQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL1PR12MB5269.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(136003)(366004)(396003)(39860400002)(376002)(346002)(8676002)(66574015)(5660300002)(66446008)(316002)(9686003)(71200400001)(38070700005)(33656002)(26005)(186003)(83380400001)(6506007)(53546011)(7696005)(54906003)(110136005)(66946007)(6636002)(2906002)(76116006)(122000001)(66556008)(8936002)(55016002)(45080400002)(38100700002)(52536014)(478600001)(966005)(4326008)(64756008)(66476007)(86362001);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?FSJglNakn0b26E0CQdHcbbek6dFawPS6VlUQIIJXaaWLkAbPeKZEgbFIFP?=
- =?iso-8859-1?Q?bOfPmPfhNsKfIhNT0k5FykrPmgq0wNNYIaUeqtn+Pa2rBMKNrL5Iawvf+S?=
- =?iso-8859-1?Q?2aqqUYAWYm3xA5shhznubszkJ9KfjEMXOpikxb7nASizKHTuSgucs/BNMK?=
- =?iso-8859-1?Q?mpK4zCZH+2yH7Jfw/6UQUeyM/SMH63yxK4nA06QfFZX2rrYBJ4VQv8tcDK?=
- =?iso-8859-1?Q?VB0HKYW/z/yrjjiXSjfCe/JqyO+urz/Zwa8qeg2QU/sBzL/r//kqHzw+b/?=
- =?iso-8859-1?Q?375/CObTNXa0y6WSbzf/vVfFV8UB8iZ39nWl4fHHw0EdmHHiu7pgih+VeT?=
- =?iso-8859-1?Q?CDqYOd7EyN89pdy1QLbEGrozlOnh4tCX6JroI8/+PjpyMGvPJVtSB2gQeF?=
- =?iso-8859-1?Q?vI4impekg/rgX7EMWkE3df9NCyrU+T6XTMBB7Ed7d9RoJj92cfPgWSrCQ6?=
- =?iso-8859-1?Q?sMjiwL6RKvR8D6bBsoWovQt+sNuy7Dn2BiJBnKRK0HWWHEQjdFkeIELqsq?=
- =?iso-8859-1?Q?BJ5Vr2VLHLIDao2+KEcbbiOvmHOpOYFQ4EByiH94q5ndf/ZAdBU25x5oHy?=
- =?iso-8859-1?Q?gjBNDDzPJCARNqvdTfyWfRJdNaSysQE1Otn5/zzoojtXs9LaLgNNIsYGmf?=
- =?iso-8859-1?Q?tSlLsbaxysc3VKk8bCEEukZRe5qgKGbjNKX8OS+vsRSkl8zjfNSlr1z03W?=
- =?iso-8859-1?Q?nZvUnV3W1UE6pzi/h4EPXUtuL9PYJT3I9k1CIcj0ObAHX63Pf5NrLY+jm4?=
- =?iso-8859-1?Q?xPoVVqLl+Hmj/SVVh2NH+lVWrIfxqVeypZqyywmoPJ5gRxvQY2zQH65rBQ?=
- =?iso-8859-1?Q?u8vIdLoJIekV8/uV/JB2adLHmpSKHnRkleeEfgDBftRkbdcGlhYLNsPPPj?=
- =?iso-8859-1?Q?gRzLRxsPoijKNDrN9feMXeiJmiy1J+dohcl8QfhEwB6arvcfZpk6kaFM+9?=
- =?iso-8859-1?Q?b9y5zGFr24jXPvARqGIxzdwxo+b5Tg4YMdzoogdNALI7BGPlIqUeHt3Lwa?=
- =?iso-8859-1?Q?39u+zD71JmlJqK8YqivtfZisOjnC7pPlMMlPM/NDdWGMRCREt9sB4cPwfF?=
- =?iso-8859-1?Q?71kBbkY27Y0XmQ9mi1DMthdk0iOBhkiuaAtyqpa5WWmOd0qOv0wuF/d4sh?=
- =?iso-8859-1?Q?JHCFSB2sWLr7HzSlsxAV4JR5ljjoYR3QkBBgziiILVFb2Mc3HdiTXZ97Xh?=
- =?iso-8859-1?Q?8OufJZp0N1PM62OYArEX4KYR4NxNd4Mw733J1ZG8u5GhFw7ToCcxTAOpCC?=
- =?iso-8859-1?Q?Jm0kmyr+Z/QGRSCYnDhvOmu8sqjsNFCcoqnIaAEUMiXkp8U0KKK0n+XLpg?=
- =?iso-8859-1?Q?macuN/zjK2T67aDHI6EkFUCSbcLO+xu/jP3EpxJ82v8GlzcEn9OtG65ehb?=
- =?iso-8859-1?Q?nU+5QapXs+?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ bh=cUm1NzQUCbjWICLC03PQiDVN47B9N01aTaEk6va/+f4=;
+ b=G8p3r31PaOCLoucbAPeiKTfh+8rlOsBC38FIi8w3Gscxeo0hTaXePfiSvfWSlLsfVg6etBBjeD2lOr+UDUgHrJpWP7AykX9kiSXD+p5FJhZqsUtX9IexEa9B0yb2BrGJtCSCJy4GGT4S6Ys7Jqj32WvpFzY4Kk/2zAkldJ8BZNw=
+Received: from DM5PR06CA0091.namprd06.prod.outlook.com (2603:10b6:3:4::29) by
+ CY4PR12MB1749.namprd12.prod.outlook.com (2603:10b6:903:11d::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.19; Mon, 6 Sep
+ 2021 08:34:27 +0000
+Received: from DM6NAM11FT014.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:4:cafe::fc) by DM5PR06CA0091.outlook.office365.com
+ (2603:10b6:3:4::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.19 via Frontend
+ Transport; Mon, 6 Sep 2021 08:34:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT014.mail.protection.outlook.com (10.13.173.132) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4478.19 via Frontend Transport; Mon, 6 Sep 2021 08:34:26 +0000
+Received: from canli.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Mon, 6 Sep 2021
+ 03:34:24 -0500
+From: Candice Li <candice.li@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: John Clements <john.clements@amd.com>, Candice Li <candice.li@amd.com>
+Subject: [PATCH] drm/amdgpu: Create common PSP TA load function
+Date: Mon, 6 Sep 2021 16:34:12 +0800
+Message-ID: <20210906083412.27473-1-candice.li@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6877f0fd-5eab-4f81-9008-08d971112333
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1749:
+X-Microsoft-Antispam-PRVS: <CY4PR12MB1749D20A7A9FB998D6ED742F91D29@CY4PR12MB1749.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: EqjllDZQWiH+9fkPiksPzjVOXyjhO4RAKY5ErwYpN+LHcaVdd07nuSGd9u7SQRZHdkxDxJJuIru41gD746mE0KvqQGkcI4eP982QoIceF0q/8IybLvepng20Wt3up+aGp1uUU81s3/JmnZ4iILs8pevQp7DgIECTb3seVVu1HUTNnBG6OxMVex9hgH0khxvLOpUYwAGzle5mupbl3T0z2ePSo1k6SB+9xjrFi9vii4lV+m4N5OjnfT3aPYt2n0LB7pAiKvtIpYI9tdvZ1eUcvWF9pd9jOu7pWqfG9gY0GcTOUyBlw4/SevAKge79JUcq553pp6nAohwf+KES8137oVM3vENW8Ij9qYHMXlwp/pRpeOP9ewJtjUz6Cyfw3kT+HAZPDhhvFOnBGotpWAiYKIAGGrG0CFA1IaG8QDZVrEsqBwoFYyDAOiLGqoUeFPVT/XXZCRTnT0NrM7M8pe6NQGxOSL3V1zBULb1u87aPApaSqMTe2ofOIeKPbCxtBMCcbyWG2T0gIL1QoNj08B9m+rImHK5XgeqJlQbNtS6IQT7IJbt6NPs7YolJm03dFSouqe0q5B7bSoQB3+CnewekmMRYvuI/Zb5YJBdy/PdSzakKLak2Qy7F24feNPrX6V/Xc6SO+xn6bzZbGPBEs+NPe1KPdF4SMC523mUhYaiZ0HoUVseuod4t5FpD8s3mBOJDVwlKOBw/ba7CcwMI4dCy435CkhGkDKuJPHJNskBPG00=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(376002)(136003)(396003)(39860400002)(346002)(46966006)(36840700001)(44832011)(70586007)(70206006)(47076005)(186003)(86362001)(5660300002)(1076003)(82310400003)(83380400001)(8676002)(426003)(82740400003)(336012)(30864003)(2906002)(6916009)(4326008)(16526019)(81166007)(7696005)(316002)(6666004)(2616005)(54906003)(356005)(36860700001)(36756003)(478600001)(8936002)(26005)(36900700001);
+ DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5269.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac3e9d9a-360f-4434-b6cb-08d97100b67e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Sep 2021 06:36:52.2733 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: F/zyOsJlizoEBONyCsvP4Z9JgXfgbkJG6yGmGvdTvkKhxzaCRPEGnAGyfzq23U0L
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5032
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2021 08:34:26.7650 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6877f0fd-5eab-4f81-9008-08d971112333
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT014.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1749
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,223 +104,545 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only]
+Creat common PSP TA load function and update PSP ta_mem_context
+with size information.
 
-> I'm fearing that just repeating what Alex said, but to make it clear=20
-> once more: That is *not* necessary!
->
-> The shared repository is owned by upstream maintainers and they are=20
-> usually free to do restructuring work without getting acknowledge from=20
-> every single driver maintainer.
+Signed-off-by: Candice Li <candice.li@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 280 +++++++-----------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h |  17 +-
+ 2 files changed, 93 insertions(+), 204 deletions(-)
 
-Hi Daniel
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index 54c26432c65b3d..75eed18370eb12 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -901,22 +901,20 @@ int psp_reg_program(struct psp_context *psp, enum psp_reg_prog_id reg,
+ static void psp_prep_ta_load_cmd_buf(struct psp_gfx_cmd_resp *cmd,
+ 				     uint64_t ta_bin_mc,
+ 				     uint32_t ta_bin_size,
+-				     uint64_t ta_shared_mc,
+-				     uint32_t ta_shared_size)
++				     struct ta_mem_context *mem_ctx)
+ {
+ 	cmd->cmd_id				= GFX_CMD_ID_LOAD_TA;
+ 	cmd->cmd.cmd_load_ta.app_phy_addr_lo 	= lower_32_bits(ta_bin_mc);
+ 	cmd->cmd.cmd_load_ta.app_phy_addr_hi	= upper_32_bits(ta_bin_mc);
+ 	cmd->cmd.cmd_load_ta.app_len		= ta_bin_size;
+ 
+-	cmd->cmd.cmd_load_ta.cmd_buf_phy_addr_lo = lower_32_bits(ta_shared_mc);
+-	cmd->cmd.cmd_load_ta.cmd_buf_phy_addr_hi = upper_32_bits(ta_shared_mc);
+-	cmd->cmd.cmd_load_ta.cmd_buf_len	 = ta_shared_size;
++	cmd->cmd.cmd_load_ta.cmd_buf_phy_addr_lo = lower_32_bits(mem_ctx->shared_mc_addr);
++	cmd->cmd.cmd_load_ta.cmd_buf_phy_addr_hi = upper_32_bits(mem_ctx->shared_mc_addr);
++	cmd->cmd.cmd_load_ta.cmd_buf_len	 = mem_ctx->shared_mem_size;
+ }
+ 
+ static int psp_ta_init_shared_buf(struct psp_context *psp,
+-				  struct ta_mem_context *mem_ctx,
+-				  uint32_t shared_mem_size)
++				  struct ta_mem_context *mem_ctx)
+ {
+ 	int ret;
+ 
+@@ -924,8 +922,8 @@ static int psp_ta_init_shared_buf(struct psp_context *psp,
+ 	* Allocate 16k memory aligned to 4k from Frame Buffer (local
+ 	* physical) for ta to host memory
+ 	*/
+-	ret = amdgpu_bo_create_kernel(psp->adev, shared_mem_size, PAGE_SIZE,
+-				      AMDGPU_GEM_DOMAIN_VRAM,
++	ret = amdgpu_bo_create_kernel(psp->adev, mem_ctx->shared_mem_size,
++				      PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM,
+ 				      &mem_ctx->shared_bo,
+ 				      &mem_ctx->shared_mc_addr,
+ 				      &mem_ctx->shared_buf);
+@@ -941,8 +939,7 @@ static void psp_ta_free_shared_buf(struct ta_mem_context *mem_ctx)
+ 
+ static int psp_xgmi_init_shared_buf(struct psp_context *psp)
+ {
+-	return psp_ta_init_shared_buf(psp, &psp->xgmi_context.context.mem_context,
+-				      PSP_XGMI_SHARED_MEM_SIZE);
++	return psp_ta_init_shared_buf(psp, &psp->xgmi_context.context.mem_context);
+ }
+ 
+ static void psp_prep_ta_invoke_cmd_buf(struct psp_gfx_cmd_resp *cmd,
+@@ -971,31 +968,27 @@ static int psp_ta_invoke(struct psp_context *psp,
+ 	return ret;
+ }
+ 
+-static int psp_xgmi_load(struct psp_context *psp)
++static int psp_ta_load(struct psp_context *psp,
++			   struct psp_bin_desc *bin_desc,
++			   struct ta_context *context)
+ {
+ 	int ret;
+ 	struct psp_gfx_cmd_resp *cmd;
+ 
+-	/*
+-	 * TODO: bypass the loading in sriov for now
+-	 */
+-
+ 	cmd = acquire_psp_cmd_buf(psp);
+ 
+-	psp_copy_fw(psp, psp->xgmi.start_addr, psp->xgmi.size_bytes);
++	psp_copy_fw(psp, bin_desc->start_addr, bin_desc->size_bytes);
+ 
+ 	psp_prep_ta_load_cmd_buf(cmd,
+ 				 psp->fw_pri_mc_addr,
+-				 psp->xgmi.size_bytes,
+-				 psp->xgmi_context.context.mem_context.shared_mc_addr,
+-				 PSP_XGMI_SHARED_MEM_SIZE);
++				 bin_desc->size_bytes,
++				 &context->mem_context);
+ 
+ 	ret = psp_cmd_submit_buf(psp, NULL, cmd,
+ 				 psp->fence_buf_mc_addr);
+ 
+ 	if (!ret) {
+-		psp->xgmi_context.context.initialized = true;
+-		psp->xgmi_context.context.session_id = cmd->resp.session_id;
++		context->session_id = cmd->resp.session_id;
+ 	}
+ 
+ 	release_psp_cmd_buf(psp);
+@@ -1003,6 +996,11 @@ static int psp_xgmi_load(struct psp_context *psp)
+ 	return ret;
+ }
+ 
++static int psp_xgmi_load(struct psp_context *psp)
++{
++	return psp_ta_load(psp, &psp->xgmi, &psp->xgmi_context.context);
++}
++
+ static int psp_xgmi_unload(struct psp_context *psp)
+ {
+ 	return psp_ta_unload(psp, psp->xgmi_context.context.session_id);
+@@ -1051,6 +1049,8 @@ int psp_xgmi_initialize(struct psp_context *psp, bool set_extended_data, bool lo
+ 	if (!load_ta)
+ 		goto invoke;
+ 
++	psp->xgmi_context.context.mem_context.shared_mem_size = PSP_XGMI_SHARED_MEM_SIZE;
++
+ 	if (!psp->xgmi_context.context.initialized) {
+ 		ret = psp_xgmi_init_shared_buf(psp);
+ 		if (ret)
+@@ -1059,7 +1059,9 @@ int psp_xgmi_initialize(struct psp_context *psp, bool set_extended_data, bool lo
+ 
+ 	/* Load XGMI TA */
+ 	ret = psp_xgmi_load(psp);
+-	if (ret)
++	if (!ret)
++		psp->xgmi_context.context.initialized = true;
++	else
+ 		return ret;
+ 
+ invoke:
+@@ -1281,57 +1283,12 @@ int psp_xgmi_set_topology_info(struct psp_context *psp,
+ // ras begin
+ static int psp_ras_init_shared_buf(struct psp_context *psp)
+ {
+-	return psp_ta_init_shared_buf(psp, &psp->ras_context.context.mem_context,
+-				      PSP_RAS_SHARED_MEM_SIZE);
++	return psp_ta_init_shared_buf(psp, &psp->ras_context.context.mem_context);
+ }
+ 
+ static int psp_ras_load(struct psp_context *psp)
+ {
+-	int ret;
+-	struct psp_gfx_cmd_resp *cmd;
+-	struct ta_ras_shared_memory *ras_cmd;
+-
+-	/*
+-	 * TODO: bypass the loading in sriov for now
+-	 */
+-	if (amdgpu_sriov_vf(psp->adev))
+-		return 0;
+-
+-	psp_copy_fw(psp, psp->ras.start_addr, psp->ras.size_bytes);
+-
+-	ras_cmd = (struct ta_ras_shared_memory *)psp->ras_context.context.mem_context.shared_buf;
+-
+-	if (psp->adev->gmc.xgmi.connected_to_cpu)
+-		ras_cmd->ras_in_message.init_flags.poison_mode_en = 1;
+-	else
+-		ras_cmd->ras_in_message.init_flags.dgpu_mode = 1;
+-
+-	cmd = acquire_psp_cmd_buf(psp);
+-
+-	psp_prep_ta_load_cmd_buf(cmd,
+-				 psp->fw_pri_mc_addr,
+-				 psp->ras.size_bytes,
+-				 psp->ras_context.context.mem_context.shared_mc_addr,
+-				 PSP_RAS_SHARED_MEM_SIZE);
+-
+-	ret = psp_cmd_submit_buf(psp, NULL, cmd,
+-			psp->fence_buf_mc_addr);
+-
+-	if (!ret) {
+-		psp->ras_context.context.session_id = cmd->resp.session_id;
+-
+-		if (!ras_cmd->ras_status)
+-			psp->ras_context.context.initialized = true;
+-		else
+-			dev_warn(psp->adev->dev, "RAS Init Status: 0x%X\n", ras_cmd->ras_status);
+-	}
+-
+-	release_psp_cmd_buf(psp);
+-
+-	if (ret || ras_cmd->ras_status)
+-		amdgpu_ras_fini(psp->adev);
+-
+-	return ret;
++	return psp_ta_load(psp, &psp->ras, &psp->ras_context.context);
+ }
+ 
+ static int psp_ras_unload(struct psp_context *psp)
+@@ -1458,6 +1415,7 @@ static int psp_ras_initialize(struct psp_context *psp)
+ 	int ret;
+ 	uint32_t boot_cfg = 0xFF;
+ 	struct amdgpu_device *adev = psp->adev;
++	struct ta_ras_shared_memory *ras_cmd;
+ 
+ 	/*
+ 	 * TODO: bypass the initialize in sriov for now
+@@ -1512,17 +1470,33 @@ static int psp_ras_initialize(struct psp_context *psp)
+ 		}
+ 	}
+ 
++	psp->ras_context.context.mem_context.shared_mem_size = PSP_RAS_SHARED_MEM_SIZE;
++
+ 	if (!psp->ras_context.context.initialized) {
+ 		ret = psp_ras_init_shared_buf(psp);
+ 		if (ret)
+ 			return ret;
+ 	}
+ 
++	ras_cmd = (struct ta_ras_shared_memory *)psp->ras_context.context.mem_context.shared_buf;
++	memset(ras_cmd, 0, sizeof(struct ta_ras_shared_memory));
++
++	if (psp->adev->gmc.xgmi.connected_to_cpu)
++		ras_cmd->ras_in_message.init_flags.poison_mode_en = 1;
++	else
++		ras_cmd->ras_in_message.init_flags.dgpu_mode = 1;
++
+ 	ret = psp_ras_load(psp);
+-	if (ret)
+-		return ret;
+ 
+-	return 0;
++	if (!ret && !ras_cmd->ras_status)
++		psp->ras_context.context.initialized = true;
++	else {
++		if (ras_cmd->ras_status)
++			dev_warn(psp->adev->dev, "RAS Init Status: 0x%X\n", ras_cmd->ras_status);
++		amdgpu_ras_fini(psp->adev);
++	}
++
++	return ret;
+ }
+ 
+ int psp_ras_trigger_error(struct psp_context *psp,
+@@ -1556,43 +1530,12 @@ int psp_ras_trigger_error(struct psp_context *psp,
+ // HDCP start
+ static int psp_hdcp_init_shared_buf(struct psp_context *psp)
+ {
+-	return psp_ta_init_shared_buf(psp, &psp->hdcp_context.context.mem_context,
+-				      PSP_HDCP_SHARED_MEM_SIZE);
++	return psp_ta_init_shared_buf(psp, &psp->hdcp_context.context.mem_context);
+ }
+ 
+ static int psp_hdcp_load(struct psp_context *psp)
+ {
+-	int ret;
+-	struct psp_gfx_cmd_resp *cmd;
+-
+-	/*
+-	 * TODO: bypass the loading in sriov for now
+-	 */
+-	if (amdgpu_sriov_vf(psp->adev))
+-		return 0;
+-
+-	psp_copy_fw(psp, psp->hdcp.start_addr,
+-		    psp->hdcp.size_bytes);
+-
+-	cmd = acquire_psp_cmd_buf(psp);
+-
+-	psp_prep_ta_load_cmd_buf(cmd,
+-				 psp->fw_pri_mc_addr,
+-				 psp->hdcp.size_bytes,
+-				 psp->hdcp_context.context.mem_context.shared_mc_addr,
+-				 PSP_HDCP_SHARED_MEM_SIZE);
+-
+-	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
+-
+-	if (!ret) {
+-		psp->hdcp_context.context.initialized = true;
+-		psp->hdcp_context.context.session_id = cmd->resp.session_id;
+-		mutex_init(&psp->hdcp_context.mutex);
+-	}
+-
+-	release_psp_cmd_buf(psp);
+-
+-	return ret;
++	return psp_ta_load(psp, &psp->hdcp, &psp->hdcp_context.context);
+ }
+ static int psp_hdcp_initialize(struct psp_context *psp)
+ {
+@@ -1610,6 +1553,8 @@ static int psp_hdcp_initialize(struct psp_context *psp)
+ 		return 0;
+ 	}
+ 
++	psp->hdcp_context.context.mem_context.shared_mem_size = PSP_HDCP_SHARED_MEM_SIZE;
++
+ 	if (!psp->hdcp_context.context.initialized) {
+ 		ret = psp_hdcp_init_shared_buf(psp);
+ 		if (ret)
+@@ -1617,10 +1562,12 @@ static int psp_hdcp_initialize(struct psp_context *psp)
+ 	}
+ 
+ 	ret = psp_hdcp_load(psp);
+-	if (ret)
+-		return ret;
++	if (!ret) {
++		psp->hdcp_context.context.initialized = true;
++		mutex_init(&psp->hdcp_context.mutex);
++	}
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ static int psp_hdcp_unload(struct psp_context *psp)
+@@ -1673,42 +1620,12 @@ static int psp_hdcp_terminate(struct psp_context *psp)
+ // DTM start
+ static int psp_dtm_init_shared_buf(struct psp_context *psp)
+ {
+-	return psp_ta_init_shared_buf(psp, &psp->dtm_context.context.mem_context,
+-				      PSP_DTM_SHARED_MEM_SIZE);
++	return psp_ta_init_shared_buf(psp, &psp->dtm_context.context.mem_context);
+ }
+ 
+ static int psp_dtm_load(struct psp_context *psp)
+ {
+-	int ret;
+-	struct psp_gfx_cmd_resp *cmd;
+-
+-	/*
+-	 * TODO: bypass the loading in sriov for now
+-	 */
+-	if (amdgpu_sriov_vf(psp->adev))
+-		return 0;
+-
+-	psp_copy_fw(psp, psp->dtm.start_addr, psp->dtm.size_bytes);
+-
+-	cmd = acquire_psp_cmd_buf(psp);
+-
+-	psp_prep_ta_load_cmd_buf(cmd,
+-				 psp->fw_pri_mc_addr,
+-				 psp->dtm.size_bytes,
+-				 psp->dtm_context.context.mem_context.shared_mc_addr,
+-				 PSP_DTM_SHARED_MEM_SIZE);
+-
+-	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
+-
+-	if (!ret) {
+-		psp->dtm_context.context.initialized = true;
+-		psp->dtm_context.context.session_id = cmd->resp.session_id;
+-		mutex_init(&psp->dtm_context.mutex);
+-	}
+-
+-	release_psp_cmd_buf(psp);
+-
+-	return ret;
++	return psp_ta_load(psp, &psp->dtm, &psp->dtm_context.context);
+ }
+ 
+ static int psp_dtm_initialize(struct psp_context *psp)
+@@ -1727,6 +1644,8 @@ static int psp_dtm_initialize(struct psp_context *psp)
+ 		return 0;
+ 	}
+ 
++	psp->dtm_context.context.mem_context.shared_mem_size = PSP_DTM_SHARED_MEM_SIZE;
++
+ 	if (!psp->dtm_context.context.initialized) {
+ 		ret = psp_dtm_init_shared_buf(psp);
+ 		if (ret)
+@@ -1734,10 +1653,12 @@ static int psp_dtm_initialize(struct psp_context *psp)
+ 	}
+ 
+ 	ret = psp_dtm_load(psp);
+-	if (ret)
+-		return ret;
++	if (!ret) {
++		psp->dtm_context.context.initialized = true;
++		mutex_init(&psp->dtm_context.mutex);
++	}
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ static int psp_dtm_unload(struct psp_context *psp)
+@@ -1790,36 +1711,12 @@ static int psp_dtm_terminate(struct psp_context *psp)
+ // RAP start
+ static int psp_rap_init_shared_buf(struct psp_context *psp)
+ {
+-	return psp_ta_init_shared_buf(psp, &psp->rap_context.context.mem_context,
+-				      PSP_RAP_SHARED_MEM_SIZE);
++	return psp_ta_init_shared_buf(psp, &psp->rap_context.context.mem_context);
+ }
+ 
+ static int psp_rap_load(struct psp_context *psp)
+ {
+-	int ret;
+-	struct psp_gfx_cmd_resp *cmd;
+-
+-	psp_copy_fw(psp, psp->rap.start_addr, psp->rap.size_bytes);
+-
+-	cmd = acquire_psp_cmd_buf(psp);
+-
+-	psp_prep_ta_load_cmd_buf(cmd,
+-				 psp->fw_pri_mc_addr,
+-				 psp->rap.size_bytes,
+-				 psp->rap_context.context.mem_context.shared_mc_addr,
+-				 PSP_RAP_SHARED_MEM_SIZE);
+-
+-	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
+-
+-	if (!ret) {
+-		psp->rap_context.context.initialized = true;
+-		psp->rap_context.context.session_id = cmd->resp.session_id;
+-		mutex_init(&psp->rap_context.mutex);
+-	}
+-
+-	release_psp_cmd_buf(psp);
+-
+-	return ret;
++	return psp_ta_load(psp, &psp->rap, &psp->rap_context.context);
+ }
+ 
+ static int psp_rap_unload(struct psp_context *psp)
+@@ -1844,6 +1741,8 @@ static int psp_rap_initialize(struct psp_context *psp)
+ 		return 0;
+ 	}
+ 
++	psp->rap_context.context.mem_context.shared_mem_size = PSP_RAP_SHARED_MEM_SIZE;
++
+ 	if (!psp->rap_context.context.initialized) {
+ 		ret = psp_rap_init_shared_buf(psp);
+ 		if (ret)
+@@ -1851,7 +1750,10 @@ static int psp_rap_initialize(struct psp_context *psp)
+ 	}
+ 
+ 	ret = psp_rap_load(psp);
+-	if (ret)
++	if (!ret) {
++		psp->rap_context.context.initialized = true;
++		mutex_init(&psp->rap_context.mutex);
++	} else
+ 		return ret;
+ 
+ 	ret = psp_rap_invoke(psp, TA_CMD_RAP__INITIALIZE, &status);
+@@ -1923,35 +1825,13 @@ int psp_rap_invoke(struct psp_context *psp, uint32_t ta_cmd_id, enum ta_rap_stat
+ static int psp_securedisplay_init_shared_buf(struct psp_context *psp)
+ {
+ 	return psp_ta_init_shared_buf(
+-		psp, &psp->securedisplay_context.context.mem_context,
+-		PSP_SECUREDISPLAY_SHARED_MEM_SIZE);
++		psp, &psp->securedisplay_context.context.mem_context);
+ }
+ 
+ static int psp_securedisplay_load(struct psp_context *psp)
+ {
+-	int ret;
+-	struct psp_gfx_cmd_resp *cmd = acquire_psp_cmd_buf(psp);
+-
+-	memset(psp->fw_pri_buf, 0, PSP_1_MEG);
+-	memcpy(psp->fw_pri_buf, psp->securedisplay.start_addr, psp->securedisplay.size_bytes);
+-
+-	psp_prep_ta_load_cmd_buf(cmd,
+-				 psp->fw_pri_mc_addr,
+-				 psp->securedisplay.size_bytes,
+-				 psp->securedisplay_context.context.mem_context.shared_mc_addr,
+-				 PSP_SECUREDISPLAY_SHARED_MEM_SIZE);
+-
+-	ret = psp_cmd_submit_buf(psp, NULL, cmd, psp->fence_buf_mc_addr);
+-
+-	if (!ret) {
+-		psp->securedisplay_context.context.initialized = true;
+-		psp->securedisplay_context.context.session_id = cmd->resp.session_id;
+-		mutex_init(&psp->securedisplay_context.mutex);
+-	}
+-
+-	release_psp_cmd_buf(psp);
+-
+-	return ret;
++	return psp_ta_load(psp, &psp->securedisplay,
++			   &psp->securedisplay_context.context);
+ }
+ 
+ static int psp_securedisplay_unload(struct psp_context *psp)
+@@ -1976,6 +1856,9 @@ static int psp_securedisplay_initialize(struct psp_context *psp)
+ 		return 0;
+ 	}
+ 
++	psp->securedisplay_context.context.mem_context.shared_mem_size =
++		PSP_SECUREDISPLAY_SHARED_MEM_SIZE;
++
+ 	if (!psp->securedisplay_context.context.initialized) {
+ 		ret = psp_securedisplay_init_shared_buf(psp);
+ 		if (ret)
+@@ -1983,7 +1866,10 @@ static int psp_securedisplay_initialize(struct psp_context *psp)
+ 	}
+ 
+ 	ret = psp_securedisplay_load(psp);
+-	if (ret)
++	if (!ret) {
++		psp->securedisplay_context.context.initialized = true;
++		mutex_init(&psp->securedisplay_context.mutex);
++	} else
+ 		return ret;
+ 
+ 	psp_prep_securedisplay_cmd_buf(psp, &securedisplay_cmd,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+index 8ef2d28af92aeb..cc09b9e911199a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.h
+@@ -34,17 +34,19 @@
+ 
+ #define PSP_FENCE_BUFFER_SIZE	0x1000
+ #define PSP_CMD_BUFFER_SIZE	0x1000
+-#define PSP_XGMI_SHARED_MEM_SIZE 0x4000
+-#define PSP_RAS_SHARED_MEM_SIZE 0x4000
+ #define PSP_1_MEG		0x100000
+ #define PSP_TMR_SIZE(adev)	((adev)->asic_type == CHIP_ALDEBARAN ? 0x800000 : 0x400000)
+-#define PSP_HDCP_SHARED_MEM_SIZE	0x4000
+-#define PSP_DTM_SHARED_MEM_SIZE	0x4000
+-#define PSP_RAP_SHARED_MEM_SIZE	0x4000
+-#define PSP_SECUREDISPLAY_SHARED_MEM_SIZE	0x4000
+-#define PSP_SHARED_MEM_SIZE		0x4000
+ #define PSP_FW_NAME_LEN		0x24
+ 
++enum psp_shared_mem_size {
++	PSP_XGMI_SHARED_MEM_SIZE			= 0x4000,
++	PSP_RAS_SHARED_MEM_SIZE				= 0x4000,
++	PSP_HDCP_SHARED_MEM_SIZE			= 0x4000,
++	PSP_DTM_SHARED_MEM_SIZE				= 0x4000,
++	PSP_RAP_SHARED_MEM_SIZE				= 0x4000,
++	PSP_SECUREDISPLAY_SHARED_MEM_SIZE	= 0x4000,
++};
++
+ struct psp_context;
+ struct psp_xgmi_node_info;
+ struct psp_xgmi_topology_info;
+@@ -140,6 +142,7 @@ struct ta_mem_context {
+ 	struct amdgpu_bo		*shared_bo;
+ 	uint64_t		shared_mc_addr;
+ 	void			*shared_buf;
++	enum psp_shared_mem_size	shared_mem_size;
+ };
+ 
+ struct ta_context {
+-- 
+2.17.1
 
-Anyway thanks for officially confirm to me of working model & policy in com=
-munity, I don't want to put my opinion here due to that's not my call to ch=
-ange no matter how.
-I only want to let this diagnostic TDR scheme going to a good end for AMD o=
-r even for all DRM vendor.
-
-How about this way, we still have a final patch not landed in DRM scheduler=
- and I would like jingwen to present it to you and AlexD/Christian/Andrey, =
- I believe you will have concerns or objections regarding this patch, but t=
-hat's fine, let us figure it out together, how to make it acceptable by you=
- and other vendors that working with DRM scheduler.
-
-P.S.:  I had to repeat myself again, we are not popping up new idea suddenl=
-y, it is disconnection issue, we didn't have changes (or plan to have chang=
-es) in DRM scheduler before, but eventually we found we must make job_timeo=
-ut and sched_main to work in a serialized otherwise it won't work based on =
-current scheduler's code structure.
-
-Thanks=20
-
-------------------------------------------
-Monk Liu | Cloud-GPU Core team
-------------------------------------------
-
------Original Message-----
-From: Daniel Vetter <daniel@ffwll.ch>=20
-Sent: Friday, September 3, 2021 12:11 AM
-To: Koenig, Christian <Christian.Koenig@amd.com>
-Cc: Liu, Monk <Monk.Liu@amd.com>; Dave Airlie <airlied@gmail.com>; Alex Deu=
-cher <alexdeucher@gmail.com>; Grodzovsky, Andrey <Andrey.Grodzovsky@amd.com=
->; Chen, JingWen <JingWen.Chen2@amd.com>; DRI Development <dri-devel@lists.=
-freedesktop.org>; amd-gfx@lists.freedesktop.org
-Subject: Re: [diagnostic TDR mode patches] unify our solution opinions/sugg=
-estions in one thread
-
-On Thu, Sep 2, 2021 at 1:00 PM Christian K=F6nig <christian.koenig@amd.com>=
- wrote:
->
-> Hi Monk,
->
-> Am 02.09.21 um 07:52 schrieb Liu, Monk:
-> > [AMD Official Use Only]
-> >
-> > I'm not sure I can add much to help this along, I'm sure Alex has=20
-> > some internal training, Once your driver is upstream, it belongs to ups=
-tream, you can maintain it, but you no longer control it 100%, it's a trade=
-off, it's not one companies always understand.
-> > Usually people are fine developing away internally, but once interactio=
-n with other parts of the kernel/subsystem is required they have the realis=
-ation that they needed to work upstream 6 months earlier.
-> > The best time to interact with upstream was 6 months ago, the second be=
-st time is now.
-> > <<<
-> >
-> > Daniel/AlexD
-> >
-> > I didn't mean your changes on AMD driver need my personal approval=20
-> > or review ... and  I'm totally already get used that our driver is not =
-100% under control by AMDers, but supposedly any one from community (includ=
-ing you) who tend to change AMD's driver need at least to get approvement f=
-rom someone in AMD, e.g.: AlexD or Christian, doesn't that reasonable?
->
-> I'm fearing that just repeating what Alex said, but to make it clear=20
-> once more: That is *not* necessary!
->
-> The shared repository is owned by upstream maintainers and they are=20
-> usually free to do restructuring work without getting acknowledge from=20
-> every single driver maintainer.
->
-> Anybody can of course technically object to upstream design decisions,=20
-> but that means that you need to pay attention to the mailing lists in=20
-> the first place.
->
-> > just like we need your approve if we try to modify DRM-sched, or need p=
-anfrost's approval if we need to change panfrost code ...
-> >
-> > by only CC AMD's engineers looks not quite properly, how do you know if=
- your changes (on AMD code part) are conflicting with AMD's on-going intern=
-al features/refactoring or not ?
->
-> Well because AMD is supposed to work in public as much as possible and=20
-> ask upstream before doing changes to the code base.
->
-> Additional to that design decisions are supposed to be discussed on=20
-> the mailing list and *not* internally.
-
-Yeah I'm honestly really surprised about the course of this discussion here=
-. With Alex, Christian and others amd has a lot of folks with years/decades=
- of experience in how to collaborate in upstream, when to pull in others pr=
-oactively and when that's not needed, and in general how to plan upstream w=
-ork with the lest amount of risk and surprises.
-
-I think step zero here needs to be some training at amd and then re-plannin=
-g this effort, before we get back to technical stuff.
-Otherwise we'll just get bogged down in pain because expectations about the=
- process don't pan out.
--Daniel
-
->
-> Regards,
-> Christian.
->
-> >
-> > Thanks
-> >
-> > ------------------------------------------
-> > Monk Liu | Cloud-GPU Core team
-> > ------------------------------------------
-> >
-> > -----Original Message-----
-> > From: Dave Airlie <airlied@gmail.com>
-> > Sent: Thursday, September 2, 2021 2:51 AM
-> > To: Alex Deucher <alexdeucher@gmail.com>
-> > Cc: Liu, Monk <Monk.Liu@amd.com>; Daniel Vetter <daniel@ffwll.ch>;=20
-> > Koenig, Christian <Christian.Koenig@amd.com>; Grodzovsky, Andrey=20
-> > <Andrey.Grodzovsky@amd.com>; Chen, JingWen <JingWen.Chen2@amd.com>;=20
-> > DRI Development <dri-devel@lists.freedesktop.org>;=20
-> > amd-gfx@lists.freedesktop.org
-> > Subject: Re: [diagnostic TDR mode patches] unify our solution=20
-> > opinions/suggestions in one thread
-> >
-> > On Thu, 2 Sept 2021 at 01:20, Alex Deucher <alexdeucher@gmail.com> wrot=
-e:
-> >> On Wed, Sep 1, 2021 at 6:19 AM Liu, Monk <Monk.Liu@amd.com> wrote:
-> >>> [AMD Official Use Only]
-> >>>
-> >>> Daniel
-> >>>
-> >>>  From the link you share it looks you(or someone else) have quite a b=
-unch patches that changes DRM_SCHED or even amdgpu, by that case before the=
-y are merged to kernel tree I'm wondering if any AMD develop reviewed them =
-?
-> >>>
-> >>> They looks to me somehow conflicting with what we changed in our repo=
-....
-> >>>
-> >>> It is really a chaos for AMDer if someone else out side of AMD change=
-s our kernel driver (or/and scheduler) without reviewed by AMDer, just like=
- we are requiring your review if we tend to change scheduler's logic here .=
-...
-> >>>
-> >>> This one changes AMD's code:
-> >>> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2F
-> >>> lo=20
-> >>> re.kernel.org%2Fdri-devel%2F20210625133327.2598825-2-boris.brezill
-> >>> on
-> >>> %40collabora.com%2F&amp;data=3D04%7C01%7CMonk.Liu%40amd.com%7C6c507d
-> >>> 18=20
-> >>> d65341ef53bb08d96d7976e6%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C
-> >>> 0%=20
-> >>> 7C637661190727875969%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiL
-> >>> CJ=20
-> >>> QIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DBWJSk
-> >>> KN
-> >>> y2%2BwjxbQrfxGPzuJ5PBpBwB4aV0ZH6QoJGEg%3D&amp;reserved=3D0
-> >>> And I didn't see any reviewed-by from AMDers ...
-> >>>
-> >>> This one also touches AMD's code:
-> >>> https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2F
-> >>> lo
-> >>> re.kernel.org%2Fdri-devel%2F20200604081224.863494-12-daniel.vetter
-> >>> %4=20
-> >>> 0ffwll.ch%2F&amp;data=3D04%7C01%7CMonk.Liu%40amd.com%7C6c507d18d6534
-> >>> 1e
-> >>> f53bb08d96d7976e6%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637
-> >>> 66
-> >>> 1190727885929%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoi
-> >>> V2=20
-> >>> luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3D%2F8vIVXCWjH
-> >>> kM
-> >>> 56pcYI9EvuzhbsZhV9WczkKaBJE67KQ%3D&amp;reserved=3D0
-> >>> Which is conflicting with one patch we submitted (in our repo=20
-> >>> rightnow), and neither see AMDder gave a review-by on this one=20
-> >>> (let me know if I missed it)
-> >>>
-> >> Monk, this is not how upstream works.  You need to participate.
-> >> That's how communities work.  There's a reason all these=20
-> >> discussions happen on public mailing lists.  The patch author can't=20
-> >> be expected to know every person on every vendor team to CC with a=20
-> >> patch.  If you have concerns, you need to raise them when the=20
-> >> patches are being discussed.
-> >>
-> > I'm not sure I can add much to help this along, I'm sure Alex has=20
-> > some internal training,
-> >
-> > Once your driver is upstream, it belongs to upstream, you can maintain =
-it, but you no longer control it 100%, it's a tradeoff, it's not one compan=
-ies always understand.
-> >
-> > Usually people are fine developing away internally, but once interactio=
-n with other parts of the kernel/subsystem is required they have the realis=
-ation that they needed to work upstream 6 months earlier.
-> >
-> > The best time to interact with upstream was 6 months ago, the second be=
-st time is now.
-> >
-> > Dave.
->
-
-
---
-Daniel Vetter
-Software Engineer, Intel Corporation
-https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fblog.ffw=
-ll.ch%2F&amp;data=3D04%7C01%7CMonk.Liu%40amd.com%7C1de8110d43194346d9b908d9=
-6e2c5459%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637661958966011423%7C=
-Unknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiL=
-CJXVCI6Mn0%3D%7C1000&amp;sdata=3D%2BvtBN1lBJnUoeSyj6aXTDRNHVQDQP8kPRdSUrhR1=
-MVk%3D&amp;reserved=3D0
