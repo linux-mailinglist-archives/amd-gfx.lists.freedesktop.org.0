@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 764BD403BF0
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Sep 2021 16:55:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56211403BEC
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Sep 2021 16:55:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5462F6E1EE;
-	Wed,  8 Sep 2021 14:55:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FB406E1E9;
+	Wed,  8 Sep 2021 14:55:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2041.outbound.protection.outlook.com [40.107.220.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16F3E6E1F3
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 14:55:10 +0000 (UTC)
+ (mail-co1nam11on2078.outbound.protection.outlook.com [40.107.220.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25FC36E1EE
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 14:55:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fqeqOLiOt78Tzzs+yIsUkd4eJ8bY/hYPSS/VFIXBAUpcTlJ8Bw+O+28ZuACRDtugNL+VSEWO7hFocJu8cKui+rO9e+jdFJ5BNrMosIdkgdIqO8lsCPO4mfJzthPSXb5IbwCYVLwVzaGp10Z0ogzvx8FReOA6vSthzFpEXHTozoeq2X4Boa0jtyj1B9A1HQy2wAGjpF9/4OtqEV2KVB7bwKWBcx4E0ewNoZUIPEhH1ih1esmO0oG1joUVtsPVg91Hd6ffY+jSaS5O14gQ5P092L0PyDvGv2ZkLiPwfzdQak2mKX0ObptKuiHPl49wkd56B01ajF9+wcQpuHyxiGuOEQ==
+ b=j687rm3uucBr65m1uS13etLeOvUbeySmFOEXmoCHtUh+/r5kN3fHKUkgiSzACtEDn0Rq40ExvFLWInLb4QKNNqfKPfwM0FGzJJWStXgbmHGu7qGvy6CJvNrBuzXSJ04kRPb3Mv0+56slOJ4xYZj7uKyPtGRmqKKspHaMZbD3P9qgb4NLl4YM7tvcHnnCcOeE9akcyUJGJHJSwIjjAsNovCU8Rc9QR2XkphZyjcqxcDA3NX1r9fxA1jXURVUKKFGMs+9UnvT2R42uVr4rltB48YpsDOWnN+j1cCmELaImrUQwZwFDbxxzG5bPIowZHNEu0s8LvP4e+8dQ6v0UcWrfRg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xZYj+a3vFIz/VTk3GSZ7HjVDs2Ms11Q/Ih0RSZlfYe0=;
- b=nVCu19pyg19sEZV9ltLobnKxHI8avka3j349Y+s2WP4Aqnm3RiezVLGFBbHiMC0l08lhq+2SPaiH0fyCE7ApVmbrj88oUNKXt0+4acP/fDFjlgsiTpMBZfl/OGenTJRqKn8JfXP30wN1fJjJm63WwioWjDRY/SGCWdPreCdCskU8cmP3g9+aKR0AfgxWJqUjyLuVAxJA9egIF0m2i4ZcOpc3tnZ2CNgrh9xvCMfb3AhfuYjHb+AHVV/yh8wzwpnSt2bW/4YZ3ZFIyHORZZYwPVSZDsaYdJ3S7bD7gF8cxc70YNf0o0PwH+bMLtr4bpIhfgIAEsD7wxssRzYlvqtCkQ==
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=/+MivK7RFtfDqumNe3xy8dkEuAZWuDJJorfGcGXZxaQ=;
+ b=lc84xm5lXTf0OGr/tRi9hrBXHyBBZrI4Rki2puDTLJLfAnyHsegvcw6aFpaj4oUGUxaFofUFwd2Wjj/cD7Udo/I9K+AkZ9hnl+axW45PRyD5UkBs6tQsFDKZv5+BxN07h7HsgOwX5A3/15VXTvO/a7JoL8JmYsf1/RTN0Nehgd9mGU5YjJEH0aiQT44lWL/udoql7YPpPuHNqfwe76jz+XkUkwdwh053ItY7n/TN00oB49Sa2egPoXypEKWfRoXu7Y28TKy1C8ay9XCqBb+0wVi8RR2LgWNskAPUnjEDZyoURcKl7dfvHTkoZntmso4wy3l4gDF5SOhbqRs5EeYzBA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xZYj+a3vFIz/VTk3GSZ7HjVDs2Ms11Q/Ih0RSZlfYe0=;
- b=d/dz8rEa9lla7PTaWLLmzKdUx5IvFFMdGoUTne6lx8FaZv5RfJ5pCTzdiuM3yXLPm4dYDPQqwd+bjb15yCwSWIfCY9EeUH5P50XkOq7r0wFErZ2FkUmfsouqbrEhjNfcErlkbKRfbSFlU5PB/XoHYKDf4bhhCTp6tHVuHAW9lGI=
-Received: from DM5PR13CA0052.namprd13.prod.outlook.com (2603:10b6:3:117::14)
- by BYAPR12MB2695.namprd12.prod.outlook.com (2603:10b6:a03:71::32) with
+ bh=/+MivK7RFtfDqumNe3xy8dkEuAZWuDJJorfGcGXZxaQ=;
+ b=e5T1d32ua1+Gi5chI/lCb119nBouc7Xcq2flQgVi11uNmCoc1WjZg36QUiRO30fuzHi1OdIG0gSAaO5EaJABFvzmUwNCyXQIm7sDgtstxGj4buDmV+kCKsGBK/KRxsR7GSmd/89RxTUg8ytfd+OUoxWdKfAp1CzSzL88Zwe90eE=
+Received: from DM5PR13CA0057.namprd13.prod.outlook.com (2603:10b6:3:117::19)
+ by BYAPR12MB3399.namprd12.prod.outlook.com (2603:10b6:a03:ad::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4457.23; Wed, 8 Sep
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.21; Wed, 8 Sep
  2021 14:55:03 +0000
 Received: from DM6NAM11FT038.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:117:cafe::37) by DM5PR13CA0052.outlook.office365.com
- (2603:10b6:3:117::14) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:3:117:cafe::1c) by DM5PR13CA0057.outlook.office365.com
+ (2603:10b6:3:117::19) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.8 via Frontend
- Transport; Wed, 8 Sep 2021 14:55:02 +0000
+ Transport; Wed, 8 Sep 2021 14:55:03 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,23 +48,23 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT038.mail.protection.outlook.com (10.13.173.137) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4500.14 via Frontend Transport; Wed, 8 Sep 2021 14:55:02 +0000
+ 15.20.4500.14 via Frontend Transport; Wed, 8 Sep 2021 14:55:03 +0000
 Received: from DESKTOP-9DR2N9S.localdomain (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.8; Wed, 8 Sep 2021 09:55:01 -0500
+ 15.1.2308.8; Wed, 8 Sep 2021 09:55:02 -0500
 From: Mikita Lipski <mikita.lipski@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Bhawanpreet.Lakha@amd.com>, <Rodrigo.Siqueira@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
- <stylon.wang@amd.com>, <solomon.chiu@amd.com>, Hersen Wu <hersenwu@amd.com>,
- <stable@vger.kernel.org>, Scott Foster <Scott.Foster@amd.com>
-Subject: [PATCH 22/33] drm/amd/display: dsc mst 2 4K displays go dark with 2
- lane HBR3
-Date: Wed, 8 Sep 2021 10:54:13 -0400
-Message-ID: <20210908145424.3311-23-mikita.lipski@amd.com>
+ <stylon.wang@amd.com>, <solomon.chiu@amd.com>, Eric Yang
+ <Eric.Yang2@amd.com>, Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Subject: [PATCH 23/33] drm/amd/display: Add periodic detection when zstate is
+ enabled
+Date: Wed, 8 Sep 2021 10:54:14 -0400
+Message-ID: <20210908145424.3311-24-mikita.lipski@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210908145424.3311-1-mikita.lipski@amd.com>
 References: <20210908145424.3311-1-mikita.lipski@amd.com>
@@ -76,28 +76,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5135934f-f20d-4fdd-f4b8-08d972d8a34a
-X-MS-TrafficTypeDiagnostic: BYAPR12MB2695:
-X-Microsoft-Antispam-PRVS: <BYAPR12MB2695ED98BF646D8263AEC9AFE4D49@BYAPR12MB2695.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:419;
+X-MS-Office365-Filtering-Correlation-Id: e5508729-ae91-4419-3500-08d972d8a3d4
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3399:
+X-Microsoft-Antispam-PRVS: <BYAPR12MB3399AEEF81AA2B7CFB6EAE9BE4D49@BYAPR12MB3399.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:252;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BmUJqWEfXz1bSF9rm+jHUW090d3p51kNZNhGTH0BPy6mYjfXYSpsWUnS4JZaXZxeD1XF2f1G4bnQPka4eRcfb2lQuB7cb+8+BnA0xANjzyZd7NTJCU3RIzHRjYh1mTkNmD2tDBqp94JhQvQ7B2b+UDE9tU1SRM2DjfmCswQMH/h182F9stRN1LUzBSHBWYphWXdTM0ZJn3m+FcjZyK3NL8FsPl2O/oYk3CGeHOYI6nFxx13jA+O5IE8DGQC12PsoLVhwrrfq8hjtJc2C/hwD0lyyJxqqAigdi3+yCaoG2S9DfYcVBk7m/2cqxJpJO3e5HbNZnXJBDSTsKUtNDZ1HFNyWaaECoNyOmy77t5YaYg5woddyz/BaVGNnze3fsXqIIge0PmLyLNreIT1nOnDip6c/P2I7oyzpF6r4+BmH+SILY4unquLYTTv7JveDKb+Ftm0fC+4pQ3gKUfaBNO7jjrIIjEzvyzMSV0E1gwMZSP4khEktUdAajpY3bwPSUAKdW/WDFklg9sPuOIsh/IFFv5IBk9eU09bFDSKhDXO1wPWLO+MxgdbbdQJdhoSeidXzgxpVaBnDqrGuCY0OIhh5pTRYd5t+n2+FdxkB8LtDQtN0XT0roIjkP+0TylC9Av0/VxyD4FkRvVYzjIo8tKmYrpqEaOpGifhwGgNiqBurV8iDDQFXVBMJMIuJBTrdbSs0a8VMSpbh1VchUrQTsokjYMHjDTd1jO+xrls+E83kjjU=
+X-Microsoft-Antispam-Message-Info: ixOOGuzb2EtW3zuAQdQW33UM4LDZPy5/SmJKwPQiKaAuARFeZqudSp/3tgEhg1uArSuVC13+UH0lvYx3HNC4IBmuUo85BDW2pXiecH6LC7TdviVq6ZFlqeKWCo+CeJXPu/E4BGVjXb+8/BhuPUCGPwIkMM8AaHDsvXjDPRMiZ6M2Q2Hqu5YgUYKqMcv0k2o3MH8lv6EnoODPLnJboHIehQ9UDocUgoLBnV9eVVuLrRjgQC+ZMSEuYg6H9svCrrPtfNWGrDQejeo4umGQRe+FjFkjvJIXFwpyKthkB82bQ2onN316UB3xbbY60OmRbxtuyjOWtX310fqDnSYST82Johxv+5BliiLldBKAm4/RiQYc/WKwfQWCy8Y8p2s+C5vA732ibQQy2CtfBtDV3TMSTW1mxSJVwlsCev9Ngrv6BRAysOy8TPXhlQ5Vhc+CKxlHncI5XtLGv4OOYGDfyEnW83M0Cwdxt6399JpJUtiLToZ9gLJOzaTDUscn/RcYzYT+R8A10JYU9pmzige8hq1FxChPtRM27tMSdTYtld4p39UGcJepvPPn+YE7KhI/2BoxslaSlwpew9h5Evn7OlTWegkriuu7tFjovQhcjchHwkvM0GvifBr61ze41aPn8muiOcldYTwZsSJXloExC1zvm6Rh6SCY/32X/RiR5mXyVlktozVbkB9CBo7mwJhaxBw9KWOrv9OifqI5WmRmuxXHAmEsRUidpEtP5ZYS8/kYWnc=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(39860400002)(346002)(376002)(136003)(396003)(46966006)(36840700001)(47076005)(82740400003)(81166007)(186003)(54906003)(1076003)(70206006)(4326008)(6916009)(6666004)(356005)(478600001)(5660300002)(83380400001)(36756003)(86362001)(316002)(336012)(36860700001)(8936002)(8676002)(2616005)(82310400003)(44832011)(2906002)(426003)(16526019)(26005)(70586007)(36900700001);
+ SFS:(4636009)(136003)(376002)(346002)(39860400002)(396003)(46966006)(36840700001)(70206006)(5660300002)(70586007)(478600001)(44832011)(2906002)(16526019)(6916009)(86362001)(4326008)(316002)(36756003)(81166007)(54906003)(26005)(6666004)(426003)(2616005)(186003)(82310400003)(336012)(36860700001)(356005)(82740400003)(83380400001)(8676002)(8936002)(1076003)(47076005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2021 14:55:02.6747 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5135934f-f20d-4fdd-f4b8-08d972d8a34a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2021 14:55:03.5762 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e5508729-ae91-4419-3500-08d972d8a3d4
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT038.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2695
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3399
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,212 +112,240 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Hersen Wu <hersenwu@amd.com>
+From: Eric Yang <Eric.Yang2@amd.com>
 
 [Why]
-call stack of amdgpu dsc mst pbn, slot num calculation is as below:
--compute_bpp_x16_from_target_bandwidth
--decide_dsc_target_bpp_x16
--setup_dsc_config
--dc_dsc_compute_bandwidth_range
--compute_mst_dsc_configs_for_link
--compute_mst_dsc_configs_for_state
-
-from pbn -> dsc target bpp_x16
-
-bpp_x16 is calulated by compute_bpp_x16_from_target_bandwidth.
-Beside pixel clock and bpp, num_slices_h and bpp_increment_div
-will also affect bpp_x16.
-
-from dsc target bpp_x16 -> pbn
-
-within dm_update_mst_vcpi_slots_for_dsc,
-pbn = drm_dp_calc_pbn_mode(clock, bpp_x16, true);
-
-drm_dp_calc_pbn_mode(int clock, int bpp, bool dsc)
-{
-  return DIV_ROUND_UP_ULL(mul_u32_u32(clock * (bpp / 16), 64 * 1006),
-            8 * 54 * 1000 * 1000);
-}
-
-bpp / 16 trunc digits after decimal point. This will cause calculation
-delta. drm_dp_calc_pbn_mode does not have other informations,
-like num_slices_h, bpp_increment_div. therefore, it does not do revese
-calcuation properly from bpp_x16 to pbn.
-
-pbn from drm_dp_calc_pbn_mode is less than pbn from
-compute_mst_dsc_configs_for_state. This cause not enough mst slot
-allocated to display. display could not visually light up.
+When system is in Z10 HPD interrupts cannot fire, we may miss display
+configuration changes.
 
 [How]
-pass pbn from compute_mst_dsc_configs_for_state to
-dm_update_mst_vcpi_slots_for_dsc
+When Zstate is enabled, if DMUB indicate DCN has lost power, do a
+complete detection periodically.
 
-Cc: stable@vger.kernel.org
-
-Reviewed-by: Scott Foster <Scott.Foster@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Mikita Lipski <mikita.lipski@amd.com>
-Signed-off-by: Hersen Wu <hersenwu@amd.com>
+Signed-off-by: Eric Yang <Eric.Yang2@amd.com>
 ---
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 22 ++++++++++++++-----
- .../display/amdgpu_dm/amdgpu_dm_mst_types.c   | 18 +++++++--------
- .../display/amdgpu_dm/amdgpu_dm_mst_types.h   | 11 +++++++++-
- 3 files changed, 34 insertions(+), 17 deletions(-)
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c  |  6 ++++++
+ .../drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c   |  2 ++
+ drivers/gpu/drm/amd/display/dc/core/dc.c               |  2 +-
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c          |  4 ++++
+ drivers/gpu/drm/amd/display/dc/dc.h                    |  2 +-
+ drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c     |  2 +-
+ drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.h     |  2 +-
+ drivers/gpu/drm/amd/display/dc/dm_helpers.h            |  4 ++++
+ drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h      |  2 +-
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h            |  4 ++++
+ drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c      |  8 ++++++++
+ drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.h      |  2 ++
+ drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c        | 10 +++++++++-
+ 13 files changed, 44 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index a6c8c30f8c2d..87499ef5282c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -7090,14 +7090,15 @@ const struct drm_encoder_helper_funcs amdgpu_dm_encoder_helper_funcs = {
- 
- #if defined(CONFIG_DRM_AMD_DC_DCN)
- static int dm_update_mst_vcpi_slots_for_dsc(struct drm_atomic_state *state,
--					    struct dc_state *dc_state)
-+					    struct dc_state *dc_state,
-+					    struct dsc_mst_fairness_vars *vars)
- {
- 	struct dc_stream_state *stream = NULL;
- 	struct drm_connector *connector;
- 	struct drm_connector_state *new_con_state;
- 	struct amdgpu_dm_connector *aconnector;
- 	struct dm_connector_state *dm_conn_state;
--	int i, j, clock, bpp;
-+	int i, j, clock;
- 	int vcpi, pbn_div, pbn = 0;
- 
- 	for_each_new_connector_in_state(state, connector, new_con_state, i) {
-@@ -7136,9 +7137,15 @@ static int dm_update_mst_vcpi_slots_for_dsc(struct drm_atomic_state *state,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+index 8c1792637836..1aa69dd8e02f 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+@@ -793,4 +793,10 @@ void dm_set_phyd32clk(struct dc_context *ctx, int freq_khz)
+        // FPGA programming for this clock in diags framework that
+        // needs to go through dm layer, therefore leave dummy interace here
+ }
++
++
++void dm_helpers_enable_periodic_detection(struct dc_context *ctx, bool enable)
++{
++	/* TODO: add peridic detection implementation */
++}
+ #endif
+\ No newline at end of file
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
+index 1414da4b95d7..d7bf9283dc90 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
+@@ -142,6 +142,7 @@ static void dcn31_update_clocks(struct clk_mgr *clk_mgr_base,
+ 		if (new_clocks->zstate_support == DCN_ZSTATE_SUPPORT_ALLOW &&
+ 				new_clocks->zstate_support != clk_mgr_base->clks.zstate_support) {
+ 			dcn31_smu_set_Z9_support(clk_mgr, true);
++			dm_helpers_enable_periodic_detection(clk_mgr_base->ctx, true);
+ 			clk_mgr_base->clks.zstate_support = new_clocks->zstate_support;
  		}
  
- 		pbn_div = dm_mst_get_pbn_divider(stream->link);
--		bpp = stream->timing.dsc_cfg.bits_per_pixel;
- 		clock = stream->timing.pix_clk_100hz / 10;
--		pbn = drm_dp_calc_pbn_mode(clock, bpp, true);
-+		/* pbn is calculated by compute_mst_dsc_configs_for_state*/
-+		for (j = 0; j < dc_state->stream_count; j++) {
-+			if (vars[j].aconnector == aconnector) {
-+				pbn = vars[j].pbn;
-+				break;
-+			}
-+		}
-+
- 		vcpi = drm_dp_mst_atomic_enable_dsc(state,
- 						    aconnector->port,
- 						    pbn, pbn_div,
-@@ -10542,6 +10549,9 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
- 	int ret, i;
- 	bool lock_and_validation_needed = false;
- 	struct dm_crtc_state *dm_old_crtc_state;
-+#if defined(CONFIG_DRM_AMD_DC_DCN)
-+	struct dsc_mst_fairness_vars vars[MAX_PIPES];
-+#endif
+@@ -166,6 +167,7 @@ static void dcn31_update_clocks(struct clk_mgr *clk_mgr_base,
+ 		if (new_clocks->zstate_support == DCN_ZSTATE_SUPPORT_DISALLOW &&
+ 				new_clocks->zstate_support != clk_mgr_base->clks.zstate_support) {
+ 			dcn31_smu_set_Z9_support(clk_mgr, false);
++			dm_helpers_enable_periodic_detection(clk_mgr_base->ctx, false);
+ 			clk_mgr_base->clks.zstate_support = new_clocks->zstate_support;
+ 		}
  
- 	trace_amdgpu_dm_atomic_check_begin(state);
- 
-@@ -10772,10 +10782,10 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
- 			goto fail;
- 
- #if defined(CONFIG_DRM_AMD_DC_DCN)
--		if (!compute_mst_dsc_configs_for_state(state, dm_state->context))
-+		if (!compute_mst_dsc_configs_for_state(state, dm_state->context, vars))
- 			goto fail;
- 
--		ret = dm_update_mst_vcpi_slots_for_dsc(state, dm_state->context);
-+		ret = dm_update_mst_vcpi_slots_for_dsc(state, dm_state->context, vars);
- 		if (ret)
- 			goto fail;
- #endif
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 705f2e67edb5..1a99fcc27078 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -518,12 +518,7 @@ struct dsc_mst_fairness_params {
- 	uint32_t num_slices_h;
- 	uint32_t num_slices_v;
- 	uint32_t bpp_overwrite;
--};
--
--struct dsc_mst_fairness_vars {
--	int pbn;
--	bool dsc_enabled;
--	int bpp_x16;
-+	struct amdgpu_dm_connector *aconnector;
- };
- 
- static int kbps_to_peak_pbn(int kbps)
-@@ -750,12 +745,12 @@ static void try_disable_dsc(struct drm_atomic_state *state,
- 
- static bool compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
- 					     struct dc_state *dc_state,
--					     struct dc_link *dc_link)
-+					     struct dc_link *dc_link,
-+					     struct dsc_mst_fairness_vars *vars)
- {
- 	int i;
- 	struct dc_stream_state *stream;
- 	struct dsc_mst_fairness_params params[MAX_PIPES];
--	struct dsc_mst_fairness_vars vars[MAX_PIPES];
- 	struct amdgpu_dm_connector *aconnector;
- 	int count = 0;
- 	bool debugfs_overwrite = false;
-@@ -776,6 +771,7 @@ static bool compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
- 		params[count].timing = &stream->timing;
- 		params[count].sink = stream->sink;
- 		aconnector = (struct amdgpu_dm_connector *)stream->dm_stream_context;
-+		params[count].aconnector = aconnector;
- 		params[count].port = aconnector->port;
- 		params[count].clock_force_enable = aconnector->dsc_settings.dsc_force_enable;
- 		if (params[count].clock_force_enable == DSC_CLK_FORCE_ENABLE)
-@@ -798,6 +794,7 @@ static bool compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
- 	}
- 	/* Try no compression */
- 	for (i = 0; i < count; i++) {
-+		vars[i].aconnector = params[i].aconnector;
- 		vars[i].pbn = kbps_to_peak_pbn(params[i].bw_range.stream_kbps);
- 		vars[i].dsc_enabled = false;
- 		vars[i].bpp_x16 = 0;
-@@ -851,7 +848,8 @@ static bool compute_mst_dsc_configs_for_link(struct drm_atomic_state *state,
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
+index 822239b59a78..7a1f910d711e 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -1562,7 +1562,7 @@ static uint8_t get_stream_mask(struct dc *dc, struct dc_state *context)
  }
  
- bool compute_mst_dsc_configs_for_state(struct drm_atomic_state *state,
--				       struct dc_state *dc_state)
-+				       struct dc_state *dc_state,
-+				       struct dsc_mst_fairness_vars *vars)
- {
- 	int i, j;
- 	struct dc_stream_state *stream;
-@@ -882,7 +880,7 @@ bool compute_mst_dsc_configs_for_state(struct drm_atomic_state *state,
- 			return false;
- 
- 		mutex_lock(&aconnector->mst_mgr.lock);
--		if (!compute_mst_dsc_configs_for_link(state, dc_state, stream->link)) {
-+		if (!compute_mst_dsc_configs_for_link(state, dc_state, stream->link, vars)) {
- 			mutex_unlock(&aconnector->mst_mgr.lock);
- 			return false;
- 		}
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.h
-index b38bd68121ce..900d3f7a8498 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.h
-@@ -39,8 +39,17 @@ void
- dm_dp_create_fake_mst_encoders(struct amdgpu_device *adev);
- 
  #if defined(CONFIG_DRM_AMD_DC_DCN)
+-void dc_z10_restore(struct dc *dc)
++void dc_z10_restore(const struct dc *dc)
+ {
+ 	if (dc->hwss.z10_restore)
+ 		dc->hwss.z10_restore(dc);
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index 61e49671fed5..46933a43ef2e 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -1250,6 +1250,10 @@ bool dc_link_detect(struct dc_link *link, enum dc_detect_reason reason)
+ 		}
+ 	}
+ 
++#if defined(CONFIG_DRM_AMD_DC_DCN)
++	dc_z10_restore(dc);
++#endif
 +
-+struct dsc_mst_fairness_vars {
-+	int pbn;
-+	bool dsc_enabled;
-+	int bpp_x16;
-+	struct amdgpu_dm_connector *aconnector;
-+};
-+
- bool compute_mst_dsc_configs_for_state(struct drm_atomic_state *state,
--				       struct dc_state *dc_state);
-+				       struct dc_state *dc_state,
-+				       struct dsc_mst_fairness_vars *vars);
+ 	/* get out of low power state */
+ 	if (!can_apply_seamless_boot && reason != DETECT_REASON_BOOT)
+ 		clk_mgr_exit_optimized_pwr_state(dc, dc->clk_mgr);
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index ece44796a74f..134faa7a1937 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -1363,7 +1363,7 @@ void dc_hardware_release(struct dc *dc);
+ 
+ bool dc_set_psr_allow_active(struct dc *dc, bool enable);
+ #if defined(CONFIG_DRM_AMD_DC_DCN)
+-void dc_z10_restore(struct dc *dc);
++void dc_z10_restore(const struct dc *dc);
+ void dc_z10_save_init(struct dc *dc);
  #endif
  
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
+index 83f223d745fa..d3598ce1f5de 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
+@@ -425,7 +425,7 @@ void dcn31_z10_save_init(struct dc *dc)
+ 	dc_dmub_srv_wait_idle(dc->ctx->dmub_srv);
+ }
+ 
+-void dcn31_z10_restore(struct dc *dc)
++void dcn31_z10_restore(const struct dc *dc)
+ {
+ 	union dmub_rb_cmd cmd;
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.h b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.h
+index 140435e4f7ff..7ae45dd202d9 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.h
+@@ -43,7 +43,7 @@ void dcn31_enable_power_gating_plane(
+ 
+ void dcn31_update_info_frame(struct pipe_ctx *pipe_ctx);
+ 
+-void dcn31_z10_restore(struct dc *dc);
++void dcn31_z10_restore(const struct dc *dc);
+ void dcn31_z10_save_init(struct dc *dc);
+ 
+ void dcn31_hubp_pg_control(struct dce_hwseq *hws, unsigned int hubp_inst, bool power_on);
+diff --git a/drivers/gpu/drm/amd/display/dc/dm_helpers.h b/drivers/gpu/drm/amd/display/dc/dm_helpers.h
+index 8de554fb98b9..3a905fb667bf 100644
+--- a/drivers/gpu/drm/amd/display/dc/dm_helpers.h
++++ b/drivers/gpu/drm/amd/display/dc/dm_helpers.h
+@@ -160,6 +160,10 @@ void dm_set_dcn_clocks(
+ 		struct dc_context *ctx,
+ 		struct dc_clocks *clks);
+ 
++#if defined(CONFIG_DRM_AMD_DC_DCN)
++void dm_helpers_enable_periodic_detection(struct dc_context *ctx, bool enable);
++#endif
++
+ void dm_set_phyd32clk(struct dc_context *ctx, int freq_khz);
+ 
+ bool dm_helpers_dmub_outbox_interrupt_control(struct dc_context *ctx, bool enable);
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
+index ad5f2adcc40d..d50f4bd06b5d 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer.h
+@@ -236,7 +236,7 @@ struct hw_sequencer_funcs {
+ 			const struct tg_color *solid_color,
+ 			int width, int height, int offset);
+ 
+-	void (*z10_restore)(struct dc *dc);
++	void (*z10_restore)(const struct dc *dc);
+ 	void (*z10_save_init)(struct dc *dc);
+ 
+ 	void (*update_visual_confirm_color)(struct dc *dc,
+diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+index caf961bb633f..ef324fc39315 100644
+--- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+@@ -358,6 +358,8 @@ struct dmub_srv_hw_funcs {
+ 	uint32_t (*get_current_time)(struct dmub_srv *dmub);
+ 
+ 	void (*get_diagnostic_data)(struct dmub_srv *dmub, struct dmub_diagnostic_data *dmub_oca);
++
++	bool (*should_detect)(struct dmub_srv *dmub);
+ };
+ 
+ /**
+@@ -724,6 +726,8 @@ bool dmub_srv_get_outbox0_msg(struct dmub_srv *dmub, struct dmcub_trace_buf_entr
+ 
+ bool dmub_srv_get_diagnostic_data(struct dmub_srv *dmub, struct dmub_diagnostic_data *diag_data);
+ 
++bool dmub_srv_should_detect(struct dmub_srv *dmub);
++
+ #if defined(__cplusplus)
+ }
  #endif
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
+index fc667cb17eb0..6ac370c15dea 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
+@@ -432,3 +432,11 @@ void dmub_dcn31_get_diagnostic_data(struct dmub_srv *dmub, struct dmub_diagnosti
+ 	REG_GET(DMCUB_REGION3_CW6_TOP_ADDRESS, DMCUB_REGION3_CW6_ENABLE, &is_cw6_enabled);
+ 	diag_data->is_cw6_enabled = is_cw6_enabled;
+ }
++
++bool dmub_dcn31_should_detect(struct dmub_srv *dmub)
++{
++	uint32_t fw_boot_status = REG_READ(DMCUB_SCRATCH0);
++	bool should_detect = fw_boot_status & DMUB_FW_BOOT_STATUS_BIT_DETECTION_REQUIRED;
++	return should_detect;
++}
++
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.h b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.h
+index bb62605d2ac8..59ddc81b5a0e 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.h
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.h
+@@ -245,4 +245,6 @@ uint32_t dmub_dcn31_get_current_time(struct dmub_srv *dmub);
+ 
+ void dmub_dcn31_get_diagnostic_data(struct dmub_srv *dmub, struct dmub_diagnostic_data *diag_data);
+ 
++bool dmub_dcn31_should_detect(struct dmub_srv *dmub);
++
+ #endif /* _DMUB_DCN31_H_ */
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+index 75a91cfaf036..a6188d067d65 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+@@ -234,7 +234,7 @@ static bool dmub_srv_hw_setup(struct dmub_srv *dmub, enum dmub_asic asic)
+ 		funcs->set_outbox0_rptr = dmub_dcn31_set_outbox0_rptr;
+ 
+ 		funcs->get_diagnostic_data = dmub_dcn31_get_diagnostic_data;
+-
++		funcs->should_detect = dmub_dcn31_should_detect;
+ 		funcs->get_current_time = dmub_dcn31_get_current_time;
+ 
+ 		break;
+@@ -816,3 +816,11 @@ bool dmub_srv_get_diagnostic_data(struct dmub_srv *dmub, struct dmub_diagnostic_
+ 	dmub->hw_funcs.get_diagnostic_data(dmub, diag_data);
+ 	return true;
+ }
++
++bool dmub_srv_should_detect(struct dmub_srv *dmub)
++{
++	if (!dmub->hw_init || !dmub->hw_funcs.should_detect)
++		return false;
++
++	return dmub->hw_funcs.should_detect(dmub);
++}
 -- 
 2.25.1
 
