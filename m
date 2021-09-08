@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A53E403BE6
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Sep 2021 16:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CD46403BE9
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Sep 2021 16:55:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7E506E1E0;
-	Wed,  8 Sep 2021 14:55:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E48C6E1E8;
+	Wed,  8 Sep 2021 14:55:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2073.outbound.protection.outlook.com [40.107.223.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEE226E1E0
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 14:55:00 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2080.outbound.protection.outlook.com [40.107.244.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 989396E1D5
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Sep 2021 14:55:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JbshIJ+WT4RV14mzD3Xfaps9w4UMuSnolrSaakmSBqJ+ZaCi0N2xDaTjYs7zjAWA88QAaa43UL+Uy0Bj/dNQRUjBiuxEmM8HfLYdrlrrk6A55T1tKu731tIv55noEBOhwQbAKtUMCgFN566bdlieI8H6kEoKZ+iD1JOqT2bToO+6Zrs6N+o3mcvUMYb7m3CwkC3R6+rnBPQy4Jfr140nPdi7XDJFHzg9TOObSaW7zeV5XBaFgrMslJf8SHUjQxpdPnen3Xqg09IQOr25BpcBl5zNfz+2yysTOwVG4OrI04f//IF3/g7MPyZWLhbVPFLvm6U0Tx/X39pse0+7yY9+1Q==
+ b=S3juIjl4g1/8GlYuppUPj49SbpJorCicBi7jJpafnNNHYW3nc/3ZsALo822tXvuNVmbskYUAr3fCv/CddFed8kNzjNfzx9CwfWWOQxSKnfDyibbGQqDPBQGs2Bj/qRgwpqEPE1Hm46m3c9SUWiXtloA+H5JrOQ4hUDUVQq8IQf+YQUC3AOWQwHyL3UDZRMgvrJz8x9QN7+F63mXNePPyWx+m+lPdZ2MG+oBljBEKfQzqCjKYCIvHJ2HfjZpzJQAWbPwnxvj1MklO80QbbRgh/umdncqCiC2RGRVq+OokTxV/LCDKntAi+Jlocaefc9uQPOjJbHYBatJ/0uwhzsJJCg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=/zzL4qr5mtf/VCfgcYyo1KrhxT9bQW/CJpjQxnHtm7U=;
- b=CWJYOS1ywAOFPLYn4OhZBImLD0RUyT6Fms1/JEouHTZfkHqR1a8L8JhP3btWyVoHz39Pd+mfFiPGv2BgRvQVL/zpx+ACrOOmRzHt4EJzhonB895O7K/o2Srk5IRjYd0iy1syhFcYUckoNvsQ5OjfP3UCdsxvaZOkx92yP6NWRc/WCrAjXDftyKuQlyCIRqSk+B4SNIEnJI2W3ykK0Wi/No7pkYqhXw7hdn5JZdxBECtHGPylL8oL4aZzatf0hcV5P2Ka1mV/rssbl3Vmf2L03RwiUZD7dzUoBHJCyVDBKC4a/j+ugTKaak+jwf83sQ3DhO0i9wtUEszHz+VlCmdMkw==
+ bh=OQjjCsZ5rIZApBuB4Ecr3YLeThtseIKv50KE5u8sfj8=;
+ b=D4lFHozAr4d97Y1b3zy69Q3aklI1zEUR4kF4um0JrNoUGWTqqpg2eiZxJlHB6vmzRs6w42cYeSkt3Y8+Q0iZIjtBlyn1BIH9E9AHRJ5FIWkDZW8emXEWpv44FV/gvyMc4f6dJkg2MTRGtfmj3lW6Xk8rRhPrmCXr5juC2v/f9FVxUbxSHw3XOdMynuUZDGeF06kbUJXWpjDD01SGyNo0H2LGVZ9CN+njO+1rOua46zCTyQ9q1xeVyEIiNmw/B4S1pptJM20LipRQpPSz+WuFjOgjKXhD7MfWnBBONFluIJ43+XBcI0hPAhkLxn0ycgTen7SeE6xalm+Vez7mkmNIzg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/zzL4qr5mtf/VCfgcYyo1KrhxT9bQW/CJpjQxnHtm7U=;
- b=Nj3A9R/i8GKzREN0ifz9JrEv2pJ2jWYyRJAjjm6q5jZArr/Wf+L8cOliZMhsPnt1pIbPQiloLNwivZnbHUzXDk4CiQ1Kl5cFVBeqYi4rXMJTBlUMGUc6GzXu9TBEYLMwqIqjR67+qkWLHSt/PDWmuG2rBYCLQ320kBzEuQNY+vk=
-Received: from DM6PR13CA0046.namprd13.prod.outlook.com (2603:10b6:5:134::23)
- by BN6PR12MB1892.namprd12.prod.outlook.com (2603:10b6:404:108::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4478.22; Wed, 8 Sep
- 2021 14:54:58 +0000
-Received: from DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:134:cafe::2a) by DM6PR13CA0046.outlook.office365.com
- (2603:10b6:5:134::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.6 via Frontend
- Transport; Wed, 8 Sep 2021 14:54:58 +0000
+ bh=OQjjCsZ5rIZApBuB4Ecr3YLeThtseIKv50KE5u8sfj8=;
+ b=E0nDP+RmfbiwbwxF8GKjRTV64+Cb6XBb0UqkizDF8+kUDnNSWybUEWmWLUgkkjSwrDO5DtPqvq3J09SdApi66Y9+YjVc0BZJCMKvkmt7VTOvQfxLS63foBe4TNHjjDFzbebit3sYO0D8I9RonFOlnSHayI7NvGg31N2+g4p4nYk=
+Received: from DS7PR06CA0021.namprd06.prod.outlook.com (2603:10b6:8:2a::23) by
+ MW3PR12MB4492.namprd12.prod.outlook.com (2603:10b6:303:57::10) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4500.14; Wed, 8 Sep 2021 14:54:59 +0000
+Received: from DM6NAM11FT064.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:2a:cafe::57) by DS7PR06CA0021.outlook.office365.com
+ (2603:10b6:8:2a::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.14 via Frontend
+ Transport; Wed, 8 Sep 2021 14:54:59 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,25 +46,23 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT011.mail.protection.outlook.com (10.13.172.108) with Microsoft SMTP
+ DM6NAM11FT064.mail.protection.outlook.com (10.13.172.234) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4500.14 via Frontend Transport; Wed, 8 Sep 2021 14:54:57 +0000
+ 15.20.4500.14 via Frontend Transport; Wed, 8 Sep 2021 14:54:59 +0000
 Received: from DESKTOP-9DR2N9S.localdomain (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.8; Wed, 8 Sep 2021 09:54:56 -0500
+ 15.1.2308.8; Wed, 8 Sep 2021 09:54:57 -0500
 From: Mikita Lipski <mikita.lipski@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Bhawanpreet.Lakha@amd.com>, <Rodrigo.Siqueira@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
- <stylon.wang@amd.com>, <solomon.chiu@amd.com>, Jaehyun Chung
- <jaehyun.chung@amd.com>, Krunoslav Kovac <Krunoslav.Kovac@amd.com>
-Subject: [PATCH 18/33] drm/amd/display: Add regamma/degamma coefficients and
- set sRGB when TF is BT709
-Date: Wed, 8 Sep 2021 10:54:09 -0400
-Message-ID: <20210908145424.3311-19-mikita.lipski@amd.com>
+ <stylon.wang@amd.com>, <solomon.chiu@amd.com>, Hersen Wu <hersenwu@amd.com>
+Subject: [PATCH 19/33] drm/amd/display: Apply w/a for hard hang on HPD
+Date: Wed, 8 Sep 2021 10:54:10 -0400
+Message-ID: <20210908145424.3311-20-mikita.lipski@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210908145424.3311-1-mikita.lipski@amd.com>
 References: <20210908145424.3311-1-mikita.lipski@amd.com>
@@ -76,28 +74,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4e7eab4a-8246-4e01-6236-08d972d8a082
-X-MS-TrafficTypeDiagnostic: BN6PR12MB1892:
-X-Microsoft-Antispam-PRVS: <BN6PR12MB189210470353A5B8650190A4E4D49@BN6PR12MB1892.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Office365-Filtering-Correlation-Id: 3737fe27-081f-4234-b601-08d972d8a15c
+X-MS-TrafficTypeDiagnostic: MW3PR12MB4492:
+X-Microsoft-Antispam-PRVS: <MW3PR12MB4492082B51D9A3AC6B4AF793E4D49@MW3PR12MB4492.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: i6Jwvrh0QKbRJMAtlaO/CLUJUMPENAw5T4BVC5GyCswHvTnIt5CUAHZBeXyg8WOFYGPodocnYvLsF0LxgBIc33vYhVDdddiZ8z7MTXFERp2h858jNFw8wDjRYgVbOdapTjEGCK/749cDW6Osg6JlYOg0JnkDEI+CwPF/Sv0RMyahjzRBsyPaNgtmzYunwdMTf2xLrzpiahuiY87Tcf1nHUr//V8FSslR9o+hvb9Y0sQFm76CUsg+CloRZRwYKFAZSvKQ4ipj/U/whUCepSKmUMmQlueMlk73/g1S1evg8jF+UUA5Y0ZttqDSGaU6Rn72jOLmAUwm89W7zYpAkUzL+87UKvfjoIjVnnDR88T0suWQ8Pg6awVipQIMd3J4ARCiVlNwHGwB8JsEa2Xg4lOhAtqlQbtTPTci1zYzIKB6aRW9gd4aL0MdX6KZVF6nNFcl63PrhEfafTrfNxWkbh0V2ZmMM5eFkt/wK4TnTTFePpS9RSNiB7NesvFtbeStiOMMwgIrnm87ePHpF/HPCQOchqvyf+jHZMnZ8hi9OLNagst3W3OkDH847Yg4F1PhY4GZmXG/Jy6H8Dnf8Zb2Nnhs7VJ6VcYl745BD4oA2YDkKveCFCI+jDvaHsgnfyC7jPl7fMoj5uR5vWFVaTXk+G0q/lRXTnC3z9BMSemwumbmZJKbt6TaVGNV4TkVYj1BVF9+AlQp/Z5aXS9RiD4fc6qCsEMlaGSlG1PnuxoogtJWF5Y=
+X-Microsoft-Antispam-Message-Info: DGYAOtfzCutlqRlXLw7JADUpgmEd8i/Cg3b+m3gur9DkkIQvaLMd05ld6CEF3sfdbJWPAxnmWcghWIum8Uo+52Y5mXE/7SXBECI/zexr0CLuTG2FwkRnny7/ioSqTVwZYdZ+LehDe+2BipUmZ61qUC7aTDH83+PV01xYyez8H8+J3BzdyN15EV1ed+Geg9nzyrIPVqxzFq9HoZUdHrNJeNxw/79fjk8Xc7c6l9RJQkk/L2/leDnwHTUPb249oZ7VDxhCFY7RglpL46dvsAEd1zvWsYJSYUyhg+H6vEpuoZbfyir8bkF5GcZ0nYxdRYnEYKBxBZC31sk0jFWn7j4G/xIJX0qEpw+x1YHKMcqqqKhWtI6hdS/Ize9ybsi92mng/4UX19zu1MzBJMy0PbLYnoD4rpLouIrq109LfYiIx4xNw55l0ZbnnSdFu17+YXv2idPFofVAm69XvTDEduS6xGG2/PqTf+ai0V6sdmRTY62k4GJzZfZ7lw95g7Zn/gP31+SfUpuUv2U7b5Cuy8GE7WG/nvK2iBynQUgvzjV/5p7TK3swJtATAj3kH8RJlYNNy1bhZ9cK9fkEQI6pbeb6lcIanJkmZ3l6Jw+FhMYEFHppZJAiRSQMg28Hx8ekxnKw7eWS9a1eKeal3WdYQ5/EOyBYtqdMjHRt1NsMSpxVvQfS4fj84sR+7OU1xqvvOKRusMF7JkMfdetPLiy35xAHilncsaZLrX5LLW+UXm9YR7w=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(36756003)(82310400003)(356005)(8676002)(6666004)(26005)(8936002)(2616005)(47076005)(44832011)(336012)(186003)(16526019)(426003)(1076003)(54906003)(81166007)(70206006)(70586007)(83380400001)(86362001)(508600001)(4326008)(2906002)(6916009)(36860700001)(5660300002)(316002)(36900700001);
+ SFS:(4636009)(376002)(39860400002)(136003)(346002)(396003)(36840700001)(46966006)(316002)(83380400001)(54906003)(86362001)(47076005)(44832011)(36860700001)(2906002)(356005)(36756003)(478600001)(81166007)(82740400003)(82310400003)(4326008)(26005)(16526019)(186003)(8676002)(70206006)(426003)(336012)(70586007)(8936002)(2616005)(6666004)(6916009)(1076003)(5660300002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2021 14:54:57.9988 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e7eab4a-8246-4e01-6236-08d972d8a082
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2021 14:54:59.4366 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3737fe27-081f-4234-b601-08d972d8a15c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT064.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1892
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4492
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,134 +110,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jaehyun Chung <jaehyun.chung@amd.com>
+From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 
 [Why]
-In YUV case, need to set the input TF to sRGB instead of BT709,
-even though the input TF type is distributed. SRGB was not
-being used because pixel format was not being set in the
-surface update sequence.
-Also, we were using the same coefficients for degamma and
-regamma formula, causing the cutoff point of the linear
-section of the curve to be incorrect.
+HPD disable and enable sequences are not mutually exclusive
+on Linux. For HPDs that spans under 1s (i.e. HPD low = 1s),
+part of the disable sequence (specifically, a request to SMU
+to lower refclk) could come right before the call to PHY
+enablement, causing DMUB to access an irresponsive PHY
+and thus a hard hang on the system.
 
 [How]
-Set pixel format in the surface update sequence. Add separate
-coefficient arrays for regamma and degamma.
+Disable 48mhz refclk off when there is any HPD status in
+connected state.
 
-Reviewed-by: Krunoslav Kovac <Krunoslav.Kovac@amd.com>
+Reviewed-by: Hersen Wu <hersenwu@amd.com>
 Acked-by: Mikita Lipski <mikita.lipski@amd.com>
-Signed-off-by: Jaehyun Chung <jaehyun.chung@amd.com>
+Signed-off-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
 ---
- .../amd/display/modules/color/color_gamma.c   | 60 ++++++++++++-------
- 1 file changed, 40 insertions(+), 20 deletions(-)
+ .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 12 ++++++++-
+ .../display/dc/irq/dcn21/irq_service_dcn21.c  | 25 +++++++++++++++++++
+ .../display/dc/irq/dcn21/irq_service_dcn21.h  |  2 ++
+ .../gpu/drm/amd/display/dc/irq/irq_service.c  |  2 +-
+ .../gpu/drm/amd/display/dc/irq/irq_service.h  |  4 +++
+ 5 files changed, 43 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-index ef742d95ef05..275f11f8bea3 100644
---- a/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-+++ b/drivers/gpu/drm/amd/display/modules/color/color_gamma.c
-@@ -54,12 +54,18 @@ static struct hw_x_point coordinates_x[MAX_HW_POINTS + 2];
-  * just multiply with 2^gamma which can be computed once, and save the result so we
-  * recursively compute all the values.
-  */
--										/*sRGB	 709 2.2 2.4 P3*/
--static const int32_t gamma_numerator01[] = { 31308,	180000,	0,	0,	0};
--static const int32_t gamma_numerator02[] = { 12920,	4500,	0,	0,	0};
--static const int32_t gamma_numerator03[] = { 55,	99,		0,	0,	0};
--static const int32_t gamma_numerator04[] = { 55,	99,		0,	0,	0};
--static const int32_t gamma_numerator05[] = { 2400,	2200,	2200, 2400, 2600};
-+											 /*sRGB     709     2.2 2.4 P3*/
-+static const int32_t regamma_numerator01[] = { 31308,   180000, 0,  0,  0};
-+static const int32_t regamma_numerator02[] = { 12920,   4500,   0,  0,  0};
-+static const int32_t regamma_numerator03[] = { 55,      99,     0,  0,  0};
-+static const int32_t regamma_numerator04[] = { 55,      99,     0,  0,  0};
-+static const int32_t regamma_numerator05[] = { 2400,    2200,   2200, 2400, 2600};
-+
-+static const int32_t degamma_numerator01[] = { 40450,   810000, 0,  0,  0};
-+static const int32_t degamma_numerator02[] = { 12920,   4500,   0,  0,  0};
-+static const int32_t degamma_numerator03[] = { 55,      99,     0,  0,  0};
-+static const int32_t degamma_numerator04[] = { 55,      99,     0,  0,  0};
-+static const int32_t degamma_numerator05[] = { 2400,    2200,   2200, 2400, 2600};
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+index c6f494f0dcea..3fabf32a0558 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+@@ -42,6 +42,7 @@
+ #include "clk/clk_10_0_2_sh_mask.h"
+ #include "renoir_ip_offset.h"
  
- /* one-time setup of X points */
- void setup_x_points_distribution(void)
-@@ -288,7 +294,8 @@ struct dividers {
++#include "irq/dcn21/irq_service_dcn21.h"
+ 
+ /* Constants */
+ 
+@@ -129,9 +130,11 @@ void rn_update_clocks(struct clk_mgr *clk_mgr_base,
+ 	struct dc_clocks *new_clocks = &context->bw_ctx.bw.dcn.clk;
+ 	struct dc *dc = clk_mgr_base->ctx->dc;
+ 	int display_count;
++	int irq_src;
+ 	bool update_dppclk = false;
+ 	bool update_dispclk = false;
+ 	bool dpp_clock_lowered = false;
++	uint32_t hpd_state;
+ 
+ 	struct dmcu *dmcu = clk_mgr_base->ctx->dc->res_pool->dmcu;
+ 
+@@ -147,8 +150,15 @@ void rn_update_clocks(struct clk_mgr *clk_mgr_base,
+ 		if (clk_mgr_base->clks.pwr_state != DCN_PWR_STATE_LOW_POWER) {
+ 
+ 			display_count = rn_get_active_display_cnt_wa(dc, context);
++
++			for (irq_src = DC_IRQ_SOURCE_HPD1; irq_src <= DC_IRQ_SOURCE_HPD5; irq_src++) {
++				hpd_state = dal_get_hpd_state_dcn21(dc->res_pool->irqs, irq_src);
++				if (hpd_state)
++					break;
++			}
++
+ 			/* if we can go lower, go lower */
+-			if (display_count == 0) {
++			if (display_count == 0 && !hpd_state) {
+ 				rn_vbios_smu_set_dcn_low_power_state(clk_mgr, DCN_PWR_STATE_LOW_POWER);
+ 				/* update power state */
+ 				clk_mgr_base->clks.pwr_state = DCN_PWR_STATE_LOW_POWER;
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c b/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c
+index ed54e1c819be..685528734575 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c
++++ b/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c
+@@ -135,6 +135,31 @@ enum dc_irq_source to_dal_irq_source_dcn21(
+ 	return DC_IRQ_SOURCE_INVALID;
+ }
+ 
++uint32_t dal_get_hpd_state_dcn21(struct irq_service *irq_service, enum dc_irq_source source)
++{
++	const struct irq_source_info *info;
++	uint32_t addr;
++	uint32_t value;
++	uint32_t current_status;
++
++	info = find_irq_source_info(irq_service, source);
++	if (!info)
++		return 0;
++
++	addr = info->status_reg;
++	if (!addr)
++		return 0;
++
++	value = dm_read_reg(irq_service->ctx, addr);
++	current_status =
++		get_reg_field_value(
++			value,
++			HPD0_DC_HPD_INT_STATUS,
++			DC_HPD_SENSE);
++
++	return current_status;
++}
++
+ static bool hpd_ack(
+ 	struct irq_service *irq_service,
+ 	const struct irq_source_info *info)
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.h b/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.h
+index da2bd0e93d7a..3df2ceeb2b70 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.h
++++ b/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.h
+@@ -31,4 +31,6 @@
+ struct irq_service *dal_irq_service_dcn21_create(
+ 	struct irq_service_init_data *init_data);
+ 
++uint32_t dal_get_hpd_state_dcn21(struct irq_service *irq_service, enum dc_irq_source source);
++
+ #endif
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/irq_service.c b/drivers/gpu/drm/amd/display/dc/irq/irq_service.c
+index a2a4fbeb83f8..4db1133e4466 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/irq_service.c
++++ b/drivers/gpu/drm/amd/display/dc/irq/irq_service.c
+@@ -79,7 +79,7 @@ void dal_irq_service_destroy(struct irq_service **irq_service)
+ 	*irq_service = NULL;
+ }
+ 
+-static const struct irq_source_info *find_irq_source_info(
++const struct irq_source_info *find_irq_source_info(
+ 	struct irq_service *irq_service,
+ 	enum dc_irq_source source)
+ {
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/irq_service.h b/drivers/gpu/drm/amd/display/dc/irq/irq_service.h
+index dbfcb096eedd..e60b82480093 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/irq_service.h
++++ b/drivers/gpu/drm/amd/display/dc/irq/irq_service.h
+@@ -69,6 +69,10 @@ struct irq_service {
+ 	const struct irq_service_funcs *funcs;
  };
  
- 
--static bool build_coefficients(struct gamma_coefficients *coefficients, enum dc_transfer_func_predefined type)
-+static bool build_coefficients(struct gamma_coefficients *coefficients,
-+		enum dc_transfer_func_predefined type, bool isRegamma)
- {
- 
- 	uint32_t i = 0;
-@@ -311,16 +318,29 @@ static bool build_coefficients(struct gamma_coefficients *coefficients, enum dc_
- 	}
- 
- 	do {
--		coefficients->a0[i] = dc_fixpt_from_fraction(
--			gamma_numerator01[index], 10000000);
--		coefficients->a1[i] = dc_fixpt_from_fraction(
--			gamma_numerator02[index], 1000);
--		coefficients->a2[i] = dc_fixpt_from_fraction(
--			gamma_numerator03[index], 1000);
--		coefficients->a3[i] = dc_fixpt_from_fraction(
--			gamma_numerator04[index], 1000);
--		coefficients->user_gamma[i] = dc_fixpt_from_fraction(
--			gamma_numerator05[index], 1000);
-+		if (isRegamma) {
-+			coefficients->a0[i] = dc_fixpt_from_fraction(
-+				regamma_numerator01[index], 10000000);
-+			coefficients->a1[i] = dc_fixpt_from_fraction(
-+				regamma_numerator02[index], 1000);
-+			coefficients->a2[i] = dc_fixpt_from_fraction(
-+				regamma_numerator03[index], 1000);
-+			coefficients->a3[i] = dc_fixpt_from_fraction(
-+				regamma_numerator04[index], 1000);
-+			coefficients->user_gamma[i] = dc_fixpt_from_fraction(
-+				regamma_numerator05[index], 1000);
-+		} else {
-+			coefficients->a0[i] = dc_fixpt_from_fraction(
-+				degamma_numerator01[index], 10000000);
-+			coefficients->a1[i] = dc_fixpt_from_fraction(
-+				degamma_numerator02[index], 1000);
-+			coefficients->a2[i] = dc_fixpt_from_fraction(
-+				degamma_numerator03[index], 1000);
-+			coefficients->a3[i] = dc_fixpt_from_fraction(
-+				degamma_numerator04[index], 1000);
-+			coefficients->user_gamma[i] = dc_fixpt_from_fraction(
-+				degamma_numerator05[index], 1000);
-+		}
- 
- 		++i;
- 	} while (i != ARRAY_SIZE(coefficients->a0));
-@@ -833,7 +853,7 @@ static bool build_regamma(struct pwl_float_data_ex *rgb_regamma,
- 	if (!coeff)
- 		goto release;
- 
--	if (!build_coefficients(coeff, type))
-+	if (!build_coefficients(coeff, type, true))
- 		goto release;
- 
- 	memset(cal_buffer->buffer, 0, NUM_PTS_IN_REGION * sizeof(struct fixed31_32));
-@@ -1082,7 +1102,7 @@ static bool build_degamma(struct pwl_float_data_ex *curve,
- 	uint32_t begin_index, end_index;
- 	bool ret = false;
- 
--	if (!build_coefficients(&coeff, type))
-+	if (!build_coefficients(&coeff, type, false))
- 		goto release;
- 
- 	i = 0;
-@@ -1685,7 +1705,7 @@ static void apply_degamma_for_user_regamma(struct pwl_float_data_ex *rgb_regamma
- 	struct pwl_float_data_ex *rgb = rgb_regamma;
- 	const struct hw_x_point *coord_x = coordinates_x;
- 
--	build_coefficients(&coeff, TRANSFER_FUNCTION_SRGB);
-+	build_coefficients(&coeff, TRANSFER_FUNCTION_SRGB, true);
- 
- 	i = 0;
- 	while (i != hw_points_num + 1) {
++const struct irq_source_info *find_irq_source_info(
++	struct irq_service *irq_service,
++	enum dc_irq_source source);
++
+ void dal_irq_service_construct(
+ 	struct irq_service *irq_service,
+ 	struct irq_service_init_data *init_data);
 -- 
 2.25.1
 
