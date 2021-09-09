@@ -1,47 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D814B405593
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Sep 2021 15:34:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 778EC405584
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Sep 2021 15:33:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 148E46E882;
-	Thu,  9 Sep 2021 13:33:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFABF6E87C;
+	Thu,  9 Sep 2021 13:33:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com
- [IPv6:2607:f8b0:4864:20::231])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCB346E4CA
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Sep 2021 10:53:15 +0000 (UTC)
-Received: by mail-oi1-x231.google.com with SMTP id q39so1925215oiw.12
- for <amd-gfx@lists.freedesktop.org>; Thu, 09 Sep 2021 03:53:15 -0700 (PDT)
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com
+ [IPv6:2607:f8b0:4864:20::22b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2152E6E52C
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Sep 2021 11:43:57 +0000 (UTC)
+Received: by mail-oi1-x22b.google.com with SMTP id w144so2067765oie.13
+ for <amd-gfx@lists.freedesktop.org>; Thu, 09 Sep 2021 04:43:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=fU5ufvRRjTtfwnNvK13MR5zMOLz3I8fk1OzlUMqINLQ=;
- b=svEsGSMujFvTtR4UMtARJNXuZvz+U/550aXRIc+7UMzXzxYASPNNCNz75C6NHgXQGg
- dVJIPTelpAL58scaurL0kBQOQTMznlEy8QRnyHQfYxdvgW794LiM1IeQsfZLCEJ22GDQ
- qeYJDSw9yib0rswsAY4EiMIpR09/rniDzcmwUBU47L1cdLS7q206vZncbq5ddz/unqpR
- JjT6q7GZ3YxYt0F0WB2frZxiJ2+sILr+1ax6Ri2HSHO4/nyZOnqbiOVisCjJQDDu6QAo
- hcv1jpLE7VOWgiP2TLIVuvoIKnrgb/YQjoBfw63Ub7F4cpzR210zw6O/4AgWl9NTv+i7
- YCmw==
+ :cc; bh=ge0i4MysJLg7UB+Yx2AaDOSBAP1whBCQ4nJVOdEAFfQ=;
+ b=AM0acIeRzwZOQ8ps3Z56Nt2NWs6+nlhrzsKcVFwKMDqqa7rDx5eL5KDD0h/BaJoTnn
+ Yyyxu9wJG75huSLycWf8IDuT7DT0EULGp5e0DvypWYxR9B4SQfPU5j8Fn4XhfFEruwLE
+ ClKvJyFIvmnV6Km2XZLLKRVpzmuk+CmtA15esdDv1bDunZyDxFsQlEfitpESUQeSYFJp
+ 8BTH19cQVldl2Q/Q/K063Hrw0iJTbEvdUS66oLsCqTbhNgBAq0kgnGI6EB+sd5gWro4q
+ 6u6ZSKDtWZTSrF4AorelJKBZfPAQkJjHlymjU+m1V7QiieTyxzEwYQ0qxBYlDgPTQOni
+ 8v9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=fU5ufvRRjTtfwnNvK13MR5zMOLz3I8fk1OzlUMqINLQ=;
- b=DMg1cIGhfkQfNBC+ZRjcDAJxJ7/ueqhOn82d9Ijaxuu10gdgi2TF/3JHhgW8/NEiRU
- jNhJ030TehzKiNzViZIMI98HD+CqXXrJWDkHAgZRjsYFVX94N4JiSdbHBjM228TF6wJz
- HFWMD37udNa2Pbbr6rqFVsLDWZwVQmSS7JQdIByaD6vrDGleE7cCEnEahAB4dN+0zeVQ
- fGBq8JZUyXOLQJaz4YmCgdY9Zv0T//StAh0hRMJsW+H6G7TUCTGPsHNpwo0YiIAyTrT1
- GUYZ+GUjBpxK/L7ddTAh2Dyj2KJTleQhbTM/kQiq7opf79s4KbzZghxvYJQQiF3O5jYj
- x1ag==
-X-Gm-Message-State: AOAM530jytSetx6aV8csJiWZVeJENB73JOeSSC+Ql6pnfXNbplJD1rUY
- gSue/hQVwb37Ap4rWFLENB9tIah3evg0FtnrNi3tIQ==
-X-Google-Smtp-Source: ABdhPJypirAM1jjdo9XWTXuE1r/IYJFmD049z7WphsmfidtaQM2qvedJJrF7FPI9vKRmcHUWVT9heQSyJAVB96uljac=
-X-Received: by 2002:a05:6808:21a5:: with SMTP id
- be37mr1443831oib.172.1631184794726; 
- Thu, 09 Sep 2021 03:53:14 -0700 (PDT)
+ :message-id:subject:to:cc;
+ bh=ge0i4MysJLg7UB+Yx2AaDOSBAP1whBCQ4nJVOdEAFfQ=;
+ b=us7+sWtNe+oaamKXm+6dC//w1/rMLaBZ98B98tymHqY9XGhUdz4Bvn3Et6ZI4462Ns
+ QuUgzD0hsjq9Kg60tYD3cu+cEoTHUpfruzqg2P3fRAj2ic3F335R6HmcHoMD/gnGQNGJ
+ 28aao+Ohm+zYcDhPoDckx168CuzZRFRxwOlZOi4fAtV7SXRaG5oSdSbCCxLr/vp+OmkG
+ uvIthwZOX7qUox3GlisAw6Kgsvd+4Qd64AjML//Nq3vxT8ROFsmyA9GjIH3eugW1JviY
+ N0jlyutUJowo7vj8HxgA9WB1Yn1ZAkRabvb7MvSI2aioaBCavj0PHwWiAMPKDdZN6x2M
+ ewJw==
+X-Gm-Message-State: AOAM533v/IN03M2X+JCogcR3Syv6K7r1zLnm8TKEbiWlryqSr01IeER0
+ /1jMtfU+EE+rvw3W0MDTlcwT6VMUpowpcyA1vHv/+w==
+X-Google-Smtp-Source: ABdhPJz4Mhm5+vx6TwV+94c8TrEoyJnBnwuFZl9zQWVxFkMW7/1ms65QTzG16fCfVI4XNFxP1+08u3vCaxDOvTe4liM=
+X-Received: by 2002:aca:4344:: with SMTP id q65mr1645122oia.70.1631187836164; 
+ Thu, 09 Sep 2021 04:43:56 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210906142615.GA1917503@roeck-us.net>
  <CAHk-=wgjTePY1v_D-jszz4NrpTso0CdvB9PcdroPS=TNU1oZMQ@mail.gmail.com>
@@ -50,26 +48,29 @@ References: <20210906142615.GA1917503@roeck-us.net>
  <YTkjJPCdR1VGaaVm@archlinux-ax161>
  <75a10e8b-9f11-64c4-460b-9f3ac09965e2@roeck-us.net>
  <YTkyIAevt7XOd+8j@elver.google.com> <YTmidYBdchAv/vpS@infradead.org>
-In-Reply-To: <YTmidYBdchAv/vpS@infradead.org>
+ <CANpmjNNCVu8uyn=8=5_8rLeKM5t3h7-KzVg1aCJASxF8u_6tEQ@mail.gmail.com>
+ <CAK8P3a1W-13f-qCykaaAiXAr+P_F+VhjsU-9Uu=kTPUeB4b26Q@mail.gmail.com>
+In-Reply-To: <CAK8P3a1W-13f-qCykaaAiXAr+P_F+VhjsU-9Uu=kTPUeB4b26Q@mail.gmail.com>
 From: Marco Elver <elver@google.com>
-Date: Thu, 9 Sep 2021 12:53:03 +0200
-Message-ID: <CANpmjNNCVu8uyn=8=5_8rLeKM5t3h7-KzVg1aCJASxF8u_6tEQ@mail.gmail.com>
+Date: Thu, 9 Sep 2021 13:43:44 +0200
+Message-ID: <CANpmjNPBdx4b7bp=reNJPMzSNetdyrk+503_1LLoxNMYwUhSHg@mail.gmail.com>
 Subject: Re: [PATCH] Enable '-Werror' by default for all kernel builds
-To: Christoph Hellwig <hch@infradead.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, Nathan Chancellor <nathan@kernel.org>, 
- Arnd Bergmann <arnd@kernel.org>,
+To: Arnd Bergmann <arnd@kernel.org>
+Cc: Christoph Hellwig <hch@infradead.org>, Guenter Roeck <linux@roeck-us.net>, 
+ Nathan Chancellor <nathan@kernel.org>,
  Linus Torvalds <torvalds@linux-foundation.org>, 
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, llvm@lists.linux.dev,
  Nick Desaulniers <ndesaulniers@google.com>,
  Paul Walmsley <paul.walmsley@sifive.com>, 
  Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- linux-riscv@lists.infradead.org, Andrey Ryabinin <ryabinin.a.a@gmail.com>, 
+ linux-riscv <linux-riscv@lists.infradead.org>,
+ Andrey Ryabinin <ryabinin.a.a@gmail.com>, 
  Alexander Potapenko <glider@google.com>, Dmitry Vyukov <dvyukov@google.com>, 
- Andrey Konovalov <andreyknvl@gmail.com>, kasan-dev@googlegroups.com, 
+ Andrey Konovalov <andreyknvl@gmail.com>, kasan-dev <kasan-dev@googlegroups.com>,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, amd-gfx@lists.freedesktop.org
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 09 Sep 2021 13:33:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,32 +86,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 9 Sept 2021 at 07:59, Christoph Hellwig <hch@infradead.org> wrote:
-> On Wed, Sep 08, 2021 at 11:58:56PM +0200, Marco Elver wrote:
-> > It'd be good to avoid. It has helped uncover build issues with KASAN in
-> > the past. Or at least make it dependent on the problematic architecture=
-.
-> > For example if arm is a problem, something like this:
+On Thu, 9 Sept 2021 at 13:00, Arnd Bergmann <arnd@kernel.org> wrote:
+> On Thu, Sep 9, 2021 at 12:54 PM Marco Elver <elver@google.com> wrote:
+> > On Thu, 9 Sept 2021 at 07:59, Christoph Hellwig <hch@infradead.org> wrote:
+> > > On Wed, Sep 08, 2021 at 11:58:56PM +0200, Marco Elver wrote:
+> > > > It'd be good to avoid. It has helped uncover build issues with KASAN in
+> > > > the past. Or at least make it dependent on the problematic architecture.
+> > > > For example if arm is a problem, something like this:
+> > >
+> > > I'm also seeing quite a few stack size warnings with KASAN on x86_64
+> > > without COMPILT_TEST using gcc 10.2.1 from Debian.  In fact there are a
+> > > few warnings without KASAN, but with KASAN there are a lot more.
+> > > I'll try to find some time to dig into them.
+> >
+> > Right, this reminded me that we actually at least double the real
+> > stack size for KASAN builds, because it inherently requires more stack
+> > space. I think we need Wframe-larger-than to match that, otherwise
+> > we'll just keep having this problem:
+> >
+> > https://lkml.kernel.org/r/20210909104925.809674-1-elver@google.com
 >
-> I'm also seeing quite a few stack size warnings with KASAN on x86_64
-> without COMPILT_TEST using gcc 10.2.1 from Debian.  In fact there are a
-> few warnings without KASAN, but with KASAN there are a lot more.
-> I'll try to find some time to dig into them.
+> The problem with this is that it completely defeats the point of the
+> stack size warnings in allmodconfig kernels when they have KASAN
+> enabled and end up missing obvious code bugs in drivers that put
+> large structures on the stack. Let's not go there.
 
-Right, this reminded me that we actually at least double the real
-stack size for KASAN builds, because it inherently requires more stack
-space. I think we need Wframe-larger-than to match that, otherwise
-we'll just keep having this problem:
+Sure, but the reality is that the real stack size is already doubled
+for KASAN. And that should be reflected in Wframe-larger-than.
 
-https://lkml.kernel.org/r/20210909104925.809674-1-elver@google.com
-
-> While we're at it, with -Werror something like this is really futile:
->
-> drivers/gpu/drm/amd/amdgpu/amdgpu_object.c: In function =E2=80=98amdgpu_b=
-o_support_uswc=E2=80=99:
-> drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:493:2: warning: #warning
-> Please enable CONFIG_MTRR and CONFIG_X86_PAT for better performance thank=
-s to write-combining [-Wcpp
->   493 | #warning Please enable CONFIG_MTRR and CONFIG_X86_PAT for better =
-performance \
->       |  ^~~~~~~
+Either that, or we just have to live with the occasional warning (that
+is likely benign). But with WERROR we're now forced to make the
+defaults as sane as possible. If the worry is allmodconfig, maybe we
+do have to make KASAN dependent on !COMPILE_TEST, even though that's
+not great either because it has caught real issues in the past (it'll
+also mean doing the same for all other instrumentation-based tools,
+like KCSAN, UBSAN, etc.).
