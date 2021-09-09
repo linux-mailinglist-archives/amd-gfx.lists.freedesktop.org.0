@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8916B404CAF
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Sep 2021 13:59:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85D48404CBE
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Sep 2021 14:00:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CA2F6E83F;
-	Thu,  9 Sep 2021 11:59:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A905B6E847;
+	Thu,  9 Sep 2021 12:00:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E8436E83F;
- Thu,  9 Sep 2021 11:59:46 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8954263294;
- Thu,  9 Sep 2021 11:59:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8297B6E847;
+ Thu,  9 Sep 2021 12:00:56 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7593E61452;
+ Thu,  9 Sep 2021 12:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1631188786;
- bh=0af7XYpiDaqKh3arO7Wo+2DKVh53HZlCjD+rRxGqUBg=;
+ s=k20201202; t=1631188856;
+ bh=UmH3tyQhlZMb5iouAeSw2MzsrySdnZUzxrI6Fv6GO2E=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=EgaqPTEPPsRHjJuLOabqlaLN8GwRj5jsV6a38ydbcmLGfm7iAsJ8Lqmrn0gXJao9f
- E6EbU+jxnfjmcqFfXFEqFcDesTxPGQqp1xcb1S8TJUk5Bgh/bXq2pNjzrzEogxA19j
- ubavicwRAmKjE+d5YYNhn7ddqZ/2DhyAHAJizvymzhz4hxwWgp7mOu/09L9sz04/S3
- w7QN861T8k0qL7zO2pSrju0JfKpZEWuidhU4qqNvD10SK781lw+PQIWX5BACbAJ8/x
- dINkfG0foBM5cXIj/sWrF9OMS2wR5tJmgUfdbA9TSEzzItKay4q/5D3m+/Ye215Mts
- AlUjlh0BIK0dA==
+ b=j3UkJ2AwKYi8nQG1vrVFzLMsDbhfbAc7Hi0J8d+M3G0cqOB7Ga9s0+1Ehmzm890zb
+ vSyWrmkOtAB/gbd6N8CWcnlUsWtuPjksVMrClJqjlA/Grwno+2JMRmEb6sThTUNRfN
+ Jrd6l+ByTgwr6gwI4OvflGupGO3Uw0jqOMkYUpaW9E7enbgtnu8fAFTZQXVmKyIwZV
+ vfczDA1W2zKzs8PrI5djNtsjzu73yIzXjXUFhNrVNNet92GBL3XIk5Eu9kVXQNtZpU
+ vwinyxKyE3UVRzEnw1kYnq4hISKW15Q5Rxi30iEufgiuNd500t45oBEGxY/Vz82tOk
+ RMQPTboPqdB7Q==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
 Cc: Tuo Li <islituo@gmail.com>, TOTE Robot <oslab@tsinghua.edu.cn>,
  Alex Deucher <alexander.deucher@amd.com>, Sasha Levin <sashal@kernel.org>,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 4.14 36/59] gpu: drm: amd: amdgpu: amdgpu_i2c: fix
+Subject: [PATCH AUTOSEL 4.9 32/48] gpu: drm: amd: amdgpu: amdgpu_i2c: fix
  possible uninitialized-variable access in amdgpu_i2c_router_select_ddc_port()
-Date: Thu,  9 Sep 2021 07:58:37 -0400
-Message-Id: <20210909115900.149795-36-sashal@kernel.org>
+Date: Thu,  9 Sep 2021 07:59:59 -0400
+Message-Id: <20210909120015.150411-32-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210909115900.149795-1-sashal@kernel.org>
-References: <20210909115900.149795-1-sashal@kernel.org>
+In-Reply-To: <20210909120015.150411-1-sashal@kernel.org>
+References: <20210909120015.150411-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -81,10 +81,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
-index f2739995c335..199eccee0b0b 100644
+index 91d367399956..a334eb7dbff4 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
-@@ -338,7 +338,7 @@ static void amdgpu_i2c_put_byte(struct amdgpu_i2c_chan *i2c_bus,
+@@ -339,7 +339,7 @@ static void amdgpu_i2c_put_byte(struct amdgpu_i2c_chan *i2c_bus,
  void
  amdgpu_i2c_router_select_ddc_port(const struct amdgpu_connector *amdgpu_connector)
  {
