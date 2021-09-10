@@ -1,55 +1,40 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D46B40853F
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Sep 2021 09:20:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1CAD408540
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Sep 2021 09:20:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B70A6E106;
-	Mon, 13 Sep 2021 07:20:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91AC76E105;
+	Mon, 13 Sep 2021 07:20:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ECF36EA08;
- Fri, 10 Sep 2021 15:02:24 +0000 (UTC)
-Received: from zn.tnic (p200300ec2f0f0700e42ce33fe8cf6a79.dip0.t-ipconnect.de
- [IPv6:2003:ec:2f0f:700:e42c:e33f:e8cf:6a79])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 93BC61EC0277;
- Fri, 10 Sep 2021 17:02:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
- t=1631286138;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
- bh=40kPdt7aP/VJYkQyMREfQyPgJ8o6qpk6K8Mxu6v6cSc=;
- b=mZ0JcBF56mTU6V0YTC61tZbPl8X0LCaqV1t+QlhEk3mjWHgSHZF5dXkxFXSXhGUION3Odd
- 8c/8BBNjWwb218w1V8+ZjDkG7xQbIB2escJ8cg5SbXRf2ClULwId1eDLbmvqpxW7H+B37m
- j71cPf0I4R1mC5Q61ol+StbImh1Vte8=
-Date: Fri, 10 Sep 2021 17:02:10 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Tom Lendacky <thomas.lendacky@amd.com>
-Cc: linux-kernel@vger.kernel.org, x86@kernel.org,
- linuxppc-dev@lists.ozlabs.org, linux-s390@vger.kernel.org,
- iommu@lists.linux-foundation.org, kvm@vger.kernel.org,
- linux-efi@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-graphics-maintainer@vmware.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kexec@lists.infradead.org,
- linux-fsdevel@vger.kernel.org, Brijesh Singh <brijesh.singh@amd.com>,
- Joerg Roedel <joro@8bytes.org>, Andi Kleen <ak@linux.intel.com>,
- Sathyanarayanan Kuppuswamy <sathyanarayanan.kuppuswamy@linux.intel.com>,
- Tianyu Lan <Tianyu.Lan@microsoft.com>,
- Christoph Hellwig <hch@infradead.org>
-Subject: Re: [PATCH v3 2/8] mm: Introduce a function to check for
- confidential computing features
-Message-ID: <YTtzcoFdi7Ond8Kt@zn.tnic>
-References: <cover.1631141919.git.thomas.lendacky@amd.com>
- <0a7618d54e7e954ee56c22ad1b94af2ffe69543a.1631141919.git.thomas.lendacky@amd.com>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 03D3A6EA5E;
+ Fri, 10 Sep 2021 18:24:49 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C95BC6D;
+ Fri, 10 Sep 2021 11:24:47 -0700 (PDT)
+Received: from [10.57.15.112] (unknown [10.57.15.112])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B2AD13F5A1;
+ Fri, 10 Sep 2021 11:24:46 -0700 (PDT)
+Subject: Re: [PATCH] drm/ttm: add a WARN_ON in ttm_set_driver_manager when
+ array bounds (v2)
+To: Guchun Chen <guchun.chen@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
+ xinhui.pan@amd.com, alexander.deucher@amd.com
+Cc: Leslie Shi <Yuliang.Shi@amd.com>
+References: <20210910100922.12097-1-guchun.chen@amd.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Message-ID: <868cab56-607b-bcc8-e358-b2475315f862@arm.com>
+Date: Fri, 10 Sep 2021 19:24:40 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <0a7618d54e7e954ee56c22ad1b94af2ffe69543a.1631141919.git.thomas.lendacky@amd.com>
+In-Reply-To: <20210910100922.12097-1-guchun.chen@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 13 Sep 2021 07:20:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,41 +50,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 08, 2021 at 05:58:33PM -0500, Tom Lendacky wrote:
-> In prep for other confidential computing technologies, introduce a generic
+On 2021-09-10 11:09, Guchun Chen wrote:
+> Vendor will define their own memory types on top of TTM_PL_PRIV,
+> but call ttm_set_driver_manager directly without checking mem_type
+> value when setting up memory manager. So add such check to aware
+> the case when array bounds.
+> 
+> v2: lower check level to WARN_ON
+> 
+> Signed-off-by: Leslie Shi <Yuliang.Shi@amd.com>
+> Signed-off-by: Guchun Chen <guchun.chen@amd.com>
+> ---
+>   include/drm/ttm/ttm_device.h | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/include/drm/ttm/ttm_device.h b/include/drm/ttm/ttm_device.h
+> index 07d722950d5b..aa79953c807c 100644
+> --- a/include/drm/ttm/ttm_device.h
+> +++ b/include/drm/ttm/ttm_device.h
+> @@ -291,6 +291,7 @@ ttm_manager_type(struct ttm_device *bdev, int mem_type)
+>   static inline void ttm_set_driver_manager(struct ttm_device *bdev, int type,
+>   					  struct ttm_resource_manager *manager)
+>   {
+> +	WARN_ON(type >= TTM_NUM_MEM_TYPES);
 
-preparation
+Nit: I know nothing about this code, but from the context alone it would 
+seem sensible to do
 
-> helper function, cc_platform_has(), that can be used to check for specific
-> active confidential computing attributes, like memory encryption. This is
-> intended to eliminate having to add multiple technology-specific checks to
-> the code (e.g. if (sev_active() || tdx_active())).
+	if (WARN_ON(type >= TTM_NUM_MEM_TYPES))
+		return;
 
-...
+to avoid making the subsequent assignment when we *know* it's invalid 
+and likely to corrupt memory.
 
-> diff --git a/include/linux/cc_platform.h b/include/linux/cc_platform.h
-> new file mode 100644
-> index 000000000000..253f3ea66cd8
-> --- /dev/null
-> +++ b/include/linux/cc_platform.h
-> @@ -0,0 +1,88 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Confidential Computing Platform Capability checks
-> + *
-> + * Copyright (C) 2021 Advanced Micro Devices, Inc.
-> + *
-> + * Author: Tom Lendacky <thomas.lendacky@amd.com>
-> + */
-> +
-> +#ifndef _CC_PLATFORM_H
+Robin.
 
-	_LINUX_CC_PLATFORM_H
-
-> +#define _CC_PLATFORM_H
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+>   	bdev->man_drv[type] = manager;
+>   }
+>   
+> 
