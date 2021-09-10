@@ -1,88 +1,119 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0D84406785
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Sep 2021 09:12:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00F2240671D
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Sep 2021 08:15:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 319DF6E979;
-	Fri, 10 Sep 2021 07:12:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 153096E96D;
+	Fri, 10 Sep 2021 06:15:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com
- [IPv6:2a00:1450:4864:20::12a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C48A06E8C5
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Sep 2021 16:53:54 +0000 (UTC)
-Received: by mail-lf1-x12a.google.com with SMTP id l10so5006943lfg.4
- for <amd-gfx@lists.freedesktop.org>; Thu, 09 Sep 2021 09:53:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=dZAGO3iBrhQAq7cxABN7v0YxXWtGf0YiblsBwMfWyrc=;
- b=OWJMz8LLr85sFM8RFy9k59A+OTyiaRWf0ZZ0n6Rcq7tOz8KHuQoirSrp+zkJs09eDI
- qXHOeRQalPKLdGml0NfQEcoEgcJ4RTyh7hAsLCSL/ndaFI7PDIP4NyPdrC6LqlqN47u+
- Tal0cn+jttYnbxNfFIYPgA5YVSh9fCfn1aRs4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=dZAGO3iBrhQAq7cxABN7v0YxXWtGf0YiblsBwMfWyrc=;
- b=eo4JyKPKD3YhZ29jv47u6gfMKH1oNRJqGmvCug7e+GkHxsC98ewlaxdD79CNsQc8Ju
- 3KBVnChw52BVjJilZ8XBxoYQoMnsGnhPH3YriB5yKi8BM0bH3Ejj7GK69M2rGOV96ipt
- 2wN276F7vOpkOJ9L23/YgevrFXbeQE+fr+WPGTwqV1sDSC411FMJ5YzHSodA2EamwnP0
- pxJ1RwVy+/rXgkldjUsBZSze0pXNA6yPlcDpp/JmqwN4YxgiWGJuJSnWN0qh7FUG7LAA
- mydss4UbAMdAC6RUfrA4KbUeddmxQ7HGJ9wffjdAhaMNBEIT9sXbDhdMxQTz4lC71IeV
- 12hw==
-X-Gm-Message-State: AOAM5337uxtgs5sjhc1SLtXKa0hV9lADSlVe+OKWcQ8yxF0PKobjrJBH
- 7LVHSw9IQAkShBFQqeXszy0ccLLJuK6pEFXHq0g=
-X-Google-Smtp-Source: ABdhPJyKW+6gD9OpsafNtnwRcb/TXaPPGOrjh5grc2KIi2Nb+bniBfwERvH91TTZ1v1RZh0nkh7w9A==
-X-Received: by 2002:a05:6512:31d2:: with SMTP id
- j18mr620088lfe.436.1631206432655; 
- Thu, 09 Sep 2021 09:53:52 -0700 (PDT)
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com.
- [209.85.167.41])
- by smtp.gmail.com with ESMTPSA id m17sm256493ljp.80.2021.09.09.09.53.51
- for <amd-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 09 Sep 2021 09:53:51 -0700 (PDT)
-Received: by mail-lf1-f41.google.com with SMTP id c8so5020447lfi.3
- for <amd-gfx@lists.freedesktop.org>; Thu, 09 Sep 2021 09:53:51 -0700 (PDT)
-X-Received: by 2002:a05:6512:3da5:: with SMTP id
- k37mr583246lfv.655.1631206431030; 
- Thu, 09 Sep 2021 09:53:51 -0700 (PDT)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2070.outbound.protection.outlook.com [40.107.220.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA92A6E96D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Sep 2021 06:15:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aX1fk4ow9Rw5JmV8KUmnAM+YMX708/39+c9sFYs4AQ8CSdIH5LOmTvjZJzOqzyFi2ahP7zIDy8SS48Ppx9NPEhOERDtnq61HsokXc6R4ck3KNlsWxSluEO0GMPfRiku2tM+z2xHTcDiF9bwRrTKqj4FrizJRFUlNSSZMJQbe8USCLsHDwvP+1+zd1OlwYeSg7eqdYZUxQveKkS14ooHyExfcQTRY5k/8xmpgJ1JC43hz1NH233dsBnsS83II08wd5T6qnLa29O0W7EHCTcfRPEp94BDXLuzcYABTW4pX6XxV3FEzIG1bdpu7H/gwaMy06ANDADDiDun2oiSL/TCAZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=/RB0TQxIbX7Zo48ghQ7J30+HD9fBkw3Tn5QDpdu+5pQ=;
+ b=ed4tmeeUNJsG60xtPLVMboyM5CQmC6QikOwHF3X2v4toIU7SaN+QZyan2iwZKMmzanwEAoVMB4Ck7I/mC3xIGKyosYV+zbUV7kcrIbitjQzNWPKvch4iXfjUSRJmZTZxOENvkawMdtjJtuH42/f1BOfJ2AT+t5Zf0y+f+da/OnDSoXCrW0Sd3uvCxqXT/qCF5O7iprIipCCmADE7TBImm4RAa1olxeB/37YQohrBEOTKLpWO/1ppXnk7JvEeFKwajJgmM0SMmanin8ml4X9MWFCiYCySgCa7cXiRYs1P+YNyeI5lRIM0Toz5dVNjYpIslLRFL/B5VkV5CLMVORsjYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/RB0TQxIbX7Zo48ghQ7J30+HD9fBkw3Tn5QDpdu+5pQ=;
+ b=A1zGn+b+k4m+gGar0Bi+AHV6GXEb2snap5GxS3Ejo1N1V7VE+Dw6V+/HOw7JuTQA7Sg9WIAlp1MMns067j+scc9l+kwTzD1vSu0tRTssbFchJcnrv6756+qugAwPJnNyjjyRmezM/Sb7macuXCqmBlT4kP0Y35vVX+J00JstRhk=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by BL0PR12MB2355.namprd12.prod.outlook.com (2603:10b6:207:3f::25)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.16; Fri, 10 Sep
+ 2021 06:15:30 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::dce2:96e5:aba2:66fe]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::dce2:96e5:aba2:66fe%6]) with mapi id 15.20.4500.015; Fri, 10 Sep 2021
+ 06:15:30 +0000
+Subject: Re: [PATCH 1/4] drm/amdgpu: Increase direct IB pool size
+To: xinhui pan <xinhui.pan@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com
+References: <20210910003828.4013-1-xinhui.pan@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <827234e7-50a3-9b87-02a1-bc5156d173bc@amd.com>
+Date: Fri, 10 Sep 2021 08:15:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+In-Reply-To: <20210910003828.4013-1-xinhui.pan@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-ClientProxiedBy: AM0PR06CA0109.eurprd06.prod.outlook.com
+ (2603:10a6:208:ab::14) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
 MIME-Version: 1.0
-References: <20210906142615.GA1917503@roeck-us.net>
- <CAHk-=wgjTePY1v_D-jszz4NrpTso0CdvB9PcdroPS=TNU1oZMQ@mail.gmail.com>
- <YTbOs13waorzamZ6@Ryzen-9-3900X.localdomain>
- <CAK8P3a3_Tdc-XVPXrJ69j3S9048uzmVJGrNcvi0T6yr6OrHkPw@mail.gmail.com>
- <YTkjJPCdR1VGaaVm@archlinux-ax161>
- <75a10e8b-9f11-64c4-460b-9f3ac09965e2@roeck-us.net>
- <YTkyIAevt7XOd+8j@elver.google.com> <YTmidYBdchAv/vpS@infradead.org>
- <CANpmjNNCVu8uyn=8=5_8rLeKM5t3h7-KzVg1aCJASxF8u_6tEQ@mail.gmail.com>
- <CAK8P3a1W-13f-qCykaaAiXAr+P_F+VhjsU-9Uu=kTPUeB4b26Q@mail.gmail.com>
- <CANpmjNPBdx4b7bp=reNJPMzSNetdyrk+503_1LLoxNMYwUhSHg@mail.gmail.com>
-In-Reply-To: <CANpmjNPBdx4b7bp=reNJPMzSNetdyrk+503_1LLoxNMYwUhSHg@mail.gmail.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Thu, 9 Sep 2021 09:53:35 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wiZqRFx6Oh8ZBer2THTMcjdbwZb5X3fCLBHmyuC9jPDhA@mail.gmail.com>
-Message-ID: <CAHk-=wiZqRFx6Oh8ZBer2THTMcjdbwZb5X3fCLBHmyuC9jPDhA@mail.gmail.com>
-Subject: Re: [PATCH] Enable '-Werror' by default for all kernel builds
-To: Marco Elver <elver@google.com>
-Cc: Arnd Bergmann <arnd@kernel.org>, Christoph Hellwig <hch@infradead.org>, 
- Guenter Roeck <linux@roeck-us.net>, Nathan Chancellor <nathan@kernel.org>, 
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, llvm@lists.linux.dev,
- Nick Desaulniers <ndesaulniers@google.com>,
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- linux-riscv <linux-riscv@lists.infradead.org>,
- Andrey Ryabinin <ryabinin.a.a@gmail.com>, 
- Alexander Potapenko <glider@google.com>, Dmitry Vyukov <dvyukov@google.com>, 
- Andrey Konovalov <andreyknvl@gmail.com>, kasan-dev <kasan-dev@googlegroups.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Fri, 10 Sep 2021 07:12:15 +0000
+Received: from [192.168.178.21] (91.14.161.181) by
+ AM0PR06CA0109.eurprd06.prod.outlook.com (2603:10a6:208:ab::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4500.14 via Frontend Transport; Fri, 10 Sep 2021 06:15:29 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 04d61b79-1da0-46b1-325d-08d97422638f
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2355:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BL0PR12MB235509FABAC5BEBED8312A4D83D69@BL0PR12MB2355.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1122;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: D5nkpDNYnBDj2obBGKzfaBMoIeOiDZ3uknzvtYb3luTThpDGmOO3DtWvYfkjUhTx0pTA38XZHCePnDsT5krOWOYaEt6QryhAwwqq91ruTebXvXJ0LnrXHdpVsoe07vh/WYESmlsa+R9Nwds6XUFF3P8Sq7iDA8PGw2FdLs/cj+mGKDEzqdHieUZZ0JMJqqwbC0LlhHO6TrD1p6yvnBqzvzQ2+ya8Wef9kUoPIghZNEe/VUAbaC+PPwd5iNH/+sJkVQpBcOxiJMphjV7JPP4hx+V2v4OVB3GqyDII+3hjZGu+J78rJyGFcyH+hyuLqFsRHHZjudIk+OcivB6XgEXawtqpXICds1RYBjzoxoqQgbdZYj4wEMmC3XtSx0A7nkYtILPe/iExED4RCD6HoO/F7Tu4bmYYr55f/Ge70jF4E4x8fAOcZuljTnJt/suTyALHPBEq9wdWYxtXpq2pX9tXZYzaRPHmtUJFr3bp+VPC61YaTl7M5gihaaRFkEeNFocb3wfDqcUQAJCRY+NteXyZ2MSrv7SaOtoOy0krpdNc0h67x8BjaOAZoxHEkDWTU9dT7YFtgTN3BOuU1r9L/f1rFPScXlMx/HgLEcqxQLnHG8HKRU+xz0GGz2xm+UTwHxaGoeb8cVP/536qdntJOKJfQ8ql8M7hA0F97vHXjEoDGI6/nfep9snCTuoVXUajLvThZSm2Sj0DuKoXPK6R6DhDt3VMffNZTFA5ZiMejwbmG7I=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(39860400002)(136003)(396003)(376002)(346002)(36756003)(6666004)(38100700002)(26005)(4326008)(6486002)(2616005)(31686004)(66556008)(31696002)(956004)(5660300002)(478600001)(2906002)(8936002)(8676002)(66476007)(83380400001)(186003)(66946007)(316002)(16576012)(86362001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Nzc5SVlzNXYvWDIxZTg0NXU2UHY4aVRoc0d3NWU1V3hsVFVrLzNDb1k2TzZU?=
+ =?utf-8?B?ZWFyRXdybWJpSFFFNytLWFhwd3F6V3RoSjhCOGMvdzVYOFUrUGU3Q3dNVVZo?=
+ =?utf-8?B?M0UxSlhIeXdkUlhyY0lRSmRBcGkxRjc1VW5TcTNGN0dncjN3UTR3Nk5iZEgx?=
+ =?utf-8?B?OGFNbjZyeHBQbEY4L0sxU2NBQ0FnSDhVTXU2Z2FnRUpIME9SeDRxTnVwSXlQ?=
+ =?utf-8?B?UUFmVWhTdGZrYXZMUndWc2pnNm5nYlBsRUx0SmRxdmdQK1FaNXVEVTFsdHJv?=
+ =?utf-8?B?cy90eTV4RjZRZ0JwTG9HZUpFTGZyZnQxM3lxZmhGSGFESnkzZ0d5aWNKSS9l?=
+ =?utf-8?B?a0ZTRXN2VHJ6a21ORythMHFQdkRrakgzZGc3Qmhhcy9qSGdCSmFrdGhBK1hx?=
+ =?utf-8?B?V3BCT1dlMG5aRVRRZ3JDbVpIN0gycXhuUHRyY2JnTFVkaWt2dUd1d1UvVmlL?=
+ =?utf-8?B?emJETnNrNG5yZXdIc2NJalN6L3NVMlJCTGhBYTlZdXJLUDVFaXZyQ2ozQkU1?=
+ =?utf-8?B?ZUNTZDJuYnlKbmlFb3dtYlFyREMvT2FDMW1Pbm5TOFVITXZvUTRmc1RmTlNI?=
+ =?utf-8?B?dzNTckJEVWNJV0lsQzlsLzRSbUY3Ny9JaHZuMzhTUUFRazhvcjJUejhtSVJN?=
+ =?utf-8?B?WFhaNFBtVFZVek1RMDZVaUpkdkc1blRwMlZESVhBWjM5SVYwOFMvZTBIakQ4?=
+ =?utf-8?B?NVpldmMzeHhqY3pmRTdVYWVIQXB6TnQrYXpEWTFYNXBrUUtIL0FDWEs5bG5B?=
+ =?utf-8?B?UUFLYlJNNFBvZk9EaUJwbFVJbmllTXBTNk1YdU4vTm94Q214bkVEWlBQYlor?=
+ =?utf-8?B?UEQ3M1cwaDJxeTBjRklZZGdyMXdROEZBWHVhQWFMOHNLb0h6ZVRGZkhyd2Ry?=
+ =?utf-8?B?Unhwci9YUW82V0NYZ0EyTzNwZ3lBNStIQmdNT3Z4L0hRZXBtLzZ0T0dWZTYr?=
+ =?utf-8?B?ZlJGbWZnRndlSTJ1RlgyKzdhWGZYMUpSTElwWW5tWFR6dTlpcVV2akw5UWhH?=
+ =?utf-8?B?VFE1MmVzMmFDcGx0VTk0UUp2clk0ZXl2VjdQWGVqVjkyS1Z4ZGxaZjdGZGl3?=
+ =?utf-8?B?eXJoaHR5SXVhNEw4KzdxWFhyY3ppMjlHcVhpTmtrL3A5eVIrTE9oUnJMdGpH?=
+ =?utf-8?B?S2hLOGFkZC8vRHFqbUI1Y3RTUjJSSlZDTFp5b1lUL1dSb2pkNU5remxtMmFD?=
+ =?utf-8?B?dkdkampQVU4xZ1lIYlVnRm9RbXg5dDUrZGxDNzN3RFcwbWxRQkpYTkE4eDZ6?=
+ =?utf-8?B?VnhSVUlIcldGekkyaGh1Qjc4WlA1emdyVlQ0N2VXa3ZHMkdRNEMzSkVacy9v?=
+ =?utf-8?B?Ylp1YWZlK0hJdEc3bXJKY0gxRTdUQ0VHUFlsUGZmbTZDTEVtTlVxaHA5TnJZ?=
+ =?utf-8?B?bHJCL25qTFZZVGhYdVIwZ2FTYnl2SWxhdzdPWHprTUdPY1Nic20yTCtVV0Zk?=
+ =?utf-8?B?dVh4VEhRcHNzUEJ1b29QU3lYRFVwRWptWnZyK3gwSVFBekJDQlVUNVR6MytT?=
+ =?utf-8?B?NFRESmprTSt0Z0RMc2RaNkVhLzBKOUdKNGFlb01aVzFQS2N1MVBJeXkyNDhH?=
+ =?utf-8?B?cDNrbWZrWHJ0OFRWQ3pMSHhudGJBN1h1TGJOeEFrYllNelRqdTQxNDRia2F0?=
+ =?utf-8?B?emtZeU0zNlBpVmFDOGRuek15WVVBM0ljbjZ3dS9rL1JyS3FXOWpURGpjSXNE?=
+ =?utf-8?B?NFhSbGd3dktSVmQ5MkhhVndDbWNzQnlMcFlTa0VvMVk4bi9YRUFlRkl0Sm5n?=
+ =?utf-8?Q?1dy2KTtg0VLuO+OuwyCHtAnygaby5VrWEh5R01t?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04d61b79-1da0-46b1-325d-08d97422638f
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2021 06:15:29.9923 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oAtx8RPiws1Tiu9BaHvGeOFCCX0INLy6NwQmqPkGp3RhpjY/FL+1Y1lCZROdOPqs
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2355
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,41 +128,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 9, 2021 at 4:43 AM Marco Elver <elver@google.com> wrote:
+Am 10.09.21 um 02:38 schrieb xinhui pan:
+> Direct IB pool is used for vce/vcn IB extra msg too. Increase its size
+> to AMDGPU_IB_POOL_SIZE.
 >
-> Sure, but the reality is that the real stack size is already doubled
-> for KASAN. And that should be reflected in Wframe-larger-than.
+> Signed-off-by: xinhui pan <xinhui.pan@amd.com>
 
-I don't think that's true.
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
-Quite the reverse, in fact.
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c | 8 ++------
+>   1 file changed, 2 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+> index c076a6b9a5a2..9274f32c3661 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ib.c
+> @@ -307,13 +307,9 @@ int amdgpu_ib_pool_init(struct amdgpu_device *adev)
+>   		return 0;
+>   
+>   	for (i = 0; i < AMDGPU_IB_POOL_MAX; i++) {
+> -		if (i == AMDGPU_IB_POOL_DIRECT)
+> -			size = PAGE_SIZE * 6;
+> -		else
+> -			size = AMDGPU_IB_POOL_SIZE;
+> -
+>   		r = amdgpu_sa_bo_manager_init(adev, &adev->ib_pools[i],
+> -					      size, AMDGPU_GPU_PAGE_SIZE,
+> +					      AMDGPU_IB_POOL_SIZE,
+> +					      AMDGPU_GPU_PAGE_SIZE,
+>   					      AMDGPU_GEM_DOMAIN_GTT);
+>   		if (r)
+>   			goto error;
 
-Yes, the *dynamic* stack size is doubled due to KASAN, because it will
-cause much deeper callchains.
-
-But the individual frames don't grow that much apart from compilers
-doing stupid things (ie apparently clang and KASAN_STACK), and if
-anything, the deeper dynamic call chains means that the individual
-frame size being small is even *more* important, but we do compensate
-for the deeper stacks by making THREAD_SIZE_ORDER bigger at least on
-x86.
-
-Honestly, I am not even happy with the current "2048 bytes for
-64-bit". The excuse has been that 64-bit needs more stack, but all it
-ever did was clearly to just allow people to just do bad things.
-
-Because a 1kB stack frame is horrendous even in 64-bit. That's not
-"spill some registers" kind of stack frame. That's "put a big
-structure on the stack" kind of stack frame regardless of any other
-issues.
-
-And no, "but we have 16kB of stack and we'll switch stacks on
-interrupts" is not an excuse for one single level to use up 1kB, much
-less 2kB.  Does anybody seriously believe that we don't quite normally
-have stacks that are easily tens of frames deep?
-
-Without having some true "this is the full callchain" information, the
-best we can do is just limit individual stack frames. And 2kB is
-*excessive*.
-
-                     Linus
