@@ -1,40 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1CAD408540
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Sep 2021 09:20:16 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E64040853E
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Sep 2021 09:20:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91AC76E105;
-	Mon, 13 Sep 2021 07:20:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BED976E104;
+	Mon, 13 Sep 2021 07:20:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 03D3A6EA5E;
- Fri, 10 Sep 2021 18:24:49 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C95BC6D;
- Fri, 10 Sep 2021 11:24:47 -0700 (PDT)
-Received: from [10.57.15.112] (unknown [10.57.15.112])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B2AD13F5A1;
- Fri, 10 Sep 2021 11:24:46 -0700 (PDT)
-Subject: Re: [PATCH] drm/ttm: add a WARN_ON in ttm_set_driver_manager when
- array bounds (v2)
-To: Guchun Chen <guchun.chen@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
- xinhui.pan@amd.com, alexander.deucher@amd.com
-Cc: Leslie Shi <Yuliang.Shi@amd.com>
-References: <20210910100922.12097-1-guchun.chen@amd.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Message-ID: <868cab56-607b-bcc8-e358-b2475315f862@arm.com>
-Date: Fri, 10 Sep 2021 19:24:40 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32E296EB68;
+ Sat, 11 Sep 2021 10:10:29 +0000 (UTC)
+Received: from zn.tnic (p200300ec2f1e14001f3479bbc118498e.dip0.t-ipconnect.de
+ [IPv6:2003:ec:2f1e:1400:1f34:79bb:c118:498e])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id B0AD71EC0136;
+ Sat, 11 Sep 2021 12:10:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+ t=1631355022;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+ bh=HR27o8pZq+/+uFK0n68ub/mxfkE1ISiJNZUKmCms7j8=;
+ b=I197+52KgpqBBgLvuSMSrQpQNRo13IqV+FgdnGwdscix9JqjZo6kiEOakrW3iQQS6u0uVD
+ WzR3O2CXEOh8ZykdepQmAsy+NBoupC0qZ8IdrqxtxuX9zNND17uAXyBpIh83Qsid6C7Ugn
+ zY+/3Zj7u8+b/OQlEkEddX/RceOjyqA=
+Date: Sat, 11 Sep 2021 12:10:14 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Tom Lendacky <thomas.lendacky@amd.com>
+Cc: linux-kernel@vger.kernel.org, x86@kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-s390@vger.kernel.org,
+ iommu@lists.linux-foundation.org, kvm@vger.kernel.org,
+ linux-efi@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-graphics-maintainer@vmware.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, kexec@lists.infradead.org,
+ linux-fsdevel@vger.kernel.org, Brijesh Singh <brijesh.singh@amd.com>,
+ Joerg Roedel <joro@8bytes.org>, Andi Kleen <ak@linux.intel.com>,
+ Sathyanarayanan Kuppuswamy <sathyanarayanan.kuppuswamy@linux.intel.com>,
+ Tianyu Lan <Tianyu.Lan@microsoft.com>,
+ Christoph Hellwig <hch@infradead.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>
+Subject: Re: [PATCH v3 3/8] x86/sev: Add an x86 version of cc_platform_has()
+Message-ID: <YTyAhmPf39Vqd7G9@zn.tnic>
+References: <cover.1631141919.git.thomas.lendacky@amd.com>
+ <f9951644147e27772bf4512325e8ba6472e363b7.1631141919.git.thomas.lendacky@amd.com>
 MIME-Version: 1.0
-In-Reply-To: <20210910100922.12097-1-guchun.chen@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <f9951644147e27772bf4512325e8ba6472e363b7.1631141919.git.thomas.lendacky@amd.com>
 X-Mailman-Approved-At: Mon, 13 Sep 2021 07:20:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -50,42 +67,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2021-09-10 11:09, Guchun Chen wrote:
-> Vendor will define their own memory types on top of TTM_PL_PRIV,
-> but call ttm_set_driver_manager directly without checking mem_type
-> value when setting up memory manager. So add such check to aware
-> the case when array bounds.
-> 
-> v2: lower check level to WARN_ON
-> 
-> Signed-off-by: Leslie Shi <Yuliang.Shi@amd.com>
-> Signed-off-by: Guchun Chen <guchun.chen@amd.com>
-> ---
->   include/drm/ttm/ttm_device.h | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/include/drm/ttm/ttm_device.h b/include/drm/ttm/ttm_device.h
-> index 07d722950d5b..aa79953c807c 100644
-> --- a/include/drm/ttm/ttm_device.h
-> +++ b/include/drm/ttm/ttm_device.h
-> @@ -291,6 +291,7 @@ ttm_manager_type(struct ttm_device *bdev, int mem_type)
->   static inline void ttm_set_driver_manager(struct ttm_device *bdev, int type,
->   					  struct ttm_resource_manager *manager)
->   {
-> +	WARN_ON(type >= TTM_NUM_MEM_TYPES);
+On Wed, Sep 08, 2021 at 05:58:34PM -0500, Tom Lendacky wrote:
+> diff --git a/arch/x86/kernel/cc_platform.c b/arch/x86/kernel/cc_platform.c
+> new file mode 100644
+> index 000000000000..3c9bacd3c3f3
+> --- /dev/null
+> +++ b/arch/x86/kernel/cc_platform.c
+> @@ -0,0 +1,21 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Confidential Computing Platform Capability checks
+> + *
+> + * Copyright (C) 2021 Advanced Micro Devices, Inc.
+> + *
+> + * Author: Tom Lendacky <thomas.lendacky@amd.com>
+> + */
+> +
+> +#include <linux/export.h>
+> +#include <linux/cc_platform.h>
+> +#include <linux/mem_encrypt.h>
+> +
+> +bool cc_platform_has(enum cc_attr attr)
+> +{
+> +	if (sme_me_mask)
 
-Nit: I know nothing about this code, but from the context alone it would 
-seem sensible to do
+Why are you still checking the sme_me_mask here? AFAIR, we said that
+we'll do that only when the KVM folks come with a valid use case...
 
-	if (WARN_ON(type >= TTM_NUM_MEM_TYPES))
-		return;
+> +		return amd_cc_platform_has(attr);
+> +
+> +	return false;
+> +}
+> +EXPORT_SYMBOL_GPL(cc_platform_has);
+> diff --git a/arch/x86/mm/mem_encrypt.c b/arch/x86/mm/mem_encrypt.c
+> index ff08dc463634..18fe19916bc3 100644
+> --- a/arch/x86/mm/mem_encrypt.c
+> +++ b/arch/x86/mm/mem_encrypt.c
+> @@ -20,6 +20,7 @@
+>  #include <linux/bitops.h>
+>  #include <linux/dma-mapping.h>
+>  #include <linux/virtio_config.h>
+> +#include <linux/cc_platform.h>
+>  
+>  #include <asm/tlbflush.h>
+>  #include <asm/fixmap.h>
+> @@ -389,6 +390,26 @@ bool noinstr sev_es_active(void)
+>  	return sev_status & MSR_AMD64_SEV_ES_ENABLED;
+>  }
+>  
+> +bool amd_cc_platform_has(enum cc_attr attr)
+> +{
+> +	switch (attr) {
+> +	case CC_ATTR_MEM_ENCRYPT:
+> +		return sme_me_mask != 0;
 
-to avoid making the subsequent assignment when we *know* it's invalid 
-and likely to corrupt memory.
+No need for the "!= 0"
 
-Robin.
+-- 
+Regards/Gruss,
+    Boris.
 
->   	bdev->man_drv[type] = manager;
->   }
->   
-> 
+https://people.kernel.org/tglx/notes-about-netiquette
