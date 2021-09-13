@@ -1,121 +1,112 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BAD3409736
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Sep 2021 17:24:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6A84409894
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Sep 2021 18:16:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 511366E12D;
-	Mon, 13 Sep 2021 15:24:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34F8D6E1CE;
+	Mon, 13 Sep 2021 16:16:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam08on2048.outbound.protection.outlook.com [40.107.101.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DA166E12D
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Sep 2021 15:24:41 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2047.outbound.protection.outlook.com [40.107.223.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D0606E192;
+ Mon, 13 Sep 2021 16:16:18 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DfqISHu84cPZJr98R0AECQMgQ3BhN4M2PPcsh2Td/XOTCb7hx4jtEe/FWC8K73WYj/xb6Hq2pRHiNNq3RJewCVJZpxtWiuo3FDKcxGK3MriZrRzf5Whwoxa7NAEVCJAvamShEeAdaHFW+KxlK15HrrWlwKKroUZXW/jZD2vznApY9dHB/SrUWoBjKBBKrHEImsaaPnBHaRZo32r7VDlNn4tD79MYDUkXDMZOauN3eh65QTuupOh0LURadW8tjdtKt6Go45M0Aa5YePpqq9ykcJRX7nno0rxGlFGvCh9sKVC9ZVU+XmBLPYfr8lvKkVHk/qMwyqDar+90tUkp7YQFjw==
+ b=AmZmtJAW4qSGfB9sBwryBMZWicNA2jShdFw3w4/sdCFC3aj6diM3nWZSjBHUR+WBdkuExhRhkldeu3CzA7r6gdRqdIQUPUi/AYwI2l25589W3jMMZjev4W3X3h/Kc/s2SThOMYTFqcZnSyQMNz+WMSdjOc2sbNwLtMrEWhCltSMvtoGGGfW/QBLjkx7Qrvs8U6JL6INwPtRaUajHAEHSa80KvuGbvFbbPOIg4NwflBRU8PP6WNoGpKiycSuUSXK+deEkoFUFXJyiOiZtq3jwooda7UbXrS4jqx68uegp6cIepscbaL/kYgFyl2zJSx/enCJv+M4BAoJR/UMjTGTV8Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=k9dQ0OT9Xlzop7dNZk0ehXmvrgLITZ9uc0Rc2en6Yr8=;
- b=JijRim/AjqAucLOsyae8PaGATKj0dmGZUPMTQjduz0QCOqUZ8QMFsqsLCsiqFQoKYlUdgz+qbO7wB8RTVTCl2oLQYj9hh1rZ5mTsN3SVj0yGxBhro6LpzmgOxQQLlsbW/Pzx9pPweq3swG/JwuZVW+HXu8/hU6Nht6yXEC6kuhKX9+R6vUlmxaqRKY0dlJdqAmh4EQfAvy6h0tUcaY9R4kfHR0Q3etIOWhed1+CUvx8Z5FdB1k8Sdkt/lKt6PCoSbnY6Dez3lctRjtUacqB8C0XXOMDIKjKVScARnalGsLOZv/WuiK93rIKGXynP+S1oPOiZ0UpLyih0VU0/m99Bkw==
+ bh=05Bp9OSAr7Mw/AFXatBjOIV9Wa/BYkUxXuE4s+WM7YQ=;
+ b=Dq4aLgLfDRG1jic89K8bDOKDZHRqGkHQhfvk3i5BBZBTpFfVe4JohPorlSB9m0SMOq8xET5D9TQLCDq1xVvyHWHyt3csu/yIEQpndYu0VocU0QJ55v7DH5b2wY4nn3uKQAwV2UwhM8rKBFMTuf3A5okT3Dv7VsRpp0Yf6W3KS5Ljr8TEeXZfzGaHrDzxyrC26b9UpHhIYBIuD3GMLjc0xOajxaOTX2elyPkT/MxNfCkwoBVNGI/9CvBWYBSeGCdUhJ9YDzdK89LCNJGjX1vayIlm0TSJsTgsS4XHswoSZAmJSRm2CKC05iPAFaQm34PvFwU0GzAz4/gnLDqUIP1vMQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k9dQ0OT9Xlzop7dNZk0ehXmvrgLITZ9uc0Rc2en6Yr8=;
- b=Q+Qxco4QlcM2p+yIdebkrIpVLxux/q1DX2EjhxciaHP0evjqBN2G6Dn9Qpo0yQeFkTU8V6i3UXXUonVEMu43LJK4FPFPHQ5MSm4zaKDfuMQrNaopPUiqxHXNAVDl+Fw5PE33ynDNu06xDUHNSoQMy05YN91s9sofqSwmsgVvwcM=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
- by CO6PR12MB5474.namprd12.prod.outlook.com (2603:10b6:303:139::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.16; Mon, 13 Sep
- 2021 15:24:40 +0000
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::d82f:e8c3:96ac:5465]) by CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::d82f:e8c3:96ac:5465%9]) with mapi id 15.20.4500.019; Mon, 13 Sep 2021
- 15:24:40 +0000
-Subject: Re: [PATCH] amd/display: enable panel orientation quirks
-To: Simon Ser <contact@emersion.fr>, amd-gfx@lists.freedesktop.org
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <hwentlan@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-References: <20210910153728.250947-1-contact@emersion.fr>
-From: Harry Wentland <harry.wentland@amd.com>
-Message-ID: <1a2aad48-7ecb-c6c3-9964-0ad1f8a7c36a@amd.com>
-Date: Mon, 13 Sep 2021 11:24:37 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-In-Reply-To: <20210910153728.250947-1-contact@emersion.fr>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR0101CA0004.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c00::17) To CO6PR12MB5427.namprd12.prod.outlook.com
- (2603:10b6:5:358::13)
+ bh=05Bp9OSAr7Mw/AFXatBjOIV9Wa/BYkUxXuE4s+WM7YQ=;
+ b=sWEcuB6X0YVESIFRE8L7zf06BFVAzPY1RmjvBBPfAAGeIweHsa7IRSVl5ageSKauwogLQyUsL0BEA06I2He3QNN4q0wlT15GtkTwf6OuqmYr8movG3l6l5JSZ/Flx9Xu4Rmk6Yk3H4XBqHzh5VoN5QD0LkMQSrCqRFd+mMP9nu4=
+Authentication-Results: linux-foundation.org; dkim=none (message not signed)
+ header.d=none;linux-foundation.org; dmarc=none action=none
+ header.from=amd.com;
+Received: from SA0PR12MB4430.namprd12.prod.outlook.com (2603:10b6:806:70::20)
+ by SN6PR12MB2767.namprd12.prod.outlook.com (2603:10b6:805:75::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.18; Mon, 13 Sep
+ 2021 16:16:15 +0000
+Received: from SA0PR12MB4430.namprd12.prod.outlook.com
+ ([fe80::f1aa:9adc:b4f:4d14]) by SA0PR12MB4430.namprd12.prod.outlook.com
+ ([fe80::f1aa:9adc:b4f:4d14%7]) with mapi id 15.20.4500.019; Mon, 13 Sep 2021
+ 16:16:15 +0000
+From: Alex Sierra <alex.sierra@amd.com>
+To: akpm@linux-foundation.org, Felix.Kuehling@amd.com, linux-mm@kvack.org,
+ rcampbell@nvidia.com, linux-ext4@vger.kernel.org, linux-xfs@vger.kernel.org
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, hch@lst.de,
+ jgg@nvidia.com, jglisse@redhat.com
+Subject: [PATCH v2 00/12] MEMORY_DEVICE_PUBLIC for CPU-accessible coherent
+ device memory
+Date: Mon, 13 Sep 2021 11:15:52 -0500
+Message-Id: <20210913161604.31981-1-alex.sierra@amd.com>
+X-Mailer: git-send-email 2.32.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SA9P223CA0015.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:806:26::20) To SA0PR12MB4430.namprd12.prod.outlook.com
+ (2603:10b6:806:70::20)
 MIME-Version: 1.0
-Received: from [192.168.50.3] (198.200.67.104) by
- YQBPR0101CA0004.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c00::17) with Microsoft
+Received: from alex-MS-7B09.amd.com (165.204.78.1) by
+ SA9P223CA0015.NAMP223.PROD.OUTLOOK.COM (2603:10b6:806:26::20) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4500.15 via Frontend Transport; Mon, 13 Sep 2021 15:24:39 +0000
+ 15.20.4500.14 via Frontend Transport; Mon, 13 Sep 2021 16:16:14 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c6109611-eea4-404d-5245-08d976ca9ac2
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5474:
+X-MS-Office365-Filtering-Correlation-Id: 5b19024a-a994-470e-3d4c-08d976d1cf8d
+X-MS-TrafficTypeDiagnostic: SN6PR12MB2767:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CO6PR12MB5474E3C7D63F0FB384F73F398CD99@CO6PR12MB5474.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-Microsoft-Antispam-PRVS: <SN6PR12MB27671874B9299C6B399706B0FDD99@SN6PR12MB2767.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nu5avDCciE2WqG6l8SdFOm/DjLMTJNL/4HBCQH3v36L4gEuKE6N5RlHfuBJWAQUG4hMJCJmu+h3IxRQHavuLvgtHzHx9IylcoXAd4qZYys7w3Pfs2qwTXZ+IrAfHNiQrWs6SNKSu2WC5B7F1C12vvazbBBFw5IBdcQ5YbtvnQhb5bceGgLP4aiWHboU4rNDZJ39XJlerz29dBtBcxcKM8oWgS1LSPuw0iXPqxem0a8cuHQRPXy7ZecTlAfLUF7p841aUBBt/ZCP+ElrH+caeYrVEjeGbxyZcE7tuFEI6L13NhVo1EACJ7tpn/2n0dHpfy4GOo49oEDnXYe66H0RnoxGcUVFBgfDmIcSEULXAajBwpg7cGwPBecTp1B8Ls+LXBt5UTzvgo0tH30c04/IBbSr8QbJBBczTDB9KX0YLMefIsd6wG6cqlV47R0zBawvWqwDHQZw1U/Bts2J0GwMWK/S2+Vfnx/JXszWgizrzinfe49tZCukpTvpyNxsWdQVXlqbksdXPXLdfBx7XyIhhjcUermh9Dnu3b73b5lhYALecq5BrOTf/Y0j82FROQQmGZn6kZoir0qpwEVABYiNHZkK8rCZ3ttal1G1tqPUHcpX/zwUK3LNUaRN30jZ7R897+pTC3u2NN6luSHnv080feAibUcY+npSPAM/PC6QFU5lNWY3npzn1vuEaHICT1mjwwFzqY6QW+ght+aPCmonVFjn9fD+PoGAEp2tQ4U8aYSM=
+X-Microsoft-Antispam-Message-Info: qgbvxjE2nkEUTy8bU2VmdbOaT3Yq4r59xuVT7hAaDKqHtCXp1PM5PgkAuUFFNugVeuNNiCf53DxJ5c4FHfZaIjleHGH5TztN7PKmQXEqh4Sc+iMzwVgbuVqlkyFhf+wD5Uo202xeSwTpHKBfhZ8r8AbbJ55/V2i5aKxUo1lgvq2grzO3Ah5LkA74E3gyHPYYhJNf6fI4bV00IYWVU+/ph7Vm8pnTj+3uruwQeyV4xZ0SiO67kDBaU+4ZMPpRMuISknitiSD/1w0nZ45DkbvSVeMnSRwytdYiRPtmusbcHN9LzxLcRzFtgK7CKGKGNhBknbBQGl+ocUQaX59oFH7F55JP8KcDp/TPIL8/7KeAJS7GuHiSJ9Et+PL4CG639nZRpe9NluPmMi2qp8NVGaVndj+yplcRTz/LJK+plHJFf06yuMseax6IetjzjSKixu+i5qquQEdz8nt1W9gsuKH4hpleTBDsohmF7lkXvpqXy74i2+6OQPxrqyuDHr4DM9y0ilJTC3JnvsT1Igs15RpCMqPmr4WlPWMjgW5PowmQ4b6AOzbuQhP0pbInPReHTwjAxpWinG6hksE1hml8gCVZyYXsuXUwKSRfzPHutQmo1P7Q/v3yVR4tPA8fvXhAxQJ2GUaVHGWL9rTJYNEoyoNQwfkuJr0hwoc2Wq3+0MSbxDXhRe4mOsSyfcninLz9RgWHZ1qvN/LfI2gnQup2TJ4/PA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(346002)(136003)(396003)(39860400002)(366004)(376002)(31686004)(478600001)(956004)(26005)(8936002)(53546011)(4326008)(2906002)(8676002)(186003)(66946007)(2616005)(5660300002)(66476007)(66556008)(54906003)(6486002)(316002)(31696002)(38100700002)(86362001)(83380400001)(36756003)(16576012)(44832011)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB4430.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(376002)(39860400002)(366004)(136003)(396003)(1076003)(7416002)(966005)(86362001)(66946007)(44832011)(478600001)(2616005)(6666004)(6486002)(52116002)(7696005)(956004)(5660300002)(316002)(83380400001)(4326008)(38350700002)(38100700002)(8676002)(66556008)(66476007)(2906002)(186003)(26005)(36756003)(8936002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dzlldmtXMC9zMmx3bld6Q1FlY2NPZG12TjFOMkhJZE0xcHhIZ2ZuN1dTZ09U?=
- =?utf-8?B?RmdHRVF1N0NDS1Ereit6NEtNRnFUd1VOMHBubVNzQjJUUDgwN3JqRGZvdktH?=
- =?utf-8?B?dEhlRlV3M0R2aU5icWRSMVNudGw0SFhPaTFoWTFWZENRbUZMUEl5cnBQYmpJ?=
- =?utf-8?B?TFlVc0VyK05kVHBaa0FiWGJpQkphbUZyR0RmcGZYSnZxMEJhSVpXYTl3TXhq?=
- =?utf-8?B?UW0xUzFtUHdiMk1jeTIvWStTK2RaUGJ2dDVheHQvSHBlY3hURmVOV2UwRVNO?=
- =?utf-8?B?eGh5RWFud1hHOC9Nc0pPTGV2cHdWdzI2VUZYWHFoU0FJME42bG0rckRyRjRG?=
- =?utf-8?B?bEJUZldGRWl6UkY3QWFtZFNTWk5YRnFOaGhZdGVwRjhVeW03Q1ljUGhJTk04?=
- =?utf-8?B?V2szUFN1RFQxR0xJVzNZUHVOMVJhSS9EQ0w3am9sTWdKOFRIYWRROG9DNlBE?=
- =?utf-8?B?Q1NBTE96Umg4OEhwOTg1cXlZandiMHZQY1NtNG8xMDBrcTZDT2t2ZnlzbXJM?=
- =?utf-8?B?ZlZqYUJBUEh1NGlKOEpseGdzcEt1a0VzUjMzWUFFek1WYkJMZFFJQkNvL0RY?=
- =?utf-8?B?bkVlZEFUWUtGS2JRK0F0c2pzbGFUQlZ0N2NVQW1ZT0ZBczNQUzVnK2x6cU5P?=
- =?utf-8?B?VlFXZ1ZaK0lqdGhPNWRCTFY1S2ljQW9SQ1pieWp2M0hyTzdnMkdveTFTYjBZ?=
- =?utf-8?B?c3oxREV1K0toa2R3SXk1MXhXdk9wTnlwSGM1dEZZR1dXR0l5cVRjVmo4QThY?=
- =?utf-8?B?N1VtdEVHb1BjdndWNnhyRUQyOGdXNEpUNGtaM1Fuck1TcUVnWHpaOC9uWXE1?=
- =?utf-8?B?UThDMkU0SDc2bHdsb1dHVlpNd2NWb1I2c3U1TlpKYTdJaVZlWjVkT3BxWGs2?=
- =?utf-8?B?UVg0VFpVemFVZmhFYU1yeStnWW1UTjhiRW9HZG9CVUdlaS8vSkFrQWV2MEdi?=
- =?utf-8?B?TGN4UmpNQlFqcGFBbFNuTVJNWGUrV09MOWVvNG9mbkhtNUluRkoxSEcvLzJ4?=
- =?utf-8?B?RTcreXc0TFBxYlBrdXhJdXJweUFiVG1CTlRMaUZPZEZpeHRpNVBwbUE2Mm1u?=
- =?utf-8?B?NG4zc0FsNDJQcnZSK0dvdTB4eXhqczI4Q2c2aFNDUnhSeWdZZVozMVljVWJr?=
- =?utf-8?B?djE3UDNPaE44WklQcHlOUy9lWHN3cDJjQXFXbXdkSWc3d3hmS1BOK2E4VmN2?=
- =?utf-8?B?OUtYclMwRFVLYW1HVXBiR0ZOeTZIb2NjaW9mTTdlVGFsNUxxNEJ1c1Q4U05I?=
- =?utf-8?B?anhPaTVZeHVMWmtleHYyNTlIMTdaUWxqdlZNT3M3elpZc3EyajBWL0JYRGhj?=
- =?utf-8?B?eDg0SE9KYktXZ0grZ2lKNUlUZjhtdHVYbE9qcmMwNWZpUzRHRDNnbDZTaUc2?=
- =?utf-8?B?RmFVd0RhOHoyOVI1QVhPRlN3SG8vMkZkNStmRk8rTCtwNFg5dFYyT0dGdWF5?=
- =?utf-8?B?ZnovRFUyRmE3Z2srZlNBdzdyUXlNV3ltbEpxM2dxR3VKZUV6dGlUdmcrSzFq?=
- =?utf-8?B?WHE4ampRd1BBUWhvc3pOZEpFVkJ4SXU5cERKSzFncVJsN1RGTWxUNlF1d2lY?=
- =?utf-8?B?a0MzbVI2dkxMNlhkamFMcEYxZjV6b0xWbDkrQW83N25rOSszWnZXQ2NxQjk3?=
- =?utf-8?B?NUtzU1FyUjlEQXluT1p6UDdRRjBaNmlwWmVwUWZoQmluY1QveHF0UmZlVXl4?=
- =?utf-8?B?V0JPdVNOaG5nbndDaVoyWDRBd3V3L05HVndTMUs5TTZucC9DL0xGNmI0VXZX?=
- =?utf-8?Q?gEVV8s+K7oyMNeJVcqLrWxrgKjp78rlpKBcWqeE?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?B+eJb54NG5Bh4VFDstm4mySQSejzvYFDcjRqUvEsBwyUJ+x4To2d7NC3VWSD?=
+ =?us-ascii?Q?JiUrM47vfaYBDVTvsgemb2OB8mEvwP6eNgzYCkr470NjyQWBg9tt4LhyAyw4?=
+ =?us-ascii?Q?y84qjXrQZHZSUQDh7umeq9xLe75GUHkvNDjl6gn97hMztNd/jeGXI34VOFQT?=
+ =?us-ascii?Q?up3ZgU2U2vxq3xrwsMtAVJ5cK1Gj11Q1By0ZGF4TcckA//2XY0h5kPJDIZIe?=
+ =?us-ascii?Q?qpdKY2XQPAEa74T3uvswg0ZoeBt9ezqqNNxVjYOIpHWGsw5XMMtRk6cPIpxB?=
+ =?us-ascii?Q?+ZfNL7qxaP2V0B0Nlw/GdC1DeqKsXnfK/GPLAckfxlnWSGoELc/SEdrOcJEs?=
+ =?us-ascii?Q?bbeWmfITXXY+d0Im+L3BmX3Ng2UFg3jUhD130chorc+qifYYinrbi67Ohs+b?=
+ =?us-ascii?Q?CsA9U/gRHoplS/oPWqH0Y1Nv+Bo+Km/7rCs3KUnO3YIpL7GNW2tO81gJ+vZP?=
+ =?us-ascii?Q?gwCi5hSZv1BmEvm5KyZRCAwayUsb+Cj2jQS3MUyY5p75qnDS+Jtxy+S+P7UZ?=
+ =?us-ascii?Q?M4bYayZdykOAbT477vF8hgkyQI8osqQF6ksBk/hNZXFiaMEv6utBIIZFTx5J?=
+ =?us-ascii?Q?2k8eFbigb27rZnTLuhoheu0VPVnkcsko3tnK1/YT8PWAHx9bR60oDkK3pcA6?=
+ =?us-ascii?Q?f7chZ9ZZrfMjouotOH/IcBTBlAYp4rH8jiIzrCeUEXJkTY6jgxmVwA0nY9u0?=
+ =?us-ascii?Q?/fNkpoZ9fSowx2X+SPk1dCoH1Q8E4VKndSEEskwvsUQordyNPXl58aoZ15Mw?=
+ =?us-ascii?Q?ulUCd9OQk7BQDgSZbPxA6sER314sssJzZgYO2mTfp0lUsg6YkpJxm0Z7Oeto?=
+ =?us-ascii?Q?UaaDE00BS7OlLaKQLcafM7oXidpGdi0HJ8u4onBdK6C5magbZ4haP69633RG?=
+ =?us-ascii?Q?TL36WZtiMfjGn48I2HWxTAwFypNN2/Ks+qiCSYLvuj6pQ2h8hVimX36QOpuU?=
+ =?us-ascii?Q?C5wgMUKrKVcfWBeDJKIqdmVF9wpqqkv0OUUaLz5mK2AjIIn3KXikEfjrh47s?=
+ =?us-ascii?Q?7Tem5+5TLNGeHEd7v74iuuKZV26dZMVfJ0ZK5VktoMoDQ0ILyGMr/VSqruJr?=
+ =?us-ascii?Q?vsH7K+fgQhBVrFCNJM0sL8gUoUlw/mxDUelbj/IqY/yATyHLnH5ktbdVrJFQ?=
+ =?us-ascii?Q?DGIMY2XhgdRUf9ndbU8NHvyYNF/Bwlpr7vDNmG92L1PlalGtjRqTHe31zGRN?=
+ =?us-ascii?Q?yD/0jLSimzTThYylrxLfNQbMeXgbl6RtOM44KAW9ai8EvNmh9AK7sgmeyhfx?=
+ =?us-ascii?Q?KTq70qNg2E06f16EkKNtUhtmnLC8qCIXPWMToYsV+YtQgzQjH4fbdnv4z7HZ?=
+ =?us-ascii?Q?aAmnhNsF/AqXjR0iP6W87gLZ?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6109611-eea4-404d-5245-08d976ca9ac2
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b19024a-a994-470e-3d4c-08d976d1cf8d
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB4430.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2021 15:24:40.3564 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2021 16:16:15.4079 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RYhr7spJoCSyZQjkhJbb7iQsqRP9OSMP84B4p/zEoF7eVM23Q/IinXNDJ8qxvOYIhBI6X7at+OVQ27ROqbqUIg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5474
+X-MS-Exchange-CrossTenant-UserPrincipalName: JlB6CdFxitlr0yCZCU2+MFezIn2ZPmNtphte5yoG2kug37UISFvhDNhl33oZ/kMcZLbQTTYMz2FeSu9YXOLoyA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2767
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,73 +121,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2021-09-10 11:37 a.m., Simon Ser wrote:
-> This patch allows panel orientation quirks from DRM core to be
-> used. They attach a DRM connector property "panel orientation"
-> which indicates in which direction the panel has been mounted.
-> Some machines have the internal screen mounted with a rotation.
-> 
-> Since the panel orientation quirks need the native mode from the
-> EDID, check for it in amdgpu_dm_connector_ddc_get_modes.
-> 
-> Signed-off-by: Simon Ser <contact@emersion.fr>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Harry Wentland <hwentlan@amd.com>
-> Cc: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+v1:
+AMD is building a system architecture for the Frontier supercomputer
+with a coherent interconnect between CPUs and GPUs. This hardware
+architecture allows the CPUs to coherently access GPU device memory.
+We have hardware in our labs and we are working with our partner HPE on
+the BIOS, firmware and software for delivery to the DOE.
 
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+The system BIOS advertises the GPU device memory (aka VRAM) as SPM
+(special purpose memory) in the UEFI system address map. The amdgpu
+driver registers the memory with devmap as MEMORY_DEVICE_PUBLIC using
+devm_memremap_pages.
 
-Harry
+This patch series adds MEMORY_DEVICE_PUBLIC, which is similar to
+MEMORY_DEVICE_GENERIC in that it can be mapped for CPU access, but adds
+support for migrating this memory similar to MEMORY_DEVICE_PRIVATE. We
+also included and updated two patches from Ralph Campbell (Nvidia),
+which change ZONE_DEVICE reference counting as requested in previous
+reviews of this patch series (see https://patchwork.freedesktop.org/series/90706/).
+Finally, we extended hmm_test to cover migration of MEMORY_DEVICE_PUBLIC.
 
-> ---
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 53363728dbbd..a420602f1794 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -7680,6 +7680,32 @@ static void amdgpu_dm_connector_add_common_modes(struct drm_encoder *encoder,
->  	}
->  }
->  
-> +static void amdgpu_set_panel_orientation(struct drm_connector *connector)
-> +{
-> +	struct drm_encoder *encoder;
-> +	struct amdgpu_encoder *amdgpu_encoder;
-> +	const struct drm_display_mode *native_mode;
-> +
-> +	if (connector->connector_type != DRM_MODE_CONNECTOR_eDP &&
-> +	    connector->connector_type != DRM_MODE_CONNECTOR_LVDS)
-> +		return;
-> +
-> +	encoder = amdgpu_dm_connector_to_encoder(connector);
-> +	if (!encoder)
-> +		return;
-> +
-> +	amdgpu_encoder = to_amdgpu_encoder(encoder);
-> +
-> +	native_mode = &amdgpu_encoder->native_mode;
-> +	if (native_mode->hdisplay == 0 || native_mode->vdisplay == 0)
-> +		return;
-> +
-> +	drm_connector_set_panel_orientation_with_quirk(connector,
-> +						       DRM_MODE_PANEL_ORIENTATION_UNKNOWN,
-> +						       native_mode->hdisplay,
-> +						       native_mode->vdisplay);
-> +}
-> +
->  static void amdgpu_dm_connector_ddc_get_modes(struct drm_connector *connector,
->  					      struct edid *edid)
->  {
-> @@ -7708,6 +7734,8 @@ static void amdgpu_dm_connector_ddc_get_modes(struct drm_connector *connector,
->  		 * restored here.
->  		 */
->  		amdgpu_dm_update_freesync_caps(connector, edid);
-> +
-> +		amdgpu_set_panel_orientation(connector);
->  	} else {
->  		amdgpu_dm_connector->num_modes = 0;
->  	}
-> 
+This work is based on HMM and our SVM memory manager, which has landed
+in Linux 5.14 recently.
+
+v2:
+Major changes on this version:
+Fold patches: 'mm: call pgmap->ops->page_free for DEVICE_PUBLIC' and
+'mm: add public type support to migrate_vma helpers' into 'mm: add
+zone device public type memory support'
+
+Condition added at migrate_vma_collect_pmd, for migrations from
+device public pages. Making sure pages are from device zone and with
+the proper MIGRATE_VMA_SELECT_DEVICE_PUBLIC flag.
+Patch: 'mm: add device public vma selection for memory migration'
+
+Fix logic in 'drm/amdkfd: add SPM support for SVM' to detect error in
+both DEVICE_PRIVATE and DEVICE_PUBLIC.
+
+Minor changes: 
+Swap patch order 03 and 04.
+
+Addings
+Add VM_BUG_ON_PAGE(page_ref_count(page), page) to patch 'drm/amdkfd:
+ref count init for device pages', to make sure page hasn't been used
+
+Alex Sierra (10):
+  mm: add zone device public type memory support
+  mm: add device public vma selection for memory migration
+  drm/amdkfd: ref count init for device pages
+  drm/amdkfd: add SPM support for SVM
+  drm/amdkfd: public type as sys mem on migration to ram
+  lib: test_hmm add ioctl to get zone device type
+  lib: test_hmm add module param for zone device type
+  lib: add support for device public type in test_hmm
+  tools: update hmm-test to support device public type
+  tools: update test_hmm script to support SP config
+
+Ralph Campbell (2):
+  ext4/xfs: add page refcount helper
+  mm: remove extra ZONE_DEVICE struct page refcount
+
+ arch/powerpc/kvm/book3s_hv_uvmem.c       |   2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |  40 ++--
+ drivers/gpu/drm/nouveau/nouveau_dmem.c   |   2 +-
+ fs/dax.c                                 |   8 +-
+ fs/ext4/inode.c                          |   5 +-
+ fs/fuse/dax.c                            |   4 +-
+ fs/xfs/xfs_file.c                        |   4 +-
+ include/linux/dax.h                      |  10 +
+ include/linux/memremap.h                 |  15 +-
+ include/linux/migrate.h                  |   1 +
+ include/linux/mm.h                       |  19 +-
+ lib/test_hmm.c                           | 247 +++++++++++++++--------
+ lib/test_hmm_uapi.h                      |  16 ++
+ mm/internal.h                            |   8 +
+ mm/memcontrol.c                          |   6 +-
+ mm/memory-failure.c                      |   6 +-
+ mm/memremap.c                            |  71 ++-----
+ mm/migrate.c                             |  33 +--
+ mm/page_alloc.c                          |   3 +
+ mm/swap.c                                |  45 +----
+ tools/testing/selftests/vm/hmm-tests.c   | 142 +++++++++++--
+ tools/testing/selftests/vm/test_hmm.sh   |  20 +-
+ 22 files changed, 451 insertions(+), 256 deletions(-)
+
+-- 
+2.32.0
 
