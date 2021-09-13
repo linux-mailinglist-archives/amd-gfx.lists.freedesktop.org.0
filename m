@@ -2,30 +2,30 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE2A94092DB
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Sep 2021 16:15:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 761B0409347
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Sep 2021 16:19:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F26B6E0EC;
-	Mon, 13 Sep 2021 14:15:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF7B66E101;
+	Mon, 13 Sep 2021 14:19:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.180])
- by gabe.freedesktop.org (Postfix) with ESMTP id 299506E0EC
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Sep 2021 14:15:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0E5166E101
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Sep 2021 14:19:48 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by netline-mail3.netline.ch (Postfix) with ESMTP id 5CEE920201C;
- Mon, 13 Sep 2021 16:15:48 +0200 (CEST)
+ by netline-mail3.netline.ch (Postfix) with ESMTP id 47F4220201C;
+ Mon, 13 Sep 2021 16:19:47 +0200 (CEST)
 X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
 Received: from netline-mail3.netline.ch ([127.0.0.1])
  by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id q5L_N3orHEej; Mon, 13 Sep 2021 16:15:48 +0200 (CEST)
+ with LMTP id s3E15aBkAvaE; Mon, 13 Sep 2021 16:19:46 +0200 (CEST)
 Received: from kaveri (24.99.2.85.dynamic.wline.res.cust.swisscom.ch
  [85.2.99.24])
- by netline-mail3.netline.ch (Postfix) with ESMTPA id 0F9BF20201A;
- Mon, 13 Sep 2021 16:15:48 +0200 (CEST)
+ by netline-mail3.netline.ch (Postfix) with ESMTPA id 93C9420201A;
+ Mon, 13 Sep 2021 16:19:46 +0200 (CEST)
 Received: from daenzer by kaveri with local (Exim 4.95-RC2)
- (envelope-from <michel@daenzer.net>) id 1mPmkN-007u9T-I1;
- Mon, 13 Sep 2021 16:15:47 +0200
+ (envelope-from <michel@daenzer.net>) id 1mPmoE-007uA4-85;
+ Mon, 13 Sep 2021 16:19:46 +0200
 From: =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>
 To: Felix Kuehling <Felix.Kuehling@amd.com>,
  Alex Deucher <alexander.deucher@amd.com>,
@@ -34,8 +34,8 @@ To: Felix Kuehling <Felix.Kuehling@amd.com>,
 Cc: Lyude Paul <lyude@redhat.com>,
 	amd-gfx@lists.freedesktop.org
 Subject: [PATCH] drm/amdkfd: Cast atomic64_read return value
-Date: Mon, 13 Sep 2021 16:15:47 +0200
-Message-Id: <20210913141547.1884136-1-michel@daenzer.net>
+Date: Mon, 13 Sep 2021 16:19:46 +0200
+Message-Id: <20210913141946.1884173-1-michel@daenzer.net>
 X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
