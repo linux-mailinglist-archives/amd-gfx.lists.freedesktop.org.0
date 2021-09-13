@@ -1,98 +1,120 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE48E408740
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Sep 2021 10:43:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B4AB40876E
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Sep 2021 10:48:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38A2D6EC95;
-	Mon, 13 Sep 2021 08:43:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 543086E176;
+	Mon, 13 Sep 2021 08:48:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2071.outbound.protection.outlook.com [40.107.244.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B1076EC93
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Sep 2021 08:43:16 +0000 (UTC)
+ (mail-mw2nam12on2042.outbound.protection.outlook.com [40.107.244.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC5876EC99
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Sep 2021 08:48:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PeLuVIQOfOohsSk/9YrDb7gDoJNdCeNRyQP4fnht7LWqPDaEYxWi0/6vvBRrZNJf3XRQijakqz5oEjWnhV17EFBE65tbeRipW8h83KA/HgRT4ZH6GEahJ2z34wCMLUrrC5aO9mXPbWv95vnwEaUbq3n9EE/nyg7FEhRbt9nCZMToJ9e5ylCIPMUGbNAADtAegOTdIqM8CTR5vLFnp5rAGPsS3Lh67P/pVlHNjCVwuoLtu0F5EjjFODqIlJ1GYRm73d7Do2Y12LU72XzFE32i0cpessn+0r+DMBg/P0qGdFB+1EKHhYOv5uShBRaHSJAYtFC3wkvPgoy6OHEXjZRYEQ==
+ b=H1R/JA8nLCNk9WCj37VJcrc03ZO3xiKDj1ppY2uIcaCBjvJ3CUnPfRbd+4+0Za6BjFvmoakPzVToJalcgUJSYujymfzB63QCXm8zBPBwFCzdPY1kKE4Ug8umLDGPgillKJ4fDKamqcFDBDO7Qbww9qjEBqlf8C2mRgePDe9rmD/I/xFcCses5uxTcrmoCoRuJ3EshX+WjkrNvSIh4s9i0XHmncexHMxIb+TZKO8tRAlJV6Cvur1AtDije/HXTTlteNqVR22+EEuBdzQA9x4+C9ElviVm0QfvxJ2vl4CP+N4UG2Zju9EP77fKBkh3fc0FQoxMIjsAaxu9p7BV8ZHrFw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=Tw9aHy7Wcag+Tv8o7JVSaM/WqSgqcNQctdTUlu2fNPQ=;
- b=WqUGJOr/hMiUIYPNJO0pIyrcJ5ye5cTHKYpnr8BSCsRUJuFqR88KMy2+PQokXH927SBJbi0q2c7UBI6bwRhkADGsMDTcUarn/n2XsR3WlWjVwv4YjyJrTYo7+ZYXP6iZHJJISFKZyXvs1ljEPuDLFlY4pyKmfMrDtr7eh+q9Fq40ShcOjQ53o0a466mQMTvduArf6GauupN7tAV1F9hu181cC0wiPv3XH48/g6F/mIZwfOmnp1SwXN4VsLRTgnpjODASHc1ThhrqcN9lxmGIhzbbBNU6qMQkKfj1BiUX6f9JW7AlvNgdGddN51/30IsNhXyuLwPNDLd6cdGVOdl5eQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=jOkdgb7gMw2y8m8eQ5vym+J39ARobjszh5DXLHZNY7w=;
+ b=PpePrifligueZWOG6LPwCQUviJSItsMxittf9k4okWsf0oErzVKrmICY4odc8Kr2dqWpGMXoSkjHR6ims7DzuOPZDX4czBtc45awtL+vv/IFKbo4VeVQA0jtZoJ9AkFVEiYY2iKsMjA89O/OkFF6ZbVEuJP2bOKI632NCoAelfnKYt817EyytN14oRlATw+GV7Wy1C7Kd7aBkUIL76Y7P5ijfH1qcHTKu2sYO1UNhU1H0l5XyQLtjYfReuo4FvWUSpzsbcIIxC0AlZfrRx64XRs0NBNlrjhNMyS3RCxufphY7/hZinPbLtY6Udie0ZXWdR3mtMAUuG3NJ4gjafz86g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Tw9aHy7Wcag+Tv8o7JVSaM/WqSgqcNQctdTUlu2fNPQ=;
- b=qG4SrUGpj4QbYQtksMLHeWZ+Dbt+sLsHKUxwIbDns85wZUsdk7XqW9cE4yEpQoNXDxN2vGMwUSN2x8ayjIpCSocGYW+TNwqLgPoocT/rQP9SWX4dmXh+fDiiFw/7RArmQ7k8JeAe0UudDd7uREZK8dryzThqMzDbGv5CZkIqKxI=
-Received: from DM5PR12CA0064.namprd12.prod.outlook.com (2603:10b6:3:103::26)
- by CH2PR12MB5562.namprd12.prod.outlook.com (2603:10b6:610:67::17) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=jOkdgb7gMw2y8m8eQ5vym+J39ARobjszh5DXLHZNY7w=;
+ b=HvQ1UmgGY6chy7mSpoF5dr5sM0jOwMGPKmpC48UKXJ/JyEOzJ45AHI8I3RN1Zf5+MqNWQCph9BLmPFt1jsCuc8GMcxmKYt7aUkJhgljht4vYNIcjrNWtbrJ4v3ud06051F0V2NwuAIExxUgmW+BXRljtAWA7FnhCOnPDIhMBKFc=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by MN2PR12MB3966.namprd12.prod.outlook.com (2603:10b6:208:165::18)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.16; Mon, 13 Sep
- 2021 08:43:14 +0000
-Received: from DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:103:cafe::33) by DM5PR12CA0064.outlook.office365.com
- (2603:10b6:3:103::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4500.14 via Frontend
- Transport; Mon, 13 Sep 2021 08:43:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT048.mail.protection.outlook.com (10.13.173.114) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4500.14 via Frontend Transport; Mon, 13 Sep 2021 08:43:14 +0000
-Received: from pp-server-two.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Mon, 13 Sep
- 2021 03:43:11 -0500
-From: xinhui pan <xinhui.pan@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <leo.liu@amd.com>, <James.Zhu@amd.com>, xinhui pan <xinhui.pan@amd.com>
-Subject: [PATCH v4 3/3] drm/amdgpu: VCN avoid memory allocation during IB test
-Date: Mon, 13 Sep 2021 16:42:53 +0800
-Message-ID: <20210913084253.241955-3-xinhui.pan@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210913084253.241955-1-xinhui.pan@amd.com>
+ 2021 08:48:28 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::dce2:96e5:aba2:66fe]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::dce2:96e5:aba2:66fe%6]) with mapi id 15.20.4500.018; Mon, 13 Sep 2021
+ 08:48:28 +0000
+Subject: Re: [PATCH v4 1/3] drm/amdgpu: UVD avoid memory allocation during IB
+ test
+To: xinhui pan <xinhui.pan@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com, leo.liu@amd.com, James.Zhu@amd.com
 References: <20210913084253.241955-1-xinhui.pan@amd.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <b080e258-9e2e-d3ba-9676-7f2ac69265a7@amd.com>
+Date: Mon, 13 Sep 2021 10:48:23 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+In-Reply-To: <20210913084253.241955-1-xinhui.pan@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
+Content-Language: en-US
+X-ClientProxiedBy: AM4PR07CA0024.eurprd07.prod.outlook.com
+ (2603:10a6:205:1::37) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
+MIME-Version: 1.0
+Received: from [192.168.178.21] (91.14.161.181) by
+ AM4PR07CA0024.eurprd07.prod.outlook.com (2603:10a6:205:1::37) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4523.9 via Frontend Transport; Mon, 13 Sep 2021 08:48:26 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 051a78fe-d59c-4e91-e32e-08d976928672
-X-MS-TrafficTypeDiagnostic: CH2PR12MB5562:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB5562C01DABCCFF9A62B447D487D99@CH2PR12MB5562.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:181;
+X-MS-Office365-Filtering-Correlation-Id: 7f2188ca-f55d-45fe-86ce-08d97693412b
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3966:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3966284A3954B6D39840E68C83D99@MN2PR12MB3966.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LWiKICRx3kFd7Et/2XQ7m3heY4WHqtZjXZzlPdzSbzVb6Bxv4dIBIwONtA7xYnEGtu43SgssVZppJq0IuK2jIVqHolmKQV/lOFQfrWRpKUWADr8VuGpuIhV5KPGHgaQETgP79pOxFbIP4m2VnniRhGjHxESp3IYBLjy9lebtCBV/Qpkq4f3yGnNQG7e0598/K9+TV4auGgBUlMgE8CAIH5oAI7kDj3ayUrgyKNWZrPGVeF6nFCtGVYIqVQ/vMHDQ7cWMrI/tmfRirbcjquIe0/WlKYLKAsLdgUgwKJXCBoVOhjhsgxBM5TMRRmizfL7f3DGXpinFsmfgWPj7EdjLB2uz3j9Xd5qXQo7uf2iguJNlZSHHbKJMOcs1m6yAoy7w5Xx0WbVNV3CZtusx1Wsi4UR94F0Hc6I1HRy8If+45cP/k2NKBHwCqHeMhAGAk1458UKlE1rKdwlhC35Ah5Uf9pG5DlN52ZHmpqiyw7QWHYMnTebDiX9LlWhbLtgDFl34G28/KBVLJbHqL72shRais6LWup+U1eibZVuOgFHhfRGTfYuBELrcTqr+UqKkuX2WIpTN/U07a372S8LCkM3q0DNcvjrU+Ep6ck4Uoep1hmhrdAp/ObOA4mdBntR0qlcAp6MSeljJQa4geQJg4Z4mfCJa4lrOrVD0Q3tkv/Z2WO8Z94iPgl4EM9Mlf80MImb9jOcgn/ydgsLAGxTWV12DUyakeXjy9bUHRgGkG+apJO4=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(346002)(376002)(396003)(136003)(39860400002)(36840700001)(46966006)(2616005)(1076003)(2906002)(186003)(336012)(16526019)(54906003)(316002)(426003)(36756003)(47076005)(356005)(478600001)(82740400003)(5660300002)(8676002)(4326008)(70206006)(8936002)(81166007)(6916009)(86362001)(82310400003)(36860700001)(6666004)(7696005)(70586007)(83380400001)(26005)(36900700001);
+X-Microsoft-Antispam-Message-Info: ftCCXQKSA++RilGWWeSAQuRFbDHEpwQea9bsFP1WE1Pf/7I1jbwUzrXvq5LxNVs3t2FdMQgUlfIBiW5jeKl3j7PoqUDyaMzisj1cacf2SIqSwg26UKG4/UmO0zaY9drmWAeA4MN5Mn2U/EC93Ht4au0vzkQxKqPOZodQ6qdHKMvjit5TYEbxmhZgjMjZevp4yTOBaum2H3T018b/duCtp8HXEA7p/xP68jsbyZk41GFbxIHSkXI2/bdl9nbPayLMggWZTR2ZZKJGE3m+fKxhb7QdTUAGL5R1DQaMZXCQ4hZ7sDFJ/PuTWv52sm6XhfwQrGQGVlaidrVJwqYVeSxeg9RNcln7O1GrG8TFqYLSj/gqnvW8NeTZn0gKUOLm/zKTuMJk+6W6BPe38swFH8ZQ5xM2fhhawnwIb89VpdQvHM9zLahW94l6uMWfd3erSIB8zLlPUh29+q6UVDVO+3MI5GxCrg5r1C7CKSCJl9T55GcU70gs85I+OoxxvV+e8V104kGL+SbDWdYEhkxcmSMyyfj/XO6gAfofvn3inB1E6ewlpLTpJ+ZtE1Azl9pt+OwjWPcwbHwJdZes3E0OgvmIbu+inKVP7a6iTx219HDqVU21YpnmiOJ5JPFH877GdyPoDrEoWRzw0WR4DqGCZbUj2AsQQ6mfUXyVbMBhe9dOKCm41j2WNxJm1UbXagOBpp84DZ1eUrvwPxGlgywUJsT2E9YCxy1afEA7deotFr3Q25s=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(366004)(396003)(39860400002)(136003)(376002)(31686004)(956004)(2616005)(38100700002)(186003)(2906002)(5660300002)(83380400001)(31696002)(4326008)(66476007)(66556008)(316002)(36756003)(66946007)(66574015)(16576012)(6486002)(6666004)(8676002)(8936002)(478600001)(86362001)(26005)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZjB0cW9mUFk3bVF2WGlrSElpbFhEdWV0OEd6RjdIS2RDUlV5MnNabFl2cUkr?=
+ =?utf-8?B?bndGOHdjaENYZElZS1ZEQlF0bzdvK3lkRHNVZjRJbHZ6dHRHR3MvaWd2dVpt?=
+ =?utf-8?B?amFIT2FuV1NQWmRIRGZDdk9tc2xsZXoxU1NIc0l2bEZoWkdydUhseGJwekFj?=
+ =?utf-8?B?ZlA5WXlTeGJDK1E2VXNoaHhPSUxKanB4bVJSVzlUaC9GV0ZscmF3dmF2TWNQ?=
+ =?utf-8?B?b2xncm10d2p0ZWJ0Y3VLaW4xVitoUkRzYWFKMmcyRFA3QzgwelZnOUdnNWNv?=
+ =?utf-8?B?UEsvclh0WmlOTkhoVkloK0RQaG01dnB4TUliUlo5d3NLc1Z4czNmQ05QaFdF?=
+ =?utf-8?B?NFJZWHBSY2lJWHZkSjJIZEsvMUpMY0Y4K1VYU1N5aUQ2blQyYkFFYkhIZjNG?=
+ =?utf-8?B?Y3JSaUZOVEFja3pwOWx1eElmeEE1d3JvMjBCY3V1ZzJWN1NhN01VQ2ZPVktR?=
+ =?utf-8?B?VU1pZUVkNHM1Y2l6ZWEvMUxiOWNOVWcwZmpMcTB3UW0ybHhLRTQ4eFhMc0hC?=
+ =?utf-8?B?a2J6NVJNQnFJMGxDTjhWTGVEUnFoUEZMTVFUdHpERlBaek1VWVRXU0cxMUpI?=
+ =?utf-8?B?T0FVNS9yZTJtOUZCb2lqTEVSMkVUSC8rZjF5cGRsNWw3ZzlhUlhqdjNhNmNy?=
+ =?utf-8?B?TkxmWG05ZjNXYk5LMnhOczdoMlRHSm0rRHhsc2NjM3dtMm45bnl1Ym9INTZ0?=
+ =?utf-8?B?ajJLUkVJRmpBeVp4WktqZGg0aXJhUmZ4dm0rMENwK3JZWlM2ZDhUcElMblNR?=
+ =?utf-8?B?TzNRNVlUS0N6Vi90YmU5dUJZSWhac0VOMmg4aDFGbXU5SWhDQ2FRb2k5QTdG?=
+ =?utf-8?B?YjhQd2dYSjFpdzJ4cW9LbnMveHgvZkZsMWdQZGMrcjNFZzhiQTZqdW85bm5y?=
+ =?utf-8?B?YlliK0EvUmwwU1VCL0oxdjUxS0ZuT3V0QlplemtIN3pud1M1akRoTXNSQ3l3?=
+ =?utf-8?B?bTBuYVRqWW9sK1dERURGTEdpUzhpdlhKbG1naUNLVEdqYnJWaUpkUTFDakU0?=
+ =?utf-8?B?NkVZVTVtSjRHZnkxNXpIVjRMS3NGMlErRU1wK2paWDdZbnoyckZYbFRJWURB?=
+ =?utf-8?B?bCtmWWM0NnZKQ1IzRUNZTnJ4K0dMZ2Q0Z0QwYVF1MjFUWWpkZ1NwY1JUVW9E?=
+ =?utf-8?B?Y3phNXdybkRhNE5MckNZSzRKQlFXaU1ZVjV4UUtjQ2wreWIzOFNmaXRBdEFC?=
+ =?utf-8?B?VW1KK1FvdytmYUJSblEyYUtBU3dFcmppOXNqNk5wMXluR3RkcThsSWc1bG1j?=
+ =?utf-8?B?bE5uQ29DMnhzU0lFa09BNmF4dFV0alZJOXR2bVQvMUFhQkltS3djL3hFaksy?=
+ =?utf-8?B?VW5rcHRrSlJpeWF1dUJJSjIzZ2JtSWhzSEwxZFo2My8yN2NCcHZDbFBHYngw?=
+ =?utf-8?B?d2RKRDhTd1p5cStZL0hnN3BGMTZWNDdUdFkydzZXMnhramE4VUozMFBIYjlM?=
+ =?utf-8?B?NVRPeituTEpZcTdxb0ZBL3ZhQzllTjUyVmVDTVZhVS9ldytHamxleTMxWXUy?=
+ =?utf-8?B?UDRmenlodXRlSmtuNVhQd2VhMXRkYlFoNnJPRzQ1NUc1SDRvZHZwL0IzZ3dX?=
+ =?utf-8?B?WS9KSzdWREZ3Qm5YTmJIQWp3RHBiMWZRUGZ4dFQ4VVd1NVZxeTArTDFzZVFo?=
+ =?utf-8?B?ZXExdGN4Ryt2dzBHczg4d3pLMnZnclJoTmp4b2hLOUVYMkl1RjBNZ2JCUENs?=
+ =?utf-8?B?ZnpGL0xWczJiNzhVUDE0NmhvS00yMUlpVUtWV1lDdHVFRklCN202S09Bd25o?=
+ =?utf-8?Q?bxQaKVksme/YSpK1jQkQx6w2Yj6614Ibyx5W0kF?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2021 08:43:14.1655 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 051a78fe-d59c-4e91-e32e-08d976928672
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f2188ca-f55d-45fe-86ce-08d97693412b
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Sep 2021 08:48:27.7256 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT048.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB5562
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BRjxV+BithMXAKvIIgRqY9nlqE6gfmRvyxUAyMgi+WiiVz0kMRVYTJBNptwlLM3B
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3966
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,301 +129,298 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-alloc extra msg from direct IB pool.
+Am 13.09.21 um 10:42 schrieb xinhui pan:
+> move BO allocation in sw_init.
+>
+> Signed-off-by: xinhui pan <xinhui.pan@amd.com>
+> ---
+> change from v3:
+> drop the bo resv lock in ib test.
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c | 102 ++++++++++++++++--------
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.h |   1 +
+>   drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c   |  11 +--
+>   drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c   |  11 +--
+>   4 files changed, 72 insertions(+), 53 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
+> index d451c359606a..b0fbd5a1d5af 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c
+> @@ -134,6 +134,51 @@ MODULE_FIRMWARE(FIRMWARE_VEGA12);
+>   MODULE_FIRMWARE(FIRMWARE_VEGA20);
+>   
+>   static void amdgpu_uvd_idle_work_handler(struct work_struct *work);
+> +static void amdgpu_uvd_force_into_uvd_segment(struct amdgpu_bo *abo);
+> +
+> +static int amdgpu_uvd_create_msg_bo_helper(struct amdgpu_device *adev,
+> +					   uint32_t size,
+> +					   struct amdgpu_bo **bo_ptr)
+> +{
+> +	struct ttm_operation_ctx ctx = { true, false };
+> +	struct amdgpu_bo *bo = NULL;
+> +	void *addr;
+> +	int r;
+> +
+> +	r = amdgpu_bo_create_reserved(adev, size, PAGE_SIZE,
+> +				      AMDGPU_GEM_DOMAIN_GTT,
+> +				      &bo, NULL, &addr);
+> +	if (r)
+> +		return r;
+> +
+> +	if (adev->uvd.address_64_bit)
+> +		goto succ;
+> +
+> +	amdgpu_bo_kunmap(bo);
+> +	amdgpu_bo_unpin(bo);
+> +	amdgpu_bo_placement_from_domain(bo, AMDGPU_GEM_DOMAIN_VRAM);
+> +	amdgpu_uvd_force_into_uvd_segment(bo);
+> +	r = ttm_bo_validate(&bo->tbo, &bo->placement, &ctx);
+> +	if (r)
+> +		goto err;
+> +	r = amdgpu_bo_pin(bo, AMDGPU_GEM_DOMAIN_VRAM);
+> +	if (r)
+> +		goto err_pin;
+> +	r = amdgpu_bo_kmap(bo, &addr);
+> +	if (r)
+> +		goto err_kmap;
+> +succ:
+> +	amdgpu_bo_unreserve(bo);
+> +	*bo_ptr = bo;
+> +	return 0;
+> +err_kmap:
+> +	amdgpu_bo_unpin(bo);
+> +err_pin:
+> +err:
+> +	amdgpu_bo_unreserve(bo);
+> +	amdgpu_bo_unref(&bo);
+> +	return r;
+> +}
+>   
+>   int amdgpu_uvd_sw_init(struct amdgpu_device *adev)
+>   {
+> @@ -302,6 +347,10 @@ int amdgpu_uvd_sw_init(struct amdgpu_device *adev)
+>   	if (!amdgpu_device_ip_block_version_cmp(adev, AMD_IP_BLOCK_TYPE_UVD, 5, 0))
+>   		adev->uvd.address_64_bit = true;
+>   
+> +	r = amdgpu_uvd_create_msg_bo_helper(adev, 128 << 10, &adev->uvd.ib_bo);
+> +	if (r)
+> +		return r;
+> +
+>   	switch (adev->asic_type) {
+>   	case CHIP_TONGA:
+>   		adev->uvd.use_ctx_buf = adev->uvd.fw_version >= FW_1_65_10;
+> @@ -324,6 +373,7 @@ int amdgpu_uvd_sw_init(struct amdgpu_device *adev)
+>   
+>   int amdgpu_uvd_sw_fini(struct amdgpu_device *adev)
+>   {
+> +	void *addr = amdgpu_bo_kptr(adev->uvd.ib_bo);
+>   	int i, j;
+>   
+>   	drm_sched_entity_destroy(&adev->uvd.entity);
+> @@ -342,6 +392,7 @@ int amdgpu_uvd_sw_fini(struct amdgpu_device *adev)
+>   		for (i = 0; i < AMDGPU_MAX_UVD_ENC_RINGS; ++i)
+>   			amdgpu_ring_fini(&adev->uvd.inst[j].ring_enc[i]);
+>   	}
+> +	amdgpu_bo_free_kernel(&adev->uvd.ib_bo, NULL, &addr);
+>   	release_firmware(adev->uvd.fw);
+>   
+>   	return 0;
+> @@ -1080,23 +1131,10 @@ static int amdgpu_uvd_send_msg(struct amdgpu_ring *ring, struct amdgpu_bo *bo,
+>   	unsigned offset_idx = 0;
+>   	unsigned offset[3] = { UVD_BASE_SI, 0, 0 };
+>   
+> -	amdgpu_bo_kunmap(bo);
+> -	amdgpu_bo_unpin(bo);
+> -
+> -	if (!ring->adev->uvd.address_64_bit) {
+> -		struct ttm_operation_ctx ctx = { true, false };
+> -
+> -		amdgpu_bo_placement_from_domain(bo, AMDGPU_GEM_DOMAIN_VRAM);
+> -		amdgpu_uvd_force_into_uvd_segment(bo);
+> -		r = ttm_bo_validate(&bo->tbo, &bo->placement, &ctx);
+> -		if (r)
+> -			goto err;
+> -	}
+> -
+>   	r = amdgpu_job_alloc_with_ib(adev, 64, direct ? AMDGPU_IB_POOL_DIRECT :
+>   				     AMDGPU_IB_POOL_DELAYED, &job);
+>   	if (r)
+> -		goto err;
+> +		return r;
+>   
+>   	if (adev->asic_type >= CHIP_VEGA10) {
+>   		offset_idx = 1 + ring->me;
+> @@ -1148,8 +1186,6 @@ static int amdgpu_uvd_send_msg(struct amdgpu_ring *ring, struct amdgpu_bo *bo,
+>   	}
+>   
+>   	amdgpu_bo_fence(bo, f, false);
+> -	amdgpu_bo_unreserve(bo);
+> -	amdgpu_bo_unref(&bo);
+>   
+>   	if (fence)
+>   		*fence = dma_fence_get(f);
+> @@ -1159,10 +1195,6 @@ static int amdgpu_uvd_send_msg(struct amdgpu_ring *ring, struct amdgpu_bo *bo,
+>   
+>   err_free:
+>   	amdgpu_job_free(job);
+> -
+> -err:
+> -	amdgpu_bo_unreserve(bo);
+> -	amdgpu_bo_unref(&bo);
+>   	return r;
+>   }
+>   
+> @@ -1173,16 +1205,11 @@ int amdgpu_uvd_get_create_msg(struct amdgpu_ring *ring, uint32_t handle,
+>   			      struct dma_fence **fence)
+>   {
+>   	struct amdgpu_device *adev = ring->adev;
+> -	struct amdgpu_bo *bo = NULL;
+> +	struct amdgpu_bo *bo = adev->uvd.ib_bo;
+>   	uint32_t *msg;
+>   	int r, i;
+>   
+> -	r = amdgpu_bo_create_reserved(adev, 1024, PAGE_SIZE,
+> -				      AMDGPU_GEM_DOMAIN_GTT,
+> -				      &bo, NULL, (void **)&msg);
+> -	if (r)
+> -		return r;
+> -
+> +	msg = amdgpu_bo_kptr(bo);
+>   	/* stitch together an UVD create msg */
+>   	msg[0] = cpu_to_le32(0x00000de4);
+>   	msg[1] = cpu_to_le32(0x00000000);
+> @@ -1198,7 +1225,9 @@ int amdgpu_uvd_get_create_msg(struct amdgpu_ring *ring, uint32_t handle,
+>   	for (i = 11; i < 1024; ++i)
+>   		msg[i] = cpu_to_le32(0x0);
+>   
+> -	return amdgpu_uvd_send_msg(ring, bo, true, fence);
+> +	r = amdgpu_uvd_send_msg(ring, bo, true, fence);
+> +
+> +	return r;
 
-Reviewed-by: Christian König <christian.koenig@amd.com>
-Signed-off-by: xinhui pan <xinhui.pan@amd.com>
----
-change from v1:
-msg is aligned to gpu page boundary
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c | 97 +++++++++++--------------
- 1 file changed, 44 insertions(+), 53 deletions(-)
+Drop that change, the code can now keep as it is.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-index 561296a85b43..b60b8fe5bf67 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
-@@ -541,15 +541,14 @@ int amdgpu_vcn_dec_sw_ring_test_ring(struct amdgpu_ring *ring)
- }
- 
- static int amdgpu_vcn_dec_send_msg(struct amdgpu_ring *ring,
--				   struct amdgpu_bo *bo,
-+				   struct amdgpu_ib *ib_msg,
- 				   struct dma_fence **fence)
- {
- 	struct amdgpu_device *adev = ring->adev;
- 	struct dma_fence *f = NULL;
- 	struct amdgpu_job *job;
- 	struct amdgpu_ib *ib;
--	uint64_t addr;
--	void *msg = NULL;
-+	uint64_t addr = AMDGPU_GPU_PAGE_ALIGN(ib_msg->gpu_addr);
- 	int i, r;
- 
- 	r = amdgpu_job_alloc_with_ib(adev, 64,
-@@ -558,8 +557,6 @@ static int amdgpu_vcn_dec_send_msg(struct amdgpu_ring *ring,
- 		goto err;
- 
- 	ib = &job->ibs[0];
--	addr = amdgpu_bo_gpu_offset(bo);
--	msg = amdgpu_bo_kptr(bo);
- 	ib->ptr[0] = PACKET0(adev->vcn.internal.data0, 0);
- 	ib->ptr[1] = addr;
- 	ib->ptr[2] = PACKET0(adev->vcn.internal.data1, 0);
-@@ -576,9 +573,7 @@ static int amdgpu_vcn_dec_send_msg(struct amdgpu_ring *ring,
- 	if (r)
- 		goto err_free;
- 
--	amdgpu_bo_fence(bo, f, false);
--	amdgpu_bo_unreserve(bo);
--	amdgpu_bo_free_kernel(&bo, NULL, (void **)&msg);
-+	amdgpu_ib_free(adev, ib_msg, f);
- 
- 	if (fence)
- 		*fence = dma_fence_get(f);
-@@ -588,27 +583,26 @@ static int amdgpu_vcn_dec_send_msg(struct amdgpu_ring *ring,
- 
- err_free:
- 	amdgpu_job_free(job);
--
- err:
--	amdgpu_bo_unreserve(bo);
--	amdgpu_bo_free_kernel(&bo, NULL, (void **)&msg);
-+	amdgpu_ib_free(adev, ib_msg, f);
- 	return r;
- }
- 
- static int amdgpu_vcn_dec_get_create_msg(struct amdgpu_ring *ring, uint32_t handle,
--					 struct amdgpu_bo **bo)
-+		struct amdgpu_ib *ib)
- {
- 	struct amdgpu_device *adev = ring->adev;
- 	uint32_t *msg;
- 	int r, i;
- 
--	*bo = NULL;
--	r = amdgpu_bo_create_reserved(adev, 1024, PAGE_SIZE,
--				      AMDGPU_GEM_DOMAIN_VRAM,
--				      bo, NULL, (void **)&msg);
-+	memset(ib, 0, sizeof(*ib));
-+	r = amdgpu_ib_get(adev, NULL, AMDGPU_GPU_PAGE_SIZE * 2,
-+			AMDGPU_IB_POOL_DIRECT,
-+			ib);
- 	if (r)
- 		return r;
- 
-+	msg = (uint32_t *)AMDGPU_GPU_PAGE_ALIGN((unsigned long)ib->ptr);
- 	msg[0] = cpu_to_le32(0x00000028);
- 	msg[1] = cpu_to_le32(0x00000038);
- 	msg[2] = cpu_to_le32(0x00000001);
-@@ -630,19 +624,20 @@ static int amdgpu_vcn_dec_get_create_msg(struct amdgpu_ring *ring, uint32_t hand
- }
- 
- static int amdgpu_vcn_dec_get_destroy_msg(struct amdgpu_ring *ring, uint32_t handle,
--					  struct amdgpu_bo **bo)
-+					  struct amdgpu_ib *ib)
- {
- 	struct amdgpu_device *adev = ring->adev;
- 	uint32_t *msg;
- 	int r, i;
- 
--	*bo = NULL;
--	r = amdgpu_bo_create_reserved(adev, 1024, PAGE_SIZE,
--				      AMDGPU_GEM_DOMAIN_VRAM,
--				      bo, NULL, (void **)&msg);
-+	memset(ib, 0, sizeof(*ib));
-+	r = amdgpu_ib_get(adev, NULL, AMDGPU_GPU_PAGE_SIZE * 2,
-+			AMDGPU_IB_POOL_DIRECT,
-+			ib);
- 	if (r)
- 		return r;
- 
-+	msg = (uint32_t *)AMDGPU_GPU_PAGE_ALIGN((unsigned long)ib->ptr);
- 	msg[0] = cpu_to_le32(0x00000028);
- 	msg[1] = cpu_to_le32(0x00000018);
- 	msg[2] = cpu_to_le32(0x00000000);
-@@ -658,21 +653,21 @@ static int amdgpu_vcn_dec_get_destroy_msg(struct amdgpu_ring *ring, uint32_t han
- int amdgpu_vcn_dec_ring_test_ib(struct amdgpu_ring *ring, long timeout)
- {
- 	struct dma_fence *fence = NULL;
--	struct amdgpu_bo *bo;
-+	struct amdgpu_ib ib;
- 	long r;
- 
--	r = amdgpu_vcn_dec_get_create_msg(ring, 1, &bo);
-+	r = amdgpu_vcn_dec_get_create_msg(ring, 1, &ib);
- 	if (r)
- 		goto error;
- 
--	r = amdgpu_vcn_dec_send_msg(ring, bo, NULL);
-+	r = amdgpu_vcn_dec_send_msg(ring, &ib, NULL);
- 	if (r)
- 		goto error;
--	r = amdgpu_vcn_dec_get_destroy_msg(ring, 1, &bo);
-+	r = amdgpu_vcn_dec_get_destroy_msg(ring, 1, &ib);
- 	if (r)
- 		goto error;
- 
--	r = amdgpu_vcn_dec_send_msg(ring, bo, &fence);
-+	r = amdgpu_vcn_dec_send_msg(ring, &ib, &fence);
- 	if (r)
- 		goto error;
- 
-@@ -688,8 +683,8 @@ int amdgpu_vcn_dec_ring_test_ib(struct amdgpu_ring *ring, long timeout)
- }
- 
- static int amdgpu_vcn_dec_sw_send_msg(struct amdgpu_ring *ring,
--				   struct amdgpu_bo *bo,
--				   struct dma_fence **fence)
-+				      struct amdgpu_ib *ib_msg,
-+				      struct dma_fence **fence)
- {
- 	struct amdgpu_vcn_decode_buffer *decode_buffer = NULL;
- 	const unsigned int ib_size_dw = 64;
-@@ -697,7 +692,7 @@ static int amdgpu_vcn_dec_sw_send_msg(struct amdgpu_ring *ring,
- 	struct dma_fence *f = NULL;
- 	struct amdgpu_job *job;
- 	struct amdgpu_ib *ib;
--	uint64_t addr;
-+	uint64_t addr = AMDGPU_GPU_PAGE_ALIGN(ib_msg->gpu_addr);
- 	int i, r;
- 
- 	r = amdgpu_job_alloc_with_ib(adev, ib_size_dw * 4,
-@@ -706,7 +701,6 @@ static int amdgpu_vcn_dec_sw_send_msg(struct amdgpu_ring *ring,
- 		goto err;
- 
- 	ib = &job->ibs[0];
--	addr = amdgpu_bo_gpu_offset(bo);
- 	ib->length_dw = 0;
- 
- 	ib->ptr[ib->length_dw++] = sizeof(struct amdgpu_vcn_decode_buffer) + 8;
-@@ -726,9 +720,7 @@ static int amdgpu_vcn_dec_sw_send_msg(struct amdgpu_ring *ring,
- 	if (r)
- 		goto err_free;
- 
--	amdgpu_bo_fence(bo, f, false);
--	amdgpu_bo_unreserve(bo);
--	amdgpu_bo_unref(&bo);
-+	amdgpu_ib_free(adev, ib_msg, f);
- 
- 	if (fence)
- 		*fence = dma_fence_get(f);
-@@ -738,31 +730,29 @@ static int amdgpu_vcn_dec_sw_send_msg(struct amdgpu_ring *ring,
- 
- err_free:
- 	amdgpu_job_free(job);
--
- err:
--	amdgpu_bo_unreserve(bo);
--	amdgpu_bo_unref(&bo);
-+	amdgpu_ib_free(adev, ib_msg, f);
- 	return r;
- }
- 
- int amdgpu_vcn_dec_sw_ring_test_ib(struct amdgpu_ring *ring, long timeout)
- {
- 	struct dma_fence *fence = NULL;
--	struct amdgpu_bo *bo;
-+	struct amdgpu_ib ib;
- 	long r;
- 
--	r = amdgpu_vcn_dec_get_create_msg(ring, 1, &bo);
-+	r = amdgpu_vcn_dec_get_create_msg(ring, 1, &ib);
- 	if (r)
- 		goto error;
- 
--	r = amdgpu_vcn_dec_sw_send_msg(ring, bo, NULL);
-+	r = amdgpu_vcn_dec_sw_send_msg(ring, &ib, NULL);
- 	if (r)
- 		goto error;
--	r = amdgpu_vcn_dec_get_destroy_msg(ring, 1, &bo);
-+	r = amdgpu_vcn_dec_get_destroy_msg(ring, 1, &ib);
- 	if (r)
- 		goto error;
- 
--	r = amdgpu_vcn_dec_sw_send_msg(ring, bo, &fence);
-+	r = amdgpu_vcn_dec_sw_send_msg(ring, &ib, &fence);
- 	if (r)
- 		goto error;
- 
-@@ -809,7 +799,7 @@ int amdgpu_vcn_enc_ring_test_ring(struct amdgpu_ring *ring)
- }
- 
- static int amdgpu_vcn_enc_get_create_msg(struct amdgpu_ring *ring, uint32_t handle,
--					 struct amdgpu_bo *bo,
-+					 struct amdgpu_ib *ib_msg,
- 					 struct dma_fence **fence)
- {
- 	const unsigned ib_size_dw = 16;
-@@ -825,7 +815,7 @@ static int amdgpu_vcn_enc_get_create_msg(struct amdgpu_ring *ring, uint32_t hand
- 		return r;
- 
- 	ib = &job->ibs[0];
--	addr = amdgpu_bo_gpu_offset(bo);
-+	addr = AMDGPU_GPU_PAGE_ALIGN(ib_msg->gpu_addr);
- 
- 	ib->length_dw = 0;
- 	ib->ptr[ib->length_dw++] = 0x00000018;
-@@ -863,7 +853,7 @@ static int amdgpu_vcn_enc_get_create_msg(struct amdgpu_ring *ring, uint32_t hand
- }
- 
- static int amdgpu_vcn_enc_get_destroy_msg(struct amdgpu_ring *ring, uint32_t handle,
--					  struct amdgpu_bo *bo,
-+					  struct amdgpu_ib *ib_msg,
- 					  struct dma_fence **fence)
- {
- 	const unsigned ib_size_dw = 16;
-@@ -879,7 +869,7 @@ static int amdgpu_vcn_enc_get_destroy_msg(struct amdgpu_ring *ring, uint32_t han
- 		return r;
- 
- 	ib = &job->ibs[0];
--	addr = amdgpu_bo_gpu_offset(bo);
-+	addr = AMDGPU_GPU_PAGE_ALIGN(ib_msg->gpu_addr);
- 
- 	ib->length_dw = 0;
- 	ib->ptr[ib->length_dw++] = 0x00000018;
-@@ -918,21 +908,23 @@ static int amdgpu_vcn_enc_get_destroy_msg(struct amdgpu_ring *ring, uint32_t han
- 
- int amdgpu_vcn_enc_ring_test_ib(struct amdgpu_ring *ring, long timeout)
- {
-+	struct amdgpu_device *adev = ring->adev;
- 	struct dma_fence *fence = NULL;
--	struct amdgpu_bo *bo = NULL;
-+	struct amdgpu_ib ib;
- 	long r;
- 
--	r = amdgpu_bo_create_reserved(ring->adev, 128 * 1024, PAGE_SIZE,
--				      AMDGPU_GEM_DOMAIN_VRAM,
--				      &bo, NULL, NULL);
-+	memset(&ib, 0, sizeof(ib));
-+	r = amdgpu_ib_get(adev, NULL, (128 << 10) + AMDGPU_GPU_PAGE_SIZE,
-+			AMDGPU_IB_POOL_DIRECT,
-+			&ib);
- 	if (r)
- 		return r;
- 
--	r = amdgpu_vcn_enc_get_create_msg(ring, 1, bo, NULL);
-+	r = amdgpu_vcn_enc_get_create_msg(ring, 1, &ib, NULL);
- 	if (r)
- 		goto error;
- 
--	r = amdgpu_vcn_enc_get_destroy_msg(ring, 1, bo, &fence);
-+	r = amdgpu_vcn_enc_get_destroy_msg(ring, 1, &ib, &fence);
- 	if (r)
- 		goto error;
- 
-@@ -943,9 +935,8 @@ int amdgpu_vcn_enc_ring_test_ib(struct amdgpu_ring *ring, long timeout)
- 		r = 0;
- 
- error:
-+	amdgpu_ib_free(adev, &ib, fence);
- 	dma_fence_put(fence);
--	amdgpu_bo_unreserve(bo);
--	amdgpu_bo_free_kernel(&bo, NULL, NULL);
- 
- 	return r;
- }
--- 
-2.25.1
+>   }
+>   
+>   int amdgpu_uvd_get_destroy_msg(struct amdgpu_ring *ring, uint32_t handle,
+> @@ -1207,14 +1236,16 @@ int amdgpu_uvd_get_destroy_msg(struct amdgpu_ring *ring, uint32_t handle,
+>   	struct amdgpu_device *adev = ring->adev;
+>   	struct amdgpu_bo *bo = NULL;
+>   	uint32_t *msg;
+> -	int r, i;
+> +	int r = 0, i;
+>   
+> -	r = amdgpu_bo_create_reserved(adev, 1024, PAGE_SIZE,
+> -				      AMDGPU_GEM_DOMAIN_GTT,
+> -				      &bo, NULL, (void **)&msg);
+> +	if (direct)
+> +		bo = adev->uvd.ib_bo;
+> +	else
+> +		r = amdgpu_uvd_create_msg_bo_helper(adev, 4096, &bo);
+>   	if (r)
+>   		return r;
+
+Better use { r= ..; if(r) return r; } instead of initializing r to zero 
+above. Initializing r like that is often seen as bad style.
+
+Apart from those two nit picks the patch is Reviewed-by: Christian König 
+<christian.koenig@amd.com>
+
+Thanks,
+Christian.
+
+>   
+> +	msg = amdgpu_bo_kptr(bo);
+>   	/* stitch together an UVD destroy msg */
+>   	msg[0] = cpu_to_le32(0x00000de4);
+>   	msg[1] = cpu_to_le32(0x00000002);
+> @@ -1223,7 +1254,12 @@ int amdgpu_uvd_get_destroy_msg(struct amdgpu_ring *ring, uint32_t handle,
+>   	for (i = 4; i < 1024; ++i)
+>   		msg[i] = cpu_to_le32(0x0);
+>   
+> -	return amdgpu_uvd_send_msg(ring, bo, direct, fence);
+> +	r = amdgpu_uvd_send_msg(ring, bo, direct, fence);
+> +
+> +	if (!direct)
+> +		amdgpu_bo_free_kernel(&bo, NULL, (void **)&msg);
+> +
+> +	return r;
+>   }
+>   
+>   static void amdgpu_uvd_idle_work_handler(struct work_struct *work)
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.h
+> index edbb8194ee81..76ac9699885d 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.h
+> @@ -68,6 +68,7 @@ struct amdgpu_uvd {
+>   	/* store image width to adjust nb memory state */
+>   	unsigned		decode_image_width;
+>   	uint32_t                keyselect;
+> +	struct amdgpu_bo	*ib_bo;
+>   };
+>   
+>   int amdgpu_uvd_sw_init(struct amdgpu_device *adev);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c b/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
+> index bc571833632e..d5d023a24269 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/uvd_v6_0.c
+> @@ -332,15 +332,9 @@ static int uvd_v6_0_enc_get_destroy_msg(struct amdgpu_ring *ring,
+>   static int uvd_v6_0_enc_ring_test_ib(struct amdgpu_ring *ring, long timeout)
+>   {
+>   	struct dma_fence *fence = NULL;
+> -	struct amdgpu_bo *bo = NULL;
+> +	struct amdgpu_bo *bo = ring->adev->uvd.ib_bo;
+>   	long r;
+>   
+> -	r = amdgpu_bo_create_reserved(ring->adev, 128 * 1024, PAGE_SIZE,
+> -				      AMDGPU_GEM_DOMAIN_VRAM,
+> -				      &bo, NULL, NULL);
+> -	if (r)
+> -		return r;
+> -
+>   	r = uvd_v6_0_enc_get_create_msg(ring, 1, bo, NULL);
+>   	if (r)
+>   		goto error;
+> @@ -357,9 +351,6 @@ static int uvd_v6_0_enc_ring_test_ib(struct amdgpu_ring *ring, long timeout)
+>   
+>   error:
+>   	dma_fence_put(fence);
+> -	amdgpu_bo_unpin(bo);
+> -	amdgpu_bo_unreserve(bo);
+> -	amdgpu_bo_unref(&bo);
+>   	return r;
+>   }
+>   
+> diff --git a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c b/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c
+> index b6e82d75561f..c115b2da22ef 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/uvd_v7_0.c
+> @@ -338,15 +338,9 @@ static int uvd_v7_0_enc_get_destroy_msg(struct amdgpu_ring *ring, uint32_t handl
+>   static int uvd_v7_0_enc_ring_test_ib(struct amdgpu_ring *ring, long timeout)
+>   {
+>   	struct dma_fence *fence = NULL;
+> -	struct amdgpu_bo *bo = NULL;
+> +	struct amdgpu_bo *bo = ring->adev->uvd.ib_bo;
+>   	long r;
+>   
+> -	r = amdgpu_bo_create_reserved(ring->adev, 128 * 1024, PAGE_SIZE,
+> -				      AMDGPU_GEM_DOMAIN_VRAM,
+> -				      &bo, NULL, NULL);
+> -	if (r)
+> -		return r;
+> -
+>   	r = uvd_v7_0_enc_get_create_msg(ring, 1, bo, NULL);
+>   	if (r)
+>   		goto error;
+> @@ -363,9 +357,6 @@ static int uvd_v7_0_enc_ring_test_ib(struct amdgpu_ring *ring, long timeout)
+>   
+>   error:
+>   	dma_fence_put(fence);
+> -	amdgpu_bo_unpin(bo);
+> -	amdgpu_bo_unreserve(bo);
+> -	amdgpu_bo_unref(&bo);
+>   	return r;
+>   }
+>   
 
