@@ -1,74 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232A440C48E
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Sep 2021 13:47:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4775840C55E
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Sep 2021 14:35:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D5476E916;
-	Wed, 15 Sep 2021 11:47:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 649026E920;
+	Wed, 15 Sep 2021 12:35:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FEBF6E916
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Sep 2021 11:47:18 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id q26so3399284wrc.7
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Sep 2021 04:47:18 -0700 (PDT)
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com
+ [IPv6:2607:f8b0:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCA316E8EE;
+ Wed, 15 Sep 2021 09:39:31 +0000 (UTC)
+Received: by mail-pf1-x433.google.com with SMTP id e16so2176505pfc.6;
+ Wed, 15 Sep 2021 02:39:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=Rd3hprGUgWmyfJvv1oVwA/PAdgALCOp/mN/hEBiQcRY=;
- b=V+MFauo1AQjpA+2UwC7e2kze0t/ZKs5lX82aPOiGKDlCfHMZzAKmkydf9CR7+Od7SB
- 67wGHTdheRRV3MP+CdfyxHmyfCsqEacoGvvEQ9Q0edRJBIa8NUyzG8kIjpRTnx4s13rc
- mDQTfeQ1IA4UYHjcI/v1YccZLJCw+kF2oJAzD6Z6fbABVHq1QQ4ZV2gDPwS7ESrgRMum
- pcaU/ipji33F/JE/XKn0G03LbQHNkzNL7iL5bUcCizLyXn1hoOtV0Nf/pLunNkRnkAtA
- G7TD0M76pWLpJBmmWEvri0CYbOzrXoRflqzHqBYXmVOttw5yahqATjDU0kkt6JhWZL8Y
- bKmw==
+ h=from:subject:to:cc:message-id:date:user-agent:mime-version
+ :content-transfer-encoding:content-language;
+ bh=9DwEurpv8pV9WAKblxk8PQ6MlsJLKqkLsk2uIwjdOs8=;
+ b=CHYtUWpojKuDZDp8++kUB6sBOmGkVp2FVI419Trr5GXtgFzVzUVDD+wZ339WENrz8n
+ LzaoQW5ksPbkLJC57SCoeeombrDIjB05zvwUeYFBhf86tHsq+kpPxZjubz3XaRw++fAl
+ OYw/wlU/FwEWtvGkrcHgyFb4U98CqPZNAPRZkbgScMMtXZQlg/cgcXREcnWskkH98n8i
+ bdOBFAwLupdlx4R+W5KqPTAH4bOdCKCQoJhvScfHvKs1JkO7sfHpJfdSZii+yLoHz2j9
+ ++COGMH++Ee04AmkKCF+dov94QQVsYm4Cw4ofpRlliJ/IKPSeJcj15g680EclieKGCgq
+ U8WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=Rd3hprGUgWmyfJvv1oVwA/PAdgALCOp/mN/hEBiQcRY=;
- b=fCmV2189P07xlZj90GG/+mHx6TaDug1DxvICKQBT2eG4OUDoINtqYcHbWerRcTFDpV
- 1bWXJMuMhqjkF9ZxyzZU/lCB/tR2DE0spam3CsLZewCdtHWfOeontz715VJCS5ztHZf+
- /myxWCNuuNCG1he1UVZMBTfVywAryoKGpYTfsvmhF7j0p3C4kPV2Oh0RZIFOa4hLlcXd
- x6NF/Z/TM/pCyilkRcr7aPko3BabxUkYWue5Wyhvn20KwgKbBamFItjL38Dq5QllMc+N
- kCLU2ly0z+OBqv8/yds+U6SmrhwJpJkQDd8JMK0VUdxSzwNHkxKdfFXYMQw1rufic6xV
- APTw==
-X-Gm-Message-State: AOAM533FTDfESP3dvokiPepUQ8/s7UMDXaU9xSAm7mbICwNBDxuWZEfa
- UW6TXPvM2HDjm9FA/CaCD+TyXpvOQmA=
-X-Google-Smtp-Source: ABdhPJw2AcPgaxu2NmFlPoU8WbyQQ+p+Tczq8dH6o8GcWk25V4UH5lrnx7zcughAUwxir68NtEpH5A==
-X-Received: by 2002:a5d:58ec:: with SMTP id f12mr4718448wrd.24.1631706436828; 
- Wed, 15 Sep 2021 04:47:16 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:d03d:8939:3840:1f95?
- ([2a02:908:1252:fb60:d03d:8939:3840:1f95])
- by smtp.gmail.com with ESMTPSA id b204sm2703850wmb.3.2021.09.15.04.47.15
+ h=x-gm-message-state:from:subject:to:cc:message-id:date:user-agent
+ :mime-version:content-transfer-encoding:content-language;
+ bh=9DwEurpv8pV9WAKblxk8PQ6MlsJLKqkLsk2uIwjdOs8=;
+ b=fNNTLLdsuqL5S+nxYqv5fsU1u3R7ZDld+bpkTjurKgPIcFpdRIDPNIapvYsIcaqanz
+ m8ExqZLt5s1Qrovag0eQ66+hBlvSQsNbJDutZVRBnXDCEHm/61DX0JQtnBB9+Dug9Bk0
+ u2TO6DVW9RhMNQe9Vf50Dt9dT4Zfpiy+YEZCTY3UoQoOqLe4m3r9nZo6y7x+NFHBOVjS
+ u6zPHrZeX3EvqmHAi1Sv/5NAOq3NK1EaXK50+mvUqpwjoptpsnIHbS5XYPSfkdA7t75w
+ EVvXpLw9lRPj3VgJqWYnhcil+c82XTer4rlx7pEloJWxnpgE5iQ6ekd22rvCq0NaoTCh
+ hp9Q==
+X-Gm-Message-State: AOAM533jGnTt0+wYCOsyBo7xr73EBHEd6w87o2Um40xB6n45ftQOSqsN
+ bMmTR1z/ttkIwXALd9a3Z4g=
+X-Google-Smtp-Source: ABdhPJz79Ykf/6lng9i3x2nmL9Wuw9ciMpAMALdLeYK2rnjmpUMc21B1gNwkYS30l6z927RkIZSdhw==
+X-Received: by 2002:a62:e902:0:b0:414:aaf2:2b4 with SMTP id
+ j2-20020a62e902000000b00414aaf202b4mr9587556pfh.10.1631698771533; 
+ Wed, 15 Sep 2021 02:39:31 -0700 (PDT)
+Received: from [166.111.139.129] ([166.111.139.129])
+ by smtp.gmail.com with ESMTPSA id w5sm14342387pgp.79.2021.09.15.02.39.28
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 15 Sep 2021 04:47:16 -0700 (PDT)
-Subject: Re: [BUG] VAAPI encoder cause kernel panic if encoded video in 4K
-To: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Cc: Linux List Kernel Mailing <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
-References: <CABXGCsOifMk4+VHi4bnHCL2L_tT+Tm_Rz+KxD3ZQOowx1xms4g@mail.gmail.com>
- <293189a2-3a6b-1e50-7607-33917743b9d8@amd.com>
- <CABXGCsMMUa=0+GAHxfVdOOFO0Lx=tCa4+ongHN8rF4TAR9nVmg@mail.gmail.com>
- <66f5fdcb-d414-603d-bdb8-70579335b4a2@gmail.com>
- <CABXGCsOPLH2DkZ09PDXSxStin6JJb_m5bJuQWmXooBLaSJ2Ezg@mail.gmail.com>
- <dcbb87cc-c95d-ae58-d601-413a6277a7f8@amd.com>
- <CABXGCsOQ8uXY85zrCOOd611gDj3AhtqH4=LcYHD=T9jVEzkuig@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <e120f0a4-7600-c938-ac9f-cce6a714da4e@gmail.com>
-Date: Wed, 15 Sep 2021 13:47:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ Wed, 15 Sep 2021 02:39:31 -0700 (PDT)
+From: Jia-Ju Bai <baijiaju1990@gmail.com>
+Subject: [BUG] gpu: drm: amd: amdgpu: possible ABBA deadlock in
+ amdgpu_set_power_dpm_force_performance_level() and
+ amdgpu_debugfs_process_reg_op()
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@linux.ie, daniel@ffwll.ch, Hawking.Zhang@amd.com,
+ Felix.Kuehling@amd.com, ray.huang@amd.com, lee.jones@linaro.org
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel <linux-kernel@vger.kernel.org>
+Message-ID: <2dc31435-ba62-b6a4-76dc-cfe9747f4cfb@gmail.com>
+Date: Wed, 15 Sep 2021 17:39:28 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <CABXGCsOQ8uXY85zrCOOd611gDj3AhtqH4=LcYHD=T9jVEzkuig@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Content-Language: en-US
+X-Mailman-Approved-At: Wed, 15 Sep 2021 12:35:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,20 +78,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hello,
+
+My static analysis tool reports a possible ABBA deadlock in the amdgpu 
+driver in Linux 5.10:
+
+amdgpu_debugfs_process_reg_op()
+   mutex_lock(&adev->grbm_idx_mutex); --> Line 250 (Lock A)
+   mutex_lock(&adev->pm.mutex); --> Line 259 (Lock B)
+
+amdgpu_set_power_dpm_force_performance_level()
+   mutex_lock(&adev->pm.mutex); --> Line 381 (Lock B)
+     pp_dpm_force_performance_level() --> function pointer via 
+"amdgpu_dpm_force_performance_level()"
+       pp_dpm_en_umd_pstate()
+         amdgpu_device_ip_set_clockgating_state()
+           gfx_v7_0_set_clockgating_state() --> function pointer via 
+"funcs->set_clockgating_state()"
+             gfx_v7_0_enable_mgcg()
+               mutex_lock(&adev->grbm_idx_mutex); --> Line 3646 (Lock A)
+               mutex_lock(&adev->grbm_idx_mutex); --> Line 3697 (Lock A)
+
+When amdgpu_debugfs_process_reg_op() and 
+amdgpu_set_power_dpm_force_performance_level() are concurrently 
+executed, the deadlock can occur.
+
+I am not quite sure whether this possible deadlock is real and how to 
+fix it if it is real.
+Any feedback would be appreciated, thanks :)
+
+Reported-by: TOTE Robot <oslab@tsinghua.edu.cn>
 
 
-Am 15.09.21 um 12:36 schrieb Mikhail Gavrilov:
-> On Wed, 15 Sept 2021 at 14:55, Christian König <christian.koenig@amd.com> wrote:
->> Yes, absolutely. You should see GPU resets and recovery in the system log after that.
-> Unfortunately, not one DE will survive a GPU reset. All applications
-> will terminate abnormally in fact this would be equivalent to reboot
-> (and denial of service). :(
-
-Yeah, very well known bug in the DEs.
-
-The OpenGL robustness extension and Vulkan specification are pretty 
-clear what drivers are supposed to do in such a situation, it's just not 
-very well handled in userspace.
-
-Regards,
-Christian.
+Best wishes,
+Jia-Ju Bai
