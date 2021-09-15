@@ -1,65 +1,67 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ED2740CACF
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Sep 2021 18:41:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3EDE40CB48
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Sep 2021 18:55:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 486F06E9BF;
-	Wed, 15 Sep 2021 16:41:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CBAE89358;
+	Wed, 15 Sep 2021 16:55:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com
- [IPv6:2607:f8b0:4864:20::d29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C83076E9A0;
- Wed, 15 Sep 2021 16:40:58 +0000 (UTC)
-Received: by mail-io1-xd29.google.com with SMTP id b200so4216313iof.13;
- Wed, 15 Sep 2021 09:40:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=L+08hq9MDL1yzT8HxFNaQNtrlEM6Xv6fhZuNRn1F1mc=;
- b=SPHkRDp72gZ0c3y6KviDI/XqZYrcZIJbitZr0Tn3ly4ZDKRUWJN+H5ImQ/Xu97dYZw
- I3Imaalk8TcTOyP1LWMt//qfSBnXW11JO+x9EhO7ppI7EoAarp0lD+jKvVtc6G2m+9hn
- 0v8Zq65qDkSVsUcg41H6kE16HDhUxXJzIuPAg2/xA7Bbx98rtr7WIm8NlHkR7JCxfHqt
- YFfAHa5JPkHHVTRuxQ5MP8pkyxC+boUZyVJYi2S3+gOHdRUMflGNWKrkY+7IamKxGw+h
- ICoDXqE7nbQ8HPSJ5RvRNGpw56F/zDe5NIlUd/uUyJOa7uQvEgmOuk4HFqa/rCItm4H0
- ZL3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=L+08hq9MDL1yzT8HxFNaQNtrlEM6Xv6fhZuNRn1F1mc=;
- b=O3ru6AJTMXwra3c27ARXYVnUExOV7wGfjdiy24hxnIKWiYwc0YJewLYtvU590vmG4Q
- /U5Riyd7YQDg16/bBmsdbObE5CZW7vFBIbIQEnkS0TnpRr4C95gyvl7M2Ej96WwS3HFd
- 8iAYns18iPzNTQ6t2jQAPBuYOefvFyUpmX3GCqe9BevZfJYmdHJDPvwmkITYBb0S6at9
- hHgJ1GEOPl2HdFO2Hm3wzvadFwVO9x865hUqL572bx3nH3clm+d+vuiIGiTIyHHlhUxR
- bmRshWNHbUDmwoJrIDLOtet4gFYCAuO9UH2LRgyHxfK1aR9bF7I9Mxlf8bY7ciwACGQ/
- BT7Q==
-X-Gm-Message-State: AOAM532paXHUQl07aYUxPBI2XuQWXxXDAyUh8tMZAc50jSVo0bjI96JK
- 02lHHZuoVD3O2AppkOp4U/c=
-X-Google-Smtp-Source: ABdhPJzSyZoM8g2dKxoNfe2FZae8tupg/vf6LyJMERVhe0uSm1eAISI0AaPoWL5D3InPcL3OH4xdGQ==
-X-Received: by 2002:a05:6638:1484:: with SMTP id
- j4mr802097jak.80.1631724058166; 
- Wed, 15 Sep 2021 09:40:58 -0700 (PDT)
-Received: from frodo.. (c-24-9-77-57.hsd1.co.comcast.net. [24.9.77.57])
- by smtp.googlemail.com with ESMTPSA id a5sm299540ilf.27.2021.09.15.09.40.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Sep 2021 09:40:57 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com, gregkh@linuxfoundation.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, daniel@ffwll.ch
-Cc: Jim Cromie <jim.cromie@gmail.com>
-Subject: [PATCH v8 16/16] nouveau: fold multiple DRM_DEBUG_DRIVERs together
-Date: Wed, 15 Sep 2021 10:39:57 -0600
-Message-Id: <20210915163957.2949166-17-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210915163957.2949166-1-jim.cromie@gmail.com>
-References: <20210915163957.2949166-1-jim.cromie@gmail.com>
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E1EE6E978;
+ Wed, 15 Sep 2021 16:46:18 +0000 (UTC)
+Received: from zn.tnic (p200300ec2f0d07008534a6109a52ea91.dip0.t-ipconnect.de
+ [IPv6:2003:ec:2f0d:700:8534:a610:9a52:ea91])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 04D0A1EC051F;
+ Wed, 15 Sep 2021 18:46:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+ t=1631724372;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+ bh=ohcK2lrqZI/0Un5cQQISQvRNuEO3HIFBods4v3gznU8=;
+ b=OinwDiMHyIs6ppSqYums+HJ/wABxvhGKKUPvdDics4JXpIwsFCihfmg/tYjRwayQUS5zAl
+ /A8dCEMw7DwHpgzspvS586x6N5hMBRCXCrXZr4wBrq7mNNSRVp8ss+I1qG84M8RgMvHJvz
+ 7a85Vcl/oUKHuIwbTjsfd22UCB+v5Mg=
+Date: Wed, 15 Sep 2021 18:46:03 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Tom Lendacky <thomas.lendacky@amd.com>,
+ Sathyanarayanan Kuppuswamy <sathyanarayanan.kuppuswamy@linux.intel.com>
+Cc: linux-kernel@vger.kernel.org, x86@kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-s390@vger.kernel.org,
+ iommu@lists.linux-foundation.org, kvm@vger.kernel.org,
+ linux-efi@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-graphics-maintainer@vmware.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, kexec@lists.infradead.org,
+ linux-fsdevel@vger.kernel.org, Brijesh Singh <brijesh.singh@amd.com>,
+ Joerg Roedel <joro@8bytes.org>, Andi Kleen <ak@linux.intel.com>,
+ Tianyu Lan <Tianyu.Lan@microsoft.com>,
+ Christoph Hellwig <hch@infradead.org>,
+ Andy Lutomirski <luto@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
+ Baoquan He <bhe@redhat.com>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Dave Hansen <dave.hansen@linux.intel.com>,
+ Dave Young <dyoung@redhat.com>, David Airlie <airlied@linux.ie>,
+ Heiko Carstens <hca@linux.ibm.com>, Ingo Molnar <mingo@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Michael Ellerman <mpe@ellerman.id.au>,
+ Paul Mackerras <paulus@samba.org>, Peter Zijlstra <peterz@infradead.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Vasily Gorbik <gor@linux.ibm.com>, Will Deacon <will@kernel.org>
+Subject: Re: [PATCH v3 0/8] Implement generic cc_platform_has() helper function
+Message-ID: <YUIjS6lKEY5AadZx@zn.tnic>
+References: <cover.1631141919.git.thomas.lendacky@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <cover.1631141919.git.thomas.lendacky@amd.com>
+X-Mailman-Approved-At: Wed, 15 Sep 2021 16:55:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,61 +76,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-With DRM_USE_DYNAMIC_DEBUG, each callsite record requires 56 bytes.
-We can combine 12 into one here and save ~620 bytes.
+On Wed, Sep 08, 2021 at 05:58:31PM -0500, Tom Lendacky wrote:
+> This patch series provides a generic helper function, cc_platform_has(),
+> to replace the sme_active(), sev_active(), sev_es_active() and
+> mem_encrypt_active() functions.
+> 
+> It is expected that as new confidential computing technologies are
+> added to the kernel, they can all be covered by a single function call
+> instead of a collection of specific function calls all called from the
+> same locations.
+> 
+> The powerpc and s390 patches have been compile tested only. Can the
+> folks copied on this series verify that nothing breaks for them. Also,
+> a new file, arch/powerpc/platforms/pseries/cc_platform.c, has been
+> created for powerpc to hold the out of line function.
 
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_drm.c | 36 +++++++++++++++++----------
- 1 file changed, 23 insertions(+), 13 deletions(-)
+...
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index ba4cd5f83725..0f45399535bf 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -1245,19 +1245,29 @@ nouveau_drm_pci_table[] = {
- 
- static void nouveau_display_options(void)
- {
--	DRM_DEBUG_DRIVER("Loading Nouveau with parameters:\n");
--
--	DRM_DEBUG_DRIVER("... tv_disable   : %d\n", nouveau_tv_disable);
--	DRM_DEBUG_DRIVER("... ignorelid    : %d\n", nouveau_ignorelid);
--	DRM_DEBUG_DRIVER("... duallink     : %d\n", nouveau_duallink);
--	DRM_DEBUG_DRIVER("... nofbaccel    : %d\n", nouveau_nofbaccel);
--	DRM_DEBUG_DRIVER("... config       : %s\n", nouveau_config);
--	DRM_DEBUG_DRIVER("... debug        : %s\n", nouveau_debug);
--	DRM_DEBUG_DRIVER("... noaccel      : %d\n", nouveau_noaccel);
--	DRM_DEBUG_DRIVER("... modeset      : %d\n", nouveau_modeset);
--	DRM_DEBUG_DRIVER("... runpm        : %d\n", nouveau_runtime_pm);
--	DRM_DEBUG_DRIVER("... vram_pushbuf : %d\n", nouveau_vram_pushbuf);
--	DRM_DEBUG_DRIVER("... hdmimhz      : %d\n", nouveau_hdmimhz);
-+	DRM_DEBUG_DRIVER("Loading Nouveau with parameters:\n"
-+			 "... tv_disable   : %d\n"
-+			 "... ignorelid    : %d\n"
-+			 "... duallink     : %d\n"
-+			 "... nofbaccel    : %d\n"
-+			 "... config       : %s\n"
-+			 "... debug        : %s\n"
-+			 "... noaccel      : %d\n"
-+			 "... modeset      : %d\n"
-+			 "... runpm        : %d\n"
-+			 "... vram_pushbuf : %d\n"
-+			 "... hdmimhz      : %d\n"
-+			 , nouveau_tv_disable
-+			 , nouveau_ignorelid
-+			 , nouveau_duallink
-+			 , nouveau_nofbaccel
-+			 , nouveau_config
-+			 , nouveau_debug
-+			 , nouveau_noaccel
-+			 , nouveau_modeset
-+			 , nouveau_runtime_pm
-+			 , nouveau_vram_pushbuf
-+			 , nouveau_hdmimhz);
- }
- 
- static const struct dev_pm_ops nouveau_pm_ops = {
+> 
+> Tom Lendacky (8):
+>   x86/ioremap: Selectively build arch override encryption functions
+>   mm: Introduce a function to check for confidential computing features
+>   x86/sev: Add an x86 version of cc_platform_has()
+>   powerpc/pseries/svm: Add a powerpc version of cc_platform_has()
+>   x86/sme: Replace occurrences of sme_active() with cc_platform_has()
+>   x86/sev: Replace occurrences of sev_active() with cc_platform_has()
+>   x86/sev: Replace occurrences of sev_es_active() with cc_platform_has()
+>   treewide: Replace the use of mem_encrypt_active() with
+>     cc_platform_has()
+
+Ok, modulo the minor things the plan is to take this through tip after
+-rc2 releases in order to pick up the powerpc build fix and have a clean
+base (-rc2) to base stuff on, at the same time.
+
+Pls holler if something's still amiss.
+
+Sathya,
+
+if you want to prepare the Intel variant intel_cc_platform_has() ontop
+of those and send it to me, that would be good because then I can
+integrate it all in one branch which can be used to base future work
+ontop.
+
+Thx.
+
 -- 
-2.31.1
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
