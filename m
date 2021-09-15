@@ -2,58 +2,48 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE0C540C55D
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Sep 2021 14:35:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 026A840C55F
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Sep 2021 14:35:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BD016E917;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7A636E921;
 	Wed, 15 Sep 2021 12:35:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 553CF6E8FD;
- Wed, 15 Sep 2021 10:08:26 +0000 (UTC)
-Received: from zn.tnic (p200300ec2f0d070015682a2dbfe19a41.dip0.t-ipconnect.de
- [IPv6:2003:ec:2f0d:700:1568:2a2d:bfe1:9a41])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 5C8AF1EC0493;
- Wed, 15 Sep 2021 12:08:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
- t=1631700500;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
- bh=84AiMC3UCE921bKjcL3MviV5+eDqG9h6JWVKVYivIsk=;
- b=gQHDZFKPDYNc3V1KjxBVvsh4bR+MVuvX2NsJ94AUYxVbw0WYPPRaOZoLdvqoJQnogW9X+8
- u/7mWvb/k4xW3BpHLLo/9AEwVjVY3UUhPajUzAZXgzgKnGBfWm5RVt5J0yPjSayDNAKsPC
- qBW9c0rQVO5QzNWXYERX94I+rK+vCYU=
-Date: Wed, 15 Sep 2021 12:08:13 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Michael Ellerman <mpe@ellerman.id.au>
-Cc: Tom Lendacky <thomas.lendacky@amd.com>, linux-kernel@vger.kernel.org,
- x86@kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-s390@vger.kernel.org, iommu@lists.linux-foundation.org,
- kvm@vger.kernel.org, linux-efi@vger.kernel.org,
- platform-driver-x86@vger.kernel.org,
- linux-graphics-maintainer@vmware.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kexec@lists.infradead.org,
- linux-fsdevel@vger.kernel.org, Brijesh Singh <brijesh.singh@amd.com>,
- Joerg Roedel <joro@8bytes.org>, Andi Kleen <ak@linux.intel.com>,
- Sathyanarayanan Kuppuswamy <sathyanarayanan.kuppuswamy@linux.intel.com>,
- Tianyu Lan <Tianyu.Lan@microsoft.com>,
- Christoph Hellwig <hch@infradead.org>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Paul Mackerras <paulus@samba.org>
-Subject: Re: [PATCH v3 4/8] powerpc/pseries/svm: Add a powerpc version of
- cc_platform_has()
-Message-ID: <YUHGDbtiGrDz5+NS@zn.tnic>
-References: <cover.1631141919.git.thomas.lendacky@amd.com>
- <9d4fc3f8ea7b325aaa1879beab1286876f45d450.1631141919.git.thomas.lendacky@amd.com>
- <YUCOTIPPsJJpLO/d@zn.tnic> <87lf3yk7g4.fsf@mpe.ellerman.id.au>
+Received: from smtp-relay-canonical-1.canonical.com
+ (smtp-relay-canonical-1.canonical.com [185.125.188.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C4356E91C;
+ Wed, 15 Sep 2021 11:36:13 +0000 (UTC)
+Received: from localhost (1.general.cking.uk.vpn [10.172.193.212])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
+ SHA256) (No client certificate requested)
+ by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 242C43F108; 
+ Wed, 15 Sep 2021 11:36:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+ s=20210705; t=1631705772;
+ bh=V6LVzXE8Uk9yBBqq1mcc0plej4doxWMczd7CQVzrmXE=;
+ h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type;
+ b=ogqCQSpnBeuq6PVLoHl8FXEFw2TKAcude+jsq1cum948uGBZR38EDu04WIr3N+iuT
+ dv6XfEkU9VK4Awi7aMeCsoz/0IxqhY/ruyB5QFhn3CeCxd9GbgM7vaP3oQ1j3JaSA9
+ HwvkVYuSbKx8bTzvRr7L7AdpjNQarzp3FvFRLsq+JY04Vt8Uv5PgiPN/TzJqK9d5ol
+ LD/l50RpbwSc6hzAYzqV6xOsN4Ra31JZEIVsQmAm1AnjBzF4lU5OcDXNFoHNzp3M6q
+ iVQEO1juz4Q3Dt5lqonuS0G/fV6QWQmJw2MxaMarVTUhTDhVHygisjInoQS/SQij/9
+ da7aiQFv+Ol+g==
+From: Colin King <colin.king@canonical.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui.Pan@amd.com, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/radeon: make array encoded_lanes static
+Date: Wed, 15 Sep 2021 12:36:11 +0100
+Message-Id: <20210915113611.13620-1-colin.king@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <87lf3yk7g4.fsf@mpe.ellerman.id.au>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 15 Sep 2021 12:35:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,29 +59,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 15, 2021 at 10:28:59AM +1000, Michael Ellerman wrote:
-> I don't love it, a new C file and an out-of-line call to then call back
-> to a static inline that for most configuration will return false ... but
-> whatever :)
+From: Colin Ian King <colin.king@canonical.com>
 
-Yeah, hch thinks it'll cause a big mess otherwise:
+Don't populate the read-only array encoded_lanes on the stack but instead it
+static. Also makes the object code smaller by 97 bytes:
 
-https://lore.kernel.org/lkml/YSScWvpXeVXw%2Fed5@infradead.org/
+Before:
+   text    data    bss     dec    hex filename
+  38899    8064      0   46963   b773 ./drivers/gpu/drm/radeon/r600_dpm.o
 
-I guess less ifdeffery is nice too.
+After:
+   text    data    bss     dec    hex filename
+  38738    8128      0   46866   b712 ./drivers/gpu/drm/radeon/r600_dpm.o
 
-> Acked-by: Michael Ellerman <mpe@ellerman.id.au> (powerpc)
+(gcc version 11.2.0)
 
-Thx.
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/radeon/r600_dpm.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-> Yeah, fixed in mainline today, thanks for trying to cross compile :)
-
-Always!
-
-:-)
-
+diff --git a/drivers/gpu/drm/radeon/r600_dpm.c b/drivers/gpu/drm/radeon/r600_dpm.c
+index fd4226b99862..9d2bcb9551e6 100644
+--- a/drivers/gpu/drm/radeon/r600_dpm.c
++++ b/drivers/gpu/drm/radeon/r600_dpm.c
+@@ -1361,7 +1361,9 @@ u16 r600_get_pcie_lane_support(struct radeon_device *rdev,
+ 
+ u8 r600_encode_pci_lane_width(u32 lanes)
+ {
+-	u8 encoded_lanes[] = { 0, 1, 2, 0, 3, 0, 0, 0, 4, 0, 0, 0, 5, 0, 0, 0, 6 };
++	static const u8 encoded_lanes[] = {
++		0, 1, 2, 0, 3, 0, 0, 0, 4, 0, 0, 0, 5, 0, 0, 0, 6
++	};
+ 
+ 	if (lanes > 16)
+ 		return 0;
 -- 
-Regards/Gruss,
-    Boris.
+2.32.0
 
-https://people.kernel.org/tglx/notes-about-netiquette
