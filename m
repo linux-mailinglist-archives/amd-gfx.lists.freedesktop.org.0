@@ -2,66 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AA7C40EA39
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Sep 2021 20:48:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A973B40EA7D
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Sep 2021 21:00:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 605C16E5B9;
-	Thu, 16 Sep 2021 18:48:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA7EA6E827;
+	Thu, 16 Sep 2021 19:00:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21B756E831;
- Thu, 16 Sep 2021 18:38:10 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10109"; a="209724832"
-X-IronPort-AV: E=Sophos;i="5.85,299,1624345200"; d="scan'208";a="209724832"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 11:38:09 -0700
-X-IronPort-AV: E=Sophos;i="5.85,299,1624345200"; d="scan'208";a="516866664"
-Received: from yunyizha-mobl2.amr.corp.intel.com (HELO
- skuppusw-mobl5.amr.corp.intel.com) ([10.212.124.4])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2021 11:38:07 -0700
-Subject: Re: [PATCH v3 0/8] Implement generic cc_platform_has() helper function
-To: Borislav Petkov <bp@alien8.de>
-Cc: Tom Lendacky <thomas.lendacky@amd.com>, linux-kernel@vger.kernel.org,
- x86@kernel.org, linuxppc-dev@lists.ozlabs.org, linux-s390@vger.kernel.org,
- iommu@lists.linux-foundation.org, kvm@vger.kernel.org,
- linux-efi@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-graphics-maintainer@vmware.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, kexec@lists.infradead.org,
- linux-fsdevel@vger.kernel.org, Brijesh Singh <brijesh.singh@amd.com>,
- Joerg Roedel <joro@8bytes.org>, Andi Kleen <ak@linux.intel.com>,
- Tianyu Lan <Tianyu.Lan@microsoft.com>, Christoph Hellwig
- <hch@infradead.org>, Andy Lutomirski <luto@kernel.org>,
- Ard Biesheuvel <ardb@kernel.org>, Baoquan He <bhe@redhat.com>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- Daniel Vetter <daniel@ffwll.ch>, Dave Hansen <dave.hansen@linux.intel.com>,
- Dave Young <dyoung@redhat.com>, David Airlie <airlied@linux.ie>,
- Heiko Carstens <hca@linux.ibm.com>, Ingo Molnar <mingo@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Michael Ellerman <mpe@ellerman.id.au>,
- Paul Mackerras <paulus@samba.org>, Peter Zijlstra <peterz@infradead.org>,
- Thomas Gleixner <tglx@linutronix.de>, Thomas Zimmermann
- <tzimmermann@suse.de>, Vasily Gorbik <gor@linux.ibm.com>,
- Will Deacon <will@kernel.org>
-References: <cover.1631141919.git.thomas.lendacky@amd.com>
- <YUIjS6lKEY5AadZx@zn.tnic>
- <d48e6a17-d2b4-67da-56d1-fc9a61dfe2b8@linux.intel.com>
- <YUNckGH0+KXdEmqu@zn.tnic>
-From: "Kuppuswamy, Sathyanarayanan"
- <sathyanarayanan.kuppuswamy@linux.intel.com>
-Message-ID: <9fee1cec-fc91-f87d-d590-5e606211f1b7@linux.intel.com>
-Date: Thu, 16 Sep 2021 11:38:04 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com
+ [IPv6:2607:f8b0:4864:20::332])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C74D6E827
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 19:00:11 +0000 (UTC)
+Received: by mail-ot1-x332.google.com with SMTP id
+ c8-20020a9d6c88000000b00517cd06302dso9556048otr.13
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Sep 2021 12:00:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=xEDJGrkRlxhEbpoHXBH2e0ETKbk5DXLaK+aqxZ8UY1M=;
+ b=o4ImyGNcJB/zN6ajlxr+htxp9P6PqCC0X1zuU7zk1p26NS5TvPTGd8PGjEtemeMhBC
+ CD5HcMUxncDeOfay+q/Sz+DnWQl6BGlIe0+x1Vs95z3S46zj0p3Y2BzznCwkRzQfwjVB
+ ZZh0Jk7sH5aAt/RJuE41PEyD61ozvhW8h0iszkDtsLotKGTBGbzPUKoyn0ZPhFEfSThs
+ Zo4IRCCw2Fo5LB+qz8nNokuU19rLuc2WWpCV0sD3CzM/PlvLhmUt3AvCJobfcY9nQdhd
+ jPG4u3VORkKg+YxAQX0aR7qT/DekUIgjPTQ1lyiAd8hxP6bCYhkiE5aUgJsRbSZkqQtz
+ JK/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=xEDJGrkRlxhEbpoHXBH2e0ETKbk5DXLaK+aqxZ8UY1M=;
+ b=UZKkB5KMl4u83dyjXktD6d735TuOwbY1JkLr+6kYZdN5VRQE1F8cgdI1Q6bwAqzi29
+ jBWqQpDY4pxZ8BXsEbJnk/Mv5guk3mxGRUjOZ9kDfciYfuO4uWm6ooo4EBue1hC44LdF
+ XVOGwqvzhubQZMSEOLjc5YNhBn2G2FjrVl3jh9Qe63dAtXM45kq+BTpedfVSY2Qkan+A
+ PlQSHSJv8O3sFp9Wrvnpduq+40Qu5aqndXzOOgEp5fHh5DWpAjRCKLkrVuQW42OoRx9w
+ JJ12pcjnk9+tjdccznxGev38ssYF9cBnIZ1VZxoiUqdDtQ4yih4keZw3u1A3O2oQEPVY
+ zvew==
+X-Gm-Message-State: AOAM533TwEDkYV32cKp3EZrNdS068UneWWKHTGzSLRoyheYI/CzQ9lay
+ 1dy9ef5pDO0xvlnQHyEjFtCMwcs01rScFCtSFBJuAApHeNw=
+X-Google-Smtp-Source: ABdhPJwj8auiefIEhKCVf89FEqbS261Qi3tLhD3srEESVIDf/MPuTE+c+6tGgcp0rYoN4hVQrDlDs76XlfKX+tg/I/I=
+X-Received: by 2002:a05:6830:2704:: with SMTP id
+ j4mr6165867otu.299.1631818810307; 
+ Thu, 16 Sep 2021 12:00:10 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YUNckGH0+KXdEmqu@zn.tnic>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Thu, 16 Sep 2021 18:48:22 +0000
+References: <AM9P191MB1857E1C7B1552C45D3BA9D55CDDC9@AM9P191MB1857.EURP191.PROD.OUTLOOK.COM>
+In-Reply-To: <AM9P191MB1857E1C7B1552C45D3BA9D55CDDC9@AM9P191MB1857.EURP191.PROD.OUTLOOK.COM>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 16 Sep 2021 14:59:59 -0400
+Message-ID: <CADnq5_PNCynNXxLE3oqOk2+ZHW79qxCM1by2UUWWQJ_f2KrNXw@mail.gmail.com>
+Subject: Re: I get this error while trying to run 3D applications or games.
+To: Davut Demir <davutdemir16@hotmail.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,25 +66,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Sep 16, 2021 at 2:48 PM Davut Demir <davutdemir16@hotmail.com> wrote:
+>
+> Eyl 16 18:49:02 davut-laptop kernel: amdgpu 0000:01:00.0: PCIE GART of 256M enabled (table at 0x000000F400000000).
+> Eyl 16 18:49:26 davut-laptop kernel: [drm:amdgpu_job_timedout [amdgpu]] *ERROR* ring gfx timeout, signaled seq=527, emitted seq=528
 
+Looks like a GPU hang.  What application and GPU is this?  Best to
+file a bug (https://gitlab.freedesktop.org/drm/amd/-/issues) and
+attach your dmesg output, xorg log (if using X) and any relevant
+information about it.  You might also try upgrading or downgrading
+mesa.
 
-On 9/16/21 8:02 AM, Borislav Petkov wrote:
-> On Wed, Sep 15, 2021 at 10:26:06AM -0700, Kuppuswamy, Sathyanarayanan wrote:
->> I have a Intel variant patch (please check following patch). But it includes
->> TDX changes as well. Shall I move TDX changes to different patch and just
->> create a separate patch for adding intel_cc_platform_has()?
-> 
-> Yes, please, so that I can expedite that stuff separately and so that it
-> can go in early in order for future work to be based ontop.
-
-Sent it part of TDX patch series. Please check and cherry pick it.
-
-https://lore.kernel.org/lkml/20210916183550.15349-2-sathyanarayanan.kuppuswamy@linux.intel.com/
-
-> 
-> Thx.
-> 
-
--- 
-Sathyanarayanan Kuppuswamy
-Linux Kernel Developer
+Alex
