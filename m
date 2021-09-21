@@ -1,41 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81B6E413989
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Sep 2021 20:07:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEA12413987
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Sep 2021 20:07:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 445906EA30;
-	Tue, 21 Sep 2021 18:07:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43AB96EA16;
+	Tue, 21 Sep 2021 18:07:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2056.outbound.protection.outlook.com [40.107.237.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E24046EA16
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2065.outbound.protection.outlook.com [40.107.243.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE2046EA1E
  for <amd-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 18:07:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VooBa3Zgld+PzYpdhF3z0lg8xw1R3iA2W52zVTKv3AR5uIBMxQ6u8tZPR8HjipLzEw2JFgTihTK9FHLa+yfF8TDt4+z6axGgYPokmIFBc5YSjLS46I0mMshVFSSJfjZN7ydsYz0KMOHdMvBMGhoVcQfZtJmxmmazBVh6A+tjI4r5UwedY9722HxfZLyRddQqnJCQnAYsDVD8iBWSU/25AsgPwLeY+FbQBAau4Tq/UhG8QDylTiBwHmytTpDfWY/3vd7tP1GRJ6b3wdbQb5Gnhoqz1r21aRCdk/sqLHNDmIv8m+xE8oDaf2fb/2HNAEvnrVJSItLZm1Oh/j8GT9qHRg==
+ b=mJzZWsPBLADQs2fDi+Fc6N2d46GiuOhxSM86GObkYB3axukMY0YDRwbjO1AgIK43Krt9jahnlCSIAyiEk3pY/rB0mawVHandKkHFD0pPlo8FCQzORdqDSd03d3K7FDUEU7c4s1ZLxBfm67TJM7+EQOPSV1M6NJP6A9xJnIkhy+68flboDB9fxc76u3frKNOISQTAt4kSCGJenNtREGTVVuYb1s6EnU3Ja7EFawsxMrH+S811V1mZ7qM3snub2QLK/hM3Jx0vjb8fDqsdC766XmmK/uWX9NeWx8Kr+lj03ffV+WYsosARCEq4L/TTf6qVErguu8F8/Lu7rlK4wjkr/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=Q89IXJyGZfE2c6/CeGroPgnCjtAAXEVGGgBM1fFhXq0=;
- b=XvjZCD/TZV7M91VzkEF7Wy1b3HG8nxp7t39EKPbvp8QmbUVX5VUOxRWPSRZby6q15uq6gY1+UiBKdyvQDTQhAg4bRMpUAJpGPukmxypPF1XbZd8GDChpG7Z6vcN0nyQ4zlBYE9uNdzMvdM49XxMg+Wxwyjjah2KxBZm71TtMnqDZSaOAh47fYsCyBpLkqzjN2fTMRB3U9PA+hvlA0xfw/td1M4jTnLZ+Zqb49tCURfVdiGcti+j/Qjt2on/l8UlJ8bbQt8hSYtTzMvGcJ2UCsFuQXmQT/pWORLgDrInrBG4ONiqitEHB0oDPcVuatOFQsDyKyuagwxyRoDHp7UH4oQ==
+ bh=cOtialm68vFWCwRof4ROxqgHMf4TyAvqJVRZtIqgBO0=;
+ b=Lq56bHlrUAysOevhWb9nzili7a4U0HKwrcREgMWHiu4tiVL+UPUGwDBZF3g0CyGYkRr+EkIQ9u+xtfevY3p3kq+OD1wvUwRRoDPd27pfnVG6ujcYIOtetbvQgXJyP9DV/HqhsuiQesWAW0gNpw8HHqhqwRMgVCKT9Q5psCnxlHyvOpgGgSZdGQ5d+KVh0hD7DhM5AzClfkstzT46GHY6cmrojU4lnEmVcglO5lzgkljcj4xzezaqF7sKPOC/+3NdbjwTO6yoZoEcopaOMOOl1kmiXdKbU1fcFn8yzJMjxIRm2nX2gHoNVa/3gbqc1wu6qrbwa60OlZlxqBeYBHIQ8A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q89IXJyGZfE2c6/CeGroPgnCjtAAXEVGGgBM1fFhXq0=;
- b=axR7xtVgOLVETH7O0flzvNpjaZa5b7dNtzlnRCQJBrGMWTUPYm9HO/YLARdxTsDxeO0rGRg/5r4CDxqkmLZM1TNBu4981AGTzKJZNu7UfHq1H1q+O7clVL+2vTjugonvN7ZvQjX8ge9DXGw7aOqeYRgC+TeqAXkfXhdNhRZB21k=
-Received: from DM5PR11CA0004.namprd11.prod.outlook.com (2603:10b6:3:115::14)
- by DM6PR12MB3802.namprd12.prod.outlook.com (2603:10b6:5:1c5::27) with
+ bh=cOtialm68vFWCwRof4ROxqgHMf4TyAvqJVRZtIqgBO0=;
+ b=ZV98XlGMfjYGUD6KJuuS7Cw5YqvHCyL3eMwUMyTki6bDp97oHKS65DT+nTu3e26oBu79KrK8mpD/DO9InUk67upsOleENEdGXREQQCuWA1ZC5IY2kv49hKCJbhqMSZfYEU7x47D5B09vl7hVB0yWwB60jOhFr8mvsmLQjRaQqB8=
+Received: from DM5PR11CA0014.namprd11.prod.outlook.com (2603:10b6:3:115::24)
+ by DM4PR12MB5182.namprd12.prod.outlook.com (2603:10b6:5:395::24) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.14; Tue, 21 Sep
  2021 18:07:41 +0000
 Received: from DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:115:cafe::7) by DM5PR11CA0004.outlook.office365.com
- (2603:10b6:3:115::14) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:3:115:cafe::6c) by DM5PR11CA0014.outlook.office365.com
+ (2603:10b6:3:115::24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.13 via Frontend
  Transport; Tue, 21 Sep 2021 18:07:41 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -56,10 +56,9 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 01/66] drm/amdgpu: move headless sku check into harvest
- function
-Date: Tue, 21 Sep 2021 14:06:20 -0400
-Message-ID: <20210921180725.1985552-2-alexander.deucher@amd.com>
+Subject: [PATCH 02/66] drm/amdgpu: add debugfs access to the IP discovery table
+Date: Tue, 21 Sep 2021 14:06:21 -0400
+Message-ID: <20210921180725.1985552-3-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210921180725.1985552-1-alexander.deucher@amd.com>
 References: <20210921180725.1985552-1-alexander.deucher@amd.com>
@@ -71,28 +70,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 24a014ec-fc29-43f7-bd0a-08d97d2ab407
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3802:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB380220E3A6DC5E3D46C8087AF7A19@DM6PR12MB3802.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:265;
+X-MS-Office365-Filtering-Correlation-Id: 476ba7aa-45be-4a8a-9efb-08d97d2ab440
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5182:
+X-Microsoft-Antispam-PRVS: <DM4PR12MB518290E44A019E1347F30B86F7A19@DM4PR12MB5182.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:983;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZAEipw/AggE7nh4sZPDPpJnjdw9Js2+NIKq86HANd++4GwZ/axB9/a1sQ6l91zcoSE2pn6yQmLRbiaakW9+7oLDC5jpW3AO5PhnGfQUCAsEqdRPNsBGFnU3NuVqtA1kOGP6Q6kxXLyt4xcT+MIsrm4a+i1onCKOvhh/k65pYDwd/aYxlk6ukiTOE9xxEoxhWkZczNE9RpG0P+WhyFDD1Z0wpY09oD59FHTwbZWGbjXpine71qgR+Pb/7h7zyXTNj1YQb5NhwiskC1ccFP2YMYCpTbnpLtVDNMSsaHkIwcehicvDJa1FCxJefwPG4yowFjkBiYxbzuX+kkfS/XgjZGKrBWGJBnuxuJNj26vBkE/CbA1gNR8b3Y62Iur7n/ZsO/WD42ZR827R5MFle/oME6CVMCHwy+k0t3aJ2vnV81N3XDV38mC6lxJtLyoee9ulk5tVh4Xl/pZNsbRTQQEfzqt2TCFiTxl7B0qwv+6M0VpIB/pD1ByMMkhE+uXtYKbdWPT42dOvcfavVIBMevsBouDqsze+K5axU+LE+G2es9J1CmnnbMOUXMw2hEL44O1VUO56kHniy2EfCTy0MuIdOfxUtlYVgR/8fp3u3vHe1xO387jfHKea/QGhfWNJ8hDSmV85DXD3btJsiyOIFxH0sGPUTYT5+PkI+2OoFj9BUUlGsqAflbijxNJwrdMKkb6iukqJpVVcqumkBQVURcBudLk78rTIuQ34UFZ7bgpQyJSw=
+X-Microsoft-Antispam-Message-Info: KvPsqdEp7zsNbdd3nDPmbdoqpcPUB6lqpoo1bqp2F1ea0qnkSKLF7WisZAjHgbDVcYS/em9njCxZ6h1dOEVn4Gk+8nvh1O1zdXNW2P9qcyfoUUJPTIhwdCvWgZWOtAVIGAyktqi5/AzrOCRScHxBcLu+EhDIz+oEMEpt4axUPxDctlxRpHJKHYay9POyIthYg04fTffN4zqqqvdLQreu+YrvOKjER6Q+66Xi9KuF62ZnH9dUvm419c1AbG6XQoHI8KT/9jAEADpN3alAIql+TN0Skj+0TQC0+N4PZ2o+l+JmGYf6/g+qu1cEJ3dbohMpYO8SobpTiOmZAApaoGyVNzH+JPIPsySLQ+qfNe41CHOGXHVnxcOasdv0t8e4Ysau4/6H0iRmGQgrsLvwQjN1obc8bIbkhsHGpljn7hVI2RlhlLl45NIdiLug+x5E3S4xfDU2qNGRhd23AEFuvtIYpMQnRomW8BHODz6/ugh2AjQJPVRhXSk6zL+J6Kn1EAOdWz3Zo8Ugtp/t3mgK0yBcHvO3obRoYlCZ0Bc7I7JIkS4SEqDuB93a0Y05ALF25FmNzwUaW58WoGbKufxwDilDA8p/kRL5Vkkx94L6dLPOM6D5S/5pCeg68Uzx/gZ20UGJJGuWiPA9A7HzUatGLDVCqx9//3qEQRU33tC8S603h18buIz+Re0jiYT19/surKDp1Lw1Urj8fWVQ+1yBxbsubTqwF/TsLjl8zE3JBOnqRiU=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(5660300002)(6916009)(36860700001)(7696005)(2906002)(1076003)(426003)(356005)(36756003)(83380400001)(2616005)(6666004)(16526019)(508600001)(47076005)(26005)(4326008)(81166007)(316002)(8936002)(8676002)(70206006)(86362001)(82310400003)(70586007)(186003)(336012)(36900700001);
+ SFS:(4636009)(36840700001)(46966006)(6916009)(316002)(83380400001)(6666004)(4326008)(2616005)(508600001)(356005)(426003)(47076005)(336012)(82310400003)(36860700001)(70206006)(8676002)(70586007)(26005)(16526019)(186003)(2906002)(8936002)(86362001)(7696005)(1076003)(5660300002)(36756003)(81166007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2021 18:07:41.1150 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 24a014ec-fc29-43f7-bd0a-08d97d2ab407
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2021 18:07:41.5068 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 476ba7aa-45be-4a8a-9efb-08d97d2ab440
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3802
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5182
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,64 +106,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Consolidate harvesting information.
+Useful for debugging and new asic validation.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |  7 +++++++
- drivers/gpu/drm/amd/amdgpu/nv.c               | 14 --------------
- 2 files changed, 7 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h         | 1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 5 +++++
+ 2 files changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index ada7bc19118a..f55613611a02 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -413,6 +413,13 @@ void amdgpu_discovery_harvest_ip(struct amdgpu_device *adev)
- 		adev->harvest_ip_mask |= AMD_HARVEST_IP_VCN_MASK;
- 		adev->harvest_ip_mask |= AMD_HARVEST_IP_JPEG_MASK;
- 	}
-+	if ((adev->pdev->device == 0x731E &&
-+	     (adev->pdev->revision == 0xC6 || adev->pdev->revision == 0xC7)) ||
-+	    (adev->pdev->device == 0x7340 && adev->pdev->revision == 0xC9)  ||
-+	    (adev->pdev->device == 0x7360 && adev->pdev->revision == 0xC7)) {
-+		adev->harvest_ip_mask |= AMD_HARVEST_IP_VCN_MASK;
-+		adev->harvest_ip_mask |= AMD_HARVEST_IP_JPEG_MASK;
-+	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+index d356e329e6f8..cdb963b9bea0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+@@ -830,6 +830,7 @@ struct amdgpu_device {
+ 	struct notifier_block		acpi_nb;
+ 	struct amdgpu_i2c_chan		*i2c_bus[AMDGPU_MAX_I2C_BUS];
+ 	struct debugfs_blob_wrapper     debugfs_vbios_blob;
++	struct debugfs_blob_wrapper     debugfs_discovery_blob;
+ 	struct mutex			srbm_mutex;
+ 	/* GRBM index mutex. Protects concurrent access to GRBM index */
+ 	struct mutex                    grbm_idx_mutex;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+index 074ffcf0dac2..31e16a42d4e1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+@@ -1757,6 +1757,11 @@ int amdgpu_debugfs_init(struct amdgpu_device *adev)
+ 	debugfs_create_blob("amdgpu_vbios", 0444, root,
+ 			    &adev->debugfs_vbios_blob);
+ 
++	adev->debugfs_discovery_blob.data = adev->mman.discovery_bin;
++	adev->debugfs_discovery_blob.size = adev->mman.discovery_tmr_size;
++	debugfs_create_blob("amdgpu_discovery", 0444, root,
++			    &adev->debugfs_discovery_blob);
++
+ 	return 0;
  }
  
- int amdgpu_discovery_get_gfx_info(struct amdgpu_device *adev)
-diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index ff80786e3918..726975caf4be 100644
---- a/drivers/gpu/drm/amd/amdgpu/nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -608,16 +608,6 @@ static const struct amdgpu_ip_block_version nv_common_ip_block =
- 	.funcs = &nv_common_ip_funcs,
- };
- 
--static bool nv_is_headless_sku(struct pci_dev *pdev)
--{
--	if ((pdev->device == 0x731E &&
--	    (pdev->revision == 0xC6 || pdev->revision == 0xC7)) ||
--	    (pdev->device == 0x7340 && pdev->revision == 0xC9)  ||
--	    (pdev->device == 0x7360 && pdev->revision == 0xC7))
--		return true;
--	return false;
--}
--
- static int nv_reg_base_init(struct amdgpu_device *adev)
- {
- 	int r;
-@@ -631,10 +621,6 @@ static int nv_reg_base_init(struct amdgpu_device *adev)
- 		}
- 
- 		amdgpu_discovery_harvest_ip(adev);
--		if (nv_is_headless_sku(adev->pdev)) {
--			adev->harvest_ip_mask |= AMD_HARVEST_IP_VCN_MASK;
--			adev->harvest_ip_mask |= AMD_HARVEST_IP_JPEG_MASK;
--		}
- 
- 		return 0;
- 	}
 -- 
 2.31.1
 
