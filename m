@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 214B0413997
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Sep 2021 20:08:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 458384139A1
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Sep 2021 20:08:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FF3F6EA8C;
-	Tue, 21 Sep 2021 18:07:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D1FC6EA95;
+	Tue, 21 Sep 2021 18:08:02 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2070.outbound.protection.outlook.com [40.107.223.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E002B6EA32
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 18:07:54 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2084.outbound.protection.outlook.com [40.107.237.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBD106EA79
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 18:07:55 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=f2AUwXlYZtTg6Qv5X4Y6EDdo+qfy8kAoe5u2Lfj3Vcca74Eq45m1mZ28Ppeawgvuyv/0h/w6RAd5XiAZgexXQdzHeKOkuV0bBlzn5F/9mu7q2+oSj/vKMU3xj5fyc0kInZRA+se50gAd+/eRv7ztpHcPJM1/vmJXXP4hy65qf3A3tNzIjCFTulEHxTOxr3rliSe/mYAhzbLqeqOBqeOLC2EQ2KyBJNuc4uahgw9nemvSv5PrZJLamRJjr9c7TxaUKGGxqiyBavUe/u8HVSixa4DwCKlF64oG2A0krBsgtVpOJEw7MTImHlgmuK+5+sGkMWZtK6LzMozqbbPnuBIvXQ==
+ b=W/F2Q9jVlnzZictAjwOpeA0f9cecxXn7+d8l5wpPgp56DFE4JkPIeHzpAHXrwr+pympRc6xz2zgcbLzrfuSG954Kvj0/vpM+qLBslGoyGJlrGUBqQIht8uIFQHDCd6REXyAzvZ0gpYMK9dL5JYLPqjZLa13z6X3cd9YWQA1muchZdDlMkvAlDA2dZXnorI+r7ERymJQtfImtGlCIOYoNW0vsF5yY1te11YLb2NiUoMbLcKAJY4VkJJsFQwgKZxUqyV5EB9bZYrLhp8nmzMPL6wBfyMlNr3akmemQqdaQPvGZ/+rL9MCLfW/IUftel8a64MezusD/MZiEALILcLf1Qw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=jyWRnkeEIqqtYghQlkMtwtSnoXtkyp14iCNvr5INVR0=;
- b=dARKt/v8zZuMw9mlexwMYw/u2ARmoYKWpxVLsrqMFj6r/GiAQPnH6ZwZHAXog4q6hKi/VscIr+nx0rifqruH+Vct8JiCZzKyko+EOUkVQedzEck9Ix++Q+4UyjBdyqwDfYrmLQeRTnDdAwLRDCe8DsiXFOrYfJRpUT6+r/M+8dnzwGReHQOT4/HG2oYMqUxdy66sATUXu5CBxj7NSXipTrN73+h9jcBFe8HdLak3yw2faPZTUalr5GAQfCnqkBkKeoIz7qChaVrA+Sof3sa1H/991coItsBHSflRJQiZ4M4uN4QtRYdiSoH3ftRjPjF8+YEIa1giMnaibGqIXdy/SQ==
+ bh=dUsfJh0RILGzy4+cxQuVx8BLP22x4zaSoVAF2k5RIOs=;
+ b=GLbcIfBbBg0bx+sS3uLuyOGitdlWINrRK9/hehxHodRbYSsoKrQUdl3uaioMK8qKPfTK8aZ7pFUzRS/uw82/iWPzeNbXeMfROqU8/BspwivhUUWLBx5ZTxOQKt6jJVkPtRAAp5B+fjRVzIcBkWMHHzZ9mhwe1vYMPAJjCmoSChr+msqCFHioEaLmQbIbEj133X6nOO5SJw3wreGRAsCqHPtXRz3dPF03PqUrXh1V7/qBBfga7FlMqIMUa2PyLVKDAnSd8tjDaBkqjkqWCdx8rq0f04Zp3fESQ/3z626D+mlhLxi3GdWBhtOAYevMJNBtjaKJ7X0w8xm4QDQZvsD2aA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jyWRnkeEIqqtYghQlkMtwtSnoXtkyp14iCNvr5INVR0=;
- b=g7kVkv5MK/gHjPtwdC8uOrAcVPw1HsotDlkoE6yBA/FUV0r6EfYW1I4mQ1yItDelnjGul8cu0PBytc9W/3T+x83IGMzRtpjaBAMzM+2oTS6YrRZaDsnlU9Re8u7MLdFLqjRHWz6jXprXT0/CSgIm1JLpw7AqlhdT+iJPOkGaDrM=
-Received: from DM6PR21CA0015.namprd21.prod.outlook.com (2603:10b6:5:174::25)
- by BN6PR12MB1555.namprd12.prod.outlook.com (2603:10b6:405:5::19) with
+ bh=dUsfJh0RILGzy4+cxQuVx8BLP22x4zaSoVAF2k5RIOs=;
+ b=IVtpi7LLCdfRAxASSwu4LLOkTVsmDQpJjSwu4yQb5de4hnAPpBuvsTwPHCOb9gtrUc6Sj+FCB0jrxsor5De+UxzF7Bj2tV8Q6sDzqBaE/XFp9OTlvZusF8R5W2+uoSSb5IXGcLFVMOflVD71r0qNKByfYPJq/fNXvI94c5NRaMY=
+Received: from DM5PR11CA0015.namprd11.prod.outlook.com (2603:10b6:3:115::25)
+ by CO6PR12MB5475.namprd12.prod.outlook.com (2603:10b6:5:354::7) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.16; Tue, 21 Sep
- 2021 18:07:52 +0000
-Received: from DM6NAM11FT013.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:174:cafe::84) by DM6PR21CA0015.outlook.office365.com
- (2603:10b6:5:174::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.6 via Frontend
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.14; Tue, 21 Sep
+ 2021 18:07:53 +0000
+Received: from DM6NAM11FT005.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:115:cafe::d5) by DM5PR11CA0015.outlook.office365.com
+ (2603:10b6:3:115::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.14 via Frontend
  Transport; Tue, 21 Sep 2021 18:07:52 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
@@ -46,7 +46,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT013.mail.protection.outlook.com (10.13.173.142) with Microsoft SMTP
+ DM6NAM11FT005.mail.protection.outlook.com (10.13.172.238) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.4523.14 via Frontend Transport; Tue, 21 Sep 2021 18:07:52 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
@@ -56,9 +56,9 @@ Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 22/66] drm/amdgpu/navi10_ih: convert to IP version checking
-Date: Tue, 21 Sep 2021 14:06:41 -0400
-Message-ID: <20210921180725.1985552-23-alexander.deucher@amd.com>
+Subject: [PATCH 23/66] drm/amdgpu/amdgpu_smu: convert to IP version checking
+Date: Tue, 21 Sep 2021 14:06:42 -0400
+Message-ID: <20210921180725.1985552-24-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210921180725.1985552-1-alexander.deucher@amd.com>
 References: <20210921180725.1985552-1-alexander.deucher@amd.com>
@@ -70,28 +70,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 42a3b8d0-3431-47df-438a-08d97d2abafb
-X-MS-TrafficTypeDiagnostic: BN6PR12MB1555:
-X-Microsoft-Antispam-PRVS: <BN6PR12MB155504AE4CA6E4591571E47FF7A19@BN6PR12MB1555.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
+X-MS-Office365-Filtering-Correlation-Id: 60878341-6743-4009-5d4f-08d97d2abb02
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5475:
+X-Microsoft-Antispam-PRVS: <CO6PR12MB5475B256AFC4D583A948DEACF7A19@CO6PR12MB5475.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RSZ4r2eWDYKfIRiTlOWDnVjQnsR8JYs7//M4YtEUzmK/2edRlsGXsgW+Dei0fZV30p82TZojUnGDJ6J5Yl7pS7xTIjRZrytHwzqLDTdMkxeArU5OCwyBJBlX9seLv9YWP1eTgvMKXgly6LmGxwJlCnxpAVYm+X/0Arw/LmoqkhFk3m7UIDEZ8PTkkA8HRanY8nm+97mf2ObZmYkgugA1rLHCwXXWEFw3L+M91LKtjopDDaFutHl6b08pFjBX1lNgslFUqzjf73YyAeWE1e+5wwREhac+6/SrcOwxP0U63xl5urj/k6ocnfN7wWoJ9W5M1kcUtvRRJo0f5uESiukZ7liGY3OwLP4SikyiTMIE/hextjdh9lHPes0OSlU6VBR1FN4E8lb83hhl+5AdFATtMljpr437lGUsQ5O7NEyNlWjTVywMdIB9HJc/oPT1qqW7LWBAx5pWsJ3NdU1Gk+DqipABwqHr4XMxIjY1XS2aqCjb/5HlgWV3lIq1yfL0oDEcAHb5zlPJQkE0r5U4a94p6a8GY7KDGw2UNCvgY7JGSI7yoCy9T9I87JqqRD4voKbzFMI3qITHlWs1RMsYIPA0oaBoxNqeSC/97+LVWZVPvxxkRejtJM31yg15R2o7D28iO0AFzRCHxh4O9nbsbt6zmS7W6cJJbJjOye23bBn5UDifyRrv8avoDHcoIUg+ZLb72F2i+uMjiyvJv7gk21gqcVCKWt7sIQC7PcI6CT8ggbQ=
+X-Microsoft-Antispam-Message-Info: ihsL0KtJL5mSEjS83cvfNTUgX1Q8CVRGx02BWr6TXG7ZzUZ5Zhc4Kpo6Brr0gSWpgdDPywZP+pyCAvk0zkzo75hSldZz2d2aAysYoWzxH/YC8t/SFlbf/BGWQkpKRUO3GM10jJQ/vTgKzNAFFsipFJMYUCJaRgvziplqc+ksG3aANy/6Hg4su49aCWQb6iWl0r9C03k4+ohTTwezazjdZsO7BOs5B9Qb9WbK320gE08OcOkrPu3YzgICN4n7U+cqJENKCc8uiP1PKj/AHJQSN8YVzbN9wN6w3hP7Lf5m5K+2AzK8xvOP5ctBjAf9Yppy508iVRO0b06O656+KhDEGoJ/2nxzpGs7/rj3KcrvnTZPocoCP6gb0RRHT49M2h0QCBhbnGbz81B8Xjmoh92CvL38CGw+P+xRX8iCv03sXXRzbTINeWpt49LqsyHWPcNEWzFm1A0fOHVXnK0wMp9qu0+PE1LzmfpLqBUNs1J83Saep3Su9VG/cWgGIo0wET58scFRxu+TtcX7PajMdLcp0ZbgAToTQdWPfTNk1v1SXm1Ecq/2ypV6zc4sM23POb5iDQKKZ66z4HojUlo6eZVzsKZJs3thzFAnMj2ruZaIW7A6JEbG/uX/6+tpRQDUmdehTGF6ZU0+CUtpvDW7fRuOVsu6M1rbBWup2qutm6H0ObTVAODzBdchrf6nospfA202YotpF5Cj4Sj6b+yzQdWVHG2teta/3+0568n6K8K8BW8=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(2906002)(70206006)(336012)(70586007)(8936002)(47076005)(36756003)(83380400001)(508600001)(7696005)(1076003)(356005)(4326008)(6666004)(316002)(8676002)(426003)(6916009)(5660300002)(2616005)(86362001)(16526019)(26005)(186003)(81166007)(36860700001)(82310400003)(36900700001);
+ SFS:(4636009)(36840700001)(46966006)(2906002)(82310400003)(5660300002)(7696005)(70206006)(316002)(356005)(426003)(186003)(81166007)(70586007)(4326008)(36756003)(2616005)(6916009)(36860700001)(83380400001)(16526019)(47076005)(6666004)(8676002)(86362001)(336012)(508600001)(26005)(1076003)(8936002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2021 18:07:52.7949 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42a3b8d0-3431-47df-438a-08d97d2abafb
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2021 18:07:52.7939 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 60878341-6743-4009-5d4f-08d97d2abb02
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT013.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT005.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1555
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5475
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,42 +109,194 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 Use IP versions rather than asic_type to differentiate
 IP version specific features.
 
+v2: rebase
+
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/navi10_ih.c | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 94 +++++++++++++----------
+ 1 file changed, 55 insertions(+), 39 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
-index 530011622801..c3f968d9cfcb 100644
---- a/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
-+++ b/drivers/gpu/drm/amd/amdgpu/navi10_ih.c
-@@ -107,7 +107,7 @@ force_update_wptr_for_self_int(struct amdgpu_device *adev,
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index 04863a797115..5f372d353d9d 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -455,7 +455,8 @@ static int smu_get_power_num_states(void *handle,
+ 
+ bool is_support_sw_smu(struct amdgpu_device *adev)
  {
- 	u32 ih_cntl, ih_rb_cntl;
+-	if (adev->asic_type >= CHIP_ARCTURUS)
++	if ((adev->asic_type >= CHIP_ARCTURUS) ||
++	    (adev->ip_versions[MP1_HWIP] >= IP_VERSION(11, 0, 0)))
+ 		return true;
  
--	if (adev->asic_type < CHIP_SIENNA_CICHLID)
-+	if (adev->ip_versions[OSSSYS_HWIP] < IP_VERSION(5, 0, 3))
- 		return;
+ 	return false;
+@@ -575,43 +576,47 @@ static int smu_set_funcs(struct amdgpu_device *adev)
+ 	if (adev->pm.pp_feature & PP_OVERDRIVE_MASK)
+ 		smu->od_enabled = true;
  
- 	ih_cntl = RREG32_SOC15(OSSSYS, 0, mmIH_CNTL2);
-@@ -332,13 +332,10 @@ static int navi10_ih_irq_init(struct amdgpu_device *adev)
+-	switch (adev->asic_type) {
+-	case CHIP_NAVI10:
+-	case CHIP_NAVI14:
+-	case CHIP_NAVI12:
++	switch (adev->ip_versions[MP1_HWIP]) {
++	case IP_VERSION(11, 0, 0):
++	case IP_VERSION(11, 0, 5):
++	case IP_VERSION(11, 0, 9):
+ 		navi10_set_ppt_funcs(smu);
+ 		break;
+-	case CHIP_ARCTURUS:
+-		adev->pm.pp_feature &= ~PP_GFXOFF_MASK;
+-		arcturus_set_ppt_funcs(smu);
+-		/* OD is not supported on Arcturus */
+-		smu->od_enabled =false;
+-		break;
+-	case CHIP_SIENNA_CICHLID:
+-	case CHIP_NAVY_FLOUNDER:
+-	case CHIP_DIMGREY_CAVEFISH:
+-	case CHIP_BEIGE_GOBY:
++	case IP_VERSION(11, 0, 7):
++	case IP_VERSION(11, 0, 11):
++	case IP_VERSION(11, 0, 12):
++	case IP_VERSION(11, 0, 13):
+ 		sienna_cichlid_set_ppt_funcs(smu);
+ 		break;
+-	case CHIP_ALDEBARAN:
+-		aldebaran_set_ppt_funcs(smu);
+-		/* Enable pp_od_clk_voltage node */
+-		smu->od_enabled = true;
+-		break;
+-	case CHIP_RENOIR:
++	case IP_VERSION(12, 0, 0):
+ 		renoir_set_ppt_funcs(smu);
+ 		break;
+-	case CHIP_VANGOGH:
++	case IP_VERSION(11, 5, 0):
+ 		vangogh_set_ppt_funcs(smu);
+ 		break;
+-	case CHIP_YELLOW_CARP:
++	case IP_VERSION(13, 0, 1):
+ 		yellow_carp_set_ppt_funcs(smu);
+ 		break;
+-	case CHIP_CYAN_SKILLFISH:
++	case IP_VERSION(11, 0, 8):
+ 		cyan_skillfish_set_ppt_funcs(smu);
+ 		break;
+ 	default:
+-		return -EINVAL;
++		switch (adev->asic_type) {
++		case CHIP_ARCTURUS:
++			adev->pm.pp_feature &= ~PP_GFXOFF_MASK;
++			arcturus_set_ppt_funcs(smu);
++			/* OD is not supported on Arcturus */
++			smu->od_enabled =false;
++			break;
++		case CHIP_ALDEBARAN:
++			aldebaran_set_ppt_funcs(smu);
++			/* Enable pp_od_clk_voltage node */
++			smu->od_enabled = true;
++			break;
++		default:
++			return -EINVAL;
++		}
++		break;
+ 	}
  
- 	if (unlikely(adev->firmware.load_type == AMDGPU_FW_LOAD_DIRECT)) {
- 		if (ih[0]->use_bus_addr) {
--			switch (adev->asic_type) {
--			case CHIP_SIENNA_CICHLID:
--			case CHIP_NAVY_FLOUNDER:
--			case CHIP_VANGOGH:
--			case CHIP_DIMGREY_CAVEFISH:
--			case CHIP_BEIGE_GOBY:
--			case CHIP_YELLOW_CARP:
-+			switch (adev->ip_versions[OSSSYS_HWIP]) {
-+			case IP_VERSION(5, 0, 3):
-+			case IP_VERSION(5, 2, 0):
-+			case IP_VERSION(5, 2, 1):
- 				ih_chicken = RREG32_SOC15(OSSSYS, 0, mmIH_CHICKEN_Sienna_Cichlid);
- 				ih_chicken = REG_SET_FIELD(ih_chicken,
- 						IH_CHICKEN, MC_SPACE_GPA_ENABLE, 1);
+ 	return 0;
+@@ -694,7 +699,7 @@ static int smu_late_init(void *handle)
+ 		return ret;
+ 	}
+ 
+-	if (adev->asic_type == CHIP_YELLOW_CARP)
++	if (adev->ip_versions[MP1_HWIP] == IP_VERSION(13, 0, 1))
+ 		return 0;
+ 
+ 	if (!amdgpu_sriov_vf(adev) || smu->od_enabled) {
+@@ -1140,8 +1145,10 @@ static int smu_smc_hw_setup(struct smu_context *smu)
+ 	if (adev->in_suspend && smu_is_dpm_running(smu)) {
+ 		dev_info(adev->dev, "dpm has been enabled\n");
+ 		/* this is needed specifically */
+-		if ((adev->asic_type >= CHIP_SIENNA_CICHLID) &&
+-		    (adev->asic_type <= CHIP_DIMGREY_CAVEFISH))
++		if ((adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 7)) ||
++		    (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 11)) ||
++		    (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 5, 0)) ||
++		    (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 12)))
+ 			ret = smu_system_features_control(smu, true);
+ 		return ret;
+ 	}
+@@ -1284,7 +1291,7 @@ static int smu_start_smc_engine(struct smu_context *smu)
+ 	int ret = 0;
+ 
+ 	if (adev->firmware.load_type != AMDGPU_FW_LOAD_PSP) {
+-		if (adev->asic_type < CHIP_NAVI10) {
++		if (adev->ip_versions[MP1_HWIP] < IP_VERSION(11, 0, 0)) {
+ 			if (smu->ppt_funcs->load_microcode) {
+ 				ret = smu->ppt_funcs->load_microcode(smu);
+ 				if (ret)
+@@ -1403,8 +1410,14 @@ static int smu_disable_dpms(struct smu_context *smu)
+ 	 *     properly.
+ 	 */
+ 	if (smu->uploading_custom_pp_table &&
+-	    (adev->asic_type >= CHIP_NAVI10) &&
+-	    (adev->asic_type <= CHIP_BEIGE_GOBY))
++	    ((adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 0)) ||
++	     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 5)) ||
++	     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 9)) ||
++	     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 7)) ||
++	     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 11)) ||
++	     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 5, 0)) ||
++	     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 12)) ||
++	     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 13))))
+ 		return smu_disable_all_features_with_exception(smu,
+ 							       true,
+ 							       SMU_FEATURE_COUNT);
+@@ -1413,9 +1426,11 @@ static int smu_disable_dpms(struct smu_context *smu)
+ 	 * For Sienna_Cichlid, PMFW will handle the features disablement properly
+ 	 * on BACO in. Driver involvement is unnecessary.
+ 	 */
+-	if (((adev->asic_type == CHIP_SIENNA_CICHLID) ||
+-	     ((adev->asic_type >= CHIP_NAVI10) && (adev->asic_type <= CHIP_NAVI12))) &&
+-	     use_baco)
++	if (((adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 7)) ||
++	     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 0)) ||
++	     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 5)) ||
++	     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 9))) &&
++	    use_baco)
+ 		return smu_disable_all_features_with_exception(smu,
+ 							       true,
+ 							       SMU_FEATURE_BACO_BIT);
+@@ -1436,7 +1451,7 @@ static int smu_disable_dpms(struct smu_context *smu)
+ 			dev_err(adev->dev, "Failed to disable smu features.\n");
+ 	}
+ 
+-	if (adev->asic_type >= CHIP_NAVI10 &&
++	if (adev->ip_versions[MP1_HWIP] >= IP_VERSION(11, 0, 0) &&
+ 	    adev->gfx.rlc.funcs->stop)
+ 		adev->gfx.rlc.funcs->stop(adev);
+ 
+@@ -2229,6 +2244,7 @@ int smu_get_power_limit(void *handle,
+ 			enum pp_power_type pp_power_type)
+ {
+ 	struct smu_context *smu = handle;
++	struct amdgpu_device *adev = smu->adev;
+ 	enum smu_ppt_limit_level limit_level;
+ 	uint32_t limit_type;
+ 	int ret = 0;
+@@ -2273,10 +2289,10 @@ int smu_get_power_limit(void *handle,
+ 		switch (limit_level) {
+ 		case SMU_PPT_LIMIT_CURRENT:
+ 			if ((smu->adev->asic_type == CHIP_ALDEBARAN) ||
+-			     (smu->adev->asic_type == CHIP_SIENNA_CICHLID) ||
+-			     (smu->adev->asic_type == CHIP_NAVY_FLOUNDER) ||
+-			     (smu->adev->asic_type == CHIP_DIMGREY_CAVEFISH) ||
+-			     (smu->adev->asic_type == CHIP_BEIGE_GOBY))
++			     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 7)) ||
++			     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 11)) ||
++			     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 12)) ||
++			     (adev->ip_versions[MP1_HWIP] == IP_VERSION(11, 0, 13)))
+ 				ret = smu_get_asic_power_limits(smu,
+ 								&smu->current_power_limit,
+ 								NULL,
 -- 
 2.31.1
 
