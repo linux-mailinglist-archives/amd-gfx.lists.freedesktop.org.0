@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BEC04139A4
-	for <lists+amd-gfx@lfdr.de>; Tue, 21 Sep 2021 20:08:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8EF54139BD
+	for <lists+amd-gfx@lfdr.de>; Tue, 21 Sep 2021 20:08:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C0676EA9F;
-	Tue, 21 Sep 2021 18:08:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF5126EA32;
+	Tue, 21 Sep 2021 18:08:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2071.outbound.protection.outlook.com [40.107.220.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7848A6EA79
- for <amd-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 18:08:01 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2061.outbound.protection.outlook.com [40.107.92.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD59B6EA98
+ for <amd-gfx@lists.freedesktop.org>; Tue, 21 Sep 2021 18:08:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VlvU5hOnOTauJYLaDL44A65SaSU9Yo6/OptxbE4iZESOfGsx6S/ztVYFcBzdeAUj1GdP6CfCogcYPlOI4IL97wnHcBf8aMGrFfJsGxQfEu/X2988QzzYh/zgFUipPJ8CHVowqcCMMTn0w7DYB5I84IihI9uYQbR9LddRIaEk2/wsQb9hYdn0jmSHuSn1kF1hs2Yp+KUWrL1TiLHhMsttcXEp8LBq9NRF5cGXRK2Q8QzsDEDJVPxAHC+mad6HxIDRAzg7oQR16ip5X24cvIMICeNELK5iG/27rdMGRdBWs+rYDqCn8EQrxqCOODqr9fanM8cYmq7NH4B/Au2+jnLuvA==
+ b=KqvFLPZAOpcNjsY7WIrzo1JlCVvp4Oxw6fPTBaeFPBlr1Gp8uuxZsFFsbi0e0+c6azbmOL0Js3fm+JG06sozbAgxqUU+xrkL5QeP0QELD0TwKeoW5INNAZ9qR8rMYL8RlW5FDAetaWEQJbNnFjLk9Bs5dibNK4ddaw9MDgGm/Gz2hxDfI36EndAEE85264iFViNS2FDsPiZE6ewEX6glOI0sX2pnX49TBYgl3so6B0Fz+wCcxWeLK2xs4Hg7SsTlAkD/h3R1K+C8Ysiv1pGGoMo+s70DqNo/INwekr9Pjd6dOpf92lFcLfrOdiHUVq1v6KBRZCgOL71ahdSvsnydTA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=V+hYlQgt6A38g9wwx063GGbUjLytc/DDB6674c8tuqY=;
- b=QdaIQ4svYYe358sgs4mtz7ngs5KFQv48Ahgzivi6ff8LLZWs3JhI+dq6qyguUeZ02iH9Sv791QMQDDPNh70/tngsgn0EJ5XjE8KefQML8XCWJpm6He6MVLHvfg+Uc8V6APGZK097CjQ5ogPlMKixgqSb+1LhSImBbCv2IIlRZLIy4yIWloCLc6c94oggM0z2i+IDrfGdB8t2eu/4sWlipQtXliOKGSbuK83ARLo8BSvHYje/LB7a6le13zd5U1pZDwAhLeVY3ds6wwwxOeGFSzjJwNn9KrM5j8zh9hf/vugqn/H/tLiO6P/auYbdpRovnnqHUngrM3A7joEFrfAzdQ==
+ bh=MZVRsjuUEePLG2WrP6hkvlRPEq5aSPLfz7eTl9bBXns=;
+ b=SkS37ZnJ/euG8jR+UGJV6ImkTD8Yovc6DE2qrBhqa7bqFu9ErG/W3ZdiAwdtmVXEDlK3GH9p3lTUCGrbKXAGlHa/C3lRcHzuVQ1WXGjs7EEYE0tSkHVTwaxIUT8gtJlyNnnUkOugdhwhFVsasUO9FNSGj6vzXcEadmNTCOhXMd6FhSJou9WAYLMrSCaFQW1s9W1snT0q0XaucQLqu5tf7XIiKva9VkyCuapgx7V/9b3nsyMJa4K8gGleUudVdeHmFjSJWdAMd9kvuiTgx/PRG1FXk8C4xXNy32DF7hFmZd6vap+gkTCATLAkw3hJoRaLBjKf9NgJNkNYZRzhrTS6xw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V+hYlQgt6A38g9wwx063GGbUjLytc/DDB6674c8tuqY=;
- b=hU1lkOqXMnYzf6pfTZU/pdyRx4sDnMnbMe4bg8FhiQ13VCjt6q8wS3UUyrpzyHC7mRi0gUoDKFPy/SdNgUvs1GS6arDwh6ZjLfv+YpkyKbYOvgyGLMy1k2lrnYTCOeU/rGsVCenT4PV6dZz7ndeuIFhdVzmTV03wwJpPuAaLxbU=
-Received: from DM3PR12CA0051.namprd12.prod.outlook.com (2603:10b6:0:56::19) by
- DM6PR12MB4123.namprd12.prod.outlook.com (2603:10b6:5:21f::23) with
+ bh=MZVRsjuUEePLG2WrP6hkvlRPEq5aSPLfz7eTl9bBXns=;
+ b=D9YX3Zu7AVoNPYDCWmEnJfSGEp+UU9dOs6kXs6wG4YjBNRuwpfj7WBMArk2pgtoVFieXBjQoYRo8mdZcjBaOsxOSOsGF1GVS8mEhKr8NN4DhjNcZWZwJuF3vQtk87FfHmji2jX8IZ8Oc5fnUJM3xuqgH35qoWzH69jOfmCAwnMU=
+Received: from DM3PR12CA0060.namprd12.prod.outlook.com (2603:10b6:0:56::28) by
+ DM6PR12MB4138.namprd12.prod.outlook.com (2603:10b6:5:220::21) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.20.4523.14; Tue, 21 Sep 2021 18:08:00 +0000
 Received: from DM6NAM11FT003.eop-nam11.prod.protection.outlook.com
- (2603:10b6:0:56:cafe::47) by DM3PR12CA0051.outlook.office365.com
- (2603:10b6:0:56::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.14 via Frontend
+ (2603:10b6:0:56:cafe::d7) by DM3PR12CA0060.outlook.office365.com
+ (2603:10b6:0:56::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.13 via Frontend
  Transport; Tue, 21 Sep 2021 18:08:00 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
@@ -52,13 +52,13 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Tue, 21 Sep
- 2021 13:07:58 -0500
+ 2021 13:07:59 -0500
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH 41/66] drm/amdgpu/amdgpu_psp: convert to IP version checking
-Date: Tue, 21 Sep 2021 14:07:00 -0400
-Message-ID: <20210921180725.1985552-42-alexander.deucher@amd.com>
+Subject: [PATCH 42/66] drm/amdgpu/psp_v11.0: convert to IP version checking
+Date: Tue, 21 Sep 2021 14:07:01 -0400
+Message-ID: <20210921180725.1985552-43-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210921180725.1985552-1-alexander.deucher@amd.com>
 References: <20210921180725.1985552-1-alexander.deucher@amd.com>
@@ -70,28 +70,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: da3bf4ea-3dfa-44ec-8039-08d97d2abf7c
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4123:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB412303C0BEA42353C18D03C9F7A19@DM6PR12MB4123.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1148;
+X-MS-Office365-Filtering-Correlation-Id: a5c9a61c-4acb-4846-fa85-08d97d2abfae
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4138:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB41382C9AB265D6BFD26D0A7FF7A19@DM6PR12MB4138.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:510;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ojQcNdJFDyE1w/DrGF0XTW2gH1fwgU491ef6GsgnIzjajjcaBTOjg6ZDblW0mfjF0uX5fAEBmzUy7xzHowhkH1zaBc7tEESva1hgzHL+fyEH+8SzMHfkJymKwyk3dBrYvncA3Eg73X9JeNEyM2wh5fZEZBbHUcyXpx0H6K2mJJkYU/U/j0w3lgEg/3sxIG+8ZhlB/gIukLDiaxFK8fLYcjFZA1DIt6ydtqFmeWd7YYIWdvxKjgRgRcv5LIl3uHDLn/jpyJWQbpORW1Ruq24ec5+mHB9eTZI1js8ffL7mCZ55v5AruPC72uTIaRpKtNShtxBV8BRkHR8Y+syXkNoFYmwc2JdB5geo6qRNjtfhmS4NgUdT61oWYz3YDWYuU1E4CKDNxoegQ6llRvyi281gv5sAsN9pJXC8XpZOOJpgd38E1QgInZXJEotBqu9e0H9uCM4vkT7/a0IQ9HJa1dYWabm0r6R6BShhluHmekk7lmKrckkE7oKJP5KH38rmMmILWlkK3orFhMa59+qe+UrgoxeSuRtJQdK166v1kFLNQ403UE1Mv182XgcloyYvEI385LygLHzla3yYW1umKc2tWDt9jPtFH8g3MptolEdRZR1DodGapZbonxfdp4JwIga1i8l4JrPVlvSgKl6bRiKliiF4uO9FTPWjyTRGh5LfpuQ7oWlabw1basrt1rXj8REostG5Fc/R62wEl1o2IO6q8m+FzaSlJf4ZD9f6ZOktgN8=
+X-Microsoft-Antispam-Message-Info: K8MhI5j+EoV/OnG6O97s+SchxXSat5zzL+dc7JWYPeOa6BdgS+EArYGBKoeeQ1Tp0LHSOwASdkKTJEUWp+1V48slg893tQhhYnE02/eSgpQiadEyjuaZBsX+/FFfKfX0jRLLIFsjSHKf+3kBNnDBKtqKnqe+evPw4F8B8w+/rmrFuxDJiQThSyv7Z43QfCjd1Nev3GxQm7WdiYkQVyZwQf9om7p3wZWwJmsZYnUULOYjp1+68SNxYBVea2ApuSIbtg3zSIgpPKa9q97da3D2q62oOdbZQWPLnqeVySJ3FQvI/KqKQg3ZO5YJSed4DicVOnu/dniCiXmFVF584UtReD5h488QRkaRp96wzScVNShb2yVNZvm6TIvIihLjmW9RH/IULkZfg/eOOKzMMs3MMKwZ6FCB7yyQlV8xhbwM/cvWC0GjcT4L08Ds08uOmWKL6Ug3Vm9aVMX8DT7gIBw78fz9bMXvW8nuEY3l1uuOxBFqbwW3G8+XYeb7zrIUOAPZlEkgfMXxfOb9f77T20TXjFkX3GMKHY8/X1WWkli9Yk2AX3rDdS64UCACxUloKzFFam9HK0lw4nWkWQmvNBOWhEgo0MZUqs7JTQCaIDAGfSZhy6zVeWJRKeWs2RoRd3T43wPWo3QNSvc9XzWYtO8DDHeusHK70YF+pOCWhoc7gEyrdOwr4mJfG93q7e1/dR8V9nILqTqrEwfRm0vu5wfWGROQCBU33kHt8jHe6ygnSZY=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(508600001)(426003)(4326008)(356005)(336012)(5660300002)(6666004)(81166007)(316002)(16526019)(47076005)(83380400001)(36860700001)(82310400003)(1076003)(26005)(86362001)(7696005)(70586007)(70206006)(8676002)(36756003)(186003)(2616005)(8936002)(6916009)(2906002)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(26005)(5660300002)(4326008)(2906002)(86362001)(8936002)(6916009)(81166007)(356005)(82310400003)(47076005)(36756003)(508600001)(36860700001)(83380400001)(2616005)(426003)(316002)(336012)(8676002)(6666004)(186003)(70586007)(16526019)(7696005)(70206006)(1076003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2021 18:08:00.3472 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: da3bf4ea-3dfa-44ec-8039-08d97d2abf7c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2021 18:08:00.6780 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a5c9a61c-4acb-4846-fa85-08d97d2abfae
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT003.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4123
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4138
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,213 +111,117 @@ IP version specific features.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 101 ++++++++++++++----------
- 1 file changed, 58 insertions(+), 43 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/psp_v11_0.c | 44 +++++++++++++-------------
+ 1 file changed, 22 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-index 7d09b28889af..c47d29689be4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
-@@ -71,17 +71,25 @@ static void psp_check_pmfw_centralized_cstate_management(struct psp_context *psp
- {
- 	struct amdgpu_device *adev = psp->adev;
+diff --git a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
+index 3c02e75fd366..13dace5d2855 100644
+--- a/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/psp_v11_0.c
+@@ -93,35 +93,35 @@ static int psp_v11_0_init_microcode(struct psp_context *psp)
  
--	psp->pmfw_centralized_cstate_management = false;
--
--	if (amdgpu_sriov_vf(adev))
--		return;
--
--	if (adev->flags & AMD_IS_APU)
-+	if (amdgpu_sriov_vf(adev)) {
-+		psp->pmfw_centralized_cstate_management = false;
- 		return;
-+	}
- 
--	if ((adev->asic_type >= CHIP_ARCTURUS) ||
--	    (adev->asic_type >= CHIP_NAVI12))
-+	switch (adev->ip_versions[MP0_HWIP]) {
-+	case IP_VERSION(11, 0, 4):
-+	case IP_VERSION(11, 0, 7):
-+	case IP_VERSION(11, 0, 9):
-+	case IP_VERSION(11, 0, 11):
-+	case IP_VERSION(11, 0, 12):
-+	case IP_VERSION(11, 0, 13):
-+	case IP_VERSION(13, 0, 2):
- 		psp->pmfw_centralized_cstate_management = true;
-+		break;
-+	default:
-+		psp->pmfw_centralized_cstate_management = false;
-+		break;
-+	}
- }
- 
- static int psp_early_init(void *handle)
-@@ -89,43 +97,45 @@ static int psp_early_init(void *handle)
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 	struct psp_context *psp = &adev->psp;
+ 	DRM_DEBUG("\n");
  
 -	switch (adev->asic_type) {
--	case CHIP_VEGA10:
--	case CHIP_VEGA12:
+-	case CHIP_VEGA20:
 +	switch (adev->ip_versions[MP0_HWIP]) {
-+	case IP_VERSION(9, 0, 0):
- 		psp_v3_1_set_psp_funcs(psp);
- 		psp->autoload_supported = false;
++	case IP_VERSION(11, 0, 2):
+ 		chip_name = "vega20";
  		break;
--	case CHIP_RAVEN:
-+	case IP_VERSION(10, 0, 0):
-+	case IP_VERSION(10, 0, 1):
- 		psp_v10_0_set_psp_funcs(psp);
- 		psp->autoload_supported = false;
+-	case CHIP_NAVI10:
++	case IP_VERSION(11, 0, 0):
+ 		chip_name = "navi10";
  		break;
+-	case CHIP_NAVI14:
++	case IP_VERSION(11, 0, 5):
+ 		chip_name = "navi14";
+ 		break;
+-	case CHIP_NAVI12:
++	case IP_VERSION(11, 0, 9):
+ 		chip_name = "navi12";
+ 		break;
+-	case CHIP_ARCTURUS:
++	case IP_VERSION(11, 0, 4):
+ 		chip_name = "arcturus";
+ 		break;
+-	case CHIP_SIENNA_CICHLID:
++	case IP_VERSION(11, 0, 7):
+ 		chip_name = "sienna_cichlid";
+ 		break;
+-	case CHIP_NAVY_FLOUNDER:
++	case IP_VERSION(11, 0, 11):
+ 		chip_name = "navy_flounder";
+ 		break;
+-	case CHIP_VANGOGH:
++	case IP_VERSION(11, 5, 0):
+ 		chip_name = "vangogh";
+ 		break;
+-	case CHIP_DIMGREY_CAVEFISH:
++	case IP_VERSION(11, 0, 12):
+ 		chip_name = "dimgrey_cavefish";
+ 		break;
+-	case CHIP_BEIGE_GOBY:
++	case IP_VERSION(11, 0, 13):
+ 		chip_name = "beige_goby";
+ 		break;
+ 	default:
+@@ -129,9 +129,9 @@ static int psp_v11_0_init_microcode(struct psp_context *psp)
+ 	}
+ 
+ 
+-	switch (adev->asic_type) {
 -	case CHIP_VEGA20:
 -	case CHIP_ARCTURUS:
++	switch (adev->ip_versions[MP0_HWIP]) {
 +	case IP_VERSION(11, 0, 2):
 +	case IP_VERSION(11, 0, 4):
- 		psp_v11_0_set_psp_funcs(psp);
- 		psp->autoload_supported = false;
+ 		err = psp_init_sos_microcode(psp, chip_name);
+ 		if (err)
+ 			return err;
+@@ -168,9 +168,9 @@ static int psp_v11_0_init_microcode(struct psp_context *psp)
+ 				le32_to_cpu(ta_hdr->ras.offset_bytes);
+ 		}
  		break;
 -	case CHIP_NAVI10:
 -	case CHIP_NAVI14:
 -	case CHIP_NAVI12:
--	case CHIP_SIENNA_CICHLID:
--	case CHIP_NAVY_FLOUNDER:
--	case CHIP_VANGOGH:
--	case CHIP_DIMGREY_CAVEFISH:
--	case CHIP_BEIGE_GOBY:
 +	case IP_VERSION(11, 0, 0):
 +	case IP_VERSION(11, 0, 5):
 +	case IP_VERSION(11, 0, 9):
+ 		err = psp_init_sos_microcode(psp, chip_name);
+ 		if (err)
+ 			return err;
+@@ -213,9 +213,9 @@ static int psp_v11_0_init_microcode(struct psp_context *psp)
+ 				le32_to_cpu(ta_hdr->dtm.offset_bytes);
+ 		}
+ 		break;
+-	case CHIP_SIENNA_CICHLID:
+-	case CHIP_NAVY_FLOUNDER:
+-	case CHIP_DIMGREY_CAVEFISH:
 +	case IP_VERSION(11, 0, 7):
 +	case IP_VERSION(11, 0, 11):
-+	case IP_VERSION(11, 5, 0):
 +	case IP_VERSION(11, 0, 12):
+ 		err = psp_init_sos_microcode(psp, chip_name);
+ 		if (err)
+ 			return err;
+@@ -223,7 +223,7 @@ static int psp_v11_0_init_microcode(struct psp_context *psp)
+ 		if (err)
+ 			return err;
+ 		break;
+-	case CHIP_BEIGE_GOBY:
 +	case IP_VERSION(11, 0, 13):
- 		psp_v11_0_set_psp_funcs(psp);
- 		psp->autoload_supported = true;
+ 		err = psp_init_sos_microcode(psp, chip_name);
+ 		if (err)
+ 			return err;
+@@ -231,7 +231,7 @@ static int psp_v11_0_init_microcode(struct psp_context *psp)
+ 		if (err)
+ 			return err;
  		break;
--	case CHIP_RENOIR:
-+	case IP_VERSION(11, 0, 3):
-+	case IP_VERSION(12, 0, 1):
- 		psp_v12_0_set_psp_funcs(psp);
- 		break;
--	case CHIP_ALDEBARAN:
-+	case IP_VERSION(13, 0, 2):
- 		psp_v13_0_set_psp_funcs(psp);
- 		break;
--	case CHIP_YELLOW_CARP:
-+	case IP_VERSION(13, 0, 1):
-+	case IP_VERSION(13, 0, 3):
- 		psp_v13_0_set_psp_funcs(psp);
- 		psp->autoload_supported = true;
- 		break;
--	case CHIP_CYAN_SKILLFISH:
-+	case IP_VERSION(11, 0, 8):
- 		if (adev->apu_flags & AMD_APU_IS_CYAN_SKILLFISH2) {
- 			psp_v11_0_8_set_psp_funcs(psp);
- 			psp->autoload_supported = false;
-@@ -268,7 +278,8 @@ static int psp_sw_init(void *handle)
- 			DRM_ERROR("Failed to load psp firmware!\n");
- 			return ret;
- 		}
--	} else if (amdgpu_sriov_vf(adev) && adev->asic_type == CHIP_ALDEBARAN) {
-+	} else if (amdgpu_sriov_vf(adev) &&
-+		   adev->ip_versions[MP0_HWIP] == IP_VERSION(13, 0, 2)) {
- 		ret = psp_init_ta_microcode(psp, "aldebaran");
- 		if (ret) {
- 			DRM_ERROR("Failed to initialize ta microcode!\n");
-@@ -311,7 +322,8 @@ static int psp_sw_init(void *handle)
- 		}
- 	}
- 
--	if (adev->asic_type == CHIP_NAVI10 || adev->asic_type == CHIP_SIENNA_CICHLID) {
-+	if (adev->ip_versions[MP0_HWIP] == IP_VERSION(11, 0, 0) ||
-+	    adev->ip_versions[MP0_HWIP] == IP_VERSION(11, 0, 7)) {
- 		ret= psp_sysfs_init(adev);
- 		if (ret) {
- 			return ret;
-@@ -341,8 +353,8 @@ static int psp_sw_fini(void *handle)
- 		psp->ta_fw = NULL;
- 	}
- 
--	if (adev->asic_type == CHIP_NAVI10 ||
--	    adev->asic_type == CHIP_SIENNA_CICHLID)
-+	if (adev->ip_versions[MP0_HWIP] == IP_VERSION(11, 0, 0) ||
-+	    adev->ip_versions[MP0_HWIP] == IP_VERSION(11, 0, 7))
- 		psp_sysfs_fini(adev);
- 
- 	kfree(cmd);
-@@ -601,10 +613,10 @@ static int psp_tmr_init(struct psp_context *psp)
- 
- static bool psp_skip_tmr(struct psp_context *psp)
- {
--	switch (psp->adev->asic_type) {
--	case CHIP_NAVI12:
--	case CHIP_SIENNA_CICHLID:
--	case CHIP_ALDEBARAN:
-+	switch (psp->adev->ip_versions[MP0_HWIP]) {
-+	case IP_VERSION(11, 0, 9):
-+	case IP_VERSION(11, 0, 7):
-+	case IP_VERSION(13, 0, 2):
- 		return true;
- 	default:
- 		return false;
-@@ -998,8 +1010,9 @@ int psp_xgmi_terminate(struct psp_context *psp)
- 	struct amdgpu_device *adev = psp->adev;
- 
- 	/* XGMI TA unload currently is not supported on Arcturus/Aldebaran A+A */
--	if (adev->asic_type == CHIP_ARCTURUS ||
--		(adev->asic_type == CHIP_ALDEBARAN && adev->gmc.xgmi.connected_to_cpu))
-+	if (adev->ip_versions[MP0_HWIP] == IP_VERSION(11, 0, 4) ||
-+	    (adev->ip_versions[MP0_HWIP] == IP_VERSION(13, 0, 2) &&
-+	     adev->gmc.xgmi.connected_to_cpu))
- 		return 0;
- 
- 	if (!psp->xgmi_context.context.initialized)
-@@ -1100,8 +1113,8 @@ int psp_xgmi_get_node_id(struct psp_context *psp, uint64_t *node_id)
- 
- static bool psp_xgmi_peer_link_info_supported(struct psp_context *psp)
- {
--	return psp->adev->asic_type == CHIP_ALDEBARAN &&
--				psp->xgmi_context.context.bin_desc.feature_version >= 0x2000000b;
-+	return psp->adev->ip_versions[MP0_HWIP] == IP_VERSION(13, 0, 2) &&
-+		psp->xgmi_context.context.bin_desc.feature_version >= 0x2000000b;
- }
- 
- /*
-@@ -2219,8 +2232,8 @@ static int psp_load_smu_fw(struct psp_context *psp)
- 
- 	if ((amdgpu_in_reset(adev) &&
- 	     ras && adev->ras_enabled &&
--	     (adev->asic_type == CHIP_ARCTURUS ||
--	      adev->asic_type == CHIP_VEGA20))) {
-+	     (adev->ip_versions[MP0_HWIP] == IP_VERSION(11, 0, 4) ||
-+	      adev->ip_versions[MP0_HWIP] == IP_VERSION(11, 0, 2)))) {
- 		ret = amdgpu_dpm_set_mp1_state(adev, PP_MP1_STATE_UNLOAD);
- 		if (ret) {
- 			DRM_WARN("Failed to set MP1 state prepare for reload\n");
-@@ -2317,8 +2330,9 @@ static int psp_load_non_psp_fw(struct psp_context *psp)
- 			continue;
- 
- 		if (psp->autoload_supported &&
--		    (adev->asic_type >= CHIP_SIENNA_CICHLID &&
--		     adev->asic_type <= CHIP_DIMGREY_CAVEFISH) &&
-+		    (adev->ip_versions[MP0_HWIP] == IP_VERSION(11, 0, 7) ||
-+		     adev->ip_versions[MP0_HWIP] == IP_VERSION(11, 0, 11) ||
-+		     adev->ip_versions[MP0_HWIP] == IP_VERSION(11, 0, 12)) &&
- 		    (ucode->ucode_id == AMDGPU_UCODE_ID_SDMA1 ||
- 		     ucode->ucode_id == AMDGPU_UCODE_ID_SDMA2 ||
- 		     ucode->ucode_id == AMDGPU_UCODE_ID_SDMA3))
-@@ -2905,7 +2919,8 @@ static int psp_init_sos_base_fw(struct amdgpu_device *adev)
- 	ucode_array_start_addr = (uint8_t *)sos_hdr +
- 		le32_to_cpu(sos_hdr->header.ucode_array_offset_bytes);
- 
--	if (adev->gmc.xgmi.connected_to_cpu || (adev->asic_type != CHIP_ALDEBARAN)) {
-+	if (adev->gmc.xgmi.connected_to_cpu ||
-+	    (adev->ip_versions[MP0_HWIP] != IP_VERSION(13, 0, 2))) {
- 		adev->psp.sos.fw_version = le32_to_cpu(sos_hdr->header.ucode_version);
- 		adev->psp.sos.feature_version = le32_to_cpu(sos_hdr->sos.fw_version);
- 
+-	case CHIP_VANGOGH:
++	case IP_VERSION(11, 5, 0):
+ 		err = psp_init_asd_microcode(psp, chip_name);
+ 		if (err)
+ 			return err;
 -- 
 2.31.1
 
