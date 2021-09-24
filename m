@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FB36417B90
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Sep 2021 21:10:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B990417B92
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Sep 2021 21:10:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 630F16E222;
-	Fri, 24 Sep 2021 19:10:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 722816E221;
+	Fri, 24 Sep 2021 19:10:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2069.outbound.protection.outlook.com [40.107.92.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4567A6E221
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 19:10:24 +0000 (UTC)
+ (mail-bn7nam10on2065.outbound.protection.outlook.com [40.107.92.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 903276E21D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 19:10:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Hl3EIGdF+iK1c8Ov16rWgS0NOboMKjrSt5bO0EKl5/tjcRHHb3ZeHazsRJ8drBdq72lUzGAsfa4Cvt/eBFz1MXddJe0l1NaJbsxl82g82kVzC/HEaOWYMVdeLpKgElToNP1S84mTFD/Ex0knoRtzH8qsgLifLR0qnammzcJwbqtgW2KNTRxDT33MIli1i/OrusoB1zaVNPtQiTaVRS0LcBXa4EKrz4PBSH5aSgns3Ue6FJVx1X0Znx7eR/aUmztsWJKP3TBfuXmNVlS3XnJinrMKULERa3WC3eAoYx2zFzqzUrJtFPGu1NJ7iPcBNSbFgWPBcwWYJCQnWPQYA9NflQ==
+ b=Buf6t9L/dkTDTKoKknMq4yE2F4yGKAXRq4+LhLpbVxdrRNHSmd5C2HxLChdkO2yIjTrlkGcBubxAOxidZ0pwq+y7wBB5N4oq9eaDy6FYUWVCKrAaHiqVexA/0cXmA44v4tBTmlVzDTu7Kmp+7L0R4uSrDKprj1K64Bu6aHniLVmDuoVR384Kf2ZKAo5veRkY5Dxykp7s8zAaDVA97G62DKQfZLhZ20fJaqkhlnfLt6YVwYEzwO0bS4Nt85QOVCezTa5SnOqx955017c7WH8YXTyHRQwCGX4cvR8JjElxwO8Bl+QMfF9uLDq3Z6UqFkWDQLTQY2ysCxZkCJN4BMjHmw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=im8X9sd/G4gL7XYzl/D/VYS2Urw5c5ksT+sleuj+1Do=;
- b=iLEJ7UHbo0JQwjMzHnwWZeAayS8etL+usKFJz8RGrjGd6xjYgzDG1GfecOWhuMoZovrNadZ1DleSfcekZbWxo4ZBdxnT2kpLQOMCjWCNda5laGgknBZoO6cK+DWlQNchYLV4sqsTP//2R+QVhqyNZpGUxUinBpg4bKfRzca6vZ9UDy3Q0aQix9x6Kju99T8sRPpejSe1eeXYef7p8t/7818PPnArZaWBT5SzkQhLBsrdsByNA4yIoE31Cbtlofzo+q3oEuhWtdPRWocXgssatrn3XYwilTaekWHrUxySCyBE6Mr+RnG8KnJUBTdvvCI4EseEJtkzP75Pt4UNc4LHLA==
+ bh=WPQPRvIrDJgCIctud+1xjnjfBu8l8h6b7f1WPGmh+S8=;
+ b=iC7mXRW+B1DBebOKZUHY116BByir0Ja+d3/kvHGq2dT1dAB6d/E+R9eD0lMac9e4yhYtrrpkmhS0NR28QborhCbugk4viQbCdijoVmn02d0Ip4Mt6xIzw9/LeCB1ATL3yhPa0eWmRRJog6UtJjaLhdUOxSciu6cRlsdMp3nGRrp7UoGQWq9494PWnQY78T29XSoBhd68L5HMZuuGi77c+Rc/3CLSl9yXhV1YitoK6eEZdHtRT5IG1vbHFQZbIcMam7xl2VGoCiB8L3F39s9bobXdG/51G4yr9uec1bnGm323nmtdzyqmYRBew04aydx2B2BMvMz3Y94Hmwbtc9LeeA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=im8X9sd/G4gL7XYzl/D/VYS2Urw5c5ksT+sleuj+1Do=;
- b=SexLEfAu/cCf1YCKZqEnhKiskL5hoWuF9HA6qgi+JPNgLabCcephd/v41cWSZPkQ7XEiCQzhEWIuHN6bGvnG1LVMNlsgnVtG/74iu0xU7oRa+dbW0HVke+iidHcBgDaxhazf8E8iZaCSAvOdbgtH+mV3wCxOLJAH7EAajQkh4h0=
-Received: from MWHPR18CA0025.namprd18.prod.outlook.com (2603:10b6:320:31::11)
- by BN7PR12MB2691.namprd12.prod.outlook.com (2603:10b6:408:26::17)
+ bh=WPQPRvIrDJgCIctud+1xjnjfBu8l8h6b7f1WPGmh+S8=;
+ b=VBjOBQX3Ki+GPb5IGRqqbBxWytNbYkNTlzMIVL/yookA/U/p8/13jggHT6yoaj+ECPuQxyEWkQhLdHjTvbN/lO5rM9Q2eZ0ls/VTyThZSBem1LBkhdqcAVybAikGMgAgBZionTRH705yJZ3csv0BfVMrAY72yBhAIVYC4eVCysw=
+Received: from DM5PR1401CA0022.namprd14.prod.outlook.com (2603:10b6:4:4a::32)
+ by CY4PR12MB1127.namprd12.prod.outlook.com (2603:10b6:903:44::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.18; Fri, 24 Sep
- 2021 19:10:21 +0000
-Received: from CO1NAM11FT021.eop-nam11.prod.protection.outlook.com
- (2603:10b6:320:31:cafe::3d) by MWHPR18CA0025.outlook.office365.com
- (2603:10b6:320:31::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.14; Fri, 24 Sep
+ 2021 19:10:29 +0000
+Received: from DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:4:4a:cafe::c) by DM5PR1401CA0022.outlook.office365.com
+ (2603:10b6:4:4a::32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.13 via Frontend
- Transport; Fri, 24 Sep 2021 19:10:21 +0000
+ Transport; Fri, 24 Sep 2021 19:10:29 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,26 +46,27 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT021.mail.protection.outlook.com (10.13.175.51) with Microsoft SMTP
+ DM6NAM11FT009.mail.protection.outlook.com (10.13.173.20) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4544.13 via Frontend Transport; Fri, 24 Sep 2021 19:10:21 +0000
+ 15.20.4544.13 via Frontend Transport; Fri, 24 Sep 2021 19:10:28 +0000
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Fri, 24 Sep
- 2021 14:10:19 -0500
+ 2021 14:10:27 -0500
 Received: from Optimus.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2308.8 via Frontend
- Transport; Fri, 24 Sep 2021 14:10:17 -0500
+ Transport; Fri, 24 Sep 2021 14:10:21 -0500
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Bhawanpreet.Lakha@amd.com>, <Rodrigo.Siqueira@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
- <stylon.wang@amd.com>, <solomon.chiu@amd.com>, Aric Cyr <aric.cyr@amd.com>
-Subject: [PATCH 17/24] drm/amd/display: 3.2.155
-Date: Fri, 24 Sep 2021 15:09:27 -0400
-Message-ID: <20210924190934.1193379-18-Anson.Jacob@amd.com>
+ <stylon.wang@amd.com>, <solomon.chiu@amd.com>, Qingqing Zhuo
+ <Qingqing.Zhuo@amd.com>
+Subject: [PATCH 18/24] drm/amd/display: Replace referral of dal with dc
+Date: Fri, 24 Sep 2021 15:09:28 -0400
+Message-ID: <20210924190934.1193379-19-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210924190934.1193379-1-Anson.Jacob@amd.com>
 References: <20210924190934.1193379-1-Anson.Jacob@amd.com>
@@ -74,28 +75,28 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: bc156399-e549-4cd7-ae99-08d97f8ef480
-X-MS-TrafficTypeDiagnostic: BN7PR12MB2691:
-X-Microsoft-Antispam-PRVS: <BN7PR12MB2691E113C58A116E07AD0124EBA49@BN7PR12MB2691.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1751;
+X-MS-Office365-Filtering-Correlation-Id: 34f53034-203a-4e62-39d8-08d97f8ef8e1
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1127:
+X-Microsoft-Antispam-PRVS: <CY4PR12MB1127FD40531C34964FEF31DDEBA49@CY4PR12MB1127.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:275;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uqIWtYIdbYKtmkvDOsos7rUKXM8cTOLFTl1k76Zyp2PtxjFtSXUNZKsxKGkneMMHItS6Vmu+2AW77tkKRZznoyw709N304vQyHyEi4qhdsV+zkovKMBbGR5anrnkFLhiNTXwhNZix/GIwx/cjg2mQemI3JdLYL/6cfmuyackKzVxYlI6Oo4umu68z+3GYIFkv0YAerADq5bjvGgtgSZHj02shNq8gd24tSQ5gkpiTLwcrLva4//L/Psx/qIUjtKH4JHUGTFv19NsHMiMhTiWGf4Nh0/JRP359I8SYoIpQj6/zTLcFvfUlCZEVvJaSc4iTOdstMyqDk13amnyllUyXm4i0/XiWQ9iCCcJCmiegTtBJs3pZhZe2D83LfZ+7CeeZuDVK4XB5sIgFqVmZyAJ76PEos1qeFBOSoybuDoBT5DM89WfgRS6icesIgZFumftc7rHwu9w4O8DXLcS7fJXe2jp5VHRY/yUnbySRdtY9VpfN40eQDiHH069O9BPkwtJBaARrG1IDA1114lFBC8fU0DRLCZ6RX7blJOGVU4JfRasQD8gt+EVcsjVl6SHad20hMXMEXoWJ+3SGWaJnY6gA7bGZRG6QyX7Trng0AmVN6uSR4j1DTzpOf+b26YZCxtnn23zSp9bfcFp2yZa5hvkhwfynD3CmhxZYKktAkBG3NLa5L6OUdiZ4TVCGpg/hjsn7DQssVzX2sprRptDdxMduBkn+g5Zc8MlLH2mRWB72DU=
+X-Microsoft-Antispam-Message-Info: OAMUOFyTwWoElKh1exZdmcFiCdcjBhmwfJ1prXQhZpFSK1oBIhRQzQq7xnTOM1k8uBS0KFsEiGedzhzxH+uyrrym5Tlwu7GiM+BbP5/As/yhIfiW9QsrBTvfZTWo0ssyjssMR4iyK4qeBABv/PeXHWbz2OZtCWUJsOJG5o3htczKd3tURkjjlu/fsY5rjeM5+0ZCn3FA/+PmXe60vFEkoHiRzxfAZ//5DaZh/eEDg0SgcoRX7d6qU1EID2NOL6Es9trXUYTwEhVxFIlIC5OczzSu5/pIYucOdELX6IUhhRkltpuJP18MdRgEBZm3gv0oRVkoa6wkC0/NNALeoFNDUDQzVQ75K1jTt3k+dzP+2jSuT4er/LHd5Fd7i/d3cl+lHcyXe3jqGOJJEgQglt2It+e6GE6kDjXnhXYHlRMkDUXhj6M27qRfT3XvP9Ng/MG7wcs1+s9PrDDv37PjAPOXB83AI0BTBsLTzlXHtpe/rj8O0e7v0Xcbku7myz/tUhKfFkvef3yeopHVg9nCUciokgEkL0Vlkd0j1dsGFUnJU/lUuTKzZKbX+Mn0af8lZOFaMZC/F0pcUqMbbpFelOQgwKIec3L2wtz53th3/8BL87nujvmEqVpQsyMKHj7ESNpROfyqFaPE/BAwbcUIPn2kJ52HoQAiLhsmDYB7LbzlBY3alzO6SL82sPZKhVwpROk5oPEsdutr5BHVrTdMFH4B3MqdloHdzWfORJiBEnbPV38=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(47076005)(4744005)(336012)(7696005)(70586007)(70206006)(4326008)(26005)(316002)(8676002)(86362001)(36756003)(186003)(6666004)(5660300002)(83380400001)(6916009)(1076003)(36860700001)(2906002)(508600001)(54906003)(356005)(426003)(82310400003)(2616005)(8936002)(81166007)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(36860700001)(36756003)(6916009)(356005)(508600001)(26005)(47076005)(8936002)(70586007)(83380400001)(54906003)(1076003)(7696005)(8676002)(2616005)(426003)(336012)(70206006)(2906002)(316002)(4326008)(186003)(86362001)(82310400003)(5660300002)(81166007)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2021 19:10:21.2344 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc156399-e549-4cd7-ae99-08d97f8ef480
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2021 19:10:28.6359 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 34f53034-203a-4e62-39d8-08d97f8ef8e1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT021.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR12MB2691
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1127
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,33 +111,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+From: Qingqing Zhuo <Qingqing.Zhuo@amd.com>
 
-This version brings along following fixes:
-- Fixes to backlight, LUT, PPS, MST
-- Use correct vpg for 128b/132b encoding
-- Improved logging for VCP
-- Replace referral of dal with dc
+[Why]
+DC should be used in place of DAL in
+upstream.
 
+[How]
+Replace dal with dc in function names.
+
+Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
+Signed-off-by: Qingqing Zhuo <Qingqing.Zhuo@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c    | 2 +-
+ drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.h | 2 +-
+ drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.h | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index a46c663ed8c5..8cc9626fc111 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -45,7 +45,7 @@
- /* forward declaration */
- struct aux_payload;
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
+index 315466f5aade..2108bff49d4e 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c
+@@ -243,7 +243,7 @@ void dcn2_update_clocks(struct clk_mgr *clk_mgr_base,
+ 		pp_smu = &dc->res_pool->pp_smu->nv_funcs;
  
--#define DC_VER "3.2.154"
-+#define DC_VER "3.2.155"
+ 	for (irq_src = DC_IRQ_SOURCE_HPD1; irq_src <= DC_IRQ_SOURCE_HPD6; irq_src++) {
+-		hpd_state = dal_get_hpd_state_dcn20(dc->res_pool->irqs, irq_src);
++		hpd_state = dc_get_hpd_state_dcn20(dc->res_pool->irqs, irq_src);
+ 		if (hpd_state)
+ 			break;
+ 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+index 3fabf32a0558..ac2d4c4f04e4 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
+@@ -152,7 +152,7 @@ void rn_update_clocks(struct clk_mgr *clk_mgr_base,
+ 			display_count = rn_get_active_display_cnt_wa(dc, context);
  
- #define MAX_SURFACES 3
- #define MAX_PLANES 6
+ 			for (irq_src = DC_IRQ_SOURCE_HPD1; irq_src <= DC_IRQ_SOURCE_HPD5; irq_src++) {
+-				hpd_state = dal_get_hpd_state_dcn21(dc->res_pool->irqs, irq_src);
++				hpd_state = dc_get_hpd_state_dcn21(dc->res_pool->irqs, irq_src);
+ 				if (hpd_state)
+ 					break;
+ 			}
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.c b/drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.c
+index 49d87fe5c167..9ccafe007b23 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.c
++++ b/drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.c
+@@ -132,7 +132,7 @@ enum dc_irq_source to_dal_irq_source_dcn20(
+ 	}
+ }
+ 
+-uint32_t dal_get_hpd_state_dcn20(struct irq_service *irq_service, enum dc_irq_source source)
++uint32_t dc_get_hpd_state_dcn20(struct irq_service *irq_service, enum dc_irq_source source)
+ {
+ 	const struct irq_source_info *info;
+ 	uint32_t addr;
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.h b/drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.h
+index f60a203e7188..4d69ab24ca25 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.h
++++ b/drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.h
+@@ -31,6 +31,6 @@
+ struct irq_service *dal_irq_service_dcn20_create(
+ 	struct irq_service_init_data *init_data);
+ 
+-uint32_t dal_get_hpd_state_dcn20(struct irq_service *irq_service, enum dc_irq_source source);
++uint32_t dc_get_hpd_state_dcn20(struct irq_service *irq_service, enum dc_irq_source source);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c b/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c
+index 685528734575..78940cb20e10 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c
++++ b/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.c
+@@ -135,7 +135,7 @@ enum dc_irq_source to_dal_irq_source_dcn21(
+ 	return DC_IRQ_SOURCE_INVALID;
+ }
+ 
+-uint32_t dal_get_hpd_state_dcn21(struct irq_service *irq_service, enum dc_irq_source source)
++uint32_t dc_get_hpd_state_dcn21(struct irq_service *irq_service, enum dc_irq_source source)
+ {
+ 	const struct irq_source_info *info;
+ 	uint32_t addr;
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.h b/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.h
+index 3df2ceeb2b70..616470e32380 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.h
++++ b/drivers/gpu/drm/amd/display/dc/irq/dcn21/irq_service_dcn21.h
+@@ -31,6 +31,6 @@
+ struct irq_service *dal_irq_service_dcn21_create(
+ 	struct irq_service_init_data *init_data);
+ 
+-uint32_t dal_get_hpd_state_dcn21(struct irq_service *irq_service, enum dc_irq_source source);
++uint32_t dc_get_hpd_state_dcn21(struct irq_service *irq_service, enum dc_irq_source source);
+ 
+ #endif
 -- 
 2.25.1
 
