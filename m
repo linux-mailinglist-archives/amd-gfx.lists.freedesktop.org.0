@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D23F4417B83
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Sep 2021 21:10:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2637417B85
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Sep 2021 21:10:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 081BF6E210;
-	Fri, 24 Sep 2021 19:10:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 333386E214;
+	Fri, 24 Sep 2021 19:10:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2041.outbound.protection.outlook.com [40.107.244.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12E516E20F
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 19:09:58 +0000 (UTC)
+ (mail-mw2nam12on2040.outbound.protection.outlook.com [40.107.244.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4218C6E212
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 19:10:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sq5m4up5tAZevFtqEBlM5RWBn3Lo6HoKMKWoj4IX1xyr0kkb1kVOOZ+pI3txFNK4jcBnR3yJj2KEeDd8hBpVtwYaim6SXiYL+aPIO4RvDSsknPHAtGUezldci5aGJGBQvvOtk1iBEFTOwMipIE3bs7c4jdGJO7jshOAc7U5tjYodz2nNvgLtWrkUWY6TRNAd1tGK6MVN7KROhZl8VV86S9mmasg0xGV2zt9MYMUh564VR/oSBbxPYvcd2qnGNerApIBLAexmNunVeb01Ml6BPKog+oxYunmSROlAvp2fSr8HmaLYNTRd0NoNUDpVqy7aFhi6MC20Loa8czVeXpsUSQ==
+ b=mNmgXasRr/PaCygfUSWlG54hWBD3mobFcxCtZjKvVpEyJ0Gd9edjtWifAS6jjtjZ2PmqnE1H0OknHkIuxDTnlYxmow8x8fge6bUaszJ7mEdZ/+czlUUlaSRskOWdA1bqIrZbcKhRBP67YKSZdudpKyDl5EuO0n5uYOepoeK7ymGsSdQNbWSqawAxlC5CkscvYV26NjupJW0gBMwf3lkkjRgUgwz+AQvf9ubMh9Rr+cssxAtxlZ4+ABsnkbsP+KV0kfHbNkiBHdsQcQwXc22ja7K4DXMh43csrm8POzq8dzqdGx+lYgywPnh/WMZ+MD1UzTiXXsbJ8GkbOCgSp8EiIQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=4rvc2Lp4moooOusR7glEpX/6vmmluCTNZEAQ4M0E5R8=;
- b=hgFPH2stzKLUfnNcxZk3ztECA1fEH5Vr3I+pyCMGcTvR/KdgVtuf/O+p2CKPRnvW11cCGZsIvsYgVGv9I5NP2hUshhX0WqF3UooXtp769QNF4KcGvX5VCukn7D1dY6BR8nHoy1z/B4sJrNV2NK17k3skaKczKZtUpCQLrUcyi/vyGYAMOXKl62lPxTlfWY7uzoPgK+YNDlRVrkYnX7IOhWPTuUvcft058K3xgzSs9+nc5FVpWppJTCiBpT8YRpxPAJKMIKiZlzRli9nqqiliXPFNNR02LkrunkHSfwsxp/U2Xqtju3w0SOnHf9yjeQt3CkiN4CTwLPag18CjmXyFJA==
+ bh=jsM2JzF4yYSiEcAoOMvNou6BhhnGUZnX8iLaSWitGYo=;
+ b=EZJTsrE88bRjZWRhtahXT+KQUVReFDTxJJlkrYD1UFqzZrnwWLaiA/aPi/aWh7bGT0VzE6ZA3EEhcfXpGDyektwoJ1MTr3C5a7ImcxOkzPVia7pvJ+pWHKYYJHDX00i5qxqWG5fzDrtjBvM9fqAGqNZ8lsUNbfmBXh26OZkkoPd3eLvjb9pbN709HMIsrtHlWWJ6kEr2gePfoMTqEeOs4JQH8fIu+MtBA3D9g/rgMIV1FaHE0XA3g3dEi42nhJEzeOVzM2420TDuqQGlwBf+1NPFVi7GosNAael0XYITcNF2Wjylk/fRT+/jzBKlNHuqDS5azz04lTZ7Ldc9dCGCcw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4rvc2Lp4moooOusR7glEpX/6vmmluCTNZEAQ4M0E5R8=;
- b=LPvV6hr3/mBE7XlILsmKeOiEZwq2tibArWcPeHPv+AvIVx6PtmMoO3e+Mb9LWKa8klNKWBDrY05VWxgpT1IudgmHG7T65UJ+NmXcIBDhHvIIz/TB5/Q37EZ/Ctv/LFMC2vSUX5pquT2baeowf/tDi+1RV4MD46A7BXNWtVxDM5o=
-Received: from BN0PR07CA0027.namprd07.prod.outlook.com (2603:10b6:408:141::29)
- by BN8PR12MB2898.namprd12.prod.outlook.com (2603:10b6:408:9a::11)
+ bh=jsM2JzF4yYSiEcAoOMvNou6BhhnGUZnX8iLaSWitGYo=;
+ b=TxGb+nTFPyVoIZdEm5T0nPG+x7kUVnPtzVC4Vhwc7dDg+qznIYJqT8TfsDGx3e8viY1u79DmOOBMcA4J2WH0vIXV1pkoI6k8UXjhkSCyLF5Oz1V8vekyw06TCZghxgqWwJpVs1iVMx+USPrZznfmh9Q6M8dAgs2B2Rd9qtXGsfE=
+Received: from BN6PR13CA0057.namprd13.prod.outlook.com (2603:10b6:404:11::19)
+ by BY5PR12MB3666.namprd12.prod.outlook.com (2603:10b6:a03:1a4::23)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.14; Fri, 24 Sep
- 2021 19:09:55 +0000
-Received: from BN8NAM11FT057.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:141:cafe::87) by BN0PR07CA0027.outlook.office365.com
- (2603:10b6:408:141::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.13 via Frontend
- Transport; Fri, 24 Sep 2021 19:09:55 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.13; Fri, 24 Sep
+ 2021 19:09:59 +0000
+Received: from BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:404:11:cafe::f) by BN6PR13CA0057.outlook.office365.com
+ (2603:10b6:404:11::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.8 via Frontend
+ Transport; Fri, 24 Sep 2021 19:09:58 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,32 +46,32 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT057.mail.protection.outlook.com (10.13.177.49) with Microsoft SMTP
+ BN8NAM11FT066.mail.protection.outlook.com (10.13.177.138) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4544.13 via Frontend Transport; Fri, 24 Sep 2021 19:09:55 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
+ 15.20.4544.13 via Frontend Transport; Fri, 24 Sep 2021 19:09:57 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Fri, 24 Sep
- 2021 14:09:54 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 14:09:57 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Fri, 24 Sep
- 2021 12:09:54 -0700
+ 2021 12:09:56 -0700
 Received: from Optimus.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2308.8 via Frontend
- Transport; Fri, 24 Sep 2021 14:09:52 -0500
+ Transport; Fri, 24 Sep 2021 14:09:54 -0500
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Bhawanpreet.Lakha@amd.com>, <Rodrigo.Siqueira@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
- <stylon.wang@amd.com>, <solomon.chiu@amd.com>, David Galiffi
- <David.Galiffi@amd.com>, Alvin Lee <Alvin.Lee2@amd.com>
-Subject: [PATCH 05/24] drm/amd/display: Add debug support to override the
- Minimum DRAM Clock
-Date: Fri, 24 Sep 2021 15:09:15 -0400
-Message-ID: <20210924190934.1193379-6-Anson.Jacob@amd.com>
+ <stylon.wang@amd.com>, <solomon.chiu@amd.com>, Wenjing Liu
+ <wenjing.liu@amd.com>, Jun Lei <Jun.Lei@amd.com>
+Subject: [PATCH 06/24] drm/amd/display: update cur_lane_setting to an array
+ one for each lane
+Date: Fri, 24 Sep 2021 15:09:16 -0400
+Message-ID: <20210924190934.1193379-7-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210924190934.1193379-1-Anson.Jacob@amd.com>
 References: <20210924190934.1193379-1-Anson.Jacob@amd.com>
@@ -80,29 +80,28 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 04a29112-1b6a-4590-9b98-08d97f8ee507
-X-MS-TrafficTypeDiagnostic: BN8PR12MB2898:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BN8PR12MB2898176D78A1CC7632781099EBA49@BN8PR12MB2898.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1751;
+X-MS-Office365-Filtering-Correlation-Id: 42f8ea99-c9d2-4cce-e094-08d97f8ee67d
+X-MS-TrafficTypeDiagnostic: BY5PR12MB3666:
+X-Microsoft-Antispam-PRVS: <BY5PR12MB3666BCD946BA5485666A1BABEBA49@BY5PR12MB3666.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MdcE5R5z7zY8Jc0RqJ2lrhVVFR2I/mRhkf0yk1b4mraT4siA0irWg9y4L15z8Mdd9zWiQboEG9g9IrQyATIaE1e6/YJIyuZkYldj65fx93WFU/TzLy6PVY92lxhO/2Q/AKFgPWBKMVQo6oRVUWXP+X0oKlEA3QK7BblHmZVLR3Pxs7mdBF26gYNlE3Ak5sF9AseaZoosVXAIgxtwKaKys5uxISsfqCJ3MOLHLEqCpoydUfLNKBmHGDwt1zmsrwlwGJbM5CZMKUcnLxuttMRAOsbsQiBVoon1RUFRhgS8wHeBm33Q69RGReWUeTiRgjtR5jf2/eaz1Nq4h5Rs/9Eh/uRurHXw9zMdMhn+MRaW3tz4wwSJxki9BUANI7Cuh86breqtUL3QsOLUancTp0l3wwlDbao5ju9CGRwoiqcNS8Ba48j0x9luIQKahE9mgKokqdUx4G/uDJeOecKGElokLK9R/S4EDEXpTDVtOPiPDg3NbFWnsXmtXNxcbRr9ILs8slmR3LsDZ+bPFpGx4fVhaFJUqHeQic9aDUOG/rggzTdtQBcwkaNXevsdyN1LucXrXf9Y/Oz1qBaZY0OUToYNiXqvHFwiqMZ9ydAfEmI12adxFyjK26oBtewDCs7G/IlvjHpBAQ0cv6/SrC10D3SvKEK1PoRhb+Gj8GSbmy+PxbvtpejrvMQJDyWj/8pMPdsWlwOgGCkJArUOvxHIJiAbkOUG+RZ+5qUUrwzW+hF81+0=
+X-Microsoft-Antispam-Message-Info: WxiYGcQ3RUblOUPCVmkN8QULdclcK398gKkWjFGm5COTVYUhyxF6fN09AZzRJAxWhWMg7623Fubf5vvG/hw9uyFC9w2mtYAnoJAQPduGFENJ90QeW+7/z1Bm3jN0RkxgWMmZtjDFhXOUWyo9et9QgKU8nVdi8h5cxjjNLM/v8lz8l+Q1vPHJAUWDVrrPMiMKYfgPdn/9sopHLLfnUKXeJv4bwujanqmfBYVH51mUWE0y3H8pMIV/oB2jOAttepdtyqbWy2DpRl3/dGkHq2GAKGfqeZF2zGjM3hy+t4VS9aRl5Al2SlEiNSIVf1BRY6cx2reu8R62/tPi5f0UAEbfDobjYjhfBdPo8eC9QhVJFibjybK8PZGgooYYd+D+bMhG+rXwgWctGZu+nRVzhDUt0tykSy0pYEpRK1rx3Bmp+9Y/q1rrDsurR3OM65QicPjgCrepv88yOY5HwnbRbS57QCNI6FrRn/bpqKR11PHTZq+jWwIZxivIaB79MsvppZOTYtxsWO66QhCDjp79/SDW2RppszZaiQjjyjf+uz/8QIO6PHGbknpKI3V7soMYQcdnRBGCpO2nZxlQBprxyY2htrz5ZnGWzZYhdbdPkjuiYM06fqDMTnkGmRMz6AHlTOlv+TV0r3l066Py+orFf92ZdEdI5YBEybj5HCmpRwQhwg4YFH3s0WjpZ3p8CevTgPd+T+5eRu1aoB51TETM6XBMRcLLDc+gYmNnmz7wDpHdxzA=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(356005)(8936002)(7696005)(6916009)(81166007)(1076003)(82310400003)(426003)(54906003)(5660300002)(86362001)(8676002)(4326008)(47076005)(336012)(508600001)(316002)(70206006)(36756003)(2906002)(26005)(83380400001)(6666004)(70586007)(36860700001)(186003)(2616005)(36900700001);
+ SFS:(4636009)(36840700001)(46966006)(336012)(36756003)(83380400001)(70206006)(508600001)(15650500001)(36860700001)(26005)(86362001)(356005)(70586007)(8676002)(316002)(81166007)(82310400003)(47076005)(186003)(5660300002)(6666004)(2616005)(426003)(1076003)(8936002)(4326008)(2906002)(54906003)(7696005)(6916009)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2021 19:09:55.3770 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 04a29112-1b6a-4590-9b98-08d97f8ee507
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2021 19:09:57.8298 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 42f8ea99-c9d2-4cce-e094-08d97f8ee67d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT057.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2898
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3666
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,51 +116,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: David Galiffi <David.Galiffi@amd.com>
+From: Wenjing Liu <wenjing.liu@amd.com>
 
-[Why]
-Requested feature to assist with Thermal, Acoustic, Power, and
-Performance tuning.
+[why]
+To support per lane lane setting adjustment, we need to change cur_lane_setting
+to an array one for each lane as the first step.
 
-[How]
-Add a debug field that will override calculated minimum DRAM clock,
-if the debug value is larger than the calculate value.
-
-Reviewed-by: Alvin Lee <Alvin.Lee2@amd.com>
+Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
-Signed-off-by: David Galiffi <David.Galiffi@amd.com>
+Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h                   | 1 +
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 4 ++++
- 2 files changed, 5 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 8 ++++----
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c          | 3 ---
+ drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c        | 3 +++
+ drivers/gpu/drm/amd/display/dc/dc_link.h                  | 2 +-
+ 4 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index b194a2727bd8..a46c663ed8c5 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -565,6 +565,7 @@ struct dc_debug_options {
- 	enum wm_report_mode pplib_wm_report_mode;
- 	unsigned int min_disp_clk_khz;
- 	unsigned int min_dpp_clk_khz;
-+	unsigned int min_dram_clk_khz;
- 	int sr_exit_time_dpm0_ns;
- 	int sr_enter_plus_exit_time_dpm0_ns;
- 	int sr_exit_time_ns;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-index 3c388afa06dc..aeb868ace31c 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
-@@ -3117,6 +3117,10 @@ void dcn20_calculate_dlg_params(
- 	context->bw_ctx.bw.dcn.clk.dcfclk_khz = context->bw_ctx.dml.vba.DCFCLK * 1000;
- 	context->bw_ctx.bw.dcn.clk.socclk_khz = context->bw_ctx.dml.vba.SOCCLK * 1000;
- 	context->bw_ctx.bw.dcn.clk.dramclk_khz = context->bw_ctx.dml.vba.DRAMSpeed * 1000 / 16;
-+
-+	if (dc->debug.min_dram_clk_khz > context->bw_ctx.bw.dcn.clk.dramclk_khz)
-+		context->bw_ctx.bw.dcn.clk.dramclk_khz = dc->debug.min_dram_clk_khz;
-+
- 	context->bw_ctx.bw.dcn.clk.dcfclk_deep_sleep_khz = context->bw_ctx.dml.vba.DCFCLKDeepSleep * 1000;
- 	context->bw_ctx.bw.dcn.clk.fclk_khz = context->bw_ctx.dml.vba.FabricClock * 1000;
- 	context->bw_ctx.bw.dcn.clk.p_state_change_support =
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index f3ada9b6be5a..814f67d86a3c 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -379,9 +379,9 @@ static ssize_t dp_phy_settings_read(struct file *f, char __user *buf,
+ 		return -EINVAL;
+ 
+ 	snprintf(rd_buf, rd_buf_size, "  %d  %d  %d\n",
+-			link->cur_lane_setting.VOLTAGE_SWING,
+-			link->cur_lane_setting.PRE_EMPHASIS,
+-			link->cur_lane_setting.POST_CURSOR2);
++			link->cur_lane_setting[0].VOLTAGE_SWING,
++			link->cur_lane_setting[0].PRE_EMPHASIS,
++			link->cur_lane_setting[0].POST_CURSOR2);
+ 
+ 	while (size) {
+ 		if (*pos >= rd_buf_size)
+@@ -733,7 +733,7 @@ static ssize_t dp_phy_test_pattern_debugfs_write(struct file *f, const char __us
+ 	}
+ 
+ 	for (i = 0; i < (unsigned int)(link_training_settings.link_settings.lane_count); i++)
+-		link_training_settings.lane_settings[i] = link->cur_lane_setting;
++		link_training_settings.lane_settings[i] = link->cur_lane_setting[i];
+ 
+ 	dc_link_set_test_pattern(
+ 		link,
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 6421c896f2a1..750f1ae268c3 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -676,8 +676,6 @@ static void dpcd_set_lt_pattern_and_lane_settings(
+ 				dpcd_base_lt_offset,
+ 				dpcd_lt_buffer,
+ 				size_in_bytes + sizeof(dpcd_pattern.raw));
+-
+-	link->cur_lane_setting = lt_settings->lane_settings[0];
+ }
+ 
+ bool dp_is_cr_done(enum dc_lane_count ln_count,
+@@ -1145,7 +1143,6 @@ enum dc_status dpcd_set_lane_settings(
+ 			dpcd_lane[0].bits.MAX_SWING_REACHED,
+ 			dpcd_lane[0].bits.MAX_PRE_EMPHASIS_REACHED);
+ 	}
+-	link->cur_lane_setting = link_training_setting->lane_settings[0];
+ 
+ 	return status;
+ }
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
+index cc4b28e94727..368e834c6809 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
+@@ -372,6 +372,9 @@ void dp_set_hw_lane_settings(
+ #else
+ 	encoder->funcs->dp_set_lane_settings(encoder, link_settings);
+ #endif
++	memmove(link->cur_lane_setting,
++			link_settings->lane_settings,
++			sizeof(link->cur_lane_setting));
+ }
+ 
+ void dp_set_hw_test_pattern(
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
+index 56340a176554..a73d64b1fd33 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_link.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
+@@ -121,7 +121,7 @@ struct dc_link {
+ 	struct dc_link_settings reported_link_cap;
+ 	struct dc_link_settings verified_link_cap;
+ 	struct dc_link_settings cur_link_settings;
+-	struct dc_lane_settings cur_lane_setting;
++	struct dc_lane_settings cur_lane_setting[LANE_COUNT_DP_MAX];
+ 	struct dc_link_settings preferred_link_setting;
+ 	struct dc_link_training_overrides preferred_training_settings;
+ 	struct dp_audio_test_data audio_test_data;
 -- 
 2.25.1
 
