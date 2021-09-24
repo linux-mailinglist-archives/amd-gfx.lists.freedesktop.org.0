@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825EF417B7F
-	for <lists+amd-gfx@lfdr.de>; Fri, 24 Sep 2021 21:09:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0D5A417B81
+	for <lists+amd-gfx@lfdr.de>; Fri, 24 Sep 2021 21:09:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE35B6E1FB;
-	Fri, 24 Sep 2021 19:09:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0E716E20B;
+	Fri, 24 Sep 2021 19:09:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2075.outbound.protection.outlook.com [40.107.96.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A7DE6E1FB
- for <amd-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 19:09:48 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2076.outbound.protection.outlook.com [40.107.92.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E045F6E20B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 24 Sep 2021 19:09:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OQExiAqxIi+MzNkHXYT3YqMOGsUfpUTg/VuEYxcr+W3X11qCwQz1vCgR03jrWrWbV7VteUTtn4jFaiG0JiR1zHT9Cdhxj6xWlkB1iTgXUYva0xhyuD1/r2M4lTXZ+eSYbXDWIzPAXyhSm2j1f27fRuGHWq5m+BNqarTQjBb4I7/ezvx333Lm8beQjRH5007FcU+fPRWFcACkPclFICsUCMR2OObcWresI7ZqqxFu8J+E1f4dgtAMC9rS44KCVb/LUMVAfBJpnpKFevjKW1hFt4C3HTrmvUTJl6HFbaepOQZ5WEgesHYK1mdJR7Q1p7WjRHtPnx1ulcdbum1eOYFnRA==
+ b=A/vFePiBJUCRcPnB02w4Uflh+FHe4TjnwD/YiHPgdC5Uv5j1GT58/oxfvnFP3zWnxQvuZ1GPhVjCRFsKpDJy4KPdFmGVN2W519amK2P4aZCNBYR7Bpg1DW79mx+eiONKmY4fLhrM1j/4D30jupeGYB6ab4Fi3jIeTiKl2DFKatoMvRIwk3aOQK0zc8c/5dEKZ9uDrT/9/4KPUVnC5v/IpaZutZx9YA53GwJDruQlP21xHocaBSVwdvLF6itJWGb/zsYpXpaE7tBKbF7lhpNypaj2gI2AYHHsLnzLSrzDPPkRGIEheDIap/yDU9N6H8FsrTs9lIo2Fx0U3sa7Lg8lcA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=c9FwAL55IKORW/+ZRmADuevkVtvEKVABfe44Aj1Q588=;
- b=efkcb7LZpnmTNXiiH301Yj7f+Wyft2ACJXTU5PoFeA7zZkVN3kRNVWVAc/8V+pUx+sYnWJ4xEsqEr0oVMK38riabLl63619ZBd45+XtkWSWyISCO/SGqdBOzkY51NZvPkbu2butuHLzodQbpkJvJgzo0xkyZVx6nksTQOf/jRRV0R/gGbspHLHCvpWn2xYM384qQnpC1alT22AVNJb6yo7rk9ETnAHUMvgMIOqhqxGnIMUq/tIujrT+Y+kXVa66L4RDapkrJMODq5XaR9ygIGFNkWbw//VG9kU23780EJKdoAkzxeVlez+QGR20AM0QBpqXOTguJwZQVg8UJykGNxw==
+ bh=EpNoN+a6Y2xpv4s0vxRuSSKn3rpKPyWm2VLtJMOXb9Q=;
+ b=fR17VdlEKBcVoLeVwxt99iMykhqIZKe6z2U5+yhmPhKUxPMU6lL3/FJM1oufWWANbjBrLG2PAEucPVjM+z5cwiLiRNuG35Bl7XHjC1KKMfFqkAGWZ7zUAqI/nHLh4ACo8EHAkhGuiAbOpfuVQv9urWact0+rTfNvIp68AyFMmjXTQ6Hs33QMNfyX8EDp7bv0Bf1VNVSnCMT0D1gG5N8Qc3qnJNhy0ozXWYv+4y8DSAtguvDYm44da8iBIPtlLUaXPoT0n8UXPGVSnoWdqxKO0USaNIBazrbuytpGVquYgTbuUieOJZiE2uyCAyEWXRBhDFlXA/s6o/ju4ScDjAUOaA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c9FwAL55IKORW/+ZRmADuevkVtvEKVABfe44Aj1Q588=;
- b=r9SGRwc5gmDWJQxbZwqedM9RBg0hk6RrV+LCM87Z2L7sPpEfGYb38RS73kswEn983qavDGJinxilL0TjmML+ZB60lDi9IFnlAbOPMoeaa2AqsAeQssB6LQEHg4mpdXRXC2InlJyZ+UWD/UZrMMFUBE4yFh0gKb0L0ieTKXPptJA=
+ bh=EpNoN+a6Y2xpv4s0vxRuSSKn3rpKPyWm2VLtJMOXb9Q=;
+ b=VGuOSowiT9lVHk/3D83Bo/ITV5nquz42B6wIiWsiGjj2k8ABTGLABPXsxcOaRW2W3BdhlL+dKA3UkAcgsP5O0RsDS4YKtD3jJRz5ySd8+H3UObDR/sF5PeMBjn1BH7nsp9YoQwnWteX9+NElRRc0aEWwh5JoU9TwYr5yNlP+XeI=
 Received: from MWHPR22CA0072.namprd22.prod.outlook.com (2603:10b6:300:12a::34)
- by DM6PR12MB4417.namprd12.prod.outlook.com (2603:10b6:5:2a4::12) with
- Microsoft SMTP Server (version=TLS1_2,
+ by BY5PR12MB4885.namprd12.prod.outlook.com (2603:10b6:a03:1de::20)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.15; Fri, 24 Sep
- 2021 19:09:46 +0000
+ 2021 19:09:49 +0000
 Received: from CO1NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:12a:cafe::70) by MWHPR22CA0072.outlook.office365.com
+ (2603:10b6:300:12a:cafe::1a) by MWHPR22CA0072.outlook.office365.com
  (2603:10b6:300:12a::34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.14 via Frontend
- Transport; Fri, 24 Sep 2021 19:09:46 +0000
+ Transport; Fri, 24 Sep 2021 19:09:49 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,52 +48,56 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  CO1NAM11FT067.mail.protection.outlook.com (10.13.174.212) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4544.13 via Frontend Transport; Fri, 24 Sep 2021 19:09:46 +0000
+ 15.20.4544.13 via Frontend Transport; Fri, 24 Sep 2021 19:09:49 +0000
 Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Fri, 24 Sep
- 2021 14:09:44 -0500
+ 2021 14:09:46 -0500
 Received: from Optimus.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server id 15.1.2308.8 via Frontend
- Transport; Fri, 24 Sep 2021 14:09:43 -0500
+ Transport; Fri, 24 Sep 2021 14:09:44 -0500
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Bhawanpreet.Lakha@amd.com>, <Rodrigo.Siqueira@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
- <stylon.wang@amd.com>, <solomon.chiu@amd.com>
-Subject: [PATCH 00/24] DC Patches Sep 24, 2021
-Date: Fri, 24 Sep 2021 15:09:10 -0400
-Message-ID: <20210924190934.1193379-1-Anson.Jacob@amd.com>
+ <stylon.wang@amd.com>, <solomon.chiu@amd.com>, Wenjing Liu
+ <wenjing.liu@amd.com>, Michael Strauss <michael.strauss@amd.com>
+Subject: [PATCH 01/24] drm/amd/display: use correct vpg instance for 128b/132b
+ encoding
+Date: Fri, 24 Sep 2021 15:09:11 -0400
+Message-ID: <20210924190934.1193379-2-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210924190934.1193379-1-Anson.Jacob@amd.com>
+References: <20210924190934.1193379-1-Anson.Jacob@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 49a7ae00-4084-44dd-f633-08d97f8edf83
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4417:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB44177CA4EE67C54C3005FCF8EBA49@DM6PR12MB4417.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Office365-Filtering-Correlation-Id: 27faeeae-6c61-4fee-9274-08d97f8ee16c
+X-MS-TrafficTypeDiagnostic: BY5PR12MB4885:
+X-Microsoft-Antispam-PRVS: <BY5PR12MB4885E4796E14677B2874A4E0EBA49@BY5PR12MB4885.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1227;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5Hljy+r7a1wfgsxgAOSOwexfepsLCcqnsa4acFbdDMmJZc5SQzZoh9ePmYRJp/LP7EL6Hk9VQ3tQnNu/VPQPGWmyDcY3WozyBUeN23cPvIhuEBDCV7Y9wTK70sLX7INilMKIiZplIxl68A7nz3OzhexZi4PokyX7LSeIn8wS2WV3zEbfe7Z6JfVbFuoNMua4WuhI8DvUoEfdu30guyfpYJrGX2/wdydiNodGCcZVQVCPmsbDpP2UxHyTTQgEuRV4Kiz/nYdUSfZ1ErgtisoCVFLq84Y1CymGYWU7hJ1FMNSbJUGBJUXipBNPl38Jf0BlkDkwIyLS0hLh9Niau+Ohz2CaYfIE0HYFtVro82BBua0vgBvUNaYKO6bFtfLTKu4QHIXX1kbiBB2wLYPcoTt440Vl6eDqEaKTkS4YgATRLaXxtiEy0OTJk0S4FgXhc0htoStEALRGKFxMAkej7IDIqylF2+fpbeV/p3BCzKTFQ4e5Qw2beZ7+s9MHqzTg80ErSQnkE/lQN5Y2TydBUMdnnMajxu1JIjcg8nbK5tblBKqGx9hWbBCxaBIpJtAlDo9+voZpk2XAZEjgu2OyXTHNbQz5Av0ZtE5n2af2YvPor1LYnB4q+PzURgBemCB0pvovTk4TJZOu/Z8qlBgCtA8xE1mbIW9VGEkg8oF8De8jNbT9gkElqfKnqDXYQ8Mkj11Xn8ClxWNsMJ1ZNcfd9IuEX5lXn6BXAJMhDclSlBiA1ts=
+X-Microsoft-Antispam-Message-Info: b5163r8kDUNJS0lqp0HP64CnQkz15hMTKopi5uVi/3ZnJfZPZjR+r8H/4VlwjnWMZky0k1Im3N3asMRR85zHfgZmwnXKyVwbGRClWwTderCXKcWwy3d4p2oTZjsrAv1cfCP5nT9klyNPovbgrS0NMpJt4hZ87477DNdZtTraXO4/2pgGC9iHeSac0GcuVQkaMjK9MwP+wG/RqZSg7tG8zEiGyd3RJ7PcLSnjKUBcRGCjXqc0b8ok+V+Da3Rpvikbsg5wvO5anxJFPyhNSgR1Qt02RnIDnw96JzhcI7f+fiKntWQGev6vNjphxgi/aVtKD8Z+emAuk+Ppkg/dnrj16Xjd3hJNJST4+NqLDwrP4Tp/mZZbUf0aPLApSUO51s5+s0edO8NNqLWJNgrABEKj4860drflxENkCAkPcoorrhLDgI9DDG9qdzeZ4wM8s7EnLiJV3zkVB3H/JuMaE0knLa+wMDc5qgiq4RxKWfvITtKzCG9pU5RMYbjUdLkypmWgRecjbIuh3aYyivLOY1o2yodaPWgcoYq5lwklnQhS324yqItD+kP8/FEYOTzyW+JLI5yo7TcNxGAonTaH+FrfJ37lNN3hZULsApe/xsbDK8cm0ctx1N2InjkRlQQxlXrk4LgY4rYeeSsqWWekUCexTr2GdPH14/KAMdemX4D4iL3GgEQ4OVxxVirziTC2SzwejlQeTftHH2J+DK/FfaG7DghF1fiRZp5K+zpu39t16vc=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(36756003)(36860700001)(4326008)(8936002)(7696005)(2906002)(6916009)(8676002)(508600001)(186003)(47076005)(26005)(316002)(86362001)(82310400003)(336012)(2616005)(54906003)(6666004)(70206006)(5660300002)(70586007)(356005)(81166007)(83380400001)(1076003)(426003)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(70206006)(36860700001)(316002)(70586007)(186003)(508600001)(8676002)(54906003)(81166007)(36756003)(26005)(4326008)(2906002)(1076003)(336012)(356005)(7696005)(6666004)(6916009)(5660300002)(426003)(47076005)(2616005)(8936002)(82310400003)(86362001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2021 19:09:46.0167 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 49a7ae00-4084-44dd-f633-08d97f8edf83
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2021 19:09:49.2179 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27faeeae-6c61-4fee-9274-08d97f8ee16c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT067.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4417
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4885
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,101 +112,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This DC patchset brings improvements in multiple areas. In summary, we
-have:
-    - Fixes to backlight, LUT, PPS, MST
-    - Use correct vpg for 128b/132b encoding
-    - Improved logging for VCP
-    - Replace referral of dal with dc
+From: Wenjing Liu <wenjing.liu@amd.com>
 
-Anthony Koo (2):
-  drm/amd/display: [FW Promotion] Release 0.0.85
-  drm/amd/display: [FW Promotion] Release 0.0.86
+[why]
+128b/132b uses the vpg instance assigned to hpo dp stream encoder.
+The current vpg used is assigned to dio stream encoder.
+This is incorrect and cause display black screen because the
+actual vpg is powered off.
 
-Aric Cyr (1):
-  drm/amd/display: 3.2.155
+Reviewed-by: Michael Strauss <michael.strauss@amd.com>
+Acked-by: Anson Jacob <Anson.Jacob@amd.com>
+Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
+---
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Charlene Liu (1):
-  drm/amd/display: Pass PCI deviceid into DC
-
-David Galiffi (1):
-  drm/amd/display: Add debug support to override the Minimum DRAM Clock
-
-Eric Yang (1):
-  drm/amd/display: add vsync notify to dmub for abm pause
-
-George Shen (2):
-  drm/amd/display: Handle Y carry-over in VCP X.Y calculation
-  drm/amd/display: Update VCP X.Y logging to improve usefulness
-
-Ilya (1):
-  drm/amd/display: Add PPS immediate update flag for DCN2
-
-Jimmy Kizito (1):
-  drm/amd/display: Fix MST link encoder availability check.
-
-Josip Pavic (1):
-  drm/amd/display: initialize backlight_ramping_override to false
-
-Meenakshikumar Somasundaram (1):
-  drm/amd/display: Fix for link encoder access for MST.
-
-Michael Strauss (2):
-  drm/amd/display: Don't enable AFMT for DP audio stream
-  drm/amd/display: Defer LUT memory powerdown until LUT bypass latches
-
-Oliver Logush (1):
-  drm/amd/display: Add an extra check for dcn10 OPTC data format
-
-Qingqing Zhuo (1):
-  drm/amd/display: Replace referral of dal with dc
-
-Wenjing Liu (8):
-  drm/amd/display: use correct vpg instance for 128b/132b encoding
-  drm/amd/display: update cur_lane_setting to an array one for each lane
-  drm/amd/display: add function to convert hw to dpcd lane settings
-  drm/amd/display: implement decide lane settings
-  drm/amd/display: rename lane_settings to hw_lane_settings
-  drm/amd/display: decouple hw_lane_settings from dpcd_lane_settings
-  drm/amd/display: add two lane settings training options
-  drm/amd/display: make verified link cap not exceeding max link cap
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   2 +
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |  14 +-
- .../display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c  |   2 +-
- .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c |   2 +-
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  73 +++
- drivers/gpu/drm/amd/display/dc/core/dc_link.c |  73 ++-
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 591 +++++++-----------
- .../drm/amd/display/dc/core/dc_link_enc_cfg.c |  23 +-
- .../drm/amd/display/dc/core/dc_link_hwss.c    |   5 +-
- drivers/gpu/drm/amd/display/dc/dc.h           |   5 +-
- drivers/gpu/drm/amd/display/dc/dc_dp_types.h  |   5 -
- drivers/gpu/drm/amd/display/dc/dc_link.h      |   2 +-
- .../drm/amd/display/dc/dce/dce_link_encoder.c |   6 +-
- drivers/gpu/drm/amd/display/dc/dce/dmub_abm.c |  21 +
- .../gpu/drm/amd/display/dc/dcn10/dcn10_ipp.h  |   6 -
- .../amd/display/dc/dcn10/dcn10_link_encoder.c |   6 +-
- .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.c |   2 +-
- .../display/dc/dcn10/dcn10_stream_encoder.c   |  11 +-
- .../gpu/drm/amd/display/dc/dcn20/dcn20_optc.c |   5 +
- .../drm/amd/display/dc/dcn20/dcn20_resource.c |   4 +
- .../display/dc/dcn20/dcn20_stream_encoder.c   |   9 +-
- .../dc/dcn30/dcn30_dio_stream_encoder.c       |   2 -
- .../gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c  |  59 +-
- .../drm/amd/display/dc/dcn31/dcn31_resource.c |   2 +-
- .../gpu/drm/amd/display/dc/inc/dc_link_dp.h   |  21 +-
- drivers/gpu/drm/amd/display/dc/inc/hw/abm.h   |   1 +
- drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h   |  12 +
- drivers/gpu/drm/amd/display/dc/inc/hw/dwb.h   |   1 -
- .../display/dc/irq/dcn20/irq_service_dcn20.c  |   2 +-
- .../display/dc/irq/dcn20/irq_service_dcn20.h  |   2 +-
- .../display/dc/irq/dcn21/irq_service_dcn21.c  |   2 +-
- .../display/dc/irq/dcn21/irq_service_dcn21.h  |   2 +-
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  58 +-
- .../amd/display/include/link_service_types.h  |  29 +-
- 34 files changed, 583 insertions(+), 477 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index 2bd38d19a447..cab7993b4cc5 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -3608,6 +3608,9 @@ void core_link_enable_stream(
+ #if defined(CONFIG_DRM_AMD_DC_DCN)
+ 	enum otg_out_mux_dest otg_out_dest = OUT_MUX_DIO;
+ 	struct vpg *vpg = pipe_ctx->stream_res.stream_enc->vpg;
++
++	if (is_dp_128b_132b_signal(pipe_ctx))
++		vpg = pipe_ctx->stream_res.hpo_dp_stream_enc->vpg;
+ #endif
+ 	DC_LOGGER_INIT(pipe_ctx->stream->ctx->logger);
+ 
+@@ -3853,6 +3856,9 @@ void core_link_disable_stream(struct pipe_ctx *pipe_ctx)
+ 	struct dc_link *link = stream->sink->link;
+ #if defined(CONFIG_DRM_AMD_DC_DCN)
+ 	struct vpg *vpg = pipe_ctx->stream_res.stream_enc->vpg;
++
++	if (is_dp_128b_132b_signal(pipe_ctx))
++		vpg = pipe_ctx->stream_res.hpo_dp_stream_enc->vpg;
+ #endif
+ 
+ 	if (!IS_DIAG_DC(dc->ctx->dce_environment) &&
 -- 
 2.25.1
 
