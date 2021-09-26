@@ -2,58 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55C36418AB7
-	for <lists+amd-gfx@lfdr.de>; Sun, 26 Sep 2021 21:10:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEBA7418B3C
+	for <lists+amd-gfx@lfdr.de>; Sun, 26 Sep 2021 23:27:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B78D56E53C;
-	Sun, 26 Sep 2021 19:10:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C7F06E5A0;
+	Sun, 26 Sep 2021 21:27:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com
- [IPv6:2a00:1450:4864:20::535])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A645F6E53C;
- Sun, 26 Sep 2021 19:10:26 +0000 (UTC)
-Received: by mail-ed1-x535.google.com with SMTP id dj4so59860221edb.5;
- Sun, 26 Sep 2021 12:10:26 -0700 (PDT)
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
+ [IPv6:2a00:1450:4864:20::532])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CFAC6E5A0
+ for <amd-gfx@lists.freedesktop.org>; Sun, 26 Sep 2021 21:27:23 +0000 (UTC)
+Received: by mail-ed1-x532.google.com with SMTP id y35so9497742ede.3
+ for <amd-gfx@lists.freedesktop.org>; Sun, 26 Sep 2021 14:27:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=/z4b+ZlOW6IOAYv+nmY4e5Fiqjg581HHJvfOVe6AWyI=;
- b=FUejexteXAplj0iM0girVHBZzZ+pSrgSlEEYEqR5btN26YhMIrBuWLXiwYsqTqXbEe
- jJocjRlRbAmKXvqiqTOP6tneW+ofVYWlRahsTlNlqDXMJbvHc4/SzBzHGAxfR2Polw5M
- rsA0t/37JqenO3rT4wOfrilXqcm64cHw1KyuL/EFRHSzK3CRFzkVyTH/ot3KcJ5t1sUT
- MyEmCZoEvQ38cxsyCpJRoahdCZwyMfHIy4YrzjBWIu15io3RtqDPebZfrsDxkIAoZ6zg
- jDI3PvYggsvBdHWkdgzuyBHBKY/B1+nNkXBfxNXa2qhKHVPPaU6I63cdkQUdhKWFJZbd
- rbZQ==
+ h=from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=dyJ1qO+R5BLfYYuTWc2QXotgbOwk1jJzzgANj7+bdq0=;
+ b=l5wHDbI/chLkG7O4NWyHarjQZHT3s1bGnpM3MdlnBhTxfiFEiHdJaqnaUkZslaYaRa
+ PkcBuHeIy13vu3IrqQzmgDiSQ8V1Jt+GnbhNJkgnrSQbgvlOWh7dBT9Cji0dz7EPHkLN
+ Um1t1Kc8HFsuKBgAfnb96M9mkVJWM/MquHRyjtY3Zgm+Jo3iLvfwjAg0M3v6VDa0duSr
+ VyMvW6kjS5dOPFn7927u2HwTKscvwclRwWh5t4XML3lC8cZBbvJKBphANESfup3WbKxT
+ r9biTmMTN4K/TT2cUnoteWZ8mjFkuzHUEuaG6mVUJYXzPg9bWwksqhq+7DivU7sd46Sb
+ q3hA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=/z4b+ZlOW6IOAYv+nmY4e5Fiqjg581HHJvfOVe6AWyI=;
- b=hqAdEsTzZfPMCOkiRejm09/ZosEcN4+kA4EekrKKyjvYNeGT5aVp4KtBdshqgp5gcX
- ms8y2Dc1U4l+Tlvgbc7YJ+65lLDogFGbOUqgSIWQLY97UkKGn//cbe5kipf6Zk+XbzXA
- Yjdua4L9J/gNy3qtOp3bsJyKaxj/zVIbl8mDK0QsxBlaULs3drONMkzQuTeXbudO2a1G
- tlkc6kVUCKFfUNNpaDAUg93B0OQxQD+MGrGWgkUyX67UkDCmtFlyneRb4/BPojCFOaNv
- vuXO2xlGcLBtMUKQFBopgbjiz+JUKvkvdCLlOr0jgpOZB6AVS4Wf6+zsnfGI1DQ1GfJM
- qcOw==
-X-Gm-Message-State: AOAM5320rbjwoMMozlK/AxGWc7W9VwXm0VlFo9OHJWyugkzoxHrUA8pY
- gWDpfAQw6cBPcfoejuZV6EIeo/DSDF6xPlPuZ0oGKrnfliY=
-X-Google-Smtp-Source: ABdhPJxxky1LCzPjincNKps8fXB/iI9VPpw+nJnqSXZTQuKXkSr4r7QFRMtUboNrhS13atoLQyplJJypBbaqs6pG2Pk=
-X-Received: by 2002:a17:906:ece7:: with SMTP id
- qt7mr11555062ejb.250.1632683425057; 
- Sun, 26 Sep 2021 12:10:25 -0700 (PDT)
+ h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=dyJ1qO+R5BLfYYuTWc2QXotgbOwk1jJzzgANj7+bdq0=;
+ b=1iqFOLtVsRdA6I2FcZYIRSbxZoCnBm1JHoPj/cB9NTD/XVYpwJ6wC2Wze5nRrbYicP
+ SuPhe23bAdoEOW6P+8YwGc5VWQFMg5FMuxoH9+sBYPs5OoxXUkP66ddoIo+B+OU1kLIw
+ Q+KBSehkc+9fzdNOmVQnTVW1cvAYQRRfcyrwWVhq/r/0cD16OiiF3sbm60lEI0guhxxF
+ BtVrwsWjshVuoDzIuR9+jwVFq705kS/WGsLGbaw62kn7DKhUxtQLtyreLhrBVura0DFG
+ IHfjxig9fVHPLvhB+LbC/S4n6v4TUKQenX2LsSBtg3dpxBEtuErduxOMEbQc7iGHy7Tc
+ lKRQ==
+X-Gm-Message-State: AOAM531qqO89I1V8C70g3xX2DF+m6VHxjbIh3w3gFHp76d0RgLGwhDI9
+ wicl4IBIpBeGeeVn/V/S5XzYYsOoQLU=
+X-Google-Smtp-Source: ABdhPJyJ6BbjNXD/s55sBkRloKMBzcbd5KJ7G4GIyvq4RBroyhnzxrKde4VU1nDGlky0ejdshg+ujw==
+X-Received: by 2002:aa7:ce14:: with SMTP id d20mr19492103edv.132.1632691641616; 
+ Sun, 26 Sep 2021 14:27:21 -0700 (PDT)
+Received: from mammut.. (c83-254-134-100.bredband.tele2.se. [83.254.134.100])
+ by smtp.gmail.com with ESMTPSA id
+ l10sm1619285edr.14.2021.09.26.14.27.20
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 26 Sep 2021 14:27:21 -0700 (PDT)
+From: =?UTF-8?q?Ernst=20Sj=C3=B6strand?= <ernstp@gmail.com>
+To: amd-gfx@lists.freedesktop.org
+Subject: [PATCH] drm/amd/amdgpu: Validate ip discovery blob
+Date: Sun, 26 Sep 2021 23:27:19 +0200
+Message-Id: <20210926212719.45595-1-ernstp@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <1632640580-61609-1-git-send-email-yang.lee@linux.alibaba.com>
-In-Reply-To: <1632640580-61609-1-git-send-email-yang.lee@linux.alibaba.com>
-From: Amos Jianjun Kong <kongjianjun@gmail.com>
-Date: Mon, 27 Sep 2021 03:10:13 +0800
-Message-ID: <CAFeW=pYwkZ8=pVi9f-kHGwr-7Gb2OuWYd=LPzHt+yPWRP_gn8w@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdkfd: fix resource_size.cocci warnings
-To: Yang Li <yang.lee@linux.alibaba.com>
-Cc: airlied@linux.ie, daniel@ffwll.ch, Felix.Kuehling@amd.com, 
- alexander.deucher@amd.com, christian.koenig@amd.com, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- open list <linux-kernel@vger.kernel.org>
-Content-Type: multipart/alternative; boundary="00000000000094d0c705cceabbb7"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,105 +70,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---00000000000094d0c705cceabbb7
-Content-Type: text/plain; charset="UTF-8"
+We use the number_instance index that we get from the fw discovery blob
+to index into an array for example.
 
-On Sun, Sep 26, 2021 at 3:17 PM Yang Li <yang.lee@linux.alibaba.com> wrote:
+Signed-off-by: Ernst Sjöstrand <ernstp@gmail.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-> Use resource_size function on resource object
-> instead of explicit computation.
->
-> Clean up coccicheck warning:
-> ./drivers/gpu/drm/amd/amdkfd/kfd_migrate.c:905:10-13: ERROR: Missing
-> resource_size with res
->
-> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-> Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
-> ---
->  drivers/gpu/drm/amd/amdkfd/kfd_migrate.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-> b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-> index 4a16e3c..f53e17a 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-> @@ -901,8 +901,7 @@ int svm_migrate_init(struct amdgpu_device *adev)
->
->                 /* Disable SVM support capability */
->                 pgmap->type = 0;
-> -               devm_release_mem_region(adev->dev, res->start,
-> -                                       res->end - res->start + 1);
-> +               devm_release_mem_region(adev->dev, res->start,
-> resource_size(res));
->
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index ada7bc19118a..b3fc46ba8144 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -245,6 +245,20 @@ void amdgpu_discovery_fini(struct amdgpu_device *adev)
+ 	adev->mman.discovery_bin = NULL;
+ }
+ 
++static int amdgpu_discovery_validate_ip(const struct ip *ip)
++{
++	if (ip->number_instance >= HWIP_MAX_INSTANCE) {
++		DRM_ERROR("Unexpected number_instance from ip discovery blob\n");
++		return -EINVAL;
++	}
++	if (le16_to_cpu(ip->hw_id) >= HW_ID_MAX) {
++		DRM_ERROR("Unexpected hw_id from ip discovery blob\n");
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
+ int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
+ {
+ 	struct binary_header *bhdr;
+@@ -290,6 +304,10 @@ int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
+ 
+ 		for (j = 0; j < num_ips; j++) {
+ 			ip = (struct ip *)(adev->mman.discovery_bin + ip_offset);
++
++			if (amdgpu_discovery_validate_ip(ip))
++				goto next_ip;
++
+ 			num_base_address = ip->num_base_address;
+ 
+ 			DRM_DEBUG("%s(%d) #%d v%d.%d.%d:\n",
+@@ -321,6 +339,7 @@ int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
+ 
+ 			}
+ 
++next_ip:
+ 			ip_offset += sizeof(*ip) + 4 * (ip->num_base_address - 1);
+ 		}
+ 	}
+-- 
+2.30.2
 
-Looks good.
-Reviewed-by: Amos Kong <kongjianjun@gmail.com>
-
-
-
->                 return PTR_ERR(r);
->         }
->
-> --
-> 1.8.3.1
->
->
-
---00000000000094d0c705cceabbb7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Sun, Sep 26, 2021 at 3:17 PM Yang Li &=
-lt;<a href=3D"mailto:yang.lee@linux.alibaba.com">yang.lee@linux.alibaba.com=
-</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex">Use resource_size function on resource object<br=
->
-instead of explicit computation.<br>
-<br>
-Clean up coccicheck warning:<br>
-./drivers/gpu/drm/amd/amdkfd/kfd_migrate.c:905:10-13: ERROR: Missing<br>
-resource_size with res<br>
-<br>
-Reported-by: Abaci Robot &lt;<a href=3D"mailto:abaci@linux.alibaba.com" tar=
-get=3D"_blank">abaci@linux.alibaba.com</a>&gt;<br>
-Signed-off-by: Yang Li &lt;<a href=3D"mailto:yang.lee@linux.alibaba.com" ta=
-rget=3D"_blank">yang.lee@linux.alibaba.com</a>&gt;<br>
----<br>
-=C2=A0drivers/gpu/drm/amd/amdkfd/kfd_migrate.c | 3 +--<br>
-=C2=A01 file changed, 1 insertion(+), 2 deletions(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd=
-/amdkfd/kfd_migrate.c<br>
-index 4a16e3c..f53e17a 100644<br>
---- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c<br>
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c<br>
-@@ -901,8 +901,7 @@ int svm_migrate_init(struct amdgpu_device *adev)<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 /* Disable SVM supp=
-ort capability */<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pgmap-&gt;type =3D =
-0;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0devm_release_mem_re=
-gion(adev-&gt;dev, res-&gt;start,<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0res-&gt;e=
-nd - res-&gt;start + 1);<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0devm_release_mem_re=
-gion(adev-&gt;dev, res-&gt;start, resource_size(res));<br></blockquote><div=
-><br></div><div>Looks good.</div><div>Reviewed-by: Amos Kong &lt;<a href=3D=
-"mailto:kongjianjun@gmail.com">kongjianjun@gmail.com</a>&gt;</div><div><br>=
-</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return PTR_ERR(r);<=
-br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
-<br>
--- <br>
-1.8.3.1<br>
-<br>
-</blockquote></div></div>
-
---00000000000094d0c705cceabbb7--
