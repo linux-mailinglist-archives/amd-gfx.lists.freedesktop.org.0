@@ -2,116 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77650418EEB
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Sep 2021 08:14:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05FEB4191FB
+	for <lists+amd-gfx@lfdr.de>; Mon, 27 Sep 2021 12:07:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 584BF6E833;
-	Mon, 27 Sep 2021 06:14:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B673A89C97;
+	Mon, 27 Sep 2021 10:07:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2058.outbound.protection.outlook.com [40.107.236.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24ED86E833
- for <amd-gfx@lists.freedesktop.org>; Mon, 27 Sep 2021 06:13:59 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=myi0rd6pBNScm/YKg/QTVzp2LtNwRCEZAZdouhlibb6/ynG1pyt7z3m+lzQgLYAxoNe0dk6o4mLaejXKEqZBHd0ZzNpkMXIQmPA+pUgX0AioLHKFwgEyvkKL8Cww2hM0ba1vRLsv8G7vmeAGBQhCP6B4cM5H0io6FDCnBx32RAqRmZt9r1iOl+Oufvry4Tsq3sSR9cx1jB8S5qd0DfxDe+4fOIXPr/xTcTsxNEJdX1m8Jmsl7wr1dz32wr2sxJ0icMQLEg41FKizVoLmB8V5ICzSu1YKWXuFNYRSRyNHPY7O1kXny0X8BQOO6cJetORnbHRMJbgxOOjXXnRcgSoeoQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=kbfUdRsDdBuzoO99363Y+CEc9JBFg8wHWzbufBQ15p0=;
- b=aaQT7vQxJt/MJYdwimsiUMWOicrHHSvXAe2U2tetcsbHqQai8tpYHVngC6v3XrW67qN+0ZGDC1bKdE7gMxnMs8dPtMLjkwLRfSPFqLJm1KMXfSVGq9qu3Bom1MILlyURdIkotxeAtLB/Mu6uLhY+MZBSYoKvTMbxktiSWZHjXTIRTizWCpQUxofDjcpcgd0vwX9dV6KrM5c4CVlYSc8mzBQCHQyDxeTP2zYgYNXMyJg3jK6bMuUXmDsd1Ma0ZObK/Bl47RUg4YhI5K5S3zboxhKb4k3d0Wi/PJxS6+Krd4b5rqF5r1xYD5geDhZ9hWjxTU+Jyi6MrXCcvbsTSNd18Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kbfUdRsDdBuzoO99363Y+CEc9JBFg8wHWzbufBQ15p0=;
- b=Ok691py4attlQh8XQLzdPF2JRQv0y/w8ZZO/qaieZ77+P3J8q9jfOoCckl4HUpPqpg8WjZexgpG+wo1vONDLcL8Ue+hft2KgsXa74+18Anru7awwqZQZIGFQ6ipbXIeMe9kPAplDwOaSbJYSj7/reJM/zkys/VCOcgSddGi4QxI=
-Received: from PH0PR12MB5404.namprd12.prod.outlook.com (2603:10b6:510:d7::14)
- by PH0PR12MB5418.namprd12.prod.outlook.com (2603:10b6:510:e5::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.15; Mon, 27 Sep
- 2021 06:13:57 +0000
-Received: from PH0PR12MB5404.namprd12.prod.outlook.com
- ([fe80::b0cb:b276:609d:7332]) by PH0PR12MB5404.namprd12.prod.outlook.com
- ([fe80::b0cb:b276:609d:7332%3]) with mapi id 15.20.4544.021; Mon, 27 Sep 2021
- 06:13:57 +0000
-From: "Ma, Le" <Le.Ma@amd.com>
-To: "Zhang, Hawking" <Hawking.Zhang@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "Deucher, Alexander"
- <Alexander.Deucher@amd.com>, "Zhang, Morris" <Shiwu.Zhang@amd.com>
-Subject: RE: [PATCH] drm/amdgpu: correct initial cp_hqd_quantum for gfx9
-Thread-Topic: [PATCH] drm/amdgpu: correct initial cp_hqd_quantum for gfx9
-Thread-Index: AQHXsuLNcjUvaumX5UGqhR2yQ3G2mau3Z9XA
-Date: Mon, 27 Sep 2021 06:13:56 +0000
-Message-ID: <PH0PR12MB5404685AE7D801B84023043CF6A79@PH0PR12MB5404.namprd12.prod.outlook.com>
-References: <1632666512-4007-1-git-send-email-Hawking.Zhang@amd.com>
-In-Reply-To: <1632666512-4007-1-git-send-email-Hawking.Zhang@amd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=fefbbe56-0275-4f13-b443-95e460e3729d;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD
- Official Use Only-AIP 2.0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-09-27T06:13:34Z;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0e6ac584-e5a9-4ba3-f176-08d9817dfd59
-x-ms-traffictypediagnostic: PH0PR12MB5418:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <PH0PR12MB5418FE75576811A689C0840DF6A79@PH0PR12MB5418.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4303;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: jWakPy1Runl55G+tGdXRS1rUK21jr5QP/OAz4t7TZeKiQKshUQ03nconaRPohdRbgbnI2q8qzlRoq7v24c7/9dAoXR/GAeUkp9nlR1hCpKnI9N7lpZo1+69NZlnuhkuufyRgjMh4tKOlekUTfDyBNie3JoFxvepOIDHT0CfXgVsz9rS2pVQxulmFnQRrvJBDvlSVXnOm70ND3NYKQWmbQ5gTQ7u+nJLtkpZsWL8WaCwomA7tOwh7MsUhPYXcn5/HVoRvALtoCehrV0TNyDWtd0zxSlYJUxGxtRLr70H33x+jSp7sgQD4zjR/QSlWmcltT2rHeVmJFgRvcTHLAJpYE0dLxALwd6NW0Rtr6RhQfhyNu5dQkzJPmwWEz0AM5XYCdftHG2Y7l9Vaqjpx1OJGR+IBUBFMXiRa7W15u1kvbs6Zp+44h1Kiwxm8JxmnEhdopTwGkL6cPxkAg1iTakp8vDQtJPYyoCEyNRj66Ft4bc7viPzMeSSbkGxzvqgFXFo3QNz1M4EMCq8TzGEiofkqGjNS9JSk3+qSftNcvTBvSoHkXqkr552y60XL9f7PDPyoXAk8detrc+ZwqygY4JkZ0VwSgcyYCx96OlrAoDdW0v4bo6IMpknqcSlNPLDUvlWuJ12ZNYSZKerOf6WMmZEojywXcAxaFmbJR++tkrW7j3X+gzQOi4Pfunw9EWpXXuE2ogruBvZz1gRAyGCUiWHfTg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR12MB5404.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(316002)(83380400001)(6636002)(5660300002)(110136005)(38070700005)(8676002)(122000001)(53546011)(9686003)(66446008)(64756008)(2906002)(76116006)(26005)(66946007)(66476007)(33656002)(66556008)(186003)(7696005)(86362001)(52536014)(8936002)(508600001)(71200400001)(55016002)(6506007)(38100700002);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?z0HWs/sgJ5u8xUKHdCq3XgYEnDKw8swl1S1m/xbNm9Gwo25thJXnG9LGb4em?=
- =?us-ascii?Q?Me64glRnCs5c4aCYd3IEO9/qKom2AsYHHA3snzINKwAsYqFXw2dWBxjUV3Za?=
- =?us-ascii?Q?cmbcYa3FG+YY/GhMYIxYNRO1StwlkWluv5HoBDMrrGrj/rSK0BscVhGlzLox?=
- =?us-ascii?Q?LpINsqq8QajNtwpBTyzTVBJ5l9aVEgrzTX3s4k28EViw9JLaGZCtHVOfP+8i?=
- =?us-ascii?Q?RIR+ZUhDxJHGPPo8Ve/gqsfgRQLBEuFFppog1zZgfBpak9A1YijciwdEW2oZ?=
- =?us-ascii?Q?XWIOsvHqQaO/LT3ZjV/Q9JIK1hYZsFLYjXML/SUa9/nU7LLk+FxqRJ0AVMNb?=
- =?us-ascii?Q?4ptyyO+X+bzoMgD1PDwzPiYlfeyb0voBvpo7VhX9ZhiKtays4bYImm0AoLmd?=
- =?us-ascii?Q?Ms1WDpwz1jiRoV7m6qHIH1x3ZgF89eRwszyUj/P/IRmpmEQAnq2JtibmBXja?=
- =?us-ascii?Q?4esUznl3h3t+Gm5EFKHxv8KRgDJA9uAdS7tnoLoV8S5ETfNk38EOvE7xjchK?=
- =?us-ascii?Q?HK+YlRcODfxmwjm6uGd/brqk19clAg7YhOn0Eub8UGd3cGFNAcVBHKvMuClF?=
- =?us-ascii?Q?+M6ksgJkKswL9HhTZZlOb8KC+2CfjgQZfTLUSnNRwD2ntOrkEHkupxkp4+ek?=
- =?us-ascii?Q?1ULS0aCn68D08CfKlBzlaAO3YVxzbl2dOmp0LXlK1AZ40hqP1Dr0hM5E+R5T?=
- =?us-ascii?Q?ZnBBumXPAhIiIGlsFZR4G17fC7ew4GOLm6cAs6mihcybDwvAkGoyx8cnjmXi?=
- =?us-ascii?Q?pJsi430dDI6uAmJoL3I0pr7ZWxKFYkARjThICVkIblxGgQVVlX36n7waJUK2?=
- =?us-ascii?Q?NWzCJNarTbd1FC53g1UQ4s/pvY5nsLehUL4FXaBlm+o2Wu6tyT1jAVISnqhe?=
- =?us-ascii?Q?Ot9YpJFoY4u8PieX1pVS0kWhLGBNmXwMb+o7W7H57FyAAvHKGGkXghQyoiVH?=
- =?us-ascii?Q?qJfS2kMze++3jp/YKoVI33VygmBz9vl8t/3I4Q01Lvcg1TEAgphx/S4jvEnO?=
- =?us-ascii?Q?GMlbLSWYeMEsHacfHh6A4Z5uV+im5VGx4K6Q8HG62LfP2BqnJA3nycV5Eeue?=
- =?us-ascii?Q?4knJhPCZZjkaVvfVrjLOnA+/tP1mA7dH8QSTFUgBppR06rGzkBcm2MgYmUSK?=
- =?us-ascii?Q?juM/HXqH50VFApdWDA+JLqQJowXcmXWIV5pe6X88xzN1X2Fd06jdnjyQIBCm?=
- =?us-ascii?Q?MhkeM9mVb+DGHy111hejFZi7SgyeH+euTBLL9BxCvAr3UDU03OIil2i8gOOe?=
- =?us-ascii?Q?1T4+++YHNVheDIkbdvJGWxSpw7sT9rF2ljg8g7xOpSvQlNZ3WHYyFnWfwkX1?=
- =?us-ascii?Q?IwoEZpKPtdIs5cgUtkHWYYYH?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B18389C1F;
+ Mon, 27 Sep 2021 10:07:08 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1E90E60F6C;
+ Mon, 27 Sep 2021 10:07:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1632737228;
+ bh=RSSh9gBBPVrUSqkquOGPV4KwAsLDi9ZDTrtzfbfg4TM=;
+ h=From:To:Cc:Subject:Date:From;
+ b=T1DT11BJaQ5L8SWfsWcX12m1MgjijPg4lxFmZpVmA9dCBvbAr3ga9jPADMSey4xZp
+ z12Ek41HD89l5uCQy85IIKB9zNdvFUwSsGLThDK9XdHYtuxtSsdepMWPqZBF5eaT7U
+ /N4Mi6aGOqJiEcOM39Ma3xIVwIDpg/tRSmGpSJfSE6RnWEA6Zjs+xsNSvXJU5myRVD
+ pA1nvwAj9VEpSKQGr1oCR3q9T8B155urYlW18PYOD+o2uLEFQP/6kC5hB0rEH7cA5+
+ jDR0Bp6ecH/ppVq6pUYpkF5eMCuEjsmNugvS8WVrraUN+WsotmWa/80xSiK5M32jgY
+ VpfNffSpRU2eQ==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Jun Lei <Jun.Lei@amd.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, Anson Jacob <Anson.Jacob@amd.com>,
+ Stylon Wang <stylon.wang@amd.com>,
+ Chaitanya Dhere <chaitanya.dhere@amd.com>,
+ Wesley Chalmers <Wesley.Chalmers@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] [RESEND] drm/amdgpu: fix enum odm_combine_mode mismatch
+Date: Mon, 27 Sep 2021 12:06:27 +0200
+Message-Id: <20210927100659.1431744-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR12MB5404.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e6ac584-e5a9-4ba3-f176-08d9817dfd59
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2021 06:13:56.9627 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wXOrWItuuaBUAQBoEbGxBWwToTx3BwHLpX/vrgzcqODcx7+MoLEDUQbcE2L2sEVb
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5418
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,40 +57,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[AMD Official Use Only]
+From: Arnd Bergmann <arnd@arndb.de>
 
-Reviewed-by: Le Ma <Le.Ma@amd.com>
+A conversion from 'bool' to 'enum odm_combine_mode' was incomplete,
+and gcc warns about this with many instances of
 
------Original Message-----
-From: Hawking Zhang <Hawking.Zhang@amd.com>
-Sent: Sunday, September 26, 2021 10:29 PM
-To: amd-gfx@lists.freedesktop.org; Ma, Le <Le.Ma@amd.com>; Deucher, Alexand=
-er <Alexander.Deucher@amd.com>; Zhang, Morris <Shiwu.Zhang@amd.com>
-Cc: Zhang, Hawking <Hawking.Zhang@amd.com>
-Subject: [PATCH] drm/amdgpu: correct initial cp_hqd_quantum for gfx9
+display/dc/dml/dcn20/display_mode_vba_20.c:3899:44: warning: implicit conversion from 'enum <anonymous>' to 'enum
+odm_combine_mode' [-Wenum-conversion]
+ 3899 |     locals->ODMCombineEnablePerState[i][k] = false;
 
-didn't read the value of mmCP_HQD_QUANTUM from correct register offset
+Change the ones that we get a warning for, using the same numerical
+values to leave the behavior unchanged.
 
-Signed-off-by: Hawking Zhang <Hawking.Zhang@amd.com>
+Fixes: 5fc11598166d ("drm/amd/display: expand dml structs")
+Link: https://lore.kernel.org/all/20201026210039.3884312-3-arnd@kernel.org/
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I cannot tell if this is the correct conversion, please review
+carefully.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/am=
-dgpu/gfx_v9_0.c
-index 603c259..025184a5 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -3599,7 +3599,7 @@ static int gfx_v9_0_mqd_init(struct amdgpu_ring *ring=
-)
+Tested on v5.15-rc2, please just ignore if a patch is already pending
+for v5.15.
 
-        /* set static priority for a queue/ring */
-        gfx_v9_0_mqd_set_priority(ring, mqd);
--       mqd->cp_hqd_quantum =3D RREG32(mmCP_HQD_QUANTUM);
-+       mqd->cp_hqd_quantum =3D RREG32_SOC15(GC, 0, mmCP_HQD_QUANTUM);
+I got now reply to this patch when I originally sent it. With -Werror
+being the default now, it is still needed to make the driver build, please
+have another look.
+---
+ .../amd/display/dc/dml/dcn20/display_mode_vba_20.c   |  8 ++++----
+ .../amd/display/dc/dml/dcn20/display_mode_vba_20v2.c | 10 +++++-----
+ .../amd/display/dc/dml/dcn21/display_mode_vba_21.c   | 12 ++++++------
+ 3 files changed, 15 insertions(+), 15 deletions(-)
 
-        /* map_queues packet doesn't need activate the queue,
-         * so only kiq need set this field.
---
-2.7.4
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c
+index f34bc3c8da41..69c41e3e3ba2 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20.c
+@@ -3901,14 +3901,14 @@ void dml20_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 					mode_lib->vba.PlaneRequiredDISPCLKWithODMCombine = mode_lib->vba.PixelClock[k] / 2
+ 							* (1 + mode_lib->vba.DISPCLKDPPCLKDSCCLKDownSpreading / 100.0);
+ 
+-				locals->ODMCombineEnablePerState[i][k] = false;
++				locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_disabled;
+ 				mode_lib->vba.PlaneRequiredDISPCLK = mode_lib->vba.PlaneRequiredDISPCLKWithoutODMCombine;
+ 				if (mode_lib->vba.ODMCapability) {
+ 					if (locals->PlaneRequiredDISPCLKWithoutODMCombine > mode_lib->vba.MaxDispclkRoundedDownToDFSGranularity) {
+-						locals->ODMCombineEnablePerState[i][k] = true;
++						locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_2to1;
+ 						mode_lib->vba.PlaneRequiredDISPCLK = mode_lib->vba.PlaneRequiredDISPCLKWithODMCombine;
+ 					} else if (locals->HActive[k] > DCN20_MAX_420_IMAGE_WIDTH && locals->OutputFormat[k] == dm_420) {
+-						locals->ODMCombineEnablePerState[i][k] = true;
++						locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_2to1;
+ 						mode_lib->vba.PlaneRequiredDISPCLK = mode_lib->vba.PlaneRequiredDISPCLKWithODMCombine;
+ 					}
+ 				}
+@@ -3961,7 +3961,7 @@ void dml20_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 				locals->RequiredDISPCLK[i][j] = 0.0;
+ 				locals->DISPCLK_DPPCLK_Support[i][j] = true;
+ 				for (k = 0; k <= mode_lib->vba.NumberOfActivePlanes - 1; k++) {
+-					locals->ODMCombineEnablePerState[i][k] = false;
++					locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_disabled;
+ 					if (locals->SwathWidthYSingleDPP[k] <= locals->MaximumSwathWidth[k]) {
+ 						locals->NoOfDPP[i][j][k] = 1;
+ 						locals->RequiredDPPCLK[i][j][k] = locals->MinDPPCLKUsingSingleDPP[k]
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
+index 719949ad49ed..3c8c03496611 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn20/display_mode_vba_20v2.c
+@@ -4012,17 +4012,17 @@ void dml20v2_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode
+ 					mode_lib->vba.PlaneRequiredDISPCLKWithODMCombine = mode_lib->vba.PixelClock[k] / 2
+ 							* (1 + mode_lib->vba.DISPCLKDPPCLKDSCCLKDownSpreading / 100.0);
+ 
+-				locals->ODMCombineEnablePerState[i][k] = false;
++				locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_disabled;
+ 				mode_lib->vba.PlaneRequiredDISPCLK = mode_lib->vba.PlaneRequiredDISPCLKWithoutODMCombine;
+ 				if (mode_lib->vba.ODMCapability) {
+ 					if (locals->PlaneRequiredDISPCLKWithoutODMCombine > MaxMaxDispclkRoundedDown) {
+-						locals->ODMCombineEnablePerState[i][k] = true;
++						locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_2to1;
+ 						mode_lib->vba.PlaneRequiredDISPCLK = mode_lib->vba.PlaneRequiredDISPCLKWithODMCombine;
+ 					} else if (locals->DSCEnabled[k] && (locals->HActive[k] > DCN20_MAX_DSC_IMAGE_WIDTH)) {
+-						locals->ODMCombineEnablePerState[i][k] = true;
++						locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_2to1;
+ 						mode_lib->vba.PlaneRequiredDISPCLK = mode_lib->vba.PlaneRequiredDISPCLKWithODMCombine;
+ 					} else if (locals->HActive[k] > DCN20_MAX_420_IMAGE_WIDTH && locals->OutputFormat[k] == dm_420) {
+-						locals->ODMCombineEnablePerState[i][k] = true;
++						locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_2to1;
+ 						mode_lib->vba.PlaneRequiredDISPCLK = mode_lib->vba.PlaneRequiredDISPCLKWithODMCombine;
+ 					}
+ 				}
+@@ -4075,7 +4075,7 @@ void dml20v2_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode
+ 				locals->RequiredDISPCLK[i][j] = 0.0;
+ 				locals->DISPCLK_DPPCLK_Support[i][j] = true;
+ 				for (k = 0; k <= mode_lib->vba.NumberOfActivePlanes - 1; k++) {
+-					locals->ODMCombineEnablePerState[i][k] = false;
++					locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_disabled;
+ 					if (locals->SwathWidthYSingleDPP[k] <= locals->MaximumSwathWidth[k]) {
+ 						locals->NoOfDPP[i][j][k] = 1;
+ 						locals->RequiredDPPCLK[i][j][k] = locals->MinDPPCLKUsingSingleDPP[k]
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c
+index ffbe93b4d0c0..971a5af92118 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c
++++ b/drivers/gpu/drm/amd/display/dc/dml/dcn21/display_mode_vba_21.c
+@@ -3983,17 +3983,17 @@ void dml21_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 					mode_lib->vba.PlaneRequiredDISPCLKWithODMCombine = mode_lib->vba.PixelClock[k] / 2
+ 							* (1 + mode_lib->vba.DISPCLKDPPCLKDSCCLKDownSpreading / 100.0);
+ 
+-				locals->ODMCombineEnablePerState[i][k] = false;
++				locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_disabled;
+ 				mode_lib->vba.PlaneRequiredDISPCLK = mode_lib->vba.PlaneRequiredDISPCLKWithoutODMCombine;
+ 				if (mode_lib->vba.ODMCapability) {
+ 					if (locals->PlaneRequiredDISPCLKWithoutODMCombine > MaxMaxDispclkRoundedDown) {
+-						locals->ODMCombineEnablePerState[i][k] = true;
++						locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_2to1;
+ 						mode_lib->vba.PlaneRequiredDISPCLK = mode_lib->vba.PlaneRequiredDISPCLKWithODMCombine;
+ 					} else if (locals->DSCEnabled[k] && (locals->HActive[k] > DCN21_MAX_DSC_IMAGE_WIDTH)) {
+-						locals->ODMCombineEnablePerState[i][k] = true;
++						locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_2to1;
+ 						mode_lib->vba.PlaneRequiredDISPCLK = mode_lib->vba.PlaneRequiredDISPCLKWithODMCombine;
+ 					} else if (locals->HActive[k] > DCN21_MAX_420_IMAGE_WIDTH && locals->OutputFormat[k] == dm_420) {
+-						locals->ODMCombineEnablePerState[i][k] = true;
++						locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_2to1;
+ 						mode_lib->vba.PlaneRequiredDISPCLK = mode_lib->vba.PlaneRequiredDISPCLKWithODMCombine;
+ 					}
+ 				}
+@@ -4046,7 +4046,7 @@ void dml21_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 				locals->RequiredDISPCLK[i][j] = 0.0;
+ 				locals->DISPCLK_DPPCLK_Support[i][j] = true;
+ 				for (k = 0; k <= mode_lib->vba.NumberOfActivePlanes - 1; k++) {
+-					locals->ODMCombineEnablePerState[i][k] = false;
++					locals->ODMCombineEnablePerState[i][k] = dm_odm_combine_mode_disabled;
+ 					if (locals->SwathWidthYSingleDPP[k] <= locals->MaximumSwathWidth[k]) {
+ 						locals->NoOfDPP[i][j][k] = 1;
+ 						locals->RequiredDPPCLK[i][j][k] = locals->MinDPPCLKUsingSingleDPP[k]
+@@ -5222,7 +5222,7 @@ void dml21_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
+ 			mode_lib->vba.ODMCombineEnabled[k] =
+ 					locals->ODMCombineEnablePerState[mode_lib->vba.VoltageLevel][k];
+ 		} else {
+-			mode_lib->vba.ODMCombineEnabled[k] = false;
++			mode_lib->vba.ODMCombineEnabled[k] = dm_odm_combine_mode_disabled;
+ 		}
+ 		mode_lib->vba.DSCEnabled[k] =
+ 				locals->RequiresDSC[mode_lib->vba.VoltageLevel][k];
+-- 
+2.29.2
 
