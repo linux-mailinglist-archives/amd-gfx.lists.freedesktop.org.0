@@ -2,28 +2,34 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0F4741B8A9
-	for <lists+amd-gfx@lfdr.de>; Tue, 28 Sep 2021 22:50:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C104141B8E6
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Sep 2021 23:03:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F072E6E996;
-	Tue, 28 Sep 2021 20:50:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD0706E984;
+	Tue, 28 Sep 2021 21:03:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 678356E97F;
- Tue, 28 Sep 2021 20:48:57 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="204951476"
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="204951476"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 13:48:51 -0700
-X-IronPort-AV: E=Sophos;i="5.85,330,1624345200"; d="scan'208";a="554299062"
-Received: from oogunmoy-mobl1.amr.corp.intel.com (HELO
- skuppusw-mobl5.amr.corp.intel.com) ([10.212.221.219])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 13:48:48 -0700
-Subject: Re: [PATCH v4 0/8] Implement generic cc_platform_has() helper function
-To: Borislav Petkov <bp@alien8.de>
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C87D389CB9;
+ Tue, 28 Sep 2021 20:58:14 +0000 (UTC)
+Received: from zn.tnic (p200300ec2f13b200371079131a9f19c8.dip0.t-ipconnect.de
+ [IPv6:2003:ec:2f13:b200:3710:7913:1a9f:19c8])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 4A4B41EC0529;
+ Tue, 28 Sep 2021 22:58:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+ t=1632862693;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+ bh=M/Cii95WfOPrNG19OOrHcFSw1uCJM/Fe6XaBsvPv/q0=;
+ b=X+KsAAbMs1uanqVNfGCkoJXUvknzrq5pvak0sOS+MjmfXY2qB4lzrw64Bimu4Cq8+89XgB
+ yHHrp11ozTm+i5EAg49QGg6AkWNd//wfu8OHOvqtXvmcPpQrh6xA2Ffl2p9ynOstXNSjk0
+ 6cfYOGShP/slK+ZySkt9MjU5vG5BW4M=
+Date: Tue, 28 Sep 2021 22:58:06 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: "Kuppuswamy, Sathyanarayanan" <sathyanarayanan.kuppuswamy@linux.intel.com>
 Cc: LKML <linux-kernel@vger.kernel.org>, Andi Kleen <ak@linux.intel.com>,
  Andy Lutomirski <luto@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
  Baoquan He <bhe@redhat.com>,
@@ -31,33 +37,31 @@ Cc: LKML <linux-kernel@vger.kernel.org>, Andi Kleen <ak@linux.intel.com>,
  Christian Borntraeger <borntraeger@de.ibm.com>,
  Daniel Vetter <daniel@ffwll.ch>, Dave Young <dyoung@redhat.com>,
  David Airlie <airlied@linux.ie>, Heiko Carstens <hca@linux.ibm.com>,
- Joerg Roedel <joro@8bytes.org>, "Kirill A. Shutemov" <kirill@shutemov.name>,
+ Joerg Roedel <joro@8bytes.org>,
+ "Kirill A. Shutemov" <kirill@shutemov.name>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Michael Ellerman <mpe@ellerman.id.au>,
  Paul Mackerras <paulus@samba.org>, Tom Lendacky <thomas.lendacky@amd.com>,
  Thomas Zimmermann <tzimmermann@suse.de>, Vasily Gorbik <gor@linux.ibm.com>,
  VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Will Deacon <will@kernel.org>, Christoph Hellwig <hch@infradead.org>,
- x86@kernel.org, linuxppc-dev@lists.ozlabs.org, linux-s390@vger.kernel.org,
+ Will Deacon <will@kernel.org>,
+ Christoph Hellwig <hch@infradead.org>, x86@kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-s390@vger.kernel.org,
  iommu@lists.linux-foundation.org, kvm@vger.kernel.org,
  linux-efi@vger.kernel.org, platform-driver-x86@vger.kernel.org,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  kexec@lists.infradead.org
+Subject: Re: [PATCH v4 0/8] Implement generic cc_platform_has() helper function
+Message-ID: <YVOB3mFV1Kj3MXAs@zn.tnic>
 References: <20210928191009.32551-1-bp@alien8.de>
  <80593893-c63b-d481-45f1-42a3a6fd762a@linux.intel.com>
  <YVN7vPE/7jecXcJ/@zn.tnic>
-From: "Kuppuswamy, Sathyanarayanan"
- <sathyanarayanan.kuppuswamy@linux.intel.com>
-Message-ID: <7319b756-55dc-c4d1-baf6-4686f0156ac4@linux.intel.com>
-Date: Tue, 28 Sep 2021 13:48:46 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.13.0
+ <7319b756-55dc-c4d1-baf6-4686f0156ac4@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <YVN7vPE/7jecXcJ/@zn.tnic>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 28 Sep 2021 20:50:33 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <7319b756-55dc-c4d1-baf6-4686f0156ac4@linux.intel.com>
+X-Mailman-Approved-At: Tue, 28 Sep 2021 21:03:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,25 +76,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Sep 28, 2021 at 01:48:46PM -0700, Kuppuswamy, Sathyanarayanan wrote:
+> Just read it. If you want to use cpuid_has_tdx_guest() directly in
+> cc_platform_has(), then you want to rename intel_cc_platform_has() to
+> tdx_cc_platform_has()?
 
+Why?
 
-On 9/28/21 1:31 PM, Borislav Petkov wrote:
-> On Tue, Sep 28, 2021 at 12:19:49PM -0700, Kuppuswamy, Sathyanarayanan wrote:
->> Intel CC support patch is not included in this series. You want me
->> to address the issue raised by Joerg before merging it?
-> 
-> Did you not see my email to you today:
-> 
-> https://lkml.kernel.org/r/YVL4ZUGhfsh1QfRX@zn.tnic
+You simply do:
 
-Just read it. If you want to use cpuid_has_tdx_guest() directly in
-cc_platform_has(), then you want to rename intel_cc_platform_has() to
-tdx_cc_platform_has()?
+	if (cpuid_has_tdx_guest())
+		intel_cc_platform_has(...);
 
-> 
-> ?
-> 
+and lemme paste from that mail: " ...you should use
+cpuid_has_tdx_guest() instead but cache its result so that you don't
+call CPUID each time the kernel executes cc_platform_has()."
+
+Makes sense?
 
 -- 
-Sathyanarayanan Kuppuswamy
-Linux Kernel Developer
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
