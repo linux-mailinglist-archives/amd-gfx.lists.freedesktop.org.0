@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4603F41C419
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Sep 2021 14:01:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E684941C421
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Sep 2021 14:01:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23C4E6EA49;
-	Wed, 29 Sep 2021 12:01:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C4226EA4C;
+	Wed, 29 Sep 2021 12:01:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2083.outbound.protection.outlook.com [40.107.243.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69FD16EA46
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 12:01:09 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2088.outbound.protection.outlook.com [40.107.236.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C9BC6EA4D
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 12:01:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R2yFIJvTyiooJ4YQjIMdd4TSPfF2A1ukhXSl0YykQegSRuFkEnOxregogj24fE9NxTjUiA3sr8lMJ/3xlg85exIWpzmnIrrGWt1vZpjYYrE01HgD8j2dXDO80ZHlLf67UvMNQxnHKsspvUNiWHDRdGQIqQE3/8KdtHbverBFZ3ES6B8Z8psO37FUHjIPUrc/2W7p03vrf72a0ySwN/Hlz8zdc4+mwqC+aAxAHhmoIYzF4///w4mlbDiQii96eZjOdq9X+BKNsNmo4AirPsmszftDpxazHfvSV1M9HXZQFzqiI3EEtWH/r2MHgiiDaVE/quwIf2vlDljfOVYSoQaRNg==
+ b=PJ6NAyL7huIqXuhSDLPazu+oBbEx4SfBBfCCS1deZ3J1ujJ0YbLSPEyN7csG6DBCp/3e9DFiwrQZ2hg0FGnJFEnE/oVEisuY4+XSNNB4rZvB/Ck6jswYWTnOI48mYYUjmmPCHzLF0bEAGZBbu8KCCJm8kZOVwsMXHiEmf416N29YDww6Y/JGWAcw04mIQbSiGIky4Vk1XUhc2aWFyxc/4Xibbgz1ologAF90gJeFMY2R/DBNuuzDTAw2yRDPuW3nx/gCIdfl4cGXh2Xw7jHKyPxp1vNr3cmw/AcOJd3ITxXcqWwmlb9/P9epvXbgYLV/mV2WsPkxnKionHaMRfDB9g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=MhLytlXAOp7I4JR1bVdjv/cFrqBFJOqd6BMHyF5T1Ec=;
- b=lLPF60mZVhMxdTi4lckITR2rxRrJdv4uqmTY0jIHKstJ2oZqCoVdOjdDa493c6P/sjvAPF26/iSG92JoAm/GQ3d03zXw1e6OnIrb+c8K39uR4e+a8su+ms9eJRke4gY+EmW05Ia85By4RHH7TMguZImHivU4Ac+PkhJg/EFdgkbdCfF+oIUc83AFbK9bYKfqRDdgxg3REyt73McR2kAf8XCrjYUf8MX5lhg2nUxlj8y6YUbzoVyMixfREDtciEcw+dlTSUnDN/7wymq9eaSVEuhwjNTgwwbpwrnw7mvyiuZP8sw7dv6XWOyA3dNz9yyHHlyV4N4f0SlIivmMoJ50xw==
+ bh=GSV6ncxnz6DvqPHj5SOA0jKfQTe8mUvU4eVsUJv9lDg=;
+ b=IwkTcbYkWcrz4nx1OMbQbLpYvLwMHcx0+h5airTn0zn3ZNuQ4KD1uB2Lyor4Z3x1bDS0vxjcgI+SCoIVFu73J7LK7evQ8zHHU/9nOhgrGNbz1mg+sFjztDYkYLjcKfbVWBsQPQK3YS9xfhb4ZwzwPQ/P9kvU/bAHGKv5CnhBe1urr+mBgoV/YW2lDgKYOsVfkp6pGE2n6ja8NUd9SQdag+8Fmc1PWBBsHaTIYfu/Lmjf4ugDf9GbIZbMNBTmWIxXCfFsbsHpWvgEbdJhJ4vpILCf+M97o/0RUE7lQyaJ38RcJ8W9h4FlADRnrhvkX69ubbvqbDaD+bTQPwA11jmi/g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MhLytlXAOp7I4JR1bVdjv/cFrqBFJOqd6BMHyF5T1Ec=;
- b=tzPBJOoGHjFyEmrRWrs+mV2HgJoWHEvlJMYMamKfxKQFJf4y4WlaIcQUYNV+CqiibO7sEYAFo4oC7NUbMG8LyGlAUjc+y53mJwxFAksOw7wiFNbOwmQh7oXDjxwYidPjen6h2EOY9OeuIbj8lb9KgPPK6+hmH4TotBPWa4FkKPo=
-Received: from MW4P223CA0006.NAMP223.PROD.OUTLOOK.COM (2603:10b6:303:80::11)
- by BN6PR1201MB0130.namprd12.prod.outlook.com (2603:10b6:405:59::16) with
+ bh=GSV6ncxnz6DvqPHj5SOA0jKfQTe8mUvU4eVsUJv9lDg=;
+ b=V37bw1BrOBRTrUH+bkp7MSc80T+MKIlCh89cOMX3LMOcYj9J7ZbnxDTXlwk4LTHPKQCP9++RoqUw3CeHNs9Ysd9BDGvkH8IRh73LzBFhM6FhxrafubiuvMibu3Sgpz+NOPH5onDMKZ1SIaJo9HpGdDVH4EJG3xy0Ob0OI20PCFU=
+Received: from CO2PR05CA0062.namprd05.prod.outlook.com (2603:10b6:102:2::30)
+ by DM6PR12MB4234.namprd12.prod.outlook.com (2603:10b6:5:213::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.15; Wed, 29 Sep
- 2021 12:01:07 +0000
-Received: from CO1NAM11FT018.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:80:cafe::4f) by MW4P223CA0006.outlook.office365.com
- (2603:10b6:303:80::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.14 via Frontend
- Transport; Wed, 29 Sep 2021 12:01:07 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.13; Wed, 29 Sep
+ 2021 12:01:09 +0000
+Received: from CO1NAM11FT008.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:102:2:cafe::d5) by CO2PR05CA0062.outlook.office365.com
+ (2603:10b6:102:2::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.8 via Frontend
+ Transport; Wed, 29 Sep 2021 12:01:09 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,9 +46,9 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT018.mail.protection.outlook.com (10.13.175.16) with Microsoft SMTP
+ CO1NAM11FT008.mail.protection.outlook.com (10.13.175.191) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4566.14 via Frontend Transport; Wed, 29 Sep 2021 12:01:06 +0000
+ 15.20.4566.14 via Frontend Transport; Wed, 29 Sep 2021 12:01:08 +0000
 Received: from dayatsin-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Wed, 29 Sep
@@ -57,9 +57,9 @@ From: David Yat Sin <david.yatsin@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>, David Yat Sin
  <david.yatsin@amd.com>
-Subject: [PATCH v3 03/16] drm/amdkfd: CRIU Implement KFD process_info ioctl
-Date: Wed, 29 Sep 2021 08:00:25 -0400
-Message-ID: <20210929120038.6485-4-david.yatsin@amd.com>
+Subject: [PATCH v3 04/16] drm/amdkfd: CRIU Implement KFD dumper ioctl
+Date: Wed, 29 Sep 2021 08:00:26 -0400
+Message-ID: <20210929120038.6485-5-david.yatsin@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210929120038.6485-1-david.yatsin@amd.com>
 References: <20210929120038.6485-1-david.yatsin@amd.com>
@@ -70,28 +70,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 985da3fe-7743-4bee-9f44-08d98340d1c4
-X-MS-TrafficTypeDiagnostic: BN6PR1201MB0130:
-X-Microsoft-Antispam-PRVS: <BN6PR1201MB0130728A500B4B71DCD36D9695A99@BN6PR1201MB0130.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-MS-Office365-Filtering-Correlation-Id: b53dea5f-846f-4094-1ccd-08d98340d2c7
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4234:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB4234E0598DC84E8C7589E6F795A99@DM6PR12MB4234.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: d0EV7Om3XTPm1wD92MtDQNeUGOqsC/vZ+qWWdYghlaSU9zVQsRSHvr8y628wy8+7cxwplxQwMNloTImVpaw2aEQoW/Z0+cg5dy2pK4PG3pARYUv4y06TWN/mhILuANGc6RaM3w9t+E6SYTWaRJ9AFW/K5MEk3KqMDovpU7ioLyBSL+XSlwgsa2DXGmqToim/iM5pvV8a8SOvkWCQQft6RKclW0nEYTZOECrzKnk8FJEvUJ0UA4Rz7XH7MgNAN5VvYZJRz/PtbBn70fD06cJ4VJrVE48Owadt7vatIWB3f5PgCg/xcMbthxlzmkJWVb943RwmRiMyULlgTAC/zEh0/BKIebkjMynUW8xBzXtNRpWYC9Umk+nLJS4Cyo86jLYLkOp1PkUlWOBZa3mgMScTl4rsPHguaKqw9yyzAC9/6BXk5vYuYDwqcS2g8pX2jJHdsVbf+++1Z8Nmvqoa2xVEQdxn4+rW/mtLXvfvIHNA1MjCt1aK1FCv37p3Islhxc9bab7nNa0fd9si4JK+JAssHunuDc8HovvWs0dKIWfDPeR8i3mfvs9dCtABBS5PZvkn5pvETsLfchxBv4kFisk5BFLiifTK3iXeMb3UzLXiUesw4IZz1mONKtRfRMmuPxQ9fe8soCTBS4RkfzpadfjS/Nk3BDezNysvy+hCMlWDqffmN4y5Taz8FXP9I/WJmwDc+jUhfENegQAyg7k0kjRJJ2/J5dMWqID9s83O+xCHUdc=
+X-Microsoft-Antispam-Message-Info: 5omUsagt5NCWSdJRNns0x0I1EA6gERrnvBfVwnjFAILBIacwpFv/HkaKhs5EkKGbDLkOh9/WH/x9ljqALUBuvszoTpD1HYqZ7xJuRvDNEpKaV1sTo4v0zWzspsg/ZOsZ/1hU1Gur+F8fu/nyr21fjka0AgzqICShzeky1pAZ/DhlCvwYPuS1CoaDk9XB4CCqM3OyL3QyTjHEWO7NJYocVGRnWa8gPiguAf8bjOkOskE+MhPiM2ES2Ls9dajTKt7N0sI/uyR80CMUWRT8zHJlDiSeE+Ek8IdApxxg1QEy3Yvn/3zYZpXPd+Kk6/gH/ApCWLDkwSb1pPB+W1KeRVFbt5am3R+66+kFOHRf0/Ml4qz6YiNfrIqT+wxUEyQLT9UD1hnlkC5s6XSW43WKQ72dJiHs7Ju7Gk3BnNmtLOQDQ6UUT+gQyUcT8RGP+mdYpB6ZmOlEgDoJJDHEvWsk/la4EgAPY6tUOxx4zv3uKdz+Ipj9XHVz4rzKgltBhmbFMWZTSrTM+IqdjyjSpPaBAsFT0lYGW1jF6iJAbbFStW7Ld1obj+XjU5rBC6M+EKPfMAZWAvpvHxXe2pU077p0CiBK/riIutui1DWJ2K4NfFtg0czlXCsNEmJQnhFekI/9In4TZtft1a5mO1rEn/DSVRwKwnLmKNKE6vGfxmbjmUtwsu8i31bJqMtshjI8dwBurqQ+u/MLB/qTh37oRenTgwmatK1waVtqFp5lAqJUf20ygas=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(82310400003)(86362001)(83380400001)(356005)(47076005)(8676002)(81166007)(1076003)(36860700001)(7696005)(8936002)(6916009)(5660300002)(26005)(186003)(16526019)(70586007)(316002)(6666004)(336012)(70206006)(508600001)(4326008)(2616005)(426003)(54906003)(2906002)(36756003)(36900700001);
+ SFS:(4636009)(36840700001)(46966006)(2906002)(26005)(8676002)(83380400001)(186003)(16526019)(8936002)(1076003)(47076005)(82310400003)(6916009)(70206006)(70586007)(6666004)(5660300002)(81166007)(356005)(36756003)(54906003)(7696005)(316002)(4326008)(2616005)(426003)(336012)(86362001)(508600001)(36860700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2021 12:01:06.8578 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 985da3fe-7743-4bee-9f44-08d98340d1c4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2021 12:01:08.5506 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b53dea5f-846f-4094-1ccd-08d98340d2c7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT018.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT008.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1201MB0130
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4234
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,66 +108,245 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
 
-This IOCTL is expected to be called as a precursor to the actual
-Checkpoint operation. This does the basic discovery into the target
-process seized by CRIU and relays the information to the userspace that
-utilizes it to start the Checkpoint operation via another dedicated
-IOCTL.
+This adds support to discover the  buffer objects that belong to a
+process being checkpointed. The data corresponding to these buffer
+objects is returned to user space plugin running under criu master
+context which then stores this info to recreate these buffer objects
+during a restore operation.
 
-The process_info IOCTL determines the number of GPUs, buffer objects
-that are associated with the target process, its process id in
-caller's namespace since /proc/pid/mem interface maybe used to drain
-the contents of the discovered buffer objects in userspace and getpid
-returns the pid of CRIU dumper process. Also the pid of a process
-inside a container might be different than its global pid so return
-the ns pid.
-
-Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
 Signed-off-by: David Yat Sin <david.yatsin@amd.com>
+Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 44 +++++++++++++++++++++++-
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h    |  2 ++
- drivers/gpu/drm/amd/amdkfd/kfd_process.c | 14 ++++++++
- 3 files changed, 59 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c  |  20 +++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h  |   2 +
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 188 ++++++++++++++++++++++-
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h    |   3 +-
+ 4 files changed, 211 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index e2896ac2c9ce..5d557180cd49 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -1160,6 +1160,26 @@ static void amdgpu_ttm_tt_unpopulate(struct ttm_device *bdev,
+ 	return ttm_pool_free(&adev->mman.bdev.pool, ttm);
+ }
+ 
++/**
++ * amdgpu_ttm_tt_get_userptr - Return the userptr GTT ttm_tt for the current
++ * task
++ *
++ * @tbo: The ttm_buffer_object that contains the userptr
++ * @user_addr:  The returned value
++ */
++int amdgpu_ttm_tt_get_userptr(const struct ttm_buffer_object *tbo,
++			      uint64_t *user_addr)
++{
++	struct amdgpu_ttm_tt *gtt;
++
++	if (!tbo->ttm)
++		return -EINVAL;
++
++	gtt = (void *)tbo->ttm;
++	*user_addr = gtt->userptr;
++	return 0;
++}
++
+ /**
+  * amdgpu_ttm_tt_set_userptr - Initialize userptr GTT ttm_tt for the current
+  * task
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+index e69f3e8e06e5..a7c0e6372339 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+@@ -177,6 +177,8 @@ static inline bool amdgpu_ttm_tt_get_user_pages_done(struct ttm_tt *ttm)
+ #endif
+ 
+ void amdgpu_ttm_tt_set_user_pages(struct ttm_tt *ttm, struct page **pages);
++int amdgpu_ttm_tt_get_userptr(const struct ttm_buffer_object *tbo,
++			      uint64_t *user_addr);
+ int amdgpu_ttm_tt_set_userptr(struct ttm_buffer_object *bo,
+ 			      uint64_t addr, uint32_t flags);
+ bool amdgpu_ttm_tt_has_userptr(struct ttm_tt *ttm);
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index 231f8e3b43f6..1906ded40698 100644
+index 1906ded40698..cc3d8fd1d26f 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -1841,6 +1841,26 @@ static int kfd_ioctl_svm(struct file *filep, struct kfd_process *p, void *data)
+@@ -42,6 +42,7 @@
+ #include "kfd_svm.h"
+ #include "amdgpu_amdkfd.h"
+ #include "kfd_smi_events.h"
++#include "amdgpu_object.h"
+ 
+ static long kfd_ioctl(struct file *, unsigned int, unsigned long);
+ static int kfd_open(struct inode *, struct file *);
+@@ -1841,6 +1842,44 @@ static int kfd_ioctl_svm(struct file *filep, struct kfd_process *p, void *data)
  	return -EPERM;
  }
  #endif
-+uint64_t get_process_num_bos(struct kfd_process *p)
++static int criu_dump_process(struct kfd_process *p, struct kfd_ioctl_criu_dumper_args *args)
 +{
-+	uint64_t num_of_bos = 0, i;
++	int ret;
++	struct kfd_criu_process_bucket *process_bucket;
++	struct kfd_criu_process_priv_data *process_priv;
 +
-+	/* Run over all PDDs of the process */
-+	for (i = 0; i < p->n_pdds; i++) {
-+		struct kfd_process_device *pdd = p->pdds[i];
-+		void *mem;
-+		int id;
++	if (args->num_objects != 1) {
++		pr_err("Only 1 process supported\n");
++		return -EINVAL;
++	}
++
++	if (args->objects_size != sizeof(*process_bucket) + sizeof(*process_priv)) {
++		pr_err("Invalid objects size for process\n");
++		return -EINVAL;
++	}
++
++	process_bucket = kzalloc(args->objects_size, GFP_KERNEL);
++	if (!process_bucket)
++		return -ENOMEM;
++
++	/* Private data starts after process bucket */
++	process_priv = (void *)(process_bucket + 1);
++
++	process_priv->version = KFD_CRIU_PRIV_VERSION;
++
++	process_bucket->priv_data_offset = 0;
++	process_bucket->priv_data_size = sizeof(*process_priv);
++
++	ret = copy_to_user((void __user *)args->objects, process_bucket, args->objects_size);
++	if (ret) {
++		pr_err("Failed to copy process information to user\n");
++		ret = -EFAULT;
++	}
++
++	kfree(process_bucket);
++	return ret;
++}
++
+ uint64_t get_process_num_bos(struct kfd_process *p)
+ {
+ 	uint64_t num_of_bos = 0, i;
+@@ -1861,10 +1900,157 @@ uint64_t get_process_num_bos(struct kfd_process *p)
+ 	return num_of_bos;
+ }
+ 
++static int criu_dump_bos(struct kfd_process *p, struct kfd_ioctl_criu_dumper_args *args)
++{
++	struct kfd_criu_bo_bucket *bo_buckets;
++	struct kfd_criu_bo_priv_data *bo_privs;
++	uint64_t num_bos;
++
++	int ret = 0, pdd_index, bo_index = 0, id;
++	void *mem;
++
++	num_bos = get_process_num_bos(p);
++
++	if (args->num_objects != num_bos) {
++		pr_err("Mismatch with number of BOs (current:%lld user:%lld)\n",
++				num_bos, args->num_objects);
++		return -EINVAL;
++	}
++
++	if (args->objects_size != args->num_objects * (sizeof(*bo_buckets) + sizeof(*bo_privs))) {
++		pr_err("Invalid objects size for BOs\n");
++		return -EINVAL;
++	}
++
++	bo_buckets = kvzalloc(args->objects_size, GFP_KERNEL);
++	if (!bo_buckets)
++		return -ENOMEM;
++
++	/* Private data for first BO starts after all bo_buckets */
++	bo_privs = (void *)(bo_buckets + args->num_objects);
++
++	for (pdd_index = 0; pdd_index < p->n_pdds; pdd_index++) {
++		struct kfd_process_device *pdd = p->pdds[pdd_index];
++		struct amdgpu_bo *dumper_bo;
++		struct kgd_mem *kgd_mem;
 +
 +		idr_for_each_entry(&pdd->alloc_idr, mem, id) {
-+			struct kgd_mem *kgd_mem = (struct kgd_mem *)mem;
++			struct kfd_criu_bo_bucket *bo_bucket;
++			struct kfd_criu_bo_priv_data *bo_priv;
 +
-+			if ((uint64_t)kgd_mem->va > pdd->gpuvm_base)
-+				num_of_bos++;
++			if (!mem) {
++				ret = -ENOMEM;
++				goto exit;
++			}
++
++			kgd_mem = (struct kgd_mem *)mem;
++			dumper_bo = kgd_mem->bo;
++
++			if ((uint64_t)kgd_mem->va <= pdd->gpuvm_base)
++				continue;
++
++			bo_bucket = &bo_buckets[bo_index];
++			bo_priv = &bo_privs[bo_index];
++
++			bo_bucket->addr = (uint64_t)kgd_mem->va;
++			bo_bucket->size = amdgpu_bo_size(dumper_bo);
++			bo_bucket->gpu_id = pdd->dev->id;
++			bo_bucket->alloc_flags = (uint32_t)kgd_mem->alloc_flags;
++
++			bo_bucket->priv_data_offset = bo_index * sizeof(*bo_priv);
++			bo_bucket->priv_data_size = sizeof(*bo_priv);
++
++			bo_priv->idr_handle = id;
++			if (bo_bucket->alloc_flags & KFD_IOC_ALLOC_MEM_FLAGS_USERPTR) {
++				ret = amdgpu_ttm_tt_get_userptr(&dumper_bo->tbo,
++								&bo_priv->user_addr);
++				if (ret) {
++					pr_err("Failed to obtain user address for user-pointer bo\n");
++					goto exit;
++				}
++			}
++			if (bo_bucket->alloc_flags & KFD_IOC_ALLOC_MEM_FLAGS_DOORBELL)
++				bo_bucket->offset = KFD_MMAP_TYPE_DOORBELL |
++					KFD_MMAP_GPU_ID(pdd->dev->id);
++			else if (bo_bucket->alloc_flags &
++				KFD_IOC_ALLOC_MEM_FLAGS_MMIO_REMAP)
++				bo_bucket->offset = KFD_MMAP_TYPE_MMIO |
++					KFD_MMAP_GPU_ID(pdd->dev->id);
++			else
++				bo_bucket->offset = amdgpu_bo_mmap_offset(dumper_bo);
++
++			pr_debug("bo_size = 0x%llx, bo_addr = 0x%llx bo_offset = 0x%llx\n"
++					"gpu_id = 0x%x alloc_flags = 0x%x idr_handle = 0x%x",
++					bo_bucket->size,
++					bo_bucket->addr,
++					bo_bucket->offset,
++					bo_bucket->gpu_id,
++					bo_bucket->alloc_flags,
++					bo_priv->idr_handle);
++			bo_index++;
 +		}
 +	}
-+	return num_of_bos;
++
++	ret = copy_to_user((void __user *)args->objects, bo_buckets, args->objects_size);
++	if (ret) {
++		pr_err("Failed to copy bo information to user\n");
++		ret = -EFAULT;
++	}
++
++exit:
++	kvfree(bo_buckets);
++	return ret;
 +}
 +
  static int kfd_ioctl_criu_dumper(struct file *filep,
  				struct kfd_process *p, void *data)
  {
-@@ -1867,7 +1887,29 @@ static int kfd_ioctl_criu_resume(struct file *filep,
- static int kfd_ioctl_criu_process_info(struct file *filep,
- 				struct kfd_process *p, void *data)
- {
 -	return 0;
-+	struct kfd_ioctl_criu_process_info_args *args = data;
-+	int ret = 0;
++	struct kfd_ioctl_criu_dumper_args *args = data;
++	int ret;
++
++	pr_debug("CRIU dump type:%d\n", args->type);
++
++	if (!args->objects || !args->objects_size)
++		return -EINVAL;
++
++	if (args->objects_index_start != 0) {
++		/* Partial to be implemented later */
++		pr_err("Partial dumps not supported\n");
++		return -EINVAL;
++	}
 +
 +	mutex_lock(&p->mutex);
 +
@@ -177,59 +356,47 @@ index 231f8e3b43f6..1906ded40698 100644
 +		goto err_unlock;
 +	}
 +
-+	args->task_pid = task_pid_nr_ns(p->lead_thread,
-+					task_active_pid_ns(p->lead_thread));
++	switch (args->type) {
++	case KFD_CRIU_OBJECT_TYPE_PROCESS:
++		ret = criu_dump_process(p, args);
++		break;
++	case KFD_CRIU_OBJECT_TYPE_BO:
++		ret = criu_dump_bos(p, args);
++		break;
++	case KFD_CRIU_OBJECT_TYPE_QUEUE:
++	case KFD_CRIU_OBJECT_TYPE_EVENT:
++	case KFD_CRIU_OBJECT_TYPE_DEVICE:
++	case KFD_CRIU_OBJECT_TYPE_SVM_RANGE:
++	default:
++		pr_err("Unsupported object type:%d\n", args->type);
++		ret = -EINVAL;
++	}
 +
-+	args->process_priv_data_size = sizeof(struct kfd_criu_process_priv_data);
-+
-+	args->total_bos = get_process_num_bos(p);
-+	args->bos_priv_data_size = args->total_bos * sizeof(struct kfd_criu_bo_priv_data);
-+
-+	dev_dbg(kfd_device, "Num of bos:%llu\n", args->total_bos);
 +err_unlock:
 +	mutex_unlock(&p->mutex);
++	if (ret)
++		pr_err("Failed to dump CRIU type:%d ret:%d\n", args->type, ret);
++	else
++		pr_debug("CRIU dump type:%d ret:%d\n", args->type, ret);
++
 +	return ret;
  }
  
- #define AMDKFD_IOCTL_DEF(ioctl, _func, _flags) \
+ static int kfd_ioctl_criu_restorer(struct file *filep,
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index da70c96e5bb0..914306209c9c 100644
+index 914306209c9c..5940d594b420 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -943,6 +943,8 @@ void *kfd_process_device_translate_handle(struct kfd_process_device *p,
- void kfd_process_device_remove_obj_handle(struct kfd_process_device *pdd,
- 					int handle);
+@@ -1042,7 +1042,8 @@ struct kfd_criu_device_priv_data {
+ };
  
-+bool kfd_has_process_device_data(struct kfd_process *p);
-+
- /* PASIDs */
- int kfd_pasid_init(void);
- void kfd_pasid_exit(void);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-index 21ec8a18cad2..9f2b4d8a5247 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -1406,6 +1406,20 @@ static int init_doorbell_bitmap(struct qcm_process_device *qpd,
- 	return 0;
- }
+ struct kfd_criu_bo_priv_data {
+-	uint64_t reserved;
++	uint64_t user_addr;
++	uint32_t idr_handle;
+ };
  
-+bool kfd_has_process_device_data(struct kfd_process *p)
-+{
-+	int i;
-+
-+	for (i = 0; i < p->n_pdds; i++) {
-+		struct kfd_process_device *pdd = p->pdds[i];
-+
-+		if (pdd)
-+			return true;
-+	}
-+
-+	return false;
-+}
-+
- struct kfd_process_device *kfd_get_process_device_data(struct kfd_dev *dev,
- 							struct kfd_process *p)
- {
+ struct kfd_criu_svm_range_priv_data {
 -- 
 2.17.1
 
