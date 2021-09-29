@@ -1,75 +1,94 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FF2D41C20B
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Sep 2021 11:52:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4F6141C41E
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Sep 2021 14:01:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F28686EA21;
-	Wed, 29 Sep 2021 09:52:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DAC26EA45;
+	Wed, 29 Sep 2021 12:01:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
- [IPv6:2a00:1450:4864:20::332])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0F1A6EA21
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 09:52:00 +0000 (UTC)
-Received: by mail-wm1-x332.google.com with SMTP id z2so1337287wmc.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 02:52:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=CWqkKItkZzZkhfZWk6PjoTQi84q64oYdhOG/wcPFwUU=;
- b=JnVWyjGYC5fJWv436d5z7792/vOT1OOq+29UkhLAvERwWwTrMdTRJVX02UakCQDBw1
- kfo9vvS5HgkB3LiYO7pqlP3E+4rEPVkNalE8dm3tqH7t7BhIGHgBhjbJK61SQo8Ra5Fd
- aYEx2nEo+D3qRcUPXVEiIo7B/8LU/8pOYv0BlavX2KORQXhqM5MdnnNXaTHBq77ovRy8
- bqpRhhW2I3epcPdAK9KXMG9TEkplzVQL3bdOS5T9UJe3w8D6Aam5kDCgh8AZa6IblZhh
- KvljEGmoivM5/i3MGfOqzue7sPpm6zQQorKFD0HlkUXHnfYOjd0s1muDcS+rMm9cZwM8
- UqMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=CWqkKItkZzZkhfZWk6PjoTQi84q64oYdhOG/wcPFwUU=;
- b=AzF4kuXRZsKBrM3zwMjfGwOSPELEJtPsd+qm7KiA4KfgG+wyNj1YF6N+LoHABifmJN
- 43GExwh02I93ujU+LBMplo0QYy2FPknzCptgWyVfPaWKqhCkjPneA88JJ0VnySYqrIlr
- h+jLqVSFyqW8CEq1xK1Mjc7LobTtSDBWuRCDvvtBgAtfdmuewxlzqDw9mY7McOjT+94S
- DNcNTBYdRzUOI/8CISdfulHRM1+1fHNBwcP1o6jNdYckWZ9HTYJKLzhTKDRYdz/L9frp
- n0U8BqYx45LiqVdA+TtOfpWKuVUK29vuETxxNeNQWpFbXlk5OyY5082BExYg8i5bfe5D
- FGdw==
-X-Gm-Message-State: AOAM530u5YKltxfW2Y3HRCWWcmnfjMBfuuI8jjEp90okRAJysCiin8C/
- VRmuITzYMaVf7TIDMJAo7l4GmY4OykY=
-X-Google-Smtp-Source: ABdhPJytUdIsssuFVdOT+wU6VpY4fZyEFJK+eZ3rdziDmFoQa/dj+nE66NcU0JRQ2ek4Enbt5sfG4A==
-X-Received: by 2002:a7b:cc14:: with SMTP id f20mr9128194wmh.137.1632909119361; 
- Wed, 29 Sep 2021 02:51:59 -0700 (PDT)
-Received: from ?IPv6:2a02:908:1252:fb60:4405:6e4f:ef81:78d1?
- ([2a02:908:1252:fb60:4405:6e4f:ef81:78d1])
- by smtp.gmail.com with ESMTPSA id p3sm1678255wrn.47.2021.09.29.02.51.58
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 29 Sep 2021 02:51:58 -0700 (PDT)
-Subject: Re: [PATCH] drm/amd/pm: Fix that RPM cannot be obtained for specific
- GPU
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: huangyizhi <huangyizhi@hnu.edu.cn>, "Quan, Evan" <evan.quan@amd.com>,
- "Deucher, Alexander" <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>, xinhui pan
- <Xinhui.Pan@amd.com>, Dave Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Lee Jones <lee.jones@linaro.org>,
- "Lazar, Lijo" <lijo.lazar@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
-References: <20210928004941.6978-1-huangyizhi@hnu.edu.cn>
- <5e4e8b4e-a8be-300c-8c9c-96a65e0a467f@gmail.com>
- <CADnq5_Mw_652K=Oe0OGPCfzcdfk68nqXp-yLeUDLGxM-41HVSw@mail.gmail.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <1685a2a7-10d4-44bd-dc43-5cbc4cd64488@gmail.com>
-Date: Wed, 29 Sep 2021 11:51:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam08on2049.outbound.protection.outlook.com [40.107.100.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 330346EA4A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 12:01:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KLauhy/nUV+Hn+FJrt7FeeRzSVIqDtXT+PvNtzwKQiY2Depi/CheZicuuwh+XewnOzR/NUIUx5R6GrISGxfMcM+tdxrco8TDivRbOoST73TMlIcG4ZJze1NWTVsdmO1lE603QEVRzNJYp0XKhpabNGmTDiRbagBpES3+7aqQlHUofzc7T2WRlFPgr9xn3j3Mn9GTiIl1SDzSw61bny5hPVKjoQ4qpxzKRZXjKxpX/j9hTXnqHxbDlvTlo/UFnlU4Dy4MAKOhAOjTQT+m+lW4ZyRojTRMkTo3soLG0W/mTQuOl5CTg+srDYIGDx+ouXHOtm7fgmPWHUj2z7UXL05O8g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=urqkusHXtNy7P72HHRjwfQ+Zd9y0S+ZXn9GrCbQMtHQ=;
+ b=W+X4JGsCsmjBXKNZk5DV3IHrkM3YdczMB4Qmgsu3Mgq2uVzw1wyo/b9l3qrfOpSD2ujoB3slSugUD0FwH46Pt72ubFl2bd2zKDs7XyR+unGJdYktvx8Sr5GKeAuK6ptfJ70ZtSoOPHUWA5bT9VASJs6ldHA+fI5rjISEYrR5kXyX5UvHjD+5t4eobwmx6EfVnNS88xAUwRSIdwMvK48/mEIiRp9aPd8u/KyZZIcUpLsaQz9qBr+dbyWxngpsdd471POLduzgCQUgE85YtlSI7I29D4XmYNcbU8OQWelkCHK+EasNAnJ5bnp0k7A4HWE7BCADccuaeyYgETArnptf/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=urqkusHXtNy7P72HHRjwfQ+Zd9y0S+ZXn9GrCbQMtHQ=;
+ b=AqqRxv2H6wirU+8p4SBYYdgUosQyDnasaOyUALcpxJTX/Th3Zff6EDtVqPCicyT/s+mErZ4MGHWp0kQnJJjXpBQoLfNz0OP6BIZ8ghFdad7dZskUoSoGF1lV+ltW2U1M4UF9UdKQD8xZecq6R7YR+vzRD4qih3vCwAIdewmC0+o=
+Received: from MW4P223CA0028.NAMP223.PROD.OUTLOOK.COM (2603:10b6:303:80::33)
+ by MN2PR12MB3950.namprd12.prod.outlook.com (2603:10b6:208:16d::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.14; Wed, 29 Sep
+ 2021 12:01:04 +0000
+Received: from CO1NAM11FT018.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:80:cafe::d) by MW4P223CA0028.outlook.office365.com
+ (2603:10b6:303:80::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.15 via Frontend
+ Transport; Wed, 29 Sep 2021 12:01:03 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT018.mail.protection.outlook.com (10.13.175.16) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4566.14 via Frontend Transport; Wed, 29 Sep 2021 12:01:03 +0000
+Received: from dayatsin-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Wed, 29 Sep
+ 2021 07:01:01 -0500
+From: David Yat Sin <david.yatsin@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: David Yat Sin <david.yatsin@amd.com>
+Subject: [PATCH v3 00/16] CHECKPOINT RESTORE WITH ROCm
+Date: Wed, 29 Sep 2021 08:00:22 -0400
+Message-ID: <20210929120038.6485-1-david.yatsin@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <CADnq5_Mw_652K=Oe0OGPCfzcdfk68nqXp-yLeUDLGxM-41HVSw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 53852225-b884-45e7-1ea0-08d98340cfa4
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3950:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3950AFDC6388B82DB227C06495A99@MN2PR12MB3950.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Ot/felrzNB+ANegPJAd7QwANDsa0GmFLzt0Pusl8z1gcIL38xzmRa026bjuElvDDFyFaV4+RSk4wVoO7aNb8Y8WTxQ0L5b9Jco+FNjDvne8QoOPOIu5cCHH3zOW6AuHqtDPOQssGIWyr2N50g1Qs2wFmEo+ySmqQMoIn7OSMAK5JEqomeErWOLQZ3jkg3HECYmSDU1ulLKBAH8gKxYNMgoQEdromvTcjpULdvRSN8bMIt/JpM7rsUcTPSVa7e89ymXOM7TS7pmNUbFABdE7/twsX+Ce5203v2AMFJEAK0EkbX2/rO/FZeALPnZDdAMuj2pSK149xsePLkAd1Eff0v0xvvI4mAKFvvO5M6Pf8hJCvQNflrSgzotDdC7vNkJG4tY8Q9Vjf4Zkmm7JGZdMC6eWoXdpKn+VjiuftD8WIjS9mlS/orgkjYUuqI12P3YLClGlWPZEUEMVrcy/b9e+g6nN464VyAV+qFD8MGgIjpPT+fROnKMQ7BSs6aHEk/wbzFw1ZDYZHYSj0Kv2YXBvFymaUBTiGysyv4CGGvjQo6lW07i9/YR5FYN9so6pmK71E8JmneF2/EKfnd0XJG50vptGsHOBqWguzRNegExhMMKLa5Akndj99IxSIr7ERtbmzwsxhLAExWtfHfjfSB62mRDWBAtBYrd15WcDT85sNEJyZeeA/Drmr6YNLwmeKtFjTMQKJyDyau1jQ+kWREUClYrP4Ok2vhF3ic1CzutLoaotDGj+LYHjI6SRiELEZATz7Ue6ITsy3H4gHIwc5X6mM9pghHx7Llxe/5vsDKQ4Hwzmp/MdQ/9KDTO39c7TM2WlfLlt6JWmAeAqzdR6cCYb4zo57mgLaUgta6JLi84LN0+I=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(36840700001)(46966006)(8936002)(966005)(26005)(4326008)(70206006)(7696005)(70586007)(36756003)(81166007)(356005)(6666004)(2906002)(86362001)(2616005)(5660300002)(82310400003)(16526019)(316002)(186003)(8676002)(426003)(47076005)(508600001)(336012)(6916009)(83380400001)(36860700001)(1076003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2021 12:01:03.2898 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53852225-b884-45e7-1ea0-08d98340cfa4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT018.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3950
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,97 +103,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 28.09.21 um 23:50 schrieb Alex Deucher:
-> On Tue, Sep 28, 2021 at 2:29 AM Christian König
-> <ckoenig.leichtzumerken@gmail.com> wrote:
->> Am 28.09.21 um 02:49 schrieb huangyizhi:
->>> The current mechanism for obtaining RPM is to read tach_period from
->>> the register, and then calculate the RPM together with the frequency.
->>> But we found that on specific GPUs, such as RX 550 and RX 560D,
->>> tach_period always reads as 0 and smu7_fan_ctrl_get_fan_speed_rpm
->>> will returns -EINVAL.
->>>
->>> To solve this problem, when reading tach_period as 0, we try
->>> to estimate the current RPM using the percentage of current pwm, the
->>> maximum and minimum RPM.
->> Well that is most likely a bad idea.
->>
->> When the fan speed is not available faking some value is certainly not
->> the right solution, especially when you don't know the topology of the
->> DC conversion driven by the PWM.
->>
-> I think there is a flag in the vbios to determine whether a specific
-> board supports rpm based fan control.  This used to be an AIB specific
-> option.  If the flag is not set, the driver should not expose the rpm
-> interface for fan control, only the PWM interface.  I think at some
-> point rpm fan control became mandatory, but maybe it was still an
-> option on polaris and we are missing a check for that flag.
+CRIU is a user space tool which is very popular for container live migration in datacentres. It can checkpoint a running application, save its complete state, memory contents and all system resources to images on disk which can be migrated to another m achine and restored later. More information on CRIU can be found at https://criu.org/Main_Page
 
-Yeah, that sounds totally sane to me as well.
+CRIU currently does not support Checkpoint / Restore with applications that have devices files open so it cannot perform checkpoint and restore on GPU devices which are very complex and have their own VRAM managed privately. CRIU, however can support e xternal devices by using a plugin architecture. This patch series adds initial support for ROCm applications while we add more remaining features. We welcome some feedback, especially in regards to the APIs, before involving a larger audience.
 
-Let's ask for a volunteer for the job on Thursday if not somebody from 
-the community speaks up.
+Our changes to CRIU are can be obtained from here:
+https://github.com/RadeonOpenCompute/criu/tree/amdgpu_rfc-210715-2
 
-Christian.
+We have tested the following scenarios:
+-Checkpoint / Restore of a Pytorch (BERT) workload -kfdtests with queues and events
+-Gfx9 and Gfx10 based multi GPU test systems -On baremetal and inside a docker container -Restoring on a different system
 
->
-> Alex
->
->
->> Christian.
->>
->>> Signed-off-by: huangyizhi <huangyizhi@hnu.edu.cn>
->>> ---
->>>    .../drm/amd/pm/powerplay/hwmgr/smu7_thermal.c | 28 ++++++++++++++++---
->>>    1 file changed, 24 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_thermal.c b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_thermal.c
->>> index a6c3610db23e..307dd87d6882 100644
->>> --- a/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_thermal.c
->>> +++ b/drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_thermal.c
->>> @@ -81,6 +81,11 @@ int smu7_fan_ctrl_get_fan_speed_rpm(struct pp_hwmgr *hwmgr, uint32_t *speed)
->>>    {
->>>        uint32_t tach_period;
->>>        uint32_t crystal_clock_freq;
->>> +     uint32_t duty100;
->>> +     uint32_t duty;
->>> +     uint32_t speed_percent;
->>> +     uint64_t tmp64;
->>> +
->>>
->>>        if (hwmgr->thermal_controller.fanInfo.bNoFan ||
->>>            !hwmgr->thermal_controller.fanInfo.ucTachometerPulsesPerRevolution)
->>> @@ -89,13 +94,28 @@ int smu7_fan_ctrl_get_fan_speed_rpm(struct pp_hwmgr *hwmgr, uint32_t *speed)
->>>        tach_period = PHM_READ_VFPF_INDIRECT_FIELD(hwmgr->device, CGS_IND_REG__SMC,
->>>                        CG_TACH_STATUS, TACH_PERIOD);
->>>
->>> -     if (tach_period == 0)
->>> -             return -EINVAL;
->>> +     if (tach_period == 0) {
->>>
->>> -     crystal_clock_freq = amdgpu_asic_get_xclk((struct amdgpu_device *)hwmgr->adev);
->>> +             duty100 = PHM_READ_VFPF_INDIRECT_FIELD(hwmgr->device, CGS_IND_REG__SMC,
->>> +                             CG_FDO_CTRL1, FMAX_DUTY100);
->>> +             duty = PHM_READ_VFPF_INDIRECT_FIELD(hwmgr->device, CGS_IND_REG__SMC,
->>> +                             CG_THERMAL_STATUS, FDO_PWM_DUTY);
->>>
->>> -     *speed = 60 * crystal_clock_freq * 10000 / tach_period;
->>> +             if (duty100 == 0)
->>> +                     return -EINVAL;
->>>
->>> +             tmp64 = (uint64_t)duty * 100;
->>> +             do_div(tmp64, duty100);
->>> +             speed_percent = MIN((uint32_t)tmp64, 100);
->>> +
->>> +             *speed = speed_percent * (hwmgr->thermal_controller.fanInfo.ulMaxRPM
->>> +                     - hwmgr->thermal_controller.fanInfo.ulMinRPM) / 100;
->>> +     } else {
->>> +
->>> +             crystal_clock_freq = amdgpu_asic_get_xclk((struct amdgpu_device *)hwmgr->adev);
->>> +
->>> +             *speed = 60 * crystal_clock_freq * 10000 / tach_period;
->>> +     }
->>>        return 0;
->>>    }
->>>
+V1: Initial
+V2: Addressed review comments
+V3: Rebased on latest amd-staging-drm-next
+
+PS: There will be an upcoming V4 patch series with minor additions to the API's to support HMM.
+
+David Yat Sin (9):
+  drm/amdkfd: CRIU Implement KFD pause ioctl
+  drm/amdkfd: CRIU add queues support
+  drm/amdkfd: CRIU restore queue ids
+  drm/amdkfd: CRIU restore sdma id for queues
+  drm/amdkfd: CRIU restore queue doorbell id
+  drm/amdkfd: CRIU dump and restore queue mqds
+  drm/amdkfd: CRIU dump/restore queue control stack
+  drm/amdkfd: CRIU dump and restore events
+  drm/amdkfd: CRIU implement gpu_id remapping
+
+Rajneesh Bhardwaj (7):
+  x86/configs: CRIU update debug rock defconfig
+  drm/amdkfd: CRIU Introduce Checkpoint-Restore APIs
+  drm/amdkfd: CRIU Implement KFD process_info ioctl
+  drm/amdkfd: CRIU Implement KFD dumper ioctl
+  drm/amdkfd: CRIU Implement KFD restore ioctl
+  drm/amdkfd: CRIU Implement KFD resume ioctl
+  drm/amdkfd: CRIU export kfd bos as prime dmabuf objects
+
+ arch/x86/configs/rock-dbg_defconfig           |   53 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |    6 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  |   51 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |   20 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h       |    2 +
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c      | 1179 ++++++++++++++---
+ drivers/gpu/drm/amd/amdkfd/kfd_dbgdev.c       |    2 +-
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c |  185 ++-
+ .../drm/amd/amdkfd/kfd_device_queue_manager.h |   18 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_events.c       |  323 ++++-
+ drivers/gpu/drm/amd/amdkfd/kfd_mqd_manager.h  |   11 +
+ .../gpu/drm/amd/amdkfd/kfd_mqd_manager_cik.c  |   69 +
+ .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v10.c  |   71 +
+ .../gpu/drm/amd/amdkfd/kfd_mqd_manager_v9.c   |   86 ++
+ .../gpu/drm/amd/amdkfd/kfd_mqd_manager_vi.c   |   78 ++
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |  137 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      |   68 +-
+ .../amd/amdkfd/kfd_process_queue_manager.c    |  474 ++++++-
+ include/uapi/linux/kfd_ioctl.h                |  221 ++-
+ 19 files changed, 2792 insertions(+), 262 deletions(-)
+
+-- 
+2.17.1
 
