@@ -2,75 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3E1941BDD2
-	for <lists+amd-gfx@lfdr.de>; Wed, 29 Sep 2021 05:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B4CE41BFD7
+	for <lists+amd-gfx@lfdr.de>; Wed, 29 Sep 2021 09:25:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B058C6E162;
-	Wed, 29 Sep 2021 03:58:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C181F6E187;
+	Wed, 29 Sep 2021 07:25:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D36CC6E160;
- Wed, 29 Sep 2021 03:58:16 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10121"; a="212109307"
-X-IronPort-AV: E=Sophos;i="5.85,331,1624345200"; d="scan'208";a="212109307"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2021 20:58:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.85,331,1624345200"; d="scan'208";a="707030719"
-Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
- by fmsmga006.fm.intel.com with ESMTP; 28 Sep 2021 20:58:13 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.12; Wed, 29 Sep 2021 04:58:11 +0100
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2242.012;
- Tue, 28 Sep 2021 20:58:10 -0700
-From: "Navare, Manasi D" <manasi.d.navare@intel.com>
-To: "Zuo, Jerry" <Jerry.Zuo@amd.com>, "Wentland, Harry"
- <Harry.Wentland@amd.com>, "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-CC: "Nikula, Jani" <jani.nikula@intel.com>, "Li, Sun peng (Leo)"
- <Sunpeng.Li@amd.com>, "nathan@kernel.org" <nathan@kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Koenig,
- Christian" <Christian.Koenig@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- "sfr@canb.auug.org.au" <sfr@canb.auug.org.au>, "linux-next@vger.kernel.org"
- <linux-next@vger.kernel.org>, "airlied@gmail.com" <airlied@gmail.com>,
- "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>, "Wentland, Harry"
- <Harry.Wentland@amd.com>
-Subject: RE: [PATCH v2] drm/amd/display: Only define DP 2.0 symbols if not
- already defined
-Thread-Topic: [PATCH v2] drm/amd/display: Only define DP 2.0 symbols if not
- already defined
-Thread-Index: AQHXtIuAL0vs/jg+d0q0VwbXvyqk8Ku6LEQAgAA2mbA=
-Date: Wed, 29 Sep 2021 03:58:10 +0000
-Message-ID: <2c69ff90750f40ecad3cd4053bc46497@intel.com>
-References: <20210928170828.26452-1-harry.wentland@amd.com>
- <DM6PR12MB49125AD4817D693AA3987B08E5A89@DM6PR12MB4912.namprd12.prod.outlook.com>
-In-Reply-To: <DM6PR12MB49125AD4817D693AA3987B08E5A89@DM6PR12MB4912.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.6.200.16
-dlp-product: dlpe-windows
-msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=6d37b753-7317-49e9-b10f-7dd42dee753a;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
- Only-AIP 2.0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-09-28T17:35:51Z; 
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d
-x-originating-ip: [10.1.200.100]
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
+ Wed, 29 Sep 2021 04:56:40 UTC
+Received: from nksmu.kylinos.cn (mailgw.kylinos.cn [123.150.8.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 682F56E16F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 29 Sep 2021 04:56:40 +0000 (UTC)
+X-UUID: 404ef72ab28a42a6abf3d071e04a742b-20210929
+X-CPASD-INFO: 64f923d47a914467a0d10e2932a58498@f4SgWV9lkmRjgXt9g3eBcYFhlGFgkVK
+ IdWyBZWZkZViVhH5xTWJsXVKBfG5QZWNdYVN_eGpQYl9gZFB5i3-XblBgXoZgUZB3hXagWWJhlA==
+X-CPASD-FEATURE: 0.0
+X-CLOUD-ID: 64f923d47a914467a0d10e2932a58498
+X-CPASD-SUMMARY: SIP:-1, APTIP:-2.0, KEY:0.0, FROMBLOCK:1, EXT:0.0, OB:0.0,
+ URL:-5, T
+ VAL:222.0, ESV:0.0, ECOM:-5.0, ML:0.0, FD:0.0, CUTS:84.0, IP:-2.0, MAL:0.0,
+ ATTNUM:0.
+ 0, PHF:-5.0, PHC:-5.0, SPF:4.0, EDMS:-3, IPLABEL:4480.0, FROMTO:0, AD:0,
+ FFOB:0.0, CFO
+ B:0.0, SPC:0.0, SIG:-5, AUF:7, DUF:15245, ACD:56, DCD:158, SL:0, AG:0,
+ CFC:0.271, CFSR: 0.094,UAT:0,RAF:0,VERSION:2.3.4
+X-CPASD-ID: 404ef72ab28a42a6abf3d071e04a742b-20210929
+X-CPASD-BLOCK: 1000
+X-CPASD-STAGE: 1, 1
+X-UUID: 404ef72ab28a42a6abf3d071e04a742b-20210929
+X-User: lizhenneng@kylinos.cn
+Received: from [172.20.108.41] [(116.128.244.169)] by nksmu.kylinos.cn
+ (envelope-from <lizhenneng@kylinos.cn>)
+ (Generic MTA with TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256 128/128)
+ with ESMTP id 203180631; Wed, 29 Sep 2021 12:48:39 +0800
+From: =?UTF-8?B?5p2O55yf6IO9?= <lizhenneng@kylinos.cn>
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, amd-gfx@lists.freedesktop.org
+Subject: amdgpu driver halted on suspend of shutdown
+Message-ID: <f5d30be9-7980-e44d-0eca-7cfe7c0c1d05@kylinos.cn>
+Date: Wed, 29 Sep 2021 12:50:47 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 29 Sep 2021 07:25:35 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,174 +63,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We have merged such DRM definition dependencies previously through a topic =
-branch in order to avoid redefining inside the driver.
-But yes guarding this with ifdef is good.
+Hello:
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+         When I do loop  auto test of reboot, I found  kernel may halt 
+on memcpy_fromio of amdgpu's amdgpu_uvd_suspend, so I remove suspend 
+process in amdgpu_pci_shutdown, and it will fix this bug.
 
-Manasi
+I have 3 questions to ask:
 
------Original Message-----
-From: Zuo, Jerry <Jerry.Zuo@amd.com>=20
-Sent: Tuesday, September 28, 2021 11:11 PM
-To: Wentland, Harry <Harry.Wentland@amd.com>; Deucher, Alexander <Alexander=
-.Deucher@amd.com>; amd-gfx@lists.freedesktop.org
-Cc: Nikula, Jani <jani.nikula@intel.com>; Li, Sun peng (Leo) <Sunpeng.Li@am=
-d.com>; nathan@kernel.org; intel-gfx@lists.freedesktop.org; dri-devel@lists=
-.freedesktop.org; ville.syrjala@linux.intel.com; Navare, Manasi D <manasi.d=
-.navare@intel.com>; Koenig, Christian <Christian.Koenig@amd.com>; Pan, Xinh=
-ui <Xinhui.Pan@amd.com>; sfr@canb.auug.org.au; linux-next@vger.kernel.org; =
-airlied@gmail.com; daniel.vetter@ffwll.ch; Wentland, Harry <Harry.Wentland@=
-amd.com>
-Subject: RE: [PATCH v2] drm/amd/display: Only define DP 2.0 symbols if not =
-already defined
+1. In amdgpu_pci_shutdown, the comment explains why we must execute 
+suspend,  so I know VM will call amdgpu driver in which situations, as I 
+know, VM's graphics card is a virtual card;
 
-[AMD Official Use Only]
+2. I see a path that is commited by Alex Deucher, the commit message is 
+as follows:
 
-> -----Original Message-----
-> From: Harry Wentland <harry.wentland@amd.com>
-> Sent: September 28, 2021 1:08 PM
-> To: Deucher, Alexander <Alexander.Deucher@amd.com>; amd-=20
-> gfx@lists.freedesktop.org; Zuo, Jerry <Jerry.Zuo@amd.com>
-> Cc: jani.nikula@intel.com; Li, Sun peng (Leo) <Sunpeng.Li@amd.com>;=20
-> nathan@kernel.org; intel-gfx@lists.freedesktop.org; dri-=20
-> devel@lists.freedesktop.org; ville.syrjala@linux.intel.com;=20
-> manasi.d.navare@intel.com; Koenig, Christian=20
-> <Christian.Koenig@amd.com>; Pan, Xinhui <Xinhui.Pan@amd.com>;=20
-> sfr@canb.auug.org.au; linux- next@vger.kernel.org; airlied@gmail.com;=20
-> daniel.vetter@ffwll.ch; Wentland, Harry <Harry.Wentland@amd.com>
-> Subject: [PATCH v2] drm/amd/display: Only define DP 2.0 symbols if not=20
-> already defined
->
-> [Why]
-> For some reason we're defining DP 2.0 definitions inside our driver.=20
-> Now that patches to introduce relevant definitions are slated to be=20
-> merged into drm- next this is causing conflicts.
->
-> In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_bo_list.c:33:
-> In file included
-> from ./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu.h:70:
-> In file included
-> from ./drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_mode.h:36:
-> ./include/drm/drm_dp_helper.h:1322:9: error:
-> 'DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER' macro redefined [-=20
-> Werror,-Wmacro-redefined]
->         ^
-> ./drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dp_types.h:881:9: note:
-> previous definition is here
->         ^
-> 1 error generated.
->
-> v2: Add one missing endif
->
-> [How]
-> Guard all display driver defines with #ifndef for now. Once we pull in=20
-> the new definitions into amd-staging-drm-next we will follow up and=20
-> drop definitions from our driver and provide follow-up header updates=20
-> for any addition DP
-> 2.0 definitions required by our driver.
->
-> Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+drm/amdgpu: just suspend the hw on pci shutdown
 
-Reviewed-by: Fangzhi Zuo <Jerry.Zuo@amd.com>
+We can't just reuse pci_remove as there may be userspace still
+     doing things.
 
-> ---
->  drivers/gpu/drm/amd/display/dc/dc_dp_types.h | 54
-> ++++++++++++++++++--
->  1 file changed, 49 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
-> b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
-> index a5e798b5da79..9de86ff5ef1b 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
-> +++ b/drivers/gpu/drm/amd/display/dc/dc_dp_types.h
-> @@ -860,28 +860,72 @@ struct psr_caps {  };
->
->  #if defined(CONFIG_DRM_AMD_DC_DCN)
-> +#ifndef DP_MAIN_LINK_CHANNEL_CODING_CAP
->  #define DP_MAIN_LINK_CHANNEL_CODING_CAP                      0x006
-> +#endif
-> +#ifndef DP_SINK_VIDEO_FALLBACK_FORMATS
->  #define DP_SINK_VIDEO_FALLBACK_FORMATS                       0x020
-> +#endif
-> +#ifndef DP_FEC_CAPABILITY_1
->  #define DP_FEC_CAPABILITY_1                          0x091
-> +#endif
-> +#ifndef DP_DFP_CAPABILITY_EXTENSION_SUPPORT
->  #define DP_DFP_CAPABILITY_EXTENSION_SUPPORT          0x0A3
-> +#endif
-> +#ifndef DP_DSC_CONFIGURATION
->  #define DP_DSC_CONFIGURATION                         0x161
-> +#endif
-> +#ifndef DP_PHY_SQUARE_PATTERN
->  #define DP_PHY_SQUARE_PATTERN                                0x249
-> +#endif
-> +#ifndef DP_128b_132b_SUPPORTED_LINK_RATES
->  #define DP_128b_132b_SUPPORTED_LINK_RATES            0x2215
-> +#endif
-> +#ifndef DP_128b_132b_TRAINING_AUX_RD_INTERVAL
->  #define DP_128b_132b_TRAINING_AUX_RD_INTERVAL
->       0x2216
-> +#endif
-> +#ifndef DP_TEST_264BIT_CUSTOM_PATTERN_7_0
->  #define DP_TEST_264BIT_CUSTOM_PATTERN_7_0            0X2230
-> +#endif
-> +#ifndef DP_TEST_264BIT_CUSTOM_PATTERN_263_256
->  #define DP_TEST_264BIT_CUSTOM_PATTERN_263_256
->       0X2250
-> +#endif
-> +#ifndef DP_DSC_SUPPORT_AND_DECODER_COUNT
->  #define DP_DSC_SUPPORT_AND_DECODER_COUNT             0x2260
-> +#endif
-> +#ifndef DP_DSC_MAX_SLICE_COUNT_AND_AGGREGATION_0
->  #define DP_DSC_MAX_SLICE_COUNT_AND_AGGREGATION_0
->       0x2270
-> -# define DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK   (1 <<
-> 0)
-> -# define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK
->       (0b111 << 1)
-> -# define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT  1
-> -# define DP_DSC_DECODER_COUNT_MASK                   (0b111 << 5)
-> -# define DP_DSC_DECODER_COUNT_SHIFT                  5
-> +#endif
-> +#ifndef DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK
-> +#define DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK    (1 <<
-> 0)
-> +#endif
-> +#ifndef DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK
-> +#define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK
->       (0b111 << 1)
-> +#endif
-> +#ifndef DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT
-> +#define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT   1
-> +#endif
-> +#ifndef DP_DSC_DECODER_COUNT_MASK
-> +#define DP_DSC_DECODER_COUNT_MASK                    (0b111 << 5)
-> +#endif
-> +#ifndef DP_DSC_DECODER_COUNT_SHIFT
-> +#define DP_DSC_DECODER_COUNT_SHIFT                   5
-> +#endif
-> +#ifndef DP_MAIN_LINK_CHANNEL_CODING_SET
->  #define DP_MAIN_LINK_CHANNEL_CODING_SET                      0x108
-> +#endif
-> +#ifndef DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER
->  #define DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER     0xF0006
-> +#endif
-> +#ifndef DP_PHY_REPEATER_128b_132b_RATES
->  #define DP_PHY_REPEATER_128b_132b_RATES
->       0xF0007
-> +#endif
-> +#ifndef DP_128b_132b_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1
->  #define DP_128b_132b_TRAINING_AUX_RD_INTERVAL_PHY_REPEATER1
->       0xF0022
-> +#endif
-> +#ifndef DP_INTRA_HOP_AUX_REPLY_INDICATION
->  #define DP_INTRA_HOP_AUX_REPLY_INDICATION            (1 << 3)
-> +#endif
->  /* TODO - Use DRM header to replace above once available */
->
->  union dp_main_line_channel_coding_cap {
-> --
-> 2.33.0
+My question is:In which situations, there may be  userspace till doing 
+things.
+
+3. Why amdgpu driver is halted on memcpy_fromio of amdgpu_uvd_suspend, I 
+haven't launch any video app during reboot test, is it the bug of pci bus?
+
+Test environment:
+
+CPU: arm64
+
+Graphics card: r7340(amdgpu), rx550
+
+OS: ubuntu 2004
 
