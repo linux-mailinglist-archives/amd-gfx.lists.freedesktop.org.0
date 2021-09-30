@@ -2,126 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCB2741DAB9
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Sep 2021 15:09:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F8C41DA27
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Sep 2021 14:47:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0424A6EB87;
-	Thu, 30 Sep 2021 13:09:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8C3A6E3EC;
+	Thu, 30 Sep 2021 12:47:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from APC01-HK2-obe.outbound.protection.outlook.com
- (mail-eopbgr1300127.outbound.protection.outlook.com [40.107.130.127])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E40C86EB7A;
- Thu, 30 Sep 2021 11:54:24 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dJ0h8knE4FNQJN5gkAFJTkI3P0a0Ei2xt3h72ET8+c7XnQdhL044cSK0Mh6ja4MCPF2eeScGohE2JtZ3v5QXCSD8gpZq7H7mmRS+X6uREu/kvOMoKv/VvBJYnOqzvcxJuON9Eo5eC6Yxj21UIH1s/FOEOgYcfXkgJXlLXW63I4YhV0Xf5YSRZwR3sUtxPi8cuNcskbFbiCAqd1hABEk3sZQLQ+Cpva3QoNiY4mYrVymh5LwPLX+AQNOy5uUCy3fd9yQIpYVOO1uMkC7lg/9Fra9Wq+u1z9IDJs5EL1F3Flf90zmivZ6HsmFcLfy5c+jTHAqjUQhMgJBxtqPwhTfyYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
- bh=pBfIUU1h11D2MnafGbQFmqy1Rvh9m5PSKBdIkgl1BKY=;
- b=kt3zTA0xvGDp1Wnb3ZvD4amhKrAPCXvV+FJo7nxQhn+GT4IqDp0owIvEJjW1yd75dRMr1CX+qUBGPaCuH+j+hTwhWjUVoP+0gGD6Nr7Q2NpJZAM/ide94LjHtgGpZAFna9pMGsj8wWbAHGVnYpPPhZb+3TqC9e7gWhIaUVwXdc7POxLDJj0Iqvhid4JyOaPHyWCxikTTbIsvJgbZKI4ZFrfGYoM2NnZpdmWvFDepdcWG5LRgljLlkn4x6Izr8uK77qlK/L+gj0xBMqiE/o1B+fqAh58/V1s9Y3vBIc4vrLGkmM5qcc3ncuq3r9az/xtVzGJ2+5vK1/+OKdH2lLI7Yg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
- dkim=pass header.d=vivo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo0.onmicrosoft.com; 
- s=selector2-vivo0-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pBfIUU1h11D2MnafGbQFmqy1Rvh9m5PSKBdIkgl1BKY=;
- b=ehm9uICJx8CK8lbsK3Y7bfHV9Pv3KYWhTxxILGBNsrO56yKrO7NbebwzgIP9hbKBNraGfQDZ//AW+x6bNS+8yhG3cjMwYyFVYGR7kKKKtjPSZx+vIoQVqCkKESAJJ+UnzaJvcOU1HIKt5Rv9CRwxSwHxamkRwUUyvk7ghsD5VlE=
-Received: from HK2PR06MB3492.apcprd06.prod.outlook.com (2603:1096:202:2f::10)
- by HK0PR06MB2196.apcprd06.prod.outlook.com (2603:1096:203:4b::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.15; Thu, 30 Sep
- 2021 11:54:17 +0000
-Received: from HK2PR06MB3492.apcprd06.prod.outlook.com
- ([fe80::80d9:d4e4:300f:3156]) by HK2PR06MB3492.apcprd06.prod.outlook.com
- ([fe80::80d9:d4e4:300f:3156%5]) with mapi id 15.20.4544.023; Thu, 30 Sep 2021
- 11:54:17 +0000
-From: =?gb2312?B?ufnV/b/8?= <guozhengkui@vivo.com>
-To: "Koenig, Christian" <Christian.Koenig@amd.com>, Simon Ser
- <contact@emersion.fr>
-CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Pan, Xinhui"
- <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>, Daniel Vetter
- <daniel@ffwll.ch>, "Chen, Guchun" <Guchun.Chen@amd.com>, "Zhou, Peng Ju"
- <PengJu.Zhou@amd.com>, "Zhang, Bokun" <Bokun.Zhang@amd.com>, "Gao, Likun"
- <Likun.Gao@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, kernel <kernel@vivo.com>
-Subject: RE: [PATCH] drm/amdgpu: fix some repeated includings
-Thread-Topic: [PATCH] drm/amdgpu: fix some repeated includings
-Thread-Index: AQHXtd+jnd+Qk/24r0K3G7/0oSByiau8XP+AgAAKC3eAAA/TUA==
-Date: Thu, 30 Sep 2021 11:54:16 +0000
-Message-ID: <HK2PR06MB34922067627E3951C991B678C7AA9@HK2PR06MB3492.apcprd06.prod.outlook.com>
-References: <20210930094239.7435-1-guozhengkui@vivo.com>
- <AGiYadRf5XyGUqLxwu3ykKzfwM2BgZo4yCAaEXdQiYfH2dbyKmipDNrclnI2lZH3HzNh71VBy5QKz3O4fFvQETjTI9hoKzKHjZNBz9ERKI8=@emersion.fr>
- <AIAAqwDqEh5BcgkyUT78Xaql.9.1632999287613.Hmail.guozhengkui@vivo.com>
-In-Reply-To: <AIAAqwDqEh5BcgkyUT78Xaql.9.1632999287613.Hmail.guozhengkui@vivo.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=vivo.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7614512b-534a-4b0e-2d8a-08d9840907de
-x-ms-traffictypediagnostic: HK0PR06MB2196:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HK0PR06MB2196CF6A148A79ED6CB73AFAC7AA9@HK0PR06MB2196.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3276;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: /gvBn3xRBo7Pwnx5b/Wlb7MBCNYnktVrhL2qK6XiDCCUFxOv6dm5bu9gYVaP05+S2rZ4pwUiWS013u5JlVfPEYjg3L1GA7k2nBH3nfAcaDWJ4TMgE+OzX0x3bXM79HYVoaj8p4x4yXiSfnXSnjFAVreduQu3Ol0rdLfs7NkiAg1HN49d/wumV6Mos6ObI9opARm1B/cHGN2ac/QtJ3Rxc0gkl+HKccWwOkLeJtC4jzWV+WnNzQ07vSkEm17vG22CkEjF7bw1rNDUaL3SPGjWfjdzCxJ9+H1afPPeikJT1tK2io80fBL4pSUfUhvxCFer8ymwJ8+kjKTzMDQZeKijELH9UP7Sh3l6gtZBi+KVYFAAIVzMT68v/pNjWYX6WOXvGZg8fONfA+xuX4TH4L6/+BoV/eUb4EKXfTKoddcCHlkH2YnnfL7CrxgBqki6ll51UlWqxD4yMAX8Rq6NgwU+cbM3GvevfkxL6ukEfmYtNDzgIhPK8oovbH40uqIc4qRnErdBkfT+UP4syJjlwNwsut+SNkPi7QuW0sDYYzdJDryXZgpATv3FGYmQupjZi7P1uIQqIiojL17Z+XYYwTtg45GzXPHXQPT4/v19jcqs6q9buiQyOO9UyNK/HBhRvYFoPpnLnxtj0LJWIkcAeu9Zk5nEVRMuIQ1cgR0Oeq0TK0ZdAcdBIvOl6ph/hH6Z9c7yycRlMscCOlT98te2ddGV2A==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:HK2PR06MB3492.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(508600001)(33656002)(76116006)(7416002)(55016002)(2906002)(71200400001)(9686003)(26005)(86362001)(85182001)(186003)(4326008)(52536014)(316002)(66946007)(66556008)(38070700005)(7696005)(8936002)(6506007)(66476007)(8676002)(66446008)(122000001)(38100700002)(5660300002)(54906003)(110136005)(107886003)(64756008);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?gb2312?B?Y0w4ZkJZSVZFdmxUQlEwRjY5SWRzMUhvYWxWeDAyOW5ENkw2bXhqdm1pS291?=
- =?gb2312?B?VEIrMUgwWlZaNFBwdzJXanczQ1dDOUdWanJialplYWVIRW90VGNHRHdSVkxT?=
- =?gb2312?B?WXBLOEpmL3FCYmhnQVdkLzBoT1Mvbjl6TjY1YTZLSXBwVHdaclcyeW1LeDVq?=
- =?gb2312?B?WEo2ZTBlRFR6M0IyZllmek1ScEc5bkNMV2UwbUJoTGswNTJGaVdPYWlBcVlJ?=
- =?gb2312?B?Rk5zVVdzMFdJb3JCVlZYUDRsbitmeVhvTFpSREFTd2dsUXpCd0dmak9FMzZM?=
- =?gb2312?B?UFlFcDQ4bjFzY3AzcjNaMHFMVmV6RXZlaEZyZFlFQWVYTmxVcjFHQmxVbmRJ?=
- =?gb2312?B?ZVFVY0hjdVFab3V0V1NsM3RXVFdUSUV3azdaZmx1WUdZVEFSRHZxUmFHLzFx?=
- =?gb2312?B?T3FVbW1ybFFLRWhKUVByNFhKb2NSTlRGL3ZLQzQyQUVMWGFTV3JtUTZ4c0J6?=
- =?gb2312?B?ZjVJc2F3S3dUTmZtck1NOCtYR2h5RVdLdkhFcVVITkxUMkhYaVd1d3VtRk8y?=
- =?gb2312?B?Z3ZxVVVBQS9PNVgxQWJmMVFuN3J0RXhGMUQzcEJobm9OUkppM1NuVlhGdUJH?=
- =?gb2312?B?VHVHQWpvdXRyUUxlR24yVW9iMmV0eWZsM3krRmhHWEk4aFpONDlJYXh1ZUcr?=
- =?gb2312?B?TXZXL3E2WGIzU1NzNzhsYS9Rb2trMWVkemlUSVVvNW9rWTNNNm4vemFhUjFC?=
- =?gb2312?B?ZUs3Q2hHRVd1b0xPaSswaXQvTXd6MDNRMmU0NjdFaG1GeitLNk8xNU10YTkr?=
- =?gb2312?B?aWN3c3JlQ3dZN1dlSUZCaGJkY3g5dklwM3MzRndBeGg2WEdTdUlBVDlhQUtY?=
- =?gb2312?B?d21RYlB1R0I3czZ1NmZ6TnhCdFNkeDlpbVd0U2svdTA5VHhzL3FYaEVGR1R5?=
- =?gb2312?B?WWpubGxodHEwNVFlN1dQQ1g4R3pqRHNvY2tMaHN1WVYxTXhmMGFsZUhaRzZE?=
- =?gb2312?B?VW5ndU9pMHhPVk56cU9WV2VCbjZRK1VaUTgyWTRyQVhVcktkT3V2S2owNHA5?=
- =?gb2312?B?eVFQbGV5Z05hREIwRVNFK1RXM3FjUmYvMDRmbXJ1cVY4ak8zdFI2NXVMTW5N?=
- =?gb2312?B?ZWE3R1cvZ0RYYTUzdE9zODMrSkNRdFJGR0RUZFVCSDNaMC8xNUpFVG5wdzhY?=
- =?gb2312?B?SkNWUkd2TjRiTVFLeXBoeTBNNS94SGNMelBYL1pVQTNhdzdjbDM0QzczY1BO?=
- =?gb2312?B?ZzFGcUZicHEyWmxMb1JJZm43OWEwRnFQa2J6Q3FYSnlQdzk3aWlLN1B1SUJD?=
- =?gb2312?B?RmVCbkVFcmJ3dk43YUovY2diTzI2QVlYaFlQMWxGNmpoQ3QxWlRObnRrVlBm?=
- =?gb2312?B?a2xZbnlGYjdvSno1czEzK1dwWmtMOVNadGZuUERMVmNUYWI4dFdWMklXUUpZ?=
- =?gb2312?B?UE9YQjR2QkNwS01pUFFuR1dBcDZwbVd5Um9FNUdKOXQzM1ltYVR2bEN4MW5k?=
- =?gb2312?B?T3RIQWlnc1ZXZXFZcUl3UjlJUjRzTmYremFWZHgxNG1sT0svUzNmc0NCeVRv?=
- =?gb2312?B?S3BwWjZHai9WVTJjM0NXQStvV1NLOHJZcEhmSlZMK0J5eEtPT3E5N2ZydVly?=
- =?gb2312?B?a3F0dTRpRXRSV2J5cmJKZjlhbXRFOEdmZ1ZkOE9DTHV2S2hqSk1TNTAzVU5m?=
- =?gb2312?B?U0tDZVBWNDNQempzNUZCdUNtUzBpNnpSSlEzYTVYVDRoQ1lKR0NETkhxN2wy?=
- =?gb2312?B?amhZUGE3SExhSDdvNTJIdlJyWEtHbk9pSjZJMFIrK3E3bkZ3MFlENVg2YjRn?=
- =?gb2312?Q?n/4RM5YWQ/Y63T9bBk=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_HK2PR06MB34922067627E3951C991B678C7AA9HK2PR06MB3492apcp_"
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D966A6E3EC;
+ Thu, 30 Sep 2021 12:47:03 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A533F61390;
+ Thu, 30 Sep 2021 12:47:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1633006023;
+ bh=JTmzQB+pflTzM1mfQgrPdTorix5E8st9bH6ZyEeegJs=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=fRASeIpUDgm8NED/mIKjjzb/vGekv/fo1hgMMMoOEhhefjQA0Z3+fYsBq8xOs5Jqs
+ yFVLj0TyBQ2Sy1HDWyAlop3oAPAwBMJRCWGM8dKTGMYMAEV3K1QO3kK3N278P1Rg4o
+ HYtS1fSU7UsfHNslI0GFbRTpZbR5xMullramEnwG01cg3HSX/DygO6t448uABq4cXV
+ DKw2GuRRi6E4SLbnpR/+TH/8uZiUTxfSkO34Q4YtUyjAjvlE9qu7owHTy/AT2F2hBA
+ egHe+XOnTEZ8InLm2Mmr7yDvvb95VmaltZ53lyI5zFm7pjcxX9c+t1pZai3bd9IBRf
+ chWUZMA7I8GBQ==
+Received: by mail-yb1-f175.google.com with SMTP id v195so12422450ybb.0;
+ Thu, 30 Sep 2021 05:47:03 -0700 (PDT)
+X-Gm-Message-State: AOAM531PEFVJBHMj+3shSNJZ5heL83QU7nqT55tddbo0yXfnqL/VkcX5
+ mXYcGgJU9dU7loLzXARg3g8W7/7OTMWrsa/hY+c=
+X-Google-Smtp-Source: ABdhPJyTStpkMKHkhoIYFbtlxJ/TC2ZI25fBmmZDCRfQFH0IL0hwLAUggx/tm+N2ny3rd5SxaW3pmTAPfO6hs7UQPlI=
+X-Received: by 2002:a25:4507:: with SMTP id s7mr6894930yba.445.1633006022711; 
+ Thu, 30 Sep 2021 05:47:02 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK2PR06MB3492.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7614512b-534a-4b0e-2d8a-08d9840907de
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2021 11:54:16.9490 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: iWCTMQl/FdLYiQZJmg57tFdWy0jnevD5dYMc8qNgdwS16gu67Ri+OVASnQKZe+6Fd5M61HUWr5K0JJCpztG50A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR06MB2196
-X-Mailman-Approved-At: Thu, 30 Sep 2021 13:09:35 +0000
+References: <20210912165309.98695-1-ogabbay@kernel.org>
+ <20210912165309.98695-3-ogabbay@kernel.org>
+ <20210928173621.GG3544071@ziepe.ca>
+ <CAFCwf10z-baRm8c-UD_=jcZYD0VAGrMiNo7Q5Fm-2txYmVWGcQ@mail.gmail.com>
+In-Reply-To: <CAFCwf10z-baRm8c-UD_=jcZYD0VAGrMiNo7Q5Fm-2txYmVWGcQ@mail.gmail.com>
+From: Oded Gabbay <ogabbay@kernel.org>
+Date: Thu, 30 Sep 2021 15:46:35 +0300
+X-Gmail-Original-Message-ID: <CAFCwf110SPfqpjKO7e2W-MSs6iSdecCwS6CwKx4cL-DjqriT2Q@mail.gmail.com>
+Message-ID: <CAFCwf110SPfqpjKO7e2W-MSs6iSdecCwS6CwKx4cL-DjqriT2Q@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] habanalabs: add support for dma-buf exporter
+To: Jason Gunthorpe <jgg@ziepe.ca>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, 
+ Gal Pressman <galpress@amazon.com>, Yossi Leybovich <sleybo@amazon.com>, 
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ linux-rdma <linux-rdma@vger.kernel.org>, 
+ Linux Media Mailing List <linux-media@vger.kernel.org>,
+ Doug Ledford <dledford@redhat.com>, 
+ Dave Airlie <airlied@gmail.com>, Alex Deucher <alexander.deucher@amd.com>, 
+ Leon Romanovsky <leonro@nvidia.com>, Christoph Hellwig <hch@lst.de>, 
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, 
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Tomer Tayar <ttayar@habana.ai>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,232 +72,430 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_HK2PR06MB34922067627E3951C991B678C7AA9HK2PR06MB3492apcp_
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
-
-QWN0dWFsbHkgdGhlIGR1cGxpY2F0ZXMgdGFrZSBwbGFjZSBpbiBsaW5lIDQ2LCA0NyBhbmQgNjIs
-IDYzLg0KDQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rp
-c2NvdmVyeS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rpc2NvdmVyeS5j
-DQppbmRleCAyOTFhNDdmNzk5MmEuLjk0ZmNhNTY1ODNhMCAxMDA2NDQNCi0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kaXNjb3ZlcnkuYw0KKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rpc2NvdmVyeS5jDQpAQCAtNDYsMzQgKzQ2LDMyIEBADQoj
-aW5jbHVkZSAidmNuX3YyXzAuaCINCiNpbmNsdWRlICJqcGVnX3YyXzAuaCINCiNpbmNsdWRlICJ2
-Y25fdjJfNS5oIg0KI2luY2x1ZGUgImpwZWdfdjJfNS5oIg0KI2luY2x1ZGUgInNtdWlvX3Y5XzAu
-aCINCiNpbmNsdWRlICJnbWNfdjEwXzAuaCINCiNpbmNsdWRlICJnZnhodWJfdjJfMC5oIg0KI2lu
-Y2x1ZGUgIm1taHViX3YyXzAuaCINCiNpbmNsdWRlICJuYmlvX3YyXzMuaCINCiNpbmNsdWRlICJu
-YmlvX3Y3XzIuaCINCiNpbmNsdWRlICJoZHBfdjVfMC5oIg0KI2luY2x1ZGUgIm52LmgiDQojaW5j
-bHVkZSAibmF2aTEwX2loLmgiDQojaW5jbHVkZSAiZ2Z4X3YxMF8wLmgiDQojaW5jbHVkZSAic2Rt
-YV92NV8wLmgiDQojaW5jbHVkZSAic2RtYV92NV8yLmgiDQotI2luY2x1ZGUgInZjbl92Ml8wLmgi
-DQotI2luY2x1ZGUgImpwZWdfdjJfMC5oIg0KI2luY2x1ZGUgInZjbl92M18wLmgiDQojaW5jbHVk
-ZSAianBlZ192M18wLmgiDQojaW5jbHVkZSAiYW1kZ3B1X3ZrbXMuaCINCiNpbmNsdWRlICJtZXNf
-djEwXzEuaCINCiNpbmNsdWRlICJzbXVpb192MTFfMC5oIg0KI2luY2x1ZGUgInNtdWlvX3YxMV8w
-XzYuaCINCiNpbmNsdWRlICJzbXVpb192MTNfMC5oIg0KDQpNT0RVTEVfRklSTVdBUkUoImFtZGdw
-dS9pcF9kaXNjb3ZlcnkuYmluIik7DQoNCiNkZWZpbmUgbW1SQ0NfQ09ORklHX01FTVNJWkUgICAw
-eGRlMw0KI2RlZmluZSBtbU1NX0lOREVYICAgICAgICAgICAgIDB4MA0KI2RlZmluZSBtbU1NX0lO
-REVYX0hJICAgICAgICAgIDB4Ng0KI2RlZmluZSBtbU1NX0RBVEEgICAgICAgICAgICAgIDB4MQ0K
-DQpzdGF0aWMgY29uc3QgY2hhciAqaHdfaWRfbmFtZXNbSFdfSURfTUFYXSA9IHsNCg==
-
---_000_HK2PR06MB34922067627E3951C991B678C7AA9HK2PR06MB3492apcp_
-Content-Type: text/html; charset="gb2312"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dgb2312">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:=B5=C8=CF=DF;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"MS PGothic";
-	panose-1:2 11 6 0 7 2 5 8 2 4;}
-@font-face
-	{font-family:"\@=B5=C8=CF=DF";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"\@MS PGothic";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"MS PGothic",sans-serif;
-	mso-fareast-language:JA;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"MS PGothic",sans-serif;
-	mso-fareast-language:JA;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:=B5=C8=CF=DF;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"ZH-CN" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">Actually the duplicates tak=
-e place in line 46, 47 and 62, 63.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN"><o:p>&nbsp;</o:p></span></p=
+On Wed, Sep 29, 2021 at 12:17 AM Oded Gabbay <ogabbay@kernel.org> wrote:
 >
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">diff --git a/drivers/gpu/dr=
-m/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discove=
-ry.c<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">index 291a47f7992a..94fca56=
-583a0 100644<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">--- a/drivers/gpu/drm/amd/a=
-mdgpu/amdgpu_discovery.c<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">+++ b/drivers/gpu/drm/amd/a=
-mdgpu/amdgpu_discovery.c<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">@@ -46,34 +46,32 @@<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;vcn_v2_0.h&q=
-uot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;jpeg_v2_0.h&=
-quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;vcn_v2_5.h&q=
-uot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;jpeg_v2_5.h&=
-quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;smuio_v9_0.h=
-&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;gmc_v10_0.h&=
-quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;gfxhub_v2_0.=
-h&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;mmhub_v2_0.h=
-&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;nbio_v2_3.h&=
-quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;nbio_v7_2.h&=
-quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;hdp_v5_0.h&q=
-uot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;nv.h&quot;<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;navi10_ih.h&=
-quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;gfx_v10_0.h&=
-quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;sdma_v5_0.h&=
-quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;sdma_v5_2.h&=
-quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">-#include &quot;vcn_v2_0.h&=
-quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">-#include &quot;jpeg_v2_0.h=
-&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;vcn_v3_0.h&q=
-uot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;jpeg_v3_0.h&=
-quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;amdgpu_vkms.=
-h&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;mes_v10_1.h&=
-quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;smuio_v11_0.=
-h&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;smuio_v11_0_=
-6.h&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#include &quot;smuio_v13_0.=
-h&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN"><o:p>&nbsp;</o:p></span></p=
+> On Tue, Sep 28, 2021 at 8:36 PM Jason Gunthorpe <jgg@ziepe.ca> wrote:
+> >
+> > On Sun, Sep 12, 2021 at 07:53:09PM +0300, Oded Gabbay wrote:
+> > > From: Tomer Tayar <ttayar@habana.ai>
+> > >
+> > > Implement the calls to the dma-buf kernel api to create a dma-buf
+> > > object backed by FD.
+> > >
+> > > We block the option to mmap the DMA-BUF object because we don't support
+> > > DIRECT_IO and implicit P2P.
+> >
+> > This statement doesn't make sense, you can mmap your dmabuf if you
+> > like. All dmabuf mmaps are supposed to set the special bit/etc to
+> > exclude them from get_user_pages() anyhow - and since this is BAR
+> > memory not struct page memory this driver would be doing it anyhow.
+> >
+> But we block mmap the dmabuf fd from user-space.
+> If you try to do it, you will get MAP_FAILED.
+> That's because we don't supply a function to the mmap callback in dmabuf.
+> We did that per Christian's advice. It is in one of the long email
+> threads on previous versions of this patch.
 >
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">MODULE_FIRMWARE(&quot;amdgp=
-u/ip_discovery.bin&quot;);<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN"><o:p>&nbsp;</o:p></span></p=
 >
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#define mmRCC_CONFIG_MEMSIZ=
-E&nbsp;&nbsp; 0xde3<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#define mmMM_INDEX&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#define mmMM_INDEX_HI&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x6<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">#define mmMM_DATA&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x1<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN"><o:p>&nbsp;</o:p></span></p=
+> > > We check the p2p distance using pci_p2pdma_distance_many() and refusing
+> > > to map dmabuf in case the distance doesn't allow p2p.
+> >
+> > Does this actually allow the p2p transfer for your intended use cases?
+> >
+> It depends on the system. If we are working bare-metal, then yes, it allows.
+> If inside a VM, then no. The virtualized root complex is not
+> white-listed and the kernel can't know the distance.
+> But I remember you asked me to add this check, in v3 of the review IIRC.
+> I don't mind removing this check if you don't object.
 >
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-=
-family:=B5=C8=CF=DF;mso-fareast-language:ZH-CN">static const char *hw_id_na=
-mes[HW_ID_MAX] =3D {<o:p></o:p></span></p>
-</div>
-</body>
-</html>
+> > > diff --git a/drivers/misc/habanalabs/common/memory.c b/drivers/misc/habanalabs/common/memory.c
+> > > index 33986933aa9e..8cf5437c0390 100644
+> > > +++ b/drivers/misc/habanalabs/common/memory.c
+> > > @@ -1,7 +1,7 @@
+> > >  // SPDX-License-Identifier: GPL-2.0
+> > >
+> > >  /*
+> > > - * Copyright 2016-2019 HabanaLabs, Ltd.
+> > > + * Copyright 2016-2021 HabanaLabs, Ltd.
+> > >   * All Rights Reserved.
+> > >   */
+> > >
+> > > @@ -11,11 +11,13 @@
+> > >
+> > >  #include <linux/uaccess.h>
+> > >  #include <linux/slab.h>
+> > > +#include <linux/pci-p2pdma.h>
+> > >
+> > >  #define HL_MMU_DEBUG 0
+> > >
+> > >  /* use small pages for supporting non-pow2 (32M/40M/48M) DRAM phys page sizes */
+> > > -#define DRAM_POOL_PAGE_SIZE SZ_8M
+> > > +#define DRAM_POOL_PAGE_SIZE          SZ_8M
+> > > +
+> >
+> > ??
+> ok, I 'll remove
+> >
+> > >  /*
+> > >   * The va ranges in context object contain a list with the available chunks of
+> > > @@ -347,6 +349,13 @@ static int free_device_memory(struct hl_ctx *ctx, struct hl_mem_in *args)
+> > >                       return -EINVAL;
+> > >               }
+> > >
+> > > +             if (phys_pg_pack->exporting_cnt) {
+> > > +                     dev_err(hdev->dev,
+> > > +                             "handle %u is exported, cannot free\n", handle);
+> > > +                     spin_unlock(&vm->idr_lock);
+> >
+> > Don't write to the kernel log from user space triggered actions
+> at all ?
+> It's the first time I hear about this limitation...
+> How do you tell the user it has done something wrong ?
+> I agree it might be better to rate limit it, but why not give the
+> information to the user ?
+>
+> >
+> > > +static int alloc_sgt_from_device_pages(struct hl_device *hdev,
+> > > +                                     struct sg_table **sgt, u64 *pages,
+> > > +                                     u64 npages, u64 page_size,
+> > > +                                     struct device *dev,
+> > > +                                     enum dma_data_direction dir)
+> >
+> > Why doesn't this return a sg_table * and an ERR_PTR?
+> Basically I modeled this function after amdgpu_vram_mgr_alloc_sgt()
+> And in that function they also return int and pass the sg_table as **
+>
+> If it's critical I can change.
+>
+> >
+> > > +{
+> > > +     u64 chunk_size, bar_address, dma_max_seg_size;
+> > > +     struct asic_fixed_properties *prop;
+> > > +     int rc, i, j, nents, cur_page;
+> > > +     struct scatterlist *sg;
+> > > +
+> > > +     prop = &hdev->asic_prop;
+> > > +
+> > > +     dma_max_seg_size = dma_get_max_seg_size(dev);
+> >
+> > > +
+> > > +     /* We would like to align the max segment size to PAGE_SIZE, so the
+> > > +      * SGL will contain aligned addresses that can be easily mapped to
+> > > +      * an MMU
+> > > +      */
+> > > +     dma_max_seg_size = ALIGN_DOWN(dma_max_seg_size, PAGE_SIZE);
+> > > +     if (dma_max_seg_size < PAGE_SIZE) {
+> > > +             dev_err_ratelimited(hdev->dev,
+> > > +                             "dma_max_seg_size %llu can't be smaller than PAGE_SIZE\n",
+> > > +                             dma_max_seg_size);
+> > > +             return -EINVAL;
+> > > +     }
+> > > +
+> > > +     *sgt = kzalloc(sizeof(**sgt), GFP_KERNEL);
+> > > +     if (!*sgt)
+> > > +             return -ENOMEM;
+> > > +
+> > > +     /* If the size of each page is larger than the dma max segment size,
+> > > +      * then we can't combine pages and the number of entries in the SGL
+> > > +      * will just be the
+> > > +      * <number of pages> * <chunks of max segment size in each page>
+> > > +      */
+> > > +     if (page_size > dma_max_seg_size)
+> > > +             nents = npages * DIV_ROUND_UP_ULL(page_size, dma_max_seg_size);
+> > > +     else
+> > > +             /* Get number of non-contiguous chunks */
+> > > +             for (i = 1, nents = 1, chunk_size = page_size ; i < npages ; i++) {
+> > > +                     if (pages[i - 1] + page_size != pages[i] ||
+> > > +                                     chunk_size + page_size > dma_max_seg_size) {
+> > > +                             nents++;
+> > > +                             chunk_size = page_size;
+> > > +                             continue;
+> > > +                     }
+> > > +
+> > > +                     chunk_size += page_size;
+> > > +             }
+> > > +
+> > > +     rc = sg_alloc_table(*sgt, nents, GFP_KERNEL | __GFP_ZERO);
+> > > +     if (rc)
+> > > +             goto error_free;
+> > > +
+> > > +     /* Because we are not going to include a CPU list we want to have some
+> > > +      * chance that other users will detect this by setting the orig_nents
+> > > +      * to 0 and using only nents (length of DMA list) when going over the
+> > > +      * sgl
+> > > +      */
+> > > +     (*sgt)->orig_nents = 0;
+> >
+> > Maybe do this at the end so you'd have to undo it on the error path?
+> Agreed, less code
+>
+> >
+> > > +     cur_page = 0;
+> > > +
+> > > +     if (page_size > dma_max_seg_size) {
+> > > +             u64 size_left, cur_device_address = 0;
+> > > +
+> > > +             size_left = page_size;
+> > > +
+> > > +             /* Need to split each page into the number of chunks of
+> > > +              * dma_max_seg_size
+> > > +              */
+> > > +             for_each_sgtable_dma_sg((*sgt), sg, i) {
+> > > +                     if (size_left == page_size)
+> > > +                             cur_device_address =
+> > > +                                     pages[cur_page] - prop->dram_base_address;
+> > > +                     else
+> > > +                             cur_device_address += dma_max_seg_size;
+> > > +
+> > > +                     chunk_size = min(size_left, dma_max_seg_size);
+> > > +
+> > > +                     bar_address = hdev->dram_pci_bar_start + cur_device_address;
+> > > +
+> > > +                     rc = set_dma_sg(sg, bar_address, chunk_size, dev, dir);
+> > > +                     if (rc)
+> > > +                             goto error_unmap;
+> > > +
+> > > +                     if (size_left > dma_max_seg_size) {
+> > > +                             size_left -= dma_max_seg_size;
+> > > +                     } else {
+> > > +                             cur_page++;
+> > > +                             size_left = page_size;
+> > > +                     }
+> > > +             }
+> > > +     } else {
+> > > +             /* Merge pages and put them into the scatterlist */
+> > > +             for_each_sgtable_dma_sg((*sgt), sg, i) {
+> > > +                     chunk_size = page_size;
+> > > +                     for (j = cur_page + 1 ; j < npages ; j++) {
+> > > +                             if (pages[j - 1] + page_size != pages[j] ||
+> > > +                                             chunk_size + page_size > dma_max_seg_size)
+> > > +                                     break;
+> > > +
+> > > +                             chunk_size += page_size;
+> > > +                     }
+> > > +
+> > > +                     bar_address = hdev->dram_pci_bar_start +
+> > > +                                     (pages[cur_page] - prop->dram_base_address);
+> > > +
+> > > +                     rc = set_dma_sg(sg, bar_address, chunk_size, dev, dir);
+> > > +                     if (rc)
+> > > +                             goto error_unmap;
+> > > +
+> > > +                     cur_page = j;
+> > > +             }
+> > > +     }
+> >
+> > We have this sg_append stuff now that is intended to help building
+> > these things. It can only build CPU page lists, not these DMA lists,
+> > but I do wonder if open coding in drivers is slipping back a
+> > bit. Especially since AMD seems to be doing something different.
+> >
+> > Could the DMABUF layer gain some helpers styled after the sg_append to
+> > simplify building these things? and convert the AMD driver of course.
+> >
+> I will take it as a task to do in the near future, but I prefer to
+> first upstream these patches as-is,
+> because I don't have a way to check AMD devices and I guess converting them
+> might take some time.
+>
+> > > +static int hl_dmabuf_attach(struct dma_buf *dmabuf,
+> > > +                             struct dma_buf_attachment *attachment)
+> > > +{
+> > > +     struct hl_dmabuf_wrapper *hl_dmabuf;
+> > > +     struct hl_device *hdev;
+> > > +     int rc;
+> > > +
+> > > +     hl_dmabuf = dmabuf->priv;
+> > > +     hdev = hl_dmabuf->ctx->hdev;
+> > > +
+> > > +     rc = pci_p2pdma_distance_many(hdev->pdev, &attachment->dev, 1, true);
+> > > +
+> > > +     if (rc < 0)
+> > > +             attachment->peer2peer = false;
+> >
+> > Extra blank line
+> >
+> > > +
+> > > +     return 0;
+> > > +}
+> > > +
+> > > +static struct sg_table *hl_map_dmabuf(struct dma_buf_attachment *attachment,
+> > > +                                     enum dma_data_direction dir)
+> > > +{
+> > > +     struct dma_buf *dma_buf = attachment->dmabuf;
+> > > +     struct hl_vm_phys_pg_pack *phys_pg_pack;
+> > > +     struct hl_dmabuf_wrapper *hl_dmabuf;
+> > > +     struct hl_device *hdev;
+> > > +     struct sg_table *sgt;
+> > > +     int rc;
+> > > +
+> > > +     hl_dmabuf = dma_buf->priv;
+> > > +     hdev = hl_dmabuf->ctx->hdev;
+> > > +     phys_pg_pack = hl_dmabuf->phys_pg_pack;
+> > > +
+> > > +     if (!attachment->peer2peer) {
+> > > +             dev_err(hdev->dev,
+> > > +                     "Failed to map dmabuf because p2p is disabled\n");
+> > > +             return ERR_PTR(-EPERM);
+> >
+> > User triggered printable again?
+> But how will the user know what the reason for the failure is ?
+>
+> >
+> > > +static void hl_unmap_dmabuf(struct dma_buf_attachment *attachment,
+> > > +                               struct sg_table *sgt,
+> > > +                               enum dma_data_direction dir)
+> > > +{
+> > > +     struct scatterlist *sg;
+> > > +     int i;
+> > > +
+> > > +     for_each_sgtable_dma_sg(sgt, sg, i)
+> > > +             dma_unmap_resource(attachment->dev, sg_dma_address(sg),
+> > > +                                     sg_dma_len(sg), dir,
+> > > +                                     DMA_ATTR_SKIP_CPU_SYNC);
+> >
+> > Why can we skip the CPU_SYNC? Seems like a comment is needed
+> >
+> > Something has to do a CPU_SYNC before recylcing this memory for
+> > another purpose, where is it?
+> I have to ask for further explanation here.
+> Same as before, this function is modeled after the amdgpu one -
+> amdgpu_vram_mgr_free_sgt()
+> They also use CPU_SYNC in that function.
+> Christain, maybe you know ?
+>
+> Maybe it is not relevant to our case as it represents a PCI bar ?
+>
+Hi Jason,
+After reading the kernel iommu code, I think this is not relevant
+here, and I'll add a comment
+appropriately but I'll also write it here, and please correct me if my
+understanding
+is wrong.
 
---_000_HK2PR06MB34922067627E3951C991B678C7AA9HK2PR06MB3492apcp_--
+The memory behind this specific dma-buf has *always* resided on the
+device itself, i.e. it lives
+only in the 'device' domain (after all, it maps a PCI bar address
+which points to the device memory).
+Therefore, it was never in the 'CPU' domain and hence, there is no
+need to perform a sync
+of the memory to the CPU's cache, as it was never inside that cache to
+begin with.
+
+This is not the same case as with regular memory which is dma-mapped
+and then copied
+into the device using a dma engine. In that case, the memory started
+in the 'CPU' domain
+and moved to the 'device' domain. When it is unmapped it will indeed
+be recycled to be
+used for another purpose and therefore we need to sync the CPU cache.
+
+Is my understanding correct ?
+
+Thanks,
+Oded
+> >
+> > > +static void hl_release_dmabuf(struct dma_buf *dmabuf)
+> > > +{
+> > > +     struct hl_dmabuf_wrapper *hl_dmabuf = dmabuf->priv;
+> >
+> > Maybe hl_dmabuf_wrapper should be hl_dmabuf_priv
+> Agreed.
+>
+> >
+> > > + * export_dmabuf_from_addr() - export a dma-buf object for the given memory
+> > > + *                             address and size.
+> > > + * @ctx: pointer to the context structure.
+> > > + * @device_addr:  device memory physical address.
+> > > + * @size: size of device memory.
+> > > + * @flags: DMA-BUF file/FD flags.
+> > > + * @dmabuf_fd: pointer to result FD that represents the dma-buf object.
+> > > + *
+> > > + * Create and export a dma-buf object for an existing memory allocation inside
+> > > + * the device memory, and return a FD which is associated with the dma-buf
+> > > + * object.
+> > > + *
+> > > + * Return: 0 on success, non-zero for failure.
+> > > + */
+> > > +static int export_dmabuf_from_addr(struct hl_ctx *ctx, u64 device_addr,
+> > > +                                     u64 size, int flags, int *dmabuf_fd)
+> > > +{
+> > > +     struct hl_dmabuf_wrapper *hl_dmabuf;
+> > > +     struct hl_device *hdev = ctx->hdev;
+> > > +     struct asic_fixed_properties *prop;
+> > > +     u64 bar_address;
+> > > +     int rc;
+> > > +
+> > > +     prop = &hdev->asic_prop;
+> > > +
+> > > +     if (!IS_ALIGNED(device_addr, PAGE_SIZE)) {
+> > > +             dev_err_ratelimited(hdev->dev,
+> > > +                     "address of exported device memory should be aligned to 0x%lx, address 0x%llx\n",
+> > > +                     PAGE_SIZE, device_addr);
+> > > +             return -EINVAL;
+> > > +     }
+> > > +
+> > > +     if (size < PAGE_SIZE) {
+> > > +             dev_err_ratelimited(hdev->dev,
+> > > +                     "size %llu of exported device memory should be equal to or greater than %lu\n",
+> > > +                     size, PAGE_SIZE);
+> > > +             return -EINVAL;
+> > > +     }
+> > > +
+> > > +     if (device_addr < prop->dram_user_base_address ||
+> > > +                             device_addr + size > prop->dram_end_address ||
+> > > +                             device_addr + size < device_addr) {
+> > > +             dev_err_ratelimited(hdev->dev,
+> > > +                     "DRAM memory range is outside of DRAM boundaries, address 0x%llx, size 0x%llx\n",
+> > > +                     device_addr, size);
+> > > +             return -EINVAL;
+> > > +     }
+> > > +
+> > > +     bar_address = hdev->dram_pci_bar_start +
+> > > +                     (device_addr - prop->dram_base_address);
+> > > +
+> > > +     if (bar_address + size >
+> > > +                     hdev->dram_pci_bar_start + prop->dram_pci_bar_size ||
+> > > +                     bar_address + size < bar_address) {
+> > > +             dev_err_ratelimited(hdev->dev,
+> > > +                     "DRAM memory range is outside of PCI BAR boundaries, address 0x%llx, size 0x%llx\n",
+> > > +                     device_addr, size);
+> > > +             return -EINVAL;
+> > > +     }
+> >
+> > More prints from userspace
+> >
+> > > +static int export_dmabuf_from_handle(struct hl_ctx *ctx, u64 handle, int flags,
+> > > +                                     int *dmabuf_fd)
+> > > +{
+> > > +     struct hl_vm_phys_pg_pack *phys_pg_pack;
+> > > +     struct hl_dmabuf_wrapper *hl_dmabuf;
+> > > +     struct hl_device *hdev = ctx->hdev;
+> > > +     struct asic_fixed_properties *prop;
+> > > +     struct hl_vm *vm = &hdev->vm;
+> > > +     u64 bar_address;
+> > > +     u32 idr_handle;
+> > > +     int rc, i;
+> > > +
+> > > +     prop = &hdev->asic_prop;
+> > > +
+> > > +     idr_handle = lower_32_bits(handle);
+> >
+> > Why silent truncation? Shouldn't setting the upper 32 bits be an
+> > error?
+> Yes, you are correct. I will fix it.
+>
+> >
+> > > +     case HL_MEM_OP_EXPORT_DMABUF_FD:
+> > > +             rc = export_dmabuf_from_addr(ctx,
+> > > +                             args->in.export_dmabuf_fd.handle,
+> > > +                             args->in.export_dmabuf_fd.mem_size,
+> > > +                             args->in.flags,
+> > > +                             &dmabuf_fd);
+> > > +             memset(args, 0, sizeof(*args));
+> > > +             args->out.fd = dmabuf_fd;
+> >
+> > Would expect the installed fd to be the positive return, not a pointer
+> yeah, changed it to s32 as you suggested.
+> >
+> > Jason
