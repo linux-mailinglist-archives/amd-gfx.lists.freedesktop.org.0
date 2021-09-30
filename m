@@ -1,57 +1,52 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA0B41D138
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Sep 2021 04:03:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FE4141D15E
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Sep 2021 04:20:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CABD6EB21;
-	Thu, 30 Sep 2021 02:03:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2F906EB23;
+	Thu, 30 Sep 2021 02:20:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from nksmu.kylinos.cn (mailgw.kylinos.cn [123.150.8.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B18F36EB15
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 01:28:47 +0000 (UTC)
-X-UUID: 993842a9cda04ea6ad2ed57bc14bac0d-20210930
-X-CPASD-INFO: ec70aeb55926416ab06c86cee760c4b5@rrNxUI6XkGVhWXSCg3SBm4JhZpNoYoO
- 0p3FWYJFkjlWVhH5xTWJsXVKBfG5QZWNdYVN_eGpQYl9gZFB5i3-XblBgXoZgUZB3tKVxUJGTkg==
-X-CPASD-FEATURE: 0.0
-X-CLOUD-ID: ec70aeb55926416ab06c86cee760c4b5
-X-CPASD-SUMMARY: SIP:-1, APTIP:-2.0, KEY:0.0, FROMBLOCK:1, EXT:0.0, OB:0.0,
- URL:-5, T
- VAL:161.0, ESV:0.0, ECOM:-5.0, ML:0.0, FD:0.0, CUTS:138.0, IP:-2.0, MAL:0.0,
- ATTNUM:0
- .0, PHF:-5.0, PHC:-5.0, SPF:4.0, EDMS:-3, IPLABEL:4480.0, FROMTO:0, AD:0,
- FFOB:0.0, CF
- OB:0.0, SPC:0.0, SIG:-5, AUF:8, DUF:15365, ACD:57, DCD:159, SL:0, AG:0,
- CFC:0.663, CFSR :0.05,UAT:0,RAF:2,VERSION:2.3.4
-X-CPASD-ID: 993842a9cda04ea6ad2ed57bc14bac0d-20210930
-X-CPASD-BLOCK: 1000
-X-CPASD-STAGE: 1, 1
-X-UUID: 993842a9cda04ea6ad2ed57bc14bac0d-20210930
-X-User: lizhenneng@kylinos.cn
-Received: from [172.20.108.41] [(116.128.244.169)] by nksmu.kylinos.cn
- (envelope-from <lizhenneng@kylinos.cn>)
- (Generic MTA with TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256 128/128)
- with ESMTP id 2001967444; Thu, 30 Sep 2021 09:25:46 +0800
-Subject: Re: amdgpu driver halted on suspend of shutdown
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
-References: <f5d30be9-7980-e44d-0eca-7cfe7c0c1d05@kylinos.cn>
- <CADnq5_MC4XPWcgT0FE5mmghZD9+YPaaAXPAkzUjFEO-hxr20Eg@mail.gmail.com>
-From: =?UTF-8?B?5p2O55yf6IO9?= <lizhenneng@kylinos.cn>
-Message-ID: <dc3c0e5c-a1cf-4d98-030a-967bad2c8d01@kylinos.cn>
-Date: Thu, 30 Sep 2021 09:26:42 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+X-Greylist: delayed 440 seconds by postgrey-1.36 at gabe;
+ Thu, 30 Sep 2021 02:16:15 UTC
+Received: from smtprelay.hostedemail.com (smtprelay0219.hostedemail.com
+ [216.40.44.219])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBB246EB22;
+ Thu, 30 Sep 2021 02:16:15 +0000 (UTC)
+Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com
+ [10.5.19.251])
+ by smtpgrave04.hostedemail.com (Postfix) with ESMTP id DFB6618113636;
+ Thu, 30 Sep 2021 02:08:55 +0000 (UTC)
+Received: from omf10.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+ by smtprelay05.hostedemail.com (Postfix) with ESMTP id 7938418059B50;
+ Thu, 30 Sep 2021 02:08:54 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by
+ omf10.hostedemail.com (Postfix) with ESMTPA id 7F78F2351F3; 
+ Thu, 30 Sep 2021 02:08:53 +0000 (UTC)
+Message-ID: <a61f6bc2dc18397de92e4b7cdd9b37e2dff7e114.camel@perches.com>
+Subject: Re: [PATCH 2/4] amdgpu_ucode: reduce number of pr_debug calls
+From: Joe Perches <joe@perches.com>
+To: Jim Cromie <jim.cromie@gmail.com>, dri-devel@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Date: Wed, 29 Sep 2021 19:08:51 -0700
+In-Reply-To: <20210930014427.14239-3-jim.cromie@gmail.com>
+References: <20210930014427.14239-1-jim.cromie@gmail.com>
+ <20210930014427.14239-3-jim.cromie@gmail.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.40.0-1 
 MIME-Version: 1.0
-In-Reply-To: <CADnq5_MC4XPWcgT0FE5mmghZD9+YPaaAXPAkzUjFEO-hxr20Eg@mail.gmail.com>
-Content-Type: multipart/alternative;
- boundary="------------1C27D9EFA4FED9FFE32ED476"
-X-Mailman-Approved-At: Thu, 30 Sep 2021 02:03:49 +0000
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Server: rspamout01
+X-Rspamd-Queue-Id: 7F78F2351F3
+X-Spam-Status: No, score=0.10
+X-Stat-Signature: anmt6jx4t6f7u5gh4einmjsx1txe8h6k
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX18kGVBu/5EFA7vPk09h4PPRUG51zMWAUwg=
+X-HE-Tag: 1632967733-854858
+X-Mailman-Approved-At: Thu, 30 Sep 2021 02:20:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,136 +61,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------1C27D9EFA4FED9FFE32ED476
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+On Wed, 2021-09-29 at 19:44 -0600, Jim Cromie wrote:
+> There are blocks of DRM_DEBUG calls, consolidate their args into
+> single calls.  With dynamic-debug in use, each callsite consumes 56
+> bytes of callsite data, and this patch removes about 65 calls, so
+> it saves ~3.5kb.
+> 
+> no functional changes.
 
-So, Can I remove suspend process in amdgpu_pci_shutdown if  I don't  use 
-amdgpu driver in vm?
+No functional change, but an output logging content change.
 
-Thank you so much foryour reply!
+> RFC: this creates multi-line log messages, does that break any syslog
+> conventions ?
 
-在 2021/9/30 上午5:12, Alex Deucher 写道:
-> On Wed, Sep 29, 2021 at 3:25 AM 李真能 <lizhenneng@kylinos.cn> wrote:
->> Hello:
->>
->>           When I do loop  auto test of reboot, I found  kernel may halt
->> on memcpy_fromio of amdgpu's amdgpu_uvd_suspend, so I remove suspend
->> process in amdgpu_pci_shutdown, and it will fix this bug.
->>
->> I have 3 questions to ask:
->>
->> 1. In amdgpu_pci_shutdown, the comment explains why we must execute
->> suspend,  so I know VM will call amdgpu driver in which situations, as I
->> know, VM's graphics card is a virtual card;
->>
->> 2. I see a path that is commited by Alex Deucher, the commit message is
->> as follows:
->>
->> drm/amdgpu: just suspend the hw on pci shutdown
->>
->> We can't just reuse pci_remove as there may be userspace still
->>       doing things.
->>
->> My question is:In which situations, there may be  userspace till doing
->> things.
->>
->> 3. Why amdgpu driver is halted on memcpy_fromio of amdgpu_uvd_suspend, I
->> haven't launch any video app during reboot test, is it the bug of pci bus?
->>
->> Test environment:
->>
->> CPU: arm64
-> I suspect the problem is something ARM specific.  IIRC, we added the
-> memcpy_fromio() to work around a limitation in ARM related to CPU
-> mappings of PCI BAR memory.  The whole point of the PCI shutdown
-> callback is to put the device into a quiescent state (e.g., stop all
-> DMAs and asynchronous engines, etc.).  Some of that tear down requires
-> access to PCI BARs.
->
-> Alex
->
->
->> Graphics card: r7340(amdgpu), rx550
->>
->> OS: ubuntu 2004
->>
+It does change the output as each individual DRM_DEBUG is a call to
+__drm_dbg which is effectively:
 
---------------1C27D9EFA4FED9FFE32ED476
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>So, Can I remove suspend process in amdgpu_pci_shutdown if  I
-      don't  use amdgpu driver in vm?</p>
-    <p><span id="tran_0_0" class="">Thank you so much for</span><span>
-        your </span><span id="tran_0_1" class="">reply</span><span>!</span></p>
-    <div class="moz-cite-prefix">在 2021/9/30 上午5:12, Alex Deucher 写道:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CADnq5_MC4XPWcgT0FE5mmghZD9+YPaaAXPAkzUjFEO-hxr20Eg@mail.gmail.com">
-      <pre class="moz-quote-pre" wrap="">On Wed, Sep 29, 2021 at 3:25 AM 李真能 <a class="moz-txt-link-rfc2396E" href="mailto:lizhenneng@kylinos.cn">&lt;lizhenneng@kylinos.cn&gt;</a> wrote:
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">
-Hello:
-
-         When I do loop  auto test of reboot, I found  kernel may halt
-on memcpy_fromio of amdgpu's amdgpu_uvd_suspend, so I remove suspend
-process in amdgpu_pci_shutdown, and it will fix this bug.
-
-I have 3 questions to ask:
-
-1. In amdgpu_pci_shutdown, the comment explains why we must execute
-suspend,  so I know VM will call amdgpu driver in which situations, as I
-know, VM's graphics card is a virtual card;
-
-2. I see a path that is commited by Alex Deucher, the commit message is
-as follows:
-
-drm/amdgpu: just suspend the hw on pci shutdown
-
-We can't just reuse pci_remove as there may be userspace still
-     doing things.
-
-My question is:In which situations, there may be  userspace till doing
-things.
-
-3. Why amdgpu driver is halted on memcpy_fromio of amdgpu_uvd_suspend, I
-haven't launch any video app during reboot test, is it the bug of pci bus?
-
-Test environment:
-
-CPU: arm64
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-I suspect the problem is something ARM specific.  IIRC, we added the
-memcpy_fromio() to work around a limitation in ARM related to CPU
-mappings of PCI BAR memory.  The whole point of the PCI shutdown
-callback is to put the device into a quiescent state (e.g., stop all
-DMAs and asynchronous engines, etc.).  Some of that tear down requires
-access to PCI BARs.
-
-Alex
+	printk(KERN_DEBUG "[" DRM_NAME ":%ps] %pV",
+	       __builtin_return_address(0), &vaf);
 
 
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">
-Graphics card: r7340(amdgpu), rx550
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+[]
+> @@ -30,17 +30,26 @@
+> �
+> 
+> �static void amdgpu_ucode_print_common_hdr(const struct common_firmware_header *hdr)
+> �{
+> -	DRM_DEBUG("size_bytes: %u\n", le32_to_cpu(hdr->size_bytes));
+> -	DRM_DEBUG("header_size_bytes: %u\n", le32_to_cpu(hdr->header_size_bytes));
+[]
+> +	DRM_DEBUG("size_bytes: %u\n"
+> +		  "header_size_bytes: %u\n"
 
-OS: ubuntu 2004
+etc...
 
-</pre>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
 
---------------1C27D9EFA4FED9FFE32ED476--
