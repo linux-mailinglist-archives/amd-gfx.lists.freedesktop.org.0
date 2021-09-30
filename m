@@ -1,78 +1,95 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E8341DA77
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Sep 2021 15:04:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DB6F41DAD5
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Sep 2021 15:18:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD2446E3F5;
-	Thu, 30 Sep 2021 13:04:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 335826E084;
+	Thu, 30 Sep 2021 13:18:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com
- [IPv6:2a00:1450:4864:20::143])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08EB16E3F5;
- Thu, 30 Sep 2021 13:04:48 +0000 (UTC)
-Received: by mail-lf1-x143.google.com with SMTP id e15so25003737lfr.10;
- Thu, 30 Sep 2021 06:04:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=o+4eSVAKrZEsPcw4dpXxfrqsUjsymJtzaRHSa/JgmUg=;
- b=IhS/r2TLvS0vuo8maPzTPXsad/2BT51uaMQp1LkLPJrx210A/2mDwMo0JeMYNpGMtF
- ZsySL9QVXt39jQhTXvlkSvSxQCPgo9fK3Rh5vnF6PLxB3tvWC3wDmYSbIEbFB2c5NpT7
- zvQkhdwSzWD/T6X7gd1v4S9baXYj0W/IBgzVoVwOL/gYapDD3C7MjWhEHLRELlUwRmcD
- tDcJHIuqJ3ciUxUMBZ+IzfCOXNAxSSMsPzlfEPuBy2RLd6TYC3h1IEAUe5+j0Q5Soxmv
- M+3+HSkn2RtI9fyCw9qIokThU6cBQg0wVOnbJcumrK8eddb3nc01oQxZbtXNAyGjbZvm
- nQ6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=o+4eSVAKrZEsPcw4dpXxfrqsUjsymJtzaRHSa/JgmUg=;
- b=S/DDpG+LtQQOmKQmPSd1hX2O/ISGaHJSumafY3cCLws5B9ILQZdsiWAKZczSxAe9Fm
- CJbjpmVVlG0tT2iTi3+4KHc0+sWHB619UVsnplLkVpVTBxWNn/iLyv1ldShdAKpoBUB+
- V+ni542JKqey/TnAC1p6TraHDk3r3UpvxbjFOzn+Ld95ekQuK8ry8JX+M6xtQjEHOimT
- Rzb5dMpWJabap+dlvGv7QfIS0qyojqaOxoYDLAJWCZTHsgVYhsNC4hIeXn/Gixrg5VuB
- YbIc/EPvgyVry6t2Wbs7vKNzOZuXN7ZPM153d5WfGg8nTtsMp2xHmGDWiBaQAmvgVUuP
- bqvA==
-X-Gm-Message-State: AOAM5304OAKgEDllEd/l54zccsbGbQ4CzIIzevz4mU0tJhJnNVYGgPWx
- H3LhIGugkYdPPJdFl8MJXYM=
-X-Google-Smtp-Source: ABdhPJwJ+KH5jRthwhiRCi9YGtM5XK8x2hV2h9HgimF4k7J93IBM56FSn+eQ8QdZE0zz7GSBeFfyqQ==
-X-Received: by 2002:a2e:83c5:: with SMTP id s5mr5661372ljh.515.1633007085825; 
- Thu, 30 Sep 2021 06:04:45 -0700 (PDT)
-Received: from eldfell ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id n8sm401925lfl.260.2021.09.30.06.04.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Sep 2021 06:04:44 -0700 (PDT)
-Date: Thu, 30 Sep 2021 16:04:30 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Harry Wentland <harry.wentland@amd.com>
-Cc: sebastian@sebastianwick.net, "wayland-devel@lists.freedesktop.org"
- <wayland-devel@lists.freedesktop.org>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, mcasas@google.com, jshargo@google.com,
- Shashank.Sharma@amd.com, Deepak.Sharma@amd.com, Shirish.S@amd.com,
- Vitaly.Prosyak@amd.com, aric.cyr@amd.com, Bhawanpreet.Lakha@amd.com,
- Krunoslav.Kovac@amd.com, hersenxs.wu@amd.com, Nicholas.Kazlauskas@amd.com,
- laurentiu.palcu@oss.nxp.com, ville.syrjala@linux.intel.com,
- jeremy@jcline.org, Brian Starkey <brian.starkey@arm.com>, Jeremy Cline
- <jeremy@jcline.org>
-Subject: Repository for additional color and HDR related documentation (Re:
- [RFC PATCH v3 1/6] drm/doc: Color Management and HDR10 RFC)
-Message-ID: <20210930160430.1e4fbc23@eldfell>
-In-Reply-To: <20210923104354.585ed9b1@eldfell>
-References: <20210730204134.21769-1-harry.wentland@amd.com>
- <20210730204134.21769-2-harry.wentland@amd.com>
- <20210915170127.31377385@eldfell>
- <4ed51ca0-ca98-cf84-33ed-ab172e3548d3@amd.com>
- <20210921163158.688c26bc@eldfell>
- <0c673cf8-2b90-c1ca-a0b0-c809e7e10c2c@amd.com>
- <20210922113105.2e42754c@eldfell>
- <823898e8-a8fe-cc74-e5b4-c4907826efbc@amd.com>
- <20210923104354.585ed9b1@eldfell>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam08on2064.outbound.protection.outlook.com [40.107.100.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A24676E084
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 13:18:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YzvcPC4H+Vpr/u8BYJ5eDjnkuPiDXxvRNDCJqR/bzHCV5y5PsMrevu8DZ43Lo/CWaqPjG92C/jfuXcYMKxtr5eJjqD80p8e69fabE3NqN6+H2w0dm3P1wjs5L9vVYDkJ3c4GmXtv98o00XjuDYGZ09CZb9/RdHAcLtgYEBERX/BOJWOsP/GYFoqsoFPK+YOwdCeYW9yRu5OZZN2M1lIayzvemdQd6qzisGtCxojfyqKOccx7i1IOwEXiXYung2B8em1GjbGOldbMS9EQ0BlbV2r7g3T3ToggORaFBW15gmxXaG9MIPlXTNiNoZ7+POW6hUt+LJqJBAlFJIRzWccwMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version; 
+ bh=JB6MygCnVATVdGSAKecq3oNGp7C7hR0M+Ii2OpRWbKA=;
+ b=DEajqWdvIwIaiMb5P6/RldJwkUGm1ciH8SY0tbXJNRFTdf6H42QGA+z3X+a0UFrTpQIhHymdFIkw8fqAbXfRKeBE9RfxTTZQ7DSs+O/Os+ekX2Eqy2UFwr6rTqZnmP76NSzW9ITJGHqALysSi82GSwSMvTvLyOyW8SFF2mW3UrHDRqWOioQ67dvE4BrYHICQNgm0aud6Blxyikak33BFTpDZWexOjXZjjGSpI4oIsAMbk/EuTtkJI4Yov6XZOj9KiaiIeGRVjIHnRUDFZM6BEYA34esl8/b9CyErEaTKzsJ7SbNHfhQwQYmOnA0iMeg8zdY3kn9CH3Wpi1vrf3ShPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JB6MygCnVATVdGSAKecq3oNGp7C7hR0M+Ii2OpRWbKA=;
+ b=aSqTnLXj6f2L6Fn4MwkoANYke+CNw0VQYk0WgNSTFw1RYv0g/WFCGn35rJ3XhyNGMZJQuafqHFrH8x+Vei4qNcXPqfmTPoR14F9/uwk5yqrZIT5GSFa+6om2Vs2bZ96UpY7ND+fxXOT9A/nxgOXz5oPH7JLD1F8/wrP3QCuyzLI=
+Received: from MWHPR04CA0072.namprd04.prod.outlook.com (2603:10b6:300:6c::34)
+ by DM5PR12MB1147.namprd12.prod.outlook.com (2603:10b6:3:79::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.14; Thu, 30 Sep
+ 2021 13:18:27 +0000
+Received: from CO1NAM11FT026.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:6c:cafe::3b) by MWHPR04CA0072.outlook.office365.com
+ (2603:10b6:300:6c::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.14 via Frontend
+ Transport; Thu, 30 Sep 2021 13:18:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT026.mail.protection.outlook.com (10.13.175.67) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4566.14 via Frontend Transport; Thu, 30 Sep 2021 13:18:26 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Thu, 30 Sep
+ 2021 08:18:25 -0500
+Received: from Optimus.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2308.8 via Frontend
+ Transport; Thu, 30 Sep 2021 08:18:24 -0500
+From: Anson Jacob <Anson.Jacob@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Anson Jacob <Anson.Jacob@amd.com>
+Subject: [PATCH] drm/amdkfd: Fix dummy kgd2kfd_probe parameters
+Date: Thu, 30 Sep 2021 09:18:22 -0400
+Message-ID: <20210930131822.2194663-1-Anson.Jacob@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/ddt++=ysGel8BF_eUzWWEl2";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d8680714-aef8-47a0-3ae0-08d98414c9a8
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1147:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB11474DA522DBF0E53153A8E8EBAA9@DM5PR12MB1147.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: iB5rC83GFQTbcK1qOUo2VBGH2TDdW3/c49tOTIcVRP/mPuDty6ZzZEp93u74U1bPAYixmOjormCHPo61b5Z1wlHLGKMDS/2SL9MzKbdZasUwXv4cy8T2viPO2T9smrnxIgSwX55WadkkOkR4J6tR0/0S8hkBmqK4T9JBYVqH/VlESJS3lZVuoWeBc5VAQoeqQQM9VmIkjVbMaGy/grxAtzbSMMhKgtfVUwqe/y8RauC795fKyBuHeIr6o2i8LMtExT+j+bHDjR+p+KWMVrEGhuf8PCIsbx65wWtw5iX6ifLwWsS2/9o9OM4K/6dCjJOH9AVvQ/D35/Rp1oogi2nJDQLLK23Aux7jghzi8S7vJctE7KL5oq2BKEaC3UcYRnib+j3t2EpXa6T2W9t39im/i4gvOohe/ACe5bDwJ3cHOLgnPXimOBcOoDK2FiHfG4giv/xi+HwNJ+8xTM+hTRuJ7BP9mY0odfQXEKU+5BIeQfGV83IllC6gCxw8qYnwjiizHXlkbPIStJrFE3yCNr+stdkY0vhXoK+prCufHE6fs2uXIIBzEUmcb9Ox/WwMk3J4eJ4z+njQva7yyemFWXq3ilNbEodWp8bkgwKULMu8CCVDWtPcHaTEoJyxjA1kUCek4aCqXHMA+COfJwMxQnNzcEq0LgkOx4u2XJ90YcpvrBYQtOzCX4DPGKi9nbsTuXrM7vcnrbmpUJp7qN6umeXYhbeuqxhiqZFTm6Fudsg6jig=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(46966006)(36840700001)(508600001)(7696005)(2616005)(1076003)(36756003)(426003)(86362001)(356005)(186003)(4744005)(336012)(26005)(5660300002)(6916009)(81166007)(316002)(82310400003)(47076005)(8936002)(2906002)(83380400001)(70586007)(70206006)(8676002)(4326008)(36860700001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2021 13:18:26.5474 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8680714-aef8-47a0-3ae0-08d98414c9a8
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT026.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1147
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,119 +104,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---Sig_/ddt++=ysGel8BF_eUzWWEl2
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Commit 4d706ed6825f ("drm/amdkfd: clean up parameters in kgd2kfd_probe")
+updated paremeters for kgd2kfd_probe. Update the dummy function as well
+when CONFIG_HSA_AMD is not enabled.
 
-On Thu, 23 Sep 2021 10:43:54 +0300
-Pekka Paalanen <ppaalanen@gmail.com> wrote:
+Fixes: 4d706ed6825f ("drm/amdkfd: clean up parameters in kgd2kfd_probe")
+Signed-off-by: Anson Jacob <Anson.Jacob@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-> On Wed, 22 Sep 2021 11:28:37 -0400
-> Harry Wentland <harry.wentland@amd.com> wrote:
->=20
-> > On 2021-09-22 04:31, Pekka Paalanen wrote: =20
-> > > On Tue, 21 Sep 2021 14:05:05 -0400
-> > > Harry Wentland <harry.wentland@amd.com> wrote:
-> > >    =20
-> > >> On 2021-09-21 09:31, Pekka Paalanen wrote:   =20
-> > >>> On Mon, 20 Sep 2021 20:14:50 -0400
-> > >>> Harry Wentland <harry.wentland@amd.com> wrote:
-> > >>>      =20
-> >=20
-> > ...
-> >  =20
-> > >    =20
-> > >> Did anybody start any CM doc patches in Weston or Wayland yet?   =20
-> > >=20
-> > > There is the
-> > > https://gitlab.freedesktop.org/swick/wayland-protocols/-/blob/color/u=
-nstable/color-management/color.rst
-> > > we started a long time ago, and have not really touched it for a whil=
-e.
-> > > Since we last touched it, at least my understanding has developed
-> > > somewhat.
-> > >=20
-> > > It is linked from the overview in
-> > > https://gitlab.freedesktop.org/wayland/wayland-protocols/-/merge_requ=
-ests/14
-> > > and if you want to propose changes, the way to do it is file a MR in
-> > > https://gitlab.freedesktop.org/swick/wayland-protocols/-/merge_reques=
-ts
-> > > against the 'color' branch. Patches very much welcome, that doc does
-> > > not need to limit itself to Wayland. :-)
-> > >    =20
-> >=20
-> > Right, I've read all that a while back.
-> >=20
-> > It might be a good place to consolidate most of the Linux CM/HDR discus=
-sion,
-> > since gitlab is good with allowing discussions, we can track changes, a=
-nd
-> > it's more formatting and diagram friendly than text-only email. =20
->=20
-> Fine by me, but the way things are right now, we'd be hijacking
-> Sebastian's personal repository for these things. That's not ideal.
->=20
-> We can't merge the protocol XML into wayland-protocols until it has the
-> accepted implementations required by the governance rules, but I wonder
-> if we could land color.rst ahead of time, then work on that in
-> wayland-protocols upstream repo.
->=20
-> It's hard to pick a good place for a cross-project document. Any other
-> ideas?
->=20
-> > > We also have issues tracked at
-> > > https://gitlab.freedesktop.org/swick/wayland-protocols/-/issues?scope=
-=3Dall&utf8=3D%E2%9C%93&state=3Dopened =20
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+index 38d883dffc20..69de31754907 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+@@ -346,8 +346,7 @@ static inline void kgd2kfd_exit(void)
+ }
+ 
+ static inline
+-struct kfd_dev *kgd2kfd_probe(struct kgd_dev *kgd, struct pci_dev *pdev,
+-					unsigned int asic_type, bool vf)
++struct kfd_dev *kgd2kfd_probe(struct kgd_dev *kgd, bool vf)
+ {
+ 	return NULL;
+ }
+-- 
+2.25.1
 
-Hi all,
-
-we discussed things in
-https://gitlab.freedesktop.org/swick/wayland-protocols/-/issues/6
-
-and we have a new home for the color related WIP documentation we can
-use across Wayland, Mesa, DRM, and even X11 if people want to:
-
-https://gitlab.freedesktop.org/pq/color-and-hdr
-
-Yes, it's still someone's personal repository, but we avoid entangling
-it with wayland-protocols which also means we can keep the full git
-history. If this gets enough traction, the repository can be moved from
-under my personal group to somewhere more communal, and if that is
-still inside gitlab.fd.o then all merge requests and issues will move
-with it.
-
-The README notes that we will deal out merge permissions as well.
-
-This is not meant to supersede the documentation of individual APIs,
-but to host additional documentation that would be too verbose, too
-big, or out of scope to host within respective API docs.
-
-Feel free to join the effort or just to discuss.
-
-
-Thanks,
-pq
-
---Sig_/ddt++=ysGel8BF_eUzWWEl2
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmFVtd4ACgkQI1/ltBGq
-qqeuAg/+Myd7Qdq39RFm3xljW4XBoE5xgzsEr9UBFBUbW+E/P4yoV7oJY1qqe+gV
-2XHxSu6alfYY/y7qga5g05N9cyZ7FFxsmlUVVFHadhHBIehOk8MkMEJyoVRmfKVq
-U5D3oIOlJtFMrQ4rQXcn5OET1NTrWNU4st8DjoScWK88YnIjIky71BvK+oVJ83Hy
-TbKg4CYPQdtAE1SGp3SIg/dmiOoCpt1C1Pr2796A0KqRdT1FXHQNmdX8iJFqTmn0
-TvZh9adW46xzchSxBT23Yac2yV3DtNfagNA2kQRkSexYIlWJURfLV1KsHL8jqDzF
-MP+Ul6y77loCgeGPO3b8tZDU6VAliDjQg0YiwlcOjRBvH+WSElPsiV7/iIEGnujs
-BGZ67hnH0e39e3WTKD9UKH48l+Q+3IlZjlr9V64kQnbzAKZHx+bW9PYFZ0puAmpP
-DmtgLaSz8ndu+q2VGOFHTKpEz1nDYSk++1xyxFBDp+PNrd7wNZ1JsRN+7/rFmaPv
-fwp+nbs3FF+y7fAjFo3RTifTq1hcP9oW+GPEGja2m41Ly9SXRc9g7ZYk1yQK/ZG/
-arKZUCdcgKtlDftRzpLjeOyn9H59t3pXTEKYvWU0HEVDv4TwsYKItbw+cAUkI0en
-wkOmAT8JfMw42xFRCUXeAu6/ubl7T78rSuXBzSXJNKTfZvX8pkE=
-=Ziuu
------END PGP SIGNATURE-----
-
---Sig_/ddt++=ysGel8BF_eUzWWEl2--
