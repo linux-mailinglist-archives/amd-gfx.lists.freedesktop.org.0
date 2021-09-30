@@ -2,61 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFC5041E045
-	for <lists+amd-gfx@lfdr.de>; Thu, 30 Sep 2021 19:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 570D741E03E
+	for <lists+amd-gfx@lfdr.de>; Thu, 30 Sep 2021 19:34:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 617E66EC3B;
-	Thu, 30 Sep 2021 17:37:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8A4C6EC36;
+	Thu, 30 Sep 2021 17:34:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com
- [IPv6:2a00:1450:4864:20::12e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB68F6EC3B
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 17:30:03 +0000 (UTC)
-Received: by mail-lf1-x12e.google.com with SMTP id i19so25177549lfu.0
- for <amd-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 10:30:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
+ [IPv6:2607:f8b0:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C762D6EC36
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 17:34:12 +0000 (UTC)
+Received: by mail-pf1-x435.google.com with SMTP id u7so5598116pfg.13
+ for <amd-gfx@lists.freedesktop.org>; Thu, 30 Sep 2021 10:34:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ye/qqO0p8PKVzbuUoEwamPcpYGy0s9HnvVApER+R6kA=;
- b=ftI3Z0SVqMbhoWdnhg5bUeF+owpQShwFKiFCCXBcdn4RZHbJbc2J0o5nj5aw/QCKc0
- Vdv2kgukq9RGNxjvjCA3DkRkCBBBad79JhJxxgNrkccjH4TiJmRBW0i0ltEOb3yFMdev
- fFeMeE/vjhHmOt6rD9YvGkHtfgRxvfpXrATQ9+w5QnzKHBDo8urSjo0OMyTAAQJAH+zc
- EwvsOhDC+BRkFf8OyUTq4uGhLOTBNWDzgLni0BSbv5tf0eiZ2g1db+Bz2V5XwFVunwsL
- zbC/56A/1fmE7NB8Ti2l0dQyedYulC894HG+7anlAY/mFjb5fTXbiZUoIMQ/I8y6CLKy
- 8uww==
+ :cc; bh=Mfa7ucchAWzF4UqtlfHlJqP7e5aJ0v35iti1fJik59g=;
+ b=NtD0fIyrFlRI5rv5bGYUYEcj/dcz5PVuGt+PORcNdNmFh5/gQhCaZwPtd//NbP5ryQ
+ wbl3u/S7+Funvepp4U5C9g+yu4RZSWXaXuaYRrOcWFwGkm+bN6ttJLY5b/+NIMRd0Lwg
+ 9Ut6bguQFDcf6uPc4606cle3sk7X/ErJSRcQ9F2STBu5z+x7FCGZZ0d5sFmZodT71zWb
+ /UsIUqhxMIMYjX42rq04820Z99nrjUibf3TnFePOn9WqIBU8ToP5veO15ZYI4Q3Rdcd4
+ UpMbVuMWMzg6zTUP6I/cnZt1aQBF487n+dyJSanZL/AYcoAq91DgP7/U1qksBfcVcfd5
+ gM+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=ye/qqO0p8PKVzbuUoEwamPcpYGy0s9HnvVApER+R6kA=;
- b=ngk8SJJMPX0FXCBX965RobWzq15PoB0E4joC9sS5SZuuTM17zZaiHQGq4zRuvFbZrL
- 3iuOypot8U8yZezI3DgxP/HPGyqLxy6GhX045roz2sOJ6MrR3bzil1iwu+qrfHjUOi2L
- iYznHJueFfL5eH7oSo+i3B297DSwxgHc24FXJMLPGSd/9ivF8y6SZSrxiqgpJagmdry0
- ebVro63XIivunC5wAvJGCqWuhymJ8GAGDapx0tysv3b6f3XUHH6pEF7UXp8clqL2xnND
- W+1lRtpbraXvL6IoK8vQ/cekbskLeWC9OgcFCUGrFF68r9S2jJWlj39iDeZIScCt5jUt
- 7eIQ==
-X-Gm-Message-State: AOAM532shbWWP+/lxX33zt+O1P+wTxncIPMLC0E9aCNGiThCuh9TNdkW
- tyXeI02iXaAPxcOdthBGQfWdR+5pjTYqnXO+LgSsTQ==
-X-Google-Smtp-Source: ABdhPJyhCryWkdo+UwgKGKjWkIyiSDBhEOEx2SxpkNiPWf9uVV7dyEnhQqYnZexjKufQh9L+L+s2Toet+ZTQxKlAHrM=
-X-Received: by 2002:a05:651c:b20:: with SMTP id
- b32mr7192491ljr.62.1633023000715; 
- Thu, 30 Sep 2021 10:30:00 -0700 (PDT)
+ bh=Mfa7ucchAWzF4UqtlfHlJqP7e5aJ0v35iti1fJik59g=;
+ b=qgE6aMKtipiqK+TMQnnizARFlzC0tJLqqTVKnKh8B60f9yjndHB+evONXkfZ/RlrVZ
+ /WCTvncLDq4upTedivSpWFPsENwj5RtDxc8LQVYLku39UIhwp+D3ECMVdU6oru2+Ia9h
+ MdOrufJh3h/MHsX+Hg4V11ETs+94FhxieNUFGapTW/PJ9Jb4NvONXZbTAAEWi9/xFJmt
+ xsPtLvRc3KzQrj/0NorSSz/2AZuzMcF9bIfpGs1lXv6tOjUx07HzPZirDHStYdaMO4lN
+ Y8fxvbPertDIV4zXL3qNY8TdfEYe9QnIyFbZ6IP2xYt/01U+mXqlTH5y/N6FWWHscZVL
+ BHog==
+X-Gm-Message-State: AOAM531rvQ/3pez82LkmKExgOMY7AP7639xC1Iesvk9Zqz3n67WHXkyU
+ 6sFMvML7lT+seHs0q98bISPHPOsXNafPjldWZkbQl4q/
+X-Google-Smtp-Source: ABdhPJwwEQYkYqY8QXSaEHxl/ZbbJXxormUylCNLm4AEUCTwU05Ng32k8BEbyg0Nsk0FalWDjh9tAAJvnF0dlTPgr9A=
+X-Received: by 2002:aa7:9807:0:b0:44b:28b0:747e with SMTP id
+ e7-20020aa79807000000b0044b28b0747emr5513036pfl.42.1633023252143; Thu, 30 Sep
+ 2021 10:34:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210930160142.2301257-1-nathan@kernel.org>
-In-Reply-To: <20210930160142.2301257-1-nathan@kernel.org>
-From: Nick Desaulniers <ndesaulniers@google.com>
-Date: Thu, 30 Sep 2021 10:29:49 -0700
-Message-ID: <CAKwvOdkrD4WuZzUnBc2LeCjLVAumBCKXJdyr=k=dPDX1BsMhOg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amd: Guard IS_OLD_GCC assignment with CONFIG_CC_IS_GCC
-To: Nathan Chancellor <nathan@kernel.org>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- llvm@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Thu, 30 Sep 2021 17:37:41 +0000
+References: <CAAxE2A6a45Vebk4FhH__FG66zDn0m6GbJgK3Bz3o8obePW5P_w@mail.gmail.com>
+ <CADnq5_Ps0j20jOkEuU3xJi=v6Qbvp66dFdZOdYrCSn6Q6uknSQ@mail.gmail.com>
+ <CAAxE2A6mjGL27dGpq1GCGspsa7CffSGO9MhW8LmFmbZ=JzTr_g@mail.gmail.com>
+ <63cbb603-88d4-c1ac-0ead-fd4e0132aa1c@froggi.es>
+In-Reply-To: <63cbb603-88d4-c1ac-0ead-fd4e0132aa1c@froggi.es>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
+Date: Thu, 30 Sep 2021 13:33:36 -0400
+Message-ID: <CAAxE2A7d4gsSiGv+JSnfrK4RudRKzmLd86gjLZkMJcjzoGXzXQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display: fix DCC settings for DCN3
+To: Joshua Ashton <joshua@froggi.es>
+Cc: amd-gfx mailing list <amd-gfx@lists.freedesktop.org>
+Content-Type: multipart/alternative; boundary="000000000000daa23a05cd39dab0"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,61 +68,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 30, 2021 at 9:02 AM Nathan Chancellor <nathan@kernel.org> wrote:
->
-> cc-ifversion only works for GCC, as clang pretends to be GCC 4.2.1 for
-> glibc compatibility, which means IS_OLD_GCC will get set and unsupported
-> flags will be passed to clang when building certain code within the DCN
-> files:
->
-> clang-14: error: unknown argument: '-mpreferred-stack-boundary=4'
-> make[5]: *** [scripts/Makefile.build:277: drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_resource.o] Error 1
->
-> Guard the call to cc-ifversion with CONFIG_CC_IS_GCC so that everything
-> continues to work properly. See commit 00db297106e8 ("drm/amdgpu: fix stack
-> alignment ABI mismatch for GCC 7.1+") for more context.
->
-> Fixes: ff7e396f822f ("drm/amd/display: add cyan_skillfish display support")
-> Link: https://github.com/ClangBuiltLinux/linux/issues/1468
-> Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+--000000000000daa23a05cd39dab0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the patch!
-Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
+The name is kind of correct. It means "64B with no 128B cache line
+straddling", which really means just 64B independent blocks with a small
+modification to support DCC image stores.  They are not true 128B
+independent blocks.
 
-$ grep -rn "ifdef IS_OLD_GCC" drivers/gpu/drm/amd/display/dc/ | wc -l
-11
+Marek
 
-It's probably time to put this pattern in a Makefile under scripts/
-and include it in all of these Makefiles.  Anything to minimize the
-amount of code that has to be carried forward to new subdirs.
+On Thu, Sep 30, 2021 at 12:35 PM Joshua Ashton <joshua@froggi.es> wrote:
 
-> ---
->  drivers/gpu/drm/amd/display/dc/dcn201/Makefile | 2 ++
->  1 file changed, 2 insertions(+)
+> Can we please add documentation for this enum?
 >
-> diff --git a/drivers/gpu/drm/amd/display/dc/dcn201/Makefile b/drivers/gpu/drm/amd/display/dc/dcn201/Makefile
-> index d98d69705117..96cbd4ccd344 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dcn201/Makefile
-> +++ b/drivers/gpu/drm/amd/display/dc/dcn201/Makefile
-> @@ -14,9 +14,11 @@ ifdef CONFIG_PPC64
->  CFLAGS_$(AMDDALPATH)/dc/dcn201/dcn201_resource.o := -mhard-float -maltivec
->  endif
+> This was not necessarily a typo, but me misunderstanding and stuff it
+> working in my testing.
 >
-> +ifdef CONFIG_CC_IS_GCC
->  ifeq ($(call cc-ifversion, -lt, 0701, y), y)
->  IS_OLD_GCC = 1
->  endif
-> +endif
+> I guess I don't understand why hubp_ind_block_64b_no_128bcl is for 64b
+> && 128b when it specifically says "no_128" in the name.
 >
->  ifdef CONFIG_X86
->  ifdef IS_OLD_GCC
+> Is there something about it I am missing or is it just misleading naming?
 >
-> base-commit: b47b99e30cca8906753c83205e8c6179045dd725
-> --
-> 2.33.0.591.gddb1055343
+> - Joshie =F0=9F=90=B8=E2=9C=A8
+>
+> On 9/30/21 17:14, Marek Ol=C5=A1=C3=A1k wrote:
+> > I've also amended the version bump that I forgot to do:
+> >
+> > -#define KMS_DRIVER_MINOR       43
+> > +#define KMS_DRIVER_MINOR       44
+> >
+> > Marek
+> >
+> > On Thu, Sep 30, 2021 at 12:06 PM Alex Deucher <alexdeucher@gmail.com
+> > <mailto:alexdeucher@gmail.com>> wrote:
+> >
+> >     Acked-by: Alex Deucher <alexander.deucher@amd.com
+> >     <mailto:alexander.deucher@amd.com>>
+> >
+> >     On Thu, Sep 30, 2021 at 11:50 AM Marek Ol=C5=A1=C3=A1k <maraeo@gmai=
+l.com
+> >     <mailto:maraeo@gmail.com>> wrote:
+> >      >
+> >      > Hi,
+> >      >
+> >      > Just discovered this typo. Please review.
+> >      >
+> >      > Thanks,
+> >      > Marek
+> >
+>
 >
 
+--000000000000daa23a05cd39dab0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Thanks,
-~Nick Desaulniers
+<div dir=3D"ltr"><div>The name is kind of correct. It means &quot;64B with =
+no 128B cache line straddling&quot;, which really means just 64B independen=
+t blocks with a small modification to support DCC image stores.=C2=A0 They =
+are not true 128B independent blocks.<br></div><div><br></div><div>Marek<br=
+></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Thu, Sep 30, 2021 at 12:35 PM Joshua Ashton &lt;<a href=3D"mailto=
+:joshua@froggi.es">joshua@froggi.es</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex">Can we please add documentation for this=
+ enum?<br>
+<br>
+This was not necessarily a typo, but me misunderstanding and stuff it <br>
+working in my testing.<br>
+<br>
+I guess I don&#39;t understand why hubp_ind_block_64b_no_128bcl is for 64b =
+<br>
+&amp;&amp; 128b when it specifically says &quot;no_128&quot; in the name.<b=
+r>
+<br>
+Is there something about it I am missing or is it just misleading naming?<b=
+r>
+<br>
+- Joshie =F0=9F=90=B8=E2=9C=A8<br>
+<br>
+On 9/30/21 17:14, Marek Ol=C5=A1=C3=A1k wrote:<br>
+&gt; I&#39;ve also amended the version bump that I forgot to do:<br>
+&gt; <br>
+&gt; -#define KMS_DRIVER_MINOR =C2=A0 =C2=A0 =C2=A0 43<br>
+&gt; +#define KMS_DRIVER_MINOR =C2=A0 =C2=A0 =C2=A0 44<br>
+&gt; <br>
+&gt; Marek<br>
+&gt; <br>
+&gt; On Thu, Sep 30, 2021 at 12:06 PM Alex Deucher &lt;<a href=3D"mailto:al=
+exdeucher@gmail.com" target=3D"_blank">alexdeucher@gmail.com</a> <br>
+&gt; &lt;mailto:<a href=3D"mailto:alexdeucher@gmail.com" target=3D"_blank">=
+alexdeucher@gmail.com</a>&gt;&gt; wrote:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0Acked-by: Alex Deucher &lt;<a href=3D"mailto:alexan=
+der.deucher@amd.com" target=3D"_blank">alexander.deucher@amd.com</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:alexander.deucher@amd.=
+com" target=3D"_blank">alexander.deucher@amd.com</a>&gt;&gt;<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0On Thu, Sep 30, 2021 at 11:50 AM Marek Ol=C5=A1=C3=
+=A1k &lt;<a href=3D"mailto:maraeo@gmail.com" target=3D"_blank">maraeo@gmail=
+.com</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:maraeo@gmail.com" targ=
+et=3D"_blank">maraeo@gmail.com</a>&gt;&gt; wrote:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Hi,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Just discovered this typo. Please review.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Thanks,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 &gt; Marek<br>
+&gt; <br>
+<br>
+</blockquote></div>
+
+--000000000000daa23a05cd39dab0--
