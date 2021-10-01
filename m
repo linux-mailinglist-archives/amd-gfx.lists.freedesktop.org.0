@@ -1,129 +1,81 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABCFD41E874
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Oct 2021 09:37:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCA5C41E87D
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Oct 2021 09:39:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB9406ED01;
-	Fri,  1 Oct 2021 07:37:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0D2C6ED0B;
+	Fri,  1 Oct 2021 07:39:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from APC01-HK2-obe.outbound.protection.outlook.com
- (mail-eopbgr1300108.outbound.protection.outlook.com [40.107.130.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7FC46E479;
- Fri,  1 Oct 2021 03:02:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PbFep2jwq5VtcN0QOzkJaEu4l4Ioo2L6X2WMN3Rg2jr1Ipfsd4qGOKF8ANXyhbpnrbo5+BLqP/Tcwh0LClRrGLc0dLREgTfTd7toOOVqpzLODOM4bhLl5jZnN9oMferExU3/rfBbJu4IxSjF/EaQdrbGhRmzOEWCvnE/VKEnrAmqk8OcJg/g6QYIpm1mkE/Pb0SCU5K/qLynGa3dlnZbBvCY4DYjrVHjy7TV+8V6edjEQ0eNBai548l7ztu2Fa5i3Llqw3lJt3Z056NBx93sgBq6n50pvKCMQHZtaR1kM1sSsGjvADE89ggWCq6asRJWmKmn7zy88Bo7LXJaC07CzQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Gjkuss7g5Xcn5DJAfACLhR6ag9X8lJvDNWi1RJki0pk=;
- b=HO4Y6Cr7wdo1bnfKnuLGC3J9XhPESEjlwUhhH4Xs2FQu597fd5gZiIuHPPd2EYYRezWMMYAXMZoSlfpEumHTfRaJvJiN0Dt6QJ8BchyO1IG6wN8ktMjqd53dtjm+AJI6QLNEj6ZSiN3ABTFmaCjaVMFeV8u6uA+u7GI+HxO+Mv02EltoABW9jY6hM5AonTw3vU41PCC/mAQRXoHieRd/PSmA/eddWx4h7K1uyCZLo2Qflr3kT1pPiejM+zZa7v8WKDvCbUqO9pf97QRnqPSCKgRcxFxuCwBeuWFtCsGLThKOSY5Slh2b6YzMXycPlF/fks/RT4/G0I0qc4flU8gB6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
- dkim=pass header.d=vivo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo0.onmicrosoft.com; 
- s=selector2-vivo0-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gjkuss7g5Xcn5DJAfACLhR6ag9X8lJvDNWi1RJki0pk=;
- b=GHrs+etyju1Bv313845RHMjFzup2WRcGrSS8M/euxMwlxsB88KmXzRSe6elLB92lTAMRvD5rcZRnYRVB8G936cg/1QJNyc/apW6iXc2OLWCLquiJu2jI/dvBJtGfZ6VYeCVPBDB6+Vng16YjkR+GUbsHRkLatV0ZqGPrb5WJGW4=
-Received: from HK2PR06MB3492.apcprd06.prod.outlook.com (2603:1096:202:2f::10)
- by HK2PR0601MB2034.apcprd06.prod.outlook.com (2603:1096:202:d::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.17; Fri, 1 Oct
- 2021 03:02:45 +0000
-Received: from HK2PR06MB3492.apcprd06.prod.outlook.com
- ([fe80::80d9:d4e4:300f:3156]) by HK2PR06MB3492.apcprd06.prod.outlook.com
- ([fe80::80d9:d4e4:300f:3156%5]) with mapi id 15.20.4544.023; Fri, 1 Oct 2021
- 03:02:45 +0000
-From: =?utf-8?B?6YOt5q2j5aWO?= <guozhengkui@vivo.com>
-To: =?utf-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>, Simon Ser
- <contact@emersion.fr>
-CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Pan, Xinhui"
- <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>, Daniel Vetter
- <daniel@ffwll.ch>, "Chen, Guchun" <Guchun.Chen@amd.com>, "Zhou, Peng Ju"
- <PengJu.Zhou@amd.com>, "Zhang, Bokun" <Bokun.Zhang@amd.com>, "Gao, Likun"
- <Likun.Gao@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, kernel <kernel@vivo.com>
-Subject: RE: [PATCH] drm/amdgpu: fix some repeated includings
-Thread-Topic: [PATCH] drm/amdgpu: fix some repeated includings
-Thread-Index: AQHXtd+jnd+Qk/24r0K3G7/0oSByiau8XP+AgAAKC3eAAA/TUIAAAZoAgAD8xNA=
-Date: Fri, 1 Oct 2021 03:02:44 +0000
-Message-ID: <HK2PR06MB34925517684D29A3A65F7004C7AB9@HK2PR06MB3492.apcprd06.prod.outlook.com>
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B16376ED0B;
+ Fri,  1 Oct 2021 07:39:32 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id m22so8531796wrb.0;
+ Fri, 01 Oct 2021 00:39:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language;
+ bh=Vmi8oK1Qmx/6rRQluF++rvOQQfA35Z8+nafl9mGZxoM=;
+ b=GGBuLTZfsx9e0Z3PrzAV/DhCNs+0P9yszvgxjEU86qKmu25Y8apQeeCji2gZ3GjqiF
+ xEOzDP2BbDzJPquEHZp4E1EODKw/Zkn0JxiRj6U4V5NIdEDaHLfaklauZ+gaS7fBuD0Q
+ PuNEzANsY5/QjgGHfhA7uOlPoI/I2V/VKbfsDFgM2SkOr/eXdIHiyVW2SeGIRRzQKEQ3
+ 26qmKQP9GFFNMGv2/+qIY5ws3fzUJX3S3KCYNnm5sHR/hy8FbhSR4Ijsb3DhT9rGNKdo
+ j0lGduj3QZ3ffKP0riGNPgYmI7ATkQ/7VfpCL2tezw0dChJi+2J+UHw4yKD64qMtzRDI
+ TzLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language;
+ bh=Vmi8oK1Qmx/6rRQluF++rvOQQfA35Z8+nafl9mGZxoM=;
+ b=rGWZwBUxln6IJwo4/AYzvOlLvUPEPYAyzjNarBgFEFyfa7T86IBIg0RH4BGFtapn/+
+ 5PRC3LZN3N5KKr8E6F/ssePOQVihsB0EelyB7PMC8QQiIPi2gsP54pGUsXWYbvpd7gan
+ i1IJuO1i/yHpt23vAJTuTaiA7NQIs8JeQ9Ccy/+V1BOqTNJfpEataHqIElr3uvZy5y+M
+ KRNcbftGtDt53YW5iZnZ0YLfFD3A01ZTxbmbChnhEN8+1sKP/ZHCj997OkEHQMC8snw6
+ gQASs51InjwG8xt8Q6HD0iizEyjlkyHh+N0PLiFWI2mNDAav6/VnPf0Z7DzZoUPA1ZIw
+ 4Xxg==
+X-Gm-Message-State: AOAM532AjY1AHnK3AuD3/C/imcpHgDNUSBAZz8qaozdIZFXVFDuMWKhv
+ nl4TeY9G7aIqmoYqjXUdoYY=
+X-Google-Smtp-Source: ABdhPJxutc0FgITc15folp+ioGAI6qjvXej2SIGY8JPVpqzINwlypwpCrvHigqfAte48su/uYd/d+g==
+X-Received: by 2002:a05:6000:550:: with SMTP id
+ b16mr10876188wrf.297.1633073970911; 
+ Fri, 01 Oct 2021 00:39:30 -0700 (PDT)
+Received: from [192.168.178.21] (p5b0ea1b5.dip0.t-ipconnect.de.
+ [91.14.161.181])
+ by smtp.gmail.com with ESMTPSA id c132sm7021813wma.22.2021.10.01.00.39.29
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 01 Oct 2021 00:39:30 -0700 (PDT)
+Subject: Re: [PATCH] drm/amdgpu: fix some repeated includings
+To: =?UTF-8?B?6YOt5q2j5aWO?= <guozhengkui@vivo.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Simon Ser <contact@emersion.fr>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, "Chen, Guchun" <Guchun.Chen@amd.com>,
+ "Zhou, Peng Ju" <PengJu.Zhou@amd.com>, "Zhang, Bokun" <Bokun.Zhang@amd.com>,
+ "Gao, Likun" <Likun.Gao@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ kernel <kernel@vivo.com>
 References: <20210930094239.7435-1-guozhengkui@vivo.com>
  <AGiYadRf5XyGUqLxwu3ykKzfwM2BgZo4yCAaEXdQiYfH2dbyKmipDNrclnI2lZH3HzNh71VBy5QKz3O4fFvQETjTI9hoKzKHjZNBz9ERKI8=@emersion.fr>
  <AIAAqwDqEh5BcgkyUT78Xaql.9.1632999287613.Hmail.guozhengkui@vivo.com>
  <HK2PR06MB34922067627E3951C991B678C7AA9@HK2PR06MB3492.apcprd06.prod.outlook.com>
  <AMEAtAA2EiXBtR0JiyxMeqon.9.1633002964630.Hmail.guozhengkui@vivo.com>
-In-Reply-To: <AMEAtAA2EiXBtR0JiyxMeqon.9.1633002964630.Hmail.guozhengkui@vivo.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=vivo.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f30ba26d-44c0-4dab-d94c-08d98487f139
-x-ms-traffictypediagnostic: HK2PR0601MB2034:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HK2PR0601MB2034E5B0DA88805D960B0B63C7AB9@HK2PR0601MB2034.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: jPk7W2gP4PbZWMglilTsaKgx0kzHdZE/v4/rGpiP7iWTFgmS6jPDTQ+8ibW3hZ1nJHbNTSdyLUnyWW7M+YtPgldVYFadt7aipYGgZQ7VSKx7IMtu71m4QsAQcHfUvrQzOzB1g9fI0KpL0W4QEoMT/HBeNqRxtOOsWnjp98zHnQ8lOWGJm0UEzrP8h3yw3T4rnjnjFpAY5sV/x+r4ePgPGBABqy9rbGSjs02FGOwus3DIVGUhSuF1nDjEAVw1WG5nF72ZEcoZNCyW8XsLocy3Xu+cCI1jOa9gQ9PE1/lzddFGrnBSYfBbKz9Id+Sd6MWRBp4bpsmoXM1AbRL6Jtn+IxaoqWj4aTNTUIoKkNkQPS74zR5qwo0BaUDHivfteOAZaEclaeaxv21CoCGxS7ylOEsu/Xpn1PGfGDSVQrHzl9sjiT5MbOniuK4KXguHVPAcMw9FK6tL4/CSydRMpl2hdNcJlKaEt1i2iXeDfn2EnQFEWtYx9tXJF2J38sM8lDHZ6Rhk1lmFU7iJSctA/a3Di5bHWr8Pm259/ctnBNw9ecPH1ElKg8kkaJ1czM3SDFw/d/0vgjOng5UyQgOmkjQV7DjanPYjjPvt2ZlYGhRZ8Yr6+Z7c7deYcznUuBcg6bE2dk3yCKrSzUEaQxMa1tpDf/H4JHXKSQPwgRCybfSZDgbUEVCSc8vDYrlbbqiet3V53jzz0X/2/wu3Hhefh7Envg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:HK2PR06MB3492.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(6506007)(85182001)(53546011)(26005)(186003)(38070700005)(83380400001)(76116006)(66946007)(107886003)(71200400001)(4326008)(7696005)(66476007)(7416002)(38100700002)(55016002)(508600001)(33656002)(66446008)(122000001)(9686003)(64756008)(66556008)(52536014)(5660300002)(86362001)(316002)(54906003)(110136005)(8676002)(8936002)(2906002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZDdhN1R4b1ZadnpubUIxR1QzVmQ0SnNkSHF0bE9JdE5qVngxTGduTmNnUWVM?=
- =?utf-8?B?c0lQaVhNQUFRSUQzYWxwZXZIVXdCYTZBRWIwakl4WXpQSHVkU0RZMWkyWU83?=
- =?utf-8?B?QnZFaHpsck9aTzMrY01FMjU0THpRRE9MYjF5Y1NTYTZkYXlVUFU0b3RTZVNL?=
- =?utf-8?B?TEhud0F0WTduMXQ4djd3dm8vWERPdFd5Z1FsM3FDclJtenFIRlcxUlhmREU4?=
- =?utf-8?B?bFFRL0krckwvL0ZUdHJoRjN5VW1FQmVOM0ttVGNicUhPTnZXMml2ZFI1Vlpt?=
- =?utf-8?B?QXhBZWZDdzRqWWRPWjNPQjh2Vi9hbWVGdzFrc3p5ZHA3Um4zczlQWUFyWkoz?=
- =?utf-8?B?QkQ5YWlDcDNBOHhUbjM0czhZOWdkVXdDSmh4SHhmSmM1bTdJZ2czTTgraDNX?=
- =?utf-8?B?NUpySGVkU3JGMGtIZTBuVzV4RGpQRkJNZDI0aEpkTi9oSW1sYjJtUUh5OEh1?=
- =?utf-8?B?OXNzRmF5L1QxbEUrSTNsMThjNFRMT3M4cThtMm1yYUREcVFOTDlnY3dOVFJ4?=
- =?utf-8?B?cGdiS0ZmZ3k3eS8yRS9pNllFb2FSNTRobjY5M3JqdXJjT2R1NUhFVzVPUCtZ?=
- =?utf-8?B?Zi9XTXlEbXdKaGhROWZJVHpFZ0ZacHZBRHBVU244UTIzK2F6Qzl0aWZJSzNK?=
- =?utf-8?B?ZDdZZXJ1VHNoU0VZbk1lbGM4UUtQWUN1VjltdTN4eXZscTMrN21oVVlrekJO?=
- =?utf-8?B?dXp1VTNINXg4NzFWZW1PUEpaVVVWWTFYSjd5Y0JrbjR5dk5pM2l1WjdMS2p0?=
- =?utf-8?B?cnZlZE9MaEZPaGVKVEd4djRaWXlXakE4dkdWeExkQ0NXMmU3NlEwaUo5VjlR?=
- =?utf-8?B?cEE3cHVCRW80ekhyR1MwbGdJajBBdnZuMTJVUFJSOFRNUkFJUzBFMmk5TkFZ?=
- =?utf-8?B?M2x1bzFOTHNRSUI3YXlEZEc0TTAxSXRwWW9ZYXV5ZXh4blJ0dVdSMi91ODY5?=
- =?utf-8?B?T2dBMk5rUWgyNTE2R3BBSXo4anJpMXpXT0R6cFY0dHh4dnVjMzluYmhDcUFi?=
- =?utf-8?B?Z2E2ZDVVb0srbzlreitDbzdBbk1zNzBRUHJWQ3dNejMwdzZVaTZMdzgwMDUx?=
- =?utf-8?B?b3M0YzQ0Qml4dDRGY3RmMy9EbzFNM0V1eE1jU3RDd3I3WG5QMEVWMEtxRmor?=
- =?utf-8?B?REdhbHlmclFDWTlCNE5KUFgzQXZjUSs2R3QwaVBVb1lMa3VOTVlBSnNQd3BF?=
- =?utf-8?B?M1V4YVcrRFVMaStydFN6aTZsd01xKzJJSURET2huQ2VrK1BFc3pxMXprcTMv?=
- =?utf-8?B?Q0w3ZnJObDgvbUE5Lzh6Vkx2Z3ZLUXJtZjFTUHRodFBNUjRIeEN6WU1Zd3RE?=
- =?utf-8?B?Q2ptNkZURldkVlI3eGVyOXJ1Zm42dFRES0NRKzUraDluc2Z2ZGxaTXlwMEFI?=
- =?utf-8?B?dHFSRXNFT21QVkd4dXh4QVF0MGJvb2xUVlBGN2t5R2RHZlVBd3V0N3NiYkMz?=
- =?utf-8?B?RjFhNjUzei9wWTlaT3lUTmp2WVVLSjRHQUdiWEdtSStFd1QxcWpWVzhzRU0y?=
- =?utf-8?B?dmEybkVjdFVXVmdGS0k5ZUJqOU5zUkJwdjBGaGJZbkZwTTJwc3VKbWhZTlZk?=
- =?utf-8?B?VVhyL3NjeGJpTmhVYmQ2dHdFeXBLMWJnMUFyRzJFNUE5dFJWQ29nRzNZVWIw?=
- =?utf-8?B?S3BnUllUbVBtQjN3NG1HZVh2NTA4SEtPZE4zRzBQQ3g2bklBR0lIemxGK0lB?=
- =?utf-8?B?ZUh6RitUSlY0MjNRcHJHQ0RtWW1PNlNQeG9KVjVHc0t2d0pOZHgxVUo3VVRK?=
- =?utf-8?Q?RWx7AOiljGr4StIx64=3D?=
-Content-Type: multipart/alternative;
- boundary="_000_HK2PR06MB34925517684D29A3A65F7004C7AB9HK2PR06MB3492apcp_"
+ <HK2PR06MB34925517684D29A3A65F7004C7AB9@HK2PR06MB3492.apcprd06.prod.outlook.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <12b42051-761f-099e-6797-8512aa00f5a3@gmail.com>
+Date: Fri, 1 Oct 2021 09:39:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK2PR06MB3492.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f30ba26d-44c0-4dab-d94c-08d98487f139
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2021 03:02:44.8859 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2Tf6fKUpgNHa85/2nna2KQkiadAfJvPsBL7FR8Xov1FHHiSU4jeO5XzgvSQluP3Cy5cl9d6szWOxXN09Tm2t3Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR0601MB2034
-X-Mailman-Approved-At: Fri, 01 Oct 2021 07:37:16 +0000
+In-Reply-To: <HK2PR06MB34925517684D29A3A65F7004C7AB9@HK2PR06MB3492.apcprd06.prod.outlook.com>
+Content-Type: multipart/alternative;
+ boundary="------------2B72E5D17A1A4CFBD380E9F9"
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,269 +90,395 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_HK2PR06MB34925517684D29A3A65F7004C7AB9HK2PR06MB3492apcp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------2B72E5D17A1A4CFBD380E9F9
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-U28sIGl0IG1lYW5zIEkgbmVlZCB0byBtYWtlIGFub3RoZXIgY29tbWl0Pw0KDQpaaGVuZ2t1aQ0K
-RnJvbTogZ3VvemhlbmdrdWlAdml2by5jb20gPGd1b3poZW5na3VpQHZpdm8uY29tPiBPbiBCZWhh
-bGYgT2YgQ2hyaXN0aWFuIEs/bmlnDQpTZW50OiBUaHVyc2RheSwgU2VwdGVtYmVyIDMwLCAyMDIx
-IDc6NTYgUE0NClRvOiBHdW8gWmhlbmdrdWkgPGd1b3poZW5na3VpQHZpdm8uY29tPjsgU2ltb24g
-U2VyIDxjb250YWN0QGVtZXJzaW9uLmZyPg0KQ2M6IERldWNoZXIsIEFsZXhhbmRlciA8QWxleGFu
-ZGVyLkRldWNoZXJAYW1kLmNvbT47IFBhbiwgWGluaHVpIDxYaW5odWkuUGFuQGFtZC5jb20+OyBE
-YXZpZCBBaXJsaWUgPGFpcmxpZWRAbGludXguaWU+OyBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3
-bGwuY2g+OyBDaGVuLCBHdWNodW4gPEd1Y2h1bi5DaGVuQGFtZC5jb20+OyBaaG91LCBQZW5nIEp1
-IDxQZW5nSnUuWmhvdUBhbWQuY29tPjsgWmhhbmcsIEJva3VuIDxCb2t1bi5aaGFuZ0BhbWQuY29t
-PjsgR2FvLCBMaWt1biA8TGlrdW4uR2FvQGFtZC5jb20+OyBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZzsgZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgbGludXgta2VybmVsQHZn
-ZXIua2VybmVsLm9yZzsga2VybmVsIDxrZXJuZWxAdml2by5jb20+DQpTdWJqZWN0OiBSZTogW1BB
-VENIXSBkcm0vYW1kZ3B1OiBmaXggc29tZSByZXBlYXRlZCBpbmNsdWRpbmdzDQoNCkFoLCB0aGF0
-IG1ha2VzIG1vcmUgc2Vuc2UuIFRoZW4gcGxlYXNlIHJlbW92ZSB0aGUgZHVwbGljYXRlcyBpbiBs
-aW5lcyA0NiBhbmQgNDcgaW5zdGVhZCBzaW5jZSB0aGUgb3RoZXIgb25lcyBhcmUgbW9yZSBjb3Jy
-ZWN0bHkgZ3JvdXBlZCB0b2dldGhlciB3aXRoIHRoZWlyIGJsb2Nrcy4NCg0KQ2hyaXN0aWFuLg0K
-QW0gMzAuMDkuMjEgdW0gMTM6NTQgc2NocmllYiDpg63mraPlpY46DQpBY3R1YWxseSB0aGUgZHVw
-bGljYXRlcyB0YWtlIHBsYWNlIGluIGxpbmUgNDYsIDQ3IGFuZCA2MiwgNjMuDQoNCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGlzY292ZXJ5LmMgYi9kcml2
-ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGlzY292ZXJ5LmMNCmluZGV4IDI5MWE0N2Y3
-OTkyYS4uOTRmY2E1NjU4M2EwIDEwMDY0NA0KLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvYW1kZ3B1X2Rpc2NvdmVyeS5jDQorKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
-bWRncHVfZGlzY292ZXJ5LmMNCkBAIC00NiwzNCArNDYsMzIgQEANCiNpbmNsdWRlICJ2Y25fdjJf
-MC5oIg0KI2luY2x1ZGUgImpwZWdfdjJfMC5oIg0KI2luY2x1ZGUgInZjbl92Ml81LmgiDQojaW5j
-bHVkZSAianBlZ192Ml81LmgiDQojaW5jbHVkZSAic211aW9fdjlfMC5oIg0KI2luY2x1ZGUgImdt
-Y192MTBfMC5oIg0KI2luY2x1ZGUgImdmeGh1Yl92Ml8wLmgiDQojaW5jbHVkZSAibW1odWJfdjJf
-MC5oIg0KI2luY2x1ZGUgIm5iaW9fdjJfMy5oIg0KI2luY2x1ZGUgIm5iaW9fdjdfMi5oIg0KI2lu
-Y2x1ZGUgImhkcF92NV8wLmgiDQojaW5jbHVkZSAibnYuaCINCiNpbmNsdWRlICJuYXZpMTBfaWgu
-aCINCiNpbmNsdWRlICJnZnhfdjEwXzAuaCINCiNpbmNsdWRlICJzZG1hX3Y1XzAuaCINCiNpbmNs
-dWRlICJzZG1hX3Y1XzIuaCINCi0jaW5jbHVkZSAidmNuX3YyXzAuaCINCi0jaW5jbHVkZSAianBl
-Z192Ml8wLmgiDQojaW5jbHVkZSAidmNuX3YzXzAuaCINCiNpbmNsdWRlICJqcGVnX3YzXzAuaCIN
-CiNpbmNsdWRlICJhbWRncHVfdmttcy5oIg0KI2luY2x1ZGUgIm1lc192MTBfMS5oIg0KI2luY2x1
-ZGUgInNtdWlvX3YxMV8wLmgiDQojaW5jbHVkZSAic211aW9fdjExXzBfNi5oIg0KI2luY2x1ZGUg
-InNtdWlvX3YxM18wLmgiDQoNCk1PRFVMRV9GSVJNV0FSRSgiYW1kZ3B1L2lwX2Rpc2NvdmVyeS5i
-aW4iKTsNCg0KI2RlZmluZSBtbVJDQ19DT05GSUdfTUVNU0laRSAgIDB4ZGUzDQojZGVmaW5lIG1t
-TU1fSU5ERVggICAgICAgICAgICAgMHgwDQojZGVmaW5lIG1tTU1fSU5ERVhfSEkgICAgICAgICAg
-MHg2DQojZGVmaW5lIG1tTU1fREFUQSAgICAgICAgICAgICAgMHgxDQoNCnN0YXRpYyBjb25zdCBj
-aGFyICpod19pZF9uYW1lc1tIV19JRF9NQVhdID0gew0KDQo=
+It means that you should modify your patch, yes.
 
---_000_HK2PR06MB34925517684D29A3A65F7004C7AB9HK2PR06MB3492apcp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Regards,
+Christian.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
-b250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0
-O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6562J57q/Ow0KCXBhbm9zZS0xOjIgMSA2IDAg
-MyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9z
-ZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Ik1T
-IFBHb3RoaWMiOw0KCXBhbm9zZS0xOjIgMTEgNiAwIDcgMiA1IDggMiA0O30NCkBmb250LWZhY2UN
-Cgl7Zm9udC1mYW1pbHk6IlxA562J57q/IjsNCglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAx
-O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IlxATVMgUEdvdGhpYyI7fQ0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseToiXEDlrovkvZMiOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAx
-IDE7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OiJNUyBQR290aGljIixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkpB
-O30NCnNwYW4uRW1haWxTdHlsZTE5DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0K
-CWZvbnQtZmFtaWx5Ouetiee6vzsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0
-DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBh
-Z2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3Mi4wcHQg
-OTAuMHB0IDcyLjBwdCA5MC4wcHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0
-aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZh
-dWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwh
-LS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86
-aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFb
-ZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJaSC1DTiIgbGluaz0iIzA1NjNDMSIgdmxp
-bms9IiM5NTRGNzIiIHN0eWxlPSJ3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8ZGl2IGNsYXNzPSJX
-b3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
-eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5n
-dWFnZTpaSC1DTiI+U28sIGl0IG1lYW5zIEkgbmVlZCB0byBtYWtlIGFub3RoZXIgY29tbWl0Pzxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVO
-LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVh
-c3QtbGFuZ3VhZ2U6WkgtQ04iPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtm
-b250LWZhbWlseTrnrYnnur87bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPlpoZW5na3VpPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRl
-ci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
-OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZh
-cmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyIg
-c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oyxz
-YW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj4gZ3VvemhlbmdrdWlAdml2by5j
-b20NCiAmbHQ7Z3VvemhlbmdrdWlAdml2by5jb20mZ3Q7IDxiPk9uIEJlaGFsZiBPZiA8L2I+Q2hy
-aXN0aWFuIEs/bmlnPGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBTZXB0ZW1iZXIgMzAsIDIw
-MjEgNzo1NiBQTTxicj4NCjxiPlRvOjwvYj4gR3VvIFpoZW5na3VpICZsdDtndW96aGVuZ2t1aUB2
-aXZvLmNvbSZndDs7IFNpbW9uIFNlciAmbHQ7Y29udGFjdEBlbWVyc2lvbi5mciZndDs8YnI+DQo8
-Yj5DYzo8L2I+IERldWNoZXIsIEFsZXhhbmRlciAmbHQ7QWxleGFuZGVyLkRldWNoZXJAYW1kLmNv
-bSZndDs7IFBhbiwgWGluaHVpICZsdDtYaW5odWkuUGFuQGFtZC5jb20mZ3Q7OyBEYXZpZCBBaXJs
-aWUgJmx0O2FpcmxpZWRAbGludXguaWUmZ3Q7OyBEYW5pZWwgVmV0dGVyICZsdDtkYW5pZWxAZmZ3
-bGwuY2gmZ3Q7OyBDaGVuLCBHdWNodW4gJmx0O0d1Y2h1bi5DaGVuQGFtZC5jb20mZ3Q7OyBaaG91
-LCBQZW5nIEp1ICZsdDtQZW5nSnUuWmhvdUBhbWQuY29tJmd0OzsgWmhhbmcsIEJva3VuICZsdDtC
-b2t1bi5aaGFuZ0BhbWQuY29tJmd0OzsNCiBHYW8sIExpa3VuICZsdDtMaWt1bi5HYW9AYW1kLmNv
-bSZndDs7IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBkcmktZGV2ZWxAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBrZXJuZWwgJmx0O2tl
-cm5lbEB2aXZvLmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtQQVRDSF0gZHJtL2Ft
-ZGdwdTogZml4IHNvbWUgcmVwZWF0ZWQgaW5jbHVkaW5nczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+
-PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
-Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48c3BhbiBsYW5nPSJFTi1VUyI+QWgsIHRoYXQgbWFrZXMg
-bW9yZSBzZW5zZS4gVGhlbiBwbGVhc2UgcmVtb3ZlIHRoZSBkdXBsaWNhdGVzIGluIGxpbmVzIDQ2
-IGFuZCA0NyBpbnN0ZWFkIHNpbmNlIHRoZSBvdGhlciBvbmVzIGFyZSBtb3JlIGNvcnJlY3RseSBn
-cm91cGVkIHRvZ2V0aGVyIHdpdGggdGhlaXIgYmxvY2tzLjxicj4NCjxicj4NCkNocmlzdGlhbi48
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-bGFuZz0iRU4tVVMiPkFtIDMwLjA5LjIxIHVtIDEzOjU0IHNjaHJpZWIgPC9zcGFuPjxzcGFuIGxh
-bmc9IkpBIj7pg63mraPlpY48L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjo8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21h
-cmdpbi1ib3R0b206NS4wcHQiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
-VVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFz
-dC1sYW5ndWFnZTpaSC1DTiI+QWN0dWFsbHkgdGhlIGR1cGxpY2F0ZXMgdGFrZSBwbGFjZSBpbiBs
-aW5lIDQ2LCA0NyBhbmQgNjIsIDYzLjwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
-eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5n
-dWFnZTpaSC1DTiI+Jm5ic3A7PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
-ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdl
-OlpILUNOIj5kaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rp
-c2NvdmVyeS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rpc2NvdmVyeS5j
-PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7
-Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj5pbmRleCAyOTFh
-NDdmNzk5MmEuLjk0ZmNhNTY1ODNhMCAxMDA2NDQ8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVO
-LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVh
-c3QtbGFuZ3VhZ2U6WkgtQ04iPi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
-dV9kaXNjb3ZlcnkuYzwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250
-LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1D
-TiI+KysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rpc2NvdmVyeS5jPC9z
-cGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9u
-dC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj5AQCAtNDYsMzQgKzQ2
-LDMyIEBAPC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZTox
-MC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj4jaW5j
-bHVkZSAmcXVvdDt2Y25fdjJfMC5oJnF1b3Q7PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
-UyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0
-LWxhbmd1YWdlOlpILUNOIj4jaW5jbHVkZSAmcXVvdDtqcGVnX3YyXzAuaCZxdW90Ozwvc3Bhbj48
-c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFt
-aWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2luY2x1ZGUgJnF1b3Q7dmNu
-X3YyXzUuaCZxdW90Ozwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250
-LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1D
-TiI+I2luY2x1ZGUgJnF1b3Q7anBlZ192Ml81LmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4t
-VVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
-bmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNv
-LWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O3NtdWlvX3Y5XzAuaCZxdW90
-Ozwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0
-O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2luY2x1ZGUg
-JnF1b3Q7Z21jX3YxMF8wLmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9v
-OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
-dHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVhc3QtbGFu
-Z3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O2dmeGh1Yl92Ml8wLmgmcXVvdDs8L3NwYW4+PHNw
-YW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWls
-eTrnrYnnur87bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O21taHVi
-X3YyXzAuaCZxdW90Ozwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250
-LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1D
-TiI+I2luY2x1ZGUgJnF1b3Q7bmJpb192Ml8zLmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4t
-VVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
-bmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNv
-LWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O25iaW9fdjdfMi5oJnF1b3Q7
-PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7
-Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj4jaW5jbHVkZSAm
-cXVvdDtoZHBfdjVfMC5oJnF1b3Q7PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
-bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1
-YWdlOlpILUNOIj4jaW5jbHVkZSAmcXVvdDtudi5oJnF1b3Q7PC9zcGFuPjxzcGFuIGxhbmc9IkVO
-LVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBs
-YW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21z
-by1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj4jaW5jbHVkZSAmcXVvdDtuYXZpMTBfaWguaCZxdW90
-Ozwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0
-O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2luY2x1ZGUg
-JnF1b3Q7Z2Z4X3YxMF8wLmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9v
-OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
-dHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVhc3QtbGFu
-Z3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O3NkbWFfdjVfMC5oJnF1b3Q7PC9zcGFuPjxzcGFu
-IGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6
-562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj4jaW5jbHVkZSAmcXVvdDtzZG1hX3Y1
-XzIuaCZxdW90Ozwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNp
-emU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+
-LSNpbmNsdWRlICZxdW90O3Zjbl92Ml8wLmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMi
-PjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9
-IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZh
-cmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPi0jaW5jbHVkZSAmcXVvdDtqcGVnX3YyXzAuaCZxdW90Ozwv
-c3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2Zv
-bnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2luY2x1ZGUgJnF1
-b3Q7dmNuX3YzXzAuaCZxdW90Ozwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxl
-PSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFn
-ZTpaSC1DTiI+I2luY2x1ZGUgJnF1b3Q7anBlZ192M18wLmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFu
-Zz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnn
-ur87bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O2FtZGdwdV92a21z
-LmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
-OjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiNp
-bmNsdWRlICZxdW90O21lc192MTBfMS5oJnF1b3Q7PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJF
-Ti1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJl
-YXN0LWxhbmd1YWdlOlpILUNOIj4jaW5jbHVkZSAmcXVvdDtzbXVpb192MTFfMC5oJnF1b3Q7PC9z
-cGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9u
-dC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj4jaW5jbHVkZSAmcXVv
-dDtzbXVpb192MTFfMF82LmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9v
-OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
-dHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVhc3QtbGFu
-Z3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O3NtdWlvX3YxM18wLmgmcXVvdDs8L3NwYW4+PHNw
-YW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWls
-eTrnrYnnur87bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiZuYnNwOzwvc3Bhbj48c3BhbiBs
-YW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouet
-iee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+TU9EVUxFX0ZJUk1XQVJFKCZxdW90O2Ft
-ZGdwdS9pcF9kaXNjb3ZlcnkuYmluJnF1b3Q7KTs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVO
-LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVh
-c3QtbGFuZ3VhZ2U6WkgtQ04iPiZuYnNwOzwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
-IHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1s
-YW5ndWFnZTpaSC1DTiI+I2RlZmluZSBtbVJDQ19DT05GSUdfTUVNU0laRSZuYnNwOyZuYnNwOyAw
-eGRlMzwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAu
-NXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2RlZmlu
-ZSBtbU1NX0lOREVYJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDB4MDwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0i
-RU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFy
-ZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2RlZmluZSBtbU1NX0lOREVYX0hJJm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDB4Njwvc3Bhbj48c3BhbiBs
-YW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouet
-iee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2RlZmluZSBtbU1NX0RBVEEmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsgMHgxPC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
-ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdl
-OlpILUNOIj4mbmJzcDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9u
-dC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6Wkgt
-Q04iPnN0YXRpYyBjb25zdCBjaGFyICpod19pZF9uYW1lc1tIV19JRF9NQVhdID0gezwvc3Bhbj48
-c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9ibG9ja3F1b3RlPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LWZhbWls
-eTrlrovkvZM7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
-cGFuPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+Am 01.10.21 um 05:02 schrieb 郭正奎:
+>
+> So, it means I need to make another commit?
+>
+> Zhengkui
+>
+> *From:*guozhengkui@vivo.com <guozhengkui@vivo.com> *On Behalf Of 
+> *Christian K?nig
+> *Sent:* Thursday, September 30, 2021 7:56 PM
+> *To:* Guo Zhengkui <guozhengkui@vivo.com>; Simon Ser <contact@emersion.fr>
+> *Cc:* Deucher, Alexander <Alexander.Deucher@amd.com>; Pan, Xinhui 
+> <Xinhui.Pan@amd.com>; David Airlie <airlied@linux.ie>; Daniel Vetter 
+> <daniel@ffwll.ch>; Chen, Guchun <Guchun.Chen@amd.com>; Zhou, Peng Ju 
+> <PengJu.Zhou@amd.com>; Zhang, Bokun <Bokun.Zhang@amd.com>; Gao, Likun 
+> <Likun.Gao@amd.com>; amd-gfx@lists.freedesktop.org; 
+> dri-devel@lists.freedesktop.org; linux-kernel@vger.kernel.org; kernel 
+> <kernel@vivo.com>
+> *Subject:* Re: [PATCH] drm/amdgpu: fix some repeated includings
+>
+> Ah, that makes more sense. Then please remove the duplicates in lines 
+> 46 and 47 instead since the other ones are more correctly grouped 
+> together with their blocks.
+>
+> Christian.
+>
+> Am 30.09.21 um 13:54 schrieb 郭正奎:
+>
+>     Actually the duplicates take place in line 46, 47 and 62, 63.
+>
+>     diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+>     b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+>
+>     index 291a47f7992a..94fca56583a0 100644
+>
+>     --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+>
+>     +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+>
+>     @@ -46,34 +46,32 @@
+>
+>     #include "vcn_v2_0.h"
+>
+>     #include "jpeg_v2_0.h"
+>
+>     #include "vcn_v2_5.h"
+>
+>     #include "jpeg_v2_5.h"
+>
+>     #include "smuio_v9_0.h"
+>
+>     #include "gmc_v10_0.h"
+>
+>     #include "gfxhub_v2_0.h"
+>
+>     #include "mmhub_v2_0.h"
+>
+>     #include "nbio_v2_3.h"
+>
+>     #include "nbio_v7_2.h"
+>
+>     #include "hdp_v5_0.h"
+>
+>     #include "nv.h"
+>
+>     #include "navi10_ih.h"
+>
+>     #include "gfx_v10_0.h"
+>
+>     #include "sdma_v5_0.h"
+>
+>     #include "sdma_v5_2.h"
+>
+>     -#include "vcn_v2_0.h"
+>
+>     -#include "jpeg_v2_0.h"
+>
+>     #include "vcn_v3_0.h"
+>
+>     #include "jpeg_v3_0.h"
+>
+>     #include "amdgpu_vkms.h"
+>
+>     #include "mes_v10_1.h"
+>
+>     #include "smuio_v11_0.h"
+>
+>     #include "smuio_v11_0_6.h"
+>
+>     #include "smuio_v13_0.h"
+>
+>     MODULE_FIRMWARE("amdgpu/ip_discovery.bin");
+>
+>     #define mmRCC_CONFIG_MEMSIZE   0xde3
+>
+>     #define mmMM_INDEX             0x0
+>
+>     #define mmMM_INDEX_HI          0x6
+>
+>     #define mmMM_DATA              0x1
+>
+>     static const char *hw_id_names[HW_ID_MAX] = {
+>
 
---_000_HK2PR06MB34925517684D29A3A65F7004C7AB9HK2PR06MB3492apcp_--
+
+--------------2B72E5D17A1A4CFBD380E9F9
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    It means that you should modify your patch, yes.<br>
+    <br>
+    Regards,<br>
+    Christian.<br>
+    <br>
+    <div class="moz-cite-prefix">Am 01.10.21 um 05:02 schrieb 郭正奎:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:HK2PR06MB34925517684D29A3A65F7004C7AB9@HK2PR06MB3492.apcprd06.prod.outlook.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:等线;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
+	{font-family:"MS PGothic";
+	panose-1:2 11 6 0 7 2 5 8 2 4;}@font-face
+	{font-family:"\@等线";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
+	{font-family:"\@MS PGothic";}@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:12.0pt;
+	font-family:"MS PGothic",sans-serif;
+	mso-fareast-language:JA;}span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:等线;
+	color:windowtext;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal"><span
+            style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+            lang="EN-US">So, it means I need to make another commit?<o:p></o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+            lang="EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span
+            style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+            lang="EN-US">Zhengkui<o:p></o:p></span></p>
+        <div>
+          <div style="border:none;border-top:solid #E1E1E1
+            1.0pt;padding:3.0pt 0cm 0cm 0cm">
+            <p class="MsoNormal"><b><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:ZH-CN"
+                  lang="EN-US">From:</span></b><span
+style="font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:ZH-CN"
+                lang="EN-US"> <a class="moz-txt-link-abbreviated" href="mailto:guozhengkui@vivo.com">guozhengkui@vivo.com</a>
+                <a class="moz-txt-link-rfc2396E" href="mailto:guozhengkui@vivo.com">&lt;guozhengkui@vivo.com&gt;</a> <b>On Behalf Of </b>Christian
+                K?nig<br>
+                <b>Sent:</b> Thursday, September 30, 2021 7:56 PM<br>
+                <b>To:</b> Guo Zhengkui <a class="moz-txt-link-rfc2396E" href="mailto:guozhengkui@vivo.com">&lt;guozhengkui@vivo.com&gt;</a>;
+                Simon Ser <a class="moz-txt-link-rfc2396E" href="mailto:contact@emersion.fr">&lt;contact@emersion.fr&gt;</a><br>
+                <b>Cc:</b> Deucher, Alexander
+                <a class="moz-txt-link-rfc2396E" href="mailto:Alexander.Deucher@amd.com">&lt;Alexander.Deucher@amd.com&gt;</a>; Pan, Xinhui
+                <a class="moz-txt-link-rfc2396E" href="mailto:Xinhui.Pan@amd.com">&lt;Xinhui.Pan@amd.com&gt;</a>; David Airlie
+                <a class="moz-txt-link-rfc2396E" href="mailto:airlied@linux.ie">&lt;airlied@linux.ie&gt;</a>; Daniel Vetter
+                <a class="moz-txt-link-rfc2396E" href="mailto:daniel@ffwll.ch">&lt;daniel@ffwll.ch&gt;</a>; Chen, Guchun
+                <a class="moz-txt-link-rfc2396E" href="mailto:Guchun.Chen@amd.com">&lt;Guchun.Chen@amd.com&gt;</a>; Zhou, Peng Ju
+                <a class="moz-txt-link-rfc2396E" href="mailto:PengJu.Zhou@amd.com">&lt;PengJu.Zhou@amd.com&gt;</a>; Zhang, Bokun
+                <a class="moz-txt-link-rfc2396E" href="mailto:Bokun.Zhang@amd.com">&lt;Bokun.Zhang@amd.com&gt;</a>; Gao, Likun
+                <a class="moz-txt-link-rfc2396E" href="mailto:Likun.Gao@amd.com">&lt;Likun.Gao@amd.com&gt;</a>;
+                <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>;
+                <a class="moz-txt-link-abbreviated" href="mailto:dri-devel@lists.freedesktop.org">dri-devel@lists.freedesktop.org</a>;
+                <a class="moz-txt-link-abbreviated" href="mailto:linux-kernel@vger.kernel.org">linux-kernel@vger.kernel.org</a>; kernel
+                <a class="moz-txt-link-rfc2396E" href="mailto:kernel@vivo.com">&lt;kernel@vivo.com&gt;</a><br>
+                <b>Subject:</b> Re: [PATCH] drm/amdgpu: fix some
+                repeated includings<o:p></o:p></span></p>
+          </div>
+        </div>
+        <p class="MsoNormal"><span lang="EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal" style="margin-bottom:12.0pt"><span
+            lang="EN-US">Ah, that makes more sense. Then please remove
+            the duplicates in lines 46 and 47 instead since the other
+            ones are more correctly grouped together with their blocks.<br>
+            <br>
+            Christian.<o:p></o:p></span></p>
+        <div>
+          <p class="MsoNormal"><span lang="EN-US">Am 30.09.21 um 13:54
+              schrieb </span><span lang="JA">郭正奎</span><span
+              lang="EN-US">:<o:p></o:p></span></p>
+        </div>
+        <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">Actually the duplicates take place in line
+              46, 47 and 62, 63.</span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US"> </span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">diff --git
+              a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+              b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">index 291a47f7992a..94fca56583a0 100644</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">---
+              a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">+++
+              b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">@@ -46,34 +46,32 @@</span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "vcn_v2_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "jpeg_v2_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "vcn_v2_5.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "jpeg_v2_5.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "smuio_v9_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "gmc_v10_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "gfxhub_v2_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "mmhub_v2_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "nbio_v2_3.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "nbio_v7_2.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "hdp_v5_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "nv.h"</span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "navi10_ih.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "gfx_v10_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "sdma_v5_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "sdma_v5_2.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">-#include "vcn_v2_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">-#include "jpeg_v2_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "vcn_v3_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "jpeg_v3_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "amdgpu_vkms.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "mes_v10_1.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "smuio_v11_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "smuio_v11_0_6.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#include "smuio_v13_0.h"</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US"> </span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">MODULE_FIRMWARE("amdgpu/ip_discovery.bin");</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US"> </span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#define mmRCC_CONFIG_MEMSIZE   0xde3</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#define mmMM_INDEX             0x0</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#define mmMM_INDEX_HI          0x6</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">#define mmMM_DATA              0x1</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US"> </span><span lang="EN-US"><o:p></o:p></span></p>
+          <p class="MsoNormal"><span
+              style="font-size:10.5pt;font-family:等线;mso-fareast-language:ZH-CN"
+              lang="EN-US">static const char *hw_id_names[HW_ID_MAX] = {</span><span
+              lang="EN-US"><o:p></o:p></span></p>
+        </blockquote>
+        <p class="MsoNormal"><span
+            style="font-family:宋体;mso-fareast-language:ZH-CN"
+            lang="EN-US"><o:p> </o:p></span></p>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------2B72E5D17A1A4CFBD380E9F9--
