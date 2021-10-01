@@ -2,96 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B35D41F5DA
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Oct 2021 21:48:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4241941F5F4
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Oct 2021 21:57:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9DDD6F39D;
-	Fri,  1 Oct 2021 19:48:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88CA06F3AD;
+	Fri,  1 Oct 2021 19:56:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2067.outbound.protection.outlook.com [40.107.244.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 593926F39D
- for <amd-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 19:48:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=V0Mnpe7BxjptUqBZeN5KUR11ELJjOxMFQvuEU8EAUOwvy3zVkBKcMPJVxFHcI1N4YRnNuBOO/a79jOtYpGsQbPOKgPpOgNY3zlZGdcdOi2sCTddlJ8t7navBqbLDUei72ePZS97vaMh4yEQOUu2G53OFFC+CH3lmuRWe5SXfQ/687Fd46hCJrgKjEADzE3IwN7lNK6OqtNA3UC8WO3fvPorzbvo0vHIUqW4ZqBhk4gJkCkgBZrQPwNt88XljgEkSeoYoo1V9KmeN6n2PrjIeMEixEs7mZiBMwbI18kxxiXXRrz8RZizYdasxcHlEruoegAlULpJrcO+btIKQtJQ9Zg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2Brzg0wpo41hx96B2ZB8AT6cxF5LmZHL4SIKUnjxLis=;
- b=gsscxXYJllm+PbuLKs+Tj+bMUsqYDK6Boojl31Uc0KMfaqL/TjtCgRncEKx2PN5jjlTFMRZ1LuONFJ/hNusjDTsYeenIQ3TOm1MUoODF3nuHdJWz07DStpYhRuR5pwLKBNn8MCz5JczfzCRH4VNH2t5PSiGLvsbxQxX6ii8fOgBKAsxBJ0nomRntDBqV4pfkNZN/jT723qi0tXEKDwYUMqbXbt5XNDIiPWbjztOf+kEb/qQceN+FL/YIIV0teTOMN6GuLKA3av3gvXDBnbjRajOztN/og1vbaGhH7loIOBbKlYbC8mnhA8FgcvjVpev5XDgzvtQr9L3W1R1J7AANsw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2Brzg0wpo41hx96B2ZB8AT6cxF5LmZHL4SIKUnjxLis=;
- b=M1Cc2xpx7sY/dbfCNbTOca3BeYi0XjOT3S5tF8Tu3Enr9DB8ojmJj3NUcflMsIISNZRZfu5u47Kn6HhptG3xO3Q28hGYdnq9BRftQ2e/pG/5pvwvc1jjtgBfpEc49ByBJ7IqPHz3F/2Xnd9A1GmiUrNCShX/qFBOqvzfQxuikPk=
-Received: from DS7PR03CA0226.namprd03.prod.outlook.com (2603:10b6:5:3ba::21)
- by BY5PR12MB4177.namprd12.prod.outlook.com (2603:10b6:a03:201::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.16; Fri, 1 Oct
- 2021 19:48:41 +0000
-Received: from DM6NAM11FT027.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3ba:cafe::8d) by DS7PR03CA0226.outlook.office365.com
- (2603:10b6:5:3ba::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.15 via Frontend
- Transport; Fri, 1 Oct 2021 19:48:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT027.mail.protection.outlook.com (10.13.172.205) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4566.14 via Frontend Transport; Fri, 1 Oct 2021 19:48:41 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Fri, 1 Oct 2021
- 14:48:39 -0500
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: Alex Deucher <alexander.deucher@amd.com>
-Subject: [PATCH] drm/amdgpu/display: fix dependencies for DRM_AMD_DC_SI
-Date: Fri, 1 Oct 2021 15:48:22 -0400
-Message-ID: <20211001194822.1818798-3-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211001194822.1818798-1-alexander.deucher@amd.com>
-References: <20211001194822.1818798-1-alexander.deucher@amd.com>
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com
+ [IPv6:2607:f8b0:4864:20::82d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A6D86E54C
+ for <amd-gfx@lists.freedesktop.org>; Fri,  1 Oct 2021 19:56:52 +0000 (UTC)
+Received: by mail-qt1-x82d.google.com with SMTP id r1so10058739qta.12
+ for <amd-gfx@lists.freedesktop.org>; Fri, 01 Oct 2021 12:56:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=p/SxJUcNym+yBrhUDQeZfHj2BoORrf39gDk0QlHHVIY=;
+ b=S6OtJWXqysXiGnrZA+nmOy1sN3JZerOMISuTAQY+fuca9Fzt4GojpBT101Sc7tnwFu
+ 604HBOn1qwcUqkjG1mYhCeth8vBI7yweHThqSYHRXS3az4ip3jeC4W28hQtWYq5h24d3
+ 0Ki2l4zfDW7y1KoEus/tZaN16Z8QhWtqYGtVHYx78oavL9b+u4QplWkWNCz1BGAAWmw3
+ XLm0IdPserS8hU8Nv2ixslYS2qvyvumNXMdT+P9oEb2y4Sv1whi4+xj1TtJvVPZ/uNeq
+ GoWotKN5RtkJtiBQaKL9ddqAM1YEMmSGbd0+ThRnKSE/61Lf74FXVgwBYzVech52wFed
+ dvSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=p/SxJUcNym+yBrhUDQeZfHj2BoORrf39gDk0QlHHVIY=;
+ b=4tYQ5PMBQQJzmnxywKowJea+lNGQ+WNSzRcqLdPPHxUyTjOiD/NJ7vPDQaKd/pqd6x
+ JD2HOSmRgbK5f2NG7djjJKE0WKCnnlWD6E+R0jMOrjeUijXBYpIjUkdhcHfn6IqZc2Mj
+ Ra2cb71dUWnkAW/lkCBkTKS2VeymAn4ERDfC40Zs3OomZdZgKkFPE1OIYj9Ny9TW2lU2
+ l/4Lm6Sn8WHmURe33VsdzNHiR16qWPEMdfwFHGhLvv/JS5z4uCF4JR595Kba0O+XZFfC
+ C4pZdpeW+9w12CLmRCk1xqq/qApN12t+P7xwHA9ZU9uoufv+E73Dz/cyfwbdC+aqD0DD
+ VLRA==
+X-Gm-Message-State: AOAM531hhtINIwTTzThc0KT/vit+M9sZkdyP1KLVI6HzQEVaz4BFYycc
+ 9+CUOmX69E4lu4ldRiwtcIk9VA==
+X-Google-Smtp-Source: ABdhPJxrVccyTYRwdk6z2yk7egQNKJbDPNZpw3JQMtglBuU4wtwZ0NSNIag9g5DzPsr6KhUfUZT0dw==
+X-Received: by 2002:a05:622a:1111:: with SMTP id
+ e17mr14878148qty.185.1633118211758; 
+ Fri, 01 Oct 2021 12:56:51 -0700 (PDT)
+Received: from localhost ([167.100.64.199])
+ by smtp.gmail.com with ESMTPSA id v8sm4581090qta.21.2021.10.01.12.56.51
+ (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 01 Oct 2021 12:56:51 -0700 (PDT)
+Date: Fri, 1 Oct 2021 15:56:50 -0400
+From: Sean Paul <sean@poorly.run>
+To: Mark Yacoub <markyacoub@chromium.org>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ seanpaul@chromium.org, Rodrigo.Siqueira@amd.com,
+ anson.jacob@amd.com, Mark Yacoub <markyacoub@google.com>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH 2/2] amd/amdgpu_dm: Verify Gamma and Degamma LUT sizes
+ using DRM Core check
+Message-ID: <20211001195650.GX2515@art_vandelay>
+References: <20210929194012.3433306-1-markyacoub@chromium.org>
+ <20210929194012.3433306-2-markyacoub@chromium.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: fa1e4729-d924-40e9-654d-08d98514787e
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4177:
-X-Microsoft-Antispam-PRVS: <BY5PR12MB41776EFB3348D52B8F9DAC19F7AB9@BY5PR12MB4177.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2089;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZgwsiacnGSOS9B8DEgESg3v0Vflm9GyGR6yCCVOGEfm0N3Zn4IGaHSI1dwYHv3/f3Wl1+Uz8kvP0ZdojZD1KXAx43qhMour8G/eyxvaa9KhHIUceXW5fLOP2zmPgzE5itf97xQ5/UEHCuAz874a3Ts451kO81q8fUUKaF2hWYKAjwpLHYam92noXL/4zUX6gRjqcfsZswbgGHu/aFamQhajtQIvf72O1y3eTtsTmBcg/30BoucYQ1n9zhQzaSUTduDg7tZapIFFg83rwFyFczucfsWR44B3Or0B1jeUomvzPEqSmLC9odO9selYc2WWruz+cTZw6Xvi0FTFmB8SmQE0fdxRkaNnZ3x3/r40+dNGrN28HRE5l7uDHCAYKbt5N13zIfIcH2kDOBVwR4T8BYbC5fNPri120AoMCJVBtt1v8brn9E3mC4Xz5qoH4LvTyK1gELhbJHSDeW1WLQIP4P2ZuQO1UcKEHRKdaL8U2gb6eLa/Y8cu0ogcS26CjgBKQFqYoJqI27eNhrweKa0sFyKj6ijl5e4GWRVSwwNzrbGisxbsmOdFHaurUaLk5OJgJbphb4er9NMxPvoA7eNZq6uCJgAJ5R/XHz8TpL/xyEK2orRTLQHphGaTakVsPuMGPXENE0cISI1CFhh27ieJZ/MPhVBdffEauy1ZJOM19YRXpXuR3K4zMAO8uPqLyhTKkV0Xyqw7snWUvdu3/2a/lWb5nYQPaXVR42NP1/Sw8CEM=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(316002)(47076005)(16526019)(26005)(6666004)(36756003)(5660300002)(6916009)(1076003)(4744005)(82310400003)(36860700001)(8676002)(8936002)(186003)(4326008)(2906002)(81166007)(356005)(86362001)(2616005)(426003)(7696005)(508600001)(70586007)(70206006)(336012)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2021 19:48:41.6226 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa1e4729-d924-40e9-654d-08d98514787e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT027.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4177
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210929194012.3433306-2-markyacoub@chromium.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,26 +81,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Depends on DRM_AMDGPU_SI and DRM_AMD_DC
+On Wed, Sep 29, 2021 at 03:39:26PM -0400, Mark Yacoub wrote:
+> From: Mark Yacoub <markyacoub@google.com>
+> 
+> [Why]
+> drm_atomic_helper_check_crtc now verifies both legacy and non-legacy LUT
+> sizes. There is no need to check it within amdgpu_dm_atomic_check.
+> 
+> [How]
+> Remove the local call to verify LUT sizes and use DRM Core function
+> instead.
+> 
+> Tested on ChromeOS Zork.
+> 
+> Signed-off-by: Mark Yacoub <markyacoub@chromium.org>
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 07adac1a8c42b..96a1d006b777e 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -10683,6 +10683,10 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
+>  		}
+>  	}
+>  #endif
+> +	ret = drm_atomic_helper_check_crtc(state);
+> +	if (ret)
+> +		return ret;
+> +
+>  	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+>  		dm_old_crtc_state = to_dm_crtc_state(old_crtc_state);
+>  
+> @@ -10692,10 +10696,6 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
+>  			dm_old_crtc_state->dsc_force_changed == false)
+>  			continue;
+>  
+> -		ret = amdgpu_dm_verify_lut_sizes(new_crtc_state);
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/display/Kconfig | 2 ++
- 1 file changed, 2 insertions(+)
+From a quick glance, I think you can now delete this function. It's called from
+amdgpu_dm_update_crtc_color_mgmt() which is part of the commit, so the lut sizes
+should have already been checked.
 
-diff --git a/drivers/gpu/drm/amd/display/Kconfig b/drivers/gpu/drm/amd/display/Kconfig
-index 7dffc04a557e..127667e549c1 100644
---- a/drivers/gpu/drm/amd/display/Kconfig
-+++ b/drivers/gpu/drm/amd/display/Kconfig
-@@ -25,6 +25,8 @@ config DRM_AMD_DC_HDCP
- 
- config DRM_AMD_DC_SI
- 	bool "AMD DC support for Southern Islands ASICs"
-+	depends on DRM_AMDGPU_SI
-+	depends on DRM_AMD_DC
- 	default n
- 	help
- 	  Choose this option to enable new AMD DC support for SI asics
+If the call from amdgpu_dm_update_crtc_color_mgmt() is not possible to remove,
+you could replace it with a call to the new helper function. And if _that_ is
+not possible, please make amdgpu_dm_verify_lut_sizes() static :-)
+
+Sean
+
+> -		if (ret)
+> -			goto fail;
+> -
+>  		if (!new_crtc_state->enable)
+>  			continue;
+>  
+> -- 
+> 2.33.0.685.g46640cef36-goog
+> 
+
 -- 
-2.31.1
-
+Sean Paul, Software Engineer, Google / Chromium OS
