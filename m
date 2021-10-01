@@ -2,100 +2,127 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC06D41E876
-	for <lists+amd-gfx@lfdr.de>; Fri,  1 Oct 2021 09:37:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABCFD41E874
+	for <lists+amd-gfx@lfdr.de>; Fri,  1 Oct 2021 09:37:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0ADE76ED0D;
-	Fri,  1 Oct 2021 07:37:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB9406ED01;
+	Fri,  1 Oct 2021 07:37:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2079.outbound.protection.outlook.com [40.107.223.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A4756ECDD;
- Fri,  1 Oct 2021 01:32:17 +0000 (UTC)
+Received: from APC01-HK2-obe.outbound.protection.outlook.com
+ (mail-eopbgr1300108.outbound.protection.outlook.com [40.107.130.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7FC46E479;
+ Fri,  1 Oct 2021 03:02:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cBmmDRBwLMojijJizPh/gA3nuTSCqS68keyrQ6p0tqhTGee1SAc+Cv97tV9C1tjx6iAJur+MAEsg29kZbdNdIyO7/TNAZcro4tkVbdBP98pyjW+OWG7VgDmWz0miIUUMwJD+XJL3z7FCm02AuvaEu4n9qta44QVyZVhnL6sZTTN130YK96/PJOXJBTGyGGZ5AW3tMhZYpeqpKgJka/zSfJETG7V4XmlaLdiybDRmT0fn9RSLIbTcJbwkrZSw+v6QoDylYBnTwS1InNp2cVdvrC1DAUP9u0FEs63bEFIOwAz1hsb2Maoa7ebaS7iYV3LTon/wSDEJr9cKg4kBcuO7pQ==
+ b=PbFep2jwq5VtcN0QOzkJaEu4l4Ioo2L6X2WMN3Rg2jr1Ipfsd4qGOKF8ANXyhbpnrbo5+BLqP/Tcwh0LClRrGLc0dLREgTfTd7toOOVqpzLODOM4bhLl5jZnN9oMferExU3/rfBbJu4IxSjF/EaQdrbGhRmzOEWCvnE/VKEnrAmqk8OcJg/g6QYIpm1mkE/Pb0SCU5K/qLynGa3dlnZbBvCY4DYjrVHjy7TV+8V6edjEQ0eNBai548l7ztu2Fa5i3Llqw3lJt3Z056NBx93sgBq6n50pvKCMQHZtaR1kM1sSsGjvADE89ggWCq6asRJWmKmn7zy88Bo7LXJaC07CzQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jj86CJdHIDnudpjJ2FYNKAZU0t+8WVAzl1pRkPrdY3o=;
- b=OP5By3G7FsC792jgB6aPLRleyoaFn3AVDNXsbg1GfAaHWwt9lMj53pkNLmc9mjWRXCYF/Ry+Vc+PaI3XndF/7ajXHRURLoG3psXbvwGug0IYWnkFBGL2bOLabSAEZGP2RlYibq0yB5noH8zU1ZYttHL0DM3Dd1sYL1SeTj38UHqob9sGm0BnSxOs9u+CWskDLBeB3bHVPbbQxAXXA1UpwkmGc+R8SLuYdHzXsgquWue9YE31FeDah0KSrokzO0C7YHJSLgH340+odlZl8KKOoTD6oaFnrvjljJfpnZ6MUGfTyRRNvjkyuwGn5MvM6+YM75cDgT/ckmUmdT+1XE//2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.34) smtp.rcpttodomain=lists.freedesktop.org
- smtp.mailfrom=nvidia.com; dmarc=pass (p=quarantine sp=none pct=100)
- action=none header.from=nvidia.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=Gjkuss7g5Xcn5DJAfACLhR6ag9X8lJvDNWi1RJki0pk=;
+ b=HO4Y6Cr7wdo1bnfKnuLGC3J9XhPESEjlwUhhH4Xs2FQu597fd5gZiIuHPPd2EYYRezWMMYAXMZoSlfpEumHTfRaJvJiN0Dt6QJ8BchyO1IG6wN8ktMjqd53dtjm+AJI6QLNEj6ZSiN3ABTFmaCjaVMFeV8u6uA+u7GI+HxO+Mv02EltoABW9jY6hM5AonTw3vU41PCC/mAQRXoHieRd/PSmA/eddWx4h7K1uyCZLo2Qflr3kT1pPiejM+zZa7v8WKDvCbUqO9pf97QRnqPSCKgRcxFxuCwBeuWFtCsGLThKOSY5Slh2b6YzMXycPlF/fks/RT4/G0I0qc4flU8gB6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
+ dkim=pass header.d=vivo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo0.onmicrosoft.com; 
+ s=selector2-vivo0-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jj86CJdHIDnudpjJ2FYNKAZU0t+8WVAzl1pRkPrdY3o=;
- b=YOItHHaw0ucRutkTxTm0m8s9TtD4OeJstBEoVbVVVKCJGhEXYavyq9oMmHMhv8zXr9u1OPxwSvW+O5Ss6gBwWpFVsVVvr/Crbn9Bpa/ZvuImZ20TOK3A01siwrIjwGvdE48PeVkOJ6zwzeJPSBlSZiiHc9imnFBJUFWSxTbCw4RFosbmvWutLQVaAZzFmp+e+xmisDckU8KH8kiDgf0yQ3GF+DyibqXDpWc7Z+XaJ5v8P1c5JSPWLqxi93+XlZDxo5kgMJTYcIk7PmQw6VHca10tEQWO9amr48a2TImtwcVGQidvw9IhJdjW9UaGPoG4eQKUpiS1xH7nCh4jY/kBYw==
-Received: from DM5PR18CA0091.namprd18.prod.outlook.com (2603:10b6:3:3::29) by
- CH0PR12MB5315.namprd12.prod.outlook.com (2603:10b6:610:d6::24) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4566.14; Fri, 1 Oct 2021 01:32:15 +0000
-Received: from DM6NAM11FT046.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:3:cafe::d8) by DM5PR18CA0091.outlook.office365.com
- (2603:10b6:3:3::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.14 via Frontend
- Transport; Fri, 1 Oct 2021 01:32:15 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
- smtp.mailfrom=nvidia.com; lists.freedesktop.org; dkim=none (message not
- signed) header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.34; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.34) by
- DM6NAM11FT046.mail.protection.outlook.com (10.13.172.121) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4566.14 via Frontend Transport; Fri, 1 Oct 2021 01:32:14 +0000
-Received: from nvdebian.localnet (172.20.187.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 1 Oct
- 2021 01:32:09 +0000
-From: Alistair Popple <apopple@nvidia.com>
-To: <akpm@linux-foundation.org>, <Felix.Kuehling@amd.com>,
- <linux-mm@kvack.org>, <rcampbell@nvidia.com>, <linux-ext4@vger.kernel.org>,
- <linux-xfs@vger.kernel.org>, Alex Sierra <alex.sierra@amd.com>
-CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <hch@lst.de>, <jgg@nvidia.com>, <jglisse@redhat.com>
-Subject: Re: [PATCH v2 10/12] lib: add support for device public type in
- test_hmm
-Date: Fri, 1 Oct 2021 11:32:07 +1000
-Message-ID: <5085060.BnOf7i5VvV@nvdebian>
-In-Reply-To: <20210913161604.31981-11-alex.sierra@amd.com>
-References: <20210913161604.31981-1-alex.sierra@amd.com>
- <20210913161604.31981-11-alex.sierra@amd.com>
+ bh=Gjkuss7g5Xcn5DJAfACLhR6ag9X8lJvDNWi1RJki0pk=;
+ b=GHrs+etyju1Bv313845RHMjFzup2WRcGrSS8M/euxMwlxsB88KmXzRSe6elLB92lTAMRvD5rcZRnYRVB8G936cg/1QJNyc/apW6iXc2OLWCLquiJu2jI/dvBJtGfZ6VYeCVPBDB6+Vng16YjkR+GUbsHRkLatV0ZqGPrb5WJGW4=
+Received: from HK2PR06MB3492.apcprd06.prod.outlook.com (2603:1096:202:2f::10)
+ by HK2PR0601MB2034.apcprd06.prod.outlook.com (2603:1096:202:d::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.17; Fri, 1 Oct
+ 2021 03:02:45 +0000
+Received: from HK2PR06MB3492.apcprd06.prod.outlook.com
+ ([fe80::80d9:d4e4:300f:3156]) by HK2PR06MB3492.apcprd06.prod.outlook.com
+ ([fe80::80d9:d4e4:300f:3156%5]) with mapi id 15.20.4544.023; Fri, 1 Oct 2021
+ 03:02:45 +0000
+From: =?utf-8?B?6YOt5q2j5aWO?= <guozhengkui@vivo.com>
+To: =?utf-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>, Simon Ser
+ <contact@emersion.fr>
+CC: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Pan, Xinhui"
+ <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>, Daniel Vetter
+ <daniel@ffwll.ch>, "Chen, Guchun" <Guchun.Chen@amd.com>, "Zhou, Peng Ju"
+ <PengJu.Zhou@amd.com>, "Zhang, Bokun" <Bokun.Zhang@amd.com>, "Gao, Likun"
+ <Likun.Gao@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, kernel <kernel@vivo.com>
+Subject: RE: [PATCH] drm/amdgpu: fix some repeated includings
+Thread-Topic: [PATCH] drm/amdgpu: fix some repeated includings
+Thread-Index: AQHXtd+jnd+Qk/24r0K3G7/0oSByiau8XP+AgAAKC3eAAA/TUIAAAZoAgAD8xNA=
+Date: Fri, 1 Oct 2021 03:02:44 +0000
+Message-ID: <HK2PR06MB34925517684D29A3A65F7004C7AB9@HK2PR06MB3492.apcprd06.prod.outlook.com>
+References: <20210930094239.7435-1-guozhengkui@vivo.com>
+ <AGiYadRf5XyGUqLxwu3ykKzfwM2BgZo4yCAaEXdQiYfH2dbyKmipDNrclnI2lZH3HzNh71VBy5QKz3O4fFvQETjTI9hoKzKHjZNBz9ERKI8=@emersion.fr>
+ <AIAAqwDqEh5BcgkyUT78Xaql.9.1632999287613.Hmail.guozhengkui@vivo.com>
+ <HK2PR06MB34922067627E3951C991B678C7AA9@HK2PR06MB3492.apcprd06.prod.outlook.com>
+ <AMEAtAA2EiXBtR0JiyxMeqon.9.1633002964630.Hmail.guozhengkui@vivo.com>
+In-Reply-To: <AMEAtAA2EiXBtR0JiyxMeqon.9.1633002964630.Hmail.guozhengkui@vivo.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=vivo.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f30ba26d-44c0-4dab-d94c-08d98487f139
+x-ms-traffictypediagnostic: HK2PR0601MB2034:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <HK2PR0601MB2034E5B0DA88805D960B0B63C7AB9@HK2PR0601MB2034.apcprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: jPk7W2gP4PbZWMglilTsaKgx0kzHdZE/v4/rGpiP7iWTFgmS6jPDTQ+8ibW3hZ1nJHbNTSdyLUnyWW7M+YtPgldVYFadt7aipYGgZQ7VSKx7IMtu71m4QsAQcHfUvrQzOzB1g9fI0KpL0W4QEoMT/HBeNqRxtOOsWnjp98zHnQ8lOWGJm0UEzrP8h3yw3T4rnjnjFpAY5sV/x+r4ePgPGBABqy9rbGSjs02FGOwus3DIVGUhSuF1nDjEAVw1WG5nF72ZEcoZNCyW8XsLocy3Xu+cCI1jOa9gQ9PE1/lzddFGrnBSYfBbKz9Id+Sd6MWRBp4bpsmoXM1AbRL6Jtn+IxaoqWj4aTNTUIoKkNkQPS74zR5qwo0BaUDHivfteOAZaEclaeaxv21CoCGxS7ylOEsu/Xpn1PGfGDSVQrHzl9sjiT5MbOniuK4KXguHVPAcMw9FK6tL4/CSydRMpl2hdNcJlKaEt1i2iXeDfn2EnQFEWtYx9tXJF2J38sM8lDHZ6Rhk1lmFU7iJSctA/a3Di5bHWr8Pm259/ctnBNw9ecPH1ElKg8kkaJ1czM3SDFw/d/0vgjOng5UyQgOmkjQV7DjanPYjjPvt2ZlYGhRZ8Yr6+Z7c7deYcznUuBcg6bE2dk3yCKrSzUEaQxMa1tpDf/H4JHXKSQPwgRCybfSZDgbUEVCSc8vDYrlbbqiet3V53jzz0X/2/wu3Hhefh7Envg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:HK2PR06MB3492.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(6506007)(85182001)(53546011)(26005)(186003)(38070700005)(83380400001)(76116006)(66946007)(107886003)(71200400001)(4326008)(7696005)(66476007)(7416002)(38100700002)(55016002)(508600001)(33656002)(66446008)(122000001)(9686003)(64756008)(66556008)(52536014)(5660300002)(86362001)(316002)(54906003)(110136005)(8676002)(8936002)(2906002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZDdhN1R4b1ZadnpubUIxR1QzVmQ0SnNkSHF0bE9JdE5qVngxTGduTmNnUWVM?=
+ =?utf-8?B?c0lQaVhNQUFRSUQzYWxwZXZIVXdCYTZBRWIwakl4WXpQSHVkU0RZMWkyWU83?=
+ =?utf-8?B?QnZFaHpsck9aTzMrY01FMjU0THpRRE9MYjF5Y1NTYTZkYXlVUFU0b3RTZVNL?=
+ =?utf-8?B?TEhud0F0WTduMXQ4djd3dm8vWERPdFd5Z1FsM3FDclJtenFIRlcxUlhmREU4?=
+ =?utf-8?B?bFFRL0krckwvL0ZUdHJoRjN5VW1FQmVOM0ttVGNicUhPTnZXMml2ZFI1Vlpt?=
+ =?utf-8?B?QXhBZWZDdzRqWWRPWjNPQjh2Vi9hbWVGdzFrc3p5ZHA3Um4zczlQWUFyWkoz?=
+ =?utf-8?B?QkQ5YWlDcDNBOHhUbjM0czhZOWdkVXdDSmh4SHhmSmM1bTdJZ2czTTgraDNX?=
+ =?utf-8?B?NUpySGVkU3JGMGtIZTBuVzV4RGpQRkJNZDI0aEpkTi9oSW1sYjJtUUh5OEh1?=
+ =?utf-8?B?OXNzRmF5L1QxbEUrSTNsMThjNFRMT3M4cThtMm1yYUREcVFOTDlnY3dOVFJ4?=
+ =?utf-8?B?cGdiS0ZmZ3k3eS8yRS9pNllFb2FSNTRobjY5M3JqdXJjT2R1NUhFVzVPUCtZ?=
+ =?utf-8?B?Zi9XTXlEbXdKaGhROWZJVHpFZ0ZacHZBRHBVU244UTIzK2F6Qzl0aWZJSzNK?=
+ =?utf-8?B?ZDdZZXJ1VHNoU0VZbk1lbGM4UUtQWUN1VjltdTN4eXZscTMrN21oVVlrekJO?=
+ =?utf-8?B?dXp1VTNINXg4NzFWZW1PUEpaVVVWWTFYSjd5Y0JrbjR5dk5pM2l1WjdMS2p0?=
+ =?utf-8?B?cnZlZE9MaEZPaGVKVEd4djRaWXlXakE4dkdWeExkQ0NXMmU3NlEwaUo5VjlR?=
+ =?utf-8?B?cEE3cHVCRW80ekhyR1MwbGdJajBBdnZuMTJVUFJSOFRNUkFJUzBFMmk5TkFZ?=
+ =?utf-8?B?M2x1bzFOTHNRSUI3YXlEZEc0TTAxSXRwWW9ZYXV5ZXh4blJ0dVdSMi91ODY5?=
+ =?utf-8?B?T2dBMk5rUWgyNTE2R3BBSXo4anJpMXpXT0R6cFY0dHh4dnVjMzluYmhDcUFi?=
+ =?utf-8?B?Z2E2ZDVVb0srbzlreitDbzdBbk1zNzBRUHJWQ3dNejMwdzZVaTZMdzgwMDUx?=
+ =?utf-8?B?b3M0YzQ0Qml4dDRGY3RmMy9EbzFNM0V1eE1jU3RDd3I3WG5QMEVWMEtxRmor?=
+ =?utf-8?B?REdhbHlmclFDWTlCNE5KUFgzQXZjUSs2R3QwaVBVb1lMa3VOTVlBSnNQd3BF?=
+ =?utf-8?B?M1V4YVcrRFVMaStydFN6aTZsd01xKzJJSURET2huQ2VrK1BFc3pxMXprcTMv?=
+ =?utf-8?B?Q0w3ZnJObDgvbUE5Lzh6Vkx2Z3ZLUXJtZjFTUHRodFBNUjRIeEN6WU1Zd3RE?=
+ =?utf-8?B?Q2ptNkZURldkVlI3eGVyOXJ1Zm42dFRES0NRKzUraDluc2Z2ZGxaTXlwMEFI?=
+ =?utf-8?B?dHFSRXNFT21QVkd4dXh4QVF0MGJvb2xUVlBGN2t5R2RHZlVBd3V0N3NiYkMz?=
+ =?utf-8?B?RjFhNjUzei9wWTlaT3lUTmp2WVVLSjRHQUdiWEdtSStFd1QxcWpWVzhzRU0y?=
+ =?utf-8?B?dmEybkVjdFVXVmdGS0k5ZUJqOU5zUkJwdjBGaGJZbkZwTTJwc3VKbWhZTlZk?=
+ =?utf-8?B?VVhyL3NjeGJpTmhVYmQ2dHdFeXBLMWJnMUFyRzJFNUE5dFJWQ29nRzNZVWIw?=
+ =?utf-8?B?S3BnUllUbVBtQjN3NG1HZVh2NTA4SEtPZE4zRzBQQ3g2bklBR0lIemxGK0lB?=
+ =?utf-8?B?ZUh6RitUSlY0MjNRcHJHQ0RtWW1PNlNQeG9KVjVHc0t2d0pOZHgxVUo3VVRK?=
+ =?utf-8?Q?RWx7AOiljGr4StIx64=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_HK2PR06MB34925517684D29A3A65F7004C7AB9HK2PR06MB3492apcp_"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Originating-IP: [172.20.187.5]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 603276db-c836-4cf9-1db1-08d9847b4c41
-X-MS-TrafficTypeDiagnostic: CH0PR12MB5315:
-X-Microsoft-Antispam-PRVS: <CH0PR12MB5315A8B2B7275CF1044A9041DFAB9@CH0PR12MB5315.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rJh/mCd3a48+DtC6TUWh2LtSjuOcyFX198jCOvkTeJgnlLGAXMF59MvemX0ULvUbnejod/1LZQ7lhT8iyof1YIJlwMT1tODEaCbKZ1p0ZWIM6ycFLAwaxxfZxw/g4fwoMoTJTBCugRLk5b7u11tMdMFemLBqeR8pWX0OwxIWp8CU7HrMky9EfgANS90gj0Wul8BVHHPRSoGjzvVGTly1Pl9xG9XFVUtPsaf+MJkrw2+zpMRraj8B7PQfVwohc80clzGVqBndsG6iHDPJYwHzWBbwJ0XfhlB6OZV2s0j6qVn1ItHEFe53TZ32ZtYa44RmCkjpBXBlZqGhw95aWysYjc7nMlizxBlyjQwQB04ETrjv2h3/e6jizhdveP77wUityPjZpelIRqb0VIBDig8NLie4h2W7Ipe6/E5qCzksVc/mf0HJBro7B80EWbNa7ukm4I5ALtcIpadtTeMpc9HzKWUI19McMEUPQH4Dv8HqmQ2AYyXHNC4zhDUA6iYpMZQsP15apBxGZiQoKQS+SRIr3nkCvPeU3hQY9oyQFZqPhIf0SnYLaNR6LDyU1MNmdo5ovsTD87+DZWHC1ubB1HJFlJP10InJkIkP2aIS8/pDOyZLniOVcFA+QhXbL1jUuqjo/UGVnxNisz8A/Im3D0O74jrF/7sQlN1q4atOrZxtifr+JTWOu48AJqGdmvDmKl1DiYQr8w6z58OYPu8NpoR8UEdhZjz2aIDGOHDFBPZOAcQ=
-X-Forefront-Antispam-Report: CIP:216.228.112.34; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:schybrid03.nvidia.com; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(26005)(426003)(186003)(2906002)(5660300002)(9686003)(7636003)(9576002)(82310400003)(8936002)(70586007)(83380400001)(508600001)(33716001)(70206006)(16526019)(316002)(36860700001)(30864003)(110136005)(54906003)(7416002)(86362001)(8676002)(336012)(4326008)(356005)(47076005)(39026012);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2021 01:32:14.3346 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 603276db-c836-4cf9-1db1-08d9847b4c41
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.112.34];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT046.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5315
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: HK2PR06MB3492.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f30ba26d-44c0-4dab-d94c-08d98487f139
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2021 03:02:44.8859 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2Tf6fKUpgNHa85/2nna2KQkiadAfJvPsBL7FR8Xov1FHHiSU4jeO5XzgvSQluP3Cy5cl9d6szWOxXN09Tm2t3Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR0601MB2034
 X-Mailman-Approved-At: Fri, 01 Oct 2021 07:37:16 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -111,368 +138,269 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tuesday, 14 September 2021 2:16:02 AM AEST Alex Sierra wrote:
-> Device Public type uses device memory that is coherently accesible by
-> the CPU. This could be shown as SP (special purpose) memory range
-> at the BIOS-e820 memory enumeration. If no SP memory is supported in
-> system, this could be faked by setting CONFIG_EFI_FAKE_MEMMAP.
-> 
-> Currently, test_hmm only supports two different SP ranges of at least
-> 256MB size. This could be specified in the kernel parameter variable
-> efi_fake_mem. Ex. Two SP ranges of 1GB starting at 0x100000000 &
-> 0x140000000 physical address. Ex.
-> efi_fake_mem=1G@0x100000000:0x40000,1G@0x140000000:0x40000
-> 
-> Signed-off-by: Alex Sierra <alex.sierra@amd.com>
-> ---
->  lib/test_hmm.c      | 166 +++++++++++++++++++++++++++-----------------
->  lib/test_hmm_uapi.h |  10 ++-
->  2 files changed, 113 insertions(+), 63 deletions(-)
-> 
-> diff --git a/lib/test_hmm.c b/lib/test_hmm.c
-> index ef27e355738a..e346a48e2509 100644
-> --- a/lib/test_hmm.c
-> +++ b/lib/test_hmm.c
-> @@ -469,6 +469,7 @@ static int dmirror_allocate_chunk(struct dmirror_device *mdevice,
->  	unsigned long pfn_first;
->  	unsigned long pfn_last;
->  	void *ptr;
-> +	int ret = -ENOMEM;
->  
->  	devmem = kzalloc(sizeof(*devmem), GFP_KERNEL);
->  	if (!devmem)
-> @@ -551,7 +552,7 @@ static int dmirror_allocate_chunk(struct dmirror_device *mdevice,
->  	}
->  	spin_unlock(&mdevice->lock);
->  
-> -	return true;
-> +	return 0;
->  
->  err_release:
->  	mutex_unlock(&mdevice->devmem_lock);
-> @@ -560,7 +561,7 @@ static int dmirror_allocate_chunk(struct dmirror_device *mdevice,
->  err_devmem:
->  	kfree(devmem);
->  
-> -	return false;
-> +	return ret;
->  }
->  
->  static struct page *dmirror_devmem_alloc_page(struct dmirror_device *mdevice)
-> @@ -569,8 +570,10 @@ static struct page *dmirror_devmem_alloc_page(struct dmirror_device *mdevice)
->  	struct page *rpage;
->  
->  	/*
-> -	 * This is a fake device so we alloc real system memory to store
-> -	 * our device memory.
-> +	 * For ZONE_DEVICE private type, this is a fake device so we alloc real
-> +	 * system memory to store our device memory.
-> +	 * For ZONE_DEVICE public type we use the actual dpage to store the data
-> +	 * and ignore rpage.
->  	 */
->  	rpage = alloc_page(GFP_HIGHUSER);
->  	if (!rpage)
-> @@ -603,7 +606,7 @@ static void dmirror_migrate_alloc_and_copy(struct migrate_vma *args,
->  					   struct dmirror *dmirror)
->  {
->  	struct dmirror_device *mdevice = dmirror->mdevice;
-> -	const unsigned long *src = args->src;
-> +	unsigned long *src = args->src;
->  	unsigned long *dst = args->dst;
->  	unsigned long addr;
->  
-> @@ -621,12 +624,18 @@ static void dmirror_migrate_alloc_and_copy(struct migrate_vma *args,
->  		 * unallocated pte_none() or read-only zero page.
->  		 */
->  		spage = migrate_pfn_to_page(*src);
-> -
-> +		if (spage && is_zone_device_page(spage)) {
-> +			pr_debug("page already in device spage pfn: 0x%lx\n",
-> +				  page_to_pfn(spage));
-> +			*src &= ~MIGRATE_PFN_MIGRATE;
+--_000_HK2PR06MB34925517684D29A3A65F7004C7AB9HK2PR06MB3492apcp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I don't think this is quite correct, callers shouldn't modify the src array. To
-mark a page as not migrating callers need to set *dst = 0.
+U28sIGl0IG1lYW5zIEkgbmVlZCB0byBtYWtlIGFub3RoZXIgY29tbWl0Pw0KDQpaaGVuZ2t1aQ0K
+RnJvbTogZ3VvemhlbmdrdWlAdml2by5jb20gPGd1b3poZW5na3VpQHZpdm8uY29tPiBPbiBCZWhh
+bGYgT2YgQ2hyaXN0aWFuIEs/bmlnDQpTZW50OiBUaHVyc2RheSwgU2VwdGVtYmVyIDMwLCAyMDIx
+IDc6NTYgUE0NClRvOiBHdW8gWmhlbmdrdWkgPGd1b3poZW5na3VpQHZpdm8uY29tPjsgU2ltb24g
+U2VyIDxjb250YWN0QGVtZXJzaW9uLmZyPg0KQ2M6IERldWNoZXIsIEFsZXhhbmRlciA8QWxleGFu
+ZGVyLkRldWNoZXJAYW1kLmNvbT47IFBhbiwgWGluaHVpIDxYaW5odWkuUGFuQGFtZC5jb20+OyBE
+YXZpZCBBaXJsaWUgPGFpcmxpZWRAbGludXguaWU+OyBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3
+bGwuY2g+OyBDaGVuLCBHdWNodW4gPEd1Y2h1bi5DaGVuQGFtZC5jb20+OyBaaG91LCBQZW5nIEp1
+IDxQZW5nSnUuWmhvdUBhbWQuY29tPjsgWmhhbmcsIEJva3VuIDxCb2t1bi5aaGFuZ0BhbWQuY29t
+PjsgR2FvLCBMaWt1biA8TGlrdW4uR2FvQGFtZC5jb20+OyBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZzsgZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgbGludXgta2VybmVsQHZn
+ZXIua2VybmVsLm9yZzsga2VybmVsIDxrZXJuZWxAdml2by5jb20+DQpTdWJqZWN0OiBSZTogW1BB
+VENIXSBkcm0vYW1kZ3B1OiBmaXggc29tZSByZXBlYXRlZCBpbmNsdWRpbmdzDQoNCkFoLCB0aGF0
+IG1ha2VzIG1vcmUgc2Vuc2UuIFRoZW4gcGxlYXNlIHJlbW92ZSB0aGUgZHVwbGljYXRlcyBpbiBs
+aW5lcyA0NiBhbmQgNDcgaW5zdGVhZCBzaW5jZSB0aGUgb3RoZXIgb25lcyBhcmUgbW9yZSBjb3Jy
+ZWN0bHkgZ3JvdXBlZCB0b2dldGhlciB3aXRoIHRoZWlyIGJsb2Nrcy4NCg0KQ2hyaXN0aWFuLg0K
+QW0gMzAuMDkuMjEgdW0gMTM6NTQgc2NocmllYiDpg63mraPlpY46DQpBY3R1YWxseSB0aGUgZHVw
+bGljYXRlcyB0YWtlIHBsYWNlIGluIGxpbmUgNDYsIDQ3IGFuZCA2MiwgNjMuDQoNCmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGlzY292ZXJ5LmMgYi9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZGlzY292ZXJ5LmMNCmluZGV4IDI5MWE0N2Y3
+OTkyYS4uOTRmY2E1NjU4M2EwIDEwMDY0NA0KLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
+cHUvYW1kZ3B1X2Rpc2NvdmVyeS5jDQorKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9h
+bWRncHVfZGlzY292ZXJ5LmMNCkBAIC00NiwzNCArNDYsMzIgQEANCiNpbmNsdWRlICJ2Y25fdjJf
+MC5oIg0KI2luY2x1ZGUgImpwZWdfdjJfMC5oIg0KI2luY2x1ZGUgInZjbl92Ml81LmgiDQojaW5j
+bHVkZSAianBlZ192Ml81LmgiDQojaW5jbHVkZSAic211aW9fdjlfMC5oIg0KI2luY2x1ZGUgImdt
+Y192MTBfMC5oIg0KI2luY2x1ZGUgImdmeGh1Yl92Ml8wLmgiDQojaW5jbHVkZSAibW1odWJfdjJf
+MC5oIg0KI2luY2x1ZGUgIm5iaW9fdjJfMy5oIg0KI2luY2x1ZGUgIm5iaW9fdjdfMi5oIg0KI2lu
+Y2x1ZGUgImhkcF92NV8wLmgiDQojaW5jbHVkZSAibnYuaCINCiNpbmNsdWRlICJuYXZpMTBfaWgu
+aCINCiNpbmNsdWRlICJnZnhfdjEwXzAuaCINCiNpbmNsdWRlICJzZG1hX3Y1XzAuaCINCiNpbmNs
+dWRlICJzZG1hX3Y1XzIuaCINCi0jaW5jbHVkZSAidmNuX3YyXzAuaCINCi0jaW5jbHVkZSAianBl
+Z192Ml8wLmgiDQojaW5jbHVkZSAidmNuX3YzXzAuaCINCiNpbmNsdWRlICJqcGVnX3YzXzAuaCIN
+CiNpbmNsdWRlICJhbWRncHVfdmttcy5oIg0KI2luY2x1ZGUgIm1lc192MTBfMS5oIg0KI2luY2x1
+ZGUgInNtdWlvX3YxMV8wLmgiDQojaW5jbHVkZSAic211aW9fdjExXzBfNi5oIg0KI2luY2x1ZGUg
+InNtdWlvX3YxM18wLmgiDQoNCk1PRFVMRV9GSVJNV0FSRSgiYW1kZ3B1L2lwX2Rpc2NvdmVyeS5i
+aW4iKTsNCg0KI2RlZmluZSBtbVJDQ19DT05GSUdfTUVNU0laRSAgIDB4ZGUzDQojZGVmaW5lIG1t
+TU1fSU5ERVggICAgICAgICAgICAgMHgwDQojZGVmaW5lIG1tTU1fSU5ERVhfSEkgICAgICAgICAg
+MHg2DQojZGVmaW5lIG1tTU1fREFUQSAgICAgICAgICAgICAgMHgxDQoNCnN0YXRpYyBjb25zdCBj
+aGFyICpod19pZF9uYW1lc1tIV19JRF9NQVhdID0gew0KDQo=
 
-However I think this should be considered a test failure anyway. If we are
-migrating from system to device memory we would have set
-MIGRATE_VMA_SELECT_SYSTEM meaning no device private pages should be returned.
-Therefore I don't think we can reach this unless there is a bug right?
+--_000_HK2PR06MB34925517684D29A3A65F7004C7AB9HK2PR06MB3492apcp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> +			continue;
-> +		}
->  		dpage = dmirror_devmem_alloc_page(mdevice);
->  		if (!dpage)
->  			continue;
->  
-> -		rpage = dpage->zone_device_data;
-> +		rpage = is_device_private_page(dpage) ? dpage->zone_device_data :
-> +							dpage;
->  		if (spage)
->  			copy_highpage(rpage, spage);
->  		else
-> @@ -638,8 +647,10 @@ static void dmirror_migrate_alloc_and_copy(struct migrate_vma *args,
->  		 * the simulated device memory and that page holds the pointer
->  		 * to the mirror.
->  		 */
-> +		rpage = dpage->zone_device_data;
->  		rpage->zone_device_data = dmirror;
-> -
-> +		pr_debug("migrating from sys to dev pfn src: 0x%lx pfn dst: 0x%lx\n",
-> +			 page_to_pfn(spage), page_to_pfn(dpage));
->  		*dst = migrate_pfn(page_to_pfn(dpage)) |
->  			    MIGRATE_PFN_LOCKED;
->  		if ((*src & MIGRATE_PFN_WRITE) ||
-> @@ -673,10 +684,13 @@ static int dmirror_migrate_finalize_and_map(struct migrate_vma *args,
->  			continue;
->  
->  		/*
-> -		 * Store the page that holds the data so the page table
-> -		 * doesn't have to deal with ZONE_DEVICE private pages.
-> +		 * For ZONE_DEVICE private pages we store the page that
-> +		 * holds the data so the page table doesn't have to deal it.
-> +		 * For ZONE_DEVICE public pages we store the actual page, since
-> +		 * the CPU has coherent access to the page.
->  		 */
-> -		entry = dpage->zone_device_data;
-> +		entry = is_device_private_page(dpage) ? dpage->zone_device_data :
-> +							dpage;
->  		if (*dst & MIGRATE_PFN_WRITE)
->  			entry = xa_tag_pointer(entry, DPT_XA_TAG_WRITE);
->  		entry = xa_store(&dmirror->pt, pfn, entry, GFP_ATOMIC);
-> @@ -690,6 +704,47 @@ static int dmirror_migrate_finalize_and_map(struct migrate_vma *args,
->  	return 0;
->  }
->  
-> +static vm_fault_t dmirror_devmem_fault_alloc_and_copy(struct migrate_vma *args,
-> +						      struct dmirror *dmirror)
-> +{
-> +	unsigned long *src = args->src;
-> +	unsigned long *dst = args->dst;
-> +	unsigned long start = args->start;
-> +	unsigned long end = args->end;
-> +	unsigned long addr;
-> +
-> +	for (addr = start; addr < end; addr += PAGE_SIZE,
-> +				       src++, dst++) {
-> +		struct page *dpage, *spage;
-> +
-> +		spage = migrate_pfn_to_page(*src);
-> +		if (!spage || !(*src & MIGRATE_PFN_MIGRATE))
-> +			continue;
-> +		if (is_device_private_page(spage)) {
-> +			spage = spage->zone_device_data;
-> +		} else {
-> +			pr_debug("page already in system or SPM spage pfn: 0x%lx\n",
-> +				  page_to_pfn(spage));
-> +			*src &= ~MIGRATE_PFN_MIGRATE;
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
+b250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0
+O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6562J57q/Ow0KCXBhbm9zZS0xOjIgMSA2IDAg
+MyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9z
+ZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Ik1T
+IFBHb3RoaWMiOw0KCXBhbm9zZS0xOjIgMTEgNiAwIDcgMiA1IDggMiA0O30NCkBmb250LWZhY2UN
+Cgl7Zm9udC1mYW1pbHk6IlxA562J57q/IjsNCglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAx
+O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IlxATVMgUEdvdGhpYyI7fQ0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiXEDlrovkvZMiOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAx
+IDE7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJNUyBQR290aGljIixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkpB
+O30NCnNwYW4uRW1haWxTdHlsZTE5DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0K
+CWZvbnQtZmFtaWx5Ouetiee6vzsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0
+DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBh
+Z2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3Mi4wcHQg
+OTAuMHB0IDcyLjBwdCA5MC4wcHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0
+aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZh
+dWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwh
+LS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86
+aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFb
+ZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJaSC1DTiIgbGluaz0iIzA1NjNDMSIgdmxp
+bms9IiM5NTRGNzIiIHN0eWxlPSJ3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8ZGl2IGNsYXNzPSJX
+b3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
+eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5n
+dWFnZTpaSC1DTiI+U28sIGl0IG1lYW5zIEkgbmVlZCB0byBtYWtlIGFub3RoZXIgY29tbWl0Pzxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVO
+LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVh
+c3QtbGFuZ3VhZ2U6WkgtQ04iPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtm
+b250LWZhbWlseTrnrYnnur87bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPlpoZW5na3VpPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRl
+ci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZh
+cmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyIg
+c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oyxz
+YW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj4gZ3VvemhlbmdrdWlAdml2by5j
+b20NCiAmbHQ7Z3VvemhlbmdrdWlAdml2by5jb20mZ3Q7IDxiPk9uIEJlaGFsZiBPZiA8L2I+Q2hy
+aXN0aWFuIEs/bmlnPGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBTZXB0ZW1iZXIgMzAsIDIw
+MjEgNzo1NiBQTTxicj4NCjxiPlRvOjwvYj4gR3VvIFpoZW5na3VpICZsdDtndW96aGVuZ2t1aUB2
+aXZvLmNvbSZndDs7IFNpbW9uIFNlciAmbHQ7Y29udGFjdEBlbWVyc2lvbi5mciZndDs8YnI+DQo8
+Yj5DYzo8L2I+IERldWNoZXIsIEFsZXhhbmRlciAmbHQ7QWxleGFuZGVyLkRldWNoZXJAYW1kLmNv
+bSZndDs7IFBhbiwgWGluaHVpICZsdDtYaW5odWkuUGFuQGFtZC5jb20mZ3Q7OyBEYXZpZCBBaXJs
+aWUgJmx0O2FpcmxpZWRAbGludXguaWUmZ3Q7OyBEYW5pZWwgVmV0dGVyICZsdDtkYW5pZWxAZmZ3
+bGwuY2gmZ3Q7OyBDaGVuLCBHdWNodW4gJmx0O0d1Y2h1bi5DaGVuQGFtZC5jb20mZ3Q7OyBaaG91
+LCBQZW5nIEp1ICZsdDtQZW5nSnUuWmhvdUBhbWQuY29tJmd0OzsgWmhhbmcsIEJva3VuICZsdDtC
+b2t1bi5aaGFuZ0BhbWQuY29tJmd0OzsNCiBHYW8sIExpa3VuICZsdDtMaWt1bi5HYW9AYW1kLmNv
+bSZndDs7IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBkcmktZGV2ZWxAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBrZXJuZWwgJmx0O2tl
+cm5lbEB2aXZvLmNvbSZndDs8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtQQVRDSF0gZHJtL2Ft
+ZGdwdTogZml4IHNvbWUgcmVwZWF0ZWQgaW5jbHVkaW5nczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+
+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
+Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48c3BhbiBsYW5nPSJFTi1VUyI+QWgsIHRoYXQgbWFrZXMg
+bW9yZSBzZW5zZS4gVGhlbiBwbGVhc2UgcmVtb3ZlIHRoZSBkdXBsaWNhdGVzIGluIGxpbmVzIDQ2
+IGFuZCA0NyBpbnN0ZWFkIHNpbmNlIHRoZSBvdGhlciBvbmVzIGFyZSBtb3JlIGNvcnJlY3RseSBn
+cm91cGVkIHRvZ2V0aGVyIHdpdGggdGhlaXIgYmxvY2tzLjxicj4NCjxicj4NCkNocmlzdGlhbi48
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+bGFuZz0iRU4tVVMiPkFtIDMwLjA5LjIxIHVtIDEzOjU0IHNjaHJpZWIgPC9zcGFuPjxzcGFuIGxh
+bmc9IkpBIj7pg63mraPlpY48L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjo8bzpwPjwvbzpwPjwv
+c3Bhbj48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21h
+cmdpbi1ib3R0b206NS4wcHQiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
+VVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFz
+dC1sYW5ndWFnZTpaSC1DTiI+QWN0dWFsbHkgdGhlIGR1cGxpY2F0ZXMgdGFrZSBwbGFjZSBpbiBs
+aW5lIDQ2LCA0NyBhbmQgNjIsIDYzLjwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
+eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5n
+dWFnZTpaSC1DTiI+Jm5ic3A7PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwv
+c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
+ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdl
+OlpILUNOIj5kaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rp
+c2NvdmVyeS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rpc2NvdmVyeS5j
+PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7
+Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj5pbmRleCAyOTFh
+NDdmNzk5MmEuLjk0ZmNhNTY1ODNhMCAxMDA2NDQ8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVO
+LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVh
+c3QtbGFuZ3VhZ2U6WkgtQ04iPi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdw
+dV9kaXNjb3ZlcnkuYzwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250
+LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1D
+TiI+KysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rpc2NvdmVyeS5jPC9z
+cGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9u
+dC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj5AQCAtNDYsMzQgKzQ2
+LDMyIEBAPC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZTox
+MC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj4jaW5j
+bHVkZSAmcXVvdDt2Y25fdjJfMC5oJnF1b3Q7PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
+UyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0
+LWxhbmd1YWdlOlpILUNOIj4jaW5jbHVkZSAmcXVvdDtqcGVnX3YyXzAuaCZxdW90Ozwvc3Bhbj48
+c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFt
+aWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2luY2x1ZGUgJnF1b3Q7dmNu
+X3YyXzUuaCZxdW90Ozwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250
+LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1D
+TiI+I2luY2x1ZGUgJnF1b3Q7anBlZ192Ml81LmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4t
+VVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
+bmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNv
+LWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O3NtdWlvX3Y5XzAuaCZxdW90
+Ozwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0
+O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2luY2x1ZGUg
+JnF1b3Q7Z21jX3YxMF8wLmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
+dHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVhc3QtbGFu
+Z3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O2dmeGh1Yl92Ml8wLmgmcXVvdDs8L3NwYW4+PHNw
+YW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWls
+eTrnrYnnur87bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O21taHVi
+X3YyXzAuaCZxdW90Ozwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250
+LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1D
+TiI+I2luY2x1ZGUgJnF1b3Q7bmJpb192Ml8zLmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4t
+VVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
+bmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNv
+LWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O25iaW9fdjdfMi5oJnF1b3Q7
+PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7
+Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj4jaW5jbHVkZSAm
+cXVvdDtoZHBfdjVfMC5oJnF1b3Q7PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
+bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1
+YWdlOlpILUNOIj4jaW5jbHVkZSAmcXVvdDtudi5oJnF1b3Q7PC9zcGFuPjxzcGFuIGxhbmc9IkVO
+LVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBs
+YW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21z
+by1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj4jaW5jbHVkZSAmcXVvdDtuYXZpMTBfaWguaCZxdW90
+Ozwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0
+O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2luY2x1ZGUg
+JnF1b3Q7Z2Z4X3YxMF8wLmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
+dHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVhc3QtbGFu
+Z3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O3NkbWFfdjVfMC5oJnF1b3Q7PC9zcGFuPjxzcGFu
+IGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6
+562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj4jaW5jbHVkZSAmcXVvdDtzZG1hX3Y1
+XzIuaCZxdW90Ozwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNp
+emU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+
+LSNpbmNsdWRlICZxdW90O3Zjbl92Ml8wLmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMi
+PjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9
+IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZh
+cmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPi0jaW5jbHVkZSAmcXVvdDtqcGVnX3YyXzAuaCZxdW90Ozwv
+c3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2Zv
+bnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2luY2x1ZGUgJnF1
+b3Q7dmNuX3YzXzAuaCZxdW90Ozwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxl
+PSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFn
+ZTpaSC1DTiI+I2luY2x1ZGUgJnF1b3Q7anBlZ192M18wLmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFu
+Zz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnn
+ur87bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O2FtZGdwdV92a21z
+LmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
+OjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiNp
+bmNsdWRlICZxdW90O21lc192MTBfMS5oJnF1b3Q7PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJF
+Ti1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJl
+YXN0LWxhbmd1YWdlOlpILUNOIj4jaW5jbHVkZSAmcXVvdDtzbXVpb192MTFfMC5oJnF1b3Q7PC9z
+cGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9u
+dC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj4jaW5jbHVkZSAmcXVv
+dDtzbXVpb192MTFfMF82LmgmcXVvdDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
+dHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVhc3QtbGFu
+Z3VhZ2U6WkgtQ04iPiNpbmNsdWRlICZxdW90O3NtdWlvX3YxM18wLmgmcXVvdDs8L3NwYW4+PHNw
+YW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWls
+eTrnrYnnur87bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiZuYnNwOzwvc3Bhbj48c3BhbiBs
+YW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouet
+iee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+TU9EVUxFX0ZJUk1XQVJFKCZxdW90O2Ft
+ZGdwdS9pcF9kaXNjb3ZlcnkuYmluJnF1b3Q7KTs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVO
+LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVh
+c3QtbGFuZ3VhZ2U6WkgtQ04iPiZuYnNwOzwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
+IHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1s
+YW5ndWFnZTpaSC1DTiI+I2RlZmluZSBtbVJDQ19DT05GSUdfTUVNU0laRSZuYnNwOyZuYnNwOyAw
+eGRlMzwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAu
+NXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2RlZmlu
+ZSBtbU1NX0lOREVYJm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDB4MDwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0i
+RU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouetiee6vzttc28tZmFy
+ZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2RlZmluZSBtbU1NX0lOREVYX0hJJm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IDB4Njwvc3Bhbj48c3BhbiBs
+YW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5Ouet
+iee6vzttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+I2RlZmluZSBtbU1NX0RBVEEmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
+cDsmbmJzcDsmbmJzcDsgMHgxPC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwv
+c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
+ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6562J57q/O21zby1mYXJlYXN0LWxhbmd1YWdl
+OlpILUNOIj4mbmJzcDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9u
+dC1zaXplOjEwLjVwdDtmb250LWZhbWlseTrnrYnnur87bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6Wkgt
+Q04iPnN0YXRpYyBjb25zdCBjaGFyICpod19pZF9uYW1lc1tIV19JRF9NQVhdID0gezwvc3Bhbj48
+c3BhbiBsYW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9ibG9ja3F1b3RlPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LWZhbWls
+eTrlrovkvZM7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
+cGFuPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-Same comment as above - shouldn't touch *src and also shouldn't be able to get
-here anyway.
-
-> +			continue;
-> +		}
-> +		dpage = alloc_page_vma(GFP_HIGHUSER_MOVABLE, args->vma, addr);
-> +		if (!dpage)
-> +			continue;
-> +		pr_debug("migrating from dev to sys pfn src: 0x%lx pfn dst: 0x%lx\n",
-> +			 page_to_pfn(spage), page_to_pfn(dpage));
-> +
-> +		lock_page(dpage);
-> +		xa_erase(&dmirror->pt, addr >> PAGE_SHIFT);
-> +		copy_highpage(dpage, spage);
-> +		*dst = migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
-> +		if (*src & MIGRATE_PFN_WRITE)
-> +			*dst |= MIGRATE_PFN_WRITE;
-> +	}
-> +	return 0;
-> +}
-> +
-> +
->  static int dmirror_migrate(struct dmirror *dmirror,
->  			   struct hmm_dmirror_cmd *cmd)
->  {
-> @@ -731,33 +786,46 @@ static int dmirror_migrate(struct dmirror *dmirror,
->  		args.start = addr;
->  		args.end = next;
->  		args.pgmap_owner = dmirror->mdevice;
-> -		args.flags = MIGRATE_VMA_SELECT_SYSTEM;
-> +		args.flags = (!cmd->alloc_to_devmem &&
-> +			     dmirror->mdevice->zone_device_type ==
-> +			     HMM_DMIRROR_MEMORY_DEVICE_PRIVATE) ?
-> +			     MIGRATE_VMA_SELECT_DEVICE_PRIVATE :
-> +			     MIGRATE_VMA_SELECT_SYSTEM;
->  		ret = migrate_vma_setup(&args);
->  		if (ret)
->  			goto out;
->  
-> -		dmirror_migrate_alloc_and_copy(&args, dmirror);
-> +		if (cmd->alloc_to_devmem) {
-> +			pr_debug("Migrating from sys mem to device mem\n");
-> +			dmirror_migrate_alloc_and_copy(&args, dmirror);
-> +		} else {
-> +			pr_debug("Migrating from device mem to sys mem\n");
-> +			dmirror_devmem_fault_alloc_and_copy(&args, dmirror);
-> +		}
->  		migrate_vma_pages(&args);
-> -		dmirror_migrate_finalize_and_map(&args, dmirror);
-> +		if (cmd->alloc_to_devmem)
-> +			dmirror_migrate_finalize_and_map(&args, dmirror);
->  		migrate_vma_finalize(&args);
->  	}
->  	mmap_read_unlock(mm);
->  	mmput(mm);
->  
-> -	/* Return the migrated data for verification. */
-> -	ret = dmirror_bounce_init(&bounce, start, size);
-> -	if (ret)
-> -		return ret;
-> -	mutex_lock(&dmirror->mutex);
-> -	ret = dmirror_do_read(dmirror, start, end, &bounce);
-> -	mutex_unlock(&dmirror->mutex);
-> -	if (ret == 0) {
-> -		if (copy_to_user(u64_to_user_ptr(cmd->ptr), bounce.ptr,
-> -				 bounce.size))
-> -			ret = -EFAULT;
-> +	/* Return the migrated data for verification. only for pages in device zone */
-> +	if (cmd->alloc_to_devmem) {
-> +		ret = dmirror_bounce_init(&bounce, start, size);
-> +		if (ret)
-> +			return ret;
-> +		mutex_lock(&dmirror->mutex);
-> +		ret = dmirror_do_read(dmirror, start, end, &bounce);
-> +		mutex_unlock(&dmirror->mutex);
-> +		if (ret == 0) {
-> +			if (copy_to_user(u64_to_user_ptr(cmd->ptr), bounce.ptr,
-> +					 bounce.size))
-> +				ret = -EFAULT;
-> +		}
-> +		cmd->cpages = bounce.cpages;
-> +		dmirror_bounce_fini(&bounce);
->  	}
-> -	cmd->cpages = bounce.cpages;
-> -	dmirror_bounce_fini(&bounce);
->  	return ret;
-
-Rather than passing a flag (alloc_to_devmem) can you split this into two
-functions - one to migrate to device memory and one to migrate to system
-memory?
-
->  out:
-> @@ -781,9 +849,15 @@ static void dmirror_mkentry(struct dmirror *dmirror, struct hmm_range *range,
->  	}
->  
->  	page = hmm_pfn_to_page(entry);
-> -	if (is_device_private_page(page)) {
-> -		/* Is the page migrated to this device or some other? */
-> -		if (dmirror->mdevice == dmirror_page_to_device(page))
-> +	if (is_device_page(page)) {
-> +		/* Is page ZONE_DEVICE public? */
-> +		if (!is_device_private_page(page))
-> +			*perm = HMM_DMIRROR_PROT_DEV_PUBLIC;
-> +		/*
-> +		 * Is page ZONE_DEVICE private migrated to
-> +		 * this device or some other?
-> +		 */
-> +		else if (dmirror->mdevice == dmirror_page_to_device(page))
->  			*perm = HMM_DMIRROR_PROT_DEV_PRIVATE_LOCAL;
->  		else
->  			*perm = HMM_DMIRROR_PROT_DEV_PRIVATE_REMOTE;
-> @@ -1030,38 +1104,6 @@ static void dmirror_devmem_free(struct page *page)
->  	spin_unlock(&mdevice->lock);
->  }
->  
-> -static vm_fault_t dmirror_devmem_fault_alloc_and_copy(struct migrate_vma *args,
-> -						      struct dmirror *dmirror)
-> -{
-> -	const unsigned long *src = args->src;
-> -	unsigned long *dst = args->dst;
-> -	unsigned long start = args->start;
-> -	unsigned long end = args->end;
-> -	unsigned long addr;
-> -
-> -	for (addr = start; addr < end; addr += PAGE_SIZE,
-> -				       src++, dst++) {
-> -		struct page *dpage, *spage;
-> -
-> -		spage = migrate_pfn_to_page(*src);
-> -		if (!spage || !(*src & MIGRATE_PFN_MIGRATE))
-> -			continue;
-> -		spage = spage->zone_device_data;
-> -
-> -		dpage = alloc_page_vma(GFP_HIGHUSER_MOVABLE, args->vma, addr);
-> -		if (!dpage)
-> -			continue;
-> -
-> -		lock_page(dpage);
-> -		xa_erase(&dmirror->pt, addr >> PAGE_SHIFT);
-> -		copy_highpage(dpage, spage);
-> -		*dst = migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
-> -		if (*src & MIGRATE_PFN_WRITE)
-> -			*dst |= MIGRATE_PFN_WRITE;
-> -	}
-> -	return 0;
-> -}
-> -
->  static vm_fault_t dmirror_devmem_fault(struct vm_fault *vmf)
->  {
->  	struct migrate_vma args;
-> diff --git a/lib/test_hmm_uapi.h b/lib/test_hmm_uapi.h
-> index 00259d994410..b6cb8a7d2470 100644
-> --- a/lib/test_hmm_uapi.h
-> +++ b/lib/test_hmm_uapi.h
-> @@ -17,8 +17,12 @@
->   * @addr: (in) user address the device will read/write
->   * @ptr: (in) user address where device data is copied to/from
->   * @npages: (in) number of pages to read/write
-> + * @alloc_to_devmem: (in) desired allocation destination during migration.
-> + * True if allocation is to device memory.
-> + * False if allocation is to system memory.
->   * @cpages: (out) number of pages copied
->   * @faults: (out) number of device page faults seen
-> + * @zone_device_type: (out) zone device memory type
->   */
->  struct hmm_dmirror_cmd {
->  	__u64		addr;
-> @@ -26,7 +30,8 @@ struct hmm_dmirror_cmd {
->  	__u64		npages;
->  	__u64		cpages;
->  	__u64		faults;
-> -	__u64		zone_device_type;
-> +	__u32		zone_device_type;
-> +	__u32		alloc_to_devmem;
-
-Similar comment here. Rather than add a boolean flag to every command could you
-rename the existing command to HMM_DMIRROR_MIGRATE_TO_DEV and add another
-(HMM_DMIRROR_MIGRATE_TO_SYS) for this new operation? I think that would end up
-being a bit cleaner and matches how this actually gets used in hmm-test.c where
-you end up defining hmm_migrate_sys_to_dev() and hmm_migrate_to_dev_sys()
-anyway.
-
- - Alistair
-
->  };
->  
->  /* Expose the address space of the calling process through hmm device file */
-> @@ -49,6 +54,8 @@ struct hmm_dmirror_cmd {
->   *					device the ioctl() is made
->   * HMM_DMIRROR_PROT_DEV_PRIVATE_REMOTE: Migrated device private page on some
->   *					other device
-> + * HMM_DMIRROR_PROT_DEV_PUBLIC: Migrate device public page on the device
-> + *				 the ioctl() is made
->   */
->  enum {
->  	HMM_DMIRROR_PROT_ERROR			= 0xFF,
-> @@ -60,6 +67,7 @@ enum {
->  	HMM_DMIRROR_PROT_ZERO			= 0x10,
->  	HMM_DMIRROR_PROT_DEV_PRIVATE_LOCAL	= 0x20,
->  	HMM_DMIRROR_PROT_DEV_PRIVATE_REMOTE	= 0x30,
-> +	HMM_DMIRROR_PROT_DEV_PUBLIC		= 0x40,
->  };
->  
->  enum {
-> 
-
-
-
-
+--_000_HK2PR06MB34925517684D29A3A65F7004C7AB9HK2PR06MB3492apcp_--
