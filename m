@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E9AD42402A
-	for <lists+amd-gfx@lfdr.de>; Wed,  6 Oct 2021 16:32:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86FA5424058
+	for <lists+amd-gfx@lfdr.de>; Wed,  6 Oct 2021 16:45:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36C686ECE5;
-	Wed,  6 Oct 2021 14:32:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBB8C6ECFB;
+	Wed,  6 Oct 2021 14:45:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam08on2061.outbound.protection.outlook.com [40.107.102.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38C046E523
- for <amd-gfx@lists.freedesktop.org>; Wed,  6 Oct 2021 14:32:33 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2052.outbound.protection.outlook.com [40.107.243.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 254606ECB5
+ for <amd-gfx@lists.freedesktop.org>; Wed,  6 Oct 2021 14:45:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EdlJcFqMR/xzzNkof6mYUn871NB62JFmL1LFB1mys1VcZpCRkl6OrKM5cI2OdN6uqDvDXyk+zjLHvznqJPiXhPG6eZgmMiOGFPb6IZf5tfxX54gbeCE5DXZJPhnEvSyqpM42AGTDeVML0xW6XE82bn+mU+HOFXBbWLTYRgou7jhsqPU3YTEn2U/kqo4RB9wf322DFvecOmZE8UDCPeG8ATGdxvg4sXZKa2sIGEm/Ykski2qvV6TGjm6DEjPkRF8IjuAD2ibLFK8IqSV0ntvj1DfnMko7a3r/4SZ9+t07HnmoFTGsEe/TaDltC/P/bXfx/W3Bg7IFRoqxWiYtbXrOUw==
+ b=MIMQCgxrG4BDSDCBd1KeDOBD7B2caBY52LgRap3h6Lbp7WIp2UKjRZCGZ0/JyNmNJFWcLlMvd8xH9Rc3HWBkAVHfdUpp9CYejTOpd6yFHCvWHZL3oigUrM4Ev0Ic0opZfp2LUeyjTt9CN3wXgxx3/lMA4Suaf8HiDjGBjKp44bqsl6ZWk1NbO1Eigay0NccZFsJ78fCBaqy6aNcwtwjfgwhMb1yQzh7X5h/uD2xxnTrBy6cEc6PIV93+PNp5ZSXPhupgHRVhhLfF4ROvsy6OfGfDwoEl4cfQl9bpzj1SJk/Pv9oUe/pTjAWYA6ATHYKepv0Tib4e0sv1LMhcSMixuQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mUSkPfFHb4PNQDV/GxczRLiIOeeF7mJJKkhEAtPANKs=;
- b=M6wLIUWrRFMPbo+yOqnWLJqG3i4ch2aBy5Oy+bLatGkvT/Os41wmyVd196vxmeRQ3pkF2bGYZXAesI8uuhnp1kRht4mi2MuwZBRyhn3VqEHClxNPYKA8tehgqKQRL39Rul9R9RK25+IXcRpnu3uvGbcLvFZ4H6y73cxPQQXhCuh7YfHfAu/jkDbWj/84Sl7bNhg5Yv6q15Na3NwHFmk69Yh0sPgiTh2HSufTW0/1O0D39mMwPzZiZxozys6KfDE4tdEsPUUbMSvyQFA3gcJVqOUAnqTmC+DjkUJZt/7wGJEldiyOh+LQuP//qk6tgUSJSOZk2O1Rf1I+kOETBK5ANQ==
+ bh=6nPAiVpsYjF79XqRauDoycRkwspuc98/L5wb5ee4cYQ=;
+ b=B8trpicPGaLZRLY/c2mnvdoNn0XHkjLi08BDT/0QScClFQbXS5kuOvF3wcn6eF9K12MEQ4Oh3mLWNNK4lD8quyivWL4C+C7GE+/UGtVnfOJtNBG2UrrfyBPNbeNNKE23HzbFwVECH89rpVzWXGlq5o8uD6C8oVvnVhBAiAng7sv6ka91qDfx3rdCFWpWyI3Y9Ne5k6gVT2Q1vXsNSRpsKiWSG9vDSN3G6IFu1YFMbiRoZlC0pbb6ARWH1/ZVL+QncNMuY9OjC/eaL2XMM9g2FG/lPrLgGfjC7wnZnNqkr6yRYUa9TNMvSLnCzlMJvpKHDYV29KfPDJH5hods8OwUIA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mUSkPfFHb4PNQDV/GxczRLiIOeeF7mJJKkhEAtPANKs=;
- b=yu7MhAwo4YrMTpq/aLwybqlXhtWCcnq4SWG5/Te7//Hx4TrCO2XXHl+Bno+yqZ4/D0LNKVNuZW5MAyyf15hFCxrsgjhjUKZRp8rlvcoOpgKQvhy/aOfNQw6e6MDC6DWWls4WzSivdJxol8lxmLYmHETJV6u5lERVVfHFarmFzac=
-Received: from CO2PR04CA0114.namprd04.prod.outlook.com (2603:10b6:104:7::16)
- by BN8PR12MB3554.namprd12.prod.outlook.com (2603:10b6:408:65::13) with
+ bh=6nPAiVpsYjF79XqRauDoycRkwspuc98/L5wb5ee4cYQ=;
+ b=nQu+HvqKDGrwZyYPlVeCCYXyJVi/3RFG5GE9QOPlESE/xa9s3pFcFEwPmyTMlr8mHFU2KdI5uyLCLWN0ZjTgUGJcZb5Gwrtb4fosSwvxoNFhLh94O6ewDlrbgnr3SYTo4iwEbrO0+ia0YMmwkDzJXCYrC0xd7CHDJC67pKM+jMc=
+Received: from DM3PR12CA0119.namprd12.prod.outlook.com (2603:10b6:0:51::15) by
+ MWHPR1201MB2558.namprd12.prod.outlook.com (2603:10b6:300:e5::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.22; Wed, 6 Oct
- 2021 14:32:31 +0000
-Received: from CO1NAM11FT047.eop-nam11.prod.protection.outlook.com
- (2603:10b6:104:7:cafe::fd) by CO2PR04CA0114.outlook.office365.com
- (2603:10b6:104:7::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.18 via Frontend
- Transport; Wed, 6 Oct 2021 14:32:30 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.19; Wed, 6 Oct
+ 2021 14:45:42 +0000
+Received: from DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:0:51:cafe::9b) by DM3PR12CA0119.outlook.office365.com
+ (2603:10b6:0:51::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4566.22 via Frontend
+ Transport; Wed, 6 Oct 2021 14:45:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,52 +46,50 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT047.mail.protection.outlook.com (10.13.174.132) with Microsoft SMTP
+ DM6NAM11FT009.mail.protection.outlook.com (10.13.173.20) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4587.18 via Frontend Transport; Wed, 6 Oct 2021 14:32:30 +0000
-Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ 15.20.4587.18 via Frontend Transport; Wed, 6 Oct 2021 14:45:41 +0000
+Received: from brihaspati.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Wed, 6 Oct 2021
- 09:32:29 -0500
-From: Philip Yang <Philip.Yang@amd.com>
+ 09:45:39 -0500
+From: Nirmoy Das <nirmoy.das@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: Philip Yang <Philip.Yang@amd.com>
-Subject: [PATCH 4/4] drm/amdkfd: create svm unregister range not overlap with
- userptr
-Date: Wed, 6 Oct 2021 10:32:10 -0400
-Message-ID: <20211006143210.4954-4-Philip.Yang@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211006143210.4954-1-Philip.Yang@amd.com>
-References: <20211006143210.4954-1-Philip.Yang@amd.com>
+CC: <Christian.Koenig@amd.com>, Nirmoy Das <nirmoy.das@amd.com>
+Subject: [PATCH 1/1] drm/amdgpu: add and use amdgpu_bo_evict_gtt
+Date: Wed, 6 Oct 2021 16:45:29 +0200
+Message-ID: <20211006144529.61208-1-nirmoy.das@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cf0527eb-79dc-41c0-7c20-08d988d62106
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3554:
-X-Microsoft-Antispam-PRVS: <BN8PR12MB35549DAAE144E945A8AE0027E6B09@BN8PR12MB3554.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:820;
+X-MS-Office365-Filtering-Correlation-Id: 2190eea2-17bf-4169-3868-08d988d7f8a7
+X-MS-TrafficTypeDiagnostic: MWHPR1201MB2558:
+X-Microsoft-Antispam-PRVS: <MWHPR1201MB25585E770064E604ED634A588BB09@MWHPR1201MB2558.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: taVbua1ZMwaYKLY7JvD2K5Uc2MTEI1Wswl0y6rQUCZo60ylH2jj+uRNU8bq04MRW0tVcKF0zwiDJ94vfMzbEgnexS6yXuWGkh9k/r4tEU/hbUuVpKeNZysv56fWEPgUO7iiUE+F6a1DCgthwMxyqJzs3MMKDHsETXCSPvIV6jNOi+ogQ5RB6p+1+nwR9McBlVGuhPJf6c3XU5eLpofv6qUObq9BY/SS7iu8bRN3J9SjVlSQ5heFbUjbO1PxsARplyCR+/PAVm0LOdfW0gRdibxd6W6QcFL9Ze+G/Il5yB0Ym++uwCGanEz39+Al9q15xKAp+R4Osp5UmB6ZtsAFTtsPBgcp8niSYet5bJ2tN9zNV0Az9ciALtrrRD59KiJ4rpnS9t7iqjZSsPAoG82o3EghC3SOzv8VqqD0hGOzMx6WZKJ05V/emBzfz9BueJMInNoD8m9fxG6XZKnG4qtpnFOPkfc8WzVJjAoNMVHRzylHpEAlEtSzLhhmMsX9/3INTOysQH3Nx0vbZ5DbOveW7rSj5RTQkC9aLjS3NJY6wboI82uhQ8bahDjm4EfsJQayW/0yd7iuDFVTWdAw2BDuTxfnR8kRu0xMP92qXloH8Gbm2FcX6naZauOQLXODB94H+RcwL/LO/ilUQovnsAC1dCpECwCZZS39uluZRbCgWCnO2PV2MSt2igYvUcjuZHFlTxLorMFLFyz/onQjCdSWOb0A5W6hhuzQKhL5EaC9ha10=
+X-Microsoft-Antispam-Message-Info: 4iUoetAuDeEHrqGFNcNIihgEG4V3XjIjPQhAjxOE021tBEfBotlGdMVjPPcWAqARXw1GKcFtsH+ZgMmzNfM4kLPGGPwBqWjX9r6TEIETV69MD/pB8Jsac9bM8aCwYMk9AKGVeRELk6US0ltnrcsRTUSkTsJr0IF+5x+ihOt/aHnTI8rE0gLY8lwffO9rGAVaK9r/3abS07/eFEZuDuBmWtRTdSKOubD0yKToM2HWohwolp5YbXAxq+8iMJaVPWqRi7sDwDi1/qSE889WMpz8mEb/WS0DQAc9VZJQJSG/jX79EezrLj3YTuflYJua8mjxyk9fQG20+6mdf+Nb3ggMBXMQ+lX61u1IQ1EenlCeEQnHj9/aBWTpocCqcHafBqc2avqt1vDH2Hj+Vhd9OBJHU+5IqJjiTNPMN624d4AqWQn4LMPdaq/zQy/h3a3w/eYFKeQKsF3iE9uw5G4RXyEtAq6tsWsHiTDdjSDINT1+ZKuLZqpJPifem4qe3l7IK9ozp8JQlGCFSxpl5xQG/Wa3HIPyRps+y5yev3peb43wEP2DFnkQRcYDPL2JoplEATFukKZf578FTrsAjv5vFgWEU/4FE6mt4HgrFwW+YxRfR0obkSMBqlQZE+Ey6rK6CgAWWmTI0lpbRhM6BhEdAfqWFKR3z2nGdCS2oaZExP9WizZWBsiglA16VrrFnZAcWwjpMwDUooc3Jgv3z3IREFl+8QsM4MnMW3xbNVYPTTvspHA=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(16526019)(7696005)(4326008)(36756003)(70206006)(186003)(8676002)(82310400003)(5660300002)(6666004)(1076003)(508600001)(2906002)(83380400001)(336012)(81166007)(70586007)(426003)(26005)(2616005)(47076005)(8936002)(6916009)(316002)(36860700001)(356005)(86362001)(36900700001);
+ SFS:(4636009)(36840700001)(46966006)(36860700001)(336012)(4326008)(44832011)(6666004)(6916009)(36756003)(16526019)(82310400003)(83380400001)(86362001)(426003)(47076005)(70206006)(186003)(7696005)(8676002)(5660300002)(1076003)(316002)(2906002)(356005)(2616005)(81166007)(8936002)(54906003)(508600001)(70586007)(26005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2021 14:32:30.6658 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf0527eb-79dc-41c0-7c20-08d988d62106
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2021 14:45:41.9910 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2190eea2-17bf-4169-3868-08d988d7f8a7
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT047.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3554
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB2558
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,122 +104,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When creating new svm range to recover retry fault, avoid svm range
-to overlap with ranges or userptr ranges managed by TTM, otherwise
-svm migration will trigger TTM or userptr eviction, to evict user queues
-unexpectedly.
+Unify BO evicting functionality for VRAM and TT memory
+types in amdgpu_object.c. Use amdgpu_bo_evict_gtt()
+for evicting gtt memory similar to how we do that
+for amdgpu_debugfs_evict_vram().
 
-Add helper amdgpu_ttm_tt_get_userptr because amdgpu_ttm_tt structure is
-not accessed from outside of amdgpu_ttm.c.
-
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
+Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 13 ++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h |  1 +
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c    | 28 ++++++++++++++++++++++++-
- 3 files changed, 41 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  6 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  | 52 +++++++++++++++++++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.h  |  1 +
+ 3 files changed, 50 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index e2896ac2c9ce..93952e1bce5b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1251,6 +1251,19 @@ bool amdgpu_ttm_tt_is_userptr(struct ttm_tt *ttm)
- 	return true;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+index 5497e2d31d1a..67045983d63d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+@@ -1341,17 +1341,15 @@ static int amdgpu_debugfs_evict_gtt(void *data, u64 *val)
+ {
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)data;
+ 	struct drm_device *dev = adev_to_drm(adev);
+-	struct ttm_resource_manager *man;
+ 	int r;
+ 
+ 	r = pm_runtime_get_sync(dev->dev);
+ 	if (r < 0) {
+-		pm_runtime_put_autosuspend(adev_to_drm(adev)->dev);
++		pm_runtime_put_autosuspend(dev->dev);
+ 		return r;
+ 	}
+ 
+-	man = ttm_manager_type(&adev->mman.bdev, TTM_PL_TT);
+-	*val = ttm_resource_manager_evict_all(&adev->mman.bdev, man);
++	*val = amdgpu_bo_evict_gtt(adev);
+ 
+ 	pm_runtime_mark_last_busy(dev->dev);
+ 	pm_runtime_put_autosuspend(dev->dev);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index 4ec904f36ceb..3b8c9cf44d74 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -1005,10 +1005,37 @@ void amdgpu_bo_unpin(struct amdgpu_bo *bo)
  }
  
-+/*
-+ * amdgpu_ttm_tt_get_userptr - get userptr of the address range
+ /**
+- * amdgpu_bo_evict_vram - evict VRAM buffers
++ * amdgpu_bo_evict_memory - evict memory buffers
+  * @adev: amdgpu device object
++ * @mem_type: evicted BO's memory type
+  *
+- * Evicts all VRAM buffers on the lru list of the memory type.
++ * Evicts all @mem_type buffers on the lru list of the memory type.
++ *
++ * Returns:
++ * 0 for success or a negative error code on failure.
 + */
-+uint64_t amdgpu_ttm_tt_get_userptr(struct ttm_tt *ttm)
++static int amdgpu_bo_evict_memory(struct amdgpu_device *adev, int mem_type)
 +{
-+	struct amdgpu_ttm_tt *gtt = (void *)ttm;
++	struct ttm_resource_manager *man;
 +
-+	if (gtt == NULL)
-+		return 0;
-+	return  gtt->userptr;
-+}
-+
-+
- /*
-  * amdgpu_ttm_tt_is_readonly - Is the ttm_tt object read only?
-  */
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-index e69f3e8e06e5..1dd1a882280d 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-@@ -186,6 +186,7 @@ bool amdgpu_ttm_tt_affect_userptr(struct ttm_tt *ttm, unsigned long start,
- bool amdgpu_ttm_tt_userptr_invalidated(struct ttm_tt *ttm,
- 				       int *last_invalidated);
- bool amdgpu_ttm_tt_is_userptr(struct ttm_tt *ttm);
-+uint64_t amdgpu_ttm_tt_get_userptr(struct ttm_tt *ttm);
- bool amdgpu_ttm_tt_is_readonly(struct ttm_tt *ttm);
- uint64_t amdgpu_ttm_tt_pde_flags(struct ttm_tt *ttm, struct ttm_resource *mem);
- uint64_t amdgpu_ttm_tt_pte_flags(struct amdgpu_device *adev, struct ttm_tt *ttm,
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index d49c08618714..a2eb21deb06f 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -45,6 +45,8 @@ static bool
- svm_range_cpu_invalidate_pagetables(struct mmu_interval_notifier *mni,
- 				    const struct mmu_notifier_range *range,
- 				    unsigned long cur_seq);
-+static struct amdgpu_bo *
-+svm_range_check_vm(struct kfd_process *p, uint64_t start, uint64_t last);
- 
- static const struct mmu_interval_notifier_ops svm_range_mn_ops = {
- 	.invalidate = svm_range_cpu_invalidate_pagetables,
-@@ -2308,6 +2310,7 @@ svm_range_best_restore_location(struct svm_range *prange,
- 
- 	return -1;
- }
-+
- static int
- svm_range_get_range_boundaries(struct kfd_process *p, int64_t addr,
- 				unsigned long *start, unsigned long *last)
-@@ -2355,8 +2358,8 @@ svm_range_get_range_boundaries(struct kfd_process *p, int64_t addr,
- 		  vma->vm_end >> PAGE_SHIFT, *last);
- 
- 	return 0;
--
- }
-+
- static struct
- svm_range *svm_range_create_unregistered_range(struct amdgpu_device *adev,
- 						struct kfd_process *p,
-@@ -2366,10 +2369,33 @@ svm_range *svm_range_create_unregistered_range(struct amdgpu_device *adev,
- 	struct svm_range *prange = NULL;
- 	unsigned long start, last;
- 	uint32_t gpuid, gpuidx;
-+	struct amdgpu_bo *bo;
- 
- 	if (svm_range_get_range_boundaries(p, addr, &start, &last))
- 		return NULL;
- 
-+	bo = svm_range_check_vm(p, start, last);
-+	if (bo) {
-+		struct ttm_tt *ttm = bo->tbo.ttm;
-+		unsigned long bo_s, bo_l;
-+
-+		if (amdgpu_ttm_tt_is_userptr(ttm)) {
-+			bo_s = amdgpu_ttm_tt_get_userptr(ttm) >> PAGE_SHIFT;
-+			bo_l = bo_s + ttm->num_pages - 1;
-+			pr_debug("overlap userptr [0x%lx 0x%lx]\n", bo_s, bo_l);
-+		} else {
-+			bo_s = bo->kfd_bo->va;
-+			bo_l = bo_s + ttm->num_pages - 1;
-+			pr_debug("overlap range [0x%lx 0x%lx]\n", bo_s, bo_l);
-+		}
-+		if (addr >= bo_s && addr <= bo_l)
-+			return NULL;
-+		if (addr < bo_s)
-+			last = bo_s - 1;
-+		if (addr > bo_l)
-+			start = bo_l + 1;
++	switch (mem_type) {
++	case TTM_PL_VRAM:
++	case TTM_PL_TT:
++		man = ttm_manager_type(&adev->mman.bdev, mem_type);
++		break;
++	default:
++		DRM_ERROR("Trying to evict invalid memory type\n");
++		return -EINVAL;
 +	}
 +
- 	prange = svm_range_new(&p->svms, start, last);
- 	if (!prange) {
- 		pr_debug("Failed to create prange in address [0x%llx]\n", addr);
++	return ttm_resource_manager_evict_all(&adev->mman.bdev, man);
++}
++
++/**
++ * amdgpu_bo_evict_vram - evict vram buffers
++ * @adev: amdgpu device object
++ *
++ * Evicts all vram buffers on the lru list of the memory type.
+  * Mainly used for evicting vram at suspend time.
+  *
+  * Returns:
+@@ -1016,17 +1043,32 @@ void amdgpu_bo_unpin(struct amdgpu_bo *bo)
+  */
+ int amdgpu_bo_evict_vram(struct amdgpu_device *adev)
+ {
+-	struct ttm_resource_manager *man;
+ 
+ 	if (adev->in_s3 && (adev->flags & AMD_IS_APU)) {
+ 		/* No need to evict vram on APUs for suspend to ram */
+ 		return 0;
+ 	}
+ 
+-	man = ttm_manager_type(&adev->mman.bdev, TTM_PL_VRAM);
+-	return ttm_resource_manager_evict_all(&adev->mman.bdev, man);
++	return amdgpu_bo_evict_memory(adev, TTM_PL_VRAM);
++}
++
++/**
++ * amdgpu_bo_evict_gtt - evict gtt buffers
++ * @adev: amdgpu device object
++ *
++ * Evicts all gtt buffers on the lru list of the memory type.
++ * Mainly used for evicting gtt buffers through debugfs.
++ *
++ * Returns:
++ * 0 for success or a negative error code on failure.
++ */
++
++int amdgpu_bo_evict_gtt(struct amdgpu_device *adev)
++{
++	return amdgpu_bo_evict_memory(adev, TTM_PL_TT);
+ }
+ 
++
+ static const char *amdgpu_vram_names[] = {
+ 	"UNKNOWN",
+ 	"GDDR1",
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
+index 8ff61bad4138..5e9b7710b8e3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.h
+@@ -306,6 +306,7 @@ int amdgpu_bo_pin_restricted(struct amdgpu_bo *bo, u32 domain,
+ 			     u64 min_offset, u64 max_offset);
+ void amdgpu_bo_unpin(struct amdgpu_bo *bo);
+ int amdgpu_bo_evict_vram(struct amdgpu_device *adev);
++int amdgpu_bo_evict_gtt(struct amdgpu_device *adev);
+ int amdgpu_bo_init(struct amdgpu_device *adev);
+ void amdgpu_bo_fini(struct amdgpu_device *adev);
+ int amdgpu_bo_set_tiling_flags(struct amdgpu_bo *bo, u64 tiling_flags);
 -- 
-2.17.1
+2.32.0
 
