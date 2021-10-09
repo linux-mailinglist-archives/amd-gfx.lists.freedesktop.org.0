@@ -2,32 +2,32 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8535D4287A3
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Oct 2021 09:31:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F8F24287A6
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Oct 2021 09:31:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61E1689119;
-	Mon, 11 Oct 2021 07:31:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FF716E436;
+	Mon, 11 Oct 2021 07:31:15 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 247FE6E141
- for <amd-gfx@lists.freedesktop.org>; Sat,  9 Oct 2021 09:01:12 +0000 (UTC)
-Received: from zn.tnic (p200300ec2f1e220071dfbf03a8036444.dip0.t-ipconnect.de
- [IPv6:2003:ec:2f1e:2200:71df:bf03:a803:6444])
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB0936E155
+ for <amd-gfx@lists.freedesktop.org>; Sat,  9 Oct 2021 10:07:26 +0000 (UTC)
+Received: from zn.tnic (p200300ec2f1e2200eaf5135f74ba603d.dip0.t-ipconnect.de
+ [IPv6:2003:ec:2f1e:2200:eaf5:135f:74ba:603d])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 4D5971EC0478;
- Sat,  9 Oct 2021 11:01:10 +0200 (CEST)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 0E3901EC050F;
+ Sat,  9 Oct 2021 12:07:25 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
- t=1633770070;
+ t=1633774045;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
- bh=uFgdCYF5FRlmWaSRyHM0mxAEUkaqW/MaZwaHu/Ao7kE=;
- b=nXNFb8n+2ySs3IFKeiNulh6FOQ1ACB9wNdGhbeLeOZgH9QAsxKdICr1vy5DZcfiI/Imbs5
- ab1LafEmC8/rWvBUOTcOeTng12Xf4Y7UaR5yGyMOdjEbFxhZf/2quoTra+fJ2Anp2YyRt+
- F8i9eBoXjzxQza4CSjS6/FvbD4GfTtk=
-Date: Sat, 9 Oct 2021 11:01:06 +0200
+ bh=XBb5DRuvpHCIpaOFwyxafYPw1UQ6Ea57NV5kAAnUc/4=;
+ b=ooUMbUWXhNxc75bL/39RkCCBkIYHVZxCR5dEVq8cQLzz6fGUnJTrS8sQlODRgxWOalJM+d
+ Y52gDdMTK03Hg8tX5BhNkZqFdgS0oRQ9ZlOzlVeQMXfxqgb0WaeXOu9ek5UE1ZAoHfXc5c
+ kMtcjjxagIKgtCXi/5Og251Ok6pQbxc=
+Date: Sat, 9 Oct 2021 12:07:22 +0200
 From: Borislav Petkov <bp@alien8.de>
 To: "Quan, Evan" <Evan.Quan@amd.com>
 Cc: Alex Deucher <alexdeucher@gmail.com>,
@@ -37,17 +37,19 @@ Cc: Alex Deucher <alexdeucher@gmail.com>,
  "Pan, Xinhui" <Xinhui.Pan@amd.com>, "Chen, Guchun" <Guchun.Chen@amd.com>
 Subject: Re: bf756fb833cb ("drm/amdgpu: add missing cleanups for Polaris12
  UVD/VCE on suspend")
-Message-ID: <YWFaUjKEp+5819O/@zn.tnic>
+Message-ID: <YWFp2qHwbWHEqxWh@zn.tnic>
 References: <YV81vidWQLWvATMM@zn.tnic>
  <CADnq5_NjiRM9sF6iAE3=KbzuSVc1MeLe0nUCdJfEpNQ=RDz4Zw@mail.gmail.com>
  <YWBeD7fd2sYSSTyc@zn.tnic>
  <CADnq5_MeEP-PbDp+Js3zEsuj=CvxDAD2qcFSskWhW4b4SkhwEQ@mail.gmail.com>
  <YWBlVzZK35ecQHNZ@zn.tnic>
  <DM6PR12MB2619FD47CD826ADC91F87AFBE4B39@DM6PR12MB2619.namprd12.prod.outlook.com>
+ <YWFaUjKEp+5819O/@zn.tnic>
+ <DM6PR12MB26195857D2FA0946C9833F19E4B39@DM6PR12MB2619.namprd12.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <DM6PR12MB2619FD47CD826ADC91F87AFBE4B39@DM6PR12MB2619.namprd12.prod.outlook.com>
+In-Reply-To: <DM6PR12MB26195857D2FA0946C9833F19E4B39@DM6PR12MB2619.namprd12.prod.outlook.com>
 X-Mailman-Approved-At: Mon, 11 Oct 2021 07:31:13 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,13 +65,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Oct 09, 2021 at 01:20:39AM +0000, Quan, Evan wrote:
-> Maybe the change below can address your issue.
+On Sat, Oct 09, 2021 at 09:54:13AM +0000, Quan, Evan wrote:
+> Oops, I just found some necessary changes are missing from the patch of the link below.
 > https://lists.freedesktop.org/archives/amd-gfx/2021-September/069006.html
+> 
+> Could you try the patch from the link above + the attached patch?
 
-Nope, that one doesn't change anything.
-
-Thx.
+Nope, still no joy. ;-\
 
 -- 
 Regards/Gruss,
