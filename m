@@ -2,98 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82E78428D6B
-	for <lists+amd-gfx@lfdr.de>; Mon, 11 Oct 2021 14:57:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 449BE428D84
+	for <lists+amd-gfx@lfdr.de>; Mon, 11 Oct 2021 15:05:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B200D6E4BA;
-	Mon, 11 Oct 2021 12:57:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C5706E4A6;
+	Mon, 11 Oct 2021 13:05:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2066.outbound.protection.outlook.com [40.107.236.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 603DA6E4AD
- for <amd-gfx@lists.freedesktop.org>; Mon, 11 Oct 2021 12:57:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nMVFP9na2GzKHv+faaNLvSkN3mJAgIKOHSUGnShUojNDjwGTa9iGoGNd1WWhddlyZeh6x2a5bePNHIO3dfZ59h0uHnNUhDOLc8ypNkWPaI/CBVXrM2IljGND39Amiw82hNyjNCgcxa+KNGBT7r90RVsUuzCu6J2yXSeQPs/mByXOGYQAEZ0zSGUWTyCXSDpCxhYnnq1dCsvZPBrjv4F0fLS5MbYrUZ3+knl93olOCiF5LsP4+Av/B2MHj340WZgIwltfCwbku/nS1/QAtIf3XmJE19/Kwub/r0/GpJTozgpscQ8ktdoVXkx//MZfc1+uf8Cw3oe4vLdo3Ysffdvaew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rz4m8fe8EZd3qhnlASIeLJHggWtpeGJl4k8e9KvOWVM=;
- b=Y0V78/0PaBsIpsgsf/cWM279STdjCxjxhm/I4oyU9Y7P92xnWwsswDNdV+QG8j/SJQVmTfAjuyY/0wfLheiJSNT4llddcSbXUR072yQAF6duWtHPZNZy75yfc4FCqww7rDtxJcXTOvsi3YxfNqIAydTau9dteGE5IwpkMdMlhZdZ74N9F72WgYEaB79RyAlq3bPv1bkrPISf1Sl7ZPKIm5Nh6+h/df/M/APGoagxicEJ4sdhrbNB8jrJH/nr38LuziSF+0orU+TF01cQwFXrkFe59DyiHQAYvbddOH3o5u5sqXv08Ds8p4SaVkBdFMBwrEOG9K3ctrChrD6NVktDZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rz4m8fe8EZd3qhnlASIeLJHggWtpeGJl4k8e9KvOWVM=;
- b=S3PhIfcKYPhHbWQo04E2+9w5vwmC2H4crcm6Ilg5zxOod5KqumGtKGFNu3U9/678CJSIsvvSgRtq3O6riRtJWPpXFZS7XVi0gUseYZ2gUq5FqTN3eNQb7U8TRNB/Ev4nUcwG1VMQp2EG4JvJ9QyCppobLpU9rGS2Hwh+T/H6csg=
-Received: from DM3PR08CA0006.namprd08.prod.outlook.com (2603:10b6:0:52::16) by
- CH2PR12MB3782.namprd12.prod.outlook.com (2603:10b6:610:23::28) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4587.25; Mon, 11 Oct 2021 12:57:49 +0000
-Received: from DM6NAM11FT034.eop-nam11.prod.protection.outlook.com
- (2603:10b6:0:52:cafe::31) by DM3PR08CA0006.outlook.office365.com
- (2603:10b6:0:52::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.19 via Frontend
- Transport; Mon, 11 Oct 2021 12:57:49 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT034.mail.protection.outlook.com (10.13.173.47) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4587.18 via Frontend Transport; Mon, 11 Oct 2021 12:57:49 +0000
-Received: from yifan.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Mon, 11 Oct
- 2021 07:57:46 -0500
-From: Yifan Zhang <yifan1.zhang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-CC: <Felix.Kuehling@amd.com>, <jamesz@amd.com>, <youling257@gmail.com>, "Yifan
- Zhang" <yifan1.zhang@amd.com>
-Subject: [PATCH 2/2] drm/amdkfd: fix resume error when iommu disabled in
- Picasso
-Date: Mon, 11 Oct 2021 20:57:01 +0800
-Message-ID: <20211011125701.2800114-2-yifan1.zhang@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211011125701.2800114-1-yifan1.zhang@amd.com>
-References: <20211011125701.2800114-1-yifan1.zhang@amd.com>
+Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56E4C6E4A6
+ for <amd-gfx@lists.freedesktop.org>; Mon, 11 Oct 2021 13:05:36 +0000 (UTC)
+Received: from [192.168.0.7] (ip5f5aef5a.dynamic.kabel-deutschland.de
+ [95.90.239.90])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested) (Authenticated sender: pmenzel)
+ by mx.molgen.mpg.de (Postfix) with ESMTPSA id 1C82A61E5FE33;
+ Mon, 11 Oct 2021 15:05:34 +0200 (CEST)
+Subject: Re: `AMD_MEM_ENCRYPT_ACTIVE_BY_DEFAULT=y` causes AMDGPU to fail on
+ Ryzen: amdgpu: SME is not compatible with RAVEN
+To: Borislav Petkov <bp@alien8.de>
+Cc: Alex Deucher <alexdeucher@gmail.com>, Thomas Gleixner
+ <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, X86 ML
+ <x86@kernel.org>, Dave Hansen <dave.hansen@linux.intel.com>,
+ Andy Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ LKML <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org,
+ Tom Lendacky <thomas.lendacky@amd.com>
+References: <8bbacd0e-4580-3194-19d2-a0ecad7df09c@molgen.mpg.de>
+ <CADnq5_ONNvuvTbiJDFfRwfnPUBeAqPmDJRmESDYG_7CymikJpQ@mail.gmail.com>
+ <YV1vcKpRvF9WTwAo@zn.tnic>
+ <CADnq5_N5+SEW4JyXLc=FdSHnSbXrGKWjEw4vW1Jxv9-KdWf+Jg@mail.gmail.com>
+ <96f6dbed-b027-c65e-6888-c0e8630cc006@amd.com> <YV3hbK/uhChK5Pse@zn.tnic>
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+Message-ID: <d704afb9-7c7c-fa55-4329-58bb2fa25b33@molgen.mpg.de>
+Date: Mon, 11 Oct 2021 15:05:33 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 19b3e3b6-93dd-4edf-b001-08d98cb6bab4
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3782:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB37826FFBEF759D9AEBFBF6D6C1B59@CH2PR12MB3782.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:949;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0yxxaQRN9Zu9ArE6SvAcMETNBc7aBfj80DzVxVDPPRylSeXrSS8H5hZP10xDF3vCBhnahFQBr/y1SUQgGTHoc9OoeHrwpgT5ZdkGXr+nZh2Dw0cA/6A2KvrrNnjiVaidfTwBqjfRJ/NLya3bJp4Ynsz27HMhJkb8oWlLAdBy89gB+BUCRbXpE1cr9dLscDic4OhMKTp3UW3Xx6yKp1/TAAwOuFiUNYE6fsi95Kxf0FD8EWHzHTNZn3VpaTQDjyI0kQYVmpm9Alorr/9Jf9cPIdeRPwXN6u9RjUQ+8gJLXZjx7DCRTOK8lh0tbk4liObF73iBdHm8P9a5JBmeayoE0plOdk2pi2B0UvtWtuLK1HkaXL2RTk89cx9eCedxSltvQqHfAkuenK3xONDLTv6IWABeTPYZv1xhwbz00UjprUuTu731n5AsXngbYduWzKmw2Z43YdRIAA3dK/wVzAieoWs9MIirapgS0ZnW/FEErmL7mzSA53afMq3XcK+MNdwCPyT6wrMcwsoAEmb1eEAyUK8qhtSjevoI5HNzmExGpnl26yY8ZT3Wvfapqk3M6fvcPV+dy9hs/KwLgHGe7aglLmPas9r+459ARJjVq1tBtDiiVzOkk7uWgxNyxTS9mEEepCsjxHwrPAYUx56XacFc7OrleiBiM+hqmrAuNxPVp3a2GAqOB39gX8B9+bUqk52I5XaXnfueaJD65yFYEdN3GFXqs73AwOp4d4ib69wShD8=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(83380400001)(82310400003)(54906003)(8936002)(2906002)(316002)(186003)(86362001)(8676002)(4744005)(70586007)(70206006)(36860700001)(16526019)(6916009)(426003)(2616005)(1076003)(5660300002)(26005)(4326008)(508600001)(47076005)(6666004)(7696005)(36756003)(336012)(81166007)(356005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Oct 2021 12:57:49.3096 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 19b3e3b6-93dd-4edf-b001-08d98cb6bab4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT034.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3782
+In-Reply-To: <YV3hbK/uhChK5Pse@zn.tnic>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,29 +57,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When IOMMU disabled in sbios and kfd in iommuv2 path,
-IOMMU resume failure blocks system resume. Don't allow kfd to
-use iommu v2 when iommu is disabled.
+Dear Borislav,
 
-Reported-by: youling <youling257@gmail.com>
-Tested-by: youling <youling257@gmail.com>
-Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device.c | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index bb652ee35c25..1fadc9fb168d 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -916,6 +916,7 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
- 	kfd_double_confirm_iommu_support(kfd);
- 
- 	if (kfd_iommu_device_init(kfd)) {
-+		kfd->use_iommu_v2 = false;
- 		dev_err(kfd_device, "Error initializing iommuv2\n");
- 		goto device_iommu_error;
- 	}
--- 
-2.25.1
+Am 06.10.21 um 19:48 schrieb Borislav Petkov:
+> Ok,
+> 
+> so I sat down and wrote something and tried to capture all the stuff we
+> so talked about that it is clear in the future why we did it.
+> 
+> Thoughts?
+> 
+> ---
+> From: Borislav Petkov <bp@suse.de>
+> Date: Wed, 6 Oct 2021 19:34:55 +0200
+> Subject: [PATCH] x86/Kconfig: Do not enable AMD_MEM_ENCRYPT_ACTIVE_BY_DEFAULT automatically
+> 
+> This Kconfig option was added initially so that memory encryption is
+> enabled by default on machines which support it.
+> 
+> However, Raven-class GPUs, a.o., cannot handle DMA masks which are
+> shorter than the bit position of the encryption, aka C-bit. For that,
+> those devices need to have the IOMMU present.
+> 
+> If the IOMMU is disabled or in passthrough mode, though, the kernel
+> would switch to SWIOTLB bounce-buffering for those transfers.
+> 
+> In order to avoid that,
+> 
+>     2cc13bb4f59f ("iommu: Disable passthrough mode when SME is active")
+> 
+> disables the default IOMMU passthrough mode so that devices for which
+> the default 256K DMA is insufficient, can use the IOMMU instead.
+> 
+> However 2, there are cases where the IOMMU is disabled in the BIOS, etc,
+> think the usual hardware folk "oops, I dropped the ball there" cases.
+> 
+> Which means, it can happen that there are systems out there with devices
+> which need the IOMMU to function properly with SME enabled but the IOMMU
+> won't necessarily be enabled.
+> 
+> So in order for those devices to function, drop the "default y" for
+> the SME by default on option so that users who want to have SME, will
+> need to either enable it in their config or use "mem_encrypt=on" on the
+> kernel command line.
+> 
+> Fixes: 7744ccdbc16f ("x86/mm: Add Secure Memory Encryption (SME) support")
+> Reported-by: Paul Menzel <pmenzel@molgen.mpg.de>
+> Signed-off-by: Borislav Petkov <bp@suse.de>
+> Cc: <stable@vger.kernel.org>
+> Link: https://lkml.kernel.org/r/8bbacd0e-4580-3194-19d2-a0ecad7df09c@molgen.mpg.de
+> ---
+>   arch/x86/Kconfig | 1 -
+>   1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
+> index 8055da49f1c0..6a336b1f3f28 100644
+> --- a/arch/x86/Kconfig
+> +++ b/arch/x86/Kconfig
+> @@ -1525,7 +1525,6 @@ config AMD_MEM_ENCRYPT
+>   
+>   config AMD_MEM_ENCRYPT_ACTIVE_BY_DEFAULT
+>   	bool "Activate AMD Secure Memory Encryption (SME) by default"
+> -	default y
+>   	depends on AMD_MEM_ENCRYPT
+>   	help
+>   	  Say yes to have system memory encrypted by default if running on
+> 
 
+I think, the IOMMU is enabled on the MSI B350M MORTAR, but otherwise, 
+yes this looks fine. The help text could also be updated to mention 
+problems with AMD Raven devices.
+
+
+Kind regards,
+
+Paul
