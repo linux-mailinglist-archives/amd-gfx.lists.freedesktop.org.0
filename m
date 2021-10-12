@@ -1,120 +1,126 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFA4842A74F
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Oct 2021 16:34:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF68142A773
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Oct 2021 16:39:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B88A189DCF;
-	Tue, 12 Oct 2021 14:34:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DA5A6E9A2;
+	Tue, 12 Oct 2021 14:39:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2050.outbound.protection.outlook.com [40.107.94.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAD1A6E9A7
- for <amd-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 14:34:55 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2079.outbound.protection.outlook.com [40.107.92.79])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF4686E9A2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 14:39:43 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=V7MlwxnQRk0Z//7gisLK4nIjVuQmESRCEunnCPVMQww5RWDJ6xhLLCThK+qswGUS1R/yQ6EARbmX92Aid+Bijp6kjVMFaHZ4q0pNGY1EaFVzfmfU69zLLLnXwHIptQD8pROVf/wqwRULYXnBNl1XpMiuYlRmI+cNXp8CLKh6D5YSobCxK7tgsXgItBAl5pYJAQX1/GapG0skGRiH7QoU8febXsk11sX8gMEfiJjWYxJcZ2JrV0U5aO2tCPhp1dyuYulhi8mQMJWBttGR4UF85etYTs7lyynBPGfHP4IrxfoT5ofoFv8e5Gp6Izs7biNEGCONfKYAgetGIQaX97BoyA==
+ b=jnUbjC60ppZn3+q1DpW33YD2ONAq65jfx6Ngwp6p04/jaIfG/ZKUFzhmfgSq/WSb3Jze9VMB99M71E/hibgdgax9jqL470QbzDAFAP+anfvClDR4rhknD0+uBs9BglWf1yp4GeEC8BooAjo5F+WLN9lMsTKnbcJ5cy6t77zsD8F3TqJv5oFSGbbH3i9bM5v8rV21rq+b450EA+Q4bFs7mD5KcoYloboiRFByh4r7PTYPJvMIDwvn6+ZGFPfxtOgmBR31ZPxvExpbun9qc6is/sP+AqYO/VtpaYIQqlBGF1P54/HKJ42+QEmvNkrSFSHtimLi+ejZMa6t/H+qkzByvg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0eInzKZAEfA3cBRq8u+l9bJ1ht3zM9+8BgD9CRBIX0s=;
- b=S8j4mRmZ6IAKikoByv6dl9oiEYzOTrEMvJNIx7aUsRQU1aws1jXr+hLgZ0k7Ezpc0ED2FuQIZKuE+EZSal1K3ZtcZ6hYqRTcq8Z8YqLVYlpX/8oAkRSbGkgrtlzMRKZQx9uGh7XdRD/WYHnHqvnQ7UC8awxqBAbF3jzPksHx1Z3dijVBMfdOaYOVHjf4+EEZNX04IzVXea0DyjaURjKZfhvrArgWpkQ1SvE7R9gEM7Imy9CDgsgEcg9zSttgOhzewubRMYgVUODcTHSIYZvJf7PTC5iBcBB7+Q9eDfJQvByNbgESpcQyHeeVWQlk72xkrUBbDH42/+6JzyMlGiJWFg==
+ bh=dukKNFmLeYAJvk+4QoHRtFrABMkF4Msq7cMq5aJo89M=;
+ b=JPyLtg8rkMyqENgcgPLrHZW5/+t26DK1n2DC0vKVQLE+yu5TRMw936eLqmbqYnNHyFHPKiJJOB77+JA+sbuBzcPXkdwkdm6yZjYeACi8fBha7nkxBgxZ6srZ8dmCwIa/MUuOFV6//LgmU6g17KPrZoDpN7iDOGlIoBZrrqRCEzMEpbjSR7Xi3WuctZGcBVZbDhqocUD6YnY5hpKjCsluHthEuqqV+EnSSL8thCM9cZLjq2OofG+kEcrbdbfaKGb0uNyrB2/2p4Q6m0U/ijmk/AfRYXYayJCQgtmuNUUWZS+z7Sd5Y/9vO1kdWb9+4lJnMw1eSD2QF4UZjK7VMB2nLg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0eInzKZAEfA3cBRq8u+l9bJ1ht3zM9+8BgD9CRBIX0s=;
- b=0CJS9+/X1wXSpSUsjnn+n1RkjvY0zPyULSmqmVOcYLb5hV7fV7jdx7zT0LK07EKG6fWMrErEuJ7ugCkTA4GjgdeLdTQkz1ZQX2ohibWAkvX3DpMD7jILbRCvInU9Ki25tRE7Uz8WXsQzQKRz+EWWJBL3sCGtfR9L9/d9+rBFrYE=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
+ bh=dukKNFmLeYAJvk+4QoHRtFrABMkF4Msq7cMq5aJo89M=;
+ b=ITUfassXhp62f6rO97MYnDFGCXjWOkfKVxBiTM9+qrAsY6+TqbYwID5LSKC+6ZVCEW7JpZxu5ixhfQUhz542BJOls1ZioYe2qMN1roMvQ7MFk+WYj6+PMgGeoCddr4pJKFYcZ0pvKeQV8c2/JB6YaK3PJ2yVbpPm+3WQ3CcMvwI=
+Authentication-Results: emersion.fr; dkim=none (message not signed)
+ header.d=none;emersion.fr; dmarc=none action=none header.from=amd.com;
 Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
- by CO6PR12MB5425.namprd12.prod.outlook.com (2603:10b6:303:13e::11) with
+ by CO6PR12MB5396.namprd12.prod.outlook.com (2603:10b6:303:139::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.18; Tue, 12 Oct
- 2021 14:34:54 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.19; Tue, 12 Oct
+ 2021 14:39:41 +0000
 Received: from CO6PR12MB5427.namprd12.prod.outlook.com
  ([fe80::d82f:e8c3:96ac:5465]) by CO6PR12MB5427.namprd12.prod.outlook.com
  ([fe80::d82f:e8c3:96ac:5465%8]) with mapi id 15.20.4587.026; Tue, 12 Oct 2021
- 14:34:54 +0000
-Message-ID: <9149508b-9203-e5c5-373a-4ddbf5aefbc7@amd.com>
-Date: Tue, 12 Oct 2021 10:34:51 -0400
+ 14:39:41 +0000
+Message-ID: <44154452-aa21-3f08-ffe8-e68fb8036271@amd.com>
+Date: Tue, 12 Oct 2021 10:39:36 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.1.2
-Subject: Re: [PATCH] drm/amd/display: fix null pointer deref when plugging in
- display
+Subject: Re: [PATCH v5] amd/display: only require overlay plane to cover whole
+ CRTC on ChromeOS
 Content-Language: en-US
-To: Aurabindo Pillai <aurabindo.pillai@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20211012132642.246950-1-aurabindo.pillai@amd.com>
+To: Simon Ser <contact@emersion.fr>, amd-gfx@lists.freedesktop.org
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ Harry Wentland <hwentlan@amd.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Sean Paul <seanpaul@chromium.org>
+References: <20211011151609.452132-1-contact@emersion.fr>
 From: Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <20211012132642.246950-1-aurabindo.pillai@amd.com>
+In-Reply-To: <20211011151609.452132-1-contact@emersion.fr>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR0101CA0171.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:f::14) To CO6PR12MB5427.namprd12.prod.outlook.com
+X-ClientProxiedBy: YQBPR0101CA0206.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:67::25) To CO6PR12MB5427.namprd12.prod.outlook.com
  (2603:10b6:5:358::13)
 MIME-Version: 1.0
 Received: from [192.168.50.4] (198.200.67.104) by
- YQBPR0101CA0171.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c01:f::14) with
+ YQBPR0101CA0206.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c01:67::25) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.14 via Frontend
- Transport; Tue, 12 Oct 2021 14:34:53 +0000
+ Transport; Tue, 12 Oct 2021 14:39:39 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ecb3b2aa-ceae-459b-c71c-08d98d8d74d9
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5425:
+X-MS-Office365-Filtering-Correlation-Id: 63302098-763b-4051-60b3-08d98d8e1ff8
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5396:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <CO6PR12MB5425BB5512E68DB583C44DB48CB69@CO6PR12MB5425.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
+X-Microsoft-Antispam-PRVS: <CO6PR12MB5396B5CACA1E78804A726CE88CB69@CO6PR12MB5396.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dn9Qz8RztWVSijmwugzPuahHwN62ovZal8qzHkMCYEQFpjQMPQS8Boa6Ym2WEjXGDHbNdErR1QqPI9Zt7iHAapyuqy9cv3XDrsBxbtUA/Nxy2MHSmZYuHJ7Ha5tLYFShfYd1MVsk8n/8NUJqG5pJE6Dg15hDY7i23GTWIshw4gecyXUsWUnBSEB2vgYe/JYo0ZC8Nj/H+jbzfdqhJEHMDnq6s2vU9Qazw7aKE5Yzicc44f6P5PJX9zC8auUXMDzjMYFy0tzkEK4qDvDmc4OZ+rZOHcd+PAYpzpgThp0iQcOACz+UdbLolGquz59FAlIy8XuzB77cxGNEJ3IKRGdKQW55jtyzBKBK/D0lrrFxRtK8sJKVunbYgWcpOMzrY+zcyqG4VrTibdZfMOHB7vC1NdClotGFOL6jR2Eo7ri4fEehm1v12GOgi1SzodEDG1v/Yq01dSAuTfzFVqsgrvVzMkPZx4/HY78cdJMWqV1qPT2M/psr677IVrThFyGu3kiuHLehADj2ybcClzDKaI4ZP2GX5269rPI8OYM0cxkE8O8uutEtiKenc95wR6aSy6reP8vEHqEUKS2nnk+N1AP3HpgBsPli3sSwOi7BfJUNwCv+6f2yW0WsMkuOu86mIMsjzLMY6FP93RMJN9wuT3P5SYu+as1rUAHYncIvE0jRIvh0rbrlm6eEVok7gO+kC/jsevx0xvx/tb6dtwbhUIJVzGnqV/ZBhoFJtAqvX6TMfko=
+X-Microsoft-Antispam-Message-Info: uXZfa2oYrdh1d45RBFNMDonZNzOTuMFBoTacA/rCtcQ+jQrtjuRaa6x9j1DglMI0vJt1ywJMoh7/kJPfCGvfaGXYsUTOx9cBR0kLH1DEG0hFdun9ZQ5V5HHVFpj9G56a2xdI6Fli2ESgRy9yk6vCTKekernD+dIaH21x+VUL73A+YsdbTsVK8Ms6vJ9beNZLGaOAx6IEI2E59S5dmjXUO/OoAjHISVUipWJvzFh/Gnsg4GuQh2RNAY2IiY5LQIHNsIsEQyWEVcbbxy1ko4bWSdSQAQmCuZyDBHVv8s11z6AAJeZvETyvOTXgDh3tUenzwPY7oj0k+9i229g4clGRldwpz58QKoHSNINIMuvvakMny2yODKBFCQtb3NTqn1l5ut40T6ZB1bvH395Ni18oZC8pb1o8KabeHiT/KvdfH91/qHWrxipotS2bH6YVyQ5ESnwiakbJ2yMlEcfoHZomq4gHeeyPb02x3g1rYsvDN5vSfMlIeQGy6cppnPRjVEWL+u8Exs5HYFssVxjcr3tVSjYirCrMQsZu1GptwY24xpwliRx7ksqWzqdLHURFJ8zhEuSXLTn+NKjsrq5pmrjIC1TbdA8WpCINuZ0k4aOukRNlay08/adErs4nXew/XGkWsf+t9JcSNM39c1oB1steGeS6yIMEwUdpvBktbOZXIEOT8mJxNBpKGRexVoj2NrV29fcgGMuGRobGzvRN41CIizEpgDt+57h1Cbr5fNBJD1B7UbJX8Xm4/BQZWsjn3vMBs+9y9kKZjD5DrORqCUBKAxz6pwYgzkc3sYZdLIIg6w6TNi5iTQmzzd4TYOhbdwFPbR3039b6SD2OIZNij4xveg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(8936002)(31696002)(8676002)(316002)(16576012)(44832011)(508600001)(2906002)(4001150100001)(956004)(2616005)(38100700002)(26005)(83380400001)(36756003)(186003)(6486002)(66946007)(86362001)(53546011)(31686004)(66476007)(66556008)(5660300002)(45980500001)(43740500002);
+ SFS:(4636009)(366004)(16576012)(86362001)(54906003)(966005)(38100700002)(316002)(508600001)(5660300002)(26005)(4326008)(53546011)(6486002)(4001150100001)(44832011)(2906002)(8936002)(66556008)(66946007)(83380400001)(6666004)(66476007)(2616005)(31686004)(186003)(956004)(31696002)(8676002)(36756003)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MmRvNXJKanhKM1JxKzZqV082NWRCb3NGOHNneGhiK0lTQmQ1SmlrYTBodys1?=
- =?utf-8?B?OUFKcHgwd0RxTzZsR1l6MnA3bnQyVnZTanQ2MUVNSklHOHZVUHlVc0YwMzB1?=
- =?utf-8?B?MTZVbmYyK3k5ZDg1amRaVW1HbkZtbnArRzU3S2xVMUZ1T25kTFpoUWZTRjN4?=
- =?utf-8?B?b0tMcmsxYXh4cUNSMGxVYnhVemI0WXBtdjJpZG5DNURZdkVwVjMyelNyQkFk?=
- =?utf-8?B?ckV3MzNjRU1vSDlCYS84WUovRm9CSENrWkVMaGNJdDB0SU1WTmhhWVh3eFlK?=
- =?utf-8?B?c1p3Wk9nM1BXUFJIVHJjZlRhcWRWQ0hnbnQzVmFlbCs3NzZYdHZRR3ppdFJ0?=
- =?utf-8?B?eXhoQkhkVWdCSVR6Z1lnZ0llcHpKNFQxUkMrWGlFVGlla1hkV3ZkUXBPYlFa?=
- =?utf-8?B?N05iRWI4ak9OTlg2QmRuS2ZyeEVwZmMxQjJGTEpjVkNIRG5iRGZGMjRXWnJq?=
- =?utf-8?B?TzRxbmNKeHRqUzROTTVBSk83b1ZQZzhyOFJvUExSbUtnclFGUEI1SXZLTG91?=
- =?utf-8?B?bFFSaW9hQUI0ZTUreDJVMkZJYzc5enVCWnRaMjFtTTdmZ0JYeXVUYUkzenE3?=
- =?utf-8?B?ZGhUNndtNVZtU01pUFRHT3ptNFp5Y0lid01Sb0FRaGxhZmdMZHpEWnljNlp3?=
- =?utf-8?B?dnZMUHdYdWR1b2xJTGlIa2NzT0o4VWJtaUVNNnlwY1k4Z1V5VC9FdVMvVUpZ?=
- =?utf-8?B?V2xhc1RBU3ZVazlKWWFFNlVBaURhT0FoN1J0bldKcnkrUVJ2NVNZcnlyWXdV?=
- =?utf-8?B?b2x3VHVBdkZZdHFJd0ZmajRTczdEMzBJcG1SalJCeDlQc0sxYm50Z3d6RVQr?=
- =?utf-8?B?dkFqS0g1dllMbXV5aWF0MXdxb0x1ZGxSN3BScHZrZW5QSXpQOHhCd1N2T0JB?=
- =?utf-8?B?ejBaWmlhN1p1SkZrd2tHWkZuK2l4SWVGSFZQblhtelFiOTBXZks2Y050OWZt?=
- =?utf-8?B?disvZFM3VitSRDVVR0txdVYxNE1FNTgrYUVFeEg1dnNHdi9DNVpvMGlvRkkx?=
- =?utf-8?B?c0V0SGJ3VEJJQ2FJcGp6MUtneFlIeWhTYXc1V3NnWHVKOWhpbVZSSTVkZzBR?=
- =?utf-8?B?eUlsbnIrdmRWQncyWXk3Z1d6YXYwcm14UVl2ZjhmbWlwS2YyejEwMEc2N2dl?=
- =?utf-8?B?V25iSDlxcEt2Lzh6RG1ZSUZ1M0JJbE1EVWozRGVSa21hK2duZ0lUcFhDMHpY?=
- =?utf-8?B?ZU5pVDhjenRLcVFLam9yZFJNOU5GUWFBdmtmRENzQkFkeEFqUDRkU04wT09z?=
- =?utf-8?B?S0M4bGRLazMxS1RWaWkrK3dOWWl4ZktHQzBpNTMxQ2VGNi9SMTZiMWdhcVZY?=
- =?utf-8?B?S2c1anhCc0J1dGkyWXV5c0FUSzFqVHN2M0xoQjZPNlgzaUNJUXNCZmVJQ0Qz?=
- =?utf-8?B?R3ZzNDRWbzJuQVJQZzVHMUxPd1Z2dDNLY1Z5RTk4ZjR5MGRXQjhNVGFSanZN?=
- =?utf-8?B?WVdRQ3hTYXZlZzNnVitvL3QwUlRCR1FPYXBkcGJIT2xPWnc1Vm5iekJ2SlVE?=
- =?utf-8?B?NE9pZmF2ZklNcXE0YVJLK1ByZzNqSEU4K2lNdDNTTmx2NTJTSVdhUTJIRlFT?=
- =?utf-8?B?VmR4czY2Y29DdDBGaGJpOHFPcng5NndGT3QwSndCUjl1eDZRQ3VZT2JwNFRw?=
- =?utf-8?B?OTV2eTVJQmZLSjhXak9kZllWbk95TVNGUGswYmk0dWhxazg1ako2R2twcHlG?=
- =?utf-8?B?bkJlNTQ0bmJFUU5SamZSbndWbkFQeFpCcDJyWTI0bEx1cDF4VC9ubTh0cCth?=
- =?utf-8?Q?Nc+hr3Tn+m0N5i2aRXobBlPCQgiGbhqCM5czGo3?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZU14VDR4S2dOa2lpU1ZnUktzQUg4OEtlaDBmbzVqQ1YvcHlTZS9LT1N1UjZ4?=
+ =?utf-8?B?aXNjRklWWnBhdC9aM0tBSWJ0NXdpTElNSm9reDdFcTNoeFBKYTZsdnRWTU81?=
+ =?utf-8?B?WERGbVJpZXJESi9RaXNFWUk5aVRJSFNNSDUrRkZVOEVKK0tQQTRPeEp3TUpT?=
+ =?utf-8?B?K3RTRHBSa2tQNDAzUVRVVmhabmFjMU8zbldlcDhrK0ZJNUxCOXc4eEE4SjRu?=
+ =?utf-8?B?emJIakF3eTlzdVhjYnBldnJ4THZtditSQlJEVy9WOGFObnhoOEJRTjlLSWJ1?=
+ =?utf-8?B?S0pORVFKa3dDQ1YvSXdpdlBWNGhOSC9EQnhyc0tKMVVMZ2hnSW9UMWFxZ29Y?=
+ =?utf-8?B?YXhPNFdIU0tsaEVud3JlamV0aDg0dDkrcDVtOEd1UCtMaEtSZHMxQ1ZxTXVZ?=
+ =?utf-8?B?WWdsTldSNFZCc2dybkhZVGlzRHgyb3UwcG1KSjMrVEt0Nmd3ZVlucUV1OS9Y?=
+ =?utf-8?B?WWtZNDh6ZWxIOXlUVXJETm4zdkZYbU9OemhjZXk0dThrMzV5NHZPdlh2enZi?=
+ =?utf-8?B?V216V2JpRjVoSFpSQ2R2Z2VKa2VKZnRsVG1ncGVYaTNGL2M4WGxkNXBGRkhP?=
+ =?utf-8?B?UVl1Q2c2RmJwQUQ5MU1BS3Nqd1BGVnMyRkhGbHdEVmFXOTlvdUc5bUZieTRK?=
+ =?utf-8?B?dFdhbHNNNGtxSUxmV3ZUb052VVlYdERNcjd0UG16RTJaZGhqWDRGbUZqSjZD?=
+ =?utf-8?B?UE1pZmpTMWVJR1RFb1lOMzJrc1lhb0tNZHNMaTNKSDRrR1RTMDRJTXNRbkJS?=
+ =?utf-8?B?MXYxYXZhaUx6aThkSWVHYlI1SGxsUkozdGxWdC9pZ0JvdUdHZXllWW9yZjQw?=
+ =?utf-8?B?RmlOR28zTi9reHRkOG5la1lyeXFWQkxVREFiUnJoN000QjVPQXZIWnRZNyt0?=
+ =?utf-8?B?QXA4bGFOZlNYeldlQVJvUHorN2J0cFdPNHdZVEkreHByOS9LbnhiSmpvUWJC?=
+ =?utf-8?B?ZVRSMGRjdGdtSG4zaUtnMmV2bldMYXFwdmdXYWZaeS94NkxQRGU2aGxHOHIy?=
+ =?utf-8?B?SVhweER6YnZnS0xUNHNkWVlibUJqMXBUVC85cmNtdXgrQmQ2dHhpYjBNRU45?=
+ =?utf-8?B?MWI1SnBDUlVScUROM1A3bXVDNkhXZHRrYzlaYm9MZUpvRWpDdHZPQ1dXTTdB?=
+ =?utf-8?B?dkpzMUVHMFpmY2hZQmpaTG9WYWtzUGpLRVVwOWNBQWN3TXpPbGhZUkMvaVdq?=
+ =?utf-8?B?YklsaGdNVHVPSjhoYk5IQnBESHQ5ZTB1VjFOODl1aWJidGc2d1NsNStVR1g2?=
+ =?utf-8?B?ZFd3ZlNBSXBqYUdNVEJDRHVPS1QxNUVWKzhiT3FBSk9tVHZ5YkVBS01wd1RF?=
+ =?utf-8?B?ZUczeEoyOEpuUEN3dGUyNkpSV1lyTkZJQUhpSXN3RElISTMyeEZoVEpGZEVm?=
+ =?utf-8?B?V3RTbmMwb2V5WG1GU0JqWUJOcmhycUVLRmIycFlFQWVFZWNOdEpRbzZJdnc4?=
+ =?utf-8?B?UFhNWFUvSi9yYTZKdEtZb0MxdDlzZ1NKK3A1K3NqMGxjY2dkcXUzZ3Zkbktk?=
+ =?utf-8?B?RjJNcjdacHJiV3BnNmdUZlhYWjhlb09FZWlqUUVJR3dEazJhTHg4R0xuUjZG?=
+ =?utf-8?B?QXRNT0dvc2Juckk0L0dKU2dHb1RQWVNCS1VnSlZXVzBjYmJ3L2VSU29SRW41?=
+ =?utf-8?B?YXI4enllTnJhS05xVm45MWE4L1h4bUZVQnRXWlpYTGFGRUtlUGFTbFpSSlZR?=
+ =?utf-8?B?VHZOZWkrQllvTVp4cC92bjgyOTczYktVNUU5ODcxeW5UOWQ3YzJ2MDNNSkhP?=
+ =?utf-8?Q?Vu8pkdQiCeJcScmDKyWFXmH67C4bE6qYSFi/NcD?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ecb3b2aa-ceae-459b-c71c-08d98d8d74d9
+X-MS-Exchange-CrossTenant-Network-Message-Id: 63302098-763b-4051-60b3-08d98d8e1ff8
 X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2021 14:34:54.2310 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2021 14:39:41.3209 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tL32BuuUMYzsK6Vscpsma/NmcsD3J87Ghb6A14RBFL1G8s5Nc8ERjkEX5o3g3xiAimrV9dAUV8ozVe+zZktGvw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5425
+X-MS-Exchange-CrossTenant-UserPrincipalName: +dLG/+3EI9A/1A4lLnJ9+kQ0pDwwNXBhUb+2tQjZQxkCkC2X1nVc0MvznGKtCflSgAGkYs5Sykp11ZulrOddHQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5396
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,35 +135,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2021-10-12 09:26, Aurabindo Pillai wrote:
-> [Why&How]
-> When system boots in headless mode, connecting a 4k display creates a
-> null pointer dereference due to hubp for a certain plane being null.
-> Add a condition to check for null hubp before dereferencing it.
+On 2021-10-11 11:16, Simon Ser wrote:
+> Commit ddab8bd788f5 ("drm/amd/display: Fix two cursor duplication when
+> using overlay") changed the atomic validation code to forbid the
+> overlay plane from being used if it doesn't cover the whole CRTC. The
+> motivation is that ChromeOS uses the atomic API for everything except
+> the cursor plane (which uses the legacy API). Thus amdgpu must always
+> be prepared to enable/disable/move the cursor plane at any time without
+> failing (or else ChromeOS will trip over).
 > 
-> Signed-off-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
+> As discussed in [1], there's no reason why the ChromeOS limitation
+> should prevent other fully atomic users from taking advantage of the
+> overlay plane. Let's limit the check to ChromeOS.
+> 
+> v4: fix ChromeOS detection (Harry)
+> 
+> v5: fix conflict with linux-next
+> 
+> [1]: https://lore.kernel.org/amd-gfx/JIQ_93_cHcshiIDsrMU1huBzx9P9LVQxucx8hQArpQu7Wk5DrCl_vTXj_Q20m_L-8C8A5dSpNcSJ8ehfcCrsQpfB5QG_Spn14EYkH9chtg0=@emersion.fr/>> 
+> Signed-off-by: Simon Ser <contact@emersion.fr>
+> Cc: Alex Deucher <alexander.deucher@amd.com>
+> Cc: Harry Wentland <hwentlan@amd.com>
+> Cc: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+> Cc: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
+> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> Cc: Sean Paul <seanpaul@chromium.org>
+> Fixes: ddab8bd788f5 ("drm/amd/display: Fix two cursor duplication when using overlay")
 
 Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 
 Harry
 
 > ---
->  drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-> index 01a90badd173..2936a334cd64 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-> @@ -969,7 +969,8 @@ void dcn30_set_disp_pattern_generator(const struct dc *dc,
->  		/* turning off DPG */
->  		pipe_ctx->plane_res.hubp->funcs->set_blank(pipe_ctx->plane_res.hubp, false);
->  		for (mpcc_pipe = pipe_ctx->bottom_pipe; mpcc_pipe; mpcc_pipe = mpcc_pipe->bottom_pipe)
-> -			mpcc_pipe->plane_res.hubp->funcs->set_blank(mpcc_pipe->plane_res.hubp, false);
-> +			if (mpcc_pipe->plane_res.hubp)
-> +				mpcc_pipe->plane_res.hubp->funcs->set_blank(mpcc_pipe->plane_res.hubp, false);
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index f35561b5a465..2eeda1fec506 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -10594,6 +10594,31 @@ static int add_affected_mst_dsc_crtcs(struct drm_atomic_state *state, struct drm
+>  }
+>  #endif
 >  
->  		stream_res->opp->funcs->opp_set_disp_pattern_generator(stream_res->opp, test_pattern, color_space,
->  				color_depth, solid_color, width, height, offset);
+> +static bool is_chromeos(void)
+> +{
+> +	struct mm_struct *mm = current->mm;
+> +	struct file *exe_file;
+> +	bool ret;
+> +
+> +	/* ChromeOS renames its thread to DrmThread. Also check the executable
+> +	 * name. */
+> +	if (strcmp(current->comm, "DrmThread") != 0 || !mm)
+> +		return false;
+> +
+> +	rcu_read_lock();
+> +	exe_file = rcu_dereference(mm->exe_file);
+> +	if (exe_file && !get_file_rcu(exe_file))
+> +		exe_file = NULL;
+> +	rcu_read_unlock();
+> +
+> +	if (!exe_file)
+> +		return false;
+> +	ret = strcmp(exe_file->f_path.dentry->d_name.name, "chrome") == 0;
+> +	fput(exe_file);
+> +
+> +	return ret;
+> +}
+> +
+>  static int validate_overlay(struct drm_atomic_state *state)
+>  {
+>  	int i;
+> @@ -10601,6 +10626,10 @@ static int validate_overlay(struct drm_atomic_state *state)
+>  	struct drm_plane_state *new_plane_state;
+>  	struct drm_plane_state *primary_state, *overlay_state = NULL;
+>  
+> +	/* This is a workaround for ChromeOS only */
+> +	if (!is_chromeos())
+> +		return 0;
+> +
+>  	/* Check if primary plane is contained inside overlay */
+>  	for_each_new_plane_in_state_reverse(state, plane, new_plane_state, i) {
+>  		if (plane->type == DRM_PLANE_TYPE_OVERLAY) {
 > 
 
