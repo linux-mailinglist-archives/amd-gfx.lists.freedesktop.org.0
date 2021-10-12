@@ -2,127 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3064D42ADC3
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Oct 2021 22:24:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 261C742AE20
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Oct 2021 22:45:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 529E86E570;
-	Tue, 12 Oct 2021 20:24:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD4989D7D;
+	Tue, 12 Oct 2021 20:45:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2068.outbound.protection.outlook.com [40.107.237.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56BC26E02C;
- Tue, 12 Oct 2021 20:24:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cIcPCqbVR99wM63bDr7N3ZkA1vZsYY/AayZ3BnOIHvVKt8dFfNX5A8l2mpzFal2xWSMbDiwK2d4Nthrup/9BxIG3H0paAu4umGCUYTW8Mk5+70l8RSIs3SCfe/XsjLFecZju5LNVW3KagALc3vp2rfmd38D1NtbMQQJzpMBEXMZpVReGbLMBvzo78WSaFIEcDC5zpHhxixBSrC0tgEbrqYzL80Ohi4wnvQREe+bKX7wpUPqtjwFBD/oqKV9zrdfKwLRtbT4jLwIkD0QqIpusJdkNYp1uXlf9sfQQ3cVBfxc+sMsKS38N08F076URkkAC2j+80U6srJoYd2Ik+/yxmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rfLTBtOjsfBK9t4GbCd2wg07KeecqOPjvlkk2tiQ9qM=;
- b=eBb75Ox7eCOHv9jBSSFLxEcCSBBnt5aO3n0SDXubMw3DwcgNDnsYp7Y1CZb2rm81uKrgtDSzKx44X5q2P+jIO/rVgCmpJWmZ8Ikt80gN4zFBhR20LGISxDgXLxJJFabt9QBXNsK5E3udRvpi3nSxgyWvfGS9DxAAvVBwUk/jvcQM9bfwzco+t3qhM//cmgcnSWRhzV4l2cHVcG4y0c7zhh/SXpkefaN+JvZXV8TksQa+h0aRzrkG9TxZ12JaKwEhhBU+QTs/rzOycacgy/bMV12SzqRIliaLPrrkA2KvYZTjLe5gbgAigbHMZrgR5yyLDRNZX4NSq0nw8kPLEvd1ug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rfLTBtOjsfBK9t4GbCd2wg07KeecqOPjvlkk2tiQ9qM=;
- b=Y3/HDMb5oQH6rwEN/pzfFZr7RCpY4jMx99nxwZfzfHbD9LgnOBl9IdePhy4c4fj+ZRxhfqSJAjAuESkOedifVZJ7W1v43XyHGZMo4FGRKwLQ7aTP77bVQFzEM6Dk4pyFBMr5P0WfRonAJW8KbVwbkreifqqQsaHdRVZiFNHEPj0=
-Authentication-Results: nvidia.com; dkim=none (message not signed)
- header.d=none;nvidia.com; dmarc=none action=none header.from=amd.com;
-Received: from DM5PR1201MB2491.namprd12.prod.outlook.com (2603:10b6:3:eb::23)
- by DM5PR12MB1514.namprd12.prod.outlook.com (2603:10b6:4:f::18) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4587.22; Tue, 12 Oct 2021 20:24:27 +0000
-Received: from DM5PR1201MB2491.namprd12.prod.outlook.com
- ([fe80::d153:3aa6:4677:e29]) by DM5PR1201MB2491.namprd12.prod.outlook.com
- ([fe80::d153:3aa6:4677:e29%7]) with mapi id 15.20.4587.026; Tue, 12 Oct 2021
- 20:24:27 +0000
-Subject: Re: [PATCH v1 00/12] MEMORY_DEVICE_COHERENT for CPU-accessible
- coherent device memory
-To: Matthew Wilcox <willy@infradead.org>,
- Andrew Morton <akpm@linux-foundation.org>
-Cc: Alex Sierra <alex.sierra@amd.com>, linux-mm@kvack.org,
- rcampbell@nvidia.com, linux-ext4@vger.kernel.org, linux-xfs@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, hch@lst.de,
- jgg@nvidia.com, jglisse@redhat.com, apopple@nvidia.com
-References: <20211012171247.2861-1-alex.sierra@amd.com>
- <20211012113957.53f05928dd60f3686331fede@linux-foundation.org>
- <YWXd0leFtLepunVa@casper.infradead.org>
-From: Felix Kuehling <felix.kuehling@amd.com>
-Message-ID: <1bcea911-58c6-c730-35b2-e8f1f8eddcd8@amd.com>
-Date: Tue, 12 Oct 2021 16:24:25 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-In-Reply-To: <YWXd0leFtLepunVa@casper.infradead.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-ClientProxiedBy: YTXPR0101CA0046.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:1::23) To DM5PR1201MB2491.namprd12.prod.outlook.com
- (2603:10b6:3:eb::23)
+Received: from mail-vk1-xa30.google.com (mail-vk1-xa30.google.com
+ [IPv6:2607:f8b0:4864:20::a30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49AF289B5F
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 20:42:09 +0000 (UTC)
+Received: by mail-vk1-xa30.google.com with SMTP id t200so315369vkt.0
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 13:42:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Xn42lwNzcAD06LzekzwON2T0fKLFenkd9GSic/zsRB0=;
+ b=MFod2F0OaCDe8VEqkOq0EpoM0emytvoWWNRtElpm0DMTYIgWGY0yFb4+/NPMLKy9Tu
+ WkTh4wct/Na9QgK57qkcdIEwZYW3dTgfkZrIaXVRfRamDuHnADvDLG8VQbkmYOAeHAMG
+ IrodbBO5nTnSyT/oB97qu9byrbqVaXGtnZNdZw4YCWtd8z6HF0yfjVxDpPRMD1bwRAE+
+ LCko9DQGyoLJqRydZFOtgtns30ftFZQV52/sXrP9TwQwBdZQ3jg30fwqJvfq5MCnFLkf
+ 8Oey7t9Q3dYFbFQ4KCzpKEo3X+R048SwTB4se6xkwjaMXNi8k7I0MvsJBwcnbr6cz71T
+ 8sDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Xn42lwNzcAD06LzekzwON2T0fKLFenkd9GSic/zsRB0=;
+ b=CcJ3bPUgvRLOxbNTE3nto9jZNg6Fj9QOqIwksuuxHy25LApg7/KDteYMAv0vcnlNzE
+ ZCjDvR2ZOWWUjLjuJsym6zPObUVAbuv23ACw30T98/o+75jRoCY7xTrxh1zs8namEUFu
+ pD+RAIOzrCRFfqedbjsp3+/eOc8p6ZW48DOP2Xor5jln56a2m+MbvY8UIOZLgLRgT5Le
+ u1ZH7l4nbnyB0Obm5S9BKq8sT6fzYs2WDahFHh9WLWsmBKAO207v1mpLMmliaNDWI18n
+ qqdOWJSU3EHBKNUsU+7GAKpkk38CMHDVpGrwKo+99VMczZ9cQN59DOKPiCQqL7hpNp5B
+ sUyg==
+X-Gm-Message-State: AOAM532RmsixQUbhbHc/Y9xuGrRLlbkI6ZZ62ihrIPWa/qV3BzpR9JXN
+ t53e/5KHJSkLoPv30UI2vfdUkwe2nDnDQyo5jcapYEFuhDRayuQw
+X-Google-Smtp-Source: ABdhPJyPRKGbCQiNKUQbeBTz4eJymxeVcWErBYGzktjtNkwCDca1dO6GtixBZmug8RkkTC8wxozjjDRkcoAqtRqtfsU=
+X-Received: by 2002:a05:6122:8d6:: with SMTP id
+ 22mr29910398vkg.21.1634071328213; 
+ Tue, 12 Oct 2021 13:42:08 -0700 (PDT)
 MIME-Version: 1.0
-Received: from [192.168.2.100] (142.118.126.231) by
- YTXPR0101CA0046.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
- Transport; Tue, 12 Oct 2021 20:24:26 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 314dcfec-4399-4574-ef80-08d98dbe49ee
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1514:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1514ED2B59AF15EAC14AFD8D92B69@DM5PR12MB1514.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WesRePnrRPBUwaZgwHc8HWPkOGiMgWga35eBUMOlOUcqCqQIqBgl//NdYxETbrGVih4DcuRgmaPhaI9/XUQovmkvVgBvTrQxdfEQRFY9duz9L36kK1dUhWciZPv17MzXWqxjfr6qz27HZw/deWRsbtU8O670wkWvNHex5EQd6U5eSQGerA1hFeeM71y2Ulf/PFAEam5kEV1/W4E2U3DrYOJ4pLiTbnewIw9lWRAIIbNpAkiBvEt8qeLEe2sWVXwzeQzi2vjnm2eq9nxLFgEJOq6L5tQLX3bCrgRvqzfShI1pn+RINgU9jYJ3VvSSzKR0uwfiZfrcbPXlXeIrky22OO2PAZcNR+jAMapHnl4+Jo55V0qVfaXvPeX4Yr9QZ7o4caxdBqKxjh6IuTBu6vXhddCV/rlu+iUacJvCrFfEUZfkyrGe5Y3UGquDstrOoEOPo7t/VfGNxxWdS54WX4/durkhmovCmmFHhCB0F1cAR+eKDTztxTQQ80bOblQu+pu9b/5/VWL8J6JCj3mK9F1WauDuJ/1zYZncq/awUTouQoaVUygjaYaweRXfmKiOkZeH7wRbDWyJTmuY9qjnzqDOl2v3GCXWg3NoAcPs//ZpjW02H4Sp/OM2XbC63S2psxprQmbgo8IsWyD65ac8fyvZi56c+KjCd93+5P0Op9jhfd9JaJlZ55NNbjsao7wtJDwWX5euhU8qbhrDi0UjIMOReP5jbGPpkRKWB1KRAW+cDpQs1ibYMNVox7g1KiXTCab6
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR1201MB2491.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(4326008)(7416002)(6486002)(8936002)(5660300002)(4001150100001)(186003)(110136005)(36756003)(31686004)(26005)(44832011)(956004)(31696002)(508600001)(66476007)(66556008)(66946007)(2906002)(86362001)(4744005)(2616005)(316002)(8676002)(38100700002)(16576012)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OXRjS2lISGFWNkxsTWd5QlhMWWpTVGFWWTF0bDE5bDBHaXk4MDhOTDZBQUZS?=
- =?utf-8?B?aHBQL1p2U2tCaXFBbFB2L0J0MTJzRTlPL2NCcnhLdnQ1NTR0RzlGT1RPZ0NW?=
- =?utf-8?B?d09zY3BleFFObk5kUGZQTXhrNVhZL2JGVWlJYldRaU4vd2t3THQwdEd5Q3NO?=
- =?utf-8?B?UkQ3ZThCdTh0OHdnZ0U5RHM3WThHYzF2QitqZkw2aTFCM24rak1QNE40R1N5?=
- =?utf-8?B?NnZwcG9UYVoxaUxBYklBb1ovRU9TR2JBS0ZUOFdLRmJsY0JoLyttTTlQdGkz?=
- =?utf-8?B?azJLZW45QUJjOWhzQjBDcmdoL0xCM1JobFlxNFhzU1BxNW9MbmxKdVRYT2hR?=
- =?utf-8?B?YzkzTkV3OGdvbHZLeURsOHY5K09hcmFHRGd4VEp1bEFQdmVzRkI0MVdGYXY1?=
- =?utf-8?B?ODFoOVM2dTRYc2M2NWJDOGlOUnZPZzYwdXNoaVJiM2VYcm9PYVNPQStybzcy?=
- =?utf-8?B?QnBoVEdrZkhibEV6OWpiejJmVGxFL2ZlemVpQ0VrQ2VwZFF0RXd0RTB6eWlo?=
- =?utf-8?B?RVovRkdHSnRUWE00UHZ0ZDlISmUxdG1hNGY3cE0vVitGbis4WDY1eHlKTmpj?=
- =?utf-8?B?RUtWYjQ3NFFRVFJLamh3aFpzV2JZZ0xrYUloYlBWc0pGVHk4c1I0a3lxM2lB?=
- =?utf-8?B?RU4yaklSN1EvaE8rTGZWNHJuazJ3R0FQb2QzVjlaKzkweEJheTUySGIzN3dP?=
- =?utf-8?B?RGpRTXBJTHFjR285emNLdXdZYlhWLzZaRVlQTUZmWjFHdDkrTEhDWkYxSlFD?=
- =?utf-8?B?Y1Zza01aRjV4KzNWSEFIRW1qSS9NZDhoN1lTQ0toRHpXVHZObHFmcnlmMnBt?=
- =?utf-8?B?dGd3WVh5WGdzMEpaekt1QUR1R0tuV2hBNXlDcThWVTFDMjhJWFVHS3VpbWdj?=
- =?utf-8?B?ajFoOFc4VStENXNQNHZTMzdmLzRRU2l6ZFg3YWFOOFNHbVIvN0xLQUNQSVU4?=
- =?utf-8?B?NS95dlU0c0xTYXVIYjFoRUl3UXhTWEJBSXk4bC8yTUYzZTEvcmtIWFp0NzZV?=
- =?utf-8?B?T3V1dER1elVBQTRGQVArdUVBMTk2WThKSTNqVFlabWlBTXVXOVFEZzZxSHB3?=
- =?utf-8?B?aFlSeDQyT1NFVmVJT3BFQUhjSlVGdDhGaWN4dm0yMlVIS2pmbkIrd0tzQmRi?=
- =?utf-8?B?SEFvY1VCYk9NVFZ5bkhxTFRud2JsL1kxNHM3dzU1cmlXWnFiWnNyL1V5OHJr?=
- =?utf-8?B?R1JINVFPclF5WWtmMCt5TmN5UEpqV3RvOHYvWVZwLzh6aUtJUzJXck81dDdE?=
- =?utf-8?B?TVIxcFQwTFN0VmNGN3ErK2d0TmlTNisrQjVzTnB2dTFrSnErL0wxSEVYcTVl?=
- =?utf-8?B?bm9DZzZuZGlveHZkWjVJSmExb0YxVW5WSmd5TWc3c0ZLYjFUUGM4KzBoK3Jk?=
- =?utf-8?B?aTBYdzc4YjQyVXdQclhwRHFSMU1MV0w3SENMZjE5TEk5WXZLV21YY3JpcVVL?=
- =?utf-8?B?cG1SR0F3QWRISklFWDZTclcrRGR2Uktrb2U2NFcrNkw3OS9NS0dWaTJjTmh3?=
- =?utf-8?B?QXZWRC92dzMvWUFOaVRGTjdUTHArNHlKYmZVbmFTSTVoVWJyK0FYUTBEWnVs?=
- =?utf-8?B?cWFwMEYzVW9FU1B6d3lwUWY5U0hnQ2V6T21jMFFiT1I1bCtMQ2RYNGpacEty?=
- =?utf-8?B?cDM2aHpDbWM2Kzl3K2tqMUZQLzFreDlKeExDTG1tRjg5ZDRhUGFKdlZlRGw5?=
- =?utf-8?B?MUxtMG9MSHdhZElCemQxWmNxWnN2RmlyS2N2bm0xQ1EvMWNFc0lwNDJyL2Np?=
- =?utf-8?B?bm5ISlE5RFF2bTlyajQrcGRDWUxLWXcyaHM0UlI2QzRiamNRMFhsOEhhWFZq?=
- =?utf-8?B?UDZScFFib1NMV3oyeVhZQT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 314dcfec-4399-4574-ef80-08d98dbe49ee
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR1201MB2491.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2021 20:24:27.5313 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ByR8m+Cis0cHUjsBNF7TijElqt/m/qDdu2o3tbB/XzUo0BkeRcokv0B2GpEsyUYUatkysCoGPbaHyV/DgSUO4g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1514
+References: <20211011202158.GA19208@t>
+ <CADN=F_muAvmp6NcDnMgPGpTtz75KH2hhv3jbiWuW+Zz35Hc-Kw@mail.gmail.com>
+ <76a1cb8c-c1a9-b052-9e41-1738aaf94bfa@gmail.com>
+In-Reply-To: <76a1cb8c-c1a9-b052-9e41-1738aaf94bfa@gmail.com>
+From: "T. Williams" <tdwilliamsiv@gmail.com>
+Date: Tue, 12 Oct 2021 16:41:56 -0400
+Message-ID: <CADN=F_k1hm5GB1pQRqSxA6Mf0+dWATyRqMUbXfwU8vPWwumcNw@mail.gmail.com>
+Subject: Re: Fwd: [PATCH] Size can be any value and is user controlled
+ resulting in overwriting the 40 byte array wr_buf with an arbitrary length of
+ data from buf.
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Cc: airlied@linux.ie, Daniel Vetter <daniel@ffwll.ch>, Wayne.Lin@amd.com, 
+ mikita.lipski@amd.com, Nicholas.Kazlauskas@amd.com, stylon.wang@amd.com, 
+ eryk.brol@amd.com, Jerry.Zuo@amd.com, victorchengchi.lu@amd.com, 
+ aurabindo.pillai@amd.com, nirmoy.das@amd.com, Anson.Jacob@amd.com, 
+ amd-gfx@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="0000000000000e53ce05ce2de1d1"
+X-Mailman-Approved-At: Tue, 12 Oct 2021 20:45:36 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,22 +74,212 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+--0000000000000e53ce05ce2de1d1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Am 2021-10-12 um 3:11 p.m. schrieb Matthew Wilcox:
-> On Tue, Oct 12, 2021 at 11:39:57AM -0700, Andrew Morton wrote:
->> Because I must ask: if this feature is for one single computer which
->> presumably has a custom kernel, why add it to mainline Linux?
-> I think in particular patch 2 deserves to be merged because it removes
-> a ton of cruft from every call to put_page() (at least if you're using
-> a distro config).  It makes me nervous, but I think it's the right
-> thing to do.  It may well need more fixups after it has been merged,
-> but that's life.
+Should I resubmit the patch email with correct formatting? MITRE assigned
+this bug as CVE-2021-42327. Does AMD/kernel do public vulnerability
+reports? Do I need to email someone else or something(sorry for dumb
+questions this is my first time doing this and I don't know what to do)?
+I am trying to do step 11 from here:
+https://cve.mitre.org/cve/researcher_reservation_guidelines.
 
-Maybe we should split the first two patches into a separate series, and
-get it merged first, while the more controversial stuff is still under
-review?
+On Tue, Oct 12, 2021 at 3:18 AM Christian K=C3=B6nig <
+ckoenig.leichtzumerken@gmail.com> wrote:
 
-Thanks,
-  Felix
+> Am 11.10.21 um 22:24 schrieb T. Williams:
+>
+>
+>
+> ---------- Forwarded message ---------
+> From: docfate111 <tdwilliamsiv@gmail.com>
+> Date: Mon, Oct 11, 2021 at 4:22 PM
+> Subject: [PATCH] Size can be any value and is user controlled resulting i=
+n
+> overwriting the 40 byte array wr_buf with an arbitrary length of data fro=
+m
+> buf.
+> To: <dri-devel@lists.freedesktop.org>
+> Cc: <harry.wentland@amd.com>, <sunpeng.li@amd.com>
+>
+>
+> Signed-off-by: docfate111 <tdwilliamsiv@gmail.com>
+>
+>
+> While the find might be correct there are a couple of style problems with
+> the patch.
+>
+> First of all the subject line must be shorter and should be something lik=
+e
+> "drm/amdgpu: fix out of bounds write".
+>
+> The detailed description of the bug then comes into the commit message.
+>
+> And finally please use your real name for the Signed-off-by line.
+>
+> Apart from that good catch,
+> Christian.
+>
+> ---
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> index 87daa78a32b8..17f2756a64dc 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> @@ -263,7 +263,7 @@ static ssize_t dp_link_settings_write(struct file *f,
+> const char __user *buf,
+>         if (!wr_buf)
+>                 return -ENOSPC;
+>
+> -       if (parse_write_buffer_into_params(wr_buf, size,
+> +       if (parse_write_buffer_into_params(wr_buf, wr_buf_size,
+>                                            (long *)param, buf,
+>                                            max_param_num,
+>                                            &param_nums)) {
+> --
+> 2.25.1
+>
+>
+>
+> --
+> Thank you for your time,
+> Thelford Williams
+>
+>
+>
 
+--=20
+Thank you for your time,
+Thelford Williams
 
+--0000000000000e53ce05ce2de1d1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Should I resubmit the patch email with correct format=
+ting? MITRE assigned this bug as CVE-2021-42327. Does AMD/kernel do public =
+vulnerability reports? Do I need to email someone else or something(sorry f=
+or dumb questions this is my first time doing this and I don&#39;t know wha=
+t to do)? <br></div>I am trying to do step 11 from here: <a href=3D"https:/=
+/cve.mitre.org/cve/researcher_reservation_guidelines">https://cve.mitre.org=
+/cve/researcher_reservation_guidelines</a>.</div><br><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Oct 12, 2021 at 3:18 AM =
+Christian K=C3=B6nig &lt;<a href=3D"mailto:ckoenig.leichtzumerken@gmail.com=
+">ckoenig.leichtzumerken@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div>
+    Am 11.10.21 um 22:24 schrieb T. Williams:<br>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr"><br>
+        <br>
+        <div class=3D"gmail_quote">
+          <div dir=3D"ltr" class=3D"gmail_attr">---------- Forwarded messag=
+e
+            ---------<br>
+            From: <b class=3D"gmail_sendername" dir=3D"auto">docfate111</b>
+            <span dir=3D"auto">&lt;<a href=3D"mailto:tdwilliamsiv@gmail.com=
+" target=3D"_blank">tdwilliamsiv@gmail.com</a>&gt;</span><br>
+            Date: Mon, Oct 11, 2021 at 4:22 PM<br>
+            Subject: [PATCH] Size can be any value and is user
+            controlled resulting in overwriting the 40 byte array wr_buf
+            with an arbitrary length of data from buf.<br>
+            To: &lt;<a href=3D"mailto:dri-devel@lists.freedesktop.org" targ=
+et=3D"_blank">dri-devel@lists.freedesktop.org</a>&gt;<br>
+            Cc: &lt;<a href=3D"mailto:harry.wentland@amd.com" target=3D"_bl=
+ank">harry.wentland@amd.com</a>&gt;,
+            &lt;<a href=3D"mailto:sunpeng.li@amd.com" target=3D"_blank">sun=
+peng.li@amd.com</a>&gt;<br>
+          </div>
+          <br>
+          <br>
+          Signed-off-by: docfate111 &lt;<a href=3D"mailto:tdwilliamsiv@gmai=
+l.com" target=3D"_blank">tdwilliamsiv@gmail.com</a>&gt;<br>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    While the find might be correct there are a couple of style problems
+    with the patch.<br>
+    <br>
+    First of all the subject line must be shorter and should be
+    something like &quot;drm/amdgpu: fix out of bounds write&quot;.<br>
+    <br>
+    The detailed description of the bug then comes into the commit
+    message.<br>
+    <br>
+    And finally please use your real name for the Signed-off-by line.<br>
+    <br>
+    Apart from that good catch,<br>
+    Christian.<br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_quote">
+          ---<br>
+          =C2=A0drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |=
+ 2
+          +-<br>
+          =C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
+          <br>
+          diff --git
+          a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+          b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c<br>
+          index 87daa78a32b8..17f2756a64dc 100644<br>
+          ---
+          a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c<br>
+          +++
+          b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c<br>
+          @@ -263,7 +263,7 @@ static ssize_t
+          dp_link_settings_write(struct file *f, const char __user *buf,<br=
+>
+          =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (!wr_buf)<br>
+          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return -E=
+NOSPC;<br>
+          <br>
+          -=C2=A0 =C2=A0 =C2=A0 =C2=A0if (parse_write_buffer_into_params(wr=
+_buf, size,<br>
+          +=C2=A0 =C2=A0 =C2=A0 =C2=A0if (parse_write_buffer_into_params(wr=
+_buf,
+          wr_buf_size,<br>
+          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0(long *)param, buf,<br>
+          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0max_param_num,<br>
+          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0&amp;param_nums)) {<br>
+          -- <br>
+          2.25.1<br>
+          <br>
+        </div>
+        <br clear=3D"all">
+        <br>
+        -- <br>
+        <div dir=3D"ltr">
+          <div dir=3D"ltr">
+            <div>Thank you for your time,<br>
+            </div>
+            Thelford Williams<br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </div>
+
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"g=
+mail_signature"><div dir=3D"ltr"><div>Thank you for your time,<br></div>The=
+lford Williams<br></div></div>
+
+--0000000000000e53ce05ce2de1d1--
