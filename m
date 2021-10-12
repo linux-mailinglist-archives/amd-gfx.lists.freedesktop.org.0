@@ -1,51 +1,72 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 219FE42AE19
-	for <lists+amd-gfx@lfdr.de>; Tue, 12 Oct 2021 22:44:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B3D342AE41
+	for <lists+amd-gfx@lfdr.de>; Tue, 12 Oct 2021 22:56:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9550489CE3;
-	Tue, 12 Oct 2021 20:44:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEA986E84A;
+	Tue, 12 Oct 2021 20:56:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C4CD89B45;
- Tue, 12 Oct 2021 20:44:11 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0DCA460E09;
- Tue, 12 Oct 2021 20:44:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1634071451;
- bh=UOkTy92XzuCtUq8OKvsR+eNtXmbw0VxKGgOP+U8fxCc=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=dVY6saMQJHCva5gnZHW+oNKn5KwkmHfFZvnbQUROIgps+NAUt0Tnuj+AqsHJKGtfH
- 3fHCTg5zhTRFQBkE9DaPyIvLq6BgZgb8SXieAuio3g+RKCNgXkgj2AWekbStG3HwQO
- r73rCEMYuTl8wf6CXc8IiMyvMrwhuH6CgKQ+huUJhcN/Cd4ktmC/prwq5eZL1v+ETb
- IsvtcWhHGrY9FzkjvlwajnHPvRPZeA42AML/j40oo9r6dOSZcDR8bpbC4byAHmVUWD
- m/NklUM8bXYUZEkRRenKS/x7vwBaC5D6GLTajdI2rjR8bYJGchfnXx2irIqrJjqJN9
- pi/uIraLvn+lw==
-Date: Tue, 12 Oct 2021 13:44:10 -0700
-From: "Darrick J. Wong" <djwong@kernel.org>
-To: Felix Kuehling <felix.kuehling@amd.com>
-Cc: Matthew Wilcox <willy@infradead.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Alex Sierra <alex.sierra@amd.com>, linux-mm@kvack.org,
- rcampbell@nvidia.com, linux-ext4@vger.kernel.org,
- linux-xfs@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, hch@lst.de, jgg@nvidia.com,
- jglisse@redhat.com, apopple@nvidia.com
-Subject: Re: [PATCH v1 00/12] MEMORY_DEVICE_COHERENT for CPU-accessible
- coherent device memory
-Message-ID: <20211012204410.GR24307@magnolia>
-References: <20211012171247.2861-1-alex.sierra@amd.com>
- <20211012113957.53f05928dd60f3686331fede@linux-foundation.org>
- <YWXd0leFtLepunVa@casper.infradead.org>
- <1bcea911-58c6-c730-35b2-e8f1f8eddcd8@amd.com>
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com
+ [IPv6:2607:f8b0:4864:20::22d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07FB86E84A
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 20:56:36 +0000 (UTC)
+Received: by mail-oi1-x22d.google.com with SMTP id m67so968808oif.6
+ for <amd-gfx@lists.freedesktop.org>; Tue, 12 Oct 2021 13:56:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=HcRps6nkzbah+WUrXLDWnqHW/T2uSN3UBUZW9QAn5MU=;
+ b=ZUcEzMxn/WrwCnRRzDAPBfODSGVLjotpgOGF4WtEGrizpcnsGq4ImPhYGnz2+0YLx+
+ nmQYZ6ElfoI/j9DY1BwbgzlWCeR9quglRft04qpss5M949iPWxs6yLMMBWdBk3PMqtFW
+ i1xdtec1pQZgPRqoERcUthFZ2XLlCNwJfcLicgD26qkdmza5yUEUnkPUoJ42TgLt1OAM
+ YezqbNCBVNgprWGMx8EzVPu19Sjf3GRE1WqymVjDRKyaZ1Jk/N+5uDIT721XoKZWP3jH
+ R0bzjCv4OJI9OLwN3VPDDv+wKF2NJyaBlWRm0vdC/8EveYLj+GKZ6At1ERoLrAzqW3cM
+ 6ucQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=HcRps6nkzbah+WUrXLDWnqHW/T2uSN3UBUZW9QAn5MU=;
+ b=0bQ84PPuUR33LbVDnAxq5zIpGZ0Cx06aeiyu6/mOTIXB5JO2uioAgK4pxHz8n13h4l
+ /xNqy6bJtgZiCyqUFUyRuUV3ZtdKQTlpS4FEUCXimaqFwErn2IBl1zF67BXbSDaAdWFh
+ 7UCIpeAyKyi59AzukdrfPeehw7E7/QccEVLgSsFSr7239p+D2zNH0XLbqrHOr1Ua2pK5
+ fwRIRQy58qJ+fMlQUELkmzOXgXy7RsQp6eRa0UTfuQAGALJSJxWYFvWuzUQi+ayGSOkA
+ MVXwQWMk1K3mGIAhNfbE4D4UdPrSwGyDa+sPlly2EUFKbK9XE/FaakwqrRwkOuiJHMex
+ 9C2A==
+X-Gm-Message-State: AOAM531NryG7HMsj2ME4KLzuvboIoxlkhIUzovMoPDlglMFT9qYCe2Qi
+ YiQ3+LgqeTG/sJKKYlKdUYwuTTqGT4oNFXYN5rU=
+X-Google-Smtp-Source: ABdhPJyYSWn974NVSs56Dy4+wa7w2UdjkdOOJ31sWwLFUZjw5ya0Xqku89I5E+byxZNOlw7bXOtn3kus7EDhcvsotQE=
+X-Received: by 2002:a05:6808:1527:: with SMTP id
+ u39mr2365224oiw.123.1634072196097; 
+ Tue, 12 Oct 2021 13:56:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1bcea911-58c6-c730-35b2-e8f1f8eddcd8@amd.com>
+References: <20211011202158.GA19208@t>
+ <CADN=F_muAvmp6NcDnMgPGpTtz75KH2hhv3jbiWuW+Zz35Hc-Kw@mail.gmail.com>
+ <76a1cb8c-c1a9-b052-9e41-1738aaf94bfa@gmail.com>
+ <CADN=F_k1hm5GB1pQRqSxA6Mf0+dWATyRqMUbXfwU8vPWwumcNw@mail.gmail.com>
+In-Reply-To: <CADN=F_k1hm5GB1pQRqSxA6Mf0+dWATyRqMUbXfwU8vPWwumcNw@mail.gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Tue, 12 Oct 2021 16:56:24 -0400
+Message-ID: <CADnq5_OZg42TYe=tjb+rwxrjE1c_Bz8UUKTMmLRQDMH177Bhgg@mail.gmail.com>
+Subject: Re: Fwd: [PATCH] Size can be any value and is user controlled
+ resulting in overwriting the 40 byte array wr_buf with an arbitrary length of
+ data from buf.
+To: "T. Williams" <tdwilliamsiv@gmail.com>
+Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>, 
+ Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Wayne Lin <Wayne.Lin@amd.com>, "Lipski, Mikita" <mikita.lipski@amd.com>, 
+ "Kazlauskas, Nicholas" <Nicholas.Kazlauskas@amd.com>,
+ Stylon Wang <stylon.wang@amd.com>, 
+ Eryk Brol <eryk.brol@amd.com>, Jerry Zuo <Jerry.Zuo@amd.com>, 
+ Victor Lu <victorchengchi.lu@amd.com>,
+ Aurabindo Pillai <aurabindo.pillai@amd.com>, 
+ Nirmoy Das <nirmoy.das@amd.com>, Anson Jacob <Anson.Jacob@amd.com>, 
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,27 +81,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 12, 2021 at 04:24:25PM -0400, Felix Kuehling wrote:
-> 
-> Am 2021-10-12 um 3:11 p.m. schrieb Matthew Wilcox:
-> > On Tue, Oct 12, 2021 at 11:39:57AM -0700, Andrew Morton wrote:
-> >> Because I must ask: if this feature is for one single computer which
-> >> presumably has a custom kernel, why add it to mainline Linux?
-> > I think in particular patch 2 deserves to be merged because it removes
-> > a ton of cruft from every call to put_page() (at least if you're using
-> > a distro config).  It makes me nervous, but I think it's the right
-> > thing to do.  It may well need more fixups after it has been merged,
-> > but that's life.
-> 
-> Maybe we should split the first two patches into a separate series, and
-> get it merged first, while the more controversial stuff is still under
-> review?
+On Tue, Oct 12, 2021 at 4:45 PM T. Williams <tdwilliamsiv@gmail.com> wrote:
+>
+> Should I resubmit the patch email with correct formatting? MITRE assigned=
+ this bug as CVE-2021-42327. Does AMD/kernel do public vulnerability report=
+s? Do I need to email someone else or something(sorry for dumb questions th=
+is is my first time doing this and I don't know what to do)?
+> I am trying to do step 11 from here: https://cve.mitre.org/cve/researcher=
+_reservation_guidelines.
 
-Yes, please.  I've seen that first patch several times already. :)
+Just resend the fixed up patch using git-send-email and we'll apply it.
 
---D
+Alex
 
-> Thanks,
->   Felix
-> 
-> 
+>
+> On Tue, Oct 12, 2021 at 3:18 AM Christian K=C3=B6nig <ckoenig.leichtzumer=
+ken@gmail.com> wrote:
+>>
+>> Am 11.10.21 um 22:24 schrieb T. Williams:
+>>
+>>
+>>
+>> ---------- Forwarded message ---------
+>> From: docfate111 <tdwilliamsiv@gmail.com>
+>> Date: Mon, Oct 11, 2021 at 4:22 PM
+>> Subject: [PATCH] Size can be any value and is user controlled resulting =
+in overwriting the 40 byte array wr_buf with an arbitrary length of data fr=
+om buf.
+>> To: <dri-devel@lists.freedesktop.org>
+>> Cc: <harry.wentland@amd.com>, <sunpeng.li@amd.com>
+>>
+>>
+>> Signed-off-by: docfate111 <tdwilliamsiv@gmail.com>
+>>
+>>
+>> While the find might be correct there are a couple of style problems wit=
+h the patch.
+>>
+>> First of all the subject line must be shorter and should be something li=
+ke "drm/amdgpu: fix out of bounds write".
+>>
+>> The detailed description of the bug then comes into the commit message.
+>>
+>> And finally please use your real name for the Signed-off-by line.
+>>
+>> Apart from that good catch,
+>> Christian.
+>>
+>> ---
+>>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b=
+/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+>> index 87daa78a32b8..17f2756a64dc 100644
+>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+>> @@ -263,7 +263,7 @@ static ssize_t dp_link_settings_write(struct file *f=
+, const char __user *buf,
+>>         if (!wr_buf)
+>>                 return -ENOSPC;
+>>
+>> -       if (parse_write_buffer_into_params(wr_buf, size,
+>> +       if (parse_write_buffer_into_params(wr_buf, wr_buf_size,
+>>                                            (long *)param, buf,
+>>                                            max_param_num,
+>>                                            &param_nums)) {
+>> --
+>> 2.25.1
+>>
+>>
+>>
+>> --
+>> Thank you for your time,
+>> Thelford Williams
+>>
+>>
+>
+>
+> --
+> Thank you for your time,
+> Thelford Williams
