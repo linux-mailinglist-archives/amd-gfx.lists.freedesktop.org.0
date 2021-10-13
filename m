@@ -1,64 +1,58 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9FF42C889
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Oct 2021 20:19:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D73C542C88E
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Oct 2021 20:20:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 458ED6EA69;
-	Wed, 13 Oct 2021 18:19:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2ECDE6EA77;
+	Wed, 13 Oct 2021 18:20:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com
- [IPv6:2a00:1450:4864:20::12c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADEB56EA2D
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 18:18:52 +0000 (UTC)
-Received: by mail-lf1-x12c.google.com with SMTP id y15so15721462lfk.7
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 11:18:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com
+ [IPv6:2607:f8b0:4864:20::32f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDD6E6EA77
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 18:20:46 +0000 (UTC)
+Received: by mail-ot1-x32f.google.com with SMTP id
+ 62-20020a9d0a44000000b00552a6f8b804so4253807otg.13
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 11:20:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=sNgBMY1EYvAR4tAnZyZ3ch4hUWrBZvBwo5YqamtcXbc=;
- b=FLFFNc84r4BMCEfdbEVcu+vA1YqaU1yTAF3MB3CyIi2oAF4K35vmpoLfydHizp5GtW
- XsmUKpfWI+o9cK2VOWCTmeolIxGgR+keIoZxSQ9+GmZFRC/AngIkBnOmo2/uuoY2VXGP
- T4dzUVDYE0CltRxbXI/P9x0/NFPSKOiFTYkmU=
+ :cc; bh=hiy2L543+OOFHcrIJlhRdDTSEae9Bgj8fBEnl5ZOrBk=;
+ b=ZHD7lpBx5uFFXy34Z+WtQLA6Z3qziB3OwW1x7G5nT0EKBVNQCyCyZy/kqI0pBXTtY/
+ j4deK0E3WDKHSLOj7FubQsz380PyESSzV1hEmFKBFCkecn9heXVgzoO2OJl+CzFvrdye
+ IuvoqYkm80n2rYjcqm5B1SeFbnDcrNQMFQkqouSWE3LBrq/8fI8nOyy65up6sYWpcEOP
+ 9irxPXBpzJ4upPPmW8pfJ+9ZspFvg947ZaSZKip5oSA2EwuZHbxI3oKmkBL4U7h7go2A
+ WqKk/gi4yvp51NgdslOyWDqugeo8nVxnKpYRtpiZfmhHJFt/pLfHsnw6a+JiN5K+HToS
+ TSCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=sNgBMY1EYvAR4tAnZyZ3ch4hUWrBZvBwo5YqamtcXbc=;
- b=B2HWUDFQpRd3HnqMIXcAm90du9OiSmTA/hE9BjcsR+0NEmkeo5iHyn/1adljmJ/Uce
- c+e0C9F/R5COj0hztBIDqe/NRVvJIm4ys7dyxUdQT9Oe/dDanyQlY0f4w0iwyh+RQ891
- Fec+KZ8oRZwgZtt9OCr32pjWp+tL6QwJaXscjNTF/5IVOsid0ZWtY4YR6buK1p9EbGUR
- Pe/V5+zoZgXMu/oyi846eDRj3SyAnNTktyzG8pq+KgMacJMNpndXDDkjKzQ6xA4La7lH
- InX05rg5Isqdwq1E9a0NHTSbBAfjLN5vtvHVMYObv9AswlJcE1uEamXtNtChntUXUk+j
- 7Eeg==
-X-Gm-Message-State: AOAM533nd0BVAlC2BsSbDBVmofXkxccM1TLYP+Cjf7i4ayiwaEtnP/JD
- 2n1uuin7FdRrEhnV9MLO80v13kBYgCKUw+RjLlR4aQ==
-X-Google-Smtp-Source: ABdhPJwoX+C04YhsDhO8yVn8Dr+86X4h0AQku4VB7IDCxSx/48LOe1M/zOnFx8J4gSxpHrsZxH05TDajeJhGuoz0T0U=
-X-Received: by 2002:a05:6512:1024:: with SMTP id
- r4mr519678lfr.369.1634149130936; 
- Wed, 13 Oct 2021 11:18:50 -0700 (PDT)
+ bh=hiy2L543+OOFHcrIJlhRdDTSEae9Bgj8fBEnl5ZOrBk=;
+ b=UYyzczuCHz8KeDViiJl5uBxRs8sySJLxwnOK6eIIsmlj9nOn35r9NE9SQuL+OWs1sj
+ 7DCipVNvM++JNoC3kfNfYMEnoehffEBvyGqJkIrlfXXfYoPmfpNlPz2w20ghv3QRO0zm
+ sJaB2GH3TwJT9dEmcir4PnEykC6RiXb7A5CPjIxXQ1DcHgNGKVRBh61ZIidyoTiKBo4v
+ J4R1rg8iMoS7g9wsTrLW7EIZskyLEByYV81gEui5eeMidjwv1BI0LZA6l5Zrjp92zGY/
+ y9/pJGkLg9zeYEXYXXnxusbTxSG/6pH74RPj+3kewQhL2yKCsZj8jq1fB5L6IWgGSANc
+ etqQ==
+X-Gm-Message-State: AOAM530HmGuGAgplPQj891SIca6VOLhUFL4L9sQaCYCRBvge8ZqBdz4T
+ wKR8XGqKqOlHz//aWwP3NQLFBwyGlxiD8IX88y6e+lOducI=
+X-Google-Smtp-Source: ABdhPJxHJRcuQ+j6U7YV3NDzeW8mqzl/OTDTdvtTMJHng5mRT0AYkzlP4GzrCeuei0zesj417Esc6Luuqtz4lXBPT8s=
+X-Received: by 2002:a05:6830:23ac:: with SMTP id
+ m12mr644132ots.357.1634149246250; 
+ Wed, 13 Oct 2021 11:20:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210929194012.3433306-1-markyacoub@chromium.org>
- <20211001203434.GY2515@art_vandelay>
-In-Reply-To: <20211001203434.GY2515@art_vandelay>
-From: Mark Yacoub <markyacoub@chromium.org>
-Date: Wed, 13 Oct 2021 14:18:40 -0400
-Message-ID: <CAJUqKUqCkYffX2Pr5sT1OTB2NOHPbz5g9udQRSGV_BoSyr=u9A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm: Add Gamma and Degamma LUT sizes props to
- drm_crtc to validate.
-To: Sean Paul <sean@poorly.run>
-Cc: Maling list - DRI developers <dri-devel@lists.freedesktop.org>, 
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Sean Paul <seanpaul@chromium.org>,
- "Siqueira, Rodrigo" <Rodrigo.Siqueira@amd.com>,
- Anson Jacob <anson.jacob@amd.com>, Mark Yacoub <markyacoub@google.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, 
- Matthias Brugger <matthias.bgg@gmail.com>, linux-mediatek@lists.infradead.org
+References: <20211011150217.165699-1-alexander.deucher@amd.com>
+In-Reply-To: <20211011150217.165699-1-alexander.deucher@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 13 Oct 2021 14:20:35 -0400
+Message-ID: <CADnq5_M3PZzbDoiirQ-59BapS0bMPwwTuuyT=ACbTyVd0+6EQw@mail.gmail.com>
+Subject: Re: [PATCH 1/5] drm/amdkfd: protect hawaii_device_info with
+ CONFIG_DRM_AMDGPU_CIK
+To: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Wed, 13 Oct 2021 18:19:12 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,237 +67,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Oct 1, 2021 at 4:34 PM Sean Paul <sean@poorly.run> wrote:
+Ping on this series.
+
+On Mon, Oct 11, 2021 at 11:02 AM Alex Deucher <alexander.deucher@amd.com> wrote:
 >
-> On Wed, Sep 29, 2021 at 03:39:25PM -0400, Mark Yacoub wrote:
-> > From: Mark Yacoub <markyacoub@google.com>
-> >
-> > [Why]
-> > 1. drm_atomic_helper_check doesn't check for the LUT sizes of either Gamma
-> > or Degamma props in the new CRTC state, allowing any invalid size to
-> > be passed on.
-> > 2. Each driver has its own LUT size, which could also be different for
-> > legacy users.
-> >
-> > [How]
-> > 1. Create |degamma_lut_size| and |gamma_lut_size| to save the LUT sizes
-> > assigned by the driver when it's initializing its color and CTM
-> > management.
-> > 2. Create drm_atomic_helper_check_crtc which is called by
-> > drm_atomic_helper_check to check the LUT sizes saved in drm_crtc that
-> > they match the sizes in the new CRTC state.
-> >
+> hawaii_device_info is not used when CONFIG_DRM_AMDGPU_CIK is not
+> set.
 >
-> Did you consider extending drm_color_lut_check() with the size checks?
-renamed it to be specific to channels. It's HW specific so i thought
-of keeping it a separate check if the driver chooses to check it.
-Removed the LUT size check that intel uses though.
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdkfd/kfd_device.c | 2 ++
+>  1 file changed, 2 insertions(+)
 >
-> > Fixes: igt@kms_color@pipe-A-invalid-gamma-lut-sizes on MTK
-> > Tested on Zork(amdgpu) and Jacuzzi(mediatek)
-> >
-> > Signed-off-by: Mark Yacoub<markyacoub@chromium.org>
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> index 064d42acd54e..31e255ba15ed 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+> @@ -114,6 +114,7 @@ static const struct kfd_device_info raven_device_info = {
+>         .num_sdma_queues_per_engine = 2,
+>  };
 >
-> nit: missing a space between name and email
+> +#ifdef CONFIG_DRM_AMDGPU_CIK
+>  static const struct kfd_device_info hawaii_device_info = {
+>         .asic_family = CHIP_HAWAII,
+>         .asic_name = "hawaii",
+> @@ -133,6 +134,7 @@ static const struct kfd_device_info hawaii_device_info = {
+>         .num_xgmi_sdma_engines = 0,
+>         .num_sdma_queues_per_engine = 2,
+>  };
+> +#endif
 >
->
-> > ---
-> >  drivers/gpu/drm/drm_atomic_helper.c | 56 +++++++++++++++++++++++++++++
-> >  drivers/gpu/drm/drm_color_mgmt.c    |  2 ++
-> >  include/drm/drm_atomic_helper.h     |  1 +
-> >  include/drm/drm_crtc.h              | 11 ++++++
-> >  4 files changed, 70 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-> > index 2c0c6ec928200..265b9747250d1 100644
-> > --- a/drivers/gpu/drm/drm_atomic_helper.c
-> > +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> > @@ -930,6 +930,58 @@ drm_atomic_helper_check_planes(struct drm_device *dev,
-> >  }
-> >  EXPORT_SYMBOL(drm_atomic_helper_check_planes);
-> >
-> > +/**
-> > + * drm_atomic_helper_check_planes - validate state object for CRTC changes
->
-> Ctrl+c/Ctrl+v error here
->
-> > + * @state: the driver state object
-> > + *
-> > + * Check the CRTC state object such as the Gamma/Degamma LUT sizes if the new
->
-> Are there missing words between "object" and "such"?
->
-not really. I was thinking of how to reword it without being too
-verbose and nothing sounded good.
-I mean I'm checking the object, such as the LUT which is part of this object.
-> > + * state holds them.
-> > + *
-> > + * RETURNS:
-> > + * Zero for success or -errno
-> > + */
-> > +int drm_atomic_helper_check_crtc(struct drm_atomic_state *state)
->
-> drm_atomic_helper_check_crtcs to be consistent with
-> drm_atomic_helper_check_planes
->
-> > +{
-> > +     struct drm_crtc *crtc;
-> > +     struct drm_crtc_state *new_crtc_state;
-> > +     int i;
-> > +
-> > +     for_each_new_crtc_in_state (state, crtc, new_crtc_state, i) {
->
-> no space before (
->
-> > +             if (new_crtc_state->gamma_lut) {
->
-> Perhaps gate these with a check of state->color_mgmt_changed first?
-done .  did it for each check so you can easily expand in the future
-and squeeze in more things around those checks as it loops the CRTC
-states.
->
-> > +                     uint64_t supported_lut_size = crtc->gamma_lut_size;
-> > +                     uint32_t supported_legacy_lut_size = crtc->gamma_size;
-> > +                     uint32_t new_state_lut_size =
-> > +                             drm_color_lut_size(new_crtc_state->gamma_lut);
->
-> nit: new_state_lut_size and supported_lut_size can be pulled out to top level scope
-> to avoid re-instantiation on each iteration
->
-CRTC is an iterator, so it changes within the loop.
-> > +
-> > +                     if (new_state_lut_size != supported_lut_size &&
-> > +                         new_state_lut_size != supported_legacy_lut_size) {
->
-> According to the docbook, "If drivers support multiple LUT sizes then they
-> should publish the largest size, and sub-sample smaller sized LUTs". So
-> should this check be > instead of != ?
->
-so IGT tests see it differently, they check for a very specific size,
-rather than a range. so if the legacy size is 256 and regular is 1024,
-1000 isn't a valid size.
-> > +                             DRM_DEBUG_DRIVER(
->
-> drm_dbg_state() is probably more appropriate
->
-> > +                                     "Invalid Gamma LUT size. Should be %u (or %u for legacy) but got %u.\n",
-> > +                                     supported_lut_size,
-> > +                                     supported_legacy_lut_size,
-> > +                                     new_state_lut_size);
-> > +                             return -EINVAL;
-> > +                     }
-> > +             }
-> > +
-> > +             if (new_crtc_state->degamma_lut) {
-> > +                     uint32_t new_state_lut_size =
-> > +                             drm_color_lut_size(new_crtc_state->degamma_lut);
-> > +                     uint64_t supported_lut_size = crtc->degamma_lut_size;
-> > +
-> > +                     if (new_state_lut_size != supported_lut_size) {
-> > +                             DRM_DEBUG_DRIVER(
->
-> drm_dbg_state()
->
-> > +                                     "Invalid Degamma LUT size. Should be %u but got %u.\n",
-> > +                                     supported_lut_size, new_state_lut_size);
-> > +                             return -EINVAL;
-> > +                     }
-> > +             }
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +EXPORT_SYMBOL(drm_atomic_helper_check_crtc);
-> > +
-> >  /**
-> >   * drm_atomic_helper_check - validate state object
-> >   * @dev: DRM device
-> > @@ -975,6 +1027,10 @@ int drm_atomic_helper_check(struct drm_device *dev,
-> >       if (ret)
-> >               return ret;
-> >
-> > +     ret = drm_atomic_helper_check_crtc(state);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> >       if (state->legacy_cursor_update)
-> >               state->async_update = !drm_atomic_helper_async_check(dev, state);
-> >
-> > diff --git a/drivers/gpu/drm/drm_color_mgmt.c b/drivers/gpu/drm/drm_color_mgmt.c
-> > index bb14f488c8f6c..72a1b628e7cdd 100644
-> > --- a/drivers/gpu/drm/drm_color_mgmt.c
-> > +++ b/drivers/gpu/drm/drm_color_mgmt.c
-> > @@ -166,6 +166,7 @@ void drm_crtc_enable_color_mgmt(struct drm_crtc *crtc,
-> >       struct drm_mode_config *config = &dev->mode_config;
-> >
-> >       if (degamma_lut_size) {
-> > +             crtc->degamma_lut_size = degamma_lut_size;
-> >               drm_object_attach_property(&crtc->base,
-> >                                          config->degamma_lut_property, 0);
-> >               drm_object_attach_property(&crtc->base,
-> > @@ -178,6 +179,7 @@ void drm_crtc_enable_color_mgmt(struct drm_crtc *crtc,
-> >                                          config->ctm_property, 0);
-> >
-> >       if (gamma_lut_size) {
-> > +             crtc->gamma_lut_size = gamma_lut_size;
-> >               drm_object_attach_property(&crtc->base,
-> >                                          config->gamma_lut_property, 0);
-> >               drm_object_attach_property(&crtc->base,
-> > diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
-> > index 4045e2507e11c..3eda13622ca1e 100644
-> > --- a/include/drm/drm_atomic_helper.h
-> > +++ b/include/drm/drm_atomic_helper.h
-> > @@ -38,6 +38,7 @@ struct drm_atomic_state;
-> >  struct drm_private_obj;
-> >  struct drm_private_state;
-> >
-> > +int drm_atomic_helper_check_crtc(struct drm_atomic_state *state);
-> >  int drm_atomic_helper_check_modeset(struct drm_device *dev,
-> >                               struct drm_atomic_state *state);
-> >  int drm_atomic_helper_check_plane_state(struct drm_plane_state *plane_state,
-> > diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-> > index 13eeba2a750af..c602be2cafca9 100644
-> > --- a/include/drm/drm_crtc.h
-> > +++ b/include/drm/drm_crtc.h
-> > @@ -1072,6 +1072,17 @@ struct drm_crtc {
-> >       /** @funcs: CRTC control functions */
-> >       const struct drm_crtc_funcs *funcs;
-> >
-> > +     /**
-> > +      * @degamma_lut_size: Size of degamma LUT.
-> > +      */
-> > +     uint32_t degamma_lut_size;
-> > +
-> > +     /**
-> > +      * @gamma_lut_size: Size of Gamma LUT. Not used by legacy userspace such as
-> > +      * X, which doesn't support large lut sizes.
-> > +      */
-> > +     uint32_t gamma_lut_size;
-> > +
->
-> Above, you're checking
->
-> if (new_state_lut_size != gamma_size && new_state_lut_size != gamma_lut_size)
->         fail;
->
-> doesn't that imply that gamma_size and gamma_lut_size must always be equal? If
-> so, perhaps turf this new state and rename degamma_lut_size to degamma_size to
-> be consistent.
->
-> De-duping this and initializing crtc->gamma_size in the initialization would
-> mean the if (crtc->gamma_size) check in drm_crtc_supports_legacy_check() is no
-> longer useful (and possibly other similar checks), so some care will need to be
-> taken to avoid regression. I think the effort is worthwhile to avoid introducing
-> new state.
->
->
->
-> >       /**
-> >        * @gamma_size: Size of legacy gamma ramp reported to userspace. Set up
-> >        * by calling drm_mode_crtc_set_gamma_size().
-> > --
-> > 2.33.0.685.g46640cef36-goog
-> >
->
+>  static const struct kfd_device_info tonga_device_info = {
+>         .asic_family = CHIP_TONGA,
 > --
-> Sean Paul, Software Engineer, Google / Chromium OS
+> 2.31.1
+>
