@@ -1,58 +1,66 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21EAA42C144
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Oct 2021 15:21:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53A5042C006
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Oct 2021 14:30:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E17C46E05F;
-	Wed, 13 Oct 2021 13:21:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E33CD6EA40;
+	Wed, 13 Oct 2021 12:30:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31E3E6E86B
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 09:26:17 +0000 (UTC)
-Received: from zn.tnic (p200300ec2f0ce200e42a3e901495df36.dip0.t-ipconnect.de
- [IPv6:2003:ec:2f0c:e200:e42a:3e90:1495:df36])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id D79CD1EC04D1;
- Wed, 13 Oct 2021 11:26:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
- t=1634117174;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
- bh=mzSW+lZEocE/K7VEFrysmA7kJQvRTS0m7rv02eijMs4=;
- b=qt6lM7be63EpV5GkEoIkqUVieASALd/z7ZFtEQfgnNn7cBQU2pmkf+0/sAGqmb5IRJtX8q
- gcE0qUSPEXFZMbj1TtKfwdD/0mdNIb0rwGrGuPDqcnxWLRFlnDGXmKNnipiuRG6dy9TkOd
- xDEA9WeehT2mRoFk6unESyzbMHFc0To=
-Date: Wed, 13 Oct 2021 11:26:13 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: "Quan, Evan" <Evan.Quan@amd.com>
-Cc: Alex Deucher <alexdeucher@gmail.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- LKML <linux-kernel@vger.kernel.org>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, "Chen, Guchun" <Guchun.Chen@amd.com>
-Subject: Re: bf756fb833cb ("drm/amdgpu: add missing cleanups for Polaris12
- UVD/VCE on suspend")
-Message-ID: <YWamNaMAxaw+/9Az@zn.tnic>
-References: <YWBeD7fd2sYSSTyc@zn.tnic>
- <CADnq5_MeEP-PbDp+Js3zEsuj=CvxDAD2qcFSskWhW4b4SkhwEQ@mail.gmail.com>
- <YWBlVzZK35ecQHNZ@zn.tnic>
- <DM6PR12MB2619FD47CD826ADC91F87AFBE4B39@DM6PR12MB2619.namprd12.prod.outlook.com>
- <YWFaUjKEp+5819O/@zn.tnic>
- <DM6PR12MB26195857D2FA0946C9833F19E4B39@DM6PR12MB2619.namprd12.prod.outlook.com>
- <YWFp2qHwbWHEqxWh@zn.tnic>
- <DM6PR12MB26193B59E0C5971F458E17C9E4B59@DM6PR12MB2619.namprd12.prod.outlook.com>
- <YWRvl6ymevr7+kiB@zn.tnic>
- <BYAPR12MB26152EF8CD43290EBE40C165E4B79@BYAPR12MB2615.namprd12.prod.outlook.com>
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
+ [IPv6:2a00:1450:4864:20::432])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 424956EA40
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 12:30:03 +0000 (UTC)
+Received: by mail-wr1-x432.google.com with SMTP id g25so7858622wrb.2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 05:30:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=subject:to:references:from:message-id:date:user-agent:mime-version
+ :in-reply-to:content-transfer-encoding:content-language;
+ bh=samCHaehaFPwREI7x8AkC9A10ME+kGY/VR4Dz529O3Y=;
+ b=KwFUvlCzNCEV9kLYzepURKOHIsgbqHtEKTOffKmjo8kuql5UCymiX96OeFFLTmTS8k
+ LXDE/4GhGF3wlHEPJogporUzucMotOsX1hTgNfodmgv9sKFGOy1mtSvFCyWpMpUFiVf0
+ lW98iOlgbXZVN6rvPj8Y9QWA9BPAAOCR7jLW8tgRyR9nvbMHJP1dHPQhMKMp6elpetgv
+ V689RyTrj/6CU6WwMP0bDqhG4A+3twXbthGtQAohtwW3tuXAjBk4B8Yai0x4Hl/Il8NT
+ kBenPFH7sZKisKNP1MDWGJEGvc6D4ChXhgZQU5ARXtalld6XBFTzDwDOgGa7t4alFsTe
+ l5Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=samCHaehaFPwREI7x8AkC9A10ME+kGY/VR4Dz529O3Y=;
+ b=XgoUS6QCNl3jfcL80csTVcYA4/1vTJ9CkUiyKFe8NBYYhoOEBVewBUyBb/TmPe+snR
+ N2kZLbz41GldkrPHFE9nTPlTM4Urqf76+/bW8UNqchSdKZiVE6Yhvw8BF0qLUQaFrXlc
+ 36XunWZzz7LjZgKwPuJCYzEGeNPlLteGUE4MSkF4ela2IfjS6ig0lanDMUUoIJbjsxh+
+ BVRxNySotVEKDWbuOhmTGPHUYRrzAVJwpexaTTIdJokA1TnKOFSsAIhoMp4mE3lCeOmb
+ aPN18tyrTI+3GP/Gd8WrGpWWj2uPNdRXl0Y9rj4a+aWB3ZdKfXZ5Kty6qgewHh5LuxCo
+ QiLw==
+X-Gm-Message-State: AOAM531hSiW6I1qH6L2M/A/EiIf+4iUGnr/KzKMBlqrgnSjSvqr61o8+
+ H3jLGldUWtEjN43/2uj8IB1UbKEedms=
+X-Google-Smtp-Source: ABdhPJxbillmvonvQDsEwx6dwPApdxZBMiB91lvwl7L9+PttIiC8KMl2kPjizIuFSr0jSY7lChATdQ==
+X-Received: by 2002:a5d:59aa:: with SMTP id p10mr16712454wrr.45.1634128201788; 
+ Wed, 13 Oct 2021 05:30:01 -0700 (PDT)
+Received: from ?IPv6:2a02:8109:333f:edd8:2287:c687:8512:6662?
+ ([2a02:8109:333f:edd8:2287:c687:8512:6662])
+ by smtp.gmail.com with ESMTPSA id z79sm5249431wmc.17.2021.10.13.05.30.00
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 13 Oct 2021 05:30:01 -0700 (PDT)
+Subject: Re: [PATCH Review 1/1] drm/ttm: fix debugfs node create failed
+To: "Das, Nirmoy" <nirmoy.das@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20211012115834.19577-1-Stanley.Yang@amd.com>
+ <7cab58fe-c6ba-c5cb-921d-67a86ccda725@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <fb4360bf-57e0-e58e-f858-241b5939425c@gmail.com>
+Date: Wed, 13 Oct 2021 14:29:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <BYAPR12MB26152EF8CD43290EBE40C165E4B79@BYAPR12MB2615.namprd12.prod.outlook.com>
-X-Mailman-Approved-At: Wed, 13 Oct 2021 13:21:42 +0000
+In-Reply-To: <7cab58fe-c6ba-c5cb-921d-67a86ccda725@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,18 +75,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 13, 2021 at 09:19:45AM +0000, Quan, Evan wrote:
-> So, I need your help to confirm the last two patches(I sent you) do not affect the fix for the bug above.
-> Please follow the steps below to verify it:
-> 1. Launch a video playing
-> 2. open another terminal and issue "sudo pm-suspend" command to force suspending
-> 3. verify the system can suspend and resume back correctly without errors or hangs
+Am 12.10.21 um 15:12 schrieb Das, Nirmoy:
+>
+> On 10/12/2021 1:58 PM, Stanley.Yang wrote:
+>> Test scenario:
+>>      modprobe amdgpu -> rmmod amdgpu -> modprobe amdgpu
+>> Error log:
+>>      [   54.396807] debugfs: File 'page_pool' in directory 'amdttm' 
+>> already present!
+>>      [   54.396833] debugfs: File 'page_pool_shrink' in directory 
+>> 'amdttm' already present!
+>>      [   54.396848] debugfs: File 'buffer_objects' in directory 
+>> 'amdttm' already present!
+>
+>
+> We should instead add a check if those debugfs files already 
+> exist/created in ttm debugfs dir using debugfs_lookup() before creating.
 
-Just to confirm: you want me to do that with the last two patches
-applied?
+No, IIRC the Intel guys had fixed that already by adding/removing the 
+debugfs file on module load/unload.
 
--- 
-Regards/Gruss,
-    Boris.
 
-https://people.kernel.org/tglx/notes-about-netiquette
+Christian.
+
+>
+>
+> Regards,
+>
+> Nirmoy
+>
+>
+>
+>> Reason:
+>>      page_pool, page_pool_shrink and buffer_objects can be removed when
+>>      rmmod amdttm, in the above test scenario only rmmod amdgpu, so 
+>> those
+>>      debugfs node will not be removed, this caused file create failed.
+>> Soultion:
+>>      create ttm_page directory under ttm_root directory when insmod 
+>> amdgpu,
+>>      page_pool, page_pool_shrink and buffer_objects are stored in 
+>> ttm_page directiry,
+>>      remove ttm_page directory when do rmmod amdgpu, this can fix 
+>> above issue.
+>>
+>> Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
+>> ---
+>>   drivers/gpu/drm/ttm/ttm_device.c | 12 +++++++++++-
+>>   drivers/gpu/drm/ttm/ttm_module.c |  1 +
+>>   drivers/gpu/drm/ttm/ttm_module.h |  1 +
+>>   drivers/gpu/drm/ttm/ttm_pool.c   |  4 ++--
+>>   4 files changed, 15 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/ttm/ttm_device.c 
+>> b/drivers/gpu/drm/ttm/ttm_device.c
+>> index 1de23edbc182..ad170328f0c8 100644
+>> --- a/drivers/gpu/drm/ttm/ttm_device.c
+>> +++ b/drivers/gpu/drm/ttm/ttm_device.c
+>> @@ -55,6 +55,10 @@ static void ttm_global_release(void)
+>>         ttm_pool_mgr_fini();
+>>   +#ifdef CONFIG_DEBUG_FS
+>> +    debugfs_remove(ttm_debugfs_page);
+>> +#endif
+>> +
+>>       __free_page(glob->dummy_read_page);
+>>       memset(glob, 0, sizeof(*glob));
+>>   out:
+>> @@ -85,6 +89,10 @@ static int ttm_global_init(void)
+>>           >> PAGE_SHIFT;
+>>       num_dma32 = min(num_dma32, 2UL << (30 - PAGE_SHIFT));
+>>   +#ifdef CONFIG_DEBUG_FS
+>> +    ttm_debugfs_page = debugfs_create_dir("ttm_page", 
+>> ttm_debugfs_root);
+>> +#endif
+>> +
+>>       ttm_pool_mgr_init(num_pages);
+>>       ttm_tt_mgr_init(num_pages, num_dma32);
+>>   @@ -98,8 +106,10 @@ static int ttm_global_init(void)
+>>       INIT_LIST_HEAD(&glob->device_list);
+>>       atomic_set(&glob->bo_count, 0);
+>>   -    debugfs_create_atomic_t("buffer_objects", 0444, ttm_debugfs_root,
+>> +#ifdef CONFIG_DEBUG_FS
+>> +    debugfs_create_atomic_t("buffer_objects", 0444, ttm_debugfs_page,
+>>                   &glob->bo_count);
+>> +#endif
+>>   out:
+>>       mutex_unlock(&ttm_global_mutex);
+>>       return ret;
+>> diff --git a/drivers/gpu/drm/ttm/ttm_module.c 
+>> b/drivers/gpu/drm/ttm/ttm_module.c
+>> index 88970a6b8e32..66595e6e7087 100644
+>> --- a/drivers/gpu/drm/ttm/ttm_module.c
+>> +++ b/drivers/gpu/drm/ttm/ttm_module.c
+>> @@ -38,6 +38,7 @@
+>>   #include "ttm_module.h"
+>>     struct dentry *ttm_debugfs_root;
+>> +struct dentry *ttm_debugfs_page;
+>>     static int __init ttm_init(void)
+>>   {
+>> diff --git a/drivers/gpu/drm/ttm/ttm_module.h 
+>> b/drivers/gpu/drm/ttm/ttm_module.h
+>> index d7cac5d4b835..6007dc66f44e 100644
+>> --- a/drivers/gpu/drm/ttm/ttm_module.h
+>> +++ b/drivers/gpu/drm/ttm/ttm_module.h
+>> @@ -36,5 +36,6 @@
+>>   struct dentry;
+>>     extern struct dentry *ttm_debugfs_root;
+>> +extern struct dentry *ttm_debugfs_page;
+>>     #endif /* _TTM_MODULE_H_ */
+>> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c 
+>> b/drivers/gpu/drm/ttm/ttm_pool.c
+>> index 8be7fd7161fd..ecb33daad7b5 100644
+>> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+>> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+>> @@ -709,9 +709,9 @@ int ttm_pool_mgr_init(unsigned long num_pages)
+>>       }
+>>     #ifdef CONFIG_DEBUG_FS
+>> -    debugfs_create_file("page_pool", 0444, ttm_debugfs_root, NULL,
+>> +    debugfs_create_file("page_pool", 0444, ttm_debugfs_page, NULL,
+>>                   &ttm_pool_debugfs_globals_fops);
+>> -    debugfs_create_file("page_pool_shrink", 0400, ttm_debugfs_root, 
+>> NULL,
+>> +    debugfs_create_file("page_pool_shrink", 0400, ttm_debugfs_page, 
+>> NULL,
+>>                   &ttm_pool_debugfs_shrink_fops);
+>>   #endif
+
