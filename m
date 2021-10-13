@@ -2,121 +2,75 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 795DF42C09C
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Oct 2021 14:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C96042C17B
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Oct 2021 15:34:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0E906EA52;
-	Wed, 13 Oct 2021 12:52:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 577B76E0DA;
+	Wed, 13 Oct 2021 13:34:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2044.outbound.protection.outlook.com [40.107.243.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F30796EA52
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 12:52:54 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RpjfCNBEz0azbl4C00nFPUxX4HpCJpJuMFWXElZHcnOl35tre1wxy7+ukVPu00qT25VmLwd3/TN82uobszyjJWRZuTeJBrzTkykwFQMSUlNcnYAKKBmQz694BOICdKgZUNOYNb4Kvw+8k+wLgFmrJCkot2hvQXELM4T/h/1QlhkMkxLfDW6EzmMzMGvrDf8VUc68miN4a/OEHZpKosXfLiNj4KYg9TJwzPwQ0zbbtD3HGJUlePAFhjcDsx1v7qUr8AWwQyCFd6pnlVGQSktmCRa/hFikJih2kg9+BNAILHL/q9/ElodcZFQkolRwNo8cR1GRP1/vs81K1DddSO9HcQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OPbJECDwz7YtX6+BzKbFlyuPMYn0PJoUVXF8o0eZ0A4=;
- b=QalLHZnnzvOR/hTwXbTgdf38q/8Ih7nO8q+JQiilCaZGw5k+C7i5iwspfCmy/6In5YVxrSCWVCvj6uF2Jc/ExbbYyOtWBFhMUfXAecUKyaz9gxnoa/ulY5pkIcvFXhucQLQsK+41Vsrq/1jmQst4pIJ4FRATh6EsQccE7kxpkZTdMQr9yw6G8WpWgIABeKvpiDsBRwJC4Tn877c51h2RIQuWVaWSYhSnpg1c91x7VTyhnF0piDUd4JjJ31fhiUU2B7horVQ8Vaw//8+yXg9WLfvze2kcZT0yqLfbJ+Py0Xl4b4kpTJOQ484uAprVGhKQ779hzWl9uwPLXFDfJbgTIg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OPbJECDwz7YtX6+BzKbFlyuPMYn0PJoUVXF8o0eZ0A4=;
- b=VqNHVu3/LLG5qTAZ2PL3klV39QyDNpVVVuXU61gknQKnhDHRP55rC5sYc6baHP0VTisPRr3GJclKAL4TNL+qNi1aknyzIjTH8iIoXs8gTsOJJhIt0wyYIL6jEoamc93wbxePaWBB1eUSFgmi78GSeAFgn47YlR2JJfjkNPlI+Ug=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5136.namprd12.prod.outlook.com (2603:10b6:5:393::23)
- by DM4PR12MB5360.namprd12.prod.outlook.com (2603:10b6:5:39f::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.19; Wed, 13 Oct
- 2021 12:52:53 +0000
-Received: from DM4PR12MB5136.namprd12.prod.outlook.com
- ([fe80::555a:2980:a5c2:8d29]) by DM4PR12MB5136.namprd12.prod.outlook.com
- ([fe80::555a:2980:a5c2:8d29%8]) with mapi id 15.20.4587.026; Wed, 13 Oct 2021
- 12:52:53 +0000
-Subject: Re: [PATCH] drm/amdkfd: Fix an inappropriate error handling in allloc
- memory of gpu
-To: Lang Yu <lang.yu@amd.com>, amd-gfx@lists.freedesktop.org,
- Felix Kuehling <Felix.Kuehling@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Huang Rui <ray.huang@amd.com>
-References: <20211013072824.985175-1-lang.yu@amd.com>
-From: "Das, Nirmoy" <nirmoy.das@amd.com>
-Message-ID: <fd340225-f0c7-0389-c77d-c95dc5ea7668@amd.com>
-Date: Wed, 13 Oct 2021 14:52:47 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-In-Reply-To: <20211013072824.985175-1-lang.yu@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-ClientProxiedBy: AM5PR1001CA0013.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:206:2::26) To DM4PR12MB5136.namprd12.prod.outlook.com
- (2603:10b6:5:393::23)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 618F06E0DA
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 13:34:49 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id i12so8458781wrb.7
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 06:34:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=miQRTp5hbRC1OCVn4QsRcT9kmnoc0mnhrgOilHbNn1g=;
+ b=F0E4EuXR+3flbL7Xzl8XisBhT8qIwH7MG0zDDrByvsqJ7u0MvCbJ+Jdk27g1cp2SlZ
+ 9eUPMq4/iImU+0GtvR6R8lhPuCXmipsVTsAD3q7rkP21TldlzL8k+m7OPM4caW0UvsC2
+ 7EcztkwWSBS0RIOzrl5QE35wqRU+YUSNac2QE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=miQRTp5hbRC1OCVn4QsRcT9kmnoc0mnhrgOilHbNn1g=;
+ b=pJZ7Kfw0LOy42Z+f2m/1b0sSgAwzl+6BHhTOd2r/9YUZnO2PPqyUEYu+/cpj/D96eG
+ fXfoeAkth2w2vFws310TXhs44VX3+QIwXUGP2gbPtqh/wFkZYbEI6jiHhJV12QwI0hf5
+ wBcKYCL3Bauyfl9BImzXqPdSUDivIZNLifC6JwXuMrqpxOFkD8I8Klj5gc2CY7QmtFSv
+ thFv49OBzs92xDfbxEb1xpzgUmFDxBvNGlU2kLM6pxI170iT0uRX62S3VaK3XFg4vjJI
+ Q1AXhDkR/ITKITEmoZdXnWR8kjHNzyO4StGryP+LhG0EBJpuHI33i1L/hOL7td7SEhsY
+ LqJQ==
+X-Gm-Message-State: AOAM531C/2LpL5vYdlSZcWwu5Rae9Sovt99biSsRotXyvIPHv+1qzOUS
+ Ka5lP+t0Hcpc9/WJ++w3Qeineg==
+X-Google-Smtp-Source: ABdhPJyPnoPCgju2Szs7ixA3PwCFFi3lyPyAvuULHAdCBT2PI9V1y8J8yrCa0Gufzb/wqCsDI8QXUQ==
+X-Received: by 2002:a05:600c:4ecb:: with SMTP id
+ g11mr12644285wmq.67.1634132087950; 
+ Wed, 13 Oct 2021 06:34:47 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id w1sm5376300wmc.19.2021.10.13.06.34.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 13 Oct 2021 06:34:47 -0700 (PDT)
+Date: Wed, 13 Oct 2021 15:34:45 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Alex Sierra <alex.sierra@amd.com>, Felix.Kuehling@amd.com,
+ linux-mm@kvack.org, rcampbell@nvidia.com,
+ linux-ext4@vger.kernel.org, linux-xfs@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ hch@lst.de, jglisse@redhat.com, apopple@nvidia.com
+Subject: Re: [PATCH v1 00/12] MEMORY_DEVICE_COHERENT for CPU-accessible
+ coherent device memory
+Message-ID: <YWbgdXJBtupdy1qs@phenom.ffwll.local>
+Mail-Followup-To: Jason Gunthorpe <jgg@nvidia.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Alex Sierra <alex.sierra@amd.com>, Felix.Kuehling@amd.com,
+ linux-mm@kvack.org, rcampbell@nvidia.com,
+ linux-ext4@vger.kernel.org, linux-xfs@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ hch@lst.de, jglisse@redhat.com, apopple@nvidia.com
+References: <20211012171247.2861-1-alex.sierra@amd.com>
+ <20211012113957.53f05928dd60f3686331fede@linux-foundation.org>
+ <20211012185629.GZ2744544@nvidia.com>
 MIME-Version: 1.0
-Received: from [192.168.178.88] (93.229.33.108) by
- AM5PR1001CA0013.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:206:2::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.26 via Frontend
- Transport; Wed, 13 Oct 2021 12:52:52 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f3cb6f53-53f0-4e0b-18c0-08d98e485ef9
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5360:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM4PR12MB5360F28BB227E23FE01F34D58BB79@DM4PR12MB5360.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1728;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6QtTlQ/DFdKj67Bc16WWxc5JKJtJT+4W6+DOlwEno7VxrVNVqX2lxq6iZSlIszzfbHUVyFrshk+K0ksVXZuvEZprkECsk8SoTA6MPwqccpExLnFUOVgBHZ0Gb0CB4GNK6GFMoCvURmmJNizYodXzpJnBDARtwMiSSw0QZ6VVWyl6sw3YalZo/XRMkJxEWToMaFovzi8ls1l8ROlGfz+xeJa+XP7mg6Kqw5THl8R+VwAU8x9Ji1kCxwt8sgVhJA3L+isHUmV3pNeH0nyjxjC0v450bQuIC8F5uv9d6I7izYwlQ+i3qFDRAF8MajX5Vl/kdVMAJc7VdsDfKT8ILKUDheXP3xC7svVL7Qty5+H32TVqvs+dwBcy87RgQyOop1rKtFUyV9V0OBcWgiCat/Yk/imREDyHMzu8zgU0C6eEE7Mwew890QyySHSAsFC2BVbgUfE7ET/kjSUbDrBoKdvhyt2LxWXRbSK7MXIOBbpHDZoITYvlnv0f8J9gRcj0QCUs99+aS3xAOB7YmMlGUqQLD214n4cAGLIVUKAT5t28NLjyyw11X7fZWQPSbYyIlxhEjsKH6fiJ7DoQ/zeWrJE0rFPxNQBVXILU+K9JC63y18wcsAPZhQh8D15nAosAJSmTYU3C3TYe+Dr53fkDcCu4ni9nT3UHDo+1DmajWUC6V7gc4KRvqT93zzttKC5t+kFXTMQQ4b3VcMdIs88Wnvq0vgaLcOSrpvVRpuDIzbmTD4r4EsOQ5wzQGKNpST2iOsR+YVjabodXHtGt/Gv1wTeUMg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5136.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(8936002)(110136005)(5660300002)(956004)(54906003)(2616005)(53546011)(16576012)(38100700002)(26005)(186003)(4326008)(508600001)(8676002)(83380400001)(31686004)(66476007)(86362001)(36756003)(31696002)(6636002)(6486002)(66556008)(6666004)(2906002)(316002)(66946007)(49343001)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VUxYejNnbTdaeEU0MG5sOWdyNGVBZ1c3RjlrU0h0NTQ3VkZTSUVhb3RmQmRV?=
- =?utf-8?B?WEsxZVJpc3JteVhJQUNwKy9lSDRjcTVWemVGRWt0ckdJaFNZTC91NjhzMGVT?=
- =?utf-8?B?YUVvcW1rbnZ0QVg0SGNNY2I3YmF1TE0yQ1M4ZVdvTDh0L09GMCtRMDVFVE1O?=
- =?utf-8?B?cUZ1UG9IeHVOSXBlVnpJWGorbUwwZkhzYjJrTnAwWDB3OXRjYWpjV3g4Yjl0?=
- =?utf-8?B?dG84ZzUyWlRIYlkrbHlJa3pEazJjc2drTU45L2VpZE1qbXlJa2dUdEtXVVJt?=
- =?utf-8?B?ZXlrTFJNckRyaktyK3hDSlZDV09zNHNwU0ZLblpYMTkrVDZoNFZZWW5HWkFJ?=
- =?utf-8?B?VVBPaEJRbVRZdUlib3FQZ3hRWGZ5Q1g5VGxacnhSTW9rcFEycVlYR2hzUGV3?=
- =?utf-8?B?Vkh1MUdCY1M4dysybUFZbGlyRy8ycStYeUIrY2VQSEY2MWJhd0V0aCtvMjNW?=
- =?utf-8?B?VE80Um50b3pwakFvU3dlTWlXUlg0cVdlVTlUcWZxWHJQemZQTVNhZmdpZTB1?=
- =?utf-8?B?bXRiMWhnTDZNVTNVejYzbkZXWng2cFRWekhIbjRQU1o4MWlPblRzUGlSNVVZ?=
- =?utf-8?B?Z0JvV016czlTR2NOcm0xYXY3YjE5eUIzNW1GaHVuN3NOUDdmMkpYMy8xcHJL?=
- =?utf-8?B?TFY1c3FreFgzSzRic0czNmdocXpnWjBtTVdXL3I4YkR1UGN1aU9UaFpaZ0Ji?=
- =?utf-8?B?N0lSeXVHRHBVY09XQU5hbUxHc1pKaUNIKzlLSFFBQjRPdW1uMC9IRkc4L29N?=
- =?utf-8?B?eS9lYjFpK25nMzhEbmNSa2xFRTg5WURIRHkrZjdWbUZVdzR4VTQ0dkhkMXVL?=
- =?utf-8?B?ZkhmSzVqVGtXR1czRnQ5NE5vT0JoOHVnWHdjQkZha041dWgxdXRlb013YzhF?=
- =?utf-8?B?M3Y4aVhCUWdIQzgzTjg4WWpaSlBVNUdMWWR6SCtFRWxDY0N1SlE3aThwZ2Iz?=
- =?utf-8?B?UTdiSU5VTTdlcWJrRzN2ZTh0WnhIRmN6UUlSbDFnUHdKQ0J5ek03QjVkVDRG?=
- =?utf-8?B?NWdzTjg4VWFlcjI5NmxoQ3RaVzBJdHpEZWd4bVlkZUFTMktzc1BDdDZFM2Vo?=
- =?utf-8?B?cHM1d0RxV045V1dpYnE4ZERPL1o2b2dTZG1SYWJkbkREeDQ0R0tDYmYxSUI0?=
- =?utf-8?B?cDh1WWNIZzFzYnJhOGtSNVZjN3lscUJ6Y3hkeGhnS05FOS9yR1I5RHNpQmxO?=
- =?utf-8?B?VXVrSFRqNEpEYWJYZENlYlB4WEZmYk80QW9yNWFBOUR5Z296MTFDNGU3Wklq?=
- =?utf-8?B?YjRZbkM3ZlcwQ0ZkRjRsajBIZ0lETzVCdnZ0S0lRa3Qrc2pvUEE5OGdvSFMx?=
- =?utf-8?B?THBvd2NoTDJoQVJtd0NLeG41VCt6d0VhdTQvR0dXUk90QkEwT0d2SkJiV1J3?=
- =?utf-8?B?b3U2T24yZUlVSGVRc0dhQlpFSjNFNkZiM2E1d3dQWk5kWlZKa01TcWFjUXFw?=
- =?utf-8?B?R3p1VnV6NHdKNEp6cXZ6NU0zKzhLQU1EZXg2ZVVuNGViTmZjbFQ1WkJxbzdi?=
- =?utf-8?B?WWZ6a2IwOE44enJaTC9ySFpCTkZSM01tMkkycUhCSXNIeVlGazYzK1NSelVo?=
- =?utf-8?B?Vnk3RjljanR2c1NsZEZLZGgwUmp5ZmRRTnMyME5SOVEyVGd6TzU3cHZON3gy?=
- =?utf-8?B?SHJKWGFOQ1BOUFFrR1hpQkVSLzVhbVhLVEdMaVpXQkliYW9tNVZzQktjOVhS?=
- =?utf-8?B?Z2JjL1hENUlnTGo5VlhSc0ZxZGk4a3F3YXNaN3F3WElLKzZ4Sko3TGFQMGMx?=
- =?utf-8?Q?tuXZ+Xs7v1pxFnHLFDs/s2A5ml6UtVdrrHupc6e?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3cb6f53-53f0-4e0b-18c0-08d98e485ef9
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5136.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2021 12:52:53.3590 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4F1e0GyYN9KhtOqZxLI20fpGyFfxppf9mQ850q5+qK6kmSWLu9utOFg0eE09iKOOoE/oQKyh5zOHEjRJAN2I+g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5360
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211012185629.GZ2744544@nvidia.com>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,32 +85,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-LGTM as we create a gem object 1st and retrieve amdgpu_bo from the gem 
-object.
+On Tue, Oct 12, 2021 at 03:56:29PM -0300, Jason Gunthorpe wrote:
+> On Tue, Oct 12, 2021 at 11:39:57AM -0700, Andrew Morton wrote:
+> > On Tue, 12 Oct 2021 12:12:35 -0500 Alex Sierra <alex.sierra@amd.com> wrote:
+> > 
+> > > This patch series introduces MEMORY_DEVICE_COHERENT, a type of memory
+> > > owned by a device that can be mapped into CPU page tables like
+> > > MEMORY_DEVICE_GENERIC and can also be migrated like MEMORY_DEVICE_PRIVATE.
+> > > With MEMORY_DEVICE_COHERENT, we isolate the new memory type from other
+> > > subsystems as far as possible, though there are some small changes to
+> > > other subsystems such as filesystem DAX, to handle the new memory type
+> > > appropriately.
+> > > 
+> > > We use ZONE_DEVICE for this instead of NUMA so that the amdgpu
+> > > allocator can manage it without conflicting with core mm for non-unified
+> > > memory use cases.
+> > > 
+> > > How it works: The system BIOS advertises the GPU device memory (aka VRAM)
+> > > as SPM (special purpose memory) in the UEFI system address map.
+> > > The amdgpu driver registers the memory with devmap as
+> > > MEMORY_DEVICE_COHERENT using devm_memremap_pages.
+> > > 
+> > > The initial user for this hardware page migration capability will be
+> > > the Frontier supercomputer project.
+> > 
+> > To what other uses will this infrastructure be put?
+> > 
+> > Because I must ask: if this feature is for one single computer which
+> > presumably has a custom kernel, why add it to mainline Linux?
+> 
+> Well, it certainly isn't just "one single computer". Overall I know of
+> about, hmm, ~10 *datacenters* worth of installations that are using
+> similar technology underpinnings.
+> 
+> "Frontier" is the code name for a specific installation but as the
+> technology is proven out there will be many copies made of that same
+> approach.
+> 
+> The previous program "Summit" was done with NVIDIA GPUs and PowerPC
+> CPUs and also included a very similar capability. I think this is a
+> good sign that this coherently attached accelerator will continue to
+> be a theme in computing going foward. IIRC this was done using out of
+> tree kernel patches and NUMA localities.
+> 
+> Specifically with CXL now being standardized and on a path to ubiquity
+> I think we will see an explosion in deployments of coherently attached
+> accelerator memory. This is the high end trickling down to wider
+> usage.
+> 
+> I strongly think many CXL accelerators are going to want to manage
+> their on-accelerator memory in this way as it makes universal sense to
+> want to carefully manage memory access locality to optimize for
+> performance.
 
+Yeah with CXL this will be used by a lot more drivers/devices, not
+even including nvidia's blob.
 
-Acked-by: Nirmoy Das <nirmoy.das@amd.com>
-
-On 10/13/2021 9:28 AM, Lang Yu wrote:
-> We should unreference a gem object instead of an amdgpu bo here.
->
-> Fixes: 5ae0283e831a ("drm/amdgpu: Add userptr support for KFD")
->
-> Signed-off-by: Lang Yu <lang.yu@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> index 054c1a224def..cdf46bd0d8d5 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-> @@ -1503,7 +1503,7 @@ int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
->   	remove_kgd_mem_from_kfd_bo_list(*mem, avm->process_info);
->   	drm_vma_node_revoke(&gobj->vma_node, drm_priv);
->   err_node_allow:
-> -	amdgpu_bo_unref(&bo);
-> +	drm_gem_object_put(gobj);
->   	/* Don't unreserve system mem limit twice */
->   	goto err_reserve_limit;
->   err_bo_create:
+I guess if you want make sure get an ack on this from CXL folks, so that
+we don't end up with a mess.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
