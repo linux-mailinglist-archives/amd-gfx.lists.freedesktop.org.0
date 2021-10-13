@@ -2,55 +2,94 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06D9D42C4DB
-	for <lists+amd-gfx@lfdr.de>; Wed, 13 Oct 2021 17:34:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A57D42C5ED
+	for <lists+amd-gfx@lfdr.de>; Wed, 13 Oct 2021 18:12:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C85696E09C;
-	Wed, 13 Oct 2021 15:34:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EF586EA76;
+	Wed, 13 Oct 2021 16:12:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com
- [IPv6:2607:f8b0:4864:20::32c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E61FC6E09C
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 15:34:18 +0000 (UTC)
-Received: by mail-ot1-x32c.google.com with SMTP id
- w12-20020a056830410c00b0054e7ceecd88so4226141ott.2
- for <amd-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 08:34:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ddRq97pfQEd8j1Nc7oqD7mFAr3NAPWLL8Eo5VWEu9Ew=;
- b=YgLpMK45VbTpk8brxyyFyDkyo4OLsJIrKkhiprESmMDopKm3LDq9g61XL+fAOsIQCS
- XshDV+oKeoQXD+aYr0TMexXLfYezBbflX6dWE4cRmTSIDXZZiE5NkJr5KTvPPN1dginM
- gy2wjpkJmWdffq3uPumvmrJ1sAv6U1ZEa3vXSZphyxIYcD63ZlbhTxtop3GjIlSq2/Mb
- MMYHA0RLpADvV5dn0QjotJLKVNZ2igZyJYI8Na8LF/ef4t5dGM3YSO+nXNwuOsknS5uc
- MOEqAiBy8ohpT6EEXkoLbMJH6dUbjii849Rsy60DPbcixQOJ31f6VPd6zJWTXOioLVtx
- XBvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ddRq97pfQEd8j1Nc7oqD7mFAr3NAPWLL8Eo5VWEu9Ew=;
- b=qlLNlOAzZdIGJA+B7hXRH9nQTLQDMRJ+NpKUcew9zvoBnCGh71M5jq9GddsWEkJZzR
- Kk+1dGKoCFW4kgcA14T9YpZ79Fo8dz5pKLijG5sriSQaTgZdGDsN8yP/yl6SjR+jkAto
- UJwq1Spng/56ZItscSZsaJI1lxFKffhXqSPfF4KKUNLx5jMqsJFX3DZyFcLVK5uAsH1F
- 4q6B8lDUYsc3nclf6sszK5A3D8QwZYQVAGWGNV8lUpPsJ69Zn2ZbWYvQkGlzvw06lgLa
- cBu0xLLNGkHj44vsY49+74Tx+zG1ZHeD7BvvWDD/efcQueolb+yvsEPanJX05OcQt72k
- H+iQ==
-X-Gm-Message-State: AOAM531bVA5Yq1LXPsAuoxRlyf03bqZf0ZCU2GrTNfpAL8iTHH10mHdi
- aGWWenBXnNaNS3bOsZQBBi9m4mO5k7k+CLeoB/b2g9gIRXg=
-X-Google-Smtp-Source: ABdhPJwV7N5qv9grST5Z/XgVek68ORqakv1r4pmo1ykBWAxE4XR16jFM+nnSF0ZgFPIDjjt/s+uwZDH4Yn+CW/K5eaw=
-X-Received: by 2002:a9d:718e:: with SMTP id o14mr6378311otj.299.1634139258199; 
- Wed, 13 Oct 2021 08:34:18 -0700 (PDT)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2077.outbound.protection.outlook.com [40.107.93.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34D456EA7F
+ for <amd-gfx@lists.freedesktop.org>; Wed, 13 Oct 2021 16:12:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gwXDIh0nvC4ruTlH6G6Qu5IQlwgCTI8u7so29GsNL6ApJRPV1uLsQ3V3YLYrHwsnkQ6TSyZce+kCh1Sp/CanQedhKe9WRv6VpWQK4xkyQVN8I7iLls8AsN845LS1sTNFg7EG4V7XQfMYg/3Y5agGhR7kdouHbAlMX1Fw5yoMebBD3Ko+4FcuFpg4/j8DwQ5S8GLO8Km0gneschYp5nFlz3XwGPeQz15NDQcpSSHrN90LEJldCG5P5DHT7vqoUB68iPEQYVP1HyeZCI/6u2pamQ3/BKetjGVTgMfxafFDK/fjezybWEZJ1IHkHrA4npFrL7jMl3V67QfENGkCIe5iSQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9oqtAcKOi0xf0mdpc3zhbbckI/TXrLhhzivJ5sJTHR8=;
+ b=JbOzy6J/gUTOzuJdaABY1owrdHu9nsu1jbY08quPxRDLt4zw6TLvUzA30oY1tx88dDuXV08anW+JpSL3vrrFRil+5os/FEGEXHWIZprdytWlIg7jZqRVjELI1/CLhxlJD7nh276m8gD5taZG4TwLFN400kt0KWKqh/qSCQFjT/uI8YY9TORzb4kZuESG8reItXT92gUjREh3feQ7hlPcoPAQdH/W+axeiKPEG6mg9uQmpWj6u2ExnB/XZtUOhkRuG/M09GbIRnY9+D3uKqCPvug6DAqNuBtNyLCRDnlcWakVWOODcf55pknXicboTQFVUUrTEB6PnNs/eT596ZtWVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9oqtAcKOi0xf0mdpc3zhbbckI/TXrLhhzivJ5sJTHR8=;
+ b=D9JDIXDwoWjhxPT0pdw1OjbpjVtM5BfU4RRVLAZ2Gu8d9HF+p6FOfDICeGQ3ZX1Qj2E5pzS32yYMPtcslNwyQCd8OUF8GTi3mQSUdEdIQzPzoLAcfZ0yXxOfknh+hdKGgqVloa9ze1+MBRomd4OAsd16muklC9iEPPPZ1X8Rhl0=
+Received: from MWHPR19CA0067.namprd19.prod.outlook.com (2603:10b6:300:94::29)
+ by BY5PR12MB4260.namprd12.prod.outlook.com (2603:10b6:a03:206::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Wed, 13 Oct
+ 2021 16:12:13 +0000
+Received: from CO1NAM11FT035.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:94:cafe::b0) by MWHPR19CA0067.outlook.office365.com
+ (2603:10b6:300:94::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
+ Transport; Wed, 13 Oct 2021 16:12:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT035.mail.protection.outlook.com (10.13.175.36) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4608.15 via Frontend Transport; Wed, 13 Oct 2021 16:12:13 +0000
+Received: from localhost.localdomain.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.8; Wed, 13 Oct 2021 11:12:12 -0500
+From: Luben Tuikov <luben.tuikov@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Luben Tuikov <luben.tuikov@amd.com>
+Subject: [PATCH 0/5] 0 MHz is not a valid current frequency (v2)
+Date: Wed, 13 Oct 2021 12:11:55 -0400
+Message-ID: <20211013161200.9052-1-luben.tuikov@amd.com>
+X-Mailer: git-send-email 2.33.1.558.g2bd2f258f4
 MIME-Version: 1.0
-References: <20211013150607.1580288-1-alexander.deucher@amd.com>
-In-Reply-To: <20211013150607.1580288-1-alexander.deucher@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 13 Oct 2021 11:34:07 -0400
-Message-ID: <CADnq5_Njc6yAXX0G0S-Dwq0U+QM87AOGaX7He+gg+gJ24=oaOQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu/nbio2.3: use original HDP_FLUSH bits for navi1x
-To: Alex Deucher <alexander.deucher@amd.com>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 07054277-a53d-4a6e-8c56-08d98e6437b6
+X-MS-TrafficTypeDiagnostic: BY5PR12MB4260:
+X-Microsoft-Antispam-PRVS: <BY5PR12MB4260616A0AB118219993993299B79@BY5PR12MB4260.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ApivBbIH6jEJDdK/BSvp9T7XYoDDQ048BAb96e1h/5yYZxvZ1KnnAHdzzu+50EZN7PvmrckRVL5SquavYMkfH7M5J7OKnA0sCXvFzA3OUftHPMsN2RDqzx2bXDY92rR6j9LrODVe8TpfHcIxbIbjalthSLsmPzbVoD/YwS8VG/As/+TTaApyG42KaiOLmkmS6WWwnJfbd5S2/JBo52a+EsJbzuGI1oR8NHfrQt+xeDSrlVW99a361iI08zIyGakN9hbhfsDQht+bT/HX/j1OqCuE1ZG4Jj7okMZt1ir+ubuJOsHRacZx5X8qSjuPy0w0FHAIPXsRhoEbgfzg1mflq2P04YOo3VffSUOHM3WFXonr4NSaPngphNwtMulQPTRQxFibOwLuPATIVJkAYhJy9qHjdEmny2myfqchESM2hWivTIkTwsVAE9Cbd6fHhGSWpjQ76xyMqYPkS+39OXP1OFpIodkPxwvWaVoABMXVWQe1IgFtpDcAKhfqT4hnNulQtDawatWafIoFv7+7TfPwVtxEGBqSMoYBuzQ7mIkXlvryIqi6AqEu665kyMaj85GYTnvfAzCt/pzMoUqd3khvK+VCHXPsS14RrLcPowsPf+JohCaBL1mTHCu1HhnoAK+5Tk9CLy/6rtgaFWtYJw3pkEezS51vVAWpMtsPdXqRlZitqCzd/YbroL0HynJ3Y+4STjmoGifAEHPVE+Ee6u5EuxYXViWlDp1e8aGWq6aABJw=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(36840700001)(46966006)(70206006)(36756003)(82310400003)(508600001)(70586007)(426003)(8936002)(44832011)(47076005)(36860700001)(8676002)(6916009)(4326008)(6666004)(316002)(2906002)(2616005)(86362001)(5660300002)(7696005)(83380400001)(356005)(26005)(1076003)(81166007)(186003)(16526019)(336012)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2021 16:12:13.0600 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07054277-a53d-4a6e-8c56-08d98e6437b6
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT035.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4260
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,84 +104,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 13, 2021 at 11:06 AM Alex Deucher <alexander.deucher@amd.com> wrote:
->
-> The extended bits were not available for use on navi1x, but
-> navi2x only have 2 sdma instances so we won't conflict with
+Some ASIC support low-power functionality for the whole ASIC or just
+an IP block. When in such low-power mode, some sysfs interfaces would
+report a frequency of 0, e.g.,
 
-This should say navi1x.  Fixed locally.
+$cat /sys/class/drm/card0/device/pp_dpm_sclk
+0: 500Mhz 
+1: 0Mhz *
+2: 2200Mhz 
+$_
 
-Alex
+An operating frequency of 0 MHz doesn't make sense, and this interface
+is designed to report only operating clock frequencies, i.e. non-zero,
+and possibly the current one.
 
-> firmware anyway.
->
-> Fixes: 468e994c41ecb3 ("drm/amdgpu/nbio2.3: don't use GPU_HDP_FLUSH bit 12")
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c |  5 ++++-
->  drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c        | 15 +++++++++++++++
->  drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h        |  1 +
->  3 files changed, 20 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> index 4228c7964175..9645b95b9c42 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> @@ -1133,12 +1133,15 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
->         case IP_VERSION(2, 3, 0):
->         case IP_VERSION(2, 3, 1):
->         case IP_VERSION(2, 3, 2):
-> +               adev->nbio.funcs = &nbio_v2_3_funcs;
-> +               adev->nbio.hdp_flush_reg = &nbio_v2_3_hdp_flush_reg;
-> +               break;
->         case IP_VERSION(3, 3, 0):
->         case IP_VERSION(3, 3, 1):
->         case IP_VERSION(3, 3, 2):
->         case IP_VERSION(3, 3, 3):
->                 adev->nbio.funcs = &nbio_v2_3_funcs;
-> -               adev->nbio.hdp_flush_reg = &nbio_v2_3_hdp_flush_reg;
-> +               adev->nbio.hdp_flush_reg = &nbio_v2_3_hdp_flush_reg_sc;
->                 break;
->         default:
->                 break;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
-> index 79bf6b381862..4ecd2b5808ce 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
-> @@ -314,6 +314,21 @@ static u32 nbio_v2_3_get_pcie_data_offset(struct amdgpu_device *adev)
->  }
->
->  const struct nbio_hdp_flush_reg nbio_v2_3_hdp_flush_reg = {
-> +       .ref_and_mask_cp0 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP0_MASK,
-> +       .ref_and_mask_cp1 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP1_MASK,
-> +       .ref_and_mask_cp2 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP2_MASK,
-> +       .ref_and_mask_cp3 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP3_MASK,
-> +       .ref_and_mask_cp4 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP4_MASK,
-> +       .ref_and_mask_cp5 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP5_MASK,
-> +       .ref_and_mask_cp6 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP6_MASK,
-> +       .ref_and_mask_cp7 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP7_MASK,
-> +       .ref_and_mask_cp8 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP8_MASK,
-> +       .ref_and_mask_cp9 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP9_MASK,
-> +       .ref_and_mask_sdma0 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__SDMA0_MASK,
-> +       .ref_and_mask_sdma1 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__SDMA1_MASK,
-> +};
-> +
-> +const struct nbio_hdp_flush_reg nbio_v2_3_hdp_flush_reg_sc = {
->         .ref_and_mask_cp0 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP0_MASK,
->         .ref_and_mask_cp1 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP1_MASK,
->         .ref_and_mask_cp2 = BIF_BX_PF_GPU_HDP_FLUSH_DONE__CP2_MASK,
-> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h
-> index a43b60acf7f6..6074dd3a1ed8 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.h
-> @@ -27,6 +27,7 @@
->  #include "soc15_common.h"
->
->  extern const struct nbio_hdp_flush_reg nbio_v2_3_hdp_flush_reg;
-> +extern const struct nbio_hdp_flush_reg nbio_v2_3_hdp_flush_reg_sc;
->  extern const struct amdgpu_nbio_funcs nbio_v2_3_funcs;
->
->  #endif
-> --
-> 2.31.1
->
+When in this low-power state, round to the smallest
+operating frequency, for this interface, as follows,
+
+$cat /sys/class/drm/card0/device/pp_dpm_sclk
+0: 500Mhz *
+1: 2200Mhz 
+$_
+
+v2: Fix description to reflect change in patch 1--add an 's'.
+
+Luben Tuikov (5):
+  drm/amd/pm: Slight function rename (v2)
+  drm/amd/pm: Rename cur_value to curr_value
+  drm/amd/pm: Rename freq_values --> freq_value
+  dpm/amd/pm: Sienna: 0 MHz is not a current clock frequency
+  dpm/amd/pm: Navi10: 0 MHz is not a current clock frequency
+
+ .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 60 +++++++++------
+ .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   | 73 ++++++++++++-------
+ 2 files changed, 86 insertions(+), 47 deletions(-)
+
+-- 
+2.33.1.558.g2bd2f258f4
+
