@@ -1,44 +1,99 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 591F042DE39
-	for <lists+amd-gfx@lfdr.de>; Thu, 14 Oct 2021 17:35:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D0C242DE6A
+	for <lists+amd-gfx@lfdr.de>; Thu, 14 Oct 2021 17:39:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A53406E16F;
-	Thu, 14 Oct 2021 15:35:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B8D56E198;
+	Thu, 14 Oct 2021 15:39:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-40136.proton.ch (mail-40136.proton.ch [185.70.40.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DF0D6E16F
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Oct 2021 15:35:25 +0000 (UTC)
-Date: Thu, 14 Oct 2021 15:35:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
- s=protonmail; t=1634225722;
- bh=j1mECW+vPzc0Mw/48CC43zPn0HB+6IpsBcgg4TIYQME=;
- h=Date:To:From:Cc:Reply-To:Subject:From;
- b=vbfI1OxICGKFhywARmHgcXFvlBluxehnFG1DYO7jhBizRkCv/jkZUOPMlbopqv0xt
- dY8gDFMnkBdqBK8Lv6Vf3+7J1lB1rG3iu8NwBY2YYGvfAeCC3hdIl8QtBPWt5xZhQd
- rCfFqMzgLboEutprBxnVw0cR3UbvJJQCYsEWZx/ggb5+dLbryumeah8haU0FpuaMRk
- MI9P3xJwL4Wbp8X0H4gIxN+9g4KE9FHWA+LYP1VmOvtSQW8DHh103FFhZJiFTwN7iH
- okowYM8G+Mc6RNzctKBzmEQc1GykQHH6T2vS8j2sHLi48m1CZFQNv9EgDPDhxhzmvV
- DHAZMPSNdaDnA==
-To: amd-gfx@lists.freedesktop.org
-From: Simon Ser <contact@emersion.fr>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Harry Wentland <hwentlan@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Sean Paul <seanpaul@chromium.org>
-Subject: [PATCH] amd/display: remove ChromeOS workaround
-Message-ID: <20211014153433.169454-1-contact@emersion.fr>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2056.outbound.protection.outlook.com [40.107.93.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 162216E182;
+ Thu, 14 Oct 2021 15:39:46 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cS4lnx1/cBZIGKUIuXbmGNKkETz4x9iZ4Pdq2q3H0m8CE0iwLtlUjQlS3gf+AHHxacHe/lQTreH4qEEPOR3uYW1oRREtS5xINY2BzRdV0UDUC8ZLXTIqEY+cTP+zLFCNp3IOY9igHT7T3FkgrRtH5eddatv3d9w+McFKXJIY5KRTyBkok9ZVkBvVBnClIORqGrdBmM9rtiqVAyETl0H34e2xkEfcbYahDdL9am9IqZ2A9hywkptkIX8TQfd7gwrBYbUALO9wxNJxaDS4jRV3+zl/M6uP4Ht2rFmiOjH0umeXkphoxKV9PePk8lStUYx72wfzh17eOHX3rSSijCoyUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/bn8qAdDaHiVmdCG6MQFYTmjp/vL9YDLKlxT4aAjtWk=;
+ b=Mv1i760n2OsTdL2S5+yvAZnOlh5K/PMocGjIOZzku41x5K15WfNP1PPP8GeS9WcCkp5qYbfaa0SPeI0PeB3nM4wJZ6cRj/25h+rtB/PIn2jJC4RIEdSjedRuVENa59LGa/yMN9yqC5bmBqs/foL/2U1eUlCG+v+pHbH/4fShI4qQoz3v7ZsLzTVGeH1JglNRdRiypyuI75ENCovacz56Mi1bY5o70LNDFxfXMf9y/pvOBVqByEuwaVU9f4nq3gt5wi4u102GB7D+JP48ILP/OnSkK865Esh4fVeIyiItn5H8iQsQmUtJvI1To7RaZLqTpvD82Tw3bMiKjKdEXyu/jw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linux-foundation.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/bn8qAdDaHiVmdCG6MQFYTmjp/vL9YDLKlxT4aAjtWk=;
+ b=R9ZBGs/3eD0RRB71PnzbmYMoZkQll5BNmSGbqpBckbpIE47PjSXlj8MYxTdL/6VOu27TjMitZr+c+YGGVb7CeFcd/SjGaayqFIE1T0Zcdp+t++/yhb72hn95WP9yYdnzfU93qmYpdnyeULuGZ0FY7YJfSOhJUGsSXOpSy21lou8=
+Received: from CO2PR04CA0100.namprd04.prod.outlook.com (2603:10b6:104:6::26)
+ by DM6PR12MB4579.namprd12.prod.outlook.com (2603:10b6:5:2ac::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Thu, 14 Oct
+ 2021 15:39:40 +0000
+Received: from CO1NAM11FT022.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:104:6:cafe::15) by CO2PR04CA0100.outlook.office365.com
+ (2603:10b6:104:6::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
+ Transport; Thu, 14 Oct 2021 15:39:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; linux-foundation.org; dkim=none (message not signed)
+ header.d=none;linux-foundation.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT022.mail.protection.outlook.com (10.13.175.199) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4608.15 via Frontend Transport; Thu, 14 Oct 2021 15:39:39 +0000
+Received: from alex-MS-7B09.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.8; Thu, 14 Oct
+ 2021 10:39:38 -0500
+From: Alex Sierra <alex.sierra@amd.com>
+To: <akpm@linux-foundation.org>, <Felix.Kuehling@amd.com>,
+ <linux-mm@kvack.org>, <rcampbell@nvidia.com>, <linux-ext4@vger.kernel.org>,
+ <linux-xfs@vger.kernel.org>
+CC: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <hch@lst.de>, <jgg@nvidia.com>, <jglisse@redhat.com>, <apopple@nvidia.com>,
+ <willy@infradead.org>
+Subject: [PATCH v1 0/2] mm: remove extra ZONE_DEVICE struct page refcount
+Date: Thu, 14 Oct 2021 10:39:26 -0500
+Message-ID: <20211014153928.16805-1-alex.sierra@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
- DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
- autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
- mailout.protonmail.ch
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: caa3a6e3-5675-483e-9d6e-08d98f28d5ef
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4579:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB45795BA9EB7B10B5A17DBA95FDB89@DM6PR12MB4579.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: VXNT7Z9fWgkFHWDdcCVO70GKwG7fiGEZwJKOrrCcswA7Qt+FPao17nlmJywARoaiL+B61aeTNsFJxmHVL+56+83TxoikoWWUe+EhOq2J6xfzzKYMHG7fbF3wa7gKlV2PI+I/i6I6FeT1BtMXUV21Vs1O1J5KBk1LpEy+jgPZ6qCfjmrHwCx9RM6uF8deUXgLVL9WR2YMH3zSeBnMgGtHAUPdFlxuoHaV4UusH575XmLyCH7F/R1NhHQ8dcKdwCL03CNdjGeSFxEZqpCPnR1t7CXQ4N+Woco0tRkQcRb3j56iIFs1Ef6UKpG4IiLFLF5yp1N66FZBJO0CLqyXknI/7m9SFzrtZa8IXBZUZmuin8usmiEs/FNoeI8MHo/HmGkL1DrKuBNTZ0EzIHrYn4zKXH8sqDvb78Fz527z4ErbND7PUuZsRn5fk2EW3hfbDOKpx5//iuAvEZohEO/kQvveHXVkSObsdA/aaBbYU4RG9xfq3g4AOckb/MUTNzLKiAh2kRTiIsQdEBBwmGvY9Uh95HHgeNg9s33d3Tul+Bs+lObfIkTBaIeqwc+ETcezJ+f39YoasGNeWPw7dezM20UpKESYu+1Fr3c9YsuYGQE8hcgoi/G45jOsB3PdSCZyFVCRBiIuTgHLhpxJuBkZ0IrhUICF8GvMvOrHMM8jdiLbNnhAmuX9CU/UMB8JTnk7gsSsEwfdZMO54g5v/Qlrte7gpgG2s+fHEsNGCREdeS0hIF9gQ76CrGQvtQI9f/COH6m+2Ym4bf74MLfybu1Fdgi/wgf0bbitVQnAPhJTNs8RWoq+69R4hxx9OoXbwUjS8SM/8iFDLQRbF2RG9x5YNZv96AU39ayCAis6lheSJ77BDHQ=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(46966006)(36840700001)(336012)(8936002)(36756003)(81166007)(7696005)(110136005)(36860700001)(44832011)(186003)(2616005)(16526019)(7416002)(966005)(47076005)(83380400001)(356005)(508600001)(54906003)(82310400003)(26005)(70586007)(70206006)(6666004)(5660300002)(1076003)(316002)(426003)(4326008)(86362001)(2906002)(8676002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2021 15:39:39.8541 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: caa3a6e3-5675-483e-9d6e-08d98f28d5ef
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT022.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4579
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,128 +105,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Simon Ser <contact@emersion.fr>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This reverts commits ddab8bd788f5 ("drm/amd/display: Fix two cursor duplica=
-tion
-when using overlay") and e7d9560aeae5 ("Revert "drm/amd/display: Fix overla=
-y
-validation by considering cursors"").
+This patch cleans up ZONE_DEVICE page refcounting. Quoting Matthew
+Wilcox, "it removes a ton of cruft from every call to put_page()"
+This work was originally done by Ralph Campbell and submitted as RFC.
+As of today, it has been ack by Theodore Ts'o / Darrick J. Wong, and
+reviewed by Christoph Hellwig.
+https://lore.kernel.org/linux-mm/20201001181715.17416-1-rcampbell@nvidia.com/
 
-tl;dr ChromeOS uses the atomic interface for everything except the cursor. =
-This
-is incorrect and forces amdgpu to disable some hardware features. Let's rev=
-ert
-the ChromeOS-specific workaround in mainline and allow the Chrome team to k=
-eep
-it internally in their own tree.
+"MEMORY_DEVICE_COHERENT for CPU-accessible coherent device memory"
+patchset depends on this patchset.
+https://lore.kernel.org/linux-mm/20211012171247.2861-1-alex.sierra@amd.com/
 
-See [1] for more details. This patch is an alternative to [2], which added
-ChromeOS detection.
+Ralph Campbell (2):
+  ext4/xfs: add page refcount helper
+  mm: remove extra ZONE_DEVICE struct page refcount
 
-[1]: https://lore.kernel.org/amd-gfx/JIQ_93_cHcshiIDsrMU1huBzx9P9LVQxucx8hQ=
-ArpQu7Wk5DrCl_vTXj_Q20m_L-8C8A5dSpNcSJ8ehfcCrsQpfB5QG_Spn14EYkH9chtg0=3D@em=
-ersion.fr/
-[2]: https://lore.kernel.org/amd-gfx/20211011151609.452132-1-contact@emersi=
-on.fr/
+ arch/powerpc/kvm/book3s_hv_uvmem.c     |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_dmem.c |  2 +-
+ fs/dax.c                               |  8 +--
+ fs/ext4/inode.c                        |  5 +-
+ fs/fuse/dax.c                          |  4 +-
+ fs/xfs/xfs_file.c                      |  4 +-
+ include/linux/dax.h                    | 10 ++++
+ include/linux/memremap.h               |  7 +--
+ include/linux/mm.h                     | 11 ----
+ lib/test_hmm.c                         |  2 +-
+ mm/internal.h                          |  8 +++
+ mm/memcontrol.c                        |  6 +--
+ mm/memremap.c                          | 69 +++++++-------------------
+ mm/migrate.c                           |  5 --
+ mm/page_alloc.c                        |  3 ++
+ mm/swap.c                              | 45 ++---------------
+ 16 files changed, 60 insertions(+), 131 deletions(-)
 
-Signed-off-by: Simon Ser <contact@emersion.fr>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Harry Wentland <hwentlan@amd.com>
-Cc: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Cc: Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Cc: Sean Paul <seanpaul@chromium.org>
-Fixes: ddab8bd788f5 ("drm/amd/display: Fix two cursor duplication when usin=
-g overlay")
-Fixes: e7d9560aeae5 ("Revert "drm/amd/display: Fix overlay validation by co=
-nsidering cursors"")
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 51 -------------------
- 1 file changed, 51 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gp=
-u/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 20065a145851..014c5a9fe461 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -10628,53 +10628,6 @@ static int add_affected_mst_dsc_crtcs(struct drm_a=
-tomic_state *state, struct drm
- }
- #endif
-=20
--static int validate_overlay(struct drm_atomic_state *state)
--{
--=09int i;
--=09struct drm_plane *plane;
--=09struct drm_plane_state *new_plane_state;
--=09struct drm_plane_state *primary_state, *overlay_state =3D NULL;
--
--=09/* Check if primary plane is contained inside overlay */
--=09for_each_new_plane_in_state_reverse(state, plane, new_plane_state, i) {
--=09=09if (plane->type =3D=3D DRM_PLANE_TYPE_OVERLAY) {
--=09=09=09if (drm_atomic_plane_disabling(plane->state, new_plane_state))
--=09=09=09=09return 0;
--
--=09=09=09overlay_state =3D new_plane_state;
--=09=09=09continue;
--=09=09}
--=09}
--
--=09/* check if we're making changes to the overlay plane */
--=09if (!overlay_state)
--=09=09return 0;
--
--=09/* check if overlay plane is enabled */
--=09if (!overlay_state->crtc)
--=09=09return 0;
--
--=09/* find the primary plane for the CRTC that the overlay is enabled on *=
-/
--=09primary_state =3D drm_atomic_get_plane_state(state, overlay_state->crtc=
-->primary);
--=09if (IS_ERR(primary_state))
--=09=09return PTR_ERR(primary_state);
--
--=09/* check if primary plane is enabled */
--=09if (!primary_state->crtc)
--=09=09return 0;
--
--=09/* Perform the bounds check to ensure the overlay plane covers the prim=
-ary */
--=09if (primary_state->crtc_x < overlay_state->crtc_x ||
--=09    primary_state->crtc_y < overlay_state->crtc_y ||
--=09    primary_state->crtc_x + primary_state->crtc_w > overlay_state->crtc=
-_x + overlay_state->crtc_w ||
--=09    primary_state->crtc_y + primary_state->crtc_h > overlay_state->crtc=
-_y + overlay_state->crtc_h) {
--=09=09DRM_DEBUG_ATOMIC("Overlay plane is enabled with hardware cursor but =
-does not fully cover primary plane\n");
--=09=09return -EINVAL;
--=09}
--
--=09return 0;
--}
--
- /**
-  * amdgpu_dm_atomic_check() - Atomic check implementation for AMDgpu DM.
-  * @dev: The DRM device
-@@ -10856,10 +10809,6 @@ static int amdgpu_dm_atomic_check(struct drm_devic=
-e *dev,
- =09=09=09goto fail;
- =09}
-=20
--=09ret =3D validate_overlay(state);
--=09if (ret)
--=09=09goto fail;
--
- =09/* Add new/modified planes */
- =09for_each_oldnew_plane_in_state_reverse(state, plane, old_plane_state, n=
-ew_plane_state, i) {
- =09=09ret =3D dm_update_plane_state(dc, state, plane,
---=20
-2.33.0
-
+-- 
+2.32.0
 
