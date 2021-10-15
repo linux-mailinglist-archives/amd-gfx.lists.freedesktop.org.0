@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA3E242FB26
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Oct 2021 20:39:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBF8C42FB25
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Oct 2021 20:39:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D3826ED0E;
-	Fri, 15 Oct 2021 18:39:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78D2D6E9F9;
+	Fri, 15 Oct 2021 18:39:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2051.outbound.protection.outlook.com [40.107.92.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B6466ED0E
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 18:39:26 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2073.outbound.protection.outlook.com [40.107.244.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 924116E550
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 18:39:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IBX25y6hK8PxN2W8/7DxycCg6tfxgGzB6c1BtiXsP8Gw0tdJvS7cWqDZHABDR46aiASzJo0te1007Z2p8fdY1/esx6SGanaQ6WN/WEzL34j9HjfUQqgfVHneysUTNsaO+tw5NCSXwK3qmRNfQbEl8Bw/y8RQWj3AAxLnoosqhoxxwsmNr0Dz/4Xg+6I9AXYeMSbdR95tjyE/kb47RUe4BEOsXbmJexc2hziFHisbhDVrLroSnw/W1EE7wv8ESi69TbM52Vwmc8wqpL5YPP6eCxJt5YhnqKdwJK25TsTDT6yVqpvdUUhE9e/dsuV6YFXq32/eg1D9zqDbECOwYQNjoA==
+ b=P72QCeUV+2AekRQyEJXNo/hCuCbl+DAw9YCYcwKwwVOQrB0f7R/crrP1+Zo4j3hvItUp//yJ5xfqsAccrGjEg0cybo7O0mVHd4feiCvUpZMUa4qTS5yfQSUe5eMP1+HSatHtKaHKRtHUf1M9rLeSsiG/ed08BN8WMnQiCUnlRSqWdP0+qEehPd6P63hc6nNZp/EkFULTeVUhmsspPCzI1dJQLZDquYzo+6sqfOTtFdrWxiZqz04tkU7j1mwJl93VW31zfCW93pWUQQn2xLBTymUlzjdmyPDf9kXNqNiKb4Dp5ItASeBMfOYupXNqxC92WI8KuGVkZHpxgoZIOj0VJw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NjMiqHqRGBVj373+R//3MZX3OHEmxs4LiFbkB3j/gGk=;
- b=OnCvnfm7cvWxnRzN+acV7BzZqyX1VHVTdQUsxB/JPCbnAOB7ZVzfP2oGNFcR654eNpsfWda0d5umo2NoAvRi1hVQHk0qv0AzAW9d/XSq4z89C8fAn1YO6plHazOEDQGG3tXTwwADMUN/57FCnV3TT+SPjrzm7la1OdAbKm7YW9hPLsgiLy0w6cG59yyegSmusjT710sE/P/UmPNJCoDcAFpORKynS7h5IZFDHyrRBDACH6hmgmkpZkfW81KJYeT2Mj2xbq6Th1CgRG3TYNgUkgZH1lKD8k5Ri/dWYuPv8mrwXggUuh4WbDy4nr8lSJe7INiCxjtA17lApE40TduA8g==
+ bh=pEoRLpDkRuARcV4yj+ts/g+dok7GpvMkgocSAxXgKpw=;
+ b=LC/A4QgfVO/mvwiyEfCG+ZAK1YgKTghuJQBvAcZGbYu0byNHmlYAN0KC1jIjVFXHJdP0vU109iazE+sEPSP9E3g2RJ1aG4BFWzPJLjYu2DoN7WRspHwSPxCC5xde6Wue0w1ReUmMKogRPv9n4SMOio1xqMo+RKe2o4UfWRzYXhhTCLFZSv+HjTG+/6Omtd8x1uIYZS1vR2KrajEOax/XZxo58uCMnVlQMf4cw9y+wCFm0js1IAeMgS7/Z4MVBhhGyMFBotGgYmOX928m4GFKVMmak+wF+5ZkkpCgMUm+SWCfxMUZEj1A74QT4myBVCJBccot+8tOCHfOUu3uCVk47Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NjMiqHqRGBVj373+R//3MZX3OHEmxs4LiFbkB3j/gGk=;
- b=YPf8zuTzoEiy9goDREnFU4A6ZoPtF6xM52u2M3gFkR7lxLcFulVwmgGL+XY3au0o3LPJGZwrA8ZCGTysaP0ewyTrl0qslmSpKrQ+v6TlSO1Fm/QJZepRp3zFJvznUsCvqRPfjIVYpbdL2P2Yup7NiKOUYyZzOwoyjLxzIATq83c=
-Received: from MW4PR04CA0235.namprd04.prod.outlook.com (2603:10b6:303:87::30)
- by MW2PR12MB2377.namprd12.prod.outlook.com (2603:10b6:907:11::20)
+ bh=pEoRLpDkRuARcV4yj+ts/g+dok7GpvMkgocSAxXgKpw=;
+ b=AqRch7KLEONu3IBpeY75mgnBUaKBj1IOnlnkhXbzgg07jvJO4S07RyRhljlIczkMEAu/742vk7zQ1BCtv+CdHP5IOXFWWeDza8/q5vAKDwAbmHyfN+ammFBOmy8RLwUOkdb6SuJhBF0c5VwRZ4eexxz1rrxeBMKaqoPqedtca7I=
+Received: from MW4PR04CA0237.namprd04.prod.outlook.com (2603:10b6:303:87::32)
+ by CH2PR12MB4230.namprd12.prod.outlook.com (2603:10b6:610:aa::23)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.17; Fri, 15 Oct
- 2021 18:39:16 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Fri, 15 Oct
+ 2021 18:39:19 +0000
 Received: from CO1NAM11FT008.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:87:cafe::a3) by MW4PR04CA0235.outlook.office365.com
- (2603:10b6:303:87::30) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:303:87:cafe::4) by MW4PR04CA0237.outlook.office365.com
+ (2603:10b6:303:87::32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16 via Frontend
- Transport; Fri, 15 Oct 2021 18:39:16 +0000
+ Transport; Fri, 15 Oct 2021 18:39:19 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,11 +48,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT008.mail.protection.outlook.com (10.13.175.191) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4608.15 via Frontend Transport; Fri, 15 Oct 2021 18:39:16 +0000
+ 15.20.4608.15 via Frontend Transport; Fri, 15 Oct 2021 18:39:18 +0000
 Received: from ubuntu.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Fri, 15 Oct
- 2021 13:39:13 -0500
+ 2021 13:39:14 -0500
 From: Agustin Gutierrez <agustin.gutierrez@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
@@ -60,12 +60,11 @@ CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
  <stylon.wang@amd.com>, <solomon.chiu@amd.com>, <pavle.kotarac@amd.com>,
- <agustin.gutierrez@amd.com>, Wenjing Liu <wenjing.liu@amd.com>, "Ariel
- Bernstein" <eric.bernstein@amd.com>
-Subject: [PATCH 07/27] drm/amd/display: correct apg audio channel enable
- golden value
-Date: Fri, 15 Oct 2021 14:38:25 -0400
-Message-ID: <20211015183845.220831-8-agustin.gutierrez@amd.com>
+ <agustin.gutierrez@amd.com>, Aric Cyr <aric.cyr@amd.com>, Josip Pavic
+ <Josip.Pavic@amd.com>
+Subject: [PATCH 08/27] drm/amd/display: Validate plane rects before use
+Date: Fri, 15 Oct 2021 14:38:26 -0400
+Message-ID: <20211015183845.220831-9-agustin.gutierrez@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211015183845.220831-1-agustin.gutierrez@amd.com>
 References: <20211015183845.220831-1-agustin.gutierrez@amd.com>
@@ -77,28 +76,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: adb52a21-0ac0-4205-87a7-08d9900b177c
-X-MS-TrafficTypeDiagnostic: MW2PR12MB2377:
-X-Microsoft-Antispam-PRVS: <MW2PR12MB23774B735A8328A283B4F943F5B99@MW2PR12MB2377.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-MS-Office365-Filtering-Correlation-Id: 9cfec9c2-cadf-43cf-6554-08d9900b18f6
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4230:
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4230E4A83D7013D2CE87BE22F5B99@CH2PR12MB4230.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2043;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: H0bso3/j88DEFnqY+RV6xrFFebtv1AhhgC5tydoTUfELQarn+GU3ms4JSzXls1DxNT3vP6iXjeiuB6gy1f/FkBEX88Qeijs1V8PeYNpzxMVK0aSxhr2T7qbqJY+JnrYxDff3v8Ap3t1gc4SIRmjUVX3u37VQYsaneZbxsd4zji/vdjAPtaIwnP4AWy4OhjedD20AZzy6VUPq2p4QZuituNrQ8FsrqYjgpV6cPzoOZI1NzaY49OLcCuwVhZiOgKlVWf5sTZczjVkkqoHlAhRU/4cPvSpM4CFnOGIeseshXp/s6+FrQ/2ysUO5Et5owxkIxIt6IOCd2rv5VsCFIu+N2SF2N8urvPZuc+CBvS19cN2R1DBNyoBl84lVp/zu9pfvw4y9WtZv/t8jw1RXBQ8H87iGbSCFRoQTUOxUiUg5fBN5l7g3eol42g0Wl4ySp6hobmPJassM6W2nnaOcTqosuNg4c67rQpSUYJayTrpZf9QYVEyWAQMrlAXSxZqBE9yL26eVlN+PgeMzRPheJYqscgGNOuqcg3cZrIV4Ppc/iq8i3uKRAuvEU28pNYw671UsqeXmyfsqkGY9eOVBHVghuBCZTYLZ6tPTUUGtWsxbjgWK9ZLObU6WXWMfdGkXJabgK0NvXPKvvNppsckpyXl8X62FHaNM9/HdurdHcgLVvcV2L25g6gA6sHumLalP78aoX3QkJNTRLayoK9y6C4wMuLo2lRkI1TI2jxNexBLc3MI=
+X-Microsoft-Antispam-Message-Info: YiRk9p2hkC3dz+Z0STlqQ/OL+20+S1x3cW7pATp0LMgqQ+LRHGNtlcIJ/O1QSz/+L+cqlBteG5+wM84JSjhZajDSRPjTdYhTl7ASlUMbX1Md93+ZyFtsQ44v8/6TqAgvfx8qUtp17S2biHH7J611E7kyv+RwICurdtXcJ5g+cVNGBaXkfWCR+lV6l+PZi1igzgbJnTfnKwxW2FscMA/L/0dYgPQsy/EaeyBGwR7ViOO26ZJjABygTe5ou41TuHlvXLMDVOUyKytfGBS2ierTG7sNSt/6gCMU1HjpZxgfF16DV9mlNW5iwn8TYFQpPxEd6DbfAGJfrTMHcLBhZVyPB3kkUB4ykFtcVGaj5r1JVgMh/j6oEejfXFlyrr4G2cI1SAA8CC0ZUBHg7q8GpmDQKwn1hYZzqPxbGMwPm/hgSrBifetPW70CLbeQ94/KXjyOhxFaFeqpxU32cgHcYKpBiMoMAppczvzldr2Iu02BHyxhRxusU91TbRd9jrHotBPCQQj//G6XTDCFfwS3JahAzssjtuJTudtIXbN/2cZwdh/kcg4VLFtyKcN35xwfNpxLG0VWcP6GZk1yh0vbsThXxBuABKJviAd+vnEgaPr1eX5dt57wrXDEXXryWCnyQv3dRfaTKRUr9sgJI6Ik73eQAuHEfzN/8R8t4x7rzeyiqE6EU1jFmM3mg1rQFYAHor2z3BL+3Tv6UynjLsuHIyuQ1MXuXtvGMAVt+eSXFMIhBc8=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(81166007)(4326008)(356005)(36860700001)(86362001)(508600001)(8676002)(36756003)(47076005)(82310400003)(83380400001)(6916009)(70206006)(316002)(70586007)(26005)(2906002)(6666004)(5660300002)(336012)(426003)(44832011)(2616005)(54906003)(186003)(16526019)(1076003)(8936002)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(426003)(36756003)(81166007)(82310400003)(6916009)(508600001)(2616005)(15650500001)(47076005)(5660300002)(4326008)(336012)(83380400001)(186003)(8676002)(54906003)(70206006)(16526019)(44832011)(1076003)(6666004)(316002)(26005)(356005)(8936002)(86362001)(36860700001)(70586007)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 18:39:16.1096 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: adb52a21-0ac0-4205-87a7-08d9900b177c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 18:39:18.5854 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cfec9c2-cadf-43cf-6554-08d9900b18f6
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT008.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2377
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4230
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,33 +112,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wenjing Liu <wenjing.liu@amd.com>
+From: Aric Cyr <aric.cyr@amd.com>
 
-Hardware team has recommended to generically hard code this register to
-0xFF as part of the effort to eventually remove this control.  However
-we set it to 0xF instead.
-This causes 4 of audio 8ch to be muted.
+[Why]
+Calculation of scaling ratio can result in a crash due to zero'd src or
+dst plane rects.
 
-Reviewed-by: Ariel Bernstein <eric.bernstein@amd.com>
+[How]
+Validate that src and dst rects are valid before using for scaling
+calculations.
+
+Reviewed-by: Josip Pavic <Josip.Pavic@amd.com>
 Acked-by: Agustin Gutierrez Sanchez <agustin.gutierrez@amd.com>
-Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
+Signed-off-by: Aric Cyr <aric.cyr@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn31/dcn31_apg.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_apg.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_apg.c
-index 6bd7a0626665..de5e18c2a3ac 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_apg.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_apg.c
-@@ -129,7 +129,7 @@ static void apg31_se_audio_setup(
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 561c10a92bb5..9e83fd54e2ca 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -3009,6 +3009,11 @@ enum dc_status dc_validate_plane(struct dc *dc, const struct dc_plane_state *pla
+ {
+ 	enum dc_status res = DC_OK;
  
- 	/* When running in "pair mode", pairs of audio channels have their own enable
- 	 * this is for really old audio drivers */
--	REG_UPDATE(APG_DBG_GEN_CONTROL, APG_DBG_AUDIO_CHANNEL_ENABLE, 0xF);
-+	REG_UPDATE(APG_DBG_GEN_CONTROL, APG_DBG_AUDIO_CHANNEL_ENABLE, 0xFF);
- 	// REG_UPDATE(APG_DBG_GEN_CONTROL, APG_DBG_AUDIO_CHANNEL_ENABLE, channels);
- 
- 	/* Disable forced mem power off */
++	/* check if surface has invalid dimensions */
++	if (plane_state->src_rect.width == 0 || plane_state->src_rect.height == 0 ||
++		plane_state->dst_rect.width == 0 || plane_state->dst_rect.height == 0)
++		return DC_FAIL_SURFACE_VALIDATE;
++
+ 	/* TODO For now validates pixel format only */
+ 	if (dc->res_pool->funcs->validate_plane)
+ 		return dc->res_pool->funcs->validate_plane(plane_state, &dc->caps);
 -- 
 2.25.1
 
