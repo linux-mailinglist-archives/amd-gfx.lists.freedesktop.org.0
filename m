@@ -2,70 +2,111 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A01642EA02
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Oct 2021 09:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5CA042EA04
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Oct 2021 09:25:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 351D36E226;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C186E6E233;
 	Fri, 15 Oct 2021 07:25:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com
- [IPv6:2607:f8b0:4864:20::1032])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A223B6ECBD
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 01:37:46 +0000 (UTC)
-Received: by mail-pj1-x1032.google.com with SMTP id om14so6084599pjb.5
- for <amd-gfx@lists.freedesktop.org>; Thu, 14 Oct 2021 18:37:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=intel-com.20210112.gappssmtp.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Nr8k1aUv3z2OzOm3G6XuPV/NnMghC3CxLAXi8H1jgq0=;
- b=Mq60g49KQfqJSx9Hlnpx1LkISuHFFWCkdhMNhbH31PDqxasC1fBD6r9vXBbknkaWMK
- lChJJPt+7b3pndrbO9E/vbjDaPud20IbnvRAMOogvsJsZT2U7U2B08GDOjq5mJAz//YT
- pUFXQlTk6FHl/Y5XqZwpAwYXkmA/nd/FXzsy+ADUyTODVVWD0me/6KKjEDCOhGFa4tU4
- wSxvbpsQXT+KAhdAkd80WrKMMrzTxWLBZMYNVG9REGY3Ujp+K9XNl6UD/fgSRvtPtXtz
- 0QqqOunHYakkVaxUm+vSHdYXntEMMCYCrb+aUsaBUqYAJXyC9rdXR8U+kphiap+Pl4pP
- hPXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Nr8k1aUv3z2OzOm3G6XuPV/NnMghC3CxLAXi8H1jgq0=;
- b=jWt+f5XJ9fsR+sAvKP3EYdgGNhAIme1tPd/HlYUa6Lx8bb91e+/Wq+khmWeSGJaprW
- DbPY96m7iJVzRU7NcMQE4Ezo5QKbLVKrKzkshrXNU6A1y4uzbChBxiZjZg97gWbbGxbE
- NcObgNCGDbWHh9O7sSwzu/Snza9gu6qjvCzBik1W7j45RAX7lb5mD1Jeo0CHPPqpr9h2
- I12g1ePXDGfaEhz8GJvA30KGfZFDqWS6sKBH+lu8GBmc/ugc8JJc3X6pIJO8rncICH5C
- mTEieoWurTeDyrW1RNZBFveE1oiqIQj5cwsRGWAyS9eoE1yVYhlwGmSVgWMf+8iuVt+d
- eFHA==
-X-Gm-Message-State: AOAM532Hee2thncuycVGL4WxCfB3uNQJMoIul6cBK8kDaJxchJArDyZl
- EqBAlcKqhS+1RfB0IfB/jISdkYs3SfSyisATXETy0w==
-X-Google-Smtp-Source: ABdhPJzJeyDQ3E7K9800YlGpr55I5n0doDZS1y4ODUC2mgk0GCjS+vEI9q19Hu7ebbpj4/v0RR4BsGE6NqO67YdMecY=
-X-Received: by 2002:a17:902:ab50:b0:13f:4c70:9322 with SMTP id
- ij16-20020a170902ab5000b0013f4c709322mr8238204plb.89.1634261866111; Thu, 14
- Oct 2021 18:37:46 -0700 (PDT)
+Received: from APC01-SG2-obe.outbound.protection.outlook.com
+ (mail-eopbgr1310113.outbound.protection.outlook.com [40.107.131.113])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 228036ECCF;
+ Fri, 15 Oct 2021 06:47:36 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N5bMx9hE+jKiP00kTCajJzt2xdMnQCNeKgs5SkYi5veeq+sye5wVk6Bgt1o85G6II8ppOSLVcFb4HQmzghCLqdYdlzeR+1qLKNooEdNb9vZzcolqXfUyDBcflyuFcQ8pA29BifM6OjBYDMLbRQktAg6cu9NWhS5jzxx9aFfayclD/5oP23QaxubCsZg8Lx/1LhyTmusFBLIFYKz5tqGiSa1qI9cp7n2FXVMEahdPp0p2f9D8v03+UpFeFhmPK8UuUrOUx2qZuwLLEdQ5hbWQxXVatxyfXyn4XwsYVbcRVQ8RpBpLbzXD6BUiKCRm8N+2gS8gWoHrZtEauWDVlctipw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EQUI0VHCvmqIn8+FEH69prfMgqJ6OLvzt2bBhXQ2OiI=;
+ b=JjRN50q/5+T2/BFmulK1O11ViE6fGx58bjXfHCgZ28Mq3tiypxsqAeAgl4j4Rkj0fIgbCSXevWW8ktY6b6Ybsbe39towcK8ESVmI14YF6IaC1JNLH6q9v7uibnzPHq7wRUMGdG6CYG/XKrLBtF/19OWYgMqbmgwgOKYuAHBY8Ow1V1QJQbdCFHQO1TDauGPTxnmtZs4Um2MFJJKUwuOFxUb1fehprXcMM+8zi0MinKbqHGKrE0ByWEu5VLkL2a7TcP/uDxpkkoT4Pno8kDLnTr559l5D3ikLc30W1ci+QGPEbWf10uLdRlX9spEo86KS4tE2YVOxw88tzg09X/HvgA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
+ dkim=pass header.d=vivo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo0.onmicrosoft.com; 
+ s=selector2-vivo0-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EQUI0VHCvmqIn8+FEH69prfMgqJ6OLvzt2bBhXQ2OiI=;
+ b=g0j/iDdYzYQ2PVY5HzVUShUWjvfFv3EFcvs5+XL5gY3F4DE/GciTblHPiCZ5XrdxQbYRIQg4RHq54FBe8SjcESBNVg0SEFRfkhUos5phBPJN5553faZ86wivtTR3IcMmtpFS7X90zk66jcrZ+EcLr2CqGGnwvzehkjCzjo3AR58=
+Authentication-Results: amd.com; dkim=none (message not signed)
+ header.d=none;amd.com; dmarc=none action=none header.from=vivo.com;
+Received: from SL2PR06MB3082.apcprd06.prod.outlook.com (2603:1096:100:37::17)
+ by SL2PR06MB3388.apcprd06.prod.outlook.com (2603:1096:100:3c::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Fri, 15 Oct
+ 2021 06:47:30 +0000
+Received: from SL2PR06MB3082.apcprd06.prod.outlook.com
+ ([fe80::4c9b:b71f:fb67:6414]) by SL2PR06MB3082.apcprd06.prod.outlook.com
+ ([fe80::4c9b:b71f:fb67:6414%6]) with mapi id 15.20.4608.017; Fri, 15 Oct 2021
+ 06:47:30 +0000
+From: Qing Wang <wangqing@vivo.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Qing Wang <wangqing@vivo.com>
+Subject: [PATCH] amdgpu: replace snprintf in show functions with sysfs_emit
+Date: Thu, 14 Oct 2021 23:47:20 -0700
+Message-Id: <1634280441-4248-1-git-send-email-wangqing@vivo.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: HKAPR03CA0036.apcprd03.prod.outlook.com
+ (2603:1096:203:c9::23) To SL2PR06MB3082.apcprd06.prod.outlook.com
+ (2603:1096:100:37::17)
 MIME-Version: 1.0
-References: <20211014153928.16805-1-alex.sierra@amd.com>
- <20211014153928.16805-3-alex.sierra@amd.com>
- <20211014170634.GV2744544@nvidia.com> <YWh6PL7nvh4DqXCI@casper.infradead.org>
- <CAPcyv4hBdSwdtG6Hnx9mDsRXiPMyhNH=4hDuv8JZ+U+Jj4RUWg@mail.gmail.com>
- <20211014230606.GZ2744544@nvidia.com>
-In-Reply-To: <20211014230606.GZ2744544@nvidia.com>
-From: Dan Williams <dan.j.williams@intel.com>
-Date: Thu, 14 Oct 2021 18:37:35 -0700
-Message-ID: <CAPcyv4hC4qxbO46hp=XBpDaVbeh=qdY6TgvacXRprQ55Qwe-Dg@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] mm: remove extra ZONE_DEVICE struct page refcount
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Matthew Wilcox <willy@infradead.org>, Alex Sierra <alex.sierra@amd.com>, 
- Andrew Morton <akpm@linux-foundation.org>, "Kuehling,
- Felix" <Felix.Kuehling@amd.com>, 
- Linux MM <linux-mm@kvack.org>, Ralph Campbell <rcampbell@nvidia.com>, 
- linux-ext4 <linux-ext4@vger.kernel.org>, linux-xfs <linux-xfs@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, 
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Christoph Hellwig <hch@lst.de>, 
- =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, 
- Alistair Popple <apopple@nvidia.com>, Vishal Verma <vishal.l.verma@intel.com>, 
- Dave Jiang <dave.jiang@intel.com>, Linux NVDIMM <nvdimm@lists.linux.dev>
-Content-Type: text/plain; charset="UTF-8"
+Received: from ubuntu.localdomain (103.220.76.181) by
+ HKAPR03CA0036.apcprd03.prod.outlook.com (2603:1096:203:c9::23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.20.4628.8 via Frontend Transport; Fri, 15 Oct 2021 06:47:28 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2eb778af-8cca-4f71-9760-08d98fa7a882
+X-MS-TrafficTypeDiagnostic: SL2PR06MB3388:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SL2PR06MB3388C425E5B5C9966EC41302BDB99@SL2PR06MB3388.apcprd06.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2201;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: w/B1Bf2OryvaA3XLllvaYQCTJ4HsSTKAIZmN0Q1NlHoncZY9ekP8yYbpPidKCUFhlOm5jzklv57oFn/oFEAneK3kjBY4f80+yjcXy3PjSh/AgpvDSn1BL1zmxOPOIl0SBwkMjm+rakkiMbWjVmEcbJOdupcc3wb9L+KJphu+h9a31whuqdRhnqGRh2gQZSxusJwysJUiGS0P/1rqxOxvWVwf/MKKuCcuRpq+gMkQclLw65jEt3+4GWat/3KolW/Aago3iCvWT6Wr/MRTMdiGqYDYvWO/bHgnmb8sdTbB+n0htTOC/AgWaXlBuyqmqp+d3uXMdXat0ciwDIf4p8TN7CzvfNqZjJJoUQSNGdVTz2HSJIM/WMiPfKHVICjfOVpLuk6kOXTPxng8paGjGbv3kmUB6X0oXkjG8KS4qgoejw2Pul5JRKLSpoV7hEcYfPd0FPM9Db62bu7LomdDuRJ3iN371FTNdWBMItY0djFM90OCnsmnHpL9qY8fEbhaZoj590E24lMttOMVkXo6Z34BckcrFPVhpmhml/9hKmQAZvYnIrf6ZkJkCEGunqUECFgOrFt8qCFpMQKa5ykaN952ga4laUueblQtRJMSmbFJDv1rDE8zmwezFS2CDSq+ZcreYjHDj1pGX9suI+qkJy5cWRr4I8pfDKzLqgp20/vVslnDqdKm+l/Dx2aQcLOXiulp6X3PuPlTOw7sjgz0afEk+w==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SL2PR06MB3082.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(38350700002)(38100700002)(2616005)(316002)(4744005)(2906002)(26005)(107886003)(8676002)(66556008)(83380400001)(186003)(66946007)(6486002)(956004)(508600001)(36756003)(4326008)(66476007)(6666004)(6506007)(8936002)(110136005)(5660300002)(86362001)(6512007)(52116002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?q7uV9p74/ncIXpcl6LHUtrk/8c3EO2boT/K+zW7J8UHB60yOUei2kfp5Q+Xn?=
+ =?us-ascii?Q?yTEDHODl0B8wZexMLzzsT3IM2L18IWkyFSDXLkvADRV+6OZN6HnJ/Hb5eHcC?=
+ =?us-ascii?Q?uDlVmjVbnjzXc0/DfyedQsvvmbQg2CUPeluWQueCT6aCjMudwnvP5CS9pOAD?=
+ =?us-ascii?Q?tP0eQ5T47IjEZt4ygJnRJxuk3yR2x2N0OhRZiKUavbwZh9vLKciMyBHEMG2u?=
+ =?us-ascii?Q?bvtb14rIqLI2yCjjWRGOSDpd52/NXfBz5WUjseJLwdvwHDqFQqwc0MCxsOgw?=
+ =?us-ascii?Q?Yu6I6OfQIZ/lZzfKUKXiZkyH/jr95I0id2t2Dc/LQGx8HmvBmjmRYSEWEO/l?=
+ =?us-ascii?Q?+p2t5FCPE4iKhMEvlZORopwKRxDEfFrScu0n6Sl/Lt8IY0ZaVZIySNTb1MFM?=
+ =?us-ascii?Q?loDVTBdDE8/xzX7OSIR4wkhmB1kICtvquk/vNCjIW0FIST0oc+5kl7nmxQ4t?=
+ =?us-ascii?Q?xpOc0dceIUHAcJTcPX8yrBCGk8C0K3lSQOdSeUJC6p3iHZh6LKo2yIMcfAu9?=
+ =?us-ascii?Q?ycyqRr7odNPboWvgptrR3/VkS7Tk5Oohh5IlbqSRA3avF2pDpgwPj019wU8d?=
+ =?us-ascii?Q?69rsQB4GEy26nsyArWIh4hNONQSpbODqGWJon1PrS4uaTEUVxBmDU6EfDyHk?=
+ =?us-ascii?Q?ysMAi8YeUREOVPplCSbUCw2fhrG6BmKh7l7JGbBrUz/CFNv+VxLAPsPQJUiF?=
+ =?us-ascii?Q?0T4FK5ebi/hLEBfFTxyKMRRss7MDx59/rcXWX2w976LzqtuJmbDO25BFmztV?=
+ =?us-ascii?Q?L5jJgH2UovmPdSiVqEhdqaZi0uqv4dIVNtuPEfk8GgAQjRCu5uv5sfMeeK7U?=
+ =?us-ascii?Q?G9sPJMWGWordIzUxWvwRyN1BHOzcS1oT9I2ydC4F5/zj///Bf2sQJZyFB0hi?=
+ =?us-ascii?Q?Gr8RXxjvEB/oGotDpO0QI4/NvTBgozCaSbvAFBJEoxAOQcL9lGvbAKUszbDE?=
+ =?us-ascii?Q?1YcGVekjZ04lF5aE0zMR/uTa61YVTYKT023WSh2di/k51IVO0GhqkEglVyu4?=
+ =?us-ascii?Q?MI04faxBt4E3G+8N1YoNVQv8PjkBzOZkTLJFCQzoc+LbkJ3/e2wRuPtoMooh?=
+ =?us-ascii?Q?RwcgVY1Lk8AAS/eeYCbdqo6mXMMan6FG4shRaZvK7jezZJ4PcT0EX9ItCnr4?=
+ =?us-ascii?Q?pQ5OW5FMFNaln80RyBTu1n7PJuqMEcZrCOhJBioOldhROw1faCiTIeEO2eOA?=
+ =?us-ascii?Q?NyrYOwyqSqWqsvdDxprQ0m4SDHPM4KfJmMadXYwwekF1jzWpFPPF3qIkkn7C?=
+ =?us-ascii?Q?lbnyTRqHCocNq5xVrtmUVzeJiS24S4vJaLecnBHdU/8UjMrqg7qQY/FtNjmf?=
+ =?us-ascii?Q?Lmn9WvkML0SVwEAdJ9OwhcW+?=
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2eb778af-8cca-4f71-9760-08d98fa7a882
+X-MS-Exchange-CrossTenant-AuthSource: SL2PR06MB3082.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 06:47:30.0746 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qN+yasY0Q3sP220dLiW7a/XFqr7iCTtAc2e/Zjw4TWtowuQdPSmxlK3pz9jz9NO5OIrsa8CKGXWJJY4hbQyRgA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SL2PR06MB3388
 X-Mailman-Approved-At: Fri, 15 Oct 2021 07:25:38 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,90 +122,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 14, 2021 at 4:06 PM Jason Gunthorpe <jgg@nvidia.com> wrote:
->
-> On Thu, Oct 14, 2021 at 12:01:14PM -0700, Dan Williams wrote:
-> > > > Does anyone know why devmap is pte_special anyhow?
-> >
-> > It does not need to be special as mentioned here:
-> >
-> > https://lore.kernel.org/all/CAPcyv4iFeVDVPn6uc=aKsyUvkiu3-fK-N16iJVZQ3N8oT00hWA@mail.gmail.com/
->
-> I added a remark there
->
-> Not special means more to me, it means devmap should do the refcounts
-> properly like normal memory pages.
->
-> It means vm_normal_page should return !NULL and it means insert_page,
-> not insert_pfn should be used to install them in the PTE. VMAs should
-> not be MIXED MAP, but normal struct page maps.
->
-> I think this change alone would fix all the refcount problems
-> everwhere in DAX and devmap.
->
-> > The refcount dependencies also go away after this...
-> >
-> > https://lore.kernel.org/all/161604050866.1463742.7759521510383551055.stgit@dwillia2-desk3.amr.corp.intel.com/
-> >
-> > ...but you can see that patches 1 and 2 in that series depend on being
-> > able to guarantee that all mappings are invalidated when the undelying
-> > device that owns the pgmap goes away.
->
-> If I have put everything together right this is because of what I
-> pointed to here. FS-DAX is installing 0 refcount pages into PTEs and
-> expecting that to work sanely.
->
-> This means the page map cannot be removed until all the PTEs are fully
-> flushed, which buggily doesn't happen because of the missing unplug.
->
-> However, this is all because nobody incrd a refcount to represent the
-> reference in the PTE and since this ment that 0 refcount pages were
-> wrongly stuffed into PTEs then devmap used the refcount == 1 hack to
-> unbreak GUP?
->
-> So.. Is there some reason why devmap pages are trying so hard to avoid
-> sane refcounting???
+show() must not use snprintf() when formatting the value to be
+returned to user space.
 
-I wouldn't put it that way. It's more that the original sin of
-ZONE_DEVICE that sought to reuse the lru field space, by never having
-a zero recount, then got layered upon and calcified in malignant ways.
-In the meantime surrounding infrastructure got decrustified. Work like
-the 'struct page' cleanup among other things, made it clearer and
-clearer over time that the original design choice needed to be fixed.
+Fix the following coccicheck warning:
+drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c:427: 
+WARNING: use scnprintf or sprintf.
 
-> If the PTE itself holds the refcount (by not being special) then there
-> is no need for the pagemap stuff in GUP. pagemap already waits for
-> refs to go to 0 so the missing shootdown during nvdimm unplug will
-> cause pagemap to block until the address spaces are invalidated. IMHO
-> this is already better than the current buggy situation of allowing
-> continued PTE reference to memory that is now removed from the system.
->
-> > For that to happen there needs to be communication back to the FS for
-> > device-gone / failure events. That work is in progress via this
-> > series:
-> >
-> > https://lore.kernel.org/all/20210924130959.2695749-1-ruansy.fnst@fujitsu.com/
->
-> This is fine, but I don't think it should block fixing the mm side -
-> the end result here still cannot be 0 ref count pages installed in
-> PTEs.
->
-> Fixing that does not depend on shootdown during device removal, right?
->
-> It requires holding refcounts while pages are installed into address
-> spaces - and this lack is a direct cause of making the PTEs all
-> special and using insert_pfn and MIXED_MAP.
+Signed-off-by: Qing Wang <wangqing@vivo.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The MIXED_MAP and insert_pfn were a holdover from page-less DAX, but
-now that we have page-available DAX, yes, we can skip the FS
-notification and just rely on typical refcounting and hanging until
-the FS has a chance to uninstall the PTEs. You're right, the FS
-notification is an improvement to the conversion, not a requirement.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+index 2834981..faf4011 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.c
+@@ -424,7 +424,7 @@ static ssize_t show_##name(struct device *dev,				\
+ 	struct drm_device *ddev = dev_get_drvdata(dev);			\
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);			\
+ 									\
+-	return snprintf(buf, PAGE_SIZE, "0x%08x\n", adev->field);	\
++	return sysfs_emit(buf, "0x%08x\n", adev->field);	\
+ }									\
+ static DEVICE_ATTR(name, mode, show_##name, NULL)
+ 
+-- 
+2.7.4
 
-However, there still needs to be something in the gup-fast path to
-indicate that GUP_LONGTERM is not possible because the PTE represents
-a pfn that can not support typical page-cache behavior for truncate
-which is to just disconnect the page from the file and keep the page
-pinned indefinitely. I think the "no longterm" caveat would be the
-only remaining utility of PTE_DEVMAP after the above conversion to use
-typical page refcounts throughout DAX.
