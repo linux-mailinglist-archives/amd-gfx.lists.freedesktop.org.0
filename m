@@ -1,42 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B64D42FB50
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Oct 2021 20:44:19 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AFCF42FB58
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Oct 2021 20:44:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E0296EDE7;
-	Fri, 15 Oct 2021 18:44:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28B736EDC8;
+	Fri, 15 Oct 2021 18:44:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2078.outbound.protection.outlook.com [40.107.236.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64D956EDE9
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 18:44:15 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam08on2059.outbound.protection.outlook.com [40.107.101.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 340646EDEF
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 18:44:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=axo5PZd+cHWrgS1tSIhGZLCKZNzt2oXSI5rQPHnCuDFB5POR1OPxyOe3JhTeWWs5G62ZLYNEwRY1YHfa4StRQ+UcAsvyi2okA1PDVPNJ5+zGxGJfR9QrUrtUt8AjjQ9YnaSoVqTlzS8570Incc8qWUhf0rl37kGMjca+5NYO6Hkq0Fu99v4Wxy7oT/idNZgMgdeZIuLxS+HQLV+rL7n1EKs3ZRGqOYOPifkHQUcrw2atQPC75Y+zbSpbv+JjyG2A3mgKNO0Vp/A+EhaMJ8G5cw5DZYzg/B7FlA5kkkERmfnSmF6xVUBRe0LCAOMEST/79VwJsJOrSMpvaXqAwx2xAg==
+ b=FTyW82CgGMFP4YgyqzuOyfDx6EKfe8XlpCeofHcnRRCnjjvG6cDBPIXEFeXIqKNnvrym4xSJNxmez5ey9f+nFOqf7KRD/I/phNFa09U/fNd+S+3YCAQIF9Gsu5yb/YIptoPbdLcAO5AsupJdtGqvqToz0lqcwaDREMN0BxOkcbt3qt8mtIZcq6Rf3YOfae1OhjhSVH97EH1az/hBqrT4XfT93CW0OIpS9n4+AX+YGJYCGfTOMqrbSUxovHM6AD6XtSU8tDFyyowSlouMT5yiGU9S6MVrCyi1MD5Lh0AQ0ow4B/cAEqYt2ioCLKhb94RxBJ/2EsKtNLmJUUPsO4z0ig==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZHATS7Y/epsO7N9BnNa6A2K8mo1nr4hBUaWfSJ/EeR0=;
- b=YjeGfDU8zWpFB264pPnLOkHXu1J9HVreEcheyCZzovI5qyx9V1CcUIQLdA8t6Ni5oFbdTR3LJ35SItOkHX4CPBO6Er/A1HtbuZ5E9XiAxUDbUUPZScP+X6A0uBDcxHHcrHFwz7Goet81nzP4yKCrdIhaFRrrK3y4iqwuYpkrvMVF42FP00WskIz4H+Gvsj1Mc32kB5Ls9Vhvvzda3esSUzqzWaSwjQitsPGDEg7mbEoz+FAxXa/UK5kIC8PmcFxiriLPtB5SGiRdF4d490+FYytafiTzE37R8NCfbjon+FwowRNf+j9hL+D6iwFHPKoXshFLSswzq4wjNyU8JnO8fw==
+ bh=HWyqa8a5DiqSKc5HyKbn30mU8iymVrt+cyH75FfXGH0=;
+ b=KD9nvj2zcs7msDCYNKzJSyASRc0pKATShXE8LijrZEiMv7UgN7wLqznBEdB4ShpB+h2RaEsxjtOnA5EkbYM39USzGG3fOdTd8xFRS5cJO/5hbLBUXYZlBc5fDQlRoHhC3k/R7ysKt8ITKXztjrDmz5nGkkYn05uHRi3IQGFbtZnwYhVMxF0b99RQTfndp6HjZF5Wq/Gxjk8NW3x5xLEyzPYH9X/GRZXXZHi/NBWSAHktBNBe/D57iHMDqfqQ7s5jYfd8Wu0S8gKnoxzhnGZilGtxB1+LIWjRY4jFb9iaGY4pkg9ufgwlJOuwxwui5cnm0K1LlWjTq3tPqEKVfTKZAw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZHATS7Y/epsO7N9BnNa6A2K8mo1nr4hBUaWfSJ/EeR0=;
- b=I1P1OOoDa/WRrlpBffWlbfjBGzlqJRfGEz/Lxy8CdSp/JHHVk8UffIUrL1mIC9psXqp9QsUv7Wrtt+8lHbbao912OnyWoA6BvEMI9dNczXV9Im+UpmOMg8DZFNGQVYATw5aDk3Nu6kIMPrWstunv4dK1AT3GIEMI0UkaK3Geqhg=
-Received: from DM6PR02CA0107.namprd02.prod.outlook.com (2603:10b6:5:1f4::48)
- by CH2PR12MB4954.namprd12.prod.outlook.com (2603:10b6:610:63::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.17; Fri, 15 Oct
- 2021 18:44:12 +0000
-Received: from DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:1f4:cafe::8f) by DM6PR02CA0107.outlook.office365.com
- (2603:10b6:5:1f4::48) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
+ bh=HWyqa8a5DiqSKc5HyKbn30mU8iymVrt+cyH75FfXGH0=;
+ b=lw8LY2vwh9AMMUincTZrSeAYkNp1va57YEfiOKOY4tE5pNT9YcumJ25sPCTH3ygyOY3FjQg/i52vBIk4RBAev97zq8+7ktqNChS1J7b5bXPjnAUKd8xC3UYwsEl0VulwCOADs2e6RYpZfcJ5vkrEzrPLmnjHh1XQtmvMHmXELUI=
+Received: from DS7PR06CA0026.namprd06.prod.outlook.com (2603:10b6:8:54::16) by
+ DM5PR12MB1385.namprd12.prod.outlook.com (2603:10b6:3:6e::19) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4608.16; Fri, 15 Oct 2021 18:44:12 +0000
+Received: from DM6NAM11FT037.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:54:cafe::f8) by DS7PR06CA0026.outlook.office365.com
+ (2603:10b6:8:54::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.14 via Frontend
  Transport; Fri, 15 Oct 2021 18:44:12 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
@@ -46,13 +46,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT009.mail.protection.outlook.com (10.13.173.20) with Microsoft SMTP
+ DM6NAM11FT037.mail.protection.outlook.com (10.13.172.122) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.4608.15 via Frontend Transport; Fri, 15 Oct 2021 18:44:12 +0000
 Received: from ubuntu.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Fri, 15 Oct
- 2021 13:44:08 -0500
+ 2021 13:44:09 -0500
 From: Agustin Gutierrez <agustin.gutierrez@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
@@ -60,11 +60,11 @@ CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
  <stylon.wang@amd.com>, <solomon.chiu@amd.com>, <pavle.kotarac@amd.com>,
- <agustin.gutierrez@amd.com>, Jake Wang <haonan.wang2@amd.com>, Aric Cyr
- <Aric.Cyr@amd.com>
-Subject: [PATCH 21/27] drm/amd/display: Disable hdmistream and hdmichar clocks
-Date: Fri, 15 Oct 2021 14:43:26 -0400
-Message-ID: <20211015184332.221091-22-agustin.gutierrez@amd.com>
+ <agustin.gutierrez@amd.com>, Anthony Koo <Anthony.Koo@amd.com>, Aric Cyr
+ <aric.cyr@amd.com>
+Subject: [PATCH 22/27] drm/amd/display: Change initializer to single brace
+Date: Fri, 15 Oct 2021 14:43:27 -0400
+Message-ID: <20211015184332.221091-23-agustin.gutierrez@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211015184332.221091-1-agustin.gutierrez@amd.com>
 References: <20211015184332.221091-1-agustin.gutierrez@amd.com>
@@ -76,28 +76,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d5c1cf08-5631-4322-d4c5-08d9900bc7d9
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4954:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB4954E44DD61944F706D2126CF5B99@CH2PR12MB4954.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:546;
+X-MS-Office365-Filtering-Correlation-Id: 431a6790-728e-484b-86f7-08d9900bc80f
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1385:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB138525B249436A13312C5CF5F5B99@DM5PR12MB1385.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YZHV0bAWpWvlsWJj9ItGUCoZJ4207S2TcZqWzdP2Eo2xWrErapSCLXgOKsdZHvuBl9QRAdozM8GUqUEzrJrZTNOeXBjnG21VOnDhbkeq1KMltluKiV3YSaftp+pDTEIkUVYSFxe6DVzYLKDxMUBAa83Pem+vxQZPRJ24PpczFPFsepeR2KK9PuZrX5fc3GBth+9oyEVyOavJF71P5JK6hf3kHM1ItVJ90fBHVNB8SHbL/Bdoti/qnOi4CCcW3BUfXPulqWNYfhhwdkKiRcXXEcC3EuTaZ2/7dSHoos6XGz9y7jnn8oaQTwQErfqY8VzjFHMXD+U+n5yyiWmGPfYBvX+89cQcAc7DrNrWi1wYAj1JODIy++TMmpEZxQPd/rGAnJ2swqRfsK0iwrXdYMXe599K6WFNrcuM09p2jyQPbcibYYM+oFpcl4Kn/pqFX4E5OtlzahBJpI5oYP2mRxFR21+Ab2OB6Elu1ohgJ24FlCLkadd+gCqqdY4h6NqOXZnO7L2cpNtMFqER8ea7RypoZo+sXF0vPJR9TTw+m7tT1GBJxlzQUWzmXsfrqR2i8b4/IvxZqmarwVI+c8txIB4ENUoEVrRuTUBp5mcKEmNA/7Y8aB0ZsJBtKv5aGlFBXy/j2IoxPVw7uqJ5EOU2/Gd3mOCLYv/sq7x9HnFdJh67+diJdG8CJ1ndvxWwdlcZ1rbqRXTUavyHs725k5pOWEXlqfAFOfffS43JtOXcURvZTdc=
+X-Microsoft-Antispam-Message-Info: Kbo3FndgP6vPSAWYx0JTh6RmqdphxuMNVPgnBePZV1auFu0kmmu1khiIBR1q/ndmuDHnAPh4y9meLu+j7uosfRSpiuyZzEo40E0sEzrjachq/x3lhCOJa/8LhCXiiaHqB9Eax0j3Ki52DdAuq5ot7L72RTInfbBxOTndVnt6p30+m8Xg3S1X0i9aMDAc1N7l0Ddx658IH30vCc37FpjMnxqnsEF/nTevi24CbfELBvT6C7qc5OgtUaKOGyhht1sQuOSJC7Ud/hyj1MJBxL99WOonvLIIJF0ich6JYwJbB8p/8bFq+Xq6IuimW/xo/mZN6qfSG89ep3991StHzt9Z831JuL659CKYsg5S8gShrEcHFIgXDJ+fgaOMm1eYJznjUQGYEdid897MYZYkHMBhasyyEDmkgZ7dSD7fdJqXUqWwaKIic52KHxb6hejKx0kPsm6ol6k/LIm25IDcuZQJNkmym1WrBV285Fdl/834TQtq1JAa9Y2P0rQd0Jbroa0urTtVi3egJYhZP/iODkf3jd2Ia03rEBVqWbIFhOaIx+C9MN8uWs5LK3r9xIqrdzTGAqcEv7XwKhIKBJd0pxQjTjpHrD63s6Qlw3q7LQLqzLBVSUkKnooO4QCiK8gXc3fY+Z7yNfDcTabfTP4XsnFBG6L9jFlcBy4RXMv1n1A2a90aBCOISh7fuUX8+qp5pfKbOU2rRqeHyllSz9/Xxrma0stvPDMYjciigmC5vRwR2i4=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(86362001)(2906002)(81166007)(8936002)(426003)(1076003)(5660300002)(8676002)(36756003)(36860700001)(26005)(336012)(186003)(16526019)(47076005)(70206006)(508600001)(70586007)(4326008)(44832011)(54906003)(6666004)(356005)(2616005)(316002)(6916009)(83380400001)(82310400003)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(4326008)(8676002)(8936002)(70206006)(6916009)(5660300002)(2906002)(316002)(54906003)(36756003)(86362001)(1076003)(36860700001)(426003)(82310400003)(70586007)(6666004)(336012)(356005)(508600001)(81166007)(2616005)(26005)(186003)(83380400001)(16526019)(47076005)(44832011)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 18:44:12.0799 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5c1cf08-5631-4322-d4c5-08d9900bc7d9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 18:44:12.4307 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 431a6790-728e-484b-86f7-08d9900bc80f
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT009.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT037.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4954
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1385
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,107 +112,220 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jake Wang <haonan.wang2@amd.com>
+From: Anthony Koo <Anthony.Koo@amd.com>
 
-[Why & How]
-Disable hdmistream and hdmichar root clocks when not being used.
-
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Agustin Gutierrez Sanchez <agustin.gutierrez@amd.com>
-Signed-off-by: Jake Wang <haonan.wang2@amd.com>
+Signed-off-by: Aric Cyr <aric.cyr@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h        | 9 +++++++--
- drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h        | 9 +++++----
- .../gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_offset.h  | 2 ++
- .../gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_sh_mask.h | 8 ++++++++
- 4 files changed, 22 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c |  7 ++---
+ .../gpu/drm/amd/display/dc/core/dc_link_ddc.c |  2 +-
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 30 +++++++++----------
+ .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |  8 ++---
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  4 +--
+ 5 files changed, 25 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h
-index 4098669a0c1f..f98aba308028 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h
-@@ -186,8 +186,11 @@
- 	type SYMCLK32_ROOT_LE0_GATE_DISABLE;\
- 	type SYMCLK32_ROOT_LE1_GATE_DISABLE;\
- 	type DPSTREAMCLK_ROOT_GATE_DISABLE;\
--	type DPSTREAMCLK_GATE_DISABLE;
--
-+	type DPSTREAMCLK_GATE_DISABLE;\
-+	type HDMISTREAMCLK0_DTO_PHASE;\
-+	type HDMISTREAMCLK0_DTO_MODULO;\
-+	type HDMICHARCLK0_GATE_DISABLE;\
-+	type HDMICHARCLK0_ROOT_GATE_DISABLE;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+index d54592b573e9..6db611f9f554 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
+@@ -674,13 +674,13 @@ static void query_hdcp_capability(enum signal_type signal, struct dc_link *link)
  
+ static void read_current_link_settings_on_detect(struct dc_link *link)
+ {
+-	union lane_count_set lane_count_set = { {0} };
++	union lane_count_set lane_count_set = {0};
+ 	uint8_t link_bw_set;
+ 	uint8_t link_rate_set;
+ 	uint32_t read_dpcd_retry_cnt = 10;
+ 	enum dc_status status = DC_ERROR_UNEXPECTED;
+ 	int i;
+-	union max_down_spread max_down_spread = { {0} };
++	union max_down_spread max_down_spread = {0};
  
- struct dccg_shift {
-@@ -231,6 +234,8 @@ struct dccg_registers {
- 	uint32_t DPSTREAMCLK_ROOT_GATE_DISABLE;
- 	uint32_t DPSTREAMCLK_GATE_DISABLE;
- 	uint32_t DCCG_GATE_DISABLE_CNTL3;
-+	uint32_t HDMISTREAMCLK0_DTO_PARAM;
-+	uint32_t DCCG_GATE_DISABLE_CNTL4;
+ 	// Read DPCD 00101h to find out the number of lanes currently set
+ 	for (i = 0; i < read_dpcd_retry_cnt; i++) {
+@@ -3279,8 +3279,7 @@ static void update_mst_stream_alloc_table(
+ 	struct stream_encoder *stream_enc,
+ 	const struct dp_mst_stream_allocation_table *proposed_table)
+ {
+-	struct link_mst_stream_allocation work_table[MAX_CONTROLLER_NUM] = {
+-			{ 0 } };
++	struct link_mst_stream_allocation work_table[MAX_CONTROLLER_NUM] = { 0 };
+ 	struct link_mst_stream_allocation *dc_alloc;
  
- };
+ 	int i;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
+index b0f1cd7268c8..471a67a64299 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_ddc.c
+@@ -763,7 +763,7 @@ void dal_ddc_service_read_scdc_data(struct ddc_service *ddc_service)
+ 	dal_ddc_service_query_ddc_data(ddc_service, slave_address, &offset,
+ 			sizeof(offset), &tmds_config, sizeof(tmds_config));
+ 	if (tmds_config & 0x1) {
+-		union hdmi_scdc_status_flags_data status_data = { {0} };
++		union hdmi_scdc_status_flags_data status_data = {0};
+ 		uint8_t scramble_status = 0;
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h
-index 602bf461298b..a013a32bbaf7 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h
-@@ -66,7 +66,8 @@
- 	SR(DSCCLK1_DTO_PARAM),\
- 	SR(DSCCLK2_DTO_PARAM),\
- 	SR(DSCCLK_DTO_CTRL),\
--	SR(DCCG_GATE_DISABLE_CNTL3)
-+	SR(DCCG_GATE_DISABLE_CNTL3),\
-+	SR(HDMISTREAMCLK0_DTO_PARAM)
+ 		offset = HDMI_SCDC_SCRAMBLER_STATUS;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index 8e0b40c7a1ee..296b0defcd1c 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -259,7 +259,7 @@ static void dpcd_set_training_pattern(
+ 	struct dc_link *link,
+ 	enum dc_dp_training_pattern training_pattern)
+ {
+-	union dpcd_training_pattern dpcd_pattern = { {0} };
++	union dpcd_training_pattern dpcd_pattern = {0};
  
+ 	dpcd_pattern.v1_4.TRAINING_PATTERN_SET =
+ 			dc_dp_training_pattern_to_dpcd_training_pattern(
+@@ -401,8 +401,8 @@ enum dc_status dpcd_set_link_settings(
+ 	uint8_t rate;
+ 	enum dc_status status;
  
- #define DCCG_MASK_SH_LIST_DCN31(mask_sh) \
-@@ -141,9 +142,9 @@
- 	DCCG_SF(DCCG_GATE_DISABLE_CNTL3, SYMCLK32_ROOT_SE2_GATE_DISABLE, mask_sh),\
- 	DCCG_SF(DCCG_GATE_DISABLE_CNTL3, SYMCLK32_ROOT_SE3_GATE_DISABLE, mask_sh),\
- 	DCCG_SF(DCCG_GATE_DISABLE_CNTL3, SYMCLK32_ROOT_LE0_GATE_DISABLE, mask_sh),\
--	DCCG_SF(DCCG_GATE_DISABLE_CNTL3, SYMCLK32_ROOT_LE1_GATE_DISABLE, mask_sh)
--
--
-+	DCCG_SF(DCCG_GATE_DISABLE_CNTL3, SYMCLK32_ROOT_LE1_GATE_DISABLE, mask_sh),\
-+	DCCG_SF(HDMISTREAMCLK0_DTO_PARAM, HDMISTREAMCLK0_DTO_PHASE, mask_sh),\
-+	DCCG_SF(HDMISTREAMCLK0_DTO_PARAM, HDMISTREAMCLK0_DTO_MODULO, mask_sh)
+-	union down_spread_ctrl downspread = { {0} };
+-	union lane_count_set lane_count_set = { {0} };
++	union down_spread_ctrl downspread = {0};
++	union lane_count_set lane_count_set = {0};
  
+ 	downspread.raw = (uint8_t)
+ 	(lt_settings->link_settings.link_spread);
+@@ -520,7 +520,7 @@ static void dpcd_set_lt_pattern_and_lane_settings(
+ 	uint32_t dpcd_base_lt_offset;
  
- struct dccg *dccg31_create(
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_offset.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_offset.h
-index 312c50ea30f3..f268d33c4744 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_offset.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_offset.h
-@@ -436,6 +436,8 @@
- #define regPHYESYMCLK_CLOCK_CNTL_BASE_IDX                                                               2
- #define regDCCG_GATE_DISABLE_CNTL3                                                                      0x005a
- #define regDCCG_GATE_DISABLE_CNTL3_BASE_IDX                                                             2
-+#define regHDMISTREAMCLK0_DTO_PARAM                                                                     0x005b
-+#define regHDMISTREAMCLK0_DTO_PARAM_BASE_IDX                                                            2
- #define regDCCG_AUDIO_DTBCLK_DTO_PHASE                                                                  0x0061
- #define regDCCG_AUDIO_DTBCLK_DTO_PHASE_BASE_IDX                                                         2
- #define regDCCG_AUDIO_DTBCLK_DTO_MODULO                                                                 0x0062
-diff --git a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_sh_mask.h b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_sh_mask.h
-index a9d553ef26c0..1f21f313bd1d 100644
---- a/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_sh_mask.h
-+++ b/drivers/gpu/drm/amd/include/asic_reg/dcn/dcn_3_1_2_sh_mask.h
-@@ -1438,6 +1438,14 @@
- #define DCCG_GATE_DISABLE_CNTL3__SYMCLK32_LE0_GATE_DISABLE_MASK                                               0x00200000L
- #define DCCG_GATE_DISABLE_CNTL3__SYMCLK32_ROOT_LE1_GATE_DISABLE_MASK                                          0x00400000L
- #define DCCG_GATE_DISABLE_CNTL3__SYMCLK32_LE1_GATE_DISABLE_MASK                                               0x00800000L
-+//HDMISTREAMCLK0_DTO_PARAM
-+#define HDMISTREAMCLK0_DTO_PARAM__HDMISTREAMCLK0_DTO_PHASE__SHIFT                                             0x0
-+#define HDMISTREAMCLK0_DTO_PARAM__HDMISTREAMCLK0_DTO_MODULO__SHIFT                                            0x8
-+#define HDMISTREAMCLK0_DTO_PARAM__HDMISTREAMCLK0_DTO_EN__SHIFT                                                0x10
-+#define HDMISTREAMCLK0_DTO_PARAM__HDMISTREAMCLK0_DTO_PHASE_MASK                                               0x000000FFL
-+#define HDMISTREAMCLK0_DTO_PARAM__HDMISTREAMCLK0_DTO_MODULO_MASK                                              0x0000FF00L
-+#define HDMISTREAMCLK0_DTO_PARAM__HDMISTREAMCLK0_DTO_EN_MASK                                                  0x00010000L
-+
- //DCCG_AUDIO_DTBCLK_DTO_PHASE
- #define DCCG_AUDIO_DTBCLK_DTO_PHASE__DCCG_AUDIO_DTBCLK_DTO_PHASE__SHIFT                                       0x0
- #define DCCG_AUDIO_DTBCLK_DTO_PHASE__DCCG_AUDIO_DTBCLK_DTO_PHASE_MASK                                         0xFFFFFFFFL
+ 	uint8_t dpcd_lt_buffer[5] = {0};
+-	union dpcd_training_pattern dpcd_pattern = { {0} };
++	union dpcd_training_pattern dpcd_pattern = { 0 };
+ 	uint32_t size_in_bytes;
+ 	bool edp_workaround = false; /* TODO link_prop.INTERNAL */
+ 	dpcd_base_lt_offset = DP_TRAINING_PATTERN_SET;
+@@ -1266,8 +1266,8 @@ static enum link_training_result perform_channel_equalization_sequence(
+ 	uint32_t retries_ch_eq;
+ 	uint32_t wait_time_microsec;
+ 	enum dc_lane_count lane_count = lt_settings->link_settings.lane_count;
+-	union lane_align_status_updated dpcd_lane_status_updated = { {0} };
+-	union lane_status dpcd_lane_status[LANE_COUNT_DP_MAX] = { { {0} } };
++	union lane_align_status_updated dpcd_lane_status_updated = {0};
++	union lane_status dpcd_lane_status[LANE_COUNT_DP_MAX] = {0};
+ 
+ 	/* Note: also check that TPS4 is a supported feature*/
+ 
+@@ -1487,7 +1487,7 @@ static inline enum link_training_result dp_transition_to_video_idle(
+ 	struct link_training_settings *lt_settings,
+ 	enum link_training_result status)
+ {
+-	union lane_count_set lane_count_set = { {0} };
++	union lane_count_set lane_count_set = {0};
+ 
+ 	/* 4. mainlink output idle pattern*/
+ 	dp_set_hw_test_pattern(link, DP_TEST_PATTERN_VIDEO_MODE, NULL, 0);
+@@ -1800,7 +1800,7 @@ static enum dc_status configure_lttpr_mode_non_transparent(
+ 
+ static void repeater_training_done(struct dc_link *link, uint32_t offset)
+ {
+-	union dpcd_training_pattern dpcd_pattern = { {0} };
++	union dpcd_training_pattern dpcd_pattern = {0};
+ 
+ 	const uint32_t dpcd_base_lt_offset =
+ 			DP_TRAINING_PATTERN_SET_PHY_REPEATER1 +
+@@ -2078,8 +2078,8 @@ static enum link_training_result dp_perform_128b_132b_channel_eq_done_sequence(
+ 	uint32_t aux_rd_interval = 0;
+ 	uint32_t wait_time = 0;
+ 	struct link_training_settings req_settings;
+-	union lane_align_status_updated dpcd_lane_status_updated = { {0} };
+-	union lane_status dpcd_lane_status[LANE_COUNT_DP_MAX] = { { {0} } };
++	union lane_align_status_updated dpcd_lane_status_updated = {0};
++	union lane_status dpcd_lane_status[LANE_COUNT_DP_MAX] = {0};
+ 	enum link_training_result status = LINK_TRAINING_SUCCESS;
+ 
+ 	/* Transmit 128b/132b_TPS1 over Main-Link and Set TRAINING_PATTERN_SET to 01h */
+@@ -2149,8 +2149,8 @@ static enum link_training_result dp_perform_128b_132b_cds_done_sequence(
+ 	/* Assumption: assume hardware has transmitted eq pattern */
+ 	enum link_training_result status = LINK_TRAINING_SUCCESS;
+ 	struct link_training_settings req_settings;
+-	union lane_align_status_updated dpcd_lane_status_updated = { {0} };
+-	union lane_status dpcd_lane_status[LANE_COUNT_DP_MAX] = { { {0} } };
++	union lane_align_status_updated dpcd_lane_status_updated = {0};
++	union lane_status dpcd_lane_status[LANE_COUNT_DP_MAX] = {0};
+ 	uint32_t wait_time = 0;
+ 
+ 	/* initiate CDS done sequence */
+@@ -4065,8 +4065,8 @@ void dc_link_dp_handle_link_loss(struct dc_link *link)
+ bool dc_link_handle_hpd_rx_irq(struct dc_link *link, union hpd_irq_data *out_hpd_irq_dpcd_data, bool *out_link_loss,
+ 							bool defer_handling, bool *has_left_work)
+ {
+-	union hpd_irq_data hpd_irq_dpcd_data = { { { {0} } } };
+-	union device_service_irq device_service_clear = { { 0 } };
++	union hpd_irq_data hpd_irq_dpcd_data = {0};
++	union device_service_irq device_service_clear = {0};
+ 	enum dc_status result;
+ 	bool status = false;
+ 
+@@ -5939,7 +5939,7 @@ bool is_edp_ilr_optimization_required(struct dc_link *link, struct dc_crtc_timin
+ 	uint8_t link_bw_set;
+ 	uint8_t link_rate_set;
+ 	uint32_t req_bw;
+-	union lane_count_set lane_count_set = { {0} };
++	union lane_count_set lane_count_set = {0};
+ 
+ 	ASSERT(link || crtc_timing); // invalid input
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
+index bc3ec05bf34b..aa2d430f2a1a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
+@@ -2304,8 +2304,8 @@ static void mmhub_read_vm_context0_settings(struct dcn10_hubp *hubp1,
+ void dcn10_program_pte_vm(struct dce_hwseq *hws, struct hubp *hubp)
+ {
+ 	struct dcn10_hubp *hubp1 = TO_DCN10_HUBP(hubp);
+-	struct vm_system_aperture_param apt = { {{ 0 } } };
+-	struct vm_context0_param vm0 = { { { 0 } } };
++	struct vm_system_aperture_param apt = {0};
++	struct vm_context0_param vm0 = {0};
+ 
+ 	mmhub_read_vm_system_aperture_settings(hubp1, &apt, hws);
+ 	mmhub_read_vm_context0_settings(hubp1, &vm0, hws);
+@@ -2478,7 +2478,7 @@ void dcn10_update_visual_confirm_color(struct dc *dc, struct pipe_ctx *pipe_ctx,
+ void dcn10_update_mpcc(struct dc *dc, struct pipe_ctx *pipe_ctx)
+ {
+ 	struct hubp *hubp = pipe_ctx->plane_res.hubp;
+-	struct mpcc_blnd_cfg blnd_cfg = {{0}};
++	struct mpcc_blnd_cfg blnd_cfg = {0};
+ 	bool per_pixel_alpha = pipe_ctx->plane_state->per_pixel_alpha && pipe_ctx->bottom_pipe;
+ 	int mpcc_id;
+ 	struct mpcc *new_mpcc;
+@@ -3635,7 +3635,7 @@ void dcn10_setup_vupdate_interrupt(struct dc *dc, struct pipe_ctx *pipe_ctx)
+ void dcn10_unblank_stream(struct pipe_ctx *pipe_ctx,
+ 		struct dc_link_settings *link_settings)
+ {
+-	struct encoder_unblank_param params = { { 0 } };
++	struct encoder_unblank_param params = {0};
+ 	struct dc_stream_state *stream = pipe_ctx->stream;
+ 	struct dc_link *link = stream->link;
+ 	struct dce_hwseq *hws = link->dc->hwseq;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+index fc83744149d9..cfee456c6c9a 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
+@@ -2123,7 +2123,7 @@ void dcn20_update_plane_addr(const struct dc *dc, struct pipe_ctx *pipe_ctx)
+ void dcn20_unblank_stream(struct pipe_ctx *pipe_ctx,
+ 		struct dc_link_settings *link_settings)
+ {
+-	struct encoder_unblank_param params = { { 0 } };
++	struct encoder_unblank_param params = {0};
+ 	struct dc_stream_state *stream = pipe_ctx->stream;
+ 	struct dc_link *link = stream->link;
+ 	struct dce_hwseq *hws = link->dc->hwseq;
+@@ -2298,7 +2298,7 @@ void dcn20_update_visual_confirm_color(struct dc *dc, struct pipe_ctx *pipe_ctx,
+ void dcn20_update_mpcc(struct dc *dc, struct pipe_ctx *pipe_ctx)
+ {
+ 	struct hubp *hubp = pipe_ctx->plane_res.hubp;
+-	struct mpcc_blnd_cfg blnd_cfg = { {0} };
++	struct mpcc_blnd_cfg blnd_cfg = {0};
+ 	bool per_pixel_alpha = pipe_ctx->plane_state->per_pixel_alpha;
+ 	int mpcc_id;
+ 	struct mpcc *new_mpcc;
 -- 
 2.25.1
 
