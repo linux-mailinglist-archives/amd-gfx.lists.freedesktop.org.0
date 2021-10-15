@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBF8C42FB25
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Oct 2021 20:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0409F42FB3E
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Oct 2021 20:43:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78D2D6E9F9;
-	Fri, 15 Oct 2021 18:39:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 135D16E3C1;
+	Fri, 15 Oct 2021 18:43:53 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2073.outbound.protection.outlook.com [40.107.244.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 924116E550
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 18:39:21 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2049.outbound.protection.outlook.com [40.107.220.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03E81896E9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 18:43:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P72QCeUV+2AekRQyEJXNo/hCuCbl+DAw9YCYcwKwwVOQrB0f7R/crrP1+Zo4j3hvItUp//yJ5xfqsAccrGjEg0cybo7O0mVHd4feiCvUpZMUa4qTS5yfQSUe5eMP1+HSatHtKaHKRtHUf1M9rLeSsiG/ed08BN8WMnQiCUnlRSqWdP0+qEehPd6P63hc6nNZp/EkFULTeVUhmsspPCzI1dJQLZDquYzo+6sqfOTtFdrWxiZqz04tkU7j1mwJl93VW31zfCW93pWUQQn2xLBTymUlzjdmyPDf9kXNqNiKb4Dp5ItASeBMfOYupXNqxC92WI8KuGVkZHpxgoZIOj0VJw==
+ b=X8WH1irqFBeBSz+suFZk/yDdck+4Q3G4Ccc48UqdImYd51iIoK1k+rTPjZIhNqRrUAsUDq0fe8DmYuUPDC/CEmTouF0nFwKZ2hKB65I9MGo+FhT+5qrcEa07B0bEsblyeOmwAdTcUWTyl+D5kzXpnFGU5s5R7G9GeyBAGsKrtKD53KEicENUtENQ9bn1dEweEMvk3SnxFrJ4TKQMFc/oPWWWSqkAFGw8qzerE3VH7XFLqksmUNfxrT/q0JE+0eR7oSaR5bx4L6hvppQd6UKzi4wXXNpwxVCCwwcARf5jhrAW6szzWb3+ErWbM+JmCtFW6saE3gIcbC+WqvIJDS3Iqw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pEoRLpDkRuARcV4yj+ts/g+dok7GpvMkgocSAxXgKpw=;
- b=LC/A4QgfVO/mvwiyEfCG+ZAK1YgKTghuJQBvAcZGbYu0byNHmlYAN0KC1jIjVFXHJdP0vU109iazE+sEPSP9E3g2RJ1aG4BFWzPJLjYu2DoN7WRspHwSPxCC5xde6Wue0w1ReUmMKogRPv9n4SMOio1xqMo+RKe2o4UfWRzYXhhTCLFZSv+HjTG+/6Omtd8x1uIYZS1vR2KrajEOax/XZxo58uCMnVlQMf4cw9y+wCFm0js1IAeMgS7/Z4MVBhhGyMFBotGgYmOX928m4GFKVMmak+wF+5ZkkpCgMUm+SWCfxMUZEj1A74QT4myBVCJBccot+8tOCHfOUu3uCVk47Q==
+ bh=9jkFAVM8sp4iLdFtgA/qeNPVJu9h4FQLAuzHNnNATIY=;
+ b=WY3WrcshVDzxqBvVhhO73d1y3UYoXFZpVNWkmO2aqdaFMr6oLnGbo+qorSO8uZfd7a3L5pHbF/okQ2m8Kseh8L0X4yMVa3hHTSjCLhpP87cOEKnN6kFNSUYwSDESm2r9kQGA1STanZBM0qPp98nWkuejvAkmRUsu567Rkd+1bAyN+Ots7+NRfZfUbXkbsOuPAcZ/GH0gNnsd5+B2oUDMpp2V+2gSxyQsXXuQpCDize6m9PxFBhZTFrbTB4NdoduglRAw6vczMBGctbqmTZQQZk5rZj/i1ZINhSvzDtFS00Iydz9+s97fOg1ukFHRMma2LZKxgMLYgrdy0bC5n2Funw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pEoRLpDkRuARcV4yj+ts/g+dok7GpvMkgocSAxXgKpw=;
- b=AqRch7KLEONu3IBpeY75mgnBUaKBj1IOnlnkhXbzgg07jvJO4S07RyRhljlIczkMEAu/742vk7zQ1BCtv+CdHP5IOXFWWeDza8/q5vAKDwAbmHyfN+ammFBOmy8RLwUOkdb6SuJhBF0c5VwRZ4eexxz1rrxeBMKaqoPqedtca7I=
-Received: from MW4PR04CA0237.namprd04.prod.outlook.com (2603:10b6:303:87::32)
- by CH2PR12MB4230.namprd12.prod.outlook.com (2603:10b6:610:aa::23)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=9jkFAVM8sp4iLdFtgA/qeNPVJu9h4FQLAuzHNnNATIY=;
+ b=nm8KZw3AuzbbmR4xiUKOBCY1f3edIfeCJ7ntkU1eFgfrhxO4v6i4V7cHBI1CfZe7BjVo4Mn6iHt4zaeMOgaHj5zkl2vOAaoZqaBOkTqXGmRMwJxXL45a3mvDcVC54D5gklkcY5NVsarg1DQ1CJ0k5Db9/W8u+fJqUR23SbtTuCw=
+Received: from DS7PR03CA0071.namprd03.prod.outlook.com (2603:10b6:5:3bb::16)
+ by DM6PR12MB4515.namprd12.prod.outlook.com (2603:10b6:5:2a1::22) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Fri, 15 Oct
- 2021 18:39:19 +0000
-Received: from CO1NAM11FT008.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:87:cafe::4) by MW4PR04CA0237.outlook.office365.com
- (2603:10b6:303:87::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16 via Frontend
- Transport; Fri, 15 Oct 2021 18:39:19 +0000
+ 2021 18:43:48 +0000
+Received: from DM6NAM11FT025.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3bb:cafe::88) by DS7PR03CA0071.outlook.office365.com
+ (2603:10b6:5:3bb::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
+ Transport; Fri, 15 Oct 2021 18:43:48 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,13 +46,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT008.mail.protection.outlook.com (10.13.175.191) with Microsoft SMTP
+ DM6NAM11FT025.mail.protection.outlook.com (10.13.172.197) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4608.15 via Frontend Transport; Fri, 15 Oct 2021 18:39:18 +0000
+ 15.20.4608.15 via Frontend Transport; Fri, 15 Oct 2021 18:43:48 +0000
 Received: from ubuntu.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Fri, 15 Oct
- 2021 13:39:14 -0500
+ 2021 13:43:46 -0500
 From: Agustin Gutierrez <agustin.gutierrez@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
@@ -60,14 +60,12 @@ CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
  <stylon.wang@amd.com>, <solomon.chiu@amd.com>, <pavle.kotarac@amd.com>,
- <agustin.gutierrez@amd.com>, Aric Cyr <aric.cyr@amd.com>, Josip Pavic
- <Josip.Pavic@amd.com>
-Subject: [PATCH 08/27] drm/amd/display: Validate plane rects before use
-Date: Fri, 15 Oct 2021 14:38:26 -0400
-Message-ID: <20211015183845.220831-9-agustin.gutierrez@amd.com>
+ <agustin.gutierrez@amd.com>, Daniel Wheeler <daniel.wheeler@amd.com>, "Mark
+ Broadworth" <mark.broadworth@amd.com>
+Subject: [PATCH 00/27] DC Patchset for October 15
+Date: Fri, 15 Oct 2021 14:43:05 -0400
+Message-ID: <20211015184332.221091-1-agustin.gutierrez@amd.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211015183845.220831-1-agustin.gutierrez@amd.com>
-References: <20211015183845.220831-1-agustin.gutierrez@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -76,28 +74,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9cfec9c2-cadf-43cf-6554-08d9900b18f6
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4230:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB4230E4A83D7013D2CE87BE22F5B99@CH2PR12MB4230.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2043;
+X-MS-Office365-Filtering-Correlation-Id: 61583640-6c28-48e4-3c21-08d9900bb9b0
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4515:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB451577B4CE1C5109AEA62E64F5B99@DM6PR12MB4515.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YiRk9p2hkC3dz+Z0STlqQ/OL+20+S1x3cW7pATp0LMgqQ+LRHGNtlcIJ/O1QSz/+L+cqlBteG5+wM84JSjhZajDSRPjTdYhTl7ASlUMbX1Md93+ZyFtsQ44v8/6TqAgvfx8qUtp17S2biHH7J611E7kyv+RwICurdtXcJ5g+cVNGBaXkfWCR+lV6l+PZi1igzgbJnTfnKwxW2FscMA/L/0dYgPQsy/EaeyBGwR7ViOO26ZJjABygTe5ou41TuHlvXLMDVOUyKytfGBS2ierTG7sNSt/6gCMU1HjpZxgfF16DV9mlNW5iwn8TYFQpPxEd6DbfAGJfrTMHcLBhZVyPB3kkUB4ykFtcVGaj5r1JVgMh/j6oEejfXFlyrr4G2cI1SAA8CC0ZUBHg7q8GpmDQKwn1hYZzqPxbGMwPm/hgSrBifetPW70CLbeQ94/KXjyOhxFaFeqpxU32cgHcYKpBiMoMAppczvzldr2Iu02BHyxhRxusU91TbRd9jrHotBPCQQj//G6XTDCFfwS3JahAzssjtuJTudtIXbN/2cZwdh/kcg4VLFtyKcN35xwfNpxLG0VWcP6GZk1yh0vbsThXxBuABKJviAd+vnEgaPr1eX5dt57wrXDEXXryWCnyQv3dRfaTKRUr9sgJI6Ik73eQAuHEfzN/8R8t4x7rzeyiqE6EU1jFmM3mg1rQFYAHor2z3BL+3Tv6UynjLsuHIyuQ1MXuXtvGMAVt+eSXFMIhBc8=
+X-Microsoft-Antispam-Message-Info: y126qX+skeikayuxf7dRLWOK5aKbWDiKtaWxFjm00LERlE664p4+Tq5nzh6Z8Z9l0KT3lx3FTxErZviV+HxapLsYeiI6RMYX1Lrq+DhPGU11/CqB0+WvpDrU1Dcmq89yX79efMXuTJxuvaad5kRsjhWgTT7XFibao+60Ely+Foa140+a11+NyPh6JwnWY1zQzC8/V0rP9OpgzWhnK/guDoN4OkdgIWr52fTK9x9hviM6upVfYQA7+nxIoD9lKjFPfgNz61nHF5xdO8THV4KVAN2Zc8B30VoeGC6k6oOjkaZ0OosckIdZ1PAYvmlJOj58eVbdrwv33LnR0UFKrvXs9/i2ZhYGzCIOb/GfUeYguSRux9QK+vVeSn42oJt9HEqDwP76PN/OEuYfSVAyLVc34aTKJ2aBmdCKm/yPk+ANHkPcLA/5nANuAIVghrOb3vXdtYuQEZ99Jc2M71n4RvhHwe9xkPNKdrU3B7lVi4IwQmV9/Q2YRKFkBjGt6tCrsTLOKDsi6Izo6q5Fa39Zjlc5+zUMMNCwH6qmzJcJP5+ZYyZ5MhS0aoxBLqTYSyxQkIE3WTjBw6pjNsLJWsXhYGNo0qH1HttDkzpKiG2HATxfwpvAKB3Cvqn4ymiM6qpLPMxzOnaAsivdnA5ZmkvL4DBQVAr2JEDsPSQpckcw4FHfE04YOEhNIEaZYnHfjZbHm2G++OYCQeiPXgMzUJYsv1QVpy5p//zMDITp2r+u1xQ6UNM=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(426003)(36756003)(81166007)(82310400003)(6916009)(508600001)(2616005)(15650500001)(47076005)(5660300002)(4326008)(336012)(83380400001)(186003)(8676002)(54906003)(70206006)(16526019)(44832011)(1076003)(6666004)(316002)(26005)(356005)(8936002)(86362001)(36860700001)(70586007)(2906002)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(5660300002)(4326008)(82310400003)(2616005)(47076005)(36756003)(426003)(44832011)(356005)(36860700001)(26005)(81166007)(186003)(336012)(16526019)(316002)(508600001)(1076003)(70206006)(8676002)(86362001)(2906002)(83380400001)(6666004)(70586007)(6916009)(54906003)(8936002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 18:39:18.5854 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9cfec9c2-cadf-43cf-6554-08d9900b18f6
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 18:43:48.3276 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61583640-6c28-48e4-3c21-08d9900bb9b0
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT008.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT025.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4230
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4515
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,39 +110,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aric Cyr <aric.cyr@amd.com>
+This DC patchset brings improvements in multiple areas. In summary, we
+highlight:
 
-[Why]
-Calculation of scaling ratio can result in a crash due to zero'd src or
-dst plane rects.
+* Fix some issues such as DP2 problem, prefetch bandwidth calculation
+for DCN3.1 and others.
+* Increased Z9 latency and removed z10 save after dsc disable.
+* Revert a couple of bad changes.
+* Added missing PSR state patch.
 
-[How]
-Validate that src and dst rects are valid before using for scaling
-calculations.
+Cc: Daniel Wheeler <daniel.wheeler@amd.com>
+Cc: Mark Broadworth <mark.broadworth@amd.com>
 
-Reviewed-by: Josip Pavic <Josip.Pavic@amd.com>
-Acked-by: Agustin Gutierrez Sanchez <agustin.gutierrez@amd.com>
-Signed-off-by: Aric Cyr <aric.cyr@amd.com>
----
- drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Agustin Gutierrez (2):
+  Revert "drm/amd/display: Fix error in dmesg at boot"
+  Revert "drm/amd/display: Add helper for blanking all dp displays"
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index 561c10a92bb5..9e83fd54e2ca 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -3009,6 +3009,11 @@ enum dc_status dc_validate_plane(struct dc *dc, const struct dc_plane_state *pla
- {
- 	enum dc_status res = DC_OK;
- 
-+	/* check if surface has invalid dimensions */
-+	if (plane_state->src_rect.width == 0 || plane_state->src_rect.height == 0 ||
-+		plane_state->dst_rect.width == 0 || plane_state->dst_rect.height == 0)
-+		return DC_FAIL_SURFACE_VALIDATE;
-+
- 	/* TODO For now validates pixel format only */
- 	if (dc->res_pool->funcs->validate_plane)
- 		return dc->res_pool->funcs->validate_plane(plane_state, &dc->caps);
+Anthony Koo (2):
+  drm/amd/display: Change initializer to single brace
+  drm/amd/display: [FW Promotion] Release 0.0.88
+
+Aric Cyr (2):
+  drm/amd/display: Validate plane rects before use
+  drm/amd/display: 3.2.157
+
+Eric Yang (1):
+  drm/amd/display: increase Z9 latency to workaround underflow in Z9
+
+Hansen (1):
+  drm/amd/display: Fix DP2 SE and LE SYMCLK selection for B0 PHY
+
+Jake Wang (6):
+  drm/amd/display: Disable dpp root clock when not being used
+  drm/amd/display: Disable dsc root clock when not being used
+  drm/amd/display: Disable dpstreamclk, symclk32_se, and symclk32_le
+  drm/amd/display: Removed z10 save after dsc disable
+  drm/amd/display: Moved dccg init to after bios golden init
+  drm/amd/display: Disable hdmistream and hdmichar clocks
+
+Jimmy Kizito (2):
+  drm/amd/display: Clear encoder assignment for copied streams
+  drm/amd/display: Do not skip link training on DP quick hot plug
+
+Josip Pavic (1):
+  drm/amd/display: do not compare integers of different widths
+
+Lai, Derek (1):
+  drm/amd/display: Removed power down on boot from DCN31
+
+Michael Strauss (1):
+  drm/amd/display: Clean Up VPG Low Mem Power
+
+Mikita Lipski (1):
+  drm/amd/display: Add missing PSR state
+
+Nevenko Stupar (1):
+  drm/amd/display: Add bios parser support for latest firmware_info
+
+Nicholas Kazlauskas (2):
+  drm/amd/display: Fix prefetch bandwidth calculation for DCN3.1
+  drm/amd/display: Require immediate flip support for DCN3.1 planes
+
+Nikola Cornij (2):
+  drm/amd/display: Limit display scaling to up to true 4k for DCN 3.1
+  drm/amd/display: Increase watermark latencies for DCN3.1
+
+Wenjing Liu (2):
+  drm/amd/display: add DP2.0 debug option to set MST_EN for SST stream
+  drm/amd/display: correct apg audio channel enable golden value
+
+ .../drm/amd/display/dc/bios/bios_parser2.c    |  90 ++++++-
+ .../display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c  |  21 +-
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |  10 -
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c |  63 +----
+ .../gpu/drm/amd/display/dc/core/dc_link_ddc.c |   2 +-
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  |  32 +--
+ .../drm/amd/display/dc/core/dc_link_enc_cfg.c |   9 +-
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |   5 +
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   |   4 +
+ drivers/gpu/drm/amd/display/dc/dc.h           |   3 +-
+ drivers/gpu/drm/amd/display/dc/dc_link.h      |   1 -
+ drivers/gpu/drm/amd/display/dc/dc_types.h     |   1 +
+ drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c |   2 +
+ .../display/dc/dce110/dce110_hw_sequencer.c   |  24 +-
+ .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |  49 +++-
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h |  34 ++-
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |   4 +-
+ .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    |  39 ++-
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_apg.c  |   2 +-
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_dccg.c | 237 +++++++++++++++++-
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h |  34 ++-
+ .../drm/amd/display/dc/dcn31/dcn31_hwseq.c    | 114 +++++----
+ .../drm/amd/display/dc/dcn31/dcn31_resource.c |  17 +-
+ .../dc/dml/dcn31/display_mode_vba_31.c        |   6 +-
+ drivers/gpu/drm/amd/display/dc/inc/hw/dccg.h  |   9 +
+ .../gpu/drm/amd/display/dc/inc/link_enc_cfg.h |   2 +-
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |   4 +-
+ .../include/asic_reg/dcn/dcn_3_1_2_offset.h   |   2 +
+ .../include/asic_reg/dcn/dcn_3_1_2_sh_mask.h  |   8 +
+ 29 files changed, 643 insertions(+), 185 deletions(-)
+
 -- 
 2.25.1
 
