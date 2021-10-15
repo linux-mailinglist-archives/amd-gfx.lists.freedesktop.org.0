@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6AF242FB4D
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Oct 2021 20:44:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7346942FB53
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Oct 2021 20:44:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 130956EDDE;
-	Fri, 15 Oct 2021 18:44:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B86806EDED;
+	Fri, 15 Oct 2021 18:44:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2075.outbound.protection.outlook.com [40.107.223.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 763806EDE0
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 18:44:10 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2054.outbound.protection.outlook.com [40.107.237.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A57E96EDEB
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 18:44:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j/Nmw/2Xj0sKapauc5tjPioK2hi6xF1Ecse0MHPwkEsP9XEomvQYSk5oc1DFXk+kgPTJIrl8ByByXjC8GjPPFYNgOoaGtyGuTOHX6Fna8/YyUisWvQdFZh0K5Sga8AASqof08NNWtrsLXJmUzZ6MzjuIrH9/uJre0YpZhqNldg4FeL6axQ5pCKigP67vsae6kGG89eH5k2li8w8pPpuDC/E+Iu/poYEuntia6ixpNsFAlKk8HSFvpP3r0W5T2TWnu789l/40YyYUJmjR2XO5uTHMfyJQ1p/xptmd06vrK+l6+2Iu+a1AmZVfi9QY/skj1TOaIYUI2LKROU+vrIBwLA==
+ b=FtA/Ia+iRwN3BRX8QurjSvPPv30GW8iJM8l6par3oOcZ/2v1HqVx6An8cQB7f2PbycJWSZV4hrUDFGiAYr+jlNfpFSnuOJQpDX32VILL4FjaBu1AnoCmYSyN1r24QaBS6JqLVg6bJDWWN8jPL1xHcuPzgL3nElNevtGCqeDYFmEf53mJuj0pRaK7ZDupuBUv3ABMwThb+zCVvKbXYjqlXHCVkmx1mspvG1Hr/fUVUebdWLx7q9GRNJBrYZrFreq3cww0Y9EZpYR70YWL/GH8OJuoCQEFkBLoT/12rRcfIa73WAeL0Wst0pE3kCrt2/IJZPYOsocBi9BAkR5A6y3Eug==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P6nw4s6KatTgZ4+YD0Pn6f+PGC6trDLHyFwY88weJJo=;
- b=czj4gMU+oDAENc5qmMfoQI43Sq68VrK1VwYiTqGpSeFWaxquQZlrEnwlkPeyquTJ21oZlOSUTcilaMS+3Q0SMn8YimItFggGI1C/ZRpW8AUb2dfSxZiLmRKk6M75b3pdl8b1p1uXrh8Udt55N7ZNutVRwGCWlUqL9QsY6CiY8oBZ9WcC04WalUEDnoPzOnv1LVi+i8oA86zcEQ/FBj5h3HNxfkIu7Nwv8s3Sk0L5z6WV2H0pVVB0c3fcajsV4EGSzyGJPZughAY4K7OHeWBUmfP0vEC4X4k52iBvJO+m4TxL3OOaYRkYgawKNu85I7A2nPlSctjgypI7kGpn60g85w==
+ bh=6dHrcPI/JYWzmdKDsMYbAwXlQ4U4yoIWK1odre3VxbI=;
+ b=HnSMaOmEksDWu05swg7BpX+SZx415n1XAF2gE5HYWVT5XXdugWYTJ6RbgGWhVfRvwFD0vC62f7Fp/lTuNchhc+hBbpiMlcYZVvwow8ufgV+gL4trdNQXpzCgZ4/UQuIRC7RiIulhLyykqO77qIqTwCGsOmrvdKZxI75oACQc8Sz4ctMtD5XRRneInVcfTEBVHc9D+RNuv0Te9bDwHiaiWS1m9ul5ZNtZcb6ZOxwmZcP7oxsSjxXdKihzGEJip5fQgJO2shPenjdXeSPfUdGkxcyiPpbIrsk9i/YjAOmgsbieSDN75RgiFuA0w7wZeBasouPQK4TfMrVXZ2QafOATpA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P6nw4s6KatTgZ4+YD0Pn6f+PGC6trDLHyFwY88weJJo=;
- b=0v9KSyg2FE3UX4mfjXjDqVfnHGwIiqco5S630qoaPeXAW2DQydimNFs1fOXPyr7suQWDeo+FwpZ1pcQw0tR6cwBIBpl55Qvqnc+4vB7BeNmEYxGXnVAwLpuWB5tNwtmSeGSP2APUvqfW3dHIfjAswjNfUopKrNN5cU22ijl2xl8=
-Received: from DS7PR06CA0034.namprd06.prod.outlook.com (2603:10b6:8:54::18) by
- SN6PR12MB2687.namprd12.prod.outlook.com (2603:10b6:805:73::26) with
+ bh=6dHrcPI/JYWzmdKDsMYbAwXlQ4U4yoIWK1odre3VxbI=;
+ b=KEwkGgN0pjsFoKqneo1njmi11s6QpAhN0kvxQoFRoYpB1gewxRRJW/rsXbBycsXYK0GyWMQjgiK/FeaFMpMvv6W6rLONCZdMaf5LObNdNgWFysW3E9OYPcT1lVXHXgyJ8kwpV3r6Qyw8Z5JKjvIfEYKHKze7DhiliLTWE4fbMBk=
+Received: from DS7PR06CA0040.namprd06.prod.outlook.com (2603:10b6:8:54::28) by
+ BN6PR12MB1218.namprd12.prod.outlook.com (2603:10b6:404:1b::7) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4587.25; Fri, 15 Oct 2021 18:44:05 +0000
+ 15.20.4587.25; Fri, 15 Oct 2021 18:44:09 +0000
 Received: from DM6NAM11FT037.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:54:cafe::cf) by DS7PR06CA0034.outlook.office365.com
- (2603:10b6:8:54::18) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:8:54:cafe::8b) by DS7PR06CA0040.outlook.office365.com
+ (2603:10b6:8:54::28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
- Transport; Fri, 15 Oct 2021 18:44:05 +0000
+ Transport; Fri, 15 Oct 2021 18:44:09 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,11 +48,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT037.mail.protection.outlook.com (10.13.172.122) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4608.15 via Frontend Transport; Fri, 15 Oct 2021 18:44:04 +0000
+ 15.20.4608.15 via Frontend Transport; Fri, 15 Oct 2021 18:44:09 +0000
 Received: from ubuntu.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Fri, 15 Oct
- 2021 13:44:03 -0500
+ 2021 13:44:04 -0500
 From: Agustin Gutierrez <agustin.gutierrez@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
@@ -60,12 +60,11 @@ CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
  <stylon.wang@amd.com>, <solomon.chiu@amd.com>, <pavle.kotarac@amd.com>,
- <agustin.gutierrez@amd.com>, Eric Yang <Eric.Yang2@amd.com>, "Nicholas
- Kazlauskas" <Nicholas.Kazlauskas@amd.com>
-Subject: [PATCH 16/27] drm/amd/display: increase Z9 latency to workaround
- underflow in Z9
-Date: Fri, 15 Oct 2021 14:43:21 -0400
-Message-ID: <20211015184332.221091-17-agustin.gutierrez@amd.com>
+ <agustin.gutierrez@amd.com>, Nikola Cornij <nikola.cornij@amd.com>, "Ahmad
+ Othman" <ahmad.othman@amd.com>
+Subject: [PATCH 17/27] drm/amd/display: Increase watermark latencies for DCN3.1
+Date: Fri, 15 Oct 2021 14:43:22 -0400
+Message-ID: <20211015184332.221091-18-agustin.gutierrez@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211015184332.221091-1-agustin.gutierrez@amd.com>
 References: <20211015184332.221091-1-agustin.gutierrez@amd.com>
@@ -77,28 +76,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e99c6c6c-b426-456f-3e97-08d9900bc36b
-X-MS-TrafficTypeDiagnostic: SN6PR12MB2687:
-X-Microsoft-Antispam-PRVS: <SN6PR12MB268708BC896A464BD398C386F5B99@SN6PR12MB2687.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
+X-MS-Office365-Filtering-Correlation-Id: 53ada7d2-e97c-41d8-38a0-08d9900bc627
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1218:
+X-Microsoft-Antispam-PRVS: <BN6PR12MB1218CDF193BFAEA55DFD6AF2F5B99@BN6PR12MB1218.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FUc7K33pVZqtu0cU0DTmd+T50JqFw+tXzwOS6WBcQswXw/FDjpnS/YTkY4v9RqG5pv2elKhE0ilOJsfRgWFg+D2Bed+xiujhD3sIkvPLSuslKRoooj+Odp+5yoOrDs9PHiFGSV4X+HnP2mN+0olbwEITtac0G9MZE6wUvu2dVQl7IzBhkqopt210ACN6VQymqvd1zvbktoqS+wqMfYjFokY7KTEgRftLI68VuvQ+avpSenMcR5kkqE0xiAdJWdrmniqNw+gyaU2WR8rV/3zufS6xfyj3PjZFxavP6x1x90HnguWpZfUUgkEo1QEg+cYyo4dxqtierJ7E/hqvGlV0BRZfT8+N+gMJ+f+dbIdRclBpel4igLYVdnQeG0+vj383Hm/R8U2fn77jDCdpCDNTFEt8uvLefbzR656ADQnNRcDHMMLVxQt6nhVt5ruUV2zuBmqICJ7VHgMVOV/jt16Zoec0nvmncgIqXDMzz7iOQwTjaaf5bcP0jha8facA9fblSsDZr08E/JA6sI4zFfFdDpuS/kkthomZK31yP5VrIlUKyVUD2DovJ3n/y+vCUanxnvLPFLhvbbOwDqAEXkkn9D9anCQVlTPiI5zxqSGkNp1QaVBu0NLZq6/2N/GXG/GAMyFUmZoJau5SnoJuo2WovpELWg/l08gnmZSDQ61YHS5u36VdGPw+fTV4MWMCr9XexAU3szDqKm5HCwXUNMt4erUUG8ifnuqaRZUqmSGhaqU=
+X-Microsoft-Antispam-Message-Info: 2x+L0xqzQ3k+9H5d87kgC5lMJJbo3ybggXDcW+vbmFYX175RbYCk/IWK8c8xwZ9yHdtiG5ad2q+4VwEXPoOngzuNwTrKBAI5oJ3nClg4LD9TJm9cJhfoNT9bjEaKXy5NHDA3DeohH0tldd54uu9tU+EVLYMyufnIkav80WMfbik3K933UtO8PWj40XUSkP2OCNk9BiaZYXY2O34nantMyYh9Fi4s2+WP2qE4BkJmTM24BNUGLdk68xN4uyIyO2V0si3w8PRPEmxq0DNUxd/YIBfXt34gEx/wR7Vq90YRPeMzVj0V1LdTRnRuahfZ066sDvkNIFJLmndnHra4wgtMB8OGZw/8HyRNQ6jyl4PNPPgO7HkfR3ihlv6svLiFvZJPFVISHowDkptfaJR7NWVyDv9q40TBhIb4ORIzyKGJNrUFzkqSfgSQfcs2GDHWeeGPOkTcsr5DqkK1BBTRkLZJBDPtHBJomANGifd4FQ7tyRdmA/VueX9NypcQ0A03pAaD7de+dxTJRhRwuRviQGqL0Y5gjh3KLJowBAbUjsAvV2gS/OHqejqGKccr+LjhVaf4kHBODzNpm1Wm8cUxvDPmvwm83uLtWgJ8G8i/IYmFylaBpb/EhjPeI6YV88F8f7U9hs0SNsnv7obv9uSPdceFJ2nrGL3FZ9PL8f152/O6PkE+WJiRQsMBqXIsqQBc2BaDd09eHh4drvZWxyRJpOzJLnE/HfENhjqdgnK4oayjdfk=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(8936002)(8676002)(70586007)(316002)(356005)(2906002)(83380400001)(26005)(36756003)(36860700001)(508600001)(6666004)(5660300002)(70206006)(54906003)(2616005)(4326008)(44832011)(186003)(16526019)(47076005)(336012)(86362001)(6916009)(426003)(82310400003)(1076003)(81166007)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(5660300002)(4326008)(36756003)(6666004)(1076003)(26005)(54906003)(2616005)(16526019)(70206006)(8676002)(47076005)(44832011)(86362001)(2906002)(186003)(6916009)(316002)(81166007)(508600001)(426003)(356005)(8936002)(36860700001)(336012)(83380400001)(70586007)(82310400003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 18:44:04.6451 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e99c6c6c-b426-456f-3e97-08d9900bc36b
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 18:44:09.2325 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53ada7d2-e97c-41d8-38a0-08d9900bc627
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT037.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2687
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1218
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,35 +112,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Eric Yang <Eric.Yang2@amd.com>
+From: Nikola Cornij <nikola.cornij@amd.com>
 
-[Why]
-Z9 latency is higher than when we originally tuned the watermark
-parameters, causing underflow. Increasing the value until the latency
-issues is resolved.
+[why]
+The original latencies were causing underflow in some modes
 
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+[how]
+Replace with the up-to-date watermark values based on new measurments
+
+Reviewed-by: Ahmad Othman <ahmad.othman@amd.com>
 Acked-by: Agustin Gutierrez Sanchez <agustin.gutierrez@amd.com>
-Signed-off-by: Eric Yang <Eric.Yang2@amd.com>
+Signed-off-by: Nikola Cornij <nikola.cornij@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-index c9d3d691f4c6..12ebd9f8912f 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-@@ -222,8 +222,8 @@ struct _vcs_dpi_soc_bounding_box_st dcn3_1_soc = {
- 	.num_states = 5,
- 	.sr_exit_time_us = 9.0,
- 	.sr_enter_plus_exit_time_us = 11.0,
--	.sr_exit_z8_time_us = 402.0,
--	.sr_enter_plus_exit_z8_time_us = 520.0,
-+	.sr_exit_z8_time_us = 442.0,
-+	.sr_enter_plus_exit_z8_time_us = 560.0,
- 	.writeback_latency_us = 12.0,
- 	.dram_channel_width_bytes = 4,
- 	.round_trip_ping_latency_dcfclk_cycles = 106,
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
+index 3fae1f1f028d..0088dff441da 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
+@@ -371,32 +371,32 @@ static struct wm_table lpddr5_wm_table = {
+ 			.wm_inst = WM_A,
+ 			.wm_type = WM_TYPE_PSTATE_CHG,
+ 			.pstate_latency_us = 11.65333,
+-			.sr_exit_time_us = 5.32,
+-			.sr_enter_plus_exit_time_us = 6.38,
++			.sr_exit_time_us = 11.5,
++			.sr_enter_plus_exit_time_us = 14.5,
+ 			.valid = true,
+ 		},
+ 		{
+ 			.wm_inst = WM_B,
+ 			.wm_type = WM_TYPE_PSTATE_CHG,
+ 			.pstate_latency_us = 11.65333,
+-			.sr_exit_time_us = 9.82,
+-			.sr_enter_plus_exit_time_us = 11.196,
++			.sr_exit_time_us = 11.5,
++			.sr_enter_plus_exit_time_us = 14.5,
+ 			.valid = true,
+ 		},
+ 		{
+ 			.wm_inst = WM_C,
+ 			.wm_type = WM_TYPE_PSTATE_CHG,
+ 			.pstate_latency_us = 11.65333,
+-			.sr_exit_time_us = 9.89,
+-			.sr_enter_plus_exit_time_us = 11.24,
++			.sr_exit_time_us = 11.5,
++			.sr_enter_plus_exit_time_us = 14.5,
+ 			.valid = true,
+ 		},
+ 		{
+ 			.wm_inst = WM_D,
+ 			.wm_type = WM_TYPE_PSTATE_CHG,
+ 			.pstate_latency_us = 11.65333,
+-			.sr_exit_time_us = 9.748,
+-			.sr_enter_plus_exit_time_us = 11.102,
++			.sr_exit_time_us = 11.5,
++			.sr_enter_plus_exit_time_us = 14.5,
+ 			.valid = true,
+ 		},
+ 	}
 -- 
 2.25.1
 
