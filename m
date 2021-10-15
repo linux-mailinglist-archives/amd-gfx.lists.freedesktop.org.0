@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B037A42FB48
-	for <lists+amd-gfx@lfdr.de>; Fri, 15 Oct 2021 20:44:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C06242FB4A
+	for <lists+amd-gfx@lfdr.de>; Fri, 15 Oct 2021 20:44:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A81466EDCC;
-	Fri, 15 Oct 2021 18:44:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 472116EDCE;
+	Fri, 15 Oct 2021 18:44:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2062.outbound.protection.outlook.com [40.107.223.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14C126EDCC
- for <amd-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 18:44:04 +0000 (UTC)
+ (mail-dm6nam11on2058.outbound.protection.outlook.com [40.107.223.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5745D6EDCE
+ for <amd-gfx@lists.freedesktop.org>; Fri, 15 Oct 2021 18:44:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dYwIsQUDUaSaZ281EQQQMVjwuu4Ktz5HwKQ51A2O7VJGtYPXFpH6vx8iz2qmDwtdAI5njU3nNzGXtjPEBoBGD2ofVYw/q7n4wZpRgnoetlK/DhwF/KLYFJpV6RG1QuctiVyUNcaHiaaG/Ql72htsiemVDhM7LIuJIdfKKHvOs0w/HKBZ+oBeO7/10nCZIcTKIbkO5Bn8lZSERC5yUuGOQ7LfNaV0EKzL1pP8NrRFp97R9qLWeSVgwXgrsBRYRdf3/V8b7N6mz1Z8BlQvq7aucHi6PbjuvVs0fArmZ8a6MuSbrRM3AYoyWyvZqvMRPXRF9rywkkr3ZmLZoSKiJjWviA==
+ b=BqPKZ7jE2GZbJJSz/3SSPsDc58mANG8pC9V05yku9p6t0LArudlqurvQFsDrxeAgJj4XsOk5LOFsacqeDfw/IKWR4eKRc7ECkP09xTadrXpFd9O6k1bl6GrGXGHILdcwWDwUeITFXrwajCKzLGP8eqr7MNiwKP7VlnFAOU07NKTsYNAYWfouaiYwYhkkW9+jBVhndLqPt0cu2mKX0FYO4WHfTwVp5R5HwCjEuUIeDzypnhzVhDmMlm+JIJTVkCdUywQjdUR6aCeQ7MNM0zKTyiS0RYMbOOoeLQ3K3XHQrkc7RSeWwCNXqqpzHrbqfxrfNYPYUtXddr5ppEP0d64Ukg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=b+Gy5Z+LEMjeeri2eQSSaL84Kxh2teFUiHar6EDPKps=;
- b=IQVUm3qN/YIsLJxzuT3ZZCstx1bvWH8Y14BimFS+W5SmeA0osUhqSe6JND+mhbofFntE5TRcVK/M90ytSuEmPqg+OIEhYpx1NX0+TF5FqT2AMsLyajjrnZnQvz6BIwx9XNyJvdRmHmJ7T964b0rV4uPqkw1PZYKsMkzNh/Qu1L21KoxbpukN0FZVbGxvpP+kiYF5MAEgs5jH8ouggD8tGRiDEQJFYFztw7cNqf4+3f17wmoTeTLElW1kvIR0mozrZMm1XS2+XeeZYKiBd0OBU0rTGqouXgtZWRq/XvbAabcqcEeFtRACmjrDDYkzZbadfQ+6j9Ytyg3Gcqx+fXvPAw==
+ bh=G4FfV68Jri9hxHoS4KBthZj6h32wFkvz2b/1KfFZi/Y=;
+ b=dciaWqYNNOaJlANthv4pW4g3t+mo+W3oSiOWljVENYkq5j/Edyx9yeB9nT6inO/jCjdBe5ND5WA8OvsjM0IF64pApaF1wvXIPsouHEzVrg6PYp1Q2Larci6HuIQb5Swc6QmBYWt+I6Pn5iYa4U8b1HPORrwYFqlEOg7c0FSL2hPLmVAsiiMFl/m6c2TeKn+DwUl9JThiJZ8O67g+p8BuXNJdR7zu0NEmPluVY/mW46kjGvnTybL1m8gs9Cj5DLNPOlrZGOcD2KDD8zG4l+arbjVqLwvN9TCenfDPGOS9O/vgR8Xdoh75rcTi5xgPZuy6xvdylabQy+6c+5ZWqUnVnQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b+Gy5Z+LEMjeeri2eQSSaL84Kxh2teFUiHar6EDPKps=;
- b=jKzUqTFRF9wo88itUkEIQ8GB+zGY+2mLNzrduCVP/b3O9ch/eQkhv9gK771vVT81DjcG7VAyuzzt1XvDKPMmVmkgpCaRKtM7lefI/7LzaMCOJx3BCL8NhO8lWi7ZzRm36TPi4GHyVVjhwuG4qb4dIr2vATERPDtrYjyJPRXLK+k=
-Received: from DM6PR08CA0003.namprd08.prod.outlook.com (2603:10b6:5:80::16) by
- BY5PR12MB4225.namprd12.prod.outlook.com (2603:10b6:a03:211::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Fri, 15 Oct
- 2021 18:44:01 +0000
+ bh=G4FfV68Jri9hxHoS4KBthZj6h32wFkvz2b/1KfFZi/Y=;
+ b=EzrKcCFNE9MGZfuiRz5DhewEt3X2NZzLnaMSslboi2jOEE4bXH117+4y9aAnRFyM9UgPD1JpN1BwMORsG1Z9neLurve2RvbD7vo2lWJ1eWhpuv/TOIwW0A2tDrI7Ska/0h2jCof+lMeFCMDbnwrTNwifJLPt1XcUJna7kZDxCGs=
+Received: from DM6PR08CA0001.namprd08.prod.outlook.com (2603:10b6:5:80::14) by
+ CY4PR12MB1494.namprd12.prod.outlook.com (2603:10b6:910:f::22) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4608.16; Fri, 15 Oct 2021 18:44:01 +0000
 Received: from DM6NAM11FT063.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:80:cafe::44) by DM6PR08CA0003.outlook.office365.com
- (2603:10b6:5:80::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
+ (2603:10b6:5:80:cafe::c8) by DM6PR08CA0001.outlook.office365.com
+ (2603:10b6:5:80::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16 via Frontend
  Transport; Fri, 15 Oct 2021 18:44:01 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
@@ -48,11 +48,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT063.mail.protection.outlook.com (10.13.172.219) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4608.15 via Frontend Transport; Fri, 15 Oct 2021 18:44:00 +0000
+ 15.20.4608.15 via Frontend Transport; Fri, 15 Oct 2021 18:44:01 +0000
 Received: from ubuntu.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Fri, 15 Oct
- 2021 13:43:58 -0500
+ 2021 13:43:59 -0500
 From: Agustin Gutierrez <agustin.gutierrez@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
@@ -60,13 +60,10 @@ CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
  <stylon.wang@amd.com>, <solomon.chiu@amd.com>, <pavle.kotarac@amd.com>,
- <agustin.gutierrez@amd.com>, Nicholas Kazlauskas
- <nicholas.kazlauskas@amd.com>, Dmytro Laktyushkin
- <Dmytro.Laktyushkin@amd.com>
-Subject: [PATCH 12/27] drm/amd/display: Fix prefetch bandwidth calculation for
- DCN3.1
-Date: Fri, 15 Oct 2021 14:43:17 -0400
-Message-ID: <20211015184332.221091-13-agustin.gutierrez@amd.com>
+ <agustin.gutierrez@amd.com>, Wyatt Wood <Wyatt.Wood@amd.com>
+Subject: [PATCH 13/27] drm/amd/display: Add missing PSR state
+Date: Fri, 15 Oct 2021 14:43:18 -0400
+Message-ID: <20211015184332.221091-14-agustin.gutierrez@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211015184332.221091-1-agustin.gutierrez@amd.com>
 References: <20211015184332.221091-1-agustin.gutierrez@amd.com>
@@ -78,28 +75,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 58c1316a-9576-4b2d-6a40-08d9900bc0ff
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4225:
-X-Microsoft-Antispam-PRVS: <BY5PR12MB422592640FFC8FF5B6964E94F5B99@BY5PR12MB4225.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
+X-MS-Office365-Filtering-Correlation-Id: ff3a2255-7056-491d-60d2-08d9900bc184
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1494:
+X-Microsoft-Antispam-PRVS: <CY4PR12MB1494C63A05F3348EC769A521F5B99@CY4PR12MB1494.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3383;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3R/9J47W93SowZovF/OyZ1n8MfK4ZxvKpZIvjGgsWRHbldrsYZ50QHs85M9JGisXfkTAhrP3gCVLA0rObN+NLbIXg0iGG1XunaIGg5QPP0EgMsaVW45nZH3tsMyTHCoO6XqecOGJ+NG3HNI/pfXTphKX41WKcbVl36w23Lu2HX7jUVQE1ixKmT5tLW3AFkOMKPWsSjkkO+G2eBW9fdL8ouR6xA0mvQYPPTD8znQHf5soLXA2SIPYCoq5I/WwCqbimFLGXe4gDbi5saiih+R54aSmHRTrFnlJG0OQXDTRynHBj/eJ/VbUSP4bkmYmk0aVmlSQkhum4sAbF0fwBjtx8n0PfXxJiLizeVYQL/MfokDKbc11nfQ3psq+0UnRnDwfjP7DnMOmMTLq5i7hF4kV7aokjggkLJqq5ikR/EjLOiO/L7Y3ZasIuMnngrYZFG4PVmkgbohVkwi+CEoNe7NelmPzbF1RWUS19YYO2lREwre2LXv393XUv34xuez+XenO9HKjMdgzt0X1b4ZlKviet55bS6VmA1XtUkeSxMZnP8hRVK745DHY1aSEw8POGnRwhOJV+N2LxTJ/L1TUB3JXSR9Rvlu297ZXLFgEc2RE9gVp7FqoiQoT8YPyY13fBicqnXhLrFuSWTCBAw8DRJbdYsmXIxfh6xN2Aje02PTqIW/y7wW78Qy7nkvFG8/yNd1D0/WmeMJOhih+URSo7EkIKDGzDP2vH2Sgsopf++aX/AaNg1At1/P+A/H/DlwTCU+4
+X-Microsoft-Antispam-Message-Info: /rLspu/vXdE8PvT5ljnxBPVaGRdg05eQL/5UrJaR6h6LtmD59uCM2mj2jUCZDa8PvbFLePJMa9txA/sOmFiG78yN2e5j+RnVAWopgvQtJD3X9sGvlVR5teUFUDx6d6P6W8hkNuCclRmp8q4qRVAE3BGnqEpXIjtx8tewG0SbjCLodVnsz11iaL1EC+X2Ne7bp5/EDroZsYA2oKu1W8oFWTuFLEepqgdilWKDKk3z75ULG/6f9oZYUNKzUmJcOM7jfspHjTuttq05+653xhsrA8rrOVw4WQzfJymgd27x4quZ23t5PmITrOy3dFvgaNtOBUD64rOPXjrMJWnpTSSPlvA6QRhkylG59zu0IZVQFPyLTUHDAFCO2C+XMNQWM3x1VVLQO3nwqSCJ1GU94iTOQB5kr07UBHA78Fv7OhcXVR8wBEBWRudAOzI03XpxSgdK2tLvR9ZcnM3Tt7gcTm43Lz0Hqd5fPolQsqysgjz3kQUetnQWs8GVdOSrq+EBk/V9aQVukE0s5cvcrwe3ub3EeD2HEZhP8SJc4xxbDpw1JEx9gcMy9O5cGARukoLkL52v+kfdu+J7GESdl5SXO4Pt4tnP8zA4073Ov3hL0K84zAVhSqrO1SrNZ3Qoh3Vu/+Mglq11FWsz+4oH+e9h4QwL9Vf4R3MzQx1fjOmb/xXgFZVhOCt9mSox1iwUSgefJNIyx4APbdiiZ5XuELziLsc+l87fJB83z/IIVTN2ykQ1lfA=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(2616005)(82310400003)(4326008)(47076005)(8676002)(1076003)(8936002)(44832011)(6916009)(6666004)(2906002)(83380400001)(36756003)(36860700001)(508600001)(5660300002)(336012)(316002)(54906003)(356005)(70206006)(16526019)(186003)(81166007)(426003)(26005)(86362001)(70586007)(36900700001)(44824005);
+ SFS:(4636009)(36840700001)(46966006)(36756003)(44832011)(82310400003)(1076003)(426003)(47076005)(81166007)(356005)(336012)(36860700001)(2616005)(54906003)(70586007)(6666004)(5660300002)(86362001)(16526019)(186003)(4326008)(26005)(316002)(70206006)(8676002)(2906002)(8936002)(6916009)(508600001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 18:44:00.5816 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 58c1316a-9576-4b2d-6a40-08d9900bc0ff
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 18:44:01.4545 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ff3a2255-7056-491d-60d2-08d9900bc184
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT063.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4225
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1494
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,41 +111,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+From: Mikita Lipski <mikita.lipski@amd.com>
 
-[Why]
-Prefetch BW calculated is lower than the DML reference because of a
-porting error that's excluding cursor and row bandwidth from the
-pixel data bandwidth.
+[why]
+PSR_STATE2b was introduced on DMCUB side, but not on the driver side,
+which caused convert_psr_state helper function to return
+PSR_STATE_INVALID. That caused visual lagging during state transition.
 
-[How]
-Change the dml_max4 to dml_max3 and include cursor and row bandwidth
-in the same calculation as the rest of the pixel data during vactive.
+[how]
+Add PSR_STATE2b to dc_psr_state and convert_psr_state
 
-Reviewed-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+Reviewed-by: Wyatt Wood <Wyatt.Wood@amd.com>
 Acked-by: Agustin Gutierrez Sanchez <agustin.gutierrez@amd.com>
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Signed-off-by: Mikita Lipski <mikita.lipski@amd.com>
 ---
- .../gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c  | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc_types.h     | 1 +
+ drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c | 2 ++
+ 2 files changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
-index ce55c9caf9a2..d58925cff420 100644
---- a/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
-+++ b/drivers/gpu/drm/amd/display/dc/dml/dcn31/display_mode_vba_31.c
-@@ -5398,9 +5398,9 @@ void dml31_ModeSupportAndSystemConfigurationFull(struct display_mode_lib *mode_l
- 
- 					v->MaximumReadBandwidthWithPrefetch =
- 							v->MaximumReadBandwidthWithPrefetch
--									+ dml_max4(
--											v->VActivePixelBandwidth[i][j][k],
--											v->VActiveCursorBandwidth[i][j][k]
-+									+ dml_max3(
-+											v->VActivePixelBandwidth[i][j][k]
-+													+ v->VActiveCursorBandwidth[i][j][k]
- 													+ v->NoOfDPP[i][j][k]
- 															* (v->meta_row_bandwidth[i][j][k]
- 																	+ v->dpte_row_bandwidth[i][j][k]),
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
+index 15c353c389d8..388457ffc0a8 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_types.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
+@@ -653,6 +653,7 @@ enum dc_psr_state {
+ 	PSR_STATE1a,
+ 	PSR_STATE2,
+ 	PSR_STATE2a,
++	PSR_STATE2b,
+ 	PSR_STATE3,
+ 	PSR_STATE3Init,
+ 	PSR_STATE4,
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+index aa8403bc4c83..05d96ca80512 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+@@ -50,6 +50,8 @@ static enum dc_psr_state convert_psr_state(uint32_t raw_state)
+ 		state = PSR_STATE2;
+ 	else if (raw_state == 0x21)
+ 		state = PSR_STATE2a;
++	else if (raw_state == 0x22)
++		state = PSR_STATE2b;
+ 	else if (raw_state == 0x30)
+ 		state = PSR_STATE3;
+ 	else if (raw_state == 0x31)
 -- 
 2.25.1
 
