@@ -2,35 +2,37 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0454A430866
-	for <lists+amd-gfx@lfdr.de>; Sun, 17 Oct 2021 13:35:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B144430864
+	for <lists+amd-gfx@lfdr.de>; Sun, 17 Oct 2021 13:35:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B997C6E7D9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7339A6E7D7;
 	Sun, 17 Oct 2021 11:35:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from msg-1.mailo.com (msg-1.mailo.com [213.182.54.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E5296E7D7
+Received: from msg-6.mailo.com (ip-16.mailobj.net [213.182.54.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94DA56E5CE
  for <amd-gfx@lists.freedesktop.org>; Sun, 17 Oct 2021 11:35:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
- t=1634470503; bh=LVcmEa0vrkSBhcYNxojfgIPVMwkXJfQgc1SBCfA4BAY=;
- h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:
- MIME-Version:Content-Transfer-Encoding;
- b=ds0ULEYm/av2+icVt/aocronkOXWUxzBvgPomtDNHxZVGIanGIjm6pEMkrOIwyoKY
- id5PBP0aZF+Rhkh88xs5oAqUNoUqsJSL4APjIi9OMESZSvwmL+/Twn0aBQNsQ3vj+3
- TL0BJJT1Ce1N69olofN+YD4Qu7N0VxJgg/WlzAAg=
+ t=1634470504; bh=EtfTag/lzGZNGrVyTX4S3mF4ua7TstPpVcjEL9nAkcg=;
+ h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
+ References:MIME-Version:Content-Transfer-Encoding;
+ b=qCs8WdlGIUqC1O13tZCnsZ/M4lM5qAvBby+C2dZCL/Kqez8Y0yjFqMPNj8oKphvmZ
+ I6bB+8sdg0pudHSy15gTK9H+7ErDT1wXjGKRh/kGWTKEJgTzTxKEB2+9YBNNhvyZS0
+ Ln/GjG3skRdxXixhXKnFwER3MZrFfEI8JXge8Sos=
 Received: by b-2.in.mailobj.net [192.168.90.12] with ESMTP
  via ip-206.mailobj.net [213.182.55.206]
- Sun, 17 Oct 2021 13:35:03 +0200 (CEST)
-X-EA-Auth: jZVVlCcK5PK+GxUBt2PaJW78B4RHnvs1e7N+UJo74NNqt5sFepUBEwy8u9d91Vy3K04XtKzx93YwkBmEP9sSQjvGL7RZmwzi
+ Sun, 17 Oct 2021 13:35:04 +0200 (CEST)
+X-EA-Auth: zyApk6WpY+DjJf1Ui2SmnmBx82MWelFRPuFCWb6snAVYOM6hMpDuctrtBem2WR1aXhsoYqPue3D0AC4d7JtChyxdPVC2qxzI
 From: Claudio Suarez <cssk@net-c.es>
 To: amd-gfx@lists.freedesktop.org
 Cc: Claudio Suarez <cssk@net-c.es>
-Subject: [PATCH 0/3] drm/amdgpu replace drm_detect_hdmi_monitor() with
- drm_display_info.is_hdmi
-Date: Sun, 17 Oct 2021 13:34:57 +0200
-Message-Id: <20211017113500.7033-1-cssk@net-c.es>
+Subject: [PATCH 1/3] drm/amdgpu: update drm_display_info correctly when the
+ edid is read
+Date: Sun, 17 Oct 2021 13:34:58 +0200
+Message-Id: <20211017113500.7033-2-cssk@net-c.es>
 X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211017113500.7033-1-cssk@net-c.es>
+References: <20211017113500.7033-1-cssk@net-c.es>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
@@ -47,38 +49,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+drm_display_info is updated by drm_get_edid() or
+drm_connector_update_edid_property(). In the amdgpu driver it is almost
+always updated when the edid is read in amdgpu_connector_get_edid(),
+but not always.  Change amdgpu_connector_get_edid() and
+amdgpu_connector_free_edid() to keep drm_display_info updated.
 
-From the TODO list Documentation/gpu/todo.rst
------------------------
-Once EDID is parsed, the monitor HDMI support information is available through
-drm_display_info.is_hdmi. Many drivers still call drm_detect_hdmi_monitor() to
-retrieve the same information, which is less efficient.
+Signed-off-by: Claudio Suarez <cssk@net-c.es>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c    | 5 ++++-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +--
+ 2 files changed, 5 insertions(+), 3 deletions(-)
 
-Audit each individual driver calling drm_detect_hdmi_monitor() and switch to
-drm_display_info.is_hdmi if applicable.
------------------------
-The task is divided in three small patches. The last patch depends on the
-first one.
-
-
-
-Claudio Suarez (3):
-  drm/amdgpu: update drm_display_info correctly when the edid is read
-  drm/amdgpu: use drm_edid_get_monitor_name() instead of duplicating the
-    code
-  drm/amdgpu: replace drm_detect_hdmi_monitor() with
-    drm_display_info.is_hdmi
-
- .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    | 17 +++++----
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_encoders.c  |  4 +-
- .../gpu/drm/amd/amdgpu/atombios_encoders.c    |  6 +--
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  3 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 37 +++++--------------
- drivers/gpu/drm/amd/display/dc/core/dc.c      |  2 +-
- drivers/gpu/drm/amd/display/dc/dm_helpers.h   |  2 +-
- 8 files changed, 29 insertions(+), 44 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+index b9c11c2b2885..647aecee1185 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+@@ -315,8 +315,10 @@ static void amdgpu_connector_get_edid(struct drm_connector *connector)
+ 	if (!amdgpu_connector->edid) {
+ 		/* some laptops provide a hardcoded edid in rom for LCDs */
+ 		if (((connector->connector_type == DRM_MODE_CONNECTOR_LVDS) ||
+-		     (connector->connector_type == DRM_MODE_CONNECTOR_eDP)))
++		     (connector->connector_type == DRM_MODE_CONNECTOR_eDP))) {
+ 			amdgpu_connector->edid = amdgpu_connector_get_hardcoded_edid(adev);
++			drm_connector_update_edid_property(connector, amdgpu_connector->edid);
++		}
+ 	}
+ }
+ 
+@@ -326,6 +328,7 @@ static void amdgpu_connector_free_edid(struct drm_connector *connector)
+ 
+ 	kfree(amdgpu_connector->edid);
+ 	amdgpu_connector->edid = NULL;
++	drm_connector_update_edid_property(connector, NULL);
+ }
+ 
+ static int amdgpu_connector_ddc_get_modes(struct drm_connector *connector)
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 1ea31dcc7a8b..02ecd216a556 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -2583,13 +2583,12 @@ void amdgpu_dm_update_connector_after_detect(
+ 			aconnector->edid =
+ 				(struct edid *)sink->dc_edid.raw_edid;
+ 
+-			drm_connector_update_edid_property(connector,
+-							   aconnector->edid);
+ 			if (aconnector->dc_link->aux_mode)
+ 				drm_dp_cec_set_edid(&aconnector->dm_dp_aux.aux,
+ 						    aconnector->edid);
+ 		}
+ 
++		drm_connector_update_edid_property(connector, aconnector->edid);
+ 		amdgpu_dm_update_freesync_caps(connector, aconnector->edid);
+ 		update_connector_ext_caps(aconnector);
+ 	} else {
 -- 
 2.33.0
 
