@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2BB6432A6C
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Oct 2021 01:49:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2FDB432A73
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Oct 2021 01:49:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC6856EAAE;
-	Mon, 18 Oct 2021 23:49:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 947B86EAB5;
+	Mon, 18 Oct 2021 23:49:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2052.outbound.protection.outlook.com [40.107.93.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA2936EAAE
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 23:49:33 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2042.outbound.protection.outlook.com [40.107.244.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D361B6EAB5
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 23:49:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hdvIyEQHSy3pfVo6yfKTE6a4imsUSmjZRE0ORT3iTIIlam+8zZn4PxlKuUVftM28sANRBkiOI+OIpzvlu8eIv5ulhBt1gWy/INs8mXvPKBBM768LUVATJlnTnZToUo6YrO+fMPr8WPHg3gxR+Fd0AdUEReo0wChJq2jGXziYqmI26Qw5NkeqxM8mkjYOs1J65kIqv0taXEF9AYyVvY2kPULDoIzjvhUaGwalY7ijRsfj0VUllETqPstey5myIS0d2lZkU8bd6L3mvYrKumwR6+1UGnZ9WCHAD60w/uWZfu0f2pZS0UN7U9Ao9wTxIYcAZ4KQZhDzhmXbElRI3bOXag==
+ b=JkzZ6e7N1ahBjCDrAksUlPXUe74Ddod8bQYDs7mUTPBBDu1jS9wq2YWw/77L51UKFOTjJx1gU0ciSSoSk2G7SiFoSBf4g4ru454bGFtZu1IrFoV3lU16y1yT+4NJa1fmEwmXoNHID5pLctnSawUWG12ka7nFzN3ZG/d7kzWA+JJehtGc76bNyqKj0w7j45JnAAirlirEB4si8FXK92y+qNfesg6UM4DKR3R+YqoT/YOFDPSqzMkRyhfLN7flDTqv95q+kHq9cFojztG+JD2JvA2mqxJTHT32tKTIQQyao4LQHv+2rNDb5z6tEWraG5xfTvyQ3+dj92UUYClVXPV9lA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g8LyCHXCBMZ1xUUsMo3tMcPrNr56lmLqWXzTytCttHM=;
- b=mzLYq3dyviwaRlfFiS/o9YUMzOkAv9Ow+xM/QXgrANtaFoaUA8N5Qotsl3qwEKydH6cmXnpVyDGmKWrZfN3Fli1tQgg2XBiHSTO7Kwm2Q/E8P8OwooSdbCc/FMNOOemshktlofqhpSgtAH0loC9O43caJ/ahiXVrdVMovnRpMdiiGe+j507Bx6a1NfHtrJFIZwoRGmID8My2Y8b8SxWrYp13vmsCI5qfoT0O+/biSC4TRuXy/3rulbdT8lqGMPC77+QhQhYr1vfB6p5id1g3NLZGo+kTefvr0yMPju+SPHsCZb3FLpM6RDU9Zy6D36q+jy7oVx1CQqQ/X8CIYbZiHg==
+ bh=7b3pVjcNy278O64Hkedl0GRLT3wWf9iX9PJporhw7yE=;
+ b=I8KzNIXo0Ox9973g7ju2Sdud5Gk7XNEYHhSMcxG/LS7GzeShLEYq1uu1nK2k0mbanAdubEFxvj/E5fONkdAyWBvObfogizv9HkS05siacFNBjk4rbsPNl2rISNqoycujseXFzc7iHI9Q8ycoJyV9fZF+ey5KuZ68ZJmFyr8tN/lE0XR5+EfV99NJf3LjgY2vLrUfTXNIno4W4yTFhEbhgbXJq48vF9Sn6KW274Zd6QP47ltjILGS7S4bq3WCiyAgh9b2EM+EG817AVk1XaJBYJ9lkT1989cmfHbbsRHHMAkPPEsMQjBVMxhhLq7gIXzKPECddx1i7Fd4vj7qlabddQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g8LyCHXCBMZ1xUUsMo3tMcPrNr56lmLqWXzTytCttHM=;
- b=s2+SYG6htD8Ac+GaSQgPcQle5gYem1cFggwQ5zHmIqXPXR3NldWUfN03vi8145a0F8615xZtkD7/+D+fjO6HQA50DTz5grsgxAitNpupQHsvZKbVrR7Nl8JPvYhcR9XKek/GONBHPvczEegPRHZgNYA/8d7OjZgQW6eKuzk2CWs=
-Received: from MW4PR04CA0342.namprd04.prod.outlook.com (2603:10b6:303:8a::17)
- by DM6PR12MB2746.namprd12.prod.outlook.com (2603:10b6:5:41::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.17; Mon, 18 Oct
- 2021 23:49:30 +0000
-Received: from CO1NAM11FT031.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8a:cafe::55) by MW4PR04CA0342.outlook.office365.com
- (2603:10b6:303:8a::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16 via Frontend
- Transport; Mon, 18 Oct 2021 23:49:30 +0000
+ bh=7b3pVjcNy278O64Hkedl0GRLT3wWf9iX9PJporhw7yE=;
+ b=GTSh8vd1XCLyMz8mUaEKGQ0Ub1FZXyHHa0WwvzG9yQcLJSLmxk1K/y/paumpd4aufA9met6Mp9G5/Y4ieo54jg7Iuk2VbysDlVowNGWYrrllaLu+iQPzWI42vGy5xr1y79ZLsw1cdq9hgOZ5cE25jfA/oiUbbxmoMe0kKYJyQA0=
+Received: from MWHPR2001CA0015.namprd20.prod.outlook.com
+ (2603:10b6:301:15::25) by BN6PR12MB1300.namprd12.prod.outlook.com
+ (2603:10b6:404:1a::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.18; Mon, 18 Oct
+ 2021 23:49:31 +0000
+Received: from CO1NAM11FT052.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:301:15:cafe::5a) by MWHPR2001CA0015.outlook.office365.com
+ (2603:10b6:301:15::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
+ Transport; Mon, 18 Oct 2021 23:49:31 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,7 +46,7 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT031.mail.protection.outlook.com (10.13.174.118) with Microsoft SMTP
+ CO1NAM11FT052.mail.protection.outlook.com (10.13.174.225) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.4608.15 via Frontend Transport; Mon, 18 Oct 2021 23:49:30 +0000
 Received: from localhost.amd.com (10.180.168.240) by SATLEXMB04.amd.com
@@ -56,10 +56,10 @@ Received: from localhost.amd.com (10.180.168.240) by SATLEXMB04.amd.com
 From: Luben Tuikov <luben.tuikov@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: Luben Tuikov <luben.tuikov@amd.com>, Alex Deucher
- <Alexander.Deucher@amd.com>, Paul Menzel <pmenzel@molgen.mpg.de>
-Subject: [PATCH 1/5] drm/amd/pm: Rename a couple of functions (v3)
-Date: Mon, 18 Oct 2021 19:49:09 -0400
-Message-ID: <20211018234913.42349-2-luben.tuikov@amd.com>
+ <Alexander.Deucher@amd.com>
+Subject: [PATCH 2/5] drm/amd/pm: Rename cur_value to curr_value
+Date: Mon, 18 Oct 2021 19:49:10 -0400
+Message-ID: <20211018234913.42349-3-luben.tuikov@amd.com>
 X-Mailer: git-send-email 2.33.1.558.g2bd2f258f4
 In-Reply-To: <20211018234913.42349-1-luben.tuikov@amd.com>
 References: <20211018234913.42349-1-luben.tuikov@amd.com>
@@ -71,28 +71,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b123309e-9028-4030-9190-08d99291edc7
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2746:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB27462D00182EC2A79039E0D699BC9@DM6PR12MB2746.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:330;
+X-MS-Office365-Filtering-Correlation-Id: dbb5f5a2-0d31-468b-0aec-08d99291ee03
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1300:
+X-Microsoft-Antispam-PRVS: <BN6PR12MB1300D872E37AE63A861B88A599BC9@BN6PR12MB1300.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:462;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OygUuB4bua20CL8eHV3o5uUzbHIa2m+ABjJor4ylEzNfgZej4zoEo/3ueXXAF31KBnzq6zy5DouUTdtc9d8g8nyCdzRxouafHvxf6lyVhtix5sfmhcCNl4s23I9mGYGvbX7HozRqcY3NiJOK7kcLGzaqkCF4QhO41myjTM7+qgwXeMOgkfE9KMOk2jdHX8oRV98LTtPR6v8SDrW+y2MTZKe+IoOvq79zDHGi6y5qYj9mJxwLJ3eLfR2ks9VSjpsGPHDnsaiRf0GTIPEYnQPhFSWhpktfHK1MGc20B8j319EDE/BQNF0YaZ8sWnET/E6MCQVyvHBRvgo5WZ2nmK4QDTzFBfKs8GOYQ0RNfqQ0mW03GPXww6xEBNH8oNjIQEJIyke7nmAKGrtEbvI9VjD8ghoKRJoI2VMRrCQmeOVXYQJL6MS21nuL69fBrktXJQcQUUt1gvkloankTh/a2w1c9hZRHi+LoQqvU9cU2zBlAFe6fZuvhjs907owAv30JF/VGEVxuWrh4+6raa6Yt8X0jhRndUyvtrwMYZHvgguTb9ZxvKKD/jWebrUunmvbzDpm/S+9vsw+efHa7mcS/QyZvSqPcYJL2FD4hVEo0caw6BbemF93PmxqWyvFRc1qaCAnoUNY677xiJOJospe4OVOMeZ7blXCXdjUzjDeVrda+i++Dnn9hO+b/5eaSacC9RWCB23QM2EDNgCmZSFP4f1fhl2v6Trgadh1UBSWNVeWWRw=
+X-Microsoft-Antispam-Message-Info: V9W+/uXwoAMbpk24fzP+1CtWaztbWNVGpTYv8FwOzVQsl7XzcssKa7y6oq+D/u8DD5P5RlvikKttAbacbfySqZ/ia1MUYBVPm0+bUiU212qRU1xZ714nHRg3TNBdlLpQtHcb2bGEsKwXJK8B0Ona7EpFHJY+rxQQOGIhGgv1n5KvG+sw1onRql4n6R8CIrxaXEEYppoMZw8enbK9hGdQaz+kfyDlw+3SKz8g5J+AsBCUlkZQdEyjgp9QMNcbKMv8c5LkqH8g1kkEfoNrDhefXGePXvbSPjox/F7xW4vuGQUfx+KoW8qL3I3w734nTnVwsean6YrqA2cy4T0NfX3b5ooUDtiu8fVa/KFUO8SAaT5p5YMFvHuByIlCoKU+03gq252Ou9ZDrur+rEnnoiCAqD/+u6YzXrQIoxqQerk4INh2BTggyKzdhaGzyqf1uHQ/thzFr8umNFZHOZWjvPSwnugZjETb6g26ir/LeBRjgihg0YkfYN7+EeIvE70DxQBz2aieygUPSj0uqSXUGf2sa3mt1qcu+l0bmXDWlt7O8u1NvBxkJF2E4eiZaagkH+qD7i/krl9aCWMfyb03CCSvAC7rw8CKPv1Kb7Wxbf5+usX2FSAFXYAM+KI7SQP/y6xbefMUWTrizC9nrJ4DHZMJl6x6s6B63P8E9+wKWgFwVAGI50afoxlkcxwA2IqZnS28tgYuWQ9mx6L1R9pwN3/RWhE2NhxfFDrM+uQjKnBPehc=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(1076003)(2906002)(36860700001)(26005)(336012)(81166007)(47076005)(8676002)(356005)(36756003)(6666004)(186003)(16526019)(2616005)(83380400001)(6916009)(54906003)(44832011)(70586007)(8936002)(316002)(82310400003)(5660300002)(70206006)(508600001)(4326008)(86362001)(7696005)(426003)(36900700001);
+ SFS:(4636009)(36840700001)(46966006)(6666004)(81166007)(4326008)(356005)(336012)(8936002)(26005)(36860700001)(2616005)(83380400001)(70206006)(426003)(508600001)(1076003)(6916009)(70586007)(2906002)(54906003)(16526019)(47076005)(86362001)(8676002)(36756003)(44832011)(5660300002)(7696005)(316002)(82310400003)(186003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2021 23:49:30.3584 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b123309e-9028-4030-9190-08d99291edc7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2021 23:49:30.7687 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dbb5f5a2-0d31-468b-0aec-08d99291ee03
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT031.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT052.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2746
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1300
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,90 +107,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rename
-sienna_cichlid_is_support_fine_grained_dpm() to
-sienna_cichlid_supports_fine_grained_dpm().
-
-Rename
-navi10_is_support_fine_grained_dpm() to
-navi10_supports_fine_grained_dpm().
-
-v2: Fix function name in commit message to reflect
-the change being done: add a missing 's'.
-v3: Start the subject with a verb. (Suggested by
-Paul M.)
+Rename "cur_value", which stands for "cursor
+value" to "curr_value", which stands for "current
+value".
 
 Cc: Alex Deucher <Alexander.Deucher@amd.com>
-Cc: Paul Menzel <pmenzel@molgen.mpg.de>
 Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
 ---
- drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c         | 7 ++++---
- drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c | 7 ++++---
- 2 files changed, 8 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 12 ++++++------
+ .../drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   | 15 ++++++++-------
+ 2 files changed, 14 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-index 71161f6b78fea9..0fe9790f67f5af 100644
+index 0fe9790f67f5af..f810549df493d5 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c
-@@ -1231,7 +1231,8 @@ static int navi10_get_current_clk_freq_by_table(struct smu_context *smu,
- 					   value);
- }
- 
--static bool navi10_is_support_fine_grained_dpm(struct smu_context *smu, enum smu_clk_type clk_type)
-+static bool navi10_supports_fine_grained_dpm(struct smu_context *smu,
-+					     enum smu_clk_type clk_type)
+@@ -1267,7 +1267,7 @@ static int navi10_print_clk_levels(struct smu_context *smu,
  {
- 	PPTable_t *pptable = smu->smu_table.driver_pptable;
- 	DpmDescriptor_t *dpm_desc = NULL;
-@@ -1299,7 +1300,7 @@ static int navi10_print_clk_levels(struct smu_context *smu,
+ 	uint16_t *curve_settings;
+ 	int i, size = 0, ret = 0;
+-	uint32_t cur_value = 0, value = 0, count = 0;
++	uint32_t curr_value = 0, value = 0, count = 0;
+ 	uint32_t freq_values[3] = {0};
+ 	uint32_t mark_index = 0;
+ 	struct smu_table_context *table_context = &smu->smu_table;
+@@ -1292,7 +1292,7 @@ static int navi10_print_clk_levels(struct smu_context *smu,
+ 	case SMU_VCLK:
+ 	case SMU_DCLK:
+ 	case SMU_DCEFCLK:
+-		ret = navi10_get_current_clk_freq_by_table(smu, clk_type, &cur_value);
++		ret = navi10_get_current_clk_freq_by_table(smu, clk_type, &curr_value);
  		if (ret)
  			return size;
  
--		if (!navi10_is_support_fine_grained_dpm(smu, clk_type)) {
-+		if (!navi10_supports_fine_grained_dpm(smu, clk_type)) {
- 			for (i = 0; i < count; i++) {
- 				ret = smu_v11_0_get_dpm_freq_by_index(smu, clk_type, i, &value);
- 				if (ret)
-@@ -1465,7 +1466,7 @@ static int navi10_force_clk_levels(struct smu_context *smu,
- 	case SMU_UCLK:
- 	case SMU_FCLK:
- 		/* There is only 2 levels for fine grained DPM */
--		if (navi10_is_support_fine_grained_dpm(smu, clk_type)) {
-+		if (navi10_supports_fine_grained_dpm(smu, clk_type)) {
- 			soft_max_level = (soft_max_level >= 1 ? 1 : 0);
- 			soft_min_level = (soft_min_level >= 1 ? 1 : 0);
- 		}
+@@ -1307,7 +1307,7 @@ static int navi10_print_clk_levels(struct smu_context *smu,
+ 					return size;
+ 
+ 				size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i, value,
+-						cur_value == value ? "*" : "");
++						curr_value == value ? "*" : "");
+ 			}
+ 		} else {
+ 			ret = smu_v11_0_get_dpm_freq_by_index(smu, clk_type, 0, &freq_values[0]);
+@@ -1317,9 +1317,9 @@ static int navi10_print_clk_levels(struct smu_context *smu,
+ 			if (ret)
+ 				return size;
+ 
+-			freq_values[1] = cur_value;
+-			mark_index = cur_value == freq_values[0] ? 0 :
+-				     cur_value == freq_values[2] ? 2 : 1;
++			freq_values[1] = curr_value;
++			mark_index = curr_value == freq_values[0] ? 0 :
++				     curr_value == freq_values[2] ? 2 : 1;
+ 			if (mark_index != 1)
+ 				freq_values[1] = (freq_values[0] + freq_values[2]) / 2;
+ 
 diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-index 15e66e1912de33..3f5721baa5ff50 100644
+index 3f5721baa5ff50..3ebded3a99b5f2 100644
 --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
 +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
-@@ -1006,7 +1006,8 @@ static int sienna_cichlid_get_current_clk_freq_by_table(struct smu_context *smu,
- 
- }
- 
--static bool sienna_cichlid_is_support_fine_grained_dpm(struct smu_context *smu, enum smu_clk_type clk_type)
-+static bool sienna_cichlid_supports_fine_grained_dpm(struct smu_context *smu,
-+						     enum smu_clk_type clk_type)
- {
- 	DpmDescriptor_t *dpm_desc = NULL;
- 	DpmDescriptor_t *table_member;
-@@ -1084,7 +1085,7 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
+@@ -1052,7 +1052,7 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
+ 	OverDriveTable_t *od_table =
+ 		(OverDriveTable_t *)table_context->overdrive_table;
+ 	int i, size = 0, ret = 0;
+-	uint32_t cur_value = 0, value = 0, count = 0;
++	uint32_t curr_value = 0, value = 0, count = 0;
+ 	uint32_t freq_values[3] = {0};
+ 	uint32_t mark_index = 0;
+ 	uint32_t gen_speed, lane_width;
+@@ -1073,10 +1073,11 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
+ 	case SMU_DCLK:
+ 	case SMU_DCLK1:
+ 	case SMU_DCEFCLK:
+-		ret = sienna_cichlid_get_current_clk_freq_by_table(smu, clk_type, &cur_value);
++		ret = sienna_cichlid_get_current_clk_freq_by_table(smu, clk_type, &curr_value);
  		if (ret)
  			goto print_clk_out;
  
--		if (!sienna_cichlid_is_support_fine_grained_dpm(smu, clk_type)) {
-+		if (!sienna_cichlid_supports_fine_grained_dpm(smu, clk_type)) {
++
+ 		/* no need to disable gfxoff when retrieving the current gfxclk */
+ 		if ((clk_type == SMU_GFXCLK) || (clk_type == SMU_SCLK))
+ 			amdgpu_gfx_off_ctrl(adev, false);
+@@ -1092,7 +1093,7 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
+ 					goto print_clk_out;
+ 
+ 				size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i, value,
+-						cur_value == value ? "*" : "");
++						curr_value == value ? "*" : "");
+ 			}
+ 		} else {
+ 			ret = smu_v11_0_get_dpm_freq_by_index(smu, clk_type, 0, &freq_values[0]);
+@@ -1102,9 +1103,9 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
+ 			if (ret)
+ 				goto print_clk_out;
+ 
+-			freq_values[1] = cur_value;
+-			mark_index = cur_value == freq_values[0] ? 0 :
+-				     cur_value == freq_values[2] ? 2 : 1;
++			freq_values[1] = curr_value;
++			mark_index = curr_value == freq_values[0] ? 0 :
++				     curr_value == freq_values[2] ? 2 : 1;
+ 
+ 			count = 3;
+ 			if (mark_index != 1) {
+@@ -1114,7 +1115,7 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
+ 
  			for (i = 0; i < count; i++) {
- 				ret = smu_v11_0_get_dpm_freq_by_index(smu, clk_type, i, &value);
- 				if (ret)
-@@ -1235,7 +1236,7 @@ static int sienna_cichlid_force_clk_levels(struct smu_context *smu,
- 	case SMU_UCLK:
- 	case SMU_FCLK:
- 		/* There is only 2 levels for fine grained DPM */
--		if (sienna_cichlid_is_support_fine_grained_dpm(smu, clk_type)) {
-+		if (sienna_cichlid_supports_fine_grained_dpm(smu, clk_type)) {
- 			soft_max_level = (soft_max_level >= 1 ? 1 : 0);
- 			soft_min_level = (soft_min_level >= 1 ? 1 : 0);
+ 				size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i, freq_values[i],
+-						cur_value  == freq_values[i] ? "*" : "");
++						curr_value  == freq_values[i] ? "*" : "");
+ 			}
+ 
  		}
 -- 
 2.33.1.558.g2bd2f258f4
