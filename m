@@ -1,125 +1,89 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 816E2432CF0
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Oct 2021 06:50:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C8BD432F9B
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Oct 2021 09:33:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CE9C6E079;
-	Tue, 19 Oct 2021 04:50:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D27A6E8A6;
+	Tue, 19 Oct 2021 07:33:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2057.outbound.protection.outlook.com [40.107.244.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BCA86E079
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 04:50:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WUmVTA2o35WwT4k4DsOlmx6zXtmBu999bcuce6x8ObGpjG48eqNRL7Za2wnmy52SeQzmMijm2Y6M7uPXRaBbLl+7/rGz6b+a5/MoleD01i3Yk9QPX+6nbKFbRlkNZV1uuZEPrrQudSnD+yZtxwimdNQDGnwk291dlcxN7p5hkLwTTo7QAdIqNN7ld7TeHRt2Zgjlg9Iw8xFO+bB1u8vw4AFV6HYtvizkB3CkmY4yZZ5R+5vb2rr4oSHUpHHmm5P3QXOsxjraXYIDvK5QIq95jQ77myN175w6PLu+pWyf85oQmui9dcsj56KYoz8+fyy8U4nD/PjdGQOsVtoXH4pANA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uwjf8Vo+XbptFx8ZFSy/Qt4f+y6KNElCORwWQrRK3+0=;
- b=ni1jAcw+8eIq8RQbH+rry+vkJ7wV+A/uEl3Q2Hi4D2fdqXpe4+Y5Lz8fZdXja7c6pxDXLeM4es7boz0r8N+LafWI9gM2STqnIpZkgwoakxfgGX8HcDkWbaSHa3WHTdYg3PyxKdzQ0NPAuqidlyreZuifaadOKgstJL284u064L4ou6uL9U9wpGTGvqnxDVueffoQo+5ZHW379qoGJgmQTiOF343SJRoN7Taub4IJMJZXxbq2AA/2a3tvByFGdAOeRrqK1F2eVCcWmAEOSi5vBGSKKWwA1wKaerWqg/o7GTBXQnQNrvQVlf8rGj8jzSPXVpDulq77oVnE1D6MTtHtfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uwjf8Vo+XbptFx8ZFSy/Qt4f+y6KNElCORwWQrRK3+0=;
- b=0TCy2JAFZd+Kjf9w1PHmv3EYwrna2weODY5l8sz7BgTr5XgLybztQ3zmaw0JCfcRJeph3/7Usru6CekkloKnBQZC70F/L8q/r2AhJ9W0CPBqTmh/1JA8Oy3tSSuDzrrM2QT7MHYTZ61e6mVPWMPBqddyRBq9/K/u4E3YSuzZGzY=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3962.namprd12.prod.outlook.com (2603:10b6:5:1ce::21)
- by DM5PR12MB1771.namprd12.prod.outlook.com (2603:10b6:3:110::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.18; Tue, 19 Oct
- 2021 04:50:23 +0000
-Received: from DM6PR12MB3962.namprd12.prod.outlook.com
- ([fe80::4447:dad4:f8e9:c5f3]) by DM6PR12MB3962.namprd12.prod.outlook.com
- ([fe80::4447:dad4:f8e9:c5f3%7]) with mapi id 15.20.4608.018; Tue, 19 Oct 2021
- 04:50:23 +0000
-Message-ID: <65580f09-1ad8-07ba-b392-dc4aad2464ee@amd.com>
-Date: Tue, 19 Oct 2021 00:50:19 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.0.1
-Subject: Re: [PATCH 4/5] dpm/amd/pm: Sienna: Remove 0 MHz as a current clock
- frequency (v3)
-Content-Language: en-CA
-To: "Lazar, Lijo" <lijo.lazar@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: Alex Deucher <Alexander.Deucher@amd.com>,
- Paul Menzel <pmenzel@molgen.mpg.de>, "Tuikov, Luben" <Luben.Tuikov@amd.com>
-References: <20211018234913.42349-1-luben.tuikov@amd.com>
- <20211018234913.42349-5-luben.tuikov@amd.com>
- <20faabaf-36a2-5836-2ec4-2da534149c6c@amd.com>
- <131b2193-8718-4f3b-4862-94aa18d0c209@amd.com>
- <fbd8a354-4f09-ffd9-ae0f-fdaa16903bc8@amd.com>
-From: Luben Tuikov <luben.tuikov@amd.com>
-In-Reply-To: <fbd8a354-4f09-ffd9-ae0f-fdaa16903bc8@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YT3PR01CA0075.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:84::15) To DM6PR12MB3962.namprd12.prod.outlook.com
- (2603:10b6:5:1ce::21)
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com
+ [IPv6:2607:f8b0:4864:20::829])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5119E6EA9A
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 23:06:17 +0000 (UTC)
+Received: by mail-qt1-x829.google.com with SMTP id w8so16745789qts.4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 16:06:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=t13jy1xQQB0gmrT1NW6zHUJeUfFTnWrh5vLufzqGSOo=;
+ b=fs+pNVjSp3t08y/Qek5U1K5zYFVoFGvNZNYlFKrOzb5uFIcN616uN4ceFhbswCQe7X
+ GUI/334ZkDOCYAG+JpNB9RdhrVATD0hQUjfxnS5ctmLY2ZenBoqQuwH76SRvkXdP3cM+
+ Qj0Fbzxqk/1FraNlERd968zbnq2JTCiCQ5CDO3Q9WlBmC+057YzLvNhj4/rxypVAcP6J
+ rQjumGXPcmEExt0Lzf/PYTPfWRlJ1vp+BUyWiM8N59qwmvNjm9ZC55jAARqDBFWT2HWZ
+ 3jklaTYrhAgcwaVE5TpN3HHyWJ9JCIz/QYjAgjghO3lQCIQG8A268X/1sctoDSt10rLN
+ uwfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=t13jy1xQQB0gmrT1NW6zHUJeUfFTnWrh5vLufzqGSOo=;
+ b=aWG0JQDXrZ+4SSj2HnlvgNWdBTwg62z2/6ohXDeeqiohNK0FwCmQ5eQbChp3VeNAN8
+ DBlEw0d8q7+SWE4EVQqWXDGlIeWl4PGwvXQIrGMp8Hs20MeeCO9OQra9NYvAPNDP8cQy
+ JR7g2hlMCsN5GtVpouk7fjm1FCx+A5tY3GQBTzovuHWZZ2pqnknSgxLORuJwPveqVf9y
+ XJsdsIbPZVdhRzeVC8786rPbcsQR9qO/0If+TjDo24kBCdyZ0H7fL2YFqk4qoUW20t3T
+ 5FzjkKo+Z3dMolAblbSQGhEzHNsZAUwl5FflRhjacz+qSuAT9hE3JfCkXy4ogijosVBd
+ i9eQ==
+X-Gm-Message-State: AOAM532iTaBy+cvL2ink1Hz2aKdiZSI5RCSLt6crouklZxOfSUri2I/J
+ 24BiP3QrBc43xCQ9MENwYEwrEw==
+X-Google-Smtp-Source: ABdhPJwMWFSkjHgN749nnHNdzV4ycZUrAg1Cl3jWHBuFmRmB/uqZm1f8+nVTShmwK2hP+IrC5sCFZQ==
+X-Received: by 2002:ac8:5755:: with SMTP id 21mr32075024qtx.353.1634598376340; 
+ Mon, 18 Oct 2021 16:06:16 -0700 (PDT)
+Received: from ziepe.ca
+ (hlfxns017vw-142-162-113-129.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.162.113.129])
+ by smtp.gmail.com with ESMTPSA id e16sm6723324qkl.108.2021.10.18.16.06.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 18 Oct 2021 16:06:15 -0700 (PDT)
+Received: from jgg by mlx with local (Exim 4.94) (envelope-from <jgg@ziepe.ca>)
+ id 1mcbhu-00GP5O-UW; Mon, 18 Oct 2021 20:06:14 -0300
+Date: Mon, 18 Oct 2021 20:06:14 -0300
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Dan Williams <dan.j.williams@intel.com>
+Cc: Matthew Wilcox <willy@infradead.org>, Alex Sierra <alex.sierra@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Kuehling, Felix" <Felix.Kuehling@amd.com>, Linux MM <linux-mm@kvack.org>,
+ Ralph Campbell <rcampbell@nvidia.com>,
+ linux-ext4 <linux-ext4@vger.kernel.org>,
+ linux-xfs <linux-xfs@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Christoph Hellwig <hch@lst.de>,
+ =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>,
+ Alistair Popple <apopple@nvidia.com>,
+ Vishal Verma <vishal.l.verma@intel.com>, Dave Jiang <dave.jiang@intel.com>,
+ Linux NVDIMM <nvdimm@lists.linux.dev>,
+ David Hildenbrand <david@redhat.com>,
+ Joao Martins <joao.m.martins@oracle.com>
+Subject: Re: [PATCH v1 2/2] mm: remove extra ZONE_DEVICE struct page refcount
+Message-ID: <20211018230614.GF3686969@ziepe.ca>
+References: <20211014153928.16805-3-alex.sierra@amd.com>
+ <20211014170634.GV2744544@nvidia.com>
+ <YWh6PL7nvh4DqXCI@casper.infradead.org>
+ <CAPcyv4hBdSwdtG6Hnx9mDsRXiPMyhNH=4hDuv8JZ+U+Jj4RUWg@mail.gmail.com>
+ <20211014230606.GZ2744544@nvidia.com>
+ <CAPcyv4hC4qxbO46hp=XBpDaVbeh=qdY6TgvacXRprQ55Qwe-Dg@mail.gmail.com>
+ <20211016154450.GJ2744544@nvidia.com>
+ <CAPcyv4j0kHREAOG6_07E2foz6e4FP8D72mZXH6ivsiUBu_8c6g@mail.gmail.com>
+ <20211018182559.GC3686969@ziepe.ca>
+ <CAPcyv4jvZjeMcKLVuOEQ_gXRd87i3NUX5D=MmsJ++rWafnK-NQ@mail.gmail.com>
 MIME-Version: 1.0
-Received: from [10.254.32.201] (165.204.84.11) by
- YT3PR01CA0075.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:84::15) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4608.15 via Frontend Transport; Tue, 19 Oct 2021 04:50:22 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c6d95469-095c-4e15-439d-08d992bbf5e1
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1771:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB177176F9BCFDF5DB2BF0E62499BD9@DM5PR12MB1771.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:350;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: O+MQI4vjP5jzHWpXkgOL1UBBzflsRZYdP/qCAJop1gJiTO932dYiFUKgtf+7Y9DUxlBoDhYNL4omoGosYEW+aUk9NbSVRQNCytV97dCEs8Hd3qtW0yxDDWFgN6vi6zSJlsiMg6vOnd6WJzLqySgQrQ60SVIOZi0S3+5iXibr4FRvtNEuOlBvdM/K5CP4PPjLE+YOqRYxJZTYTnSkBpCZ565okndnKK0CPygHykrJoU3sFjWZj51WcUwS0KezwoDic2FScrH8oyqeE4NAKcNfVM31NrwVnXy2/UJSd1es74R4fxb71ou5me2tIyWh7q+EoJyeRHbje0xcB9oz/AWjyO0piPl34ouJnWCShRS6/T9dcJ4IavmcXNc55vLjnFahyJMV2mRjLP7SDVletzGxLLmo4jgSL5NGEIlJT8FxiHdT7YFgMlYskdVCq2i+4G5QnFaoo3lv24doTQ68VAt7xqB5l3jFtt1hAd7AFykVfiP4JTxNUzjVBpxV3EUbrubSP+ikzwsdhAoduXaT6gUSyronUZGqQVkMVAaouORKpvlHEAWJUFhmPH3jI50AE8uFXZm8pINLcAwKczLL8FLnc7CBIutKnj1nUVUrc8jGqvdY3Tf0vEg3epOKgg1rMZjiLfoVuWINrKwdmOjuWAuzzgQg5hI3OgsmM3B1JpjbL5O9VJHkwvDAKaqBJCfUcNkWXgRkl3ev43SFwKbixtU0e0iUH4MOe4fcJis4ZLuai/mDj4RDjJkb+tfcFtsG3iRQgKvIwo/+PU6dkvU9XTq7/16Fg5U1y3oBZfnX38aWDoiMKjch5XkVKRSsrVIMDj29
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3962.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(4001150100001)(26005)(186003)(66556008)(86362001)(508600001)(53546011)(66476007)(966005)(4326008)(316002)(66946007)(31696002)(6666004)(83380400001)(2906002)(2616005)(44832011)(5660300002)(36756003)(956004)(31686004)(8676002)(8936002)(16576012)(54906003)(38100700002)(6486002)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YUFkTGltSEVmWUxwUHZQcnhacXJ4Ujh1emFlVEZST3ZCdkYyYmxMZmZRZWcr?=
- =?utf-8?B?Ynl0VStaMUdKMjJRQmlDWHpGdzNHOGhyWGdxR25MU2duZGFHSFpUQXR0bEJD?=
- =?utf-8?B?eWtSM29tSGVjd05laUFCVVNKcHRqK2wyUlRpZWlxUUc0TFhselBldXV2bmQ0?=
- =?utf-8?B?NVMrV3NJM1BoaVVQSnB3Z3VKUFVJdUxzWXNPSWtPQW8xUzBlZ2NibFJNSlZy?=
- =?utf-8?B?TXFDT0d3MzUxcXEyaEhUaEhmSFhwRmlMbWFHZlV2SUoyZ0syOSs0Y1B6Q1BH?=
- =?utf-8?B?a0t1b3Z5K2NnSmpCaFA3TzJTa2xiL09rcDdxTVpFUVpDa0N0Vm5KdTUyZnpO?=
- =?utf-8?B?Z21CLzVBZlhZT0J1a2c4cHg2S1BtZm5QTjJWbjR6WHRiRW9URlRPUzRlMDZv?=
- =?utf-8?B?ZTdESXl2b2tBQ2ZIQlA4alFvOXoyUmxyVU92TmVHdzlITEs1akQ1bDhxcno2?=
- =?utf-8?B?SktlYnM4SmZLOTZWTjlNa3U3SnBmOGRmVzRRZlJtczlCV3VKWVFDUVVyR0py?=
- =?utf-8?B?SXU1Wi9ENDBHM1VHamNIajl5cEJieWd6a200K0RnYk9pUnBOTG5JZU43VXd6?=
- =?utf-8?B?Vm1xRkpweHo2dnZsSDErSVlnT091SGMxbU4xa0dkbnFKa3BSYnYzMHB1Y1Ev?=
- =?utf-8?B?ZGxkelZoblFBZzZaR09qRjJyODZNakVhWUNKZnc5Wmk2VytJQU5BKzEraFV4?=
- =?utf-8?B?bmpwVW94VEtIN055OWcvYWJJTThka3FuQUF3c3NRVUczMDlueTM2RS95azJo?=
- =?utf-8?B?THRRbnNHM1FlcXFtYlVSeWlPdVpXOFE3emltNGF0WnR6Y0tMVC8rSUdPUkRt?=
- =?utf-8?B?RVFUa1lQUjVFN0F6TXB1OStjUjRyVlBIQTlEQmtJTWhxMGtOMzVBSS84dW1Z?=
- =?utf-8?B?MDk5c0lTZEVyRGwrRVMyejFKN1lwaVhCR2Yyc21qSGorZVlLUUJhR0VKbzEv?=
- =?utf-8?B?VzJySWJFNi9WbXlPQlZOZzZRRC9yUFRpK1VtZWNSQkFuOU1GNFF5SnJnaGo0?=
- =?utf-8?B?RWY1QmRkYUR3RlRWN0JhNGcyRmVjcmVoQXRNK09ySU9LaDlXV1BqazFyWTZs?=
- =?utf-8?B?Qmg0MGRsNW5CVERaS1pqUnNpYVdWM2xzS01Rb1BySFdKQzRBV1p1L1Zzd05o?=
- =?utf-8?B?WVRuaFVhOENOci9rWVUwQ3R2SmxuSmY1cFB2ZlhjR0JVWE5BV0Y3Z0xiKytN?=
- =?utf-8?B?N1BXcjRVcS84Q1QxcUxQc2ZtMG1vVGVreDZ5TG9rY1l4TUtUNVpOMDFiL0Rk?=
- =?utf-8?B?S1dPU29sZGNpZ2ZWRUtTMFJleG9DTGtmRnYxQ2ExMEswOUExRVJ5TzgwSUIy?=
- =?utf-8?B?QWNSRVlGVXFsM0FzNElTTTBtU2c1MjBaVW5IQ1FLRXFMdnBLUElVZnpobzEy?=
- =?utf-8?B?eWdFa1QrK2pkL1JJM2pwblZFd2lyL1ZkWGlvUUdEQ2lOTmtLYVFOejhGWDRw?=
- =?utf-8?B?Mjh1a2tPS2JlZlMyQzM0SjRxL0trVzB5NmVCeVFFOFhDbUtNVHlYaEU0cDdp?=
- =?utf-8?B?NlZhVll1bGhXUGltblJDcmd3TlloSzIwT3lrSU5TRCtyYk4zKzkxT2hZL1Fw?=
- =?utf-8?B?ZnhuWndIS0Iwcm5MelZSN01KNzRtdUZyWmI0OVY2eHhZd2JQdlpxbFBYT0NK?=
- =?utf-8?B?d29hbFBwSDh3Wk9DdVBBbHR0aWJ1VTFtQmJlTDF0eHZpQWlEL2ljdi92b1NQ?=
- =?utf-8?B?ZkFWelR2MU1BbTRWcWNiNnVyaDQ0UUVwSUVvZ2kzbVd1eE00ckhDR2VzUTEw?=
- =?utf-8?Q?hGYDCBmY0Wi95O5Ecn+B2QO1H6Iiz+Q/UWHiPEm?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6d95469-095c-4e15-439d-08d992bbf5e1
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3962.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2021 04:50:23.2675 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mMUUwMhkdUoxo/BrxiDF4/hLmtcnlc7kyo+M9KXfdwSNttZkbUclM/u1YjBf1grU
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1771
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPcyv4jvZjeMcKLVuOEQ_gXRd87i3NUX5D=MmsJ++rWafnK-NQ@mail.gmail.com>
+X-Mailman-Approved-At: Tue, 19 Oct 2021 07:33:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,177 +98,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2021-10-19 00:38, Lazar, Lijo wrote:
->
-> On 10/19/2021 9:45 AM, Luben Tuikov wrote:
->> On 2021-10-18 23:38, Lazar, Lijo wrote:
->>> On 10/19/2021 5:19 AM, Luben Tuikov wrote:
->>>> A current value of a clock frequency of 0, means
->>>> that the IP block is in some kind of low power
->>>> state. Ignore it and don't report it here. Here we
->>>> only report the possible operating (non-zero)
->>>> frequencies of the block requested. So, if the
->>>> current clock value is 0, then print the DPM
->>>> frequencies, but don't report a current value.
->>>>
->>>> v2: Don't report the minimum one as the current
->>>> one when reported one is 0, i.e. don't add an
->>>> asterisk (Lijo). LT: It is conceivable that this
->>>> may confuse user-mode tools if they scan and look
->>>> for a current one, i.e. look for an asterisk, but
->>>> they'll have to adapt and use other methods for
->>>> finding power states of the chip--we can't report
->>>> 0 as current.
->>>> v3: Start the subject title with a verb. (PaulM)
->>>>
->>>> Cc: Alex Deucher<Alexander.Deucher@amd.com>
->>>> Cc: Lijo Lazar<Lijo.Lazar@amd.com>
->>>> Cc: Paul Menzel<pmenzel@molgen.mpg.de>
->>>> Signed-off-by: Luben Tuikov<luben.tuikov@amd.com>
->>>> ---
->>>>    .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   | 60 ++++++++++++-------
->>>>    1 file changed, 40 insertions(+), 20 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
->>>> index f630d5e928ccfe..6fe792be77dbbb 100644
->>>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
->>>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/sienna_cichlid_ppt.c
->>>> @@ -1040,7 +1040,8 @@ static void sienna_cichlid_get_od_setting_range(struct smu_11_0_7_overdrive_tabl
->>>>    }
->>>>    
->>>>    static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
->>>> -			enum smu_clk_type clk_type, char *buf)
->>>> +					   enum smu_clk_type clk_type,
->>>> +					   char *buf)
->>>>    {
->>>>    	struct amdgpu_device *adev = smu->adev;
->>>>    	struct smu_table_context *table_context = &smu->smu_table;
->>>> @@ -1052,12 +1053,12 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
->>>>    	OverDriveTable_t *od_table =
->>>>    		(OverDriveTable_t *)table_context->overdrive_table;
->>>>    	int i, size = 0, ret = 0;
->>>> -	uint32_t curr_value = 0, value = 0, count = 0;
->>>> +	uint32_t curr_value, value, count;
->>>>    	uint32_t freq_value[3] = {0, 0, 0};
->>>> -	uint32_t mark_index = 0;
->>>>    	uint32_t gen_speed, lane_width;
->>>>    	uint32_t min_value, max_value;
->>>>    	uint32_t smu_version;
->>>> +	bool     fine_grained;
->>>>    
->>>>    	smu_cmn_get_sysfs_buf(&buf, &size);
->>>>    
->>>> @@ -1077,6 +1078,20 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
->>>>    		if (ret)
->>>>    			goto print_clk_out;
->>>>    
->>>> +		ret = smu_v11_0_get_dpm_freq_by_index(smu, clk_type, 0,
->>>> +						      &freq_value[0]);
->>>> +		if (ret)
->>>> +			goto print_clk_out;
->>>> +
->>>> +		/* A current value of a clock frequency of 0, means
->>>> +		 * that the IP block is in some kind of low power
->>>> +		 * state. Ignore it and don't report it here. Here we
->>>> +		 * only report the possible operating (non-zero)
->>>> +		 * frequencies of the block requested. So, if the
->>>> +		 * current clock value is 0, then we don't report a
->>>> +		 * "current" value from the DPM states, i.e. we don't
->>>> +		 * add an asterisk.
->>>> +		 */
->>>>    
->>>>    		/* no need to disable gfxoff when retrieving the current gfxclk */
->>>>    		if ((clk_type == SMU_GFXCLK) || (clk_type == SMU_SCLK))
->>>> @@ -1086,38 +1101,43 @@ static int sienna_cichlid_print_clk_levels(struct smu_context *smu,
->>>>    		if (ret)
->>>>    			goto print_clk_out;
->>>>    
->>>> -		if (!sienna_cichlid_supports_fine_grained_dpm(smu, clk_type)) {
->>>> -			for (i = 0; i < count; i++) {
->>>> +		fine_grained = sienna_cichlid_supports_fine_grained_dpm(smu, clk_type);
->>>> +		if (!fine_grained) {
->>>> +			/* We already got the 0-th index--print it
->>>> +			 * here and continue thereafter.
->>>> +			 */
->>>> +			size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", 0, freq_value[0],
->>>> +					      curr_value == freq_value[0] ? "*" : "");
->>>> +			for (i = 1; i < count; i++) {
->>>>    				ret = smu_v11_0_get_dpm_freq_by_index(smu, clk_type, i, &value);
->>>>    				if (ret)
->>>>    					goto print_clk_out;
->>>> -
->>>>    				size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i, value,
->>>>    						curr_value == value ? "*" : "");
->>>>    			}
->>>>    		} else {
->>>> -			ret = smu_v11_0_get_dpm_freq_by_index(smu, clk_type, 0, &freq_value[0]);
->>>> -			if (ret)
->>>> -				goto print_clk_out;
->>>> +			freq_value[1] = curr_value ?: freq_value[0];
->>> Omitting second expression is not standard C -
->>> https://gcc.gnu.org/onlinedocs/gcc/Conditionals.html
->> Lijo just clarified to me that:
->>
->>> well, i had to look up as I haven't seen it before
->> I hope the following should make it clear about its usage:
->>
->> $cd linux/
->> $find . -name "*.[ch]" -exec grep -E "\?:" \{\} \+ | wc -l
->> 1042
->> $_
->>
-> Thanks Luben!
+On Mon, Oct 18, 2021 at 12:37:30PM -0700, Dan Williams wrote:
 
-You're welcome. I'm glad you're learning new things from my patches. Would've been easier if you'd just said in your email that you've never seen this ternary conditional shortcut before and that you've just learned of it from my patch. (Or not post anything at all in this very case and get in touch with me privately via email or Teams--I would've gladly clarified it there.)
+> > device-dax uses PUD, along with TTM, they are the only places. I'm not
+> > sure TTM is a real place though.
+> 
+> I was setting device-dax aside because it can use Joao's changes to
+> get compound-page support.
 
-I hope the find+egrep above is also edifying, so you can use it in the future in your learning process.
+Ideally, but that ideas in that patch series have been floating around
+for a long time now..
+ 
+> > As I understand things, something like FSDAX post-folio should
+> > generate maximal compound pages for extents in the page cache that are
+> > physically contiguous.
+> >
+> > A high order folio can be placed in any lower order in the page
+> > tables, so we never have to fracture it, unless the underlying page
+> > are moved around - which requires an unmap_mapping_range() cycle..
+> 
+> That would be useful to disconnect the compound-page size from the
+> page-table-entry installed for the page. However, don't we need
+> typical compound page fracturing in the near term until folios move
+> ahead?
 
-Regards,
-Luben
+I do not know, just mindful not to get ahead of Matthew
+ 
+> > > There are end users that would notice the PMD regression, and I think
+> > > FSDAX PMDs with proper compound page metadata is on the same order of
+> > > work as fixing the refcount.
+> >
+> > Hmm, I don't know.. I sketched out the refcount stuff and the code is
+> > OK but ugly and will add a conditional to some THP cases
+> 
+> That reminds me that there are several places that do:
+> 
+> pmd_devmap(pmd) || pmd_trans_huge(pmd)
 
->
-> Thanks,
-> Lijo
->
->> Regards,
->> Luben
->>
->>> Thanks,
->>> Lijo
->>>>    			ret = smu_v11_0_get_dpm_freq_by_index(smu, clk_type, count - 1, &freq_value[2]);
->>>>    			if (ret)
->>>>    				goto print_clk_out;
->>>>    
->>>> -			freq_value[1] = curr_value;
->>>> -			mark_index = curr_value == freq_value[0] ? 0 :
->>>> -				     curr_value == freq_value[2] ? 2 : 1;
->>>> -
->>>> -			count = 3;
->>>> -			if (mark_index != 1) {
->>>> +			if (freq_value[1] == freq_value[0]) {
->>>> +				i = 1;
->>>> +				count = 3;
->>>> +			} else if (freq_value[1] == freq_value[2]) {
->>>> +				i = 0;
->>>>    				count = 2;
->>>> -				freq_value[1] = freq_value[2];
->>>> +			} else {
->>>> +				i = 0;
->>>> +				count = 3;
->>>>    			}
->>>>    
->>>> -			for (i = 0; i < count; i++) {
->>>> -				size += sysfs_emit_at(buf, size, "%d: %uMhz %s\n", i, freq_value[i],
->>>> -						curr_value  == freq_value[i] ? "*" : "");
->>>> +			for ( ; i < count; i++) {
->>>> +				size += sysfs_emit_at(buf, size,
->>>> +						      "%d: %uMhz %s\n",
->>>> +						      i, freq_value[i],
->>>> +						      curr_value == freq_value[i] ? "*" : "");
->>>>    			}
->>>> -
->>>>    		}
->>>>    		break;
->>>>    	case SMU_PCIE:
->>>>
+I haven't tried to look at this yet. I did check that the pte_devmap()
+flag can be deleted, but this is more tricky.
 
+We have pmd_huge(), pmd_large(), pmd_devmap(), pmd_trans_huge(),
+pmd_leaf(), at least
+
+and I couldn't tell you today the subtle differences between all of
+these things on every arch :\
+
+AFAIK there should only be three case:
+ - pmd points to a pte table
+ - pmd is in the special hugetlb format
+ - pmd points at something described by struct page(s)
+
+> ...for the common cases where a THP and DEVMAP page are equivalent,
+> but there are a few places where those paths are not shared when the
+> THP path expects that the page came from the page allocator. So while
+> DEVMAP is not needed in GUP after this conversion, there still needs
+> to be an audit of when THP needs to be careful of DAX mappings.
+
+Yes, it is a tricky job to do the full work, but I think in the end,
+'pmd points at something described by struct page(s)' is enough for
+all code to use is_zone_device_page() instead of a PTE bit or VMA flag
+to drive its logic.
+
+> > Here I imagine the thing that creates the pgmap would specify the
+> > policy it wants. In most cases the policy is tightly coupled to what
+> > the free function in the the provided dev_pagemap_ops does..
+> 
+> The thing that creates the pgmap is the device-driver, and
+> device-driver does not implement truncate or reclaim. It's not until
+> the FS mounts that the pgmap needs to start enforcing pin lifetime
+> guarantees.
+
+I am explaining this wrong, the immediate need is really 'should
+foll_longterm fail fast-gup to the slow path' and something like the
+nvdimm driver can just set that to 1 and rely on VMA flags to control
+what the slow path does - as is today.
+
+It is not as elegant as more flags in the pgmap, but it would get the
+job done with minimal fuss.
+
+Might be nice to either rely fully on VMA flags or fully on pgmap
+holder flags for FOLL_LONGTERM?
+
+> > Anyhow, I'm wondering on a way forward. There are many balls in the
+> > air, all linked:
+> >  - Joao's compound page support for device_dax and more
+> >  - Alex's DEVICE_COHERENT
+> 
+> I have not seen these patches.
+
+It is where this series came from. As DEVICE_COHERENT is focused on
+changing the migration code and, as I recall, the 1 == free thing
+complicated that enough that Christoph requested it be cleaned.
+
+> >  - The refcount normalization
+> >  - Removing the pgmap test from GUP
+> >  - Removing the need for the PUD/PMD/PTE special bit
+> >  - Removing the need for the PUD/PMD/PTE devmap bit
+> 
+> It's not clear that this anything but pure cleanup once the special
+> bit can be used for architectures that don't have devmap. Those same
+> archs presumably don't care about the THP collisions with DAX.
+
+I understood there was some community that was interested in DAX on
+other arches that don't have the PTE bits to spare, so this would be
+of interest to them?
+
+> Completing the DAX reflink work is in my near term goals and that
+> includes "shootdown for fsdax and removing the pgmap test from GUP",
+> but probably not in the order that "refcount normalization" folks
+> would prefer.
+
+Indeed, I don't think that will help many of the stuck items on the
+list move ahead.
+
+Jason
