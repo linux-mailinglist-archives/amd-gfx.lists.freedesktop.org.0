@@ -1,46 +1,95 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF55E432A55
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Oct 2021 01:25:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BDAD432A6D
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Oct 2021 01:49:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C6A56EAAD;
-	Mon, 18 Oct 2021 23:25:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C926D6EAAF;
+	Mon, 18 Oct 2021 23:49:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BF2E6EAAD
- for <amd-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 23:25:15 +0000 (UTC)
-Received: from [192.168.0.2] (ip5f5ae8cf.dynamic.kabel-deutschland.de
- [95.90.232.207])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id A0C1761E5FE33;
- Tue, 19 Oct 2021 01:25:13 +0200 (CEST)
-Subject: Re: [PATCH 27/27] Revert "drm/amd/display: Add helper for blanking
- all dp displays"
-To: amd-gfx@lists.freedesktop.org
-Cc: Harry.Wentland@amd.com, Sunpeng.Li@amd.com, Bhawanpreet.Lakha@amd.com,
- Rodrigo.Siqueira@amd.com, Aurabindo.Pillai@amd.com, qingqing.zhuo@amd.com,
- mikita.lipski@amd.com, roman.li@amd.com, Anson.Jacob@amd.com,
- wayne.lin@amd.com, stylon.wang@amd.com, solomon.chiu@amd.com,
- pavle.kotarac@amd.com, Hanghong Ma <hanghong.ma@amd.com>,
- Mark Broadworth <mark.broadworth@amd.com>,
- Agustin Gutierrez <agustin.gutierrez@amd.com>
-References: <20211015184332.221091-1-agustin.gutierrez@amd.com>
- <20211015184332.221091-28-agustin.gutierrez@amd.com>
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-Message-ID: <63e53597-e77c-f891-ba40-78d7a3fa2a15@molgen.mpg.de>
-Date: Tue, 19 Oct 2021 01:25:13 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2073.outbound.protection.outlook.com [40.107.236.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB3496EAAF
+ for <amd-gfx@lists.freedesktop.org>; Mon, 18 Oct 2021 23:49:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DThZ/3/phgbPyDDjmqnoaOD3gqPn8zXRSmNdY9FD1ZjI2GPtz1IP4/o6JYyhAR9vVkn+t80TQym1P5xxuxSLqlOV/gQI/KY7bT+DAcyv0Tq3BFBTvMeb1Khj8xeUmtXgNlNWjWDuepLch3Fd/uhlVzHletxkWFYEq25zfKh5BeTJp+SEBR6JpRM0qMfiDrY8Vyrba3npPYFwlA9YIIbnJXHc4TevINCv0KDCzn7MQtjrMaScNlMuctmm/6vdXOH5OnpDqopzAqxyRMG0oIjTo7IH+frQOeZsR42KiLkxOiAmsBKgByCec+gu4B87yk/II04XmLA3kttA52ZfxPozDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HY0Z93Aw546QtLZwrdMDIRKYzz7zkTbTGpaYgZvr9CA=;
+ b=TIMUm9+bInjf8X50UuzEGPQgTC6nYReyME8cw3yLdqfMfUf2rTA1Av6wv5RdJwiFm1y+vTZURY6KBLDe6yPMLYmFFJAJ6mW1XjjPTNU4CksPV+/fxy/dRAKt87/+fAqh8xX0Sec/HTu/Zou7JqJZevy+kBAvMUkbJPG8uHKUR9EInz6uKRx0Bh3F0Q9d1Tu+9ZWakuCiPGIUDEdCsY2OOzrvQwcgr0EHA0n9+IIq1MzSC+p0ko5khuD4JH4T/kPyiGlWvuXDbsMZKMxoDhaxzj2FoW+SJ2eanh+63LDjcRJ6edlmnZTM1tgqGBXDhmcMt/uB6Y5zlbJVmeyOxXOK0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HY0Z93Aw546QtLZwrdMDIRKYzz7zkTbTGpaYgZvr9CA=;
+ b=RIzxe8MkfLlqAdbtll/6X0jBhtrvT92CYFf1D6Sg/BrLFcistAGpZFowquRPOdQNBJEc5m6REtB2ZlaIeNDCcI1OzsTKGWvBca1RjjlnBdk8/JOAmnhe4O03jDfJ9nbrafYhwARMW1/p8KIE/HJpSbhnPEwvxPcbhgF5V5DCjjI=
+Received: from MW4PR04CA0354.namprd04.prod.outlook.com (2603:10b6:303:8a::29)
+ by CY4PR12MB1480.namprd12.prod.outlook.com (2603:10b6:910:f::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Mon, 18 Oct
+ 2021 23:49:30 +0000
+Received: from CO1NAM11FT031.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8a:cafe::30) by MW4PR04CA0354.outlook.office365.com
+ (2603:10b6:303:8a::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
+ Transport; Mon, 18 Oct 2021 23:49:29 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT031.mail.protection.outlook.com (10.13.174.118) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4608.15 via Frontend Transport; Mon, 18 Oct 2021 23:49:29 +0000
+Received: from localhost.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Mon, 18 Oct
+ 2021 18:49:26 -0500
+From: Luben Tuikov <luben.tuikov@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: Luben Tuikov <luben.tuikov@amd.com>
+Subject: [PATCH 0/5] Remove 0 MHz as a valid current frequency (v4)
+Date: Mon, 18 Oct 2021 19:49:08 -0400
+Message-ID: <20211018234913.42349-1-luben.tuikov@amd.com>
+X-Mailer: git-send-email 2.33.1.558.g2bd2f258f4
 MIME-Version: 1.0
-In-Reply-To: <20211015184332.221091-28-agustin.gutierrez@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 1f6448e6-c33e-4761-3c66-08d99291ed2a
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1480:
+X-Microsoft-Antispam-PRVS: <CY4PR12MB1480BF3BD93CF14F6925C93999BC9@CY4PR12MB1480.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: s7n2/yL2TgrlcrIyqie+YS9LaODJnyxFJx3ZyryJ3YDvsL99M0Lvw6VfxUXUrYapyKZpb93X8bmTRW/rF/ixm2UVEbaITL/AA5CK3wh0VOvtUfi2lu1fQS4f9rCtrIP9jgsYJee4wwzoG727kqs7YmqZRWaNc8cyvLjydpchiSxVRULbS59hbQ6fMi3W6eJAJnzk6aKcbfNDj+2yQC1p3F7PiJoWiUhO0BkH4ew0MOpz7TsGtQ5YuH75JgXVgrzjJYkgrQPAgLOuVFH3Hs0sTUjfCkE65IJhsiXKB2Tgkb6v85NQeDtMMOuiXK5LxQsX7Q87lNb+KXMKuO6zufrTclqWZoTHBbjqiXvAIyTq70CgpO5fyFO2FB/2cQXZPDZcLJJVUF2lFyf1uH8n9uF0wTeL9WWtWp20kBzJpIBHDpP9cfwsew2PsNMv87IJoH5yBDOav/AFfXwc12Gy5ummM6cPdP+e37i9MdkkJgwE8fheMsPFmDY+AghYd6yALV67Kj5HIV1A+W4A6K5+WK0PP0GVQX0cJB38k+edydLrwC8s/HgdSqYxyJTyA0DB78so7M5t6w+QTRJLKM9Fa4BUc1I5RAuX1yQ3nNDREdfcty6lk5OosipbpJSyPvcbvJcIYEK+y3rwC80r0jLGYhiy2+2Qhf2ZZth/JL7v3tESR9ErHmTNzjRWzfYuLQ8LUO1K/Agx7MBS978Pu2nTD9DX31TqzD5f12F1h4fJccDrLDc=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(46966006)(36840700001)(16526019)(6666004)(356005)(186003)(26005)(6916009)(36756003)(8936002)(2906002)(82310400003)(2616005)(86362001)(81166007)(70586007)(4326008)(44832011)(36860700001)(7696005)(8676002)(5660300002)(47076005)(1076003)(316002)(426003)(83380400001)(70206006)(336012)(508600001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2021 23:49:29.3038 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f6448e6-c33e-4761-3c66-08d99291ed2a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT031.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1480
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,321 +104,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Dear Augustin,
+Some ASICs support low-power functionality for the whole ASIC or just
+an IP block. When in such low-power mode, some sysfs interfaces would
+report a frequency of 0, e.g.,
+
+$cat /sys/class/drm/card0/device/pp_dpm_sclk
+0: 500Mhz 
+1: 0Mhz *
+2: 2200Mhz 
+$_
+
+An operating frequency of 0 MHz doesn't make sense, and this interface
+is designed to report only operating clock frequencies, i.e. non-zero,
+and possibly the current one.
+
+When in this low-power state, round to the smallest
+operating frequency, for this interface, as follows,
+
+$cat /sys/class/drm/card0/device/pp_dpm_sclk
+0: 500Mhz *
+1: 2200Mhz 
+$_
+
+v2: Fix description to reflect change in patch 1--add an 's'.
+v3: Don't tag a current if current is 0.
+v4: Verbalize some subject titles.
+
+Luben Tuikov (5):
+  drm/amd/pm: Rename a couple of functions (v3)
+  drm/amd/pm: Rename cur_value to curr_value
+  drm/amd/pm: Rename freq_values --> freq_value
+  dpm/amd/pm: Sienna: Remove 0 MHz as a current clock frequency (v3)
+  dpm/amd/pm: Navi10: Remove 0 MHz as a current clock frequency (v3)
+
+ .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 57 ++++++++------
+ .../amd/pm/swsmu/smu11/sienna_cichlid_ppt.c   | 74 ++++++++++++-------
+ 2 files changed, 83 insertions(+), 48 deletions(-)
 
 
-Am 15.10.21 um 20:43 schrieb Agustin Gutierrez:
-> This reverts commit 50ac5b14c74c5706796cb6378f25a2121dba5b2d.
-> 
-> This patch introduced a couple of dmesg warnings,
+base-commit: d1065882691179f507a7c6aba0477eb7d1935ebd
+-- 
+2.33.1.558.g2bd2f258f4
 
-Please give one example warning for people searching through the git 
-history.
-
-> this is not a valid approach anymore.
-
-Nit: Please make it it’s own sentence.
-
-> For this reason, we are reverting this patch, and we need to revert
-> the workaround patch.
-What is the workaround patch?
-
-
-Kind regards,
-
-Paul
-
-> Cc: Hanghong Ma <hanghong.ma@amd.com>
-> Cc: Mark Broadworth <mark.broadworth@amd.com>
-> Signed-off-by: Agustin Gutierrez <agustin.gutierrez@amd.com>
-> ---
->   drivers/gpu/drm/amd/display/dc/core/dc_link.c | 45 -------------------
->   drivers/gpu/drm/amd/display/dc/dc_link.h      |  1 -
->   .../display/dc/dce110/dce110_hw_sequencer.c   | 24 ++++++++--
->   .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 41 +++++++++++++++--
->   .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    | 39 ++++++++++++++--
->   .../drm/amd/display/dc/dcn31/dcn31_hwseq.c    | 40 +++++++++++++++--
->   6 files changed, 131 insertions(+), 59 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-> index c01309a1cbf2..e5d6cbd7ea78 100644
-> --- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-> @@ -1988,51 +1988,6 @@ static enum dc_status enable_link_dp_mst(
->   	return enable_link_dp(state, pipe_ctx);
->   }
->   
-> -void blank_all_dp_displays(struct dc *dc, bool hw_init)
-> -{
-> -	unsigned int i, j, fe;
-> -	uint8_t dpcd_power_state = '\0';
-> -	enum dc_status status = DC_ERROR_UNEXPECTED;
-> -
-> -	for (i = 0; i < dc->link_count; i++) {
-> -		enum signal_type signal = dc->links[i]->connector_signal;
-> -
-> -		if ((signal == SIGNAL_TYPE_EDP) ||
-> -			(signal == SIGNAL_TYPE_DISPLAY_PORT)) {
-> -			if (hw_init && signal != SIGNAL_TYPE_EDP) {
-> -				/* DP 2.0 spec requires that we read LTTPR caps first */
-> -				dp_retrieve_lttpr_cap(dc->links[i]);
-> -				/* if any of the displays are lit up turn them off */
-> -				status = core_link_read_dpcd(dc->links[i], DP_SET_POWER,
-> -							&dpcd_power_state, sizeof(dpcd_power_state));
-> -			}
-> -
-> -			if ((signal != SIGNAL_TYPE_EDP && status == DC_OK && dpcd_power_state == DP_POWER_STATE_D0) ||
-> -					(!hw_init && dc->links[i]->link_enc &&
-> -					dc->links[i]->link_enc->funcs->is_dig_enabled(dc->links[i]->link_enc))) {
-> -				if (dc->links[i]->link_enc->funcs->get_dig_frontend) {
-> -					fe = dc->links[i]->link_enc->funcs->get_dig_frontend(dc->links[i]->link_enc);
-> -					if (fe == ENGINE_ID_UNKNOWN)
-> -						continue;
-> -
-> -					for (j = 0; j < dc->res_pool->stream_enc_count; j++) {
-> -						if (fe == dc->res_pool->stream_enc[j]->id) {
-> -							dc->res_pool->stream_enc[j]->funcs->dp_blank(dc->links[i],
-> -									dc->res_pool->stream_enc[j]);
-> -							break;
-> -						}
-> -					}
-> -				}
-> -
-> -				if (!dc->links[i]->wa_flags.dp_keep_receiver_powered ||
-> -					(hw_init && signal != SIGNAL_TYPE_EDP))
-> -					dp_receiver_power_ctrl(dc->links[i], false);
-> -			}
-> -		}
-> -	}
-> -
-> -}
-> -
->   static bool get_ext_hdmi_settings(struct pipe_ctx *pipe_ctx,
->   		enum engine_id eng_id,
->   		struct ext_hdmi_settings *settings)
-> diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
-> index 69b008bafbbc..a73d64b1fd33 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dc_link.h
-> +++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
-> @@ -277,7 +277,6 @@ bool dc_link_setup_psr(struct dc_link *dc_link,
->   		struct psr_context *psr_context);
->   
->   void dc_link_get_psr_residency(const struct dc_link *link, uint32_t *residency);
-> -void blank_all_dp_displays(struct dc *dc, bool hw_init);
->   
->   /* Request DC to detect if there is a Panel connected.
->    * boot - If this call is during initial boot.
-> diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-> index 8108f9ae2638..af3e68d3e747 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-> @@ -1649,13 +1649,31 @@ static enum dc_status apply_single_controller_ctx_to_hw(
->   
->   static void power_down_encoders(struct dc *dc)
->   {
-> -	int i;
-> -
-> -	blank_all_dp_displays(dc, false);
-> +	int i, j;
->   
->   	for (i = 0; i < dc->link_count; i++) {
->   		enum signal_type signal = dc->links[i]->connector_signal;
->   
-> +		if ((signal == SIGNAL_TYPE_EDP) ||
-> +			(signal == SIGNAL_TYPE_DISPLAY_PORT)) {
-> +			if (dc->links[i]->link_enc->funcs->get_dig_frontend &&
-> +				dc->links[i]->link_enc->funcs->is_dig_enabled(dc->links[i]->link_enc)) {
-> +				unsigned int fe = dc->links[i]->link_enc->funcs->get_dig_frontend(
-> +									dc->links[i]->link_enc);
-> +
-> +				for (j = 0; j < dc->res_pool->stream_enc_count; j++) {
-> +					if (fe == dc->res_pool->stream_enc[j]->id) {
-> +						dc->res_pool->stream_enc[j]->funcs->dp_blank(dc->links[i],
-> +									dc->res_pool->stream_enc[j]);
-> +						break;
-> +					}
-> +				}
-> +			}
-> +
-> +			if (!dc->links[i]->wa_flags.dp_keep_receiver_powered)
-> +				dp_receiver_power_ctrl(dc->links[i], false);
-> +		}
-> +
->   		if (signal != SIGNAL_TYPE_EDP)
->   			signal = SIGNAL_TYPE_NONE;
->   
-> diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-> index aa2d430f2a1a..44d27579d898 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-> @@ -1366,7 +1366,7 @@ void dcn10_init_pipes(struct dc *dc, struct dc_state *context)
->   
->   void dcn10_init_hw(struct dc *dc)
->   {
-> -	int i;
-> +	int i, j;
->   	struct abm *abm = dc->res_pool->abm;
->   	struct dmcu *dmcu = dc->res_pool->dmcu;
->   	struct dce_hwseq *hws = dc->hwseq;
-> @@ -1462,8 +1462,43 @@ void dcn10_init_hw(struct dc *dc)
->   		dmub_enable_outbox_notification(dc);
->   
->   	/* we want to turn off all dp displays before doing detection */
-> -	if (dc->config.power_down_display_on_boot)
-> -		blank_all_dp_displays(dc, true);
-> +	if (dc->config.power_down_display_on_boot) {
-> +		uint8_t dpcd_power_state = '\0';
-> +		enum dc_status status = DC_ERROR_UNEXPECTED;
-> +
-> +		for (i = 0; i < dc->link_count; i++) {
-> +			if (dc->links[i]->connector_signal != SIGNAL_TYPE_DISPLAY_PORT)
-> +				continue;
-> +
-> +			/* DP 2.0 requires that LTTPR Caps be read first */
-> +			dp_retrieve_lttpr_cap(dc->links[i]);
-> +
-> +			/*
-> +			 * If any of the displays are lit up turn them off.
-> +			 * The reason is that some MST hubs cannot be turned off
-> +			 * completely until we tell them to do so.
-> +			 * If not turned off, then displays connected to MST hub
-> +			 * won't light up.
-> +			 */
-> +			status = core_link_read_dpcd(dc->links[i], DP_SET_POWER,
-> +							&dpcd_power_state, sizeof(dpcd_power_state));
-> +			if (status == DC_OK && dpcd_power_state == DP_POWER_STATE_D0) {
-> +				/* blank dp stream before power off receiver*/
-> +				if (dc->links[i]->link_enc->funcs->get_dig_frontend) {
-> +					unsigned int fe = dc->links[i]->link_enc->funcs->get_dig_frontend(dc->links[i]->link_enc);
-> +
-> +					for (j = 0; j < dc->res_pool->stream_enc_count; j++) {
-> +						if (fe == dc->res_pool->stream_enc[j]->id) {
-> +							dc->res_pool->stream_enc[j]->funcs->dp_blank(dc->links[i],
-> +										dc->res_pool->stream_enc[j]);
-> +							break;
-> +						}
-> +					}
-> +				}
-> +				dp_receiver_power_ctrl(dc->links[i], false);
-> +			}
-> +		}
-> +	}
->   
->   	/* If taking control over from VBIOS, we may want to optimize our first
->   	 * mode set, so we need to skip powering down pipes until we know which
-> diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-> index 2936a334cd64..df2717116604 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-> @@ -437,7 +437,7 @@ void dcn30_init_hw(struct dc *dc)
->   	struct dce_hwseq *hws = dc->hwseq;
->   	struct dc_bios *dcb = dc->ctx->dc_bios;
->   	struct resource_pool *res_pool = dc->res_pool;
-> -	int i;
-> +	int i, j;
->   	int edp_num;
->   	uint32_t backlight = MAX_BACKLIGHT_LEVEL;
->   
-> @@ -534,8 +534,41 @@ void dcn30_init_hw(struct dc *dc)
->   			hws->funcs.dsc_pg_control(hws, res_pool->dscs[i]->inst, false);
->   
->   	/* we want to turn off all dp displays before doing detection */
-> -	if (dc->config.power_down_display_on_boot)
-> -		blank_all_dp_displays(dc, true);
-> +	if (dc->config.power_down_display_on_boot) {
-> +		uint8_t dpcd_power_state = '\0';
-> +		enum dc_status status = DC_ERROR_UNEXPECTED;
-> +
-> +		for (i = 0; i < dc->link_count; i++) {
-> +			if (dc->links[i]->connector_signal != SIGNAL_TYPE_DISPLAY_PORT)
-> +				continue;
-> +			/* DP 2.0 states that LTTPR regs must be read first */
-> +			dp_retrieve_lttpr_cap(dc->links[i]);
-> +
-> +			/* if any of the displays are lit up turn them off */
-> +			status = core_link_read_dpcd(dc->links[i], DP_SET_POWER,
-> +						     &dpcd_power_state, sizeof(dpcd_power_state));
-> +			if (status == DC_OK && dpcd_power_state == DP_POWER_STATE_D0) {
-> +				/* blank dp stream before power off receiver*/
-> +				if (dc->links[i]->link_enc->funcs->get_dig_frontend) {
-> +					unsigned int fe;
-> +
-> +					fe = dc->links[i]->link_enc->funcs->get_dig_frontend(
-> +										dc->links[i]->link_enc);
-> +					if (fe == ENGINE_ID_UNKNOWN)
-> +						continue;
-> +
-> +					for (j = 0; j < dc->res_pool->stream_enc_count; j++) {
-> +						if (fe == dc->res_pool->stream_enc[j]->id) {
-> +							dc->res_pool->stream_enc[j]->funcs->dp_blank(dc->links[i],
-> +										dc->res_pool->stream_enc[j]);
-> +							break;
-> +						}
-> +					}
-> +				}
-> +				dp_receiver_power_ctrl(dc->links[i], false);
-> +			}
-> +		}
-> +	}
->   
->   	/* If taking control over from VBIOS, we may want to optimize our first
->   	 * mode set, so we need to skip powering down pipes until we know which
-> diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-> index 186d08aec812..7308c4c744ba 100644
-> --- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-> +++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-> @@ -72,7 +72,8 @@ void dcn31_init_hw(struct dc *dc)
->   	struct dc_bios *dcb = dc->ctx->dc_bios;
->   	struct resource_pool *res_pool = dc->res_pool;
->   	uint32_t backlight = MAX_BACKLIGHT_LEVEL;
-> -	int i;
-> +	int i, j;
-> +	int edp_num;
->   
->   	if (dc->clk_mgr && dc->clk_mgr->funcs->init_clocks)
->   		dc->clk_mgr->funcs->init_clocks(dc->clk_mgr);
-> @@ -190,9 +191,40 @@ void dcn31_init_hw(struct dc *dc)
->   		dmub_enable_outbox_notification(dc);
->   
->   	/* we want to turn off all dp displays before doing detection */
-> -	if (dc->config.power_down_display_on_boot)
-> -		blank_all_dp_displays(dc, true);
-> -
-> +	if (dc->config.power_down_display_on_boot) {
-> +		uint8_t dpcd_power_state = '\0';
-> +		enum dc_status status = DC_ERROR_UNEXPECTED;
-> +
-> +		for (i = 0; i < dc->link_count; i++) {
-> +			if (dc->links[i]->connector_signal != SIGNAL_TYPE_DISPLAY_PORT)
-> +				continue;
-> +
-> +			/* if any of the displays are lit up turn them off */
-> +			status = core_link_read_dpcd(dc->links[i], DP_SET_POWER,
-> +						     &dpcd_power_state, sizeof(dpcd_power_state));
-> +			if (status == DC_OK && dpcd_power_state == DP_POWER_STATE_D0) {
-> +				/* blank dp stream before power off receiver*/
-> +				if (dc->links[i]->ep_type == DISPLAY_ENDPOINT_PHY &&
-> +						dc->links[i]->link_enc->funcs->get_dig_frontend) {
-> +					unsigned int fe;
-> +
-> +					fe = dc->links[i]->link_enc->funcs->get_dig_frontend(
-> +										dc->links[i]->link_enc);
-> +					if (fe == ENGINE_ID_UNKNOWN)
-> +						continue;
-> +
-> +					for (j = 0; j < dc->res_pool->stream_enc_count; j++) {
-> +						if (fe == dc->res_pool->stream_enc[j]->id) {
-> +							dc->res_pool->stream_enc[j]->funcs->dp_blank(dc->links[i],
-> +										dc->res_pool->stream_enc[j]);
-> +							break;
-> +						}
-> +					}
-> +				}
-> +				dp_receiver_power_ctrl(dc->links[i], false);
-> +			}
-> +		}
-> +	}
->   
->   	/* If taking control over from VBIOS, we may want to optimize our first
->   	 * mode set, so we need to skip powering down pipes until we know which
-> 
