@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2D4143404C
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Oct 2021 23:15:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E44F843404E
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Oct 2021 23:15:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C4C96E8E4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D740E6EAC1;
 	Tue, 19 Oct 2021 21:15:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2058.outbound.protection.outlook.com [40.107.220.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7221D6E8E5
+ (mail-co1nam11on2055.outbound.protection.outlook.com [40.107.220.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 037E76E97D
  for <amd-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 21:15:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dMiKvNUtfni2wvy74wIuzHHFdQPr96tLeqzENmh4zA2Bld2dzV15iJWlFfu9l+74/cLKpYugIO/eIMd/ksXohVLyIxAEeEJNMj2akcLtcdRDrfr9BRa+K7CZNRUiIJptWYykngX8ZeiEq87hmtq2joxx8EwzH+c255cPpQX34E0aSgtJjD2S6fLOLuvxDLNLcNklDcS1x/dNMAKf71kqOrrKnwj3JTCNbsN188/inn+rQPk5ZkbS9hGWZNyJB9oygYNdCg27b8eFwxPiC965Jo4gxLubd6YHgmhwwcXIXpRTJ6N97mCKwZK4QCis3P/E45S63yRfLvgTm4jAtLAwaQ==
+ b=ONtmd/pT5TAeNnv+eiPPWfdYV0aiUu1KMOnNf7tQKt48DIC4NTIbcTLImKPn4arJN5bQSaXwBNxxL/DhTehsOG7qOhso7jDNWRvcdS9V3U12dz/GrJzQeToQ3zWL+ZI360gQPQosaiV7MSF351gAOiZbuVDWor/BbzEWasshvOe9hd0yxRVgYgVTSbAmUSodwh9mibia0zVV0aqDd1JIdXWoSRLkV3NxB+5TKNM5VdwidT7TPusuDkrio5wm0uTGaIfTUAiiluMWngnL1KwIXp/AZpZIcDL8NK1JOfvXf5uqiEjnL02RFqaSp90v7vqVvf85b5QavPDWGSThbxRhCw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Yodi2oBC9ks5h3WMhgNN6WyBMNjPs38eZYoREgZjPPQ=;
- b=JcJHdAKSLxACj/4TpIFthNVkA5F8y2T+Nw3Dxny1MCh7OdcDFjSUvHY5g1co6ZY1OiSt2aCaqRO3MRr8J1S/cnjnU9qK7SB4Q7G4hxlMOWM7uBWLGo22Bm9MdLrwMh4bkCbJlGRkcQCiQYLGWWrKjl2gZiUiaR6vTq5ljfu9aW4UYdgZ3XY/Rq+ZxwFyAmf80LjXRSl45fchqSIq7GfDG3gQb6+z6aWN1JTX9fTBh/6MQB+2dNh+6jzabd+mETL4IPHa1e+IIF93ShMCrms6vmqHtvxkW9rqHng2OLE+A6wFNm1Jbvc5bDHfzDyjRTDWBCPdStCO+Fi4k8HGUDZHgg==
+ bh=U0G6WkVN3YdaYDirTHWqFklNtlRtiVBC2zBhL2g7pw0=;
+ b=TZWf19ak+ShUP7fbi5kfQlkn/+1vjJvJwsYSYUJaLN4Dvft1o4kxhpDgwYzWYvF/TmSRmzIrbJ0fNgnqdSR9ivhouEnis5yKYxLndAx2sVovqzX11zeG8lQYTj+wKdyNi9WL+k7wuvrMxG5owCaegZdxxmo5THInizyLZIR0482uHSMbCuNC8CMUCoGhDTMLgISPCz15oyoEVUO58V7ZsmgijjzuhpsiN7KG+hTWXzgd3LbAmxYJBU9LmoZC39WfqZlryIRQQUZHxxGeMo8IO34ZjQ44evji9KG0Oq19Wwsi8NOX5bbVl5AQxFiyWzJ28FBUUNEgz8e050/pRHwiAg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Yodi2oBC9ks5h3WMhgNN6WyBMNjPs38eZYoREgZjPPQ=;
- b=g1ofCduJgzsKpJ9A69q97LsBjOrWafn8hCiSvV+1AANOr8kIirid6NYC+n4y+2YNrelnzls6uonDLFq663wuPhwA0zBUg+xR693ha+de/RYenUPDV6S3+8AA3h8Fbu8nNZSPLUhG5lGE9/NESFPncKQYHGkAAjWh7fQgwRArA2k=
+ bh=U0G6WkVN3YdaYDirTHWqFklNtlRtiVBC2zBhL2g7pw0=;
+ b=toi1ye7jJi4pVybi3wyEQMcwNLibrAv3YDiTFopkx7NN0VVnX4RGQ17CgQc2FEZCwExjOxPT4l/I0qleH3TTLm9amA05sEmH1QKfyKeqRQISGQMXWZUr6zzAls9DZGCGm2v7KGyt7HChqIF+pNNOH++WzGXMoTLksQRSTJuKUlk=
 Received: from BN9PR03CA0302.namprd03.prod.outlook.com (2603:10b6:408:112::7)
- by BYAPR12MB2902.namprd12.prod.outlook.com (2603:10b6:a03:12f::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Tue, 19 Oct
- 2021 21:15:02 +0000
+ by DM6PR12MB3097.namprd12.prod.outlook.com (2603:10b6:5:11d::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.18; Tue, 19 Oct
+ 2021 21:15:03 +0000
 Received: from BN8NAM11FT020.eop-nam11.prod.protection.outlook.com
  (2603:10b6:408:112:cafe::15) by BN9PR03CA0302.outlook.office365.com
  (2603:10b6:408:112::7) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.17 via Frontend
- Transport; Tue, 19 Oct 2021 21:15:02 +0000
+ Transport; Tue, 19 Oct 2021 21:15:03 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,18 +48,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT020.mail.protection.outlook.com (10.13.176.223) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4608.15 via Frontend Transport; Tue, 19 Oct 2021 21:15:02 +0000
+ 15.20.4608.15 via Frontend Transport; Tue, 19 Oct 2021 21:15:03 +0000
 Received: from mkgs-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Tue, 19 Oct
- 2021 16:14:59 -0500
+ 2021 16:15:00 -0500
 From: Graham Sider <Graham.Sider@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <felix.kuehling@amd.com>, <mukul.joshi@amd.com>, Graham Sider
  <Graham.Sider@amd.com>
-Subject: [PATCH 11/13] drm/amdkfd: replace kgd_dev in gpuvm amdgpu_amdkfd funcs
-Date: Tue, 19 Oct 2021 17:13:32 -0400
-Message-ID: <20211019211334.1552825-11-Graham.Sider@amd.com>
+Subject: [PATCH 12/13] drm/amdkfd: replace/remove remaining kgd_dev references
+Date: Tue, 19 Oct 2021 17:13:33 -0400
+Message-ID: <20211019211334.1552825-12-Graham.Sider@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211019211334.1552825-1-Graham.Sider@amd.com>
 References: <20211019211334.1552825-1-Graham.Sider@amd.com>
@@ -71,28 +71,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7f476dd7-d180-4aad-ca6a-08d9934583bd
-X-MS-TrafficTypeDiagnostic: BYAPR12MB2902:
-X-Microsoft-Antispam-PRVS: <BYAPR12MB2902FC76783EC1A49B950ADA8ABD9@BYAPR12MB2902.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:883;
+X-MS-Office365-Filtering-Correlation-Id: 2ced8ced-5210-48dc-6982-08d993458475
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3097:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB30977EB6B34EAE81B1D2E5838ABD9@DM6PR12MB3097.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:276;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yByvpQctbFDPDO5CSVXU0T9jnTNe2RQR8kvNROGH4x+XRDM2qQORDZ0nTXbhWTjoN6XWbe5OuHbJuBNcE3XehUd4qKI5N1Dy1jMP09F0nI1xmX8JLQzicNFzAVxDwzbTzKD/lB4Z/598SPE1BDaN9BV276wDCSq1GnZor9KwG1D04wz9Fq2I4vkWa+OsoF+1ymwm80rVPUw3GwA+DQtCF4dYfCADDGcPOcuMuK44MUQ0cTZI4QwQmWG+QU9g3bYWBjzSZLjPwk+gAKnXbOd3w4z3GpyshTvOyXrbuwa9uSuiYVG5IGP0f+vIokxrmegIWXK/lJoWidQuFYWdkoiwAjs//cCcaLxS7AlGfSBvBGV8qhHE2IES2tI9uGZijExi8qKRkN2bMcSy2dM34oP2BIVHACoZ0DKsv5wJWzeLipJfi3idWcYWVb8awec2tX+lFNbnt7l58OAkR3FLQqpCm1VOu6hAwZXf7U8EDzXxeUIklfiiqE0W4HYXGFIdpoq/1o8uEcT+fOf6nYSNY85eMLlnSpN5By4NdpN54F6g5gUvGSDTJSo0amx0cIUUjkab/qZ7/WTH4t3Kdk3P5lrwYYOjXBBlxmLAPwu+V8iovB6FXthDIkxGuekTsFfQwHunup0oK/d7aXU3yd+SGqAArcDj/mVgtPSVtMSRrpXYJzl+GpamZJNxAwsAskfuyGd5PKqy1HR5Veijyxnw32at9XR+zsOGS9BFdoQSmGxH168=
+X-Microsoft-Antispam-Message-Info: BF0idjreHLL2FqlefVe0pW9NJHiC8CubyDq3lCwmdMX22rWMVjJRN8msL/ztpc5tU2QlRrlH0+1ILYw8vqNM4Gy5My9PUynu0f7nKNUF/gBUum65edfGp/Orpbcz0LgnxKwZiacoLWUmd0V/q8Bo2HzZZfHbTPLn+qZ+c7pVLGCBzrAnEhcauePlbLaupjOzEbK6fhO+c+hb7YXTl/8UwHK5dZOt9J5czrbEIvCHNxiPByZf9O3dwrU/ckp1OSogd52tuY5kMDM4C0eWVphjyhsXBPN74jI4OrggcRVGHO9QrxvIFA71aFmzipEaTsJ/EFY1RP1WDHfx/Ytd32iIFsjj0jqxaL5aJO564Qiw9CusHQNh5q/B0P8bQ+ITc3r/tBImEHA1UrJ3JzGqsKcWenLEMwXKkY4Q0jCsylHoNp6qVZwWTk2NPS97q1xNRsUeW8A5sn+wByGFmClsZGSx2zLq3HYCyVHZg2fLAZ9W3tF/nX/J3Vi47itx7c8ks6WvntMpsx7mx1JftZaZYx9Vxxj9HQ8ZxWXsyJ27e2D7dpA5P0D/cP6U9TzkZfIbyD/vX+ZwStF8IEbz5PNz3QVJLBDynPHCAK7ew5qrBAH+jzDGz4zCoVmS4aPlmlhZbmXTJzpyGE8BorfssEjIYlvkaCBvV7dRTV7wMpdWIVuh18YlIeigbIsYxRT9x8862cU96lSiBrSZWLc+EUTj4XfxvJMahNV1y5F1umvM9dDlfA4=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(2616005)(83380400001)(336012)(1076003)(8936002)(47076005)(356005)(36756003)(8676002)(81166007)(508600001)(426003)(4326008)(316002)(30864003)(6916009)(82310400003)(6666004)(36860700001)(26005)(186003)(16526019)(7696005)(5660300002)(70586007)(70206006)(54906003)(2906002)(86362001)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(36860700001)(86362001)(82310400003)(356005)(81166007)(47076005)(83380400001)(54906003)(316002)(426003)(508600001)(30864003)(36756003)(7696005)(6666004)(4326008)(2616005)(336012)(8676002)(26005)(70586007)(70206006)(8936002)(6916009)(186003)(1076003)(16526019)(5660300002)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2021 21:15:02.1475 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f476dd7-d180-4aad-ca6a-08d9934583bd
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2021 21:15:03.3519 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ced8ced-5210-48dc-6982-08d993458475
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT020.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2902
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3097
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,439 +107,467 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Modified definitions:
-
-- amdgpu_amdkfd_gpuvm_acquire_process_vm
-- amdgpu_amdkfd_gpuvm_release_process_vm
-- amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu
-- amdgpu_amdkfd_gpuvm_free_memory_of_gpu
-- amdgpu_amdkfd_gpuvm_map_memory_to_gpu
-- amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu
-- amdgpu_amdkfd_gpuvm_sync_memory
-- amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel
-- amdgpu_amdkfd_gpuvm_get_vm_fault_info
-- amdgpu_amdkfd_gpuvm_import_dmabuf
-- amdgpu_amdkfd_get_tile_config
-
-Remove:
-
-- get_amdgpu_device
-
 Signed-off-by: Graham Sider <Graham.Sider@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    | 24 ++++++-----
- .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  | 41 ++++++-------------
- .../gpu/drm/amd/amdkfd/cik_event_interrupt.c  |  2 +-
- drivers/gpu/drm/amd/amdkfd/kfd_chardev.c      | 22 +++++-----
- drivers/gpu/drm/amd/amdkfd/kfd_process.c      | 22 +++++-----
- 5 files changed, 49 insertions(+), 62 deletions(-)
+ .../drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c   |  5 ---
+ .../drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c    |  5 ---
+ .../drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10_3.c  |  5 ---
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c |  5 ---
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c |  5 ---
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c |  5 ---
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c         |  6 +--
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c       |  2 +-
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c |  2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |  2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      |  5 +--
+ drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c   |  6 +--
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c          | 43 +++++++------------
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c     | 12 +++---
+ 14 files changed, 31 insertions(+), 77 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-index 7e3697a7a5cd..35f703dda034 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-@@ -265,37 +265,39 @@ int amdgpu_amdkfd_get_pcie_bandwidth_mbytes(struct amdgpu_device *adev, bool is_
- 	(&((struct amdgpu_fpriv *)					\
- 		((struct drm_file *)(drm_priv))->driver_priv)->vm)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
+index c2b8d970195b..abe93b3ff765 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
+@@ -57,11 +57,6 @@
+ 		(*dump)[i++][1] = RREG32(addr);		\
+ 	} while (0)
  
--int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct kgd_dev *kgd,
-+int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct amdgpu_device *adev,
- 					struct file *filp, u32 pasid,
- 					void **process_info,
- 					struct dma_fence **ef);
--void amdgpu_amdkfd_gpuvm_release_process_vm(struct kgd_dev *kgd, void *drm_priv);
-+void amdgpu_amdkfd_gpuvm_release_process_vm(struct amdgpu_device *adev,
-+					void *drm_priv);
- uint64_t amdgpu_amdkfd_gpuvm_get_process_page_dir(void *drm_priv);
- int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
--		struct kgd_dev *kgd, uint64_t va, uint64_t size,
-+		struct amdgpu_device *adev, uint64_t va, uint64_t size,
- 		void *drm_priv, struct kgd_mem **mem,
- 		uint64_t *offset, uint32_t flags);
- int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
--		struct kgd_dev *kgd, struct kgd_mem *mem, void *drm_priv,
-+		struct amdgpu_device *adev, struct kgd_mem *mem, void *drm_priv,
- 		uint64_t *size);
- int amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
--		struct kgd_dev *kgd, struct kgd_mem *mem, void *drm_priv, bool *table_freed);
-+		struct amdgpu_device *adev, struct kgd_mem *mem, void *drm_priv,
-+		bool *table_freed);
- int amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu(
--		struct kgd_dev *kgd, struct kgd_mem *mem, void *drm_priv);
-+		struct amdgpu_device *adev, struct kgd_mem *mem, void *drm_priv);
- int amdgpu_amdkfd_gpuvm_sync_memory(
--		struct kgd_dev *kgd, struct kgd_mem *mem, bool intr);
--int amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(struct kgd_dev *kgd,
-+		struct amdgpu_device *adev, struct kgd_mem *mem, bool intr);
-+int amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(struct amdgpu_device *adev,
- 		struct kgd_mem *mem, void **kptr, uint64_t *size);
- int amdgpu_amdkfd_gpuvm_restore_process_bos(void *process_info,
- 					    struct dma_fence **ef);
--int amdgpu_amdkfd_gpuvm_get_vm_fault_info(struct kgd_dev *kgd,
-+int amdgpu_amdkfd_gpuvm_get_vm_fault_info(struct amdgpu_device *adev,
- 					      struct kfd_vm_fault_info *info);
--int amdgpu_amdkfd_gpuvm_import_dmabuf(struct kgd_dev *kgd,
-+int amdgpu_amdkfd_gpuvm_import_dmabuf(struct amdgpu_device *adev,
- 				      struct dma_buf *dmabuf,
- 				      uint64_t va, void *drm_priv,
- 				      struct kgd_mem **mem, uint64_t *size,
- 				      uint64_t *mmap_offset);
--int amdgpu_amdkfd_get_tile_config(struct kgd_dev *kgd,
-+int amdgpu_amdkfd_get_tile_config(struct amdgpu_device *adev,
- 				struct tile_config *config);
- void amdgpu_amdkfd_ras_poison_consumption_handler(struct amdgpu_device *adev);
- #if IS_ENABLED(CONFIG_HSA_AMD)
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-index cdf46bd0d8d5..d632484b209e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
-@@ -60,12 +60,6 @@ static const char * const domain_bit_to_string[] = {
- 
- static void amdgpu_amdkfd_restore_userptr_worker(struct work_struct *work);
- 
--
 -static inline struct amdgpu_device *get_amdgpu_device(struct kgd_dev *kgd)
 -{
 -	return (struct amdgpu_device *)kgd;
 -}
 -
- static bool kfd_mem_is_attached(struct amdgpu_vm *avm,
- 		struct kgd_mem *mem)
+ static inline struct v9_sdma_mqd *get_sdma_mqd(void *mqd)
  {
-@@ -1269,12 +1263,11 @@ static int init_kfd_vm(struct amdgpu_vm *vm, void **process_info,
- 	return ret;
- }
+ 	return (struct v9_sdma_mqd *)mqd;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c
+index 5f274b7c4121..7b7f4b2764c1 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10.c
+@@ -39,11 +39,6 @@ enum hqd_dequeue_request_type {
+ 	SAVE_WAVES
+ };
  
--int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct kgd_dev *kgd,
-+int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct amdgpu_device *adev,
- 					   struct file *filp, u32 pasid,
- 					   void **process_info,
- 					   struct dma_fence **ef)
- {
--	struct amdgpu_device *adev = get_amdgpu_device(kgd);
- 	struct amdgpu_fpriv *drv_priv;
- 	struct amdgpu_vm *avm;
- 	int ret;
-@@ -1350,12 +1343,12 @@ void amdgpu_amdkfd_gpuvm_destroy_cb(struct amdgpu_device *adev,
- 	}
- }
- 
--void amdgpu_amdkfd_gpuvm_release_process_vm(struct kgd_dev *kgd, void *drm_priv)
-+void amdgpu_amdkfd_gpuvm_release_process_vm(struct amdgpu_device *adev,
-+					    void *drm_priv)
- {
--	struct amdgpu_device *adev = get_amdgpu_device(kgd);
- 	struct amdgpu_vm *avm;
- 
--	if (WARN_ON(!kgd || !drm_priv))
-+	if (WARN_ON(!adev || !drm_priv))
- 		return;
- 
- 	avm = drm_priv_to_vm(drm_priv);
-@@ -1383,11 +1376,10 @@ uint64_t amdgpu_amdkfd_gpuvm_get_process_page_dir(void *drm_priv)
- }
- 
- int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
--		struct kgd_dev *kgd, uint64_t va, uint64_t size,
-+		struct amdgpu_device *adev, uint64_t va, uint64_t size,
- 		void *drm_priv, struct kgd_mem **mem,
- 		uint64_t *offset, uint32_t flags)
- {
--	struct amdgpu_device *adev = get_amdgpu_device(kgd);
- 	struct amdgpu_vm *avm = drm_priv_to_vm(drm_priv);
- 	enum ttm_bo_type bo_type = ttm_bo_type_device;
- 	struct sg_table *sg = NULL;
-@@ -1520,7 +1512,7 @@ int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
- }
- 
- int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
--		struct kgd_dev *kgd, struct kgd_mem *mem, void *drm_priv,
-+		struct amdgpu_device *adev, struct kgd_mem *mem, void *drm_priv,
- 		uint64_t *size)
- {
- 	struct amdkfd_process_info *process_info = mem->process_info;
-@@ -1608,10 +1600,9 @@ int amdgpu_amdkfd_gpuvm_free_memory_of_gpu(
- }
- 
- int amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
--		struct kgd_dev *kgd, struct kgd_mem *mem,
-+		struct amdgpu_device *adev, struct kgd_mem *mem,
- 		void *drm_priv, bool *table_freed)
- {
--	struct amdgpu_device *adev = get_amdgpu_device(kgd);
- 	struct amdgpu_vm *avm = drm_priv_to_vm(drm_priv);
- 	int ret;
- 	struct amdgpu_bo *bo;
-@@ -1738,7 +1729,7 @@ int amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
- }
- 
- int amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu(
--		struct kgd_dev *kgd, struct kgd_mem *mem, void *drm_priv)
-+		struct amdgpu_device *adev, struct kgd_mem *mem, void *drm_priv)
- {
- 	struct amdgpu_vm *avm = drm_priv_to_vm(drm_priv);
- 	struct amdkfd_process_info *process_info = avm->process_info;
-@@ -1799,7 +1790,7 @@ int amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu(
- }
- 
- int amdgpu_amdkfd_gpuvm_sync_memory(
--		struct kgd_dev *kgd, struct kgd_mem *mem, bool intr)
-+		struct amdgpu_device *adev, struct kgd_mem *mem, bool intr)
- {
- 	struct amdgpu_sync sync;
- 	int ret;
-@@ -1815,7 +1806,7 @@ int amdgpu_amdkfd_gpuvm_sync_memory(
- 	return ret;
- }
- 
--int amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(struct kgd_dev *kgd,
-+int amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(struct amdgpu_device *adev,
- 		struct kgd_mem *mem, void **kptr, uint64_t *size)
- {
- 	int ret;
-@@ -1871,12 +1862,9 @@ int amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(struct kgd_dev *kgd,
- 	return ret;
- }
- 
--int amdgpu_amdkfd_gpuvm_get_vm_fault_info(struct kgd_dev *kgd,
-+int amdgpu_amdkfd_gpuvm_get_vm_fault_info(struct amdgpu_device *adev,
- 					      struct kfd_vm_fault_info *mem)
- {
--	struct amdgpu_device *adev;
+-static inline struct amdgpu_device *get_amdgpu_device(struct kgd_dev *kgd)
+-{
+-	return (struct amdgpu_device *)kgd;
+-}
 -
--	adev = (struct amdgpu_device *)kgd;
- 	if (atomic_read(&adev->gmc.vm_fault_info_updated) == 1) {
- 		*mem = *adev->gmc.vm_fault_info;
- 		mb();
-@@ -1885,13 +1873,12 @@ int amdgpu_amdkfd_gpuvm_get_vm_fault_info(struct kgd_dev *kgd,
- 	return 0;
- }
- 
--int amdgpu_amdkfd_gpuvm_import_dmabuf(struct kgd_dev *kgd,
-+int amdgpu_amdkfd_gpuvm_import_dmabuf(struct amdgpu_device *adev,
- 				      struct dma_buf *dma_buf,
- 				      uint64_t va, void *drm_priv,
- 				      struct kgd_mem **mem, uint64_t *size,
- 				      uint64_t *mmap_offset)
+ static void lock_srbm(struct amdgpu_device *adev, uint32_t mec, uint32_t pipe,
+ 			uint32_t queue, uint32_t vmid)
  {
--	struct amdgpu_device *adev = (struct amdgpu_device *)kgd;
- 	struct amdgpu_vm *avm = drm_priv_to_vm(drm_priv);
- 	struct drm_gem_object *obj;
- 	struct amdgpu_bo *bo;
-@@ -2511,11 +2498,9 @@ int amdgpu_amdkfd_remove_gws_from_process(void *info, void *mem)
- }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10_3.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10_3.c
+index 980430974aca..1f37d3574001 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v10_3.c
+@@ -38,11 +38,6 @@ enum hqd_dequeue_request_type {
+ 	SAVE_WAVES
+ };
  
- /* Returns GPU-specific tiling mode information */
--int amdgpu_amdkfd_get_tile_config(struct kgd_dev *kgd,
-+int amdgpu_amdkfd_get_tile_config(struct amdgpu_device *adev,
- 				struct tile_config *config)
- {
--	struct amdgpu_device *adev = (struct amdgpu_device *)kgd;
+-static inline struct amdgpu_device *get_amdgpu_device(struct kgd_dev *kgd)
+-{
+-	return (struct amdgpu_device *)kgd;
+-}
 -
- 	config->gb_addr_config = adev->gfx.config.gb_addr_config;
- 	config->tile_config_ptr = adev->gfx.config.tile_mode_array;
- 	config->num_tile_configs =
-diff --git a/drivers/gpu/drm/amd/amdkfd/cik_event_interrupt.c b/drivers/gpu/drm/amd/amdkfd/cik_event_interrupt.c
-index 3073361bb714..e31ea107e998 100644
---- a/drivers/gpu/drm/amd/amdkfd/cik_event_interrupt.c
-+++ b/drivers/gpu/drm/amd/amdkfd/cik_event_interrupt.c
-@@ -113,7 +113,7 @@ static void cik_event_interrupt_wq(struct kfd_dev *dev,
- 		kfd_process_vm_fault(dev->dqm, pasid);
+ static void lock_srbm(struct amdgpu_device *adev, uint32_t mec, uint32_t pipe,
+ 			uint32_t queue, uint32_t vmid)
+ {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c
+index e31b03495db4..36528dad7684 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v7.c
+@@ -82,11 +82,6 @@ union TCP_WATCH_CNTL_BITS {
+ 	float f32All;
+ };
  
- 		memset(&info, 0, sizeof(info));
--		amdgpu_amdkfd_gpuvm_get_vm_fault_info(dev->kgd, &info);
-+		amdgpu_amdkfd_gpuvm_get_vm_fault_info(dev->adev, &info);
- 		if (!info.page_addr && !info.status)
- 			return;
+-static inline struct amdgpu_device *get_amdgpu_device(struct kgd_dev *kgd)
+-{
+-	return (struct amdgpu_device *)kgd;
+-}
+-
+ static void lock_srbm(struct amdgpu_device *adev, uint32_t mec, uint32_t pipe,
+ 			uint32_t queue, uint32_t vmid)
+ {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c
+index 9a30a4f4f098..52832cd69a93 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v8.c
+@@ -39,11 +39,6 @@ enum hqd_dequeue_request_type {
+ 	RESET_WAVES
+ };
  
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-index 47acfef1aebd..11d917e18b38 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-@@ -1039,7 +1039,7 @@ static int kfd_ioctl_create_event(struct file *filp, struct kfd_process *p,
- 		}
- 		mutex_unlock(&p->mutex);
+-static inline struct amdgpu_device *get_amdgpu_device(struct kgd_dev *kgd)
+-{
+-	return (struct amdgpu_device *)kgd;
+-}
+-
+ static void lock_srbm(struct amdgpu_device *adev, uint32_t mec, uint32_t pipe,
+ 			uint32_t queue, uint32_t vmid)
+ {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
+index d7b31adcfd80..ddfe7aff919d 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gfx_v9.c
+@@ -46,11 +46,6 @@ enum hqd_dequeue_request_type {
+ 	SAVE_WAVES
+ };
  
--		err = amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(kfd->kgd,
-+		err = amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(kfd->adev,
- 						mem, &kern_addr, &size);
- 		if (err) {
- 			pr_err("Failed to map event page to kernel\n");
-@@ -1151,7 +1151,7 @@ static int kfd_ioctl_get_tile_config(struct file *filep,
- 	if (!dev)
- 		return -EINVAL;
+-static inline struct amdgpu_device *get_amdgpu_device(struct kgd_dev *kgd)
+-{
+-	return (struct amdgpu_device *)kgd;
+-}
+-
+ static void lock_srbm(struct amdgpu_device *adev, uint32_t mec, uint32_t pipe,
+ 			uint32_t queue, uint32_t vmid)
+ {
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+index 7143550becb0..1dc6cb7446e0 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+@@ -1963,8 +1963,6 @@ static int kfd_fill_gpu_direct_io_link_to_cpu(int *avail_size,
+ 			struct crat_subtype_iolink *sub_type_hdr,
+ 			uint32_t proximity_domain)
+ {
+-	struct amdgpu_device *adev = (struct amdgpu_device *)kdev->kgd;
+-
+ 	*avail_size -= sizeof(struct crat_subtype_iolink);
+ 	if (*avail_size < 0)
+ 		return -ENOMEM;
+@@ -1981,7 +1979,7 @@ static int kfd_fill_gpu_direct_io_link_to_cpu(int *avail_size,
+ 	/* Fill in IOLINK subtype.
+ 	 * TODO: Fill-in other fields of iolink subtype
+ 	 */
+-	if (adev->gmc.xgmi.connected_to_cpu) {
++	if (kdev->adev->gmc.xgmi.connected_to_cpu) {
+ 		/*
+ 		 * with host gpu xgmi link, host can access gpu memory whether
+ 		 * or not pcie bar type is large, so always create bidirectional
+@@ -1990,7 +1988,7 @@ static int kfd_fill_gpu_direct_io_link_to_cpu(int *avail_size,
+ 		sub_type_hdr->flags |= CRAT_IOLINK_FLAGS_BI_DIRECTIONAL;
+ 		sub_type_hdr->io_interface_type = CRAT_IOLINK_TYPE_XGMI;
+ 		sub_type_hdr->num_hops_xgmi = 1;
+-		if (adev->asic_type == CHIP_ALDEBARAN) {
++		if (kdev->adev->asic_type == CHIP_ALDEBARAN) {
+ 			sub_type_hdr->minimum_bandwidth_mbs =
+ 					amdgpu_amdkfd_get_xgmi_bandwidth_mbytes(
+ 							kdev->adev, NULL, true);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index 00c726123207..402891a02a01 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -1031,7 +1031,7 @@ bool kgd2kfd_device_init(struct kfd_dev *kfd,
  
--	amdgpu_amdkfd_get_tile_config(dev->kgd, &config);
-+	amdgpu_amdkfd_get_tile_config(dev->adev, &config);
+ 	kfd_cwsr_init(kfd);
  
- 	args->gb_addr_config = config.gb_addr_config;
- 	args->num_banks = config.num_banks;
-@@ -1314,7 +1314,7 @@ static int kfd_ioctl_alloc_memory_of_gpu(struct file *filep,
+-	svm_migrate_init((struct amdgpu_device *)kfd->kgd);
++	svm_migrate_init(kfd->adev);
+ 
+ 	if(kgd2kfd_resume_iommu(kfd))
+ 		goto device_iommu_error;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+index 330fbbb15d83..f7d09e0a706f 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
+@@ -1131,7 +1131,7 @@ static int set_sched_resources(struct device_queue_manager *dqm)
+ 
+ 		res.queue_mask |= 1ull
+ 			<< amdgpu_queue_mask_bit_to_set_resource_bit(
+-				(struct amdgpu_device *)dqm->dev->kgd, i);
++				dqm->dev->adev, i);
  	}
+ 	res.gws_mask = ~0ull;
+ 	res.oac_mask = res.gds_heap_base = res.gds_heap_size = 0;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+index 499db2099775..1fbc28c34c4c 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+@@ -876,7 +876,7 @@ struct kfd_process *kfd_lookup_process_by_pasid(u32 pasid);
+ struct kfd_process *kfd_lookup_process_by_mm(const struct mm_struct *mm);
  
- 	err = amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
--		dev->kgd, args->va_addr, args->size,
-+		dev->adev, args->va_addr, args->size,
- 		pdd->drm_priv, (struct kgd_mem **) &mem, &offset,
- 		flags);
- 
-@@ -1346,7 +1346,7 @@ static int kfd_ioctl_alloc_memory_of_gpu(struct file *filep,
- 	return 0;
- 
- err_free:
--	amdgpu_amdkfd_gpuvm_free_memory_of_gpu(dev->kgd, (struct kgd_mem *)mem,
-+	amdgpu_amdkfd_gpuvm_free_memory_of_gpu(dev->adev, (struct kgd_mem *)mem,
- 					       pdd->drm_priv, NULL);
- err_unlock:
- 	mutex_unlock(&p->mutex);
-@@ -1383,7 +1383,7 @@ static int kfd_ioctl_free_memory_of_gpu(struct file *filep,
- 		goto err_unlock;
- 	}
- 
--	ret = amdgpu_amdkfd_gpuvm_free_memory_of_gpu(dev->kgd,
-+	ret = amdgpu_amdkfd_gpuvm_free_memory_of_gpu(dev->adev,
- 				(struct kgd_mem *)mem, pdd->drm_priv, &size);
- 
- 	/* If freeing the buffer failed, leave the handle in place for
-@@ -1468,7 +1468,7 @@ static int kfd_ioctl_map_memory_to_gpu(struct file *filep,
- 			goto get_mem_obj_from_handle_failed;
- 		}
- 		err = amdgpu_amdkfd_gpuvm_map_memory_to_gpu(
--			peer->kgd, (struct kgd_mem *)mem,
-+			peer->adev, (struct kgd_mem *)mem,
- 			peer_pdd->drm_priv, &table_freed);
- 		if (err) {
- 			pr_err("Failed to map to gpu %d/%d\n",
-@@ -1480,7 +1480,7 @@ static int kfd_ioctl_map_memory_to_gpu(struct file *filep,
- 
- 	mutex_unlock(&p->mutex);
- 
--	err = amdgpu_amdkfd_gpuvm_sync_memory(dev->kgd, (struct kgd_mem *) mem, true);
-+	err = amdgpu_amdkfd_gpuvm_sync_memory(dev->adev, (struct kgd_mem *) mem, true);
- 	if (err) {
- 		pr_debug("Sync memory failed, wait interrupted by user signal\n");
- 		goto sync_memory_failed;
-@@ -1577,7 +1577,7 @@ static int kfd_ioctl_unmap_memory_from_gpu(struct file *filep,
- 			goto get_mem_obj_from_handle_failed;
- 		}
- 		err = amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu(
--			peer->kgd, (struct kgd_mem *)mem, peer_pdd->drm_priv);
-+			peer->adev, (struct kgd_mem *)mem, peer_pdd->drm_priv);
- 		if (err) {
- 			pr_err("Failed to unmap from gpu %d/%d\n",
- 			       i, args->n_devices);
-@@ -1588,7 +1588,7 @@ static int kfd_ioctl_unmap_memory_from_gpu(struct file *filep,
- 	mutex_unlock(&p->mutex);
- 
- 	if (dev->device_info->asic_family == CHIP_ALDEBARAN) {
--		err = amdgpu_amdkfd_gpuvm_sync_memory(dev->kgd,
-+		err = amdgpu_amdkfd_gpuvm_sync_memory(dev->adev,
- 				(struct kgd_mem *) mem, true);
- 		if (err) {
- 			pr_debug("Sync memory failed, wait interrupted by user signal\n");
-@@ -1742,7 +1742,7 @@ static int kfd_ioctl_import_dmabuf(struct file *filep,
- 		goto err_unlock;
- 	}
- 
--	r = amdgpu_amdkfd_gpuvm_import_dmabuf(dev->kgd, dmabuf,
-+	r = amdgpu_amdkfd_gpuvm_import_dmabuf(dev->adev, dmabuf,
- 					      args->va_addr, pdd->drm_priv,
- 					      (struct kgd_mem **)&mem, &size,
- 					      NULL);
-@@ -1763,7 +1763,7 @@ static int kfd_ioctl_import_dmabuf(struct file *filep,
- 	return 0;
- 
- err_free:
--	amdgpu_amdkfd_gpuvm_free_memory_of_gpu(dev->kgd, (struct kgd_mem *)mem,
-+	amdgpu_amdkfd_gpuvm_free_memory_of_gpu(dev->adev, (struct kgd_mem *)mem,
- 					       pdd->drm_priv, NULL);
- err_unlock:
- 	mutex_unlock(&p->mutex);
+ int kfd_process_gpuidx_from_gpuid(struct kfd_process *p, uint32_t gpu_id);
+-int kfd_process_gpuid_from_kgd(struct kfd_process *p,
++int kfd_process_gpuid_from_adev(struct kfd_process *p,
+ 			       struct amdgpu_device *adev, uint32_t *gpuid,
+ 			       uint32_t *gpuidx);
+ static inline int kfd_process_gpuid_from_gpuidx(struct kfd_process *p,
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-index 704f07be2b3f..3db9433f7aa5 100644
+index 3db9433f7aa5..6e2f52dba16c 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -689,8 +689,8 @@ static void kfd_process_free_gpuvm(struct kgd_mem *mem,
- {
- 	struct kfd_dev *dev = pdd->dev;
- 
--	amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu(dev->kgd, mem, pdd->drm_priv);
--	amdgpu_amdkfd_gpuvm_free_memory_of_gpu(dev->kgd, mem, pdd->drm_priv,
-+	amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu(dev->adev, mem, pdd->drm_priv);
-+	amdgpu_amdkfd_gpuvm_free_memory_of_gpu(dev->adev, mem, pdd->drm_priv,
- 					       NULL);
+@@ -1724,14 +1724,13 @@ int kfd_process_gpuidx_from_gpuid(struct kfd_process *p, uint32_t gpu_id)
  }
  
-@@ -709,17 +709,17 @@ static int kfd_process_alloc_gpuvm(struct kfd_process_device *pdd,
- 	int handle;
- 	int err;
+ int
+-kfd_process_gpuid_from_kgd(struct kfd_process *p, struct amdgpu_device *adev,
++kfd_process_gpuid_from_adev(struct kfd_process *p, struct amdgpu_device *adev,
+ 			   uint32_t *gpuid, uint32_t *gpuidx)
+ {
+-	struct kgd_dev *kgd = (struct kgd_dev *)adev;
+ 	int i;
  
--	err = amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(kdev->kgd, gpu_va, size,
-+	err = amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(kdev->adev, gpu_va, size,
- 						 pdd->drm_priv, &mem, NULL, flags);
- 	if (err)
- 		goto err_alloc_mem;
+ 	for (i = 0; i < p->n_pdds; i++)
+-		if (p->pdds[i] && p->pdds[i]->dev->kgd == kgd) {
++		if (p->pdds[i] && p->pdds[i]->dev->adev == adev) {
+ 			*gpuid = p->pdds[i]->dev->id;
+ 			*gpuidx = i;
+ 			return 0;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
+index ed4bc5f844ce..deae12dc777d 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
+@@ -207,7 +207,6 @@ void kfd_smi_event_update_gpu_reset(struct kfd_dev *dev, bool post_reset)
+ void kfd_smi_event_update_thermal_throttling(struct kfd_dev *dev,
+ 					     uint64_t throttle_bitmask)
+ {
+-	struct amdgpu_device *adev = (struct amdgpu_device *)dev->kgd;
+ 	/*
+ 	 * ThermalThrottle msg = throttle_bitmask(8):
+ 	 * 			 thermal_interrupt_count(16):
+@@ -223,14 +222,13 @@ void kfd_smi_event_update_thermal_throttling(struct kfd_dev *dev,
  
--	err = amdgpu_amdkfd_gpuvm_map_memory_to_gpu(kdev->kgd, mem,
-+	err = amdgpu_amdkfd_gpuvm_map_memory_to_gpu(kdev->adev, mem,
- 			pdd->drm_priv, NULL);
- 	if (err)
- 		goto err_map_mem;
+ 	len = snprintf(fifo_in, sizeof(fifo_in), "%x %llx:%llx\n",
+ 		       KFD_SMI_EVENT_THERMAL_THROTTLE, throttle_bitmask,
+-		       atomic64_read(&adev->smu.throttle_int_counter));
++		       atomic64_read(&dev->adev->smu.throttle_int_counter));
  
--	err = amdgpu_amdkfd_gpuvm_sync_memory(kdev->kgd, mem, true);
-+	err = amdgpu_amdkfd_gpuvm_sync_memory(kdev->adev, mem, true);
- 	if (err) {
- 		pr_debug("Sync memory failed, wait interrupted by user signal\n");
- 		goto sync_memory_failed;
-@@ -738,7 +738,7 @@ static int kfd_process_alloc_gpuvm(struct kfd_process_device *pdd,
+ 	add_event_to_kfifo(dev, KFD_SMI_EVENT_THERMAL_THROTTLE,	fifo_in, len);
+ }
+ 
+ void kfd_smi_event_update_vmfault(struct kfd_dev *dev, uint16_t pasid)
+ {
+-	struct amdgpu_device *adev = (struct amdgpu_device *)dev->kgd;
+ 	struct amdgpu_task_info task_info;
+ 	/* VmFault msg = (hex)uint32_pid(8) + :(1) + task name(16) = 25 */
+ 	/* 1 byte event + 1 byte space + 25 bytes msg + 1 byte \n +
+@@ -243,7 +241,7 @@ void kfd_smi_event_update_vmfault(struct kfd_dev *dev, uint16_t pasid)
+ 		return;
+ 
+ 	memset(&task_info, 0, sizeof(struct amdgpu_task_info));
+-	amdgpu_vm_get_task_info(adev, pasid, &task_info);
++	amdgpu_vm_get_task_info(dev->adev, pasid, &task_info);
+ 	/* Report VM faults from user applications, not retry from kernel */
+ 	if (!task_info.pid)
+ 		return;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+index 5b67b14fd8be..9a46ba190ea7 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+@@ -193,7 +193,6 @@ svm_range_dma_map(struct svm_range *prange, unsigned long *bitmap,
+ 
+ 	for_each_set_bit(gpuidx, bitmap, MAX_GPU_INSTANCE) {
+ 		struct kfd_process_device *pdd;
+-		struct amdgpu_device *adev;
+ 
+ 		pr_debug("mapping to gpu idx 0x%x\n", gpuidx);
+ 		pdd = kfd_process_device_from_gpuidx(p, gpuidx);
+@@ -201,9 +200,8 @@ svm_range_dma_map(struct svm_range *prange, unsigned long *bitmap,
+ 			pr_debug("failed to find device idx %d\n", gpuidx);
+ 			return -EINVAL;
+ 		}
+-		adev = (struct amdgpu_device *)pdd->dev->kgd;
+ 
+-		r = svm_range_dma_map_dev(adev, prange, offset, npages,
++		r = svm_range_dma_map_dev(pdd->dev->adev, prange, offset, npages,
+ 					  hmm_pfns, gpuidx);
+ 		if (r)
+ 			break;
+@@ -581,7 +579,7 @@ svm_range_get_adev_by_id(struct svm_range *prange, uint32_t gpu_id)
+ 		return NULL;
  	}
  
- 	if (kptr) {
--		err = amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(kdev->kgd,
-+		err = amdgpu_amdkfd_gpuvm_map_gtt_bo_to_kernel(kdev->adev,
- 				(struct kgd_mem *)mem, kptr, NULL);
- 		if (err) {
- 			pr_debug("Map GTT BO to kernel failed\n");
-@@ -756,7 +756,7 @@ static int kfd_process_alloc_gpuvm(struct kfd_process_device *pdd,
- 	return err;
+-	return (struct amdgpu_device *)pdd->dev->kgd;
++	return pdd->dev->adev;
+ }
  
- err_map_mem:
--	amdgpu_amdkfd_gpuvm_free_memory_of_gpu(kdev->kgd, mem, pdd->drm_priv,
-+	amdgpu_amdkfd_gpuvm_free_memory_of_gpu(kdev->adev, mem, pdd->drm_priv,
- 					       NULL);
- err_alloc_mem:
- 	*kptr = NULL;
-@@ -938,10 +938,10 @@ static void kfd_process_device_free_bos(struct kfd_process_device *pdd)
- 			if (!peer_pdd->drm_priv)
- 				continue;
- 			amdgpu_amdkfd_gpuvm_unmap_memory_from_gpu(
--				peer_pdd->dev->kgd, mem, peer_pdd->drm_priv);
-+				peer_pdd->dev->adev, mem, peer_pdd->drm_priv);
+ struct kfd_process_device *
+@@ -593,7 +591,7 @@ svm_range_get_pdd_by_adev(struct svm_range *prange, struct amdgpu_device *adev)
+ 
+ 	p = container_of(prange->svms, struct kfd_process, svms);
+ 
+-	r = kfd_process_gpuid_from_kgd(p, adev, &gpuid, &gpu_idx);
++	r = kfd_process_gpuid_from_adev(p, adev, &gpuid, &gpu_idx);
+ 	if (r) {
+ 		pr_debug("failed to get device id by adev %p\n", adev);
+ 		return NULL;
+@@ -1255,7 +1253,6 @@ svm_range_map_to_gpus(struct svm_range *prange, unsigned long offset,
+ {
+ 	struct kfd_process_device *pdd;
+ 	struct amdgpu_device *bo_adev;
+-	struct amdgpu_device *adev;
+ 	struct kfd_process *p;
+ 	struct dma_fence *fence = NULL;
+ 	uint32_t gpuidx;
+@@ -1274,19 +1271,18 @@ svm_range_map_to_gpus(struct svm_range *prange, unsigned long offset,
+ 			pr_debug("failed to find device idx %d\n", gpuidx);
+ 			return -EINVAL;
+ 		}
+-		adev = (struct amdgpu_device *)pdd->dev->kgd;
+ 
+ 		pdd = kfd_bind_process_to_device(pdd->dev, p);
+ 		if (IS_ERR(pdd))
+ 			return -EINVAL;
+ 
+-		if (bo_adev && adev != bo_adev &&
+-		    !amdgpu_xgmi_same_hive(adev, bo_adev)) {
++		if (bo_adev && pdd->dev->adev != bo_adev &&
++		    !amdgpu_xgmi_same_hive(pdd->dev->adev, bo_adev)) {
+ 			pr_debug("cannot map to device idx %d\n", gpuidx);
+ 			continue;
  		}
  
--		amdgpu_amdkfd_gpuvm_free_memory_of_gpu(pdd->dev->kgd, mem,
-+		amdgpu_amdkfd_gpuvm_free_memory_of_gpu(pdd->dev->adev, mem,
- 						       pdd->drm_priv, NULL);
- 		kfd_process_device_remove_obj_handle(pdd, id);
+-		r = svm_range_map_to_gpu(adev, drm_priv_to_vm(pdd->drm_priv),
++		r = svm_range_map_to_gpu(pdd->dev->adev, drm_priv_to_vm(pdd->drm_priv),
+ 					 prange, offset, npages, readonly,
+ 					 prange->dma_addr[gpuidx],
+ 					 bo_adev, wait ? &fence : NULL);
+@@ -1320,7 +1316,6 @@ struct svm_validate_context {
+ static int svm_range_reserve_bos(struct svm_validate_context *ctx)
+ {
+ 	struct kfd_process_device *pdd;
+-	struct amdgpu_device *adev;
+ 	struct amdgpu_vm *vm;
+ 	uint32_t gpuidx;
+ 	int r;
+@@ -1332,7 +1327,6 @@ static int svm_range_reserve_bos(struct svm_validate_context *ctx)
+ 			pr_debug("failed to find device idx %d\n", gpuidx);
+ 			return -EINVAL;
+ 		}
+-		adev = (struct amdgpu_device *)pdd->dev->kgd;
+ 		vm = drm_priv_to_vm(pdd->drm_priv);
+ 
+ 		ctx->tv[gpuidx].bo = &vm->root.bo->tbo;
+@@ -1354,9 +1348,9 @@ static int svm_range_reserve_bos(struct svm_validate_context *ctx)
+ 			r = -EINVAL;
+ 			goto unreserve_out;
+ 		}
+-		adev = (struct amdgpu_device *)pdd->dev->kgd;
+ 
+-		r = amdgpu_vm_validate_pt_bos(adev, drm_priv_to_vm(pdd->drm_priv),
++		r = amdgpu_vm_validate_pt_bos(pdd->dev->adev,
++					      drm_priv_to_vm(pdd->drm_priv),
+ 					      svm_range_bo_validate, NULL);
+ 		if (r) {
+ 			pr_debug("failed %d validate pt bos\n", r);
+@@ -1379,12 +1373,10 @@ static void svm_range_unreserve_bos(struct svm_validate_context *ctx)
+ static void *kfd_svm_page_owner(struct kfd_process *p, int32_t gpuidx)
+ {
+ 	struct kfd_process_device *pdd;
+-	struct amdgpu_device *adev;
+ 
+ 	pdd = kfd_process_device_from_gpuidx(p, gpuidx);
+-	adev = (struct amdgpu_device *)pdd->dev->kgd;
+ 
+-	return SVM_ADEV_PGMAP_OWNER(adev);
++	return SVM_ADEV_PGMAP_OWNER(pdd->dev->adev);
+ }
+ 
+ /*
+@@ -1962,7 +1954,6 @@ svm_range_handle_list_op(struct svm_range_list *svms, struct svm_range *prange)
+ static void svm_range_drain_retry_fault(struct svm_range_list *svms)
+ {
+ 	struct kfd_process_device *pdd;
+-	struct amdgpu_device *adev;
+ 	struct kfd_process *p;
+ 	uint32_t i;
+ 
+@@ -1974,9 +1965,9 @@ static void svm_range_drain_retry_fault(struct svm_range_list *svms)
+ 			continue;
+ 
+ 		pr_debug("drain retry fault gpu %d svms %p\n", i, svms);
+-		adev = (struct amdgpu_device *)pdd->dev->kgd;
+ 
+-		amdgpu_ih_wait_on_checkpoint_process(adev, &adev->irq.ih1);
++		amdgpu_ih_wait_on_checkpoint_process(pdd->dev->adev,
++						     &pdd->dev->adev->irq.ih1);
+ 		pr_debug("drain retry fault gpu %d svms 0x%p done\n", i, svms);
  	}
-@@ -967,7 +967,7 @@ static void kfd_process_destroy_pdds(struct kfd_process *p)
+ }
+@@ -2283,7 +2274,7 @@ svm_range_best_restore_location(struct svm_range *prange,
  
- 		if (pdd->drm_file) {
- 			amdgpu_amdkfd_gpuvm_release_process_vm(
--					pdd->dev->kgd, pdd->drm_priv);
-+					pdd->dev->adev, pdd->drm_priv);
- 			fput(pdd->drm_file);
+ 	p = container_of(prange->svms, struct kfd_process, svms);
+ 
+-	r = kfd_process_gpuid_from_kgd(p, adev, &gpuid, gpuidx);
++	r = kfd_process_gpuid_from_adev(p, adev, &gpuid, gpuidx);
+ 	if (r < 0) {
+ 		pr_debug("failed to get gpuid from kgd\n");
+ 		return -1;
+@@ -2443,7 +2434,7 @@ svm_range *svm_range_create_unregistered_range(struct amdgpu_device *adev,
+ 		pr_debug("Failed to create prange in address [0x%llx]\n", addr);
+ 		return NULL;
+ 	}
+-	if (kfd_process_gpuid_from_kgd(p, adev, &gpuid, &gpuidx)) {
++	if (kfd_process_gpuid_from_adev(p, adev, &gpuid, &gpuidx)) {
+ 		pr_debug("failed to get gpuid from kgd\n");
+ 		svm_range_free(prange);
+ 		return NULL;
+@@ -2507,7 +2498,7 @@ svm_range_count_fault(struct amdgpu_device *adev, struct kfd_process *p,
+ 		uint32_t gpuid;
+ 		int r;
+ 
+-		r = kfd_process_gpuid_from_kgd(p, adev, &gpuid, &gpuidx);
++		r = kfd_process_gpuid_from_adev(p, adev, &gpuid, &gpuidx);
+ 		if (r < 0)
+ 			return;
+ 	}
+@@ -2915,7 +2906,6 @@ svm_range_best_prefetch_location(struct svm_range *prange)
+ 	uint32_t best_loc = prange->prefetch_loc;
+ 	struct kfd_process_device *pdd;
+ 	struct amdgpu_device *bo_adev;
+-	struct amdgpu_device *adev;
+ 	struct kfd_process *p;
+ 	uint32_t gpuidx;
+ 
+@@ -2943,12 +2933,11 @@ svm_range_best_prefetch_location(struct svm_range *prange)
+ 			pr_debug("failed to get device by idx 0x%x\n", gpuidx);
+ 			continue;
  		}
+-		adev = (struct amdgpu_device *)pdd->dev->kgd;
  
-@@ -1496,7 +1496,7 @@ int kfd_process_device_init_vm(struct kfd_process_device *pdd,
- 	dev = pdd->dev;
+-		if (adev == bo_adev)
++		if (pdd->dev->adev == bo_adev)
+ 			continue;
  
- 	ret = amdgpu_amdkfd_gpuvm_acquire_process_vm(
--		dev->kgd, drm_file, p->pasid,
-+		dev->adev, drm_file, p->pasid,
- 		&p->kgd_process_info, &p->ef);
- 	if (ret) {
- 		pr_err("Failed to create process VM object\n");
+-		if (!amdgpu_xgmi_same_hive(adev, bo_adev)) {
++		if (!amdgpu_xgmi_same_hive(pdd->dev->adev, bo_adev)) {
+ 			best_loc = 0;
+ 			break;
+ 		}
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+index 31610b4a3e2e..8364d6614836 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+@@ -1286,7 +1286,6 @@ int kfd_topology_add_device(struct kfd_dev *gpu)
+ 	void *crat_image = NULL;
+ 	size_t image_size = 0;
+ 	int proximity_domain;
+-	struct amdgpu_device *adev;
+ 
+ 	INIT_LIST_HEAD(&temp_topology_device_list);
+ 
+@@ -1477,16 +1476,17 @@ int kfd_topology_add_device(struct kfd_dev *gpu)
+ 
+ 	/* kfd only concerns sram ecc on GFX and HBM ecc on UMC */
+ 	dev->node_props.capability |=
+-		((adev->ras_enabled & BIT(AMDGPU_RAS_BLOCK__GFX)) != 0) ?
++		((dev->gpu->adev->ras_enabled & BIT(AMDGPU_RAS_BLOCK__GFX)) != 0) ?
+ 		HSA_CAP_SRAM_EDCSUPPORTED : 0;
+-	dev->node_props.capability |= ((adev->ras_enabled & BIT(AMDGPU_RAS_BLOCK__UMC)) != 0) ?
++	dev->node_props.capability |=
++		((dev->gpu->adev->ras_enabled & BIT(AMDGPU_RAS_BLOCK__UMC)) != 0) ?
+ 		HSA_CAP_MEM_EDCSUPPORTED : 0;
+ 
+-	if (adev->asic_type != CHIP_VEGA10)
+-		dev->node_props.capability |= (adev->ras_enabled != 0) ?
++	if (dev->gpu->adev->asic_type != CHIP_VEGA10)
++		dev->node_props.capability |= (dev->gpu->adev->ras_enabled != 0) ?
+ 			HSA_CAP_RASEVENTNOTIFY : 0;
+ 
+-	if (KFD_IS_SVM_API_SUPPORTED(adev->kfd.dev))
++	if (KFD_IS_SVM_API_SUPPORTED(dev->gpu->adev->kfd.dev))
+ 		dev->node_props.capability |= HSA_CAP_SVMAPI_SUPPORTED;
+ 
+ 	kfd_debug_print_topology();
 -- 
 2.25.1
 
