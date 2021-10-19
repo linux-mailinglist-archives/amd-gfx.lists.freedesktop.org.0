@@ -2,122 +2,95 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDD62433E34
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Oct 2021 20:13:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD0B2433E42
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Oct 2021 20:15:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1845B6E1DE;
-	Tue, 19 Oct 2021 18:13:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9ABD6E593;
+	Tue, 19 Oct 2021 18:15:14 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2041.outbound.protection.outlook.com [40.107.92.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B4466E1DE
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 18:13:21 +0000 (UTC)
+ (mail-bn7nam10on2047.outbound.protection.outlook.com [40.107.92.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9C366E2C8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 18:15:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HTbzfxGNK4MOxIh/Cl5zWFbp3TWwrI4WjTnJ0M/O8EowMtIhIo6CXZGIZuHpF9ks+pvYVSfKqjz8IyowaFmVFzL+8kMuHQwdA/Uoq10lW7Lq55WBacTshcbsj9zmlKbPiGEnBPsYY9K4T9bBZLOLyKTDYW2MLJ6AryTWO1gANxuB6wL8y49AzuGDhSsa6gU9VTLsL7+/+yVxT+Iymqnu0rrGrs8rUDR/Vp1MwtxF+hwWBf15mULUuoVnb8c1aVsARqIs6eGb+Om1O/S7hAtiIBaqYcQO7tP2esgoBJ0fgjQr1zhUeYjgos0A8ALQuSkNCrUD8LFc3IrM9gPO9eqvyA==
+ b=aw31YCXubGpgIdjThWcg5i98LfO9v3E3xGeC5Q1gFBiqEPf4fneyhc/aztR/qgHyeyQkIkxnVEVOQuFfAYEmRLVnYWPPOcFt/kg+q82CsFj+VIhOascaO65jLew27KAk3R4HXQjbfrrAx7dp4B0PuPnzl4rrUutEyr9LSk5HkaYRnTnARlODJxpfnX7PK8ybpJUNSYmDYox2KBPq7jfoc4r15cu7eNoqtNZZGEw35rqKi7hIreaLkNrzn1BI24Zq+tlVL56vJVmkD9YJS4GFRaGINuWswOf1e6deIC0czU1Dc/N/fwEYnBdWMvwqLRpjMFMmdEhHv5EojrBSIQhXTw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R8rzHFJnylha2+F6rOjgKvDF960kJoyx2YaELtygr14=;
- b=Ad43yiWTBMTF81KVKCx9XT+TeTg09G/aFlMIcA7fWLm555puHLUiSIoo8vJ9v9Agr+G85wOh8FiDowyqKGZCLiie8COf6FAgx+wjvh5viJSJtMaKjuobr6C56BifahtluNkPn6a4GoUJ9U0B9wRgfPvnJ8zPIgDuAuzQADfkImqLMfMP6swLjGSgfOEf0ukZMaHbofltl3FPcoTLK0xT3mE9IN0Ez03nJUBlVaMOSbSv6b78j6bnVehuYs9ZsgwJpPGbURsqsgK4WNX5utZn181fm+n+bQrUIw27QsV/vT5p8Wbo7JOs/8UiWO1Vw/MH4GPKP4qsb0BwYj8qwMmM5A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=S4aAv/gtfiVHpU9alFU9S5XX4kOxAm6XNIOTNl0OQrs=;
+ b=UjSzdCbwStVUnlA5rL2QMlOBQR6EmnToxsi5BXGfk/F3YVPVnAekvtUwe4yBRPt9BGMVrsaxOyQU1p+5Ruibi10dyauOs8lQxSSsN2wZD9i5lo8MdOPooiAu+nRIPAlVD7KWjs6W1Few46X+CqESabYQSooQbABCk4MJLErBnbCkJRiBQa5DWOeYA9TWee6RjylAgeXuWz4Qsf8v7h1o2PyDD0KZRBE72xz8uZl0b3YleYtp+Kq4FzE9zKL1MlbUitap7tcw1aNo8a2tkj8MYKxSLLclSCjlL/ZY9s9v4n8SUoIMJ+WJ7UixyDRYPqKPf67coDtyzK8CohF3F1FHBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=temperror (sender ip
+ is 165.204.84.17)
+ smtp.rcpttodomain=lists.freedesktop.org
+ smtp.mailfrom=amd.com; dmarc=temperror action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=R8rzHFJnylha2+F6rOjgKvDF960kJoyx2YaELtygr14=;
- b=C/k1qkPEIszPuWS/6gtwjUMZYbwD6VaPrn7QlMMSxBkiKuSgTGci/3LhCHRdJz3Zgq89gZ9Cuoq0JzEtyXx6Cwtjhn2BAvC7ytddFKT3MrBIWuDQ+b1bJ/KKmNK1jjCCknKb63ZiAa31j37kwFQr5hN9Omib9qx1qp6CWWoFRnU=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from DM5PR1201MB2491.namprd12.prod.outlook.com (2603:10b6:3:eb::23)
- by DM6PR12MB2937.namprd12.prod.outlook.com (2603:10b6:5:181::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.18; Tue, 19 Oct
- 2021 18:13:15 +0000
-Received: from DM5PR1201MB2491.namprd12.prod.outlook.com
- ([fe80::d153:3aa6:4677:e29]) by DM5PR1201MB2491.namprd12.prod.outlook.com
- ([fe80::d153:3aa6:4677:e29%7]) with mapi id 15.20.4608.018; Tue, 19 Oct 2021
- 18:13:15 +0000
-Subject: Re: [PATCH 3/4] drm/amdgpu: Add kernel parameter for ignoring bad
- page threshold
-To: Kent Russell <kent.russell@amd.com>, amd-gfx@lists.freedesktop.org
-Cc: Luben Tuikov <luben.tuikov@amd.com>, Mukul Joshi <Mukul.Joshi@amd.com>
-References: <20211019175050.934527-1-kent.russell@amd.com>
- <20211019175050.934527-3-kent.russell@amd.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-Message-ID: <12b72b9b-0b46-248d-fb85-82e442f59570@amd.com>
-Date: Tue, 19 Oct 2021 14:13:11 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-In-Reply-To: <20211019175050.934527-3-kent.russell@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-ClientProxiedBy: YTXPR0101CA0044.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:1::21) To DM5PR1201MB2491.namprd12.prod.outlook.com
- (2603:10b6:3:eb::23)
+ bh=S4aAv/gtfiVHpU9alFU9S5XX4kOxAm6XNIOTNl0OQrs=;
+ b=zkxhE+WDfG0SA7viEOanZzwB8uP6Yos9Zp0bW5osABvCukJ0S/g9vtGIG0jhnxiPXHsjGRgUdR8ErUIhrVKCLJ9Iq137o8XQr92n23tiDuDJZkj526wlMF8A9wdeFiHEX0VzodKZNQpkccBI29S7c/FRSmxvScPsYNgf5X1bPr4=
+Received: from BN9PR03CA0916.namprd03.prod.outlook.com (2603:10b6:408:107::21)
+ by MN2PR12MB3054.namprd12.prod.outlook.com (2603:10b6:208:d1::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.17; Tue, 19 Oct
+ 2021 18:15:10 +0000
+Received: from BN8NAM11FT062.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:107:cafe::4) by BN9PR03CA0916.outlook.office365.com
+ (2603:10b6:408:107::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
+ Transport; Tue, 19 Oct 2021 18:15:10 +0000
+X-MS-Exchange-Authentication-Results: spf=temperror (sender IP is
+ 165.204.84.17) smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none
+ (message not signed) header.d=none;lists.freedesktop.org; dmarc=temperror
+ action=none header.from=amd.com;
+Received-SPF: TempError (protection.outlook.com: error in processing during
+ lookup of amd.com: DNS Timeout)
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT062.mail.protection.outlook.com (10.13.177.34) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4608.15 via Frontend Transport; Tue, 19 Oct 2021 18:15:08 +0000
+Received: from brihaspati.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Tue, 19 Oct
+ 2021 13:15:04 -0500
+From: Nirmoy Das <nirmoy.das@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Christian.Koenig@amd.com>, <andrey.grodzovsky@amd.com>, Nirmoy Das
+ <nirmoy.das@amd.com>
+Subject: [PATCH 1/3] drm/amdgpu: do not pass ttm_resource_manager to gtt_mgr
+Date: Tue, 19 Oct 2021 20:14:47 +0200
+Message-ID: <20211019181449.12356-1-nirmoy.das@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Received: from [192.168.2.100] (142.118.126.231) by
- YTXPR0101CA0044.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:1::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.15 via Frontend
- Transport; Tue, 19 Oct 2021 18:13:14 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8e2c05f1-8ca8-4a14-2042-08d9932c1e7d
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2937:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB29371B914B1C98484E5E442F92BD9@DM6PR12MB2937.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Office365-Filtering-Correlation-Id: 52a31690-59bf-43af-95bf-08d9932c624c
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3054:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3054C865BEF7C4FBAB691EE48BBD9@MN2PR12MB3054.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZDpyrAJ8bpTIhGJK3wL3Ph3xUuIJwcRGQY9zOaTMtFCWVsY0J5ySD/hYM3LT0OKIiHnTcH24WIdZgaUVxIhh65RJsSf/bqiMUyB/6VIIYVNrrO1SYjJa0SX3bUUINIc4poKTrR9gHExzdaHYXdvacqtlSdN/H5eyA6UEOdenBSeyS/vNtBQLszIsDRUmeiMHgqteujOueUFoN7RjDqSNClYw8LMwYmXuDjGFGCVIwfuldwsEWTb4d9hx6KfPXtGIe/hKxk557qn2vwHA+NS5xSqq7ZtVJoBHh0Gq9cFPfF+G1fursIwN55yrQ9riIAwsKrFJieXbkBpVeceRNNPW3TrEdLHVhyuGFGGM4ss5Fp5BHgh7x9ZU481ElZM7R7jlChFrszd1eY5B3KTgCbhix4URZw77bZ9h6c1jRQfhMNUoi5/WzCNFr5V2jtJq1nJ8tUU2wNrgL6Ev2S0w0QBMGQw+vDda9yxdTRPHc1lU9vplsgRBkC+NkMw9ybLLtl2uYeNswgFtk9lqrv0ROAUGSyTCWTXMyxg4emR0jvjtOu97bf6RHz8JOSePE5Yd9jjrk0DBGIobcaDKi85FWznwCO6Jk+cZ7oS95hYk9AXcOFTVMAATv8AJkBigUjN9hYuaAHKUYu70T65O8fLRLulUWIXgTPx7kz+sS8AG/6DESVkRydsuhAeGOtQKpxr0k77KFbdTvKzOfPAqJarFqdJVD7Z5VLKc5cwllsVtnxyuMRFzWMA/WXWAvF94jZoY6HAP
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR1201MB2491.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(86362001)(31696002)(186003)(508600001)(31686004)(956004)(2616005)(6666004)(66946007)(66556008)(316002)(83380400001)(16576012)(66476007)(8936002)(38100700002)(26005)(2906002)(6486002)(54906003)(5660300002)(4326008)(4001150100001)(8676002)(44832011)(36756003)(43740500002)(45980500001);
+X-Microsoft-Antispam-Message-Info: vRWREAdIvUUzJ1TnQfGxHKJEN6oGoFh2jXgnStKGRYYy5ZWUGIJvxHfr8pypqU76bhtx+XJpHULkMSuB1rrWZ3QAj6je78Tyen45zSv699/UEAkgY996RAt1umuWkaHhLnl9OYwI1WtOtfC1w02x7vZ4o9rrcvkgXsJ5qF2D1LQCaZHoUDurdG4ZVZBkUlDJfPhULTTrL9Or8XexO9MTGHzfP3EdvrPSCyjXOnPX39lJ33k9p3TDyLqGopr+erXLs3naSV0Awe4uFzN/Q8aiRA20FPngx1DNBMl/wSfcDU4GxZVPZoayZhGjMDHdnWwy0ixIpuHKSHgUZxj5PD4w/BicJ6fexJSzq9yXPoP/pCKkADdB3nDLDmDkt6GF9TiiKdAPrqhZRMXl0kh2KizVJpP0Rnmam2O5QcSHritL25DiLE5ym8yMStRl3JF1owtMgSwpwgthE+S3VtsTgg/V7E5OdyphxJxyeVq5li7PdnIkrlGLQXJXD1a7Jqru3UBisL5lgVrGdoetbIq5fPfNg83s3EOXgqmExvjJ4GAvjlz1d7ithMxdFZbYLxHsNAedtNdsjKT98z+iPz6Ap6FmPPymimvNar8yBeiYO8v5dKi8xXxEXBQ5zpjBHji5bmJ2KQJv+onm19H8a8z7zYGGQxxb03T6MeK6LYarSfVoYFGK04kp+fvqqQY6JHUUZT8MBimQ2dXugsDGwgOfKb0VgXf83Avmm7R8NjJLw00V7Rg=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(36840700001)(46966006)(70586007)(63370400001)(7696005)(2616005)(508600001)(426003)(6666004)(63350400001)(5660300002)(8936002)(1076003)(70206006)(81166007)(83380400001)(316002)(36756003)(356005)(86362001)(44832011)(16526019)(4326008)(47076005)(8676002)(36860700001)(54906003)(336012)(26005)(6916009)(82310400003)(186003)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OUVLTStUSXlMS0pzc01EWUNrWDNjZ1NlYkp4RmJnWGMzUDR4cVRNRDM4OWlK?=
- =?utf-8?B?VVkzKzJYZk80aXJLanUyQzNEMnFYZWsyL3VLTVVjL3l5SEZRYWNPTExmNmVs?=
- =?utf-8?B?UXBuQ2QvYXQ3dW9uL05CY3VuUGQ3VDhtcVowM0xoR1BvdElmWDZ3QXZYbWsr?=
- =?utf-8?B?anZ0WHkwZTJJY2gwSjRiS2s2OHVhWENsRFpFQnRvZjcrdithV2I1QWxQQXBJ?=
- =?utf-8?B?aVRZNXloejI5dk5LWEJKZ0tlcEhpYVNjZnpuMmFLdGxuVGtOZjg3aURRclR2?=
- =?utf-8?B?MVNFVVVNcXBFR0dvanV2NldpMkJwM0FCMFhOUmVQeTZyaGtzQXRXK0haWWxz?=
- =?utf-8?B?OSthbHNKOGdmaFZDTmtodWRCNzNicDBuTGVuNE1LMTlaMGZkNTk5Rk55bTVQ?=
- =?utf-8?B?UUg0b0NXL2cya0VXVXZ1Q2tlYzB5cXM1UHltYUZaUVUxdWpDbERBdm9hVURY?=
- =?utf-8?B?M1BmamRjWWJ0ZXl1d241OWFody94TXZmbnZFVHAwZEFFMHo3cnNFNkFhWDVh?=
- =?utf-8?B?c0ZYN1U4RmRqd2hxNG96SG0xcVZxM0djT2pDYk1YdzFDZFN4ejBFMGpUL1lU?=
- =?utf-8?B?cmpTVlpUWWxEdTlaMHFuanU1cDFGZ2EwbnVTY1pZR2twcExVMHNLeXpWVXdv?=
- =?utf-8?B?dmtGSHNHTk40bSt5ekg1ZnREa1BTWmZZcEZtcytWNHByRkowTENKRVUvZFZl?=
- =?utf-8?B?RmFLQTlxU1F3YSttU1lGaVVuenZIQTRJU2xiVDBLeEZmZksyaEhORzBZRDVN?=
- =?utf-8?B?clh5M0dFTUswWWUySS9taTJrb3NMdFJSenpYeFdRRWlsTjhIWDR1VVJEeVJi?=
- =?utf-8?B?eEFkZzhGbktSdFltcEJNbmpXcjNLUWtRaDdwbHpJNHZZUVhwY3NpN2ppMVZ4?=
- =?utf-8?B?UUsrbWFDVVFpdHNDRWFSV3JDd2xFSTRNTXBNb2xuTyt2OHJHaWRNQ1dFM0ZK?=
- =?utf-8?B?enVSTTRJeHNRUVQ5TDdlQWNxZS9FNXdTNWlRTUZFSFcxRUZCQTJuVnI4Ly9K?=
- =?utf-8?B?UzBQbEUxdFF2N0Q1MEc5YVhLM01WM3hoTlVnS3Nnd1daQzV4YWs2bWxkNkVx?=
- =?utf-8?B?Ti9vM1RzanJxbnIrcENyMUFwckd0WmpmNmd2OXBxVS9vY2tUcHlTMzU4Y1dt?=
- =?utf-8?B?UVY0YmF4b0JHeWtoNlRDNmV6T2FoUHpHZUMxOWs4TG4xVVUwZVc3RWM0MlQr?=
- =?utf-8?B?cks2UTJWZFhGWDVDWjVTYWlnalNQeXErQU5IeEZmeGJiM1BTSGtJVmQ1Wmp5?=
- =?utf-8?B?VklhMnVMUFNhTVFncDdvQ1NGdDI5RUhKMDBzZzRNUStQM1BQRkdMVGF5QXh0?=
- =?utf-8?B?a0FVd3Bka1UzYURrNW1BL1VUQjl3b1E0RmtMbE1LckorTGUzUlNPaGNyQTQ4?=
- =?utf-8?B?UVFmci9YZjVtZVZtdzZvaEk4akx0WEJ1ekVEKzA3V0xOYzF3cndFYnc4eGxm?=
- =?utf-8?B?ekh3L0g4b1lIaGtJY2pGb1Rmak5XMUtmdzZNZE1pMmVFaDJwbTFaanJSTEp4?=
- =?utf-8?B?SVRISFpZYk5KKy83K2UyOFhTcEM2Ykw1WUV0Tkd2ck5PUlZOclh3RDdIajJM?=
- =?utf-8?B?NzFyOFNhM2FKekFMOTdIOHNEaENRL2wzajRZdXdQUnpFR0l6TVhCZjMwY25S?=
- =?utf-8?B?Q3lqNkFyRHBxZUNxK3k3dnlXWVdpRGJHaGV0S1FtKzVvNW90SE5WYWFhL0xI?=
- =?utf-8?B?NlJ2d09JczZtTFRpNFl5QnJuTklnQTdpZXppRFBTYmtmKzJRVmltTUhJY1NB?=
- =?utf-8?B?WHBDQmNwY29KZzNXTUwwYWpQVXJqUEdlWGpIZ0lFK2pEVFh4aDhHalNWamFy?=
- =?utf-8?B?Ry9DQjQ0YzFnM1RmbS9PQT09?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8e2c05f1-8ca8-4a14-2042-08d9932c1e7d
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR1201MB2491.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2021 18:13:15.0695 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2021 18:15:08.6241 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52a31690-59bf-43af-95bf-08d9932c624c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LlV6NRSoXNQmbMguPFIRGwodAqE3qnWSG4VZirUGzc0OvBqGJ1Bq2vnsEsU/uU+eRAxJ2JVJkWn/WM//lT0jWw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2937
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT062.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3054
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,71 +105,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Do not allow exported amdgpu_gtt_mgr_*() to accept
+any ttm_resource_manager pointer. Also there is no need
+to force other module to call a ttm function just to
+eventually call gtt_mgr functions.
 
-Am 2021-10-19 um 1:50 p.m. schrieb Kent Russell:
-> When a GPU hits the bad_page_threshold, it will not be initialized by
-> the amdgpu driver. This means that the table cannot be cleared, nor can
-> information gathering be performed (getting serial number, BDF, etc).
-> Add an override called ignore_bad_page_threshold that can be set to true
-> to still initialize the GPU, even when the bad page threshold has been
-> reached.
-Do you really need a new parameter for this? Wouldn't it be enough to
-set bad_page_threshold to the VRAM size? You could use a new special
-value (e.g. bad_page_threshold=-2) for that.
+Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  4 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c | 31 ++++++++++++---------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     |  4 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h     |  4 +--
+ 4 files changed, 24 insertions(+), 19 deletions(-)
 
-Regards,
-  Felix
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 41ce86244144..5807df52031c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4287,7 +4287,7 @@ static int amdgpu_device_reset_sriov(struct amdgpu_device *adev,
+ 
+ 	amdgpu_virt_init_data_exchange(adev);
+ 	/* we need recover gart prior to run SMC/CP/SDMA resume */
+-	amdgpu_gtt_mgr_recover(ttm_manager_type(&adev->mman.bdev, TTM_PL_TT));
++	amdgpu_gtt_mgr_recover(adev);
+ 
+ 	r = amdgpu_device_fw_loading(adev);
+ 	if (r)
+@@ -4604,7 +4604,7 @@ int amdgpu_do_asic_reset(struct list_head *device_list_handle,
+ 					amdgpu_inc_vram_lost(tmp_adev);
+ 				}
+ 
+-				r = amdgpu_gtt_mgr_recover(ttm_manager_type(&tmp_adev->mman.bdev, TTM_PL_TT));
++				r = amdgpu_gtt_mgr_recover(tmp_adev);
+ 				if (r)
+ 					goto out;
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+index c18f16b3be9c..5e41f8ef743a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+@@ -77,10 +77,8 @@ static ssize_t amdgpu_mem_info_gtt_used_show(struct device *dev,
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+-	struct ttm_resource_manager *man;
+ 
+-	man = ttm_manager_type(&adev->mman.bdev, TTM_PL_TT);
+-	return sysfs_emit(buf, "%llu\n", amdgpu_gtt_mgr_usage(man));
++	return sysfs_emit(buf, "%llu\n", amdgpu_gtt_mgr_usage(adev));
+ }
+ 
+ static DEVICE_ATTR(mem_info_gtt_total, S_IRUGO,
+@@ -206,14 +204,19 @@ static void amdgpu_gtt_mgr_del(struct ttm_resource_manager *man,
+ /**
+  * amdgpu_gtt_mgr_usage - return usage of GTT domain
+  *
+- * @man: TTM memory type manager
++ * @adev: amdgpu_device pointer
+  *
+  * Return how many bytes are used in the GTT domain
+  */
+-uint64_t amdgpu_gtt_mgr_usage(struct ttm_resource_manager *man)
++uint64_t amdgpu_gtt_mgr_usage(struct amdgpu_device *adev)
+ {
+-	struct amdgpu_gtt_mgr *mgr = to_gtt_mgr(man);
+-	s64 result = man->size - atomic64_read(&mgr->available);
++	struct ttm_resource_manager *man;
++	struct amdgpu_gtt_mgr *mgr;
++	s64 result;
++
++	man = ttm_manager_type(&adev->mman.bdev, TTM_PL_TT);
++	mgr = to_gtt_mgr(man);
++	result = man->size - atomic64_read(&mgr->available);
+ 
+ 	return (result > 0 ? result : 0) * PAGE_SIZE;
+ }
+@@ -221,19 +224,20 @@ uint64_t amdgpu_gtt_mgr_usage(struct ttm_resource_manager *man)
+ /**
+  * amdgpu_gtt_mgr_recover - re-init gart
+  *
+- * @man: TTM memory type manager
++ * @adev: amdgpu_device pointer
+  *
+  * Re-init the gart for each known BO in the GTT.
+  */
+-int amdgpu_gtt_mgr_recover(struct ttm_resource_manager *man)
++int amdgpu_gtt_mgr_recover(struct amdgpu_device *adev)
+ {
+-	struct amdgpu_gtt_mgr *mgr = to_gtt_mgr(man);
+-	struct amdgpu_device *adev;
++	struct ttm_resource_manager *man;
++	struct amdgpu_gtt_mgr *mgr;
+ 	struct amdgpu_gtt_node *node;
+ 	struct drm_mm_node *mm_node;
+ 	int r = 0;
+ 
+-	adev = container_of(mgr, typeof(*adev), mman.gtt_mgr);
++	man = ttm_manager_type(&adev->mman.bdev, TTM_PL_TT);
++	mgr = to_gtt_mgr(man);
+ 	spin_lock(&mgr->lock);
+ 	drm_mm_for_each_node(mm_node, &mgr->mm) {
+ 		node = container_of(mm_node, typeof(*node), base.mm_nodes[0]);
+@@ -260,6 +264,7 @@ static void amdgpu_gtt_mgr_debug(struct ttm_resource_manager *man,
+ 				 struct drm_printer *printer)
+ {
+ 	struct amdgpu_gtt_mgr *mgr = to_gtt_mgr(man);
++	struct amdgpu_device *adev = container_of(mgr, typeof(*adev), mman.gtt_mgr);
+ 
+ 	spin_lock(&mgr->lock);
+ 	drm_mm_print(&mgr->mm, printer);
+@@ -267,7 +272,7 @@ static void amdgpu_gtt_mgr_debug(struct ttm_resource_manager *man,
+ 
+ 	drm_printf(printer, "man size:%llu pages, gtt available:%lld pages, usage:%lluMB\n",
+ 		   man->size, (u64)atomic64_read(&mgr->available),
+-		   amdgpu_gtt_mgr_usage(man) >> 20);
++		   amdgpu_gtt_mgr_usage(adev) >> 20);
+ }
+ 
+ static const struct ttm_resource_manager_func amdgpu_gtt_mgr_func = {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index d2955ea4a62b..b9b38f70e416 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -678,7 +678,7 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+ 		ui64 = amdgpu_vram_mgr_vis_usage(ttm_manager_type(&adev->mman.bdev, TTM_PL_VRAM));
+ 		return copy_to_user(out, &ui64, min(size, 8u)) ? -EFAULT : 0;
+ 	case AMDGPU_INFO_GTT_USAGE:
+-		ui64 = amdgpu_gtt_mgr_usage(ttm_manager_type(&adev->mman.bdev, TTM_PL_TT));
++		ui64 = amdgpu_gtt_mgr_usage(adev);
+ 		return copy_to_user(out, &ui64, min(size, 8u)) ? -EFAULT : 0;
+ 	case AMDGPU_INFO_GDS_CONFIG: {
+ 		struct drm_amdgpu_info_gds gds_info;
+@@ -738,7 +738,7 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+ 		mem.gtt.usable_heap_size = mem.gtt.total_heap_size -
+ 			atomic64_read(&adev->gart_pin_size);
+ 		mem.gtt.heap_usage =
+-			amdgpu_gtt_mgr_usage(gtt_man);
++			amdgpu_gtt_mgr_usage(adev);
+ 		mem.gtt.max_allocation = mem.gtt.usable_heap_size * 3 / 4;
+ 
+ 		return copy_to_user(out, &mem,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+index 91a087f9dc7c..6e337cacef51 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+@@ -114,8 +114,8 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev);
+ void amdgpu_vram_mgr_fini(struct amdgpu_device *adev);
+ 
+ bool amdgpu_gtt_mgr_has_gart_addr(struct ttm_resource *mem);
+-uint64_t amdgpu_gtt_mgr_usage(struct ttm_resource_manager *man);
+-int amdgpu_gtt_mgr_recover(struct ttm_resource_manager *man);
++uint64_t amdgpu_gtt_mgr_usage(struct amdgpu_device *adev);
++int amdgpu_gtt_mgr_recover(struct amdgpu_device *adev);
+ 
+ uint64_t amdgpu_preempt_mgr_usage(struct ttm_resource_manager *man);
+ 
+-- 
+2.32.0
 
-
->
-> Cc: Luben Tuikov <luben.tuikov@amd.com>
-> Cc: Mukul Joshi <Mukul.Joshi@amd.com>
-> Signed-off-by: Kent Russell <kent.russell@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  1 +
->  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 13 +++++++++++++
->  2 files changed, 14 insertions(+)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> index d58e37fd01f4..b85b67a88a3d 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -205,6 +205,7 @@ extern struct amdgpu_mgpu_info mgpu_info;
->  extern int amdgpu_ras_enable;
->  extern uint amdgpu_ras_mask;
->  extern int amdgpu_bad_page_threshold;
-> +extern bool amdgpu_ignore_bad_page_threshold;
->  extern struct amdgpu_watchdog_timer amdgpu_watchdog_timer;
->  extern int amdgpu_async_gfx_ring;
->  extern int amdgpu_mcbp;
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> index 96bd63aeeddd..3e9a7b072888 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> @@ -189,6 +189,7 @@ struct amdgpu_mgpu_info mgpu_info = {
->  int amdgpu_ras_enable = -1;
->  uint amdgpu_ras_mask = 0xffffffff;
->  int amdgpu_bad_page_threshold = -1;
-> +bool amdgpu_ignore_bad_page_threshold;
->  struct amdgpu_watchdog_timer amdgpu_watchdog_timer = {
->  	.timeout_fatal_disable = false,
->  	.period = 0x0, /* default to 0x0 (timeout disable) */
-> @@ -880,6 +881,18 @@ module_param_named(reset_method, amdgpu_reset_method, int, 0444);
->  MODULE_PARM_DESC(bad_page_threshold, "Bad page threshold(-1 = auto(default value), 0 = disable bad page retirement)");
->  module_param_named(bad_page_threshold, amdgpu_bad_page_threshold, int, 0444);
->  
-> +/**
-> + * DOC: ignore_bad_page_threshold (bool) Bad page threshold specifies
-> + * the threshold value of faulty pages detected by RAS ECC. Once the
-> + * threshold is hit, the GPU will not be initialized. Use this parameter
-> + * to ignore the bad page threshold so that information gathering can
-> + * still be performed. This also allows for booting the GPU to clear
-> + * the RAS EEPROM table.
-> + */
-> +
-> +MODULE_PARM_DESC(ignore_bad_page_threshold, "Ignore bad page threshold (false = respect bad page threshold (default value)");
-> +module_param_named(ignore_bad_page_threshold, amdgpu_ignore_bad_page_threshold, bool, 0644);
-> +
->  MODULE_PARM_DESC(num_kcq, "number of kernel compute queue user want to setup (8 if set to greater than 8 or less than 0, only affect gfx 8+)");
->  module_param_named(num_kcq, amdgpu_num_kcq, int, 0444);
->  
