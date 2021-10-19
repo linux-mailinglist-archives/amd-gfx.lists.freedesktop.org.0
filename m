@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DA5343404F
-	for <lists+amd-gfx@lfdr.de>; Tue, 19 Oct 2021 23:15:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB0024340CD
+	for <lists+amd-gfx@lfdr.de>; Tue, 19 Oct 2021 23:49:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DE206E97D;
-	Tue, 19 Oct 2021 21:15:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54E5C6E0B8;
+	Tue, 19 Oct 2021 21:49:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2082.outbound.protection.outlook.com [40.107.223.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBD956E8E9
- for <amd-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 21:15:05 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2047.outbound.protection.outlook.com [40.107.244.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FC966E0B8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 19 Oct 2021 21:49:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=K5RWoBMXP5HbHIoM3bi4U6t7rbeS9FEl/qL15srWEkhbG5MQ/UaTiVGAN7uleNC5VncQ+YrvjhFVBH9osV8mt9qM0BgibtQWYNbCuBtan3b+SZRsKJ6zZgIjAtBEaoBfwfDKQNSWBjeiEA6/Y0ZiNluEMLMl9gw8Rt24TCmzk0La9+rnsCAOV4sDcg30x888FyvgEXx94hu5CWIpI/oinj8fEf+BhLhuSxC6bDXSWkWptWfb2mR1zsTq4w3SSKkeLNCZ1Bo93yGeMf072dl1AtrYutWz7rdAzD83191vj7Nv9WQgDe4NRoSFR6M79s1k7Bqt4AkER+rEeeRFQ334MQ==
+ b=fxECKNdfXCjANqG9czAMKHUlshoysv83tf1/OpfvaWyUKdu7o81170/H7NTmGdD1OE7svye88tLEKXJjHZtJKdLQVrcK1via+pWz5EX8oyxa0hcpiw94Vxk/XJvLpVMcj+x2aIRz3CNAJl4XtPzZlrZmSCDe8BZnX6mWbt2guu+2HH51BXCJdg0iJKQGwVOktRYdCgbeTfna7nlrLidBA5E5Q7MVgynrE1kaA48DRS1f4gw0+Lskj0QX0EFbw3qb96mlWkdyMKpBYuMfpYCikxRsbd5grBp6wlCNG1oWGERzvLmGrympZX9YwqK8yekMM5iGH/J3tEUA6lWtFOQdWg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mMjBjrWFus1Q8oTqaDqygQJKJIo9zmUKdKLGHy9CNlc=;
- b=Vtme21ctuFtbpF1PAC7AQ5VKRqmyzPIDpSBZofVQ0Hh64eE3jE/Ma09t8yPNL8A/sAI8Y+xMn4S+dixCtEn5vvnabhRNENu7hGlLk4OjjcLaXlJG6/sj8e+7AJ6qlhUFX3cUX6fnom/IrlNv7WziCuofK4djS2aZbLO6j3gY0L8DwG2CPSFhvtctr4M1QSc4J0vxawWmgN3O8xSF/koRoRYzUQS9UIFBQppNW+e9gAMyI9U/T1cdCb5rW3JKcpdupEAHR84BmIWfQIR5GhRBqcpnPhSGdxNbaTbB0h30WIv8eTu4SsaKP1ijR4B1ozTde22AK6hmRW26oRjRmC38xw==
+ bh=Sb7MaNhIj7D3oHrW+4/gU6lt9rXvAdGLxKs0AsWYZJA=;
+ b=ZYOig5wvESMlGS1LvD3pXN4yXiJeyphZ+Mx57dXrUysR7h//ZYzlMb0xU1XKijQLHHqX6XqrP1F1APDIXJTdBoSpkCgjTPQgDyDIuIh1DzOHpdSISlGMPsWRXPuG4Tn25U4d/BR/Yr14rrKsGoZDq+wSsculkWUBPXo/HWqBr5nncWS3ejeGx1q7jbpq+0Hoy5+d77++96ZDeZI0WNZD156kG/7tMnN6tDVf7CkUkuNnn/3QgHCBA8uvZx0JdzUHgPe/+OUMRDXg7ZWSp1ojh9t53vWVwZ366N6LnqFtHslPJU9XsU0nsd4j5eTCgKm4sc4Mk1WUhSmXd5n7fEtb+w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mMjBjrWFus1Q8oTqaDqygQJKJIo9zmUKdKLGHy9CNlc=;
- b=C8diF0oh2QjnlgbKuBytsu4Y+6X8ggyohOKPu2BdAQ2jLXOzIUH0bizF5zhciYJ2ilVxRYqTs94ErjwEpozU16JchjInzvqtdjNDwmN2qBp668yo7gk7cTvX7XGQV59XAhx4RmI4dmANksKMD7VpAotSenne5cH47H9rFLXmFkw=
-Received: from BN9PR03CA0305.namprd03.prod.outlook.com (2603:10b6:408:112::10)
- by BL1PR12MB5128.namprd12.prod.outlook.com (2603:10b6:208:316::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.17; Tue, 19 Oct
- 2021 21:15:03 +0000
-Received: from BN8NAM11FT020.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:112:cafe::11) by BN9PR03CA0305.outlook.office365.com
- (2603:10b6:408:112::10) with Microsoft SMTP Server (version=TLS1_2,
+ bh=Sb7MaNhIj7D3oHrW+4/gU6lt9rXvAdGLxKs0AsWYZJA=;
+ b=GrqeDqSgAVYA37WK28qtGkU6/Rav+CLgtBBshg/P6KiavsRX6DNMCzCUPr0tXoQck8m/CdgegIUg5AI2q9RbcmUXyueRWk1yRCT90zG0kolQpLXxRs8YXfRcRbxB9i+S1KVSiOfaw9L3GFrLyNbJANOoczR/mmUw1AOQkKmrg64=
+Received: from CO2PR04CA0090.namprd04.prod.outlook.com (2603:10b6:104:6::16)
+ by DM6PR12MB4911.namprd12.prod.outlook.com (2603:10b6:5:20e::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Tue, 19 Oct
+ 2021 21:49:38 +0000
+Received: from CO1NAM11FT056.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:104:6:cafe::58) by CO2PR04CA0090.outlook.office365.com
+ (2603:10b6:104:6::16) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16 via Frontend
- Transport; Tue, 19 Oct 2021 21:15:03 +0000
+ Transport; Tue, 19 Oct 2021 21:49:38 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,24 +46,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT020.mail.protection.outlook.com (10.13.176.223) with Microsoft SMTP
+ CO1NAM11FT056.mail.protection.outlook.com (10.13.175.107) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4608.15 via Frontend Transport; Tue, 19 Oct 2021 21:15:03 +0000
-Received: from mkgs-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ 15.20.4608.15 via Frontend Transport; Tue, 19 Oct 2021 21:49:37 +0000
+Received: from VC-PC.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Tue, 19 Oct
- 2021 16:15:01 -0500
-From: Graham Sider <Graham.Sider@amd.com>
+ 2021 16:49:35 -0500
+From: Vignesh Chander <Vignesh.Chander@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: <felix.kuehling@amd.com>, <mukul.joshi@amd.com>, Graham Sider
- <Graham.Sider@amd.com>
-Subject: [PATCH 13/13] drm/amdkfd: remove kgd_dev declaration and
- initialization
-Date: Tue, 19 Oct 2021 17:13:34 -0400
-Message-ID: <20211019211334.1552825-13-Graham.Sider@amd.com>
+CC: <Shaoyun.Liu@amd.com>, <David.Nieto@amd.com>, Vignesh Chander
+ <Vignesh.Chander@amd.com>
+Subject: [PATCH] drm/amd/pm: Enable GPU metrics for One VF mode
+Date: Tue, 19 Oct 2021 17:49:34 -0400
+Message-ID: <20211019214934.4088-1-Vignesh.Chander@amd.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211019211334.1552825-1-Graham.Sider@amd.com>
-References: <20211019211334.1552825-1-Graham.Sider@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -72,28 +69,29 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: dfb8cbf4-a343-4bbe-9a6b-08d9934584ae
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5128:
-X-Microsoft-Antispam-PRVS: <BL1PR12MB51283BAF99FEEA8E6F4A8F138ABD9@BL1PR12MB5128.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:127;
+X-MS-Office365-Filtering-Correlation-Id: 4db55180-61a8-47e1-f1be-08d9934a590c
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4911:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB491141CF50487CA9053CFA48ECBD9@DM6PR12MB4911.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:296;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: L8dmfm21mfzAJSq70ILUaTNwPken640y9AeTF2QwHxxYOCy1rIS9T18NVozijoorLpL6qESYmbGaEqDK/oP86xFl5ZPdDQJJWUBIqM/IXfUNwva5eQz5X7oCSWoL/jnxPX1kRhKYpj2ifNmQHf6vl1I7Ux9EBWChAgrWBYID9B48iVC+wwiH/wfrn1bn76d0kfrnxBsr4zh+CjwwVVn5yHKBthoc8vy02208TufFVYoPyLEoJyZWroEzJxSx1tEB++T0tuKcaGuL2+4iGllHUjfjMhDt3Ra/1WqnwFy35Wt1V5u4+oQaOz2tOOPOcIwxFcSSlfix+nNftubqxxO33+nA9auIvCv8GL27Rwtpxl9owAS5aJzbnLG2z0IpVbC8WtDHIXdYQLWYszdowr+idqwA1osrce9NjI1savZM/stst90kk7NkJ6dTs1w2MhuwjOHDUzDfhs71d4r5wQkx8cmnTWxQGZwlS4jGJcDmKRnvFrZ3p5o0MjJzeD8tZYpVTt8MWvaFZOvD4XjmrG0HpNnIJuJcvn9GOVhlS1K82/j3xPYMeVbeq+H2Fq8YQM7uTq3MYqVarQ/bSWQ20Xbdqo50JBXvTRkiZsaCaMp4JlaEaoHQUCyT8AVwxPTiHSTT7FyIp2yQ6pXOqOnM3Pcew1QUwewW/Zr9LyuFd2jYAFHf1r4XnMIry2e8u2relaeqCAfxHWBFaZfoPVaho6GwYtV1sQIauRVvCXOeheug4xs=
+X-Microsoft-Antispam-Message-Info: Kv6IqOUTvolJB0hWHarhZ2COaJmSbAtrUrJKFULtIBLWNXM7s5lGDlFMUk4Ur60jJx7S6JyVYyT78YOrjzaxMB4jG23p10spFCXcBLnZTjVjoKKnMvN7xmCR4TsjDCzfg8alCxVNmnYdOnlEv4BaUGwGhQXXWi0Dro5HBIxouPi4ehuaSECpdKSyoWYYwkRxmDVfQK6meaOtDqtZCwSAyRpaMYvCAGIOrqqoMDw9XUgRmnXz6Z4ns5Yr8Eir1cYaKRjH9PIDgvJyx41jE8xa3LDiaxlBA3pCpRZKkmzyIxidCNVOZ+ZRSI7HNa1IXU2ICKHP+fqSVVXbtsj6Hp5ca5pLoMibDRPtB/PkF+TZjVNtnRyKzIwwp0LFtfjq/qu/qfbRKcY4lrlZmufosDNPM5QzdT+wRcQCw0LNTKoDQ6yDowzBqoCUG9fYPYodf/zWb2s0FBAnvph5plfNHZ1ezh0p/wB+qBMcxygoPkg4d6Ed2LmUc9fJUU8MSGCcvhM1FSe8vDhr8GwHcQkSRXZr+Juh4P09iQNlTfpAtcYkd37vRgaXplBXYehpeWoJdxFbRI/JqkOqICkIYHkuHlrewlqaLKe/YbZNLc4wtLci2kgWlKD1+O1zn5FwO+D48H4tYnFi/QfwkD8VxSAaKIEDzuHqILgz1jXN+v2Mh1F7jGZrYX7qjlGBpg2SoawCt2m217Ryi5e51FckCT4uobSH74mbLytJe1mFcNeskTlsvq2wfDRqrv4aLtnGq9aAYYrxsgYOtQuUgeZhO5ahBOj00g==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(8676002)(86362001)(36860700001)(8936002)(36756003)(82310400003)(316002)(26005)(83380400001)(1076003)(54906003)(70586007)(70206006)(16526019)(186003)(81166007)(2616005)(336012)(426003)(5660300002)(7696005)(6916009)(508600001)(4326008)(47076005)(2906002)(6666004)(356005)(36900700001);
+ SFS:(4636009)(36840700001)(46966006)(26005)(36860700001)(82310400003)(186003)(16526019)(7696005)(6916009)(316002)(70206006)(5660300002)(70586007)(86362001)(4326008)(54906003)(2906002)(508600001)(426003)(8676002)(81166007)(2616005)(83380400001)(8936002)(47076005)(356005)(336012)(1076003)(36756003)(36900700001)(16060500005);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2021 21:15:03.7277 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfb8cbf4-a343-4bbe-9a6b-08d9934584ae
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2021 21:49:37.9000 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4db55180-61a8-47e1-f1be-08d9934a590c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT020.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT056.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5128
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4911
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,101 +106,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Graham Sider <Graham.Sider@amd.com>
+Signed-off-by: Vignesh Chander <Vignesh.Chander@amd.com>
+Change-Id: I14a5c4d6b9d790b7f298b67cece2c501a003e2a7
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c      | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h      | 4 ++--
- drivers/gpu/drm/amd/amdkfd/kfd_device.c         | 4 +---
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h           | 1 -
- drivers/gpu/drm/amd/include/kgd_kfd_interface.h | 2 --
- 5 files changed, 4 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-index 79a2e37baa59..83f863dca7af 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-@@ -72,7 +72,7 @@ void amdgpu_amdkfd_device_probe(struct amdgpu_device *adev)
- 	if (!kfd_initialized)
- 		return;
- 
--	adev->kfd.dev = kgd2kfd_probe((struct kgd_dev *)adev, vf);
-+	adev->kfd.dev = kgd2kfd_probe(adev, vf);
- 
- 	if (adev->kfd.dev)
- 		amdgpu_amdkfd_total_mem_size += adev->gmc.real_vram_size;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-index 35f703dda034..8c1ba8f258c8 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-@@ -331,7 +331,7 @@ int kgd2kfd_schedule_evict_and_restore_process(struct mm_struct *mm,
- #if IS_ENABLED(CONFIG_HSA_AMD)
- int kgd2kfd_init(void);
- void kgd2kfd_exit(void);
--struct kfd_dev *kgd2kfd_probe(struct kgd_dev *kgd, bool vf);
-+struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf);
- bool kgd2kfd_device_init(struct kfd_dev *kfd,
- 			 struct drm_device *ddev,
- 			 const struct kgd2kfd_shared_resources *gpu_resources);
-@@ -355,7 +355,7 @@ static inline void kgd2kfd_exit(void)
- }
- 
- static inline
--struct kfd_dev *kgd2kfd_probe(struct kgd_dev *kgd, bool vf)
-+struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
- {
- 	return NULL;
- }
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index 402891a02a01..7677ced16a27 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -627,12 +627,11 @@ static void kfd_gtt_sa_fini(struct kfd_dev *kfd);
- 
- static int kfd_resume(struct kfd_dev *kfd);
- 
--struct kfd_dev *kgd2kfd_probe(struct kgd_dev *kgd, bool vf)
-+struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
- {
- 	struct kfd_dev *kfd;
- 	const struct kfd_device_info *device_info;
- 	const struct kfd2kgd_calls *f2g;
--	struct amdgpu_device *adev = (struct amdgpu_device *)kgd;
- 	struct pci_dev *pdev = adev->pdev;
- 
- 	switch (adev->asic_type) {
-@@ -824,7 +823,6 @@ struct kfd_dev *kgd2kfd_probe(struct kgd_dev *kgd, bool vf)
- 	if (!kfd)
- 		return NULL;
- 
--	kfd->kgd = kgd;
- 	kfd->adev = adev;
- 	kfd->device_info = device_info;
- 	kfd->pdev = pdev;
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index 1fbc28c34c4c..32307b9f1ec2 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -228,7 +228,6 @@ struct kfd_vmid_info {
- };
- 
- struct kfd_dev {
--	struct kgd_dev *kgd;
- 	struct amdgpu_device *adev;
- 
- 	const struct kfd_device_info *device_info;
-diff --git a/drivers/gpu/drm/amd/include/kgd_kfd_interface.h b/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
-index 8f4f3a1700e8..ac941f62cbed 100644
---- a/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
-+++ b/drivers/gpu/drm/amd/include/kgd_kfd_interface.h
-@@ -38,8 +38,6 @@ struct amdgpu_device;
- #define KGD_MAX_QUEUES 128
- 
- struct kfd_dev;
--struct kgd_dev;
--
- struct kgd_mem;
- 
- enum kfd_preempt_type {
+diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+index c255b4b8e685..01cca08a774f 100644
+--- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
++++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+@@ -2019,15 +2019,15 @@ static struct amdgpu_device_attr amdgpu_device_attrs[] = {
+ 	AMDGPU_DEVICE_ATTR_RW(pp_dpm_pcie,				ATTR_FLAG_BASIC),
+ 	AMDGPU_DEVICE_ATTR_RW(pp_sclk_od,				ATTR_FLAG_BASIC),
+ 	AMDGPU_DEVICE_ATTR_RW(pp_mclk_od,				ATTR_FLAG_BASIC),
+-	AMDGPU_DEVICE_ATTR_RW(pp_power_profile_mode,			ATTR_FLAG_BASIC),
++	AMDGPU_DEVICE_ATTR_RW(pp_power_profile_mode,			ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
+ 	AMDGPU_DEVICE_ATTR_RW(pp_od_clk_voltage,			ATTR_FLAG_BASIC),
+-	AMDGPU_DEVICE_ATTR_RO(gpu_busy_percent,				ATTR_FLAG_BASIC),
+-	AMDGPU_DEVICE_ATTR_RO(mem_busy_percent,				ATTR_FLAG_BASIC),
++	AMDGPU_DEVICE_ATTR_RO(gpu_busy_percent,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
++	AMDGPU_DEVICE_ATTR_RO(mem_busy_percent,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
+ 	AMDGPU_DEVICE_ATTR_RO(pcie_bw,					ATTR_FLAG_BASIC),
+-	AMDGPU_DEVICE_ATTR_RW(pp_features,				ATTR_FLAG_BASIC),
+-	AMDGPU_DEVICE_ATTR_RO(unique_id,				ATTR_FLAG_BASIC),
+-	AMDGPU_DEVICE_ATTR_RW(thermal_throttling_logging,		ATTR_FLAG_BASIC),
+-	AMDGPU_DEVICE_ATTR_RO(gpu_metrics,				ATTR_FLAG_BASIC),
++	AMDGPU_DEVICE_ATTR_RW(pp_features,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
++	AMDGPU_DEVICE_ATTR_RO(unique_id,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
++	AMDGPU_DEVICE_ATTR_RW(thermal_throttling_logging,		ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
++	AMDGPU_DEVICE_ATTR_RO(gpu_metrics,				ATTR_FLAG_BASIC|ATTR_FLAG_ONEVF),
+ 	AMDGPU_DEVICE_ATTR_RO(smartshift_apu_power,			ATTR_FLAG_BASIC,
+ 			      .attr_update = ss_power_attr_update),
+ 	AMDGPU_DEVICE_ATTR_RO(smartshift_dgpu_power,			ATTR_FLAG_BASIC,
 -- 
 2.25.1
 
