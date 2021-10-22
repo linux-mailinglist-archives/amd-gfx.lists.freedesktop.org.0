@@ -1,62 +1,96 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C48B437609
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 Oct 2021 13:36:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 178934375BC
+	for <lists+amd-gfx@lfdr.de>; Fri, 22 Oct 2021 12:54:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DDB66ED25;
-	Fri, 22 Oct 2021 11:36:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED29489CB5;
+	Fri, 22 Oct 2021 10:54:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from msg-3.mailo.com (ip-8.mailobj.net [213.182.54.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A96B76ED25;
- Fri, 22 Oct 2021 11:36:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=net-c.es; s=mailo;
- t=1634898358; bh=qXTIz9NUZOX9AJLI0EfpCFCuPKutlkzQauklWJ1ZdII=;
- h=X-EA-Auth:Date:From:To:Cc:Subject:Message-ID:References:
- MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To;
- b=CDMwG+cYraiCkOvqWNoXRIOQdd1SKnLC6HrdHC95WxmidMkx+VnAsy2hnJqIKzTzu
- FEtdjZUf6XU2V9+66nVczdfj8AX/zERhEb1ooKV1f1ToGqd9ubuQgXMALLiCPlSACK
- XGc2B/eNeFQHv6UGVfpbYVPnwzAUmBX65vye7TSQ=
-Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
- via ip-206.mailobj.net [213.182.55.206]
- Fri, 22 Oct 2021 12:25:37 +0200 (CEST)
-X-EA-Auth: ZUkw32usS9GpQ95qw4isUA4Qn5D5k42ZU4ER4OtDUnr2ExZFz+AjbHpLkWo4vIllva24n6AgDPqBGMsl893/BqHzRs7jwkE6
-Date: Fri, 22 Oct 2021 12:25:33 +0200
-From: Claudio Suarez <cssk@net-c.es>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Pan Xinhui <Xinhui.Pan@amd.com>, Emma Anholt <emma@anholt.net>,
- Maxime Ripard <mripard@kernel.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Jingoo Han <jingoohan1@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Sean Paul <sean@poorly.run>, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, Chen-Yu Tsai <wens@csie.org>,
- Sandy Huang <hjc@rock-chips.com>, heiko@sntech.de,
- Neil Armstrong <narmstrong@baylibre.com>,
- Robert Foss <robert.foss@linaro.org>,
- Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org
-Subject: Re: [PATCH v3 13/13] drm/i915: replace drm_detect_hdmi_monitor()
- with drm_display_info.is_hdmi
-Message-ID: <YXKRnUHWuboQKBF1@zorro.micasa>
-References: <20211016184226.3862-1-cssk@net-c.es>
- <20211016184226.3862-14-cssk@net-c.es> <YW8QYsmkm3ZrBAx3@intel.com>
- <YW9L6d7e+RO29VJu@gineta.localdomain> <YXFwB7rN4bvR0Z+m@intel.com>
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2053.outbound.protection.outlook.com [40.107.236.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4BB789CB5
+ for <amd-gfx@lists.freedesktop.org>; Fri, 22 Oct 2021 10:54:37 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bulV6MZ+6qpqnwaUGnCm6hZePujLga8uTkr52KQKbfoEM93Ok6OjBkkVBYV75XxFOW0C9w7ieKcwipDqXIGqb40IZB6/vRMlsc3Thzgqp14OF/xg5at5n6hhHkA9ea3MTUVsrk0ZECvCRsNCbLukeSNHGA3jJDwJd9pwTCi1RnJP7qTEMMsmWtOWxL6efJh0QHKexAXBWJkc2baRe4oDjZhFf6+HuNmW2N8uw/6LxOl78AAaUI1UIlbIYR6rKCQ9qrKNA/AQi9ZYO4Su4/wQPaX26y48BZchXcvCQfLWgFNc2UYe+XJrjvXbf6uBF49trhIE6FyFqMbhXQZbQjbNdQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=K1oq7kAc40FgMzhQdcgegPWX/km2mWC5T4wZYoOJros=;
+ b=RHHq1D8QQml5Wmik6KmvXy/cB8mtM30ibVUaLNDqDaIR4sgqkLpAKrKU9vmDQFnPF47OR596bw2j67zXPPldJ4A2QI4nJfZBj9CDRoHvKsQ1JmA9r5BzGQdpNuCAZsJw5akq0MQY9HXCeUrK8E4c2271b2jAnvZg9pKGeN7ApX5i4HXWwXpnLQ4jfnRDvRuw0ZzGhZJlGDjI0si68LINWdpQRxMOKocK+ZB8ukkPoTakQ36iSvJl+4cInP96rGXZUlw/QXejkiXe3fIaRIzKsh+0xnPUg6c9Fk/FJTaIPWTWh1h0QbcIodn291r6jvUbc+8M51Vc3kkHch56ZMDWYQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K1oq7kAc40FgMzhQdcgegPWX/km2mWC5T4wZYoOJros=;
+ b=vttiVwX0T+Mx0Is7jD1Y4Uwj6u+KjbVU7aFNae06SP8EWFEcdomiAW+MFCrPekcIn1Wu5VNmjpoXl22wUlPqLwiwFRODIL5nHQ9khOC94s5jaf6xlYI8ZrbU6SOSW/1m7anIU3d4IsH79kh1CGlDIe9xP2tQRLyQnlKDthVyKog=
+Received: from DM6PR06CA0020.namprd06.prod.outlook.com (2603:10b6:5:120::33)
+ by BL0PR12MB4753.namprd12.prod.outlook.com (2603:10b6:208:89::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18; Fri, 22 Oct
+ 2021 10:54:34 +0000
+Received: from DM6NAM11FT015.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:120:cafe::e8) by DM6PR06CA0020.outlook.office365.com
+ (2603:10b6:5:120::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18 via Frontend
+ Transport; Fri, 22 Oct 2021 10:54:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT015.mail.protection.outlook.com (10.13.172.133) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4628.16 via Frontend Transport; Fri, 22 Oct 2021 10:54:34 +0000
+Received: from brihaspati.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Fri, 22 Oct
+ 2021 05:54:33 -0500
+From: Nirmoy Das <nirmoy.das@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Christian.Koenig@amd.com>, <andrey.grodzovsky@amd.com>,
+ <lijo.lazar@amd.com>, Nirmoy Das <nirmoy.das@amd.com>
+Subject: [PATCH v4 1/3] drm/amdgpu: do not pass ttm_resource_manager to gtt_mgr
+Date: Fri, 22 Oct 2021 12:54:21 +0200
+Message-ID: <20211022105423.69769-1-nirmoy.das@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YXFwB7rN4bvR0Z+m@intel.com>
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 48fe79d7-78d6-40fe-8416-08d9954a55a2
+X-MS-TrafficTypeDiagnostic: BL0PR12MB4753:
+X-Microsoft-Antispam-PRVS: <BL0PR12MB47535B034EC7E70232DDC5B98B809@BL0PR12MB4753.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: AB5JEMhnUSbu/GbjeSszKuorHQ36NqPG1FUCX3Ekp2oryGC9DK/bEwCK4tchB78rx/UNQDbQ4lxxGqoCFptU1OG63QrjRL6yOJ9Gq+UwqXLW8aRtOBeMi/WBhe31TAL/NoPm43lMPmGdwhCa17HG5F9H7nCFTTeFRKt1MGGt7x1DtZ30w2F/+dFU9HghxOsag3gPdnuQifw2DW//OZ2PZ9pSNI/EL/DX1+xna5KhSvL0rMla/hHdHjsUFQl/R38sx3nb6HWJyQGPFcnR6/qpG+SkjD/t2tj9pLwz0iWdvyEPjWMmQtSk/hzPoavUXiXvRgnBg9xyZqwou3KCSe2L4wJwHt7qN+uLTzQu6jDwskk0j1PJJBvytXfJcgdMOwIfMe8/fEI6RShrstjjEn6qxEmiHa6wLJfJUO4H9sQVIseZNaWwT6ZaaxH9X+qmy5feeciIAgIbTGyQCHk1OARyV97cOUJGLTw2HEL2UwaNJHgH66IocI74FJBHCAofXMxH0NxX7ODDV24dStEzK0arURFKagUVvTafovh4GHVaUYiB00TqUcJQUy/XmZFHoJoraC9mmoW+fQTsSJ2909dEOtFtQtG71dP/bLoxZURNHoh5k1KjmaL+G82O73RZXTkrtjFTe7Qsls5r7SXjhAGzxKWosCWB2/gQ9QsmGJ4Mdzjs+J0tZQo+yZ7ER+IkiLv3zX1wp4r3RYkusS2jBGI8g5U0ZesiZ+ocV42dsF0skow=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(36840700001)(46966006)(356005)(70206006)(81166007)(44832011)(2616005)(6916009)(36756003)(70586007)(6666004)(8936002)(8676002)(54906003)(47076005)(26005)(426003)(5660300002)(82310400003)(508600001)(4326008)(7696005)(316002)(36860700001)(1076003)(86362001)(336012)(2906002)(16526019)(186003)(83380400001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2021 10:54:34.5668 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48fe79d7-78d6-40fe-8416-08d9954a55a2
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT015.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4753
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,34 +105,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 21, 2021 at 04:49:59PM +0300, Ville Syrjälä wrote:
-> On Wed, Oct 20, 2021 at 12:51:21AM +0200, Claudio Suarez wrote:
-> > drm_get_edid() internally calls to drm_connector_update_edid_property()
-> > and then drm_add_display_info(), which parses the EDID.
-> > This happens in the function intel_hdmi_set_edid() and
-> > intel_sdvo_tmds_sink_detect() (via intel_sdvo_get_edid()).
-> > 
-> > Once EDID is parsed, the monitor HDMI support information is available
-> > through drm_display_info.is_hdmi. Retriving the same information with
-> > drm_detect_hdmi_monitor() is less efficient. Change to
-> > drm_display_info.is_hdmi
-> 
-> I meant we need to examine all call chains that can lead to
-> .detect() to make sure all of them do in fact update the
-> display_info beforehand.
+Do not allow exported amdgpu_gtt_mgr_*() to accept
+any ttm_resource_manager pointer. Also there is no need
+to force other module to call a ttm function just to
+eventually call gtt_mgr functions.
 
-Well, I studied it carefully and, yes, all call chains that can lead to
-drm_display_info.is_hdmi / drm_detect_hdmi_monitor() update display_info
-beforehand. In the case that this doesn't happen, the code is unchanged.
+v4: remove unused adev.
+v3: upcast mgr from ttm resopurce manager instead of
+getting it from adev.
+v2: pass adev's gtt_mgr instead of adev.
 
-Do you want I explain the changes in the code here again ? Or do you want
-to me change the commit message to be more clear ? In the first case, I can
-write here a detailed explanation. In the second case I can make a longer commit
-message.
+Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c | 22 ++++++++++-----------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     |  4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h     |  4 ++--
+ 4 files changed, 16 insertions(+), 18 deletions(-)
 
-Or both?
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 41ce86244144..2b53d86aebac 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4287,7 +4287,7 @@ static int amdgpu_device_reset_sriov(struct amdgpu_device *adev,
 
-Best Regards,
-Claudio Suarez.
+ 	amdgpu_virt_init_data_exchange(adev);
+ 	/* we need recover gart prior to run SMC/CP/SDMA resume */
+-	amdgpu_gtt_mgr_recover(ttm_manager_type(&adev->mman.bdev, TTM_PL_TT));
++	amdgpu_gtt_mgr_recover(&adev->mman.gtt_mgr);
 
+ 	r = amdgpu_device_fw_loading(adev);
+ 	if (r)
+@@ -4604,7 +4604,7 @@ int amdgpu_do_asic_reset(struct list_head *device_list_handle,
+ 					amdgpu_inc_vram_lost(tmp_adev);
+ 				}
+
+-				r = amdgpu_gtt_mgr_recover(ttm_manager_type(&tmp_adev->mman.bdev, TTM_PL_TT));
++				r = amdgpu_gtt_mgr_recover(&tmp_adev->mman.gtt_mgr);
+ 				if (r)
+ 					goto out;
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+index c18f16b3be9c..9151950e0cc3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+@@ -77,10 +77,8 @@ static ssize_t amdgpu_mem_info_gtt_used_show(struct device *dev,
+ {
+ 	struct drm_device *ddev = dev_get_drvdata(dev);
+ 	struct amdgpu_device *adev = drm_to_adev(ddev);
+-	struct ttm_resource_manager *man;
+
+-	man = ttm_manager_type(&adev->mman.bdev, TTM_PL_TT);
+-	return sysfs_emit(buf, "%llu\n", amdgpu_gtt_mgr_usage(man));
++	return sysfs_emit(buf, "%llu\n", amdgpu_gtt_mgr_usage(&adev->mman.gtt_mgr));
+ }
+
+ static DEVICE_ATTR(mem_info_gtt_total, S_IRUGO,
+@@ -206,14 +204,15 @@ static void amdgpu_gtt_mgr_del(struct ttm_resource_manager *man,
+ /**
+  * amdgpu_gtt_mgr_usage - return usage of GTT domain
+  *
+- * @man: TTM memory type manager
++ * @mgr: amdgpu_gtt_mgr pointer
+  *
+  * Return how many bytes are used in the GTT domain
+  */
+-uint64_t amdgpu_gtt_mgr_usage(struct ttm_resource_manager *man)
++uint64_t amdgpu_gtt_mgr_usage(struct amdgpu_gtt_mgr *mgr)
+ {
+-	struct amdgpu_gtt_mgr *mgr = to_gtt_mgr(man);
+-	s64 result = man->size - atomic64_read(&mgr->available);
++	s64 result;
++
++	result = mgr->manager.size - atomic64_read(&mgr->available);
+
+ 	return (result > 0 ? result : 0) * PAGE_SIZE;
+ }
+@@ -221,16 +220,15 @@ uint64_t amdgpu_gtt_mgr_usage(struct ttm_resource_manager *man)
+ /**
+  * amdgpu_gtt_mgr_recover - re-init gart
+  *
+- * @man: TTM memory type manager
++ * @mgr: amdgpu_gtt_mgr pointer
+  *
+  * Re-init the gart for each known BO in the GTT.
+  */
+-int amdgpu_gtt_mgr_recover(struct ttm_resource_manager *man)
++int amdgpu_gtt_mgr_recover(struct amdgpu_gtt_mgr *mgr)
+ {
+-	struct amdgpu_gtt_mgr *mgr = to_gtt_mgr(man);
+-	struct amdgpu_device *adev;
+ 	struct amdgpu_gtt_node *node;
+ 	struct drm_mm_node *mm_node;
++	struct amdgpu_device *adev;
+ 	int r = 0;
+
+ 	adev = container_of(mgr, typeof(*adev), mman.gtt_mgr);
+@@ -267,7 +265,7 @@ static void amdgpu_gtt_mgr_debug(struct ttm_resource_manager *man,
+
+ 	drm_printf(printer, "man size:%llu pages, gtt available:%lld pages, usage:%lluMB\n",
+ 		   man->size, (u64)atomic64_read(&mgr->available),
+-		   amdgpu_gtt_mgr_usage(man) >> 20);
++		   amdgpu_gtt_mgr_usage(mgr) >> 20);
+ }
+
+ static const struct ttm_resource_manager_func amdgpu_gtt_mgr_func = {
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index d2955ea4a62b..603ce32db5c5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -678,7 +678,7 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+ 		ui64 = amdgpu_vram_mgr_vis_usage(ttm_manager_type(&adev->mman.bdev, TTM_PL_VRAM));
+ 		return copy_to_user(out, &ui64, min(size, 8u)) ? -EFAULT : 0;
+ 	case AMDGPU_INFO_GTT_USAGE:
+-		ui64 = amdgpu_gtt_mgr_usage(ttm_manager_type(&adev->mman.bdev, TTM_PL_TT));
++		ui64 = amdgpu_gtt_mgr_usage(&adev->mman.gtt_mgr);
+ 		return copy_to_user(out, &ui64, min(size, 8u)) ? -EFAULT : 0;
+ 	case AMDGPU_INFO_GDS_CONFIG: {
+ 		struct drm_amdgpu_info_gds gds_info;
+@@ -738,7 +738,7 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+ 		mem.gtt.usable_heap_size = mem.gtt.total_heap_size -
+ 			atomic64_read(&adev->gart_pin_size);
+ 		mem.gtt.heap_usage =
+-			amdgpu_gtt_mgr_usage(gtt_man);
++			amdgpu_gtt_mgr_usage(&adev->mman.gtt_mgr);
+ 		mem.gtt.max_allocation = mem.gtt.usable_heap_size * 3 / 4;
+
+ 		return copy_to_user(out, &mem,
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+index 91a087f9dc7c..af1c4e414979 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+@@ -114,8 +114,8 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev);
+ void amdgpu_vram_mgr_fini(struct amdgpu_device *adev);
+
+ bool amdgpu_gtt_mgr_has_gart_addr(struct ttm_resource *mem);
+-uint64_t amdgpu_gtt_mgr_usage(struct ttm_resource_manager *man);
+-int amdgpu_gtt_mgr_recover(struct ttm_resource_manager *man);
++uint64_t amdgpu_gtt_mgr_usage(struct amdgpu_gtt_mgr *mgr);
++int amdgpu_gtt_mgr_recover(struct amdgpu_gtt_mgr *mgr);
+
+ uint64_t amdgpu_preempt_mgr_usage(struct ttm_resource_manager *man);
+
+--
+2.32.0
 
