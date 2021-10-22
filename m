@@ -2,123 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 629F74375F7
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 Oct 2021 13:26:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFB943762A
+	for <lists+amd-gfx@lfdr.de>; Fri, 22 Oct 2021 13:46:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F20606E5BD;
-	Fri, 22 Oct 2021 11:26:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6613C6E5CF;
+	Fri, 22 Oct 2021 11:46:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2059.outbound.protection.outlook.com [40.107.244.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B59F6E5BD
- for <amd-gfx@lists.freedesktop.org>; Fri, 22 Oct 2021 11:26:49 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=US41BWSi+Vh005/0MZn9PWeUaSejIFwyuwSVRyFQUBiS7h09r/Uz/uZj9btFpVprN7csluPqRF5ZD+p2I28VCbyf20kc6ZLKbIjzLl374W9q4xV7ADsOuv10UVKN3Ll2FgdSpn/K3uyXXaOX1t9PVh+3tRgXisanTHMVTpAXN84JPjvCS4bgzR6mtZHWf4Sdc1IHg96xOgtcHAb20o1wcxy7dq3Skv5sBA1NHHLeS2p81myVf4erUWaMCO2DHh1/3uG6m1P3usmGike6u8qBW6efEgmCUs+aNuvRdOIv/K1JyBqeC1cMQob2SddRHkrKv9Grv1VDSnt/PARf4MwNQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kFi5hIK2pPe3FFn3+Ve2J52v263h7d/fWkU+ojYKOJ4=;
- b=hfjYuSG2P3sLraG1hLynKMAmlRxpCBtWEfr3aKIBdWiIybyvonu03eE3HNutclVDgSTCim2JY9XyEULle5utKZLZa+FqcLAFwTjBWAzkrxiPcR47iqMduedq+xMI8ZK4YCqjkT5015BKDi1+n2B9tVsAtpYPDUst4v6babm0+DxQssd3eXGkkPd8wtPy9Em8/WSkX0zqIFJqv49T2hwoE5iMGjnUVmvce4zSQ1QN4ZriejZ7Db9k67A0lWICoCBEGnaegiEGYHkXdU2dhkUnw75DNQ24WmvuopwdZ/5LkRty7A/9uxz/b13TjiOwy6TmdrL97jIkFskcyw/qvt2wDg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kFi5hIK2pPe3FFn3+Ve2J52v263h7d/fWkU+ojYKOJ4=;
- b=R+bxTrr3R0MdKDN9id4qolqtqlLkihb9T9OSgF3yRcwUimzzSkNkKTGwcyCvSMJuSkEt6YFMByn9mgUWkSn5TPwngzvkr38l6HDTJApYsz3h5ABesvFChZJO3hAGp4hBr0qaxRhxLxNrKoDj8ipx4JW/528Ke2aaL5dd9iOTlFA=
-Authentication-Results: amd.com; dkim=none (message not signed)
- header.d=none;amd.com; dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3930.namprd12.prod.outlook.com (2603:10b6:5:1c9::19)
- by DM6PR12MB2940.namprd12.prod.outlook.com (2603:10b6:5:15f::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.18; Fri, 22 Oct
- 2021 11:26:47 +0000
-Received: from DM6PR12MB3930.namprd12.prod.outlook.com
- ([fe80::591a:8986:aca2:c560]) by DM6PR12MB3930.namprd12.prod.outlook.com
- ([fe80::591a:8986:aca2:c560%3]) with mapi id 15.20.4628.018; Fri, 22 Oct 2021
- 11:26:47 +0000
-Message-ID: <b6649c9f-219b-e2b5-57da-0b8a6dfd139b@amd.com>
-Date: Fri, 22 Oct 2021 16:56:33 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH 3/3] drm/amdgpu: Implement bad_page_threshold = -2 case
-Content-Language: en-US
-To: "Russell, Kent" <Kent.Russell@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-Cc: "Tuikov, Luben" <Luben.Tuikov@amd.com>, "Joshi, Mukul"
- <Mukul.Joshi@amd.com>
-References: <20211020163520.1167214-1-kent.russell@amd.com>
- <20211020163520.1167214-3-kent.russell@amd.com>
- <edd26c75-6cac-7d5d-97b8-4fc085a76417@amd.com>
- <DM6PR12MB3324757ADAEDEB293ED1A53B85BF9@DM6PR12MB3324.namprd12.prod.outlook.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <DM6PR12MB3324757ADAEDEB293ED1A53B85BF9@DM6PR12MB3324.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BMXPR01CA0027.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:c::13) To DM6PR12MB3930.namprd12.prod.outlook.com
- (2603:10b6:5:1c9::19)
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
+ [IPv6:2a00:1450:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0FDB6E5CF
+ for <amd-gfx@lists.freedesktop.org>; Fri, 22 Oct 2021 11:46:23 +0000 (UTC)
+Received: by mail-wr1-x434.google.com with SMTP id r10so1096564wra.12
+ for <amd-gfx@lists.freedesktop.org>; Fri, 22 Oct 2021 04:46:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=NXIP8xN/u/30A/DOzeJjvIPxCgaJSWyBn+zfSCJmw7U=;
+ b=SYz4lwIzJT+7ziLCvkUT9lM6Oeyagn4eHEWXW6EPs4PkjpMJAnNcTM3Bauvr5WfcFn
+ yP/vISJsVan0EK/fgtuUhnM39PNKNhYg36AJ9Nnjp9Z82sSpAFD4oL3u9Ex37FGdr2V9
+ YC0n37gxqnsGlMY0hek7KWpcf+5ft0HBh4CrLVMF/FMneicY+Zf2UgdzQGZe1pHVYeRl
+ 2G9MbAvabncfBBYpDIUEC/qORUsGKHmHYB7GzcfM/VvVvBxVriJWw2xJQ/Fk0YClYk/z
+ eNtmTwful4RKC7P4AF3wRWSuMqC59BjQU9BzG8Ax00R4i8N1oX77E7bFInqfaJE7QGNK
+ h50g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=NXIP8xN/u/30A/DOzeJjvIPxCgaJSWyBn+zfSCJmw7U=;
+ b=A2svXeLuFqQkDsSknETARc1dYCbnnlk6ldOasOAa7dq3kMBTUZEOiLKREy+4PYQgwn
+ IQ7TpsA0qKyUKbw93e6T+iqoCUHADxakKEG7WvBa5PIXW0Q/0e5jMPUMA43FOv+fVy8e
+ +xaE+sd0OjVN1AguaJFsQDGENSCEn3wV11C0bR9YCbHJvy/5fnhCniXY0iVE9BeK2AD9
+ RuKp39mA/Meu/GcCzHupJoJRBwdz3YUK9kBQuVHh/Hoi8nQjztm88cHm6/UY26n6xwX8
+ 71/E4otNZKEDe9pcoPuf6f6pWQBkplSh+I/Q4SRGndS0ntX9PWCgapuXkOI7hnlrhalg
+ VfDg==
+X-Gm-Message-State: AOAM532vFwtjcx6AoR2clbwp1P7Zqm+06gPFD8YTKIhNajI7IgV/4d0O
+ z2a50lI2CQ1ExnkMwTI7Gw4=
+X-Google-Smtp-Source: ABdhPJwkuO5FZqeDgmCPtTbCUbHOmNwQIzTiMmuggRKuOmoqSGzV0ls910IECivx0W1f+qqPrdb2cQ==
+X-Received: by 2002:a5d:6907:: with SMTP id t7mr13828017wru.423.1634903182280; 
+ Fri, 22 Oct 2021 04:46:22 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:a39f:d981:e7cb:e6dc?
+ ([2a02:908:1252:fb60:a39f:d981:e7cb:e6dc])
+ by smtp.gmail.com with ESMTPSA id s3sm9297941wmh.30.2021.10.22.04.46.21
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 22 Oct 2021 04:46:21 -0700 (PDT)
+Subject: Re: [PATCH v4 1/3] drm/amdgpu: do not pass ttm_resource_manager to
+ gtt_mgr
+To: Nirmoy Das <nirmoy.das@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Christian.Koenig@amd.com, andrey.grodzovsky@amd.com, lijo.lazar@amd.com
+References: <20211022105423.69769-1-nirmoy.das@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <3afc42fd-0062-9e8d-1690-07be82afb9ad@gmail.com>
+Date: Fri, 22 Oct 2021 13:46:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Received: from [10.252.81.250] (165.204.159.242) by
- BMXPR01CA0027.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:c::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4628.18 via Frontend Transport; Fri, 22 Oct 2021 11:26:44 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 707e0a1d-8936-44ce-4add-08d9954ed57b
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2940:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB294075D094F94A9C78FDD38497809@DM6PR12MB2940.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rJrIQD6NqL4lGI3YD9zlH5mNYzvD2c3sSeoYpxQb3V8rUA+4ay+gkjSRfqaSmiP0AmaoS3z1kdSFllxf0RQHPOhDMIzDyobHlc2Db+otXtwJbqh6pSH3lUg/zmqINT3riZ7uQfPjgS8f7LEDamlU4wnBv7OD4IkXOK6pU7gDNoIVSzSGe/kUw3/yQnKVNL6LCR9b06pfJSRGfycrLMuJrOZ/Dgy8ZmqK/5MowWTl1bEngsRCGrfNOqrYo2gOfiSgEgpWahCVzIpFaixMX6f2q+Sdzl+/yqedMWNxgsyjLVw1jZLFS/iv+FjppihCadrxLdHlA8TB3Bqln8uQf7RVj/xrTbWum5F16HQGpB1OQ9P6HtuxsJVVotQzxIqUMW4+6Hy8vVXgZ5bcqEUERiWmmNRU2VvhbHIfkoptrN36Q6zlMTGIOTtQ+5CnwoMHXKPLncUZbVd0s/nYxwBmmk3teTLOgLHFzp8DlX3KLpkPsKorOG+9hql2axXeUfUATnQLBqGs7CYI1n6H2/OlODHpy2m9qOaSM9aM/SBzeph7pAduEGdEsF71L7pKbMclqRu03qsrGwm5OHtmmUkrg0FKkrRxIABNS4ZK4mHR5t36cRbUs5L6BVzxPu4spKDfRmthvVuw4d/k6ziOHYie+LlEh0HWnUdI6B5trCZMO3awVaS+FZh1XoLHocKJXOFJdlW+2RolQMLNJZTdYgqztAukxk6LaHfgpoLgXqfEiCkFDco=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3930.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(86362001)(6486002)(5660300002)(53546011)(31696002)(83380400001)(316002)(36756003)(8936002)(4326008)(66476007)(16576012)(2906002)(8676002)(66556008)(956004)(31686004)(186003)(2616005)(54906003)(508600001)(26005)(110136005)(66946007)(6666004)(38100700002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U3JEdUlRMXNmQWI0VmNGaXlmazhxMDNsdFh0Skc5VE9qVnBEYURsSDNhaC9v?=
- =?utf-8?B?WVpWRS9Uc2wwb3ZPcWRUMWVuaGwvMWQ0R05RRXRMOFIvUFJPS2g2MXlrWlNl?=
- =?utf-8?B?S0dRMXNLSFZHcHRSWm05MzlzSDI1TmI5alh6QU9sdVlNdExaT2lWRWJ3THpR?=
- =?utf-8?B?SmdUR2ZLR2w5L0tld1R2OUNLMjV5c0pRV2NxSVdpV00yMmpDMzJVMy9pWFRt?=
- =?utf-8?B?MldyRkN0OWlQQkJBYmpLU3JVRlR4TFVhckJjc0tLNjM3V0dWUTJPWENoVmlZ?=
- =?utf-8?B?QzROYk9vdEFsREg1ZmNKWGhpT0V3L0FodlV2U0lTT0dNK2FJN01zRXIyUnZ5?=
- =?utf-8?B?clFyc01SY1lDcmpxendYQVhGdjZJb1ZCZks4ekRVOCtuSjM0aW15ekZIL3Y1?=
- =?utf-8?B?NnlGSnJ5cUZSQ3FKRytxVWtEVWlLMXdKWG8rYUZScm92OFNwd1FTR3JZWHI4?=
- =?utf-8?B?Ky9XR2xrcUxyM1l2WlFBdURtelBaWnJvMEdSQ1pkbFhteTFiWEE3NGlabUdV?=
- =?utf-8?B?ZTkyZk1oSXdDUGtPbEVJTVNFUitzRGphbGlhOEc0YTVKUUdSVElZQUxqeng1?=
- =?utf-8?B?emhGbWNsTlRVeERtaFJBU25mQm5XZW5aQ0NlcHpmc1VKWEJoWjR3NXRqS2w0?=
- =?utf-8?B?eEhzek1LaTV0REdYTk5OaFljUUJ2NzZ0NnlIUzhiUmJ5WXpjakEzODRvMWdI?=
- =?utf-8?B?a3NvbGpYc3NsYTFlM0JYbDEzeXpEVTFqdFNvNldlWkhmSHFjMzA0QWc1aVFH?=
- =?utf-8?B?RUg5cHJPRTIwcHMvMkxpR0ZjV1oxOGhqbXBLSXZkWmx1bnl5ck5KRUpkancy?=
- =?utf-8?B?MFFJTDdBTWRPaVFPNTQxcmRwZXd5QUFEemxjZHlYc25ybm01Q1Yzc1VZc3Jw?=
- =?utf-8?B?TS82bUVQUUJhMmhNZVI0YzdRYjd0Y3hPT2FNRHUwS2ZCQUllSzBBMzhSMkRt?=
- =?utf-8?B?dTdVazk5SEd2Y1hKTk9ycmxYa3B5L2lEd3lraTE1Q3Uxelh6eHZWSkJYTjlO?=
- =?utf-8?B?MEVHdC8xL3RxUk9OWWNpbWRxU2hacGd5OE9RWG43MktEeWJMN1B3M0QzWm9x?=
- =?utf-8?B?cmpYRTA5a25jMk5ncENrcHA2WUxqUGV3MlZDakk1ZGYrUEdyZmZneDJiVFVP?=
- =?utf-8?B?YzhCcUN0SHVRRHRQNnhYTFExbk1lSmlpL2hNVGxRSkorNGpnWW9Fb0lWM1F4?=
- =?utf-8?B?dnoyR0lrQlJ5N3EwSnphUGpmcGVqOWxsSTl0WSs0SjFKUmN6UUloVkVIcXBJ?=
- =?utf-8?B?d1V0dFJtV1hqLzJPRnRZUlNoSGlHcW8raVkxaysybWdsSHU5bEphK05SRGNF?=
- =?utf-8?B?a1hUaWlzemtaVzdwa1ZvWDJyV3ZkTkd6UEJ4NHNWRDlreWlOL2NPMjhzelVE?=
- =?utf-8?B?bUdBUFNCSjdOb0FWaiszOVVRSE9kb3Q4UHc4bkFiYU5wSkloZkFqOGtxaFRJ?=
- =?utf-8?B?Y2g1ZFZBeTA0UVJQWlNCb2dsY0REODlTUGdEQ0dSNnczNS9yKzFxSUtZKy9m?=
- =?utf-8?B?bHNIeFRBMnJjamYvVHUxQmVZajl5aW9LOUh3b2EzalpjbDEyMzZVVDRHaG54?=
- =?utf-8?B?b3RTQ0NjdDFoc3g2OXAxOEQzRk5NWTlWb0p5bmZYR2hManR6elJ6dEpjYXA2?=
- =?utf-8?B?ZnkrN0Yzd01qWWhsQ0N2TUtKcHNLOHVYRE4ra1l1elNCZ0FTTW8xL2VtSjNQ?=
- =?utf-8?B?MHZOOVBIN3VoeGc3WFZCMS9sbUJhWjRWUzdQN3BTZWMyOWg5RER3L0FTWU04?=
- =?utf-8?Q?aieHNIwgJRkGVmbWGF/jpQDG/LVtLQUTQmHnZWa?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 707e0a1d-8936-44ce-4add-08d9954ed57b
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3930.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2021 11:26:47.4738 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: llazar@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2940
+In-Reply-To: <20211022105423.69769-1-nirmoy.das@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,117 +76,158 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Reviewed-by: Christian König <christian.koenig@amd.com> for the entire 
+series.
 
-
-On 10/21/2021 7:26 PM, Russell, Kent wrote:
-> [AMD Official Use Only]
-> 
-> 
-> 
->> -----Original Message-----
->> From: Lazar, Lijo <Lijo.Lazar@amd.com>
->> Sent: Thursday, October 21, 2021 1:25 AM
->> To: Russell, Kent <Kent.Russell@amd.com>; amd-gfx@lists.freedesktop.org
->> Cc: Tuikov, Luben <Luben.Tuikov@amd.com>; Joshi, Mukul <Mukul.Joshi@amd.com>
->> Subject: Re: [PATCH 3/3] drm/amdgpu: Implement bad_page_threshold = -2 case
->>
->>
->>
->> On 10/20/2021 10:05 PM, Kent Russell wrote:
->>> If the bad_page_threshold kernel parameter is set to -2,
->>> continue to post the GPU. Print a warning to dmesg that this action has
->>> been done, and that page retirement will obviously not work for said GPU
->>>
->>> Cc: Luben Tuikov <luben.tuikov@amd.com>
->>> Cc: Mukul Joshi <Mukul.Joshi@amd.com>
->>> Signed-off-by: Kent Russell <kent.russell@amd.com>
->>> ---
->>>    drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c | 13 +++++++++----
->>>    1 file changed, 9 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
->>> index 1ede0f0d6f55..31852330c1db 100644
->>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
->>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras_eeprom.c
->>> @@ -1115,11 +1115,16 @@ int amdgpu_ras_eeprom_init(struct
->> amdgpu_ras_eeprom_control *control,
->>>    			res = amdgpu_ras_eeprom_correct_header_tag(control,
->>>    								   RAS_TABLE_HDR_VAL);
->>>    		} else {
->>> -			*exceed_err_limit = true;
->>> -			dev_err(adev->dev,
->>> -				"RAS records:%d exceed threshold:%d, "
->>> -				"GPU will not be initialized. Replace this GPU or increase the
->> threshold",
->>> +			dev_err(adev->dev, "RAS records:%d exceed threshold:%d",
->>>    				control->ras_num_recs, ras->bad_page_cnt_threshold);
->>> +			if (amdgpu_bad_page_threshold == -2) {
->>> +				dev_warn(adev->dev, "GPU will be initialized due to
->> bad_page_threshold = -2.");
->>> +				dev_warn(adev->dev, "Page retirement will not work for
->> this GPU in this state.");
->>
->> Now, this looks as good as booting with 0 = disable bad page retirement.
->> I thought page retirement will work as long as EEPROM has space, but it
->> won't bother about the threshold. If the intent is to ignore bad page
->> retirement, then 0 is good enough and -2 is not required.
->>
->> Also, when user passes threshold=-2, what is the threshold being
->> compared against to say *exceed_err_limit = true?
-> 
-> My thought on having the -2 option is that we'll still enable page retirement, we just won't shut the GPU down when it hits the threshold. The bad pages will still be retired as we hit them, it will just never disable the GPU. The comment about retirement not working is definitely incorrect now (leftover from previous local patches), so I'll remove that. In this case, I don't think we'd ever exceed the error limit. exceed_err_limit is only really used when we are disabling the GPU, so we wouldn't want to set that to true. Otherwise we wouldn't be loading the bad pages in gpu_recovery_init, and we'll still return 0 from gpu_recovery_init.
-> 
-
-Probably, this is too late as this patch is superseded. Replying to this 
-to keep the context.
-
-I realized that the question went in the wrong direction because of 
-*exceed_err_limit = true. Saw it in the earlier line but didn't realize 
-that it was removed.
-
-Anyway, main question I wanted to ask was -
-	
-	"When user passes threshold=-2, what is the threshold being compared 
-against?"
-
-Looked it up today and saw this piece of code.
-	        if (amdgpu_bad_page_threshold < 0) {
-                 u64 val = adev->gmc.mc_vram_size;
-
-                 do_div(val, RAS_BAD_PAGE_COVER);
-                 con->bad_page_cnt_threshold = min(lower_32_bits(val),
-                                                   max_count);
-
-
-For a user who has been specifying say bad_page_threshold=100 in the 
-command line and unable to boot, now this is doing something else.
-
-The comparison in next boot is done against a different threshold. In 
-fact, it won't even come to this comparison logic in the next boot as 
-the threshold is raised by default when this parameter is specified.
-
-The only case this parameter takes effect is when a user is unable to 
-boot because bad page retirements have exceeded the "default threshold". 
-In other cases it just resets the comparison limit. Hope that is the 
-intention.
+But please keep in mind that this here needs extensive testing.
 
 Thanks,
-Lijo
+Christian.
 
+Am 22.10.21 um 12:54 schrieb Nirmoy Das:
+> Do not allow exported amdgpu_gtt_mgr_*() to accept
+> any ttm_resource_manager pointer. Also there is no need
+> to force other module to call a ttm function just to
+> eventually call gtt_mgr functions.
+>
+> v4: remove unused adev.
+> v3: upcast mgr from ttm resopurce manager instead of
+> getting it from adev.
+> v2: pass adev's gtt_mgr instead of adev.
+>
+> Signed-off-by: Nirmoy Das <nirmoy.das@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c  |  4 ++--
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c | 22 ++++++++++-----------
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c     |  4 ++--
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h     |  4 ++--
+>   4 files changed, 16 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index 41ce86244144..2b53d86aebac 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -4287,7 +4287,7 @@ static int amdgpu_device_reset_sriov(struct amdgpu_device *adev,
+>
+>   	amdgpu_virt_init_data_exchange(adev);
+>   	/* we need recover gart prior to run SMC/CP/SDMA resume */
+> -	amdgpu_gtt_mgr_recover(ttm_manager_type(&adev->mman.bdev, TTM_PL_TT));
+> +	amdgpu_gtt_mgr_recover(&adev->mman.gtt_mgr);
+>
+>   	r = amdgpu_device_fw_loading(adev);
+>   	if (r)
+> @@ -4604,7 +4604,7 @@ int amdgpu_do_asic_reset(struct list_head *device_list_handle,
+>   					amdgpu_inc_vram_lost(tmp_adev);
+>   				}
+>
+> -				r = amdgpu_gtt_mgr_recover(ttm_manager_type(&tmp_adev->mman.bdev, TTM_PL_TT));
+> +				r = amdgpu_gtt_mgr_recover(&tmp_adev->mman.gtt_mgr);
+>   				if (r)
+>   					goto out;
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> index c18f16b3be9c..9151950e0cc3 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+> @@ -77,10 +77,8 @@ static ssize_t amdgpu_mem_info_gtt_used_show(struct device *dev,
+>   {
+>   	struct drm_device *ddev = dev_get_drvdata(dev);
+>   	struct amdgpu_device *adev = drm_to_adev(ddev);
+> -	struct ttm_resource_manager *man;
+>
+> -	man = ttm_manager_type(&adev->mman.bdev, TTM_PL_TT);
+> -	return sysfs_emit(buf, "%llu\n", amdgpu_gtt_mgr_usage(man));
+> +	return sysfs_emit(buf, "%llu\n", amdgpu_gtt_mgr_usage(&adev->mman.gtt_mgr));
+>   }
+>
+>   static DEVICE_ATTR(mem_info_gtt_total, S_IRUGO,
+> @@ -206,14 +204,15 @@ static void amdgpu_gtt_mgr_del(struct ttm_resource_manager *man,
+>   /**
+>    * amdgpu_gtt_mgr_usage - return usage of GTT domain
+>    *
+> - * @man: TTM memory type manager
+> + * @mgr: amdgpu_gtt_mgr pointer
+>    *
+>    * Return how many bytes are used in the GTT domain
+>    */
+> -uint64_t amdgpu_gtt_mgr_usage(struct ttm_resource_manager *man)
+> +uint64_t amdgpu_gtt_mgr_usage(struct amdgpu_gtt_mgr *mgr)
+>   {
+> -	struct amdgpu_gtt_mgr *mgr = to_gtt_mgr(man);
+> -	s64 result = man->size - atomic64_read(&mgr->available);
+> +	s64 result;
+> +
+> +	result = mgr->manager.size - atomic64_read(&mgr->available);
+>
+>   	return (result > 0 ? result : 0) * PAGE_SIZE;
+>   }
+> @@ -221,16 +220,15 @@ uint64_t amdgpu_gtt_mgr_usage(struct ttm_resource_manager *man)
+>   /**
+>    * amdgpu_gtt_mgr_recover - re-init gart
+>    *
+> - * @man: TTM memory type manager
+> + * @mgr: amdgpu_gtt_mgr pointer
+>    *
+>    * Re-init the gart for each known BO in the GTT.
+>    */
+> -int amdgpu_gtt_mgr_recover(struct ttm_resource_manager *man)
+> +int amdgpu_gtt_mgr_recover(struct amdgpu_gtt_mgr *mgr)
+>   {
+> -	struct amdgpu_gtt_mgr *mgr = to_gtt_mgr(man);
+> -	struct amdgpu_device *adev;
+>   	struct amdgpu_gtt_node *node;
+>   	struct drm_mm_node *mm_node;
+> +	struct amdgpu_device *adev;
+>   	int r = 0;
+>
+>   	adev = container_of(mgr, typeof(*adev), mman.gtt_mgr);
+> @@ -267,7 +265,7 @@ static void amdgpu_gtt_mgr_debug(struct ttm_resource_manager *man,
+>
+>   	drm_printf(printer, "man size:%llu pages, gtt available:%lld pages, usage:%lluMB\n",
+>   		   man->size, (u64)atomic64_read(&mgr->available),
+> -		   amdgpu_gtt_mgr_usage(man) >> 20);
+> +		   amdgpu_gtt_mgr_usage(mgr) >> 20);
+>   }
+>
+>   static const struct ttm_resource_manager_func amdgpu_gtt_mgr_func = {
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> index d2955ea4a62b..603ce32db5c5 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+> @@ -678,7 +678,7 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+>   		ui64 = amdgpu_vram_mgr_vis_usage(ttm_manager_type(&adev->mman.bdev, TTM_PL_VRAM));
+>   		return copy_to_user(out, &ui64, min(size, 8u)) ? -EFAULT : 0;
+>   	case AMDGPU_INFO_GTT_USAGE:
+> -		ui64 = amdgpu_gtt_mgr_usage(ttm_manager_type(&adev->mman.bdev, TTM_PL_TT));
+> +		ui64 = amdgpu_gtt_mgr_usage(&adev->mman.gtt_mgr);
+>   		return copy_to_user(out, &ui64, min(size, 8u)) ? -EFAULT : 0;
+>   	case AMDGPU_INFO_GDS_CONFIG: {
+>   		struct drm_amdgpu_info_gds gds_info;
+> @@ -738,7 +738,7 @@ int amdgpu_info_ioctl(struct drm_device *dev, void *data, struct drm_file *filp)
+>   		mem.gtt.usable_heap_size = mem.gtt.total_heap_size -
+>   			atomic64_read(&adev->gart_pin_size);
+>   		mem.gtt.heap_usage =
+> -			amdgpu_gtt_mgr_usage(gtt_man);
+> +			amdgpu_gtt_mgr_usage(&adev->mman.gtt_mgr);
+>   		mem.gtt.max_allocation = mem.gtt.usable_heap_size * 3 / 4;
+>
+>   		return copy_to_user(out, &mem,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> index 91a087f9dc7c..af1c4e414979 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+> @@ -114,8 +114,8 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev);
+>   void amdgpu_vram_mgr_fini(struct amdgpu_device *adev);
+>
+>   bool amdgpu_gtt_mgr_has_gart_addr(struct ttm_resource *mem);
+> -uint64_t amdgpu_gtt_mgr_usage(struct ttm_resource_manager *man);
+> -int amdgpu_gtt_mgr_recover(struct ttm_resource_manager *man);
+> +uint64_t amdgpu_gtt_mgr_usage(struct amdgpu_gtt_mgr *mgr);
+> +int amdgpu_gtt_mgr_recover(struct amdgpu_gtt_mgr *mgr);
+>
+>   uint64_t amdgpu_preempt_mgr_usage(struct ttm_resource_manager *man);
+>
+> --
+> 2.32.0
+>
 
->   Kent
->>
->> Thanks,
->> Lijo
->>
->>> +				res = 0;
->>> +			} else {
->>> +				*exceed_err_limit = true;
->>> +				dev_err(adev->dev, "GPU will not be initialized. Replace this
->> GPU or increase the threshold.");
->>> +			}
->>>    		}
->>>    	} else {
->>>    		DRM_INFO("Creating a new EEPROM table");
->>>
