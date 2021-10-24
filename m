@@ -1,123 +1,100 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1A06437FD8
-	for <lists+amd-gfx@lfdr.de>; Fri, 22 Oct 2021 23:13:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DD7343890A
+	for <lists+amd-gfx@lfdr.de>; Sun, 24 Oct 2021 15:32:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE3016E570;
-	Fri, 22 Oct 2021 21:13:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10A0589F9F;
+	Sun, 24 Oct 2021 13:32:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2046.outbound.protection.outlook.com [40.107.244.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 400116E570;
- Fri, 22 Oct 2021 21:13:57 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2071.outbound.protection.outlook.com [40.107.237.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6435389F9F
+ for <amd-gfx@lists.freedesktop.org>; Sun, 24 Oct 2021 13:32:15 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Y9iqctxsMYwcVtvGnMFGGymC+7a33HeWT0yfnh46pjO7hnftyfmyUHfQBgOmuFSeVTfTuymV5/KXaN5l9dU63bvUeBdoJcZLTL89G8x1B4Wy3fhvwFWfiQ47tka2PsHOKSJmgwLit9CY3bazaTK1Y7lFE7BiEGY3MMDTSwDNGQJC29oBGtB0Cjsd0g8gr8iVsL/WGlAoxeUBUvwxrmvnhErkeuqVxm6ilguVYdF4G6VupF3mQSoU7sUU/tYwMZ+q6VgXZxopLvYgTEj9Yay+rPuW+Y0OqqiZrHIZ6rjicaJ+r5dTeJB/yW8FnaInzya9ghAAzUwcvfDptXxc+dXSZw==
+ b=eqb0eXxAq+Y0iaevMQIPQDI4+bJ/7BlAlpqlpFaCQeHpHIYVq4S/Yv1zPfR81IGlwzOVHmT72DJVhuUlqOM45Fcu96zJuAYA13gTHpgSCN90vHU9woMxoKMbg/G4QYqSkmIY1a+8v6Js8E5AIjq8a5XDVfuaCaJN5g+wAdUulb2wV1cyM4bwfVvxMxj3zl0837nmGiGDV/vFwttMJGYr0q7nRVRS6aHELp6E2iADMRmh7e0jl3HKYGG9bDJRUgUAQnMEtIQt/R3EvcmsVY7/Kr09XNr2SdW8k6+nh+sjC8ljrfIzMp7pvMYvAvLtCR9ylq+hBbeyjs0QKVCKnfYvng==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SMqnFc9OeZY1BWjfSx0l0GnvB+fA2em+4mrN2q1N7RU=;
- b=V7CtoxW4VaFYyeqKyM8S7log8zEj6KaSPpeFEnVo8gniP5RXtnryEUsQgzFjqBmseFYXR+7XZbSFrOstQcjsp9heZSTqHj7jW4kq65/5YFQ4sT8YH2QnKEXohuDD3kjbJjYk0bKb/2+tWMR1WsbUXfGmS0f9NvUFxBsqx9wxZXeRS85fX2RerjqDSZqt1mB2zylQypqeJpbWPFATGSApiazK2pUdCy0l+F42ePWHRtAPxBpEojNdBGKQWo+hluSQub+mmegx8fE2+8EtwHlTkU1Q8OR7zPTdd6YqgCD6hBs7tz5iBlxpZ0qGwdZKLBh7qUfpZlFvuqZdK7r1UrW9Dw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=66piyxiAv4IgM73rJ9JAXqzpOTKg1AY1P9Tbhno7vf8=;
+ b=a+HQeGr3f+kgNX57hi1SOA2+WROXuhhR1B7P4HQHGCMakdqk1jylYifFTvHH56BvZW/k8IYvoaVU9UQ1pNYB7cpUxDYPnqQ5BOx4WOTSM487SX4dCbUdy+hUNj5hT9mBHW2WEiG8twELgWE4SLgP3cq9XhtxAag89uGlVbLuFExh444llC4Aego3pKyRxYNQ5vEqKwRMr+9uHd+Ii4IC75tir12Roomnm6UavszP7VCuhROAhuALI5LdeWGGY7q+AmOYhc/5obYLPMWlKAJcpJMrc176IiVw+6ASErOsBC4zKwtb5z5AKzPcm2B8mH1a+9XAeQgoyQK3JTtBa121Bg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SMqnFc9OeZY1BWjfSx0l0GnvB+fA2em+4mrN2q1N7RU=;
- b=vT2KVTPKrF4npTHj6M4VzyIQHhAU0ZA7i6105IpI87UheMy1c5MlEhTkl5H7MH5ftfLZ2lAcNNmHdO7yrf3xBI7qe/T3Z6aoyci3Gb3iUk6t9IgAzRCl9216xah9Eo8P4KWvIO4eF/jeBgDR+a48i2bCAu6kflywX8b+kvj3awU=
-Authentication-Results: suse.de; dkim=none (message not signed)
- header.d=none;suse.de; dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
- by MN2PR12MB4000.namprd12.prod.outlook.com (2603:10b6:208:16b::17)
+ bh=66piyxiAv4IgM73rJ9JAXqzpOTKg1AY1P9Tbhno7vf8=;
+ b=cvK7MhiVOnJyRy14CAG2a0xzv+IE2pGd9RQ799NMvZWCvsr4TQwu1IkTg+uIll+Ym+6SFgc8o1V2tswm9Iys2OFcId50hVUi9C02j4+eNlHjF9XiETa1OTMRFIaW3fuJD+L5fDkVSeDX05Hi8sfLh+4dHji3r1cd6hGJWznAwMk=
+Received: from MW2PR2101CA0004.namprd21.prod.outlook.com (2603:10b6:302:1::17)
+ by BYAPR12MB3623.namprd12.prod.outlook.com (2603:10b6:a03:a9::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.18; Fri, 22 Oct
- 2021 21:13:54 +0000
-Received: from MN2PR12MB4342.namprd12.prod.outlook.com
- ([fe80::6972:7084:df02:6dc3]) by MN2PR12MB4342.namprd12.prod.outlook.com
- ([fe80::6972:7084:df02:6dc3%9]) with mapi id 15.20.4628.018; Fri, 22 Oct 2021
- 21:13:53 +0000
-Message-ID: <aef9bba4-cc5f-bcfa-1ccb-33483b4507fc@amd.com>
-Date: Sat, 23 Oct 2021 02:52:39 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH 03/13] drm: add Makefile support for drm buddy
-Content-Language: en-US
-To: Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- daniel@ffwll.ch
-Cc: christian.koenig@amd.com, matthew.auld@intel.com, alexander.deucher@amd.com
-References: <20211019225409.569355-1-Arunpravin.PaneerSelvam@amd.com>
- <20211019225409.569355-4-Arunpravin.PaneerSelvam@amd.com>
- <84ff2d86-345c-8bcf-81c6-467b9737f652@suse.de>
-From: Arunpravin <arunpravin.paneerselvam@amd.com>
-In-Reply-To: <84ff2d86-345c-8bcf-81c6-467b9737f652@suse.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA1PR01CA0077.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00::17)
- To MN2PR12MB4342.namprd12.prod.outlook.com
- (2603:10b6:208:264::7)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.16; Sun, 24 Oct
+ 2021 13:32:09 +0000
+Received: from CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:302:1:cafe::f7) by MW2PR2101CA0004.outlook.office365.com
+ (2603:10b6:302:1::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.1 via Frontend
+ Transport; Sun, 24 Oct 2021 13:32:09 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1NAM11FT064.mail.protection.outlook.com (10.13.175.77) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4628.16 via Frontend Transport; Sun, 24 Oct 2021 13:32:09 +0000
+Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Sun, 24 Oct
+ 2021 08:32:07 -0500
+From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
+ <Bhawanpreet.Lakha@amd.com>, <Rodrigo.Siqueira@amd.com>,
+ <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
+ <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
+ <stylon.wang@amd.com>, <solomon.chiu@amd.com>, <pavle.kotarac@amd.com>,
+ <agustin.gutierrez@amd.com>
+Subject: [PATCH 00/33] DC Patches October 24, 2020
+Date: Sun, 24 Oct 2021 09:31:08 -0400
+Message-ID: <20211024133141.239861-1-Rodrigo.Siqueira@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Received: from [10.138.142.32] (165.204.156.251) by
- MA1PR01CA0077.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00::17) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4628.18 via Frontend Transport; Fri, 22 Oct 2021 21:13:50 +0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
+ (10.181.40.144)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f0aad228-e076-40ce-eb5c-08d995a0d9cf
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4000:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <MN2PR12MB40006E140C3EE20722E28BB6E4809@MN2PR12MB4000.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1122;
+X-MS-Office365-Filtering-Correlation-Id: e1952c19-9978-4656-4c3a-08d996f2ae14
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3623:
+X-Microsoft-Antispam-PRVS: <BYAPR12MB362306AFA9E6A292116F973E98829@BYAPR12MB3623.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 66mbz8zzkgVaqepZZTt/yrZhegaqCzBkm9kLDLOQhRrbkforVDgXhF+0mQG/jgMR/ljPOVgVGqKfnDRETDwtbv1BXG0EVu9Ha6ZKbvgLAUkP2AqhNpudClVWIcg6m51QALcxuPSGGjcI1gwLbHy8DyxTwX9DbyjxQaYfLFJd4V4SHT+L6gvNEhxcOpb0iofiZV7CBlPGC2dqdQ6EiOxhOvcrImrfMxSZWGHgAx3+xGpnnxSzzRWDHcLR7McTGn1mIlwHjMY+AZOshBOe3AS15lCgU8GRsgNJvF9OCIcG8t6i2YZoBjmaGF1tqjileWT0VLRFn2w5L1zyRsMpe09XBL9dybJZ51A0ON3ccZ5alWpHVPCqr5dGP1di/z3MwT+OYz/TwXRpPjhCg/Fe0sO1S3Bf9DmTwBTfqrV9Hdkleg+29feSaTXxQOSTKru6wlPR6sQJoAwHvfzvALh6e1YYYC0mlwNfL5BhvBTSVTqUT66vGI6LvFq3JUTDBW8/J/xOkiofWPsTGO422BSAlIaEnQiF/JFpw2PSmBmE2XTiEOnxI+6J9v1Uzl98YCgQpH/twFuCr69WqJP4PDhhLooKT+k65oOmMgRnxyPv3Etd2HQdnIIia4ycLLXc6D2JAkjBO7+DUN61jVWtLL2N2yIGnLaPjemCtXDOuylnqtd8geBNSBYlIo4bLDHpejKxapQN0hwZH5A1aBL0gu0zIgyBvbX8HAX+qCaEdnc3jo4d6WkDcNCDa692mM5y1uKEeZIr
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(38100700002)(36756003)(16576012)(4326008)(316002)(66556008)(8676002)(186003)(86362001)(2906002)(508600001)(31686004)(956004)(6486002)(53546011)(26005)(83380400001)(31696002)(5660300002)(66476007)(6666004)(8936002)(66946007)(2616005)(43740500002)(45980500001);
+X-Microsoft-Antispam-Message-Info: 5E0iOBri5xedv1r+uMzEyQAYtC4UOGTJHRChaaXYApREy7otkMAtZcKMgrI5qOpEk0f0u5mDvSpC4Ei/dKVeWfxS28KPCvDvAGowjiaLbDtwuxQ8c5ehLmeS67zMS9F/NIA38/v6UFZIH+TfwtxCQiEid1D+dDUyt/gHBLSSP6z10fWel64Dqf9M20e2DjvCLgXuO7P39qYcZfGECQy32qQV8ym7LiRJRiBoZ9tGHF8BtrilZM8HYyXfX4SS0BT7QyQJseqFf2OE2Hhf3Gjf+nYUUsJ/VILS+Cz0MEZhPdFsQX9GIx+XyNuNVwCkxLDHsWC7d5zGnOKKWjcUe0yaHngaFqVllJC+ajui1hfemKGif0zqzY0c1k4I64ERy1grvj1/eBHhdiQt38zgk1KKOsCaLRpS8d5IUA+BMBH80HDcst1P1KjYuSwf4RjRvxfJr6DRKoZXuu8IC220vdRgVR6uXAVWpJxEjrVE43ifQiUbU87gbcAthTv8jVCgtj4zw29Wba3s67yVuNPAhgVPOy2uPv9VGtBMrQ6+f0yIay1t+p7XIQg4Z/LlTxSCpj+MWEbwyvX1c1rmcab4Yz2tSf7urd411lqKKp7g2DEmJ5E5H1TcoIA0PvM11s0OVc2Xkfys8GstMP/3n8uepWU5ZGTKXb0u6oxj51Zc9ca61H6tXPKBV4ooFtLya7rhNHVkxoGKzAN0R7NnumR//MR6ZRPpAGpHOa+uxPa1o5KAGkA=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(36840700001)(46966006)(8936002)(426003)(86362001)(83380400001)(26005)(70206006)(36860700001)(8676002)(47076005)(336012)(1076003)(186003)(5660300002)(54906003)(2616005)(36756003)(70586007)(316002)(356005)(4326008)(82310400003)(81166007)(2906002)(6916009)(16526019)(508600001)(36900700001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TERYZjhEeU9UR2UwV2c2VW40TDFZbTNJL3VWVkxsdUVHU085QndldjA0bEh5?=
- =?utf-8?B?RDN3S01XRThqUVZyK2tnZlZBSmNJcHNiZ0hpNnJsM3BSWTZZZ05vSktHZmdj?=
- =?utf-8?B?R2tGZ0dIbWdZb0pYbGtxdzdFWWpkL1ZSVk1iVWFHSEtJU1pibzJFN01CMVpR?=
- =?utf-8?B?bUNPV3pHNmMxZWRZc1N0UnNqb1E0TXorbUR2M1l6bzdQRUhFRE4wNkJ6MUs5?=
- =?utf-8?B?bG8rcU5HMngxOVJGTm5KRDllNmxsMVkzSDVqSkI2c21HL1I3amxDd20xaWUv?=
- =?utf-8?B?K0JGWVJkSStRRmdwSDc0TmxRS0lNR2dZRkhQODJmd3JEcysxZ0ozU3o5cWJp?=
- =?utf-8?B?M2RROWhxcVpVMWlBL3c3QUlKWkJWeE1DeUJKSGNpNnRrTENSbVUwOGxJb1hy?=
- =?utf-8?B?MU52RElZdXY5VGpBV2p1ZjdPVXpLRXdiK0NYMVh0NFh0WWI0akltWldlSyt5?=
- =?utf-8?B?WWZyeHZPdHZ3cWxSOHBMTzBLRERQbGswUm1ScElpNVUzMy9wOUw1Vzd4T3pR?=
- =?utf-8?B?MFdxSWJVSXJDSS9tamtYZDZyTlRPb0JoQmhpMHZMZ1VsTldlczljdTdMRnc2?=
- =?utf-8?B?Y2dqOUphWXFHTXZZRXd5UmdWQVlISWtXaW03dDNNNlpOV3VJcTQycTR6ZGk3?=
- =?utf-8?B?NXU0NXNaeS9lOXQ1bElGY0J4bWZETi93S0g1ck9aY3BZL2ZabTZOeU1Hekdh?=
- =?utf-8?B?b0NuWXZ4Y0FyU3krYTB0cG5kT2xFZXIzUnRISjhHeVN2UFZXcTF3TDdyRmp6?=
- =?utf-8?B?ZlZDcTZFb25TamhFdjRQOTA4RnFtcGJseTJtL2xWMy8yS09DajRpN2VaelhM?=
- =?utf-8?B?clRyclBqckl0L1RpSUNReHlyMDR5b0ViWi90WFNGa2ZvbTN5OE5DdkdYNENk?=
- =?utf-8?B?ZTdzcld1WWZYdWZmVkhXQUt5MXgxNDJpTSs0bXVJazdHY1BVeHhYMjI3c1Bt?=
- =?utf-8?B?SmtjM2NiNVd4ZTc5b01ycE9ENlRGTlduYXprSHZYeEdLSjQ4YnZoL1dQcUJh?=
- =?utf-8?B?dVFTSlZPa3o2WElDc3l4QURBQjhGYmowNCtLWXdWazJPZktIMUF5N3VWUWJ3?=
- =?utf-8?B?d3BZR2FtbEs2ZTZPTVBMM01YWWFDR2dhNTBUOW45UTYyaDFRRG43QnhMYmts?=
- =?utf-8?B?L1pBa2lJVTNMYnBmNU9STUxQMXkrOVYyVEhiV2lqMWJYc2xWeElkMU96dVFs?=
- =?utf-8?B?aXZxV1VlUGFPY25ERjFHc280UDNWckRGUDBVS2JQSVhZR09xN2JVcVRQd1da?=
- =?utf-8?B?ZlpRNlpxeXB1ZnVMWXp0TEpnRzlkMWRrN1Fkek9Qd2Y4QUoyZmI4VFhjaEQv?=
- =?utf-8?B?cGI2eC9rcmZvcFNYcUJGZlZ5cU5kV3dVMldqM2hOS1MxU1Ewc2ppOFBtN3Vz?=
- =?utf-8?B?ZW9NSy9Yd2cySzlVRTc3OEFtRi9ZQWkrT01XWCtxbkU0VWhEQ3pvUWtkOENC?=
- =?utf-8?B?SHpmejN6US91NjJIOU90eUkyVGEvdEVucU1XS1RWTElVTCtyWEpnM0xOMUNW?=
- =?utf-8?B?Nyttc0pOUUxkbFNqQjNDczhJakZCd2tBSm10RjJUc2ljZW4xdnJiSDQ4NDdw?=
- =?utf-8?B?Z2ZqdWhHaFg2YU8yOGdEOXZYU2dheUtUNUpyTXNLczlhSTVXcEdvZG5XTHdG?=
- =?utf-8?B?cjVyM1RNZ3A2RlFNWnVGNGJWV0JERTRoejlKR3dBdWRhWkREdWliY0gzQXVZ?=
- =?utf-8?B?SlBod2JnQThkMmgya1NnUlVBN0czT2VLYXhYWU1DbHVEdnhTNllEWUhKNEcv?=
- =?utf-8?Q?8/tXizg9whWwL57XXRdpa8lRjisMr0eUUBuqQjj?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0aad228-e076-40ce-eb5c-08d995a0d9cf
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2021 21:13:53.5525 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2021 13:32:09.4944 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1952c19-9978-4656-4c3a-08d996f2ae14
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: apaneers@amd.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4000
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3623
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,81 +109,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This new DC version brings improvements in the following areas:
+- Improvements for USB4;
+- Isolate FPU code for DCN20, DCN301, and DSC;
+- Fixes on Linking training;
+- Refactoring some parts of the code, such as PSR;
 
+Thanks
 
-On 20/10/21 1:51 pm, Thomas Zimmermann wrote:
-> Hi
-> 
-> Am 20.10.21 um 00:53 schrieb Arunpravin:
->> - Include drm buddy to DRM root Makefile
->> - Add drm buddy init and exit function calls
->>    to drm core
-> 
-> Is there a hard requirement to have this code in the core?
-> 
-> IMHO there's already too much code in the DRM core that should rather go 
-> into helpers. The allocator should live in it's own module and driver 
-> should init it if needed.
-> 
-Hi Thomas,
-I will check on this
-@Daniel, Could you please share your opinion
+Ahmad Othman (2):
+  drm/amd/display: Add support for USB4 on C20 PHY for DCN3.1
+  drm/amd/display: fix a crash on USB4 over C20 PHY
 
-Regards,
-Arun
->>
->> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
->> ---
->>   drivers/gpu/drm/Makefile  | 2 +-
->>   drivers/gpu/drm/drm_drv.c | 3 +++
->>   2 files changed, 4 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
->> index 0dff40bb863c..dc61e91a3154 100644
->> --- a/drivers/gpu/drm/Makefile
->> +++ b/drivers/gpu/drm/Makefile
->> @@ -18,7 +18,7 @@ drm-y       :=	drm_aperture.o drm_auth.o drm_cache.o \
->>   		drm_dumb_buffers.o drm_mode_config.o drm_vblank.o \
->>   		drm_syncobj.o drm_lease.o drm_writeback.o drm_client.o \
->>   		drm_client_modeset.o drm_atomic_uapi.o drm_hdcp.o \
->> -		drm_managed.o drm_vblank_work.o
->> +		drm_managed.o drm_vblank_work.o drm_buddy.o
->>   
->>   drm-$(CONFIG_DRM_LEGACY) += drm_agpsupport.o drm_bufs.o drm_context.o drm_dma.o \
->>   			    drm_legacy_misc.o drm_lock.o drm_memory.o drm_scatter.o \
->> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
->> index 7a5097467ba5..6707eec21bef 100644
->> --- a/drivers/gpu/drm/drm_drv.c
->> +++ b/drivers/gpu/drm/drm_drv.c
->> @@ -43,6 +43,7 @@
->>   #include <drm/drm_managed.h>
->>   #include <drm/drm_mode_object.h>
->>   #include <drm/drm_print.h>
->> +#include <drm/drm_buddy.h>
-> 
-> In alphabetical order please. Here and everywhere else.
-> 
-> Best regards
-> Thomas
-> 
->>   
->>   #include "drm_crtc_internal.h"
->>   #include "drm_internal.h"
->> @@ -1034,6 +1035,7 @@ static void drm_core_exit(void)
->>   	drm_sysfs_destroy();
->>   	idr_destroy(&drm_minors_idr);
->>   	drm_connector_ida_destroy();
->> +	drm_buddy_module_exit();
->>   }
->>   
->>   static int __init drm_core_init(void)
->> @@ -1043,6 +1045,7 @@ static int __init drm_core_init(void)
->>   	drm_connector_ida_init();
->>   	idr_init(&drm_minors_idr);
->>   	drm_memcpy_init_early();
->> +	drm_buddy_module_init();
->>   
->>   	ret = drm_sysfs_init();
->>   	if (ret < 0) {
->>
-> 
+Anson Jacob (2):
+  drm/amd/display: dcn20_resource_construct reduce scope of FPU enabled
+  drm/amd/display: Remove unused macros
+
+Anthony Koo (2):
+  drm/amd/display: [FW Promotion] Release 0.0.89
+  drm/amd/display: [FW Promotion] Release 0.0.90
+
+Aric Cyr (4):
+  drm/amd/display: Handle I2C-over-AUX write channel status update
+  drm/amd/display: 3.2.158
+  drm/amd/display: Fix 3DLUT skipped programming
+  drm/amd/display: 3.2.159
+
+Dmytro Laktyushkin (3):
+  drm/amd/display: clean up dcn31 revision check
+  drm/amd/display: restyle dcn31 resource header inline with other asics
+  drm/amd/display: allow windowed mpo + odm
+
+George Shen (2):
+  drm/amd/display: Implement fixed DP drive settings
+  drm/amd/display: Add comment for preferred_training_settings
+
+Guo, Bing (2):
+  drm/amd/display: Get ceiling for v_total calc
+  drm/amd/display: set Layout properly for 8ch audio at timing
+    validation
+
+Hansen (1):
+  drm/amd/display: Set phy_mux_sel bit in dmub scratch register
+
+Jimmy Kizito (1):
+  drm/amd/display: Add workaround flag for EDID read on certain docks
+
+Lewis Huang (1):
+  drm/amd/display: Align bw context with hw config when system resume
+
+Martin Leung (1):
+  drm/amd/display: Manually adjust strobe for DCN303
+
+Meenakshikumar Somasundaram (2):
+  drm/amd/display: FEC configuration for dpia links
+  drm/amd/display: FEC configuration for dpia links in MST mode
+
+Michael Strauss (2):
+  drm/amd/display: Set i2c memory to light sleep during hw init
+  drm/amd/display: Defer GAMCOR and DSCL power down sequence to vupdate
+
+Qingqing Zhuo (2):
+  drm/amd/display: move FPU associated DSC code to DML folder
+  drm/amd/display: move FPU associated DCN301 code to DML folder
+
+Robin Chen (1):
+  drm/amd/display: dc_link_set_psr_allow_active refactoring
+
+Wenjing Liu (5):
+  drm/amd/display: adopt DP2.0 LT SCR revision 8
+  drm/amd/display: implement decide lane settings
+  drm/amd/display: decouple hw_lane_settings from dpcd_lane_settings
+  drm/amd/display: add two lane settings training options
+  drm/amd/display: fix link training regression for 1 or 2 lane
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   2 +-
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |   2 +
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c |  10 +-
+ .../drm/amd/display/dc/bios/bios_parser2.c    |   2 +
+ .../gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c  |  16 +-
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |  17 +-
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 118 ++++-
+ .../gpu/drm/amd/display/dc/core/dc_link_ddc.c |  15 +-
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 498 +++++++-----------
+ .../drm/amd/display/dc/core/dc_link_dpia.c    |  57 +-
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |  14 +-
+ drivers/gpu/drm/amd/display/dc/dc.h           |  23 +-
+ drivers/gpu/drm/amd/display/dc/dc_dp_types.h  |   5 -
+ drivers/gpu/drm/amd/display/dc/dc_link.h      |  13 +-
+ .../gpu/drm/amd/display/dc/dce/dce_audio.c    |   6 +-
+ drivers/gpu/drm/amd/display/dc/dce/dce_aux.c  |  34 +-
+ .../gpu/drm/amd/display/dc/dce/dce_hwseq.h    |   3 +-
+ drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c |  20 +
+ drivers/gpu/drm/amd/display/dc/dce/dmub_psr.h |   1 +
+ .../drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c |  12 +-
+ .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |   6 +
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c |  19 +-
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c  |  14 +
+ .../drm/amd/display/dc/dcn30/dcn30_dpp_cm.c   |   8 +-
+ .../drm/amd/display/dc/dcn30/dcn30_resource.c |  35 +-
+ .../gpu/drm/amd/display/dc/dcn301/Makefile    |  26 -
+ .../amd/display/dc/dcn301/dcn301_resource.c   | 349 +-----------
+ .../amd/display/dc/dcn301/dcn301_resource.h   |   3 +
+ .../amd/display/dc/dcn303/dcn303_resource.c   |  14 +
+ .../display/dc/dcn31/dcn31_dio_link_encoder.c |   4 +-
+ .../drm/amd/display/dc/dcn31/dcn31_hwseq.c    |   5 +
+ .../drm/amd/display/dc/dcn31/dcn31_resource.c |  11 +-
+ .../drm/amd/display/dc/dcn31/dcn31_resource.h |  10 +
+ drivers/gpu/drm/amd/display/dc/dm_cp_psp.h    |   2 +
+ drivers/gpu/drm/amd/display/dc/dml/Makefile   |   6 +
+ .../amd/display/dc/dml/dcn301/dcn301_fpu.c    | 390 ++++++++++++++
+ .../amd/display/dc/dml/dcn301/dcn301_fpu.h    |  42 ++
+ .../amd/display/dc/{ => dml}/dsc/qp_tables.h  |   0
+ .../drm/amd/display/dc/dml/dsc/rc_calc_fpu.c  | 291 ++++++++++
+ .../drm/amd/display/dc/dml/dsc/rc_calc_fpu.h  |  94 ++++
+ drivers/gpu/drm/amd/display/dc/dsc/Makefile   |  29 -
+ drivers/gpu/drm/amd/display/dc/dsc/rc_calc.c  | 259 ---------
+ drivers/gpu/drm/amd/display/dc/dsc/rc_calc.h  |  50 +-
+ .../gpu/drm/amd/display/dc/dsc/rc_calc_dpi.c  |   1 -
+ .../gpu/drm/amd/display/dc/inc/dc_link_dp.h   |  16 +-
+ drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h   |   2 +
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h   |   1 +
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  55 +-
+ .../gpu/drm/amd/display/dmub/src/dmub_dcn31.c |   2 +
+ .../gpu/drm/amd/display/dmub/src/dmub_srv.c   |   1 +
+ .../display/include/grph_object_ctrl_defs.h   |   1 +
+ .../amd/display/include/i2caux_interface.h    |   3 +
+ .../amd/display/include/link_service_types.h  |  29 +-
+ .../amd/display/modules/freesync/freesync.c   |  15 +-
+ .../drm/amd/display/modules/inc/mod_hdcp.h    |   2 +
+ 55 files changed, 1529 insertions(+), 1134 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml/dcn301/dcn301_fpu.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml/dcn301/dcn301_fpu.h
+ rename drivers/gpu/drm/amd/display/dc/{ => dml}/dsc/qp_tables.h (100%)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml/dsc/rc_calc_fpu.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml/dsc/rc_calc_fpu.h
+
+-- 
+2.25.1
+
