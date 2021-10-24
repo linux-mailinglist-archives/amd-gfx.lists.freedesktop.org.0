@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24E82438909
-	for <lists+amd-gfx@lfdr.de>; Sun, 24 Oct 2021 15:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EADF943890B
+	for <lists+amd-gfx@lfdr.de>; Sun, 24 Oct 2021 15:32:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F79589F8B;
-	Sun, 24 Oct 2021 13:32:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BB146E0D4;
+	Sun, 24 Oct 2021 13:32:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2082.outbound.protection.outlook.com [40.107.223.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6244A89F8B
- for <amd-gfx@lists.freedesktop.org>; Sun, 24 Oct 2021 13:32:14 +0000 (UTC)
+ (mail-dm6nam11on2041.outbound.protection.outlook.com [40.107.223.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D6B689F9F
+ for <amd-gfx@lists.freedesktop.org>; Sun, 24 Oct 2021 13:32:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Fv5lAHyfax+N1bf+x9KQWvnGXiFrYixoUG/VaYgP6qrHKL2zOJ1TnB80lc7XcQDiZczKlC36yFZVCaVRX3qwwL0W4VKC/uuYnFYtnniSlTTkXWWpI2P1Tr9fIWWF6pJtPRDM5GNiWgIeaHvn3cSXghH6ZfuLXRUOaZ5TkLBV6yiPQvCtye/WXjm5PWmpeW45sNrAY0eL+ufZbQAL94PVDTp32qIDDeq+pNgVTwwdj8Fk5WCzy9fvb151cA/kQFFBYrmVNnPb1ObXUwELR6fkO/sUPhMibJ6Ws8E0VxFQfplAdOZErAdVWRa6QK5j9APr6K8XrM9+kUiBmNfsGfnjOA==
+ b=Kq2nz2zmIYT2qSBThaepgajQkJ8MUaz6Yq0lpMszR7BVGk4QwSbJ6qvgOU7SQv/EZvHuASqYfxQgNKJxfRB93ueUmowOSJyQOrlXQIxMfRP8pj8wztWi2bjA6WSsJz2fDksXqzeqsJaeYhnE1s6HcqphsHXRvkGMs5LPYu3pOl71cJpDd4gGrYQy25rM2fXWbJSPqgODX/avZfhHfz4fTJPwqtIRLsDiznEwhTYeplm/PGtipzJHKNUXZZ7StT63Ddh7YtKZ5p4EKMbU6fTguFXVytP96y3wbgxHYWkxQW2CnoKwAhOj+ACsTtWSgukYRQgjZG172/RTP+Ujj4NWdg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lEzZd6Rt4Ki6XZhoKmyRQxZgdMGjCywb9smBHLrAxyw=;
- b=fCOe/DIBQN6dX0QhLoRYm1IKoZjQd507tPfcOv6/ZbQoQ//i4KvhTVfE7EKVTYceWJ3zCw0AfNLxHrTmKtWe9EooIA+SKAJdUyi0o5zNJ3grkKBccxAVExVyktw0ozRZOXu6Md7kFQMUV4fNK+xaH8WzUEXmTGZ0u3XfKjVNN5aUWXUdShC8+h1gzxinsITcLwV83yD+FPboVfzmhU1cb7j0i2cbfWEaag0ZybXJONm8aRHbSoxefwwpbHJ+S1tptIzinSCCOOOLJCvKxRgPvuWjVaLcI3tgz6s3cWXtzSaWq1iF9k8rLPC1H32xbwOSJtQ95QW7LgoMlh1Sc+IU3Q==
+ bh=hewItNTGMRh4/McbUsxpDuWZgZ56fRuGjXVyJfQXFvg=;
+ b=GXTE1mJw7kCLEG5y+cXYtgJPo4ko8pNFEz2WMzWYm7a3pbFLy9nslVZkBnyFcHG0tvv5p3Mo/458CkICi5oFKqeaCOfQFnyRclh5z0Wng7q9bgMf8EemhlrOElXhRCfZAwBI2PVzvyR7UuvC5I6BYjjJ73E/QuEQwIrgptug2tCfssMUV1oMzTwwI3SN9hWfXHiPfV27BDUlTPyG/d/qNUxATj4PEuyuLSUEK08dQoMQNa0n+TJvNgPxaBY3MHpGwPVjFAnFQucWcPYSSWALcQHj6MisPZnFc6Z0odruoxu+mnc0eTQ2vmmO2PI2PxpjQk8BLIG+XZwEvUKgg1gTsA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lEzZd6Rt4Ki6XZhoKmyRQxZgdMGjCywb9smBHLrAxyw=;
- b=RYFORfEkxvrO7FTQgdyCLlH9OdjAoBK+dfqc/1+Dq5iStzWo/fUQIlZuSFgJafP3/TpiQgi61fsV2a6KeceTb1U/OUZat6kusIKwHtYGQJF3IQwCPIOWWY6++N2WBjEKZz0pSmjOlxYmYCSWnUpeMr4flPf3QnBqHDSBF15Glog=
-Received: from MW2PR2101CA0003.namprd21.prod.outlook.com (2603:10b6:302:1::16)
- by DM6PR12MB3449.namprd12.prod.outlook.com (2603:10b6:5:3b::24) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=hewItNTGMRh4/McbUsxpDuWZgZ56fRuGjXVyJfQXFvg=;
+ b=2Sr67zcetw+M0ywNucpVUSLkdAucWERFLY8yRcclXUc2f2nKEPoTRmgbzmbnQ7pfKcPPcnbrgI3vWXPlKJpljIZm3W7NXInTiiLIzN+wZm6adGho+s95X9BZSREpKp0i/7L8VwhzEZzlVUrNAShbrLaaabW0fVr2judVjzh5IiM=
+Received: from MWHPR1401CA0010.namprd14.prod.outlook.com
+ (2603:10b6:301:4b::20) by CH0PR12MB5369.namprd12.prod.outlook.com
+ (2603:10b6:610:d4::12) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18; Sun, 24 Oct
- 2021 13:32:10 +0000
-Received: from CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
- (2603:10b6:302:1:cafe::e9) by MW2PR2101CA0003.outlook.office365.com
- (2603:10b6:302:1::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.1 via Frontend
- Transport; Sun, 24 Oct 2021 13:32:10 +0000
+ 2021 13:32:12 +0000
+Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:301:4b:cafe::3b) by MWHPR1401CA0010.outlook.office365.com
+ (2603:10b6:301:4b::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.16 via Frontend
+ Transport; Sun, 24 Oct 2021 13:32:12 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,13 +46,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT064.mail.protection.outlook.com (10.13.175.77) with Microsoft SMTP
+ CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4628.16 via Frontend Transport; Sun, 24 Oct 2021 13:32:10 +0000
+ 15.20.4628.16 via Frontend Transport; Sun, 24 Oct 2021 13:32:12 +0000
 Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Sun, 24 Oct
- 2021 08:32:08 -0500
+ 2021 08:32:09 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
@@ -60,45 +60,46 @@ CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
  <stylon.wang@amd.com>, <solomon.chiu@amd.com>, <pavle.kotarac@amd.com>,
- <agustin.gutierrez@amd.com>, Lewis Huang <Lewis.Huang@amd.com>, Anthony Koo
- <Anthony.Koo@amd.com>
-Subject: [PATCH 01/33] drm/amd/display: Align bw context with hw config when
- system resume
-Date: Sun, 24 Oct 2021 09:31:09 -0400
-Message-ID: <20211024133141.239861-2-Rodrigo.Siqueira@amd.com>
+ <agustin.gutierrez@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>, Hersen Wu <hersenxs.wu@amd.com>, Harry Wentland
+ <harry.wentland@amd.com>
+Subject: [PATCH 02/33] drm/amd/display: dcn20_resource_construct reduce scope
+ of FPU enabled
+Date: Sun, 24 Oct 2021 09:31:10 -0400
+Message-ID: <20211024133141.239861-3-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211024133141.239861-1-Rodrigo.Siqueira@amd.com>
 References: <20211024133141.239861-1-Rodrigo.Siqueira@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
  (10.181.40.144)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9fa2bfa8-9582-41eb-2db5-08d996f2ae93
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3449:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB34495153E98ADF52662535C698829@DM6PR12MB3449.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:130;
+X-MS-Office365-Filtering-Correlation-Id: c346fa2f-a773-4c07-ff91-08d996f2afa2
+X-MS-TrafficTypeDiagnostic: CH0PR12MB5369:
+X-Microsoft-Antispam-PRVS: <CH0PR12MB5369BC3F0372F3FE1645F8D198829@CH0PR12MB5369.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RNOVRZi+9YVdRDHHiy/1RD5rQX2+q0AP+sHGldZ/kt2Yza/oUKcCVs2DvdPIRnBsXZdQmLf1MKN5h5pIQ43h7wvgzMQuTUBr8U5uYwitmS1jFRCeEGz9f2NPGkKVoWoGJZf7HNNEMoLof3vc8eqQw5A2WefWErSC0lsTxszsDzfBKURXGeMwJt9wSVdHNTON7jhSefal/dv6Uo+5pc1rwVgMeUv5ffx1PIC0LfDts0XvF4sjuyT5MwL71CzoVVT51QNb8uSpAP3Pk9EHGgrtlKRPVppn/XV2OB6uJHkWp/Eext1mhIBJWTeLJ7b+lkmllWb1qmRKfgz7bC3HFrBh4khnJgx+ajcE4RcANkaMmtzdu/xf8A90lZhMvgnUzuHQbVNvItJO/yDooO3m0LW3ynDtpNpxUnTHmCUXYV+/xpovmi3D/YAskM8NmS1SHY4+1kJQTfDxYWt/y9UZLNoNR9dk15T0Sb3mo4YZ/9vwARwZNnZZnXy8+OO+62Zx2NX4c4Q/QtMEkh8cLG4LZcHbtrHjRYW5U1Pni3DQ7yqTbILzCcRDkDm8G9rH8OyyRjNsXszEndFawAuj7sg4OLnGBU0Sg6+jhBPSmEuKE9/dBO/BUBYnn0AQR+Lki5Oq5CtbAY3A9W9rY6GC733Es9x5Sq8U5lEdlTEkn8VXV9Grr231GDH/LO0HlxK2dIcyFvCsfjWfTYKNLhPgS9nGM7K/wxXMXkdufqv7ZRZbJk1ZFtE=
+X-Microsoft-Antispam-Message-Info: lhlxwRO9Eg6TbbmZZMlXsQ9GHIa72/GwoGn45s+fTuV4V8adAA9yJg1VSBOIavWFqdT3dFS4VVqA3XWCmr0gOSri2xsX+NKV33kOIzDMdMI36d+XWRmm+MAdUmY5vEv0kHPmhMk1SaIbIN/EU0RFbvixTFNbujI3GirjDfXeuG7z7RYgSDWLPQS1amx+VEXPw3Rr9Q2kHWK9WVFfhEgdSkQkfuqVtheZiUC7+5GeNb/6q0U8zFGb1HzP/4FACxeg/nDCnp8PCIGFpDTbBNWdMY/i6Nc9EtkK91n/f2XZbvAVpjocJfQrP/ZkW0mVyHwHyCOmEw5Gr3klKiClLJIvH0KxXgmwh2eNe+eciFPETiD0JelnnVk1s6WcfA7z+Usz1PEeuDEiowXo45Z6WKZFWMsSQo2rYqOpjV2P0hwnprmTDBQgZw3NznCxBJ5GR1DlczpC1dc64Lp4nOPDv94+HP8YUvtyOO0L+w7cHXGWdiuasABiVtZJVtzehflUIBNfEgDmtQ7/Ay8yx3StXt30YOAQH3dQ6UoQ4uKrki8urDP/HGG/tZwI/yLolTEq/U+ZkYBSvwAvy0G4LEPtMzAvSqIqAU7OqsHj5CF3S6m4mX6xP28ERD0cHqFwdxyFZ9N0sgrV4Nbqogj543zjayF3BiafjDrGonsGbrsvSNjZPsXxGkwvyJ5xblcnNkZk8Lnucp/JrKO8/fvf7xw3BoBpLyFqfyJMfKUftFMvEXMXBm4=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(83380400001)(86362001)(426003)(81166007)(6916009)(70586007)(70206006)(186003)(336012)(2616005)(26005)(82310400003)(356005)(36756003)(16526019)(36860700001)(316002)(508600001)(8936002)(47076005)(8676002)(2906002)(54906003)(4326008)(1076003)(5660300002)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(26005)(336012)(6666004)(81166007)(426003)(70206006)(356005)(5660300002)(186003)(70586007)(16526019)(1076003)(2616005)(86362001)(36756003)(4326008)(66574015)(8676002)(47076005)(8936002)(508600001)(6916009)(2906002)(83380400001)(316002)(82310400003)(36860700001)(54906003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2021 13:32:10.3259 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9fa2bfa8-9582-41eb-2db5-08d996f2ae93
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2021 13:32:12.1013 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c346fa2f-a773-4c07-ff91-08d996f2afa2
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT064.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3449
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5369
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,40 +114,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Lewis Huang <Lewis.Huang@amd.com>
+From: Anson Jacob <Anson.Jacob@amd.com>
 
-[Why]
-When the vbios config and driver config are different, if we update
-clock to lower before call program_timing and program_pixel_clk, garbage
-appear.
+Limit when FPU is enabled to only functions that does FPU operations for
+dcn20_resource_construct, which gets called during driver
+initialization.
 
-[How]
-Align bw context with hw config when system resume
+Enabling FPU operation disables preemption.  Sleeping functions(mutex
+(un)lock, memory allocation using GFP_KERNEL, etc.) should not be called
+when preemption is disabled.
 
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Fixes the following case caught by enabling
+CONFIG_DEBUG_ATOMIC_SLEEP in kernel config
+[    1.338434] BUG: sleeping function called from invalid context at kernel/locking/mutex.c:281
+[    1.347395] in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 197, name: systemd-udevd
+[    1.356356] CPU: 7 PID: 197 Comm: systemd-udevd Not tainted 5.13.0+ #3
+[    1.356358] Hardware name: System manufacturer System Product Name/PRIME X570-PRO, BIOS 3405 02/01/2021
+[    1.356360] Call Trace:
+[    1.356361]  dump_stack+0x6b/0x86
+[    1.356366]  ___might_sleep.cold+0x87/0x98
+[    1.356370]  __might_sleep+0x4b/0x80
+[    1.356372]  mutex_lock+0x21/0x50
+[    1.356376]  smu_get_uclk_dpm_states+0x3f/0x80 [amdgpu]
+[    1.356538]  pp_nv_get_uclk_dpm_states+0x35/0x50 [amdgpu]
+[    1.356711]  init_soc_bounding_box+0xf9/0x210 [amdgpu]
+[    1.356892]  ? create_object+0x20d/0x340
+[    1.356897]  ? dcn20_resource_construct+0x46f/0xd30 [amdgpu]
+[    1.357077]  dcn20_resource_construct+0x4b1/0xd30 [amdgpu]
+...
+
+Tested on: 5700XT (NAVI10 0x1002:0x731F 0x1DA2:0xE410 0xC1)
+
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Hersen Wu <hersenxs.wu@amd.com>
+Cc: Anson Jacob <Anson.Jacob@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+
+Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Acked-by: Agustin Gutierrez <agustin.gutierrez@amd.com>
-Signed-off-by: Lewis Huang <Lewis.Huang@amd.com>
+Signed-off-by: Anson Jacob <Anson.Jacob@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c    | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index 44d27579d898..a25732d07222 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -1378,6 +1378,12 @@ void dcn10_init_hw(struct dc *dc)
- 	if (dc->clk_mgr && dc->clk_mgr->funcs->init_clocks)
- 		dc->clk_mgr->funcs->init_clocks(dc->clk_mgr);
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index 756f5d411d9a..001737487800 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -3698,16 +3698,22 @@ static bool init_soc_bounding_box(struct dc *dc,
+ 			clock_limits_available = (status == PP_SMU_RESULT_OK);
+ 		}
  
-+	/* Align bw context with hw config when system resume. */
-+	if (dc->clk_mgr->clks.dispclk_khz != 0 && dc->clk_mgr->clks.dppclk_khz != 0) {
-+		dc->current_state->bw_ctx.bw.dcn.clk.dispclk_khz = dc->clk_mgr->clks.dispclk_khz;
-+		dc->current_state->bw_ctx.bw.dcn.clk.dppclk_khz = dc->clk_mgr->clks.dppclk_khz;
-+	}
-+
- 	// Initialize the dccg
- 	if (dc->res_pool->dccg && dc->res_pool->dccg->funcs->dccg_init)
- 		dc->res_pool->dccg->funcs->dccg_init(res_pool->dccg);
+-		if (clock_limits_available && uclk_states_available && num_states)
++		if (clock_limits_available && uclk_states_available && num_states) {
++			DC_FP_START();
+ 			dcn20_update_bounding_box(dc, loaded_bb, &max_clocks, uclk_states, num_states);
+-		else if (clock_limits_available)
++			DC_FP_END();
++		} else if (clock_limits_available) {
++			DC_FP_START();
+ 			dcn20_cap_soc_clocks(loaded_bb, max_clocks);
++			DC_FP_END();
++		}
+ 	}
+ 
+ 	loaded_ip->max_num_otg = pool->base.res_cap->num_timing_generator;
+ 	loaded_ip->max_num_dpp = pool->base.pipe_count;
++	DC_FP_START();
+ 	dcn20_patch_bounding_box(dc, loaded_bb);
+-
++	DC_FP_END();
+ 	return true;
+ }
+ 
+@@ -3727,8 +3733,6 @@ static bool dcn20_resource_construct(
+ 	enum dml_project dml_project_version =
+ 			get_dml_project_version(ctx->asic_id.hw_internal_rev);
+ 
+-	DC_FP_START();
+-
+ 	ctx->dc_bios->regs = &bios_regs;
+ 	pool->base.funcs = &dcn20_res_pool_funcs;
+ 
+@@ -4077,12 +4081,10 @@ static bool dcn20_resource_construct(
+ 		pool->base.oem_device = NULL;
+ 	}
+ 
+-	DC_FP_END();
+ 	return true;
+ 
+ create_fail:
+ 
+-	DC_FP_END();
+ 	dcn20_resource_destruct(pool);
+ 
+ 	return false;
 -- 
 2.25.1
 
