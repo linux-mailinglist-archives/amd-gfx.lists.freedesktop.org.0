@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A37443891B
-	for <lists+amd-gfx@lfdr.de>; Sun, 24 Oct 2021 15:32:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 152CB438921
+	for <lists+amd-gfx@lfdr.de>; Sun, 24 Oct 2021 15:32:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 141616E110;
-	Sun, 24 Oct 2021 13:32:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3FF26E147;
+	Sun, 24 Oct 2021 13:32:46 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2069.outbound.protection.outlook.com [40.107.236.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AC376E115
- for <amd-gfx@lists.freedesktop.org>; Sun, 24 Oct 2021 13:32:35 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2045.outbound.protection.outlook.com [40.107.92.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A40B6E134
+ for <amd-gfx@lists.freedesktop.org>; Sun, 24 Oct 2021 13:32:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J5DQkehH+ggiHcIMag4Xo8soEHNFUNSfPjbBpkDIbDuupX9YXEM4Kgnbxk8Bav9wtdtZcNyd/xrBEQJGU56C7lLWAFeJSZlXUJmz5ftgXIb/07ZpL4q3pcm38VJpZxonXeIfhGEaJ0qeHTdSDjR2290pElXm1lGsgTxHLmQZd1aJH7AKdxEP6bORk6YbAqcJxuZSx/Gux7CkV6NOj3hZ3ImC19lL4INYkkfJWhflekFj4nj3laoQYttGJFvOPvndQbp7eUR1toNwa83j3UO1WcV2PmaKsQcMlkpfHUG8ByFZ/WLauRoiwdsvtTRU5wfROg3OHlGPkFRdP4PZ+oiNVg==
+ b=EGMC4y5ddRxwrbdW8I2o24w+sVIPxGXdn809cOypuoAh9yn7v5MQCcaeNx7liRuTLH9yJLzhI3QwzQNl8vqMTBHokS5lkWIwN7D6YXIbT4SE8agiAkJjGEhcRu4RjZC1Tc1w8JwviTYQn9qNnYY9tUV0/oFqYwtyKRo88QQ06PAF/Da+F4SrXAgSd9AXqV4H4PW45onMQs3nmfvgxTrNDqYurnK4ppf4KZwVPq+trQiQ91WCqG8bMOXfeeE8ZwMaviMdI2IkXIzsObHcroI6axJhr8gioaKBacPyFDfV8vvm0puygV/Q/AdUfzo+1U6npDAsJZ/Gs6CZ8j+Saa/pww==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=67s3JduHgVAjpXHf4ZIqIxQKXY09R17rPUaxsC2xYkg=;
- b=NjDl8ht9rOAlktyGixkYJOKoq/qgUkJIn5fzlo92TU6U51e/rQrpRQcV7TA9m6PL2s/0xfWgdte1hm7p57/fBc1wQfrVFqzfvshn4rL47J1lEd7LQ93K/TDrkNlo9Dk5jYEDcjZfrCS5lV/JSSOARsiqnR90hbSj/LczbMDGzzZL4A9xWS7RbDomIH8LvkMNNv2jHH0TSZmGt+aiytzHh0RZJEoHjSvhnHOup5xt47aW7WZPmUYNOuQeLOex1UKiaekT9aOTVZBCWLt/I34cebxz1paCviuRU5xayXmXREHXo1GDWhjoppxdWCQZ282Y3SAXHFNHJsl9ua2mqcUP1Q==
+ bh=B7Q4KmP63BtaCywOo2LPwuqbA0h5DwGx15IljZsGCdg=;
+ b=RH08U1MES7M2plXv9nEEdnlb2s3t3zRzL4IyJAU1rZok1DqK5WMklx8pCu7dVy5paCX92xJ3C1YNMA80Un5ElRj5Nj6vdFPfAShdhuqoUxLj/IFUy9gnH6Y9herJSiaZlNr+PvSWSFw1CJK+a6+ZMtJgS+tP893TeL/tpKSixI5b/VF4GhuSuepzdJdGtAvkcZwRHAaNVTD5XHtVRLKa+a/r/7txQUhkfHANwMJjEa2TSh0E4eKluB8bIllUseCeFqn2YoA+KmkGT5SdWO+Hw6FjbNMgat2dmMr5uQ6WX/6kdieIHIcRycDX4ANEsEQ2OXwPJ8F/8NAA0nnHAJZDiQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=67s3JduHgVAjpXHf4ZIqIxQKXY09R17rPUaxsC2xYkg=;
- b=Lf+kXQDbhn81F3CoJBzLIXymggEX5kpXL7oVKvOTGiPhUDGBsS5RqB5Lnf0vI8PLebukA0Gl5BPRHCY1UfhplzQGtcRFDJ2xbe7+8mb0+f7Y1F8N/i7VAdaKrpgDSiY7HkX3+zPFDx8kya5o79Uk5p0p0gOab0hW4jpx84En3w4=
-Received: from MW4PR04CA0081.namprd04.prod.outlook.com (2603:10b6:303:6b::26)
- by BYAPR12MB3350.namprd12.prod.outlook.com (2603:10b6:a03:ab::21)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=B7Q4KmP63BtaCywOo2LPwuqbA0h5DwGx15IljZsGCdg=;
+ b=AsWKuc9wTAm8wbZoG7Cl2NYMQXciPlUygXBso3YFI/WLpAbqDsudwhIRkK7vQ9EzfeV2ka3Dz1trRxcC8AB759FCiM651nZqu0aXLp16jIpeMX02W385QCsRymfzYjWlVPJEQ0e00GDtOeuhHnFZ08S+QOF8sblu9VDsv9OmDR8=
+Received: from MWHPR1401CA0002.namprd14.prod.outlook.com
+ (2603:10b6:301:4b::12) by MWHPR12MB1774.namprd12.prod.outlook.com
+ (2603:10b6:300:112::21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18; Sun, 24 Oct
- 2021 13:32:32 +0000
-Received: from CO1NAM11FT063.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:6b:cafe::f1) by MW4PR04CA0081.outlook.office365.com
- (2603:10b6:303:6b::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18 via Frontend
- Transport; Sun, 24 Oct 2021 13:32:32 +0000
+ 2021 13:32:33 +0000
+Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:301:4b:cafe::67) by MWHPR1401CA0002.outlook.office365.com
+ (2603:10b6:301:4b::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.15 via Frontend
+ Transport; Sun, 24 Oct 2021 13:32:33 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -46,13 +46,13 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT063.mail.protection.outlook.com (10.13.175.37) with Microsoft SMTP
+ CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.4628.16 via Frontend Transport; Sun, 24 Oct 2021 13:32:32 +0000
 Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Sun, 24 Oct
- 2021 08:32:29 -0500
+ 2021 08:32:30 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
@@ -60,11 +60,10 @@ CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
  <stylon.wang@amd.com>, <solomon.chiu@amd.com>, <pavle.kotarac@amd.com>,
- <agustin.gutierrez@amd.com>, Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, 
- Aric Cyr <Aric.Cyr@amd.com>
-Subject: [PATCH 19/33] drm/amd/display: allow windowed mpo + odm
-Date: Sun, 24 Oct 2021 09:31:27 -0400
-Message-ID: <20211024133141.239861-20-Rodrigo.Siqueira@amd.com>
+ <agustin.gutierrez@amd.com>
+Subject: [PATCH 20/33] drm/amd/display: Remove unused macros
+Date: Sun, 24 Oct 2021 09:31:28 -0400
+Message-ID: <20211024133141.239861-21-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211024133141.239861-1-Rodrigo.Siqueira@amd.com>
 References: <20211024133141.239861-1-Rodrigo.Siqueira@amd.com>
@@ -76,28 +75,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
  (10.181.40.144)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 84c6982e-4057-40af-7fce-08d996f2bbc0
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3350:
-X-Microsoft-Antispam-PRVS: <BYAPR12MB33507913F1430AE77C3FB02498829@BYAPR12MB3350.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2803;
+X-MS-Office365-Filtering-Correlation-Id: 0b8ea084-6809-4ce5-f715-08d996f2bbf3
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1774:
+X-Microsoft-Antispam-PRVS: <MWHPR12MB17748251E0CD8A470CC646B398829@MWHPR12MB1774.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:569;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tVgfwglaWXAgCcaRagjiGKz3hlBsHaAXThjte4Bfm3rBf0IX3ig5CImQD5RBoD+g+X4R9n0M09i5birZghzvcMlQLNwRYd4a4c+UUqVV3MV1PYaIO/FI8xrI776mPk/Gj4cakVUdJrQTzXzjCiReoTVQhtt3MjJgYh2cwQ37BRUbHIRrOcbR0FKLJq60QDCugIs7seCuuBSV3o66ZoH/6ALZMXQeYo9BW+FcPGzZ07J8c4kRDMQ8cdoaaxo9UR6SPDuRo56ywNdemUM2zy7e81HVbPwfmT7Nw5Ra65FRLeUyEUTRKZvrW6owJe8AETrCHpxg1SiFd9JxDu3yMyuBo7ZNPf7bNvX6l4jDPGlYPTECf5tCBwSLmMOvmvO6ewUUU7J+axf1B4efLXU0w9qzxQCvVT7qSLvtRDRER5CwBRXKbi+qn2eFD07KBsnOQ4IQj0sGrj2PyQgzm4Y9Hp8FJiUpTohI387E98ndrNwTzSwaHmMZPPnxl0lyd9CTRHL0mq0KptAtnlmC+RUFI9u6vgHbNV4jjMfrqxwOCnXXzAdlxWI5uX1WNOE9zrUyYGFwNcxSjb6ouoY08oQa/Z6cUrRLzJYC8CfDw0hB0jLWGWaRR6NwoUrcJeVCRoWclLrc1UbKrCsBj7BoHpTN74TCIRxqIZ3P/DHgUJDepigXaZavBtNZyeSnRCddjgdnkK5bXanaJYYmcHcs2tNR78hgDWhdKc9m5KL+nlQlBbWE1YU=
+X-Microsoft-Antispam-Message-Info: JHlIkgheUJX6LNwKn/wjJhKv89xXEzNK2dsb1O0+GkwZ0sAcHFUQRCFHmfU/SUx4Q2Jk5zuY9hhqbxNxUB/fHM/5YJiohLJnEQZqvysFQeDcPaNvWj718xEYfahZzXnebufnScYyTVKJFzwCQl7QkAAXdK1uPqYjt0XF/UdJSowhfDiv6AlZaSNQeZkImGcb+WEJ0EshP1+hSHbtYasvv7hcS8NDFoFmawT/McsHW25+jYN7oJ8ysr5fZ+fLPU6pazaIPr1mNLD0PPNNAOuyDiuuQc3qwbxoAg5RAAm9VMmyOM57RfGG9riPokmLbNlzqLCSHDofUcFoFU857Uw7G0DO40G6qHG7NLilsIs8TaOGBaODHQmfV4U8XR5AoCbHWDGD4U3bUhEOPZQc0kTuvyUcvwWZCt1dT6QsTbQBknxlUDoITerm1PbjIvBogtr0+APvyTGWbX3Bi7k8oPYejA0cnQM4yy49ouJo/0danngEUC8XGl0VdbErSVvdw96ucn1zQQou1g++FSBiokMFN+1YodTwDVbLxIEwqi4PJINHIkRaBzU8B1bQcgI1LRfRXHBlPopoxe7bWD9gRXY8DxVnOMTGhkBViZ475wGcjc3BGGkhPf/QbH+oVzBM+6kWJlgAXaGcsuxMldKKU6TTFcQI7QJmMVDLKpMrXdN2lcar8dlcOumL469kWFUJZLyni06EXVXO2jsVo2RyaWdzgIooGngz+VG2Scuz3F+diDY=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(2906002)(81166007)(83380400001)(5660300002)(47076005)(2616005)(336012)(86362001)(356005)(1076003)(6916009)(54906003)(70206006)(508600001)(4326008)(36860700001)(316002)(16526019)(186003)(426003)(26005)(70586007)(36756003)(82310400003)(8676002)(8936002)(36900700001);
+ SFS:(4636009)(36840700001)(46966006)(1076003)(70586007)(16526019)(83380400001)(6916009)(36860700001)(186003)(8936002)(81166007)(4326008)(26005)(336012)(5660300002)(426003)(356005)(2906002)(70206006)(2616005)(316002)(86362001)(8676002)(508600001)(36756003)(82310400003)(54906003)(47076005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2021 13:32:32.4303 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84c6982e-4057-40af-7fce-08d996f2bbc0
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2021 13:32:32.5917 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b8ea084-6809-4ce5-f715-08d996f2bbf3
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT063.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3350
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1774
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,102 +111,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+From: Anson Jacob <Anson.Jacob@amd.com>
 
-This change adds a config flag to allow non fullscreen MPO during ODM.
-Scaling calculation will still fail configurations where video is only
-one one side of the screen.
+fixed16_to_double & fixed16_to_double_to_cpu are not used.
 
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
+Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Acked-by: Agustin Gutierrez <agustin.gutierrez@amd.com>
-Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
+Signed-off-by: Anson Jacob <Anson.Jacob@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_resource.c | 14 +++++++--
- drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
- .../drm/amd/display/dc/dcn30/dcn30_resource.c | 30 ++++++++++---------
- 3 files changed, 28 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 3 ---
+ drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c | 3 ---
+ drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c | 2 --
+ 3 files changed, 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index 9e83fd54e2ca..c32fdccd4d92 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -1155,9 +1155,17 @@ bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx)
- 			pipe_ctx->plane_res.scl_data.recout.x += pipe_ctx->plane_res.scl_data.recout.width;
- 	}
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index 001737487800..3883f918b3bb 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -3660,9 +3660,6 @@ static enum dml_project get_dml_project_version(uint32_t hw_internal_rev)
+ 	return DML_PROJECT_NAVI10v2;
+ }
  
--	if (pipe_ctx->plane_res.scl_data.viewport.height < MIN_VIEWPORT_SIZE ||
--			pipe_ctx->plane_res.scl_data.viewport.width < MIN_VIEWPORT_SIZE)
--		res = false;
-+	if (!pipe_ctx->stream->ctx->dc->config.enable_windowed_mpo_odm) {
-+		if (pipe_ctx->plane_res.scl_data.viewport.height < MIN_VIEWPORT_SIZE ||
-+				pipe_ctx->plane_res.scl_data.viewport.width < MIN_VIEWPORT_SIZE)
-+			res = false;
-+	} else {
-+		/* Clamp minimum viewport size */
-+		if (pipe_ctx->plane_res.scl_data.viewport.height < MIN_VIEWPORT_SIZE)
-+			pipe_ctx->plane_res.scl_data.viewport.height = MIN_VIEWPORT_SIZE;
-+		if (pipe_ctx->plane_res.scl_data.viewport.width < MIN_VIEWPORT_SIZE)
-+			pipe_ctx->plane_res.scl_data.viewport.width = MIN_VIEWPORT_SIZE;
-+	}
- 
- 	DC_LOG_SCALER("%s pipe %d:\nViewport: height:%d width:%d x:%d y:%d  Recout: height:%d width:%d x:%d y:%d  HACTIVE:%d VACTIVE:%d\n"
- 			"src_rect: height:%d width:%d x:%d y:%d  dst_rect: height:%d width:%d x:%d y:%d  clip_rect: height:%d width:%d x:%d y:%d\n",
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 1225406d3381..4cd26ca26fe0 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -323,6 +323,7 @@ struct dc_config {
- 	bool multi_mon_pp_mclk_switch;
- 	bool disable_dmcu;
- 	bool enable_4to1MPC;
-+	bool enable_windowed_mpo_odm;
- 	bool allow_edp_hotplug_detection;
- #if defined(CONFIG_DRM_AMD_DC_DCN)
- 	bool clamp_min_dcfclk;
+-#define fixed16_to_double(x) (((double) x) / ((double) (1 << 16)))
+-#define fixed16_to_double_to_cpu(x) fixed16_to_double(le32_to_cpu(x))
+-
+ static bool init_soc_bounding_box(struct dc *dc,
+ 				  struct dcn20_resource_pool *pool)
+ {
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-index 3a8a3214f770..6d70ccb108af 100644
+index 6d70ccb108af..6dda20f3741c 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
-@@ -1929,23 +1929,25 @@ noinline bool dcn30_internal_validate_bw(
- 	if (vlevel == context->bw_ctx.dml.soc.num_states)
- 		goto validate_fail;
+@@ -1707,9 +1707,6 @@ bool dcn30_release_post_bldn_3dlut(
+ 	return ret;
+ }
  
--	for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
--		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
--		struct pipe_ctx *mpo_pipe = pipe->bottom_pipe;
-+	if (!dc->config.enable_windowed_mpo_odm) {
-+		for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
-+			struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
-+			struct pipe_ctx *mpo_pipe = pipe->bottom_pipe;
+-#define fixed16_to_double(x) (((double) x) / ((double) (1 << 16)))
+-#define fixed16_to_double_to_cpu(x) fixed16_to_double(le32_to_cpu(x))
+-
+ static bool is_soc_bounding_box_valid(struct dc *dc)
+ {
+ 	uint32_t hw_internal_rev = dc->ctx->asic_id.hw_internal_rev;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
+index 2de731e3e639..6d8a5ffce1d3 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
+@@ -101,8 +101,6 @@
+ #include "link_enc_cfg.h"
  
--		if (!pipe->stream)
--			continue;
-+			if (!pipe->stream)
-+				continue;
+ #define DC_LOGGER_INIT(logger)
+-#define fixed16_to_double(x) (((double) x) / ((double) (1 << 16)))
+-#define fixed16_to_double_to_cpu(x) fixed16_to_double(le32_to_cpu(x))
  
--		/* We only support full screen mpo with ODM */
--		if (vba->ODMCombineEnabled[vba->pipe_plane[pipe_idx]] != dm_odm_combine_mode_disabled
--				&& pipe->plane_state && mpo_pipe
--				&& memcmp(&mpo_pipe->plane_res.scl_data.recout,
--						&pipe->plane_res.scl_data.recout,
--						sizeof(struct rect)) != 0) {
--			ASSERT(mpo_pipe->plane_state != pipe->plane_state);
--			goto validate_fail;
-+			/* We only support full screen mpo with ODM */
-+			if (vba->ODMCombineEnabled[vba->pipe_plane[pipe_idx]] != dm_odm_combine_mode_disabled
-+					&& pipe->plane_state && mpo_pipe
-+					&& memcmp(&mpo_pipe->plane_res.scl_data.recout,
-+							&pipe->plane_res.scl_data.recout,
-+							sizeof(struct rect)) != 0) {
-+				ASSERT(mpo_pipe->plane_state != pipe->plane_state);
-+				goto validate_fail;
-+			}
-+			pipe_idx++;
- 		}
--		pipe_idx++;
- 	}
+ #define DCN3_1_DEFAULT_DET_SIZE 384
  
- 	/* merge pipes if necessary */
 -- 
 2.25.1
 
