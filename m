@@ -1,41 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCCD3438920
-	for <lists+amd-gfx@lfdr.de>; Sun, 24 Oct 2021 15:32:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A37443891B
+	for <lists+amd-gfx@lfdr.de>; Sun, 24 Oct 2021 15:32:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76BAA89E3B;
-	Sun, 24 Oct 2021 13:32:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 141616E110;
+	Sun, 24 Oct 2021 13:32:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2053.outbound.protection.outlook.com [40.107.236.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA28A89E3B
- for <amd-gfx@lists.freedesktop.org>; Sun, 24 Oct 2021 13:32:37 +0000 (UTC)
+ (mail-bn8nam11on2069.outbound.protection.outlook.com [40.107.236.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AC376E115
+ for <amd-gfx@lists.freedesktop.org>; Sun, 24 Oct 2021 13:32:35 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KH1BrfFy1QbQuFIQeMUqmC89sl2aKBz6ORYfgXXMpp/W+g7qq/h3gRlhVdwEDp33DuxX4YHxez/WphlSsqjGCyPY3FzZRH4F22ICy80VWnd86JfU8SBiUY8XEpKtdu0y5zpcP69+XmZyljY7hjE7L6I9PbdS3bSeJ0iRd2TP+53xwHDb+H4eBsVI3jtGs0GC7E4tH/dGkzLPs4mOzmkWXMOYlLG5fxzS7qggu6wXCVHLH98N3LAvnGjbLY6hy27s0KbaAqcMMJiulXb8ivnTSUEbvW9sOrE648BPkwjjvvsLuPbCD9z/JESXC/AkjuND4rpycQDxopAVVthJ6xgCkA==
+ b=J5DQkehH+ggiHcIMag4Xo8soEHNFUNSfPjbBpkDIbDuupX9YXEM4Kgnbxk8Bav9wtdtZcNyd/xrBEQJGU56C7lLWAFeJSZlXUJmz5ftgXIb/07ZpL4q3pcm38VJpZxonXeIfhGEaJ0qeHTdSDjR2290pElXm1lGsgTxHLmQZd1aJH7AKdxEP6bORk6YbAqcJxuZSx/Gux7CkV6NOj3hZ3ImC19lL4INYkkfJWhflekFj4nj3laoQYttGJFvOPvndQbp7eUR1toNwa83j3UO1WcV2PmaKsQcMlkpfHUG8ByFZ/WLauRoiwdsvtTRU5wfROg3OHlGPkFRdP4PZ+oiNVg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lCM4ZEl8LczSbiA/6ZpashKk0PPnr+ldAYUzd+Kvwyw=;
- b=V7xm22j0tJQbMXJbB5kMVewc+wVI6AnGAMbz7w6Bz1Vpi17Ou9SO3gipBk8bjHLa6uMav9nOgG1bISAjb0MWBYHRpJo5XYWIGpDggOugTvsrf4p8PVWP/mGxhyw1cK6WoHkAeCxnK/hFSSugfFYxFlzdMGxF8qu4jP2aw1bHCevv4MxlbtFzu3s3AEM3T67SJA4kXG6hFp3jRyN5wBvgK/7SW7/XjtiennST9plba4XwHsOE0e7gx7JFziIbyWXL6vw+WpCTUfXDeCaOwAtco4w9VIuvqY8HLimAfVdde/WmZOPkUQRTpI62I9UGK3V8lDMtaTPfZL84DejLvMjpeQ==
+ bh=67s3JduHgVAjpXHf4ZIqIxQKXY09R17rPUaxsC2xYkg=;
+ b=NjDl8ht9rOAlktyGixkYJOKoq/qgUkJIn5fzlo92TU6U51e/rQrpRQcV7TA9m6PL2s/0xfWgdte1hm7p57/fBc1wQfrVFqzfvshn4rL47J1lEd7LQ93K/TDrkNlo9Dk5jYEDcjZfrCS5lV/JSSOARsiqnR90hbSj/LczbMDGzzZL4A9xWS7RbDomIH8LvkMNNv2jHH0TSZmGt+aiytzHh0RZJEoHjSvhnHOup5xt47aW7WZPmUYNOuQeLOex1UKiaekT9aOTVZBCWLt/I34cebxz1paCviuRU5xayXmXREHXo1GDWhjoppxdWCQZ282Y3SAXHFNHJsl9ua2mqcUP1Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lCM4ZEl8LczSbiA/6ZpashKk0PPnr+ldAYUzd+Kvwyw=;
- b=nTAdlz1Bdidv6cHGeECEBeVqQlwgs6CqbSVw00L7JtdIVU7z+LfuaJnaxS+SoiIzoE3JBtiUTr/zkGloVdj7zx+cv3ORAraM7AkX4h3rKPnoNg7FZCyoMwDVkJfFJkzV6Xuz2RrSQk49xU37JQt71OPKd1/8GE+c+BDAypWlbps=
-Received: from MW4PR04CA0084.namprd04.prod.outlook.com (2603:10b6:303:6b::29)
- by DM6PR12MB4497.namprd12.prod.outlook.com (2603:10b6:5:2a5::24) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=67s3JduHgVAjpXHf4ZIqIxQKXY09R17rPUaxsC2xYkg=;
+ b=Lf+kXQDbhn81F3CoJBzLIXymggEX5kpXL7oVKvOTGiPhUDGBsS5RqB5Lnf0vI8PLebukA0Gl5BPRHCY1UfhplzQGtcRFDJ2xbe7+8mb0+f7Y1F8N/i7VAdaKrpgDSiY7HkX3+zPFDx8kya5o79Uk5p0p0gOab0hW4jpx84En3w4=
+Received: from MW4PR04CA0081.namprd04.prod.outlook.com (2603:10b6:303:6b::26)
+ by BYAPR12MB3350.namprd12.prod.outlook.com (2603:10b6:a03:ab::21)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18; Sun, 24 Oct
  2021 13:32:32 +0000
 Received: from CO1NAM11FT063.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:6b:cafe::bc) by MW4PR04CA0084.outlook.office365.com
- (2603:10b6:303:6b::29) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:303:6b:cafe::f1) by MW4PR04CA0081.outlook.office365.com
+ (2603:10b6:303:6b::26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18 via Frontend
  Transport; Sun, 24 Oct 2021 13:32:32 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -48,11 +48,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  CO1NAM11FT063.mail.protection.outlook.com (10.13.175.37) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4628.16 via Frontend Transport; Sun, 24 Oct 2021 13:32:31 +0000
+ 15.20.4628.16 via Frontend Transport; Sun, 24 Oct 2021 13:32:32 +0000
 Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Sun, 24 Oct
- 2021 08:32:27 -0500
+ 2021 08:32:29 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
@@ -60,12 +60,11 @@ CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
  <stylon.wang@amd.com>, <solomon.chiu@amd.com>, <pavle.kotarac@amd.com>,
- <agustin.gutierrez@amd.com>, "Guo, Bing" <Bing.Guo@amd.com>, Chris Park
- <chris.park@amd.com>
-Subject: [PATCH 18/33] drm/amd/display: set Layout properly for 8ch audio at
- timing validation
-Date: Sun, 24 Oct 2021 09:31:26 -0400
-Message-ID: <20211024133141.239861-19-Rodrigo.Siqueira@amd.com>
+ <agustin.gutierrez@amd.com>, Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, 
+ Aric Cyr <Aric.Cyr@amd.com>
+Subject: [PATCH 19/33] drm/amd/display: allow windowed mpo + odm
+Date: Sun, 24 Oct 2021 09:31:27 -0400
+Message-ID: <20211024133141.239861-20-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211024133141.239861-1-Rodrigo.Siqueira@amd.com>
 References: <20211024133141.239861-1-Rodrigo.Siqueira@amd.com>
@@ -77,28 +76,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
  (10.181.40.144)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ec1f4337-8a01-4c01-56ee-08d996f2bb61
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4497:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4497C5EBA4B48D6C2F37A14998829@DM6PR12MB4497.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2958;
+X-MS-Office365-Filtering-Correlation-Id: 84c6982e-4057-40af-7fce-08d996f2bbc0
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3350:
+X-Microsoft-Antispam-PRVS: <BYAPR12MB33507913F1430AE77C3FB02498829@BYAPR12MB3350.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2803;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: w3ByYP0+qEtzXHsjKvJkD+Bk4kXbyVCpEJJxcNO9sMLL94O8ve2PEaCq3w9CvkiUU/nra0VQajGMBV3vD6W4XojTr/ZClOSLm3kvl4HER3571TthOvBBDWz3iy2E6UB41YJP2nLifYHWU4o8k80vEab2DUiNwIP2E+kquAYZFnJUVIQX+shYa4THa/fskGh8lUfGSd+R2qgRvAP98svNVVl65dDbqKeOmUIKV3v9ZQwAs/MQDk2KLDQ5fx7uaoOKbSGU+DtZU/NMXltTW78WnW7BtVetTuNj3h3Jir+XtGrqy7RLjPs4DQ8YkUULrzo53/sobLMOua2WZpU8Khe69JNjG+uBd3iBjk+Ta/O7FogtoBn/RdYy7E5kUhW+N1yqIAhbC7+7N2GzNYmiHFTHG0nOhnkQ2Hf2iNL/KD8EJl5iL7ghkJvavkKRvmTX7cB2+rQBJiB0KYqh0OZj4QsptjzjnWSjC+rTxBt6+ndn7BrGUfmWp1f+cLPnJV0wKNaAb5Vf5pfYjFZk4a389wfutfQXf8tnA+nfHz5zjQPpn3P+DkuaVXoQIK52+Yf1KKt2tqrvFdbmMoGv0C5U0KM/33MvpW5sBZ51gVvK4ZxpKlsuN55X6FqXImUU+zYU2lFxf3ZwDPmr5KNVJlz9gwyXZXycpbxS2m1HUzNDjbitzocMi4sTh0soPJnpWg6nKV7JZW+YcM6suEvf6K286rY8tNUOq1+TM+DhYUOrTHKDzi0=
+X-Microsoft-Antispam-Message-Info: tVgfwglaWXAgCcaRagjiGKz3hlBsHaAXThjte4Bfm3rBf0IX3ig5CImQD5RBoD+g+X4R9n0M09i5birZghzvcMlQLNwRYd4a4c+UUqVV3MV1PYaIO/FI8xrI776mPk/Gj4cakVUdJrQTzXzjCiReoTVQhtt3MjJgYh2cwQ37BRUbHIRrOcbR0FKLJq60QDCugIs7seCuuBSV3o66ZoH/6ALZMXQeYo9BW+FcPGzZ07J8c4kRDMQ8cdoaaxo9UR6SPDuRo56ywNdemUM2zy7e81HVbPwfmT7Nw5Ra65FRLeUyEUTRKZvrW6owJe8AETrCHpxg1SiFd9JxDu3yMyuBo7ZNPf7bNvX6l4jDPGlYPTECf5tCBwSLmMOvmvO6ewUUU7J+axf1B4efLXU0w9qzxQCvVT7qSLvtRDRER5CwBRXKbi+qn2eFD07KBsnOQ4IQj0sGrj2PyQgzm4Y9Hp8FJiUpTohI387E98ndrNwTzSwaHmMZPPnxl0lyd9CTRHL0mq0KptAtnlmC+RUFI9u6vgHbNV4jjMfrqxwOCnXXzAdlxWI5uX1WNOE9zrUyYGFwNcxSjb6ouoY08oQa/Z6cUrRLzJYC8CfDw0hB0jLWGWaRR6NwoUrcJeVCRoWclLrc1UbKrCsBj7BoHpTN74TCIRxqIZ3P/DHgUJDepigXaZavBtNZyeSnRCddjgdnkK5bXanaJYYmcHcs2tNR78hgDWhdKc9m5KL+nlQlBbWE1YU=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(316002)(2906002)(81166007)(83380400001)(6916009)(82310400003)(8676002)(36756003)(508600001)(36860700001)(4326008)(2616005)(356005)(86362001)(1076003)(186003)(8936002)(426003)(70206006)(47076005)(70586007)(336012)(16526019)(54906003)(26005)(5660300002)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(2906002)(81166007)(83380400001)(5660300002)(47076005)(2616005)(336012)(86362001)(356005)(1076003)(6916009)(54906003)(70206006)(508600001)(4326008)(36860700001)(316002)(16526019)(186003)(426003)(26005)(70586007)(36756003)(82310400003)(8676002)(8936002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2021 13:32:31.8047 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec1f4337-8a01-4c01-56ee-08d996f2bb61
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2021 13:32:32.4303 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 84c6982e-4057-40af-7fce-08d996f2bbc0
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT063.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4497
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3350
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,60 +112,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: "Guo, Bing" <Bing.Guo@amd.com>
+From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 
-Why:
-For audio packet type 0x02, there are 2 Layouts:
-   Layout = 0 for 2 channels
-and Layout = 1 for > 2 channels.
-Layout will affect bandwidth check.
+This change adds a config flag to allow non fullscreen MPO during ODM.
+Scaling calculation will still fail configurations where video is only
+one one side of the screen.
 
-Currently, for HDMI FRL, Layout field isn't set and has a default value
-of 0, so theoretically only 2-channel audio for audio packet type 0x02
-is supported now.
-
-How:
-1. Set Layout properly according to maximum audio channel numbers for
-audios with audio packet type 0x02.
-2. 8ch LPCM audio is not supported for timing modes with v_active <= 576.
-
-Reviewed-by: Chris Park <chris.park@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Agustin Gutierrez <agustin.gutierrez@amd.com>
-Signed-off-by: Bing Guo <Bing.Guo@amd.com>
+Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dce/dce_audio.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ .../gpu/drm/amd/display/dc/core/dc_resource.c | 14 +++++++--
+ drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
+ .../drm/amd/display/dc/dcn30/dcn30_resource.c | 30 ++++++++++---------
+ 3 files changed, 28 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_audio.c b/drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
-index 7866cf2a668f..27218ede150a 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_audio.c
-@@ -514,13 +514,15 @@ void dce_aud_az_configure(
- 			union audio_sample_rates sample_rates =
- 					audio_mode->sample_rates;
- 			uint8_t byte2 = audio_mode->max_bit_rate;
-+			uint8_t channel_count = audio_mode->channel_count;
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 9e83fd54e2ca..c32fdccd4d92 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -1155,9 +1155,17 @@ bool resource_build_scaling_params(struct pipe_ctx *pipe_ctx)
+ 			pipe_ctx->plane_res.scl_data.recout.x += pipe_ctx->plane_res.scl_data.recout.width;
+ 	}
  
- 			/* adjust specific properties */
- 			switch (audio_format_code) {
- 			case AUDIO_FORMAT_CODE_LINEARPCM: {
-+
- 				check_audio_bandwidth(
- 					crtc_info,
--					audio_mode->channel_count,
-+					channel_count,
- 					signal,
- 					&sample_rates);
+-	if (pipe_ctx->plane_res.scl_data.viewport.height < MIN_VIEWPORT_SIZE ||
+-			pipe_ctx->plane_res.scl_data.viewport.width < MIN_VIEWPORT_SIZE)
+-		res = false;
++	if (!pipe_ctx->stream->ctx->dc->config.enable_windowed_mpo_odm) {
++		if (pipe_ctx->plane_res.scl_data.viewport.height < MIN_VIEWPORT_SIZE ||
++				pipe_ctx->plane_res.scl_data.viewport.width < MIN_VIEWPORT_SIZE)
++			res = false;
++	} else {
++		/* Clamp minimum viewport size */
++		if (pipe_ctx->plane_res.scl_data.viewport.height < MIN_VIEWPORT_SIZE)
++			pipe_ctx->plane_res.scl_data.viewport.height = MIN_VIEWPORT_SIZE;
++		if (pipe_ctx->plane_res.scl_data.viewport.width < MIN_VIEWPORT_SIZE)
++			pipe_ctx->plane_res.scl_data.viewport.width = MIN_VIEWPORT_SIZE;
++	}
  
-@@ -548,7 +550,7 @@ void dce_aud_az_configure(
+ 	DC_LOG_SCALER("%s pipe %d:\nViewport: height:%d width:%d x:%d y:%d  Recout: height:%d width:%d x:%d y:%d  HACTIVE:%d VACTIVE:%d\n"
+ 			"src_rect: height:%d width:%d x:%d y:%d  dst_rect: height:%d width:%d x:%d y:%d  clip_rect: height:%d width:%d x:%d y:%d\n",
+diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
+index 1225406d3381..4cd26ca26fe0 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc.h
++++ b/drivers/gpu/drm/amd/display/dc/dc.h
+@@ -323,6 +323,7 @@ struct dc_config {
+ 	bool multi_mon_pp_mclk_switch;
+ 	bool disable_dmcu;
+ 	bool enable_4to1MPC;
++	bool enable_windowed_mpo_odm;
+ 	bool allow_edp_hotplug_detection;
+ #if defined(CONFIG_DRM_AMD_DC_DCN)
+ 	bool clamp_min_dcfclk;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+index 3a8a3214f770..6d70ccb108af 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+@@ -1929,23 +1929,25 @@ noinline bool dcn30_internal_validate_bw(
+ 	if (vlevel == context->bw_ctx.dml.soc.num_states)
+ 		goto validate_fail;
  
- 			/* fill audio format data */
- 			set_reg_field_value(value,
--					audio_mode->channel_count - 1,
-+					channel_count - 1,
- 					AZALIA_F0_CODEC_PIN_CONTROL_AUDIO_DESCRIPTOR0,
- 					MAX_CHANNELS);
+-	for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
+-		struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
+-		struct pipe_ctx *mpo_pipe = pipe->bottom_pipe;
++	if (!dc->config.enable_windowed_mpo_odm) {
++		for (i = 0, pipe_idx = 0; i < dc->res_pool->pipe_count; i++) {
++			struct pipe_ctx *pipe = &context->res_ctx.pipe_ctx[i];
++			struct pipe_ctx *mpo_pipe = pipe->bottom_pipe;
  
+-		if (!pipe->stream)
+-			continue;
++			if (!pipe->stream)
++				continue;
+ 
+-		/* We only support full screen mpo with ODM */
+-		if (vba->ODMCombineEnabled[vba->pipe_plane[pipe_idx]] != dm_odm_combine_mode_disabled
+-				&& pipe->plane_state && mpo_pipe
+-				&& memcmp(&mpo_pipe->plane_res.scl_data.recout,
+-						&pipe->plane_res.scl_data.recout,
+-						sizeof(struct rect)) != 0) {
+-			ASSERT(mpo_pipe->plane_state != pipe->plane_state);
+-			goto validate_fail;
++			/* We only support full screen mpo with ODM */
++			if (vba->ODMCombineEnabled[vba->pipe_plane[pipe_idx]] != dm_odm_combine_mode_disabled
++					&& pipe->plane_state && mpo_pipe
++					&& memcmp(&mpo_pipe->plane_res.scl_data.recout,
++							&pipe->plane_res.scl_data.recout,
++							sizeof(struct rect)) != 0) {
++				ASSERT(mpo_pipe->plane_state != pipe->plane_state);
++				goto validate_fail;
++			}
++			pipe_idx++;
+ 		}
+-		pipe_idx++;
+ 	}
+ 
+ 	/* merge pipes if necessary */
 -- 
 2.25.1
 
