@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7982438910
-	for <lists+amd-gfx@lfdr.de>; Sun, 24 Oct 2021 15:32:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AF6A438913
+	for <lists+amd-gfx@lfdr.de>; Sun, 24 Oct 2021 15:32:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FA9189E35;
-	Sun, 24 Oct 2021 13:32:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46B8B6E10E;
+	Sun, 24 Oct 2021 13:32:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam08on2072.outbound.protection.outlook.com [40.107.101.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9E2B89165
- for <amd-gfx@lists.freedesktop.org>; Sun, 24 Oct 2021 13:32:23 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2065.outbound.protection.outlook.com [40.107.243.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A5AA6E114
+ for <amd-gfx@lists.freedesktop.org>; Sun, 24 Oct 2021 13:32:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Bnd9jb8mi4rzLZ13eZVI+FD0bPhX8W80jNb4xzwDNGlxk8NLvOlblbzoAqfJm2CSn8dKqxDxgQUAARlhsZwGnROlTf/vir2rXgC2gFhme5RIEg1hXIXPTc5+sMUrcXscWuRRylEl3+MaWp4AIkWxf8NlPhEvUHuB4MlTWHqZmLZZq2yc3X7FtTl1850KvanCDMd8TAFa8H4cDRlwSY7fJU4fKHpA4AaScWG8FeMomBc1phACbYpkOFuf0EC3w0MzkuGgHMqqP2K8Iv6MU9Zak9OqBdnpGyQg5usoUGyYW+vsEQ3oCu+KfFGcI6d0hGLI364xt9VsXhehGH4BEYM8Tg==
+ b=AhDEnhPe5E+Mu45oLB3FjIqMlqahkWAF0O/vIbswm1sEY2HL6svEG5GhbSAbHmtEJOi0u0gtKdOlC0ZA34esPsLWO5gFq0vmdccGFU6Hr0CFN5sNDPbfq6tY22bTBKKAK7P8olOZRZ27Yd8VrXrF2X/DkOJ+zpLfLaCKeu+OyWj7HZatUcTPtotQD6SWpx6v28H1xCeOXoCFLNOB1gUU2/CVoiG1dfU/D0mC9VAyFpZ6UGwrI0sFZIi6z5OeIzpUSln4QNFZKWqG+aIcBBBHOYS8bBUM2sWDovjqbA0C/ACls4/5dX8DsP3okVnkQ3btFxNExQZxF0wvqmwCiasXyw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bWdz8D6kdTYxwjl0dFfIt60A784kwOgIYNOxpkna2KU=;
- b=nQw7ll4bT/FlVflnPmrzbulMp3DelZE3reGh3MbJ8fv2HM2atXnfUMkA3kh5GgUpKGt9tWs9emkcmuF0Om3GERbsyB10g2gHvgZF+cVsJ7Mrgnu/0eLrqyBLOz4lJdSBwRplOL54TTSvm3JK4NpTZ5dF80K6PrSMhs21YtJn3MKyMiC4dtKjBK2i3kitm/WBf7hirFcC9caNMwbGoZHbhv5XXfVpcgpFyqVWuVe+SQrIKDid5vCi8wM6atqq6k5ua3izIRB8L8g7UinymUHuX2gxyKXss5wmfuXiUKM7OSTfAr8RzfDvQlk8/mVF0xfh85OCnPfZXTEY/hlyhTdSiA==
+ bh=jMEBGxefdNuaz2byOvAyaT4NZu9yTkbzMhjcqY7atwg=;
+ b=Vt6aecP8Ca6pRXRfLpCu+CR2XyJFawL/ah/q6jq1CqDaQsE1ZDyKBGinESc5+wDNHw7d/XR3EzCeax4E0RGALwEYOmyz0HIG/FXCoDuzELZXLy4UlLC0lmUTBeghCNLxEf/HJUvRX52b+GGnH4dn4BGfX6DlE3OR7KnBGDdRlsmj8vekUYWB5Fk4X/Dux7IhrUWGFHx9b+Qmn8Ezhv/czjDHaA73juxxLyUHFG0godxGCUrsKDH8Fo+SiqLyTxaGuPhyllVar+NwyUVmx5NcN3d6a/0FjFAv9EyvSE6hyEmaMLDRvr7j6j2Z0xy7ZQbAgAP2LiyLKmt1nJqNrSLbVQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bWdz8D6kdTYxwjl0dFfIt60A784kwOgIYNOxpkna2KU=;
- b=5BYs4Tgpe6955b+ajFB2Ce2/GSdvf/1d07j32DOLbhFcs/OGq35MGbSfo1cOJaIH+CUlVOIyl/hiZlDugvkY+eXmqPqoRDm/SJPk9puMG1TVlpPvlt8UCRGOc/un/bJvgNVQAayq/lplgedRRrKoSp6kOH/aUMD2QVfzH1Fag1c=
-Received: from MWHPR1401CA0017.namprd14.prod.outlook.com
- (2603:10b6:301:4b::27) by BYAPR12MB3157.namprd12.prod.outlook.com
- (2603:10b6:a03:130::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.16; Sun, 24 Oct
- 2021 13:32:21 +0000
+ bh=jMEBGxefdNuaz2byOvAyaT4NZu9yTkbzMhjcqY7atwg=;
+ b=g1xE74tEF/oOROcGFbZErGQS/oQkx5gAhpiQaLpDz3qfvvqZ8v9/4si8I8/dvexKoJuY6J8xY9sfmUgyeshUpkpWTAxGfHljoVGm62FApuTJLIbO38oLQosadcepmLGiqb3eI8mHdV791tRryXJpOauRTiR4lqA7TudlrUlKhk4=
+Received: from MWHPR1401CA0007.namprd14.prod.outlook.com
+ (2603:10b6:301:4b::17) by CY4PR1201MB2535.namprd12.prod.outlook.com
+ (2603:10b6:903:db::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18; Sun, 24 Oct
+ 2021 13:32:25 +0000
 Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
- (2603:10b6:301:4b:cafe::eb) by MWHPR1401CA0017.outlook.office365.com
- (2603:10b6:301:4b::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.15 via Frontend
- Transport; Sun, 24 Oct 2021 13:32:21 +0000
+ (2603:10b6:301:4b:cafe::c) by MWHPR1401CA0007.outlook.office365.com
+ (2603:10b6:301:4b::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18 via Frontend
+ Transport; Sun, 24 Oct 2021 13:32:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,11 +48,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4628.16 via Frontend Transport; Sun, 24 Oct 2021 13:32:20 +0000
+ 15.20.4628.16 via Frontend Transport; Sun, 24 Oct 2021 13:32:25 +0000
 Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Sun, 24 Oct
- 2021 08:32:18 -0500
+ 2021 08:32:19 -0500
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
@@ -60,12 +60,11 @@ CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
  <stylon.wang@amd.com>, <solomon.chiu@amd.com>, <pavle.kotarac@amd.com>,
- <agustin.gutierrez@amd.com>, Michael Strauss <michael.strauss@amd.com>,
- Haonan Wang <Haonan.Wang2@amd.com>
-Subject: [PATCH 09/33] drm/amd/display: Defer GAMCOR and DSCL power down
- sequence to vupdate
-Date: Sun, 24 Oct 2021 09:31:17 -0400
-Message-ID: <20211024133141.239861-10-Rodrigo.Siqueira@amd.com>
+ <agustin.gutierrez@amd.com>, Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, 
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Subject: [PATCH 10/33] drm/amd/display: clean up dcn31 revision check
+Date: Sun, 24 Oct 2021 09:31:18 -0400
+Message-ID: <20211024133141.239861-11-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211024133141.239861-1-Rodrigo.Siqueira@amd.com>
 References: <20211024133141.239861-1-Rodrigo.Siqueira@amd.com>
@@ -77,28 +76,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
  (10.181.40.144)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 14701397-dc59-47f3-cceb-08d996f2b4bb
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3157:
-X-Microsoft-Antispam-PRVS: <BYAPR12MB31575922D4496B9FFFC2E9E198829@BYAPR12MB3157.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:499;
+X-MS-Office365-Filtering-Correlation-Id: bbfbeeb4-fac3-4e51-b44e-08d996f2b75d
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB2535:
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB2535A4AF781736D106F4DB4F98829@CY4PR1201MB2535.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:260;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: KCwM3BYgf4zbjvE62UjLGZlCA89+1LgX2CvmlZxOHJYDHOOXkUWmmq8LGwSBz0sIMZJnabM+UVIkob1YjohxIGk/4dvJqChcl5Qi7hyHb9eybesZ8v7kdACPMu1NG2zEcuA6W9GAtsXNoGh0YP+IU4M696PcLqkWDu4eeARS8eL/WE7070KzRZvyoEy0XOa4YnhVItQIbVwZCuydSfWGE9HkLfgNAfkoSNyDfvXVWfwlCw5kTqAVEFf6+HFYJRBWP+STjQIuHDl9QUZ6fpYwlEQ12/Vj8nMF3CRwNfNW/QxfBKnViVCiBAzp2OzIEZIoc04GWCOI9AscQ4URp5Mls7+hfFIMJO/KMOMGFZ5d+07nfQ2VP2+8xCwMm3yIFSPJ+x0Ro6TCyi3czmcaDTrU4wM1seUmoghh9WDd5jgMZFrBmljoi21yktSniCItlelJ/PMa9diyabYXAJ3lPXxnIsrlmTxcC/NfyptdglWqEcbAgIyBX1C5szeCGxaTZGWIsXIg18hmIs42auThZg4Tz7F2mDqVR4FtxCN6ec6p3DjOgP/mYuj0J6mwZi9DOjB8v1JlmsveI0jIl5sLlSNkMtkbW+fYoAnoO8R8nRgv7DF+zrzRibVLiziaJ4my+35/GHvJ0vb6Do5pCYzjjGSJm07WS2L4k4Arw/0mb+BWlFQmml9zEEGjGdoOzbv1pmSTZyxnI6XYW19iRdZ+HbQ0xOVN7UioaoXBaNdVLWbb/dQ=
+X-Microsoft-Antispam-Message-Info: niScyvJW/lXUHT3AfZJAOjRbqMjs62hqTt1NC9SzTOwNgOkK4+gG7KmNuJ9/854GaR898F+viTdtVf2TY0mRAg432KgDwLQ7O6ivmYdinAFuzR/UBsnTF2aM90VyMjjB2+tIdhXPjomzthACYBR08lXp0fwvgzJmOXpEa3U2KDROxGURHE429vCT4HlhlirAPLf8cgf8FbAPVNlhrcNHXUPxsael4aLJVLdpABmFHDUmwZ7nQbUVRaloafOw/v8ZTFYSOruDW6JdorTZ3r9aC8G/S36L7YmiJx6Q3xay/pWEAte4yUlRBUlp5C8whqh9mmRODWB80sKA2YhQ1MoJe8YRMyOl5IIRcBjA70fuF6DVTthDB6UImAdHRAQOjghWd8uInMPT7jWMnl0ISEOIQC/uKMNmd/2SHPVsK18LBNoYSCw/FovWGMJSFMEOXDecw542MwAvixU45XvY8cxKVD/63FpC6StB0Cyo5wycUynIlw2+Y+6sBzoFz8aaCF//H9klYQrb/CeMPEfmpI+w4NixLbNRFzjfAjGOxOXgUSk8iLYCrF/0HrrwrwZG5H6HunFC6WN2Vsc9sCKx6Es80yWg+w7YwkzCxnNJiQz9+EgZpDLFsbl7P4L8UtEzQFT+0Kk78JBxI/Q/3c86nscBSMdzoDyQ0mxCSSowMFgzV26pAqO+WTiFPeHIIwxncfoYDjySiJy4UGRYbAJZSYLUkh1cNATXoNfkKI+nD4jk4GQ=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(70586007)(316002)(8936002)(356005)(2906002)(70206006)(36860700001)(86362001)(54906003)(47076005)(81166007)(8676002)(83380400001)(508600001)(2616005)(426003)(36756003)(1076003)(26005)(6916009)(336012)(5660300002)(82310400003)(186003)(16526019)(4326008)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(2616005)(426003)(47076005)(36756003)(6916009)(82310400003)(86362001)(356005)(186003)(16526019)(83380400001)(8936002)(70586007)(508600001)(26005)(336012)(2906002)(316002)(5660300002)(8676002)(36860700001)(1076003)(81166007)(4326008)(70206006)(54906003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2021 13:32:20.6535 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 14701397-dc59-47f3-cceb-08d996f2b4bb
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2021 13:32:25.0690 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bbfbeeb4-fac3-4e51-b44e-08d996f2b75d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3157
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB2535
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,148 +112,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Michael Strauss <michael.strauss@amd.com>
+From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 
-[WHY]
-Every other CM LUT power down sequence is deferred to next vupdate as
-memory powerdown updates immediately while selecting LUTs is double
-buffered.  Previous update to defer LUT power down missed GAMCOR and
-DSCL, causing some visible flicker when entering/exiting fullscreen
-video playback.
+This is unnecessary in clk_mgr
 
-[HOW]
-Update dpp deferred update loop to check for valid DPPs in res_pool
-instead of referencing dcn_ip which turns out to not be populated during
-runtime.  Move GAMCOR and DSCL powerdown to dpp deferred updates.
-
-Reviewed-by: Haonan Wang <Haonan.Wang2@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Agustin Gutierrez <agustin.gutierrez@amd.com>
-Signed-off-by: Michael Strauss <michael.strauss@amd.com>
+Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c           |  6 ++++--
- .../gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c  | 12 ++++++++++--
- drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c   | 14 ++++++++++++++
- .../gpu/drm/amd/display/dc/dcn30/dcn30_dpp_cm.c    |  8 ++++++--
- .../gpu/drm/amd/display/dc/dcn31/dcn31_resource.c  |  2 ++
- drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h        |  2 ++
- 6 files changed, 38 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index a575d372ef5f..6dbcb1b1eb5c 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -1897,12 +1897,14 @@ static bool is_flip_pending_in_pipes(struct dc *dc, struct dc_state *context)
- static void process_deferred_updates(struct dc *dc)
- {
- #ifdef CONFIG_DRM_AMD_DC_DCN
--	int i;
-+	int i = 0;
- 
--	if (dc->debug.enable_mem_low_power.bits.cm)
-+	if (dc->debug.enable_mem_low_power.bits.cm) {
-+		ASSERT(dc->dcn_ip->max_num_dpp);
- 		for (i = 0; i < dc->dcn_ip->max_num_dpp; i++)
- 			if (dc->res_pool->dpps[i]->funcs->dpp_deferred_update)
- 				dc->res_pool->dpps[i]->funcs->dpp_deferred_update(dc->res_pool->dpps[i]);
-+	}
- #endif
- }
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c
-index cb9767ddf93d..44293d66b46b 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c
-@@ -205,9 +205,17 @@ static void dpp1_power_on_dscl(
- 	struct dcn10_dpp *dpp = TO_DCN10_DPP(dpp_base);
- 
- 	if (dpp->tf_regs->DSCL_MEM_PWR_CTRL) {
--		REG_UPDATE(DSCL_MEM_PWR_CTRL, LUT_MEM_PWR_FORCE, power_on ? 0 : 3);
--		if (power_on)
-+		if (power_on) {
-+			REG_UPDATE(DSCL_MEM_PWR_CTRL, LUT_MEM_PWR_FORCE, 0);
- 			REG_WAIT(DSCL_MEM_PWR_STATUS, LUT_MEM_PWR_STATE, 0, 1, 5);
-+		} else {
-+			if (dpp->base.ctx->dc->debug.enable_mem_low_power.bits.dscl) {
-+				dpp->base.ctx->dc->optimized_required = true;
-+				dpp->base.deferred_reg_writes.bits.disable_dscl = true;
-+			} else {
-+				REG_UPDATE(DSCL_MEM_PWR_CTRL, LUT_MEM_PWR_FORCE, 3);
-+			}
-+		}
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
+index acbda3962650..26f96ee32472 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c
+@@ -285,13 +285,8 @@ struct clk_mgr *dc_clk_mgr_create(struct dc_context *ctx, struct pp_smu_funcs *p
+ 			BREAK_TO_DEBUGGER();
+ 			return NULL;
+ 		}
+-		if (ASICREV_IS_YELLOW_CARP(asic_id.hw_internal_rev)) {
+-			/* TODO: to add DCN31 clk_mgr support, once CLK IP header files are available,
+-			 * for now use DCN3.0 clk mgr.
+-			 */
+-			dcn31_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg);
+-			return &clk_mgr->base.base;
+-		}
++
++		dcn31_clk_mgr_construct(ctx, clk_mgr, pp_smu, dccg);
+ 		return &clk_mgr->base.base;
  	}
- }
+ #endif
+@@ -328,7 +323,6 @@ void dc_destroy_clk_mgr(struct clk_mgr *clk_mgr_base)
+ 		break;
  
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c
-index ef5f6da5248a..c1d967ed6551 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c
-@@ -494,6 +494,20 @@ void dpp3_deferred_update(
- 	int bypass_state;
- 	struct dcn3_dpp *dpp = TO_DCN30_DPP(dpp_base);
+ 	case FAMILY_YELLOW_CARP:
+-		if (ASICREV_IS_YELLOW_CARP(clk_mgr_base->ctx->asic_id.hw_internal_rev))
+ 			dcn31_clk_mgr_destroy(clk_mgr);
+ 		break;
  
-+	if (dpp_base->deferred_reg_writes.bits.disable_dscl) {
-+		REG_UPDATE(DSCL_MEM_PWR_CTRL, LUT_MEM_PWR_FORCE, 3);
-+		dpp_base->deferred_reg_writes.bits.disable_dscl = false;
-+	}
-+
-+	if (dpp_base->deferred_reg_writes.bits.disable_gamcor) {
-+		REG_GET(CM_GAMCOR_CONTROL, CM_GAMCOR_MODE_CURRENT, &bypass_state);
-+		if (bypass_state == 0) {	// only program if bypass was latched
-+			REG_UPDATE(CM_MEM_PWR_CTRL, GAMCOR_MEM_PWR_FORCE, 3);
-+		} else
-+			ASSERT(0); // LUT select was updated again before vupdate
-+		dpp_base->deferred_reg_writes.bits.disable_gamcor = false;
-+	}
-+
- 	if (dpp_base->deferred_reg_writes.bits.disable_blnd_lut) {
- 		REG_GET(CM_BLNDGAM_CONTROL, CM_BLNDGAM_MODE_CURRENT, &bypass_state);
- 		if (bypass_state == 0) {	// only program if bypass was latched
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp_cm.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp_cm.c
-index 72c5687adc68..387eec616162 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp_cm.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_dpp_cm.c
-@@ -136,9 +136,13 @@ static void dpp3_power_on_gamcor_lut(
- 	struct dcn3_dpp *dpp = TO_DCN30_DPP(dpp_base);
- 
- 	if (dpp_base->ctx->dc->debug.enable_mem_low_power.bits.cm) {
--		REG_UPDATE(CM_MEM_PWR_CTRL, GAMCOR_MEM_PWR_FORCE, power_on ? 0 : 3);
--		if (power_on)
-+		if (power_on) {
-+			REG_UPDATE(CM_MEM_PWR_CTRL, GAMCOR_MEM_PWR_FORCE, 0);
- 			REG_WAIT(CM_MEM_PWR_STATUS, GAMCOR_MEM_PWR_STATE, 0, 1, 5);
-+		} else {
-+			dpp_base->ctx->dc->optimized_required = true;
-+			dpp_base->deferred_reg_writes.bits.disable_gamcor = true;
-+		}
- 	} else
- 		REG_SET(CM_MEM_PWR_CTRL, 0,
- 				GAMCOR_MEM_PWR_DIS, power_on == true ? 0:1);
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-index 8b4a97e39f1a..abbfb5aeff2a 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-@@ -2454,6 +2454,8 @@ static bool dcn31_resource_construct(
- 
- 	dc->cap_funcs = cap_funcs;
- 
-+	dc->dcn_ip->max_num_dpp = dcn3_1_ip.max_num_dpp;
-+
- 	DC_FP_END();
- 
- 	return true;
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h b/drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h
-index 9f12792b7e59..3ef7faa92052 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw/dpp.h
-@@ -34,6 +34,8 @@ union defer_reg_writes {
- 		bool disable_blnd_lut:1;
- 		bool disable_3dlut:1;
- 		bool disable_shaper:1;
-+		bool disable_gamcor:1;
-+		bool disable_dscl:1;
- 	} bits;
- 	uint32_t raw;
- };
 -- 
 2.25.1
 
