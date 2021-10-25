@@ -2,72 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79EF1439E02
-	for <lists+amd-gfx@lfdr.de>; Mon, 25 Oct 2021 19:56:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B4B3439E04
+	for <lists+amd-gfx@lfdr.de>; Mon, 25 Oct 2021 19:56:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEBD26E1B2;
-	Mon, 25 Oct 2021 17:56:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCA5C6E1B3;
+	Mon, 25 Oct 2021 17:56:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2059.outbound.protection.outlook.com [40.107.94.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E8B96E1B1
- for <amd-gfx@lists.freedesktop.org>; Mon, 25 Oct 2021 17:56:15 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2060.outbound.protection.outlook.com [40.107.92.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF9D36E1B3
+ for <amd-gfx@lists.freedesktop.org>; Mon, 25 Oct 2021 17:56:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a09idO27yt2aWhYSGp4SvQ4/YVGRGGt7e5w/hBDFGPXikHqWs2FjIZvUdOuSv0tgqRvZ+ipJV2HEpSnqSmQ8EA6HyDZ2lFasbNshfLYRVODIkYbU6Q1bHOmyIrrC9ns58lNkT4IvUmQAiQNYTXQejgjRrOsPAng/iE4IXolHD8q6m1hC5q+fwCgiHET10kxALRi1hJjtMJFNUhjAfJQHj1lat9g0+i3l070sRwfyTNA0lVj28FF7QZpKvPLqvvqb3V19Q/EE+PUJrvskQG8N6T0Shus0GHAvcjBESnv2l0d9DSqXrOhknJI4uJ7xz5YfNQCGj3f+1VlApvCqjG6SfQ==
+ b=VProDPcMiZ8VoBcFSYmxTG9vEhBvCs1WYnUx4nYXfWknW4mxYDcglkwTFuJTnzoKO/oUNDCSyVFTPCk3lvRQZM4n8/CiyptSmwsjExEwhYE5E0LRygU82iuQbGARzv6+zTzpisIFvVyfV2p32qxa1Ko0Ig18Il6bsCPVqDeFAkaIkjHEbvepKzv96rxLDfPzaeSqlnekEf59YMrYCObpcLUyAuolda7kS0tfEzzyrqxgOCa+XmPnfBaxHc7Xlc9FIy87fFZvzepA650YnbEUb+SCSYDGKkl2BETE1Zm+jdyjRBR0EXfgsBFFWBzMLmTWwiA9hcEZfs1hm5WibLK1Hg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wisMLzjMSwMtzF2Fx0uEprhSwyg0NkSmVEPJar8D9SY=;
- b=COqRS9DEnYhT+LtAyfR1IVoxdASupHaLgy9gp/0G39pNAJkMpkI88J56zPcZDek6w49wAPeSsr8DP1oMYO5qxkedni0cm03K3iXJgtt7/0p+p+Qq0WQ9iNcyDi8O0AScjMGAmsDxbGPkhESaic2BGcQJQUNSsj5v3cMl2X0p+O5qys5FU/QkWWhgfle6+uSg2w0Magyb86HIJeYo4wUiBwl5tJm7MtpIqPg2jzMbicBDi+B+JfJeftavU381/KRMZebiGdqyOzOSykfTifTigzHJFUNdXc0B6tEOM0VCnEuAfjsNfsSel07feHqSr5MFDWY2grmnjdRPspOjjduHJw==
+ bh=Jl2dFbQWo/ttWdJgJoJrxs8oCiSlTEZSfPJud/+u9sg=;
+ b=RKHKvcMs03PzU02zcF8ShCJhhRCKb/TXhCYPoY+pMQVg/KyPMCRDkJYhaihFPhTi5xmwCk6hZIoxwAyM+lZdrp5BGXUN3rF0037WMHOKrJXYRPPYTHoo4R846j2Ak+4yCCrwmin/3hLBsse13opcCQdbL3zZfA2j3D1qenVFMDdrwKCBWjkW7g+Qk95F9EOAflB8F9TULY0iMcZsN8K/iBv9ugfOyFmnFjgh8jr5bplsKHVA+SBa42W952bv/d0aAJkcmq0e24rPKI050vo3lREksyXxCMIVgmxSvtMoKLBdDqowyRiRYgRF0bMh9y9XhmT5MVcxOErUfZzZWEWrUA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wisMLzjMSwMtzF2Fx0uEprhSwyg0NkSmVEPJar8D9SY=;
- b=3cRyLN9mDEyEUFyJ1qGrBRnICNg9VUL6b6VfoDhqclAewI1xstos2aAarH6SfPHYtUuddjStOrK5S25QF8WygE/526W+vy1g5RmKOi4xXQz3A3kRrG5n7KqfR75PfrYvRWH6Ylzsm01ND2ijSvTVmmWiigHaA9CAI+asUMmq5Is=
-Received: from MWHPR19CA0015.namprd19.prod.outlook.com (2603:10b6:300:d4::25)
- by CH2PR12MB4117.namprd12.prod.outlook.com (2603:10b6:610:ae::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18; Mon, 25 Oct
- 2021 17:56:13 +0000
-Received: from CO1NAM11FT054.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:d4:cafe::77) by MWHPR19CA0015.outlook.office365.com
- (2603:10b6:300:d4::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.16 via Frontend
- Transport; Mon, 25 Oct 2021 17:56:13 +0000
+ bh=Jl2dFbQWo/ttWdJgJoJrxs8oCiSlTEZSfPJud/+u9sg=;
+ b=USrdZLMcI7siCIz4gxO7A9MBqsQRcFURyNQM5+7jiKWw8+/T17sVW3xQDKuJkuJ/BdmkhL5cPTaQRgecdRq+tz9bIOBJ2cjPwMF1RKO4FzSXiK9sLK3jNpYTDJkvUZgODSSYI6VzrdX2a/c17Jym32dBdjlfbeKXzapWqcBnxus=
+Received: from MWHPR13CA0013.namprd13.prod.outlook.com (2603:10b6:300:16::23)
+ by DM5PR12MB1931.namprd12.prod.outlook.com (2603:10b6:3:109::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.16; Mon, 25 Oct
+ 2021 17:56:26 +0000
+Received: from CO1NAM11FT007.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:16:cafe::42) by MWHPR13CA0013.outlook.office365.com
+ (2603:10b6:300:16::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.8 via Frontend
+ Transport; Mon, 25 Oct 2021 17:56:26 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
  header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT054.mail.protection.outlook.com (10.13.174.70) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1NAM11FT007.mail.protection.outlook.com (10.13.174.131) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4628.16 via Frontend Transport; Mon, 25 Oct 2021 17:56:13 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.4628.16 via Frontend Transport; Mon, 25 Oct 2021 17:56:26 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Mon, 25 Oct
- 2021 12:56:12 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 12:56:18 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Mon, 25 Oct
- 2021 10:56:11 -0700
+ 2021 12:56:18 -0500
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2308.15 via Frontend
- Transport; Mon, 25 Oct 2021 12:56:10 -0500
+ Transport; Mon, 25 Oct 2021 12:56:16 -0500
 From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-CC: <Aurabindo.Pillai@amd.com>, Meenakshikumar Somasundaram
- <meenakshikumar.somasundaram@amd.com>, Jun Lei <Jun.Lei@amd.com>, "Nicholas
+CC: <Aurabindo.Pillai@amd.com>, Jude Shih <shenshih@amd.com>, "Nicholas
  Kazlauskas" <nicholas.kazlauskas@amd.com>
-Subject: [PATCH 4/5] drm/amd/display: MST support for DPIA
-Date: Mon, 25 Oct 2021 13:55:56 -0400
-Message-ID: <20211025175557.148601-5-nicholas.kazlauskas@amd.com>
+Subject: [PATCH 5/5] drm/amd/display: Enable dpia in dmub only for DCN31 B0
+Date: Mon, 25 Oct 2021 13:55:57 -0400
+Message-ID: <20211025175557.148601-6-nicholas.kazlauskas@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211025175557.148601-1-nicholas.kazlauskas@amd.com>
 References: <20211025175557.148601-1-nicholas.kazlauskas@amd.com>
@@ -76,28 +75,28 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6e340cce-f61a-4c42-79ee-08d997e0bc14
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4117:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB41172A36371D9C04C38BD877EC839@CH2PR12MB4117.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-MS-Office365-Filtering-Correlation-Id: faa0853f-673e-46d9-b520-08d997e0c3bd
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1931:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1931A1802075598C761B8D16EC839@DM5PR12MB1931.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yTaAbLybb2NIqFx7Z2ZyZA6oB6oBS48X26le2CgaOIBYgmvmTc8OQU6eb51gpHbnfPd0jKpacQf4uhoVoJdbBJw2fdXGiaenAiG36aWNmvUhbkUmvwOkWmKqaLB6wYzyOJSvg2trQ830byylphtHdYY1ko7xktb7GCf/w1/kKsxd8yqExwoLpool25OgHAgoAxdk3O1E3cs0tqepeKnkhV2kYBemGrbg/hYZPWx29NN3b67RRZuvbv6DxEUw88bkFCpVR2wKf1a+gs8z46cmiKcD5xqiV1Wjiu8hp99g7lLD9yyWhItnR4EG8uiOPfXO5RfvxBHRzPOpm8npg/ASrroaYczqmhAhM0pASrIxwrGpTH/Gn07Kh0zeoWhWwzXh+dqE06RC6vZcVw++H9jDYCopw8aobCX8nN4Bnaeh6bfVF9m56F6J32xCZFfI+jNH5vqDAbpuGx+EqexyTIPzMH0/GA/aMGw6fMZ1Pzu7TkQJjcpCufyr8GJx6VU8dScR0BRNPSZeNTGzOD+wgiV/vfHY9716Ou+3g/WauX20usfegXDBfDRUwBFVgZHTEqN7RnxrtIeJpGR39IER4O/zX5HPDSRDbnaLeYDE4v0cWP6UDTIOa3jIuEoDBfTXrDDwBweIoJdSX3sngbTh72sgeRVZLSD4ymj5c2lB3COILoUykecBn+1SNnjuZHSo6yifu8voibLB/RSrOAmn95ZH9OlKAE++SCd8e9pnqEYE3Lw=
+X-Microsoft-Antispam-Message-Info: 45u2Yy00+uwJUjd5E4rPpb1QHWqK55wqBt7d8wibxeKp1/Ofg3N9VqEcRjrZaAwZ8Td+XMb5jAGvuCu9/MDHHUpWNnisJ/j76umd2ZyfzWBMIXQSXUzM/E3yKxiE1tvQqAu8D2P1OTUpZPjHsVB45FDMa9e/IGQUDyHtihKxaIRkYKxFvQpJxReZlXOtlIURmn0A+AN7b/Q6+W90WZHTVVgvTDjPhNof4/Vme6dqzvNUR4UknFk2jJwELCCIAMPwinAwOpvIXkG8AbgoS/6kvfwFThFm29tFqGL6fZ18FxbuA/WvOCvJAWW/bZ9BG4R3bWyUFSBnKuJFgSDSfKVphTYt6u+i+SpEmAax8hotKHYTa5xN6h575FSwwBN9wedqLXkcxiX7jyU/FCep5YPJIERRaM36iivRpP0WciB2F3M+q7d+XvoVgmhIyHWMYg3jkwYmsBG/5tsG8xz91BJW3MwBD7iMCg9VOXbyOTg1Hv0IPCXYBNT0Vhf63BkdqEuTmif0ys/bfrifDKeOi9VmnDJ4LJZs8QVSD6yLmxdoR6GwumUgYCkxDg6vSC7CrMHSxNstopuh/QxKCIHdOtJLr3nljRta/Ej1DKQppz+4zQGLG7TKXMnD24Fk5BP6g08umRd4ws/cyu5LPky7Ye9L95brl13ogbHfHUrDlEbhJY3WVy1gmLP/wK21RNfYH+T3ntaONC1wilHOsQigf0Lfk4MAlj10xfd0NKlM0ba/iac=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(508600001)(6666004)(70206006)(8936002)(44832011)(2616005)(54906003)(86362001)(1076003)(81166007)(6916009)(5660300002)(36860700001)(36756003)(82310400003)(26005)(70586007)(8676002)(316002)(356005)(426003)(336012)(186003)(4326008)(83380400001)(2906002)(47076005)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(36840700001)(46966006)(8936002)(336012)(26005)(5660300002)(2906002)(8676002)(86362001)(186003)(426003)(316002)(81166007)(82310400003)(2616005)(1076003)(44832011)(47076005)(6916009)(6666004)(70586007)(70206006)(36756003)(4326008)(508600001)(36860700001)(356005)(54906003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2021 17:56:13.1723 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e340cce-f61a-4c42-79ee-08d997e0bc14
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2021 17:56:26.0544 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: faa0853f-673e-46d9-b520-08d997e0c3bd
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT054.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT007.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4117
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1931
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,204 +111,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>
+From: Jude Shih <shenshih@amd.com>
 
 [Why]
-- DPIA MST slot registers are not programmed during payload
-allocation and hence MST does not work with DPIA.
-- HPD RX interrupts are not handled for DPIA.
+DMUB binary is common for both A0 and B0. Hence, driver should
+notify FW about the support for DPIA in B0.
 
 [How]
-- Added inbox command to program the MST slots whenever
-  payload allocation happens for DPIA links.
-- Added support for handling HPD RX interrupts
+Added dpia_supported bit in dmub_fw_boot_options and will be set
+only for B0.
 
-Signed-off-by: Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
-Acked-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Assign dpia_supported to true before dm_dmub_hw_init
+in B0 case.
+
+Signed-off-by: Jude Shih <shenshih@amd.com>
+Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c      | 54 +++++++++++++++++++
- drivers/gpu/drm/amd/display/dc/core/dc_link.c | 28 ++++++++++
- drivers/gpu/drm/amd/display/dc/dc.h           |  6 +++
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 23 ++++++++
- 4 files changed, 111 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 12 ++++++++++++
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h       |  1 +
+ drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c |  1 +
+ 3 files changed, 14 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 9d33b00b7e27..12e5470fa567 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -3750,6 +3750,60 @@ bool dc_process_dmub_set_config_async(struct dc *dc,
- 	return is_cmd_complete;
- }
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 0ad6d0e2a2d8..139a7707f317 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -1017,6 +1017,7 @@ static int dm_dmub_hw_init(struct amdgpu_device *adev)
+ 	const unsigned char *fw_inst_const, *fw_bss_data;
+ 	uint32_t i, fw_inst_const_size, fw_bss_data_size;
+ 	bool has_hw_support;
++	struct dc *dc = adev->dm.dc;
  
-+/**
-+ *****************************************************************************
-+ *  Function: dc_process_dmub_set_mst_slots
-+ *
-+ *  @brief
-+ *		Submits mst slot allocation command to dmub via inbox message
-+ *
-+ *  @param
-+ *		[in] dc: dc structure
-+ *		[in] link_index: link index
-+ *		[in] mst_alloc_slots: mst slots to be allotted
-+ *		[out] mst_slots_in_use: mst slots in use returned in failure case
-+ *
-+ *	@return
-+ *		DC_OK if successful, DC_ERROR if failure
-+ *****************************************************************************
-+ */
-+enum dc_status dc_process_dmub_set_mst_slots(const struct dc *dc,
-+				uint32_t link_index,
-+				uint8_t mst_alloc_slots,
-+				uint8_t *mst_slots_in_use)
-+{
-+	union dmub_rb_cmd cmd = {0};
-+	struct dc_dmub_srv *dmub_srv = dc->ctx->dmub_srv;
-+
-+	/* prepare MST_ALLOC_SLOTS command */
-+	cmd.set_mst_alloc_slots.header.type = DMUB_CMD__DPIA;
-+	cmd.set_mst_alloc_slots.header.sub_type = DMUB_CMD__DPIA_MST_ALLOC_SLOTS;
-+
-+	cmd.set_mst_alloc_slots.mst_slots_control.instance = dc->links[link_index]->ddc_hw_inst;
-+	cmd.set_mst_alloc_slots.mst_slots_control.mst_alloc_slots = mst_alloc_slots;
-+
-+	if (!dc_dmub_srv_cmd_with_reply_data(dmub_srv, &cmd))
-+		/* command is not processed by dmub */
-+		return DC_ERROR_UNEXPECTED;
-+
-+	/* command processed by dmub, if ret_status is 1 */
-+	if (cmd.set_config_access.header.ret_status != 1)
-+		/* command processing error */
-+		return DC_ERROR_UNEXPECTED;
-+
-+	/* command processed and we have a status of 2, mst not enabled in dpia */
-+	if (cmd.set_mst_alloc_slots.mst_slots_control.immed_status == 2)
-+		return DC_FAIL_UNSUPPORTED_1;
-+
-+	/* previously configured mst alloc and used slots did not match */
-+	if (cmd.set_mst_alloc_slots.mst_slots_control.immed_status == 3) {
-+		*mst_slots_in_use = cmd.set_mst_alloc_slots.mst_slots_control.mst_slots_in_use;
-+		return DC_NOT_SUPPORTED;
+ 	if (!dmub_srv)
+ 		/* DMUB isn't supported on the ASIC. */
+@@ -1103,6 +1104,17 @@ static int dm_dmub_hw_init(struct amdgpu_device *adev)
+ 	for (i = 0; i < fb_info->num_fb; ++i)
+ 		hw_params.fb[i] = &fb_info->fb[i];
+ 
++	switch (adev->asic_type) {
++	case CHIP_YELLOW_CARP:
++		if (dc->ctx->asic_id.hw_internal_rev != YELLOW_CARP_A0) {
++			hw_params.dpia_supported = true;
++			hw_params.disable_dpia = dc->debug.dpia_debug.bits.disable_dpia;
++		}
++		break;
++	default:
++		break;
 +	}
 +
-+	return DC_OK;
-+}
-+
- /**
-  * dc_disable_accelerated_mode - disable accelerated mode
-  * @dc: dc structure
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index 27b9ff98a569..2796bdd17de1 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -3499,6 +3499,20 @@ enum dc_status dc_link_allocate_mst_payload(struct pipe_ctx *pipe_ctx)
- 
- 	ASSERT(proposed_table.stream_count > 0);
- 
-+	if (link->ep_type == DISPLAY_ENDPOINT_USB4_DPIA) {
-+		static enum dc_status status;
-+		uint8_t mst_alloc_slots = 0, prev_mst_slots_in_use = 0xFF;
-+
-+		for (i = 0; i < link->mst_stream_alloc_table.stream_count; i++)
-+			mst_alloc_slots += link->mst_stream_alloc_table.stream_allocations[i].slot_count;
-+
-+		status = dc_process_dmub_set_mst_slots(link->dc, link->link_index,
-+			mst_alloc_slots, &prev_mst_slots_in_use);
-+		ASSERT(status == DC_OK);
-+		DC_LOG_MST("dpia : status[%d]: alloc_slots[%d]: used_slots[%d]\n",
-+				status, mst_alloc_slots, prev_mst_slots_in_use);
-+	}
-+
- 	/* program DP source TX for payload */
- #if defined(CONFIG_DRM_AMD_DC_DCN)
- 	switch (dp_get_link_encoding_format(&link->cur_link_settings)) {
-@@ -3842,6 +3856,20 @@ static enum dc_status deallocate_mst_payload(struct pipe_ctx *pipe_ctx)
- #endif
- 	}
- 
-+	if (link->ep_type == DISPLAY_ENDPOINT_USB4_DPIA) {
-+		enum dc_status status;
-+		uint8_t mst_alloc_slots = 0, prev_mst_slots_in_use = 0xFF;
-+
-+		for (i = 0; i < link->mst_stream_alloc_table.stream_count; i++)
-+			mst_alloc_slots += link->mst_stream_alloc_table.stream_allocations[i].slot_count;
-+
-+		status = dc_process_dmub_set_mst_slots(link->dc, link->link_index,
-+			mst_alloc_slots, &prev_mst_slots_in_use);
-+		ASSERT(status != DC_NOT_SUPPORTED);
-+		DC_LOG_MST("dpia : status[%d]: alloc_slots[%d]: used_slots[%d]\n",
-+				status, mst_alloc_slots, prev_mst_slots_in_use);
-+	}
-+
- #if defined(CONFIG_DRM_AMD_DC_DCN)
- 	switch (dp_get_link_encoding_format(&link->cur_link_settings)) {
- 	case DP_8b_10b_ENCODING:
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index 33c4f74a0add..a5339796902a 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -1428,6 +1428,12 @@ bool dc_process_dmub_set_config_async(struct dc *dc,
- 				uint32_t link_index,
- 				struct set_config_cmd_payload *payload,
- 				struct dmub_notification *notify);
-+
-+enum dc_status dc_process_dmub_set_mst_slots(const struct dc *dc,
-+				uint32_t link_index,
-+				uint8_t mst_alloc_slots,
-+				uint8_t *mst_slots_in_use);
-+
- /*******************************************************************************
-  * DSC Interfaces
-  ******************************************************************************/
-diff --git a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-index a73fed7f7502..6a79818337a1 100644
---- a/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-+++ b/drivers/gpu/drm/amd/display/dmub/inc/dmub_cmd.h
-@@ -698,6 +698,7 @@ enum dmub_out_cmd_type {
- enum dmub_cmd_dpia_type {
- 	DMUB_CMD__DPIA_DIG1_DPIA_CONTROL = 0,
- 	DMUB_CMD__DPIA_SET_CONFIG_ACCESS = 1,
-+	DMUB_CMD__DPIA_MST_ALLOC_SLOTS = 2,
+ 	status = dmub_srv_hw_init(dmub_srv, &hw_params);
+ 	if (status != DMUB_STATUS_OK) {
+ 		DRM_ERROR("Error initializing DMUB HW: %d\n", status);
+diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+index 6c4f0ada163f..717c0e572d2f 100644
+--- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+@@ -238,6 +238,7 @@ struct dmub_srv_hw_params {
+ 	bool load_inst_const;
+ 	bool skip_panel_power_sequence;
+ 	bool disable_z10;
++	bool dpia_supported;
+ 	bool disable_dpia;
  };
  
- #pragma pack(push, 1)
-@@ -1072,6 +1073,24 @@ struct dmub_rb_cmd_set_config_access {
- 	struct dmub_cmd_set_config_control_data set_config_control; /* set config data */
- };
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
+index 5df990277dd4..10ebf20eaa41 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_dcn31.c
+@@ -338,6 +338,7 @@ void dmub_dcn31_enable_dmub_boot_options(struct dmub_srv *dmub, const struct dmu
+ 	union dmub_fw_boot_options boot_options = {0};
  
-+/**
-+ * Data passed from driver to FW in a DMUB_CMD__DPIA_MST_ALLOC_SLOTS command.
-+ */
-+struct dmub_cmd_mst_alloc_slots_control_data {
-+	uint8_t mst_alloc_slots; /* mst slots to be allotted */
-+	uint8_t instance; /* DPIA instance */
-+	uint8_t immed_status; /* Immediate status returned as there is no outbox msg posted */
-+	uint8_t mst_slots_in_use; /* returns slots in use for error cases */
-+};
-+
-+/**
-+ * DMUB command structure for SET_ command.
-+ */
-+struct dmub_rb_cmd_set_mst_alloc_slots {
-+	struct dmub_cmd_header header; /* header */
-+	struct dmub_cmd_mst_alloc_slots_control_data mst_slots_control; /* mst slots control */
-+};
-+
- /**
-  * struct dmub_rb_cmd_dpphy_init - DPPHY init.
-  */
-@@ -2594,6 +2613,10 @@ union dmub_rb_cmd {
- 	 * Definition of a DMUB_CMD__DPIA_SET_CONFIG_ACCESS command.
- 	 */
- 	struct dmub_rb_cmd_set_config_access set_config_access;
-+	/**
-+	 * Definition of a DMUB_CMD__DPIA_MST_ALLOC_SLOTS command.
-+	 */
-+	struct dmub_rb_cmd_set_mst_alloc_slots set_mst_alloc_slots;
- 	/**
- 	 * Definition of a DMUB_CMD__EDID_CEA command.
- 	 */
+ 	boot_options.bits.z10_disable = params->disable_z10;
++	boot_options.bits.dpia_supported = params->dpia_supported;
+ 	boot_options.bits.enable_dpia = params->disable_dpia ? 0 : 1;
+ 
+ 	boot_options.bits.sel_mux_phy_c_d_phy_f_g = (dmub->asic == DMUB_ASIC_DCN31B) ? 1 : 0;
 -- 
 2.25.1
 
