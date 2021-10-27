@@ -2,100 +2,98 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B99A43CC1F
-	for <lists+amd-gfx@lfdr.de>; Wed, 27 Oct 2021 16:26:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D546E43CC26
+	for <lists+amd-gfx@lfdr.de>; Wed, 27 Oct 2021 16:26:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C74BB6E8A1;
-	Wed, 27 Oct 2021 14:26:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC2796E8A6;
+	Wed, 27 Oct 2021 14:26:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2067.outbound.protection.outlook.com [40.107.94.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8A236E8A1
- for <amd-gfx@lists.freedesktop.org>; Wed, 27 Oct 2021 14:26:43 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2069.outbound.protection.outlook.com [40.107.93.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E76E26E8A4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 27 Oct 2021 14:26:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dee9OiLg8XaknA9OdEtFzDkWI7oCgPfUqH+mNtDf1h6eM4iG0MQ85l/Jg2AcWGXc7yPkeVIZGf7tMKo6AGCGm0Ls4dk98H1v2MJCdXvPJLzL7HnXLR+rXh7mI4KT1RkSSmXr7fWMtQKXBnY4uAuJ/QYwsl21sAn3EJmtQPKiOjOCF+v1eU4us+sikAbP1qyKlpwkGjTIsU2BNgBYfOIwbIyPkw8aQCymi0fRfOy1epFFPzH1KKKudN9w5de2mARUZ88h0EUYTePXsCC0Idm365W+uZlbBDgNaHJdiJlf0MoqreW1HTRJ0WkpaWNcriHPn1tiN/dDK1QYvNqChFnbfw==
+ b=PPkEF/nrJDN6bPfgAu+zx319MIDK5uPpHU2fnKwWuG1HUNEEusZ3U36z+z4XJMMbZVnx5la45LraVT+WlC+THiSGxrsVc7IisSf9xJTRPpIUVapr+JWoJqK3GlMNPlurs2z9f1vgVbSFr6D2v7EQoWYoWG71wBd3dV3A678jBDhlRu2J3K2EfzoU1C6dqthUmZ3M4O2YYDI0K+dY3ncw7Uleem77uWLPAkgPaPJvbqIAvn+44fTjTuz/oXNFa8R6CD2WMWFyzgJjfOHqEi2bAFUcqtO9IB06/wqh0ZTcI6rq/Tmi0il7BrWeQIaMeAQItsoCgxl+aWHfNE54SXMpDw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Uot3WamdgEBJd/+a7PPRjDdNaXwWUhHzv+VXH4+jZos=;
- b=RTxUds8nBJMxzv17PpoMDqdblFSSSAECBJhwk4FJSTX/9OKB5pKGX4kybEzcs4ZLKZRzFwBNtoOgj5A2n5CfEiaMCjucMEMuOo08SjVkIBKXQAs/OT0L6Tgwh03vo/YPR8AzT56JEsfrn1Dds3UJc3uOp7RZVLcuWamxX8PTDNthcRqVaKKUURo9ZF82kxhb8U5p2e+miXLLPN6MdBl9N7CyvBE4tkmHzX0sa2IQJDAlrFbyfaP+8krB66Bk4ra52u/o0NKtc1BXSgK2glh3Ktzwub5upmL+l3UBNj1jiVKjfa7CHmZvkk5WCvxvs0ZT1XOMV5TIIT3uQKwExHt10g==
+ bh=mztyTPAVNkMJUweE72YGVOhB17aA+1Ha8MG1ejboks4=;
+ b=IkgzltMOxeKve9kpwizeFNQ/4DTtP+Tw21Y5NUR2mrOBZbZPTn+YO26GE6N9LNZ+DMaQHyFDfsLpMl6cmk2ClXX+V2LRpCN5hF7Kxr7L+1LQ/8v4MA7s/uqOoHR9AX+eGBC6cgwwk/teBZFPKrpHuibnL0eiow54RQ8s1t0aY9vMx/ZNjbth4o0SHVmzE3bMPwDb/uSe60fXU39nASipaLkOAXSFDP5JDx+vvipXQKsHf1UqAZPpTDd0V6tpLoDfs7ygQaA7PxG7+wHR6XHIeLWPnfOBIyV7+D7DHA+nyLE23OvZVKoJhtBgE6jWaacSZ1ff4+GWeeMoha2AugpbBQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Uot3WamdgEBJd/+a7PPRjDdNaXwWUhHzv+VXH4+jZos=;
- b=AMMmWePpRZDLLu1mJ9/fq5x7PEXBW/H/Kc3pwlYZ0O0WsbPSlyrvMAxt/f0Nmj9nMDMyi0uD5Jja/PYWUovLJhscXdspsuS606GrgnIbbfkR+wfjQi6gGvKaU4eDiMLuESV5OZ3qy7mOlTIm99sm7vEQc4BkGhC2yTUxZLZVVt0=
-Received: from BN0PR04CA0155.namprd04.prod.outlook.com (2603:10b6:408:eb::10)
- by CH2PR12MB3976.namprd12.prod.outlook.com (2603:10b6:610:28::26)
- with Microsoft SMTP Server (version=TLS1_2,
+ bh=mztyTPAVNkMJUweE72YGVOhB17aA+1Ha8MG1ejboks4=;
+ b=rOZpyVRv1OYCCFSrGN+fJRsgyJy6Aak1PiHMun70IDTcZ5ZS9il4Z1V31Wu4ytH/kUaOYSbkmeAxKaxn+L5NDcVkrEpTgkxgaTtVagOBBCsg0hm3/O57kvJHjiPjeY2AwYYoQIUFQvJWIBwjl4ppT6kVBMEFiWHkPPPO0y5ugqQ=
+Received: from BN6PR20CA0071.namprd20.prod.outlook.com (2603:10b6:404:151::33)
+ by DM5PR12MB1945.namprd12.prod.outlook.com (2603:10b6:3:10f::23) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18; Wed, 27 Oct
- 2021 14:26:40 +0000
-Received: from BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:eb:cafe::da) by BN0PR04CA0155.outlook.office365.com
- (2603:10b6:408:eb::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.22 via Frontend
- Transport; Wed, 27 Oct 2021 14:26:40 +0000
+ 2021 14:26:42 +0000
+Received: from BN8NAM11FT003.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:404:151:cafe::50) by BN6PR20CA0071.outlook.office365.com
+ (2603:10b6:404:151::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18 via Frontend
+ Transport; Wed, 27 Oct 2021 14:26:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
  header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN8NAM11FT066.mail.protection.outlook.com (10.13.177.138) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT003.mail.protection.outlook.com (10.13.177.90) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4649.14 via Frontend Transport; Wed, 27 Oct 2021 14:26:40 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.4649.14 via Frontend Transport; Wed, 27 Oct 2021 14:26:41 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Wed, 27 Oct
- 2021 09:26:39 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Wed, 27 Oct
- 2021 07:26:39 -0700
+ 2021 09:26:40 -0500
 Received: from hwentlanryzen.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2308.15 via Frontend
- Transport; Wed, 27 Oct 2021 09:26:38 -0500
+ Transport; Wed, 27 Oct 2021 09:26:39 -0500
 From: Harry Wentland <harry.wentland@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <sunpeng.li@amd.com>,
  <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
  <rodrigo.siqueira@amd.com>, <patrik.r.jakobsson@gmail.com>
 CC: Harry Wentland <harry.wentland@amd.com>
-Subject: [PATCH 0/3] Fix out of bounds writes in amdgpu_dm_debugfs
-Date: Wed, 27 Oct 2021 10:26:32 -0400
-Message-ID: <20211027142635.9459-1-harry.wentland@amd.com>
+Subject: [PATCH 1/3] drm/amd/display: Don't allow partial copy_from_user
+Date: Wed, 27 Oct 2021 10:26:33 -0400
+Message-ID: <20211027142635.9459-2-harry.wentland@amd.com>
 X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211027142635.9459-1-harry.wentland@amd.com>
+References: <20211027142635.9459-1-harry.wentland@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3c7d1aeb-7bb6-49a5-808a-08d99955caae
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3976:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB39762D846ADF3E6E6675F3C58C859@CH2PR12MB3976.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Office365-Filtering-Correlation-Id: b036e906-8bdf-4da3-5aa3-08d99955cbd8
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1945:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1945423D01128937A60658FD8C859@DM5PR12MB1945.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Q3AoEistveoOo4ejcR5C/U2ckk7ybldgLfaqvHeySJGsAMzOJ/wNwDhYcc3kzk6ggtxAmOfMUgcHta1ULBOJKdFlaRYs6CkDB/LRhvQcZWmn16ugVIAu9bh9n2QzNoZCWIzQPgwqRQev9G/YUyklzU5KuSqHbQouyYy0W2RFnAisV2V6y1CTD0aNkVk4G/MfA/Zc/mIR/Bny57Wvbk/3Dm4r1cz5ab7QvFK1DXyx1J5HUPB4Vj3JL1XxbLU5UGstgtf+sM/TCQmeIeI2FSy5/U4T+1/34ebFXRh+iaVzYlc8CKgkPPefbtDRiFoDAbRGfAdCgJKS1Vnc+/ZE/b147cPGdKg2wBGLVC8Fqqsx3HS6fbuuk+3lX2NTS7T4TvQwH/EBRpYZ9S27XisIv4589Vzu8umtnNM+BAwN0HFxXe04Blh1oa4xx7/l1gn/Ww/F/w1K5ShxOimx+FQxVu6is2ZyAjy+Inkny0/L2Ze0DWn0gL6lYIiDFMgtmZP+BJEm2TG8k6+fDrxjXVmljd//ewRCfl+2BVTbaEXAUVBmfS4sQ5uDXI50+2uKwzgpd7yOa786MnW4NvqtC+vAGS2LLMFuCKgv01gz1NP8OZk88+nqBfCfts/kN/AOtEQ7qWw2wjc58GAtAGjIKGdp2VMTeyFmmU3yFaNFb0tjEZvZxkaV5GN4xU4f86ccQ203O7G+5/C3z4abQ0ZSapXOmDkZcAq2jXmUcv4YHM7np1s7DBk=
+X-Microsoft-Antispam-Message-Info: JVYCukk2CYaVCtcsY9JjkK0AMUk+15jKQn1rx1RAtApItfG1Q9m28xv9YnVtqQphpBClEqaXcvf8EwilTTd6R+5CDHdDC9nuw9hzzaynMt2QwrapbTHIhqJOAPf+MFcBSlmXm+HQcMl32os/d9rLUQBd9fsZG9pHXzgEy6o7FVhFeZw9jIbPf+Wk6Kujzu52s4GXdPTz6MY2R84ugN9gynu+nfEAY0CYVMTuQqDLcJk7vgsrm9CnQSQAt/QfVP/xLvVW/kkG3dFGVWqTatH32oBMfjEtX/vhsEJ47SY3HEXWPMwxwgYNkW0Ood6s4kSs3L7J7Pr7b4ngpC4HrZGcdOKI8WkCraTVfbuUdQ2Jvb1JTBLkBkdYX6er27yFYLpEqDjPPE7oZoJv6C1wufk3XXP1ZAvUoHw6+U8kZ3lp8IiJsCHFqiqGlNfQ+JHNXARRf/5KRi4xPeOJNLRxWHtVu/hF/YW+YGnPCPRWyPSNW/oQ9qWW+nVzmB1b8Iba5d4jv/3SxYjyLh3U88h6LqeXF3ZUpZIyWFw5pliWJizuc0SJKbwKjcU2Yt/mKxZtnMWduFssmIh/f8dg6u0T+5C/2G02W8OYOhzEwA+zs9Q49BP2wMArRMRhfVJv9jlEAHd4DLrV0Rot1j3JLgn1PoDXs8fHmsmOIB66MeiudSBqLBTsi/k7jZ2v/g9fKNvzU0beCc9UkKn+sXYaZ+FlSZLYttBqGBiSZ6v+bkwJUyZhgfKMZ1x2OFK0qi0W96v3HWJvWtZLpk5oawlOR1JG1r5Hu9K06yCzDg0JMi+i8/SOtJ50hQ52Y+noxYRiDQGivMHd
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(81166007)(110136005)(6666004)(5660300002)(1076003)(8936002)(2616005)(316002)(426003)(2906002)(356005)(7696005)(336012)(44832011)(4744005)(508600001)(4326008)(26005)(70206006)(8676002)(70586007)(82310400003)(47076005)(83380400001)(36860700001)(186003)(86362001)(36756003)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(46966006)(36840700001)(6666004)(81166007)(86362001)(36860700001)(2616005)(44832011)(4326008)(356005)(966005)(336012)(8936002)(508600001)(70206006)(186003)(7696005)(5660300002)(82310400003)(36756003)(8676002)(110136005)(426003)(70586007)(1076003)(47076005)(316002)(26005)(83380400001)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2021 14:26:40.0909 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c7d1aeb-7bb6-49a5-808a-08d99955caae
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2021 14:26:41.7271 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b036e906-8bdf-4da3-5aa3-08d99955cbd8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT003.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3976
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1945
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,21 +108,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Fixes for out of bounds writes in amdgpu_dm_debugfs as well
-as a fix to disallow partial copy_from_user so we don't
-end up inadvertently reading corrupted buffers if a caller
-fails to initialize the buffer to zero.
+There is no reason to allow for partial buffers from
+userspace in our debugfs. In this particular case
+callers will zero out the wr_buf but if callers in
+the future don't do that we might be looking at
+corrupt data.
 
-Harry Wentland (2):
-  drm/amd/display: Don't allow partial copy_from_user
-  drm/amd/display: Fix dp_max_bpc out of bounds write
+Linus puts it better than I can in
+https://lkml.org/lkml/2021/10/26/993
 
-Patrik Jakobsson (1):
-  drm/amdgpu: Fix even more out of bound writes from debugfs
+Signed-off-by: Harry Wentland <harry.wentland@amd.com>
+---
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c  | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
 
- .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 28 +++++++++----------
- 1 file changed, 13 insertions(+), 15 deletions(-)
-
---
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+index 1a68a674913c..b30307ccff12 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+@@ -78,12 +78,10 @@ static int parse_write_buffer_into_params(char *wr_buf, uint32_t wr_buf_size,
+ 
+ 	wr_buf_ptr = wr_buf;
+ 
+-	r = copy_from_user(wr_buf_ptr, buf, wr_buf_size);
+-
+-		/* r is bytes not be copied */
+-	if (r >= wr_buf_size) {
+-		DRM_DEBUG_DRIVER("user data not be read\n");
+-		return -EINVAL;
++	/* r is bytes not be copied */
++	if (copy_from_user(wr_buf_ptr, buf, wr_buf_size)) {
++		DRM_DEBUG_DRIVER("user data could not be read successfully\n");
++		return -EFAULT;
+ 	}
+ 
+ 	/* check number of parameters. isspace could not differ space and \n */
+-- 
 2.33.0
 
