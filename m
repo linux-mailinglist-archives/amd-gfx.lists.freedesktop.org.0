@@ -2,66 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40A8143E207
-	for <lists+amd-gfx@lfdr.de>; Thu, 28 Oct 2021 15:26:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50C6543E341
+	for <lists+amd-gfx@lfdr.de>; Thu, 28 Oct 2021 16:14:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B11A6E984;
-	Thu, 28 Oct 2021 13:26:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9813C6E971;
+	Thu, 28 Oct 2021 14:14:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
- [IPv6:2a00:1450:4864:20::32b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F3406E981;
- Thu, 28 Oct 2021 13:26:39 +0000 (UTC)
-Received: by mail-wm1-x32b.google.com with SMTP id
- a20-20020a1c7f14000000b003231d13ee3cso9374071wmd.3; 
- Thu, 28 Oct 2021 06:26:38 -0700 (PDT)
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com
+ [IPv6:2607:f8b0:4864:20::32d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 525C86E971
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Oct 2021 14:14:47 +0000 (UTC)
+Received: by mail-ot1-x32d.google.com with SMTP id
+ w12-20020a056830410c00b0054e7ceecd88so8815355ott.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 28 Oct 2021 07:14:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:subject:date:message-id:in-reply-to:references:mime-version
- :content-transfer-encoding;
- bh=egdx3Ywv2yu3nUP1jLQlD5jYdd3fqDZiwOa9q8R+o2s=;
- b=aBAcGSAr9R1pFZVRu12YsAne8HtbedhP5B06ewdompnZQhByafZ2d1TS2FhMhrLDcI
- Xzix+FUdCnaZHli5XiOxJNDB1GHEysLC1/7tPKk40hEVCL+B50nu0M5j00AjRUAOeeWJ
- x4AQyn/SYuxks0V+yxbjkmtAoJI3zeF80qprDcTdLjOWJ0hGy1qKl6cHfR6D8HeZxWV0
- h1L0UpqPWY3u9ZeMuwFZDmG+cjlnWJXfIibGH/i8YARbC9Sv40BgtNzN2BVrNRVi3eDJ
- 8cpXNMG64KJ9qr5wcIzC+Nwdy3mgBchGONRgZfs9rYZ1j2GuPX7TAz+X6G1jmj6DDOrh
- ktTA==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=vjoekqz0IVKCPHndwLj/kPSYvD4vgsAIeQrYalZumdc=;
+ b=HBn0bWx/LdVZKb7kwiMgnPztiK9TDqNHMTza6iuyK3VU9o2XJDuV/k4CeVWL2tPgze
+ zzHzDiLKAjKE7+v3/MFheoav/PRIvrwCjqUnMoietfN4+0aDFhUmBEXcnjCM6Qyn6pz1
+ gYKhMItShcFnd3lRakMmHL6dneh5IR/JDMXJjkTpd2r6VWm2W5TwoHL2IlSPegDCP1wL
+ NArEHK0rYZMcypeT19owAIdwFSLZ28UHwUzbBszmKTOGVELfUc0pKJE7ocQHjDWrTuUR
+ ipEo6v6yjyGI12DIQ9mfRB3JJW0Hst+ED1TuXVCF4zejFll7TsdK6tmQI0dxajxhZT03
+ +Blg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=egdx3Ywv2yu3nUP1jLQlD5jYdd3fqDZiwOa9q8R+o2s=;
- b=bPEa2S3yMT3j3J618NUQP0YC2IFp21Yz0twqGdSZdltQWYFO2uvIcw3c32HkAlrrBR
- +sKy5SPpznMNN3nQZrsLewD9772e+aFf92g5yBCiWBWHEBmkWpJ3JME18WdEFA8NkdPq
- s5ZPOqmvKzgBT9r91PuV8MIrBY4Wn20Nzd3S7pDDonXXXcpZ+J+zyKTSd/xlYC64jfFQ
- totDVgNLbmE96vl5opfB35sRfPgnQiUPPDfb/TUSRXiSsMzeQWH1CS0tOhJwX+jDXZkP
- 3xHCYx3BjWaNXOdETRikdYweFmIxDvLObZk6pzN5WBwZ6ThHBn1qRNr/CHU48EdN5DtZ
- 8tPw==
-X-Gm-Message-State: AOAM5335bQvXJTlppyBaNBAuXuiPfwhKDGJ5uaNMi6/V6wh8TVnGLff3
- wXQiBPyGKt6Lwixj+2yW3RiFn1lpuG8=
-X-Google-Smtp-Source: ABdhPJzSb2AGqZ2hHQoqdIbV2oph49YUFYUmPMj8+frHGtYAnsyRaMDsJ0wp80qNzpOY2XZ0GZcqXw==
-X-Received: by 2002:a7b:c351:: with SMTP id l17mr4649970wmj.120.1635427597621; 
- Thu, 28 Oct 2021 06:26:37 -0700 (PDT)
-Received: from abel.fritz.box (p5b0ea1b5.dip0.t-ipconnect.de. [91.14.161.181])
- by smtp.gmail.com with ESMTPSA id
- l11sm2935695wrt.49.2021.10.28.06.26.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 28 Oct 2021 06:26:37 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- etnaviv@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH 6/6] drm/radeon: use dma_resv_wait_timeout() instead of
- manually waiting
-Date: Thu, 28 Oct 2021 15:26:30 +0200
-Message-Id: <20211028132630.2330-6-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211028132630.2330-1-christian.koenig@amd.com>
-References: <20211028132630.2330-1-christian.koenig@amd.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=vjoekqz0IVKCPHndwLj/kPSYvD4vgsAIeQrYalZumdc=;
+ b=hKAgJqEoue+nhk3x7Kjtu6fY4Hf3noeHKGtaTH0MVTEIGFUySTcnJ9tPVuAT4plaKJ
+ ReFwZh76s45V7ee27cpEizQ5tXnVUagXVyakIF89ZwEbpWJIIudtKFVFFkhcsxzDDfJm
+ V8rTxOs4q6b9Yc5d1/UBGpZs3W+n3SLwxLZeSB4RBDC9Q9421qpzeSc5eu8zDnFzbvh2
+ saPbgGVYICgWNWPZeOlPbvv+MhIkQb0jDDrTiqADio+SoE5ZL6oXDQj+QIdhxqtLJzcR
+ vOxW6vbYhWaayxLn97bcKQgf85OFbKUTvm6n+1QmapZUBxS3JfLOSADPhtCTXzN63oej
+ 1jyA==
+X-Gm-Message-State: AOAM5313y8m5sSxoDTlAZEngfNox4TAJEiwQueRUlBCHnyb2PyGPAncZ
+ Fv4uB0aord7aKcUF0SiomgaGV3a1nQiRvrhsMUM=
+X-Google-Smtp-Source: ABdhPJwo2/UEIlVcI5lBm6PVOhhaymqCPeTt7i/cZ0DNVtraqW+4ZpQ/gZnl20Bc5n4a4Glldg61MEF5UCqYiN+Gl9s=
+X-Received: by 2002:a9d:1b4f:: with SMTP id l73mr3704514otl.200.1635430486568; 
+ Thu, 28 Oct 2021 07:14:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20211027182212.1484689-1-alexander.deucher@amd.com>
+ <CADnq5_PzD5h0UmhQko7YE86a1xhm2LnPFhDgwgEhBe7iKNov0A@mail.gmail.com>
+ <a0801433-fd70-f15d-3f63-7ca18fbf2244@molgen.mpg.de>
+ <b1b2b722-d21e-421a-e8b1-5452d404533d@molgen.mpg.de>
+In-Reply-To: <b1b2b722-d21e-421a-e8b1-5452d404533d@molgen.mpg.de>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 28 Oct 2021 10:14:35 -0400
+Message-ID: <CADnq5_NgW88qf-zGa4Tvc2pwHXRLVNLAXc5o4_h1XPk3LJadiA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu/gmc6: fix DMA mask
+To: Paul Menzel <pmenzel@molgen.mpg.de>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, it+linux-iommu@molgen.mpg.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,46 +71,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Don't touch the exclusive fence manually here, but rather use the
-general dma_resv function. We did that for better hw reset handling but
-this doesn't necessary work correctly.
+On Thu, Oct 28, 2021 at 4:33 AM Paul Menzel <pmenzel@molgen.mpg.de> wrote:
+>
+> Dear Alex,
+>
+>
+> On 28.10.21 00:19, Paul Menzel wrote:
+>
+> > On 27.10.21 20:23, Alex Deucher wrote:
+> >> On Wed, Oct 27, 2021 at 2:22 PM Alex Deucher
+> >> <alexander.deucher@amd.com> wrote:
+> >>>
+> >>> The DMA mask on SI parts is 40 bits not 44.  Looks like a copy
+> >>> paste typo.
+> >>
+> >> Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1762
+> >>
+> >> Fixed locally.
+> >
+> > As I have no way to reproduce this, as the ring gfx timeout error is
+> > logged ten seconds after the IO_PAGE_FAULT, is very likely to be relate=
+d?
+> >
+> > Hopefully I am going to be able to test this on Friday. Does AMD=E2=80=
+=99s QA
+> > team have the cards to test the `iommu.forcedac=3D1` case? Is that test
+> > case going to be added to the =E2=80=9Ctest protocol=E2=80=9D?
+> >
+> > Lastly, should a Fixes tag be added, so it=E2=80=99s picked up for the =
+stable
+> > series?
+>
+> Does the value of 44 need to be changed to 40 also five lines below?
+>
+> -       adev->need_swiotlb =3D drm_need_swiotlb(44);
+> +       adev->need_swiotlb =3D drm_need_swiotlb(40);
+>
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/radeon/radeon_uvd.c | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
+Good catch.  I'll fix that too for consistency, but the driver is not
+functional with the swiotlb due to the amount of memory the driver
+maps.
 
-diff --git a/drivers/gpu/drm/radeon/radeon_uvd.c b/drivers/gpu/drm/radeon/radeon_uvd.c
-index 2ea86919d953..377f9cdb5b53 100644
---- a/drivers/gpu/drm/radeon/radeon_uvd.c
-+++ b/drivers/gpu/drm/radeon/radeon_uvd.c
-@@ -469,7 +469,6 @@ static int radeon_uvd_cs_msg(struct radeon_cs_parser *p, struct radeon_bo *bo,
- {
- 	int32_t *msg, msg_type, handle;
- 	unsigned img_size = 0;
--	struct dma_fence *f;
- 	void *ptr;
- 
- 	int i, r;
-@@ -479,13 +478,11 @@ static int radeon_uvd_cs_msg(struct radeon_cs_parser *p, struct radeon_bo *bo,
- 		return -EINVAL;
- 	}
- 
--	f = dma_resv_excl_fence(bo->tbo.base.resv);
--	if (f) {
--		r = radeon_fence_wait((struct radeon_fence *)f, false);
--		if (r) {
--			DRM_ERROR("Failed waiting for UVD message (%d)!\n", r);
--			return r;
--		}
-+	r = dma_resv_wait_timeout(bo->tbo.base.resv, false, false,
-+				  MAX_SCHEDULE_TIMEOUT);
-+	if (r <= 0) {
-+		DRM_ERROR("Failed waiting for UVD message (%d)!\n", r);
-+		return r ? r : -ETIME;
- 	}
- 
- 	r = radeon_bo_kmap(bo, &ptr);
--- 
-2.25.1
+Thanks!
 
+Alex
+
+>
+> Kind regards,
+>
+> Paul
