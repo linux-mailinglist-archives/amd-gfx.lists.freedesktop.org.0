@@ -2,64 +2,64 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6542D43FF41
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Oct 2021 17:15:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C78443FF45
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Oct 2021 17:15:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61A706E14D;
-	Fri, 29 Oct 2021 15:15:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F79A6EA6E;
+	Fri, 29 Oct 2021 15:15:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam07on2081.outbound.protection.outlook.com [40.107.95.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA73B6E14D
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Oct 2021 15:15:27 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2081.outbound.protection.outlook.com [40.107.92.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 075C16E139
+ for <amd-gfx@lists.freedesktop.org>; Fri, 29 Oct 2021 15:15:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HRAYeGgaA8BYvEFw3nl7VYd4qrM/M17BcTFkc9DB7UUXJz8ycu30LylhQUJ8p3jOW0LBMwF/82MnD4jQjyY70NvsqnDeQcOn5ooGH1F+Ke/OqRaUA96z0UIPeq2b9gbUQmw+YEGZVv9k/rysS2cpgzoj8ofYHPvZuLmMS4dI/M7jM8rJkLE6R5x3L5x/QCo01RjjZ1KfroGhRjq622ZJR0F5bcAIfBSNZvnJXhACPjAM5WWqGy6drQ00ET6coVpOB3WS998Kk3nFkWPaspLXl/j+878jTbMv5uOkyVc/ngoa6ngcOB/++EFY0RAMDaCPxamDcEucl6e3LW6m0de3DA==
+ b=ZM+LVS/ueCuHaAA4JW3VykT27WvuX/M8ykCKXgJdCOjHRDOdAHElnWbqvlGJoh3P/xYKjFDPe0PQHN7H3OElORkdh0iCYK4lBynVHZKLY9ZvJSYmSH3aDPFk06W322pAi4s8BV3nPvzQcjpSpQZEJewpqDaoqBHSjHsCq7mKkPq+BCvPgRg/X8qaDJzqcteza4fGPIgGy3qczePC2LuR/eQFt8iJosY5cOVPemaRML9j/cEcl4iYjA5o9um/KD+z+b7dp0Zv5HXpRAGSMLF+1SaXRY7gllYlqoF7GJAzBB4nkiuk7enuxI0CHmAp3qgItoOqUspZ0oxIfKQa/FyFqA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=j9TxKFFIgrZjtX4p2EEgteFhtTyxd37eA2uqY4AV36c=;
- b=IxFyEsmr1dabHd2vLyD1GbGGj7VXaBJi6jUTuCNn429d/PLUI8Po1eP5ZKxFIsK0aa/NALe7xWMZAmPc6anQ5z+3kfOVHk2M+W+P7GYUbf+PIbTIsrUg4XmAlfVbtoWrNWYT0Zx8tGn3SbrUP1YyUVIMb2/1rWBbuoPHa7/gq+Bqowv2WkIu0kF1raHHDExY9pCD/sFu/i+Dzgisu2PY27DIruads003ufdE8XQvAK1/1Jwbfuw+5NGiSBw/VruSsckyjzIu0bnaN1EhqzsktIgOVIBCDITeub6MdfcHnj9nGU7twv4TIKFGQFNyUjDjz/3msh5xYPEOcaOMdNV6EQ==
+ bh=hgxktal3yzuZ0dd2pRDN8qAbwgsDjQjeY+CtVWHz/kw=;
+ b=SyHAIzqaRBxXViwcf/RHcmRMNapx3B5imdor24eenw/TRx8j1ZmYL/QF+nj/tQAfSHJwxY07cV0eB5b6m+ESQ/vZo6I5ropspIicEaUKdeX9L+VPfS6CMdNSl76qzdNPgfHeDt6QoQ0apgmJqtKGXRk5WrldbC7/0XQbEeLCDxWyutJVBHEexnYOVOO3u7AKQ4tPq4YEqNroM8506luEq+w9SZnQ3xEAaiQddfzVRjXqNXteuyOxJ3LM1oPmB+HLXNyprzF84Ikb0WPO5UO8YRMIq69xVudd5kOO/MF0gqpJxjAG3YFXdzlzARjbhv6w9AWsMgagHNoaXRQXCtgFSQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j9TxKFFIgrZjtX4p2EEgteFhtTyxd37eA2uqY4AV36c=;
- b=IsTo24Q4D1rNgEwg3QJ6WScjGPeUibphWaa+Nj4OZbVq4n1rUX7wz99Dm9/1EI+At7WtB2107SH3x/3W73RtN9qtuOkZMJIj7Ff+xDogU9v41k13d9E7eAFbg0SpUkzAC/skhHVLHAlTmxW7hnlBAlPEGjVA4fuPSIuZBAI+GNw=
-Received: from BN8PR15CA0056.namprd15.prod.outlook.com (2603:10b6:408:80::33)
- by DM6PR12MB4466.namprd12.prod.outlook.com (2603:10b6:5:2ae::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.14; Fri, 29 Oct
- 2021 15:15:20 +0000
-Received: from BN8NAM11FT048.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:80:cafe::c5) by BN8PR15CA0056.outlook.office365.com
- (2603:10b6:408:80::33) with Microsoft SMTP Server (version=TLS1_2,
+ bh=hgxktal3yzuZ0dd2pRDN8qAbwgsDjQjeY+CtVWHz/kw=;
+ b=ix27VlSu0L4takh1q/eweTnXdvv3jdUffK1Y8Nb9u/9OIWfof3W7eyf7LNB2ymVjIZy07v7g/hoKqrqdtOE6oKEKVX9AgnJHwyr11TnZ0nmuBIwY8MAid8DwKiYcj/sWs+wNGkONY+XvQHCxFvkcYYRhoeMCNRV7j0KmqytwMp8=
+Received: from BN9PR03CA0756.namprd03.prod.outlook.com (2603:10b6:408:13a::11)
+ by BYAPR12MB2773.namprd12.prod.outlook.com (2603:10b6:a03:72::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.13; Fri, 29 Oct
+ 2021 15:15:36 +0000
+Received: from BN8NAM11FT059.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:13a:cafe::fe) by BN9PR03CA0756.outlook.office365.com
+ (2603:10b6:408:13a::11) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.15 via Frontend
- Transport; Fri, 29 Oct 2021 15:15:19 +0000
+ Transport; Fri, 29 Oct 2021 15:15:35 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
  header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT048.mail.protection.outlook.com (10.13.177.117) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT059.mail.protection.outlook.com (10.13.177.120) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4649.14 via Frontend Transport; Fri, 29 Oct 2021 15:15:19 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.4649.14 via Frontend Transport; Fri, 29 Oct 2021 15:15:35 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Fri, 29 Oct
- 2021 10:15:19 -0500
+ 2021 10:15:20 -0500
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
  (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Fri, 29 Oct
- 2021 10:15:18 -0500
+ 2021 10:15:20 -0500
 Received: from elite-desk-aura.lan (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2308.15 via Frontend
- Transport; Fri, 29 Oct 2021 10:15:17 -0500
+ Transport; Fri, 29 Oct 2021 10:15:19 -0500
 From: Aurabindo Pillai <aurabindo.pillai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
 CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
@@ -67,11 +67,11 @@ CC: <Harry.Wentland@amd.com>, <Sunpeng.Li@amd.com>,
  <Aurabindo.Pillai@amd.com>, <qingqing.zhuo@amd.com>, <mikita.lipski@amd.com>, 
  <roman.li@amd.com>, <Anson.Jacob@amd.com>, <wayne.lin@amd.com>,
  <stylon.wang@amd.com>, <solomon.chiu@amd.com>, <pavle.kotarac@amd.com>,
- <agustin.gutierrez@amd.com>, Jake Wang <haonan.wang2@amd.com>, "Nicholas
- Kazlauskas" <Nicholas.Kazlauskas@amd.com>
-Subject: [PATCH 09/14] drm/amd/display: Added HPO HW control shutdown support
-Date: Fri, 29 Oct 2021 11:14:51 -0400
-Message-ID: <20211029151456.955294-10-aurabindo.pillai@amd.com>
+ <agustin.gutierrez@amd.com>, Jake Wang <haonan.wang2@amd.com>, Eric Yang
+ <eric.yang2@amd.com>
+Subject: [PATCH 10/14] drm/amd/display: Add MPC meory shutdown support
+Date: Fri, 29 Oct 2021 11:14:52 -0400
+Message-ID: <20211029151456.955294-11-aurabindo.pillai@amd.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20211029151456.955294-1-aurabindo.pillai@amd.com>
 References: <20211029151456.955294-1-aurabindo.pillai@amd.com>
@@ -80,28 +80,28 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 77f43990-b29e-44d1-eea1-08d99aeeebc7
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4466:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB446661E95995E746C0D4FF6C8B879@DM6PR12MB4466.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:541;
+X-MS-Office365-Filtering-Correlation-Id: 511e6e53-f22c-4416-062c-08d99aeef555
+X-MS-TrafficTypeDiagnostic: BYAPR12MB2773:
+X-Microsoft-Antispam-PRVS: <BYAPR12MB27735DCF1110268AC695AB918B879@BYAPR12MB2773.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5516;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: A9ZgaE89W3OnbqBpOcSX2al3Xw+OTUK/eIxD5Kt0cg3ZMq+swmVIKDuXkavvH3HYlH8Dq1/E0RTN3wIlf7UtdAHQ/ySb/R4I6W2+zQez9+i08dYN8rOKndJjWT0LsN6lrVRlijuMfbVlCW6J1oHstHIcBx+nD9q3Yq4JRESfJll5lA0UnjTQ+X7GWPglRF5a7lddVJFGOSC3b4Ss3sXvje9W6IVUUqU1vkR1eOBO8jg2x+Fh9znzJFDjTPDKMAUQSkdD2AHAmsRGV+3QLDtpa4ECZav57RMSAYF+krYLoU3D7Ey6e7djgR46jA7CwLY2Q9WTOK86wQXahLNLJ5oEezlTbgvgL0VrzOYC3oFRAU5W/JpASfiqYoWbia/dQqKW31dUSivfMpxJMOdP8Rt9Gr17fvuOXP0m4Uj6lA7Ca0Qe5vGD52xH8qQZNS+jAwkbXL7GdtC/wwTi8AYmcvGusfo0HkLhXDIknEOSuY/VaJYblqQ6wMz9dJluIYQcXAqDEl0OYxmbWuSEoZ3YySWEm69YNG7BVE5orxa8/4EdiHeHVSzgoRLPOHaN6zCouxPVpPSyMSEHar4P6ssVw7yUQx6R9DTtCRXz8BdlyIjw8ETBo62RqT9oAteMnnDUnm/wlpghCpXBJweVpsPGOGevPvR/k1IjoYEsMPTXy2au1izfSO6WIZdGRHyd3ZL2+X77oXsKdBKEuGtyoS4if1ZnsBANNsI1S1nOspAJBSSam/htbYvH/B6vF+uCaeJ0BDtVCdMmz8BNb8uWfd6WUynmIwrUhhnmGXITPNbVrNMZWU8=
+X-Microsoft-Antispam-Message-Info: 0y+EKqo7SdfNy6Y1KA+15BXfXB4afPmng6N0lndiXZHVu8cFE77Kgoei5T+xs3sMRjvoz4Z/ESHprN2rE3gvJwkCP4F1J4cnhc5JfD6CPzgnPwxF5cKAnd3LD8Nvr7zfitv2/txr3KJPSKX+H3xf8rAVb0JFVROVSEnt/xawL7SXNJKZqzVSaEXNQho8qaDNiyfkTVdfjXcN5b9n18WT4/YZYF/aQULom2BTkivk2WgxYrZo6ERqBpWIfcEjtKQYZ0e0syBr0NJG/6sVN3bWzar5feyvb4SnJ0VLh6XJbOIjtH+hqS3oV1+gbE76fe4zl+v5Y2MSH3FdP8Jl6wDqWVSyKvGDHQ1eC9+JJjnd6u03CQNFbCKrmOQtQp/51Y9zzWcF1Igil1jOgsLQkUEkQY8D5ccejrWrT/B4IMswgUMMb9VnI9PBbkB9ZoEgsZz0cDqrtETQ4FDeD/YO+AdT/O/O19zd2EucnnulGKHfp32jdHmSxZcdeoDkxP49KV3qDwPChq6P5TTHfYTln69riR2gOUYHGZIt+Xs4BAINBs/lpilmJjdkXr3SS+Y7+2hM4/wgr+JRwheGMiwV5xAihqVU8BrfqfRxlscUvKBlZ5ykMnAarBO0XDkdzwXKsYL5Vebl8J7RLyWy7NTEdjxUAbZM1gop5KyTHuEOF/MMm8d2wLF7pHU49LNFxYpgzN1bsyjT3u/L0vTzLi4SRx47F/paGvHCHiHYBsbQ3stLioRLVuOzUoWeYKnBd76JeI7mCK7016Whs36VwLK813Rxrg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(316002)(36756003)(86362001)(508600001)(6666004)(336012)(82310400003)(83380400001)(356005)(81166007)(44832011)(4326008)(6916009)(36860700001)(54906003)(70206006)(70586007)(426003)(2616005)(47076005)(1076003)(8676002)(26005)(5660300002)(186003)(2906002)(8936002)(117716001)(36900700001)(309714004);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(46966006)(36840700001)(1076003)(336012)(81166007)(36756003)(6916009)(4326008)(508600001)(82310400003)(316002)(6666004)(186003)(356005)(2906002)(5660300002)(8936002)(44832011)(26005)(70206006)(47076005)(83380400001)(2616005)(8676002)(54906003)(70586007)(426003)(86362001)(36860700001)(117716001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2021 15:15:19.7838 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77f43990-b29e-44d1-eea1-08d99aeeebc7
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2021 15:15:35.7830 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 511e6e53-f22c-4416-062c-08d99aeef555
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT048.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT059.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4466
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2773
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,178 +118,153 @@ Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 From: Jake Wang <haonan.wang2@amd.com>
 
-[Why]
-HPO is only used for DP2.0. HPO HW control should be
-disable when not being used to save power.
-
-[How]
-Shutdown HPO HW control during init hw.
-Shutdown HPO HW control during stream disable.
-Enable HPO HW control during stream enable if DP2.0.
+[Why & How]
+The MPC memory clocks should be powered down when not in use.
 
 Acked-by: Aurabindo Pillai <aurabindo.pillai@amd.com>
 Signed-off-by: Jake Wang <haonan.wang2@amd.com>
-Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Reviewed-by: Eric Yang <eric.yang2@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dc.h                      | 1 +
- drivers/gpu/drm/amd/display/dc/dce/dce_hwseq.h           | 4 +++-
- .../gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c  | 6 ++++++
- drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c       | 3 +++
- drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c       | 9 +++++++++
- drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.h       | 1 +
- drivers/gpu/drm/amd/display/dc/dcn31/dcn31_init.c        | 1 +
- drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c    | 6 ++++--
- .../gpu/drm/amd/display/dc/inc/hw_sequencer_private.h    | 1 +
- 9 files changed, 29 insertions(+), 3 deletions(-)
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c  |  7 +-
+ .../drm/amd/display/dc/dcn31/dcn31_hwseq.c    | 69 +++++++++++--------
+ drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h   |  1 +
+ 3 files changed, 44 insertions(+), 33 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index a5339796902a..e9bac161fd25 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -675,6 +675,7 @@ struct dc_debug_options {
- #endif
- 	union mem_low_power_enable_options enable_mem_low_power;
- 	union root_clock_optimization_options root_clock_optimization;
-+	bool hpo_optimization;
- 	bool force_vblank_alignment;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c
+index a82319f4d081..95149734378b 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c
+@@ -1381,13 +1381,11 @@ int mpcc3_release_rmu(struct mpc *mpc, int mpcc_id)
  
- 	/* Enable dmub aux for legacy ddc */
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_hwseq.h b/drivers/gpu/drm/amd/display/dc/dce/dce_hwseq.h
-index 989f5b6907e2..a3fee929cd12 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_hwseq.h
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_hwseq.h
-@@ -671,6 +671,7 @@ struct dce_hwseq_registers {
- 	uint32_t MC_VM_FB_LOCATION_BASE;
- 	uint32_t MC_VM_FB_LOCATION_TOP;
- 	uint32_t MC_VM_FB_OFFSET;
-+	uint32_t HPO_TOP_HW_CONTROL;
- };
-  /* set field name */
- #define HWS_SF(blk_name, reg_name, field_name, post_fix)\
-@@ -1152,7 +1153,8 @@ struct dce_hwseq_registers {
- 	type DOMAIN_PGFSM_PWR_STATUS;\
- 	type HPO_HDMISTREAMCLK_G_GATE_DIS;\
- 	type DISABLE_HOSTVM_FORCE_ALLOW_PSTATE;\
--	type I2C_LIGHT_SLEEP_FORCE;
-+	type I2C_LIGHT_SLEEP_FORCE;\
-+	type HPO_IO_EN;
- 
- struct dce_hwseq_shift {
- 	HWSEQ_REG_FIELD_LIST(uint8_t)
-diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-index af3e68d3e747..24e47df526f6 100644
---- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-@@ -1244,6 +1244,12 @@ void dce110_disable_stream(struct pipe_ctx *pipe_ctx)
- #endif
- 	if (dc_is_dp_signal(pipe_ctx->stream->signal))
- 		dp_source_sequence_trace(link, DPCD_SOURCE_SEQ_AFTER_DISCONNECT_DIG_FE_BE);
-+
-+#if defined(CONFIG_DRM_AMD_DC_DCN)
-+	if (dc->hwseq->funcs.setup_hpo_hw_control && is_dp_128b_132b_signal(pipe_ctx))
-+		dc->hwseq->funcs.setup_hpo_hw_control(dc->hwseq, false);
-+#endif
-+
  }
  
- void dce110_unblank_stream(struct pipe_ctx *pipe_ctx,
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-index cfee456c6c9a..4f88376a118f 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_hwseq.c
-@@ -2397,6 +2397,9 @@ void dcn20_enable_stream(struct pipe_ctx *pipe_ctx)
- 	 * BY this, it is logic clean to separate stream and link
- 	 */
- 	if (is_dp_128b_132b_signal(pipe_ctx)) {
-+		if (pipe_ctx->stream->ctx->dc->hwseq->funcs.setup_hpo_hw_control)
-+			pipe_ctx->stream->ctx->dc->hwseq->funcs.setup_hpo_hw_control(
-+				pipe_ctx->stream->ctx->dc->hwseq, true);
- 		setup_dp_hpo_stream(pipe_ctx, true);
- 		pipe_ctx->stream_res.hpo_dp_stream_enc->funcs->enable_stream(
- 				pipe_ctx->stream_res.hpo_dp_stream_enc);
+-static void mpc3_mpc_init(struct mpc *mpc)
++static void mpc3_set_mpc_mem_lp_mode(struct mpc *mpc)
+ {
+ 	struct dcn30_mpc *mpc30 = TO_DCN30_MPC(mpc);
+ 	int mpcc_id;
+ 
+-	mpc1_mpc_init(mpc);
+-
+ 	if (mpc->ctx->dc->debug.enable_mem_low_power.bits.mpc) {
+ 		if (mpc30->mpc_mask->MPC_RMU0_MEM_LOW_PWR_MODE && mpc30->mpc_mask->MPC_RMU1_MEM_LOW_PWR_MODE) {
+ 			REG_UPDATE(MPC_RMU_MEM_PWR_CTRL, MPC_RMU0_MEM_LOW_PWR_MODE, 3);
+@@ -1405,7 +1403,7 @@ const struct mpc_funcs dcn30_mpc_funcs = {
+ 	.read_mpcc_state = mpc1_read_mpcc_state,
+ 	.insert_plane = mpc1_insert_plane,
+ 	.remove_mpcc = mpc1_remove_mpcc,
+-	.mpc_init = mpc3_mpc_init,
++	.mpc_init = mpc1_mpc_init,
+ 	.mpc_init_single_inst = mpc1_mpc_init_single_inst,
+ 	.update_blending = mpc2_update_blending,
+ 	.cursor_lock = mpc1_cursor_lock,
+@@ -1432,6 +1430,7 @@ const struct mpc_funcs dcn30_mpc_funcs = {
+ 	.power_on_mpc_mem_pwr = mpc3_power_on_ogam_lut,
+ 	.get_mpc_out_mux = mpc1_get_mpc_out_mux,
+ 	.set_bg_color = mpc1_set_bg_color,
++	.set_mpc_mem_lp_mode = mpc3_set_mpc_mem_lp_mode,
+ };
+ 
+ void dcn30_mpc_construct(struct dcn30_mpc *mpc30,
 diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-index d24ad7754d71..1b089893460a 100644
+index 1b089893460a..5dd1ce9ddb53 100644
 --- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
 +++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-@@ -264,6 +264,9 @@ void dcn31_init_hw(struct dc *dc)
- 	if (dc->debug.enable_mem_low_power.bits.i2c)
- 		REG_UPDATE(DIO_MEM_PWR_CTRL, I2C_LIGHT_SLEEP_FORCE, 1);
+@@ -66,6 +66,45 @@
+ #define FN(reg_name, field_name) \
+ 	hws->shifts->field_name, hws->masks->field_name
  
-+	if (hws->funcs.setup_hpo_hw_control)
-+		hws->funcs.setup_hpo_hw_control(hws, false);
-+
- 	if (!dc->debug.disable_clock_gate) {
- 		/* enable all DCN clock gating */
- 		REG_WRITE(DCCG_GATE_DISABLE_CNTL, 0);
-@@ -597,3 +600,9 @@ void dcn31_reset_hw_ctx_wrap(
- 	/* New dc_state in the process of being applied to hardware. */
- 	dc->current_state->res_ctx.link_enc_cfg_ctx.mode = LINK_ENC_CFG_TRANSIENT;
- }
-+
-+void dcn31_setup_hpo_hw_control(const struct dce_hwseq *hws, bool enable)
++static void enable_memory_low_power(struct dc *dc)
 +{
-+	if (hws->ctx->dc->debug.hpo_optimization)
-+		REG_UPDATE(HPO_TOP_HW_CONTROL, HPO_IO_EN, !!enable);
++	struct dce_hwseq *hws = dc->hwseq;
++	int i;
++
++	if (dc->debug.enable_mem_low_power.bits.dmcu) {
++		// Force ERAM to shutdown if DMCU is not enabled
++		if (dc->debug.disable_dmcu || dc->config.disable_dmcu) {
++			REG_UPDATE(DMU_MEM_PWR_CNTL, DMCU_ERAM_MEM_PWR_FORCE, 3);
++		}
++	}
++
++	// Set default OPTC memory power states
++	if (dc->debug.enable_mem_low_power.bits.optc) {
++		// Shutdown when unassigned and light sleep in VBLANK
++		REG_SET_2(ODM_MEM_PWR_CTRL3, 0, ODM_MEM_UNASSIGNED_PWR_MODE, 3, ODM_MEM_VBLANK_PWR_MODE, 1);
++	}
++
++	if (dc->debug.enable_mem_low_power.bits.vga) {
++		// Power down VGA memory
++		REG_UPDATE(MMHUBBUB_MEM_PWR_CNTL, VGA_MEM_PWR_FORCE, 1);
++	}
++
++	if (dc->debug.enable_mem_low_power.bits.mpc)
++		dc->res_pool->mpc->funcs->set_mpc_mem_lp_mode(dc->res_pool->mpc);
++
++
++	if (dc->debug.enable_mem_low_power.bits.vpg && dc->res_pool->stream_enc[0]->vpg->funcs->vpg_powerdown) {
++		// Power down VPGs
++		for (i = 0; i < dc->res_pool->stream_enc_count; i++)
++			dc->res_pool->stream_enc[i]->vpg->funcs->vpg_powerdown(dc->res_pool->stream_enc[i]->vpg);
++#if defined(CONFIG_DRM_AMD_DC_DCN)
++		for (i = 0; i < dc->res_pool->hpo_dp_stream_enc_count; i++)
++			dc->res_pool->hpo_dp_stream_enc[i]->vpg->funcs->vpg_powerdown(dc->res_pool->hpo_dp_stream_enc[i]->vpg);
++#endif
++	}
++
 +}
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.h b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.h
-index 7ae45dd202d9..edfc01d6ad73 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.h
-@@ -54,5 +54,6 @@ void dcn31_reset_hw_ctx_wrap(
- bool dcn31_is_abm_supported(struct dc *dc,
- 		struct dc_state *context, struct dc_stream_state *stream);
- void dcn31_init_pipes(struct dc *dc, struct dc_state *context);
-+void dcn31_setup_hpo_hw_control(const struct dce_hwseq *hws, bool enable);
++
+ void dcn31_init_hw(struct dc *dc)
+ {
+ 	struct abm **abms = dc->res_pool->multiple_abms;
+@@ -108,35 +147,7 @@ void dcn31_init_hw(struct dc *dc)
+ 	if (res_pool->dccg->funcs->dccg_init)
+ 		res_pool->dccg->funcs->dccg_init(res_pool->dccg);
  
- #endif /* __DC_HWSS_DCN31_H__ */
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_init.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_init.c
-index c6a737781ad1..05335a8c3c2d 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_init.c
-@@ -137,6 +137,7 @@ static const struct hwseq_private_funcs dcn31_private_funcs = {
- 	.dccg_init = dcn20_dccg_init,
- 	.set_blend_lut = dcn30_set_blend_lut,
- 	.set_shaper_3dlut = dcn20_set_shaper_3dlut,
-+	.setup_hpo_hw_control = dcn31_setup_hpo_hw_control,
+-	if (dc->debug.enable_mem_low_power.bits.dmcu) {
+-		// Force ERAM to shutdown if DMCU is not enabled
+-		if (dc->debug.disable_dmcu || dc->config.disable_dmcu) {
+-			REG_UPDATE(DMU_MEM_PWR_CNTL, DMCU_ERAM_MEM_PWR_FORCE, 3);
+-		}
+-	}
+-
+-	// Set default OPTC memory power states
+-	if (dc->debug.enable_mem_low_power.bits.optc) {
+-		// Shutdown when unassigned and light sleep in VBLANK
+-		REG_SET_2(ODM_MEM_PWR_CTRL3, 0, ODM_MEM_UNASSIGNED_PWR_MODE, 3, ODM_MEM_VBLANK_PWR_MODE, 1);
+-	}
+-
+-	if (dc->debug.enable_mem_low_power.bits.vga) {
+-		// Power down VGA memory
+-		REG_UPDATE(MMHUBBUB_MEM_PWR_CNTL, VGA_MEM_PWR_FORCE, 1);
+-	}
+-
+-#if defined(CONFIG_DRM_AMD_DC_DCN)
+-	if (dc->debug.enable_mem_low_power.bits.vpg && dc->res_pool->stream_enc[0]->vpg->funcs->vpg_powerdown) {
+-		// Power down VPGs
+-		for (i = 0; i < dc->res_pool->stream_enc_count; i++)
+-			dc->res_pool->stream_enc[i]->vpg->funcs->vpg_powerdown(dc->res_pool->stream_enc[i]->vpg);
+-#if defined(CONFIG_DRM_AMD_DC_DP2_0)
+-		for (i = 0; i < dc->res_pool->hpo_dp_stream_enc_count; i++)
+-			dc->res_pool->hpo_dp_stream_enc[i]->vpg->funcs->vpg_powerdown(dc->res_pool->hpo_dp_stream_enc[i]->vpg);
+-#endif
+-	}
+-#endif
++	enable_memory_low_power(dc);
+ 
+ 	if (dc->ctx->dc_bios->fw_info_valid) {
+ 		res_pool->ref_clocks.xtalin_clock_inKhz =
+diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h b/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
+index 04d6ec3f021f..f5fd2a067323 100644
+--- a/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
++++ b/drivers/gpu/drm/amd/display/dc/inc/hw/mpc.h
+@@ -367,6 +367,7 @@ struct mpc_funcs {
+ 	void (*set_bg_color)(struct mpc *mpc,
+ 			struct tg_color *bg_color,
+ 			int mpcc_id);
++	void (*set_mpc_mem_lp_mode)(struct mpc *mpc);
  };
  
- void dcn31_hw_sequencer_construct(struct dc *dc)
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-index 6d8a5ffce1d3..a7aeb236a884 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-@@ -860,7 +860,8 @@ static const struct dccg_mask dccg_mask = {
- 	SR(D6VGA_CONTROL), \
- 	SR(DC_IP_REQUEST_CNTL), \
- 	SR(AZALIA_AUDIO_DTO), \
--	SR(AZALIA_CONTROLLER_CLOCK_GATING)
-+	SR(AZALIA_CONTROLLER_CLOCK_GATING), \
-+	SR(HPO_TOP_HW_CONTROL)
- 
- static const struct dce_hwseq_registers hwseq_reg = {
- 		HWSEQ_DCN31_REG_LIST()
-@@ -898,7 +899,8 @@ static const struct dce_hwseq_registers hwseq_reg = {
- 	HWS_SF(, ODM_MEM_PWR_CTRL3, ODM_MEM_UNASSIGNED_PWR_MODE, mask_sh), \
- 	HWS_SF(, ODM_MEM_PWR_CTRL3, ODM_MEM_VBLANK_PWR_MODE, mask_sh), \
- 	HWS_SF(, MMHUBBUB_MEM_PWR_CNTL, VGA_MEM_PWR_FORCE, mask_sh), \
--	HWS_SF(, DIO_MEM_PWR_CTRL, I2C_LIGHT_SLEEP_FORCE, mask_sh)
-+	HWS_SF(, DIO_MEM_PWR_CTRL, I2C_LIGHT_SLEEP_FORCE, mask_sh), \
-+	HWS_SF(, HPO_TOP_HW_CONTROL, HPO_IO_EN, mask_sh)
- 
- static const struct dce_hwseq_shift hwseq_shift = {
- 		HWSEQ_DCN31_MASK_SH_LIST(__SHIFT)
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer_private.h b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer_private.h
-index f324285394be..c2008258c50a 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer_private.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/hw_sequencer_private.h
-@@ -143,6 +143,7 @@ struct hwseq_private_funcs {
- 			const struct dc_plane_state *plane_state);
- 	void (*PLAT_58856_wa)(struct dc_state *context,
- 			struct pipe_ctx *pipe_ctx);
-+	void (*setup_hpo_hw_control)(const struct dce_hwseq *hws, bool enable);
- };
- 
- struct dce_hwseq {
+ #endif
 -- 
 2.30.2
 
