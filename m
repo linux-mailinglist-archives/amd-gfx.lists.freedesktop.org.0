@@ -1,127 +1,103 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A10B843F54E
-	for <lists+amd-gfx@lfdr.de>; Fri, 29 Oct 2021 05:19:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 164FB43F7D4
+	for <lists+amd-gfx@lfdr.de>; Fri, 29 Oct 2021 09:26:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D5406E0EA;
-	Fri, 29 Oct 2021 03:19:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5852A6E9FC;
+	Fri, 29 Oct 2021 07:26:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2079.outbound.protection.outlook.com [40.107.236.79])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD9B26E0EA
- for <amd-gfx@lists.freedesktop.org>; Fri, 29 Oct 2021 03:19:49 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2085.outbound.protection.outlook.com [40.107.92.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 215FD6E9B4;
+ Fri, 29 Oct 2021 06:38:49 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LRXRR2xZBjDhdpE4LVpRC2+6ywGXN8h417MQOj554qNSt7WsKaQ4v1GplMahwTJII8AZQAV9cHh41E6oTQcReCiUC3qSNQo3y3IHwwdGtCn8336RrsVAWm3keZ3YFPNHkkeEgHFSYKgIOBB1FX4oWqjj9i3zLBL+1fuMmOgHibda2XbAmC/n4NCjwHoBILi533xVmkX9LThIrA04Cn+cOX0lciGJnP5uKppU64DvuIy9QcztIYvKQ9HuojFBlJtEqkGEjXpQdGRS3T50MRMQsprpOwwRsa6fSy4BsV701BelwyBgI6UpqZaJAEXew1Bv1dYLXPBmybwytuVUzXajNg==
+ b=gsM8Wbg4P9fGEuoy9/h9FcLR1nTymtVypuMNtRwGBcc+U0uQZtzuu0nZeMW/UkZ1b4zTB/0QlmzHkq9dCJ1UETSZerccdfmWg1n8BcksZ9Tb1TDC0KjNNDhlESbL1ax8HPlBHyCP4cJLrKBIEaqWSYZK7wOHqWdtF+hAEAqWEGxQxBU5E5kwQbZlC/7vLjNNdQFxKtHrPT1fiI1ke+amJn9xKs/41WrE8eJrxz9GqNTEFSb4kluG79WOoCYlhAIwR+FUFDf7/J78M4MnCPp2bKwDgEGM6SZOm4H1vq60Wu7yrkymy4ToIbWY0hBuKYrhmC4a/g571NYATREFXCPZZw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=esa+GjXtTzTiak5U+iZjhZ7ecmPqDrImI2jEsBq2P/Y=;
- b=E4KY/xHsgohbo9Kz8wST+T1r2EIi9JsbzTvZUtR6EkChxB4JbIMQS0sWmtGNP8R6p8haKrn2BH5b1NbYCsNcq+eQ7AuzaY2Nja3yBvX+HPHTyG1+uJuT1J4NhREFg3OS819s2CPVpU3SzAyzYbCzyjekucvKhvyy/l+nGS35zIAL70CZzrjS1o7V4VY+NylpUY0/tx79rmp9LccgXkIEkvp6rxD1fDI0ltOw5lBdnTSmwv5MEyodzzBda89XVFh8j+E0FgwDFxQGv5zXPdTDTQTZ6CorcnmUmjWwpUBjg68dNg1N1etgWpX4MZidfvk/riEeoy7+Nalg3VL6LAtrwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ bh=k/rZWz0XZA2pdAYti2nbhxbp0JbgPFZoo6nk7EdU0Xw=;
+ b=HhZXT+/vZMlWovYtW5OzSq4qQcE+baosouSHxtQnLb/5so2S1AcHZA8M2sLHqpYZXPyKcFlHHYL24sm9qBMWSpY0cunP+Ja4SZrASnpRWGYpRKr++GrWRW6XmDcZYtat2CIBBZLNgqQ2pgzCHJz+KZUR9VNnDU2NdCbMjNAox1MU6KYKglxOAY8EjHMmE1Bh8lfuNz9II+9pbEvo6N45EOKcMWXAv65yqOcDkhxF4AGPkY8ELjdsPk2GmCTkZPMZl8jlmvVZQ3+RuyVkHXxX/CKikxdSbld1FtsdyQVhgh2AYV3MvsK51qvFHbV89qux4ujqFQS7LsziovntCmzaOA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.112.34) smtp.rcpttodomain=lists.freedesktop.org
+ smtp.mailfrom=nvidia.com; dmarc=pass (p=quarantine sp=quarantine pct=100)
+ action=none header.from=nvidia.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=esa+GjXtTzTiak5U+iZjhZ7ecmPqDrImI2jEsBq2P/Y=;
- b=03X1rHvIql8n9aECHnhPBDy9Fj1UtP7xl4Ac7AQUncGS4TG04P1ONrsXbP6UjBq5MemXZCa+75ZM1xs21jBUxpTkLw61WoZywIDe6i5akUAxQr34Hc0kXjXiNNikto1LREF2RIoSRHNjRpmeLfhMQndqcIfIw3R//H5w018mKcQ=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=amd.com;
-Received: from SA0PR12MB4510.namprd12.prod.outlook.com (2603:10b6:806:94::8)
- by SN1PR12MB2542.namprd12.prod.outlook.com (2603:10b6:802:26::28) with
+ bh=k/rZWz0XZA2pdAYti2nbhxbp0JbgPFZoo6nk7EdU0Xw=;
+ b=EQ3QJrSLTFA+A0Q6lr+WDgfZ0PP4FeodrbvjcWmh9eB4m6r/Sh+g3HuS4HKnsyULM0IkFfJOrDB1os5uTMXiLGPZF5OwF/wAPwb3zICTErW1Fq9lq/ZRdtIpCSrGXOFFLa80gAJgjkpE9b+BVtP/di5TINjHg/+M2pB3zFyLzYCAutRcbw0l263rd7gTusrlv7k593YOIE0G1FTHcn//PQCDve6tIGSjasrCdUM4VTvtSW1R8zVfYPQB8f40gKbSlyiMdCPK4BHwlXMgDeEHTcB6wnh4hljTgiUFlZclEasCWFxW8eAAk2mLi7wnPmKtwzmJVhpHMxM+etq+xkJlXA==
+Received: from CO1PR15CA0086.namprd15.prod.outlook.com (2603:10b6:101:20::30)
+ by DM6PR12MB3417.namprd12.prod.outlook.com (2603:10b6:5:118::33) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18; Fri, 29 Oct
- 2021 03:19:47 +0000
-Received: from SA0PR12MB4510.namprd12.prod.outlook.com
- ([fe80::7cbc:2454:74b9:f4ea]) by SA0PR12MB4510.namprd12.prod.outlook.com
- ([fe80::7cbc:2454:74b9:f4ea%6]) with mapi id 15.20.4649.015; Fri, 29 Oct 2021
- 03:19:47 +0000
-Message-ID: <7c10a524-db12-4245-333f-3bc9141dda42@amd.com>
-Date: Thu, 28 Oct 2021 22:18:42 -0500
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [PATCH] drm/amdgpu/pm: drop pp_power_profile_mode support for APUs
-Content-Language: en-US
-To: Alex Deucher <alexdeucher@gmail.com>, Huang Rui <ray.huang@amd.com>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
-References: <20211028155336.2990-1-mario.limonciello@amd.com>
- <YXtd7LmF7Brsjrpk@hr-amd>
- <CADnq5_Oq_foFBO3fDCa=Zij53J_ULp=brHkMOm6h_9j0ow1J8w@mail.gmail.com>
-From: "Limonciello, Mario" <mario.limonciello@amd.com>
-In-Reply-To: <CADnq5_Oq_foFBO3fDCa=Zij53J_ULp=brHkMOm6h_9j0ow1J8w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SA9P221CA0022.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:806:25::27) To SA0PR12MB4510.namprd12.prod.outlook.com
- (2603:10b6:806:94::8)
+ 2021 06:38:45 +0000
+Received: from CO1NAM11FT009.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:101:20:cafe::98) by CO1PR15CA0086.outlook.office365.com
+ (2603:10b6:101:20::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.15 via Frontend
+ Transport; Fri, 29 Oct 2021 06:38:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
+ smtp.mailfrom=nvidia.com; lists.freedesktop.org; dkim=none (message not
+ signed) header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.34; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.34) by
+ CO1NAM11FT009.mail.protection.outlook.com (10.13.175.61) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4649.14 via Frontend Transport; Fri, 29 Oct 2021 06:38:45 +0000
+Received: from nvdebian.localnet (172.20.187.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 29 Oct
+ 2021 06:38:40 +0000
+From: Alistair Popple <apopple@nvidia.com>
+To: <akpm@linux-foundation.org>, Felix Kuehling <felix.kuehling@amd.com>
+CC: <kvm-ppc@vger.kernel.org>, <linuxppc-dev@lists.ozlabs.org>,
+ <alexander.deucher@amd.com>, <linux-mm@kvack.org>,
+ <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+ <nouveau@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <jglisse@redhat.com>, <jhubbard@nvidia.com>, <ziy@nvidia.com>,
+ <rcampbell@nvidia.com>, <hch@lst.de>, <bskeggs@redhat.com>
+Subject: Re: [PATCH] mm/migrate.c: Remove MIGRATE_PFN_LOCKED
+Date: Fri, 29 Oct 2021 17:38:38 +1100
+Message-ID: <2040710.b8zS7i3PnK@nvdebian>
+In-Reply-To: <130148f1-2676-16e2-b2a5-bf21f2a5481a@amd.com>
+References: <20211025041608.289017-1-apopple@nvidia.com>
+ <2096706.TdNOD7Y7u4@nvdebian> <130148f1-2676-16e2-b2a5-bf21f2a5481a@amd.com>
 MIME-Version: 1.0
-Received: from [192.168.2.8] (76.251.167.31) by
- SA9P221CA0022.NAMP221.PROD.OUTLOOK.COM (2603:10b6:806:25::27) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4628.18 via Frontend Transport; Fri, 29 Oct 2021 03:19:46 +0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Originating-IP: [172.20.187.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8fa455e2-082b-4e64-5f61-08d99a8af5a8
-X-MS-TrafficTypeDiagnostic: SN1PR12MB2542:
-X-Microsoft-Antispam-PRVS: <SN1PR12MB25428537504500EB7E59323CE2879@SN1PR12MB2542.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:17;
+X-MS-Office365-Filtering-Correlation-Id: 293cd915-d408-4d65-1bc3-08d99aa6c18b
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3417:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB34174072F8B90CA9D8427F97DF879@DM6PR12MB3417.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: b3CrfvqPEg2xpFy7Fd0eL7B3a4xOlerIVeQT/6SAbGgsTrvMvslZNOw16VvhmteI3UnvsVAyq3Pmv2iJBYF6pyzoa6JWnoz0Tnx4HIsMA1BVZyOBertEFM65MU6vgzTFBmHrZaxdAYhC2RdCv51PbEbMGKs8vy0sKkCweKpZgMF5t9nFRW2c7wDf7i9lLyBbqlF1FMuq0gak6ID1Pi6iHWDcejeN8KhCcODwHVWrTwOvh5lI0elUF4n52i/0NxzTQFpsB7hGjTA8Ctf3JbA+0bBj1dFDi2BMRD4RqNgIkUZs7SdlyhZZTmXeCUtTJPJB+5NLpCZa2SxxdtJo4XEez2+Egg3HbO7wq15gKZffZ0VSiHeQdBFfHHF0SIvh2d08nC1AmhyEtJiQnpbHarUJ9D6UGZcNy+5Gn1NlwbFGJKQDIY4kC5h/k+yUgf/UcaqD0ImnviM5NeCNiCDNPrww5K3YP/Ezc1/F1J3ZXjkvWhwV5iUeido0PuERzt0qBiBi6kspKN34RrRDXUnpJfK/NFw6TFsZruvwzioa2NMSJh3knROIYNlkSqaWwXjyKdxTlURp2Nwn2XdLOvh4CYGYfs5FTPGZ7hr57ChCkoT7ELzpyi6CZX4z4WW0UCHIPfGHD4/6KAM4Of8GQYKK4MmztN12gFc0tvUKUnI2FJ+lOwfqFqTBdObHeAFHuNp7ASQahDAmcWllvB1wX8Ib7yQJ7lXWj9rtvXxHGbvb5JSaqtbXZk2ER+5jI+tqpqC6mfbP
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA0PR12MB4510.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(36756003)(53546011)(4326008)(316002)(86362001)(38100700002)(2906002)(31696002)(6636002)(2616005)(6486002)(26005)(110136005)(19627235002)(956004)(186003)(16576012)(30864003)(6666004)(66946007)(66556008)(508600001)(5660300002)(8676002)(66476007)(8936002)(31686004)(83380400001)(43740500002)(45980500001);
+X-Microsoft-Antispam-Message-Info: Ct/xMQUcbLVm76JCLL2Wk1/0OR+tz88rSlVmWhIewhY2a7RmiHOMJpZm7tjYJqVoXXjVXI0nLb5A5iRIWzUsGQMEKSASvH9Wf+kUrxJKsFgTpFJ7LRDJrv04clok838zq/8SnIgZwfiOg1L/YJ7oE9zpby0TqbDXNIfa1bp35xGqXUe6AaSg+981xf/tIcmVgHhIaLaNvDa7KaNh3tH+AoiDlNsi52TLZQXArkqC8EFl5RWQpcltmVyUjGMUGNltspX3gb3+zWpnEN4LXFLRGCOUP6YOWdE8wLSLtrRi1oLpBg2lZdhUxpZxlNqGdt7U+ZuXIHmkZATL/THBRymQ31F9Q/qZjrnDALnDr0MP88OSVYWBvADE+vRR2IjSMGK5HSwHsEpAYotUNELrlg9ZX1ovA3zqBp6cozHBP2OTv2k3vkFfxAK3Mke9gkc6ESMSAgoLWkSWvsf28Lj1sF63eOvnk+pu0AS6VmhqbslkEmdwjdV9PCzHmfKX1UFSS8zYGG1J0LhR6OIKN0GhlhSWxAXtUveWw54BUptqii9k9A32SBP5A9xaPg2RKsl6/AiKKorSbTwfJ4rPTyW8yI0+0kLwVoCPfFqpWlFGjiBqH00qxS1cXyDazijtxPFE5VHTaLLnKri29ULq8izuEInSxl5FP3EMGf51JSQVYjvW3Ky4oMx7sGjRiKvQA6btJ15Uy03i9Yg9zXBzdIys4oDTMHL86KJ797Cx1BzFHDlUX5M=
+X-Forefront-Antispam-Report: CIP:216.228.112.34; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:schybrid03.nvidia.com; CAT:NONE;
+ SFS:(4636009)(46966006)(36840700001)(70206006)(70586007)(33716001)(8676002)(16526019)(2906002)(356005)(316002)(7416002)(110136005)(83380400001)(82310400003)(30864003)(426003)(54906003)(4326008)(4001150100001)(7636003)(47076005)(9686003)(36860700001)(508600001)(5660300002)(36906005)(336012)(8936002)(9576002)(186003)(26005)(86362001)(39026012);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?em1xZmhVcnF4cXNUMUtsVmM5RWRRV0p0MEt5Y1dHU01hZUNQRG1GZDFkMnVD?=
- =?utf-8?B?YjlMbjQyUHg3K3EzRTgzdk5WckRGTGJOZkhDZE9uTURzSno2cmcwTTdzeTZZ?=
- =?utf-8?B?MzcydDFuV3IyYnloeFNKRmFwT0ZqdnlraEtwaVFJNTd4NHg4MGFDb00wcFVZ?=
- =?utf-8?B?RnZjUWlVM2Q2MFptZ1MxRXU1KzZsVlZlWGEyZStxNXFhYUQwYjFjMXBlOThG?=
- =?utf-8?B?VFFZYm5hNlVlM1pjNTZwTnR5RXRZVjFmYVBDQ05pU1NQdmVHQU43ai94SW5H?=
- =?utf-8?B?Z1B5TFJ3VDFmQ0hIVDh5UEdkWW96MjduYTE2WUkvY1hudkhoMExYbTB0OHdy?=
- =?utf-8?B?b3crNGZWY1J5c3Y2OUFuRkJqWXB0d0FjL1VGMDBQTzNXOTRsb1NHcHhqd2tk?=
- =?utf-8?B?cUJVa25qNUVybkQ1QmhjRkZSZnY0M3hKSm1jcHVzNnRQQUtIcW42VVZtRU5M?=
- =?utf-8?B?VVVWQ1VMTXRGNDk1VWIzaFc1dE5NUktYL1lUSlFxQXBid08xbXJ1VnBqMS9l?=
- =?utf-8?B?dlNveGRXMllVTUJ0WUxncW5NQS9JanRGL1FHeGtSSG11YlNsbTNQN3ZEdHJZ?=
- =?utf-8?B?SDUwcHJTRHRqWVV4bk93RUhUOVFmN0pNdEt1YU1pOEpvLzc0TFV5TmR3MFBx?=
- =?utf-8?B?WlBHdkdsdWI3TWxtcUpHbVFUV1dIYW5iQTFPSStTYjcwRUFqY1J0QjhlcUx6?=
- =?utf-8?B?WmFWczQ2Z2pJNWRLT29ObU1sQ3FzTjFJNkZoM0FaUWYvRlZSQmFyVUJka0N2?=
- =?utf-8?B?SmNwdGdYdSs1UUExclZHR3NPQThPcklaSWUwcjJ0K1ZHbktUUjhUcjM3NXpF?=
- =?utf-8?B?SSsvampDWHBld1NvSGt6MU9iclk4YmNRL0JTL3lyOGVUaWc2bGs5WjRBcktW?=
- =?utf-8?B?Y2NVaWQ2NEkzOGZISHd2VGc5OU9XSlYvVStac0Q2ZGFjV0hnN0NOUGlVTXJh?=
- =?utf-8?B?eDFhbVFEdWpybnlpZ1pUR1JWUE5kcU5mNUNNQzZvcmlwc0hhL3lzRjk4QkN4?=
- =?utf-8?B?MWUwNVJ0Sk5GL0o2ZXcwUUQraGlpZHpTMS9MWmtSZXhML1FTaDdMQ0ovSE9v?=
- =?utf-8?B?cm8xM2ROSkgwSnRKOXE1U3ZacWN0d1IzNDIvZVF2L2Q0NnlycHJvYTJ5SDVK?=
- =?utf-8?B?WlNFTTl1UnVMQmJOMHVISUF1V3BzcFVpNGxlY2ZGUEJJRnhRUHVsL0xsQmFw?=
- =?utf-8?B?K1hYV0dPU2tDNnRVYXo4RExicDhOTVZDUFhHK3YxYTIvNmlwQkE1eWJ2QXl0?=
- =?utf-8?B?Ky9IMDhJdUZudE1YMVVsd3RXcTBNalpDOVNkUXRmOWVBWXBmTFhEYTduZ1pD?=
- =?utf-8?B?L0NjMVFYWjV5NU9XK2QxZ1N6SGRzUnFITTVSZDJUVmVXdHVNKzFndVdXOEZG?=
- =?utf-8?B?S2NrejdoRHNGcjBqRmJhUXlVVjNZT1dSVmo2TkJIeDU1STdEb3g1RlVGR1ZF?=
- =?utf-8?B?cUU2ODFCVzhFNlJBN1d2QmgxZUhPL0FaZFg2cUExNis0N25xR01lUjFrUG5D?=
- =?utf-8?B?Sk9RdnA3V1ZuYXBuNkYzU1V0RXNzbmNWZ1J2bVVQQWRRVnlGZDZuR2FaMXRG?=
- =?utf-8?B?elNZZFF1QnJRODFvTVIzOXZ6VFliYjFnc0plSHFJemp3Vm1JTFVkOUNmSVpz?=
- =?utf-8?B?V1NSR2VoNnNQcHZuWkU0d3o1eWVZZHhRVk80SEJSbi95ZElkZ3pyMUZnYldI?=
- =?utf-8?B?UEloMm9tcm9lcjQralJ1YTFPM2VHM3FvSW1kaHZuMlZadTBmeXZUVXF1WExE?=
- =?utf-8?B?cWNZMUVneFU1djFWTGVZU0YyZGVhbXZVT2pGdzNQckxNR3pmT0Fkd2Y5dG9k?=
- =?utf-8?B?SE1KaGl1SFNLT3BqenNRUnR0aElLTlZPbjA0R0dBejR4ODYxUGRQc0hVUkxm?=
- =?utf-8?B?ZFBKWWhjOGlINXNqT2wrWnJQbDRBNFQ2ZkY4N1A5aGtXTThaUGlFalY4S25j?=
- =?utf-8?B?RmtCekJyZS85SFFNdGEzd0JvcHdjbTNsSnZmMlRvMGJ2MHFLa1I2bXJCUHgv?=
- =?utf-8?B?Mzc0amFjd245d0R4ZEF4VWZYVEtxbGZMVkZXVE9WZGFzNEhZaUNKWkoyOGZN?=
- =?utf-8?B?REF2elhTRzJqQk1rYVd1ZEprZVRWUXVBQ0s0QkdoMWd6bUltZDZhWEFuMCsz?=
- =?utf-8?B?VnF4Y0FuV2daWkdNOWFnd1pUYWdLbHgydkEvUW5VSUFQQjVhWGxpTnhacEsz?=
- =?utf-8?Q?tMLskfm/F1bwUZ4h7ciMN44=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8fa455e2-082b-4e64-5f61-08d99a8af5a8
-X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB4510.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2021 03:19:46.9064 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Sn7W8pDB8CntmtYcdb276ddn6qUIop0yKmCWgRV5TDNYvDGDh001wLR6JLYtORMnVRa1+0le6ZYG/3JWu8NdHg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2542
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2021 06:38:45.0904 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 293cd915-d408-4d65-1bc3-08d99aa6c18b
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.112.34];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT009.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3417
+X-Mailman-Approved-At: Fri, 29 Oct 2021 07:26:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,452 +112,419 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 10/28/2021 22:08, Alex Deucher wrote:
-> On Thu, Oct 28, 2021 at 10:35 PM Huang Rui <ray.huang@amd.com> wrote:
->>
->> On Thu, Oct 28, 2021 at 10:53:36AM -0500, Mario Limonciello wrote:
->>> Although this has been plumbed for Renoir, Green Sardine, Van Gogh,
->>> and Yellow Carp the functionality in the SMU doesn't do anything for
->>
->> I double confirmed them in the firmware. These messages are actually
->> existed in SMU firmware of Renoir, Van Gogh, and Green Sardine, we should
->> not remove them in these platforms.
+On Friday, 29 October 2021 2:33:31 AM AEDT Felix Kuehling wrote:
+> Am 2021-10-27 um 9:42 p.m. schrieb Alistair Popple:
+> > On Wednesday, 27 October 2021 3:09:57 AM AEDT Felix Kuehling wrote:
+> >> Am 2021-10-25 um 12:16 a.m. schrieb Alistair Popple:
+> >>> MIGRATE_PFN_LOCKED is used to indicate to migrate_vma_prepare() that a
+> >>> source page was already locked during migrate_vma_collect(). If it
+> >>> wasn't then the a second attempt is made to lock the page. However if
+> >>> the first attempt failed it's unlikely a second attempt will succeed,
+> >>> and the retry adds complexity. So clean this up by removing the retry
+> >>> and MIGRATE_PFN_LOCKED flag.
+> >>>
+> >>> Destination pages are also meant to have the MIGRATE_PFN_LOCKED flag
+> >>> set, but nothing actually checks that.
+> >>>
+> >>> Signed-off-by: Alistair Popple <apopple@nvidia.com>
+> >> It makes sense to me. Do you have any empirical data on how much more
+> >> likely migrations are going to fail with this change due to contested
+> >> page locks?
+> > Thanks Felix. I do not have any empirical data on this but I've mostly seen
+> > migrations fail due to the reference count check failing rather than failure to
+> > lock the page. Even then it's mostly been due to thrashing on the same page, so
+> > I would be surprised if this change made any noticeable difference.
 > 
-> I heard that at least on renoir variants, the messages still exist,
-> but they no longer do anything. >
-> Alex
-> 
-> 
->>
->> And for Yellow Carp, it is better to use a firmware check to skip the
->> function than remove them entirely in case somebody doesn't upgrade his/her
->> SBIOS.
+> We have seen more page locking contention on NUMA systems that disappear
+> when we disable NUMA balancing. Probably NUMA balancing migrations
+> result in the page lock being more contended, which can cause HMM
+> migration of some pages to fail.
 
-For YC even on older SBIOS the function is a no-op and doesn't "do 
-anything" from my understanding.
+Yeah, we've found NUMA balancing in general is pretty unhelpful for HMM based
+migrations and mappings so have been looking into ways of disabling it for HMM
+ranges.
 
->>
->> Thanks,
->> Ray
->>
->>> these APUs.  Drop the associated code with them.
->>>
->>> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
->>> ---
->>>   .../gpu/drm/amd/pm/inc/smu_v13_0_1_ppsmc.h    |  4 +-
->>>   .../gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c  | 86 ------------------
->>>   .../gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c   | 87 -------------------
->>>   .../drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c  | 87 -------------------
->>>   4 files changed, 2 insertions(+), 262 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1_ppsmc.h b/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1_ppsmc.h
->>> index 1d3447991d0c..23d24173bc5d 100644
->>> --- a/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1_ppsmc.h
->>> +++ b/drivers/gpu/drm/amd/pm/inc/smu_v13_0_1_ppsmc.h
->>> @@ -51,7 +51,7 @@
->>>   #define PPSMC_MSG_PowerUpVcn                    0x07 ///< Power up VCN; VCN is power gated by default
->>>   #define PPSMC_MSG_SetHardMinVcn                 0x08 ///< For wireless display
->>>   #define PPSMC_MSG_SetSoftMinGfxclk              0x09 ///< Set SoftMin for GFXCLK, argument is frequency in MHz
->>> -#define PPSMC_MSG_ActiveProcessNotify           0x0A ///< Set active work load type
->>> +#define PPSMC_MSG_SPARE0                        0x0A ///< Spare
->>>   #define PPSMC_MSG_ForcePowerDownGfx             0x0B ///< Force power down GFX, i.e. enter GFXOFF
->>>   #define PPSMC_MSG_PrepareMp1ForUnload           0x0C ///< Prepare PMFW for GFX driver unload
->>>   #define PPSMC_MSG_SetDriverDramAddrHigh         0x0D ///< Set high 32 bits of DRAM address for Driver table transfer
->>> @@ -63,7 +63,7 @@
->>>   #define PPSMC_MSG_SetHardMinSocclkByFreq        0x13 ///< Set hard min for SOC CLK
->>>   #define PPSMC_MSG_SetSoftMinFclk                0x14 ///< Set hard min for FCLK
->>>   #define PPSMC_MSG_SetSoftMinVcn                 0x15 ///< Set soft min for VCN clocks (VCLK and DCLK)
->>> -#define PPSMC_MSG_SPARE0                        0x16 ///< Spared
->>> +#define PPSMC_MSG_SPARE1                        0x16 ///< Spare
->>>   #define PPSMC_MSG_GetGfxclkFrequency            0x17 ///< Get GFX clock frequency
->>>   #define PPSMC_MSG_GetFclkFrequency              0x18 ///< Get FCLK frequency
->>>   #define PPSMC_MSG_AllowGfxOff                   0x19 ///< Inform PMFW of allowing GFXOFF entry
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
->>> index 421f38e8dada..2451d990d577 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
->>> @@ -72,7 +72,6 @@ static struct cmn2asic_msg_mapping vangogh_message_map[SMU_MSG_MAX_COUNT] = {
->>>        MSG_MAP(RlcPowerNotify,                 PPSMC_MSG_RlcPowerNotify,               0),
->>>        MSG_MAP(SetHardMinVcn,                  PPSMC_MSG_SetHardMinVcn,                0),
->>>        MSG_MAP(SetSoftMinGfxclk,               PPSMC_MSG_SetSoftMinGfxclk,             0),
->>> -     MSG_MAP(ActiveProcessNotify,            PPSMC_MSG_ActiveProcessNotify,          0),
->>>        MSG_MAP(SetHardMinIspiclkByFreq,        PPSMC_MSG_SetHardMinIspiclkByFreq,      0),
->>>        MSG_MAP(SetHardMinIspxclkByFreq,        PPSMC_MSG_SetHardMinIspxclkByFreq,      0),
->>>        MSG_MAP(SetDriverDramAddrHigh,          PPSMC_MSG_SetDriverDramAddrHigh,        0),
->>> @@ -182,14 +181,6 @@ static struct cmn2asic_mapping vangogh_table_map[SMU_TABLE_COUNT] = {
->>>        TAB_MAP_VALID(DPMCLOCKS),
->>>   };
->>>
->>> -static struct cmn2asic_mapping vangogh_workload_map[PP_SMC_POWER_PROFILE_COUNT] = {
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_FULLSCREEN3D,         WORKLOAD_PPLIB_FULL_SCREEN_3D_BIT),
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_VIDEO,                WORKLOAD_PPLIB_VIDEO_BIT),
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_VR,                   WORKLOAD_PPLIB_VR_BIT),
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_COMPUTE,              WORKLOAD_PPLIB_COMPUTE_BIT),
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_CUSTOM,               WORKLOAD_PPLIB_CUSTOM_BIT),
->>> -};
->>> -
->>>   static const uint8_t vangogh_throttler_map[] = {
->>>        [THROTTLER_STATUS_BIT_SPL]      = (SMU_THROTTLER_SPL_BIT),
->>>        [THROTTLER_STATUS_BIT_FPPT]     = (SMU_THROTTLER_FPPT_BIT),
->>> @@ -1010,80 +1001,6 @@ static int vangogh_get_dpm_ultimate_freq(struct smu_context *smu,
->>>        return ret;
->>>   }
->>>
->>> -static int vangogh_get_power_profile_mode(struct smu_context *smu,
->>> -                                        char *buf)
->>> -{
->>> -     static const char *profile_name[] = {
->>> -                                     "BOOTUP_DEFAULT",
->>> -                                     "3D_FULL_SCREEN",
->>> -                                     "POWER_SAVING",
->>> -                                     "VIDEO",
->>> -                                     "VR",
->>> -                                     "COMPUTE",
->>> -                                     "CUSTOM"};
->>> -     uint32_t i, size = 0;
->>> -     int16_t workload_type = 0;
->>> -
->>> -     if (!buf)
->>> -             return -EINVAL;
->>> -
->>> -     for (i = 0; i <= PP_SMC_POWER_PROFILE_CUSTOM; i++) {
->>> -             /*
->>> -              * Conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT
->>> -              * Not all profile modes are supported on vangogh.
->>> -              */
->>> -             workload_type = smu_cmn_to_asic_specific_index(smu,
->>> -                                                            CMN2ASIC_MAPPING_WORKLOAD,
->>> -                                                            i);
->>> -
->>> -             if (workload_type < 0)
->>> -                     continue;
->>> -
->>> -             size += sysfs_emit_at(buf, size, "%2d %14s%s\n",
->>> -                     i, profile_name[i], (i == smu->power_profile_mode) ? "*" : " ");
->>> -     }
->>> -
->>> -     return size;
->>> -}
->>> -
->>> -static int vangogh_set_power_profile_mode(struct smu_context *smu, long *input, uint32_t size)
->>> -{
->>> -     int workload_type, ret;
->>> -     uint32_t profile_mode = input[size];
->>> -
->>> -     if (profile_mode > PP_SMC_POWER_PROFILE_CUSTOM) {
->>> -             dev_err(smu->adev->dev, "Invalid power profile mode %d\n", profile_mode);
->>> -             return -EINVAL;
->>> -     }
->>> -
->>> -     if (profile_mode == PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT ||
->>> -                     profile_mode == PP_SMC_POWER_PROFILE_POWERSAVING)
->>> -             return 0;
->>> -
->>> -     /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
->>> -     workload_type = smu_cmn_to_asic_specific_index(smu,
->>> -                                                    CMN2ASIC_MAPPING_WORKLOAD,
->>> -                                                    profile_mode);
->>> -     if (workload_type < 0) {
->>> -             dev_dbg(smu->adev->dev, "Unsupported power profile mode %d on VANGOGH\n",
->>> -                                     profile_mode);
->>> -             return -EINVAL;
->>> -     }
->>> -
->>> -     ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_ActiveProcessNotify,
->>> -                                 1 << workload_type,
->>> -                                 NULL);
->>> -     if (ret) {
->>> -             dev_err_once(smu->adev->dev, "Fail to set workload type %d\n",
->>> -                                     workload_type);
->>> -             return ret;
->>> -     }
->>> -
->>> -     smu->power_profile_mode = profile_mode;
->>> -
->>> -     return 0;
->>> -}
->>> -
->>>   static int vangogh_set_soft_freq_limited_range(struct smu_context *smu,
->>>                                          enum smu_clk_type clk_type,
->>>                                          uint32_t min,
->>> @@ -2190,8 +2107,6 @@ static const struct pptable_funcs vangogh_ppt_funcs = {
->>>        .set_fine_grain_gfx_freq_parameters = vangogh_set_fine_grain_gfx_freq_parameters,
->>>        .system_features_control = vangogh_system_features_control,
->>>        .feature_is_enabled = smu_cmn_feature_is_enabled,
->>> -     .set_power_profile_mode = vangogh_set_power_profile_mode,
->>> -     .get_power_profile_mode = vangogh_get_power_profile_mode,
->>>        .get_dpm_clock_table = vangogh_get_dpm_clock_table,
->>>        .force_clk_levels = vangogh_force_clk_levels,
->>>        .set_performance_level = vangogh_set_performance_level,
->>> @@ -2210,6 +2125,5 @@ void vangogh_set_ppt_funcs(struct smu_context *smu)
->>>        smu->message_map = vangogh_message_map;
->>>        smu->feature_map = vangogh_feature_mask_map;
->>>        smu->table_map = vangogh_table_map;
->>> -     smu->workload_map = vangogh_workload_map;
->>>        smu->is_apu = true;
->>>   }
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
->>> index 145f13b8c977..21da7989f1ba 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu12/renoir_ppt.c
->>> @@ -58,7 +58,6 @@ static struct cmn2asic_msg_mapping renoir_message_map[SMU_MSG_MAX_COUNT] = {
->>>        MSG_MAP(SetHardMinVcn,                  PPSMC_MSG_SetHardMinVcn,                1),
->>>        MSG_MAP(SetAllowFclkSwitch,             PPSMC_MSG_SetAllowFclkSwitch,           1),
->>>        MSG_MAP(SetMinVideoGfxclkFreq,          PPSMC_MSG_SetMinVideoGfxclkFreq,        1),
->>> -     MSG_MAP(ActiveProcessNotify,            PPSMC_MSG_ActiveProcessNotify,          1),
->>>        MSG_MAP(SetCustomPolicy,                PPSMC_MSG_SetCustomPolicy,              1),
->>>        MSG_MAP(SetVideoFps,                    PPSMC_MSG_SetVideoFps,                  1),
->>>        MSG_MAP(NumOfDisplays,                  PPSMC_MSG_SetDisplayCount,              1),
->>> @@ -120,14 +119,6 @@ static struct cmn2asic_mapping renoir_table_map[SMU_TABLE_COUNT] = {
->>>        TAB_MAP_VALID(SMU_METRICS),
->>>   };
->>>
->>> -static struct cmn2asic_mapping renoir_workload_map[PP_SMC_POWER_PROFILE_COUNT] = {
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_FULLSCREEN3D,         WORKLOAD_PPLIB_FULL_SCREEN_3D_BIT),
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_VIDEO,                WORKLOAD_PPLIB_VIDEO_BIT),
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_VR,                   WORKLOAD_PPLIB_VR_BIT),
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_COMPUTE,              WORKLOAD_PPLIB_COMPUTE_BIT),
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_CUSTOM,               WORKLOAD_PPLIB_CUSTOM_BIT),
->>> -};
->>> -
->>>   static const uint8_t renoir_throttler_map[] = {
->>>        [THROTTLER_STATUS_BIT_SPL]              = (SMU_THROTTLER_SPL_BIT),
->>>        [THROTTLER_STATUS_BIT_FPPT]             = (SMU_THROTTLER_FPPT_BIT),
->>> @@ -854,46 +845,6 @@ static int renoir_force_clk_levels(struct smu_context *smu,
->>>        return ret;
->>>   }
->>>
->>> -static int renoir_set_power_profile_mode(struct smu_context *smu, long *input, uint32_t size)
->>> -{
->>> -     int workload_type, ret;
->>> -     uint32_t profile_mode = input[size];
->>> -
->>> -     if (profile_mode > PP_SMC_POWER_PROFILE_CUSTOM) {
->>> -             dev_err(smu->adev->dev, "Invalid power profile mode %d\n", profile_mode);
->>> -             return -EINVAL;
->>> -     }
->>> -
->>> -     if (profile_mode == PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT ||
->>> -                     profile_mode == PP_SMC_POWER_PROFILE_POWERSAVING)
->>> -             return 0;
->>> -
->>> -     /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
->>> -     workload_type = smu_cmn_to_asic_specific_index(smu,
->>> -                                                    CMN2ASIC_MAPPING_WORKLOAD,
->>> -                                                    profile_mode);
->>> -     if (workload_type < 0) {
->>> -             /*
->>> -              * TODO: If some case need switch to powersave/default power mode
->>> -              * then can consider enter WORKLOAD_COMPUTE/WORKLOAD_CUSTOM for power saving.
->>> -              */
->>> -             dev_dbg(smu->adev->dev, "Unsupported power profile mode %d on RENOIR\n", profile_mode);
->>> -             return -EINVAL;
->>> -     }
->>> -
->>> -     ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_ActiveProcessNotify,
->>> -                                 1 << workload_type,
->>> -                                 NULL);
->>> -     if (ret) {
->>> -             dev_err_once(smu->adev->dev, "Fail to set workload type %d\n", workload_type);
->>> -             return ret;
->>> -     }
->>> -
->>> -     smu->power_profile_mode = profile_mode;
->>> -
->>> -     return 0;
->>> -}
->>> -
->>>   static int renoir_set_peak_clock_by_device(struct smu_context *smu)
->>>   {
->>>        int ret = 0;
->>> @@ -1092,41 +1043,6 @@ static int renoir_set_watermarks_table(
->>>        return 0;
->>>   }
->>>
->>> -static int renoir_get_power_profile_mode(struct smu_context *smu,
->>> -                                        char *buf)
->>> -{
->>> -     static const char *profile_name[] = {
->>> -                                     "BOOTUP_DEFAULT",
->>> -                                     "3D_FULL_SCREEN",
->>> -                                     "POWER_SAVING",
->>> -                                     "VIDEO",
->>> -                                     "VR",
->>> -                                     "COMPUTE",
->>> -                                     "CUSTOM"};
->>> -     uint32_t i, size = 0;
->>> -     int16_t workload_type = 0;
->>> -
->>> -     if (!buf)
->>> -             return -EINVAL;
->>> -
->>> -     for (i = 0; i <= PP_SMC_POWER_PROFILE_CUSTOM; i++) {
->>> -             /*
->>> -              * Conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT
->>> -              * Not all profile modes are supported on arcturus.
->>> -              */
->>> -             workload_type = smu_cmn_to_asic_specific_index(smu,
->>> -                                                            CMN2ASIC_MAPPING_WORKLOAD,
->>> -                                                            i);
->>> -             if (workload_type < 0)
->>> -                     continue;
->>> -
->>> -             size += sysfs_emit_at(buf, size, "%2d %14s%s\n",
->>> -                     i, profile_name[i], (i == smu->power_profile_mode) ? "*" : " ");
->>> -     }
->>> -
->>> -     return size;
->>> -}
->>> -
->>>   static int renoir_get_smu_metrics_data(struct smu_context *smu,
->>>                                       MetricsMember_t member,
->>>                                       uint32_t *value)
->>> @@ -1389,11 +1305,9 @@ static const struct pptable_funcs renoir_ppt_funcs = {
->>>        .dpm_set_vcn_enable = renoir_dpm_set_vcn_enable,
->>>        .dpm_set_jpeg_enable = renoir_dpm_set_jpeg_enable,
->>>        .force_clk_levels = renoir_force_clk_levels,
->>> -     .set_power_profile_mode = renoir_set_power_profile_mode,
->>>        .set_performance_level = renoir_set_performance_level,
->>>        .get_dpm_clock_table = renoir_get_dpm_clock_table,
->>>        .set_watermarks_table = renoir_set_watermarks_table,
->>> -     .get_power_profile_mode = renoir_get_power_profile_mode,
->>>        .read_sensor = renoir_read_sensor,
->>>        .check_fw_status = smu_v12_0_check_fw_status,
->>>        .check_fw_version = smu_v12_0_check_fw_version,
->>> @@ -1429,7 +1343,6 @@ void renoir_set_ppt_funcs(struct smu_context *smu)
->>>        smu->message_map = renoir_message_map;
->>>        smu->clock_map = renoir_clk_map;
->>>        smu->table_map = renoir_table_map;
->>> -     smu->workload_map = renoir_workload_map;
->>>        smu->smc_driver_if_version = SMU12_DRIVER_IF_VERSION;
->>>        smu->is_apu = true;
->>>   }
->>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
->>> index a403657151ba..8215bbf5ed7c 100644
->>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
->>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
->>> @@ -64,7 +64,6 @@ static struct cmn2asic_msg_mapping yellow_carp_message_map[SMU_MSG_MAX_COUNT] =
->>>        MSG_MAP(PowerDownVcn,                   PPSMC_MSG_PowerDownVcn,                 1),
->>>        MSG_MAP(PowerUpVcn,                     PPSMC_MSG_PowerUpVcn,                   1),
->>>        MSG_MAP(SetHardMinVcn,                  PPSMC_MSG_SetHardMinVcn,                1),
->>> -     MSG_MAP(ActiveProcessNotify,            PPSMC_MSG_ActiveProcessNotify,          1),
->>>        MSG_MAP(PrepareMp1ForUnload,            PPSMC_MSG_PrepareMp1ForUnload,      1),
->>>        MSG_MAP(SetDriverDramAddrHigh,          PPSMC_MSG_SetDriverDramAddrHigh,        1),
->>>        MSG_MAP(SetDriverDramAddrLow,           PPSMC_MSG_SetDriverDramAddrLow,         1),
->>> @@ -135,14 +134,6 @@ static struct cmn2asic_mapping yellow_carp_table_map[SMU_TABLE_COUNT] = {
->>>        TAB_MAP_VALID(CUSTOM_DPM),
->>>        TAB_MAP_VALID(DPMCLOCKS),
->>>   };
->>> -
->>> -static struct cmn2asic_mapping yellow_carp_workload_map[PP_SMC_POWER_PROFILE_COUNT] = {
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_FULLSCREEN3D,         WORKLOAD_PPLIB_FULL_SCREEN_3D_BIT),
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_VIDEO,                WORKLOAD_PPLIB_VIDEO_BIT),
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_VR,                   WORKLOAD_PPLIB_VR_BIT),
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_COMPUTE,              WORKLOAD_PPLIB_COMPUTE_BIT),
->>> -     WORKLOAD_MAP(PP_SMC_POWER_PROFILE_CUSTOM,               WORKLOAD_PPLIB_CUSTOM_BIT),
->>> -};
->>>
->>>   static int yellow_carp_init_smc_tables(struct smu_context *smu)
->>>   {
->>> @@ -543,81 +534,6 @@ static int yellow_carp_set_watermarks_table(struct smu_context *smu,
->>>        return 0;
->>>   }
->>>
->>> -static int yellow_carp_get_power_profile_mode(struct smu_context *smu,
->>> -                                             char *buf)
->>> -{
->>> -     static const char *profile_name[] = {
->>> -                                     "BOOTUP_DEFAULT",
->>> -                                     "3D_FULL_SCREEN",
->>> -                                     "POWER_SAVING",
->>> -                                     "VIDEO",
->>> -                                     "VR",
->>> -                                     "COMPUTE",
->>> -                                     "CUSTOM"};
->>> -     uint32_t i, size = 0;
->>> -     int16_t workload_type = 0;
->>> -
->>> -     if (!buf)
->>> -             return -EINVAL;
->>> -
->>> -     for (i = 0; i <= PP_SMC_POWER_PROFILE_CUSTOM; i++) {
->>> -             /*
->>> -              * Conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT.
->>> -              * Not all profile modes are supported on yellow carp.
->>> -              */
->>> -             workload_type = smu_cmn_to_asic_specific_index(smu,
->>> -                                                            CMN2ASIC_MAPPING_WORKLOAD,
->>> -                                                            i);
->>> -
->>> -             if (workload_type < 0)
->>> -                     continue;
->>> -
->>> -             size += sysfs_emit_at(buf, size, "%2d %14s%s\n",
->>> -                     i, profile_name[i], (i == smu->power_profile_mode) ? "*" : " ");
->>> -     }
->>> -
->>> -     return size;
->>> -}
->>> -
->>> -static int yellow_carp_set_power_profile_mode(struct smu_context *smu,
->>> -                                             long *input, uint32_t size)
->>> -{
->>> -     int workload_type, ret;
->>> -     uint32_t profile_mode = input[size];
->>> -
->>> -     if (profile_mode > PP_SMC_POWER_PROFILE_CUSTOM) {
->>> -             dev_err(smu->adev->dev, "Invalid power profile mode %d\n", profile_mode);
->>> -             return -EINVAL;
->>> -     }
->>> -
->>> -     if (profile_mode == PP_SMC_POWER_PROFILE_BOOTUP_DEFAULT ||
->>> -                     profile_mode == PP_SMC_POWER_PROFILE_POWERSAVING)
->>> -             return 0;
->>> -
->>> -     /* conv PP_SMC_POWER_PROFILE* to WORKLOAD_PPLIB_*_BIT */
->>> -     workload_type = smu_cmn_to_asic_specific_index(smu,
->>> -                                                    CMN2ASIC_MAPPING_WORKLOAD,
->>> -                                                    profile_mode);
->>> -     if (workload_type < 0) {
->>> -             dev_dbg(smu->adev->dev, "Unsupported power profile mode %d on YELLOWCARP\n",
->>> -                                     profile_mode);
->>> -             return -EINVAL;
->>> -     }
->>> -
->>> -     ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_ActiveProcessNotify,
->>> -                                 1 << workload_type,
->>> -                                 NULL);
->>> -     if (ret) {
->>> -             dev_err_once(smu->adev->dev, "Fail to set workload type %d\n",
->>> -                                     workload_type);
->>> -             return ret;
->>> -     }
->>> -
->>> -     smu->power_profile_mode = profile_mode;
->>> -
->>> -     return 0;
->>> -}
->>> -
->>>   static ssize_t yellow_carp_get_gpu_metrics(struct smu_context *smu,
->>>                                                void **table)
->>>   {
->>> @@ -1238,8 +1154,6 @@ static const struct pptable_funcs yellow_carp_ppt_funcs = {
->>>        .read_sensor = yellow_carp_read_sensor,
->>>        .is_dpm_running = yellow_carp_is_dpm_running,
->>>        .set_watermarks_table = yellow_carp_set_watermarks_table,
->>> -     .get_power_profile_mode = yellow_carp_get_power_profile_mode,
->>> -     .set_power_profile_mode = yellow_carp_set_power_profile_mode,
->>>        .get_gpu_metrics = yellow_carp_get_gpu_metrics,
->>>        .get_enabled_mask = smu_cmn_get_enabled_32_bits_mask,
->>>        .get_pp_feature_mask = smu_cmn_get_pp_feature_mask,
->>> @@ -1261,6 +1175,5 @@ void yellow_carp_set_ppt_funcs(struct smu_context *smu)
->>>        smu->message_map = yellow_carp_message_map;
->>>        smu->feature_map = yellow_carp_feature_mask_map;
->>>        smu->table_map = yellow_carp_table_map;
->>> -     smu->workload_map = yellow_carp_workload_map;
->>>        smu->is_apu = true;
->>>   }
->>> --
->>> 2.25.1
->>>
+> Also, for migrations to system memory, multiple threads page faulting
+> concurrently can cause contention. I was just helping debug such an
+> issue. Having migrations to system memory be only partially successful
+> is problematic. We'll probably have to implement some retry logic in the
+> driver to handle this.
+
+Sounds similar to the problem I was referring to, except in my case I was
+seeing contention on the page reference checks due to lots of threads hitting
+__migration_entry_wait() at just the wrong time. I am working on a fix for that
+that avoids taking the reference at all, however I think retry logic will still
+be needed and suspect a driver is probably the best place to implement that.
+
+> Regards,
+>   Felix
+> 
+> 
+> >
+> >> Either way, the patch is
+> >>
+> >> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
+> >>
+> >>
+> >>> ---
+> >>>  Documentation/vm/hmm.rst                 |   2 +-
+> >>>  arch/powerpc/kvm/book3s_hv_uvmem.c       |   4 +-
+> >>>  drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |   2 -
+> >>>  drivers/gpu/drm/nouveau/nouveau_dmem.c   |   4 +-
+> >>>  include/linux/migrate.h                  |   1 -
+> >>>  lib/test_hmm.c                           |   5 +-
+> >>>  mm/migrate.c                             | 145 +++++------------------
+> >>>  7 files changed, 35 insertions(+), 128 deletions(-)
+> >>>
+> >>> diff --git a/Documentation/vm/hmm.rst b/Documentation/vm/hmm.rst
+> >>> index a14c2938e7af..f2a59ed82ed3 100644
+> >>> --- a/Documentation/vm/hmm.rst
+> >>> +++ b/Documentation/vm/hmm.rst
+> >>> @@ -360,7 +360,7 @@ between device driver specific code and shared common code:
+> >>>     system memory page, locks the page with ``lock_page()``, and fills in the
+> >>>     ``dst`` array entry with::
+> >>>  
+> >>> -     dst[i] = migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
+> >>> +     dst[i] = migrate_pfn(page_to_pfn(dpage));
+> >>>  
+> >>>     Now that the driver knows that this page is being migrated, it can
+> >>>     invalidate device private MMU mappings and copy device private memory
+> >>> diff --git a/arch/powerpc/kvm/book3s_hv_uvmem.c b/arch/powerpc/kvm/book3s_hv_uvmem.c
+> >>> index a7061ee3b157..28c436df9935 100644
+> >>> --- a/arch/powerpc/kvm/book3s_hv_uvmem.c
+> >>> +++ b/arch/powerpc/kvm/book3s_hv_uvmem.c
+> >>> @@ -560,7 +560,7 @@ static int __kvmppc_svm_page_out(struct vm_area_struct *vma,
+> >>>  				  gpa, 0, page_shift);
+> >>>  
+> >>>  	if (ret == U_SUCCESS)
+> >>> -		*mig.dst = migrate_pfn(pfn) | MIGRATE_PFN_LOCKED;
+> >>> +		*mig.dst = migrate_pfn(pfn);
+> >>>  	else {
+> >>>  		unlock_page(dpage);
+> >>>  		__free_page(dpage);
+> >>> @@ -774,7 +774,7 @@ static int kvmppc_svm_page_in(struct vm_area_struct *vma,
+> >>>  		}
+> >>>  	}
+> >>>  
+> >>> -	*mig.dst = migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
+> >>> +	*mig.dst = migrate_pfn(page_to_pfn(dpage));
+> >>>  	migrate_vma_pages(&mig);
+> >>>  out_finalize:
+> >>>  	migrate_vma_finalize(&mig);
+> >>> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+> >>> index 4a16e3c257b9..41d9417f182b 100644
+> >>> --- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+> >>> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+> >>> @@ -300,7 +300,6 @@ svm_migrate_copy_to_vram(struct amdgpu_device *adev, struct svm_range *prange,
+> >>>  			migrate->dst[i] = svm_migrate_addr_to_pfn(adev, dst[i]);
+> >>>  			svm_migrate_get_vram_page(prange, migrate->dst[i]);
+> >>>  			migrate->dst[i] = migrate_pfn(migrate->dst[i]);
+> >>> -			migrate->dst[i] |= MIGRATE_PFN_LOCKED;
+> >>>  			src[i] = dma_map_page(dev, spage, 0, PAGE_SIZE,
+> >>>  					      DMA_TO_DEVICE);
+> >>>  			r = dma_mapping_error(dev, src[i]);
+> >>> @@ -580,7 +579,6 @@ svm_migrate_copy_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
+> >>>  			      dst[i] >> PAGE_SHIFT, page_to_pfn(dpage));
+> >>>  
+> >>>  		migrate->dst[i] = migrate_pfn(page_to_pfn(dpage));
+> >>> -		migrate->dst[i] |= MIGRATE_PFN_LOCKED;
+> >>>  		j++;
+> >>>  	}
+> >>>  
+> >>> diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+> >>> index 92987daa5e17..3828aafd3ac4 100644
+> >>> --- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
+> >>> +++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+> >>> @@ -166,7 +166,7 @@ static vm_fault_t nouveau_dmem_fault_copy_one(struct nouveau_drm *drm,
+> >>>  		goto error_dma_unmap;
+> >>>  	mutex_unlock(&svmm->mutex);
+> >>>  
+> >>> -	args->dst[0] = migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
+> >>> +	args->dst[0] = migrate_pfn(page_to_pfn(dpage));
+> >>>  	return 0;
+> >>>  
+> >>>  error_dma_unmap:
+> >>> @@ -602,7 +602,7 @@ static unsigned long nouveau_dmem_migrate_copy_one(struct nouveau_drm *drm,
+> >>>  		((paddr >> PAGE_SHIFT) << NVIF_VMM_PFNMAP_V0_ADDR_SHIFT);
+> >>>  	if (src & MIGRATE_PFN_WRITE)
+> >>>  		*pfn |= NVIF_VMM_PFNMAP_V0_W;
+> >>> -	return migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
+> >>> +	return migrate_pfn(page_to_pfn(dpage));
+> >>>  
+> >>>  out_dma_unmap:
+> >>>  	dma_unmap_page(dev, *dma_addr, PAGE_SIZE, DMA_BIDIRECTIONAL);
+> >>> diff --git a/include/linux/migrate.h b/include/linux/migrate.h
+> >>> index c8077e936691..479b861ae490 100644
+> >>> --- a/include/linux/migrate.h
+> >>> +++ b/include/linux/migrate.h
+> >>> @@ -119,7 +119,6 @@ static inline int migrate_misplaced_page(struct page *page,
+> >>>   */
+> >>>  #define MIGRATE_PFN_VALID	(1UL << 0)
+> >>>  #define MIGRATE_PFN_MIGRATE	(1UL << 1)
+> >>> -#define MIGRATE_PFN_LOCKED	(1UL << 2)
+> >>>  #define MIGRATE_PFN_WRITE	(1UL << 3)
+> >>>  #define MIGRATE_PFN_SHIFT	6
+> >>>  
+> >>> diff --git a/lib/test_hmm.c b/lib/test_hmm.c
+> >>> index c259842f6d44..e2ce8f9b7605 100644
+> >>> --- a/lib/test_hmm.c
+> >>> +++ b/lib/test_hmm.c
+> >>> @@ -613,8 +613,7 @@ static void dmirror_migrate_alloc_and_copy(struct migrate_vma *args,
+> >>>  		 */
+> >>>  		rpage->zone_device_data = dmirror;
+> >>>  
+> >>> -		*dst = migrate_pfn(page_to_pfn(dpage)) |
+> >>> -			    MIGRATE_PFN_LOCKED;
+> >>> +		*dst = migrate_pfn(page_to_pfn(dpage));
+> >>>  		if ((*src & MIGRATE_PFN_WRITE) ||
+> >>>  		    (!spage && args->vma->vm_flags & VM_WRITE))
+> >>>  			*dst |= MIGRATE_PFN_WRITE;
+> >>> @@ -1137,7 +1136,7 @@ static vm_fault_t dmirror_devmem_fault_alloc_and_copy(struct migrate_vma *args,
+> >>>  		lock_page(dpage);
+> >>>  		xa_erase(&dmirror->pt, addr >> PAGE_SHIFT);
+> >>>  		copy_highpage(dpage, spage);
+> >>> -		*dst = migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
+> >>> +		*dst = migrate_pfn(page_to_pfn(dpage));
+> >>>  		if (*src & MIGRATE_PFN_WRITE)
+> >>>  			*dst |= MIGRATE_PFN_WRITE;
+> >>>  	}
+> >>> diff --git a/mm/migrate.c b/mm/migrate.c
+> >>> index a6a7743ee98f..915e969811d0 100644
+> >>> --- a/mm/migrate.c
+> >>> +++ b/mm/migrate.c
+> >>> @@ -2369,7 +2369,6 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+> >>>  		 * can't be dropped from it).
+> >>>  		 */
+> >>>  		get_page(page);
+> >>> -		migrate->cpages++;
+> >>>  
+> >>>  		/*
+> >>>  		 * Optimize for the common case where page is only mapped once
+> >>> @@ -2379,7 +2378,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+> >>>  		if (trylock_page(page)) {
+> >>>  			pte_t swp_pte;
+> >>>  
+> >>> -			mpfn |= MIGRATE_PFN_LOCKED;
+> >>> +			migrate->cpages++;
+> >>>  			ptep_get_and_clear(mm, addr, ptep);
+> >>>  
+> >>>  			/* Setup special migration page table entry */
+> >>> @@ -2413,6 +2412,9 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+> >>>  
+> >>>  			if (pte_present(pte))
+> >>>  				unmapped++;
+> >>> +		} else {
+> >>> +			put_page(page);
+> >>> +			mpfn = 0;
+> >>>  		}
+> >>>  
+> >>>  next:
+> >>> @@ -2517,15 +2519,17 @@ static bool migrate_vma_check_page(struct page *page)
+> >>>  }
+> >>>  
+> >>>  /*
+> >>> - * migrate_vma_prepare() - lock pages and isolate them from the lru
+> >>> + * migrate_vma_unmap() - replace page mapping with special migration pte entry
+> >>>   * @migrate: migrate struct containing all migration information
+> >>>   *
+> >>> - * This locks pages that have been collected by migrate_vma_collect(). Once each
+> >>> - * page is locked it is isolated from the lru (for non-device pages). Finally,
+> >>> - * the ref taken by migrate_vma_collect() is dropped, as locked pages cannot be
+> >>> - * migrated by concurrent kernel threads.
+> >>> + * Isolate pages from the LRU and replace mappings (CPU page table pte) with a
+> >>> + * special migration pte entry and check if it has been pinned. Pinned pages are
+> >>> + * restored because we cannot migrate them.
+> >>> + *
+> >>> + * This is the last step before we call the device driver callback to allocate
+> >>> + * destination memory and copy contents of original page over to new page.
+> >>>   */
+> >>> -static void migrate_vma_prepare(struct migrate_vma *migrate)
+> >>> +static void migrate_vma_unmap(struct migrate_vma *migrate)
+> >>>  {
+> >>>  	const unsigned long npages = migrate->npages;
+> >>>  	const unsigned long start = migrate->start;
+> >>> @@ -2534,32 +2538,12 @@ static void migrate_vma_prepare(struct migrate_vma *migrate)
+> >>>  
+> >>>  	lru_add_drain();
+> >>>  
+> >>> -	for (i = 0; (i < npages) && migrate->cpages; i++) {
+> >>> +	for (i = 0; i < npages; i++) {
+> >>>  		struct page *page = migrate_pfn_to_page(migrate->src[i]);
+> >>> -		bool remap = true;
+> >>>  
+> >>>  		if (!page)
+> >>>  			continue;
+> >>>  
+> >>> -		if (!(migrate->src[i] & MIGRATE_PFN_LOCKED)) {
+> >>> -			/*
+> >>> -			 * Because we are migrating several pages there can be
+> >>> -			 * a deadlock between 2 concurrent migration where each
+> >>> -			 * are waiting on each other page lock.
+> >>> -			 *
+> >>> -			 * Make migrate_vma() a best effort thing and backoff
+> >>> -			 * for any page we can not lock right away.
+> >>> -			 */
+> >>> -			if (!trylock_page(page)) {
+> >>> -				migrate->src[i] = 0;
+> >>> -				migrate->cpages--;
+> >>> -				put_page(page);
+> >>> -				continue;
+> >>> -			}
+> >>> -			remap = false;
+> >>> -			migrate->src[i] |= MIGRATE_PFN_LOCKED;
+> >>> -		}
+> >>> -
+> >>>  		/* ZONE_DEVICE pages are not on LRU */
+> >>>  		if (!is_zone_device_page(page)) {
+> >>>  			if (!PageLRU(page) && allow_drain) {
+> >>> @@ -2569,16 +2553,9 @@ static void migrate_vma_prepare(struct migrate_vma *migrate)
+> >>>  			}
+> >>>  
+> >>>  			if (isolate_lru_page(page)) {
+> >>> -				if (remap) {
+> >>> -					migrate->src[i] &= ~MIGRATE_PFN_MIGRATE;
+> >>> -					migrate->cpages--;
+> >>> -					restore++;
+> >>> -				} else {
+> >>> -					migrate->src[i] = 0;
+> >>> -					unlock_page(page);
+> >>> -					migrate->cpages--;
+> >>> -					put_page(page);
+> >>> -				}
+> >>> +				migrate->src[i] &= ~MIGRATE_PFN_MIGRATE;
+> >>> +				migrate->cpages--;
+> >>> +				restore++;
+> >>>  				continue;
+> >>>  			}
+> >>>  
+> >>> @@ -2586,80 +2563,20 @@ static void migrate_vma_prepare(struct migrate_vma *migrate)
+> >>>  			put_page(page);
+> >>>  		}
+> >>>  
+> >>> -		if (!migrate_vma_check_page(page)) {
+> >>> -			if (remap) {
+> >>> -				migrate->src[i] &= ~MIGRATE_PFN_MIGRATE;
+> >>> -				migrate->cpages--;
+> >>> -				restore++;
+> >>> -
+> >>> -				if (!is_zone_device_page(page)) {
+> >>> -					get_page(page);
+> >>> -					putback_lru_page(page);
+> >>> -				}
+> >>> -			} else {
+> >>> -				migrate->src[i] = 0;
+> >>> -				unlock_page(page);
+> >>> -				migrate->cpages--;
+> >>> +		if (page_mapped(page))
+> >>> +			try_to_migrate(page, 0);
+> >>>  
+> >>> -				if (!is_zone_device_page(page))
+> >>> -					putback_lru_page(page);
+> >>> -				else
+> >>> -					put_page(page);
+> >>> +		if (page_mapped(page) || !migrate_vma_check_page(page)) {
+> >>> +			if (!is_zone_device_page(page)) {
+> >>> +				get_page(page);
+> >>> +				putback_lru_page(page);
+> >>>  			}
+> >>> -		}
+> >>> -	}
+> >>> -
+> >>> -	for (i = 0, addr = start; i < npages && restore; i++, addr += PAGE_SIZE) {
+> >>> -		struct page *page = migrate_pfn_to_page(migrate->src[i]);
+> >>> -
+> >>> -		if (!page || (migrate->src[i] & MIGRATE_PFN_MIGRATE))
+> >>> -			continue;
+> >>>  
+> >>> -		remove_migration_pte(page, migrate->vma, addr, page);
+> >>> -
+> >>> -		migrate->src[i] = 0;
+> >>> -		unlock_page(page);
+> >>> -		put_page(page);
+> >>> -		restore--;
+> >>> -	}
+> >>> -}
+> >>> -
+> >>> -/*
+> >>> - * migrate_vma_unmap() - replace page mapping with special migration pte entry
+> >>> - * @migrate: migrate struct containing all migration information
+> >>> - *
+> >>> - * Replace page mapping (CPU page table pte) with a special migration pte entry
+> >>> - * and check again if it has been pinned. Pinned pages are restored because we
+> >>> - * cannot migrate them.
+> >>> - *
+> >>> - * This is the last step before we call the device driver callback to allocate
+> >>> - * destination memory and copy contents of original page over to new page.
+> >>> - */
+> >>> -static void migrate_vma_unmap(struct migrate_vma *migrate)
+> >>> -{
+> >>> -	const unsigned long npages = migrate->npages;
+> >>> -	const unsigned long start = migrate->start;
+> >>> -	unsigned long addr, i, restore = 0;
+> >>> -
+> >>> -	for (i = 0; i < npages; i++) {
+> >>> -		struct page *page = migrate_pfn_to_page(migrate->src[i]);
+> >>> -
+> >>> -		if (!page || !(migrate->src[i] & MIGRATE_PFN_MIGRATE))
+> >>> +			migrate->src[i] &= ~MIGRATE_PFN_MIGRATE;
+> >>> +			migrate->cpages--;
+> >>> +			restore++;
+> >>>  			continue;
+> >>> -
+> >>> -		if (page_mapped(page)) {
+> >>> -			try_to_migrate(page, 0);
+> >>> -			if (page_mapped(page))
+> >>> -				goto restore;
+> >>>  		}
+> >>> -
+> >>> -		if (migrate_vma_check_page(page))
+> >>> -			continue;
+> >>> -
+> >>> -restore:
+> >>> -		migrate->src[i] &= ~MIGRATE_PFN_MIGRATE;
+> >>> -		migrate->cpages--;
+> >>> -		restore++;
+> >>>  	}
+> >>>  
+> >>>  	for (addr = start, i = 0; i < npages && restore; addr += PAGE_SIZE, i++) {
+> >>> @@ -2672,12 +2589,8 @@ static void migrate_vma_unmap(struct migrate_vma *migrate)
+> >>>  
+> >>>  		migrate->src[i] = 0;
+> >>>  		unlock_page(page);
+> >>> +		put_page(page);
+> >>>  		restore--;
+> >>> -
+> >>> -		if (is_zone_device_page(page))
+> >>> -			put_page(page);
+> >>> -		else
+> >>> -			putback_lru_page(page);
+> >>>  	}
+> >>>  }
+> >>>  
+> >>> @@ -2700,8 +2613,8 @@ static void migrate_vma_unmap(struct migrate_vma *migrate)
+> >>>   * it for all those entries (ie with MIGRATE_PFN_VALID and MIGRATE_PFN_MIGRATE
+> >>>   * flag set).  Once these are allocated and copied, the caller must update each
+> >>>   * corresponding entry in the dst array with the pfn value of the destination
+> >>> - * page and with the MIGRATE_PFN_VALID and MIGRATE_PFN_LOCKED flags set
+> >>> - * (destination pages must have their struct pages locked, via lock_page()).
+> >>> + * page and with MIGRATE_PFN_VALID. Destination pages must be locked via
+> >>> + * lock_page().
+> >>>   *
+> >>>   * Note that the caller does not have to migrate all the pages that are marked
+> >>>   * with MIGRATE_PFN_MIGRATE flag in src array unless this is a migration from
+> >>> @@ -2770,8 +2683,6 @@ int migrate_vma_setup(struct migrate_vma *args)
+> >>>  
+> >>>  	migrate_vma_collect(args);
+> >>>  
+> >>> -	if (args->cpages)
+> >>> -		migrate_vma_prepare(args);
+> >>>  	if (args->cpages)
+> >>>  		migrate_vma_unmap(args);
+> >>>  
+> >
+> >
+> 
+
+
+
 
