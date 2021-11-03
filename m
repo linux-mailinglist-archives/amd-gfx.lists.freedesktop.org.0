@@ -2,41 +2,71 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25EB2444048
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 Nov 2021 12:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C08264441C5
+	for <lists+amd-gfx@lfdr.de>; Wed,  3 Nov 2021 13:42:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE8FF6EA2D;
-	Wed,  3 Nov 2021 11:02:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3BDE7348E;
+	Wed,  3 Nov 2021 12:42:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8C6D6E9C9;
- Wed,  3 Nov 2021 11:02:21 +0000 (UTC)
-X-IronPort-AV: E=McAfee;i="6200,9189,10156"; a="231425867"
-X-IronPort-AV: E=Sophos;i="5.87,205,1631602800"; d="scan'208";a="231425867"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2021 04:02:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,205,1631602800"; d="scan'208";a="541655211"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 03 Nov 2021 04:02:11 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 03 Nov 2021 13:02:11 +0200
-Date: Wed, 3 Nov 2021 13:02:11 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maxime Ripard <maxime@cerno.tech>
-Subject: Re: [PATCH 01/13] drm/connector: Add define for HDMI 1.4 Maximum
- Pixel Rate
-Message-ID: <YYJsM6/hZ43b1tm9@intel.com>
-References: <20211102145944.259181-1-maxime@cerno.tech>
- <20211102145944.259181-2-maxime@cerno.tech>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43E8A8828E
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Nov 2021 12:28:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1635942511;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=lDu7V2UPes5WjN4f5IhHpRndmxXdgV1k4QHUorLyZaY=;
+ b=Q31US0TDp7NJ+SVm3GcvQbNyDLxlkjjDI1jk1Kvf24K+Tm9P0/3dyfy/AysAAu/nWyy/bh
+ P1t6Q6FpQwVQlWJOtfQgJ5+ULAJ4GmtyS7Qlq2d5EGhAZCbmhKhFWKf/RNj7yXomy2UN3/
+ k1zVWinFFy9YtmH1Ub2yp26eOOGXZdo=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-381-jr3vCDpcPZG4utCWFmC1WA-1; Wed, 03 Nov 2021 08:28:28 -0400
+X-MC-Unique: jr3vCDpcPZG4utCWFmC1WA-1
+Received: by mail-wm1-f72.google.com with SMTP id
+ v10-20020a1cf70a000000b00318203a6bd1so1008790wmh.6
+ for <amd-gfx@lists.freedesktop.org>; Wed, 03 Nov 2021 05:28:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=lDu7V2UPes5WjN4f5IhHpRndmxXdgV1k4QHUorLyZaY=;
+ b=ipMddGMqPu7hzDBoIlJdwb3YqQ4r4d+lOW+x586hJ4ZIUsD3y+buLa1ru3NDP4w8Iw
+ ctG4HIcECcnFGx/cw2h/XzLT1L94TUGfO5wXy0pzAgLE04nsTM/p5g2dmy82uXntfG3x
+ RiMTgrfixX05c7guTHBicM+lWjZZe7e6KlZgqsYc+gAjciXE5cQ4ryp19Zit2Yk3U5sr
+ BtFOgPC2cblAEfXhOljdpbABg6A+/OobeqMn0I6nBJ6pdtuYqKh/lBhIIpfy/9DC9xtB
+ i2iyVa4GyoF/1rWXf9ZjDQDUYsP8AS/iWhLvmFSDlglu9k2vXuNbrNMT88c171gwbfZO
+ B32w==
+X-Gm-Message-State: AOAM531Fxdz9+O5bnvVAla3e1+YpyZq+fLtY7oUEq2H0b0MfpuPPeTZJ
+ SAZ2MpGONIllCv/kasFaONkOYly9qFzUkQq2VbyvenhXljlxcY2UFT2TMN6sme2dE+p5VJ11XCT
+ syrzID1WaJUhomGyB8Hek3zHTYA==
+X-Received: by 2002:adf:a78a:: with SMTP id j10mr56180969wrc.231.1635942507379; 
+ Wed, 03 Nov 2021 05:28:27 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxoKFRYs4+FwUh+L5HYY422zuSq9cxsugE+p23YKU/J7QO0nbcMQx6cOjsOctL5eIXzrrPWjA==
+X-Received: by 2002:adf:a78a:: with SMTP id j10mr56180921wrc.231.1635942507148; 
+ Wed, 03 Nov 2021 05:28:27 -0700 (PDT)
+Received: from minerva.home ([92.176.231.106])
+ by smtp.gmail.com with ESMTPSA id w7sm1868400wru.51.2021.11.03.05.28.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 03 Nov 2021 05:28:26 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: linux-kernel@vger.kernel.org
+Subject: [RESEND PATCH 0/5] Cleanups for the nomodeset kernel command line
+ parameter logic
+Date: Wed,  3 Nov 2021 13:28:04 +0100
+Message-Id: <20211103122809.1040754-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211102145944.259181-2-maxime@cerno.tech>
-X-Patchwork-Hint: comment
+X-Mailman-Approved-At: Wed, 03 Nov 2021 12:42:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,60 +78,102 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, Neil Armstrong <narmstrong@baylibre.com>,
- David Airlie <airlied@linux.ie>,
+Cc: linux-fbdev@vger.kernel.org, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Andrzej Hajda <a.hajda@samsung.com>,
- Thierry Reding <thierry.reding@gmail.com>, amd-gfx@lists.freedesktop.org,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Daniel Vetter <daniel.vetter@intel.com>, Phil Elwell <phil@raspberrypi.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Tim Gover <tim.gover@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Kevin Hilman <khilman@baylibre.com>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Jonas Karlman <jonas@kwiboo.se>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Peter Robinson <pbrobinson@gmail.com>, Neal Gompa <ngompa13@gmail.com>,
+ Dave Airlie <airlied@redhat.com>, Chia-I Wu <olvaffe@gmail.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Dom Cobley <dom@raspberrypi.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Robert Foss <robert.foss@linaro.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, nouveau@lists.freedesktop.org,
+ virtualization@lists.linux-foundation.org,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, spice-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Zack Rusin <zackr@vmware.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 02, 2021 at 03:59:32PM +0100, Maxime Ripard wrote:
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -4966,7 +4966,7 @@ static void drm_parse_hdmi_forum_vsdb(struct drm_connector *connector,
->  		u32 max_tmds_clock = hf_vsdb[5] * 5000;
->  		struct drm_scdc *scdc = &hdmi->scdc;
->  
-> -		if (max_tmds_clock > 340000) {
-> +		if (max_tmds_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
->  			display->max_tmds_clock = max_tmds_clock;
->  			DRM_DEBUG_KMS("HF-VSDB: max TMDS clock %d kHz\n",
->  				display->max_tmds_clock);
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index d2e61f6c6e08..0666203d52b7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -2226,7 +2226,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
->  		if (scdc->scrambling.low_rates)
->  			pipe_config->hdmi_scrambling = true;
->  
-> -		if (pipe_config->port_clock > 340000) {
-> +		if (pipe_config->port_clock > DRM_HDMI_14_MAX_TMDS_CLK_KHZ) {
->  			pipe_config->hdmi_scrambling = true;
->  			pipe_config->hdmi_high_tmds_clock_ratio = true;
->  		}
+[ resend with all relevant people as Cc now, sorry to others for the spam ]
 
-All of that is HDMI 2.0 stuff. So this just makes it all super
-confusing IMO. Nak.
+There is a lot of historical baggage on this parameter. It's defined in
+the vgacon driver as a "nomodeset" parameter, but it's handler function is
+called text_mode() that sets a variable named vgacon_text_mode_force whose
+value is queried with a function named vgacon_text_force().
+
+All this implies that it's about forcing text mode for VGA, yet it is not
+used in neither vgacon nor other console driver. The only users for these
+are DRM drivers, that check for the vgacon_text_force() return value to
+determine whether the driver could be loaded or not.
+
+That makes it quite confusing to read the code, because the variables and
+function names don't reflect what they actually do and also are not in the
+same subsystem as the drivers that make use of them.
+
+This patch-set attempts to cleanup the code by moving the nomodseset param
+to the DRM subsystem and do some renaming to make their intention clearer.
+
+There is also another aspect that could be improved, and is the fact that
+drivers are checking for the nomodeset being set as an indication if have
+to be loaded.
+
+But there may be other reasons why this could be the case, so it is better
+to encapsulate the logic in a separate function to make clear what's about.
+
+Patch #1 is just a trivial fix for a comment that isn't referring to the
+correct kernel parameter.
+
+Patch #2 moves the nomodeset logic to the DRM subsystem.
+
+Patch #3 renames the vgacon_text_force() function and accompaning logic as
+drm_modeset_disabled(), which is what this function is really about.
+
+Patch #4 adds a drm_drv_enabled() function that could be used by drivers
+to check if could be enabled.
+
+Patch #5 uses the drm_drv_enabled() function to check this instead of just
+checking if nomodeset has been set.
+
+
+Javier Martinez Canillas (5):
+  drm/i915: Fix comment about modeset parameters
+  drm: Move nomodeset kernel parameter handler to the DRM subsystem
+  drm: Rename vgacon_text_force() function to drm_modeset_disabled()
+  drm: Add a drm_drv_enabled() helper function
+  drm: Use drm_drv_enabled() instead of drm_modeset_disabled()
+
+ drivers/gpu/drm/Makefile                |  2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  5 ++---
+ drivers/gpu/drm/ast/ast_drv.c           |  3 +--
+ drivers/gpu/drm/drm_drv.c               | 21 ++++++++++++++++++++
+ drivers/gpu/drm/drm_nomodeset.c         | 26 +++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_module.c      | 10 +++++-----
+ drivers/gpu/drm/mgag200/mgag200_drv.c   |  3 +--
+ drivers/gpu/drm/nouveau/nouveau_drm.c   |  3 +--
+ drivers/gpu/drm/qxl/qxl_drv.c           |  3 +--
+ drivers/gpu/drm/radeon/radeon_drv.c     |  3 +--
+ drivers/gpu/drm/tiny/bochs.c            |  3 +--
+ drivers/gpu/drm/tiny/cirrus.c           |  3 +--
+ drivers/gpu/drm/vboxvideo/vbox_drv.c    |  5 +----
+ drivers/gpu/drm/virtio/virtgpu_drv.c    |  3 +--
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c     |  3 +--
+ drivers/video/console/vgacon.c          | 21 --------------------
+ include/drm/drm_drv.h                   |  1 +
+ include/drm/drm_mode_config.h           |  6 ++++++
+ include/linux/console.h                 |  6 ------
+ 19 files changed, 73 insertions(+), 57 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_nomodeset.c
 
 -- 
-Ville Syrjälä
-Intel
+2.33.1
+
