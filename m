@@ -2,92 +2,59 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 987EC444442
-	for <lists+amd-gfx@lfdr.de>; Wed,  3 Nov 2021 16:05:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C0BA4444B5
+	for <lists+amd-gfx@lfdr.de>; Wed,  3 Nov 2021 16:36:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAAD57362F;
-	Wed,  3 Nov 2021 15:05:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7261373740;
+	Wed,  3 Nov 2021 15:36:04 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2074.outbound.protection.outlook.com [40.107.244.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C03473636
- for <amd-gfx@lists.freedesktop.org>; Wed,  3 Nov 2021 15:05:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jzcv7/ReWLqR5HUsNnUAIc9ULeJ0uPCxo6xQvIo5iDsEieQy1uhU/zGvRYXusMsH+Mgv1+3GwkVHwyBPEmiK5Qk6gsESHw97hdgGI0G35ip3lClKOAwnAqvhT4maQbsjAGjxCTKAH7Py2U92ea+U0J9C+gilX9GKKBXiZp8kfrNUE09lRxlHz/0zeXI09Oh14rOSTnyPVlVyy+rfM3+Wd/L9tLQ9c/J68F3fLJaHNkkbfZKb+pajHeyMsAyraM9iBpPyrNdeOMqDkQBtG6Nl5AKzSG2zyjNPegXKsLU5Q1ZIlbzeWLG1ZC2IhHStLvCZWPVdt/EKvr8QpBnlJdRhWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0CMpbS3mc2yD/4sHfG5rMWvpGII5vEs8ix26KXWcs1I=;
- b=DfHokK+g7qserDaNtxnGQojGIp8akb2avPqlnbP9etR0M9XWqTBHJIq26W6zah1UnWs8+9anwPXUDH+4dTYV1w9Gw0+aXvcaMkX6BfW6ru7pkYAjYfsTZBNLDw1fVrdnQNiozHzWZ9WnlA9wCNdnz4ICn3SP6vYoK+djLmKTHfL5HOxP7xCUuW1usNA0rJBO+uDJQ1PSVgMMf6H6z5ERVBeg39gWIY1tXmoTmdOoaDNQNlGlFoORdFpyOAXrqZo6U1Jzhjpujvcdd7Ib9C6+KyoTEnauSLmNdS7WfHcDhv3UBDyZkIVdEGvKdW4CZSnDfq3tmcIXcvYli6I0WUU9uQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0CMpbS3mc2yD/4sHfG5rMWvpGII5vEs8ix26KXWcs1I=;
- b=rB4Jo226xmWKSTxU2BjpkhGfxXmX27D+4Tx5FHak2WyleDwhuuZZUVcy9VroS1KW9Nu+ajPNNoviwSYY2AMy7urrX1z4qr8PvvEofp+l8Gss2X7Hlmt6Qon5hCi3WitLB4JxSd/iaRT0c9TCvBIMxf6N3tO/CR6CDaQD0yWpUV4=
-Received: from MWHPR22CA0069.namprd22.prod.outlook.com (2603:10b6:300:12a::31)
- by BY5PR12MB3713.namprd12.prod.outlook.com (2603:10b6:a03:1a6::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.11; Wed, 3 Nov
- 2021 15:05:07 +0000
-Received: from CO1NAM11FT046.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:12a:cafe::f5) by MWHPR22CA0069.outlook.office365.com
- (2603:10b6:300:12a::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.10 via Frontend
- Transport; Wed, 3 Nov 2021 15:05:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT046.mail.protection.outlook.com (10.13.174.203) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4669.10 via Frontend Transport; Wed, 3 Nov 2021 15:05:04 +0000
-Received: from shaoyunl-dev1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Wed, 3 Nov
- 2021 10:04:41 -0500
-From: shaoyunl <shaoyun.liu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/amdkfd: Don't sent command to HWS on kfd reset
-Date: Wed, 3 Nov 2021 11:04:27 -0400
-Message-ID: <20211103150427.18518-1-shaoyun.liu@amd.com>
-X-Mailer: git-send-email 2.17.1
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com
+ [IPv6:2607:f8b0:4864:20::22e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14D8773740
+ for <amd-gfx@lists.freedesktop.org>; Wed,  3 Nov 2021 15:36:04 +0000 (UTC)
+Received: by mail-oi1-x22e.google.com with SMTP id q124so4275347oig.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 03 Nov 2021 08:36:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=jDToyKhlPt8jwvMTXKmUvNEHW5L24thwzvxhT+GYvgw=;
+ b=LG0LA3j4Qg7B+Fw8OuqM4KBZPf5w+0SjHJRAMSbqXO6YLyUimkh8nclxFV3hwex4+K
+ NcXwr0Sawm7RiA62M3Mxiq1t5EfZWPieUrZINAtDeJr9oW8ibitXRQXaDHfl8v/0fsBK
+ WrMJTWYEkgta4fKmOAppXJE5j/5GQQuDKxYriFx/i+XnEvYzXzVZ9K84Vejd72uBDLLy
+ VspwD6oUsMbWJbFwYybbv3At68QMP4AkCfTKU5Hrrye3DVLGq5/oum+OedMNGGWUtu1P
+ t+s5di1EvocMSaJameWaNIg41aS9wKCe3YbZSGw+jKfqVEEUClDm1DuHqlXmPH6h2Op8
+ mnTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=jDToyKhlPt8jwvMTXKmUvNEHW5L24thwzvxhT+GYvgw=;
+ b=CbsbuuXWZVtROqh18y7S8sHdzWtUujXcniQMYK8faZ0jYbLJCVKXzojO95/+Hx8G+7
+ cEsi0U1Hiuqajkz1sgf5NI2HyyP+aCwlFsIbS4C8XwpaCxG8HJCDMHF8TrAkGvDMTlpC
+ t44AYUyuiTu3LNian52u/yaB87ozZ6Dzw2mN46H/51i89HdF1kONBLp+5l4Y1Rb6TRou
+ 0NaVF5YI3Nt11UA1ppl6xYjlJvY55wRb27ILXPUZlBN7zN5olu2Trml5kH23l64B/Qwy
+ hYWL52jAzFLca6nk8kinBa4lZ654IzR6lt4YEMg7AlmDusSPDrBVmLs9EIiYrVx4qMOR
+ Kamw==
+X-Gm-Message-State: AOAM530D9ZFhXh4AnRu/Yrwacm6j5SKYW1An7xtY4BvDZK+OETEhDghK
+ ARM7acK2yq4Alt/wa1lCRE11H6kHJoy9Jsm8MdM=
+X-Google-Smtp-Source: ABdhPJwgJEtLBRVkZPdaU+uqYb7bnL4/1hixXkJqnBE8BtC7cGtNcJv1eHA83F9wbmvRsXipHQm9GV/6+6HLchVwBy8=
+X-Received: by 2002:a05:6808:23cb:: with SMTP id
+ bq11mr11446466oib.123.1635953763197; 
+ Wed, 03 Nov 2021 08:36:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 35c49676-383d-4a3f-384c-08d99edb5109
-X-MS-TrafficTypeDiagnostic: BY5PR12MB3713:
-X-Microsoft-Antispam-PRVS: <BY5PR12MB3713475DA1CFFE2C09497CE3F48C9@BY5PR12MB3713.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: a7ZvkuOhOZvaVmh4k5tGl84TpsQJSvpusDFbejQp7WcT1B3HczNRv0lxr9pO7dy0pPtuD02HGE9373jOQTVXNK6L/O7XDAiAZ/ONqUhlvfs/yNAUVsx+OWhE+YAz9KyGA2xuXpjQvujKp/wT/UVPXn12DmNay4CrGxYFzC2J6j+Zl/WbIplyuGJRBR87dT0jDDWSq2RBqM+uuCwinuf5jXfvz4KsbDHMoW3GtPXV3gci+lPDzKwWlV00WZyaYQh5PJQZFQxuasrOhjoaE07XVGdv9y9GKYvYFfjK1vYdihebdFDllJ2jrpUUcS0pHWOokb390MC1VeZljhg/A1apZth2cJgeTFDSdLtEtzWCJpkHruH6RHDvqzYucxYttu0mRdR3uMOxXk0AZhB2WvNqYJ9Oc8ukgR7fpyGhReqD3nvTrqX3kFj0kU6Q88i304tTb/hBsvB3Z2/ZfxNGdjQp7jIr9m2E2ZpvSH0OjZmgFKKfCymLw4ne3L5rPHagCnYhiT+IIyPPBoKt67fsBdYUBsJ0dQmS0hf2JtNRFkxlZLFwXV4ATIfydtkSQH9IcKcs1fvtTXb2ECQ+d0sU5CZAIsAKtUiSHKt+9nugfsL7qAsCs+OHrmX3xrA4kuEOowFiD2wJJDPjuKhGD+j0OzbNM9m8cHXuWL959JbLmjMj/dnJCuQ5rWMLhaJZAKxe7fX6biQMnVvo2VbSc9JcCkdTQt2aA+u2b9hsTpNpf1bKfEL49dADow708kA8u7MfV5ptWoGD+WeVDuiOY3cW+dBW3g==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(1076003)(83380400001)(81166007)(7696005)(508600001)(6666004)(70206006)(4326008)(5660300002)(8676002)(356005)(70586007)(82310400003)(2906002)(86362001)(47076005)(186003)(36756003)(16526019)(8936002)(426003)(2616005)(36860700001)(6916009)(26005)(316002)(336012)(43062005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2021 15:05:04.2461 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 35c49676-383d-4a3f-384c-08d99edb5109
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT046.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3713
+References: <20211103013350.6015-1-James.Zhu@amd.com>
+ <CADnq5_OurPZjmq2SbRZzw4MWRO2uFT7H=+F75czmwgG0MgGAiQ@mail.gmail.com>
+ <BN6PR12MB1874ED9C570180113DB71F42E48C9@BN6PR12MB1874.namprd12.prod.outlook.com>
+ <CADnq5_MScsyQWiiDsFLwObyrT1ViGL5dFP8K5+3U7TuNHo_cYQ@mail.gmail.com>
+In-Reply-To: <CADnq5_MScsyQWiiDsFLwObyrT1ViGL5dFP8K5+3U7TuNHo_cYQ@mail.gmail.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 3 Nov 2021 11:35:52 -0400
+Message-ID: <CADnq5_OffC1XyUOzFvWMe9MFkjL6o+Du5xvyef3xUALS2LmyEA@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: remove duplicated kfd_resume_iommu
+To: "Zhu, James" <James.Zhu@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,109 +66,124 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: shaoyunl <shaoyun.liu@amd.com>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Zhang,
+ Yifan" <Yifan1.Zhang@amd.com>, James Zhu <jzhums@gmail.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Ken Moffat <zarniwhoop@ntlworld.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When kfd need to be reset, sent command to HWS might cause hang and get unnecessary timeout.
-This change try not to touch HW in pre_reset and keep queues to be in the evicted state
-when the reset is done, so they are not put back on the runlist. These queues will be destroied
-on process termination.
+On Wed, Nov 3, 2021 at 10:50 AM Alex Deucher <alexdeucher@gmail.com> wrote:
+>
+>
+>
+> On Wed, Nov 3, 2021 at 10:34 AM Zhu, James <James.Zhu@amd.com> wrote:
+>>
+>> [AMD Official Use Only]
+>>
+>>
+>> Hi Alex,
+>>
+>> Finally figured out the root cause for this broken,
+>>
+>> Linux 5.14.15  + afd1818 can fix the issue.
 
-Signed-off-by: shaoyunl <shaoyun.liu@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device.c               | 6 +++++-
- drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 2 +-
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h                 | 2 ++
- drivers/gpu/drm/amd/amdkfd/kfd_process.c              | 6 +++++-
- 4 files changed, 13 insertions(+), 3 deletions(-)
- mode change 100644 => 100755 drivers/gpu/drm/amd/amdkfd/kfd_device.c
- mode change 100644 => 100755 drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
- mode change 100644 => 100755 drivers/gpu/drm/amd/amdkfd/kfd_priv.h
- mode change 100644 => 100755 drivers/gpu/drm/amd/amdkfd/kfd_process.c
+I think this applies to 5.15 as well.  Only drm-next (5.16) needs this patc=
+h.
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-old mode 100644
-new mode 100755
-index c8aade17efef..536ef766d09e
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -1100,6 +1100,8 @@ int kgd2kfd_pre_reset(struct kfd_dev *kfd)
- 	if (!kfd->init_complete)
- 		return 0;
- 
-+	kfd->is_resetting = true;
-+
- 	kfd_smi_event_update_gpu_reset(kfd, false);
- 
- 	kfd->dqm->ops.pre_reset(kfd->dqm);
-@@ -1132,6 +1134,8 @@ int kgd2kfd_post_reset(struct kfd_dev *kfd)
- 
- 	kfd_smi_event_update_gpu_reset(kfd, true);
- 
-+	kfd->is_resetting = false;
-+
- 	return 0;
- }
- 
-@@ -1168,7 +1172,7 @@ int kgd2kfd_resume(struct kfd_dev *kfd, bool run_pm)
- 		return ret;
- 
- 	/* for runtime resume, skip unlocking kfd */
--	if (!run_pm) {
-+	if (!run_pm && !kfd->is_resetting) {
- 		count = atomic_dec_return(&kfd_locked);
- 		WARN_ONCE(count < 0, "KFD suspend / resume ref. error");
- 		if (count == 0)
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-old mode 100644
-new mode 100755
-index e9601d4dfb77..0a60317509c8
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -1430,7 +1430,7 @@ static int unmap_queues_cpsch(struct device_queue_manager *dqm,
- 
- 	if (!dqm->sched_running)
- 		return 0;
--	if (dqm->is_hws_hang)
-+	if (dqm->is_hws_hang || dqm->is_resetting)
- 		return -EIO;
- 	if (!dqm->active_runlist)
- 		return retval;
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-old mode 100644
-new mode 100755
-index bfe7bacccb73..e4bcc2a09ca8
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -275,6 +275,8 @@ struct kfd_dev {
- 	struct device_queue_manager *dqm;
- 
- 	bool init_complete;
-+	bool is_resetting;
-+
- 	/*
- 	 * Interrupts of interest to KFD are copied
- 	 * from the HW ring into a SW ring.
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-old mode 100644
-new mode 100755
-index f8a8fdb95832..f29b3932e3dc
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -1715,7 +1715,11 @@ int kfd_process_evict_queues(struct kfd_process *p)
- 
- 		r = pdd->dev->dqm->ops.evict_process_queues(pdd->dev->dqm,
- 							    &pdd->qpd);
--		if (r) {
-+		/* evict return -EIO if HWS is hang or asic is resetting, in this case
-+		 * we would like to set all the queues to be in evicted state to prevent
-+		 * them been add back since they actually not be saved right now.
-+		 */
-+		if (r && r != -EIO) {
- 			pr_err("Failed to evict process queues\n");
- 			goto fail;
- 		}
--- 
-2.17.1
+Alex
 
+>
+>
+> I'll do that for stable.
+>
+>>
+>> Linux 5.15rc7 re-apply "init iommu after amdkfd device init" and "move i=
+ommu_resume before ip init/resume" which overwrote afd1818 caused the issue=
+ again.
+>>
+>> 714d9e4 drm/amdgpu: init iommu after amdkfd device init
+>>
+>> f02abeb drm/amdgpu: move iommu_resume before ip init/resume
+>>
+>> afd1818 drm/amdkfd: fix boot failure when iommu is disabled in Picasso.
+>>
+>> 286826d drm/amdgpu: init iommu after amdkfd device init
+>>
+>> 9cec53c drm/amdgpu: move iommu_resume before ip init/resume
+>>
+>>
+>>
+>> So, do we just discard this patch, and revert 714d9e4 and  f02abeb?
+>
+>
+> I'll do that for 5.15+
+>
+> Thanks for sorting this out.
+>
+> Alex
+>
+>>
+>>
+>> Thanks & Best Regards!
+>>
+>>
+>> James Zhu
+>>
+>> ________________________________
+>> From: Alex Deucher <alexdeucher@gmail.com>
+>> Sent: Tuesday, November 2, 2021 10:01 PM
+>> To: Zhu, James <James.Zhu@amd.com>
+>> Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>; Deucher, Alexander <Al=
+exander.Deucher@amd.com>; Zhang, Yifan <Yifan1.Zhang@amd.com>; James Zhu <j=
+zhums@gmail.com>; Ken Moffat <zarniwhoop@ntlworld.com>
+>> Subject: Re: [PATCH] drm/amdgpu: remove duplicated kfd_resume_iommu
+>>
+>> On Tue, Nov 2, 2021 at 9:34 PM James Zhu <James.Zhu@amd.com> wrote:
+>> >
+>> > Remove duplicated kfd_resume_iommu which already runs
+>> > in mdgpu_amdkfd_device_init.
+>> >
+>> > Signed-off-by: James Zhu <James.Zhu@amd.com>
+>>
+>> Once you get confirmation, please add:
+>> Bug: https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
+Fbugzilla.kernel.org%2Fshow_bug.cgi%3Fid%3D214859&amp;data=3D04%7C01%7CJame=
+s.Zhu%40amd.com%7C8662c25150e94d9d664708d99e6deb2b%7C3dd8961fe4884e608e11a8=
+2d994e183d%7C0%7C0%7C637715017208277821%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4=
+wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3D=
+a6WyuNGhOU5OT3J8GQtXSQ3O5r942D2p%2BbruFUncT0E%3D&amp;reserved=3D0
+>> Bug: https://nam11.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
+Fgitlab.freedesktop.org%2Fdrm%2Famd%2F-%2Fissues%2F1770&amp;data=3D04%7C01%=
+7CJames.Zhu%40amd.com%7C8662c25150e94d9d664708d99e6deb2b%7C3dd8961fe4884e60=
+8e11a82d994e183d%7C0%7C0%7C637715017208287813%7CUnknown%7CTWFpbGZsb3d8eyJWI=
+joiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sd=
+ata=3DE1MFXdprEaldLux2AoXNEeDWL5E85WFv8CrfZODTa%2F4%3D&amp;reserved=3D0
+>>
+>> Acked-by: Alex Deucher <alexander.deucher@amd.com>
+>>
+>>
+>> > ---
+>> >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 4 ----
+>> >  1 file changed, 4 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/=
+drm/amd/amdgpu/amdgpu_device.c
+>> > index e56bc925afcf..f77823ce7ae8 100644
+>> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>> > @@ -2398,10 +2398,6 @@ static int amdgpu_device_ip_init(struct amdgpu_=
+device *adev)
+>> >         if (!adev->gmc.xgmi.pending_reset)
+>> >                 amdgpu_amdkfd_device_init(adev);
+>> >
+>> > -       r =3D amdgpu_amdkfd_resume_iommu(adev);
+>> > -       if (r)
+>> > -               goto init_failed;
+>> > -
+>> >         amdgpu_fru_get_product_info(adev);
+>> >
+>> >  init_failed:
+>> > --
+>> > 2.25.1
+>> >
