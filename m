@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9E4D445B47
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Nov 2021 21:52:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14770445B49
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Nov 2021 21:52:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1813D73794;
-	Thu,  4 Nov 2021 20:52:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44EB5737A7;
+	Thu,  4 Nov 2021 20:52:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2083.outbound.protection.outlook.com [40.107.92.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B7AD73794
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 20:52:47 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2084.outbound.protection.outlook.com [40.107.237.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC5187379E
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 20:52:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EGMi1xOcX5xfDib6ovLNLzNftgFB35b+kyC1eNejTJaALQb/a5HC8VWb+iDPiG0UyZ61xizpVw/BJAII4bNTAMkNzxmO2GQ2a4bG0rfZ1skM7uLwTkxlPQIx96C4+nSYRqPkA4U/Rs8h/8fi7auU5brrWEidqOM4M1PoLxbXJEKa6BetFb2lHz+nhp6FcXBgtqBTbAUhKbk6wpc1Fq5i10rawOALxqVq/bn1Disux05Hc1N4vwLAo23szsOH5PwLEbi3v/tULYDTyVEfX5Iz46gC7NNQ/QbMHk374fIBOHfDb7G21xOFolBi71vnoSo+ZyuDsYnoYq11kmFUvALKTw==
+ b=gefAiM2NUt0ftlvTKSb0jhXpBU+BrTTD6rMcxIJrUxousKVHofL4xkuxQnoTE6oNWpK3on+2/CPNmI2i/zrb+xD18w/h2Cf+TVIj3ckuvTIIYbeZxGaNI5izllfyOgngqdd5DLGKRbyAZIGbqNSQlJpFVzKvw/bgZGKrQ/PpXbF+Be4Pp0SvFNSIxAiUjcOkCQ6vuCETGzczjTKEylE1TM4G3KWJ741Mvc+ir+rwJSSxkNRs92j2N1uRGnFTQ1odEE7ToYtPM8bFlVOuXtPa/6RmlUoCI6sdoLe+SQhWQxNlibmoMXBeqXj75HwwRlZugeMhhK2RRvgHdytGY3jFow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FEFOX4PKTtFpLlUPQ6oMxT81kjPFMtSUfwmmf0rCEns=;
- b=TeekEwbRljSM0VIIY2aOR+hc/BWsLGJLveCBvY2+F6rBq+TMwE5TiV4uAOPmmTzLv+707R+bEmVzjK97VgEynOAT0r1NxhqlK2lp/pDLrD+M3L4G9haOh08i1kYyUAPIiwNlAXoSRNRIZ3tgcI+M0lKNskaqJ7tI5ejpZTkXwrB3LlZLNonNaYyaqUSQUsxYOrZBa/dUwPQpAZ1ik9fhdgRigBHY8H12DEPE45G3uyXG8W46hoLDDIJ5+tdwqGGdWe2JMrL7z5xytCsCq6HuG3lI6ltlF2DEiideKSAU/vfJMBjZp3ntpfnaVcW8NU417dCLfNiDLLKBEnCxFqztfw==
+ bh=gSZzILhznqjWNXYTCq4NybFOupvBZCh973zvjXja5xE=;
+ b=Zw5utJZbvutDlx9DVrM5d6qcJ+JTrH1L+yrgMsnQSxvOlmez/GqzgT7ndiHFnByJRyPTQ3N92WVCzO+yKTbYO5l7XzUow1qgUN8mDreIokcUIBqmFVHX/9Wvh+9+DUgxb4PBO/gOhSw/gvgOukM+MBImRYO+iNE9/M5pxCq28fcHeheg47A7mjT8v7T78/SYueCcryWLoBeQKqjBgATgqIkJdaSmBu7x2+PxYJ+cQUORNGZ7D0IjpU07pGLXqOfr/u5jisb0e39jt4QEsRAAgLxSE+ZoqRvxXZeVrwjYWZSh1WrTteoRUx0qbnbwBk4VnAJ4wHqoUakvrOr8JBaMyg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FEFOX4PKTtFpLlUPQ6oMxT81kjPFMtSUfwmmf0rCEns=;
- b=vrd4UnwKEGtqFrARnZCqJj52/w/2Abi4G2UyTLeXynI8ULBhsZQ84/WMDE7WGmIC4+Kz5qAivCeyeD9SY9/raBRWO+f+kpSAFtZZViHVReaVbnsWjXdhRxld/c27kXfJBzvVd9Da7GAOru/udK4Xb2DMRYsPe789Me27UYnc3Ls=
-Received: from DM5PR10CA0005.namprd10.prod.outlook.com (2603:10b6:4:2::15) by
- BYAPR12MB3320.namprd12.prod.outlook.com (2603:10b6:a03:d7::30) with
+ bh=gSZzILhznqjWNXYTCq4NybFOupvBZCh973zvjXja5xE=;
+ b=WVMglKY1cdG3ChHOTHikohQgD4/AWDsLmZ4caI8oCvwcRVl13kL5ekKTJZT3fbBJLX4qgr+6mcF2hS6Z+xdoE6TgjHPzC/NNfIxlfpr3SkOhFJfkQV2Yuh4L2Xb0IeecpmeyjV0WNTV2DmpIDmKfBuSds+s0SWCAyEpzRy73lMs=
+Received: from DM5PR10CA0018.namprd10.prod.outlook.com (2603:10b6:4:2::28) by
+ MN2PR12MB3455.namprd12.prod.outlook.com (2603:10b6:208:d0::22) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4669.11; Thu, 4 Nov 2021 20:52:44 +0000
+ 15.20.4669.11; Thu, 4 Nov 2021 20:52:45 +0000
 Received: from DM6NAM11FT053.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:2:cafe::60) by DM5PR10CA0005.outlook.office365.com
- (2603:10b6:4:2::15) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:4:2:cafe::65) by DM5PR10CA0018.outlook.office365.com
+ (2603:10b6:4:2::28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.10 via Frontend
- Transport; Thu, 4 Nov 2021 20:52:44 +0000
+ Transport; Thu, 4 Nov 2021 20:52:45 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,20 +48,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  DM6NAM11FT053.mail.protection.outlook.com (10.13.173.74) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4669.10 via Frontend Transport; Thu, 4 Nov 2021 20:52:43 +0000
+ 15.20.4669.10 via Frontend Transport; Thu, 4 Nov 2021 20:52:44 +0000
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Thu, 4 Nov
- 2021 15:52:37 -0500
+ 2021 15:52:38 -0500
 Received: from Optimus.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2308.15 via Frontend
- Transport; Thu, 4 Nov 2021 15:52:36 -0500
+ Transport; Thu, 4 Nov 2021 15:52:38 -0500
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 11/22] drm/amd/display: fix stale info in link encoder
- assignment
-Date: Thu, 4 Nov 2021 16:52:04 -0400
-Message-ID: <20211104205215.1125899-12-Anson.Jacob@amd.com>
+Subject: [PATCH 12/22] drm/amd/display: retain/release stream pointer in link
+ enc table
+Date: Thu, 4 Nov 2021 16:52:05 -0400
+Message-ID: <20211104205215.1125899-13-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211104205215.1125899-1-Anson.Jacob@amd.com>
 References: <20211104205215.1125899-1-Anson.Jacob@amd.com>
@@ -70,28 +70,28 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1f004d89-d075-4db2-2193-08d99fd50cb1
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3320:
-X-Microsoft-Antispam-PRVS: <BYAPR12MB3320BF1ACFDFA120452ADBC7EB8D9@BYAPR12MB3320.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Office365-Filtering-Correlation-Id: 98a37ac9-1b91-449d-ebcc-08d99fd50d42
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3455:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3455C872E26F723D439CA184EB8D9@MN2PR12MB3455.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UYThLL4k09Suak8eYLDpZzID+UqCbQPMvp5tIKs1e8M1X1ZhkWJ6rFKGN22/izO20hTROB8uKIakmdYU7pNX7drVE1t/hxpW+I3qZYVt567hQbtRFLMtuQtGHhetf0AJYpO6bkRzhdspIXMloLoDh8OHwId/oy1aG2tPNm2hR+O9W+quS9mT26gsotoTMm0bd6cS8MHirQi1H3eAcFaYxc3XJ4gVerZlu7Shr1VuLXovEAFqqSuSYQnQm5GX/GWCzxDzZwjofQjTK8HVPsZeB7GWk9Va2l2ofeqOOtpanfIgoAlWZHSBLJd5MMgBgrhP8XawHNQStL+RN8dmMazk+/MFPtenEFzRBUZYjhm/sottcDnc7TV/EvhLzge8BnFDf6t34+lrESTNPz0KbRW3ZR7Y4icNKt6l2Bfq9mRm9f4cYlkROktRvXwKmg9Hr8jO0tmAcqPiWxmhfYxnpJHStczPIYOFyCHB/f/VxThfU8pliD/vjqFcVs2983/R224FofA2FI9zgvoS/sQcWjWzrOq364OiVYmoOicl5Fo8Dgcq93NgjtVIkCAM8VsKlifEnELxfTvHeLdXk9nqBcOc/sNHxdy/7Mr7uRJUYS5dbOE+ivH7Bg5ui3qPxfYveJpaoW5ODF1RX1WAcq4uPQJThAgG/95bQSRUS9icOigBV98CxylyHsfLLfIbkB2TF8qXx+wWdbG3LwjWmNOaqOAk9pxWAKWNE5MCHC3AH9XknFg=
+X-Microsoft-Antispam-Message-Info: Qq/KhdFOToVdmJUK7o37c2DFFT4lpcdY/zWKuOqZpCnBEBXkU2NVtMn29ARNqa+/odsEzgnGK54CiAk/pVVK2P9Jbos6PBdZf4nRttKsXJoS4j4Z2QVl+zMVoHK0Syqb5rcxa+e6qhBBXNZMbyLm3EWV3FlUs7IWyA/5b/aJDtvg3JOekSWoAQyq53dkjinbUR9/avwZoLuyzqp1JbRfxvplcssSn7xVg4Vbgq3h7XHNBfkrVWUIKZgLF1Cv2pIg0700JKhGiSqW1Jt2zBFqIBZ77J2320hX0HK6YZJCVrriUq9S9jQJrV1RMEskhSvhRG8rcplhqPB/Gi33a/7bY5DF0W7G1JmHsLorGcrJ164DtNV5pjecqAEPRtXPMx6rXEwy8FnluXQoU+1lzm9L5tx+VtMetp637Wj1GYsz40qQCSkg+rfGWrP0xFpxtvkHucaN09q9DAIJ8PgJNVkOBJAnDkqkBupKoVV7HK3T3Jh2RtRDyLrwOB69t8kaB6UE7+48ixz89BtDblAW0UHvFhiHoLk+Pt9Rb69R9AwKRVSctUBkPqJADtGgk8znk/OrhTM6nh2zYrCZpmdbgU2zjiuFlxq/t9OGRDCDIosmRUkggSmNhrUGY3cvN8XLD3T1WOTHOVtMG+NkBDyDiJ263iV7eMnf9gZnmYcDwO1gjZ0jgEX6+9ADrbwuKyMgVd1sHl4lMVpObev17qJ1sLBRyOxPgOhfzbxFZ11au2EcZ1E=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(47076005)(1076003)(36860700001)(426003)(36756003)(336012)(82310400003)(7696005)(5660300002)(2616005)(2906002)(6916009)(508600001)(8936002)(86362001)(83380400001)(81166007)(54906003)(26005)(70206006)(8676002)(186003)(70586007)(4326008)(6666004)(356005)(316002)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(36756003)(47076005)(186003)(1076003)(4326008)(356005)(2616005)(5660300002)(316002)(54906003)(2906002)(82310400003)(336012)(81166007)(26005)(426003)(7696005)(86362001)(36860700001)(70586007)(508600001)(6666004)(8936002)(8676002)(6916009)(70206006)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2021 20:52:43.8561 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f004d89-d075-4db2-2193-08d99fd50cb1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2021 20:52:44.8126 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98a37ac9-1b91-449d-ebcc-08d99fd50d42
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT053.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3320
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3455
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,114 +103,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Roy Chan <roy.chan@amd.com>, Jun Lei <Jun.Lei@amd.com>,
- solomon.chiu@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
- mikita.lipski@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
- pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Jun Lei <Jun.Lei@amd.com>, solomon.chiu@amd.com,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, Anson.Jacob@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com, mikita.lipski@amd.com,
+ Bhawanpreet.Lakha@amd.com, Sung Joon Kim <sungkim@amd.com>,
+ agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Roy Chan <roy.chan@amd.com>
+From: Sung Joon Kim <sungkim@amd.com>
 
-[Why]
-The link encoder assignment leaves the old stream data when it
-was unassigned. When the clear encoder assignment is called,
-it based on the old stale data to access the de-allocated stream.
+[why]
+At every reference to stream pointer, we need
+to increment/decrement the kref_count.
+Not doing so will result in invalid stream
+pointer still alive after hibernate cycle.
 
-[How]
-There should be no need to explicitly clean up the link encoder
-assignment if the unassign loop does the work properly,
-the loop should base on the current state to clean up the assignment.
-
-Also, the unassignment should better clean up the values in the
-assignement slots as well.
+[how]
+Call stream retain/release whenever
+the link encoder assignment is set to
+true/false since it indicates if we want
+to reference the stream pointer or not.
 
 Reviewed-by: Jun Lei <Jun.Lei@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
-Signed-off-by: Roy Chan <roy.chan@amd.com>
+Signed-off-by: Sung Joon Kim <sungkim@amd.com>
 ---
- .../drm/amd/display/dc/core/dc_link_enc_cfg.c | 36 ++++++++-----------
- 1 file changed, 14 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-index 25e48a8cbb78..13a9d55930ed 100644
+index 13a9d55930ed..b96e301f64f2 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-@@ -118,7 +118,10 @@ static void remove_link_enc_assignment(
- 				 */
- 				if (get_stream_using_link_enc(state, eng_id) == NULL)
- 					state->res_ctx.link_enc_cfg_ctx.link_enc_avail[eng_idx] = eng_id;
-+
+@@ -122,6 +122,7 @@ static void remove_link_enc_assignment(
  				stream->link_enc = NULL;
-+				state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].eng_id = ENGINE_ID_UNKNOWN;
-+				state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].stream = NULL;
+ 				state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].eng_id = ENGINE_ID_UNKNOWN;
+ 				state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].stream = NULL;
++				dc_stream_release(stream);
  				break;
  			}
  		}
-@@ -237,28 +240,15 @@ static struct link_encoder *get_link_enc_used_by_link(
- 	return link_enc;
- }
- /* Clear all link encoder assignments. */
--static void clear_enc_assignments(struct dc_state *state)
-+static void clear_enc_assignments(struct dc *dc, struct dc_state *state)
- {
- 	int i;
--	enum engine_id eng_id;
--	struct dc_stream_state *stream;
- 
- 	for (i = 0; i < MAX_PIPES; i++) {
- 		state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].valid = false;
--		eng_id = state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].eng_id;
--		stream = state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].stream;
--		if (eng_id != ENGINE_ID_UNKNOWN)
--			state->res_ctx.link_enc_cfg_ctx.link_enc_avail[eng_id - ENGINE_ID_DIGA] = eng_id;
--		if (stream)
--			stream->link_enc = NULL;
-+		state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].eng_id = ENGINE_ID_UNKNOWN;
-+		state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].stream = NULL;
- 	}
--}
--
--void link_enc_cfg_init(
--		struct dc *dc,
--		struct dc_state *state)
--{
--	int i;
- 
- 	for (i = 0; i < dc->res_pool->res_cap->num_dig_link_enc; i++) {
- 		if (dc->res_pool->link_encoders[i])
-@@ -266,8 +256,13 @@ void link_enc_cfg_init(
- 		else
- 			state->res_ctx.link_enc_cfg_ctx.link_enc_avail[i] = ENGINE_ID_UNKNOWN;
- 	}
-+}
- 
--	clear_enc_assignments(state);
-+void link_enc_cfg_init(
-+		struct dc *dc,
-+		struct dc_state *state)
-+{
-+	clear_enc_assignments(dc, state);
- 
- 	state->res_ctx.link_enc_cfg_ctx.mode = LINK_ENC_CFG_STEADY;
- }
-@@ -284,12 +279,9 @@ void link_enc_cfg_link_encs_assign(
- 
- 	ASSERT(state->stream_count == stream_count);
- 
--	if (stream_count == 0)
--		clear_enc_assignments(state);
--
- 	/* Release DIG link encoder resources before running assignment algorithm. */
--	for (i = 0; i < stream_count; i++)
--		dc->res_pool->funcs->link_enc_unassign(state, streams[i]);
-+	for (i = 0; i < dc->current_state->stream_count; i++)
-+		dc->res_pool->funcs->link_enc_unassign(state, dc->current_state->streams[i]);
- 
- 	for (i = 0; i < MAX_PIPES; i++)
- 		ASSERT(state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].valid == false);
+@@ -144,6 +145,7 @@ static void add_link_enc_assignment(
+ 		 */
+ 		for (i = 0; i < state->stream_count; i++) {
+ 			if (stream == state->streams[i]) {
++				dc_stream_retain(stream);
+ 				state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i] = (struct link_enc_assignment){
+ 					.valid = true,
+ 					.ep_id = (struct display_endpoint_id) {
 -- 
 2.25.1
 
