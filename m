@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DE4B445B3C
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Nov 2021 21:52:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B68D445B44
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Nov 2021 21:52:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3177E7361C;
-	Thu,  4 Nov 2021 20:52:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B90DA73798;
+	Thu,  4 Nov 2021 20:52:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2067.outbound.protection.outlook.com [40.107.243.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE4E472DF9
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 20:52:28 +0000 (UTC)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam07on2084.outbound.protection.outlook.com [40.107.212.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA9D973795
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 20:52:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GCUvabCsztYe26cSlxCjOr1aoZIpYr1EGIz8y5PBQ6BZBuSUsZWsnIY3UPA6OQKbxzsd5QonjzoUE/g6jQvZjFDVatPl+vXZRNfXvBcIhyRMp/8NHV9qc2kOgDlr9UL63r01KyxiTzRHQfFOd8LmYsnXiNbvZR2xtgJ1oO/rr5WUUxHIltPhRxRZCxTahWoJGxegG1FbxZFsTo96QV+rW0xe3ZZKiyiDy62KmWFHOs1G3q8QlVWpe2vnl4BGTrjB33iPqd/xjMYa0yNIVB5Eq9tjvGoCLlGd/IXoZ9PD4ZyK6+9I7MRVnIDVsZ5btZPFxB+A2PTVspSht5hO+yT74Q==
+ b=AfCc93zNsQxEyQ/wpCMFlYz92xtUXGetdQlP1WedjfEJI2z+Z3ZUM+We6CSMu9GEcmpOVDNucaDS3O8rGW/JwE8J9u6LF8mRYDKPnDdPQOrB8jeukVNWujAz5jKthpMOfFIc8RAdgPVBCXvtlCrfsorxixMAn6j/x8pjoFjUs/XY2OS8SIQx567ov4pT9gn9xwaBld8vIWTDiyI4SyoTrI8JQu8EvopIhcJ+6jnJYoisjE5inbwpEspOL14Z03epHlx9tLVXJ0sy2sYgEH9EhtzlUF5jXOx9ksKOwfek/l5IN2fTMdXBxS2yHN5HkGKbXAz1KSyTwy7akpt9+0VPpg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tgpiabQlKl6/QKKI5atRvTUMjVuoZKkUgAtO35crfl4=;
- b=ir7YrhhYV+c5npzExQc1Qrod16MpoKRrtY4Lvfh0Z2POag0ygGmB8pzZxPz/GdPdoDYMktH1ceYjF9P5OSQB31ramffNh4dito+K4Y7IqT+lKO2jzQWOAkWSvHpqV/cPA7GEt2hHdRdRfwsWGvf/VMZPpeIDPA5Y5GIMcCa6xhXvrK7QNt9nJ9r5ujoVkn/whCo82jB4na9w7Uz2M5+tezcLzz7rNBHMqPR90vxH33XNJJta2wrSrM3sSGDTfpzCVTuDGN6Bc5NIY23pa4wwuMC3tnl0ZEVCnjwT1PpfJOwsNAqM6dt0IY0h0ka/jadAFvBUh4cGJN11etUEQ4TwiQ==
+ bh=dbOxnp/62MMSWPlD9wadY+lsaXiitvp74eFzCaHXEwI=;
+ b=jNVY9rUmytMJj40aDj1/+kHSNF5vlqRRq/HBfVvQD+H/Kc2Lsfj7WkOsrFki8yewFLcw/1ICjov8qXj+GOuGZh8Kw4F2zADyLu5N+Jx0O83qepPfLXH8rlRNgLx/6SxWkhd0TZappIusskrU4BDj86pbjU68TB8MFDToaxsPgRmsD85PIr2kwlGsp4RgiI8KAkDO2t8dnE5MHWU5Es8aoW8JpX8NWz1UExZanWdwurrCPxp5/1jEkZVSRkNKsZmNYRmQ89w5Hvvu0nJaP/8YFzNXaoQIyjFo26rgvPhdRV2zGIjtc9XZNl0DM/p3CWA7fel8+bAgOy6/sWm17DdgmQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tgpiabQlKl6/QKKI5atRvTUMjVuoZKkUgAtO35crfl4=;
- b=YBomdI37ML4E3ZxKyMOeNopzpzl6qK05KjNMYPc04fDWFk5+mfTGSWs4L5t98b0+uqoCQfuIyJOxeHnMe6vOZZQd91D964qjJRduc59sx5Fyr9d8bAPvZbS3W49PdG7m8IfGBUgvtWiYk4fiRJpK1XXkjZy8WkCeCBYZr6ILklg=
-Received: from DM5PR12CA0013.namprd12.prod.outlook.com (2603:10b6:4:1::23) by
- DM6PR12MB3225.namprd12.prod.outlook.com (2603:10b6:5:188::19) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4628.18; Thu, 4 Nov 2021 20:52:26 +0000
+ bh=dbOxnp/62MMSWPlD9wadY+lsaXiitvp74eFzCaHXEwI=;
+ b=tAfRSSSpzYKHRPAKGCbkQLypnfGTMh/9oOGiBvyfsoJ0mzkTtRW0h+P14KcK2b+zqbxRAD0ur5UBscVbhFY/8KvZJY8iofHsVSPEyMFWoPtfRwUtE8wZ5pS+uZiaXJnGb0K6qOzmfH9dWKhft+Rg1nSRsSQTF5wz92YgR7GoC5I=
+Received: from DM5PR12CA0006.namprd12.prod.outlook.com (2603:10b6:4:1::16) by
+ MN2PR12MB3936.namprd12.prod.outlook.com (2603:10b6:208:16a::33) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.11; Thu, 4 Nov
+ 2021 20:52:27 +0000
 Received: from DM6NAM11FT057.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:1:cafe::76) by DM5PR12CA0013.outlook.office365.com
- (2603:10b6:4:1::23) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:4:1:cafe::9c) by DM5PR12CA0006.outlook.office365.com
+ (2603:10b6:4:1::16) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.11 via Frontend
- Transport; Thu, 4 Nov 2021 20:52:26 +0000
+ Transport; Thu, 4 Nov 2021 20:52:27 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,24 +48,24 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  DM6NAM11FT057.mail.protection.outlook.com (10.13.172.252) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4669.10 via Frontend Transport; Thu, 4 Nov 2021 20:52:25 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ 15.20.4669.10 via Frontend Transport; Thu, 4 Nov 2021 20:52:26 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Thu, 4 Nov
- 2021 15:52:24 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 15:52:25 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Thu, 4 Nov
- 2021 15:52:24 -0500
+ 2021 15:52:25 -0500
 Received: from Optimus.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2308.15 via Frontend
- Transport; Thu, 4 Nov 2021 15:52:23 -0500
+ Transport; Thu, 4 Nov 2021 15:52:24 -0500
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 04/22] drm/amd/display: Add comment where
- CONFIG_DRM_AMD_DC_DCN macro ends
-Date: Thu, 4 Nov 2021 16:51:57 -0400
-Message-ID: <20211104205215.1125899-5-Anson.Jacob@amd.com>
+Subject: [PATCH 05/22] drm/amd/display: Fix RGB MPO underflow with multiple
+ displays
+Date: Thu, 4 Nov 2021 16:51:58 -0400
+Message-ID: <20211104205215.1125899-6-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211104205215.1125899-1-Anson.Jacob@amd.com>
 References: <20211104205215.1125899-1-Anson.Jacob@amd.com>
@@ -74,28 +74,28 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f66f2d72-5ae7-4ca4-6229-08d99fd501c1
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3225:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB32250F8FD3E19FC2368B3666EB8D9@DM6PR12MB3225.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1850;
+X-MS-Office365-Filtering-Correlation-Id: d2540e80-ceb7-4787-00d5-08d99fd5029b
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3936:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3936392605D24D928CA4DFFEEB8D9@MN2PR12MB3936.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3383;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UNJIgUfjOwu2VZpJ87dDyb95f63NQChELEDb3G2eH5psQPTmgcl3/zejgXtwdHTCkbs96y204x1uzzhyQO1RnqKxq1fQfj8quzVQDrrc4CqL+NcBEzoUBsKeDLC4gB/rV/EerJ5b/+GXMa9cQPpZpo2bdPYLbwpSwpvXf5lvz1N1GQf8PzFf/i8f5PfGqc3MRCTbl1iu32nmCDIMtgwnMjD5ZEAqOJbxNZ/Y3VXmew7d1dGoEUpexMPWuePbxP3yTm5gNv2K8VeOak4k768/RVrF9xAcK16zwejeMvwpKCudoY/ZY6pnMF9vNVbmM1BsmW6Hqcg80rADZaPvGRwryHFlElKawpJ+W84vZqj9ohESV1BrBEdLdjYteRCOx2MqSi5DUJfFRwkSnd4Z3z6zY7V9CevqOnqmF2FD9SQ4Pi4pXD2m/U17GC/h3S2nirBkO8qgpVDvfCIeMxNOcQ6FDQCqeYMBdkNJKfImQ5L+hC6JG3RKT/GliFFz/cuDl1wloosz14D7ZB0OyBCKQ+EyhFlQS+dGcDpDTQW1lnoBv9mOGy8cu+/Doi79c8ceD69iiAXtV+NiNTwJVC/OvRsRy+AaNkAVU5BrY6gjAVb4+wkVw7MVVuCj2GfUT+5XirYFLAtqeujSjVMfsJKRSfK6crWyOZ40quJG7CkcyktVW9tc/CF7FoDbex4NrfdLhnQyWd27C+6I2lGEYYXy/16hAlAiNKR7F5QmsEui7P8F3bc=
+X-Microsoft-Antispam-Message-Info: VHOcNDWI/+VXfYV3niQ53AfuDEOUqRSgebpFrvOxjsaEpbtEq/A+M5AvDuuEoTUugJ1PAn5oPMpJavrRW1ilxfmlSpnJ6dOmWBRTTDRtnZX7PhHrWwnH0dj4brCjAOUyts+mFtSwRWfh6RXeLI6uxNYhydVEatiTMZ7wKeFS0uNEcyqBgiFMmTQbll1YwtkJ1nnkqUw++uzvWHrWaO2BBgFPdCWWcpUbLzLwWubBir6O6VPRccoa78gxO2yeVIEy5RX2hWg0/jvma1Lj5XNHqDoIaS7H6HiW/9SeWi096cy4D60sTe5wf0LNjJSK6OlOnHOTk3DpcunZoz/M9WBMF0zFP6f03UxP+BwgPT/fchAntMkw03Z/Who0XQucw8i/dtNlxokncVZGQdKsKHLTJGJXZ8o19zKQpyxADoEvNfPCs4pNPTRGxWgFexzhTxjNe/3AFZ4I4X93OgWVoW1jyvX7I7uxhOUAoge/3bzknLWsLovDdiJL8i+bauYyQ/GOtZNO5Fv1ugnpqFhHbTw6jODpHbi1DVcwzoiYOxu5DsJWHJFdNywNZO2dUkGs5ebV1EESG0wxh8USJmidK4FEHGUW76DJI6Fra0Jc/evgqymhWpMTWLpvLtwCh8oPiSA566KsRE+Y3a0uE1bn4EKc0okth7KR98pgAG6wFTjKIaZdHDhhW7uWh6u0wCIOWSK29UthFjYNsZrFxYC7osCUc2gvy/IcXrg93wV+Oc3NyEg=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(54906003)(8676002)(316002)(86362001)(26005)(6916009)(5660300002)(426003)(81166007)(1076003)(2906002)(2616005)(36860700001)(70586007)(36756003)(70206006)(6666004)(356005)(83380400001)(186003)(4326008)(508600001)(82310400003)(336012)(47076005)(8936002)(7696005)(36900700001);
+ SFS:(4636009)(36840700001)(46966006)(7696005)(426003)(36860700001)(8676002)(6666004)(83380400001)(70206006)(8936002)(5660300002)(336012)(508600001)(36756003)(70586007)(2906002)(86362001)(356005)(26005)(47076005)(82310400003)(4326008)(186003)(54906003)(81166007)(316002)(2616005)(1076003)(6916009)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2021 20:52:25.5137 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f66f2d72-5ae7-4ca4-6229-08d99fd501c1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2021 20:52:26.9409 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d2540e80-ceb7-4787-00d5-08d99fd5029b
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT057.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3225
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3936
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,121 +107,93 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, solomon.chiu@amd.com, Sunpeng.Li@amd.com,
- Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
- roman.li@amd.com, Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
- Ariel Bernstein <Eric.Bernstein@amd.com>, wayne.lin@amd.com,
+Cc: stylon.wang@amd.com, Aric Cyr <Aric.Cyr@amd.com>, solomon.chiu@amd.com,
+ Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, Anson.Jacob@amd.com,
+ Aurabindo.Pillai@amd.com, Angus Wang <angus.wang@amd.com>, wayne.lin@amd.com,
  mikita.lipski@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
  pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Trivial patch which adds a comment for macro
-endif's in amdgpu_dm.c
+From: Angus Wang <angus.wang@amd.com>
 
-Reviewed-by: Ariel Bernstein <Eric.Bernstein@amd.com>
-Reviewed-by: Harry Wentland <Harry.Wentland@amd.com>
+[WHY]
+With RGB MPO enabled, playing a video with multiple displays
+connected results in underflow when closing the video window
+
+[HOW]
+Reverted the old change to fix this problem, which prevented
+pipe splits for multiple display configurations and caused
+high MCLK speeds during idle. Added a two step call to
+dc_update_planes_and_stream, first time with pipe split
+disabled and the second time with pipe split enabled, which
+fixed the underflow issue
+
+Change-Id: I2d6fcc146242a30849096f08c52afa13bf4f9225
+
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
-Signed-off-by: Anson Jacob <Anson.Jacob@amd.com>
+Signed-off-by: Angus Wang <angus.wang@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 8 ++++----
- drivers/gpu/drm/amd/display/dc/core/dc.c          | 6 ++++--
- drivers/gpu/drm/amd/display/dc/core/dc_link.c     | 2 +-
- 3 files changed, 9 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c   | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c   | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 1e26d9be8993..5d646acd269d 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -619,7 +619,7 @@ static void dm_dcn_vertical_interrupt0_high_irq(void *interrupt_params)
- 
- 	amdgpu_dm_crtc_handle_crc_window_irq(&acrtc->base);
- }
--#endif
-+#endif /* CONFIG_DRM_AMD_SECURE_DISPLAY */
- 
- /**
-  * dmub_aux_setconfig_reply_callback - Callback for AUX or SET_CONFIG command.
-@@ -812,7 +812,7 @@ static void dm_dmub_outbox1_low_irq(void *interrupt_params)
- 	if (count > DMUB_TRACE_MAX_READ)
- 		DRM_DEBUG_DRIVER("Warning : count > DMUB_TRACE_MAX_READ");
- }
--#endif
-+#endif /* CONFIG_DRM_AMD_DC_DCN */
- 
- static int dm_set_clockgating_state(void *handle,
- 		  enum amd_clockgating_state state)
-@@ -1563,7 +1563,7 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
- 			DRM_ERROR("amdgpu: fail to register dmub hpd callback");
- 			goto error;
- 		}
--#endif
-+#endif /* CONFIG_DRM_AMD_DC_DCN */
- 	}
- 
- 	if (amdgpu_dm_initialize_drm_device(adev)) {
-@@ -6077,7 +6077,7 @@ static void apply_dsc_policy_for_stream(struct amdgpu_dm_connector *aconnector,
- 	if (stream->timing.flags.DSC && aconnector->dsc_settings.dsc_bits_per_pixel)
- 		stream->timing.dsc_cfg.bits_per_pixel = aconnector->dsc_settings.dsc_bits_per_pixel;
- }
--#endif
-+#endif /* CONFIG_DRM_AMD_DC_DCN */
- 
- /**
-  * DOC: FreeSync Video
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 398de46fb7e4..0ded4decee05 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -1892,6 +1892,7 @@ static bool is_flip_pending_in_pipes(struct dc *dc, struct dc_state *context)
- 	return false;
- }
- 
-+#ifdef CONFIG_DRM_AMD_DC_DCN
- /* Perform updates here which need to be deferred until next vupdate
-  *
-  * i.e. blnd lut, 3dlut, and shaper lut bypass regs are double buffered
-@@ -1901,7 +1902,6 @@ static bool is_flip_pending_in_pipes(struct dc *dc, struct dc_state *context)
-  */
- static void process_deferred_updates(struct dc *dc)
- {
--#ifdef CONFIG_DRM_AMD_DC_DCN
- 	int i = 0;
- 
- 	if (dc->debug.enable_mem_low_power.bits.cm) {
-@@ -1910,8 +1910,8 @@ static void process_deferred_updates(struct dc *dc)
- 			if (dc->res_pool->dpps[i]->funcs->dpp_deferred_update)
- 				dc->res_pool->dpps[i]->funcs->dpp_deferred_update(dc->res_pool->dpps[i]);
- 	}
--#endif
- }
-+#endif /* CONFIG_DRM_AMD_DC_DCN */
- 
- void dc_post_update_surfaces_to_stream(struct dc *dc)
- {
-@@ -1938,7 +1938,9 @@ void dc_post_update_surfaces_to_stream(struct dc *dc)
- 			dc->hwss.disable_plane(dc, &context->res_ctx.pipe_ctx[i]);
- 		}
- 
-+#ifdef CONFIG_DRM_AMD_DC_DCN
- 	process_deferred_updates(dc);
-+#endif
- 
- 	dc->hwss.optimize_bandwidth(dc, context);
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index b4cdf6d43965..d856f08491de 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -4821,7 +4821,7 @@ uint32_t dc_bandwidth_in_kbps_from_timing(
- 				timing->dsc_cfg.bits_per_pixel,
- 				timing->dsc_cfg.num_slices_h,
- 				timing->dsc_cfg.is_dp);
--#endif
-+#endif /* CONFIG_DRM_AMD_DC_DCN */
- 
- 	switch (timing->display_color_depth) {
- 	case COLOR_DEPTH_666:
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index 3883f918b3bb..83f5d9aaffcb 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -1069,7 +1069,7 @@ static const struct dc_debug_options debug_defaults_drv = {
+ 		.timing_trace = false,
+ 		.clock_trace = true,
+ 		.disable_pplib_clock_request = true,
+-		.pipe_split_policy = MPC_SPLIT_AVOID_MULT_DISP,
++		.pipe_split_policy = MPC_SPLIT_DYNAMIC,
+ 		.force_single_disp_pipe_split = false,
+ 		.disable_dcc = DCC_ENABLE,
+ 		.vsr_support = true,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+index 79a66e0c4303..98852b586295 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_resource.c
+@@ -840,7 +840,7 @@ static const struct dc_debug_options debug_defaults_drv = {
+ 	.timing_trace = false,
+ 	.clock_trace = true,
+ 	.disable_pplib_clock_request = true,
+-	.pipe_split_policy = MPC_SPLIT_AVOID_MULT_DISP,
++	.pipe_split_policy = MPC_SPLIT_DYNAMIC,
+ 	.force_single_disp_pipe_split = false,
+ 	.disable_dcc = DCC_ENABLE,
+ 	.vsr_support = true,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
+index fcf96cf08c76..16e7059393fa 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn302/dcn302_resource.c
+@@ -211,7 +211,7 @@ static const struct dc_debug_options debug_defaults_drv = {
+ 		.timing_trace = false,
+ 		.clock_trace = true,
+ 		.disable_pplib_clock_request = true,
+-		.pipe_split_policy = MPC_SPLIT_AVOID_MULT_DISP,
++		.pipe_split_policy = MPC_SPLIT_DYNAMIC,
+ 		.force_single_disp_pipe_split = false,
+ 		.disable_dcc = DCC_ENABLE,
+ 		.vsr_support = true,
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
+index 4a9b64023675..87cec14b7870 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn303/dcn303_resource.c
+@@ -193,7 +193,7 @@ static const struct dc_debug_options debug_defaults_drv = {
+ 		.timing_trace = false,
+ 		.clock_trace = true,
+ 		.disable_pplib_clock_request = true,
+-		.pipe_split_policy = MPC_SPLIT_AVOID_MULT_DISP,
++		.pipe_split_policy = MPC_SPLIT_DYNAMIC,
+ 		.force_single_disp_pipe_split = false,
+ 		.disable_dcc = DCC_ENABLE,
+ 		.vsr_support = true,
 -- 
 2.25.1
 
