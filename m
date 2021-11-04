@@ -1,93 +1,72 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDE664457A4
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Nov 2021 17:53:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21176445938
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Nov 2021 19:01:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2643E72E08;
-	Thu,  4 Nov 2021 16:53:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B2777204A;
+	Thu,  4 Nov 2021 18:01:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5131672E08
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 16:53:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gaDbr/Ttl/VI8PqnAu6Z45iIqho7U2O4iKbHSupFOVosBrU65aj2HFE8K+SmoZ+tbPBLHfq+aWOS1c/KZ3HPql51uJ3SCYRECc8CkgRczJjcaHIUyLQhq3h/+TS61ch5IHCXcRz+fyCurYt6mBH+B3/ju1RKNjuJwlmBNPG1sE2NfMZya8ETXb40okjavjawaFcNXSrqlpkOurtsydA9zNgPnZhB4OrK93jf5QvjobYNjnrnpn/MrlkbRDtXq+3zUtHlMKQx9oyfWSDSJiZPAuRIQ7nR2p8jtsKGVjogao4L/kao7ywCDWVikqoQhhwKgatO5NUETEC7nHZoWdLJJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eZuPin92Uv8Q9RK1XTh/oCFowsh4QB5d8LT71Or/nU4=;
- b=HKbIhECeMcX+YtTArPBC28K7LDmA/vIkB/vG+Xfhnl3KGcDCVRnhGznkSu8JOjZvqyqXu9IMe6+TyRbrCP8xJEMOrK1AK5tBzM/wJ3JebL0I/XKZr6cWh0xzixlu6n5FbLctHudDIOWZMvwCmfXlDCC5xF04puAgXR6Od+AiwSuTgl0CCYVp1xlbhIrvm714KhpwZiKRQv8GqnK6+USuVFKaV9qKmYuB/cOELZVAndp8PaR/RpldxdSIFuL9nqIs/oiTCUP7oxYh+caHON0wbzH7xec3WkNjwcSn5tYCBNGLaijmg7Ay7Nm4646Uj7Ln9rUXKI1OC0om/2gBmbGcvg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eZuPin92Uv8Q9RK1XTh/oCFowsh4QB5d8LT71Or/nU4=;
- b=Kg9ack6PxKc8TLlh0pwobeCd8cMj0wWwvxhWprih/XhlyZCeHTtGL2bzVW9iED0BswTwFYTYC+XMnX17XJEWwPUYVBpNFVqVZqc8PiMLS3BaEYtEdn7SABhyRTb+vXBdupKmXO/6bu57HMt4ov07ubagMWJc2lCQBeceDT8QSls=
-Received: from DS7PR03CA0254.namprd03.prod.outlook.com (2603:10b6:5:3b3::19)
- by CH2PR12MB3960.namprd12.prod.outlook.com (2603:10b6:610:24::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.11; Thu, 4 Nov
- 2021 16:53:44 +0000
-Received: from DM6NAM11FT031.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b3:cafe::dc) by DS7PR03CA0254.outlook.office365.com
- (2603:10b6:5:3b3::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.11 via Frontend
- Transport; Thu, 4 Nov 2021 16:53:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT031.mail.protection.outlook.com (10.13.172.203) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4669.10 via Frontend Transport; Thu, 4 Nov 2021 16:53:43 +0000
-Received: from shaoyunl-dev1.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Thu, 4 Nov
- 2021 11:53:42 -0500
-From: shaoyunl <shaoyun.liu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/amdkfd: Don't sent command to HWS on kfd reset
-Date: Thu, 4 Nov 2021 12:53:31 -0400
-Message-ID: <20211104165331.26614-1-shaoyun.liu@amd.com>
-X-Mailer: git-send-email 2.17.1
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0EE46F8A4
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 16:07:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1636042044;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=n/ejIrVb3rZrH44A2zViksmvIEiiBszGsTbTQyQjoKs=;
+ b=LvLQR+aYFOapD3BSkUOTIVBOgr4SPjKGChG1F1zUzMQlEWGKPB3B9dfwHbHQj53BlWYaAK
+ BJpwFamaQHKL7Cc0cybw73fj/uRjjTwKdm6TtxONcVAnmnLFyYQUwvCW9vk0i6Kgf9DCF5
+ KX/dw6F+sOXg9yVBrB4IPfo/zh4lYDg=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-513-T2JJjjZAPz-_5fOb8kJS7w-1; Thu, 04 Nov 2021 12:07:22 -0400
+X-MC-Unique: T2JJjjZAPz-_5fOb8kJS7w-1
+Received: by mail-wr1-f71.google.com with SMTP id
+ d13-20020adf9b8d000000b00160a94c235aso1178328wrc.2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 04 Nov 2021 09:07:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=n/ejIrVb3rZrH44A2zViksmvIEiiBszGsTbTQyQjoKs=;
+ b=bcNKyCVWK4CrqgPdFbKVS5cPO0h/gNR/CudTulH0MlK/RlyOdBB5m0jc+RENFk9GDf
+ La6ItbDHKgsO5WaRtGzNB1XSh+/KBhzY/xGHP8Bs333hpp6cViOVs1sE/wQSFXFQPZzj
+ 5TLTa0HvADXcFk4vzhFj3lyojrjeXeJ9OxeZBMGACjONo8WS8u7A0E/p6cq2Z9DTRQEx
+ Byh9QZftp4h73jCwxADQP8Wkdi/K6fpcQ3Lbwpdxi5xewK6O4Q1hY/RCgw5NhjgB/LaC
+ CiBbi5mdcKKkL0w1dQ8+YMQvj1nA2/SOzc7GPhI/PCAkF62gH81FfJkYMY+CsvTW1fEN
+ X7gQ==
+X-Gm-Message-State: AOAM532iioCn8Mp5kWs6rwpi8Q68ltRa9sHJaafFdysrSy+95G0W+MB7
+ JyMQPJ7/K7rTGltTz8ptolKiGd33cH1LNoCBW12gNAHu5bgxIwadcLeGifCjZ1sj8x2ij8h9CG8
+ fVGCrbfu0fJX/HjEOA3YLkgkiCA==
+X-Received: by 2002:a7b:ca44:: with SMTP id m4mr23689909wml.100.1636042041579; 
+ Thu, 04 Nov 2021 09:07:21 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwxQs3q9Q2yGgJQmZ5zypW+OBIyfR4YAS74a/Zv3Ucv5aomcisjC91zz+w+lhZHPPKLJjXLiw==
+X-Received: by 2002:a7b:ca44:: with SMTP id m4mr23689832wml.100.1636042041250; 
+ Thu, 04 Nov 2021 09:07:21 -0700 (PDT)
+Received: from minerva.home ([92.176.231.106])
+ by smtp.gmail.com with ESMTPSA id l18sm5877863wrt.81.2021.11.04.09.07.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 04 Nov 2021 09:07:20 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] Cleanups for the nomodeset kernel command line
+ parameter logic
+Date: Thu,  4 Nov 2021 17:07:05 +0100
+Message-Id: <20211104160707.1407052-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6400542c-95a6-4063-de27-08d99fb3a932
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3960:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB396035D4CD1F38D5427350E6F48D9@CH2PR12MB3960.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2hWOsPvATCJr/8JOo52fzm28Sa9yhB8ziZ0IBBz3QPfWG28qTO5pJcdeK61E03zdQVjhtEn+6V8wYM4izRXf6ZSHyOj63a8YPhTyppDOLNWApAX2Y1+oynjwjYJiArcrwyi4i7mdFnf4JcAW27V5NIeA6ogZ/DPZo6m/uYk/h+BEFbch/Xm8KV+BFXFt0fIWtm7C3d8K60Gt3Ys3mQ4mSxU9PybXVcI6J82uYRqtLF13wOLe6A03wMkU9esBOQrhjvZtMFHgKcgLhJeIP+naclQZvyFSXs8GvMeXIMGTydSWvszU5HkCy/4DXJQcXt/iwN8iv0h9aPIrsqxNT38ccw7AlCwbJjM5cEUT9EfnCCgvVMJjm7KTRtkxXk26jPo8yKhqzGOKDGQ90n/qvGeHtkUJbQbCbWI0HXjuNoFDqkbTYaZiDNuFiCyjHsTv83X9XpqFGGUAjbRTbFNYg/uTlXjyshNvJu4pNJ9iIcAojLXQ0kgaGafCz3eF6xL9C3E92mvEh0hgt5OUGupr4Ht4tK1IWwoTBfpvPsjrwdk/OiJru95Fv2da2+TYpjvKyvp4GXF2qzfJmktpaUWhNu6G+1DxDVVv8J30wTNMEzMjcUoEhnj+u0rpBbQ9IcR1P0f5xDuGX6r2hjVTIKoz3jgdJGeSBQOgHfyqtZgfyxLCs/HLdlcvqADeqwXUFEpV2am9P34wH2V7klgvneW3Xu2kiXzD8FfXKg4iREoPdbdqUF10HFEmp3YuP+oDpaBJ0iG5
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(81166007)(5660300002)(6666004)(7696005)(16526019)(8936002)(36756003)(356005)(186003)(82310400003)(47076005)(508600001)(2616005)(70206006)(36860700001)(70586007)(336012)(426003)(316002)(83380400001)(8676002)(26005)(1076003)(86362001)(4326008)(6916009)(2906002)(43062005)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2021 16:53:43.5381 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6400542c-95a6-4063-de27-08d99fb3a932
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT031.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB3960
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 04 Nov 2021 18:01:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,51 +78,101 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: shaoyunl <shaoyun.liu@amd.com>
+Cc: linux-fbdev@vger.kernel.org, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, amd-gfx@lists.freedesktop.org,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Peter Robinson <pbrobinson@gmail.com>, nouveau@lists.freedesktop.org,
+ Dave Airlie <airlied@redhat.com>, Chia-I Wu <olvaffe@gmail.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ virtualization@lists.linux-foundation.org,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, spice-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Zack Rusin <zackr@vmware.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-When kfd need to be reset, sent command to HWS might cause hang and get unnecessary timeout.
-This change try not to touch HW in pre_reset and keep queues to be in the evicted state
-when the reset is done, so they are not put back on the runlist. These queues will be destroied
-on process termination.
+There is a lot of historical baggage on this parameter. It is defined in
+the vgacon driver as nomodeset, but its set function is called text_mode()
+and the value queried with a function named vgacon_text_force().
 
-Signed-off-by: shaoyunl <shaoyun.liu@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c | 2 +-
- drivers/gpu/drm/amd/amdkfd/kfd_process.c              | 6 +++++-
- 2 files changed, 6 insertions(+), 2 deletions(-)
+All this implies that it's about forcing text mode for VGA, yet it is not
+used in neither vgacon nor other console driver. The only users for these
+are DRM drivers, that check for the vgacon_text_force() return value to
+determine whether the driver should be loaded or not.
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index e9601d4dfb77..0a60317509c8 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -1430,7 +1430,7 @@ static int unmap_queues_cpsch(struct device_queue_manager *dqm,
- 
- 	if (!dqm->sched_running)
- 		return 0;
--	if (dqm->is_hws_hang)
-+	if (dqm->is_hws_hang || dqm->is_resetting)
- 		return -EIO;
- 	if (!dqm->active_runlist)
- 		return retval;
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-index f8a8fdb95832..f29b3932e3dc 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-@@ -1715,7 +1715,11 @@ int kfd_process_evict_queues(struct kfd_process *p)
- 
- 		r = pdd->dev->dqm->ops.evict_process_queues(pdd->dev->dqm,
- 							    &pdd->qpd);
--		if (r) {
-+		/* evict return -EIO if HWS is hang or asic is resetting, in this case
-+		 * we would like to set all the queues to be in evicted state to prevent
-+		 * them been add back since they actually not be saved right now.
-+		 */
-+		if (r && r != -EIO) {
- 			pr_err("Failed to evict process queues\n");
- 			goto fail;
- 		}
+That makes it quite confusing to read the code, because the variables and
+function names don't reflect what they actually do and also are not in the
+same subsystem as the drivers that make use of them.
+
+This patch-set attempts to cleanup the code by moving the nomodseset param
+to the DRM subsystem and do some renaming to make their intention clearer.
+
+There is also another aspect that could be improved, and is the fact that
+drivers are checking for the nomodeset being set as an indication if have
+to be loaded.
+
+But there may be other reasons why this could be the case, so it is better
+to encapsulate the logic in a separate function to make clear what's about.
+
+This is a v2 of the patches, that address the issues pointed out by Thomas
+Zimmermann and Jani Nikula in v1:
+
+https://lore.kernel.org/lkml/5b4e4534-4786-d231-e331-78fdb5d8496a@redhat.com/T/
+
+Patch #1 adds a drm_drv_enabled() function that could be used by drivers to
+check if these could be enabled, instead of just using vgacon_text_force().
+
+Patch #2 moves the nomodeset logic to the DRM subsystem and renames the
+functions and variables to better explain what these actually do.
+
+Changes in v2:
+- Squash patch to add drm_drv_enabled() and make drivers use it.
+- Make the drivers changes before moving nomodeset logic to DRM.
+- Make drm_drv_enabled() return an errno and -ENODEV if nomodeset.
+- Remove debug and error messages in drivers.
+- Conditionally build drm_nomodeset.o if CONFIG_VGA_CONSOLE is set.
+- Squash patches to move nomodeset logic to DRM and do the renaming.
+- Name the function drm_check_modeset() and make it return -ENODEV.
+
+Javier Martinez Canillas (2):
+  drm: Add a drm_drv_enabled() to check if drivers should be enabled
+  drm: Move nomodeset kernel parameter to the DRM subsystem
+
+ drivers/gpu/drm/Makefile                |  2 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c |  8 +++-----
+ drivers/gpu/drm/ast/ast_drv.c           |  8 +++++---
+ drivers/gpu/drm/drm_drv.c               | 21 ++++++++++++++++++++
+ drivers/gpu/drm/drm_nomodeset.c         | 26 +++++++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_module.c      |  8 +++++---
+ drivers/gpu/drm/mgag200/mgag200_drv.c   |  8 +++++---
+ drivers/gpu/drm/nouveau/nouveau_drm.c   |  6 ++++--
+ drivers/gpu/drm/qxl/qxl_drv.c           |  8 +++++---
+ drivers/gpu/drm/radeon/radeon_drv.c     |  7 ++++---
+ drivers/gpu/drm/tiny/bochs.c            |  8 +++++---
+ drivers/gpu/drm/tiny/cirrus.c           |  9 ++++++---
+ drivers/gpu/drm/vboxvideo/vbox_drv.c    | 10 +++++-----
+ drivers/gpu/drm/virtio/virtgpu_drv.c    |  6 +++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c     |  6 +++---
+ drivers/video/console/vgacon.c          | 21 --------------------
+ include/drm/drm_drv.h                   |  1 +
+ include/drm/drm_mode_config.h           |  6 ++++++
+ include/linux/console.h                 |  6 ------
+ 19 files changed, 109 insertions(+), 66 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_nomodeset.c
+
 -- 
-2.17.1
+2.33.1
 
