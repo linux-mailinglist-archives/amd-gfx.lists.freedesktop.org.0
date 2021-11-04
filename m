@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A14A445B3E
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Nov 2021 21:52:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBF0C445B40
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Nov 2021 21:52:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 406A2736AC;
-	Thu,  4 Nov 2021 20:52:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AC5F736AA;
+	Thu,  4 Nov 2021 20:52:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2055.outbound.protection.outlook.com [40.107.243.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1112372DF9
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 20:52:30 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2060.outbound.protection.outlook.com [40.107.244.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C09173620
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 20:52:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=blE2STc29M+siqzu5kQh52eITAPQCYq+0RlllwEW89q74UOvKPutXjcBfpMM0gOgL1EQRVsbta9/IZpE7Z4zpXrSfphBQ/AxQqjyMUVzWDJ6XAJmESN2Sn90/S+VfC7177gLzl/1KI1UARCWrmeQIcSD+FWI6sm9cMyPikuPdZK+BRhrGWmAeQ2ae18NDt7zjtHxecvOQxVcnXBXUX1Eyh1UoUT/MKO/Pa9WX3OjjB5q47PF5SW/bvCWDuoT5FHQ4TwIY+ZR3Ft0uXBxpyKbtm5tfEO8lQyVAVACo/t4P6ExCiBy38FIfreqrpzLSAoRYQgU3dvdkxPcB0Ee2so44g==
+ b=mSj1eOKSD03YkbMvRDv43Xrz7aFK+06pyOit+M4r+C0z4Mu+m/binre5Zbs5J+jnhlq1NmRdbU4IVZTQY1UEerEBhqGe008sOnb5RNGakayi1szZDenTfsGOKcsTuMwgwIsnyeY21JApYTT1nRS44LxiDbqrzezVviDRbSLJYqH5YS1/v2HLX5fmD3n65U+DXt9m1NhRFD418BH2O5fVxutW+RmfnhlzvFOsBJSH9phkzcGMzFFhzWu1Bhei6aG00s6GtcdV0yMTe4nf9rMmdoAlSXb+GrVKOlXaHD4gdphWByOVgiTkloUXF8bKyiAz0EaBFpclSZjnwjaQJsFjyg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+B7N1uyu+AyZRcK4Wf0PIY2yFkLTZ5BR6xtMlMfTqXY=;
- b=DZEE+sf4VMgdR7Ys5c9lXG9nsY2wCzz+MbCpRXkD4eik0Jr16OVnb9QK8xPIRfpdJ+eAJBvSBnNMo4LgLUVD/mdkv9LDP/B9Q8U3dqXkagzwa9fc8xW0RZ1POZQDkddWcDhYh2xr2mfUUYtMtZhEoaba6YzAmA980ctB1iorr3tf/LkSqKPGLQ3+yF80W3wr6+TSoF4O5EjDnC/Xxm0EDj/Mx9+rgmM0caXM32PqFSA8VT/ShL2TKzg81SuW1ItNZfqjw+cCIdC+GTu2eJ/G4hEFI1GdK96HK+vadUq4RdGWpdzT15s0ZLZJZel3R+/dviiY2VyEmrzw4W1u6O/z3A==
+ bh=/II0Te7tKak2yuN72WM06ZxQcv59LSlldDr99CULXcw=;
+ b=HClGx7GJy6zmLXo0yODJI0jeA7SapoARCk1wBrRFcMCO9Ari5Kvwzm3L6Kf0mfIk9VZZ6qQB5HrNxkzTUlLuGkW/NTbA6LI2l/RGIWXk0psU0n11Xl7A4razK9BO9G7uVfmP8H0tYZRgsl8EbibF4kC51pdnG3O+ZQcBOzfmDOF6of+IjiDoLUxz9fbTI3Iz8BiB1i31TJYaPEKm205AwGqcKuPDt4UzPdgMEwF/9LMT3utC2sHNEAHvSOodjuv9FKaNbNa5eACZi044kzQBVweCvL3K8eM+lBuuuDO6mb7ciIW0Vi4rtmt4x0kD7g+KltjPm9taeWkXrt8EhZtcYA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+B7N1uyu+AyZRcK4Wf0PIY2yFkLTZ5BR6xtMlMfTqXY=;
- b=L6d6APHjE/faxbq3E7exd9Po+gsdojuFWOA74C+GqAbyGwvS7whq9RM9SHrbYN44aMCmM2qN6LcviF/8Hpb9Nq2xzdUCMqEMEtRV+10T6RbETmzOECiYQ8GHO/+D7WuK+5sQQQwvKI0iedVb3u/y+r/sD8BNfhE0V5FcHkzKV60=
-Received: from DS7PR03CA0274.namprd03.prod.outlook.com (2603:10b6:5:3ad::9) by
- BN6PR12MB1860.namprd12.prod.outlook.com (2603:10b6:404:100::23) with
+ bh=/II0Te7tKak2yuN72WM06ZxQcv59LSlldDr99CULXcw=;
+ b=aQT3VTbnUb/yUa18Bw1NIGy8SObeRTDnAl3zBuwRqsod0hsdL9zsOjI03YdxW8SDNZNCtXITB5vbQcb7P+/IYJBxNyumjTPH8EoNs2/6jl7TThlXekQ2+K2UKmHKzrbDB5gZjBmtnGe6rs4gIMoI6H1kI9QRQmpu+G/+tlX0Ja4=
+Received: from DS7PR03CA0282.namprd03.prod.outlook.com (2603:10b6:5:3ad::17)
+ by CH2PR12MB4008.namprd12.prod.outlook.com (2603:10b6:610:26::28) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.10; Thu, 4 Nov
- 2021 20:52:27 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.15; Thu, 4 Nov
+ 2021 20:52:28 +0000
 Received: from DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3ad:cafe::4c) by DS7PR03CA0274.outlook.office365.com
- (2603:10b6:5:3ad::9) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:5:3ad:cafe::7d) by DS7PR03CA0282.outlook.office365.com
+ (2603:10b6:5:3ad::17) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.10 via Frontend
- Transport; Thu, 4 Nov 2021 20:52:27 +0000
+ Transport; Thu, 4 Nov 2021 20:52:28 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
@@ -48,23 +48,23 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  DM6NAM11FT028.mail.protection.outlook.com (10.13.173.140) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4669.10 via Frontend Transport; Thu, 4 Nov 2021 20:52:26 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ 15.20.4669.10 via Frontend Transport; Thu, 4 Nov 2021 20:52:27 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Thu, 4 Nov
- 2021 15:52:21 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 15:52:22 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Thu, 4 Nov
- 2021 15:52:20 -0500
+ 2021 15:52:21 -0500
 Received: from Optimus.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2308.15 via Frontend
- Transport; Thu, 4 Nov 2021 15:52:19 -0500
+ Transport; Thu, 4 Nov 2021 15:52:20 -0500
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 01/22] drm/amd/display: Add helper for blanking all dp displays
-Date: Thu, 4 Nov 2021 16:51:54 -0400
-Message-ID: <20211104205215.1125899-2-Anson.Jacob@amd.com>
+Subject: [PATCH 02/22] drm/amd/display: Pass panel inst to a PSR command
+Date: Thu, 4 Nov 2021 16:51:55 -0400
+Message-ID: <20211104205215.1125899-3-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211104205215.1125899-1-Anson.Jacob@amd.com>
 References: <20211104205215.1125899-1-Anson.Jacob@amd.com>
@@ -73,28 +73,28 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 47180a50-1836-477e-2b31-08d99fd5028d
-X-MS-TrafficTypeDiagnostic: BN6PR12MB1860:
-X-Microsoft-Antispam-PRVS: <BN6PR12MB18601EF9B195067D87333895EB8D9@BN6PR12MB1860.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Office365-Filtering-Correlation-Id: 8c620f7f-a21d-40ef-d919-08d99fd502ff
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4008:
+X-Microsoft-Antispam-PRVS: <CH2PR12MB4008EC959A4F1D0A3A684602EB8D9@CH2PR12MB4008.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1850;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OlzQl01zCR1+8iDTbnlGeU36PDYqNJE/oyDi8iok52uFgNgM5YJTSRM2wN4I2sKEmY1di0eLN3f+ZdlTqbmCSOoDkG2alQzyEHZlYZHMr0iNsqVrKklqaI4X2uoqdvaNzl3TuzJvMxTksPRFwkuh6EGRiT+PX64y5kebHhh41/4UN1OQCg76mc5nUZF4ATsJMyv1pYQeEBu8n4UKghr80bNUwa3+IcVaw31YLWwyHFIYBi+L/Z3P/HgrdXMym2jBlhJ46ZEicUNdiLtkBvx5jm6KAx25MUKbxQd3sir/iwoRYt8Jxpayc4cMLp+Iyz8BIl4+a5KugvgANpPStZigPmU5mvX5HVXnVzkWLJBi2PPYrHFvEsR/VgHv5kYfkem5nkwg1EdYDnfetkqrkjHm/bKReGRlMZNn1Ot8frgyfNMCAIPdeiHsx48zV0LuONG0nESAaN2opwHWoQmOtjo8UKWpSA377UjCLq6sgWIGFPdVwXNvk/ynDPolCJyZ4EFrhd399Sw9qD7Mo7tVf64X8HFwfs2m5TL07y0vQJEqMY9ywozJQ+e4qoCsv614ZvFaN7ceUrk1+dkLC5sXQshG9hxiP+dtUr+k8oysC+A4MIyNozv9Qa10mpD9slv8D0UK8p6dOYDr17yb1NFl8fTA99BFB51isAoOlYhL2kJYr81izaVzKOWg2pxROzgIl2/2b3dWbcMcOraw7YwZRxRm79PvsdGQSey3Qj3gQ//Cn1U=
+X-Microsoft-Antispam-Message-Info: QAHiSfxZNLb9+b97lJlfRBrAuDD0bIBkmkSn6UR5iGZz/U2LoXEYQe6hvd3aPsWX/fxY65+txrBW/dbfMVlltW3Rg0hF14vPfibo+uBWoI1zYAh5I5MOQZkafa4YTJLhL6mPzHASdyIiPtY7UxikY0pohdRZNsP4Rq3NvCu+MSL0iNfwIyf+DE+kjfL4jn8oxNrKnr3GzY0m0b1ZZncUZ7XNCsCYEZrbE5QpNV8SZL2EAcQgU03euQZ9GawVXzoKg47XCVBMYEUVUQCQvrJRttDyGoH4TQkOOlc4K9ie0czbGB35zWTZMFVskGb1j+r83uve/J1GyYVq/N6h65L/n4/zzgP3cwSG5dgExvwS+tukyP1vJ4ZMbnzsr6Wk93oFwE94dnnj5JujrOmOEWlwQIJWs8zZbOKozL2nN2ktc80mMaRDnit5+CohA/RjBuagr2Pm1M0hrmZ8zeQY9kMKYv1Y92pgOu9g7uv5oY36vki5e4QWoTmWEcJaYvCFWW5/hgvkatB0PTksYUMolPtzrTQMT3w8z3dqkiAM+sGEn4x6FMEIOgCqzjuZctZCRI3jFSLh6msEbI69GNkn4LN7/GxAGkRuCgv72N/y0m6qIy7ptKhM6vTE3SaTL/vNVKsSyLhPdB2tqrrEf62Cfl+p/bq2JcQkCkZ0vdAwkN1wEp18SyAl8GiHeULceUWMup/82q/xbg6OUnG5BOkBYgGQ2ddWBJRZn24qBDnLiL+EUt4=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(54906003)(6916009)(186003)(82310400003)(83380400001)(81166007)(70206006)(336012)(36860700001)(70586007)(356005)(2906002)(86362001)(26005)(8936002)(30864003)(7696005)(508600001)(47076005)(8676002)(426003)(5660300002)(36756003)(316002)(2616005)(6666004)(1076003)(4326008)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(36756003)(26005)(47076005)(36860700001)(4326008)(82310400003)(2906002)(7696005)(83380400001)(508600001)(1076003)(8936002)(70206006)(70586007)(54906003)(186003)(2616005)(86362001)(5660300002)(6666004)(316002)(336012)(6916009)(8676002)(81166007)(356005)(426003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2021 20:52:26.8462 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47180a50-1836-477e-2b31-08d99fd5028d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2021 20:52:27.6008 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8c620f7f-a21d-40ef-d919-08d99fd502ff
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1860
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4008
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,324 +106,83 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Aric Cyr <Aric.Cyr@amd.com>,
- Wesley Chalmers <Wesley.Chalmers@amd.com>, solomon.chiu@amd.com,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, Anson.Jacob@amd.com,
- Aurabindo.Pillai@amd.com, Alvin Lee <alvin.lee2@amd.com>, wayne.lin@amd.com,
- "Leo \(Hanghong\) Ma" <hanghong.ma@amd.com>, mikita.lipski@amd.com,
- Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Anthony Koo <Anthony.Koo@amd.com>,
+ solomon.chiu@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
+ mikita.lipski@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: "Leo (Hanghong) Ma" <hanghong.ma@amd.com>
+From: Mikita Lipski <mikita.lipski@amd.com>
 
-[Why & How]
-1. The code to blank all dp display have been called many times,
-so add helpers in dc_link to make it more concise.
-2. Add some check to fix the dmesg errors at boot and resume from S3
-on dcn3.1 during DQE's promotion test.
+[why]
+PSR set power command wasn't setting panel instance
+and command version which caused both streams
+to overwrite the same PSR state.
+[how]
+Pass panel instance to the set power command function
+and to DMUB and set command version enum
 
-Reviewed-by: Alvin Lee <alvin.lee2@amd.com>
-Reviewed-by: Wesley Chalmers <Wesley.Chalmers@amd.com>
-Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
+Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
-Signed-off-by: Leo (Hanghong) Ma <hanghong.ma@amd.com>
+Signed-off-by: Mikita Lipski <mikita.lipski@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link.c | 51 +++++++++++++++++++
- drivers/gpu/drm/amd/display/dc/dc_link.h      |  4 ++
- .../display/dc/dce110/dce110_hw_sequencer.c   | 22 +-------
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 41 ++-------------
- .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    | 39 ++------------
- .../drm/amd/display/dc/dcn31/dcn31_hwseq.c    | 38 ++------------
- 6 files changed, 66 insertions(+), 129 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 2 +-
+ drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c | 4 +++-
+ drivers/gpu/drm/amd/display/dc/dce/dmub_psr.h | 2 +-
+ 3 files changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index f14f71dd1aa9..fe2b4b1d80f9 100644
+index fe2b4b1d80f9..b4cdf6d43965 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -1999,6 +1999,57 @@ static enum dc_status enable_link_dp_mst(
- 	return enable_link_dp(state, pipe_ctx);
- }
+@@ -2997,7 +2997,7 @@ bool dc_link_set_psr_allow_active(struct dc_link *link, const bool *allow_active
+ 		link->psr_settings.psr_power_opt = *power_opts;
  
-+void dc_link_blank_all_dp_displays(struct dc *dc)
-+{
-+	unsigned int i;
-+	uint8_t dpcd_power_state = '\0';
-+	enum dc_status status = DC_ERROR_UNEXPECTED;
-+
-+	for (i = 0; i < dc->link_count; i++) {
-+		if ((dc->links[i]->connector_signal != SIGNAL_TYPE_DISPLAY_PORT) ||
-+			(dc->links[i]->priv == NULL) || (dc->links[i]->local_sink == NULL))
-+			continue;
-+
-+		/* DP 2.0 spec requires that we read LTTPR caps first */
-+		dp_retrieve_lttpr_cap(dc->links[i]);
-+		/* if any of the displays are lit up turn them off */
-+		status = core_link_read_dpcd(dc->links[i], DP_SET_POWER,
-+							&dpcd_power_state, sizeof(dpcd_power_state));
-+
-+		if (status == DC_OK && dpcd_power_state == DP_POWER_STATE_D0)
-+			dc_link_blank_dp_stream(dc->links[i], true);
-+	}
-+
-+}
-+
-+void dc_link_blank_dp_stream(struct dc_link *link, bool hw_init)
-+{
-+	unsigned int j;
-+	struct dc  *dc = link->ctx->dc;
-+	enum signal_type signal = link->connector_signal;
-+
-+	if ((signal == SIGNAL_TYPE_EDP) ||
-+		(signal == SIGNAL_TYPE_DISPLAY_PORT)) {
-+		if (link->ep_type == DISPLAY_ENDPOINT_PHY &&
-+			link->link_enc->funcs->get_dig_frontend &&
-+			link->link_enc->funcs->is_dig_enabled(link->link_enc)) {
-+			unsigned int fe = link->link_enc->funcs->get_dig_frontend(link->link_enc);
-+
-+			if (fe != ENGINE_ID_UNKNOWN)
-+				for (j = 0; j < dc->res_pool->stream_enc_count; j++) {
-+					if (fe == dc->res_pool->stream_enc[j]->id) {
-+						dc->res_pool->stream_enc[j]->funcs->dp_blank(link,
-+									dc->res_pool->stream_enc[j]);
-+						break;
-+					}
-+				}
-+		}
-+
-+		if ((!link->wa_flags.dp_keep_receiver_powered) || hw_init)
-+			dp_receiver_power_ctrl(link, false);
-+	}
-+}
-+
- static bool get_ext_hdmi_settings(struct pipe_ctx *pipe_ctx,
- 		enum engine_id eng_id,
- 		struct ext_hdmi_settings *settings)
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
-index 180ecd860296..669c162c0c02 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_link.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
-@@ -287,6 +287,10 @@ bool dc_link_setup_psr(struct dc_link *dc_link,
+ 		if (psr != NULL && link->psr_settings.psr_feature_enabled && psr->funcs->psr_set_power_opt)
+-			psr->funcs->psr_set_power_opt(psr, link->psr_settings.psr_power_opt);
++			psr->funcs->psr_set_power_opt(psr, link->psr_settings.psr_power_opt, panel_inst);
+ 	}
  
- void dc_link_get_psr_residency(const struct dc_link *link, uint32_t *residency);
- 
-+void dc_link_blank_all_dp_displays(struct dc *dc);
-+
-+void dc_link_blank_dp_stream(struct dc_link *link, bool hw_init);
-+
- /* Request DC to detect if there is a Panel connected.
-  * boot - If this call is during initial boot.
-  * Return false for any type of detection failure or MST detection
-diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-index 24e47df526f6..e7e2aa46218d 100644
---- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-@@ -1655,30 +1655,12 @@ static enum dc_status apply_single_controller_ctx_to_hw(
- 
- static void power_down_encoders(struct dc *dc)
+ 	/* Enable or Disable PSR */
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+index 90eb8eedacf2..e9c0ec2ec4ce 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.c
+@@ -230,7 +230,7 @@ static void dmub_psr_set_level(struct dmub_psr *dmub, uint16_t psr_level, uint8_
+ /**
+  * Set PSR power optimization flags.
+  */
+-static void dmub_psr_set_power_opt(struct dmub_psr *dmub, unsigned int power_opt)
++static void dmub_psr_set_power_opt(struct dmub_psr *dmub, unsigned int power_opt, uint8_t panel_inst)
  {
--	int i, j;
-+	int i;
+ 	union dmub_rb_cmd cmd;
+ 	struct dc_context *dc = dmub->ctx;
+@@ -239,7 +239,9 @@ static void dmub_psr_set_power_opt(struct dmub_psr *dmub, unsigned int power_opt
+ 	cmd.psr_set_power_opt.header.type = DMUB_CMD__PSR;
+ 	cmd.psr_set_power_opt.header.sub_type = DMUB_CMD__SET_PSR_POWER_OPT;
+ 	cmd.psr_set_power_opt.header.payload_bytes = sizeof(struct dmub_cmd_psr_set_power_opt_data);
++	cmd.psr_set_power_opt.psr_set_power_opt_data.cmd_version = DMUB_CMD_PSR_CONTROL_VERSION_1;
+ 	cmd.psr_set_power_opt.psr_set_power_opt_data.power_opt = power_opt;
++	cmd.psr_set_power_opt.psr_set_power_opt_data.panel_inst = panel_inst;
  
- 	for (i = 0; i < dc->link_count; i++) {
- 		enum signal_type signal = dc->links[i]->connector_signal;
+ 	dc_dmub_srv_cmd_queue(dc->dmub_srv, &cmd);
+ 	dc_dmub_srv_cmd_execute(dc->dmub_srv);
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.h b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.h
+index 5dbd479660f1..01acc01cc191 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.h
++++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_psr.h
+@@ -46,7 +46,7 @@ struct dmub_psr_funcs {
+ 	void (*psr_force_static)(struct dmub_psr *dmub, uint8_t panel_inst);
+ 	void (*psr_get_residency)(struct dmub_psr *dmub, uint32_t *residency,
+ 	uint8_t panel_inst);
+-	void (*psr_set_power_opt)(struct dmub_psr *dmub, unsigned int power_opt);
++	void (*psr_set_power_opt)(struct dmub_psr *dmub, unsigned int power_opt, uint8_t panel_inst);
+ };
  
--		if ((signal == SIGNAL_TYPE_EDP) ||
--			(signal == SIGNAL_TYPE_DISPLAY_PORT)) {
--			if (dc->links[i]->link_enc->funcs->get_dig_frontend &&
--				dc->links[i]->link_enc->funcs->is_dig_enabled(dc->links[i]->link_enc)) {
--				unsigned int fe = dc->links[i]->link_enc->funcs->get_dig_frontend(
--									dc->links[i]->link_enc);
--
--				for (j = 0; j < dc->res_pool->stream_enc_count; j++) {
--					if (fe == dc->res_pool->stream_enc[j]->id) {
--						dc->res_pool->stream_enc[j]->funcs->dp_blank(dc->links[i],
--									dc->res_pool->stream_enc[j]);
--						break;
--					}
--				}
--			}
--
--			if (!dc->links[i]->wa_flags.dp_keep_receiver_powered)
--				dp_receiver_power_ctrl(dc->links[i], false);
--		}
-+		dc_link_blank_dp_stream(dc->links[i], false);
- 
- 		if (signal != SIGNAL_TYPE_EDP)
- 			signal = SIGNAL_TYPE_NONE;
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-index 0b788d794fb3..135e2b58cc73 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_hw_sequencer.c
-@@ -1366,7 +1366,7 @@ void dcn10_init_pipes(struct dc *dc, struct dc_state *context)
- 
- void dcn10_init_hw(struct dc *dc)
- {
--	int i, j;
-+	int i;
- 	struct abm *abm = dc->res_pool->abm;
- 	struct dmcu *dmcu = dc->res_pool->dmcu;
- 	struct dce_hwseq *hws = dc->hwseq;
-@@ -1468,43 +1468,8 @@ void dcn10_init_hw(struct dc *dc)
- 		dmub_enable_outbox_notification(dc);
- 
- 	/* we want to turn off all dp displays before doing detection */
--	if (dc->config.power_down_display_on_boot) {
--		uint8_t dpcd_power_state = '\0';
--		enum dc_status status = DC_ERROR_UNEXPECTED;
--
--		for (i = 0; i < dc->link_count; i++) {
--			if (dc->links[i]->connector_signal != SIGNAL_TYPE_DISPLAY_PORT)
--				continue;
--
--			/* DP 2.0 requires that LTTPR Caps be read first */
--			dp_retrieve_lttpr_cap(dc->links[i]);
--
--			/*
--			 * If any of the displays are lit up turn them off.
--			 * The reason is that some MST hubs cannot be turned off
--			 * completely until we tell them to do so.
--			 * If not turned off, then displays connected to MST hub
--			 * won't light up.
--			 */
--			status = core_link_read_dpcd(dc->links[i], DP_SET_POWER,
--							&dpcd_power_state, sizeof(dpcd_power_state));
--			if (status == DC_OK && dpcd_power_state == DP_POWER_STATE_D0) {
--				/* blank dp stream before power off receiver*/
--				if (dc->links[i]->link_enc->funcs->get_dig_frontend) {
--					unsigned int fe = dc->links[i]->link_enc->funcs->get_dig_frontend(dc->links[i]->link_enc);
--
--					for (j = 0; j < dc->res_pool->stream_enc_count; j++) {
--						if (fe == dc->res_pool->stream_enc[j]->id) {
--							dc->res_pool->stream_enc[j]->funcs->dp_blank(dc->links[i],
--										dc->res_pool->stream_enc[j]);
--							break;
--						}
--					}
--				}
--				dp_receiver_power_ctrl(dc->links[i], false);
--			}
--		}
--	}
-+	if (dc->config.power_down_display_on_boot)
-+		dc_link_blank_all_dp_displays(dc);
- 
- 	/* If taking control over from VBIOS, we may want to optimize our first
- 	 * mode set, so we need to skip powering down pipes until we know which
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-index df2717116604..3e99bb9c70ab 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_hwseq.c
-@@ -437,7 +437,7 @@ void dcn30_init_hw(struct dc *dc)
- 	struct dce_hwseq *hws = dc->hwseq;
- 	struct dc_bios *dcb = dc->ctx->dc_bios;
- 	struct resource_pool *res_pool = dc->res_pool;
--	int i, j;
-+	int i;
- 	int edp_num;
- 	uint32_t backlight = MAX_BACKLIGHT_LEVEL;
- 
-@@ -534,41 +534,8 @@ void dcn30_init_hw(struct dc *dc)
- 			hws->funcs.dsc_pg_control(hws, res_pool->dscs[i]->inst, false);
- 
- 	/* we want to turn off all dp displays before doing detection */
--	if (dc->config.power_down_display_on_boot) {
--		uint8_t dpcd_power_state = '\0';
--		enum dc_status status = DC_ERROR_UNEXPECTED;
--
--		for (i = 0; i < dc->link_count; i++) {
--			if (dc->links[i]->connector_signal != SIGNAL_TYPE_DISPLAY_PORT)
--				continue;
--			/* DP 2.0 states that LTTPR regs must be read first */
--			dp_retrieve_lttpr_cap(dc->links[i]);
--
--			/* if any of the displays are lit up turn them off */
--			status = core_link_read_dpcd(dc->links[i], DP_SET_POWER,
--						     &dpcd_power_state, sizeof(dpcd_power_state));
--			if (status == DC_OK && dpcd_power_state == DP_POWER_STATE_D0) {
--				/* blank dp stream before power off receiver*/
--				if (dc->links[i]->link_enc->funcs->get_dig_frontend) {
--					unsigned int fe;
--
--					fe = dc->links[i]->link_enc->funcs->get_dig_frontend(
--										dc->links[i]->link_enc);
--					if (fe == ENGINE_ID_UNKNOWN)
--						continue;
--
--					for (j = 0; j < dc->res_pool->stream_enc_count; j++) {
--						if (fe == dc->res_pool->stream_enc[j]->id) {
--							dc->res_pool->stream_enc[j]->funcs->dp_blank(dc->links[i],
--										dc->res_pool->stream_enc[j]);
--							break;
--						}
--					}
--				}
--				dp_receiver_power_ctrl(dc->links[i], false);
--			}
--		}
--	}
-+	if (dc->config.power_down_display_on_boot)
-+		dc_link_blank_all_dp_displays(dc);
- 
- 	/* If taking control over from VBIOS, we may want to optimize our first
- 	 * mode set, so we need to skip powering down pipes until we know which
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-index 5dd1ce9ddb53..bdaeb6ebdacb 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hwseq.c
-@@ -112,7 +112,7 @@ void dcn31_init_hw(struct dc *dc)
- 	struct dc_bios *dcb = dc->ctx->dc_bios;
- 	struct resource_pool *res_pool = dc->res_pool;
- 	uint32_t backlight = MAX_BACKLIGHT_LEVEL;
--	int i, j;
-+	int i;
- 
- 	if (dc->clk_mgr && dc->clk_mgr->funcs->init_clocks)
- 		dc->clk_mgr->funcs->init_clocks(dc->clk_mgr);
-@@ -202,40 +202,8 @@ void dcn31_init_hw(struct dc *dc)
- 		dmub_enable_outbox_notification(dc);
- 
- 	/* we want to turn off all dp displays before doing detection */
--	if (dc->config.power_down_display_on_boot) {
--		uint8_t dpcd_power_state = '\0';
--		enum dc_status status = DC_ERROR_UNEXPECTED;
--
--		for (i = 0; i < dc->link_count; i++) {
--			if (dc->links[i]->connector_signal != SIGNAL_TYPE_DISPLAY_PORT)
--				continue;
--
--			/* if any of the displays are lit up turn them off */
--			status = core_link_read_dpcd(dc->links[i], DP_SET_POWER,
--						     &dpcd_power_state, sizeof(dpcd_power_state));
--			if (status == DC_OK && dpcd_power_state == DP_POWER_STATE_D0) {
--				/* blank dp stream before power off receiver*/
--				if (dc->links[i]->ep_type == DISPLAY_ENDPOINT_PHY &&
--						dc->links[i]->link_enc->funcs->get_dig_frontend) {
--					unsigned int fe;
--
--					fe = dc->links[i]->link_enc->funcs->get_dig_frontend(
--										dc->links[i]->link_enc);
--					if (fe == ENGINE_ID_UNKNOWN)
--						continue;
--
--					for (j = 0; j < dc->res_pool->stream_enc_count; j++) {
--						if (fe == dc->res_pool->stream_enc[j]->id) {
--							dc->res_pool->stream_enc[j]->funcs->dp_blank(dc->links[i],
--										dc->res_pool->stream_enc[j]);
--							break;
--						}
--					}
--				}
--				dp_receiver_power_ctrl(dc->links[i], false);
--			}
--		}
--	}
-+	if (dc->config.power_down_display_on_boot)
-+		dc_link_blank_all_dp_displays(dc);
- 
- 	/* If taking control over from VBIOS, we may want to optimize our first
- 	 * mode set, so we need to skip powering down pipes until we know which
+ struct dmub_psr *dmub_psr_create(struct dc_context *ctx);
 -- 
 2.25.1
 
