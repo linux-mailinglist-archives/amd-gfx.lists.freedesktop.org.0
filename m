@@ -1,71 +1,71 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A98AD445B42
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Nov 2021 21:52:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8511C445B45
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Nov 2021 21:52:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 056367378B;
-	Thu,  4 Nov 2021 20:52:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7766A7367C;
+	Thu,  4 Nov 2021 20:52:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2050.outbound.protection.outlook.com [40.107.220.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A96FB736AA
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 20:52:32 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2080.outbound.protection.outlook.com [40.107.223.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D56573784
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 20:52:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eeGVuFHqLop7THR/OUjvIHgcuUfqJjfebjUSt7nIiw1P6U2BOfou7Sj8R6Qo12pfLr9M7ByJdodT3kBiwb5on73M2I7k1nHfYmbIbUNewpwE0lecmH5GZmbCvpePndNLf/yHWY6Fvb+Igk+4+V7hjb5rThCgB+Jn+vXnv771Y5VXwLiTRUkvIMyQkIicOCJtxnOLXJNrNoGAJ2Q6VZmmFGY68bw1tvZen0XtGZwuTCIkvwuHcA2Rl/yGca9i711TgkXWFKKCmMGvAbPOAv/vsg9PUfv2bxp/GD6cCk9O7yhsqvQVEAPxDWahPqV2RgFLADKu7ezSFNKInOEhOetWvQ==
+ b=f3aHnOmh/qSLZ4juwDxNTke4phcA7FBPJfllZKMaP+lox9rdYUSZ8WSunWLJRvyDE/EmJli/qdPemJe6wM8M1Zikc5XYtskgDHbCfC0QuIuBogsKpark95wqxEmRS7WwJ6yH/xx95L8jL2dEFYVaUcpTaR70Bl8EYC5XQyu+QeJwto6j0/L0K2vZ7wkBH3tLeH7NzEpWNH24Rie7PzE/6cx11FIvQWxVgZukhb+UUkGSwd7LmWOJkcIsaHa3lIjPFm/15ExHw6iuqnL1hYfBanBRLRkwI8N1yJKJM+sW/CSqS9b9BJdyjjB10REXrCqJ4mCVksfdlPl2S2hhX2kCtg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6cKjoFwMtTf9ofaB5BbdnAhEMIFR/KFzhY+zjsYXLA0=;
- b=n2S6UqHFAsQyBe0BYN9KVju8XqZbdIRFQUwNMSumFJ6Da2WRFia4o7EFLd9aXNE+xlwcjydlX3hk5sbYd5EMGZkb64omm3Vp3b6heaISqHpnaASOzd5BMpFMsk7ynA5MaP/Qv52Q6+m4SAm22wsK1s0Ij0YBiL0x+ubMNURYHF154N1h5nirRa4eCO4p6u2vSmp2Iu81jUKQ3NDWH9dVanXmAL86ubHT7Ht+jON4QCkLzj4Aob9rzbj1KZS6UW8fTNE5JJg6wasWFOoFdxpacPIYSr6kJv+h4BIjaBNzTuVFdwAtXKSK1cxFv+ECRsJF+ASoPvh5yaoSgD+qsPLlng==
+ bh=kEw7P/suwNgRd/awVgci7Ppro2TsUBMIkDvvqoNXZ8w=;
+ b=lNg+z6aTMDHbF8ZtSQ6jzr1OtUIB2B7yAKqpcVvn36en3/r2Qo9j2J9+60x7DZ0PX4FoqyhVITOUiw666A3VuXNd1hlOZNSUa/W+/wRQCfoWhoOjLatsfrh3c0CNd/sKdH6Id3ZR/nCIfwT0il3FROGaaMJq/uCzVsDwE9wVoaBiFnJEuObSxSlmajxTdVHBILAy5NflmhauL+3IxDd19FuG/k8hMrgNb7TjBalnc5bYbujclkyvZwqGwCUBSTzIcBOOyWX/hLEft6IQxCcwyCp9LDtdQhJSCbdW5S5eFFGqOAYcrGSw/zx+rH85o4R/iASCcUdInKCnEdq645tJ2w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6cKjoFwMtTf9ofaB5BbdnAhEMIFR/KFzhY+zjsYXLA0=;
- b=gGfthEoUMGK9QQBo68vINOylK0vaxngRzAzUbVNqv9EQ1Z0qQqdVJGV3Li5B3G5b2a1PymSKnvbWDm0QHULLseLqXlTWu+Wm1+vOBPFJVOSCpDHJVyC9yLaSeiOAd68oLX2YrVGF6bYo/tNbIZiHOni58A5dadjvp6xUOLeGrss=
-Received: from DM6PR05CA0037.namprd05.prod.outlook.com (2603:10b6:5:335::6) by
- MN2PR12MB4606.namprd12.prod.outlook.com (2603:10b6:208:3f::10) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4649.19; Thu, 4 Nov 2021 20:52:30 +0000
-Received: from DM6NAM11FT003.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:335:cafe::63) by DM6PR05CA0037.outlook.office365.com
- (2603:10b6:5:335::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.5 via Frontend
- Transport; Thu, 4 Nov 2021 20:52:30 +0000
+ bh=kEw7P/suwNgRd/awVgci7Ppro2TsUBMIkDvvqoNXZ8w=;
+ b=eBXkR4qUwTTAD48bqZXnO74PEuypSWwtcZs2BwfxLF/0QISah6uRJk4jgl9BcYZFxWaK2yMnnInsHUCyfIgvrZ8Ggrtm3qOkCe58xAKaLaiP8+AH9fZcB/Pph4PC0cJFHq9/OBjzIu3DX3P3p/S+0WkcAJB49n5jtKb/gILh67U=
+Received: from DS7PR03CA0276.namprd03.prod.outlook.com (2603:10b6:5:3ad::11)
+ by BL0PR12MB4884.namprd12.prod.outlook.com (2603:10b6:208:1ca::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.11; Thu, 4 Nov
+ 2021 20:52:31 +0000
+Received: from DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3ad:cafe::c1) by DS7PR03CA0276.outlook.office365.com
+ (2603:10b6:5:3ad::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.10 via Frontend
+ Transport; Thu, 4 Nov 2021 20:52:31 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
  header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT003.mail.protection.outlook.com (10.13.173.162) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DM6NAM11FT028.mail.protection.outlook.com (10.13.173.140) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4669.10 via Frontend Transport; Thu, 4 Nov 2021 20:52:29 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.4669.10 via Frontend Transport; Thu, 4 Nov 2021 20:52:30 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Thu, 4 Nov
- 2021 15:52:28 -0500
+ 2021 15:52:29 -0500
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
  (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Thu, 4 Nov
- 2021 13:52:27 -0700
+ 2021 13:52:29 -0700
 Received: from Optimus.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2308.15 via Frontend
- Transport; Thu, 4 Nov 2021 15:52:26 -0500
+ Transport; Thu, 4 Nov 2021 15:52:28 -0500
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 07/22] drm/amd/display: Fix detection of aligned DMUB firmware
- meta info
-Date: Thu, 4 Nov 2021 16:52:00 -0400
-Message-ID: <20211104205215.1125899-8-Anson.Jacob@amd.com>
+Subject: [PATCH 08/22] drm/amd/display: bring dcn31 clk mgr in line with other
+ version style
+Date: Thu, 4 Nov 2021 16:52:01 -0400
+Message-ID: <20211104205215.1125899-9-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211104205215.1125899-1-Anson.Jacob@amd.com>
 References: <20211104205215.1125899-1-Anson.Jacob@amd.com>
@@ -74,28 +74,28 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 47be0597-a27d-4806-ed66-08d99fd503ea
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4606:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB460623373426A5CE496E269FEB8D9@MN2PR12MB4606.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Office365-Filtering-Correlation-Id: d276a6cc-a761-4bee-899d-08d99fd504f0
+X-MS-TrafficTypeDiagnostic: BL0PR12MB4884:
+X-Microsoft-Antispam-PRVS: <BL0PR12MB4884A39752404E8AA1496DBEEB8D9@BL0PR12MB4884.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:462;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +LipB8vS/tWgVGTWIhVPnKQfV8cfOUIbiPEI4kpwgn4bbJeSZMs51Y9XYs8QMjKgVmA66td5MRpMxcpE29H6MOld0ZDE0V9qWelLelGHd+IHVapRuBCCCYmBCux6xAb2mZhhYal8wqvFj7cqnLV3JC2BvHntE0UXB169vSWmra1HAIek+ZUYIjHpWmP65UXMpyezxLB3PE02Jq9gTxGIJiU3TdQqMmPXoILEwWfeivFmA8i4JoxbrcKUnX0coTk+LCZDYzAqhkDlvJFNcDX7P0sv+wejBLChTDR1vAXJnEwUM6GyP9dhku8bcDbbBCGfJ2wuuObkNZiCNnGGVM1XYuAlys+pPr9umMC4IWNxrZUQj/zXk7oerkg7zQVCrpQpAFSHoY0JXU0kUOsy8t9sL4LyC7nZRBnPZScshFKbtqMxG9WJUIC4cno508muMEvWhTtE8CsBUiw81W95g7BvY8tWSYL6QrJc9axZMxdLcMtxQ2FLcaZoIPcqIIes9g/rjOJvHvdNMw+xxNgd9ay9ix1MMspECbXkRGJzQ14VpBRz4lBzvVZG1rR6kC4gTxOnpvHqs3D+NQjK783LAlrFWKL10uH+LYMNDpddOfqAWz5uXl03dYsBp/3UsBltnmsWz6pL8qxxIFikoF3kEAthOWlLeIR79q5nRh0CC2Z63WRZlQtTsFyoyACGHYLfA17GNW8siFAXd6fOLTVca+GYBdo0dZNM/AB//TkYwKWdvHI=
+X-Microsoft-Antispam-Message-Info: +AsLowCVTIfY7Uw6aKeqjTl+uCC4ONVpFZxxPE4QbMiLp4Pg3NGA2xpnBJLaHUXuglHXLyJaZLOyc9mcvs01HMwrFDKw7Pe8MsR16Pc4d4evaHYOWQNl8iCfX4dTcU6xjIOLuyO0J27GclER2bTWPUe20NC8oYvXasP8at8r8DVDJwha+df31eXl6kSg+/hS5o5FcK/eikxjTCMpctp1QvaGxpSdn9HeFphB9rbu3GZZfYOyHveU4I004FBKS7mNlyYFU6v5EVfTfuYF+3IXuD8mTU3EBJbRTPYMk5cj1EvkGxfIVfHIdJpPiR6sXOPi5H6WRvXnGktrNeQRFaEC9edW57QHPV9X0QH32+hJ7VRkHfqw+PAwlKsnwH1eaBdscBsVlCHGHHWsQ/gdCgCHggOQqU5IbdYLfgUeammcUKaVDlwF6SpSKpjNmmsQ+gTle9Qo5MlzC9keg4CH/Ve9srjJ8akqgKAIC+orWY4dCEnzCBfNxxR7ybt66dmBFgSbkXg+ZfrkMAahn/eJ86HdmfwONgAZHS/kwLnPeoq+ZwbIYSAwAZWD+e0OcimN7I4wWCQ1wI1P3bqk2sbEzQL8oLM8HavkIyZZGB0kCqp/xvbHMYUK0YrWWOx2cBATkr8wlHtXP9j5ZpGcSTmKe24NtQtXLXokAGsQcRjNhINdwOQnme3P+vi+7e9whx5BQuQBl9EVdyD9LDljvovKdIfMVNf5LBjWImpBwfcTs1CHYGo=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(36860700001)(2906002)(86362001)(54906003)(426003)(186003)(82310400003)(70206006)(26005)(7696005)(8676002)(6666004)(36756003)(2616005)(4326008)(508600001)(81166007)(316002)(336012)(8936002)(6916009)(83380400001)(70586007)(5660300002)(47076005)(356005)(1076003)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(46966006)(36840700001)(6916009)(1076003)(81166007)(26005)(316002)(36756003)(8676002)(70586007)(70206006)(54906003)(6666004)(356005)(508600001)(8936002)(7696005)(2616005)(336012)(2906002)(82310400003)(86362001)(47076005)(83380400001)(186003)(4326008)(426003)(5660300002)(36860700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2021 20:52:29.1304 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47be0597-a27d-4806-ed66-08d99fd503ea
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2021 20:52:30.8549 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d276a6cc-a761-4bee-899d-08d99fd504f0
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT003.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT028.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4606
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4884
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,100 +107,84 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Eric Yang <Eric.Yang2@amd.com>, solomon.chiu@amd.com,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, Anson.Jacob@amd.com,
- Aurabindo.Pillai@amd.com, wayne.lin@amd.com, mikita.lipski@amd.com,
- Bhawanpreet.Lakha@amd.com, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>,
+ solomon.chiu@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
+ mikita.lipski@amd.com, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+From: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 
-[Why]
-A built firmware binary may be aligned to 16-bytes with padding at the
-end as necessary. In the case that padding was applied the meta info
-will not be detected correctly and we won't be able to allocate the
-appropriate firmware and tracebuffer sizes.
-
-[How]
-To maintain compatibility with already released firmware where this
-occurs we need to try every meta offset from 0..15 inclusive.
-
-Extract out the meta info checker into a helper function that's called
-for each of these offsets and exit early when we've found it.
-
-Reviewed-by: Eric Yang <Eric.Yang2@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Signed-off-by: Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>
 ---
- .../gpu/drm/amd/display/dmub/src/dmub_srv.c   | 43 ++++++++++++-------
- 1 file changed, 27 insertions(+), 16 deletions(-)
+ .../gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c  | 8 ++++----
+ .../gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.h  | 7 +++++++
+ 2 files changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-index 56d400ffa7ac..4a2cb0cdb0ba 100644
---- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-+++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
-@@ -100,24 +100,9 @@ void dmub_flush_buffer_mem(const struct dmub_fb *fb)
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
+index f4c9a458ace8..a13ff1783b9b 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c
+@@ -66,7 +66,7 @@
+ #define TO_CLK_MGR_DCN31(clk_mgr)\
+ 	container_of(clk_mgr, struct clk_mgr_dcn31, base)
+ 
+-int dcn31_get_active_display_cnt_wa(
++static int dcn31_get_active_display_cnt_wa(
+ 		struct dc *dc,
+ 		struct dc_state *context)
+ {
+@@ -118,7 +118,7 @@ static void dcn31_disable_otg_wa(struct clk_mgr *clk_mgr_base, bool disable)
+ 	}
  }
  
- static const struct dmub_fw_meta_info *
--dmub_get_fw_meta_info(const struct dmub_srv_region_params *params)
-+dmub_get_fw_meta_info_from_blob(const uint8_t *blob, uint32_t blob_size, uint32_t meta_offset)
+-static void dcn31_update_clocks(struct clk_mgr *clk_mgr_base,
++void dcn31_update_clocks(struct clk_mgr *clk_mgr_base,
+ 			struct dc_state *context,
+ 			bool safe_to_lower)
  {
- 	const union dmub_fw_meta *meta;
--	const uint8_t *blob = NULL;
--	uint32_t blob_size = 0;
--	uint32_t meta_offset = 0;
--
--	if (params->fw_bss_data && params->bss_data_size) {
--		/* Legacy metadata region. */
--		blob = params->fw_bss_data;
--		blob_size = params->bss_data_size;
--		meta_offset = DMUB_FW_META_OFFSET;
--	} else if (params->fw_inst_const && params->inst_const_size) {
--		/* Combined metadata region. */
--		blob = params->fw_inst_const;
--		blob_size = params->inst_const_size;
--		meta_offset = 0;
--	}
- 
- 	if (!blob || !blob_size)
- 		return NULL;
-@@ -134,6 +119,32 @@ dmub_get_fw_meta_info(const struct dmub_srv_region_params *params)
- 	return &meta->info;
+@@ -284,7 +284,7 @@ static void dcn31_enable_pme_wa(struct clk_mgr *clk_mgr_base)
+ 	dcn31_smu_enable_pme_wa(clk_mgr);
  }
  
-+static const struct dmub_fw_meta_info *
-+dmub_get_fw_meta_info(const struct dmub_srv_region_params *params)
-+{
-+	const struct dmub_fw_meta_info *info = NULL;
-+
-+	if (params->fw_bss_data && params->bss_data_size) {
-+		/* Legacy metadata region. */
-+		info = dmub_get_fw_meta_info_from_blob(params->fw_bss_data,
-+						       params->bss_data_size,
-+						       DMUB_FW_META_OFFSET);
-+	} else if (params->fw_inst_const && params->inst_const_size) {
-+		/* Combined metadata region - can be aligned to 16-bytes. */
-+		uint32_t i;
-+
-+		for (i = 0; i < 16; ++i) {
-+			info = dmub_get_fw_meta_info_from_blob(
-+				params->fw_inst_const, params->inst_const_size, i);
-+
-+			if (info)
-+				break;
-+		}
-+	}
-+
-+	return info;
-+}
-+
- static bool dmub_srv_hw_setup(struct dmub_srv *dmub, enum dmub_asic asic)
+-static void dcn31_init_clocks(struct clk_mgr *clk_mgr)
++void dcn31_init_clocks(struct clk_mgr *clk_mgr)
  {
- 	struct dmub_srv_hw_funcs *funcs = &dmub->hw_funcs;
+ 	memset(&(clk_mgr->clks), 0, sizeof(struct dc_clocks));
+ 	// Assumption is that boot state always supports pstate
+@@ -294,7 +294,7 @@ static void dcn31_init_clocks(struct clk_mgr *clk_mgr)
+ 	clk_mgr->clks.zstate_support = DCN_ZSTATE_SUPPORT_UNKNOWN;
+ }
+ 
+-static bool dcn31_are_clock_states_equal(struct dc_clocks *a,
++bool dcn31_are_clock_states_equal(struct dc_clocks *a,
+ 		struct dc_clocks *b)
+ {
+ 	if (a->dispclk_khz != b->dispclk_khz)
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.h b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.h
+index f8f100535526..961b10a49486 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.h
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn31/dcn31_clk_mgr.h
+@@ -39,6 +39,13 @@ struct clk_mgr_dcn31 {
+ 	struct dcn31_smu_watermark_set smu_wm_set;
+ };
+ 
++bool dcn31_are_clock_states_equal(struct dc_clocks *a,
++		struct dc_clocks *b);
++void dcn31_init_clocks(struct clk_mgr *clk_mgr);
++void dcn31_update_clocks(struct clk_mgr *clk_mgr_base,
++			struct dc_state *context,
++			bool safe_to_lower);
++
+ void dcn31_clk_mgr_construct(struct dc_context *ctx,
+ 		struct clk_mgr_dcn31 *clk_mgr,
+ 		struct pp_smu_funcs *pp_smu,
 -- 
 2.25.1
 
