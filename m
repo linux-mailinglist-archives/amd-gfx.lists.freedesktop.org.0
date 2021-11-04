@@ -1,71 +1,70 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4F47445B53
-	for <lists+amd-gfx@lfdr.de>; Thu,  4 Nov 2021 21:53:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE781445B4F
+	for <lists+amd-gfx@lfdr.de>; Thu,  4 Nov 2021 21:53:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F024673873;
-	Thu,  4 Nov 2021 20:53:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2094673872;
+	Thu,  4 Nov 2021 20:53:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam08on2071.outbound.protection.outlook.com [40.107.102.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4050173873
- for <amd-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 20:53:09 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2050.outbound.protection.outlook.com [40.107.223.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1909737F2
+ for <amd-gfx@lists.freedesktop.org>; Thu,  4 Nov 2021 20:53:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fcA7dMEfREHlyQzsneVawDUc1ilu1rW56ytREkzqAf/d1ZonIkjDwY9qh91ymkJz6X1np1GMyXnZ7ArWTsJPZjrkMGepbsD9MWBLCD0wCye3hIXjji0eiTei6fqVMCl68QVdtaLdrz/d2VmCp90LEx6rP/Uf06P/rbxxJ6kRJovwo310zkKM3q4qFZkqPsAdEqKoC2F5ZBW+5n9qwoPtOgJKCg5Y4xLrDnlm2O36cHYubFrVEpwoa/bLycVkJ341LX3UpTMpR53FIP52RDMwd4P9FfHTCNx9PKKgiSK0PLvFiw2pOOIQvl+zgbPFCU3QxSYu3QQ0LeSm4xBpztSEpg==
+ b=jLB538r+S6TChIEZ7rMMsq9mvlzcFUfV7Z+KCgJHtPfZdJtc4rmeKThqI3nl5bCilZ212RYc8xRZptrrj/D1QhMBO2HO23PG575t87uvwfl+42WuIeN/ntqfHJwQIRsCqn8TSCQ08QTmFnVVkFMFTzxRqwAV7R/tsJ/0608VLWJR3M1j7cPIsSIIm3OG5RQsjkhWzVISG5E5nszKlL4xek/kJP1SXERwJZtPk/lcjBWOnhzndhph3AY1fuQ6jjpiCX2Ud7vUIdXybj/6QYiDguYgtKvBYTHJrsyc1G83sqxbQB07/ZASjhxRkCsN/Q6FwQ2TC6mUXPn62MNtAX68/g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C/1NvVnqsWv5EK529ednsSYaVoQ8V+gW/TjCSQCYOUQ=;
- b=nK98ii/bRAOm4gTg0WqgUDp95yJT81+n/zIySI9wJX1zsLVW45ZNiRz7OOeHu3VbG3LZQvfvkpvlAwzmKF7Eavtwe2XzlwSWpG+fBXRnEx8WQ9xcSl+vAWt2oWz+pITaJUlc7KPcuSM/eXM/LTQ7ygyoHv2ov8RDnIwffD+xJVw9B3v7r5LhrDKQCSVCCeI0oMDYsafHsU+YZjQ8NIiqiwNLTK/xSQAB4JAsgS/jsZEryXduR35Snu+WMEml3yPYl6LLICYu/HIMsM6DAwhqKyjj6AxcBCVL1S4p6/bnA0RPTjL8V2rEry9ONZAw9km8MQxQK8UE/RoTAnbFebcDdg==
+ bh=+l/NTYf95ZPCyjAYI+Dj0XYsfBxM1GUn+NFcBpKp90I=;
+ b=Hp47ESSV50+uzlln8ylbmZBlqlKck3MEYDX0i46XC6f/kULJyEnQOiBtLy3Cpgs1BhCLpVY6wWaXbwfahPyi3kTVSeevbj/UJE9b+qWzbOc1PWtHQKYMEpcSo1hOEcnau4uRr+y37J1t2LZLXpIR8SF90Q8xTgoeYXPROCDbP8wyFs9bJfdrkZBpheiafJvFJ1sQG6VOvv3RS8ECGqu73zCiRaCGy+G6lAwxOg3+s8jnYscMHcyaGBAabcnEmwHJaj+fZwucgT8+BqpexGNn3u4cQ8WbTLBvcAiHBfAV2QK0UHMi/oES1SB3bogyO7j8WWD2BTNtQGCom6LRfY8Ibg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C/1NvVnqsWv5EK529ednsSYaVoQ8V+gW/TjCSQCYOUQ=;
- b=LnkjC1UJPVhpNBvPPi6hURC09FJVSTqQZqq5wZCJueYlveHE+cQc+4cKpUge09vKmsrwj6YdFcER19Zenv6pNgHscPzevX2cHbHG2u1RiyOIuqQULCgDKEzRHpQDh2tdD8BS1VeXqug9GQ9doFDfbzYJj+w3HDKjoznPcy2aW0s=
-Received: from DM6PR12CA0031.namprd12.prod.outlook.com (2603:10b6:5:1c0::44)
- by BL1PR12MB5080.namprd12.prod.outlook.com (2603:10b6:208:30a::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.11; Thu, 4 Nov
- 2021 20:53:06 +0000
-Received: from DM6NAM11FT049.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:1c0:cafe::87) by DM6PR12CA0031.outlook.office365.com
- (2603:10b6:5:1c0::44) with Microsoft SMTP Server (version=TLS1_2,
+ bh=+l/NTYf95ZPCyjAYI+Dj0XYsfBxM1GUn+NFcBpKp90I=;
+ b=Dk7x7A3m6oqwHhwOoYKJeqSrWoYbOkp9kbQjFLKWgaPr36G9YELa7Tu6Ip21tpDzEjzOlKmKWVNByjHZscXoYzmwMIGHasxS2/JN9y0KWzOx1Vmt0YN2pD4adK5A0a3MTSCiTaTVOQmtuxKtm8lG0GBdY9qynwe4wCHSGqTJNDY=
+Received: from DS7PR06CA0006.namprd06.prod.outlook.com (2603:10b6:8:2a::7) by
+ CY4PR12MB1653.namprd12.prod.outlook.com (2603:10b6:910:f::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4649.19; Thu, 4 Nov 2021 20:52:58 +0000
+Received: from DM6NAM11FT020.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:2a:cafe::7e) by DS7PR06CA0006.outlook.office365.com
+ (2603:10b6:8:2a::7) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.10 via Frontend
- Transport; Thu, 4 Nov 2021 20:53:06 +0000
+ Transport; Thu, 4 Nov 2021 20:52:57 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
  header.d=none;lists.freedesktop.org; dmarc=pass action=none
  header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT049.mail.protection.outlook.com (10.13.172.188) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT020.mail.protection.outlook.com (10.13.172.224) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4669.10 via Frontend Transport; Thu, 4 Nov 2021 20:53:06 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.4669.10 via Frontend Transport; Thu, 4 Nov 2021 20:52:57 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Thu, 4 Nov
- 2021 15:52:55 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 15:52:56 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Thu, 4 Nov
- 2021 13:52:54 -0700
+ 2021 15:52:56 -0500
 Received: from Optimus.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2308.15 via Frontend
- Transport; Thu, 4 Nov 2021 15:52:53 -0500
+ Transport; Thu, 4 Nov 2021 15:52:55 -0500
 From: Anson Jacob <Anson.Jacob@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 21/22] drm/amd/display: Initialise encoder assignment when
- initialising dc_state.
-Date: Thu, 4 Nov 2021 16:52:14 -0400
-Message-ID: <20211104205215.1125899-22-Anson.Jacob@amd.com>
+Subject: [PATCH 22/22] drm/amd/display: Wait for ACK for INBOX0 HW Lock
+Date: Thu, 4 Nov 2021 16:52:15 -0400
+Message-ID: <20211104205215.1125899-23-Anson.Jacob@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211104205215.1125899-1-Anson.Jacob@amd.com>
 References: <20211104205215.1125899-1-Anson.Jacob@amd.com>
@@ -74,28 +73,28 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 184ceae8-3794-4fa3-7346-08d99fd51a0a
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5080:
-X-Microsoft-Antispam-PRVS: <BL1PR12MB50803F6B0E3C6F3E70D11E3AEB8D9@BL1PR12MB5080.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2449;
+X-MS-Office365-Filtering-Correlation-Id: aaa35d9f-68c4-4246-5aa6-08d99fd514bb
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1653:
+X-Microsoft-Antispam-PRVS: <CY4PR12MB16532F9A086C3DBD72830BA1EB8D9@CY4PR12MB1653.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LMzINkiusHRwGzICkeFs4WFB1P9S8s9Prqofr2pCZ9X8kZYxtTqT+2x6UdkF87My91Wzps0pcZQePAGGzxGgMAGRVk9G6p6tBH9aSq3fUbV4juMJzB3WZAvRjaO9BSalTGimRmUnwWTS27Lbf4vxgo4XNcfq0tsCLsDlICnjpWfzDxS+iXVjz/Qd4MoMxxx7IhxJ4Xeuj1daLENCq8EHmzWddDQer3AN1w60kcK7vPf02WMC2BdfZ7ESI6+E2KdH6kqNnqwYOn1N1a1okdcYqjqp3o4vqIbgAKkDJ4eFTz0CrenLNnYgaxck+WMUj626QYFE0xQw0MZSPRwooWYbrR5FKUPC99xZRF8GHkIiKZaSgyls63mDQnFjhrD8NwhHNtkpNAci3gVZlP44UfTcFmkc+82Xn23IaFxNFnZXkboaI7DfsDAOVw6KL74qaRPO3VdFnrdJ1ybHQlKIFKTp25EcmXj951uL8BkTriMsz5pmVz5F5UyGL8IADG0A1kfp5aBNa3tuAwpx3OaqvNzzN05nchrQiJKS/M35WGokTf+OaNgKw0iCtpMEuK4JjkUdGt4wBq1WTkE1BBOEQ1DHrulRIxWDJKK7SKDs6oX2SQYLbkeE4f7/y3+yyIVFDWcPZ0jUZhepfkAFWLEcpm6W9h92ijhoSZfnu2iznoVRNBIsxOATNQBHRIW5dbAehFdJYFbVJGdKixZok0r3J+uO6zpcF5wSDqLHJ8KToVnOzao=
+X-Microsoft-Antispam-Message-Info: 3XjE/k99P58K8MR7rpiTiJS6dJSG9wk5j4pdZVgUhJE5IDAR68FclmLEA5CgobSnjBqVz9hC+lH5M3Q3NG9g3DFTcBmE3TQMlhJ7jNnffcR2WYEsGdaRNQnyFg0C/WmL+AjWQxtV5ZmzR7IG3LrEfPd6QBfqYltLmLrQ3tjiKVWDn3uxyApG7uaqLyOiqcvMbBY0nfIQoTWwKv0mGLG88NMaZHnRP3le+NeVZLFhVdtdKTJ07PVfwPvq6IsmlxUjL8ov7DF+8SkNWUf6ntQbIcOvi1WOsqf8hODWhpzL3w7uedUmuK7ISYX2Nuu6YDoZ5fsW4W/tSSBCV4hTYuo6s/e+/6FglmtL0n3StM6tmAPkT8dr7E8eyrUWONu25a5Nwk+TH1oQDm2BV3sBe4Nhu6kyH+ZBc3ps/5U4S0hxtpPES1wlt9cvBf9QwE3CXmUahywEGCk5LgkoyeWjrBcw3HKz8CUXVs0QS6tcebANAoR/QnW9WlE4QwxUM0E49a37qZCay5cC+WjksRgtoSuAWp8F0sEngwA0aMkFRs4sO3s5EZ+AMg0YBkjgB+x/goHfXYoCF7ZkKelxkZUDZCKnBYbSpUjjTdxJQIvOXvxhy0aSdJc5xtUjeaW2ACBvZsMtS+Ga4zgvPL077xREe04MNyfQCoaclhJn/NvzyvNtljPp1MgK0HZ5OLiNDg+U/2fPQrvJbDTdQnSwrTodo6PAjKUazY9xX9q3kLmp0yQ3y4Y=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(186003)(336012)(36756003)(83380400001)(26005)(81166007)(2616005)(356005)(7696005)(2906002)(5660300002)(86362001)(54906003)(6916009)(47076005)(426003)(82310400003)(8676002)(36860700001)(6666004)(316002)(508600001)(1076003)(70586007)(70206006)(8936002)(4326008)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(36840700001)(46966006)(81166007)(83380400001)(336012)(47076005)(70206006)(426003)(8676002)(1076003)(26005)(6666004)(7696005)(508600001)(356005)(86362001)(36756003)(54906003)(6916009)(2906002)(4326008)(70586007)(82310400003)(316002)(8936002)(2616005)(36860700001)(5660300002)(186003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2021 20:53:06.2579 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 184ceae8-3794-4fa3-7346-08d99fd51a0a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2021 20:52:57.3439 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aaa35d9f-68c4-4246-5aa6-08d99fd514bb
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT049.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT020.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5080
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1653
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,110 +106,222 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Jun Lei <Jun.Lei@amd.com>, solomon.chiu@amd.com,
- Sunpeng.Li@amd.com, Harry.Wentland@amd.com, qingqing.zhuo@amd.com,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, Anson.Jacob@amd.com,
- Aurabindo.Pillai@amd.com, Jimmy Kizito <Jimmy.Kizito@amd.com>,
- wayne.lin@amd.com, mikita.lipski@amd.com, Bhawanpreet.Lakha@amd.com,
- agustin.gutierrez@amd.com, pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, solomon.chiu@amd.com, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
+ Alvin Lee <Alvin.Lee2@amd.com>, wayne.lin@amd.com, mikita.lipski@amd.com,
+ Bhawanpreet.Lakha@amd.com, Nicholas
+ Kazlauskas <Nicholas.Kazlauskas@amd.com>, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Jimmy Kizito <Jimmy.Kizito@amd.com>
+From: Alvin Lee <Alvin.Lee2@amd.com>
 
 [Why]
-Link encoder assignment tracking variables need to be (re)initialised
-whenever dc_state is (re)initialised. Otherwise variables used for
-dynamic encoder assignment (especially the link encoder availability
-pool) are out of sync with dc_state and future encoder assignments are
-invalid.
+In DC we want to wait for the INBOX0 HW Lock
+command to ACK before continuing. This is to
+ensure that the lock has been successfully acquired
+before programming HW in DC.
 
 [How]
-Initialise encoder assignment variables when creating new dc_state
-resource.
+Add interfaces to send messages on INBOX0,
+poll for their completation and clear the ack.
 
-Reviewed-by: Jun Lei <Jun.Lei@amd.com>
+Reviewed-by: Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
 Acked-by: Anson Jacob <Anson.Jacob@amd.com>
-Signed-off-by: Jimmy Kizito <Jimmy.Kizito@amd.com>
+Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c              | 5 +----
- drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c | 4 ++--
- drivers/gpu/drm/amd/display/dc/core/dc_resource.c     | 3 +++
- drivers/gpu/drm/amd/display/dc/inc/link_enc_cfg.h     | 2 +-
- 4 files changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c  | 37 +++++++++++++++--
+ drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h  |  2 +
+ .../drm/amd/display/dc/dce/dmub_hw_lock_mgr.c |  3 ++
+ drivers/gpu/drm/amd/display/dmub/dmub_srv.h   | 41 +++++++++++++++++++
+ .../gpu/drm/amd/display/dmub/src/dmub_srv.c   | 35 ++++++++++++++++
+ 5 files changed, 115 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index e76a2aa65a82..39ad3854bfe4 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -1016,8 +1016,6 @@ static bool dc_construct(struct dc *dc,
- 		goto fail;
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+index 360f3199ea6f..541376fabbef 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.c
+@@ -115,13 +115,44 @@ void dc_dmub_srv_wait_idle(struct dc_dmub_srv *dc_dmub_srv)
  	}
- 
--	dc_resource_state_construct(dc, dc->current_state);
--
- 	if (!create_links(dc, init_params->num_virtual_links))
- 		goto fail;
- 
-@@ -1027,8 +1025,7 @@ static bool dc_construct(struct dc *dc,
- 	if (!create_link_encoders(dc))
- 		goto fail;
- 
--	/* Initialise DIG link encoder resource tracking variables. */
--	link_enc_cfg_init(dc, dc->current_state);
-+	dc_resource_state_construct(dc, dc->current_state);
- 
- 	return true;
- 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-index 787aaa661a29..d3c789f26a02 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-@@ -242,7 +242,7 @@ static struct link_encoder *get_link_enc_used_by_link(
- 	return link_enc;
- }
- /* Clear all link encoder assignments. */
--static void clear_enc_assignments(struct dc *dc, struct dc_state *state)
-+static void clear_enc_assignments(const struct dc *dc, struct dc_state *state)
- {
- 	int i;
- 
-@@ -261,7 +261,7 @@ static void clear_enc_assignments(struct dc *dc, struct dc_state *state)
  }
  
- void link_enc_cfg_init(
--		struct dc *dc,
-+		const struct dc *dc,
- 		struct dc_state *state)
- {
- 	clear_enc_assignments(dc, state);
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index c32fdccd4d92..fabe1b83bd4f 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -2224,6 +2224,9 @@ void dc_resource_state_construct(
- 		struct dc_state *dst_ctx)
- {
- 	dst_ctx->clk_mgr = dc->clk_mgr;
++void dc_dmub_srv_clear_inbox0_ack(struct dc_dmub_srv *dmub_srv)
++{
++	struct dmub_srv *dmub = dmub_srv->dmub;
++	struct dc_context *dc_ctx = dmub_srv->ctx;
++	enum dmub_status status = DMUB_STATUS_OK;
 +
-+	/* Initialise DIG link encoder resource tracking variables. */
-+	link_enc_cfg_init(dc, dst_ctx);
++	status = dmub_srv_clear_inbox0_ack(dmub);
++	if (status != DMUB_STATUS_OK) {
++		DC_ERROR("Error clearing INBOX0 ack: status=%d\n", status);
++		dc_dmub_srv_log_diagnostic_data(dmub_srv);
++	}
++}
++
++void dc_dmub_srv_wait_for_inbox0_ack(struct dc_dmub_srv *dmub_srv)
++{
++	struct dmub_srv *dmub = dmub_srv->dmub;
++	struct dc_context *dc_ctx = dmub_srv->ctx;
++	enum dmub_status status = DMUB_STATUS_OK;
++
++	status = dmub_srv_wait_for_inbox0_ack(dmub, 100000);
++	if (status != DMUB_STATUS_OK) {
++		DC_ERROR("Error waiting for INBOX0 HW Lock Ack\n");
++		dc_dmub_srv_log_diagnostic_data(dmub_srv);
++	}
++}
++
+ void dc_dmub_srv_send_inbox0_cmd(struct dc_dmub_srv *dmub_srv,
+ 		union dmub_inbox0_data_register data)
+ {
+ 	struct dmub_srv *dmub = dmub_srv->dmub;
+-	if (dmub->hw_funcs.send_inbox0_cmd)
+-		dmub->hw_funcs.send_inbox0_cmd(dmub, data);
+-	// TODO: Add wait command -- poll register for ACK
++	struct dc_context *dc_ctx = dmub_srv->ctx;
++	enum dmub_status status = DMUB_STATUS_OK;
++
++	status = dmub_srv_send_inbox0_cmd(dmub, data);
++	if (status != DMUB_STATUS_OK) {
++		DC_ERROR("Error sending INBOX0 cmd\n");
++		dc_dmub_srv_log_diagnostic_data(dmub_srv);
++	}
  }
  
+ bool dc_dmub_srv_cmd_with_reply_data(struct dc_dmub_srv *dc_dmub_srv, union dmub_rb_cmd *cmd)
+diff --git a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
+index 3e35eee7188c..7e4e2ec5915d 100644
+--- a/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_dmub_srv.h
+@@ -68,6 +68,8 @@ bool dc_dmub_srv_get_dmub_outbox0_msg(const struct dc *dc, struct dmcub_trace_bu
  
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/link_enc_cfg.h b/drivers/gpu/drm/amd/display/dc/inc/link_enc_cfg.h
-index 10dcf6a5e9b1..a4e43b4826e0 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/link_enc_cfg.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/link_enc_cfg.h
-@@ -36,7 +36,7 @@
-  * Initialise link encoder resource tracking.
-  */
- void link_enc_cfg_init(
--		struct dc *dc,
-+		const struct dc *dc,
- 		struct dc_state *state);
+ void dc_dmub_trace_event_control(struct dc *dc, bool enable);
  
- /*
++void dc_dmub_srv_clear_inbox0_ack(struct dc_dmub_srv *dmub_srv);
++void dc_dmub_srv_wait_for_inbox0_ack(struct dc_dmub_srv *dmub_srv);
+ void dc_dmub_srv_send_inbox0_cmd(struct dc_dmub_srv *dmub_srv, union dmub_inbox0_data_register data);
+ 
+ bool dc_dmub_srv_get_diagnostic_data(struct dc_dmub_srv *dc_dmub_srv, struct dmub_diagnostic_data *dmub_oca);
+diff --git a/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c b/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c
+index 9baf8ca0a920..b1b2e3c6f379 100644
+--- a/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/dce/dmub_hw_lock_mgr.c
+@@ -56,8 +56,11 @@ void dmub_hw_lock_mgr_inbox0_cmd(struct dc_dmub_srv *dmub_srv,
+ 		union dmub_inbox0_cmd_lock_hw hw_lock_cmd)
+ {
+ 	union dmub_inbox0_data_register data = { 0 };
++
+ 	data.inbox0_cmd_lock_hw = hw_lock_cmd;
++	dc_dmub_srv_clear_inbox0_ack(dmub_srv);
+ 	dc_dmub_srv_send_inbox0_cmd(dmub_srv, data);
++	dc_dmub_srv_wait_for_inbox0_ack(dmub_srv);
+ }
+ 
+ bool should_use_dmub_lock(struct dc_link *link)
+diff --git a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+index cd204eef073b..90065a09e76a 100644
+--- a/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
++++ b/drivers/gpu/drm/amd/display/dmub/dmub_srv.h
+@@ -360,6 +360,8 @@ struct dmub_srv_hw_funcs {
+ 
+ 	uint32_t (*get_gpint_dataout)(struct dmub_srv *dmub);
+ 
++	void (*clear_inbox0_ack_register)(struct dmub_srv *dmub);
++	uint32_t (*read_inbox0_ack_register)(struct dmub_srv *dmub);
+ 	void (*send_inbox0_cmd)(struct dmub_srv *dmub, union dmub_inbox0_data_register data);
+ 	uint32_t (*get_current_time)(struct dmub_srv *dmub);
+ 
+@@ -735,6 +737,45 @@ bool dmub_srv_get_diagnostic_data(struct dmub_srv *dmub, struct dmub_diagnostic_
+ 
+ bool dmub_srv_should_detect(struct dmub_srv *dmub);
+ 
++/**
++ * dmub_srv_send_inbox0_cmd() - Send command to DMUB using INBOX0
++ * @dmub: the dmub service
++ * @data: the data to be sent in the INBOX0 command
++ *
++ * Send command by writing directly to INBOX0 WPTR
++ *
++ * Return:
++ *   DMUB_STATUS_OK - success
++ *   DMUB_STATUS_INVALID - hw_init false or hw function does not exist
++ */
++enum dmub_status dmub_srv_send_inbox0_cmd(struct dmub_srv *dmub, union dmub_inbox0_data_register data);
++
++/**
++ * dmub_srv_wait_for_inbox0_ack() - wait for DMUB to ACK INBOX0 command
++ * @dmub: the dmub service
++ * @timeout_us: the maximum number of microseconds to wait
++ *
++ * Wait for DMUB to ACK the INBOX0 message
++ *
++ * Return:
++ *   DMUB_STATUS_OK - success
++ *   DMUB_STATUS_INVALID - hw_init false or hw function does not exist
++ *   DMUB_STATUS_TIMEOUT - wait for ack timed out
++ */
++enum dmub_status dmub_srv_wait_for_inbox0_ack(struct dmub_srv *dmub, uint32_t timeout_us);
++
++/**
++ * dmub_srv_wait_for_inbox0_ack() - clear ACK register for INBOX0
++ * @dmub: the dmub service
++ *
++ * Clear ACK register for INBOX0
++ *
++ * Return:
++ *   DMUB_STATUS_OK - success
++ *   DMUB_STATUS_INVALID - hw_init false or hw function does not exist
++ */
++enum dmub_status dmub_srv_clear_inbox0_ack(struct dmub_srv *dmub);
++
+ #if defined(__cplusplus)
+ }
+ #endif
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+index 4a2cb0cdb0ba..56a03328e8e6 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+@@ -842,3 +842,38 @@ bool dmub_srv_should_detect(struct dmub_srv *dmub)
+ 
+ 	return dmub->hw_funcs.should_detect(dmub);
+ }
++
++enum dmub_status dmub_srv_clear_inbox0_ack(struct dmub_srv *dmub)
++{
++	if (!dmub->hw_init || dmub->hw_funcs.clear_inbox0_ack_register)
++		return DMUB_STATUS_INVALID;
++
++	dmub->hw_funcs.clear_inbox0_ack_register(dmub);
++	return DMUB_STATUS_OK;
++}
++
++enum dmub_status dmub_srv_wait_for_inbox0_ack(struct dmub_srv *dmub, uint32_t timeout_us)
++{
++	uint32_t i = 0;
++	uint32_t ack = 0;
++
++	if (!dmub->hw_init || !dmub->hw_funcs.read_inbox0_ack_register)
++		return DMUB_STATUS_INVALID;
++
++	for (i = 0; i <= timeout_us; i++) {
++		ack = dmub->hw_funcs.read_inbox0_ack_register(dmub);
++		if (ack)
++			return DMUB_STATUS_OK;
++	}
++	return DMUB_STATUS_TIMEOUT;
++}
++
++enum dmub_status dmub_srv_send_inbox0_cmd(struct dmub_srv *dmub,
++		union dmub_inbox0_data_register data)
++{
++	if (!dmub->hw_init || dmub->hw_funcs.send_inbox0_cmd)
++		return DMUB_STATUS_INVALID;
++
++	dmub->hw_funcs.send_inbox0_cmd(dmub, data);
++	return DMUB_STATUS_OK;
++}
 -- 
 2.25.1
 
