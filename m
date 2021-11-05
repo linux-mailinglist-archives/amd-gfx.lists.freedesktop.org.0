@@ -2,80 +2,51 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32055446470
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Nov 2021 14:49:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52BB544646D
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Nov 2021 14:48:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 915826E5B2;
-	Fri,  5 Nov 2021 13:48:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE3096E5AB;
+	Fri,  5 Nov 2021 13:48:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E686C6E10B
- for <amd-gfx@lists.freedesktop.org>; Fri,  5 Nov 2021 09:59:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1636106341;
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A94666E1E9
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Nov 2021 11:24:14 +0000 (UTC)
+Received: from zn.tnic (p200300ec2f1086009e9e3d45c680a940.dip0.t-ipconnect.de
+ [IPv6:2003:ec:2f10:8600:9e9e:3d45:c680:a940])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E201C1EC0298;
+ Fri,  5 Nov 2021 12:24:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+ t=1636111452;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=PAYCTLIu4BclXd+cEViyuoXMMG/fW8iPDkQUaON6iK4=;
- b=G3u+TK+LPXSkwKEF+Pb4QZVkzMMb7v4Gct3YcN1jEAr9e3VfmzaQ/rD5BV0PHsgnsb9gla
- SJZ05WGvyTQepU6mH8lfaqKLFpBfU+CVAQoosU+09ccrbBcxO73dc+sPUnTWdVWKjDN3cx
- Tbs6rYUynzy+Rlrg1Ms8yL+amz57NSw=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-425-qjQ8fEGnOECrWugc7_XsBQ-1; Fri, 05 Nov 2021 05:58:58 -0400
-X-MC-Unique: qjQ8fEGnOECrWugc7_XsBQ-1
-Received: by mail-wm1-f70.google.com with SMTP id
- n189-20020a1c27c6000000b00322f2e380f2so5465877wmn.6
- for <amd-gfx@lists.freedesktop.org>; Fri, 05 Nov 2021 02:58:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=PAYCTLIu4BclXd+cEViyuoXMMG/fW8iPDkQUaON6iK4=;
- b=sKk/+3c2zW7bHgm3wS/31jN26uUeUlF88VnPbyuxoMSFKwH83JeSOaAtE22cm75HzA
- zgP4uEkz8k62Y/R2u+D6xKNudr0TO7Uee2yhYcYyCf07nuMB2n0ir2GCF3fjMUM7mbwq
- kKBqmyFHnd3nXM4unKyqsHY3JG+jGD46imUsMyXNNTIOjQqV13bdwjSArC9mlm0k9eAJ
- 6S6+tJuWFwBF6lfyr2JbR+OisHKjuDH/KjVbkTcV8a/qo9Yt4QsG1kweuIa/IiBz7i0Z
- 7uvcCBCXtLD5wBXMMBfEEba/s3r1JPSw01Mqh0JtSmgBaCEeo6AmVsXLku4sRlnwVUm1
- 6Low==
-X-Gm-Message-State: AOAM531SfB5VmtnjtybuqWGTzibrqWELWcYIKaafYQg7y3dLD6tHZeAR
- YY/ZPKAYPB+ThDUpf08RqsiOq9/QReup4PEuX7juGCpzwOe8JYa4lwpBDxH1OHJLqWjF1zvUauJ
- 8r2kE+QkMatQnOzUUXhFa2G1ALg==
-X-Received: by 2002:adf:ec90:: with SMTP id z16mr46047453wrn.247.1636106336899; 
- Fri, 05 Nov 2021 02:58:56 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyVMn64qcflGLedLN5EhsNM7GWU6o/3vwDL3aOoAYuCZV9//84CDnDeN1gsW9919fwpqQaOmg==
-X-Received: by 2002:adf:ec90:: with SMTP id z16mr46047414wrn.247.1636106336738; 
- Fri, 05 Nov 2021 02:58:56 -0700 (PDT)
-Received: from [192.168.1.128] ([92.176.231.106])
- by smtp.gmail.com with ESMTPSA id c17sm7678095wmk.23.2021.11.05.02.58.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 05 Nov 2021 02:58:56 -0700 (PDT)
-Message-ID: <87a6bb4a-01ef-4979-f5c2-c0bb0d0a29f9@redhat.com>
-Date: Fri, 5 Nov 2021 10:58:54 +0100
+ content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+ bh=Aqxr8Pd95kQrKyFDrBBxQT89ujoNxHPpkxPVW+mCIeA=;
+ b=fuXCoGd3BbK3GEM+Kjzme6LTgOGIgKQThwcggGjgNSwmdeWdFFem2sfXrmjZ8+6TLu38o2
+ uo5MIS/6DOD4baA1DnGDv93+GU39egU64JlmqaYSgLitzmV1FG2KRaQ6q5bbqJ8id2BQdI
+ nX7M6Nhq4fNsLQgI35UxNDoiXhtTooI=
+Date: Fri, 5 Nov 2021 12:24:09 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: "Quan, Evan" <Evan.Quan@amd.com>
+Subject: Re: bf756fb833cb ("drm/amdgpu: add missing cleanups for Polaris12
+ UVD/VCE on suspend")
+Message-ID: <YYUUWS6vB70K2Y21@zn.tnic>
+References: <DM6PR12MB26195857D2FA0946C9833F19E4B39@DM6PR12MB2619.namprd12.prod.outlook.com>
+ <YWFp2qHwbWHEqxWh@zn.tnic>
+ <DM6PR12MB26193B59E0C5971F458E17C9E4B59@DM6PR12MB2619.namprd12.prod.outlook.com>
+ <YWRvl6ymevr7+kiB@zn.tnic>
+ <BYAPR12MB26152EF8CD43290EBE40C165E4B79@BYAPR12MB2615.namprd12.prod.outlook.com>
+ <YWamNaMAxaw+/9Az@zn.tnic>
+ <DM6PR12MB26199D9E4AD854A4DCF562B4E4B89@DM6PR12MB2619.namprd12.prod.outlook.com>
+ <YWfxtUusQ5w/1agx@zn.tnic>
+ <DM6PR12MB26197151C642B89A9C824AA0E4B99@DM6PR12MB2619.namprd12.prod.outlook.com>
+ <DM6PR12MB26191DEE9CEF9A1E49E62634E48E9@DM6PR12MB2619.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH v2 2/2] drm: Move nomodeset kernel parameter to the DRM
- subsystem
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>, linux-kernel@vger.kernel.org
-References: <20211104160707.1407052-1-javierm@redhat.com>
- <20211104160707.1407052-3-javierm@redhat.com>
- <f2c40b22-04bf-e8f2-9839-36d6d26189a1@suse.de> <87cznf9cty.fsf@intel.com>
- <2698c680-6d05-f58d-d7c2-ea76aeb0bb47@suse.de>
-From: Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <2698c680-6d05-f58d-d7c2-ea76aeb0bb47@suse.de>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <DM6PR12MB26191DEE9CEF9A1E49E62634E48E9@DM6PR12MB2619.namprd12.prod.outlook.com>
 X-Mailman-Approved-At: Fri, 05 Nov 2021 13:48:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -88,69 +59,20 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
- Gerd Hoffmann <kraxel@redhat.com>, amd-gfx@lists.freedesktop.org,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Peter Robinson <pbrobinson@gmail.com>, nouveau@lists.freedesktop.org,
- Dave Airlie <airlied@redhat.com>, Chia-I Wu <olvaffe@gmail.com>,
- Ben Skeggs <bskeggs@redhat.com>,
- =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- virtualization@lists.linux-foundation.org,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, spice-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- intel-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Zack Rusin <zackr@vmware.com>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Lazar,
+ Lijo" <Lijo.Lazar@amd.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 11/5/21 10:39, Thomas Zimmermann wrote:
+On Fri, Nov 05, 2021 at 08:05:41AM +0000, Quan, Evan wrote:
+> I'm wondering are you able to give the attached patch(alone) a try.
 
-[snip]
+Yap, looks good.
 
->>>>    
->>>> +obj-$(CONFIG_VGA_CONSOLE) += drm_nomodeset.o
->>>> +
->>>
->>> This now depends on the VGA textmode console. Even if you have no VGA
->>> console, you'd want drm_nomodeset.o. Simpledrm might be built-in and can
->>> provide graphics. Non-PC systems don't even have a VGA device.
->>
->> This was discussed in an earlier version, which had this builtin but the
->> header still had a stub for CONFIG_VGA_CONSOLE=n.
->>
->>> I think we really want a separate boolean config option that gets
->>> selected by CONFIG_DRM.
->>
->> Perhaps that should be a separate change on top.
-> 
-> Sure, make it a separate patch.
->
+Tested-by: Borislav Petkov <bp@suse.de>
 
-Agreed. I was planning to do it as a follow-up as well and drop the
-#ifdef CONFIG_VGA_CONSOLE guard in the header.
- 
-> We want to make this work on ARM systems. I even have a request to 
-> replace offb on Power architecture by simpledrm. So the final config has 
-> to be system agnostic.
->
-
-Same, since we want to drop the fbdev drivers in Fedora, for all arches.
- 
-> Best regards
-> Thomas
-> 
-Best regards,
 -- 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
