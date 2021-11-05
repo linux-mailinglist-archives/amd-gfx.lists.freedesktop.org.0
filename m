@@ -1,69 +1,84 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBC754463B2
-	for <lists+amd-gfx@lfdr.de>; Fri,  5 Nov 2021 14:00:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB09044646F
+	for <lists+amd-gfx@lfdr.de>; Fri,  5 Nov 2021 14:49:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D721E6E1A3;
-	Fri,  5 Nov 2021 13:00:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53A716E5B0;
+	Fri,  5 Nov 2021 13:48:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE9286E1A3;
- Fri,  5 Nov 2021 13:00:25 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 3B7DA1FD37;
- Fri,  5 Nov 2021 13:00:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1636117224; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E94836E044
+ for <amd-gfx@lists.freedesktop.org>; Fri,  5 Nov 2021 09:48:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1636105725;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=tjnWxrfIUbkoahv7XQ0mkb34rkKEwu9iva4UCkL/Uzg=;
- b=bPiprZL7ZmOGy19QX38+b3CTSqukbvtVs7Vm/0Nri2gFsnOe7o3J1Fm5G0ZxkoWXWnUTWg
- IhzcWTycRQuQUd0P6DORk4mL9rUqPZrEplLxKBsgiGVNco+WljjyXrf0iUoA9YvZ9fDFrY
- iS7hYeOotlWPV9Ci6pdRs3fSdRO/QPY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1636117224;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=tjnWxrfIUbkoahv7XQ0mkb34rkKEwu9iva4UCkL/Uzg=;
- b=IfMsFqCr6sUCPSpglCxZkkSTgHKZvB1Ud/VZGbn0cgD9RbqCNc+1ibpn5U3rQtcn3n2apN
- z++YZEXDZCUBU+Dw==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id AEE0914004;
- Fri,  5 Nov 2021 13:00:23 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id 6AK1KecqhWF4WAAAMHmgww
- (envelope-from <tzimmermann@suse.de>); Fri, 05 Nov 2021 13:00:23 +0000
-Message-ID: <7de8c495-7e01-98f9-71c7-9168d51733c3@suse.de>
-Date: Fri, 5 Nov 2021 14:00:23 +0100
+ bh=TDCxTaiuFN2oEnFyA/uNKzyzy5BqHnuVtliUgcTwAYg=;
+ b=HayoG0/8luKyjZgIu7u9U0hzYTq9t12JTgi6P7R6h/VlxpMDVPY99NxDpi8hnJLzCHscm7
+ ekamenkWUedWjh0Sj0OZ6gyw9tvNkezTDadwdmPCEtTXgNFDKPrXOydHE3uszUJNUiQQgI
+ XP+m9uGnXnegtmYEV2C22gUQEqCWXT0=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-243-0GJ0kl1BMIupH2JXK6esdQ-1; Fri, 05 Nov 2021 05:48:41 -0400
+X-MC-Unique: 0GJ0kl1BMIupH2JXK6esdQ-1
+Received: by mail-wm1-f70.google.com with SMTP id
+ z137-20020a1c7e8f000000b0030cd1800d86so3138350wmc.2
+ for <amd-gfx@lists.freedesktop.org>; Fri, 05 Nov 2021 02:48:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=TDCxTaiuFN2oEnFyA/uNKzyzy5BqHnuVtliUgcTwAYg=;
+ b=N6QjWPMrqPYVY3QLeJsdSTlY3v3Hrpw8qdbzfErzZ2Jn8FzkLsd3qlsaJA1Qn9YJUo
+ /a8fdN9MTZScr6cCFcNc0dL9teL59CTRa9fHMBYMcgoSs4a7Fcnq8dDPxyMsg37bZXaB
+ cnwj4f0GFwJJyCMuceXGsUWmuzHXv8J7pN8cu/cjrWbVj8tynTa74x5LWvTwYnnKGE8I
+ 7LKbaY8ih8slFJi1bq50qhG319H8uVsIgnbX+2Re1r5MpbHa3W9zlTEHObA1CDDYiCdf
+ +vt3sYqb762nOMqKVgDgwQZeDPTNYYCZfjxMGpY8lHJ5Sw7P+apo1wiPKU/2cXqIqRFi
+ f8vg==
+X-Gm-Message-State: AOAM531KYPi9d0Sf+AE50zZ6pN36FMU2aM68j43bmNfWRMxSbyF4P8Pw
+ Ffsg2tcSwjki3Gjp1vloH3Av5k4CZPFyU7nSofHvVahfs//C/T48y+XZ/jJSIhpBANJi/fhAD8l
+ rGGjWMSoWI3+Wo13lzucviBb/IA==
+X-Received: by 2002:a05:6000:1043:: with SMTP id
+ c3mr47457546wrx.64.1636105720564; 
+ Fri, 05 Nov 2021 02:48:40 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxAy5NPgcgZDunmEq87tVcIv6+r2xtRAUkaFqPrEIO+dNAeu5S620buzaYA0spdyOnq5mk7Jw==
+X-Received: by 2002:a05:6000:1043:: with SMTP id
+ c3mr47457520wrx.64.1636105720304; 
+ Fri, 05 Nov 2021 02:48:40 -0700 (PDT)
+Received: from [192.168.1.128] ([92.176.231.106])
+ by smtp.gmail.com with ESMTPSA id u20sm6503643wmq.6.2021.11.05.02.48.38
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 05 Nov 2021 02:48:39 -0700 (PDT)
+Message-ID: <38dbcc8f-2f95-6846-537f-9b85468bfa87@redhat.com>
+Date: Fri, 5 Nov 2021 10:48:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
+ Thunderbird/91.2.0
 Subject: Re: [PATCH v2 1/2] drm: Add a drm_drv_enabled() to check if drivers
  should be enabled
-Content-Language: en-US
-To: Javier Martinez Canillas <javierm@redhat.com>,
+To: Thomas Zimmermann <tzimmermann@suse.de>,
  Jani Nikula <jani.nikula@linux.intel.com>, linux-kernel@vger.kernel.org
 References: <20211104160707.1407052-1-javierm@redhat.com>
  <20211104160707.1407052-2-javierm@redhat.com> <87ilx7ae3v.fsf@intel.com>
  <0c07f121-42d3-9f37-1e14-842fb685b501@redhat.com>
  <d4a64906-69e5-3250-2362-79f2afac0a23@suse.de>
- <38dbcc8f-2f95-6846-537f-9b85468bfa87@redhat.com> <877ddmapfj.fsf@intel.com>
- <335a9e0f-cce9-480b-10e0-bd312b81e587@redhat.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-In-Reply-To: <335a9e0f-cce9-480b-10e0-bd312b81e587@redhat.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------amYHNBfM0Vfmgj2bbPw0MP1t"
+From: Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <d4a64906-69e5-3250-2362-79f2afac0a23@suse.de>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=javierm@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Fri, 05 Nov 2021 13:48:53 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,107 +90,98 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Gerd Hoffmann <kraxel@redhat.com>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Dave Airlie <airlied@redhat.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- dri-devel@lists.freedesktop.org, Gurchetan Singh <gurchetansingh@chromium.org>,
- =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
- Hans de Goede <hdegoede@redhat.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- amd-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- nouveau@lists.freedesktop.org, spice-devel@lists.freedesktop.org,
- virtualization@lists.linux-foundation.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Peter Robinson <pbrobinson@gmail.com>, Ben Skeggs <bskeggs@redhat.com>
-Errors-To: amd-gfx-bounces@lists.freedesktop.org
-Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------amYHNBfM0Vfmgj2bbPw0MP1t
-Content-Type: multipart/mixed; boundary="------------NVDuFp0u3pp2xWcJiJ7yN6Es";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Javier Martinez Canillas <javierm@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, linux-kernel@vger.kernel.org
 Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
  Pekka Paalanen <pekka.paalanen@collabora.com>,
  Hans de Goede <hdegoede@redhat.com>, David Airlie <airlied@linux.ie>,
  Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, amd-gfx@lists.freedesktop.org,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Ben Skeggs <bskeggs@redhat.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, Ben Skeggs <bskeggs@redhat.com>,
  VMware Graphics <linux-graphics-maintainer@vmware.com>,
  Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Dave Airlie <airlied@redhat.com>, =?UTF-8?Q?Christian_K=c3=b6nig?=
- <christian.koenig@amd.com>, virtualization@lists.linux-foundation.org,
- intel-gfx@lists.freedesktop.org, =?UTF-8?Q?Michel_D=c3=a4nzer?=
- <michel@daenzer.net>, Peter Robinson <pbrobinson@gmail.com>
-Message-ID: <7de8c495-7e01-98f9-71c7-9168d51733c3@suse.de>
-Subject: Re: [PATCH v2 1/2] drm: Add a drm_drv_enabled() to check if drivers
- should be enabled
-References: <20211104160707.1407052-1-javierm@redhat.com>
- <20211104160707.1407052-2-javierm@redhat.com> <87ilx7ae3v.fsf@intel.com>
- <0c07f121-42d3-9f37-1e14-842fb685b501@redhat.com>
- <d4a64906-69e5-3250-2362-79f2afac0a23@suse.de>
- <38dbcc8f-2f95-6846-537f-9b85468bfa87@redhat.com> <877ddmapfj.fsf@intel.com>
- <335a9e0f-cce9-480b-10e0-bd312b81e587@redhat.com>
-In-Reply-To: <335a9e0f-cce9-480b-10e0-bd312b81e587@redhat.com>
+ Dave Airlie <airlied@redhat.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ virtualization@lists.linux-foundation.org, intel-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
+ Peter Robinson <pbrobinson@gmail.com>
+Errors-To: amd-gfx-bounces@lists.freedesktop.org
+Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---------------NVDuFp0u3pp2xWcJiJ7yN6Es
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Hello Thomas,
 
-SGkNCg0KQW0gMDUuMTEuMjEgdW0gMTM6MDAgc2NocmllYiBKYXZpZXIgTWFydGluZXogQ2Fu
-aWxsYXM6DQo+IE9uIDExLzUvMjEgMTE6MDQsIEphbmkgTmlrdWxhIHdyb3RlOg0KPj4gT24g
-RnJpLCAwNSBOb3YgMjAyMSwgSmF2aWVyIE1hcnRpbmV6IENhbmlsbGFzIDxqYXZpZXJtQHJl
-ZGhhdC5jb20+IHdyb3RlOg0KPiANCj4gW3NuaXBdDQo+IA0KPj4+DQo+Pj4gRG8geW91IGVu
-dmlzaW9uIG90aGVyIGNvbmRpdGlvbiB0aGF0IGNvdWxkIGJlIGFkZGVkIGxhdGVyIHRvIGRp
-c2FibGUgYQ0KPj4+IERSTSBkcml2ZXIgPyBPciBkbyB5b3UgdGhpbmsgdGhhdCBqdXN0IGZy
-b20gYSBjb2RlIHJlYWRhYmlsaXR5IHBvaW50IG9mDQo+Pj4gdmlldyBtYWtlcyB3b3J0aCBp
-dCA/DQo+Pg0KPj4gVGFraW5nIGEgc3RlcCBiYWNrIGZvciBwZXJzcGVjdGl2ZS4NCj4+DQo+
-PiBJIHRoaW5rIHRoZXJlJ3MgYnJvYWQgY29uc2Vuc3VzIGluIG1vdmluZyB0aGUgcGFyYW1l
-dGVyIHRvIGRybSwgbmFtaW5nDQo+PiB0aGUgY2hlY2sgZnVuY3Rpb24gdG8gZHJtX3NvbWV0
-aGluZ19zb21ldGhpbmcoKSwgYW5kIGJyZWFraW5nIHRoZSB0aWVzDQo+PiB0byBDT05GSUdf
-VkdBX0NPTlNPTEUuIEkgYXBwcmVjaWF0ZSB0aGUgd29yayB5b3UncmUgZG9pbmcgdG8gdGhh
-dA0KPj4gZWZmZWN0Lg0KPj4NCj4gDQo+IFRoYW5rcywgSSBhcHByZWNpYXRlIHlvdXIgZmVl
-ZGJhY2sgYW5kIGNvbW1lbnRzLg0KPiAgIA0KPj4gSSB0aGluayBldmVyeXRoaW5nIGJleW9u
-ZCB0aGF0IGlzIHN0aWxsIGEgYml0IHZhZ3VlIGFuZC9vcg0KPj4gY29udGVudGlvdXMuIFNv
-IGhvdyBhYm91dCBtYWtpbmcgdGhlIGZpcnN0IDItMyBwYXRjaGVzIGp1c3QgdGhhdD8NCj4+
-IFNvbWV0aGluZyB3ZSBjYW4gYWxsIGFncmVlIG9uLCBtYWtlcyBnb29kIHByb2dyZXNzLCBp
-bXByb3ZlcyB0aGUga2VybmVsLA0KPj4gYW5kIGdpdmVzIHVzIHNvbWV0aGluZyB0byBidWls
-ZCBvbj8NCj4+DQo+IA0KPiBUaGF0IHdvcmtzIGZvciBtZS4gVGhvbWFzLCBkbyB5b3UgYWdy
-ZWUgd2l0aCB0aGF0IGFwcHJvYWNoID8NCg0KU3VyZS4gSSB0aGluayB0aGF0J3MgbW9yZSBv
-ciBsZXNzIHdoYXQgSSBwcm9wb3NlZCBpbiBteSByZXBseSB0byB0aGF0IG1haWwuDQoNCkJl
-c3QgcmVnYXJkcw0KVGhvbWFzDQoNCj4gICANCj4gQmVzdCByZWdhcmRzLA0KPiANCg0KLS0g
-DQpUaG9tYXMgWmltbWVybWFubg0KR3JhcGhpY3MgRHJpdmVyIERldmVsb3Blcg0KU1VTRSBT
-b2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJIDQpNYXhmZWxkc3RyLiA1LCA5MDQwOSBO
-w7xybmJlcmcsIEdlcm1hbnkNCihIUkIgMzY4MDksIEFHIE7DvHJuYmVyZykNCkdlc2Now6Rm
-dHNmw7xocmVyOiBJdm8gVG90ZXYNCg==
+On 11/5/21 09:43, Thomas Zimmermann wrote:
+> Hi
+> 
+> Am 04.11.21 um 21:09 schrieb Javier Martinez Canillas:
+>> Hello Jani,
+>>
+>> On 11/4/21 20:57, Jani Nikula wrote:
+>>> On Thu, 04 Nov 2021, Javier Martinez Canillas <javierm@redhat.com> wrote:
+>>>> +/**
+>>>> + * drm_drv_enabled - Checks if a DRM driver can be enabled
+>>>> + * @driver: DRM driver to check
+>>>> + *
+>>>> + * Checks whether a DRM driver can be enabled or not. This may be the case
+>>>> + * if the "nomodeset" kernel command line parameter is used.
+>>>> + *
+>>>> + * Return: 0 on success or a negative error code on failure.
+>>>> + */
+>>>> +int drm_drv_enabled(const struct drm_driver *driver)
+> 
+> Jani mentioned that i915 absolutely wants this to run from the 
+> module_init function. Best is to drop the parameter.
+>
 
---------------NVDuFp0u3pp2xWcJiJ7yN6Es--
+Ok. I now wonder though how much value would add this function since
+it will just be a wrapper around the nomodeset check.
 
---------------amYHNBfM0Vfmgj2bbPw0MP1t
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+We talked about adding a new DRIVER_GENERIC feature flag and check for
+this, but as danvet mentioned that is not really needed. We just need
+to avoid testing for nomodeset in the simpledrm driver.
 
------BEGIN PGP SIGNATURE-----
+Do you envision other condition that could be added later to disable a
+DRM driver ? Or do you think that just from a code readability point of
+view makes worth it ?
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmGFKucFAwAAAAAACgkQlh/E3EQov+D0
-uhAA0c8ZNQjbRr9n35QT+n1kfE+lZxXxUOp1XdNRH0W7s0yH8txdHGLC53BqYEf4ZZ6cM8gKXu3X
-KRnWqhQ88nbFRkEuoC0oHXbzl4er1Y5Fnu/4HsxVBLHTNqAEIFnaN/K0xc2WFRFju9IvyQtiVkq4
-gW327uTSQVJ8Fuhy9Ry5Uf4+qSGFhYtb0+W0WvQvejYpyZT7BaXiQdxIk5avSLFF6imFGdS5RRgA
-rUUE0xCBday57ZrDMviBfayQybH0ErVyKDE21EgFmSp7ny2I+Ra5XNkKjPrn0BR+SCGmlV8bKfeC
-WfUJCOhiDPC2Z2sPnDGoh5ItyCaEO4NtCpTRAh+yoS8BdpTLyTd3wp1NqdA9jc9xPRAAE5ghfbkQ
-Z4OvLJYlezxwzTR/FC5gPL1YJQsEolhVW4iOGGspCWx1VzJAkY6PQV47s8GHuH/f/oedcuyDQzNn
-GJbk9ZPNuJfw09KGl0BtpAVALVV0xYsnkxUr8RFW8qsJv5RJfZHwLwWrS/+3un8UEsgjL91bXJ8q
-zyCTj79SFduvJyIHyihlZFa5NWPwsY+qSb0yic9968LvKlY7OI1JnLZ5/UokVtbXPizSFJGS1tsz
-sFk1ZB+FP63bCOxw+wgoOij6E486p90t9BMHSI0V/RMjT6eqG1/nbyDPqGXZNg95xodHrqH/dS5+
-tlA=
-=R/av
------END PGP SIGNATURE-----
+>>>> +{
+>>>> +	if (vgacon_text_force()) {
+>>>> +		DRM_INFO("%s driver is disabled\n", driver->name);
+>>>> +		return -ENODEV;
+>>>> +	}
+> 
+> If we run this from within a module_init function, we'd get plenty of 
+> these warnings if drivers are compiled into the kernel. Maybe simply 
+> remove the message. There's already a warning printed by the nomodeset 
+> handler.
+>
 
---------------amYHNBfM0Vfmgj2bbPw0MP1t--
+Indeed. I'll just drop it.
+
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +EXPORT_SYMBOL(drm_drv_enabled);
+>>>
+>>> The name implies a bool return, but it's not.
+>>>
+>>> 	if (drm_drv_enabled(...)) {
+>>> 		/* surprise, it's disabled! */
+>>> 	}
+>>>
+>>
+>> It used to return a bool in v2 but Thomas suggested an int instead to
+>> have consistency on the errno code that was returned by the callers.
+>>
+>> I should probably name that function differently to avoid confusion.
+> 
+> Yes, please.
+>
+
+drm_driver_check() maybe ?
+ 
+Best regards,
+-- 
+Javier Martinez Canillas
+Linux Engineering
+Red Hat
+
