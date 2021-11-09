@@ -2,126 +2,132 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C07F44AF14
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Nov 2021 14:55:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FD6E44AF1E
+	for <lists+amd-gfx@lfdr.de>; Tue,  9 Nov 2021 14:59:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B1D76E864;
-	Tue,  9 Nov 2021 13:55:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2B766E511;
+	Tue,  9 Nov 2021 13:59:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2047.outbound.protection.outlook.com [40.107.244.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADA996E864
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Nov 2021 13:55:17 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2087.outbound.protection.outlook.com [40.107.236.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6242B6E511;
+ Tue,  9 Nov 2021 13:59:23 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UrvMscgGaP5ynPEh82/otrDbp91IwchB+3nYF0pYhwBxvV0WkQ7L6ZUoj4V2F7bsNaYgO7Xad8kI+/OTCFIOVut7ZvznRgp7pEYObLLxl4+Nzz6ZE9NkpflyRFP21kJ+TkcWX/aeJinSZlPJsd+58S4mowglKO3RrrgBz9ErgScivrFKbQqZLjs1lPfUwtWof3z45vfHo6oRuoD+P3v0CeiHVeIpXvzag7An3Zcs5qEJ/ShFVOnaSrAtfKzhTI7182WujhFh2MC3k8o6aSrQ5S/R5QMn/fIYiEVN48oxXULsbVRmgS06I2ZhN9NN3/ul6Q2xsink5uy5tmvIdMEYHg==
+ b=FFszfeat8uK59pKSkFJZVNFSHjWMBNE0KuAbMkfJf4J7IxUP82zxO38YnoM2DSb8IVyhd8zglqTsPVTgBQCoUw4uKt9Lj+WSfhvg9Xo+0TUqraERbKjdgRNuA/exMOHVRpMyTbDBVGcyXwlWFmNvE4HHUuQdW1ZW/dknaUtX3x+gKg3lgLGFI1utc3WnYbdOZSrdAUM64MiuzegQQQ3tj28P8Bjn8YepXX2dHB7yL6fHbq4pPx0qGYP3+WyVMh8zcV87OsGp/w0OS5S6CBo3HiPKiCNWmOZkbCF15kAZz+7XiwR2RBY2acNUepYDp8dVLrCXWJa359U7KxPkcrSI8w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RF14Vip0+zBfDYBkTw19mA0YbdMI2tmKB9wYT0hiD2U=;
- b=TUH9+VlYHesVCKqCHVc2Z9LtYrZS4QxW3k2HX1ehs22E6C993ZaVUmcxqrr02paeve8G8yP+uA16xj/xBuzzNx4ls0hDMZCQzQICWF2NZrtP0+Q80vwnvn3Cr8YhW4JtpB2TEzzxKkTrGs2D9+q+/2jPPc52rVLC1XwPrAHrr8UzQzM2CCbAqliLX3lanq3qDNIxvyKNcGDW4iu4kIns/kOJbztnLSQ4J/yL595wz41AV1drS5KO8Ud5dZzL2xwXbBsXOzybCR0ya28L+TUpeE2WGUdkcwbZ14XD8vIrj594+mPt9xk9sKpxafQ5r7OkqqMXaPb6TamOTMPRSNOIRw==
+ bh=Ri2CaKGe7niWypQJIoO8VHMhWhtLrC9Hy8voiUrIgw4=;
+ b=SBrbSVWZKiYt1dQmlrFkNit+wAR540AfDMrf/D+/iCHsOP8LEnmaJn31dUsPRT/6MpuqxMSEynV5sPF30+EKcQmWZPU4EfGTflo4ky8ofCP8xHE/WaK4EMMuq+zGGmRSMw8HogsmqZQjUyutxDjwOUjZFCzFyhrwvZ6rTqvJeLO1EQUqBYSj5/2q8o5vgWACxk7SzziRMZT4KfY0ckSoktFsZQKkZX9n5ia+nh3ikG9mSbEN41cQK0SytGDp5LDzxvWoy+3+5B+NM0ZojuwgoO6YztdAvhxyE3Ltkn8qguVavYSovek2srLAV2+yD8FjXzYd0xIw0zAuFW5yrm1Qgw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RF14Vip0+zBfDYBkTw19mA0YbdMI2tmKB9wYT0hiD2U=;
- b=nUoztVi6lBDzSC/RZCgVA6iCfQKc1UKvjXQRClYVBK9VAOLptL9Kg+n0MJyIkc5y4NnWzoy6i8Ja7x5NJekAxrSyJtkTTaHSg/BMDB9uJqrecNd67JVivH07Kj5f538k0JaXxc2U9UIg6ADlvPpajksThsciIOSRWbct35yjIaY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
- by CO6PR12MB5490.namprd12.prod.outlook.com (2603:10b6:303:13d::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.15; Tue, 9 Nov
- 2021 13:55:15 +0000
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::d095:131a:b99a:9975]) by CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::d095:131a:b99a:9975%3]) with mapi id 15.20.4669.016; Tue, 9 Nov 2021
- 13:55:15 +0000
-Message-ID: <ad47f5cd-7514-5f5e-edbc-659d7135e88f@amd.com>
-Date: Tue, 9 Nov 2021 08:55:11 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [PATCH] drm/amd/display: log amdgpu_dm_atomic_check() failure
- cause
+ bh=Ri2CaKGe7niWypQJIoO8VHMhWhtLrC9Hy8voiUrIgw4=;
+ b=Aw5i8B9MdEK7mTjlMk5MnOkYrCJJXO8NUo9iK+Koaqo9UEMjoQ98Rv2N2YICuzPyJQg8e2ufyArUc2BKuNspvcmigmXMJe9GcC0ocvA1w7Y2UIjRxdBSmMPElHma4psQS7nsL2NJqdHprVeFAkinf+DwEAmFqQ7HNQv7K0Zy79Q=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
+ (2603:10b6:301:5a::14) by MWHPR12MB1344.namprd12.prod.outlook.com
+ (2603:10b6:300:9::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.11; Tue, 9 Nov
+ 2021 13:59:20 +0000
+Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
+ ([fe80::2d02:26e7:a2d0:3769]) by MWHPR1201MB0192.namprd12.prod.outlook.com
+ ([fe80::2d02:26e7:a2d0:3769%5]) with mapi id 15.20.4669.016; Tue, 9 Nov 2021
+ 13:59:20 +0000
+Subject: =?UTF-8?B?UmU6IOWbnuWkjTog5Zue5aSNOiDlm57lpI06IFtQQVRDSF0gZHJtL3R0?=
+ =?UTF-8?Q?m=3a_Put_BO_in_its_memory_manager=27s_lru_list?=
+To: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+References: <20211109111954.41968-1-xinhui.pan@amd.com>
+ <da46c607-1a3c-7ea9-92ef-78a2b60d38c9@amd.com>
+ <DM4PR12MB51653AB0F1A0B89A41782B1087929@DM4PR12MB5165.namprd12.prod.outlook.com>
+ <76d78ff7-efe4-4796-ec18-a668757f2e04@amd.com>
+ <DM4PR12MB51657C53FAA6C096884118AD87929@DM4PR12MB5165.namprd12.prod.outlook.com>
+ <DM4PR12MB51658A8C75586BCC2B0BDA6487929@DM4PR12MB5165.namprd12.prod.outlook.com>
+ <5b2e8116-7bff-604c-5b9a-e37e29d66dd0@amd.com>
+ <DM4PR12MB51658C237B36EE47DDC68F9D87929@DM4PR12MB5165.namprd12.prod.outlook.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <282e5be4-07c7-c1e7-049b-6af1eb7a2fd3@amd.com>
+Date: Tue, 9 Nov 2021 14:59:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+In-Reply-To: <DM4PR12MB51658C237B36EE47DDC68F9D87929@DM4PR12MB5165.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-To: Shirish S <shirish.s@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-References: <20211109051454.46574-1-shirish.s@amd.com>
-From: Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <20211109051454.46574-1-shirish.s@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR01CA0046.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:2::18) To CO6PR12MB5427.namprd12.prod.outlook.com
- (2603:10b6:5:358::13)
+X-ClientProxiedBy: AM6P192CA0041.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:209:82::18) To MWHPR1201MB0192.namprd12.prod.outlook.com
+ (2603:10b6:301:5a::14)
 MIME-Version: 1.0
-Received: from [192.168.50.4] (198.200.67.104) by
- YQBPR01CA0046.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c01:2::18) with Microsoft
+Received: from [192.168.178.21] (79.194.4.163) by
+ AM6P192CA0041.EURP192.PROD.OUTLOOK.COM (2603:10a6:209:82::18) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4690.15 via Frontend Transport; Tue, 9 Nov 2021 13:55:14 +0000
+ 15.20.4690.15 via Frontend Transport; Tue, 9 Nov 2021 13:59:18 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: eca92fd1-acd9-4732-2b0f-08d9a3888e57
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5490:
-X-Microsoft-Antispam-PRVS: <CO6PR12MB54901CF6192D6994FF774B4A8C929@CO6PR12MB5490.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:345;
+X-MS-Office365-Filtering-Correlation-Id: 3558ba17-0368-4630-2d16-08d9a389203e
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1344:
+X-Microsoft-Antispam-PRVS: <MWHPR12MB13449FFCD02F9AFC9259927783929@MWHPR12MB1344.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gk3wbvspF5T8T8xyuvfnUMhsWix2WYRKUnvgItB2UmJGfS382xwxNiPiE3gjDPpPGyyi0+neczNBUiphvRs8MzEcxPzKNYfHoIRBYebSLdJsso5i9Ftp4xXQs3QyUGJ9vpjmBJKhr9YZn21COMkQ8cwFu6TrS5yS9792goLPSred1lQwZ/42VNmbnpGfnUlZ4lgOWAds6gu0AgWBQnGhQtS5yakWcMgYswUsRwktKzgDvBRFgj4u+2I4LDe5fVeJVaJOCPfhnMdmF2JEbDALqg0Gv74nZxEvesKG7mDQsy2kp0ts5GlKs4ZkKc2k5eONtloQ2uyyKebKKFHYpyfidRnhiPCLq8ofIiWzG5mNknued88117Ypxu7i9/bcsVIV9/y9+JrUQkJuIAJvaDek1dArC2i7/fZk4ycm4kGBf+kEe77EqBdh1BAG2mJmn4OF9HE7OJRoMRYbiJrjhXudEfE/HPv98wf8BGbn43ewqlyHVtuwLnQ+akPRPytDTzq6kQC/VCe+/Wsu/A+MsAMU1qsL6Sp8afdAd3DKumrQp4kxolntJQpv1wUP1vkfDnwwK0B0JMZAFPyC4PFqvNFDt7DT1ADeL0aJzow5QKSzd9aL9J8zu/Nu0eKTo2YPxrbIam6gQukaYmcDhTf+BdbhwYu6Ei+L2Uyy4a2VRwaRHqBrlwBXIPn8HEj7Qv8gHx+SrP+5jTGVhrlYD9gV2W4YH1s5EKakOGm2FQjSrAqo2ug=
+X-Microsoft-Antispam-Message-Info: Tlg63OXG+MsomAKk7sTNv8dArHbS84Ps8RaaYt5Ybmnf+XN6mTqmgtWHFVxP/Z/I5D7QY7B0tdgkDI67nBmSCYo+0KqnHxl+2+2P61PjjfjFzl9QrJbZ6wob3pclLwpdg2BVoPeQIBkgcFPT8ri7Kroz/8ZVWEJcJkuhFRM9Nr/EFtQbqx66wLONsyyXQlBZGgNJOzYFzlF2Ol3Wzt2W9SHxyS8iIPLAPIBbENicJ6tTUjZSM5ZRcVccU1DANHs6pSijCzL+kleWOwnE4e79hsvlP1Vn0X7nCxE+NAC/oixqNvUKJ+xf/SKwRBcnpdB15OVIV5h8GmQdWATJ23Uk3f3E1unK49OaoWlKqHHaFMjHkrQCsWsjHB+4VF9T+C/Q5wkhTZxvCCkOaEtEQsmHc+d8wnqVzwNOludgd68iJ8kNmOgMgmthZ+GHqjM8sosG4C5WQc5gp47WXsU6VEDCJI798QhgEm+eB5xmMGOegjyWMgQ5G1W5oztmlMjSl0Z7470YpN5wwn03p33phPv4VdJQ3svwMY+2H739VQSAI92u8Q3sgwqXP7wkrpdii9pSspW4LsfA4hHKnr4/9BZHyVtxSL+XRi5AxFz1Y3W36JBGjfGU3sOlLPMaVTcHvs4oAjfjN89BHBl3a9+9rVECgBumO1xyUL1nrJQ/TvRcqwBhWQ+YN5NLtKf41lyBWuJfa1Yi+vPs0WHaSsdjZIaWzfwDQGVX9cC/yuDF9y2GkFgR82nvBzqGiXhTuI4o4urX
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(5660300002)(66476007)(110136005)(6636002)(2906002)(2616005)(956004)(508600001)(44832011)(66556008)(66946007)(4326008)(53546011)(36756003)(26005)(186003)(31686004)(31696002)(38100700002)(8936002)(316002)(6666004)(83380400001)(86362001)(6486002)(16576012)(8676002)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:MWHPR1201MB0192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(316002)(31686004)(26005)(66574015)(110136005)(5660300002)(450100002)(6486002)(2906002)(16576012)(186003)(6666004)(508600001)(86362001)(2616005)(224303003)(83380400001)(31696002)(66556008)(956004)(66476007)(36756003)(4326008)(66946007)(8936002)(38100700002)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NlZVZGs2b1pENC9nTFBsN0djeUs0dzA5UE9YZE0rcEJtdUU5OVdlUkd2akFN?=
- =?utf-8?B?THN5QjFKWFljZHhIcE0xZkhvdjZzU1lQR0NRUDhJZXJBcEdhQW1FZWFveG5C?=
- =?utf-8?B?dXRMS21FWG50N3FNNGwwUytHc3BkNmRjNlVOQlBqV3dtNFFCbWZMZWV4WUFn?=
- =?utf-8?B?WE9IeFdPN3BKaGlPYTNIbERUUlRTZmx6TU5BYVN3bHc1ZXBSeDUwdjNJMkg3?=
- =?utf-8?B?UU1Gbks3UWFJdm9wL3JMS3hzZ0tkd1FYRGMyZFBIZkJ5dk80TUNmaHZxL2R1?=
- =?utf-8?B?Q3EyT2J5bGgraU1HeVVPOHZ6V0N4Y2NidzFNdTdnRFZKaUJ0TnI2UDRTTkxJ?=
- =?utf-8?B?cUMvenlaRTdhSjlQU3BLU1h2Qy93MmhCUnF5QWFKTzBRaUNmUTNOVks3U0Rp?=
- =?utf-8?B?WEt4QlY0MUdLaTRXbkRoMGxwWVczMW5PV0ZpKzgvQUxVTm14aHRnY3Z1RUNK?=
- =?utf-8?B?WEZpU3NKN3lFYy8xU1M1cHBWeUxpeExvNFZoaS9FNDUzZG9yMHoxazloN2o5?=
- =?utf-8?B?azBSRThXV0Y2N2xiTnhMWXkwelR4K2ZwZnZzdFZQYTdMUFRSSjJOUy84a3hY?=
- =?utf-8?B?OTZRdkRzekswbUdoSnhXTVE5TjdXbUY1b2Y5TjhGbEVRN09xNFIrN29zWHVz?=
- =?utf-8?B?eU90S2h5amRwVjdFOGQ0VXg0NCtEQVdEMmt4NjNWRmhWb25QU3cxL1ZlZkox?=
- =?utf-8?B?ei93c0hueUJCSzhpQnpKZnlxNlNuU2M3aDJZTXJYQlpETXo5THEyTi9mUm15?=
- =?utf-8?B?d0lYdGQyTUFqSVh5M1B6Y012dGtDSXJNalBNY1d5TFJtbFBVdllxWUhCTGNS?=
- =?utf-8?B?VXRzaG5lWk5hcXhMUE03alJ4dkU3K2NwcnNqZFFjOEU0eHZ0QTZ1c1pab2RI?=
- =?utf-8?B?V3YyRldKTmtFRXBsNFNQVjJuREZXVlU2SE51MXUyQUl2RDJtbkpKd2lwS1do?=
- =?utf-8?B?dFJVTWx4RERFMDFqM0xNazZaWHh4TXF1dXV5cDRBR25zZnQ0UFhWRVh3QVoz?=
- =?utf-8?B?KzhLNTV6ZHJRTERFSDRLYlVlb01BaEVmZnY4YnA0eWExN2xXM29RVnpxSmpD?=
- =?utf-8?B?YUJoTVk2NktSUyt6YnlmaVNOY1FUOXRTak9iTURweXFxcEpyd2tKRlMrcnFm?=
- =?utf-8?B?OEYyVUdiYzVHSXlVb3RUT0t5akZ5Mi9SL3cwNklFWDg3SlIveFhqZUZaQ0lI?=
- =?utf-8?B?ZVVNeithVVdOU2p2NUpYUkNqRXdEK2VJa3V0KzNnYzRpallQK2tOMnoyb0RB?=
- =?utf-8?B?V0dITnRwWnpMNnZkTzZiWGl4THdndUVmL1A1dHhsc2VURHBjditlVEo3VHQ1?=
- =?utf-8?B?YlU0YndPOVE3WVFPd0Fsbk1zSkdPM1JpUnoxeHA3Mml0YjhUUSt3ZG0zR0F2?=
- =?utf-8?B?UWwyR1BPU3oxZUJMYVowcklEdkl4VVl3bEJNZkJFMzFOUEZDajVYQ0p2Mmpr?=
- =?utf-8?B?VWloRmV1QUJYdzYycUE4bnNFcnl1a3NSNGozMDlhd3V4bHAvSFJOc3VNSGJB?=
- =?utf-8?B?VEFEN29CTEtkSTFOb3lVOFNTeDlNenN2R3pyUk12YmV0ckd1LzJCMjUrdlZL?=
- =?utf-8?B?Wm4xVHhpVC8wQm1uekJUM21iSkFRejhsSnB6QWZqZGpkV3dhNzNuQmh2U25N?=
- =?utf-8?B?SXdDa2Z1ZGxJcldOT2xKaGljZU5PdnU0a1VnOGx6V3h5VWJGRGx3bU9PQzRE?=
- =?utf-8?B?dmxsT1NKeHcxL2g3M1Jlb1hZYk5FSnh4emViL1hQVHhtcTY2aGVuRnE2Tk5i?=
- =?utf-8?B?ckJjeG5oM1UwbXNzRWpFSnhoWlZsaDhBYzQwcHJZZEh3M1B0TTI1YjlxbnRZ?=
- =?utf-8?B?SXFKaGlva05NaUM4V3F6ODdwZnhKQ0lJL0p5ZlBuTkVvUjdRbjBUWkhxWkt5?=
- =?utf-8?B?UGNGZUtmNVhCbXhUcnFLSlBFM0x4WjFRYmRGWWhRc3Y4S0RMazZ6WmZ4L21L?=
- =?utf-8?B?UjFSS3RkNHpycmJtcHNqUTYzeVFIa3dwejd6bTI2dWk0ay84QWpWVUkzR2JO?=
- =?utf-8?B?anZxdlRweS8xT1pzb3ZGeS82QVgrSUlzRkZ0cjhyOUVmZXRQdFFMVnFVc0pM?=
- =?utf-8?B?blE5UmZlZDVEZFBNVDBxNmlUVlFWakg4ODFpdCswUThQVEdlVkRDNTBpQmJj?=
- =?utf-8?B?T21DVFdXdlBPelZqWjJBQ3J5NUlWb1FZNXhXY0RyYWhjWUJDTC94VDVvMGpB?=
- =?utf-8?Q?0iGAQPpbwin7ZBc87Ol4GZY=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MmRmZ0JyWUN4RUppN0M4MDUzc29oUXRRbkZFUDVyRU1CVVNmOUxvK0ZBRUE5?=
+ =?utf-8?B?SlhqenhHZjRCaEJEWFh2T2lJeC9EeittdjZYeXJXU3VFUzVwZ3pSeUtaRmJY?=
+ =?utf-8?B?ajJzSzZidGhJRUxUYTkwODM1cGk3TmorQlR1dUVjSitTeEtqeDhhUnBKeFFV?=
+ =?utf-8?B?MlJhT1pkQ2JJTC9qU3haOGpYQ3hkQ1JzbDFaZWN3SVhIQUlyRkN2L2dEN3dZ?=
+ =?utf-8?B?S25yNG80Z01lN0t1VXR1Y2dLQ09mNmtSdFM4OW5lZkd0N1p3ZzNDVEVCQUZp?=
+ =?utf-8?B?cFRETzBxbmx4a2dITTREYnJnTDlxNnpmSlFPRE9Qa3ZnRUZxOUtxSmlBbVlP?=
+ =?utf-8?B?U3ZFRFhWcC9aQ2d2WDNybzNhd3R3V1lxV1pGV0IwN1VTdkZHOTZIbWRJT3c5?=
+ =?utf-8?B?V2RqdEhuY09vMHRHbTZsYlRGYnhoK0lTSnNaVE01VWRQU0dHbTBnZGlOMmY2?=
+ =?utf-8?B?VmlQaFUwUnAybzVXenFHRm5JMnJQVFFBSWxkNWlEa1JxTitiak0vY1IydmFj?=
+ =?utf-8?B?emd0ZERSeUtKOG5GNUJJNTg4Q2g3alpOOXpvbE8vTFN2K3JzZlVzSFRmL3pl?=
+ =?utf-8?B?bGRSYlBMMzFmWFowRE9obDVwR2cyWUFPL01DL3g0SG50a2pnTGRVNk1vNXFZ?=
+ =?utf-8?B?VXNDQ3JJTC9MK0hQRnhrUWpwckFZV0hncHFMTzlIdVZERklaaHQ5akR4MHZJ?=
+ =?utf-8?B?WFM1SlRyQzlEay9UM3YwUUUwc3JJSGRna0RxUXlnSWR0MGZyRHVScGJYM2lR?=
+ =?utf-8?B?K2dxdWRGMTdnbi9GWlNWQmdoODY2emRIby80bTV6K3llbnBJWVBRVVRHdTlD?=
+ =?utf-8?B?TkFRMi9heWJ1YjB5Z3E3YXNxVjBSSmZ4YUg5enZ4My91bmRpMDZRYWYxWm1u?=
+ =?utf-8?B?N1V1SHp1MWlvR2F6RlZMUlNGYVFUSzdqZTJJNUxjS216czhmZDUzbk5BbU5J?=
+ =?utf-8?B?WFVnaVgvcmRKMjE2R3A1cTZYK0FNeFRkSWRzRjVrak1BSmRqZlkvMzdCOWJt?=
+ =?utf-8?B?OEFYblY2cVA1aWZqZXgyVnNpYnQ1RU44TWlMcjdRSGRTcWVlM2NBcU5QMlNB?=
+ =?utf-8?B?RE9sbmltcjVCRzlhNFQrZnFocm5YanZnc21KUFliUFVXZTZzT2tka1E2bVd5?=
+ =?utf-8?B?eldBaVhmYVR0RCtJN3kreExVUkxTVVJQV0trenQyUmRJTkVVdGlWMCtTTEhl?=
+ =?utf-8?B?NitLKzAzTWlYanBDRDVmOExybm4wVHFsR2tDWitxNHpGOUdZT1BzN3h0V2NV?=
+ =?utf-8?B?bVB2Wld4V0RSZ21jclRQLy96SjQ1aksrOE5LZk15b01XVm1hRVJNWVRHclFY?=
+ =?utf-8?B?OHV4ZmtJemFGRE1teHk1TXM5M2lubWdmWnFzbkJVbVIyb3paQUh4NzJJYktr?=
+ =?utf-8?B?R3Y1OW9rZkxnOFJ0cUs4TXFWeElpSHZQYTNmNVhFc3NuT0xXekwzOGpGSTBl?=
+ =?utf-8?B?cGEyeEROV0JpSWhsRVhGaXZXS2hwc0lUaENIbFNmbHM5LzBCeWptVUFSRWcy?=
+ =?utf-8?B?a2hJUzRwL25taEJnYTdWU05PMmx0OHRMTDhhQ1ZzUVprL3hGSDFOU2NqY1E4?=
+ =?utf-8?B?bitFSzhUZVMvQVBpYVc4d041TGJCT1hIajlnYjhGWlNQaVV4MXZ5cHFMZE1u?=
+ =?utf-8?B?RDBXaW5PVVBqdm5IaVlXSjFWbXpNRDV6RFJUWWU2RmlKMmQwVUJZRVhNa1Ni?=
+ =?utf-8?B?bVdDSHhtcjZSOEhmNXdQK2lGSk5FampnUnF5WVBmMVJHZlJSM201MGVxL1lC?=
+ =?utf-8?B?aGJ2Nzhnd2tSVXZzV1JxUWVRS1pVWWE3VEFEY1ZMMU5qMmFjRTd3VE1VK0hO?=
+ =?utf-8?B?cS8zeXFtRkd0MmE1aWM2S2JWc0hYS1RBQ0puTW81T3F5THVQTktWbDFSem90?=
+ =?utf-8?B?K3JpNS9mMTdmbW1XekJVcEpUVUhubjBsWTFYdnp2SW9SeGVhVGg2SVVhZjNs?=
+ =?utf-8?B?ZDFGd1Y2RFVIWFl5ZFZiM2RVeE0vQ1pWdE5VUElYUXZYY1NHRmlmVkhaSWpo?=
+ =?utf-8?B?aVhnMzZ5Rm5VN0xpWHFiMU5yNU5NMjBkRWtkUUY5QVNnMXFEK21ZWUZvWG4v?=
+ =?utf-8?B?Rk83SDB0WTJMdTROajB6dDV5UHM2NW9zTFY5bFBoMkVRS0daR3NCY1BaWVVo?=
+ =?utf-8?Q?wpqI=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eca92fd1-acd9-4732-2b0f-08d9a3888e57
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3558ba17-0368-4630-2d16-08d9a389203e
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1201MB0192.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2021 13:55:15.2167 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2021 13:59:19.8637 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uKZm2DIjz5YNlcO+Kr1KAoBWWum6ThZbZq9d7UDOSyjbjUQC3wgNd8IwcdRg/3NEoAj4auN5braH8g8GIqDnLQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5490
+X-MS-Exchange-CrossTenant-UserPrincipalName: 375t3/8jf2rk2gZaBkGZkTGONRRVHp8KRCAvcujWokfFBUJT4DET7uDJNU9g9xgE
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1344
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,212 +139,151 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2021-11-09 00:14, Shirish S wrote:
-> update developers with next level of info about unsupported
-> display configuration query that led to atomic check failure.
-> 
-> Signed-off-by: Shirish S <shirish.s@amd.com>
+In general the correct idea, but the wrong place to check that.
 
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+Calling amdgpu_ttm_bo_eviction_valuable() is only optional, but that 
+check must be mandatory for correct operation.
 
-Harry
+This needs to be inside ttm_bo_evict_swapout_allowable().
 
-> ---
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 69 ++++++++++++++-----
->  1 file changed, 51 insertions(+), 18 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index b1d9e89e5ae9..b7044c04a7c5 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -10755,8 +10755,10 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
->  	trace_amdgpu_dm_atomic_check_begin(state);
->  
->  	ret = drm_atomic_helper_check_modeset(dev, state);
-> -	if (ret)
-> +	if (ret) {
-> +		DRM_DEBUG_DRIVER("drm_atomic_helper_check_modeset() failed\n");
->  		goto fail;
-> +	}
->  
->  	/* Check connector changes */
->  	for_each_oldnew_connector_in_state(state, connector, old_con_state, new_con_state, i) {
-> @@ -10772,6 +10774,7 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
->  
->  		new_crtc_state = drm_atomic_get_crtc_state(state, new_con_state->crtc);
->  		if (IS_ERR(new_crtc_state)) {
-> +			DRM_DEBUG_DRIVER("drm_atomic_get_crtc_state() failed\n");
->  			ret = PTR_ERR(new_crtc_state);
->  			goto fail;
->  		}
-> @@ -10786,8 +10789,10 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
->  		for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
->  			if (drm_atomic_crtc_needs_modeset(new_crtc_state)) {
->  				ret = add_affected_mst_dsc_crtcs(state, crtc);
-> -				if (ret)
-> +				if (ret) {
-> +					DRM_DEBUG_DRIVER("add_affected_mst_dsc_crtcs() failed\n");
->  					goto fail;
-> +				}
->  			}
->  		}
->  	}
-> @@ -10802,19 +10807,25 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
->  			continue;
->  
->  		ret = amdgpu_dm_verify_lut_sizes(new_crtc_state);
-> -		if (ret)
-> +		if (ret) {
-> +			DRM_DEBUG_DRIVER("amdgpu_dm_verify_lut_sizes() failed\n");
->  			goto fail;
-> +		}
->  
->  		if (!new_crtc_state->enable)
->  			continue;
->  
->  		ret = drm_atomic_add_affected_connectors(state, crtc);
-> -		if (ret)
-> +		if (ret) {
-> +			DRM_DEBUG_DRIVER("drm_atomic_add_affected_connectors() failed\n");
->  			goto fail;
-> +		}
->  
->  		ret = drm_atomic_add_affected_planes(state, crtc);
-> -		if (ret)
-> +		if (ret) {
-> +			DRM_DEBUG_DRIVER("drm_atomic_add_affected_planes() failed\n");
->  			goto fail;
-> +		}
->  
->  		if (dm_old_crtc_state->dsc_force_changed)
->  			new_crtc_state->mode_changed = true;
-> @@ -10851,6 +10862,7 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
->  
->  			if (IS_ERR(new_plane_state)) {
->  				ret = PTR_ERR(new_plane_state);
-> +				DRM_DEBUG_DRIVER("new_plane_state is BAD\n");
->  				goto fail;
->  			}
->  		}
-> @@ -10863,8 +10875,10 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
->  					    new_plane_state,
->  					    false,
->  					    &lock_and_validation_needed);
-> -		if (ret)
-> +		if (ret) {
-> +			DRM_DEBUG_DRIVER("dm_update_plane_state() failed\n");
->  			goto fail;
-> +		}
->  	}
->  
->  	/* Disable all crtcs which require disable */
-> @@ -10874,8 +10888,10 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
->  					   new_crtc_state,
->  					   false,
->  					   &lock_and_validation_needed);
-> -		if (ret)
-> +		if (ret) {
-> +			DRM_DEBUG_DRIVER("DISABLE: dm_update_crtc_state() failed\n");
->  			goto fail;
-> +		}
->  	}
->  
->  	/* Enable all crtcs which require enable */
-> @@ -10885,8 +10901,10 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
->  					   new_crtc_state,
->  					   true,
->  					   &lock_and_validation_needed);
-> -		if (ret)
-> +		if (ret) {
-> +			DRM_DEBUG_DRIVER("ENABLE: dm_update_crtc_state() failed\n");
->  			goto fail;
-> +		}
->  	}
->  
->  	/* Add new/modified planes */
-> @@ -10896,20 +10914,26 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
->  					    new_plane_state,
->  					    true,
->  					    &lock_and_validation_needed);
-> -		if (ret)
-> +		if (ret) {
-> +			DRM_DEBUG_DRIVER("dm_update_plane_state() failed\n");
->  			goto fail;
-> +		}
->  	}
->  
->  	/* Run this here since we want to validate the streams we created */
->  	ret = drm_atomic_helper_check_planes(dev, state);
-> -	if (ret)
-> +	if (ret) {
-> +		DRM_DEBUG_DRIVER("drm_atomic_helper_check_planes() failed\n");
->  		goto fail;
-> +	}
->  
->  	/* Check cursor planes scaling */
->  	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
->  		ret = dm_check_crtc_cursor(state, crtc, new_crtc_state);
-> -		if (ret)
-> +		if (ret) {
-> +			DRM_DEBUG_DRIVER("dm_check_crtc_cursor() failed\n");
->  			goto fail;
-> +		}
->  	}
->  
->  	if (state->legacy_cursor_update) {
-> @@ -10996,20 +11020,28 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
->  	 */
->  	if (lock_and_validation_needed) {
->  		ret = dm_atomic_get_state(state, &dm_state);
-> -		if (ret)
-> +		if (ret) {
-> +			DRM_DEBUG_DRIVER("dm_atomic_get_state() failed\n");
->  			goto fail;
-> +		}
->  
->  		ret = do_aquire_global_lock(dev, state);
-> -		if (ret)
-> +		if (ret) {
-> +			DRM_DEBUG_DRIVER("do_aquire_global_lock() failed\n");
->  			goto fail;
-> +		}
->  
->  #if defined(CONFIG_DRM_AMD_DC_DCN)
-> -		if (!compute_mst_dsc_configs_for_state(state, dm_state->context, vars))
-> +		if (!compute_mst_dsc_configs_for_state(state, dm_state->context, vars)) {
-> +			DRM_DEBUG_DRIVER("compute_mst_dsc_configs_for_state() failed\n");
->  			goto fail;
-> +		}
->  
->  		ret = dm_update_mst_vcpi_slots_for_dsc(state, dm_state->context, vars);
-> -		if (ret)
-> +		if (ret) {
-> +			DRM_DEBUG_DRIVER("dm_update_mst_vcpi_slots_for_dsc() failed\n");
->  			goto fail;
-> +		}
->  #endif
->  
->  		/*
-> @@ -11019,12 +11051,13 @@ static int amdgpu_dm_atomic_check(struct drm_device *dev,
->  		 * to get stuck in an infinite loop and hang eventually.
->  		 */
->  		ret = drm_dp_mst_atomic_check(state);
-> -		if (ret)
-> +		if (ret) {
-> +			DRM_DEBUG_DRIVER("drm_dp_mst_atomic_check() failed\n");
->  			goto fail;
-> +		}
->  		status = dc_validate_global_state(dc, dm_state->context, false);
->  		if (status != DC_OK) {
-> -			drm_dbg_atomic(dev,
-> -				       "DC global validation failure: %s (%d)",
-> +			DRM_DEBUG_DRIVER("DC global validation failure: %s (%d)",
->  				       dc_status_to_str(status), status);
->  			ret = -EINVAL;
->  			goto fail;
-> 
+Christian.
+
+Am 09.11.21 um 14:41 schrieb Pan, Xinhui:
+> [AMD Official Use Only]
+>
+> yes, a double check is needed.
+> how about change below.
+>
+> As long as we detect such mismatch, it indicates another eviction is on going. return false here is reasonable.
+>
+> @@ -1335,6 +1336,8 @@ static bool amdgpu_ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
+>          struct dma_fence *f;
+>          int i;
+>
+> +       if (bo->resource->mem_type != place->mem_type)
+> +               return false;
+>          /* Swapout? */
+>          if (bo->resource->mem_type == TTM_PL_SYSTEM)
+>                  return true;
+>
+> ________________________________________
+> 发件人: Koenig, Christian <Christian.Koenig@amd.com>
+> 发送时间: 2021年11月9日 21:18
+> 收件人: Pan, Xinhui; amd-gfx@lists.freedesktop.org
+> 抄送: dri-devel@lists.freedesktop.org
+> 主题: Re: 回复: 回复: [PATCH] drm/ttm: Put BO in its memory manager's lru list
+>
+> Exactly that's the reason why we should have the double check in TTM
+> I've mentioned in the other mail.
+>
+> Christian.
+>
+> Am 09.11.21 um 14:16 schrieb Pan, Xinhui:
+>> [AMD Official Use Only]
+>>
+>> Actually this patch does not totally fix the mismatch of lru list with mem_type as mem_type is changed in ->move() and lru list is changed after that.
+>>
+>> During this small period, another eviction could still happed and evict this mismatched BO from sMam(say, its lru list is on vram domain) to sMem.
+>> ________________________________________
+>> 发件人: Pan, Xinhui <Xinhui.Pan@amd.com>
+>> 发送时间: 2021年11月9日 21:05
+>> 收件人: Koenig, Christian; amd-gfx@lists.freedesktop.org
+>> 抄送: dri-devel@lists.freedesktop.org
+>> 主题: 回复: 回复: [PATCH] drm/ttm: Put BO in its memory manager's lru list
+>>
+>> Yes, a stable tag is needed. vulkan guys say 5.14 hit this issue too.
+>>
+>> I think that amdgpu_bo_move() does support copy from sysMem to sysMem correctly.
+>> maybe something below is needed.
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>> index c83ef42ca702..aa63ae7ddf1e 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+>> @@ -485,7 +485,8 @@ static int amdgpu_bo_move(struct ttm_buffer_object *bo, bool evict,
+>>           }
+>>           if (old_mem->mem_type == TTM_PL_SYSTEM &&
+>>               (new_mem->mem_type == TTM_PL_TT ||
+>> -            new_mem->mem_type == AMDGPU_PL_PREEMPT)) {
+>> +            new_mem->mem_type == AMDGPU_PL_PREEMPT ||
+>> +            new_mem->mem_type == TTM_PL_SYSTEM)) {
+>>                   ttm_bo_move_null(bo, new_mem);
+>>                   goto out;
+>>           }
+>>
+>> otherwise, amdgpu_move_blit() is called to do the system memory copy which use a wrong address.
+>>    206         /* Map only what can't be accessed directly */
+>>    207         if (!tmz && mem->start != AMDGPU_BO_INVALID_OFFSET) {
+>>    208                 *addr = amdgpu_ttm_domain_start(adev, mem->mem_type) +
+>>    209                         mm_cur->start;
+>>    210                 return 0;
+>>    211         }
+>>
+>> line 208, *addr is zero. So when amdgpu_copy_buffer submit job with such addr, page fault happens.
+>>
+>>
+>> ________________________________________
+>> 发件人: Koenig, Christian <Christian.Koenig@amd.com>
+>> 发送时间: 2021年11月9日 20:35
+>> 收件人: Pan, Xinhui; amd-gfx@lists.freedesktop.org
+>> 抄送: dri-devel@lists.freedesktop.org
+>> 主题: Re: 回复: [PATCH] drm/ttm: Put BO in its memory manager's lru list
+>>
+>> Mhm, I'm not sure what the rational behind that is.
+>>
+>> Not moving the BO would make things less efficient, but should never
+>> cause a crash.
+>>
+>> Maybe we should add a CC: stable tag and push it to -fixes instead?
+>>
+>> Christian.
+>>
+>> Am 09.11.21 um 13:28 schrieb Pan, Xinhui:
+>>> [AMD Official Use Only]
+>>>
+>>> I hit vulkan cts test hang with navi23.
+>>>
+>>> dmesg says gmc page fault with address 0x0, 0x1000, 0x2000....
+>>> And some debug log also says amdgu copy one BO from system Domain to system Domain which is really weird.
+>>> ________________________________________
+>>> 发件人: Koenig, Christian <Christian.Koenig@amd.com>
+>>> 发送时间: 2021年11月9日 20:20
+>>> 收件人: Pan, Xinhui; amd-gfx@lists.freedesktop.org
+>>> 抄送: dri-devel@lists.freedesktop.org
+>>> 主题: Re: [PATCH] drm/ttm: Put BO in its memory manager's lru list
+>>>
+>>> Am 09.11.21 um 12:19 schrieb xinhui pan:
+>>>> After we move BO to a new memory region, we should put it to
+>>>> the new memory manager's lru list regardless we unlock the resv or not.
+>>>>
+>>>> Signed-off-by: xinhui pan <xinhui.pan@amd.com>
+>>> Interesting find, did you trigger that somehow or did you just stumbled
+>>> over it by reading the code?
+>>>
+>>> Patch is Reviewed-by: Christian König <christian.koenig@amd.com>, I will
+>>> pick that up for drm-misc-next.
+>>>
+>>> Thanks,
+>>> Christian.
+>>>
+>>>> ---
+>>>>      drivers/gpu/drm/ttm/ttm_bo.c | 2 ++
+>>>>      1 file changed, 2 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+>>>> index f1367107925b..e307004f0b28 100644
+>>>> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+>>>> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+>>>> @@ -701,6 +701,8 @@ int ttm_mem_evict_first(struct ttm_device *bdev,
+>>>>          ret = ttm_bo_evict(bo, ctx);
+>>>>          if (locked)
+>>>>                  ttm_bo_unreserve(bo);
+>>>> +     else
+>>>> +             ttm_bo_move_to_lru_tail_unlocked(bo);
+>>>>
+>>>>          ttm_bo_put(bo);
+>>>>          return ret;
 
