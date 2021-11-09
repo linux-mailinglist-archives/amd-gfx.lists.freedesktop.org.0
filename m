@@ -1,127 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D0744AF19
-	for <lists+amd-gfx@lfdr.de>; Tue,  9 Nov 2021 14:57:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12EC544B0E0
+	for <lists+amd-gfx@lfdr.de>; Tue,  9 Nov 2021 17:12:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 081E56E526;
-	Tue,  9 Nov 2021 13:57:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12FCD89D5B;
+	Tue,  9 Nov 2021 16:12:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam08on2040.outbound.protection.outlook.com [40.107.101.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 629D56E508;
- Tue,  9 Nov 2021 13:57:43 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZguNskMqq/xu8trgjMbRCyLAYT3j2tVG1fEIqCbH6cFvpZn6LYkYL7kLvJn7b8Uy3cWITSbRylyjfuShjzPceZn/y8+VEVGKLzvk1lrankCIBP5AOE7poEhX3hO9v0iLggWEhnZXkup68TfjuxGsWqad+PxriuNadxQ3yUZpHcw5dpPWkzy9lxANx2cmGR5UtVjwlKZubb8Ty0EJBzDkMs6lHzMzM0fQmd0WmFcm1z5anJnC4VNJGf6jv5lTAkbk+8PilnNR+iZPn9pw9BaOWRYvyHExpz7AEvrFh0ijirxcMenjZYoE43Ej+uvoBlibefuAmWI1oPTEzqhwdvCReA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZQ/JPsbgDoa0b33nRzpHj+4VC9kr1UZmND+AuiJdB7k=;
- b=HK4GDnTN6AdPkl4EkyWYbPilNQBRDlLW3wqpFJg85tB+O2b6JtptaLvMwYCSop/zwDT7dOsYegYJnIS8bCvYZqVWkYeVkMguKvUAxNGBUvzXgyYWaB23AfLHW2Q9wqcXv9oey06ZfF2dU823atU9ME2+zXegigOcOfLkrKTCDC64hCUwBBvWmsW149eZrm3ZT9aMc9IY4kjVIsxNtNQa25wEPZ66QKQ+C+WVzRTXSSh81QyNFiGeRwaihxscmcQN5fXTT3U0GPY7JrRSX//WOeGwgwIZmTyyRLsrfAradr4Z6uPftdfJMKCAN/KhK88mmKdzuTxnkgk74KpBX8/kmQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZQ/JPsbgDoa0b33nRzpHj+4VC9kr1UZmND+AuiJdB7k=;
- b=MDvyGbtjQL4EjUCNHmnVYupNsHMYfYPXf+qM8NS8bz/nVPQvUFpnPkuRBU3LKu4lauuKUNwwu7M1v5OkUjWeFX1tWq2iu46IgBKCyEbs0Zjp2Hifonoe8rVX+zleJ5EKCGizLgeYFro/9QtPFKcGL2vc9jx2lD0Dhyav5njmZzk=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB4342.namprd12.prod.outlook.com (2603:10b6:208:264::7)
- by BL0PR12MB2578.namprd12.prod.outlook.com (2603:10b6:207:49::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.15; Tue, 9 Nov
- 2021 13:57:41 +0000
-Received: from MN2PR12MB4342.namprd12.prod.outlook.com
- ([fe80::6972:7084:df02:6dc3]) by MN2PR12MB4342.namprd12.prod.outlook.com
- ([fe80::6972:7084:df02:6dc3%9]) with mapi id 15.20.4669.016; Tue, 9 Nov 2021
- 13:57:41 +0000
-Message-ID: <8e00b333-b1fe-9136-0fb5-a154bbbf5858@amd.com>
-Date: Tue, 9 Nov 2021 19:36:52 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH 5/8] drm: Implement method to free unused pages
-Content-Language: en-US
-To: Matthew Auld <matthew.auld@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-References: <20211025130033.1547667-1-Arunpravin.PaneerSelvam@amd.com>
- <20211025130033.1547667-3-Arunpravin.PaneerSelvam@amd.com>
- <e7a84d81-c069-ad2d-6b40-3e7574d0955a@intel.com>
-From: Arunpravin <arunpravin.paneerselvam@amd.com>
-In-Reply-To: <e7a84d81-c069-ad2d-6b40-3e7574d0955a@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0055.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:99::10) To MN2PR12MB4342.namprd12.prod.outlook.com
- (2603:10b6:208:264::7)
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com
+ [IPv6:2a00:1450:4864:20::32e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC5C489D44;
+ Tue,  9 Nov 2021 16:12:04 +0000 (UTC)
+Received: by mail-wm1-x32e.google.com with SMTP id 133so16323360wme.0;
+ Tue, 09 Nov 2021 08:12:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=KYMC5u7/Ae62YrmoU00vw7hWLz92vSlo4JocNf0Htnk=;
+ b=nBPUFUIkEZfaMn+igdxTihp13PWx4+RNd4h+Zukt1ZOJB1v8NvEfEXpM9VWB1BHdMc
+ 39Gra9xnwedrsx7ZatEaSmZqBhG0d+X3u05dWXaGsovf3xyr2lHytbDeCMUX5OLVDxdt
+ BC5tB1T9lzHfSx7co8EG+RR3eDB3uAIoMlfP+pFVDaxeDgTgzQYRRrjjSkdmNuPm1TLh
+ 2o9Pzrg90Ht3HOXMeEncA0ouJDatgi5OjXLscI/RiUxYfGmndPBroYCOLzLHZLTW6VGD
+ wqrBTdP27rYPkmOdW4l5qrzvQoTDLUb5Fcjtv9lX9t/7HpYLBt57wAV55U0sAxhM0CrY
+ seaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=KYMC5u7/Ae62YrmoU00vw7hWLz92vSlo4JocNf0Htnk=;
+ b=Jcbx7xeu2ictka5aiOL8LxRA3pVwlTzRp2KbDqgpEMH6fKrS0/kLEuyGj/ohuKQlo5
+ GVh6bxd6tSpnXeflipOn04P2M0C29xs56iDxqkw7rB6+w0gam8TGk8JR3Ly6QRWq28wp
+ 7uwm48khtwqs6nk57sR/LqNrY/0puG51kNjyCTZlhhsSLCPhv+2KOqPDFCY1AGk0MYkn
+ MYIc2s9dyNbKUBw1scrddP5cIBT/AbZevQLJDrPVX8/dlDU8sAKXZk5Rn+5tAPQumi6A
+ ZKvUPa9vXpN+TWCxf0J+CSTQyAI2x1BDv07ff20kcCTDs4pzGr4XWWOiqyY2OTOxZ+7T
+ Yd5Q==
+X-Gm-Message-State: AOAM531sMGoyoBxWTfLyFgeJcFm99NDR7XavGmrsPOYrppVPwm9/Nq+Q
+ pB9LTtvx7ToEdupXXEfWWIvX2df7A3/heIuNtrU=
+X-Google-Smtp-Source: ABdhPJw/Y/P6D270bcQtXGRElScfCFycpWcHhf5icFlUTilz5c5V5YdGuxruBoWhXTDchI0XC26rk+u/CCuBTtpTgOY=
+X-Received: by 2002:a05:600c:1d01:: with SMTP id
+ l1mr8629429wms.44.1636474323365; 
+ Tue, 09 Nov 2021 08:12:03 -0800 (PST)
 MIME-Version: 1.0
-Received: from [10.138.142.32] (165.204.156.251) by
- PN3PR01CA0055.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:99::10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4669.10 via Frontend Transport; Tue, 9 Nov 2021 13:57:37 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8968cf16-419d-4f88-ee21-08d9a388e53f
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2578:
-X-Microsoft-Antispam-PRVS: <BL0PR12MB25781B8AEE28B7F14B6A1978E4929@BL0PR12MB2578.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JnErYPOrLUtqjVgI7l7Wl0z8+CxgGm8lmB5yK7GvGwe1d/X+/CLLo/g1bNjpuAbs3VQTp5vjzBjWEcG53qrC1rCoXKnfebAOgNtGtt+gwWufzfivYcnfBD6ssLBl5HqeVCug6dDjLghtxHLjhNK2Fd+lYFWsl/lAmzNTeZ5BEvH8Cm07yzE7RobhyN4uCaOyDx+EYQ+Ic9NgmpHFyyEvf27+YwNV/A3CginVNFRTOFrwkeGdB5Sy5ujIiYOMk3Y/41spup1iMdIGfx5/zLKiNF4H0EkU1R/U6w4JnnBluoN9aKJeFGq4Pt1qeEnppL/nCGfSRbt/ZZTdikm/GZwgqbT4OUzHXcJPFPtwHBVTcsynNEj0ieZKWXfJsMhCP9tAAvUOwuaxWn51jGRYICMOywyqmKaBdpqY9VCoptz8nWBjCNV6lD9QIWJV6J850IGbMzpZVJl1+eh4eP96Mk5iVb7nMw49Ua0kCxD6GXeKzZZhqENNwWYEOTx6f9di2lCOjmxDB3ObTuCnaht6itIplHOR9t6Xxe3O/sM6b7H4ubUM6TqdoyV631vh3zkCez2HrEizeasskwL9qln3/xG2cLHc35dc9FQGD0rDp+YcbjaCdwAhE26PGvIJHR4g48x+JDzbFJB2r6pr3dRw81g2/ldj/W2EvLxUEpGzpgGHOAj/VvLg2SEi43p/84kFygm5BkidlW/w3VOa0LHqg+NNgnQBosswl4We+1CpHw9W8o0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB4342.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(31696002)(186003)(31686004)(53546011)(36756003)(66946007)(4326008)(26005)(8676002)(6486002)(16576012)(38100700002)(8936002)(316002)(83380400001)(86362001)(6666004)(66556008)(66476007)(2906002)(5660300002)(2616005)(508600001)(956004)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Tzg4WEdqVW9sR01GbHpFWGZyN1kvNmJZUkh0QUlTWGVjQmtXb0FuM1ZLcldN?=
- =?utf-8?B?ckJaYTB2Q3NhWWNtOG1SUmRZRkFnN2l3S3pSeDBUZ09ERmMzdGtzLzZ5RDRa?=
- =?utf-8?B?NURDY1hKNDRoTkwyNEdPdkxyQUlLTXZyZzVIVWpJNFRQbkVmOHJlZEcyUWtZ?=
- =?utf-8?B?aXp4elBvVFB4emNKRHBMQSt1L2FZMjdQUjU5VEo0NTkrS1JNQTVQU3ZQWFpL?=
- =?utf-8?B?alVKaGhWWld0YWJzaC9TbmJKM3lPdHl2elJzWitscnFhQmV3MTgrSUVMNlh6?=
- =?utf-8?B?RTRPQUgwS1BOQ281dXU5ZUdJbW04eitnVkJiVU95Nzc1RXhwandnVE9Pb3Fj?=
- =?utf-8?B?dHdBU2dpSnR2THlxSlJ3TVk2OE5obzJzbkNTV1Y1WVhWWjJuTWtpbjN5L1Nr?=
- =?utf-8?B?NnZjd1E0R0FJZ1pSV3RDc1YzWjIwKzBGVWNGVGNOcXJXN3o5cUx2VnZ4dmJW?=
- =?utf-8?B?VEJVSVRhcGIwUU1EY2swZ2c1V1E5YlhBd1VtRWk4WjhBMzdQZFRjZmZGM1pq?=
- =?utf-8?B?WmIrTEFCc0E1WmkvaXBSUEtRZkJEc0NRQXNlMHg2YmpoZmlaOVRMc3MyekIw?=
- =?utf-8?B?S3BZZFQ1ekM1VnpUcUdtZitjTXBtZ1VmSU1XSTNnT1hrMlpCTWw3ZElTL3VS?=
- =?utf-8?B?SjgrOXVoVjdpLytKZEhsaEYvd3pRd0JyMGplYXBUYURac29mcDdMZGVXS1l5?=
- =?utf-8?B?VFdRUjVRcTVEd2dhdFJaYTU2dnB5Mm50eFFvY3IvUHl3V1l0VkFLeExLU1Nm?=
- =?utf-8?B?YnFjNVN4NGpEMFUwdFRSbDFZM2p3S0dDUFZoTzBYUjlaYkNTMFFlWWNqMSs1?=
- =?utf-8?B?d3l6OTNHYTBPa0l3aDZxTjh4cXIrZXgweThJYm5jOFlUNk12b3ZjYmJ4bHh6?=
- =?utf-8?B?WVgwTDVjR0xGMGRwQ0JNSmd2WUlicE5wMmN2VVRGcHlndUNHZnFibDYrVDlE?=
- =?utf-8?B?OVVWSXVXazZ1c3AzSlZlMlo4c1BKRWpMWC9tdkZBdXVyY05MV1JJTWdhR0tx?=
- =?utf-8?B?eDZpcUNmZEpPTHlPUUxKaGNCcVRzSy9pbVJrNmcxcEJ0OW5JblpXZlZIbTFZ?=
- =?utf-8?B?MkN2NlZ5NnoyYzdYZlc0eFB5SHkxZVNBMXU2WjM3ZTRxNFZUbU5sQVNFM0tq?=
- =?utf-8?B?anV4WGMzeXRnbVpTbnpLb1M3d3R4azhTSStBallyRTNJeUZnei9nb3hzMk54?=
- =?utf-8?B?dkNoN0IzRTE4RE56RmQveE5zQmlCeVZwdUM5TU9sMWVFSEFEdXBXc0Z6RmF0?=
- =?utf-8?B?eklaTUJ3Q211MjlTZXBpSnFscjRpM3Z6UG9INXpEN3FkUHAvWlhRTng3bTh2?=
- =?utf-8?B?d0dYRkRrTXlObGpHQjVVYTNoMVJBKzFUQktaNXJNSVlDZURNT2lsMFY5dUEv?=
- =?utf-8?B?bkJBWjAzcGVQWU9GejFUWmFGa3VyeFFheGJjUkdMK1RRKzlHcHhkTTNCYkdY?=
- =?utf-8?B?TVRiS3ZjR0p4TzVya1Byd3U3QUJxdVVpOTVybHdMRG5qVmp3QUR0bjEzaWw4?=
- =?utf-8?B?Q1NRVWJMMVpVRk5aN3F5dnRlaFVlcmxNeTgrQTk0dW9TMUdCMG5HMHV1bWsw?=
- =?utf-8?B?NlowYkJKTUF4S0FQY1VlNU4zTk53Ujc3TitseWVBbTk1NlZQN0ttelZZU1Ft?=
- =?utf-8?B?aEo0VlVWUTdzdGg2YWcxRXZxUjN6bHAxN1BBOHY3TytQS1hqNEVoVVF0cFNM?=
- =?utf-8?B?SU1HUnBrbVd5UkZoVm9yZ2xGckNna2tkMmRVOCtqV2EyMUQvbW1tL2x3bnU3?=
- =?utf-8?B?RVdJamNSd3ZqVzAxdzU4WldSL2dEY0lmQ3d1YnhMSGI2bStXQlFSeWorOG5w?=
- =?utf-8?B?RzBUL1liZStEN2xiRG1ZS3l5NjRiZ1ViaEJjQlVucUQ3Sk1JSHI2WmFWa0V2?=
- =?utf-8?B?Ulg2aExpWTBSWC96L1ZmNWNxTnlYenNUTzdtUzFxR0N3eDZoeFpyK01FMXQx?=
- =?utf-8?B?QVV5SGRnbG9ucTlnVWVXTEVoMCtzWkkrMmJ2dXcvUy94T0JtMjluMnR4NCtq?=
- =?utf-8?B?U01yM3BjcDI2VHZPSUpXbjA4cnoyYklwRzlyTmpjQ3B1TmEvc3pnd1gwSXFN?=
- =?utf-8?B?WEcyMUd0UmdIRmtnMXRDNmFIWnQ2blBkNnJ1SkpybkVaUzZSdmxFR3hUUEp6?=
- =?utf-8?B?clNvR3RRRW1JZEpYNnhPemdxWWZwUFN4b1prZVVNUHpJcUhkeFl3MXRLZk9V?=
- =?utf-8?Q?CIY1xekn3/3IDPrerKDuvgE=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8968cf16-419d-4f88-ee21-08d9a388e53f
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB4342.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2021 13:57:41.0710 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5wSA+gj2aZPnL5hMYy0T1DxjOFw8I4VSrYoTcsUwwyRD4TQundgVm9d3XUMS1SfNMxHmR500YlWWXgPBHwpkbw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2578
+References: <1630406139-19621-1-git-send-email-Monk.Liu@amd.com>
+ <1630406139-19621-2-git-send-email-Monk.Liu@amd.com>
+ <YS4nlkpjeitiwFy1@phenom.ffwll.local>
+ <YS4oMrFTj0+wmMbY@phenom.ffwll.local>
+ <BL1PR12MB5269292A3E9E6014043C280E84CD9@BL1PR12MB5269.namprd12.prod.outlook.com>
+ <CAF6AEGsELL5WmxJKqyfF69OnVaK6+SnAREvjtFSHBZrm3Gdp7g@mail.gmail.com>
+ <YYo6U6D2dxQ7Y6Gn@phenom.ffwll.local>
+In-Reply-To: <YYo6U6D2dxQ7Y6Gn@phenom.ffwll.local>
+From: Rob Clark <robdclark@gmail.com>
+Date: Tue, 9 Nov 2021 08:17:01 -0800
+Message-ID: <CAF6AEGvGQP-6eNevDyS9sXg+6qOKMrG7h5rwhKO=v8L5mQOiUA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/sched: serialize job_timeout and scheduler
+To: Daniel Vetter <daniel@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,215 +69,283 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, tzimmermann@suse.de, jani.nikula@linux.intel.com,
- christian.koenig@amd.com, daniel@ffwll.ch
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Liu,
+ Monk" <Monk.Liu@amd.com>, "Chen, Jingwen" <Jingwen.Chen@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Nov 9, 2021 at 1:07 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+>
+> On Mon, Nov 08, 2021 at 03:39:17PM -0800, Rob Clark wrote:
+> > I stumbled across this thread when I ran into the same issue, while
+> > working out how to move drm/msm to use scheduler's retire +
+> > timeout/recovery (and get rid of our own mirror list of in-flight
+> > jobs).  We already have hw error detection enabled, and it can signal
+> > quite fast, so assuming the first job on the list is the guilty job
+> > just won't work.
+> >
+> > But I was considering a slightly different approach to fixing this,
+> > instead just handling it all in drm_sched_main() and getting rid of
+> > the complicated kthread parking gymnastics.  Ie. something along the
+> > lines of:
+>
+> So handling timeouts in the main sched thread wont work as soon as you
+> have multiple engines and reset that impacts across engines:
+>
+> - Nothing is simplified since you still need to stop the other scheduler
+>   threads.
+>
+> - You get deadlocks if 2 schedulers time out at the same time, and both
+>   want to stop the other one.
+>
+> Hence workqueue. Now the rule for the wq is that you can only have one pe=
+r
+> reset domain, so
+> - single engine you just take the one drm/sched provides
+> - if reset affects all your engines in the chip, then you allocate on in
+>   the drm_device and pass that to all
+> - if you have a complex of gpus all interconnected (e.g. xgmi hive for
+>   amd), then it's one wq for the entire hive
+>
+> _All_ reset related things must be run on that workqueue or things breaks=
+,
+> which means if you get hw fault that also needs to be run there. I guess
+> we should either patch drm/sched to check you call that function from the
+> right workqueue, or just handle it internally.
 
+Hmm, ok.. I guess it would be useful to better document the reasoning
+for the current design, that would have steered me more towards the
+approach taken in this patch.
 
-On 04/11/21 12:46 am, Matthew Auld wrote:
-> On 25/10/2021 14:00, Arunpravin wrote:
->> On contiguous allocation, we round up the size
->> to the *next* power of 2, implement a function
->> to free the unused pages after the newly allocate block.
->>
->> Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
-> 
-> Ideally this gets added with some user, so we can see it in action? 
-> Maybe squash the next patch here?
-[Arun] ok
-> 
->> ---
->>   drivers/gpu/drm/drm_buddy.c | 103 ++++++++++++++++++++++++++++++++++++
->>   include/drm/drm_buddy.h     |   4 ++
->>   2 files changed, 107 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
->> index 9d3547bcc5da..0da8510736eb 100644
->> --- a/drivers/gpu/drm/drm_buddy.c
->> +++ b/drivers/gpu/drm/drm_buddy.c
->> @@ -284,6 +284,109 @@ static inline bool contains(u64 s1, u64 e1, u64 s2, u64 e2)
->>   	return s1 <= s2 && e1 >= e2;
->>   }
->>   
->> +/**
->> + * drm_buddy_free_unused_pages - free unused pages
->> + *
->> + * @mm: DRM buddy manager
->> + * @actual_size: original size requested
->> + * @blocks: output list head to add allocated blocks
->> + *
->> + * For contiguous allocation, we round up the size to the nearest
->> + * power of two value, drivers consume *actual* size, so remaining
->> + * portions are unused and it can be freed.
->> + *
->> + * Returns:
->> + * 0 on success, error code on failure.
->> + */
->> +int drm_buddy_free_unused_pages(struct drm_buddy_mm *mm,
-> 
-> drm_buddy_block_trim?
-[Arun] ok
-> 
->> +				u64 actual_size,
-> 
-> new_size?
-[Arun] ok
-> 
->> +				struct list_head *blocks)
->> +{
->> +	struct drm_buddy_block *block;
->> +	struct drm_buddy_block *buddy;
->> +	u64 actual_start;
->> +	u64 actual_end;
->> +	LIST_HEAD(dfs);
->> +	u64 count = 0;
->> +	int err;
->> +
->> +	if (!list_is_singular(blocks))
->> +		return -EINVAL;
->> +
->> +	block = list_first_entry_or_null(blocks,
->> +					 struct drm_buddy_block,
->> +					 link);
->> +
->> +	if (!block)
->> +		return -EINVAL;
-> 
-> list_is_singular() already ensures that I guess?
-[Arun] yes it checks the list empty status, I will remove 'if (!block)'
-check
-> 
-> 
->> +
->> +	if (actual_size > drm_buddy_block_size(mm, block))
->> +		return -EINVAL;
->> +
->> +	if (actual_size == drm_buddy_block_size(mm, block))
->> +		return 0;
-> 
-> Probably need to check the alignment of the actual_size, and also check 
-> that it is non-zero?
-[Arun] ok
-> 
->> +
->> +	list_del(&block->link);
->> +
->> +	actual_start = drm_buddy_block_offset(block);
->> +	actual_end = actual_start + actual_size - 1;
->> +
->> +	if (drm_buddy_block_is_allocated(block))
-> 
-> That should rather be a programmer error.
-[Arun] ok, I will check for the allocation status and return -EINVAL if
-the block is not allocated.
-> 
->> +		mark_free(mm, block);
->> +
->> +	list_add(&block->tmp_link, &dfs);
->> +
->> +	while (1) {
->> +		block = list_first_entry_or_null(&dfs,
->> +						 struct drm_buddy_block,
->> +						 tmp_link);
->> +
->> +		if (!block)
->> +			break;
->> +
->> +		list_del(&block->tmp_link);
->> +
->> +		if (count == actual_size)
->> +			return 0;
-> 
-> 
-> Check for overlaps somewhere here to avoid needless searching and splitting?
-[Arun] ok
-> 
->> +
->> +		if (contains(actual_start, actual_end, drm_buddy_block_offset(block),
->> +			(drm_buddy_block_offset(block) + drm_buddy_block_size(mm, block) - 1))) {
-> 
-> Could maybe record the start/end for better readability?
-[Arun] ok
-> 
->> +			BUG_ON(!drm_buddy_block_is_free(block));
->> +
->> +			/* Allocate only required blocks */
->> +			mark_allocated(block);
->> +			mm->avail -= drm_buddy_block_size(mm, block);
->> +			list_add_tail(&block->link, blocks);
->> +			count += drm_buddy_block_size(mm, block);
->> +			continue;
->> +		}
->> +
->> +		if (drm_buddy_block_order(block) == 0)
->> +			continue;
-> 
-> Should be impossible with overlaps check added.
-[Arun] yes, I will remove
-> 
->> +
->> +		if (!drm_buddy_block_is_split(block)) {
-> 
-> That should always be true.
-[Arun] ok
-> 
->> +			err = split_block(mm, block);
->> +
->> +			if (unlikely(err))
->> +				goto err_undo;
->> +		}
->> +
->> +		list_add(&block->right->tmp_link, &dfs);
->> +		list_add(&block->left->tmp_link, &dfs);
->> +	}
->> +
->> +	return -ENOSPC;
-> 
-> 
-> Would it make sense to factor out part of the alloc_range for this? It 
-> looks roughly the same.
-[Arun] This function gets called for non-range allocations (0..max_size)
-as well on contiguous allocation. alloc_range() is called only for range
-allocations.
-> 
->> +
->> +err_undo:
->> +	buddy = get_buddy(block);
->> +	if (buddy &&
->> +	    (drm_buddy_block_is_free(block) &&
->> +	     drm_buddy_block_is_free(buddy)))
->> +		__drm_buddy_free(mm, block);
->> +	return err;
-> 
-> 
-> Where do we add the block back to the original list? Did we not just 
-> leak it?
-[Arun] we are adding back to the original list if contains() check
-becomes true. we are adding all the blocks within the actual_start and
-actual_end, and remaining blocks are freed (added to free list).
-> 
-> 
->> +}
->> +EXPORT_SYMBOL(drm_buddy_free_unused_pages);
->> +
->>   static struct drm_buddy_block *
->>   alloc_range(struct drm_buddy_mm *mm,
->>   	    u64 start, u64 end,
->> diff --git a/include/drm/drm_buddy.h b/include/drm/drm_buddy.h
->> index cd8021d2d6e7..1dfc80c88e1f 100644
->> --- a/include/drm/drm_buddy.h
->> +++ b/include/drm/drm_buddy.h
->> @@ -145,6 +145,10 @@ int drm_buddy_alloc(struct drm_buddy_mm *mm,
->>   		    struct list_head *blocks,
->>   		    unsigned long flags);
->>   
->> +int drm_buddy_free_unused_pages(struct drm_buddy_mm *mm,
->> +				u64 actual_size,
->> +				struct list_head *blocks);
->> +
->>   void drm_buddy_free(struct drm_buddy_mm *mm, struct drm_buddy_block *block);
->>   
->>   void drm_buddy_free_list(struct drm_buddy_mm *mm, struct list_head *objects);
->>
+BR,
+-R
+
+> -Daniel
+>
+> >
+> > ---------------------
+> > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> > b/drivers/gpu/drm/scheduler/sched_main.c
+> > index 67382621b429..4d6ce775c316 100644
+> > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > @@ -764,6 +764,45 @@ static bool drm_sched_blocked(struct
+> > drm_gpu_scheduler *sched)
+> >         return false;
+> >  }
+> >
+> > +static bool handle_timeout(struct drm_gpu_scheduler *sched)
+> > +{
+> > +       struct drm_sched_job *bad;
+> > +
+> > +       if (!sched->has_timeout)
+> > +               return false;
+> > +
+> > +       sched->has_timeout =3D false;
+> > +
+> > +       spin_lock(&sched->job_list_lock);
+> > +       bad =3D list_first_entry_or_null(&sched->pending_list,
+> > +                                      struct drm_sched_job, list);
+> > +
+> > +       if (!bad) {
+> > +               spin_unlock(&sched->job_list_lock);
+> > +               return false;
+> > +       }
+> > +
+> > +       spin_unlock(&sched->job_list_lock);
+> > +
+> > +       if (sched->timeout_wq =3D=3D system_wq) {
+> > +               /*
+> > +                * If driver has no specific requirements about seriali=
+zing
+> > +                * reset wrt. other engines, just call timedout_job() d=
+irectly
+> > +                */
+> > +               sched->ops->timedout_job(job);
+> > +       } else {
+> > +               /*
+> > +                * Otherwise queue it on timeout_wq and wait for it to =
+complete
+> > +                */
+> > +               ... more typing needed here ...
+> > +       }
+> > +
+> > +       if (sched->free_guilty) {
+> > +               sched->ops->free_job(job);
+> > +               sched->free_guilty =3D false;
+> > +       }
+> > +}
+> > +
+> >  /**
+> >   * drm_sched_main - main scheduler thread
+> >   *
+> > @@ -787,6 +826,7 @@ static int drm_sched_main(void *param)
+> >
+> >                 wait_event_interruptible(sched->wake_up_worker,
+> >                                          (cleanup_job =3D
+> > drm_sched_get_cleanup_job(sched)) ||
+> > +                                        handle_timeout(sched) ||
+> >                                          (!drm_sched_blocked(sched) &&
+> >                                           (entity =3D
+> > drm_sched_select_entity(sched))) ||
+> >                                          kthread_should_stop());
+> > ---------------------
+> >
+> > drm_sched_fault() and the sw timeout handler would just set
+> > sched->has_timeout and kick sched->wake_up_worker.
+> >
+> > And since we handle the timeout case after
+> > drm_sched_get_cleanup_job(), we know that all of the successfully
+> > completed jobs have already been popped off the list, and won't be
+> > unfairly maligned.
+> >
+> > BR,
+> > -R
+> >
+> > On Tue, Aug 31, 2021 at 6:29 PM Liu, Monk <Monk.Liu@amd.com> wrote:
+> > >
+> > > [AMD Official Use Only]
+> > >
+> > > Okay, I will reprepare this patch
+> > >
+> > > Thanks
+> > >
+> > > ------------------------------------------
+> > > Monk Liu | Cloud-GPU Core team
+> > > ------------------------------------------
+> > >
+> > > -----Original Message-----
+> > > From: Daniel Vetter <daniel@ffwll.ch>
+> > > Sent: Tuesday, August 31, 2021 9:02 PM
+> > > To: Liu, Monk <Monk.Liu@amd.com>
+> > > Cc: amd-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; C=
+hen, Jingwen <Jingwen.Chen@amd.com>
+> > > Subject: Re: [PATCH 2/2] drm/sched: serialize job_timeout and schedul=
+er
+> > >
+> > > On Tue, Aug 31, 2021 at 02:59:02PM +0200, Daniel Vetter wrote:
+> > > > Can we please have some actual commit message here, with detailed
+> > > > explanation of the race/bug/whatever, how you fix it and why this i=
+s
+> > > > the best option?
+> > > >
+> > > > On Tue, Aug 31, 2021 at 06:35:39PM +0800, Monk Liu wrote:
+> > > > > tested-by: jingwen chen <jingwen.chen@amd.com>
+> > > > > Signed-off-by: Monk Liu <Monk.Liu@amd.com>
+> > > > > Signed-off-by: jingwen chen <jingwen.chen@amd.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/scheduler/sched_main.c | 24
+> > > > > ++++--------------------
+> > > > >  1 file changed, 4 insertions(+), 20 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > index ecf8140..894fdb24 100644
+> > > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > > @@ -319,19 +319,17 @@ static void drm_sched_job_timedout(struct w=
+ork_struct *work)
+> > > > >     sched =3D container_of(work, struct drm_gpu_scheduler,
+> > > > > work_tdr.work);
+> > > > >
+> > > > >     /* Protects against concurrent deletion in
+> > > > > drm_sched_get_cleanup_job */
+> > > > > +   if (!__kthread_should_park(sched->thread))
+> > > >
+> > > > This is a __ function, i.e. considered internal, and it's lockless
+> > > > atomic, i.e. unordered. And you're not explaining why this works.
+> > > >
+> > > > Iow it's probably buggy, and an just unconditionally parking the
+> > > > kthread is probably the right thing to do. If it's not the right th=
+ing
+> > > > to do, there's a bug here for sure.
+> > >
+> > > Also why don't we reuse the function drivers already have to stop a s=
+cheduler thread? We seem to have two kthread_park now, that's probably one =
+too much.
+> > > -Daniel
+> > >
+> > > > > +           kthread_park(sched->thread);
+> > > > > +
+> > > > >     spin_lock(&sched->job_list_lock);
+> > > > >     job =3D list_first_entry_or_null(&sched->pending_list,
+> > > > >                                    struct drm_sched_job, list);
+> > > > >
+> > > > >     if (job) {
+> > > > > -           /*
+> > > > > -            * Remove the bad job so it cannot be freed by concur=
+rent
+> > > > > -            * drm_sched_cleanup_jobs. It will be reinserted back=
+ after sched->thread
+> > > > > -            * is parked at which point it's safe.
+> > > > > -            */
+> > > > > -           list_del_init(&job->list);
+> > > > >             spin_unlock(&sched->job_list_lock);
+> > > > >
+> > > > > +           /* vendor's timeout_job should call drm_sched_start()=
+ */
+> > > > >             status =3D job->sched->ops->timedout_job(job);
+> > > > >
+> > > > >             /*
+> > > > > @@ -393,20 +391,6 @@ void drm_sched_stop(struct drm_gpu_scheduler=
+ *sched, struct drm_sched_job *bad)
+> > > > >     kthread_park(sched->thread);
+> > > > >
+> > > > >     /*
+> > > > > -    * Reinsert back the bad job here - now it's safe as
+> > > > > -    * drm_sched_get_cleanup_job cannot race against us and relea=
+se the
+> > > > > -    * bad job at this point - we parked (waited for) any in prog=
+ress
+> > > > > -    * (earlier) cleanups and drm_sched_get_cleanup_job will not =
+be called
+> > > > > -    * now until the scheduler thread is unparked.
+> > > > > -    */
+> > > > > -   if (bad && bad->sched =3D=3D sched)
+> > > > > -           /*
+> > > > > -            * Add at the head of the queue to reflect it was the=
+ earliest
+> > > > > -            * job extracted.
+> > > > > -            */
+> > > > > -           list_add(&bad->list, &sched->pending_list);
+> > > > > -
+> > > > > -   /*
+> > > > >      * Iterate the job list from later to  earlier one and either=
+ deactive
+> > > > >      * their HW callbacks or remove them from pending list if the=
+y already
+> > > > >      * signaled.
+> > > > > --
+> > > > > 2.7.4
+> > > > >
+> > > >
+> > > > --
+> > > > Daniel Vetter
+> > > > Software Engineer, Intel Corporation
+> > > > https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2F=
+blog.
+> > > > ffwll.ch%2F&amp;data=3D04%7C01%7CMonk.Liu%40amd.com%7C298815bea18f4=
+fbf76
+> > > > b308d96c7f7a8b%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C6376601=
+170
+> > > > 51194614%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMz=
+IiL
+> > > > CJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DQzgCU7%2BPdA0aWL5%=
+2BJLg
+> > > > KeKbGaMMGqeGI9KE0P0LXlN4%3D&amp;reserved=3D0
+> > >
+> > > --
+> > > Daniel Vetter
+> > > Software Engineer, Intel Corporation
+> > > https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fbl=
+og.ffwll.ch%2F&amp;data=3D04%7C01%7CMonk.Liu%40amd.com%7C298815bea18f4fbf76=
+b308d96c7f7a8b%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7C637660117051194=
+614%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1=
+haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DQzgCU7%2BPdA0aWL5%2BJLgKeKbGaMMGqeGI=
+9KE0P0LXlN4%3D&amp;reserved=3D0
+>
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
