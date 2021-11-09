@@ -2,45 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 424ED44B934
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Nov 2021 00:05:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA3C544B936
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Nov 2021 00:05:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7829E6E064;
-	Tue,  9 Nov 2021 23:05:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A95A6E88B;
+	Tue,  9 Nov 2021 23:05:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2042.outbound.protection.outlook.com [40.107.93.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41AFD6E88B
- for <amd-gfx@lists.freedesktop.org>; Tue,  9 Nov 2021 23:05:13 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1anam02on2049.outbound.protection.outlook.com [40.107.96.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47A276E88B
+ for <amd-gfx@lists.freedesktop.org>; Tue,  9 Nov 2021 23:05:14 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ctfVHoFexyn5HoiZGR/Gm56gxFeH0DFTtb7re73c3tON7G9R4sylf02dmIAlecr3xX4vQdXPKHbhTu7qE/cScSpe7DdboWH1ERcDH/AKYdapQqFxUKoRTCHYjnm9lWsYNX+h2yTE5GcMd2zLmzZQxH/S5YYhC96azvrIKFizxGTxyH8RmteuFDKpafwTbdnUOpi0xR6dXbqRGMm0K3/ArtWmkiYxaavxfWff8RQzxXo8nrXofysVTHw4zOfb4A8dcsLete5X7DCQfDyz9QpYKKIegL6D9LNRZzm8Vj1/KXLJpGLjq1Hv4aqD00UIrTepFGVazWuOLhxE1hqga+Joww==
+ b=JHxMT+R7XSg9Xn+AbSQOnP7fYVDTFR4acC4i2rdc89z458neaIJsNX4Ti7uYrPBZF6BGcAvFuJ4He3XtWoEyUAvrs2KQtLdrMn4dk4xK37o4uXEqo4rLLtILLkzMQADWSz3NtqVdI6FEJ+PoV2hDqCpjs/6iDJrG5k2a8/RIyRZDA7AMqVlKU6XPUdNsvJameczeK9cEGJKuEsZtNpNE06Ss+/RZKxqv+/zKQ6NPLe8G12j+fNdZ8ahrB/PUu2/EeFV9FnpoGk7lbjgkOsc26atR4UYhKN3sToayoaEpLSrkWVoWLi4brGOT4/JZrJ69OjY3eWWQOdRHJlK4TP5W+A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F0mP8MJltg1fcpUZpzkkEBGcURVzDYrTqk3PsOfeOcU=;
- b=FhKOcSD/HU6O7J9VSWum3a5IuGg/k4ihYQvvVSJfODHVeg3USLh78R7Ou8LPSJaf67FcFHuCVguQ6rovZq1/Hbc9/ATWPnWYLU2uWUfig5ZHuiIUQmNcM1Phv694CONDpeWCiygf2W3LqC0obflQDm5AVdBaswrN71HE/vMxqrnkyFv8XV337Y+3JPKhW5oQ8sr50nA5QNoTpcJZ4eFvnUxqOjwnQ0D3aP0+qfRpEXOPB36AqyYCs/+9Rm8iA8QM8BQsk+AXWOWiYHkdMt9jx709rXQeiKqXCTnMwK/aZn0zz/MRRETj6h0bbo0MAyT4rkQ6GlIS5BvzDM0t3qbJtw==
+ bh=ZKmZjhgJbNKBURXt2+DAWeQMfMbEuW4F9vUR+qpVg2M=;
+ b=eZE5UfP/Saun6oDNhRuTMnT15hNOiHKdtfPUtl1EUgnQK6L17HlymiHusC7I5HGSPRkdIdEtjWeOtP1Ly93RPvrfjWcE7x9i52E2Kz4nyaS5HIHql4exTbBWDf1NDPo/j/vEBWWi1FEASAgTbIV20tAHRHF81awjUGRcWnARepyXcZ+WkSRT+2E80uB4/Evhl8r25naAOuWIMO813QkLBlNYzpPvsWYeymbrY3TeCQ2hS5txGRZqfFo+JolKFzszJw3DzXhON60JBGUL7E6eoUZNlFCn3fVtj3oAxcvTtiSUEIQJmEv9a3+ZCnSpV+rOBQv+1qfiRxBlN7lqGBgPog==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F0mP8MJltg1fcpUZpzkkEBGcURVzDYrTqk3PsOfeOcU=;
- b=1uFtpySv1acB1xNYj05QuPHnJ2b+Njn5oM8NoZoBvHamTkYOS2PUI+7es32NY+9sJDnmADeutoWCMcvs+7nrbFK5t6IEymtGZ+8Ospu6uhp+aWv78ks07+PciaXpbL5c3xBHGwpPrNN+AJnT+nBg7LBOj+lefgl1ffKkgGOHtPc=
+ bh=ZKmZjhgJbNKBURXt2+DAWeQMfMbEuW4F9vUR+qpVg2M=;
+ b=HcfJXguy4v1ql4uYy96Br089+W4aYQuBfkWjTJ/hEW9bAEhHfFHpZgwKJgd4b7WHyEtHbn/WsD1Gk8IEi0A9/abzgF9e4X5SUaoCtfqmpEiOGx4SiuET6c89hjqDwy5ttZRXAJlB0Tay3QimX4ixSj/VYhvUErs+lczDbfWDq/U=
 Received: from DM5PR06CA0065.namprd06.prod.outlook.com (2603:10b6:3:37::27) by
- DM6PR12MB2649.namprd12.prod.outlook.com (2603:10b6:5:49::33) with
+ DM6PR12MB3194.namprd12.prod.outlook.com (2603:10b6:5:184::13) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4690.15; Tue, 9 Nov 2021 23:05:10 +0000
+ 15.20.4669.13; Tue, 9 Nov 2021 23:05:11 +0000
 Received: from DM6NAM11FT024.eop-nam11.prod.protection.outlook.com
  (2603:10b6:3:37:cafe::dd) by DM5PR06CA0065.outlook.office365.com
  (2603:10b6:3:37::27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.11 via Frontend
- Transport; Tue, 9 Nov 2021 23:05:10 +0000
+ Transport; Tue, 9 Nov 2021 23:05:11 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
@@ -51,12 +52,12 @@ Received: from SATLEXMB04.amd.com (165.204.84.17) by
 Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7; Tue, 9 Nov 2021
- 17:04:56 -0600
+ 17:04:57 -0600
 From: Philip Yang <Philip.Yang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/5] drm/amdkfd: restore pages race with vma remove
-Date: Tue, 9 Nov 2021 18:04:30 -0500
-Message-ID: <20211109230432.3947-3-Philip.Yang@amd.com>
+Subject: [PATCH 4/5] drm/amdkfd: restore pages race with process termination
+Date: Tue, 9 Nov 2021 18:04:31 -0500
+Message-ID: <20211109230432.3947-4-Philip.Yang@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20211109230432.3947-1-Philip.Yang@amd.com>
 References: <20211109230432.3947-1-Philip.Yang@amd.com>
@@ -67,28 +68,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c54e0256-dcf9-4515-4422-08d9a3d56122
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2649:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB26496E2881A6C0E40632DABFE6929@DM6PR12MB2649.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:236;
+X-MS-Office365-Filtering-Correlation-Id: 237aaaf5-e89a-4432-9aa7-08d9a3d561a1
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3194:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3194896378F3D3647C195298E6929@DM6PR12MB3194.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SSeJWHcvnWJkrOlpCrz+ZRyStO4CLVbGB/E2w8bvrFQy9a8l1eX3wmGCdj8S0/sBkiiYKztEwd6Ugnv+ftUDhViBzOnGJdZYYQgy1lITS2df52yCbsyh2Sg+PMA3qTheeb4gahYphzju9EL6U6sHY/UCTwMd6YymOqTXeZ1Mmq4jmQ0vPArCAZ4MhRAn3XXec0+BmRUMONwN49+MZJBlctSJCAaHiOZmLBqfVz1mWlSRPIpDy43QnRaCs5I1VH8tVV9J+5rHO2Ek1GKj0QmggAgNa7FlESq4TYSgAPbmzV+ML++3JYYf3uvZJ/Q7gjWSXM1CIf7TiVvDAH20EHYqYoz47CAXB3X2fVqd1zC+vOj4mLJXj2oWZt0Tiorygp624uwoWny7RylpFdc8ItxeSACLJd5AyMCEBKJTBPSO91EYZDNWF3Nj3dhgZ/oxcz6zwQ6Wi8LIWeXqI5gA6BOYwuKRDHhvpuXrqIxl9J7GHgg2UqiGgINIuWl+2qVUa2cb4D76a/AKGUkeh0XwR09wYP4/CIK1iHlG7tD+gcwUxABI22dJ/k2WidQ7XZe3CyEkavaixlRElMnF3xMuy2bBKi4IWtNsl9hsFofuJruDhu84ROQFH9oeI4lbjXekcrC/BeBgxQU53tF+B7ZpsqI6n2nvOjP7kRCi3Jtpp2COvchhvYECPSrN6KD95O5n/X9cpTfX7agr3UkPXPPBOGTnRz/GAllCcDfgwOn5AELdoQA=
+X-Microsoft-Antispam-Message-Info: xLnLR0KCXpWywEnUu0+MEPr98/as6RrlwIEMjpw0APIovXnMABPLMS4YyrDFDIbQIgwwyGuus2ILdDDFCtpImwje21+jkNVs8vmlbA3Kiz94UkQomiv4J6v5vpCwLQDT6grgDqw6vNnVgENFxnWy9hZmzeaUIVHFd18lS8ZFDKi2YkOld2op+exGgSYZALkpxiwYo1FAHTxReLAa8lx1KOuvYASfXvkcnuweR4KQ1O/L5vNVfBJj5l4v4+oQepH/9hdjK7ms44G/PhMJ2QaXFS+2QIIv6G0kGpVQG42fR5KDS5qnn7psFgq7RqM121untD5hf/aKvkVKH0SjlOFndOb7gV/9GTvuBR+4E5GSYEHQhVj7RAwSp7hRZz0Ks8+Yt9vcMXRm4IOxkoJS+SdEMXGAzzdWVusMqTsL4/GY4rB7rSQZzuFsk6nMgh/4zK7oFBSfYiRzGZdJ4faTLxzlj1iF+hs0IFFAUHSpPvv+3bPKcvSdPZLkXHWUkrnvd26OtfBA62+MCJISPKJlCN2K5WB4G6ZwXenhmOLZl2jAmfkdMfjjQPC/m6kKaOBwSEw11yVB2zpUlPuuq1jwe+mGBEbFR7KQT+Rv31lGQ0jPL8Wohypl/ujUhuI2UVzixsYjHYc9SZ3Lask8F0Gw4rBNlbz/BjVF7vNUx4zsw9BBNnYi1Gumf+kDeXjDdJLiikDwIQOwvbzSU4SEZLcrJtVxZrDDzykJxuJqJya6VZP1ezI=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(82310400003)(36860700001)(86362001)(316002)(70586007)(2906002)(186003)(54906003)(47076005)(26005)(70206006)(6916009)(7696005)(83380400001)(508600001)(8936002)(2616005)(356005)(1076003)(16526019)(81166007)(8676002)(6666004)(4326008)(336012)(36756003)(426003)(5660300002)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(36756003)(26005)(8936002)(5660300002)(2616005)(356005)(6666004)(508600001)(426003)(2906002)(83380400001)(70206006)(336012)(8676002)(6916009)(70586007)(86362001)(316002)(1076003)(36860700001)(7696005)(47076005)(54906003)(16526019)(4326008)(81166007)(186003)(82310400003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2021 23:05:10.0874 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c54e0256-dcf9-4515-4422-08d9a3d56122
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2021 23:05:10.9329 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 237aaaf5-e89a-4432-9aa7-08d9a3d561a1
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT024.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2649
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3194
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,142 +105,35 @@ Cc: Philip Yang <Philip.Yang@amd.com>, Felix.Kuehling@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Before restore pages takes mmap read or write lock, vma maybe removed.
-Check if vma exists before creating unregistered range or verifying
-range access permission, and return 0 if vma is removed to avoid restore
-pages return failure to report GPU vm fault to application.
+restore pages work can not find kfd process or mm struct if process is
+destroyed before drain retry fault work schedule to run, this is not
+failure, return 0 to avoid dump GPU vm fault kernel log.
 
 Signed-off-by: Philip Yang <Philip.Yang@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 64 ++++++++++++++++------------
- 1 file changed, 37 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 64f642935600..8f77d5746b2c 100644
+index 8f77d5746b2c..2083a10b35c2 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -2336,20 +2336,13 @@ svm_range_best_restore_location(struct svm_range *prange,
- }
- 
- static int
--svm_range_get_range_boundaries(struct kfd_process *p, int64_t addr,
--			       unsigned long *start, unsigned long *last,
--			       bool *is_heap_stack)
-+svm_range_get_range_boundaries(struct kfd_process *p, struct vm_area_struct *vma,
-+			       int64_t addr, unsigned long *start,
-+			       unsigned long *last, bool *is_heap_stack)
- {
--	struct vm_area_struct *vma;
- 	struct interval_tree_node *node;
- 	unsigned long start_limit, end_limit;
- 
--	vma = find_vma(p->mm, addr << PAGE_SHIFT);
--	if (!vma || (addr << PAGE_SHIFT) < vma->vm_start) {
--		pr_debug("VMA does not exist in address [0x%llx]\n", addr);
--		return -EFAULT;
--	}
--
- 	*is_heap_stack = (vma->vm_start <= vma->vm_mm->brk &&
- 			  vma->vm_end >= vma->vm_mm->start_brk) ||
- 			 (vma->vm_start <= vma->vm_mm->start_stack &&
-@@ -2444,9 +2437,10 @@ svm_range_check_vm_userptr(struct kfd_process *p, uint64_t start, uint64_t last,
- 
- static struct
- svm_range *svm_range_create_unregistered_range(struct amdgpu_device *adev,
--						struct kfd_process *p,
--						struct mm_struct *mm,
--						int64_t addr)
-+					       struct kfd_process *p,
-+					       struct mm_struct *mm,
-+					       struct vm_area_struct *vma,
-+					       int64_t addr)
- {
- 	struct svm_range *prange = NULL;
- 	unsigned long start, last;
-@@ -2456,7 +2450,7 @@ svm_range *svm_range_create_unregistered_range(struct amdgpu_device *adev,
- 	uint64_t bo_l = 0;
- 	int r;
- 
--	if (svm_range_get_range_boundaries(p, addr, &start, &last,
-+	if (svm_range_get_range_boundaries(p, vma, addr, &start, &last,
- 					   &is_heap_stack))
- 		return NULL;
- 
-@@ -2558,21 +2552,22 @@ svm_range_count_fault(struct amdgpu_device *adev, struct kfd_process *p,
- 		WRITE_ONCE(pdd->faults, pdd->faults + 1);
- }
- 
--static bool
--svm_fault_allowed(struct mm_struct *mm, uint64_t addr, bool write_fault)
-+static int
-+svm_fault_allowed(struct mm_struct *mm, struct vm_area_struct *vma,
-+		  uint64_t addr, bool write_fault)
- {
- 	unsigned long requested = VM_READ;
--	struct vm_area_struct *vma;
- 
- 	if (write_fault)
- 		requested |= VM_WRITE;
- 
--	vma = find_vma(mm, addr << PAGE_SHIFT);
--	if (!vma || (addr << PAGE_SHIFT) < vma->vm_start) {
--		pr_debug("address 0x%llx VMA is removed\n", addr);
--		return true;
-+	if (!vma) {
-+		vma = find_vma(mm, addr << PAGE_SHIFT);
-+		if (!vma || (addr << PAGE_SHIFT) < vma->vm_start) {
-+			pr_debug("address 0x%llx VMA is removed\n", addr);
-+			return -EFAULT;
-+		}
+@@ -2596,7 +2596,7 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
+ 	p = kfd_lookup_process_by_pasid(pasid);
+ 	if (!p) {
+ 		pr_debug("kfd process not founded pasid 0x%x\n", pasid);
+-		return -ESRCH;
++		return 0;
  	}
--
- 	pr_debug("requested 0x%lx, vma permission flags 0x%lx\n", requested,
- 		vma->vm_flags);
- 	return (vma->vm_flags & requested) == requested;
-@@ -2590,6 +2585,7 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
- 	int32_t best_loc;
- 	int32_t gpuidx = MAX_GPU_INSTANCE;
- 	bool write_locked = false;
-+	struct vm_area_struct *vma = NULL;
- 	int r = 0;
- 
- 	if (!KFD_IS_SVM_API_SUPPORTED(adev->kfd.dev)) {
-@@ -2636,7 +2632,15 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
- 			write_locked = true;
- 			goto retry_write_locked;
- 		}
--		prange = svm_range_create_unregistered_range(adev, p, mm, addr);
-+
-+		vma = find_vma(p->mm, addr << PAGE_SHIFT);
-+		if (!vma || (addr << PAGE_SHIFT) < vma->vm_start) {
-+			pr_debug("VMA not found address [0x%llx]\n", addr);
-+			mmap_write_downgrade(mm);
-+			r = 0;
-+			goto out_unlock_svms;
-+		}
-+		prange = svm_range_create_unregistered_range(adev, p, mm, vma, addr);
- 		if (!prange) {
- 			pr_debug("failed to create unregistered range svms 0x%p address [0x%llx]\n",
- 				 svms, addr);
-@@ -2663,10 +2667,16 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
- 		goto out_unlock_range;
- 	}
- 
--	if (!svm_fault_allowed(mm, addr, write_fault)) {
--		pr_debug("fault addr 0x%llx no %s permission\n", addr,
--			write_fault ? "write" : "read");
--		r = -EPERM;
-+	r = svm_fault_allowed(mm, vma, addr, write_fault);
-+	if (r <= 0) {
-+		if (!r) {
-+			pr_debug("fault addr 0x%llx no %s permission\n", addr,
-+				write_fault ? "write" : "read");
-+			r = -EPERM;
-+		} else  {
-+			pr_debug("fault addr 0x%llx is unmapping\n", addr);
-+			r = 0;
-+		}
- 		goto out_unlock_range;
+ 	if (!p->xnack_enabled) {
+ 		pr_debug("XNACK not enabled for pasid 0x%x\n", pasid);
+@@ -2610,7 +2610,7 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
+ 	mm = get_task_mm(p->lead_thread);
+ 	if (!mm) {
+ 		pr_debug("svms 0x%p failed to get mm\n", svms);
+-		r = -ESRCH;
++		r = 0;
+ 		goto out;
  	}
  
 -- 
