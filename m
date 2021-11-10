@@ -2,49 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC8F344C4D3
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Nov 2021 17:08:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A70944C422
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Nov 2021 16:14:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2103C6E9F5;
-	Wed, 10 Nov 2021 16:08:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3817E6E85A;
+	Wed, 10 Nov 2021 15:14:13 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 435 seconds by postgrey-1.36 at gabe;
- Wed, 10 Nov 2021 09:50:22 UTC
-Received: from cstnet.cn (smtp23.cstnet.cn [159.226.251.23])
- by gabe.freedesktop.org (Postfix) with ESMTP id C59EB6F882;
- Wed, 10 Nov 2021 09:50:22 +0000 (UTC)
-Received: from localhost.localdomain (unknown [124.16.141.244])
- by APP-03 (Coremail) with SMTP id rQCowABXNu0llIthwD2hBg--.55254S2;
- Wed, 10 Nov 2021 17:43:02 +0800 (CST)
-From: Xu Wang <vulab@iscas.ac.cn>
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@linux.ie, daniel@ffwll.ch
-Subject: [PATCH] drm/radeon: correct indentation
-Date: Wed, 10 Nov 2021 09:42:42 +0000
-Message-Id: <20211110094242.67668-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
+ [IPv6:2607:f8b0:4864:20::233])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A1166E85A
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Nov 2021 15:14:11 +0000 (UTC)
+Received: by mail-oi1-x233.google.com with SMTP id q25so219900oiw.0
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Nov 2021 07:14:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=puvX0B0mwY4GudxROVnAkEYPvwc2bvNFG0dvhHDOVG8=;
+ b=bA3diaynO74YtMuv8Afgye+IeCCbiFaSWVon0JM0ftmpY6TcblzSxDDuzCi6TJmSab
+ QPWvRswrE2dBCROpBzZEahNdqBlIWQhpyfscs2/HLgrQCYtTfhnl6/6ALXlh/iftLIpi
+ q5feyNj2Ipxtb61zJRyAosc8M9i5qjUONjK24hMVVvH+ndgvWE6i0YUn9NXnqHaCJeeD
+ ARIvzEYVUnwx3V3uP5AroV10lEtQXXAS9zNYzM3g8AOMFHYPb+Vw7xEfl3l5o3hnHKas
+ 6a2gNDYnQipv4dDHunL1aKjh8fnyKWVnIdXaypj7nyaXVyoS581ERpLCjNtwwxn34ipG
+ 613Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=puvX0B0mwY4GudxROVnAkEYPvwc2bvNFG0dvhHDOVG8=;
+ b=ByeJX5aUOs0RdoydGacz1dIgtM33eUaSkwEI5Ou/1Dl9uttFotJj5h+DtmGrvaco/7
+ 3sFCE2B+Iz+H7Mq0gcBO71fdczy5KLfX7gW9hLEpj08JgMCOwVOqlSYO5cNS4eqNjmeZ
+ 8dWme7XimcaLohw/9E7cuGPj9v0qAGHUJs8dGxsy0MLvxe2aMJHBnlm1VwCgRwN6XKB6
+ pbh/i++1ImmdAZFdzEv280sPupx7Bfju3dY3fTblfBXY+6s8QLelcl081FVUUOGgxC92
+ 19QsG87qBXOqlU7EaJ3pd9BXUZ9h6q1ktt/GmJxt6hah9CIB/CEGm2+cdHF1pnDceSVS
+ JQpQ==
+X-Gm-Message-State: AOAM5333Xmzc9x0lWiYdIw68Lt6NZyLVMtJX8rginYSdK+13c3ym6Y8K
+ 8LX0jwKyNSsvNkfG7hsuXNt1C92SrnQDcbevHjJuZkWavc4=
+X-Google-Smtp-Source: ABdhPJy9ajHIgf82ORp39FGPBZ9pwN1PS7wRPh+ndmmIf4jzkGE7llYbomEN4KXMAH0UPgdwE1CDR/BhVDfF2MrtC3A=
+X-Received: by 2002:aca:180f:: with SMTP id h15mr45084oih.120.1636557250363;
+ Wed, 10 Nov 2021 07:14:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: rQCowABXNu0llIthwD2hBg--.55254S2
-X-Coremail-Antispam: 1UD129KBjvdXoWrKFy7GrWxArWDGw47Gw48WFg_yoW3WrgE9F
- 10vasruas8K3Z2vFnruF1rAr9FyF4F9Fs3Gw18KryfKry7ZFyxZa9avF17Xr45XF4DGFnx
- Aw48try3ArZxujkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUb2kYjsxI4VWkKwAYFVCjjxCrM7AC8VAFwI0_Gr0_Xr1l1xkIjI8I
- 6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
- 8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0
- cI8IcVCY1x0267AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I
- 8E87Iv6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
- 64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8Jw
- Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc2xSY4AK67AK6r4fMxAIw28I
- cxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2
- IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI
- 42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42
- IY6xAIw20EY4v20xvaj40_Wr1j6rW3Jr1lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2
- z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU5yxRPUUUUU==
-X-Originating-IP: [124.16.141.244]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBggBA10TfvQVEgAAsP
-X-Mailman-Approved-At: Wed, 10 Nov 2021 16:08:46 +0000
+References: <20211110062343.10041-1-mario.limonciello@amd.com>
+ <20211110062343.10041-3-mario.limonciello@amd.com>
+In-Reply-To: <20211110062343.10041-3-mario.limonciello@amd.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 10 Nov 2021 10:13:59 -0500
+Message-ID: <CADnq5_MGbOh_Xbg6y4hH6qrSok_YKMj0c4Ma6ZKAE835cm2-hw@mail.gmail.com>
+Subject: Re: [RFC 2/2] drm/amd/pm: Add support for reacting to platform
+ profile notification
+To: Mario Limonciello <mario.limonciello@amd.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,31 +62,214 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Correct indentation in radeon_driver_load_kms.
+On Wed, Nov 10, 2021 at 1:24 AM Mario Limonciello
+<mario.limonciello@amd.com> wrote:
+>
+> Various drivers provide platform profile support to let users set a hint
+> in their GUI whether they want to run in a high performance, low battery
+> life or balanced configuration.
+>
+> Drivers that provide this typically work with the firmware on their system
+> to configure hardware.  In the case of AMDGPU however, the notification
+> path doesn't come through firmware and can instead be provided directly
+> to the driver from a notification chain.
+>
+> Use the information of the newly selected profile to tweak
+> `dpm_force_performance_level` to that profile IFF the user hasn't manually
+> selected `manual` or any other `profile_*` options.
 
-Signed-off-by: Xu Wang <vulab@iscas.ac.cn>
----
- drivers/gpu/drm/radeon/radeon_kms.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I don't think we want to force the performance level.  This interface
+forces various fixed clock configurations for debugging and profiling.
+I think what we'd want to select here is the power profile (see
+amdgpu_set_pp_power_profile_mode()).  For this interface you can
+select various profiles (BOOTUP_DEFAULT, 3D_FULL_SCREEN, POWER_SAVING,
+VIDEO, VR, COMPUTE, etc.).  These still use dynamic power management,
+but they adjust the heuristics used by the GPU to select power states
+so the GPU performance ramps up/down more or less aggressively.
 
-diff --git a/drivers/gpu/drm/radeon/radeon_kms.c b/drivers/gpu/drm/radeon/radeon_kms.c
-index 482fb0ae6cb5..7afe28408085 100644
---- a/drivers/gpu/drm/radeon/radeon_kms.c
-+++ b/drivers/gpu/drm/radeon/radeon_kms.c
-@@ -168,7 +168,7 @@ int radeon_driver_load_kms(struct drm_device *dev, unsigned long flags)
- 	if (!r) {
- 		acpi_status = radeon_acpi_init(rdev);
- 		if (acpi_status)
--		dev_dbg(dev->dev, "Error during ACPI methods call\n");
-+			dev_dbg(dev->dev, "Error during ACPI methods call\n");
- 	}
- 
- 	if (radeon_is_px(dev)) {
--- 
-2.25.1
+Alex
 
+>
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu.h |   3 +
+>  drivers/gpu/drm/amd/pm/amdgpu_pm.c  | 105 +++++++++++++++++++++++-----
+>  2 files changed, 90 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> index b85b67a88a3d..27b0be23b6ac 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
+> @@ -1097,6 +1097,9 @@ struct amdgpu_device {
+>
+>         struct amdgpu_reset_control     *reset_cntl;
+>         uint32_t                        ip_versions[HW_ID_MAX][HWIP_MAX_INSTANCE];
+> +
+> +       /* platform profile notifications */
+> +       struct notifier_block           platform_profile_notifier;
+>  };
+>
+>  static inline struct amdgpu_device *drm_to_adev(struct drm_device *ddev)
+> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> index 41472ed99253..33fc52b90d4c 100644
+> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+> @@ -32,6 +32,7 @@
+>  #include <linux/hwmon.h>
+>  #include <linux/hwmon-sysfs.h>
+>  #include <linux/nospec.h>
+> +#include <linux/platform_profile.h>
+>  #include <linux/pm_runtime.h>
+>  #include <asm/processor.h>
+>  #include "hwmgr.h"
+> @@ -200,6 +201,33 @@ static ssize_t amdgpu_set_power_dpm_state(struct device *dev,
+>         return count;
+>  }
+>
+> +static int amdgpu_get_forced_level(struct device *dev, enum amd_dpm_forced_level *level)
+> +{
+> +       struct drm_device *ddev = dev_get_drvdata(dev);
+> +       struct amdgpu_device *adev = drm_to_adev(ddev);
+> +       int ret;
+> +
+> +       if (amdgpu_in_reset(adev))
+> +               return -EPERM;
+> +       if (adev->in_suspend && !adev->in_runpm)
+> +               return -EPERM;
+> +
+> +       ret = pm_runtime_get_sync(ddev->dev);
+> +       if (ret < 0) {
+> +               pm_runtime_put_autosuspend(ddev->dev);
+> +               return ret;
+> +       }
+> +
+> +       if (adev->powerplay.pp_funcs->get_performance_level)
+> +               *level = amdgpu_dpm_get_performance_level(adev);
+> +       else
+> +               *level = adev->pm.dpm.forced_level;
+> +
+> +       pm_runtime_mark_last_busy(ddev->dev);
+> +       pm_runtime_put_autosuspend(ddev->dev);
+> +
+> +       return 0;
+> +}
+>
+>  /**
+>   * DOC: power_dpm_force_performance_level
+> @@ -264,29 +292,13 @@ static ssize_t amdgpu_get_power_dpm_force_performance_level(struct device *dev,
+>                                                             struct device_attribute *attr,
+>                                                             char *buf)
+>  {
+> -       struct drm_device *ddev = dev_get_drvdata(dev);
+> -       struct amdgpu_device *adev = drm_to_adev(ddev);
+>         enum amd_dpm_forced_level level = 0xff;
+>         int ret;
+>
+> -       if (amdgpu_in_reset(adev))
+> -               return -EPERM;
+> -       if (adev->in_suspend && !adev->in_runpm)
+> -               return -EPERM;
+> +       ret = amdgpu_get_forced_level(dev, &level);
+>
+> -       ret = pm_runtime_get_sync(ddev->dev);
+> -       if (ret < 0) {
+> -               pm_runtime_put_autosuspend(ddev->dev);
+> +       if (ret < 0)
+>                 return ret;
+> -       }
+> -
+> -       if (adev->powerplay.pp_funcs->get_performance_level)
+> -               level = amdgpu_dpm_get_performance_level(adev);
+> -       else
+> -               level = adev->pm.dpm.forced_level;
+> -
+> -       pm_runtime_mark_last_busy(ddev->dev);
+> -       pm_runtime_put_autosuspend(ddev->dev);
+>
+>         return sysfs_emit(buf, "%s\n",
+>                           (level == AMD_DPM_FORCED_LEVEL_AUTO) ? "auto" :
+> @@ -405,6 +417,59 @@ static ssize_t amdgpu_set_power_dpm_force_performance_level(struct device *dev,
+>         return count;
+>  }
+>
+> +static void amdgpu_update_profile(struct device *dev, enum platform_profile_option *profile)
+> +{
+> +       enum amd_dpm_forced_level level;
+> +       const char *str;
+> +       int ret;
+> +
+> +       ret = amdgpu_get_forced_level(dev, &level);
+> +       if (ret < 0)
+> +               return;
+> +
+> +       /* only update profile if we're in fixed modes right now that need updating */
+> +       switch (level) {
+> +       case AMD_DPM_FORCED_LEVEL_LOW:
+> +               if (*profile < PLATFORM_PROFILE_BALANCED)
+> +                       return;
+> +               break;
+> +       case AMD_DPM_FORCED_LEVEL_HIGH:
+> +               if (*profile > PLATFORM_PROFILE_BALANCED)
+> +                       return;
+> +               break;
+> +       case AMD_DPM_FORCED_LEVEL_AUTO:
+> +               if (*profile == PLATFORM_PROFILE_BALANCED)
+> +                       return;
+> +               break;
+> +       default:
+> +               dev_dbg(dev, "refusing to update amdgpu profile from %d\n", level);
+> +               return;
+> +       }
+> +       if (*profile > PLATFORM_PROFILE_BALANCED)
+> +               str = "high";
+> +       else if (*profile < PLATFORM_PROFILE_BALANCED)
+> +               str = "low";
+> +       else
+> +               str = "auto";
+> +
+> +       dev_dbg(dev, "updating platform profile to %s\n", str);
+> +       amdgpu_set_power_dpm_force_performance_level(dev, NULL, str, 0);
+> +}
+> +
+> +static int amdgpu_platform_profile_notifier_call(struct notifier_block *nb,
+> +                                                 unsigned long action, void *data)
+> +{
+> +       if (action == PLATFORM_PROFILE_CHANGED) {
+> +               enum platform_profile_option *profile = data;
+> +               struct amdgpu_device *adev;
+> +
+> +               adev = container_of(nb, struct amdgpu_device, platform_profile_notifier);
+> +               amdgpu_update_profile(adev->dev, profile);
+> +       }
+> +
+> +       return NOTIFY_OK;
+> +}
+> +
+>  static ssize_t amdgpu_get_pp_num_states(struct device *dev,
+>                 struct device_attribute *attr,
+>                 char *buf)
+> @@ -3506,6 +3571,9 @@ int amdgpu_pm_sysfs_init(struct amdgpu_device *adev)
+>         if (ret)
+>                 return ret;
+>
+> +       adev->platform_profile_notifier.notifier_call = amdgpu_platform_profile_notifier_call;
+> +       platform_profile_register_notifier(&adev->platform_profile_notifier);
+> +
+>         adev->pm.sysfs_initialized = true;
+>
+>         return 0;
+> @@ -3519,6 +3587,7 @@ void amdgpu_pm_sysfs_fini(struct amdgpu_device *adev)
+>         if (adev->pm.int_hwmon_dev)
+>                 hwmon_device_unregister(adev->pm.int_hwmon_dev);
+>
+> +       platform_profile_unregister_notifier(&adev->platform_profile_notifier);
+>         amdgpu_device_attr_remove_groups(adev, &adev->pm.pm_attr_list);
+>  }
+>
+> --
+> 2.25.1
+>
