@@ -1,120 +1,118 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAC1B44C4C9
-	for <lists+amd-gfx@lfdr.de>; Wed, 10 Nov 2021 17:05:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 343EC44C4DD
+	for <lists+amd-gfx@lfdr.de>; Wed, 10 Nov 2021 17:11:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 020F36E922;
-	Wed, 10 Nov 2021 16:05:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63EA86EA35;
+	Wed, 10 Nov 2021 16:11:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2065.outbound.protection.outlook.com [40.107.236.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CF4A6E922
- for <amd-gfx@lists.freedesktop.org>; Wed, 10 Nov 2021 16:05:08 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1anam02on2067.outbound.protection.outlook.com [40.107.96.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 098266EA35
+ for <amd-gfx@lists.freedesktop.org>; Wed, 10 Nov 2021 16:11:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KUd2eVl/QAeOaMqsjsYptFk9q3EIRM7J00iwfsIWkR1kWKi2bLki2Y4NPxm0ZUAj3ReSQ6Rsi4OxD/y6cJ4+pdgboenxR5MSmleUBnrX8NgYG/Hd12sg0WmqoAZabHpPmlrWiJu/eTfbFEMfUv8e2xHYf2sf+8cgKeSEDqwzDBiUbu+MxzJN4oeB4I7GauF7Da8XlkxoHAPDwb5CF22yIBFfm4zdXfmqxJxpQlkToSl9THYr2Aff5xdKtsBFMfqoQ+UrD7dvvebD71XGNaUItEVdSVlgPFALZ3bJZNAT0FAiTSzXyZIIePvGbf1o0vsKgjJNoqR5XFJ0b1h7sI6YPg==
+ b=Sk0LdpAplhn44T+1TyKX9F+n1FUyu9TN7msGAdqOzT1eObGChvC4wdztZXnKPX2ZkMBtZCN37lQIa0jkQVt4ULp5nl5kBFby5dRFWN01WaZHq4PRjU4GGlW34GhB5KzLkaxCrKowK4bwzEtXxgGbH3HlaZ7BaSyW8uzHZ42ZVwBOLUrzHnqjNsg9rhZY+YNnOVXh1lR+fnj0AyR1E7tL6QSiD/29aDRzN9ivuaXYMUnfDUAel3peSZjmzfll1G+mu4c7UM6nne1L12OutaSHzts5coGkkfDi7zd/Ll8H2Ypc3SLvFDpFG7pYdOLGRFvNZLi0JgkF4rue1jRq5b4Tsw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T41ipBDSr6O/HoL0JvUqjEoHbMfdbkDFzuCqztMp1+4=;
- b=hNsbB0t4D28yOTVb98IOy9W/ZR+RI7x7dhjH2fFpf1EjeHNnhRjNiJQMOEhYqslKjnNpjGQd+clBIB7DYJPqPwZZCqVODDOGCCg+BKaAdPeHDVz4YW9lYkqJPSydomVWoj3UzxLG9T8emYq84Ir1Xh+VQgC/i7IyqAv12xpWlOIe7UGu1fl48v6I9bOAgMyxR8L1fsFHq2ELVW1eYOuSHhyIulI2d2jU6oR5jSsUZZw3a09ayrgj7FbgYdJfZZ6Sbr4uvadoDJbrx1EUyhEwl+LNaSrkmb+2LA4kC3R2scw3Brci8NP6ijGONlZ3x/cIpIxBcCGN/diAK3oDsdrOaA==
+ bh=sBXgrMW3x84x0Tzms6uqsh+pbshfbmP7oP5WHRipmvU=;
+ b=NYZO9IYipEm9AAgn2KAlk9pv8rPk///QR2+c2CapvzyNW0qVGPYsnvfKgfQEFzw2nDOhKNWZd3SexgAE5yVT3NUBo+yHZQQfwArQCZYt5OPjT4C7iIhWAcQ7wTaoqGifnVjxQ3MAGVg3P52OjXGLhWPBvFzoQTFkQko5G3KPIvn2vnTR5wu1KnbVkM3SpDglUzK9xA/5lQ00Zca16PgAyn10DYDytDdvJei8sTNqovm30vzqnXgf8yzE/ppn7r8RLcNWigFLCuDniMip5/3CztWJ1FfxKoSFziHWyqV0J9RGUn4+C537chePzhm677vhc/O6I8lgxoYKjErVdA7BlQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T41ipBDSr6O/HoL0JvUqjEoHbMfdbkDFzuCqztMp1+4=;
- b=ShBV3yTOKVdazN3yUrcRlIt2mCGRPPr10oc+7OcZcU9bqIhMGfzuukMK8PjJBnKE5MUdL1z73OhGOrgKnQfOtDOKKOLa8FJgJJiz5DhdXjhU3B9YcJNWDc4q1U1D8tB/xY1604HekzftqHR27i8yuq6VUx7eufZ6pnK+7Je1IVI=
+ bh=sBXgrMW3x84x0Tzms6uqsh+pbshfbmP7oP5WHRipmvU=;
+ b=aJC0Wv0J4NdexvOlKD6nGNJEFBRpNAOMujITr4UEHeNtpEvWQreg8dojZh7wuPqy9QnHk2dOPTn4gp0wzU/FzmB0Ex1+HYJxaXQHNtDFED9ltOGmEe6+c7wJScOopm0Iv/x0Hx6/FTfHYLggCU0pUHDU2Os2ZLRJ0FvkfWJtR8w=
 Received: from DM6PR12MB3930.namprd12.prod.outlook.com (2603:10b6:5:1c9::19)
- by DM6PR12MB4012.namprd12.prod.outlook.com (2603:10b6:5:1cc::19) with
+ by DM6PR12MB4041.namprd12.prod.outlook.com (2603:10b6:5:210::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.16; Wed, 10 Nov
- 2021 16:05:05 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.16; Wed, 10 Nov
+ 2021 16:11:29 +0000
 Received: from DM6PR12MB3930.namprd12.prod.outlook.com
  ([fe80::591a:8986:aca2:c560]) by DM6PR12MB3930.namprd12.prod.outlook.com
  ([fe80::591a:8986:aca2:c560%3]) with mapi id 15.20.4669.016; Wed, 10 Nov 2021
- 16:05:05 +0000
+ 16:11:29 +0000
 From: "Lazar, Lijo" <Lijo.Lazar@amd.com>
-To: Alex Deucher <alexdeucher@gmail.com>, "Limonciello, Mario"
- <Mario.Limonciello@amd.com>
-Subject: Re: [RFC 2/2] drm/amd/pm: Add support for reacting to platform
- profile notification
-Thread-Topic: [RFC 2/2] drm/amd/pm: Add support for reacting to platform
- profile notification
-Thread-Index: AQHX1fuN+Gs9jWQ/l0O92ikqoZKw0Kv83zWAgAAM12A=
-Date: Wed, 10 Nov 2021 16:05:05 +0000
-Message-ID: <DM6PR12MB39300185FB03556E914290C297939@DM6PR12MB3930.namprd12.prod.outlook.com>
-References: <20211110062343.10041-1-mario.limonciello@amd.com>
- <20211110062343.10041-3-mario.limonciello@amd.com>
- <CADnq5_MGbOh_Xbg6y4hH6qrSok_YKMj0c4Ma6ZKAE835cm2-hw@mail.gmail.com>
-In-Reply-To: <CADnq5_MGbOh_Xbg6y4hH6qrSok_YKMj0c4Ma6ZKAE835cm2-hw@mail.gmail.com>
+To: "Kuehling, Felix" <Felix.Kuehling@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH v2 1/1] drm/amdgpu: Fix MMIO HDP flush on SRIOV
+Thread-Topic: [PATCH v2 1/1] drm/amdgpu: Fix MMIO HDP flush on SRIOV
+Thread-Index: AQHX1dsRYJXg7f3ZtEKPUGJTgg52+Kv8euyAgABwqQCAAAKkqw==
+Date: Wed, 10 Nov 2021 16:11:29 +0000
+Message-ID: <DM6PR12MB39307C2E18445AA344F9930F97939@DM6PR12MB3930.namprd12.prod.outlook.com>
+References: <20211110023052.1872623-1-Felix.Kuehling@amd.com>
+ <48473282-292c-508a-1a4e-42359c421f01@amd.com>
+ <dd7f5e89-338b-c331-829e-5fba0594a0cb@amd.com>
+In-Reply-To: <dd7f5e89-338b-c331-829e-5fba0594a0cb@amd.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=True;
  MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2021-11-10T16:00:06.9552235Z;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2021-11-10T16:07:19.6772085Z;
  MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=0;
  MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=amd.com;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d491ce34-ba22-41b4-2098-08d9a463dc48
-x-ms-traffictypediagnostic: DM6PR12MB4012:
-x-microsoft-antispam-prvs: <DM6PR12MB4012C8EE443D7257AD05E6BD97939@DM6PR12MB4012.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3044;
+x-ms-office365-filtering-correlation-id: 781d5785-125f-4b8e-7e2c-08d9a464c160
+x-ms-traffictypediagnostic: DM6PR12MB4041:
+x-microsoft-antispam-prvs: <DM6PR12MB4041B488F2E471F660BD6B7B97939@DM6PR12MB4041.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: LAKmFJ6oc8YgmrM7+WQv1SeV5H4ks6vLCzbLjAmtNoa7rOEoD6N0bp4o7d/m6wSEVzWT/IoUW39ZHS0uOvV46g5e7dFy+3/Mg6SByzJmV3YIF3CPd66401CJfG2bMBGEXcjUiyPXqg0B1/ANINmyCIKvnHFy2KkbpjHGzMzoYqCT+5tSfVds65mxp9jxtpJ+rEJRjZX/qBiMIfgJrKJytKIG6Z4r0T5j/JXzGslBtOPBqSmGk958ctwnVUvSJHxP8mjl6t+V5dPV3kaV74JqmXNGh2X43dlDfs17kmoLNA7XhiSSW/jDkl06uxgGM5FOyKFT7Q5ICWGbOyYu+uBBWK8EsxOD7ZRtT4sRD+NdMBXPRlXcVP5SbENVBzouTEDbvMARjRKRqQIQdLYyejGR0ZYYRGDvFj+H+NoZNd2eSyzg7F34ntLaqWju2ILsn+WVEIPbvVM3prtnKJR8nseV6q7V2EIXHZyxfqmSau5Qz7lvDkpTLgNMG8gb6z2uKB0XBAarvTqcPKnrLNQeYnXH10Lw1mKmbIEKRuo3cIKcZOIIvYZH/zVI6yKP8HtEq6RlUVuloFG++mK7SqcJF+prVB4/Fe8+ftBc/Aqwb+Sb632Ykq9+0R1bQ4nEPurGCH0y1ATKq3DbXfkVbs7Y/GHPMhBJR863k3HSksNjod6Jvq5gBSC7djVxC3IBplqjcw/7QingPohD2W4MO7wRxorjzQ==
+x-microsoft-antispam-message-info: W+q/DNk2TuLDOPaL4atgdklzL11b1NXqCJuD5vhdTFqwibXSPHHEu2Jgq/Zt3mHG5ocAwcXxs72cc9MWAUWuDA2Nf+pBZ6Zt+WUiRx/1UO5U6zpD42T6Lm+bxnARfgCERAK+M68+wA7b7K99v7o3OBVu5AD4UqcGdoyzLsBpZq7uZxDy8SAC0BwGnEIjZAaARp/t3l6PXFL2cREWGosI/ui2f6eIiHEKaEXEVrXM2eJ0IAJW3MOOIYPiW9saZwq7deK+xhapxmmhn7KpYjfqQsGmqcMA7jQokxAsDJAPcjhqJx6oylJd5oI9jnQGGvOSQFVtHhWB3aUsNDCIyqpCiZ19tI/TdPk37AUIZO5ckODYsSpeNo2rkFWbv+8yXAWfzlwMSHgHoP8ixM/Dbo2JVsCu4txOo0IzGgJSDj8wdj101B5BnPGVO7nNSHbRFGHRAoz0zsxpH+c7f+jkBsaiNZkci+BcoAflkPc5zjGs+rhPPfAHxFJ3w5WQzFuwTXcobg7CXQqNNy9GU4AO3rXM9iSstlffkeKVqP38PIeq2XrVkzoL9BeURPgoA+2RItbF7rXhrTo6quTSItiu4d7RFXOmahau8kSBwmFhue6+rvLI4OB9mOOClD/N59lFqeQyQdgUdNSVjOxl/6pYt4rguAZYtW4nQOkEes+FPP1/eTN2vsDQfjicRhHcx0jzYfYUIFYC7RibIo8xDtMtDl6sSQ==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR12MB3930.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(6506007)(53546011)(8676002)(38070700005)(26005)(110136005)(86362001)(33656002)(52536014)(64756008)(122000001)(2906002)(66446008)(66556008)(316002)(5660300002)(66946007)(91956017)(71200400001)(8936002)(76116006)(66476007)(4326008)(55016002)(15650500001)(9686003)(186003)(83380400001)(508600001)(6636002)(38100700002)(7696005);
+ SFS:(4636009)(366004)(4001150100001)(55016002)(38070700005)(2906002)(7696005)(53546011)(8936002)(5660300002)(52536014)(9686003)(4326008)(33656002)(508600001)(110136005)(316002)(186003)(26005)(86362001)(38100700002)(66476007)(83380400001)(64756008)(122000001)(66946007)(66556008)(91956017)(66446008)(76116006)(6506007)(8676002)(71200400001);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?W4eNp9sH8c2wzlFwWrINuyQOkKQnKInaj00HzYGTc7xHB7abTCHbORFuui1Y?=
- =?us-ascii?Q?7SG+65rzU+bdrFJE2dp86ix0DQguA8db1yVOAUF96I8jE9uVAipglAope7hI?=
- =?us-ascii?Q?JEbnOyszyypUFK8EcKnuj7jBVnRglMYp2NJkuKEsSPsmTJNTTNFo7W7dz7Ry?=
- =?us-ascii?Q?lEWkb7Z5oG3zmAN9LSIw85Lp+wBYbBiLMqegNO6gRAKFL+P60M0V1PaN1T6p?=
- =?us-ascii?Q?3taC7GXmO4fYkpGAwNCoigNNU7cHLvqkciseetPuEjxXOySW+mfndGWmLiiD?=
- =?us-ascii?Q?1fRlTGqF54WuOB1zhfm5GSdvaGthbvVGEqB0FMqAoazj1+sg3jxZYZETMWWy?=
- =?us-ascii?Q?xatCvFhiIDv+snhnkYBwmYYLHFLpDcsSCY4N1CTiX6qQ4F9ce7QYi+SPYydY?=
- =?us-ascii?Q?V023myRIhVejJ1soC6oXJ1nveSzBC6mTWXrE2OkY5JR4w7e+VSQMj37EFemE?=
- =?us-ascii?Q?/uwuVo9CAVrKMdfCHSRqekF5MBYCxsIC2tTYbasM0DiaVgV78+iezBNbJpf5?=
- =?us-ascii?Q?c6ROQF5LB6Mkl3u8SPsymCm1HPTiPQ38F+jnQC50HeLtZWA7VJUCF3snfGm0?=
- =?us-ascii?Q?L6Rij8/uKdfAwFDMQFKi0dMLCYRs9BROeOsyoCafARhyMYU8G/Xnk0BrytSx?=
- =?us-ascii?Q?xSgf4tTwzwU9jkVAjWEIV+/6BBxCJEnvxBfooFfq8atdDhbxHNP8GAPsYAL2?=
- =?us-ascii?Q?4PsEw9rM3mdRqvNPFqqUIN+tbU913cO4Lcym+ODvx2dan8U8St9v/1iqK84h?=
- =?us-ascii?Q?tcSV5o3y8QKTdRplLbIQ9JEOt1BQK+kss93+Q7qNDWeIatLxh4v+juBUffSp?=
- =?us-ascii?Q?q0/SBkFqN0Gz1WFRtD35jSGrdpywNxHD5gOXmE+wsxok7LiON+uIPcXsWtBY?=
- =?us-ascii?Q?EUiPdtQXoUaKZJdFGBLgPK3mlKc50cmKFA16r0StMtyedqJK/mc41T5fYDs8?=
- =?us-ascii?Q?HjYGvsqAenB0rF0DyhJaPWT94oESlH08Say/Ycpa6SOcBVIZ9locqIuQ4a0M?=
- =?us-ascii?Q?YC5zJWZz6517aEie6Tb/h9pNLzvA0z9LHsGHpo3BtAbRPL7nLYHXn7xNDGGA?=
- =?us-ascii?Q?gTfztODHT2dobzLXcuLPbYDT9oAoOuTkre9Iq9SzanbeHg0VYBogKbmgJljv?=
- =?us-ascii?Q?vOnxc8K6sgq6lnD/nBti0IcpnKKvWATQyFtxCeZiwsSSuHWGFN1UVhMZClKP?=
- =?us-ascii?Q?iooReHdTXK1S8PBCL7yZxw9CLwku1bqWSrLmmxfznbUMnXPaGwCTx5i3O1zT?=
- =?us-ascii?Q?jOOQLRqBQ0WVrwhwJYkplC6bogJvAM78y7OsA16GFOveR+Th90NnLS093DXY?=
- =?us-ascii?Q?IslaDupqTMI2zud0PLcw7v3AjZYphnxcc6M+vxcfLjr9Zu+yb9Fsut+TpMiC?=
- =?us-ascii?Q?Uo/hxCBnfLx3NSkC2KLcryi/ubImKNA7tsJ9wj5R1z2iv8FMi9e75hEi36jh?=
- =?us-ascii?Q?zzcKap4BvYCo/Za2cLUf50WLMtNRcff3FAgPdx4ZH6uM8rJoagiPkJm3yHYM?=
- =?us-ascii?Q?TclRBSHZcQ6DcvjXTLfVWju/CrKizs24tOIxTKqvGtqoSbzDwghsDsnt+Yh1?=
- =?us-ascii?Q?dD6+1hClpFK56W37U1dY6ZBBocJweoT8nwFO9wFb?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?+sXdf8UNupjceI0Wgv3szTK5qWeMM6T0xwT+NccxWru9/SWau9V90M6MKMTc?=
+ =?us-ascii?Q?+hs3wXeJgp4Na3t4H3tZrcUGuwDcZA/KrcF6CHIMUAn/aY4bKF1jxppXpWOS?=
+ =?us-ascii?Q?Tb2tgllhkA2dOucZNU8txd++yVYfsBlNHi87O2aD9RadTwyju1tafV58cono?=
+ =?us-ascii?Q?3txkakkx9eJCJEL+ytBCemHVf7LgNrE1+pfSozfofdF5aNWYVuvfUi4n2Oak?=
+ =?us-ascii?Q?W62HCYCJYsQeP3ZLpiKgV20uJywA4Y6UmlxtRht6s5hG6se1OV49KVzHPu6+?=
+ =?us-ascii?Q?lsJihcrly77Zjs5kVGEbJ3xwjFokVVNtSHz9LqLJcjmkanoX+xs8wwjO1L/u?=
+ =?us-ascii?Q?sc2iPFjYHcNonZSiI6bp0dNYC+215aSmMbQOAIEpZlGRnDIv9IU++iiz4LTL?=
+ =?us-ascii?Q?SKlnSa6HInjGZa50P6ILhZOUbsVECXtb3y+gXGC4uOdX1CDNxPKvqN9OOKvU?=
+ =?us-ascii?Q?HUIGUi5Cp4LyTvCWEiRtbZspch08zhOEzPCUneMSjvee+1KFi/BIOD4qxTdJ?=
+ =?us-ascii?Q?h/BORNg6DeqJNrkLFPZOMnxTmPIVtJGjpTB9Zr1VVCLR28oC85RNlCqiVmBq?=
+ =?us-ascii?Q?xP2xMeR2a0deLjzjPh5R5UPU0d/BWBGfY/lNCXNBKXFB0Yzueb4R4cJX/mDD?=
+ =?us-ascii?Q?3jpuZke2ywO85OxQfkRKHfWUzsF8BzfRdSVm37gX2bYKYVz9lTprRA93aFbz?=
+ =?us-ascii?Q?n6ZuSEhWmvSewTD/WeFa5+tSxLx/3/VUjK0GnYuoIJOlgS8hnwztU5dsLgOL?=
+ =?us-ascii?Q?J4d2Dc2YBkDZtCnxRUpY4H2bQ3/c/zgKnYaAlR0rIkvxjuacUWDSB7JwH3sO?=
+ =?us-ascii?Q?MiiPHQ4Slpuugvdr8mEhDQIun5VdCEcgatj4chxIwpNbnTdqEV1V8tVjS3OX?=
+ =?us-ascii?Q?m0XroLNaKtwPYj/S/ER6EzThaUs5k+pB5t/aIpRshKS4ClYDWrW5UwecsJAk?=
+ =?us-ascii?Q?IrDTsj+aFllwri6kzc//mA4c4o6cTcwVyCxRUWYUOszoMKhZlkZwFMeDa/EN?=
+ =?us-ascii?Q?9uodDZFRhkgj/ijaF5aQDI7aY4bfblVBCg+aR1vxahq824mpeI2Gfq5zSmI7?=
+ =?us-ascii?Q?ZiRSENrUCy8NWWZBN4b9xBHMlcfPwcoBvPJhdUOMszDjeqZaV9xb1AvL1lCj?=
+ =?us-ascii?Q?hU0NBBZnGgdBGPy7qBiMz7uq9kgPj3/dZqZhA83NGdb15VBn/gD9Xkxi10tK?=
+ =?us-ascii?Q?JygxBbkP4FxSS75vXvxDZrk3EC0E2PAUG79FmX/6bOwQ9/yexNrulb8Ikr+Q?=
+ =?us-ascii?Q?pH0kJkNi7mxdVvBX26cMO9eD1QHNRO1Ue4IxqctiK7Nsof/xmGX3CjKABH50?=
+ =?us-ascii?Q?nVJ/gPrxerk+f5QMPgajsFxT3e6u4fnnb6CGQFSqIvm4xhD4fq4R54UB1B7D?=
+ =?us-ascii?Q?JpQnZXLXTmzr/GyEKni/3RYQaLz4uVUJh+3hgRjjVzXV34B2bqWkvtfSnaR/?=
+ =?us-ascii?Q?jbcmsxQx/lyrGcwfNi4wRa6PHHDYcB1j7Q9/sg8rhf921QPURi3K2x0DbW5L?=
+ =?us-ascii?Q?khXrquB171Vq+/olcw8/4Hh48Q9pVvrTDi1tGXQB2p12RlwLnk+D8V4FnOjk?=
+ =?us-ascii?Q?BpzoqROIPfYekrR7/AJKafLhjnQoOpXLica5ruyY?=
 Content-Type: multipart/alternative;
- boundary="_000_DM6PR12MB39300185FB03556E914290C297939DM6PR12MB3930namp_"
+ boundary="_000_DM6PR12MB39307C2E18445AA344F9930F97939DM6PR12MB3930namp_"
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3930.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d491ce34-ba22-41b4-2098-08d9a463dc48
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Nov 2021 16:05:05.2468 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 781d5785-125f-4b8e-7e2c-08d9a464c160
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Nov 2021 16:11:29.5998 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +7SaByU3/JcfdLk03zSTrib2dg4/jHuFM5ytXQ7YWVSLcl4KMhnP8gAzxe5qCWQ0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4012
+X-MS-Exchange-CrossTenant-userprincipalname: t72zkcrRPsBDYzUDLPYrhSv35MLVBOUbQ6J7TZFl8WcD70GkjYHnkmHZDz4mcdzD
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4041
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,267 +124,209 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: "Zhang, Bokun" <Bokun.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---_000_DM6PR12MB39300185FB03556E914290C297939DM6PR12MB3930namp_
+--_000_DM6PR12MB39307C2E18445AA344F9930F97939DM6PR12MB3930namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 [Public]
 
-I feel it's better to leave to platform vendors. For ex: for APU cases they=
- may have implementations in which their BIOSes talk to PMFW and this might=
- be driving something else here.
+>(... && !amdgpu_sriov_vf(adev))
 
-Also, not sure how to handle a case like, say a laptop with Intel CPU and A=
-MD dgpu.
+This kind of closes the door for all versions. My thought was - having it i=
+n the same function provides a logical grouping for how it's handled for di=
+fferent cases - VF vs non-VF - for a particular IP version.
 
 Thanks,
 Lijo
-
 ________________________________
-From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Alex Deu=
-cher <alexdeucher@gmail.com>
-Sent: Wednesday, 10 November 2021, 8:44 pm
-To: Limonciello, Mario
-Cc: amd-gfx list
-Subject: Re: [RFC 2/2] drm/amd/pm: Add support for reacting to platform pro=
-file notification
+From: Kuehling, Felix <Felix.Kuehling@amd.com>
+Sent: Wednesday, November 10, 2021 9:27:22 PM
+To: Lazar, Lijo <Lijo.Lazar@amd.com>; amd-gfx@lists.freedesktop.org <amd-gf=
+x@lists.freedesktop.org>
+Cc: Zhang, Bokun <Bokun.Zhang@amd.com>
+Subject: Re: [PATCH v2 1/1] drm/amdgpu: Fix MMIO HDP flush on SRIOV
 
-On Wed, Nov 10, 2021 at 1:24 AM Mario Limonciello
-<mario.limonciello@amd.com> wrote:
+Am 2021-11-10 um 4:14 a.m. schrieb Lazar, Lijo:
 >
-> Various drivers provide platform profile support to let users set a hint
-> in their GUI whether they want to run in a high performance, low battery
-> life or balanced configuration.
 >
-> Drivers that provide this typically work with the firmware on their syste=
-m
-> to configure hardware.  In the case of AMDGPU however, the notification
-> path doesn't come through firmware and can instead be provided directly
-> to the driver from a notification chain.
+> On 11/10/2021 8:00 AM, Felix Kuehling wrote:
+>> Disable HDP register remapping on SRIOV and set rmmio_remap.reg_offset
+>> to the fixed address of the VF register for hdp_v*_flush_hdp.
+>>
+>> Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c | 4 ++++
+>>   drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c | 4 ++++
+>>   drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c | 4 +++-
+>>   drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c | 4 ++++
+>>   drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c | 4 +++-
+>>   drivers/gpu/drm/amd/amdgpu/nv.c        | 8 +++++---
+>>   drivers/gpu/drm/amd/amdgpu/soc15.c     | 8 +++++---
+>>   7 files changed, 28 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+>> b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+>> index 4ecd2b5808ce..ee7cab37dfd5 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+>> @@ -359,6 +359,10 @@ static void nbio_v2_3_init_registers(struct
+>> amdgpu_device *adev)
+>>         if (def !=3D data)
+>>           WREG32_PCIE(smnPCIE_CONFIG_CNTL, data);
+>> +
+>> +    if (amdgpu_sriov_vf(adev))
+>> +        adev->rmmio_remap.reg_offset =3D SOC15_REG_OFFSET(NBIO, 0,
+>> +            mmBIF_BX_DEV0_EPF0_VF0_HDP_MEM_COHERENCY_FLUSH_CNTL) << 2;
 >
-> Use the information of the newly selected profile to tweak
-> `dpm_force_performance_level` to that profile IFF the user hasn't manuall=
-y
-> selected `manual` or any other `profile_*` options.
+> Wouldn't it be better to do this assignment inside
+> remap_hdp_registers()? Return with a comment saying no remap is done
+> for VFs. That looks easier to manage per IP version.
 
-I don't think we want to force the performance level.  This interface
-forces various fixed clock configurations for debugging and profiling.
-I think what we'd want to select here is the power profile (see
-amdgpu_set_pp_power_profile_mode()).  For this interface you can
-select various profiles (BOOTUP_DEFAULT, 3D_FULL_SCREEN, POWER_SAVING,
-VIDEO, VR, COMPUTE, etc.).  These still use dynamic power management,
-but they adjust the heuristics used by the GPU to select power states
-so the GPU performance ramps up/down more or less aggressively.
+I was considering that. I felt it was clearer not to have that hidden
+side effect in remap_hdp_registers and to have the explicit condition
+(... &&  !amdgpu_sriov_vf(adev)) around the remap_hdp_registers call in
+soc15/nv_common_hw_init.
 
-Alex
-
->
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu.h |   3 +
->  drivers/gpu/drm/amd/pm/amdgpu_pm.c  | 105 +++++++++++++++++++++++-----
->  2 files changed, 90 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/am=
-dgpu/amdgpu.h
-> index b85b67a88a3d..27b0be23b6ac 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-> @@ -1097,6 +1097,9 @@ struct amdgpu_device {
->
->         struct amdgpu_reset_control     *reset_cntl;
->         uint32_t                        ip_versions[HW_ID_MAX][HWIP_MAX_I=
-NSTANCE];
-> +
-> +       /* platform profile notifications */
-> +       struct notifier_block           platform_profile_notifier;
->  };
->
->  static inline struct amdgpu_device *drm_to_adev(struct drm_device *ddev)
-> diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/=
-amdgpu_pm.c
-> index 41472ed99253..33fc52b90d4c 100644
-> --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-> @@ -32,6 +32,7 @@
->  #include <linux/hwmon.h>
->  #include <linux/hwmon-sysfs.h>
->  #include <linux/nospec.h>
-> +#include <linux/platform_profile.h>
->  #include <linux/pm_runtime.h>
->  #include <asm/processor.h>
->  #include "hwmgr.h"
-> @@ -200,6 +201,33 @@ static ssize_t amdgpu_set_power_dpm_state(struct dev=
-ice *dev,
->         return count;
->  }
->
-> +static int amdgpu_get_forced_level(struct device *dev, enum amd_dpm_forc=
-ed_level *level)
-> +{
-> +       struct drm_device *ddev =3D dev_get_drvdata(dev);
-> +       struct amdgpu_device *adev =3D drm_to_adev(ddev);
-> +       int ret;
-> +
-> +       if (amdgpu_in_reset(adev))
-> +               return -EPERM;
-> +       if (adev->in_suspend && !adev->in_runpm)
-> +               return -EPERM;
-> +
-> +       ret =3D pm_runtime_get_sync(ddev->dev);
-> +       if (ret < 0) {
-> +               pm_runtime_put_autosuspend(ddev->dev);
-> +               return ret;
-> +       }
-> +
-> +       if (adev->powerplay.pp_funcs->get_performance_level)
-> +               *level =3D amdgpu_dpm_get_performance_level(adev);
-> +       else
-> +               *level =3D adev->pm.dpm.forced_level;
-> +
-> +       pm_runtime_mark_last_busy(ddev->dev);
-> +       pm_runtime_put_autosuspend(ddev->dev);
-> +
-> +       return 0;
-> +}
->
->  /**
->   * DOC: power_dpm_force_performance_level
-> @@ -264,29 +292,13 @@ static ssize_t amdgpu_get_power_dpm_force_performan=
-ce_level(struct device *dev,
->                                                             struct device=
-_attribute *attr,
->                                                             char *buf)
->  {
-> -       struct drm_device *ddev =3D dev_get_drvdata(dev);
-> -       struct amdgpu_device *adev =3D drm_to_adev(ddev);
->         enum amd_dpm_forced_level level =3D 0xff;
->         int ret;
->
-> -       if (amdgpu_in_reset(adev))
-> -               return -EPERM;
-> -       if (adev->in_suspend && !adev->in_runpm)
-> -               return -EPERM;
-> +       ret =3D amdgpu_get_forced_level(dev, &level);
->
-> -       ret =3D pm_runtime_get_sync(ddev->dev);
-> -       if (ret < 0) {
-> -               pm_runtime_put_autosuspend(ddev->dev);
-> +       if (ret < 0)
->                 return ret;
-> -       }
-> -
-> -       if (adev->powerplay.pp_funcs->get_performance_level)
-> -               level =3D amdgpu_dpm_get_performance_level(adev);
-> -       else
-> -               level =3D adev->pm.dpm.forced_level;
-> -
-> -       pm_runtime_mark_last_busy(ddev->dev);
-> -       pm_runtime_put_autosuspend(ddev->dev);
->
->         return sysfs_emit(buf, "%s\n",
->                           (level =3D=3D AMD_DPM_FORCED_LEVEL_AUTO) ? "aut=
-o" :
-> @@ -405,6 +417,59 @@ static ssize_t amdgpu_set_power_dpm_force_performanc=
-e_level(struct device *dev,
->         return count;
->  }
->
-> +static void amdgpu_update_profile(struct device *dev, enum platform_prof=
-ile_option *profile)
-> +{
-> +       enum amd_dpm_forced_level level;
-> +       const char *str;
-> +       int ret;
-> +
-> +       ret =3D amdgpu_get_forced_level(dev, &level);
-> +       if (ret < 0)
-> +               return;
-> +
-> +       /* only update profile if we're in fixed modes right now that nee=
-d updating */
-> +       switch (level) {
-> +       case AMD_DPM_FORCED_LEVEL_LOW:
-> +               if (*profile < PLATFORM_PROFILE_BALANCED)
-> +                       return;
-> +               break;
-> +       case AMD_DPM_FORCED_LEVEL_HIGH:
-> +               if (*profile > PLATFORM_PROFILE_BALANCED)
-> +                       return;
-> +               break;
-> +       case AMD_DPM_FORCED_LEVEL_AUTO:
-> +               if (*profile =3D=3D PLATFORM_PROFILE_BALANCED)
-> +                       return;
-> +               break;
-> +       default:
-> +               dev_dbg(dev, "refusing to update amdgpu profile from %d\n=
-", level);
-> +               return;
-> +       }
-> +       if (*profile > PLATFORM_PROFILE_BALANCED)
-> +               str =3D "high";
-> +       else if (*profile < PLATFORM_PROFILE_BALANCED)
-> +               str =3D "low";
-> +       else
-> +               str =3D "auto";
-> +
-> +       dev_dbg(dev, "updating platform profile to %s\n", str);
-> +       amdgpu_set_power_dpm_force_performance_level(dev, NULL, str, 0);
-> +}
-> +
-> +static int amdgpu_platform_profile_notifier_call(struct notifier_block *=
-nb,
-> +                                                 unsigned long action, v=
-oid *data)
-> +{
-> +       if (action =3D=3D PLATFORM_PROFILE_CHANGED) {
-> +               enum platform_profile_option *profile =3D data;
-> +               struct amdgpu_device *adev;
-> +
-> +               adev =3D container_of(nb, struct amdgpu_device, platform_=
-profile_notifier);
-> +               amdgpu_update_profile(adev->dev, profile);
-> +       }
-> +
-> +       return NOTIFY_OK;
-> +}
-> +
->  static ssize_t amdgpu_get_pp_num_states(struct device *dev,
->                 struct device_attribute *attr,
->                 char *buf)
-> @@ -3506,6 +3571,9 @@ int amdgpu_pm_sysfs_init(struct amdgpu_device *adev=
-)
->         if (ret)
->                 return ret;
->
-> +       adev->platform_profile_notifier.notifier_call =3D amdgpu_platform=
-_profile_notifier_call;
-> +       platform_profile_register_notifier(&adev->platform_profile_notifi=
-er);
-> +
->         adev->pm.sysfs_initialized =3D true;
->
->         return 0;
-> @@ -3519,6 +3587,7 @@ void amdgpu_pm_sysfs_fini(struct amdgpu_device *ade=
-v)
->         if (adev->pm.int_hwmon_dev)
->                 hwmon_device_unregister(adev->pm.int_hwmon_dev);
->
-> +       platform_profile_unregister_notifier(&adev->platform_profile_noti=
-fier);
->         amdgpu_device_attr_remove_groups(adev, &adev->pm.pm_attr_list);
->  }
->
-> --
-> 2.25.1
->
+Regards,
+  Felix
 
 
---_000_DM6PR12MB39300185FB03556E914290C297939DM6PR12MB3930namp_
+>
+> Thanks,
+> Lijo
+>
+>>   }
+>>     #define NAVI10_PCIE__LC_L0S_INACTIVITY_DEFAULT        0x00000000
+>> // off by default, no gains over L1
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c
+>> b/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c
+>> index 0d2d629e2d6a..4bbacf1be25a 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c
+>> @@ -276,6 +276,10 @@ static void nbio_v6_1_init_registers(struct
+>> amdgpu_device *adev)
+>>         if (def !=3D data)
+>>           WREG32_PCIE(smnPCIE_CI_CNTL, data);
+>> +
+>> +    if (amdgpu_sriov_vf(adev))
+>> +        adev->rmmio_remap.reg_offset =3D SOC15_REG_OFFSET(NBIO, 0,
+>> +            mmBIF_BX_DEV0_EPF0_VF0_HDP_MEM_COHERENCY_FLUSH_CNTL) << 2;
+>>   }
+>>     static void nbio_v6_1_program_ltr(struct amdgpu_device *adev)
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c
+>> b/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c
+>> index 3c00666a13e1..37a4039fdfc5 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c
+>> @@ -273,7 +273,9 @@ const struct nbio_hdp_flush_reg
+>> nbio_v7_0_hdp_flush_reg =3D {
+>>     static void nbio_v7_0_init_registers(struct amdgpu_device *adev)
+>>   {
+>> -
+>> +    if (amdgpu_sriov_vf(adev))
+>> +        adev->rmmio_remap.reg_offset =3D
+>> +            SOC15_REG_OFFSET(NBIO, 0,
+>> mmHDP_MEM_COHERENCY_FLUSH_CNTL) << 2;
+>>   }
+>>     const struct amdgpu_nbio_funcs nbio_v7_0_funcs =3D {
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c
+>> b/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c
+>> index 8f2a315e7c73..3444332ea110 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c
+>> @@ -371,6 +371,10 @@ static void nbio_v7_2_init_registers(struct
+>> amdgpu_device *adev)
+>>           if (def !=3D data)
+>>               WREG32_PCIE_PORT(SOC15_REG_OFFSET(NBIO, 0,
+>> regPCIE_CONFIG_CNTL), data);
+>>       }
+>> +
+>> +    if (amdgpu_sriov_vf(adev))
+>> +        adev->rmmio_remap.reg_offset =3D SOC15_REG_OFFSET(NBIO, 0,
+>> +            regBIF_BX_PF0_HDP_MEM_COHERENCY_FLUSH_CNTL) << 2;
+>>   }
+>>     const struct amdgpu_nbio_funcs nbio_v7_2_funcs =3D {
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+>> b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+>> index b8bd03d16dba..e96516d3fd45 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+>> @@ -362,7 +362,9 @@ const struct nbio_hdp_flush_reg
+>> nbio_v7_4_hdp_flush_reg_ald =3D {
+>>     static void nbio_v7_4_init_registers(struct amdgpu_device *adev)
+>>   {
+>> -
+>> +    if (amdgpu_sriov_vf(adev))
+>> +        adev->rmmio_remap.reg_offset =3D SOC15_REG_OFFSET(NBIO, 0,
+>> +            mmBIF_BX_DEV0_EPF0_VF0_HDP_MEM_COHERENCY_FLUSH_CNTL) << 2;
+>>   }
+>>     static void
+>> nbio_v7_4_handle_ras_controller_intr_no_bifring(struct amdgpu_device
+>> *adev)
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c
+>> b/drivers/gpu/drm/amd/amdgpu/nv.c
+>> index febc903adf58..7088528079c6 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/nv.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+>> @@ -730,8 +730,10 @@ static int nv_common_early_init(void *handle)
+>>   #define MMIO_REG_HOLE_OFFSET (0x80000 - PAGE_SIZE)
+>>       struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
+>>   -    adev->rmmio_remap.reg_offset =3D MMIO_REG_HOLE_OFFSET;
+>> -    adev->rmmio_remap.bus_addr =3D adev->rmmio_base +
+>> MMIO_REG_HOLE_OFFSET;
+>> +    if (!amdgpu_sriov_vf(adev)) {
+>> +        adev->rmmio_remap.reg_offset =3D MMIO_REG_HOLE_OFFSET;
+>> +        adev->rmmio_remap.bus_addr =3D adev->rmmio_base +
+>> MMIO_REG_HOLE_OFFSET;
+>> +    }
+>>       adev->smc_rreg =3D NULL;
+>>       adev->smc_wreg =3D NULL;
+>>       adev->pcie_rreg =3D &nv_pcie_rreg;
+>> @@ -1031,7 +1033,7 @@ static int nv_common_hw_init(void *handle)
+>>        * for the purpose of expose those registers
+>>        * to process space
+>>        */
+>> -    if (adev->nbio.funcs->remap_hdp_registers)
+>> +    if (adev->nbio.funcs->remap_hdp_registers &&
+>> !amdgpu_sriov_vf(adev))
+>>           adev->nbio.funcs->remap_hdp_registers(adev);
+>>       /* enable the doorbell aperture */
+>>       nv_enable_doorbell_aperture(adev, true);
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c
+>> b/drivers/gpu/drm/amd/amdgpu/soc15.c
+>> index 0c316a2d42ed..de9b55383e9f 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/soc15.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+>> @@ -971,8 +971,10 @@ static int soc15_common_early_init(void *handle)
+>>   #define MMIO_REG_HOLE_OFFSET (0x80000 - PAGE_SIZE)
+>>       struct amdgpu_device *adev =3D (struct amdgpu_device *)handle;
+>>   -    adev->rmmio_remap.reg_offset =3D MMIO_REG_HOLE_OFFSET;
+>> -    adev->rmmio_remap.bus_addr =3D adev->rmmio_base +
+>> MMIO_REG_HOLE_OFFSET;
+>> +    if (!amdgpu_sriov_vf(adev)) {
+>> +        adev->rmmio_remap.reg_offset =3D MMIO_REG_HOLE_OFFSET;
+>> +        adev->rmmio_remap.bus_addr =3D adev->rmmio_base +
+>> MMIO_REG_HOLE_OFFSET;
+>> +    }
+>>       adev->smc_rreg =3D NULL;
+>>       adev->smc_wreg =3D NULL;
+>>       adev->pcie_rreg =3D &soc15_pcie_rreg;
+>> @@ -1285,7 +1287,7 @@ static int soc15_common_hw_init(void *handle)
+>>        * for the purpose of expose those registers
+>>        * to process space
+>>        */
+>> -    if (adev->nbio.funcs->remap_hdp_registers)
+>> +    if (adev->nbio.funcs->remap_hdp_registers &&
+>> !amdgpu_sriov_vf(adev))
+>>           adev->nbio.funcs->remap_hdp_registers(adev);
+>>         /* enable the doorbell aperture */
+>>
+
+--_000_DM6PR12MB39307C2E18445AA344F9930F97939DM6PR12MB3930namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -404,371 +344,276 @@ ign=3D"Left">
 <div>
 <div style=3D"color: rgb(33, 33, 33); background-color: rgb(255, 255, 255);=
 " dir=3D"auto">
-I feel it's better to leave to platform vendors. For ex: for APU cases they=
- may have implementations in which their BIOSes talk to PMFW and this might=
- be driving something else here.</div>
+&gt;<span style=3D"font-family: -apple-system, HelveticaNeue; font-size: 14=
+.6667px; display: inline !important;">(... &amp;&amp; !amdgpu_sriov_vf(adev=
+))</span></div>
 <div style=3D"color: rgb(33, 33, 33); background-color: rgb(255, 255, 255);=
 " dir=3D"auto">
-<br>
-</div>
+<span style=3D"font-family: -apple-system, HelveticaNeue; font-size: 14.666=
+7px; display: inline !important;"><br>
+</span></div>
 <div style=3D"color: rgb(33, 33, 33); background-color: rgb(255, 255, 255);=
 " dir=3D"auto">
-Also, not sure how to handle a case like, say a laptop with Intel CPU and A=
-MD dgpu.</div>
+<span style=3D"font-family: -apple-system, HelveticaNeue; font-size: 14.666=
+7px; display: inline !important;">This kind of closes the door for all vers=
+ions. My thought was - having it in the same function provides a logical gr=
+ouping for how it's handled for different
+ cases - VF vs non-VF - for a particular IP version.</span></div>
 <div id=3D"ms-outlook-mobile-signature">
 <div><br>
 </div>
 Thanks,<br>
 Lijo</div>
-<div id=3D"id-f61421a9-d54c-4f81-aa61-517d64763a14" class=3D"ms-outlook-mob=
-ile-reference-message">
-<div style=3D"font-family: sans-serif; font-size: 13.2pt; color: rgb(0, 0, =
-0);"><br>
-</div>
 <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg"><strong>From:</strong> amd-gfx &lt;amd-gfx-bounce=
-s@lists.freedesktop.org&gt; on behalf of Alex Deucher &lt;alexdeucher@gmail=
-.com&gt;<br>
-<strong>Sent:</strong> Wednesday, 10 November 2021, 8:44 pm<br>
-<strong>To:</strong> Limonciello, Mario<br>
-<strong>Cc:</strong> amd-gfx list<br>
-<strong>Subject:</strong> Re: [RFC 2/2] drm/amd/pm: Add support for reactin=
-g to platform profile notification<br>
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Kuehling, Felix &lt;F=
+elix.Kuehling@amd.com&gt;<br>
+<b>Sent:</b> Wednesday, November 10, 2021 9:27:22 PM<br>
+<b>To:</b> Lazar, Lijo &lt;Lijo.Lazar@amd.com&gt;; amd-gfx@lists.freedeskto=
+p.org &lt;amd-gfx@lists.freedesktop.org&gt;<br>
+<b>Cc:</b> Zhang, Bokun &lt;Bokun.Zhang@amd.com&gt;<br>
+<b>Subject:</b> Re: [PATCH v2 1/1] drm/amdgpu: Fix MMIO HDP flush on SRIOV<=
+/font>
+<div>&nbsp;</div>
 </div>
-<br>
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
-ding-left: 4pt; border-left: #800000 2px solid; } --></style><font size=3D"=
-2"><span style=3D"font-size:11pt;">
-<div class=3D"PlainText">On Wed, Nov 10, 2021 at 1:24 AM Mario Limonciello<=
-br>
-&lt;mario.limonciello@amd.com&gt; wrote:<br>
-&gt;<br>
-&gt; Various drivers provide platform profile support to let users set a hi=
-nt<br>
-&gt; in their GUI whether they want to run in a high performance, low batte=
-ry<br>
-&gt; life or balanced configuration.<br>
-&gt;<br>
-&gt; Drivers that provide this typically work with the firmware on their sy=
-stem<br>
-&gt; to configure hardware.&nbsp; In the case of AMDGPU however, the notifi=
-cation<br>
-&gt; path doesn't come through firmware and can instead be provided directl=
-y<br>
-&gt; to the driver from a notification chain.<br>
-&gt;<br>
-&gt; Use the information of the newly selected profile to tweak<br>
-&gt; `dpm_force_performance_level` to that profile IFF the user hasn't manu=
-ally<br>
-&gt; selected `manual` or any other `profile_*` options.<br>
-<br>
-I don't think we want to force the performance level.&nbsp; This interface<=
-br>
-forces various fixed clock configurations for debugging and profiling.<br>
-I think what we'd want to select here is the power profile (see<br>
-amdgpu_set_pp_power_profile_mode()).&nbsp; For this interface you can<br>
-select various profiles (BOOTUP_DEFAULT, 3D_FULL_SCREEN, POWER_SAVING,<br>
-VIDEO, VR, COMPUTE, etc.).&nbsp; These still use dynamic power management,<=
-br>
-but they adjust the heuristics used by the GPU to select power states<br>
-so the GPU performance ramps up/down more or less aggressively.<br>
-<br>
-Alex<br>
-<br>
-&gt;<br>
-&gt; Signed-off-by: Mario Limonciello &lt;mario.limonciello@amd.com&gt;<br>
-&gt; ---<br>
-&gt;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu.h |&nbsp;&nbsp; 3 +<br>
-&gt;&nbsp; drivers/gpu/drm/amd/pm/amdgpu_pm.c&nbsp; | 105 +++++++++++++++++=
-++++++-----<br>
-&gt;&nbsp; 2 files changed, 90 insertions(+), 18 deletions(-)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd=
-/amdgpu/amdgpu.h<br>
-&gt; index b85b67a88a3d..27b0be23b6ac 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
-&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h<br>
-&gt; @@ -1097,6 +1097,9 @@ struct amdgpu_device {<br>
-&gt;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_reset_co=
-ntrol&nbsp;&nbsp;&nbsp;&nbsp; *reset_cntl;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ip_versions[HW_ID_MAX][HW=
-IP_MAX_INSTANCE];<br>
-&gt; +<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* platform profile notification=
-s */<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct notifier_block&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; platform_profile_notifier=
-;<br>
-&gt;&nbsp; };<br>
-&gt;<br>
-&gt;&nbsp; static inline struct amdgpu_device *drm_to_adev(struct drm_devic=
-e *ddev)<br>
-&gt; diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/=
-pm/amdgpu_pm.c<br>
-&gt; index 41472ed99253..33fc52b90d4c 100644<br>
-&gt; --- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c<br>
-&gt; +++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c<br>
-&gt; @@ -32,6 +32,7 @@<br>
-&gt;&nbsp; #include &lt;linux/hwmon.h&gt;<br>
-&gt;&nbsp; #include &lt;linux/hwmon-sysfs.h&gt;<br>
-&gt;&nbsp; #include &lt;linux/nospec.h&gt;<br>
-&gt; +#include &lt;linux/platform_profile.h&gt;<br>
-&gt;&nbsp; #include &lt;linux/pm_runtime.h&gt;<br>
-&gt;&nbsp; #include &lt;asm/processor.h&gt;<br>
-&gt;&nbsp; #include &quot;hwmgr.h&quot;<br>
-&gt; @@ -200,6 +201,33 @@ static ssize_t amdgpu_set_power_dpm_state(struct =
-device *dev,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return count;<br>
-&gt;&nbsp; }<br>
-&gt;<br>
-&gt; +static int amdgpu_get_forced_level(struct device *dev, enum amd_dpm_f=
-orced_level *level)<br>
-&gt; +{<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_device *ddev =3D dev_=
-get_drvdata(dev);<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev =3D d=
-rm_to_adev(ddev);<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
-&gt; +<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (amdgpu_in_reset(adev))<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return -EPERM;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;in_suspend &amp;&am=
-p; !adev-&gt;in_runpm)<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return -EPERM;<br>
-&gt; +<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D pm_runtime_get_sync(ddev=
--&gt;dev);<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret &lt; 0) {<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; pm_runtime_put_autosuspend(ddev-&gt;dev);<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return ret;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; +<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;powerplay.pp_funcs-=
-&gt;get_performance_level)<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; *level =3D amdgpu_dpm_get_performance_level(adev);<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; *level =3D adev-&gt;pm.dpm.forced_level;<br>
-&gt; +<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pm_runtime_mark_last_busy(ddev-&=
-gt;dev);<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pm_runtime_put_autosuspend(ddev-=
-&gt;dev);<br>
-&gt; +<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&gt; +}<br>
-&gt;<br>
-&gt;&nbsp; /**<br>
-&gt;&nbsp;&nbsp; * DOC: power_dpm_force_performance_level<br>
-&gt; @@ -264,29 +292,13 @@ static ssize_t amdgpu_get_power_dpm_force_perfor=
-mance_level(struct device *dev,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct dev=
-ice_attribute *attr,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char *buf)=
-<br>
-&gt;&nbsp; {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_device *ddev =3D dev_=
-get_drvdata(dev);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev =3D d=
-rm_to_adev(ddev);<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enum amd_dpm_forced_le=
-vel level =3D 0xff;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
-&gt;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (amdgpu_in_reset(adev))<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return -EPERM;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;in_suspend &amp;&am=
-p; !adev-&gt;in_runpm)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return -EPERM;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D amdgpu_get_forced_level(=
-dev, &amp;level);<br>
-&gt;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D pm_runtime_get_sync(ddev=
--&gt;dev);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret &lt; 0) {<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; pm_runtime_put_autosuspend(ddev-&gt;dev);<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret &lt; 0)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;powerplay.pp_funcs-=
-&gt;get_performance_level)<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; level =3D amdgpu_dpm_get_performance_level(adev);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; level =3D adev-&gt;pm.dpm.forced_level;<br>
-&gt; -<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pm_runtime_mark_last_busy(ddev-&=
-gt;dev);<br>
-&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pm_runtime_put_autosuspend(ddev-=
-&gt;dev);<br>
-&gt;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return sysfs_emit(buf,=
- &quot;%s\n&quot;,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; (level =3D=3D AMD_DPM_FORCED_LEVEL_AUTO) ? &quot;auto&quot; :<br=
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Am 2021-11-10 um 4:14 a.m. schrieb Lazar, Lijo:<br=
 >
-&gt; @@ -405,6 +417,59 @@ static ssize_t amdgpu_set_power_dpm_force_perform=
-ance_level(struct device *dev,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return count;<br>
-&gt;&nbsp; }<br>
 &gt;<br>
-&gt; +static void amdgpu_update_profile(struct device *dev, enum platform_p=
-rofile_option *profile)<br>
-&gt; +{<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enum amd_dpm_forced_level level;=
-<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const char *str;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
-&gt; +<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret =3D amdgpu_get_forced_level(=
-dev, &amp;level);<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret &lt; 0)<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return;<br>
-&gt; +<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* only update profile if we're =
-in fixed modes right now that need updating */<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (level) {<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMD_DPM_FORCED_LEVEL_LOW:<b=
+&gt;<br>
+&gt; On 11/10/2021 8:00 AM, Felix Kuehling wrote:<br>
+&gt;&gt; Disable HDP register remapping on SRIOV and set rmmio_remap.reg_of=
+fset<br>
+&gt;&gt; to the fixed address of the VF register for hdp_v*_flush_hdp.<br>
+&gt;&gt;<br>
+&gt;&gt; Signed-off-by: Felix Kuehling &lt;Felix.Kuehling@amd.com&gt;<br>
+&gt;&gt; ---<br>
+&gt;&gt; &nbsp; drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c | 4 ++++<br>
+&gt;&gt; &nbsp; drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c | 4 ++++<br>
+&gt;&gt; &nbsp; drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c | 4 +++-<br>
+&gt;&gt; &nbsp; drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c | 4 ++++<br>
+&gt;&gt; &nbsp; drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c | 4 +++-<br>
+&gt;&gt; &nbsp; drivers/gpu/drm/amd/amdgpu/nv.c&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; | 8 +++++---<br>
+&gt;&gt; &nbsp; drivers/gpu/drm/amd/amdgpu/soc15.c&nbsp;&nbsp;&nbsp;&nbsp; =
+| 8 +++++---<br>
+&gt;&gt; &nbsp; 7 files changed, 28 insertions(+), 8 deletions(-)<br>
+&gt;&gt;<br>
+&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c<br>
+&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c<br>
+&gt;&gt; index 4ecd2b5808ce..ee7cab37dfd5 100644<br>
+&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c<br>
+&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c<br>
+&gt;&gt; @@ -359,6 +359,10 @@ static void nbio_v2_3_init_registers(struct<b=
 r>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (*profile &lt; PLATFORM_PROFILE_BALANCED)<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; break;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMD_DPM_FORCED_LEVEL_HIGH:<=
+&gt;&gt; amdgpu_device *adev)<br>
+&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (def !=3D data)<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_PCIE=
+(smnPCIE_CONFIG_CNTL, data);<br>
+&gt;&gt; +<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp; if (amdgpu_sriov_vf(adev))<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.r=
+eg_offset =3D SOC15_REG_OFFSET(NBIO, 0,<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; mmBIF_BX_DEV0_EPF0_VF0_HDP_MEM_COHERENCY_FLUSH_CNTL) &lt;&lt; 2;<br>
+&gt;<br>
+&gt; Wouldn't it be better to do this assignment inside<br>
+&gt; remap_hdp_registers()? Return with a comment saying no remap is done<b=
+r>
+&gt; for VFs. That looks easier to manage per IP version.<br>
+<br>
+I was considering that. I felt it was clearer not to have that hidden<br>
+side effect in remap_hdp_registers and to have the explicit condition<br>
+(... &amp;&amp;&nbsp; !amdgpu_sriov_vf(adev)) around the remap_hdp_register=
+s call in<br>
+soc15/nv_common_hw_init.<br>
+<br>
+Regards,<br>
+&nbsp; Felix<br>
+<br>
+<br>
+&gt;<br>
+&gt; Thanks,<br>
+&gt; Lijo<br>
+&gt;<br>
+&gt;&gt; &nbsp; }<br>
+&gt;&gt; &nbsp; &nbsp; #define NAVI10_PCIE__LC_L0S_INACTIVITY_DEFAULT&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x00000000<br>
+&gt;&gt; // off by default, no gains over L1<br>
+&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c<br>
+&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c<br>
+&gt;&gt; index 0d2d629e2d6a..4bbacf1be25a 100644<br>
+&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c<br>
+&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c<br>
+&gt;&gt; @@ -276,6 +276,10 @@ static void nbio_v6_1_init_registers(struct<b=
+r>
+&gt;&gt; amdgpu_device *adev)<br>
+&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (def !=3D data)<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WREG32_PCIE=
+(smnPCIE_CI_CNTL, data);<br>
+&gt;&gt; +<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp; if (amdgpu_sriov_vf(adev))<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.r=
+eg_offset =3D SOC15_REG_OFFSET(NBIO, 0,<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; mmBIF_BX_DEV0_EPF0_VF0_HDP_MEM_COHERENCY_FLUSH_CNTL) &lt;&lt; 2;<br>
+&gt;&gt; &nbsp; }<br>
+&gt;&gt; &nbsp; &nbsp; static void nbio_v6_1_program_ltr(struct amdgpu_devi=
+ce *adev)<br>
+&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c<br>
+&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c<br>
+&gt;&gt; index 3c00666a13e1..37a4039fdfc5 100644<br>
+&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c<br>
+&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c<br>
+&gt;&gt; @@ -273,7 +273,9 @@ const struct nbio_hdp_flush_reg<br>
+&gt;&gt; nbio_v7_0_hdp_flush_reg =3D {<br>
+&gt;&gt; &nbsp; &nbsp; static void nbio_v7_0_init_registers(struct amdgpu_d=
+evice *adev)<br>
+&gt;&gt; &nbsp; {<br>
+&gt;&gt; -<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp; if (amdgpu_sriov_vf(adev))<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.r=
+eg_offset =3D<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; SOC15_REG_OFFSET(NBIO, 0,<br>
+&gt;&gt; mmHDP_MEM_COHERENCY_FLUSH_CNTL) &lt;&lt; 2;<br>
+&gt;&gt; &nbsp; }<br>
+&gt;&gt; &nbsp; &nbsp; const struct amdgpu_nbio_funcs nbio_v7_0_funcs =3D {=
+<br>
+&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c<br>
+&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c<br>
+&gt;&gt; index 8f2a315e7c73..3444332ea110 100644<br>
+&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c<br>
+&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c<br>
+&gt;&gt; @@ -371,6 +371,10 @@ static void nbio_v7_2_init_registers(struct<b=
+r>
+&gt;&gt; amdgpu_device *adev)<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (def !=
+=3D data)<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; WREG32_PCIE_PORT(SOC15_REG_OFFSET(NBIO, 0,<br>
+&gt;&gt; regPCIE_CONFIG_CNTL), data);<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt;&gt; +<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp; if (amdgpu_sriov_vf(adev))<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.r=
+eg_offset =3D SOC15_REG_OFFSET(NBIO, 0,<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; regBIF_BX_PF0_HDP_MEM_COHERENCY_FLUSH_CNTL) &lt;&lt; 2;<br>
+&gt;&gt; &nbsp; }<br>
+&gt;&gt; &nbsp; &nbsp; const struct amdgpu_nbio_funcs nbio_v7_2_funcs =3D {=
+<br>
+&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c<br>
+&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c<br>
+&gt;&gt; index b8bd03d16dba..e96516d3fd45 100644<br>
+&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c<br>
+&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c<br>
+&gt;&gt; @@ -362,7 +362,9 @@ const struct nbio_hdp_flush_reg<br>
+&gt;&gt; nbio_v7_4_hdp_flush_reg_ald =3D {<br>
+&gt;&gt; &nbsp; &nbsp; static void nbio_v7_4_init_registers(struct amdgpu_d=
+evice *adev)<br>
+&gt;&gt; &nbsp; {<br>
+&gt;&gt; -<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp; if (amdgpu_sriov_vf(adev))<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.r=
+eg_offset =3D SOC15_REG_OFFSET(NBIO, 0,<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; mmBIF_BX_DEV0_EPF0_VF0_HDP_MEM_COHERENCY_FLUSH_CNTL) &lt;&lt; 2;<br>
+&gt;&gt; &nbsp; }<br>
+&gt;&gt; &nbsp; &nbsp; static void<br>
+&gt;&gt; nbio_v7_4_handle_ras_controller_intr_no_bifring(struct amdgpu_devi=
+ce<br>
+&gt;&gt; *adev)<br>
+&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c<br>
+&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/nv.c<br>
+&gt;&gt; index febc903adf58..7088528079c6 100644<br>
+&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/nv.c<br>
+&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/nv.c<br>
+&gt;&gt; @@ -730,8 +730,10 @@ static int nv_common_early_init(void *handle)=
+<br>
+&gt;&gt; &nbsp; #define MMIO_REG_HOLE_OFFSET (0x80000 - PAGE_SIZE)<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev =3D (str=
+uct amdgpu_device *)handle;<br>
+&gt;&gt; &nbsp; -&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.reg_offset =3D MMI=
+O_REG_HOLE_OFFSET;<br>
+&gt;&gt; -&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.bus_addr =3D adev-&gt;rmm=
+io_base +<br>
+&gt;&gt; MMIO_REG_HOLE_OFFSET;<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp; if (!amdgpu_sriov_vf(adev)) {<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.r=
+eg_offset =3D MMIO_REG_HOLE_OFFSET;<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.b=
+us_addr =3D adev-&gt;rmmio_base +<br>
+&gt;&gt; MMIO_REG_HOLE_OFFSET;<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp; }<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;smc_rreg =3D NULL;<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;smc_wreg =3D NULL;<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;pcie_rreg =3D &amp;nv_pcie=
+_rreg;<br>
+&gt;&gt; @@ -1031,7 +1033,7 @@ static int nv_common_hw_init(void *handle)<b=
+r>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * for the purpose of expose t=
+hose registers<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * to process space<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&gt;&gt; -&nbsp;&nbsp;&nbsp; if (adev-&gt;nbio.funcs-&gt;remap_hdp_register=
+s)<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp; if (adev-&gt;nbio.funcs-&gt;remap_hdp_register=
+s &amp;&amp;<br>
+&gt;&gt; !amdgpu_sriov_vf(adev))<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;nb=
+io.funcs-&gt;remap_hdp_registers(adev);<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* enable the doorbell aperture */<=
 br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (*profile &gt; PLATFORM_PROFILE_BALANCED)<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; break;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case AMD_DPM_FORCED_LEVEL_AUTO:<=
-br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; if (*profile =3D=3D PLATFORM_PROFILE_BALANCED)<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; break;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; dev_dbg(dev, &quot;refusing to update amdgpu profile from %=
-d\n&quot;, level);<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; return;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (*profile &gt; PLATFORM_PROFI=
-LE_BALANCED)<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; str =3D &quot;high&quot;;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (*profile &lt; PLATFORM_=
-PROFILE_BALANCED)<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; str =3D &quot;low&quot;;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; str =3D &quot;auto&quot;;<br>
-&gt; +<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dev_dbg(dev, &quot;updating plat=
-form profile to %s\n&quot;, str);<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_set_power_dpm_force_perfo=
-rmance_level(dev, NULL, str, 0);<br>
-&gt; +}<br>
-&gt; +<br>
-&gt; +static int amdgpu_platform_profile_notifier_call(struct notifier_bloc=
-k *nb,<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unsig=
-ned long action, void *data)<br>
-&gt; +{<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (action =3D=3D PLATFORM_PROFI=
-LE_CHANGED) {<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; enum platform_profile_option *profile =3D data;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; struct amdgpu_device *adev;<br>
-&gt; +<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; adev =3D container_of(nb, struct amdgpu_device, platform_pr=
-ofile_notifier);<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; amdgpu_update_profile(adev-&gt;dev, profile);<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&gt; +<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return NOTIFY_OK;<br>
-&gt; +}<br>
-&gt; +<br>
-&gt;&nbsp; static ssize_t amdgpu_get_pp_num_states(struct device *dev,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; struct device_attribute *attr,<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; char *buf)<br>
-&gt; @@ -3506,6 +3571,9 @@ int amdgpu_pm_sysfs_init(struct amdgpu_device *a=
-dev)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
-&gt;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;platform_profile_notifi=
-er.notifier_call =3D amdgpu_platform_profile_notifier_call;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; platform_profile_register_notifi=
-er(&amp;adev-&gt;platform_profile_notifier);<br>
-&gt; +<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;pm.sysfs_init=
-ialized =3D true;<br>
-&gt;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
-&gt; @@ -3519,6 +3587,7 @@ void amdgpu_pm_sysfs_fini(struct amdgpu_device *=
-adev)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;pm.int_hw=
-mon_dev)<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; hwmon_device_unregister(adev-&gt;pm.int_hwmon_dev=
-);<br>
-&gt;<br>
-&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; platform_profile_unregister_noti=
-fier(&amp;adev-&gt;platform_profile_notifier);<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_device_attr_rem=
-ove_groups(adev, &amp;adev-&gt;pm.pm_attr_list);<br>
-&gt;&nbsp; }<br>
-&gt;<br>
-&gt; --<br>
-&gt; 2.25.1<br>
-&gt;<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nv_enable_doorbell_aperture(adev, t=
+rue);<br>
+&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c<br>
+&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/soc15.c<br>
+&gt;&gt; index 0c316a2d42ed..de9b55383e9f 100644<br>
+&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/soc15.c<br>
+&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/soc15.c<br>
+&gt;&gt; @@ -971,8 +971,10 @@ static int soc15_common_early_init(void *hand=
+le)<br>
+&gt;&gt; &nbsp; #define MMIO_REG_HOLE_OFFSET (0x80000 - PAGE_SIZE)<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev =3D (str=
+uct amdgpu_device *)handle;<br>
+&gt;&gt; &nbsp; -&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.reg_offset =3D MMI=
+O_REG_HOLE_OFFSET;<br>
+&gt;&gt; -&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.bus_addr =3D adev-&gt;rmm=
+io_base +<br>
+&gt;&gt; MMIO_REG_HOLE_OFFSET;<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp; if (!amdgpu_sriov_vf(adev)) {<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.r=
+eg_offset =3D MMIO_REG_HOLE_OFFSET;<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;rmmio_remap.b=
+us_addr =3D adev-&gt;rmmio_base +<br>
+&gt;&gt; MMIO_REG_HOLE_OFFSET;<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp; }<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;smc_rreg =3D NULL;<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;smc_wreg =3D NULL;<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;pcie_rreg =3D &amp;soc15_p=
+cie_rreg;<br>
+&gt;&gt; @@ -1285,7 +1287,7 @@ static int soc15_common_hw_init(void *handle=
+)<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * for the purpose of expose t=
+hose registers<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * to process space<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&gt;&gt; -&nbsp;&nbsp;&nbsp; if (adev-&gt;nbio.funcs-&gt;remap_hdp_register=
+s)<br>
+&gt;&gt; +&nbsp;&nbsp;&nbsp; if (adev-&gt;nbio.funcs-&gt;remap_hdp_register=
+s &amp;&amp;<br>
+&gt;&gt; !amdgpu_sriov_vf(adev))<br>
+&gt;&gt; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;nb=
+io.funcs-&gt;remap_hdp_registers(adev);<br>
+&gt;&gt; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* enable the doorbell apert=
+ure */<br>
+&gt;&gt;<br>
 </div>
-</span></font><br>
-</div>
+</span></font></div>
 </div>
 </body>
 </html>
 
---_000_DM6PR12MB39300185FB03556E914290C297939DM6PR12MB3930namp_--
+--_000_DM6PR12MB39307C2E18445AA344F9930F97939DM6PR12MB3930namp_--
