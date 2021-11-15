@@ -1,57 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E516745075C
-	for <lists+amd-gfx@lfdr.de>; Mon, 15 Nov 2021 15:43:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDF724508A6
+	for <lists+amd-gfx@lfdr.de>; Mon, 15 Nov 2021 16:36:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C4F06E056;
-	Mon, 15 Nov 2021 14:43:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7D1989B7B;
+	Mon, 15 Nov 2021 15:36:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com
- [IPv6:2607:f8b0:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A68906E056
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Nov 2021 14:43:32 +0000 (UTC)
-Received: by mail-ot1-x32d.google.com with SMTP id
- a23-20020a9d4717000000b0056c15d6d0caso20716193otf.12
- for <amd-gfx@lists.freedesktop.org>; Mon, 15 Nov 2021 06:43:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Nc56XFkM0O1Qcwe9XSQJS+ByPSVDOEr1hRiKSyIPnXA=;
- b=OgqtYCkcGz98ie7qdoAUAZCsJxDZCytQIX5frsteuJ5y4zERY+SpEnfM55It382LSi
- vCelpbZZjEPxF2ZbssFSwBhJ41AVY6ZhEG7EWKPpCBbXFZHJfBeM+5wGbfrv1YrdFCxb
- ksyOqGweNoYqb5+YC1TlRR/O1qEP5kT9NCVvHfAjim9by1nhkrEXXVmsfiT2DHG+yeoU
- knAN7ktiyp1RwAdADs0F9bHrxWRmxu1AR5bbrI9Ef59pCok6J+NK8dD2CyUEStOq8oBM
- /H6ufq4RdR5hhR8NyYMJ+HgmVN8ZUTXrwytcIMYiwxgX7VLkNJ2b87+8+5slbJBrHU8s
- vO8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Nc56XFkM0O1Qcwe9XSQJS+ByPSVDOEr1hRiKSyIPnXA=;
- b=1O+kzuYLhxUxVE62O+iCrJeoJfUXIEvtHapJoBnG3lLE4xqOOafLMJho6XwDqEp7zL
- g4RVWA8LIyjwvBktVZ0UBaPsfGLC7YSw46Hc+uVg2GGf/7bZ3dU6OhTfn12yhIrs7vEi
- nX0CFm7zZb+ogaIU/9IX9+dFZjNPr/2uJfJCtN+wjY+tKk4+907A/h3CLd9FAoo6viGt
- HhbExzgxMa4l7S2K4bBRDW2PLpNcYVrMf9nevHIvfLQiuI73g13zdZeIOFkWNa4EUJQ9
- l2Q+1I2Nqe91iyarIW5ITocJlc+21IjxmggBVFbr7dnd/qiSGLdwdexNBcnh6yXnwAdh
- b/wQ==
-X-Gm-Message-State: AOAM533eQ7rpYmCzUkI6iw3v4X4ca/GbrxXayAZoapYOPdoYgcM+N0ml
- Dv6WXGtwB11nclh/d4LHopMLmqcCyL2M8/QZwk8=
-X-Google-Smtp-Source: ABdhPJyYRj5OQlafX/AWp9kgr4k/kLZP8V1N7CWexBegvlauBMO5jawHc3hn/O7XqYubI3vdGCcydRtMb7bysWB8y7g=
-X-Received: by 2002:a05:6830:1bcf:: with SMTP id
- v15mr32391256ota.200.1636987411908; 
- Mon, 15 Nov 2021 06:43:31 -0800 (PST)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAED56E040;
+ Mon, 15 Nov 2021 11:07:15 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10168"; a="213454539"
+X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="213454539"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2021 03:07:15 -0800
+X-IronPort-AV: E=Sophos;i="5.87,236,1631602800"; d="scan'208";a="471871683"
+Received: from smile.fi.intel.com ([10.237.72.184])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2021 03:07:09 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1mmZpE-0072P3-CN; Mon, 15 Nov 2021 13:07:00 +0200
+Date: Mon, 15 Nov 2021 13:07:00 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: [PATCH v1 1/3] string: Consolidate yesno() helpers under
+ string.h hood
+Message-ID: <YZI/VB+RhScL1wAi@smile.fi.intel.com>
+References: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
+ <20211005213423.dklsii4jx37pjvb4@ldmartin-desk2>
 MIME-Version: 1.0
-References: <20211112162530.149709-1-alexander.deucher@amd.com>
- <a3c306e5-2672-dd33-fb18-ff86619d617c@amd.com>
-In-Reply-To: <a3c306e5-2672-dd33-fb18-ff86619d617c@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 15 Nov 2021 09:43:20 -0500
-Message-ID: <CADnq5_N4v1NSUpu1i_HVq3PB4spM6Bjv6ubWGFJW5i5SRf2o4Q@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdgpu: always reset the asic in suspend (v2)
-To: "Lazar, Lijo" <lijo.lazar@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211005213423.dklsii4jx37pjvb4@ldmartin-desk2>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Mailman-Approved-At: Mon, 15 Nov 2021 15:36:48 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,62 +49,46 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: David Airlie <airlied@linux.ie>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Francis Laniel <laniel_francis@privacyrequired.com>,
+ amd-gfx@lists.freedesktop.org, Jakub Kicinski <kuba@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Mikita Lipski <mikita.lipski@amd.com>,
+ Eryk Brol <eryk.brol@amd.com>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+ Daniel Vetter <daniel@ffwll.ch>, Raju Rangoju <rajur@chelsio.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 15, 2021 at 2:50 AM Lazar, Lijo <lijo.lazar@amd.com> wrote:
->
->
->
-> On 11/12/2021 9:55 PM, Alex Deucher wrote:
-> > If the platform suspend happens to fail and the power rail
-> > is not turned off, the GPU will be in an unknown state on
-> > resume, so reset the asic so that it will be in a known
-> > good state on resume even if the platform suspend failed.
-> >
->
-> Any more background info on the issue? Is there a need to trigger BACO
-> or D3cold entry similar to how it's done for runtime suspend?
+On Tue, Oct 05, 2021 at 02:34:23PM -0700, Lucas De Marchi wrote:
+> On Mon, Feb 15, 2021 at 04:21:35PM +0200, Andy Shevchenko wrote:
+> > We have already few similar implementation and a lot of code that can benefit
+> > of the yesno() helper.  Consolidate yesno() helpers under string.h hood.
+> 
+> I was taking a look on i915_utils.h to reduce it and move some of it
+> elsewhere to be shared with others.  I was starting with these helpers
+> and had [1] done, then Jani pointed me to this thread and also his
+> previous tentative. I thought the natural place for this would be
+> include/linux/string_helpers.h, but I will leave it up to you.
 
-Basically something like the following, user requests S3, drivers
-start to do their suspend thing, but then something interrupts it
-(e.g., user plugs/unplugs a usb device or S3 gets interrupted for
-something).  At that point, the power rail has not been turned off.
-The kernel then starts calling the resume functions for each device
-because the suspend was aborted.  However, since the power rail was
-not turned off, the GPU is still initialized so the driver can't
-properly re-init it without a reset.
+Seems reasonable to use string_helpers (headers and/or C-file).
 
-Alex
+> After reading the threads, I don't see real opposition to it.
+> Is there a tree you plan to take this through?
+
+I rest my series in favour of Jani's approach, so I suppose there is no go
+for _this_ series.
+
+> [1] https://lore.kernel.org/lkml/20211005212634.3223113-1-lucas.demarchi@intel.com/T/#u
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
->
-> Thanks,
-> Lijo
->
-> > v2: handle s0ix
-> >
-> > Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> > ---
-> >   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 5 ++++-
-> >   1 file changed, 4 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> > index 1db76429a673..b4591f6e82dd 100644
-> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-> > @@ -2165,7 +2165,10 @@ static int amdgpu_pmops_suspend(struct device *dev)
-> >       adev->in_s3 = true;
-> >       r = amdgpu_device_suspend(drm_dev, true);
-> >       adev->in_s3 = false;
-> > -
-> > +     if (r)
-> > +             return r;
-> > +     if (!adev->in_s0ix)
-> > +             r = amdgpu_asic_reset(adev);
-> >       return r;
-> >   }
-> >
-> >
