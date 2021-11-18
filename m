@@ -2,124 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7B79455E0D
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Nov 2021 15:31:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FA9A455E65
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Nov 2021 15:41:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A2516E96C;
-	Thu, 18 Nov 2021 14:31:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEE9B6EB9F;
+	Thu, 18 Nov 2021 14:40:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2088.outbound.protection.outlook.com [40.107.244.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67F3D6E96C
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Nov 2021 14:31:00 +0000 (UTC)
+ (mail-mw2nam12on2073.outbound.protection.outlook.com [40.107.244.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 988D16EB9C
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Nov 2021 14:40:58 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=G+EnfUT+eCc1palsORXszQhxVZY3q44eWRFK468jnYbMj2SuoSUzAZ8+yh0rtk6epy9T6erlyuWg3Sh+W17v90MZsp50CPpeENKfuQeaRq/X9Zlbyv/ohMDuA/1ajzQT+lBOM9BS6wZpEgvp2Fb9lll2CLfjQm30bSJoNAnVTCLOLpyUWgzbBAFK5NiFW5RgENr+VTBf9zH5MI6T7yepkTWeYvveTNGVZlpDxuFDva9/rdpJ6AzgWItt1taEfmJTnKF3EzvbsHhDXL2NOS7FeBOtDxXhnGzh/S1TvaEr3L/KNxrYTnPGFh05jmPx4hmsJOeUMgV7FNkfeRn9QDZPfQ==
+ b=iK2auuet16hP8fmW9FdEPqibK0T2Jn8dzNYvNuR/LDh+UWr8tAJwIiNM8aVegw2GZON0jn7HPOXuzdlfQFBh1wDak3EJn9Hh03eLYEQ32JsucWmOYtxz0GK89UshDSaQiBn2S1qn+y2DkvZy2ncVAPiZkTSKUNESPJDBpW7c+uTYHIrc/k/jtLH/wDRz6qY6BoHXCy8CaPsT0C/F1qj2tzCzW1jTIXTevr/+Ehp9CkJ4apltWayYuZpy21OSMNowF3/sGeNKb9SV8MIi7aZ8JvpYXsugp42JIuQDnUkKQQXHYqI4nIQuae+8oAgBfvvKf0NfKHl2PJKknYGEQS6JsA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zh9M4QmLnd6v3sN6K08vUH7XYuLLg0KLRoqIPp/ucmI=;
- b=CymWg/gGBt6SIvZEtO4Gac5ep/lG5SczGY5iUhdXoQs3xf+gl0Vcgxex+TNV+PLuSjdqGQ9oRht4d4789tuiMJz0ovPZlGmwX76dV50AI+En4D77VYhd1H+Ihk/ghsdVr3Uc3JBTaOmod/lKV8rA67lixL07YzT+ZC559aNQcoSWiMEs2Q4WsJGb8wh7NncGvc1hH3XkQV8G+5D4kPByjVJtdPsqJZ9ZyOLtN7Swop4NNbTaDz0sWgp+/kTWg59MMbnIgnb+iAqnJg5xK+JwDXAtRSDB1bI8XD+wqp0oH+GBITACehDeehzCsWL0YxwkMD/mhv6j86MbxsyuicUOQQ==
+ bh=2lWBFh8PhW8wO9Nr+MCCHxCaA+YIK+wIVADyvccN0wI=;
+ b=eIMEioqMeXMQuO2iyPvAHWJtQZ/KT374rXkXYrEebv+/dEXPmEGtkESfOpKBVYePT6ybLdi5NfG+aD8LM76Cm3bw8WOxr3/0xWgew4znI5d9YkBFmB+ZtdEx0mPZBP3Hrwua2muUFM2xcA398zyijtbYMN6AnsCqvru8vkNAGiTTwlJ3v5RfvdtZ45ddHGVXQ0FBWBCG6CvnjqahkjNuMQkgDFbWnXACg873IlvztzdqNh/LAmXS2JzJk2qOMdrSHRHGjbr5esYSYvrqvWOhOFGNeBZ22e9CzLdGmExGSOH1aaMQKY3PeoKIEI1zlxu86JH9O6jCoG4tl5xjXkTwRQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zh9M4QmLnd6v3sN6K08vUH7XYuLLg0KLRoqIPp/ucmI=;
- b=vSZJqok91jUOk8oxVDVkVeLq9wuh25o5sD5fTrbJHz65bbvBggbIZVCP4IdUYfLyLMGBUnoLBJ3IaFlqP4P+ABxBYdKPD+OOH1X/O64Kzt7fUJQbHV3HaJRr4UAM1V5kx6hakBq3x9gf/8BFAVw4gxa+sQvtmv6d7aqc16IHaBc=
+ bh=2lWBFh8PhW8wO9Nr+MCCHxCaA+YIK+wIVADyvccN0wI=;
+ b=rnUChODLnAXo+bbLPE1qZZdb9Rmy8fqWEjPsHUNvJtdbPT689pp8MO09Z8FxEPmByp1oD13ztaIjCo0LyoJMCWb+S1/jMaHzJK9tfOIbglokgyu9bkpBfSNy7UwpEbm28Hr+aN+lPCMvYhQBvHUokAJxsgQaAfKNJASvJSWs4MM=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com (2603:10b6:5:390::14)
- by DM4PR12MB5360.namprd12.prod.outlook.com (2603:10b6:5:39f::24) with
+Received: from DM6PR12MB3930.namprd12.prod.outlook.com (2603:10b6:5:1c9::19)
+ by DM5PR12MB1242.namprd12.prod.outlook.com (2603:10b6:3:6d::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.22; Thu, 18 Nov
- 2021 14:30:58 +0000
-Received: from DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::dcf7:d6ee:654f:a2cf]) by DM4PR12MB5149.namprd12.prod.outlook.com
- ([fe80::dcf7:d6ee:654f:a2cf%4]) with mapi id 15.20.4669.015; Thu, 18 Nov 2021
- 14:30:58 +0000
-Subject: Re: [PATCH 1/3] drm/amdkfd: process exit and retry fault race
-To: Felix Kuehling <felix.kuehling@amd.com>, Philip Yang
- <Philip.Yang@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20211117034324.4663-1-Philip.Yang@amd.com>
- <fb6b3750-56e4-8a79-c479-10c4cbbd3e4a@amd.com>
-From: philip yang <yangp@amd.com>
-Message-ID: <040dda91-4fb3-044a-2bc3-6450cc073744@amd.com>
-Date: Thu, 18 Nov 2021 09:30:56 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-In-Reply-To: <fb6b3750-56e4-8a79-c479-10c4cbbd3e4a@amd.com>
-Content-Type: text/html; charset=utf-8
+ 2021 14:40:56 +0000
+Received: from DM6PR12MB3930.namprd12.prod.outlook.com
+ ([fe80::591a:8986:aca2:c560]) by DM6PR12MB3930.namprd12.prod.outlook.com
+ ([fe80::591a:8986:aca2:c560%3]) with mapi id 15.20.4713.022; Thu, 18 Nov 2021
+ 14:40:56 +0000
+Message-ID: <d7e8d2ca-e167-7c1b-3f18-45208b8ab4d5@amd.com>
+Date: Thu, 18 Nov 2021 20:10:44 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIIFJldmlldyAzLzRdIGRybS9hbWRncHU6?=
+ =?UTF-8?Q?_add_message_smu_to_get_ecc=5ftable_v2?=
 Content-Language: en-US
+To: "Yang, Stanley" <Stanley.Yang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "Zhang, Hawking" <Hawking.Zhang@amd.com>,
+ "Clements, John" <John.Clements@amd.com>, "Quan, Evan" <Evan.Quan@amd.com>,
+ "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>
+References: <20211118093344.4361-1-Stanley.Yang@amd.com>
+ <20211118093344.4361-3-Stanley.Yang@amd.com>
+ <491af5a4-e6d9-6210-6819-1817f04d7700@amd.com>
+ <BL1PR12MB53349DB7D7FC5FF559F1906E9A9B9@BL1PR12MB5334.namprd12.prod.outlook.com>
+From: "Lazar, Lijo" <lijo.lazar@amd.com>
+In-Reply-To: <BL1PR12MB53349DB7D7FC5FF559F1906E9A9B9@BL1PR12MB5334.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BL0PR02CA0052.namprd02.prod.outlook.com
- (2603:10b6:207:3d::29) To DM4PR12MB5149.namprd12.prod.outlook.com
- (2603:10b6:5:390::14)
+X-ClientProxiedBy: PN3PR01CA0115.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:96::14) To DM6PR12MB3930.namprd12.prod.outlook.com
+ (2603:10b6:5:1c9::19)
 MIME-Version: 1.0
-Received: from [172.27.226.38] (165.204.55.251) by
- BL0PR02CA0052.namprd02.prod.outlook.com (2603:10b6:207:3d::29) with Microsoft
+Received: from [10.252.81.250] (165.204.159.242) by
+ PN3PR01CA0115.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:96::14) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4713.19 via Frontend Transport; Thu, 18 Nov 2021 14:30:58 +0000
+ 15.20.4713.22 via Frontend Transport; Thu, 18 Nov 2021 14:40:52 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6806cdc9-7f9c-4685-6607-08d9aaa009ad
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5360:
-X-Microsoft-Antispam-PRVS: <DM4PR12MB536093FAE786BBC12A97458FE69B9@DM4PR12MB5360.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: ee3d1770-8a9a-4ebf-27b1-08d9aaa16e2c
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1242:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB12424A04172D01DD040221A1979B9@DM5PR12MB1242.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Dx3SwvVXNjyx4wdJpQtpK1ITPCeOpo/aLyEtGToUYWhORKFfDWvXEXNX+2kt/CqDiEGy68A2VHPanxRDYHuz6hR/bV0gsNrGrytTPr4IBesPZhhKMNjQpj32JLO5S7DEgfsUeN6N/t8sB1ykZpR9wZDkT2AZpjSXCWKetealA4M9gU6PxtGcy/DV7p3N8F2Syt08TEmnkjA8wUSSmUE8Egrsf/QTBcjZU0TDrIfjHwjl8z1Zz7XPBCBbSIumNADG2xspSOCIICIfMb37/WgeA4SjgHPEeCQonZNy0NoCLMh5aQ2V6JYSkGb00YslbaFvyy3TvjDKcnAnJnzj8Rchxw4B7C5/PQRM48K5UN3E6yBQ56iJkQxkbZvg/XRZ9Xtpm4IN4t5IzM0PUxQxyZ3/CkBN2We3aQkf9ncfA7RnpTghy14XclmOhrIsuIcoIwbjXiHXXw4jbMyv70EUcac4BlPigC33AmM3KXXK0O+DN61MIk9J9mDW8ckx9cCo00r72TcFuxWxi+EQ37DE8nsrvy+g0vdQlCgQgGbLPmX9fxn8UIUP13nMkC864X9OLCl6xfEqDDydwEmAp7oiyiKNXH30x+6qmCRfChKd6sofd/woYNe0XoTx1qwywAqmzcILmqgePG93xnsfh8Ojsf32TKN4V8DL6hLhjga1XKZFXA3DpEfQkxEt+dFUr25j2tWnF5ifq97QVOpu/X5Ths9L94Fh8tIntiI44UBcfoZWcws=
+X-Microsoft-Antispam-Message-Info: REuEhFMbkZxQpkO3Mb6fiB6f8jkeeBdw6MrnJ+eBfoZjTxqfVegEFHodJd336KktqvIFRL+IqRB/oM7RXP4qewJE86uDxyJyUCqV81dm1B9izDwACNOi0AcIpB9gGXtxANwbXtrslKFYjFcQHtCqn3YfhzmjA8tuXHNXyUvUhFDbQvkLS4vPda7qZNum4pYs1R0RnnS8fF3cxJLcwjMvVkduJ66zQK8+e2A4vG9ZVuQkgAyu4+3nguwPV90DVtK9tXqPAKTRJZrslMQjhb4jHH2nutoRvGOTSBEz/0BzKU572kcho/kL+yEiZfFrmvwCPk1XyfMopt2QTKyS4V/PzHh79BlknYPnzKMegRUa/74Fxe8GmD0i62RLNvEHaomtjwlUpQ47dvnhVFj2ZOF0uMzH8duJgijqj122a7zKC/EZAkqD/tIj8RUG0TFkjPT0R25dsydfKDC80uW8tJJ8yivrzWBhBi9NV6XjfDsPOqojvrvJ0UIIL3A7SItqLgU7FpujteWOS0DYudEzRRoSmcPrCO3l9EskZX4kTtAPsoSOVVauumykX8tDeOg6Qe+jAQVsOPTokcUDqKMfd6sWuHpAAB+ccvOTBStZ6UUrAMd6FOTBC4tDLPFgWy1g78iUF7YpdXByU0Th/65LdJNCnequUbY4B1eQqTFQxgpMokrdnZkPFQt8stGH5CztclPj3T+xWAlHgdpyb+lreuKUbYOzRzU+wVVpqXMuWavSdua0IGEhVbPorAC6+/yHdKPJ
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5149.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(6486002)(31686004)(8676002)(2906002)(8936002)(53546011)(66946007)(66556008)(66476007)(316002)(26005)(16576012)(186003)(508600001)(31696002)(38100700002)(83380400001)(5660300002)(2616005)(956004)(4001150100001)(36756003)(110136005)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3930.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(2616005)(83380400001)(6636002)(5660300002)(36756003)(110136005)(956004)(53546011)(66946007)(8936002)(921005)(86362001)(2906002)(66556008)(66476007)(6486002)(6666004)(31686004)(31696002)(508600001)(186003)(224303003)(38100700002)(316002)(15650500001)(16576012)(26005)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eTUraGFGQWlNVzFOMnBEY1NNN0txejl0UTZPdDJaQ2JlRGwyYXhKUXJHNE93?=
- =?utf-8?B?TitHU1NVdlcwM0VSQm44TXFsYzR1d0Y1MWhNUDlYek5pUGRwc1NUb3BhUUpy?=
- =?utf-8?B?UkFuQWd4ZThNTEVOa0ErTmZJRExwNVZzUy8vbXc4VDVvL1JjeWs1QS9aVGx1?=
- =?utf-8?B?RnBweklWVHJrNU83TjMzOWl2UkNlSFZjZVRjK0t0V3pseWRBVzAvOTNhSXFw?=
- =?utf-8?B?cmhWZnFENFBISTBaVEpvQ3Y0UkRjalZxVzMyemVHWHZwQ2x4QllnMVFTeEFC?=
- =?utf-8?B?a1Fmb3R5Q1duenB5VmVPRlBjVUFkOENpUDh2TnIyYkVnVzdvaThWR3dleU9T?=
- =?utf-8?B?V2RGZGVuUHdCSThrN1RMSDYzb2FVOFVWY1ozUEJ1Wk5tRUdhVnlwZjlnNUc4?=
- =?utf-8?B?d3E5WUNCL29pY0xPYTBDcCszdUdDN29rUXBuczA2bndDNGYwNDgyYzkrT0hT?=
- =?utf-8?B?Q0FVcDVzUGlNbTFpd0l6NTZOZTY2VEYvUWF6bDBTa29JZTVMYkxEeGtTZFJC?=
- =?utf-8?B?cFVyUXZBZnE2anptaXdUNmJFL253K3Z0OURrZ2E5MkJYS1pxOVdMWXdIcFVM?=
- =?utf-8?B?TWhiaFV6ZE9ZUDBITlN1Rk1yYXBiTi9XZlZydGtnUm9LV0tuL3JNOVF3Y2RY?=
- =?utf-8?B?RWRsWXJUNENkTmwzQkU3VFB0b0htNHpJRGs3TDg1a0VDL1hLZWN6TndORFls?=
- =?utf-8?B?eE83RFowUlB1NUIzKy9rN3NCaU5UZnBsQU1oL2ZNV1NUdklsYnpDQTV5VDhJ?=
- =?utf-8?B?aGpVaFNEUE5vUS9ORE1TUXk0ekt1RFhLYXhLVnpyMVlXcGpKOXYxTlZPbXc0?=
- =?utf-8?B?YkI1TTh5N2NjSXNrNGJJZjBuaHdtWGJSa0JhcjJVaHhuaEZuNWNaUi9HQW5h?=
- =?utf-8?B?TTZkUjViYUkvUTF5bDlERGdReVhiU25PemlDUUtKT0NwV2hNeGg3RElseElU?=
- =?utf-8?B?ZDc1Mkw3c24za01ScXNHdnVFOFJnRDVRTlR0VkNsNkMvZUhNc1FtMEg2VEw0?=
- =?utf-8?B?Q2xTR1BXRzU4Y0VLUXpYREwvYzYzZGQxaUhrR0daaGxPbTZTMVVlZll4WkpX?=
- =?utf-8?B?dGF0L1ZRZmo2R3pVdm1obmc1cG10U2I3dVFYN1BBSk94QzdhRkNyeXo1Viti?=
- =?utf-8?B?Y3BZc1lDMlBPOTRpUG5uWEYrTForMjMwdWFDU2lnNnVUUGtSOVRvNmpFME9C?=
- =?utf-8?B?dVNqcGJpd2xCbzVuS3FwUkg2UitFRmhEblNxVGUrUCtXUXFBQlFzK2h2WFJm?=
- =?utf-8?B?OTlmRXYvQTdiZzE5RFNzS3hSbnZLck9HeS94bHBwcTNCNGNTRXViblBEVW8r?=
- =?utf-8?B?VmtrWm9WdzFENGhnYWQrOERRSFBOY3JjOHdUTmVTUWREcDA4ckNDN2lUUm9j?=
- =?utf-8?B?QitvdGFkSUpBdVZ2RGhKNWEwUHc2cU9wdzBkV1paU1ZlMUlsdkdzZnZRMUIy?=
- =?utf-8?B?V1FkSGh4SHM1ZUVtQWR2TGNGSzdxWEYreGhpVlE3UjhaRmdwN1NteVFXdDE3?=
- =?utf-8?B?MDFNbFlIb3FTK2k1UHBTN0NKbGxzQ1crTFM2cTU1VHBMeko2NTE5Vjl6Z1lh?=
- =?utf-8?B?cE9LS3d1MENEQ0JYK1V2N0p3T3VSakl6OUdxZ3pnL2tCRDVVSGRPRXl4UHpj?=
- =?utf-8?B?c0wxNXNZeXdkRkNrQW9NTGkraXBmS2lCMCt3bTFqck1GV29JOUJzU3Y1VXhY?=
- =?utf-8?B?ZWQ2VEFGcC9mWTh5Nm1mcjgyajhoWjd1YmtDMXJJa2E3Zjlpak94WlBBR1NB?=
- =?utf-8?B?TDBpT2l4cm9xQjZMQjJuamRMTWVhT21BdEFMNHNNSjZ4WnNTcWJLR01XRG5B?=
- =?utf-8?B?S0RQaHFpaEMwT3RFcEhvUmhjc0JLczNMMnVWWTBqNFllS1RQM3kveEQ1dFZC?=
- =?utf-8?B?K2tSb1l3bDlWTzZEeFZKM20rVHJXZ1M5dzNVUGdHR0FJQTd3bUZzNlRXb0E1?=
- =?utf-8?B?UThEK0ZFK3pQQ3ZxeVhXbDF4cFRBRmtVZ3ZldTVsaGNkaHhCbzYyLzM4blE1?=
- =?utf-8?B?T0VTL1VTVnowdlkzUTMxaHNmWUZqTUhzWTVIcUJyUE5MZjcvMzM3N3FvSVlv?=
- =?utf-8?B?Y244VFp1UkdUcm53WGVvTWI5dkFyVi9PdjRRRFUzalhrSHpxUTFrNm8wTkl2?=
- =?utf-8?Q?kot0=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VndBUG9RaGczTi9WRGlGYkRLRjhMbjhpS1dWZ251QlE5bWVYUkoxZmxmNnR5?=
+ =?utf-8?B?b0RvM3EvQW1ablFrOFV2TGJGTVgxbVE0RC96OTczM0pnM29WblVsSmxwSmdF?=
+ =?utf-8?B?WGR3UkxGOFZNYzh2NHd3cjlxYUFWMmhlMGZ2Q0JvOVl5MVNSb1VtOERMaXMx?=
+ =?utf-8?B?a1p4bW1EYkJ1d1gya1RJL2hzdzRVRys0RFdLeEljZVk4eHZxTTVCQ21uRXd0?=
+ =?utf-8?B?ck9ITGNLR0tIWEd1SkNFYmlQbVl1b0NMSGtmV2pheTVNL3VqOER4SlpXdFFP?=
+ =?utf-8?B?ZnB4SmtXVkc3NFI3ckFoK2VrTHk1N1dPUlJYc2lYTHlLOGQ5U2J6YW9RYk1t?=
+ =?utf-8?B?M3AvdmNNemE3dnJSOHpHOWVKbU13YUF2UHVJbHFCdUgzQ3U2dnppUVJNNXJa?=
+ =?utf-8?B?Z3g1eHZGUnZoQWNiSkhWT3VLcVkveUlJc2hXMktCS0tTRTFGSWJnNlBsZURy?=
+ =?utf-8?B?R3BRSGZKUjl4YVdJTUsvdXhYWXRaMlAwczBGT2lEM3U2eFRRZlFMLzAxUHFY?=
+ =?utf-8?B?Ykx6MU9Za3dZMUpiSlJEUy9CdmhUN0M4c05GRGJMejI1bXFmc1QrUW5BeUVZ?=
+ =?utf-8?B?eGpJSms5bVdHV21BUkFoMmtNUW5LczdWdnVLWkUxQUh5ZFM1Yjg2N2NuR1pC?=
+ =?utf-8?B?djIycFM3bm1tdmZzMloraEZsOWtKVzllVFZVNUxhNk9DY0ppWGZlcEF5Kzgz?=
+ =?utf-8?B?TU83U2JmZlRhMFRGajlVd2J3c1BQNTJmUUk2UUM4M0FxNWdseGIySFg5Y2JV?=
+ =?utf-8?B?Q1JzcEhwbk94L2ZhSUxtUjFFejBaYThBOE9TV2VSS3hXcWUyMzVmemRhSW50?=
+ =?utf-8?B?WGpGT1pkcmg3UVBjcFlwVk52RWl0blpMM2ozQ2t6Q3hiY24xNWtEV2dJeEpm?=
+ =?utf-8?B?MWduYUlNOFdNbldvUVdibmNpc2hWVTc1QnZIYTdCTDJUcVQvR0tVcmtyYnc2?=
+ =?utf-8?B?Qm5lOUVjV2ZWZmVub3NRbm9yK2E4V2dITm9YRktsdzVldTRBS2JTSG1ZNWdM?=
+ =?utf-8?B?WUxsdnN4SVh4KzBaL2RnaEdEUHhPUUlDcy9lTFJ3b0xTdG11ZlIrcXBBb2lm?=
+ =?utf-8?B?OURWOG9lempEOGRMK0tRZitmdFNHbzhpdWtUOUZyYUJUZXN2VWNHWmlmVml3?=
+ =?utf-8?B?WkpwYXRlZ3BESm1NdjdyK2g0N0NvSnM0Q1ozRnh2SHg0ODlDbWFWRldDaTRw?=
+ =?utf-8?B?T1pmYmxxYURDdGtwQTJiVExGTGpNdCtndCsydWc4TUtzeVlCNDdjMnhpb0g2?=
+ =?utf-8?B?T2tyNk9uSHErWjNIdEMzaHIzdm9PT0lHeXdCUjd6UWtUZHRLSEhReE1EdFFr?=
+ =?utf-8?B?bUJpQWV5UFh4K2F6ZFd6V0JrNzV4eW52ZzJSMzhDdUwyblE5K0M0V3Nzdm15?=
+ =?utf-8?B?eVFNOWxxLzIzKzlxN01GSDBlUC95Z2M2MEl2QVRQbWtnZFFVd1d1UDhMVHJa?=
+ =?utf-8?B?MDNzY0E0dGNxYTRGdSt4KzREVi9DbE9nZHlhUXBQdjR0Y2hyWndHdmtVKzYx?=
+ =?utf-8?B?aGwwM1pxUnJLbVZ1R3ZHTkRXajBaa1U4OVF1b1lCdHZORHc5T0MxNzdvQjdI?=
+ =?utf-8?B?OG41QTBJN0VlSHBwSlBuMTNSbFVVVXJUdDFVZjJPK1FxMVpJdU1nYlVKZVU1?=
+ =?utf-8?B?M1RpOHVzTSs4LzBaZU9KUFVKU0g4YmVxVFZoOW15bVY4OUppdFFFQ0gxcEE2?=
+ =?utf-8?B?MUtzN2JXUzJxbGJyVE9jTWFHTlQ2Q1pQeElpK1NBbXRER3Bta3FBWk0xM1hM?=
+ =?utf-8?B?S1NZUWtQL0M2RWZjZmNRNnFGamYrYlVSQnpRRjhWOVFGb0tnbUFFQVZGeWNp?=
+ =?utf-8?B?VVF0dEh0NEJWSFc2M2NTOWR3Wm8wcGdRMlpCdkphdUkzU3V0OEhCUWRaOUow?=
+ =?utf-8?B?UFR3dm9QY2NnV1lDUmVQTG9uSC9WZDI2NXlrYUZmZFVyMk5LNUl2OXJVQXg0?=
+ =?utf-8?B?V0NVWnYzd3pGRS9HMi9HRWd2YVBHZ0kreU5yOWpCSUNHbGpxblZFSURzZ1VS?=
+ =?utf-8?B?NGZqSWFzZHVUb050ZnUwQkRoTDdMUStQZ3Q4Vk1na21EYlpYVFZhZDQyTHFp?=
+ =?utf-8?B?OUo3V1dnemJwVmhodGJ5THA2NlMra0RRdjJPVVR6ZklTYWFsTVRCYWd6M2dB?=
+ =?utf-8?Q?qx4k=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6806cdc9-7f9c-4685-6607-08d9aaa009ad
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5149.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ee3d1770-8a9a-4ebf-27b1-08d9aaa16e2c
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3930.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2021 14:30:58.5216 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2021 14:40:56.8067 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: On4eFpUcUI+MerH6eN3fkqRM6qyfBHEN34X9dzJZR4HBtKB7uZPC66DlBLy26kNc
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5360
+X-MS-Exchange-CrossTenant-UserPrincipalName: P5zfOSlfP5/YdNoI8k64yPoF2aefolDhI7wV73BBwFeqTrgzziirrEBMP8OW1trC
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1242
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,452 +140,286 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 2021-11-17 6:18 p.m., Felix Kuehling
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:fb6b3750-56e4-8a79-c479-10c4cbbd3e4a@amd.com">On
-      2021-11-16 10:43 p.m., Philip Yang wrote:
-      <br>
-      <blockquote type="cite">kfd process mmu release notifier callback
-        drain retry fault to ensure no
-        <br>
-        retry fault comes after removing kfd process from the hash
-        table,
-        <br>
-        otherwise svm page fault handler will fail to recover the fault
-        and dump
-        <br>
-        GPU vm fault log.
-        <br>
-        <br>
-        Drain retry fault needs flush restore page fault work to wait
-        for
-        <br>
-        the last fault is handled because IH dispatch increase rptr
-        first and
-        <br>
-        then calls restore_pages, so restore pages may still handle the
-        last
-        <br>
-        fault but amdgpu_ih_has_checkpoint_processed return true.
-        <br>
-      </blockquote>
-      <br>
-      This fixes the problem, but it will result in waiting longer than
-      necessary because the worker only finishes when the IH ring is
-      empty.
-      <br>
-      <br>
-    </blockquote>
-    Working on new IH ring1 overflow patch to handle drain_retry_fault
-    race, flush will not need here.<br>
-    <blockquote type="cite" cite="mid:fb6b3750-56e4-8a79-c479-10c4cbbd3e4a@amd.com">
-      <br>
-      <blockquote type="cite">
-        <br>
-        restore pages can not call mmget because mmput may call mmu
-        notifier
-        <br>
-        release to cause deadlock.
-        <br>
-      </blockquote>
-      <br>
-      See my comment inline.
-      <br>
-      <br>
-      <br>
-      <blockquote type="cite">
-        <br>
-        Refactor deferred list work to call mmget and take mmap write
-        lock to
-        <br>
-        handle all ranges, to avoid mm is gone while inserting mmu
-        notifier.
-        <br>
-        <br>
-        Signed-off-by: Philip Yang <a class="moz-txt-link-rfc2396E" href="mailto:Philip.Yang@amd.com">&lt;Philip.Yang@amd.com&gt;</a>
-        <br>
-        ---
-        <br>
-        &nbsp; drivers/gpu/drm/amd/amdkfd/kfd_process.c |&nbsp; 6 +++
-        <br>
-        &nbsp; drivers/gpu/drm/amd/amdkfd/kfd_svm.c&nbsp;&nbsp;&nbsp;&nbsp; | 69
-        ++++++++++++------------
-        <br>
-        &nbsp; drivers/gpu/drm/amd/amdkfd/kfd_svm.h&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 1 +
-        <br>
-        &nbsp; 3 files changed, 41 insertions(+), 35 deletions(-)
-        <br>
-        <br>
-        diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-        b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-        <br>
-        index d4c8a6948a9f..8b4b045d5c92 100644
-        <br>
-        --- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-        <br>
-        +++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
-        <br>
-        @@ -1143,6 +1143,12 @@ static void
-        kfd_process_notifier_release(struct mmu_notifier *mn,
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (WARN_ON(p-&gt;mm != mm))
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;
-        <br>
-        &nbsp; +&nbsp;&nbsp;&nbsp; /*
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp; * Ensure no retry fault comes in afterwards, as page fault
-        handler will
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp; * not find kfd process and take mm lock to recover fault.
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp; */
-        <br>
-        +&nbsp;&nbsp;&nbsp; svm_range_drain_retry_fault(&amp;p-&gt;svms);
-        <br>
-        +
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;kfd_processes_mutex);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hash_del_rcu(&amp;p-&gt;kfd_processes);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;kfd_processes_mutex);
-        <br>
-        diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-        b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-        <br>
-        index 88360f23eb61..c1f367934428 100644
-        <br>
-        --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-        <br>
-        +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-        <br>
-        @@ -1953,9 +1953,10 @@ svm_range_handle_list_op(struct
-        svm_range_list *svms, struct svm_range *prange)
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
-        <br>
-        &nbsp; }
-        <br>
-        &nbsp; -static void svm_range_drain_retry_fault(struct svm_range_list
-        *svms)
-        <br>
-        +void svm_range_drain_retry_fault(struct svm_range_list *svms)
-        <br>
-        &nbsp; {
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct kfd_process_device *pdd;
-        <br>
-        +&nbsp;&nbsp;&nbsp; struct amdgpu_device *adev;
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct kfd_process *p;
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; uint32_t i;
-        <br>
-        &nbsp; @@ -1967,9 +1968,11 @@ static void
-        svm_range_drain_retry_fault(struct svm_range_list *svms)
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; continue;
-        <br>
-        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;drain retry fault gpu %d svms %p\n&quot;, i,
-        svms);
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev = pdd-&gt;dev-&gt;adev;
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_ih_wait_on_checkpoint_process(adev,
-        &amp;adev-&gt;irq.ih1);
-        <br>
-        &nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        amdgpu_ih_wait_on_checkpoint_process(pdd-&gt;dev-&gt;adev,
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &amp;pdd-&gt;dev-&gt;adev-&gt;irq.ih1);
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Wait for the last page fault is handled */
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flush_work(&amp;adev-&gt;irq.ih1_work);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;drain retry fault gpu %d svms 0x%p done\n&quot;,
-        i, svms);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
-        <br>
-        &nbsp; }
-        <br>
-        @@ -1979,43 +1982,43 @@ static void
-        svm_range_deferred_list_work(struct work_struct *work)
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct svm_range_list *svms;
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct svm_range *prange;
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct mm_struct *mm;
-        <br>
-        +&nbsp;&nbsp;&nbsp; struct kfd_process *p;
-        <br>
-        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; svms = container_of(work, struct svm_range_list,
-        deferred_list_work);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;enter svms 0x%p\n&quot;, svms);
-        <br>
-        &nbsp; +&nbsp;&nbsp;&nbsp; p = container_of(svms, struct kfd_process, svms);
-        <br>
-        +&nbsp;&nbsp;&nbsp; mm = p-&gt;mm;
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; /* Take mm-&gt;mm_users to avoid mm is gone when inserting
-        mmu notifier */
-        <br>
-        +&nbsp;&nbsp;&nbsp; if (!mm || !mmget_not_zero(mm)) {
-        <br>
-      </blockquote>
-      <br>
-      get_task_mm would be safer than relying on p-&gt;mm. I regret ever
-      adding that to the process structure.
-      <br>
-      <br>
-    </blockquote>
-    Will use get_task_mm(pdd-&gt;process-&gt;lead_thread), it is safer
-    as we take task reference.<br>
-    <blockquote type="cite" cite="mid:fb6b3750-56e4-8a79-c479-10c4cbbd3e4a@amd.com">
-      <br>
-      <blockquote type="cite">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;svms 0x%p process mm
-        gone\n&quot;, svms);
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;
-        <br>
-        +&nbsp;&nbsp;&nbsp; }
-        <br>
-        +retry:
-        <br>
-        +&nbsp;&nbsp;&nbsp; mmap_write_lock(mm);
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; /* Checking for the need to drain retry faults must be
-        inside
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp; * mmap write lock to serialize with munmap notifiers.
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp; */
-        <br>
-        +&nbsp;&nbsp;&nbsp; if (unlikely(READ_ONCE(svms-&gt;drain_pagefaults))) {
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; WRITE_ONCE(svms-&gt;drain_pagefaults, false);
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmap_write_unlock(mm);
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; svm_range_drain_retry_fault(svms);
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto retry;
-        <br>
-        +&nbsp;&nbsp;&nbsp; }
-        <br>
-        +
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spin_lock(&amp;svms-&gt;deferred_list_lock);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (!list_empty(&amp;svms-&gt;deferred_range_list)) {
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; prange =
-        list_first_entry(&amp;svms-&gt;deferred_range_list,
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct svm_range, deferred_list);
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list_del_init(&amp;prange-&gt;deferred_list);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spin_unlock(&amp;svms-&gt;deferred_list_lock);
-        <br>
-        +
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;prange 0x%p [0x%lx 0x%lx] op %d\n&quot;, prange,
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; prange-&gt;start, prange-&gt;last,
-        prange-&gt;work_item.op);
-        <br>
-        &nbsp; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mm = prange-&gt;work_item.mm;
-        <br>
-        -retry:
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmap_write_lock(mm);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;svms-&gt;lock);
-        <br>
-        -
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* Checking for the need to drain retry faults must be
-        in
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * mmap write lock to serialize with munmap notifiers.
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Remove from deferred_list must be inside mmap write
-        lock,
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * otherwise, svm_range_list_lock_and_flush_work may
-        hold mmap
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * write lock, and continue because deferred_list is
-        empty, then
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * deferred_list handle is blocked by mmap write lock.
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spin_lock(&amp;svms-&gt;deferred_list_lock);
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (unlikely(svms-&gt;drain_pagefaults)) {
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; svms-&gt;drain_pagefaults = false;
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spin_unlock(&amp;svms-&gt;deferred_list_lock);
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;svms-&gt;lock);
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmap_write_unlock(mm);
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; svm_range_drain_retry_fault(svms);
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto retry;
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list_del_init(&amp;prange-&gt;deferred_list);
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spin_unlock(&amp;svms-&gt;deferred_list_lock);
-        <br>
-        -
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_lock(&amp;prange-&gt;migrate_mutex);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (!list_empty(&amp;prange-&gt;child_list)) {
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct svm_range *pchild;
-        <br>
-        @@ -2031,12 +2034,13 @@ static void
-        svm_range_deferred_list_work(struct work_struct *work)
-        <br>
-        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; svm_range_handle_list_op(svms, prange);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mutex_unlock(&amp;svms-&gt;lock);
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmap_write_unlock(mm);
-        <br>
-        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spin_lock(&amp;svms-&gt;deferred_list_lock);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; spin_unlock(&amp;svms-&gt;deferred_list_lock);
-        <br>
-        &nbsp; +&nbsp;&nbsp;&nbsp; mmap_write_unlock(mm);
-        <br>
-        +&nbsp;&nbsp;&nbsp; mmput(mm);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;exit svms 0x%p\n&quot;, svms);
-        <br>
-        &nbsp; }
-        <br>
-        &nbsp; @@ -2600,12 +2604,8 @@ svm_range_restore_pages(struct
-        amdgpu_device *adev, unsigned int pasid,
-        <br>
-        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;restoring svms 0x%p fault address 0x%llx\n&quot;,
-        svms, addr);
-        <br>
-        &nbsp; -&nbsp;&nbsp;&nbsp; mm = get_task_mm(p-&gt;lead_thread);
-        <br>
-        -&nbsp;&nbsp;&nbsp; if (!mm) {
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pr_debug(&quot;svms 0x%p failed to get mm\n&quot;, svms);
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r = -ESRCH;
-        <br>
-        -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto out;
-        <br>
-        -&nbsp;&nbsp;&nbsp; }
-        <br>
-        +&nbsp;&nbsp;&nbsp; /* mm is available because kfd_process_notifier_release
-        drain fault */
-        <br>
-      </blockquote>
-      This is not a valid assumption because the mm_users count is 0
-      when the notifier_release runs. So you can't rely on the mm being
-      usable here while you're draining faults in notifier_release.
-      <br>
-      <br>
-      A better way to avoid the deadlock would be to drain faults not in
-      notifier_release, but in kfd_process_wq_release.
-      <br>
-    </blockquote>
-    <p>Good idea to drain faults in kfd_process_wq_release, then we can
-      keep get_task_mm(pdd-&gt;process-&gt;lead_thread), if task mm is
-      gone, it is safe to ignore the fault, return 0, not -ESRCH.<br>
-    </p>
-    <p>Regards,</p>
-    <p>Philip<br>
-    </p>
-    <blockquote type="cite" cite="mid:fb6b3750-56e4-8a79-c479-10c4cbbd3e4a@amd.com">
-      <br>
-      Regards,
-      <br>
-      &nbsp; Felix
-      <br>
-      <br>
-      <br>
-      <blockquote type="cite">+&nbsp;&nbsp;&nbsp; mm = p-&gt;mm;
-        <br>
-        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mmap_read_lock(mm);
-        <br>
-        &nbsp; retry_write_locked:
-        <br>
-        @@ -2708,7 +2708,6 @@ svm_range_restore_pages(struct
-        amdgpu_device *adev, unsigned int pasid,
-        <br>
-        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; svm_range_count_fault(adev, p, gpuidx);
-        <br>
-        &nbsp; -&nbsp;&nbsp;&nbsp; mmput(mm);
-        <br>
-        &nbsp; out:
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kfd_unref_process(p);
-        <br>
-        &nbsp; diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
-        b/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
-        <br>
-        index 6dc91c33e80f..0a8bcdb3dddf 100644
-        <br>
-        --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
-        <br>
-        +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
-        <br>
-        @@ -189,6 +189,7 @@ void svm_range_prefault(struct svm_range
-        *prange, struct mm_struct *mm,
-        <br>
-        &nbsp; struct kfd_process_device *
-        <br>
-        &nbsp; svm_range_get_pdd_by_adev(struct svm_range *prange, struct
-        amdgpu_device *adev);
-        <br>
-        &nbsp; void svm_range_list_lock_and_flush_work(struct svm_range_list
-        *svms, struct mm_struct *mm);
-        <br>
-        +void svm_range_drain_retry_fault(struct svm_range_list *svms);
-        <br>
-        &nbsp; &nbsp; /* SVM API and HMM page migration work together, device
-        memory type
-        <br>
-        &nbsp;&nbsp; * is initialized to not 0 when page migration register device
-        memory.
-        <br>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
+
+
+On 11/18/2021 6:05 PM, Yang, Stanley wrote:
+> [AMD Official Use Only]
+> 
+> 
+> 
+>> -----邮件原件-----
+>> 发件人: Lazar, Lijo <Lijo.Lazar@amd.com>
+>> 发送时间: Thursday, November 18, 2021 7:33 PM
+>> 收件人: Yang, Stanley <Stanley.Yang@amd.com>; amd-
+>> gfx@lists.freedesktop.org; Zhang, Hawking <Hawking.Zhang@amd.com>;
+>> Clements, John <John.Clements@amd.com>; Quan, Evan
+>> <Evan.Quan@amd.com>; Wang, Yang(Kevin) <KevinYang.Wang@amd.com>
+>> 主题: Re: [PATCH Review 3/4] drm/amdgpu: add message smu to get
+>> ecc_table v2
+>>
+>>
+>>
+>> On 11/18/2021 3:03 PM, Stanley.Yang wrote:
+>>> support ECC TABLE message, this table include umc ras error count and
+>>> error address
+>>>
+>>> v2:
+>>>       add smu version check to query whether support ecctable
+>>>       call smu_cmn_update_table to get ecctable directly
+>>>
+>>> Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
+>>> ---
+>>>    drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h       |  8 +++
+>>>    drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     | 14 ++++
+>>>    .../drm/amd/pm/swsmu/smu13/aldebaran_ppt.c    | 70
+>> +++++++++++++++++++
+>>>    .../gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c    |  2 +
+>>>    4 files changed, 94 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
+>>> b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
+>>> index 3557f4e7fc30..7a06021a58f0 100644
+>>> --- a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
+>>> +++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
+>>> @@ -324,6 +324,7 @@ enum smu_table_id
+>>>    	SMU_TABLE_OVERDRIVE,
+>>>    	SMU_TABLE_I2C_COMMANDS,
+>>>    	SMU_TABLE_PACE,
+>>> +	SMU_TABLE_ECCINFO,
+>>>    	SMU_TABLE_COUNT,
+>>>    };
+>>>
+>>> @@ -340,6 +341,7 @@ struct smu_table_context
+>>>    	void				*max_sustainable_clocks;
+>>>    	struct smu_bios_boot_up_values	boot_values;
+>>>    	void                            *driver_pptable;
+>>> +	void                            *ecc_table;
+>>>    	struct smu_table		tables[SMU_TABLE_COUNT];
+>>>    	/*
+>>>    	 * The driver table is just a staging buffer for @@ -1261,6
+>>> +1263,11 @@ struct pptable_funcs {
+>>>    	 *
+>> 		of SMUBUS table.
+>>>    	 */
+>>>    	int (*send_hbm_bad_pages_num)(struct smu_context *smu,
+>> uint32_t
+>>> size);
+>>> +
+>>> +	/**
+>>> +	 * @get_ecc_table:  message SMU to get ECC INFO table.
+>>> +	 */
+>>> +	ssize_t (*get_ecc_info)(struct smu_context *smu, void *table);
+>>>    };
+>>>
+>>>    typedef enum {
+>>> @@ -1397,6 +1404,7 @@ int smu_set_light_sbr(struct smu_context *smu,
+>>> bool enable);
+>>>
+>>>    int smu_wait_for_event(struct amdgpu_device *adev, enum
+>> smu_event_type event,
+>>>    		       uint64_t event_arg);
+>>> +int smu_get_ecc_info(struct smu_context *smu, void *umc_ecc);
+>>>
+>>>    #endif
+>>>    #endif
+>>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+>>> b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+>>> index 01168b8955bf..fd3b6b460b12 100644
+>>> --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+>>> +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+>>> @@ -3072,6 +3072,20 @@ int smu_set_light_sbr(struct smu_context *smu,
+>> bool enable)
+>>>    	return ret;
+>>>    }
+>>>
+>>> +int smu_get_ecc_info(struct smu_context *smu, void *umc_ecc) {
+>>> +	int ret = -EOPNOTSUPP;
+>>> +
+>>> +	mutex_lock(&smu->mutex);
+>>> +	if (smu->ppt_funcs &&
+>>> +		smu->ppt_funcs->get_ecc_info)
+>>> +		ret = smu->ppt_funcs->get_ecc_info(smu, umc_ecc);
+>>> +	mutex_unlock(&smu->mutex);
+>>> +
+>>> +	return ret;
+>>> +
+>>> +}
+>>> +
+>>>    static int smu_get_prv_buffer_details(void *handle, void **addr, size_t
+>> *size)
+>>>    {
+>>>    	struct smu_context *smu = handle;
+>>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+>>> b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+>>> index f835d86cc2f5..4c21609ccea5 100644
+>>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+>>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
+>>> @@ -78,6 +78,12 @@
+>>>
+>>>    #define smnPCIE_ESM_CTRL			0x111003D0
+>>>
+>>> +/*
+>>> + * SMU support ECCTABLE since version 68.42.0,
+>>> + * use this to check ECCTALE feature whether support  */ #define
+>>> +SUPPORT_ECCTABLE_SMU_VERSION 0x00442a00
+>>> +
+>>>    static const struct smu_temperature_range smu13_thermal_policy[] =
+>>>    {
+>>>    	{-273150,  99000, 99000, -273150, 99000, 99000, -273150, 99000,
+>>> 99000}, @@ -190,6 +196,7 @@ static const struct cmn2asic_mapping
+>> aldebaran_table_map[SMU_TABLE_COUNT] = {
+>>>    	TAB_MAP(SMU_METRICS),
+>>>    	TAB_MAP(DRIVER_SMU_CONFIG),
+>>>    	TAB_MAP(I2C_COMMANDS),
+>>> +	TAB_MAP(ECCINFO),
+>>>    };
+>>>
+>>>    static const uint8_t aldebaran_throttler_map[] = { @@ -223,6 +230,9
+>>> @@ static int aldebaran_tables_init(struct smu_context *smu)
+>>>    	SMU_TABLE_INIT(tables, SMU_TABLE_I2C_COMMANDS,
+>> sizeof(SwI2cRequest_t),
+>>>    		       PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
+>>>
+>>> +	SMU_TABLE_INIT(tables, SMU_TABLE_ECCINFO,
+>> sizeof(EccInfoTable_t),
+>>> +		       PAGE_SIZE, AMDGPU_GEM_DOMAIN_VRAM);
+>>> +
+>>>    	smu_table->metrics_table = kzalloc(sizeof(SmuMetrics_t),
+>> GFP_KERNEL);
+>>>    	if (!smu_table->metrics_table)
+>>>    		return -ENOMEM;
+>>> @@ -235,6 +245,10 @@ static int aldebaran_tables_init(struct smu_context
+>> *smu)
+>>>    		return -ENOMEM;
+>>>    	}
+>>>
+>>> +	smu_table->ecc_table = kzalloc(tables[SMU_TABLE_ECCINFO].size,
+>> GFP_KERNEL);
+>>> +	if (!smu_table->ecc_table)
+>>> +		return -ENOMEM;
+>>> +
+>>>    	return 0;
+>>>    }
+>>>
+>>> @@ -1765,6 +1779,61 @@ static ssize_t aldebaran_get_gpu_metrics(struct
+>> smu_context *smu,
+>>>    	return sizeof(struct gpu_metrics_v1_3);
+>>>    }
+>>>
+>>> +static int aldebaran_check_ecc_table_support(struct smu_context *smu)
+>>> +{
+>>> +	uint32_t if_version = 0xff, smu_version = 0xff;
+>>> +	int ret = 0;
+>>> +
+>>> +	ret = smu_cmn_get_smc_version(smu, &if_version, &smu_version);
+>>> +	if (ret)
+>>> +		ret = -EOPNOTSUPP;	// return not support if failed get
+
+Nitpick - comment style
+
+>> smu_version
+>>> +
+>>> +	if (smu_version < SUPPORT_ECCTABLE_SMU_VERSION)
+>>> +		ret = -EOPNOTSUPP;
+>>> +
+>>> +	return ret;
+>>> +}
+>>> +
+>>> +static ssize_t aldebaran_get_ecc_info(struct smu_context *smu,
+>>> +					 void *table)
+>>> +{
+>>> +	struct smu_table_context *smu_table = &smu->smu_table;
+>>> +	EccInfoTable_t *ecc_table = NULL;
+>>> +	struct ecc_info_per_ch *ecc_info_per_channel = NULL;
+>>> +	int i, ret = 0;
+>>> +	struct umc_ecc_info *eccinfo = (struct umc_ecc_info *)table;
+>>> +
+>>
+>> Missed to ask last time. Since umc_ecc_info is a common struct, do you also
+>> want to pass back the number of channels having data?
+>>
+>> Now this struct can hold max of 32 channel data. Let's say if the same
+>> interface is going to be used on another ASIC X having only 16 channels.
+>> Then the callback for ASIC X fills data only for 16 channels. Or, you expect that
+>> to be taken care at the caller side?
+> 
+> [Yang, Stanley] : If ASIC X have only 16 channels, the callback only fill data for 16 channels, and caller side also need consider its own channel number to handle with umc_ecc_info.
+> 
+
+Thanks for the details. With the nitpick above and Evan's comments on 
+the patch subject addressed, patches 1 and 3 are
+
+Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+
+2 and 4 look good to me. Hawking or John should a take look though.
+
+Thanks,
+Lijo
+
+>>
+>> Thanks,
+>> Lijo
+>>
+>>> +	ret = aldebaran_check_ecc_table_support(smu);
+>>> +	if (ret)
+>>> +		return ret;
+>>> +
+>>> +	ret = smu_cmn_update_table(smu,
+>>> +			       SMU_TABLE_ECCINFO,
+>>> +			       0,
+>>> +			       smu_table->ecc_table,
+>>> +			       false);
+>>> +	if (ret) {
+>>> +		dev_info(smu->adev->dev, "Failed to export SMU ecc
+>> table!\n");
+>>> +		return ret;
+>>> +	}
+>>> +
+>>> +	ecc_table = (EccInfoTable_t *)smu_table->ecc_table;
+>>> +
+>>> +	for (i = 0; i < ALDEBARAN_UMC_CHANNEL_NUM; i++) {
+>>> +		ecc_info_per_channel = &(eccinfo->ecc[i]);
+>>> +		ecc_info_per_channel->ce_count_lo_chip =
+>>> +			ecc_table->EccInfo[i].ce_count_lo_chip;
+>>> +		ecc_info_per_channel->ce_count_hi_chip =
+>>> +			ecc_table->EccInfo[i].ce_count_hi_chip;
+>>> +		ecc_info_per_channel->mca_umc_status =
+>>> +			ecc_table->EccInfo[i].mca_umc_status;
+>>> +		ecc_info_per_channel->mca_umc_addr =
+>>> +			ecc_table->EccInfo[i].mca_umc_addr;
+>>> +	}
+>>> +
+>>> +	return ret;
+>>> +}
+>>> +
+>>>    static int aldebaran_mode1_reset(struct smu_context *smu)
+>>>    {
+>>>    	u32 smu_version, fatal_err, param;
+>>> @@ -1967,6 +2036,7 @@ static const struct pptable_funcs
+>> aldebaran_ppt_funcs = {
+>>>    	.i2c_init = aldebaran_i2c_control_init,
+>>>    	.i2c_fini = aldebaran_i2c_control_fini,
+>>>    	.send_hbm_bad_pages_num =
+>> aldebaran_smu_send_hbm_bad_page_num,
+>>> +	.get_ecc_info = aldebaran_get_ecc_info,
+>>>    };
+>>>
+>>>    void aldebaran_set_ppt_funcs(struct smu_context *smu) diff --git
+>>> a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
+>>> b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
+>>> index 4d96099a9bb1..55421ea622fb 100644
+>>> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
+>>> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/smu_v13_0.c
+>>> @@ -428,8 +428,10 @@ int smu_v13_0_fini_smc_tables(struct
+>> smu_context *smu)
+>>>    	kfree(smu_table->hardcode_pptable);
+>>>    	smu_table->hardcode_pptable = NULL;
+>>>
+>>> +	kfree(smu_table->ecc_table);
+>>>    	kfree(smu_table->metrics_table);
+>>>    	kfree(smu_table->watermarks_table);
+>>> +	smu_table->ecc_table = NULL;
+>>>    	smu_table->metrics_table = NULL;
+>>>    	smu_table->watermarks_table = NULL;
+>>>    	smu_table->metrics_time = 0;
+>>>
