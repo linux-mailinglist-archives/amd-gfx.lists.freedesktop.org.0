@@ -2,91 +2,131 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4627F4563F8
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Nov 2021 21:19:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BA4F456416
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Nov 2021 21:29:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63DCA6E853;
-	Thu, 18 Nov 2021 20:19:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 581216E9A7;
+	Thu, 18 Nov 2021 20:28:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam08on2086.outbound.protection.outlook.com [40.107.102.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D21D6E853
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Nov 2021 20:19:01 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11hn2231.outbound.protection.outlook.com [52.100.171.231])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7ECE6E9A2
+ for <amd-gfx@lists.freedesktop.org>; Thu, 18 Nov 2021 20:28:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dp11avvn3aqCAhRAYyslwdOQyohxIAMyLAow2cBd9jPrNTDy9dxr5/7JHkI2W61egw27OHmJvSFXb9TL9R+7OiQjjoGx/2EgySEvt+EaZWAiN9zG3k7Px//dJadQfKqzI9Xkv1eBbULMSbO88dxJFIE8zZ1Ylt3/XCbV+pwk109GrV5zifweBJcK5VNhKK1ONQo7YP8Qi1pUMv9szpB4GdySGQR2HzKQzcngaiXkTF9aUn4jPLq276YPnqzQY4hbVWLHAzw01e7p0DeyavsH5paSaB/TkuhHWfN8F2bLcTPW/mYuZXwFsp5EIXqnJFxF6lB1e2GLqxUOmGcJLVh83w==
+ b=mhtKXf055qMpGDQIxQk+zH6jxcFhW2bnMpJYdXuHBKA0WrvUuvFbVwM8TvtYZYhmwX1Xpk35dZkS1mCqExtQ5mb01WZ2E8J8dK/M8sC6q3irF5tbITZT98JzoKo+akpI2b9Vl7EkTtDlKMazhojh+Lfz/eqlU9ecu7VtVaV1kVma7/3z/1M7+TpRLgK00SgvdB0q/XgyaJOhh2Y17t+ch+JR9XxX4CDJ2zFdWKKMtKSuw4Vmva1vwW8vpfYF3Gq4YaDWv/mbDDpgcOw8Tr5u9RphC5ZvZ7lxq4HdaDNVdtNuR2rvXA/uV5Y893X5RKzaHx1Sq2m0g/wyDKELQuOq+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=16ag9POaaZb61Y/niH1jFAl4xxZYs4s1/9sQmn4qe2Q=;
- b=N3XKkVYDJvvfndpy/hNPScaPyisQvCf5YWFC8tQvCKY60wC5MN+x38Oz4qcIy88Jl9sLQ5Zs6sXGQ+qLhiFHESc6/InHTF3LeJoQDeu3bcf+TAJ+ueuZZRlmqC3b3btDf0rab7Ezy8xA60zn2+aGA0Va/4azsEj5NcndsJyhlpYi8uk0msPuehOWR3PK9cujfmfo9BppPuo4ZsHKx5rdXpxbjwo/n0AKXSK0ttqEJkojjKyAkPvnkoR21Y7AFv6Sztc6AyLC2HLMRS0bmxosoF1fUOKhq8ilQcDLstPE4Dj52fVoCMbQqsxOnIum3ElENNF1+GOiI+z57khPWXqXeg==
+ bh=3Bemx6QLhgKhSDBo3I2D4fFXgf9muLskl2EoJJes6X4=;
+ b=cKmgxG0z1ksUai2WjsYNgXgTzqKjsqUjqwPV7jOn6q9mIwiXQsVU8Qq4yjUV7PF1f5QfVvxK9agsMPo93jT54vOHlN0+QViGoQTROFv/0luIfsJ2EmoirP6pTe9O80D+bQsWGFuZJFsN15ezMffPQ7Rpulx5ByEOo2mSVydNaxFbc2JF3JkyzDTEHC957RIGwE++kCBBvPkfwpqBDNk2V0EbNHQkt9xkBF7v1B4kGrVE6sezSBwGH2HhqnG7jG4Ifjq6U7/8k7m0wZw0DOiC8eOg/HzLNK3JuVreQx6Mu7ntWS2iWm/hcvI0EP++NuvypWYeZ2usZOLSfoJisS+qhA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=16ag9POaaZb61Y/niH1jFAl4xxZYs4s1/9sQmn4qe2Q=;
- b=HNAZrIDuleH27bpVh9GfmLaOJwiPlWdVrvfUA90rA1dsNlaGCJeRuli9KgYsvXlWIalAg625l0Yf0HsXXO6820dfDLdRZYiNh0EvhLjJoRQrObQwu2+aT/C5B45Jlergq/BnkiQVthiDdGSvYY9zVYgHjjxqT4NixJeEbsJ+GOg=
-Received: from MW4PR03CA0259.namprd03.prod.outlook.com (2603:10b6:303:b4::24)
- by BYAPR12MB2615.namprd12.prod.outlook.com (2603:10b6:a03:61::29)
+ bh=3Bemx6QLhgKhSDBo3I2D4fFXgf9muLskl2EoJJes6X4=;
+ b=tEjp0YOqIHIPK+3S5MXJrEePEHMNu5BECso0gwG4zAmNMt4tW8hg52G7uGfX/SLWDNQkokz6f7eFOpnrgB8Oq4URzLVT99mJIYDLtFNi/fJvmVfCXmXwmCMnQ8HVtrc46zKZjfeb5LFHD5/cdYE6YHJFa23NBBuWc39YUvn7w/E=
+Received: from BN8PR16CA0003.namprd16.prod.outlook.com (2603:10b6:408:4c::16)
+ by MWHPR1201MB0029.namprd12.prod.outlook.com (2603:10b6:301:4d::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.27; Thu, 18 Nov
- 2021 20:18:59 +0000
-Received: from CO1NAM11FT024.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:b4:cafe::b9) by MW4PR03CA0259.outlook.office365.com
- (2603:10b6:303:b4::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19 via Frontend
- Transport; Thu, 18 Nov 2021 20:18:59 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19; Thu, 18 Nov
+ 2021 20:28:51 +0000
+Received: from BN8NAM11FT063.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:4c:cafe::47) by BN8PR16CA0003.outlook.office365.com
+ (2603:10b6:408:4c::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.21 via Frontend
+ Transport; Thu, 18 Nov 2021 20:28:51 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT024.mail.protection.outlook.com (10.13.174.162) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT063.mail.protection.outlook.com (10.13.177.110) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4713.20 via Frontend Transport; Thu, 18 Nov 2021 20:18:58 +0000
-Received: from alin.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.4713.20 via Frontend Transport; Thu, 18 Nov 2021 20:28:51 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Thu, 18 Nov
- 2021 14:18:57 -0600
-From: Amber Lin <Amber.Lin@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdkfd: Remove unused entries in table
-Date: Thu, 18 Nov 2021 15:18:39 -0500
-Message-ID: <20211118201839.22284-1-Amber.Lin@amd.com>
-X-Mailer: git-send-email 2.17.1
+ 2021 14:28:47 -0600
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Thu, 18 Nov
+ 2021 14:28:47 -0600
+Received: from yuho-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Thu, 18 Nov 2021 14:28:44 -0600
+From: Kenny Ho <Kenny.Ho@amd.com>
+To: Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann
+ <daniel@iogearbox.net>, Andrii Nakryiko <andrii@kernel.org>, Martin KaFai Lau
+ <kafai@fb.com>, Song Liu <songliubraving@fb.com>, Yonghong Song <yhs@fb.com>, 
+ John Fastabend <john.fastabend@gmail.com>, KP Singh <kpsingh@kernel.org>,
+ Tejun Heo <tj@kernel.org>, Zefan Li <lizefan.x@bytedance.com>, "Johannes
+ Weiner" <hannes@cmpxchg.org>, Peter Zijlstra <peterz@infradead.org>, "Ingo
+ Molnar" <mingo@redhat.com>, Arnaldo Carvalho de Melo <acme@kernel.org>, "Mark
+ Rutland" <mark.rutland@arm.com>, Alexander Shishkin
+ <alexander.shishkin@linux.intel.com>, Jiri Olsa <jolsa@redhat.com>, "Namhyung
+ Kim" <namhyung@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
+ <netdev@vger.kernel.org>, <bpf@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <cgroups@vger.kernel.org>,
+ <linux-perf-users@vger.kernel.org>, <y2kenny@gmail.com>, <Kenny.Ho@amd.com>,
+ <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH RFC 0/4] Add ability to attach bpf programs to a tracepoint
+ inside a cgroup
+Date: Thu, 18 Nov 2021 15:28:36 -0500
+Message-ID: <20211118202840.1001787-1-Kenny.Ho@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 08cadc75-764f-40fa-6cd6-08d9aad0a72f
-X-MS-TrafficTypeDiagnostic: BYAPR12MB2615:
-X-Microsoft-Antispam-PRVS: <BYAPR12MB2615735B0B194CE0E26813EFE19B9@BYAPR12MB2615.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:586;
+X-MS-Office365-Filtering-Correlation-Id: 892a928d-b93e-4c9b-d3b1-08d9aad20881
+X-MS-TrafficTypeDiagnostic: MWHPR1201MB0029:
+X-Microsoft-Antispam-PRVS: <MWHPR1201MB0029BF8CE418CD17445DD605839B9@MWHPR1201MB0029.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7B3fxcJctMW7rK0mv3PVEXmjIzfoa6MhKjgQTEEq8KGm290YHTs8WiYmobjRhvEzr0tjPOfXIqkn5AzZjfD4TnURXlJDt7AJm6Vo02//j2BN/xw8RyX2rPKGC+BTrvaZabG9C36kS6wJf4Fhlk2CpsYFTHmE4/OcnHIxHV2XStSKSWABXFXqZRPuSVQTyqaiuI2HKoUSYHWeG57SUIQTVGCJ1aHE2kCtk5H7b4zyqKpWq4B5kOP5aATAd362AW4pCzgbp4ISsk1Z5InTzqNJPqBf5p6LtlF63qzazODQgU43sh/ffGm83xvzg/wjBT8e5RucUMlNwlYZSktVq1Oq3JqqALZEvvAZDT+mEdlO9GEzy2dcbhj+7vhGXjNgznHrjaQjnHMQ0/CUTtRudnMbYAQN8LsRocgVnkYJcOta+8/GjAtGm5NZrLgc+f4A/eY8XMOYxNzE4/+L8VIc5QLPn0H4JqDDJb724UdcTF2tLK+EkR+YufQla6zgouyDv/5uADv79BSMJu9Uuqtym0WULDok73IuXnyh1OOXNG5tdiisd6Rq4ImdziiX2hbUu7DwYQ83ezz5txx921W07d4nuUPxKPM8YyE/apsSWNZbKipYMA6ijNb/3gVmHUWwMvLwEsMKcP5+2yTxVPBxpt6YWm6jKDMpTwCBLpCu4I1bYp38w1vZIFLKNq4H+IPxHNIB47eIRA3mOaCdGkA5WyJ1LKaAdvkDOK5pYOeto7Idi1w=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(2616005)(36756003)(47076005)(8676002)(8936002)(86362001)(70206006)(26005)(426003)(2906002)(6916009)(336012)(83380400001)(316002)(36860700001)(4326008)(7696005)(5660300002)(356005)(186003)(508600001)(82310400003)(1076003)(6666004)(16526019)(70586007)(81166007)(36900700001);
- DIR:OUT; SFP:1101; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?1wf/H3SYvm7UbzmigTCwR+DzZB6nw87vx94yyhSXnyEG6WQE5zooa7WpTCsv?=
+ =?us-ascii?Q?yi57gTeuaZnAxA8VYMgL7pkC2MAZf6upyoGbzcj4fBN0wYiPf7qAftSWpyhb?=
+ =?us-ascii?Q?1MJsTlydYSXHSdqkmwMumds1arB4FVbL7NoB6/kvpk8eQSN9fL/xH6+ew4PU?=
+ =?us-ascii?Q?Q9jsgdWG28ZJmRf6/NH0UOjzdvPm8f110aRdKMywDLANg39sJshw8nDmY9g4?=
+ =?us-ascii?Q?3u73QtgeTjs6Oh1Pud7+bexr9QQnYR7mdRPVbEk1UA44Smg8WXv0VvMs3zAn?=
+ =?us-ascii?Q?VRYYRmWuo7fQ5lf37q55OPveLvXS9RV+rN2CQZim/Pd4PjdoLTQAL13ZdbaA?=
+ =?us-ascii?Q?oib1yCg8klZIS/QeB43xtPHbH8P/uRJkqjvrs0EXlR9F7fNco8I2xBHpjlQq?=
+ =?us-ascii?Q?FSnlgexQ0fydpH+aPjZE9lC9D2ZLQEwRzoxCcv+wWlB2qMNfSVLEI05FR5eF?=
+ =?us-ascii?Q?vFPCKkASLGEH4AThYhScSXNNRHBN+HMQ10n0F4O7M1NfphquXr/WceDGOFWl?=
+ =?us-ascii?Q?qTqLoxzowCY4p30O1oPw7hVujMqG9BiTVglhbpptS8m5r3JyBtHm/oMvD0fa?=
+ =?us-ascii?Q?IdJckRJOlb/bEBkZHVoaDiGe3wysw4CBAUtoVdIW/cxCBP5rJ6novmdPudVu?=
+ =?us-ascii?Q?Bb1aRDwL5N11fcfaQWhkNyf5Z9ImDcOg/nd0uG+ESFYlK7TeuKC99KAmqsR9?=
+ =?us-ascii?Q?bdS7uXQC+nGSuUEmZJDwXymJ4KAK7peu/th49h9VkuaQ9cHEd1mKhwg+8Kfa?=
+ =?us-ascii?Q?Ipm9Dm/mTYNz9fkqjH67ahS9sut2uhNVrJzJC8SIz/0js1iMv3A7M2b2Gjtt?=
+ =?us-ascii?Q?7PxuD+E26okP2UdCTsw02wxSxNnSyjXwOqJMgZiCCaprMRDacwwRgYNkDg1V?=
+ =?us-ascii?Q?dJJ6Lz76rdl83xOknfrv2wqVbhwn61McecswkZqJ3DuvebqlctXNU7HTtuTc?=
+ =?us-ascii?Q?Z/cnt2Dn3xtXggZqECE6W4OBGTWTptDa9GUiuYX/arHZPce4T5OImE6ZMyB/?=
+ =?us-ascii?Q?7frwqE3N/Mry+ftqa7uGAN59E+jVA3BlRNezCbKhb2owo3dMj2Z7CzxDmd26?=
+ =?us-ascii?Q?MWYxQSx1yTHL4emu1fY69ZVlrT4zuUniKmkGPtJGodiQx5ViYKodIhpUoaXU?=
+ =?us-ascii?Q?uywO5Tmq7UBBtOJFQOYnreeiIh1L9KQy9NO5OF9VaDSYGB+OnuWlkgQQhD9c?=
+ =?us-ascii?Q?mcwE6j0toRJqoWszRaN38YX0YbuydqMbCAPMezJJTltpbDD0Jz1VcZY06Lc?=
+ =?us-ascii?Q?=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:5; SRV:;
+ IPV:CAL; SFV:SPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:OSPM;
+ SFS:(4636009)(36840700001)(46966006)(2906002)(336012)(6666004)(508600001)(316002)(81166007)(7416002)(2616005)(921005)(426003)(1076003)(86362001)(36756003)(5660300002)(8936002)(110136005)(70206006)(36860700001)(8676002)(70586007)(186003)(966005)(26005)(356005)(83380400001)(7696005)(82310400003)(47076005)(87590200002)(36900700001)(266184004);
+ DIR:OUT; SFP:1501; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2021 20:18:58.2909 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08cadc75-764f-40fa-6cd6-08d9aad0a72f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2021 20:28:51.1636 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 892a928d-b93e-4c9b-d3b1-08d9aad20881
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT024.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT063.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2615
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB0029
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,298 +138,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Amber Lin <Amber.Lin@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Remove unused entries in kfd_device_info table: num_xgmi_sdma_engines
-and num_sdma_queues_per_engine. They are calculated in
-kfd_get_num_sdma_engines and kfd_get_num_xgmi_sdma_engines instead.
+Per an earlier discussion last year[1], I have been looking for a mechanism to a) collect resource usages for devices (GPU for now but there could be other device type in the future) and b) possibly enforce some of the resource usages.  An obvious mechanism was to use cgroup but there are too much diversity in GPU hardware architecture to have a common cgroup interface at this point.  An alternative is to leverage tracepoint with a bpf program inside a cgroup hierarchy for usage collection and enforcement (via writable tracepoint.)
 
-Signed-off-by: Amber Lin <Amber.Lin@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device.c | 58 -------------------------
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h   |  2 -
- 2 files changed, 60 deletions(-)
+This is a prototype for such idea.  It is incomplete but I would like to solicit some feedback before continuing to make sure I am going down the right path.  This prototype is built based on my understanding of the followings:
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index 3fea47e37c17..e1294fba0c26 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -68,8 +68,6 @@ static const struct kfd_device_info kaveri_device_info = {
- 	.supports_cwsr = false,
- 	.needs_iommu_device = true,
- 	.needs_pci_atomics = false,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -87,8 +85,6 @@ static const struct kfd_device_info carrizo_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = true,
- 	.needs_pci_atomics = false,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -105,8 +101,6 @@ static const struct kfd_device_info raven_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = true,
- 	.needs_pci_atomics = true,
--	.num_sdma_engines = 1,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- #endif
-@@ -126,8 +120,6 @@ static const struct kfd_device_info hawaii_device_info = {
- 	.supports_cwsr = false,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = false,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- #endif
-@@ -145,8 +137,6 @@ static const struct kfd_device_info tonga_device_info = {
- 	.supports_cwsr = false,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = true,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -163,8 +153,6 @@ static const struct kfd_device_info fiji_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = true,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -181,8 +169,6 @@ static const struct kfd_device_info fiji_vf_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = false,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -200,8 +186,6 @@ static const struct kfd_device_info polaris10_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = true,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -218,8 +202,6 @@ static const struct kfd_device_info polaris10_vf_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = false,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -236,8 +218,6 @@ static const struct kfd_device_info polaris11_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = true,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -254,8 +234,6 @@ static const struct kfd_device_info polaris12_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = true,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -272,8 +250,6 @@ static const struct kfd_device_info vegam_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = true,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -290,8 +266,6 @@ static const struct kfd_device_info vega10_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = false,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -308,8 +282,6 @@ static const struct kfd_device_info vega10_vf_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = false,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -326,8 +298,6 @@ static const struct kfd_device_info vega12_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = false,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -344,8 +314,6 @@ static const struct kfd_device_info vega20_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = false,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 8,
- };
- 
-@@ -362,8 +330,6 @@ static const struct kfd_device_info arcturus_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = false,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 6,
- 	.num_sdma_queues_per_engine = 8,
- };
- 
-@@ -380,8 +346,6 @@ static const struct kfd_device_info aldebaran_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = false,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 3,
- 	.num_sdma_queues_per_engine = 8,
- };
- 
-@@ -398,8 +362,6 @@ static const struct kfd_device_info renoir_device_info = {
- 	.supports_cwsr = true,
- 	.needs_iommu_device = false,
- 	.needs_pci_atomics = false,
--	.num_sdma_engines = 1,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -417,8 +379,6 @@ static const struct kfd_device_info navi10_device_info = {
- 	.supports_cwsr = true,
- 	.needs_pci_atomics = true,
- 	.no_atomic_fw_version = 145,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 8,
- };
- 
-@@ -436,8 +396,6 @@ static const struct kfd_device_info navi12_device_info = {
- 	.supports_cwsr = true,
- 	.needs_pci_atomics = true,
- 	.no_atomic_fw_version = 145,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 8,
- };
- 
-@@ -455,8 +413,6 @@ static const struct kfd_device_info navi14_device_info = {
- 	.supports_cwsr = true,
- 	.needs_pci_atomics = true,
- 	.no_atomic_fw_version = 145,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 8,
- };
- 
-@@ -474,8 +430,6 @@ static const struct kfd_device_info sienna_cichlid_device_info = {
- 	.supports_cwsr = true,
- 	.needs_pci_atomics = true,
- 	.no_atomic_fw_version = 92,
--	.num_sdma_engines = 4,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 8,
- };
- 
-@@ -493,8 +447,6 @@ static const struct kfd_device_info navy_flounder_device_info = {
- 	.supports_cwsr = true,
- 	.needs_pci_atomics = true,
- 	.no_atomic_fw_version = 92,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 8,
- };
- 
-@@ -512,8 +464,6 @@ static const struct kfd_device_info vangogh_device_info = {
- 	.supports_cwsr = true,
- 	.needs_pci_atomics = true,
- 	.no_atomic_fw_version = 92,
--	.num_sdma_engines = 1,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -531,8 +481,6 @@ static const struct kfd_device_info dimgrey_cavefish_device_info = {
- 	.supports_cwsr = true,
- 	.needs_pci_atomics = true,
- 	.no_atomic_fw_version = 92,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 8,
- };
- 
-@@ -550,8 +498,6 @@ static const struct kfd_device_info beige_goby_device_info = {
- 	.supports_cwsr = true,
- 	.needs_pci_atomics = true,
- 	.no_atomic_fw_version = 92,
--	.num_sdma_engines = 1,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 8,
- };
- 
-@@ -569,8 +515,6 @@ static const struct kfd_device_info yellow_carp_device_info = {
- 	.supports_cwsr = true,
- 	.needs_pci_atomics = true,
- 	.no_atomic_fw_version = 92,
--	.num_sdma_engines = 1,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 2,
- };
- 
-@@ -587,8 +531,6 @@ static const struct kfd_device_info cyan_skillfish_device_info = {
- 	.needs_iommu_device = false,
- 	.supports_cwsr = true,
- 	.needs_pci_atomics = true,
--	.num_sdma_engines = 2,
--	.num_xgmi_sdma_engines = 0,
- 	.num_sdma_queues_per_engine = 8,
- };
- 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index 1054fedd7b3c..836ec8860c1b 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -208,8 +208,6 @@ struct kfd_device_info {
- 	bool needs_iommu_device;
- 	bool needs_pci_atomics;
- 	uint32_t no_atomic_fw_version;
--	unsigned int num_sdma_engines;
--	unsigned int num_xgmi_sdma_engines;
- 	unsigned int num_sdma_queues_per_engine;
- };
- 
+- tracepoint (and kprobe, uprobe) is associated with perf event
+- perf events/tracepoint can be a hook for bpf progs but those bpf progs are not part of the cgroup hierarchy
+- bpf progs can be attached to the cgroup hierarchy with cgroup local storage and other benefits
+- separately, perf subsystem has a cgroup controller (perf cgroup) that allow perf event to be triggered with a cgroup filter
+
+So the key idea of this RFC is to leverage hierarchical organization of bpf-cgroup for the purpose of perf event/tracepoints.
+
+==Known unresolved topics (feedback very much welcome)==
+Storage:
+I came across the idea of "preallocated" memory for bpf hash map/storage to avoid deadlock[2] but I don't have a good understanding about it currently.  If existing bpf_cgroup_storage_type are not considered pre-allocated then I am thinking we can introduce a new type but I am not sure if this is needed yet.
+
+Scalability:
+Scalability concern has been raised about perf cgroup [3] and there seems to be a solution to it recently with bperf [4].  This RFC does not change the status quo on the scalability question but if I understand the bperf idea correctly, this RFC may have some similarity.
+
+[1] https://lore.kernel.org/netdev/YJXRHXIykyEBdnTF@slm.duckdns.org/T/#m52bc26bbbf16131c48e6b34d875c87660943c452
+[2] https://lwn.net/Articles/679074/
+[3] https://www.linuxplumbersconf.org/event/4/contributions/291/attachments/313/528/Linux_Plumbers_Conference_2019.pdf
+[4] https://linuxplumbersconf.org/event/11/contributions/899/
+
+Kenny Ho (4):
+  cgroup, perf: Add ability to connect to perf cgroup from other cgroup
+    controller
+  bpf, perf: add ability to attach complete array of bpf prog to perf
+    event
+  bpf,cgroup,tracing: add new BPF_PROG_TYPE_CGROUP_TRACEPOINT
+  bpf,cgroup,perf: extend bpf-cgroup to support tracepoint attachment
+
+ include/linux/bpf-cgroup.h   | 17 +++++--
+ include/linux/bpf_types.h    |  4 ++
+ include/linux/cgroup.h       |  2 +
+ include/linux/perf_event.h   |  6 +++
+ include/linux/trace_events.h |  9 ++++
+ include/uapi/linux/bpf.h     |  2 +
+ kernel/bpf/cgroup.c          | 96 +++++++++++++++++++++++++++++-------
+ kernel/bpf/syscall.c         |  4 ++
+ kernel/cgroup/cgroup.c       | 13 ++---
+ kernel/events/core.c         | 62 +++++++++++++++++++++++
+ kernel/trace/bpf_trace.c     | 36 ++++++++++++++
+ 11 files changed, 222 insertions(+), 29 deletions(-)
+
 -- 
-2.17.1
+2.25.1
 
