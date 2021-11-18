@@ -1,92 +1,99 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D106045550D
-	for <lists+amd-gfx@lfdr.de>; Thu, 18 Nov 2021 08:03:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3AA3455723
+	for <lists+amd-gfx@lfdr.de>; Thu, 18 Nov 2021 09:39:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C02C6E905;
-	Thu, 18 Nov 2021 07:03:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D26156EABF;
+	Thu, 18 Nov 2021 08:39:30 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2055.outbound.protection.outlook.com [40.107.236.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C74C26E905
- for <amd-gfx@lists.freedesktop.org>; Thu, 18 Nov 2021 07:03:53 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1anam02on2062.outbound.protection.outlook.com [40.107.96.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 637656E9F9;
+ Thu, 18 Nov 2021 07:19:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TyHXXi/ZXCpcTLEXyGQuvP2I3ThrFrGbCYawy/nC3E8P6UVkAR1wYV+M7KJRYK5pwht/P2zBAQvXVq+DJm5Or/ChqTjpJwl9APH8aGOxH2xl81PEt89Mp34+H02m3CTZOI5TRPMzkQlqx2TQNo5dUsTqkYDZkEIwbMJthX+ZDZ8x4b5DyOYgn7H6kfGxwQ8h8dUArAXWVpxYmRD/lJ6Zu4F02KMrFIvbosgrWgE+yMtMtnimXGBq76cR+iloYeb/DDM5B1RVgQkhhZ68AQK94Bh7w8HXJO7sx++BX3TSXmCvvh27tlOwm60tuyxmMyw3BO1wb+Zs+uwo89X6Ijhe3g==
+ b=IoOsxkbKt898PdWvbMFzvimwxyJUG9CRAesBhO5Am3XUIB+8Uvb3DyVWPB9qA3O5fvr8Y1YVdC4niNMMVYqkbKKpm1SV6X/P0P+NnFwZNFGVCHEHWXDJtXSMFId/q1Jpr+lfjBLejr64qZIwnSC+Neh8Y1TCzqQ0QSFtmiLvzv+Fm9XivH2E4xVITNl1qXuSvvx+ovlqlUVeaaJDgrGRhEqCcVK1h2AMMMf0cLGy96r8aeGcUMVna1Wk5cBWgggn58ZJpcwCCVmt+WXrlXvZjKHbDH3cZiY2y8TM8nvm9B/HpG0OOeeYKywnMnFRv84Y8eVP4B5aWlbS/GClGEA4zw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dfUqQpyTGmleS1IiM5Gw54cqBd24Ozy9p9rAU2qltdU=;
- b=jKX88GHkCJnumoliHfevtbbvQCum314jlwJld4T0WsByoNGGHJzgCbpdW5qdx6hD/Yfv4KD4eTWZVncy4BzA0SjYXQqChZFR74TlXt+iKP2ofed0YjuNYhP34DDcpOsKKY9K/v1lw+CHQmsqF3bp0LNIYXKKY85aTVp7muyiG/NaR7yS81CiRlKDWHPeN9yXneC5WYzaW4ujzpckEEB9E+DXvQMaCwPwd29RKNI2hTvgJwwF/D2ci4sCVh0H2axs4uXysA8goHTgSjmV9nEVKhSoubjY9ygSuScRTvUOS6ug2I2jFM+cpnbYaMtQ6/32zRID6HKYKx25g/nJa0QkOQ==
+ bh=zVxmmz55dKukc6wHmDEnAyBXiYT9S5ygyCgDGCyPJgQ=;
+ b=LJ1MqbZMUHitXwinYLt8SLQerq+ZH5vJWH5AcIxAuvrrZlkii2g2/jEnawbR+o8CpUT0WU7wR1TqwIk1qdPrbx7t+yO3MfWk6ZtiZoh+dnltTOUsVm6RHzqW5HvUnmfCbwKT8iNfqtJ5pg8rB42JGy4tEq7SdUYSJekCwLMBriBgDfcGNWSYKi/2771cO5tLG0cUE+tYsLmGortynfqsOC5kIVPijIqDmFbipEQ7hy8CScqZpynhV2yey/+SWImBAKuMJ1MQ0lr1slIsM6JksDQLPhQFgQPRp8tPXoVoeTq5dbQMn4viUz7lbGESukPBss6DkYeFssOKle3uwTjG9w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ 216.228.112.34) smtp.rcpttodomain=lists.freedesktop.org
+ smtp.mailfrom=nvidia.com; dmarc=pass (p=quarantine sp=quarantine pct=100)
+ action=none header.from=nvidia.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dfUqQpyTGmleS1IiM5Gw54cqBd24Ozy9p9rAU2qltdU=;
- b=cSW0Pzr1EtCeulMe7AR76BQsy0BgEKrBkI7Ujgy6UbD+WWTjvAwffvNAOm9WTDiZddRFwRs5u9cS2VnjCzbERs/v6+Z/PjVpqoA1AOFmi0DwH2Xlr2KD/eBnjVOODXGpyNzQS3uK8V2xNmhSj2TBVq3INs0wm7GX1lGIiWYb/XA=
-Received: from MWHPR18CA0031.namprd18.prod.outlook.com (2603:10b6:320:31::17)
- by BN9PR12MB5384.namprd12.prod.outlook.com (2603:10b6:408:105::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.15; Thu, 18 Nov
- 2021 07:03:51 +0000
-Received: from CO1NAM11FT066.eop-nam11.prod.protection.outlook.com
- (2603:10b6:320:31:cafe::c0) by MWHPR18CA0031.outlook.office365.com
- (2603:10b6:320:31::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.21 via Frontend
- Transport; Thu, 18 Nov 2021 07:03:51 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT066.mail.protection.outlook.com (10.13.175.18) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4713.20 via Frontend Transport; Thu, 18 Nov 2021 07:03:50 +0000
-Received: from prike.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Thu, 18 Nov
- 2021 01:03:48 -0600
-From: Prike Liang <Prike.Liang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: reset asic after system-wide suspend aborted
-Date: Thu, 18 Nov 2021 15:02:56 +0800
-Message-ID: <1637218976-30718-1-git-send-email-Prike.Liang@amd.com>
-X-Mailer: git-send-email 2.7.4
+ bh=zVxmmz55dKukc6wHmDEnAyBXiYT9S5ygyCgDGCyPJgQ=;
+ b=jDJ6ggmaKWYkTl6L1elJWXmDIxonu8LCiDDBWoCj/qXBXSUbFzdPtuVOCdjZBV3+/suNu/NVuGCM5k79PDmR20hfPFtUzFTJLAh7+/i8uWgRbGCobiqQ0YjZSh1OcFVYVt9apFisP3693Wpx7uPZqTRn+Rd9KF8p9aXtUZG5qNMueVcKMjROs38/ZSpr7Ppiu96dolEyudDTpCGEgO4mloL2pyVum+XehBNsMr651UjkbfHNHoIoZpKhWAJTCfYXLJSYs07AnymhMSujynIAQjMyqe66FLzHBMKQ3rC6DBJh+jRPRkVkI1Tw8XAtSt9Bg6CYzG4tzYk+53MKrXRgxg==
+Received: from MWHPR2201CA0042.namprd22.prod.outlook.com
+ (2603:10b6:301:16::16) by DM4PR12MB5039.namprd12.prod.outlook.com
+ (2603:10b6:5:38a::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.15; Thu, 18 Nov
+ 2021 07:19:26 +0000
+Received: from CO1NAM11FT040.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:301:16:cafe::17) by MWHPR2201CA0042.outlook.office365.com
+ (2603:10b6:301:16::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19 via Frontend
+ Transport; Thu, 18 Nov 2021 07:19:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
+ smtp.mailfrom=nvidia.com; lists.freedesktop.org; dkim=none (message not
+ signed) header.d=none;lists.freedesktop.org; dmarc=pass action=none
+ header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.34; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.34) by
+ CO1NAM11FT040.mail.protection.outlook.com (10.13.174.140) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4713.20 via Frontend Transport; Thu, 18 Nov 2021 07:19:25 +0000
+Received: from nvdebian.localnet (172.20.187.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Thu, 18 Nov
+ 2021 07:19:20 +0000
+From: Alistair Popple <apopple@nvidia.com>
+To: <akpm@linux-foundation.org>, <Felix.Kuehling@amd.com>,
+ <linux-mm@kvack.org>, <rcampbell@nvidia.com>, <linux-ext4@vger.kernel.org>,
+ <linux-xfs@vger.kernel.org>, Alex Sierra <alex.sierra@amd.com>
+Subject: Re: [PATCH v1 6/9] lib: test_hmm add module param for zone device type
+Date: Thu, 18 Nov 2021 18:19:16 +1100
+Message-ID: <3407110.cQXnMkeciP@nvdebian>
+In-Reply-To: <20211115193026.27568-7-alex.sierra@amd.com>
+References: <20211115193026.27568-1-alex.sierra@amd.com>
+ <20211115193026.27568-7-alex.sierra@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Originating-IP: [172.20.187.5]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3367a68c-3788-469e-39f4-08d9aa61936a
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5384:
-X-Microsoft-Antispam-PRVS: <BN9PR12MB5384991D8C80BA7A50D1E974FB9B9@BN9PR12MB5384.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Office365-Filtering-Correlation-Id: 0a0e1548-8a66-407c-c6fb-08d9aa63c087
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5039:
+X-Microsoft-Antispam-PRVS: <DM4PR12MB503938DAA438AC3BD401B7E0DF9B9@DM4PR12MB5039.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DozTvKOjUX05stU5HF65noud4ptvRrjqWbPV/VjM+qLSsfENKiME9puuCStCmaIG6h+wzr8mlhkPfxNTA/BaWrdJu1a7Bt27Eos8f6arnzd6Ltr/oU03LC7iVhsmMn1xhVDJkDdic2fWaSrD+dNjZ7VqLQwqed/V89smaDNdUJFLZYPDAuZ66pokNF/6CireiDxX+606zjn/5XT/GcD4gPp6v5mBBgDYa1Rd59FMp2L/4+DS1Cgip7qOhwYJlV2J+bDefqPw4qgf7NVr3MZeDEOYU6Krcx5wMbOkMU8vYStz0Yy0JBfpSLCGggMfvWYXSPnRpuZUaiaxmJKFfeSaqh6oXjAq1VG8WUFULgV7f4ilDAjnxQwm5PNeWv8YHRxSmerKah0dRO8/JXRMPaD2swAgYYk4i/cGbCeW/FRmJaMp8bo9tfiRD+I4jB4UJeuMpDgshFNk+BkuFa1kJijws5GLwOilst4Nx6KynkSot37oFihB4jyKEEX6yHYSewsP/xypII0mvOXhljBU3ikh0ixGFtARuwc3OvQeE3/QaGyMFGqnyzpQNvQ/cQ9Hqq85JlSzBy5c0cpImXteWKp2yyOe+vFTECj+s32dKAfUIQ9rsU8nDfLmhWs1zumU7ZPKrvPUryXcVqiNkFUYstVu+DfD5Ojvvoh5VtQYNDnTI/DSGnZ81rfZtl4D8CybaTUBJiZiJ+bvtSlvjk/ik/kEyLV/nBEWNFxwSsGngrPQUDI=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(6666004)(15650500001)(5660300002)(508600001)(336012)(316002)(356005)(70206006)(426003)(6916009)(8936002)(16526019)(70586007)(36860700001)(36756003)(54906003)(7696005)(4326008)(2906002)(82310400003)(8676002)(81166007)(2616005)(83380400001)(86362001)(186003)(26005)(47076005)(36900700001);
+X-Microsoft-Antispam-Message-Info: wuQWs1rOwdgaqWh5d6PKSMdYiSeMMSanyiixjfCl50fMB1VnXkqvQuQJ8RUMTyi/EYK4SwnNEf4DLJtWNO4Y4yiH/nqC/i6FKkAsmbmkX/wrHtUMEPNc9950UbL1UQque5Y5CqUS+P+UW2asqlW/gepQj5UydPwTO5Yuh7qMHadnUeSGncT4gcBvRvSOy1PtWReu8uZobfhFghSLWE2hYBjOlSu6CvH4HSnIZkTYBsDt3hJKsn74/od6ontSPwQ0m/XZw521vB1VZHwfY19jFNJdPcFENGjIcpbLAIcEalOkGjyvpOR6xUXhnCdw6zIDxwJCBS/eQ8EoFBYa0yH03RUECBxy/JcQugsXqMCLy4D2A+xb6oOydT0cGvH0YrQFMODynXs7MTmnqYrN1yKlTdJxH5UR92kp/pSVMAy+O2STaYKpYNAb3hYifc5JowMogUWj8M9eS0dD5G2UJ8SQiVSRxxBHVFrqzA+yyh7+R2hScBRlbghaXMtCd4CuOs43pY3iNT+erVOnM/G6Z0ErJ+b0lvU1UyTj22x41anzV6Vm1X5A8tt94NrgSLOvuiGQFvcutVBGpDckhMfB52KfhE69IUFcx/Z30LPTJojPXeJmaCw2wksggNUgdTAAoeueMDQzGEBLUuqpHQamcRLdALjkkckyvgOjCnQEzG5eLdvUKjsM4kW2rXjnvDdndfzqHxFIxAPq6rON5Knk7xPJ78zYm+qqlH8zVeARDr7Qr28=
+X-Forefront-Antispam-Report: CIP:216.228.112.34; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:schybrid03.nvidia.com; CAT:NONE;
+ SFS:(4636009)(36840700001)(46966006)(70206006)(26005)(70586007)(86362001)(82310400003)(47076005)(9686003)(426003)(336012)(33716001)(16526019)(186003)(508600001)(36860700001)(8676002)(8936002)(2906002)(7416002)(36906005)(6666004)(316002)(83380400001)(54906003)(7636003)(356005)(5660300002)(110136005)(9576002)(4326008)(334744004);
  DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2021 07:03:50.9888 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3367a68c-3788-469e-39f4-08d9aa61936a
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT066.eop-nam11.prod.protection.outlook.com
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Nov 2021 07:19:25.6984 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0a0e1548-8a66-407c-c6fb-08d9aa63c087
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.112.34];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT040.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5384
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5039
+X-Mailman-Approved-At: Thu, 18 Nov 2021 08:39:29 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,93 +105,129 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, Prike Liang <Prike.Liang@amd.com>,
- ray.huang@amd.com
+Cc: amd-gfx@lists.freedesktop.org, willy@infradead.org, jglisse@redhat.com,
+ dri-devel@lists.freedesktop.org, jgg@nvidia.com, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Do ASIC reset at the moment Sx suspend aborted behind of amdgpu suspend
-to keep AMDGPU in a clean reset state and that can avoid re-initialize
-device improperly error.
+On Tuesday, 16 November 2021 6:30:23 AM AEDT Alex Sierra wrote:
+> In order to configure device coherent in test_hmm, two module parameters
+> should be passed, which correspond to the SP start address of each
+> device (2) spm_addr_dev0 & spm_addr_dev1. If no parameters are passed,
+> private device type is configured.
 
-Signed-off-by: Prike Liang <Prike.Liang@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  4 ++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c    | 19 +++++++++++++++++++
- 3 files changed, 24 insertions(+)
+Thanks for taking the time to add proper tests for this, as previously
+mentioned I don't like the need for module parameters but understand why these
+are more difficult to avoid.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index b85b67a..8bd9833 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -1053,6 +1053,7 @@ struct amdgpu_device {
- 	bool				in_s3;
- 	bool				in_s4;
- 	bool				in_s0ix;
-+	bool				pm_completed;
+However as also mentioned previously the restriction of being able to test only
+private *or* coherent device pages is unnecessary and makes testing both types harder, especially if we need to test migration between device private and coherent pages.
+
+<snip>
  
- 	atomic_t 			in_gpu_reset;
- 	enum pp_mp1_state               mp1_state;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index ec42a6f..a12ed54 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -3983,6 +3983,10 @@ int amdgpu_device_resume(struct drm_device *dev, bool fbcon)
- 	if (adev->in_s0ix)
- 		amdgpu_gfx_state_change_set(adev, sGpuChangeState_D0Entry);
- 
-+	if (!adev->pm_completed) {
-+		dev_warn(adev->dev, "suspend aborted will do asic reset\n");
-+		amdgpu_asic_reset(adev);
-+	}
- 	/* post card */
- 	if (amdgpu_device_need_post(adev)) {
- 		r = amdgpu_device_asic_init(adev);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index eee3cf8..9f90017 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2168,6 +2168,23 @@ static int amdgpu_pmops_suspend(struct device *dev)
- 	return r;
- }
- 
-+/*
-+ * Actually the PM suspend whether is completed should be confirmed
-+ * by checking the sysfs sys/power/suspend_stats/failed_suspend.However,
-+ * in this function only check the AMDGPU device whether is suspended
-+ * completely in the system-wide suspend process.
-+ */
-+static int amdgpu_pmops_noirq_suspend(struct device *dev)
-+{
-+	struct drm_device *drm_dev = dev_get_drvdata(dev);
-+	struct amdgpu_device *adev = drm_to_adev(drm_dev);
-+
-+	dev_dbg(dev, "amdgpu suspend completely.\n");
-+	adev->pm_completed = true;
-+
-+	return 0;
-+}
-+
- static int amdgpu_pmops_resume(struct device *dev)
- {
- 	struct drm_device *drm_dev = dev_get_drvdata(dev);
-@@ -2181,6 +2198,7 @@ static int amdgpu_pmops_resume(struct device *dev)
- 	r = amdgpu_device_resume(drm_dev, true);
- 	if (amdgpu_acpi_is_s0ix_active(adev))
- 		adev->in_s0ix = false;
-+	adev->pm_completed = false;
- 	return r;
- }
- 
-@@ -2397,6 +2415,7 @@ static const struct dev_pm_ops amdgpu_pm_ops = {
- 	.runtime_suspend = amdgpu_pmops_runtime_suspend,
- 	.runtime_resume = amdgpu_pmops_runtime_resume,
- 	.runtime_idle = amdgpu_pmops_runtime_idle,
-+	.suspend_noirq = amdgpu_pmops_noirq_suspend,
- };
- 
- static int amdgpu_flush(struct file *f, fl_owner_t id)
--- 
-2.7.4
+> -	res = request_free_mem_region(&iomem_resource, DEVMEM_CHUNK_SIZE,
+> -				      "hmm_dmirror");
+> -	if (IS_ERR(res))
+> -		goto err_devmem;
+> +	if (!spm_addr_dev0 && !spm_addr_dev1) {
+> +		res = request_free_mem_region(&iomem_resource, DEVMEM_CHUNK_SIZE,
+> +					      "hmm_dmirror");
+> +		if (IS_ERR_OR_NULL(res))
+> +			goto err_devmem;
+> +		devmem->pagemap.range.start = res->start;
+> +		devmem->pagemap.range.end = res->end;
+> +		devmem->pagemap.type = MEMORY_DEVICE_PRIVATE;
+> +		mdevice->zone_device_type = HMM_DMIRROR_MEMORY_DEVICE_PRIVATE;
+> +	} else if (spm_addr_dev0 && spm_addr_dev1) {
+> +		devmem->pagemap.range.start = MINOR(mdevice->cdevice.dev) ?
+> +							spm_addr_dev0 :
+> +							spm_addr_dev1;
+
+It seems like it would be fairly straight forward to address this concern by
+adding extra minor character devices for the coherent devices. Would it be
+possible for you to try that?
+
+> +		devmem->pagemap.range.end = devmem->pagemap.range.start +
+> +					    DEVMEM_CHUNK_SIZE - 1;
+> +		devmem->pagemap.type = MEMORY_DEVICE_COHERENT;
+> +		mdevice->zone_device_type = HMM_DMIRROR_MEMORY_DEVICE_COHERENT;
+> +	} else {
+> +		pr_err("Both spm_addr_dev parameters should be set\n");
+> +	}
+>  
+> -	mdevice->zone_device_type = HMM_DMIRROR_MEMORY_DEVICE_PRIVATE;
+> -	devmem->pagemap.type = MEMORY_DEVICE_PRIVATE;
+> -	devmem->pagemap.range.start = res->start;
+> -	devmem->pagemap.range.end = res->end;
+>  	devmem->pagemap.nr_range = 1;
+>  	devmem->pagemap.ops = &dmirror_devmem_ops;
+>  	devmem->pagemap.owner = mdevice;
+> @@ -495,10 +517,14 @@ static bool dmirror_allocate_chunk(struct dmirror_device *mdevice,
+>  		mdevice->devmem_capacity = new_capacity;
+>  		mdevice->devmem_chunks = new_chunks;
+>  	}
+> -
+>  	ptr = memremap_pages(&devmem->pagemap, numa_node_id());
+> -	if (IS_ERR(ptr))
+> +	if (IS_ERR_OR_NULL(ptr)) {
+> +		if (ptr)
+> +			ret = PTR_ERR(ptr);
+> +		else
+> +			ret = -EFAULT;
+>  		goto err_release;
+> +	}
+>  
+>  	devmem->mdevice = mdevice;
+>  	pfn_first = devmem->pagemap.range.start >> PAGE_SHIFT;
+> @@ -531,7 +557,8 @@ static bool dmirror_allocate_chunk(struct dmirror_device *mdevice,
+>  
+>  err_release:
+>  	mutex_unlock(&mdevice->devmem_lock);
+> -	release_mem_region(devmem->pagemap.range.start, range_len(&devmem->pagemap.range));
+> +	if (res)
+> +		release_mem_region(devmem->pagemap.range.start, range_len(&devmem->pagemap.range));
+>  err_devmem:
+>  	kfree(devmem);
+>  
+> @@ -1219,10 +1246,8 @@ static int dmirror_device_init(struct dmirror_device *mdevice, int id)
+>  	if (ret)
+>  		return ret;
+>  
+> -	/* Build a list of free ZONE_DEVICE private struct pages */
+> -	dmirror_allocate_chunk(mdevice, NULL);
+> -
+> -	return 0;
+> +	/* Build a list of free ZONE_DEVICE struct pages */
+> +	return dmirror_allocate_chunk(mdevice, NULL);
+>  }
+>  
+>  static void dmirror_device_remove(struct dmirror_device *mdevice)
+> @@ -1235,8 +1260,9 @@ static void dmirror_device_remove(struct dmirror_device *mdevice)
+>  				mdevice->devmem_chunks[i];
+>  
+>  			memunmap_pages(&devmem->pagemap);
+> -			release_mem_region(devmem->pagemap.range.start,
+> -					   range_len(&devmem->pagemap.range));
+> +			if (devmem->pagemap.type == MEMORY_DEVICE_PRIVATE)
+> +				release_mem_region(devmem->pagemap.range.start,
+> +						   range_len(&devmem->pagemap.range));
+>  			kfree(devmem);
+>  		}
+>  		kfree(mdevice->devmem_chunks);
+> diff --git a/lib/test_hmm_uapi.h b/lib/test_hmm_uapi.h
+> index c42e57a6a71e..77f81e6314eb 100644
+> --- a/lib/test_hmm_uapi.h
+> +++ b/lib/test_hmm_uapi.h
+> @@ -67,6 +67,7 @@ enum {
+>  enum {
+>  	/* 0 is reserved to catch uninitialized type fields */
+>  	HMM_DMIRROR_MEMORY_DEVICE_PRIVATE = 1,
+> +	HMM_DMIRROR_MEMORY_DEVICE_COHERENT,
+>  };
+>  
+>  #endif /* _LIB_TEST_HMM_UAPI_H */
+> 
+
+
+
 
