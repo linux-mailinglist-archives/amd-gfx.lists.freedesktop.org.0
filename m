@@ -2,94 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D0264572EE
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Nov 2021 17:28:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C47674576AA
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Nov 2021 19:46:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9E376E0F3;
-	Fri, 19 Nov 2021 16:28:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E6706E159;
+	Fri, 19 Nov 2021 18:46:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2044.outbound.protection.outlook.com [40.107.220.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78C786E03B
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 16:28:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VR3OzflXeuyT3CS/C516cbDyAK/6da5mun4BfO7csUIDNmRuPUbsXTMdBjySLlT2FlG9sp2tjbU0lkVz40b8r9Sx228peXNZMFMObGRaztPpVXiPoV2YHMhHFcMceAvZG8Vg9lZCDBC8IA2pUvroLj/wneqsxiBkq2GHZ/Spb/v8Kb2a6JfjNEGAcNAqHOmDSRdS1SVfBukmnRGrJH53bI+ZmrGIz0kHxf+g5eff15LGWnKAiMfQ2ylVQAdg8gwWaxVmFQc6J933U1AXPgntVOOhCXIcbcnMz7BjugNdQrPiJU9tp6d07NMhwxvxX/ADmGWEylQIAO2x9oQR3V4+LQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S9XwYjhWL2f9Q6BdfR9mUq3PgsM7yoTjAUlhqkEoQaw=;
- b=m0olBPIKYX51QtyeKOXazBd33A8aMtAjUBblqLFribKEC+wKmDyKghSz4oRRoDXkam33DQdDLmv0WzUc+z9kWxe8vwEJHNkrqGgeFJIhOSVQkYjNea555KfRzxOBdUqJbnZQJf16/cdFt67TOFq5qKQcjajI9rDrLD7+euu6MiEiQDr+pbONkEztNSpeHVv0Voa5HlnZNaKTd16LeaIgQ4qvKAcpiSWODBMC4NIr+eOVQ3NVqeJdrMHjju+KifF6iyymeZdH1ZBL9LrbMut+EszV+mZZrSpdJNuyD9VXF+s2L9tD5Gpgmhb7UCxrlBTNr2dfva1LJk/FzcoIlcpQwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S9XwYjhWL2f9Q6BdfR9mUq3PgsM7yoTjAUlhqkEoQaw=;
- b=C3VyYeLr8R+x4AR9K1oc6iGOZxweVVMJn79YNo6OeAz101zT7TKV4InmhZWuOPBQq69TYPoRYad5nBB4oSfMlPEkPS2bZDtj9I/ZByna0plNnLrCuzAoQufQkhuZwDVuI4AjB89V+gtBWm0cxZDV3EDvHvGH3iJDSBNpc+EuspU=
-Received: from DM6PR03CA0047.namprd03.prod.outlook.com (2603:10b6:5:100::24)
- by MN2PR12MB4064.namprd12.prod.outlook.com (2603:10b6:208:1d3::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19; Fri, 19 Nov
- 2021 16:28:36 +0000
-Received: from DM6NAM11FT062.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:100:cafe::21) by DM6PR03CA0047.outlook.office365.com
- (2603:10b6:5:100::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19 via Frontend
- Transport; Fri, 19 Nov 2021 16:28:36 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT062.mail.protection.outlook.com (10.13.173.40) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4713.20 via Frontend Transport; Fri, 19 Nov 2021 16:28:36 +0000
-Received: from mkgs-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Fri, 19 Nov
- 2021 10:28:32 -0600
-From: Graham Sider <Graham.Sider@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 4/4] drm/amdkfd: remove hardcoded device_info structs
-Date: Fri, 19 Nov 2021 11:28:00 -0500
-Message-ID: <20211119162800.2111819-4-Graham.Sider@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211119162800.2111819-1-Graham.Sider@amd.com>
-References: <20211119162800.2111819-1-Graham.Sider@amd.com>
+Received: from mx0a-00190b01.pphosted.com (mx0a-00190b01.pphosted.com
+ [IPv6:2620:100:9001:583::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5568B6EE79;
+ Fri, 19 Nov 2021 16:22:14 +0000 (UTC)
+Received: from pps.filterd (m0122333.ppops.net [127.0.0.1])
+ by mx0a-00190b01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1AJFLKHk028100;
+ Fri, 19 Nov 2021 16:21:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akamai.com;
+ h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=jan2016.eng;
+ bh=9YhPnMhtNA7tLEuoFyc4djop0J+S5ShMmbv7d5TlvcM=;
+ b=nK1JRSkfkdsISQO8Iz8scJYiOzhmRJBvsJk8VWg6mfGB0dnQ6iZyPbgSL2vux/qi60r1
+ SvMzUQSyfsH1lDm1HIGiT37/5rHDHb8Trfsk6M9HjoTXExBTIykERnehYHKcix6zkc8v
+ prIN+lbI6l6lJ5Wtmn1ekDbLB9aDem5b+l6lO3+b/7QsDfSNb2iShVYdl06RtPQbx0J6
+ BIYOe7PJJP0GCbdRwu1Y19YNCA2u4oyqCcH9xYpbQ/CrStNbvRoG3z+69fuS8kiY+HnN
+ H3IG3yGsia2CUtSzInp+C1NMpropJUsRIcqmK0Lz0GhahexiA7CSGIiYan8xNkyyBxk2 Gg== 
+Received: from prod-mail-ppoint4
+ (a72-247-45-32.deploy.static.akamaitechnologies.com [72.247.45.32] (may be
+ forged))
+ by mx0a-00190b01.pphosted.com (PPS) with ESMTPS id 3cdrf3n5ty-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 19 Nov 2021 16:21:39 +0000
+Received: from pps.filterd (prod-mail-ppoint4.akamai.com [127.0.0.1])
+ by prod-mail-ppoint4.akamai.com (8.16.1.2/8.16.1.2) with SMTP id
+ 1AJGKA8J031865; Fri, 19 Nov 2021 11:21:38 -0500
+Received: from prod-mail-relay19.dfw02.corp.akamai.com ([172.27.165.173])
+ by prod-mail-ppoint4.akamai.com with ESMTP id 3ccn28ku20-1;
+ Fri, 19 Nov 2021 11:21:38 -0500
+Received: from [0.0.0.0] (prod-ssh-gw01.bos01.corp.akamai.com [172.27.119.138])
+ by prod-mail-relay19.dfw02.corp.akamai.com (Postfix) with ESMTP id DFCF4605CD; 
+ Fri, 19 Nov 2021 16:21:36 +0000 (GMT)
+Subject: Re: [PATCH v10 08/10] dyndbg: add print-to-tracefs, selftest with it
+ - RFC
+To: Pekka Paalanen <ppaalanen@gmail.com>, seanpaul@chromium.org,
+ sean@poorly.run
+References: <20211111220206.121610-1-jim.cromie@gmail.com>
+ <20211111220206.121610-9-jim.cromie@gmail.com>
+ <20211112114953.GA1381@axis.com>
+ <f3914fa9-8b22-d54e-3f77-d998e74094b9@akamai.com>
+ <20211116104631.195cbd0b@eldfell>
+ <f87b7076-47e6-89b1-aaf9-b67aa6713e01@akamai.com>
+ <20211118172401.0b4d722e@eldfell>
+From: Jason Baron <jbaron@akamai.com>
+Message-ID: <41ea83b2-a707-cb6f-521e-070bb12502de@akamai.com>
+Date: Fri, 19 Nov 2021 11:21:36 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a523e95e-2a47-4dce-2373-08d9ab79a306
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4064:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB40648A2F0E72286F08ECD0F48A9C9@MN2PR12MB4064.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3044;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OzUuR8ZdlhX3l/04LydJlu+XLhpeW2w/F+1AaIH7OW7UvQCQogi9CkRNMmFF6mxF/WAmw0zHGGoUU2g7fqbei5THCen2N6NHAC1VSeVEKoYCZBOsxCW8S+N/rMrLcuLF9wFxYZkj2gM6STOUkjrCwrNBUbLvHzITQqhREJUgpNavXuLLKjCPjb3wAy2tXt4B4Ds5XCqZGFCKw5ojg4JyFbq3Ixx19iSSCOX/fST8Dhx/JvwNRYxJM4z4gB4D0t7R/hzYZ924n06Is9WvHdpwgc8quWLwextDKaoTiBAMal5uGa3w+0w2tPGTqiAUpYY+yN3EFwWoORefK/QxiyGOCm5aGb+PMtvbkGobrTpdFDIDUWmkpBPhJqpyRqZu9uv7LBUIg0+CWlioYq/mkR3F2kHj3YsInIdrwuDnb+hI522dlh4yVrfxXEw6eJf1MXTgDUheGtljyA8iHMpanTzw5NuMoBE8eQnM0lyf8GxRNlHRI3sfyHgIgj1WobrOG1z2aei8V5imTOXgVjQCtNYSOmO0la6hNz3+CPOYhr3izXmBozsBLgQ0WEQldvDoSn+qpy1expCwK+6agZTzD492xOeimgl8hn/WQfdIIXkDdETuf6FK5DisfcX+XY4w5nGcfva+Zud5RyQz/dDIYFfNwmJBqlZbGjoiCNe0d3q8CLvDnQu9auUHBMV113pywPfhm6J3f5/myHc/AKn+BiiinJ9gdjW0K+jHJzRfo6j7WeU=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(36756003)(336012)(2906002)(316002)(2616005)(36860700001)(47076005)(356005)(7696005)(426003)(83380400001)(5660300002)(81166007)(30864003)(8936002)(6916009)(6666004)(70586007)(1076003)(70206006)(16526019)(4326008)(82310400003)(54906003)(26005)(508600001)(86362001)(186003)(8676002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2021 16:28:36.3297 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a523e95e-2a47-4dce-2373-08d9ab79a306
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT062.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4064
+In-Reply-To: <20211118172401.0b4d722e@eldfell>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.425, 18.0.790
+ definitions=2021-11-19_06:2021-11-17,
+ 2021-11-19 signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
+ mlxscore=0 mlxlogscore=999
+ adultscore=0 suspectscore=0 malwarescore=0 spamscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
+ definitions=main-2111190090
+X-Proofpoint-ORIG-GUID: wAvvlZeEqbaLEYHr7ZT1eS9bIMmWqfL8
+X-Proofpoint-GUID: wAvvlZeEqbaLEYHr7ZT1eS9bIMmWqfL8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-11-19_09,2021-11-17_01,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
+ adultscore=0 spamscore=0
+ clxscore=1015 impostorscore=0 priorityscore=1501 suspectscore=0
+ malwarescore=0 lowpriorityscore=0 mlxscore=0 mlxlogscore=999 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
+ definitions=main-2111190090
+X-Mailman-Approved-At: Fri, 19 Nov 2021 18:46:30 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,581 +93,179 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix.Kuehling@amd.com, Graham Sider <Graham.Sider@amd.com>
+Cc: intel-gvt-dev@lists.freedesktop.org, quic_saipraka@quicinc.com,
+ arnd@arndb.de, gregkh@linuxfoundation.org, Jim Cromie <jim.cromie@gmail.com>,
+ catalin.marinas@arm.com, linux-arm-msm@vger.kernel.org,
+ Vincent Whitchurch <vincent.whitchurch@axis.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, daniel.vetter@ffwll.ch, mingo@redhat.com,
+ rostedt@goodmis.org, amd-gfx@lists.freedesktop.org, quic_psodagud@quicinc.com,
+ maz@kernel.org, mathieu.desnoyers@efficios.com, will@kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-With device_info initialization being handled in kfd_device_info_init,
-these structs may be removed. Also add comments to help matching IP
-versions to asic names.
 
-Signed-off-by: Graham Sider <Graham.Sider@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device.c | 469 +-----------------------
- 1 file changed, 17 insertions(+), 452 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index 65e0eb5e2926..536cd227c9d3 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -53,458 +53,6 @@ extern const struct kfd2kgd_calls aldebaran_kfd2kgd;
- extern const struct kfd2kgd_calls gfx_v10_kfd2kgd;
- extern const struct kfd2kgd_calls gfx_v10_3_kfd2kgd;
- 
--#ifdef KFD_SUPPORT_IOMMU_V2
--static const struct kfd_device_info kaveri_device_info = {
--	.gfx_target_version = 70000,
--	.max_pasid_bits = 16,
--	/* max num of queues for KV.TODO should be a dynamic value */
--	.max_no_of_hqd	= 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = false,
--	.needs_iommu_device = true,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info carrizo_device_info = {
--	.gfx_target_version = 80001,
--	.max_pasid_bits = 16,
--	/* max num of queues for CZ.TODO should be a dynamic value */
--	.max_no_of_hqd	= 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = true,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info raven_device_info = {
--	.gfx_target_version = 90002,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = true,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--#endif
--
--#ifdef CONFIG_DRM_AMDGPU_CIK
--static const struct kfd_device_info hawaii_device_info = {
--	.gfx_target_version = 70001,
--	.max_pasid_bits = 16,
--	/* max num of queues for KV.TODO should be a dynamic value */
--	.max_no_of_hqd	= 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = false,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--#endif
--
--static const struct kfd_device_info tonga_device_info = {
--	.gfx_target_version = 80002,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = false,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info fiji_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info fiji_vf_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--
--static const struct kfd_device_info polaris10_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info polaris10_vf_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info polaris11_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info polaris12_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info vegam_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info vega10_device_info = {
--	.gfx_target_version = 90000,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info vega10_vf_device_info = {
--	.gfx_target_version = 90000,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info vega12_device_info = {
--	.gfx_target_version = 90004,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info vega20_device_info = {
--	.gfx_target_version = 90006,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd	= 24,
--	.doorbell_size	= 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info arcturus_device_info = {
--	.gfx_target_version = 90008,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd	= 24,
--	.doorbell_size	= 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info aldebaran_device_info = {
--	.gfx_target_version = 90010,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd	= 24,
--	.doorbell_size	= 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info renoir_device_info = {
--	.gfx_target_version = 90012,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info navi10_device_info = {
--	.gfx_target_version = 100100,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 145,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info navi12_device_info = {
--	.gfx_target_version = 100101,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 145,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info navi14_device_info = {
--	.gfx_target_version = 100102,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 145,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info sienna_cichlid_device_info = {
--	.gfx_target_version = 100300,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 92,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info navy_flounder_device_info = {
--	.gfx_target_version = 100301,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 92,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info vangogh_device_info = {
--	.gfx_target_version = 100303,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 92,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info dimgrey_cavefish_device_info = {
--	.gfx_target_version = 100302,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 92,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info beige_goby_device_info = {
--	.gfx_target_version = 100304,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 92,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info yellow_carp_device_info = {
--	.gfx_target_version = 100305,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 92,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info cyan_skillfish_device_info = {
--	.gfx_target_version = 100103,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 8,
--};
--
- static int kfd_gtt_sa_init(struct kfd_dev *kfd, unsigned int buf_size,
- 				unsigned int chunk_size);
- static void kfd_gtt_sa_fini(struct kfd_dev *kfd);
-@@ -632,11 +180,13 @@ struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
- 		break;
- 	default:
- 		switch (gc_version) {
-+		// Vega 10
- 		case IP_VERSION(9, 0, 1):
- 			gfx_target_version = 90000;
- 			f2g = &gfx_v9_kfd2kgd;
- 			break;
- #ifdef KFD_SUPPORT_IOMMU_V2
-+		// Raven
- 		case IP_VERSION(9, 1, 0):
- 		case IP_VERSION(9, 2, 2):
- 			gfx_target_version = 90002;
-@@ -644,69 +194,84 @@ struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
- 				f2g = &gfx_v9_kfd2kgd;
- 			break;
- #endif
-+		// Vega12
- 		case IP_VERSION(9, 2, 1):
- 			gfx_target_version = 90004;
- 			if (!vf)
- 				f2g = &gfx_v9_kfd2kgd;
- 			break;
-+		// Renoir
- 		case IP_VERSION(9, 3, 0):
- 			gfx_target_version = 90012;
- 			if (!vf)
- 				f2g = &gfx_v9_kfd2kgd;
- 			break;
-+		// Vega20
- 		case IP_VERSION(9, 4, 0):
- 			gfx_target_version = 90006;
- 			if (!vf)
- 				f2g = &gfx_v9_kfd2kgd;
- 			break;
-+		// Arcturus
- 		case IP_VERSION(9, 4, 1):
- 			gfx_target_version = 90008;
- 			f2g = &arcturus_kfd2kgd;
- 			break;
-+		// Aldebaran
- 		case IP_VERSION(9, 4, 2):
- 			gfx_target_version = 90010;
- 			f2g = &aldebaran_kfd2kgd;
- 			break;
-+		// Navi10
- 		case IP_VERSION(10, 1, 10):
- 			gfx_target_version = 100100;
- 			if (!vf)
- 				f2g = &gfx_v10_kfd2kgd;
- 			break;
-+		// Navi12
- 		case IP_VERSION(10, 1, 2):
- 			gfx_target_version = 100101;
- 			f2g = &gfx_v10_kfd2kgd;
- 			break;
-+		// Navi14
- 		case IP_VERSION(10, 1, 1):
- 			gfx_target_version = 100102;
- 			if (!vf)
- 				f2g = &gfx_v10_kfd2kgd;
- 			break;
-+		// Cyan Skillfish
- 		case IP_VERSION(10, 1, 3):
- 			gfx_target_version = 100103;
- 			if (!vf)
- 				f2g = &gfx_v10_kfd2kgd;
- 			break;
-+		// Sienna Cichlid
- 		case IP_VERSION(10, 3, 0):
- 			gfx_target_version = 100300;
- 			f2g = &gfx_v10_3_kfd2kgd;
- 			break;
-+		// Navy Flounder
- 		case IP_VERSION(10, 3, 2):
- 			gfx_target_version = 100301;
- 			f2g = &gfx_v10_3_kfd2kgd;
- 			break;
-+		// Van Gogh
- 		case IP_VERSION(10, 3, 1):
- 			gfx_target_version = 100303;
- 			if (!vf)
- 				f2g = &gfx_v10_3_kfd2kgd;
- 			break;
-+		// Dimgrey Cavefish
- 		case IP_VERSION(10, 3, 4):
- 			gfx_target_version = 100302;
- 			f2g = &gfx_v10_3_kfd2kgd;
- 			break;
-+		// Beige Goby
- 		case IP_VERSION(10, 3, 5):
- 			gfx_target_version = 100304;
- 			f2g = &gfx_v10_3_kfd2kgd;
- 			break;
-+		// Yellow Carp
- 		case IP_VERSION(10, 3, 3):
- 			gfx_target_version = 100305;
- 			if (!vf)
--- 
-2.25.1
+On 11/18/21 10:24 AM, Pekka Paalanen wrote:
+> On Thu, 18 Nov 2021 09:29:27 -0500
+> Jason Baron <jbaron@akamai.com> wrote:
+> 
+>> On 11/16/21 3:46 AM, Pekka Paalanen wrote:
+>>> On Fri, 12 Nov 2021 10:08:41 -0500
+>>> Jason Baron <jbaron@akamai.com> wrote:
+>>>   
+>>>> On 11/12/21 6:49 AM, Vincent Whitchurch wrote:  
+>>>>> On Thu, Nov 11, 2021 at 03:02:04PM -0700, Jim Cromie wrote:    
+>>>>>> Sean Paul proposed, in:
+>>>>>> https://urldefense.com/v3/__https://patchwork.freedesktop.org/series/78133/__;!!GjvTz_vk!HcKnMRByYkIdyF1apqQjlN5aBIomzJR1an3YWXM6KXs0EftVMQdrewRA8Dki4A$ 
+>>>>>> drm/trace: Mirror DRM debug logs to tracefs
+>>>>>>
+>>>>>> His patchset's objective is to be able to independently steer some of
+>>>>>> the drm.debug stream to an alternate tracing destination, by splitting
+>>>>>> drm_debug_enabled() into syslog & trace flavors, and enabling them
+>>>>>> separately.  2 advantages were identified:
+>>>>>>
+>>>>>> 1- syslog is heavyweight, tracefs is much lighter
+>>>>>> 2- separate selection of enabled categories means less traffic
+>>>>>>
+>>>>>> Dynamic-Debug can do 2nd exceedingly well:
+>>>>>>
+>>>>>> A- all work is behind jump-label's NOOP, zero off cost.
+>>>>>> B- exact site selectivity, precisely the useful traffic.
+>>>>>>    can tailor enabled set interactively, at shell.
+>>>>>>
+>>>>>> Since the tracefs interface is effective for drm (the threads suggest
+>>>>>> so), adding that interface to dynamic-debug has real potential for
+>>>>>> everyone including drm.
+>>>>>>
+>>>>>> if CONFIG_TRACING:
+>>>>>>
+>>>>>> Grab Sean's trace_init/cleanup code, use it to provide tracefs
+>>>>>> available by default to all pr_debugs.  This will likely need some
+>>>>>> further per-module treatment; perhaps something reflecting hierarchy
+>>>>>> of module,file,function,line, maybe with a tuned flattening.
+>>>>>>
+>>>>>> endif CONFIG_TRACING
+>>>>>>
+>>>>>> Add a new +T flag to enable tracing, independent of +p, and add and
+>>>>>> use 3 macros: dyndbg_site_is_enabled/logging/tracing(), to encapsulate
+>>>>>> the flag checks.  Existing code treats T like other flags.    
+>>>>>
+>>>>> I posted a patchset a while ago to do something very similar, but that
+>>>>> got stalled for some reason and I unfortunately didn't follow it up:
+>>>>>
+>>>>>  https://urldefense.com/v3/__https://lore.kernel.org/lkml/20200825153338.17061-1-vincent.whitchurch@axis.com/__;!!GjvTz_vk!HcKnMRByYkIdyF1apqQjlN5aBIomzJR1an3YWXM6KXs0EftVMQdrewRGytKHPg$ 
+>>>>>
+>>>>> A key difference between that patchset and this patch (besides that
+>>>>> small fact that I used +x instead of +T) was that my patchset allowed
+>>>>> the dyndbg trace to be emitted to the main buffer and did not force them
+>>>>> to be in an instance-specific buffer.    
+>>>>
+>>>> Yes, I agree I'd prefer that we print here to the 'main' buffer - it
+>>>> seems to keep things simpler and easier to combine the output from
+>>>> different sources as you mentioned.  
+>>>
+>>> Hi,
+>>>
+>>> I'm not quite sure I understand this discussion, but I would like to
+>>> remind you all of what Sean's original work is about:
+>>>
+>>> Userspace configures DRM tracing into a flight recorder buffer (I guess
+>>> this is what you refer to "instance-specific buffer").
+>>>
+>>> Userspace runs happily for months, and then hits a problem: a failure
+>>> in the DRM sub-system most likely, e.g. an ioctl that should never
+>>> fail, failed. Userspace handles that failure by dumping the flight
+>>> recorder buffer into a file and saving or sending a bug report. The
+>>> flight recorder contents give a log of all relevant DRM in-kernel
+>>> actions leading to the unexpected failure to help developers debug it.
+>>>
+>>> I don't mind if one can additionally send the flight recorder stream to
+>>> the main buffer, but I do want the separate flight recorder buffer to
+>>> be an option so that a) unrelated things cannot flood the interesting
+>>> bits out of it, and b) the scope of collected information is relevant.
+>>>
+>>> The very reason for this work is problems that are very difficult to
+>>> reproduce in practice, either because the problem itself is triggered
+>>> very rarely and randomly, or because the end users of the system have
+>>> either no knowledge or no access to reconfigure debug logging and then
+>>> reproduce the problem with good debug logs.
+>>>
+>>> Thank you very much for pushing this work forward!
+>>>
+>>>   
+>>
+>> So I think Vincent (earlier in the thread) was saying that he finds it
+>> very helpful have dynamic debug output go to the 'main' trace buffer,
+>> while you seem to be saying you'd prefer it just go to dynamic debug
+>> specific trace buffer.
+> 
+> Seems like we have different use cases: traditional debugging, and
+> in-production flight recorder for problem reporting. I'm not surprised
+> if they need different treatment.
+> 
+>> So we certainly can have dynamic output potentially go to both places -
+>> although I think this would mean two tracepoints? But I really wonder
+>> if we really need a separate tracing buffer for dynamic debug when
+>> what goes to the 'main' buffer can be controlled and filtered to avoid
+>> your concern around a 'flood'?
+> 
+> If the DRM tracing goes into the main buffer, then systems in
+> production cannot have any other sub-system traced in a similar
+> fashion. To me it would feel very arrogant to say that to make use of
+> DRM flight recording, you cannot trace much or anything else.
+> 
+> The very purpose of the flight recorder is run in production all the
+> time, not in a special debugging session.
+> 
+> There is also the question of access and contents of the trace buffer.
+> Ultimately, if automatic bug reports are enabled in a system, the
+> contents of the trace buffer would be sent as-is to some bug tracking
+> system. If there is a chance to put non-DRM stuff in the trace buffer,
+> that could be a security problem.
+> 
+> My use case is Weston. When Weston encounters an unexpected problem in
+> production, something should automatically capture the DRM flight
+> recorder contents and save it alongside the Weston log. Would be really
+> nice if Weston itself could do that, but I suspect it is going to need
+> root privileges so it needs some helper daemon.
+> 
+> Maybe Sean can reiterate their use case more?
+> 
+> 
+> Thanks,
+> pq
+> 
+
+Ok, so in this current thread the proposal was to create a "dyndbg-tracefs"
+buffer to put the dynamic debug output (including drm output from dynamic
+debug) into. And I was saying let's just put in the 'main' trace buffer
+(predicated on a dynamic debug specific tracepoint), since there seems
+to be a a use-case for that and it keeps things simpler.
+
+But I went back to Sean's original patch, and it creates a drm specific
+trace buffer "drm" (via trace_array_get_by_name("drm")). Here:
+https://patchwork.freedesktop.org/patch/445549/?series=78133&rev=5
+
+So I think that may be some of the confusion here? The current thread/
+proposal is not for a drm specific trace buffer...
+
+Having a subsystem specific trace buffer would allow subsystem specific
+trace log permissions depending on the sensitivity of the data. But
+doesn't drm output today go to the system log which is typically world
+readable today?
+
+So I could see us supporting subsystem specific trace buffer output
+via dynamic debug here. We could add new dev_debug() variants that
+allow say a trace buffer to be supplied. So in that way subsystems
+could 'opt-out' of having their data put into the global trace buffer.
+And perhaps some subsystems we would want to allow output to both
+buffers? The subsystem specific one and the global one?
+
+Thanks,
+
+-Jason
+
+
+
 
