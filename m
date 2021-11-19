@@ -2,93 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 856C64578CE
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Nov 2021 23:30:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23378457907
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Nov 2021 23:47:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 648B56E210;
-	Fri, 19 Nov 2021 22:30:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 661626E5CF;
+	Fri, 19 Nov 2021 22:47:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2068.outbound.protection.outlook.com [40.107.220.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C3D96E219
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 22:30:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mFcJjyzdq/3YgN490O5kGyP/SVHRypffpIBcpujkd2EKJ//Mmlv8g2aDM4wNp7yvzqhDi9qUSmAtPt9Z8Zee7kQOVH1sqZt7lupF/ZskHCvu/pzlHfHe5jkNygEfsdWCyeqHUJTrWR/fmyP8DscQ0u0M6TFgx1F9Lm55/nDEVEBA6vbNzwiUZnRQ5zX5TXNIxVoiE18uLDkd2bzh8C3NtcXNC2/RzM508QB331H1LTmaf8z21qwQQR+IIA39eEyZ7Xot0AW2nzxHqPxrNesrrufsJ4tXRSytgKtX5pvOVMIBiasFqmnKb/fS8PSM3I3pXNfsq+HWeKqrpGAZAq76SA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QFder+MCcbhYSMsVHfOc2xQ+OEt9bpsOw9Q6LnBh0TE=;
- b=ByC44XNws0zNl9pZWJDioAPd2p/7+6rnLpc3tK0bjHu8TJbkscWr83ykn6Vw6l2lSIiEEWZ+kRrcA5STu7EvkF2zjyQCwADJzCdeAO+8y2+7wKNSXIevoAsWs+lznTucy05QTd0WTIfsTid5Xt21dqIxKtmL8N/MODRZr+bu6FCPLeoAW/ybXZ6rdfySMvsJQDiLK9tLdtm4/3TTw6S6oIBBeYRT+eI7I855WxwqIC4RRJstdyTWYCxL0t3y2Jvx8/IfOdoQpU+cSV7X1tqbGz9uZhBuWwmVOIkfcfLOwDMyphrcd0CuN6ZgIrZD4lk84W1f0XyVKnYyxRJIg3pTrg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QFder+MCcbhYSMsVHfOc2xQ+OEt9bpsOw9Q6LnBh0TE=;
- b=CMChjjw1EcX4eUBeM9ppwtO6SdBlMIV258iAKGGNO0poqtd3fraR/r53F9dv/NNifcOAEErxkqBqJoubG8noldn6pqBsPMQO5RgwtHwxESxfL3VqNwbAS45aBrJ03p9s/7IzOuQ3IO2VKHC4H3EVVyJpSm3DcxNUCJanbiGIMT8=
-Received: from BN9PR03CA0766.namprd03.prod.outlook.com (2603:10b6:408:13a::21)
- by BY5PR12MB4965.namprd12.prod.outlook.com (2603:10b6:a03:1c4::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19; Fri, 19 Nov
- 2021 22:30:12 +0000
-Received: from BN8NAM11FT020.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:13a:cafe::dc) by BN9PR03CA0766.outlook.office365.com
- (2603:10b6:408:13a::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.22 via Frontend
- Transport; Fri, 19 Nov 2021 22:30:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT020.mail.protection.outlook.com (10.13.176.223) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4713.20 via Frontend Transport; Fri, 19 Nov 2021 22:30:11 +0000
-Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Fri, 19 Nov
- 2021 16:30:09 -0600
-From: Philip Yang <Philip.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2 3/3] drm/amdkfd: simplify drain retry fault
-Date: Fri, 19 Nov 2021 17:29:41 -0500
-Message-ID: <20211119222941.18053-3-Philip.Yang@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211119222941.18053-1-Philip.Yang@amd.com>
-References: <20211119222941.18053-1-Philip.Yang@amd.com>
+Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com
+ [IPv6:2607:f8b0:4864:20::92a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A514C6E311;
+ Fri, 19 Nov 2021 22:46:59 +0000 (UTC)
+Received: by mail-ua1-x92a.google.com with SMTP id w23so24267890uao.5;
+ Fri, 19 Nov 2021 14:46:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=zFqARuc/+Lw2I8xXuND6mlPXskUS/aYJU6LEBPOEf5o=;
+ b=oEPAJiVHkKnLUb2OIn7pnuCkNWLF2CXFsJpcC586yzL6zLjYrrilICjeZrWleJWLUA
+ MUByli/RmDmWqxlSVqhDR1C6bIQ0kDaDMNLZDqRvCOMUuPzE+51dTc3LxWouNEGcGgc1
+ D3eB6R/C73PHkIIxZrOk1ifLLIZfh5g9wTKHiS1Gx4GFuwrAy7AUNeO12seW0K7OCP6X
+ wBsRQR2wN3yUSuw/0E2+rUjdxgnI0i7jVjmx3OHTGjVDW4mcqOaMDO9EnnoolD3awCvu
+ fl/4nE0dYzj0SFkSkk6Yb1vEf42ZmYf02pxLyBJlXedQLEo+weyRWKRNMJ/oBAiRB/KC
+ uBzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=zFqARuc/+Lw2I8xXuND6mlPXskUS/aYJU6LEBPOEf5o=;
+ b=0V0K0eevlf3ltf/NJprc7DOeCiu4gu4YbEYppK2wGmTOu6Z/85UtoToHrTJRw8mjfB
+ RjEU9LVQnra7QBbwVSkbwKEekSW76ADUBDvSgvM6N7Ayq6YuzXOumjd70sPq7UzJzkIA
+ WDlbaVbd2WpF5JHV0OedQ4b83/itmq6JsIegY4cKFJyeyki1xTnBHch8RZF3Nukoa4TB
+ Zk9tlHwEWs6JGnwNA+gxqnx+CWB+hI92tOQX7FUDyYqShJTx6LpvK9yP2kWBR9eQKTZs
+ DYjbzcrw5KAP7SohoYFuvVIso+vdorgE8V7AF7HhIaY7Dic35Ws1hlKd/zXk140N6fpj
+ d9jw==
+X-Gm-Message-State: AOAM531Wll5IjGqwp7sG9zXrAMd0sot5u4yHt79lWvVyN+n/rHnFyGD4
+ B+zXWZvHZodu1NUrUoArmNQQT+I8wkQw+xYqnOg=
+X-Google-Smtp-Source: ABdhPJzexc6BskoZ7bxCgeL3na7HhjycEVACnUbSLbHZVhqRta9op3uUnUg4gkVAlSInN0VBX8WCQTbjvDaXvz2/O/8=
+X-Received: by 2002:ab0:44e:: with SMTP id 72mr54616355uav.121.1637362018620; 
+ Fri, 19 Nov 2021 14:46:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e8cec824-0abb-4f09-4188-08d9abac2666
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4965:
-X-Microsoft-Antispam-PRVS: <BY5PR12MB4965BE1461D8129C8765C31AE69C9@BY5PR12MB4965.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zwFabeC5PyiIZLl+Eu0ygMlAm4tIB59bj8W+q+w3X6w0AE2v4UFrJTjJXPsQnCuL/OzMS3QbgvmuSdr064sOgaDY15x+hfxImjDKqc8pUt7+teT10DEDDlf8k7Ozlkl6H9VXU3to/+qFPrrFTaOwofJKYdnRzjw13Ac8zAvQFC9u9IdSC/yfuAnHRQLq0ZsBTCp75wrH6lRvFhFwMC4LwH8UzTsJZLE1rn02PicOBoiL7YA/islwhj92t/mzkT6ItDwa4+NNrr+Okkv7UUy+LfFRZnufmBAa8MxWukAxxayLmRpcZ5kh+RBwBUQxZ8QsJQXShBclY7ad889/HhKwOYGAtXIs9RCY+Nbxsp4IJEIsKutm029Qsy2MgxZ0BG/FE3naZYqPKCvkXs5LPWq/pgTW5BTjaYJEv0vx2Ob4rhWdXMNuP/yR8PhxroWTsFVAq+sJQYxHaDZEHNiopbE/6P/cx0Zb1HPAU2avuqLw/O3BPsEm7e/XBiIQz3yhzW9Ay+vLL8UfDlDQrXHk7PRL6iKUhdDKQK5AVvHU9YUvnqPoYZHH3Nzhcm2DA/HvfBkYlE8gt/3QLP/+6eXkH+QdZzFEzZ70rIAdo5uocMkqZNy+Xac7woDrit3fO5ckWR7JiYvby3SZjHAUUQkGlyTX6eTy9mhKZhqE5j2jqDdzVWjrVf8GZ4gTctkSxDRChGD/HkombEkf2+mlACOmAqRawwni8Y1Waa6sVr5e+uGBho8=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(26005)(8676002)(70206006)(70586007)(36860700001)(186003)(8936002)(7696005)(6666004)(356005)(16526019)(47076005)(83380400001)(82310400003)(1076003)(2616005)(5660300002)(4326008)(508600001)(426003)(2906002)(6916009)(336012)(81166007)(86362001)(54906003)(36756003)(316002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2021 22:30:11.6156 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e8cec824-0abb-4f09-4188-08d9abac2666
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT020.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4965
+References: <20211111220206.121610-1-jim.cromie@gmail.com>
+ <20211111220206.121610-9-jim.cromie@gmail.com>
+ <20211112114953.GA1381@axis.com>
+ <f3914fa9-8b22-d54e-3f77-d998e74094b9@akamai.com>
+ <20211116104631.195cbd0b@eldfell>
+ <f87b7076-47e6-89b1-aaf9-b67aa6713e01@akamai.com>
+ <20211118172401.0b4d722e@eldfell>
+ <41ea83b2-a707-cb6f-521e-070bb12502de@akamai.com>
+In-Reply-To: <41ea83b2-a707-cb6f-521e-070bb12502de@akamai.com>
+From: jim.cromie@gmail.com
+Date: Fri, 19 Nov 2021 15:46:31 -0700
+Message-ID: <CAJfuBxyvDtALAHM53RdnWT4ke6Cjrc3OWTAqNKe_n-o_LhtpYg@mail.gmail.com>
+Subject: Re: [PATCH v10 08/10] dyndbg: add print-to-tracefs, selftest with it
+ - RFC
+To: Jason Baron <jbaron@akamai.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,129 +68,239 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Philip Yang <Philip.Yang@amd.com>, Felix.Kuehling@amd.com
+Cc: quic_saipraka@quicinc.com, Catalin Marinas <catalin.marinas@arm.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Will Deacon <will@kernel.org>,
+ maz@kernel.org, Vincent Whitchurch <vincent.whitchurch@axis.com>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Ingo Molnar <mingo@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Arnd Bergmann <arnd@arndb.de>, linux-arm-msm@vger.kernel.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Steven Rostedt <rostedt@goodmis.org>, Pekka Paalanen <ppaalanen@gmail.com>,
+ Sean Paul <seanpaul@chromium.org>, intel-gvt-dev@lists.freedesktop.org,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, Sean Paul <sean@poorly.run>,
+ Greg KH <gregkh@linuxfoundation.org>, LKML <linux-kernel@vger.kernel.org>,
+ quic_psodagud@quicinc.com, mathieu.desnoyers@efficios.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-unmap range always increase atomic svms->drain_pagefaults to simplify
-both parent range and child range unmap, page fault handle ignores the
-retry fault if svms->drain_pagefaults is set to speed up interrupt
-handling. svm_range_drain_retry_fault restart draining if another
-range unmap from cpu.
+On Fri, Nov 19, 2021 at 9:21 AM Jason Baron <jbaron@akamai.com> wrote:
+>
+>
+>
+> On 11/18/21 10:24 AM, Pekka Paalanen wrote:
+> > On Thu, 18 Nov 2021 09:29:27 -0500
+> > Jason Baron <jbaron@akamai.com> wrote:
+> >
+> >> On 11/16/21 3:46 AM, Pekka Paalanen wrote:
+> >>> On Fri, 12 Nov 2021 10:08:41 -0500
+> >>> Jason Baron <jbaron@akamai.com> wrote:
+> >>>
+> >>>> On 11/12/21 6:49 AM, Vincent Whitchurch wrote:
+> >>>>> On Thu, Nov 11, 2021 at 03:02:04PM -0700, Jim Cromie wrote:
+> >>>>>> Sean Paul proposed, in:
+> >>>>>> https://urldefense.com/v3/__https://patchwork.freedesktop.org/series/78133/__;!!GjvTz_vk!HcKnMRByYkIdyF1apqQjlN5aBIomzJR1an3YWXM6KXs0EftVMQdrewRA8Dki4A$
+> >>>>>> drm/trace: Mirror DRM debug logs to tracefs
+> >>>>>>
+> >>>>>> His patchset's objective is to be able to independently steer some of
+> >>>>>> the drm.debug stream to an alternate tracing destination, by splitting
+> >>>>>> drm_debug_enabled() into syslog & trace flavors, and enabling them
+> >>>>>> separately.  2 advantages were identified:
+> >>>>>>
+> >>>>>> 1- syslog is heavyweight, tracefs is much lighter
+> >>>>>> 2- separate selection of enabled categories means less traffic
+> >>>>>>
+> >>>>>> Dynamic-Debug can do 2nd exceedingly well:
+> >>>>>>
+> >>>>>> A- all work is behind jump-label's NOOP, zero off cost.
+> >>>>>> B- exact site selectivity, precisely the useful traffic.
+> >>>>>>    can tailor enabled set interactively, at shell.
+> >>>>>>
+> >>>>>> Since the tracefs interface is effective for drm (the threads suggest
+> >>>>>> so), adding that interface to dynamic-debug has real potential for
+> >>>>>> everyone including drm.
+> >>>>>>
+> >>>>>> if CONFIG_TRACING:
+> >>>>>>
+> >>>>>> Grab Sean's trace_init/cleanup code, use it to provide tracefs
+> >>>>>> available by default to all pr_debugs.  This will likely need some
+> >>>>>> further per-module treatment; perhaps something reflecting hierarchy
+> >>>>>> of module,file,function,line, maybe with a tuned flattening.
+> >>>>>>
+> >>>>>> endif CONFIG_TRACING
+> >>>>>>
+> >>>>>> Add a new +T flag to enable tracing, independent of +p, and add and
+> >>>>>> use 3 macros: dyndbg_site_is_enabled/logging/tracing(), to encapsulate
+> >>>>>> the flag checks.  Existing code treats T like other flags.
+> >>>>>
+> >>>>> I posted a patchset a while ago to do something very similar, but that
+> >>>>> got stalled for some reason and I unfortunately didn't follow it up:
+> >>>>>
+> >>>>>  https://urldefense.com/v3/__https://lore.kernel.org/lkml/20200825153338.17061-1-vincent.whitchurch@axis.com/__;!!GjvTz_vk!HcKnMRByYkIdyF1apqQjlN5aBIomzJR1an3YWXM6KXs0EftVMQdrewRGytKHPg$
+> >>>>>
+> >>>>> A key difference between that patchset and this patch (besides that
+> >>>>> small fact that I used +x instead of +T) was that my patchset allowed
+> >>>>> the dyndbg trace to be emitted to the main buffer and did not force them
+> >>>>> to be in an instance-specific buffer.
+> >>>>
+> >>>> Yes, I agree I'd prefer that we print here to the 'main' buffer - it
+> >>>> seems to keep things simpler and easier to combine the output from
+> >>>> different sources as you mentioned.
+> >>>
+> >>> Hi,
+> >>>
+> >>> I'm not quite sure I understand this discussion, but I would like to
+> >>> remind you all of what Sean's original work is about:
+> >>>
+> >>> Userspace configures DRM tracing into a flight recorder buffer (I guess
+> >>> this is what you refer to "instance-specific buffer").
+> >>>
+> >>> Userspace runs happily for months, and then hits a problem: a failure
+> >>> in the DRM sub-system most likely, e.g. an ioctl that should never
+> >>> fail, failed. Userspace handles that failure by dumping the flight
+> >>> recorder buffer into a file and saving or sending a bug report. The
+> >>> flight recorder contents give a log of all relevant DRM in-kernel
+> >>> actions leading to the unexpected failure to help developers debug it.
+> >>>
+> >>> I don't mind if one can additionally send the flight recorder stream to
+> >>> the main buffer, but I do want the separate flight recorder buffer to
+> >>> be an option so that a) unrelated things cannot flood the interesting
+> >>> bits out of it, and b) the scope of collected information is relevant.
+> >>>
+> >>> The very reason for this work is problems that are very difficult to
+> >>> reproduce in practice, either because the problem itself is triggered
+> >>> very rarely and randomly, or because the end users of the system have
+> >>> either no knowledge or no access to reconfigure debug logging and then
+> >>> reproduce the problem with good debug logs.
+> >>>
+> >>> Thank you very much for pushing this work forward!
+> >>>
+> >>>
+> >>
+> >> So I think Vincent (earlier in the thread) was saying that he finds it
+> >> very helpful have dynamic debug output go to the 'main' trace buffer,
+> >> while you seem to be saying you'd prefer it just go to dynamic debug
+> >> specific trace buffer.
+> >
+> > Seems like we have different use cases: traditional debugging, and
+> > in-production flight recorder for problem reporting. I'm not surprised
+> > if they need different treatment.
+> >
+> >> So we certainly can have dynamic output potentially go to both places -
+> >> although I think this would mean two tracepoints? But I really wonder
+> >> if we really need a separate tracing buffer for dynamic debug when
+> >> what goes to the 'main' buffer can be controlled and filtered to avoid
+> >> your concern around a 'flood'?
+> >
+> > If the DRM tracing goes into the main buffer, then systems in
+> > production cannot have any other sub-system traced in a similar
+> > fashion. To me it would feel very arrogant to say that to make use of
+> > DRM flight recording, you cannot trace much or anything else.
+> >
+> > The very purpose of the flight recorder is run in production all the
+> > time, not in a special debugging session.
+> >
+> > There is also the question of access and contents of the trace buffer.
+> > Ultimately, if automatic bug reports are enabled in a system, the
+> > contents of the trace buffer would be sent as-is to some bug tracking
+> > system. If there is a chance to put non-DRM stuff in the trace buffer,
+> > that could be a security problem.
+> >
+> > My use case is Weston. When Weston encounters an unexpected problem in
+> > production, something should automatically capture the DRM flight
+> > recorder contents and save it alongside the Weston log. Would be really
+> > nice if Weston itself could do that, but I suspect it is going to need
+> > root privileges so it needs some helper daemon.
+> >
+> > Maybe Sean can reiterate their use case more?
+> >
+> >
+> > Thanks,
+> > pq
+> >
+>
+> Ok, so in this current thread the proposal was to create a "dyndbg-tracefs"
+> buffer to put the dynamic debug output (including drm output from dynamic
+> debug) into. And I was saying let's just put in the 'main' trace buffer
+> (predicated on a dynamic debug specific tracepoint), since there seems
+> to be a a use-case for that and it keeps things simpler.
+>
+> But I went back to Sean's original patch, and it creates a drm specific
+> trace buffer "drm" (via trace_array_get_by_name("drm")). Here:
+> https://patchwork.freedesktop.org/patch/445549/?series=78133&rev=5
+>
+> So I think that may be some of the confusion here? The current thread/
+> proposal is not for a drm specific trace buffer...
+>
 
-Signed-off-by: Philip Yang <Philip.Yang@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h |  2 +-
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c  | 30 ++++++++++++++++++++-------
- 2 files changed, 23 insertions(+), 9 deletions(-)
+while thats true, it was a KISS choice, not intrinsic.
+Now that a requirement has emerged, I can think about it.
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index 836ec8860c1b..7ea528941951 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -767,7 +767,7 @@ struct svm_range_list {
- 	struct list_head		deferred_range_list;
- 	spinlock_t			deferred_list_lock;
- 	atomic_t			evicted_ranges;
--	bool				drain_pagefaults;
-+	atomic_t			drain_pagefaults;
- 	struct delayed_work		restore_work;
- 	DECLARE_BITMAP(bitmap_supported, MAX_GPU_INSTANCE);
- 	struct task_struct 		*faulting_task;
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 65daae9e4042..99f38ffbf43b 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -1957,10 +1957,16 @@ static void svm_range_drain_retry_fault(struct svm_range_list *svms)
- {
- 	struct kfd_process_device *pdd;
- 	struct kfd_process *p;
-+	int drain;
- 	uint32_t i;
- 
- 	p = container_of(svms, struct kfd_process, svms);
- 
-+restart:
-+	drain = atomic_read(&svms->drain_pagefaults);
-+	if (!drain)
-+		return;
-+
- 	for_each_set_bit(i, svms->bitmap_supported, p->n_pdds) {
- 		pdd = p->pdds[i];
- 		if (!pdd)
-@@ -1972,6 +1978,8 @@ static void svm_range_drain_retry_fault(struct svm_range_list *svms)
- 						     &pdd->dev->adev->irq.ih1);
- 		pr_debug("drain retry fault gpu %d svms 0x%p done\n", i, svms);
- 	}
-+	if (atomic_cmpxchg(&svms->drain_pagefaults, drain, 0) != drain)
-+		goto restart;
- }
- 
- static void svm_range_deferred_list_work(struct work_struct *work)
-@@ -1997,8 +2005,7 @@ static void svm_range_deferred_list_work(struct work_struct *work)
- 	/* Checking for the need to drain retry faults must be inside
- 	 * mmap write lock to serialize with munmap notifiers.
- 	 */
--	if (unlikely(READ_ONCE(svms->drain_pagefaults))) {
--		WRITE_ONCE(svms->drain_pagefaults, false);
-+	if (unlikely(atomic_read(&svms->drain_pagefaults))) {
- 		mmap_write_unlock(mm);
- 		svm_range_drain_retry_fault(svms);
- 		goto retry;
-@@ -2045,12 +2052,6 @@ svm_range_add_list_work(struct svm_range_list *svms, struct svm_range *prange,
- 			struct mm_struct *mm, enum svm_work_list_ops op)
- {
- 	spin_lock(&svms->deferred_list_lock);
--	/* Make sure pending page faults are drained in the deferred worker
--	 * before the range is freed to avoid straggler interrupts on
--	 * unmapped memory causing "phantom faults".
--	 */
--	if (op == SVM_OP_UNMAP_RANGE)
--		svms->drain_pagefaults = true;
- 	/* if prange is on the deferred list */
- 	if (!list_empty(&prange->deferred_list)) {
- 		pr_debug("update exist prange 0x%p work op %d\n", prange, op);
-@@ -2129,6 +2130,12 @@ svm_range_unmap_from_cpu(struct mm_struct *mm, struct svm_range *prange,
- 	pr_debug("svms 0x%p prange 0x%p [0x%lx 0x%lx] [0x%lx 0x%lx]\n", svms,
- 		 prange, prange->start, prange->last, start, last);
- 
-+	/* Make sure pending page faults are drained in the deferred worker
-+	 * before the range is freed to avoid straggler interrupts on
-+	 * unmapped memory causing "phantom faults".
-+	 */
-+	atomic_inc(&svms->drain_pagefaults);
-+
- 	unmap_parent = start <= prange->start && last >= prange->last;
- 
- 	list_for_each_entry(pchild, &prange->child_list, child_list) {
-@@ -2594,6 +2601,11 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
- 
- 	pr_debug("restoring svms 0x%p fault address 0x%llx\n", svms, addr);
- 
-+	if (atomic_read(&svms->drain_pagefaults)) {
-+		pr_debug("draining retry fault, drop fault 0x%llx\n", addr);
-+		goto out;
-+	}
-+
- 	/* p->lead_thread is available as kfd_process_wq_release flush the work
- 	 * before releasing task ref.
- 	 */
-@@ -2740,6 +2752,7 @@ void svm_range_list_fini(struct kfd_process *p)
- 	 * Ensure no retry fault comes in afterwards, as page fault handler will
- 	 * not find kfd process and take mm lock to recover fault.
- 	 */
-+	atomic_inc(&p->svms.drain_pagefaults);
- 	svm_range_drain_retry_fault(&p->svms);
- 
- 
-@@ -2763,6 +2776,7 @@ int svm_range_list_init(struct kfd_process *p)
- 	mutex_init(&svms->lock);
- 	INIT_LIST_HEAD(&svms->list);
- 	atomic_set(&svms->evicted_ranges, 0);
-+	atomic_set(&svms->drain_pagefaults, 0);
- 	INIT_DELAYED_WORK(&svms->restore_work, svm_range_restore_work);
- 	INIT_WORK(&svms->deferred_list_work, svm_range_deferred_list_work);
- 	INIT_LIST_HEAD(&svms->deferred_range_list);
--- 
-2.17.1
+I thought use of all the pr_debug()s as a tracefs event provider made sense,
+since the callsite descriptor is passed in, and could be passed in to
+the tracefs interface.
 
+Vincent's code has the macro magic to define that event, which IIUC
+is what  makes it controllable by ftrace, and therefore acceptable in
+principle to Steve.
+Would there be any reason to expand his set of 2 events into dev_dbg,
+pr_debug etc varieties ?
+(ie any value to separating dev, !dev ?, maybe so)
+
+Sean's code uses trace_array_printk primarily, which is EXPORTed,
+which is a virtue.
+
+Vincents code does
++/*
++ * This code is heavily based on __ftrace_trace_stack().
++ *
++ * Allow 4 levels of nesting: normal, softirq, irq, NMI.
++ */
+
+to implement
+
++static void dynamic_trace(const char *fmt, va_list args)
+
+Has this __ftrace_trace_stack() code been bundled into or hidden under
+a supported interface ?
+
+would it look anything like trace_array_printk() ?
+
+what problem is that code solving inside dynamic-debug.c ?
+
+
+> Having a subsystem specific trace buffer would allow subsystem specific
+> trace log permissions depending on the sensitivity of the data. But
+> doesn't drm output today go to the system log which is typically world
+> readable today?
+>
+
+> So I could see us supporting subsystem specific trace buffer output
+> via dynamic debug here. We could add new dev_debug() variants that
+> allow say a trace buffer to be supplied. So in that way subsystems
+> could 'opt-out' of having their data put into the global trace buffer.
+> And perhaps some subsystems we would want to allow output to both
+> buffers? The subsystem specific one and the global one?
+>
+
+ * trace_array_printk - Print a message to a specific instance
+ * @tr: The instance trace_array descriptor
+ * @ip: The instruction pointer that this is called from.
+ * @fmt: The format to print (printf format)
+ *
+
+what happens when @tr == NULL ?
+It could allow up-flow of events to the global instance
+
+> Thanks,
+>
+> -Jason
+>
+>
+
+So I wonder, is there any conceptual utility to this ?
+
+echo 1 > instances/foo/filter_up  # enable event upflow (or query-time merging?)
+
+Maybe enabling this causes other files (the ones missing from
+instances/foo) to magically appear
+so all those filtering capacities also appear.
