@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2015745772F
-	for <lists+amd-gfx@lfdr.de>; Fri, 19 Nov 2021 20:43:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C641457731
+	for <lists+amd-gfx@lfdr.de>; Fri, 19 Nov 2021 20:43:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83F6B6E21D;
-	Fri, 19 Nov 2021 19:43:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C9CD6E3D3;
+	Fri, 19 Nov 2021 19:43:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2082.outbound.protection.outlook.com [40.107.236.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A0AF6E21D
- for <amd-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 19:43:52 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2072.outbound.protection.outlook.com [40.107.223.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50AD46E21D
+ for <amd-gfx@lists.freedesktop.org>; Fri, 19 Nov 2021 19:43:53 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Mg9oRXiFE2Bi/9VkPwOFatHR3XgOHwZRyfuRAW8Id1Q0Ozjbvrc2I5CVHoVcW0c+Xh0mpF28oN+b/DtK5QSjokq61V076nO/IbwoBpMaCkWSUVeT6EnMqtHPcdetOELIGYelFIhDSZ6y7peksSQw71YdwZJw6tAaxp7otNiPGBQkvGd+/lRykPN0hf+PPT3Wn5wMcz9gHJkN1VNt6mkR6gaj0BEn4TFvqP3WIIe2hdKfPitis4eZcSMkvq60vjKLGiXEx0se7Y5jvJ+R9heyFn6qdLfNTbO2uJ2ZhRiuMd7kCucoSEy9DUjlJfvRWXS5v7KFU2faLDozSttJyXx9HQ==
+ b=AzsEvQ7vQybpW81owjIHPTFebiXDWUBlub6+oBX4ZRrA5hDdJYIjcE9gqw4yuFmWVO1tQlIApe5RvRvbzY8ksLfwAqKucKSpL+nefy0VDju+JrWI+lkf+bpQr6lrXLLIw2WYM9aMgP4RBdZuhBEasPrC4kCkOQYrDlFZGauHz7j98av/f1REiAAlBJK1M4XL3o8W40R9DOLyVvmkJSom1yYjS7X2jgd/g9YTV2APrIEd/gm7nzax7CiePpFerZoQ8kNDF9lA69txvITBrxwpFK4OOHkR0sKCXgEbKvxTGg1NwA6uq054f8Ygv163uaCdcDE/e5xvMtgOZomXYMbl0Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=75FwnCeBl9X6054ym5t+dHndUEePwAkUevv8G7cOx9I=;
- b=je6E1vvncEz/kB5VnpJG2neULnNjYZ7OtDBHQIfcq3iWxUWrsTN9l8xRxh5QIhF9erMQkT1sVOHP0+xZRGYS95LBHy+Vhi1qdSbfJ3GCSKE1sabIT3tjW2OtpCOgzVZ4rggt2pvkDfn6IQC4+nbDjqoJj7jzQOXhGj2W1wSN2v2YNZTZFo3ZpQlb67GL9FNVnFzxkoixLcWBhGm4B7cQivTv8O2mTgAhtdOy1MFbqtXiV6bx36YIFvIcPtRSEj5/HgAMAPNbR19BmBFOYjdfrDhrnNM+8DVxi0JwyKB7gKRgfCKZY8P6UwIm6RYa81UURmsKSp93ic+sx3w6h7dnwg==
+ bh=rRnsj7ZEHmslzq6k3AhoJW0heSwiSPqUUN0tbbVDHl4=;
+ b=hmZ5eqF4mK8i7JkJHLjNT2tlogMnEZAN6Ztj9NAJRxavEPu6BS14/5CRuTPRljIvp1UK9FUPv9Vl82awKx0GSLJP5minNdbY6IH40xoA1YQgQZ7XR+xgioK11yAgM7OkBviv9KbTafN4hd8PI/K32V4E21Dz68ynJ69XPt3Oqt7OJbi/D9QubLPMNs/aKBrRkBonZ3anGMxQ9zVwefySdWwe9KZw9rZBujhGWoQXaJiZaFlPqWhj2qCk0+SOq21HuOjgDG3xyX33tUfFKmCXjlHFGSBosgHF/K9HPDVY2Gfol7ext4ar9mfRb5FNY7A0v8TUjOyNBJ0gavUen8ydQg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=75FwnCeBl9X6054ym5t+dHndUEePwAkUevv8G7cOx9I=;
- b=YSHHiJNscLe6xSmv1IUr7K8ZGyLm4s7IeRJjEhcHn78Y2mtApkvtLzDfuW15u5VJP+6nD5cJ4jXII8tiOH4y3FHcxlEAk2RtAs9uDCw2d2apn9WM5ZmA8DXyTC0cdckAD41y2dHtpJOL/cHml03mgvvnyZvGOywDGh37nDlqqDE=
-Received: from MW4PR03CA0027.namprd03.prod.outlook.com (2603:10b6:303:8f::32)
- by DM4PR12MB5072.namprd12.prod.outlook.com (2603:10b6:5:38b::22) with
+ bh=rRnsj7ZEHmslzq6k3AhoJW0heSwiSPqUUN0tbbVDHl4=;
+ b=v2cRw/oN9+jJAYM1abFHIcAxgjuWMOKcrpyJvZnitdApQTJtIM+vh5eklPRHv1P7PwK+NDYBNUq/gg0qyPXASNpq51PbMDog5ssCUDVplveQS55cawuyfPB/OcSxh+8l7/UsFWyWz2E4pMKLyLG0f5/Y3KjPurGUH5Ps6eYjL7o=
+Received: from MW4PR03CA0001.namprd03.prod.outlook.com (2603:10b6:303:8f::6)
+ by CH2PR12MB4054.namprd12.prod.outlook.com (2603:10b6:610:a6::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.20; Fri, 19 Nov
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.21; Fri, 19 Nov
  2021 19:43:50 +0000
 Received: from CO1NAM11FT065.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8f:cafe::ca) by MW4PR03CA0027.outlook.office365.com
- (2603:10b6:303:8f::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.21 via Frontend
+ (2603:10b6:303:8f:cafe::d9) by MW4PR03CA0001.outlook.office365.com
+ (2603:10b6:303:8f::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19 via Frontend
  Transport; Fri, 19 Nov 2021 19:43:50 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -47,17 +47,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT065.mail.protection.outlook.com (10.13.174.62) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4713.20 via Frontend Transport; Fri, 19 Nov 2021 19:43:49 +0000
+ 15.20.4713.20 via Frontend Transport; Fri, 19 Nov 2021 19:43:50 +0000
 Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Fri, 19 Nov
- 2021 13:43:47 -0600
+ 2021 13:43:48 -0600
 From: Qingqing Zhuo <qingqing.zhuo@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 00/16] DC Patches November 22nd, 2021
-Date: Fri, 19 Nov 2021 14:43:23 -0500
-Message-ID: <20211119194339.97573-1-qingqing.zhuo@amd.com>
+Subject: [PATCH 01/16] drm/amd/display: Fix DPIA outbox timeout after GPU reset
+Date: Fri, 19 Nov 2021 14:43:24 -0500
+Message-ID: <20211119194339.97573-2-qingqing.zhuo@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211119194339.97573-1-qingqing.zhuo@amd.com>
+References: <20211119194339.97573-1-qingqing.zhuo@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -66,28 +68,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7b88a9f8-01d7-4caf-c33c-08d9ab94e8c6
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5072:
-X-Microsoft-Antispam-PRVS: <DM4PR12MB50721A9D81096CDCD36328D9FB9C9@DM4PR12MB5072.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Office365-Filtering-Correlation-Id: bca12ff0-4347-4939-bcc6-08d9ab94e929
+X-MS-TrafficTypeDiagnostic: CH2PR12MB4054:
+X-Microsoft-Antispam-PRVS: <CH2PR12MB40545B98D3AF3BA8AA9ADD9DFB9C9@CH2PR12MB4054.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hAl8HZoiWnQzMkxzDP6oOBVV8pK7k+ZzLhc5fJaqqCCWOJLeReI1Hb6HY3D4ueucEUeGTRcZPdPFoMJSr9Q2CcTFfKCcF46Ec00OBtiPi+ITh+BgqVoVg+DvP1x1Y8zxsZugHExxmj2vpQQtckWC7i57VLRUq/PuhJhyUlGXae53ZWd/pQyXl3POvgUnONDlqt467VxUyjn834PJQdafkDy8Apo5Zy8ItFl1a4aGJGSU9tUdM2fofDVfwM3Z/5NQ97y/qeHRF8+gU6ZIZjPfPtK3YkaLAVW38AsfkuAFWLkhcBSmYiavmOV6OWMjbVxURI4w0uNBlnG+usafHIkQhgMDW4bk8CP84GCa3c/C99dTnKqJW2reUL/5VCRqMZ6BkhQ/47R1cyH+xuxkWjP2rm37GEII0KMOay7Vymi4WimPqByizZxx+Wt8liHZv1IcnPEUo8FAVasqSJVLpSHH/pau2W/MWLLi6kBdBnXnh+f6Epr/spFjkGli1RS6TyH8tbSoAY0ibhpRgxAh8bu4rzHLvlhCPmx2vV4VvI/IeQmsKMBsgFJtiuYggTRd4uCy+y2muvTgBBxUC6fLIVknefffbWWh7vsSKNH7wxj0brNoKAY14ytTOnPdCCHHgrOhqCmJ9Rfm4bw+aVuawOIouKydboUkLK6Ejn6SZaFrgHydL/5/hk1eN0SOohi6opdo44lEU1ouEVnOFhv6eQSR/fugrnHooOZj0q1VYY8qFSI=
+X-Microsoft-Antispam-Message-Info: 2ZadE5WVa4Nj6DFax+OB/wJpInNpd6qhzfeaL4wzG1H0y+roaEMTUnb8u8WFzlUseioRqmURgui541FoipEgS3yeMDu4+lV9tnSJ5OTIwF0Ts5ViYMAaqZL1p6z2KnW4tGN85I00FznVdlqqMNDD6n7RSPg6bke/A56rQsKiyW0pXls2CQ2APyVm7nqYHXIZkJejkqw18fluIhRN5v/b43AJOQlcfMTpXr0yVlyLwInXC3a4lL9Y+pNeGk7SsqAbmQRRb00g/Br1bVTjgqXCcw+BlqyIKKfsphjCXpevD2WsqjKRo7VCPFnlCRPGLtGvSnS24A2prtky20dYZio8VAGN8s8pdAkLiPj+R0c8fupevi5EuDRtpSBrnLSxkfvD9UpT3NmOFenYk3wVAx/Jhi3yk5q1z7IJsGwV4iEVfsSeEqEjydWnHL9fZlvCxbH8rp2tLInxNEX/dUy46K2VqkKBSriY08r+vNhHj1R9Bqe8CwDLjyvFy0kdtBp8ZwEWD55MqC8I62STYJYRgAcUj2l+ju17ntrCmWvaszzddZM7M95GpLL7EsUSp7KbjXbNm1TjHP5ioAkK6R+Jumign2Jc5la6fwkW4jg4SqyYzL815ucsoIk5j13SyRs59/ptkNtRdTd5y5zhbOMfKYqgtGDDGNTVTzopLTl0Ff9RlzYMYRlj4y57GzJvYzdKhhAPeBMlarzknSRNFHGvyF3XXfUTgDMA3UuuzBW5QmAdK9k=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(2616005)(6666004)(1076003)(6916009)(5660300002)(70206006)(4326008)(86362001)(44832011)(82310400003)(8676002)(316002)(47076005)(83380400001)(356005)(54906003)(508600001)(186003)(8936002)(26005)(81166007)(16526019)(426003)(36756003)(36860700001)(336012)(70586007)(2906002)(36900700001);
+ SFS:(4636009)(36840700001)(46966006)(16526019)(2906002)(186003)(36860700001)(508600001)(8936002)(1076003)(36756003)(26005)(81166007)(83380400001)(47076005)(356005)(44832011)(8676002)(6916009)(6666004)(86362001)(4326008)(54906003)(2616005)(70586007)(316002)(336012)(426003)(82310400003)(70206006)(5660300002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2021 19:43:49.6946 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b88a9f8-01d7-4caf-c33c-08d9ab94e8c6
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2021 19:43:50.3452 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bca12ff0-4347-4939-bcc6-08d9ab94e929
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT065.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5072
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4054
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,91 +104,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Cc: stylon.wang@amd.com, solomon.chiu@amd.com, Sunpeng.Li@amd.com,
  Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
  roman.li@amd.com, Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
- wayne.lin@amd.com, mikita.lipski@amd.com, Bhawanpreet.Lakha@amd.com,
+ Jude Shih <Jude.Shih@amd.com>, wayne.lin@amd.com, mikita.lipski@amd.com,
+ Bhawanpreet.Lakha@amd.com, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
  agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This DC patchset brings improvements in multiple areas. In summary, we highlight:
-- DC 3.2.163
-- FW promotion to 0.0.94
-- Enable seamless boot for DCN301
-- Improvements in bandwidth validation
-- Fixes in flags update, link encoder assignments, DSC, ODM combine and more
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
-Thank you,
-Lillian
+[Why]
+The HW interrupt gets disabled after GPU reset so we don't receive
+notifications for HPD or AUX from DMUB - leading to timeout and
+black screen with (or without) DPIA links connected.
 
+[How]
+Re-enable the interrupt after GPU reset like we do for the other
+DC interrupts.
+
+Fixes: 81927e2808be ("drm/amd/display: Support for DMUB AUX")
+
+Reviewed-by: Jude Shih <Jude.Shih@amd.com>
+Acked-by: Qingqing Zhuo <qingqing.zhuo@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 ---
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Anthony Koo (1):
-  drm/amd/display: [FW Promotion] Release 0.0.94
-
-Aric Cyr (1):
-  drm/amd/display: 3.2.163
-
-Charlene Liu (1):
-  drm/amd/display: based on flag reset z10 function pointer
-
-Guo, Bing (1):
-  drm/amd/display: fixed an error related to 4:2:0/4:2:2 DSC
-
-Martin Leung (1):
-  drm/amd/display: add else to avoid double destroy clk_mgr
-
-Mikita Lipski (1):
-  drm/amd/display: fix accidental casting enum to bool
-
-Nevenko Stupar (1):
-  drm/amd/display: Display object info table changes
-
-Nicholas Kazlauskas (4):
-  drm/amd/display: Fix DPIA outbox timeout after GPU reset
-  drm/amd/display: Run full global validation in dc_commit_state
-  drm/amd/display: Set plane update flags for all planes in reset
-  drm/amd/display: Reset link encoder assignments for GPU reset
-
-Sung Joon Kim (1):
-  drm/amd/display: retain/release at proper places in link_enc
-    assignment
-
-Yi-Ling Chen (1):
-  drm/amd/display: Fixed DSC would not PG after removing DSC stream
-
-Zhan Liu (2):
-  drm/amd/display: enable seamless boot for DCN301
-  drm/amd/display: Rename dcn_validate_bandwidth to
-    dcn10_validate_bandwidth
-
-sungwang (1):
-  drm/amd/display: Fix ODM combine issue with fast boot
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 66 +++++++++++++------
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  3 +
- .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  2 +-
- .../drm/amd/display/dc/bios/bios_parser2.c    |  6 +-
- .../gpu/drm/amd/display/dc/calcs/dcn_calcs.c  |  2 +-
- .../gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c  |  3 +-
- drivers/gpu/drm/amd/display/dc/core/dc.c      | 17 +++++
- drivers/gpu/drm/amd/display/dc/core/dc_link.c |  3 +-
- .../drm/amd/display/dc/core/dc_link_enc_cfg.c |  6 +-
- .../gpu/drm/amd/display/dc/core/dc_resource.c |  1 -
- drivers/gpu/drm/amd/display/dc/dc.h           |  2 +-
- .../amd/display/dc/dcn10/dcn10_hw_sequencer.c |  6 +-
- .../drm/amd/display/dc/dcn10/dcn10_resource.c |  2 +-
- .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  2 +-
- .../amd/display/dc/dcn301/dcn301_resource.c   |  2 +-
- .../drm/amd/display/dc/dcn31/dcn31_hwseq.c    |  2 +-
- .../gpu/drm/amd/display/dc/dcn31/dcn31_init.c |  5 ++
- .../drm/amd/display/dc/dml/dsc/rc_calc_fpu.c  | 31 ---------
- .../drm/amd/display/dc/dml/dsc/rc_calc_fpu.h  |  4 --
- drivers/gpu/drm/amd/display/dc/dsc/rc_calc.c  | 28 --------
- drivers/gpu/drm/amd/display/dc/dsc/rc_calc.h  |  1 -
- .../gpu/drm/amd/display/dc/dsc/rc_calc_dpi.c  |  5 +-
- .../gpu/drm/amd/display/dc/inc/dcn_calcs.h    |  2 +-
- .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   | 11 +---
- 24 files changed, 99 insertions(+), 113 deletions(-)
-
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 26fcc8911698..c88054f8c583 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -2562,6 +2562,8 @@ static int dm_resume(void *handle)
+ 	if (amdgpu_in_reset(adev)) {
+ 		dc_state = dm->cached_dc_state;
+ 
++		amdgpu_dm_outbox_init(adev);
++
+ 		r = dm_dmub_hw_init(adev);
+ 		if (r)
+ 			DRM_ERROR("DMUB interface failed to initialize: status=%d\n", r);
 -- 
 2.25.1
 
