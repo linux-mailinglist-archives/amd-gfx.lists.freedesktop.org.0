@@ -2,97 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC094458C3D
-	for <lists+amd-gfx@lfdr.de>; Mon, 22 Nov 2021 11:25:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84927458AF4
+	for <lists+amd-gfx@lfdr.de>; Mon, 22 Nov 2021 10:02:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4B486E8F1;
-	Mon, 22 Nov 2021 10:25:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B53A46E42A;
+	Mon, 22 Nov 2021 09:02:24 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2042.outbound.protection.outlook.com [40.107.220.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1B3089BAC;
- Mon, 22 Nov 2021 02:40:49 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LwNlKaszaTEPoNWBiTySpFuENKK1mtTs150lyrtAxb3GAj0qf5g7s9oDZtwiT8oS5my2Jy8ynn/bnHQMWoYU8gk8GGOcvV3/75li0N2vyciGyDb4m9IRKvbfvnni4IEBzZTgDbOYQk5aztJFWQtOszdHCbJLUHMj2Nmj9VLWoLcvg76FepuwdHqBaJbXYtsLbgQEU2rARSdRBfDsAOpIg2VkSqJXA5RLgJWpcWmmxi0IXJntPwRYPduUjHIAKOrU9vW+IERH1gmu3IIbsJ+yTw3luJmH78qSD8ZcjNyo3Qr3bv5YzOiR3K+eZlrfQa+5ld/hXRxwXZa2V7W736BKyg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gKNa+nF+2JDLJehCd98fAVoaWpAzArM2OAp7ay1k7ec=;
- b=Ra9s4x3r6Nv8ZQwfGL4jUQJ6vC3TNyavwsJxpvzhCkmwlV+nituNa49O+NuVIhfO4pngWnM2GkyLUmX4INIMqrJvIiMQGr8X29AL2gfTdjJ50ROieeiCPrLLHVx0m7bnXlw8on/i1YdZV4CFzFlwaXX/2fKkwu5rx/TADEMTFXfuZFFE/F7+0W5tH+KHULYkCxbbtWIuI2t4z2V1s2kyV4qN8sMRz9t3mhKC02UGQiro16/kUEJ7wVpgVJK7OxR8jhCPR11PTMtqJZY2XqHwi14tw4HPAFbeCI8bjISb7PX8L7sARA4zaYLd1gcbopcgmptcxdjd7NktlImp4B/MDQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.34) smtp.rcpttodomain=infradead.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=nvidia.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gKNa+nF+2JDLJehCd98fAVoaWpAzArM2OAp7ay1k7ec=;
- b=RjRadBRBirn1k5nLbO0MsslmGChxDD3mkYHwkurbsO5mZB9dvE28mrnI+r28eZXgMgeEB0YFgFiXxiIE/GEmzlR1foV0kxQ5jN3U3j+4AJfOyP6doPhMk1YcpHHLlqxEnJ2tkYyE/HOVguDy5tefJM4RlNudMcShH/a0wkibOBMEcttqoBGQ+ZRR37vxFYHHJe2pwfeTK36mBdtsgJiwuCiB1SeEpynZniPwSVSLawum+Hc+nS+bjpjsd6CktLUmz56GYhw8r6mlnUQpD/fRTGOvxLFboOd3GOTFETJETcxhVmfMFUWGNB4scUeWAlO+jEwAU0La+pDjZxr2YHHPPg==
-Received: from MW4P220CA0019.NAMP220.PROD.OUTLOOK.COM (2603:10b6:303:115::24)
- by DM6PR12MB4482.namprd12.prod.outlook.com (2603:10b6:5:2a8::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19; Mon, 22 Nov
- 2021 02:40:47 +0000
-Received: from CO1NAM11FT040.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:115:cafe::66) by MW4P220CA0019.outlook.office365.com
- (2603:10b6:303:115::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.21 via Frontend
- Transport; Mon, 22 Nov 2021 02:40:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.34; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.34) by
- CO1NAM11FT040.mail.protection.outlook.com (10.13.174.140) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4713.20 via Frontend Transport; Mon, 22 Nov 2021 02:40:46 +0000
-Received: from nvdebian.localnet (172.20.187.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Mon, 22 Nov
- 2021 02:40:43 +0000
-From: Alistair Popple <apopple@nvidia.com>
-To: <akpm@linux-foundation.org>, <linux-mm@kvack.org>, <rcampbell@nvidia.com>, 
- <linux-ext4@vger.kernel.org>, <linux-xfs@vger.kernel.org>, Alex Sierra
- <alex.sierra@amd.com>, Felix Kuehling <felix.kuehling@amd.com>
-Subject: Re: [PATCH v1 1/9] mm: add zone device coherent type memory support
-Date: Mon, 22 Nov 2021 13:40:40 +1100
-Message-ID: <4157439.BacSOyMZPU@nvdebian>
-In-Reply-To: <637b19c0-5ec4-b96b-f6f6-c17313f03762@amd.com>
-References: <20211115193026.27568-1-alex.sierra@amd.com>
- <1997502.P62F5Z1OZk@nvdebian> <637b19c0-5ec4-b96b-f6f6-c17313f03762@amd.com>
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com
+ [IPv6:2a00:1450:4864:20::134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB7486E42A;
+ Mon, 22 Nov 2021 09:02:23 +0000 (UTC)
+Received: by mail-lf1-x134.google.com with SMTP id bu18so77625637lfb.0;
+ Mon, 22 Nov 2021 01:02:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=yJt+SRSX8jW1HW53qw5WPEzJ6TOm3Zw+e5pcv30xzUg=;
+ b=H0gUe0I5WYhd/qMc49gQ5ejJOmkYs6GVxp4V67Z9rKNdNZYONfh3jGqWqR8pJAPIMM
+ 6RV1meRYAxuFWjSAGV6WVqQtEnKH7Qibb2BStrks9tfaHLBV5k7tMvde51zvU8tAY1cQ
+ zj1fYg21e0AqkABrPCFlX4iQZ82bdERG56M9ne7/v30I2kCboeNn0OAqbqaQaMptuO/C
+ kCGSarFR7tQ94JH2rmpnEa61tbmBH8jW6jhBSKfh487FQclrMnzQF9KH3uL6n9obhwXG
+ n9IHX6w8XtVEki3xUOXdn67tUYp0p9mKp85iSbj/Z8NuTNA6EmuOdqMOvOoTRAhylrno
+ gH0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=yJt+SRSX8jW1HW53qw5WPEzJ6TOm3Zw+e5pcv30xzUg=;
+ b=8FWBomBce94TCsiQaVG6tuq3qv/CuIWdiEA5FfG36Bkimj6+bhETUBNnPbUAITEzQs
+ 77GFYc/OEq3M5vqmvszIT4SNcxz+2y53fpsqKNcdYxd1mOHperVx0gbbsOQG9caByw/L
+ p9swY7vt3ks6TX9YYa/ZhxvsL4vnvF5AQU1ekGkdZdm/UTfHEhZsMa1mN/TwfThZer06
+ y1qfjFleAj10lkipK3EKPCBGY4yRFwBZYzOjn0eir85hm4MrdZFSD/i2e5p4pYN66HqG
+ XLnhcJf5/N+6OX+jymYXoLPlP1hBDVq8xQPwgTUNzZQBLHLeJNfqiI1ZkInu7jqyuder
+ Pv/g==
+X-Gm-Message-State: AOAM531DmubT8zUqICqdXmMkhFDzSq/1HL58dV8mtsxQ9ZfoWq1+xLJR
+ t54bKqW+YUiyLDZP/fbqkWE=
+X-Google-Smtp-Source: ABdhPJz5VjIYFw9flHfsmR39Bm575nFBseGAY7aN31lcJujkNRdDAbb3Ga2pW1wCDyDAJ5XBvNHPSg==
+X-Received: by 2002:a05:651c:b12:: with SMTP id
+ b18mr51864542ljr.306.1637571738924; 
+ Mon, 22 Nov 2021 01:02:18 -0800 (PST)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id d39sm897361lfv.78.2021.11.22.01.02.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Nov 2021 01:02:18 -0800 (PST)
+Date: Mon, 22 Nov 2021 11:02:08 +0200
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Jason Baron <jbaron@akamai.com>
+Subject: Re: [PATCH v10 08/10] dyndbg: add print-to-tracefs, selftest with
+ it - RFC
+Message-ID: <20211122110208.528e1d80@eldfell>
+In-Reply-To: <41ea83b2-a707-cb6f-521e-070bb12502de@akamai.com>
+References: <20211111220206.121610-1-jim.cromie@gmail.com>
+ <20211111220206.121610-9-jim.cromie@gmail.com>
+ <20211112114953.GA1381@axis.com>
+ <f3914fa9-8b22-d54e-3f77-d998e74094b9@akamai.com>
+ <20211116104631.195cbd0b@eldfell>
+ <f87b7076-47e6-89b1-aaf9-b67aa6713e01@akamai.com>
+ <20211118172401.0b4d722e@eldfell>
+ <41ea83b2-a707-cb6f-521e-070bb12502de@akamai.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Originating-IP: [172.20.187.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 833acfce-1089-43ca-2fec-08d9ad617ce9
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4482:
-X-Microsoft-Antispam-PRVS: <DM6PR12MB44827AFD68F04F25D442D165DF9F9@DM6PR12MB4482.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GBgblEUomPv5/TGilCRx28tHDLC+CM+KWaQUAjZLQNqEV/Ptwj45AK/FTOXgJL7ezAocCKldeIhD+JT7A2CvyYhzFtf/HC6bvDOqEaYYb00Ksvtge5iXQxpRcQbYew5SacNDIhHts23vXGHHAdguX/vYbkkkVMcGTQVfM78ieRGXMoQr62Ert02LVqTiVK4AdfU1m0UB0Y2/CIVhUyWFUJ7T3xg6G6Ncs1QNxGmJNrYFgo3uGr1Ob4fk8ew/x9AVXvjcoeaeetM9R6VjxAu/nRkqBddmGMG7LbfEjkDAFs7o4eLtmmrxdfh3ijKMQhmSJx6/1i6MOFYiP8m1SSXDzXffiVdUVO0qxpPsTVserGBAkjnjoHwK91f8NtaspCzFFxiRtbtLYvl4yR52evfWPXvI79XwnvbBTkcHUu1Qb5UzvjO0/NTNEX3BFf+USNA6OKAuxmcPn22t9OFeAaTz+NEFYSwhyPls5pKCkALL4sIVjkWH5JyeSyp/NDsZ7edv1/Iie5MvrhIlbVRJfEqXk3NEQR7SiTtLDTMFq8KdGRInF5OZXTyclF5kzXzbIxxBtg/SsJZXcWtsX3rHr/5k6xSEdchOMoyHYdgeUsBoBWBqQ7sT4lGGMuDtF0aT6yJCrWHOiau4i+Xm7mNT/892NwL5p2f4XGtemgynqMUYfDt0M5CmQqgi1VqUkpMkPlNQues1OWh4Ri2n59bO4Qhoaj0nov0S8m6ssZdaPXqhilRJBGEUnRBtF9aCiDNxYBZ4FAdL2JybZ6QhhXENLfD26slMuTTpxUUqOwWCfK1kr5w=
-X-Forefront-Antispam-Report: CIP:216.228.112.34; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:schybrid03.nvidia.com; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(26005)(2906002)(9686003)(16526019)(83380400001)(8676002)(54906003)(186003)(86362001)(7636003)(82310400003)(8936002)(36860700001)(7416002)(70206006)(110136005)(508600001)(70586007)(4326008)(336012)(36906005)(426003)(33716001)(966005)(47076005)(5660300002)(356005)(9576002)(316002);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2021 02:40:46.5987 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 833acfce-1089-43ca-2fec-08d9ad617ce9
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.112.34];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT040.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4482
-X-Mailman-Approved-At: Mon, 22 Nov 2021 10:25:48 +0000
+Content-Type: multipart/signed; boundary="Sig_/UCDrJjDv+I30GhRn07Cyyaq";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,122 +75,246 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- jglisse@redhat.com, willy@infradead.org, jgg@nvidia.com, hch@lst.de
+Cc: quic_saipraka@quicinc.com, catalin.marinas@arm.com,
+ dri-devel@lists.freedesktop.org, will@kernel.org, maz@kernel.org,
+ Vincent Whitchurch <vincent.whitchurch@axis.com>,
+ amd-gfx@lists.freedesktop.org, mingo@redhat.com, daniel.vetter@ffwll.ch,
+ arnd@arndb.de, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ rostedt@goodmis.org, seanpaul@chromium.org,
+ intel-gvt-dev@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ sean@poorly.run, Jim Cromie <jim.cromie@gmail.com>, gregkh@linuxfoundation.org,
+ linux-kernel@vger.kernel.org, quic_psodagud@quicinc.com,
+ mathieu.desnoyers@efficios.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-> >> diff --git a/mm/migrate.c b/mm/migrate.c
-> >> index 1852d787e6ab..f74422a42192 100644
-> >> --- a/mm/migrate.c
-> >> +++ b/mm/migrate.c
-> >> @@ -362,7 +362,7 @@ static int expected_page_refs(struct address_space *mapping, struct page *page)
-> >>  	 * Device private pages have an extra refcount as they are
-> >>  	 * ZONE_DEVICE pages.
-> >>  	 */
-> >> -	expected_count += is_device_private_page(page);
-> >> +	expected_count += is_device_page(page);
-> >>  	if (mapping)
-> >>  		expected_count += thp_nr_pages(page) + page_has_private(page);
-> >>  
-> >> @@ -2503,7 +2503,7 @@ static bool migrate_vma_check_page(struct page *page)
-> >>  		 * FIXME proper solution is to rework migration_entry_wait() so
-> >>  		 * it does not need to take a reference on page.
-> >>  		 */
-> > Note that I have posted a patch to fix this - see
-> > https://lore.kernel.org/all/20211118020754.954425-1-apopple@nvidia.com/ This
-> > looks ok for now assuming coherent pages can never be pinned.
-> >
-> > However that raises a question - what happens when something calls
-> > get_user_pages() on a pfn pointing to a coherent device page? I can't see
-> > anything in this series that prevents pinning of coherent device pages, so we
-> > can't just assume they aren't pinned.
-> 
-> I agree. I think we need to depend on your patch to go in first.
-> 
-> I'm also wondering if we need to do something to prevent get_user_pages
-> from pinning device pages. And by "pin", I think migrate_vma_check_page
-> is not talking about FOLL_PIN, but any get_user_pages call. As far as I
-> can tell, there should be nothing fundamentally wrong with pinning
-> device pages for a short time. But I think we'll want to avoid
-> FOLL_LONGTERM because that would affect our memory manager's ability to
-> evict device memory.
+--Sig_/UCDrJjDv+I30GhRn07Cyyaq
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Right, so long as my fix goes in I don't think there is anything wrong with
-pinning device public pages. Agree that we should avoid FOLL_LONGTERM pins for
-device memory though. I think the way to do that is update is_pinnable_page()
-so we treat device pages the same as other unpinnable pages ie. long-term pins
-will migrate the page.
+On Fri, 19 Nov 2021 11:21:36 -0500
+Jason Baron <jbaron@akamai.com> wrote:
 
-> >
-> > In the case of device-private pages this is enforced by the fact they never
-> > have present pte's, so any attempt to GUP them results in a fault. But if I'm
-> > understanding this series correctly that won't be the case for coherent device
-> > pages right?
-> 
-> Right.
-> 
-> Regards,
->   Felix
-> 
-> 
-> >
-> >> -		return is_device_private_page(page);
-> >> +		return is_device_page(page);
-> >>  	}
-> >>  
-> >>  	/* For file back page */
-> >> @@ -2791,7 +2791,7 @@ EXPORT_SYMBOL(migrate_vma_setup);
-> >>   *     handle_pte_fault()
-> >>   *       do_anonymous_page()
-> >>   * to map in an anonymous zero page but the struct page will be a ZONE_DEVICE
-> >> - * private page.
-> >> + * private or coherent page.
-> >>   */
-> >>  static void migrate_vma_insert_page(struct migrate_vma *migrate,
-> >>  				    unsigned long addr,
-> >> @@ -2867,10 +2867,15 @@ static void migrate_vma_insert_page(struct migrate_vma *migrate,
-> >>  				swp_entry = make_readable_device_private_entry(
-> >>  							page_to_pfn(page));
-> >>  			entry = swp_entry_to_pte(swp_entry);
-> >> +		} else if (is_device_page(page)) {
-> > How about adding an explicit `is_device_coherent_page()` helper? It would make
-> > the test more explicit that this is expected to handle just coherent pages and
-> > I bet there will be future changes that need to differentiate between private
-> > and coherent pages anyway.
-> >
-> >> +			entry = pte_mkold(mk_pte(page,
-> >> +						 READ_ONCE(vma->vm_page_prot)));
-> >> +			if (vma->vm_flags & VM_WRITE)
-> >> +				entry = pte_mkwrite(pte_mkdirty(entry));
-> >>  		} else {
-> >>  			/*
-> >> -			 * For now we only support migrating to un-addressable
-> >> -			 * device memory.
-> >> +			 * We support migrating to private and coherent types
-> >> +			 * for device zone memory.
-> >>  			 */
-> >>  			pr_warn_once("Unsupported ZONE_DEVICE page type.\n");
-> >>  			goto abort;
-> >> @@ -2976,10 +2981,10 @@ void migrate_vma_pages(struct migrate_vma *migrate)
-> >>  		mapping = page_mapping(page);
-> >>  
-> >>  		if (is_zone_device_page(newpage)) {
-> >> -			if (is_device_private_page(newpage)) {
-> >> +			if (is_device_page(newpage)) {
-> >>  				/*
-> >> -				 * For now only support private anonymous when
-> >> -				 * migrating to un-addressable device memory.
-> >> +				 * For now only support private and coherent
-> >> +				 * anonymous when migrating to device memory.
-> >>  				 */
-> >>  				if (mapping) {
-> >>  					migrate->src[i] &= ~MIGRATE_PFN_MIGRATE;
+> On 11/18/21 10:24 AM, Pekka Paalanen wrote:
+> > On Thu, 18 Nov 2021 09:29:27 -0500
+> > Jason Baron <jbaron@akamai.com> wrote:
+> >  =20
+> >> On 11/16/21 3:46 AM, Pekka Paalanen wrote: =20
+> >>> On Fri, 12 Nov 2021 10:08:41 -0500
+> >>> Jason Baron <jbaron@akamai.com> wrote:
+> >>>    =20
+> >>>> On 11/12/21 6:49 AM, Vincent Whitchurch wrote:   =20
+> >>>>> On Thu, Nov 11, 2021 at 03:02:04PM -0700, Jim Cromie wrote:     =20
+> >>>>>> Sean Paul proposed, in:
+> >>>>>> https://urldefense.com/v3/__https://patchwork.freedesktop.org/seri=
+es/78133/__;!!GjvTz_vk!HcKnMRByYkIdyF1apqQjlN5aBIomzJR1an3YWXM6KXs0EftVMQdr=
+ewRA8Dki4A$=20
+> >>>>>> drm/trace: Mirror DRM debug logs to tracefs
+> >>>>>>
+> >>>>>> His patchset's objective is to be able to independently steer some=
+ of
+> >>>>>> the drm.debug stream to an alternate tracing destination, by split=
+ting
+> >>>>>> drm_debug_enabled() into syslog & trace flavors, and enabling them
+> >>>>>> separately.  2 advantages were identified:
+> >>>>>>
+> >>>>>> 1- syslog is heavyweight, tracefs is much lighter
+> >>>>>> 2- separate selection of enabled categories means less traffic
+> >>>>>>
+> >>>>>> Dynamic-Debug can do 2nd exceedingly well:
+> >>>>>>
+> >>>>>> A- all work is behind jump-label's NOOP, zero off cost.
+> >>>>>> B- exact site selectivity, precisely the useful traffic.
+> >>>>>>    can tailor enabled set interactively, at shell.
+> >>>>>>
+> >>>>>> Since the tracefs interface is effective for drm (the threads sugg=
+est
+> >>>>>> so), adding that interface to dynamic-debug has real potential for
+> >>>>>> everyone including drm.
+> >>>>>>
+> >>>>>> if CONFIG_TRACING:
+> >>>>>>
+> >>>>>> Grab Sean's trace_init/cleanup code, use it to provide tracefs
+> >>>>>> available by default to all pr_debugs.  This will likely need some
+> >>>>>> further per-module treatment; perhaps something reflecting hierarc=
+hy
+> >>>>>> of module,file,function,line, maybe with a tuned flattening.
+> >>>>>>
+> >>>>>> endif CONFIG_TRACING
+> >>>>>>
+> >>>>>> Add a new +T flag to enable tracing, independent of +p, and add and
+> >>>>>> use 3 macros: dyndbg_site_is_enabled/logging/tracing(), to encapsu=
+late
+> >>>>>> the flag checks.  Existing code treats T like other flags.     =20
+> >>>>>
+> >>>>> I posted a patchset a while ago to do something very similar, but t=
+hat
+> >>>>> got stalled for some reason and I unfortunately didn't follow it up:
+> >>>>>
+> >>>>>  https://urldefense.com/v3/__https://lore.kernel.org/lkml/202008251=
+53338.17061-1-vincent.whitchurch@axis.com/__;!!GjvTz_vk!HcKnMRByYkIdyF1apqQ=
+jlN5aBIomzJR1an3YWXM6KXs0EftVMQdrewRGytKHPg$=20
+> >>>>>
+> >>>>> A key difference between that patchset and this patch (besides that
+> >>>>> small fact that I used +x instead of +T) was that my patchset allow=
+ed
+> >>>>> the dyndbg trace to be emitted to the main buffer and did not force=
+ them
+> >>>>> to be in an instance-specific buffer.     =20
+> >>>>
+> >>>> Yes, I agree I'd prefer that we print here to the 'main' buffer - it
+> >>>> seems to keep things simpler and easier to combine the output from
+> >>>> different sources as you mentioned.   =20
+> >>>
+> >>> Hi,
+> >>>
+> >>> I'm not quite sure I understand this discussion, but I would like to
+> >>> remind you all of what Sean's original work is about:
+> >>>
+> >>> Userspace configures DRM tracing into a flight recorder buffer (I gue=
+ss
+> >>> this is what you refer to "instance-specific buffer").
+> >>>
+> >>> Userspace runs happily for months, and then hits a problem: a failure
+> >>> in the DRM sub-system most likely, e.g. an ioctl that should never
+> >>> fail, failed. Userspace handles that failure by dumping the flight
+> >>> recorder buffer into a file and saving or sending a bug report. The
+> >>> flight recorder contents give a log of all relevant DRM in-kernel
+> >>> actions leading to the unexpected failure to help developers debug it.
+> >>>
+> >>> I don't mind if one can additionally send the flight recorder stream =
+to
+> >>> the main buffer, but I do want the separate flight recorder buffer to
+> >>> be an option so that a) unrelated things cannot flood the interesting
+> >>> bits out of it, and b) the scope of collected information is relevant.
+> >>>
+> >>> The very reason for this work is problems that are very difficult to
+> >>> reproduce in practice, either because the problem itself is triggered
+> >>> very rarely and randomly, or because the end users of the system have
+> >>> either no knowledge or no access to reconfigure debug logging and then
+> >>> reproduce the problem with good debug logs.
+> >>>
+> >>> Thank you very much for pushing this work forward!
+> >>>
+> >>>    =20
 > >>
-> >
-> >
-> 
+> >> So I think Vincent (earlier in the thread) was saying that he finds it
+> >> very helpful have dynamic debug output go to the 'main' trace buffer,
+> >> while you seem to be saying you'd prefer it just go to dynamic debug
+> >> specific trace buffer. =20
+> >=20
+> > Seems like we have different use cases: traditional debugging, and
+> > in-production flight recorder for problem reporting. I'm not surprised
+> > if they need different treatment.
+> >  =20
+> >> So we certainly can have dynamic output potentially go to both places -
+> >> although I think this would mean two tracepoints? But I really wonder
+> >> if we really need a separate tracing buffer for dynamic debug when
+> >> what goes to the 'main' buffer can be controlled and filtered to avoid
+> >> your concern around a 'flood'? =20
+> >=20
+> > If the DRM tracing goes into the main buffer, then systems in
+> > production cannot have any other sub-system traced in a similar
+> > fashion. To me it would feel very arrogant to say that to make use of
+> > DRM flight recording, you cannot trace much or anything else.
+> >=20
+> > The very purpose of the flight recorder is run in production all the
+> > time, not in a special debugging session.
+> >=20
+> > There is also the question of access and contents of the trace buffer.
+> > Ultimately, if automatic bug reports are enabled in a system, the
+> > contents of the trace buffer would be sent as-is to some bug tracking
+> > system. If there is a chance to put non-DRM stuff in the trace buffer,
+> > that could be a security problem.
+> >=20
+> > My use case is Weston. When Weston encounters an unexpected problem in
+> > production, something should automatically capture the DRM flight
+> > recorder contents and save it alongside the Weston log. Would be really
+> > nice if Weston itself could do that, but I suspect it is going to need
+> > root privileges so it needs some helper daemon.
+> >=20
+> > Maybe Sean can reiterate their use case more?
+> >=20
+> >=20
+> > Thanks,
+> > pq
+> >  =20
+>=20
+> Ok, so in this current thread the proposal was to create a "dyndbg-tracef=
+s"
+> buffer to put the dynamic debug output (including drm output from dynamic
+> debug) into. And I was saying let's just put in the 'main' trace buffer
+> (predicated on a dynamic debug specific tracepoint), since there seems
+> to be a a use-case for that and it keeps things simpler.
+>=20
+> But I went back to Sean's original patch, and it creates a drm specific
+> trace buffer "drm" (via trace_array_get_by_name("drm")). Here:
+> https://patchwork.freedesktop.org/patch/445549/?series=3D78133&rev=3D5
+>=20
+> So I think that may be some of the confusion here? The current thread/
+> proposal is not for a drm specific trace buffer...
+
+Hi Jason,
+
+I may very well have confused things, sorry about that. If this series
+is not superseding the idea of the DRM flight recorder, then don't mind
+me. It just sounded very similar and I also haven't seen new revisions
+of the flight recorder in a long time.
+
+> Having a subsystem specific trace buffer would allow subsystem specific
+> trace log permissions depending on the sensitivity of the data. But
+> doesn't drm output today go to the system log which is typically world
+> readable today?
+
+Yes, and that is exactly the problem. The DRM debug output is so high
+traffic it would make the system log both unusable due to cruft and
+slow down the whole machine. The debug output is only useful when
+something went wrong, and at that point it is too late to enable
+debugging. That's why a flight recorder with an over-written circular
+in-memory buffer is needed.
+
+The log being world-readable (it's not in every distribution, I
+believe) only means on that one machine, but there are hopes of making
+some logs truly world-readable by posting them to the internet (bug
+reports).
+
+I would be very wary of anything uploading my system logs automatically
+with bug reports, both from the reporter point of view (am I exposing
+things I don't want to) and from the bug report receiving service point
+of view (e.g. GDPR regulations).
+
+> So I could see us supporting subsystem specific trace buffer output
+> via dynamic debug here. We could add new dev_debug() variants that
+> allow say a trace buffer to be supplied. So in that way subsystems
+> could 'opt-out' of having their data put into the global trace buffer.
+> And perhaps some subsystems we would want to allow output to both
+> buffers? The subsystem specific one and the global one?
+
+Unfortunately the rest of the discussion goes too high over my head.
 
 
+Thanks,
+pq
 
+--Sig_/UCDrJjDv+I30GhRn07Cyyaq
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmGbXJAACgkQI1/ltBGq
+qqeD+A//foKJpPUY2CTrulmVAeS0zjdQkwqXJFJhHt6U0Aa10ntIpbtQVXEwehfM
+KsKCahI0D5hYm0V2SD0ALAS9/1xQOLL8+Zo6uMFFf976FqWjOfHYpl/y/yXTPrec
+MS0ynHNuc5caRE20soRlLx6JQYHv3z5EiuYXC0cIvydYzKt4KRhl2BL1gFXMZyjf
+93NmEH36aP5c8ekZ3ibJsV8kIYaig5WtnbUFwv0EIu1YM2R4t3xi7ObM+lZ2/XwU
+J+wuYH5fgE1DvOn+5Ix2fR1ceP7f3au967unVWKxcP23ZqBC2H8/FMI/wtqqzfov
+0KMjPkzOerlUR3YSPcEfy5PSPEtd5691TN6PoGqTfsWTEVpr699j1JdPmKaxxdU0
+S+oHfja+Md+CVrw2gNaJny96aUZ+EvGf3CVlyqQKu8XVfbCu0DistdVP01g9rQBi
+5L4PZwmP4x6oNFGHQoGXSvu1CgMTQ3bfyL0/jVZVanltCCJ/PslYVdaJt2ipY2jo
+aMXnwgZcGa6aESdgIcpNzAy4QpFZPhOqRdAi0I87MhY6bBAzMnSBqZabJ513WEat
+a8yyHgbIECSK6jA4NPNvCEU/iVHL6nvhfuiscKkwESAsvBp8ifMPbS/Z6VqYZ7SF
+29ZzWPtR8v5y1exxGtDY4EGb/xkoID73cLLTZCWWz9ZvVJCixWw=
+=UMyr
+-----END PGP SIGNATURE-----
+
+--Sig_/UCDrJjDv+I30GhRn07Cyyaq--
