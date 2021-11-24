@@ -2,127 +2,45 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A21B45CDE2
-	for <lists+amd-gfx@lfdr.de>; Wed, 24 Nov 2021 21:20:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED51945CEDF
+	for <lists+amd-gfx@lfdr.de>; Wed, 24 Nov 2021 22:21:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 398926E51A;
-	Wed, 24 Nov 2021 20:20:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EDD16EC77;
+	Wed, 24 Nov 2021 21:21:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2067.outbound.protection.outlook.com [40.107.237.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 874086E51A
- for <amd-gfx@lists.freedesktop.org>; Wed, 24 Nov 2021 20:20:49 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OkfsGb5VaRx4DMAKPg/XCnghIgni9ilfVTk8/ZDWUenVIeS9PJ4SFAFgjZe/LBy42JR8PffwNaHWcdcyZnU3AvsmAfI25WzxKHDjlacKIsSVypw21rSRQu1I6dx3NmmP71AgtDUURLkKcv4mYBPPfVcyQzdEXS9EV/tRQ2Ta9QTWMVXBQ/ys5v5zCxplpAqn5q4dGYLanKBXMK2gx5Ptq8KcfEWnXxi/yJHfzr8OnQ5W3IaI+LgjhtV8XXX40iif47ZsRWehvR7VQnbbeEH9Kmd1yiNuFEyIn7MK/vq3Fpp9Q0U9LhPIuIVIpGZ3NLGHKmSKYsC5skxmW1gib8rxSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FoDPxutUbeJ+S2UEpci8H3nJ6CCyheHX8ZoeGlxHZhc=;
- b=VV0jG0WRg6HWEYDdn31YCwESvsmmowbzS6+t0O/9OVgUPmy7qnQwj69SutCp2rBlfijzy5mNeLhIMyMz2uUuFrzGqP9I8B+tp79LQgkkVyV0SbOPIp88zh/mOGpbKp8XPhxMynJGCZvvDedr6bhZJ6ue/ftwC4MCroWIN3kGjzJvHmmzM0TPmiNabRiK/NEetWCYIkRTGaromaIM5RLWj+3y44pT28Crs5lgW1V/Jyw5jrOp/8LoK1XXdt4xCGO/PYLpUIBmoQPOrkf6D/Yui012mjfMD4Oas3etPa+BztWgBHE/WiSUlrx5TQyS9FIPePL44tlQ69eNif55tlgd9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FoDPxutUbeJ+S2UEpci8H3nJ6CCyheHX8ZoeGlxHZhc=;
- b=SnLaP3/o9vQPq+7r0BZuWij4ukx5XC3YLf+fyR9ADe4bTjVyAD0E/JevkiS8rz+kx2BFZfaRs9C1NEYE75ZKBWBOQ7EFjD0Q5YLbjKs+V++VcZewg6b0W1qCh0ZlekfiB6KvjoSSDmbki5+n4lR1Wk048/gAeQeUM3BamWAf2E0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by BN9PR12MB5177.namprd12.prod.outlook.com (2603:10b6:408:11a::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19; Wed, 24 Nov
- 2021 20:20:47 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::9dfe:ccc6:102c:5300]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::9dfe:ccc6:102c:5300%8]) with mapi id 15.20.4713.025; Wed, 24 Nov 2021
- 20:20:47 +0000
-Subject: Re: [PATCH v5] drm/amdgpu: handle IH ring1 overflow
-To: philip yang <yangp@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Philip Yang <Philip.Yang@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20211123192254.21681-1-Philip.Yang@amd.com>
- <3d17fd21-751d-6f87-95b9-d120db7f4a0e@gmail.com>
- <5ec42928-995f-04c6-c7c8-3d2e33744457@amd.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-Message-ID: <1d31f11a-9ba5-4973-5875-11ef6e1bcf89@amd.com>
-Date: Wed, 24 Nov 2021 15:20:45 -0500
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D59978951E
+ for <amd-gfx@lists.freedesktop.org>; Wed, 24 Nov 2021 21:07:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+ Subject:Sender:Reply-To:Content-ID:Content-Description;
+ bh=Xgo+4TE4h8KCeCovwX9CUyPPqQFju/ywCkMLLVNBvX4=; b=m5bS8kGJDxhZUHpW613edA5Pll
+ cwC2BNDi4U/iJCgh7ecXd3gTivFB3ZVUNPeWpoAuL8ZWjdnYOLE4vwsZRzPS/y5Cr23ra7CKbKcrB
+ ZFZXvSBWaKmJK588LlNogHVhfHoYazHnc0x0R7zzNsxrtRZCcvB9cgrV/6N/1KXXMLQjZPTd0aNV7
+ zF4Z/xWJlhSsYXpMQQXs8t0wVeIsUJJ2Ub2aTG3x4G2Vi1nkMbJ1SRuDca0c9+/FTLE9t5Y623d/o
+ gPCJJTUV+LeQlrd+l4TeQ+AEFTL9M9O6Lhd6bzzmw/lv+SpvY7pUHLuJRwJ/DQDq6zyOohc8TswKH
+ DgGNDN1w==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+ by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1mpzUi-005r3s-7K; Wed, 24 Nov 2021 21:07:56 +0000
+Subject: Re: [PATCH] drm/amd/display: fix 64 bit divide
+To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
+References: <20211124163612.2728640-1-alexander.deucher@amd.com>
+ <20211124163612.2728640-2-alexander.deucher@amd.com>
+From: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <9ab493e8-4993-e90d-8d2d-b65dd0737f02@infradead.org>
+Date: Wed, 24 Nov 2021 13:07:55 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-In-Reply-To: <5ec42928-995f-04c6-c7c8-3d2e33744457@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-ClientProxiedBy: YT1PR01CA0044.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:2e::13) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Received: from [192.168.2.100] (142.127.191.123) by
- YT1PR01CA0044.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2e::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4734.20 via Frontend Transport; Wed, 24 Nov 2021 20:20:46 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 265b6ef1-9225-4af7-6d4d-08d9af87e657
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5177:
-X-Microsoft-Antispam-PRVS: <BN9PR12MB5177BA9913EF50CD46A6ED3292619@BN9PR12MB5177.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: n4OcTBYkyfvuaue5JwojBDQH6Eff6BX6PrFsFH0Xs6DFybsvuFf6YwFJbm+9PpeFDhNomuIqOVvNZtL6Tk5OjQbCeHyTrMH0pdAxV+/FiOMgdXLefRWOvkSPVluPjeZUd5IlpVPqdDW8j9VRLnMhebp6jFajO/nH6V0cl582Rqmbjdw+owkZPBJy15qav90BNHZYHVWdGIkDV44rsiRjuky5DCFnhA7DTNhcw0/Oc4nrxzQVPOgNd0voAI/TYW9pbLSvExBkT1zKpGug24ZA0Jo65Pg+J0rlDEFMOw+Xgmwn2bHfuRP2ZYrmPTkaygHkaNfm4L53Be26DE/YSmZWIUznDk5kV2AMOO3EDqpO04OY+W5zAY9eznG8UPfWygTX7pbjPxhWfHyspL+G4hs1RzCabbdTBhv+NdMHD5YOtGc+lhZxpxNDiVU+5HDG4y/N9uKaaNANgll16q9ZaAbOFT0pLHl9hx1z//f2FCCrNE6IuVtH1oXLEno5wClMOjoMB1Utvlv3mhxjTs7OqHeQtLSBWWvwKTp3EjfWlkkliyuImpD+QWjpUZkmEL2b0ao0/ExEYb2yhF1PO3naCE0d8J+wtJaoht5kjlbsuQN3YvtKyIqkJfIEpW3Mk/MlvjR1y444qWLlI/ZvQZa3PWrtziER4EacB2Y88cC05bcaFsTMNYQGzgBHz0waIAGiNI6rH1aqkSu5qk72pP56/SQ5l2QqSbgavFrXRx92iJXSwl4my5f5EIcIfgZGDlnPy2sQ
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(110136005)(2616005)(4326008)(38100700002)(186003)(66476007)(5660300002)(86362001)(6486002)(4744005)(31686004)(956004)(8936002)(44832011)(16576012)(316002)(508600001)(83380400001)(31696002)(8676002)(66946007)(36756003)(66556008)(2906002)(26005)(4001150100001)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZTlTM2lFdEFySjB3cTREdWZVSGw5S1pBNFcvYk1EZ2tWMUg2MTF2Q2dGS3Vm?=
- =?utf-8?B?dk9wVDA3ZmJ4NDB1MGhHTnJKam5tSFFlVyt3UjFLMHFKeTgxRGFuYXV4aFB4?=
- =?utf-8?B?UnJnYzJ1eUtROWsrOHE5eGNzWjZFV0paRjVtdHNWTzJGZ2YzTHpWZVpHN25l?=
- =?utf-8?B?N1FWNzVhZlA4Y1QxRlJ3dHN0cTBHNnk3aUpWclVtcEQ1eVVtNWltTGkzQnlu?=
- =?utf-8?B?Q295QzRNRlhoSWxOaTQrcEtKb0Jsck5RY00xRnlnREMwVEF4bFVIY0hLVGYr?=
- =?utf-8?B?NE0yNzUweFFSSkxwTG8rMWdVYTJ6Y2xrQUw4TlRjWVBMbHpjWGRxRzI4eXZt?=
- =?utf-8?B?UHFmWE4wSkQrckVMbnVIOURrRThwbFZ5R0R4b2t3WkdEaWpWQXgvbXZ6cmhz?=
- =?utf-8?B?cGhBOFVSaS9MeERBOTJrRHV4dkY2REJpczJTWnV6azhxZkd5dE9ZUVEvdytX?=
- =?utf-8?B?TEhVNUhYNG5tcXdBZkV1MjBZWWFBNks4Z1pubUc2QmJRU3E2ZUtZRWdVRUZ3?=
- =?utf-8?B?cUMrZlVBZnBxYmNKZ01ZUnpPbVEyTGx6VkxFVjNCV3V5OHB1T2xHOG5QeVMx?=
- =?utf-8?B?dC9ORmNSb3ZFa3p6TVNrb3pkTzZxeFVFNVBoL2gya0NCT1BiQ2Nwck9xRE9K?=
- =?utf-8?B?YmNXUVkyQldEZnB0aUVVNHpTdXc4eVZVdm9rQ2V3cTF4UTdhS01vbnZTRFJ3?=
- =?utf-8?B?dnRoUFNudEwwMGF3NWJGemV0VXMxRlpaajI3R3JCT1pTczNpVkhmVklQWGRN?=
- =?utf-8?B?dFp4TVVaN1NLeUQzVURxL0NCa2w4WFRZOGUrTUNkQlpvNHFjOWZQcWhmQ1JF?=
- =?utf-8?B?d1ViQ1h4U0xLQ1QwcmpkVnNaWFNDQ3F0WTJuV3VJR3FDdSt5SkR0aFJKSkVo?=
- =?utf-8?B?R3RMR0FzWFc1aC9HbjRJM0JCNittTWNYYWxDSFdiTjVkVVdJQ0gzWEpnTG1r?=
- =?utf-8?B?b0lrbTJsZTdxc2IzUkhvWlFVYmF1TDg4eS9kQlRzZERnV1FSbnZjWXZuR1RG?=
- =?utf-8?B?SXA5RGpUS3VWVU9MUUwxN3JXL0pGOFB3QjFvaFBCL2lmWnZxcTliU0Q2aWNn?=
- =?utf-8?B?Y1MrTWJsQUtQbUdGUndiK1h2UkhWN3NROXUwaHI0MThHV2RWSGxqcktBcVJn?=
- =?utf-8?B?MTBqK3Q3SGZ5WmNVem5uTnJzK1FRV1c1SXJ1UEhUejY5WjZOSFI4b0tZMjhF?=
- =?utf-8?B?NU9DdGlpOGpJV2QrQW5QcjhUc0lQR0V4dHUrdnN2WEViSDZOVXlmTklPUWNs?=
- =?utf-8?B?U0NaeXJTYzFkM1NqT1hxOGtHd21kRTFpT2dOK284NEFnMGR6ZDFEdHloRW1m?=
- =?utf-8?B?a1kzVmpPRk80RXovTGlLcjl1UytlOVJBcEs2UytHMjF5ZG5TY2JjcVpGczVR?=
- =?utf-8?B?R2pOVWRaWlpUdVZlWEY5SGxOeE14ZUhNTWpKVWpMK1BmazIweHN3eTdYY1FF?=
- =?utf-8?B?Y3dKU1I0Zk96aG5XSTBEYW0vQndOZkJYMGgyNURDVUFJZHFuSUlDL29PbVk3?=
- =?utf-8?B?N05ybWtFQmM2SUZMMXNyck0yMDd0L256NGdITWxldXIzSXZGVzhkdjRoUEZ3?=
- =?utf-8?B?R2YramRJTnpLb3grZ1BNUHpqTFVQRlBKVE9xWkJQdUo0K1lKd2JJVExNbkVR?=
- =?utf-8?B?MTJvejgrOUsxd2gxV0Q1RTF2RDk0bERRdHVxeWw0a3R4TnU1dWlNaUJteEVQ?=
- =?utf-8?B?OGxkT3pMRElWNkFMODRBQ1o2V2FRMG5keVdmbTNnQ2QrVGRpWmlBaUhXNEhF?=
- =?utf-8?B?ODlwUkdoZjExazVRTnI5elVVSVY0Z2Q5ZVV5d1haOXUzbFJLMW1XRit0TUpM?=
- =?utf-8?B?aU9ZNytpUGdROUhxMURFLzBFMXorTWxrbXlsNjV5bVk2a21WQ2RsWFdIWm04?=
- =?utf-8?B?bWpYVW9wNE8rcHNrMTRaRmdSbUNyeWQ2cHYvdEorT09mWGdxalZBdWJ4Vnd6?=
- =?utf-8?B?Z3Y0bFFDVS9yTGZQb0hNZ09XT3FRdXRueWxFNjRNRjBWYjk5NE93S2kzcUtZ?=
- =?utf-8?B?YWYrM1VHMFNJQ3YzOTljempET1RBcGxUWGpoTzdiNjhGeHNWYStzUGdrcDh0?=
- =?utf-8?B?eHpxcWsxeElGVWlLcTJEL005MExSZG1pK2FYRGt3NzFIWk1SOGFoVG1BRmJJ?=
- =?utf-8?B?RzVFaFlyayszU2YvMzZTbU5HTVBTdHJ5QzlOczkzZXZUYmh5ZVJEa1RsT3V4?=
- =?utf-8?Q?YhNOXVM3PA7KTe1BE6IF7Qs=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 265b6ef1-9225-4af7-6d4d-08d9af87e657
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2021 20:20:47.1452 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9Wuk2QBM8C91rMhsGZInmwEpOD8miMYZcOLNPailWr523jgoxojsRF7+Q5HnX+XA6nLnGRA5VsZkm7HtN5jF4w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5177
+In-Reply-To: <20211124163612.2728640-2-alexander.deucher@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Wed, 24 Nov 2021 21:21:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,34 +52,54 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: christian.koenig@amd.com
+Cc: Bing Guo <Bing.Guo@amd.com>, kernel test robot <lkp@intel.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On 11/24/21 8:36 AM, Alex Deucher wrote:
+> Use do_div.
+> 
+> Fixes: c34f1652a18c4b ("drm/amd/display: fixed an error related to 4:2:0/4:2:2 DSC")
+> Reported-by: kernel test robot <lkp@intel.com>
+> Reported-by: Randy Dunlap <rdunlap@infradead.org>
+> Cc: Bing Guo <Bing.Guo@amd.com>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 
-Am 2021-11-24 um 10:23 a.m. schrieb philip yang:
->>>     #define amdgpu_ih_get_wptr(adev, ih)
->>> (adev)->irq.ih_funcs->get_wptr((adev), (ih))
->>>   #define amdgpu_ih_decode_iv(adev, iv) \
->>>       (adev)->irq.ih_funcs->decode_iv((adev), (ih), (iv))
->>> +#define amdgpu_ih_decode_iv_ts(adev, ih, rptr, offset) \
->>> +    (WARN_ON_ONCE(!(adev)->irq.ih_funcs->decode_iv_ts) ? 0 : \
->>
->> Please drop that WARN_ON_ONCE here.
->>
-> Agree, will drop it.
->
-I suggested this. We're assuming that this function will never be called
-on hardware that doesn't support time stamps, and that all hardware with
-time stamps will implement the decode_iv_ts function. But it's good to
-get a log message if that assumption is ever broken, rather than just
-silently getting wrong results.
+Acked-by: Randy Dunlap <rdunlap@infradead.org> # build-tested
 
-Regards,
-  Felix
+Thanks.
+
+> ---
+>   drivers/gpu/drm/amd/display/dc/dsc/rc_calc_dpi.c | 7 ++++---
+>   1 file changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/dc/dsc/rc_calc_dpi.c b/drivers/gpu/drm/amd/display/dc/dsc/rc_calc_dpi.c
+> index 381561ee0026..7e306aa3e2b9 100644
+> --- a/drivers/gpu/drm/amd/display/dc/dsc/rc_calc_dpi.c
+> +++ b/drivers/gpu/drm/amd/display/dc/dsc/rc_calc_dpi.c
+> @@ -100,6 +100,7 @@ int dscc_compute_dsc_parameters(const struct drm_dsc_config *pps, struct dsc_par
+>   	int              ret;
+>   	struct rc_params rc;
+>   	struct drm_dsc_config   dsc_cfg;
+> +	unsigned long long tmp;
+>   
+>   	calc_rc_params(&rc, pps);
+>   	dsc_params->pps = *pps;
+> @@ -111,9 +112,9 @@ int dscc_compute_dsc_parameters(const struct drm_dsc_config *pps, struct dsc_par
+>   	dsc_cfg.mux_word_size = dsc_params->pps.bits_per_component <= 10 ? 48 : 64;
+>   
+>   	ret = drm_dsc_compute_rc_parameters(&dsc_cfg);
+> -	dsc_params->bytes_per_pixel =
+> -			(uint32_t)(((unsigned long long)dsc_cfg.slice_chunk_size * 0x10000000 + (dsc_cfg.slice_width - 1))
+> -							/ (uint32_t)dsc_cfg.slice_width);  //ROUND-UP
+> +	tmp = (unsigned long long)dsc_cfg.slice_chunk_size * 0x10000000 + (dsc_cfg.slice_width - 1);
+> +	do_div(tmp, (uint32_t)dsc_cfg.slice_width);  //ROUND-UP
+> +	dsc_params->bytes_per_pixel = (uint32_t)tmp;
+>   
+>   	copy_pps_fields(&dsc_params->pps, &dsc_cfg);
+>   	dsc_params->rc_buffer_model_size = dsc_cfg.rc_bits;
+> 
 
 
-> Regards,
->
-> Philip
->
+-- 
+~Randy
