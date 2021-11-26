@@ -2,69 +2,69 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80A0745F575
-	for <lists+amd-gfx@lfdr.de>; Fri, 26 Nov 2021 20:49:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E034445F578
+	for <lists+amd-gfx@lfdr.de>; Fri, 26 Nov 2021 20:49:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 594636E871;
-	Fri, 26 Nov 2021 19:49:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C72B6E876;
+	Fri, 26 Nov 2021 19:49:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2071.outbound.protection.outlook.com [40.107.223.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 106E56E857
- for <amd-gfx@lists.freedesktop.org>; Fri, 26 Nov 2021 19:49:38 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam08on2052.outbound.protection.outlook.com [40.107.101.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E9716E876
+ for <amd-gfx@lists.freedesktop.org>; Fri, 26 Nov 2021 19:49:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N38NlVOQKWjlzXNBu4bWH3yUfz5tlCAGjB8yhDSv+57jtcK5zbv5wvEFq7cpGLcFlakvRiFabZ2ZE5zizzRpsERJPHMWOaARvEtv6aYElLuczyr/5+UscB2duNoBgfwqGpsKazo2OeDTa20NzootyGr3nAwUN0RdKLrV7uqE747sIq23YX8+HxiecXuDSUHai3dAGFAQ+6Z8eNigIof3iVZN5mfWRmTAM8N6qN1DGFf4LmLoXWtJCfFwksR1qYsLZKXrTD5K9uyObD5b4iqCtrbrBQF9/4wOuY6aMUrxDP8+Hfv8g0Rp1Nx4NwuPQqPsb8jOEuaixIGPLMTVoIWvYQ==
+ b=XEQHcACd882PdfBDuFC0pHX0SzOBKq4mE5sCEChMnnC0JaVQ6hYL1iVZgiimuAISKVW6uKjtWxuui9eFUMo+mtcGug9KDzgoWAcMIz603qGHoQ3DaoH/IeEMcgjQmZd5KVAPxrq92c0FFO4pJJuqVu61eXzPcncP7MFRLT6flUYov4ThYyBereABhkk3o6r817LxUSiY45nxRhoZsaeatKY+hR1h2lIh9BxtBVL2s3Ax/5s91GufX2E6QUILTZ/nCC04csu7W5vezmvnoedrhhNDezhMHumLc6ZUC9iZhFfLghsb8iglmWSc9CnCYlBxLjB0czCAJpxcILM1y6xC5A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+CI1KLzEyV7dUunadQjgMqfKqOdCzrCNQJvl0gMDczI=;
- b=jGrt/b0RnTOwaL3vw3V0WaQqvikEhPXIUrzC47IscdlimsPAFJpWN/TFch83jjEzI8RJbgbFkLhI5SSHp4c0GVlJNu76VocVUcYOOhfZADKFUwgw1AY6KEMORzC9b/IVoccu/A28gCinn6kCLPipnzO9xWnZGPDFPm787J6KWf3C8uVx0+xNSunkFJyV8Oe/UCPyni8QURVrRDrTsZq9mv/YffpquGSFBsSeCivTd4fVvYP39/fz9Rg/VPINIKpjTzMCBjYKXClX6UY7WMFYgMX3CgPtg8R1bn8rJl+Jn1/Ziq0TpfhI4n1AIkjXBIko+bqiOvrOyhDbo6cuXk2Pnw==
+ bh=eQRjBg7ti6fsLHUlR1AISTsobCMszLSxYNCSk7Wqyio=;
+ b=HuKw7ErX1i5hdptgaja5jS+MtC9H7Chf3SRBkc0rO+IL+HzjCW+BFCh5PsaI2EpIRHITO6Tm6eRBVmVme9v0O+OjnChEWFvTDb0HcaeR50eOfMQdZA1f1nHYAFImoizBfVtGDZWG/W0xUQO593pN1Q7ova9+bkYl6443A/BmEqkIe6o5+Vor5/UfDDR/oITYaTqdbBbcF14vR+RGu6Md12W62Tt9B0El2K6J+8aOCkQbSHujeq6VyOAk4SNxcHUkUk6yTZh6u1uzdRMPxk1ZtXuR/dBBaGRYOJg3TI8KTHumbCBXP1gO4RXS8cLb6cX2Zrtv7xuSRKcsoU620e2Ylg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+CI1KLzEyV7dUunadQjgMqfKqOdCzrCNQJvl0gMDczI=;
- b=VHUOpid02shB63WvHKMQV8uNH1TJXJIutmSykcjt8Yqi7tecfzHer0KPICfM9rKAotd3ofL2s1Gtv6pn8kpPdmPrKnsIuVKBjv0KXjS029Su/vGQnlkFrOxDFJGuQK2wakQeuP2ws37VTn4yICM87EBQ27yK2ZxWm+PG2WCp/mQ=
-Received: from MWHPR17CA0095.namprd17.prod.outlook.com (2603:10b6:300:c2::33)
- by SJ0PR12MB5578.namprd12.prod.outlook.com (2603:10b6:a03:424::6)
+ bh=eQRjBg7ti6fsLHUlR1AISTsobCMszLSxYNCSk7Wqyio=;
+ b=0U9i1e5K9eUXoythmR0XQ9x0BUfoh9uz5i4pE9TqBLDQFDNLH5nc0q39efkK3tZiM70EkbSky63fW+FFr6jBdfH5QJ+ojWF1lAYhU16z4ZkFflL6aH+pUrZwUyUvNNOhXtMusGW8vwgY2QOcqIe1laH5yXTpzCGT7W51h2ohJ5I=
+Received: from BN6PR19CA0098.namprd19.prod.outlook.com (2603:10b6:404:a0::12)
+ by SA0PR12MB4592.namprd12.prod.outlook.com (2603:10b6:806:9b::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4523.14; Fri, 26 Nov
- 2021 19:49:35 +0000
-Received: from CO1NAM11FT054.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:c2:cafe::1f) by MWHPR17CA0095.outlook.office365.com
- (2603:10b6:300:c2::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23 via Frontend
- Transport; Fri, 26 Nov 2021 19:49:34 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.22; Fri, 26 Nov
+ 2021 19:49:38 +0000
+Received: from BN8NAM11FT024.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:404:a0:cafe::e6) by BN6PR19CA0098.outlook.office365.com
+ (2603:10b6:404:a0::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.22 via Frontend
+ Transport; Fri, 26 Nov 2021 19:49:38 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
- header.d=none;lists.freedesktop.org; dmarc=pass action=none
- header.from=amd.com;
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
 Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT054.mail.protection.outlook.com (10.13.174.70) with Microsoft SMTP
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT024.mail.protection.outlook.com (10.13.177.38) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4734.22 via Frontend Transport; Fri, 26 Nov 2021 19:49:34 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ 15.20.4734.22 via Frontend Transport; Fri, 26 Nov 2021 19:49:38 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Fri, 26 Nov
- 2021 13:49:31 -0600
+ 2021 13:49:32 -0600
 Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
  (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Fri, 26 Nov
- 2021 11:49:31 -0800
+ 2021 11:49:32 -0800
 Received: from blakha.ht.home (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Fri, 26 Nov 2021 13:49:30 -0600
+ Transport; Fri, 26 Nov 2021 13:49:31 -0600
 From: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 05/16] drm/amd/display: Fix for otg synchronization logic
-Date: Fri, 26 Nov 2021 14:49:11 -0500
-Message-ID: <20211126194922.816835-6-Bhawanpreet.Lakha@amd.com>
+Subject: [PATCH 06/16] drm/amd/display: Fix for the no Audio bug with Tiled
+ Displays
+Date: Fri, 26 Nov 2021 14:49:12 -0500
+Message-ID: <20211126194922.816835-7-Bhawanpreet.Lakha@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211126194922.816835-1-Bhawanpreet.Lakha@amd.com>
 References: <20211126194922.816835-1-Bhawanpreet.Lakha@amd.com>
@@ -73,28 +73,28 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6ee6e16e-c90b-4cc0-a08c-08d9b115df41
-X-MS-TrafficTypeDiagnostic: SJ0PR12MB5578:
-X-Microsoft-Antispam-PRVS: <SJ0PR12MB5578434883AFA8CEE0880EF9F9639@SJ0PR12MB5578.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:538;
+X-MS-Office365-Filtering-Correlation-Id: 6bebe0aa-fcde-4f5f-0df3-08d9b115e195
+X-MS-TrafficTypeDiagnostic: SA0PR12MB4592:
+X-Microsoft-Antispam-PRVS: <SA0PR12MB459211247FF6A680F3D8F26DF9639@SA0PR12MB4592.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 63AUF7V/KiSYGqQymT8ya/rTrP2bQeuBnPKwEP/TprzLt9PBmywUUVp+ZSNUWCkfX9yuZR7280gpRFqcOyytdJpPmE1ypD/mT5IiD7EPpOQF+2z/i6Y4ebJ7MlGx7aCjNn5mKaItq3YfiSxYDHifSCxtHOM4z2xgvuCOqP4BBlWytP54ooBI5T1eajxLX1hivPP1oe57O8xHP7HdumIkHrhv37hq/VugeT8GG/sRGqrs9y8l2+6HEodWKIWVb2+/9YUwLRqxB/0mVR44VfAu9oUb2mbtfSCL8QlveHPaa21HYzINp3RMqSZVCaQ0BJTXVgb6meq28+o54wCFcXG2dmsWZodNtyn1Dcr2km6yKUdmpCYdMkgv6Bh1kHBJq/r5iFDymNlnFzCibhiXn+Ji7/RLDyFTkdXlLfKte3AoboX5GFEFY78ErhKY3Pn+jnaD4gHiALTfYo1KGMe6jMXo0qBLhjLfJ6Nmwbx2XbQZo/kEm+DMXTAwEH6kME1sotby3vuxnDRG/qfES9GZIeNiENxpFRjRdGfgLymDUqXdn1K778PMORwn6azWCJRHE4QDv3giUqChLsbal08Aiktl7FBihaT2rQHdtxDOTaInWjcKLgSbf9LEKNd3tQeYls0mBRrVRRQ62jm+z3nEDIsgUvnv9fxsyUNAja78WXHg/5+5r1ZXYtx+k3Psn3gcrDiElyglYwqetqDGs8BCedaJrk3j3fa2rIHLhn+kjNyYYm0=
+X-Microsoft-Antispam-Message-Info: Pmx6ar4sqWCIAPgW2gs9oHPNx36upd1PwPXaGoCdjlbpuLUBoHCyTY4E5aXvxiqpyWvWRZn4UTsU9tyt8eP5ox/FVPUKRjarA26bAO6SC/Mi54rgIfYRVnqzpaB5KEuiXG5GxUPpbRaTbodLUd0Cr200zntultPlARuSzhHSQCK+yuFw1BqqIug6eRQYsoN85nYbRZ5pOtcVpE6pSlWcdvkF1e361CIOlP/sEyJQJXNeC/Tdrd+SFjBNxJK8PbxRw0VAzUWTFrwLZCyT+yB/R0opFbtAbkB+SH/Y8J86hBLP6q5rBYFwe9g3xpZd+5noTWQRIZYgbPOzKjz4Lr3piX35MhZMXX3E6hFhzIV7k/ScfNCb+7+n3z4fE0Lq/dSG3FDkJRdU/OQ3uj4vz0WLpsx/tH1B7MQtnW8WqZkq/Mfm2NXz61iw1fm4Jxe5PGwCoq2N+f05Sbtqi6Hphs0YNEIxz2Uy44dO9OkzzQVz/UAQkEwO631PiXEYCKvK2914cOliUQz03MieBRv9hv0NrJ7y5PZgdD+q2m+gSdgCTaWBlFo4p+69ZjpIMlJ3NhNBPBAMk00keLJ9oMZXOYNx/mytmDmu2sQixXQPJ2njQaGAC6vO2XtPdtROPdUP7sS7gbCQy+RfSSw74O8ArXJCPfblbktOxxm5TnUI+Iig5CG2Y0NSv4JDhaC1HGOVTiy/fxcddAGMqu+sb3QD4CjdV8z1xSceidBGtMgvC9nma34=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(86362001)(54906003)(26005)(82310400004)(36756003)(6666004)(508600001)(70586007)(70206006)(47076005)(1076003)(2906002)(426003)(356005)(186003)(8936002)(336012)(36860700001)(8676002)(6916009)(81166007)(4326008)(83380400001)(5660300002)(316002)(2616005)(36900700001);
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(36840700001)(46966006)(54906003)(8936002)(5660300002)(47076005)(2906002)(70206006)(4326008)(6666004)(26005)(356005)(1076003)(82310400004)(186003)(2616005)(336012)(6916009)(426003)(81166007)(316002)(508600001)(36756003)(70586007)(8676002)(86362001)(36860700001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2021 19:49:34.6096 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ee6e16e-c90b-4cc0-a08c-08d9b115df41
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2021 19:49:38.2959 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6bebe0aa-fcde-4f5f-0df3-08d9b115e195
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT054.eop-nam11.prod.protection.outlook.com
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT024.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB5578
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4592
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,247 +106,48 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Mustapha
- Ghaddar <mustapha.ghaddar@amd.com>, Jun Lei <Jun.Lei@amd.com>,
- solomon.chiu@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
- Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
- mikita.lipski@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
- pavle.kotarac@amd.com
+Cc: stylon.wang@amd.com, Mustapha Ghaddar <mustapha.ghaddar@amd.com>,
+ Jun Lei <Jun.Lei@amd.com>, solomon.chiu@amd.com, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, Mustapha Ghaddar <mghaddar@amd.com>, Anson.Jacob@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com, mikita.lipski@amd.com,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>
+From: Mustapha Ghaddar <mghaddar@amd.com>
 
-[Why]
-During otg sync trigger, plane states are used to decide whether the otg
-is already synchronized or not. There are scenarions when otgs are
-disabled without plane state getting disabled and in such case the otg is
-excluded from synchronization.
+[WHY]
+It seems like after a series of plug/unplugs we end up in a situation
+where tiled display doesnt support Audio.
 
-[How]
-Introduced pipe_idx_syncd in pipe_ctx that tracks each otgs master pipe.
-When a otg is disabled/enabled, pipe_idx_syncd is reset to itself.
-On sync trigger, pipe_idx_syncd is checked to decide whether a otg is
-already synchronized and the otg is further included or excluded from
-synchronization.
+[HOW]
+The issue seems to be related to when we check streams changed after an
+HPD, we should be checking the audio_struct as well to see if any of its
+values changed.
 
 Reviewed-by: Jun Lei <Jun.Lei@amd.com>
-Reviewed-by: Mustapha Ghaddar <mustapha.ghaddar@amd.com>
 Acked-by: Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>
-Signed-off-by: meenakshikumar somasundaram <meenakshikumar.somasundaram@amd.com>
+Signed-off-by: Mustapha Ghaddar <mustapha.ghaddar@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc.c      | 35 +++++++-----
- .../gpu/drm/amd/display/dc/core/dc_resource.c | 54 +++++++++++++++++++
- drivers/gpu/drm/amd/display/dc/dc.h           |  1 +
- .../display/dc/dce110/dce110_hw_sequencer.c   |  8 +++
- .../drm/amd/display/dc/dcn31/dcn31_resource.c |  3 ++
- .../gpu/drm/amd/display/dc/inc/core_types.h   |  1 +
- drivers/gpu/drm/amd/display/dc/inc/resource.h | 11 ++++
- 7 files changed, 99 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-index 17b7408d84b7..bd6541f1c8bb 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-@@ -1422,22 +1422,29 @@ static void program_timing_sync(
- 				status->timing_sync_info.master = false;
- 
- 		}
--		/* remove any other unblanked pipes as they have already been synced */
--		for (j = j + 1; j < group_size; j++) {
--			bool is_blanked;
- 
--			if (pipe_set[j]->stream_res.opp->funcs->dpg_is_blanked)
--				is_blanked =
--					pipe_set[j]->stream_res.opp->funcs->dpg_is_blanked(pipe_set[j]->stream_res.opp);
--			else
--				is_blanked =
--					pipe_set[j]->stream_res.tg->funcs->is_blanked(pipe_set[j]->stream_res.tg);
--			if (!is_blanked) {
--				group_size--;
--				pipe_set[j] = pipe_set[group_size];
--				j--;
-+		/* remove any other pipes that are already been synced */
-+		if (dc->config.use_pipe_ctx_sync_logic) {
-+			/* check pipe's syncd to decide which pipe to be removed */
-+			for (j = 1; j < group_size; j++) {
-+				if (pipe_set[j]->pipe_idx_syncd == pipe_set[0]->pipe_idx_syncd) {
-+					group_size--;
-+					pipe_set[j] = pipe_set[group_size];
-+					j--;
-+				} else
-+					/* link slave pipe's syncd with master pipe */
-+					pipe_set[j]->pipe_idx_syncd = pipe_set[0]->pipe_idx_syncd;
- 			}
--		}
-+		} else {
-+			/* remove any other pipes by checking valid plane */
-+			for (j = j + 1; j < group_size; j++) {
-+				if (pipe_set[j]->plane_state) {
-+					group_size--;
-+					pipe_set[j] = pipe_set[group_size];
-+					j--;
-+				}
-+ 			}
-+ 		}
- 
- 		if (group_size > 1) {
- 			if (sync_type == TIMING_SYNCHRONIZABLE) {
 diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-index 1da91f250afa..51e22b965ed6 100644
+index 51e22b965ed6..a2cf35a7ccaa 100644
 --- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
 +++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
-@@ -3118,3 +3118,57 @@ struct hpo_dp_link_encoder *resource_get_unused_hpo_dp_link_encoder(
- 	return enc;
+@@ -1664,6 +1664,10 @@ bool dc_is_stream_unchanged(
+ 	if (old_stream->ignore_msa_timing_param != stream->ignore_msa_timing_param)
+ 		return false;
+ 
++	// Only Have Audio left to check whether it is same or not. This is a corner case for Tiled sinks
++	if (old_stream->audio_info.mode_count != stream->audio_info.mode_count)
++		return false;
++
+ 	return true;
  }
- #endif
-+
-+void reset_syncd_pipes_from_disabled_pipes(struct dc *dc,
-+		struct dc_state *context)
-+{
-+	int i, j;
-+	struct pipe_ctx *pipe_ctx_old, *pipe_ctx, *pipe_ctx_syncd;
-+
-+	/* If pipe backend is reset, need to reset pipe syncd status */
-+	for (i = 0; i < dc->res_pool->pipe_count; i++) {
-+		pipe_ctx_old =	&dc->current_state->res_ctx.pipe_ctx[i];
-+		pipe_ctx = &context->res_ctx.pipe_ctx[i];
-+
-+		if (!pipe_ctx_old->stream)
-+			continue;
-+
-+		if (pipe_ctx_old->top_pipe || pipe_ctx_old->prev_odm_pipe)
-+			continue;
-+
-+		if (!pipe_ctx->stream ||
-+				pipe_need_reprogram(pipe_ctx_old, pipe_ctx)) {
-+
-+			/* Reset all the syncd pipes from the disabled pipe */
-+			for (j = 0; j < dc->res_pool->pipe_count; j++) {
-+				pipe_ctx_syncd = &context->res_ctx.pipe_ctx[j];
-+				if ((GET_PIPE_SYNCD_FROM_PIPE(pipe_ctx_syncd) == pipe_ctx_old->pipe_idx) ||
-+					!IS_PIPE_SYNCD_VALID(pipe_ctx_syncd))
-+					SET_PIPE_SYNCD_TO_PIPE(pipe_ctx_syncd, j);
-+			}
-+		}
-+	}
-+}
-+
-+void check_syncd_pipes_for_disabled_master_pipe(struct dc *dc,
-+	struct dc_state *context,
-+	uint8_t disabled_master_pipe_idx)
-+{
-+	int i;
-+	struct pipe_ctx *pipe_ctx, *pipe_ctx_check;
-+
-+	pipe_ctx = &context->res_ctx.pipe_ctx[disabled_master_pipe_idx];
-+	if ((GET_PIPE_SYNCD_FROM_PIPE(pipe_ctx) != disabled_master_pipe_idx) ||
-+		!IS_PIPE_SYNCD_VALID(pipe_ctx))
-+		SET_PIPE_SYNCD_TO_PIPE(pipe_ctx, disabled_master_pipe_idx);
-+
-+	/* for the pipe disabled, check if any slave pipe exists and assert */
-+	for (i = 0; i < dc->res_pool->pipe_count; i++) {
-+		pipe_ctx_check = &context->res_ctx.pipe_ctx[i];
-+
-+		if ((GET_PIPE_SYNCD_FROM_PIPE(pipe_ctx_check) == disabled_master_pipe_idx) &&
-+			IS_PIPE_SYNCD_VALID(pipe_ctx_check) && (i != disabled_master_pipe_idx))
-+			DC_ERR("DC: Failure: pipe_idx[%d] syncd with disabled master pipe_idx[%d]\n",
-+				i, disabled_master_pipe_idx);
-+	}
-+}
-diff --git a/drivers/gpu/drm/amd/display/dc/dc.h b/drivers/gpu/drm/amd/display/dc/dc.h
-index c14e7db3f69d..90baef199c12 100644
---- a/drivers/gpu/drm/amd/display/dc/dc.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc.h
-@@ -333,6 +333,7 @@ struct dc_config {
- 	uint8_t  vblank_alignment_max_frame_time_diff;
- 	bool is_asymmetric_memory;
- 	bool is_single_rank_dimm;
-+	bool use_pipe_ctx_sync_logic;
- };
  
- enum visual_confirm {
-diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-index 3d421583e9ca..67298aa890c4 100644
---- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-@@ -1564,6 +1564,10 @@ static enum dc_status apply_single_controller_ctx_to_hw(
- 				&pipe_ctx->stream->audio_info);
- 	}
- 
-+	/* make sure no pipes syncd to the pipe being enabled */
-+	if (!pipe_ctx->stream->apply_seamless_boot_optimization && dc->config.use_pipe_ctx_sync_logic)
-+		check_syncd_pipes_for_disabled_master_pipe(dc, context, pipe_ctx->pipe_idx);
-+
- #if defined(CONFIG_DRM_AMD_DC_DCN)
- 	/* DCN3.1 FPGA Workaround
- 	 * Need to enable HPO DP Stream Encoder before setting OTG master enable.
-@@ -2294,6 +2298,10 @@ enum dc_status dce110_apply_ctx_to_hw(
- 	enum dc_status status;
- 	int i;
- 
-+	/* reset syncd pipes from disabled pipes */
-+	if (dc->config.use_pipe_ctx_sync_logic)
-+		reset_syncd_pipes_from_disabled_pipes(dc, context);
-+
- 	/* Reset old context */
- 	/* look up the targets that have been removed since last commit */
- 	hws->funcs.reset_hw_ctx_wrap(dc, context);
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-index f5d702148e0e..70cbd89bdcb8 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_resource.c
-@@ -2232,6 +2232,9 @@ static bool dcn31_resource_construct(
- 	dc->caps.color.mpc.ogam_rom_caps.hlg = 0;
- 	dc->caps.color.mpc.ocsc = 1;
- 
-+	/* Use pipe context based otg sync logic */
-+	dc->config.use_pipe_ctx_sync_logic = true;
-+
- 	/* read VBIOS LTTPR caps */
- 	{
- 		if (ctx->dc_bios->funcs->get_lttpr_caps) {
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/core_types.h b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-index 6fc6488c54c0..f3c0e70073da 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/core_types.h
-@@ -367,6 +367,7 @@ struct pipe_ctx {
- 	struct pll_settings pll_settings;
- 
- 	uint8_t pipe_idx;
-+	uint8_t pipe_idx_syncd;
- 
- 	struct pipe_ctx *top_pipe;
- 	struct pipe_ctx *bottom_pipe;
-diff --git a/drivers/gpu/drm/amd/display/dc/inc/resource.h b/drivers/gpu/drm/amd/display/dc/inc/resource.h
-index 372c0898facd..c208925f8247 100644
---- a/drivers/gpu/drm/amd/display/dc/inc/resource.h
-+++ b/drivers/gpu/drm/amd/display/dc/inc/resource.h
-@@ -34,6 +34,10 @@
- #define MEMORY_TYPE_HBM 2
- 
- 
-+#define IS_PIPE_SYNCD_VALID(pipe) ((((pipe)->pipe_idx_syncd) & 0x80)?1:0)
-+#define GET_PIPE_SYNCD_FROM_PIPE(pipe) ((pipe)->pipe_idx_syncd & 0x7F)
-+#define SET_PIPE_SYNCD_TO_PIPE(pipe, pipe_syncd) ((pipe)->pipe_idx_syncd = (0x80 | pipe_syncd))
-+
- enum dce_version resource_parse_asic_id(
- 		struct hw_asic_id asic_id);
- 
-@@ -206,4 +210,11 @@ struct hpo_dp_link_encoder *resource_get_unused_hpo_dp_link_encoder(
- 		const struct resource_pool *pool);
- #endif
- 
-+void reset_syncd_pipes_from_disabled_pipes(struct dc *dc,
-+	struct dc_state *context);
-+
-+void check_syncd_pipes_for_disabled_master_pipe(struct dc *dc,
-+	struct dc_state *context,
-+	uint8_t disabled_master_pipe_idx);
-+
- #endif /* DRIVERS_GPU_DRM_AMD_DC_DEV_DC_INC_RESOURCE_H_ */
 -- 
 2.25.1
 
