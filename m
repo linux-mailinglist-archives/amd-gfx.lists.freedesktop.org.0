@@ -1,95 +1,124 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7C21461A91
-	for <lists+amd-gfx@lfdr.de>; Mon, 29 Nov 2021 16:01:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51AC9461C31
+	for <lists+amd-gfx@lfdr.de>; Mon, 29 Nov 2021 17:53:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D866A6EB16;
-	Mon, 29 Nov 2021 15:01:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8997F6E222;
+	Mon, 29 Nov 2021 16:53:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2044.outbound.protection.outlook.com [40.107.93.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E52546EB16
- for <amd-gfx@lists.freedesktop.org>; Mon, 29 Nov 2021 15:01:38 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2053.outbound.protection.outlook.com [40.107.237.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C9AD6E4A6
+ for <amd-gfx@lists.freedesktop.org>; Mon, 29 Nov 2021 16:53:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=agHZu0vil5qZ4bX2xEo3PpwVOL1Qq87dKE1KmA8SXwxu6NT2z9wyVkCR4fGFOoWBFtRyxnAO4lfKxlJnAtjX8/6NP540pWJqpcFLccUgpuJ8v2t5XaFr+lMvi2Egkw04sVic5NeBXIILKLvzaAsVxuXUXFSp1sB+2IudMoEVE0Z4MM7kReybu/0cTkcc8btIwvvSNq24hKPuuCQ82xWzAOnvnonPPEFqDO9EMMCtgaiL3jXSRjDi0PuRMAfG+eVRs4hdlL2+CNcehob5MeohHf4ufRCuz2a7cR50R2WQWoofr91EqmPUub2sjXzp0DNQ5EFvLOcUe9liVgoujJ6Qyw==
+ b=YILHnMeQFDgs8rXfUkhLCqoz97jjuBqPfTuzx6tTYKWoBQQPcbsoIL27fzYpqjhGbpSDlBlHackBcIkuBLOlWHahbDAMy7fQoXm/XHy7f1RUxcTcgk5FjVN0ynrmhh7eFLTzVQ31a7kU1qWVmZaUzudJjh2Pt7A0vA44d8zZRcg2q/8oypJc8yeRXaLLmDXKMegGiT95s5515fCDfxhzHIVjSojBza3m2XCr47kQHy95/0vF+EtteGnBgfpob/omg3srbeNTKZHSi22kKGnk0KcnHJIoaWtNgqVX7os0Ga1XzNfhBwC2rXlf/69Xb24tw1nlF4/SO0XwXEGSRgFUjQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vFbmgeuYph6Av22g8w72T/lz1vY4qsilP68Jww48hPk=;
- b=LXeGC6/Fu00a/z5SjsedKFdy/XNL82HKkO8yEhcl+iC2oDdEYYHsuwr6TllrWFc11D55fg8+mkt7aNlhG0moY+tyJceRsy62e5M8VS2emnwptw44vZnl3YfZHgcMvS4oIKm7h8gRhjbuAs6yo0oxheAWuaMtFcR9uqf5lKJxSI/VD/1RnLerPez72eDLU7L2mBil0Z+1ArFFvhdZKaFXZXD/ZDrA1M+jIKIvcANamwJU9bsBIPidgraKhoc4PEm49Hv2awz8GZdRpvLVzyvPwFrfKiBI2IhmMb67GkaPC0Oy/F0oxp6aaCzoB7gDSZCXCtf4qL6/BpS2ZKZsxQArCw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=temperror (sender ip
- is 165.204.84.17)
- smtp.rcpttodomain=lists.freedesktop.org
- smtp.mailfrom=amd.com; dmarc=temperror action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
+ bh=o+sjF902q4qu+0olWD33+AmjPbeyI/4111o7ZLDBgfo=;
+ b=EK/Zchpfl93vSzBRRE2MZOOgNbcf3Z9CNjOyXy0JimSEFLcZsNWwpMObJU3J/KQ6XIVy1s4fKS/d57J3K7rX83dII0rX7Mdqcw6J0GoBMNLPDKkV1PBAaz2calIOVAA1qOReLpM7ykwpRa5s00daQwl+mhmt5B1rBJfO8kNUKUgkHuxOHsr/sN5KtzJxeWKGC1R2E8+ullL8OcOLQyq9Wbn8vBQ7Nj4uSKQt8SWXNfSutRfVSBg2++LqT4BEj2q08JZrJqs0mcuYRfh02y+N1PpkHe08Bt0GVnzoSPYeiudLzBXNsB4HReh0CRZKrqolkOAP5PjGslxHQ1pmVBUDeQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vFbmgeuYph6Av22g8w72T/lz1vY4qsilP68Jww48hPk=;
- b=hc73V6q+qUJ6Lz71VQ0z7Uujz4lq2CfEHbidNYBDd99uR3FMs+sj6wOHNIWCh+KSmzLEDEIpYCkHDBrR3SIUw1GmR2eXvjmJlFeeRYFm79oeOEGQPn3+fxzztamMDkbwTaLkzYXWsO4sIjII6Tnr1odX9qKilZTkPRAfdxqq23I=
-Received: from BN7PR06CA0055.namprd06.prod.outlook.com (2603:10b6:408:34::32)
- by CH2PR12MB4247.namprd12.prod.outlook.com (2603:10b6:610:7c::20)
+ bh=o+sjF902q4qu+0olWD33+AmjPbeyI/4111o7ZLDBgfo=;
+ b=hXmRbsvHM0ci4GkNOMP7JcP6hBPVouFZgfZvXr6raNzT3dOIULGGK2eRMRjDB2sCaO+puMc6sfgKBqh5clZ6h5Y575zMfEgdYUVFDba4mlBogfz/l690ePXTGZq9y/tkdQfhu6NWshZHptavutP+PbA8+/cVJDOLK3zBfEjYC0A=
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
+ by BL1PR12MB5333.namprd12.prod.outlook.com (2603:10b6:208:31f::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.19; Mon, 29 Nov
- 2021 15:01:36 +0000
-Received: from BN8NAM11FT052.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:34:cafe::cf) by BN7PR06CA0055.outlook.office365.com
- (2603:10b6:408:34::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23 via Frontend
- Transport; Mon, 29 Nov 2021 15:01:36 +0000
-X-MS-Exchange-Authentication-Results: spf=temperror (sender IP is
- 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=temperror action=none header.from=amd.com;
-Received-SPF: TempError (protection.outlook.com: error in processing during
- lookup of amd.com: DNS Timeout)
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT052.mail.protection.outlook.com (10.13.177.210) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4734.22 via Frontend Transport; Mon, 29 Nov 2021 15:01:34 +0000
-Received: from mkgs-dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Mon, 29 Nov
- 2021 09:01:32 -0600
-From: Graham Sider <Graham.Sider@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v3 3/3] drm/amdkfd: remove hardcoded device_info structs
-Date: Mon, 29 Nov 2021 09:59:42 -0500
-Message-ID: <20211129145942.3542707-3-Graham.Sider@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211129145942.3542707-1-Graham.Sider@amd.com>
-References: <20211129145942.3542707-1-Graham.Sider@amd.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a2dad13e-5747-4ec0-4649-08d9b34922d4
-X-MS-TrafficTypeDiagnostic: CH2PR12MB4247:
-X-Microsoft-Antispam-PRVS: <CH2PR12MB42473476AB87503D91749B598A669@CH2PR12MB4247.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3044;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2FWqUtiCdgo1Kx8v5k9mThP+nhh8AaH9aRdE03Hq4pSthgn87zoU7LrS6/r7p4dqkLMyabpR0jeL2yYvj5iTS4Xptppg079w5nXbUz7EGSQjsqDT+2qXqYmRW1mUhr4YuAWqbw28I4am5Z2nQTywkVQ23lJdrGWJm7SHPSQdA9k86D8+yo7hwRelQK2FDjHZk0y2AdV9PEBdiGPDXtLQGay0nrg6sgT7nXrwrg4ZtlBo4lI0N3+ZX/OyOsSBgwLo/xfXzvi0vHPzUUxSDeOR5WfKBWXbiRyBBsbgMXBTK/57xbessULExdUKIiESfXhZY9kM9bJhe6zCoFVVDKjcvbobW7/VfuRBTQCC0Co3aL77h3uQRaZkJ9g/7PB9fC7NcVtC9a6eEXJ6uncNZHI/iffDCBicrh6j5Dt5PYFEDlxMAVDd3XT8ZKi/5YbXymm6nSutE8y+hphNmmFBmrjgHL57IRj/bb8GdcDt7Q0MjEQgN+oUEwuRPbZActjoyk0bt09wd+S/ZYXtrji0NIQJCBSHXcVj/dYotjTRe1M02OCj64YTPcEzrmcAHwe4G2DcOOYKdCUk2KEwMvbEUvxPtDxR92jFdP8Vn74RYH3DxBowszxZDGzGIPdEzddgEC/Z5oWlRxtxgdfmDfLqITEd49kVs7nR91pm+7ndUk+YlyFbawTW1vgKZxbvdnaOPGqzBsV8hzlyaiNMXO4SwHFytKOWYzfIPJwaQXiFVJc1xG4=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(30864003)(2906002)(16526019)(316002)(1076003)(63370400001)(36756003)(36860700001)(5660300002)(8676002)(7696005)(82310400004)(8936002)(47076005)(83380400001)(2616005)(336012)(186003)(6916009)(70586007)(426003)(63350400001)(70206006)(356005)(54906003)(81166007)(4326008)(26005)(6666004)(508600001)(86362001)(36900700001);
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23; Mon, 29 Nov
+ 2021 16:53:07 +0000
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::6452:dc31:2a24:2830]) by BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::6452:dc31:2a24:2830%9]) with mapi id 15.20.4734.024; Mon, 29 Nov 2021
+ 16:53:07 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: "Chen, Guchun" <Guchun.Chen@amd.com>, Alex Deucher
+ <alexdeucher@gmail.com>, "Jian, Jane" <Jane.Jian@amd.com>
+Subject: Re: [PATCH] drm/amdgpu/sriov/vcn: skip ip revision check case to ip
+ init for SIENNA_CICHLID
+Thread-Topic: [PATCH] drm/amdgpu/sriov/vcn: skip ip revision check case to ip
+ init for SIENNA_CICHLID
+Thread-Index: AQHX4T58rmOs/HQgS0i8gUa6s2ilbawSuvGAgADIK4CAAADTAIAHPLIY
+Date: Mon, 29 Nov 2021 16:53:06 +0000
+Message-ID: <BL1PR12MB5144B185E74B61A260152256F7669@BL1PR12MB5144.namprd12.prod.outlook.com>
+References: <20211124142036.22491-1-Jane.Jian@amd.com>
+ <CADnq5_P1=kz9dDwLtH98sHGgt6=C5Y=U1EoouGJktwFW0pBG7w@mail.gmail.com>
+ <DM5PR12MB24691FE17360A4A7A76D6825F1629@DM5PR12MB2469.namprd12.prod.outlook.com>
+ <DM5PR12MB24699B4793306F3221D6D67EF1629@DM5PR12MB2469.namprd12.prod.outlook.com>
+In-Reply-To: <DM5PR12MB24699B4793306F3221D6D67EF1629@DM5PR12MB2469.namprd12.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=True;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2021-11-29T16:53:06.289Z;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=0;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Standard; 
+suggested_attachment_session_id: 871c9e54-4f4b-2689-18b3-75f690ee23cc
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a7642def-a5b0-4409-577f-08d9b358b7bc
+x-ms-traffictypediagnostic: BL1PR12MB5333:
+x-microsoft-antispam-prvs: <BL1PR12MB53332F64B805325BE5199234F7669@BL1PR12MB5333.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:376;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: W3MKMNgngDtfCKj2uBS2TUAOkiMfMsg3ltGHrUmJ5XuhD/QaD4749IooT31BMyZ1U1QpFM/hGxUoOXSJ8hUElDveC3ugXnyO3PNot4TTJ8gi3H74cMOnZrilMRhZkj1RnmgpP0ij3XWkKAw7rrKie9KobvDVnH4R4ZZcF4grBC7HRfI1XHmZHtVotHL7wT43+VZsfXCYMan+gpzligiDEmoCrHMRax1PUs6lIdu5i7mSdgit8Kc9f+sr+sGBcuN3iKCKv4yq9eX6YZSv6vup/hJsllvK7geavxamnDZiOk9eQ5sWUybfF+FoK+ku5WtK0dDIuIjuMLfcstkjkQCB0kUaZI8RA+ODJqyJq1zmIoEK484mFwHLLoXkmLQhzeCPyfGA/MspJtZtfd5k5Vj5/Hh3sxq6gwCJjDstIMnhX0sPDairvsGHF5IZtSXdhf+VXNN91m+Q7srefwlfyVnDLPUWFX2lK796YFx+O4mm9RPLxv1w0R5aAcpyhvVwUq8rkn85ALj1Y2ZFD5XvJuv38fHJSBCapxLI+g4Dpm69fll6hC4rw6gb8EVPifoJCdjQhHklA5kRf86UBRC2J71FBQq0sVmanxfc7UVkIqNPYynrEuwJduK6zC6suPpOEsoGtSSLjr2nt11ulj/DA3ssv+E9Vgxiz9Pdd5oITTnx1nn30oB2AaicodApgyU/vvC3JtyQ9Aywy6yiUu2Ndm2nbg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(55016003)(19627405001)(186003)(8676002)(2906002)(8936002)(66946007)(122000001)(508600001)(76116006)(7696005)(38100700002)(6506007)(38070700005)(66446008)(64756008)(66556008)(66476007)(26005)(53546011)(86362001)(9686003)(4326008)(33656002)(6636002)(316002)(52536014)(71200400001)(83380400001)(110136005)(54906003)(5660300002);
  DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?zmNPR00aS8F4n2yEyBuFblw57h5hDaRH/IKjP06Tz1h4a1zbrnaha2biINDy?=
+ =?us-ascii?Q?8+hh0QeigEQU1KL8ZadbXJqfmgsx4vovMFcUPoJyhaMIlCZuNdJAKjHXJvKs?=
+ =?us-ascii?Q?ieQXXxxLxANKSupTrX3Vqjjk1JL0JKufxosvYfp1w30HGzCwlO4GGEYySA9O?=
+ =?us-ascii?Q?RsdOo+RB45Swuiftz10UU2/03datXpK45Jt7OWtXGKFjmSqHiyaeWZWvaowS?=
+ =?us-ascii?Q?tONkYTk+gAXlOSrEviejSpv1Z4+5a1JEF7rWNxkkE5rxG7/SsiRePNo4XbzT?=
+ =?us-ascii?Q?T7f0hvZ8V94+F5SdDGndzNks8hMiRIkJu31Ah5twhJ839k6z4nqN70j9LBiv?=
+ =?us-ascii?Q?qfko5EesGUTUstOcYtNztA//1NRS6rRmZ26jUcnkjA3rZKbTeFT3t4xWZGfg?=
+ =?us-ascii?Q?YOmNTeDdw4xVcj3RkFxn7ZYWI3QianpG0fa6M58sC2/SyfFXYGmDxfwn2xna?=
+ =?us-ascii?Q?G6kRgw+T+V02IyfGLJeD0D601H7HkqEZKjue0pm7XZEBBSWhz8OrXASWLdsb?=
+ =?us-ascii?Q?MIKLA1TjJOlxv9Rv7wsn9y2qQ6kmUCU6MF7ehKxsiuxoAp8kRG15WJC4HhYx?=
+ =?us-ascii?Q?2J0Zrl/b+C5ujmIniSX8VL5VYsxgCBtN5CqUUB9jl+eh2p+4ta5lHPuYopjn?=
+ =?us-ascii?Q?aMZ+Exe8cCtOipQtG/EaOv7ivNxvM99K7+dCJ0cMppTEbXX7d1pP8nJnlRi2?=
+ =?us-ascii?Q?CfGhF0e9xRDmCpoCgtEdebwnOo1Zy8hkSEw6m9DVcXTfhZ3Im00MBK93XT/f?=
+ =?us-ascii?Q?lxPdRx4vYE7BMb0mAfWudf0tgBI3wo8218G3XN0G14IVot2iX7cloo9qiWOE?=
+ =?us-ascii?Q?Kuw9p4QkFIfUVGKkOIxYRrYd+4m+HpjV8tJQVPIZew97bVXXuG6hJuvipn8E?=
+ =?us-ascii?Q?CeeWTT7d0TqnWMqaQvEPvZKGrMaenLaup7chOnIhHMKBDkMNfdOSqNEeMclA?=
+ =?us-ascii?Q?64MlksmOUQMd2MZx+xvB35vHifPJJlRApAdQ9BBPq9HcV1RA0HJap67M+an0?=
+ =?us-ascii?Q?mbYIR2xh6agfrfbY5JKmExkZ/C+xjLJVFPske22X82Ua8O2cm9GSN2DMYzsd?=
+ =?us-ascii?Q?PM0o+YAV4eqlkfppVMQFpfSKzEN47vOX7DFtAulszjHGPg+IMxyANZ3DoIhi?=
+ =?us-ascii?Q?gT7xLBocoJSjVwCbecOKedUOGm/Eo69mx+m3PnfZqc3s3apm8jXV/FIjFSBh?=
+ =?us-ascii?Q?ddmPuQnfAD3KiwKiq7eJ/Bjb5mkBhpnebYYHQW31qaloy+lNQ9BX7fZ6o74s?=
+ =?us-ascii?Q?HeanHXGALfTz8GlmCJL26SEdDy5Qk84xV+/oTeZQZJDG3QdmOVvwVOenW9Nn?=
+ =?us-ascii?Q?fz6ZD/3p4MV+or59w3sGS3xbpAnbpQZ7xnzmWoA06h55yHEXTGQU7AnkNwzG?=
+ =?us-ascii?Q?woOqw4LpnGtoc1Zblq72iV8ajHmpNmFqWJW6EOh7SGe97QFiAELUObI0FjdF?=
+ =?us-ascii?Q?4Kw829l4WJTaV3u2fpSANgUobWYIE60C3Rg7iv1jIOCZQ38lZakCKYizgsvd?=
+ =?us-ascii?Q?HWrqUqsXrgpCyf3tua/WL037IKnooWZvXzHidpWgEhUva7t/SgPxSoAL96Jn?=
+ =?us-ascii?Q?8c4u0fVeS/uJQxknTgxdMnD9UmhxqXJWF733mhzBUc6Mla0j7D0rWTwRLyoN?=
+ =?us-ascii?Q?yQ=3D=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_BL1PR12MB5144B185E74B61A260152256F7669BL1PR12MB5144namp_"
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2021 15:01:34.7527 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a2dad13e-5747-4ec0-4649-08d9b34922d4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT052.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4247
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a7642def-a5b0-4409-577f-08d9b358b7bc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Nov 2021 16:53:06.8692 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ovaEKim7MHIoljCkUpLzYROOMcz0a+XHfs9sJr3VwW9DtW9yZ0FZPNfenMLEUOUqRGSqar1BUpD9R9TsD32XMQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5333
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,582 +130,330 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Felix.Kuehling@amd.com, Graham Sider <Graham.Sider@amd.com>
+Cc: "Chen, JingWen" <JingWen.Chen2@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-With device_info initialization being handled in kfd_device_info_init,
-these structs may be removed. Also add comments to help matching IP
-versions to asic names.
+--_000_BL1PR12MB5144B185E74B61A260152256F7669BL1PR12MB5144namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Graham Sider <Graham.Sider@amd.com>
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
----
- drivers/gpu/drm/amd/amdkfd/kfd_device.c | 469 +-----------------------
- 1 file changed, 17 insertions(+), 452 deletions(-)
+[Public]
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-index 5e50667cb665..eb6851be1224 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
-@@ -53,458 +53,6 @@ extern const struct kfd2kgd_calls aldebaran_kfd2kgd;
- extern const struct kfd2kgd_calls gfx_v10_kfd2kgd;
- extern const struct kfd2kgd_calls gfx_v10_3_kfd2kgd;
- 
--#ifdef KFD_SUPPORT_IOMMU_V2
--static const struct kfd_device_info kaveri_device_info = {
--	.gfx_target_version = 70000,
--	.max_pasid_bits = 16,
--	/* max num of queues for KV.TODO should be a dynamic value */
--	.max_no_of_hqd	= 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = false,
--	.needs_iommu_device = true,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info carrizo_device_info = {
--	.gfx_target_version = 80001,
--	.max_pasid_bits = 16,
--	/* max num of queues for CZ.TODO should be a dynamic value */
--	.max_no_of_hqd	= 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = true,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info raven_device_info = {
--	.gfx_target_version = 90002,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = true,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--#endif
--
--#ifdef CONFIG_DRM_AMDGPU_CIK
--static const struct kfd_device_info hawaii_device_info = {
--	.gfx_target_version = 70001,
--	.max_pasid_bits = 16,
--	/* max num of queues for KV.TODO should be a dynamic value */
--	.max_no_of_hqd	= 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = false,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--#endif
--
--static const struct kfd_device_info tonga_device_info = {
--	.gfx_target_version = 80002,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = false,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info fiji_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info fiji_vf_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--
--static const struct kfd_device_info polaris10_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info polaris10_vf_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info polaris11_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info polaris12_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info vegam_device_info = {
--	.gfx_target_version = 80003,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 4,
--	.ih_ring_entry_size = 4 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_cik,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info vega10_device_info = {
--	.gfx_target_version = 90000,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info vega10_vf_device_info = {
--	.gfx_target_version = 90000,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info vega12_device_info = {
--	.gfx_target_version = 90004,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info vega20_device_info = {
--	.gfx_target_version = 90006,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd	= 24,
--	.doorbell_size	= 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info arcturus_device_info = {
--	.gfx_target_version = 90008,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd	= 24,
--	.doorbell_size	= 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info aldebaran_device_info = {
--	.gfx_target_version = 90010,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd	= 24,
--	.doorbell_size	= 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info renoir_device_info = {
--	.gfx_target_version = 90012,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.supports_cwsr = true,
--	.needs_iommu_device = false,
--	.needs_pci_atomics = false,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info navi10_device_info = {
--	.gfx_target_version = 100100,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 145,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info navi12_device_info = {
--	.gfx_target_version = 100101,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 145,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info navi14_device_info = {
--	.gfx_target_version = 100102,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 145,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info sienna_cichlid_device_info = {
--	.gfx_target_version = 100300,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 92,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info navy_flounder_device_info = {
--	.gfx_target_version = 100301,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 92,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info vangogh_device_info = {
--	.gfx_target_version = 100303,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 92,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info dimgrey_cavefish_device_info = {
--	.gfx_target_version = 100302,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 92,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info beige_goby_device_info = {
--	.gfx_target_version = 100304,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 92,
--	.num_sdma_queues_per_engine = 8,
--};
--
--static const struct kfd_device_info yellow_carp_device_info = {
--	.gfx_target_version = 100305,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.no_atomic_fw_version = 92,
--	.num_sdma_queues_per_engine = 2,
--};
--
--static const struct kfd_device_info cyan_skillfish_device_info = {
--	.gfx_target_version = 100103,
--	.max_pasid_bits = 16,
--	.max_no_of_hqd  = 24,
--	.doorbell_size  = 8,
--	.ih_ring_entry_size = 8 * sizeof(uint32_t),
--	.event_interrupt_class = &event_interrupt_class_v9,
--	.num_of_watch_points = 4,
--	.mqd_size_aligned = MQD_SIZE_ALIGNED,
--	.needs_iommu_device = false,
--	.supports_cwsr = true,
--	.needs_pci_atomics = true,
--	.num_sdma_queues_per_engine = 8,
--};
--
- static int kfd_gtt_sa_init(struct kfd_dev *kfd, unsigned int buf_size,
- 				unsigned int chunk_size);
- static void kfd_gtt_sa_fini(struct kfd_dev *kfd);
-@@ -633,11 +181,13 @@ struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
- 		break;
- 	default:
- 		switch (adev->ip_versions[GC_HWIP][0]) {
-+		/* Vega 10 */
- 		case IP_VERSION(9, 0, 1):
- 			gfx_target_version = 90000;
- 			f2g = &gfx_v9_kfd2kgd;
- 			break;
- #ifdef KFD_SUPPORT_IOMMU_V2
-+		/* Raven */
- 		case IP_VERSION(9, 1, 0):
- 		case IP_VERSION(9, 2, 2):
- 			gfx_target_version = 90002;
-@@ -645,69 +195,84 @@ struct kfd_dev *kgd2kfd_probe(struct amdgpu_device *adev, bool vf)
- 				f2g = &gfx_v9_kfd2kgd;
- 			break;
- #endif
-+		/* Vega12 */
- 		case IP_VERSION(9, 2, 1):
- 			gfx_target_version = 90004;
- 			if (!vf)
- 				f2g = &gfx_v9_kfd2kgd;
- 			break;
-+		/* Renoir */
- 		case IP_VERSION(9, 3, 0):
- 			gfx_target_version = 90012;
- 			if (!vf)
- 				f2g = &gfx_v9_kfd2kgd;
- 			break;
-+		/* Vega20 */
- 		case IP_VERSION(9, 4, 0):
- 			gfx_target_version = 90006;
- 			if (!vf)
- 				f2g = &gfx_v9_kfd2kgd;
- 			break;
-+		/* Arcturus */
- 		case IP_VERSION(9, 4, 1):
- 			gfx_target_version = 90008;
- 			f2g = &arcturus_kfd2kgd;
- 			break;
-+		/* Aldebaran */
- 		case IP_VERSION(9, 4, 2):
- 			gfx_target_version = 90010;
- 			f2g = &aldebaran_kfd2kgd;
- 			break;
-+		/* Navi10 */
- 		case IP_VERSION(10, 1, 10):
- 			gfx_target_version = 100100;
- 			if (!vf)
- 				f2g = &gfx_v10_kfd2kgd;
- 			break;
-+		/* Navi12 */
- 		case IP_VERSION(10, 1, 2):
- 			gfx_target_version = 100101;
- 			f2g = &gfx_v10_kfd2kgd;
- 			break;
-+		/* Navi14 */
- 		case IP_VERSION(10, 1, 1):
- 			gfx_target_version = 100102;
- 			if (!vf)
- 				f2g = &gfx_v10_kfd2kgd;
- 			break;
-+		/* Cyan Skillfish */
- 		case IP_VERSION(10, 1, 3):
- 			gfx_target_version = 100103;
- 			if (!vf)
- 				f2g = &gfx_v10_kfd2kgd;
- 			break;
-+		/* Sienna Cichlid */
- 		case IP_VERSION(10, 3, 0):
- 			gfx_target_version = 100300;
- 			f2g = &gfx_v10_3_kfd2kgd;
- 			break;
-+		/* Navy Flounder */
- 		case IP_VERSION(10, 3, 2):
- 			gfx_target_version = 100301;
- 			f2g = &gfx_v10_3_kfd2kgd;
- 			break;
-+		/* Van Gogh */
- 		case IP_VERSION(10, 3, 1):
- 			gfx_target_version = 100303;
- 			if (!vf)
- 				f2g = &gfx_v10_3_kfd2kgd;
- 			break;
-+		/* Dimgrey Cavefish */
- 		case IP_VERSION(10, 3, 4):
- 			gfx_target_version = 100302;
- 			f2g = &gfx_v10_3_kfd2kgd;
- 			break;
-+		/* Beige Goby */
- 		case IP_VERSION(10, 3, 5):
- 			gfx_target_version = 100304;
- 			f2g = &gfx_v10_3_kfd2kgd;
- 			break;
-+		/* Yellow Carp */
- 		case IP_VERSION(10, 3, 3):
- 			gfx_target_version = 100305;
- 			if (!vf)
--- 
-2.25.1
+Yes, that makes more sense.
 
+Alex
+
+________________________________
+From: Chen, Guchun <Guchun.Chen@amd.com>
+Sent: Wednesday, November 24, 2021 9:21 PM
+To: Chen, Guchun <Guchun.Chen@amd.com>; Alex Deucher <alexdeucher@gmail.com=
+>; Jian, Jane <Jane.Jian@amd.com>
+Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Chen, JingWen <JingWen.=
+Chen2@amd.com>; amd-gfx list <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amdgpu/sriov/vcn: skip ip revision check case to i=
+p init for SIENNA_CICHLID
+
+[Public]
+
+A typo.
+
+It's better to move 'case IP_VERSION(3, 0, 192)' after IP_VERSION(3, 0, 2)?
+
+case IP_VERSION(3, 1, 1):
+case IP_VERSION(3, 0, 2):
++ case IP_VERSION(3, 0, 192):
+        amdgpu_device_ip_block_add(adev, &vcn_v3_0_ip_block);
+        if (!amdgpu_sriov_vf(adev))
+                amdgpu_device_ip_block_add(adev, &jpeg_v3_0_ip_block);
+        break;
+
+Regards,
+Guchun
+
+-----Original Message-----
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Chen, Gu=
+chun
+Sent: Thursday, November 25, 2021 10:19 AM
+To: Alex Deucher <alexdeucher@gmail.com>; Jian, Jane <Jane.Jian@amd.com>
+Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Chen, JingWen <JingWen.=
+Chen2@amd.com>; amd-gfx list <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amdgpu/sriov/vcn: skip ip revision check case to i=
+p init for SIENNA_CICHLID
+
+[Public]
+
+It's better to move 'case IP_VERSION(3, 0, 192)' after IP_VERSION(3, 0, 192=
+)?
+
+case IP_VERSION(3, 1, 1):
+case IP_VERSION(3, 0, 2):
++ case IP_VERSION(3, 0, 192):
+        amdgpu_device_ip_block_add(adev, &vcn_v3_0_ip_block);
+        if (!amdgpu_sriov_vf(adev))
+                amdgpu_device_ip_block_add(adev, &jpeg_v3_0_ip_block);
+        break;
+
+Regards,
+Guchun
+
+-----Original Message-----
+From: Alex Deucher <alexdeucher@gmail.com>
+Sent: Wednesday, November 24, 2021 10:23 PM
+To: Jian, Jane <Jane.Jian@amd.com>
+Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Chen, Guchun <Guchun.Ch=
+en@amd.com>; Chen, JingWen <JingWen.Chen2@amd.com>; amd-gfx list <amd-gfx@l=
+ists.freedesktop.org>
+Subject: Re: [PATCH] drm/amdgpu/sriov/vcn: skip ip revision check case to i=
+p init for SIENNA_CICHLID
+
+On Wed, Nov 24, 2021 at 9:20 AM Jane Jian <Jane.Jian@amd.com> wrote:
+>
+> [WHY]
+> for sriov odd# vf will modify vcn0 engine ip revision(due to
+> multimedia bandwidth feature), which will be mismatched with original
+> vcn0 revision
+>
+> [HOW]
+> add new version check for vcn0 disabled revision(3, 0, 192), typically
+> modified under sriov mode
+>
+> Signed-off-by: Jane Jian <Jane.Jian@amd.com>
+
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+
+> Change-Id: I1ace32acbf3a13c0baac958508da1324ec387a58
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 1 +
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c       | 1 +
+>  2 files changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> index 503995c7ff6c..3f9b7b0bab3c 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> @@ -923,6 +923,7 @@ static int amdgpu_discovery_set_mm_ip_blocks(struct a=
+mdgpu_device *adev)
+>                                 amdgpu_device_ip_block_add(adev, &jpeg_v3=
+_0_ip_block);
+>                         break;
+>                 case IP_VERSION(3, 0, 33):
+> +               case IP_VERSION(3, 0, 192):
+>                         amdgpu_device_ip_block_add(adev, &vcn_v3_0_ip_blo=
+ck);
+>                         break;
+>                 default:
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+> index 4f7c70845785..585961c2f5f2 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+> @@ -135,6 +135,7 @@ int amdgpu_vcn_sw_init(struct amdgpu_device *adev)
+>                 break;
+>         case IP_VERSION(3, 0, 0):
+>         case IP_VERSION(3, 0, 64):
+> +       case IP_VERSION(3, 0, 192):
+>                 if (adev->ip_versions[GC_HWIP][0] =3D=3D IP_VERSION(10, 3=
+, 0))
+>                         fw_name =3D FIRMWARE_SIENNA_CICHLID;
+>                 else
+> --
+> 2.17.1
+>
+
+--_000_BL1PR12MB5144B185E74B61A260152256F7669BL1PR12MB5144namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Arial;font-size:10pt;color:#008000;margin:15pt;" al=
+ign=3D"Left">
+[Public]<br>
+</p>
+<br>
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Yes, that makes more sense.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Alex</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Chen, Guchun &lt;Guch=
+un.Chen@amd.com&gt;<br>
+<b>Sent:</b> Wednesday, November 24, 2021 9:21 PM<br>
+<b>To:</b> Chen, Guchun &lt;Guchun.Chen@amd.com&gt;; Alex Deucher &lt;alexd=
+eucher@gmail.com&gt;; Jian, Jane &lt;Jane.Jian@amd.com&gt;<br>
+<b>Cc:</b> Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Chen, Jing=
+Wen &lt;JingWen.Chen2@amd.com&gt;; amd-gfx list &lt;amd-gfx@lists.freedeskt=
+op.org&gt;<br>
+<b>Subject:</b> RE: [PATCH] drm/amdgpu/sriov/vcn: skip ip revision check ca=
+se to ip init for SIENNA_CICHLID</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">[Public]<br>
+<br>
+A typo.<br>
+<br>
+It's better to move 'case IP_VERSION(3, 0, 192)' after IP_VERSION(3, 0, 2)?=
+<br>
+<br>
+case IP_VERSION(3, 1, 1):<br>
+case IP_VERSION(3, 0, 2):<br>
++ case IP_VERSION(3, 0, 192):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_device_ip_block_add(adev,=
+ &amp;vcn_v3_0_ip_block);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!amdgpu_sriov_vf(adev))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; amdgpu_device_ip_block_add(adev, &amp;jpeg_v3_0_ip_block);<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+<br>
+Regards,<br>
+Guchun<br>
+<br>
+-----Original Message-----<br>
+From: amd-gfx &lt;amd-gfx-bounces@lists.freedesktop.org&gt; On Behalf Of Ch=
+en, Guchun<br>
+Sent: Thursday, November 25, 2021 10:19 AM<br>
+To: Alex Deucher &lt;alexdeucher@gmail.com&gt;; Jian, Jane &lt;Jane.Jian@am=
+d.com&gt;<br>
+Cc: Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Chen, JingWen &lt=
+;JingWen.Chen2@amd.com&gt;; amd-gfx list &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+Subject: RE: [PATCH] drm/amdgpu/sriov/vcn: skip ip revision check case to i=
+p init for SIENNA_CICHLID<br>
+<br>
+[Public]<br>
+<br>
+It's better to move 'case IP_VERSION(3, 0, 192)' after IP_VERSION(3, 0, 192=
+)?<br>
+<br>
+case IP_VERSION(3, 1, 1):<br>
+case IP_VERSION(3, 0, 2):<br>
++ case IP_VERSION(3, 0, 192):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_device_ip_block_add(adev,=
+ &amp;vcn_v3_0_ip_block);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!amdgpu_sriov_vf(adev))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; amdgpu_device_ip_block_add(adev, &amp;jpeg_v3_0_ip_block);<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+<br>
+Regards,<br>
+Guchun<br>
+<br>
+-----Original Message-----<br>
+From: Alex Deucher &lt;alexdeucher@gmail.com&gt;<br>
+Sent: Wednesday, November 24, 2021 10:23 PM<br>
+To: Jian, Jane &lt;Jane.Jian@amd.com&gt;<br>
+Cc: Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;; Chen, Guchun &lt;=
+Guchun.Chen@amd.com&gt;; Chen, JingWen &lt;JingWen.Chen2@amd.com&gt;; amd-g=
+fx list &lt;amd-gfx@lists.freedesktop.org&gt;<br>
+Subject: Re: [PATCH] drm/amdgpu/sriov/vcn: skip ip revision check case to i=
+p init for SIENNA_CICHLID<br>
+<br>
+On Wed, Nov 24, 2021 at 9:20 AM Jane Jian &lt;Jane.Jian@amd.com&gt; wrote:<=
+br>
+&gt;<br>
+&gt; [WHY]<br>
+&gt; for sriov odd# vf will modify vcn0 engine ip revision(due to <br>
+&gt; multimedia bandwidth feature), which will be mismatched with original<=
+br>
+&gt; vcn0 revision<br>
+&gt;<br>
+&gt; [HOW]<br>
+&gt; add new version check for vcn0 disabled revision(3, 0, 192), typically=
+ <br>
+&gt; modified under sriov mode<br>
+&gt;<br>
+&gt; Signed-off-by: Jane Jian &lt;Jane.Jian@amd.com&gt;<br>
+<br>
+Reviewed-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+<br>
+&gt; Change-Id: I1ace32acbf3a13c0baac958508da1324ec387a58<br>
+&gt; ---<br>
+&gt;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 1 +<br>
+&gt;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; | 1 +<br>
+&gt;&nbsp; 2 files changed, 2 insertions(+)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c<br>
+&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c<br>
+&gt; index 503995c7ff6c..3f9b7b0bab3c 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c<br>
+&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c<br>
+&gt; @@ -923,6 +923,7 @@ static int amdgpu_discovery_set_mm_ip_blocks(struc=
+t amdgpu_device *adev)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_device_ip_block_add(a=
+dev, &amp;jpeg_v3_0_ip_block);<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b=
+reak;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(3, 0, 33):<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; case IP_VERSION(3, 0, 192):<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a=
+mdgpu_device_ip_block_add(adev, &amp;vcn_v3_0_ip_block);<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b=
+reak;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c<br>
+&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c<br>
+&gt; index 4f7c70845785..585961c2f5f2 100644<br>
+&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c<br>
+&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c<br>
+&gt; @@ -135,6 +135,7 @@ int amdgpu_vcn_sw_init(struct amdgpu_device *adev)=
+<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(3, 0, =
+0):<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(3, 0, =
+64):<br>
+&gt; +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(3, 0, 192):<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;ip_versions[GC_HWIP][0] =3D=3D IP_VE=
+RSION(10, 3, 0))<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f=
+w_name =3D FIRMWARE_SIENNA_CICHLID;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+&gt; --<br>
+&gt; 2.17.1<br>
+&gt;<br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
+
+--_000_BL1PR12MB5144B185E74B61A260152256F7669BL1PR12MB5144namp_--
