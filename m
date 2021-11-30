@@ -1,78 +1,77 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3A2B463B6C
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Nov 2021 17:13:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 424AA463B66
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Nov 2021 17:13:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FD066E55C;
-	Tue, 30 Nov 2021 16:13:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3762E6E49C;
+	Tue, 30 Nov 2021 16:13:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 491 seconds by postgrey-1.36 at gabe;
- Tue, 30 Nov 2021 11:26:52 UTC
-Received: from mta-p5.oit.umn.edu (mta-p5.oit.umn.edu [134.84.196.205])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E6016E92F
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 11:26:52 +0000 (UTC)
+Received: from mta-p7.oit.umn.edu (mta-p7.oit.umn.edu [134.84.196.207])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B92536E2DF
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 14:49:06 +0000 (UTC)
 Received: from localhost (unknown [127.0.0.1])
- by mta-p5.oit.umn.edu (Postfix) with ESMTP id 4J3KgH5r1kz9w947
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 11:26:51 +0000 (UTC)
+ by mta-p7.oit.umn.edu (Postfix) with ESMTP id 4J3Q8f32Lmz9vffL
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 14:49:06 +0000 (UTC)
 X-Virus-Scanned: amavisd-new at umn.edu
-Received: from mta-p5.oit.umn.edu ([127.0.0.1])
- by localhost (mta-p5.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id hby5dTNLYcvE for <amd-gfx@lists.freedesktop.org>;
- Tue, 30 Nov 2021 05:26:51 -0600 (CST)
-Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com
- [209.85.215.197])
+Received: from mta-p7.oit.umn.edu ([127.0.0.1])
+ by localhost (mta-p7.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id v6eg0XnPLpgE for <amd-gfx@lists.freedesktop.org>;
+ Tue, 30 Nov 2021 08:49:06 -0600 (CST)
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com
+ [209.85.216.71])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mta-p5.oit.umn.edu (Postfix) with ESMTPS id 4J3KgH3hMwz9w93x
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 05:26:51 -0600 (CST)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p5.oit.umn.edu 4J3KgH3hMwz9w93x
-DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p5.oit.umn.edu 4J3KgH3hMwz9w93x
-Received: by mail-pg1-f197.google.com with SMTP id
- j3-20020a634a43000000b00325af3ab5f0so522016pgl.11
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 03:26:51 -0800 (PST)
+ by mta-p7.oit.umn.edu (Postfix) with ESMTPS id 4J3Q8f0zH6z9vffB
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 08:49:06 -0600 (CST)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p7.oit.umn.edu 4J3Q8f0zH6z9vffB
+DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p7.oit.umn.edu 4J3Q8f0zH6z9vffB
+Received: by mail-pj1-f71.google.com with SMTP id
+ h15-20020a17090a648f00b001a96c2c97abso6894957pjj.9
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 06:49:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umn.edu; s=google;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=3QROn8xzZY5bJQeJKBLAiXubvRrrPIxieLpkOUMaXcE=;
- b=hW6nGoGSxckS70Hoizh/DTWhmgdqH+fBhKMxpz15VCdZhqHT2SAS9uhDQNkz4wPgAZ
- 12AgQnCi+Rs3Caq8v9un7bm6FUc1s124Id/h4afEKkF2EXjLDfx7D3dVTGUF2O+0gMTw
- 3BJvFJOIUoa0yty2Gkt7NbgFEjyuOG5BJo3ZRnTWbUIBskhX6i+yqa5B4cHa4naZuqQg
- 7tqTq/ztPRWVQLXBgLV4/CESiPlBiJoTfGTGWtHUKUGaVbvgOBNUVHxZv6MurZDEVhbZ
- hqolUaLtsd2AqHUwwyTw6vGIKwNAWVw3xRYcopOLx4W02PCKa6KqSte/xs3sqSYv5mXX
- N04A==
+ bh=SKUA5rulho7/zo1ULnuDGtU3hFtIpEJdfFzpP4bqLSk=;
+ b=GeK2kPOS68r652pwNSRxEaAW/b/2tt84HoSKWLnqyqPdVPl4ucwQ+mMlReYNSho7SF
+ +sha56JoOg34qC7EaQh4IyuQQZ4oaOtBdBjrxjJ+f8pithTUf3Zr/gb0ZdFOqnIUAoJU
+ RVYhqDa4M1u5Zkp/QQdNSReB7yO4zl01to//Z6JN4rwmCYKGEdP1uKGMEtPODj20OqLq
+ YgpO3ENCThW3nGWNthqOb91bDF5PjI/JfYtJcuqsIwHc6edcrwISgV4lZwZwJ6J/VoYt
+ D9aIjinT/QRXiDFiztTJLOPjnSt+gDhu2+6Kds5nC+/R6X55CMCBR3NOlh1pf3fm0/B4
+ qzog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=3QROn8xzZY5bJQeJKBLAiXubvRrrPIxieLpkOUMaXcE=;
- b=AJXfUER28/94v5hOiwiFH5eP0rk8fpG7EGTak0TN8d5pOZ9ts0DBxEHYrqYKz1nQCL
- KxZVz+AVPBNnAaV27NyP5FVEgFAcP1NgZgTgMaUxawBGIW/Ikzfk/2g86GrYx/pNx8qJ
- qLVyLdJoGNDH20lJ/DhH78/Mn4mixnSy2QJwX/dMUdyOQwVdBzrYQte6NQBVE8pdBXE5
- WcoIPOJzl27vh2/6G5maODaofGSyn80m9/vbARiinJNXAckiv8cuB+P7r43tkn/HE6lK
- rS2FKVBN3xQG8oV+MgFG6LojLBeNvYYEpd/z5Pdeq3bBNimtAcffC0SbYkK93XyyUJA2
- vGXw==
-X-Gm-Message-State: AOAM533bnWThJoRBJlOYXV8EHEeH2swoU8dQQs7h81NUtZB5uMG7HGH3
- jeVwdbP4Hm9pNfGICz5ltfNG9trWOaS/gwaF+tHhq1KCH5enoNzpcZKNjrkB6UU/V71yxdzOBob
- N+94QgcKZuVul5fnL3g1nxffL6gFB8A==
-X-Received: by 2002:a17:90b:3b81:: with SMTP id
- pc1mr5255295pjb.67.1638271610810; 
- Tue, 30 Nov 2021 03:26:50 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxWVJhRBFY+Fevp9s2G6MveEJWhzbOra69RrHQmmZrjviSt5HqStUqYwpwcdh4+JRC0nsIh0A==
-X-Received: by 2002:a17:90b:3b81:: with SMTP id
- pc1mr5255269pjb.67.1638271610605; 
- Tue, 30 Nov 2021 03:26:50 -0800 (PST)
+ bh=SKUA5rulho7/zo1ULnuDGtU3hFtIpEJdfFzpP4bqLSk=;
+ b=WWPms7u2AQVioS3pcLrnHrdadVu3ENtA72l/NKhXGz0FdL440Ay2tM1Qp49p+XZxDA
+ AC77MEyln12BM0BKdAXjTFxu69wVc2zUOsKTOCnnCh0XziMRuqwy7PU4Sm7dmKwRBedB
+ rGstQTkUrg58rULDedN8NMtCAQE0rEeIi+7jfMnHA6gtdYFaBTvCwqKcbHpoQscy2NTU
+ IwHyeCoGpx+nrFOWAT5MyFVLt21yLtSTbO9bjQ22wvoscQjENjbL2HbJiO2q+y6429yV
+ vPPWOrOgXIZ0LCNboYoZZWO7quA2r6ax4UNNcLokS2CTz/ufGLcI13uZ1dMKH2RJfrgT
+ tJSA==
+X-Gm-Message-State: AOAM532ap9+jTlYf/Q9+M1TlUDPEU2Wtphd/QUqD3gIFtHma2abVTehm
+ dC20y+cD8Woir8q3XAYsdjhomeZnNi4c+VO+Xo+eDLiDNO9t+ci1uvVx/DQ6zQqgYenaYpVFQpv
+ MnOgr2lJQ/qGGn1E3N9vMd7bPxMCLww==
+X-Received: by 2002:a17:90b:4f86:: with SMTP id
+ qe6mr6665848pjb.198.1638283745304; 
+ Tue, 30 Nov 2021 06:49:05 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzg5tqfIsb7cPPfYTW5uP2EKJprEpWzmVo1SJk8rR74gWfThL7r7GfAmz1doU8srd5YKcoi1Q==
+X-Received: by 2002:a17:90b:4f86:: with SMTP id
+ qe6mr6665827pjb.198.1638283745110; 
+ Tue, 30 Nov 2021 06:49:05 -0800 (PST)
 Received: from zqy787-GE5S.lan ([36.7.42.137])
- by smtp.gmail.com with ESMTPSA id q2sm14594661pfj.62.2021.11.30.03.26.47
+ by smtp.gmail.com with ESMTPSA id s5sm14762936pgq.62.2021.11.30.06.49.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Nov 2021 03:26:50 -0800 (PST)
+ Tue, 30 Nov 2021 06:49:04 -0800 (PST)
 From: Zhou Qingyang <zhou1615@umn.edu>
 To: zhou1615@umn.edu
-Subject: [PATCH] drm/amdkfd: Fix a wild pointer dereference in svm_range_add()
-Date: Tue, 30 Nov 2021 19:26:44 +0800
-Message-Id: <20211130112644.116604-1-zhou1615@umn.edu>
+Subject: [PATCH] drm/radeon/radeon_connectors: Fix a NULL pointer dereference
+ in radeon_fp_native_mode()
+Date: Tue, 30 Nov 2021 22:48:27 +0800
+Message-Id: <20211130144827.163717-1-zhou1615@umn.edu>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -88,22 +87,20 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Sierra <alex.sierra@amd.com>, Philip Yang <Philip.Yang@amd.com>,
- David Airlie <airlied@linux.ie>, Felix Kuehling <Felix.Kuehling@amd.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, kjlu@umn.edu, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+Cc: David Airlie <airlied@linux.ie>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ kjlu@umn.edu, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In svm_range_add(), the return value of svm_range_new() is assigned
-to prange and &prange->insert_list is used in list_add(). There is a
-a dereference of &prange->insert_list in list_add(), which could lead
-to a wild pointer dereference on failure of vm_range_new() if
-CONFIG_DEBUG_LIST is unset in .config file.
+In radeon_fp_native_mode(), the return value of drm_mode_duplicate() is
+assigned to mode and there is a dereference of it in
+radeon_fp_native_mode(), which could lead to a NULL pointer
+dereference on failure of drm_mode_duplicate().
 
-Fix this bug by adding a check of prange.
+Fix this bug by adding a check of mode.
 
 This bug was found by a static analyzer. The analysis employs
 differential checking to identify inconsistent security operations
@@ -115,30 +112,29 @@ Note that, as a bug found by static analysis, it can be a false
 positive or hard to trigger. Multiple researchers have cross-reviewed
 the bug.
 
-Builds with CONFIG_DRM_AMDGPU=m, CONFIG_HSA_AMD=y, and
-CONFIG_HSA_AMD_SVM=y show no new warnings, and our static analyzer no
-longer warns about this code.
+Builds with CONFIG_DRM_RADEON=m show no new warnings,
+and our static analyzer no longer warns about this code.
 
-Fixes: 42de677f7999 ("drm/amdkfd: register svm range")
+Fixes: d2efdf6d6f42 ("drm/radeon/kms: add cvt mode if we only have lvds w/h and no edid (v4)")
 Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 3 +++
+ drivers/gpu/drm/radeon/radeon_connectors.c | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index 58b89b53ebe6..e40c2211901d 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -2940,6 +2940,9 @@ svm_range_add(struct kfd_process *p, uint64_t start, uint64_t size,
- 
- 	if (left) {
- 		prange = svm_range_new(svms, last - left + 1, last);
-+		if (!prange)
-+			return -ENOMEM;
+diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu/drm/radeon/radeon_connectors.c
+index 607ad5620bd9..49f187614f96 100644
+--- a/drivers/gpu/drm/radeon/radeon_connectors.c
++++ b/drivers/gpu/drm/radeon/radeon_connectors.c
+@@ -473,6 +473,9 @@ static struct drm_display_mode *radeon_fp_native_mode(struct drm_encoder *encode
+ 	    native_mode->vdisplay != 0 &&
+ 	    native_mode->clock != 0) {
+ 		mode = drm_mode_duplicate(dev, native_mode);
++		if (!mode)
++			return NULL;
 +
- 		list_add(&prange->insert_list, insert_list);
- 		list_add(&prange->update_list, update_list);
- 	}
+ 		mode->type = DRM_MODE_TYPE_PREFERRED | DRM_MODE_TYPE_DRIVER;
+ 		drm_mode_set_name(mode);
+ 
 -- 
 2.25.1
 
