@@ -1,98 +1,79 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E38F44637E0
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Nov 2021 15:53:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C46C5463B6B
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Nov 2021 17:13:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 319776E40F;
-	Tue, 30 Nov 2021 14:53:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8F6E89309;
+	Tue, 30 Nov 2021 16:13:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2047.outbound.protection.outlook.com [40.107.244.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30EBE6E40F
- for <amd-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 14:53:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UDtrDAlfNrCT6jXV20rfs1pDn9u1Cs/k2m9H5ENt++3ErYtb3BAHvyYdr0pQ06yeZHfp61Lnx65Qxb7ewzHgQ33249OX0629lo7+WpAwfwdLUt0+978AMn+V3k/nMA4WjggEJijmMXE6x/1Ywo2is6AsqDI7iP6/B2hPVr8z0SZ4VnhMtYNaO9gN0+OrFIm7nI0Ln4jcvWWvGcETcwBddqDumo1jPVvR/Z0rh2QBZDb0RwYykvpXtdYWFsN2/UnUMMXpWVPKxzIuegv7lhIOJpNb1WDa45H4/vE1pE1ZLFW03qUQL1COMSVJJZx3oSyjrK3H0PN1y2YSsgp5CPIv9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9tp2LtSR04hkhu083CUui20F2/Um4ogyJIVWunDKnrM=;
- b=Hd5b42T4zfbgHFj3z3zHA9bRwUvOMddu/3OZx+Qbf4ZN6loefitv9zNA++vIdSJPZsjOqZ9rgAPbLSoAqpq4TH9TvSfdFyEcRrmni08njyJQLYRr4Zsz/I8+rU7tepOhdwWaf+XpOTrSFBHLaT7R1IEXOcLzs2/KDOX7jK1S776wwO9mrIklcEeA7093pOG1oMfH07ByeX1j0eBu9qdjT47NZi80A/zU0MC8P7qpLla8IcADik4IRhe+T0klemi490tG7qbnWA1CLD6DBXmAqxBPYwQfvKkSa5bK72fi1nFbKbjGyfP5MPswq2NI8rgE8FPA/M84Gcrus8d+Ziy8IA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9tp2LtSR04hkhu083CUui20F2/Um4ogyJIVWunDKnrM=;
- b=xUeB6WNooNPaEhSZCvs2zliEvs/M6U58NwLTVH3T/DyQtpInGIvfVHrC0hvXzKFxZVZyvR6GEoBRwR2l7v8PV+vL4xw/4a39DOmJr7vZ0mcRBEbNCu7rK3Avcq+4hDyh6J3iXmTLcPwlbAQva5992jIzCUjqRF21RgDq9hqaevE=
-Received: from MWHPR15CA0028.namprd15.prod.outlook.com (2603:10b6:300:ad::14)
- by BYAPR12MB3061.namprd12.prod.outlook.com (2603:10b6:a03:a8::33)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19; Tue, 30 Nov
- 2021 14:53:38 +0000
-Received: from CO1NAM11FT057.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:ad:cafe::f5) by MWHPR15CA0028.outlook.office365.com
- (2603:10b6:300:ad::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.11 via Frontend
- Transport; Tue, 30 Nov 2021 14:53:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT057.mail.protection.outlook.com (10.13.174.205) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4734.22 via Frontend Transport; Tue, 30 Nov 2021 14:53:37 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Tue, 30 Nov
- 2021 08:53:36 -0600
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Tue, 30 Nov
- 2021 08:53:36 -0600
-Received: from localhost.localdomain (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Tue, 30 Nov 2021 08:53:35 -0600
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu/display: Only set vblank_disable_immediate when
- PSR is not enabled
-Date: Tue, 30 Nov 2021 09:53:33 -0500
-Message-ID: <20211130145333.38917-1-nicholas.kazlauskas@amd.com>
+Received: from mta-p8.oit.umn.edu (mta-p8.oit.umn.edu [134.84.196.208])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F4096E2ED
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 11:28:23 +0000 (UTC)
+Received: from localhost (unknown [127.0.0.1])
+ by mta-p8.oit.umn.edu (Postfix) with ESMTP id 4J3KTs1MWsz9vKY8
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 11:18:41 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at umn.edu
+Received: from mta-p8.oit.umn.edu ([127.0.0.1])
+ by localhost (mta-p8.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 7pm37Pdc8d1f for <amd-gfx@lists.freedesktop.org>;
+ Tue, 30 Nov 2021 05:18:41 -0600 (CST)
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com
+ [209.85.215.199])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mta-p8.oit.umn.edu (Postfix) with ESMTPS id 4J3KTr6Dd2z9vKY4
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 05:18:40 -0600 (CST)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p8.oit.umn.edu 4J3KTr6Dd2z9vKY4
+DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p8.oit.umn.edu 4J3KTr6Dd2z9vKY4
+Received: by mail-pg1-f199.google.com with SMTP id
+ t1-20020a6564c1000000b002e7f31cf59fso10134590pgv.14
+ for <amd-gfx@lists.freedesktop.org>; Tue, 30 Nov 2021 03:18:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umn.edu; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=fcDXlkwYy3RGfIkoC7nwMHwkoGJwFkeLToaTBjqpVz0=;
+ b=IZFo2LaVF/UDFGHVpkS6dD5TA6dpvZiDSB/3rKX1VSVjqxWP/lhMO39QYI3NPLoRgq
+ cRXSmh8e41mhZP6Z6pASFNZgCl2xPwfVgz6CBJ4rCuCZ5ixas3pK71sx3cvXjwkJTop+
+ 3T/yiRiF1QWYne/jINn7ouKO7OjCe6gsRwokRuSedKnx6jzsAq8pHSJdN03f8AET5TzU
+ a3BC2bkGlVrwO6yuzbS4R4Uw0sjIcFhIuR8RmeSA1Od8jCr3Qr3cmM751Tht6hvFkmqk
+ ZRyDmDTDs5KOn9FrJ5pzFxU474Na5c2560b3P8n5J2SDV8k/mizEVWFX2R0RVU+iUKxp
+ O0cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=fcDXlkwYy3RGfIkoC7nwMHwkoGJwFkeLToaTBjqpVz0=;
+ b=YT5IayLdoZoBTXqvCdB/M1ny0N4MtTnGqdmuW4ZsPaTA7LijeBgMeQtxfIVZhSri2z
+ YMApAIugtYMtNNIoQLvSVfJJ/40YHD2mlF/PBsAXE7ckC9djdSiKmd5z9w99rr/lr9VT
+ Ot8rJCq/kEQSd1OX/v5jq6OOlkAV/GIbMvrjwT351t/rZ7m0OJ+ygYBqn5xkr9sXhmKa
+ ZOimiEiXC/jzxa7d4TB9sTvR39DKElX9om2NKJ7a1LbRRDFr6+M/AkMLTQSXlbunpO/r
+ fPS8yNoKhPctvYYIhGhRucwkGMnelwPQHBXcFmkcWCTr28uKXXvzP6vWbfLDiB9C0rUN
+ b9Jg==
+X-Gm-Message-State: AOAM5328GT25h5cZPyIeuKmGJih7P6josBZ1FxGkxpL5J0R9oGubxoen
+ 2jZLVGCTiVsPaa8HyO29qtIfWIBtY5/U3NLgFTujMRuBY/t29vOyxv8Nuqi4pBlXpRkD0Q7HBuy
+ INXiqfSUV9W0O8VjL+NZlXLwijboYcA==
+X-Received: by 2002:a63:4815:: with SMTP id v21mr33476644pga.204.1638271120018; 
+ Tue, 30 Nov 2021 03:18:40 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz86b37XtXDhaWTJbzxcPVwFldWszd3ZgCjYlChRIfA1Lxm91iK1IJ9p5k5TxfqRc7ZaUDHCg==
+X-Received: by 2002:a63:4815:: with SMTP id v21mr33476628pga.204.1638271119786; 
+ Tue, 30 Nov 2021 03:18:39 -0800 (PST)
+Received: from zqy787-GE5S.lan ([36.7.42.137])
+ by smtp.gmail.com with ESMTPSA id q18sm19100280pfn.83.2021.11.30.03.18.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 30 Nov 2021 03:18:39 -0800 (PST)
+From: Zhou Qingyang <zhou1615@umn.edu>
+To: zhou1615@umn.edu
+Subject: [PATCH] fix a NULL pointer dereference in
+ amdgpu_connector_lcd_native_mode()
+Date: Tue, 30 Nov 2021 19:18:30 +0800
+Message-Id: <20211130111832.113821-1-zhou1615@umn.edu>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 94f05fe3-1cb5-4c1f-443c-08d9b41130e1
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3061:
-X-Microsoft-Antispam-PRVS: <BYAPR12MB30616C5342239136B8EC5E00EC679@BYAPR12MB3061.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: N3iQCm0L8+nPMsceoshzkk6Z/JYiGC/JxH0mFVGmdAPi7PcU+N+oav1Td/bClCQJPxOq2yB4d6jmkaw2tjjP7X4mIoj2FaTSNx5xBOtTIV9PyY/a/LAFu2EOnl8kf+a+LyI1DhvHci6QSrQonw0HfxiBRoUbxXqT3dXg/qjUX+yjNVdg7cYFWQEst1PrcweP2fcGc7mHlgk22X/uQygkloWJm7xJlHIWnLYRrbBJw6fIYwNBi+9L6Q8GjvS3DTDkp+DT9aZ1ZL/upfiLp5/SnKtG0mni2EI588y2npwbTYkRG52HngTB++R7Iq0mWaDa9n7UAG6GqcyAeUAkWh5Hqg15FuVr9mPwjvQdZnCNCBeUAOCv5sfl+p3SjfWuRJOs1qVIfAyNd6Lt3brpzLc9j4icF9G/vpgqbxK0KsXs3AdFTvIrfhzaeGdAjvwfz+ls8t1/OV/CoDTjkcFxCqHJKJ7tRgk64qpVLlx8+FJM8z1ZMME9i++8fGPKRFpzaFRp9zUjuuNVWUqGPanLAgtkvwEvr2meur6D8nGGpvL5vxyWjKyIfhYdoG/A8DyNO0nn4Xz85s0g7DE7bqIB8ihkjHZBy0OGBubRXbxEnSf4bjE9n1nc6i9npfiq7abPrIkQbwuI0owFWvB5zQC/2tdEn5dKR5Rm4G3O1mTZI4q/VBXUlBvawgA7M4c4W0yA//klOUd0IKQRp2uyi3GoU74SWCn7DNwHnVGxBK3D9Q/1QiZbMADp8G7GxKdlWvc9JsRf3b/l//xevcuCmIPuOEJn+zKIYIAaNmw21mYTTXpJxdvq4atAYxD9unK+iSXs2cVSHBkrJ9ho17yS1edDlzCwDw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(40470700001)(356005)(6916009)(40460700001)(36756003)(82310400004)(54906003)(70586007)(316002)(70206006)(2906002)(36860700001)(5660300002)(47076005)(86362001)(26005)(81166007)(508600001)(1076003)(2616005)(186003)(426003)(83380400001)(44832011)(4326008)(8936002)(336012)(8676002)(14773001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2021 14:53:37.5380 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94f05fe3-1cb5-4c1f-443c-08d9b41130e1
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT057.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3061
+X-Mailman-Approved-At: Tue, 30 Nov 2021 16:13:26 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,63 +85,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: Jammy Zhou <Jammy.Zhou@amd.com>, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ kjlu@umn.edu, linux-kernel@vger.kernel.org, hongao <hongao@uniontech.com>,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-PSR currently relies on the kernel's delayed vblank on/off mechanism
-as an implicit bufferring mechanism to prevent excessive entry/exit.
+In amdgpu_connector_lcd_native_mode(), the return value of
+drm_mode_duplicate() is assigned to mode, and there is a dereference
+of it in amdgpu_connector_lcd_native_mode(), which will lead to a NULL
+pointer dereference on failure of drm_mode_duplicate().
 
-Without this delay the user experience is impacted since it can take
-a few frames to enter/exit.
+Fix this bug add a check of mode.
 
-[How]
-Only allow vblank disable immediate for DC when psr is not supported.
+This bug was found by a static analyzer. The analysis employs
+differential checking to identify inconsistent security operations
+(e.g., checks or kfrees) between two code paths and confirms that the
+inconsistent operations are not recovered in the current function or
+the callers, so they constitute bugs.
 
-Leave a TODO indicating that this support should be extended in the
-future to delay independent of the vblank interrupt.
+Note that, as a bug found by static analysis, it can be a false
+positive or hard to trigger. Multiple researchers have cross-reviewed
+the bug.
 
-Fixes: 3d1508b73ff1 ("drm/amdgpu/display: set vblank_disable_immediate for DC")
+Builds with CONFIG_DRM_AMDGPU=m show no new warnings, and
+our static analyzer no longer warns about this code.
 
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Fixes: d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
+Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 0747dc7922c2..d582d44c02ad 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -1599,9 +1599,6 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
- 	adev_to_drm(adev)->mode_config.cursor_width = adev->dm.dc->caps.max_cursor_size;
- 	adev_to_drm(adev)->mode_config.cursor_height = adev->dm.dc->caps.max_cursor_size;
- 
--	/* Disable vblank IRQs aggressively for power-saving */
--	adev_to_drm(adev)->vblank_disable_immediate = true;
--
- 	if (drm_vblank_init(adev_to_drm(adev), adev->dm.display_indexes_num)) {
- 		DRM_ERROR(
- 		"amdgpu: failed to initialize sw for display support.\n");
-@@ -4264,6 +4261,14 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
- 
- 	}
- 
-+	/*
-+	 * Disable vblank IRQs aggressively for power-saving.
-+	 *
-+	 * TODO: Fix vblank control helpers to delay PSR entry to allow this when PSR
-+	 * is also supported.
-+	 */
-+	adev_to_drm(adev)->vblank_disable_immediate = !psr_feature_enabled;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+index 0de66f59adb8..0170aa84c5e6 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+@@ -387,6 +387,9 @@ amdgpu_connector_lcd_native_mode(struct drm_encoder *encoder)
+ 	    native_mode->vdisplay != 0 &&
+ 	    native_mode->clock != 0) {
+ 		mode = drm_mode_duplicate(dev, native_mode);
++		if (!mode)
++			return NULL;
 +
- 	/* Software is initialized. Now we can register interrupt handlers. */
- 	switch (adev->asic_type) {
- #if defined(CONFIG_DRM_AMD_DC_SI)
+ 		mode->type = DRM_MODE_TYPE_PREFERRED | DRM_MODE_TYPE_DRIVER;
+ 		drm_mode_set_name(mode);
+ 
 -- 
 2.25.1
 
