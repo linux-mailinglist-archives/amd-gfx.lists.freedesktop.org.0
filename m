@@ -1,56 +1,50 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74BBC4636EA
-	for <lists+amd-gfx@lfdr.de>; Tue, 30 Nov 2021 15:39:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A470146385B
+	for <lists+amd-gfx@lfdr.de>; Tue, 30 Nov 2021 15:57:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 520456E2BC;
-	Tue, 30 Nov 2021 14:39:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E79306EA13;
+	Tue, 30 Nov 2021 14:57:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com
- [IPv6:2607:f8b0:4864:20::22f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF7A46E241;
- Tue, 30 Nov 2021 14:39:54 +0000 (UTC)
-Received: by mail-oi1-x22f.google.com with SMTP id 7so41552526oip.12;
- Tue, 30 Nov 2021 06:39:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=8vZXVsQJkRAjIGJjewCmJM+CDy6jUNuL5JyYXpIblog=;
- b=kguQ6Dgezu156VmjzvIGddRN8eaypoqtG+s7JpBJz6hy5o29PPrMOpvQzEPkgq0QbB
- yuy6qDS0+gdc/dD+SN9bWoETMLUUrYHW7nbB5QZlCTTyT+7JiDg7c/LQnTFjKK7XOB/R
- fDt4vGETarOqTZlxo2tjMLILQy+de7ckHWWMosxNZE8ah7o03WC+avt+kI/yBnWgE343
- IU+ptVPnolBo9w6jwIdoi/2+dhdOQfM/RiWgnZMK3kMCAJ2U/cGLoDlCeFy0RtH7Pwx7
- 3e0YMCp9vEBpzi+hLrBYCgpvZnAwCa4lT7j4QVTWVNRE+m6l4YC9la6Y5FGj8bQ4aDsS
- zuCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=8vZXVsQJkRAjIGJjewCmJM+CDy6jUNuL5JyYXpIblog=;
- b=LXLeRXY8Vvg7VPXT3nTCYFyk1zQ6P8F/HYAJpCCXkUMizHSh4HYbzSpEZmAiKn/T04
- lTX8nuHfQoqB1HdZ5KkwJO62OzVuX/91mgWyk6Kp4th+c5Z+lxkHrmdGbjlFWPr2QZ2a
- p/1JJrNBuJpOQSlERxk5xa9pSepVTPz7gKl61dxjI6AfU29JDjORUxZljS7a6lkDrtWe
- HVt1dG8/r8Sz6weqlQrbS3fDds+evNh7qjM2mcfnVJbPZuJt4OJlDDXb06+ZD3KOLArx
- mYEGhqva3NMvGMa0XhLKLt6MlwwBoPS+cuto9+JSogueM5pd1UFCccbNhufZ8R9Br/YT
- H3OQ==
-X-Gm-Message-State: AOAM532Gdn2wBU9mMCPX138KDUFWj0RK4xewhZ3qamZ4bMddrm4Qgp5m
- 2hAniAluzyMs/F3pJLwoeAQOXdtasaIiapNv1HU=
-X-Google-Smtp-Source: ABdhPJyJWimBDg83UfjLgyf/Zb6HIlgWQthDQqchY9Gastff3IWqH3/A94cNfOFVZsTjnMV/Ne1nAB8fG0fruCY0bi0=
-X-Received: by 2002:a05:6808:300b:: with SMTP id
- ay11mr4544808oib.120.1638283194194; 
- Tue, 30 Nov 2021 06:39:54 -0800 (PST)
+X-Greylist: delayed 445 seconds by postgrey-1.36 at gabe;
+ Tue, 30 Nov 2021 14:57:05 UTC
+Received: from ams.source.kernel.org (ams.source.kernel.org
+ [IPv6:2604:1380:4601:e00::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B89E6EA04;
+ Tue, 30 Nov 2021 14:57:05 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id A7F42B81A1D;
+ Tue, 30 Nov 2021 14:49:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF9D5C53FC1;
+ Tue, 30 Nov 2021 14:49:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1638283777;
+ bh=OINmIwLjzfaWH3AJFIWj9OZPWSOxdgeyzNsMBEnduME=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=PY8uEYMM7bcQ+ElYvbRFCi3Clt+Pm4OiuY+KbNCJ9aAhblufj9BhyMghvT8XphuLm
+ 0Qp3oYoR9gvkWGIXjIR6Ea3StJXIHDaB3hNqVWWCNvhAb5hZ7Erhkca+khtQhafAWM
+ EplMTjW/VXmkMjaPz9pNliRSuvgEGaLG9DsdGTr2klHOvdbNs8xrDkF3iaF/1jnsa1
+ S9NIvpzhyPcWlXzGC3Lzu3CaX664eW9f0c3VDDQbksvyTYUxoi8zFD+wiUn4PfZERW
+ 9fhEZTcui4RkL3hj2F3INc/yxPd/43Zdcn/8BdpGd+d7EA0Or7zWi3Ti58wa+DoZDO
+ N+WER+0l61AYg==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.15 55/68] drm/amdgpu: Fix MMIO HDP flush on SRIOV
+Date: Tue, 30 Nov 2021 09:46:51 -0500
+Message-Id: <20211130144707.944580-55-sashal@kernel.org>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211130144707.944580-1-sashal@kernel.org>
+References: <20211130144707.944580-1-sashal@kernel.org>
 MIME-Version: 1.0
-References: <CADnq5_NVcHizoY_xRM4d09B2s9DzWwDhn=YrgJ-3COXNANzE3A@mail.gmail.com>
- <1254252919.1503545635.1638218918877.JavaMail.root@zimbra39-e7>
-In-Reply-To: <1254252919.1503545635.1638218918877.JavaMail.root@zimbra39-e7>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 30 Nov 2021 09:39:43 -0500
-Message-ID: <CADnq5_OoUOeeKbiTptDsjknjEmU+_ys1BaGYYqDvU6XMtgn0jg@mail.gmail.com>
-Subject: Re: [PATCH 6/6] Documentation/gpu: Add DC glossary
-To: Yann Dirson <ydirson@free.fr>
-Content-Type: text/plain; charset="UTF-8"
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,366 +56,168 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Harry Wentland <Harry.Wentland@amd.com>,
- Linux Doc Mailing List <linux-doc@vger.kernel.org>,
- Mark Yacoub <markyacoub@chromium.org>,
- =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>,
- Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Roman Li <roman.li@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <marek.olsak@amd.com>,
- Pekka Paalanen <ppaalanen@gmail.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- nicholas choi <nicholas.choi@amd.com>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Simon Ser <contact@emersion.fr>, Alex Deucher <alexander.deucher@amd.com>,
- Sean Paul <seanpaul@chromium.org>, Qingqing Zhuo <qingqing.zhuo@amd.com>,
- Roman Gilg <subdiff@gmail.com>, Bhawanpreet Lakha <bhawanpreet.lakha@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+Cc: airlied@linux.ie, tao.zhou1@amd.com, dri-devel@lists.freedesktop.org,
+ ray.huang@amd.com, Likun.Gao@amd.com, Sasha Levin <sashal@kernel.org>,
+ James.Zhu@amd.com, aaron.liu@amd.com, amd-gfx@lists.freedesktop.org,
+ ChengZhe.Liu@amd.com, veerabadhran.gopalakrishnan@amd.com,
+ kenneth.feng@amd.com, Lijo Lazar <lijo.lazar@amd.com>,
+ Bokun Zhang <bokun.zhang@amd.com>, le.ma@amd.com, evan.quan@amd.com,
+ john.clements@amd.com, Jack.Gui@amd.com,
+ Felix Kuehling <Felix.Kuehling@amd.com>, Xinhui.Pan@amd.com, daniel@ffwll.ch,
+ Alex Deucher <alexander.deucher@amd.com>, candice.li@amd.com, leo.liu@amd.com,
+ christian.koenig@amd.com, Hawking.Zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 29, 2021 at 3:48 PM <ydirson@free.fr> wrote:
->
-> Hi Rodrigo,
->
-> That will really be helpful!
->
-> I know drawing the line is a difficult problem (and can even make things
-> harder when searching), but maybe it would make sense to keep generic
-> acronyms not specific to amdgpu in a separate list.  I bet a number of
-> them would be useful in the scope of other drm drivers (e.g. CRTC, DCC,
-> MST), and some are not restricted to the drm subsystem at all (e.g. FEC,
-> LUT), but still have value as not necessarily easy to look up.
->
-> Maybe "DC glossary" should just be "Glossary", since quite some entries
-> help to read adm/amdgpu/ too.  Which brings me to the result of my recent
-> searches as suggested entries:
->
->  KIQ (Kernel Interface Queue), MQD (memory queue descriptor), HQD (hardware
->  queue descriptor), EOP (still no clue :)
->
-> Maybe some more specific ones just to be spelled out in clear where they
-> are used ?  KCQ (compute queue?), KGQ (gfx queue?)
+From: Felix Kuehling <Felix.Kuehling@amd.com>
 
-Kernel Compute Queue and Kernel Graphics Queue.
+[ Upstream commit d3a21f7e353dc8d6939383578f3bd45b4ae3a946 ]
 
-Alex
+Disable HDP register remapping on SRIOV and set rmmio_remap.reg_offset
+to the fixed address of the VF register for hdp_v*_flush_hdp.
 
->
-> More suggestions inlined.
->
-> Best regards,
-> --
-> Yann
->
-> > On Thu, Nov 25, 2021 at 10:40 AM Rodrigo Siqueira
-> > <Rodrigo.Siqueira@amd.com> wrote:
-> > >
-> > > In the DC driver, we have multiple acronyms that are not obvious
-> > > most of
-> > > the time. This commit introduces a DC glossary in order to make it
-> > > easier to navigate through our driver.
-> > >
-> > > Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> > > ---
-> > >  Documentation/gpu/amdgpu-dc/amdgpu-dc.rst   |   2 +-
-> > >  Documentation/gpu/amdgpu-dc/dc-glossary.rst | 257
-> > >  ++++++++++++++++++++
-> > >  2 files changed, 258 insertions(+), 1 deletion(-)
-> > >  create mode 100644 Documentation/gpu/amdgpu-dc/dc-glossary.rst
-> > >
-> > > diff --git a/Documentation/gpu/amdgpu-dc/amdgpu-dc.rst
-> > > b/Documentation/gpu/amdgpu-dc/amdgpu-dc.rst
-> > > index 2e45e83d9a2a..15405c43786a 100644
-> > > --- a/Documentation/gpu/amdgpu-dc/amdgpu-dc.rst
-> > > +++ b/Documentation/gpu/amdgpu-dc/amdgpu-dc.rst
-> > > @@ -26,4 +26,4 @@ table of content:
-> > >     amdgpu-dcn-overview.rst
-> > >     amdgpu-dm.rst
-> > >     amdgpu-dc-debug.rst
-> > > -
-> > > +   dc-glossary.rst
-> > > diff --git a/Documentation/gpu/amdgpu-dc/dc-glossary.rst
-> > > b/Documentation/gpu/amdgpu-dc/dc-glossary.rst
-> > > new file mode 100644
-> > > index 000000000000..48698fc1799f
-> > > --- /dev/null
-> > > +++ b/Documentation/gpu/amdgpu-dc/dc-glossary.rst
-> > > @@ -0,0 +1,257 @@
-> > > +===========
-> > > +DC Glossary
-> > > +===========
-> > > +
-> > > +.. glossary::
-> > > +
-> > > +    ABM
-> > > +      Adaptive Backlight Modulation
-> > > +
-> > > +    APU
-> > > +      Accelerated Processing Unit
-> > > +
-> > > +    ASIC
-> > > +      Application-Specific Integrated Circuit
-> > > +
-> > > +    ASSR
-> > > +      Alternate Scrambler Seed Reset
-> > > +
-> > > +    AZ
-> > > +      Azalia (HD audio DMA engine)
-> > > +
-> > > +    BPC
-> > > +      Bits Per Colour/Component
-> > > +
-> > > +    BPP
-> > > +      Bits Per Pixel
-> > > +
-> > > +    Clocks
-> > > +      * PCLK: Pixel Clock
-> > > +      * SYMCLK: Symbol Clock
-> > > +      * SOCCLK: GPU Engine Clock
-> > > +      * DISPCLK: Display Clock
-> > > +      * DPPCLK: DPP Clock
-> > > +      * DCFCLK: Display Controller Fabric Clock
-> > > +      * REFCLK: Real Time Reference Clock
-> > > +      * PPLL: Pixel PLL
-> > > +      * FCLK: Fabric Clock
-> > > +      * MCLK: Memory Clock
-> > > +      * CPLIB: Content Protection Library
-> >
-> > CPLIB is not a clock.  It should be split out as its own item.
-> >
-> > > +
-> > > +    CRC
-> > > +      Cyclic Redundancy Check
-> > > +
-> > > +    CRTC
-> > > +      Cathode Ray Tube Controller - commonly called "Controller" -
-> > > Generates
-> > > +      raw stream of pixels, clocked at pixel clock
-> > > +
-> > > +    CVT
-> > > +      Coordinated Video Timings
-> > > +
-> > > +    DAL
-> > > +      Display Abstraction layer
->
-> I recall this as the old name for DC, maybe this should be mentioned ?
->
-> > > +
-> > > +    DC (Software)
-> > > +      Display Core
-> > > +
-> > > +    DC (Hardware)
-> > > +      Display Controller
-> > > +
-> > > +    DCC
-> > > +      Delta Colour Compression
-> > > +
-> > > +    DCE
-> > > +      Display Controller Engine
-> > > +
-> > > +    DCHUB
-> > > +      Display Controller Hub
-> > > +
-> > > +    ARB
-> > > +      Arbiter
-> > > +
-> > > +    VTG
-> > > +      Vertical Timing Generator
-> > > +
-> > > +    DCN
-> > > +      Display Core Next
-> > > +
-> > > +    DCCG
-> > > +      Display Clock Generator block
-> > > +
-> > > +    DDC
-> > > +      Display Data Channel
-> > > +
-> > > +    DFS
-> > > +      Digital Frequency Synthesizer
-> > > +
-> > > +    DIO
-> > > +      Display IO
-> > > +
-> > > +    DPP
-> > > +      Display Pipes and Planes
-> > > +
-> > > +    DSC
-> > > +      Display Stream Compression (Reduce the amount of bits to
-> > > represent pixel
-> > > +      count while at the same pixel clock)
-> > > +
-> > > +    dGPU
-> > > +      discrete GPU
-> > > +
-> > > +    DMIF
-> > > +      Display Memory Interface
-> > > +
-> > > +    DML
-> > > +      Display Mode Library
-> > > +
-> > > +    DMCU
-> > > +      Display Micro Controller Unit
-> > > +
-> > > +    DMCUB
-> > > +      Display Micro-Controller Unit, version B
-> >
-> > Make Micro Controller vs. Micro-Controller consistent for these.
-> >
-> > > +
-> > > +    DPCD
-> > > +      DisplayPort Configuration Data
-> > > +
-> > > +    DPM(S)
-> > > +      Display Power Management (Signaling)
-> > > +
-> > > +    DRR
-> > > +      Dynamic Refresh Rate
-> > > +
-> > > +    DWB
-> > > +      Display writeback
-> > > +
-> > > +    ECP
-> > > +      Enhanced Content Protection
-> > > +
-> > > +    FB
-> > > +      Frame Buffer
-> > > +
-> > > +    FBC
-> > > +      Frame Buffer Compression
-> > > +
-> > > +    FEC
-> > > +      Forward Error Correction
-> > > +
-> > > +    FRL
-> > > +      Fixed Rate Link
-> > > +
-> > > +    GCO
-> > > +      Graphical Controller Object
-> > > +
-> > > +    GMC
-> > > +      Graphic Memory Controller
-> > > +
-> > > +    GSL
-> > > +      Global Swap Lock
-> > > +
-> > > +    iGPU
-> > > +      integrated GPU
-> > > +
-> > > +    IH
-> > > +      Interrupt Handler
-> > > +
-> > > +    ISR
-> > > +      Interrupt Service Request
-> > > +
-> > > +    ISV
-> > > +      Independent Software Vendor
-> > > +
-> > > +    KMD
-> > > +      Kernel Mode Driver
-> > > +
-> > > +    LB
-> > > +      Line Buffer
-> > > +
-> > > +    LFC
-> > > +      Low Framerate Compensation
-> > > +
-> > > +    LTTPR
-> > > +      Link Training Tunable Phy Repeater
-> > > +
-> > > +    LUT
-> > > +      Lookup Table
-> > > +
-> > > +    MALL
-> > > +      Memory Access at Last Level
-> > > +
-> > > +    MC
-> > > +      Memory Controller
-> > > +
-> > > +    MPC
-> > > +      Multiple pipes and plane combine
-> > > +
-> > > +    MPO
-> > > +      Multi Plane Overlay
-> > > +
-> > > +    MST
-> > > +      Multi Stream Transport
-> > > +
-> > > +    NBP State
-> > > +      Northbridge Power State
-> > > +
-> > > +    NBIO
-> > > +      North Bridge Input/Output
-> > > +
-> > > +    ODM
-> > > +      Output Data Mapping
-> > > +
-> > > +    OPM
-> > > +      Output Protection Manager
-> > > +
-> > > +    OPP
-> > > +      Output Plane Processor
-> > > +
-> > > +    OPTC
-> > > +      Output Pipe Timing Combiner
-> > > +
-> > > +    OTG
-> > > +      Output Timing Generator
-> > > +
-> > > +    PCON
-> > > +      Power Controller
-> > > +
-> > > +    PGFSM
-> > > +      Power Gate Finite State Machine
-> > > +
-> > > +    PPLib
-> > > +      PowerPlay Library
-> >
-> > Maybe say that powerplay is the power management component.
-> >
-> > > +
-> > > +    PSR
-> > > +      Panel Self Refresh
-> > > +
-> > > +    SCL
-> > > +      Scaler
-> > > +
-> > > +    SDP
-> > > +      Scalable Data Port
-> > > +
-> > > +    SMU
-> > > +      System Management Unit
-> > > +
-> > > +    SLS
-> > > +      Single Large Surface
-> > > +
-> > > +    SST
-> > > +      Single Stream Transport
-> > > +
-> > > +    TMDS
-> > > +      Transition-Minimized Differential Signaling
-> > > +
-> > > +    TMZ
-> > > +      Trusted Memory Zone
-> > > +
-> > > +    TTU
-> > > +      Time to Underflow
-> > > +
-> > > +    VRR
-> > > +      Variable Refresh Rate
-> > > +
-> > > +    UVD
-> > > +      Unified Video Decoder
-> > > +
-> > > +    VCE
-> > > +      Video Compression Engine
-> > > +
-> > > +    VCN
-> > > +      Video Codec Next
-> > > --
-> > > 2.25.1
-> > >
-> >
+Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Tested-by: Bokun Zhang <bokun.zhang@amd.com>
+Reviewed-by: Lijo Lazar <lijo.lazar@amd.com>
+Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c | 4 ++++
+ drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c | 4 ++++
+ drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c | 4 +++-
+ drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c | 4 ++++
+ drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c | 4 +++-
+ drivers/gpu/drm/amd/amdgpu/nv.c        | 8 +++++---
+ drivers/gpu/drm/amd/amdgpu/soc15.c     | 8 +++++---
+ 7 files changed, 28 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+index b184b656b9b6b..a76b5e47e7cbe 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v2_3.c
+@@ -328,6 +328,10 @@ static void nbio_v2_3_init_registers(struct amdgpu_device *adev)
+ 
+ 	if (def != data)
+ 		WREG32_PCIE(smnPCIE_CONFIG_CNTL, data);
++
++	if (amdgpu_sriov_vf(adev))
++		adev->rmmio_remap.reg_offset = SOC15_REG_OFFSET(NBIO, 0,
++			mmBIF_BX_DEV0_EPF0_VF0_HDP_MEM_COHERENCY_FLUSH_CNTL) << 2;
+ }
+ 
+ #define NAVI10_PCIE__LC_L0S_INACTIVITY_DEFAULT		0x00000000 // off by default, no gains over L1
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c b/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c
+index 0d2d629e2d6a2..4bbacf1be25a4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v6_1.c
+@@ -276,6 +276,10 @@ static void nbio_v6_1_init_registers(struct amdgpu_device *adev)
+ 
+ 	if (def != data)
+ 		WREG32_PCIE(smnPCIE_CI_CNTL, data);
++
++	if (amdgpu_sriov_vf(adev))
++		adev->rmmio_remap.reg_offset = SOC15_REG_OFFSET(NBIO, 0,
++			mmBIF_BX_DEV0_EPF0_VF0_HDP_MEM_COHERENCY_FLUSH_CNTL) << 2;
+ }
+ 
+ static void nbio_v6_1_program_ltr(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c
+index 3c00666a13e16..37a4039fdfc53 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_0.c
+@@ -273,7 +273,9 @@ const struct nbio_hdp_flush_reg nbio_v7_0_hdp_flush_reg = {
+ 
+ static void nbio_v7_0_init_registers(struct amdgpu_device *adev)
+ {
+-
++	if (amdgpu_sriov_vf(adev))
++		adev->rmmio_remap.reg_offset =
++			SOC15_REG_OFFSET(NBIO, 0, mmHDP_MEM_COHERENCY_FLUSH_CNTL) << 2;
+ }
+ 
+ const struct amdgpu_nbio_funcs nbio_v7_0_funcs = {
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c
+index 8f2a315e7c73c..3444332ea1104 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_2.c
+@@ -371,6 +371,10 @@ static void nbio_v7_2_init_registers(struct amdgpu_device *adev)
+ 		if (def != data)
+ 			WREG32_PCIE_PORT(SOC15_REG_OFFSET(NBIO, 0, regPCIE_CONFIG_CNTL), data);
+ 	}
++
++	if (amdgpu_sriov_vf(adev))
++		adev->rmmio_remap.reg_offset = SOC15_REG_OFFSET(NBIO, 0,
++			regBIF_BX_PF0_HDP_MEM_COHERENCY_FLUSH_CNTL) << 2;
+ }
+ 
+ const struct amdgpu_nbio_funcs nbio_v7_2_funcs = {
+diff --git a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+index f50045cebd44c..9b3f64971a321 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
++++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+@@ -344,7 +344,9 @@ const struct nbio_hdp_flush_reg nbio_v7_4_hdp_flush_reg = {
+ 
+ static void nbio_v7_4_init_registers(struct amdgpu_device *adev)
+ {
+-
++	if (amdgpu_sriov_vf(adev))
++		adev->rmmio_remap.reg_offset = SOC15_REG_OFFSET(NBIO, 0,
++			mmBIF_BX_DEV0_EPF0_VF0_HDP_MEM_COHERENCY_FLUSH_CNTL) << 2;
+ }
+ 
+ static void nbio_v7_4_handle_ras_controller_intr_no_bifring(struct amdgpu_device *adev)
+diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
+index 01efda4398e56..b739166b242a7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/nv.c
++++ b/drivers/gpu/drm/amd/amdgpu/nv.c
+@@ -1034,8 +1034,10 @@ static int nv_common_early_init(void *handle)
+ #define MMIO_REG_HOLE_OFFSET (0x80000 - PAGE_SIZE)
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+ 
+-	adev->rmmio_remap.reg_offset = MMIO_REG_HOLE_OFFSET;
+-	adev->rmmio_remap.bus_addr = adev->rmmio_base + MMIO_REG_HOLE_OFFSET;
++	if (!amdgpu_sriov_vf(adev)) {
++		adev->rmmio_remap.reg_offset = MMIO_REG_HOLE_OFFSET;
++		adev->rmmio_remap.bus_addr = adev->rmmio_base + MMIO_REG_HOLE_OFFSET;
++	}
+ 	adev->smc_rreg = NULL;
+ 	adev->smc_wreg = NULL;
+ 	adev->pcie_rreg = &nv_pcie_rreg;
+@@ -1333,7 +1335,7 @@ static int nv_common_hw_init(void *handle)
+ 	 * for the purpose of expose those registers
+ 	 * to process space
+ 	 */
+-	if (adev->nbio.funcs->remap_hdp_registers)
++	if (adev->nbio.funcs->remap_hdp_registers && !amdgpu_sriov_vf(adev))
+ 		adev->nbio.funcs->remap_hdp_registers(adev);
+ 	/* enable the doorbell aperture */
+ 	nv_enable_doorbell_aperture(adev, true);
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
+index 0fc97c364fd76..a3361cd68411a 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -1136,8 +1136,10 @@ static int soc15_common_early_init(void *handle)
+ #define MMIO_REG_HOLE_OFFSET (0x80000 - PAGE_SIZE)
+ 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+ 
+-	adev->rmmio_remap.reg_offset = MMIO_REG_HOLE_OFFSET;
+-	adev->rmmio_remap.bus_addr = adev->rmmio_base + MMIO_REG_HOLE_OFFSET;
++	if (!amdgpu_sriov_vf(adev)) {
++		adev->rmmio_remap.reg_offset = MMIO_REG_HOLE_OFFSET;
++		adev->rmmio_remap.bus_addr = adev->rmmio_base + MMIO_REG_HOLE_OFFSET;
++	}
+ 	adev->smc_rreg = NULL;
+ 	adev->smc_wreg = NULL;
+ 	adev->pcie_rreg = &soc15_pcie_rreg;
+@@ -1446,7 +1448,7 @@ static int soc15_common_hw_init(void *handle)
+ 	 * for the purpose of expose those registers
+ 	 * to process space
+ 	 */
+-	if (adev->nbio.funcs->remap_hdp_registers)
++	if (adev->nbio.funcs->remap_hdp_registers && !amdgpu_sriov_vf(adev))
+ 		adev->nbio.funcs->remap_hdp_registers(adev);
+ 
+ 	/* enable the doorbell aperture */
+-- 
+2.33.0
+
