@@ -1,96 +1,126 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B4B2465302
-	for <lists+amd-gfx@lfdr.de>; Wed,  1 Dec 2021 17:41:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AC934655BB
+	for <lists+amd-gfx@lfdr.de>; Wed,  1 Dec 2021 19:45:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 106A56E506;
-	Wed,  1 Dec 2021 16:41:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF1E6E851;
+	Wed,  1 Dec 2021 18:45:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2060.outbound.protection.outlook.com [40.107.243.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC8E26E504;
- Wed,  1 Dec 2021 16:41:14 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam08on2049.outbound.protection.outlook.com [40.107.102.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB9086E851
+ for <amd-gfx@lists.freedesktop.org>; Wed,  1 Dec 2021 18:45:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DaC4FbjVZv8AeBxOjVli+N1jpgu0qmpVEHmytQPP9meihNAziPioTKjO24SPRnDIVEXBaewERSBUAIfGbhVRwl6oZgEhTelcD+7rZaPQ2OD6JpBnbswbHsGu8U6YMp0QTZtcZ5oC3/hIQNbFZsKG3KZZWVQWXu9uatZHcCpDQtreDR0xYkheK9soytD2qNYP7EGBrrbQeQeY2fhwtmaxKTKtwTgsU/2Ljv3XKeJTkxRaLwfNC8rsZh679RkisEFWgTMAGsrypiaqov2yAJeBQhxwz0cdNB2M7a1+nYhLiYq7KLcOhdotBDPvCcRAKsYE3bDGd8QE3VoYPfTZB9+xTg==
+ b=FQ58TjlIdiF03OUJja9LvqWabkI6zgMv8Gj2EUNl51ukt+GoPgfhf1FgkQpaueoYKvT28nj/IU/mr7ZjEL/CVvhdQXTfRj382ricqS0LAg5aUvcRIJNwExn5G+MjiXGSys985E8s31i6Z6M3y1Px04qwRytPy06NOYRQt6K+ZLoYlWnLus0Vq09yuUCDoPQbRIw8LwwnrvJnSWwTeIC57gGV9xpRoWeqR3kPTPtBlQ0Que2HelmUkF7DBMAmxt3HurxWH7EPm6v/GAWJFKBRmkipi2GQouo/pAd/edDnpiKmansRXMndg8Xw2sGABApXgcQzAeGWHkD3TbxeFAeuKg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c8efqzz4khcjEqwIs+Xcjia0DC/OXXF5/N08Odj7DjQ=;
- b=cJoweEI6ncmkLoqPNFyC8+Tq4pNvw4/yDHCiAxSH+mNdUB/bnqQx/96Nh7ySogKUkqCwTSjkSkKJbZOaSn2x3rDzVohDcnsylRXJs5K4fRINLWmOicy4wZ1hN4qwx8ztorJN0q85hgHkeqZexetR0v3eBFLRA163d+u5xaxSntxfGXbaHuDaLrbcDQRwmfYWbFSxTC6mJAzJzhgMab+PFg545Tz63HnPbPBQsqZKfYzGAWDA0tv7uRdUK8eRA7Ms4zAyrJfkD3opiHwP29IuPb5LlfgdJr8B2J7Az9/P1rAcmR3klMoAdYML/O+DOgyQj/3MfoY5S9Gr64xcYPTIxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=rNRbLJig4nubTTmAvcORkug45tCjf5ZUFD7NTb0g3Gg=;
+ b=TG/6aImXtMNzuePVBhKwOefRx9x3UIIVQPl6JoXkEyT7ShDE7DU+8eTZZArhI8xO3T01YQqPqZNVXdzGn8PCrx3LoxsSIveNNAWV+qdgf9Wx6ViJO7ngM++RCoJE1Kb+IHtr9Gdz4eTYo7XbQk44zFi4vZbIZGIS4PGHIcrf4N1UkLSvH+MQAXZSyRwWizzEb3LAsckkuZnOFVE5fsjzHyOKNbBgNwUYYXT0qwszDE2LzA8M0cIAPrjSfx7w595hdY2GHJHK32p/vLMB8NywU9gfriuqi0N4dUZyr3ciH5wgnQXosjHz++sfKO1IDsrWaMvtUEq9z6J6F9Qp0wSk7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c8efqzz4khcjEqwIs+Xcjia0DC/OXXF5/N08Odj7DjQ=;
- b=o79O+I6PTDT2O8L75hpMDhUnpxUEGk63mQuYQonNXJZaj/dO0Zsxghq7LLVXRgL4moTc8MjNArMCbghSbQOK6vDSHHhWiTiNJQSF/93Xw5R7TYqY25+rpSyIdAWoSkifJL1S6zsZ1MDJk4uTi9yJ2o4FMzYpcVJtD3DnTmPGiQQ=
-Received: from BN9PR03CA0050.namprd03.prod.outlook.com (2603:10b6:408:fb::25)
- by SA0PR12MB4368.namprd12.prod.outlook.com (2603:10b6:806:9f::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.11; Wed, 1 Dec
- 2021 16:41:12 +0000
-Received: from BN8NAM11FT028.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:fb:cafe::8f) by BN9PR03CA0050.outlook.office365.com
- (2603:10b6:408:fb::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.11 via Frontend
- Transport; Wed, 1 Dec 2021 16:41:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT028.mail.protection.outlook.com (10.13.176.225) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4755.13 via Frontend Transport; Wed, 1 Dec 2021 16:41:12 +0000
-Received: from rtg-amd.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Wed, 1 Dec
- 2021 10:40:42 -0600
-From: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
-To: <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v4 6/6] drm/amdgpu: add drm buddy support to amdgpu
-Date: Wed, 1 Dec 2021 22:09:38 +0530
-Message-ID: <20211201163938.133226-6-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211201163938.133226-1-Arunpravin.PaneerSelvam@amd.com>
-References: <20211201163938.133226-1-Arunpravin.PaneerSelvam@amd.com>
+ bh=rNRbLJig4nubTTmAvcORkug45tCjf5ZUFD7NTb0g3Gg=;
+ b=RyUe49WZ/EYP/9q9rT2hgbQRCVunardJlYj6562JJ+yKPe9vrAXNJ78AbpfhI9ke0y3K3ix/e/dfbZ/tqlcYZOzNRRq3zkOVU6WDWYvpcs+3KAwLbK+zXWX5B2P23x+qj9vUF57gJcw/4XMbN7dxgTYUiGLnC6k4rZ/M9XCqg8k=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SA0PR12MB4510.namprd12.prod.outlook.com (2603:10b6:806:94::8)
+ by SN1PR12MB2542.namprd12.prod.outlook.com (2603:10b6:802:26::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.22; Wed, 1 Dec
+ 2021 18:45:52 +0000
+Received: from SA0PR12MB4510.namprd12.prod.outlook.com
+ ([fe80::7cbc:2454:74b9:f4ea]) by SA0PR12MB4510.namprd12.prod.outlook.com
+ ([fe80::7cbc:2454:74b9:f4ea%6]) with mapi id 15.20.4734.024; Wed, 1 Dec 2021
+ 18:45:52 +0000
+Message-ID: <0bf43968-25fb-7303-ad93-e7d79a0105a5@amd.com>
+Date: Wed, 1 Dec 2021 12:45:50 -0600
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [v3] drm/amdgpu: reset asic after system-wide suspend aborted (v3)
+Content-Language: en-US
+To: Prike Liang <Prike.Liang@amd.com>, amd-gfx@lists.freedesktop.org
+References: <1637819291-4159-1-git-send-email-Prike.Liang@amd.com>
+From: "Limonciello, Mario" <mario.limonciello@amd.com>
+In-Reply-To: <1637819291-4159-1-git-send-email-Prike.Liang@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SN6PR2101CA0018.namprd21.prod.outlook.com
+ (2603:10b6:805:106::28) To SA0PR12MB4510.namprd12.prod.outlook.com
+ (2603:10b6:806:94::8)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
+Received: from [IPV6:2600:1700:70:f700:b54f:ab87:a805:63f2]
+ (2600:1700:70:f700:b54f:ab87:a805:63f2) by
+ SN6PR2101CA0018.namprd21.prod.outlook.com (2603:10b6:805:106::28) with
+ Microsoft SMTP Server (version=TLS1_2, cipher=) via Frontend Transport;
+ Wed, 1 Dec 2021 18:45:51 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cb975f57-d98d-4160-e2fe-08d9b4e962c0
-X-MS-TrafficTypeDiagnostic: SA0PR12MB4368:
-X-Microsoft-Antispam-PRVS: <SA0PR12MB4368DD3DA79D2BFE834B4EDAE4689@SA0PR12MB4368.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:569;
+X-MS-Office365-Filtering-Correlation-Id: 54ab4853-cbcb-4b04-fe63-08d9b4facc9f
+X-MS-TrafficTypeDiagnostic: SN1PR12MB2542:
+X-Microsoft-Antispam-PRVS: <SN1PR12MB254274AEDA88CA07474923BAE2689@SN1PR12MB2542.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pcZD5MLFRu414rgY9d0UbemwF/V7vqf93fw6/M+zBF5Iq/cmVq5WsNO0sYRoRhmai4vwM7XclmbjE67oaolZ4IFbfpmoloDeeJ5yWHmo6Mue87flJ5/gMNWCFzm/Z0KHojjaFmQqAYYejPPbVLnVANx7gK2syx8XBcfT8wy+fX18d1Q4/YFo1idfPu2pD0YFgrktvvETptF3GeYCVGM3LSUPYRNf8WgrChwkL+77kkuhq7UE3ft8FfKafAYfLOxwpQGRPo2O0Z+iydd8UG4JrYCb1B/8XaJ0O4v/bwMWyQR3AigSAmeQpw6vc35KO+StRK2DcacSpFWMEs1wj3STlYd5WHnIgXbdhZSOyAsz9cPuKM4migWDpKHgMVh1moDKs52TaipmIyzjZ61x+zvt5e2L2XBcOQvnKV4ikBk/VXMopgOuKJ+h/B1xRj6kUS7FZXiM6iCizhk6BWDFowHk5HENFcyLOlIWicvuSQA+szud1ETFnfpiqxRKmgipYi+itMOPw8FXy3+eZT26R2DglYvIAcHXEs+LAir6RsRLsr4k8F4o3wJ8ftfH7khzvRoJHNLHvenOH2zMnoRxetn4hotqy1imWixIkRQRt2sz3S7NZSjM9h5nHPgOjUuVkjph1BlJ8kkfdQhYBw5u7bGBzoGTu8fXz3aQh3Twg7lFwNQ3rhTkrW77UuGZpFnKonnE2Q7B5S8UkRTzdZI5KahpyKzZSHiy82r55onW1bhRD7j4W9F/rnNyTRTSAJ6qslVDZcY4FUO6NZwZ2Dgr26b1WQq2LvlUTw4z4g0w5/R3vmw=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(40470700001)(426003)(70206006)(30864003)(4326008)(70586007)(54906003)(5660300002)(356005)(110136005)(16526019)(6666004)(2616005)(8936002)(86362001)(186003)(82310400004)(40460700001)(8676002)(47076005)(83380400001)(36860700001)(36756003)(2906002)(316002)(7696005)(1076003)(508600001)(81166007)(26005)(336012)(36900700001);
+X-Microsoft-Antispam-Message-Info: MSYesA3fs2w5dhJUxw4TB4OAgLH/p67w3go+/ta0/M7+qaHw6hLb3+SSAOvqZ5E2U5KYv7pzVH4QGJCb+tGn7dmyYG520E0s16VjB92hNa0FS+IR2wkgRmIoDnJnE4VMzQV5FJjd0WJM59OBj+twPyzWf27R/0419gGd0g/abzM9kfNwuno2tR85jw91bTpI5vVFx1jSaerJxDos6nKBv/WQG1fO4Sd88hgxWOYWf7/a8INg+fcvye9/U4M5frNfLGgNlS2Zo/xJCUUyvuAhX8jLbpDW9tOvIvPEYZuehk6R+OgA6N7kVRN/FYQ0Smhqe0CprFrClw4b+ie02l8SSdPs6m53GYOqfyWK1PsnZ1iyAQxK5cSomfHIzN61ml3EQNsJvZigfvZVbB6ua0Dbu2GTFdBZxe55GqkvV20/OaD4ziyfSqVBC1njrTm5zhtH5+niR8/3rZuGJ7UBo5dATAb8/mlxiVQdT+ha9jauAzlBIYL8fTXWM3W5K2807pdzuWTCujnx3bkBT27pjmIulgOhP1nW91wvmcJhDVrDAbmQL74B/mOXmxr13C1tpaJknxT+o+lOvBs2ACUr5kHin/iksBxvcIXA503/dgkgxduzNffKL2ti9O7zrfmSPtrod/oI9tAwEVhO3+gojUgoibDgPrFUJYluqtS2DqUjKFEpCZDeXswG52XxFcN7IXKoJzL67g78HlQhaX1XTcEbDzswWQcCZalioabURNSj+7c=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA0PR12MB4510.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(66476007)(6486002)(66946007)(53546011)(186003)(86362001)(66556008)(36756003)(38100700002)(2906002)(8676002)(8936002)(316002)(31686004)(5660300002)(2616005)(508600001)(31696002)(4326008)(15650500001)(83380400001)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZjlXZHc2aW1wMk5WdUQ0cWhGKys2bGNDR1FidGtZK2FXSFJJYUl6ZWwvWW9R?=
+ =?utf-8?B?cFlubURvNVNkSk9kOS9qb3VnL2xhWjQ3RkhFeTh4bmFXU0Rsckl2SVRIYU5y?=
+ =?utf-8?B?M3RlMS9aOEIxVUtRSXdBT1luekk3U2puT2xjVGdXdUlzSGYwbW12Q1FXZnVh?=
+ =?utf-8?B?SlUyR3h1enNBaDBtblpSY3JWYThDU1B4NjBTRkpxNnRwRTNLM1JFK2dGdXpT?=
+ =?utf-8?B?T1VrditVN3pZdlpOeEZCVFVHbjRiZ0hGTjRyZ012VU9jV2ZPR042a0U5WU51?=
+ =?utf-8?B?UnZuVnh6TVRSUjkzNkZ5alg3bTRseGlVMkFnOXVhRmtNY3IvLy9yYkk5U2ZE?=
+ =?utf-8?B?QUdaVlFiN0dhTGtrUXNudnpPRHF1dmR3NVlIWXNLYnJ3QzJmS3JoZ3QzQ1JB?=
+ =?utf-8?B?bnUrWVVNd1BLbmppMHloV3BnRFl6SEd1SWhvZHZmVzZOM3MxYVpQUVBBR3FO?=
+ =?utf-8?B?UXppZUt5b3dtKzlLc2lFNWpiem9kOXRIK1ZhblRqNFFSOEg5WnVSUENwRHRT?=
+ =?utf-8?B?ZmJVU3FsU3A3WkZ6UDZjaHB3OWdndjVBaUR1TkozU1dnOWhqaWU1V2FLVEFH?=
+ =?utf-8?B?cU1NbE1jeWdpM0p6dlFRZnV2MnNGc2xrcW1UWEtuWnRpUXk4N3kzSU9aeFJB?=
+ =?utf-8?B?aXZzNmp2eHk5dzAyakhOK2U1ZTZ2WExsZ2tyZk04emZKNkVxaGZ2enZ3Q3pt?=
+ =?utf-8?B?WVlqMDBia2tVU0puUk90eXphWUgyWWFpRDcyRkRvQ3JkQzVieGJnUXJ6d01J?=
+ =?utf-8?B?c2RVb2hnbkRaU1RGVk9JSGVkUFpXam5GN2UwUms1dFc5cWhwWWVCSmRBcWZ5?=
+ =?utf-8?B?ZWlueTlTNUMyWWc1TEpGMjZkU1RKVDc0WXdacjdDeGgzdjNRelRsVDhIWUxP?=
+ =?utf-8?B?QnRxeW5pRHpYbllsTzhzYWtxQzdRemQ4SEcrbGN3UmhCS0lzL1hvN0pPdjJW?=
+ =?utf-8?B?YXhIb29pYjRJR3dBWWFBV1RQTnIvcDdQTjJPWmFpOE8zcXpTMGtFdG1MSDdn?=
+ =?utf-8?B?YVh2RDJXRzdUOFhmbmgvYkZibDQ2dFhuTkFyOWRZdXMyZDRwL3Uwdkt3am42?=
+ =?utf-8?B?d1hoajY5MjFtMHhDVGY0S3N1ZkZqbThLVXp6ZjN2aS9PekZyenVuU2hRenZW?=
+ =?utf-8?B?M2x1OTgyc3JHK0VKcktpRmpmOXp1TzJoeUFzcU90ODI2MTdZakR4ZlU1aWJP?=
+ =?utf-8?B?Q2g3K25uRUZQR0hBUHZBbVIwMno2bEI4RlNCUHF4S0QxVkZjc3h2V2JiWTdj?=
+ =?utf-8?B?MEtYeHZVUU9WNlJsZCs2UXgrSnVNTlJrQkZxZVRHK3hIWGw0ZmdPTmtxd2d3?=
+ =?utf-8?B?UURTWndiTXNtNHhOWVBJS1J6cFB6SVBrcGJnOWdsdFZxL1lCRnd0QzFtM3VP?=
+ =?utf-8?B?dEtUM3ZwK0ZPRUVaTWFjdEVUUTNnTkxZVW0wOW5mcHNTVDIwWFR0UjNySEJE?=
+ =?utf-8?B?SFhvRUFEN0VuOGJnQ1V4SFdxVXJOMWZlTHBSTW9QMHFZQm1KNUhpS0R4L2t3?=
+ =?utf-8?B?Ym9QNVRMZkNSaXp1SStVUjV3eFRuYmxLUHREZlROVWloaHQvZmw3dEdzMUVM?=
+ =?utf-8?B?cnN0eXJ0YnQ2RTRFd2N6dEFmTE4yUGovU004TDVSTU0vS0lPMTVtRzFQblo2?=
+ =?utf-8?B?NWRNdFVBM1k0QnJCOWJDaHVsSUVEaUQ5OFlIS2pZb0VQa3ZTeE80b3h0M2Nx?=
+ =?utf-8?B?bFF5amR3c1VHRFd5SjRXQk4xdnRPVEJJU3FycW9qSjlRWDM1UUc3UlF0dGZY?=
+ =?utf-8?B?VGREc0ZDV29Ha0hlSWMwZmRVeDN3R0dBU3NLQ0UwNTVYOFpQNFZ1ZWFmd2dG?=
+ =?utf-8?B?bzh5RVZjbS8yMklkSUp5TmFmV3NyN25IVHJFemZnTktEaVFKSVRvNC9jMmIx?=
+ =?utf-8?B?cC9kOUJtODFUZGdmNHNmS05KWFFyUUtnSEpuNGNRWnNZaEY0VDl5UWxsRlgy?=
+ =?utf-8?B?ejd3ejYyZVBFRTU0NWNwbERSdHRLbHZsYnp3ZkhOUTdPdVB2R3l5UE9IMC9v?=
+ =?utf-8?B?bWNPMW10N3JRb1VpbVdyVlBHTkxYdFUvelBBZ1crRmVjNnQ3SE9BcGFtTDJz?=
+ =?utf-8?B?c3V5R1BOOGt0Q0NIc1lWTTBqTUpoNmRLRFo1UTlMRjN2ZFpwT0tZV0xXQlA2?=
+ =?utf-8?B?U0Z6RDZiQjVsN2VveS9FbW1XR09UaWI4VWRwQWIzRmVCRDBIOFVQSUtHV0cw?=
+ =?utf-8?B?MGhHTk0xNzAxZjZEQUdTL0MwMnZBZkFTNktpSjBDOUFyT083Tm1RU0NYcWNO?=
+ =?utf-8?Q?5SWfZTbzCJoCqBk3NC1ZTaSSo4mqE8IRFaBo2Z4lWQ=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2021 16:41:12.6198 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb975f57-d98d-4160-e2fe-08d9b4e962c0
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54ab4853-cbcb-4b04-fe63-08d9b4facc9f
+X-MS-Exchange-CrossTenant-AuthSource: SA0PR12MB4510.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2021 18:45:51.9418 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT028.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4368
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CDB3i9K9Nx2Xp8Pg0ALeWWhXucFb2f0uzpiKuhhiA5FjLpAmCWPhGrOvHap+o1PGxPuZ6oIr84Z31XVEfRjQiA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2542
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,667 +132,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel@ffwll.ch, Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
- jani.nikula@linux.intel.com, matthew.auld@intel.com, tzimmermann@suse.de,
- alexander.deucher@amd.com, christian.koenig@amd.com
+Cc: Alexander.Deucher@amd.com, Lijo.Lazar@amd.com, ray.huang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-- Remove drm_mm references and replace with drm buddy functionalities
-- Add res cursor support for drm buddy
+On 11/24/2021 23:48, Prike Liang wrote:
+> Do ASIC reset at the moment Sx suspend aborted behind of amdgpu suspend
+> to keep AMDGPU in a clean reset state and that can avoid re-initialize
+> device improperly error. Currently,we just always do asic reset in the
+> amdgpu resume until sort out the PM abort case.
+> 
+> v2: Remove incomplete PM abort flag and add GPU hive case check for
+> GPU reset.
+> 
+> v3: Some dGPU reset method not support at the early resume time and
+> temprorary skip the dGPU case.
+> 
+> Signed-off-by: Prike Liang <Prike.Liang@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index 7d4115d..f6e1a6a 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -3983,6 +3983,14 @@ int amdgpu_device_resume(struct drm_device *dev, bool fbcon)
+>   	if (adev->in_s0ix)
+>   		amdgpu_gfx_state_change_set(adev, sGpuChangeState_D0Entry);
+>   
+> +	/*TODO: In order to not let all-always asic reset affect resume latency
+> +	 * need sort out the case which really need asic reset in the resume process.
+> +	 * As to the known issue on the system suspend abort behind the AMDGPU suspend,
+> +	 * may can sort this case by checking struct suspend_stats which need exported
+> +	 * firstly.
+> +	 */
+> +	if (adev->flags & AMD_IS_APU)
+> +		amdgpu_asic_reset(adev);
 
-v2(Matthew Auld):
-  - replace spinlock with mutex as we call kmem_cache_zalloc
-    (..., GFP_KERNEL) in drm_buddy_alloc() function
+Ideally you only want this to happen on S3 right?  So shouldn't there be 
+an extra check for `amdgpu_acpi_is_s0ix_active`?
 
-  - lock drm_buddy_block_trim() function as it calls
-    mark_free/mark_split are all globally visible
-
-v3:
-  - remove drm_buddy_block_trim() error handling and
-    print a warn message if it fails
-
-Signed-off-by: Arunpravin <Arunpravin.PaneerSelvam@amd.com>
----
- drivers/gpu/drm/Kconfig                       |   1 +
- .../gpu/drm/amd/amdgpu/amdgpu_res_cursor.h    |  97 +++++--
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h       |   6 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  | 261 ++++++++++--------
- 4 files changed, 232 insertions(+), 133 deletions(-)
-
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 7a4a66d54782..dd880910282b 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -276,6 +276,7 @@ config DRM_AMDGPU
- 	select HWMON
- 	select BACKLIGHT_CLASS_DEVICE
- 	select INTERVAL_TREE
-+	select DRM_BUDDY
- 	help
- 	  Choose this option if you have a recent AMD Radeon graphics card.
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
-index acfa207cf970..da12b4ff2e45 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h
-@@ -30,12 +30,15 @@
- #include <drm/ttm/ttm_resource.h>
- #include <drm/ttm/ttm_range_manager.h>
- 
-+#include "amdgpu_vram_mgr.h"
-+
- /* state back for walking over vram_mgr and gtt_mgr allocations */
- struct amdgpu_res_cursor {
- 	uint64_t		start;
- 	uint64_t		size;
- 	uint64_t		remaining;
--	struct drm_mm_node	*node;
-+	void			*node;
-+	uint32_t		mem_type;
- };
- 
- /**
-@@ -52,27 +55,63 @@ static inline void amdgpu_res_first(struct ttm_resource *res,
- 				    uint64_t start, uint64_t size,
- 				    struct amdgpu_res_cursor *cur)
- {
-+	struct drm_buddy_block *block;
-+	struct list_head *head, *next;
- 	struct drm_mm_node *node;
- 
--	if (!res || res->mem_type == TTM_PL_SYSTEM) {
--		cur->start = start;
--		cur->size = size;
--		cur->remaining = size;
--		cur->node = NULL;
--		WARN_ON(res && start + size > res->num_pages << PAGE_SHIFT);
--		return;
--	}
-+	if (!res)
-+		goto err_out;
- 
- 	BUG_ON(start + size > res->num_pages << PAGE_SHIFT);
- 
--	node = to_ttm_range_mgr_node(res)->mm_nodes;
--	while (start >= node->size << PAGE_SHIFT)
--		start -= node++->size << PAGE_SHIFT;
-+	cur->mem_type = res->mem_type;
-+
-+	switch (cur->mem_type) {
-+	case TTM_PL_VRAM:
-+		head = &to_amdgpu_vram_mgr_node(res)->blocks;
-+
-+		block = list_first_entry_or_null(head,
-+						 struct drm_buddy_block,
-+						 link);
-+		if (!block)
-+			goto err_out;
-+
-+		while (start >= amdgpu_node_size(block)) {
-+			start -= amdgpu_node_size(block);
-+
-+			next = block->link.next;
-+			if (next != head)
-+				block = list_entry(next, struct drm_buddy_block, link);
-+		}
-+
-+		cur->start = amdgpu_node_start(block) + start;
-+		cur->size = min(amdgpu_node_size(block) - start, size);
-+		cur->remaining = size;
-+		cur->node = block;
-+		break;
-+	case TTM_PL_TT:
-+		node = to_ttm_range_mgr_node(res)->mm_nodes;
-+		while (start >= node->size << PAGE_SHIFT)
-+			start -= node++->size << PAGE_SHIFT;
-+
-+		cur->start = (node->start << PAGE_SHIFT) + start;
-+		cur->size = min((node->size << PAGE_SHIFT) - start, size);
-+		cur->remaining = size;
-+		cur->node = node;
-+		break;
-+	default:
-+		goto err_out;
-+	}
- 
--	cur->start = (node->start << PAGE_SHIFT) + start;
--	cur->size = min((node->size << PAGE_SHIFT) - start, size);
-+	return;
-+
-+err_out:
-+	cur->start = start;
-+	cur->size = size;
- 	cur->remaining = size;
--	cur->node = node;
-+	cur->node = NULL;
-+	WARN_ON(res && start + size > res->num_pages << PAGE_SHIFT);
-+	return;
- }
- 
- /**
-@@ -85,7 +124,9 @@ static inline void amdgpu_res_first(struct ttm_resource *res,
-  */
- static inline void amdgpu_res_next(struct amdgpu_res_cursor *cur, uint64_t size)
- {
--	struct drm_mm_node *node = cur->node;
-+	struct drm_buddy_block *block;
-+	struct drm_mm_node *node;
-+	struct list_head *next;
- 
- 	BUG_ON(size > cur->remaining);
- 
-@@ -99,9 +140,27 @@ static inline void amdgpu_res_next(struct amdgpu_res_cursor *cur, uint64_t size)
- 		return;
- 	}
- 
--	cur->node = ++node;
--	cur->start = node->start << PAGE_SHIFT;
--	cur->size = min(node->size << PAGE_SHIFT, cur->remaining);
-+	switch (cur->mem_type) {
-+	case TTM_PL_VRAM:
-+		block = cur->node;
-+
-+		next = block->link.next;
-+		block = list_entry(next, struct drm_buddy_block, link);
-+
-+		cur->node = block;
-+		cur->start = amdgpu_node_start(block);
-+		cur->size = min(amdgpu_node_size(block), cur->remaining);
-+		break;
-+	case TTM_PL_TT:
-+		node = cur->node;
-+
-+		cur->node = ++node;
-+		cur->start = node->start << PAGE_SHIFT;
-+		cur->size = min(node->size << PAGE_SHIFT, cur->remaining);
-+		break;
-+	default:
-+		return;
-+	}
- }
- 
- #endif
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-index 7346ecff4438..946dfac486a7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-@@ -26,6 +26,7 @@
- 
- #include <linux/dma-direction.h>
- #include <drm/gpu_scheduler.h>
-+#include <drm/drm_buddy.h>
- #include "amdgpu.h"
- 
- #define AMDGPU_PL_GDS		(TTM_PL_PRIV + 0)
-@@ -40,12 +41,13 @@
- 
- struct amdgpu_vram_mgr {
- 	struct ttm_resource_manager manager;
--	struct drm_mm mm;
--	spinlock_t lock;
-+	struct drm_buddy_mm mm;
-+	struct mutex lock;
- 	struct list_head reservations_pending;
- 	struct list_head reserved_pages;
- 	atomic64_t usage;
- 	atomic64_t vis_usage;
-+	u64 default_page_size;
- };
- 
- struct amdgpu_gtt_mgr {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-index 7b2b0980ec41..ca57de89d274 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-@@ -32,8 +32,11 @@
- #include "atom.h"
- 
- struct amdgpu_vram_reservation {
-+	u64 start;
-+	u64 size;
-+	unsigned long flags;
-+	struct list_head block;
- 	struct list_head node;
--	struct drm_mm_node mm_node;
- };
- 
- static inline struct amdgpu_vram_mgr *
-@@ -196,10 +199,10 @@ const struct attribute_group amdgpu_vram_mgr_attr_group = {
-  * Calculate how many bytes of the MM node are inside visible VRAM
-  */
- static u64 amdgpu_vram_mgr_vis_size(struct amdgpu_device *adev,
--				    struct drm_mm_node *node)
-+				    struct drm_buddy_block *block)
- {
--	uint64_t start = node->start << PAGE_SHIFT;
--	uint64_t end = (node->size + node->start) << PAGE_SHIFT;
-+	u64 start = amdgpu_node_start(block);
-+	u64 end = start + amdgpu_node_size(block);
- 
- 	if (start >= adev->gmc.visible_vram_size)
- 		return 0;
-@@ -220,9 +223,9 @@ u64 amdgpu_vram_mgr_bo_visible_size(struct amdgpu_bo *bo)
- {
- 	struct amdgpu_device *adev = amdgpu_ttm_adev(bo->tbo.bdev);
- 	struct ttm_resource *res = bo->tbo.resource;
--	unsigned pages = res->num_pages;
--	struct drm_mm_node *mm;
--	u64 usage;
-+	struct amdgpu_vram_mgr_node *node = to_amdgpu_vram_mgr_node(res);
-+	struct drm_buddy_block *block;
-+	u64 usage = 0;
- 
- 	if (amdgpu_gmc_vram_full_visible(&adev->gmc))
- 		return amdgpu_bo_size(bo);
-@@ -230,9 +233,8 @@ u64 amdgpu_vram_mgr_bo_visible_size(struct amdgpu_bo *bo)
- 	if (res->start >= adev->gmc.visible_vram_size >> PAGE_SHIFT)
- 		return 0;
- 
--	mm = &container_of(res, struct ttm_range_mgr_node, base)->mm_nodes[0];
--	for (usage = 0; pages; pages -= mm->size, mm++)
--		usage += amdgpu_vram_mgr_vis_size(adev, mm);
-+	list_for_each_entry(block, &node->blocks, link)
-+		usage += amdgpu_vram_mgr_vis_size(adev, block);
- 
- 	return usage;
- }
-@@ -242,21 +244,29 @@ static void amdgpu_vram_mgr_do_reserve(struct ttm_resource_manager *man)
- {
- 	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
- 	struct amdgpu_device *adev = to_amdgpu_device(mgr);
--	struct drm_mm *mm = &mgr->mm;
-+	struct drm_buddy_mm *mm = &mgr->mm;
- 	struct amdgpu_vram_reservation *rsv, *temp;
-+	struct drm_buddy_block *block;
- 	uint64_t vis_usage;
- 
- 	list_for_each_entry_safe(rsv, temp, &mgr->reservations_pending, node) {
--		if (drm_mm_reserve_node(mm, &rsv->mm_node))
-+		if (drm_buddy_alloc(mm, rsv->start, rsv->start + rsv->size,
-+					rsv->size, mm->chunk_size, &rsv->block,
-+					rsv->flags))
- 			continue;
- 
--		dev_dbg(adev->dev, "Reservation 0x%llx - %lld, Succeeded\n",
--			rsv->mm_node.start, rsv->mm_node.size);
--
--		vis_usage = amdgpu_vram_mgr_vis_size(adev, &rsv->mm_node);
--		atomic64_add(vis_usage, &mgr->vis_usage);
--		atomic64_add(rsv->mm_node.size << PAGE_SHIFT, &mgr->usage);
--		list_move(&rsv->node, &mgr->reserved_pages);
-+		block = list_first_entry_or_null(&rsv->block,
-+						 struct drm_buddy_block,
-+						 link);
-+		if (block) {
-+			dev_dbg(adev->dev, "Reservation 0x%llx - %lld, Succeeded\n",
-+				rsv->start, rsv->size);
-+
-+			vis_usage = amdgpu_vram_mgr_vis_size(adev, block);
-+			atomic64_add(vis_usage, &mgr->vis_usage);
-+			atomic64_add(rsv->size, &mgr->usage);
-+			list_move(&rsv->node, &mgr->reserved_pages);
-+		}
- 	}
- }
- 
-@@ -280,13 +290,16 @@ int amdgpu_vram_mgr_reserve_range(struct ttm_resource_manager *man,
- 		return -ENOMEM;
- 
- 	INIT_LIST_HEAD(&rsv->node);
--	rsv->mm_node.start = start >> PAGE_SHIFT;
--	rsv->mm_node.size = size >> PAGE_SHIFT;
-+	INIT_LIST_HEAD(&rsv->block);
-+
-+	rsv->start = start;
-+	rsv->size = size;
-+	rsv->flags |= DRM_BUDDY_RANGE_ALLOCATION;
- 
--	spin_lock(&mgr->lock);
--	list_add_tail(&mgr->reservations_pending, &rsv->node);
-+	mutex_lock(&mgr->lock);
-+	list_add_tail(&rsv->node, &mgr->reservations_pending);
- 	amdgpu_vram_mgr_do_reserve(man);
--	spin_unlock(&mgr->lock);
-+	mutex_unlock(&mgr->lock);
- 
- 	return 0;
- }
-@@ -309,19 +322,19 @@ int amdgpu_vram_mgr_query_page_status(struct ttm_resource_manager *man,
- 	struct amdgpu_vram_reservation *rsv;
- 	int ret;
- 
--	spin_lock(&mgr->lock);
-+	mutex_lock(&mgr->lock);
- 
- 	list_for_each_entry(rsv, &mgr->reservations_pending, node) {
--		if ((rsv->mm_node.start <= start) &&
--		    (start < (rsv->mm_node.start + rsv->mm_node.size))) {
-+		if ((rsv->start <= start) &&
-+		    (start < (rsv->start + rsv->size))) {
- 			ret = -EBUSY;
- 			goto out;
- 		}
- 	}
- 
- 	list_for_each_entry(rsv, &mgr->reserved_pages, node) {
--		if ((rsv->mm_node.start <= start) &&
--		    (start < (rsv->mm_node.start + rsv->mm_node.size))) {
-+		if ((rsv->start <= start) &&
-+		    (start < (rsv->start + rsv->size))) {
- 			ret = 0;
- 			goto out;
- 		}
-@@ -329,32 +342,10 @@ int amdgpu_vram_mgr_query_page_status(struct ttm_resource_manager *man,
- 
- 	ret = -ENOENT;
- out:
--	spin_unlock(&mgr->lock);
-+	mutex_unlock(&mgr->lock);
- 	return ret;
- }
- 
--/**
-- * amdgpu_vram_mgr_virt_start - update virtual start address
-- *
-- * @mem: ttm_resource to update
-- * @node: just allocated node
-- *
-- * Calculate a virtual BO start address to easily check if everything is CPU
-- * accessible.
-- */
--static void amdgpu_vram_mgr_virt_start(struct ttm_resource *mem,
--				       struct drm_mm_node *node)
--{
--	unsigned long start;
--
--	start = node->start + node->size;
--	if (start > mem->num_pages)
--		start -= mem->num_pages;
--	else
--		start = 0;
--	mem->start = max(mem->start, start);
--}
--
- /**
-  * amdgpu_vram_mgr_new - allocate new ranges
-  *
-@@ -370,13 +361,13 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- 			       const struct ttm_place *place,
- 			       struct ttm_resource **res)
- {
--	unsigned long lpfn, num_nodes, pages_per_node, pages_left, pages;
-+	unsigned long lpfn, pages_per_node, pages_left, pages, n_pages;
-+	u64 vis_usage = 0, mem_bytes, max_bytes, min_page_size;
- 	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
- 	struct amdgpu_device *adev = to_amdgpu_device(mgr);
--	uint64_t vis_usage = 0, mem_bytes, max_bytes;
--	struct ttm_range_mgr_node *node;
--	struct drm_mm *mm = &mgr->mm;
--	enum drm_mm_insert_mode mode;
-+	struct amdgpu_vram_mgr_node *node;
-+	struct drm_buddy_mm *mm = &mgr->mm;
-+	struct drm_buddy_block *block;
- 	unsigned i;
- 	int r;
- 
-@@ -395,10 +386,9 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- 		goto error_sub;
- 	}
- 
--	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
-+	if (place->flags & TTM_PL_FLAG_CONTIGUOUS)
- 		pages_per_node = ~0ul;
--		num_nodes = 1;
--	} else {
-+	else {
- #ifdef CONFIG_TRANSPARENT_HUGEPAGE
- 		pages_per_node = HPAGE_PMD_NR;
- #else
-@@ -407,11 +397,9 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- #endif
- 		pages_per_node = max_t(uint32_t, pages_per_node,
- 				       tbo->page_alignment);
--		num_nodes = DIV_ROUND_UP_ULL(PFN_UP(mem_bytes), pages_per_node);
- 	}
- 
--	node = kvmalloc(struct_size(node, mm_nodes, num_nodes),
--			GFP_KERNEL | __GFP_ZERO);
-+	node = kzalloc(sizeof(*node), GFP_KERNEL);
- 	if (!node) {
- 		r = -ENOMEM;
- 		goto error_sub;
-@@ -419,9 +407,17 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- 
- 	ttm_resource_init(tbo, place, &node->base);
- 
--	mode = DRM_MM_INSERT_BEST;
-+	INIT_LIST_HEAD(&node->blocks);
-+
- 	if (place->flags & TTM_PL_FLAG_TOPDOWN)
--		mode = DRM_MM_INSERT_HIGH;
-+		node->flags |= DRM_BUDDY_TOPDOWN_ALLOCATION;
-+
-+	if (place->fpfn || lpfn != man->size)
-+		/* Allocate blocks in desired range */
-+		node->flags |= DRM_BUDDY_RANGE_ALLOCATION;
-+
-+	min_page_size = mgr->default_page_size;
-+	BUG_ON(min_page_size < mm->chunk_size);
- 
- 	pages_left = node->base.num_pages;
- 
-@@ -429,36 +425,63 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- 	pages = min(pages_left, 2UL << (30 - PAGE_SHIFT));
- 
- 	i = 0;
--	spin_lock(&mgr->lock);
- 	while (pages_left) {
--		uint32_t alignment = tbo->page_alignment;
--
- 		if (pages >= pages_per_node)
--			alignment = pages_per_node;
--
--		r = drm_mm_insert_node_in_range(mm, &node->mm_nodes[i], pages,
--						alignment, 0, place->fpfn,
--						lpfn, mode);
--		if (unlikely(r)) {
--			if (pages > pages_per_node) {
--				if (is_power_of_2(pages))
--					pages = pages / 2;
--				else
--					pages = rounddown_pow_of_two(pages);
--				continue;
--			}
--			goto error_free;
-+			pages = pages_per_node;
-+
-+		n_pages = pages;
-+
-+		if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
-+			n_pages = roundup_pow_of_two(n_pages);
-+			min_page_size = (u64)n_pages << PAGE_SHIFT;
-+
-+			if (n_pages > lpfn)
-+				lpfn = n_pages;
- 		}
- 
--		vis_usage += amdgpu_vram_mgr_vis_size(adev, &node->mm_nodes[i]);
--		amdgpu_vram_mgr_virt_start(&node->base, &node->mm_nodes[i]);
-+		mutex_lock(&mgr->lock);
-+		r = drm_buddy_alloc(mm, (u64)place->fpfn << PAGE_SHIFT,
-+				(u64)lpfn << PAGE_SHIFT,
-+				(u64)n_pages << PAGE_SHIFT,
-+				 min_page_size,
-+				 &node->blocks,
-+				 node->flags);
-+		mutex_unlock(&mgr->lock);
-+		if (unlikely(r))
-+			goto error_free_blocks;
-+
- 		pages_left -= pages;
- 		++i;
- 
- 		if (pages > pages_left)
- 			pages = pages_left;
- 	}
--	spin_unlock(&mgr->lock);
-+
-+	/* Free unused pages for contiguous allocation */
-+	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
-+		u64 actual_size = (u64)node->base.num_pages << PAGE_SHIFT;
-+
-+		mutex_lock(&mgr->lock);
-+		r = drm_buddy_block_trim(mm,
-+				actual_size,
-+				&node->blocks);
-+		mutex_unlock(&mgr->lock);
-+		pr_warn("drm_buddy_block_trim failed returing %d for ttm_buffer_object(%p)\n",
-+			r, tbo);
-+	}
-+
-+	list_for_each_entry(block, &node->blocks, link)
-+		vis_usage += amdgpu_vram_mgr_vis_size(adev, block);
-+
-+	block = list_first_entry_or_null(&node->blocks,
-+					 struct drm_buddy_block,
-+					 link);
-+	if (!block) {
-+		r = -ENOENT;
-+		goto error_free_res;
-+	}
-+
-+	node->base.start = amdgpu_node_start(block) >> PAGE_SHIFT;
- 
- 	if (i == 1)
- 		node->base.placement |= TTM_PL_FLAG_CONTIGUOUS;
-@@ -472,12 +495,12 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- 	*res = &node->base;
- 	return 0;
- 
--error_free:
--	while (i--)
--		drm_mm_remove_node(&node->mm_nodes[i]);
--	spin_unlock(&mgr->lock);
--	kvfree(node);
--
-+error_free_blocks:
-+	mutex_lock(&mgr->lock);
-+	drm_buddy_free_list(mm, &node->blocks);
-+	mutex_unlock(&mgr->lock);
-+error_free_res:
-+	kfree(node);
- error_sub:
- 	atomic64_sub(mem_bytes, &mgr->usage);
- 	return r;
-@@ -494,28 +517,28 @@ static int amdgpu_vram_mgr_new(struct ttm_resource_manager *man,
- static void amdgpu_vram_mgr_del(struct ttm_resource_manager *man,
- 				struct ttm_resource *res)
- {
--	struct ttm_range_mgr_node *node = to_ttm_range_mgr_node(res);
-+	struct amdgpu_vram_mgr_node *node = to_amdgpu_vram_mgr_node(res);
- 	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
- 	struct amdgpu_device *adev = to_amdgpu_device(mgr);
-+	struct drm_buddy_mm *mm = &mgr->mm;
-+	struct drm_buddy_block *block;
- 	uint64_t usage = 0, vis_usage = 0;
--	unsigned i, pages;
- 
--	spin_lock(&mgr->lock);
--	for (i = 0, pages = res->num_pages; pages;
--	     pages -= node->mm_nodes[i].size, ++i) {
--		struct drm_mm_node *mm = &node->mm_nodes[i];
--
--		drm_mm_remove_node(mm);
--		usage += mm->size << PAGE_SHIFT;
--		vis_usage += amdgpu_vram_mgr_vis_size(adev, mm);
-+	mutex_lock(&mgr->lock);
-+	list_for_each_entry(block, &node->blocks, link) {
-+		usage += amdgpu_node_size(block);
-+		vis_usage += amdgpu_vram_mgr_vis_size(adev, block);
- 	}
-+
- 	amdgpu_vram_mgr_do_reserve(man);
--	spin_unlock(&mgr->lock);
-+
-+	drm_buddy_free_list(mm, &node->blocks);
-+	mutex_unlock(&mgr->lock);
- 
- 	atomic64_sub(usage, &mgr->usage);
- 	atomic64_sub(vis_usage, &mgr->vis_usage);
- 
--	kvfree(node);
-+	kfree(node);
- }
- 
- /**
-@@ -669,10 +692,19 @@ static void amdgpu_vram_mgr_debug(struct ttm_resource_manager *man,
- 				  struct drm_printer *printer)
- {
- 	struct amdgpu_vram_mgr *mgr = to_vram_mgr(man);
-+	struct drm_buddy_mm *mm = &mgr->mm;
-+	struct drm_buddy_block *block;
-+
-+	mutex_lock(&mgr->lock);
-+	drm_printf(printer, "default_page_size: %lluKiB\n",
-+		   mgr->default_page_size >> 10);
- 
--	spin_lock(&mgr->lock);
--	drm_mm_print(&mgr->mm, printer);
--	spin_unlock(&mgr->lock);
-+	drm_buddy_print(mm, printer);
-+
-+	drm_printf(printer, "reserved:\n");
-+	list_for_each_entry(block, &mgr->reserved_pages, link)
-+		drm_buddy_block_print(mm, block, printer);
-+	mutex_unlock(&mgr->lock);
- 
- 	drm_printf(printer, "man size:%llu pages, ram usage:%lluMB, vis usage:%lluMB\n",
- 		   man->size, amdgpu_vram_mgr_usage(man) >> 20,
-@@ -696,15 +728,20 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
- {
- 	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
- 	struct ttm_resource_manager *man = &mgr->manager;
-+	int err;
- 
- 	ttm_resource_manager_init(man, adev->gmc.real_vram_size >> PAGE_SHIFT);
- 
- 	man->func = &amdgpu_vram_mgr_func;
- 
--	drm_mm_init(&mgr->mm, 0, man->size);
--	spin_lock_init(&mgr->lock);
-+	err = drm_buddy_init(&mgr->mm, man->size << PAGE_SHIFT, PAGE_SIZE);
-+	if (err)
-+		return err;
-+
-+	mutex_init(&mgr->lock);
- 	INIT_LIST_HEAD(&mgr->reservations_pending);
- 	INIT_LIST_HEAD(&mgr->reserved_pages);
-+	mgr->default_page_size = PAGE_SIZE;
- 
- 	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, &mgr->manager);
- 	ttm_resource_manager_set_used(man, true);
-@@ -732,16 +769,16 @@ void amdgpu_vram_mgr_fini(struct amdgpu_device *adev)
- 	if (ret)
- 		return;
- 
--	spin_lock(&mgr->lock);
-+	mutex_lock(&mgr->lock);
- 	list_for_each_entry_safe(rsv, temp, &mgr->reservations_pending, node)
- 		kfree(rsv);
- 
- 	list_for_each_entry_safe(rsv, temp, &mgr->reserved_pages, node) {
--		drm_mm_remove_node(&rsv->mm_node);
-+		drm_buddy_free_list(&mgr->mm, &rsv->block);
- 		kfree(rsv);
- 	}
--	drm_mm_takedown(&mgr->mm);
--	spin_unlock(&mgr->lock);
-+	drm_buddy_fini(&mgr->mm);
-+	mutex_unlock(&mgr->lock);
- 
- 	ttm_resource_manager_cleanup(man);
- 	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, NULL);
--- 
-2.25.1
+>   	/* post card */
+>   	if (amdgpu_device_need_post(adev)) {
+>   		r = amdgpu_device_asic_init(adev);
+> 
 
