@@ -2,100 +2,82 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80309466782
-	for <lists+amd-gfx@lfdr.de>; Thu,  2 Dec 2021 17:02:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1932C4667BF
+	for <lists+amd-gfx@lfdr.de>; Thu,  2 Dec 2021 17:19:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8A416FA56;
-	Thu,  2 Dec 2021 16:02:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6735F6FAB4;
+	Thu,  2 Dec 2021 16:19:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2052.outbound.protection.outlook.com [40.107.223.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 372B76FA82;
- Thu,  2 Dec 2021 16:02:12 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QH1hNBYdND6KKNAJUw8h0hPO1FRUkT/JjrtF2mKMdz16Uex+vJa4gzbuV4tmd+CFs71bOIsRfQuU4aAWpH2EXiGFA8y0+aKJuu0mLEgsTqQTnbPI88tr0gAQ946TwSv4oBNISY7hli1aAcp1G0A0tRSokwErjePcVVYTWyMEfYbfXDNMIyjQhUAoc7Rc7EwYRuXIIdIiBGTZNv6oaXe0ctxIbvRpkL9yG4JD+xz9G1mNmaZmZvsDHQk86hxWNGqo23JRt9khJTnuhM464qDFce1RkjgOXjYqpzbfGfMsJ0oXumycSqdOuXODtl2UuCiiL4ukbesAT6XK51LpWDycRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7ppMgoI3tAVIQx5GbsEm1RLdD9sOfUNShpp7EvD4s6g=;
- b=X3GQfUtIhFxfq/M4zYW6pJDJ2iNNaCOnk6SjhAbhQzBG3TSpJdVtloD79837jh7qmOdfYTnjBODR8ZS/s4Go6uRUSFVtN9moBu+x79T1t99GJ0iGZkJWOTYP5VeAUSDZZQ+YYWE9fi7uHLvRvbG2YjUObPKDrPiucScXq0AAq1etI8e9A/RGcy6zbc70ur3Fi9d4HDY2ee7XqHVLqCLcgUpX8i4vSetpp7Zqi0xGPkGiEMsOQgZghxN1oqvPyBUCnwWvEPRpVr++IDVuiB5r1HChKxrBMFPnDNv4KpQuuN7wpiIlKxQPntoBDRJmNaI7AZFI19luW3gWOjEHzYTCeA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=emersion.fr smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7ppMgoI3tAVIQx5GbsEm1RLdD9sOfUNShpp7EvD4s6g=;
- b=gyuhHWeJGJ+S9Mj+Wb7W6Iyx/yEVoNkfvVh4MqcynlnXRe55o5RHT7yFTrK7mKAtz+x/lMK7N/xQA/YXedfd/qRFLHtfr1LlzVQsDzqqLO51RD/M6iiuZwFK8ga+HmtSXMFgWV4NcKsRd27PHVWvxtr+iq3qzBbS3IfgvMZA5XM=
-Received: from BN1PR12CA0023.namprd12.prod.outlook.com (2603:10b6:408:e1::28)
- by BYAPR12MB3461.namprd12.prod.outlook.com (2603:10b6:a03:da::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23; Thu, 2 Dec
- 2021 16:02:08 +0000
-Received: from BN8NAM11FT016.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e1:cafe::61) by BN1PR12CA0023.outlook.office365.com
- (2603:10b6:408:e1::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.22 via Frontend
- Transport; Thu, 2 Dec 2021 16:02:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT016.mail.protection.outlook.com (10.13.176.97) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4755.13 via Frontend Transport; Thu, 2 Dec 2021 16:02:07 +0000
-Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Thu, 2 Dec
- 2021 10:02:05 -0600
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-To: Simon Ser <contact@emersion.fr>, Michel Daenzer <michel@daenzer.net>, "Bas
- Nieuwenhuizen" <bas@basnieuwenhuizen.nl>, Marek Olsak <marek.olsak@amd.com>,
- Roman Gilg <subdiff@gmail.com>, Nicholas Kazlauskas
- <nicholas.kazlauskas@amd.com>, Harry Wentland <Harry.Wentland@amd.com>, "Mark
- Yacoub" <markyacoub@chromium.org>, Sean Paul <seanpaul@chromium.org>, "Pekka
- Paalanen" <ppaalanen@gmail.com>, Yann Dirson <ydirson@free.fr>, Daniel Vetter
- <daniel@ffwll.ch>
-Subject: [PATCH v2 6/6] Documentation/gpu: Add amdgpu and dc glossary
-Date: Thu, 2 Dec 2021 11:01:32 -0500
-Message-ID: <20211202160132.2263330-7-Rodrigo.Siqueira@amd.com>
+Received: from mta-p8.oit.umn.edu (mta-p8.oit.umn.edu [134.84.196.208])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C74106ECBF
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Dec 2021 16:17:47 +0000 (UTC)
+Received: from localhost (unknown [127.0.0.1])
+ by mta-p8.oit.umn.edu (Postfix) with ESMTP id 4J4h223psdz9w2Lt
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Dec 2021 16:17:46 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at umn.edu
+Received: from mta-p8.oit.umn.edu ([127.0.0.1])
+ by localhost (mta-p8.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id RhQdmKzv7khf for <amd-gfx@lists.freedesktop.org>;
+ Thu,  2 Dec 2021 10:17:46 -0600 (CST)
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com
+ [209.85.216.71])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mta-p8.oit.umn.edu (Postfix) with ESMTPS id 4J4h221p1Hz9w2Lx
+ for <amd-gfx@lists.freedesktop.org>; Thu,  2 Dec 2021 10:17:46 -0600 (CST)
+DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p8.oit.umn.edu 4J4h221p1Hz9w2Lx
+DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p8.oit.umn.edu 4J4h221p1Hz9w2Lx
+Received: by mail-pj1-f71.google.com with SMTP id
+ b8-20020a17090a10c800b001a61dff6c9dso109135pje.5
+ for <amd-gfx@lists.freedesktop.org>; Thu, 02 Dec 2021 08:17:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umn.edu; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=qgDUgiquyeE/HBpyk1r0o9owU/0QA0kjA2nxOoAn0vg=;
+ b=gXXhkhGRPKwEEtTuml2rjG//g3S0E5irHeJYXmB/fAkm/rSWvG50Ptn6mCIfuhuwLO
+ s+GsPIrsjU/3ol6TexAgYESgAIiQe7PBCSbYIIdssbk3/rWWef+TWJ9aMgkz5p4GZRFe
+ IX4AZwkQtR45z6qZ0uLz8Rb7LdK44LmxI23/ScN9VYA1QkA6cryi8A1YH+D0tcQ5ltV0
+ 0NQHz+a2lbP9NIX/ly+XWt+RRXGxULP+6suY7f+Z5mM3sps+5CegsK2W/8GyzhdrxaAz
+ 8p80h+HqrdZL6JQLg9X4nuYl9UnYhU8Lkooi9Vn3/bE7ZY3z3LKH0I8hJORLzF5g00v+
+ IaOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=qgDUgiquyeE/HBpyk1r0o9owU/0QA0kjA2nxOoAn0vg=;
+ b=o5gnDri4PZHx45p2TtRvuq/jcyM4NVM4Ms9oXmMjy7yvtt8TWoIHUMVLk0ULXuhG4b
+ KxoUGibgn4hTmUj7XJtM+5boQKsJj5TGRiD43rK+UB7wtE58wzIXuQ3y2MvzFjsR+M8w
+ L92iEWxOjHIK7sbfbbOQx/hyT/2O1dKn/xfTqfxT4PwecdrNL5JFuVd0Y7KILDnw1ZaG
+ YNWpfYdR0dtlGQ8INBzkJyE0xHubXW3I2GNZgXnnT3KOBzRLEHNY1418eV9YE0G0cqWY
+ p1cpQJB8TJ66Ws5ycH0VdnP2CzIoWy6rkDKoejD4FDAVvft0LqnHrKfJeeJFW4wdrWuu
+ RxnA==
+X-Gm-Message-State: AOAM531PYbB3g04HbJ+g+/6yLdJzi7dAqPlOc4u2JL163ytR1Eb8HJ7x
+ eXTegvBSSXHPloZq1JKr2+hFWF4KCnI2Qtqi8RWc3RzsNSjIaInv5l/ts8PeswV8pH2IXUFuOKi
+ TmN/hxGjxCrGf/rUird6mB/M7AKWkPQ==
+X-Received: by 2002:a17:902:9a09:b0:142:82e1:6cff with SMTP id
+ v9-20020a1709029a0900b0014282e16cffmr16500987plp.47.1638461865445; 
+ Thu, 02 Dec 2021 08:17:45 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzlBUbzHE8EObBvEJkQ4GrdSaOO5BVm897v2oE1K1vI9kxnT2PO8h97GZr1lIie/srkFKr7Yg==
+X-Received: by 2002:a17:902:9a09:b0:142:82e1:6cff with SMTP id
+ v9-20020a1709029a0900b0014282e16cffmr16500956plp.47.1638461865176; 
+ Thu, 02 Dec 2021 08:17:45 -0800 (PST)
+Received: from zqy787-GE5S.lan ([36.4.93.212])
+ by smtp.gmail.com with ESMTPSA id s14sm273542pfk.73.2021.12.02.08.17.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 02 Dec 2021 08:17:44 -0800 (PST)
+From: Zhou Qingyang <zhou1615@umn.edu>
+To: zhou1615@umn.edu
+Subject: [PATCH v2] drm/amdgpu: Fix a NULL pointer dereference in
+ amdgpu_connector_lcd_native_mode()
+Date: Fri,  3 Dec 2021 00:17:36 +0800
+Message-Id: <20211202161738.79176-1-zhou1615@umn.edu>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211202160132.2263330-1-Rodrigo.Siqueira@amd.com>
-References: <20211202160132.2263330-1-Rodrigo.Siqueira@amd.com>
+In-Reply-To: <CADnq5_P8amQK60zD-2tkVWBneZCoLENe5KY_S6eqoAAyOieatg@mail.gmail.com>
+References: <CADnq5_P8amQK60zD-2tkVWBneZCoLENe5KY_S6eqoAAyOieatg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f295b4a5-c809-4cb3-2b08-08d9b5ad1765
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3461:
-X-Microsoft-Antispam-PRVS: <BYAPR12MB34615D87D0C24315B087FF4098699@BYAPR12MB3461.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uT8SXwyvDpRiy34FfmStuFiauniJGEXixI2MVTuTspoihGNhjZvMc1U150Dc9LFWhSXpqEdd43vsKelUpIMOt/AeRaj5V/tmm57U/EXq82jJ2au3nT8dlBKx2GIuaeje6cLHBiT4MHz1omhWQC5tMPV0k2KpiPuoBhtcXAVIup2Zl2xKgo1P9qq4naE4vYTciBDz90mJBVrlsiPtxl50vS9syp1Y18joMCCwsGH8+sIcJV+oUhS9E+xrCzAcby3Fgh3IU0BpUIvfwnLcDuvpEO0M4ckboQcyJZuP/q4mb0YF2utJahzGOiEBv56W6UJPirYUST5LHd0nDdrgD/UPvVYatq5IVkdL6AMBAqq0vM/U8fbLpkmOQkvrHTxTmPiBMyxZUvYbuduvPgC4LijulLw8nGOxZHEt9fMAFGEgqtn5TrrmJ3oBa0BzIPYewShRzl/btnHbVmf6cimIlFNBcJqdTKhHdGZqpfejcSw58EqFQwP8FnixRqEAQXWRjZg8KJp/uQ5IxpMfjj7QE98ddz6xWERybC2AV+J3itnFKJNMgAym5H7Miv5Y1J8pqmsko3C6aRbQxljAvPxa66pPIY7lJAHHMFoOeF0dcuCzHW8e5QiOMORcYcrkTWjlb6zWN4WYz389y1LfaKfItzcKCTqHSpbaJ4B+Qbqpser5QgcBz/SUBsmfPskrxut4dmY7h7hnhHhKd4lrkVfmlW5KtZI3fC8P9fVuZ5W/8MbFtRyAiMHLyPfnqyksTUmhabDWfBEmILLU3KvckR6FFdioFp4EInNP7L/n87TZnMgrAFyJjBAwjtkam5PvIrsp4u4+
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(40470700001)(36860700001)(2616005)(921005)(70206006)(1076003)(36756003)(8676002)(186003)(2906002)(70586007)(6666004)(508600001)(110136005)(5660300002)(16526019)(426003)(8936002)(54906003)(336012)(47076005)(26005)(7416002)(356005)(4326008)(82310400004)(316002)(86362001)(83380400001)(81166007)(40460700001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2021 16:02:07.5642 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f295b4a5-c809-4cb3-2b08-08d9b5ad1765
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT016.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3461
+X-Mailman-Approved-At: Thu, 02 Dec 2021 16:19:08 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,359 +89,68 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, qingqing.zhuo@amd.com, roman.li@amd.com,
- amd-gfx@lists.freedesktop.org, aurabindo.pillai@amd.com, nicholas.choi@amd.com,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- bhawanpreet.lakha@amd.com, Christian Koenig <christian.koenig@amd.com>
+Cc: Jammy Zhou <Jammy.Zhou@amd.com>, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ kjlu@umn.edu, linux-kernel@vger.kernel.org, hongao <hongao@uniontech.com>,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In the DC driver, we have multiple acronyms that are not obvious most of
-the time; the same idea is valid for amdgpu. This commit introduces a DC
-and amdgpu glossary in order to make it easier to navigate through our
-driver.
+In amdgpu_connector_lcd_native_mode(), the return value of
+drm_mode_duplicate() is assigned to mode, and there is a dereference
+of it in amdgpu_connector_lcd_native_mode(), which will lead to a NULL
+pointer dereference on failure of drm_mode_duplicate().
 
-Changes since V1:
- - Yann: Divide glossary based on driver context.
- - Alex: Make terms more consistent and update CPLIB
- - Add new acronyms to the glossary
+Fix this bug add a check of mode.
 
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+This bug was found by a static analyzer. The analysis employs
+differential checking to identify inconsistent security operations
+(e.g., checks or kfrees) between two code paths and confirms that the
+inconsistent operations are not recovered in the current function or
+the callers, so they constitute bugs.
+
+Note that, as a bug found by static analysis, it can be a false
+positive or hard to trigger. Multiple researchers have cross-reviewed
+the bug.
+
+Builds with CONFIG_DRM_AMDGPU=m show no new warnings, and
+our static analyzer no longer warns about this code.
+
+Fixes: d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
+Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
 ---
- Documentation/gpu/amdgpu/amdgpu-glossary.rst  |  47 ++++
- .../gpu/amdgpu/display/dc-glossary.rst        | 243 ++++++++++++++++++
- Documentation/gpu/amdgpu/display/index.rst    |   1 +
- Documentation/gpu/amdgpu/index.rst            |   7 +
- 4 files changed, 298 insertions(+)
- create mode 100644 Documentation/gpu/amdgpu/amdgpu-glossary.rst
- create mode 100644 Documentation/gpu/amdgpu/display/dc-glossary.rst
+Changes in v2:
+  -  Fix the similar bug in else clause
 
-diff --git a/Documentation/gpu/amdgpu/amdgpu-glossary.rst b/Documentation/gpu/amdgpu/amdgpu-glossary.rst
-new file mode 100644
-index 000000000000..e635851025e7
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/amdgpu-glossary.rst
-@@ -0,0 +1,47 @@
-+===============
-+AMDGPU Glossary
-+===============
-+
-+Here you can find some generic acronyms used in the amdgpu driver. Notice that
-+we have a dedicated glossary for Display Core.
-+
-+.. glossary::
-+
-+    CPLIB
-+      Content Protection Library
-+
-+    DFS
-+      Digital Frequency Synthesizer
-+
-+    ECP
-+      Enhanced Content Protection
-+
-+    EOP
-+      End Of Pipe/Pipeline
-+
-+    HQD
-+      Hardware Queue Descriptor
-+
-+    KCQ
-+      Kernel Compute Queue
-+
-+    KGQ
-+      Kernel Graphics Queue
-+
-+    KIQ
-+      Kernel Interface Queue
-+
-+    MQD
-+      Memory Queue Descriptor
-+
-+    PPLib
-+      PowerPlay Library - PowerPlay is the power management component.
-+
-+    SMU
-+      System Management Unit
-+
-+    VCE
-+      Video Compression Engine
-+
-+    VCN
-+      Video Codec Next
-diff --git a/Documentation/gpu/amdgpu/display/dc-glossary.rst b/Documentation/gpu/amdgpu/display/dc-glossary.rst
-new file mode 100644
-index 000000000000..547c0bfbb3e2
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/display/dc-glossary.rst
-@@ -0,0 +1,243 @@
-+===========
-+DC Glossary
-+===========
-+
-+On this page, we try to keep track of acronyms related to the display
-+component. If you do not find what you are looking for, look at the amdgpu
-+glossary; if you cannot find it anywhere, consider asking in the amdgfx and
-+update this page.
-+
-+.. glossary::
-+
-+    ABM
-+      Adaptive Backlight Modulation
-+
-+    APU
-+      Accelerated Processing Unit
-+
-+    ASIC
-+      Application-Specific Integrated Circuit
-+
-+    ASSR
-+      Alternate Scrambler Seed Reset
-+
-+    AZ
-+      Azalia (HD audio DMA engine)
-+
-+    BPC
-+      Bits Per Colour/Component
-+
-+    BPP
-+      Bits Per Pixel
-+
-+    Clocks
-+      * PCLK: Pixel Clock
-+      * SYMCLK: Symbol Clock
-+      * SOCCLK: GPU Engine Clock
-+      * DISPCLK: Display Clock
-+      * DPPCLK: DPP Clock
-+      * DCFCLK: Display Controller Fabric Clock
-+      * REFCLK: Real Time Reference Clock
-+      * PPLL: Pixel PLL
-+      * FCLK: Fabric Clock
-+      * MCLK: Memory Clock
-+
-+    CRC
-+      Cyclic Redundancy Check
-+
-+    CRTC
-+      Cathode Ray Tube Controller - commonly called "Controller" - Generates
-+      raw stream of pixels, clocked at pixel clock
-+
-+    CVT
-+      Coordinated Video Timings
-+
-+    DAL
-+      Display Abstraction layer
-+
-+    DC (Software)
-+      Display Core
-+
-+    DC (Hardware)
-+      Display Controller
-+
-+    DCC
-+      Delta Colour Compression
-+
-+    DCE
-+      Display Controller Engine
-+
-+    DCHUB
-+      Display Controller HUB
-+
-+    ARB
-+      Arbiter
-+
-+    VTG
-+      Vertical Timing Generator
-+
-+    DCN
-+      Display Core Next
-+
-+    DCCG
-+      Display Clock Generator block
-+
-+    DDC
-+      Display Data Channel
-+
-+    DIO
-+      Display IO
-+
-+    DPP
-+      Display Pipes and Planes
-+
-+    DSC
-+      Display Stream Compression (Reduce the amount of bits to represent pixel
-+      count while at the same pixel clock)
-+
-+    dGPU
-+      discrete GPU
-+
-+    DMIF
-+      Display Memory Interface
-+
-+    DML
-+      Display Mode Library
-+
-+    DMCU
-+      Display Micro-Controller Unit
-+
-+    DMCUB
-+      Display Micro-Controller Unit, version B
-+
-+    DPCD
-+      DisplayPort Configuration Data
-+
-+    DPM(S)
-+      Display Power Management (Signaling)
-+
-+    DRR
-+      Dynamic Refresh Rate
-+
-+    DWB
-+      Display Writeback
-+
-+    FB
-+      Frame Buffer
-+
-+    FBC
-+      Frame Buffer Compression
-+
-+    FEC
-+      Forward Error Correction
-+
-+    FRL
-+      Fixed Rate Link
-+
-+    GCO
-+      Graphical Controller Object
-+
-+    GMC
-+      Graphic Memory Controller
-+
-+    GSL
-+      Global Swap Lock
-+
-+    iGPU
-+      integrated GPU
-+
-+    IH
-+      Interrupt Handler
-+
-+    ISR
-+      Interrupt Service Request
-+
-+    ISV
-+      Independent Software Vendor
-+
-+    KMD
-+      Kernel Mode Driver
-+
-+    LB
-+      Line Buffer
-+
-+    LFC
-+      Low Framerate Compensation
-+
-+    LTTPR
-+      Link Training Tunable Phy Repeater
-+
-+    LUT
-+      Lookup Table
-+
-+    MALL
-+      Memory Access at Last Level
-+
-+    MC
-+      Memory Controller
-+
-+    MPC
-+      Multiple pipes and plane combine
-+
-+    MPO
-+      Multi Plane Overlay
-+
-+    MST
-+      Multi Stream Transport
-+
-+    NBP State
-+      Northbridge Power State
-+
-+    NBIO
-+      North Bridge Input/Output
-+
-+    ODM
-+      Output Data Mapping
-+
-+    OPM
-+      Output Protection Manager
-+
-+    OPP
-+      Output Plane Processor
-+
-+    OPTC
-+      Output Pipe Timing Combiner
-+
-+    OTG
-+      Output Timing Generator
-+
-+    PCON
-+      Power Controller
-+
-+    PGFSM
-+      Power Gate Finite State Machine
-+
-+    PSR
-+      Panel Self Refresh
-+
-+    SCL
-+      Scaler
-+
-+    SDP
-+      Scalable Data Port
-+
-+    SLS
-+      Single Large Surface
-+
-+    SST
-+      Single Stream Transport
-+
-+    TMDS
-+      Transition-Minimized Differential Signaling
-+
-+    TMZ
-+      Trusted Memory Zone
-+
-+    TTU
-+      Time to Underflow
-+
-+    VRR
-+      Variable Refresh Rate
-+
-+    UVD
-+      Unified Video Decoder
-diff --git a/Documentation/gpu/amdgpu/display/index.rst b/Documentation/gpu/amdgpu/display/index.rst
-index fe2ecad8df81..e23c752ee5f5 100644
---- a/Documentation/gpu/amdgpu/display/index.rst
-+++ b/Documentation/gpu/amdgpu/display/index.rst
-@@ -26,3 +26,4 @@ table of content:
-    display-manager.rst
-    dc-debug.rst
-    dcn-overview.rst
-+   dc-glossary.rst
-diff --git a/Documentation/gpu/amdgpu/index.rst b/Documentation/gpu/amdgpu/index.rst
-index 5c8cbf514097..ff38c360b04e 100644
---- a/Documentation/gpu/amdgpu/index.rst
-+++ b/Documentation/gpu/amdgpu/index.rst
-@@ -334,3 +334,10 @@ smartshift_bias
+ drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+index 0de66f59adb8..df1f9b88a53f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+@@ -387,6 +387,9 @@ amdgpu_connector_lcd_native_mode(struct drm_encoder *encoder)
+ 	    native_mode->vdisplay != 0 &&
+ 	    native_mode->clock != 0) {
+ 		mode = drm_mode_duplicate(dev, native_mode);
++		if (!mode)
++			return NULL;
++
+ 		mode->type = DRM_MODE_TYPE_PREFERRED | DRM_MODE_TYPE_DRIVER;
+ 		drm_mode_set_name(mode);
  
- .. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
-    :doc: smartshift_bias
+@@ -401,6 +404,9 @@ amdgpu_connector_lcd_native_mode(struct drm_encoder *encoder)
+ 		 * simpler.
+ 		 */
+ 		mode = drm_cvt_mode(dev, native_mode->hdisplay, native_mode->vdisplay, 60, true, false, false);
++		if (!mode)
++			return NULL;
 +
-+AMDGPU Glossary
-+===============
-+
-+.. toctree::
-+
-+   amdgpu-glossary.rst
+ 		mode->type = DRM_MODE_TYPE_PREFERRED | DRM_MODE_TYPE_DRIVER;
+ 		DRM_DEBUG_KMS("Adding cvt approximation of native panel mode %s\n", mode->name);
+ 	}
 -- 
 2.25.1
 
