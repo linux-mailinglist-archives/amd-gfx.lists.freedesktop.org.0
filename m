@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1693467087
-	for <lists+amd-gfx@lfdr.de>; Fri,  3 Dec 2021 04:06:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CED0C467088
+	for <lists+amd-gfx@lfdr.de>; Fri,  3 Dec 2021 04:06:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A0D06EC01;
-	Fri,  3 Dec 2021 03:06:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1ED776EB95;
+	Fri,  3 Dec 2021 03:06:29 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2065.outbound.protection.outlook.com [40.107.223.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE6D96EC08
- for <amd-gfx@lists.freedesktop.org>; Fri,  3 Dec 2021 03:06:25 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2088.outbound.protection.outlook.com [40.107.236.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D82176EBAC
+ for <amd-gfx@lists.freedesktop.org>; Fri,  3 Dec 2021 03:06:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SizQ/GFxROCznuof7p3tV7Mtxxax4kWNlmmNvdZfm0PT6174duzxxDcwF7/wNL7xp8kXD+NNvfxOKwwQ2debYAeOQPtupAWqvmDklcrJMywRQ1yuRGfE91Tte3Alg7ev30uIVPuUaaY6SEJVMboz3J9BF9QJopHVUj3YvyAaREngqubLovOjkPHWQYp52mCCjTK+lV8yzgYoHznACT03VS4bjuaM9IDE09AN2SLcVGySYy8ohTK5hqM3LvoYNkRiIaUl42jEaC5vPkGvqjBTIGFZML9QtUXUvICUXD2+SnJCklanmVUXGtK89Dq0jAt1bPsF6vPMT0l2+3dLXRYVdA==
+ b=crGPh063Kgf4G0A4cY3slu8pBO+2M1mo2JoTdhjXoQpAD02PYF/KtuWds9sFs6bu18jhv7/Ea8mk2fJy2twwAU8x7UBG5eDST3FNA4TzXpy6igdZQ1HASLgZJE5IxbVa0Z0keSllphhz4060MTno8Hij0BJJhuLGcxf+UHqp1Uw6NxVenUjqA1w9KxTDsKNp5JV/rErjC+oVVIyNLZWOqHlyAjdb181hACJvph+CSt/svV4+xqpmPtFI2WLTVRRrbxxyHhUkxZ9wDAdDKNn5V8ZITBVH/Kg2ahx205oCS6WtYNK2krj8/A4qDH1qnaB0a4YpC5PFrHrLSfeSxwvBzg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cAJZ6o0SmHBuVu9VxagepmLKDH13IcQVpQ3Tveszl8E=;
- b=SuLMvkf1aZpYcNbVApom/KidibwrYFeL7aii+oL1UGIIano2iGfxm95OO0WGcXbuF3Ce9B59Sw0KKloayuLeVK7rLO97xYlcUyuZDANy97HxOvcaZ07r8JcS6PADs6PfM9CbXjDc6M97mIAK13BnI9TIUUO4H62PyfgLTxJbzsjBXUUXiOlUPXjFCNpALjVcfSQcaw/18Iu9XYdRxH+v843PJRYnW9cGXuObHWLIsGrTXI7TDXBsdZCMRwiq0qXN++pNtejrWVpjI2rGoNb7JYvqkZvZk+O2xj6NrXuJWh/+D4b/69rr4LcRt5i/d1QQRWObLZjZKNeVXY94v6Ja4g==
+ bh=BaxbVyMTYGwXnFYlWt78Kx1K9rB+WwdSw/ZmejaQIKw=;
+ b=EPeq3tMEWFEM8+HRNqfCx4QrbJtCEgiosG6buSzBrDSISQBVlPDEovGXV6voqArC+EFYt7C+cmTMuMA2YB+rzFdN2V+QXyIyaRuJz9UoioUIYGvaNk9OFSaEFMWQkjvbgIDHNWxsCD80ubrF1xwLE0Q/VKI5WQe3YL6LqXTnVSKb/9ygRKv3uPeT/PbDPFuoTdRB0WSgqAZ17DRgJRfftJ0q2+wy1sr89GVxmCuN5qQHNs7EcIk9Gz4X2sTF59t10ee+2ElgfWub2IaqosDwObgEZlPnHO+PALvhCE6b8oqAQaXYxoX53Zr1YtTTATXqSGKzXal2lelnAxHQZOBYdQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cAJZ6o0SmHBuVu9VxagepmLKDH13IcQVpQ3Tveszl8E=;
- b=CL0mJ+rRC0wv4bR0P8vgqkuFUITntsmliW3jJR7qdLkKgXovgeu0Ix8dMsYA1SxRgAhjNsP1Ia3oD4fYQ8OvluW1xSG8LFTBVPtuIGTrUBk0jahWeaD9mFn214CTbEW7eX4ly4x6lQUCryvVszUCpVv/kweiqDJoZPIHItSsIGc=
-Received: from MWHPR12CA0071.namprd12.prod.outlook.com (2603:10b6:300:103::33)
- by MN2PR12MB4534.namprd12.prod.outlook.com (2603:10b6:208:24f::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23; Fri, 3 Dec
- 2021 03:06:23 +0000
+ bh=BaxbVyMTYGwXnFYlWt78Kx1K9rB+WwdSw/ZmejaQIKw=;
+ b=cfMz+syoUKxlaEzAR2xO1Wy2VVWSjqbXUqshwqX5DRwDa8cw3ve4G/t0f/bIfnp9vBJ5EGvJp8Z5Pcl8jLKxVT/oK+Z/D0Ye7+H6OgqkF+1zJGOD0pF8nIKhjpEPFQBnBvqcDyRKjN6gIPoI0sfD7TDDbB0lzo1NI2RH6jkN05o=
+Received: from MWHPR12CA0049.namprd12.prod.outlook.com (2603:10b6:300:103::11)
+ by MWHPR12MB1695.namprd12.prod.outlook.com (2603:10b6:301:f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.16; Fri, 3 Dec
+ 2021 03:06:25 +0000
 Received: from CO1NAM11FT036.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:103:cafe::f4) by MWHPR12CA0071.outlook.office365.com
- (2603:10b6:300:103::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.24 via Frontend
- Transport; Fri, 3 Dec 2021 03:06:23 +0000
+ (2603:10b6:300:103:cafe::c8) by MWHPR12CA0049.outlook.office365.com
+ (2603:10b6:300:103::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.17 via Frontend
+ Transport; Fri, 3 Dec 2021 03:06:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,17 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  CO1NAM11FT036.mail.protection.outlook.com (10.13.174.124) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4755.13 via Frontend Transport; Fri, 3 Dec 2021 03:06:23 +0000
+ 15.20.4755.13 via Frontend Transport; Fri, 3 Dec 2021 03:06:25 +0000
 Received: from equan-buildpc.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Thu, 2 Dec
- 2021 21:06:20 -0600
+ 2021 21:06:22 -0600
 From: Evan Quan <evan.quan@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH V4 11/17] drm/amd/pm: correct the usage for
- amdgpu_dpm_dispatch_task()
-Date: Fri, 3 Dec 2021 11:05:34 +0800
-Message-ID: <20211203030540.1710564-11-evan.quan@amd.com>
+Subject: [PATCH V4 12/17] drm/amd/pm: drop redundant or unused APIs and data
+ structures
+Date: Fri, 3 Dec 2021 11:05:35 +0800
+Message-ID: <20211203030540.1710564-12-evan.quan@amd.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20211203030540.1710564-1-evan.quan@amd.com>
 References: <20211203030540.1710564-1-evan.quan@amd.com>
@@ -69,28 +69,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB03.amd.com
  (10.181.40.144)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 14340925-8a7f-4266-3adf-08d9b609e355
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4534:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4534A188A909BBDD315FD0ADE46A9@MN2PR12MB4534.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:962;
+X-MS-Office365-Filtering-Correlation-Id: 5788394a-2347-43aa-c71e-08d9b609e469
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1695:
+X-Microsoft-Antispam-PRVS: <MWHPR12MB1695F9EA938108BAA4F11C4CE46A9@MWHPR12MB1695.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:81;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cH0sPPGMcvZSaptXK5Fj5VegQtX1CUxbpoS3CtCKf3PwZ/KEO1+2POh2mN7B5N7GJ0m4iNeJcCY8FR6ctGKLBvU/Nz2r0wfqVDgOnCQC2vc1vAKceEDK2xSRnMn5Ek8nBzXBTrTcv3P7gQRS1PuNuVEoR8Wnor7CDSdMlfcb6hadGrumv4FbbBYGl5HYYBnfC/7Q+V7/MWZttM+mmNW7nxOT3uuL5tkxxUW7KFAXAWRUDRBREcJsn4iDu4BD8x9Id4DDowPMM0E7+BjZAtzHGoXmsPIVZwuIttHufM1Nbzj7jG9Y3xkKSgUO4ePZFW/icqHWKKHnUOOTIpe4SKJQAW666P2g9yp4j45vs548jq6p5aoHAJ+/cqm2tid020ix4X4qyqVebqOOrBCnGKfT+B1FuxMD2qKzdwUdi2BYWyYzd5Cmw/rS94YSmviiNskcHV1XFIIWacbF4ajf5viD12KuMRKIckFvNwL7MpMlfNbSvlZBiWOH83XsiybZ2obrTICojM1QGyDLnxHaRzIchu+H0NxMAwTieNUb02jmlxMGZ2kO7AEXCYfJlfA8NXLAtysJ2k+NtcsTd6XwAS31krbVRflriiQmqYCTXU0AHZYAg4OgS6ZnDzBQQ2cGPrqq6xyd69ZnTjSKysX52ETJzqT951mEVN3y9W7CeNwwdfJUp+lPnmPF0A5lJmPCmK2ikKXlE1Vs1/oEiTREfV7L4TdbAobdXy/8RuWQ431sfgTHKbAjudi7M5XVHi0rZNJNEzP0tZZc1ZdeSnraTEpBs2Z0CcDawzTvfCd83PitpFU=
+X-Microsoft-Antispam-Message-Info: tIVmgVMyP0Esg5uM81+jUsOL6d8MGtAqNaTUz4HeJuXJdho4KLOeaHM36Llw67KzjrDqjg9GrvGZ75sxY1a0jta4oj9P8NJOTwg/je6+UOYoo4E5dKhXjB/N2Idm5A6nbZ64qdBhj13Hz4yWoIpdZHJRlB9mCionVncUt3EdYLUilv9TwEpNufzps+ClvmoasM0EIY/1U+GHH2kIX1Iry2nSKOB0qxgQgN3+5fVKLFaJ3tjcNvk7k2LhvxPBgopmHRKTIAtE8dHAO9hjzHsnIf/AZps1CoDuShrlE7Zzn+yMvsNIu4jtWqWZy5bNBo+Zxi2owTnWVgOE5TuFxCaHRL7nYlpuEwbxdHkvKQ7mBt0c3hFVJ3Pdz1d4iUCEF3dqtmD49bP41oN+IqoNQrbkpzKWi4M+4QntFMdwsTVCQ5sw+tE6Ebgt/wGPoJwT+GKlO10FF1GRqKJ6L/37AnTaUqPVQO1pVnAUxrYek2/O3/YW8yFNTN15JP1WTTqQFtNn5bMy9ZtD5pn63o01oKIin/mERgsUSFPMv0btMEmVVc08sW6n8FUT0dvw3Hr0AEmuvRQG0OnIFQu9DWS0ElbaHKPKugvFnWB7d6otTjN+ZrarlfVmM2SruzHuhQi6kboczwE+dDjYmhN94a1uouKwxVsh6jiOzutdK9F0fXv2/HWSYiYJFQxySJXQWzpHvUlVjjqn8vkhozw5IIbHTeHCeaSPnxuaHY15X/A4PtDw/MKeqSS3JDLt1wexyqRkRccwGcYClKB2bvjm6f5cl2VYMNw1+8/SsPnkb8odaC2jbnCOMJ9UejHW7v+ukDDbPkQD
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(40470700001)(36756003)(2616005)(8676002)(82310400004)(316002)(44832011)(54906003)(6916009)(2906002)(47076005)(336012)(426003)(36860700001)(8936002)(5660300002)(40460700001)(6666004)(70586007)(86362001)(16526019)(83380400001)(26005)(7696005)(508600001)(4326008)(81166007)(356005)(1076003)(186003)(70206006)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(40470700001)(4326008)(82310400004)(83380400001)(40460700001)(6666004)(8936002)(26005)(336012)(44832011)(16526019)(36860700001)(7696005)(81166007)(36756003)(186003)(2616005)(356005)(8676002)(70586007)(70206006)(426003)(47076005)(54906003)(316002)(86362001)(6916009)(508600001)(5660300002)(2906002)(1076003)(21314003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2021 03:06:23.3047 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 14340925-8a7f-4266-3adf-08d9b609e355
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2021 03:06:25.1015 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5788394a-2347-43aa-c71e-08d9b609e469
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT036.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4534
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1695
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,110 +107,111 @@ Cc: Alexander.Deucher@amd.com, lijo.lazar@amd.com, Kenneth.Feng@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We should avoid having multi-function APIs. It should be up to the caller
-to determine when or whether to call amdgpu_dpm_dispatch_task().
+Drop those unused APIs and data structures.
 
 Signed-off-by: Evan Quan <evan.quan@amd.com>
-Change-Id: I78ec4eb8ceb6e526a4734113d213d15a5fbaa8a4
+Change-Id: I57d2a03dcda02d0b5d9c5ffbdd37bffe49945407
 ---
- drivers/gpu/drm/amd/pm/amdgpu_dpm.c | 18 ++----------------
- drivers/gpu/drm/amd/pm/amdgpu_pm.c  | 26 ++++++++++++++++++++++++--
- 2 files changed, 26 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h | 49 -------------------------
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h  |  4 ++
+ 2 files changed, 4 insertions(+), 49 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-index 6d9db2e2cbd3..32bf1247fb60 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_dpm.c
-@@ -554,8 +554,6 @@ void amdgpu_dpm_set_power_state(struct amdgpu_device *adev,
- 				enum amd_pm_state_type state)
- {
- 	adev->pm.dpm.user_state = state;
+diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
+index b0791e855ad3..de76636052e6 100644
+--- a/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
++++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h
+@@ -88,19 +88,6 @@ struct amdgpu_dpm_thermal {
+ 	struct amdgpu_irq_src	irq;
+ };
+ 
+-enum amdgpu_clk_action
+-{
+-	AMDGPU_SCLK_UP = 1,
+-	AMDGPU_SCLK_DOWN
+-};
 -
--	amdgpu_dpm_dispatch_task(adev, AMD_PP_TASK_ENABLE_USER_STATE, &state);
- }
- 
- enum amd_dpm_forced_level amdgpu_dpm_get_performance_level(struct amdgpu_device *adev)
-@@ -723,13 +721,7 @@ int amdgpu_dpm_set_sclk_od(struct amdgpu_device *adev, uint32_t value)
- 	if (!pp_funcs->set_sclk_od)
- 		return -EOPNOTSUPP;
- 
--	pp_funcs->set_sclk_od(adev->powerplay.pp_handle, value);
+-struct amdgpu_blacklist_clocks
+-{
+-	u32 sclk;
+-	u32 mclk;
+-	enum amdgpu_clk_action action;
+-};
 -
--	amdgpu_dpm_dispatch_task(adev,
--				 AMD_PP_TASK_READJUST_POWER_STATE,
--				 NULL);
+ struct amdgpu_clock_and_voltage_limits {
+ 	u32 sclk;
+ 	u32 mclk;
+@@ -239,10 +226,6 @@ struct amdgpu_dpm_fan {
+ 	bool ucode_fan_control;
+ };
+ 
+-#define amdgpu_dpm_reset_power_profile_state(adev, request) \
+-		((adev)->powerplay.pp_funcs->reset_power_profile_state(\
+-			(adev)->powerplay.pp_handle, request))
 -
--	return 0;
-+	return pp_funcs->set_sclk_od(adev->powerplay.pp_handle, value);
- }
+ struct amdgpu_dpm {
+ 	struct amdgpu_ps        *ps;
+ 	/* number of valid power states */
+@@ -339,35 +322,6 @@ struct amdgpu_pm {
+ 	bool			pp_force_state_enabled;
+ };
  
- int amdgpu_dpm_get_mclk_od(struct amdgpu_device *adev)
-@@ -749,13 +741,7 @@ int amdgpu_dpm_set_mclk_od(struct amdgpu_device *adev, uint32_t value)
- 	if (!pp_funcs->set_mclk_od)
- 		return -EOPNOTSUPP;
- 
--	pp_funcs->set_mclk_od(adev->powerplay.pp_handle, value);
+-#define R600_SSTU_DFLT                               0
+-#define R600_SST_DFLT                                0x00C8
 -
--	amdgpu_dpm_dispatch_task(adev,
--				 AMD_PP_TASK_READJUST_POWER_STATE,
--				 NULL);
+-/* XXX are these ok? */
+-#define R600_TEMP_RANGE_MIN (90 * 1000)
+-#define R600_TEMP_RANGE_MAX (120 * 1000)
 -
--	return 0;
-+	return pp_funcs->set_mclk_od(adev->powerplay.pp_handle, value);
- }
+-#define FDO_PWM_MODE_STATIC  1
+-#define FDO_PWM_MODE_STATIC_RPM 5
+-
+-enum amdgpu_td {
+-	AMDGPU_TD_AUTO,
+-	AMDGPU_TD_UP,
+-	AMDGPU_TD_DOWN,
+-};
+-
+-enum amdgpu_display_watermark {
+-	AMDGPU_DISPLAY_WATERMARK_LOW = 0,
+-	AMDGPU_DISPLAY_WATERMARK_HIGH = 1,
+-};
+-
+-enum amdgpu_display_gap
+-{
+-    AMDGPU_PM_DISPLAY_GAP_VBLANK_OR_WM = 0,
+-    AMDGPU_PM_DISPLAY_GAP_VBLANK       = 1,
+-    AMDGPU_PM_DISPLAY_GAP_WATERMARK    = 2,
+-    AMDGPU_PM_DISPLAY_GAP_IGNORE       = 3,
+-};
+-
+ u32 amdgpu_dpm_get_vblank_time(struct amdgpu_device *adev);
+ int amdgpu_dpm_read_sensor(struct amdgpu_device *adev, enum amd_pp_sensors sensor,
+ 			   void *data, uint32_t *size);
+@@ -417,9 +371,6 @@ int amdgpu_dpm_smu_i2c_bus_access(struct amdgpu_device *adev,
  
- int amdgpu_dpm_get_power_profile_mode(struct amdgpu_device *adev,
-diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-index fa2f4e11e94e..89e1134d660f 100644
---- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-+++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
-@@ -187,6 +187,10 @@ static ssize_t amdgpu_set_power_dpm_state(struct device *dev,
+ void amdgpu_pm_acpi_event_handler(struct amdgpu_device *adev);
  
- 	amdgpu_dpm_set_power_state(adev, state);
+-int amdgpu_dpm_read_sensor(struct amdgpu_device *adev, enum amd_pp_sensors sensor,
+-			   void *data, uint32_t *size);
+-
+ void amdgpu_dpm_compute_clocks(struct amdgpu_device *adev);
+ void amdgpu_dpm_enable_uvd(struct amdgpu_device *adev, bool enable);
+ void amdgpu_dpm_enable_vce(struct amdgpu_device *adev, bool enable);
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
+index beea03810bca..67a25da79256 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
+@@ -26,6 +26,10 @@
+ #include "amdgpu_smu.h"
  
-+	amdgpu_dpm_dispatch_task(adev,
-+				 AMD_PP_TASK_ENABLE_USER_STATE,
-+				 &state);
+ #if defined(SWSMU_CODE_LAYER_L2) || defined(SWSMU_CODE_LAYER_L3) || defined(SWSMU_CODE_LAYER_L4)
 +
- 	pm_runtime_mark_last_busy(ddev->dev);
- 	pm_runtime_put_autosuspend(ddev->dev);
- 
-@@ -1278,7 +1282,16 @@ static ssize_t amdgpu_set_pp_sclk_od(struct device *dev,
- 		return ret;
- 	}
- 
--	amdgpu_dpm_set_sclk_od(adev, (uint32_t)value);
-+	ret = amdgpu_dpm_set_sclk_od(adev, (uint32_t)value);
-+	if (ret) {
-+		pm_runtime_mark_last_busy(ddev->dev);
-+		pm_runtime_put_autosuspend(ddev->dev);
-+		return ret;
-+	}
++#define FDO_PWM_MODE_STATIC  1
++#define FDO_PWM_MODE_STATIC_RPM 5
 +
-+	amdgpu_dpm_dispatch_task(adev,
-+				 AMD_PP_TASK_READJUST_POWER_STATE,
-+				 NULL);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
- 	pm_runtime_put_autosuspend(ddev->dev);
-@@ -1340,7 +1353,16 @@ static ssize_t amdgpu_set_pp_mclk_od(struct device *dev,
- 		return ret;
- 	}
- 
--	amdgpu_dpm_set_mclk_od(adev, (uint32_t)value);
-+	ret = amdgpu_dpm_set_mclk_od(adev, (uint32_t)value);
-+	if (ret) {
-+		pm_runtime_mark_last_busy(ddev->dev);
-+		pm_runtime_put_autosuspend(ddev->dev);
-+		return ret;
-+	}
-+
-+	amdgpu_dpm_dispatch_task(adev,
-+				 AMD_PP_TASK_READJUST_POWER_STATE,
-+				 NULL);
- 
- 	pm_runtime_mark_last_busy(ddev->dev);
- 	pm_runtime_put_autosuspend(ddev->dev);
+ int smu_cmn_send_msg_without_waiting(struct smu_context *smu,
+ 				     uint16_t msg_index,
+ 				     uint32_t param);
 -- 
 2.29.0
 
