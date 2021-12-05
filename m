@@ -2,93 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE1044693CD
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Dec 2021 11:28:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 499E94693EC
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Dec 2021 11:29:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36BF273E95;
-	Mon,  6 Dec 2021 10:21:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C217B7B7D6;
+	Mon,  6 Dec 2021 10:22:17 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2050.outbound.protection.outlook.com [40.107.237.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 469366EA76
- for <amd-gfx@lists.freedesktop.org>; Sun,  5 Dec 2021 10:01:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ejl3Vl4i7v5PSCJfd57846cvJZ5mcsv4RpSSxVMrhg1ZBcGeRJeQry0ybgNqEv9eBWec/1LbwXFoQbDwCvd8eHpi2Dg+uVhIDx+LcVj1mdAQVDPhzvQhnshkTYMII9xD7bwSTohYFtq51xgX75ZSmayjQ0KBQ/792u7QiQLA2yMjsLo0F1Y5lYTjGhR/GlyF/agI5uv/j7/+2/o1kNJ4LUf8t0+1gX/Nf1D0eVn3s8GgT6Tc3hemz7z+0Pt4M76prjDy25Aq1014D4K9i01LBrAnve/oEZ4bSfyIRju9QS9PKSB+ewCu7FjvLPE5+Nm432zhY4r8g4tmBLu4UJpYdQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=svS4eoUR+xSVKTuUPLJZswB4um8LpRm8UcyU6jBnMkE=;
- b=eSZT6GifEFDjwCpltXmP/1Elt752scndUCjpyKR9U+XEkAL+QJrwgHrEb5U6GTnY4beMpaZltEMa15yKDdhe7a2KOHe+r6RE1+0y/Zoi8ytAa8zn+mnAAq9whasllurbXCwqhH4X6ehswLi+JYsXOg2YdZeXZifUNkIPMe9UkZbhtHefdaZLdNmuUCRLyLFJ6M6DFHM83tLJCYrjvBJRpyZDQjZhwo9Ad5a1WLW+GajPjh2eM9Ex/7Mtp8zEJnTIahNHJNoiGtsCivmfmaCtOWZ3f370Mc6Zab26nwdhnR/ym5mFpcmeoO3hHXiamz6nRl+x9V2npbOP2J2UzzhhXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=svS4eoUR+xSVKTuUPLJZswB4um8LpRm8UcyU6jBnMkE=;
- b=k6VfbxRuaY9WOKhfmBH49uliHYFU4uDkcQ2nqh4V5vyJ7UqB2phenq+6c+Mmy2b0eomZ+OJL9PLOiecIRN3tBuLCuOSklTbyNaZUzbJ38crlJ+MupYqEQUQNAPEZ35iKmzSwrQ7zk2HmORn2AlGHi52ldVUs6tpHNX4BJMiVlMc=
-Received: from DS7PR03CA0055.namprd03.prod.outlook.com (2603:10b6:5:3b5::30)
- by BN7PR12MB2804.namprd12.prod.outlook.com (2603:10b6:408:2f::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.11; Sun, 5 Dec
- 2021 10:01:47 +0000
-Received: from DM6NAM11FT015.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b5:cafe::66) by DS7PR03CA0055.outlook.office365.com
- (2603:10b6:5:3b5::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.17 via Frontend
- Transport; Sun, 5 Dec 2021 10:01:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT015.mail.protection.outlook.com (10.13.172.133) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4755.13 via Frontend Transport; Sun, 5 Dec 2021 10:01:47 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Sun, 5 Dec
- 2021 04:01:46 -0600
-Received: from stanley-test.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Sun, 5 Dec 2021 04:01:44 -0600
-From: Stanley.Yang <Stanley.Yang@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Hawking.Zhang@amd.com>,
- <John.Clements@amd.com>, <tao.zhou1@amd.com>, <candice.li@amd.com>,
- <yipeng.chai@amd.com>, <evan.quan@amd.com>
-Subject: [PATCH Review 1/1] drm/amd/pm: print errorno if get ecc info failed
-Date: Sun, 5 Dec 2021 18:01:43 +0800
-Message-ID: <20211205100143.26904-1-Stanley.Yang@amd.com>
-X-Mailer: git-send-email 2.17.1
+Received: from smtp6-g21.free.fr (smtp6-g21.free.fr [212.27.42.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C8937322E
+ for <amd-gfx@lists.freedesktop.org>; Sun,  5 Dec 2021 20:18:30 +0000 (UTC)
+Received: from zimbra39-e7.priv.proxad.net (unknown [172.20.243.189])
+ by smtp6-g21.free.fr (Postfix) with ESMTP id 7C6207802FE;
+ Sun,  5 Dec 2021 21:18:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+ s=smtp-20201208; t=1638735507;
+ bh=S2W1GOl7Wfwiv5Xe9e+TPClWk+KffDc79gFcp8tmrms=;
+ h=Date:From:To:In-Reply-To:Subject:From;
+ b=iB34Zx6wdv/qzyY8x9rdoNYif7381rTC7L1KARqHdjFzsQBHUhtny4mf1u4IjW90s
+ /gYCU+Ih8PBmwE+cYgiZLX8QIWp55hxhsD4NgQDCnQpu3ip7U7igWis5R8QCdsbrh9
+ 9vrJxBpPdoe0YemIyERlw1dcOqw05dvRxdkBaSSoMA9+8TGn0FZJ2+gDAqF6krfzU1
+ p0xpL67LTfUhXOYjCK8DcM+RLuqd2J2Ksl7Hx0SMUJ7yO+Uhoy9wTQ0An1CtOdxHMz
+ Ygh1PriuF0fick2hGY+mg1vcPpgqmkHcHMafzOBT00dchOiPg6UoyRph2mTWivnewA
+ 4CG5qfjFVrpvg==
+Date: Sun, 5 Dec 2021 21:18:27 +0100 (CET)
+From: Yann Dirson <ydirson@free.fr>
+To: amd-gfx list <amd-gfx@lists.freedesktop.org>, 
+ Rodrigo Siqueira <rodrigo.siqueira@amd.com>
+Message-ID: <1064509373.27600770.1638735507175.JavaMail.root@zimbra39-e7>
+In-Reply-To: <1473700406.26541073.1638716639650.JavaMail.root@zimbra39-e7>
+Subject: Looking for clarifications around gfx/kcq/kiq
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 67632bd9-bd14-4ca4-e8c2-08d9b7d64028
-X-MS-TrafficTypeDiagnostic: BN7PR12MB2804:
-X-Microsoft-Antispam-PRVS: <BN7PR12MB28045056EEA869A03552E0729A6C9@BN7PR12MB2804.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:510;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: obUELPmMT5oak0k8Q8cTZC7lDMYUMLTFPDkChsbkEu6e8gEvsFMrdJdruPARgmEuSOcik8CLHJKPXbVoIhdDrSIrXMAb86kArNiqjlx2yzdCbvovOSXm+BNKyRAP4gPUYO8tKpT16HucOopA34dxOXQ5ZXjHGTt5GK1gEa/43iFlxQdL7tD4gyD+l0UQWrC11ipcYyH2W/a8fzR67zcMlyK8Z7gfKqZK4MD5En4N27SXmNuLrxbGxWGGrCIZvry63PJpgaye2P9zJWvOEgeAAeOEuPNiSGt7fOCF1dso4gb8y8W3FTCJnjkT6oz6191OGI6IGi7OqSVqU/knz42Lb5bS8Cd4UVonrz6tWLIWj6VECJvj9Ljs/rYVsepGSHhNj1n61cHc9aczuoWBUHs75B56LpV0qtd3r+I38Cio3BMivtaDt4JtpPrzR0Vr+YV3Dwu38FJ8uisuFkL4yBt7mzgTXQh4VuqxORC7HYeMyRyXoCgESeS/f8NEIix0saciJOcCmZIgKtjbmxlFbD2ZDur+aKekEVdU2kNgClV56jXbFPaF6h5PxI5x5V2tBv5gQBrAJBU5IVJfGYKsAXFF4nTe9r9CaGJxq0N8zjWBCF2h5pUpuN/b6ER0fyftRbW+cjIOLv5/wyMiMJqwmNVSk1PwOigPm2oZXoqus6T1V+otgfpBj93uYtTPonMfFNnRATD9/QaPsMM6OAwogNiVyhE8cFwnKFCkc6bxwTKXJdV6OvsSx0ZJh1v1MoHUGUBNeWfSF8aTlQ6s/P1TCSeld92QboyOu1iiqLkUKQnkQEE=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(40470700001)(47076005)(81166007)(82310400004)(8676002)(2616005)(110136005)(36860700001)(186003)(40460700001)(4326008)(8936002)(26005)(316002)(36756003)(508600001)(2906002)(426003)(70206006)(83380400001)(336012)(4744005)(5660300002)(70586007)(7696005)(356005)(6636002)(1076003)(86362001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2021 10:01:47.6161 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 67632bd9-bd14-4ca4-e8c2-08d9b7d64028
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT015.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR12MB2804
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [88.120.44.86]
+X-Mailer: Zimbra 7.2.0-GA2598 (ZimbraWebClient - FF3.0 (Linux)/7.2.0-GA2598)
+X-Authenticated-User: ydirson@free.fr
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,28 +49,67 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Stanley.Yang" <Stanley.Yang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
----
- drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hello,
 
-diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-index 6e781cee8bb6..e0a8224e466f 100644
---- a/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-+++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/aldebaran_ppt.c
-@@ -1815,7 +1815,7 @@ static ssize_t aldebaran_get_ecc_info(struct smu_context *smu,
- 			       smu_table->ecc_table,
- 			       false);
- 	if (ret) {
--		dev_info(smu->adev->dev, "Failed to export SMU ecc table!\n");
-+		dev_info(smu->adev->dev, "Failed to export SMU ecc table! ret %d.\n", ret);
- 		return ret;
- 	}
+Context: trying to understand what happens with my Renoir passed through
+to a Xen domu [0] (starting with the "VCN disabled" because I don't need it
+now (so let's postpone the problem with its _fini) and with "PSP disabled"
+because the alternative issue seems easier to solve -- so ip_block_mask=0xF7).
+
+I'm slowed down by a number of additional terms:
+
+* KIQ: we have the acronym, but a few more words about it would be great:
+  it seems to relate to a ring buffer provided by the GFX IP, but this one
+  does not talk much to me (e.g. it tells me less than the names of the
+  "gfx" and "compute" ones)
+* "me", "mec" = ?  In some places at least "me" stands for "micro engine" but
+  what are those ?  A "mec" contains pipes which contain queues.  And in
+  amdgpu_ring the "me" field seems to identify a "mec"
+* "mes", rather looks like an IP/block family than the plural of "me".
+  A specific list of those IPs / hw blocks would be useful (maybe with
+  a diagram showing how they interact, much as what was started by
+  Rodrigo for the DC pipeline, but a first components/subcomponents diagram
+  would probably be helpful)
+* RLC ?  Looks like a "micro engine" inside the GFX IPs ?
+* one starting point for enhancing doc would be to start with amdgpu.h, where
+  a number of acronyms used in structs are not self-explanatory: IB, SS, CP,
+  ACP, CAC, HPD, ...
+
+Do we have somewhere a description of what the hardware expects to find in
+those queues ?
+
+About amdgpu_gfx_enable_kcq():
+- Isn't the `DRM_INFO("kiq ring mec %d pipe %d q %d\n"` line rather meant as
+  DRM_DEBUG ?
+- An error from amdgpu_ring_alloc() is reported as "failed to lock", but looks
+  like "failed to allocate space on ring" ?
+
+amdgpu_ring_alloc() itself is unconditionally setting count_dw, which looked
+suspicious to me -- so I added the check shown below, and it does look like
+ring_alloc() gets called again too soon.  Am I right in thinking this could be
+the cause of amdgpu_ring_test_helper() failing in timeout ?
+
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.c
+@@ -70,6 +70,9 @@ int amdgpu_ring_alloc(struct amdgpu_ring *ring, unsigned ndw)
+        if (WARN_ON_ONCE(ndw > ring->max_dw))
+                return -ENOMEM;
  
--- 
-2.17.1
++       /* check we're not allocating too fast */
++       WARN_ON_ONCE(ring->count_dw);
++
+        ring->count_dw = ndw;
+        ring->wptr_old = ring->wptr;
 
+
+About gfx_v9_0_sw_fini():
+- the 2 calls to bo_free are called here without condition, whereas they are
+  allocated from rlc_init, not directly from sw_init.  Is this asymmetry wanted ?
+
+
+Maybe such info should join the documentation at some point?
+
+[0] https://lists.freedesktop.org/archives/amd-gfx/2021-November/071855.html
