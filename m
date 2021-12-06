@@ -1,130 +1,130 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF6B04693E1
-	for <lists+amd-gfx@lfdr.de>; Mon,  6 Dec 2021 11:29:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 817AA4693C0
+	for <lists+amd-gfx@lfdr.de>; Mon,  6 Dec 2021 11:27:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11CB77B2B5;
-	Mon,  6 Dec 2021 10:21:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0E2D7A304;
+	Mon,  6 Dec 2021 10:21:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2056.outbound.protection.outlook.com [40.107.236.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48BC36E0FF
- for <amd-gfx@lists.freedesktop.org>; Mon,  6 Dec 2021 07:00:01 +0000 (UTC)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam08on2088.outbound.protection.outlook.com [40.107.101.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB5816E9BE
+ for <amd-gfx@lists.freedesktop.org>; Mon,  6 Dec 2021 07:47:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eRleMLFua0TwLeZh12EKqzkth/dAtLqFSs92koYOLF3JM7SM6xvAF6bGrmwX3IyfksJEy260daOv7Rl7suxJW621dShBlSOjmabF76KNTfgu8fHqCIlbaknouCWZPiGUW8njOYRhXpY4DOlvS6cER096naOscXthIVnal4UcBibPIp4PQ7ZOa3fkhMwGSq53lGS7GFFuznx0G6HLI6TTnu2huYmUY3BXJxvWdcSihHQfCNLS1gSpoiT148sLY/vaZJAMGOveUFXTGHDlTf/J3Tk9nUokXEN838mJ+0XVgOEPS/9M3u5stNgkdWj4z8c+TrM4O5s4/VOVR8uqW57Jsg==
+ b=crulYNEcZlaKBVoZ7kCNi4ro/NJtsIi5vuqk3dXoLCzgIuPoS3oZBQlUJWfjjrx/pJy1L1+PysM9XTRs3VciWAmuQXMdcDweP0BnX+JRqJaR/wqZqTgyF2CYv6JdcvmwPiOrZWcaorRPz5Z9M+XaYbpKqYPafaSJs1OHECZoCwoIdJoPKp9U4aClHcfgvuRJHwe5DzMLSXJzacz+fhohbKfF4H9acCudLVOuCp6x6CJ425AWy+GzCchP0RIlh+B5pb3qc+6mMsA08JLbP1t14ad3MdTEZW98VxMO7UfokwoquA84iBzYeCIZN796s2LfQEDV4aZ/JQBwakquU2mieQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JQBP/0YGBQhW/m6leL0mKKnu2UGNy8tOJf4ExY5koXU=;
- b=DUsZYE1KPIsUbAdYl4k2lf9t+bOSPjIygZdR9BWs74tJqeJRzVgCJ59LEfbSUyI0PazQWF21EwluEObWnrSveRyXz4UKfFcq2hYRm7UsRCzASOpILUCstC1Ox+3noHvp9udXkyrYwXyNfASCyc/Lx6Szg/lWZHSq4ibk8I8zV5TJ7brLcmd+Im8OlUlp4r9I5XwVyweaouRp5z2PYj7AxDr4CdikSAKkRKdcPBByXsuYosCubvKno4zy0fvRXQ9iAIM3Bf7pbNb85cF4CuhUBeat1AijXESMsvJZ6KvRcDrNIltAY6K9ZX4hiaE4q6syhTaE9CUE/bNiwCphL5VR0w==
+ bh=wKXV0EC+DQkERh+pzWjjBO/ZM+PZ7zN4ZSpJQlj9sqk=;
+ b=EsHh08zhyc+70PWmVCLdq7YMRNmmWQ9z+8QpscEwVyN4Qi83tuCWCx9gJHMoDFgTEIODJfRMY0XXJgYPr32FE77ySmJCjMMJfzICe2U1HFWUKbtBwjSYI+ypSuteUL99Gw476EA5N+EI0qA0e+GlGYpXiXB2umsdx9Is4mhJoA08lbweBfSGoP980Ef/MDcRKfGUpHKdyR9ixZ7ruCUl67VpYHzESfftQRb5brq1deCRLilqFhB8YFD+9NcGz+axUiXTFo4tZAKp0Wkf8MWcmsw2d2hNMjX+MW+Szcj5FzVv4rPQ0qS81l1t3mv6Q2hAkmPwcYJJRAz82TqgMnPQYA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JQBP/0YGBQhW/m6leL0mKKnu2UGNy8tOJf4ExY5koXU=;
- b=MuOxWRr6NZ36o1tJT4Vk/yuh+zmoNvwEE6kPz9e8szO97gx3MUoV5pjgR0HDlboya5FhWdKCX/0cj6EFhG2iwlosaoJUOT9be4qG+pS72CqeNn5FQpyIdSnNWwCvU2vDt/mtKFay3UZlf0bzmzL3b4nvy/hUdzSMouziOM60Tu4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3930.namprd12.prod.outlook.com (10.255.174.19) by
- DM5PR12MB1243.namprd12.prod.outlook.com (10.168.237.22) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4755.21; Mon, 6 Dec 2021 06:59:58 +0000
-Received: from DM6PR12MB3930.namprd12.prod.outlook.com
- ([fe80::41ea:d7dc:f041:633c]) by DM6PR12MB3930.namprd12.prod.outlook.com
- ([fe80::41ea:d7dc:f041:633c%5]) with mapi id 15.20.4734.030; Mon, 6 Dec 2021
- 06:59:58 +0000
-Message-ID: <ec924948-c76c-08b4-c788-5017a2a18692@amd.com>
-Date: Mon, 6 Dec 2021 12:29:44 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH 2/2] drm/amdgpu: allow APU to send power gate message when
- dpm is disabled
+ bh=wKXV0EC+DQkERh+pzWjjBO/ZM+PZ7zN4ZSpJQlj9sqk=;
+ b=dRcUtGUGp9flnjbF8plhLGnuw7VeJQbEJxHoKIzFOi0syCoAFQ+ZxsAHTABKHXPXzsUWNd+aA9WIGLNxviKLmEESig54p3UAlSZ+GKUc+wh0Q3dF3DZ/SSQa4WCY/wa0AU+Iog/58Y5vhuhoA6Vz8V9IfEvfGqre+Y8zElJRBDY=
+Received: from DM6PR12MB4650.namprd12.prod.outlook.com (2603:10b6:5:1fd::27)
+ by DM5PR12MB1289.namprd12.prod.outlook.com (2603:10b6:3:79::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.19; Mon, 6 Dec
+ 2021 07:33:44 +0000
+Received: from DM6PR12MB4650.namprd12.prod.outlook.com
+ ([fe80::d434:e9b4:307c:2819]) by DM6PR12MB4650.namprd12.prod.outlook.com
+ ([fe80::d434:e9b4:307c:2819%7]) with mapi id 15.20.4755.021; Mon, 6 Dec 2021
+ 07:33:44 +0000
+From: "Zhou1, Tao" <Tao.Zhou1@amd.com>
+To: "Chai, Thomas" <YiPeng.Chai@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH V2 11/11] drm/amdgpu: Move error inject function from
+ amdgpu_ras.c to each block
+Thread-Topic: [PATCH V2 11/11] drm/amdgpu: Move error inject function from
+ amdgpu_ras.c to each block
+Thread-Index: AQHX5qG+NRuL41MVqU2q0Ry34xSfRawlGKAA
+Date: Mon, 6 Dec 2021 07:33:44 +0000
+Message-ID: <DM6PR12MB46506836B1671033C5EFD568B06D9@DM6PR12MB4650.namprd12.prod.outlook.com>
+References: <20211201105250.298525-1-YiPeng.Chai@amd.com>
+ <20211201105250.298525-11-YiPeng.Chai@amd.com>
+In-Reply-To: <20211201105250.298525-11-YiPeng.Chai@amd.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: "Yu, Lang" <Lang.Yu@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <20211203065407.3714697-1-lang.yu@amd.com>
- <20211203065407.3714697-2-lang.yu@amd.com>
- <52f4d894-b122-a831-8182-70bcc2e1ce94@amd.com>
- <DM6PR12MB4250A082C1B20249D79406E6FB6D9@DM6PR12MB4250.namprd12.prod.outlook.com>
- <8f7f1c6f-2f01-00b0-ff52-e50864ab78a7@amd.com>
- <DM6PR12MB4250FF2A11037B18176DE1EFFB6D9@DM6PR12MB4250.namprd12.prod.outlook.com>
- <DM6PR12MB42500FDF83B2FF999385D5E3FB6D9@DM6PR12MB4250.namprd12.prod.outlook.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <DM6PR12MB42500FDF83B2FF999385D5E3FB6D9@DM6PR12MB4250.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0024.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:97::12) To DM6PR12MB3930.namprd12.prod.outlook.com
- (2603:10b6:5:1c9::19)
-MIME-Version: 1.0
-Received: from [10.252.81.250] (165.204.159.242) by
- PN3PR01CA0024.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:97::12) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4755.14 via Frontend Transport; Mon, 6 Dec 2021 06:59:54 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3b1244a4-aec4-4615-de15-08d9b88603a2
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1243:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB124369527BF347F1CBF4E58E976D9@DM5PR12MB1243.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sVr1Ns6VmZp+UBEEprep7lv/9uI84pSmq197gja0XspW6Upj8AmrRgP9YGKjcTs9Z0bxabdDmXBPpvoJ6Tvhu1XOc686WjNE+U4zbTnBsPYHOioiP2KrhCIH+kgGsizpKl2Z8Q+QiBb6qUUz7Fp/uZMThe+hCR6KMAQaJdTSs0iqoDECiFM8YjVHRH/Ksy2Iy70VE3U1FbUwHMBZAumAsgsuK7PrRzVX+Z69rVw2v4DCBK6QMb0V5bBL4kpUyEi3cIFoGG/uKj72t5n5PM7rMrqq9X4are58aiTFHWQ2WMosuEDdSERWicAQdLPHXQ3xn295VDzY7RnANKNhNl2RpWwjDHCKaVW7NBnCtGV+ZVwwYy5P6k7Q/IPCWb03UsIqyqlPDuJdkX6odzDvPzDQ1p4S7UANVqvBNaJemUafqz9zy5F9z3s4syqeS9YHLHrAYD7gIVMyVBv8P2BK7OU04c/Hjhk4RRhsG7vF04qA3kjEvsjr3XnTIdU1JAs7l887IPeSEL9qO/RDhgtZpI0utmtDCqW20URoFCxq3p6Uoio088EbM4xnLz+K44oIspyHqZTJzoKM5A/NhGsNbZUic5+C9vm+TpQYIp//SXCRzzqGfRmZ+FecKhJQgs/koDs6e9gGaT17746i3yQnsqw8D4aR0tPmM1ws/NDhg82RZNE3ybAdH/7vQkY6QxbjXilqt1zH9njKcDoQIXB1LQzJ1t94cmMu1jMK0V0K4Fa7O6c=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3930.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(15650500001)(83380400001)(186003)(16576012)(316002)(8676002)(54906003)(31696002)(110136005)(5660300002)(36756003)(26005)(2906002)(8936002)(53546011)(66556008)(956004)(508600001)(6666004)(31686004)(86362001)(6486002)(38100700002)(66476007)(4326008)(66946007)(2616005)(45980500001)(43740500002);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-12-06T07:29:04Z; 
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
+ Only-AIP 2.0;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=89efef42-429b-4683-a9de-f148ff71dfbc;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
+msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_enabled: true
+msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_setdate: 2021-12-06T07:33:41Z
+msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_method: Standard
+msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_name: AMD Official Use
+ Only-AIP 2.0
+msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_actionid: 83947b4d-ee27-4694-b145-f7af6ed49247
+msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_contentbits: 0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fc37bb58-282b-455a-5810-08d9b88abbbf
+x-ms-traffictypediagnostic: DM5PR12MB1289:EE_
+x-microsoft-antispam-prvs: <DM5PR12MB1289635E2CD1DE429E25115BB06D9@DM5PR12MB1289.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:110;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 8I/T4rSvRMv8djZS0XCe7vX2+gwbA4jCwt/RAJRFu9S93npsDcHL6OlmODl/j/RahuaFeBhHjq2NMLAtxwjt+dKGdwWkY7ieNoAe2y/mH9R8JK7KrUdpZV+rN2PhKLd0rjsDyA1cbXM38W1hlYQLJx++ERACjTOklPG+T3heeeXjT2EJ/Oa88ruwF82ttAWHGP6sgfojkVNiiBkczFpbo5kqig/tf/TD7PHUBcgr4jcJi/ORIIN7NvoweKSh/0qMcYMNHGc6MCPyH9Pw6aNrNZ8AbJ+Jzzud6jKH9+a8Ra+jrQsSpDszFsTtHZ7Rxnom5/2VCYUMlfVSBFV4I6/YVZpE87xNSSRzfMeh+eixVanFfzagaIP2meGFfiJHA3bflHMvWZ/ETwWc1NNs2dcabvr7tbz+zBF6K5z0TczGA0q3CXyWCoZLsX1vH63oI7hXcdrSgPr0eY/2UQ5R6lRpXz5R60K/tnm8mGKcmvg5plK5zWRZOWZjfeC+U3szkMUYxsvI0Vd8xt6TxzLCKsOkRR7pqZpDInkJ8NnGWEERBOdMsH+/l80yXEsIWCpY0yXu4t0/icWqdw2tZJu4YxPL3NyM4ubg7cSK8LfPTmbWaWY9AEi5/GezBYuYvpre720jxTFP56/666d55gQvmNIg4+DBnEsf4Oozg1GoF/NATsybrRZKtrMpQFbhuTiY3rbzGPY8Y2EYCJ71bPDraOfh0w==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB4650.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(110136005)(66556008)(26005)(9686003)(66476007)(64756008)(83380400001)(55016003)(52536014)(316002)(8676002)(8936002)(76116006)(66946007)(66446008)(4326008)(86362001)(186003)(71200400001)(30864003)(6506007)(53546011)(122000001)(2906002)(508600001)(7696005)(38100700002)(5660300002)(33656002)(38070700005)(579004);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VmJ3YkNlYUk5VjF2dEZZc016akx3eHJCdllYY1hnMmwyRlFWRk5GZThvNU5x?=
- =?utf-8?B?a1d3WE9veGozNlRuamRiTjF0U3d2N3ZYblVpbW42NnREeDJTbTcwUU0rODIr?=
- =?utf-8?B?KzRWMjhGd0V0Nk9iWXZYb012L1dwSXdFTlhEc1VxZ1dLZFdRUEtubVhXUFhN?=
- =?utf-8?B?SnBPSlRNdms2OHpKZkI2K2NFaFVkYnFYMjJCQTA5ejlPaTl3YTE1UkZoMjA2?=
- =?utf-8?B?VjdJZXkrZTRHSTAyQmR5VHg2alp6M2E4T0Y0YXhET2R3U0NHT1lXcjZqbTI3?=
- =?utf-8?B?STVmYjhCTUNyVTNpTVY4dytDK1dHR2J0NE9jeXFOVlF0ZkEwa1luRjhhWmY4?=
- =?utf-8?B?QktneXBVdkw5YS9TamNqWVVWY0hVMkVJdDhaMC91TmFkWXNKN01wQ3AvZUxz?=
- =?utf-8?B?Zk1oVFlBRnBsQnQ2NXVLU3JQbzNOSkJ4VldVdlVWTUVYajhzVXB3dnFDMEVS?=
- =?utf-8?B?ZDBESTQ3aVlJTmFEZk1BQnZuRXNhdjZvd2doWEs4VmZJbjN5R0dZam8rMWtj?=
- =?utf-8?B?UUQ1VmUrQngrcHZPNjlXQkdMbXFPaXFIR0tUV0JhRGhQNlFXSVM5ekpRWnJK?=
- =?utf-8?B?ZWRQWHBocmVLZm82ViswL2JGcGhTeCtIWGhNNytocDc3MzErMWdEb0lPeVFt?=
- =?utf-8?B?K3JVWGtHcVZ3RWJqM09ob2UvQnBqR2E4S3ExaktSeW5QNXJMYmhIWmd6TFhL?=
- =?utf-8?B?MDQ5VTBPK0VhaU1LV09vQThsUTZVck5WMFg3VVlzeWJ6VUJEc1pXajR2cGZH?=
- =?utf-8?B?WVkyN0FkaFB5SlczdEJmNUdSWnJwcDYwZ293N1ZnQ0tnYkpEWDk1NWI2Ly9H?=
- =?utf-8?B?andQRy9JY2RPZU8xWEg1czA4dE12SW9TUE54ZkljV3JESjZzcWd1Z3k0U0tN?=
- =?utf-8?B?d0F5UUN5RHNQYlBWOE01QS9wUGprNU04THg2R3gyOUhVWEhZak1NZUVLRit4?=
- =?utf-8?B?OGVRV25GTW11L0UwM0p2WHdaUEs2bkRjaUF1ZXdlUXkzS3hMVGRFSDBoRVJq?=
- =?utf-8?B?TUpYZlBYZWVNUnNWTGxKamM2Y0IxdThBZFgyUFlmb0V0azVVOEVGL3RSYm8v?=
- =?utf-8?B?L09iTVFBWEpNVEZLMnhzVEtueW1keThCaE1qK2Z2RWZQOXVOVTQ0QVZXUW9R?=
- =?utf-8?B?cHI4d3ZKekdKS1BOSlBLck0yNVJHY3pWQktoNERITmVvbUpZUzRHZkNmb0Ev?=
- =?utf-8?B?NlZrbHNFZDF6REZ2WW1lbHBXRjdTSHQraGJtbURaRFBwRUlCaHBVRDdBQm9Q?=
- =?utf-8?B?ZFdsRE5FbGJGdnhRSHBIVVY0U2RyTjQ3UlNlVzRJa3ZUdXJQV0Z1cWx3UDlG?=
- =?utf-8?B?MUVTZnM3UkpMaGNySTI5d25IeHNaeVVDcmRLWFU3d1o2QmlqeE0yc3BiYURn?=
- =?utf-8?B?UzVTaUVGbVgreUltaGhNNFA0MW9nOHpPbys1bUNrQ2ZEelFqbEdLVkhRQTVq?=
- =?utf-8?B?YVNSc3FCZ1U5UVE5Vit0M3lUcFZDK0RrNzNXdVRUMC9SUGYybFFpUEFMUk0r?=
- =?utf-8?B?Uk9kS0ZGQnZ1Y1JDaXUxdDB5MGkvMUVPVTVmaU1vVXZXVGFBZnFraEhVbWxh?=
- =?utf-8?B?L1B0dCswYzBQaFBrcVZkeTd1NUF3dWYzMnVaQVRrekRLWHVUSDVhTHhYZHl4?=
- =?utf-8?B?NGVoVG41R1RlMXJIcDJPQlA3Q1ArZmxLbHRqY1MxT0kyaDAvUVRSL3VYVkMw?=
- =?utf-8?B?L3B0T2tmeEdlWkJWNUE5TVhwVWVGd08rbk9uUTFPSFc5VVowaGZ3aUJnME1G?=
- =?utf-8?B?ZGRROVdneWFyQ0RqYkoxNkxKc3dXM2lmQkg5OXJieDZvK0hkVVN0RFE2WG5Z?=
- =?utf-8?B?OGNpVlZmcU16aDhod3cvNXl4UnI1ZXZqT2krTUdnS2g0TTMwL081U2xrL0Nu?=
- =?utf-8?B?dEovVk1JYzNQTENIcGNWSGZ6U0JRYW9SeFB0Rm5IWDFVa2VGZkZOWnA0Y2Jo?=
- =?utf-8?B?cmNFZVZaR2ZDT2NxZWJjcHVadlJIaVlvUEtvMlBkQ0NGaHhBcFpFNkpkam81?=
- =?utf-8?B?YzV5RitaY2VpQ1RHQ003VkFENG1ZTXdqNmdHY2dGeDBiMlhCWW9mQ0MvejVF?=
- =?utf-8?B?NitIWHB2V24yZjBuL2xzclB2bXZIOGF2NHg2NUc4Y1JDOTdiMGJFTEpuMGZG?=
- =?utf-8?Q?q8hc=3D?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?NsCnA2DKFomfhTd5tD8+Nn1bb8AzFOuP1eVuO/xPlOU7Jf6OvCtQiH5kY8CK?=
+ =?us-ascii?Q?5NtS/UwEagWjwzJwS76ZNHxA0WVqKHULzeZhmdmmczB+NidVm5OlzrChrLPp?=
+ =?us-ascii?Q?bibPtuKE7NTiWXh3J4+Bd2/X03AtZfAp5LXpQv/NdE72/Nmdk0eQ4IOffjUd?=
+ =?us-ascii?Q?40dM3O/UCbFYqi2P0fXOAALKeHO0I4nWqSQLg+ELhA6Zpek8BThPrZbbIBQZ?=
+ =?us-ascii?Q?HHEVUS46QacIEwYnY+zfSoy/11tsFT99LlzkmICqxfXYUe3uK1Hmr4UiD21r?=
+ =?us-ascii?Q?Yw/Zti/+6i4+lE9v/h+XZulvyLHq48wko0JKKn/DL7GsBkWSdY9+KWe+hZ8z?=
+ =?us-ascii?Q?9VNwBn6CnhCbBmwFZroofDDAswCVpx9caWjCutumuzLHHruLMDE4CefJJRv2?=
+ =?us-ascii?Q?ZH14um6BDaZKTDUfdLZ9ucIGqToQPtCsxSiSXT6gJ4XqxMyviV1AA0c1EHir?=
+ =?us-ascii?Q?3ZAYNClgaeXGdaex3bfYoZircvLdwxpoU6MShfed5V8L0CSKwtgN3VyM2j4t?=
+ =?us-ascii?Q?otMBcqUVoeeX3w+VcsUYPCrO0pZK6jdT92Q4Xr6DcQwN3U8GdNKFW2LHBKMK?=
+ =?us-ascii?Q?T/QLPoHkOLXPRLho4HoRaNIRgLMdPDjAD9o2H3MYBYcF9SJSIX7fbwd1MHRa?=
+ =?us-ascii?Q?qQAOyCvinW0p3iamsz6dke0MLvy+HvHWnbTIUjfMW2MT/Aq2mh4rLjdiQAst?=
+ =?us-ascii?Q?jqVULwk5x1yVmlmGeYhEL2zH8UDeLNI5tQMdlowZIKo7DExDrIskMJ8c8rdK?=
+ =?us-ascii?Q?3gldhw94R9He7svVxdRqWABjKITq6quTeGQDH0LWL7ffEO4PCkh+7ZmXfk6b?=
+ =?us-ascii?Q?Ch6WfKViwjYv4/TEbKtYGLL2zIIF+TH4q8nR6uEtYMBF5Kft0GhlFR6XFqET?=
+ =?us-ascii?Q?9VdFdnEFpJpmzN8uAN4eZvWlWdRpKrQrvTLrPFsXt8uBPXzfOQfCJFnAs1+z?=
+ =?us-ascii?Q?QsnOx9Ej9tMWN0ZpRwSc49uoHlb8yc0bnSQcgJQCN1NIwliCHuGJPBCD/TuK?=
+ =?us-ascii?Q?jwDM0kASWFpYIDkDQTpZFiHwqNyAcBadocP+qTVPuty0isHkkJ8XfBw0m9fd?=
+ =?us-ascii?Q?Li6tLKOmqFFTJX4k10iTQaZ3cFpBhnaTdAR7Mz9/87dn43wv04BhnUta6+e+?=
+ =?us-ascii?Q?QCOplwqoKz6Rk3ZXMDmI4IPBZkP9ItK0/vDzY1ldIwGg4rzOKpwQAYXvTXGk?=
+ =?us-ascii?Q?h+zUMmr9vltYVxs0g0Br7GISeBT0OYXpOxA5368cYObePIkEkeH3ic7SmbfL?=
+ =?us-ascii?Q?mF/4Y3kCggK6qWWwSXZCJqoV0fS1sln0+QQv0dC3UtbvPKMNdyUPqKFavOfM?=
+ =?us-ascii?Q?RixbojU+3vDxkN+SBx43GxW88AxUaIK7We9pZDBQWLh0UJB2dybnyYhVlz1g?=
+ =?us-ascii?Q?tMc1AAKm0nt+zUbeeULCxC67Fon2R2smAaJLciNFriiMnrxxG9u9hQJv+o7U?=
+ =?us-ascii?Q?3Gnw0c1ioGSv9/yO6VdaBIUTCUdnLkafcMjsfqdki8ZeulWsAp8M8sSpErkN?=
+ =?us-ascii?Q?DVPXqPUUMLkb7zFXhwV9aHJOdKcOW+OPpf7/COsAhfu2SZLXCTOCXJN1vQma?=
+ =?us-ascii?Q?DzYSfHCqRE8hE1u6flw=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b1244a4-aec4-4615-de15-08d9b88603a2
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3930.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Dec 2021 06:59:57.9507 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kKM8x6BlptyRO2ixx1hEfpEj6Budxk03gjyCFJ0D5ZQV112btf3rFOIpsPNtU10g
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1243
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4650.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc37bb58-282b-455a-5810-08d9b88abbbf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Dec 2021 07:33:44.3113 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YB24XtddZWX15cSWHPiKAmVqPxoRQX75PmMcgeT1tWfPYnbbB67kdfg1vL5d+aeU
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1289
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,158 +136,569 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Huang,
- Ray" <Ray.Huang@amd.com>
+Cc: "Zhang, Hawking" <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+[AMD Official Use Only]
 
+The error injection has no difference among RAS blocks except GFX and XGMI.
+I agree to move the xgmi error injection to amdgpu_xgmi.c, but I don't thin=
+k it's necessary to implement specific error injection functions for all ot=
+her RAS blocks.
 
-On 12/6/2021 12:18 PM, Yu, Lang wrote:
-> [Public]
-> 
-> A typo.
-> 
->> -----Original Message-----
->> From: Yu, Lang
->> Sent: Monday, December 6, 2021 2:47 PM
->> To: Lazar, Lijo <Lijo.Lazar@amd.com>; amd-gfx@lists.freedesktop.org
->> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Huang, Ray
->> <Ray.Huang@amd.com>
->> Subject: RE: [PATCH 2/2] drm/amdgpu: allow APU to send power gate message
->> when dpm is disabled
->>
->> [Public]
->>
->>
->>
->>> -----Original Message-----
->>> From: Lazar, Lijo <Lijo.Lazar@amd.com>
->>> Sent: Monday, December 6, 2021 11:41 AM
->>> To: Yu, Lang <Lang.Yu@amd.com>; amd-gfx@lists.freedesktop.org
->>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Huang, Ray
->>> <Ray.Huang@amd.com>
->>> Subject: Re: [PATCH 2/2] drm/amdgpu: allow APU to send power gate
->>> message when dpm is disabled
->>>
->>>
->>>
->>> On 12/6/2021 8:19 AM, Yu, Lang wrote:
->>>> [Public]
->>>>
->>>>
->>>>
->>>>> -----Original Message-----
->>>>> From: Lazar, Lijo <Lijo.Lazar@amd.com>
->>>>> Sent: Friday, December 3, 2021 5:52 PM
->>>>> To: Yu, Lang <Lang.Yu@amd.com>; amd-gfx@lists.freedesktop.org
->>>>> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Huang, Ray
->>>>> <Ray.Huang@amd.com>
->>>>> Subject: Re: [PATCH 2/2] drm/amdgpu: allow APU to send power gate
->>>>> message when dpm is disabled
->>>>>
->>>>>
->>>>>
->>>>> On 12/3/2021 12:24 PM, Lang Yu wrote:
->>>>>> The general hw fini sequence is SMU-> ... ->SDMA-> ...
->>>>>> We need to send power gate message to power off SDMA(in SDMA
->>>>>> hw_fini()) afer dpm is disabled(in SMU hw_fini()). Allow that for APU.
->>>>>
->>>>> This message is not right. In APUs there is no message provided by
->>>>> FW to enable/disable DPM, it is done in BIOS. Rephrase to something
->>>>> like after smu hw_fini is completed.
->>>>
->>>> It is power on/off SDMA message. Not enable/disable DPM.
->>>>
->>> Bad choice of word :) I didn't mean FW message, it was about this line
->>> in "commit message" - "afer dpm is disabled".
->>
->> Ok. I got it.
->>
->>>
->>>>>>
->>>>>> Signed-off-by: Lang Yu <lang.yu@amd.com>
->>>>>> ---
->>>>>>     drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 2 +-
->>>>>>     1 file changed, 1 insertion(+), 1 deletion(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
->>>>>> b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
->>>>>> index 2d718c30c8eb..285a237f3605 100644
->>>>>> --- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
->>>>>> +++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
->>>>>> @@ -277,7 +277,7 @@ static int smu_dpm_set_power_gate(void *handle,
->>>>>>     	struct smu_context *smu = handle;
->>>>>>     	int ret = 0;
->>>>>>
->>>>>> -	if (!smu->pm_enabled || !smu->adev->pm.dpm_enabled) {
->>>>>> +	if (!smu->pm_enabled || (!smu->is_apu &&
->>>>>> +!smu->adev->pm.dpm_enabled)) {
->>>>>
->>>>>
->>>>> This check was there before also, only the WARN is added. That means
->>>>> it was skipping sending messages in APUs also and so far this was
->>>>> working fine (until this gets noticed because of the warning).
->>>>>
->>>>> Now this would try to send the message to APU without any check.
->>>>> That doesn't look good. Ideal way should be to fix the sequence.
->>>>> Otherwise, suggest to do something like below as the last step of
->>>>> smu hw cleanup rather than sending the message blindly.
->>>>>
->>>>> 	if (smu->is_apu)
->>>>> 		smu->pm.dpm_enabled = smu_is_dpm_running(smu);
->>>>
->>>> smu_is_dpm_running(smu) will cause errors in suspend.
->>>>
->>> That is interesting. What is the error you get?
->>
->> [drm:amdgpu_dpm_enable_uvd [amdgpu]] *ERROR* Dpm enable uvd failed, ret =
->> -95 That means EOPNOTSUPP.
->>
->> Actually, in resume process, but adev->in_suspend  is still true.
->> For Renoir series APU, smu_is_dpm_running is hardcoded as following,
->>
->> static bool renoir_is_dpm_running(struct smu_context *smu) {
->> 	struct amdgpu_device *adev = smu->adev;
->>
->> 	/*
->> 	 * Until now, the pmfw hasn't exported the interface of SMU
->> 	 * feature mask to APU SKU so just force on all the feature
->> 	 * at early initial stage.
->> 	 */
->> 	if (adev->in_suspend)
->> 		return false;
->> 	else
+Regards,
+Tao
 
-Renoir suspend shouldn't be a special case. FW should keep running with 
-features enabled after driver suspend. Could you try with a return true 
-all the time for this?
-
-Thanks,
-Lijo
-
->> 		return true;
->>
->> }
->>
->> So we got such an error.
->>
->> Regards,
->> Lang
->>
->>> Thanks,
->>> Lijo
->>>
->>>> Here we just  send some IP power on/off messages.
->>>> Is it necessary to enable DPM to send such messages?
->>>>
->>>> Regards,
->>>> Lang
->>>>
->>>>> Thanks,
->>>>> Lijo
->>>>>
->>>>>>     		dev_WARN(smu->adev->dev,
->>>>>>     			 "SMU uninitialized but power %s requested for %u!\n",
->>>>>>     			 gate ? "gate" : "ungate", block_type);
->>>>>>
+> -----Original Message-----
+> From: Chai, Thomas <YiPeng.Chai@amd.com>
+> Sent: Wednesday, December 1, 2021 6:53 PM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: Chai, Thomas <YiPeng.Chai@amd.com>; Zhang, Hawking
+> <Hawking.Zhang@amd.com>; Zhou1, Tao <Tao.Zhou1@amd.com>; Chai,
+> Thomas <YiPeng.Chai@amd.com>
+> Subject: [PATCH V2 11/11] drm/amdgpu: Move error inject function from
+> amdgpu_ras.c to each block
+>=20
+> Move each block error inject function from amdgpu_ras.c to each block.
+>=20
+> Signed-off-by: yipechai <YiPeng.Chai@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c  | 62 +++++-------------------
+> drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c | 28 +++++++++++
+>  drivers/gpu/drm/amd/amdgpu/mca_v3_0.c    | 18 +++++++
+>  drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c  | 16 ++++++
+> drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c  | 16 ++++++
+> drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c  | 16 ++++++
+>  drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c   | 16 ++++++
+>  drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c   | 16 ++++++
+>  drivers/gpu/drm/amd/amdgpu/sdma_v4_4.c   | 16 ++++++
+>  drivers/gpu/drm/amd/amdgpu/umc_v6_1.c    | 16 ++++++
+>  drivers/gpu/drm/amd/amdgpu/umc_v6_7.c    | 16 ++++++
+>  drivers/gpu/drm/amd/amdgpu/umc_v8_7.c    | 16 ++++++
+>  12 files changed, 201 insertions(+), 51 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> index 2e38bd3d3d45..87b625d305c9 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+> @@ -1032,31 +1032,7 @@ int amdgpu_ras_reset_error_status(struct
+> amdgpu_device *adev,
+>  	return 0;
+>  }
+>=20
+> -/* Trigger XGMI/WAFL error */
+> -static int amdgpu_ras_error_inject_xgmi(struct amdgpu_device *adev,
+> -				 struct ta_ras_trigger_error_input *block_info)
+> -{
+> -	int ret;
+> -
+> -	if (amdgpu_dpm_set_df_cstate(adev, DF_CSTATE_DISALLOW))
+> -		dev_warn(adev->dev, "Failed to disallow df cstate");
+>=20
+> -	if (amdgpu_dpm_allow_xgmi_power_down(adev, false))
+> -		dev_warn(adev->dev, "Failed to disallow XGMI power down");
+> -
+> -	ret =3D psp_ras_trigger_error(&adev->psp, block_info);
+> -
+> -	if (amdgpu_ras_intr_triggered())
+> -		return ret;
+> -
+> -	if (amdgpu_dpm_allow_xgmi_power_down(adev, true))
+> -		dev_warn(adev->dev, "Failed to allow XGMI power down");
+> -
+> -	if (amdgpu_dpm_set_df_cstate(adev, DF_CSTATE_ALLOW))
+> -		dev_warn(adev->dev, "Failed to allow df cstate");
+> -
+> -	return ret;
+> -}
+>=20
+>  /* wrapper of psp_ras_trigger_error */
+>  int amdgpu_ras_error_inject(struct amdgpu_device *adev, @@ -1076,41
+> +1052,25 @@ int amdgpu_ras_error_inject(struct amdgpu_device *adev,
+>  	if (!obj)
+>  		return -EINVAL;
+>=20
+> +	if (!block_obj || !block_obj->ops)	{
+> +		dev_info(adev->dev, "%s don't config ras function \n",
+> get_ras_block_str(&info->head));
+> +		return -EINVAL;
+> +	}
+> +
+>  	/* Calculate XGMI relative offset */
+>  	if (adev->gmc.xgmi.num_physical_nodes > 1) {
+> -		block_info.address =3D
+> -			amdgpu_xgmi_get_relative_phy_addr(adev,
+> -							  block_info.address);
+> +		block_info.address =3D
+> amdgpu_xgmi_get_relative_phy_addr(adev,
+> +block_info.address);
+>  	}
+>=20
+> -	switch (info->head.block) {
+> -	case AMDGPU_RAS_BLOCK__GFX:
+> -		if (!block_obj || !block_obj->ops)	{
+> -			dev_info(adev->dev, "%s don't config ras function \n",
+> get_ras_block_str(&info->head));
+> -			return -EINVAL;
+> -		}
+> -		if (block_obj->ops->ras_error_inject)
+> +	if (block_obj->ops->ras_error_inject) {
+> +		if(info->head.block =3D=3D AMDGPU_RAS_BLOCK__GFX)
+>  			ret =3D block_obj->ops->ras_error_inject(adev, info);
+> -		break;
+> -	case AMDGPU_RAS_BLOCK__UMC:
+> -	case AMDGPU_RAS_BLOCK__SDMA:
+> -	case AMDGPU_RAS_BLOCK__MMHUB:
+> -	case AMDGPU_RAS_BLOCK__PCIE_BIF:
+> -	case AMDGPU_RAS_BLOCK__MCA:
+> -		ret =3D psp_ras_trigger_error(&adev->psp, &block_info);
+> -		break;
+> -	case AMDGPU_RAS_BLOCK__XGMI_WAFL:
+> -		ret =3D amdgpu_ras_error_inject_xgmi(adev, &block_info);
+> -		break;
+> -	default:
+> -		dev_info(adev->dev, "%s error injection is not supported yet\n",
+> -			 get_ras_block_str(&info->head));
+> -		ret =3D -EINVAL;
+> +		else
+> +			ret =3D block_obj->ops->ras_error_inject(adev,
+> &block_info);
+>  	}
+>=20
+>  	if (ret)
+> -		dev_err(adev->dev, "ras inject %s failed %d\n",
+> -			get_ras_block_str(&info->head), ret);
+> +		dev_err(adev->dev, "ras inject %s failed %d\n",
+> +get_ras_block_str(&info->head), ret);
+>=20
+>  	return ret;
+>  }
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+> index da541c7b1ec2..298742afba99 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
+> @@ -940,6 +940,33 @@ static void
+> amdgpu_xgmi_query_ras_error_count(struct amdgpu_device *adev,
+>  	err_data->ce_count +=3D ce_cnt;
+>  }
+>=20
+> +/* Trigger XGMI/WAFL error */
+> +static int amdgpu_ras_error_inject_xgmi(struct amdgpu_device *adev,
+> +                                void *inject_if) {
+> +       int ret =3D 0;;
+> +       struct ta_ras_trigger_error_input *block_info =3D  (struct
+> +ta_ras_trigger_error_input *)inject_if;
+> +
+> +       if (amdgpu_dpm_set_df_cstate(adev, DF_CSTATE_DISALLOW))
+> +               dev_warn(adev->dev, "Failed to disallow df cstate");
+> +
+> +       if (amdgpu_dpm_allow_xgmi_power_down(adev, false))
+> +               dev_warn(adev->dev, "Failed to disallow XGMI power
+> + down");
+> +
+> +       ret =3D psp_ras_trigger_error(&adev->psp, block_info);
+> +
+> +       if (amdgpu_ras_intr_triggered())
+> +               return ret;
+> +
+> +       if (amdgpu_dpm_allow_xgmi_power_down(adev, true))
+> +               dev_warn(adev->dev, "Failed to allow XGMI power down");
+> +
+> +       if (amdgpu_dpm_set_df_cstate(adev, DF_CSTATE_ALLOW))
+> +               dev_warn(adev->dev, "Failed to allow df cstate");
+> +
+> +       return ret;
+> +}
+> +
+>  static int amdgpu_xgmi_ras_block_match(struct amdgpu_ras_block_object*
+> block_obj, enum amdgpu_ras_block block, uint32_t sub_block_index)  {
+>  	if(!block_obj)
+> @@ -958,6 +985,7 @@ struct amdgpu_ras_block_ops  xgmi_ras_ops =3D {
+>  	.ras_fini =3D amdgpu_xgmi_ras_fini,
+>  	.query_ras_error_count =3D amdgpu_xgmi_query_ras_error_count,
+>  	.reset_ras_error_count =3D amdgpu_xgmi_reset_ras_error_count,
+> +	.ras_error_inject =3D amdgpu_ras_error_inject_xgmi,
+>  };
+>=20
+>  struct amdgpu_xgmi_ras xgmi_ras =3D {
+> diff --git a/drivers/gpu/drm/amd/amdgpu/mca_v3_0.c
+> b/drivers/gpu/drm/amd/amdgpu/mca_v3_0.c
+> index 99edc75ed4ec..ce6841967b05 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mca_v3_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mca_v3_0.c
+> @@ -60,12 +60,28 @@ static int mca_v3_0_ras_block_match(struct
+> amdgpu_ras_block_object* block_obj, e
+>  	return -EINVAL;
+>  }
+>=20
+> +static int mca_v3_0_ras_error_inject(struct amdgpu_device *adev, void
+> +*inject_if) {
+> +	int ret =3D 0;
+> +	if (!adev || !inject_if) {
+> +		dev_err(adev->dev, "%s invaild parameters \n", __func__);
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_lock(&adev->grbm_idx_mutex);
+> +	ret =3D psp_ras_trigger_error(&adev->psp, (struct
+> ta_ras_trigger_error_input *)inject_if);
+> +	mutex_unlock(&adev->grbm_idx_mutex);
+> +
+> +	return ret;
+> +}
+> +
+>  const struct amdgpu_ras_block_ops mca_v3_0_mp0_ops =3D {
+>  	.ras_block_match =3D mca_v3_0_ras_block_match,
+>  	.ras_late_init =3D mca_v3_0_mp0_ras_late_init,
+>  	.ras_fini =3D mca_v3_0_mp0_ras_fini,
+>  	.query_ras_error_count =3D mca_v3_0_mp0_query_ras_error_count,
+>  	.query_ras_error_address =3D NULL,
+> +	.ras_error_inject =3D mca_v3_0_ras_error_inject,
+>  };
+>=20
+>  struct amdgpu_mca_ras_block mca_v3_0_mp0_ras =3D { @@ -101,6 +117,7 @@
+> const struct amdgpu_ras_block_ops mca_v3_0_mp1_ops =3D {
+>  	.ras_fini =3D mca_v3_0_mp1_ras_fini,
+>  	.query_ras_error_count =3D mca_v3_0_mp1_query_ras_error_count,
+>  	.query_ras_error_address =3D NULL,
+> +	.ras_error_inject =3D mca_v3_0_ras_error_inject,
+>  };
+>=20
+>  struct amdgpu_mca_ras_block mca_v3_0_mp1_ras =3D { @@ -136,6 +153,7 @@
+> const struct amdgpu_ras_block_ops mca_v3_0_mpio_ops =3D {
+>  	.ras_fini =3D mca_v3_0_mpio_ras_fini,
+>  	.query_ras_error_count =3D mca_v3_0_mpio_query_ras_error_count,
+>  	.query_ras_error_address =3D NULL,
+> +	.ras_error_inject =3D mca_v3_0_ras_error_inject,
+>  };
+>=20
+>  struct amdgpu_mca_ras_block mca_v3_0_mpio_ras =3D { diff --git
+> a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c
+> b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c
+> index da505314802a..7cca86c504e6 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_0.c
+> @@ -786,12 +786,28 @@ static int mmhub_v1_0_ras_block_match(struct
+> amdgpu_ras_block_object* block_obj,
+>  	return -EINVAL;
+>  }
+>=20
+> +static int mmhub_v1_0_ras_error_inject(struct amdgpu_device *adev, void
+> +*inject_if) {
+> +	int ret =3D 0;
+> +	if (!adev || !inject_if) {
+> +		dev_err(adev->dev, "%s invaild parameters \n", __func__);
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_lock(&adev->grbm_idx_mutex);
+> +	ret =3D psp_ras_trigger_error(&adev->psp, (struct
+> ta_ras_trigger_error_input *)inject_if);
+> +	mutex_unlock(&adev->grbm_idx_mutex);
+> +
+> +	return ret;
+> +}
+> +
+>  struct amdgpu_ras_block_ops mmhub_v1_0_ras_ops =3D {
+>  	.ras_block_match =3D mmhub_v1_0_ras_block_match,
+>  	.ras_late_init =3D amdgpu_mmhub_ras_late_init,
+>  	.ras_fini =3D amdgpu_mmhub_ras_fini,
+>  	.query_ras_error_count =3D mmhub_v1_0_query_ras_error_count,
+>  	.reset_ras_error_count =3D mmhub_v1_0_reset_ras_error_count,
+> +	.ras_error_inject =3D mmhub_v1_0_ras_error_inject,
+>  };
+>=20
+>  struct amdgpu_mmhub_ras mmhub_v1_0_ras =3D { diff --git
+> a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c
+> b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c
+> index 829d14ee87d3..79a9995caef1 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v1_7.c
+> @@ -1333,6 +1333,21 @@ static int mmhub_v1_7_ras_block_match(struct
+> amdgpu_ras_block_object* block_obj,
+>  	return -EINVAL;
+>  }
+>=20
+> +static int mmhub_v1_7_ras_error_inject(struct amdgpu_device *adev, void
+> +*inject_if) {
+> +	int ret =3D 0;
+> +	if (!adev || !inject_if) {
+> +		dev_err(adev->dev, "%s invaild parameters \n", __func__);
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_lock(&adev->grbm_idx_mutex);
+> +	ret =3D psp_ras_trigger_error(&adev->psp, (struct
+> ta_ras_trigger_error_input *)inject_if);
+> +	mutex_unlock(&adev->grbm_idx_mutex);
+> +
+> +	return ret;
+> +}
+> +
+>  struct amdgpu_ras_block_ops mmhub_v1_7_ras_ops =3D {
+>  	.ras_block_match =3D mmhub_v1_7_ras_block_match,
+>  	.ras_late_init =3D amdgpu_mmhub_ras_late_init, @@ -1341,6 +1356,7
+> @@ struct amdgpu_ras_block_ops mmhub_v1_7_ras_ops =3D {
+>  	.reset_ras_error_count =3D mmhub_v1_7_reset_ras_error_count,
+>  	.query_ras_error_status =3D mmhub_v1_7_query_ras_error_status,
+>  	.reset_ras_error_status =3D mmhub_v1_7_reset_ras_error_status,
+> +	.ras_error_inject =3D mmhub_v1_7_ras_error_inject,
+>  };
+>=20
+>  struct amdgpu_mmhub_ras mmhub_v1_7_ras =3D { diff --git
+> a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+> b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+> index 1edc98e5bcbb..eaed556b9551 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/mmhub_v9_4.c
+> @@ -1667,6 +1667,21 @@ static int mmhub_v9_4_ras_block_match(struct
+> amdgpu_ras_block_object* block_obj,
+>  	return -EINVAL;
+>  }
+>=20
+> +static int mmhub_v9_4_ras_error_inject(struct amdgpu_device *adev, void
+> +*inject_if) {
+> +	int ret =3D 0;
+> +	if (!adev || !inject_if) {
+> +		dev_err(adev->dev, "%s invaild parameters \n", __func__);
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_lock(&adev->grbm_idx_mutex);
+> +	ret =3D psp_ras_trigger_error(&adev->psp, (struct
+> ta_ras_trigger_error_input *)inject_if);
+> +	mutex_unlock(&adev->grbm_idx_mutex);
+> +
+> +	return ret;
+> +}
+> +
+>  const struct amdgpu_ras_block_ops mmhub_v9_4_ras_ops =3D {
+>  	.ras_block_match =3D mmhub_v9_4_ras_block_match,
+>  	.ras_late_init =3D amdgpu_mmhub_ras_late_init, @@ -1674,6 +1689,7
+> @@ const struct amdgpu_ras_block_ops mmhub_v9_4_ras_ops =3D {
+>  	.query_ras_error_count =3D mmhub_v9_4_query_ras_error_count,
+>  	.reset_ras_error_count =3D mmhub_v9_4_reset_ras_error_count,
+>  	.query_ras_error_status =3D mmhub_v9_4_query_ras_error_status,
+> +	.ras_error_inject =3D mmhub_v9_4_ras_error_inject,
+>  };
+>=20
+>  struct amdgpu_mmhub_ras mmhub_v9_4_ras =3D { diff --git
+> a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+> b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+> index 14f7265d954e..8e62e2ffabe5 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/nbio_v7_4.c
+> @@ -650,11 +650,27 @@ static int nbio_v7_4_ras_block_match(struct
+> amdgpu_ras_block_object* block_obj,
+>  	return -EINVAL;
+>  }
+>=20
+> +static int nbio_v7_4_ras_error_inject(struct amdgpu_device *adev, void
+> +*inject_if) {
+> +	int ret =3D 0;
+> +	if (!adev || !inject_if) {
+> +		dev_err(adev->dev, "%s invaild parameters \n", __func__);
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_lock(&adev->grbm_idx_mutex);
+> +	ret =3D psp_ras_trigger_error(&adev->psp, (struct
+> ta_ras_trigger_error_input *)inject_if);
+> +	mutex_unlock(&adev->grbm_idx_mutex);
+> +
+> +	return ret;
+> +}
+> +
+>  const struct amdgpu_ras_block_ops nbio_v7_4_ras_ops =3D {
+>  	.ras_block_match =3D nbio_v7_4_ras_block_match,
+>  	.query_ras_error_count =3D nbio_v7_4_query_ras_error_count,
+>  	.ras_late_init =3D amdgpu_nbio_ras_late_init,
+>  	.ras_fini =3D amdgpu_nbio_ras_fini,
+> +	.ras_error_inject =3D nbio_v7_4_ras_error_inject,
+>  };
+>=20
+>  struct amdgpu_nbio_ras nbio_v7_4_ras =3D { diff --git
+> a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
+> b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
+> index 30a651613776..578ee40cc0d1 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_0.c
+> @@ -2803,11 +2803,27 @@ static int sdma_v4_0_ras_block_match(struct
+> amdgpu_ras_block_object* block_obj,
+>  	return -EINVAL;
+>  }
+>=20
+> +static int sdma_v4_0_ras_error_inject(struct amdgpu_device *adev, void
+> +*inject_if) {
+> +	int ret =3D 0;
+> +	if (!adev || !inject_if) {
+> +		dev_err(adev->dev, "%s invaild parameters \n", __func__);
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_lock(&adev->grbm_idx_mutex);
+> +	ret =3D psp_ras_trigger_error(&adev->psp, (struct
+> ta_ras_trigger_error_input *)inject_if);
+> +	mutex_unlock(&adev->grbm_idx_mutex);
+> +
+> +	return ret;
+> +}
+> +
+>  const struct amdgpu_ras_block_ops sdma_v4_0_ras_ops =3D {
+>  	.ras_block_match =3D sdma_v4_0_ras_block_match,
+>  	.ras_fini =3D amdgpu_sdma_ras_fini,
+>  	.query_ras_error_count =3D sdma_v4_0_query_ras_error_count,
+>  	.reset_ras_error_count =3D sdma_v4_0_reset_ras_error_count,
+> +	.ras_error_inject =3D sdma_v4_0_ras_error_inject,
+>  };
+>=20
+>  static struct amdgpu_sdma_ras sdma_v4_0_ras =3D { diff --git
+> a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4.c
+> b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4.c
+> index 8c165bcb0ffa..0656c6a7a2c1 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/sdma_v4_4.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/sdma_v4_4.c
+> @@ -270,11 +270,27 @@ static int sdma_v4_4_ras_block_match(struct
+> amdgpu_ras_block_object* block_obj,
+>  	return -EINVAL;
+>  }
+>=20
+> +static int sdma_v4_4_ras_error_inject(struct amdgpu_device *adev, void
+> +*inject_if) {
+> +	int ret =3D 0;
+> +	if (!adev || !inject_if) {
+> +		dev_err(adev->dev, "%s invaild parameters \n", __func__);
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_lock(&adev->grbm_idx_mutex);
+> +	ret =3D psp_ras_trigger_error(&adev->psp, (struct
+> ta_ras_trigger_error_input *)inject_if);
+> +	mutex_unlock(&adev->grbm_idx_mutex);
+> +
+> +	return ret;
+> +}
+> +
+>  const struct amdgpu_ras_block_ops sdma_v4_4_ras_ops =3D {
+>  	.ras_block_match =3D sdma_v4_4_ras_block_match,
+>  	.ras_fini =3D amdgpu_sdma_ras_fini,
+>  	.query_ras_error_count =3D sdma_v4_4_query_ras_error_count,
+>  	.reset_ras_error_count =3D sdma_v4_4_reset_ras_error_count,
+> +	.ras_error_inject =3D sdma_v4_4_ras_error_inject,
+>  };
+>=20
+>  struct amdgpu_sdma_ras sdma_v4_4_ras =3D { diff --git
+> a/drivers/gpu/drm/amd/amdgpu/umc_v6_1.c
+> b/drivers/gpu/drm/amd/amdgpu/umc_v6_1.c
+> index ed480c2081a6..2058439b02cd 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/umc_v6_1.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/umc_v6_1.c
+> @@ -477,12 +477,28 @@ static int umc_v6_1_ras_block_match(struct
+> amdgpu_ras_block_object* block_obj, e
+>  	return -EINVAL;
+>  }
+>=20
+> +static int umc_v6_1_ras_error_inject(struct amdgpu_device *adev, void
+> +*inject_if) {
+> +	int ret =3D 0;
+> +	if (!adev || !inject_if) {
+> +		dev_err(adev->dev, "%s invaild parameters \n", __func__);
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_lock(&adev->grbm_idx_mutex);
+> +	ret =3D psp_ras_trigger_error(&adev->psp, (struct
+> ta_ras_trigger_error_input *)inject_if);
+> +	mutex_unlock(&adev->grbm_idx_mutex);
+> +
+> +	return ret;
+> +}
+> +
+>  const struct amdgpu_ras_block_ops umc_v6_1_ras_ops =3D {
+>  	.ras_block_match =3D umc_v6_1_ras_block_match,
+>  	.ras_late_init =3D amdgpu_umc_ras_late_init,
+>  	.ras_fini =3D amdgpu_umc_ras_fini,
+>  	.query_ras_error_count =3D umc_v6_1_query_ras_error_count,
+>  	.query_ras_error_address =3D umc_v6_1_query_ras_error_address,
+> +	.ras_error_inject =3D umc_v6_1_ras_error_inject,
+>  };
+>=20
+>  struct amdgpu_umc_ras umc_v6_1_ras =3D {
+> diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v6_7.c
+> b/drivers/gpu/drm/amd/amdgpu/umc_v6_7.c
+> index e26728dbc6e9..2e87e7de4a55 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/umc_v6_7.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/umc_v6_7.c
+> @@ -333,6 +333,21 @@ static int umc_v6_7_ras_block_match(struct
+> amdgpu_ras_block_object* block_obj, e
+>  	return -EINVAL;
+>  }
+>=20
+> +static int umc_v6_7_ras_error_inject(struct amdgpu_device *adev, void
+> +*inject_if) {
+> +	int ret =3D 0;
+> +	if (!adev || !inject_if) {
+> +		dev_err(adev->dev, "%s invaild parameters \n", __func__);
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_lock(&adev->grbm_idx_mutex);
+> +	ret =3D psp_ras_trigger_error(&adev->psp, (struct
+> ta_ras_trigger_error_input *)inject_if);
+> +	mutex_unlock(&adev->grbm_idx_mutex);
+> +
+> +	return ret;
+> +}
+> +
+>  const struct amdgpu_ras_block_ops umc_v6_7_ras_pos =3D {
+>  	.ras_block_match =3D umc_v6_7_ras_block_match,
+>  	.ras_late_init =3D amdgpu_umc_ras_late_init, @@ -340,6 +355,7 @@
+> const struct amdgpu_ras_block_ops umc_v6_7_ras_pos =3D {
+>  	.query_ras_error_count =3D umc_v6_7_query_ras_error_count,
+>  	.query_ras_error_address =3D umc_v6_7_query_ras_error_address,
+>  	.query_ras_poison_mode =3D umc_v6_7_query_ras_poison_mode,
+> +	.ras_error_inject =3D umc_v6_7_ras_error_inject,
+>  };
+>=20
+>  struct amdgpu_umc_ras umc_v6_7_ras =3D {
+> diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v8_7.c
+> b/drivers/gpu/drm/amd/amdgpu/umc_v8_7.c
+> index 037791e90c24..f7fb653434b9 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/umc_v8_7.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/umc_v8_7.c
+> @@ -336,12 +336,28 @@ static int umc_v8_7_ras_block_match(struct
+> amdgpu_ras_block_object* block_obj, e
+>  	return -EINVAL;
+>  }
+>=20
+> +static int umc_v8_7_ras_error_inject(struct amdgpu_device *adev, void
+> +*inject_if) {
+> +	int ret =3D 0;
+> +	if (!adev || !inject_if) {
+> +		dev_err(adev->dev, "%s invaild parameters \n", __func__);
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_lock(&adev->grbm_idx_mutex);
+> +	ret =3D psp_ras_trigger_error(&adev->psp, (struct
+> ta_ras_trigger_error_input *)inject_if);
+> +	mutex_unlock(&adev->grbm_idx_mutex);
+> +
+> +	return ret;
+> +}
+> +
+>  const struct amdgpu_ras_block_ops umc_v8_7_ras_ops =3D {
+>  	.ras_block_match =3D umc_v8_7_ras_block_match,
+>  	.ras_late_init =3D amdgpu_umc_ras_late_init,
+>  	.ras_fini =3D amdgpu_umc_ras_fini,
+>  	.query_ras_error_count =3D umc_v8_7_query_ras_error_count,
+>  	.query_ras_error_address =3D umc_v8_7_query_ras_error_address,
+> +	.ras_error_inject =3D umc_v8_7_ras_error_inject,
+>  };
+>=20
+>  struct amdgpu_umc_ras umc_v8_7_ras =3D {
+> --
+> 2.25.1
