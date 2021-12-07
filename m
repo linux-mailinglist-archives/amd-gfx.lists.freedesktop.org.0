@@ -1,68 +1,94 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8F4B46B355
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Dec 2021 08:03:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 379E746B3DC
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Dec 2021 08:27:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53F458B719;
-	Tue,  7 Dec 2021 07:03:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E3B88BB1C;
+	Tue,  7 Dec 2021 07:27:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com
- [IPv6:2a00:1450:4864:20::333])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFD908B719
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 07:03:31 +0000 (UTC)
-Received: by mail-wm1-x333.google.com with SMTP id
- az34-20020a05600c602200b0033bf8662572so1513894wmb.0
- for <amd-gfx@lists.freedesktop.org>; Mon, 06 Dec 2021 23:03:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=jc50AAudrPbsVP5lXBCignDc9PL4cYiveAI75iPqLmA=;
- b=cYTMEMiK+hptu6gVOR+vd/4RDfc5Xgh4C3Z6ireizPoHXd1b5W/TQ0v79CXTBmEbdb
- tyw9HUK/okh5dKjdovr4j3yhp6FCDV/Tmt2onUt6ahmAEYTPVL5PIuLN9JDP5a9FgXxC
- PqbCn6/t3Vz46cX0nHowy8xcALG//YbGpc5oQ4+3XHO0gsa7zncyHJn3VRUyGkIt7vwQ
- Mhg/gBmwDEXsAeptkg5QNVn8TQocLlrMVtGp+7uaKdlbf3113vEFWN77+PKZdOWuJrtf
- KmcQP1SrjKZdInuZcJl0ITQ0jZcnjYwsSCZR247lOlp3q2K4Rele4CrfsFqfMeQuCA+e
- tkwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=jc50AAudrPbsVP5lXBCignDc9PL4cYiveAI75iPqLmA=;
- b=V/nhK14PNyhNgXalhEPe0saCkA2O77maLu/zgyURS0Ril+Gpl8cXPsYrU7TPGmbX/1
- Kz/2HZiV984SAZ9Vl2bb14vnSxFgCkQ9nfZ5yZmwF4IWoN8ghj+fSu8poV5MCiGWQ/49
- xpbj54B3y0rk+g7NQpWrsumW3lKYO6FE58HCxvoE/7f/2bPaORHggEnNyfs33UGCMG4s
- QnAcjQZGmE+ydsoR42q48fsowEDS7FLNB3+F+TumbTXOq/Y7pbA4ii8/bvqqnEguGE35
- DS8awE89iWT1MHSXaeBuGvtJWBFBHp3ZL9svdyO8yNEdYpOPWCraABj94dya7LCRo14b
- fRnw==
-X-Gm-Message-State: AOAM532GoZO+yUPLWHjJRpQETmGbC4QcgAELZiyGyiew1w+zJhYzCyEm
- HuX1MAOk3KNW5AIssjBbCJSvIFhZfFU=
-X-Google-Smtp-Source: ABdhPJyxyxfnRCVl4J/gSnW491WPAewhuQpgKLO3sDkGJ+Jck/BArkO9uUJIrpdLeu5KcWMhoNq/+Q==
-X-Received: by 2002:a7b:cbc3:: with SMTP id n3mr4688862wmi.90.1638860610293;
- Mon, 06 Dec 2021 23:03:30 -0800 (PST)
-Received: from [192.168.178.21] (p57b0bff8.dip0.t-ipconnect.de.
- [87.176.191.248])
- by smtp.gmail.com with ESMTPSA id y6sm13932514wrh.18.2021.12.06.23.03.29
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 06 Dec 2021 23:03:29 -0800 (PST)
-Subject: Re: [PATCH] drm/amdgpu: don't skip runtime pm get on A+A config
-To: "Quan, Evan" <Evan.Quan@amd.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
-References: <20211206084551.92502-1-christian.koenig@amd.com>
- <DM6PR12MB26194050848510738D3DF81CE46E9@DM6PR12MB2619.namprd12.prod.outlook.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <462b2fbf-2d14-cc49-1b48-56b80b68b3ba@gmail.com>
-Date: Tue, 7 Dec 2021 08:03:28 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2052.outbound.protection.outlook.com [40.107.94.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DE138BB1C
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 07:27:41 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RNeFyWTzKw6/MK5QtssMwWc8Z2H4GYkYJ7Kp5cju1/orDJVX6VqKsY8q3rjenR3udRq3DZwPqmnf4Td8q64O0Aq/QeVZILnUNv/SuvuYGf+q0+CNZ98D9ztZdbHD/A4orDyvMLXMizPWwSlekDu2Bn8K6fOIH29P7dGfbxWvv5fLcFeuVRZ5ncKYtwuaHURhEzY+zdzDbxzqN/xzAY7tDupgg/UkYlJZMJ6BtkrduxHGURxCRUg3VSANDeOrhXQSyY3+2yxOzlsGYk8qfJIH2AODGK6i6Ud4mZwHGqJUqC5jkRfzUhdiadITK6a2ZlnWO0yAodGi3U/x5sU8EuD0Mg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZTbZjlTaCRbRNvloRITn3l7kjEsnlz7ech0sISOS7b0=;
+ b=UXwfELIJupw38gstSsi9gaBUo/Uu8mV1VUk3BE5ycqYRTbiLPke/BmVdRU+uKH0A+wc/ILPHm5grYC94/lzvosuOFgW4BZum8aXZj40cdPvlTBaUaUf1BoqxkgwWPvy6kJhSDIXtgra4X9cRl67zazk0mlAEqpKLqB8zkkZwNtzj1vgwWEPSVuObVT3cr8POjtNlkascYHpDKMdJVDVjEd5Wlr9nE9XRxxV/v62XOzDqt9OCR4LZtg85BX92h0+61HBiPIQLqYTAl5FbhBzLAdB+kMlIurx6WZ91P8auudb+dDdG+CXEbuiAL+PaUARGgoLx95q4udImvNrQsBmc6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZTbZjlTaCRbRNvloRITn3l7kjEsnlz7ech0sISOS7b0=;
+ b=qtyx3+YQYMvpw0VyoKYpOJdmLQaMXPUnXl0g7yvnayxb1qfJrk2Oz1IlMyGz6yQwl4K3lhxvZgpvZbVVqyFTY4ZHL9vaGad598MvSkIW5X7JgoH9AAEmj2m/BFRZTI/o7aNrxlKfDn0oEk5fws0+AMJgvx0qhpKiOZlOVUhpr38=
+Received: from BN9PR03CA0867.namprd03.prod.outlook.com (2603:10b6:408:13d::32)
+ by DM5PR12MB1596.namprd12.prod.outlook.com (2603:10b6:4:d::10) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4755.21; Tue, 7 Dec 2021 07:12:39 +0000
+Received: from BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:13d:cafe::7) by BN9PR03CA0867.outlook.office365.com
+ (2603:10b6:408:13d::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.20 via Frontend
+ Transport; Tue, 7 Dec 2021 07:12:39 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT008.mail.protection.outlook.com (10.13.177.95) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4755.13 via Frontend Transport; Tue, 7 Dec 2021 07:12:39 +0000
+Received: from flora.amd.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Tue, 7 Dec
+ 2021 01:12:37 -0600
+From: Flora Cui <flora.cui@amd.com>
+To: <guchun.chen@amd.com>, <perry.yuan@amd.com>, <yuliang.shi@amd.com>,
+ <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: fix drm_plane alloc in amdgpu_vkms
+Date: Tue, 7 Dec 2021 15:11:34 +0800
+Message-ID: <20211207071134.157327-1-flora.cui@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <DM6PR12MB26194050848510738D3DF81CE46E9@DM6PR12MB2619.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB03.amd.com
+ (10.181.40.144)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6629d6d7-0291-43d3-9902-08d9b950f43d
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1596:EE_
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1596F01A549EAF5F2894B321FA6E9@DM5PR12MB1596.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:255;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8rFmA1rZ7o2uy4IJmQwfp9SSWD1zzqkLhDDjPvwKAt6ZHQSYYFJttSNORkY0gdqAkcrht42pi3leEmhOnEFKuYI0hB+0JkwsPuuNGBHrCsVsqJ/RvbsmImkh4hYjIiWKI3q99G9ilv50RFfQIqNmO/cAsY/is+avekmo8Mmb9ccpISyIKT9P7FMYWQRDHBzVebInDK7O1FP5BF7tI+o6wqrhcKn5YVH4e72ueMnrvvEX6g7jxotLd7um9CurmvUrkW//I0bi8HxZb6BmnjSncDFzJqR2Cdxj6gzChA1odBZfRu6eZoK3U31DUcEBPwsOq+3A/WNmgLGflyMbeItyHQvk+L2FYDzBwkqHtM9PoXoPJy/PaRbsDDu5dY7aTY+yxXs+MuJe+x74uG/rV8O2Vrmzh10CMdek2WQfDjIMixXtVzwCh09VSr9b+MHLDeDivXOexhvLryfl+7pPujSdVu9Huh89y4xU/v+kNJ4yaoENIVuzFvtYw8baw6Bxttv3fh3xZUgf82AGHxBgcFUktOc4P+1/ZaDg+Re3WfpMavD9WSZ0dubUUrb8Wm/VajNiXaCkNGJhaE7RsIaPz2dFZlX+NES9GeBEl7rudVIfLVy7Q7Mpsk/dm06lasZHwHiKqqx/uAw5rSFYlsyw7bTuFp+oZkz1Tx3wDcPAmCSG1lJndbx5CBc6vjdFiXBY0yEmFCB+yiy3M3Xz1/aOTjecD4Guwkr1h9GCszJB99j7WJii1PJyT2lDABnsXSmUYZQO4w1IX/FPTNMmjDpoNlGFhty+n5qYCeE4t5aP98ciUDw=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(36840700001)(46966006)(40470700001)(7696005)(2906002)(36860700001)(186003)(16526019)(5660300002)(336012)(82310400004)(426003)(70586007)(83380400001)(356005)(86362001)(70206006)(47076005)(81166007)(2616005)(40460700001)(8936002)(8676002)(1076003)(36756003)(26005)(316002)(44832011)(4326008)(508600001)(110136005)(6666004)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2021 07:12:39.5366 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6629d6d7-0291-43d3-9902-08d9b950f43d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT008.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1596
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,65 +100,49 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: Flora Cui <flora.cui@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-You are looking at outdated code, that stuff is gone by now. 
-amd-staging-drm-next probably needs a rebase.
+otherwise the drm_plane is not released
 
-And this code was what the check was initially good for. Just skipping 
-the PM stuff as well on A+A was unintentionally.
+Signed-off-by: Flora Cui <flora.cui@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c | 21 ++++++++-------------
+ 1 file changed, 8 insertions(+), 13 deletions(-)
 
-Regards,
-Christian.
-
-Am 07.12.21 um 02:58 schrieb Quan, Evan:
-> [AMD Official Use Only]
->
-> It seems more jobs(below) other than bumping the runpm counter are performed.
-> Are they desired also?
->
-> 	r = __dma_resv_make_exclusive(bo->tbo.base.resv);
-> 	if (r)
-> 		goto out;
->
-> 	bo->prime_shared_count++;
->
-> BR
-> Evan
->> -----Original Message-----
->> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of
->> Christian König
->> Sent: Monday, December 6, 2021 4:46 PM
->> To: Deucher, Alexander <Alexander.Deucher@amd.com>
->> Cc: amd-gfx@lists.freedesktop.org
->> Subject: [PATCH] drm/amdgpu: don't skip runtime pm get on A+A config
->>
->> The runtime PM get was incorrectly added after the check.
->>
->> Signed-off-by: Christian König <christian.koenig@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 3 ---
->>   1 file changed, 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
->> index ae6ab93c868b..4896c876ffec 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
->> @@ -61,9 +61,6 @@ static int amdgpu_dma_buf_attach(struct dma_buf
->> *dmabuf,
->>   	if (pci_p2pdma_distance_many(adev->pdev, &attach->dev, 1, true)
->> < 0)
->>   		attach->peer2peer = false;
->>
->> -	if (attach->dev->driver == adev->dev->driver)
->> -		return 0;
->> -
->>   	r = pm_runtime_get_sync(adev_to_drm(adev)->dev);
->>   	if (r < 0)
->>   		goto out;
->> --
->> 2.25.1
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
+index af3a2f8c12b4..0bf697b72ad0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
+@@ -392,19 +392,14 @@ static struct drm_plane *amdgpu_vkms_plane_init(struct drm_device *dev,
+ 	struct drm_plane *plane;
+ 	int ret;
+ 
+-	plane = kzalloc(sizeof(*plane), GFP_KERNEL);
+-	if (!plane)
+-		return ERR_PTR(-ENOMEM);
+-
+-	ret = drm_universal_plane_init(dev, plane, 1 << index,
+-				       &amdgpu_vkms_plane_funcs,
+-				       amdgpu_vkms_formats,
+-				       ARRAY_SIZE(amdgpu_vkms_formats),
+-				       NULL, type, NULL);
+-	if (ret) {
+-		kfree(plane);
+-		return ERR_PTR(ret);
+-	}
++	plane = __drmm_universal_plane_alloc(dev, sizeof(*plane), 0, 1 << index,
++					   &amdgpu_vkms_plane_funcs,
++					   amdgpu_vkms_formats,
++					   ARRAY_SIZE(amdgpu_vkms_formats),
++					   NULL, type, NULL);
++
++	if (IS_ERR(plane))
++		return plane;
+ 
+ 	drm_plane_helper_add(plane, &amdgpu_vkms_primary_helper_funcs);
+ 
+-- 
+2.25.1
 
