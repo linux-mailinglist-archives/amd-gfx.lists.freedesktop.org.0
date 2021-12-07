@@ -2,55 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D3946B1B9
-	for <lists+amd-gfx@lfdr.de>; Tue,  7 Dec 2021 05:07:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B84B46B32F
+	for <lists+amd-gfx@lfdr.de>; Tue,  7 Dec 2021 07:47:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 969B06E9A8;
-	Tue,  7 Dec 2021 04:07:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1CF68B22D;
+	Tue,  7 Dec 2021 06:47:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2088.outbound.protection.outlook.com [40.107.92.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C5156E9A6
- for <amd-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 04:07:03 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2085.outbound.protection.outlook.com [40.107.220.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA33D8B22D
+ for <amd-gfx@lists.freedesktop.org>; Tue,  7 Dec 2021 06:47:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=n5zAZj+7Noc7BUK4DeOD3NFT+f/YZKu0LOmdAL5ps8YelwzwKO9ViZOEvm1/SxZ+f16VFg0VMVDQKMjr+9bQoYjJbdV+01vDbOSxux4gmvUU/5U2FQyDmXNrElm7RqDlHasXpVkuOdJIwJPqEZ3eHNYda2autqZ+bvDQm/9Wc8hRhhbIMm23/iGLZXzHCus4GbTe3gVs1o1t8yKybH6PS6mIaRE4559Anv52GrXFOGVVz2PgZKVRxtiRLbjq2fKxhrqJm9j8mtiMbnPgLK59+lYHNddfaIMGb6ggS7p+H2gRmTT4ueweQZZdvGfncQw23tDZpBNVi4Qer2hPyqLVKw==
+ b=PZF4SP9ZSuzJmtnnxbbo/8xVDZZTamF24eEc9qB1xOSgiKNcMscDvXVlW6G+bTHpTEBNEpcBqmDxVKXoEthLAYqdQWECM9JUSNCLc2Z6pt0dNY6zdNsX0vI9jaNj2Qh8fSNDWnEW8UVop5bFwuCzv/yScRxTS75u/vyefi7VYObNZDuirNUIvzzEWaoMRT00ENph+E8d397O+YDp5vjvO5bFzHU4Wdy6HNqPH1qYAUc9Eg4K6QxUR2GLIJL00eRwgvKlKa+BV8S07zS59WU9VnscWmqGF9+r0GdWyLi6o2BH/+cZSVjSP30lWMAObwrMotX2hGvjTxJJF3a9EptTSg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=50z2SqWShqYFeJOf1vKN0Ej5ptx/Rr0WfFNeCA/hJuk=;
- b=gKsaIbnCS+pTrpYxsEyGU7mGWnsM7f52pLIPCTjoyWn95donW1sJfi6EmafZYHeul5E3WOBENoyXL3i7W5nHm+lG171mF3Ynd2CeJtQWWYr8DwFCaFD6kkZImfpBvDhL6AKf7arQLCon8VUl1VWk9Ica7ICsr/pvgoi5GXYL0Gq869q96FD4xjHkrzJNeoarazVFKwk83QtYbS3C9Fe8pwCcDR2oGZ9dW94CYP0Hdlnsl9czo0STOqDrOLL9AMgrxOup48yrvWLx7v0wtx5a1KZIT/Ja+mV7BelIGe4KS2qH2QozwZ8AihIlfBhZN00ezJvSPsNOKly1ggEM2by55g==
+ bh=+/Zxq5mq1pFXwoSoL0K6o1hMX647uP8XmOyXhBxaznA=;
+ b=TStKV3T1YEL9maUCbYfhhlCsK+RLrxQQem2blJIOGCbTlJRz5Yz0T+09VSMAHhVwARkjtlWBgzKESKMi6eMZ0irILVNdzgIUUjo1ZtRUslN0MGU5C5ukevl0oeC15RUdDZ1JxWrXD/tR+P9cMfbzRNsYtJ+jJxQ0fOGb5I7GqAALFCJDpG6Fw7I60F4ywLxggLrcOcb5Xr8whtay/fMp0oNdnethrPJ/CYCnN+vR1y8ZZF8PyjSI9BOMrEm/jQH5HKVWl1P/13uYUk93PuFnVbrvwG2b9jfVQ+xZE/vknseDVSD+z/hFX3hosVig2DQFlOyevkoOIma7NBb1hI21XQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=50z2SqWShqYFeJOf1vKN0Ej5ptx/Rr0WfFNeCA/hJuk=;
- b=Bkx1d5QwEcPdijFYCXAtqjexin3tbV1kiFRY5DpUUn1i5M3R6m900H3GmRDU9EGUFVM7+6JhlKyqHuU+iO4ePin5ni/slxwYSlhujD+8jewnMtXtNzGT2k3jdOHN0kh2NkC4kzn5tGVEAmt26HX/hRPAgyaSGjgdv3lOMHcWIVc=
-Received: from DM6PR12MB4650.namprd12.prod.outlook.com (2603:10b6:5:1fd::27)
- by DM6PR12MB3819.namprd12.prod.outlook.com (2603:10b6:5:1c6::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.21; Tue, 7 Dec
- 2021 04:07:00 +0000
-Received: from DM6PR12MB4650.namprd12.prod.outlook.com
- ([fe80::d434:e9b4:307c:2819]) by DM6PR12MB4650.namprd12.prod.outlook.com
- ([fe80::d434:e9b4:307c:2819%7]) with mapi id 15.20.4755.021; Tue, 7 Dec 2021
- 04:06:59 +0000
-From: "Zhou1, Tao" <Tao.Zhou1@amd.com>
-To: "Chai, Thomas" <YiPeng.Chai@amd.com>, "amd-gfx@lists.freedesktop.org"
+ bh=+/Zxq5mq1pFXwoSoL0K6o1hMX647uP8XmOyXhBxaznA=;
+ b=Kjh9v4Q14SGpVUxQZH6fql5t2qjU1drYoPu5VhclovNDcDyxyZQmyLCTDQO7YcH7ipsLswpOgqRmhbH6aviNDO1YAAYlTWRY+Xd+ardStQWeKj5PIt/pN2sXwff3wUumcEwbUgajFR+x5ma7w07js//r6WqL8nI/2lko2RjRiOI=
+Received: from CH2PR12MB4215.namprd12.prod.outlook.com (2603:10b6:610:ab::24)
+ by CH2PR12MB4905.namprd12.prod.outlook.com (2603:10b6:610:64::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.16; Tue, 7 Dec
+ 2021 06:31:43 +0000
+Received: from CH2PR12MB4215.namprd12.prod.outlook.com
+ ([fe80::e9e5:e439:ff62:252a]) by CH2PR12MB4215.namprd12.prod.outlook.com
+ ([fe80::e9e5:e439:ff62:252a%5]) with mapi id 15.20.4755.022; Tue, 7 Dec 2021
+ 06:31:43 +0000
+From: "Chai, Thomas" <YiPeng.Chai@amd.com>
+To: "Zhou1, Tao" <Tao.Zhou1@amd.com>, "amd-gfx@lists.freedesktop.org"
  <amd-gfx@lists.freedesktop.org>
 Subject: RE: [PATCH V2 03/11] drm/amdgpu: Modify gfx block to fit for the
  unified ras block data and ops
 Thread-Topic: [PATCH V2 03/11] drm/amdgpu: Modify gfx block to fit for the
  unified ras block data and ops
-Thread-Index: AQHX5qGzwQrRwGnuTUmemrwDRbB3tKwlAK5ggAFpeACAAAJzMA==
-Date: Tue, 7 Dec 2021 04:06:59 +0000
-Message-ID: <DM6PR12MB4650549B4CC9AB4DA48C81B0B06E9@DM6PR12MB4650.namprd12.prod.outlook.com>
+Thread-Index: AQHX5qGzAMl6NBiq7UqLumwBwC2HgawlD/IAgAFH9NCAABqZgIAAGJUw
+Date: Tue, 7 Dec 2021 06:31:43 +0000
+Message-ID: <CH2PR12MB4215038CC522DBECC20FFBF5FC6E9@CH2PR12MB4215.namprd12.prod.outlook.com>
 References: <20211201105250.298525-1-YiPeng.Chai@amd.com>
  <20211201105250.298525-3-YiPeng.Chai@amd.com>
  <DM6PR12MB46507136C714550B974B682EB06D9@DM6PR12MB4650.namprd12.prod.outlook.com>
  <CH2PR12MB4215017BC0C393FEA8BB694AFC6E9@CH2PR12MB4215.namprd12.prod.outlook.com>
-In-Reply-To: <CH2PR12MB4215017BC0C393FEA8BB694AFC6E9@CH2PR12MB4215.namprd12.prod.outlook.com>
+ <DM6PR12MB4650549B4CC9AB4DA48C81B0B06E9@DM6PR12MB4650.namprd12.prod.outlook.com>
+In-Reply-To: <DM6PR12MB4650549B4CC9AB4DA48C81B0B06E9@DM6PR12MB4650.namprd12.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -63,70 +64,63 @@ msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
  MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
  MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=f91674a0-640b-4147-8237-7e6e1c20c707;
  MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_enabled: true
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_setdate: 2021-12-07T04:06:56Z
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_method: Standard
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_name: AMD Official Use
- Only-AIP 2.0
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_actionid: 0ea70701-4e95-41a5-b1d2-4ae8ec7de0d8
-msip_label_88914ebd-7e6c-4e12-a031-a9906be2db14_contentbits: 0
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 00996907-20ab-4a09-36d9-08d9b937047c
-x-ms-traffictypediagnostic: DM6PR12MB3819:EE_
-x-microsoft-antispam-prvs: <DM6PR12MB3819E993B3852E49DEC4295BB06E9@DM6PR12MB3819.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1148;
+x-ms-office365-filtering-correlation-id: c69323c8-2604-4973-4f33-08d9b94b3c5b
+x-ms-traffictypediagnostic: CH2PR12MB4905:EE_
+x-microsoft-antispam-prvs: <CH2PR12MB4905DA1957F232B77B035AD5FC6E9@CH2PR12MB4905.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4502;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: tf2mQqbE/X96LFN6VnLQfGa3fX1mfhDk88zyZjbzEHM5H9NWt3wOTi2upKDRdAEM8S3CvlcYR685mvfC9KIMdmc6dl9JA8Cd3Nt2TYSC00Od6IuZoMS5VBIitMph9Na25aFpTiK9wIdo83V4wQS5uJ+aKslnQTL2qCosz0YMyqiswNExppWTuq3zR2riM17r3Gjlsr+jo3URbGS5aQcYf1JFGVRhiBlQc3xL6caUFi0CUnspATRt0vWWQ4IaqxHimQU3fOHG9lO7c1TwgB/vP0UJKms/m5HBaeyIilepwZ8uOYZl3CVXkEpbntlk9NGvnZpLi3bXC8XwOjTj3n3Otsmu8pj52Fgcf9Ju7clCSxJc5I0qx0KR6GVmuIIoK/AHu0jjxEY7MJUIw6fXKe635fNKX79BXSobGI/1Jko8w2Fvh8HqYoucYgmUEFWNQ013eQm9zyH1OtDbrG+rSgdov/LXoWD9yx8zVJO3EycqQWZ3H36Lm16HNognoE3IXHahh2Jsf0GLdburE4+BDng6jGBBr7eKppwtGbriElEcah1OPHPtbZWuxSJAjl2tUKv28ZgqLTyIH77prx/hgcaYxxEXbhj+K3Ckm0ESrXxiYb8ddm9J2HMpxl/PCH0UL1IDvmE9HU0R/6zLS3NV1xrGk1yJElkVqABgWxuWS+5tcqOOtZQxIl492/dWJkV8N5bo8fHiPaHhUTrAJeZyHs7cgA==
+x-microsoft-antispam-message-info: ITmGW98mYoPbzEQERxi+IbzPhZgiBZqHHq055Ad46MrBGvY/QkzPQUK6/4bFN5hr6QHkhMPdAYzNAl649axwQyyA9EoDlZcYAzVQvLIddqQsIgJ1z08cWTPULxFVJzOMcJtWgBuHPIl433ewEm+gjmTKtCWmZOun9f+1I6uacr9bkahW8BauRImDv7cUL+Ne8ozoAMA7VgrkFY8ftC15nt2QSj6iOeZ1aoKLMQenac+Of8sQ7XSYpIfqP1UUyLS/5GpdeTpn2nAtQIj+N17DdixXVoffDQJQztobtq2Jn7pvS3BzcJJmbXf/LZLJgj4EoscA9WrjUn1iwHkJ/I88ah1OztrHn2reLKdinhIMlF+QfIOTwKlYcgYjjTqPZvryQtYIqxoJRiDMnoYMzX3Emucs2Xu9sjT/8nzTfXM9++Ku/qppvfXUtx0EmM6Wx4ttLRCQY33XoIKev2X1XUX4S+dv0JWCr7Zu2OLUUlVg/EHt0wiLv81ab/yC6M2aIYGP3EHb+U8tKWs68R5qZB6w+MpaicmESQJY6pGi6Z/IEhDgqk4JnpUWeSlrk9MCGFtrsuynQiImDIm8c7ctGRb+Xxm2R9qJmKnqFFBED4yDpEOmO2sM4mzCz3AQ4PrwQobKU8D4DTI68/UOMxLsYw4hP9bcHYNvTRJpR1eJfz9gw9MuHNsQcLXAK1doimvY3zpid1qTPUsZomeXyRJ+WPObnA==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB4650.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(186003)(26005)(8676002)(4326008)(86362001)(30864003)(8936002)(83380400001)(5660300002)(6506007)(2906002)(53546011)(122000001)(38100700002)(7696005)(66946007)(76116006)(508600001)(9686003)(55016003)(38070700005)(66556008)(66476007)(64756008)(52536014)(66446008)(316002)(71200400001)(110136005)(33656002)(579004)(559001);
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB4215.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(66556008)(66476007)(8936002)(7696005)(2906002)(86362001)(8676002)(83380400001)(26005)(38070700005)(64756008)(66446008)(30864003)(52536014)(55016003)(71200400001)(316002)(508600001)(5660300002)(33656002)(122000001)(9686003)(4326008)(186003)(53546011)(38100700002)(76116006)(110136005)(6506007)(66946007)(559001)(579004);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?k3KYDq3rS9KqognB8QsSPhv7e/MjgxHdxguECenhy32qo6/Mp7tQGTaIMnei?=
- =?us-ascii?Q?djiZHzDC0PvNhlw1FAjbA2WA1K8sZ+IXmLdPhU0MxFCNinwygRpMTKV3OKs6?=
- =?us-ascii?Q?4KjO+1BSMgUsNFFXGC8f5EBaCNag1k03LRUrhtqz8nTRXPVeb3+lPQfiXIX2?=
- =?us-ascii?Q?i8kEnLvZD6zvHqP+reAcqXRdJ6p934gNjAxoONN60canbqAlpJiJPO4Xt1Pr?=
- =?us-ascii?Q?W8K9J+a42jDlQEdafXphmuen906x8kPjBiwZbvISb7MFqgpVdTIj70aFWUTr?=
- =?us-ascii?Q?dehVBSkuN6qM/ImeAvtJ9Q1vFRfd/+67ijKI7UUXG1xgHYwUL+5EedNWEGGG?=
- =?us-ascii?Q?dPUtlSX24flBFP9PtRledkRoAk4RRRbIr064/Eok58VHg8DH65s2rFGQyZFP?=
- =?us-ascii?Q?OeMilvy9LDblN0fjnLRTeeykoLMNCOMvAjVp9zamH/M3OP7dYNFJnjUgsDx0?=
- =?us-ascii?Q?ZhVU8dAUJ+vF8QCMuzYCf/HKOkFY9fasMVnxe6Oty3RM8wcg0XV3LQos9cdt?=
- =?us-ascii?Q?YIeAlPk17FCbBEToeFRnP2BUqMhFRmuBe/J6WHk5vqT17MCfv+iL+m3daY41?=
- =?us-ascii?Q?f8pV4MvQqrZB4PyWjETyGt6InxjfRg/qswphnccZd19+fexAMzJ77V8BU8qc?=
- =?us-ascii?Q?euPTFiLgBdnjzAIWagu7ZUOanxNqGaPVEyW47+2/8miqWofJBAmBDNgXTpDb?=
- =?us-ascii?Q?qmXILtmknnEe0w9VPoZFF68pWDCPV6aaojinwUiGx05qK0fKHcRJRv4UIYRj?=
- =?us-ascii?Q?c4+iJ6cxkSkDH3Sxa16NoE6RFVltGyU4nCpS6l3Er9pjhLpsTYXuPuS0VoIk?=
- =?us-ascii?Q?VoBs7JOTGvsrVjpMvicr5Bqt/p8xi7+SV9WsrYBGSM6OtzSC+b0L4tjn8WoP?=
- =?us-ascii?Q?EXdGqtyseOUvAfW/xKSVboik13COL5teUPuU2s+j+o9Pjzdd5wXgi47E9vpT?=
- =?us-ascii?Q?i1o+i8YrrDBqSHix+eoWneL0jFkBGkzab/9bWRuF3cTAYMlkyEFIYhXxEmh9?=
- =?us-ascii?Q?977hCY92t4bkD4cwLuViX3UpdwiRm/raqI+czu+0762KJ2V4+CdKYsx619Ap?=
- =?us-ascii?Q?0FFiShybB5esUKUQkDvO1lhDpUBk6XuWMPwtZDRp83YsRuDDKwOpgSkCBcpn?=
- =?us-ascii?Q?CoDymXX7ZDnLeBGxufGfSn/sW2gB+ubqKCeQO5oIUX+2acpRQ/GzLKV2icfa?=
- =?us-ascii?Q?QGJ/Fhgna6RlPCe26CbRJ8yP9Un2jaD9D+Gw2QVoOrFIi8Qwscbc+QrvgH7R?=
- =?us-ascii?Q?VzCr0u28aVQcQV5SzuShx4MJTdizOwb3YirQqCnBBsZtvl3anPoYWDZiZ7ad?=
- =?us-ascii?Q?Ij/p8oNl7VORTzyqxNUUcyWI8FEQAfLJ35t9hSnmax9mVV1Jf1r8SIrMBgIK?=
- =?us-ascii?Q?HiyqA7weSwoTx7PR6pHsoA/ToJkD+IDigxAvOn07MsDFRmXtVnzv9RTpojNJ?=
- =?us-ascii?Q?uD/l/C5huC29vIKpzxH7Wheo4V8asr5ZSK4An7kwCpw2wN2ngzEQ5W1InmwQ?=
- =?us-ascii?Q?kdPai/ewHZ9JNmWtJN+Xu0Vvht7s+MTukUj96KpYJzBSw0ySxwLRUca8IxX+?=
- =?us-ascii?Q?gA/awmYcuxRQFppLErI=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?lQlsmBC5rEzcD2bGgGW4XHiRetVZoSe5UBv1OfmXN7KxzhGke6JGkk7YNAYX?=
+ =?us-ascii?Q?xPt/sneRdwkVdZsorNbNWtz43sMYljAG8QijXeBKRJvyQiHp5mtV0p9S0vMv?=
+ =?us-ascii?Q?LITiTewi/k1JTOxNVsgz/AXTxoY4jqqikv+sq43uyASM5TSkAyod3TPmTDsb?=
+ =?us-ascii?Q?DQuBfzKLZK89//d7uKgzWcE4VoIoEwPtmOZVnC4BGrqnteN8a6EdvQNKsmqj?=
+ =?us-ascii?Q?8Oh0zkLKGsibzvvMj/w98lUwmrCWo2Ls0ESCCPuMrcJXOeGUqUWMf5bIYu3C?=
+ =?us-ascii?Q?wVex6Q4GJ+N53HQwQm9wIpn4GpvZgKgjRGCOt09ElfQxgn3Jd9zu8Wo6awVo?=
+ =?us-ascii?Q?RBv++DhDgjwVwxe3rvb+/FbMJXSZ5UUjBDjD82ZWYIQiUBG0g9zR7uZmBiGm?=
+ =?us-ascii?Q?45KEtEJAukrrNww5c01qTtiyCtwQel/pkPPYFJYXE8Oh9nbMnY6+WUpjPOAF?=
+ =?us-ascii?Q?W7Wa4/G143wMzNRDPzTOfEtwQyhJKGewhW3leDCmBjBOvPjbx+vPckW+RIJT?=
+ =?us-ascii?Q?0gRmxQeSOgKD96ZgcGDSHkkMUk0usAW4COViAeobocvO6WTzJICwpKjSu/rj?=
+ =?us-ascii?Q?WUC8YUljKQIBIvVy2qnUPwC0tcW/oa2f/+dfNesovCdf5MOm7LJUG2m8SJLT?=
+ =?us-ascii?Q?B29RSjARpgQI+UVohx8rntl9P3Gg8O/eMf2e2ZafVpXRbmk9HyfyDe33orhF?=
+ =?us-ascii?Q?EuJLlZZ37Uz4ydJFOW9zxyj6hpuqVVqbknnzgYcACj9+aRJ/3XQR5xzNeVgU?=
+ =?us-ascii?Q?pd/VZVEEyGWXf0l/ecDXJwR1F4Flut7c6Ah6kvBu+xzB2CMGD5BQ0T3qkAjz?=
+ =?us-ascii?Q?w30Dg5topiqAfyboREXArg4shr/qYZaLqN14aeVrZvnOHMd8h/udPadld5Vc?=
+ =?us-ascii?Q?5BqbVmqIObZnAOjG/7O8FEBiwnEvWUaXNrWEb5Kn3JwJWL5jK3nt6Sr8o4Nf?=
+ =?us-ascii?Q?9PnBhj94ahxE9WYqSi9q77P4WuU/wM/koBJYCN5T9DVPmXiK3i1VeMTSLhw/?=
+ =?us-ascii?Q?bKcMMSwUQKLYaKHsj4dGAPoTq1rfc8JUNm3PB5Uh3EGy7KiTv/nwKMuhjJR1?=
+ =?us-ascii?Q?i7ZLQG7z7h0nC9ia8wYm5aEuHjeQbNqNRHuSVHa5w18r12G5dLo5IGy2777F?=
+ =?us-ascii?Q?c0TGzP+4xO0rnKNnFhB51+92rHWotGZ46BoGFkjJxweBYj81PihBBPYNsBbN?=
+ =?us-ascii?Q?oRQZCje1QVPCS/o2ViWShO8sz6HYunLp42nxJTrkzgzca3pSElWYvHbMFq0Z?=
+ =?us-ascii?Q?6MnYLZPT/XF1e5yLwmdmRbFD1s6RdAW1lsYKPPp7uSwySj2HdRtjcctR8f75?=
+ =?us-ascii?Q?mQRrVY0hy0fgMjAUY3yRZvRvVdCQNzB6AOajcJaE2LSkkFr1jdxZ7dfPalaI?=
+ =?us-ascii?Q?LsjBU9hfDC76Kl2RxRKOPOSv0fzS+ds3ntdu92TJkWCiFldA1Iwwe15qxKBp?=
+ =?us-ascii?Q?zVgB1f6bHDxKRxd8i6QhHrLYfFCosaANYzHMh5OPyHpMVH/vlxEhOVZ4mhqi?=
+ =?us-ascii?Q?1gpcSwO4Xe7Hns9RAM5/Ahbx8YaZDBwBAD060IyC22+dnlFTEMSzmePWCiBV?=
+ =?us-ascii?Q?XahoK0m/lXimC9NdYKOsLuUru7Pj/G+M6Qyo9prgOB2y4q0m+o29Ugk+Z0RE?=
+ =?us-ascii?Q?u0SORHsJWsi0L7/hT/hSrAE=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB4650.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 00996907-20ab-4a09-36d9-08d9b937047c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Dec 2021 04:06:59.7875 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4215.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c69323c8-2604-4973-4f33-08d9b94b3c5b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Dec 2021 06:31:43.5001 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6iEbPv1Y/r8v9xnKua15strqRSYUf3A7o2CX43m0HZmBtDunpxRd/1M5Cb3TAB9N
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3819
+X-MS-Exchange-CrossTenant-userprincipalname: /b6+b4RPrtS55bqlRAt+rU/OREkvgqiQKd/sUgehKxxDAkvS6701E5Qdc+sv91l7Z3XAPFc8RqN6KXW7cb69oA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4905
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,6 +136,18 @@ Cc: "Zhang, Hawking" <Hawking.Zhang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Hi tao:
+     Thanks for your review. I  add another two comments behind your commen=
+ts, please review again.
+
+-----Original Message-----
+From: Zhou1, Tao <Tao.Zhou1@amd.com>=20
+Sent: Tuesday, December 7, 2021 12:07 PM
+To: Chai, Thomas <YiPeng.Chai@amd.com>; amd-gfx@lists.freedesktop.org
+Cc: Zhang, Hawking <Hawking.Zhang@amd.com>
+Subject: RE: [PATCH V2 03/11] drm/amdgpu: Modify gfx block to fit for the u=
+nified ras block data and ops
+
 [AMD Official Use Only]
 
 Hi Thomas,
@@ -156,8 +162,8 @@ Tao
 > Sent: Tuesday, December 7, 2021 11:37 AM
 > To: Zhou1, Tao <Tao.Zhou1@amd.com>; amd-gfx@lists.freedesktop.org
 > Cc: Zhang, Hawking <Hawking.Zhang@amd.com>
-> Subject: RE: [PATCH V2 03/11] drm/amdgpu: Modify gfx block to fit for the
-> unified ras block data and ops
+> Subject: RE: [PATCH V2 03/11] drm/amdgpu: Modify gfx block to fit for=20
+> the unified ras block data and ops
 >=20
 > Hi tao:
 >      I add my comments behind your comments. Please review.
@@ -167,8 +173,8 @@ Tao
 > Sent: Monday, December 6, 2021 2:58 PM
 > To: Chai, Thomas <YiPeng.Chai@amd.com>; amd-gfx@lists.freedesktop.org
 > Cc: Zhang, Hawking <Hawking.Zhang@amd.com>
-> Subject: RE: [PATCH V2 03/11] drm/amdgpu: Modify gfx block to fit for the
-> unified ras block data and ops
+> Subject: RE: [PATCH V2 03/11] drm/amdgpu: Modify gfx block to fit for=20
+> the unified ras block data and ops
 >=20
 > [AMD Official Use Only]
 >=20
@@ -178,35 +184,36 @@ Tao
 > > From: Chai, Thomas <YiPeng.Chai@amd.com>
 > > Sent: Wednesday, December 1, 2021 6:53 PM
 > > To: amd-gfx@lists.freedesktop.org
-> > Cc: Chai, Thomas <YiPeng.Chai@amd.com>; Zhang, Hawking
+> > Cc: Chai, Thomas <YiPeng.Chai@amd.com>; Zhang, Hawking=20
 > > <Hawking.Zhang@amd.com>; Zhou1, Tao <Tao.Zhou1@amd.com>; Chai,
 > Thomas
 > > <YiPeng.Chai@amd.com>
-> > Subject: [PATCH V2 03/11] drm/amdgpu: Modify gfx block to fit for the
-> > unified ras block data and ops
+> > Subject: [PATCH V2 03/11] drm/amdgpu: Modify gfx block to fit for=20
+> > the unified ras block data and ops
 > >
-> > 1.Modify gfx block to fit for the unified ras block data and ops
+> > 1.Modify gfx block to fit for the unified ras block data and ops=20
 > > 2.Implement .ras_block_match function pointer for gfx block to identify=
  itself.
-> > 3.Change amdgpu_gfx_ras_funcs to amdgpu_gfx_ras, and the corresponding
-> > variable name remove _funcs suffix.
-> > 4.Remove the const flag of gfx ras variable so that gfx ras block can
-> > be able to be insertted into amdgpu device ras block link list.
-> > 5.Invoke amdgpu_ras_register_ras_block function to register gfx ras
+> > 3.Change amdgpu_gfx_ras_funcs to amdgpu_gfx_ras, and the=20
+> > corresponding variable name remove _funcs suffix.
+> > 4.Remove the const flag of gfx ras variable so that gfx ras block=20
+> > can be able to be insertted into amdgpu device ras block link list.
+> > 5.Invoke amdgpu_ras_register_ras_block function to register gfx ras=20
 > > block into amdgpu device ras block link list.
-> > 6.Remove the redundant code about gfx in amdgpu_ras.c after using the
-> > unified ras block.
+> > 6.Remove the redundant code about gfx in amdgpu_ras.c after using=20
+> > the unified ras block.
 > >
 > > Signed-off-by: yipechai <YiPeng.Chai@amd.com>
 > > ---
-> >  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c |  6 +-
-> > drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h | 15 ++---
-> > drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 80 ++++++++++++++++++------
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.c |  6 +-=20
+> > drivers/gpu/drm/amd/amdgpu/amdgpu_gfx.h | 15 ++---=20
+> > drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 80=20
+> > ++++++++++++++++++------
 > -
 > >  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c   | 73 +++++++++++++++-------
 > >  drivers/gpu/drm/amd/amdgpu/gfx_v9_4.c   | 39 ++++++++----
 > >  drivers/gpu/drm/amd/amdgpu/gfx_v9_4.h   |  2 +-
-> >  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c | 42 +++++++++----
+> >  drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.c | 42 +++++++++----=20
 > > drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.h |  2 +-
 > >  8 files changed, 178 insertions(+), 81 deletions(-)
 > >
@@ -264,45 +271,51 @@ Tao
 >=20
 > >[Tao] Can we add " enable_watchdog_timer" function into
 > amdgpu_ras_block_ops structure?
-> >And I think using ras_block directly is more simple than amdgpu_gfx_ras
+> >And I think using ras_block directly is more simple than=20
+> >amdgpu_gfx_ras
 > gfx_v9_0_ras structure.
 >=20
-> [Thomas] The ' enable_watchdog_timer ' function is not a common function.=
- It
-> is only defined by gfx_v9_4_2.c and called in gfx_v9_0.c.
-> 	   I think the function pointers in the amdgpu_ras_block_ops structure
-> should be the functions used by most blocks and the final goal of
-> amdgpu_ras_block_ops structure is to eliminate explicit calls to special =
-blocks in
-> amdgpu_ras.c file.
->                  So, I think it had better that the enable_watchdog_timer=
- function only
-> use in gfx but not move to amdgpu_ras_block_ops.
+> [Thomas] The ' enable_watchdog_timer ' function is not a common=20
+> function. It is only defined by gfx_v9_4_2.c and called in gfx_v9_0.c.
+> 	   I think the function pointers in the amdgpu_ras_block_ops=20
+> structure should be the functions used by most blocks and the final=20
+> goal of amdgpu_ras_block_ops structure is to eliminate explicit calls=20
+> to special blocks in amdgpu_ras.c file.
+>                  So, I think it had better that the=20
+> enable_watchdog_timer function only use in gfx but not move to amdgpu_ras=
+_block_ops.
 
-[Tao] I know your concern, it's a tradeoff. Take the following code for exa=
-mple, I think struct amdgpu_hdp_ras can be dropped and we can use ras_block=
- directly.
+>[Tao] I know your concern, it's a tradeoff. Take the following code for ex=
+ample, I think struct amdgpu_hdp_ras can be dropped and we can use ras_bloc=
+k directly.
 
-struct amdgpu_hdp_ras hdp_v4_0_ras =3D {
-	.ras_block =3D {
-		.name =3D "hdp",
-		.block =3D AMDGPU_RAS_BLOCK__HDP,
-		.ops =3D &hdp_v4_0_ras_ops,
-	},
-};
+>struct amdgpu_hdp_ras hdp_v4_0_ras =3D {
+>	.ras_block =3D {
+>		.name =3D "hdp",
+>		.block =3D AMDGPU_RAS_BLOCK__HDP,
+>		.ops =3D &hdp_v4_0_ras_ops,
+>	},
+>};
 
-The struct amdgpu_gfx_ras below can be also discarded if enable_watchdog_ti=
-mer is moved to amdgpu_ras_block_ops. The current implementation is a littl=
-e bit complicated.
+>The struct amdgpu_gfx_ras below can be also discarded if enable_watchdog_t=
+imer is moved to amdgpu_ras_block_ops. The current implementation is a litt=
+le bit complicated.
 
-struct amdgpu_gfx_ras gfx_v9_4_2_ras =3D {
-	.ras_block =3D {
-		.name =3D "gfx",
-		.block =3D AMDGPU_RAS_BLOCK__GFX,
-		.ops =3D &gfx_v9_4_2_ras_ops,
-	},
-	.enable_watchdog_timer =3D &gfx_v9_4_2_enable_watchdog_timer,
-};
+>struct amdgpu_gfx_ras gfx_v9_4_2_ras =3D {
+>	.ras_block =3D {
+>		.name =3D "gfx",
+>		.block =3D AMDGPU_RAS_BLOCK__GFX,
+>		.ops =3D &gfx_v9_4_2_ras_ops,
+>	},
+>	.enable_watchdog_timer =3D &gfx_v9_4_2_enable_watchdog_timer,
+>};
+
+      [Thomas] I understand what your mean.  But if we still have the possi=
+bility to add new ras functions for these blocks in the further, I think us=
+ing ip block's ras structure to wrap the amdgpu_ras_block_object structure =
+may be a better practice.  The wrapper can reduce code modification when ad=
+ding a new ras function in the further.=20
+=09
 
 >=20
 > >
@@ -321,11 +334,12 @@ struct amdgpu_gfx_ras gfx_v9_4_2_ras =3D {
 > > index 1cf1f6331db1..190a4a4e9d7a 100644
 > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
 > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-> > @@ -862,6 +862,27 @@ static int amdgpu_ras_enable_all_features(struct
+> > @@ -862,6 +862,27 @@ static int=20
+> > amdgpu_ras_enable_all_features(struct
 > > amdgpu_device *adev,  }
 > >  /* feature ctl end */
 > >
-> > +static struct amdgpu_ras_block_object*
+> > +static struct amdgpu_ras_block_object*=20
 > > +amdgpu_ras_get_ras_block(struct
 > > amdgpu_device *adev,
 > > +					enum amdgpu_ras_block block,
@@ -358,8 +372,8 @@ struct amdgpu_gfx_ras gfx_v9_4_2_ras =3D {
 > > +
 > > +	return NULL;
 > > +}
-> >[Tao] This is a generic ras function, not gfx specific, the code can be =
-moved to
+> >[Tao] This is a generic ras function, not gfx specific, the code can=20
+> >be moved to
 > patch #1.
 >     [Thomas] OK.
 > >
@@ -420,7 +434,7 @@ k"?
 > > amdgpu_device *adev,
 > >  		enum amdgpu_ras_block block)
 > >  {
-> > +	struct amdgpu_ras_block_object* block_obj =3D
+> > +	struct amdgpu_ras_block_object* block_obj =3D=20
 > > +amdgpu_ras_get_ras_block(adev, block, 0);
 > >  	if (!amdgpu_ras_is_supported(adev, block))
 > >  		return -EINVAL;
@@ -446,20 +460,20 @@ k"?
 > >  		break;
 > >  	case AMDGPU_RAS_BLOCK__MMHUB:
 > >  		if (adev->mmhub.ras_funcs &&
-> > @@ -1088,7 +1119,8 @@ int amdgpu_ras_error_inject(struct amdgpu_device
-> > *adev,
+> > @@ -1088,7 +1119,8 @@ int amdgpu_ras_error_inject(struct=20
+> > amdgpu_device *adev,
 > >  		.address =3D info->address,
 > >  		.value =3D info->value,
 > >  	};
 > > -	int ret =3D 0;
 > > +	int ret =3D -EINVAL;
-> > +	struct amdgpu_ras_block_object* block_obj =3D
+> > +	struct amdgpu_ras_block_object* block_obj =3D=20
 > > +amdgpu_ras_get_ras_block(adev, info->head.block,
 > > +info->head.sub_block_index);
 > >
 > >  	if (!obj)
 > >  		return -EINVAL;
-> > @@ -1102,11 +1134,12 @@ int amdgpu_ras_error_inject(struct
+> > @@ -1102,11 +1134,12 @@ int amdgpu_ras_error_inject(struct=20
 > > amdgpu_device *adev,
 > >
 > >  	switch (info->head.block) {
@@ -481,11 +495,12 @@ k"?
 > >  	case AMDGPU_RAS_BLOCK__SDMA:
 > > @@ -1727,15 +1760,20 @@ static void
 > > amdgpu_ras_log_on_err_counter(struct
-> > amdgpu_device *adev)  static void amdgpu_ras_error_status_query(struct
+> > amdgpu_device *adev)  static void=20
+> > amdgpu_ras_error_status_query(struct
 > > amdgpu_device *adev,
 > >  					  struct ras_query_if *info)
 > >  {
-> > +	struct amdgpu_ras_block_object* block_obj =3D
+> > +	struct amdgpu_ras_block_object* block_obj =3D=20
 > > +amdgpu_ras_get_ras_block(adev, info->head.block,
 > > +info->head.sub_block_index);
 > >  	/*
@@ -513,22 +528,23 @@ k"?
 > > index 08e91e7245df..2ffde223c4f5 100644
 > > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
 > > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-> > @@ -817,7 +817,7 @@ static int gfx_v9_0_get_cu_info(struct
-> > amdgpu_device *adev,  static uint64_t
-> > gfx_v9_0_get_gpu_clock_counter(struct amdgpu_device *adev);  static
-> > void gfx_v9_0_ring_emit_de_meta(struct amdgpu_ring *ring); static u64
-> > gfx_v9_0_ring_get_rptr_compute(struct amdgpu_ring *ring); -static int
-> > gfx_v9_0_query_ras_error_count(struct amdgpu_device *adev,
-> > +static void gfx_v9_0_query_ras_error_count(struct amdgpu_device
+> > @@ -817,7 +817,7 @@ static int gfx_v9_0_get_cu_info(struct=20
+> > amdgpu_device *adev,  static uint64_t=20
+> > gfx_v9_0_get_gpu_clock_counter(struct amdgpu_device *adev);  static=20
+> > void gfx_v9_0_ring_emit_de_meta(struct amdgpu_ring *ring); static=20
+> > u64 gfx_v9_0_ring_get_rptr_compute(struct amdgpu_ring *ring);=20
+> > -static int gfx_v9_0_query_ras_error_count(struct amdgpu_device=20
+> > *adev,
+> > +static void gfx_v9_0_query_ras_error_count(struct amdgpu_device=20
 > > +*adev,
 > >  					  void *ras_error_status);
 > >  static int gfx_v9_0_ras_error_inject(struct amdgpu_device *adev,
 > >  				     void *inject_if);
-> > @@ -2118,6 +2118,18 @@ static void gfx_v9_0_select_me_pipe_q(struct
+> > @@ -2118,6 +2118,18 @@ static void gfx_v9_0_select_me_pipe_q(struct=20
 > > amdgpu_device *adev,
 > >  	soc15_grbm_select(adev, me, pipe, q, vm);  }
 > >
-> > +static int gfx_v9_0_ras_block_match(struct amdgpu_ras_block_object*
+> > +static int gfx_v9_0_ras_block_match(struct amdgpu_ras_block_object*=20
 > > +block_obj, enum amdgpu_ras_block block, uint32_t sub_block_index) {
 > > +	if(!block_obj)
 > > +		return -EINVAL;
@@ -538,36 +554,36 @@ k"?
 > > +	}
 > > +
 > > +	return -EINVAL;
-> >[Tao] The return type can be changed to bool and return value is true or=
- false
+> >[Tao] The return type can be changed to bool and return value is true=20
+> >or false
 > instead of -EINVAL and 0.
->        [Thomas] I think the return type is int maybe have more scalabilit=
-y for a
-> unified ops interface.
+>        [Thomas] I think the return type is int maybe have more=20
+> scalability for a unified ops interface.
 
-[Tao] You can use int for the convenience of scalability in the future. -EI=
-NVAL means error but it refers to no matched block here, is 0 =3D=3D "no bl=
-ock" and 1 =3D=3D "find block" is better?
+>[Tao] You can use int for the convenience of scalability in the future. -E=
+INVAL means error but it refers to no matched block here, is 0 =3D=3D "no b=
+lock" and 1 =3D=3D "find block" is better?
+
+      [Thomas] In the linux kernel , the function usually return 0 for succ=
+ess,  return less than 0 for fail.  We better follow this rule.
 
 >=20
 > > +}
-> >[Tao] It's better to implement a general ras block match function in
+> >[Tao] It's better to implement a general ras block match function in=20
 > >amdgpu_ras.c
 >        [Thomas] The match method of mca block is different from other blo=
 cks.
-> Others blocks only use block to match, but mac block should use block and=
- sub
-> block index to match.
-> 	          But I can add a default match function in the amdgpu_ras.c, if=
- ip
-> block does't define .ras_block_match function, it will use the default ma=
-tch
-> function in amdgpu_ras.c.
+> Others blocks only use block to match, but mac block should use block=20
+> and sub block index to match.
+> 	          But I can add a default match function in the amdgpu_ras.c,=20
+> if ip block does't define .ras_block_match function, it will use the=20
+> default match function in amdgpu_ras.c.
 > > +
 > >  static const struct amdgpu_gfx_funcs gfx_v9_0_gfx_funcs =3D {
 > >          .get_gpu_clock_counter =3D &gfx_v9_0_get_gpu_clock_counter,
-> >          .select_se_sh =3D &gfx_v9_0_select_se_sh, @@ -2127,12 +2139,21
-> > @@ static const struct amdgpu_gfx_funcs gfx_v9_0_gfx_funcs =3D {
+> >          .select_se_sh =3D &gfx_v9_0_select_se_sh, @@ -2127,12=20
+> > +2139,21 @@ static const struct amdgpu_gfx_funcs gfx_v9_0_gfx_funcs =3D=
+ {
 > >          .select_me_pipe_q =3D &gfx_v9_0_select_me_pipe_q,  };
 > >
 > > -static const struct amdgpu_gfx_ras_funcs gfx_v9_0_ras_funcs =3D {
@@ -607,7 +623,7 @@ tch
 > >  		adev->gfx.config.max_hw_contexts =3D 8;
 > >  		adev->gfx.config.sc_prim_fifo_size_frontend =3D 0x20;
 > >  		adev->gfx.config.sc_prim_fifo_size_backend =3D 0x100; @@ -
-> > 2187,7 +2208,7 @@ static int gfx_v9_0_gpu_early_init(struct
+> > 2187,7 +2208,7 @@ static int gfx_v9_0_gpu_early_init(struct=20
 > > amdgpu_device
 > > *adev)
 > >  			gb_addr_config =3D RAVEN_GB_ADDR_CONFIG_GOLDEN;
@@ -618,7 +634,7 @@ tch
 > >  		adev->gfx.config.max_hw_contexts =3D 8;
 > >  		adev->gfx.config.sc_prim_fifo_size_frontend =3D 0x20;
 > >  		adev->gfx.config.sc_prim_fifo_size_backend =3D 0x100; @@ -
-> > 2208,7 +2229,7 @@ static int gfx_v9_0_gpu_early_init(struct
+> > 2208,7 +2229,7 @@ static int gfx_v9_0_gpu_early_init(struct=20
 > > amdgpu_device
 > > *adev)
 > >  		gb_addr_config |=3D 0x22010042;
@@ -629,7 +645,7 @@ tch
 > >  		adev->gfx.config.max_hw_contexts =3D 8;
 > >  		adev->gfx.config.sc_prim_fifo_size_frontend =3D 0x20;
 > >  		adev->gfx.config.sc_prim_fifo_size_backend =3D 0x100; @@ -
-> > 2227,6 +2248,14 @@ static int gfx_v9_0_gpu_early_init(struct
+> > 2227,6 +2248,14 @@ static int gfx_v9_0_gpu_early_init(struct=20
 > > amdgpu_device
 > > *adev)
 > >  		break;
@@ -688,13 +704,14 @@ tch
 > > amdgpu_device *adev)
 > >  	WREG32_SOC15(GC, 0, mmATC_L2_CACHE_4K_EDC_INDEX, 255);  }
 > >
-> > -static int gfx_v9_0_query_ras_error_count(struct amdgpu_device *adev,
-> > +static void gfx_v9_0_query_ras_error_count(struct amdgpu_device
+> > -static int gfx_v9_0_query_ras_error_count(struct amdgpu_device=20
+> > *adev,
+> > +static void gfx_v9_0_query_ras_error_count(struct amdgpu_device=20
 > > +*adev,
 > >  					  void *ras_error_status)
 > >  {
-> >  	struct ras_err_data *err_data =3D (struct ras_err_data
-> > *)ras_error_status; @@ -6850,7 +6879,7 @@ static int
+> >  	struct ras_err_data *err_data =3D (struct ras_err_data=20
+> > *)ras_error_status; @@ -6850,7 +6879,7 @@ static int=20
 > > gfx_v9_0_query_ras_error_count(struct
 > > amdgpu_device *adev,
 > >  	uint32_t reg_value;
@@ -705,7 +722,8 @@ tch
 > >
 > >  	err_data->ue_count =3D 0;
 > >  	err_data->ce_count =3D 0;
-> > @@ -6879,8 +6908,6 @@ static int gfx_v9_0_query_ras_error_count(struct
+> > @@ -6879,8 +6908,6 @@ static int=20
+> > gfx_v9_0_query_ras_error_count(struct
 > > amdgpu_device *adev,
 > >  	mutex_unlock(&adev->grbm_idx_mutex);
 > >
@@ -714,24 +732,25 @@ tch
 > > -	return 0;
 > >  }
 > >
-> >  static void gfx_v9_0_emit_mem_sync(struct amdgpu_ring *ring) diff
+> >  static void gfx_v9_0_emit_mem_sync(struct amdgpu_ring *ring) diff=20
 > > --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4.c
 > > b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4.c
 > > index b4789dfc2bb9..2d816addbd4d 100644
 > > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4.c
 > > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4.c
-> > @@ -863,7 +863,7 @@ static int gfx_v9_4_ras_error_count(struct
+> > @@ -863,7 +863,7 @@ static int gfx_v9_4_ras_error_count(struct=20
 > > amdgpu_device *adev,
 > >  	return 0;
 > >  }
 > >
-> > -static int gfx_v9_4_query_ras_error_count(struct amdgpu_device *adev,
-> > +static void gfx_v9_4_query_ras_error_count(struct amdgpu_device
+> > -static int gfx_v9_4_query_ras_error_count(struct amdgpu_device=20
+> > *adev,
+> > +static void gfx_v9_4_query_ras_error_count(struct amdgpu_device=20
 > > +*adev,
 > >  					  void *ras_error_status)
 > >  {
-> >  	struct ras_err_data *err_data =3D (struct ras_err_data
-> > *)ras_error_status; @@ -872,7 +872,7 @@ static int
+> >  	struct ras_err_data *err_data =3D (struct ras_err_data=20
+> > *)ras_error_status; @@ -872,7 +872,7 @@ static int=20
 > > gfx_v9_4_query_ras_error_count(struct
 > > amdgpu_device *adev,
 > >  	uint32_t reg_value;
@@ -765,7 +784,7 @@ tch
 > > -        .query_ras_error_count =3D &gfx_v9_4_query_ras_error_count,
 > > -        .reset_ras_error_count =3D &gfx_v9_4_reset_ras_error_count,
 > > -        .query_ras_error_status =3D &gfx_v9_4_query_ras_error_status,
-> > +static int gfx_v9_4_ras_block_match(struct amdgpu_ras_block_object*
+> > +static int gfx_v9_4_ras_block_match(struct amdgpu_ras_block_object*=20
 > > +block_obj, enum amdgpu_ras_block block, uint32_t sub_block_index) {
 > > +	if(!block_obj)
 > > +		return -EINVAL;
@@ -816,9 +835,9 @@ tch
 > >  	return 0;
 > >  }
 > >
-> > -static int gfx_v9_4_2_query_ras_error_count(struct amdgpu_device
+> > -static int gfx_v9_4_2_query_ras_error_count(struct amdgpu_device=20
 > > *adev,
-> > +static void gfx_v9_4_2_query_ras_error_count(struct amdgpu_device
+> > +static void gfx_v9_4_2_query_ras_error_count(struct amdgpu_device=20
 > > +*adev,
 > >  					    void *ras_error_status)
 > >  {
@@ -857,8 +876,9 @@ atus;
 > > -	.reset_ras_error_count =3D &gfx_v9_4_2_reset_ras_error_count,
 > > -	.query_ras_error_status =3D &gfx_v9_4_2_query_ras_error_status,
 > > -	.reset_ras_error_status =3D &gfx_v9_4_2_reset_ras_error_status,
-> > +static int gfx_v9_4_2_ras_block_match(struct amdgpu_ras_block_object*
-> > +block_obj, enum amdgpu_ras_block block, uint32_t sub_block_index) {
+> > +static int gfx_v9_4_2_ras_block_match(struct=20
+> > +amdgpu_ras_block_object* block_obj, enum amdgpu_ras_block block, uint3=
+2_t sub_block_index) {
 > > +	if(!block_obj)
 > > +		return -EINVAL;
 > > +
@@ -895,7 +915,8 @@ atus;
 > > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.h
 > > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_4_2.h
 > > @@ -31,6 +31,6 @@ void gfx_v9_4_2_init_golden_registers(struct
-> > amdgpu_device *adev,  void gfx_v9_4_2_set_power_brake_sequence(struct
+> > amdgpu_device *adev,  void=20
+> > gfx_v9_4_2_set_power_brake_sequence(struct
 > > amdgpu_device *adev);  int gfx_v9_4_2_do_edc_gpr_workarounds(struct
 > > amdgpu_device *adev);
 > >
@@ -904,4 +925,4 @@ atus;
 > >
 > >  #endif /* __GFX_V9_4_2_H__ */
 > > --
-> > 2.25.1=
+> > 2.25.1
