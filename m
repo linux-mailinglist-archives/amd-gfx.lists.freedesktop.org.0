@@ -2,115 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09A9346CB73
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Dec 2021 04:16:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C31CE46CB75
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Dec 2021 04:16:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBC126E062;
-	Wed,  8 Dec 2021 03:16:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 374FF6E093;
+	Wed,  8 Dec 2021 03:16:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2075.outbound.protection.outlook.com [40.107.244.75])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4E096EC88;
- Tue,  7 Dec 2021 19:46:21 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Nbd2/oIRa8jMJv5PxkWKiKKxQ4TF1wZVaOp9pVctYqZEjRlJV/nsvMJJrc5X8jh7n1xgLdGnm9Ew6wvZ8y6pKA+tP7vI2HsHG3bBpiUdcsC+ovg9XOLwEvkEB6pqUIl1erOpWR7bxpo6mq5nvQSiOr9tsfnDul47F3c1GzZJzOWQNH87FyaYZHN5FXzBnoayYVT3PGmEZB9WujxjRXijVhwLNKBnWoDvYYx5QIadvkS4xHMp/ifr88T8Ja2Byn5r4TZHHkIvvvQehi/Gy0RAY1uHDHx7n84KbjwbC2g9sLYPIJccFwFOkiYYWQcxLXKKN34sFxskoyKcLgFfsAq18g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a4B1NAfP8Kh25koFELYPRfy+EN3twVKcy4NB/9BH94Y=;
- b=JEEQJcHiXlZiu+n1MEQXvqEcm96x7PUW9JmzeYFc58u3/kLFQ/X3CP6Xe8KuDWjkx+PaSFaOnkm1hIkM7JIlWhmIKK3jLPh4Yw8HONH6YdfVT93bv9Igt+3k84IBdrqpvPQrksjIgBKTQf3djapFJPkD1XJreKy8bRnBt5ytQUiR6TerbtRkek7mbDQOx5A7T6IPDj9iJHNHnMHhxgWNzkgY2CqnJBTtNt4OIOzBS5Aq9qcnFiXT7DiRM0PVpgH8kFgpjkDLfnIOtbjworAeNCYiuc3tj/D6BS9reQoeASKYr2M/JvgYxrtRsfboy9tUOKkm76a91A3o1Y7Mf0KZ0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a4B1NAfP8Kh25koFELYPRfy+EN3twVKcy4NB/9BH94Y=;
- b=koO27SrP7rrKT97YxcHuW32UKFASh7XsV5Q0AwiIaeGx6CGfv1Tj62Rv44e5xP2SNz03zOs8ZC2yzuaGwAHIFCoMWx6LsRHZ69MAoZuIJeTD3TTZVYJUEBMrZqWVzLw1oEM5wkLX6PSGqGwjuQJCMP/5G4/uzcPOvPPRNyy3TPk8DXstSArIHDUm4N4gQcN06VImQJP8DeajRKzjC1eP6TxjMTyhGhFKUdQdQ2wpwD57V5LK63YAQzSXb1Zvxw15Tu/eG7LKlFrV3JFakBXS1mbAakhZfSpjFD5YSVeqt7fX2oXQLKXYTNKUNBAwMgCgRgghElsqxLGCrS4sHFCJsw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from BL0PR12MB5506.namprd12.prod.outlook.com (2603:10b6:208:1cb::22)
- by BL1PR12MB5361.namprd12.prod.outlook.com (2603:10b6:208:31f::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.11; Tue, 7 Dec
- 2021 19:31:41 +0000
-Received: from BL0PR12MB5506.namprd12.prod.outlook.com
- ([fe80::d8be:e4e4:ce53:6d11]) by BL0PR12MB5506.namprd12.prod.outlook.com
- ([fe80::d8be:e4e4:ce53:6d11%5]) with mapi id 15.20.4755.022; Tue, 7 Dec 2021
- 19:31:41 +0000
-Date: Tue, 7 Dec 2021 15:31:39 -0400
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Alex Sierra <alex.sierra@amd.com>
-Subject: Re: [PATCH v2 11/11] tools: add hmm gup test for long term pinned
- device pages
-Message-ID: <20211207193139.GK6385@nvidia.com>
-References: <20211206185251.20646-1-alex.sierra@amd.com>
- <20211206185251.20646-12-alex.sierra@amd.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211206185251.20646-12-alex.sierra@amd.com>
-X-ClientProxiedBy: YT1PR01CA0121.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:2c::30) To BL0PR12MB5506.namprd12.prod.outlook.com
- (2603:10b6:208:1cb::22)
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5056E6E162
+ for <amd-gfx@lists.freedesktop.org>; Wed,  8 Dec 2021 01:32:47 +0000 (UTC)
+Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+ client-signature RSA-PSS (2048 bits) client-digest SHA256)
+ (Client CN "mail.riseup.net", Issuer "R3" (not verified))
+ by mx1.riseup.net (Postfix) with ESMTPS id 4J7zyg0pWCzF3Lh;
+ Tue,  7 Dec 2021 17:26:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+ t=1638926779; bh=jNcBz2/OSZ0jlpl/XL9SZ8wqtK6X6uAMpq4k2RzGSf8=;
+ h=From:To:Cc:Subject:Date:From;
+ b=XkJ+8uXzM6UIyiyLHzJipo8Q3E0soGi4EPMRXpJ4ullyj5mkYNo/kA64BVlYQ0kR7
+ o6x/XJ3r7uz1CTG57YgFm+10kYQjF+DJJRDcXJXxJnM86TzICGvsioV+rb/T6bSLu3
+ PGBe1SfOVtZ9s/lZd3rQUbR8uR30PeuXBDJqTJn8=
+X-Riseup-User-ID: C4CD0C5DF40727F6974666AB5A23F486FAD1924386CA5AEEB52FA73AC796A6E7
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by fews1.riseup.net (Postfix) with ESMTPSA id 4J7zyc3B05z5vkY;
+ Tue,  7 Dec 2021 17:26:16 -0800 (PST)
+From: Isabella Basso <isabbasso@riseup.net>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, daniel@ffwll.ch,
+ harry.wentland@amd.com, Rodrigo.Siqueira@amd.com, Felix.Kuehling@amd.com
+Subject: [PATCH 00/10] drm/amd: fix various compilation warnings
+Date: Tue,  7 Dec 2021 22:25:19 -0300
+Message-Id: <20211208012529.372478-1-isabbasso@riseup.net>
 MIME-Version: 1.0
-Received: from mlx.ziepe.ca (206.223.160.26) by
- YT1PR01CA0121.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2c::30) with Microsoft
- SMTP Server (version=TLS1_2, cipher=) via Frontend Transport;
- Tue, 7 Dec 2021 19:31:41 +0000
-Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
- <jgg@nvidia.com>)	id 1mugBf-000Wov-Bm; Tue, 07 Dec 2021 15:31:39 -0400
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 78cb335a-e3b6-4c94-93ae-08d9b9b831fd
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5361:EE_
-X-Microsoft-Antispam-PRVS: <BL1PR12MB5361C4E7BAD2D41A2F7F1A02C26E9@BL1PR12MB5361.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: P9STkpcmQCD/rB/edEso7fT9YhGUXupvive26eT4YlDhTiX6bA5FTDQ0rV5xfTGpYVn5+mnG4UUanrPO8ygratvjIRBoztL3RewKqE98Ck1zRftFN+9+xY1T5Zg5HamcA8NFEtoOHgnS+2zBD97WgNnxJzyUv30BZZecGu+YsvhzjiUowCXAeLSmCz+idXpZU05vuQHjH9PNSXR8o7Qtgyq8CopsluZyn5PIbAUitcPMJP9g9q11zSCSHFVrlK2mL0fWX8uzvCifSNFNLdcRRUdm5LDjVbO3YqzKvg+6HBJvMCE12ByZAYc1errudPKBWwaNDK9u2m6TYYScD/RnKQbIwxKjHMZ53KbhaaXyNdv7Q55KwlwZ/PdAEo5+kAaZdXBRJpTHD0CU6yDbO0pLCtKYiZdzgfI8J/MPfseH4xbZTADE+oXdp1Gfn1KfyCAG6speAgiAEir+KIrr+VXaSIaxMOXf7AhM7I5MORDUhDqHj/AmS9NJXuPA0fwU2ERW45NChJInV7bmx+k5sD9Fn5mVrpRSjSLwOJAj3uH7N3yWvpkHu/0PHfQnrBG/uXHForLEfMBZ5rd0H7OhoKoUZkCyRSsYr2/n3gQP2LK7/Ldp0fipsjHk3q5n9jujr3YgdnR7nn+7OxCrdiMd6NPJvw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL0PR12MB5506.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(2906002)(33656002)(5660300002)(186003)(66476007)(38100700002)(1076003)(2616005)(66556008)(7416002)(86362001)(9786002)(26005)(508600001)(83380400001)(6916009)(66946007)(316002)(4326008)(9746002)(8676002)(426003)(8936002)(36756003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2/x9azX4DEWJcXerCpkxkNb+KFqEVcmnr8qQ2MqrhHSZF7kRpeCpK/67zjE3?=
- =?us-ascii?Q?uSvGkaYmMtULMiO1LuYb1ABTggAW9bilUid5XPxm6zIh1m1lU0s9B1gFfYl1?=
- =?us-ascii?Q?owsX2xV3T3mbDGmTRtsFfohi2Fm5usT9ycvjnoOVjd1yggDLuM03zWrsh+24?=
- =?us-ascii?Q?+vzJHfOQ2tmc3348B0Qb9jf+YAxm73nEg5a8bN0v+39PIMtn5l8fXCi8w37E?=
- =?us-ascii?Q?Bm6Q4fhql+pzwfh03YFpCC0goE86pcbDuX2pkpez6V8djoUHEFAHCpmovKss?=
- =?us-ascii?Q?I4fqJ0Rk1IKL423HeLeGfuB9Eu6dH789X/IZkOYKm57WW9+SHUhrQLnKtIpK?=
- =?us-ascii?Q?p4RcjiOo89B+S4OGMfesg0VAEnqVzFw0w+zG55a0ueBDUF2ahk3Ch5Z7ld1C?=
- =?us-ascii?Q?s+uk+cGUCEGnw/+9mFPgELrRY52jFoB2qDoOevA+KhyxZhf4oZBfyRZ1KYxy?=
- =?us-ascii?Q?t44nWtGL0Fd28GUeszzA/DUEhBHBXjYEWxeYkygcuZWENlO1bK60EuXFonRk?=
- =?us-ascii?Q?VCNF1foV4Qxrw8/XWnk2bRYGbbXiKLDZH88qtFGS1dU9tQVJzwkduLaH52i8?=
- =?us-ascii?Q?yt+OcCQC3WEErKM0nDkWm7+MtV9GWjSlTviN4/hC+V/xtr3+r2j8jNq1ein8?=
- =?us-ascii?Q?Sf3v0BLD3oo3j4Q+SAnUUxtGilLnDLhwpy/cYRsLGQx+lPH5vZMKLIxe5Ok3?=
- =?us-ascii?Q?vBPkT85DOtRXV736w4sEHZDjz2zu7LIubh9/unOAI3X4E12iRYXKHB+DM1e3?=
- =?us-ascii?Q?SPDjP3bEi9KONXiOQA1pYVFS3gTDxQ90AFxAVCZvU4T3IIGVWfPRxDjcphuu?=
- =?us-ascii?Q?JfynY8TdYN+rEI7yNbyhxy7TbMiaSdLVS4dzRBoIPeN5cEZmTnhubyrqTThu?=
- =?us-ascii?Q?HB65eIRpZyJouhyWgtzZyhaDbpsxd5TfdVPEcWeysJmHtdgXVv8wLww44P3A?=
- =?us-ascii?Q?ITfcNyGoMZ23bxlWp645QXzU9xEAArF8L/GJFXWPt1VITo3x8koJbqATTR2Y?=
- =?us-ascii?Q?DBeXu2/Qiqg1K/ymuZaJs8SaGcNxkixLClhIfoScwc41C7q94p6ov/7JoCF+?=
- =?us-ascii?Q?kdQ9zJcI8Nh77/Om756cLkI+zFd5gxnThGJX3Ck+W8fkezXLMDxV5rwRePe5?=
- =?us-ascii?Q?4BHLG0I8N4Ab52kQGzy98Ns1RifkwydaEn9kgJua3Iumz+3FNVJtijHEqcoA?=
- =?us-ascii?Q?xuTNw5Kg25fWzl2M2BUKhbcjyUOODXQL5pYNClYl5KUHll1dvgOwyCCcCcL/?=
- =?us-ascii?Q?f3/3U6zW7/wSdhRU1ZEqTHmGlvDdOv8jef5oP1HuXmDdcx3d2vgGROwLnIzJ?=
- =?us-ascii?Q?xNxhGUdOwqYffiHc7o6sdt74AtXmOyNHEMOdQXTraQv7nabAoD9t+YCk7tAB?=
- =?us-ascii?Q?nuBFxQVrAYGUSQpzSjRUZjFKrlZy4Mo+/19DqT4uvY1O4kX5MDaBl5NPb+zv?=
- =?us-ascii?Q?B3RV4lM8JqinGOBF9Sz1OHu8PsI5vcX9lKkzaV70D4BK5AQRIxvFAD2JmgCk?=
- =?us-ascii?Q?/M1DiFok3xjXmsCzQlw5Rz3QLyMBYH44UtnMdJtEOHfPq6wgcOTfoxAGP17K?=
- =?us-ascii?Q?aESjSix8Qbk8vLrwjAI=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78cb335a-e3b6-4c94-93ae-08d9b9b831fd
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB5506.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2021 19:31:41.5177 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eyXyvdjGF5TmUFTTisORxh9JRuBNm9JPwZxU/z4/FzBXLj9Q7mP+lT8Lywqu1Nc1
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5361
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 08 Dec 2021 03:16:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -123,53 +50,114 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, willy@infradead.org, Felix.Kuehling@amd.com,
- apopple@nvidia.com, amd-gfx@lists.freedesktop.org, linux-xfs@vger.kernel.org,
- linux-mm@kvack.org, jglisse@redhat.com, dri-devel@lists.freedesktop.org,
- akpm@linux-foundation.org, linux-ext4@vger.kernel.org, hch@lst.de
+Cc: ~lkcamp/patches@lists.sr.ht, Isabella Basso <isabbasso@riseup.net>,
+ amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 06, 2021 at 12:52:51PM -0600, Alex Sierra wrote:
-> The intention is to test device coherent type pages that have been
-> called through get user pages with PIN_LONGTERM flag set.
-> 
-> Signed-off-by: Alex Sierra <alex.sierra@amd.com>
->  tools/testing/selftests/vm/Makefile    |  2 +-
->  tools/testing/selftests/vm/hmm-tests.c | 81 ++++++++++++++++++++++++++
->  2 files changed, 82 insertions(+), 1 deletion(-)
-> 
-> diff --git a/tools/testing/selftests/vm/Makefile b/tools/testing/selftests/vm/Makefile
-> index d9605bd10f2d..527a7bfd80bd 100644
-> +++ b/tools/testing/selftests/vm/Makefile
-> @@ -141,7 +141,7 @@ $(OUTPUT)/mlock-random-test $(OUTPUT)/memfd_secret: LDLIBS += -lcap
->  
->  $(OUTPUT)/gup_test: ../../../../mm/gup_test.h
->  
-> -$(OUTPUT)/hmm-tests: local_config.h
-> +$(OUTPUT)/hmm-tests: local_config.h ../../../../mm/gup_test.h
->  
->  # HMM_EXTRA_LIBS may get set in local_config.mk, or it may be left empty.
->  $(OUTPUT)/hmm-tests: LDLIBS += $(HMM_EXTRA_LIBS)
-> diff --git a/tools/testing/selftests/vm/hmm-tests.c b/tools/testing/selftests/vm/hmm-tests.c
-> index 8eb81dfba4b3..9a0b7e44a674 100644
-> +++ b/tools/testing/selftests/vm/hmm-tests.c
-> @@ -36,6 +36,7 @@
->   * in the usual include/uapi/... directory.
->   */
->  #include "../../../../lib/test_hmm_uapi.h"
-> +#include "../../../../mm/gup_test.h"
->  
->  struct hmm_buffer {
->  	void		*ptr;
-> @@ -60,6 +61,8 @@ enum {
->  #define NTIMES		10
->  
->  #define ALIGN(x, a) (((x) + (a - 1)) & (~((a) - 1)))
-> +/* Just the flags we need, copied from mm.h: */
-> +#define FOLL_WRITE	0x01	/* check pte is writable */
+This patchset aims at fixing various compilation warnings in the AMD GPU
+driver. All warnings were generated using gcc and the W=1 flag. I
+decided to deal with them in the same order as the issues were presented
+in the log, with the exception of those that were about the lack of
+protypes, which were gathered by a script [1].
 
-This is so fragile, you should have a dedicated flag here for asking
-for this of PIN_LONGTERM_BENCHMARK
+[1] - https://pad.riseup.net/p/ZMkzoeO89Kt7R_IC4iAo-keep
 
-Jason
+Isabella Basso (10):
+  drm/amd: Mark IP_BASE definition as __maybe_unused
+  drm/amd: fix improper docstring syntax
+  drm/amdgpu: add missing function prototype for
+    amdgpu_ras_mca_query_error_status
+  drm/amdgpu: fix function scopes
+  drm/amdkfd: fix function scopes
+  drm/amd/display: fix function scopes
+  drm/amd: append missing includes
+  drm/amdgpu: fix location of prototype for amdgpu_kms_compat_ioctl
+  drm/amdgpu: remove unnecessary variables
+  drm/amdgpu: re-format file header comments
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu.h           |  2 -
+ .../gpu/drm/amd/amdgpu/amdgpu_atomfirmware.c  |  4 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_atpx_handler.c  |  3 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.h       |  3 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ioc32.c     | 16 +++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_irq.c       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_pll.c       |  2 +
+ .../gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c   |  4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       |  6 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.h       |  4 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vce.c       |  1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c      |  4 +-
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_0.c        |  2 -
+ drivers/gpu/drm/amd/amdgpu/sdma_v5_2.c        |  2 -
+ drivers/gpu/drm/amd/amdkfd/kfd_migrate.c      |  4 +-
+ .../drm/amd/amdkfd/kfd_packet_manager_vi.c    |  4 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      |  5 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c          | 10 +++-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 19 +++++--
+ .../amd/display/amdgpu_dm/amdgpu_dm_color.c   |  4 ++
+ .../gpu/drm/amd/display/dc/calcs/dcn_calcs.c  |  4 +-
+ .../display/dc/clk_mgr/dcn10/rv1_clk_mgr.c    |  2 +-
+ .../dc/clk_mgr/dcn10/rv1_clk_mgr_vbios_smu.c  |  2 +
+ .../display/dc/clk_mgr/dcn20/dcn20_clk_mgr.c  |  2 +-
+ .../dc/clk_mgr/dcn201/dcn201_clk_mgr.c        |  9 +--
+ .../amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 14 ++---
+ .../dc/clk_mgr/dcn21/rn_clk_mgr_vbios_smu.c   |  6 +-
+ .../display/dc/clk_mgr/dcn301/dcn301_smu.c    |  6 +-
+ .../display/dc/clk_mgr/dcn301/vg_clk_mgr.c    | 10 ++--
+ .../display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c  |  9 +--
+ .../amd/display/dc/clk_mgr/dcn31/dcn31_smu.c  |  6 +-
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c |  3 +-
+ .../display/dc/dce110/dce110_hw_sequencer.c   |  2 +
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_dpp.c  |  2 +-
+ .../drm/amd/display/dc/dcn10/dcn10_dpp_dscl.c |  5 +-
+ .../amd/display/dc/dcn10/dcn10_hw_sequencer.c | 16 +++---
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_opp.c  |  5 +-
+ .../gpu/drm/amd/display/dc/dcn10/dcn10_optc.c |  8 +--
+ .../drm/amd/display/dc/dcn10/dcn10_resource.c | 21 ++++---
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_dpp.c  |  5 +-
+ .../drm/amd/display/dc/dcn20/dcn20_dwb_scl.c  |  4 +-
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c |  7 +--
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  6 +-
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_init.c |  2 +
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_mpc.c  |  8 +--
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_optc.c | 21 ++++---
+ .../drm/amd/display/dc/dcn201/dcn201_dccg.c   |  3 +-
+ .../drm/amd/display/dc/dcn201/dcn201_hubp.c   |  7 +--
+ .../display/dc/dcn201/dcn201_link_encoder.c   |  7 ++-
+ .../amd/display/dc/dcn201/dcn201_resource.c   | 19 +++----
+ .../drm/amd/display/dc/dcn21/dcn21_hubbub.c   |  2 +-
+ .../gpu/drm/amd/display/dc/dcn21/dcn21_hubp.c | 16 +++---
+ .../gpu/drm/amd/display/dc/dcn21/dcn21_init.c |  2 +
+ .../amd/display/dc/dcn21/dcn21_link_encoder.c |  9 ++-
+ .../drm/amd/display/dc/dcn21/dcn21_resource.c | 34 +++++------
+ .../dc/dcn30/dcn30_dio_stream_encoder.c       |  8 +--
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_dpp.c  | 27 ++++-----
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_init.c |  2 +
+ .../drm/amd/display/dc/dcn30/dcn30_mmhubbub.c |  2 +-
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_mpc.c  |  2 +-
+ .../drm/amd/display/dc/dcn30/dcn30_resource.c | 13 ++---
+ .../drm/amd/display/dc/dcn301/dcn301_init.c   |  2 +
+ .../amd/display/dc/dcn301/dcn301_panel_cntl.c | 10 ++--
+ .../amd/display/dc/dcn301/dcn301_resource.c   | 56 +++++++++----------
+ .../drm/amd/display/dc/dcn302/dcn302_init.c   |  2 +
+ .../drm/amd/display/dc/dcn303/dcn303_init.c   |  2 +
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_dccg.c |  2 +-
+ .../display/dc/dcn31/dcn31_dio_link_encoder.c |  2 +-
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_init.c |  2 +
+ .../amd/display/dc/dcn31/dcn31_panel_cntl.c   | 10 ++--
+ .../drm/amd/display/dc/dcn31/dcn31_resource.c |  4 +-
+ .../dc/dml/dcn21/display_rq_dlg_calc_21.c     |  3 +-
+ .../display/dc/irq/dcn10/irq_service_dcn10.c  |  7 +--
+ .../dc/irq/dcn201/irq_service_dcn201.c        |  7 +--
+ .../display/dc/irq/dcn21/irq_service_dcn21.c  |  7 +--
+ .../display/dc/irq/dcn31/irq_service_dcn31.c  |  7 +--
+ .../amd/include/cyan_skillfish_ip_offset.h    | 10 ++--
+ .../gpu/drm/amd/include/yellow_carp_offset.h  |  4 +-
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c        |  2 +-
+ 80 files changed, 303 insertions(+), 279 deletions(-)
+
+-- 
+2.34.1
+
