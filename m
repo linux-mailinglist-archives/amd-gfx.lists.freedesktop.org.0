@@ -1,40 +1,40 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DF4C46CB79
-	for <lists+amd-gfx@lfdr.de>; Wed,  8 Dec 2021 04:16:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54A6946CB76
+	for <lists+amd-gfx@lfdr.de>; Wed,  8 Dec 2021 04:16:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D58936E2B8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 462BA6E0E3;
 	Wed,  8 Dec 2021 03:16:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BC406E22F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E7F06E250
  for <amd-gfx@lists.freedesktop.org>; Wed,  8 Dec 2021 01:32:47 +0000 (UTC)
 Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
  client-signature RSA-PSS (2048 bits) client-digest SHA256)
  (Client CN "mail.riseup.net", Issuer "R3" (not verified))
- by mx1.riseup.net (Postfix) with ESMTPS id 4J7zys51Y5zF4jS;
- Tue,  7 Dec 2021 17:26:29 -0800 (PST)
+ by mx1.riseup.net (Postfix) with ESMTPS id 4J7zyw2qx2zF4gk;
+ Tue,  7 Dec 2021 17:26:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1638926789; bh=4wjioRyW3r+LOWxqSou972meOigDouk1tF80QrRy8nk=;
+ t=1638926792; bh=VJbV97pHTJC8AS8Nd8TffNqFCGGlvcCC144+loyaNqQ=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=JyqVTIDJdiGTMWvqxFbALiUmdEVg3LTavZhaDMKc8mUCH7qh0H2YoT2mwii49hkVu
- 7V/XdDNns2v4X7ttn/pfjUxDU9efXOJUa27oMzkLFQbaveSwVzd35G0BC1fUyduD2T
- 5n1KVhnlAlFdpJ2LQxtVpG4MyysZTRy0gsWNkMKE=
-X-Riseup-User-ID: DCEAEE24D4891B94813A37C355B45D58543A1AE3623A999559F706442D03A3B7
+ b=tY18vsU0FNv5j9YjUfCQP9+zLc1y/kCL/8YCuzynydg1sDuTgI6Ul472zPssagd2n
+ a5DICP+jA8ZJEc+H4hM4hzA+iDuHskt5ptMotR4/RWHCKOn864S/lqLFMn7sOmg9EZ
+ rZTlmEY8h4S4ys6Xy1VDG9bnQVAw3Gb5pWihQNlU=
+X-Riseup-User-ID: 7477355199DC68DB69D435C2B7857633E972311AC2EE236E5195E1BCCEAED713
 Received: from [127.0.0.1] (localhost [127.0.0.1])
- by fews1.riseup.net (Postfix) with ESMTPSA id 4J7zyq2pblz5vkY;
- Tue,  7 Dec 2021 17:26:27 -0800 (PST)
+ by fews1.riseup.net (Postfix) with ESMTPSA id 4J7zyt0LBSz5vkY;
+ Tue,  7 Dec 2021 17:26:29 -0800 (PST)
 From: Isabella Basso <isabbasso@riseup.net>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, daniel@ffwll.ch,
  harry.wentland@amd.com, Rodrigo.Siqueira@amd.com, Felix.Kuehling@amd.com
-Subject: [PATCH 04/10] drm/amdgpu: fix function scopes
-Date: Tue,  7 Dec 2021 22:25:23 -0300
-Message-Id: <20211208012529.372478-5-isabbasso@riseup.net>
+Subject: [PATCH 05/10] drm/amdkfd: fix function scopes
+Date: Tue,  7 Dec 2021 22:25:24 -0300
+Message-Id: <20211208012529.372478-6-isabbasso@riseup.net>
 In-Reply-To: <20211208012529.372478-1-isabbasso@riseup.net>
 References: <20211208012529.372478-1-isabbasso@riseup.net>
 MIME-Version: 1.0
@@ -56,37 +56,33 @@ Cc: ~lkcamp/patches@lists.sr.ht, Isabella Basso <isabbasso@riseup.net>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This turns previously global functions into static, thus removing
-compile-time warnings such as:
+ This turns previously global functions into static, thus removing
+ compile-time warnings such as:
 
- warning: no previous prototype for 'release_psp_cmd_buf' [-Wmissing-prototypes]
- 521 | void release_psp_cmd_buf(struct psp_context *psp)
-     |      ^~~~~~~~~~~~~~~~~~~
- ...
- warning: no previous prototype for 'amdgpu_vkms_output_init' [-Wmissing-prototypes]
- 399 | int amdgpu_vkms_output_init(struct drm_device *dev,
-     |     ^~~~~~~~~~~~~~~~~~~~~~~
+ warning: no previous prototype for 'pm_set_resources_vi' [-Wmissing-prototypes]
+ 113 | int pm_set_resources_vi(struct packet_manager *pm, uint32_t *buffer,
+     |     ^~~~~~~~~~~~~~~~~~~
 
 Signed-off-by: Isabella Basso <isabbasso@riseup.net>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c | 4 ++--
+ drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_vi.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
-index af3a2f8c12b4..96895cccf9e7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
-@@ -411,8 +411,8 @@ static struct drm_plane *amdgpu_vkms_plane_init(struct drm_device *dev,
- 	return plane;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_vi.c b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_vi.c
+index 08442e7d9944..3c0658e32e93 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_vi.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_packet_manager_vi.c
+@@ -110,8 +110,8 @@ static int pm_runlist_vi(struct packet_manager *pm, uint32_t *buffer,
+ 	return 0;
  }
  
--int amdgpu_vkms_output_init(struct drm_device *dev,
--			    struct amdgpu_vkms_output *output, int index)
-+static int amdgpu_vkms_output_init(struct drm_device *dev, struct
-+				   amdgpu_vkms_output *output, int index)
+-int pm_set_resources_vi(struct packet_manager *pm, uint32_t *buffer,
+-				struct scheduling_resources *res)
++static int pm_set_resources_vi(struct packet_manager *pm, uint32_t *buffer,
++			       struct scheduling_resources *res)
  {
- 	struct drm_connector *connector = &output->connector;
- 	struct drm_encoder *encoder = &output->encoder;
+ 	struct pm4_mes_set_resources *packet;
+ 
 -- 
 2.34.1
 
