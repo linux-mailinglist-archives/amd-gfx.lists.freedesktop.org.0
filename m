@@ -1,61 +1,68 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0423546F059
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:04:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4D3D46F056
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:04:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9947010E193;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C67510E151;
 	Thu,  9 Dec 2021 17:04:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com
- [IPv6:2607:f8b0:4864:20::1030])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBADF10E116;
- Thu,  9 Dec 2021 06:17:47 +0000 (UTC)
-Received: by mail-pj1-x1030.google.com with SMTP id
- k6-20020a17090a7f0600b001ad9d73b20bso4005671pjl.3; 
- Wed, 08 Dec 2021 22:17:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=ERNdknSdRVKl939EP+EZZR/PoW0Nj1vOL+LFqLPaFaE=;
- b=VnKZQdzGR1KwvVlbMhJ9w4yN5SAgf36Tsu/EQkyNyyDawfgQ9W+WbDf1o1BNf73lum
- LNDL0ZsH9/EqlAIF4Fno0CGooNpVWAJnpiEx/h4Ps2yE9uCrxI9wfG/Lk9U0XHtDZbSs
- 7lpV5zElgJ16wRwhg6Bx9McSbWutm+HQ/EV7H2OlaVe8d0FJv51Mtvtylcg/gy6cq5EZ
- UCrvSfnuFJ23q+ZlJUbDbXF6sJGXVJTDI+jt4mkVgjJUvV9Rz9GXZ3+7dhS5vZXqbAaX
- 4C/iBOy85IGRN/mtQhSfYjy4y1x5WLzd60NZGpmQDiFfHv1Kf4Qm0tDulOeOFurPk/Kg
- Eazw==
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com
+ [IPv6:2607:f8b0:4864:20::831])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF9F489F73
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 06:52:39 +0000 (UTC)
+Received: by mail-qt1-x831.google.com with SMTP id t11so4479698qtw.3
+ for <amd-gfx@lists.freedesktop.org>; Wed, 08 Dec 2021 22:52:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=9lZzV6uRxUvt0RqeIyM4DCy//4WwHZcCj15yKoRWKv0=;
+ b=MuH7fGvI/9AD+8Jf3135+Y84ksGN91yCSTt0zoUDEqseX7B2K0YN6lCaPdgDeOMRpm
+ GOe7MfuQdBr+Z4wyPuK/X3Oq+E11gqhW44bDipD/o7JNOnqwTqyXLLafarAjz6Qto1ro
+ aG+jBeBbWAiByCuS0S6B9hU+pATvx85RKkpkIAQIfLRbW2qUaPcS9Uu6YIpp8W008vUj
+ AvLKcneW2BuqADAMC9NC6N/Val8HXTIHMS7sQv01juWNQbBHSKaBSpUv61IEYCjx2r7c
+ hWVEXyKPTi4aa/SWCsc4zb+EUhNMyK5Z6Ko/CgGa+RO3zAgIsW2+q5scXiLYdGdjXPHA
+ IZ9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=ERNdknSdRVKl939EP+EZZR/PoW0Nj1vOL+LFqLPaFaE=;
- b=DarKV38RzE7w+4uANNtYycLCCVBWDTvefFsEorcWRq3HOEnB6T8nAWlONpo3eGFMmm
- J78QBUcJTnweD2SqQ9znjDL5tE1VpAmgQA/rUyDR8jPxsRMaCSNtKHQjVW7rzmNVfiJa
- BQaIUz113cW0PdsG5oPx5+aB5Lm2auJcem7a8NmzparOXk57p2B5VBCtItoO3GLHEXjf
- tJEXGk5o778maw8I9B8PnkZ5aao5GUfexz4E3b22yJ7USK5Tfjp8P6sbgmncLjGskRVU
- CW+Uh/MB5DGaOImljPNz0Ff4f+giTkCagK79QAy6S/+h2/K8eDnivNvome6bNfiAh+iX
- goEA==
-X-Gm-Message-State: AOAM533bS6bUIyryj3vUjp3DtW3M4oE705EVfkHWyCWPiaGT9ofNXK10
- tpEzo17gXgDAwlQm9wohBxEV5rIvHnc=
-X-Google-Smtp-Source: ABdhPJxALjGW3u4AEFGEvQxsHH3WOQo5kRwErZMyqNAPO4fMR36Pgv0iMSHN7+mt1Z/nZUz0vkYO5A==
-X-Received: by 2002:a17:902:6a8a:b0:143:905f:aec7 with SMTP id
- n10-20020a1709026a8a00b00143905faec7mr64773494plk.8.1639015108752; 
- Wed, 08 Dec 2021 17:58:28 -0800 (PST)
-Received: from localhost.localdomain ([193.203.214.57])
- by smtp.gmail.com with ESMTPSA id m10sm3619593pgv.75.2021.12.08.17.58.25
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=9lZzV6uRxUvt0RqeIyM4DCy//4WwHZcCj15yKoRWKv0=;
+ b=p42R+yudgMiS9vNaOuiBsoCEixbwBqgCJHwonagTP64tKC//UhxREeVQOzclIZJmjj
+ Ct8LHbGLYMHk8TgtmDskUnyBvq2EvN7ZUAsAWRXL7eO+ax0UUD+YsZ/9yKLWnrKei2af
+ S5Ko2xvSVw2fhbb32qUfUsqcYCBYoSeayppE9m+N/DjtB9FPgwHLwQ0wOqdUdak/eOrb
+ S0ckUTW8kluOHNjFWwTDv8tYqyLv6ts3fpZhK2AK0p+LZUNER7qGEs8J/nTsKugrK03D
+ /S8fhW81OPrpxYRFgLwXyMmZeFdoAxlZBRsWmHoWjDuUd0GkNwWN43Ux1bqeEUDUgbFT
+ avzw==
+X-Gm-Message-State: AOAM530H0beO1MMZs1/hFfHHUzmqJqyJtfHdNyAI19IMQe87Jh+gXHhP
+ aHTdm6mob1ZKU6p0L+X7iwJ79dfUCzgyCQ==
+X-Google-Smtp-Source: ABdhPJzd7PgIaK+OliA8j4qPmgBHphO7odQ23RlPROnXGhIchmoXCBqWvKGTqHwv0CnaCCZT+fN4FA==
+X-Received: by 2002:a05:622a:8d:: with SMTP id
+ o13mr13208686qtw.574.1639018404025; 
+ Wed, 08 Dec 2021 18:53:24 -0800 (PST)
+Received: from ziepe.ca
+ (hlfxns017vw-142-162-113-129.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.162.113.129])
+ by smtp.gmail.com with ESMTPSA id m1sm2800768qtk.34.2021.12.08.18.53.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Dec 2021 17:58:28 -0800 (PST)
-From: cgel.zte@gmail.com
-X-Google-Original-From: chi.minghao@zte.com.cn
-To: alexander.deucher@amd.com
-Subject: [PATCH] drm:amdgpu:remove unneeded variable
-Date: Thu,  9 Dec 2021 01:58:23 +0000
-Message-Id: <20211209015823.409947-1-chi.minghao@zte.com.cn>
-X-Mailer: git-send-email 2.25.1
+ Wed, 08 Dec 2021 18:53:23 -0800 (PST)
+Received: from jgg by mlx with local (Exim 4.94) (envelope-from <jgg@ziepe.ca>)
+ id 1mv9Yg-000zXC-FC; Wed, 08 Dec 2021 22:53:22 -0400
+Date: Wed, 8 Dec 2021 22:53:22 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Alistair Popple <apopple@nvidia.com>
+Subject: Re: [PATCH v2 03/11] mm/gup: migrate PIN_LONGTERM dev coherent pages
+ to system
+Message-ID: <20211209025322.GE6467@ziepe.ca>
+References: <20211206185251.20646-1-alex.sierra@amd.com>
+ <2858338.J0npWUQLIM@nvdebian> <20211208135345.GC6467@ziepe.ca>
+ <117075453.Ddeq1f3ylz@nvdebian>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <117075453.Ddeq1f3ylz@nvdebian>
 X-Mailman-Approved-At: Thu, 09 Dec 2021 17:04:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,69 +75,67 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alex.sierra@amd.com, dri-devel@lists.freedesktop.org, airlied@linux.ie,
- Zeal Robot <zealci@zte.com.cm>, Oak.Zeng@amd.com, Xinhui.Pan@amd.com,
- rajneesh.bhardwaj@amd.com, chi.minghao@zte.com.cn,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, daniel@ffwll.ch,
- Likun.Gao@amd.com, john.clements@amd.com, christian.koenig@amd.com,
- Hawking.Zhang@amd.com
+Cc: Alex Sierra <alex.sierra@amd.com>, rcampbell@nvidia.com,
+ willy@infradead.org, Felix.Kuehling@amd.com, amd-gfx@lists.freedesktop.org,
+ linux-xfs@vger.kernel.org, linux-mm@kvack.org, jglisse@redhat.com,
+ dri-devel@lists.freedesktop.org, akpm@linux-foundation.org,
+ linux-ext4@vger.kernel.org, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: chiminghao <chi.minghao@zte.com.cn>
+On Thu, Dec 09, 2021 at 12:45:24PM +1100, Alistair Popple wrote:
+> On Thursday, 9 December 2021 12:53:45 AM AEDT Jason Gunthorpe wrote:
+> > > I think a similar problem exists for device private fault handling as well and
+> > > it has been on my list of things to fix for a while. I think the solution is to
+> > > call try_get_page(), except it doesn't work with device pages due to the whole
+> > > refcount thing. That issue is blocking a fair bit of work now so I've started
+> > > looking into it.
+> > 
+> > Where is this?
+>  
+> Nothing posted yet. I've been going through the mailing list and the old
+> thread[1] to get an understanding of what is left to do. If you have any
+> suggestions they would be welcome.
 
-return value form directly instead of
-taking this in another redundant variable.
+Oh, that
 
-Reported-by: Zeal Robot <zealci@zte.com.cm>
-Signed-off-by: chiminghao <chi.minghao@zte.com.cn>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ioc32.c | 5 +----
- drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c     | 6 ++----
- 2 files changed, 3 insertions(+), 8 deletions(-)
+Joao's series here is the first step:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ioc32.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ioc32.c
-index 5cf142e849bb..fb92f827eeb7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ioc32.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ioc32.c
-@@ -37,12 +37,9 @@
- long amdgpu_kms_compat_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
- {
- 	unsigned int nr = DRM_IOCTL_NR(cmd);
--	int ret;
- 
- 	if (nr < DRM_COMMAND_BASE)
- 		return drm_compat_ioctl(filp, cmd, arg);
- 
--	ret = amdgpu_drm_ioctl(filp, cmd, arg);
--
--	return ret;
-+	return amdgpu_drm_ioctl(filp, cmd, arg);
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-index cb82404df534..269a7b04b7e7 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-@@ -1742,7 +1742,7 @@ static int gmc_v9_0_hw_init(void *handle)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 	bool value;
--	int r, i;
-+	int i;
- 
- 	/* The sequence of these two function calls matters.*/
- 	gmc_v9_0_init_golden_registers(adev);
-@@ -1777,9 +1777,7 @@ static int gmc_v9_0_hw_init(void *handle)
- 	if (adev->umc.funcs && adev->umc.funcs->init_registers)
- 		adev->umc.funcs->init_registers(adev);
- 
--	r = gmc_v9_0_gart_enable(adev);
--
--	return r;
-+	return gmc_v9_0_gart_enable(adev);
- }
- 
- /**
--- 
-2.25.1
+https://lore.kernel.org/linux-mm/20211202204422.26777-1-joao.m.martins@oracle.com/
 
+I already sent a patch to remove the DRM usage of PUD/PMD -
+0d979509539e ("drm/ttm: remove ttm_bo_vm_insert_huge()")
+
+Next, someone needs to change FSDAX to have a folio covering the
+ZONE_DEVICE pages before it installs a PUD or PMD. I don't know
+anything about FS's to know how to do this at all.
+
+Thus all PUD/PMD entries will point at a head page or larger of a
+compound. This is important because all the existing machinery for THP
+assumes 1 PUD/PMD means 1 struct page to manipulate.
+
+Then, consolidate all the duplicated code that runs when a page is
+removed from a PTE/PMD/PUD etc into a function. Figure out why the
+duplications are different to make them the same (I have some rough
+patches for this step)
+
+Start with PUD and have zap on PUD call the consolidated function and
+make vmf_insert_pfn_pud_prot() accept a struct page not pfn and incr
+the refcount. PUD is easy because there is no THP
+
+Then do the same to PMD without breaking the THP code
+
+Then make the PTE also incr the refcount on insert and zap
+
+Exterminate vma_is_special_huge() along the way, there is no such
+thing as a special huge VMA without a pud/pmd_special flag so all
+things installed here must be struct page and not special.
+
+Then the patches that are already posted are applicable and we can
+kill the refcount == 1 stuff. No 0 ref count pages installed in page
+tables.
+
+Once all of that is done it is fairly straightforward to remove
+pud/pmd/pte_devmap entirely and the pgmap stuff from gup.c
+
+Jason
