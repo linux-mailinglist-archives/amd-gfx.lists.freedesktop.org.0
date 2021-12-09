@@ -2,100 +2,125 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98F0E46EF6D
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01DE046EFA3
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:01:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71DC310E616;
-	Thu,  9 Dec 2021 16:54:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CFB910EC58;
+	Thu,  9 Dec 2021 16:54:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2054.outbound.protection.outlook.com [40.107.220.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDC2110E120;
- Thu,  9 Dec 2021 14:21:17 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2041.outbound.protection.outlook.com [40.107.223.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCF5089A60;
+ Thu,  9 Dec 2021 15:23:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T6YZKQHYhc2evVe4dhu+mlleLHyHLtLA/bV/U3XaEosbSP/oydeQvWvs1wOzBDsksTeXT0b2tCIWLAF64NTZweZ+dIfmx3AzIg+/HtAe5yg2QkA6sjouy28lvOyKXwgvKhGalOtF+kR4kuUrqVj9wpS3AYdR7ZJyTjQhkMgAruXoIMGeQI1AQvW4H+8OIIkoIy3cqK58MaHm8npAaP93hu6fpUPY6eytFbdm2459pIFnKJy8/DG//znFq+lD3M6okjGARhUjLnGusTeBdnv/FP3zZlZkACOChRKdHN3EgpksnonQbVq6P7lIqACwk/U0Djcj2a2uaKTkZhm6UuN5ag==
+ b=Lo4a2Ml9DZrT7uNOh3r7gnJteajB0hVt7nt6wZWX2z3XKH6DsGJJCt2At464mI66ZRerUkl9oHqkRb2BSjQa1SExrPM77QcuyIgNSdoGO9PXiU6kf8+LCtZkslX3WnfdL94E9TEzeHz+JsYhmLhews0cAD9c85kcl6avslX7m+Qy/aYZzmBsJ1GQh0BFl4a/wzH1gNjvhoXwhLeXh1cfdDrTso5PwiAkr6q8Ps1F72/HYdLZfdI/izzVawClV0sdUaLRCLESVhC1ciQaNqlBNf3VCXDS/lTTZLsx7ddTXGQKf9U6Pu0xubhWPDXfb+giZyrVQxC+gAP4Q8rgldkfSw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WSvc0NFQW+4haWxE4FPLQC9XYoLKReIZTflZDFazzJc=;
- b=BSC2AfMqm4T0zBFMCV0CBuD3Ph+x/35VGkZqnx+UpQHlDoKsTlUswpemTpY6gcBN2Mts+JFg4jgtMhllG1r0W+XMZ95jPpfdLsyQq4wAOaQgNGHEoeLoziVUq9IVVH5hYsNBvmg4EHN7CFUu7ppdncg/sr6HVRNLxSPKIBf7j+Ig7SSc0LAyCAE1nWF514cD1EnlR/5L0t8ezW4JBcdtHR87Rq9s3Cm1GVERTy7UEiNXyHKydRs8i2JCpykgLYBe1/1iW1rIMAjjIaLZVMJShnq7DkAKQi85ZsxJ2KD6SgfX4LrViVXlN2N5Cv7PF9xA0wgyQtX6KJadQFMvy2EHzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=emersion.fr smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=Lhk+RX19xHhUs8jHZ3Qrbz30jfworS5ghZUeM88DFP4=;
+ b=AivR6YL9dGK+SRj6V/zHIN4GZhR+wSO5ylFdRfKo6eAHmUDKRFHufmw8qJ4y95lioY05Y8sAo789Gi3SaIOae0PBzWO0D9o0ytpwNS9jjsz+43uIdtkyqWISb97e5OI8Wbg3swlj2m30USHMbPRvDeoXdPzXPK2YUhJLBc8giaPZlt5uhI4JXIEyup1vK34BuIzkJNULP8m0q5Oijf6iuG33aetephCStidcnqtJifTAQxStk8GGJBI6tnl4Cx1BESWb1b5U4kikSMDQmP4jIVrvx6gh2J5gB8V3DRlIK67to0/POkovcahLGJSMyNTSWq0SVkLOse+jIUP4aCClBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WSvc0NFQW+4haWxE4FPLQC9XYoLKReIZTflZDFazzJc=;
- b=SOHqQx2grM2vI45SKOotx9SLcd03OZkSE5MSwqjV25m3sNrKdr778PqTfnYlazFpi9kZEiELdx5QMja97p3o6oWmB10UjPgl1XxMGRccqyGxRZGY/DeB89X+mfHIccgozUFzyoluzS8i2IekdHLBUVXvWwUA3auRvvRbErroJjM=
-Received: from MWHPR1401CA0020.namprd14.prod.outlook.com
- (2603:10b6:301:4b::30) by BN8PR12MB2929.namprd12.prod.outlook.com
- (2603:10b6:408:9c::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.11; Thu, 9 Dec
- 2021 14:21:14 +0000
-Received: from CO1NAM11FT017.eop-nam11.prod.protection.outlook.com
- (2603:10b6:301:4b:cafe::2) by MWHPR1401CA0020.outlook.office365.com
- (2603:10b6:301:4b::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.12 via Frontend
- Transport; Thu, 9 Dec 2021 14:21:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT017.mail.protection.outlook.com (10.13.175.108) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4755.13 via Frontend Transport; Thu, 9 Dec 2021 14:21:14 +0000
-Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Thu, 9 Dec
- 2021 08:21:09 -0600
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-To: Simon Ser <contact@emersion.fr>, Michel Daenzer <michel@daenzer.net>, "Bas
- Nieuwenhuizen" <bas@basnieuwenhuizen.nl>, Marek Olsak <marek.olsak@amd.com>,
- Roman Gilg <subdiff@gmail.com>, Nicholas Kazlauskas
- <nicholas.kazlauskas@amd.com>, Harry Wentland <Harry.Wentland@amd.com>, "Mark
- Yacoub" <markyacoub@chromium.org>, Sean Paul <seanpaul@chromium.org>, "Pekka
- Paalanen" <ppaalanen@gmail.com>, Yann Dirson <ydirson@free.fr>, Daniel Vetter
- <daniel@ffwll.ch>
-Subject: [PATCH v4 6/6] Documentation/gpu: Add amdgpu and dc glossary
-Date: Thu, 9 Dec 2021 09:20:47 -0500
-Message-ID: <20211209142047.728572-7-Rodrigo.Siqueira@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211209142047.728572-1-Rodrigo.Siqueira@amd.com>
-References: <20211209142047.728572-1-Rodrigo.Siqueira@amd.com>
-MIME-Version: 1.0
+ bh=Lhk+RX19xHhUs8jHZ3Qrbz30jfworS5ghZUeM88DFP4=;
+ b=0yNWoqOIsRG/hbd3yHi8JEkkJsVbGTYgOIzGj53dEWHT0zwT1zkSRZ++dLJlxNNEFxVd13C46OWm8aczSHxq/z2Bz8b18ERRcFSUfunIg0UvfnCl+NGrrPpBmkRpAWsDgWlq0GXd0JnpDZ+DJij8m4RQVpSfk168LiOvJ3vM7xQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5344.namprd12.prod.outlook.com (2603:10b6:5:39f::11)
+ by DM4PR12MB5151.namprd12.prod.outlook.com (2603:10b6:5:392::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23; Thu, 9 Dec
+ 2021 15:23:23 +0000
+Received: from DM4PR12MB5344.namprd12.prod.outlook.com
+ ([fe80::a003:6e33:8c98:790f]) by DM4PR12MB5344.namprd12.prod.outlook.com
+ ([fe80::a003:6e33:8c98:790f%4]) with mapi id 15.20.4734.028; Thu, 9 Dec 2021
+ 15:23:22 +0000
+Message-ID: <58d61e47-3796-3147-db6c-ea7912d16902@amd.com>
+Date: Thu, 9 Dec 2021 10:23:18 -0500
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [PATCH] drm/ttm: Don't inherit GEM object VMAs in child process
+Content-Language: en-CA
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20211208205344.3034-1-rajneesh.bhardwaj@amd.com>
+ <94b992c2-04c2-7305-0a51-d130fc645f3f@gmail.com>
+From: "Bhardwaj, Rajneesh" <rajneesh.bhardwaj@amd.com>
+In-Reply-To: <94b992c2-04c2-7305-0a51-d130fc645f3f@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB03.amd.com
- (10.181.40.144)
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: CH0PR03CA0408.namprd03.prod.outlook.com
+ (2603:10b6:610:11b::9) To DM4PR12MB5344.namprd12.prod.outlook.com
+ (2603:10b6:5:39f::11)
+MIME-Version: 1.0
+Received: from [10.254.69.150] (165.204.54.211) by
+ CH0PR03CA0408.namprd03.prod.outlook.com (2603:10b6:610:11b::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4755.24 via Frontend Transport; Thu, 9 Dec 2021 15:23:20 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b91bac31-71d7-46f9-dc1f-08d9bb1f2844
-X-MS-TrafficTypeDiagnostic: BN8PR12MB2929:EE_
-X-Microsoft-Antispam-PRVS: <BN8PR12MB29296C400591F2E14CBD435698709@BN8PR12MB2929.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
+X-MS-Office365-Filtering-Correlation-Id: 38851cb9-37ad-41e8-ba12-08d9bb27d65b
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5151:EE_
+X-Microsoft-Antispam-PRVS: <DM4PR12MB5151DC122F8AD171EC0DBB6CFE709@DM4PR12MB5151.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GPSS/dbsaeppMeB4UeAmowNz8hLt3P29rDAjv5m1Ra0vHjawsHdBkgvPdYOOJ6MCjBwTLVydWDzkZe96zJxYIaypIDpNGOAFg2qlwKmcWuKPfCXSL4ub+TsvW311+YpnQFFchsWxT4TYTFznhzt+oSKWSaROuVGK3JayaW5dXKzgDlcdKjlasKL9HWFZ/n3XpNM+TTaD4EY+bJTxgQmceZ3K2hNrFcMfyctT7Ty3R1ZTxlHBxOLw0E7vv1ibZW+4ZwkCt3BNLlw+yR7kFILuvc9LPr+dgVEMjoc+jdYIJQ20RxWmDMT+8GgkkUQmBf+usUY8vnVz/qd6ZdJihRe2NZA/jWXOzWlYr1WRBHKWOapp0BwcQhWqUzQDS4RbG2DTdctMIzSk8QwSUepkG/OiphlyxylBzF1MSJE/RkyYi13t9DMc0TxKQFjytn8qvNmNYfhcxYpCjYzBZ7iXIlZbkeGdonFq9cKtDkEtnP/kRaozekoZzgE8IB7VLgD5Deig0TiAni/6QncosEIOslr/QvyvoXNjOQIJCij/FA4dZ+zQxr33e9CeyDOv/dHk9igc4S6LInixySl/h/FYfF6DjwhJFUxGmfIfnWUrUy5dPCiKgjTbnJA6ona8Omxga46pJs/mMsguvC+Zci6YnnBkU6YNF3JNXuC4XKtdYi2Ckw7arEz05BNUDN+WElTSviMGRqjKn8HRSdyZlp2hFzUHKL76Cd6RwXX08AmcB1UNlGso0dCklutNKD1KloOc4HIYW47PjoYQnAo+FCxgGD4DtNrXt/5ft5lSf2EM60elChnKM3AhC+coVxRmkOkK6+M3
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(40470700001)(4326008)(316002)(5660300002)(921005)(81166007)(82310400004)(8936002)(8676002)(2906002)(36756003)(83380400001)(110136005)(40460700001)(54906003)(356005)(86362001)(336012)(7416002)(6666004)(186003)(16526019)(26005)(2616005)(508600001)(1076003)(47076005)(70206006)(36860700001)(70586007)(426003)(36900700001);
+X-Microsoft-Antispam-Message-Info: i42ERnE3YB7Ic4tV5aM6JqUpB8nfkHqgqRIgN7fvKVF4dmnrnlGq556W7hqToG2DMXJT1FQVeJiTZ4e6n3Ov9JaZQUMQxEk/wImdX4HdUMzxHHtzsg0utY1G47sV5MOoPXOL8ToDrZzOlXQDxkeI6pdkmpzsT2bwQjWDvKQxT0iSgxbCw37zwsj7mO028pE88OkVPo50TVJ3rNkqYtPQrSq5BCI6j9mrM/zZVBMvvb6t1Mf/yR4bVH1kgQR2H9wk56wPopTM5g8KJe+2HRb3rOA5un31gn7zgHRLt82e/AuqaHQPMbG5oJYgR2Orhf2VxeEFkWleNXOl+6gQWAxzyBtZuhDs3vzuIuHWoU9OaGEL9pKy3PLlSFuko9CGFyoVbbns8rD247Doz1znVmFn+1iXmLeQLSFr5u4z9CM8rJEIzzl09mMA/ubuTVaVaimMs/To0+E8LKuvhSN+v1spz0u/WaCqwCkgUrt/ZJzJs/P8NXQrmNVd75oBVCvfPgn93+eHePBxDZ0IJqyATHTJ9+OQsD+ApNi3rZvVI0JzSjLW9PB3Eptos2qdt/9JQ8k8/P0aKe8aEDoA30UMR5+N+uhz4nZ1ArPDhoe5NchYU+sZjiuh+EuD4Izbf4ZTOghMb5XaooP7MBZCc+zGOnhC/s9vshbAognlVuCVkEIlcRex9Iw6afiZX75/I8qgxhE4ouvnbL65ibVbeqHlOCH7BSoZpyoz536nbUw83lBbldM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5344.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(54906003)(186003)(2906002)(31686004)(2616005)(26005)(316002)(38100700002)(8676002)(16576012)(53546011)(6486002)(956004)(31696002)(83380400001)(4326008)(5660300002)(66476007)(66946007)(508600001)(36756003)(86362001)(66574015)(66556008)(8936002)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y1NLempSMlZWYmUvek9FdjJVSDRLZzI5TldsY0hqVXNZZTFYSk9ndjNPUkhz?=
+ =?utf-8?B?SXZQa21jMXFKY1lhZnJySjEzb29SQTFicG5vOHlSaVFmNDhxakZFbFZDYUdv?=
+ =?utf-8?B?M09XdG5JYWNFYzhob2hkNW5lSXZ5UnkrSkp0Q1lhOGVWSnpNK2hDRDRFSjNi?=
+ =?utf-8?B?TWNsR0dvUHV6V2N3NDZOV0ozVG9OT3gvTytQTHFWejdhUDlqWmN2ZFBjOFht?=
+ =?utf-8?B?c242YmlROU5yTFI5WEZUNGZMNG50N3Ayc2Vra3dxK0R6MHVXMEdiVHpIWWRx?=
+ =?utf-8?B?THZibXFuMDg0NnQzeUtGVkRLSHQwWk1IWXA1dVVNbTVNMWpjV3RKY3hoZTZK?=
+ =?utf-8?B?QlpmR0RRZENSRG0wQ2dnTXI5UTgwejdKRHRJY0tUWjl0VjIvY0RRbW9yRXIy?=
+ =?utf-8?B?aGZtbUlyQjQ2dHJGemdrS3VBTFdLVEROcnNlQ2N0a0FZQ1ZsanI2d1VBd0l5?=
+ =?utf-8?B?dlZ5M0hET0VwVi84ZTR1Q2ZIazVlWWR4V2JidDZkbUZtdzAwUEUvTXV6SEd2?=
+ =?utf-8?B?M0o5NWp5OHg5dm9ja1F5cEpOM3VxNUp0ekVZTjFIckhrb21ib0hHNndYd0tp?=
+ =?utf-8?B?VjlxNmw3ek1aSmc2L0RYUUZIeWdIZkpjcEZPQmZtcDVSbzZ3UU9HTTFGZnRv?=
+ =?utf-8?B?WVhCOVVWRmpla1lrMFZtZDFmcnhJY0kvNHlseGY5Z3hGbkxMZDZtRnNWZThR?=
+ =?utf-8?B?V2Z1MGFZeDNtUTJxb2pzcm92ZkRYMDhiU1N6V29DMEI4T3RGSWJ5Z3VFUFVr?=
+ =?utf-8?B?L2dMSlJuVXlrZWl1b3ppam1PclVoSHRUQThKRWNsdHFRbzgweWI0T1FGL0hj?=
+ =?utf-8?B?WEU3R0ZpUHRHdGlDWnAyLzU2cEsyUms0ZkxvMUR4cjlEZGllWk5mSGNuSHB4?=
+ =?utf-8?B?NXdCVlNMNmdFUmNHWmNMNmRQOE5sRGxZUXZPMU1TaFQrYXIycEhnVi8rdnpP?=
+ =?utf-8?B?WlhzemNVbjBqRVZxclV2clU3b3dpN0dpaVB2MU1oU1NVRm1tUW5aYjNGTGJP?=
+ =?utf-8?B?S2FwcEozei9RNExwaG15MVZlQ3JGMFVNTW9ZQ29RbXlkSUhJL1ZlN0xBNXJK?=
+ =?utf-8?B?dFNKTGR6ZWJwdE5ROEVYbW8yY3NGSFpEUlRYL0tIeFYyVXorSXNORzJzaGhu?=
+ =?utf-8?B?RTJxYjluaHF6eXBsSzJFdkU0bitQTzhjMjRTM0NhUDBuUWJiTExzU2duVkpE?=
+ =?utf-8?B?ZnN5N0ZSbUJXNnphVU1ZcUpzRE8zbnA2WUlVMndrUXZORHV1aWJOVDBncXZq?=
+ =?utf-8?B?ZjVJRjh3L2V6c2I0ZGRWZmoxMnBFMVAxTVVibUV6UnFQVkc2UHRnb3hwTFRK?=
+ =?utf-8?B?ZjIzVFlSQlFlWUc5TTdGOEpWRTF4cnRBd0hkUXdySHZ3MXBVSi9Hb3VoZjVH?=
+ =?utf-8?B?Z1phd0l4OFdxK01nZmtyUmpkUUJMdHNLNmpWTzFuYVdWcDZiTW5BQWR5R2FV?=
+ =?utf-8?B?S0dmUlpMVERFQlJzZEh5Y3dmdmFyWXpFNjk3L3VNVUYwWWJQVmFXQnNkcGRU?=
+ =?utf-8?B?dlhtK1BieVVrbHpxMmx2ZDJEYjhEY1ZjSkU2akNpM3U2TEpyTHB2SlY0OEJx?=
+ =?utf-8?B?YjlFaUFyRWhLc09mUTFsMWNCbk5Kd0lhSit2dGQ1NUhXbStPRUxDdFdCeWFO?=
+ =?utf-8?B?VnYyT3hGaThReXVhTHh5MzRDTkplQTJ0YUxWdk5sRmNnMk4zRE1NRkR0NzdS?=
+ =?utf-8?B?aVdiUWNzbHhBYURIcmV2YW5WK0dmaHZSV1hGU1RyWmdQYjRQYUZYWDlHYnRt?=
+ =?utf-8?B?ZFViV0dRMjdDRkxVOHppQ0pmMS9EdXVZZmtwTG1MRDBZS3JtV2RSM0F4Tzhp?=
+ =?utf-8?B?azZVdS81WStJM0o2UzdWTmJkYkdhRWMvRUVMaEVDL3REYmZ2Q3NyV0RqOVhC?=
+ =?utf-8?B?OVdqdGJrNjFlT0t6ZW1MYUtFc1hkV2N0RGhob28zN2JjYTdBdnlRWWU5UDl1?=
+ =?utf-8?B?YkIvQTMvMGliNzBua0k4ckF0WExjaHVjNFhteUJ2T0ZVaUhOMTRGdUl1Q09p?=
+ =?utf-8?B?RzZhN01aVm02WGlFaDhKTG56RVlTdzFHb1ROaUlJQ0NCcFM2eEs4THZvM05a?=
+ =?utf-8?B?emRSZWI5cG5PNWV0WElaRGtmeS9ITEMyWi9VTUlRUk9lVVRuSWJwTXlEOHRJ?=
+ =?utf-8?B?NDMycXJqNnhyWXVXMjJSUHVpeTRzd3FMU004amdxUTJYZHBuTG1iMFUyU2tN?=
+ =?utf-8?Q?oiWTLDP+KLWXmaMFMQohcYY=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 14:21:14.2055 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b91bac31-71d7-46f9-dc1f-08d9bb1f2844
+X-MS-Exchange-CrossTenant-Network-Message-Id: 38851cb9-37ad-41e8-ba12-08d9bb27d65b
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5344.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 15:23:22.8500 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT017.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB2929
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Jge4ApHn2OUDjVUSfiCnhI75uqeUdhtuL5BA32RAMyEiIq+l/8cLb7s2oUEQYZrAqNE062dl9Ni1v0xHiXzihw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5151
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,400 +132,89 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, qingqing.zhuo@amd.com, roman.li@amd.com,
- amd-gfx@lists.freedesktop.org, aurabindo.pillai@amd.com, nicholas.choi@amd.com,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- bhawanpreet.lakha@amd.com, Christian Koenig <christian.koenig@amd.com>
+Cc: daniel.vetter@ffwll.ch, Felix Kuehling <Felix.Kuehling@amd.com>,
+ David Yat Sin <david.yatsin@amd.com>, alexander.deucher@amd.com,
+ airlied@redhat.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In the DC driver, we have multiple acronyms that are not obvious most of
-the time; the same idea is valid for amdgpu. This commit introduces a DC
-and amdgpu glossary in order to make it easier to navigate through our
-driver.
+Thanks Christian. Would it make it less intrusive if I just use the flag 
+for ttm bo mmap and remove the drm_gem_mmap_obj change from this patch? 
+For our use case, just the ttm_bo_mmap_obj change should suffice and we 
+don't want to put any more work arounds in the user space (thunk, in our 
+case).
 
-Changes since V3:
- - Yann: Add new acronyms to amdgpu glossary
- - Daniel: Add link between dc and amdgpu glossary
+The child cannot access the BOs mapped by the parent anyway with access 
+restrictions applied so I wonder why even inherit the vma?
 
-Changes since V2:
- - Add MMHUB
-
-Changes since V1:
- - Yann: Divide glossary based on driver context.
- - Alex: Make terms more consistent and update CPLIB
- - Add new acronyms to the glossary
-
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
----
- Documentation/gpu/amdgpu/amdgpu-glossary.rst  |  87 +++++++
- .../gpu/amdgpu/display/dc-glossary.rst        | 237 ++++++++++++++++++
- Documentation/gpu/amdgpu/display/index.rst    |   1 +
- Documentation/gpu/amdgpu/index.rst            |   7 +
- 4 files changed, 332 insertions(+)
- create mode 100644 Documentation/gpu/amdgpu/amdgpu-glossary.rst
- create mode 100644 Documentation/gpu/amdgpu/display/dc-glossary.rst
-
-diff --git a/Documentation/gpu/amdgpu/amdgpu-glossary.rst b/Documentation/gpu/amdgpu/amdgpu-glossary.rst
-new file mode 100644
-index 000000000000..859dcec6c6f9
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/amdgpu-glossary.rst
-@@ -0,0 +1,87 @@
-+===============
-+AMDGPU Glossary
-+===============
-+
-+Here you can find some generic acronyms used in the amdgpu driver. Notice that
-+we have a dedicated glossary for Display Core at
-+'Documentation/gpu/amdgpu/display/dc-glossary.rst'.
-+
-+.. glossary::
-+
-+    CP
-+      Command Processor
-+
-+    CPLIB
-+      Content Protection Library
-+
-+    DFS
-+      Digital Frequency Synthesizer
-+
-+    ECP
-+      Enhanced Content Protection
-+
-+    EOP
-+      End Of Pipe/Pipeline
-+
-+    GC
-+      Graphics and Compute
-+
-+    GMC
-+      Graphic Memory Controller
-+
-+    IH
-+      Interrupt Handler
-+
-+    HQD
-+      Hardware Queue Descriptor
-+
-+    IB
-+      Indirect Buffer
-+
-+    IP
-+        Intellectual Property blocks
-+
-+    KCQ
-+      Kernel Compute Queue
-+
-+    KGQ
-+      Kernel Graphics Queue
-+
-+    KIQ
-+      Kernel Interface Queue
-+
-+    MEC
-+      MicroEngine Compute
-+
-+    MES
-+      MicroEngine Scheduler
-+
-+    MMHUB
-+      Multi-Media HUB
-+
-+    MQD
-+      Memory Queue Descriptor
-+
-+    PPLib
-+      PowerPlay Library - PowerPlay is the power management component.
-+
-+    PSP
-+        Platform Security Processor
-+
-+    RCL
-+      RunList Controller
-+
-+    SDMA
-+      System DMA
-+
-+    SMU
-+      System Management Unit
-+
-+    SS
-+      Spread Spectrum
-+
-+    VCE
-+      Video Compression Engine
-+
-+    VCN
-+      Video Codec Next
-diff --git a/Documentation/gpu/amdgpu/display/dc-glossary.rst b/Documentation/gpu/amdgpu/display/dc-glossary.rst
-new file mode 100644
-index 000000000000..116f5f0942fd
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/display/dc-glossary.rst
-@@ -0,0 +1,237 @@
-+===========
-+DC Glossary
-+===========
-+
-+On this page, we try to keep track of acronyms related to the display
-+component. If you do not find what you are looking for, look at the
-+'Documentation/gpu/amdgpu/amdgpu-glossary.rst'; if you cannot find it anywhere,
-+consider asking in the amdgfx and update this page.
-+
-+.. glossary::
-+
-+    ABM
-+      Adaptive Backlight Modulation
-+
-+    APU
-+      Accelerated Processing Unit
-+
-+    ASIC
-+      Application-Specific Integrated Circuit
-+
-+    ASSR
-+      Alternate Scrambler Seed Reset
-+
-+    AZ
-+      Azalia (HD audio DMA engine)
-+
-+    BPC
-+      Bits Per Colour/Component
-+
-+    BPP
-+      Bits Per Pixel
-+
-+    Clocks
-+      * PCLK: Pixel Clock
-+      * SYMCLK: Symbol Clock
-+      * SOCCLK: GPU Engine Clock
-+      * DISPCLK: Display Clock
-+      * DPPCLK: DPP Clock
-+      * DCFCLK: Display Controller Fabric Clock
-+      * REFCLK: Real Time Reference Clock
-+      * PPLL: Pixel PLL
-+      * FCLK: Fabric Clock
-+      * MCLK: Memory Clock
-+
-+    CRC
-+      Cyclic Redundancy Check
-+
-+    CRTC
-+      Cathode Ray Tube Controller - commonly called "Controller" - Generates
-+      raw stream of pixels, clocked at pixel clock
-+
-+    CVT
-+      Coordinated Video Timings
-+
-+    DAL
-+      Display Abstraction layer
-+
-+    DC (Software)
-+      Display Core
-+
-+    DC (Hardware)
-+      Display Controller
-+
-+    DCC
-+      Delta Colour Compression
-+
-+    DCE
-+      Display Controller Engine
-+
-+    DCHUB
-+      Display Controller HUB
-+
-+    ARB
-+      Arbiter
-+
-+    VTG
-+      Vertical Timing Generator
-+
-+    DCN
-+      Display Core Next
-+
-+    DCCG
-+      Display Clock Generator block
-+
-+    DDC
-+      Display Data Channel
-+
-+    DIO
-+      Display IO
-+
-+    DPP
-+      Display Pipes and Planes
-+
-+    DSC
-+      Display Stream Compression (Reduce the amount of bits to represent pixel
-+      count while at the same pixel clock)
-+
-+    dGPU
-+      discrete GPU
-+
-+    DMIF
-+      Display Memory Interface
-+
-+    DML
-+      Display Mode Library
-+
-+    DMCU
-+      Display Micro-Controller Unit
-+
-+    DMCUB
-+      Display Micro-Controller Unit, version B
-+
-+    DPCD
-+      DisplayPort Configuration Data
-+
-+    DPM(S)
-+      Display Power Management (Signaling)
-+
-+    DRR
-+      Dynamic Refresh Rate
-+
-+    DWB
-+      Display Writeback
-+
-+    FB
-+      Frame Buffer
-+
-+    FBC
-+      Frame Buffer Compression
-+
-+    FEC
-+      Forward Error Correction
-+
-+    FRL
-+      Fixed Rate Link
-+
-+    GCO
-+      Graphical Controller Object
-+
-+    GSL
-+      Global Swap Lock
-+
-+    iGPU
-+      integrated GPU
-+
-+    ISR
-+      Interrupt Service Request
-+
-+    ISV
-+      Independent Software Vendor
-+
-+    KMD
-+      Kernel Mode Driver
-+
-+    LB
-+      Line Buffer
-+
-+    LFC
-+      Low Framerate Compensation
-+
-+    LTTPR
-+      Link Training Tunable Phy Repeater
-+
-+    LUT
-+      Lookup Table
-+
-+    MALL
-+      Memory Access at Last Level
-+
-+    MC
-+      Memory Controller
-+
-+    MPC
-+      Multiple pipes and plane combine
-+
-+    MPO
-+      Multi Plane Overlay
-+
-+    MST
-+      Multi Stream Transport
-+
-+    NBP State
-+      Northbridge Power State
-+
-+    NBIO
-+      North Bridge Input/Output
-+
-+    ODM
-+      Output Data Mapping
-+
-+    OPM
-+      Output Protection Manager
-+
-+    OPP
-+      Output Plane Processor
-+
-+    OPTC
-+      Output Pipe Timing Combiner
-+
-+    OTG
-+      Output Timing Generator
-+
-+    PCON
-+      Power Controller
-+
-+    PGFSM
-+      Power Gate Finite State Machine
-+
-+    PSR
-+      Panel Self Refresh
-+
-+    SCL
-+      Scaler
-+
-+    SDP
-+      Scalable Data Port
-+
-+    SLS
-+      Single Large Surface
-+
-+    SST
-+      Single Stream Transport
-+
-+    TMDS
-+      Transition-Minimized Differential Signaling
-+
-+    TMZ
-+      Trusted Memory Zone
-+
-+    TTU
-+      Time to Underflow
-+
-+    VRR
-+      Variable Refresh Rate
-+
-+    UVD
-+      Unified Video Decoder
-diff --git a/Documentation/gpu/amdgpu/display/index.rst b/Documentation/gpu/amdgpu/display/index.rst
-index fe2ecad8df81..e23c752ee5f5 100644
---- a/Documentation/gpu/amdgpu/display/index.rst
-+++ b/Documentation/gpu/amdgpu/display/index.rst
-@@ -26,3 +26,4 @@ table of content:
-    display-manager.rst
-    dc-debug.rst
-    dcn-overview.rst
-+   dc-glossary.rst
-diff --git a/Documentation/gpu/amdgpu/index.rst b/Documentation/gpu/amdgpu/index.rst
-index 5c8cbf514097..ff38c360b04e 100644
---- a/Documentation/gpu/amdgpu/index.rst
-+++ b/Documentation/gpu/amdgpu/index.rst
-@@ -334,3 +334,10 @@ smartshift_bias
- 
- .. kernel-doc:: drivers/gpu/drm/amd/pm/amdgpu_pm.c
-    :doc: smartshift_bias
-+
-+AMDGPU Glossary
-+===============
-+
-+.. toctree::
-+
-+   amdgpu-glossary.rst
--- 
-2.25.1
-
+On 12/9/2021 2:54 AM, Christian König wrote:
+> Am 08.12.21 um 21:53 schrieb Rajneesh Bhardwaj:
+>> When an application having open file access to a node forks, its shared
+>> mappings also get reflected in the address space of child process even
+>> though it cannot access them with the object permissions applied. 
+>> With the
+>> existing permission checks on the gem objects, it might be reasonable to
+>> also create the VMAs with VM_DONTCOPY flag so a user space application
+>> doesn't need to explicitly call the madvise(addr, len, MADV_DONTFORK)
+>> system call to prevent the pages in the mapped range to appear in the
+>> address space of the child process. It also prevents the memory leaks
+>> due to additional reference counts on the mapped BOs in the child
+>> process that prevented freeing the memory in the parent for which we had
+>> worked around earlier in the user space inside the thunk library.
+>>
+>> Additionally, we faced this issue when using CRIU to checkpoint restore
+>> an application that had such inherited mappings in the child which
+>> confuse CRIU when it mmaps on restore. Having this flag set for the
+>> render node VMAs helps. VMAs mapped via KFD already take care of this so
+>> this is needed only for the render nodes.
+>
+> Unfortunately that is most likely a NAK. We already tried something 
+> similar.
+>
+> While it is illegal by the OpenGL specification and doesn't work for 
+> most userspace stacks, we do have some implementations which call 
+> fork() with a GL context open and expect it to work.
+>
+> Regards,
+> Christian.
+>
+>>
+>> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+>>
+>> Signed-off-by: David Yat Sin <david.yatsin@amd.com>
+>> Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
+>> ---
+>>   drivers/gpu/drm/drm_gem.c       | 3 ++-
+>>   drivers/gpu/drm/ttm/ttm_bo_vm.c | 2 +-
+>>   2 files changed, 3 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+>> index 09c820045859..d9c4149f36dd 100644
+>> --- a/drivers/gpu/drm/drm_gem.c
+>> +++ b/drivers/gpu/drm/drm_gem.c
+>> @@ -1058,7 +1058,8 @@ int drm_gem_mmap_obj(struct drm_gem_object 
+>> *obj, unsigned long obj_size,
+>>               goto err_drm_gem_object_put;
+>>           }
+>>   -        vma->vm_flags |= VM_IO | VM_PFNMAP | VM_DONTEXPAND | 
+>> VM_DONTDUMP;
+>> +        vma->vm_flags |= VM_IO | VM_PFNMAP | VM_DONTEXPAND
+>> +                | VM_DONTDUMP | VM_DONTCOPY;
+>>           vma->vm_page_prot = 
+>> pgprot_writecombine(vm_get_page_prot(vma->vm_flags));
+>>           vma->vm_page_prot = pgprot_decrypted(vma->vm_page_prot);
+>>       }
+>> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c 
+>> b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+>> index 33680c94127c..420a4898fdd2 100644
+>> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
+>> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+>> @@ -566,7 +566,7 @@ int ttm_bo_mmap_obj(struct vm_area_struct *vma, 
+>> struct ttm_buffer_object *bo)
+>>         vma->vm_private_data = bo;
+>>   -    vma->vm_flags |= VM_PFNMAP;
+>> +    vma->vm_flags |= VM_PFNMAP | VM_DONTCOPY;
+>>       vma->vm_flags |= VM_IO | VM_DONTEXPAND | VM_DONTDUMP;
+>>       return 0;
+>>   }
+>
