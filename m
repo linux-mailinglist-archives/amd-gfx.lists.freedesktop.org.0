@@ -2,67 +2,68 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4D3D46F056
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:04:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAC5946F05E
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:04:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C67510E151;
-	Thu,  9 Dec 2021 17:04:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDCED10E1C2;
+	Thu,  9 Dec 2021 17:04:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com
- [IPv6:2607:f8b0:4864:20::831])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF9F489F73
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 06:52:39 +0000 (UTC)
-Received: by mail-qt1-x831.google.com with SMTP id t11so4479698qtw.3
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Dec 2021 22:52:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=9lZzV6uRxUvt0RqeIyM4DCy//4WwHZcCj15yKoRWKv0=;
- b=MuH7fGvI/9AD+8Jf3135+Y84ksGN91yCSTt0zoUDEqseX7B2K0YN6lCaPdgDeOMRpm
- GOe7MfuQdBr+Z4wyPuK/X3Oq+E11gqhW44bDipD/o7JNOnqwTqyXLLafarAjz6Qto1ro
- aG+jBeBbWAiByCuS0S6B9hU+pATvx85RKkpkIAQIfLRbW2qUaPcS9Uu6YIpp8W008vUj
- AvLKcneW2BuqADAMC9NC6N/Val8HXTIHMS7sQv01juWNQbBHSKaBSpUv61IEYCjx2r7c
- hWVEXyKPTi4aa/SWCsc4zb+EUhNMyK5Z6Ko/CgGa+RO3zAgIsW2+q5scXiLYdGdjXPHA
- IZ9w==
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com
+ [IPv6:2607:f8b0:4864:20::22d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AADDB10E116;
+ Thu,  9 Dec 2021 06:28:50 +0000 (UTC)
+Received: by mail-oi1-x22d.google.com with SMTP id 7so7307998oip.12;
+ Wed, 08 Dec 2021 22:28:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=subject:from:to:cc:references:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=IhIul+4nURod6NuSkYTrchSPnXVCxWUJGXACRxYc3MQ=;
+ b=eXSVG+Ndarp4Nov0ojL5vYXJOqopOe8rmbtZMAES5EqdQfhuTJT9Uq3lALtJGa4LbO
+ wWHdJFJ87qjeMcSOV3aq0PkzuieWlIvRP179Hr6+sgCEYfH7wf+V4jVqH10ELhTez0XB
+ 22huR9IEqlUxwdOVegX+j/rAjRjz7L8mt/AiBEGrV7CjsOrfNoQ1BJ9XPY8+vJZH31o7
+ 2P/ix6dz02VvGEjb+x0Ea1/8RXd4aZ7czYa7w2YNw1bcNUZxsKs/e400rD6pCJCOWN7L
+ q5fhY1g9Ipg3RqbxuIOSnqylc7dCzgsNU5GquVam3pqRibhz+3qTwbdWItlmR7WucDdh
+ VwaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=9lZzV6uRxUvt0RqeIyM4DCy//4WwHZcCj15yKoRWKv0=;
- b=p42R+yudgMiS9vNaOuiBsoCEixbwBqgCJHwonagTP64tKC//UhxREeVQOzclIZJmjj
- Ct8LHbGLYMHk8TgtmDskUnyBvq2EvN7ZUAsAWRXL7eO+ax0UUD+YsZ/9yKLWnrKei2af
- S5Ko2xvSVw2fhbb32qUfUsqcYCBYoSeayppE9m+N/DjtB9FPgwHLwQ0wOqdUdak/eOrb
- S0ckUTW8kluOHNjFWwTDv8tYqyLv6ts3fpZhK2AK0p+LZUNER7qGEs8J/nTsKugrK03D
- /S8fhW81OPrpxYRFgLwXyMmZeFdoAxlZBRsWmHoWjDuUd0GkNwWN43Ux1bqeEUDUgbFT
- avzw==
-X-Gm-Message-State: AOAM530H0beO1MMZs1/hFfHHUzmqJqyJtfHdNyAI19IMQe87Jh+gXHhP
- aHTdm6mob1ZKU6p0L+X7iwJ79dfUCzgyCQ==
-X-Google-Smtp-Source: ABdhPJzd7PgIaK+OliA8j4qPmgBHphO7odQ23RlPROnXGhIchmoXCBqWvKGTqHwv0CnaCCZT+fN4FA==
-X-Received: by 2002:a05:622a:8d:: with SMTP id
- o13mr13208686qtw.574.1639018404025; 
- Wed, 08 Dec 2021 18:53:24 -0800 (PST)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-113-129.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.113.129])
- by smtp.gmail.com with ESMTPSA id m1sm2800768qtk.34.2021.12.08.18.53.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Dec 2021 18:53:23 -0800 (PST)
-Received: from jgg by mlx with local (Exim 4.94) (envelope-from <jgg@ziepe.ca>)
- id 1mv9Yg-000zXC-FC; Wed, 08 Dec 2021 22:53:22 -0400
-Date: Wed, 8 Dec 2021 22:53:22 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Alistair Popple <apopple@nvidia.com>
-Subject: Re: [PATCH v2 03/11] mm/gup: migrate PIN_LONGTERM dev coherent pages
- to system
-Message-ID: <20211209025322.GE6467@ziepe.ca>
-References: <20211206185251.20646-1-alex.sierra@amd.com>
- <2858338.J0npWUQLIM@nvdebian> <20211208135345.GC6467@ziepe.ca>
- <117075453.Ddeq1f3ylz@nvdebian>
+ h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=IhIul+4nURod6NuSkYTrchSPnXVCxWUJGXACRxYc3MQ=;
+ b=qMree8V8qqeTE0w7JpLoG48DPbaGlBCb2TL55vqZj6CYDQrQRwO3QOSso4bU5uo3qu
+ EbTvPbuNmpRZxm3x8rtBhlHn7vgx7zESYSbumoEgOHLamjYpFhinCG8nqQFdO1pQWZ/g
+ VewLjHnwz+ed+hI+q8uHr9wy9VLZpQjM3+h4RVbrf7KchHagO2qcWiVpQwFp7A7y6rkT
+ IVbn+shFsXNRQcSd+I5m5mQsZxUFpQ0mSFDi3Ej9UaSSju73VqjQhDVPU5Bo4WMXg57c
+ woXMgHqpX9K5lleX9tiR8nEsPvfGPDkF+V+xg/hHUANOv7y9BC/FEBYqQ8HyqIjN6aLv
+ JupA==
+X-Gm-Message-State: AOAM531NDo/TU8JJIkQQFRA+tKnjEQi28atdD7ORHrGXbYXasTGcGUHp
+ +xaxzf7n/Oqih3IyJLxcM7X6w98jF/w=
+X-Google-Smtp-Source: ABdhPJx7+EvOV3k5F+MwkvlqnlUuZKHGOaLEFVN8ri3k3vpvOVFTKnJpQnsX5z8mTpBCirtuipNWIg==
+X-Received: by 2002:a17:90b:4b4c:: with SMTP id
+ mi12mr12376886pjb.66.1639020881197; 
+ Wed, 08 Dec 2021 19:34:41 -0800 (PST)
+Received: from [183.173.151.43] ([183.173.151.43])
+ by smtp.gmail.com with ESMTPSA id y18sm4729594pfp.190.2021.12.08.19.34.37
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 08 Dec 2021 19:34:40 -0800 (PST)
+Subject: Re: [BUG] gpu: drm: amd: amdgpu: possible ABBA deadlock in
+ amdgpu_set_power_dpm_force_performance_level() and
+ amdgpu_debugfs_process_reg_op()
+From: Jia-Ju Bai <baijiaju1990@gmail.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@linux.ie, daniel@ffwll.ch, Hawking.Zhang@amd.com,
+ Felix.Kuehling@amd.com, ray.huang@amd.com, lee.jones@linaro.org
+References: <2dc31435-ba62-b6a4-76dc-cfe9747f4cfb@gmail.com>
+Message-ID: <963eab5f-f333-456e-784c-0d2c81b849da@gmail.com>
+Date: Thu, 9 Dec 2021 11:34:38 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <117075453.Ddeq1f3ylz@nvdebian>
+In-Reply-To: <2dc31435-ba62-b6a4-76dc-cfe9747f4cfb@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 X-Mailman-Approved-At: Thu, 09 Dec 2021 17:04:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,67 +76,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Sierra <alex.sierra@amd.com>, rcampbell@nvidia.com,
- willy@infradead.org, Felix.Kuehling@amd.com, amd-gfx@lists.freedesktop.org,
- linux-xfs@vger.kernel.org, linux-mm@kvack.org, jglisse@redhat.com,
- dri-devel@lists.freedesktop.org, akpm@linux-foundation.org,
- linux-ext4@vger.kernel.org, hch@lst.de
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel <linux-kernel@vger.kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 09, 2021 at 12:45:24PM +1100, Alistair Popple wrote:
-> On Thursday, 9 December 2021 12:53:45 AM AEDT Jason Gunthorpe wrote:
-> > > I think a similar problem exists for device private fault handling as well and
-> > > it has been on my list of things to fix for a while. I think the solution is to
-> > > call try_get_page(), except it doesn't work with device pages due to the whole
-> > > refcount thing. That issue is blocking a fair bit of work now so I've started
-> > > looking into it.
-> > 
-> > Where is this?
->  
-> Nothing posted yet. I've been going through the mailing list and the old
-> thread[1] to get an understanding of what is left to do. If you have any
-> suggestions they would be welcome.
+Hello,
 
-Oh, that
+Could you please provide the feedback to my previous report?
+Thanks a lot :)
 
-Joao's series here is the first step:
 
-https://lore.kernel.org/linux-mm/20211202204422.26777-1-joao.m.martins@oracle.com/
+Best wishes,
+Jia-Ju Bai
 
-I already sent a patch to remove the DRM usage of PUD/PMD -
-0d979509539e ("drm/ttm: remove ttm_bo_vm_insert_huge()")
+On 2021/9/15 17:39, Jia-Ju Bai wrote:
+> Hello,
+>
+> My static analysis tool reports a possible ABBA deadlock in the amdgpu 
+> driver in Linux 5.10:
+>
+> amdgpu_debugfs_process_reg_op()
+>   mutex_lock(&adev->grbm_idx_mutex); --> Line 250 (Lock A)
+>   mutex_lock(&adev->pm.mutex); --> Line 259 (Lock B)
+>
+> amdgpu_set_power_dpm_force_performance_level()
+>   mutex_lock(&adev->pm.mutex); --> Line 381 (Lock B)
+>     pp_dpm_force_performance_level() --> function pointer via 
+> "amdgpu_dpm_force_performance_level()"
+>       pp_dpm_en_umd_pstate()
+>         amdgpu_device_ip_set_clockgating_state()
+>           gfx_v7_0_set_clockgating_state() --> function pointer via 
+> "funcs->set_clockgating_state()"
+>             gfx_v7_0_enable_mgcg()
+>               mutex_lock(&adev->grbm_idx_mutex); --> Line 3646 (Lock A)
+>               mutex_lock(&adev->grbm_idx_mutex); --> Line 3697 (Lock A)
+>
+> When amdgpu_debugfs_process_reg_op() and 
+> amdgpu_set_power_dpm_force_performance_level() are concurrently 
+> executed, the deadlock can occur.
+>
+> I am not quite sure whether this possible deadlock is real and how to 
+> fix it if it is real.
+> Any feedback would be appreciated, thanks :)
+>
+> Reported-by: TOTE Robot <oslab@tsinghua.edu.cn>
+>
+>
+> Best wishes,
+> Jia-Ju Bai
 
-Next, someone needs to change FSDAX to have a folio covering the
-ZONE_DEVICE pages before it installs a PUD or PMD. I don't know
-anything about FS's to know how to do this at all.
-
-Thus all PUD/PMD entries will point at a head page or larger of a
-compound. This is important because all the existing machinery for THP
-assumes 1 PUD/PMD means 1 struct page to manipulate.
-
-Then, consolidate all the duplicated code that runs when a page is
-removed from a PTE/PMD/PUD etc into a function. Figure out why the
-duplications are different to make them the same (I have some rough
-patches for this step)
-
-Start with PUD and have zap on PUD call the consolidated function and
-make vmf_insert_pfn_pud_prot() accept a struct page not pfn and incr
-the refcount. PUD is easy because there is no THP
-
-Then do the same to PMD without breaking the THP code
-
-Then make the PTE also incr the refcount on insert and zap
-
-Exterminate vma_is_special_huge() along the way, there is no such
-thing as a special huge VMA without a pud/pmd_special flag so all
-things installed here must be struct page and not special.
-
-Then the patches that are already posted are applicable and we can
-kill the refcount == 1 stuff. No 0 ref count pages installed in page
-tables.
-
-Once all of that is done it is fairly straightforward to remove
-pud/pmd/pte_devmap entirely and the pgmap stuff from gup.c
-
-Jason
