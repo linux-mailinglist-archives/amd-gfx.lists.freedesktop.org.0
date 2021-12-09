@@ -1,66 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E8F546EE54
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 17:56:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 679A346EE99
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 17:57:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27E8310E6F2;
-	Thu,  9 Dec 2021 16:53:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3538A10E8C5;
+	Thu,  9 Dec 2021 16:53:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
- [IPv6:2a00:1450:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77D2F89F2D;
- Thu,  9 Dec 2021 07:54:17 +0000 (UTC)
-Received: by mail-wm1-x334.google.com with SMTP id i12so3459163wmq.4;
- Wed, 08 Dec 2021 23:54:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=YXJndMpjkY51R7vVxhqGqqKndMXB5liIkpS6VEDt38I=;
- b=FBh0aV1w/8jpXUnOqck3g5qcdQcjkQ5+P4oGSKoCNUNHcanQECIt0PZU84FU1m1fxZ
- BDieP60TWaq6GDSAPxgFEMvBZjtmPq5y8TziTF89NRHVBRYiNMAMhBi1Cu8JLpcv6ETb
- ptWcJpYF1RJL1+9Y/1ziJt+7WYVAEC4F55UYgpYWuCHY1bkA79mHtxu2UFJnR+t+gSf5
- MIWAS8VvEnwGMvlzHKXSAfZ80OzYRSKKmrn2HUWhIgOUggaggnYxBuSVJLMtXpHIcLbm
- 85RN8E59RdB59YGyER4R9gKp9LevnKGsf7uGsQ2AArmy6wlQMhwKMykGaupASLzlrCb9
- dHAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=YXJndMpjkY51R7vVxhqGqqKndMXB5liIkpS6VEDt38I=;
- b=20G/bs8GXEqHf3cF/kupdxElAHXAPKXRMdJffj+5BdmJvTyzBb7oOk/318eHS97pAr
- sF6Hz9hPEPABbd9F6uFUsotC4f8zjozmKIZW8/9eQQFmm0GyQZZeNX9gJuPAEzbCIx7u
- VUtvHvLgUFgvJRcmnCxIZN35DGckwp3MrxiLyICRH36v1si40/GawJa1jYGYaE2pYueH
- wHLywv9p3S/dwBNHNB7pFJ4+T76XcvoGp23rGRj45BvV3lX90JjZ2PDCDoTAyUCb5E2D
- RlwbfEXOxz2Kf6jfzblokDQd8ZfA7MKO9F0hm3Dv8E5+lUODLNC5uWYZzfDzlq9+wJLq
- hR9Q==
-X-Gm-Message-State: AOAM531EDKTirOLCwGDHFk1RhECEIjI9NuWfdl8b1ZbkPoRiGvpV8gVN
- 7gGfvLFSvbpRdTud5puNi/qzbit48y8=
-X-Google-Smtp-Source: ABdhPJxUoEToWNu7AxtQs8naW0HYkWKxi3yW2B9+xXmGB/t5RmIWALl4IWR1hiqGeQYiy+mya7XPIw==
-X-Received: by 2002:a1c:1fc2:: with SMTP id f185mr4885031wmf.149.1639036456059; 
- Wed, 08 Dec 2021 23:54:16 -0800 (PST)
-Received: from ?IPv6:2a02:908:1252:fb60:2e35:ddd6:f296:528?
- ([2a02:908:1252:fb60:2e35:ddd6:f296:528])
- by smtp.gmail.com with ESMTPSA id l5sm7784668wms.16.2021.12.08.23.54.15
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 08 Dec 2021 23:54:15 -0800 (PST)
-Subject: Re: [PATCH] drm/ttm: Don't inherit GEM object VMAs in child process
-To: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20211208205344.3034-1-rajneesh.bhardwaj@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <94b992c2-04c2-7305-0a51-d130fc645f3f@gmail.com>
-Date: Thu, 9 Dec 2021 08:54:14 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2075.outbound.protection.outlook.com [40.107.223.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79D6010E116
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 08:27:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KDdQyvjHGX9tmQP+cES+MjSUkFYaNmDCT09HHqBbq0rquEsukU0/DakwQPSkUCSxr7mqNldWGkVaIWx8daqpdecE2vp8E3S1ZaD8O+Nqq7UkXZMce9UGJa6v5T3VLz7Y5/vdLoTbl4iiwUWBXakVQ9Wuo78bdPlxBDDDTEGppqNlcjt8EDx2jKQ9pYmdZxeovk5q2s9bEvSWBLj3l2yHmd0aMsi2pX+b4T/4q/N9GslwEFitOfQcgCa8+3Eg0KlVh0lx+ogW5wwe/oWrzMnA47qDN4CsP6mfYaE01ye0MHN/J5T3MBUT4fH9TR3PBtGHm1iMp5y2/sczmuMxoQZo+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=S7rJ0J4Z2GYcnPCeQQwym/zT+SQt0O405mEDuy8+8uc=;
+ b=SwQoqdRCy9INzJ7hKtEM8OWmizZAJ8j7DuKyD7hEzhE3+NPhrKUpYp+ucstPfoy8JIMNY71LM2wNRIpu+/dVktt3tdCnskH4J1T3Ci0xLIBwE0g2/KeBmCNZi8XjJBvHldopdjiVbSRnftGC7Ofid1o848bFuo8NG7HXzjq0ARAC+Pk/DcO/TW5BzLU0xQw2EcVwbeMfHBD+Lzg30GICynpB1uZEZT4gcVW9nlBfdkMIdA8gdFYTKC8SpoeXYeeeR8sl3PxBmKYXESuvcbMLi5veliVuNF3DmcJleJBpmc0u9fZ3fSbrh6fDO1Kc9i09YP982QMHQNXrsxiVC9sCBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=S7rJ0J4Z2GYcnPCeQQwym/zT+SQt0O405mEDuy8+8uc=;
+ b=PpYfQmALNhl7B6kmUIwXSHfWMJK9iZhVxKRXrqW5AYcaIF6LCEsgA0UPOH3zu/osWiTbevhbm1JPVqUBuzNiRKcQB5hq43OjK40jrTiBXGfnAvkF5UkCohc/30NIdIbCSSPTJrXr3kL/wjXKVwMy+PwHr7x6Fij3e6uGCkH5pNs=
+Received: from BN0PR07CA0001.namprd07.prod.outlook.com (2603:10b6:408:141::12)
+ by BY5PR12MB3844.namprd12.prod.outlook.com (2603:10b6:a03:1ad::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.16; Thu, 9 Dec
+ 2021 08:27:02 +0000
+Received: from BN8NAM11FT028.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:141:cafe::90) by BN0PR07CA0001.outlook.office365.com
+ (2603:10b6:408:141::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.11 via Frontend
+ Transport; Thu, 9 Dec 2021 08:27:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT028.mail.protection.outlook.com (10.13.176.225) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4755.13 via Frontend Transport; Thu, 9 Dec 2021 08:27:02 +0000
+Received: from syl-dev-machine.amd.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Thu, 9 Dec
+ 2021 02:26:59 -0600
+From: Leslie Shi <Yuliang.Shi@amd.com>
+To: <lijo.lazar@amd.com>, <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH v3] drm/amdgpu: fix incorrect VCN revision in SRIOV
+Date: Thu, 9 Dec 2021 16:26:39 +0800
+Message-ID: <20211209082639.1296627-1-Yuliang.Shi@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20211208205344.3034-1-rajneesh.bhardwaj@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset="y"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
+ (10.181.40.144)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 984f0260-88d8-4fdb-78f1-08d9baedacf4
+X-MS-TrafficTypeDiagnostic: BY5PR12MB3844:EE_
+X-Microsoft-Antispam-PRVS: <BY5PR12MB3844BAFB62B175BC6048161CE0709@BY5PR12MB3844.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: hP27rz1MSf9IcKEmEOC+j0cwFa31Dc09n3nnmz6Bg/yIRs3OOiD2Dtv8NvhpgfRVWZFZIbDpgo8doptdanyzyo1kSDkD74c/MSmBc/WDnbxyFBF5QaNBulWFz5zX7ChIHcg9PFA5iqO4nlKqt08bdVhWz7AIVEEKpPscbQvRKXXr1/hx/97kZdzEJJQEfxgs5HE+ZU1rcVpvudyTQZV7jhx9imslOFPq0JNAP+/+tCoTzODvEkdQsLpcx2Z1/hDSPzj1d/wiL5EVmA8qIQJ9N2KpU1QgvEP9BsS51CunNvbVBj5oDbUnYWCJK3cNCSjS9NgdK1wptSYRD8adS/UXosEN9tyRKDnZX6XCNzSIf4c6i2W9/URnPWhK0JpZlc22jn9lkE5D4avXLRIveY6n/7cA/iTzCOdVK2PHo/Lmg8Ep5ayAQ0vbe5l/B1X96V3AsQZNy630rb7Vb3WrO2R8td+5MSQjo2E4e1m6Z9BsqCDxvcaThX3tS9yWbDr/uAMmzUxhlucDHATww1W8pQv6H0Rb2rux7HIwW6B/VK4Erv4FIccr/UuNxxi2SuEvs1HrYnOBXfmiZSvGM7c8fXiV3mx/X9zZUC7c53EwTjc+oZKcUS86EwOiLjOt9PjytlBFH7TR/rO3mV7gLJU+FMvsIDasLPqFnEPkdL87osYhZk3OpTxnCfkh3rIBoRl9CFlWxpzqtC2ZltYDFRHiVZppJMOV68WYZ5hIcLnhdmed5CbDYRxfDgwSHdRPmH32+GkAyPXW8VJG5WstmRbk8s2zR4xYT0dhBaJQDXUHTW7aSAc=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(46966006)(36840700001)(40470700001)(186003)(16526019)(36860700001)(81166007)(336012)(36756003)(7696005)(6666004)(26005)(83380400001)(86362001)(110136005)(54906003)(356005)(70586007)(40460700001)(5660300002)(8676002)(2906002)(426003)(508600001)(316002)(70206006)(1076003)(2616005)(47076005)(8936002)(82310400004)(4326008)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 08:27:02.0729 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 984f0260-88d8-4fdb-78f1-08d9baedacf4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT028.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3844
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,75 +99,134 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: daniel.vetter@ffwll.ch, Felix Kuehling <Felix.Kuehling@amd.com>,
- David Yat Sin <david.yatsin@amd.com>, alexander.deucher@amd.com,
- airlied@redhat.com, christian.koenig@amd.com
+Cc: yuliang.shi@amd.com, guchun.chen@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 08.12.21 um 21:53 schrieb Rajneesh Bhardwaj:
-> When an application having open file access to a node forks, its shared
-> mappings also get reflected in the address space of child process even
-> though it cannot access them with the object permissions applied. With the
-> existing permission checks on the gem objects, it might be reasonable to
-> also create the VMAs with VM_DONTCOPY flag so a user space application
-> doesn't need to explicitly call the madvise(addr, len, MADV_DONTFORK)
-> system call to prevent the pages in the mapped range to appear in the
-> address space of the child process. It also prevents the memory leaks
-> due to additional reference counts on the mapped BOs in the child
-> process that prevented freeing the memory in the parent for which we had
-> worked around earlier in the user space inside the thunk library.
->
-> Additionally, we faced this issue when using CRIU to checkpoint restore
-> an application that had such inherited mappings in the child which
-> confuse CRIU when it mmaps on restore. Having this flag set for the
-> render node VMAs helps. VMAs mapped via KFD already take care of this so
-> this is needed only for the render nodes.
+Guest OS will setup VCN instance 1 which is disabled as an enabled instance and
+execute initialization work on it, but this causes VCN ib ring test failure
+on the disabled VCN instance during modprobe:
 
-Unfortunately that is most likely a NAK. We already tried something similar.
+amdgpu 0000:00:08.0: amdgpu: ring vcn_enc_1.0 uses VM inv eng 5 on hub 1
+amdgpu 0000:00:08.0: [drm:amdgpu_ib_ring_tests [amdgpu]] *ERROR* IB test failed on vcn_dec_0 (-110).
+amdgpu 0000:00:08.0: [drm:amdgpu_ib_ring_tests [amdgpu]] *ERROR* IB test failed on vcn_enc_0.0 (-110).
+[drm:amdgpu_device_delayed_init_work_handler [amdgpu]] *ERROR* ib ring test failed (-110).
 
-While it is illegal by the OpenGL specification and doesn't work for 
-most userspace stacks, we do have some implementations which call fork() 
-with a GL context open and expect it to work.
+v2: drop amdgpu_discovery_get_vcn_version and rename sriov_config to
+vcn_config
+v3: modify VCN's revision in SR-IOV and bare-metal
 
-Regards,
-Christian.
+Fixes: 36b7d5646476 ("drm/amdgpu: handle SRIOV VCN revision parsing")
+Signed-off-by: Leslie Shi <Yuliang.Shi@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 29 ++++++-------------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h |  2 --
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c       | 15 +++-------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h       |  2 +-
+ 4 files changed, 14 insertions(+), 34 deletions(-)
 
->
-> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
->
-> Signed-off-by: David Yat Sin <david.yatsin@amd.com>
-> Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
-> ---
->   drivers/gpu/drm/drm_gem.c       | 3 ++-
->   drivers/gpu/drm/ttm/ttm_bo_vm.c | 2 +-
->   2 files changed, 3 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
-> index 09c820045859..d9c4149f36dd 100644
-> --- a/drivers/gpu/drm/drm_gem.c
-> +++ b/drivers/gpu/drm/drm_gem.c
-> @@ -1058,7 +1058,8 @@ int drm_gem_mmap_obj(struct drm_gem_object *obj, unsigned long obj_size,
->   			goto err_drm_gem_object_put;
->   		}
->   
-> -		vma->vm_flags |= VM_IO | VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP;
-> +		vma->vm_flags |= VM_IO | VM_PFNMAP | VM_DONTEXPAND
-> +				| VM_DONTDUMP | VM_DONTCOPY;
->   		vma->vm_page_prot = pgprot_writecombine(vm_get_page_prot(vma->vm_flags));
->   		vma->vm_page_prot = pgprot_decrypted(vma->vm_page_prot);
->   	}
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> index 33680c94127c..420a4898fdd2 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> @@ -566,7 +566,7 @@ int ttm_bo_mmap_obj(struct vm_area_struct *vma, struct ttm_buffer_object *bo)
->   
->   	vma->vm_private_data = bo;
->   
-> -	vma->vm_flags |= VM_PFNMAP;
-> +	vma->vm_flags |= VM_PFNMAP | VM_DONTCOPY;
->   	vma->vm_flags |= VM_IO | VM_DONTEXPAND | VM_DONTDUMP;
->   	return 0;
->   }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+index 552031950518..f31bc0187394 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -380,18 +380,15 @@ int amdgpu_discovery_reg_base_init(struct amdgpu_device *adev)
+ 				  ip->revision);
+ 
+ 			if (le16_to_cpu(ip->hw_id) == VCN_HWID) {
+-				if (amdgpu_sriov_vf(adev)) {
+-					/* SR-IOV modifies each VCN’s revision (uint8)
+-					 * Bit [5:0]: original revision value
+-					 * Bit [7:6]: en/decode capability:
+-					 *     0b00 : VCN function normally
+-					 *     0b10 : encode is disabled
+-					 *     0b01 : decode is disabled
+-					 */
+-					adev->vcn.sriov_config[adev->vcn.num_vcn_inst] =
+-						(ip->revision & 0xc0) >> 6;
+-					ip->revision &= ~0xc0;
+-				}
++				/* Bit [5:0]: original revision value
++				 * Bit [7:6]: en/decode capability:
++				 *     0b00 : VCN function normally
++				 *     0b10 : encode is disabled
++				 *     0b01 : decode is disabled
++				 */
++				adev->vcn.vcn_config[adev->vcn.num_vcn_inst] =
++					ip->revision & 0xc0;
++				ip->revision &= ~0xc0;
+ 				adev->vcn.num_vcn_inst++;
+ 			}
+ 			if (le16_to_cpu(ip->hw_id) == SDMA0_HWID ||
+@@ -485,14 +482,6 @@ int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int hw_id, int n
+ 	return -EINVAL;
+ }
+ 
+-
+-int amdgpu_discovery_get_vcn_version(struct amdgpu_device *adev, int vcn_instance,
+-				     int *major, int *minor, int *revision)
+-{
+-	return amdgpu_discovery_get_ip_version(adev, VCN_HWID,
+-					       vcn_instance, major, minor, revision);
+-}
+-
+ void amdgpu_discovery_harvest_ip(struct amdgpu_device *adev)
+ {
+ 	struct binary_header *bhdr;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
+index 0ea029e3b850..14537cec19db 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.h
+@@ -33,8 +33,6 @@ void amdgpu_discovery_harvest_ip(struct amdgpu_device *adev);
+ int amdgpu_discovery_get_ip_version(struct amdgpu_device *adev, int hw_id, int number_instance,
+                                     int *major, int *minor, int *revision);
+ 
+-int amdgpu_discovery_get_vcn_version(struct amdgpu_device *adev, int vcn_instance,
+-				     int *major, int *minor, int *revision);
+ int amdgpu_discovery_get_gfx_info(struct amdgpu_device *adev);
+ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+index 2658414c503d..38036cbf6203 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.c
+@@ -284,20 +284,13 @@ int amdgpu_vcn_sw_fini(struct amdgpu_device *adev)
+ bool amdgpu_vcn_is_disabled_vcn(struct amdgpu_device *adev, enum vcn_ring_type type, uint32_t vcn_instance)
+ {
+ 	bool ret = false;
++	int vcn_config = adev->vcn.vcn_config[vcn_instance];
+ 
+-	int major;
+-	int minor;
+-	int revision;
+-
+-	/* if cannot find IP data, then this VCN does not exist */
+-	if (amdgpu_discovery_get_vcn_version(adev, vcn_instance, &major, &minor, &revision) != 0)
+-		return true;
+-
+-	if ((type == VCN_ENCODE_RING) && (revision & VCN_BLOCK_ENCODE_DISABLE_MASK)) {
++	if ((type == VCN_ENCODE_RING) && (vcn_config & VCN_BLOCK_ENCODE_DISABLE_MASK)) {
+ 		ret = true;
+-	} else if ((type == VCN_DECODE_RING) && (revision & VCN_BLOCK_DECODE_DISABLE_MASK)) {
++	} else if ((type == VCN_DECODE_RING) && (vcn_config & VCN_BLOCK_DECODE_DISABLE_MASK)) {
+ 		ret = true;
+-	} else if ((type == VCN_UNIFIED_RING) && (revision & VCN_BLOCK_QUEUE_DISABLE_MASK)) {
++	} else if ((type == VCN_UNIFIED_RING) && (vcn_config & VCN_BLOCK_QUEUE_DISABLE_MASK)) {
+ 		ret = true;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+index 938a5ead3f20..5d3728b027d3 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vcn.h
+@@ -235,7 +235,7 @@ struct amdgpu_vcn {
+ 
+ 	uint8_t	num_vcn_inst;
+ 	struct amdgpu_vcn_inst	 inst[AMDGPU_MAX_VCN_INSTANCES];
+-	uint8_t			 sriov_config[AMDGPU_MAX_VCN_INSTANCES];
++	uint8_t			 vcn_config[AMDGPU_MAX_VCN_INSTANCES];
+ 	struct amdgpu_vcn_reg	 internal;
+ 	struct mutex		 vcn_pg_lock;
+ 	struct mutex		vcn1_jpeg1_workaround;
+-- 
+2.25.1
 
