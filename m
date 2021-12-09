@@ -2,127 +2,130 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FCC346F030
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:03:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A093446F01D
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:03:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B924510FB79;
-	Thu,  9 Dec 2021 16:55:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E9E010F6B4;
+	Thu,  9 Dec 2021 16:55:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam08on2085.outbound.protection.outlook.com [40.107.102.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB1ED10E116
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 16:15:14 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2076.outbound.protection.outlook.com [40.107.237.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 535A410E116;
+ Thu,  9 Dec 2021 16:27:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dQVrzkAY68367y57DUiPZmWjcpr80c7AlAk4A0pFPPy6fDC7jgoebi2JzqEyvajf33MKoQ7W1oOEOLZKn8wzI/mh5WNecitdsSiv0/0oFDukTqRNukxeJcxKZR7MEnK9ZlgixI6X9CgxjS6iRvd6LP3c+CKZcTrn3rKioGt7TTY7CyNm8QnPTCb6AyD/tUUpeyyh5ZQukBSyUdpYu1ZzgqzVnfb2/I/BDkYnRyGXQstIJ00LVSKBsMEnHvm+k285RZm5y6VuoQxRjvQrX9oigrQI4+7XRIGt2VaMuRRLj79TtZ30Fsd/LmP8tAXzaI6tovh8ZdXGpqjyCanlQwGV/Q==
+ b=VBsYvKuQCC4a5YgoyMwmQ5iDsgzNBctmfpC1AMZUJvCHiacPp/1agUepuQ7zk4hk/NNyQJLj2DKgPy3fPCBuWxgoNNtQqGp5yreHfoTiuXb7N8D89c3DT1/9xWqXmHjJJQpKVa70QZyZb9seSW+Q6bDeltGmgq88eXasEx8KngVBNK0z9aXQQ92kGyeu7hcKth+HkOI87YxFt0arY0Z7/WWWewiEOWe1Qh08X5s8YAnoR4xgim6J3bpG8cb3IfS4RUgJ6Wrim/m0qRAqIbQVDvZ7nz4O+QaDNLFejrhOdTyPiGlGaQ5FWj1/QFCEgrbOwyOcRv37h0jIHjxnpnsXhQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p3gqljp42SpT8YoLseUH1twyOGkKguBt+KHwudXC4SI=;
- b=meTMLuX81fQTKpge0nrNJfbDfMdchss6NcgGgUvzxbnzW3wP0QfvkcL6/yVnTCPAZfIcJynAdwNDipm6LKWatisJT7O0BDeCjO1QVOADcgd4WqROeHE2fgHeqyd5t4+WpTvV9EC/G8yqKOWjgue4YUd0XFFPJdjjbHzYXhq+E5/sQk3K8wOyFgoTpUvyHdhmx08Vpeergo/WrqkOE30u0Bnpxb1NNuVc8vSbP/oxPyPO8RSTsrIAtY6IAcW+ZneGS1/VYNQ7RMKd2zjomAIWAjMsuKK4hqt1fHyD0EFfgvEqu4SpAYAavHJXXfKu7UvJpugVGcHQl31xHOxWgQoL8A==
+ bh=OYjAih8zvEbQCGqpOr3kEyyK709rYbJjGPiq6NBUwJs=;
+ b=UsR2f4+E4O6Q6L7fIh5da+0sRxJ56KxZcnCGlIojJ+39b1ftO9naeAS7ceRtydfA6p1+RskZJJG+yyKsCIegHoknF7iS+LXAG32Ml9TQSc1sx391UADgGgVngGueLz/bHGmxekRRxEFnizBCPfIUQ3W4tvaZk4bxmzWv/2WBC4E4sKnOiN/o1Rhoea0l5BoHES0h7UcRyDVEV6ODFy/usNZgEAVAx8ieBuuBrf6xDurIXm9SnFJskU69NC76P1ruVbv3HLilZMfHhZ8eIi78s2BsZH3AoksnyJGJzM4WOkb7Yhn+lRITbj4iSngfXhT1vcoWB1EZ9b6AuG7hOjdGAg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p3gqljp42SpT8YoLseUH1twyOGkKguBt+KHwudXC4SI=;
- b=d2r1IIOGnzalMMT8jPxCCAyYzIehhLlr0m0oHogrA/YA92g0IcVazn/3s/I73lZy9oTew/t8amvIb9n7byGzfp3CtUoMS52I+/NDF9GySzILtRVbd80KQ29sQ0aqKcYiKuFrn4Ah3pGkH0hzxfi7IPsxZ2jDT2IZQyRyepuBqHw=
+ bh=OYjAih8zvEbQCGqpOr3kEyyK709rYbJjGPiq6NBUwJs=;
+ b=Th0X3BCLE0bbkyTip1mXL2lf9onKntEpOBO0TiGIPkWx5ca1GVNXZ4uYXbF/sKskAo+lWows98Gw2+Ja4LpkBdyMRJ+DOpCEeyzEBaxcqA6I9MIgmf4ReF6IytZquj3JbtPOr2+MauFnNUqHlyjzyO268nHzQ3qNs2OI8d71GDk=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by BN9PR12MB5036.namprd12.prod.outlook.com (2603:10b6:408:135::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.19; Thu, 9 Dec
- 2021 16:15:12 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::9dfe:ccc6:102c:5300]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::9dfe:ccc6:102c:5300%7]) with mapi id 15.20.4755.022; Thu, 9 Dec 2021
- 16:15:12 +0000
-Subject: Re: [PATCH v2 09/10] drm/amdgpu: remove unnecessary variables
-To: Isabella Basso <isabbasso@riseup.net>, alexander.deucher@amd.com,
- christian.koenig@amd.com, daniel@ffwll.ch, harry.wentland@amd.com,
- Rodrigo.Siqueira@amd.com
-References: <20211209154722.4018279-1-isabbasso@riseup.net>
- <20211209154722.4018279-4-isabbasso@riseup.net>
-From: Felix Kuehling <felix.kuehling@amd.com>
-Message-ID: <c95e1e9f-ecea-ab74-b7d5-7a05f1b1c960@amd.com>
-Date: Thu, 9 Dec 2021 11:15:10 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-In-Reply-To: <20211209154722.4018279-4-isabbasso@riseup.net>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-ClientProxiedBy: YTOPR0101CA0044.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:14::21) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
-MIME-Version: 1.0
-Received: from [192.168.2.100] (142.127.191.123) by
- YTOPR0101CA0044.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:14::21) with
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
+ by CO6PR12MB5475.namprd12.prod.outlook.com (2603:10b6:5:354::7) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.20 via Frontend
- Transport; Thu, 9 Dec 2021 16:15:11 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.21; Thu, 9 Dec
+ 2021 16:27:04 +0000
+Received: from CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::e492:c86b:9906:1b46]) by CO6PR12MB5427.namprd12.prod.outlook.com
+ ([fe80::e492:c86b:9906:1b46%6]) with mapi id 15.20.4755.021; Thu, 9 Dec 2021
+ 16:27:04 +0000
+Message-ID: <e4ca7200-24bb-163d-7e7b-0664e56f7766@amd.com>
+Date: Thu, 9 Dec 2021 11:26:58 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH v4 0/6] Expand display core documentation
+Content-Language: en-US
+To: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Simon Ser <contact@emersion.fr>, Michel Daenzer <michel@daenzer.net>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Marek Olsak <marek.olsak@amd.com>, Roman Gilg <subdiff@gmail.com>,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ Mark Yacoub <markyacoub@chromium.org>, Sean Paul <seanpaul@chromium.org>,
+ Pekka Paalanen <ppaalanen@gmail.com>, Yann Dirson <ydirson@free.fr>,
+ Daniel Vetter <daniel@ffwll.ch>
+References: <20211209142047.728572-1-Rodrigo.Siqueira@amd.com>
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <20211209142047.728572-1-Rodrigo.Siqueira@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YQBPR0101CA0239.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:66::22) To CO6PR12MB5427.namprd12.prod.outlook.com
+ (2603:10b6:5:358::13)
+MIME-Version: 1.0
+Received: from [192.168.50.4] (198.200.67.104) by
+ YQBPR0101CA0239.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c01:66::22) with
+ Microsoft SMTP Server (version=TLS1_2, cipher=) via Frontend Transport;
+ Thu, 9 Dec 2021 16:27:01 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 774340ad-697c-453f-e0bd-08d9bb2f13cf
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5036:EE_
-X-Microsoft-Antispam-PRVS: <BN9PR12MB5036A1A2FF52C0BE31D1FA3292709@BN9PR12MB5036.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 728d22b8-b3c8-44a3-f495-08d9bb30bc32
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5475:EE_
+X-Microsoft-Antispam-PRVS: <CO6PR12MB54752939EF42CC56E18D82E58C709@CO6PR12MB5475.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8pUiKCK2zB/bzrVyZ2kh4XnZrg+S0rlIWUHYqRGWr64FhEYI3PCBMRcJYI5G/sYuSJQbBZv+Lsocs3WxciwwzFKkgw39/wCxJCYEPq0VrA1XtMsMGdc8JpERJ1VYyx72RXMHDTiW5xJSJm69gP+nPedC8Bl/S8YgKP9RIP4ctTmyw3YtO+33pNXGIpceuC5vUvdQU2LRHNr+bzQyzRy17oXu7uvM1GoKoBaxZYoLdF5f7QfhKNpwaIz94u+WrALP4vCLIaxs5cDBN9KJjR/2i07UPQCFP817BXDV1pyljF9mqel08UkHZeTS81xDbbO/u3kbsVXaJ06gnf11H7cEFV6nwm1yjL++sybxnXX/7L31P6SvrG2lyE+Okn3CDxaJ9I+Kbtv7CE5lUz/mQ/r8qoTrNcngu4LSxhDZS6sNsQvLESxkwBmVrzYJqSK1k/Dlt4x+xGTchUrkSCaeGh3fQk/c8dsxRv5AC/Oy4ZhjMLSVi9ZF6w3G3x+XB57AOSBX4QNSW/HNkoI5JdIWqLJsRTBC5lxgZ2fDwHgw8IQU8ZNukCirc5dlMBCN4bx7uOJHRqKiUXbVNhS+P89vYQ2EfO05f39A7yzoxPYo5pNN1K4m5uOqlOT7OhbtWkiqsnxWI3A+pNHtBckoZyTpxoKUSSjKx89VTIL2TOmaBS3CwV7z6vAfcmjc3PlmSqVI2nokrKrU/qh3By20fWRmkagW61Fa/kRxQ91oG462ydG3sZmvgDP0swE0abxWShw9DdkQ
+X-Microsoft-Antispam-Message-Info: lhcx/SbS48ZrJQ+D00o684FmtYdyN83965RVKfN7NRtit9EX1SDILSzX1Wo3W2e/tfN9u5RkqSzDO5t1yRbXRXrRIuqGxar88KRsaxihH+99Cb9fC+nSKraf8rUKsie82+/siEmaBNGT1uZuNlfggpKMWgyr1aRHMgSGOZANknmLko4z3H9GPI51HdoXW3GBmhXUZzJhfd58W2qLQjqv64K+GdPT2u2KM4Zqkuzn938HpyDwUoMYYPuYZhXK5jv9Uqqa9kqCCglEI8jw3bI0YEdQSngW82F6vYUzKqbSJt8/bQBVGZkmOJME6o2E2DHurjnN3A11GiyUr+jccYPE/Bq5ziceMruPJ0UH/hJeGvYIRNeuRKqDqczO5H/vbMWu+bHeUA4yR9lSHtTL4UCToPjquQ6Hz5VU45re8UGKgk7vIY7rZocxETUIS402FYEpHBPWqiXQkxMVeEicBZoUwGiiZsAfNy5NTdExzNvfJOBKRFx8jglUpG1WjQF9n4G3Fit9H0vPRxxQfZdEcMq32eAOKm1CdVoU7Vhrss6uiDE/0gCBsZVm2slQ6k7lJczAGUy2+zdTOinSVmgrEAFXRixlj/qhP0jqbCirZAEftxKhpnUqgdcW1aMBOedpxvGi//ScR7rjmj/ELshir2FI5RZwTaof+b8FS0ITd0OjhWSSmpXbCkJ8WI00Hc8reBo+eilibhwwPHoVkVjISnq2AbRnL/+dQtFKasNb8hfKclHTDPIET5CcHzTktERJxRLn
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(38100700002)(4326008)(8676002)(86362001)(83380400001)(2906002)(31696002)(31686004)(316002)(6636002)(8936002)(6486002)(66556008)(66476007)(36756003)(5660300002)(956004)(66946007)(2616005)(16576012)(44832011)(508600001)(186003)(26005)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(921005)(110136005)(316002)(2616005)(54906003)(31686004)(66476007)(66946007)(956004)(16576012)(86362001)(83380400001)(8676002)(8936002)(31696002)(44832011)(66556008)(2906002)(7416002)(6486002)(6666004)(508600001)(26005)(186003)(36756003)(4326008)(5660300002)(53546011)(38100700002)(43740500002)(45980500001);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?clRFb01iQWI0Y0ZZK2FkSW1Mb25la2VqMkpSRnhsc0dnanFIK3BqclF1VDdO?=
- =?utf-8?B?NmIwYnV1SlMxMUZVaU9WQy9pWFlGa3J2Z2tHcmxqY0ppUkxsZjN5eWpYUG92?=
- =?utf-8?B?aFpZK1JHTjdGRkZsdDY2TkE3eit3dk9yZG15dGVFSUNXclNOZ1QzNU85ZWhT?=
- =?utf-8?B?U2h3YWZ5cDRMZWtmUkljcEJrTUNrRnRuQzk0VzhJM0RNMTc2SE1pMWoyZ21s?=
- =?utf-8?B?TTRZa0Vtei91YWdsUUF0d0tpZFZEU21Xd1p5aGE5OFdMbTFzLzlROVFrQ25j?=
- =?utf-8?B?VCtXVHRQL3NyNXpqOGpKTnJJREY4ZFRqbnVWTTVMR1NzTURCbzgvUGltYnpB?=
- =?utf-8?B?bmNnSFVxTFVBVGNmMU9oNXpJbmFHdWxZTkRBM09WazhzNjJZUjMvdi9yaTZq?=
- =?utf-8?B?WW12bHZtbkFzMDQzZkpSN3V4cXJnSUlrUTdJRWk0bmptMTNkRVR4SStrcmhJ?=
- =?utf-8?B?Q1NMeHl2cE1Zd0NQR2g0RkJlK0RMQ2QwK3ZxMllFdG4yT2dSVzlFUkFtZzhq?=
- =?utf-8?B?N01XNnhWa2ZneTIrV0Fwd0dUSnNBUUhNbm1xdk1HTU95ckE1Qk43QkJXZlVv?=
- =?utf-8?B?cllyT1BOdTAvaDV3MFhQdHpvTnMwckNONXVHWU5oeS8xRDJJQnRqQnBqZHJq?=
- =?utf-8?B?d2JwZUE0NG5jalVPVW1iUzZrQzhaTjNUVUVNNVJpWDg2MDRqQ2VZaUpYSzE2?=
- =?utf-8?B?YzN4STNyZ201c2JIZUlnWU1VNUxsNEgzdVJLMG82MG5FOVk3U2pLOTdPQjA4?=
- =?utf-8?B?bVpZOVRuMm54eFlGRzg0bHpaTWhQSmNRMTMvR0RvOXdNM0g4dSs1SlcxS3pD?=
- =?utf-8?B?b0dhU0w0WVF4T3ZqTVVXc08zSVo1NGpaUzJ4eEF5UlJaRXVKRzZ2OU45V0Nk?=
- =?utf-8?B?TkhJTGp3dEl6QjBCbS83V1V4OHZ3R21wREtnK0M2ODRaZXlOK21ScnNLRDJW?=
- =?utf-8?B?UGkvdWlJcEV6OWl4UkIzdDU4alhNSFFXK0gzZkJCcWxROG1MZzVpQmtHUWtO?=
- =?utf-8?B?cEtPcmUrMm9VNE1sN3l0eGFsWEs3NUNrUUZWajE1WW1WbFlPOHZRYXVUNEs2?=
- =?utf-8?B?VjJhSTVlQWt4blRTV2cwOUptSmdaQWJJRjc1OEpaaXd0R1RSTjJqMjQ0dW5v?=
- =?utf-8?B?T0laY2lsS0o0aTFFRTF0VkFaTUl4Q1h2N1RZZVJ1WGhhMEJnclB6RU93MDhT?=
- =?utf-8?B?YUhrazlOVWZoTEdOakxSWFI4R2E3YXRLNjN1VUtaZndYUjNWT05oRUM1bzh5?=
- =?utf-8?B?WDRDMkZ0VWluZnVMUkJRYTAxVW5jeEdTM0crc0xudUZqdjVCT1VrdEZpcU92?=
- =?utf-8?B?S2dseUdnTXBWamtzUGppR0JzdDJwZUp3RGM1SWxnUlRod25GMmJ4SmhublhO?=
- =?utf-8?B?RitpMHZ1dDJSVVk1V3BZNFYzV0RmUGVhWXJZRU5BMkVOSGxwT3lLV1NoTmVU?=
- =?utf-8?B?UEJuT2MrY1VrTVVGc09SVVVycVlsV0lXdUNEYWQ0dkdrTEJZNzJ6ejZ0Snp4?=
- =?utf-8?B?aDk1eURzbk1nV3NpNzJSNk12NnFlUnRadHpyNERiUmtWaWFOOUExTG9ZbTJF?=
- =?utf-8?B?VXRLZDhhVHo3VCtSVFFqZ3N2djd4WkpyN2o2bTlFbHZhUnZxemxwVHlpeDdL?=
- =?utf-8?B?eEZzOTc3dWtqNzF4MzVrSUJHVnArY094Y1hBVEhaM2ZFVDIwRVQ2cjFxc0Fo?=
- =?utf-8?B?TTVhY0xTZjFIK3Rzc1p0dnB4cUQ0eEVtdEVraUZoblhEazRyV1Irbmd4eWgz?=
- =?utf-8?B?bU9kNzNkOERlSGVMTjVyUitPRDAxNGcrcjJqbWk3MUhTRTlLeDBXUDQwR3Fs?=
- =?utf-8?B?NUZzZEpTRFFFMUdDb1Z1akZrWU5XcVBRdVFaNzA5ZGxGRTlBb0xqMXVSemE2?=
- =?utf-8?B?SUcvcndleXdDc3JjSEtsdEFNZndaZ0pEcnBNM1hXVncrV0RPNE1WUTVHQjdp?=
- =?utf-8?B?M2NVZFFTRnJBTGMzMGUwbVgrZkczdDNxQnNMd3pab3crLzJtSEdKL25DZGZN?=
- =?utf-8?B?QmVwSHprSmM3ME5xS1ZVTlRRTHhIdUs3V0k5RXFoeTVoa05waitTaExSQi9y?=
- =?utf-8?B?U1FUdzMzcldyUzIwczNWaGRrRVNZQUNkMDU1M3ZkbXRoWE1LWklrZ1Z5M053?=
- =?utf-8?B?WFVmWkFHYWhKelVkT3hOOUZ6LytVM2Z5UTZCbUQwSDBDNGhpSitZd3FEalpW?=
- =?utf-8?Q?DS/lS54hbfKJfu3/9jeQzIY=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N0duVW1CVk53Q3ppYjJhTmhkK3dQYS95ekJKWDY3L3E1RUV4d3JDTitnQkU4?=
+ =?utf-8?B?eUpNaE4vNTAxZVhCSkgyVzRqL3lrU215TSthR05jWXl0L0JyOFFHbTVKdHRl?=
+ =?utf-8?B?SVJIVktwS003bC9oTlc3MTNoVFVnRmd2WmRueGdsRy9ZWWFuQnM2Z2piUlQ4?=
+ =?utf-8?B?QUpDM1YxK0o1WTd6TTRqMTduTUtENFZzY3VpUG1BNVQ2bjh2dmdrRncrM09o?=
+ =?utf-8?B?T0JFMG9ybWdid2tYbDRtbFlaN1o3MWdDZEIwaHRqYjdvKzVVNmdiYVkxVlRr?=
+ =?utf-8?B?UEk1Q3dFNG5XcllkMzdySEFjMFNaMDY4cnlydlVTcHNJcGhMOFd0UjI2RHVq?=
+ =?utf-8?B?QnR2REtEVytlaGVTZlprQWtJaEw3TDlpZ0NzNEVXcHNwaFFEU25ueXNMYURO?=
+ =?utf-8?B?d3JmOTUwa0xsblp6R1VxWU1GeGlDSk8vWEJFSXFWcGxyQVM1eDM5VU1OQlVF?=
+ =?utf-8?B?Zy9vLzYwS252YVNGRUo2TEN2SVR2VkVRQ0ZzU0cyOUhaODdMbU1nQXRqVmVp?=
+ =?utf-8?B?S1VTNExtc0hUdnlhUXQrMHJJV1BTaVR5OGxOY3pGUThnaXRLL2pZYVR0aGNO?=
+ =?utf-8?B?VEFwMnJIazU0eWZ3NU5JV0l6WnU1aDdGN1hKZXREdzFHeHo4UEdhR0JKRHBz?=
+ =?utf-8?B?UmVBak1pM3ZqTGV2ZnBIZkczRFpOV25Oa1A4MW1WYmUvTUJGK2JteVplT2g5?=
+ =?utf-8?B?YTQrZkFNUGhVcFB2VVBkWXVHcTJEMk1IdWNWL3QySHJyakZjcXB5WFZERy9C?=
+ =?utf-8?B?SGFKd0o3VG95V1B4L0J0VzFFYnRMVTB4ZHpkSVBVd1hjNndyVlhKNnptcmph?=
+ =?utf-8?B?TzJnM0pRbkRDTXBWQ3h0OVh4Qk52NjVMMHh2VU5sSjVYenhkSHB6TTV3c0Jt?=
+ =?utf-8?B?bjNXakpmMDIvM2FUOExPRWI5SW9qbEN6OFBLRi9FLytqMkI1TnozbWpJMTMw?=
+ =?utf-8?B?dkU4MEVmMHdxL1g0OXc0dldoWmVRUlBwSzEvT2o4Z1RIQ0FtNjN2TUxuRi8z?=
+ =?utf-8?B?cnJjTVQ0WUxYdDQ0ZlVWb2gwdEpZWnE1MkROOGw3aUQxVlFSUEg0bzRzVFc0?=
+ =?utf-8?B?eStEenI1MUphRVNWM3VjMnBmOUUwZlVlRUI1SVdVZVdWSmlhZjB3Z2sxblhh?=
+ =?utf-8?B?MExBY05kVzNGQmJtMFRqS2dOL3QwempIZ2lSSkVGZ1owZ0RuMXVqRDc5azU2?=
+ =?utf-8?B?c0Z6Y0hTWHF2SXcrTjJoM0RXOWFpd2xDNFBnekxTYTd1RGJZa1E2YXZWekxz?=
+ =?utf-8?B?MlhSV1FwbkI2ZWVjdDZTaWlXdFhEVk1xMEYrRGFUQXNtemdJM2s0U0RZUGJB?=
+ =?utf-8?B?T1pnZzhoRi92S3VDd2hnOUJOalJldHJRRzYwNG4zYXlxb3BKVk85RkZkWkc5?=
+ =?utf-8?B?N1dhbUhnTmRoOEJaMjVLODNwSFBsSXVHN0RmSmFGMjhHT0Z5cnB5RkdKWmxy?=
+ =?utf-8?B?bG1DVm9kd0ErcDdCL1VMaUhSUHFsMWZsQy8vME11UitaOS9xVTYrUWlFMjl5?=
+ =?utf-8?B?aDloaWlvRGh1a0E3MG9BcW14Yk5vRU44NU5BTHRtcW41SHBKRHlZVU5WT2dU?=
+ =?utf-8?B?NnNvaTZXWDZmeGxuY25rY0VkTjRPbUFaVU9ucDIycU9wYWg0L3gybSswUytV?=
+ =?utf-8?B?aVRJWHJNR3R6K3FoN0ROZFplMnJWUzVlYlVEcm0xUCtOTFgzNGVBWVF1ZFlx?=
+ =?utf-8?B?ZFNJQ0xCakhzbjNEcmNLM2s4NFFTOE1leUNWMUF0UmlQT0hFYUsvMTBObUhl?=
+ =?utf-8?B?bytaMlJVZkxhbWp3N1k1ZFJPNkt5d0dVVGdxU3JLZzY2ZkExOUlpd2ZiRlR0?=
+ =?utf-8?B?VVlPbjlvK05iUUNON21BaWZFWUhMSWNIK2p1YWlSM0hjLzFNS0tiWE03ZmU3?=
+ =?utf-8?B?Q0pGaWMzd3Fsdzh2MHJqVnlzSFE5Z3Vva2h2YmZPdVc1eTJMYXU3RTZaSGpx?=
+ =?utf-8?B?V0hHekI4MGVvM3c5aDdKRzQ1eWoybDNzczlSS21iVm1WblgxR1NBVG9tYVBh?=
+ =?utf-8?B?bkdBMkpIZzk5Y2xEc3JOMDRkVDlZRlVyd0daNy92dUpzOU9UTjZtbkdsUjF3?=
+ =?utf-8?B?emtSLys2UlErT0lCSzR0bFEvakZVTFhvSmVkaHU5a0MzQkU1cWtzamg0M0s1?=
+ =?utf-8?B?eHRvZE8zVGhPL09QNVEwVUlrSjBtZ2lxcy9iM2syK1ZaOVVmaUJLMWRSMzFZ?=
+ =?utf-8?Q?CFXpQS+rPOiScl+/ssOpwbk=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 774340ad-697c-453f-e0bd-08d9bb2f13cf
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 728d22b8-b3c8-44a3-f495-08d9bb30bc32
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 16:15:12.3159 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 16:27:04.5342 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hrdCyl4c6CQknt2bTJnfU0kjliZalgu57x0D411WbxZ+iKGZeAw54ClhPE5PopUBRbHZDLRd20px76Ucrh5v0Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5036
+X-MS-Exchange-CrossTenant-UserPrincipalName: ftSkteR8f4+pLNlO77JNBzqRa3Zn0ZS8Kbal9cfL8dw5K9ehPyWI64B35qCoUymS5pn9+Cxaa3SQU0N/lq2t2w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR12MB5475
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,90 +137,96 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ~lkcamp/patches@lists.sr.ht, amd-gfx@lists.freedesktop.org
+Cc: linux-doc@vger.kernel.org, qingqing.zhuo@amd.com, roman.li@amd.com,
+ amd-gfx@lists.freedesktop.org, aurabindo.pillai@amd.com, nicholas.choi@amd.com,
+ dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
+ bhawanpreet.lakha@amd.com, Christian Koenig <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 2021-12-09 um 10:47 a.m. schrieb Isabella Basso:
-> This fixes the warnings below, and also drops the display_count
-> variable, as it's unused.
->
->  In function 'svm_range_map_to_gpu':
->  warning: variable 'bo_va' set but not used [-Wunused-but-set-variable]
->  1172 |         struct amdgpu_bo_va bo_va;
->       |                             ^~~~~
->  ...
->  In function 'dcn201_update_clocks':
->  warning: variable 'enter_display_off' set but not used [-Wunused-but-set-variable]
->  132 |         bool enter_display_off = false;
->      |              ^~~~~~~~~~~~~~~~~
->
-> Changes since v1:
-> - As suggested by Rodrigo Siqueira:
->   1. Drop display_count variable.
-> - As suggested by Felix Kuehling:
->   1. Remove block surrounding amdgpu_xgmi_same_hive.
->
-> Signed-off-by: Isabella Basso <isabbasso@riseup.net>
+Thanks for this. It's really good to see this.
 
-The kfd_svm.c portion is
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 
-Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+Harry
 
-Thank you!
+On 2021-12-09 09:20, Rodrigo Siqueira wrote:
+> Display Core (DC) is one of the components under amdgpu, and it has
+> multiple features directly related to the KMS API. Unfortunately, we
+> don't have enough documentation about DC in the upstream, which makes
+> the life of some external contributors a little bit more challenging.
+> For these reasons, this patchset reworks part of the DC documentation
+> and introduces a new set of details on how the display core works on DCN
+> IP. Another improvement that this documentation effort tries to bring is
+> making explicit some of our hardware-specific details to guide
+> user-space developers better.
+> 
+> In my view, it is easier to review this series if you apply it in your
+> local kernel and build the HTML version (make htmldocs). I'm suggesting
+> this approach because I added a few SVG diagrams that will be easier to
+> see in the HTML version. If you cannot build the documentation, try to
+> open the SVG images while reviewing the content. In summary, in this
+> series, you will find:
+> 
+> 1. Patch 1: Re-arrange of display core documentation. This is
+>    preparation work for the other patches, but it is also a way to expand
+>    this documentation.
+> 2. Patch 2 to 4: Document some common debug options related to display.
+> 3. Patch 5: This patch provides an overview of how our display core next
+>    works and a brief explanation of each component.
+> 4. Patch 6: We use a lot of acronyms in our driver; for this reason, we
+>    exposed a glossary with common terms used by display core.
+> 
+> Please let us know what you think we can improve this series and what
+> kind of content you want to see for the next series.
+> 
+> Changes since V3:
+>  - Add new acronyms to amdgpu glossary
+>  - Add link between dc and amdgpu glossary
+> Changes since V2:
+>  - Add a comment about MMHUBBUB
+> Changes since V1:
+>  - Group amdgpu documentation together.
+>  - Create index pages.
+>  - Mirror display folder in the documentation.
+>  - Divide glossary based on driver context.
+>  - Make terms more consistent and update CPLIB
+>  - Add new acronyms to the glossary
+> 
+> Thanks
+> Siqueira
+> 
+> Rodrigo Siqueira (6):
+>   Documentation/gpu: Reorganize DC documentation
+>   Documentation/gpu: Document amdgpu_dm_visual_confirm debugfs entry
+>   Documentation/gpu: Document pipe split visual confirmation
+>   Documentation/gpu: How to collect DTN log
+>   Documentation/gpu: Add basic overview of DC pipeline
+>   Documentation/gpu: Add amdgpu and dc glossary
+> 
+>  Documentation/gpu/amdgpu-dc.rst               |   74 --
+>  Documentation/gpu/amdgpu/amdgpu-glossary.rst  |   87 ++
+>  .../gpu/amdgpu/display/config_example.svg     |  414 ++++++
+>  Documentation/gpu/amdgpu/display/dc-debug.rst |   77 ++
+>  .../gpu/amdgpu/display/dc-glossary.rst        |  237 ++++
+>  .../amdgpu/display/dc_pipeline_overview.svg   | 1125 +++++++++++++++++
+>  .../gpu/amdgpu/display/dcn-overview.rst       |  171 +++
+>  .../gpu/amdgpu/display/display-manager.rst    |   42 +
+>  .../gpu/amdgpu/display/global_sync_vblank.svg |  485 +++++++
+>  Documentation/gpu/amdgpu/display/index.rst    |   29 +
+>  .../gpu/{amdgpu.rst => amdgpu/index.rst}      |   25 +-
+>  Documentation/gpu/drivers.rst                 |    3 +-
+>  12 files changed, 2690 insertions(+), 79 deletions(-)
+>  delete mode 100644 Documentation/gpu/amdgpu-dc.rst
+>  create mode 100644 Documentation/gpu/amdgpu/amdgpu-glossary.rst
+>  create mode 100644 Documentation/gpu/amdgpu/display/config_example.svg
+>  create mode 100644 Documentation/gpu/amdgpu/display/dc-debug.rst
+>  create mode 100644 Documentation/gpu/amdgpu/display/dc-glossary.rst
+>  create mode 100644 Documentation/gpu/amdgpu/display/dc_pipeline_overview.svg
+>  create mode 100644 Documentation/gpu/amdgpu/display/dcn-overview.rst
+>  create mode 100644 Documentation/gpu/amdgpu/display/display-manager.rst
+>  create mode 100644 Documentation/gpu/amdgpu/display/global_sync_vblank.svg
+>  create mode 100644 Documentation/gpu/amdgpu/display/index.rst
+>  rename Documentation/gpu/{amdgpu.rst => amdgpu/index.rst} (95%)
+> 
 
-
-> ---
->  drivers/gpu/drm/amd/amdkfd/kfd_svm.c                       | 4 ----
->  .../gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c | 7 +------
->  2 files changed, 1 insertion(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> index 82cb45e30197..835f202dc23d 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-> @@ -1169,7 +1169,6 @@ svm_range_map_to_gpu(struct amdgpu_device *adev, struct amdgpu_vm *vm,
->  		     unsigned long npages, bool readonly, dma_addr_t *dma_addr,
->  		     struct amdgpu_device *bo_adev, struct dma_fence **fence)
->  {
-> -	struct amdgpu_bo_va bo_va;
->  	bool table_freed = false;
->  	uint64_t pte_flags;
->  	unsigned long last_start;
-> @@ -1182,9 +1181,6 @@ svm_range_map_to_gpu(struct amdgpu_device *adev, struct amdgpu_vm *vm,
->  	pr_debug("svms 0x%p [0x%lx 0x%lx] readonly %d\n", prange->svms,
->  		 last_start, last_start + npages - 1, readonly);
->  
-> -	if (prange->svm_bo && prange->ttm_res)
-> -		bo_va.is_xgmi = amdgpu_xgmi_same_hive(adev, bo_adev);
-> -
->  	for (i = offset; i < offset + npages; i++) {
->  		last_domain = dma_addr[i] & SVM_RANGE_VRAM_DOMAIN;
->  		dma_addr[i] &= ~SVM_RANGE_VRAM_DOMAIN;
-> diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c
-> index 8c20a0fb1e4f..fbdd0a92d146 100644
-> --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c
-> +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c
-> @@ -90,10 +90,8 @@ static void dcn201_update_clocks(struct clk_mgr *clk_mgr_base,
->  	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
->  	struct dc_clocks *new_clocks = &context->bw_ctx.bw.dcn.clk;
->  	struct dc *dc = clk_mgr_base->ctx->dc;
-> -	int display_count;
->  	bool update_dppclk = false;
->  	bool update_dispclk = false;
-> -	bool enter_display_off = false;
->  	bool dpp_clock_lowered = false;
->  	bool force_reset = false;
->  	bool p_state_change_support;
-> @@ -109,10 +107,7 @@ static void dcn201_update_clocks(struct clk_mgr *clk_mgr_base,
->  		dcn2_read_clocks_from_hw_dentist(clk_mgr_base);
->  	}
->  
-> -	display_count = clk_mgr_helper_get_active_display_cnt(dc, context);
-> -
-> -	if (display_count == 0)
-> -		enter_display_off = true;
-> +	clk_mgr_helper_get_active_display_cnt(dc, context);
->  
->  	if (should_set_clock(safe_to_lower, new_clocks->phyclk_khz, clk_mgr_base->clks.phyclk_khz))
->  		clk_mgr_base->clks.phyclk_khz = new_clocks->phyclk_khz;
