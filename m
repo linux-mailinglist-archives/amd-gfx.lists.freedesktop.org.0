@@ -2,66 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED61846EDB3
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 17:52:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E04D46EDE9
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 17:54:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C674C10E117;
-	Thu,  9 Dec 2021 16:52:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 250B410E4F0;
+	Thu,  9 Dec 2021 16:53:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com
- [IPv6:2607:f8b0:4864:20::831])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 411486F4FF
- for <amd-gfx@lists.freedesktop.org>; Wed,  8 Dec 2021 13:53:48 +0000 (UTC)
-Received: by mail-qt1-x831.google.com with SMTP id v22so2205194qtx.8
- for <amd-gfx@lists.freedesktop.org>; Wed, 08 Dec 2021 05:53:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=n9Y+oLn3kk/oxvbwaSHPA0YUJg6Lr4J3Kc7nJ3JG/nE=;
- b=GoexrLnjj1VsVdZoaP5pXTc9vHNtb3FB/yqoPYxnUbJ+/S+d+vBnWe6dlAY4RUbiHb
- YEIRVrACKQidTrAVCzxZrfgOkALMUBdtNg3xnk5TlFEnnLGZIYssGyDfwIuVAmGISuRj
- VArI6DY0phSTcH16IZiubLx6kuEL//Sf3bK1iiUeL66xetRRuTIHb52KOy53R2oEnBsl
- 5+9PifTqlvZzWLgqbsPTPkl9yTPcJbID5QJXtWjjg3Kj9lp7EXRSfLCsT2fqIsqnCxOl
- Yx7nCNwEt1VOHHNcJ4MNJdMatjqwgaaioDRXeq68Gv72oT5rChdSGBcB6jERNyYT7WNq
- Zk3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=n9Y+oLn3kk/oxvbwaSHPA0YUJg6Lr4J3Kc7nJ3JG/nE=;
- b=6mlWCrVGoospNhpHjw1uP0gSk45J//WlFWexZOH4U2ZpYqWGzBXUEPkUu5y2MtYImB
- 4TQ5vgncyKyfjnyfmiHEph/Nw2MX/3ho71e7Tc+hovn7T+p8EycGAKuRNLnvYWxnAxGE
- fcHNwUOmx3jzvjeovykqJd9n5Ybdz/GV1ByB9IOZePbFNt/s4BIJ5DEjghxCL3Bvs/mD
- G3u1by6b/MPbKdE9fPGKnHyHc6iq83YtQXAOmIEFhbPb/3R6dl3wB6que8aO2VvjU6Ji
- JL81fSXITFUuFTGlgcdNswhydGE2B2rjovqvwFVP3TIEN4Wu9a0OXC6txBOHlhv5nrGO
- iQwA==
-X-Gm-Message-State: AOAM532PF676gRnlXXh+hW2joiQ2PIAxqLxzxsETgdznlds08ROjoB47
- /TSr8/JwQ+Nit1z1TX8TYmii7g==
-X-Google-Smtp-Source: ABdhPJyYKvKS0NpCR6PWWVWY6+Vf6yq8PVBWsAJ1cY1C/Ayv7lr1154+ZV+fGaKDlVe8F/mvWjHimA==
-X-Received: by 2002:a05:622a:4ca:: with SMTP id
- q10mr8015431qtx.631.1638971627307; 
- Wed, 08 Dec 2021 05:53:47 -0800 (PST)
-Received: from ziepe.ca ([206.223.160.26])
- by smtp.gmail.com with ESMTPSA id c7sm1763527qtc.32.2021.12.08.05.53.46
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Dec 2021 05:53:46 -0800 (PST)
-Received: from jgg by mlx with local (Exim 4.94) (envelope-from <jgg@ziepe.ca>)
- id 1muxOD-000nGF-Ki; Wed, 08 Dec 2021 09:53:45 -0400
-Date: Wed, 8 Dec 2021 09:53:45 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Alistair Popple <apopple@nvidia.com>
-Subject: Re: [PATCH v2 03/11] mm/gup: migrate PIN_LONGTERM dev coherent pages
- to system
-Message-ID: <20211208135345.GC6467@ziepe.ca>
-References: <20211206185251.20646-1-alex.sierra@amd.com>
- <20211206185251.20646-4-alex.sierra@amd.com>
- <2858338.J0npWUQLIM@nvdebian>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2071.outbound.protection.outlook.com [40.107.243.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05B0289ABE
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 05:59:55 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mbKEeQiiCDEtCCzf+q+JtRBJzgHgdqgUfCgPTLs2P9r9NACE1ExeGutp7QfKEVH02MUNwxYNKuXOyFjdbiM5ux3iUSxBBNVDjZPr5mhEdpLEP7j+XQDlhb3mmNt+ojL8wX48CtV4fABcyCxiEvNGXqsQos6ZlysKp+vt7Tpid/EmL7mUIGkKFsFajkhN6pCfMKTGPtrdRPK4wTtekRZiU3Ck9lWdlg9xKJx5sMYdDGSKByQX3uobOtHzCXDOJSvlORdStzPlHwl88crERFgLkjjssyANH3K4LnFDcqNj1FqoOe1WWgUuGE/kpNfNUuIfk1GlRGGN8Od63YYl1HM5zw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DzQeprX6hYXLCCCZKtJF3WzFwbtBRFtrUgcYDP1wzxQ=;
+ b=eX+qc5O2gO+cQoPWVOHEc+pokL7Fw/OFm3awTutysa/ifnQMF/RuiwUmoJ3Nytj/FKleG/Tfq6n8FOaSSCmHfPUB9OswueUebyZEvkS4N0NHuFe69fNBohyeX/wktmNZcReIAN3gIdjoyfQ+LXI9uyBTMtbg5RAOcdwXIJe5euT3yU2NOqApn2AXaZkZeFsofdnBn6u+jGBeZj5wlU0Cz4fxOOTLsopcMXcSFis5cmASvg1agPkGf7fR+c2xWP2gd2v9G4CRHr3KzNwzuV8Ymyl1aPxR+Q1OIKn81JdBhdEOiebUGJUuCgYKHVahIVSk/7ocEJrudu6VYKzEjxRSVA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DzQeprX6hYXLCCCZKtJF3WzFwbtBRFtrUgcYDP1wzxQ=;
+ b=AgePxjm/Q/0qn4f1eRQyS55v+9kiCkGpQUU1jSmfOVHjoc/ix5/dEgXGlNeSp9BUZdHmZe9KgAQ9SStDz2jOlA4L4rTNLGHUvE7u/cDTvCd9Ul8CqT1oCLmeCRERBEwDFoYm1wgWO62sI7kz4kVux57czavfUUyOh92ZzinBDeQ=
+Received: from BN9PR03CA0647.namprd03.prod.outlook.com (2603:10b6:408:13b::22)
+ by MWHPR12MB1518.namprd12.prod.outlook.com (2603:10b6:301:11::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.20; Thu, 9 Dec
+ 2021 00:04:03 +0000
+Received: from BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:13b:cafe::fc) by BN9PR03CA0647.outlook.office365.com
+ (2603:10b6:408:13b::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.11 via Frontend
+ Transport; Thu, 9 Dec 2021 00:04:03 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN8NAM11FT066.mail.protection.outlook.com (10.13.177.138) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4755.13 via Frontend Transport; Thu, 9 Dec 2021 00:04:02 +0000
+Received: from Harpoon.amd.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Wed, 8 Dec
+ 2021 18:04:02 -0600
+From: Felix Kuehling <Felix.Kuehling@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/2] drm/amdkfd: Use prange->list head for insert_list
+Date: Wed, 8 Dec 2021 19:03:39 -0500
+Message-ID: <20211209000340.974954-1-Felix.Kuehling@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2858338.J0npWUQLIM@nvdebian>
-X-Mailman-Approved-At: Thu, 09 Dec 2021 08:23:15 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB03.amd.com
+ (10.181.40.144)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9dd431ae-d3f2-4a6d-b59b-08d9baa768d0
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1518:EE_
+X-Microsoft-Antispam-PRVS: <MWHPR12MB15184582A9C72C37CB7168D992709@MWHPR12MB1518.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 3N6HlMrOFISETh6pDrES2gKbCkkn2Ff5hnDwP+/ZlUp5bESglutSrAlbuw8kpOA9MSpXHP6zXurp7LKguFEFupdlrFn93L36WkjSCRGRfgaiAVUfT47vUmKsXHWFT5hNeRqyo7Z8Mgu+iiota3pJF0NAJk7kfJj3JZ3PDwk4V73Y6XkhKWIch/okaU6azobDDrq5wdIxuK3UVOz6bEHqRnSJDaGGjV9awZZK6Wb2Su5lPabzTeFn3TYnNmYmskMswm4981Thv3C92ZvsIKaYUVCiYIolNn5GDYqfa7ulkA7CHGnF2Gd0gehyBLId9mbpvcJRXvPTTWbeB+/mfXnqymIHxKftqMn6EoUeUYCwSK5cl6wdfHFgZEesc4MPJUOOa26bAoypYalxc5KQmN3BH8GUKoe6xZaUMlrmnTeLd/9OegwnttrHJYSS0Zl+Nf+GNW3+5fTpFNt4BqWyTv31biWeTN2PXaISftxlUln6QqLd1jMIZHyadPpkhzYjenl7+4TWPvwwrcwN/yHP1WaArdsVDJ8YVir7VEo+5Z2DoWN6a2Qp2cOv0m+pgMTshX5Ied355LKr/WV57Aq3IEtIAv/0enKThGc1eSTp4zGgRay64LuwRn87K6NKgNwUVncYp7wNs9Gk1Ms9fShSjQg2ZHzPQXNL+DCNK3SsUEjihAyR40ORYWs8vSqFwTBDuwYGgm3xuyq8WQEzX5iiHkez/LyzedpGE+zkpukyZ8yJNhGWLhVMuB+A5bFjDTmIIUxpvL4AVfkcgqluorwlFEYtn34E28brfNB44zB7ke2mTYA=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(36840700001)(46966006)(40470700001)(70586007)(2906002)(5660300002)(4326008)(86362001)(1076003)(316002)(70206006)(336012)(7696005)(40460700001)(36756003)(8676002)(54906003)(8936002)(356005)(82310400004)(508600001)(26005)(36860700001)(6916009)(47076005)(426003)(2616005)(83380400001)(16526019)(6666004)(81166007)(186003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 00:04:02.9980 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9dd431ae-d3f2-4a6d-b59b-08d9baa768d0
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT066.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1518
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,76 +99,127 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Sierra <alex.sierra@amd.com>, rcampbell@nvidia.com,
- willy@infradead.org, Felix.Kuehling@amd.com, amd-gfx@lists.freedesktop.org,
- linux-xfs@vger.kernel.org, linux-mm@kvack.org, jglisse@redhat.com,
- dri-devel@lists.freedesktop.org, akpm@linux-foundation.org,
- linux-ext4@vger.kernel.org, hch@lst.de
+Cc: alex.sierra@amd.com, philip.yang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Dec 08, 2021 at 10:31:58PM +1100, Alistair Popple wrote:
-> On Tuesday, 7 December 2021 5:52:43 AM AEDT Alex Sierra wrote:
-> > Avoid long term pinning for Coherent device type pages. This could
-> > interfere with their own device memory manager.
-> > If caller tries to get user device coherent pages with PIN_LONGTERM flag
-> > set, those pages will be migrated back to system memory.
-> > 
-> > Signed-off-by: Alex Sierra <alex.sierra@amd.com>
-> >  mm/gup.c | 32 ++++++++++++++++++++++++++++++--
-> >  1 file changed, 30 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/mm/gup.c b/mm/gup.c
-> > index 886d6148d3d0..1572eacf07f4 100644
-> > +++ b/mm/gup.c
-> > @@ -1689,17 +1689,37 @@ struct page *get_dump_page(unsigned long addr)
-> >  #endif /* CONFIG_ELF_CORE */
-> >  
-> >  #ifdef CONFIG_MIGRATION
-> > +static int migrate_device_page(unsigned long address,
-> > +				struct page *page)
-> > +{
-> > +	struct vm_area_struct *vma = find_vma(current->mm, address);
-> > +	struct vm_fault vmf = {
-> > +		.vma = vma,
-> > +		.address = address & PAGE_MASK,
-> > +		.flags = FAULT_FLAG_USER,
-> > +		.pgoff = linear_page_index(vma, address),
-> > +		.gfp_mask = GFP_KERNEL,
-> > +		.page = page,
-> > +	};
-> > +	if (page->pgmap && page->pgmap->ops->migrate_to_ram)
-> > +		return page->pgmap->ops->migrate_to_ram(&vmf);
-> 
-> How does this synchronise against pgmap being released? As I understand things
-> at this point we're not holding a reference on either the page or pgmap, so
-> the page and therefore the pgmap may have been freed.
+There are seven list_heads in struct svm_range: list, update_list,
+remove_list, insert_list, svm_bo_list, deferred_list, child_list. This
+patch and the next one remove two of them that are redundant.
 
-For sure, this can't keep touching the pages[] array after it unpinned
-them:
+The insert_list head was only used for new ranges that are not on the
+svms->list yet. So we can use that list head for keeping track of
+new ranges before they get added, and use list_move_tail to move them
+to the svms->list when ready.
 
-> >  	if (gup_flags & FOLL_PIN) {
-> >  		unpin_user_pages(pages, nr_pages);
-               ^^^^^^^^^^^^^^^^^^^
+Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 17 ++++++++---------
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.h |  2 --
+ 2 files changed, 8 insertions(+), 11 deletions(-)
 
-> >  	} else {
-> >  		for (i = 0; i < nr_pages; i++)
-> >  			put_page(pages[i]);
-> >  	}
-> > +	if (is_device_page(head))
-> > +		return migrate_device_page(start + page_index * PAGE_SIZE, head);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+index c178d56361d6..dea7c6236be5 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+@@ -107,7 +107,7 @@ static void svm_range_add_to_svms(struct svm_range *prange)
+ 	pr_debug("svms 0x%p prange 0x%p [0x%lx 0x%lx]\n", prange->svms,
+ 		 prange, prange->start, prange->last);
+ 
+-	list_add_tail(&prange->list, &prange->svms->list);
++	list_move_tail(&prange->list, &prange->svms->list);
+ 	prange->it_node.start = prange->start;
+ 	prange->it_node.last = prange->last;
+ 	interval_tree_insert(&prange->it_node, &prange->svms->objects);
+@@ -296,7 +296,6 @@ svm_range *svm_range_new(struct svm_range_list *svms, uint64_t start,
+ 	INIT_LIST_HEAD(&prange->list);
+ 	INIT_LIST_HEAD(&prange->update_list);
+ 	INIT_LIST_HEAD(&prange->remove_list);
+-	INIT_LIST_HEAD(&prange->insert_list);
+ 	INIT_LIST_HEAD(&prange->svm_bo_list);
+ 	INIT_LIST_HEAD(&prange->deferred_list);
+ 	INIT_LIST_HEAD(&prange->child_list);
+@@ -995,7 +994,7 @@ svm_range_split_tail(struct svm_range *prange,
+ 	int r = svm_range_split(prange, prange->start, new_last, &tail);
+ 
+ 	if (!r)
+-		list_add(&tail->insert_list, insert_list);
++		list_add(&tail->list, insert_list);
+ 	return r;
+ }
+ 
+@@ -1007,7 +1006,7 @@ svm_range_split_head(struct svm_range *prange,
+ 	int r = svm_range_split(prange, new_start, prange->last, &head);
+ 
+ 	if (!r)
+-		list_add(&head->insert_list, insert_list);
++		list_add(&head->list, insert_list);
+ 	return r;
+ }
+ 
+@@ -1880,7 +1879,7 @@ svm_range_add(struct kfd_process *p, uint64_t start, uint64_t size,
+ 			}
+ 
+ 			list_add(&old->remove_list, remove_list);
+-			list_add(&prange->insert_list, insert_list);
++			list_add(&prange->list, insert_list);
+ 			list_add(&prange->update_list, update_list);
+ 
+ 			if (node->start < start) {
+@@ -1912,7 +1911,7 @@ svm_range_add(struct kfd_process *p, uint64_t start, uint64_t size,
+ 				goto out;
+ 			}
+ 
+-			list_add(&prange->insert_list, insert_list);
++			list_add(&prange->list, insert_list);
+ 			list_add(&prange->update_list, update_list);
+ 		}
+ 
+@@ -1927,13 +1926,13 @@ svm_range_add(struct kfd_process *p, uint64_t start, uint64_t size,
+ 			r = -ENOMEM;
+ 			goto out;
+ 		}
+-		list_add(&prange->insert_list, insert_list);
++		list_add(&prange->list, insert_list);
+ 		list_add(&prange->update_list, update_list);
+ 	}
+ 
+ out:
+ 	if (r)
+-		list_for_each_entry_safe(prange, tmp, insert_list, insert_list)
++		list_for_each_entry_safe(prange, tmp, insert_list, list)
+ 			svm_range_free(prange);
+ 
+ 	return r;
+@@ -3217,7 +3216,7 @@ svm_range_set_attr(struct kfd_process *p, uint64_t start, uint64_t size,
+ 		goto out;
+ 	}
+ 	/* Apply changes as a transaction */
+-	list_for_each_entry_safe(prange, next, &insert_list, insert_list) {
++	list_for_each_entry_safe(prange, next, &insert_list, list) {
+ 		svm_range_add_to_svms(prange);
+ 		svm_range_add_notifier_locked(mm, prange);
+ 	}
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.h b/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
+index 6dc91c33e80f..c3738bd35a3e 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.h
+@@ -76,7 +76,6 @@ struct svm_work_list_item {
+  * @list:       link list node, used to scan all ranges of svms
+  * @update_list:link list node used to add to update_list
+  * @remove_list:link list node used to add to remove list
+- * @insert_list:link list node used to add to insert list
+  * @mapping:    bo_va mapping structure to create and update GPU page table
+  * @npages:     number of pages
+  * @dma_addr:   dma mapping address on each GPU for system memory physical page
+@@ -113,7 +112,6 @@ struct svm_range {
+ 	struct list_head		list;
+ 	struct list_head		update_list;
+ 	struct list_head		remove_list;
+-	struct list_head		insert_list;
+ 	uint64_t			npages;
+ 	dma_addr_t			*dma_addr[MAX_GPU_INSTANCE];
+ 	struct ttm_resource		*ttm_res;
+-- 
+2.32.0
 
-It was safe before this patch as isolate_lru_page(head) has a
-get_page() inside.
-
-Also, please try hard not to turn this function into goto spaghetti
-
-> I think a similar problem exists for device private fault handling as well and
-> it has been on my list of things to fix for a while. I think the solution is to
-> call try_get_page(), except it doesn't work with device pages due to the whole
-> refcount thing. That issue is blocking a fair bit of work now so I've started
-> looking into it.
-
-Where is this?
-
-Jason
