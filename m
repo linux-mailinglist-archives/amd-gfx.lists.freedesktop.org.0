@@ -1,129 +1,124 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28FF346EFA2
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:01:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FCA446EFA5
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:01:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 459CC10E653;
-	Thu,  9 Dec 2021 16:54:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5157A10EBE1;
+	Thu,  9 Dec 2021 16:54:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam07on2044.outbound.protection.outlook.com [40.107.212.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A92B89E59
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 15:38:09 +0000 (UTC)
+ (mail-bn1nam07on2058.outbound.protection.outlook.com [40.107.212.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1014891BB
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 15:46:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dN4UVIKNYE9e7mwyV9qW2ZdFv5+BXnc1kRWE7oMb31nN7WjY1ln/Cm8KwReXsjWM8GhZcMPOlWfQTVmEVkiJ+GxseTuvYBfC5Ac9eBlE5dejj6q7X+LUJHCwpnpW6L+QDOPzNNATQc6Csmxx7xxJIyGYQdiZfSw45uPVPwMaD04504cmboT56QUnp+q0dPgr2FKNMzEOXgG8SzJA6FPcaeIYkCMV9X1nQkfqKM0+OGbcE0MuJwABSvPw/JcVVijMSqNWmVRmwGjCk+89COUWnJ/KR3kvcgPe+NNiw8zK5xzBE38rgc6OT/tCK6m1DLRt6PCWVgJ9bwCsqt7lVA2Ovw==
+ b=H7K86WGxM8aCM+46eixicFlQcHfZM6ptkqCkCkFBzHKnY/nDzpQcYOtugl9ixQLyLi340oGMj8bo5EoinakQ/6VCGTsYqXe4fGY/7YJwV/pz2IBKdaNTTqU60kgOwNGov8Gh0K2s189IMwwYC/AoeQFtH2H9BVPuOu+2VK0urXt6ZCfvoCsqgntuaa1sFPXFQv7vUXawCNVNRmzsJQW5YpFrs/NeNv3JGG9orPnZpsaTgKrHaMITgwF7zQxG8gqN/pJdpXhVl8r6TWiD54XAjh73gejvP6h/DZGQyH2M/jCSSfglsPpnmh/OQqzksQmgIxOHRFxTDCPaVOUQJhYWhQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jwcRdZxKE8edx0dmdqmz6AwPEpJO4oEkIRn7Ocjc7dQ=;
- b=OYtpYbf2GOE/GRCS60NLkmeri3v5JXhcGzyDQFWh/meQgSZ8ew3XLAmL8qw9UwN2jpMwXMcHFmgHbhfQEzYR2IOthohK3ffvZxgzGml1uHHNeYQX6NRIWRlzt0dHE1pWCO4G4ecQhkUDN9M/aURwtk3O1ojrPtV0xRH7Xd+jyM/CpobmAV00tatkNZNn1p+5KdvaBxIa6AzNgsiRHDkWQqeEjJO6DY/5FmC55nzau4ESf9KcBcX+xLxbfA64yPuc1K0Ba8iJVsyic23iTyUgnwcFMK+azQ/eNSXE9N4qtfY0kRRlCuatbgifvU3WFMVROZ35s26w8tQG081vHniBQw==
+ bh=u7zKbIbfFv1Gcz2YEV8QzoQBitntZ/WEYHI+i8IEfqM=;
+ b=YdrtI5rF/iA+jZA0UD2UOG0mGScj8u+okC6Aa8/r+5xaNHDO32Y94uJqLJWoIcmLrAJtrOxGwJnVWZ23pVa+VGOLd7KkKnXecsiXBVBRgiaLHhfuQHxNey5sQDSHi1LoyyM8ULHp/oxVpQN8Ghf3olK+qOAztTa3BzrW5/6Odd3eT0py2Kly/J6sQgD3AEvAJ3cLtuYw6XqdxVh0K+kK5dDAppNqKGyedP0UMHBGvwXz9BKB+PPbN7N3TJihD16JVeQ3JQ1lIFqXfn9gdJDIRAKhs9GWHXe9xe79Npzs1RApbK2Xn2wiE5AtTsMmuFcmSdoGFeH4nhgs5rlLHBmUbA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jwcRdZxKE8edx0dmdqmz6AwPEpJO4oEkIRn7Ocjc7dQ=;
- b=l9YBrLMLuxnkug4VoYVBB2hjzqhlHaeqnW6ZRzi+mtkLyO2dUfPsCRBRRMnvK8Tdsl2PkYvqgQP7abyWOKUZ3u5HkO7G5luwElKjWZDdEIXx34smCrdt07PwzBtGcVZ4uHauTnhWqf51Jn1xb4AB6zhft0Hg/b3HSOgCXuLdx1E=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM5PR12MB1947.namprd12.prod.outlook.com (2603:10b6:3:111::23)
- by DM5PR12MB1500.namprd12.prod.outlook.com (2603:10b6:4:11::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4755.21; Thu, 9 Dec 2021 15:38:06 +0000
-Received: from DM5PR12MB1947.namprd12.prod.outlook.com
- ([fe80::2548:bc51:2643:fb7b]) by DM5PR12MB1947.namprd12.prod.outlook.com
- ([fe80::2548:bc51:2643:fb7b%7]) with mapi id 15.20.4755.025; Thu, 9 Dec 2021
- 15:38:06 +0000
-Subject: Re: [PATCH 1/2] drm/amdgpu: introduce a kind of halt state for amdgpu
- device
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Lang Yu <lang.yu@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20211209084914.261889-1-lang.yu@amd.com>
- <af6c19e6-fcf4-ac19-637e-1fb47f15f9e6@amd.com>
-From: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
-Message-ID: <432a38b5-2c56-2b54-4e05-b0a3862ddb2f@amd.com>
-Date: Thu, 9 Dec 2021 10:38:03 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-In-Reply-To: <af6c19e6-fcf4-ac19-637e-1fb47f15f9e6@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ bh=u7zKbIbfFv1Gcz2YEV8QzoQBitntZ/WEYHI+i8IEfqM=;
+ b=LO5zjuvb2RuWHsZ+4fiTHKy0F1r7945Q/GIDp6C5XZLmiSG4E4C/TDMSBgWpsjbdodTUwTwCFMNScrNqfLCYULm7UNqgte5vgz96epVBFIxpHr4ti/qfqaFwAvOMOy3mP7Az9LG3OHrsOJ9edPfmJPamn0ALhWgHgLTtaKvnFE4=
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com (2603:10b6:208:316::6)
+ by BL1PR12MB5173.namprd12.prod.outlook.com (2603:10b6:208:308::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.21; Thu, 9 Dec
+ 2021 15:46:36 +0000
+Received: from BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::f170:3712:b17e:bd65]) by BL1PR12MB5144.namprd12.prod.outlook.com
+ ([fe80::f170:3712:b17e:bd65%6]) with mapi id 15.20.4778.013; Thu, 9 Dec 2021
+ 15:46:36 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: =?iso-8859-1?Q?Christian_K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ "Quan, Evan" <Evan.Quan@amd.com>
+Subject: Re: [PATCH] drm/amdgpu: don't skip runtime pm get on A+A config
+Thread-Topic: [PATCH] drm/amdgpu: don't skip runtime pm get on A+A config
+Thread-Index: AQHX6n2vGct6KKHl7EqN1CPYjx2QW6wmRugAgABVLgCAAApSAIADqRkAgAADRuA=
+Date: Thu, 9 Dec 2021 15:46:36 +0000
+Message-ID: <BL1PR12MB51442E00587BEC974E2D77C1F7709@BL1PR12MB5144.namprd12.prod.outlook.com>
+References: <20211206084551.92502-1-christian.koenig@amd.com>
+ <DM6PR12MB26194050848510738D3DF81CE46E9@DM6PR12MB2619.namprd12.prod.outlook.com>
+ <462b2fbf-2d14-cc49-1b48-56b80b68b3ba@gmail.com>
+ <DM6PR12MB261917D411F14C76089BA492E46E9@DM6PR12MB2619.namprd12.prod.outlook.com>
+ <d0f0e37a-9dbe-c3ff-2123-b358a3c7ab04@gmail.com>
+In-Reply-To: <d0f0e37a-9dbe-c3ff-2123-b358a3c7ab04@gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-ClientProxiedBy: YTOPR0101CA0015.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:15::28) To DM5PR12MB1947.namprd12.prod.outlook.com
- (2603:10b6:3:111::23)
-MIME-Version: 1.0
-Received: from [IPv6:2607:fea8:3edf:49b0:5877:f59b:f2f9:1520]
- (2607:fea8:3edf:49b0:5877:f59b:f2f9:1520) by
- YTOPR0101CA0015.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.20 via Frontend
- Transport; Thu, 9 Dec 2021 15:38:05 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d77c7c65-49e1-4bc7-b423-08d9bb29e4d8
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1500:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB150099F904AA2B794A20AA2DEA709@DM5PR12MB1500.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: loAXiCI+iaAs5nWfLtohXMCp/9ozicqrffngJyzUVqSCQYgIAAEUysWB9TO2AOWpsnW3QLlzGP52wrJiE7bMpIFUXPHp2NQ6bxEg04ZQ0UxAILK9A47B4mFrlIp1YGIfJA9/kF652ULq16WPW6XL1mHruIfn9cAReV1uIlHL5af38nG93IEYw3rAIINFbNuRv/q3R/u3g5c0h5lUjIeFnv1eKqP7MR27TLuS8c10D87gTlbRMsBxYS8YfEKW80PuTBZMtU2SX05tc0jdK2gM5u3lS5ySu6trWtHmr/AT7PwCgglvx67H6zgSzAsLoe0JVFI4EN1KGVfjxPEgxgW3w5ECAn2ydVXMuoKEk+BvQkfE0W3LV02RbKBE4gDUqJMiWueRpUu5dSAms5ROtuMNQcRqY5sh5RrKHqThpOqiPmd8/Q84TLnYesGW05XGs8yLCfh47zPm6KSQjy9etqRczrhNmOgq2fuRVGvq/tkGXQyC/XsWJkhzQolAMgECtjpCKM5KdxDZO2SeAuYu6dMmb6KNiNAsgvpw6upIt+3oiiTh5vTegf96UsIpLhyIuZgfczzTGD+IydI9T3t5FjgZByqTT3a5X+qwm5EMc+KV8C5/8xJqtGgxivss2l8/cKpT4bD0Sjv48izRVT7q1V2fUK8ZeEmk5E+t1rD0lWJGp3p2Bh6WZ+pw9pFG218J59pPA6mLCeYt/09mLTsJgp/z29kmQr+JLd23m624yUPgmw4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB1947.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(110136005)(6486002)(508600001)(53546011)(186003)(54906003)(8936002)(31686004)(83380400001)(2906002)(66574015)(86362001)(66556008)(66946007)(66476007)(36756003)(8676002)(316002)(5660300002)(44832011)(2616005)(31696002)(38100700002)(4326008)(43740500002)(45980500001);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=True;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2021-12-09T15:46:36.127Z;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=0;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged; 
+suggested_attachment_session_id: 209351dc-732f-c881-8f1a-413fbc6fb55f
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 04937ff2-6176-4850-9085-08d9bb2b1586
+x-ms-traffictypediagnostic: BL1PR12MB5173:EE_
+x-microsoft-antispam-prvs: <BL1PR12MB51734BEFBFDFE9A87FF05BFBF7709@BL1PR12MB5173.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: M5RnT5ZQfiHEMmN6drLW4XQcXa8ff9W969AAWwfCupA2h/92rqa4Pcyu9IQLcwjibfD3QWedy1gsq6n/bprRUcJX2Z2OVPN6/n5pKjj61SJvVuQtXhNYPGq3egGHEnF70FJ9ow1LNFn8cofFPPJ5mfnZNg4ha4EVqeW5ddH7EDFkypuP+T3v/DslzInwShJenAeXCp8kocxikepODvE9TBPsZwzlsrpk4J+LhWILuxrXL7BwIKp60j1+GKUy0njmSdi6QA1XeM8PwGHnVjto3z3rxOqOl0d77N17bOD7KsHJ0CTV1+lLKkElPjCITCQVJUzHbwFE++OoG1pmOa4Cp01WgeU9ZF0/ZIKVZcmXtQI2jXZCXluLpLHhWirqM/lS1IeWrAdCSxuCBZm+9KhhlpzK/16Zl1fP53oL3WF6EdHmd1VUMHzyLcvn/QVPlcWxACrSKMA0hN++itvo6S1+tMWiPkttbkdfpL8177ZPMW95/a+wZW9/whOkCj+S/DHH6Hw3K2MKP2ysW39qWcCY3PyYuCXet82uU9nu5wZMedt54lZNxxGpjNoHOz/h3g4owuq7TPVu4vVlfxhG0WGaxgokDH5LZU26cA/XUlzBkJi/X42Inp80vfEZImpYedByRNUusYts0frOdQLUd7cjaW4aEKv6e5lZHHhUVom2TzbIuZ7AAvySXdbsAwUpM6pi0k3Sgbd9JBsr0LV3dF0/Og==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5144.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(83380400001)(9686003)(38100700002)(26005)(4326008)(186003)(122000001)(316002)(2906002)(52536014)(19627405001)(38070700005)(53546011)(6506007)(33656002)(8936002)(76116006)(6636002)(8676002)(7696005)(86362001)(66946007)(66556008)(55016003)(64756008)(66476007)(66446008)(5660300002)(110136005)(71200400001)(508600001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L2U4NWxUY3ljQUM4SmtqNVNZQUxiZVNMRmp3RkgxcmZoQXY3QkFMYk5sc3E5?=
- =?utf-8?B?N2YxRGlIOXkycWx3bWdEcEt3U3R4bDd4YUZsMForT3U0WmhBQUEvS1hFU3VJ?=
- =?utf-8?B?akMrWUNWcjdSUUJYRzR4L25nTGY0RGJiY2c3UVZRMmxRNmZiNzdIVWdlaW02?=
- =?utf-8?B?UG03bTdHZ2hWNWgrSHlYWGZoY0V6YWJ6ZnErTjBPdURJZUZVclNEbytZSVoy?=
- =?utf-8?B?akNPYXRLOHpsMFZoTmxIUjN4cjJWZUVqZjI1d0toTG5qNDM3QVdyUERyR0c4?=
- =?utf-8?B?V2MxMDlwSFMwcytGUGszZGoxNjVVUHdCZVFIUnRuQm9paFNnU2F2dG5JQkll?=
- =?utf-8?B?L21qK3pRRzdSN3ZhQXVOU0NsZXRHT3lEeGZiTjVxZVpxWWxGZzFyWm9GYitl?=
- =?utf-8?B?WVZjRU5vaWZ5YUxIa0VyR2grVnd4ZHJlNUF2anVTckVCZUNuQmVFVEtma3Zn?=
- =?utf-8?B?cUtuMXNFUWsyaVNDMmsrVG5xUTVRS3BBUHo0elBmZHhNVVJCOWUvQ21zYmVG?=
- =?utf-8?B?MU9LMzNkd0VuUGtaYmVzQVRXMkRCNURLRVRyV1EzbHBRVGRMRlIwSkJZeUoy?=
- =?utf-8?B?dEljbW9NdTBYSGVKT3VyUnpZMDE1ZGNaQnlKd2RROHU2ZXJyNCtTY1UvREpT?=
- =?utf-8?B?RzlzKzgxRjZYRm1EWFFKNXNhb3hJMWhxRXVtdVJEeHZSaU5YaGdUTzlVMm5t?=
- =?utf-8?B?NmRvVGp0K0IzbE1rOGc2bGJXMHJKSVJBbzdrZ0g2QUxITXNCSG1wQTFBTHBp?=
- =?utf-8?B?eHhKVUh5c0tYTDJWSmF4S0trZGU5QmYrTVNqYk9abW5lOEN2amVuV0Fyb3Vu?=
- =?utf-8?B?VHZpaERXRFkxcGV1YTB3MUlJakd2bngyVWtGcmtmNlR0WFRZeDdTSCtUYnR6?=
- =?utf-8?B?Szg3bHYvL0VaeklMVTRLaUp2TENuY0VlNlRBZzk3QXZ3WnBuVlExaTN0N1ZI?=
- =?utf-8?B?ZG9ZNm1mdkpYbzdqWUNyWm1janJVR0tDUUxIbkwyUWdoS3U0MEQ2TFdUcXpI?=
- =?utf-8?B?T284U2ttWUI3ak5hc1lQRXBHejZWTGRCcHl2WWhDVkdvRFhmS0QwZHNwd085?=
- =?utf-8?B?U2NpTFFEc0RXZ29DMTZwM3JZVXRFK1dzc0s0cmdnT0NuTDBzRGVicmVHSU5i?=
- =?utf-8?B?aW90WGU5d2k0a2F3cTRESXo3WTlaRUlNTnNKOWgxS2RTY3FKNkh1YmpPSncy?=
- =?utf-8?B?cWdKaXFvZUMwOEJzbi9pTXJrYTJRK1VRN1RRODcvVWErdFpoWEtEZmw2ZkdF?=
- =?utf-8?B?SjUwNjFoeUVkK3Q0SDh1cmdtVmkyU09EamV5WXRhRlo0cjFwMU11VktXcnEw?=
- =?utf-8?B?TGlwc21lUHlmYkxwOGZpeDArT1VRZXk3YUhHZTVWYTQ0MGtvbUxjMnF5Z2pu?=
- =?utf-8?B?ai9wR3lucWhXR3o5M3NIVnpBcDc4UXlIejB5dUprcVNHUmY0d210cXpQaVBj?=
- =?utf-8?B?WHhGN1FvWTVqVHhhTWhPdFFubWxVK1dIN0ZuQkdrcXgwSGtzUTc1NStsSkov?=
- =?utf-8?B?ayt3YjUxbjFZemkzS0o4b3oySDhZc1JUa1JhTlh3OVUzSHQybndNNTYvWWdU?=
- =?utf-8?B?SXVDRmwrRzFQQ1ZSajFZbGtKS0tVWkRxamVMR24xVitCMTl3cWdkSnczVCtt?=
- =?utf-8?B?SzFob0R6UmtrYjZtTDJWV3V2ZmZwSURtRW5pbmdybklzTWtxOXM5Q0RtZGJj?=
- =?utf-8?B?SnFWb1I4Y2N2RFpHNC9TMmZsdVFjemtJYmxDcWpaVmF5NkJVaHdYSUlHaXVw?=
- =?utf-8?B?MlFzNmZURUs1cXZMbHc5SVNDdi9pN2hKWTRadUpTTHdUVHdOZ05kQ0VxbHNr?=
- =?utf-8?B?VjltT01xMi9pblQwZ0J0UVAvU3puY1pJNWNsYzZFN2xiRHpWdkRiVjltanlN?=
- =?utf-8?B?YmtYRDRaWjNlNkN4MUdobHRWQkxsOWl1TGQ2U1d6SUk4RGFYOFBNOUhBdTlU?=
- =?utf-8?B?RUxJcmZ3cmpXbWxqR21DUFF3c3FLMlVLVDFKUE5iU1J1Sm9pTHR1RUJucnVu?=
- =?utf-8?B?UGVSODJTYUFZUkgrZWFoN3I3UzJrTnQ4Z1ZUcEJCWkE5Z0wvTm5jMGd5ZFVU?=
- =?utf-8?B?bGRVT2ZPaER4Y0tnK2xiNXpvTmZQZExhSHUvUlRTRnNhUkVQdFBNRTJOK21F?=
- =?utf-8?B?K2FqbHBsMXF5WkY0dVlMOUZsUUNETENLTnM0Z1EyY2RibWYxRjZ5M3FTQkpa?=
- =?utf-8?B?ZWxBekdnd2Y0YVo1bXJLajlvWlBzUTlLakhKazhONmhkVFRYTVVRYVhnVFNo?=
- =?utf-8?Q?7ZfO6yoEniKn/rMtDCmRDW2hh5ZpKoSpGnWbLKNpnI=3D?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?hZIRjp5C5HPAEXytebovEnBkLTI5POo9vBYhHRcwLn5tzY2YtFIJm3BrGF?=
+ =?iso-8859-1?Q?3LqaY2z+FwXtxO4KXwn30i9JKqkt4zKQISgfd5IIAvLs+lEWEKP23VHeel?=
+ =?iso-8859-1?Q?NQdJWh95aahAZP789eXGSfCM0mJk2+lVhWDzr72UN+sOhdp6DX3tI3q/w9?=
+ =?iso-8859-1?Q?eop/gdGWLVy0p7NnJb7ukE6Zyh7nRJul2sFyyVzHoUEUUAtd3wYjLIZlXY?=
+ =?iso-8859-1?Q?TBPR9Krn+lwJYaTzMbcc7G2MyUJtK87XX9F0YWG01XSJFGRqxQ4lqC0aPG?=
+ =?iso-8859-1?Q?37i6u2as3qkkGGQhp2DwlTbBoTrW5s1b5zMfjQEQ8a2uhpGtIAPafV1W+q?=
+ =?iso-8859-1?Q?4AVD+as/U3MqqkSiJ89DnFMDSTtFM/y2WBuU1ctotagdtFU2tUvozXS8tv?=
+ =?iso-8859-1?Q?WD2XLYR/otN8NPM7Y8uR55AYOqU9P8ITGQzHwuy2TSLA6h+12BYU8dPNCZ?=
+ =?iso-8859-1?Q?jXRLgMltwjioKiqptRrtdFV36VoH1SIxBgnQr0mfW5OYJk+XNuZpL+JAAY?=
+ =?iso-8859-1?Q?jE9OHfdXe8+TBZw5SKr/oquRCgULWn1GcLslKZeTqGUTfoNIGJ+arE3Ek9?=
+ =?iso-8859-1?Q?OR6MzE7aTG+JndN/zrn35w9lLjafk0Ntqb/OU0NLc557ONEW2fTl6lUhWv?=
+ =?iso-8859-1?Q?shR3hwdJBKDtAPXHHmq4oZBwq5vGHRxFOXUAu+0Xy+3hWxhT9MrnMbIS8t?=
+ =?iso-8859-1?Q?DzG7AwYrJ6abj2mGJyh6C/Db4f4ojd0u+bBmosy9qKuJzwXsRrdFdgBo4s?=
+ =?iso-8859-1?Q?ckj3Ohz1fcQVSU/+jitGUcrFTPIHGA8637vvxYbWNG2aLOiEBj5VV5hygU?=
+ =?iso-8859-1?Q?Qn4jwg2X3MKUJorpwkFLM6r5Z3AEe+jCzraTOJ3+oqCxrkrx12t6IHT18M?=
+ =?iso-8859-1?Q?Eq6D9WTE5DoAicqpzP/AF8O/xPO5cnP2MWxs4wVJmxlZ4c5PmVsj/XLxKf?=
+ =?iso-8859-1?Q?JDOridkE1aZjQ01Ejyq7FzheYmOJkVIQpcGwnfffQsr3uqIeoDgh1cfHjk?=
+ =?iso-8859-1?Q?9B4gw1q30jxp5j0+jHRk9dOdUmePbabKmAh0O5kMGAPbyDLMx6pY6PAXRX?=
+ =?iso-8859-1?Q?xaZIxZwKcfxkguW8DNet+WtZ540c9jxVnpbRKKRlIWnXvIcoUfwxM0OmsR?=
+ =?iso-8859-1?Q?CPleqJy8aiHkzczB5Wxfmc9D+w33RH1kY+YjUMmCfaXYqfidtmEspjZdxj?=
+ =?iso-8859-1?Q?ka433sJw8qiRtxAaUZjozeaXT4sK/qjjTum+tI1ibVBC80Bx8IaXEGPQXY?=
+ =?iso-8859-1?Q?ET/LpNko9mPXHbDWqmR1rcBFvLQP78xqnlLxL0XHBnDpW7ewtjCsDbttHG?=
+ =?iso-8859-1?Q?/ZiqnohmXHmV4fVTxriKkp16H4EeXGjAu52uW0iqiQuUP9M5KTZcBG1f3U?=
+ =?iso-8859-1?Q?rqxIeiuiZ4MtvK/Esx7BKf47p+kXJwKDVV3oYQlic21vJ2C8aFCLdDotPV?=
+ =?iso-8859-1?Q?7cn0bGx2cxHYbUOGCPxfNneYXH+IT0R8YQkBV00NiyGKfKhc2o6EfbpNHe?=
+ =?iso-8859-1?Q?GAKgYJMCtn0cSvUufAoZVkn0Rgw/y4aRWbvYXXTiFBFKc4SMRjxRAqeKXj?=
+ =?iso-8859-1?Q?64EIUhcKkZkp7VUITPadTRPCSPK+uzaR8jLqf74ElxQeuVg2iDvKq7oUfS?=
+ =?iso-8859-1?Q?ilPlGuqtX+55qYJhWfv9H6m9/o49Uaf4fym5IhRn5SBd8QPYaJ43vrLLsO?=
+ =?iso-8859-1?Q?E0BBwg+/XN6SyGD+zL0=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_BL1PR12MB51442E00587BEC974E2D77C1F7709BL1PR12MB5144namp_"
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d77c7c65-49e1-4bc7-b423-08d9bb29e4d8
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1947.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 15:38:06.0574 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RZ6FXQ2digFwS2mwx0krRQWqCk4mf05acD1YH+8LJvw6uk6abjP40uhryAC1DMzEopwDUJxvKz7Vs1cTD5ufAw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1500
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5144.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04937ff2-6176-4850-9085-08d9bb2b1586
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Dec 2021 15:46:36.7982 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: APaTpQMaSCA4e082ytxLzLB0l9im6a76I7ntzKi4WZB3MuNvPNhfJZQyQj/wbhjzU+WV43DDjKhOXmqYa24njA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5173
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,121 +130,261 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Lijo Lazar <lijo.lazar@amd.com>,
- Huang Rui <ray.huang@amd.com>
+Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+--_000_BL1PR12MB51442E00587BEC974E2D77C1F7709BL1PR12MB5144namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 2021-12-09 4:00 a.m., Christian König wrote:
->
->
-> Am 09.12.21 um 09:49 schrieb Lang Yu:
->> It is useful to maintain error context when debugging
->> SW/FW issues. We introduce amdgpu_device_halt() for this
->> purpose. It will bring hardware to a kind of halt state,
->> so that no one can touch it any more.
+[Public]
+
+No objections from me.
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+________________________________
+From: Christian K=F6nig <ckoenig.leichtzumerken@gmail.com>
+Sent: Thursday, December 9, 2021 10:34 AM
+To: Quan, Evan <Evan.Quan@amd.com>; Deucher, Alexander <Alexander.Deucher@a=
+md.com>
+Cc: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/amdgpu: don't skip runtime pm get on A+A config
+
+Am 07.12.21 um 08:40 schrieb Quan, Evan:
+> [AMD Official Use Only]
+>> -----Original Message-----
+>> From: Christian K=F6nig <ckoenig.leichtzumerken@gmail.com>
+>> Sent: Tuesday, December 7, 2021 3:03 PM
+>> To: Quan, Evan <Evan.Quan@amd.com>; Deucher, Alexander
+>> <Alexander.Deucher@amd.com>
+>> Cc: amd-gfx@lists.freedesktop.org
+>> Subject: Re: [PATCH] drm/amdgpu: don't skip runtime pm get on A+A config
 >>
->> Compare to a simple hang, the system will keep stable
->> at least for SSH access. Then it should be trivial to
->> inspect the hardware state and see what's going on.
+>> You are looking at outdated code, that stuff is gone by now.
+>> amd-staging-drm-next probably needs a rebase.
+> Yep, I can see it in the vanilla kernel.
+> The patch is acked-by: Evan Quan <evan.quan@amd.com>
+
+Thanks.
+
+Alex any objections that I push this to drm-misc-next? It was found
+while working on changes already upstream in that function and would
+conflict if we push it through amd-staging-drm-next.
+
+Regards,
+Christian.
+
+>
+> BR
+> Evan
+>> And this code was what the check was initially good for. Just skipping t=
+he PM
+>> stuff as well on A+A was unintentionally.
 >>
->> Suggested-by: Christian Koenig <christian.koenig@amd.com>
->> Suggested-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
->> Signed-off-by: Lang Yu <lang.yu@amd.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  2 ++
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 39 ++++++++++++++++++++++
->>   2 files changed, 41 insertions(+)
+>> Regards,
+>> Christian.
 >>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
->> index c5cfe2926ca1..3f5f8f62aa5c 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
->> @@ -1317,6 +1317,8 @@ void amdgpu_device_flush_hdp(struct 
->> amdgpu_device *adev,
->>   void amdgpu_device_invalidate_hdp(struct amdgpu_device *adev,
->>           struct amdgpu_ring *ring);
->>   +void amdgpu_device_halt(struct amdgpu_device *adev);
->> +
->>   /* atpx handler */
->>   #if defined(CONFIG_VGA_SWITCHEROO)
->>   void amdgpu_register_atpx_handler(void);
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c 
->> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> index a1c14466f23d..62216627cc83 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> @@ -5634,3 +5634,42 @@ void amdgpu_device_invalidate_hdp(struct 
->> amdgpu_device *adev,
->>         amdgpu_asic_invalidate_hdp(adev, ring);
->>   }
->> +
->> +/**
->> + * amdgpu_device_halt() - bring hardware to some kind of halt state
->> + *
->> + * @adev: amdgpu_device pointer
->> + *
->> + * Bring hardware to some kind of halt state so that no one can 
->> touch it
->> + * any more. It will help to maintain error context when error 
->> occurred.
->> + * Compare to a simple hang, the system will keep stable at least 
->> for SSH
->> + * access. Then it should be trivial to inspect the hardware state and
->> + * see what's going on. Implemented as following:
->> + *
->> + * 1. drm_dev_unplug() makes device inaccessible to user 
->> space(IOCTLs, etc),
->> + *    clears all CPU mappings to device, disallows remappings 
->> through page faults
->> + * 2. amdgpu_irq_disable_all() disables all interrupts
->> + * 3. amdgpu_fence_driver_hw_fini() signals all HW fences
->> + * 4. amdgpu_device_unmap_mmio() clears all MMIO mappings
->> + * 5. pci_disable_device() and pci_wait_for_pending_transaction()
->> + *    flush any in flight DMA operations
->> + * 6. set adev->no_hw_access to true
->> + */
->> +void amdgpu_device_halt(struct amdgpu_device *adev)
->> +{
->> +    struct pci_dev *pdev = adev->pdev;
->> +    struct drm_device *ddev = &adev->ddev;
->> +
->> +    drm_dev_unplug(ddev);
->> +
->> +    amdgpu_irq_disable_all(adev);
->> +
->> +    amdgpu_fence_driver_hw_fini(adev);
->> +
->> +    amdgpu_device_unmap_mmio(adev);
+>> Am 07.12.21 um 02:58 schrieb Quan, Evan:
+>>> [AMD Official Use Only]
+>>>
+>>> It seems more jobs(below) other than bumping the runpm counter are
+>> performed.
+>>> Are they desired also?
+>>>
+>>>      r =3D __dma_resv_make_exclusive(bo->tbo.base.resv);
+>>>      if (r)
+>>>              goto out;
+>>>
+>>>      bo->prime_shared_count++;
+>>>
+>>> BR
+>>> Evan
+>>>> -----Original Message-----
+>>>> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of
+>>>> Christian K=F6nig
+>>>> Sent: Monday, December 6, 2021 4:46 PM
+>>>> To: Deucher, Alexander <Alexander.Deucher@amd.com>
+>>>> Cc: amd-gfx@lists.freedesktop.org
+>>>> Subject: [PATCH] drm/amdgpu: don't skip runtime pm get on A+A config
+>>>>
+>>>> The runtime PM get was incorrectly added after the check.
+>>>>
+>>>> Signed-off-by: Christian K=F6nig <christian.koenig@amd.com>
+>>>> ---
+>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 3 ---
+>>>>    1 file changed, 3 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+>>>> index ae6ab93c868b..4896c876ffec 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c
+>>>> @@ -61,9 +61,6 @@ static int amdgpu_dma_buf_attach(struct dma_buf
+>>>> *dmabuf,
+>>>>     if (pci_p2pdma_distance_many(adev->pdev, &attach->dev, 1, true)
+>> <
+>>>> 0)
+>>>>             attach->peer2peer =3D false;
+>>>>
+>>>> -  if (attach->dev->driver =3D=3D adev->dev->driver)
+>>>> -          return 0;
+>>>> -
+>>>>     r =3D pm_runtime_get_sync(adev_to_drm(adev)->dev);
+>>>>     if (r < 0)
+>>>>             goto out;
+>>>> --
+>>>> 2.25.1
 
 
-Note that this one will cause page fault on any subsequent MMIO access 
-(trough registers or by direct VRAM access)
+--_000_BL1PR12MB51442E00587BEC974E2D77C1F7709BL1PR12MB5144namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Arial;font-size:10pt;color:#008000;margin:15pt;" al=
+ign=3D"Left">
+[Public]<br>
+</p>
+<br>
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+No objections from me.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Acked-by: Alex Deucher &lt;alexander.deucher@amd.com&gt;<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Christian K=F6nig &lt=
+;ckoenig.leichtzumerken@gmail.com&gt;<br>
+<b>Sent:</b> Thursday, December 9, 2021 10:34 AM<br>
+<b>To:</b> Quan, Evan &lt;Evan.Quan@amd.com&gt;; Deucher, Alexander &lt;Ale=
+xander.Deucher@amd.com&gt;<br>
+<b>Cc:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;<br>
+<b>Subject:</b> Re: [PATCH] drm/amdgpu: don't skip runtime pm get on A+A co=
+nfig</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">Am 07.12.21 um 08:40 schrieb Quan, Evan:<br>
+&gt; [AMD Official Use Only]<br>
+&gt;&gt; -----Original Message-----<br>
+&gt;&gt; From: Christian K=F6nig &lt;ckoenig.leichtzumerken@gmail.com&gt;<b=
+r>
+&gt;&gt; Sent: Tuesday, December 7, 2021 3:03 PM<br>
+&gt;&gt; To: Quan, Evan &lt;Evan.Quan@amd.com&gt;; Deucher, Alexander<br>
+&gt;&gt; &lt;Alexander.Deucher@amd.com&gt;<br>
+&gt;&gt; Cc: amd-gfx@lists.freedesktop.org<br>
+&gt;&gt; Subject: Re: [PATCH] drm/amdgpu: don't skip runtime pm get on A+A =
+config<br>
+&gt;&gt;<br>
+&gt;&gt; You are looking at outdated code, that stuff is gone by now.<br>
+&gt;&gt; amd-staging-drm-next probably needs a rebase.<br>
+&gt; Yep, I can see it in the vanilla kernel.<br>
+&gt; The patch is acked-by: Evan Quan &lt;evan.quan@amd.com&gt;<br>
+<br>
+Thanks.<br>
+<br>
+Alex any objections that I push this to drm-misc-next? It was found <br>
+while working on changes already upstream in that function and would <br>
+conflict if we push it through amd-staging-drm-next.<br>
+<br>
+Regards,<br>
+Christian.<br>
+<br>
+&gt;<br>
+&gt; BR<br>
+&gt; Evan<br>
+&gt;&gt; And this code was what the check was initially good for. Just skip=
+ping the PM<br>
+&gt;&gt; stuff as well on A+A was unintentionally.<br>
+&gt;&gt;<br>
+&gt;&gt; Regards,<br>
+&gt;&gt; Christian.<br>
+&gt;&gt;<br>
+&gt;&gt; Am 07.12.21 um 02:58 schrieb Quan, Evan:<br>
+&gt;&gt;&gt; [AMD Official Use Only]<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; It seems more jobs(below) other than bumping the runpm counter=
+ are<br>
+&gt;&gt; performed.<br>
+&gt;&gt;&gt; Are they desired also?<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r =3D __dma_resv_make_exclusive(=
+bo-&gt;tbo.base.resv);<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r)<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; goto out;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bo-&gt;prime_shared_count++;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; BR<br>
+&gt;&gt;&gt; Evan<br>
+&gt;&gt;&gt;&gt; -----Original Message-----<br>
+&gt;&gt;&gt;&gt; From: amd-gfx &lt;amd-gfx-bounces@lists.freedesktop.org&gt=
+; On Behalf Of<br>
+&gt;&gt;&gt;&gt; Christian K=F6nig<br>
+&gt;&gt;&gt;&gt; Sent: Monday, December 6, 2021 4:46 PM<br>
+&gt;&gt;&gt;&gt; To: Deucher, Alexander &lt;Alexander.Deucher@amd.com&gt;<b=
+r>
+&gt;&gt;&gt;&gt; Cc: amd-gfx@lists.freedesktop.org<br>
+&gt;&gt;&gt;&gt; Subject: [PATCH] drm/amdgpu: don't skip runtime pm get on =
+A+A config<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; The runtime PM get was incorrectly added after the check.<=
+br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; Signed-off-by: Christian K=F6nig &lt;christian.koenig@amd.=
+com&gt;<br>
+&gt;&gt;&gt;&gt; ---<br>
+&gt;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp; drivers/gpu/drm/amd/amdgpu/amdgpu_dma_bu=
+f.c | 3 ---<br>
+&gt;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp; 1 file changed, 3 deletions(-)<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c<b=
+r>
+&gt;&gt;&gt;&gt; b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c<br>
+&gt;&gt;&gt;&gt; index ae6ab93c868b..4896c876ffec 100644<br>
+&gt;&gt;&gt;&gt; --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c<br>
+&gt;&gt;&gt;&gt; +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c<br>
+&gt;&gt;&gt;&gt; @@ -61,9 +61,6 @@ static int amdgpu_dma_buf_attach(struct =
+dma_buf<br>
+&gt;&gt;&gt;&gt; *dmabuf,<br>
+&gt;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; if (pci_p2pdma_distance_many(adev-=
+&gt;pdev, &amp;attach-&gt;dev, 1, true)<br>
+&gt;&gt; &lt;<br>
+&gt;&gt;&gt;&gt; 0)<br>
+&gt;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; attach-&gt;peer2peer =3D false;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; -&nbsp; if (attach-&gt;dev-&gt;driver =3D=3D adev-&gt;dev-=
+&gt;driver)<br>
+&gt;&gt;&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; re=
+turn 0;<br>
+&gt;&gt;&gt;&gt; -<br>
+&gt;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; r =3D pm_runtime_get_sync(adev_to_=
+drm(adev)-&gt;dev);<br>
+&gt;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp; if (r &lt; 0)<br>
+&gt;&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; goto out;<br>
+&gt;&gt;&gt;&gt; --<br>
+&gt;&gt;&gt;&gt; 2.25.1<br>
+<br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
 
->>
->> +
->> +    pci_disable_device(pdev);
->> +    pci_wait_for_pending_transaction(pdev);
->> +
->> +    adev->no_hw_access = true;
->
-> I think we need to reorder this, e.g. set adev->no_hw_access much 
-> earlier for example. Andrey what do you think?
-
-
-Earlier can be ok but at least after the last HW configuration we 
-actaully want to do like disabling IRQs.
-
-Andrey
-
->
-> Apart from that sounds like the right idea to me.
->
-> Regards,
-> Christian.
->
->> +}
->
+--_000_BL1PR12MB51442E00587BEC974E2D77C1F7709BL1PR12MB5144namp_--
