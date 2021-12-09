@@ -1,93 +1,55 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3442246F051
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:04:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7BB846F1F4
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:32:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76EDC10E190;
-	Thu,  9 Dec 2021 17:02:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F1DB10E141;
+	Thu,  9 Dec 2021 17:32:05 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2053.outbound.protection.outlook.com [40.107.92.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2283B10E364
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 17:02:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Vp+xIxgofkbBHfVzKfi8DzfoDSlR0VupoCuYezKElsTigyqve8sXf7mDx8x7d55ZyGwKb/t+wqMcy8P2DV45S3mqAys8PukOoZCcp6BFXTGvARHzatu3YH/+gPSwVoqGFlbge3IDpx86FWd4cW5KJUPAC7wUCZ2qubIAImUgkYCzkN3Lvv3UJI/aSfMn7+70qVx4r1xzjq7JKCDewCjj+qE7/BiQCOFzhrQQ3aClq3/2nmiPPETMqXzY0SVBezxeytiKRaRc4RDFdfIiHCo1Hyg/pIAlAcqo8PiXZisrT2cM3T7kzTf7eOQJ9tLFIKEmq+fVhWa6J84ijIoOx6zUIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2kUX1Ptb7k8stGeefeakEtxqTcOfz6DKyAt3gmnlfno=;
- b=W4ZUsJJszMtxsVga74S0oFH49IMAWkwL/ztg7kNSXL+5srCaybNh/QoKLRHotMP7ct3xrFv9cd2NCGmgvrgLt0DlFJHVQ12rVrwPyA+fBxTuBrgGmJFy1Su0vTDVC4L7XDnsZ2yKqhbsVZe1ifnyZ5VyDKuaGSiBPf7FryImgf0kkFgwTy5IXQmzD/I2zg0x3nlW75IAG+YKFNXPLkZotN7kKQ6IlSJ9DvEltCX65Q89oICc0ui75TGxYDCuzK/5kS/Iqje4aAOPKoZGna9ObqjtlwG5+hhoAg0qFzZ38zlcBbUGuT1IxNcA2pHqQJiwTvUG9zm+2yPJbNDpeGa8AQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2kUX1Ptb7k8stGeefeakEtxqTcOfz6DKyAt3gmnlfno=;
- b=WTs0JX6TZE38Spsk78KOnQ1EEKbYp4UKpW8MdTKw/BxsFLAcjvprg2TNVQ6qXzUqg3RNq3DJ4TFFcZgoyEjdfJ3r9o6aehWp0wJ1V7DXwNBvJrRJ+6EFy+sDhw7meTqUKNEx3mK5WBpLYdd8i9YCL+Jbk5v8A4UwEstfbnwKrUQ=
-Received: from BN0PR04CA0022.namprd04.prod.outlook.com (2603:10b6:408:ee::27)
- by DM6PR12MB4633.namprd12.prod.outlook.com (2603:10b6:5:16f::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.20; Thu, 9 Dec
- 2021 17:02:27 +0000
-Received: from BN8NAM11FT019.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:ee:cafe::f5) by BN0PR04CA0022.outlook.office365.com
- (2603:10b6:408:ee::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.11 via Frontend
- Transport; Thu, 9 Dec 2021 17:02:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN8NAM11FT019.mail.protection.outlook.com (10.13.176.158) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4755.13 via Frontend Transport; Thu, 9 Dec 2021 17:02:27 +0000
-Received: from sriov-scm.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Thu, 9 Dec
- 2021 11:02:26 -0600
-From: Victor Skvortsov <victor.skvortsov@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: SRIOV flr_work should use down_write
-Date: Thu, 9 Dec 2021 17:02:11 +0000
-Message-ID: <20211209170211.506360-1-victor.skvortsov@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com
+ [IPv6:2607:f8b0:4864:20::231])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05AA310E141;
+ Thu,  9 Dec 2021 17:32:03 +0000 (UTC)
+Received: by mail-oi1-x231.google.com with SMTP id bj13so9684511oib.4;
+ Thu, 09 Dec 2021 09:32:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=hJMC/6XGazdnpccU1SQFAtAT2eakAt5TuZ88RaVgxf4=;
+ b=eaLDWdfmaDJowcYporVuPQkkPacWkuZRRERLd1GACogc2yYGlTn5IDnpIJc5mytXH4
+ G/opa3HpphlOfK8X5P/kXyD543tW27MG3AslNkWsNnW3ggm3ab3fsWwkBi/Ylin2u6ia
+ RsgiLjLCdxaylUkoUpbixv1XciOxOepBy238qS6+C6TZStvE9tQ5sH9E6vM4WniyvcJV
+ x1vg/0T5dqnm2QpeQMZUTGhCHXbfjHtnVcaSH7Wld71CkZdiIRLom0/Y+uPPqNOP4ubQ
+ aD/Tg18M+4pkVQHTB1rjodGfVBvQpk5BsdoixzTgp04VGI+Hm8GnSuOii8/OSjKnkiup
+ KWcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=hJMC/6XGazdnpccU1SQFAtAT2eakAt5TuZ88RaVgxf4=;
+ b=U1MEBLQ5IRH43IgvLVnesvbiIG/ZuQRDbl7GL/9ncBFEX43CbAuYa7vhLZc1Wgi/Yc
+ DAmaN9lLzAfr3Z+zv6t0zV01de8X1zVDRsIV1n/PyHfJ6qJdbUj+et+8hgsMhOD1AqMP
+ Tw5Mf1Ukm4Be/3n0uNrJzyNTGNZa9B0Hyxw7MMPICtbPCVtaRLVBypM/XKvbtQY7Vtcn
+ /XYWWsUPTkUueGcm+uB7n3maOZuYFP4dPxgpyjQXK7XUPnjZODYYzSxt0cgkTupSjG3u
+ d0YGjE3+wtqBIc1axlVMhtq/97ov34LoDqyCHGAQBAZSpj/9y0TQa/tomrobw/pAKtfi
+ K+kQ==
+X-Gm-Message-State: AOAM532MhRlYL+7qAMn5Z41gfQ17TJ8Fcg3rqgkv50VRk4xGF6slUkxC
+ JvQ4i3O9+qxNdSLdPpovBojO2niw7DIgQzxqeC8=
+X-Google-Smtp-Source: ABdhPJy6MHVWih4d5IPimIIFxsxWSoGf18XPipyVKTtGgk4agVOpT2bIzZbdI42ON7pCuoF5rqlXzl4H8MRN5iRXWCk=
+X-Received: by 2002:a05:6808:300b:: with SMTP id
+ ay11mr7080461oib.120.1639071121305; 
+ Thu, 09 Dec 2021 09:32:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB03.amd.com
- (10.181.40.144)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 44665ae4-2e5a-41b8-566e-08d9bb35ae08
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4633:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB463396364C3FC98BC4260FBC8B709@DM6PR12MB4633.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TkcZU9ykmSgSM2yRzuf7lALi8XtlepVtTbAI+NNAp3uWXjulnNz5dXk2m3xU+pMqbcYgIlZmeeFG1LzUt/+MO27EzAx+AwtE84Ax67ndbD6jOoZ98gF2X42UKEYaBpv7+ujtV3sVbhBMX+TairwbieeqAawOwH2noQxPkK7eeHKtpxBr1g3NOkkRmiEHHOktyK6909pGg6kFXw6Iub8TdF/po844ycbQ5epk7rZhYT1C1gP3DcRc5Xn3kQLLhUh5iKMOFZvA+T943frC4r7nEkuZaGu6/R/MUqixWbDSE+09th5bloHyldDx4Cd5oK15jmn1PMtXW01Ox2SPdz3m8WHD9MEFsSMx3wWLft6h8cisrkTrrMLG5QsJaW2kFg6IH1udWVWPlwjvINkqo9QFWpYbqSaYraYoD7TuF3Pwf0kGWRDe1qk5Ys7PoQaNR6M3WunXsZWuIQoWjDlXo0gs8mJmKFoLrLicQp0vujgXzKFvJNVP0PGiz0NuTXz+dYYzGB8QyvcY4RxszSSNux2HZykj4qEgCCTAzS+PEyXAQTlPmj/UDNXQTbHDvmXqxjbT3D1u197G/3lpv+Z/4l7zA3KLzEe4EOfrXoXzxYp70MW4eqvxDL+yq0P/LOhzOH3IMYLrcAoZVN3Y3QnFkqm4qmdoXrH2VRSRRLL7JLeOOgbOmIQwsRyQ9kZOerXUSOo83iKxpP4EYWhfvTTZHBVbPqp4DUEzCgXj+ytCnwb0/cYdY5zBjBU3p6/ApYCVssiKRm0rQ3WUcbkCLoyZAimpuukegEIhr3dSE3I12tLq5Hc=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(40470700001)(6666004)(26005)(4326008)(6916009)(16526019)(7696005)(1076003)(82310400004)(2906002)(426003)(316002)(508600001)(2616005)(70206006)(336012)(70586007)(40460700001)(36756003)(8936002)(186003)(44832011)(356005)(81166007)(36860700001)(5660300002)(83380400001)(47076005)(8676002)(86362001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 17:02:27.6297 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 44665ae4-2e5a-41b8-566e-08d9bb35ae08
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT019.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4633
+References: <62aab616-53cb-ff9f-c5f3-169c547bd1ee@igalia.com>
+In-Reply-To: <62aab616-53cb-ff9f-c5f3-169c547bd1ee@igalia.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 9 Dec 2021 12:31:50 -0500
+Message-ID: <CADnq5_O8x3_8f7GZ=tme55-QW+nqMJ2YoqvROjDPg2YZP2catQ@mail.gmail.com>
+Subject: Re: Reuse framebuffer after a kexec (amdgpu / efifb)
+To: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,59 +61,72 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Victor Skvortsov <victor.skvortsov@amd.com>
+Cc: "open list:EFIFB FRAMEBUFFER DRIVER" <linux-fbdev@vger.kernel.org>,
+ xinhui pan <Xinhui.Pan@amd.com>, kasong@redhat.com,
+ Baoquan He <bhe@redhat.com>,
+ =?UTF-8?Q?Samuel_Iglesias_Gons=C3=A1lvez?= <siglesias@igalia.com>,
+ kernel@gpiccoli.net, kexec@lists.infradead.org,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, pjones@redhat.com,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>, Dave Young <dyoung@redhat.com>,
+ Christian Koenig <christian.koenig@amd.com>, Vivek Goyal <vgoyal@redhat.com>,
+ Gerd Hoffmann <kraxel@redhat.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Host initiated VF FLR may fail if someone else
-is already holding a read_lock. Change from
-down_write_trylock to down_write to guarantee
-the reset goes through.
+On Thu, Dec 9, 2021 at 12:04 PM Guilherme G. Piccoli
+<gpiccoli@igalia.com> wrote:
+>
+> Hi all, I have a question about the possibility of reusing a framebuffer
+> after a regular (or panic) kexec - my case is with amdgpu (APU, aka, not
+> a separate GPU hardware), but I guess the question is kinda generic
+> hence I've looped most of the lists / people I think does make sense
+> (apologies for duplicates).
+>
+>
+> The context is: we have a hardware that has an amdgpu-controlled device
+> (Vangogh model) and as soon as the machine boots, efifb is providing
+> graphics - I understand the UEFI/GRUB outputs rely in EFI framebuffer as
+> well. As soon amdgpu module is available, kernel loads it and it takes
+> over the GPU, providing graphics. The kexec_file_load syscall allows to
+> pass a valid screen_info structure, so by kexec'ing a new kernel, we
+> have again efifb taking over on boot time, but this time I see nothing
+> in the screen. I've manually blacklisted amdgpu in this new kexec'ed
+> kernel, I'd like to rely in the simple framebuffer - the goal is to have
+> a tiny kernel kexec'ed. I'm using kernel version 5.16.0-rc4.
+>
+> I've done some other experiments, for exemple: I've forced screen_info
+> model to match VLFB, so vesafb took over after the kexec, with the same
+> result. Also noticed that BusMaster bit was off after kexec, in the AMD
+> APU PCIe device, so I've set it on efifb before probe, and finally
+> tested the same things in qemu, with qxl, all with the same result
+> (blank screen).
+> The most interesting result I got (both with amdgpu and qemu/qxl) is
+> that if I blacklist these drivers and let the machine continue using
+> efifb since the beginning, after kexec the efifb is still able to
+> produce graphics.
+>
+> Which then led me to think that likely there's something fundamentally
+> "blocking" the reuse of the simple framebuffer after kexec, like maybe
+> DRM stack is destroying the old framebuffer somehow? What kind of
+> preparation is required at firmware level to make the simple EFI VGA
+> framebuffer work, and could we perform this in a kexec (or "save it"
+> before the amdgpu/qxl drivers take over and reuse later)?
+>
 
-Signed-off-by: Victor Skvortsov <victor.skvortsov@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c | 5 +++--
- drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c | 5 +++--
- 2 files changed, 6 insertions(+), 4 deletions(-)
+Once the driver takes over, none of the pre-driver state is retained.
+You'll need to load the driver in the new kernel to initialize the
+displays.  Note the efifb doesn't actually have the ability to program
+any hardware, it just takes over the memory region that was used for
+the pre-OS framebuffer and whatever display timing was set up by the
+GOP driver prior to the OS loading.  Once that OS driver has loaded
+the area is gone and the display configuration may have changed.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
-index cd2719bc0139..e4365c97adaa 100644
---- a/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_ai.c
-@@ -252,11 +252,12 @@ static void xgpu_ai_mailbox_flr_work(struct work_struct *work)
- 	 * otherwise the mailbox msg will be ruined/reseted by
- 	 * the VF FLR.
- 	 */
--	if (!down_write_trylock(&adev->reset_sem))
-+	if (atomic_cmpxchg(&adev->in_gpu_reset, 0, 1) != 0)
- 		return;
- 
-+	down_write(&adev->reset_sem);
-+
- 	amdgpu_virt_fini_vf2pf_work_item(adev);
--	atomic_set(&adev->in_gpu_reset, 1);
- 
- 	xgpu_ai_mailbox_trans_msg(adev, IDH_READY_TO_RESET, 0, 0, 0);
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
-index 2bc93808469a..1cde70c72e54 100644
---- a/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mxgpu_nv.c
-@@ -281,11 +281,12 @@ static void xgpu_nv_mailbox_flr_work(struct work_struct *work)
- 	 * otherwise the mailbox msg will be ruined/reseted by
- 	 * the VF FLR.
- 	 */
--	if (!down_write_trylock(&adev->reset_sem))
-+	if (atomic_cmpxchg(&adev->in_gpu_reset, 0, 1) != 0)
- 		return;
- 
-+	down_write(&adev->reset_sem);
-+
- 	amdgpu_virt_fini_vf2pf_work_item(adev);
--	atomic_set(&adev->in_gpu_reset, 1);
- 
- 	xgpu_nv_mailbox_trans_msg(adev, IDH_READY_TO_RESET, 0, 0, 0);
- 
--- 
-2.25.1
+Alex
 
+
+> Any advice is greatly appreciated!
+> Thanks in advance,
+>
+>
+> Guilherme
