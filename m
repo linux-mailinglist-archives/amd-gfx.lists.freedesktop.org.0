@@ -1,132 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26D2046F318
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 19:28:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A857046F32C
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 19:34:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CED810E216;
-	Thu,  9 Dec 2021 18:28:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0180410E13A;
+	Thu,  9 Dec 2021 18:34:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2089.outbound.protection.outlook.com [40.107.220.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BECB10E21D;
- Thu,  9 Dec 2021 18:28:13 +0000 (UTC)
+ (mail-co1nam11on2062.outbound.protection.outlook.com [40.107.220.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C536910E13A
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 18:34:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B3pfgvGARiUIt2VFzR+TQQlfaA8ofEKmqcNuljTmnlZ1aN8HNEdBuGCJkQAPI2VkzTDaPJHVbKizdKh6HrucRCiL+GdBaJ0NWR/2g6fe0Gc7nqFZILpc/86D7j8uSFpHh7LXbnQ3ykp82UESD3fAfB56h8Lk/V5BE8G9wEdM8cYj9aWhG9YwTAEh5jSdtluuTMCXsNAGyiQzQLLbNQD6v98WXL9OmRLgJlSu7H9wNT9Qg6oZ7YfOTKbgJ78KHtXeidwq2cxFj13qzBcamS00S8nRtY+v+fSCmmG2LPvlad1KJ46vqflbOzK6wU7ZhH9GP5vdRqAR5XQBMbydTpkU6Q==
+ b=OonhHV/LeV/d+OHCoAR05fiBlwXz0DDmfqwOPuQmjIvx4xQCiBclTwC0KcMVwj0htU7bbTv5JrRdzHYHn2/s3ondRVX8wetCpaUOM09TmARNpC/o2h4ywgy+F2ncnmLP2Lu/EDKYfjAboUFcfhkpqxed10L8i78jiXNqEPSpFAR9n5n0VcKS64oyJsiJn+Ih7y6hdtFSSt+hu0uockIYTFpmgkU6VV61RWmrNz381s9MEC2WehOKxBig8o2WPhHFlocWoPXV+ugMQPIMEvVB931iaRiUzJ/Xn7wV+oF97mtB64cHfmALLglQjT803SvVT5RGzM+K5FjU2/Mzms9ClA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Rt6r10j56ZLDHfr5omSNIq/OBlqW+DlenXD7jg4Apl4=;
- b=nCSBm5MOlA2xFTJYC6B0oKwqQnBMumtHElcUVHgE3XggS5C+WtTvRsqU8leEpke2eBouhEcM4P+qttmBn+t+jO3kyI6a+xGVSZvRaQ2lVcWBwfUFVrz+4MTRsAc7YT/A59lFlxfuyjwZWV62dhCz5h4NpPvoID0//cBDhGCmSzMzT1uIgQV+W6YjXH6NVZcT28Ysab0gOeLa+rMN+QWWcC2/TLgzBdraqlSKniteTrw37bGMACZHXRX9i8YSDnn9gXPO/nrGB5wgKO9milKn0J+QJP21WBI2gS7ZM/Umir7xieA8q86rR7tftmG2QcpjnDZcDWdz8pU4pwrOxvnKbw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
+ bh=D0L64MXT7a5La1h4wFxgl0/AdWnx9BxInAMs8ectBQM=;
+ b=DX0zYvdy+nT6MMIR17961sCMAEK2i0hWMouQLeKFdlkEKrMoWFpYzaeNqEEgPDcqBR/dEo3Do6xazT8K26V58a7KVDGzA5CpGexpsDYci+rSYCpoqNHBDeR/p912YB2IuIK2kbVvHNKn3BgWwAIulzX/KLh4yLu4GBZRQqbB2vZQtbHEzaViRX1CrSIRTynSrDCkhZsLbDdN730bHeJRH8CuURkv38QsCL85gaPMxkAJxO+zphvJF7QLe7i4exRrCNejf9ZecTEhNnfkSag4IrL/bmscvS04sNZVbtgYcqQNseTIw4m7eVaclEbd8+D53fKvkjTB+eCvJLVfWnwI7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Rt6r10j56ZLDHfr5omSNIq/OBlqW+DlenXD7jg4Apl4=;
- b=uWVC5kkVeIIYelT+VmnV1D4KvLCtWFfPnkVswbgQKyMoYwLGZmrg4RJV0aQPyeVz2QAqUlsFc/Jr/kphW0Fdgb6CyKcUopDbc0P+cM85/0qW1PdjI6GFJw97V3HRk6uTfTtov8WVkdC4l3g68DMCipaK6fmCxzLX2HCYBQs73sQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
- by BN9PR12MB5337.namprd12.prod.outlook.com (2603:10b6:408:102::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.25; Thu, 9 Dec
- 2021 18:28:12 +0000
-Received: from BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::9dfe:ccc6:102c:5300]) by BN9PR12MB5115.namprd12.prod.outlook.com
- ([fe80::9dfe:ccc6:102c:5300%7]) with mapi id 15.20.4755.022; Thu, 9 Dec 2021
- 18:28:11 +0000
-Subject: Re: [PATCH] drm/ttm: Don't inherit GEM object VMAs in child process
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- "Bhardwaj, Rajneesh" <rajneesh.bhardwaj@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20211208205344.3034-1-rajneesh.bhardwaj@amd.com>
- <94b992c2-04c2-7305-0a51-d130fc645f3f@gmail.com>
- <58d61e47-3796-3147-db6c-ea7912d16902@amd.com>
- <de272de9-3f4a-db40-699a-41394cb699dc@amd.com>
- <cb5668d4-a13d-3b0b-442a-bfe1b3a7239a@amd.com>
- <000edeaf-8a89-ea4d-5b9a-2bd7758f675c@amd.com>
-From: Felix Kuehling <felix.kuehling@amd.com>
-Message-ID: <f00f2f16-f0b3-cb54-f88e-d53353bfdb79@amd.com>
-Date: Thu, 9 Dec 2021 13:28:09 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-In-Reply-To: <000edeaf-8a89-ea4d-5b9a-2bd7758f675c@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-ClientProxiedBy: YT1PR01CA0088.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:2d::27) To BN9PR12MB5115.namprd12.prod.outlook.com
- (2603:10b6:408:118::14)
-MIME-Version: 1.0
-Received: from [192.168.2.100] (142.127.191.123) by
- YT1PR01CA0088.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2d::27) with Microsoft
+ bh=D0L64MXT7a5La1h4wFxgl0/AdWnx9BxInAMs8ectBQM=;
+ b=VebbQIfOuu+VPDNiTwMvb5IeSZdCrR8BYdxUHptHmwlNToSp6Y2R3/zmGjKlT7a7M4orW+pCuw4dMLwAOaIiKP+ENAxakdmhdjC9hUbcdDLrVSujEgpbTQGAMtv7JlUho+Vt6KlKbY+FeSscDUVoWe934SiHYRP/G33xeKO5My8=
+Received: from DM5PR18CA0062.namprd18.prod.outlook.com (2603:10b6:3:22::24) by
+ BYAPR12MB3560.namprd12.prod.outlook.com (2603:10b6:a03:ae::10) with
+ Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4755.20 via Frontend Transport; Thu, 9 Dec 2021 18:28:11 +0000
+ 15.20.4755.21; Thu, 9 Dec 2021 18:34:00 +0000
+Received: from DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:22:cafe::59) by DM5PR18CA0062.outlook.office365.com
+ (2603:10b6:3:22::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.13 via Frontend
+ Transport; Thu, 9 Dec 2021 18:33:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DM6NAM11FT067.mail.protection.outlook.com (10.13.172.76) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4755.13 via Frontend Transport; Thu, 9 Dec 2021 18:33:59 +0000
+Received: from mkgs-dev.amd.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Thu, 9 Dec
+ 2021 12:33:58 -0600
+From: Graham Sider <Graham.Sider@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdkfd: add Navi2x to GWS init conditions
+Date: Thu, 9 Dec 2021 13:32:30 -0500
+Message-ID: <20211209183230.3564248-1-Graham.Sider@amd.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
+ (10.181.40.144)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6c21fe7a-3ea1-4dc4-89a6-08d9bb41a7f9
-X-MS-TrafficTypeDiagnostic: BN9PR12MB5337:EE_
-X-Microsoft-Antispam-PRVS: <BN9PR12MB533724C48108356B99C500FA92709@BN9PR12MB5337.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Office365-Filtering-Correlation-Id: 1de59f28-d103-4315-afab-08d9bb427776
+X-MS-TrafficTypeDiagnostic: BYAPR12MB3560:EE_
+X-Microsoft-Antispam-PRVS: <BYAPR12MB35607F6F398F30FF41A6CCE88A709@BYAPR12MB3560.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:330;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Ag2DmcHIaDkK5NREZju+NysSusQDBGzse3y8HkVUW7+HGbzmmfqxviQdI/isbBJkdR1eKY7pMq45dQLl5rXxRCq0dlgkH/2f+j3TkQed74E3VeSrtEx8MprRSj8Yuj8cfkLS9BoRM8np2uSh2Yx/iYbC0aiHJsAPkP6UIHawXv/1Y7uii8646sP+OLOjzeBV9gSplTVrVkAZVl74a5OnVHGtqV0aR8C65ox0A37aLoVJ9mlUwxvEFDNmyu3Zhv3qC5A98ftrmaC3+d4ddu9i3YH2CUmGrEGDBlKrHozSYdDBGWC3Yae2sISJfcpwKVQKDQFekc1IwqWOjhMcjYdBxHaDN0QYjMICe/4ZsUAVG6dj8nOTIuQnSDlVEtZX69F+KvgbAkMd1ZKQuGKDpkoK2Ys2eGYxCEOw6OmN1Aq3kWAn4TY+cfFG8lTibWctsIZE2STYkOYsWDeeJYXWKmf7znT0vLpqjtL9EP7tPb4OK/pZ7u2CrSNG25h7BMZHr02FheLanKu2BuKgEKfxGquQYzHlPszKgBI7T5Wonu2eaiec7mpwKBb0Eh+iH+2LTrmYwfqw4dymsu//Oihx3e9cl39F1NzIZWUJEqdrOvE1traTWaT02kjciE5n3dw/vaSc2Lg/8WAxPSjeCEGbOmrCNImQhK7ZbKMzu7LK9sUkok3R5TaYlj8mBj0xOWPcICTchcGEDZf5TvDsvqrUaL4fGbQvIQuLVYE2kkWxQhmJyivyY7Hp4RikndvQ01zrtUk+
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(83380400001)(186003)(16576012)(26005)(66574015)(31696002)(8676002)(44832011)(5660300002)(956004)(66946007)(66556008)(66476007)(53546011)(2616005)(36756003)(4326008)(110136005)(86362001)(508600001)(38100700002)(2906002)(6486002)(31686004)(8936002)(316002)(43740500002)(45980500001);
+X-Microsoft-Antispam-Message-Info: HVch+LQEvoSjPhoPb7HjieUQVfvk52avl8wWa8MTNh+zooPCeg/cu7CfJ4e+QJS/2WtTdS8HzqBevPKAyOh/IxU52QLATAaG4nulj9OjZja2CC2MGImOP2jBLwiiVIB6yXLCiCnzSFqxn+Q9xkCYA2AwfLcU/Xvnl3wrb1EckXmJgFIu12cYvam6pzypVi+nB+OEbGkonS7ARUuW7Z2O34HYHVr5qh2pPPhm7F8FtdzCXC9jwZpEpEbVKSaHzkbQBkuGbXBresR6fSXbu5XXAAPpZmhaKcaQHcnfrHUtq60XeHtfM5KY/CYvcCcxsrQcPA7DNLofD8rR/9cfpqdbVLx2DAhYjuajRnkDDhc6dsxc7a5bikQfWZUtas/LfArnL0cvCy5EgLp5j+M7bS8CU9PnilurwYHkJompwsHKFJ63jBKd96BWLzMZSSJWTXNHdizofoQXOKE/Os3ZOfXt5vagZsNzGz/gaSneMhhJMxHocfaXuTMwG4gL7uHcfr0aceUaiWY0Jaq+Ri7ac3OO+ZZX6PsSNoARSz7JqrjEBUhSnDjCNEp5pv6+wofErAftngEPrd98bKwZTqbFZTFSpYFpVtSfQH6j793UDiGNHqYLo5jNfhIhdigR7u/oNx8BERpcxhn4HBAy1MQ3Sw88HMtPeOH7k+28baGD7WLyAwEhXUWrIz4n59aJG/1iC9SDUq/INxxid1tsCXuKWBckAmtipMjNCk5wz7e5HladOpUCBHX8rYX23BuWMrFb3MvjzCTToa/K6vH9GFlKKzqUumLFtktS+iD8imSaLTtQRzk=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(46966006)(36840700001)(40470700001)(83380400001)(2906002)(7696005)(336012)(47076005)(1076003)(316002)(8676002)(8936002)(356005)(54906003)(36756003)(5660300002)(186003)(86362001)(16526019)(81166007)(26005)(82310400004)(36860700001)(2616005)(40460700001)(4744005)(6666004)(6916009)(508600001)(4326008)(426003)(70586007)(70206006)(36900700001);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZFdKcUhPeXgvdzFmZkVRSlVaQllvMEZoWTNLOXBzWjlpL2ZTNDFMMHhXaFVr?=
- =?utf-8?B?OG1NcFIzblphNDIrMkNGeFhCSkxsY0pXR1cwMlFkTWt5TC9lblROcHZtODhX?=
- =?utf-8?B?NCtJMFJDOVJDZDZUSEJCdXhiRkJQWkFJRDF0bVp3alhZS3phdTFGZGhjZEs5?=
- =?utf-8?B?SUhUZnNxZFJmUXB0NlZNRmhHdEppVkJRSTJodjM5TUpsbm9KeE1JaE1jZVg2?=
- =?utf-8?B?WG9DZnNXdmo4UXJjaHNxK3NtSkNhSDl1UVRZdU5VVTJ0WDFXdk0zWWd2dmdI?=
- =?utf-8?B?T0Q2UDM4TjNiWkFlY3lBOUpURVN4U3lZZkI3M0hqUVp5cEdFaGpBN2pkdFpZ?=
- =?utf-8?B?aXd5R1hUWDlkNlo0SzhUNWFWYTdGWVJHUUpEVmtoR3I5U2V1NFVQL0J6bkto?=
- =?utf-8?B?STRhWExnRkUraWlTdWxqZmk0UTNmU0EzWlRLeDFsWFkwYVdpVktoSlpvd2kz?=
- =?utf-8?B?Q2tvTURSK09nL0g5Qm5pVnlVVWN1NlFrWXlyTWNXV3pOZ29hYVpzN0pNclhW?=
- =?utf-8?B?SGxhK0xWUXU5VUNabUhjTkNFYW9hOWwyQjhWOXBPUXZZdjE5M005SndnREVG?=
- =?utf-8?B?Yk5MeEt6d3c4cGxOTFBBeTE4WnBheUNxNjNURzk3MlV6K1dIMjR2SmVkUmtu?=
- =?utf-8?B?bFp2OU9Kc0RWZXc0ek5RUmJKZEFLbWpkMEZyK2xhcUlzWlIxK0IzTmdUQ0Fp?=
- =?utf-8?B?R0E5d2Y3Y2ZTQVF0cnpLNGErTjEzT3VLSlFlVkNzaWIzUWxVcnVvMW8yRURW?=
- =?utf-8?B?Rkpjb1lNVDZuR0c1L0tCSGhFYzdTeTJLYXY4TWU1WXZvZlNaMjY4K2thNGhU?=
- =?utf-8?B?YzFmMG84Ti80TlNVMFRoVUo3VU9OR0N0MzZUVytpWVd6dlVISVU5dFRzcGpX?=
- =?utf-8?B?Z3NjczQ2U2YvaUJjOUpLTW5qSnU0cTZldTM2SEFrYjJPS25lRm5vY0syTEll?=
- =?utf-8?B?TXRobVlqZjFhNFM0L014UXo3Q3djZnNhQ0RiS204cFh4UTY2am1XZjYzREhh?=
- =?utf-8?B?M0NEZnhHZUVGSWVyaGkvVHRYME9PWlpuNGxHME8rWlpEMWIwbEszcTlrYUpm?=
- =?utf-8?B?bW9jTExlL2pOalhadGFORFJvRGJOeFhIaHFYSGxzSFBhT2pOU2phK05IM1Ur?=
- =?utf-8?B?Vm9TQjFkSnQ5Lzg0SjJSYmcxdXdRNzNUMDlqbFZ3SDZDWHlLcVBZNlF1dGU1?=
- =?utf-8?B?bEFRSU5MQVUxT0M3QzRrYWZKbDBNWk9CMUtDVE54aE16NGxtQnRnemZ3S0Zj?=
- =?utf-8?B?N0p1dU9nd2VuZXQwNlBMd0xDNFJyYUpuUFFTclFDb1AzcG40RU9UOE9meUtn?=
- =?utf-8?B?b213UkdBL2puVk1sYUtNcGdzM29hMUlQWTEvK2NGTVN4Y0FPUVFBeTRkT3NK?=
- =?utf-8?B?K2ZrMUVGMkwvQklocXpQM3RhVmlkNG9qbE14dTl2a1lvc2RwMFcyTWx0SnA3?=
- =?utf-8?B?ODJNTFBCdWVuczJhQjl2YWsxVU4vZS9MazV2L0s3cU5CWnVaWGJ2OVZLdXYy?=
- =?utf-8?B?QjR2ZXBDMVY5OUxCSlMxaHNILzlPN2tDZUxhUllDZzAwd2RsbWNoNUZ1bjRy?=
- =?utf-8?B?QTlXTStxYjZKWWZ6d2k1RzhpdlNUVzBDVllBWVFVSjdjU3FxWlpWbUFCUlJD?=
- =?utf-8?B?elZmamV3Kzg1QmNDMVpwSGVjSXF5UGVOWWFNZzZSNk9Qc1UwS3lTWmRNV0JE?=
- =?utf-8?B?ZHJFWGkwd0RsK3JmdUNoRGUwZUFMZzZCc3RPenNOQy9ldUdUWnpwTG9scGlp?=
- =?utf-8?B?TEpXQnpNdnA3SDREVFpYekRYR0duZkU0TUk2MmE1TmdmVTZCMVN3dEREb1Zj?=
- =?utf-8?B?emxWUVd2Zmo0amtyNGszd1VkbkltUTBxb1NNbUNsT3prV2ZwMzhFT1dBdUht?=
- =?utf-8?B?SStmb01LQTZoYjkyS1pDc3ZuY1B3SGlVWDVwNGtxNGE5Q1N0cklMWGE2M2Vl?=
- =?utf-8?B?RmRmb2MvdkptTnh0NE15VnlraEVMN2NyRVZqaUpZRllNVzJ2Qi96ZEtpVEt3?=
- =?utf-8?B?cVFTaTg0QVBiMG9Ia0xIb2xUcFl5VEZxVHlWaFRUeXNJYTBiZlNONlU4Rzlt?=
- =?utf-8?B?Rm16eTNzKy9JUjduVGl5RURxWWprbzZJL29Pd1lIQjhMTjBYUG5rUzZ3K1Uy?=
- =?utf-8?B?RFpicjBvOThsNkl4Q0RnSWU0emswNGpPY3RIZDk5c2grd2lEQWJzN3JzNFha?=
- =?utf-8?Q?/e+boz6aR9uY8ReMac/V9u8=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c21fe7a-3ea1-4dc4-89a6-08d9bb41a7f9
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 18:28:11.7960 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 18:33:59.5357 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1de59f28-d103-4315-afab-08d9bb427776
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hQInVTp2gyLnedTs3r8g6J0QeWi2j+N+S9iIp26RpNY5mFVM7xHc/U5PGZZ7CLSqDf9LwD/J2zVqgl0a0e9uWw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5337
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3560
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,136 +99,34 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, daniel.vetter@ffwll.ch,
- David Yat Sin <david.yatsin@amd.com>, airlied@redhat.com
+Cc: Felix.Kuehling@amd.com, Jonathan.Kim@amd.com,
+ Graham Sider <Graham.Sider@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 2021-12-09 um 10:30 a.m. schrieb Christian König:
-> That still won't work.
->
-> But I think we could do this change for the amdgpu mmap callback only.
+Initalize GWS on Navi2x with mec2_fw_version >= 0x42.
 
-If graphics user mode has problems with it, we could even make this
-specific to KFD BOs in the amdgpu_gem_object_mmap callback.
+Signed-off-by: Graham Sider <Graham.Sider@amd.com>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Regards,
-  Felix
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index facc28f58c1f..67dd94b0b9a7 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -368,7 +368,10 @@ static int kfd_gws_init(struct kfd_dev *kfd)
+ 		(KFD_GC_VERSION(kfd) == IP_VERSION(9, 4, 1)
+ 			&& kfd->mec2_fw_version >= 0x30)   ||
+ 		(KFD_GC_VERSION(kfd) == IP_VERSION(9, 4, 2)
+-			&& kfd->mec2_fw_version >= 0x28))))
++			&& kfd->mec2_fw_version >= 0x28)   ||
++		(KFD_GC_VERSION(kfd) >= IP_VERSION(10, 3, 0)
++			&& KFD_GC_VERSION(kfd) <= IP_VERSION(10, 3, 5)
++			&& kfd->mec2_fw_version >= 0x42))))
+ 		ret = amdgpu_amdkfd_alloc_gws(kfd->adev,
+ 				kfd->adev->gds.gws_size, &kfd->gws);
+ 
+-- 
+2.25.1
 
-
->
-> Regards,
-> Christian.
->
-> Am 09.12.21 um 16:29 schrieb Bhardwaj, Rajneesh:
->> Sounds good. I will send a v2 with only ttm_bo_mmap_obj change. Thank
->> you!
->>
->> On 12/9/2021 10:27 AM, Christian König wrote:
->>> Hi Rajneesh,
->>>
->>> yes, separating this from the drm_gem_mmap_obj() change is certainly
->>> a good idea.
->>>
->>>> The child cannot access the BOs mapped by the parent anyway with
->>>> access restrictions applied
->>>
->>> exactly that is not correct. That behavior is actively used by some
->>> userspace stacks as far as I know.
->>>
->>> Regards,
->>> Christian.
->>>
->>> Am 09.12.21 um 16:23 schrieb Bhardwaj, Rajneesh:
->>>> Thanks Christian. Would it make it less intrusive if I just use the
->>>> flag for ttm bo mmap and remove the drm_gem_mmap_obj change from
->>>> this patch? For our use case, just the ttm_bo_mmap_obj change
->>>> should suffice and we don't want to put any more work arounds in
->>>> the user space (thunk, in our case).
->>>>
->>>> The child cannot access the BOs mapped by the parent anyway with
->>>> access restrictions applied so I wonder why even inherit the vma?
->>>>
->>>> On 12/9/2021 2:54 AM, Christian König wrote:
->>>>> Am 08.12.21 um 21:53 schrieb Rajneesh Bhardwaj:
->>>>>> When an application having open file access to a node forks, its
->>>>>> shared
->>>>>> mappings also get reflected in the address space of child process
->>>>>> even
->>>>>> though it cannot access them with the object permissions applied.
->>>>>> With the
->>>>>> existing permission checks on the gem objects, it might be
->>>>>> reasonable to
->>>>>> also create the VMAs with VM_DONTCOPY flag so a user space
->>>>>> application
->>>>>> doesn't need to explicitly call the madvise(addr, len,
->>>>>> MADV_DONTFORK)
->>>>>> system call to prevent the pages in the mapped range to appear in
->>>>>> the
->>>>>> address space of the child process. It also prevents the memory
->>>>>> leaks
->>>>>> due to additional reference counts on the mapped BOs in the child
->>>>>> process that prevented freeing the memory in the parent for which
->>>>>> we had
->>>>>> worked around earlier in the user space inside the thunk library.
->>>>>>
->>>>>> Additionally, we faced this issue when using CRIU to checkpoint
->>>>>> restore
->>>>>> an application that had such inherited mappings in the child which
->>>>>> confuse CRIU when it mmaps on restore. Having this flag set for the
->>>>>> render node VMAs helps. VMAs mapped via KFD already take care of
->>>>>> this so
->>>>>> this is needed only for the render nodes.
->>>>>
->>>>> Unfortunately that is most likely a NAK. We already tried
->>>>> something similar.
->>>>>
->>>>> While it is illegal by the OpenGL specification and doesn't work
->>>>> for most userspace stacks, we do have some implementations which
->>>>> call fork() with a GL context open and expect it to work.
->>>>>
->>>>> Regards,
->>>>> Christian.
->>>>>
->>>>>>
->>>>>> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
->>>>>>
->>>>>> Signed-off-by: David Yat Sin <david.yatsin@amd.com>
->>>>>> Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
->>>>>> ---
->>>>>>   drivers/gpu/drm/drm_gem.c       | 3 ++-
->>>>>>   drivers/gpu/drm/ttm/ttm_bo_vm.c | 2 +-
->>>>>>   2 files changed, 3 insertions(+), 2 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
->>>>>> index 09c820045859..d9c4149f36dd 100644
->>>>>> --- a/drivers/gpu/drm/drm_gem.c
->>>>>> +++ b/drivers/gpu/drm/drm_gem.c
->>>>>> @@ -1058,7 +1058,8 @@ int drm_gem_mmap_obj(struct drm_gem_object
->>>>>> *obj, unsigned long obj_size,
->>>>>>               goto err_drm_gem_object_put;
->>>>>>           }
->>>>>>   -        vma->vm_flags |= VM_IO | VM_PFNMAP | VM_DONTEXPAND |
->>>>>> VM_DONTDUMP;
->>>>>> +        vma->vm_flags |= VM_IO | VM_PFNMAP | VM_DONTEXPAND
->>>>>> +                | VM_DONTDUMP | VM_DONTCOPY;
->>>>>>           vma->vm_page_prot =
->>>>>> pgprot_writecombine(vm_get_page_prot(vma->vm_flags));
->>>>>>           vma->vm_page_prot = pgprot_decrypted(vma->vm_page_prot);
->>>>>>       }
->>>>>> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c
->>>>>> b/drivers/gpu/drm/ttm/ttm_bo_vm.c
->>>>>> index 33680c94127c..420a4898fdd2 100644
->>>>>> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
->>>>>> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
->>>>>> @@ -566,7 +566,7 @@ int ttm_bo_mmap_obj(struct vm_area_struct
->>>>>> *vma, struct ttm_buffer_object *bo)
->>>>>>         vma->vm_private_data = bo;
->>>>>>   -    vma->vm_flags |= VM_PFNMAP;
->>>>>> +    vma->vm_flags |= VM_PFNMAP | VM_DONTCOPY;
->>>>>>       vma->vm_flags |= VM_IO | VM_DONTEXPAND | VM_DONTDUMP;
->>>>>>       return 0;
->>>>>>   }
->>>>>
->>>
->
