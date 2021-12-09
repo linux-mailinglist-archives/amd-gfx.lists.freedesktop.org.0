@@ -2,68 +2,46 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAC5946F05E
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:04:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D48DB46F05B
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:04:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDCED10E1C2;
-	Thu,  9 Dec 2021 17:04:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71F9010E194;
+	Thu,  9 Dec 2021 17:04:06 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com
- [IPv6:2607:f8b0:4864:20::22d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AADDB10E116;
- Thu,  9 Dec 2021 06:28:50 +0000 (UTC)
-Received: by mail-oi1-x22d.google.com with SMTP id 7so7307998oip.12;
- Wed, 08 Dec 2021 22:28:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=subject:from:to:cc:references:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=IhIul+4nURod6NuSkYTrchSPnXVCxWUJGXACRxYc3MQ=;
- b=eXSVG+Ndarp4Nov0ojL5vYXJOqopOe8rmbtZMAES5EqdQfhuTJT9Uq3lALtJGa4LbO
- wWHdJFJ87qjeMcSOV3aq0PkzuieWlIvRP179Hr6+sgCEYfH7wf+V4jVqH10ELhTez0XB
- 22huR9IEqlUxwdOVegX+j/rAjRjz7L8mt/AiBEGrV7CjsOrfNoQ1BJ9XPY8+vJZH31o7
- 2P/ix6dz02VvGEjb+x0Ea1/8RXd4aZ7czYa7w2YNw1bcNUZxsKs/e400rD6pCJCOWN7L
- q5fhY1g9Ipg3RqbxuIOSnqylc7dCzgsNU5GquVam3pqRibhz+3qTwbdWItlmR7WucDdh
- VwaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:subject:from:to:cc:references:message-id:date
- :user-agent:mime-version:in-reply-to:content-transfer-encoding
- :content-language;
- bh=IhIul+4nURod6NuSkYTrchSPnXVCxWUJGXACRxYc3MQ=;
- b=qMree8V8qqeTE0w7JpLoG48DPbaGlBCb2TL55vqZj6CYDQrQRwO3QOSso4bU5uo3qu
- EbTvPbuNmpRZxm3x8rtBhlHn7vgx7zESYSbumoEgOHLamjYpFhinCG8nqQFdO1pQWZ/g
- VewLjHnwz+ed+hI+q8uHr9wy9VLZpQjM3+h4RVbrf7KchHagO2qcWiVpQwFp7A7y6rkT
- IVbn+shFsXNRQcSd+I5m5mQsZxUFpQ0mSFDi3Ej9UaSSju73VqjQhDVPU5Bo4WMXg57c
- woXMgHqpX9K5lleX9tiR8nEsPvfGPDkF+V+xg/hHUANOv7y9BC/FEBYqQ8HyqIjN6aLv
- JupA==
-X-Gm-Message-State: AOAM531NDo/TU8JJIkQQFRA+tKnjEQi28atdD7ORHrGXbYXasTGcGUHp
- +xaxzf7n/Oqih3IyJLxcM7X6w98jF/w=
-X-Google-Smtp-Source: ABdhPJx7+EvOV3k5F+MwkvlqnlUuZKHGOaLEFVN8ri3k3vpvOVFTKnJpQnsX5z8mTpBCirtuipNWIg==
-X-Received: by 2002:a17:90b:4b4c:: with SMTP id
- mi12mr12376886pjb.66.1639020881197; 
- Wed, 08 Dec 2021 19:34:41 -0800 (PST)
-Received: from [183.173.151.43] ([183.173.151.43])
- by smtp.gmail.com with ESMTPSA id y18sm4729594pfp.190.2021.12.08.19.34.37
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 08 Dec 2021 19:34:40 -0800 (PST)
-Subject: Re: [BUG] gpu: drm: amd: amdgpu: possible ABBA deadlock in
- amdgpu_set_power_dpm_force_performance_level() and
- amdgpu_debugfs_process_reg_op()
-From: Jia-Ju Bai <baijiaju1990@gmail.com>
+X-Greylist: delayed 905 seconds by postgrey-1.36 at gabe;
+ Thu, 09 Dec 2021 06:51:49 UTC
+Received: from mail-m973.mail.163.com (mail-m973.mail.163.com [123.126.97.3])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 409BB89226;
+ Thu,  9 Dec 2021 06:51:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=JoVvK
+ DToD3PXJ0AIpygi6y+ynr/fGiQ/SakOwvbqvD8=; b=TAGzuls7r2B/BIVROco77
+ AFgtafDPUuwE2XKEEPy7QPnazcOdRTFJRSqAEdqWtDRAh9pWTzFC4WZOiEflbRKZ
+ FFEXqtllTjWTCIWaJw1uZwp3MLjLg4zTFGiSLvzmNvobs1Wt1YKZVXQPUAKsMwjc
+ GtS9PsRMPdY5x3q5h0nvPc=
+Received: from localhost.localdomain (unknown [218.106.182.227])
+ by smtp3 (Coremail) with SMTP id G9xpCgAnkwHlo7Fhcrc6Aw--.49676S4;
+ Thu, 09 Dec 2021 14:36:29 +0800 (CST)
+From: Jianglei Nie <niejianglei2021@163.com>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  airlied@linux.ie, daniel@ffwll.ch, Hawking.Zhang@amd.com,
- Felix.Kuehling@amd.com, ray.huang@amd.com, lee.jones@linaro.org
-References: <2dc31435-ba62-b6a4-76dc-cfe9747f4cfb@gmail.com>
-Message-ID: <963eab5f-f333-456e-784c-0d2c81b849da@gmail.com>
-Date: Thu, 9 Dec 2021 11:34:38 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ john.clements@amd.com, candice.li@amd.com, lijo.lazar@amd.com,
+ Jinzhou.Su@amd.com, jonathan.kim@amd.com
+Subject: [PATCH] drm/amdgpu: Fix reference leak in
+ psp_xgmi_reflect_topology_info()
+Date: Thu,  9 Dec 2021 14:36:18 +0800
+Message-Id: <20211209063618.123473-1-niejianglei2021@163.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <2dc31435-ba62-b6a4-76dc-cfe9747f4cfb@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-CM-TRANSID: G9xpCgAnkwHlo7Fhcrc6Aw--.49676S4
+X-Coremail-Antispam: 1Uf129KBjvJXoW7CFWkZw47XFy7ZryDWrW3ZFb_yoW8ZryrpF
+ 4rKwnxurWDZr15G3ykKay8Zr1Yvws2gaySyr47uw1I939xJF95WF1UJr45tryrGrWvkF47
+ tFy5X39rXFWq9rJanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jlxRfUUUUU=
+X-Originating-IP: [218.106.182.227]
+X-CM-SenderInfo: xqlhyxxdqjzvrlsqjii6rwjhhfrp/1tbi6xFkjFXlyeWT7AABsw
 X-Mailman-Approved-At: Thu, 09 Dec 2021 17:04:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,53 +54,69 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel <linux-kernel@vger.kernel.org>
+Cc: Jianglei Nie <niejianglei2021@163.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+In line 1138 (#1), amdgpu_get_xgmi_hive() increases the kobject reference
+counter of the hive it returned. The hive returned by
+amdgpu_get_xgmi_hive()should be released with the help of
+amdgpu_put_xgmi_hive() to balance its kobject reference counter properly.
+Forgetting the amdgpu_put_xgmi_hive() operation will result in reference
+leak.
 
-Could you please provide the feedback to my previous report?
-Thanks a lot :)
+We can fix it by calling amdgpu_put_xgmi_hive() before the end of the
+function (#2).
 
+1128 static void psp_xgmi_reflect_topology_info(struct psp_context *psp,
+1129 			struct psp_xgmi_node_info node_info)
+1130 {
 
-Best wishes,
-Jia-Ju Bai
+1138 	hive = amdgpu_get_xgmi_hive(psp->adev);
+	// #1: kzalloc space reference increment
+1139 	list_for_each_entry(mirror_adev, &hive->device_list, gmc.xgmi.head) {
+1140		struct psp_xgmi_topology_info *mirror_top_info;
+1141		int j;
 
-On 2021/9/15 17:39, Jia-Ju Bai wrote:
-> Hello,
->
-> My static analysis tool reports a possible ABBA deadlock in the amdgpu 
-> driver in Linux 5.10:
->
-> amdgpu_debugfs_process_reg_op()
->   mutex_lock(&adev->grbm_idx_mutex); --> Line 250 (Lock A)
->   mutex_lock(&adev->pm.mutex); --> Line 259 (Lock B)
->
-> amdgpu_set_power_dpm_force_performance_level()
->   mutex_lock(&adev->pm.mutex); --> Line 381 (Lock B)
->     pp_dpm_force_performance_level() --> function pointer via 
-> "amdgpu_dpm_force_performance_level()"
->       pp_dpm_en_umd_pstate()
->         amdgpu_device_ip_set_clockgating_state()
->           gfx_v7_0_set_clockgating_state() --> function pointer via 
-> "funcs->set_clockgating_state()"
->             gfx_v7_0_enable_mgcg()
->               mutex_lock(&adev->grbm_idx_mutex); --> Line 3646 (Lock A)
->               mutex_lock(&adev->grbm_idx_mutex); --> Line 3697 (Lock A)
->
-> When amdgpu_debugfs_process_reg_op() and 
-> amdgpu_set_power_dpm_force_performance_level() are concurrently 
-> executed, the deadlock can occur.
->
-> I am not quite sure whether this possible deadlock is real and how to 
-> fix it if it is real.
-> Any feedback would be appreciated, thanks :)
->
-> Reported-by: TOTE Robot <oslab@tsinghua.edu.cn>
->
->
-> Best wishes,
-> Jia-Ju Bai
+1143		if (mirror_adev->gmc.xgmi.node_id != dst_node_id)
+1144			continue;
+
+1146		mirror_top_info = &mirror_adev->psp.xgmi_context.top_info;
+1147		for (j = 0; j < mirror_top_info->num_nodes; j++) {
+1148			if (mirror_top_info->nodes[j].node_id != src_node_id)
+1149				continue;
+
+1151			mirror_top_info->nodes[j].num_hops = dst_num_hops;
+
+1157			if (dst_num_links)
+1158				mirror_top_info->nodes[j].num_links = dst_num_links;
+
+1160			break;
+1161		}
+
+1163		break;
+1164	}
+	// #2: missing reference decrement
+1165 }
+
+Signed-off-by: Jianglei Nie <niejianglei2021@163.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+index c641f84649d6..f6362047ed71 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c
+@@ -1162,6 +1162,7 @@ static void psp_xgmi_reflect_topology_info(struct psp_context *psp,
+ 
+ 		break;
+ 	}
++	amdgpu_put_xgmi_hive(hive);
+ }
+ 
+ int psp_xgmi_get_topology_info(struct psp_context *psp,
+-- 
+2.25.1
 
