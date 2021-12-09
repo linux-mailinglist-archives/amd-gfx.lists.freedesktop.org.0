@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03DDC46EE6B
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 17:56:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBDAA46EEA2
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 17:58:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D310510E759;
-	Thu,  9 Dec 2021 16:53:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A370010E8F4;
+	Thu,  9 Dec 2021 16:53:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2068.outbound.protection.outlook.com [40.107.93.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F06F810E116
- for <amd-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 08:50:25 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2040.outbound.protection.outlook.com [40.107.92.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6ABEB10E116
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 08:50:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eZ1D5MIHSDvwhoI8Xi77L5SeAIHVmZSamWA775B5GRX52wflApIn89ArgBE+4CyyD2i4U14uyI+zl80/HFgYEMD986E6V8YzVZ0TzU01gB/1hi0fkF4soxGlM6peT2aA/72Y6dy8kS2yDVQxrccquWyRKDWy0Y/8YIGmhOUfdqcLthuRrVXC2vvwGIri0YIrZbI7rqt6TIVxALJSQyghYBIb4dFaMg68zt/9EamskYMHbbz0vK9eFbZaggpo/2kvTMaVxpntOffH64yMyvYBnJBPkkTBPjv/prnwcN6oHqRkgNSuvuz+KbXjAapVMET1TnzoHe2gPTX3dVZ9spdoOw==
+ b=drFlqSNaK1k9anpkknf3wUrpc5HS/7xcHPFxij/yd3WQPCzaYrcPq6ZI38EvVz1Es0cOMwIVIDWgSL2uYczw9LbVX97S8qnhAiDN6OBhWvWMRbOskuk3Sc+U2Zjvf1tdw0QTSgNUydwyU9mApxuemI+BSPI0FDakOKmP1RlzwER4fn6mkod6HvkPisIscPiDa87cWnC7LyLeQTb072gT3hQadsXi+Yi28Wde9cSZ+FDSWfC3BhwAkXPtlXgeg7t1yWTmvrSlGSaAEyxkNAKkP1tYuawvm+tZ4YzrntfH1s3HH2CnSMCQmRn4tH5X8gTmfLd2DMAzLoj3gzfGM/hjxQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M9MQowEzaHyLBAM6aMokbvlBb0r8WSiqXGWdP6bQz2w=;
- b=VsMgeEtSqyMea2WW8KBHUdutrJJOjZblG0iH8X6ZTR+BQowGpPKAHNA0OSlD2YBO7b4Zdkef/UjUmT6Rk66xpcl6eAo5O387oRJBCRIfT0YVMzycSoGxjShD/gsLOPLyjUmxxDwLx+fqyjBmVMDDEqz5zk9qSGnzinin+yBVUXfiOBYnLdo5Csrm6iu01H3B/e8bjj8N+zaj+LW2tAHlTFyEqEljWrC5nBm3I4DOBDMy4vIsN6VRxM0eyer3tNzj0P8zk4w18LuqtTcC6ZptlauKS+ivrBXb3H/lPw+dsRlzZylOXrVhedvAqIAPulUBRBku4Lgd5bXiHxtqN5yP+Q==
+ bh=HFB5BlZ7UBm1cKC4SwXDSPYttCj+iJjClxWNjEvUe0s=;
+ b=BHRp0aoaB+RXUmRzQ7u7sKdWtdGaM5ZGuzcjo2DiBS7lUuiflyUP8/Tik6oJTEZo6H929CGtstVaHMjObjQ6FM86BqSqLVbLS4zDi+gn09unCVVlyoo66JxW3567KVnbTVKDMTINM6LBiyKeJNgBM85y7f+DzWMZ+d2K3rsjcan8bocyIMXwmSsaUWH5RUhVQg8rlHmRiLHzWJMGLZDObic3Ykct9sROzg25o1RIKCNZjjRBQUGACrIAqOwUGFwUgk8qvMzvyoODHlNl+P6pdP9QMcA2iV93i63yl9h8j9AV8OI7X1yIyRsWivbytptViM434U2tidjrC6Owd0p+8w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M9MQowEzaHyLBAM6aMokbvlBb0r8WSiqXGWdP6bQz2w=;
- b=FtX6iJE3BBapfMkEjXmF3P5PKWUTboQYudgzuZ7q6srLaMNVrp1wGSqLxGNNTnxl8sEsgZauwiGimCqrLkwPMfiqVczZ1PuaPRXaXH75+ELu0NbPOzhgDoah5YN3PaBPGuSB4uEFbTFzIJkeUi+RDutABnaXtMscC3YL2gOMAGY=
-Received: from DM5PR19CA0005.namprd19.prod.outlook.com (2603:10b6:3:151::15)
- by DM6PR12MB4371.namprd12.prod.outlook.com (2603:10b6:5:2a3::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.21; Thu, 9 Dec
- 2021 08:50:23 +0000
-Received: from DM6NAM11FT039.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:151:cafe::cb) by DM5PR19CA0005.outlook.office365.com
- (2603:10b6:3:151::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.17 via Frontend
- Transport; Thu, 9 Dec 2021 08:50:23 +0000
+ bh=HFB5BlZ7UBm1cKC4SwXDSPYttCj+iJjClxWNjEvUe0s=;
+ b=yeZdVvy0WxWVBGr8oRv4jvCJKab7D00DZAum7aF4F384XwR8GoWBqhjp47A3nMW5feoHjdlbE0cNwInvvlZgoNCoiRK4XkgzaIWlWp3zByiph2k88/mMP8wD3XAKAadHn2BdZ4N+i1PXLKnQ5WjTaXjwujEeix96eHmkRVMg6yg=
+Received: from DM6PR05CA0037.namprd05.prod.outlook.com (2603:10b6:5:335::6) by
+ CH2PR12MB5513.namprd12.prod.outlook.com (2603:10b6:610:68::13) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4778.12; Thu, 9 Dec 2021 08:50:25 +0000
+Received: from DM6NAM11FT017.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:335:cafe::d7) by DM6PR05CA0037.outlook.office365.com
+ (2603:10b6:5:335::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.10 via Frontend
+ Transport; Thu, 9 Dec 2021 08:50:25 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,20 +45,21 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT039.mail.protection.outlook.com (10.13.172.83) with Microsoft SMTP
+ DM6NAM11FT017.mail.protection.outlook.com (10.13.172.145) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4755.13 via Frontend Transport; Thu, 9 Dec 2021 08:50:23 +0000
+ 15.20.4755.13 via Frontend Transport; Thu, 9 Dec 2021 08:50:25 +0000
 Received: from lang-desktop.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Thu, 9 Dec
- 2021 02:50:20 -0600
+ 2021 02:50:23 -0600
 From: Lang Yu <lang.yu@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 1/2] drm/amdgpu: introduce a kind of halt state for amdgpu
- device
-Date: Thu, 9 Dec 2021 16:49:13 +0800
-Message-ID: <20211209084914.261889-1-lang.yu@amd.com>
+Subject: [PATCH 2/2] drm/amdgpu: add support for SMU debug option
+Date: Thu, 9 Dec 2021 16:49:14 +0800
+Message-ID: <20211209084914.261889-2-lang.yu@amd.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211209084914.261889-1-lang.yu@amd.com>
+References: <20211209084914.261889-1-lang.yu@amd.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -67,28 +68,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
  (10.181.40.144)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f24dc86f-b67f-494f-b9a6-08d9baf0f049
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4371:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4371DDAECACE6A1011014850FB709@DM6PR12MB4371.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Office365-Filtering-Correlation-Id: cd3fe238-e03e-405b-cd7e-08d9baf0f18c
+X-MS-TrafficTypeDiagnostic: CH2PR12MB5513:EE_
+X-Microsoft-Antispam-PRVS: <CH2PR12MB5513E4FF5B5DC2EF6F7A42FFFB709@CH2PR12MB5513.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pFyv5uxXEjMtzW0BXZaHPa2gXE/SqsnCmg0bYGos6CzyQtpUyZ4TdYCJju0jw54+7wiCPtYUDaSr86YYsQNew1kGJ46ubtC7HkYPGKn+M7A1KNasPCGsH8leLFa3QAL8zVQMxvLaorZAX1tUqSHL02V6/Ym9SdhdgsmsQ+NWxwaKYApKZz1Scz53RpJpEs13Z6UmZPpMKlnJg5pjP2Ld4A05NCMwY8JzW5XNSRgBu9Tj5q0csmxbSR3E9pthsRchlY3nuRM6tUhdsug1Knxcd4Ay5V46ckJ4bja7TDnN4lMDvl7F1URx6lkpsjEJsvwN21W1z3mXpHZyVK2KooWRSKZ+XvaFvFEdHGy1qWk9zsXQf8Az+w3ACHrMBL23VhYRUlDwpRebdoKlu1QvvWXwplqX4DDmiZVjj6V8sjLjCd1bL3Bq938/pX9cvK2pyQTse8HptDkyVBArOiFUtlqovd0gxzOfP6j0waY8rkBuAVoukk1jAYBvbkZr34Ki41YRi2MTicAD7+VaFpVlbvrROVsyITvvElFWzfO2YqlRxAXBOUqz9Yk514xofwMJIvXKfLs1ehnsbxsjhae7VJI7nJjMyzcy19OVPG+uR56GGW3hmXr9VmlENx2xGU2tVdcvlmDR1DCwtKpQaRxJzu0CMK8IlpXfly7nLaNSXR0nUlsNs97omIKs+gUDwIa0wHQpir4Llko3pdyJxIa3J4jxqDL9VTYOPXjhCax/09BBD1XfJF+g7GoRk5FGxHkxQXiUCERDAx2qR9bkSDphlB3+RZmbjUYDZ3FfkX+uqtET5CA=
+X-Microsoft-Antispam-Message-Info: LrYlX/pf0esVlSnd+/E8+67vV+3C+n6sjg6vIsgCXSkxf2VSnky7XLV0NIycHLlJcB5D3f7R5nuVje5jNM0GB9vayNNfxbdhUC9YKYQ7DTzgQZUYG10ujHioKvbK/zv4stuqanNrWp1aCZ00Cbs8K7/J3F3BBLvXFgdc6vj6uk+HEKFIxDt0CyIgq0Iftdu/Vk1KzL7yyq8+qsdKvvkruQTb1i1sspZ2y3cYR3SlqPAKaqs1+vSrZvAzjd3Hllj+7uRWvEbHBA5jYLmEdQ/C5pLLGntGIl93HuRnUbro8Rt5hi4cf/JlkWhooZBlM+UQi/rRxJ+/h3rmT7XUYRFkXjQVP0C+4MNKyfdaWUr2hbQXu4as1wRWUJWuuq87gNZdO9pZB3kynZi5Th9aV2wndtgp3WcvJ1c+Ex/wevaVHvnmvsr5sfvxg+SbaaDkUZB0fNF3kjULVIPZYf3ToFeFNbwTu7wnGFzY5CGbSlseChOt3nbXPYAAFrIkC8mnB1B7TDC/YGNICQCsNDsAokYXYsn8FkyL26zzg8FuvGiR72v2ZWbmVY152DZqrsSsP/igSowuZCfQlUsyevy5o7qJLzU+n+pH3dRcFFHOjvOCOWtd2A+U/BcU3dx3E3iths/SvVMSDaIK9pj8w8H1w9oTv1LNN6r9/cpvpBJreeWwLu9hxt6lTP9FaL/egID4NG/BkN8fOnaJEVbW0XT6SK0ChctaNG03SAruawnSeK0puIJXD9oJjZPJ3mA6UYVZv65BYBLVNHldI8t6cRRIDK526R7nphtJLYDUb1QCe09gWN0=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(40470700001)(83380400001)(44832011)(36860700001)(4326008)(82310400004)(40460700001)(81166007)(356005)(6916009)(47076005)(16526019)(2616005)(5660300002)(336012)(26005)(8676002)(36756003)(426003)(8936002)(70206006)(186003)(70586007)(1076003)(508600001)(7696005)(86362001)(316002)(6666004)(2906002)(54906003)(36900700001);
+ SFS:(4636009)(36840700001)(46966006)(40470700001)(70586007)(81166007)(44832011)(36860700001)(86362001)(16526019)(5660300002)(356005)(47076005)(508600001)(4326008)(70206006)(36756003)(82310400004)(336012)(40460700001)(26005)(2906002)(6916009)(8936002)(8676002)(7696005)(426003)(2616005)(1076003)(6666004)(186003)(316002)(83380400001)(54906003)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 08:50:23.4979 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f24dc86f-b67f-494f-b9a6-08d9baf0f049
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 08:50:25.5996 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd3fe238-e03e-405b-cd7e-08d9baf0f18c
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT039.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT017.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4371
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB5513
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,83 +108,141 @@ Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-It is useful to maintain error context when debugging
-SW/FW issues. We introduce amdgpu_device_halt() for this
-purpose. It will bring hardware to a kind of halt state,
-so that no one can touch it any more.
+SMU firmware guys expect the driver maintains error context
+and doesn't interact with SMU any more when SMU errors occurred.
+That will aid in debugging SMU firmware issues.
 
-Compare to a simple hang, the system will keep stable
-at least for SSH access. Then it should be trivial to
-inspect the hardware state and see what's going on.
+Add SMU debug option support for this request, it can be
+enabled or disabled via amdgpu_smu_debug debugfs file.
+When enabled, it brings hardware to a kind of halt state
+so that no one can touch it any more in the envent of SMU
+errors.
 
-Suggested-by: Christian Koenig <christian.koenig@amd.com>
-Suggested-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+Currently, dirver interacts with SMU via sending messages.
+And threre are three ways to sending messages to SMU.
+Handle them respectively as following:
+
+1, smu_cmn_send_smc_msg_with_param() for normal timeout cases
+
+  Halt on any error.
+
+2, smu_cmn_send_msg_without_waiting()/smu_cmn_wait_for_response()
+for longer timeout cases
+
+  Halt on errors apart from ETIME. Otherwise this way won't work.
+
+3, smu_cmn_send_msg_without_waiting() for no waiting cases
+
+  Halt on errors apart from ETIME. Otherwise second way won't work.
+
+After halting, use BUG() to explicitly notify users.
+
+== Command Guide ==
+
+1, enable SMU debug option
+
+ # echo 1 > /sys/kernel/debug/dri/0/amdgpu_smu_debug
+
+2, disable SMU debug option
+
+ # echo 0 > /sys/kernel/debug/dri/0/amdgpu_smu_debug
+
+v4:
+ - Set to halt state instead of a simple hang.(Christian)
+
+v3:
+ - Use debugfs_create_bool().(Christian)
+ - Put variable into smu_context struct.
+ - Don't resend command when timeout.
+
+v2:
+ - Resend command when timeout.(Lijo)
+ - Use debugfs file instead of module parameter.
+
 Signed-off-by: Lang Yu <lang.yu@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h        |  2 ++
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 39 ++++++++++++++++++++++
- 2 files changed, 41 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  3 +++
+ drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h     |  5 +++++
+ drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c      | 20 +++++++++++++++++++-
+ 3 files changed, 27 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index c5cfe2926ca1..3f5f8f62aa5c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -1317,6 +1317,8 @@ void amdgpu_device_flush_hdp(struct amdgpu_device *adev,
- void amdgpu_device_invalidate_hdp(struct amdgpu_device *adev,
- 		struct amdgpu_ring *ring);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+index 164d6a9e9fbb..86cd888c7822 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+@@ -1618,6 +1618,9 @@ int amdgpu_debugfs_init(struct amdgpu_device *adev)
+ 	if (!debugfs_initialized())
+ 		return 0;
  
-+void amdgpu_device_halt(struct amdgpu_device *adev);
++	debugfs_create_bool("amdgpu_smu_debug", 0600, root,
++				  &adev->smu.smu_debug_mode);
 +
- /* atpx handler */
- #if defined(CONFIG_VGA_SWITCHEROO)
- void amdgpu_register_atpx_handler(void);
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index a1c14466f23d..62216627cc83 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -5634,3 +5634,42 @@ void amdgpu_device_invalidate_hdp(struct amdgpu_device *adev,
+ 	ent = debugfs_create_file("amdgpu_preempt_ib", 0600, root, adev,
+ 				  &fops_ib_preempt);
+ 	if (IS_ERR(ent)) {
+diff --git a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
+index f738f7dc20c9..50dbf5594a9d 100644
+--- a/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
++++ b/drivers/gpu/drm/amd/pm/inc/amdgpu_smu.h
+@@ -569,6 +569,11 @@ struct smu_context
+ 	struct smu_user_dpm_profile user_dpm_profile;
  
- 	amdgpu_asic_invalidate_hdp(adev, ring);
+ 	struct stb_context stb_context;
++	/*
++	 * When enabled, it makes SMU errors fatal.
++	 * (0 = disabled (default), 1 = enabled)
++	 */
++	bool smu_debug_mode;
+ };
+ 
+ struct i2c_adapter;
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+index 048ca1673863..84016d22c075 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
+@@ -272,6 +272,11 @@ int smu_cmn_send_msg_without_waiting(struct smu_context *smu,
+ 	__smu_cmn_send_msg(smu, msg_index, param);
+ 	res = 0;
+ Out:
++	if (unlikely(smu->smu_debug_mode) && res && (res != -ETIME)) {
++		amdgpu_device_halt(smu->adev);
++		BUG();
++	}
++
+ 	return res;
  }
+ 
+@@ -288,9 +293,17 @@ int smu_cmn_send_msg_without_waiting(struct smu_context *smu,
+ int smu_cmn_wait_for_response(struct smu_context *smu)
+ {
+ 	u32 reg;
++	int res;
+ 
+ 	reg = __smu_cmn_poll_stat(smu);
+-	return __smu_cmn_reg2errno(smu, reg);
++	res = __smu_cmn_reg2errno(smu, reg);
 +
-+/**
-+ * amdgpu_device_halt() - bring hardware to some kind of halt state
-+ *
-+ * @adev: amdgpu_device pointer
-+ *
-+ * Bring hardware to some kind of halt state so that no one can touch it
-+ * any more. It will help to maintain error context when error occurred.
-+ * Compare to a simple hang, the system will keep stable at least for SSH
-+ * access. Then it should be trivial to inspect the hardware state and
-+ * see what's going on. Implemented as following:
-+ *
-+ * 1. drm_dev_unplug() makes device inaccessible to user space(IOCTLs, etc),
-+ *    clears all CPU mappings to device, disallows remappings through page faults
-+ * 2. amdgpu_irq_disable_all() disables all interrupts
-+ * 3. amdgpu_fence_driver_hw_fini() signals all HW fences
-+ * 4. amdgpu_device_unmap_mmio() clears all MMIO mappings
-+ * 5. pci_disable_device() and pci_wait_for_pending_transaction()
-+ *    flush any in flight DMA operations
-+ * 6. set adev->no_hw_access to true
-+ */
-+void amdgpu_device_halt(struct amdgpu_device *adev)
-+{
-+	struct pci_dev *pdev = adev->pdev;
-+	struct drm_device *ddev = &adev->ddev;
++	if (unlikely(smu->smu_debug_mode) && res && (res != -ETIME)) {
++		amdgpu_device_halt(smu->adev);
++		BUG();
++	}
 +
-+	drm_dev_unplug(ddev);
++	return res;
+ }
+ 
+ /**
+@@ -357,6 +370,11 @@ int smu_cmn_send_smc_msg_with_param(struct smu_context *smu,
+ 	if (read_arg)
+ 		smu_cmn_read_arg(smu, read_arg);
+ Out:
++	if (unlikely(smu->smu_debug_mode) && res) {
++		amdgpu_device_halt(smu->adev);
++		BUG();
++	}
 +
-+	amdgpu_irq_disable_all(adev);
-+
-+	amdgpu_fence_driver_hw_fini(adev);
-+
-+	amdgpu_device_unmap_mmio(adev);
-+
-+	pci_disable_device(pdev);
-+	pci_wait_for_pending_transaction(pdev);
-+
-+	adev->no_hw_access = true;
-+}
+ 	mutex_unlock(&smu->message_lock);
+ 	return res;
+ }
 -- 
 2.25.1
 
