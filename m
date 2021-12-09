@@ -1,101 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 928AE46EFCF
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:02:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4661346F05A
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:04:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 151A110EE83;
-	Thu,  9 Dec 2021 16:54:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7029589160;
+	Thu,  9 Dec 2021 17:04:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2069.outbound.protection.outlook.com [40.107.236.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B50C10E120;
- Thu,  9 Dec 2021 14:21:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lZjQt08a9QcillTJiqwQck6kSOJnsxshsCE+ARgP2aQLVb5Lz2nUb3BecScELe9QeDhWgaIZt/EL283uwE3yO/OntWTa0S9cIOk1JiAcogPqX1bFvZFc8ntUM2oa/4LvVWnzBw316CXIi6hSUzsUcSjI0E6GbzV4gVydtAc12eFB7+e+N1BDmt/IsITTlNoaagYiOjk/313XI89O2LCs1AstTeQjW+OsHV1ShYaLY1WsMR136Ez4tq2z+XORyCuTNLvcOE0Bd+SWvqeiXbhXUxd5ZxhHMc+hTJ8pJGnvdSXf92U4LJd6axF5//4yfgpwRla1X2/z7rZRjcaYlAKXUw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=udUHp7cOVfN39epaKhTDE6ZCY+Q3pzyowQiKKO19vbc=;
- b=oaez6w+JH5u9ki2tZWOHqXUXjkSCai39oNIHT0unDd7JyIGS5rEOMSY35VeSJxJ/f7kdX44IBykV5md76xZ9f6RgTNIRs6SjWvMkqFDT+Ect3/oM5/Z6emRhzibGZY11TI9H2DQRy5wQyOczZB5KVNbFfEvqzQsW91xVEUzAP/Su0PKklKI1Q5LPKB033nbXp1m2e9RghehRw7+hc5U/HS3cwjUL5hh2Gtt0rIkefKMOXU9smrPAHAFDITa60Iy4S5G9Ek1At8uttmeSXW4jxz9V2BUSFFYKImIXoqVYpN8bpmQ/AtwfmpIagEOCu2x5HcKYYEEsBnJkxKPp8ZJ4Jw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=emersion.fr smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=udUHp7cOVfN39epaKhTDE6ZCY+Q3pzyowQiKKO19vbc=;
- b=100ub6arTfq/wD/BSLM4BrY5ns+LLetS6tof79VsWqf0KnVUwufZ+XqbWdLk4+7N2er2OjXbbCQHJyBSIIvlADSFXBxdKJW/sTo9U97wF725w6Ksn1svYjz49Y5iYuJCUVv7NbjlqU7WFCO5p2cNxE1PgPJPgOaymXzUtVHlvGI=
-Received: from MWHPR1601CA0017.namprd16.prod.outlook.com
- (2603:10b6:300:da::27) by MWHPR12MB1776.namprd12.prod.outlook.com
- (2603:10b6:300:113::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.20; Thu, 9 Dec
- 2021 14:21:05 +0000
-Received: from CO1NAM11FT012.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:da:cafe::78) by MWHPR1601CA0017.outlook.office365.com
- (2603:10b6:300:da::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.17 via Frontend
- Transport; Thu, 9 Dec 2021 14:21:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT012.mail.protection.outlook.com (10.13.175.192) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4755.13 via Frontend Transport; Thu, 9 Dec 2021 14:21:05 +0000
-Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Thu, 9 Dec
- 2021 08:21:00 -0600
-From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-To: Simon Ser <contact@emersion.fr>, Michel Daenzer <michel@daenzer.net>, "Bas
- Nieuwenhuizen" <bas@basnieuwenhuizen.nl>, Marek Olsak <marek.olsak@amd.com>,
- Roman Gilg <subdiff@gmail.com>, Nicholas Kazlauskas
- <nicholas.kazlauskas@amd.com>, Harry Wentland <Harry.Wentland@amd.com>, "Mark
- Yacoub" <markyacoub@chromium.org>, Sean Paul <seanpaul@chromium.org>, "Pekka
- Paalanen" <ppaalanen@gmail.com>, Yann Dirson <ydirson@free.fr>, Daniel Vetter
- <daniel@ffwll.ch>
-Subject: [PATCH v4 1/6] Documentation/gpu: Reorganize DC documentation
-Date: Thu, 9 Dec 2021 09:20:42 -0500
-Message-ID: <20211209142047.728572-2-Rodrigo.Siqueira@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211209142047.728572-1-Rodrigo.Siqueira@amd.com>
-References: <20211209142047.728572-1-Rodrigo.Siqueira@amd.com>
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0324310E121;
+ Thu,  9 Dec 2021 15:09:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=axis.com; q=dns/txt; s=axis-central1; t=1639062553;
+ x=1670598553; h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=W2ubuTB0lhYmOjPQa69hEhEIuxyUGZeyP9M+nuyzdoI=;
+ b=l42P+TdouKR//8y/s1tY7Dq14beSJhmkqg48OUmWKmYZl8zu1L7wGl9g
+ nL6YkfaeWLoKl0wgbNsAqENKKefGOUm7Tq61mpG6xjCretjywP5AMi4ye
+ mcc7EXpGZRdC+SAGCYT1WpeUsoNuf4bcUbxzgbLgFPMuPDofV4Kb868Rf
+ +oklWYDuj6kQf/kilASoii+yLC+XP3BPt6Uy+UdI3Zyg4HaB01IhSUhXv
+ 2ohEgIznLTO3UPLgOo9ix27DfKigzVTT8K6kumkU1HvaGjvjTqUjZh4B7
+ 3/iC4cjhx2ozMYySoFPrcTvAiy5lsgMkrkd3DRSExVwmhdFB8sGPQNgDu w==;
+Date: Thu, 9 Dec 2021 16:09:10 +0100
+From: Vincent Whitchurch <vincent.whitchurch@axis.com>
+To: "jim.cromie@gmail.com" <jim.cromie@gmail.com>
+Subject: Re: [PATCH v10 08/10] dyndbg: add print-to-tracefs, selftest with it
+ - RFC
+Message-ID: <20211209150910.GA23668@axis.com>
+References: <20211111220206.121610-1-jim.cromie@gmail.com>
+ <20211111220206.121610-9-jim.cromie@gmail.com>
+ <20211112114953.GA1381@axis.com>
+ <CAJfuBxxnuXAR7Jgn74MNQC7MLRc0xcDLw1cCidUJ9Xyar+O_2g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB03.amd.com
- (10.181.40.144)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8c170da9-19a2-4579-d493-08d9bb1f2324
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1776:EE_
-X-Microsoft-Antispam-PRVS: <MWHPR12MB1776910703C177D1B37B275698709@MWHPR12MB1776.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uBCHSjDo9MH3d6lUOG/kyZqysswJ3m+0wq2qYW3b/ya4Nv6AMIQkmfTDpi0blY/polCWoxsbXMtYoEBkKfZ+i6HLM7vbqXyv0E8vt+MfYgitX9H9z2vsrEkKH6X9cQ20mFKzjLgR+osHjD8XF1szRv3vEou+xP3Hka7OgyhqgZQFMyZgvhj43T0Z3O1kfE+k4rSDTBLVxcgEQdkoebz2go3giLF0pGQ0D0JaJLEu0pY0cI2os/8aenpBqbKDgSYArsAOvHDrhsYIPPDXMFRrdpD6+bRhp8wuoRfbJbOI2kyeQCIZuSrI0Q/9ctWcze4YLiVqCPAJW3RwHGMvKTwJNXTtDVdAlZTT6NJG+5lhLdj6LQi3R0y77ks4Gsza1AG/6R/fYUuM6gRUlGkE3LTM/JgZ8XfgrdUvdopzU4t4nZF4UGAClUF2tHhoe03/Hj8NkcfC8dW43yz5M7LMIcz342cOeCjk5IKXXouuMHFnJcPCsMy4l5ymXiE7ivsTIKJTzInqWuyL/kIKYCqsFQySTluYDUoyO0MlRWwnePrVg67LpevW9F4m4Z9Gq0RjCW+3FP0Q0IDladZ6ryl7XPLFFBXMB6CkyZFatxx9uz4aLF8Yd0Qa3WD9vffxoY7YsMz4oN2v8AX/GKJbLJcvOYulQ/D+6C/QDrZN9F1n1hD2Ij7OWYXAm5kJKfUiWZ8/Jnwhr5jjAfX32A+nVpTdsTq1eAgZgbkbOsQDRAhvEX+KwnqomHQBqyVsIQ+lsmWrdfTLT3nZNl2wmj9PRKHCVHAqUwyWwHAx2Fe3GDpH3WHw/uQIP8ee29BUEM3FGXUNv0WG
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(40470700001)(81166007)(36756003)(1076003)(6666004)(186003)(47076005)(2906002)(83380400001)(5660300002)(316002)(508600001)(356005)(26005)(36860700001)(426003)(82310400004)(70206006)(70586007)(110136005)(921005)(336012)(7416002)(86362001)(54906003)(8676002)(40460700001)(4326008)(2616005)(16526019)(8936002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 14:21:05.6085 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c170da9-19a2-4579-d493-08d9bb1f2324
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT012.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1776
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAJfuBxxnuXAR7Jgn74MNQC7MLRc0xcDLw1cCidUJ9Xyar+O_2g@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Mailman-Approved-At: Thu, 09 Dec 2021 17:04:03 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,269 +50,417 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, qingqing.zhuo@amd.com, roman.li@amd.com,
- amd-gfx@lists.freedesktop.org, aurabindo.pillai@amd.com, nicholas.choi@amd.com,
- dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- bhawanpreet.lakha@amd.com, Christian Koenig <christian.koenig@amd.com>
+Cc: "quic_saipraka@quicinc.com" <quic_saipraka@quicinc.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>, Will Deacon <will@kernel.org>,
+ "maz@kernel.org" <maz@kernel.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Ingo Molnar <mingo@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Arnd Bergmann <arnd@arndb.de>,
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Steven Rostedt <rostedt@goodmis.org>, Jason Baron <jbaron@akamai.com>,
+ Sean Paul <seanpaul@chromium.org>,
+ "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, Sean Paul <sean@poorly.run>,
+ Greg KH <gregkh@linuxfoundation.org>, LKML <linux-kernel@vger.kernel.org>,
+ "robdclark@gmail.com" <robdclark@gmail.com>,
+ "quic_psodagud@quicinc.com" <quic_psodagud@quicinc.com>,
+ "mathieu.desnoyers@efficios.com" <mathieu.desnoyers@efficios.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Display core documentation is not well organized, and it is hard to find
-information due to the lack of sections. This commit reorganizes the
-documentation layout, and it is preparation work for future changes.
+On Wed, Dec 08, 2021 at 06:16:10AM +0100, jim.cromie@gmail.com wrote:
+> are you planning to dust this patchset off and resubmit it ?
+> 
+> Ive been playing with it and learning ftrace (decade+ late),
+> I found your boot-line example very helpful as 1st steps
+> (still havent even tried the filtering)
+> 
+> 
+> with these adjustments (voiced partly to test my understanding)
+> I would support it, and rework my patchset to use it.
+> 
+> - change flag to -e, good mnemonics for event/trace-event
+>    T is good too, but uppercase, no need to go there.
 
-Changes since V1:
-- Christian: Group amdgpu documentation together.
-- Daniel: Drop redundant amdgpu prefix.
-- Jani: Create index pages.
-- Yann: Mirror display folder in the documentation.
+Any flag name works for me.
 
-Signed-off-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
----
- Documentation/gpu/amdgpu-dc.rst               | 74 -------------------
- Documentation/gpu/amdgpu/display/dc-debug.rst |  4 +
- .../gpu/amdgpu/display/display-manager.rst    | 42 +++++++++++
- Documentation/gpu/amdgpu/display/index.rst    | 29 ++++++++
- .../gpu/{amdgpu.rst => amdgpu/index.rst}      | 18 ++++-
- Documentation/gpu/drivers.rst                 |  3 +-
- 6 files changed, 91 insertions(+), 79 deletions(-)
- delete mode 100644 Documentation/gpu/amdgpu-dc.rst
- create mode 100644 Documentation/gpu/amdgpu/display/dc-debug.rst
- create mode 100644 Documentation/gpu/amdgpu/display/display-manager.rst
- create mode 100644 Documentation/gpu/amdgpu/display/index.rst
- rename Documentation/gpu/{amdgpu.rst => amdgpu/index.rst} (96%)
+> - include/trace/events/dyndbg.h - separate file, not mixed with print.h
+>   dyndbg class, so trace_event=dyndbg:*
+> 
+> - 1 event type per pr_debug, dev_dbg, netdev_dbg ? ibdev_dbg ?
+>   with the extra args: descriptor that Steven wanted,
+>   probably also struct <|net|ib>dev
 
-diff --git a/Documentation/gpu/amdgpu-dc.rst b/Documentation/gpu/amdgpu-dc.rst
-deleted file mode 100644
-index f7ff7e1309de..000000000000
---- a/Documentation/gpu/amdgpu-dc.rst
-+++ /dev/null
-@@ -1,74 +0,0 @@
--===================================
--drm/amd/display - Display Core (DC)
--===================================
--
--*placeholder - general description of supported platforms, what dc is, etc.*
--
--Because it is partially shared with other operating systems, the Display Core
--Driver is divided in two pieces.
--
--1. **Display Core (DC)** contains the OS-agnostic components. Things like
--   hardware programming and resource management are handled here.
--2. **Display Manager (DM)** contains the OS-dependent components. Hooks to the
--   amdgpu base driver and DRM are implemented here.
--
--It doesn't help that the entire package is frequently referred to as DC. But
--with the context in mind, it should be clear.
--
--When CONFIG_DRM_AMD_DC is enabled, DC will be initialized by default for
--supported ASICs. To force disable, set `amdgpu.dc=0` on kernel command line.
--Likewise, to force enable on unsupported ASICs, set `amdgpu.dc=1`.
--
--To determine if DC is loaded, search dmesg for the following entry:
--
--``Display Core initialized with <version number here>``
--
--AMDgpu Display Manager
--======================
--
--.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
--   :doc: overview
--
--.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
--   :internal:
--
--Lifecycle
-----------
--
--.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
--   :doc: DM Lifecycle
--
--.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
--   :functions: dm_hw_init dm_hw_fini
--
--Interrupts
------------
--
--.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
--   :doc: overview
--
--.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
--   :internal:
--
--.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
--   :functions: register_hpd_handlers dm_crtc_high_irq dm_pflip_high_irq
--
--Atomic Implementation
-----------------------
--
--.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
--   :doc: atomic
--
--.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
--   :functions: amdgpu_dm_atomic_check amdgpu_dm_atomic_commit_tail
--
--Display Core
--============
--
--**WIP**
--
--FreeSync Video
----------------
--
--.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
--   :doc: FreeSync Video
-diff --git a/Documentation/gpu/amdgpu/display/dc-debug.rst b/Documentation/gpu/amdgpu/display/dc-debug.rst
-new file mode 100644
-index 000000000000..bbb8c3fc8eee
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/display/dc-debug.rst
-@@ -0,0 +1,4 @@
-+Display Core Debug tools
-+========================
-+
-+TODO
-diff --git a/Documentation/gpu/amdgpu/display/display-manager.rst b/Documentation/gpu/amdgpu/display/display-manager.rst
-new file mode 100644
-index 000000000000..7ce31f89d9a0
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/display/display-manager.rst
-@@ -0,0 +1,42 @@
-+======================
-+AMDgpu Display Manager
-+======================
-+
-+.. contents:: Table of Contents
-+    :depth: 3
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+   :doc: overview
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-+   :internal:
-+
-+Lifecycle
-+=========
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+   :doc: DM Lifecycle
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+   :functions: dm_hw_init dm_hw_fini
-+
-+Interrupts
-+==========
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-+   :doc: overview
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_irq.c
-+   :internal:
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+   :functions: register_hpd_handlers dm_crtc_high_irq dm_pflip_high_irq
-+
-+Atomic Implementation
-+=====================
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+   :doc: atomic
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+   :functions: amdgpu_dm_atomic_check amdgpu_dm_atomic_commit_tail
-diff --git a/Documentation/gpu/amdgpu/display/index.rst b/Documentation/gpu/amdgpu/display/index.rst
-new file mode 100644
-index 000000000000..a443866332ac
---- /dev/null
-+++ b/Documentation/gpu/amdgpu/display/index.rst
-@@ -0,0 +1,29 @@
-+===================================
-+drm/amd/display - Display Core (DC)
-+===================================
-+
-+*placeholder - general description of supported platforms, what dc is, etc.*
-+
-+Because it is partially shared with other operating systems, the Display Core
-+Driver is divided in two pieces.
-+
-+1. **Display Core (DC)** contains the OS-agnostic components. Things like
-+   hardware programming and resource management are handled here.
-+2. **Display Manager (DM)** contains the OS-dependent components. Hooks to the
-+   amdgpu base driver and DRM are implemented here.
-+
-+It doesn't help that the entire package is frequently referred to as DC. But
-+with the context in mind, it should be clear.
-+
-+When CONFIG_DRM_AMD_DC is enabled, DC will be initialized by default for
-+supported ASICs. To force disable, set `amdgpu.dc=0` on kernel command line.
-+Likewise, to force enable on unsupported ASICs, set `amdgpu.dc=1`.
-+
-+To determine if DC is loaded, search dmesg for the following entry:
-+
-+.. toctree::
-+
-+   display-manager.rst
-+   dc-debug.rst
-+
-+``Display Core initialized with <version number here>``
-diff --git a/Documentation/gpu/amdgpu.rst b/Documentation/gpu/amdgpu/index.rst
-similarity index 96%
-rename from Documentation/gpu/amdgpu.rst
-rename to Documentation/gpu/amdgpu/index.rst
-index 8ba72e898099..5c8cbf514097 100644
---- a/Documentation/gpu/amdgpu.rst
-+++ b/Documentation/gpu/amdgpu/index.rst
-@@ -1,6 +1,6 @@
--=========================
-+==========================
-  drm/amdgpu AMDgpu driver
--=========================
-+==========================
- 
- The drm/amdgpu driver supports all AMD Radeon GPUs based on the Graphics Core
- Next (GCN) architecture.
-@@ -71,7 +71,7 @@ Interrupt Handling
-    :internal:
- 
- IP Blocks
--------------------
-+---------
- 
- .. kernel-doc:: drivers/gpu/drm/amd/include/amd_shared.h
-    :doc: IP Blocks
-@@ -79,6 +79,18 @@ IP Blocks
- .. kernel-doc:: drivers/gpu/drm/amd/include/amd_shared.h
-    :identifiers: amd_ip_block_type amd_ip_funcs
- 
-+Display Core
-+============
-+
-+This section covers Display core.
-+
-+.. toctree::
-+
-+  display/index
-+
-+.. kernel-doc:: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+   :doc: overview
-+
- AMDGPU XGMI Support
- ===================
- 
-diff --git a/Documentation/gpu/drivers.rst b/Documentation/gpu/drivers.rst
-index b4a0ed3ca961..3a52f48215a3 100644
---- a/Documentation/gpu/drivers.rst
-+++ b/Documentation/gpu/drivers.rst
-@@ -4,8 +4,7 @@ GPU Driver Documentation
- 
- .. toctree::
- 
--   amdgpu
--   amdgpu-dc
-+   amdgpu/index
-    i915
-    mcde
-    meson
--- 
-2.25.1
+For my use cases I don't see much value in having separate events for
+the different debug functions, but since all of them can be easily
+enabled (dyndbg:*, as you noted), that works for me too.
 
+> If youre too busy for a while, I'd eventually take a (slow) run at it.
+
+You're welcome to have a go.  I think you've already rebased the
+patchset, but here's a diff top of v5.16-rc4 for reference.  I noticed a
+bug inside the CONFIG_JUMP_LABEL handling (also present in the last
+version I posted) which should be fixed as part of the diff below (I've
+added a comment).  Proper tests for this, like the ones you are adding
+in your patchset, would certainly be a good idea.  Thanks.
+
+8<-------------
+diff --git a/Documentation/admin-guide/dynamic-debug-howto.rst b/Documentation/admin-guide/dynamic-debug-howto.rst
+index a89cfa083155..b9c4e808befc 100644
+--- a/Documentation/admin-guide/dynamic-debug-howto.rst
++++ b/Documentation/admin-guide/dynamic-debug-howto.rst
+@@ -228,6 +228,7 @@ of the characters::
+ The flags are::
+ 
+   p    enables the pr_debug() callsite.
++  x    enables trace to the printk:dyndbg event
+   f    Include the function name in the printed message
+   l    Include line number in the printed message
+   m    Include module name in the printed message
+diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debug.h
+index dce631e678dd..bc21bfb0fdc6 100644
+--- a/include/linux/dynamic_debug.h
++++ b/include/linux/dynamic_debug.h
+@@ -27,7 +27,7 @@ struct _ddebug {
+ 	 * writes commands to <debugfs>/dynamic_debug/control
+ 	 */
+ #define _DPRINTK_FLAGS_NONE	0
+-#define _DPRINTK_FLAGS_PRINT	(1<<0) /* printk() a message using the format */
++#define _DPRINTK_FLAGS_PRINTK	(1<<0) /* printk() a message using the format */
+ #define _DPRINTK_FLAGS_INCL_MODNAME	(1<<1)
+ #define _DPRINTK_FLAGS_INCL_FUNCNAME	(1<<2)
+ #define _DPRINTK_FLAGS_INCL_LINENO	(1<<3)
+@@ -37,8 +37,11 @@ struct _ddebug {
+ 	(_DPRINTK_FLAGS_INCL_MODNAME | _DPRINTK_FLAGS_INCL_FUNCNAME |\
+ 	 _DPRINTK_FLAGS_INCL_LINENO  | _DPRINTK_FLAGS_INCL_TID)
+ 
++#define _DPRINTK_FLAGS_TRACE		(1<<5)
++#define _DPRINTK_FLAGS_ENABLE		(_DPRINTK_FLAGS_PRINTK | \
++					 _DPRINTK_FLAGS_TRACE)
+ #if defined DEBUG
+-#define _DPRINTK_FLAGS_DEFAULT _DPRINTK_FLAGS_PRINT
++#define _DPRINTK_FLAGS_DEFAULT _DPRINTK_FLAGS_PRINTK
+ #else
+ #define _DPRINTK_FLAGS_DEFAULT 0
+ #endif
+@@ -120,10 +123,10 @@ void __dynamic_ibdev_dbg(struct _ddebug *descriptor,
+ 
+ #ifdef DEBUG
+ #define DYNAMIC_DEBUG_BRANCH(descriptor) \
+-	likely(descriptor.flags & _DPRINTK_FLAGS_PRINT)
++	likely(descriptor.flags & _DPRINTK_FLAGS_ENABLE)
+ #else
+ #define DYNAMIC_DEBUG_BRANCH(descriptor) \
+-	unlikely(descriptor.flags & _DPRINTK_FLAGS_PRINT)
++	unlikely(descriptor.flags & _DPRINTK_FLAGS_ENABLE)
+ #endif
+ 
+ #endif /* CONFIG_JUMP_LABEL */
+diff --git a/include/trace/events/printk.h b/include/trace/events/printk.h
+index 13d405b2fd8b..1f78bd237a91 100644
+--- a/include/trace/events/printk.h
++++ b/include/trace/events/printk.h
+@@ -7,7 +7,7 @@
+ 
+ #include <linux/tracepoint.h>
+ 
+-TRACE_EVENT(console,
++DECLARE_EVENT_CLASS(printk,
+ 	TP_PROTO(const char *text, size_t len),
+ 
+ 	TP_ARGS(text, len),
+@@ -31,6 +31,16 @@ TRACE_EVENT(console,
+ 
+ 	TP_printk("%s", __get_str(msg))
+ );
++
++DEFINE_EVENT(printk, console,
++	TP_PROTO(const char *text, size_t len),
++	TP_ARGS(text, len)
++);
++
++DEFINE_EVENT(printk, dyndbg,
++	TP_PROTO(const char *text, size_t len),
++	TP_ARGS(text, len)
++);
+ #endif /* _TRACE_PRINTK_H */
+ 
+ /* This part must be outside protection */
+diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
+index dd7f56af9aed..161454fa0af8 100644
+--- a/lib/dynamic_debug.c
++++ b/lib/dynamic_debug.c
+@@ -36,6 +36,7 @@
+ #include <linux/sched.h>
+ #include <linux/device.h>
+ #include <linux/netdevice.h>
++#include <trace/events/printk.h>
+ 
+ #include <rdma/ib_verbs.h>
+ 
+@@ -86,11 +87,12 @@ static inline const char *trim_prefix(const char *path)
+ }
+ 
+ static struct { unsigned flag:8; char opt_char; } opt_array[] = {
+-	{ _DPRINTK_FLAGS_PRINT, 'p' },
++	{ _DPRINTK_FLAGS_PRINTK, 'p' },
+ 	{ _DPRINTK_FLAGS_INCL_MODNAME, 'm' },
+ 	{ _DPRINTK_FLAGS_INCL_FUNCNAME, 'f' },
+ 	{ _DPRINTK_FLAGS_INCL_LINENO, 'l' },
+ 	{ _DPRINTK_FLAGS_INCL_TID, 't' },
++	{ _DPRINTK_FLAGS_TRACE, 'x' },
+ 	{ _DPRINTK_FLAGS_NONE, '_' },
+ };
+ 
+@@ -210,11 +212,23 @@ static int ddebug_change(const struct ddebug_query *query,
+ 			if (newflags == dp->flags)
+ 				continue;
+ #ifdef CONFIG_JUMP_LABEL
+-			if (dp->flags & _DPRINTK_FLAGS_PRINT) {
+-				if (!(modifiers->flags & _DPRINTK_FLAGS_PRINT))
++			if (dp->flags & _DPRINTK_FLAGS_ENABLE) {
++				/*
++				 * The newflags check is to ensure that the
++				 * static branch doesn't get disabled in step
++				 * 3:
++				 *
++				 * (1) +pf
++				 * (2) +x
++				 * (3) -pf
++				 */
++				if (!(modifiers->flags & _DPRINTK_FLAGS_ENABLE) &&
++				    !(newflags & _DPRINTK_FLAGS_ENABLE)) {
+ 					static_branch_disable(&dp->key.dd_key_true);
+-			} else if (modifiers->flags & _DPRINTK_FLAGS_PRINT)
++				}
++			} else if (modifiers->flags & _DPRINTK_FLAGS_ENABLE) {
+ 				static_branch_enable(&dp->key.dd_key_true);
++			}
+ #endif
+ 			dp->flags = newflags;
+ 			v4pr_info("changed %s:%d [%s]%s =%s\n",
+@@ -621,6 +635,96 @@ static char *__dynamic_emit_prefix(const struct _ddebug *desc, char *buf)
+ 	return buf;
+ }
+ 
++/*
++ * This code is heavily based on __ftrace_trace_stack().
++ *
++ * Allow 4 levels of nesting: normal, softirq, irq, NMI.
++ */
++#define DYNAMIC_TRACE_NESTING	4
++
++struct dynamic_trace_buf {
++	char buf[256];
++};
++
++struct dynamic_trace_bufs {
++	struct dynamic_trace_buf bufs[DYNAMIC_TRACE_NESTING];
++};
++
++static DEFINE_PER_CPU(struct dynamic_trace_bufs, dynamic_trace_bufs);
++static DEFINE_PER_CPU(int, dynamic_trace_reserve);
++
++static void dynamic_trace(const char *fmt, va_list args)
++{
++	struct dynamic_trace_buf *buf;
++	int bufidx;
++	int len;
++
++	preempt_disable_notrace();
++
++	bufidx = __this_cpu_inc_return(dynamic_trace_reserve) - 1;
++
++	if (WARN_ON_ONCE(bufidx > DYNAMIC_TRACE_NESTING))
++		goto out;
++
++	/* For the same reasons as in __ftrace_trace_stack(). */
++	barrier();
++
++	buf = this_cpu_ptr(dynamic_trace_bufs.bufs) + bufidx;
++
++	len = vscnprintf(buf->buf, sizeof(buf->buf), fmt, args);
++	trace_dyndbg(buf->buf, len);
++
++out:
++	/* As above. */
++	barrier();
++	__this_cpu_dec(dynamic_trace_reserve);
++	preempt_enable_notrace();
++}
++
++static void dynamic_printk(unsigned int flags, const char *fmt, ...)
++{
++	if (flags & _DPRINTK_FLAGS_TRACE) {
++		va_list args;
++
++		va_start(args, fmt);
++		/*
++		 * All callers include the KERN_DEBUG prefix to keep the
++		 * vprintk case simple; strip it out for tracing.
++		 */
++		dynamic_trace(fmt + strlen(KERN_DEBUG), args);
++		va_end(args);
++	}
++
++	if (flags & _DPRINTK_FLAGS_PRINTK) {
++		va_list args;
++
++		va_start(args, fmt);
++		vprintk(fmt, args);
++		va_end(args);
++	}
++}
++
++static void dynamic_dev_printk(unsigned int flags, const struct device *dev,
++			       const char *fmt, ...)
++{
++
++	if (flags & _DPRINTK_FLAGS_TRACE) {
++		va_list args;
++
++		va_start(args, fmt);
++		dynamic_trace(fmt, args);
++		va_end(args);
++	}
++
++	if (flags & _DPRINTK_FLAGS_PRINTK) {
++		va_list args;
++
++		va_start(args, fmt);
++		dev_vprintk_emit(LOGLEVEL_DEBUG, dev, fmt, args);
++		va_end(args);
++	}
++}
++
+ static inline char *dynamic_emit_prefix(struct _ddebug *desc, char *buf)
+ {
+ 	if (unlikely(desc->flags & _DPRINTK_FLAGS_INCL_ANY))
+@@ -642,7 +746,8 @@ void __dynamic_pr_debug(struct _ddebug *descriptor, const char *fmt, ...)
+ 	vaf.fmt = fmt;
+ 	vaf.va = &args;
+ 
+-	printk(KERN_DEBUG "%s%pV", dynamic_emit_prefix(descriptor, buf), &vaf);
++	dynamic_printk(descriptor->flags, KERN_DEBUG "%s%pV",
++		       dynamic_emit_prefix(descriptor, buf), &vaf);
+ 
+ 	va_end(args);
+ }
+@@ -652,6 +757,7 @@ void __dynamic_dev_dbg(struct _ddebug *descriptor,
+ 		      const struct device *dev, const char *fmt, ...)
+ {
+ 	struct va_format vaf;
++	unsigned int flags;
+ 	va_list args;
+ 
+ 	BUG_ON(!descriptor);
+@@ -661,16 +767,18 @@ void __dynamic_dev_dbg(struct _ddebug *descriptor,
+ 
+ 	vaf.fmt = fmt;
+ 	vaf.va = &args;
++	flags = descriptor->flags;
+ 
+ 	if (!dev) {
+-		printk(KERN_DEBUG "(NULL device *): %pV", &vaf);
++		dynamic_printk(flags, KERN_DEBUG "(NULL device *): %pV",
++			      &vaf);
+ 	} else {
+ 		char buf[PREFIX_SIZE] = "";
+ 
+-		dev_printk_emit(LOGLEVEL_DEBUG, dev, "%s%s %s: %pV",
+-				dynamic_emit_prefix(descriptor, buf),
+-				dev_driver_string(dev), dev_name(dev),
+-				&vaf);
++		dynamic_dev_printk(flags, dev, "%s%s %s: %pV",
++				   dynamic_emit_prefix(descriptor, buf),
++				   dev_driver_string(dev), dev_name(dev),
++				   &vaf);
+ 	}
+ 
+ 	va_end(args);
+@@ -683,6 +791,7 @@ void __dynamic_netdev_dbg(struct _ddebug *descriptor,
+ 			  const struct net_device *dev, const char *fmt, ...)
+ {
+ 	struct va_format vaf;
++	unsigned int flags;
+ 	va_list args;
+ 
+ 	BUG_ON(!descriptor);
+@@ -692,22 +801,24 @@ void __dynamic_netdev_dbg(struct _ddebug *descriptor,
+ 
+ 	vaf.fmt = fmt;
+ 	vaf.va = &args;
++	flags = descriptor->flags;
+ 
+ 	if (dev && dev->dev.parent) {
+ 		char buf[PREFIX_SIZE] = "";
+ 
+-		dev_printk_emit(LOGLEVEL_DEBUG, dev->dev.parent,
+-				"%s%s %s %s%s: %pV",
+-				dynamic_emit_prefix(descriptor, buf),
+-				dev_driver_string(dev->dev.parent),
+-				dev_name(dev->dev.parent),
+-				netdev_name(dev), netdev_reg_state(dev),
+-				&vaf);
++		dynamic_dev_printk(flags, dev->dev.parent,
++				   "%s%s %s %s%s: %pV",
++				   dynamic_emit_prefix(descriptor, buf),
++				   dev_driver_string(dev->dev.parent),
++				   dev_name(dev->dev.parent),
++				   netdev_name(dev), netdev_reg_state(dev),
++				   &vaf);
+ 	} else if (dev) {
+-		printk(KERN_DEBUG "%s%s: %pV", netdev_name(dev),
+-		       netdev_reg_state(dev), &vaf);
++		dynamic_printk(flags, KERN_DEBUG "%s%s: %pV",
++			       netdev_name(dev), netdev_reg_state(dev), &vaf);
+ 	} else {
+-		printk(KERN_DEBUG "(NULL net_device): %pV", &vaf);
++		dynamic_printk(flags, KERN_DEBUG "(NULL net_device): %pV",
++			       &vaf);
+ 	}
+ 
+ 	va_end(args);
+@@ -722,27 +833,31 @@ void __dynamic_ibdev_dbg(struct _ddebug *descriptor,
+ 			 const struct ib_device *ibdev, const char *fmt, ...)
+ {
+ 	struct va_format vaf;
++	unsigned int flags;
+ 	va_list args;
+ 
+ 	va_start(args, fmt);
+ 
+ 	vaf.fmt = fmt;
+ 	vaf.va = &args;
++	flags = descriptor->flags;
+ 
+ 	if (ibdev && ibdev->dev.parent) {
+ 		char buf[PREFIX_SIZE] = "";
+ 
+-		dev_printk_emit(LOGLEVEL_DEBUG, ibdev->dev.parent,
+-				"%s%s %s %s: %pV",
+-				dynamic_emit_prefix(descriptor, buf),
+-				dev_driver_string(ibdev->dev.parent),
+-				dev_name(ibdev->dev.parent),
+-				dev_name(&ibdev->dev),
+-				&vaf);
++		dynamic_dev_printk(flags, ibdev->dev.parent,
++				   "%s%s %s %s: %pV",
++				   dynamic_emit_prefix(descriptor, buf),
++				   dev_driver_string(ibdev->dev.parent),
++				   dev_name(ibdev->dev.parent),
++				   dev_name(&ibdev->dev),
++				   &vaf);
+ 	} else if (ibdev) {
+-		printk(KERN_DEBUG "%s: %pV", dev_name(&ibdev->dev), &vaf);
++		dynamic_printk(flags, KERN_DEBUG "%s: %pV",
++			       dev_name(&ibdev->dev), &vaf);
+ 	} else {
+-		printk(KERN_DEBUG "(NULL ib_device): %pV", &vaf);
++		dynamic_printk(flags, KERN_DEBUG "(NULL ib_device): %pV",
++			       &vaf);
+ 	}
+ 
+ 	va_end(args);
