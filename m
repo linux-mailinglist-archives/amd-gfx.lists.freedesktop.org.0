@@ -2,93 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB6D946EE26
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 17:55:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE91346EDD3
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 17:54:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F9EC10E5D9;
-	Thu,  9 Dec 2021 16:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CFBC10E15B;
+	Thu,  9 Dec 2021 16:53:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2060.outbound.protection.outlook.com [40.107.94.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A680988F9B;
- Thu,  9 Dec 2021 05:53:22 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UduZ8Uq+pTfwrvHqjhrMZeZvqG9DPejTqHKr/gF+Giyas33sqWPvQVhJE2nYZ+oiy/zj891pO2lF8SYxmMntTmBbMAjV4ia/Q/JPcOCNoiQvhTD10N4HDj/xCx7ErC6KO/bejqtpeRI3qzRiIxCU0BqxKcqWTUHZ1nAb3byGlfR6iHlMZh3yR4zJ6XrGsS+L7CM84WTmjXexV+voP4kqTHFxE6NFYOj4bKYn+BKCBQC3hLTyemIXQMSlHnWaQg6/ycc/fAWDuvKp7ff+yTtWmvwFRJLK+DTga71BV+Qi3Mi1MN+pmSrJqUNHLbIGQlsCT1J2wNh3o9lUorh77D4oYA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4SCjVaT/Y2ygBviUnuAUP/B6S49zFa6fufEf8XzF1XM=;
- b=PxhRvxpSVp7Clmz3nnZWk8Kv5+GJjLlXIHo5ifOl8A0f+lV7UMAe1AodtZdnG97NsQFrK3QfHC7w28Y9C++Eqfn9SjbZgbi9pdOSyw9vYAYi3Npxz95d/j6EP6nlWOZXZhisqYsrVSluPwZs8VZSiFTa8uoXmStXVaU4RLrSVXbOcXwEfc0z9LxzdNdYB1POIDZZ5V8p+yPKQZtsT0fnIx9Wl8IrzZF0RmVItDIbrCD0UH0GZye6o2kyFNfo/gWH7lufObJqaXEE5fOaQqocvG4VH9/aFMe00WnM7MhdudQg6h4Hqtjoi2y4+hD/IbrM7NjnTuZkpml94RK/Cn8KPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4SCjVaT/Y2ygBviUnuAUP/B6S49zFa6fufEf8XzF1XM=;
- b=tLv+K+r0UposkuD99newp30MLYYh5cpVlAVx2ruVRnF+mgYY97nud7XBcbtpL/XHqCruAFYEUbXeIKJ+z8E9+xd5h6ETQYuxMAj5xHqT4+3p3ZT5vwmfz02pSVsWZv3UUqNOM6SkTWw+HlTpyA02aKbMESo9lbIkJqIyxF93z14=
-Received: from DM5PR06CA0093.namprd06.prod.outlook.com (2603:10b6:3:4::31) by
- BL1PR12MB5110.namprd12.prod.outlook.com (2603:10b6:208:312::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.19; Thu, 9 Dec
- 2021 04:28:44 +0000
-Received: from DM6NAM11FT015.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:4:cafe::5f) by DM5PR06CA0093.outlook.office365.com
- (2603:10b6:3:4::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.13 via Frontend
- Transport; Thu, 9 Dec 2021 04:28:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT015.mail.protection.outlook.com (10.13.172.133) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4755.13 via Frontend Transport; Thu, 9 Dec 2021 04:28:43 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Wed, 8 Dec
- 2021 22:28:42 -0600
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <airlied@gmail.com>, <daniel.vetter@ffwll.ch>
-Subject: [pull] amdgpu drm-fixes-5.16
-Date: Wed, 8 Dec 2021 23:28:24 -0500
-Message-ID: <20211209042824.6720-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.31.1
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com
+ [IPv6:2607:f8b0:4864:20::330])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A339210E116
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 06:19:19 +0000 (UTC)
+Received: by mail-ot1-x330.google.com with SMTP id
+ 47-20020a9d0332000000b005798ac20d72so5133165otv.9
+ for <amd-gfx@lists.freedesktop.org>; Wed, 08 Dec 2021 22:19:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=K09KrOKvdCD/M4ifHWgXSzR2/zrc5rm3IsZxIdeKG8M=;
+ b=SwDR0Szb3MSzvivPnMry4DASxJm2P22kxsUdCa61jfLqq9ui7gQxPULhv5nFSYYEYt
+ umJUwJ6PTD7y3N+KXfVg+NBEkRyRoGb/VDpmNTVmSb6j8HKqUElhtwGdk4389LQUonRU
+ Zs6KmKcFSWNQ03UH9Rq9vpaP+r2SNsKvPmIQ1+aKnHH5dCtVK55Et+xPrF5F3hOCvZl2
+ qMwJr50AtbNmj9j5ZyFECFAu5kkLOqNRQuP3fV1tn56fu+Hh+g5vxa5nI4kcc9DdxSTv
+ p7MRNiSc9qOxw6zDqMXrDMBK+DHDithfIVTlIlvW1BJYfOj3wt3V/Z2jcC9M3GEsmJUK
+ DCTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=K09KrOKvdCD/M4ifHWgXSzR2/zrc5rm3IsZxIdeKG8M=;
+ b=hiw261OuqZ9X6Bu4qQD14tSJZ/FVlLPzVegPAtQichoTe8sM7NZh6aGaVglv4f2lNy
+ b/MQt8p5/nHzN53lqr+SCHK84q/G55OMYUBQQORakHlaoQI5reP32vrBID9vPDpuwqo0
+ IiYNqImQZsglhAoutelhD32xKgkRM7tE9wil1iLDY05MmjS8XnnD0N7A73NNZcZD3p3t
+ Z5um/QwwSfqn0PVjoKRR1Bkfuf80gLVSrEAdW76BNs+rXcEHD5EEopG4l2Ql5MoNyYzG
+ N/cRoV1eozhVk6auP6v86qBxuPFFcOWLI/cklYJOnyK6eM515mok4sXplVunaTWS5G8D
+ 02GA==
+X-Gm-Message-State: AOAM531L0JpOImgIZprzCIDTdEewaX+VwvNNRfEzynRxD2p633FTKCxm
+ dEkOE5WoRjILbbiZv3T0um46sfTVUua5s6UxUhf3JCsV
+X-Google-Smtp-Source: ABdhPJwf8PeEHqCVUZHyzGdfNiC0c7lYlYoxDOvdMSXr4GOmdyIhhzAwnqvkkbfyg59LbNwNwa8kTSD9m/y5QZJUxPI=
+X-Received: by 2002:a9d:6855:: with SMTP id c21mr3491528oto.357.1639024579308; 
+ Wed, 08 Dec 2021 20:36:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
- (10.181.40.144)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 36fb8a31-f5eb-44aa-b730-08d9bacc6276
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5110:EE_
-X-Microsoft-Antispam-PRVS: <BL1PR12MB5110764378403A691C3B80CDF7709@BL1PR12MB5110.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:352;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: upWIBINv/Q80sMrwc4GOizsoYeJvP3isf9ZyulVOjIPWLu5Kg92EYCxS5sKoyw7lrpur6qyCI79nmh+UFdOxuSHXpm5V7/pqaWDchtxPZ58zqg619CHu8g6O8kbIp8qQFmLBHm35uJjFIvrIlQ1S+mdRh+HYoCaaKsWo0lUUVpMlSiAy7NWXNxuo+f/voWnKMDHcUMbSUf1i6XStxIBwvxEYDcNAavybl5Xc+bjjzkAOQarM1fU2y7eLb4v9d65odCzZhMK2qhJwWk0r/ME+bzaAfThHFytSuylfSJTeKJAN4wZqQ4DlD+WU0gncaA+g26cXRBvloBl1Nyq1sK4szXTM4sh8xeikjWAeJSwEhfYmyi4xNxvdMtQsIU6S0BE/S4RiUuSJ8CgVPZxKpyx4uuRV59iG/Dabp9FlZSa56cKv2at5gdSfpFBOZdTYJSET+RofL7Em4ox1lsuVXi1HD645LQVNOTz7h0h2aflzumGnpW2StpUCZEu5S0WLUrCQYl97nDDqrsjVsqHEJJgSllWEhNYJhy4lPS5hhrI2zDuHeoD9M8zWI5RNQF1V2G7cSeQw/2MNQSJ1ErIqS1NnIRP2QttY4dR8yDRMDUUeXW//xQhEQNCxCxnU0cMLh/jz8HpNkQhsJkSPlKV95FREx0d+IaWIY1lc7l2hjDxFXhAPgypRBHlaDUtvpvKAh8zFoNy7bwXNAhE8bjAv9kubSMrRNAClEgiD0ZTTZk8YGbBbRylxpFQ40Bi8w1ZnfMR3Qs+5TtIft73bW4cCJJELCEtCF6VjfT9zJIKEgUH7yT8=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(40470700001)(1076003)(966005)(336012)(2616005)(426003)(110136005)(8676002)(70206006)(316002)(70586007)(2906002)(7696005)(508600001)(16526019)(26005)(6666004)(8936002)(5660300002)(82310400004)(186003)(356005)(40460700001)(47076005)(81166007)(86362001)(36860700001)(83380400001)(36756003)(4326008)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 04:28:43.7052 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36fb8a31-f5eb-44aa-b730-08d9bacc6276
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT015.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5110
+References: <CADnq5_M_PS6fSza560ReNVki0n40tozig_KsbZnFksco2MZ3Ag@mail.gmail.com>
+ <2125070111.42356235.1639003804213.JavaMail.root@zimbra39-e7>
+In-Reply-To: <2125070111.42356235.1639003804213.JavaMail.root@zimbra39-e7>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 8 Dec 2021 23:36:08 -0500
+Message-ID: <CADnq5_MLeh2sYJS0_q0NratEQSSP6poHW1_Xdi0w-7DPZTQ3AA@mail.gmail.com>
+Subject: Re: Various problems trying to vga-passthrough a Renoir iGPU to a
+ xen/qubes-os hvm
+To: Yann Dirson <ydirson@free.fr>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,40 +63,89 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Daniel,
+On Wed, Dec 8, 2021 at 5:50 PM Yann Dirson <ydirson@free.fr> wrote:
+>
+> Hi Alex,
+>
+> >
+> > On Mon, Dec 6, 2021 at 4:36 PM Yann Dirson <ydirson@free.fr> wrote:
+> > >
+> > > Hi Alex,
+> > >
+> > > > We have not validated virtualization of our integrated GPUs.  I
+> > > > don't
+> > > > know that it will work at all.  We had done a bit of testing but
+> > > > ran
+> > > > into the same issues with the PSP, but never had a chance to
+> > > > debug
+> > > > further because this feature is not productized.
+> > > ...
+> > > > You need a functional PSP to get the GPU driver up and running.
+> > >
+> > > Ah, thanks for the hint :)
+> > >
+> > > I guess that if I want to have any chance to get the PSP working
+> > > I'm
+> > > going to need more details on it.  A quick search some time ago
+> > > mostly
+> > > brought reverse-engineering work, rather than official AMD doc.
+> > >  Are
+> > > there some AMD resources I missed ?
+> >
+> > The driver code is pretty much it.  On APUs, the PSP is shared with
+> > the CPU and the rest of the platform.  The GPU driver just interacts
+> > with it for a few specific tasks:
+> > 1. Loading Trusted Applications (e.g., trusted firmware applications
+> > that run on the PSP for specific functionality, e.g., HDCP and
+> > content
+> > protection, etc.)
+> > 2. Validating and loading firmware for other engines on the SoC.
+> >  This
+> > is required to use those engines.
+>
+> After some digging, if I understand correctly, the PSP is the 3rd IP
+> getting its hw_init() called.  First comes soc15_common, then vega10_ih.
+>
+> - soc15_common_init_hw does some writes through nbio_v7.0 functions,
+>   but does not query the hw to check before or after
+> - vega10_init_hw does some register reads as part of its work, but once
+>   it has written it does not check either
+>
+> So PSP is the first one to check that "soc15" (I'm still not sure what
+> this one represents, really) is in fact alive and well.
+>
+> Can't we check earlier that the chip is really listening to us ?
 
-Fixes for 5.16.
+Each SoC is made up of hardware blocks that provide various different
+functionality.  They are mostly independent and mostly initialized
+independently.  I'm not sure what you would want to check.  In your
+case, I don't think it's an issue of the chip not being functional
+overall, but rather a problem specific to the failing block somehow
+related to being in a virtualized environment.
 
-The following changes since commit a687efed194bdc185fd7cb33920fe8b4e60ecb9e:
+Alex
 
-  Merge tag 'drm-intel-fixes-2021-12-02' of git://anongit.freedesktop.org/drm/drm-intel into drm-fixes (2021-12-03 05:59:31 +1000)
 
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/agd5f/linux.git tags/amd-drm-fixes-5.16-2021-12-08
-
-for you to fetch changes up to 0755c38eb007196a5f779298b4a5f46c4eec41d2:
-
-  drm/amd/display: prevent reading unitialized links (2021-12-08 23:24:08 -0500)
-
-----------------------------------------------------------------
-amd-drm-fixes-5.16-2021-12-08:
-
-amdgpu:
-- DPIA fix
-- eDP fix
-
-----------------------------------------------------------------
-Mikita Lipski (1):
-      drm/amd/display: prevent reading unitialized links
-
-Nicholas Kazlauskas (1):
-      drm/amd/display: Fix DPIA outbox timeout after S3/S4/reset
-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 7 ++++++-
- drivers/gpu/drm/amd/display/dc/dc_link.h          | 2 ++
- 2 files changed, 8 insertions(+), 1 deletion(-)
+>
+> >
+> > I'm not too familiar with the PSP's path to memory from the GPU
+> > perspective.  IIRC, most memory used by the PSP goes through carve
+> > out
+> > "vram" on APUs so it should work, but I would double check if there
+> > are any system memory allocations that used to interact with the PSP
+> > and see if changing them to vram helps.  It does work with the IOMMU
+> > enabled on bare metal, so it should work in passthrough as well in
+> > theory.
+> >
+> > Alex
+> >
+> >
+> > >
+> > > Best regards,
+> > > --
+> > > Yann
+> >
