@@ -2,126 +2,127 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D0BF46EFDF
-	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:02:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FCC346F030
+	for <lists+amd-gfx@lfdr.de>; Thu,  9 Dec 2021 18:03:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79B0410F093;
-	Thu,  9 Dec 2021 16:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B924510FB79;
+	Thu,  9 Dec 2021 16:55:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2052.outbound.protection.outlook.com [40.107.236.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0048210E116;
- Thu,  9 Dec 2021 16:09:56 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam08on2085.outbound.protection.outlook.com [40.107.102.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB1ED10E116
+ for <amd-gfx@lists.freedesktop.org>; Thu,  9 Dec 2021 16:15:14 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CXJgMPV07fcyPGZRV53ceIweTIn0bPETjkL9FtEtgZ6NbNWgiXzoJKK8SIhheFZl32XXEcL3i8z94Yma1lMWbTwwp3EEHoXOqGD7z6WMdaVE8DWRMMdWDn0TP4VsqINMJKjzLzMkM16kIJ3lDA+rmMiDTPZ+oF2oVlKKL1S7JFOWsf7iJ/uPtevb/xbFnPyPwSycazes7d24eX1XiZpKz68Fu5dt/RoS2phbfgr/Ad7Xe3jHYWiApMp2Wvy2lbu+sGStkPZuk00rog5+/RqIvc+mhwJO1Z+2dcuR800e2OUr7B642maDBGgg+n73bIJAL+sUe6f0ySRQzlcQS7aIqQ==
+ b=dQVrzkAY68367y57DUiPZmWjcpr80c7AlAk4A0pFPPy6fDC7jgoebi2JzqEyvajf33MKoQ7W1oOEOLZKn8wzI/mh5WNecitdsSiv0/0oFDukTqRNukxeJcxKZR7MEnK9ZlgixI6X9CgxjS6iRvd6LP3c+CKZcTrn3rKioGt7TTY7CyNm8QnPTCb6AyD/tUUpeyyh5ZQukBSyUdpYu1ZzgqzVnfb2/I/BDkYnRyGXQstIJ00LVSKBsMEnHvm+k285RZm5y6VuoQxRjvQrX9oigrQI4+7XRIGt2VaMuRRLj79TtZ30Fsd/LmP8tAXzaI6tovh8ZdXGpqjyCanlQwGV/Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dIQH8dKpSFLhB+6g7X8O5rMBjVCtA9Mcd/eAtP0sNZc=;
- b=UG2ylpu0ejkdtQZu8YDU8RkiDnAyknOfGSVjJGizlwsbgXKScdyveRwYYYlMjhaYwsZb49PKsGppX2QSm5Cnm8U9duunZ5wYe4MGFQiduUGjIy/Q4g9s+ksYt/40pSeE5Jhs0ORA0l3qL7FenG7vtSn9rHcQoz+80XZuCbw04IQTY1vogRKJd47C+94RB7Sio3ohO+7OExsg0JVkUJxMlMDVG1DTI67hiV00CG/D9BDLE0mcROkGFiMBgXUkah7JZhFchExXWyHGJIl2DqI8tTuewRadfmDlTQjpKkOhIIvvVBm+JoC7JBTSHagAfAP81UUJ6+vXT35mYUjc0wxe9g==
+ bh=p3gqljp42SpT8YoLseUH1twyOGkKguBt+KHwudXC4SI=;
+ b=meTMLuX81fQTKpge0nrNJfbDfMdchss6NcgGgUvzxbnzW3wP0QfvkcL6/yVnTCPAZfIcJynAdwNDipm6LKWatisJT7O0BDeCjO1QVOADcgd4WqROeHE2fgHeqyd5t4+WpTvV9EC/G8yqKOWjgue4YUd0XFFPJdjjbHzYXhq+E5/sQk3K8wOyFgoTpUvyHdhmx08Vpeergo/WrqkOE30u0Bnpxb1NNuVc8vSbP/oxPyPO8RSTsrIAtY6IAcW+ZneGS1/VYNQ7RMKd2zjomAIWAjMsuKK4hqt1fHyD0EFfgvEqu4SpAYAavHJXXfKu7UvJpugVGcHQl31xHOxWgQoL8A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dIQH8dKpSFLhB+6g7X8O5rMBjVCtA9Mcd/eAtP0sNZc=;
- b=BzAUGNbmSldpStLN7oBXUHi6psZ3cbQi+8J2TCNE2LLQZahFtKgFvvMSgkYR03AhS7GFFBy2D43ifL0E7JVMaFs8HE5yAhRqX+evVQOJ5RYrR752m8uwnVfFBNYpyMm2JsOJkXP1m8t6zDAy5MtoLI2SSj424pybOS/sIr9bVLg=
+ bh=p3gqljp42SpT8YoLseUH1twyOGkKguBt+KHwudXC4SI=;
+ b=d2r1IIOGnzalMMT8jPxCCAyYzIehhLlr0m0oHogrA/YA92g0IcVazn/3s/I73lZy9oTew/t8amvIb9n7byGzfp3CtUoMS52I+/NDF9GySzILtRVbd80KQ29sQ0aqKcYiKuFrn4Ah3pGkH0hzxfi7IPsxZ2jDT2IZQyRyepuBqHw=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
- (2603:10b6:301:5a::14) by MWHPR12MB1342.namprd12.prod.outlook.com
- (2603:10b6:300:e::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.21; Thu, 9 Dec
- 2021 16:09:53 +0000
-Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
- ([fe80::d16c:a6d5:5d2e:f9d4]) by MWHPR1201MB0192.namprd12.prod.outlook.com
- ([fe80::d16c:a6d5:5d2e:f9d4%12]) with mapi id 15.20.4755.024; Thu, 9 Dec 2021
- 16:09:53 +0000
-Subject: Re: Reuse framebuffer after a kexec (amdgpu / efifb)
-To: "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
- linux-fbdev@vger.kernel.org, kexec@lists.infradead.org,
- amd-gfx@lists.freedesktop.org
-References: <62aab616-53cb-ff9f-c5f3-169c547bd1ee@igalia.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <bb02d57c-d850-b319-9e76-663c0c2f8eed@amd.com>
-Date: Thu, 9 Dec 2021 17:09:46 +0100
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
+ by BN9PR12MB5036.namprd12.prod.outlook.com (2603:10b6:408:135::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.19; Thu, 9 Dec
+ 2021 16:15:12 +0000
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::9dfe:ccc6:102c:5300]) by BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::9dfe:ccc6:102c:5300%7]) with mapi id 15.20.4755.022; Thu, 9 Dec 2021
+ 16:15:12 +0000
+Subject: Re: [PATCH v2 09/10] drm/amdgpu: remove unnecessary variables
+To: Isabella Basso <isabbasso@riseup.net>, alexander.deucher@amd.com,
+ christian.koenig@amd.com, daniel@ffwll.ch, harry.wentland@amd.com,
+ Rodrigo.Siqueira@amd.com
+References: <20211209154722.4018279-1-isabbasso@riseup.net>
+ <20211209154722.4018279-4-isabbasso@riseup.net>
+From: Felix Kuehling <felix.kuehling@amd.com>
+Message-ID: <c95e1e9f-ecea-ab74-b7d5-7a05f1b1c960@amd.com>
+Date: Thu, 9 Dec 2021 11:15:10 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
-In-Reply-To: <62aab616-53cb-ff9f-c5f3-169c547bd1ee@igalia.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20211209154722.4018279-4-isabbasso@riseup.net>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-X-ClientProxiedBy: AM6P195CA0028.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:209:81::41) To MWHPR1201MB0192.namprd12.prod.outlook.com
- (2603:10b6:301:5a::14)
+X-ClientProxiedBy: YTOPR0101CA0044.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:14::21) To BN9PR12MB5115.namprd12.prod.outlook.com
+ (2603:10b6:408:118::14)
 MIME-Version: 1.0
-Received: from [IPv6:2a02:908:1252:fb60:76cf:54fe:ebe4:b83c]
- (2a02:908:1252:fb60:76cf:54fe:ebe4:b83c) by
- AM6P195CA0028.EURP195.PROD.OUTLOOK.COM (2603:10a6:209:81::41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=) via Frontend Transport;
- Thu, 9 Dec 2021 16:09:50 +0000
+Received: from [192.168.2.100] (142.127.191.123) by
+ YTOPR0101CA0044.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:14::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.20 via Frontend
+ Transport; Thu, 9 Dec 2021 16:15:11 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e9e3eeb9-f6bb-4abd-2b30-08d9bb2e55f5
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1342:EE_
-X-Microsoft-Antispam-PRVS: <MWHPR12MB13427BFAB762F993F784A3E683709@MWHPR12MB1342.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Office365-Filtering-Correlation-Id: 774340ad-697c-453f-e0bd-08d9bb2f13cf
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5036:EE_
+X-Microsoft-Antispam-PRVS: <BN9PR12MB5036A1A2FF52C0BE31D1FA3292709@BN9PR12MB5036.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RDbzvSScDPk/9EsXPEXxtn5rKAh7XWcbVWso0X+ZblQ6CsyVUbOouS6jirKkGMQ6XFKLQ0claXSC5LXK01DsISFLJyomeT1gIW+tYci1+OmOaXokJf2GGqmydmd0F8yjJTzZjVYhUg1dOe1i8KkA97yndLshm1lUrJZNhnbLnG+S1U4OnTOayNRrC5u5pMi1OGjOC12Q6NBOiQ/Xu+8tKTDKL7BG6urA8gYkJYjBEXHFPNP4eTStm6m1VImMfUFjWHQe7+FmSnainsPy18zIaFbErGCuxQ8+RZaOm8obbqsFi1gMowtudpmGldETPPwSzXhOsgtvNxjSd35e6xyon/2757uhC3CF28DzXxO3F58OwXJMWkuOgocJMuXGzvKHaobv3yppEBpA76f+e9MMm8mdlfSVwOFWP/BUGPLlImJ8mmr1qmUULab/abg82NosydjQh2k5d46jSAkQU9wD2tXzTzh+N33AEZLAqUgy18qnwuzHZiiRCDdIfNspO8xfnZ3c9JRo63+5wEB3OH2KgpC0Iv7ovh8+2Vl/kWbB6f7b25Cha2KI1xPFYh7EO5B2TjHI+VurpVfGcC6Fagp+0qVNdhXL29i8Uv3NvqBNhLAm3qlaUg+oe1E4pI2uhRgAif9HxICouk3okm8CDh1fbZDj+HtaNNbx6Hek5MApPaKREegWbi7PtZps8xDZx8hEi6soFO7cR1VS/caJkN+g4cXn5r+Km4UgY+AirSOTohTbmt26eyXdjyUjVU/vv2Ws
+X-Microsoft-Antispam-Message-Info: 8pUiKCK2zB/bzrVyZ2kh4XnZrg+S0rlIWUHYqRGWr64FhEYI3PCBMRcJYI5G/sYuSJQbBZv+Lsocs3WxciwwzFKkgw39/wCxJCYEPq0VrA1XtMsMGdc8JpERJ1VYyx72RXMHDTiW5xJSJm69gP+nPedC8Bl/S8YgKP9RIP4ctTmyw3YtO+33pNXGIpceuC5vUvdQU2LRHNr+bzQyzRy17oXu7uvM1GoKoBaxZYoLdF5f7QfhKNpwaIz94u+WrALP4vCLIaxs5cDBN9KJjR/2i07UPQCFP817BXDV1pyljF9mqel08UkHZeTS81xDbbO/u3kbsVXaJ06gnf11H7cEFV6nwm1yjL++sybxnXX/7L31P6SvrG2lyE+Okn3CDxaJ9I+Kbtv7CE5lUz/mQ/r8qoTrNcngu4LSxhDZS6sNsQvLESxkwBmVrzYJqSK1k/Dlt4x+xGTchUrkSCaeGh3fQk/c8dsxRv5AC/Oy4ZhjMLSVi9ZF6w3G3x+XB57AOSBX4QNSW/HNkoI5JdIWqLJsRTBC5lxgZ2fDwHgw8IQU8ZNukCirc5dlMBCN4bx7uOJHRqKiUXbVNhS+P89vYQ2EfO05f39A7yzoxPYo5pNN1K4m5uOqlOT7OhbtWkiqsnxWI3A+pNHtBckoZyTpxoKUSSjKx89VTIL2TOmaBS3CwV7z6vAfcmjc3PlmSqVI2nokrKrU/qh3By20fWRmkagW61Fa/kRxQ91oG462ydG3sZmvgDP0swE0abxWShw9DdkQ
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR1201MB0192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(66476007)(4326008)(66556008)(8676002)(8936002)(2616005)(508600001)(66946007)(36756003)(7416002)(6666004)(83380400001)(86362001)(31696002)(316002)(2906002)(31686004)(38100700002)(5660300002)(186003)(54906003)(6486002)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(38100700002)(4326008)(8676002)(86362001)(83380400001)(2906002)(31696002)(31686004)(316002)(6636002)(8936002)(6486002)(66556008)(66476007)(36756003)(5660300002)(956004)(66946007)(2616005)(16576012)(44832011)(508600001)(186003)(26005)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SktzTW9CTGpXczZGU0NCcjQwWVRTSDVlMnRPeHNGcFVldWZMN2FFcDVNb2Nv?=
- =?utf-8?B?RTAwcUVtMnl1Mzg2eEJjUEMvOGx3VUdidVMzbGZrVXVlaUJhM3duaEorL0ZJ?=
- =?utf-8?B?RnNrNUlGS1IrQ1pXdlJjV2JPK2xXVmRIdWdueERoRnl6WDNoemJzOFNZbUdH?=
- =?utf-8?B?WHcrTzhYY3VvTWVQQWgzbE4vZ3NtU2JQalZobnFMdUZka3MzSWlaUjljc09m?=
- =?utf-8?B?NGlhbGpwd2psbGxoUVU3dGhsQit3SGp4dTljOFFKQWFMSEpsMlRMWWc4NlU4?=
- =?utf-8?B?WUROeVhlenRIUkIrd3ZTL0ozbmJhQ0czeWtzZ1llMm9CcEtHck52SEw3emFu?=
- =?utf-8?B?MmdvR1l1ZFEyMGdzOTBvK1RtVUY4UjVMa0UxcDBWMXdmcWo0bVJLRkhEYXkv?=
- =?utf-8?B?SVFMcTJVSTJQVWRWOUNRMFRiOVN1TlJ3dkt4c1NEUUR6dUhvcnJkRkxBdDZV?=
- =?utf-8?B?cElKZ3BWbHZIR3FnU0IxRi8vZ1NJeXVIN1QycWJEUitnb2RvSzNrZVFFL0Ey?=
- =?utf-8?B?cXh6d2Y3MS9RdUF1L1ljWlNCMmdFY2dOVlp2L0QzcW5ZZEVPUlNvM2lXRlhp?=
- =?utf-8?B?eVYvU1VEVUhSZ1ViLzdnS1lTTWJUZ1hBSjA1dUhURnRQSk9mT2IxNnM0Tkxl?=
- =?utf-8?B?dmVVRTdZTUxEVU01MGVFcGdhNStmOGpZNDBFN3E2RFF3U04wQjZxb3IvK3Iz?=
- =?utf-8?B?YW4vZENjUDBJRTljR09kbFRXcW4yejJKMm5oNi9ydU5VWWlRSGFabHhwS3Jk?=
- =?utf-8?B?cGxJcVBraHV6YnNZMm51T3ZDSUtUZ0ZKRi9wVEswdHhoTXJORUgvcHFKWDFS?=
- =?utf-8?B?Nys1Z2NON2FXWjI0MUduS2RBTzZXc3dlbGp1Qjg4bkJlSDRJNE5YbDM5VTQw?=
- =?utf-8?B?dDNIWjNwdFdLWW01NzlYYzh6YVMzZmRZRzQ0eGdjS0xzUkZIVENHTlFEMVl2?=
- =?utf-8?B?Smd3QjJyNE44THFMcldUdFdyZW5BeDBhbEs0RUdON3BQRGV1R1AxRXN0WmVF?=
- =?utf-8?B?UHVrT1Ewd0dJTzhHdWFyc3A1QkFyUDBjT1BUdFU4TnVscEtuZTdsaWJxcWJt?=
- =?utf-8?B?VDc2ZmtOZldtMGE5aExHam5ObThxUGhPbEprUjVkZEZJWGFkbk4wcmFySWNG?=
- =?utf-8?B?clV1ZmVnZklqUVZKUUxUWGJuVGRwTytEVEwxdGJlaW05aUQwTEFtQlJvMjkz?=
- =?utf-8?B?dFo5RmY0MWV2Ukc3UEd1NXdLUHFBQUJ6MFpLdnRJV3V2K3lCQmRRdEtvWTY0?=
- =?utf-8?B?cWFTWGprd0U5TC91NnYxZW13Nlg3RDJNdGVLVzZrOTR6RC85MUVsb09WaEhO?=
- =?utf-8?B?dmVQaU9xdXZFUjhabWVST2M0ZndUMy9xQ0draGFvdHVLVnZYOFFVMkY3b0Fa?=
- =?utf-8?B?TWlpdEhtWjl1NGthMlVrSkJhUVF5SGt0VVVzemIvWE5xeGxiQU1sejAyUVNG?=
- =?utf-8?B?Ti9hTWxsOFZPLzJiK0xiaS9hZ2FCMERBTEdJK3VKekQrenBSKzV3S3h6VTFs?=
- =?utf-8?B?aDExcEErOE1yNjRnRFZiN3BEQXg0b0pkR2p6Y3RXN1dOTm1YeVA4MkR1SkRM?=
- =?utf-8?B?eERxcTZGVHVBZkg4VnhLWFN6eGVtTTZCaTd4TDZ2RWp2dUpCbGRDWUNTdDNK?=
- =?utf-8?B?ekhkRkQzeDRXYlU4M1hNRXoxOXN1QiswQXdRQTVTSXl5cS9HRm5KTlovMGJW?=
- =?utf-8?B?UXFwOFl1d3kwbWZySkJIMit1V0NTSU5Qd016N1Y5YVpXSUtzRlUvL3JlaVU4?=
- =?utf-8?B?alV0MVZ6aHdxMHVrOFRSbFlMOFNNZDBSeGZHbE1DeTZYZFEzbFJvUFRsMkVW?=
- =?utf-8?B?S1hGRy9YaXpKMUFBVlA2QTVLUFBja1dLMjdyZjZuWVAxbEJ2ZmQxWmIzNEpU?=
- =?utf-8?B?Z2IrbFRZVVVCTk9GSEZESFA5QXFSaGFEaktkWmFGclVzS2Fhblk1WkcwWUZs?=
- =?utf-8?B?aFlwOUFIU0lKaHpJMDQ0YkZTOHk2cHZTdXNTMVA1amxIUU00RGpXZXJzcGJ5?=
- =?utf-8?B?REZ4cmU0UVNpcHBUMWhmQ0cwejJseUZjdkRhN25BQzgydk1VYUlXUDdvckVI?=
- =?utf-8?B?eFA1U1d5bzJmR2N3NUx0d1A5TUtmbGdlOUxTbElrLzdBNUJsNHh6S0IzRHhO?=
- =?utf-8?B?WEZXWXJNVnBFbWo2Z0UyZExwNXI0Z1NzUDhjWEtjUDREdGV3ejF2cnRFYTcr?=
- =?utf-8?Q?9+5g1WZLsQ/wwmmS9TTa/7o=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?clRFb01iQWI0Y0ZZK2FkSW1Mb25la2VqMkpSRnhsc0dnanFIK3BqclF1VDdO?=
+ =?utf-8?B?NmIwYnV1SlMxMUZVaU9WQy9pWFlGa3J2Z2tHcmxqY0ppUkxsZjN5eWpYUG92?=
+ =?utf-8?B?aFpZK1JHTjdGRkZsdDY2TkE3eit3dk9yZG15dGVFSUNXclNOZ1QzNU85ZWhT?=
+ =?utf-8?B?U2h3YWZ5cDRMZWtmUkljcEJrTUNrRnRuQzk0VzhJM0RNMTc2SE1pMWoyZ21s?=
+ =?utf-8?B?TTRZa0Vtei91YWdsUUF0d0tpZFZEU21Xd1p5aGE5OFdMbTFzLzlROVFrQ25j?=
+ =?utf-8?B?VCtXVHRQL3NyNXpqOGpKTnJJREY4ZFRqbnVWTTVMR1NzTURCbzgvUGltYnpB?=
+ =?utf-8?B?bmNnSFVxTFVBVGNmMU9oNXpJbmFHdWxZTkRBM09WazhzNjJZUjMvdi9yaTZq?=
+ =?utf-8?B?WW12bHZtbkFzMDQzZkpSN3V4cXJnSUlrUTdJRWk0bmptMTNkRVR4SStrcmhJ?=
+ =?utf-8?B?Q1NMeHl2cE1Zd0NQR2g0RkJlK0RMQ2QwK3ZxMllFdG4yT2dSVzlFUkFtZzhq?=
+ =?utf-8?B?N01XNnhWa2ZneTIrV0Fwd0dUSnNBUUhNbm1xdk1HTU95ckE1Qk43QkJXZlVv?=
+ =?utf-8?B?cllyT1BOdTAvaDV3MFhQdHpvTnMwckNONXVHWU5oeS8xRDJJQnRqQnBqZHJq?=
+ =?utf-8?B?d2JwZUE0NG5jalVPVW1iUzZrQzhaTjNUVUVNNVJpWDg2MDRqQ2VZaUpYSzE2?=
+ =?utf-8?B?YzN4STNyZ201c2JIZUlnWU1VNUxsNEgzdVJLMG82MG5FOVk3U2pLOTdPQjA4?=
+ =?utf-8?B?bVpZOVRuMm54eFlGRzg0bHpaTWhQSmNRMTMvR0RvOXdNM0g4dSs1SlcxS3pD?=
+ =?utf-8?B?b0dhU0w0WVF4T3ZqTVVXc08zSVo1NGpaUzJ4eEF5UlJaRXVKRzZ2OU45V0Nk?=
+ =?utf-8?B?TkhJTGp3dEl6QjBCbS83V1V4OHZ3R21wREtnK0M2ODRaZXlOK21ScnNLRDJW?=
+ =?utf-8?B?UGkvdWlJcEV6OWl4UkIzdDU4alhNSFFXK0gzZkJCcWxROG1MZzVpQmtHUWtO?=
+ =?utf-8?B?cEtPcmUrMm9VNE1sN3l0eGFsWEs3NUNrUUZWajE1WW1WbFlPOHZRYXVUNEs2?=
+ =?utf-8?B?VjJhSTVlQWt4blRTV2cwOUptSmdaQWJJRjc1OEpaaXd0R1RSTjJqMjQ0dW5v?=
+ =?utf-8?B?T0laY2lsS0o0aTFFRTF0VkFaTUl4Q1h2N1RZZVJ1WGhhMEJnclB6RU93MDhT?=
+ =?utf-8?B?YUhrazlOVWZoTEdOakxSWFI4R2E3YXRLNjN1VUtaZndYUjNWT05oRUM1bzh5?=
+ =?utf-8?B?WDRDMkZ0VWluZnVMUkJRYTAxVW5jeEdTM0crc0xudUZqdjVCT1VrdEZpcU92?=
+ =?utf-8?B?S2dseUdnTXBWamtzUGppR0JzdDJwZUp3RGM1SWxnUlRod25GMmJ4SmhublhO?=
+ =?utf-8?B?RitpMHZ1dDJSVVk1V3BZNFYzV0RmUGVhWXJZRU5BMkVOSGxwT3lLV1NoTmVU?=
+ =?utf-8?B?UEJuT2MrY1VrTVVGc09SVVVycVlsV0lXdUNEYWQ0dkdrTEJZNzJ6ejZ0Snp4?=
+ =?utf-8?B?aDk1eURzbk1nV3NpNzJSNk12NnFlUnRadHpyNERiUmtWaWFOOUExTG9ZbTJF?=
+ =?utf-8?B?VXRLZDhhVHo3VCtSVFFqZ3N2djd4WkpyN2o2bTlFbHZhUnZxemxwVHlpeDdL?=
+ =?utf-8?B?eEZzOTc3dWtqNzF4MzVrSUJHVnArY094Y1hBVEhaM2ZFVDIwRVQ2cjFxc0Fo?=
+ =?utf-8?B?TTVhY0xTZjFIK3Rzc1p0dnB4cUQ0eEVtdEVraUZoblhEazRyV1Irbmd4eWgz?=
+ =?utf-8?B?bU9kNzNkOERlSGVMTjVyUitPRDAxNGcrcjJqbWk3MUhTRTlLeDBXUDQwR3Fs?=
+ =?utf-8?B?NUZzZEpTRFFFMUdDb1Z1akZrWU5XcVBRdVFaNzA5ZGxGRTlBb0xqMXVSemE2?=
+ =?utf-8?B?SUcvcndleXdDc3JjSEtsdEFNZndaZ0pEcnBNM1hXVncrV0RPNE1WUTVHQjdp?=
+ =?utf-8?B?M2NVZFFTRnJBTGMzMGUwbVgrZkczdDNxQnNMd3pab3crLzJtSEdKL25DZGZN?=
+ =?utf-8?B?QmVwSHprSmM3ME5xS1ZVTlRRTHhIdUs3V0k5RXFoeTVoa05waitTaExSQi9y?=
+ =?utf-8?B?U1FUdzMzcldyUzIwczNWaGRrRVNZQUNkMDU1M3ZkbXRoWE1LWklrZ1Z5M053?=
+ =?utf-8?B?WFVmWkFHYWhKelVkT3hOOUZ6LytVM2Z5UTZCbUQwSDBDNGhpSitZd3FEalpW?=
+ =?utf-8?Q?DS/lS54hbfKJfu3/9jeQzIY=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9e3eeb9-f6bb-4abd-2b30-08d9bb2e55f5
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1201MB0192.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 774340ad-697c-453f-e0bd-08d9bb2f13cf
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 16:09:53.6465 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2021 16:15:12.3159 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ag49N4Z13oCkQr5Kf9W2CW8i/HQ33D/yfc357i2iykxGRaRSbyK9aT7LvbQ1cF1m
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1342
+X-MS-Exchange-CrossTenant-UserPrincipalName: hrdCyl4c6CQknt2bTJnfU0kjliZalgu57x0D411WbxZ+iKGZeAw54ClhPE5PopUBRbHZDLRd20px76Ucrh5v0Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5036
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,71 +134,90 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel@gpiccoli.net, kasong@redhat.com, Baoquan He <bhe@redhat.com>,
- =?UTF-8?Q?Samuel_Iglesias_Gons=c3=a1lvez?= <siglesias@igalia.com>,
- Xinhui.Pan@amd.com, dri-devel@lists.freedesktop.org, pjones@redhat.com,
- kraxel@redhat.com, alexander.deucher@amd.com, Dave Young <dyoung@redhat.com>,
- Vivek Goyal <vgoyal@redhat.com>
+Cc: ~lkcamp/patches@lists.sr.ht, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Guilherme,
-
-Am 09.12.21 um 17:00 schrieb Guilherme G. Piccoli:
-> Hi all, I have a question about the possibility of reusing a framebuffer
-> after a regular (or panic) kexec - my case is with amdgpu (APU, aka, not
-> a separate GPU hardware), but I guess the question is kinda generic
-> hence I've looped most of the lists / people I think does make sense
-> (apologies for duplicates).
+Am 2021-12-09 um 10:47 a.m. schrieb Isabella Basso:
+> This fixes the warnings below, and also drops the display_count
+> variable, as it's unused.
 >
+>  In function 'svm_range_map_to_gpu':
+>  warning: variable 'bo_va' set but not used [-Wunused-but-set-variable]
+>  1172 |         struct amdgpu_bo_va bo_va;
+>       |                             ^~~~~
+>  ...
+>  In function 'dcn201_update_clocks':
+>  warning: variable 'enter_display_off' set but not used [-Wunused-but-set-variable]
+>  132 |         bool enter_display_off = false;
+>      |              ^~~~~~~~~~~~~~~~~
 >
-> The context is: we have a hardware that has an amdgpu-controlled device
-> (Vangogh model) and as soon as the machine boots, efifb is providing
-> graphics - I understand the UEFI/GRUB outputs rely in EFI framebuffer as
-> well. As soon amdgpu module is available, kernel loads it and it takes
-> over the GPU, providing graphics. The kexec_file_load syscall allows to
-> pass a valid screen_info structure, so by kexec'ing a new kernel, we
-> have again efifb taking over on boot time, but this time I see nothing
-> in the screen. I've manually blacklisted amdgpu in this new kexec'ed
-> kernel, I'd like to rely in the simple framebuffer - the goal is to have
-> a tiny kernel kexec'ed. I'm using kernel version 5.16.0-rc4.
+> Changes since v1:
+> - As suggested by Rodrigo Siqueira:
+>   1. Drop display_count variable.
+> - As suggested by Felix Kuehling:
+>   1. Remove block surrounding amdgpu_xgmi_same_hive.
 >
-> I've done some other experiments, for exemple: I've forced screen_info
-> model to match VLFB, so vesafb took over after the kexec, with the same
-> result. Also noticed that BusMaster bit was off after kexec, in the AMD
-> APU PCIe device, so I've set it on efifb before probe, and finally
-> tested the same things in qemu, with qxl, all with the same result
-> (blank screen).
-> The most interesting result I got (both with amdgpu and qemu/qxl) is
-> that if I blacklist these drivers and let the machine continue using
-> efifb since the beginning, after kexec the efifb is still able to
-> produce graphics.
+> Signed-off-by: Isabella Basso <isabbasso@riseup.net>
+
+The kfd_svm.c portion is
+
+Reviewed-by: Felix Kuehling <Felix.Kuehling@amd.com>
+
+Thank you!
+
+
+> ---
+>  drivers/gpu/drm/amd/amdkfd/kfd_svm.c                       | 4 ----
+>  .../gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c | 7 +------
+>  2 files changed, 1 insertion(+), 10 deletions(-)
 >
-> Which then led me to think that likely there's something fundamentally
-> "blocking" the reuse of the simple framebuffer after kexec, like maybe
-> DRM stack is destroying the old framebuffer somehow? What kind of
-> preparation is required at firmware level to make the simple EFI VGA
-> framebuffer work, and could we perform this in a kexec (or "save it"
-> before the amdgpu/qxl drivers take over and reuse later)?
-
-unfortunately what you try here will most likely not work easily.
-
-During bootup the ASIC is initialized in a VGA compatibility mode by the 
-VBIOS which also allows efifb to display something. And among the first 
-things amdgpu does is to disable this compatibility mode :)
-
-What you need to do to get this working again is to issue a PCIe reset 
-of the GPU and then re-init the ASIC with the VBIOS tables.
-
-Alex should know more details about how to do this.
-
-Regards,
-Christian.
-
->
-> Any advice is greatly appreciated!
-> Thanks in advance,
->
->
-> Guilherme
-
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+> index 82cb45e30197..835f202dc23d 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+> @@ -1169,7 +1169,6 @@ svm_range_map_to_gpu(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+>  		     unsigned long npages, bool readonly, dma_addr_t *dma_addr,
+>  		     struct amdgpu_device *bo_adev, struct dma_fence **fence)
+>  {
+> -	struct amdgpu_bo_va bo_va;
+>  	bool table_freed = false;
+>  	uint64_t pte_flags;
+>  	unsigned long last_start;
+> @@ -1182,9 +1181,6 @@ svm_range_map_to_gpu(struct amdgpu_device *adev, struct amdgpu_vm *vm,
+>  	pr_debug("svms 0x%p [0x%lx 0x%lx] readonly %d\n", prange->svms,
+>  		 last_start, last_start + npages - 1, readonly);
+>  
+> -	if (prange->svm_bo && prange->ttm_res)
+> -		bo_va.is_xgmi = amdgpu_xgmi_same_hive(adev, bo_adev);
+> -
+>  	for (i = offset; i < offset + npages; i++) {
+>  		last_domain = dma_addr[i] & SVM_RANGE_VRAM_DOMAIN;
+>  		dma_addr[i] &= ~SVM_RANGE_VRAM_DOMAIN;
+> diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c
+> index 8c20a0fb1e4f..fbdd0a92d146 100644
+> --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c
+> +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn201/dcn201_clk_mgr.c
+> @@ -90,10 +90,8 @@ static void dcn201_update_clocks(struct clk_mgr *clk_mgr_base,
+>  	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
+>  	struct dc_clocks *new_clocks = &context->bw_ctx.bw.dcn.clk;
+>  	struct dc *dc = clk_mgr_base->ctx->dc;
+> -	int display_count;
+>  	bool update_dppclk = false;
+>  	bool update_dispclk = false;
+> -	bool enter_display_off = false;
+>  	bool dpp_clock_lowered = false;
+>  	bool force_reset = false;
+>  	bool p_state_change_support;
+> @@ -109,10 +107,7 @@ static void dcn201_update_clocks(struct clk_mgr *clk_mgr_base,
+>  		dcn2_read_clocks_from_hw_dentist(clk_mgr_base);
+>  	}
+>  
+> -	display_count = clk_mgr_helper_get_active_display_cnt(dc, context);
+> -
+> -	if (display_count == 0)
+> -		enter_display_off = true;
+> +	clk_mgr_helper_get_active_display_cnt(dc, context);
+>  
+>  	if (should_set_clock(safe_to_lower, new_clocks->phyclk_khz, clk_mgr_base->clks.phyclk_khz))
+>  		clk_mgr_base->clks.phyclk_khz = new_clocks->phyclk_khz;
