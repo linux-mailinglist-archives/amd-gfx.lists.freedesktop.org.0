@@ -2,30 +2,62 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDC5547087D
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Dec 2021 19:20:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A38B4709BC
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Dec 2021 20:05:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40ECF10E91E;
-	Fri, 10 Dec 2021 18:20:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CD0810E582;
+	Fri, 10 Dec 2021 19:05:38 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [IPv6:2a01:e0c:1:1599::14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54E9E10E83E
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 18:20:41 +0000 (UTC)
-Received: from localhost.localdomain (unknown [88.120.44.86])
- by smtp5-g21.free.fr (Postfix) with ESMTP id D70095FFC7;
- Fri, 10 Dec 2021 19:20:39 +0100 (CET)
-From: Yann Dirson <ydirson@free.fr>
-To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v2 3/3] Documentation/gpu: include description of some of the
- GC microcontrollers
-Date: Fri, 10 Dec 2021 19:20:30 +0100
-Message-Id: <20211210182030.3834-4-ydirson@free.fr>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211210182030.3834-1-ydirson@free.fr>
-References: <20211210182030.3834-1-ydirson@free.fr>
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com
+ [IPv6:2607:f8b0:4864:20::232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EAC610E582;
+ Fri, 10 Dec 2021 19:05:37 +0000 (UTC)
+Received: by mail-oi1-x232.google.com with SMTP id t19so14540835oij.1;
+ Fri, 10 Dec 2021 11:05:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=eE7LEXLBndGG1htPQ+DXNYXDObvNjAlKpnwTZx768wc=;
+ b=eOJZva4Fq1luajmeTCOHeGthRyrZdIKhZ514Ze8syFWhn42iAWp7fHREQ1llf+rnDP
+ ZoGAUfQfUQypcyflo52/gGgBIDeJZOKno5WHENWSjVzvVt0KVkBlO8u2JdtlUvojfjKq
+ DIuCjPkbyA4Xw/5bIkLz/mYo5me9MEVPZcquO57vWajLufnnl5JnDfqxeqopN/lS5KJY
+ z2u9qNDMw7d0dhFLu62zkU89T2qZrO/ie5Ui3gifR6q0YwnuTzPdJsqat0eRbrqQRfbg
+ x7pjc6o2jFtWU5qATsl3I/6HW/J3YnO/WKzqe4jr3LVPBk1zBUdlMhIlYkhCv/KhKENu
+ 4o3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=eE7LEXLBndGG1htPQ+DXNYXDObvNjAlKpnwTZx768wc=;
+ b=AwolOoUUid/9uSaU5lF50XifWMQsxvf+8XbMRTuWhEysfMWpOq8maxXDWTFyI/ia41
+ ULlyJ6oEXirMw2o0Hj+yJigZzKvnJ4tPSHRFbuGQo4GnDjKecTHomWOfFuEslQxBiSSr
+ glY/oUXUwnNiQ4uKTX4cFP+MS9IIKat45c+owDP+4WPMYir8auHJ7UTwo86FKIaKFK52
+ 0sQUOaFIb0FhUF7gxq2FkHiZPSFzIk1WdDZxuIUgxxqPlKvEvGjwainUY5HJQ3tt3Jpi
+ pYXz7i/KWAHVheB4MEebbmI1eYvINN87GidNr/pz/oVcSGqraJBKB7J1QINLcJANpQJ7
+ ZglA==
+X-Gm-Message-State: AOAM532SFi9F7zQQS/WGfCd2JX2z05CH+pV6jsvpnj+wvGcUDwyZplD7
+ PQ7qzB46C+s3r0Rx4CY1LFrAymI1/+CIL6cOmH8=
+X-Google-Smtp-Source: ABdhPJwY+3OIlLMQRK831jBALf9pBKI0vv9FSDO/7G8EZuTphIx/zK41Uwd0OUE7wTRPguj3+nvRSAdElVT9nmALC7Y=
+X-Received: by 2002:a05:6808:68f:: with SMTP id
+ k15mr13685527oig.5.1639163136150; 
+ Fri, 10 Dec 2021 11:05:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <62aab616-53cb-ff9f-c5f3-169c547bd1ee@igalia.com>
+ <CADnq5_O8x3_8f7GZ=tme55-QW+nqMJ2YoqvROjDPg2YZP2catQ@mail.gmail.com>
+ <a1f4d263-b3d2-4ceb-8a89-948c8129500f@igalia.com>
+ <CADnq5_N9ptK4c86LO77YcrF5_M==hket+L7eYjsGCaKbORO=ug@mail.gmail.com>
+ <eaea0143-a961-b83c-3c6c-4d612cd003bc@igalia.com>
+ <6d3c7acf-a23f-3073-56ed-375ccb8cc815@suse.de>
+ <99b38881-8c63-de04-50f8-aa4119b52b25@igalia.com>
+ <CADnq5_NqPEY6vPSsBQSst5Gsw-VpJ-sp-5DHMeB+EGA2t7KoAQ@mail.gmail.com>
+ <56dfb915-036b-0584-f0ef-83c786970d6e@igalia.com>
+In-Reply-To: <56dfb915-036b-0584-f0ef-83c786970d6e@igalia.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 10 Dec 2021 14:05:25 -0500
+Message-ID: <CADnq5_NphKQwa=sPWEWPTDbQVHGXQd0Ue8GNJR975jCvka7dQA@mail.gmail.com>
+Subject: Re: Reuse framebuffer after a kexec (amdgpu / efifb)
+To: "Guilherme G. Piccoli" <gpiccoli@igalia.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,75 +69,43 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Yann Dirson <ydirson@free.fr>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, linux-doc@vger.kernel.org
+Cc: "open list:EFIFB FRAMEBUFFER DRIVER" <linux-fbdev@vger.kernel.org>,
+ xinhui pan <Xinhui.Pan@amd.com>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Baoquan He <bhe@redhat.com>,
+ =?UTF-8?Q?Samuel_Iglesias_Gons=C3=A1lvez?= <siglesias@igalia.com>,
+ kernel@gpiccoli.net, kexec@lists.infradead.org,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, pjones@redhat.com,
+ Gerd Hoffmann <kraxel@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ "Deucher, Alexander" <alexander.deucher@amd.com>,
+ Dave Young <dyoung@redhat.com>, Christian Koenig <christian.koenig@amd.com>,
+ Vivek Goyal <vgoyal@redhat.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-This is Alex' description from the "Looking for clarifications around gfx/kcq/kiq"
-thread, edited to fit as ReST.
+On Fri, Dec 10, 2021 at 9:25 AM Guilherme G. Piccoli
+<gpiccoli@igalia.com> wrote:
+>
+> On 10/12/2021 11:16, Alex Deucher wrote:> [...]
+> > Why not just reload the driver after kexec?
+> >
+> > Alex
+>
+> Because the original issue is the kdump case, and we want a very very
+> tiny kernel - also, the crash originally could have been caused by
+> amdgpu itself, so if it's a GPU issue, we don't want to mess with that
+> in kdump. And I confess I tried modprobe amdgpu after a kdump, no
+> success - kdump won't call shutdown handlers, so GPU will be in a
+> "rogue" state...
+>
+> My question was about regular kexec because it's much simpler usually,
+> we can do whatever we want there. My line of thought was: if I make it
+> work in regular kexec with a simple framebuffer, I might be able to get
+> it working on kdump heheh
+>
 
-Originally-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Yann Dirson <ydirson@free.fr>
-Acked-by: Harry Wentland <harry.wentland@amd.com>
----
- Documentation/gpu/amdgpu/driver-core.rst | 35 ++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+Well if the GPU is hung, I'm not sure if you'll be able to get back
+the display environment without a GPU reset and once you do that,
+you've lost any state you might have been trying to preserve.
 
-diff --git a/Documentation/gpu/amdgpu/driver-core.rst b/Documentation/gpu/amdgpu/driver-core.rst
-index b870a63c64dd..942bc7c3eac9 100644
---- a/Documentation/gpu/amdgpu/driver-core.rst
-+++ b/Documentation/gpu/amdgpu/driver-core.rst
-@@ -75,6 +75,28 @@ VCN (Video Core Next)
-     decode.  It's exposed to userspace for user mode drivers (VA-API,
-     OpenMAX, etc.)
- 
-+Graphics and Compute microcontrollers
-+-------------------------------------
-+
-+CP (Command Processor)
-+    The name for the hardware block that encompasses the front end of the
-+    GFX/Compute pipeline.  Consists mainly of a bunch of microcontrollers
-+    (PFP, ME, CE, MEC).  The firmware that runs on these microcontrollers
-+    provides the driver interface to interact with the GFX/Compute engine.
-+
-+    MEC (MicroEngine Compute)
-+        This is the microcontroller that controls the compute queues on the
-+        GFX/compute engine.
-+
-+    MES (MicroEngine Scheduler)
-+        This is a new engine for managing queues.  This is currently unused.
-+
-+RLC (RunList Controller)
-+    This is another microcontroller in the GFX/Compute engine.  It handles
-+    power management related functionality within the GFX/Compute engine.
-+    The name is a vestige of old hardware where it was originally added
-+    and doesn't really have much relation to what the engine does now.
-+
- Driver structure
- ================
- 
-@@ -82,6 +104,19 @@ In general, the driver has a list of all of the IPs on a particular
- SoC and for things like init/fini/suspend/resume, more or less just
- walks the list and handles each IP.
- 
-+Some useful constructs:
-+
-+KIQ (Kernel Interface Queue)
-+    This is a control queue used by the kernel driver to manage other gfx
-+    and compute queues on the GFX/compute engine.  You can use it to
-+    map/unmap additional queues, etc.
-+
-+IB (Indirect Buffer)
-+    A command buffer for a particular engine.  Rather than writing
-+    commands directly to the queue, you can write the commands into a
-+    piece of memory and then put a pointer to the memory into the queue.
-+    The hardware will then follow the pointer and execute the commands in
-+    the memory, then returning to the rest of the commands in the ring.
- 
- .. _amdgpu_memory_domains:
- 
--- 
-2.31.1
-
+Alex
