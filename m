@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4AB946FF9A
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Dec 2021 12:15:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6667846FF9C
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Dec 2021 12:15:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2739D10E434;
-	Fri, 10 Dec 2021 11:15:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99E1010E487;
+	Fri, 10 Dec 2021 11:15:28 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2086.outbound.protection.outlook.com [40.107.96.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8CD410E548
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 11:15:21 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2053.outbound.protection.outlook.com [40.107.94.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BB4C10E487
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 11:15:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZOSkeHs5COfcyKdk/1uSQIfhuNLVGpsfFvFvHlwLoMAB6slftzWyYjBwsjgZK8zu+uoxvJ0yR5/iO/Lw05P2BhTYIeHO7uVKopt7xInNfFfVj1ia+jU8x/TL2EYUXJSiNCfTOaJjRHUgRLs2tiSuW7QW+cvgvputDCTHAHonL5xZweDlocpyaBJxK8z4a/L0PprQmQivqaPLePCbd5epKiBBer87JcqZ2KjQpZa0xP0MMazEcrZc0wFCnb71SACpchFaWvNWm0EtAbipSTjWcp8X+IorlFeI/D3SjiYpHK1/xo+ATMt0w1ieOb6hr8dmow24w6Q6YMALsHLUuqYgCw==
+ b=jpDAWV1mIFkhxkh9U8/0e9cdT4sGj9lmXtzL0/+OoWfj28bng0We6VsUDfD2BjSAHDSVz4u+uDcGbyTLDdw+PMXQtztXFfQox0WaraPRjh89x7x2VE55b9akCzaf0YoN3UjreT+bHte0B2qKbLU4AQJpOupUwPu3ppMFCoeyZI24uRHSxI4p3T7aW9eoVBBTGBrYyxR0v3kmw0rT8+ir3T5sbNlK0Mbj7p/EI6jP7MJRUq2iVn28f/P/ysTa3yLp8nZTnZyW09cevWZATNWI63jVcsDdvKhRkH6amA+mTBtz0kjM/kYwE58TGQnvnUlFTefebAOnBQhYs/JbRqvgsQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2vxPDLTJTEWTD/FX7aChzUvnoT6yt2P7p25W1Qx3ryE=;
- b=R/u3mir04Ok9VdkLjZExHWwvi3kP/j+CiFkc4wBTTSX363LCDSAskhTy06fptb9sjXa7gaZFGtHhdL1vnj8dh0hbF6ucp8IBQbbHWihpoqrTq1zTw9aFDeIJrLxDOatFLs1DVL8OW4aEeyweo2h67XqqyffcqZsIh7fYYtxTILA5hrdy3qsMHPZseSpjZKwVvxSeD8/Vu/sqRstS3+bvH8aO6F7ji1rRfBIyk+Jm145zFVsomGOlFpRR2T7Q70CYacF9JBrRcU4U3fC8qx2iKeUDaC8IqPriKME4MGvLenyXLFhitZvkdXvLWeRL4/6av2tR5NGzSH3pDpBPOCNn4A==
+ bh=f8DKBGlvRwX/k+1lNpK+8VK8lTXKIJGyWWT98Yi804U=;
+ b=S59QD+N9H3dnF349Vq5dGEno07SWBI59xwJWtoE75LD/7TO4EHjRVVP51kZV85b8QPnLz8v3SaXIZgQJZMdk83IHzmcvkBAiXAFslzLrOC30grD/FV8dgxyQ4jD+tWs19ACT50NwcnpqCvNyGdivj5v0zUi6r3VwCf9PD2usTrwd3n++Agf1FEijZTTG4DTMUxvDFnkJLxbAMK2J1r0jLdr+GCoyp2HoEwg1+bavzHQKzYJ8Ag1BSLm8mkBl4TFBjnNCble7ldzzIXZ6/GC/qoSd+jhfenYu9Xdtn4TS+QyBYDuZtbmOO+Qh2jVirfUNzYx1yRU9NkLgySTlmRCjeg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2vxPDLTJTEWTD/FX7aChzUvnoT6yt2P7p25W1Qx3ryE=;
- b=OFpK0Go3FuG1xOF2lu+uSGLWeKQ4PRAZIQqyem+f0F2aX7IIO5mi2V2ZZbyoc1aOU4KN0sXzlxhUiGEBmr4Z+/dOClnBs5vxKul5kFpi/8pkXfO5Sm60cNNlemnbNE4+ARVAyEKoKq8hKOD5Z6dJQ+NNKeugtdQgU8rf81pdew8=
-Received: from BN0PR02CA0059.namprd02.prod.outlook.com (2603:10b6:408:e5::34)
- by DM6PR12MB4058.namprd12.prod.outlook.com (2603:10b6:5:21d::16) with
+ bh=f8DKBGlvRwX/k+1lNpK+8VK8lTXKIJGyWWT98Yi804U=;
+ b=u7S7rctbtfibnrPcaipUe+Uv/NeuSfrhekp6JnV6GdRZR9HtJJCSrJu0jsHQUSnK6rG1lvNsSAiVUnriVoBezOrHosLSJmoBwANba5xjWEEecS4Q517Fzz6G1rfU7EJg/Pi2OK/1QE2+mSiM1r1IH4k400GwJIIsrhSgzfihrJw=
+Received: from BN6PR11CA0020.namprd11.prod.outlook.com (2603:10b6:405:2::30)
+ by MN2PR12MB3088.namprd12.prod.outlook.com (2603:10b6:208:c4::29) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.11; Fri, 10 Dec
- 2021 11:15:20 +0000
-Received: from BN8NAM11FT046.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e5:cafe::e) by BN0PR02CA0059.outlook.office365.com
- (2603:10b6:408:e5::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.13 via Frontend
- Transport; Fri, 10 Dec 2021 11:15:19 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.25; Fri, 10 Dec
+ 2021 11:15:22 +0000
+Received: from BN8NAM11FT023.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:405:2:cafe::e4) by BN6PR11CA0020.outlook.office365.com
+ (2603:10b6:405:2::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.12 via Frontend
+ Transport; Fri, 10 Dec 2021 11:15:22 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN8NAM11FT046.mail.protection.outlook.com (10.13.177.127) with Microsoft SMTP
+ BN8NAM11FT023.mail.protection.outlook.com (10.13.177.103) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4778.13 via Frontend Transport; Fri, 10 Dec 2021 11:15:19 +0000
+ 15.20.4778.13 via Frontend Transport; Fri, 10 Dec 2021 11:15:22 +0000
 Received: from taozhou1u2.amd.com (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Fri, 10 Dec
- 2021 05:15:17 -0600
+ 2021 05:15:19 -0600
 From: Tao Zhou <tao.zhou1@amd.com>
 To: <amd-gfx@lists.freedesktop.org>, <hawking.zhang@amd.com>,
  <stanley.yang@amd.com>, <thomas.chai@amd.com>, <Felix.Kuehling@amd.com>
-Subject: [PATCH 2/3] drm/amdkfd: add reset parameter for unmap queues
-Date: Fri, 10 Dec 2021 19:15:01 +0800
-Message-ID: <20211210111502.17384-2-tao.zhou1@amd.com>
+Subject: [PATCH 3/3] drm/amdkfd: reset queue which consumes RAS poison
+Date: Fri, 10 Dec 2021 19:15:02 +0800
+Message-ID: <20211210111502.17384-3-tao.zhou1@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20211210111502.17384-1-tao.zhou1@amd.com>
 References: <20211210111502.17384-1-tao.zhou1@amd.com>
@@ -68,28 +68,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB03.amd.com
  (10.181.40.144)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e17fc263-bb35-4b44-4c64-08d9bbce5a23
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4058:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB405866C3E87060DE056B16EFB0719@DM6PR12MB4058.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
+X-MS-Office365-Filtering-Correlation-Id: bc6df84b-75c7-4d31-6196-08d9bbce5bb2
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3088:EE_
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3088BCA0027638D62B3FA880B0719@MN2PR12MB3088.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:118;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: x0JwlYWT4hJl+X+aa2T9c+9It4P3yTo9MFBlTABytICV8xC+4aslWELhGxeIVJ87mA81qwqn14j83dm1sLk0led0xQDMFlW8zJuI2I7ZO9M1fkyZ4g7st49RZ47rO+FpBod+YbF5u/v13k6gA0iYntLdobYHLdlwmye18apdIMbnrRi+EcfwYhWTF5A0Q17s4efA2zer37CpEmmc8pJJbHGJ1qaGFTyKHykB1IFkhFlI9UMCIAIY1SC8xp5SxnpcmNz9AqdCJJ10wKgkNPWJRuLDalf9QAjd+Hf8+U3bnlcIDe/wMjCnB6mcc71tnCqutEoFt4ZoVmtxtt1BdYl20iIBOUCqynUpOUmbyZBBywk2Bp5ptJzy2OooQsPLX36fVyYvptFrkLnMQ0f5Dv7NupLITBUsbn7Rr5jOZvTeFSekB1UGeu7zK3+254/BorKmXfMzrKnuHGVQqAZaGjZiKExVSs4n8L43ok3NuZh0biS3532Vos8RHrXO4Gp3Jl02m6RLmCiuqjVNSOtVqChNM7g7SuNfFY7P2YpjCn2E6Da3RGDq/sFC+YRKZxjhdZfNKBPpU9WhH0O5nabSbVxLpVIawrvAmy5g0glUnfXsRrgxgl408t5Ag0Zbh00xbWMj8H15D1bXTbTlzUTrYRm9xalxoj37/sS/2P+HI+0xL6ciWJP7q17YtoXIjZOHh3SL8x5HNFbXVfaYQGjcGacsFO/cWV8aydI71f6nLI4/eBc8Ql7jg04Zo+ravDxK3t283dODy7USFxXmRRfwlm73EuQ8pHUq2oIf13tRPrAekbs=
+X-Microsoft-Antispam-Message-Info: jYB5pTdychxJtwST8Pqn1Od9VbxdeB89AOwy4LrmSactc2MOjCSAueSJ/QiB/fAINjfW+8PHcuXgwyoVp0lLTF1c8AVNtEe94qqFoZ5ZGlY8Rwk0qSN0R+OZ/KmlrclrgbLpN3JPa6MJB9Or1B2dkiWxSQiBJwgVHuBYMTMnq1NR/T8NfTEMYUxokcgqyi3PiXC/LP/xe3uDcK69PS728UCKYN/OM7tZJSqyeorZ78rdMizFtMQaoI0c/slrbnhnJ6qPE1jITMllIBpNYTdY36yjfgMKhrHWhZEa7uRKYsTV3KV6lX5yp+XABcdsiMP524onOfkVjGQ4gOxnLjrk/RSu/CWKoDdOfh7rWGC/Nc008RKdGOJLrusDFHrzLGqWk/Kd3uTi9FmOR/Yq9Ozf/3RG2zk22ltSxOSZBi3aRu79ac+itnSG0+tv8wewessphdVLjatcTfiQRDguTsj+JBKlGMNEipibgSLWR4NeKxQaoTw86QX9kuP33oWwDEIa7KcUF9Z68KaTca7SIWbtq/s25dampQInPFaHWViSfxvi+pqevBpXHPtf6Tvh8CjNV9kk/W7u8e9UJOOyYA3tkp/iVASjIGGb7YKbNx0SfHk7/0Qtvaz4i5QmIT7uh20d8NbmhXdh1oSNO9uOJiGTncAJCfZNT9jH+JbyGOBPvVVu+0PEdWJK+JgsN6GL1TtV0be3PS2fhztKGV/m8NPM/OaO23Jy9miW3C00bXGfa+Eq/fqiW0lThc/fsKj0+I4VFgH9Zf1mvCjeJZ61voKLyDzHYx3sIS4AHmO0ldKHQfU=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(40470700001)(356005)(186003)(26005)(16526019)(508600001)(316002)(336012)(8936002)(36860700001)(8676002)(110136005)(2906002)(7696005)(83380400001)(6636002)(4326008)(86362001)(2616005)(70206006)(70586007)(5660300002)(82310400004)(6666004)(1076003)(36756003)(47076005)(81166007)(426003)(40460700001)(36900700001);
+ SFS:(4636009)(36840700001)(46966006)(40470700001)(70206006)(70586007)(6666004)(8676002)(7696005)(82310400004)(83380400001)(6636002)(2616005)(4326008)(508600001)(36860700001)(26005)(5660300002)(426003)(1076003)(186003)(16526019)(336012)(2906002)(47076005)(36756003)(316002)(40460700001)(356005)(81166007)(86362001)(8936002)(110136005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2021 11:15:19.8618 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e17fc263-bb35-4b44-4c64-08d9bbce5a23
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2021 11:15:22.3534 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bc6df84b-75c7-4d31-6196-08d9bbce5bb2
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT046.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT023.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4058
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3088
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,71 +105,158 @@ Cc: Tao Zhou <tao.zhou1@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-So we can set reset mode for unmap operation, no functional change.
+CP supports unmap queue with reset mode which only destroys specific queue without affecting others.
+Replacing whole gpu reset with reset queue mode for RAS poison consumption
+saves much time, and we can also fallback to gpu reset solution if reset
+queue fails.
 
 Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
 ---
- .../gpu/drm/amd/amdkfd/kfd_device_queue_manager.c    | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c    |  6 ++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |  3 ++-
+ .../drm/amd/amdkfd/kfd_device_queue_manager.c | 14 ++++++++++
+ .../drm/amd/amdkfd/kfd_device_queue_manager.h |  1 +
+ .../gpu/drm/amd/amdkfd/kfd_int_process_v9.c   | 27 ++++++++++++++++---
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |  2 ++
+ 6 files changed, 45 insertions(+), 8 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+index 46cf48b3904a..0bf09a94d944 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
+@@ -721,13 +721,13 @@ bool amdgpu_amdkfd_have_atomics_support(struct amdgpu_device *adev)
+ 	return adev->have_atomics_support;
+ }
+ 
+-void amdgpu_amdkfd_ras_poison_consumption_handler(struct amdgpu_device *adev)
++void amdgpu_amdkfd_ras_poison_consumption_handler(struct amdgpu_device *adev, bool reset)
+ {
+ 	struct ras_err_data err_data = {0, 0, 0, NULL};
+ 
+ 	/* CPU MCA will handle page retirement if connected_to_cpu is 1 */
+ 	if (!adev->gmc.xgmi.connected_to_cpu)
+-		amdgpu_umc_process_ras_data_cb(adev, &err_data, NULL);
+-	else
++		amdgpu_umc_do_page_retirement(adev, &err_data, NULL, reset);
++	else if (reset)
+ 		amdgpu_amdkfd_gpu_reset(adev);
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+index fcbc8a9c9e06..61f899e54fd5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+@@ -296,7 +296,8 @@ int amdgpu_amdkfd_gpuvm_import_dmabuf(struct amdgpu_device *adev,
+ 				      uint64_t *mmap_offset);
+ int amdgpu_amdkfd_get_tile_config(struct amdgpu_device *adev,
+ 				struct tile_config *config);
+-void amdgpu_amdkfd_ras_poison_consumption_handler(struct amdgpu_device *adev);
++void amdgpu_amdkfd_ras_poison_consumption_handler(struct amdgpu_device *adev,
++				bool reset);
+ #if IS_ENABLED(CONFIG_HSA_AMD)
+ void amdgpu_amdkfd_gpuvm_init_mem_limits(void);
+ void amdgpu_amdkfd_gpuvm_destroy_cb(struct amdgpu_device *adev,
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-index dd0b952f0173..01a2cc3928ac 100644
+index 01a2cc3928ac..095b2e0822aa 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.c
-@@ -47,7 +47,7 @@ static int execute_queues_cpsch(struct device_queue_manager *dqm,
- 				uint32_t filter_param);
- static int unmap_queues_cpsch(struct device_queue_manager *dqm,
- 				enum kfd_unmap_queues_filter filter,
--				uint32_t filter_param);
-+				uint32_t filter_param, bool reset);
+@@ -1476,6 +1476,20 @@ static int unmap_queues_cpsch(struct device_queue_manager *dqm,
+ 	return retval;
+ }
  
- static int map_queues_cpsch(struct device_queue_manager *dqm);
- 
-@@ -570,7 +570,7 @@ static int update_queue(struct device_queue_manager *dqm, struct queue *q,
- 	/* Make sure the queue is unmapped before updating the MQD */
- 	if (dqm->sched_policy != KFD_SCHED_POLICY_NO_HWS) {
- 		retval = unmap_queues_cpsch(dqm,
--				KFD_UNMAP_QUEUES_FILTER_DYNAMIC_QUEUES, 0);
-+				KFD_UNMAP_QUEUES_FILTER_DYNAMIC_QUEUES, 0, false);
- 		if (retval) {
- 			pr_err("unmap queue failed\n");
- 			goto out_unlock;
-@@ -1223,7 +1223,7 @@ static int stop_cpsch(struct device_queue_manager *dqm)
- 	}
- 
- 	if (!dqm->is_hws_hang)
--		unmap_queues_cpsch(dqm, KFD_UNMAP_QUEUES_FILTER_ALL_QUEUES, 0);
-+		unmap_queues_cpsch(dqm, KFD_UNMAP_QUEUES_FILTER_ALL_QUEUES, 0, false);
- 	hanging = dqm->is_hws_hang || dqm->is_resetting;
- 	dqm->sched_running = false;
- 
-@@ -1419,7 +1419,7 @@ static int map_queues_cpsch(struct device_queue_manager *dqm)
++int unmap_queues_cpsch_poison(struct device_queue_manager *dqm, uint32_t pasid)
++{
++	int ret;
++
++	dqm_lock(dqm);
++
++	ret = unmap_queues_cpsch(dqm, KFD_UNMAP_QUEUES_FILTER_BY_PASID,
++			pasid, true);
++
++	dqm_unlock(dqm);
++
++	return ret;
++}
++
  /* dqm->lock mutex has to be locked before calling this function */
- static int unmap_queues_cpsch(struct device_queue_manager *dqm,
+ static int execute_queues_cpsch(struct device_queue_manager *dqm,
  				enum kfd_unmap_queues_filter filter,
--				uint32_t filter_param)
-+				uint32_t filter_param, bool reset)
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
+index 499fc0ea387f..c52869133159 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device_queue_manager.h
+@@ -219,6 +219,7 @@ unsigned int get_queues_per_pipe(struct device_queue_manager *dqm);
+ unsigned int get_pipes_per_mec(struct device_queue_manager *dqm);
+ unsigned int get_num_sdma_queues(struct device_queue_manager *dqm);
+ unsigned int get_num_xgmi_sdma_queues(struct device_queue_manager *dqm);
++int unmap_queues_cpsch_poison(struct device_queue_manager *dqm, uint32_t pasid);
+ 
+ static inline unsigned int get_sh_mem_bases_32(struct kfd_process_device *pdd)
  {
- 	int retval = 0;
- 	struct mqd_manager *mqd_mgr;
-@@ -1432,7 +1432,7 @@ static int unmap_queues_cpsch(struct device_queue_manager *dqm,
- 		return retval;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c
+index deb64168c9e8..2863bb9e5bca 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c
+@@ -89,6 +89,27 @@ enum SQ_INTERRUPT_ERROR_TYPE {
+ #define KFD_SQ_INT_DATA__ERR_TYPE_MASK 0xF00000
+ #define KFD_SQ_INT_DATA__ERR_TYPE__SHIFT 20
  
- 	retval = pm_send_unmap_queue(&dqm->packet_mgr, KFD_QUEUE_TYPE_COMPUTE,
--			filter, filter_param, false, 0);
-+			filter, filter_param, reset, 0);
- 	if (retval)
- 		return retval;
++static void event_interrupt_poison_consumption(struct kfd_dev *dev,
++				uint16_t pasid)
++{
++	int ret;
++	struct kfd_process *p = kfd_lookup_process_by_pasid(pasid);
++
++	/* all queues of a process will be unmapped in one time */
++	if (p && atomic_read(&p->poison))
++		return;
++
++	atomic_set(&p->poison, 1);
++	ret = unmap_queues_cpsch_poison(dev->dqm, pasid);
++	kfd_signal_poison_consumed_event(dev, pasid);
++	/* resetting queue passes, do page retirement without gpu reset
++	   resetting queue fails, fallback to gpu reset solution */
++	if (!ret)
++		amdgpu_amdkfd_ras_poison_consumption_handler(dev->adev, false);
++	else
++		amdgpu_amdkfd_ras_poison_consumption_handler(dev->adev, true);
++}
++
+ static bool event_interrupt_isr_v9(struct kfd_dev *dev,
+ 					const uint32_t *ih_ring_entry,
+ 					uint32_t *patched_ihre,
+@@ -230,8 +251,7 @@ static void event_interrupt_wq_v9(struct kfd_dev *dev,
+ 					sq_intr_err);
+ 				if (sq_intr_err != SQ_INTERRUPT_ERROR_TYPE_ILLEGAL_INST &&
+ 					sq_intr_err != SQ_INTERRUPT_ERROR_TYPE_MEMVIOL) {
+-					kfd_signal_poison_consumed_event(dev, pasid);
+-					amdgpu_amdkfd_ras_poison_consumption_handler(dev->adev);
++					event_interrupt_poison_consumption(dev, pasid);
+ 					return;
+ 				}
+ 				break;
+@@ -252,8 +272,7 @@ static void event_interrupt_wq_v9(struct kfd_dev *dev,
+ 		if (source_id == SOC15_INTSRC_SDMA_TRAP) {
+ 			kfd_signal_event_interrupt(pasid, context_id0 & 0xfffffff, 28);
+ 		} else if (source_id == SOC15_INTSRC_SDMA_ECC) {
+-			kfd_signal_poison_consumed_event(dev, pasid);
+-			amdgpu_amdkfd_ras_poison_consumption_handler(dev->adev);
++			event_interrupt_poison_consumption(dev, pasid);
+ 			return;
+ 		}
+ 	} else if (client_id == SOC15_IH_CLIENTID_VMC ||
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+index 0c3f911e3bf4..ea68f3b3a4e9 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+@@ -856,6 +856,8 @@ struct kfd_process {
+ 	struct svm_range_list svms;
  
-@@ -1485,7 +1485,7 @@ static int execute_queues_cpsch(struct device_queue_manager *dqm,
+ 	bool xnack_enabled;
++
++	atomic_t poison;
+ };
  
- 	if (dqm->is_hws_hang)
- 		return -EIO;
--	retval = unmap_queues_cpsch(dqm, filter, filter_param);
-+	retval = unmap_queues_cpsch(dqm, filter, filter_param, false);
- 	if (retval)
- 		return retval;
- 
+ #define KFD_PROCESS_TABLE_SIZE 5 /* bits: 32 entries */
 -- 
 2.17.1
 
