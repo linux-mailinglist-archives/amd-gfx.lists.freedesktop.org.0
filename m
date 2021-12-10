@@ -1,120 +1,74 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 656F14700A4
-	for <lists+amd-gfx@lfdr.de>; Fri, 10 Dec 2021 13:25:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0462947028C
+	for <lists+amd-gfx@lfdr.de>; Fri, 10 Dec 2021 15:17:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9455310E6B5;
-	Fri, 10 Dec 2021 12:25:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C66AB10E3C0;
+	Fri, 10 Dec 2021 14:17:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2048.outbound.protection.outlook.com [40.107.236.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFFA110E6B5
- for <amd-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 12:25:37 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mmZyEU3Mm+5Tozu/d/wVXuiUhZO9MVUr9EvZGNmO2pF+/jLAffZ9XK3hR6cFEhG7H60yyKGFSwZSXjPTggBBTv4Xjsh+Yc6m1VUVk+d1lcVjuLYOsub7aSN6vHizl2u+QqYkGFbahztC/5N+M28UxFO1u/X6VkF3PyXFXK24SxJs8ImaUm///AvtAD0n6FFPkdi2f31RvAG3mxzXxj/4c1DXa0ad09nlcsLe4JVRbZvlMC3qaZNOcYFHgf6pMYhr2DXd0KGM6bR8Yzd8K2wSQ6QtX2wPHttMShlVREVV82U+KLkfZQyxRyJjDsGLUCB6Q2qriTq1DjXAkDRehsILAA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0CZkGh/EfWW+qlxdDSDzosdrlEv8AmJ6O8xCXYqXV60=;
- b=Z0luTsu9PBOj7lZjFs4ZU9heavOYAbERxB+SVky6lS+PpDPJI7iVxeDmNe+ZjOVYTbpseWduqmhOIo9WyDbmNFrYtKpjzvFOdaJzaCZkzqLSo2ean6k7e/Zf1xhCm2z6KHc/tKMvJmPmkOYuyT9BlwvXVUwFZaWg1x5a/I0GSpiSCy7irG8aNXeFm5mbrfSYoLbrZEtMVyVZZKTw0jn/ojWq6xD9+/Zj8KXr37sgv960zyF8xkXWhYrgRcCzbHzrB8/PAlRJrMX1HGVVxw9PRd8O92TJrIMyONzmp3SAtd9OBxj2L568YuOMxjQdC0rp9J+cfS1V1HXwXVB0j+gbFA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0CZkGh/EfWW+qlxdDSDzosdrlEv8AmJ6O8xCXYqXV60=;
- b=Ld8a4lAYpWzZuDdSow54fLOskiTtpOmR86LnFJIiHncGB5k6Yuf96N4TkJRTSx3SpgtdOeLyrPNwUI6F2RwJ6mTVWhAE9so6oTrjt05llvIiK/qz7rl/7TUllmgAV4+kz9So/rMoyc4E/WtkJLm6i31NR7XPltjf2qWx0gaGLFs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3930.namprd12.prod.outlook.com (2603:10b6:5:1c9::19)
- by DM5PR12MB1434.namprd12.prod.outlook.com (2603:10b6:3:77::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.20; Fri, 10 Dec
- 2021 12:25:34 +0000
-Received: from DM6PR12MB3930.namprd12.prod.outlook.com
- ([fe80::41ea:d7dc:f041:633c]) by DM6PR12MB3930.namprd12.prod.outlook.com
- ([fe80::41ea:d7dc:f041:633c%5]) with mapi id 15.20.4778.015; Fri, 10 Dec 2021
- 12:25:34 +0000
-Message-ID: <eb4b71d5-9e08-eac2-43a6-55c82467faca@amd.com>
-Date: Fri, 10 Dec 2021 17:55:19 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH] drm/amdgpu: When the VCN(1.0) block is suspended,
- powergating is explicitly enabled
-Content-Language: en-US
-To: chen gong <curry.gong@amd.com>, amd-gfx@lists.freedesktop.org
-References: <1639136511-6357-1-git-send-email-curry.gong@amd.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <1639136511-6357-1-git-send-email-curry.gong@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BM1PR0101CA0037.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:1a::23) To DM6PR12MB3930.namprd12.prod.outlook.com
- (2603:10b6:5:1c9::19)
+Received: from sonic305-1.consmr.mail.bf2.yahoo.com
+ (sonic305-1.consmr.mail.bf2.yahoo.com [74.6.133.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3832910E235
+ for <amd-gfx@lists.freedesktop.org>; Fri, 10 Dec 2021 11:39:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1639136358; bh=3DzBMbvnxzxQsacAJ7ILBnAy1sv4m4cITI9TC67MqVk=;
+ h=Date:From:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To;
+ b=IT1mfDndvJ3ZD5pDSZHwUP8mbvM1mUFC0TBdpvhJVBZz3WnLaSuC+eUOlohScIfZnfP0SHkAZs1OZk2uJXcpEfiIvCGQ8MYQJBXLMSipYQlyldrz2hSRvzOlVv5WMQZiiBZMeIU3JwJShOk0EtRzH8Z1alA9aeqR0Ey5WKxyxoy+EeXP40OTlRz/tq1AzHx8ScCcDUp0aV4L3taQPOq3J9zQtaLK3EaljT/+hfgQxkQan3rvbbmr7lIVqJB+vyXAai3ZlnY7Zo275EUkVl3y9+gVz/sTox8SzO1wJzrmZL9Ofh91KBRaCjDWxgvKFBp7X8T4hcdwENtuDxmM2Br81g==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+ t=1639136358; bh=7m/0sa5KWxucEQvmIzIai9JMjzk/zQBkoAqnHByJJGn=;
+ h=X-Sonic-MF:Date:From:To:Subject:From:Subject;
+ b=GdRFZ/zib4U7mnIFloCp3x5FlpftnHWgr3ExI0Na3mrmtLblXp3GurOfVeLVH1oUrV9a+563bq11G/Y93N+WSDy3HiHZ6V4RCQg0cfScKvqQ7tYrd2OSV9LDePnqqEmf3AGg4xcCZXXihPxcGVG1noUpJra+wKFUT4djGF5151VFBQgN6duU0a2quwGTjqwJTip3cPfpep8sGlFRGe2XUkzkrgVG3PYNIlH0CDVtFzsVsvdE7d8wfNrSk4+CfzGPgBG3qRMspIMzxQ67Udd5HY7KZgZhnXyyInvjLq+I0rQqxGi85wyzxq565GDHzSHpGYjhD0vxY9cLWK7/nGeJzg==
+X-YMail-OSG: lyn1kzEVM1kwl4oXXd.7WdxtRr_8m8Mod0ovZzQAAWVNBDT0JD9FTRlzfuhuaOi
+ c0bx.7mdJxWtWXiS_cLbGQkLOZaQlSmwQdg2GkqmpfDtzXnrd6SbGbTWolS9g3adR1.srH96GGRn
+ LJSZx4VIzOHqNT60OXF_unrzpKixNzYuhYt7gAqazx3tiHDeXVavFxZP42XdfvA4JVdf0oCXCC3H
+ 6FmV0z.srHiEr70tJ5c9FaUtyxYM6uqH_CsCykbFnlY07n2WwQGWCyigy1uLOOFEDmUmd7R94yPr
+ pV7S_vrHzMukCyfLdg_Wfe2sEhNqRqWL36q_ZXJZ6qGFx1l_HO7JvDKLHSg6tjeVuUwqYoeH9FqY
+ bZsZ01YjEimyyMNIObgFw7w5D60nIdqMoQ8_PSjFAPnh9yPRvqP9j8eSjDQ.c7iL7IrG8sEMedTk
+ IoVeTlJ9hidGXyTVA.vHRaReV227L0W..8NgxEAFx0JnAgYyLk7U5yhdmshupQ8smNlH97MsV5P7
+ 5CADsTRx2IUt8x3Snc6dSFyuGf49zk4pDIyzq1nyA3VP5u5dDlwhAUKZsU9ouHNbXDhGGsrpyHeo
+ wK5rhtHTvL1CQ4ZSEj0tf9o_iVtPXAYtCKg_iq4uGYl4d0tJ8OTzHeYrsgaOISpXUXcqPj9q_lzx
+ rUmPKz9vEmDoswNat9OqckJUgxmFfSGyFZ4Y1xCbWhwtIeI6EObl4OCge7frERsdwWzlG.LTUKeB
+ ynH1xEs13QKG37btEmfJmT5IWdZkT5ixAcIE034ziCjxMs5u72HQJPwYy3qi4.ZEzKu86a0IWtlW
+ g6cj_CkrPoE4DIUNYct2y8MT8O1yuykmhZ7zBP7hT_kWpN.BaOAKYmAmpbUD_qxO1OwEX8c0aWSU
+ zgyoWtWd7LV08HghieS6jQgD4JnTQFNyU19bkuuiAl.kNF_bnzwmTF6YfM9FJ42mgio5z7L.ZAjL
+ BUABssi9ihMaUVBkfGxUtRvYMZkf9dg3J08HFEcBwNbYSkAmvwQsEOqFe_sSZHLVpQa_diZs3NxK
+ r6nL285DN6I35nl4u8WZ5rTj7zIBcHHKAVIsl_M4GsDYmQYDXJGZc_ImAPmHj5QE4kMjTsZ3Kj4i
+ fx63T3QuT4uyivsGMjUj2TIRKz7BZ3NsR2wt8OjlZHfIl4sAhHMZsPB1Y4sLUacciAtpxvDSxapn
+ H2CZKbaJQ6kf3sgtdcUvrICNgmKUit1.jqL01asSNHKSim4eO.fcIEYqlis46LDobgIsatvdNdtb
+ gs0hfv2Yj8eonyXLpGka47WRXZe3JNUYsNuwIV5NeQ7E4tvmLk0epWtCeqar94nZSBxvSl2WpCpN
+ 6GhXoVe7lx4mM86tpYE3DrVwUldp5CFwCjx2W24GOwh_ezptZd.t4JhhoK6tGKDp.tUr3RWWo7sm
+ 9Kd0LJeip72LTL55chL8Co0nIEtTgS6Zf6kHCjmvo1vGrKMVCclhdjuBF6MhY03l3dSFKisJ48yE
+ EzZ5fKUhyi.b_6QX7fPSHXHv.UTmp4A9PD_8VuCZAmnB5V85z8KniEuyBVICiFHcPU0COUpxHl9H
+ Mh8phfwbNNgZyrQvnvsnMyxl_4.SvzBB0i4iodc2BCny7KC1nJJTcmGa9YzxHOSVSr57PBGh5SjB
+ GHkhG7yYN1klGMy7pNjrYZHYbsrn..IODowsy3R0JcWc4G.D5vOQOcZ90d0bf1Dxod3acoT6Bqkd
+ sGrPS8KQHGjGHCYFrVbDZ4sXWZxP_eDDTb6bAG4oLQ0bMYdNMZQTnUCtG6NpR7hIzCphePSsBZ6x
+ bXsjSIMlSjaol43onZiCOiMmbs3R7Ek5HpTyLrns0EY3XdxBo_z9ZRIRsJWl5G.2XhcuQ4xWoMmV
+ Pr3Rv_Ozj4fuJ3Iu9RsUVPfANdStxsWBhNYJuOxqgmGc9vBJGQuKIyptywBrtBTzhxJqXeTeiBTf
+ YiQp4svq8J80PueNTZuHHDP7C71FnO8HOfOdG05XGm5ONFVkWdFkOo0mZA26tDvFyQUF_Sa4I.KW
+ LRxrRVKnSaeUMlt3nJY8EEbxZDHYIK0T_vaUZ6tE84WGFQJ4qOsWz.Gf.EZjjHV01JP9S4gNUk4X
+ _ECbk9DzOMrXqnUVPoEJunIKZ4n_1JDyADZT8FsBHZaVIhf7uyDzDRke.x0y07Ma.vpaBxpSwI_h
+ SBzWGxU2.iYNRvnhxtwhrVU5vWSAh_hUoTfFfV8Ci9AcTyxE8W7F2j2Ws3EuJK08jIxXPhQyKpmJ
+ h0m_hknPQKy_GNXmg293.xKgE29odbtWcnnuD1w--
+X-Sonic-MF: <tarequemd.hanif@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by
+ sonic305.consmr.mail.bf2.yahoo.com with HTTP; Fri, 10 Dec 2021 11:39:18 +0000
+Date: Fri, 10 Dec 2021 11:39:16 +0000 (UTC)
+From: "Tareque Md.Hanif" <tarequemd.hanif@yahoo.com>
+To: "wsa@kernel.org" <wsa@kernel.org>
+Message-ID: <1394751822.39123.1639136356516@mail.yahoo.com>
+In-Reply-To: <YbJj7xyiPs8HBxC8@kunai>
+References: <1295184560.182511.1639075777725.ref@mail.yahoo.com>
+ <1295184560.182511.1639075777725@mail.yahoo.com> <YbJj7xyiPs8HBxC8@kunai>
+Subject: Re: [bisected][regression] Applications that need amdgpu doesn't
+ run after waking up from suspend
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8cabe3a1-d813-4b3f-ab07-08d9bbd829cb
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1434:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB14340F8F1D4EEE4AADAC0B9D97719@DM5PR12MB1434.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: W1tjMPooF6sNZ0r6F8CxnitLkTPD+XFAvvks7T+wJI97t89pyqdOXafqegtLdhrYARe5X1+mgESy/BCgOk3+LSCnN9qzCTqsFa8PEFzgycs76REqM7Sosn7qmv0L4zgPwNzMsawaXLow17AITWCT0rL1NaPTb5mTHRCQuIsjvoyYy2nguIkj0kP+VFhZEpaFZsZP0/Q9UFKH8tpdixCFO7v08Q3X4E5j8GJtpfUWR3cpdvByFghPVnBjqxeMUkS8QIMGXJyc8zVvUbQ2MpEhWddVHUXijAIaGkVY4TfzifXC4EY64VStUAqiBeKHgpDYoHTpYWSuaLGn7Of6TO3Bd+zh7bY7M/DYvR0wH/l+UrwsKeTVhuoVB63C1s/oQLk6b+qdXzQUplm/G/MRbMLYyMBIc9YLx6URdlVgxVNdvX3M3BFV5EsPzoaomeX6Da5+T/t9FlLPIQRpBZVLNdChVQjLwmu23ZrR4yfB+SlWOCnrnv+p4GaqbUKEX39D55Er9zDRezxB0IpmBNA9E9SkxNx1nwPopkbasRek8zGpJ2vvs8soaPoiy9VPNw+vX78gxDIcJrMgq+z1/BOg4HA+jLT0p9fAv58gv47gZHdJDoofM5MSSHWHfdgz1K7euS+XBXbkvDoSSQlpI8ApumV9v1w6e9VhXwPgnwIGZzy9Pt8LFSBA3+Cx6e+d4Yf2LD5piD6fD5SqSw6eSdWCsh1ug6kLDiuNU2cBSF9UGv0pdfc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3930.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(2906002)(186003)(6506007)(53546011)(26005)(508600001)(6512007)(8936002)(36756003)(5660300002)(86362001)(2616005)(31696002)(38100700002)(6666004)(8676002)(4326008)(66946007)(66556008)(66476007)(316002)(83380400001)(6486002)(15650500001)(31686004)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TFQxdmRsUDVMNHNCc3h6V1NsTjA5enJJZExkdWRlR1c1Ylc3SWhsWTZtT0V0?=
- =?utf-8?B?U1U0RzNkazgrUjBDLy8vMlAyV0ZjYnpBQUxFOE9sR0dDcnBUWk5XVWFUNklR?=
- =?utf-8?B?c0IxVEoxU1ZDcDFVblVkaS9iU1hQTHo1aVcxMzFyYUZINDZ6Syt2alpDclJD?=
- =?utf-8?B?WnkrRURYZkZwTllxQ0doRHV3YmxveUpJdkJPQkZRcTNKbDJpVmlFNUVwVXQ2?=
- =?utf-8?B?WE9tWFdIWmZwcWVQSFh1YVJESlUxSjRJbWYyZTE3YkFsYTNwOUsreW5uRGNo?=
- =?utf-8?B?VjZwMkdLUFAzL1MrWnlvUWpaOFliQi9LYUdrYU5JTHprc3daem1vSUpLTDlF?=
- =?utf-8?B?OWRyczh2U21FcjlFUVBleks0OGR0T2xSdUc0WDVVVndJWjBBdEFTUFRVUHN1?=
- =?utf-8?B?RytWbmY4SnROM1A2dlVXQmd6ZFRXOXN2N1NmUG1CWUJTNVpaZ2liMlFCMXc5?=
- =?utf-8?B?SGJBSFNraVdONUhsVUZROU1BS3dkM05VUGN5YXdXMXFoTEZRNU55TjlDdUUz?=
- =?utf-8?B?TGc3eVNrcVJLTkErSkE0ZmUvQ04wRnkybkZYWGlEc0w0eDljT0FqN0daaG5J?=
- =?utf-8?B?L085aWxzT3hJekVSZTVNTGc4dnMvclg4UlhrbjNCVDJOWXIzcE9wRGF0OHlU?=
- =?utf-8?B?TnlialNWWk9JMUNMZFFtMDdzQ0lDMGlLK0JXZDF3V3BCRENnWFRXck84MUNV?=
- =?utf-8?B?Njd3L1BwWitVTkNxTjhpeFZZblM3QkpiSXFzS2tzb1BJa2FhT3lPdGJHbWRr?=
- =?utf-8?B?aU9mRnUzL3I4a0RFa1hCd3FZU2hNUUpGQXRhcnI1OU1XVlpranR1TkJ2aW9j?=
- =?utf-8?B?SmxydU5hdjdESHJ5K0E2bmJqZW5uOHFOSlp6ZnYyQUJLNEhmZ2Q1VTRvV3Zs?=
- =?utf-8?B?VlVLOUEvWE90U0lyU2RHUHRDc1dPVGRkWFB3bFZFSWZMQ2EwNXE4OVp1RHRT?=
- =?utf-8?B?SXNoaCtaY2JJbCt2NzM4NWpHL252dzU2U3o0TlY0Nm1qcnFZWjVrQTJTNWtM?=
- =?utf-8?B?Mlo4VXBnbFMwdGV1QkNpclhSRTJJOUtrKzdMNXhOT2tIcThFbUM0eTdYbDYx?=
- =?utf-8?B?NE5vbGRaUU90UEF5TTRpS1BSTkJlMW5QNWp1T1VsaVNjMlpoNGxxa1FCeW1n?=
- =?utf-8?B?R3hNc1kzVk9mSGEwY1RjaFh3RDQ4YkRlSVVtblBkR3JFV2Z1WjV1dUVGbFFk?=
- =?utf-8?B?MmQ3V0dtL1NQekJMeWJlaEhQV0kyZXZhTVNtaEdvamkrZmdiYW03TzJJcjRZ?=
- =?utf-8?B?NlVyN0pIRUFWR2l0c2lUL2gydE5pRWE1Ryt2bmY1UXVPNkxhK1hueHFnVFl5?=
- =?utf-8?B?S2U1OVFweXVNL05rMjgzOE93dVB6QlJWbkE0N2ZwTUFMdFJ0YmJuQ3REZ290?=
- =?utf-8?B?Rml2UjlzRDI5T2Q0TG9pTHQrSG5WUFp3eGhPYjJWSHRjbVlRQ290M1FaMHpm?=
- =?utf-8?B?YzI2emU2cFpoVGVlS0Z1L1MxcTVXdzlZNC9CV2l3YUtWbkxpVSs0QldIY1Jp?=
- =?utf-8?B?Zlptb3RzMXdMN3RMTGhrN1pDbEJBZUJnSFFOUkNhTUxwSEtpQTM3MmR3Ylgw?=
- =?utf-8?B?eFY4Rm5hVmZUSTRJOVJ1WWs0aXJTK25QVlgwM1NQVjNWOTRpRFBid29wb3hy?=
- =?utf-8?B?MFFmQXZXTVBFM1BSNW9RMmhJTjU3Z2NvbVAwbnQxbHpWbmNEV0p4dDk5aFNy?=
- =?utf-8?B?NGtyZXBCOVlqclhoMG1HMWJMR0RWbkJiWUM5bGIvWll1dWZsUzNKUEYxM1l0?=
- =?utf-8?B?N3ZRWE1rUkQ2M3JERFUyRVNPRUIyZ1hMN0tiK0hwQ0QzVXpuMTBKRk5JTHFu?=
- =?utf-8?B?T1pBT3YrNnBzM0w1blNSUkUvakNBN1ZMb1JzdmR0TVZYdXlWYVA2WDJOUUhJ?=
- =?utf-8?B?RmgyYTRaYk1qdEozZFVURlF0RUhCNHJCOWhIdnJRTmc3NkRYdHdxZXhSQ0JU?=
- =?utf-8?B?ZytTenlGTUZIbHg0ZjZQK1pHVEgzTzc5UjErcC9ER2FvaE5pZ0lnMEFDQzhL?=
- =?utf-8?B?TUt0c2pJV3l2c0ZJT1FCT25yTmltaXY0UzF2NGhMUmxhQk4zQ1pvNm1RM1BL?=
- =?utf-8?B?Y09YT25xNTk5eENrcWZHYUtHTDZycTkvZGJzR0dMeXdsWUFRcnlVTjNtVjFj?=
- =?utf-8?Q?kpnw=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8cabe3a1-d813-4b3f-ab07-08d9bbd829cb
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3930.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2021 12:25:34.3286 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cZw9Rf7SzZKgSRrLr0D+3LyTPtgfovbJShOKdVQ3Ts01fpTRb3sJ4rkWQx/CazaV
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1434
+Content-Type: multipart/alternative; 
+ boundary="----=_Part_39122_1379925081.1639136356514"
+X-Mailer: WebService/1.1.19415 YMailNorrin
+X-Mailman-Approved-At: Fri, 10 Dec 2021 14:17:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,79 +80,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander.Deucher@amd.com, James.Zhu@amd.com, leo.liu@amd.com,
- evan.quan@amd.com
+Cc: "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+------=_Part_39122_1379925081.1639136356514
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+ Hi,
+I just reverted the commit in tags/v5.15, and there are no issues after rev=
+erting the bad commit. But in 5.16-rc4, "startx" hangs with or without reve=
+rting the commit, it could be another bug.Regards,Tareque
+    On Friday, December 10, 2021, 02:15:49 AM GMT+6, wsa@kernel.org <wsa@ke=
+rnel.org> wrote: =20
+=20
+ Hi,
 
-On 12/10/2021 5:11 PM, chen gong wrote:
-> Play a video on the raven (or PCO, raven2) platform, and then do the S3
-> test. When resume, the following error will be reported:
-> 
-> amdgpu 0000:02:00.0: [drm:amdgpu_ring_test_helper [amdgpu]] *ERROR* ring
-> vcn_dec test failed (-110)
-> [drm:amdgpu_device_ip_resume_phase2 [amdgpu]] *ERROR* resume of IP block
-> <vcn_v1_0> failed -110
-> amdgpu 0000:02:00.0: amdgpu: amdgpu_device_ip_resume failed (-110).
-> PM: dpm_run_callback(): pci_pm_resume+0x0/0x90 returns -110
-> 
-> [why]
-> When playing the video: The power state flag of the vcn block is set to
-> POWER_STATE_ON.
-> 
-> When doing suspend: There is no change to the power state flag of the
-> vcn block, it is still POWER_STATE_ON.
-> 
-> When doing resume: Need to open the power gate of the vcn block and set
-> the power state flag of the VCN block to POWER_STATE_ON.
-> But at this time, the power state flag of the vcn block is already
-> POWER_STATE_ON. The power status flag check in the "8f2cdef drm/amd/pm:
-> avoid duplicate powergate/ungate setting" patch will return the
-> amdgpu_dpm_set_powergating_by_smu function directly.
-> As a result, the gate of the power was not opened, causing the
-> subsequent ring test to fail.
-> 
-> [how]
-> In the suspend function of the vcn block, explicitly change the power
-> state flag of the vcn block to POWER_STATE_OFF.
-> 
-> Signed-off-by: chen gong <curry.gong@amd.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c | 7 +++++++
->   1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
-> index d54d720..d73676b 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
-> @@ -246,6 +246,13 @@ static int vcn_v1_0_suspend(void *handle)
->   {
->   	int r;
->   	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-> +	bool cancel_success;
-> +
-> +	cancel_success = cancel_delayed_work_sync(&adev->vcn.idle_work);
-> +	if (cancel_success) {
-> +		if (adev->pm.dpm_enabled)
-> +			amdgpu_dpm_enable_uvd(adev, false);
-> +	}
->   
+thank you for the report!
 
-Probably this is a common issue. Can you try moving this to 
-amdgpu_vcn_suspend?
+> No issues in Kernel 5.13.13 and the issues exist in 5.14 to 5.15.7 .So
+> I bisected the bug with
+> git(https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/lin=
+ux).first
+> bad commit: [5a7b95fb993ec399c8a685552aa6a8fc995c40bd] i2c: core:
+> support bus regulator controlling in adapter
 
-if (adev->pm.dpm_enabled)
-    amdgpu_device_ip_set_powergating_state(adev, 
-AMD_IP_BLOCK_TYPE_VCN,AMD_PG_STATE_GATE);
+Have you tried reverting the commit and see if things work again?
 
-Call this after cancel_delayed_work_sync. Shouldn't have any effect if 
-idle work already put it in PG state. Evan, what do you think?
+Kind regards,
 
-Thanks,
-Lijo
+=C2=A0 Wolfram
 
->   	r = vcn_v1_0_hw_fini(adev);
->   	if (r)
-> 
+ =20
+------=_Part_39122_1379925081.1639136356514
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html><head></head><body><div class="ydp801404f4yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><div></div>
+        <div dir="ltr" data-setdir="false">Hi,<br></div><div dir="ltr" data-setdir="false">I just reverted the commit in tags/v5.15, and there are no issues after reverting the bad commit. But in 5.16-rc4, "startx" hangs with or without reverting the commit, it could be another bug.</div><div dir="ltr" data-setdir="false">Regards,</div><div dir="ltr" data-setdir="false">Tareque<br></div>
+        
+        </div><div id="yahoo_quoted_9589008530" class="yahoo_quoted">
+            <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:13px;color:#26282a;">
+                
+                <div>
+                    On Friday, December 10, 2021, 02:15:49 AM GMT+6, wsa@kernel.org &lt;wsa@kernel.org&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div>Hi,<br clear="none"><br clear="none">thank you for the report!<div class="yqt7613182026" id="yqtfd87508"><br clear="none"><br clear="none">&gt; No issues in Kernel 5.13.13 and the issues exist in 5.14 to 5.15.7 .So<br clear="none">&gt; I bisected the bug with<br clear="none">&gt; git(<a shape="rect" href="https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux" target="_blank">https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux</a>).first<br clear="none">&gt; bad commit: [5a7b95fb993ec399c8a685552aa6a8fc995c40bd] i2c: core:<br clear="none">&gt; support bus regulator controlling in adapter</div><br clear="none"><br clear="none">Have you tried reverting the commit and see if things work again?<br clear="none"><br clear="none">Kind regards,<br clear="none"><br clear="none">&nbsp;  Wolfram<div class="yqt7613182026" id="yqtfd39717"><br clear="none"><br clear="none"></div></div>
+            </div>
+        </div></body></html>
+------=_Part_39122_1379925081.1639136356514--
