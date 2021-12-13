@@ -1,25 +1,25 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D0747388F
-	for <lists+amd-gfx@lfdr.de>; Tue, 14 Dec 2021 00:30:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECA29473892
+	for <lists+amd-gfx@lfdr.de>; Tue, 14 Dec 2021 00:30:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3AE710E8E7;
-	Mon, 13 Dec 2021 23:30:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7135310E901;
+	Mon, 13 Dec 2021 23:30:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [212.27.42.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A4BF10E8E5
+Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [IPv6:2a01:e0c:1:1599::14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E746D10E8EA
  for <amd-gfx@lists.freedesktop.org>; Mon, 13 Dec 2021 23:30:38 +0000 (UTC)
 Received: from localhost.localdomain (unknown [88.120.44.86])
- by smtp5-g21.free.fr (Postfix) with ESMTP id B2A2C5FF93;
+ by smtp5-g21.free.fr (Postfix) with ESMTP id BFA0A5FF95;
  Tue, 14 Dec 2021 00:30:36 +0100 (CET)
 From: Yann Dirson <ydirson@free.fr>
 To: amd-gfx@lists.freedesktop.org
-Subject: [PATCH v3 3/4] amdgpu: fix some kernel-doc markup
-Date: Tue, 14 Dec 2021 00:30:29 +0100
-Message-Id: <20211213233030.6719-4-ydirson@free.fr>
+Subject: [PATCH v3 4/4] amdgpu: fix some comment typos
+Date: Tue, 14 Dec 2021 00:30:30 +0100
+Message-Id: <20211213233030.6719-5-ydirson@free.fr>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20211213233030.6719-1-ydirson@free.fr>
 References: <20211213233030.6719-1-ydirson@free.fr>
@@ -41,71 +41,52 @@ Cc: Alex Deucher <alexander.deucher@amd.com>, Yann Dirson <ydirson@free.fr>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Those are not today pulled by the sphinx doc, but better be ready.
-
 Signed-off-by: Yann Dirson <ydirson@free.fr>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c        | 6 +++---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 2 +-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h | 4 ++--
- 3 files changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 2 +-
+ drivers/gpu/drm/amd/amdgpu/soc15.c     | 2 +-
+ include/uapi/drm/amdgpu_drm.h          | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 4224be241338..155215c7b7dc 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -551,11 +551,11 @@ void amdgpu_device_wreg(struct amdgpu_device *adev,
- 	trace_amdgpu_device_wreg(adev->pdev->device, reg, v);
- }
- 
--/*
-+/**
-  * amdgpu_mm_wreg_mmio_rlc -  write register either with mmio or with RLC path if in range
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+index 0e7dc23f78e7..b23cb463b106 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
+@@ -53,7 +53,7 @@
+  * can be mapped as snooped (cached system pages) or unsnooped
+  * (uncached system pages).
+  * Each VM has an ID associated with it and there is a page table
+- * associated with each VMID.  When execting a command buffer,
++ * associated with each VMID.  When executing a command buffer,
+  * the kernel tells the the ring what VMID to use for that command
+  * buffer.  VMIDs are allocated dynamically as commands are submitted.
+  * The userspace drivers maintain their own address space and the kernel
+diff --git a/drivers/gpu/drm/amd/amdgpu/soc15.c b/drivers/gpu/drm/amd/amdgpu/soc15.c
+index a06c4944ed37..0fc1747e4a70 100644
+--- a/drivers/gpu/drm/amd/amdgpu/soc15.c
++++ b/drivers/gpu/drm/amd/amdgpu/soc15.c
+@@ -744,7 +744,7 @@ static void soc15_reg_base_init(struct amdgpu_device *adev)
+ 		vega10_reg_base_init(adev);
+ 		break;
+ 	case CHIP_RENOIR:
+-		/* It's safe to do ip discovery here for Renior,
++		/* It's safe to do ip discovery here for Renoir,
+ 		 * it doesn't support SRIOV. */
+ 		if (amdgpu_discovery) {
+ 			r = amdgpu_discovery_reg_base_init(adev);
+diff --git a/include/uapi/drm/amdgpu_drm.h b/include/uapi/drm/amdgpu_drm.h
+index 26e45fc5eb1a..0b94ec7b73e7 100644
+--- a/include/uapi/drm/amdgpu_drm.h
++++ b/include/uapi/drm/amdgpu_drm.h
+@@ -80,7 +80,7 @@ extern "C" {
   *
-  * this function is invoked only the debugfs register access
-- * */
-+ */
- void amdgpu_mm_wreg_mmio_rlc(struct amdgpu_device *adev,
- 			     uint32_t reg, uint32_t v)
- {
-@@ -1101,7 +1101,7 @@ static void amdgpu_device_wb_fini(struct amdgpu_device *adev)
- }
- 
- /**
-- * amdgpu_device_wb_init- Init Writeback driver info and allocate memory
-+ * amdgpu_device_wb_init - Init Writeback driver info and allocate memory
+  * %AMDGPU_GEM_DOMAIN_GTT	GPU accessible system memory, mapped into the
+  * GPU's virtual address space via gart. Gart memory linearizes non-contiguous
+- * pages of system memory, allows GPU access system memory in a linezrized
++ * pages of system memory, allows GPU access system memory in a linearized
+  * fashion.
   *
-  * @adev: amdgpu_device pointer
-  *
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index e65214db904c..18335b6154fa 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -624,7 +624,7 @@ static void dm_dcn_vertical_interrupt0_high_irq(void *interrupt_params)
- #endif /* CONFIG_DRM_AMD_SECURE_DISPLAY */
- 
- /**
-- * dmub_aux_setconfig_reply_callback - Callback for AUX or SET_CONFIG command.
-+ * dmub_aux_setconfig_callback - Callback for AUX or SET_CONFIG command.
-  * @adev: amdgpu_device pointer
-  * @notify: dmub notification structure
-  *
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-index bb65f41d1a59..c98e402eab0c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h
-@@ -50,9 +50,9 @@
- 
- #define AMDGPU_DMUB_NOTIFICATION_MAX 5
- 
--/**
-+/*
-  * DMUB Async to Sync Mechanism Status
-- **/
-+ */
- #define DMUB_ASYNC_TO_SYNC_ACCESS_FAIL 1
- #define DMUB_ASYNC_TO_SYNC_ACCESS_TIMEOUT 2
- #define DMUB_ASYNC_TO_SYNC_ACCESS_SUCCESS 3
+  * %AMDGPU_GEM_DOMAIN_VRAM	Local video memory. For APUs, it is memory
 -- 
 2.31.1
 
