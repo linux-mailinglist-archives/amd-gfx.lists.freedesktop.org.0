@@ -1,123 +1,126 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63F78472D8A
-	for <lists+amd-gfx@lfdr.de>; Mon, 13 Dec 2021 14:39:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C589472EEA
+	for <lists+amd-gfx@lfdr.de>; Mon, 13 Dec 2021 15:21:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAF8310E902;
-	Mon, 13 Dec 2021 13:39:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CB8110E73D;
+	Mon, 13 Dec 2021 14:21:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2058.outbound.protection.outlook.com [40.107.220.58])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C5BC10E902
- for <amd-gfx@lists.freedesktop.org>; Mon, 13 Dec 2021 13:39:07 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2065.outbound.protection.outlook.com [40.107.237.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3006210E741
+ for <amd-gfx@lists.freedesktop.org>; Mon, 13 Dec 2021 14:21:46 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Hgc2o5OtcoEunbtktVYUwDyeW1keCdh1u59aIXL3KDRRaLRHY2Evns/CkXu+eIxGILp6fj5YSIJOQXpy8Ld1AWfeSoGrnR9L/rMSHn8bL3W+B4+AoTjWx74bLh3ldEewYcDw57eGGkabo3uXnj7qFwLgbBSGu9SZW+5heqc49YbAm4plb/W87Fz8T+G+2oD3LWLF8caCJ3vJ6W9VCHhLpbglgZkMO0/ZULwfoOWT+ehQ4b6lqEbD761DDVvn4EstGikeH1zURA86RzZ78zg/DnhxxlLoXWcjGwXx97NxAmF2SFkyWyyjECc9UDD8GEqgMCjvcqAyg761GczM4TE2cA==
+ b=J39Ox0wa6mEkzHtCbeD9750yUVKZb3EC44k7rR/zvcVuXGFyiIHbI737NyQVGHGOTLJYEV5Se6h3WJm+I1zc3mGrVLW0NCdXocF1fbj7icfdLMphetOOWZLU1QkARiFmjoFyQkZhw0jrdm82Mt/pK8bR+54u2lLRul8DUQpnvDmpbUvUhJyU3Sjnnahy4uMhFV0R99KQm7pNMHDjnsyns1SqfsvyGzNP7Nqq/u5eUvlAfhnVlLU37m3zQjpvlmDfKOTjZphYPgiiHAE4m8mwKIQH6yH1rx1//h69lAE+FL4YsouTRqUwbKUbO6062Jb9IC1gaG/DbafROkBQckqTOw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/mMYVb6ZU7AzlTQGkcjrgOcOOKts1J0xLW/c52s6rWI=;
- b=dCEq1fPLDbYBBAJwuZvvsyL2zx+4q+OORC7mL78TUXGVx8rELocu5O5U21qzrUJ8qgUWkoE3StROeF5FWHQGQkjqhpjXs+96t6DVhOIi84XCI3ogeB62MWRWqvQ4Nl2oqIB2sWyPQW4vCNv3P5D9mNB2LmAglggHia6AtWiz5vKh6BatgfPJ7S5Aj4dW9Fyobx+feTyPr3ptAu38vqKiTCQTsuOlBjSDg+SYyvchs6mR/Hg+45FaVG5r2dQNyvWaQDl9BeCMhjvvbqplDTHNoAs/V0+RM4A7shwOooqIl87PTFilE4UJ3eWZoKVY4kUSabsnPWxn6HcpsNJuylL4nA==
+ bh=I2lo8eKPyiH1uQTmyIX6R4CkEFX0qeACEx+97tObZQI=;
+ b=fwFoDqnW24IP5Ge1ry6BIq8HtsYDQRIKUx98mjLirpFDO6/zPMWUygUXqchVRp+wxrIKRCqUzRIJ0lfhfhE3ygAEiVln2pUqmEyppiXohN474Xb8P8MHP0ShGJWtyZbbSeQ0QUumAKRUGXA7hvNLaF0/QSxVJD6vLLlYD+CyzlIeOjkxBDrDp3yCIq4o/+acGX544/nD1w2AMC8fNCMVmEzk7GV4tq9MoV5+RItSvMTuTy7w/IxmN8XBhLENfmPMNGfv10zcT6I/n6Yk7p10+odaG+OBtE7R/+uix+a96LOsQzYxwwYxjW04iW6VtlGjyvUBbL7qQYJeHKFWQni4sA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/mMYVb6ZU7AzlTQGkcjrgOcOOKts1J0xLW/c52s6rWI=;
- b=hI4T9RN/PpM4RzctMm4DqbDmUPEef7erHhiZc6+YMQFWtC+rlTpapcSkG72momq0NMBcTKfkz1dtFZHNsZYkgkIH54pr1di3GypBFBEnuJ8rrttNcsDONJLETwy/gOu05N3IQ/OU7Talq+C44P0gMyWBBYjPRknGSiPNNdT/MN8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM5PR12MB1753.namprd12.prod.outlook.com (2603:10b6:3:10d::16)
- by DM6PR12MB3737.namprd12.prod.outlook.com (2603:10b6:5:1c5::32) with
+ bh=I2lo8eKPyiH1uQTmyIX6R4CkEFX0qeACEx+97tObZQI=;
+ b=HiDV415aRbCzpkn2VA5SShK6uU1A5QG0GBj48TuIuXTDIJYB6GBaMcuOqRPwibiBWgS0bav4aIhOX5ySMl/4FXRlz3QhfkBZAQD+Khag9FCZC7GvToI/70wjYsMB4oKzNyBneZ5d/B8uu2U3TpH8nDZPBZnO3IacZsUiGegUrLc=
+Received: from DM6PR12MB3529.namprd12.prod.outlook.com (2603:10b6:5:15d::18)
+ by DM6PR12MB3708.namprd12.prod.outlook.com (2603:10b6:5:1c5::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.16; Mon, 13 Dec
- 2021 13:39:04 +0000
-Received: from DM5PR12MB1753.namprd12.prod.outlook.com
- ([fe80::9d61:180f:e2e0:2db5]) by DM5PR12MB1753.namprd12.prod.outlook.com
- ([fe80::9d61:180f:e2e0:2db5%8]) with mapi id 15.20.4778.017; Mon, 13 Dec 2021
- 13:39:04 +0000
-Content-Type: multipart/alternative;
- boundary="------------kHUPxxVBzTwytJB5AFL0G2d8"
-Message-ID: <826e98e0-5e6a-cc87-0690-b444e34bb367@amd.com>
-Date: Mon, 13 Dec 2021 08:39:02 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH] drm/amdgpu: When the VCN(1.0) block is suspended,
- powergating is explicitly enabled
-Content-Language: en-CA
-To: "Gong, Curry" <Curry.Gong@amd.com>, "Zhu, James" <James.Zhu@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <1639136511-6357-1-git-send-email-curry.gong@amd.com>
- <f1f996f4-0bc3-aa01-f9da-3664b14f7861@amd.com>
- <BN7PR12MB2641CA6290B6CEFB4A5016EF9D749@BN7PR12MB2641.namprd12.prod.outlook.com>
-From: James Zhu <jamesz@amd.com>
-In-Reply-To: <BN7PR12MB2641CA6290B6CEFB4A5016EF9D749@BN7PR12MB2641.namprd12.prod.outlook.com>
-X-ClientProxiedBy: MN2PR19CA0067.namprd19.prod.outlook.com
- (2603:10b6:208:19b::44) To DM5PR12MB1753.namprd12.prod.outlook.com
- (2603:10b6:3:10d::16)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9c6ef83c-b020-434d-166e-08d9be3dede1
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3737:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB3737198D1704651FE599C03FE4749@DM6PR12MB3737.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4hjfT9BK3zx9Q14Oft5cUM4KSr4yJmaFE9Dv+Q1oNd3zE1XtmniUvbg12CjaU+JMfSNFrUEVg4zufClZL3841VovFctsAW7ZExOQZmhb2mYyHDs1YpdUZZqmxyJWwav39W1E9kIqzl1bsRo/p4DIFMdV21jrKcJ86PEz3yQ1/UtoveRC6SBZ1HdkekrQaA7FgpgGuPFiDIcO6jX/L2N/nTDWmcclFVwyZR+K7IEs5a470IMw2Jf68wiltPTk7vMu0AdSOgrJlURskRSYTaTSwT9KEUmwWWMKAmi6Zxnvt0apUSSBpcY8LZ3CaPcJ0yik1N8vEXolJUprMGmICg4H0latKcT9r0SbtYVvCNsRrkCrJJF58GNX6uNvBcbd7bpfkr0BwENbr7LiQNvqeYM2aRwIrmxjDi7jRv5xJrJcDO+0GMsU9a57W0DkI6Zdjqyer7EmJ9M0lyG5oO2JB/PRBhF6u0T2IhQc2xsCUjHoctZ9O2kendHzuyTrfqG2JhAaj2a59TtyFNM2TnR389IfPYDBSkcRAUCTIuoFBply+XPgWyC/2n6TbkugCqSR/25E52Gxp/414VaN/+YViC5CKClTJzSzIKMh1AgJ1mZRU2VV0b9nABiS3XzCi4XoypADMgi72fl4dDCziXnu94ISy5R2h1c2/cUJkCcbqASEuIIwabOxpnP3e/4sCwM3YSNXSMYASHeZEygufjSdvfLBFSKamPuSUApLuMRSD4tt66k=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM5PR12MB1753.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(316002)(83380400001)(2616005)(33964004)(2906002)(38100700002)(54906003)(15650500001)(5660300002)(508600001)(31696002)(110136005)(4326008)(4001150100001)(36756003)(8676002)(186003)(26005)(53546011)(66556008)(6512007)(30864003)(6486002)(6506007)(66476007)(66946007)(31686004)(8936002)(43740500002)(45980500001);
+ 2021 14:21:43 +0000
+Received: from DM6PR12MB3529.namprd12.prod.outlook.com
+ ([fe80::88c5:51dc:ed5a:6f5a]) by DM6PR12MB3529.namprd12.prod.outlook.com
+ ([fe80::88c5:51dc:ed5a:6f5a%6]) with mapi id 15.20.4778.018; Mon, 13 Dec 2021
+ 14:21:43 +0000
+From: "Wheeler, Daniel" <Daniel.Wheeler@amd.com>
+To: "Kotarac, Pavle" <Pavle.Kotarac@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: DC Patches January 10, 2020
+Thread-Topic: DC Patches January 10, 2020
+Thread-Index: AQHX7hpcZeklmeWc90ir2H4CMAAMeKwwfTDA
+Date: Mon, 13 Dec 2021 14:21:42 +0000
+Message-ID: <DM6PR12MB3529F8868630C2EDF68D94AE9C749@DM6PR12MB3529.namprd12.prod.outlook.com>
+References: <20211210230408.619373-1-Pavle.Kotarac@amd.com>
+In-Reply-To: <20211210230408.619373-1-Pavle.Kotarac@amd.com>
+Accept-Language: en-CA, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=true;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2021-12-13T14:21:39Z; 
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public-AIP 2.0;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ActionId=1a60f4ce-e053-4173-8a37-71a9d54e3b5a;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=1
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_enabled: true
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_setdate: 2021-12-13T14:21:40Z
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_method: Privileged
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_name: Public-AIP 2.0
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_actionid: 7f6a7459-5833-4ef1-9609-3991c1744b0a
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_contentbits: 0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9891a450-05d8-469c-f9c2-08d9be43e31b
+x-ms-traffictypediagnostic: DM6PR12MB3708:EE_
+x-microsoft-antispam-prvs: <DM6PR12MB370817C63F1360D86DC55BDB9C749@DM6PR12MB3708.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: iCqGzJ47lI3kSpQDllL4vhxzfXmsCy0Ro2x7XULrLU789Z7pSuibGJ/6heX1lD5TfFYPFuuF4t7tcBjZ0ws+uRRi8YS6LOGKzeoWHZiDuA+Y6N9umZoSm/2BEoJ68bMJMPYTHXII875R0+z6lZLLcR6lRixN4IWZqqp99d2H0BObyN5wFtWgNHRwbg8ieSyqqfgu5LUfAy1RdLlLW1+qYq73GVZDzRRtq/YgOVfsNhgWqS+D/c5eVt40fwwV8HZlvBUrv0pMwtEt9TXgZWYg4LYWYmqfuqK+myaJYEshMjBCRcuuaiuz4NZd9dvBDdFlsCFyeWwO8ouKPW8Ooscs7IG6JFuPwIUDJl8pASfhk4QaYq079z15eLwlipv/uqDH3LPvvyRrmdgSgisRzD+/7vxTvczqU4GWDVEyqWYqPMSqVQt4UWelt5SvBxsEDbuwANYn87q464o8WzUdLZ3lJoRgW5Q/Vf43VvUWr9+qrh4SuXKTDJ4AqgCEjfEkXMS5rDuPvZE3HqSQnzTu0CenVNH7/13Ses4gRKl/XX5xiy/nz+Z0SexUE92X+VrDRQCqWk+ISXSmCrkns59JgA2c33rWGGetLvsaGG8xSKl4JdyJ2jRD1An8Xqsyj2ubuuxiHHqgMo3EFnbrNC55hDvHCZUbBvxAfw2/5qg5J2Z3oep//Zs01ul7u+gOgDYwiP2H/XDPH6xLVDwXkiR+eHjh/w==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3529.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(316002)(3480700007)(8936002)(5660300002)(8676002)(71200400001)(33656002)(508600001)(110136005)(26005)(54906003)(86362001)(122000001)(2906002)(38100700002)(6506007)(53546011)(186003)(7696005)(66946007)(66476007)(64756008)(76116006)(9686003)(55016003)(52536014)(4326008)(38070700005)(66556008)(83380400001)(66446008);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NWdLdk04UzU1Y3JQN2EyemdlazVsNTBjdVJtdWFBKzEzcDh5cjc5YW5BVFNC?=
- =?utf-8?B?NW9ramVIOHdzMjZ3eHBOWGJMZzFNclN0MlNrWTd6QUN4T1BTRXNvM1NEZWVm?=
- =?utf-8?B?YWY1Mmk4QnZ6enJ3Q1JVYzh3WkRteVFFeWJLQUZEZXNQa3VrTTByNFdjR2dj?=
- =?utf-8?B?Nmx1bXQ3THJ3RnhRZzBDN2VRcjNOeGtNZmFBOHF6bWgxTE0veXg0cVZPTHd0?=
- =?utf-8?B?eW5uSHhCb3hMR2tieFNHYnhJajl2NkxVb3BhbCtsN0xEcFpVMVBSc09xb2I5?=
- =?utf-8?B?dmN5MnpQS0hwS1FxZldodEhBL09hQURFTlcyUjZPejhjRjRnS1pYMXA1d1ov?=
- =?utf-8?B?bVpUYzM0aWtGem9Da2trZTBrSmVtS0swNjRsdUlYQ1YyR0JJUTFCZFB4UWdI?=
- =?utf-8?B?RDFsVmNsaDVjeGk0OUIySFV3QWh3L0R5Y3FsZnpUaDk1YzhzeWpaZkZPS3lY?=
- =?utf-8?B?WGNZTTE1NU8yVWYybkdBRGxLdzU5VWc2TFUwRWQ0L0FicnE3TElURngrRzRV?=
- =?utf-8?B?MTdCaTRDR1RNTmc5NGY0M1NHUW9IUGtUOWlaeXdDemdQM0R4QktCb2pSNkg3?=
- =?utf-8?B?UnRHNCtaRmk0YWU5VEFDZW93Zm5Da29DVEtYbEx0bWQ2eVZ5U0JYMHpSaG9q?=
- =?utf-8?B?L3FBd1B5L1V3aFRtZlEwbGZ5YjlONndRZEp0KzN2S1FyZDN6dmp3Y0owY1VP?=
- =?utf-8?B?VXhSbWI1WXNLYzFJbHZOYXZqbXVhRk53Q3VqNXhEaGJ2S2ZIWHNGcXpNKzFD?=
- =?utf-8?B?Z3hFK1BlMzdlNnBzM2xlUndFRDJ5TWJxRzdDN1lmeE9XdTRwcXZEMW84N0k2?=
- =?utf-8?B?SG02QzJXUzZ4Z3RsZExGQTI0V1VUZ2dDcTV3Z3J6dkpweXpTQkpHanZsV0Fk?=
- =?utf-8?B?b0I0MWRYczVsMmk5OWJYQzUwRE5lc2VQSUwwcHVaMzBJUVU2NTVBRlVXdk5Y?=
- =?utf-8?B?dUR0bFBlNURMQlNrbWRqUTFrQXJLN3kxNUx1Q2FLOC9iMGpsNmFOaEtYdTE0?=
- =?utf-8?B?b0pyTThlWHBlNVZqVlB0VDZHbDFCZm4vdXZ0MEdENzM3T1c4MWcveW52VFRh?=
- =?utf-8?B?OFc4cVprNHZvMng1MzFBY0VSVUpOVnVTdTgxV1Z2Z2NsQnJDaC9HbnBVTFN0?=
- =?utf-8?B?cGdDdkhRckIwQ0g1bElBdHVJNFpWK255ZlBFSkMrbUdYZ0dxbFNyTWxuamJr?=
- =?utf-8?B?UHo1RGJWMlhVYkZaU0dCbE03QzR0azNkbkRETlNFVlVoekxDV2l5QUh3MUUw?=
- =?utf-8?B?N2lTN3pxUU5tMWU0TkxFM2prcHFGM1ZhRkpLMnNPTFZwSE9acjNvYW9lbUla?=
- =?utf-8?B?TDg2bXhuNENVZSszNk14WmtnZDFVcjl1ZFlJbGwza251VE5NMlFlZG1sdjhZ?=
- =?utf-8?B?SVE0V3o5QW1oUFJWeHVqSXFsME9EZm9RdWxCekd5dldyc0N6VUEwb1RGTVlu?=
- =?utf-8?B?dzN0SjRCZjVYeWJvSEJHcE0rbTJIWmYrNFZwWURSRGJPbXRFRnhsUkFZSzNJ?=
- =?utf-8?B?eXBmZEp6VFRKbVkyVVRjbnBxbWY2TUkvOVFYMmIvSXR6UEhTZ3d1dllGQzhC?=
- =?utf-8?B?d1l2OUFhSlRPa0dINjdlVUNRc1htWFBybC9uMTdiRlk3c0t5VVdpdmQ5TDNi?=
- =?utf-8?B?dWhucUZ1TFhLV2I0VzVKWCtyT28zTHkyZHMzOGN2bUhOZk05Q2JkaWRjVkJq?=
- =?utf-8?B?YUJtTmt0L3VpOC9iSGhTZ3pta2FBbWxxeGk5QW1hYUk0dEhGZGVKQmdBN3Q4?=
- =?utf-8?B?MzNubS9IT2t2UFdGUDNFTStUOUlLdEx4NkFiYkJZY3VNaHNRc3BINlhLdngy?=
- =?utf-8?B?WjF2RW5SWk1RR1hPekhLQVQ3bDJqRUI5S0lSWStqc2Y4bitxbE1pVGJRYXVq?=
- =?utf-8?B?SENCWEo3Z1I5aFBXUDlvZDVxenpyajRKL3cwaEptcUh4d1NKa0JyUjdxdGVr?=
- =?utf-8?B?Y2cwMUhiZUVsS3dGZ0dqMVpTWk5xY3k5QjJMSWYyL29yQURwVDRIWnhpZUlm?=
- =?utf-8?B?MUFuS1B6NEkyckhqb28vUEJFQ284RXFXcFhOb3k3empDWjFzQmltV0hLd1FF?=
- =?utf-8?B?NkNQOGtjL3RPN0k5MnV1dVFveDV2Z1ZRWHRXd3Z2VldzY1llbGV3N3A4aHhj?=
- =?utf-8?Q?b5D8=3D?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?+Gcx02CG6nBy6kBX4cZEEmIE++wE0qgp/ZOicfAOM3DgY1GiixQaJH1HA/9N?=
+ =?us-ascii?Q?b+tUa3npVMgnvbEbc6bRiLtNn/pwt0M/bb+MIDteCeX9eXT9OaloSB/equ89?=
+ =?us-ascii?Q?m6fk1vlJosemRhSzYyiLeaAsVp344WyFtfbh6rpPxf+Dja9cFe5u/a6FA3Md?=
+ =?us-ascii?Q?kRqhLhP/X1bHwP4X6lGj+vhKbMbbZFHZ9yZPELp6eYKT4NrwlxIuYqIUe7T/?=
+ =?us-ascii?Q?2ubhdgtd6PqnxUm2c8Hlkx07ThNAiUOsZxOM58T5QTnW0TdVojI5IQTmGrvd?=
+ =?us-ascii?Q?c24qzSPZPHBhm7GcVN1kvsFoH50A5xsIxPIUQBas5vLW+HEXtMXXoVDoFwK8?=
+ =?us-ascii?Q?9n2E3ittBMrIHi+pl3fNxZ6W2/Nc+lwBjAgyT6+Hh8wmCDA4Deu46F4+kKNp?=
+ =?us-ascii?Q?2FnAcraxImBxnIvgAOPGw1HuV2GGjOGbwLCHbatMyceZd+SB+oP42s9GQVpI?=
+ =?us-ascii?Q?veDrVaLsFWqfCF89HvEgjzWWhw47oyiZ4AmDaVWXIYqF6PVl817J8P6zUbL3?=
+ =?us-ascii?Q?Ww9Mxd8WGc7AfZNR/kW5PW4x6yxP88IbhtMWnF9SFezTjJjaslraVA7Jf20G?=
+ =?us-ascii?Q?U+77Zab6LhtkJfZMm5zkM5hFzskEqZzN6jJFm3lj2hyTHMVIy3qiObmGZp66?=
+ =?us-ascii?Q?KurbZKSqiDLQWpx++18Hy2e3gNE66wNeiHgj6aD3or8tUBHBtmU/lE09SJpT?=
+ =?us-ascii?Q?QXexWaaCcoSNYqy9kT3i9JjD+DEjwgybfnItB3f1BIgHEam1H8ttBlr4zGt9?=
+ =?us-ascii?Q?6ox8LYVL+0PJGGFuzB7vDo1Dz3fpkgAbJCSRqjik7i9UiKj7uX1+UVeWH0D3?=
+ =?us-ascii?Q?nGRlpgjKPLYHR4YQ8uUW/87+7m3T/tGz7E3pYn+8jtm3WRdNS/QuAPub5p1X?=
+ =?us-ascii?Q?gyx33isS3ddgK5d1LyuGOTKBDKk0T2M5bx77WgyEigfy2wAw7pk1n/FkpJvh?=
+ =?us-ascii?Q?0r/8ocxg3AbmI1W6OwQcQAhsVWt94bKVD+gIGr1PhjFH6UDD4F6+TM0QFLVT?=
+ =?us-ascii?Q?B9y9d8ZJQo+UW5TE/Y5C6fRsVfqGKNGMSmqFqdr1gPO6dNgtwHvycuXUG9BH?=
+ =?us-ascii?Q?CsNRuWxnXlyRtWDNII3QJeh6PJuUf720vsT/x5ll9fEmYC8jjOnHf0rl8jPx?=
+ =?us-ascii?Q?ej7dGCbdlevsdwfztD/G8AhJTiIukwR5v6+6v0yTA9M1NwCti3ZcFtO/zKdi?=
+ =?us-ascii?Q?zfwBCq9YpYtCpZgqCkv3pIzk3DNU9HQz5nG4rSzCG2qd8UijF7cHaUwUo97E?=
+ =?us-ascii?Q?Qks6lm5YNzXzYDZP5m+tXZj+c96upKBEm10HhKL4rhgdx71LfkMuHg6Y5GVE?=
+ =?us-ascii?Q?YGNIKnsC+LljE2JVQCigLVYx4gVwVzCoqs09KEbky1ClAfMnUE9PUGC0neIK?=
+ =?us-ascii?Q?Or30JEWLzgHtL8tUiMcIhdCGoQ5OBW2gK8zLiT75qRCW00Q22o5GAiKmBEhf?=
+ =?us-ascii?Q?SAcvMJsZb7CseM6wOI49XVU45SMuZqn74Y0IC5VDUfHxugz+rYRqAsMCFBNp?=
+ =?us-ascii?Q?12ke8i/yEhu8CNIA3O1DJ9BPrV7uE1/d+4v69TxgKs/Cso3QnSuVh65dRMzU?=
+ =?us-ascii?Q?AgVjZr3fXHcy/Vp8l5W9Djo+q9Wi0eZcgdsuwcOM96GM36hzrpr+9PN5DMoj?=
+ =?us-ascii?Q?IuY3Qb+zkvVm3f8mm7QGPW4=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9c6ef83c-b020-434d-166e-08d9be3dede1
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1753.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2021 13:39:04.5228 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: n+No29jHwD+O9ZsqP8rlLRanAtoIYNbVpDDoUH9rIjAYxCohMgFT2CLfI2E5PFZ+
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3737
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3529.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9891a450-05d8-469c-f9c2-08d9be43e31b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Dec 2021 14:21:42.9795 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cNHe/ZXp/DQzfs370LBQsXmjhuiLpIhrNHa68jZeRzqvYrWV8zi/drfp/TvdQCsq2NAArjY+z37Xz71zZzghrw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3708
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,640 +132,139 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Quan,
- Evan" <Evan.Quan@amd.com>, "Liu, Leo" <Leo.Liu@amd.com>
+Cc: "Wang, Chao-kai \(Stylon\)" <Stylon.Wang@amd.com>, "Chiu,
+ Solomon" <Solomon.Chiu@amd.com>, "Li, Sun peng \(Leo\)" <Sunpeng.Li@amd.com>,
+ "Wentland, Harry" <Harry.Wentland@amd.com>, "Zhuo,
+ Qingqing \(Lillian\)" <Qingqing.Zhuo@amd.com>, "Siqueira,
+ Rodrigo" <Rodrigo.Siqueira@amd.com>, "Li, 
+ Roman" <Roman.Li@amd.com>, "Anson.Jacob@amd.com" <Anson.Jacob@amd.com>, "Pillai,
+ Aurabindo" <Aurabindo.Pillai@amd.com>, "Lin, 
+ Wayne" <Wayne.Lin@amd.com>, "Lipski, Mikita" <Mikita.Lipski@amd.com>, "Lakha,
+ Bhawanpreet" <Bhawanpreet.Lakha@amd.com>, "Gutierrez,
+ Agustin" <Agustin.Gutierrez@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---------------kHUPxxVBzTwytJB5AFL0G2d8
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+[Public]
 
-Hi Curry, Evan,
+Hi all,
+=20
+This week this patchset was tested on the following systems:
+=20
+HP Envy 360, with Ryzen 5 4500U, with the following display types: eDP 1080=
+p 60hz, 4k 60hz  (via USB-C to DP/HDMI), 1440p 144hz (via USB-C to DP/HDMI)=
+, 1680*1050 60hz (via USB-C to DP and then DP to DVI/VGA)
+=20
+Lenovo Thinkpad T14s Gen2 with AMD Ryzen 5 5650U, with the following displa=
+y types: eDP 1080p 60hz, 4k 60hz  (via USB-C to DP/HDMI), 1440p 144hz (via =
+USB-C to DP/HDMI), 1680*1050 60hz (via USB-C to DP and then DP to DVI/VGA)
+=20
+Sapphire Pulse RX5700XT with the following display types:
+4k 60hz  (via DP/HDMI), 1440p 144hz (via DP/HDMI), 1680*1050 60hz (via DP t=
+o DVI/VGA)
+=20
+Reference AMD RX6800 with the following display types:
+4k 60hz  (via DP/HDMI and USB-C to DP/HDMI), 1440p 144hz (via USB-C to DP/H=
+DMI and USB-C to DP/HDMI), 1680*1050 60hz (via DP to DVI/VGA)
+=20
+Included testing using a Startech DP 1.4 MST hub at 2x 4k 60hz, and 3x 1080=
+p 60hz on all systems. Also tested DSC via USB-C to DP DSC Hub with 3x 4k 6=
+0hz on Ryzen 9 5900h and Ryzen 5 4500u.
+=20
+Tested on Ubuntu 20.04.3 with Kernel Version 5.13 and ChromeOS
+=20
+Tested-by: Daniel Wheeler <daniel.wheeler@amd.com>
+=20
+=20
+Thank you,
+=20
+Dan Wheeler
+Technologist  |  AMD
+SW Display
+---------------------------------------------------------------------------=
+---------------------------------------
+1 Commerce Valley Dr E, Thornhill, ON L3T 7X6
+Facebook |  Twitter |  amd.com =20
 
-It seems vcn1.0 power gate sequence are special.
+-----Original Message-----
+From: Kotarac, Pavle <Pavle.Kotarac@amd.com>=20
+Sent: December 10, 2021 6:04 PM
+To: amd-gfx@lists.freedesktop.org
+Cc: Wentland, Harry <Harry.Wentland@amd.com>; Li, Sun peng (Leo) <Sunpeng.L=
+i@amd.com>; Lakha, Bhawanpreet <Bhawanpreet.Lakha@amd.com>; Siqueira, Rodri=
+go <Rodrigo.Siqueira@amd.com>; Pillai, Aurabindo <Aurabindo.Pillai@amd.com>=
+; Zhuo, Qingqing (Lillian) <Qingqing.Zhuo@amd.com>; Lipski, Mikita <Mikita.=
+Lipski@amd.com>; Li, Roman <Roman.Li@amd.com>; Anson.Jacob@amd.com; Lin, Wa=
+yne <Wayne.Lin@amd.com>; Wang, Chao-kai (Stylon) <Stylon.Wang@amd.com>; Chi=
+u, Solomon <Solomon.Chiu@amd.com>; Kotarac, Pavle <Pavle.Kotarac@amd.com>; =
+Gutierrez, Agustin <Agustin.Gutierrez@amd.com>; Kotarac, Pavle <Pavle.Kotar=
+ac@amd.com>; Wheeler, Daniel <Daniel.Wheeler@amd.com>
+Subject: DC Patches January 10, 2020
 
-if the original solution is thread safe, then the following solution 
-will be thread safe also.
+This new DC version brings improvements in the following areas:
+ - FW promotion to 0.0.97
+ - DSC fixes for supported Docks
+ - Fixes eDP display issue
+ - Vendor LTTR workarounds
+ - Fixes Tiled display audio issue
 
-static int vcn_v1_0_hw_fini(void *handle)
-{
-     struct amdgpu_device *adev = (struct amdgpu_device *)handle;
+Anthony Koo (1):
+  drm/amd/display: [FW Promotion] Release 0.0.97
 
-     cancel_delayed_work_sync(&adev->vcn.idle_work);
+Aric Cyr (1):
+  drm/amd/display: 3.2.166
 
-     if ((adev->pg_flags & AMD_PG_SUPPORT_VCN_DPG) ||
-         (adev->vcn.cur_state != AMD_PG_STATE_GATE &&
-          RREG32_SOC15(VCN, 0, mmUVD_STATUS))) {
-+        if (adev->pm.dpm_enabled)
-+            amdgpu_dpm_enable_uvd(adev, false);
-+        else
-+            vcn_v1_0_set_powergating_state(adev, AMD_PG_STATE_GATE);
-     }
+Eric Bernstein (1):
+  drm/amd/display: ODM + MPO window on only one half of ODM
 
-Best Regards!
+Martin Leung (1):
+  drm/amd/display: implement dc_mode_memclk
 
-James
+Michael Strauss (1):
+  drm/amd/display: Force det buf size to 192KB with 3+ streams and
+    upscaling
 
-On 2021-12-13 3:55 a.m., Gong, Curry wrote:
->
-> [AMD Official Use Only]
->
->
-> Hi James:
->
-> With the following patch, an error will be reported when the driver is 
-> loaded
->
-> +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
->
-> @@ -1202,6 +1204,9 @@ static int vcn_v1_0_stop(struct amdgpu_device *adev)
->
-> else
->
-> r = vcn_v1_0_stop_spg_mode(adev);
->
-> c
->
-> return r;
->
-> }
->
-> $ dmesg
->
-> [ 363.181081] INFO: task kworker/3:2:223 blocked for more than 120 
-> seconds.
->
-> [ 363.181150]       Tainted: G           OE 5.11.0-41-generic 
-> #45~20.04.1-Ubuntu
->
-> [ 363.181208] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" 
-> disables this message.
->
-> [ 363.181266] task:kworker/3:2     state:D stack:    0 pid: 223 
-> ppid:     2 flags:0x00004000
->
-> [ 363.181276] Workqueue: events vcn_v1_0_idle_work_handler [amdgpu]
->
-> [ 363.181612] Call Trace:
->
-> [ 363.181618]  __schedule+0x44c/0x8a0
->
-> [ 363.181627]  schedule+0x4f/0xc0
->
-> [ 363.181631]  schedule_preempt_disabled+0xe/0x10
->
-> [ 363.181636]  __mutex_lock.isra.0+0x183/0x4d0
->
-> [ 363.181643]  __mutex_lock_slowpath+0x13/0x20
->
-> [ 363.181648]  mutex_lock+0x32/0x40
->
-> [ 363.181652]  amdgpu_dpm_set_powergating_by_smu+0x9c/0x180 [amdgpu]
->
-> [ 363.182055]  amdgpu_dpm_enable_uvd+0x38/0x110 [amdgpu]
->
-> [ 363.182454]  vcn_v1_0_set_powergating_state+0x2e7e/0x3cf0 [amdgpu]
->
-> [ 363.182776] amdgpu_device_ip_set_powergating_state+0x6c/0xc0 [amdgpu]
->
-> [ 363.183028]  smu10_powergate_vcn+0x2a/0x80 [amdgpu]
->
-> [ 363.183361]  pp_set_powergating_by_smu+0xc5/0x2b0 [amdgpu]
->
-> [ 363.183699]  amdgpu_dpm_set_powergating_by_smu+0xb6/0x180 [amdgpu]
->
-> [ 363.184040]  amdgpu_dpm_enable_uvd+0x38/0x110 [amdgpu]
->
-> [ 363.184391]  vcn_v1_0_idle_work_handler+0xe1/0x130 [amdgpu]
->
-> [ 363.184667]  process_one_work+0x220/0x3c0
->
-> [ 363.184674]  worker_thread+0x4d/0x3f0
->
-> [ 363.184677]  ? process_one_work+0x3c0/0x3c0
->
-> [ 363.184680]  kthread+0x12b/0x150
->
-> [ 363.184685]  ? set_kthread_struct+0x40/0x40
->
-> [ 363.184690]  ret_from_fork+0x22/0x30
->
-> [ 363.184699] INFO: task kworker/2:2:233 blocked for more than 120 
-> seconds.
->
-> [ 363.184739]       Tainted: G           OE 5.11.0-41-generic 
-> #45~20.04.1-Ubuntu
->
-> [ 363.184782] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" 
-> disables this message.
->
-> [ 363.184825] task:kworker/2:2     state:D stack:    0 pid: 233 
-> ppid:     2 flags:0x00004000
->
-> [ 363.184831] Workqueue: events 
-> amdgpu_device_delayed_init_work_handler [amdgpu]
->
-> [ 363.185085] Call Trace:
->
-> [ 363.185087]  __schedule+0x44c/0x8a0
->
-> [ 363.185092]  schedule+0x4f/0xc0
->
-> [ 363.185095]  schedule_timeout+0x202/0x290
->
-> [ 363.185099]  ? sched_clock_cpu+0x11/0xb0
->
-> [ 363.185105]  wait_for_completion+0x94/0x100
->
-> [ 363.185110]  __flush_work+0x12a/0x1e0
->
-> [ 363.185113]  ? worker_detach_from_pool+0xc0/0xc0
->
-> [ 363.185119]  __cancel_work_timer+0x10e/0x190
->
-> [ 363.185123]  cancel_delayed_work_sync+0x13/0x20
->
-> [ 363.185126]  vcn_v1_0_ring_begin_use+0x20/0x70 [amdgpu]
->
-> [ 363.185401]  amdgpu_ring_alloc+0x48/0x60 [amdgpu]
->
-> [ 363.185640]  amdgpu_ib_schedule+0x493/0x600 [amdgpu]
->
-> [ 363.185884]  amdgpu_job_submit_direct+0x3c/0xd0 [amdgpu]
->
-> [ 363.186186]  amdgpu_vcn_dec_send_msg+0x105/0x210 [amdgpu]
->
-> [ 363.186460]  amdgpu_vcn_dec_ring_test_ib+0x69/0x110 [amdgpu]
->
-> [ 363.186734]  amdgpu_ib_ring_tests+0xf5/0x160 [amdgpu]
->
-> [ 363.186978] amdgpu_device_delayed_init_work_handler+0x15/0x30 [amdgpu]
->
-> [ 363.187206]  process_one_work+0x220/0x3c0
->
-> [ 363.187210]  worker_thread+0x4d/0x3f0
->
-> [ 363.187214]  ? process_one_work+0x3c0/0x3c0
->
-> [ 363.187217]  kthread+0x12b/0x150
->
-> [ 363.187221]  ? set_kthread_struct+0x40/0x40
->
-> [ 363.187226]  ret_from_fork+0x22/0x30
->
-> BR
->
-> Curry Gong
->
-> *From:* Zhu, James <James.Zhu@amd.com>
-> *Sent:* Saturday, December 11, 2021 5:07 AM
-> *To:* Gong, Curry <Curry.Gong@amd.com>; amd-gfx@lists.freedesktop.org
-> *Cc:* Liu, Leo <Leo.Liu@amd.com>; Zhu, James <James.Zhu@amd.com>; 
-> Quan, Evan <Evan.Quan@amd.com>; Deucher, Alexander 
-> <Alexander.Deucher@amd.com>
-> *Subject:* Re: [PATCH] drm/amdgpu: When the VCN(1.0) block is 
-> suspended, powergating is explicitly enabled
->
-> On 2021-12-10 6:41 a.m., chen gong wrote:
->
->     Play a video on the raven (or PCO, raven2) platform, and then do the S3
->
->     test. When resume, the following error will be reported:
->
->     amdgpu 0000:02:00.0: [drm:amdgpu_ring_test_helper [amdgpu]] *ERROR* ring
->
->     vcn_dec test failed (-110)
->
->     [drm:amdgpu_device_ip_resume_phase2 [amdgpu]] *ERROR* resume of IP block
->
->     <vcn_v1_0> failed -110
->
->     amdgpu 0000:02:00.0: amdgpu: amdgpu_device_ip_resume failed (-110).
->
->     PM: dpm_run_callback(): pci_pm_resume+0x0/0x90 returns -110
->
->     [why]
->
->     When playing the video: The power state flag of the vcn block is set to
->
->     POWER_STATE_ON.
->
->     When doing suspend: There is no change to the power state flag of the
->
->     vcn block, it is still POWER_STATE_ON.
->
->     When doing resume: Need to open the power gate of the vcn block and set
->
->     the power state flag of the VCN block to POWER_STATE_ON.
->
->     But at this time, the power state flag of the vcn block is already
->
->     POWER_STATE_ON. The power status flag check in the "8f2cdef drm/amd/pm:
->
->     avoid duplicate powergate/ungate setting" patch will return the
->
->     amdgpu_dpm_set_powergating_by_smu function directly.
->
->     As a result, the gate of the power was not opened, causing the
->
->     subsequent ring test to fail.
->
->     [how]
->
->     In the suspend function of the vcn block, explicitly change the power
->
->     state flag of the vcn block to POWER_STATE_OFF.
->
->     Signed-off-by: chen gong<curry.gong@amd.com>  <mailto:curry.gong@amd.com>
->
->     ---
->
->       drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c | 7 +++++++
->
->       1 file changed, 7 insertions(+)
->
->     diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
->
->     index d54d720..d73676b 100644
->
->     --- a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
->
->     +++ b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c
->
->     @@ -246,6 +246,13 @@ static int vcn_v1_0_suspend(void *handle)
->
->       {
->
->        int r;
->
->        struct amdgpu_device *adev = (struct amdgpu_device *)handle;
->
->     + bool cancel_success;
->
->     +
->
->     + cancel_success = cancel_delayed_work_sync(&adev->vcn.idle_work);
->
-> [JZ] Can you refer to vcn_v3_0_stop , and add 
-> amdgpu_dpm_enable_uvd(adev, false); to the end of vcn_v1_0_stop?
->
-> See if it also can help.
->
->     + if (cancel_success) {
->
->     +        if (adev->pm.dpm_enabled)
->
->     +                amdgpu_dpm_enable_uvd(adev, false);
->
->     + }
->
->       
->
->        r = vcn_v1_0_hw_fini(adev);
->
->        if (r)
->
---------------kHUPxxVBzTwytJB5AFL0G2d8
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Mikita Lipski (1):
+  drm/amd/display: parse and check PSR SU caps
 
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p>Hi Curry, Evan,</p>
-    <p>It seems vcn1.0 power gate sequence are special.</p>
-    <p>if the original solution is thread safe, then the following
-      solution will be thread safe also. <br>
-    </p>
-    static int vcn_v1_0_hw_fini(void *handle) <br>
-    { <br>
-    &nbsp;&nbsp; &nbsp;struct amdgpu_device *adev = (struct amdgpu_device *)handle;
-<br>
-    &nbsp;<br>
-    &nbsp;&nbsp; &nbsp;cancel_delayed_work_sync(&amp;adev-&gt;vcn.idle_work);
-<br>
-    &nbsp;<br>
-    &nbsp;&nbsp; &nbsp;if ((adev-&gt;pg_flags &amp; AMD_PG_SUPPORT_VCN_DPG) ||
-<br>
-    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; (adev-&gt;vcn.cur_state != AMD_PG_STATE_GATE &amp;&amp;
-<br>
-    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;RREG32_SOC15(VCN, 0, mmUVD_STATUS))) {
-<br>
-    +&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (adev-&gt;pm.dpm_enabled)
-<br>
-    +&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; amdgpu_dpm_enable_uvd(adev, false);
-<br>
-    +&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; else
-<br>
-    +&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; vcn_v1_0_set_powergating_state(adev,
-    AMD_PG_STATE_GATE);
-<br>
-    &nbsp;&nbsp; &nbsp;}<br>
-    <p>Best Regards!</p>
-    <p>James<br>
-    </p>
-    <div class="moz-cite-prefix">On 2021-12-13 3:55 a.m., Gong, Curry
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:BN7PR12MB2641CA6290B6CEFB4A5016EF9D749@BN7PR12MB2641.namprd12.prod.outlook.com">
-      
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
-	{font-family:"\@DengXian";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}@font-face
-	{font-family:"\@SimSun";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	font-size:10.0pt;
-	font-family:"Courier New";}span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:Consolas;}span.EmailStyle21
-	{mso-style-type:personal-reply;
-	font-family:"Arial",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <p style="font-family:Arial;font-size:10pt;color:#0000FF;margin:5pt;" align="Left">
-        [AMD Official Use Only]<br>
-      </p>
-      <br>
-      <div>
-        <div class="WordSection1">
-          <p class="MsoNormal"><span style="font-family:&quot;Arial&quot;,sans-serif">Hi James:<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-          <p class="MsoNormal"><span style="font-family:&quot;Arial&quot;,sans-serif">With the
-              following patch, an error will be reported when the driver
-              is loaded<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">+++
-              b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">@@
-              -1202,6 +1204,9 @@ static int vcn_v1_0_stop(struct
-              amdgpu_device *adev)<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              else<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              r = vcn_v1_0_stop_spg_mode(adev);<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-          c<span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif"><o:p></o:p></span>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              return r;<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">}<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-          <p class="MsoNormal"><span style="font-family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">$
-              dmesg<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.181081] INFO: task kworker/3:2:223 blocked for more
-              than 120 seconds.<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.181150]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tainted: G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OE&nbsp;&nbsp;&nbsp;&nbsp;
-              5.11.0-41-generic #45~20.04.1-Ubuntu<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.181208] &quot;echo 0 &gt;
-              /proc/sys/kernel/hung_task_timeout_secs&quot; disables this
-              message.<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.181266] task:kworker/3:2&nbsp;&nbsp;&nbsp;&nbsp; state:D stack:&nbsp;&nbsp; &nbsp;0 pid:&nbsp;
-              223 ppid:&nbsp;&nbsp;&nbsp;&nbsp; 2 flags:0x00004000<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.181276] Workqueue: events vcn_v1_0_idle_work_handler
-              [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.181612] Call Trace:<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.181618]&nbsp; __schedule+0x44c/0x8a0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.181627]&nbsp; schedule+0x4f/0xc0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.181631]&nbsp; schedule_preempt_disabled+0xe/0x10<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.181636]&nbsp; __mutex_lock.isra.0+0x183/0x4d0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.181643]&nbsp; __mutex_lock_slowpath+0x13/0x20<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.181648]&nbsp; mutex_lock+0x32/0x40<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.181652]&nbsp; amdgpu_dpm_set_powergating_by_smu+0x9c/0x180
-              [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.182055]&nbsp; amdgpu_dpm_enable_uvd+0x38/0x110 [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.182454]&nbsp; vcn_v1_0_set_powergating_state+0x2e7e/0x3cf0
-              [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.182776]&nbsp;
-              amdgpu_device_ip_set_powergating_state+0x6c/0xc0 [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.183028]&nbsp; smu10_powergate_vcn+0x2a/0x80 [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.183361]&nbsp; pp_set_powergating_by_smu+0xc5/0x2b0 [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.183699]&nbsp; amdgpu_dpm_set_powergating_by_smu+0xb6/0x180
-              [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.184040]&nbsp; amdgpu_dpm_enable_uvd+0x38/0x110 [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.184391]&nbsp; vcn_v1_0_idle_work_handler+0xe1/0x130
-              [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.184667]&nbsp; process_one_work+0x220/0x3c0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.184674]&nbsp; worker_thread+0x4d/0x3f0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.184677]&nbsp; ? process_one_work+0x3c0/0x3c0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.184680]&nbsp; kthread+0x12b/0x150<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.184685]&nbsp; ? set_kthread_struct+0x40/0x40<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.184690]&nbsp; ret_from_fork+0x22/0x30<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.184699] INFO: task kworker/2:2:233 blocked for more
-              than 120 seconds.<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.184739]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tainted: G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OE&nbsp;&nbsp;&nbsp;&nbsp;
-              5.11.0-41-generic #45~20.04.1-Ubuntu<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.184782] &quot;echo 0 &gt;
-              /proc/sys/kernel/hung_task_timeout_secs&quot; disables this
-              message.<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.184825] task:kworker/2:2&nbsp;&nbsp;&nbsp;&nbsp; state:D stack:&nbsp;&nbsp;&nbsp; 0 pid:&nbsp;
-              233 ppid:&nbsp;&nbsp;&nbsp;&nbsp; 2 flags:0x00004000<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.184831] Workqueue: events
-              amdgpu_device_delayed_init_work_handler [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185085] Call Trace:<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185087]&nbsp; __schedule+0x44c/0x8a0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185092]&nbsp; schedule+0x4f/0xc0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185095]&nbsp; schedule_timeout+0x202/0x290<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185099]&nbsp; ? sched_clock_cpu+0x11/0xb0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185105]&nbsp; wait_for_completion+0x94/0x100<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185110]&nbsp; __flush_work+0x12a/0x1e0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185113]&nbsp; ? worker_detach_from_pool+0xc0/0xc0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185119]&nbsp; __cancel_work_timer+0x10e/0x190<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185123]&nbsp; cancel_delayed_work_sync+0x13/0x20<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185126]&nbsp; vcn_v1_0_ring_begin_use+0x20/0x70 [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185401]&nbsp; amdgpu_ring_alloc+0x48/0x60 [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185640]&nbsp; amdgpu_ib_schedule+0x493/0x600 [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.185884]&nbsp; amdgpu_job_submit_direct+0x3c/0xd0 [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.186186]&nbsp; amdgpu_vcn_dec_send_msg+0x105/0x210 [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.186460]&nbsp; amdgpu_vcn_dec_ring_test_ib+0x69/0x110
-              [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.186734]&nbsp; amdgpu_ib_ring_tests+0xf5/0x160 [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.186978]&nbsp;
-              amdgpu_device_delayed_init_work_handler+0x15/0x30 [amdgpu]<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.187206]&nbsp; process_one_work+0x220/0x3c0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.187210]&nbsp; worker_thread+0x4d/0x3f0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.187214]&nbsp; ? process_one_work+0x3c0/0x3c0<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.187217]&nbsp; kthread+0x12b/0x150<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.187221]&nbsp; ? set_kthread_struct+0x40/0x40<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-size:8.0pt;font-family:&quot;Arial&quot;,sans-serif">[&nbsp;
-              363.187226]&nbsp; ret_from_fork+0x22/0x30</span><span style="font-family:&quot;Arial&quot;,sans-serif"><o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-          <p class="MsoNormal"><span style="font-family:&quot;Arial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-          <p class="MsoNormal"><span style="font-family:&quot;Arial&quot;,sans-serif">BR<o:p></o:p></span></p>
-          <p class="MsoNormal"><span style="font-family:&quot;Arial&quot;,sans-serif">Curry
-              Gong<o:p></o:p></span></p>
-          <div>
-            <div style="border:none;border-top:solid #E1E1E1
-              1.0pt;padding:3.0pt 0in 0in 0in">
-              <p class="MsoNormal"><b>From:</b> Zhu, James
-                <a class="moz-txt-link-rfc2396E" href="mailto:James.Zhu@amd.com">&lt;James.Zhu@amd.com&gt;</a> <br>
-                <b>Sent:</b> Saturday, December 11, 2021 5:07 AM<br>
-                <b>To:</b> Gong, Curry <a class="moz-txt-link-rfc2396E" href="mailto:Curry.Gong@amd.com">&lt;Curry.Gong@amd.com&gt;</a>;
-                <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a><br>
-                <b>Cc:</b> Liu, Leo <a class="moz-txt-link-rfc2396E" href="mailto:Leo.Liu@amd.com">&lt;Leo.Liu@amd.com&gt;</a>; Zhu, James
-                <a class="moz-txt-link-rfc2396E" href="mailto:James.Zhu@amd.com">&lt;James.Zhu@amd.com&gt;</a>; Quan, Evan
-                <a class="moz-txt-link-rfc2396E" href="mailto:Evan.Quan@amd.com">&lt;Evan.Quan@amd.com&gt;</a>; Deucher, Alexander
-                <a class="moz-txt-link-rfc2396E" href="mailto:Alexander.Deucher@amd.com">&lt;Alexander.Deucher@amd.com&gt;</a><br>
-                <b>Subject:</b> Re: [PATCH] drm/amdgpu: When the
-                VCN(1.0) block is suspended, powergating is explicitly
-                enabled<o:p></o:p></p>
-            </div>
-          </div>
-          <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-          <div>
-            <p class="MsoNormal">On 2021-12-10 6:41 a.m., chen gong
-              wrote:<o:p></o:p></p>
-          </div>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <pre>Play a video on the raven (or PCO, raven2) platform, and then do the S3<o:p></o:p></pre>
-            <pre>test. When resume, the following error will be reported:<o:p></o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre>amdgpu 0000:02:00.0: [drm:amdgpu_ring_test_helper [amdgpu]] *ERROR* ring<o:p></o:p></pre>
-            <pre>vcn_dec test failed (-110)<o:p></o:p></pre>
-            <pre>[drm:amdgpu_device_ip_resume_phase2 [amdgpu]] *ERROR* resume of IP block<o:p></o:p></pre>
-            <pre>&lt;vcn_v1_0&gt; failed -110<o:p></o:p></pre>
-            <pre>amdgpu 0000:02:00.0: amdgpu: amdgpu_device_ip_resume failed (-110).<o:p></o:p></pre>
-            <pre>PM: dpm_run_callback(): pci_pm_resume+0x0/0x90 returns -110<o:p></o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre>[why]<o:p></o:p></pre>
-            <pre>When playing the video: The power state flag of the vcn block is set to<o:p></o:p></pre>
-            <pre>POWER_STATE_ON.<o:p></o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre>When doing suspend: There is no change to the power state flag of the<o:p></o:p></pre>
-            <pre>vcn block, it is still POWER_STATE_ON.<o:p></o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre>When doing resume: Need to open the power gate of the vcn block and set<o:p></o:p></pre>
-            <pre>the power state flag of the VCN block to POWER_STATE_ON.<o:p></o:p></pre>
-            <pre>But at this time, the power state flag of the vcn block is already<o:p></o:p></pre>
-            <pre>POWER_STATE_ON. The power status flag check in the &quot;8f2cdef drm/amd/pm:<o:p></o:p></pre>
-            <pre>avoid duplicate powergate/ungate setting&quot; patch will return the<o:p></o:p></pre>
-            <pre>amdgpu_dpm_set_powergating_by_smu function directly.<o:p></o:p></pre>
-            <pre>As a result, the gate of the power was not opened, causing the<o:p></o:p></pre>
-            <pre>subsequent ring test to fail.<o:p></o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre>[how]<o:p></o:p></pre>
-            <pre>In the suspend function of the vcn block, explicitly change the power<o:p></o:p></pre>
-            <pre>state flag of the vcn block to POWER_STATE_OFF.<o:p></o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre>Signed-off-by: chen gong <a href="mailto:curry.gong@amd.com" moz-do-not-send="true">&lt;curry.gong@amd.com&gt;</a><o:p></o:p></pre>
-            <pre>---<o:p></o:p></pre>
-            <pre> drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c | 7 +++++++<o:p></o:p></pre>
-            <pre> 1 file changed, 7 insertions(+)<o:p></o:p></pre>
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre>diff --git a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c<o:p></o:p></pre>
-            <pre>index d54d720..d73676b 100644<o:p></o:p></pre>
-            <pre>--- a/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c<o:p></o:p></pre>
-            <pre>+++ b/drivers/gpu/drm/amd/amdgpu/vcn_v1_0.c<o:p></o:p></pre>
-            <pre>@@ -246,6 +246,13 @@ static int vcn_v1_0_suspend(void *handle)<o:p></o:p></pre>
-            <pre> {<o:p></o:p></pre>
-            <pre>  int r;<o:p></o:p></pre>
-            <pre>  struct amdgpu_device *adev = (struct amdgpu_device *)handle;<o:p></o:p></pre>
-            <pre>+ bool cancel_success;<o:p></o:p></pre>
-            <pre>+<o:p></o:p></pre>
-            <pre>+ cancel_success = cancel_delayed_work_sync(&amp;adev-&gt;vcn.idle_work);<o:p></o:p></pre>
-          </blockquote>
-          <p><span style="color:#288AEB">[JZ] Can you refer to
-              vcn_v3_0_stop , and add amdgpu_dpm_enable_uvd(adev,
-              false); to the end of vcn_v1_0_stop?</span><o:p></o:p></p>
-          <p><span style="color:#288AEB">See if it also can help. </span><o:p></o:p></p>
-          <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-            <pre><o:p>&nbsp;</o:p></pre>
-            <pre>+ if (cancel_success) {<o:p></o:p></pre>
-            <pre>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (adev-&gt;pm.dpm_enabled)<o:p></o:p></pre>
-            <pre>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amdgpu_dpm_enable_uvd(adev, false);<o:p></o:p></pre>
-            <pre>+ }<o:p></o:p></pre>
-            <pre> <o:p></o:p></pre>
-            <pre>&nbsp; r = vcn_v1_0_hw_fini(adev);<o:p></o:p></pre>
-            <pre>  if (r)<o:p></o:p></pre>
-          </blockquote>
-        </div>
-      </div>
-    </blockquote>
-  </body>
-</html>
---------------kHUPxxVBzTwytJB5AFL0G2d8--
+Nicholas Kazlauskas (2):
+  drm/amd/display: Set exit_optimized_pwr_state for DCN31
+  drm/amd/display: Reset DMCUB before HW init
+
+Solomon Chiu (1):
+  drm/amd/display: Add src/ext ID info for dummy service
+
+Wayne Lin (1):
+  drm/amd/display: Add debugfs entry for ILR
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |   5 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c | 134 ++++++++++++++++++  ..=
+./drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c | 101 +++++++++++--  .../displa=
+y/dc/clk_mgr/dcn30/dcn30_clk_mgr.c  |  44 +++++-
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |  92 ++++++++++++
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |  81 ++++++++---
+ drivers/gpu/drm/amd/display/dc/dc.h           |   5 +-
+ drivers/gpu/drm/amd/display/dc/dc_dp_types.h  |   9 ++
+ drivers/gpu/drm/amd/display/dc/dc_types.h     |   1 +
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_hubp.c |  14 +-
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_hubp.h |   1 +
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  10 ++
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.h    |   4 +
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_hubp.c |   1 +
+ .../drm/amd/display/dc/dcn30/dcn30_hwseq.c    |  11 ++
+ .../drm/amd/display/dc/dcn30/dcn30_hwseq.h    |   5 +-
+ .../gpu/drm/amd/display/dc/dcn30/dcn30_init.c |   1 +
+ .../drm/amd/display/dc/dcn30/dcn30_resource.c |  11 ++
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_init.c |   1 +
+ .../drm/amd/display/dc/dcn31/dcn31_resource.c |   8 ++
+ .../gpu/drm/amd/display/dc/inc/hw/clk_mgr.h   |   7 +
+ drivers/gpu/drm/amd/display/dc/inc/hw/hubp.h  |   1 +
+ .../gpu/drm/amd/display/dc/inc/hw_sequencer.h |   1 +
+ .../dc/irq/dce110/irq_service_dce110.c        |  10 +-
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |   4 +-
+ 25 files changed, 514 insertions(+), 48 deletions(-)
+
+--
+2.32.0
+
+Cc: Daniel Wheeler <Daniel.Wheeler@amd.com>
