@@ -1,97 +1,125 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C40FE47612B
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Dec 2021 19:55:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 541D6476154
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Dec 2021 20:09:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA0EA10F839;
-	Wed, 15 Dec 2021 18:55:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1DE010F842;
+	Wed, 15 Dec 2021 19:09:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2042.outbound.protection.outlook.com [40.107.220.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A030B10F83A
- for <amd-gfx@lists.freedesktop.org>; Wed, 15 Dec 2021 18:55:32 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2087.outbound.protection.outlook.com [40.107.244.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 614C910F561
+ for <amd-gfx@lists.freedesktop.org>; Wed, 15 Dec 2021 19:09:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sp/XCvf9DAbJzscUhUjcus+5lAWHz8ANE+bZ5vwIiEKSRzssVviDT7Rms9NvIT/Xbw4/w1P28hY9/K8hEEIOlfALbU/lF6AWAfTAJxZU+9BpMkhcT2y0vNKAs8q/6tJB1FOrJhqlDQvQvwbZl/tiZs4y1P4t6VKP6CC0eajiOtVG5ggoh8nIaWszgYFPO6nPlhvd52N2CCazWhfXYATrP1NkF73BxorPMbdjXFgI208oAD6JE1dbaeZ1+PTdeRbz5fiCgAeoMxuPNc92e58lcIxKXwdV8Lwjtm2zY3XygAbWu5MXBuR6zSr+LvfVHNH/afqAERu/ddLFMWibbx6vbQ==
+ b=ZQssS+UFvf0drEkO74ojO5M9W2qljCWv0rVcILxQZm6aN9fUtvFhhwlaHC7iWtbQDTnDhJgNOVEyXKGFN2PbZ6PnllWXDR72cEM7fRYWTyzgFW7nQV3AqeiK5uVm6v0rw2/oZkKBL5PdjD0Wwu9w2ca2+j4nt0NyV2EionxjHjkiVRXBWzHDJjSZh/huspFirFS2yyuGvAMk/48OT2Llx1WTdbB9LNwvME1h4fA/wJqZUrHHKiqpD5Lhp4A1f/KvctEV4W2nS7jmcoEGAacU8g0j0G3vcWTeCEkJNBmVpM8c9ZGX3hgj4ZFsJ5nip364ez8J5IvfL/yyE5PbSjxdpA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dqZ6n/63zzjgMQvtuxygqjFEu1F5Qv8/PubNAVRqSsU=;
- b=B6ROGivHBSqCeuomnH4ETfC2bSPxKoeH2pragu2xfTnMWd6Q7aN+L92j7N46N0KKgWr6WgweFYgHWGhAkNc/1yrI9u0VlODufp+0kSpc70QAEm2ZCJFjjEJKe4cX0g9461wb1yuTnumHC/bpLx044irKaNApep9VIsNOrc5Eas3zv31AL65kGfoJjrqFA6bhpgSOpWBD0lMPSxRzGL4DjFe8PF0jCxquU49cPSt9upe+CahSTORLWlj3uS1uJUpxXoLpzEYY2mKIJumEcX0tTNEFjPC5ZnIuSq8GQ+txqDNVZT8qmZAt9JauebPq4LyXDMaGshQJEPNyvM6lDPJ+Cw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=hWEGlRh/I0l8oSRnI8e8JgyJuCm8LhJZxrQGSAfWsYM=;
+ b=H8J9dn2FgI147OmeDdo+CxrAwDE7vdFJ3HkbGAEiA5VbXO9RmQ/edOIOtTYpuRpd1YL+I4KbjWy8TiRom1BUmuM8dGWzAnMlzHL22Mj+dUfcMFi6+kiJA0IpimZMCqW+Fba67AzXmPk48PAowAaY98Vc5Zad8Ro3BoXzPWtgvsYI5gp4Mn2myO6roL1BUNmyBBPhRiwjjobJwMwfMPZ4Ky+XRAEzs74oa1a4EbLwSnr7+ojUzr5tL0JmZA5MEfeO3qGjDvJJZWFE3+eXTvKGY9D+1psOLXHN41wlubvJsMH9xrZkM2TY0aiA+TgbTjfmC4UUgrgsS4LkpbGJo31Dsw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dqZ6n/63zzjgMQvtuxygqjFEu1F5Qv8/PubNAVRqSsU=;
- b=HXTABnjMA5igXb28IWio8nbwY2+82MBoRE7bnpR6o5JA8GEA96l2oFGhUs/xGwc7Zb2ptkeFUh/q9IaK8CPV6lQddChHBOqmAJKEPa5TdKo06cuG9ufw6AcD6j6fa9mn+KZtmeybH/XL3Qf//1N3ucUPyi+NKZecH763GBYIWDE=
-Received: from DM6PR18CA0018.namprd18.prod.outlook.com (2603:10b6:5:15b::31)
- by DM5PR12MB1627.namprd12.prod.outlook.com (2603:10b6:4:10::21) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=hWEGlRh/I0l8oSRnI8e8JgyJuCm8LhJZxrQGSAfWsYM=;
+ b=BmNwuXEA2GeyVQSqOMTeH+jRaxYwfLGsBuV472ctKFOoPZkW3gKKLqPriVS7OMhji8c3+1IhkJ41BD1ht9asi6OKgtAYpfpOD8jTyDeY3VLlq/HG+MS/m3SxfK9cDQJKxU2MQkl6y1YDGdlLlI13lSRXvPzroYmD+/lLyqbY6zY=
+Received: from BYAPR12MB2840.namprd12.prod.outlook.com (2603:10b6:a03:62::32)
+ by BYAPR12MB3605.namprd12.prod.outlook.com (2603:10b6:a03:ae::27)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.16; Wed, 15 Dec
- 2021 18:55:29 +0000
-Received: from DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:15b:cafe::b2) by DM6PR18CA0018.outlook.office365.com
- (2603:10b6:5:15b::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.15 via Frontend
- Transport; Wed, 15 Dec 2021 18:55:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT059.mail.protection.outlook.com (10.13.172.92) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4778.13 via Frontend Transport; Wed, 15 Dec 2021 18:55:29 +0000
-Received: from sriov-scm.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Wed, 15 Dec
- 2021 12:55:28 -0600
-From: Victor Skvortsov <victor.skvortsov@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <Emily.Deng@amd.com>, <Monk.Liu@amd.com>, 
- <Davis.Ming@amd.com>, <Shaoyun.Liu@amd.com>, <PengJu.Zhou@amd.com>,
- <JingWen.Chen2@amd.com>, <Horace.Chen@amd.com>, <David.Nieto@amd.com>
-Subject: [PATCH 5/5] drm/amdgpu: Modify indirect register access for gfx9 sriov
-Date: Wed, 15 Dec 2021 18:55:10 +0000
-Message-ID: <20211215185510.15134-6-victor.skvortsov@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211215185510.15134-1-victor.skvortsov@amd.com>
+ 2021 19:09:35 +0000
+Received: from BYAPR12MB2840.namprd12.prod.outlook.com
+ ([fe80::5425:7b82:3787:d5fa]) by BYAPR12MB2840.namprd12.prod.outlook.com
+ ([fe80::5425:7b82:3787:d5fa%5]) with mapi id 15.20.4778.018; Wed, 15 Dec 2021
+ 19:09:35 +0000
+From: "Nieto, David M" <David.Nieto@amd.com>
+To: "Skvortsov, Victor" <Victor.Skvortsov@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Deng,
+ Emily" <Emily.Deng@amd.com>, "Liu, Monk" <Monk.Liu@amd.com>, "Ming, Davis"
+ <Davis.Ming@amd.com>, "Liu, Shaoyun" <Shaoyun.Liu@amd.com>, "Zhou, Peng Ju"
+ <PengJu.Zhou@amd.com>, "Chen, JingWen" <JingWen.Chen2@amd.com>, "Chen,
+ Horace" <Horace.Chen@amd.com>
+Subject: Re: [PATCH 4/5] drm/amdgpu: Initialize Aldebaran RLC function pointers
+Thread-Topic: [PATCH 4/5] drm/amdgpu: Initialize Aldebaran RLC function
+ pointers
+Thread-Index: AQHX8eVYWjzUjtJE00Wf/3svlKFDOawz6jQp
+Date: Wed, 15 Dec 2021 19:09:35 +0000
+Message-ID: <BYAPR12MB2840F88BACC359D89B1CC67EF4769@BYAPR12MB2840.namprd12.prod.outlook.com>
 References: <20211215185510.15134-1-victor.skvortsov@amd.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB03.amd.com
- (10.181.40.144)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ccebf7ca-e69b-44f5-bbd4-08d9bffc76d0
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1627:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB16277E3FFA43EC0C92062E1B8B769@DM5PR12MB1627.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2ux9wu4BvjbSLLAPYkcnxHIyPkuTEVTWsbqV9UZYNbF9ycBxcjGFGvxK1nh7UTvNb81Z6FlRFVMiEH+spFmjSCK8KqFBqIDT8fJSdj0RAMbqb143T9DLVtUB4eozB4TGNJImP052wXuaQs6JyfwNrA8/cvH19rU5bwoGxx3Bvr67KA9eHdSa2uNd73yrYELlUWVG2gqc9sr8PtfOCgwKqzIokvnBIi+13o3x8oce/Oqjm53kgTIY6LbxFE4BHvxUuMyXo2Mxssr2T4A40YRMJiHs19OHkdNffDl+/T7BVmiRpZDghUq3ZdJfScU6qCVThrW4xj21QJaJtI5P3AFccs2zNzwJhoNqh/cHb9Qa8HButXcMe1YyVai3qAjtHR1P6qpBJY+YRmvJFZWtqfqKJDEw/Fh2ZytGvekdxbI3eKfj2Scx6jJfbfwqu7BDZ+Dn1aUjS6VvWYeO0kAPX1NGuWUC2F0TybWloRwRD2m43EMw7NVNbmfDwc4IPbXd5IpHPL1jjPvZKfZJzOAd1eFpw444vWAi+/WdbyzNZdW5Fu7rv6xEacOXhfB26+AuRNFdQr//pc8LFoSTKGvWrS6S/lt411DfQA/tF3L89Ypgp59kiqOtOGDmpq9h6HfF8+xqPkAvx60UM5IKLxeQ7DfzRAauWTX6eu77Ynwqt3YnfeZ+/LjGkIJATK3cqnoju+1HNlD3TnlHhI/LvzkRl/DalnoP2b6weyntJ9ofinHf4QT3wbKIpoaY7eBzn4MWXdp+C66cqrDqfLZvJ3cZsUghG56OG+Pjv25H5+pIRzrjN64=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(40470700001)(86362001)(316002)(110136005)(81166007)(40460700001)(36756003)(508600001)(47076005)(186003)(8936002)(16526019)(82310400004)(26005)(2906002)(44832011)(5660300002)(83380400001)(336012)(6666004)(426003)(70586007)(70206006)(8676002)(4326008)(7696005)(6636002)(36860700001)(2616005)(1076003)(356005)(36900700001);
+ <20211215185510.15134-5-victor.skvortsov@amd.com>
+In-Reply-To: <20211215185510.15134-5-victor.skvortsov@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=True;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-12-15T19:09:34.961Z;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD
+ Official Use
+ Only; MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=0;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard; 
+suggested_attachment_session_id: 85e8c1f4-2d8d-44da-84a0-c45337ffe770
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 16fbbb01-4dda-46a0-0e34-08d9bffe6f2d
+x-ms-traffictypediagnostic: BYAPR12MB3605:EE_
+x-microsoft-antispam-prvs: <BYAPR12MB36053BA7CE141271797409A3F4769@BYAPR12MB3605.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3276;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wUsxVRyfE2mneS6SwEu7q4bjmW/Xh45m+NYB4QJH8qWnRgVVccSPcIXXjJOPOVjyRxq4kFjQG+OBPOB0/lqvE/dLfcSUrTj4eEpf1kZ92TqQh9Dsy4gpqMSOr9e+l5RpnVZ5zTPwBVADzubpe3LXU5ObijAXav8nMEREAVjAF1wKuneEMuJIooP70+CGQT5M1oZLeA4bK7TFQx19oGhmIWcZB0/dCGENP0U88SCZNxUC4swXvXwEi8rmoLhUK/iHCifKv70b9tz4LBp8v1zK+RuWTHTznyv75Z3KL94+0CRmnWQo8uw4s3WcPFORZ47CJREszg8BYHP4asIrh4HiqVhi1HzupQJjDNL5nk8yM4jadEU5WymMXf59FR5BOEirw2bKsTL9JTM8q+CqZZFC8e7t50knITd79TIQyc2VkyHAcHJQdlENDQZAH+M65SAbFCtbYPWnFxMI5MaZn8GpUMn4VRpCYvy9b/RxEpYRqhYUmSjYRPeJcUE4vwH3MlE6cS2yMOzLy3WScVFhbV5/Tps1u2dnoub3s44MgKvyrqyaBeL88hO6QWVVZb+OoEHgzcHqK3+BY4zaKOTEiOhV1nHlI/LuKk46sOJRdSvuhRa/rk4skI9cqY9tRPX3DtL1YUo59A9zwXjvLTkoUyZXmF/+afKaTPI6dnyGcPbtBTXOgE+tphGlWi9UO01ag89CAlWpjiC1XXwUbBwidi8GMV7xxkuceOjBjyKCYVwkjm4=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR12MB2840.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(52536014)(921005)(7696005)(6636002)(110136005)(53546011)(8676002)(8936002)(6506007)(76116006)(86362001)(186003)(66946007)(64756008)(66446008)(83380400001)(66556008)(66476007)(2906002)(508600001)(9686003)(38100700002)(19627405001)(55016003)(38070700005)(5660300002)(71200400001)(122000001)(316002)(33656002);
  DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?g3JKsPZK2fXT8KyDARN8HGj124ExVicixe0abV4o12tmhyXJH8V2f3+2kKTl?=
+ =?us-ascii?Q?FNDgW9FyDTw57yZc1e9DBA8zZUBMDpwjhneYP2iP7xVqdj1BVwafsgexTJwH?=
+ =?us-ascii?Q?Tve0qNRRc++v1k+zRW/lOa+T5bPY1Dcy+iIr3Q0Ce7FJKgmS1t35LcgyzONc?=
+ =?us-ascii?Q?WAaz+HkpxOQ2eRJPQp11tzI63dkGijpuE7zsP1jVpgq/qZ4fvT/ic+mAUhLw?=
+ =?us-ascii?Q?xS+xMncZW5DlWVGZhhdGuJYyirQGN7wPmjsRQ/m/m0MxfbByHmRpm0XQNY4f?=
+ =?us-ascii?Q?ioANCj2WJ2NZpgFu++gwRmx8UoaZPDPpi/H9DQfemDfmh5ce0ZQWu1TeApSb?=
+ =?us-ascii?Q?/4xc8MEkSCE3Uzt8s7mFOHiv2LPsy5Eu//A6ALoTUs2rzvOgZpuVxwPwlLI2?=
+ =?us-ascii?Q?zZVrXXmIWaa5AXpwcrx9syu8hIAYnBNX34wRGB/LvNrHeWIRneF3LFx1/sWL?=
+ =?us-ascii?Q?1r8kegyHq47/aR252mSgbYbXWV1tL8+Hb0XrwSWNBRfD5GxHMa3j5qsODfyj?=
+ =?us-ascii?Q?laTzWXZecbqE+6eoWUeDHH4Cw9toh7MvHTTMh5++yFER+t6fIeGfFV56MFkb?=
+ =?us-ascii?Q?4eSKwaW674uK4ecXZ9FUYDdLjUnud0KjnP/XygKIhO9VJqdP1Bzq2BChdFnf?=
+ =?us-ascii?Q?51RFtvct8Q0KWzA1HlAISdfX+/yXktUZWe3PSDAdsOzv7+pscl9PmjRyExcF?=
+ =?us-ascii?Q?Dhsq1d7G6HRCwBFFMfBhuVbZpeZRByTIDRVAMOzuH/6zznGjxVQL7d7aken/?=
+ =?us-ascii?Q?pQn7WpSVpvlvhqLWCva3Yxv9f0c32e7TYna4ULDahY+VlM2HvXk6f0W5sNz1?=
+ =?us-ascii?Q?WBcZoVGliHaHAqmjydfEClMI3W70KU0vTgMCd3KijmuPzNC6FHDPEuJhyUuC?=
+ =?us-ascii?Q?AM33hS8CovtbQzVtalOHJi3LpCsOd2olxgnpwActnJeXcGSufpRcM3zzGQ0b?=
+ =?us-ascii?Q?tJQoZc052GJarjUHt/xbpPDMTsYCPt2O3nfjjaGYPYbce84Zui9TTTwzJe7o?=
+ =?us-ascii?Q?eHqjxMiFEZ7FVLzmtiHE2W/rbUH5mvDmyqQrEnA38ex1M0mk+QKZbitW75A9?=
+ =?us-ascii?Q?IZEnxbPptCi0a6DEczj/9sjvARCHjywu5vMghwU6AyO6+ESKzCh5+V5loUtQ?=
+ =?us-ascii?Q?+qLCxJY0POvT1I9OUMqKtYhrIen+89l7Cb3b+UZtmO8LgIdrbykqgd8YYAk1?=
+ =?us-ascii?Q?reLVd51/jliT/ccsYpnbPh5YhtTk3H0ObjtvE4xwUMWmjctMTVxxsTIGrsZV?=
+ =?us-ascii?Q?Ar5cBqOdsWom786lQ5V+tC+tAfaStIgVnTDxpIcfDsfpIsemcKI4Gl5s+/SY?=
+ =?us-ascii?Q?RyMkA1mOyDl+CJRvZnszbUABSoOZSh1+tLHma/r3U/bSS5N15T8E9hGp+j7J?=
+ =?us-ascii?Q?rzVAwkjak0wPPPv7MwwcMQz5SrZPJChmVfemHp+ThDBX/gJ9IqMuG2SpMOOE?=
+ =?us-ascii?Q?e291yfc6+wieGNQbD+EggPA8FfL91d36MusPiYIzT0ReVpdExMiQE/blnXRX?=
+ =?us-ascii?Q?j+T1JIVQXw12zCV3cGuhH0AYPtWvxnLM2Sj78Xwyn6dFvSlWIrEEw8T63FDq?=
+ =?us-ascii?Q?vW47ODkd9sYd0SQWqJJKBt33uQ1PpTMqr+tbd4Yw?=
+Content-Type: multipart/alternative;
+ boundary="_000_BYAPR12MB2840F88BACC359D89B1CC67EF4769BYAPR12MB2840namp_"
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2021 18:55:29.4827 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ccebf7ca-e69b-44f5-bbd4-08d9bffc76d0
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT059.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1627
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB2840.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 16fbbb01-4dda-46a0-0e34-08d9bffe6f2d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Dec 2021 19:09:35.6248 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dbQjssbpGBmad1oqjTvaUgUzmSGxprKDTdskMUW94/2Eu0AWN3yALwCCaBwQcTpY
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3605
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,216 +131,394 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Victor Skvortsov <victor.skvortsov@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Expand RLCG interface for new GC read & write commands.
-New interface will only be used if the PF enables the flag in pf2vf msg.
+--_000_BYAPR12MB2840F88BACC359D89B1CC67EF4769BYAPR12MB2840namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+[AMD Official Use Only]
+
+         case IP_VERSION(9, 4, 1):
+         case IP_VERSION(9, 4, 2):
+                 amdgpu_device_ip_block_add(adev, &gfx_v9_0_ip_block);
++               if (amdgpu_sriov_vf(adev) && adev->ip_versions[GC_HWIP][0] =
+=3D=3D IP_VERSION(9, 4, 2))
++                       gfx_v9_0_set_rlc_funcs(adev);
+                 break;
+         case IP_VERSION(10, 1, 10):
+
+I think for the above, it would be more clear just to separate them:
+
+case IP_VERSION(9, 4, 1):
+    amdgpu_device_ip_block_add(adev, &gfx_v9_0_ip_block);
+    break;
+case IP_VERSION(9, 4, 2):
+   amdgpu_device_ip_block_add(adev, &gfx_v9_0_ip_block);
+   if (amdgpu_sriov_vf(adev))
+       gfx_v9_0_set_rlc_funcs(adev);
+   break;
+________________________________
+From: Skvortsov, Victor <Victor.Skvortsov@amd.com>
+Sent: Wednesday, December 15, 2021 10:55 AM
+To: amd-gfx@lists.freedesktop.org <amd-gfx@lists.freedesktop.org>; Deng, Em=
+ily <Emily.Deng@amd.com>; Liu, Monk <Monk.Liu@amd.com>; Ming, Davis <Davis.=
+Ming@amd.com>; Liu, Shaoyun <Shaoyun.Liu@amd.com>; Zhou, Peng Ju <PengJu.Zh=
+ou@amd.com>; Chen, JingWen <JingWen.Chen2@amd.com>; Chen, Horace <Horace.Ch=
+en@amd.com>; Nieto, David M <David.Nieto@amd.com>
+Cc: Skvortsov, Victor <Victor.Skvortsov@amd.com>
+Subject: [PATCH 4/5] drm/amdgpu: Initialize Aldebaran RLC function pointers
+
+In SRIOV, RLC function pointers must be initialized early as
+we rely on the RLCG interface for all GC register access.
 
 Signed-off-by: Victor Skvortsov <victor.skvortsov@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c | 111 +++++++++++++++++++-------
- 1 file changed, 83 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 2 ++
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c         | 3 +--
+ drivers/gpu/drm/amd/amdgpu/gfx_v9_0.h         | 2 ++
+ 3 files changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-index d252b06efa43..bce6ab52cae0 100644
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/dr=
+m/amd/amdgpu/amdgpu_discovery.c
+index 65e1f6cc59dd..1bc92a38d124 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -844,6 +844,8 @@ static int amdgpu_discovery_set_gc_ip_blocks(struct amd=
+gpu_device *adev)
+         case IP_VERSION(9, 4, 1):
+         case IP_VERSION(9, 4, 2):
+                 amdgpu_device_ip_block_add(adev, &gfx_v9_0_ip_block);
++               if (amdgpu_sriov_vf(adev) && adev->ip_versions[GC_HWIP][0] =
+=3D=3D IP_VERSION(9, 4, 2))
++                       gfx_v9_0_set_rlc_funcs(adev);
+                 break;
+         case IP_VERSION(10, 1, 10):
+         case IP_VERSION(10, 1, 2):
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/am=
+dgpu/gfx_v9_0.c
+index edb3e3b08eed..d252b06efa43 100644
 --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
-@@ -63,6 +63,13 @@
- #define mmGCEA_PROBE_MAP                        0x070c
- #define mmGCEA_PROBE_MAP_BASE_IDX               0
- 
-+#define GFX9_RLCG_GC_WRITE_OLD			(0x8 << 28)
-+#define GFX9_RLCG_GC_WRITE			(0x0 << 28)
-+#define GFX9_RLCG_GC_READ			(0x1 << 28)
-+#define GFX9_RLCG_VFGATE_DISABLED		0x4000000
-+#define GFX9_RLCG_WRONG_OPERATION_TYPE		0x2000000
-+#define GFX9_RLCG_NOT_IN_RANGE			0x1000000
-+
- MODULE_FIRMWARE("amdgpu/vega10_ce.bin");
- MODULE_FIRMWARE("amdgpu/vega10_pfp.bin");
- MODULE_FIRMWARE("amdgpu/vega10_me.bin");
-@@ -739,7 +746,7 @@ static const u32 GFX_RLC_SRM_INDEX_CNTL_DATA_OFFSETS[] =
- 	mmRLC_SRM_INDEX_CNTL_DATA_7 - mmRLC_SRM_INDEX_CNTL_DATA_0,
- };
- 
--static void gfx_v9_0_rlcg_w(struct amdgpu_device *adev, u32 offset, u32 v, u32 flag)
-+static u32 gfx_v9_0_rlcg_rw(struct amdgpu_device *adev, u32 offset, u32 v, uint32_t flag)
- {
- 	static void *scratch_reg0;
- 	static void *scratch_reg1;
-@@ -748,21 +755,20 @@ static void gfx_v9_0_rlcg_w(struct amdgpu_device *adev, u32 offset, u32 v, u32 f
- 	static void *spare_int;
- 	static uint32_t grbm_cntl;
- 	static uint32_t grbm_idx;
-+	uint32_t i = 0;
-+	uint32_t retries = 50000;
-+	u32 ret = 0;
-+	u32 tmp;
- 
- 	scratch_reg0 = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmSCRATCH_REG0_BASE_IDX] + mmSCRATCH_REG0)*4;
- 	scratch_reg1 = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmSCRATCH_REG1_BASE_IDX] + mmSCRATCH_REG1)*4;
--	scratch_reg2 = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmSCRATCH_REG1_BASE_IDX] + mmSCRATCH_REG2)*4;
--	scratch_reg3 = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmSCRATCH_REG1_BASE_IDX] + mmSCRATCH_REG3)*4;
-+	scratch_reg2 = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmSCRATCH_REG2_BASE_IDX] + mmSCRATCH_REG2)*4;
-+	scratch_reg3 = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmSCRATCH_REG3_BASE_IDX] + mmSCRATCH_REG3)*4;
- 	spare_int = adev->rmmio + (adev->reg_offset[GC_HWIP][0][mmRLC_SPARE_INT_BASE_IDX] + mmRLC_SPARE_INT)*4;
- 
- 	grbm_cntl = adev->reg_offset[GC_HWIP][0][mmGRBM_GFX_CNTL_BASE_IDX] + mmGRBM_GFX_CNTL;
- 	grbm_idx = adev->reg_offset[GC_HWIP][0][mmGRBM_GFX_INDEX_BASE_IDX] + mmGRBM_GFX_INDEX;
- 
--	if (amdgpu_sriov_runtime(adev)) {
--		pr_err("shouldn't call rlcg write register during runtime\n");
--		return;
--	}
--
- 	if (offset == grbm_cntl || offset == grbm_idx) {
- 		if (offset  == grbm_cntl)
- 			writel(v, scratch_reg2);
-@@ -771,41 +777,89 @@ static void gfx_v9_0_rlcg_w(struct amdgpu_device *adev, u32 offset, u32 v, u32 f
- 
- 		writel(v, ((void __iomem *)adev->rmmio) + (offset * 4));
- 	} else {
--		uint32_t i = 0;
--		uint32_t retries = 50000;
--
- 		writel(v, scratch_reg0);
--		writel(offset | 0x80000000, scratch_reg1);
-+		writel(offset | flag, scratch_reg1);
- 		writel(1, spare_int);
--		for (i = 0; i < retries; i++) {
--			u32 tmp;
- 
-+		for (i = 0; i < retries; i++) {
- 			tmp = readl(scratch_reg1);
--			if (!(tmp & 0x80000000))
-+			if (!(tmp & flag))
- 				break;
- 
- 			udelay(10);
- 		}
--		if (i >= retries)
--			pr_err("timeout: rlcg program reg:0x%05x failed !\n", offset);
-+
-+		if (i >= retries) {
-+			if (amdgpu_sriov_reg_indirect_gc(adev)) {
-+				if (tmp & GFX9_RLCG_VFGATE_DISABLED)
-+					pr_err("The vfgate is disabled, program reg:0x%05x failed!\n", offset);
-+				else if (tmp & GFX9_RLCG_WRONG_OPERATION_TYPE)
-+					pr_err("Wrong operation type, program reg:0x%05x failed!\n", offset);
-+				else if (tmp & GFX9_RLCG_NOT_IN_RANGE)
-+					pr_err("The register is not in range, program reg:0x%05x failed!\n", offset);
-+				else
-+					pr_err("Unknown error type, program reg:0x%05x failed!\n", offset);
-+			} else
-+				pr_err("timeout: rlcg program reg:0x%05x failed!\n", offset);
-+		}
-+	}
-+
-+	ret = readl(scratch_reg0);
-+
-+	return ret;
-+}
-+
-+static bool gfx_v9_0_get_rlcg_flag(struct amdgpu_device *adev, u32 acc_flags, u32 hwip,
-+				int write, u32 *rlcg_flag)
-+{
-+
-+	switch (hwip) {
-+	case GC_HWIP:
-+		if (amdgpu_sriov_reg_indirect_gc(adev)) {
-+			*rlcg_flag = write ? GFX9_RLCG_GC_WRITE : GFX9_RLCG_GC_READ;
-+
-+			return true;
-+		/* only in new version, AMDGPU_REGS_NO_KIQ and AMDGPU_REGS_RLC enabled simultaneously */
-+		} else if ((acc_flags & AMDGPU_REGS_RLC) && !(acc_flags & AMDGPU_REGS_NO_KIQ) && write) {
-+			*rlcg_flag = GFX9_RLCG_GC_WRITE_OLD;
-+			return true;
-+		}
-+
-+		break;
-+	default:
-+		return false;
- 	}
- 
-+	return false;
-+}
-+
-+static u32 gfx_v9_0_sriov_rreg(struct amdgpu_device *adev, u32 offset, u32 acc_flags, u32 hwip)
-+{
-+	u32 rlcg_flag;
-+
-+	if (!amdgpu_sriov_runtime(adev) && gfx_v9_0_get_rlcg_flag(adev, acc_flags, hwip, 0, &rlcg_flag))
-+		return gfx_v9_0_rlcg_rw(adev, offset, 0, rlcg_flag);
-+
-+	if (acc_flags & AMDGPU_REGS_NO_KIQ)
-+		return RREG32_NO_KIQ(offset);
-+	else
-+		return RREG32(offset);
+@@ -816,7 +816,6 @@ static void gfx_v9_0_sriov_wreg(struct amdgpu_device *a=
+dev, u32 offset,
+ static void gfx_v9_0_set_ring_funcs(struct amdgpu_device *adev);
+ static void gfx_v9_0_set_irq_funcs(struct amdgpu_device *adev);
+ static void gfx_v9_0_set_gds_init(struct amdgpu_device *adev);
+-static void gfx_v9_0_set_rlc_funcs(struct amdgpu_device *adev);
+ static int gfx_v9_0_get_cu_info(struct amdgpu_device *adev,
+                                 struct amdgpu_cu_info *cu_info);
+ static uint64_t gfx_v9_0_get_gpu_clock_counter(struct amdgpu_device *adev)=
+;
+@@ -7066,7 +7065,7 @@ static void gfx_v9_0_set_irq_funcs(struct amdgpu_devi=
+ce *adev)
+         adev->gfx.cp_ecc_error_irq.funcs =3D &gfx_v9_0_cp_ecc_error_irq_fu=
+ncs;
  }
- 
- static void gfx_v9_0_sriov_wreg(struct amdgpu_device *adev, u32 offset,
--			       u32 v, u32 acc_flags, u32 hwip)
-+			       u32 value, u32 acc_flags, u32 hwip)
+
+-static void gfx_v9_0_set_rlc_funcs(struct amdgpu_device *adev)
++void gfx_v9_0_set_rlc_funcs(struct amdgpu_device *adev)
  {
--	if ((acc_flags & AMDGPU_REGS_RLC) &&
--	    amdgpu_sriov_fullaccess(adev)) {
--		gfx_v9_0_rlcg_w(adev, offset, v, acc_flags);
-+	u32 rlcg_flag;
- 
-+	if (!amdgpu_sriov_runtime(adev) && gfx_v9_0_get_rlcg_flag(adev, acc_flags, hwip, 1, &rlcg_flag)) {
-+		gfx_v9_0_rlcg_rw(adev, offset, value, rlcg_flag);
- 		return;
- 	}
- 
- 	if (acc_flags & AMDGPU_REGS_NO_KIQ)
--		WREG32_NO_KIQ(offset, v);
-+		WREG32_NO_KIQ(offset, value);
- 	else
--		WREG32(offset, v);
-+		WREG32(offset, value);
- }
- 
- #define VEGA10_GB_ADDR_CONFIG_GOLDEN 0x2a114042
-@@ -5134,7 +5188,7 @@ static void gfx_v9_0_update_spm_vmid(struct amdgpu_device *adev, unsigned vmid)
- 	if (amdgpu_sriov_is_pp_one_vf(adev))
- 		data = RREG32_NO_KIQ(reg);
- 	else
--		data = RREG32(reg);
-+		data = RREG32_SOC15(GC, 0, mmRLC_SPM_MC_CNTL);
- 
- 	data &= ~RLC_SPM_MC_CNTL__RLC_SPM_VMID_MASK;
- 	data |= (vmid & RLC_SPM_MC_CNTL__RLC_SPM_VMID_MASK) << RLC_SPM_MC_CNTL__RLC_SPM_VMID__SHIFT;
-@@ -5190,6 +5244,7 @@ static const struct amdgpu_rlc_funcs gfx_v9_0_rlc_funcs = {
- 	.start = gfx_v9_0_rlc_start,
- 	.update_spm_vmid = gfx_v9_0_update_spm_vmid,
- 	.sriov_wreg = gfx_v9_0_sriov_wreg,
-+	.sriov_rreg = gfx_v9_0_sriov_rreg,
- 	.is_rlcg_access_range = gfx_v9_0_is_rlcg_access_range,
- };
- 
-@@ -5795,16 +5850,16 @@ static void gfx_v9_0_set_compute_eop_interrupt_state(struct amdgpu_device *adev,
- 
- 	switch (state) {
- 	case AMDGPU_IRQ_STATE_DISABLE:
--		mec_int_cntl = RREG32(mec_int_cntl_reg);
-+		mec_int_cntl = RREG32_SOC15_IP(GC,mec_int_cntl_reg);
- 		mec_int_cntl = REG_SET_FIELD(mec_int_cntl, CP_ME1_PIPE0_INT_CNTL,
- 					     TIME_STAMP_INT_ENABLE, 0);
--		WREG32(mec_int_cntl_reg, mec_int_cntl);
-+		WREG32_SOC15_IP(GC, mec_int_cntl_reg, mec_int_cntl);
- 		break;
- 	case AMDGPU_IRQ_STATE_ENABLE:
--		mec_int_cntl = RREG32(mec_int_cntl_reg);
-+		mec_int_cntl = RREG32_SOC15_IP(GC, mec_int_cntl_reg);
- 		mec_int_cntl = REG_SET_FIELD(mec_int_cntl, CP_ME1_PIPE0_INT_CNTL,
- 					     TIME_STAMP_INT_ENABLE, 1);
--		WREG32(mec_int_cntl_reg, mec_int_cntl);
-+		WREG32_SOC15_IP(GC, mec_int_cntl_reg, mec_int_cntl);
- 		break;
- 	default:
- 		break;
--- 
+         switch (adev->ip_versions[GC_HWIP][0]) {
+         case IP_VERSION(9, 0, 1):
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.h b/drivers/gpu/drm/amd/am=
+dgpu/gfx_v9_0.h
+index dfe8d4841f58..1817e252354f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.h
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.h
+@@ -29,4 +29,6 @@ extern const struct amdgpu_ip_block_version gfx_v9_0_ip_b=
+lock;
+ void gfx_v9_0_select_se_sh(struct amdgpu_device *adev, u32 se_num, u32 sh_=
+num,
+                            u32 instance);
+
++void gfx_v9_0_set_rlc_funcs(struct amdgpu_device *adev);
++
+ #endif
+--
 2.25.1
 
+
+--_000_BYAPR12MB2840F88BACC359D89B1CC67EF4769BYAPR12MB2840namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Arial;font-size:10pt;color:#0000FF;margin:5pt;" ali=
+gn=3D"Left">
+[AMD Official Use Only]<br>
+</p>
+<br>
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ case IP_VERSION(9, 4, 1):</span><br>
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ case IP_VERSION(9, 4, 2):</span><br style=3D"color: rgb(0, 0, 0); font-fam=
+ily: &quot;Segoe UI&quot;, &quot;Segoe UI Web (West European)&quot;, &quot;=
+Segoe UI&quot;, -apple-system, &quot;system-ui&quot;, Roboto, &quot;Helveti=
+ca Neue&quot;, sans-serif; font-size: 14.6667px; background-color: rgb(255,=
+ 255, 255);">
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ amdgpu_device_ip_block_add(adev, &amp;gfx_v9_0_ip_block);</span><br style=
+=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quot;Segoe UI =
+Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, &quot;syste=
+m-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font-size: 14.6=
+667px; background-color: rgb(255, 255, 255);">
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;
+ if (amdgpu_sriov_vf(adev) &amp;&amp; adev-&gt;ip_versions[GC_HWIP][0] =3D=
+=3D IP_VERSION(9, 4, 2))</span><br style=3D"color: rgb(0, 0, 0); font-famil=
+y: &quot;Segoe UI&quot;, &quot;Segoe UI Web (West European)&quot;, &quot;Se=
+goe UI&quot;, -apple-system, &quot;system-ui&quot;, Roboto, &quot;Helvetica=
+ Neue&quot;, sans-serif; font-size: 14.6667px; background-color: rgb(255, 2=
+55, 255);">
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;">+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ gfx_v9_0_set_rlc_funcs(adev);</span><br style=3D"color: rgb(0, 0, 0); font=
+-family: &quot;Segoe UI&quot;, &quot;Segoe UI Web (West European)&quot;, &q=
+uot;Segoe UI&quot;, -apple-system, &quot;system-ui&quot;, Roboto, &quot;Hel=
+vetica Neue&quot;, sans-serif; font-size: 14.6667px; background-color: rgb(=
+255, 255, 255);">
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ break;</span><br style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI=
+&quot;, &quot;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -ap=
+ple-system, &quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans=
+-serif; font-size: 14.6667px; background-color: rgb(255, 255, 255);">
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ case IP_VERSION(10, 1, 10):</span><br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;"><br>
+</span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;">I
+ think for the above, it would be more clear just to separate them:</span><=
+/div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;">case
+ IP_VERSION(9, 4, 1):</span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;"><span style=3D"color: rgb(0, 0, 0); background-color: rgb(255, 25=
+5, 255); display: inline !important;">&nbsp;
+ &nbsp; amdgpu_device_ip_block_add(adev, &amp;gfx_v9_0_ip_block);</span><br=
+>
+</span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;"><span style=3D"color: rgb(0, 0, 0); background-color: rgb(255, 25=
+5, 255); display: inline !important;">&nbsp;
+ &nbsp; break;</span></span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;"><span style=3D"color: rgb(0, 0, 0); background-color: rgb(255, 25=
+5, 255); display: inline !important;"><span style=3D"margin: 0px; color: rg=
+b(0, 0, 0); background-color: rgb(255, 255, 255); display: inline !importan=
+t;">case
+ IP_VERSION(9, 4, 2):</span><br>
+<span style=3D"margin: 0px; color: rgb(0, 0, 0); background-color: rgb(255,=
+ 255, 255); display: inline !important;">&nbsp; &nbsp;amdgpu_device_ip_bloc=
+k_add(adev, &amp;gfx_v9_0_ip_block);</span><br style=3D"color: rgb(0, 0, 0)=
+; background-color: rgb(255, 255, 255);">
+<span style=3D"margin: 0px; color: rgb(0, 0, 0); background-color: rgb(255,=
+ 255, 255); display: inline !important;">&nbsp; &nbsp;if (amdgpu_sriov_vf(a=
+dev))</span><br style=3D"color: rgb(0, 0, 0); background-color: rgb(255, 25=
+5, 255);">
+<span style=3D"margin: 0px; color: rgb(0, 0, 0); background-color: rgb(255,=
+ 255, 255); display: inline !important;">&nbsp; &nbsp; &nbsp; &nbsp;gfx_v9_=
+0_set_rlc_funcs(adev);</span><br>
+</span></span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<span style=3D"color: rgb(0, 0, 0); font-family: &quot;Segoe UI&quot;, &quo=
+t;Segoe UI Web (West European)&quot;, &quot;Segoe UI&quot;, -apple-system, =
+&quot;system-ui&quot;, Roboto, &quot;Helvetica Neue&quot;, sans-serif; font=
+-size: 14.6667px; background-color: rgb(255, 255, 255); display: inline !im=
+portant;">&nbsp;
+ &nbsp;break;</span></div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Skvortsov, Victor &lt=
+;Victor.Skvortsov@amd.com&gt;<br>
+<b>Sent:</b> Wednesday, December 15, 2021 10:55 AM<br>
+<b>To:</b> amd-gfx@lists.freedesktop.org &lt;amd-gfx@lists.freedesktop.org&=
+gt;; Deng, Emily &lt;Emily.Deng@amd.com&gt;; Liu, Monk &lt;Monk.Liu@amd.com=
+&gt;; Ming, Davis &lt;Davis.Ming@amd.com&gt;; Liu, Shaoyun &lt;Shaoyun.Liu@=
+amd.com&gt;; Zhou, Peng Ju &lt;PengJu.Zhou@amd.com&gt;; Chen, JingWen
+ &lt;JingWen.Chen2@amd.com&gt;; Chen, Horace &lt;Horace.Chen@amd.com&gt;; N=
+ieto, David M &lt;David.Nieto@amd.com&gt;<br>
+<b>Cc:</b> Skvortsov, Victor &lt;Victor.Skvortsov@amd.com&gt;<br>
+<b>Subject:</b> [PATCH 4/5] drm/amdgpu: Initialize Aldebaran RLC function p=
+ointers</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">In SRIOV, RLC function pointers must be initialize=
+d early as<br>
+we rely on the RLCG interface for all GC register access.<br>
+<br>
+Signed-off-by: Victor Skvortsov &lt;victor.skvortsov@amd.com&gt;<br>
+---<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 2 ++<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; | 3 +--<br>
+&nbsp;drivers/gpu/drm/amd/amdgpu/gfx_v9_0.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; | 2 ++<br>
+&nbsp;3 files changed, 5 insertions(+), 2 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/dr=
+m/amd/amdgpu/amdgpu_discovery.c<br>
+index 65e1f6cc59dd..1bc92a38d124 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c<br>
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c<br>
+@@ -844,6 +844,8 @@ static int amdgpu_discovery_set_gc_ip_blocks(struct amd=
+gpu_device *adev)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(9, 4, 1):<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(9, 4, 2):<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; amdgpu_device_ip_block_add(adev, &amp;gfx_v9_0_ip_blo=
+ck);<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; if (amdgpu_sriov_vf(adev) &amp;&amp; adev-&gt;ip_versions[GC_HWI=
+P][0] =3D=3D IP_VERSION(9, 4, 2))<br>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gfx_v9_0_set_rlc=
+_funcs(adev);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(10, 1, 10)=
+:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(10, 1, 2):=
+<br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c b/drivers/gpu/drm/amd/am=
+dgpu/gfx_v9_0.c<br>
+index edb3e3b08eed..d252b06efa43 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c<br>
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c<br>
+@@ -816,7 +816,6 @@ static void gfx_v9_0_sriov_wreg(struct amdgpu_device *a=
+dev, u32 offset,<br>
+&nbsp;static void gfx_v9_0_set_ring_funcs(struct amdgpu_device *adev);<br>
+&nbsp;static void gfx_v9_0_set_irq_funcs(struct amdgpu_device *adev);<br>
+&nbsp;static void gfx_v9_0_set_gds_init(struct amdgpu_device *adev);<br>
+-static void gfx_v9_0_set_rlc_funcs(struct amdgpu_device *adev);<br>
+&nbsp;static int gfx_v9_0_get_cu_info(struct amdgpu_device *adev,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct amdgpu_cu_info *cu_info);=
+<br>
+&nbsp;static uint64_t gfx_v9_0_get_gpu_clock_counter(struct amdgpu_device *=
+adev);<br>
+@@ -7066,7 +7065,7 @@ static void gfx_v9_0_set_irq_funcs(struct amdgpu_devi=
+ce *adev)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; adev-&gt;gfx.cp_ecc_error_=
+irq.funcs =3D &amp;gfx_v9_0_cp_ecc_error_irq_funcs;<br>
+&nbsp;}<br>
+&nbsp;<br>
+-static void gfx_v9_0_set_rlc_funcs(struct amdgpu_device *adev)<br>
++void gfx_v9_0_set_rlc_funcs(struct amdgpu_device *adev)<br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (adev-&gt;ip_versio=
+ns[GC_HWIP][0]) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case IP_VERSION(9, 0, 1):<=
+br>
+diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.h b/drivers/gpu/drm/amd/am=
+dgpu/gfx_v9_0.h<br>
+index dfe8d4841f58..1817e252354f 100644<br>
+--- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.h<br>
++++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.h<br>
+@@ -29,4 +29,6 @@ extern const struct amdgpu_ip_block_version gfx_v9_0_ip_b=
+lock;<br>
+&nbsp;void gfx_v9_0_select_se_sh(struct amdgpu_device *adev, u32 se_num, u3=
+2 sh_num,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; u32 instance);<br>
+&nbsp;<br>
++void gfx_v9_0_set_rlc_funcs(struct amdgpu_device *adev);<br>
++<br>
+&nbsp;#endif<br>
+-- <br>
+2.25.1<br>
+<br>
+</div>
+</span></font></div>
+</div>
+</body>
+</html>
+
+--_000_BYAPR12MB2840F88BACC359D89B1CC67EF4769BYAPR12MB2840namp_--
