@@ -1,56 +1,61 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817B04759AD
-	for <lists+amd-gfx@lfdr.de>; Wed, 15 Dec 2021 14:31:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51EF4475BD9
+	for <lists+amd-gfx@lfdr.de>; Wed, 15 Dec 2021 16:31:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FD7E10E283;
-	Wed, 15 Dec 2021 13:31:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 414E310E6DE;
+	Wed, 15 Dec 2021 15:31:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 126CA10E27B;
- Wed, 15 Dec 2021 13:31:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1639575066; x=1671111066;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=k866ifHnZPwQQfxaHvaMlY4Jgk6Yu0xwg2XFEW7LZyw=;
- b=gRG8wGB/69lFmtF16ltlCm3lvp733dpCp6aGItYnXefHvW+TJLcdTKxv
- qF7F3qn9saohYB2MzYTLU7Bhp45reBMtxBkuSo8EjP3WGKP15cchFnhCD
- E4P03kxAQ+YP8I2Fqk38R56pqK4a2sFJG4nvcvU+ebEglRB9cFSHZg7Ap
- pc009DkXsyBXxaytEvAOULRaLgfRJ7iEQjprInVi/oUwUA6nkl0eQ7SB2
- 3M+4Igmz0+E4jwIikNkufa16O0WWKxb4sXvzz33co9BJh+xG0Kq8yPNEa
- U2jFYxh3msl7kMUalHSIuMCSmQ7WKsasUv7XLpQM4cymEuFXC1rsCabHJ A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10198"; a="226507069"
-X-IronPort-AV: E=Sophos;i="5.88,207,1635231600"; d="scan'208";a="226507069"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2021 05:31:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,207,1635231600"; d="scan'208";a="482389228"
-Received: from lkp-server02.sh.intel.com (HELO 9f38c0981d9f) ([10.239.97.151])
- by orsmga002.jf.intel.com with ESMTP; 15 Dec 2021 05:31:02 -0800
-Received: from kbuild by 9f38c0981d9f with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1mxUN3-0001pa-UZ; Wed, 15 Dec 2021 13:31:01 +0000
-Date: Wed, 15 Dec 2021 21:30:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Huang Rui <ray.huang@amd.com>, dri-devel@lists.freedesktop.org,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Sumit Semwal <sumit.semwal@linaro.org>
-Subject: Re: [PATCH v3] drm/amdgpu: introduce new amdgpu_fence object to
- indicate the job embedded fence
-Message-ID: <202112152115.sqAqnvG7-lkp@intel.com>
-References: <20211215063551.2810601-1-ray.huang@amd.com>
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com
+ [IPv6:2607:f8b0:4864:20::72a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 223A110ED1A;
+ Wed, 15 Dec 2021 08:52:35 +0000 (UTC)
+Received: by mail-qk1-x72a.google.com with SMTP id t6so19391731qkg.1;
+ Wed, 15 Dec 2021 00:52:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=d3xqEFCnUeJ8vvB6oqGl3RWteLibojQLIPJLALa9AL4=;
+ b=LWvCWYu5dd7SpqDfLhzfKe/gM68KLGz+a8UD4ROmRR+SiNgJaYC0CO+GKngxadcs+B
+ jw7au6+Czw16h/I5TzQ59+Nhjegs38s7HrW6EGV2ePYGKmPPj/dVe2CpsVbGEI2JLc+d
+ KbZG+3Lo+NdSqaOFyZXv59ka5U6J6QpALFB7fHX4OR2pn0mzNe8S8Y6EHZ7Mko9eDC7O
+ YYgD+iPDbUfxJaKgozd6Osl2u+gsPGwNmtov25jPzMffqa6qQzv+h+qJtdIlPe10WNwV
+ SRt3rKe6NB+OMgcd/b0vLs78iVPf63mrDLHlwM5YGE9mGEjEqerTd32oYqH/sr84Z/Da
+ Q8Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=d3xqEFCnUeJ8vvB6oqGl3RWteLibojQLIPJLALa9AL4=;
+ b=DW8oSB2JlORUdqLVkAnU88HAOghzyqHyOTfAjbtQHILD7D8ien4mj/Yw3XszKv76cE
+ 0WqdJlVXompx/1SB+mdMJWDCvlXExkZoQjC7QIDwcvgKD8FOXV18bQZWAZlnUv+5Sk0J
+ /1pixP7ZrOw26eXaiJRtUkaeU9iWIalglgL52xUpFr7hEAOi1NPaqZmeByd8niWY/NtY
+ TsZdorNjUqkW3iPLtPeHpP7Z9Uml8EuDZGdnP5u5qWiI2acn6I+lyG/YzsQsD2yH5z2i
+ iyXtS7IvhD4dkNZkRPD9o/Oba6d/hJa9xU09fr0SSsIqeoT/4moBY+kerKYpNoLU4rTW
+ polA==
+X-Gm-Message-State: AOAM532guP92qx05gejl9vs+/+XpsSzezvg9Ovf3ibqPxI9wD5eg2XFX
+ SM0pjsvAqfloEwV/AlizGvK0mT8CDdE=
+X-Google-Smtp-Source: ABdhPJxbuYNNH89Hh5DonCAoPvklNGqdaYuC30FlbEHaKHj3JDfq8kkAx1hTE8+V67UMKVqj2+s/9w==
+X-Received: by 2002:a05:620a:66e:: with SMTP id
+ a14mr7842353qkh.496.1639558354245; 
+ Wed, 15 Dec 2021 00:52:34 -0800 (PST)
+Received: from localhost.localdomain ([193.203.214.57])
+ by smtp.gmail.com with ESMTPSA id t15sm1039864qta.45.2021.12.15.00.52.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 15 Dec 2021 00:52:33 -0800 (PST)
+From: cgel.zte@gmail.com
+X-Google-Original-From: deng.changcheng@zte.com.cn
+To: Felix.Kuehling@amd.com
+Subject: [PATCH] drm/amdkfd: use max() and min() to make code cleaner
+Date: Wed, 15 Dec 2021 08:52:26 +0000
+Message-Id: <20211215085226.444116-1-deng.changcheng@zte.com.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211215063551.2810601-1-ray.huang@amd.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 15 Dec 2021 15:31:17 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,67 +67,38 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrey Grodzovsky <andrey.grodzovsky@amd.com>, kbuild-all@lists.01.org,
- amd-gfx@lists.freedesktop.org, Huang Rui <ray.huang@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Monk Liu <Monk.Liu@amd.com>,
- linux-media@vger.kernel.org
+Cc: airlied@linux.ie, Zeal Robot <zealci@zte.com.cn>, Xinhui.Pan@amd.com,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Changcheng Deng <deng.changcheng@zte.com.cn>, dri-devel@lists.freedesktop.org,
+ daniel@ffwll.ch, alexander.deucher@amd.com, christian.koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Huang,
+From: Changcheng Deng <deng.changcheng@zte.com.cn>
 
-I love your patch! Perhaps something to improve:
+Use max() and min() in order to make code cleaner.
 
-[auto build test WARNING on drm/drm-next]
-[also build test WARNING on drm-intel/for-linux-next drm-tip/drm-tip v5.16-rc5 next-20211214]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Huang-Rui/drm-amdgpu-introduce-new-amdgpu_fence-object-to-indicate-the-job-embedded-fence/20211215-143731
-base:   git://anongit.freedesktop.org/drm/drm drm-next
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20211215/202112152115.sqAqnvG7-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/0day-ci/linux/commit/a47becf231b123760625c45242e89f5e5b5b4915
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Huang-Rui/drm-amdgpu-introduce-new-amdgpu_fence-object-to-indicate-the-job-embedded-fence/20211215-143731
-        git checkout a47becf231b123760625c45242e89f5e5b5b4915
-        # save the config file to linux build tree
-        mkdir build_dir
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/gpu/drm/amd/amdgpu/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c:631: warning: expecting prototype for amdgpu_fence_clear_job_fences(). Prototype was for amdgpu_fence_driver_clear_job_fences() instead
-
-
-vim +631 drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
-
-   623	
-   624	/**
-   625	 * amdgpu_fence_clear_job_fences - clear job embedded fences of ring
-   626	 *
-   627	 * @ring: fence of the ring to be cleared
-   628	 *
-   629	 */
-   630	void amdgpu_fence_driver_clear_job_fences(struct amdgpu_ring *ring)
- > 631	{
-   632		int i;
-   633		struct dma_fence *old, **ptr;
-   634	
-   635		for (i = 0; i <= ring->fence_drv.num_fences_mask; i++) {
-   636			ptr = &ring->fence_drv.fences[i];
-   637			old = rcu_dereference_protected(*ptr, 1);
-   638			if (old && old->ops == &amdgpu_job_fence_ops)
-   639				RCU_INIT_POINTER(*ptr, NULL);
-   640		}
-   641	}
-   642	
-
+Reported-by: Zeal Robot <zealci@zte.com.cn>
+Signed-off-by: Changcheng Deng <deng.changcheng@zte.com.cn>
 ---
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+index 7e92dcea4ce8..c6d3555b5be6 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
+@@ -2254,8 +2254,8 @@ svm_range_cpu_invalidate_pagetables(struct mmu_interval_notifier *mni,
+ 
+ 	start = mni->interval_tree.start;
+ 	last = mni->interval_tree.last;
+-	start = (start > range->start ? start : range->start) >> PAGE_SHIFT;
+-	last = (last < (range->end - 1) ? last : range->end - 1) >> PAGE_SHIFT;
++	start = max(start, range->start) >> PAGE_SHIFT;
++	last = min(last, range->end - 1) >> PAGE_SHIFT;
+ 	pr_debug("[0x%lx 0x%lx] range[0x%lx 0x%lx] notifier[0x%lx 0x%lx] %d\n",
+ 		 start, last, range->start >> PAGE_SHIFT,
+ 		 (range->end - 1) >> PAGE_SHIFT,
+-- 
+2.25.1
+
