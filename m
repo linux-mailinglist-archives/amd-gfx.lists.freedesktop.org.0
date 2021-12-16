@@ -2,56 +2,60 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D89C44772FF
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Dec 2021 14:18:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8BD74773AF
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Dec 2021 14:53:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4368D10F6A7;
-	Thu, 16 Dec 2021 13:18:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE2EC10FFA3;
+	Thu, 16 Dec 2021 13:53:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D291410E59C
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 09:45:14 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id i22so13268572wrb.13
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 01:45:14 -0800 (PST)
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com
+ [IPv6:2607:f8b0:4864:20::32a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EAFB10FF9E
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 13:53:26 +0000 (UTC)
+Received: by mail-ot1-x32a.google.com with SMTP id
+ v15-20020a9d604f000000b0056cdb373b82so29047468otj.7
+ for <amd-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 05:53:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id;
- bh=ARN4qeir3Hz4c3b/QWXg3h+IBfZ0AX5ARmmNbEMD7Bg=;
- b=j0vD1zZLVa8psUzy5p/QOX2FqK+FVc6pWNRPLwbPdsMOjQVTfyuSA/zGc4t+j+FSAQ
- fZCmaFjE0Ffel/LFeaAVrQqMg4/dvvuoqiC+qfV4Ai11W/X0igTRNoyIj7q36X/c0gu7
- SpL7mSlWWiBnyKip4f577voNtQFgbaawN/7+IQ+6ZwpekyvnFpQX4f+L7IMiWmTegT9D
- SVBabQ3M6MUmHEN4rMkhf+Y+20RdfdT3yB+uWjUnif80Uk1AQ/oIiu6msPHcv6QSs9Tz
- FQ/Sl23i+zDy15ar70TbUbCq8MVAxtXniu7P43mhsTlQMiKZIp49sNPLC253NnMvv3XQ
- BPrA==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=57mKQeHwGVvowvieepu15cKRSseUflbAZmf2SimMFXY=;
+ b=OLE9FE4BXrmLnQxnxy+56lz88vKngkeK7rthOZNuwwX9OdTLXgZcbGzxhbLOGsnHRE
+ RSKvCMXzn6TMeBzfbmyc51EK27mRp2VATN+d/HCTCBcl+/4n0mHIW0lfoU9RtzSVNhL0
+ BnfVY/mQQGRI56QefE3x9S33o9197Qlsm5iSxZIIMDV2tYVXrJ+oy4eNnq7PlzJsRPw4
+ 5BU54rBu2JcJXO01fPBsXadlVz6TjcQV2S8AijUCpjVSfUBUH7xL2TsCYXkg7g+9bXYc
+ GkUm1b9kJ6kxLka6A3C44MZeLqaKQsuJFOZh5HYXOhZX8crCSn7VNc+dkd0G/kUhZkV2
+ R4Ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=ARN4qeir3Hz4c3b/QWXg3h+IBfZ0AX5ARmmNbEMD7Bg=;
- b=WCL9ffUr+DnG4t46AQ4oEQEJMOD1D42eZP/1s6lAjVssFS4kdbzNqpEwTq/8MpoHzE
- wFAccLA3nshm4COUX+pWJU/0lQh4WeSq0L4Am6RrODilyl5Snqjg3SFVl+xXLAziLn+u
- /5BI15Atz40gIOzejZianpXJxVn3LILI5Z00QtS18jJKvIFe6FtIce6K8Uu1xXUJWYP1
- QpD4jhkkxmOIiFPd9fxt8BWfMCjTJMCbHvBzrBslOS8wS0GBxuz9IyykdckhUGt9skIj
- LL93UfPu/Uiz7DMwSi/3eIWrO57dI46H9x+gLt9TefNOibcARwmuWuhaMMSIY9WqORQV
- FRIw==
-X-Gm-Message-State: AOAM531MiwRIpsIRKWNDxYzROV80NqHU6uBuwm/b5X9h/xL1xFxId8Lg
- dCOgJyWBf5N+nRkxIgVWpsg=
-X-Google-Smtp-Source: ABdhPJwbIjTPzZFy8VT5f8JT2Une97QMgC0Zd0FEEOycuRTMmUs5Tfgz4ZnfOy19zcLP6lRHpdTVYA==
-X-Received: by 2002:adf:dcd2:: with SMTP id x18mr8196312wrm.173.1639647913304; 
- Thu, 16 Dec 2021 01:45:13 -0800 (PST)
-Received: from felia.fritz.box ([2001:16b8:267b:1200:18af:bb55:aabf:94a8])
- by smtp.gmail.com with ESMTPSA id g18sm4294270wrv.42.2021.12.16.01.45.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Dec 2021 01:45:13 -0800 (PST)
-From: Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To: Felix Kuehling <Felix.Kuehling@amd.com>,
- Jonathan Kim <jonathan.kim@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdkfd: make SPDX License expression more sound
-Date: Thu, 16 Dec 2021 10:45:03 +0100
-Message-Id: <20211216094503.10597-1-lukas.bulwahn@gmail.com>
-X-Mailer: git-send-email 2.17.1
-X-Mailman-Approved-At: Thu, 16 Dec 2021 13:18:13 +0000
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=57mKQeHwGVvowvieepu15cKRSseUflbAZmf2SimMFXY=;
+ b=6f0RfVOUcM5q9IbdaPUmc22YPzw0tC/+lvu8+12lREB9vXJI6ez22Vvf8ll7kqHNPh
+ F1t011Ya4aHEfuOHo53NfaNTQZQ1tr+ulccBB28//Tbnz8zuBM7wgcJXpoFOPKngaC/2
+ Q8wAXYlpYa10CKh7PEEJ+QXbOrAuHY/fm/RO5/BPKHzvCtyZFAq8NhgwW44Gw75/SHDL
+ CE0F38PJDv4QfDR0dd/kP/UdMwNmsSTi6AoAMTU61GkOA7FksgBK4LnjTLKO/6QmboYQ
+ 4PI+i4qFotEikU3voPZkmh/FbvO9ep8RcJ7WKvnct4qZ51XV3PDzpTKx/YERlPa0LwK8
+ o8GA==
+X-Gm-Message-State: AOAM530fMniied+0phYqkUhgNq8HfcgrxSFO/tqDdc2C7PcmJP1lbuT7
+ v6NnknMGi9HS9vYvaZkRu2klZmf3sTQtVJt7xSi0/vhc
+X-Google-Smtp-Source: ABdhPJyKOJkttoESyGE7L8LabHr5zXpARyNMPMfdPROpGicWsbecMVSVVF3AV0Faxk7FiUcpkxIEkxIUv5NRdlB0Eng=
+X-Received: by 2002:a05:6830:1bcf:: with SMTP id
+ v15mr13085306ota.200.1639662805380; 
+ Thu, 16 Dec 2021 05:53:25 -0800 (PST)
+MIME-Version: 1.0
+References: <20211215185510.15134-1-victor.skvortsov@amd.com>
+ <20211215185510.15134-5-victor.skvortsov@amd.com>
+ <CADnq5_OP0=TCPcMprrqFo4HxkXWsZamXkLHa25ZWPEMezM1c_Q@mail.gmail.com>
+ <BN9PR12MB5324A5B0B87F3E80B2BCA2728B769@BN9PR12MB5324.namprd12.prod.outlook.com>
+In-Reply-To: <BN9PR12MB5324A5B0B87F3E80B2BCA2728B769@BN9PR12MB5324.namprd12.prod.outlook.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 16 Dec 2021 08:53:14 -0500
+Message-ID: <CADnq5_NHvR5p-7X8VRQKqT_fmpUQeEyVEQLw25a39S0k3b1oCw@mail.gmail.com>
+Subject: Re: [PATCH 4/5] drm/amdgpu: Initialize Aldebaran RLC function pointers
+To: "Skvortsov, Victor" <Victor.Skvortsov@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,51 +67,126 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lukas Bulwahn <lukas.bulwahn@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
- linux-spdx@vger.kernel.org
+Cc: "Ming, Davis" <Davis.Ming@amd.com>, "Chen, JingWen" <JingWen.Chen2@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, "Deng,
+ Emily" <Emily.Deng@amd.com>, "Nieto, David M" <David.Nieto@amd.com>, "Chen,
+ Horace" <Horace.Chen@amd.com>, "Liu, Monk" <Monk.Liu@amd.com>, "Liu,
+ Shaoyun" <Shaoyun.Liu@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Commit b5f57384805a ("drm/amdkfd: Add sysfs bitfields and enums to uAPI")
-adds include/uapi/linux/kfd_sysfs.h with the "GPL-2.0 OR MIT WITH
-Linux-syscall-note" SPDX-License expression.
+On Wed, Dec 15, 2021 at 6:58 PM Skvortsov, Victor
+<Victor.Skvortsov@amd.com> wrote:
+>
+> [AMD Official Use Only]
+>
+> Hey Alex,
+>
+> This change was based on the fact that amd-mainline-dkms-5.13 calls get_x=
+gmi_info() in gmc_v9_0_early_init(). But I can see that drm-next it's inste=
+ad called in gmc_v9_0_sw_init(). So, I'm not sure whats the correct behavio=
+r. But I do agree that the change is kind of ugly. I don't know where else =
+to put it if we do need to call get_xgmi_info() in early_init.
+>
 
-The command ./scripts/spdxcheck.py warns:
+We could skip this patch for drm-next and just apply it to the dkms
+branch.  There's already a lot of ugly stuff in there to deal with
+multiple kernel versions.
 
-  include/uapi/linux/kfd_sysfs.h: 1:48 Exception not valid for license MIT: Linux-syscall-note
+Alex
 
-For a uapi header, the file under GPLv2 License must be combined with the
-Linux-syscall-note, but combining the MIT License with the
-Linux-syscall-note makes no sense, as the note provides an exception for
-GPL-licensed code, not for permissively licensed code.
 
-So, reorganize the SPDX expression to only combine the note with the GPL
-License condition. This makes spdxcheck happy again.
-
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
----
-I am not a lawyer and I do not intend to modify the actual licensing of
-this header file. So, I really would like to have an Ack from some AMD
-developer here.
-
-Maybe also a lawyer on the linux-spdx list can check my reasoning on the
-licensing with the exception note?
-
- include/uapi/linux/kfd_sysfs.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/include/uapi/linux/kfd_sysfs.h b/include/uapi/linux/kfd_sysfs.h
-index e1fb78b4bf09..3e330f368917 100644
---- a/include/uapi/linux/kfd_sysfs.h
-+++ b/include/uapi/linux/kfd_sysfs.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: GPL-2.0 OR MIT WITH Linux-syscall-note */
-+/* SPDX-License-Identifier: (GPL-2.0 WITH Linux-syscall-note) OR MIT */
- /*
-  * Copyright 2021 Advanced Micro Devices, Inc.
-  *
--- 
-2.17.1
-
+> Thanks,
+> Victor
+>
+> -----Original Message-----
+> From: Alex Deucher <alexdeucher@gmail.com>
+> Sent: Wednesday, December 15, 2021 4:38 PM
+> To: Skvortsov, Victor <Victor.Skvortsov@amd.com>
+> Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>; Deng, Emily <Emily.Deng=
+@amd.com>; Liu, Monk <Monk.Liu@amd.com>; Ming, Davis <Davis.Ming@amd.com>; =
+Liu, Shaoyun <Shaoyun.Liu@amd.com>; Zhou, Peng Ju <PengJu.Zhou@amd.com>; Ch=
+en, JingWen <JingWen.Chen2@amd.com>; Chen, Horace <Horace.Chen@amd.com>; Ni=
+eto, David M <David.Nieto@amd.com>
+> Subject: Re: [PATCH 4/5] drm/amdgpu: Initialize Aldebaran RLC function po=
+inters
+>
+> [CAUTION: External Email]
+>
+> On Wed, Dec 15, 2021 at 1:56 PM Victor Skvortsov <victor.skvortsov@amd.co=
+m> wrote:
+> >
+> > In SRIOV, RLC function pointers must be initialized early as we rely
+> > on the RLCG interface for all GC register access.
+> >
+> > Signed-off-by: Victor Skvortsov <victor.skvortsov@amd.com>
+> > ---
+> >  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 2 ++
+> >  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c         | 3 +--
+> >  drivers/gpu/drm/amd/amdgpu/gfx_v9_0.h         | 2 ++
+> >  3 files changed, 5 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> > b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> > index 65e1f6cc59dd..1bc92a38d124 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+> > @@ -844,6 +844,8 @@ static int amdgpu_discovery_set_gc_ip_blocks(struct=
+ amdgpu_device *adev)
+> >         case IP_VERSION(9, 4, 1):
+> >         case IP_VERSION(9, 4, 2):
+> >                 amdgpu_device_ip_block_add(adev, &gfx_v9_0_ip_block);
+> > +               if (amdgpu_sriov_vf(adev) && adev->ip_versions[GC_HWIP]=
+[0] =3D=3D IP_VERSION(9, 4, 2))
+> > +                       gfx_v9_0_set_rlc_funcs(adev);
+>
+> amdgpu_discovery.c is IP independent.  I'd rather not add random IP speci=
+fic function calls.  gfx_v9_0_set_rlc_funcs() already gets called in gfx_v9=
+_0_early_init().  Is that not early enough?  In general we shouldn't be tou=
+ching the hardware much if at all in early_init.
+>
+> Alex
+>
+> >                 break;
+> >         case IP_VERSION(10, 1, 10):
+> >         case IP_VERSION(10, 1, 2):
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> > b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> > index edb3e3b08eed..d252b06efa43 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.c
+> > @@ -816,7 +816,6 @@ static void gfx_v9_0_sriov_wreg(struct
+> > amdgpu_device *adev, u32 offset,  static void
+> > gfx_v9_0_set_ring_funcs(struct amdgpu_device *adev);  static void
+> > gfx_v9_0_set_irq_funcs(struct amdgpu_device *adev);  static void
+> > gfx_v9_0_set_gds_init(struct amdgpu_device *adev); -static void
+> > gfx_v9_0_set_rlc_funcs(struct amdgpu_device *adev);  static int gfx_v9_=
+0_get_cu_info(struct amdgpu_device *adev,
+> >                                 struct amdgpu_cu_info *cu_info);
+> > static uint64_t gfx_v9_0_get_gpu_clock_counter(struct amdgpu_device
+> > *adev); @@ -7066,7 +7065,7 @@ static void gfx_v9_0_set_irq_funcs(struct=
+ amdgpu_device *adev)
+> >         adev->gfx.cp_ecc_error_irq.funcs =3D
+> > &gfx_v9_0_cp_ecc_error_irq_funcs;  }
+> >
+> > -static void gfx_v9_0_set_rlc_funcs(struct amdgpu_device *adev)
+> > +void gfx_v9_0_set_rlc_funcs(struct amdgpu_device *adev)
+> >  {
+> >         switch (adev->ip_versions[GC_HWIP][0]) {
+> >         case IP_VERSION(9, 0, 1):
+> > diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.h
+> > b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.h
+> > index dfe8d4841f58..1817e252354f 100644
+> > --- a/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.h
+> > +++ b/drivers/gpu/drm/amd/amdgpu/gfx_v9_0.h
+> > @@ -29,4 +29,6 @@ extern const struct amdgpu_ip_block_version
+> > gfx_v9_0_ip_block;  void gfx_v9_0_select_se_sh(struct amdgpu_device *ad=
+ev, u32 se_num, u32 sh_num,
+> >                            u32 instance);
+> >
+> > +void gfx_v9_0_set_rlc_funcs(struct amdgpu_device *adev);
+> > +
+> >  #endif
+> > --
+> > 2.25.1
+> >
