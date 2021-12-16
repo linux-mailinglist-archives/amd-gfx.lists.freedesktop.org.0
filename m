@@ -2,94 +2,139 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05F7C477060
-	for <lists+amd-gfx@lfdr.de>; Thu, 16 Dec 2021 12:35:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 844D047715A
+	for <lists+amd-gfx@lfdr.de>; Thu, 16 Dec 2021 13:08:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4265310F612;
-	Thu, 16 Dec 2021 11:35:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A40B10F817;
+	Thu, 16 Dec 2021 12:08:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2059.outbound.protection.outlook.com [40.107.92.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88C7110F5F5
- for <amd-gfx@lists.freedesktop.org>; Thu, 16 Dec 2021 11:35:53 +0000 (UTC)
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
+ [205.220.165.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FC4210F813;
+ Thu, 16 Dec 2021 12:08:23 +0000 (UTC)
+Received: from pps.filterd (m0246617.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1BG8naij004235; 
+ Thu, 16 Dec 2021 12:08:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : content-type : mime-version; s=corp-2021-07-09;
+ bh=s5OXnTOuwXSI8G3Qel/m6UhMnrsffjooJtDdVGfRa8k=;
+ b=f1mwXaMpDLDj5RaT1+oj3IWu8KkG8shValenbxHSiGkT26lJIZ83iqH90tom1jfKJSP+
+ 2vGmr+TRcOBZCK4hVPvoVGY2SMuMj15RD/Cnq//4gYYGSB00mCLYju9yjWIJVPJQ2Xzd
+ HsCkDLQBdaT/QAj8dCkRjYZWJwEdg5S9XUfgz4PX2F3MYVrkv2SBkLkv/w5/82ykuKe8
+ N3pun7xMk3JLBcLh7lre8HZ7GnEKMLu4lW1+Mq3wyAdXc5pyLvUu6QnuXt6ERYB3f/b2
+ Pro1u1Sv9ByR7jiqJgpM6RBuoOKKT7Tanvb6sCEjoPw9faNILbkHv5uIQTbx01RoHieU 4Q== 
+Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
+ by mx0b-00069f02.pphosted.com with ESMTP id 3cykm5amb1-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 16 Dec 2021 12:08:22 +0000
+Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
+ by userp3030.oracle.com (8.16.1.2/8.16.1.2) with SMTP id 1BGC6wuE051634;
+ Thu, 16 Dec 2021 12:08:21 GMT
+Received: from nam10-dm6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10lp2100.outbound.protection.outlook.com [104.47.58.100])
+ by userp3030.oracle.com with ESMTP id 3cvh41vgbg-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Thu, 16 Dec 2021 12:08:20 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SOozD7F0qSXuOouxkblRoCHOLPC/JnGWooDCwUCCpHA4PvjBBQRrFBE4LPptRM0vWCSZe3sfr/Fg1kaIfYMq2EqHmHdjaT5NkzfNAli532uijwxvObr4TYLrGZsPAisy5o0MGIjrTUnprGOKUuDBOXVg84xdayde93g6DsYVpXTuYnZ5uXy2ijZHQWuiO4bYLBRtzWAPdP9P++D3XJYf7vZTsjbUUWOzG0x9MvyscE/MiJZGIk599FU7e+7EV7DtHaq/y3B2APuXbWmz6vmSEPZFSHcqylBaznuGV0F6mNbmDoPPAaG5RnWxZ7KGRIo5+B6IFPnxay4FLn9IXz3axQ==
+ b=dN+ambiPLzbsm3V6Nt3T6nxxAiIx1x6wItiPT32cu3qdEmps1QIN1DzicS7ZPAeweCkOvIHzFPsBo7L7exJIH+KEyZMdD8LcjabY++WDWIyaR73hGugImhbg88skdvdMgW/AgNpYpp5iAV/QyGPlvBmN5A84cpiHJ8SDKTZU8JYR0EdU8sUxR9arX3oPID7MF2uyrEnzdy3VizQRGuiaO812ZYuRfz0WRbTkcM1HPjspuNben5iVZKJMW4rz+rVMVxsPAlJkjfNNmjLydWXYFoC5asuh5oIbJMF0XR5ptQ9bJgehdYtv3MLfHlnJV64g/S6l8OHikwXrBhvEIvpLMA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8Asl5J/t7/vXR70ElbQ978Eh/4niuI30yen34uC50g4=;
- b=Bde3+ZrCSOLLe7ftAwTlyy9+Rmgcjc6SkgyJ+Lc2hHkfpZ0yOYTclnjB1+jdF7+OV/ZSarh2rdP9S0zH33fmxYQ0bNisZMNHI1wfAgJw9MFGffKWQf1ckr21KwohwhlAz0BqThiNDM/cnRMCeGhTYLBUXrvnmrocRgYdbMV+oaM2U4Tlw5AxMOfRqcOP4eTGI8vv0y+CtwkqLacubPGKSI9wK9OgA9rwsYco3grZ4Dd600lPPGbfa8ew9w0kB8buyxKnDoi2WlbPMXJ8/TnHHiklwNsxWOEqcj0pkEQek02s3Qp8+qv0ppU2tGDMEUg2kWQ5tI9277C76LyjSGcuVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ bh=s5OXnTOuwXSI8G3Qel/m6UhMnrsffjooJtDdVGfRa8k=;
+ b=U0CvnaC65tlINyfpMoOlny8a5ZaUPsC1jABHoZ6ZedklEVS5rt+d8s3EQfENe2zUZ78gBNCiCaxvuPHd6NBLGFxCN10bvnJJZ+OofNCAgnmrrWHmRkxViAJ3Avz130rSPX5fvMmkEmySzAVXwIxsCcfivHj/Gg8JJb3+TVJl9PfmXx1E2v/WiyqtSB1pWcxx1PXQxtCEzWM6NOnO6Xe9h2zJLQd0djH7MbZDPjJf5qBJ1zITZWrP+Da7CX7OdbGBpNo2qxkciYMXdTp8GUpwP/ZxMoiEZyOi586JNz7h+WK6ZIin6cXBDUGSROq3qZEBLn25rwE09xQ9zTYwaSqqzg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8Asl5J/t7/vXR70ElbQ978Eh/4niuI30yen34uC50g4=;
- b=3LvcOECCrvYIZTC7RpNW94O/Au0crSxE7rxEZvLjJHmqJbfCY+WksAP4iiQwn9tAGvCyZwAn4FSdlS0RO8HS6iDa0OeZo9eJry25/TDNVggLEJGXalZrUTpkkq2/bkFMn2l4YJRE7MPv5LduTaiJZ6RTWHrVVxSXj2hkmsidKB4=
-Received: from DM5PR1101CA0006.namprd11.prod.outlook.com (2603:10b6:4:4c::16)
- by BN8PR12MB3428.namprd12.prod.outlook.com (2603:10b6:408:47::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.14; Thu, 16 Dec
- 2021 11:35:51 +0000
-Received: from DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:4c:cafe::22) by DM5PR1101CA0006.outlook.office365.com
- (2603:10b6:4:4c::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.15 via Frontend
- Transport; Thu, 16 Dec 2021 11:35:51 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT067.mail.protection.outlook.com (10.13.172.76) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4801.14 via Frontend Transport; Thu, 16 Dec 2021 11:35:50 +0000
-Received: from taozhou1u2.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Thu, 16 Dec
- 2021 05:35:48 -0600
-From: Tao Zhou <tao.zhou1@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <hawking.zhang@amd.com>,
- <stanley.yang@amd.com>, <yipeng.chai@amd.com>, <Felix.Kuehling@amd.com>
-Subject: [PATCH 4/4] drm/amdkfd: reset queue which consumes RAS poison (v2)
-Date: Thu, 16 Dec 2021 19:35:32 +0800
-Message-ID: <20211216113532.12369-4-tao.zhou1@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211216113532.12369-1-tao.zhou1@amd.com>
-References: <20211216113532.12369-1-tao.zhou1@amd.com>
+ bh=s5OXnTOuwXSI8G3Qel/m6UhMnrsffjooJtDdVGfRa8k=;
+ b=UIwyNABQB84WW4nu0Ob48yjA5ULneLYU6n9sSg49E/TtkvtZCMDHHBGNCleGsiCy7P2cf2eVxRnztd7CxxnV7ViOnoYs41d0EpwvVoY3ZcV4O6fI8C9Ypw8OAZgMbDbIO6b2IFOI2acH2esex2dNtvebPmSeDJ/xUMHQRYPLi98=
+Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
+ (2603:10b6:301:2d::28) by MWHPR1001MB2095.namprd10.prod.outlook.com
+ (2603:10b6:301:32::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.17; Thu, 16 Dec
+ 2021 12:08:18 +0000
+Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
+ ([fe80::7194:c377:36cc:d9f0]) by MWHPR1001MB2365.namprd10.prod.outlook.com
+ ([fe80::7194:c377:36cc:d9f0%6]) with mapi id 15.20.4801.014; Thu, 16 Dec 2021
+ 12:08:18 +0000
+Date: Thu, 16 Dec 2021 15:08:06 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: dri-devel@lists.freedesktop.org
+Subject: [bug report] new kvmalloc() WARN() triggered by DRM ioctls tracking
+Message-ID: <20211216120806.GA3691@kili>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-ClientProxiedBy: FR3P281CA0083.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1f::21) To MWHPR1001MB2365.namprd10.prod.outlook.com
+ (2603:10b6:301:2d::28)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
- (10.181.40.144)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 42b5fde5-4a48-4963-d505-08d9c0883666
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3428:EE_
-X-Microsoft-Antispam-PRVS: <BN8PR12MB3428597B7F5E02CF5DE5A18BB0779@BN8PR12MB3428.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:972;
+X-MS-Office365-Filtering-Correlation-Id: 55c42b19-b2ad-433e-ffe2-08d9c08cbf07
+X-MS-TrafficTypeDiagnostic: MWHPR1001MB2095:EE_
+X-Microsoft-Antispam-PRVS: <MWHPR1001MB209513F08D3D4C44EFC9D9CB8E779@MWHPR1001MB2095.namprd10.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:486;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Od5OzvRmqCMdK6jgQSmP1xvnNxjdKeIYvJ+zR2N+NSiUzbMYWUp5mFet75PH3vJRKRMLZYfODzMox+FWmXnMLhCMiOUpSwLVpg5XCp4MIntsZJ6hs3WtE07Le/TuDEtWASHfWB6NF8wcpXI5HP9VFRsyO6N5ughITq49Csu4suP5QXnifq/ZTGrwM81ks3JUWL99Bmtdv4DiU5W9tGqRIKfNRbrrCHQc2KoBG+r+cfojf+g+5J6TyKr1cfGhaekm8dVKf8DcMwPeiGcLTnsvHNq11FayiiCfvBeic3TLgAlolp766yQ/TyUhcncRsseKqWn8isRekrAmBS2bPYQ8JhVax+PRCCSX+SfPfYcnptvqk8LUxyMlm8XFoO+atUzG+i0njvA4pyUayvOEMypb4CMSSz4HKwLyS93JmYJh9iOrqzVzOtanhbauJzTP+3r97tSP3iDf9zo0ieqrc57nExD/6MYOs3H4jQyzHa8RTSxnlxKsZ8kfCEBO+zPvdVWN2qIIfV2MKfeny0NKFVdoSlTp6jn+lHw4LY+nCcKMRTkskMTjEuyD/8ejYd23FnhXjJfRbj+9/MEp6uTzz14Q+gAu574RFrg9bpQV9TrKwUxMBSS9dJotXwYpOF237gzylVqgejW524FC2hmEEw2lSTd08xH0xYVIP9SmNw0VYR+Pg5cGiGEGvwUPI07igVzZUBauLSzlan6pUDNsY7B40nKv0FsoWI8ZEG0a003FnI2DFDiYYkotp/N6cPCyCaNiJ56I0vJwqc9Ff4zJstM2zclhCNXjDs8d/89eI5S82iE=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(40470700001)(86362001)(40460700001)(83380400001)(356005)(426003)(36860700001)(16526019)(186003)(508600001)(336012)(316002)(82310400004)(70586007)(70206006)(81166007)(8676002)(2616005)(26005)(6636002)(5660300002)(1076003)(4326008)(2906002)(7696005)(36756003)(8936002)(6666004)(110136005)(47076005)(36900700001);
+X-Microsoft-Antispam-Message-Info: 6TBapzWwybYZdvk+ZuyYNL0qX9b5YgMayNbVfMmAtS+40M2Uwft2K6g1uOU55nZ30UUkKCN+DrkRsXdUFMFq6h1zP8yZ4D3cHHeKxSqqXfw9wwo9A7+0f+sF1p7effHHvcRXjbC2ZCy8maeskF5Ybe1EWvzjOk/GnxYamk8ckknPkD3OII/eSvq+IZlbGV7jqk2X0VuXHNrVWOiVu6+H8hpsXn93zHRbSMq8XRFdcMwRnO0g6xOoE51bLVU8e9qtVuCaNBrFGTMj+YRogW272fjYsasuM0Y9PMeZTuwRiNO/lQaNew40PVdqX48B/069z96AynT9QKr2PcNvaO1/A/4RX0dup7nXD381OGTnhFM4qmvKxwlv9SQz6C4FOuz2Aoy9TaPt025VgJlNdp10EMf8AHuudHQZL1GtLjmnCVyLYCwDa5WShWWv8JXz1930dJrU7NgmtXOvcCkABbOMogwZ+1OCDKNONMQZFzfSPhlSzMeSlVGltZ6k98ATCAc+Bk5hOjQWptBuxvZ4C3sDcrnnh5nb9T/qPnOvIB/+VhgR+e4ZN1c4ajxvpjQCZIUsckArhwKg5hTlMVzTa4z53bcWFJ+OaIXYGQufwgD0TPduUedF+RCxqmEsOFwvuJIq9gCVael1YgAYRaFzaXCOhwLuhTwab4JfU/qpm+hBkjuIHuKOTUgc+D/9Hgrtnmspp22J1Zpkts+kkuWLOJGjBQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MWHPR1001MB2365.namprd10.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(7916004)(366004)(4326008)(1076003)(33656002)(6666004)(52116002)(508600001)(6916009)(86362001)(316002)(8676002)(66556008)(66946007)(2906002)(9686003)(6512007)(6486002)(38100700002)(5660300002)(66476007)(6506007)(38350700002)(186003)(26005)(44832011)(33716001)(8936002)(83380400001);
  DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2021 11:35:50.9566 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42b5fde5-4a48-4963-d505-08d9c0883666
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3428
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2TT5IOjHW50h35eqQMvFXaQXYwomt1CSj0P9ptfPRyH9sgHbxr+w8PaR2H+3?=
+ =?us-ascii?Q?cNfeXZ77o8SeKRN6d2ZVAflnCjv55OeWcOhGX0Cfbj9VwiiL5jAod/cvW6a9?=
+ =?us-ascii?Q?J9p2O5tIDINSrH00IAJEIRWruvTbJy+GD0k1ttUImMpx1EwlE+P7POEAniwb?=
+ =?us-ascii?Q?3RHHfzgVgGyA7oln9Z6CABM+0iTX+9kI6r+07VywEIV9+KFaLsDXvCtB1ih2?=
+ =?us-ascii?Q?t+qDwwohMR4ociGw+DJ4QQOkpHX6F6VB1CqMmyEjo/dFj9kcQR3oZbh900zF?=
+ =?us-ascii?Q?zckx8DzCe/X3Ol7vaoyRutR6Q8qwGVMAksY5y5Xc05gaiOqc5bBQFud0M13z?=
+ =?us-ascii?Q?Yr5TOHj8C77gePw51TemjzCSxIobBAdtYzdOWOrnIcKfZQInYCem5jozeXnA?=
+ =?us-ascii?Q?UxdGn76QI2N7YHwyPEq7e5+hbXsXrYqIuoavKLEiT4FCWKQBTU8oo2tUkr2z?=
+ =?us-ascii?Q?IDQCrcsfBokQujktecH2Vx5p2Td9q40lwzMWedZJ48VCEEeJ0SM95xFIyz2I?=
+ =?us-ascii?Q?R3h8X8Nn8EZG14LE1VFU6Dp1a2wYIoK1tpmQrqRojjyiCE212WoZR27oOwXq?=
+ =?us-ascii?Q?7AW2xNl3iFOQ63RYh2gk5W1GNP5tyf4Pd2+jmBu9OLJS2hE9QmHXHOgA3p86?=
+ =?us-ascii?Q?0dgIiBJzXp5NuFtYiixwj5esXD1HhUIRrc9tI3q7QEWTneAWCmJJZj1Mr7Hj?=
+ =?us-ascii?Q?JvZFhVWK9psDiK2J660AFZujBlkVwqYLMBQVdbqakg8Ikmjwi7jxlud/aFJv?=
+ =?us-ascii?Q?081re9NsDSRR8SKmNvjPRawAMe/cQz6ebULzDjQmzVKjWv+sQjl898d/yW0N?=
+ =?us-ascii?Q?HCdpkIdmi8UomeSDBbgKEcrD8OGGITVtbSyQoJ/RcGAcLj3Bj5BUvg3T9g/Y?=
+ =?us-ascii?Q?QM92OcfK7V55k8IDI6CvRRHXivH9Vp7eKio4WCZ9ctngaoB9EoUEnULeTp7o?=
+ =?us-ascii?Q?qTypZWl8+OoheS8UnySFpRHilg0yVOWEy7vz3PvufVext1Dz5olt4O1ypJ3V?=
+ =?us-ascii?Q?P6hmJm7vyGcDtessRV5RN02nhyDw6So12BKTgf5a1OmBwtoWELZkf/m7+Xcy?=
+ =?us-ascii?Q?/4RXx+KHw85p3Z3YQSrb+DbPKscvGEHM6or80QVJOZrHwW+myfAVJgG+cRke?=
+ =?us-ascii?Q?tM+zpJKiF8cE+DHiWUgnNKL+qXn5EgCdr8zkX9/SiUohrc9jj+VlzOLcUzvP?=
+ =?us-ascii?Q?LrAS1FF65kNtPVTMOXxOycDP28clWBfy8BSxgI8IbwtLnzNfbrDbd8EDmXKv?=
+ =?us-ascii?Q?1n6iZftO1HnXcXi0qB1WCy5mi5mtmo1gCC7/OMx+/I+pX0GOVsZc0PK3N14H?=
+ =?us-ascii?Q?4gBnqfPra7QPpO4Lei3Yp9mlQDWk91T3Mur0kOCPvUHLBhRCnig+WynNZKFp?=
+ =?us-ascii?Q?4tjUqdz4V57GBsGvDLVxkXbiz7RUYHS+BaLRqQAmEPTt3P6DOM4qb09k2YjC?=
+ =?us-ascii?Q?9mbQJ6skbJG+USaodNv4RLFUpCbBpIUBUSAxP7Jfv1hhdkVygXYubqQPuv5D?=
+ =?us-ascii?Q?OLfXTkkFkXGm/440u6Ak7ZomKyhAjm6rfm5o1IsMQeHHx1XiEJHfHq6NnJ4S?=
+ =?us-ascii?Q?b7yrsqg4Y/Qcl3Z83q6J8J4LjjpkgUwghy0yCBlIY4y6JzUOnWKJRNOC8bLi?=
+ =?us-ascii?Q?CeclldOHyQDSCVs3WLft+79UbvpPsMVFofrWxuqsrDkgNsXpTtTNBnBm8ltW?=
+ =?us-ascii?Q?giodncusH7//m2p+/Avkb6AQcks=3D?=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 55c42b19-b2ad-433e-ffe2-08d9c08cbf07
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2021 12:08:18.4731 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kYZZIQwoRvg1YMuDCQ9UhTpWsS+06YQHp13AZ87qc4xJf2hanLhGoAi3hWb+kPtWFpISdD/b3Sc49E64EV4TKm/jhc6wlQWqHh4A2V4uF9U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1001MB2095
+X-Proofpoint-Virus-Version: vendor=nai engine=6300 definitions=10199
+ signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
+ spamscore=0 suspectscore=0
+ malwarescore=0 mlxlogscore=999 bulkscore=0 mlxscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
+ definitions=main-2112160068
+X-Proofpoint-GUID: 9nVEvHTk4R6CmkePYhhVtjdiJGxlsekn
+X-Proofpoint-ORIG-GUID: 9nVEvHTk4R6CmkePYhhVtjdiJGxlsekn
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,145 +146,36 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tao Zhou <tao.zhou1@amd.com>
+Cc: virtualization@lists.linux-foundation.org, amd-gfx@lists.freedesktop.org,
+ lima@lists.freedesktop.org, etnaviv@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-CP supports unmap queue with reset mode which only destroys specific queue without affecting others.
-Replacing whole gpu reset with reset queue mode for RAS poison consumption
-saves much time, and we can also fallback to gpu reset solution if reset
-queue fails.
+Hi DRM Devs,
 
-v2: Return directly if process is NULL;
-    Reset queue solution is not applicable to SDMA, fallback to legacy
-way.
-    call kfd_unref_process after lookup process.
+In commit 7661809d493b ("mm: don't allow oversized kvmalloc() calls")
+from July, Linus added a WARN_ONCE() for "crazy" allocations over 2GB.
+I have a static checker warning for this and most of the warnings are
+from DRM ioctls.
 
-Signed-off-by: Tao Zhou <tao.zhou1@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c    |  6 +--
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |  3 +-
- .../gpu/drm/amd/amdkfd/kfd_int_process_v9.c   | 44 +++++++++++++++++--
- drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |  2 +
- 4 files changed, 47 insertions(+), 8 deletions(-)
+drivers/gpu/drm/lima/lima_drv.c:124 lima_ioctl_gem_submit() warn: uncapped user size for kvmalloc() will WARN
+drivers/gpu/drm/radeon/radeon_cs.c:291 radeon_cs_parser_init() warn: uncapped user size for kvmalloc() will WARN
+drivers/gpu/drm/v3d/v3d_gem.c:311 v3d_lookup_bos() warn: uncapped user size for kvmalloc() will WARN
+drivers/gpu/drm/v3d/v3d_gem.c:319 v3d_lookup_bos() warn: uncapped user size for kvmalloc() will WARN
+drivers/gpu/drm/v3d/v3d_gem.c:601 v3d_get_multisync_post_deps() warn: uncapped user size for kvmalloc() will WARN
+drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c:476 etnaviv_ioctl_gem_submit() warn: uncapped user size for kvmalloc() will WARN
+drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c:477 etnaviv_ioctl_gem_submit() warn: uncapped user size for kvmalloc() will WARN
+drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c:478 etnaviv_ioctl_gem_submit() warn: uncapped user size for kvmalloc() will WARN
+drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c:479 etnaviv_ioctl_gem_submit() warn: uncapped user size for kvmalloc() will WARN
+drivers/gpu/drm/virtio/virtgpu_ioctl.c:186 virtio_gpu_execbuffer_ioctl() warn: uncapped user size for kvmalloc() will WARN
+drivers/gpu/drm/panfrost/panfrost_drv.c:198 panfrost_copy_in_sync() warn: uncapped user size for kvmalloc() will WARN
+drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c:120 amdgpu_cs_parser_init() warn: uncapped user size for kvmalloc() will WARN
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-index 46cf48b3904a..0bf09a94d944 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c
-@@ -721,13 +721,13 @@ bool amdgpu_amdkfd_have_atomics_support(struct amdgpu_device *adev)
- 	return adev->have_atomics_support;
- }
- 
--void amdgpu_amdkfd_ras_poison_consumption_handler(struct amdgpu_device *adev)
-+void amdgpu_amdkfd_ras_poison_consumption_handler(struct amdgpu_device *adev, bool reset)
- {
- 	struct ras_err_data err_data = {0, 0, 0, NULL};
- 
- 	/* CPU MCA will handle page retirement if connected_to_cpu is 1 */
- 	if (!adev->gmc.xgmi.connected_to_cpu)
--		amdgpu_umc_process_ras_data_cb(adev, &err_data, NULL);
--	else
-+		amdgpu_umc_do_page_retirement(adev, &err_data, NULL, reset);
-+	else if (reset)
- 		amdgpu_amdkfd_gpu_reset(adev);
- }
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-index fcbc8a9c9e06..61f899e54fd5 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
-@@ -296,7 +296,8 @@ int amdgpu_amdkfd_gpuvm_import_dmabuf(struct amdgpu_device *adev,
- 				      uint64_t *mmap_offset);
- int amdgpu_amdkfd_get_tile_config(struct amdgpu_device *adev,
- 				struct tile_config *config);
--void amdgpu_amdkfd_ras_poison_consumption_handler(struct amdgpu_device *adev);
-+void amdgpu_amdkfd_ras_poison_consumption_handler(struct amdgpu_device *adev,
-+				bool reset);
- #if IS_ENABLED(CONFIG_HSA_AMD)
- void amdgpu_amdkfd_gpuvm_init_mem_limits(void);
- void amdgpu_amdkfd_gpuvm_destroy_cb(struct amdgpu_device *adev,
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c b/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c
-index deb64168c9e8..bd29b50532ea 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_int_process_v9.c
-@@ -89,6 +89,44 @@ enum SQ_INTERRUPT_ERROR_TYPE {
- #define KFD_SQ_INT_DATA__ERR_TYPE_MASK 0xF00000
- #define KFD_SQ_INT_DATA__ERR_TYPE__SHIFT 20
- 
-+static void event_interrupt_poison_consumption(struct kfd_dev *dev,
-+				uint16_t pasid, uint16_t source_id)
-+{
-+	int ret = -EINVAL;
-+	struct kfd_process *p = kfd_lookup_process_by_pasid(pasid);
-+
-+	if (!p)
-+		return;
-+
-+	/* all queues of a process will be unmapped in one time */
-+	if (atomic_read(&p->poison)) {
-+		kfd_unref_process(p);
-+		return;
-+	}
-+
-+	atomic_set(&p->poison, 1);
-+	kfd_unref_process(p);
-+
-+	switch (source_id) {
-+	case SOC15_INTSRC_SQ_INTERRUPT_MSG:
-+		if (dev->dqm->ops.unmap_queues_cpsch_poison)
-+			ret = dev->dqm->ops.unmap_queues_cpsch_poison(dev->dqm, pasid);
-+		break;
-+	case SOC15_INTSRC_SDMA_ECC:
-+	default:
-+		break;
-+	}
-+
-+	kfd_signal_poison_consumed_event(dev, pasid);
-+
-+	/* resetting queue passes, do page retirement without gpu reset
-+	   resetting queue fails, fallback to gpu reset solution */
-+	if (!ret)
-+		amdgpu_amdkfd_ras_poison_consumption_handler(dev->adev, false);
-+	else
-+		amdgpu_amdkfd_ras_poison_consumption_handler(dev->adev, true);
-+}
-+
- static bool event_interrupt_isr_v9(struct kfd_dev *dev,
- 					const uint32_t *ih_ring_entry,
- 					uint32_t *patched_ihre,
-@@ -230,8 +268,7 @@ static void event_interrupt_wq_v9(struct kfd_dev *dev,
- 					sq_intr_err);
- 				if (sq_intr_err != SQ_INTERRUPT_ERROR_TYPE_ILLEGAL_INST &&
- 					sq_intr_err != SQ_INTERRUPT_ERROR_TYPE_MEMVIOL) {
--					kfd_signal_poison_consumed_event(dev, pasid);
--					amdgpu_amdkfd_ras_poison_consumption_handler(dev->adev);
-+					event_interrupt_poison_consumption(dev, pasid, source_id);
- 					return;
- 				}
- 				break;
-@@ -252,8 +289,7 @@ static void event_interrupt_wq_v9(struct kfd_dev *dev,
- 		if (source_id == SOC15_INTSRC_SDMA_TRAP) {
- 			kfd_signal_event_interrupt(pasid, context_id0 & 0xfffffff, 28);
- 		} else if (source_id == SOC15_INTSRC_SDMA_ECC) {
--			kfd_signal_poison_consumed_event(dev, pasid);
--			amdgpu_amdkfd_ras_poison_consumption_handler(dev->adev);
-+			event_interrupt_poison_consumption(dev, pasid, source_id);
- 			return;
- 		}
- 	} else if (client_id == SOC15_IH_CLIENTID_VMC ||
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-index 0c3f911e3bf4..ea68f3b3a4e9 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
-@@ -856,6 +856,8 @@ struct kfd_process {
- 	struct svm_range_list svms;
- 
- 	bool xnack_enabled;
-+
-+	atomic_t poison;
- };
- 
- #define KFD_PROCESS_TABLE_SIZE 5 /* bits: 32 entries */
--- 
-2.17.1
+These ioctls can all trigger the stack dump.  The line numbers are from
+linux next (next-20211214).
 
+I feel like ideally if this could be fixed in a central way, but if not
+then hopefully I've added the relevant lists to the CC.
+
+regards,
+dan carpenter
