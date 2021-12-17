@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0044A47962B
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Dec 2021 22:24:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D50B47962F
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Dec 2021 22:24:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAC0F10E605;
-	Fri, 17 Dec 2021 21:24:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AC0610E68B;
+	Fri, 17 Dec 2021 21:24:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2054.outbound.protection.outlook.com [40.107.237.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7386B10E605
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Dec 2021 21:24:31 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2065.outbound.protection.outlook.com [40.107.92.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A5D310E651
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Dec 2021 21:24:36 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AqDrC9Vi0ZrkCRhULQlwFEVx7rcnIANT7WCobC9pKHko5KMtKP3CRMGUFxoCigAogByML5ilJiBtWKGEK0tXS1ZYlRW4at5hbo66BTy9UVsx8j8EXakaC/gJJDlU2F6JgdZfghICJU7NQrGIqz/fAWnfBAy4OG3/pWE7Fp/K7RRZ07WQNT3RouFI01OLJnUi6/JzjKdR8ixooHKG8n+WiFdIKKiWnNMQKx6MPz8s9ys1xCMCsh2+Xp7cNkltyzYS10Sl1OFO2ESQyfnsHoD4myl/2WcIrCxhUSz23bqzFYj9lzt9otdKHndVfc0KripSzw0Np0+5Q9v7fxQ/rFXclA==
+ b=mEYp1X+KjQGANbHVMb/AUwHnvYtg97axv56V3/5R9LH9MoVCXQzexNKZKm1nR5gSbppgpFO2+H8XUkydCUl8X0yTQ0mDLtGxn6+ao320x5fPWiZkzsrVc5yq7s5C+AVxOnJHX5xu5ArxHKQm4vRkVrh8ICacON4nL5dz0F0PerRwvvscAY0R5U3dUBXSvZzrrgG+LSG9z6j3HfKCjhfhpkTmdX1odPGE2v4eJhAMptRVyELl82HBWgWpIC4MqHAx2oWxeu9Cw1Gp3+vf7N9HY+hOUIAhp5d7dYd8QzWT3lMk9mjluVuNUUpMogZviRdTwcbDHA6HSR6MBSoMCmQrBw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C0oYojV8G1Krkbtj2XImRdMo3ne6v4MVEM7nv5QsP9g=;
- b=ik56CUOFe02eNlvmeiTjlTWQdmWf45hZUJah+y+PiSaL0fYcYwvweVmdEzJu9HyqP6L5nvXB//UyNSCLoeR0SYl0sz96I/ZPWyw+3z1/xy/9LLvA5dsuDyOMmRYO2YVHmMDdkqTVjpXvH5E27uet7lGreOGvefdjRQdPVihGxdlm+nRRiHDLNP5sITNgvolH0TxEMVfSy7jjUkKndLo1bIVuUID47OIv7fna1jKo7psCMpI78lpWVpAh2CVjunEoFRWfRTcH1QP5BihXTo5CmDhnX7OFK5+tf5iYSa6r9Xfl4Nwpe9vObp1ryJtOOpxiZuiSIOGwuMtZqvXkwr6OUA==
+ bh=q7WDt/o5M7rqr6u6TBNWH47PVMMuwXpWmXj+uRdE6M0=;
+ b=nkm4dioDTSre75HHP4IKlr//nDxToYixbui1+8ye4ySmJm243Yy48bjhZznk/9PhzkY+mTKKLgCwySUJp2/Rh1/4XWvYV4+1Hht/iXmTRK1I8Rsa1q15JG2/LRgz5z0rKRdu32BSIfhK97GXyPRK5rpwcutgjAPQWbhDcDnsIYwxj/ppwluEC209mRmUmV4cF8J1ziKnNXPPk5a3GrexVSJcwEC9CgJZSahhofe3anZ893eMpRNNXnNDlBo9Zsk2HpxCV3iRSa7jwM4evRYsJGib45pk+lehnKehy+pKcbaoZi8AlKtXOh3FzFLDInR2Rbj5oBprIZ34naRwZI51jA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C0oYojV8G1Krkbtj2XImRdMo3ne6v4MVEM7nv5QsP9g=;
- b=wCROmWLm1GI2SIzEaez41dGEIbeDnQYyyZPM8UQMqoQGqXHYKWgOqEX7f7McPKJ7S8khvb8HZKB7aqgEbMK+LZTtbepq5+xbiPQYFMlKAyw2ZSCnodR8wC6esaXUMCc4BtA3lwWvsWZsxfzHXo9qVfU/sgRgeYQ3Ki+iVrd/KTA=
-Received: from MW4PR03CA0138.namprd03.prod.outlook.com (2603:10b6:303:8c::23)
- by CY4PR1201MB2550.namprd12.prod.outlook.com (2603:10b6:903:ce::13)
+ bh=q7WDt/o5M7rqr6u6TBNWH47PVMMuwXpWmXj+uRdE6M0=;
+ b=34E8sgATkqYi0BNsuT8MTZfE57sg0J3qDMadWmthyxGPG72rbh85JzThIrYaSflDeWkkwmbEAyiaeDcEAYRvdp3S5BHYOMbfwEuc7tHs3Y+9T5Ngg+afEXmwrSq4RqRHaOvQnzP9iiWvocckPt+EYHa9Fs0zs0xzTOAMblI+Ggw=
+Received: from MW4PR03CA0146.namprd03.prod.outlook.com (2603:10b6:303:8c::31)
+ by BN9PR12MB5339.namprd12.prod.outlook.com (2603:10b6:408:104::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.14; Fri, 17 Dec
- 2021 21:24:28 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.12; Fri, 17 Dec
+ 2021 21:24:29 +0000
 Received: from CO1NAM11FT014.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8c:cafe::52) by MW4PR03CA0138.outlook.office365.com
- (2603:10b6:303:8c::23) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:303:8c:cafe::7b) by MW4PR03CA0146.outlook.office365.com
+ (2603:10b6:303:8c::31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.15 via Frontend
- Transport; Fri, 17 Dec 2021 21:24:28 +0000
+ Transport; Fri, 17 Dec 2021 21:24:29 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -51,13 +51,13 @@ Received: from SATLEXMB03.amd.com (165.204.84.17) by
 Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Fri, 17 Dec
- 2021 15:24:25 -0600
+ 2021 15:24:26 -0600
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 03/19] drm/amd/display: Refactor vendor specific link training
- sequence
-Date: Fri, 17 Dec 2021 16:23:51 -0500
-Message-ID: <20211217212407.3583190-4-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 04/19] drm/amd/display: Block z-states when stutter period
+ exceeds criteria
+Date: Fri, 17 Dec 2021 16:23:52 -0500
+Message-ID: <20211217212407.3583190-5-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211217212407.3583190-1-Rodrigo.Siqueira@amd.com>
 References: <20211217212407.3583190-1-Rodrigo.Siqueira@amd.com>
@@ -69,28 +69,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
  (10.181.40.144)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0de2ccc7-0e55-4476-6d44-08d9c1a39bac
-X-MS-TrafficTypeDiagnostic: CY4PR1201MB2550:EE_
-X-Microsoft-Antispam-PRVS: <CY4PR1201MB2550C28443CF4A607A7B47F298789@CY4PR1201MB2550.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
+X-MS-Office365-Filtering-Correlation-Id: 2b6bb293-8d44-487a-b7ab-08d9c1a39bf8
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5339:EE_
+X-Microsoft-Antispam-PRVS: <BN9PR12MB5339F1DE1A32DE802EF030B898789@BN9PR12MB5339.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: d7/FyLUAbGl4zqegDjo8AHN85VbDm+TMR5xxfLT8VJxKljTPjzXFgfCR5AnSfJ5prUPcjCPmsUTXkEcD1JyCvin6bCFv1HA/ah7k3YF2bOmNAr3vlQqa6aRZYIps1ltcQsXeY/L5mNlTorM23yYHoDUa9G3MViwtvszUZdgpR++n5WqDCMtbJRrV3F7tZLuYSwFOA24e2RCU6E6Vqgmq8CW3f7PhiILFg9sF90mwKdUkbUou6M607s4R4AI+iSRvNWT9N8muwQ+7wuqxf1UdkbZABRAljaImdkjiqGXCS+VKCohJhYnokfM8CI2DxQQbcVy+yb9SltmRFirlrJbdOH5DukOV1ZhUZekhxFuiLnRUxoB2W7UvFrUFNxfYiXZL8g2PJv31POZVkOE7BYh80rG92eVVV80zsyUJlqcZeB5WqwHdT+eCOSlUdTRam2BQxRo8drjmBngBPXdw5pJXO04BA6ir1xUr2xRdZvxzIGf38P6Ygr5pVh9NojJw0rg7TH2o2NiBcBWQbolAXRux3Ti0paPtE8dESl7wGvg4kL4KrssmdMhQApAHajutku3oLB8HaGdup8JdeBSBegUtprQ/Y4btVpVUyJ2D24gFvt6tDwwmwDW0SR8PfPatgoJYKlKZ+YQbnkMyWheSEcrsmKxDbOQn3GTIV0rHeKDkWtA7nZnYq6XNu/oLMh1qaQhb5fBTEqSgqjP4UE2WX/u23dKHTW/NTP9zsa8kXjmxNIra35GVwGckmK7gEvPVmPBrywRoiB95gq0Ky+rsQxPh2cSpqsV/Qd67+M+li44GXus=
+X-Microsoft-Antispam-Message-Info: mpYEu7JkhwU7zNxPdCIDx4E5pKDibSXRn6yi8xuT1a4O/hkJkdxquS0m5JNQxiK1NYsx9m/sb71keJVtiBm7TB4N8EV94Y7frt1u6iBRdLlpe/FUofO6xt1TdFB/CeRtsGsknVuWZjaYO1HUgVlMb1Y7zDwvftzVmvNNcWE77LGcPYpyNarDzpSih4cD1l/peyZH9u0w5B8vZcn53TuGWVFbOShPrvRDibUlAeFcEzSnXw93UQ3GqN9I3n7EC9Yv/tD9DW6w3Q7zo2LFYu8EVlNp2upfdBQTDIyn69MRPHFtlPJ7qZ+5OzL4q6YZqST42dvOen3jyvvVfsTlpw3dcDqUqBCkLhnWMZhqcJbl6dvlq7OwVmhSRKIvVnRAKfc9B49Xc1N18Q1aipVwzmabLPwLJ70/ND/v4reZUXMllNDAvmeXlwtIyIU7ba5WEaF7acwQTgio0rEQoYlV1m0B7j6tDlin8Pe1/9nrBP6ouILOqN253xtydBegSiPzsGsHu2zu8XoHpEPPhgSCmTRAS8kRPzqA8m88Ytw9QQoKTkN73zUknEIFp6Y38xgJrXoLX6hFzIhMndpUm6ENWLedGc6AsNZleP/T4XE3PGeAyPsV5Dkpj2Z37jBV2OVc2mLDR+ROkDXgmEWXciEWT1CnXQuhfgqtH09wglRzTqgeigD5JzAqQ6YYBVFizWv9rojuv9bCbJtBnpOj664G0fCUogj0vVXdmPhb+gtj2aFzyriMBmLRzoHiMWuOhx0H8+KUKJR9UIquYJ8E7uSD8JStWaLKOa4l4eP3DCUoHy6t9dw=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(40470700001)(2906002)(6916009)(8676002)(1076003)(336012)(54906003)(30864003)(83380400001)(47076005)(4326008)(356005)(81166007)(86362001)(8936002)(70206006)(316002)(70586007)(186003)(508600001)(6666004)(36756003)(26005)(82310400004)(2616005)(40460700001)(36860700001)(5660300002)(426003)(16526019)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(40470700001)(70586007)(82310400004)(1076003)(8936002)(54906003)(70206006)(186003)(40460700001)(16526019)(86362001)(426003)(47076005)(336012)(316002)(36860700001)(6916009)(2616005)(26005)(2906002)(36756003)(8676002)(6666004)(4326008)(508600001)(5660300002)(83380400001)(81166007)(356005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2021 21:24:28.3672 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0de2ccc7-0e55-4476-6d44-08d9c1a39bac
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2021 21:24:28.8515 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b6bb293-8d44-487a-b7ab-08d9c1a39bf8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT014.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB2550
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR12MB5339
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,388 +102,51 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
- qingqing.zhuo@amd.com, "Shen, George" <George.Shen@amd.com>,
- Rodrigo.Siqueira@amd.com, roman.li@amd.com, Wenjing Liu <Wenjing.Liu@amd.com>,
- solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
- mikita.lipski@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
+Cc: stylon.wang@amd.com, Eric Yang <Eric.Yang2@amd.com>, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, solomon.chiu@amd.com, Aurabindo.Pillai@amd.com,
+ wayne.lin@amd.com, mikita.lipski@amd.com, Bhawanpreet.Lakha@amd.com,
+ Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, agustin.gutierrez@amd.com,
  pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: "Shen, George" <George.Shen@amd.com>
+From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
 [Why]
-Current implementation is not scalable and retrofits the existing
-standard link training code for purposes outside of its original design.
+Stutter period won't be less than 5000.0, but if PSR is enabled then we
+can potentially enter Z9 when MPO is enabled.
+
+SMU will try to enter Z9 too early in these cases (before PSR is
+enabled) and we'll see underflow.
 
 [How]
-Refactor vendor specific link training sequence into its own separate
-function to be called instead of the standard link training function.
+Block z-states (z9, z10) until we can add a new interface to SMU to
+signal when we can support z10 but not z9.
 
-Reviewed-by: Wenjing Liu <Wenjing.Liu@amd.com>
+We can revert this once the interface change is in.
+
+Reviewed-by: Eric Yang <Eric.Yang2@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: George Shen <George.Shen@amd.com>
+Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 ---
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 338 +++++++++++++++++-
- 1 file changed, 337 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-index 6f552f7ee1db..04878817e622 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -2427,6 +2427,338 @@ static enum link_training_result dp_perform_128b_132b_link_training(
- }
- #endif
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+index 40b122a708ef..2a72517e2b28 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_resource.c
+@@ -3093,8 +3093,7 @@ static enum dcn_zstate_support_state  decide_zstate_support(struct dc *dc, struc
+ 	else if (context->stream_count == 1 &&  context->streams[0]->signal == SIGNAL_TYPE_EDP) {
+ 		struct dc_link *link = context->streams[0]->sink->link;
  
-+static enum link_training_result dc_link_dp_perform_fixed_vs_pe_training_sequence(
-+	struct dc_link *link,
-+	struct link_training_settings *lt_settings)
-+{
-+	const uint8_t vendor_lttpr_write_data_reset[4] = {0x1, 0x50, 0x63, 0xFF};
-+	const uint8_t offset = dp_convert_to_count(
-+			link->dpcd_caps.lttpr_caps.phy_repeater_cnt);
-+	const uint8_t vendor_lttpr_write_data_intercept_en[4] = {0x1, 0x55, 0x63, 0x0};
-+	const uint8_t vendor_lttpr_write_data_intercept_dis[4] = {0x1, 0x55, 0x63, 0x68};
-+	uint8_t vendor_lttpr_write_data_vs[4] = {0x1, 0x51, 0x63, 0x0};
-+	uint8_t vendor_lttpr_write_data_pe[4] = {0x1, 0x52, 0x63, 0x0};
-+	uint32_t vendor_lttpr_write_address = 0xF004F;
-+	enum link_training_result status = LINK_TRAINING_SUCCESS;
-+	uint8_t lane = 0;
-+	union down_spread_ctrl downspread = {0};
-+	union lane_count_set lane_count_set = {0};
-+	uint8_t toggle_rate;
-+	uint8_t rate;
-+
-+	/* Only 8b/10b is supported */
-+	ASSERT(dp_get_link_encoding_format(&lt_settings->link_settings) ==
-+			DP_8b_10b_ENCODING);
-+
-+	if (offset != 0xFF) {
-+		vendor_lttpr_write_address +=
-+				((DP_REPEATER_CONFIGURATION_AND_STATUS_SIZE) * (offset - 1));
-+	}
-+
-+	/* Vendor specific: Reset lane settings */
-+	core_link_write_dpcd(
-+			link,
-+			vendor_lttpr_write_address,
-+			&vendor_lttpr_write_data_reset[0],
-+			sizeof(vendor_lttpr_write_data_reset));
-+	core_link_write_dpcd(
-+			link,
-+			vendor_lttpr_write_address,
-+			&vendor_lttpr_write_data_vs[0],
-+			sizeof(vendor_lttpr_write_data_vs));
-+	core_link_write_dpcd(
-+			link,
-+			vendor_lttpr_write_address,
-+			&vendor_lttpr_write_data_pe[0],
-+			sizeof(vendor_lttpr_write_data_pe));
-+
-+	/* Vendor specific: Enable intercept */
-+	core_link_write_dpcd(
-+			link,
-+			vendor_lttpr_write_address,
-+			&vendor_lttpr_write_data_intercept_en[0],
-+			sizeof(vendor_lttpr_write_data_intercept_en));
-+
-+	/* 1. set link rate, lane count and spread. */
-+
-+	downspread.raw = (uint8_t)(lt_settings->link_settings.link_spread);
-+
-+	lane_count_set.bits.LANE_COUNT_SET =
-+	lt_settings->link_settings.lane_count;
-+
-+	lane_count_set.bits.ENHANCED_FRAMING = lt_settings->enhanced_framing;
-+	lane_count_set.bits.POST_LT_ADJ_REQ_GRANTED = 0;
-+
-+
-+	if (lt_settings->pattern_for_eq < DP_TRAINING_PATTERN_SEQUENCE_4) {
-+		lane_count_set.bits.POST_LT_ADJ_REQ_GRANTED =
-+				link->dpcd_caps.max_ln_count.bits.POST_LT_ADJ_REQ_SUPPORTED;
-+	}
-+
-+	core_link_write_dpcd(link, DP_DOWNSPREAD_CTRL,
-+		&downspread.raw, sizeof(downspread));
-+
-+	core_link_write_dpcd(link, DP_LANE_COUNT_SET,
-+		&lane_count_set.raw, 1);
-+
-+#if defined(CONFIG_DRM_AMD_DC_DCN)
-+	rate = get_dpcd_link_rate(&lt_settings->link_settings);
-+#else
-+	rate = (uint8_t) (lt_settings->link_settings.link_rate);
-+#endif
-+
-+	/* Vendor specific: Toggle link rate */
-+	toggle_rate = (rate == 0x6) ? 0xA : 0x6;
-+
-+	if (link->vendor_specific_lttpr_link_rate_wa == rate) {
-+		core_link_write_dpcd(
-+				link,
-+				DP_LINK_BW_SET,
-+				&toggle_rate,
-+				1);
-+	}
-+
-+	link->vendor_specific_lttpr_link_rate_wa = rate;
-+
-+	core_link_write_dpcd(link, DP_LINK_BW_SET, &rate, 1);
-+
-+	DC_LOG_HW_LINK_TRAINING("%s\n %x rate = %x\n %x lane = %x framing = %x\n %x spread = %x\n",
-+		__func__,
-+		DP_LINK_BW_SET,
-+		lt_settings->link_settings.link_rate,
-+		DP_LANE_COUNT_SET,
-+		lt_settings->link_settings.lane_count,
-+		lt_settings->enhanced_framing,
-+		DP_DOWNSPREAD_CTRL,
-+		lt_settings->link_settings.link_spread);
-+
-+	/* 2. Perform link training */
-+
-+	/* Perform Clock Recovery Sequence */
-+	if (status == LINK_TRAINING_SUCCESS) {
-+		uint32_t retries_cr;
-+		uint32_t retry_count;
-+		uint32_t wait_time_microsec;
-+		enum dc_lane_count lane_count = lt_settings->link_settings.lane_count;
-+		union lane_status dpcd_lane_status[LANE_COUNT_DP_MAX];
-+		union lane_align_status_updated dpcd_lane_status_updated;
-+		union lane_adjust dpcd_lane_adjust[LANE_COUNT_DP_MAX] = {0};
-+
-+		retries_cr = 0;
-+		retry_count = 0;
-+
-+		while ((retries_cr < LINK_TRAINING_MAX_RETRY_COUNT) &&
-+			(retry_count < LINK_TRAINING_MAX_CR_RETRY)) {
-+
-+			memset(&dpcd_lane_status, '\0', sizeof(dpcd_lane_status));
-+			memset(&dpcd_lane_status_updated, '\0',
-+			sizeof(dpcd_lane_status_updated));
-+
-+			/* 1. call HWSS to set lane settings */
-+			dp_set_hw_lane_settings(
-+					link,
-+					lt_settings,
-+					0);
-+
-+			/* 2. update DPCD of the receiver */
-+			if (!retry_count) {
-+				/* EPR #361076 - write as a 5-byte burst,
-+				 * but only for the 1-st iteration.
-+				 */
-+				dpcd_set_lt_pattern_and_lane_settings(
-+						link,
-+						lt_settings,
-+						lt_settings->pattern_for_cr,
-+						0);
-+				/* Vendor specific: Disable intercept */
-+				core_link_write_dpcd(
-+						link,
-+						vendor_lttpr_write_address,
-+						&vendor_lttpr_write_data_intercept_dis[0],
-+						sizeof(vendor_lttpr_write_data_intercept_dis));
-+			} else {
-+				vendor_lttpr_write_data_vs[3] = 0;
-+				vendor_lttpr_write_data_pe[3] = 0;
-+
-+				for (lane = 0; lane < lane_count; lane++) {
-+					vendor_lttpr_write_data_vs[3] |=
-+							lt_settings->dpcd_lane_settings[lane].bits.VOLTAGE_SWING_SET << (2 * lane);
-+					vendor_lttpr_write_data_pe[3] |=
-+							lt_settings->dpcd_lane_settings[lane].bits.PRE_EMPHASIS_SET << (2 * lane);
-+				}
-+
-+				/* Vendor specific: Update VS and PE to DPRX requested value */
-+				core_link_write_dpcd(
-+						link,
-+						vendor_lttpr_write_address,
-+						&vendor_lttpr_write_data_vs[0],
-+						sizeof(vendor_lttpr_write_data_vs));
-+				core_link_write_dpcd(
-+						link,
-+						vendor_lttpr_write_address,
-+						&vendor_lttpr_write_data_pe[0],
-+						sizeof(vendor_lttpr_write_data_pe));
-+
-+				dpcd_set_lane_settings(
-+						link,
-+						lt_settings,
-+						0);
-+			}
-+
-+			/* 3. wait receiver to lock-on*/
-+			wait_time_microsec = lt_settings->cr_pattern_time;
-+
-+			dp_wait_for_training_aux_rd_interval(
-+					link,
-+					wait_time_microsec);
-+
-+			/* 4. Read lane status and requested drive
-+			 * settings as set by the sink
-+			 */
-+			dp_get_lane_status_and_lane_adjust(
-+					link,
-+					lt_settings,
-+					dpcd_lane_status,
-+					&dpcd_lane_status_updated,
-+					dpcd_lane_adjust,
-+					0);
-+
-+			/* 5. check CR done*/
-+			if (dp_is_cr_done(lane_count, dpcd_lane_status)) {
-+				status = LINK_TRAINING_SUCCESS;
-+				break;
-+			}
-+
-+			/* 6. max VS reached*/
-+			if (dp_is_max_vs_reached(lt_settings))
-+				break;
-+
-+			/* 7. same lane settings */
-+			/* Note: settings are the same for all lanes,
-+			 * so comparing first lane is sufficient
-+			 */
-+			if (lt_settings->dpcd_lane_settings[0].bits.VOLTAGE_SWING_SET ==
-+					dpcd_lane_adjust[0].bits.VOLTAGE_SWING_LANE)
-+				retries_cr++;
-+			else
-+				retries_cr = 0;
-+
-+			/* 8. update VS/PE/PC2 in lt_settings*/
-+			dp_decide_lane_settings(lt_settings, dpcd_lane_adjust,
-+					lt_settings->hw_lane_settings, lt_settings->dpcd_lane_settings);
-+			retry_count++;
-+		}
-+
-+		if (retry_count >= LINK_TRAINING_MAX_CR_RETRY) {
-+			ASSERT(0);
-+			DC_LOG_ERROR("%s: Link Training Error, could not get CR after %d tries. Possibly voltage swing issue",
-+				__func__,
-+				LINK_TRAINING_MAX_CR_RETRY);
-+
-+		}
-+
-+		status = dp_get_cr_failure(lane_count, dpcd_lane_status);
-+	}
-+
-+	/* Perform Channel EQ Sequence */
-+	if (status == LINK_TRAINING_SUCCESS) {
-+		enum dc_dp_training_pattern tr_pattern;
-+		uint32_t retries_ch_eq;
-+		uint32_t wait_time_microsec;
-+		enum dc_lane_count lane_count = lt_settings->link_settings.lane_count;
-+		union lane_align_status_updated dpcd_lane_status_updated = {0};
-+		union lane_status dpcd_lane_status[LANE_COUNT_DP_MAX] = {0};
-+		union lane_adjust dpcd_lane_adjust[LANE_COUNT_DP_MAX] = {0};
-+
-+		/* Note: also check that TPS4 is a supported feature*/
-+		tr_pattern = lt_settings->pattern_for_eq;
-+
-+		dp_set_hw_training_pattern(link, tr_pattern, 0);
-+
-+		status = LINK_TRAINING_EQ_FAIL_EQ;
-+
-+		for (retries_ch_eq = 0; retries_ch_eq <= LINK_TRAINING_MAX_RETRY_COUNT;
-+			retries_ch_eq++) {
-+
-+			dp_set_hw_lane_settings(link, lt_settings, 0);
-+
-+			vendor_lttpr_write_data_vs[3] = 0;
-+			vendor_lttpr_write_data_pe[3] = 0;
-+
-+			for (lane = 0; lane < lane_count; lane++) {
-+				vendor_lttpr_write_data_vs[3] |=
-+						lt_settings->dpcd_lane_settings[lane].bits.VOLTAGE_SWING_SET << (2 * lane);
-+				vendor_lttpr_write_data_pe[3] |=
-+						lt_settings->dpcd_lane_settings[lane].bits.PRE_EMPHASIS_SET << (2 * lane);
-+			}
-+
-+			/* Vendor specific: Update VS and PE to DPRX requested value */
-+			core_link_write_dpcd(
-+					link,
-+					vendor_lttpr_write_address,
-+					&vendor_lttpr_write_data_vs[0],
-+					sizeof(vendor_lttpr_write_data_vs));
-+			core_link_write_dpcd(
-+					link,
-+					vendor_lttpr_write_address,
-+					&vendor_lttpr_write_data_pe[0],
-+					sizeof(vendor_lttpr_write_data_pe));
-+
-+			/* 2. update DPCD*/
-+			if (!retries_ch_eq)
-+				/* EPR #361076 - write as a 5-byte burst,
-+				 * but only for the 1-st iteration
-+				 */
-+
-+				dpcd_set_lt_pattern_and_lane_settings(
-+					link,
-+					lt_settings,
-+					tr_pattern, 0);
-+			else
-+				dpcd_set_lane_settings(link, lt_settings, 0);
-+
-+			/* 3. wait for receiver to lock-on*/
-+			wait_time_microsec = lt_settings->eq_pattern_time;
-+
-+			dp_wait_for_training_aux_rd_interval(
-+					link,
-+					wait_time_microsec);
-+
-+			/* 4. Read lane status and requested
-+			 * drive settings as set by the sink
-+			 */
-+			dp_get_lane_status_and_lane_adjust(
-+				link,
-+				lt_settings,
-+				dpcd_lane_status,
-+				&dpcd_lane_status_updated,
-+				dpcd_lane_adjust,
-+				0);
-+
-+			/* 5. check CR done*/
-+			if (!dp_is_cr_done(lane_count, dpcd_lane_status)) {
-+				status = LINK_TRAINING_EQ_FAIL_CR;
-+				break;
-+			}
-+
-+			/* 6. check CHEQ done*/
-+			if (dp_is_ch_eq_done(lane_count, dpcd_lane_status) &&
-+					dp_is_symbol_locked(lane_count, dpcd_lane_status) &&
-+					dp_is_interlane_aligned(dpcd_lane_status_updated)) {
-+				status = LINK_TRAINING_SUCCESS;
-+				break;
-+			}
-+
-+			/* 7. update VS/PE/PC2 in lt_settings*/
-+			dp_decide_lane_settings(lt_settings, dpcd_lane_adjust,
-+					lt_settings->hw_lane_settings, lt_settings->dpcd_lane_settings);
-+		}
-+	}
-+
-+	return status;
-+}
-+
-+
- enum link_training_result dc_link_dp_perform_link_training(
- 	struct dc_link *link,
- 	const struct dc_link_settings *link_settings,
-@@ -2466,7 +2798,11 @@ enum link_training_result dc_link_dp_perform_link_training(
- 	 * Per DP specs starting from here, DPTX device shall not issue
- 	 * Non-LT AUX transactions inside training mode.
- 	 */
--	if (encoding == DP_8b_10b_ENCODING)
-+	if (!link->dc->debug.apply_vendor_specific_lttpr_wa &&
-+			(link->chip_caps & EXT_DISPLAY_PATH_CAPS__DP_FIXED_VS_EN) &&
-+			link->lttpr_mode == LTTPR_MODE_TRANSPARENT)
-+		status = dc_link_dp_perform_fixed_vs_pe_training_sequence(link, &lt_settings);
-+	else if (encoding == DP_8b_10b_ENCODING)
- 		status = dp_perform_8b_10b_link_training(link, &lt_settings);
- #if defined(CONFIG_DRM_AMD_DC_DCN)
- 	else if (encoding == DP_128b_132b_ENCODING)
+-		if ((link->link_index == 0 && link->psr_settings.psr_feature_enabled)
+-				|| context->bw_ctx.dml.vba.StutterPeriod > 5000.0)
++		if (link->link_index == 0 && context->bw_ctx.dml.vba.StutterPeriod > 5000.0)
+ 			return DCN_ZSTATE_SUPPORT_ALLOW;
+ 		else
+ 			return DCN_ZSTATE_SUPPORT_DISALLOW;
 -- 
 2.25.1
 
