@@ -2,41 +2,41 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13732479631
-	for <lists+amd-gfx@lfdr.de>; Fri, 17 Dec 2021 22:24:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96D8147962D
+	for <lists+amd-gfx@lfdr.de>; Fri, 17 Dec 2021 22:24:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DE9210E697;
-	Fri, 17 Dec 2021 21:24:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0C1410E651;
+	Fri, 17 Dec 2021 21:24:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2089.outbound.protection.outlook.com [40.107.237.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F47610E68B
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Dec 2021 21:24:37 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2066.outbound.protection.outlook.com [40.107.94.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F09710E651
+ for <amd-gfx@lists.freedesktop.org>; Fri, 17 Dec 2021 21:24:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bviLlOLJRmTYtNnc9218MFmr/gcGWGXY904dD3sauZI31rM7z8vVg2hF3307VuLOEHktEAkpTewnJ8o7x5ZA5MIGnM8ysqKPORbXgqjURO8Q6SFA19KU14kcpNF5N/xib0srepb9ZiUxZVRb+jpJj9ZBYzhDgKyotC6ThkNIN4hNK9e0tvu8RLGypI7vFpekZZ+EiYf+B2+ET3YA4/yx/XEwN62dlqY4nCRptyU1jpzOh40XrJUHCqjH2ut4WIfgxeeR/gQMvT+I+0i7hsIWimz+ACvhJL6CNt64fTok8mt/TY7z4NtjtgjHnEpu1b6YmWYXkMS4NwPTu7qClegSPg==
+ b=Scb/r4lOZNZ4og01CgLVwbgubtBjqKKb0H7H/ZCBw4fdtM8wKahJJZuaa7+4gPvE1UOzxxn3G82v2KACxZqTS0S9Fzox4HblozXcFWnyG1FcAC815nURUSmDqciwvI80RLYcU5nJaVWb8eEY+xH4kEFO7RES+VkELNy1Pobd5yLCEKMEzBz5SOHhOMA81FDIZM+H0UZcY5CxQrShDl9c9SQh67orT16ktV9GMqxkolUxWkuznC8zw4B5UGFeZ93Ik3GBzHoIKUmUuCK8REUwuVwkPMzzGvLxHt0hmi4auiMhlhZezN8Fb1Ehz2MNadoENqt9ijmaYuw1mnGklKQsbg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wwX36XDNVI4pyScmg0q4Xg2u9ZCdlQ5+mPO4YNlW8ag=;
- b=KMds/I3RGxTEgOSJig8scnakRx76SG5y82mneujTWQCaTSp30KeTuQ78QJVSKKrpLrO4Fw7oXqHj6KcAAojnJNf6P8z9QWlI7GBSFAlSq8w6aW/hEP91lhjVBMGzZgBu5X8KCZG63+gWhrWXGzuP2jdD6TVvmYcO3e3I6v3rxHr2XLcGauv6kvMLl9LM+iK6M1YR6QC+TSAZX6DJtx+SMuw+4yc3WqQRho1/Zutwn4XmBBp/O9g67XJOP6JvL9Hmt72Bj9vZnIE9SIQRp2iU9A1G+NbNAFQDrT/f5qW4sEl2QNNZ6QziyzLrqg53U7edRMMrr8a4fIZ+IjQtZFos3w==
+ bh=xH17BVZkNod1WqKmO7pyvZfUkCQtmW/T4AxHTLpIUe8=;
+ b=PLWitzFLLT0xq1gIiTKNhIhaotETpD3sSgBTuMvrqBIF710EhuALlo0dssi0YH4HATImEutxJxcq7qjlSwDs8D9aGHmJUlabECwStAbdtGWh91ajgrmfCoknpEkdr1Z3ZYUlKOtew8NDE7t5aKs3Aizz2/1o6nELvAK+aKJcLr2IHi4BWdiEG2srd+zDejWNHETTEDHf0uIDP6XS9Mr/WQp5Cny+PX1BmjddbaxPHArx/JXvGFsXVt3H8QqB7/lnemg5BgKsbjOdBk8hyZ+KTmVxtbGWNeHmoBYLkDtg/WJDo0Y4lY8wZQJJguLKIUcO5XKXx569mV0iIS6nRqjoig==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wwX36XDNVI4pyScmg0q4Xg2u9ZCdlQ5+mPO4YNlW8ag=;
- b=vHaNkWM2YZcR3msKGDHH2rncV9bIqEamdzNlEL38XjBs8QMrERlMyHTuuZEjEO7RKG2hQNVGIgtH26M0tIZ1BOg3FxsGCxIF1ZCLID+crOpdzuQUhQsmwpyY4RVrUK38z+/mmk4Qh+hlpOhFbwjRd/kSRK5pW6pePPi3gyqWdFE=
-Received: from MW4PR03CA0139.namprd03.prod.outlook.com (2603:10b6:303:8c::24)
- by MWHPR12MB1327.namprd12.prod.outlook.com (2603:10b6:300:11::12)
+ bh=xH17BVZkNod1WqKmO7pyvZfUkCQtmW/T4AxHTLpIUe8=;
+ b=myD9gPpHwrdrzBzeD+ZFHB6txp3o6LqUVTMkY8HOec5/Ja+sJ8bWBgEuQOlNAKTM0AC39+pY05oyfEB4hGGRKZ9TQdij9+Gni7Xtooux49rfXVvFG41kstcIREYlkn7odDGjDsdLu+eUKkOixyHyAdqOfYfkulAql68T2cqST6k=
+Received: from MW4PR03CA0140.namprd03.prod.outlook.com (2603:10b6:303:8c::25)
+ by MW3PR12MB4523.namprd12.prod.outlook.com (2603:10b6:303:5b::23)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.14; Fri, 17 Dec
  2021 21:24:30 +0000
 Received: from CO1NAM11FT014.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8c:cafe::ba) by MW4PR03CA0139.outlook.office365.com
- (2603:10b6:303:8c::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4778.17 via Frontend
+ (2603:10b6:303:8c:cafe::90) by MW4PR03CA0140.outlook.office365.com
+ (2603:10b6:303:8c::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4801.16 via Frontend
  Transport; Fri, 17 Dec 2021 21:24:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
  CO1NAM11FT014.mail.protection.outlook.com (10.13.175.99) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4801.14 via Frontend Transport; Fri, 17 Dec 2021 21:24:29 +0000
+ 15.20.4801.14 via Frontend Transport; Fri, 17 Dec 2021 21:24:30 +0000
 Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Fri, 17 Dec
- 2021 15:24:27 -0600
+ 2021 15:24:28 -0600
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 05/19] drm/amd/display: Added power down for DCN10
-Date: Fri, 17 Dec 2021 16:23:53 -0500
-Message-ID: <20211217212407.3583190-6-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 06/19] drm/amd/display: Fix check for null function ptr
+Date: Fri, 17 Dec 2021 16:23:54 -0500
+Message-ID: <20211217212407.3583190-7-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211217212407.3583190-1-Rodrigo.Siqueira@amd.com>
 References: <20211217212407.3583190-1-Rodrigo.Siqueira@amd.com>
@@ -68,28 +68,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
  (10.181.40.144)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ea0fadd8-42be-4401-3819-08d9c1a39c9d
-X-MS-TrafficTypeDiagnostic: MWHPR12MB1327:EE_
-X-Microsoft-Antispam-PRVS: <MWHPR12MB1327B7EFE3B621BBD0F2619198789@MWHPR12MB1327.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2399;
+X-MS-Office365-Filtering-Correlation-Id: 99c30b82-8cd8-4306-a97c-08d9c1a39cf0
+X-MS-TrafficTypeDiagnostic: MW3PR12MB4523:EE_
+X-Microsoft-Antispam-PRVS: <MW3PR12MB45239E749BED4AFC5187109598789@MW3PR12MB4523.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UeSqcMpLtwNV16QqWllMo5pwtxuGQvlpHqOgFh51sRO+irSxhd6sb8pOfna9HQYRmLfWYuuXYyYGPgkFdqhCmyNREOs/TgmePK0WN5v319SYPCoPzeudSimujvp3EoRMzGqqWFnVrTbI7G5QdcO2YXoQOY1S72X0K5YWzZFKMyxff1IOaBu3kuRyRY8zh5lUOSUzWTsuwJ3G0dJ+zn7hL44elNSYnJilBWNxgosS7YCkQ7qnfeyeWstS1PvujuuhVuKXxqP/ECWT2PIQ3HFiOLoWU2ahqTTtWhfPaM0fKjvUCiBvkcXn3GI7G9xXtGsgYjt9A5aVF8e7hmQcw0C1BF6hJ+Y6X4mCCgx099MlA8mmnyVlhNpAxoFZ4uJE7UrqomBIHGtLCMV5cSu1rfVl6YYroUE1clFNRFjTlWthmBoSwJkpvvQYnjTTNuZlCxE92beehvl35oRtmDheQcb4wATs2MfWXIOMmqEKlzCajhO2W+uoFJw1E1qpnZmGgmsg4pM884qI25Pq4Rdr2/gEka6yYzbZOoYx+D7/Exy1PPA0lscZP7ngOpYG8CResW7f6kOeA/H47q6IrWh1RmYSxfLD3a/lcMm7NVO8ooqJr80Whsy6ZbBpvfjDbpf6nqWuY+bnW4EdzP1PyWQz2LF3Y86egBMeBKuCQa5VvJr6DqGOZXlLnnKnbsGbo0SwUtCJjcI0pak1IS7r3TOjq1N/RTpLsc6+MCX3VS/K4hMeadRXJymita97lFC5bJ+sba2rHsZichgn2L1TybBSmj3WvZTysPLlKkTeWLjPvpPjK0A=
+X-Microsoft-Antispam-Message-Info: Nai7CsuXVGLH0l0ljW4LmeXl9oA4sYvhVMFH1svvzkDIxb4sQTIVXUG9j/I2YI8zmIvnDSk5YGm5pb0vgSsr58Z/fjtTSgGcQdt+Ur+LJQVVNK/I782jVMF4TQnQj8DYSuyeSAHP3dKZBZQc31Y3SaeJqv5CF1oox48LSKMK9yKulVTApfkKJMx5n6q+bAhYu89fBXEgFdaKgJOPm4pnvlsPNdPJ8APqQhZcumoIBXDVusB5BvXKOI3BGMUV7dQBxNzerQLf1b4JAAbCfMG/NNePbOcSsPXBaTdLMjULrETU6YLjK6jAjP5sQRmbeUCPMCKtO3pdygQeLzwhfWZBTB84ymkNMZESTe31oLib+i4D79yQeovZb7jrP0XVKtq4S/nwLbW+qnrMNgX30Byl7afxXntFTKm01y7GzdPEyJrxEBmg3vajyF/lZoNJAEqg7plUcq0mXQKiqIB2GlVwSxh9KJkKreDlcWjxfcf9vOSlcF1S9qPZzM7to9zo2VaeWVgQDTdDlqQUFEQKb7G/KfpYxOeOyiAablmhOQMqwBugH0oM/ajc1larSX9UM0YB5fX01aXTimTbQLZf8Yd0651LdLrd/yZb6Ptd5dzDRGROfXybedlmtaXGxzndr7H6H5p58pGvcDkoCMPipZqEYfI4+e6kIFr2o3XWMWATYv5TQMyeclP+xYFC2lP5XRRWOxJ62ayzmtkt4aQzqAr5kdAK5uue+54NhPXwlwp8nFfiWkZ7HjUeZTuSS32S7sttl/iRmKapuFFhM42gvSLJfTFE4QUdScFpFW+j26e3li8=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(40470700001)(40460700001)(2616005)(6666004)(8936002)(5660300002)(54906003)(82310400004)(1076003)(86362001)(4326008)(508600001)(70586007)(47076005)(36756003)(6916009)(26005)(336012)(426003)(356005)(186003)(70206006)(16526019)(83380400001)(81166007)(2906002)(8676002)(36860700001)(316002)(36900700001);
+ SFS:(4636009)(46966006)(36840700001)(40470700001)(1076003)(336012)(2616005)(86362001)(36756003)(70586007)(82310400004)(8936002)(40460700001)(356005)(36860700001)(2906002)(426003)(508600001)(5660300002)(8676002)(70206006)(6666004)(4326008)(81166007)(26005)(16526019)(54906003)(186003)(83380400001)(6916009)(47076005)(316002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2021 21:24:29.9452 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ea0fadd8-42be-4401-3819-08d9c1a39c9d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2021 21:24:30.4764 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 99c30b82-8cd8-4306-a97c-08d9c1a39cf0
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT014.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1327
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4523
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,43 +101,53 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, "Lai, Derek" <Derek.Lai@amd.com>,
- Anthony Koo <Anthony.Koo@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
+ Samson Tam <samson.tam@amd.com>, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, Alvin Lee <Alvin.Lee2@amd.com>, wayne.lin@amd.com,
  mikita.lipski@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
  pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: "Lai, Derek" <Derek.Lai@amd.com>
+From: Alvin Lee <Alvin.Lee2@amd.com>
 
 [Why]
-The change of setting a timer callback on boot for 10 seconds is still
-working, just lacked power down for DCN10.
+Bug fix for null function ptr (should check for NULL instead of not
+NULL)
 
 [How]
-Added power down for DCN10.
+Fix if condition
 
-Reviewed-by: Anthony Koo <Anthony.Koo@amd.com>
+Reviewed-by: Samson Tam <samson.tam@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Derek Lai <Derek.Lai@amd.com>
+Signed-off-by: Alvin Lee <Alvin.Lee2@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c
-index 34001a30d449..10e613ec7d24 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_init.c
-@@ -78,6 +78,7 @@ static const struct hw_sequencer_funcs dcn10_funcs = {
- 	.get_clock = dcn10_get_clock,
- 	.get_vupdate_offset_from_vsync = dcn10_get_vupdate_offset_from_vsync,
- 	.calc_vupdate_position = dcn10_calc_vupdate_position,
-+	.power_down = dce110_power_down,
- 	.set_backlight_level = dce110_set_backlight_level,
- 	.set_abm_immediate_disable = dce110_set_abm_immediate_disable,
- 	.set_pipe = dce110_set_pipe,
+diff --git a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+index f673a1c1777a..9280f2abd973 100644
+--- a/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
++++ b/drivers/gpu/drm/amd/display/dmub/src/dmub_srv.c
+@@ -852,7 +852,7 @@ bool dmub_srv_should_detect(struct dmub_srv *dmub)
+ 
+ enum dmub_status dmub_srv_clear_inbox0_ack(struct dmub_srv *dmub)
+ {
+-	if (!dmub->hw_init || dmub->hw_funcs.clear_inbox0_ack_register)
++	if (!dmub->hw_init || !dmub->hw_funcs.clear_inbox0_ack_register)
+ 		return DMUB_STATUS_INVALID;
+ 
+ 	dmub->hw_funcs.clear_inbox0_ack_register(dmub);
+@@ -878,7 +878,7 @@ enum dmub_status dmub_srv_wait_for_inbox0_ack(struct dmub_srv *dmub, uint32_t ti
+ enum dmub_status dmub_srv_send_inbox0_cmd(struct dmub_srv *dmub,
+ 		union dmub_inbox0_data_register data)
+ {
+-	if (!dmub->hw_init || dmub->hw_funcs.send_inbox0_cmd)
++	if (!dmub->hw_init || !dmub->hw_funcs.send_inbox0_cmd)
+ 		return DMUB_STATUS_INVALID;
+ 
+ 	dmub->hw_funcs.send_inbox0_cmd(dmub, data);
 -- 
 2.25.1
 
