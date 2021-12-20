@@ -2,75 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F0A347A68B
-	for <lists+amd-gfx@lfdr.de>; Mon, 20 Dec 2021 10:02:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76EBB47A54E
+	for <lists+amd-gfx@lfdr.de>; Mon, 20 Dec 2021 08:16:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B89DB112D6D;
-	Mon, 20 Dec 2021 09:02:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 558D910E635;
+	Mon, 20 Dec 2021 07:16:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mx-lax3-3.ucr.edu (mx.ucr.edu [169.235.156.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE73E10E3D3
- for <amd-gfx@lists.freedesktop.org>; Sat, 18 Dec 2021 04:01:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=ucr.edu; i=@ucr.edu; q=dns/txt; s=selector3;
- t=1639800111; x=1671336111;
- h=mime-version:references:in-reply-to:from:date:message-id:
- subject:to:cc; bh=/VVCqZDQO03dzWiJK64rx87Z42N8S970ztCyWoWKxH0=;
- b=rGVJbuGO89WDPYV8nGxcS2HIHA3G6LRkwUViyggMjjDlPsiaTWchjFMG
- Uj2806nu9NRpxpJzJJvR5jkUl964V1ldRpZO+jBrCs738W3l9SsBbJzut
- j3fQI+cD6h1AqKlmBB5146awIveblKzMutCBLwS5hU/tcn8HqF98sWLCI
- yyPNsA3nAFP5GJM93HWQ1fMPZlh4OVczkDccq3Z00wswapqmCusAtPbx9
- K0Ee6bnMSeC7CX65GYxMCqsD6tr9AUB2EdaQpWWocrjQAD1Y1Ga4LUNmZ
- q9fTJLe39fpODG3FUVs2ciMfpIvUny2+S2+DHk7XPi2v9dJ8r8tg0cT/J A==;
-IronPort-SDR: 3AqWR84rSZ3ixHaw0BcwnjnGvrYuyjyCHNSmYrfVQXVAVDZarPc+KuQZs1+9wmQ+npaq112quH
- lPjRnleWyJIOFwuuza008Jtdm9FmbnavSUhbDpfuEGywM7Z1CwLrwzNWIhDp38fLQn1XHLkCZw
- TTlZTg/A8K9u1/vKiajbBnyUiHgJHkLeqMsL41q4BDbvNAlKEUKmEJfVHQYkVlTrDCj/MBcthm
- p9PItMj3HBA2C33ZMM5W/D73/50S3opqmhxiBnAqBotrSDgyiQfNIedakDTGjAMP4QHCpoPsid
- 30hairaCps2gpNiH1vH80CJ+
-X-IronPort-AV: E=Sophos;i="5.88,215,1635231600"; d="scan'208";a="95155945"
-Received: from mail-yb1-f200.google.com ([209.85.219.200])
- by smtp-lax3-3.ucr.edu with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256;
- 17 Dec 2021 20:01:50 -0800
-Received: by mail-yb1-f200.google.com with SMTP id
- q15-20020a252a0f000000b006092c637e21so8767244ybq.5
- for <amd-gfx@lists.freedesktop.org>; Fri, 17 Dec 2021 20:01:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucr.edu; s=rmail;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=8lxy7tam3G965VJ+yVFHi/Lwb6UbeZwM4+7surRJM9Y=;
- b=njHTQAfUCl+25gpnFfB2B2YAaly9Uab9QzuXaxwgaSIcyEY/GJitKzSJMTAn22UAmO
- C7tZ7ebJpzcZUl8AdOcZpu7TrgqqYWdlnEVHpLLfNbL0Jzfmued1MoicQpLyZ2YMPGk8
- RuS2dAgysaUVDknPGc/035cQzjaDpuyGCJo40=
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
+ [IPv6:2a00:1450:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D392F89FC5;
+ Mon, 20 Dec 2021 07:16:32 +0000 (UTC)
+Received: by mail-wm1-x334.google.com with SMTP id y196so6218260wmc.3;
+ Sun, 19 Dec 2021 23:16:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=l6LcvaP0PR+fXGrveI3RiYXkEcKScJHuoQ+78o25YFQ=;
+ b=RYAAXuaRd7wx5dFsvwObe87eC67MbLPH3BzSyOpRHEeslMPASgIxeQ0dIN8p4FiQ/t
+ 1dg8nCTGjbwkpuuiqcKIdG0LLDEXysb0gpY+JmuhuF9vs6MuxKGubnU5Pz3/ZTbqu604
+ Rjqf+bvunO/oYSefNuLAn5pYntsvLaMt3eY7THEaVzeQOugGGfYxDXPSZqFAVcBXVFXJ
+ hcO2H5qWRwep5kFNzKG8YEI3gAWsqyAf4+YiCBr2DSjfEjtyJhMIBczT/BPHRIEETG4r
+ un4e/DFZ3qeQ8lSW+u50WHdidB95G0KtcQe8KxueWe9p8WZ9wkgXEgZBlGpzwlDwoYFR
+ 7iaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=8lxy7tam3G965VJ+yVFHi/Lwb6UbeZwM4+7surRJM9Y=;
- b=sY3L2Zjt5zHelXWGOYPwhUZDBERyObWqvGrh1kbI/HNgIk2vJYkt992nDGfmwWwt31
- CY75BUp8ANFwAo32vktFx6NPJ/Xah7pHG8ne6wll3+g0UUjbdGqQjseJ4TlqaOZFYF0O
- Srxbnfdq8WDVThsLOmE0YeMugO64brA8yhY/tZMNpmX+W1KxAZgFOp8ljUN5lqTFGfHC
- FydHrcUAf3/VIUHXPtSJTrRFXFVIkqcyyPzCsjE6jElGHCBzjiv66r2qIwu+vhw6ZdfE
- sseIBT4U8aN2bj1XC7b05+RjymS2HNY0l+f41IlKoq9uKP8x8RucaHWAcqiJK+3HORjj
- N9Ow==
-X-Gm-Message-State: AOAM530Mik7bok8w1+xfD2Alis2eR80lZs5YIZ4fKKiRAhyCptkh+DTl
- CVaJJcBJz6WqqIQbcW/uaCLOpnGl3GyyHvQnhRNcCnUWz0sBto5cXDynP4Haf5lCRCARj2x4Qru
- DZJ64h9EvItkg9HvSaOGoGLxL0c7LUDM0MwiCFiwNgyY=
-X-Received: by 2002:a25:d188:: with SMTP id i130mr9136798ybg.475.1639800109228; 
- Fri, 17 Dec 2021 20:01:49 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyb7TYo+RtQKFAc8gUdrgaAtdVg+syE3D6jWsnLVF1eU8K2KyI+1hocLp5CTYT5pHGjaTzbwOyyPUBHKF3R56s=
-X-Received: by 2002:a25:d188:: with SMTP id i130mr9136784ybg.475.1639800109031; 
- Fri, 17 Dec 2021 20:01:49 -0800 (PST)
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=l6LcvaP0PR+fXGrveI3RiYXkEcKScJHuoQ+78o25YFQ=;
+ b=8Ka18Q9EUZdvz8Mk376AFJx+d0WnFHCYBFaOf7fhJF3ABT4/I0otyHAZHJNz+fZX5f
+ yLSi/AYhQythsTdKj0xcQXHJeW9qXKyH6Ydug7GpH4RVX7nkzPzxls/WNoLZtxjJtqUz
+ /hdHUr1IngFDZqfJPnFZPQwc2ta1PmIIT7wexYZEtWwmajr87XDrrYZhWyA6eFLKqOvM
+ USGDkh+YMQJK4ICMDj2zWhD8sWEGDlIZDZOi66TnGlps5K1cEiKr0hENiPcO9bFJN7vA
+ QMQN+QOoG7CAfGrFGHoR0swmTIneuv34k2o9YgYYWPaYuA621IwATEl51+JXjllPISWo
+ Zjtw==
+X-Gm-Message-State: AOAM5324vIvzzND6438x9LCpDStQFqGrtkh4wPiGU3DRu0W/5/KSWNTd
+ x04TrM37B/umG+kg5EhKtDO/1djP6p0=
+X-Google-Smtp-Source: ABdhPJyrkKAga95992c1cYfQCxq68osMa3V6QC4/G3uMUJgfTZ58NEUw3WfcLSQwUbWfe9WiU8KNGw==
+X-Received: by 2002:a7b:c008:: with SMTP id c8mr20307219wmb.55.1639984591354; 
+ Sun, 19 Dec 2021 23:16:31 -0800 (PST)
+Received: from [192.168.178.21] (p57b0bff8.dip0.t-ipconnect.de.
+ [87.176.191.248])
+ by smtp.gmail.com with ESMTPSA id n8sm15108366wri.47.2021.12.19.23.16.30
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 19 Dec 2021 23:16:30 -0800 (PST)
+Subject: Re: [RFC 2/6] drm/amdgpu: Move scheduler init to after XGMI is ready
+To: Andrey Grodzovsky <andrey.grodzovsky@amd.com>,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+References: <20211217222745.881637-1-andrey.grodzovsky@amd.com>
+ <20211217222745.881637-3-andrey.grodzovsky@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <d7872062-e99a-03be-c52e-d27a7022de09@gmail.com>
+Date: Mon, 20 Dec 2021 08:16:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <CABvMjLSXpg00KKkqXH35C7Op0xC3mPaOAhj_xbAOEXL_4Ys_aw@mail.gmail.com>
- <52f808a3-7e2d-7ae2-ca62-400137a0b92f@amd.com>
-In-Reply-To: <52f808a3-7e2d-7ae2-ca62-400137a0b92f@amd.com>
-From: Yizhuo Zhai <yzhai003@ucr.edu>
-Date: Fri, 17 Dec 2021 20:01:38 -0800
-Message-ID: <CABvMjLRUy40yq76S3qggCmKNKvQ3+njNX5XqgsuGzgp4S=XoEg@mail.gmail.com>
-Subject: Re: Potential Bug in drm/amd/display/dc_link
-To: Harry Wentland <harry.wentland@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Mon, 20 Dec 2021 09:02:04 +0000
+In-Reply-To: <20211217222745.881637-3-andrey.grodzovsky@amd.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,112 +73,167 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>
+Cc: daniel@ffwll.ch, horace.chen@amd.com, christian.koenig@amd.com,
+ Monk.Liu@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Harry:
-Thanks for your feedback, I will submit the patch for variable
-"old_downspread" in the function enable_stream_features().
-And I double checked the code in the mainline and found that the buggy
-function wait_for_training_aux_rd_interval() has been removed, and the
-corresponding bug has been fixed in v5.1-rc1 by a memset. Sorry for
-the confusion.
-
-On Thu, Dec 9, 2021 at 2:30 PM Harry Wentland <harry.wentland@amd.com> wrote:
->
->
-> On 2021-12-09 03:02, Yizhuo Zhai wrote:
-> > Hi All:
-> > I just found a bug in the cramfs using the static analysis tool, but
-> > not sure if this could happen in reality, could you please advise me
-> > here? Thanks for your attention : ) And please ignore the last one
-> > with HTML format if you did not filter it out.
-> >
-> > In function enable_stream_features(), the variable
-> > "old_downspread.raw" could be uninitialized if core_link_read_dpcd
-> > fails(), however, it is used in the later if statement, and further,
-> > core_link_write_dpcd() may write random value, which is potentially
-> > unsafe. But this function does not return the error code to the up
-> > caller and I got stuck in drafting the patch, could you please advise
-> > me here?
-> >
->
-> Thanks for highlighting this.
->
-> Unfortunately we frequently ignore DPCD error codes.
->
-> In this case I would do a memset as shown below.
->
-> > The related code:
-> > static void enable_stream_features(struct pipe_ctx *pipe_ctx)
-> > {
-> >      union down_spread_ctrl old_downspread;
->
->         memset(&old_downspread, 0, sizeof(old_downspread));
->
-> >     core_link_read_dpcd(link, DP_DOWNSPREAD_CTRL,
-> >                          &old_downspread.raw, sizeof(old_downspread);
-> >
-> >         //old_downspread.raw used here
-> >         if (new_downspread.raw != old_downspread.raw) {
-> >                core_link_write_dpcd(link, DP_DOWNSPREAD_CTRL,
-> >                          &new_downspread.raw, sizeof(new_downspread));
-> >         }
-> > }
-> > enum dc_status core_link_read_dpcd(
-> >     struct dc_link *link,
-> >     uint32_t address,
-> >     uint8_t *data,
-> >     uint32_t size)
-> > {
-> >         //data could be uninitialized if the helpers fails and log
-> > some error info
-> >         if (!dm_helpers_dp_read_dpcd(link->ctx,
-> >                link,address, data, size))
-> >                       return DC_ERROR_UNEXPECTED;
-> >         return DC_OK;
-> > }
-> >
-> > The same issue in function wait_for_training_aux_rd_interval() in
-> > drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
->
-> I don't see this. Do you mean this one?
->
-> > void dp_wait_for_training_aux_rd_interval(
-> >       struct dc_link *link,
-> >       uint32_t wait_in_micro_secs)
-> > {
-> > #if defined(CONFIG_DRM_AMD_DC_DCN)
-> >       if (wait_in_micro_secs > 16000)
-> >               msleep(wait_in_micro_secs/1000);
-> >       else
-> >               udelay(wait_in_micro_secs);
-> > #else
-> >       udelay(wait_in_micro_secs);
-> > #endif
-> >
-> >       DC_LOG_HW_LINK_TRAINING("%s:\n wait = %d\n",
-> >               __func__,
-> >               wait_in_micro_secs);
-> > }
->
-> Thanks,
-> Harry
->
-> >
->
->
->
 
 
--- 
-Kind Regards,
+Am 17.12.21 um 23:27 schrieb Andrey Grodzovsky:
+> Before we initialize schedulers we must know which reset
+> domain are we in - for single device there iis a single
+> domain per device and so single wq per device. For XGMI
+> the reset domain spans the entire XGMI hive and so the
+> reset wq is per hive.
+>
+> Signed-off-by: Andrey Grodzovsky <andrey.grodzovsky@amd.com>
+> ---
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 45 ++++++++++++++++++++++
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c  | 34 ++--------------
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h   |  2 +
+>   3 files changed, 51 insertions(+), 30 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index 5f13195d23d1..b595e6d699b5 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -2284,6 +2284,47 @@ static int amdgpu_device_fw_loading(struct amdgpu_device *adev)
+>   	return r;
+>   }
+>   
+> +static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
+> +{
+> +	long timeout;
+> +	int r, i;
+> +
+> +	for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
+> +		struct amdgpu_ring *ring = adev->rings[i];
+> +
+> +		/* No need to setup the GPU scheduler for rings that don't need it */
+> +		if (!ring || ring->no_scheduler)
+> +			continue;
+> +
+> +		switch (ring->funcs->type) {
+> +		case AMDGPU_RING_TYPE_GFX:
+> +			timeout = adev->gfx_timeout;
+> +			break;
+> +		case AMDGPU_RING_TYPE_COMPUTE:
+> +			timeout = adev->compute_timeout;
+> +			break;
+> +		case AMDGPU_RING_TYPE_SDMA:
+> +			timeout = adev->sdma_timeout;
+> +			break;
+> +		default:
+> +			timeout = adev->video_timeout;
+> +			break;
+> +		}
+> +
 
-Yizhuo Zhai
 
-Computer Science, Graduate Student
-University of California, Riverside
+> +		r = drm_sched_init(&ring->sched, &amdgpu_sched_ops,
+> +				   ring->num_hw_submission, amdgpu_job_hang_limit,
+> +				   timeout, adev->reset_domain.wq, ring->sched_score, ring->name);
+> +		if (r) {
+> +			DRM_ERROR("Failed to create scheduler on ring %s.\n",
+> +				  ring->name);
+> +			return r;
+> +		}
+
+Maybe better put that into amdgpu_ring.c. But not really a hard 
+requirement, more a gut feeling.
+
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +
+>   /**
+>    * amdgpu_device_ip_init - run init for hardware IPs
+>    *
+> @@ -2412,6 +2453,10 @@ static int amdgpu_device_ip_init(struct amdgpu_device *adev)
+>   		}
+>   	}
+>   
+> +	r = amdgpu_device_init_schedulers(adev);
+> +	if (r)
+> +		goto init_failed;
+> +
+>   	/* Don't init kfd if whole hive need to be reset during init */
+>   	if (!adev->gmc.xgmi.pending_reset)
+>   		amdgpu_amdkfd_device_init(adev);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+> index 3b7e86ea7167..5527c68c51de 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c
+> @@ -456,8 +456,6 @@ int amdgpu_fence_driver_init_ring(struct amdgpu_ring *ring,
+>   				  atomic_t *sched_score)
+>   {
+>   	struct amdgpu_device *adev = ring->adev;
+> -	long timeout;
+> -	int r;
+>   
+>   	if (!adev)
+>   		return -EINVAL;
+> @@ -477,36 +475,12 @@ int amdgpu_fence_driver_init_ring(struct amdgpu_ring *ring,
+>   	spin_lock_init(&ring->fence_drv.lock);
+>   	ring->fence_drv.fences = kcalloc(num_hw_submission * 2, sizeof(void *),
+>   					 GFP_KERNEL);
+> -	if (!ring->fence_drv.fences)
+> -		return -ENOMEM;
+>   
+> -	/* No need to setup the GPU scheduler for rings that don't need it */
+> -	if (ring->no_scheduler)
+> -		return 0;
+> +	ring->num_hw_submission = num_hw_submission;
+> +	ring->sched_score = sched_score;
+
+Probably better to set that in the caller and drop the parameters from 
+the amdgpu_fence_driver_init_ring() function completely.
+
+Christian.
+
+>   
+> -	switch (ring->funcs->type) {
+> -	case AMDGPU_RING_TYPE_GFX:
+> -		timeout = adev->gfx_timeout;
+> -		break;
+> -	case AMDGPU_RING_TYPE_COMPUTE:
+> -		timeout = adev->compute_timeout;
+> -		break;
+> -	case AMDGPU_RING_TYPE_SDMA:
+> -		timeout = adev->sdma_timeout;
+> -		break;
+> -	default:
+> -		timeout = adev->video_timeout;
+> -		break;
+> -	}
+> -
+> -	r = drm_sched_init(&ring->sched, &amdgpu_sched_ops,
+> -			   num_hw_submission, amdgpu_job_hang_limit,
+> -			   timeout, NULL, sched_score, ring->name);
+> -	if (r) {
+> -		DRM_ERROR("Failed to create scheduler on ring %s.\n",
+> -			  ring->name);
+> -		return r;
+> -	}
+> +	if (!ring->fence_drv.fences)
+> +		return -ENOMEM;
+>   
+>   	return 0;
+>   }
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> index 4d380e79752c..a4b8279e3011 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ring.h
+> @@ -253,6 +253,8 @@ struct amdgpu_ring {
+>   	bool			has_compute_vm_bug;
+>   	bool			no_scheduler;
+>   	int			hw_prio;
+> +	unsigned 		num_hw_submission;
+> +	atomic_t		*sched_score;
+>   };
+>   
+>   #define amdgpu_ring_parse_cs(r, p, ib) ((r)->funcs->parse_cs((p), (ib)))
+
