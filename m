@@ -2,95 +2,118 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19EAB480346
-	for <lists+amd-gfx@lfdr.de>; Mon, 27 Dec 2021 19:27:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5108D480598
+	for <lists+amd-gfx@lfdr.de>; Tue, 28 Dec 2021 02:54:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FBC210EEE8;
-	Mon, 27 Dec 2021 18:27:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF29A10E127;
+	Tue, 28 Dec 2021 01:54:44 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2040.outbound.protection.outlook.com [40.107.220.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3541510EEE8;
- Mon, 27 Dec 2021 18:27:12 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam08on2071.outbound.protection.outlook.com [40.107.102.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4845810E127
+ for <amd-gfx@lists.freedesktop.org>; Tue, 28 Dec 2021 01:54:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MnbQ0Ns8L4xZWahrMnATC+dybx0HLF8kD+G+ZAf4ZP4SFXaYEEu45D4PT9J8IOHLxj0WYA0LsH39zKWUAerUMjwhF/sawOJ3fm9xrbkunenH0PulHlxw3QRZ2XclU1iOE2VjEBYlJcwKDdsvjKgBjb96jst6xs5X0hgz1DnDWHqbR4rnzaY7ZDuaSi/LyejkXQiaY4Z1vkFRZiLmq4LTxo7ea73nKIVL0WjfffK3PtrG/qHa7a9m4Oxb4vjXqhzT08wkqXnN0g+u70iHRNMaqU1EQPbAPgRmlXVb/zQk09d02gZuF0UYfSDpiDLzXhotztcvWB08DvmHT3lKDsScsQ==
+ b=JMvD4dne8ykDNVqgSwVsNT2l/B1m5uY38g1xSuQ5EGrWi+Ba84wsZnbBzlksH8vcQk3s1yt6RgkLgR/vmXRrFEoHphA81FeP3OPM48n9fSidwgCA8q21M9SAy7HbCMM4ZZqDJmNZh2/i25/1uRHYR/dQRV5WJ/PgpwcDPc3vc548xQkFF6bs0HwQ+ZBwUsFRKgINpRMYz7L4AbMs3rjMhPhYonYP3jjUlmnhk2CxlzJFruQ0KJS1sc1rxtxUydX2fLFJdl7IFKCHsBJm2fI6sgRUaiZfoAK67I8ac32nsqGRBCY3vqAqMnlxud8Awf4wNAol2+U3PdTnAxf/xNH7Gw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RdWhkNxtd9/J4K14eZk1dhGVPdbC5d4CyzIHw0T9AxI=;
- b=OQH2st9Jh3mRoDj50pjISoGtdYsZUmGv/pUY+aiSIq1blFGf7ctvO7qlRWRyt3GFx8FpDV2mhKPiBogAO7FMtsue9fWWWHdyHfO8kkX29QZpdC2RvO8SaNiMhifDdfwWYRn1w/sZgOk9qqMcApKvvGl8UZBm63M+86Ush2hpE6YqGRQ2uHAUIUX4msg0bH9pJvQt2089zJ877ri4jfYWj+AqSh0TyeNj+kYkiKT5vkfTx9bUQJjBWmEB6gxWEOJ+wxhN1/UWlYSgKPDbJjKxnfgtKRBiCORiqkw4RAtiRbl33bJCN9bxbUR9zecB+W+MaiwAtaJ/Nhprwph0cNiGYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=+dkbk+ldoVjERXoXwIcCOrUOp5T5QhK8VW5rrAygCM4=;
+ b=Cg+rN/qpphepxDZi+jn+i88UzHGNwUC+nhaahKLP1WQ+ohHb2ALKeesbiFsCVbkzU15yQYMKZdBoOtoPw8gkrM6ozRtszb+7/HUj7iPU/wjdjvOs7j4VoH6N7MqvaQVrfa0cI4FyKhIB3w+3r0r+nR89/X+hNCK4xnoNslq9bF+ImOybl3ryKfv7p6HBU40duO2Ma/di/+CVqNGQ1AUKGWFJzqMgeOo7TZGFUIeQe3RBg+6WGmq7J3oFl2kiPmxoKdRw/lKcEQPT0UWmjTID+w/kCz6WwpTxI3PYAsl9j49rIlIegHFojGH95bpFLBiLinzZED8OnL8wi7iL0kIiUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RdWhkNxtd9/J4K14eZk1dhGVPdbC5d4CyzIHw0T9AxI=;
- b=NEECXV+6E6DlXWqmx7s8HmiFvl4c8LpHBvKf9xko1ZHHaZSpVOhwxXmSjxfGGfcga7pLkWW+fSCn3quI0o+sNVPKKj4BOwuUV+nhk1gPB5L02kNbZ2GOY8XozQDXl8QP6y96O9pQIGU2SiruA2ZiexCzK48IuD/MbpZAN3x4EZ8=
-Received: from BN9PR03CA0230.namprd03.prod.outlook.com (2603:10b6:408:f8::25)
- by BY5PR12MB5509.namprd12.prod.outlook.com (2603:10b6:a03:1d7::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4823.19; Mon, 27 Dec
- 2021 18:27:10 +0000
-Received: from BN8NAM11FT039.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:f8:cafe::e5) by BN9PR03CA0230.outlook.office365.com
- (2603:10b6:408:f8::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4823.19 via Frontend
- Transport; Mon, 27 Dec 2021 18:27:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- BN8NAM11FT039.mail.protection.outlook.com (10.13.177.169) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4823.18 via Frontend Transport; Mon, 27 Dec 2021 18:27:09 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17; Mon, 27 Dec
- 2021 12:27:08 -0600
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-Subject: [PATCH 2/2] drm/amdgpu: disable runpm if we are the primary adapter
-Date: Mon, 27 Dec 2021 13:26:56 -0500
-Message-ID: <20211227182656.2110664-2-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211227182656.2110664-1-alexander.deucher@amd.com>
-References: <20211227182656.2110664-1-alexander.deucher@amd.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB03.amd.com
- (10.181.40.144)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9ce62275-0044-44a0-5f4d-08d9c9667eb8
-X-MS-TrafficTypeDiagnostic: BY5PR12MB5509:EE_
-X-Microsoft-Antispam-PRVS: <BY5PR12MB5509B6C5642F58BDC0A3FBABF7429@BY5PR12MB5509.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:68;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lkhqAV/jMjK43wj2z2AcbQ2QE7jLeUD8Q6s5PrzoNilXHmBmMup0Cjd42+ymyAQ8CbcrGdHl6Nccf+v1N00fGKxW86N1e2YKWKrF2TMdGDKONVhMCQCfsg0dk9MX2c4Ys5dS8TCfGWhJjEX9t/mvz1gPuA7bxzgvJThOcw6rqKcuZ5ee4RuxDzO2/ErJRh5aoM/8fvKIuDVGzWiNscYiGnL0FWr7AOROguWSsSioKaaZijyiVEJYIfEX3RL0wlhw4YlKs49iB0Dbzs5CiVG7XeYvHYJV++KniXHchx7G4jDTWLAOBQWfQSXY5N1dHTPB8cqm7Nc57kFah4u6itXaqeSD1/Tmj5ea3N5lUNHB7pjojKLuUnJ5UPYvIViBcmSLDKZwE3Enwq1sR29p8WolFEs5rm1Lcg3plZLRbHHsmtLdZkFyCEsk76QH+miq4co9gkDtUFibR+0e3A50qkMUMeUycM44CWJy0+quzWWFAD+etW9mzf/IBrzCVrpOBVKRxNFAOsDCcL29XGmSeNsPGDlLwDp4RRrCKJFt6LEpdm199fXIe/xdgul1W0MAuPG0czj7Qv/bwV/wTUDBflI4Ai00W1WhH6rlrsUN4NXMyO0oQPLX6wG4LjMcg8yxn488HgWgR7/Z4UOR2BCRCPDaMnX0BMOL9VjU/nGI+YZXOXjp+yqEBiQlzimtlu43FmjJbFa1uBUwSaRX0H4fu4DRCfoAK39SnT/tNuMcDreHETbizlStirYL+TSmxEDpPDLKYLC/C+sMn95hUAweW+d5ilInkwbOjZqPZcDTjtyiieEo9v21qqOPzOdQuHpZHZyGgS4YgaMAptVMlSbxsUJdXdyVN5HXaevzRaqsfdqP7n8Xzq5U5EFR/j73CF/3NRHNWi2XtNbTU62Yc68aCBg7xw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(40470700002)(36840700001)(46966006)(7696005)(336012)(40460700001)(2616005)(2906002)(966005)(82310400004)(356005)(81166007)(83380400001)(8676002)(426003)(508600001)(6666004)(8936002)(70586007)(70206006)(47076005)(86362001)(110136005)(26005)(316002)(36756003)(5660300002)(1076003)(186003)(16526019)(36860700001)(4326008)(21314003)(36900700001);
+ bh=+dkbk+ldoVjERXoXwIcCOrUOp5T5QhK8VW5rrAygCM4=;
+ b=aujs1dcML+3UugTvL8kDFMAybLZnVzu7KpwfE2ikH/P2RGx71jmkd7XPpPqTs6izKtiRjZCjqNfTdmL4nQCadQ3SM68SdhAK7fq6he4BCsWQoRYpQHKnIoBDVhcasKSW2tre8e04cEdR6OlA5EpMTade8fnJi9n4d7l6oTBmqdk=
+Received: from DM6PR12MB2619.namprd12.prod.outlook.com (2603:10b6:5:45::18) by
+ DM6PR12MB2828.namprd12.prod.outlook.com (2603:10b6:5:77::11) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4823.19; Tue, 28 Dec 2021 01:54:42 +0000
+Received: from DM6PR12MB2619.namprd12.prod.outlook.com
+ ([fe80::a894:300e:5c16:5639]) by DM6PR12MB2619.namprd12.prod.outlook.com
+ ([fe80::a894:300e:5c16:5639%6]) with mapi id 15.20.4823.023; Tue, 28 Dec 2021
+ 01:54:42 +0000
+From: "Quan, Evan" <Evan.Quan@amd.com>
+To: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amdgpu: no DC support for headless chips
+Thread-Topic: [PATCH] drm/amdgpu: no DC support for headless chips
+Thread-Index: AQHX+0TcbqPpiX/7ykys0sb3xY2BlaxHJMUQ
+Date: Tue, 28 Dec 2021 01:54:41 +0000
+Message-ID: <DM6PR12MB2619DF13DBBB81337AE40CA2E4439@DM6PR12MB2619.namprd12.prod.outlook.com>
+References: <20211227171141.1503210-1-alexander.deucher@amd.com>
+In-Reply-To: <20211227171141.1503210-1-alexander.deucher@amd.com>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=true;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-12-28T01:54:38Z; 
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD Official Use
+ Only-AIP 2.0;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ActionId=6d92d8a9-5568-4517-bf80-1afebdf93d27;
+ MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=1
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2dda16f9-196e-4e01-1554-08d9c9a503d0
+x-ms-traffictypediagnostic: DM6PR12MB2828:EE_
+x-microsoft-antispam-prvs: <DM6PR12MB2828E8357AA250FC6A4EA42EE4439@DM6PR12MB2828.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:576;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: RFYJ9Bdyr6vrVLYz2avzflgsTsMOl8DB0c5q2QiXIn/JojgHrzSxrL2Nv4xOZk8TwGGOWFGmQV/rER/uXPiz1IpJ3GFLmfFq9ZvDLjPpj1Nt3LNDii6Z2hRsnEA3d52crtwk8XLmmgnUNOKEqetNUksxz/TeHcc8ziBXBrZYndagWvtNf/tZXx7YUSFnLTr9ZtxPpp5/4dPvMKg9byUZurznR52F7TD3XgyqkJICLRCxSmRN7Pf5I1lqH6JxZgOWG2ngdcbZcaJOAjgZvhoCaOAnQuYgLl/AWsedhQKcGDRnMHl7QtmZWA7KrmB3RbPZh0hzTQ44fLq7onYeA8qJEzgtdq+LK5ucfsyzKfocDv47R1gwNtSJ1u6bopr4klASGwLEjILZVfAeIUBjUqiGczMURKGDO63McVRFpHRW7WogmpGKzUG3dnG3TYA6na0+MB2v0WCAJ5fkjrZpWthEaYlQAmcHE9phFRYDwqIvrJ3kHjytx0s0Q/GI+eDM+CfzjkJKwVQjjEETlfU5d3ESmiNWzT5osUuCLPecd91lwEgyjiZH/glmzk/OtJbT1jY8GvJ9SqrbLY9SBf6Ge388ccDm6imPoVvnOoQu+IkFNMZJn5PZQzgH3nlLb7pOd9CIZKRWqO0/ahUkhX9j4OxQSFNjQflcBOjN8dckJxeIEMYr9OfYgTsECL/xNAOUVzl1ePKPgOZD5rOF+DBlP9C57w==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB2619.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(86362001)(26005)(66476007)(7696005)(64756008)(66446008)(66556008)(316002)(8936002)(5660300002)(52536014)(53546011)(6506007)(4326008)(186003)(110136005)(9686003)(55016003)(76116006)(38070700005)(83380400001)(66946007)(71200400001)(54906003)(38100700002)(508600001)(2906002)(122000001)(8676002)(33656002);
  DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?misiDO8jWzK1kkSYtQ7DYF8XOKKdFp6h3iqpNTp3Np6q4CQakhvA7kc/6o3W?=
+ =?us-ascii?Q?uO4ZBS6l/PY0v60njxaAJW1AOH9YaXIypdCEpf2lzo/o5J/KXtR329jP66Hi?=
+ =?us-ascii?Q?WZCHsVUI+Uj6cnToU8/w932I0vchw1ZKKhiNvgY63fV0PbBX2Ygpyg7ogmqw?=
+ =?us-ascii?Q?RjB1c0M9IVJID6TKKxZFdCiQQ//iXbodTl15X4ny+ArJ3PxouVZaCC0PcV4K?=
+ =?us-ascii?Q?uvM8gLaT6a+HdSGu1Uq4Suw1L+gtfVvPI/s+U7tVfVnyz5K6UJkYjnY3td90?=
+ =?us-ascii?Q?Tebcpw+nV11B91I7T6Nf3uprqBMCI+0fKWjD33cjA9UdfMt7/sQLuw4MFVky?=
+ =?us-ascii?Q?fefYHcnZq9NU8X8RW7rtAiAezmkv8GGTjqIUC9l8ViEUyDKjjFcyvCXpUmZ1?=
+ =?us-ascii?Q?qXNi8rFH2kuizTJtz4knbUCX8gfGVPNR/vqc4eS7/WY5Csgmt1RHbEWDrMyM?=
+ =?us-ascii?Q?xQLrwUE+U6EO4t0am9P0PfTKbmKTZqsziDEpvUMAjwxP7dJNivusFnvd8vyF?=
+ =?us-ascii?Q?8fP9BoQcsDX7KEUWV7/G5Us7SfSNFFWOQ92I+yVT8mc9Hn/5MV7iI3RljhVi?=
+ =?us-ascii?Q?HXu+F8gk1grlkSl7o8z/rOZgxJ+fjTTzd6HWQit1wR5NxcDlqIlQJsm8QhFB?=
+ =?us-ascii?Q?9dZ52UqjVZZB3HSji5KVup8QG4yhHDzhzxmU+ExlJElr9Q9At44kHyJLjMuX?=
+ =?us-ascii?Q?mo2bgVxQn4fkfcFCjxuBp9ao+kjfqbm38YdcDfkKhSspZdo+u8NFvJK+aex4?=
+ =?us-ascii?Q?sdRg/QuCSCe4vdi1jv+6arL+5/I1zDXC+EctRwrTxrlQPFF9esC+SXoScWro?=
+ =?us-ascii?Q?sUSTus2s6Nj7kmLTIP+X2GezmA07/I3azJU0ImEFZr6WiJtutjNlaW+v9LvK?=
+ =?us-ascii?Q?lTBtwDrJJzfxk3ZDQbSRSkUBygG/QAD5kKnt9LHeIpMmREVyfc9DRi+hlRJN?=
+ =?us-ascii?Q?CUFD0dTSeLzVTaYDRErghJd8KewrPg0g8LkXtLYVGDN3wvfBNiaZr2yux4Fy?=
+ =?us-ascii?Q?lOjE02IRT8fsvAgUlwCDWBlj0Ty3VteHWfYDblz5KF9YhyI9cldzhebE5AnJ?=
+ =?us-ascii?Q?QSUWi9ARxtfAKI86WpgPfoJrKmjgH2Dzz658x06oLmNGCrxtIXkIACk4ycz3?=
+ =?us-ascii?Q?UZ6q+e1z34uMR+4ACNbRejYCDqqmr2YN/MYE3yzi3FuXrP0aDzlSGl1e6SV1?=
+ =?us-ascii?Q?vbSk5yO0vVcfeJVeOHDbpeL0BiGZAl5ZGvZp6SW7nV7h1qDMrFkhCCvEU86p?=
+ =?us-ascii?Q?WWzW9S9jXDw6xtvhNgRD6EM7cBau4Tm8iH7SDz+sSSjzR3Rpv1fqcpG25WEt?=
+ =?us-ascii?Q?g0UalrVWfSUdS3d4be0WTkGD+Qkn1QCJ1hsBTMhYEOfIMBWlHENIJNTLVVmf?=
+ =?us-ascii?Q?pw5oBgUN5CyhfOJbxuLym3XeW+O1NchcPGowk93givNvLj+T4HgySGSMkc8N?=
+ =?us-ascii?Q?QdxbOc7/gh5SkY+GiKwvQJGQa0mK84ZLBh05whLULCpd7mVEtvmXuz8YJAVB?=
+ =?us-ascii?Q?B4p8Xgfe3GmjfT4VvZXx0Wus1vMl/0fS73crDrTzTYttQtfyYr7iCpUVmUCi?=
+ =?us-ascii?Q?8p6HMgcNWvDtRoqIKow=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Dec 2021 18:27:09.9026 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9ce62275-0044-44a0-5f4d-08d9c9667eb8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT039.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB5509
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB2619.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2dda16f9-196e-4e01-1554-08d9c9a503d0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Dec 2021 01:54:41.9766 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HensG88MI/tBXhoSvf6caQHOwALA1jigvv5A8B8dOxrPWpz1UU+axTTVDlvlSBtH
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2828
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,124 +125,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Tareque Md . Hanif" <tarequemd.hanif@yahoo.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-If we are the primary adapter (i.e., the one used by the firwmare
-framebuffer), disable runtime pm.  This fixes a regression caused
-by commit 55285e21f045 which results in the displays waking up
-shortly after they go to sleep due to teh device coming out of
-runtime suspend and sending a hotplug uevent.
+[AMD Official Use Only]
 
-v2: squash in reworked fix from Evan
+Reviewed-by: Evan Quan <evan.quan@amd.com>
 
-Fixes: 55285e21f045 ("fbdev/efifb: Release PCI device's runtime PM ref during FB destroy")
-Bug: https://bugzilla.kernel.org/show_bug.cgi?id=215203
-Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/1840
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu.h     |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 28 +++++++++++++++++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c |  6 ++++++
- 3 files changed, 35 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index b85b67a88a3d..7d67aec6f4a2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -1077,6 +1077,7 @@ struct amdgpu_device {
- 	bool                            runpm;
- 	bool                            in_runpm;
- 	bool                            has_pr3;
-+	bool                            is_fw_fb;
- 
- 	bool                            pm_sysfs_en;
- 	bool                            ucode_sysfs_en;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 86ca80da9eea..99370bdd8c5b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -39,6 +39,7 @@
- #include <linux/mmu_notifier.h>
- #include <linux/suspend.h>
- #include <linux/cc_platform.h>
-+#include <linux/fb.h>
- 
- #include "amdgpu.h"
- #include "amdgpu_irq.h"
-@@ -1890,6 +1891,26 @@ MODULE_DEVICE_TABLE(pci, pciidlist);
- 
- static const struct drm_driver amdgpu_kms_driver;
- 
-+static bool amdgpu_is_fw_framebuffer(resource_size_t base,
-+				     resource_size_t size)
-+{
-+	bool found = false;
-+#if IS_REACHABLE(CONFIG_FB)
-+	struct apertures_struct *a;
-+
-+	a = alloc_apertures(1);
-+	if (!a)
-+		return false;
-+
-+	a->ranges[0].base = base;
-+	a->ranges[0].size = size;
-+
-+	found = is_firmware_framebuffer(a);
-+	kfree(a);
-+#endif
-+	return found;
-+}
-+
- static int amdgpu_pci_probe(struct pci_dev *pdev,
- 			    const struct pci_device_id *ent)
- {
-@@ -1898,6 +1919,8 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
- 	unsigned long flags = ent->driver_data;
- 	int ret, retry = 0, i;
- 	bool supports_atomic = false;
-+	bool is_fw_fb;
-+	resource_size_t base, size;
- 
- 	/* skip devices which are owned by radeon */
- 	for (i = 0; i < ARRAY_SIZE(amdgpu_unsupported_pciidlist); i++) {
-@@ -1966,6 +1989,10 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
- 	}
- #endif
- 
-+	base = pci_resource_start(pdev, 0);
-+	size = pci_resource_len(pdev, 0);
-+	is_fw_fb = amdgpu_is_fw_framebuffer(base, size);
-+
- 	/* Get rid of things like offb */
- 	ret = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &amdgpu_kms_driver);
- 	if (ret)
-@@ -1978,6 +2005,7 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
- 	adev->dev  = &pdev->dev;
- 	adev->pdev = pdev;
- 	ddev = adev_to_drm(adev);
-+	adev->is_fw_fb = is_fw_fb;
- 
- 	if (!supports_atomic)
- 		ddev->driver_features &= ~DRIVER_ATOMIC;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index 651c7abfde03..09ad17944eb2 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -206,6 +206,12 @@ int amdgpu_driver_load_kms(struct amdgpu_device *adev, unsigned long flags)
- 			adev->runpm = true;
- 			break;
- 		}
-+		/* XXX: disable runtime pm if we are the primary adapter
-+		 * to avoid displays being re-enabled after DPMS.
-+		 * This needs to be sorted out and fixed properly.
-+		 */
-+		if (adev->is_fw_fb)
-+			adev->runpm = false;
- 		if (adev->runpm)
- 			dev_info(adev->dev, "Using BACO for runtime pm\n");
- 	}
--- 
-2.33.1
-
+> -----Original Message-----
+> From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Alex
+> Deucher
+> Sent: Tuesday, December 28, 2021 1:12 AM
+> To: amd-gfx@lists.freedesktop.org
+> Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Tareque Md .
+> Hanif <tarequemd.hanif@yahoo.com>
+> Subject: [PATCH] drm/amdgpu: no DC support for headless chips
+>=20
+> Chips with no display hardware should return false for
+> DC support.
+>=20
+> v2: drop Arcturus and Aldebaran
+>=20
+> Fixes: f7f12b25823c0d ("drm/amdgpu: default to true in
+> amdgpu_device_asic_has_dc_support")
+> Reported-by: Tareque Md.Hanif <tarequemd.hanif@yahoo.com>
+> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> index 9dc86c5a1cad..694c3726e0f4 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> @@ -3166,6 +3166,12 @@ static void
+> amdgpu_device_detect_sriov_bios(struct amdgpu_device *adev)
+>  bool amdgpu_device_asic_has_dc_support(enum amd_asic_type asic_type)
+>  {
+>  	switch (asic_type) {
+> +#ifdef CONFIG_DRM_AMDGPU_SI
+> +	case CHIP_HAINAN:
+> +#endif
+> +	case CHIP_TOPAZ:
+> +		/* chips with no display hardware */
+> +		return false;
+>  #if defined(CONFIG_DRM_AMD_DC)
+>  	case CHIP_TAHITI:
+>  	case CHIP_PITCAIRN:
+> --
+> 2.33.1
