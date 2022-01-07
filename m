@@ -1,41 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A935487C2D
-	for <lists+amd-gfx@lfdr.de>; Fri,  7 Jan 2022 19:28:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF4C6487C2A
+	for <lists+amd-gfx@lfdr.de>; Fri,  7 Jan 2022 19:28:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2D3E10E9E3;
-	Fri,  7 Jan 2022 18:28:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30DE310EA0C;
+	Fri,  7 Jan 2022 18:28:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [IPv6:2a01:488:42:1000:50ed:8234::])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AEF510E9CD
- for <amd-gfx@lists.freedesktop.org>; Thu,  6 Jan 2022 11:38:56 +0000 (UTC)
-Received: from ip4d173d02.dynamic.kabel-deutschland.de ([77.23.61.2]
- helo=[192.168.66.200]); authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1n5R6c-0002Ih-10; Thu, 06 Jan 2022 12:38:54 +0100
-Message-ID: <96531626-b1d0-70cd-7d87-3a282667e39e@leemhuis.info>
-Date: Thu, 6 Jan 2022 12:38:53 +0100
+X-Greylist: delayed 303 seconds by postgrey-1.36 at gabe;
+ Fri, 07 Jan 2022 10:03:10 UTC
+Received: from nksmu.kylinos.cn (mailgw.kylinos.cn [123.150.8.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC75411B91B;
+ Fri,  7 Jan 2022 10:03:10 +0000 (UTC)
+X-UUID: 51f8efc21ea04903991e1abefbd59d34-20220107
+X-CPASD-INFO: b29efc9df7c3401f828f9506db65018e@q4JzhZOVZ5SSV6V_g3N8oFhjaJZqYVC
+ FppxWZV5hZIWVhH5xTWJsXVKBfG5QZWNdYVN_eGpQY19gZFB5i3-XblBgXoZgUZB3sXRzhZaRaQ==
+X-CPASD-FEATURE: 0.0
+X-CLOUD-ID: b29efc9df7c3401f828f9506db65018e
+X-CPASD-SUMMARY: SIP:-1, APTIP:-2.0, KEY:0.0, FROMBLOCK:1, EXT:0.0, OB:0.0,
+ URL:-5, T
+ VAL:187.0, ESV:0.0, ECOM:-5.0, ML:0.0, FD:1.0, CUTS:130.0, IP:-2.0, MAL:0.0,
+ ATTNUM:0
+ .0, PHF:-5.0, PHC:-5.0, SPF:4.0, EDMS:-3, IPLABEL:4480.0, FROMTO:0, AD:0,
+ FFOB:0.0, CF
+ OB:0.0, SPC:0.0, SIG:-5, AUF:12, DUF:29770, ACD:157, DCD:259, SL:0, AG:0,
+ CFC:0.168, CF SR:0.366,UAT:0,RAF:0,VERSION:2.3.4
+X-CPASD-ID: 51f8efc21ea04903991e1abefbd59d34-20220107
+X-CPASD-BLOCK: 1001
+X-CPASD-STAGE: 1, 1
+X-UUID: 51f8efc21ea04903991e1abefbd59d34-20220107
+X-User: lizhenneng@kylinos.cn
+Received: from localhost.localdomain [(116.128.244.169)] by nksmu.kylinos.cn
+ (envelope-from <lizhenneng@kylinos.cn>) (Generic MTA)
+ with ESMTP id 1687336020; Fri, 07 Jan 2022 18:11:04 +0800
+From: Zhenneng Li <lizhenneng@kylinos.cn>
+To: Alex Deucher <alexander.deucher@amd.com>
+Subject: [PATCH 0/2]
+Date: Fri,  7 Jan 2022 17:57:30 +0800
+Message-Id: <20220107095732.982194-1-lizhenneng@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [PATCH v2] drm/amd/display: explicitly update clocks when DC is
- set to D3 in s0i3
-Content-Language: en-BW
-To: Mario Limonciello <mario.limonciello@amd.com>,
- amd-gfx@lists.freedesktop.org
-References: <20220105170656.2121-1-mario.limonciello@amd.com>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-In-Reply-To: <20220105170656.2121-1-mario.limonciello@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1641469136;
- 7dff8ecd; 
-X-HE-SMSGID: 1n5R6c-0002Ih-10
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 07 Jan 2022 18:28:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -48,109 +55,40 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Qingqing Zhuo <qingqing.zhuo@amd.com>, Scott Bruce <smbruce@gmail.com>,
- spasswolf@web.de, Chris Hixon <linux-kernel-bugs@hixontech.com>
+Cc: David Airlie <airlied@linux.ie>, Xinhui.Pan@amd.com,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, Zhenneng Li <lizhenneng@kylinos.cn>,
+ Leo Li <sunpeng.li@amd.com>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi, this is your Linux kernel regression tracker speaking.
+For adapting radeon rx6600 xt on arm64 platform,
+there report some compile errors.
 
-On 05.01.22 18:06, Mario Limonciello wrote:
-> The WA from commit 5965280abd30 ("drm/amd/display: Apply w/a for
-> hard hang on HPD") causes a regression in s0ix where the system will
-> fail to resume properly.  This may be because an HPD was active the last
-> time clocks were updated but clocks didn't get updated again during s0ix.
-> 
-> So add an extra call to update clocks as part of the suspend routine:
-> dm_suspend->dc_set_power_state->clk_mgr_optimize_pwr_state
-> 
-> In case HPD is set during this time, also check if the call happened during
-> suspend to allow overriding the WA.
+Zhenneng Li (2):
+  drm/amdgpu: fix compile error for dcn on arm64
+  drm/amdgpu: enable dcn support on arm64
 
-Thx for this. Our of interest: is that something that should still go
-into v5.16?
+ drivers/gpu/drm/amd/display/Kconfig           |  2 +-
+ drivers/gpu/drm/amd/display/dc/calcs/Makefile |  6 +++++
+ .../gpu/drm/amd/display/dc/clk_mgr/Makefile   |  7 ++++++
+ drivers/gpu/drm/amd/display/dc/dcn10/Makefile |  4 +++
+ drivers/gpu/drm/amd/display/dc/dcn20/Makefile |  4 +++
+ .../gpu/drm/amd/display/dc/dcn201/Makefile    |  6 +++++
+ drivers/gpu/drm/amd/display/dc/dcn21/Makefile |  4 +++
+ drivers/gpu/drm/amd/display/dc/dcn30/Makefile |  6 +++++
+ .../gpu/drm/amd/display/dc/dcn302/Makefile    |  6 +++++
+ .../gpu/drm/amd/display/dc/dcn303/Makefile    |  6 +++++
+ drivers/gpu/drm/amd/display/dc/dcn31/Makefile |  6 +++++
+ drivers/gpu/drm/amd/display/dc/dml/Makefile   | 25 +++++++++++++++++++
+ drivers/gpu/drm/amd/display/dc/dsc/Makefile   |  7 ++++++
+ 13 files changed, 88 insertions(+), 1 deletion(-)
 
-> Cc: Qingqing Zhuo <qingqing.zhuo@amd.com>
-> Reported-by: Scott Bruce <smbruce@gmail.com>
-> Reported-by: Chris Hixon <linux-kernel-bugs@hixontech.com>
-> Reported-by: spasswolf@web.de
-> BugLink: https://bugzilla.kernel.org/show_bug.cgi?id=215436
-> BugLink: https://gitlab.freedesktop.org/drm/amd/-/issues/1821
-> BugLink: https://gitlab.freedesktop.org/drm/amd/-/issues/1852
+-- 
+2.25.1
 
-What is "BugLink"? It's not mention in the kernel's documentation, which
-tells people to use "Link:" for linking to bug reports:
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html
 
-That is not new, bug recently was made more explicit.
-
-Hence, please consider changing them to "Link:", there are tools out
-there that repy on them (I'm running such a tool, but there might be
-others out there we are not aware of).
-
-FWIW, in principe I agree that we need a seperate tag for this. But then
-we should get this discussed and blessed through the usual channels.
-That's why I recently proposed "Reported:", without much success so far:
-https://lore.kernel.org/lkml/c6724c7fb534a46e095e6aef13d996ed9589e578.1639042966.git.linux@leemhuis.info/
-
-Ciao, Thorsten
-
-> Fixes: 5965280abd30 ("drm/amd/display: Apply w/a for hard hang on HPD")
-> Fixes: 1bd3bc745e7f ("drm/amd/display: Extend w/a for hard hang on HPD to dcn20")
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> ---
-> changes from v1->v2:
->  * Add fallthrough statement
->  * Extend case to check if call was explicitly in s0ix since #1852 showed hpd_state
->    can be set at this time too
->  * Adjust commit message and title
->  * Add extra commit and bug fixed to metadata
->  drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c | 5 ++++-
->  drivers/gpu/drm/amd/display/dc/core/dc.c                  | 3 +++
->  2 files changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-> index fbda42313bfe..fa5efe10b779 100644
-> --- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-> +++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn21/rn_clk_mgr.c
-> @@ -23,6 +23,8 @@
->   *
->   */
->  
-> +#include "amdgpu.h"
-> +
->  #include "dccg.h"
->  #include "clk_mgr_internal.h"
->  
-> @@ -126,6 +128,7 @@ static void rn_update_clocks(struct clk_mgr *clk_mgr_base,
->  			bool safe_to_lower)
->  {
->  	struct clk_mgr_internal *clk_mgr = TO_CLK_MGR_INTERNAL(clk_mgr_base);
-> +	struct amdgpu_device *adev = clk_mgr_base->ctx->driver_context;
->  	struct dc_clocks *new_clocks = &context->bw_ctx.bw.dcn.clk;
->  	struct dc *dc = clk_mgr_base->ctx->dc;
->  	int display_count;
-> @@ -157,7 +160,7 @@ static void rn_update_clocks(struct clk_mgr *clk_mgr_base,
->  			}
->  
->  			/* if we can go lower, go lower */
-> -			if (display_count == 0 && !hpd_state) {
-> +			if (display_count == 0 && (adev->in_s0ix || !hpd_state)) {
->  				rn_vbios_smu_set_dcn_low_power_state(clk_mgr, DCN_PWR_STATE_LOW_POWER);
->  				/* update power state */
->  				clk_mgr_base->clks.pwr_state = DCN_PWR_STATE_LOW_POWER;
-> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc.c b/drivers/gpu/drm/amd/display/dc/core/dc.c
-> index 91c4874473d6..8e0c820f6892 100644
-> --- a/drivers/gpu/drm/amd/display/dc/core/dc.c
-> +++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
-> @@ -3299,6 +3299,9 @@ void dc_set_power_state(
->  		}
->  
->  		break;
-> +	case DC_ACPI_CM_POWER_STATE_D3:
-> +		clk_mgr_optimize_pwr_state(dc, dc->clk_mgr);
-> +		fallthrough;
->  	default:
->  		ASSERT(dc->current_state->stream_count == 0);
->  		/* Zero out the current context so that on resume we start with
-
+No virus found
+		Checked by Hillstone Network AntiVirus
