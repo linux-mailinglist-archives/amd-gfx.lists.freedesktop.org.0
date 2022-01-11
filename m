@@ -1,59 +1,72 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0F5D48A4CF
-	for <lists+amd-gfx@lfdr.de>; Tue, 11 Jan 2022 02:11:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E79E48A516
+	for <lists+amd-gfx@lfdr.de>; Tue, 11 Jan 2022 02:31:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27DFF10E4AB;
-	Tue, 11 Jan 2022 01:11:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B399710E4D6;
+	Tue, 11 Jan 2022 01:31:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com
- [IPv6:2607:f8b0:4864:20::32b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B87610E4AB;
- Tue, 11 Jan 2022 01:11:47 +0000 (UTC)
-Received: by mail-ot1-x32b.google.com with SMTP id
- g79-20020a9d12d5000000b0058f08f31338so17078082otg.2; 
- Mon, 10 Jan 2022 17:11:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C390510E4FB
+ for <amd-gfx@lists.freedesktop.org>; Tue, 11 Jan 2022 01:21:27 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id w16so60858000edc.11
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 Jan 2022 17:21:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=24u0HfOYmEXMexHKNr6/VqyMwcTiPMZEtxMMSABMM2U=;
- b=eeLLtu9FBUsrR18bBEVcvoYAS8rN3dtSLLefmLIXSGl89dFeLKCTiL0o3MCjfvtMEn
- OaIFlO/WKvwQvZokAqzOPPoU2HNG7VOlQRz526FK5KnAF26pUXt5gYdoK+IwO+i+gwpU
- nMVMoiWKuoY9lcF6uOv65tRTpDMKD47+NCNoFuB9o2WVmXEBXiNfsGyLWrFsYBHbuMA3
- AEflSnx2LF6PSJeQQ6k0cP7wJ96OMP52wNGLhqMtV4BrtH8Nf0lCc2YsBWiUj7OITIQG
- ftWuvKy+C8N9HhNe8yfoppWGipWpDBIsKix9hDEwcJyEJTQ7UgAi1hBXzHNZgQDCn20o
- GQpg==
+ :cc; bh=VghT5Vb1bGkkfuhJyJBbYpfymLiEG6YlV0Ofo+lXSRs=;
+ b=CuoC1S5DPEPzxhaI/t/Zt5/7ZnredBXUx63/7QgMSrKdR6dU+kjwkn5e4Y9dVXNX5l
+ Vo7r+EcjrjXKC7eYS94RpKiX0PkhEoqLxQYqUn0fSn6sOhYsh649ExJNudF9PbHfqlwH
+ HhetD8jit7LuyHbRhw8nh7NJ4t8W84qHpTvYE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=24u0HfOYmEXMexHKNr6/VqyMwcTiPMZEtxMMSABMM2U=;
- b=es18wWpFkr1JOJ+7OqLqDkwDst8Eg0Iim+dTXmjWZo9uvGaF/4iSvGuQJnciP0z+1/
- EsE3z5hT3p/cZvccRuN1WJsWI+gPjhuG8dDM5Xr/FdtTEbbyGmLfY+68ONxU7Qs8gjXG
- uQAZUVl8I9h7PEOAzoVdxQhyZ3U4Iz4vsrBqciAAbUnVZi2ps4osaH7DEHvyDLv6qzbi
- smSEs8SexBcqG+2bl1gSHovEETOuI1gJKmrExUioPiq2qeKc4KXZSuIuHDVIQP/lS3aI
- ey//tnIq9jaCAheCtA9/oFQUEljwvHKijwteu8hwelHafCNySM1B5RIP0RUgWOncUlvO
- p6Kw==
-X-Gm-Message-State: AOAM531UontAPGt/mvWm9IZ3sQeveewS+4aODGQllaG+20eSeVwflnrO
- MJjsxu70di6yYAd3eHa7qGx4n2MejBFXbTjlK5s=
-X-Google-Smtp-Source: ABdhPJwKhnwL+hbPwQXmM+GBeSLhrHPTondS/I97ppFbTy9pmgYJQaAdL+UYlUBpmLMERfQQoJi7/7DiUkdfbdsyRI8=
-X-Received: by 2002:a9d:6390:: with SMTP id w16mr1830898otk.200.1641863506848; 
- Mon, 10 Jan 2022 17:11:46 -0800 (PST)
+ bh=VghT5Vb1bGkkfuhJyJBbYpfymLiEG6YlV0Ofo+lXSRs=;
+ b=4Ni+TjLKbnDBbnKbjMdHNMeLalQN+FsAvWdufTDL+lK3UHgidVF/TTt5EGXJLBlXp0
+ XlW+0sauXajTvhmkmbbHcOXbyHoN0X95orlSwr+IPlw22He+242pq1Qjf17gO4SQn9pc
+ wMwvfnhSxJzuyxA6ci3ZC2Q4l2L4TftpJw/dFnPKuOlRrH1fmgguKnftY68CajAZTMPL
+ tMqcKLXp3vLy09tOqoHc0Dpp6y2IIkhojffwNn+0scxMKnJTkpg/ukAJffF5uuxk3e9f
+ joCgftUZJFk4v2PDc9m6vKCKC7kX4C0GWa5W0rRNSmj5wItr8ADenOEkbS2yz2n2+NJZ
+ merQ==
+X-Gm-Message-State: AOAM5301/D5sqvQ1a1p2zQgubpNIpRyxJFjkMQLVQ4oO+r4r5ukv5Vy7
+ KZ+fZv7BpZ8H/MDIg0hp6MqK3YIWfPzDxmPF3L8=
+X-Google-Smtp-Source: ABdhPJx5k3UqcUW0TA1iYb1hHtYsesSCzhMhNDTXKRyo1pkCX0RUuyj9RxB2NoBizrsSG5lnIzt74A==
+X-Received: by 2002:a05:6402:291f:: with SMTP id
+ ee31mr2280593edb.194.1641864086197; 
+ Mon, 10 Jan 2022 17:21:26 -0800 (PST)
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com.
+ [209.85.128.42])
+ by smtp.gmail.com with ESMTPSA id qk11sm2972762ejc.110.2022.01.10.17.21.25
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 10 Jan 2022 17:21:25 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id
+ c126-20020a1c9a84000000b00346f9ebee43so920120wme.4
+ for <amd-gfx@lists.freedesktop.org>; Mon, 10 Jan 2022 17:21:25 -0800 (PST)
+X-Received: by 2002:a05:600c:4c94:: with SMTP id
+ g20mr337592wmp.26.1641864085524; 
+ Mon, 10 Jan 2022 17:21:25 -0800 (PST)
 MIME-Version: 1.0
 References: <CAPM=9tz=_hRpQV1V3M-=KmVVEbr1K166qeb-ne64PHk9Sn-ozg@mail.gmail.com>
  <CAHk-=wg9hDde_L3bK9tAfdJ4N=TJJ+SjO3ZDONqH5=bVoy_Mzg@mail.gmail.com>
  <CAKMK7uEag=v-g6ygHPcT-uQJJx+5KOh2ZRzC2QtM-MCjjW67TA@mail.gmail.com>
  <CADnq5_P9n39RQ5+Nm8O=YKXXvXh1CEzwC2fOEzEJuS2zQLUWEw@mail.gmail.com>
  <CAHk-=wgDGcaRxUwRCR6p-rxDVO78Yj4YyM6ZsPRGiT2JOCoQ6A@mail.gmail.com>
-In-Reply-To: <CAHk-=wgDGcaRxUwRCR6p-rxDVO78Yj4YyM6ZsPRGiT2JOCoQ6A@mail.gmail.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 10 Jan 2022 20:11:35 -0500
-Message-ID: <CADnq5_OYO7kq+9DBnDvbSfpouFvdLB0LPSL6+f1ZPRBsV=qEqA@mail.gmail.com>
+ <CADnq5_OYO7kq+9DBnDvbSfpouFvdLB0LPSL6+f1ZPRBsV=qEqA@mail.gmail.com>
+In-Reply-To: <CADnq5_OYO7kq+9DBnDvbSfpouFvdLB0LPSL6+f1ZPRBsV=qEqA@mail.gmail.com>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Mon, 10 Jan 2022 17:21:09 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wiCCRG9Lwzr+Cur=K1V2GJ9ab_ket7EnG4RZhJ8jJM7xQ@mail.gmail.com>
+Message-ID: <CAHk-=wiCCRG9Lwzr+Cur=K1V2GJ9ab_ket7EnG4RZhJ8jJM7xQ@mail.gmail.com>
 Subject: Re: [git pull] drm for 5.17-rc1 (pre-merge window pull)
-To: Linus Torvalds <torvalds@linux-foundation.org>
+To: Alex Deucher <alexdeucher@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Tue, 11 Jan 2022 01:31:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,21 +86,19 @@ Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, LKML <linux-kernel@vger.kernel.org>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 10, 2022 at 8:04 PM Linus Torvalds
-<torvalds@linux-foundation.org> wrote:
+On Mon, Jan 10, 2022 at 5:11 PM Alex Deucher <alexdeucher@gmail.com> wrote:
 >
-> On Mon, Jan 10, 2022 at 2:13 PM Alex Deucher <alexdeucher@gmail.com> wrote:
-> >
-> > Sounds like something related to watermarks.  That said, we haven't
-> > really touched the display code for DCE11 cards in quite a while.  Can
-> > you provide your dmesg output?
->
-> I'm not seeing anything that would look interesting, but here's the
-> parts that look relevant for drm..
+> We are putting together a system to try and repro the issue.  Does it
+> happen with a single monitor or only with two?
 
-We are putting together a system to try and repro the issue.  Does it
-happen with a single monitor or only with two?
+Nope. With a single monitor everything seems to look fine. And when I
+plug in the second monitor, it immediately starts happening again.
 
-Thanks,
+It also seems to depend a bit on the screen contents - or possibly on
+what else is going on. Hiding the browser window makes it happen less,
+I think. But I suspect that's about "less gpu activity" than anything
+else.
 
-Alex
+I'll see if I can bisect it at least partially.
+
+                  Linus
