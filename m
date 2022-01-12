@@ -2,96 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC2BA48C4C7
-	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jan 2022 14:26:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACA5E48C4C8
+	for <lists+amd-gfx@lfdr.de>; Wed, 12 Jan 2022 14:26:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 952FD112884;
-	Wed, 12 Jan 2022 13:26:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 132FB1128B0;
+	Wed, 12 Jan 2022 13:26:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from IND01-BO1-obe.outbound.protection.outlook.com
- (mail-bo1ind01olkn0187.outbound.protection.outlook.com [104.47.101.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 122CF10E231
- for <amd-gfx@lists.freedesktop.org>; Wed, 12 Jan 2022 11:38:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZXHxtAd6p+rP5D9g6s3+/kksyvp0ZSdI1gd4gZ9MnFTL8tjWSjwQDLSYmEVwhGikttSUyDI7Ea4LEce3Pg1G4gNFb+bIYIZn0SxfyumbOK3/3pnsD4/mtHObKBmEiwznznsq3CN/Yg8nwO5N4R4C8rADkXTQJp663aOTsPmeSJ1SH3NVhrEiGQcICrkAXTgnzUE/cLUk8WEzzRY1sIE/0h5wBHvLYZEl0VmPgionE+smqBxRH77v60gbJtW6iCnhhh5Z533HqOs+ZcaGWcvY5QFLGXuyKww0qx5Q5d3J0rK78v18Yyw7peSo0bubm0NPgl8G5o0qhp8qTIX7v/VhtA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LVXkYUdn61OI7VmNeupfiHJuRYIQRw9gflew86sCwH4=;
- b=eEHuSt+vFW33taN4IOjndnMWnXDKlsvDEDC/Ub09ONMeP2ZPFC6ggOM/kdCJEySHmmgRlN1yPaVme/1z8AnYEsFLITkD37FbjdMiiC81sgiQ+oI9Mo5T8FqALIF8AZAr/IZoMwtx7xTqAzlx7W0IQ7eHSgb+L6vHYHbsI5z6Ng43iVMz3UojjMg1gB6bUqQcqYZZy5Nla11GynKQ4DR3wFA9eUAIDFL02aQHHzlKt2eumvC4L9H9zSCT0Lwr9DZuxACoXxK9mIaWEQnewCw9Gv6bqJ825r0Ii7rT4srBtPhc1s3VXiQr5VnLHWzLASEVpeCGpuBbwWSp7hUZGMGF6A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LVXkYUdn61OI7VmNeupfiHJuRYIQRw9gflew86sCwH4=;
- b=tC0p/7TI5DWv68ZXjRqgYrRXQsOQmDKnULUWBKgXot66S48X7o21JqQFuALa6fGc0JwR8y0Mp6uvylPPAxyZ8aASRyrkCHfoTE4JKRJD/qpn4krZx0PHFGaf2U07/45nZXLJyIB/5cYFaN11IB1O/ubS4+aXXtViQL4tFY79olGkSm5q2BLrN1zrpFFvJY8EOWQpvaqjMLQnDesMphSuAlWWZ6Q4PPVSG85Zyx3dKrWgK9/IHRKnZlRjVv0RVaIGJZjAYHcsWf1uJ3EJO3KE1617ydqZMm/hNln2qhXtv59mtfxhTcidxmvYQi5u9uF+pSIiX2eEGX7pXV4qIxaZ3Q==
-Received: from PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:1b::13)
- by PNZPR01MB4687.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:33::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4867.11; Wed, 12 Jan
- 2022 11:38:16 +0000
-Received: from PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::7ca6:9165:19ec:4cd7]) by PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::7ca6:9165:19ec:4cd7%8]) with mapi id 15.20.4867.012; Wed, 12 Jan 2022
- 11:38:16 +0000
-From: Aditya Garg <gargaditya08@live.com>
-To: "harry.wentland@amd.com" <harry.wentland@amd.com>, "sunpeng.li@amd.com"
- <sunpeng.li@amd.com>, "Rodrigo.Siqueira@amd.com" <Rodrigo.Siqueira@amd.com>,
- "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>, "Xinhui.Pan@amd.com"
- <Xinhui.Pan@amd.com>
-Subject: [PATCH] drm/amd/display: Force link_rate as LINK_RATE_RBR2 for 2018
- 15" Apple Retina panels
-Thread-Topic: [PATCH] drm/amd/display: Force link_rate as LINK_RATE_RBR2 for
- 2018 15" Apple Retina panels
-Thread-Index: AQHYB6jjF2GESjF2oUG76i0mYHGKrg==
-Date: Wed, 12 Jan 2022 11:38:15 +0000
-Message-ID: <1A00E804-5390-415D-B6D8-2551C8954DFA@live.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [hNn/Sb7Kt6rzonYPDuTVqRmFBLYfPtDZLND5yiZtCgdtdVlVEcRQBVs08rHfR0SC]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 15dd377a-8e5e-483f-c6fb-08d9d5c005f6
-x-ms-traffictypediagnostic: PNZPR01MB4687:EE_
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yMfKSXK0QZmzzVawypKOCdIbPJBdHaEoirlXwn9Fup0orBUOg07KO9Sk5EQ1Q0SFOeiiAELfNnG4gylEdGgsh2n3sI8kDdMmcfdg4cjD7XizS/To+pSrzzDsmZUtnpoKivz4uFuLw4yySus8lzpEC3sTgS3hogpMm/pJ9ngkCXSf+yAYDHK6Pky1QjBjDShljIlGo1vpPp+ScyQNx4YiIjU2ybFv+0EdvA6FVuH2R27EHSDXuLLplwudA+uMPIg3v6B5yGJ/bLD9E3+7K2PkNrNPpAtEGMxerlFt//MaE75SEOEBEDUmqcKEuwsqjJ9opbhKnHmm+k0RHJGfbtdsfbWZVPCAiPvbgDBrTCJ5Eq5c1BNXZJ3yzaL/7GCpLCl8vv610xO9MVfrft6qJZStNLSC2gJX7ftX3Arcz1nfKO23c/4QFOhUH+GMA2wriV0wdUPAorGjOCcxVOA5oyHngdfZPFsox3AOBIgmyU7mzGpYfJi5osuOBl8qyUraSveWM7IgBNGzPp2suZ+GeU8ed+ap99juMfUJm7lGsjtNDH78O9HRrUb2WZPqjniKeK+jaI56qIU97jyo/A+vsusIEQ==
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?hOn3gmDU6I5InvfTTJrRIexZ7AkvKtDbJZuB1M1SbKM7M6/P+ZpMJXjp/UqA?=
- =?us-ascii?Q?/MQK29RwB6iHeieMfkyP3pin3sq6OzFxczyHuQMTd/ogijSBpDWP4jJc4197?=
- =?us-ascii?Q?TQt2ny4D3CxyTk5Uy6ciWP9FPyoILBseBlEt2Y2R8HqGSHYi/3c4tHdhAULa?=
- =?us-ascii?Q?5nIe0QApZDaEODAhEbdgXgvFtfJE3yP8w5U9s5C9p3ZDPdzMfCVVbfSy833T?=
- =?us-ascii?Q?lNuLNwQuAgVWb+Je74x5oQYKco1cFj4MkYiWE9mDKtW+80i3fDO2QjYicSAu?=
- =?us-ascii?Q?5yUj3EM4+R0VyXRuaUTcNSH5AANoIjMuYhcmYQL3TQheyvgOUv98kU9BeXjY?=
- =?us-ascii?Q?Tj9zJ5W68DsZqCt36XHzWbC6X7pxu42e9MeC35jO5/gkDuliHS6PO/WuPIPI?=
- =?us-ascii?Q?3ihYVp9oa3427lh7qMYhyFAYzO+GLKu/HPwr9AFvhSiWM5k8M13z9DN1D4PP?=
- =?us-ascii?Q?ehUY/pc9M1mCavmPFsxw6L+mcQJl45NHRR6GS28zUgwR5mNMwSMJ8CP7rqi+?=
- =?us-ascii?Q?pBC4sBT5wKlexyW7QvECueVaU18CzIVQVe8G3jwpBT4vhb3MVBborE00oq5W?=
- =?us-ascii?Q?0lh6P7iMF/tkzkbfJ9bQMo/Xp2pZdsCDGUzZv66Xai7jTHpYUXiCqYl6kQ24?=
- =?us-ascii?Q?wwYX6NtCFMY8/P34zdtC30wKM47RBU7wbqdTU17PebWbuBkIScJELH1rWD/L?=
- =?us-ascii?Q?skpZo2N0L7Bd1s7MWXur8N718vb0nim5w4WuX1aexJWob2rEuXbBby2su0MD?=
- =?us-ascii?Q?ZfutH7CXffr8H7DJFestdaBkYpQz35RXQk7hIxomoKedg34j1vTLVRaRKoF1?=
- =?us-ascii?Q?tDPv1Nb/zq1ih+zQSijuYx2Zs0xGsfCKF4fJFc59eTGq/WgfnbOy9Gsvm/yU?=
- =?us-ascii?Q?Mnds23BEM9iOu6783Jj6PtbTCSN8+XZmu65WWHV2jQqndxgHHgIkISDEGoje?=
- =?us-ascii?Q?GGYVsUBlXGxXgkC98Y+ffPQz3nPIjBr2yrXlsaKaqcN/Hf3bYLPXzEYZBaFP?=
- =?us-ascii?Q?1Tzf3r/xlgw45KfFLOrMbrlFDg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <1EB580D66CB3AA4399B90B391C3531AF@INDPRD01.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com
+ [IPv6:2607:f8b0:4864:20::d31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7EC310E3D2
+ for <amd-gfx@lists.freedesktop.org>; Wed, 12 Jan 2022 12:25:14 +0000 (UTC)
+Received: by mail-io1-xd31.google.com with SMTP id 19so3365376ioz.4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 12 Jan 2022 04:25:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=r0Ed94N6PJ1HQvpwsTDcBAz1gPfqabvU1XtB9N89ivo=;
+ b=i9YELGkPrF9QildKnEB0Dl461a8mPFeJ9M7JKTP5U2yLPD5Qyis0LkkhVGUzbd0RpI
+ /P9zvBLoXiB15zji+qwH/xUWw+pRZlU1+I1m4SRLHwC6H8/GEBbhK+sL4dz43TxBPrHP
+ fdSDxAOsL7O3hf1tG/sWVsfWRSmoMvMLYA4Dw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=r0Ed94N6PJ1HQvpwsTDcBAz1gPfqabvU1XtB9N89ivo=;
+ b=vQtZXoEd3lIqfNyt1lydrMf/Ab3UeabRY8SUoFtbpJPCufWXgASwxIF6vs20PDP4zL
+ lLx44Aw/nV1kXOi7IlZFYa1sq7ASU0ddwTgMjGgycd4U2y7rAsiRG5jylEh2wfiBMO2H
+ 4cUPtBvH9D1y7saStop8somu0gER29QRDLDh03Yjj6WU9LsES3a6jzEY4zq+AfeQDum8
+ /AZ3LtNizxqosQUMn5+D2wg6FvfZQoS1OuvBRjsHvl7fiXRa8Hijj3sdm4RrqBieu9pz
+ xAvPWDpia8TqjUeRE8oq0YyCDaXb3BobmIpDU0TmtFd3Nj1zVzAN2IkqKbfOdGfQikWI
+ Bc5w==
+X-Gm-Message-State: AOAM530XUkik3Pfg6ZQxGsKrU2jXk1MblhsTpBgWhALxBWRo0mQX78PX
+ DxeS3wlrR0oY0bvwrZedmdSSxGO0vUcVc4x4nHNqkg==
+X-Google-Smtp-Source: ABdhPJz3aWTJ6YHXl+DNpQfRBduYGsa3dA2FrH3qublefl99BTefVU7PwBsvrZTCfAWITEprI8dsA0VWgDMC1jSTU/M=
+X-Received: by 2002:a05:6602:17d0:: with SMTP id
+ z16mr4259571iox.204.1641990313893; 
+ Wed, 12 Jan 2022 04:25:13 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-42ed3.templateTenant
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15dd377a-8e5e-483f-c6fb-08d9d5c005f6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jan 2022 11:38:15.8897 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PNZPR01MB4687
+References: <20220106122452.18719-1-wsa@kernel.org> <Yd6gRR0jtqhRLwtB@ninjato>
+ <98ed8d6d16a3d472d9432eb169aa2da44b66b5cc.camel@yandex.ru>
+ <4dfbee97-14c2-718b-9cbd-fdeeace96f59@yahoo.com>
+ <CAJMQK-h38XdN=QD6ozVNk+wxmpp1DKj21pkFZ+kY31+Lb8ot6Q@mail.gmail.com>
+In-Reply-To: <CAJMQK-h38XdN=QD6ozVNk+wxmpp1DKj21pkFZ+kY31+Lb8ot6Q@mail.gmail.com>
+From: Hsin-Yi Wang <hsinyi@chromium.org>
+Date: Wed, 12 Jan 2022 20:24:48 +0800
+Message-ID: <CAJMQK-g1pqg05K+ZL0R3i67gitEVoZQ2jbOuL=Q2djBr45soAg@mail.gmail.com>
+Subject: Re: [PATCH] Revert "i2c: core: support bus regulator controlling in
+ adapter"
+To: Tareque Md Hanif <tarequemd.hanif@yahoo.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Wed, 12 Jan 2022 13:26:25 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -104,69 +63,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aun-Ali Zaidi <admin@kodeit.net>,
- Orlando Chamberlain <redecorating@protonmail.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org,
+ Bibby Hsieh <bibby.hsieh@mediatek.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aun-Ali Zaidi <admin@kodeit.net>
-=20
-The eDP link rate reported by the DP_MAX_LINK_RATE dpcd register (0xa) is
-contradictory to the highest rate supported reported by
-EDID (0xc =3D LINK_RATE_RBR2). The effects of this compounded with commit
-'4a8ca46bae8a ("drm/amd/display: Default max bpc to 16 for eDP")' results
-in no display modes being found and a dark panel.
+On Wed, Jan 12, 2022 at 6:58 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+>
+> hi Konstantin and Tareque,
+>
+> Can you help provide logs if we apply
+> 5a7b95fb993ec399c8a685552aa6a8fc995c40bd but revert
+> 8d35a2596164c1c9d34d4656fd42b445cd1e247f?
+>
+Another thing might be helpful to test with:
 
-For now, simply force the maximum supported link rate for the eDP attached
-2018 15" Apple Retina panels.
+after apply 5a7b95fb993ec399c8a685552aa6a8fc995c40bd
+1. delete SET_LATE_SYSTEM_SLEEP_PM_OPS(i2c_suspend_late,
+i2c_resume_early) and function i2c_suspend_late() and
+i2c_resume_early().
+2. delete SET_RUNTIME_PM_OPS(i2c_runtime_suspend, i2c_runtime_resume,
+NULL) and function i2c_runtime_suspend() and i2c_runtime_resume().
 
-Additionally, we must also check the firmware revision since the device ID
-reported by the DPCD is identical to that of the more capable 16,1,
-incorrectly quirking it. We also use said firmware check to quirk the
-refreshed 15,1 models with Vega graphics as they use a slightly newer
-firmware version.
+Does it still fail if we do 1 or 2?
 
-Tested-by: Aun-Ali Zaidi <admin@kodeit.net>
-Signed-off-by: Aun-Ali Zaidi <admin@kodeit.net>
-Signed-off-by: Aditya Garg <gargaditya08@live.com>
----
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu=
-/drm/amd/display/dc/core/dc_link_dp.c
-index 05e216524..17939ad17 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -5597,6 +5597,25 @@ static bool retrieve_link_cap(struct dc_link *link)
- 		dp_hw_fw_revision.ieee_fw_rev,
- 		sizeof(dp_hw_fw_revision.ieee_fw_rev));
-=20
-+	/* Quirk for Apple MBP 2018 15" Retina panels: wrong DP_MAX_LINK_RATE */
-+	{
-+		uint8_t str_mbp_2018[] =3D { 101, 68, 21, 103, 98, 97 };
-+		uint8_t fwrev_mbp_2018[] =3D { 7, 4 };
-+		uint8_t fwrev_mbp_2018_vega[] =3D { 8, 4 };
-+
-+		// We also check for the firmware revision as 16,1 models have an
-+		// identical device id and are incorrectly quirked otherwise.
-+		if ((link->dpcd_caps.sink_dev_id =3D=3D 0x0010fa) &&
-+		    !memcmp(link->dpcd_caps.sink_dev_id_str, str_mbp_2018,
-+			     sizeof(str_mbp_2018)) &&
-+		    (!memcmp(link->dpcd_caps.sink_fw_revision, fwrev_mbp_2018,
-+			     sizeof(fwrev_mbp_2018)) ||
-+		    !memcmp(link->dpcd_caps.sink_fw_revision, fwrev_mbp_2018_vega,
-+			     sizeof(fwrev_mbp_2018_vega)))) {
-+			link->reported_link_cap.link_rate =3D LINK_RATE_RBR2;
-+		}
-+	}
-+
- 	memset(&link->dpcd_caps.dsc_caps, '\0',
- 			sizeof(link->dpcd_caps.dsc_caps));
- 	memset(&link->dpcd_caps.fec_cap, '\0', sizeof(link->dpcd_caps.fec_cap));
---=20
-2.25.1
+Sorry that we don't have a platform with intel CPU and amd GPU
+combination to test with.
 
 
+> Thanks
+>
+> On Wed, Jan 12, 2022 at 6:02 PM Tareque Md Hanif
+> <tarequemd.hanif@yahoo.com> wrote:
+> >
+> >
+> > On 1/12/22 15:51, Wolfram Sang wrote:
+> > > would the reporters of the
+> > > regression be available for further testing?
+> > Sure. I am available.
