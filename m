@@ -2,92 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5E5D490200
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Jan 2022 07:34:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E03A2490451
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Jan 2022 09:49:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F2DE10EE42;
-	Mon, 17 Jan 2022 06:34:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEB0110E430;
+	Mon, 17 Jan 2022 08:48:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2055.outbound.protection.outlook.com [40.107.244.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F342410EE59
- for <amd-gfx@lists.freedesktop.org>; Mon, 17 Jan 2022 06:34:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UuV6Lpd7WQgG41+UodSJzaGhe8Bwcs5IIsPotq8MaVOrbFQn1un7o0kkZbG/L6+U3qpqpxxyJRVi4dQ4GXQ+Bn3et+L/pW4FH9fpx5diNJPS7XGZNywoN+68qeJV8vc1jOBAJzYsjUkMkZ0exCH0JFTUoFyqwcJbYwovw8BUTWftw3vUI6JArwq/9FfygWeaDezNkcSViV9HrNWbobzu1I0TqwTroP6KP0qDNGAAuUpzFH5iJjmxcmL+Ju9BTCeUTCftA3bSWzCcvIV15rJAc6/r+C570+VmYIQZ9fym1SRYAaapW7WB9DiAu3j7/XH6m3Lwg2AzGONNdfvDmoBlCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q7CF8IjL7IrlZcpBJM6Jclrxh7Ilok0jSGpLxlgk1Is=;
- b=bJXKcXCSZPekLJJ7flotsl9Gxm4HCL6EE6DH3tUeTqdL8SMwaQ+p/LoBrnoxCoY81mbGcVy4+Tsjr/tTG9A4odsZPHK1eFPg2PL5BKNiRhDnfjUoICj9terNkmePzQ/lhHHT2qSvizRRL8ZDiGNXWtihqCd0/5iHTvxJ/ILj8W/ynrvJI89sFoJaHu03mcECXSMCgE+tEngkOVgV1NN8RpwGrBI/z4NWk9UrwMynvPhtFgpUDYdI1UibGe4t6Up6CCG0278UPlYd9MQSmHscszlSb5YiJRA2JjjSRuTaURWjXtRMni5djJEfUfuZG6XHRguPrqbrDSi59WzXyEU+cg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q7CF8IjL7IrlZcpBJM6Jclrxh7Ilok0jSGpLxlgk1Is=;
- b=SsTcsdeBXWRkpkz97BYo7CtHSJUILgGcDpqkB686Vmt8Uc4WVGxKFODNmcHrKumVtcogVr6s2iVC/Y3OgyE2mG4VnFz3+3J+yAnjdiW02puMYwzeYgDrkuGo2gwE8Xx7BpaKps1MQyFm8Katc4+/5vGNVHgoIPL4xgbOOjwn22I=
-Received: from DM5PR18CA0057.namprd18.prod.outlook.com (2603:10b6:3:22::19) by
- MN2PR12MB4064.namprd12.prod.outlook.com (2603:10b6:208:1d3::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.11; Mon, 17 Jan
- 2022 06:34:05 +0000
-Received: from DM6NAM11FT034.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:22:cafe::bd) by DM5PR18CA0057.outlook.office365.com
- (2603:10b6:3:22::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.9 via Frontend
- Transport; Mon, 17 Jan 2022 06:34:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT034.mail.protection.outlook.com (10.13.173.47) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4888.9 via Frontend Transport; Mon, 17 Jan 2022 06:34:05 +0000
-Received: from amar-X570-AORUS-ELITE.amd.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.18; Mon, 17 Jan 2022 00:34:02 -0600
-From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/2] drm/amdgpu: add AMDGPURESET uevent on AMD GPU reset
-Date: Mon, 17 Jan 2022 12:03:43 +0530
-Message-ID: <20220117063343.27896-1-Amaranath.Somalapuram@amd.com>
-X-Mailer: git-send-email 2.25.1
+X-Greylist: delayed 533 seconds by postgrey-1.36 at gabe;
+ Sat, 15 Jan 2022 16:20:55 UTC
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D60AE10E2AC
+ for <amd-gfx@lists.freedesktop.org>; Sat, 15 Jan 2022 16:20:55 +0000 (UTC)
+Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de
+ [88.67.202.8])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id F12131EC0249;
+ Sat, 15 Jan 2022 17:11:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+ t=1642263116;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:in-reply-to:references;
+ bh=n8YoYfWNJ9tjotqKHxfDfcGGddBqg6mhGj8RsMOvzFU=;
+ b=O9pxt06NA/PjC11jpRREBV7R2MST5XzolENgn8JYXPfuQwq+SNgQKtFE+oXqqBmAMVX5eo
+ F3s9yEixRACZ32pAXlHGzm4UQSJmGHZLC4Ht+tqfncQA+ctJhNdE59bxfJTUrIKGaiUyUj
+ boVdm2Yojz6mKb94CGO6mM6HaRmY6mQ=
+Date: Sat, 15 Jan 2022 17:11:58 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: amd-gfx@lists.freedesktop.org
+Subject: RIP: 0010:radeon_vm_fini+0x15/0x220 [radeon]
+Message-ID: <YeLyToEyBFnQqQGB@zn.tnic>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 86ccbdd4-0a3c-4420-18ef-08d9d9835bcb
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4064:EE_
-X-Microsoft-Antispam-PRVS: <MN2PR12MB40646D53A2A921E7FAB53A76F8579@MN2PR12MB4064.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: M+5HqHQGNFI9+W6LSIRfL4LxcqTCZjJfXuy08n8rSxRT4TcYY2B/eypqpGPHXCrnz5u1FjBzw8TPiGVK5PJKhxw3illbghv03XxAyBFGRU2a8hGybPqLKZosiPrzswLdJk1otAnPYrlnwMXpLtaBhEVhMnyNAkdFbCCR5mDO7qc9/uJ4VKUuyLIBru52fKOgeDpR2oBb9XFvXOQvhUJaWCstEL0TUJKgP/6kIGeWdqwYnAgIzcIA40ZpjDK9x8+4vd7KcyYNx7lx7l8q7FWma+wOAqVjFrnypJn7P/9IeL0iftgeg56Dm1xZkM/ItfCwtq+K7tKyUnf5mRvz1breSnDYc9Z8hT+ZAMhAHMWqq/eVkLypYekKc+9sucfSCrtQGF6AVv4JdQxTtRHTYOUlNYJVBaNLepnoBjNZAHiSUx0eiWiAjkfHKR26iE5trjCq1zwLyU6+CL2zU9BkSyRnFKIbUIIaoLWHWuVgpZXm8DQjK8cCUvccHps4bvOBDSY1XA4yVH5o6XyDffYqy6RAxuwGTD3wZBrCq3WNkEnHFqx8QnPAE29YVNhVHKO9Z22oeY69b1LQRo/i8kQWCx+GXlh4XYq3+tyD91tz7Ap1EWTzcIavBd1WZB5Y2eOHlZGsF0cOFCMbOtoXrG4RtUHxBh0TdF2sLENlqi/VgZWj8e6gOY8TJEiJM6x1FZvQwk8ETxPimuTA26hk90jOxsqo4tLCLvaDJckRXfeBfBFj3X7tKR7mjRVRKVSmxTSD3BsAHJtXhCxeMRQsuTaxY97icPJAlOPf5gWsgNbRDHURptk=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(36840700001)(46966006)(40470700002)(81166007)(6666004)(356005)(82310400004)(40460700001)(36860700001)(16526019)(1076003)(426003)(86362001)(6916009)(7696005)(336012)(186003)(2616005)(4326008)(36756003)(2906002)(8936002)(70206006)(47076005)(54906003)(508600001)(26005)(5660300002)(70586007)(83380400001)(8676002)(316002)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2022 06:34:05.2522 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86ccbdd4-0a3c-4420-18ef-08d9d9835bcb
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT034.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4064
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+X-Mailman-Approved-At: Mon, 17 Jan 2022 08:48:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,79 +49,164 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>,
- christian.koenig@amd.com, shashank.sharma@amd.com
+Cc: Alex Deucher <alexander.deucher@amd.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ lkml <linux-kernel@vger.kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-AMDGPURESET uevent added to notify userspace, collect dump_stack and trace
+Hi folks,
 
-Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/nv.c | 45 +++++++++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+so this is a *very* old K8 laptop - yap, you read it right, family 0xf.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/nv.c b/drivers/gpu/drm/amd/amdgpu/nv.c
-index 2ec1ffb36b1f..b73147ae41fb 100644
---- a/drivers/gpu/drm/amd/amdgpu/nv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/nv.c
-@@ -529,10 +529,55 @@ nv_asic_reset_method(struct amdgpu_device *adev)
- 	}
- }
- 
-+/**
-+ * drm_sysfs_reset_event - generate a DRM uevent
-+ * @dev: DRM device
-+ *
-+ * Send a uevent for the DRM device specified by @dev.  Currently we only
-+ * set AMDGPURESET=1 in the uevent environment, but this could be expanded to
-+ * deal with other types of events.
-+ *
-+ * Any new uapi should be using the drm_sysfs_connector_status_event()
-+ * for uevents on connector status change.
-+ */
-+void drm_sysfs_reset_event(struct drm_device *dev)
-+{
-+	char *event_string = "AMDGPURESET=1";
-+	char *envp[2] = { event_string, NULL };
-+
-+	kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
-+}
-+
-+void amdgpu_reset_dumps(struct amdgpu_device *adev)
-+{
-+	struct drm_device *ddev = adev_to_drm(adev);
-+	int r = 0, i;
-+
-+	/* original raven doesn't have full asic reset */
-+	if ((adev->apu_flags & AMD_APU_IS_RAVEN) &&
-+		!(adev->apu_flags & AMD_APU_IS_RAVEN2))
-+		return;
-+	for (i = 0; i < adev->num_ip_blocks; i++) {
-+		if (!adev->ip_blocks[i].status.valid)
-+			continue;
-+		if (!adev->ip_blocks[i].version->funcs->reset_reg_dumps)
-+			continue;
-+		r = adev->ip_blocks[i].version->funcs->reset_reg_dumps(adev);
-+
-+		if (r)
-+			DRM_ERROR("reset_reg_dumps of IP block <%s> failed %d\n",
-+					adev->ip_blocks[i].version->funcs->name, r);
-+	}
-+
-+	drm_sysfs_reset_event(ddev);
-+	dump_stack();
-+}
-+
- static int nv_asic_reset(struct amdgpu_device *adev)
- {
- 	int ret = 0;
- 
-+	amdgpu_reset_dumps(adev);
- 	switch (nv_asic_reset_method(adev)) {
- 	case AMD_RESET_METHOD_PCI:
- 		dev_info(adev->dev, "PCI reset\n");
+[   31.353032] powernow_k8: fid 0xa (1800 MHz), vid 0xa
+[   31.353569] powernow_k8: fid 0x8 (1600 MHz), vid 0xc
+[   31.354081] powernow_k8: fid 0x0 (800 MHz), vid 0x16
+[   31.354844] powernow_k8: Found 1 AMD Turion(tm) 64 Mobile Technology MT-34 (1 cpu cores) (version 2.20.00)
+
+This is true story.
+
+Anyway, it blows up, see below.
+
+Kernel is latest Linus tree, top commit is:
+
+a33f5c380c4b ("Merge tag 'xfs-5.17-merge-3' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux")
+
+I can bisect if you don't see it immediately why it blows up.
+
+HTH.
+
+[   37.904144] [drm] radeon kernel modesetting enabled.
+[   37.904823] radeon 0000:01:05.0: vgaarb: deactivate vga console
+[   37.907351] Console: switching to colour dummy device 80x25
+[   37.909076] [drm] initializing kernel modesetting (RS480 0x1002:0x5955 0x10CF:0x1302 0x00).
+[   37.909767] resource sanity check: requesting [mem 0x000c0000-0x000dffff], which spans more than pnp 00:01 [mem 0x000d1800-0x000d1fff]
+[   37.911775] caller pci_map_rom+0x78/0x1d0 mapping multiple BARs
+[   37.912498] [drm] Generation 2 PCI interface, using max accessible memory
+[   37.913450] radeon 0000:01:05.0: VRAM: 64M 0x000000003C000000 - 0x000000003FFFFFFF (64M used)
+[   37.914199] radeon 0000:01:05.0: GTT: 512M 0x0000000040000000 - 0x000000005FFFFFFF
+[   37.914856] [drm] Detected VRAM RAM=64M, BAR=128M
+[   37.915758] [drm] RAM width 128bits DDR
+[   37.916181] [drm] radeon: 64M of VRAM memory ready
+[   37.917328] [drm] radeon: 512M of GTT memory ready.
+[   37.917832] [drm] GART: num cpu pages 131072, num gpu pages 131072
+[   37.923315] [drm] radeon: power management initialized
+[   37.923827] [drm] radeon: 2 quad pipes, 1 z pipes initialized.
+[   37.924372] [drm] PCIE GART of 512M enabled (table at 0x0000000008400000).
+[   37.925900] radeon 0000:01:05.0: WB enabled
+[   37.926436] radeon 0000:01:05.0: fence driver on ring 0 use gpu addr 0x0000000040000000
+[   37.929710] radeon 0000:01:05.0: radeon: MSI limited to 32-bit
+[   37.930282] [drm] radeon: irq initialized.
+[   37.930826] [drm] Loading R300 Microcode
+[   38.093492] [drm] radeon: ring at 0x0000000040001000
+[   38.094022] [drm] ring test succeeded in 4 usecs
+[   38.094561] [drm] ib test succeeded in 0 usecs
+[   38.096275] [drm] Panel ID String: 1024x768
+[   38.096762] [drm] Panel Size 1024x768
+[   38.097741] [drm] Radeon Display Connectors
+[   38.098107] [drm] Connector 0:
+[   38.098500] [drm]   VGA-1
+[   38.098779] [drm]   DDC: 0x68 0x68 0x68 0x68 0x68 0x68 0x68 0x68
+[   38.099321] [drm]   Encoders:
+[   38.099708] [drm]     CRT1: INTERNAL_DAC2
+[   38.100075] [drm] Connector 1:
+[   38.100440] [drm]   LVDS-1
+[   38.100761] [drm]   Encoders:
+[   38.101126] [drm]     LCD1: INTERNAL_LVDS
+[   38.101491] [drm] Connector 2:
+[   38.101883] [drm]   SVIDEO-1
+[   38.102248] [drm]   Encoders:
+[   38.102613] [drm]     TV1: INTERNAL_DAC2
+[   38.103023] BUG: kernel NULL pointer dereference, address: 0000000000000023
+[   38.103564] #PF: supervisor read access in kernel mode
+[   38.104018] #PF: error_code(0x0000) - not-present page
+[   38.104472] PGD 0 P4D 0 
+[   38.104728] Oops: 0000 [#1] PREEMPT SMP NOPTI
+[   38.104728] CPU: 0 PID: 349 Comm: systemd-udevd Not tainted 5.16.0+ #1
+[   38.104728] Hardware name: FUJITSU SIEMENS LIFEBOOK S2110/FJNB19A, BIOS Version 1.11  05/19/2006
+[   38.104728] RIP: 0010:radeon_vm_fini+0x15/0x220 [radeon]
+[   38.104728] Code: e1 d7 c3 ff b8 f4 ff ff ff eb b6 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 41 57 41 56 41 55 49 89 fd 41 54 49 89 f4 55 53 <48> 8b 46 20 48 85 c0 0f 85 ae fd 01 00 4d 8d 74 24 20 4c 89 f7 e8
+[   38.104728] RSP: 0018:ffffc900004b3a98 EFLAGS: 00010202
+[   38.104728] RAX: 0000000000000001 RBX: ffff8880081a4000 RCX: 0000000000000000
+[   38.104728] RDX: 0000000000000001 RSI: 0000000000000003 RDI: ffff888008168000
+[   38.104728] RBP: ffff88800432b200 R08: 0000000000000000 R09: ffff88800432b200
+[   38.104728] R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000003
+[   38.104728] R13: ffff888008168000 R14: ffff8880081a4000 R15: 0000000000000003
+[   38.104728] FS:  00007fe2cfab18c0(0000) GS:ffff888039000000(0000) knlGS:0000000000000000
+[   38.104728] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   38.104728] CR2: 0000000000000023 CR3: 000000000820e000 CR4: 00000000000006f0
+[   38.104728] Call Trace:
+[   38.104728]  <TASK>
+[   38.104728]  radeon_driver_open_kms+0x6b/0x1b0 [radeon]
+[   38.104728]  drm_file_alloc+0x19c/0x260 [drm]
+[   38.104728]  drm_client_init+0xdc/0x190 [drm]
+[   38.104728]  drm_fb_helper_init+0x3a/0x60 [drm_kms_helper]
+[   38.104728]  radeon_fbdev_init+0x8e/0x130 [radeon]
+[   38.104728]  radeon_modeset_init.cold+0x206/0x521 [radeon]
+[   38.104728]  radeon_driver_load_kms+0xe5/0x1f0 [radeon]
+[   38.104728]  drm_dev_register+0xfc/0x1e0 [drm]
+[   38.104728]  radeon_pci_probe+0xc6/0x100 [radeon]
+[   38.104728]  pci_device_probe+0xbb/0x170
+[   38.104728]  really_probe+0xca/0x3c0
+[   38.104728]  __driver_probe_device+0xfe/0x180
+[   38.104728]  driver_probe_device+0x2c/0xb0
+[   38.104728]  __driver_attach+0xc5/0x1d0
+[   38.104728]  ? __device_attach_driver+0xf0/0xf0
+[   38.104728]  ? __device_attach_driver+0xf0/0xf0
+[   38.104728]  bus_for_each_dev+0x7a/0xc0
+[   38.104728]  ? klist_add_tail+0x4f/0x90
+[   38.104728]  bus_add_driver+0x16b/0x210
+[   38.104728]  driver_register+0x8b/0xe0
+[   38.104728]  ? 0xffffffffa0758000
+[   38.104728]  do_one_initcall+0x44/0x200
+[   38.104728]  ? kmem_cache_alloc_trace+0xb3/0x1f0
+[   38.104728]  do_init_module+0x5c/0x260
+[   38.104728]  __do_sys_finit_module+0xca/0x140
+[   38.104728]  do_syscall_64+0x3b/0x80
+[   38.104728]  entry_SYSCALL_64_after_hwframe+0x44/0xae
+[   38.104728] RIP: 0033:0x7fe2cff62679
+[   38.104728] Code: 48 8d 3d 9a a1 0c 00 0f 05 eb a5 66 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d c7 57 0c 00 f7 d8 64 89 01 48
+[   38.104728] RSP: 002b:00007ffd2a00b738 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+[   38.104728] RAX: ffffffffffffffda RBX: 0000562792263fb0 RCX: 00007fe2cff62679
+[   38.104728] RDX: 0000000000000000 RSI: 00005627922c0a00 RDI: 0000000000000016
+[   38.104728] RBP: 0000000000020000 R08: 0000000000000000 R09: 0000562791f34e62
+[   38.104728] R10: 0000000000000016 R11: 0000000000000246 R12: 00005627922c0a00
+[   38.104728] R13: 0000000000000000 R14: 00005627922c5fa0 R15: 0000562792263fb0
+[   38.104728]  </TASK>
+[   38.104728] Modules linked in: radeon(+) mac80211 ath drm_ttm_helper ttm cfg80211 snd_atiixp drm_kms_helper snd_ac97_codec drm ac97_bus snd_pcm powernow_k8 snd_timer rfkill pcmcia drm_panel_orientation_quirks snd libarc4 yenta_socket edac_mce_amd i2c_algo_bit pcmcia_rsrc evdev joydev fb_sys_fops soundcore syscopyarea pcspkr pcmcia_core sysfillrect input_leds sysimgblt k8temp video battery ac button b44 mii sdhci_pci iosf_mbi firewire_ohci psmouse ssb cqhci ohci_pci firewire_core sdhci led_class crc_itu_t libphy ehci_pci ohci_hcd ehci_hcd mmc_core i2c_piix4 usbcore usb_common
+[   38.104728] CR2: 0000000000000023
+[   38.137547] ---[ end trace 91f9e835d12cf639 ]---
+[   38.138012] RIP: 0010:radeon_vm_fini+0x15/0x220 [radeon]
+[   38.138690] Code: e1 d7 c3 ff b8 f4 ff ff ff eb b6 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 41 57 41 56 41 55 49 89 fd 41 54 49 89 f4 55 53 <48> 8b 46 20 48 85 c0 0f 85 ae fd 01 00 4d 8d 74 24 20 4c 89 f7 e8
+[   38.140044] RSP: 0018:ffffc900004b3a98 EFLAGS: 00010202
+[   38.140501] RAX: 0000000000000001 RBX: ffff8880081a4000 RCX: 0000000000000000
+[   38.141181] RDX: 0000000000000001 RSI: 0000000000000003 RDI: ffff888008168000
+[   38.141808] RBP: ffff88800432b200 R08: 0000000000000000 R09: ffff88800432b200
+[   38.142462] R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000003
+[   38.143089] R13: ffff888008168000 R14: ffff8880081a4000 R15: 0000000000000003
+[   38.143739] FS:  00007fe2cfab18c0(0000) GS:ffff888039000000(0000) knlGS:0000000000000000
+[   38.144369] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   38.144959] CR2: 00005627922c1218 CR3: 000000000820e000 CR4: 00000000000006f0
+[   38.190852] ath5k 0000:08:0a.0: registered as 'phy0'
+[   38.872632] ath: EEPROM regdomain: 0x67
+[   38.873033] ath: EEPROM indicates we should expect a direct regpair map
+[   38.873576] ath: Country alpha2 being used: 00
+[   38.874056] ath: Regpair used: 0x67
+[   38.874464] ieee80211 phy0: Selected rate control algorithm 'minstrel_ht'
+[   38.876582] ath5k: phy0: Atheros AR5414 chip found (MAC: 0xa5, PHY: 0x61)
+[   42.868873] b44 ssb0:0 eth0: Link is up at 100 Mbps, full duplex
+[   42.869437] b44 ssb0:0 eth0: Flow control is off for TX and off for RX
+[   42.870108] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+[   43.788129] Adding 1951740k swap on /dev/sda1.  Priority:-2 extents:1 across:1951740k 
+[   43.879669] EXT4-fs (sda2): re-mounted. Quota mode: disabled.
+[   44.683438] loop: module loaded
+[   47.618816] fuse: init (API version 7.36)
+[   47.839777] input: ACPI Virtual Keyboard Device as /devices/virtual/input/input14
+[   55.500008] NET: Registered PF_AX25 protocol family
+
 -- 
-2.25.1
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
