@@ -2,129 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFBA44907F3
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Jan 2022 12:57:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FE6A4909ED
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Jan 2022 15:07:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0007310E1D3;
-	Mon, 17 Jan 2022 11:57:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ABEF10E304;
+	Mon, 17 Jan 2022 14:07:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2043.outbound.protection.outlook.com [40.107.244.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5914A10E1D3
- for <amd-gfx@lists.freedesktop.org>; Mon, 17 Jan 2022 11:57:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U6v7ESbLsrNgtRMJ6G3BDY3TOgPUHTNaPVgkxoqYapDo6Kt4Q5gmTBescvNZrQqZl/eJLhGrrYS70dWPXgmpI2vJEkBHAsXmwOXM51T2HHeIPOnu5+MNTdQslQKePlxlHnPPq6MsJlUy56vZQOLvnSDrCXSaWOK9Z1x496TNFRACRmMeSdyVR2zGCNTMe+y73o9GF0e2E58y7BbCstUwX8k6bILd/UTE8c9QEfXhldf28uVvo6weFb21NkDFZdB04ud6yXqNFbLjPC6VHQJXX8l2kgQcX0dLP1pn4WGSlwLTK/78KRpagCS62KEISDpK8w6SayTDEFbImbu0+kiyGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sqlwBmLDLeBDXs0ZtxEyEzLkyKFg2cP4b+QH0Smi47o=;
- b=e1B5xYPC7ZSe7vTNNfPVSLy0drXkf0td+yT57dVNi12Lv45hScC69sxK/TWVeU364gUJ3EM7CJcgRVvm7MvgzNk2GUvEBTEfMEcO3fUmJRLeUUdvKbf/657TeXkxY8JonTGK9WgdEU99xOaL3SUKrsDAjKf3QK+S15qnl46m0olM4eg1n1hd+ZdvUbu7hBiBvU36xO6GB8UXed/AZxhyTXx/2vsuqOwut0PpeeXowEQ/eMDyjxCqKpns6gauPMYBEG0IMcDPWC6dtvYbsoCKr0mZgxYnAuP6iDTJkMqseyqWCYfyx60PTzaD6QVyc2g0nY1McPzCFNTGIkNHt5gnWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sqlwBmLDLeBDXs0ZtxEyEzLkyKFg2cP4b+QH0Smi47o=;
- b=fO6gfptALFgGSJeHlWbqhXrjtl7nLFWcDl5egVstq2QPrxjF23VzDie53bs59I1fBKBzjb4cRrUYoQMr4bjJdNEbJMpqYTo5bL+wrfoZyZo/DS7MYxBgpmNiCyn5pvH9btMLeedw4divhyrConwZKUdNR/Ucxga20mvs2DDYuhY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
- (2603:10b6:301:5a::14) by MW3PR12MB4458.namprd12.prod.outlook.com
- (2603:10b6:303:5d::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.11; Mon, 17 Jan
- 2022 11:57:28 +0000
-Received: from MWHPR1201MB0192.namprd12.prod.outlook.com
- ([fe80::b4d6:f148:3798:6246]) by MWHPR1201MB0192.namprd12.prod.outlook.com
- ([fe80::b4d6:f148:3798:6246%7]) with mapi id 15.20.4888.014; Mon, 17 Jan 2022
- 11:57:27 +0000
-Subject: Re: [PATCH 2/2] drm/amdgpu: add AMDGPURESET uevent on AMD GPU reset
-To: "Sharma, Shashank" <shashank.sharma@amd.com>,
- "Somalapuram, Amaranath" <asomalap@amd.com>,
- "Somalapuram, Amaranath" <Amaranath.Somalapuram@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
-References: <20220117063343.27896-1-Amaranath.Somalapuram@amd.com>
- <12d7152f-3274-a250-e25e-6144cc9cc1e2@amd.com>
- <DM6PR12MB3897D77C82314BBBDBE8AF93F8579@DM6PR12MB3897.namprd12.prod.outlook.com>
- <5568c4e1-7bc5-cd7f-d6d7-92a4f920c40c@amd.com>
- <DM6PR12MB3897D33226DBA88264B5BBF8F8579@DM6PR12MB3897.namprd12.prod.outlook.com>
- <62372e77-31c8-211f-0d9c-01a0f880badf@amd.com>
- <779d4778-6b85-2769-f169-f5f9e956a671@amd.com>
- <10fe91c4-9078-8937-5dac-0625d38c2ea3@amd.com>
- <7a082b06-179a-22dc-e176-3f6d46a1deeb@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <8ffbf71a-9c62-b153-bf52-a88e7bcf91d3@amd.com>
-Date: Mon, 17 Jan 2022 12:57:15 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-In-Reply-To: <7a082b06-179a-22dc-e176-3f6d46a1deeb@amd.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-ClientProxiedBy: AS8PR04CA0031.eurprd04.prod.outlook.com
- (2603:10a6:20b:312::6) To MWHPR1201MB0192.namprd12.prod.outlook.com
- (2603:10b6:301:5a::14)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39C7810E3D0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Jan 2022 08:42:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1642408926;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XGK1SlpJXhWBG+NMFQFueBq+YAxFBORg6nehgEQYpqw=;
+ b=Zd+y0zN3aYj7Z1zv5oI6R2PRqZlb9NgeiwlKARPFuwWwrtf7HHHpA1nWv1CepPAJh417Ap
+ g1sIvTnaVEFNpjBdo16G8kB6Bu3o8bRfsGTJnsnuOd92obDgsoy0O5v/3qK2NYODRY/Boy
+ Gn1wBO/Vdw3R+BIsnTjIYKm+jNWINZI=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-32-KmF17DuqN4a4TUYSEWKtaA-1; Mon, 17 Jan 2022 03:42:05 -0500
+X-MC-Unique: KmF17DuqN4a4TUYSEWKtaA-1
+Received: by mail-ed1-f71.google.com with SMTP id
+ cf15-20020a0564020b8f00b0040284b671c6so2431110edb.22
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Jan 2022 00:42:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to:user-agent;
+ bh=XGK1SlpJXhWBG+NMFQFueBq+YAxFBORg6nehgEQYpqw=;
+ b=cYWpZ5jw1ZFPEOvwgBF4gSv0jT+PmVq4FdXr3DhekqqZt/2z3NOLdVPUQ9RWmRpRKp
+ VmPE6V8nqp3vljX29HhTkwn6dFD0KA/yRTOwTRqGusl4XjSRg6ioT4BJs/XqqOSoXNNU
+ Wz/eeSE17og3DSRG0HoRMQzbSgSoVpWt5tdVRWcwvHhEab/xz+ZE9ONokTenyRzRLX+9
+ Ws0v/ufYtcx1TOOOLnarbwWKdk6h8RwlyxlYqvjBakh5jIAtkbNfvAyAMfjWBUEV+w7O
+ T1eGL4SxX0N39gzwDrHRMS8r5j8WkOcajAAmsI8efzPr3VUajE+RmGPju3bfPwrIMSou
+ oo/w==
+X-Gm-Message-State: AOAM5335gj4ANUbIULN5td5BOjHuU6KJFpVWnkrMD6RFf3LkuRqHF8l9
+ kceEO8rhsxYdgmhmXUFcLB8NlCSGYMoLYbr/4Y0vFfez/Pbl5UWKZCqevsNrEOYTYgbAHJNoMhU
+ 2sxMO97RXToi5G5fWzIK64AlrTw==
+X-Received: by 2002:aa7:d88d:: with SMTP id u13mr12929579edq.217.1642408923858; 
+ Mon, 17 Jan 2022 00:42:03 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyQaNHnu9csjbqL/rvTKocAVaWQGdF9eKIb7dk2s05zyxmDzJTWikk+EcxQrUKDwpxHigdkag==
+X-Received: by 2002:aa7:d88d:: with SMTP id u13mr12929556edq.217.1642408923485; 
+ Mon, 17 Jan 2022 00:42:03 -0800 (PST)
+Received: from janakin.usersys.redhat.com ([83.148.38.137])
+ by smtp.gmail.com with ESMTPSA id y7sm4989329edq.27.2022.01.17.00.42.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 17 Jan 2022 00:42:02 -0800 (PST)
+Date: Mon, 17 Jan 2022 09:42:01 +0100
+From: Jan Stancek <jstancek@redhat.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Subject: Re: RIP: 0010:radeon_vm_fini+0x15/0x220 [radeon]
+Message-ID: <20220117084158.GA2673957@janakin.usersys.redhat.com>
+References: <YeLyToEyBFnQqQGB@zn.tnic>
+ <1049939c-422f-787a-7481-21a2598eeedd@amd.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0631f501-1b78-408d-f8d8-08d9d9b087f5
-X-MS-TrafficTypeDiagnostic: MW3PR12MB4458:EE_
-X-Microsoft-Antispam-PRVS: <MW3PR12MB4458AF1A0F96221D3FFFE6AA83579@MW3PR12MB4458.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NhrvI5Tvmamtvg4EG/M1sAttxEogJwgRNkmRjdafDcQoxyk22EmOWGH4kclDB/3LaQRjNDGlsJV2II9fi039/8x45gDU+j7XJaeh4w1TmZaXm8Pq9ymXHkvXx/Q1jjCchBw0fvTvf0B4gIV2atWISCOJh6gQypPeJIRXHwm/AtfkjxzK9pJmCcnmP2xUYgmlPIDMsJmNJ5iBKICDN6O9nqfwuGW+eWbs8pYjc1hB04xfpnNv+2kDQexHkIRSSjlMYq4V4QrD9kzXHd0MeqsU/3k3eq3O4M02EC/r5qfW9MevBldIa4yc825Ub9J2/xi9ItV04WthDWspT0XhUtz3ozE+qDQy6U4y6r8qqGBJnp2p4T7QMq97f8CxSuQbSNuX2DrW94wM5UlI1RuuVl3T9mmOjdhuecJYwnfR3Z/pw1G4KTyRBjU8LttGRxBtG/WY+OUTXVzL7Rn4Yl1e+uW5kAN8/5zwzvh23A8JR4oWJIWa3gYMEu0/fgod1QZWxqbrEK+0BQcjTQzRpmE6YHt82VMO6hjD2ZBAblpSRbxliPbcPshE9sscmbjTgSDoQo4wkOhkb66YXJ+ws7248fPEoXC83k8CWzfD+7DlLpCUlbb+fsOunPWzN4yCseSpxxG+8D5a6YUF6FfZ6tzkNJP2BT4wta/tToMgiUSr/L7KPBPrU5OpHeJ5xtDKH9xAN37EDN0epKab0HWbKX3C1/9Wlswdvv9EiAIc8r8g4hur7DjCTE7tViBCQqkjk7Txz3PG
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MWHPR1201MB0192.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(4326008)(31686004)(53546011)(86362001)(8936002)(83380400001)(110136005)(6506007)(8676002)(2906002)(66556008)(66476007)(66946007)(6666004)(36756003)(26005)(316002)(38100700002)(6512007)(5660300002)(6486002)(2616005)(186003)(508600001)(31696002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cmxNeUQ3eVVVZ2dIaHFqaTVBZlQzaFVPT1JTSHZtekVUTTJzSkdjQUtaUzNu?=
- =?utf-8?B?QnR0eTEzNFMyNUgwNEZNSzFWaDVMTGRIZUJ4OUl2WEoyUko1UTltd25XRVg3?=
- =?utf-8?B?cklWWEk3ZCtVcTFha0RmcStOSHZjbGlUMElZbkhEQXlHWGsxdFc1MGJEVTIx?=
- =?utf-8?B?YUxTdHpVdjJIci9tanZ6c2lVN0k0b1lGbkcrcDJBRVRIV2ZvMkR3VVJNbkNV?=
- =?utf-8?B?UER5SjJ1N3Q3Z0NCeXZjemVhTUJ3dFNLOXpYMVZzbENWenZQajV3dlk5MWMw?=
- =?utf-8?B?Nnd1bU13WWFKbXhjOFZwdTdiV1FuS3VQc0EvSjBvd2xnVkRTc2hOQVcza3Vn?=
- =?utf-8?B?Ym54OW9IT3VkRUxFY2Zhc0ljUWN5Z0V5bENvclYvZVZxMmM4dE12S3NKTFBo?=
- =?utf-8?B?a2ZWWlA2MHArTFI4M2pOakZWd24zS2NmMmhwcGtkVnBvaHA2dDZ6V1p4S1hi?=
- =?utf-8?B?eFB0S0liR0M3a2p3MElwK0NZcEhhSmpyVHZYbk9STmlMSzRXRlFJOGFNOEdK?=
- =?utf-8?B?Q2ZhVHJENjZOdjRVR3pmTFVLOXR0cVhTTUNQbTAyQlJJeU53N2tjb2sxVjZ2?=
- =?utf-8?B?ODFxM3hEUXFPbW1EdXdKSGR0RUVKcWYrTGcxUy9HY0hMR0JaMGUzaXU2dU01?=
- =?utf-8?B?S3IvNkdFNDNjZVlOb3F0bmhhQXkvWFBDRGFOZ3BoQ2FOY21OemFlQTRCc1ps?=
- =?utf-8?B?c281RC9IT0lKTjNIUEFqSDJxSTFsRjFGaWpiQkhwc0xxMEQ1azVBZ011VHlE?=
- =?utf-8?B?M0U2bUhwNzVILzBrc0Mvaks4TFJ6SHpOakZXejAxQmpoYzgvMlBVNWVwWXVw?=
- =?utf-8?B?Tkl6aGdrZmxNVzRacXppbmF1MnFVR0ZsWGtndllzZ1NSZ2czTHpLNmtKQXZq?=
- =?utf-8?B?eE4rQmtvRHJvWGVVQ3AxcnVvVFZ3SFF6SG5PS2FmL3ZRTzNYRjRPQ1IyVnJH?=
- =?utf-8?B?bmYyeGFzQVFKZ2xMMExSMGRwbE5qWkNYL295ZUQ1bXZpcFlESi82aEVJcmFz?=
- =?utf-8?B?RDZFM0UxUWl4aHhzUCtyS0Fqd2ZpcFFRalNvMC9FN0NvYTVNSkxlZTVFRkNI?=
- =?utf-8?B?OXVvOUFMcG5UZTZySzhzb1ZoMVFpTjQ4SVYwN1pJYTZ3WFpQSWp4NEQ2Mnp4?=
- =?utf-8?B?cXVaOVduMUVVV3pRSWVVcERBR0hvMld1MWJvRjZEVHZVa3JTOEJQaytVUTZD?=
- =?utf-8?B?VFdOZ3BBTlBGSFJzYWFGWXV3dkxQVlNsZS9talZGZkhQVE9POXh0M2syc3J4?=
- =?utf-8?B?K1dDeURaeVJKbFhMT3pYZGtsYkFKTkZKblJOalBzRkV0Qk1qUzJmaFZJanc1?=
- =?utf-8?B?bExtMnBjNnFGVCtwUy91eStaMTRQZlpWaFRZc2EvRFVTZFZzd2gxRGNWc1Vi?=
- =?utf-8?B?V1JMZExLa2NKK2N0UXM0OEhMbUZWekdQblFRdEo1TmZPUTdEWDRwNGNMbFNO?=
- =?utf-8?B?ZDF1R3Jhd0V1Nlh4d3FsMWwzbE55Q3owc0dpQzVneTR5Y3RPMHc3WE1lU1RR?=
- =?utf-8?B?aTg1M0hnK0RReERZRTh2M0xIeWExaHdyZjJwTG9VaG9qa1MvSmhDNkF0Y2J1?=
- =?utf-8?B?NE1ZdmN4Nk1JZlNaTVRyZEg3cTBFbDZ4NFVxRk5XcVVIWVhGdXJ5NFF1R1Fs?=
- =?utf-8?B?RFJLeWIwSERZb0E1aGVrWi9WSW5QVjBKRktpNmIxcHAzdVIzYXNJSlRTY0Zl?=
- =?utf-8?B?cTdld2ZMcUt5NzBaZCtxRFVia1VBNExMUU1BSW1rWUxtU0RPOUdRYlhuaXQv?=
- =?utf-8?B?QllpYjFDRXR4ZGxtcE9manZDWTlkR3d0THNVNmgyRE5tYVhvaDU0dkpqdkdk?=
- =?utf-8?B?U1EyL3ZweGVvWUlTUEhMaEE4bTZBSVFRY0l4RUp3NW45ajZjankzOGdUVy9j?=
- =?utf-8?B?NHdFQzdRYXVnU0pGZTNEc084N1JtQkpsaGVrU1VId2p3S0JOYkJGWFJUd3ht?=
- =?utf-8?B?NEpTcFVibVdRbEtVOGFWWXpxdEY0aEFja2cxc3dXZ3RQRkVta3MyaWRVWkR4?=
- =?utf-8?B?Q1o3Z3ZWVHRsOStzZWNLN1cvTFJiRVVsbGNwSU8xZGo4NmhuM2V5aUtCNHVP?=
- =?utf-8?B?OUpjcDJNM2tVdHgxMHNqNk1qNnJUd3BrMU40d3RpVzFRdEJWY0YzbDdnUllV?=
- =?utf-8?Q?8+eU=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0631f501-1b78-408d-f8d8-08d9d9b087f5
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1201MB0192.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2022 11:57:27.2369 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: G0HVqLVaU/n6frb0hB5PFw1EoNd5QqbpPcDcTLsARmtxdwkNtM74BREmoCicovC0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4458
+In-Reply-To: <1049939c-422f-787a-7481-21a2598eeedd@amd.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=jstancek@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 17 Jan 2022 14:07:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,49 +84,137 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Borislav Petkov <bp@alien8.de>,
+ lkml <linux-kernel@vger.kernel.org>, amd-gfx@lists.freedesktop.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 17.01.22 um 12:43 schrieb Sharma, Shashank:
-> Hello Christian,
+On Mon, Jan 17, 2022 at 08:16:09AM +0100, Christian König wrote:
+>Hi Borislav,
 >
-> On 1/17/2022 11:37 AM, Christian KÃ¶nig wrote:
->> Am 17.01.22 um 11:34 schrieb Somalapuram, Amaranath:
->>> [SNIP]
->>> Any suggestion how we can notify user space during this situation. 
+>Am 15.01.22 um 17:11 schrieb Borislav Petkov:
+>>Hi folks,
 >>
->> Well trace points should work. They use a ring buffer and are 
->> specially made to work in such situations.
+>>so this is a *very* old K8 laptop - yap, you read it right, family 0xf.
+>>
+>>[   31.353032] powernow_k8: fid 0xa (1800 MHz), vid 0xa
+>>[   31.353569] powernow_k8: fid 0x8 (1600 MHz), vid 0xc
+>>[   31.354081] powernow_k8: fid 0x0 (800 MHz), vid 0x16
+>>[   31.354844] powernow_k8: Found 1 AMD Turion(tm) 64 Mobile Technology MT-34 (1 cpu cores) (version 2.20.00)
+>>
+>>This is true story.
 >
-> We are anyways sending a trace event with data, but can trace event be 
-> a wake up source for an application (like a tracer) ? This DRM event 
-> is just to indicate that reset happened, so app has to read from trace 
-> file.
+>well, that hardware is ancient ^^.
+>
+>Interesting to see that even that old stuff is still used.
+>
+>>Anyway, it blows up, see below.
+>>
+>>Kernel is latest Linus tree, top commit is:
+>>
+>>a33f5c380c4b ("Merge tag 'xfs-5.17-merge-3' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux")
+>>
+>>I can bisect if you don't see it immediately why it blows up.
+>
+>Immediately I see that code is called which isn't for this hardware 
+>generation.
+>
+>This is extremely odd because it means that we either have recently 
+>added a logic bug or the detection of the hardware generation doesn't 
+>work as expected any more.
+>
+>Please bisect,
+>Christian.
 
-Yeah, that's a really good question I can't fully answer. As far as I 
-know you can filter in userspace what you get from the tracer, but I 
-don't know if you can block on a specific event.
+I'm see panics like this one as well on multiple systems in lab (e.g. ProLiant SL390s G7,
+PowerEdge R805). Looks same to what Bruno reported here:
+  https://lore.kernel.org/all/CA+QYu4rt2VHWzbOt-SegA9yABqC-D36PoqTZmy6DscWvp+6ZMQ@mail.gmail.com/
 
-Christian.
+It started around 8d0749b4f83b - Merge tag 'drm-next-2022-01-07', running a bisect atm.
 
->
->>
->> Alternative would be to audit the udev code and allow giving a GFP 
->> mask to the function to make sure that we don't run into the deadlock.
->>
->> Another alternative is a debugfs file which just blocks for the next 
->> reset to happen.
->>
->
-> - Shashank
->
->> Regards,
->> Christian.
->>
->>> Regards,
->>>
->>> S.Amarnath
->>>
->>
+[   15.230105] SGI XFS with ACLs, security attributes, scrub, quota, no debug enabled 
+[   15.234816] XFS (sdb1): Mounting V5 Filesystem 
+[   15.342261] [drm] ib test succeeded in 0 usecs 
+[   15.343311] [drm] No TV DAC info found in BIOS 
+[   15.344061] [drm] Radeon Display Connectors 
+[   15.344330] [drm] Connector 0: 
+[   15.344961] [drm]   VGA-1 
+[   15.345174] [drm]   DDC: 0x60 0x60 0x60 0x60 0x60 0x60 0x60 0x60 
+[   15.345991] [drm]   Encoders: 
+[   15.346617] [drm]     CRT1: INTERNAL_DAC1 
+[   15.346942] [drm] Connector 1: 
+[   15.347561] [drm]   VGA-2 
+[   15.347746] [drm]   DDC: 0x6c 0x6c 0x6c 0x6c 0x6c 0x6c 0x6c 0x6c 
+[   15.348598] [drm]   Encoders: 
+[   15.349217] [drm]     CRT2: INTERNAL_DAC2 
+[   15.349521] BUG: kernel NULL pointer dereference, address: 0000000000000000 
+[   15.349974] #PF: supervisor read access in kernel mode 
+[   15.350305] #PF: error_code(0x0000) - not-present page 
+[   15.350675] PGD 0 P4D 0  
+[   15.350814] Oops: 0000 [#[   15.431048] CPU: 0 PID: 410 Comm: systemd-udevd Tainted: G          I       5.16.0 #1 
+[   15.443401] XFS (sdb1): Ending clean mount 
+[   15.451541] Hardware name: HP ProLiant SL390s G7/, BIOS P69 07/02/2013 
+[   15.451545] RIP: 0010:radeon_vm_fini+0x174/0x300 [radeon] 
+[   15.452689] Code: e8 74 cc 7a c1 eb d1 4c 8b 24 24 4d 8d 74 24 48 49 8b 5c 24 48 49 39 de 74 38 66 2e 0f 1f 84 00 00 00 00 00 66 90 4c 8d 7b a8 <48> 8b 2b 48 8d 7b 18 e8 30 1e f4 ff 48 83 c3 c0 48 89 df e8 34 f3 
+[   15.454412] RSP: 0018:ffffa3494800001 R08: 0000000000200000 R09: 0000000000000000 
+[   15.533944] R10: 0000000000000000 R11: ffffffffc04f7810 R12: ffff979b4ba46730 
+[   15.533945] R13: ffff979d5c260000 R14: ffff979b4ba46778 R15: ffffffffffffffa8 
+[   15.533947] FS:  00007f3a13141500(0000) GS:ffff979d4ba00000(0000) knlGS:0000000000000000 
+[   15.533948] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033 
+[   15.533950] CR2: 0000000000000000 CR3: 000000031c7fc005 CR4: 00000000000206f0 
+[   15.533952] Call Trace: 
+[   15.533956]  <TASK> 
+[   15.533959]  radeon_driver_open_kms+0x118/0x180 [radeon] 
+[   15.533998]  drm_file_alloc+0x1a8/0x230 [drm] 
+[      
+  OK   [[   15.961755]  drm_client_init+0x99/0x130 [drm] 
+  [   15.961777]  drm_fb_helper_init+0x32/0x50 [drm_kms_helper] 
+  [   15.961809]  radeon_fbdev_init+0xbc/0x110 [radeon] 
+  [   15.963653]  radeon_modeset_init+0x857/0x9e0 [radeon] 
+  0m] Mounted  [0;[   15.964003]  radeon_driver_load_kms+0x19b/0x290 [radeon] 
+  [   15.964474]  drm_dev_register+0xf5/0x2d0 [drm] 
+  1;39msysroot.mou[   15.965196]  radeon_pci_probe+0xc3/0x120 [radeon] 
+  [   15.965972]  pci_device_probe+0x185/0x220 
+  [   15.966225]  call_driver_probe+0x32/0xd0 
+  [   15.966505]  really_probe+0x157/0x380 
+  [   15.99bus_add_driver+0x111/0x210 
+  [   16.467150]  ? 0xffffffffc0412000 
+  [   16.467805]  driver_register+0x81/0x120 
+  [   16.468069]  do_one_initcall+0xb0/0x290 
+  [   16.468359]  ? down_write+0xe/0x40 
+  [   16.469008]  ? kernfs_activate+0x28/0x130 
+  [   16.469267]  ? kernfs_add_one+0x1c8/0x210 
+  [   16.469563]  ? vunmap_p4d_range+0x3dc/0x420 
+  [   16.469858]  ? __vunmap+0x1df/0x2a0 
+  [   16.470466]  ? kmem_cache_alloc_trace+0x1a4/0x330 
+  [   16.471224]  ? do_init_module+0x24/0x230 
+  [   16.471485]  do_init_module+0x5a/0x230 
+  [   16.471779]  load_module+0x145f/0x1630 
+  [   16.472022]  ? kernel_read_file_from_fd+0x5d/0x80 
+  [   16.472762]  __se_sys_finit_module+0x9f/0xd0 
+  [   16.473480]  do_syscall_64+0x43/0x90 
+  [   16.473778]  entry_SYSCALL_64_after_hwframe+0x44/0xae 
+  [   16.474123] RIP: 0033:0x7f3a13d11e2d 
+  [   16.474422] Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d bb 7f 0e 00 f7 d8 64 89 01 48 
+  [   16.476010] RSP: 002b:00007fff9cb92b78 EFLAGS: 00000246 ORIG_RAX: 000000 R08: 0000000000000000 R09: 0000000000000002 
+  [   16.977414] R10: 0000000000000012 R11: 0000000000000246 R12: 00007f3a13e6d43c 
+  [   16.978320] R13: 0000555c5eba3080 R14: 0000000000000007 R15: 0000555c5eba3d70 
+  [   16.979218]  </TASK> 
+  [   16.979381] Modules linked in: xfs radeon(+) drm_ttm_helper ttm i2c_algo_bit drm_kms_helper crct10dif_pclmul crc32_pclmul crc32c_intel cec ata_generic ghash_clmulni_intel drm serio_raw pata_acpi hpwdt 
+  [   16.980516] CR2: 0000000000000000 
+  [   16.981179] ---[ end trace d6f7f573dad76bd2 ]--- 
+  [   16.981861] RIP: 0010:radeon_vm_fini+0x174/0x300 [radeon] 
+  [   16.982257] Code: e8 74 cc 7a c1 eb d1 4c 8b 24 24 4d 8d 74 24 48 49 8b 5c 24 48 49 39 de 74 38 66 2e 0f 1f 84 00 00 00 00 00 66 90 4c 8d 7b a8 <48> 8b 2b 48 8d 7b 18 e8 30 1e f4 ff 48 83 c3 c0 48 89 df e8 34 f3 
+  [   16.983766] RSP: 0018:ffffa3494801f8e8 EFLAGS: 00010286 
+  [   16.984124] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000 
+  nt   
+   - /sysroo[   16.984981] RDX: 0000000000000001 RSI: ffff979b4ba46730 RDI: ffff979b4ba46750 
+   [   16.985898] RBP: 0000000000000001 R08: 0000000000200000 R09: 0000000000000000 
+   [   16.986730] R10: 0000000000000000 R11: ffffffffc04f7810 R12: 0 ES: 0000 CR0: 0000000080050033 
+   [   17.488057] CR2: 0000000000000000 CR3: 000000031c7fc005 CR4: 00000000000206f0 
+   [   17.489013] Kernel panic - not syncing: Fatal exception 
+   [   17.489404] Kernel Offset: 0x0 from 0xffffffff81000000 (relocation range: 0xffffffff80000000-0xffffffffbfffffff) 
+   [   17.490485] ---[ end Kernel panic - not syncing: Fatal exception ]--- 
+
 
