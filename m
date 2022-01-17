@@ -2,120 +2,124 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4FEE4910D4
-	for <lists+amd-gfx@lfdr.de>; Mon, 17 Jan 2022 21:05:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E44549113B
+	for <lists+amd-gfx@lfdr.de>; Mon, 17 Jan 2022 22:02:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6432710EBC6;
-	Mon, 17 Jan 2022 20:05:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1FF710FCD2;
+	Mon, 17 Jan 2022 21:02:51 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2072.outbound.protection.outlook.com [40.107.244.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C6CB10EBBB;
- Mon, 17 Jan 2022 20:05:06 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2048.outbound.protection.outlook.com [40.107.237.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE7D810FCD2
+ for <amd-gfx@lists.freedesktop.org>; Mon, 17 Jan 2022 21:02:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DobbKKYQTEqThgl77GDveWuyXBpYlf2CkJVF2KQfyGmFKahOhfP7GFUQqiY2xePhaVcLd7NblGlBe834ZIcUHt7AwTNrZWT5RP+m9XlEjwwidBDwWKxz3F87WSmClmeWgA1kEijn2ypZHN3HYcUB29A0JRZ+E1B1jDxndoc62y9EPbzfJD1zJdgv1czPrqf8terdqxPrSKhEoV8hk9Ky8NAbEHkc4wGLodQZnW68WivOxBasCTy/LWoCzJhPA7GanPkOF6o/cXiFPs63PA412QcVZXQXG7/yCsh+cuMnWTorJDP2MobBQEcJUv3AnvCChHbkWe8/D+e65JM0xCXldw==
+ b=h0SxoR9Rg2NxjLMJqqP9Xq/81107eLsl4vrJrZHB8cd1oC/jGvhuPVkf8TFrGtBh8NI6Jzx4VgawW3btXCCIs6s7QoDq/0ApPX0HTfL/IHdt9vMr1uTcrqsz1qkqXdqsAAE93zp/uXqp1424zlJ7kV/GAjrWhWjvSUWdmswyapXHIGiXj7fFqemzXv6qnedWPq+GEhkl3u/7NoKgnZpzx2BjQRejelQV5qnbR7nibDk4q45NAr+mLoaD88F1ixQ6nbYxzxUlv8Oh5BJAlf8fXEOrqInM1mf6omTnsveG64iSU+kEcWpfqfe8+WbARHXDZOJfnurMJEnJOEDmTzm6Jw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GZUjAq6uk7zsUqiPrnxcicyMzVJhLQ+j9psHS8fv+Wg=;
- b=H0t8jFEUZDFggRn/c0JAZd9yFrhm3e5IS8aZRXDMoPB6fDHzkrh7S+rsMFw40gIXq6lntBfEdqZdApUYQto+dHuJaZRyo0a0pbbqg5Q4YA8aYu2pCZnLQEAWXCDfr5Tt9RMPPsn1Lw+k5sFYsA8gptny51pcfGUhaC7/8rX66RYFB4N0tfnFywKfJdds2kq7l4GQwcJIDGclSZ17sH0D/QbBKfPGL5RvZpOPkgNQweOZNdoGfAQ6D76Kb6LIMqZ2wKV2w3O+rk1XOGWJa8ZRsrRMeCgQR3T0flcEGplhmDJl3geh2WIOFMOj2cA2pMBhXA+pbEHNqF7NfzHepgccpQ==
+ bh=7aBxgzZlrGcMbhv1Jc8oOsC1eudu8l+o1tl/WXT0SXo=;
+ b=DLrh48deVQo+kAa3FIyR4nTfJGHEtPeMwKcLA/ybHvDz73UWGqLtT/rBidAqKeeRwjmAKb2AOEveMIGkerhekLqQaOqS1WygRCBo0j3LkORmqON1X56SObaZXqN2D857pz8y8pzrjlyqjsnvLuAGhIgh/NHRxwFzH00757zA3kM/CUjxkXueGgaxnTDYHNt+X8s819Sc31wiq16cEPMCUWfQ2OPG3GfC49HftjMO6Pn3PNR5txKsb495UQ0AyN9eC6wQafZdflehCSHI7PdvWpi6fVwvpCTzyNb2Yrh/W9+Seo1OILizskmzk6COijNMEJh835kLkk7Nzd2tKEffKA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GZUjAq6uk7zsUqiPrnxcicyMzVJhLQ+j9psHS8fv+Wg=;
- b=0rQmyo049B+o8zfrjIPDgRpCwJ4eYyKUCy/1qU52+6qu4/D7dAagQdgtrTkUhEVDBLI7HXVis1HacHhZ77n5lngAbm9ZHDRUFoJlezk5hEP7mOEq1/jtCNbgUKQ4sl2YblBBt9izjNsI4TzAMwxkH1ZE2fJnxDN04e865U9HOUk=
+ bh=7aBxgzZlrGcMbhv1Jc8oOsC1eudu8l+o1tl/WXT0SXo=;
+ b=kiyINd0KJpm0VWcVfVsPMNGoqhc00ABLX7KlLHjEjgYiXiPEWR9vy6DsqRjee+z2F882Vp5Ap7v45CZyiyIdA3Hr+YURIUFQX5/zxKC+MQfq1kNzHWSOuM+uj6//ofJYbVEk0IbWPjPviuqBVVZd3DA1SJePKnOr/xgD/UAaTwY=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM8PR12MB5399.namprd12.prod.outlook.com (2603:10b6:8:34::5) by
- CY4PR12MB1158.namprd12.prod.outlook.com (2603:10b6:903:40::15) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4888.10; Mon, 17 Jan 2022 20:05:03 +0000
-Received: from DM8PR12MB5399.namprd12.prod.outlook.com
- ([fe80::9467:c769:4d1c:56f3]) by DM8PR12MB5399.namprd12.prod.outlook.com
- ([fe80::9467:c769:4d1c:56f3%6]) with mapi id 15.20.4888.014; Mon, 17 Jan 2022
- 20:05:03 +0000
-Subject: Re: [PATCH] drm/radeon: fix UVD suspend error
-To: Qiang Ma <maqianga@uniontech.com>, alexander.deucher@amd.com,
- christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@linux.ie,
- daniel@ffwll.ch
-References: <20220117074731.29882-1-maqianga@uniontech.com>
-From: Leo Liu <leo.liu@amd.com>
-Message-ID: <581d4658-0f12-f355-0c4c-4b0da9b23d61@amd.com>
-Date: Mon, 17 Jan 2022 15:05:00 -0500
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
+ by DM6PR12MB3993.namprd12.prod.outlook.com (2603:10b6:5:1c5::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.11; Mon, 17 Jan
+ 2022 21:02:48 +0000
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::971:531c:e4f4:8a9a]) by BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::971:531c:e4f4:8a9a%7]) with mapi id 15.20.4888.014; Mon, 17 Jan 2022
+ 21:02:48 +0000
+Subject: Re: [PATCH 1/1] Add available memory ioctl for libhsakmt
+To: "Bhardwaj, Rajneesh" <Rajneesh.Bhardwaj@amd.com>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "Phillips, Daniel" <Daniel.Phillips@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+References: <20220110205457.3165572-1-daniel.phillips@amd.com>
+ <BL1PR12MB51449917D93BE664ECF3E5B5F7509@BL1PR12MB5144.namprd12.prod.outlook.com>
+ <DM5PR12MB1531361295346BED5D6B4486FE579@DM5PR12MB1531.namprd12.prod.outlook.com>
+From: Felix Kuehling <felix.kuehling@amd.com>
+Message-ID: <45197089-51b7-0f03-713a-87948fb87705@amd.com>
+Date: Mon, 17 Jan 2022 16:02:46 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
-In-Reply-To: <20220117074731.29882-1-maqianga@uniontech.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <DM5PR12MB1531361295346BED5D6B4486FE579@DM5PR12MB1531.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-X-ClientProxiedBy: YTOPR0101CA0045.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b00:14::22) To DM8PR12MB5399.namprd12.prod.outlook.com
- (2603:10b6:8:34::5)
+X-ClientProxiedBy: YT1PR01CA0102.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2c::11) To BN9PR12MB5115.namprd12.prod.outlook.com
+ (2603:10b6:408:118::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 318d0b4b-181c-414e-a68f-08d9d9f4a604
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1158:EE_
-X-Microsoft-Antispam-PRVS: <CY4PR12MB1158F183D1AA25696D1C27A1E5579@CY4PR12MB1158.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Office365-Filtering-Correlation-Id: 9cee481d-d995-4658-9d44-08d9d9fcb76f
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3993:EE_
+X-Microsoft-Antispam-PRVS: <DM6PR12MB399336953AFF3A7484ABD94092579@DM6PR12MB3993.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0VSoW1EUO6oODEqQvQIyg5Kfqc6TlOMnHoDghOQOSbHmZSNrxyWNOi1FAG+t6Sbn3b1qQ5k7ZOjWq/QgdN6DHELssD3hsa8464UIMkUkXrWKSlQM+nOyudIMTpl6KBKGe4Gw65yEz/xj53e2CCTuSaj+MgCCBV0jTYiUYcULdpcjrV972gt82egYgDjGdeVac6ban0Hmnf0w1XNvh11xi+exOyGbxcxMo4lmEhBD9NriGqv+n/Dcq2FBlz5WnACKcynwpA/DMny2xNH3/7IoczCWmvIz6cGRowxTi+xhg2jn6vHDrto9miX/YI6UMTKWOzKkw/nvkSCAgf3XNnBOyAdryIyRYmI6ebrXHNTadAzL6S9wkSlxA9I6GhTX6gouRUjQgjPCnvjw2yodqYgJSlrNzaOS0lY6g8iaVA/8UYSdguhIFm1Tf4ZkVAsn7Os6lJMs9tgUm227oLuk4GlkKP15cpq0tlXAv0207KHckERbX+m3nj4SKtQ7v5ZUu4w56ssq88BUSzFgHSoBh8shyClyCl/4Kn2LxgaUvYCLawBMEKrgixOTAwtz7WsMWbCFfER2NwgImeiHRwvxsjhkoOzdJy0UPEJxpXC9QJMRUERFpbDD4adxp6aW/bxvsq8wm/luW1ZctOxlLHJKX8CPjfWVQ/6lgObcPxK690wSUav3Q4JtEFHdAIwdJe+3wzsgd2/6Gdsz9i120V/X/+uTj+2MIMw5Ptl3pTZPZPWS20s=
+X-Microsoft-Antispam-Message-Info: FYlHUNPI9QOqg4J3dHCdc5Vb6H7UFQOKV/x/oyF21L2++zmem0x/vINDINd536yUjkFdUmT22T/xcaodie8Km+/BQPAjcAHvW5MHfyUbmj3cvkbLObohGugFDLEM1JgtdEnCpjCR6Ez2pKEXHPlVeBNLKRtCpC7wWCh7IUQokdcAlTnnkHZFVX1XP1oQX78+0uFfaurFYO+YAQV7PWhu7mgv+A3eSfmsIgSgv28RqbMtUo4QAPsJ/HVlC0YSlua8CUfjtUlw+kCTdC/KEO/ptBLBcay2QfnQtlf3o8/27HmO46j/VsdzYaR1eZUQfRkQ9dkQRm0mMFmf8nkXG2m/5PCNjxb1MtP1rrKvHkg9f2OTGVrNUCX2P2uF/V92W6RRMazJt8mH/rgj3UoOUFwlZQej/An55Fgy6KffeZmuIqp33W1SdXhpoFBnOfpk3GWmAwjSk0E/KETijLQ7Mkfsc9ghyh8/ukI/rPzI/5T7cZrwo1b8lDnXsSfiXvWtNcmVQGH9Q39KtwjbTTzY6PoVZpjuF7J8k6j1mV9Ez+n0MF9RCMPjFqNsl3qbqhsJ8k7KA0jHaxZDWDO4RKXLYZKKCZKJnLrYlQA9V/nyHvPlYdVC1pNDyzifWAPqN1JWNGUKNyvGvu+HAp+xCLfAX0x1W7hB6FPYeB+FfFCByAJDFgXj0zhGNnH06HmP9HkWKLoOLyNQrEyTcYcZAPfASFozdesnx1s4E43MPZWRZIjgs1cLVfmvU+bd9PmNFIcagtOF1lAu1a8e+qmHypZS2+isww==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR12MB5399.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(6506007)(53546011)(86362001)(8936002)(2906002)(31696002)(26005)(5660300002)(6486002)(2616005)(15650500001)(8676002)(44832011)(186003)(508600001)(36756003)(83380400001)(66946007)(31686004)(4326008)(6512007)(38100700002)(66556008)(66476007)(316002)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(38100700002)(36756003)(44832011)(31686004)(83380400001)(6512007)(110136005)(8676002)(2616005)(31696002)(26005)(6506007)(2906002)(186003)(66946007)(5660300002)(316002)(66476007)(66556008)(86362001)(6486002)(508600001)(8936002)(131093003)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dnVSSlc5aitrSnF3M3hIY3F6S0kySGljeEU4N0wwTFluRVhtYlNJWlo0MkJN?=
- =?utf-8?B?SlNYTUV5OU5hV1VMT0N3elZJYUN1Tm1UNnhBRm0wT0JPbmtCS2FQclQ0bEc5?=
- =?utf-8?B?SVFsNDRDUjI1U20xdWw2VERTc2lKOGxqR0ppVXlzUndodlFGb3ZZZ0trSGRJ?=
- =?utf-8?B?Q2hCYWNMYlZwWU1DVDNnZmo1N3p1NCtVVlBVSVNTWmlBZHV2dzFEMUdzdjk0?=
- =?utf-8?B?NnZ1RlFWVmIxZld3UW9OMlVaRXdVM2VEZlpNVkJNSVV6aEpIYVNjZ2dsUk9P?=
- =?utf-8?B?ajk5cmx2dFRpTE1HMnVxQXlkdEZHeGZ1blF3aWxkZ2h4NnBlV05XcTl3azZr?=
- =?utf-8?B?aFNGdkNGU1dHaXhBd0NxMTVzUnNTYU5hYTYvK2J2eWMrbVR2L1BCSzlldDhH?=
- =?utf-8?B?NWI0MkZrNS9OdkFIbHdva1l0R0hHK2lCVTk3VVFRRHp1cEZCWlZNMGV5OTFp?=
- =?utf-8?B?clh5MkhrdGNSVUFVcGNNNjBBNkZkQ0FyWDdITURLSzRVVkJuMkltSTlUVTRn?=
- =?utf-8?B?aE5GYlEyaDA0YjNzRWRHSG5BRjFJRUFrOUEvVERaRVNsVmNkTmdhenV1Qisy?=
- =?utf-8?B?M3FPTGs0ZDBwbk9XYXBSMVZWZmU5c2RGaFNiQmtSQkZndDFNeERHZmRmWmRr?=
- =?utf-8?B?ZUlEeFZlaW1hd3p4MkEwZC9iV2hrb0MwOS90M0hNQUtFdnlKdDd4SFEwSUpn?=
- =?utf-8?B?N2lONTJDOW5vOEtaaFZlLzYxOTJOalU4dGxEMXU3QUdDOFZZMjRseW5XaWQy?=
- =?utf-8?B?TDRzd0tzcmV6bGNvemRXR2hicE1OalRJV1RiRHAyeE1aSC96WXZ5djhtOFl4?=
- =?utf-8?B?eXpKaHJyYk9hT2xHTEd0anI5YUdKeHVYRU5kcEJJUGl3M3pxY0paNEZxYXNo?=
- =?utf-8?B?eTk5aURNV0M3UlczTHlZcWVSUmFzaVV4M3hqK0c5VTE2Y3hlK1Q5cEI2WTNj?=
- =?utf-8?B?eG1MZml3V3luaVhMUjBiQWE2NXUvZVZjZnRBZmdWZ1ZxUUJETjRlTXlHNEI5?=
- =?utf-8?B?R3ZQK0FwdUxzZTQ3eUc5TUNiQkJzREhOeE45RzdqZzkzZkFLTEwvSC9jcEpH?=
- =?utf-8?B?WlhXc3JxNzlNUTloLzB1dE1NWVdUa3NyVzNxZ0FGYjNvcldNOUZpREs1Zm81?=
- =?utf-8?B?WmNpTkg1bE9KY0pSZUl2ZWg5SkRLL2xVVUt3Q0Vsdk1GaTMxMzZyR1J3aXZN?=
- =?utf-8?B?OWtoRG1DSEFNRUlGL2JGcCtpVXIva3ZXalFNMmtUZFdEaTErZFRIVWxCTjNq?=
- =?utf-8?B?ejlyYlF3Z2RGTWR6M3pQSHpwN3BkYzRnOWJUaDBoY3pIakJvTDR0Q2pGMXEz?=
- =?utf-8?B?R3VlTGVDMmpKRjE1cUdWd2MxRGlSVWtkVXhldHFaK3M0SGp3U2VPU0tTZFhh?=
- =?utf-8?B?QXM2MFVISEluMnRmM2FVVkVVMFRzYk14VHlSc2dUNG5mbnlSM09ab21LVHBV?=
- =?utf-8?B?QmlqVVNIVXh2U1JCSllUWFlrb1pKTkUvdytkdGdVNHNlQ1F2ZTFUcUFoakJj?=
- =?utf-8?B?U0RrdU1LMHRZTTFyL2JOL3NwQUU3K3pTOUx1eUEvMEFCMGh5MUd3OXNMQ2Fk?=
- =?utf-8?B?OGNTZmg3WGxyMlpQdEl0emhUS0NBVXg2UWN0L1M2T0s2VzE2anQxQ25qRmVp?=
- =?utf-8?B?SHI3bFowOWxyOFZoWFIzVlJqem8wU3VWc0xhZzB2dW9CbSt1d0VYTzQ3SFh1?=
- =?utf-8?B?dVgxS2J5UDgwbTgvTGpXRXV5Q0t2QmR4Ym5ZeUZnVTNmand4d1RwNndjMkww?=
- =?utf-8?B?WTdOQ2g5dmp3ekwzZ0FlZVY1T1pWZjdXRzBTemhMYlJZYUNtcjdEeVBVTlhH?=
- =?utf-8?B?d2E0bGc0WkxTWXZqNkRPWmpTaWlJQmN6MCtzUVppOTFVNWtCRnpSQWpxVzZr?=
- =?utf-8?B?VzY2NzRuYlJXaTFiQVBiYXZiQmdXMFFMOU80dGQ1VWtiODVsMWFrNjNzbWk3?=
- =?utf-8?B?SmNYT2VYMUJTb2drYVZjU2NZQjVVT0YycStRS0h4cEVyWkl5SS9xdkNzeGp5?=
- =?utf-8?B?MHZlWG1yVmFjYTZBYjZ4U3lTV05GQVQ5Mld1OXRZNW9iQ2hUcjZFT1NUbFhL?=
- =?utf-8?B?cG1nVjhHR09BbVNOd29EblhPdU43cHVRQ1llTFpUdGg5OUJXVnc3YVV6aW9Z?=
- =?utf-8?Q?AU5k=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YlpyYUR0TmhZWFB5NCttZ1lDL2pDcDJleWJpWGFJMXlGRWJqdTIwaVp3VGlX?=
+ =?utf-8?B?SVpaY2o1Y2xweGt1WXlpb1dVZnhyK2lPa3IxWDhqVVBtZDUveUJBZDJCSm52?=
+ =?utf-8?B?ZzU3REVxYlZWSlJ2bU1Zd2ZjclAzOFFpcHdYVmtPYndONy9iOEpzTnhSbTZx?=
+ =?utf-8?B?ZGpwUkpiT3dGcWVHbjFNNmZzbW5jK203WXFxS0lIMjZaQmpZU3lrN01TMzBJ?=
+ =?utf-8?B?TUg2NHU3M0R6YkFUSmV5dHI1MW93L01QWnV0THk1SlJRMzc4WWxaZTM5UEgw?=
+ =?utf-8?B?eUhyS3NTOUd4QU9ZQlZ6L0RkQ2p0L05xU3Fjc2FnNkdxQWlzUUJ6eFNuUjJT?=
+ =?utf-8?B?Nk5tNXAwTC9JemNEeVBETnFZaDdtcVE1OU8zMk1xR2lOU3dBc2Z1Ylg3MWd4?=
+ =?utf-8?B?Sk02TFNRTjc0MCt1YUEvbDlPeHpyUlVESkR6NmI0d2NuRE1MVVhiRnR0dmRI?=
+ =?utf-8?B?SjhWZlE2bi9HSXRkZXo0c3RjajRLb0FaMTVqQk0rWnJHQTlCM1dXcFVwazRL?=
+ =?utf-8?B?aS8xOHJJWUJhMTlBaHp1ZGFxM01ubGs5bVNXU2lFUXJVclF6T0NoYi9YeG1H?=
+ =?utf-8?B?bUlBUnhrUnovSm80SllXOStDSlpSWnJWTjhjVmdRQlYxK2xvTVRhUjAyZWRS?=
+ =?utf-8?B?dE9LcytJb3VVeTBRQVpxVGNFWlpoZURlVkRsWWoyMzhxaUs1S1Q0Q1dpc1VD?=
+ =?utf-8?B?YTltMk5UOTZ6STA4aVd0TTk3NDRDSnVkc1Z4Q2tTeDA2M3A2cTBGVUNwZnNJ?=
+ =?utf-8?B?VXU2UHRwdlpWMzJySE4xN3dpRnp5R0VKMWR3VWxUcUN6aHZsQVhrN2ZFanpv?=
+ =?utf-8?B?ZlpsNXZRQ1JRazg4aDVTa2F0RGpVOW1YYVkzUmVnMFVCR0ljOWhKT2x0TmFD?=
+ =?utf-8?B?S0ZvVVFDQ1Fudk1FejlrVmpYcGZsRGF0N1pNVEVRaDBOQjZsU2pWWHBqMTNX?=
+ =?utf-8?B?UW8xNFV1YlZIU0JGbXJNNUQ1ZkJCK2FOUitJckczMjFBNDQzVG1MQjZ4L2VZ?=
+ =?utf-8?B?T3Q1MU1vc2NZWFQydTB1cElzcFYyTG03Vmh3RXJ6Mkd1ZUNOMDhEVVZEVkVM?=
+ =?utf-8?B?cnVPSGQxTTFubGtxWXV6VngxTVA4WDMxbzVNRzQrNDEzODBUUFlYNWd0YzlP?=
+ =?utf-8?B?b28zdkZyUDBLWTlnNVp6anFkZXpnV3IzYnVWdVQ3SVc1a2ZIUFR1c3piUTdz?=
+ =?utf-8?B?a21DbDJsVGlrWHhlUVE4WWZDbjlQOVphTFNHK1ovbU5SVWVwRUNIbCtQWjc1?=
+ =?utf-8?B?ZWdiaWVKOGtrUGpFR1RpYTZPa0JHSU1CSjlBR1RMdVRHMm0vaHh0dU1Mb0lJ?=
+ =?utf-8?B?NEZZMkVrOXQwSjJWQnRTNEtYdGpJQ3NFMjhkOTNTUzFCV29md25rbXR0ZDIw?=
+ =?utf-8?B?Tkk0UzdzYXN1Y3lBbVdCWE1BWURRRzhXdzYySGdENW5WTmlOU3B3Z2sxSTVk?=
+ =?utf-8?B?cTNUUUhkV0JodUUrQjkzRDhaVVlYZVZoem9iSEJHMUlRb29SdXRmUyszZHFy?=
+ =?utf-8?B?UVI0VzBDU3hSSHhadnFzWm1BempRR2hPK3dMMkltN0lyRTR5c1hXYkVSd1Zh?=
+ =?utf-8?B?WUhTNmVieHYrWWxLUE4rM1pOT25Eem9yNVdGRHR2MGNWNExSaTFCcUJVeHN6?=
+ =?utf-8?B?Qlo1WElmTmEwdGprcTFacFQ4U01ubGVqR1B2T3ZRYitqNFNJOWhVSjBjUDh5?=
+ =?utf-8?B?RmRSYTA2T3E2TEgwRlU3elhVNWtXTnFlMXN3ellrUTJkVW9YaXg3YlF6RTFi?=
+ =?utf-8?B?amQwbjRmMStVU3ZpYUJWODJsRlRtMG00d09qdVdDelh3NDJsYlRPb0U1T3B5?=
+ =?utf-8?B?VEZzWjdsL2tNSGY3NEM1RXR2STZYZ0d2dUtXRDdEamZTZndUUnRMdFFBOVNj?=
+ =?utf-8?B?aHhPQjhuSzZNbW5UczFTazh6eVhOdWxTWnF1UmlOSTJBaXp2cDlYMFlRT2g0?=
+ =?utf-8?B?YjRMUjVhbHA0ejV6UkxPZDJRd1ZCa1J0YmlRVWR5VjVLeUZNVFNqUXBnVm85?=
+ =?utf-8?B?eTZnUldyN1dVT3VmMGdtbWc5RmxvdE9uT3NIU0thUGM1aHkyVEpPZXNIUE1X?=
+ =?utf-8?B?MTdQQTZnMDczV2w0T3d2dlRSQW1DcU5FMUVCSnh0N0xUc0dRdlpaTXRuNkdI?=
+ =?utf-8?B?SnZhcFdsL0xWcXE1RTJnK29kYWZIQWhhVzcxV0JzQXBha1IxTEVMZ0paUjU4?=
+ =?utf-8?Q?aRsszrb+ya8+BEYVJEMPYD8=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 318d0b4b-181c-414e-a68f-08d9d9f4a604
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR12MB5399.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cee481d-d995-4658-9d44-08d9d9fcb76f
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2022 20:05:03.2226 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2022 21:02:48.3573 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pHjsoINx0ksRGjp438Tv0YWBclecunZmekHqckRmfSkg60xTEBfAMoWlEekPeLI/
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1158
+X-MS-Exchange-CrossTenant-UserPrincipalName: pPiqy5a6aMmfGUDdn7d+QeagOFt/vfhSlptamcCcMU13YFZW6I5lNHfsxjHum34WEyAZns6OjDI39Lk30nOTLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3993
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,130 +131,213 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-
-On 2022-01-17 2:47 a.m., Qiang Ma wrote:
-> I met a bug recently and the kernel log:
+Am 2022-01-17 um 9:50 a.m. schrieb Bhardwaj, Rajneesh:
 >
-> [  330.171875] radeon 0000:03:00.0: couldn't schedule ib
-> [  330.175781] [drm:radeon_uvd_suspend [radeon]] *ERROR* Error destroying UVD (-22)!
+> [Public]
 >
-> In radeon drivers, using UVD suspend is as follows:
+>  
 >
-> if (rdev->has_uvd) {
->          uvd_v1_0_fini(rdev);
->          radeon_uvd_suspend(rdev);
-> }
+>  
 >
-> In radeon_ib_schedule function, we check the 'ring->ready' state,
-> but in uvd_v1_0_fini funciton, we've cleared the ready state.
-> So, just modify the suspend code flow to fix error.
-
-It seems reasonable to me. The suspend sends the destroy message if 
-there is still incomplete job, so it should be before the fini which 
-stops the hardware.
-
-The series are:
-
-Reviewed-by: Leo Liu <leo.liu@amd.com>
-
-
+>  
 >
-> Signed-off-by: Qiang Ma <maqianga@uniontech.com>
+> *From:* amd-gfx <amd-gfx-bounces@lists.freedesktop.org> *On Behalf Of
+> *Deucher, Alexander
+> *Sent:* Monday, January 10, 2022 4:11 PM
+> *To:* Phillips, Daniel <Daniel.Phillips@amd.com>;
+> amd-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+> *Subject:* Re: [PATCH 1/1] Add available memory ioctl for libhsakmt
+>
+>  
+>
+> [Public]
+>
+>  
+>
+> [Public]
+>
+>  
+>
+> This is missing your signed-off-by.  Additionally, for UAPI changes,
+> we need a link the patches for the userspace component that will make
+> use of it.
+>
+>  
+>
+> Alex
+>
+>  
+>
+> ------------------------------------------------------------------------
+>
+> *From:*amd-gfx <amd-gfx-bounces@lists.freedesktop.org
+> <mailto:amd-gfx-bounces@lists.freedesktop.org>> on behalf of Daniel
+> Phillips <daniel.phillips@amd.com <mailto:daniel.phillips@amd.com>>
+> *Sent:* Monday, January 10, 2022 3:54 PM
+> *To:* amd-gfx@lists.freedesktop.org
+> <mailto:amd-gfx@lists.freedesktop.org> <amd-gfx@lists.freedesktop.org
+> <mailto:amd-gfx@lists.freedesktop.org>>;
+> dri-devel@lists.freedesktop.org
+> <mailto:dri-devel@lists.freedesktop.org>
+> <dri-devel@lists.freedesktop.org <mailto:dri-devel@lists.freedesktop.org>>
+> *Cc:* Phillips, Daniel <Daniel.Phillips@amd.com
+> <mailto:Daniel.Phillips@amd.com>>
+> *Subject:* [PATCH 1/1] Add available memory ioctl for libhsakmt
+>
+>  
+>
+> From: Daniel Phillips <dphillip@amd.com <mailto:dphillip@amd.com>>
+>
+> Add an ioctl to inquire memory available for allocation by libhsakmt
+> per node, allowing for space consumed by page translation tables.
 > ---
->   drivers/gpu/drm/radeon/cik.c       | 2 +-
->   drivers/gpu/drm/radeon/evergreen.c | 2 +-
->   drivers/gpu/drm/radeon/ni.c        | 2 +-
->   drivers/gpu/drm/radeon/r600.c      | 2 +-
->   drivers/gpu/drm/radeon/rv770.c     | 2 +-
->   drivers/gpu/drm/radeon/si.c        | 2 +-
->   6 files changed, 6 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h      |  1 +
+>  .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c    | 14 ++++++++++++++
+>  drivers/gpu/drm/amd/amdkfd/kfd_chardev.c        | 17 +++++++++++++++++
+>  include/uapi/linux/kfd_ioctl.h                  | 14 ++++++++++++--
+>  4 files changed, 44 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/radeon/cik.c b/drivers/gpu/drm/radeon/cik.c
-> index 81b4de7be9f2..5819737c21c6 100644
-> --- a/drivers/gpu/drm/radeon/cik.c
-> +++ b/drivers/gpu/drm/radeon/cik.c
-> @@ -8517,8 +8517,8 @@ int cik_suspend(struct radeon_device *rdev)
->   	cik_cp_enable(rdev, false);
->   	cik_sdma_enable(rdev, false);
->   	if (rdev->has_uvd) {
-> -		uvd_v1_0_fini(rdev);
->   		radeon_uvd_suspend(rdev);
-> +		uvd_v1_0_fini(rdev);
->   	}
->   	if (rdev->has_vce)
->   		radeon_vce_suspend(rdev);
-> diff --git a/drivers/gpu/drm/radeon/evergreen.c b/drivers/gpu/drm/radeon/evergreen.c
-> index eeb590d2dec2..455f8036aa54 100644
-> --- a/drivers/gpu/drm/radeon/evergreen.c
-> +++ b/drivers/gpu/drm/radeon/evergreen.c
-> @@ -5156,8 +5156,8 @@ int evergreen_suspend(struct radeon_device *rdev)
->   	radeon_pm_suspend(rdev);
->   	radeon_audio_fini(rdev);
->   	if (rdev->has_uvd) {
-> -		uvd_v1_0_fini(rdev);
->   		radeon_uvd_suspend(rdev);
-> +		uvd_v1_0_fini(rdev);
->   	}
->   	r700_cp_stop(rdev);
->   	r600_dma_stop(rdev);
-> diff --git a/drivers/gpu/drm/radeon/ni.c b/drivers/gpu/drm/radeon/ni.c
-> index 4a364ca7a1be..927e5f42e97d 100644
-> --- a/drivers/gpu/drm/radeon/ni.c
-> +++ b/drivers/gpu/drm/radeon/ni.c
-> @@ -2323,8 +2323,8 @@ int cayman_suspend(struct radeon_device *rdev)
->   	cayman_cp_enable(rdev, false);
->   	cayman_dma_stop(rdev);
->   	if (rdev->has_uvd) {
-> -		uvd_v1_0_fini(rdev);
->   		radeon_uvd_suspend(rdev);
-> +		uvd_v1_0_fini(rdev);
->   	}
->   	evergreen_irq_suspend(rdev);
->   	radeon_wb_disable(rdev);
-> diff --git a/drivers/gpu/drm/radeon/r600.c b/drivers/gpu/drm/radeon/r600.c
-> index ca3fcae2adb5..dd78fc499402 100644
-> --- a/drivers/gpu/drm/radeon/r600.c
-> +++ b/drivers/gpu/drm/radeon/r600.c
-> @@ -3232,8 +3232,8 @@ int r600_suspend(struct radeon_device *rdev)
->   	radeon_audio_fini(rdev);
->   	r600_cp_stop(rdev);
->   	if (rdev->has_uvd) {
-> -		uvd_v1_0_fini(rdev);
->   		radeon_uvd_suspend(rdev);
-> +		uvd_v1_0_fini(rdev);
->   	}
->   	r600_irq_suspend(rdev);
->   	radeon_wb_disable(rdev);
-> diff --git a/drivers/gpu/drm/radeon/rv770.c b/drivers/gpu/drm/radeon/rv770.c
-> index e592e57be1bb..38796af4fadd 100644
-> --- a/drivers/gpu/drm/radeon/rv770.c
-> +++ b/drivers/gpu/drm/radeon/rv770.c
-> @@ -1894,8 +1894,8 @@ int rv770_suspend(struct radeon_device *rdev)
->   	radeon_pm_suspend(rdev);
->   	radeon_audio_fini(rdev);
->   	if (rdev->has_uvd) {
-> -		uvd_v1_0_fini(rdev);
->   		radeon_uvd_suspend(rdev);
-> +		uvd_v1_0_fini(rdev);
->   	}
->   	r700_cp_stop(rdev);
->   	r600_dma_stop(rdev);
-> diff --git a/drivers/gpu/drm/radeon/si.c b/drivers/gpu/drm/radeon/si.c
-> index 013e44ed0f39..8d5e4b25609d 100644
-> --- a/drivers/gpu/drm/radeon/si.c
-> +++ b/drivers/gpu/drm/radeon/si.c
-> @@ -6800,8 +6800,8 @@ int si_suspend(struct radeon_device *rdev)
->   	si_cp_enable(rdev, false);
->   	cayman_dma_stop(rdev);
->   	if (rdev->has_uvd) {
-> -		uvd_v1_0_fini(rdev);
->   		radeon_uvd_suspend(rdev);
-> +		uvd_v1_0_fini(rdev);
->   	}
->   	if (rdev->has_vce)
->   		radeon_vce_suspend(rdev);
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+> index fcbc8a9c9e06..64c6c36685d3 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+> @@ -266,6 +266,7 @@ int amdgpu_amdkfd_gpuvm_acquire_process_vm(struct
+> amdgpu_device *adev,
+>  void amdgpu_amdkfd_gpuvm_release_process_vm(struct amdgpu_device *adev,
+>                                          void *drm_priv);
+>  uint64_t amdgpu_amdkfd_gpuvm_get_process_page_dir(void *drm_priv);
+> +size_t amdgpu_amdkfd_get_available_memory(struct amdgpu_device *adev);
+>  int amdgpu_amdkfd_gpuvm_alloc_memory_of_gpu(
+>                  struct amdgpu_device *adev, uint64_t va, uint64_t size,
+>                  void *drm_priv, struct kgd_mem **mem,
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+> b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+> index 86a1a6c109d9..b7490a659173 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+> @@ -190,6 +190,20 @@ static int amdgpu_amdkfd_reserve_mem_limit(struct
+> amdgpu_device *adev,
+>          return ret;
+>  }
+>  
+> +size_t amdgpu_amdkfd_get_available_memory(struct amdgpu_device *adev)
+> +{
+> +       uint64_t reserved_for_pt =
+> +               ESTIMATE_PT_SIZE(amdgpu_amdkfd_total_mem_size);
+> +       size_t available_memory;
+> +
+> +       spin_lock(&kfd_mem_limit.mem_limit_lock);
+> +       available_memory =
+> +               adev->gmc.real_vram_size -
+> +               adev->kfd.vram_used - reserved_for_pt;
+> +       spin_unlock(&kfd_mem_limit.mem_limit_lock);
+> +       return available_memory;
+> +}
+> +
+>  static void unreserve_mem_limit(struct amdgpu_device *adev,
+>                  uint64_t size, u32 alloc_flag)
+>  {
+> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+> b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+> index 4bfc0c8ab764..5c2f6d97ff1c 100644
+> --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+> @@ -486,6 +486,20 @@ static int kfd_ioctl_get_queue_wave_state(struct
+> file *filep,
+>          return r;
+>  }
+>  
+> +static int kfd_ioctl_get_available_memory(struct file *filep,
+> +                                struct kfd_process *p, void *data)
+> +{
+> +       struct kfd_ioctl_get_available_memory_args *args = data;
+> +       struct kfd_dev *dev;
+> +
+> +       dev = kfd_device_by_id(args->gpu_id);
+>
+> Once CRIU changes land, this need to change to
+> kfd_process_device_data_by_id() and then use pdd->dev
+>
+The CRIU patches will apply on top of this patch. So the CRIU patches
+have to adapt this code, just like other existing ioctl functions.
+
+Regards,
+  Felix
+
+
+>  
+>
+>
+> +       if (!dev)
+> +               return -EINVAL;
+> +
+> +       args->available = amdgpu_amdkfd_get_available_memory(dev->adev);
+> +       return 0;
+> +}
+> +
+>  static int kfd_ioctl_set_memory_policy(struct file *filep,
+>                                          struct kfd_process *p, void
+> *data)
+>  {
+> @@ -1959,6 +1973,9 @@ static const struct amdkfd_ioctl_desc
+> amdkfd_ioctls[] = {
+>  
+>          AMDKFD_IOCTL_DEF(AMDKFD_IOC_SET_XNACK_MODE,
+>                          kfd_ioctl_set_xnack_mode, 0),
+> +
+> +       AMDKFD_IOCTL_DEF(AMDKFD_IOC_AVAILABLE_MEMORY,
+> +                       kfd_ioctl_get_available_memory, 0),
+>  };
+>  
+>  #define AMDKFD_CORE_IOCTL_COUNT ARRAY_SIZE(amdkfd_ioctls)
+> diff --git a/include/uapi/linux/kfd_ioctl.h
+> b/include/uapi/linux/kfd_ioctl.h
+> index af96af174dc4..94a99add2432 100644
+> --- a/include/uapi/linux/kfd_ioctl.h
+> +++ b/include/uapi/linux/kfd_ioctl.h
+> @@ -32,9 +32,10 @@
+>   * - 1.4 - Indicate new SRAM EDC bit in device properties
+>   * - 1.5 - Add SVM API
+>   * - 1.6 - Query clear flags in SVM get_attr API
+> + * - 1.7 - Add available_memory ioctl
+>   */
+>  #define KFD_IOCTL_MAJOR_VERSION 1
+> -#define KFD_IOCTL_MINOR_VERSION 6
+> +#define KFD_IOCTL_MINOR_VERSION 7
+>  
+>  struct kfd_ioctl_get_version_args {
+>          __u32 major_version;    /* from KFD */
+> @@ -98,6 +99,12 @@ struct kfd_ioctl_get_queue_wave_state_args {
+>          __u32 pad;
+>  };
+>  
+> +struct kfd_ioctl_get_available_memory_args {
+> +       __u64 available;        /* from KFD */
+> +       __u32 gpu_id;           /* to KFD */
+> +       __u32 pad;
+> +};
+> +
+>  /* For kfd_ioctl_set_memory_policy_args.default_policy and
+> alternate_policy */
+>  #define KFD_IOC_CACHE_POLICY_COHERENT 0
+>  #define KFD_IOC_CACHE_POLICY_NONCOHERENT 1
+> @@ -742,7 +749,10 @@ struct kfd_ioctl_set_xnack_mode_args {
+>  #define AMDKFD_IOC_SET_XNACK_MODE               \
+>                  AMDKFD_IOWR(0x21, struct kfd_ioctl_set_xnack_mode_args)
+>  
+> +#define AMDKFD_IOC_AVAILABLE_MEMORY            \
+> +               AMDKFD_IOR(0x22, struct
+> kfd_ioctl_get_available_memory_args)
+> +
+>  #define AMDKFD_COMMAND_START            0x01
+> -#define AMDKFD_COMMAND_END             0x22
+> +#define AMDKFD_COMMAND_END             0x23
+>  
+>  #endif
+> -- 
+> 2.34.1
+>
