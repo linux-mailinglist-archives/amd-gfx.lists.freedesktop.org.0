@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C20ED49184D
-	for <lists+amd-gfx@lfdr.de>; Tue, 18 Jan 2022 03:46:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 270B34918DA
+	for <lists+amd-gfx@lfdr.de>; Tue, 18 Jan 2022 03:48:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0800B112921;
-	Tue, 18 Jan 2022 02:46:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61746112922;
+	Tue, 18 Jan 2022 02:48:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E92EB11291A;
- Tue, 18 Jan 2022 02:46:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DA33112922;
+ Tue, 18 Jan 2022 02:48:48 +0000 (UTC)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 655C66093C;
- Tue, 18 Jan 2022 02:46:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36E32C36AE3;
- Tue, 18 Jan 2022 02:46:37 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 7CE8660AB6;
+ Tue, 18 Jan 2022 02:48:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41FD0C36AEB;
+ Tue, 18 Jan 2022 02:48:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1642473998;
- bh=f6NAM56Og1Yrc6Od3Am5rH5imViISDUzVvr7k4kzIP8=;
+ s=k20201202; t=1642474126;
+ bh=9KzqLyWNPtNjyKUaNk7Wi21QeiU1/TQnVwSNi8tWifw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=hecOCpvtQ9wKGzeiG5Q7bCKvOOuggoQzAohqc3r/nkz3AmHPRZfo4oFrhKF8VyKcD
- LViit+CxsiaZEx6Q3N1QP607Na3RglsiHtQ1Qm1lRkvSlASbnY4BklJK2boFfKGCGS
- M/Rfk5X5GwqK4Z7gBIF2KXCJfG1RsInTIXt+2QLc52DZxe/DrYVbjC7rM9VdKn0EKi
- 9D/c7p81opapL9G2rvOqlYoPXwzGSvtt78oZQJiX2XdFluBMsVpZvc9Q1MJzlNMZ/V
- ZkH/UbxF090PssRawJGGceKk1w7hSp0bXWpHaWVXfvP8OmZUP791sY4oWxenSwWWI/
- It66zxSA+6bcg==
+ b=PYNOkcCdtd/cZHfDEZjrWdbcsUF5Nt0ZKBdblWTjd3wAcH0avLrnrjQVm2UFJkuy6
+ 8iIlcB72Jyr4esPPwPK/lz2xt0srTAVsldhpEuzdAC77Y9mBDq9sNkHxp4VS5ebMHY
+ kMQKmylo/moB5Hlib+uyuki+o4T2WFea5zykm4WZxFgf81a8cui1PXq+Q2GRhJm15Q
+ fpkcmWO9qJMnEjbUiqWjpBt6PExS+GXcQo8INzNoBv3GpuWoD08O6YTbT/60iVFf8f
+ maQCrNmZJFlJ7+wucbo0Mp1qY95nTRlWF1xsBlmAqZTLuikuVJwxluWcw/LWQbGuPZ
+ f91LAk1vldIng==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 59/73] drm/amdgpu: fixup bad vram size on gmc v8
-Date: Mon, 17 Jan 2022 21:44:18 -0500
-Message-Id: <20220118024432.1952028-59-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 46/59] drm/amdgpu: fixup bad vram size on gmc v8
+Date: Mon, 17 Jan 2022 21:46:47 -0500
+Message-Id: <20220118024701.1952911-46-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220118024432.1952028-1-sashal@kernel.org>
-References: <20220118024432.1952028-1-sashal@kernel.org>
+In-Reply-To: <20220118024701.1952911-1-sashal@kernel.org>
+References: <20220118024701.1952911-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -82,10 +82,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 10 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-index ea764dd9245db..2975331a7b867 100644
+index 1a744f964b301..358004a4650b6 100644
 --- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
 +++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-@@ -524,10 +524,10 @@ static void gmc_v8_0_mc_program(struct amdgpu_device *adev)
+@@ -520,10 +520,10 @@ static void gmc_v8_0_mc_program(struct amdgpu_device *adev)
  static int gmc_v8_0_mc_init(struct amdgpu_device *adev)
  {
  	int r;
@@ -97,7 +97,7 @@ index ea764dd9245db..2975331a7b867 100644
  		int chansize, numchan;
  
  		/* Get VRAM informations */
-@@ -571,8 +571,15 @@ static int gmc_v8_0_mc_init(struct amdgpu_device *adev)
+@@ -567,8 +567,15 @@ static int gmc_v8_0_mc_init(struct amdgpu_device *adev)
  		adev->gmc.vram_width = numchan * chansize;
  	}
  	/* size in MB on si */
