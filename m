@@ -1,38 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C10DB493E83
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Jan 2022 17:45:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27E14493D96
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Jan 2022 16:47:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19CE010E404;
-	Wed, 19 Jan 2022 16:45:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6971810E277;
+	Wed, 19 Jan 2022 15:47:52 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 732D210E1E5;
- Wed, 19 Jan 2022 15:06:43 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 3B661614B8;
- Wed, 19 Jan 2022 15:06:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04AE5C004E1;
- Wed, 19 Jan 2022 15:06:36 +0000 (UTC)
-Date: Wed, 19 Jan 2022 10:06:35 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Subject: Re: [PATCH 1/3] lib/string_helpers: Consolidate yesno() implementation
-Message-ID: <20220119100635.6c45372b@gandalf.local.home>
-In-Reply-To: <YefXg03hXtrdUj6y@paasikivi.fi.intel.com>
-References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
- <20220119072450.2890107-2-lucas.demarchi@intel.com>
- <YefXg03hXtrdUj6y@paasikivi.fi.intel.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam07on2071.outbound.protection.outlook.com [40.107.95.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0823010E277
+ for <amd-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 15:47:52 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VfQj0AKxlGmwkvPrAW8zK4Ek5SV96mh9Al6tJYhWOhTk5wAyfU1P7bdXM5a54+jFs6Pas4P8fd68XRNhqiouI+BTUAGohWycLSFxGuqCaSrtd4uf1NRwWsRWlIUVysrR98EQZtxX4yZ1BJPPTkQn1j9yxWZ5HofmEDgtGV7YzQCtI7BfiLacaDWxtsxmtg9Irszaf0xGuQZtSCPbCuG4lWxl6V/YJ6wm1tTNr3RFu2MnX+qSaAQjsPLaEEs1v96jDp4xWqRs9x7EhGbmGCRLI5szCABrBno3+hevP+CWMWhUlL248MfMliszpeRIhYDJwXGpiYWBu0xqTjR5eR8VwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dI7ncV1798ATUzY/e055dZ6YjNqIqPaHZC/0V+jrAEM=;
+ b=F/A+K/uGvqDUr0z3IFjbmQsXcdlJ6ZW5klstajV0ZRXJUfq0u7vA+V/eOEvRm+TZf3Lm3pHZ455M87do+K1y+J/Xk/85FKABtapDwtipmxDwVoi58Y/GT9Xi2G7SHsxqXMf1IzMsXX0bm3jZSEe2Jb5KyEzySxV7kUDGhyrtVklYDQPTWazb6rAJppvgp91mc6bCt1docXhFa+DyTty2hKM/F4mCo9eOIHR5fS20yoq2LR9ziEPQjwgK4MXKk+yMxvfzEoAErSg4w/gN1Tqxph7g6rMHoAxR1waHEUVitJqNeobisYWOJOPfg5prLNLjmh0Gt/opWTo0H2P5Qil0gA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dI7ncV1798ATUzY/e055dZ6YjNqIqPaHZC/0V+jrAEM=;
+ b=KMhhY+oLqdK88DJdiCOn93k2xJ81n5k4kK3hnUlQ0tJNJlwYLXEk0OvUA+tGFW7KJ2aRfHL7N+q/Kh1OamAPFaKKL7x95HYx7oIZFSI9076t82e/P43/fxRKAJYEEgPhRRcsMSCrjfxNiKLgG/WA58VKUJCMeHSjhUf4Jp8eKeU=
+Received: from BN9PR03CA0989.namprd03.prod.outlook.com (2603:10b6:408:109::34)
+ by BN6PR12MB1697.namprd12.prod.outlook.com (2603:10b6:404:105::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.11; Wed, 19 Jan
+ 2022 15:47:50 +0000
+Received: from BN8NAM11FT067.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:109:cafe::21) by BN9PR03CA0989.outlook.office365.com
+ (2603:10b6:408:109::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.7 via Frontend
+ Transport; Wed, 19 Jan 2022 15:47:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT067.mail.protection.outlook.com (10.13.177.159) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4909.7 via Frontend Transport; Wed, 19 Jan 2022 15:47:50 +0000
+Received: from jonathan-KFD.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 19 Jan
+ 2022 09:47:49 -0600
+From: Jonathan Kim <jonathan.kim@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH] drm/amdgpu: fix broken debug sdma vram access function
+Date: Wed, 19 Jan 2022 10:47:36 -0500
+Message-ID: <20220119154736.113984-1-jonathan.kim@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Wed, 19 Jan 2022 16:45:43 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6ecc8f6b-d780-4b17-8637-08d9db630c2a
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1697:EE_
+X-Microsoft-Antispam-PRVS: <BN6PR12MB16975ECDF9C835BD93A9676885599@BN6PR12MB1697.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7IpcEZje8r8EKYUQ3IOkmWKdDk7ch0p+frTHcGbTja0E010mZ+0zFjEo8J5NqIHm85fNIFEgLXULAdgSGW3CYYvtX6kM6uoEJAg8P+gXv5CgpdZBZYW1DMyTQrMDkAEa/bxbwq+2d+nLSPmKYTO5Iwo+aBS0NvHU2UxINAV+vhOXcPejDcf2XYLz7OPfQISE+RBJmjcaOGJb3T9lCkQX7onStqXrupSm5GuFazkbN9g2z7/AtdCIitH/s10DzKxj0XaXrf1cEXzJGGD/yM7gkTgvWvf1c/J3j8x9Y3JxTkJB//0WnEcxN5nnNJlW7dS3CB1pnxr4jgC0nfApNNvF3U2kNB74lsrRdyWYmhsJZNbBDoTuKmdJ7IvasllF/0d7L86k18Nq3Uehj4/YiRq0TB/UmDSxf8eO8rf6JgY0e8WBR5pAZvfeG/eNGNILI8yarsQJYKFxUTJe8z0LidHHToyzh2du6TYCyU5Fg2XpUkh3g9azmDV0LegK9sqPZ1AADfyLAifFDzY5VmUDFHXgM05KEYkAcyRdMrMLDyZyBI+6Yug+Saqlx//oEOSAXsCm46V0YPZgs4/4MIoAvLt7Xroqz+fEPETgUcTQ4ztpmLm8vNf8G76XKqDkMFmQMTKxs/nQmvWs8sEg7edyeyQ03jeOU2AgFmp8pe5pTkjcUmPd5VJpCMQkn1AVC+PvGPTGAC8nLe6kzQDrI3Ykchpg/5PK4z6c91V7tyqjkuz/oO86UTj466Wb8a2TiW+hIxRHYXW44hqVA5ucWCtIFhoVfS9tnYauIiFFRCqbSO2ftlU=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(46966006)(40470700002)(36840700001)(82310400004)(70206006)(4326008)(7696005)(6916009)(16526019)(186003)(6666004)(47076005)(8936002)(26005)(54906003)(316002)(40460700001)(36756003)(1076003)(86362001)(70586007)(2906002)(81166007)(5660300002)(508600001)(2616005)(356005)(426003)(44832011)(8676002)(83380400001)(336012)(36860700001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2022 15:47:50.1525 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ecc8f6b-d780-4b17-8637-08d9db630c2a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT067.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1697
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,67 +99,88 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Vishal Kulkarni <vishal@chelsio.com>,
- Francis Laniel <laniel_francis@privacyrequired.com>,
- Kentaro Takeda <takedakn@nttdata.co.jp>, Mikita Lipski <mikita.lipski@amd.com>,
- amd-gfx@lists.freedesktop.org, Andy Shevchenko <andy.shevchenko@gmail.com>,
- Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
- Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
- Raju Rangoju <rajur@chelsio.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Julia Lawall <julia.lawall@lip6.fr>,
- Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Eryk Brol <eryk.brol@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-kernel@vger.kernel.org,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
- linux-security-module@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- netdev@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- "David S . Miller" <davem@davemloft.net>
+Cc: Felix.Kuehling@amd.com, Jonathan Kim <jonathan.kim@amd.com>,
+ Christian.Koenig@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 19 Jan 2022 11:18:59 +0200
-Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
+Debug VRAM access through SDMA has several broken parts resulting in
+silent MMIO fallback.
 
-> On Tue, Jan 18, 2022 at 11:24:48PM -0800, Lucas De Marchi wrote:
-> > @@ -1354,8 +1345,7 @@ static bool tomoyo_print_condition(struct tomoyo_io_buffer *head,
-> >  	case 3:
-> >  		if (cond->grant_log != TOMOYO_GRANTLOG_AUTO)
-> >  			tomoyo_io_printf(head, " grant_log=%s",
-> > -					 tomoyo_yesno(cond->grant_log ==
-> > -						      TOMOYO_GRANTLOG_YES));
-> > +					 yesno(cond->grant_log == TOMOYO_GRANTLOG_YES));  
-> 
-> This would be better split on two lines.
+BO kernel creation takes the location of the cpu addr pointer, not
+the pointer itself for address kmap.
 
-Really? Yuck!
+drm_dev_enter return true on success so change access check.
 
-I thought the "max line size" guideline was going to grow to a 100, but I
-still see it as 80. But anyway...
+The source BO is reserved but not pinned so find the address using the
+cursor offset relative to its memory domain start.
 
-	cond->grant_log ==
-	TOMOYO_GRANTLOG_YES
+Signed-off-by: Jonathan Kim <jonathan.kim@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
 
-is not readable at all. Not compared to
-
-	cond->grant_log == TOMOYO_GRANTLOG_YES
-
-I say keep it one line!
-
-Reviewed-by: Steven Rostedt (Google) <rostedt@goodmis.org>
-
--- Steve
-
-> 
-> Then,
-> 
-> Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index b489cd8abe31..0a2e8e355eaa 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -1436,6 +1436,7 @@ static int amdgpu_ttm_access_memory_sdma(struct ttm_buffer_object *bo,
+ {
+ 	struct amdgpu_bo *abo = ttm_to_amdgpu_bo(bo);
+ 	struct amdgpu_device *adev = amdgpu_ttm_adev(abo->tbo.bdev);
++	struct amdgpu_res_cursor src_mm;
+ 	struct amdgpu_job *job;
+ 	struct dma_fence *fence;
+ 	uint64_t src_addr, dst_addr;
+@@ -1448,9 +1449,8 @@ static int amdgpu_ttm_access_memory_sdma(struct ttm_buffer_object *bo,
+ 	if (!adev->mman.sdma_access_ptr)
+ 		return -EACCES;
+ 
+-	r = drm_dev_enter(adev_to_drm(adev), &idx);
+-	if (r)
+-		return r;
++	if (!drm_dev_enter(adev_to_drm(adev), &idx))
++		return -ENODEV;
+ 
+ 	if (write)
+ 		memcpy(adev->mman.sdma_access_ptr, buf, len);
+@@ -1460,7 +1460,8 @@ static int amdgpu_ttm_access_memory_sdma(struct ttm_buffer_object *bo,
+ 	if (r)
+ 		goto out;
+ 
+-	src_addr = amdgpu_bo_gpu_offset(abo);
++	amdgpu_res_first(abo->tbo.resource, offset, len, &src_mm);
++	src_addr = amdgpu_ttm_domain_start(adev, bo->resource->mem_type) + src_mm.start;
+ 	dst_addr = amdgpu_bo_gpu_offset(adev->mman.sdma_access_bo);
+ 	if (write)
+ 		swap(src_addr, dst_addr);
+@@ -1858,7 +1859,7 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
+ 	if (amdgpu_bo_create_kernel(adev, PAGE_SIZE, PAGE_SIZE,
+ 				AMDGPU_GEM_DOMAIN_GTT,
+ 				&adev->mman.sdma_access_bo, NULL,
+-				adev->mman.sdma_access_ptr))
++				&adev->mman.sdma_access_ptr))
+ 		DRM_WARN("Debug VRAM access will use slowpath MM access\n");
+ 
+ 	return 0;
+@@ -1882,6 +1883,8 @@ void amdgpu_ttm_fini(struct amdgpu_device *adev)
+ 	if (adev->mman.stolen_reserved_size)
+ 		amdgpu_bo_free_kernel(&adev->mman.stolen_reserved_memory,
+ 				      NULL, NULL);
++	amdgpu_bo_free_kernel(&adev->mman.sdma_access_bo, NULL,
++					&adev->mman.sdma_access_ptr);
+ 	amdgpu_ttm_fw_reserve_vram_fini(adev);
+ 
+ 	if (drm_dev_enter(adev_to_drm(adev), &idx)) {
+@@ -1901,8 +1904,6 @@ void amdgpu_ttm_fini(struct amdgpu_device *adev)
+ 	ttm_range_man_fini(&adev->mman.bdev, AMDGPU_PL_OA);
+ 	ttm_device_fini(&adev->mman.bdev);
+ 	adev->mman.initialized = false;
+-	amdgpu_bo_free_kernel(&adev->mman.sdma_access_bo, NULL,
+-					&adev->mman.sdma_access_ptr);
+ 	DRM_INFO("amdgpu: ttm finalized\n");
+ }
+ 
+-- 
+2.25.1
 
