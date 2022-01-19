@@ -2,92 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE727493AB5
-	for <lists+amd-gfx@lfdr.de>; Wed, 19 Jan 2022 13:58:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3746D493BF4
+	for <lists+amd-gfx@lfdr.de>; Wed, 19 Jan 2022 15:32:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B1B010F2BA;
-	Wed, 19 Jan 2022 12:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E08910EB51;
+	Wed, 19 Jan 2022 14:32:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57D7310F2B9
- for <amd-gfx@lists.freedesktop.org>; Wed, 19 Jan 2022 12:58:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=l2jC5lSZwUB4H3UlvD+fCe3olpVD6lFQIPQxmczemkW6ssiHms6YF/mgc+aPLggnMuCbEzPflOigAzHp+f/SvhEGqIX1lRNlt8nb64gqqcFLPfYulE1MPrRehhEnQ96VAOn/P/rtQH4YsRQMaQj3HeoWd7UOFWDpR/q8BhyArX3gcHWoZArOrWqD+1Iyy7JdbeDa5oC7JLrhKNDVHSsVvzO2/3fLcFe/BXVy2q4ur4nDcdHXqAVdGeq6KxAvt7zAmfYu8pfoEPB2iMFtCSvQIxY6zRn0y5cLQlN0OpDH92J4fXZppxji99QaYXooknbAEvfO1ZaInxdihsPkb4j7vw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=usStzygSW5DGlQyrrmjcta3y3T594/Yg6zJBfpyk6II=;
- b=flF83TiEtG4iLZ/oS/0mBhWztjpDNkR8AbkrVJKlFPR+7VsyGDZSeMd2w/JaF1Go08I1K8BJOBrF244gg83lRNSTsSSO+X0FoqAlETvFKMQPKetY9ef3dTQOWHQUXbZ8uNmjW09mMlBkFjVvhY7mllFoUlzi3xuhhOZnckxVMSsupXq3SimzMdaB3+G+csBqqJmzr9H+VFJsIDJ2qMdUDeqvCiMmQAoyuohq/PUi777PmRrq/8/wPW1a+gu1e5e+6/ptCZb3XDAZkQzzSIJVSQX0RclFt21wCc4JOk3rF5EvrQTiShRNsn/J/toZ5WUHA0k7O0d+eeasFuMb4zB4cQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=usStzygSW5DGlQyrrmjcta3y3T594/Yg6zJBfpyk6II=;
- b=KbC1jFkv0NEBQw1u9jIYFwsVwoPJbPmUc5yEmzj1Iomu4q0FmS2qNxowfgq3d2sG55qJG51ECb7cPyHRHiKIqj33sdlUW5vOeN9Y8KfiX9Uayz61I/PK3N0cadWvDaNt26qXqmKvVafaNKS9MJjFccHmVTSoV/b5ztwEV17JfpU=
-Received: from MW4PR03CA0346.namprd03.prod.outlook.com (2603:10b6:303:dc::21)
- by BY5PR12MB4998.namprd12.prod.outlook.com (2603:10b6:a03:1d4::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.7; Wed, 19 Jan
- 2022 12:58:01 +0000
-Received: from CO1NAM11FT052.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:dc:cafe::6e) by MW4PR03CA0346.outlook.office365.com
- (2603:10b6:303:dc::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.7 via Frontend
- Transport; Wed, 19 Jan 2022 12:58:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT052.mail.protection.outlook.com (10.13.174.225) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4909.7 via Frontend Transport; Wed, 19 Jan 2022 12:58:00 +0000
-Received: from majun-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 19 Jan
- 2022 06:57:58 -0600
-From: majun <majun@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] amd/amdkfd:Fix the return value in kfd_process_queue_manager
-Date: Wed, 19 Jan 2022 20:57:21 +0800
-Message-ID: <20220119125721.278221-1-majun@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E224810E8DA;
+ Wed, 19 Jan 2022 09:15:10 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id j2so8093491edj.8;
+ Wed, 19 Jan 2022 01:15:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+ :cc; bh=+wBLyr24cGi7atsVZkoQIwe3uAQ6ojShCI+jVRO74lw=;
+ b=ao0v25V0JGLDJrhWghxLs60wWofvYKqtQxj3HBEQwJaDJTjv/Lzjrj4cmemvRZiGaF
+ 3TQidRCj+lverr4MTeq8/sW4jCpameXalGUF2xTcsf1j3o7Htw3+0219zMDSBePHXhL5
+ DuQj2jQKZn6LEZuOCXNwh/ShlaY9RXT37ynos6fjkEDSr2tSo9ySjFFwTQC7rk026W7V
+ o0G+X0sxXxEf4TtJeNf9/z9TlVQYD6hhAmdChaWaVsPmenf9MD+qhkx+J37qut75KuAn
+ dkAEcMLtoR9Lh+QFJ4zNg5am9VWdnNH2QsvS/hSk1J58K0EC7y8mBIX8RCT4EDbardBR
+ hswQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+ :message-id:subject:to:cc;
+ bh=+wBLyr24cGi7atsVZkoQIwe3uAQ6ojShCI+jVRO74lw=;
+ b=CxBUIZ8wRo9373/Sts+130CKPolzrDECrccQyTc9xRjqR6Wuxrn7QEAS1pI4ZVv4oC
+ Eb029Z06HmgLoRMBuxVmIhNeK5Bz06IpNNLCt5HDb7+xE2Otap8oyVqsA+zHjt0X7egE
+ CRVoaFBufYjTOp79/OBhZIVGzozzkhMRZnm1KOKbNO8LkTsZKuE0cloLXzayvP/FBhme
+ xc20VHhceJXwiDZtADkz1f9S6zL6h57HkLtUYJHMl23lcMLFVaeBoOILZLctKIOiwZU7
+ vA1QC47yPggxiqkY92kusseBZFBvTLIJN+lu81M1DV/pAFtnGVmVVQkT52Se3ioxoCPY
+ BHWA==
+X-Gm-Message-State: AOAM531c8K2ss1gz1MjvK94nS4IFiVNf42U3VMiJCxFuLi1QtzhlL/88
+ qx8AAuAk0+vHpys+r7bnrtGrgtieZYL8YzhsQSo=
+X-Google-Smtp-Source: ABdhPJzWXVKEVPSd+/ybJqb9qB+8jj+Kj3hkYFRJGGmlEfb5sp9rfzec4m4cysQ94quYGJ2bZ7zcfx+15OJ7T7ROWKk=
+X-Received: by 2002:a17:906:5d0f:: with SMTP id
+ g15mr5198009ejt.44.1642583709284; 
+ Wed, 19 Jan 2022 01:15:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: be237cdf-4fe3-478b-1eea-08d9db4b5295
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4998:EE_
-X-Microsoft-Antispam-PRVS: <BY5PR12MB49983152FD6AEB6F84088A8FBC599@BY5PR12MB4998.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:862;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: P2KZAmJiI5tjRqoXzh3UMm0wdrXGx/TZtWz/Vg8vS1eVOK5Ysp4FfCdDG7IED9dVPVsmICJ+aS9gmRaTpiRh99fRCrzOH6kaQpRrZox7LUhJI19uztfKdO9oJCo5qixvsMWf1eRyNzvjBTCp3ruSIFseDutUV9OGw8hs0hzi4VllrHiRhEoxuTUuv93xwLIjyQSuSwUgBcjt/MgBZoLVAeNGZ0ILQSpNCU/aGI0NeSu1d9Rs0OBmteOjKUQClbDCrA/xB9B93JuT21Elqr1wAta1IHiRCpJSo5MfBZf6uus1hPRLl5WeDONdXmcwMC0Gn5UuHojVMHeighJdYxfoDQPLM4TFeJf5zqF6+8Ig7gml+Lczff9ttKPRMd1SEI2UZJvujn8gJFIWdqQvgXlJzZIOefXlLMizN8iwUXeRahYBMjc70zt4tRurdkJMWkU8Oz6tvo0GnhhvJLnXcBPUJkNpnUjxmAjB5nbb5RvTw74XgrjYLPHqhdpM54Ag2+1srUaMfW8dIQV5a4werlHdQzi6Y6owtiKGt/8NyUE0fVXO4oTChXgh7H6bPYcCnHyBtWYmxvzA0R7rQ1VXQfD6ScRIIBLao0HX/9Q+YKnrPiUUYZAXs/OPLWxJgJr/Ld0oQVjMkqdvBJlQ4q0o7COtWG5CSBkUAXJPhDFcWCHzvzxm33/6PTeftgBQnxZ8AiWKMGvC7vSf0A9KW5qY+NIH06o+sB2ceTTD31JqICNyWtRnwMWbCMuXaQznfQ58uerCoEskZ177oDZ98qpslYdAOIE/gWDybGEwwI2vAkan+J4=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(40470700002)(46966006)(36840700001)(36756003)(6916009)(8676002)(82310400004)(7696005)(2616005)(47076005)(36860700001)(316002)(4326008)(70206006)(356005)(8936002)(426003)(2906002)(336012)(508600001)(83380400001)(81166007)(5660300002)(40460700001)(26005)(6666004)(186003)(4744005)(16526019)(1076003)(70586007)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2022 12:58:00.2608 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: be237cdf-4fe3-478b-1eea-08d9db4b5295
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT052.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4998
+Received: by 2002:a17:907:9713:0:0:0:0 with HTTP; Wed, 19 Jan 2022 01:15:08
+ -0800 (PST)
+In-Reply-To: <20220119072450.2890107-2-lucas.demarchi@intel.com>
+References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
+ <20220119072450.2890107-2-lucas.demarchi@intel.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 19 Jan 2022 11:15:08 +0200
+Message-ID: <CAHp75Vf5QOD_UtDK8VbxNApEBuJvzUic0NkzDNmRo3Q7Ud+=qw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] lib/string_helpers: Consolidate yesno() implementation
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: multipart/alternative; boundary="000000000000817d6d05d5ebd2cd"
+X-Mailman-Approved-At: Wed, 19 Jan 2022 14:32:45 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,30 +65,503 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Vishal Kulkarni <vishal@chelsio.com>,
+ Francis Laniel <laniel_francis@privacyrequired.com>,
+ Kentaro Takeda <takedakn@nttdata.co.jp>, Mikita Lipski <mikita.lipski@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Raju Rangoju <rajur@chelsio.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Julia Lawall <julia.lawall@lip6.fr>,
+ Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Eryk Brol <eryk.brol@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "David S . Miller" <davem@davemloft.net>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Change the return value of set_queue_properties_from_criu()
+--000000000000817d6d05d5ebd2cd
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: majun <majun@amd.com>
-Change-Id: I11362eb76eee84e64c5207c24a2b78141f62e63a
----
- drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Wednesday, January 19, 2022, Lucas De Marchi <lucas.demarchi@intel.com>
+wrote:
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-index ec62897914da..f70e972d1d33 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_process_queue_manager.c
-@@ -826,7 +826,7 @@ static void set_queue_properties_from_criu(struct queue_properties *qp,
- 	qp->type = q_data->type;
- 	qp->format = q_data->format;
- 
--	return 0;
-+	return;
- }
- 
- 
+> There are a few implementations of yesno() in the tree. Consolidate them
+> in include/linux/string_helpers.h.  Quite a few users of open coded
+> yesno() could later be converted to the new function:
+>
+> $ git grep '?\s*"yes"\s*' | wc -l
+> 286
+> $ git grep '?\s*"no"\s*' | wc -l
+> 20
+>
+> The inlined function should keep the const strings local to each
+> compilation unit, the same way it's now, thus not changing the current
+> behavior.
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c  |  6 +-----
+>  drivers/gpu/drm/i915/i915_utils.h              |  5 -----
+>  .../net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c | 11 -----------
+>  include/linux/string_helpers.h                 |  2 ++
+>  security/tomoyo/audit.c                        |  2 +-
+>  security/tomoyo/common.c                       | 18 ++++--------------
+>  security/tomoyo/common.h                       |  1 -
+>  7 files changed, 8 insertions(+), 37 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> index 9d43ecb1f692..b59760f91bf6 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> @@ -23,6 +23,7 @@
+>   *
+>   */
+>
+> +#include <linux/string_helpers.h>
+>  #include <linux/uaccess.h>
+>
+>  #include "dc.h"
+> @@ -49,11 +50,6 @@ struct dmub_debugfs_trace_entry {
+>         uint32_t param1;
+>  };
+>
+> -static inline const char *yesno(bool v)
+> -{
+> -       return v ? "yes" : "no";
+> -}
+> -
+>  /* parse_write_buffer_into_params - Helper function to parse debugfs
+> write buffer into an array
+>   *
+>   * Function takes in attributes passed to debugfs write entry
+> diff --git a/drivers/gpu/drm/i915/i915_utils.h
+> b/drivers/gpu/drm/i915/i915_utils.h
+> index 7a5925072466..2a8781cc648b 100644
+> --- a/drivers/gpu/drm/i915/i915_utils.h
+> +++ b/drivers/gpu/drm/i915/i915_utils.h
+> @@ -414,11 +414,6 @@ wait_remaining_ms_from_jiffies(unsigned long
+> timestamp_jiffies, int to_wait_ms)
+>  #define MBps(x) KBps(1000 * (x))
+>  #define GBps(x) ((u64)1000 * MBps((x)))
+>
+> -static inline const char *yesno(bool v)
+> -{
+> -       return v ? "yes" : "no";
+> -}
+> -
+>  static inline const char *onoff(bool v)
+>  {
+>         return v ? "on" : "off";
+> diff --git a/drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c
+> b/drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c
+> index 7d49fd4edc9e..61a04d7abc1f 100644
+> --- a/drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c
+> +++ b/drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c
+> @@ -2015,17 +2015,6 @@ static const struct file_operations
+> rss_debugfs_fops = {
+>  /* RSS Configuration.
+>   */
+>
+> -/* Small utility function to return the strings "yes" or "no" if the
+> supplied
+> - * argument is non-zero.
+> - */
+> -static const char *yesno(int x)
+> -{
+> -       static const char *yes = "yes";
+> -       static const char *no = "no";
+> -
+> -       return x ? yes : no;
+> -}
+> -
+>  static int rss_config_show(struct seq_file *seq, void *v)
+>  {
+>         struct adapter *adapter = seq->private;
+> diff --git a/include/linux/string_helpers.h b/include/linux/string_
+> helpers.h
+> index 4ba39e1403b2..e980dec05d31 100644
+> --- a/include/linux/string_helpers.h
+> +++ b/include/linux/string_helpers.h
+> @@ -102,4 +102,6 @@ char *kstrdup_quotable_file(struct file *file, gfp_t
+> gfp);
+>
+>  void kfree_strarray(char **array, size_t n);
+>
+> +static inline const char *yesno(bool v) { return v ? "yes" : "no"; }
+
+
+
+Perhaps keep it on 4 lines? Yes, yes/no is short, but if we add others
+(enable/disable) it will not be possible to keep on one line. And hence
+style will be broken among similar functions.
+
+
+Also it needs to be rebased and resend after -rc1, I expect conflict here.
+
+
+
+> +
+>  #endif
+> diff --git a/security/tomoyo/audit.c b/security/tomoyo/audit.c
+> index d79bf07e16be..1458e27361e8 100644
+> --- a/security/tomoyo/audit.c
+> +++ b/security/tomoyo/audit.c
+> @@ -166,7 +166,7 @@ static char *tomoyo_print_header(struct
+> tomoyo_request_info *r)
+>                        "#%04u/%02u/%02u %02u:%02u:%02u# profile=%u mode=%s
+> granted=%s (global-pid=%u) task={ pid=%u ppid=%u uid=%u gid=%u euid=%u
+> egid=%u suid=%u sgid=%u fsuid=%u fsgid=%u }",
+>                        stamp.year, stamp.month, stamp.day, stamp.hour,
+>                        stamp.min, stamp.sec, r->profile,
+> tomoyo_mode[r->mode],
+> -                      tomoyo_yesno(r->granted), gpid, tomoyo_sys_getpid(),
+> +                      yesno(r->granted), gpid, tomoyo_sys_getpid(),
+>                        tomoyo_sys_getppid(),
+>                        from_kuid(&init_user_ns, current_uid()),
+>                        from_kgid(&init_user_ns, current_gid()),
+> diff --git a/security/tomoyo/common.c b/security/tomoyo/common.c
+> index 5c64927bf2b3..304ed0f426dd 100644
+> --- a/security/tomoyo/common.c
+> +++ b/security/tomoyo/common.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/uaccess.h>
+>  #include <linux/slab.h>
+>  #include <linux/security.h>
+> +#include <linux/string_helpers.h>
+>  #include "common.h"
+>
+>  /* String table for operation mode. */
+> @@ -174,16 +175,6 @@ static bool tomoyo_manage_by_non_root;
+>
+>  /* Utility functions. */
+>
+> -/**
+> - * tomoyo_yesno - Return "yes" or "no".
+> - *
+> - * @value: Bool value.
+> - */
+> -const char *tomoyo_yesno(const unsigned int value)
+> -{
+> -       return value ? "yes" : "no";
+> -}
+> -
+>  /**
+>   * tomoyo_addprintf - strncat()-like-snprintf().
+>   *
+> @@ -730,8 +721,8 @@ static void tomoyo_print_config(struct
+> tomoyo_io_buffer *head, const u8 config)
+>  {
+>         tomoyo_io_printf(head, "={ mode=%s grant_log=%s reject_log=%s }\n",
+>                          tomoyo_mode[config & 3],
+> -                        tomoyo_yesno(config &
+> TOMOYO_CONFIG_WANT_GRANT_LOG),
+> -                        tomoyo_yesno(config &
+> TOMOYO_CONFIG_WANT_REJECT_LOG));
+> +                        yesno(config & TOMOYO_CONFIG_WANT_GRANT_LOG),
+> +                        yesno(config & TOMOYO_CONFIG_WANT_REJECT_LOG));
+>  }
+>
+>  /**
+> @@ -1354,8 +1345,7 @@ static bool tomoyo_print_condition(struct
+> tomoyo_io_buffer *head,
+>         case 3:
+>                 if (cond->grant_log != TOMOYO_GRANTLOG_AUTO)
+>                         tomoyo_io_printf(head, " grant_log=%s",
+> -                                        tomoyo_yesno(cond->grant_log ==
+> -
+>  TOMOYO_GRANTLOG_YES));
+> +                                        yesno(cond->grant_log ==
+> TOMOYO_GRANTLOG_YES));
+>                 tomoyo_set_lf(head);
+>                 return true;
+>         }
+> diff --git a/security/tomoyo/common.h b/security/tomoyo/common.h
+> index 85246b9df7ca..ca285f362705 100644
+> --- a/security/tomoyo/common.h
+> +++ b/security/tomoyo/common.h
+> @@ -959,7 +959,6 @@ char *tomoyo_read_token(struct tomoyo_acl_param
+> *param);
+>  char *tomoyo_realpath_from_path(const struct path *path);
+>  char *tomoyo_realpath_nofollow(const char *pathname);
+>  const char *tomoyo_get_exe(void);
+> -const char *tomoyo_yesno(const unsigned int value);
+>  const struct tomoyo_path_info *tomoyo_compare_name_union
+>  (const struct tomoyo_path_info *name, const struct tomoyo_name_union
+> *ptr);
+>  const struct tomoyo_path_info *tomoyo_get_domainname
+> --
+> 2.34.1
+>
+>
+
 -- 
-2.25.1
+With Best Regards,
+Andy Shevchenko
 
+--000000000000817d6d05d5ebd2cd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<br><br>On Wednesday, January 19, 2022, Lucas De Marchi &lt;<a href=3D"mail=
+to:lucas.demarchi@intel.com">lucas.demarchi@intel.com</a>&gt; wrote:<br><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
+ccc solid;padding-left:1ex">There are a few implementations of yesno() in t=
+he tree. Consolidate them<br>
+in include/linux/string_helpers.<wbr>h.=C2=A0 Quite a few users of open cod=
+ed<br>
+yesno() could later be converted to the new function:<br>
+<br>
+$ git grep &#39;?\s*&quot;yes&quot;\s*&#39; | wc -l<br>
+286<br>
+$ git grep &#39;?\s*&quot;no&quot;\s*&#39; | wc -l<br>
+20<br>
+<br>
+The inlined function should keep the const strings local to each<br>
+compilation unit, the same way it&#39;s now, thus not changing the current<=
+br>
+behavior.<br>
+<br>
+Signed-off-by: Lucas De Marchi &lt;<a href=3D"mailto:lucas.demarchi@intel.c=
+om">lucas.demarchi@intel.com</a>&gt;<br>
+---<br>
+=C2=A0.../amd/display/amdgpu_dm/<wbr>amdgpu_dm_debugfs.c=C2=A0 |=C2=A0 6 +-=
+----<br>
+=C2=A0drivers/gpu/drm/i915/i915_<wbr>utils.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 |=C2=A0 5 -----<br>
+=C2=A0.../net/ethernet/chelsio/<wbr>cxgb4/cxgb4_debugfs.c | 11 -----------<=
+br>
+=C2=A0include/linux/string_helpers.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 2 ++<br>
+=C2=A0security/tomoyo/audit.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 2 +-<br>
+=C2=A0security/tomoyo/common.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 18 ++++--------------<br>
+=C2=A0security/tomoyo/common.h=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 1 -<br>
+=C2=A07 files changed, 8 insertions(+), 37 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/amd/display/<wbr>amdgpu_dm/amdgpu_dm_debugfs.c=
+ b/drivers/gpu/drm/amd/display/<wbr>amdgpu_dm/amdgpu_dm_debugfs.c<br>
+index 9d43ecb1f692..b59760f91bf6 100644<br>
+--- a/drivers/gpu/drm/amd/display/<wbr>amdgpu_dm/amdgpu_dm_debugfs.c<br>
++++ b/drivers/gpu/drm/amd/display/<wbr>amdgpu_dm/amdgpu_dm_debugfs.c<br>
+@@ -23,6 +23,7 @@<br>
+=C2=A0 *<br>
+=C2=A0 */<br>
+<br>
++#include &lt;linux/string_helpers.h&gt;<br>
+=C2=A0#include &lt;linux/uaccess.h&gt;<br>
+<br>
+=C2=A0#include &quot;dc.h&quot;<br>
+@@ -49,11 +50,6 @@ struct dmub_debugfs_trace_entry {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 uint32_t param1;<br>
+=C2=A0};<br>
+<br>
+-static inline const char *yesno(bool v)<br>
+-{<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0return v ? &quot;yes&quot; : &quot;no&quot;;<br=
+>
+-}<br>
+-<br>
+=C2=A0/* parse_write_buffer_into_params - Helper function to parse debugfs =
+write buffer into an array<br>
+=C2=A0 *<br>
+=C2=A0 * Function takes in attributes passed to debugfs write entry<br>
+diff --git a/drivers/gpu/drm/i915/i915_<wbr>utils.h b/drivers/gpu/drm/i915/=
+i915_<wbr>utils.h<br>
+index 7a5925072466..2a8781cc648b 100644<br>
+--- a/drivers/gpu/drm/i915/i915_<wbr>utils.h<br>
++++ b/drivers/gpu/drm/i915/i915_<wbr>utils.h<br>
+@@ -414,11 +414,6 @@ wait_remaining_ms_from_<wbr>jiffies(unsigned long time=
+stamp_jiffies, int to_wait_ms)<br>
+=C2=A0#define MBps(x) KBps(1000 * (x))<br>
+=C2=A0#define GBps(x) ((u64)1000 * MBps((x)))<br>
+<br>
+-static inline const char *yesno(bool v)<br>
+-{<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0return v ? &quot;yes&quot; : &quot;no&quot;;<br=
+>
+-}<br>
+-<br>
+=C2=A0static inline const char *onoff(bool v)<br>
+=C2=A0{<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 return v ? &quot;on&quot; : &quot;off&quot;;<br=
+>
+diff --git a/drivers/net/ethernet/<wbr>chelsio/cxgb4/cxgb4_debugfs.c b/driv=
+ers/net/ethernet/<wbr>chelsio/cxgb4/cxgb4_debugfs.c<br>
+index 7d49fd4edc9e..61a04d7abc1f 100644<br>
+--- a/drivers/net/ethernet/<wbr>chelsio/cxgb4/cxgb4_debugfs.c<br>
++++ b/drivers/net/ethernet/<wbr>chelsio/cxgb4/cxgb4_debugfs.c<br>
+@@ -2015,17 +2015,6 @@ static const struct file_operations rss_debugfs_fops=
+ =3D {<br>
+=C2=A0/* RSS Configuration.<br>
+=C2=A0 */<br>
+<br>
+-/* Small utility function to return the strings &quot;yes&quot; or &quot;n=
+o&quot; if the supplied<br>
+- * argument is non-zero.<br>
+- */<br>
+-static const char *yesno(int x)<br>
+-{<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0static const char *yes =3D &quot;yes&quot;;<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0static const char *no =3D &quot;no&quot;;<br>
+-<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0return x ? yes : no;<br>
+-}<br>
+-<br>
+=C2=A0static int rss_config_show(struct seq_file *seq, void *v)<br>
+=C2=A0{<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 struct adapter *adapter =3D seq-&gt;private;<br=
+>
+diff --git a/include/linux/string_<wbr>helpers.h b/include/linux/string_<wb=
+r>helpers.h<br>
+index 4ba39e1403b2..e980dec05d31 100644<br>
+--- a/include/linux/string_<wbr>helpers.h<br>
++++ b/include/linux/string_<wbr>helpers.h<br>
+@@ -102,4 +102,6 @@ char *kstrdup_quotable_file(struct file *file, gfp_t gf=
+p);<br>
+<br>
+=C2=A0void kfree_strarray(char **array, size_t n);<br>
+<br>
++static inline const char *yesno(bool v) { return v ? &quot;yes&quot; : &qu=
+ot;no&quot;; }</blockquote><div><br></div><div><br></div><div>Perhaps keep =
+it on 4 lines? Yes, yes/no is short, but if we add others (enable/disable) =
+it will not be possible to keep on one line. And hence style will be broken=
+ among similar functions.</div><div><br></div><div><br></div><div>Also it n=
+eeds to be rebased and resend after -rc1, I expect conflict here.</div><div=
+><br></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
++<br>
+=C2=A0#endif<br>
+diff --git a/security/tomoyo/audit.c b/security/tomoyo/audit.c<br>
+index d79bf07e16be..1458e27361e8 100644<br>
+--- a/security/tomoyo/audit.c<br>
++++ b/security/tomoyo/audit.c<br>
+@@ -166,7 +166,7 @@ static char *tomoyo_print_header(struct tomoyo_request_=
+info *r)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0&quot;#%04u/%02u/%02u %02u:%02u:%02u# profile=3D%u mode=3D%s gran=
+ted=3D%s (global-pid=3D%u) task=3D{ pid=3D%u ppid=3D%u uid=3D%u gid=3D%u eu=
+id=3D%u egid=3D%u suid=3D%u sgid=3D%u fsuid=3D%u fsgid=3D%u }&quot;,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0stamp.year, stamp.month, stamp.day, stamp.hour,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0stamp.min, stamp.sec, r-&gt;profile, tomoyo_mode[r-&gt;mode],<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 tomoyo_yesno(r-&gt;granted), gpid, tomoyo_sys_getpid(),<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 yesno(r-&gt;granted), gpid, tomoyo_sys_getpid(),<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0tomoyo_sys_getppid(),<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0from_kuid(&amp;init_user_ns, current_uid()),<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0from_kgid(&amp;init_user_ns, current_gid()),<br>
+diff --git a/security/tomoyo/common.c b/security/tomoyo/common.c<br>
+index 5c64927bf2b3..304ed0f426dd 100644<br>
+--- a/security/tomoyo/common.c<br>
++++ b/security/tomoyo/common.c<br>
+@@ -8,6 +8,7 @@<br>
+=C2=A0#include &lt;linux/uaccess.h&gt;<br>
+=C2=A0#include &lt;linux/slab.h&gt;<br>
+=C2=A0#include &lt;linux/security.h&gt;<br>
++#include &lt;linux/string_helpers.h&gt;<br>
+=C2=A0#include &quot;common.h&quot;<br>
+<br>
+=C2=A0/* String table for operation mode. */<br>
+@@ -174,16 +175,6 @@ static bool tomoyo_manage_by_non_root;<br>
+<br>
+=C2=A0/* Utility functions. */<br>
+<br>
+-/**<br>
+- * tomoyo_yesno - Return &quot;yes&quot; or &quot;no&quot;.<br>
+- *<br>
+- * @value: Bool value.<br>
+- */<br>
+-const char *tomoyo_yesno(const unsigned int value)<br>
+-{<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0return value ? &quot;yes&quot; : &quot;no&quot;=
+;<br>
+-}<br>
+-<br>
+=C2=A0/**<br>
+=C2=A0 * tomoyo_addprintf - strncat()-like-snprintf().<br>
+=C2=A0 *<br>
+@@ -730,8 +721,8 @@ static void tomoyo_print_config(struct tomoyo_io_buffer=
+ *head, const u8 config)<br>
+=C2=A0{<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 tomoyo_io_printf(head, &quot;=3D{ mode=3D%s gra=
+nt_log=3D%s reject_log=3D%s }\n&quot;,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0tomoyo_mode[config &amp; 3],<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 tomoyo_yesno(config &amp; TOMOYO_CONFIG_WANT_GRANT_LOG),<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 tomoyo_yesno(config &amp; TOMOYO_CONFIG_WANT_REJECT_LOG)<wbr>);<=
+br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 yesno(config &amp; TOMOYO_CONFIG_WANT_GRANT_LOG),<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 yesno(config &amp; TOMOYO_CONFIG_WANT_REJECT_LOG)<wbr>);<br>
+=C2=A0}<br>
+<br>
+=C2=A0/**<br>
+@@ -1354,8 +1345,7 @@ static bool tomoyo_print_condition(struct tomoyo_io_b=
+uffer *head,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 case 3:<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (cond-&gt;grant_=
+log !=3D TOMOYO_GRANTLOG_AUTO)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 tomoyo_io_printf(head, &quot; grant_log=3D%s&quot;,<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 tomoyo_y=
+esno(cond-&gt;grant_log =3D=3D<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0TOMOYO_GRANTLOG_YES));<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 yesno(co=
+nd-&gt;grant_log =3D=3D TOMOYO_GRANTLOG_YES));<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 tomoyo_set_lf(head)=
+;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return true;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+diff --git a/security/tomoyo/common.h b/security/tomoyo/common.h<br>
+index 85246b9df7ca..ca285f362705 100644<br>
+--- a/security/tomoyo/common.h<br>
++++ b/security/tomoyo/common.h<br>
+@@ -959,7 +959,6 @@ char *tomoyo_read_token(struct tomoyo_acl_param *param)=
+;<br>
+=C2=A0char *tomoyo_realpath_from_path(<wbr>const struct path *path);<br>
+=C2=A0char *tomoyo_realpath_nofollow(<wbr>const char *pathname);<br>
+=C2=A0const char *tomoyo_get_exe(void);<br>
+-const char *tomoyo_yesno(const unsigned int value);<br>
+=C2=A0const struct tomoyo_path_info *tomoyo_compare_name_union<br>
+=C2=A0(const struct tomoyo_path_info *name, const struct tomoyo_name_union =
+*ptr);<br>
+=C2=A0const struct tomoyo_path_info *tomoyo_get_domainname<br>
+-- <br>
+2.34.1<br>
+<br>
+</blockquote><br><br>-- <br>With Best Regards,<br>Andy Shevchenko<br><br><b=
+r>
+
+--000000000000817d6d05d5ebd2cd--
