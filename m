@@ -1,64 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D1DB49549E
-	for <lists+amd-gfx@lfdr.de>; Thu, 20 Jan 2022 20:09:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7508249549C
+	for <lists+amd-gfx@lfdr.de>; Thu, 20 Jan 2022 20:09:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7691B10E8D5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0146110E873;
 	Thu, 20 Jan 2022 19:09:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com
- [IPv6:2607:f8b0:4864:20::632])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF19C10E7C4;
- Thu, 20 Jan 2022 10:17:53 +0000 (UTC)
-Received: by mail-pl1-x632.google.com with SMTP id e8so4798839plh.8;
- Thu, 20 Jan 2022 02:17:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:subject:date:message-id;
- bh=rdBW0j5QQWhMLX1FKpoagwlaHny7USjq4sUZI4cs1fE=;
- b=okHs6cOUaGLya4BJJW9td244ZQrPan4DTQ8eym4VDUiEE/pliKgmIEijdwdyZbjKfX
- mbO9y0ZXTKOXQYlnj93QUnGFKN9hmMCtDgqaI2/kDRTchPd1qbd2ucbYDNhjHbtIrsSt
- v6c/JjbHE8QWG1HDSjc0kSuD7kbZr55DXGG3+KAJvJ0IPLaUz8p/ICXMN+zRSRtNjwYl
- dQkyi2xomTA+LhCVaw0GMNkuf4fPBbIgKcbQiptNED3agNqudbwo8oHzWg4tDbPfbe76
- XKVIGzCg9RPq6h636C4I77z7uWQIgLcuk+Tl+JcI0iwtvUApqjJraXuZGfvT7XSZWZ2L
- urcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:subject:date:message-id;
- bh=rdBW0j5QQWhMLX1FKpoagwlaHny7USjq4sUZI4cs1fE=;
- b=CZDo/iknB2NoyKGo8kcgndqebG/jvq/TMspdSyy4Uz3jD6iQdH91OJrJGz1b0E1Nte
- xcpL7w7s89stK7OKqfNOu/CTFKoEeR0xR9RlVWs2m4OU2U6tCgBcoR0eZo9aFANzXOT5
- KNKG0KbhOPz2hAIMjGc990d9C1YWKM2BvCurQDCesJbnf1n5al7z2ZNDhzgf4Kv3h06h
- u5o5yGu3/9en8zi7B5P7aNHGhP3klgbGexCzQCyuk1wYsTPtoPn5I8ebDT6nF/xSYRmw
- kuDcEUM8bqDjJdePyh8+gHEVWZIJ9Kden0xeczJ9fJnaL6w+hmBA2dOuMjU7AL4MldUz
- M6LA==
-X-Gm-Message-State: AOAM5334VVKfJXpPhGoIkdWguHCg50ZJ79nbHzkHI/1ShCTHLaQ9XQJK
- HkPOrZ9rIvQ6UFKmpL3Irrk=
-X-Google-Smtp-Source: ABdhPJyeMp9RNX3h2fsUBSP5ombifhj5R4/4Wk9OoG84WlguEkGvIfX/1cSt4nKN2RqGXj+FFM6WKA==
-X-Received: by 2002:a17:90a:d154:: with SMTP id
- t20mr9972019pjw.43.1642673873398; 
- Thu, 20 Jan 2022 02:17:53 -0800 (PST)
-Received: from localhost.localdomain ([159.226.95.43])
- by smtp.googlemail.com with ESMTPSA id h12sm2070618pgh.79.2022.01.20.02.17.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 20 Jan 2022 02:17:53 -0800 (PST)
-From: Miaoqian Lin <linmq006@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- John Clements <john.clements@amd.com>, Jonathan Kim <jonathan.kim@amd.com>,
- Bernard Zhao <bernard@vivo.com>, Miaoqian Lin <linmq006@gmail.com>,
- Kevin Wang <kevin1.wang@amd.com>, shaoyunl <shaoyun.liu@amd.com>,
- Tian Tao <tiantao6@hisilicon.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/amdgpu: Fix double free in amdgpu_get_xgmi_hive
-Date: Thu, 20 Jan 2022 10:17:43 +0000
-Message-Id: <20220120101746.24847-1-linmq006@gmail.com>
-X-Mailer: git-send-email 2.17.1
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B26610E49E;
+ Thu, 20 Jan 2022 10:45:39 +0000 (UTC)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+ by smtp-out2.suse.de (Postfix) with ESMTP id 971CA1F394;
+ Thu, 20 Jan 2022 10:45:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1642675537; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=lNXsCxk1kmLzWZ3KuMXgc2QP7yNDhqQLgFtjl4LsFGg=;
+ b=s80Eh1CewTbGXaANSfdmhOC8yS7mIDv9FCt/I0hzu7cf9Pu9Si7tpC0AUMlifM6MhpyvNI
+ EdQykNw0T5LfW9CMRgRZQ36TExFEeiyITs3AE72J+aELbU1yWnXuKDUzDzoC1F8NJaMUMu
+ 9y1MB7bqBlsK9YohaVnVWyOxwl7Ul6w=
+Received: from suse.cz (unknown [10.100.224.162])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by relay2.suse.de (Postfix) with ESMTPS id 65535A3B81;
+ Thu, 20 Jan 2022 10:45:30 +0000 (UTC)
+Date: Thu, 20 Jan 2022 11:45:36 +0100
+From: Petr Mladek <pmladek@suse.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH 0/3] lib/string_helpers: Add a few string helpers
+Message-ID: <Yek9UEHpS16/9ajt@alley>
+References: <20220119072450.2890107-1-lucas.demarchi@intel.com>
+ <YegPiR7LU8aVisMf@alley> <87tudzbykz.fsf@intel.com>
+ <YekfbKMjOP9ecc5v@alley> <8735libwjo.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8735libwjo.fsf@intel.com>
 X-Mailman-Approved-At: Thu, 20 Jan 2022 19:09:46 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,30 +52,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, Vishal Kulkarni <vishal@chelsio.com>,
+ Francis Laniel <laniel_francis@privacyrequired.com>,
+ Kentaro Takeda <takedakn@nttdata.co.jp>, Mikita Lipski <mikita.lipski@amd.com>,
+ amd-gfx@lists.freedesktop.org, Andy Shevchenko <andy.shevchenko@gmail.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
+ intel-gfx@lists.freedesktop.org, Raju Rangoju <rajur@chelsio.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Julia Lawall <julia.lawall@lip6.fr>,
+ Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Eryk Brol <eryk.brol@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ linux-kernel@vger.kernel.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
+ linux-security-module@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+ netdev@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "David S . Miller" <davem@davemloft.net>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Callback function amdgpu_xgmi_hive_release() in kobject_put()
-calls kfree(hive), So we don't need call kfree(hive) again.
+On Thu 2022-01-20 11:12:27, Jani Nikula wrote:
+> On Thu, 20 Jan 2022, Petr Mladek <pmladek@suse.com> wrote:
+> > The problem is not that visible with yesno() and onoff(). But as you said,
+> > onoff() confliscts with variable names. And enabledisable() sucks.
+> > As a result, there is a non-trivial risk of two mass changes:
+> 
+> My point is, in the past three years we could have churned through more
+> than two mass renames just fine, if needed, *if* we had just managed to
+> merge something for a start!
 
-Fixes: 7b833d680481 ("drm/amd/amdgpu: fix potential memleak")
-Signed-off-by: Miaoqian Lin <linmq006@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c | 1 -
- 1 file changed, 1 deletion(-)
+Huh, this sound alarming.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
-index e8b8f28c2f72..35d4b966ef2c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_xgmi.c
-@@ -393,7 +393,6 @@ struct amdgpu_hive_info *amdgpu_get_xgmi_hive(struct amdgpu_device *adev)
- 	if (ret) {
- 		dev_err(adev->dev, "XGMI: failed initializing kobject for xgmi hive\n");
- 		kobject_put(&hive->kobj);
--		kfree(hive);
- 		hive = NULL;
- 		goto pro_end;
- 	}
--- 
-2.17.1
+Cosmetic changes just complicate history. They make "git blame" useless.
+They also complicate backports. I know that it is not problem for
+mainline. But there are supported stable branches, ...
 
+There should be a good reason for such changes. They should not be
+done light-heartedly.
+
+Best Regards,
+Petr
