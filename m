@@ -2,40 +2,40 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B382249743D
-	for <lists+amd-gfx@lfdr.de>; Sun, 23 Jan 2022 19:21:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A035497442
+	for <lists+amd-gfx@lfdr.de>; Sun, 23 Jan 2022 19:21:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F7D610E90C;
-	Sun, 23 Jan 2022 18:21:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDBD910EA26;
+	Sun, 23 Jan 2022 18:21:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2044.outbound.protection.outlook.com [40.107.244.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECE2310E857
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2073.outbound.protection.outlook.com [40.107.243.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F43F10E97C
  for <amd-gfx@lists.freedesktop.org>; Sun, 23 Jan 2022 18:21:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hco23QEjkpbFPLejpZPgotQQ0QR0fvEhxCPEujMrOSTc/P9/pLfZ/2V6dol1qu8caa6mHqw5g7pFIfamyPTnSquhlH30jcnRgzYLWm9JknOhSAmmq/+GkC5cL+uLjlv8/3/19hGTnYX8U2PjFAXqYS4YWh+p33y1tgW5kKiVc12l1YlKP8KlqISZU1K58FqB3MgnhwB+3+AR1h69kdJPNhHJNgD0EokiqGkn29es/CY+nWI14qlEueNlYQKwgkZTTpf9Aqs6eLgj7x8GA3RTLf46oo1+SAWCWllaK5oZ21Cky4X5uN5/NGflXa4BYWusBwQFmLHYvEvIyD54zJgpsQ==
+ b=nTGKsszHWQ8fTRc3EhiDl8mCW4HZ0RnTJ/NoIyEuB9VWIntGpPBRmWFrIDnWy5xY6OxjkCccnp44W5tzTyzm2uBaoxwTikzWppi+ZayGoEea4bpeb9HCp/AzaS8BiGKkP8zAxQ6/JSciZlf6NCLCm5aAd4fGuIKmUqr24ZOdEuPFZCNrqPUBnrzYNT0kqbE0aTstNG6mWgcxdtG9WH765P2KsTOn4N+EYeshQmZzS5rGyUIoTXtP9TlxmqGgzG7rIbJ+pVPyngdAzdHjqTFNp2h3yTFPkDckyFDhiLbqzo3wlT39OiDFEK031ofR7EiGc8aCm4Ca9SMl5Vd9XyxY7Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WbjoR6iOa+z8Jmfz7uFbD8J2I4cSroZreOGxh+z0yjM=;
- b=dhna0A0h0qWEXcTa16LrN49WzL8DHI4XdM3I9YpB5c0tJqXPiW1oQD8PFtKhOEzvdbgf1yF+Wug01EBWgKDA4pnC7Dua6mEOQrLupHJfKQacdqtB/FWp3gf1SJpnIvcJ59vQKiNSzxr5xOHgEAGMWhdd87Tww5MYP7vwcRhViPPdZnrQp6Mev+Pz0ChDq5vnT4Es2DAValfn35/kDZruGZr+6yGoamGenx9hD6oSnneKFsJ54HQPV+skpD9e14H7L33rG01QLYQxYZouqbODTjIAnsqa0lTbut2yum31/NuiYq5ggu8yBKffQDGpJUSQ1nSniwpn0FW2bPsBL8luOw==
+ bh=eTckP0dxsQNvBPy1+DHseBaRJRjs4AT80C5GA38Gn9Y=;
+ b=QhYRqSTjKoEG6/EHbaE0qNTyxVhyEnlSAa3nM0Jc+lue9E89TWJnSNpKc/UCeYJWG0lT6sa2geXj8lBC++KezjYNPTR5S4ulNhlfKARvtJ+P2bsPd9eD9r5ea/vGS+TEw6y9UFr0LSyR1x6+nBJJZ7td35t5shoodEwmJDPB79SjUWODEoTXzW9ORkNTV9kTD6l+1cZd2tOZ++QGnA83QCQUpSGKFM5dbAiUW5VVzjvB6yP6SnMCkj21tgdufqq8+zp3ujg3t7sH9z9AMycUVTXTXheMLSQZRzKz+Fid88SDCBDtahCqpDHU75pcXtKKb9dMRUPWw2JGrbGPLHTPNQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WbjoR6iOa+z8Jmfz7uFbD8J2I4cSroZreOGxh+z0yjM=;
- b=EPLByZoEOPt+cFecmLsPJs1RUYU3AHNYYmCHqnJSCRy3HlzuVnd1SgbnrmmQuGX2UcMOnz9sSjJeGqAavcUIhQVSRlfoTpGfbFODAvo1t57QXFh10T3xms2RVJTl1V9uRISougdvuKNS5dmua6zfr2IyQKLnL8+Il4x4pc3xbXE=
-Received: from BN9PR03CA0966.namprd03.prod.outlook.com (2603:10b6:408:109::11)
- by DM6PR12MB2795.namprd12.prod.outlook.com (2603:10b6:5:41::32) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=eTckP0dxsQNvBPy1+DHseBaRJRjs4AT80C5GA38Gn9Y=;
+ b=o/DCh8RomC44bbjmR7ggZHgTvw4XUkSQDs7Et5LvuPQCX+oYouYtJO37MFndVUnlOZ8OC09iKE0AkDdfyO1DDBZGyxjavWkbRIsFjLL4Psj7xS0fhh4E+89L3CfvMtGap9ui5CDp079Zt5fR/MYCf0K42QoaQIvcP77BfhfH6TY=
+Received: from BN9PR03CA0965.namprd03.prod.outlook.com (2603:10b6:408:109::10)
+ by BY5PR12MB4917.namprd12.prod.outlook.com (2603:10b6:a03:1d1::8)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.8; Sun, 23 Jan
- 2022 18:21:16 +0000
+ 2022 18:21:17 +0000
 Received: from BN8NAM11FT029.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:109:cafe::85) by BN9PR03CA0966.outlook.office365.com
- (2603:10b6:408:109::11) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:408:109:cafe::7b) by BN9PR03CA0965.outlook.office365.com
+ (2603:10b6:408:109::10) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.10 via Frontend
  Transport; Sun, 23 Jan 2022 18:21:16 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  BN8NAM11FT029.mail.protection.outlook.com (10.13.177.68) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4909.7 via Frontend Transport; Sun, 23 Jan 2022 18:21:15 +0000
+ 15.20.4909.7 via Frontend Transport; Sun, 23 Jan 2022 18:21:16 +0000
 Received: from atma2.hitronhub.home (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Sun, 23 Jan
- 2022 12:21:13 -0600
+ 2022 12:21:14 -0600
 From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 20/24] drm/amd/display: allow set dp drive setting when stream
- is not present
-Date: Sun, 23 Jan 2022 13:20:17 -0500
-Message-ID: <20220123182021.4154032-21-Rodrigo.Siqueira@amd.com>
+Subject: [PATCH 21/24] drm/amd/display: Fix disabling dccg clocks
+Date: Sun, 23 Jan 2022 13:20:18 -0500
+Message-ID: <20220123182021.4154032-22-Rodrigo.Siqueira@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220123182021.4154032-1-Rodrigo.Siqueira@amd.com>
 References: <20220123182021.4154032-1-Rodrigo.Siqueira@amd.com>
@@ -69,28 +68,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9859bfb1-27ce-4551-b56b-08d9de9d24db
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2795:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB279523D7F220654142F4F8B2985D9@DM6PR12MB2795.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Office365-Filtering-Correlation-Id: f8396bf1-2e60-467f-3830-08d9de9d2542
+X-MS-TrafficTypeDiagnostic: BY5PR12MB4917:EE_
+X-Microsoft-Antispam-PRVS: <BY5PR12MB4917A1801236F309EF1A9E8A985D9@BY5PR12MB4917.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:431;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Cpf+84neuUMXarai+U59fWGbgke53Uq9XIda8ZokOYHBNHlY9Fc7j1H3hS9ABS1eUqe0qml1gneHLFc0MgcTH1cvxKTRroo2nnU17xr8MYBu+khvfMpI5k0teB5U0EeoNwjft4o9HabXIWRDzl92q2upmRyjqdjSvT+1kOgJSxRC4ENifxec70thQ5cyipIAPMOM0Hy5wY3uamnuEQ9YDbjwfdjUGw3VqDFq8aaUrEZqwEvmzWB/SK2zt3kyc/X8XiAnlJCrshpKHWMqRhn5D9okA+2bAY6602ASepf6X90jUtGfw99qDuZP93n/H4ORb58yX+UTDRNDRBz+EcpsDJafyqgX65MtkE/GJXbifxWnCu4qjY1KAiegG0X4Ha0hk04WzDSJN4MkdYAQHbNjGS1/mkPyFHeu0EThb5JNGurAQf8juRIbHbx11aTSXUuH+KJrpolLmuQNzbl89uhoe+HdNQthWxbjgoByP+HtxCDhsOzJJRIpKpqqALGoyxzJg/l1zWTMw+CuVOCxDejx3fENgYdLG4ZR0YtnZYQmKr71NM8wKnVwGLpGnRrhB48+3ezLF470zV8L0YX9lE9321RqWf30VRXdZASOXzk2HYVhPElvwQwOAZ9xlGcHuzR4hQ2dBNv0jB/FK6sOiWYbG4J7JpDpkDcYgfdsLidigDKnMlLz4gh3fGS0V82EYCYdt3V2X55GilFtIFsBXdVEztjELKUcbyHsq5yF/8hH1QesdHuHxyqNsyg9zxSYxx1/xom4p7MvUv2LecjJHBGYfGBt3lGKfv/pMODk7oO2sHA=
+X-Microsoft-Antispam-Message-Info: LmXaHx7P9ems54vOniwv8YI9S2Ia0DoB+LA3Q6imh6x25YrLDJPkzV0ovbRxCZveTyUOSiZ1j5eE5h+zP9CkrI5g2O3kHt4TsYglqd1CiZjoEQK8Oqi/lnMux5mJfCXrQ9G2lSTZDiY+xVpaTTcy8Dc512ytySm3FsHDpbOMPpRCwnjBSY6gIV/pUutQF+yw4JFBfZr6JX6UPj240ZmCvLuP70EPwtHHiroojzHJUBA0oAfMmKnRq2/tiI/exf8HI5B5e5hZDKcqIWac9AUBbyS27OPozXFqsckaOaLQY9BgOOs1YCGN6njkaypMWUHUyj25SzAx5LUyGPEznS2p5ebhAbuYkfiiUxS8geP0tY3Wfm0WB2ziLMS3A0tbGDXIfcMkKRcTyaq0arKz9VvOH/ajOWvPMvrHl0YZl6m6SVocTmfiJL54wbYvVdKh9PSCO0/JBoc6dLVrsRiIxhpZ0qa53gKlayrPp1gb5uK4+c7aD3a1lxqCXd2Op2Z8FUAgMzzdKG3ZwlXsuFvA+mz58wKnBWvc1asK2Bp0QzXBHzrpQP44lvz7c6LFm+QnWvlgYac471nJ4QsCXZoG3MioxILAKRIsZvRZvJNaJIsYrxGAkBP/eLWN7Pi7m7u0aBSDSLla2kVyaOSEMovsH+aFtZ+agdyIoLnGGxFxzeN8V3fEj4iJgQxt8j28JNwkWPHAmok0wpo1OSmr7BQBYE0Hrq2H/xAS4cx2/427aS3TZzMeNtZqzYxTmuqdFPDa97lfR8Nbxtlp2X4Jy3OFQxvHDs9GT0m/C77r0KdkSyuio4k=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(46966006)(36840700001)(40470700004)(54906003)(1076003)(6916009)(5660300002)(26005)(316002)(2616005)(36860700001)(70206006)(86362001)(508600001)(70586007)(40460700003)(186003)(36756003)(83380400001)(336012)(47076005)(426003)(356005)(81166007)(8936002)(2906002)(8676002)(4326008)(16526019)(82310400004)(36900700001);
+ SFS:(4636009)(40470700004)(46966006)(36840700001)(426003)(2616005)(4326008)(5660300002)(2906002)(70586007)(40460700003)(47076005)(26005)(81166007)(54906003)(36860700001)(356005)(83380400001)(8936002)(8676002)(1076003)(6916009)(86362001)(186003)(36756003)(16526019)(82310400004)(316002)(336012)(70206006)(508600001)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2022 18:21:15.8933 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9859bfb1-27ce-4551-b56b-08d9de9d24db
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2022 18:21:16.5495 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f8396bf1-2e60-467f-3830-08d9de9d2542
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT029.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2795
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4917
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,114 +101,213 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+Cc: stylon.wang@amd.com, David Galiffi <David.Galiffi@amd.com>,
+ Eric Yang <Eric.Yang2@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
- Wenjing Liu <wenjing.liu@amd.com>, solomon.chiu@amd.com,
- Aurabindo.Pillai@amd.com, Wayne Lin <Wayne.Lin@amd.com>,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
  Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wenjing Liu <wenjing.liu@amd.com>
+From: David Galiffi <David.Galiffi@amd.com>
 
-[why]
-There is a change previously to disallow DM to set dp drive setings when
-stream is not present. The logic might not work well with DP PHY
-complaince scenario with a PHY test fixture attachment. We need to make
-the method allow DP link drive settings changes even without stream
-attached to it.
+[How & Why]
+Updated procedure to match hardware programming guide.
 
-[how]
-revert back to previous code in set drive setting function then add an
-empty link_resource structure, then assign link resource based on
-current link resource if link resource is allocated to the current pipe.
-
-Reviewed-by: Wayne Lin <Wayne.Lin@amd.com>
+Reviewed-by: Eric Yang <Eric.Yang2@amd.com>
 Acked-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Wenjing Liu <wenjing.liu@amd.com>
+Signed-off-by: David Galiffi <David.Galiffi@amd.com>
 ---
- drivers/gpu/drm/amd/display/dc/core/dc_link.c | 30 ++++++++-----------
- drivers/gpu/drm/amd/display/dc/dc_link.h      |  3 +-
- 2 files changed, 15 insertions(+), 18 deletions(-)
+ .../gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h |  7 +++
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_dccg.c | 44 ++++++++++++-------
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h |  1 +
+ 3 files changed, 37 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link.c b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-index d0aba8d7b1c3..6be2ae743cc5 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link.c
-@@ -4454,22 +4454,17 @@ void dc_link_set_drive_settings(struct dc *dc,
- {
- 
- 	int i;
--	struct pipe_ctx *pipe = NULL;
--	const struct link_resource *link_res;
-+	struct link_resource link_res;
- 
--	link_res = dc_link_get_cur_link_res(link);
-+	for (i = 0; i < dc->link_count; i++)
-+		if (dc->links[i] == link)
-+			break;
- 
--	for (i = 0; i < MAX_PIPES; i++) {
--		pipe = &dc->current_state->res_ctx.pipe_ctx[i];
--		if (pipe->stream && pipe->stream->link) {
--			if (pipe->stream->link == link)
--				break;
--		}
--	}
--	if (pipe && link_res)
--		dc_link_dp_set_drive_settings(pipe->stream->link, link_res, lt_settings);
--	else
-+	if (i >= dc->link_count)
- 		ASSERT_CRITICAL(false);
-+
-+	dc_link_get_cur_link_res(link, &link_res);
-+	dc_link_dp_set_drive_settings(dc->links[i], &link_res, lt_settings);
- }
- 
- void dc_link_set_preferred_link_settings(struct dc *dc,
-@@ -4711,23 +4706,24 @@ uint32_t dc_bandwidth_in_kbps_from_timing(
- 
- }
- 
--const struct link_resource *dc_link_get_cur_link_res(const struct dc_link *link)
-+void dc_link_get_cur_link_res(const struct dc_link *link,
-+		struct link_resource *link_res)
- {
- 	int i;
- 	struct pipe_ctx *pipe = NULL;
--	const struct link_resource *link_res = NULL;
-+
-+	memset(link_res, 0, sizeof(*link_res));
- 
- 	for (i = 0; i < MAX_PIPES; i++) {
- 		pipe = &link->dc->current_state->res_ctx.pipe_ctx[i];
- 		if (pipe->stream && pipe->stream->link && pipe->top_pipe == NULL) {
- 			if (pipe->stream->link == link) {
--				link_res = &pipe->link_res;
-+				*link_res = pipe->link_res;
- 				break;
- 			}
- 		}
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h
+index f98aba308028..493c47a3d06e 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_dccg.h
+@@ -183,8 +183,14 @@
+ 	type SYMCLK32_ROOT_SE1_GATE_DISABLE;\
+ 	type SYMCLK32_ROOT_SE2_GATE_DISABLE;\
+ 	type SYMCLK32_ROOT_SE3_GATE_DISABLE;\
++	type SYMCLK32_SE0_GATE_DISABLE;\
++	type SYMCLK32_SE1_GATE_DISABLE;\
++	type SYMCLK32_SE2_GATE_DISABLE;\
++	type SYMCLK32_SE3_GATE_DISABLE;\
+ 	type SYMCLK32_ROOT_LE0_GATE_DISABLE;\
+ 	type SYMCLK32_ROOT_LE1_GATE_DISABLE;\
++	type SYMCLK32_LE0_GATE_DISABLE;\
++	type SYMCLK32_LE1_GATE_DISABLE;\
+ 	type DPSTREAMCLK_ROOT_GATE_DISABLE;\
+ 	type DPSTREAMCLK_GATE_DISABLE;\
+ 	type HDMISTREAMCLK0_DTO_PHASE;\
+@@ -233,6 +239,7 @@ struct dccg_registers {
+ 	uint32_t DSCCLK2_DTO_PARAM;
+ 	uint32_t DPSTREAMCLK_ROOT_GATE_DISABLE;
+ 	uint32_t DPSTREAMCLK_GATE_DISABLE;
++	uint32_t DCCG_GATE_DISABLE_CNTL2;
+ 	uint32_t DCCG_GATE_DISABLE_CNTL3;
+ 	uint32_t HDMISTREAMCLK0_DTO_PARAM;
+ 	uint32_t DCCG_GATE_DISABLE_CNTL4;
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.c
+index ea4f8e06b07c..720bd35582b0 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.c
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.c
+@@ -121,7 +121,8 @@ static void dccg31_enable_dpstreamclk(struct dccg *dccg, int otg_inst)
+ 		return;
  	}
- 
--	return link_res;
+ 	if (dccg->ctx->dc->debug.root_clock_optimization.bits.dpstream)
+-		REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
++		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++			DPSTREAMCLK_GATE_DISABLE, 1,
+ 			DPSTREAMCLK_ROOT_GATE_DISABLE, 1);
  }
  
- /**
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_link.h b/drivers/gpu/drm/amd/display/dc/dc_link.h
-index b1c79b3f26aa..6c02244e7fe7 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_link.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_link.h
-@@ -459,7 +459,8 @@ bool dc_link_should_enable_fec(const struct dc_link *link);
- uint32_t dc_link_bw_kbps_from_raw_frl_link_rate_data(uint8_t bw);
- enum dp_link_encoding dc_link_dp_mst_decide_link_encoding_format(const struct dc_link *link);
+@@ -130,8 +131,9 @@ static void dccg31_disable_dpstreamclk(struct dccg *dccg, int otg_inst)
+ 	struct dcn_dccg *dccg_dcn = TO_DCN_DCCG(dccg);
  
--const struct link_resource *dc_link_get_cur_link_res(const struct dc_link *link);
-+void dc_link_get_cur_link_res(const struct dc_link *link,
-+		struct link_resource *link_res);
- /* take a snapshot of current link resource allocation state */
- void dc_get_cur_link_res_map(const struct dc *dc, uint32_t *map);
- /* restore link resource allocation state from a snapshot */
+ 	if (dccg->ctx->dc->debug.root_clock_optimization.bits.dpstream)
+-		REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
+-				DPSTREAMCLK_ROOT_GATE_DISABLE, 0);
++		REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++				DPSTREAMCLK_ROOT_GATE_DISABLE, 0,
++				DPSTREAMCLK_GATE_DISABLE, 0);
+ 
+ 	switch (otg_inst) {
+ 	case 0:
+@@ -180,7 +182,8 @@ void dccg31_enable_symclk32_se(
+ 	switch (hpo_se_inst) {
+ 	case 0:
+ 		if (dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_se)
+-			REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
++			REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++					SYMCLK32_SE0_GATE_DISABLE, 1,
+ 					SYMCLK32_ROOT_SE0_GATE_DISABLE, 1);
+ 		REG_UPDATE_2(SYMCLK32_SE_CNTL,
+ 				SYMCLK32_SE0_SRC_SEL, phyd32clk,
+@@ -188,7 +191,8 @@ void dccg31_enable_symclk32_se(
+ 		break;
+ 	case 1:
+ 		if (dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_se)
+-			REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
++			REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++					SYMCLK32_SE1_GATE_DISABLE, 1,
+ 					SYMCLK32_ROOT_SE1_GATE_DISABLE, 1);
+ 		REG_UPDATE_2(SYMCLK32_SE_CNTL,
+ 				SYMCLK32_SE1_SRC_SEL, phyd32clk,
+@@ -196,7 +200,8 @@ void dccg31_enable_symclk32_se(
+ 		break;
+ 	case 2:
+ 		if (dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_se)
+-			REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
++			REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++					SYMCLK32_SE2_GATE_DISABLE, 1,
+ 					SYMCLK32_ROOT_SE2_GATE_DISABLE, 1);
+ 		REG_UPDATE_2(SYMCLK32_SE_CNTL,
+ 				SYMCLK32_SE2_SRC_SEL, phyd32clk,
+@@ -204,7 +209,8 @@ void dccg31_enable_symclk32_se(
+ 		break;
+ 	case 3:
+ 		if (dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_se)
+-			REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
++			REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++					SYMCLK32_SE3_GATE_DISABLE, 1,
+ 					SYMCLK32_ROOT_SE3_GATE_DISABLE, 1);
+ 		REG_UPDATE_2(SYMCLK32_SE_CNTL,
+ 				SYMCLK32_SE3_SRC_SEL, phyd32clk,
+@@ -229,7 +235,8 @@ void dccg31_disable_symclk32_se(
+ 				SYMCLK32_SE0_SRC_SEL, 0,
+ 				SYMCLK32_SE0_EN, 0);
+ 		if (dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_se)
+-			REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
++			REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++					SYMCLK32_SE0_GATE_DISABLE, 0,
+ 					SYMCLK32_ROOT_SE0_GATE_DISABLE, 0);
+ 		break;
+ 	case 1:
+@@ -237,7 +244,8 @@ void dccg31_disable_symclk32_se(
+ 				SYMCLK32_SE1_SRC_SEL, 0,
+ 				SYMCLK32_SE1_EN, 0);
+ 		if (dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_se)
+-			REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
++			REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++					SYMCLK32_SE1_GATE_DISABLE, 0,
+ 					SYMCLK32_ROOT_SE1_GATE_DISABLE, 0);
+ 		break;
+ 	case 2:
+@@ -245,7 +253,8 @@ void dccg31_disable_symclk32_se(
+ 				SYMCLK32_SE2_SRC_SEL, 0,
+ 				SYMCLK32_SE2_EN, 0);
+ 		if (dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_se)
+-			REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
++			REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++					SYMCLK32_SE2_GATE_DISABLE, 0,
+ 					SYMCLK32_ROOT_SE2_GATE_DISABLE, 0);
+ 		break;
+ 	case 3:
+@@ -253,7 +262,8 @@ void dccg31_disable_symclk32_se(
+ 				SYMCLK32_SE3_SRC_SEL, 0,
+ 				SYMCLK32_SE3_EN, 0);
+ 		if (dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_se)
+-			REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
++			REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++					SYMCLK32_SE3_GATE_DISABLE, 0,
+ 					SYMCLK32_ROOT_SE3_GATE_DISABLE, 0);
+ 		break;
+ 	default:
+@@ -275,7 +285,8 @@ void dccg31_enable_symclk32_le(
+ 	switch (hpo_le_inst) {
+ 	case 0:
+ 		if (dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_le)
+-			REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
++			REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++					SYMCLK32_LE0_GATE_DISABLE, 1,
+ 					SYMCLK32_ROOT_LE0_GATE_DISABLE, 1);
+ 		REG_UPDATE_2(SYMCLK32_LE_CNTL,
+ 				SYMCLK32_LE0_SRC_SEL, phyd32clk,
+@@ -283,7 +294,8 @@ void dccg31_enable_symclk32_le(
+ 		break;
+ 	case 1:
+ 		if (dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_le)
+-			REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
++			REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++					SYMCLK32_LE1_GATE_DISABLE, 1,
+ 					SYMCLK32_ROOT_LE1_GATE_DISABLE, 1);
+ 		REG_UPDATE_2(SYMCLK32_LE_CNTL,
+ 				SYMCLK32_LE1_SRC_SEL, phyd32clk,
+@@ -308,7 +320,8 @@ void dccg31_disable_symclk32_le(
+ 				SYMCLK32_LE0_SRC_SEL, 0,
+ 				SYMCLK32_LE0_EN, 0);
+ 		if (dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_le)
+-			REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
++			REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++					SYMCLK32_LE0_GATE_DISABLE, 0,
+ 					SYMCLK32_ROOT_LE0_GATE_DISABLE, 0);
+ 		break;
+ 	case 1:
+@@ -316,7 +329,8 @@ void dccg31_disable_symclk32_le(
+ 				SYMCLK32_LE1_SRC_SEL, 0,
+ 				SYMCLK32_LE1_EN, 0);
+ 		if (dccg->ctx->dc->debug.root_clock_optimization.bits.symclk32_le)
+-			REG_UPDATE(DCCG_GATE_DISABLE_CNTL3,
++			REG_UPDATE_2(DCCG_GATE_DISABLE_CNTL3,
++					SYMCLK32_LE1_GATE_DISABLE, 0,
+ 					SYMCLK32_ROOT_LE1_GATE_DISABLE, 0);
+ 		break;
+ 	default:
+diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h
+index a013a32bbaf7..4039273872be 100644
+--- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h
++++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_dccg.h
+@@ -66,6 +66,7 @@
+ 	SR(DSCCLK1_DTO_PARAM),\
+ 	SR(DSCCLK2_DTO_PARAM),\
+ 	SR(DSCCLK_DTO_CTRL),\
++	SR(DCCG_GATE_DISABLE_CNTL2),\
+ 	SR(DCCG_GATE_DISABLE_CNTL3),\
+ 	SR(HDMISTREAMCLK0_DTO_PARAM)
+ 
 -- 
 2.25.1
 
