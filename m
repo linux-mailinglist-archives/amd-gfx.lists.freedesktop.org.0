@@ -2,54 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A09F84990E4
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jan 2022 21:08:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FCC6499265
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jan 2022 21:21:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A137210E6A9;
-	Mon, 24 Jan 2022 20:08:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A913010E14A;
+	Mon, 24 Jan 2022 20:21:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com
- [IPv6:2607:f8b0:4864:20::332])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DCC310E6A9
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 20:08:10 +0000 (UTC)
-Received: by mail-ot1-x332.google.com with SMTP id
- 10-20020a9d030a000000b0059f164f4a86so6349594otv.13
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 12:08:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=hCUiF5WpGKMLJQx8IUwagqrar5gdp+NGJ9joTPUwWVM=;
- b=EsfrtcdtIidLj6YDw4S+xCD5/lEWhLKTHK5ds+F86oE+2pomQDQaFj5yPTuGmUuPUf
- MZIzqSN3gfuUDPctU9FVvivqNxWbACyulYQQG+/BXyfPsHQGKRE48IFnss1NaqY7Wrst
- fA8Yek20lVNTU51XP3RE6zNyS8vV50h7NQQmksZDe/VN+pTH/hRgsllpeweNY1nV6uCM
- 48hXKiPDbH3PJcF5+FWz8gXYGYGljKZhFJYTsyZNuBaoBQHJaCWqbrh/d/BXR+r1kMBo
- WsRmG07/cQpdB4HX7r8mBGfywCiqNBbue9trQWYoQnbKyWtTmNU1LAtImG7X5hWNwY5F
- ex8Q==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9438310E731
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 20:18:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1643055500;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=LK256wQogjCX5wa9UmsP7s8Vi1buTBnWqTcBCjO4e1M=;
+ b=L/XLgTOZ0Kvqjw+/FggItrh1/yqVyFyY9IXNh5vV4NQJTPN+g/tHTT1EFnjtAyEJpbvhtd
+ 9rX6TXm4j6JcLztDa8QAIHS9+PWbfycxEewcYMoR2h3tL8AOEc2brxKMWuxA1mOOr8sxCs
+ mkcY9NIwD2imFRNDOUEUeZytHDi5q34=
+Received: from mail-oo1-f71.google.com (mail-oo1-f71.google.com
+ [209.85.161.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-341-7gterrxQOw-4GYvTjbIRPQ-1; Mon, 24 Jan 2022 15:18:19 -0500
+X-MC-Unique: 7gterrxQOw-4GYvTjbIRPQ-1
+Received: by mail-oo1-f71.google.com with SMTP id
+ u126-20020a4a5784000000b002e3688852c8so5373698ooa.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 12:18:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=hCUiF5WpGKMLJQx8IUwagqrar5gdp+NGJ9joTPUwWVM=;
- b=HO7F+L0jDx0MCf4Ag41vY3CIcIVEJr8QyQmHutxlEvHOdpk/lCEpyMhFYo2xElpfCM
- YKBFiDCNxaQTW6USb1IhAi4bOsj95tFgaODlbNBg7dq9kMnMqknYltQTxT8JbBAl+9+x
- kc5vthAU7Dp40bq/3aX81ghLvJKfJ3yXkLp1Im8cZrUcFDSwSqiDvkCnfHQy4KRonQZe
- DzdwwZwOeaugQu1nNq9VXVMQlbvLAXIVkz3Xgkl2H6nbHXrHJ5DacUETkYU4iedBrni8
- 0m1h6SAbJVT3TXkk0SJ6Fiu/FwmH62q4WlT0KjGUZEW84yN0pPLDikZXqn/FsX2L1faU
- TMDw==
-X-Gm-Message-State: AOAM533rI3qzI0DIdBdJlrR7TLE6vh5U+nyJcP+LqyzTcaRmF2tXPMBr
- p+BpPagRU8CByfWgvfvOrtgLRPWojoWigyWke0U=
-X-Google-Smtp-Source: ABdhPJyb2AgYEB6LsdwJzNSdZ4cBVFsjP6GRS8NSXw0soH6OT5uAZumUr8wbZ6HV+UuqZkLN3ax0EbFS/YzQjntnVkM=
-X-Received: by 2002:a9d:601a:: with SMTP id h26mr3301015otj.357.1643054888437; 
- Mon, 24 Jan 2022 12:08:08 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=LK256wQogjCX5wa9UmsP7s8Vi1buTBnWqTcBCjO4e1M=;
+ b=aYEpEXDvqYrNIj+iv6Wf0idFNRFIcMJYFdGckD/CHOWRPJkP8ikXq541Kkuscg33uo
+ oT5EhZthHvxyTaoq1b3Z+9y3UKXU3QgkxEzhaajYYYazw6o6CO5WoQfoecM6gqLlDX2V
+ sYpYa/duU/Vy+coBWnSfiMQHLa5DKFu14wZBWDraqeDSnmEix/E+SwWMVur0puzi/1Ow
+ kxxN4evSjQu/UkBQxiMD/+k/6WCL2ieUreSNYCkfzGfbISnQsyYImoowRtlvBH02o3m2
+ O5w9R7bs0Q6/n1+cnVhRtLZ0Xy98scvELeOxU4ZBxS4RvtZ3Mb5Pi6lcy1BDSJzifOmN
+ oDIA==
+X-Gm-Message-State: AOAM532a6TNl1zCjjHulAl86wIV2aPesQIEVhTP2vsjNbNFZ8091amQo
+ F0xlhOgnz26awq5LFcfSKzdW/pMIi44ze0WHpzMnUMyYgzWlhhqySQ2HewOlVAg/sDOenotGn77
+ g3GGA0Bs0eztKtuC0IvidFbVW9Q==
+X-Received: by 2002:a9d:d08:: with SMTP id 8mr13197881oti.334.1643055498358;
+ Mon, 24 Jan 2022 12:18:18 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyTEn4ya3/5eCInZIkS/C/4U2Q9wOWBRRyxGnlMA9linsmQiFFzkE//YKVVW2gVtrkOgoqmKw==
+X-Received: by 2002:a9d:d08:: with SMTP id 8mr13197856oti.334.1643055498138;
+ Mon, 24 Jan 2022 12:18:18 -0800 (PST)
+Received: from localhost.localdomain.com (024-205-208-113.res.spectrum.com.
+ [24.205.208.113])
+ by smtp.gmail.com with ESMTPSA id bk23sm6235774oib.23.2022.01.24.12.18.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 24 Jan 2022 12:18:17 -0800 (PST)
+From: trix@redhat.com
+To: evan.quan@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ Xinhui.Pan@amd.com, airlied@linux.ie, daniel@ffwll.ch, nathan@kernel.org,
+ ndesaulniers@google.com, lijo.lazar@amd.com, darren.powell@amd.com,
+ guchun.chen@amd.com, Arunpravin.PaneerSelvam@amd.com,
+ andrey.grodzovsky@amd.com
+Subject: [PATCH v2] drm/amd/pm: return -ENOTSUPP if there is no
+ get_dpm_ultimate_freq function
+Date: Mon, 24 Jan 2022 12:18:12 -0800
+Message-Id: <20220124201812.1078824-1-trix@redhat.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-References: <20220121161648.14729-1-jinhuieric.huang@amd.com>
-In-Reply-To: <20220121161648.14729-1-jinhuieric.huang@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 24 Jan 2022 15:07:57 -0500
-Message-ID: <CADnq5_MpZS7z7tjRXzXmGv7Dq6+O96a=89JY1TQ15=b7+bziKg@mail.gmail.com>
-Subject: Re: [PATCH] drm/amdkfd: enable heavy-weight TLB flush on Vega20
-To: Eric Huang <jinhuieric.huang@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+X-Mailman-Approved-At: Mon, 24 Jan 2022 20:21:10 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,38 +84,44 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: Tom Rix <trix@redhat.com>, llvm@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 21, 2022 at 11:17 AM Eric Huang <jinhuieric.huang@amd.com> wrote:
->
-> It is to meet the requirement for memory allocation
-> optimization on MI50.
->
-> Signed-off-by: Eric Huang <jinhuieric.huang@amd.com>
+From: Tom Rix <trix@redhat.com>
 
-Assuming there is no firmware version requirement, the patch is:
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+clang static analysis reports this represenative problem
+amdgpu_smu.c:144:18: warning: The left operand of '*' is a garbage value
+        return clk_freq * 100;
+               ~~~~~~~~ ^
 
-> ---
->  drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-> index 5b8ae0795c0a..d708f1a502cf 100644
-> --- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-> +++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
-> @@ -1582,7 +1582,8 @@ static int kfd_ioctl_free_memory_of_gpu(struct file *filep,
->  static bool kfd_flush_tlb_after_unmap(struct kfd_dev *dev) {
->         return KFD_GC_VERSION(dev) == IP_VERSION(9, 4, 2) ||
->                (KFD_GC_VERSION(dev) == IP_VERSION(9, 4, 1) &&
-> -               dev->adev->sdma.instance[0].fw_version >= 18);
-> +               dev->adev->sdma.instance[0].fw_version >= 18) ||
-> +               KFD_GC_VERSION(dev) == IP_VERSION(9, 4, 0);
->  }
->
->  static int kfd_ioctl_map_memory_to_gpu(struct file *filep,
-> --
-> 2.25.1
->
+If there is no get_dpm_ultimate_freq function,
+smu_get_dpm_freq_range returns success without setting the
+output min,max parameters.  So return an -ENOTSUPP error.
+
+Fixes: e5ef784b1e17 ("drm/amd/powerplay: revise calling chain on retrieving frequency range")
+Signed-off-by: Tom Rix <trix@redhat.com>
+---
+v2: return error instead of initializing min/max
+
+drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index 5ace30434e603..264eb09ccfd51 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -116,7 +116,7 @@ int smu_get_dpm_freq_range(struct smu_context *smu,
+ 			   uint32_t *min,
+ 			   uint32_t *max)
+ {
+-	int ret = 0;
++	int ret = -ENOTSUPP;
+ 
+ 	if (!min && !max)
+ 		return -EINVAL;
+-- 
+2.26.3
+
