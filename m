@@ -2,50 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23D274991C2
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jan 2022 21:14:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04279498C17
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jan 2022 20:20:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79E3610E860;
-	Mon, 24 Jan 2022 20:14:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B24510E670;
+	Mon, 24 Jan 2022 19:20:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 3380 seconds by postgrey-1.36 at gabe;
- Mon, 24 Jan 2022 20:08:35 UTC
-Received: from desiato.infradead.org (desiato.infradead.org
- [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA20B10E90F
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 20:08:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
- :In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
- Sender:Reply-To:Content-ID:Content-Description;
- bh=630GZf2pl7dUC09jByd2lRVEJ71rHFIBrI9U48V8bzA=; b=l0WJXVDaYcmJ3/V3RWFezwDDer
- C44GbJGe7OjLN0KX4PaF1IWCv0kAoNTjNLYvwuH+jZell6Ad2JgbYr55poxlvv5DL8vopnnR/7kMY
- vn/kveSmXCK7I5QKtfyV0XYyRC15LtirFVJpZLpus0tksAvWxi6l/uO/J6VOZyNLBn7KViVZO+pmi
- tCMavBPk+ocRsC6yujO5bPnGRcZhKLBisgW7TtJG3/FxTW3BAp4mXk9rBm2YHM6MqRSSbpG11QU3K
- iU0eefreID+Mspii6FT8TND1o3Wgkgcez5ouyqVdYFPOacbzF1GFPC3zVTqT0YP/NTts2M908BtFX
- 6ETemMoQ==;
-Received: from [2601:1c0:6280:3f0::aa0b]
- by desiato.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nC4l3-003F5b-C0; Mon, 24 Jan 2022 19:12:05 +0000
-Message-ID: <aca104cf-5f5f-b696-754a-35e62dbe64c3@infradead.org>
-Date: Mon, 24 Jan 2022 11:11:56 -0800
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com
+ [IPv6:2607:f8b0:4864:20::22b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A1BC10E670;
+ Mon, 24 Jan 2022 19:20:09 +0000 (UTC)
+Received: by mail-oi1-x22b.google.com with SMTP id w133so250902oie.7;
+ Mon, 24 Jan 2022 11:20:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Y8UlOKPL4x0I+w9FvmczKZQzjM11WitOpHu1NnDd7hI=;
+ b=EIvsCF/shkSJKYfdjXZKNXCsVd70UCSlAARnO6sDbsxiWBHwhD/82BOJnQrXDl9IOz
+ PFcMdh5ibyXsaAQcTPODkOpuxlRpW6Ykx3+iaL0mfu3o/5TQuzEDx8ce/CsAPrzpsBH0
+ Aq1xw2ZjdD9sgudMll8flbupKTmKPw8pARBNeIt/gt3ZmOXc0U4ez/5KDdbtmSmdJ/cY
+ A7Z4/te+96euwxEnd8/NJBr/0001w5zlvvzIJi/j/otI7/zc1nWeoYlU4o4Pp+0rrOEb
+ sMg62TePWcfT120HGmcpZPJ+W8BC4DVZ60OxaL1hE3s2BVUOxqLUUgtgRqjyoHlrl8LB
+ UFGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Y8UlOKPL4x0I+w9FvmczKZQzjM11WitOpHu1NnDd7hI=;
+ b=0n1RkfvpbPlS/6gfZ/IigSB2gwPL1hOUFRFw8s1MYjr6peb0nGSRRLmoJtdkvRQqwP
+ dVlh8t0R/P8D7TGJKiy2JW7+uO+gFBItNgSYqDVs7XdcFW3NqbOB9fSVfsmgVRY6x6US
+ fD499o7CGaWygmTXe/hZeLG6buDJuSstNRdHQb5lTZx8/F6qOojZZqqsXVILnX8RcMfD
+ Hh39PfYH4QPItun63sMv0ztrOgdw+SdIVsChHFpFGUvtPLciLHJWMvEc4Pm8Er8Ui6bw
+ ZOMziy34WNtpelJNEHhYr7bvbpq3sV5H5605FTCML8hiEIXjA3nWY3vPVbsxtMZI8tmo
+ xSZA==
+X-Gm-Message-State: AOAM533pwcdPR6NqyBgAvdRfpAZmZZqcGG1nHLYJJRMjRivYaHtq7m2/
+ cz6kfO/rVRDKjZIHMewcJ4s6gQuEBZq4Yaye/Ew=
+X-Google-Smtp-Source: ABdhPJwS85QtnAAmIxiRJFhdMAqQlvW1zcZquOPGUFZLskhO60Qo5Zms8Ge28nzBDwYGw0SYuP/P8X5DerGCwVBWtfo=
+X-Received: by 2002:a05:6808:300b:: with SMTP id
+ ay11mr2766540oib.120.1643052008712; 
+ Mon, 24 Jan 2022 11:20:08 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: Build regressions/improvements in v5.17-rc1
-Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- Alex Deucher <alexdeucher@gmail.com>
-References: <20220123125737.2658758-1-geert@linux-m68k.org>
- <alpine.DEB.2.22.394.2201240851560.2674757@ramsan.of.borg>
- <CADnq5_MUq0fX7wMLJyUUxxa+2xoRinonL-TzD8tUhXALRfY8-A@mail.gmail.com>
- <CAMuHMdWUWqHYbbavtMT-XAD_sarDPC5xnc3c0pX1ZAh3Wuzuzg@mail.gmail.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <CAMuHMdWUWqHYbbavtMT-XAD_sarDPC5xnc3c0pX1ZAh3Wuzuzg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 24 Jan 2022 20:14:40 +0000
+References: <20220124165552.56106-1-zhou1615@umn.edu>
+In-Reply-To: <20220124165552.56106-1-zhou1615@umn.edu>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 24 Jan 2022 14:19:57 -0500
+Message-ID: <CADnq5_MPvHgnW-Rpv-caNrgg+9XkVFZs2Oes1gKPyj=TesBKXw@mail.gmail.com>
+Subject: Re: [PATCH] drm/amd/display/dc/calcs/dce_calcs: Fix a memleak in
+ calculate_bandwidth()
+To: Zhou Qingyang <zhou1615@umn.edu>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,141 +62,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ALSA Development Mailing List <alsa-devel@alsa-project.org>,
- KVM list <kvm@vger.kernel.org>, Network Development <netdev@vger.kernel.org>,
- linux-um <linux-um@lists.infradead.org>, LKML <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
- Lakshmi Sowjanya D <lakshmi.sowjanya.d@intel.com>,
- sparclinux <sparclinux@vger.kernel.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, "Tobin C. Harding" <me@tobin.cc>
+Cc: Leo Li <sunpeng.li@amd.com>, Kangjie Lu <kjlu@umn.edu>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>, Lee Jones <lee.jones@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+Applied.  Thanks!
 
+Alex
 
-On 1/24/22 10:55, Geert Uytterhoeven wrote:
-> Hi Alex,
-> 
-> On Mon, Jan 24, 2022 at 7:52 PM Alex Deucher <alexdeucher@gmail.com> wrote:
->> On Mon, Jan 24, 2022 at 5:25 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->>> On Sun, 23 Jan 2022, Geert Uytterhoeven wrote:
->>>>  + /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c: error: control reaches end of non-void function [-Werror=return-type]:  => 1560:1
->>
->> I don't really see what's going on here:
->>
->> #ifdef CONFIG_X86_64
->> return cpu_data(first_cpu_of_numa_node).apicid;
->> #else
->> return first_cpu_of_numa_node;
->> #endif
-> 
-> Ah, the actual failure causing this was not included:
-> 
-> In file included from /kisskb/src/arch/x86/um/asm/processor.h:41:0,
->                  from /kisskb/src/include/linux/mutex.h:19,
->                  from /kisskb/src/include/linux/kernfs.h:11,
->                  from /kisskb/src/include/linux/sysfs.h:16,
->                  from /kisskb/src/include/linux/kobject.h:20,
->                  from /kisskb/src/include/linux/pci.h:35,
->                  from
-> /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:25:
-> /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c: In
-> function 'kfd_cpumask_to_apic_id':
-> /kisskb/src/arch/um/include/asm/processor-generic.h:103:18: error:
-> called object is not a function or function pointer
->  #define cpu_data (&boot_cpu_data)
->                   ^
-> /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1556:9:
-> note: in expansion of macro 'cpu_data'
->   return cpu_data(first_cpu_of_numa_node).apicid;
->          ^
-> /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1560:1:
-> error: control reaches end of non-void function [-Werror=return-type]
+On Mon, Jan 24, 2022 at 12:05 PM Zhou Qingyang <zhou1615@umn.edu> wrote:
+>
+> In calculate_bandwidth(), the tag free_sclk and free_yclk are reversed,
+> which could lead to a memory leak of yclk.
+>
+> Fix this bug by changing the location of free_sclk and free_yclk.
+>
+> This bug was found by a static analyzer.
+>
+> Builds with 'make allyesconfig' show no new warnings,
+> and our static analyzer no longer warns about this code.
+>
+> Fixes: 2be8989d0fc2 ("drm/amd/display/dc/calcs/dce_calcs: Move some large variables from the stack to the heap")
+> Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
+> ---
+> The analysis employs differential checking to identify inconsistent
+> security operations (e.g., checks or kfrees) between two code paths
+> and confirms that the inconsistent operations are not recovered in the
+> current function or the callers, so they constitute bugs.
+>
+> Note that, as a bug found by static analysis, it can be a false
+> positive or hard to trigger. Multiple researchers have cross-reviewed
+> the bug.
+>
+>  drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c b/drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c
+> index ff5bb152ef49..e6ef36de0825 100644
+> --- a/drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c
+> +++ b/drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c
+> @@ -2033,10 +2033,10 @@ static void calculate_bandwidth(
+>         kfree(surface_type);
+>  free_tiling_mode:
+>         kfree(tiling_mode);
+> -free_yclk:
+> -       kfree(yclk);
+>  free_sclk:
+>         kfree(sclk);
+> +free_yclk:
+> +       kfree(yclk);
 >  }
->  ^
-
-ah yes, UML.
-I have a bunch of UML fixes that I have been hesitant to post.
-
-This is one of them.
-What do people think about this?
-
-thanks.
-
----
-From: Randy Dunlap <rdunlap@infradead.org>
-
-
-../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1556:9: note: in expansion of macro ‘cpu_data’
-  return cpu_data(first_cpu_of_numa_node).apicid;
-         ^~~~~~~~
-../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1560:1: error: control reaches end of non-void function [-Werror=return-type]
-
-../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c: In function ‘kfd_fill_iolink_info_for_cpu’:
-../arch/um/include/asm/processor-generic.h:103:19: error: called object is not a function or function pointer
- #define cpu_data (&boot_cpu_data)
-                  ~^~~~~~~~~~~~~~~
-../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c:1688:27: note: in expansion of macro ‘cpu_data’
-  struct cpuinfo_x86 *c = &cpu_data(0);
-                           ^~~~~~~~
-../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c:1691:7: error: dereferencing pointer to incomplete type ‘struct cpuinfo_x86’
-  if (c->x86_vendor == X86_VENDOR_AMD)
-       ^~
-../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c:1691:23: error: ‘X86_VENDOR_AMD’ undeclared (first use in this function); did you mean ‘X86_VENDOR_ANY’?
-  if (c->x86_vendor == X86_VENDOR_AMD)
-                       ^~~~~~~~~~~~~~
-                       X86_VENDOR_ANY
-
-../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c: In function ‘kfd_create_vcrat_image_cpu’:
-../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c:1742:11: warning: unused variable ‘entries’ [-Wunused-variable]
-  uint32_t entries = 0;
-
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
----
- drivers/gpu/drm/amd/amdkfd/kfd_crat.c     |    6 +++---
- drivers/gpu/drm/amd/amdkfd/kfd_topology.c |    2 +-
- 2 files changed, 4 insertions(+), 4 deletions(-)
-
---- linux-next-20220107.orig/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-+++ linux-next-20220107/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
-@@ -1552,7 +1552,7 @@ static int kfd_cpumask_to_apic_id(const
- 	first_cpu_of_numa_node = cpumask_first(cpumask);
- 	if (first_cpu_of_numa_node >= nr_cpu_ids)
- 		return -1;
--#ifdef CONFIG_X86_64
-+#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)
- 	return cpu_data(first_cpu_of_numa_node).apicid;
- #else
- 	return first_cpu_of_numa_node;
---- linux-next-20220107.orig/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-+++ linux-next-20220107/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-@@ -1679,7 +1679,7 @@ static int kfd_fill_mem_info_for_cpu(int
- 	return 0;
- }
- 
--#ifdef CONFIG_X86_64
-+#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)
- static int kfd_fill_iolink_info_for_cpu(int numa_node_id, int *avail_size,
- 				uint32_t *num_entries,
- 				struct crat_subtype_iolink *sub_type_hdr)
-@@ -1738,7 +1738,7 @@ static int kfd_create_vcrat_image_cpu(vo
- 	struct crat_subtype_generic *sub_type_hdr;
- 	int avail_size = *size;
- 	int numa_node_id;
--#ifdef CONFIG_X86_64
-+#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)
- 	uint32_t entries = 0;
- #endif
- 	int ret = 0;
-@@ -1803,7 +1803,7 @@ static int kfd_create_vcrat_image_cpu(vo
- 			sub_type_hdr->length);
- 
- 		/* Fill in Subtype: IO Link */
--#ifdef CONFIG_X86_64
-+#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)
- 		ret = kfd_fill_iolink_info_for_cpu(numa_node_id, &avail_size,
- 				&entries,
- 				(struct crat_subtype_iolink *)sub_type_hdr);
-
-
+>
+>  /*******************************************************************************
+> --
+> 2.25.1
+>
