@@ -1,79 +1,63 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C7BE4985DA
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jan 2022 18:07:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3ECF4985AC
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jan 2022 18:04:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0456610E39C;
-	Mon, 24 Jan 2022 17:06:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 684A110E260;
+	Mon, 24 Jan 2022 17:04:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mta-p7.oit.umn.edu (mta-p7.oit.umn.edu [134.84.196.207])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EF4610E382
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 17:05:49 +0000 (UTC)
-Received: from localhost (unknown [127.0.0.1])
- by mta-p7.oit.umn.edu (Postfix) with ESMTP id 4JjGPz1fc7z9w2yK
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 16:57:59 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at umn.edu
-Received: from mta-p7.oit.umn.edu ([127.0.0.1])
- by localhost (mta-p7.oit.umn.edu [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 71gGmIPrxpad for <amd-gfx@lists.freedesktop.org>;
- Mon, 24 Jan 2022 10:57:58 -0600 (CST)
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com
- [209.85.216.69])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mta-p7.oit.umn.edu (Postfix) with ESMTPS id 4JjGPk2VB1z9vYdy
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 10:57:46 -0600 (CST)
-DMARC-Filter: OpenDMARC Filter v1.3.2 mta-p7.oit.umn.edu 4JjGPk2VB1z9vYdy
-DKIM-Filter: OpenDKIM Filter v2.11.0 mta-p7.oit.umn.edu 4JjGPk2VB1z9vYdy
-Received: by mail-pj1-f69.google.com with SMTP id
- l1-20020a17090aec0100b001b508cd63f6so9682222pjy.9
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 08:57:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umn.edu; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=PMFfnAra5OAPA2izCo6QzwQ1sU01OGFtg5xgGw3BVmI=;
- b=S5ZZStViBVCiSgrJgAPXiRKX3V4djwyrlnB6OeTG4NG6+lxAOXy+29Wuihu+/e9t5U
- sH5hNg7qOIvGf3Q1MMfagwm7osjrG9TKG8hddH3EbNMYSRBbaewNw9B5vpX1UZnmzFME
- BsU07O7fqLmJgYObCqfe/WIyIEux3XoN91Rn3QuGbaXd0oS/+bDEYKEFTMg1JEkvBF1d
- /ky91uNUGtQcUsznxztF+HkLCjOzeBBo+ChsTcLqdE9A5ViJkSchONnPUCrOn8XjYR8r
- c3/aMOq1VHBdqJV22eq7L5gC2vdW5HXd9kMNLdKTXDW0fdJEcHqeobKu+nukzGp8ojhj
- YvHA==
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com
+ [IPv6:2607:f8b0:4864:20::22a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7C3310E260
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 17:04:29 +0000 (UTC)
+Received: by mail-oi1-x22a.google.com with SMTP id x193so26558295oix.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 09:04:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=E7Oz+OAUDPzcoErJ5LrjgeRbjicJzQkLP3fhGNuFgqc=;
+ b=dVPPVZHdsFuLVnFkMrORa4gA/eaYJ6iPt8ceenfYEwI73FAVpW9YkJ8/5Wm3Au7hEr
+ fvWyQr/6BB9z9H9YDWR46LqrLyNdUQ+6kiNEhwyezWSfPcx1uIn3XInrOWi2QOOOiH0I
+ HqksV1VnqQ/wkyDIyEp78mHK8dFixfTzUsQx4l53L830PISZPGMgR7zR/KvXy+CrRixL
+ OXgIKDEpfzp7G0THjPRlMHFE5PBYOHQSbscDm5YkcWSzkXtmesmlMjXqrqxbv1CFUnPZ
+ DmY3fF4PvuXJ1GQNtt1mPKVNyzLxTwPuzzeE08g6r4JPvhD0JiGpIoHe936jhq62JoiF
+ xpMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=PMFfnAra5OAPA2izCo6QzwQ1sU01OGFtg5xgGw3BVmI=;
- b=eIPM6+WLnYEQHgeRljIQt1po1PeXH9IR88sW2i+kPMycDi+8UCXwW6xlUFxv7Td5IQ
- OVGwgEMYR0hoCZI0Wb7+cNXUSGvUzhB8riSJ6fWcJrGsz2BTYSlZh+ctSHCFd4YrYHAq
- Xk8UmKYYdwF6MOxoAHUzXTM3yJZSJvi12wYLdD1gzZXNUiwSn/LoqgO9zhdSRZMEc6vl
- Rj8RGpF5vxqWw290NatfqEahXZ7vOZyFQitLYDHH+HY+t9z2ACZL2UyqwoLmwuaNCrv0
- 02SS6roBAeYAaJRd+B+HZLj2cosojcG6gP1dYoKr9ycbr/ksBR2okh3zaXjPzkIPG7EQ
- 2yng==
-X-Gm-Message-State: AOAM533eXJWrng0exQa8g1MkdscacgRyq3Rx+RP7S7BtK7hPVQQcg1al
- C6gMPtuBHgLZWJUpGI9BGPNRREODTsf7hn0I/+skdoVJhv1rnY65yfcE7xe5mPAC/uPE2JkWf/i
- CZuKYNMAUzHa6Qc3OxRJWqEA9IEf5nA==
-X-Received: by 2002:a65:610b:: with SMTP id z11mr12719317pgu.205.1643043465340; 
- Mon, 24 Jan 2022 08:57:45 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxQnFXtF5Ph8R6eAihtOj2AR0vQXbTXIbQRkEBMw+neKa1NwTrsboSIeKwGF8tXd48OBGjhBA==
-X-Received: by 2002:a65:610b:: with SMTP id z11mr12719303pgu.205.1643043465076; 
- Mon, 24 Jan 2022 08:57:45 -0800 (PST)
-Received: from zqy787-GE5S.lan ([36.4.61.248])
- by smtp.gmail.com with ESMTPSA id a15sm17826365pfv.212.2022.01.24.08.57.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Jan 2022 08:57:44 -0800 (PST)
-From: Zhou Qingyang <zhou1615@umn.edu>
-To: zhou1615@umn.edu
-Subject: [PATCH] drm/amd/display: Fix a NULL pointer dereference in
- amdgpu_dm_connector_add_common_modes()
-Date: Tue, 25 Jan 2022 00:57:29 +0800
-Message-Id: <20220124165732.56587-1-zhou1615@umn.edu>
-X-Mailer: git-send-email 2.25.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=E7Oz+OAUDPzcoErJ5LrjgeRbjicJzQkLP3fhGNuFgqc=;
+ b=UsSoAsXYqzShHvU6X6oGaOBalRMLPIol5mUQNpbZtWHa/nZXt5JoRd+0lY87ePIHri
+ t36xVcksflSiVJ7QBiDKt5w/OGMorGRospehFyuIuK4ORpyWJ9wujZUAVIPX+pXkW79R
+ nM9EXXsAB9+5glWnYjjsMc0HGG/aAj8IsuMLa3ZEJemQ7DcwejA3VcBWvzHCkTscGi6d
+ TJomBWdNgL/Yf19+Kgpvyto8EPnIFUUUKzwKRTB/OA4sNqKgJl4UipoMhchuR5jD8/9f
+ BFBQRnRYfYkOszfJT2e2oV/RXssy/k2KyyJFI27x8Hys094tAxaCp2hZD4nD/H1JpxG+
+ ewHA==
+X-Gm-Message-State: AOAM532YzpNwjFJjlQN3PPackvhH8e+y6EQnN275URPO3pwY5hS6c7uc
+ nDdZp4IgrdVm9AyW7TJFcEFil0t3KhuJURihNB189Z6Z1AA=
+X-Google-Smtp-Source: ABdhPJxCdwUU5AEjhEjKyYvW5Z3dZLxPGusPHNjSVUIUFWKpDwmjEoZshPQW3yrLe6MYUOFnPsbgwsI/ccSmRwbaZOw=
+X-Received: by 2002:a05:6808:68f:: with SMTP id
+ k15mr2142619oig.5.1643043869133; 
+ Mon, 24 Jan 2022 09:04:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 24 Jan 2022 17:06:58 +0000
+References: <87ee57c8fu.fsf@turner.link>
+ <acd2fd5e-d622-948c-82ef-629a8030c9d8@leemhuis.info>
+ <87a6ftk9qy.fsf@dmarc-none.turner.link> <87zgnp96a4.fsf@turner.link>
+ <fc2b7593-db8f-091c-67a0-ae5ffce71700@leemhuis.info>
+ <CADnq5_Nr5-FR2zP1ViVsD_ZMiW=UHC1wO8_HEGm26K_EG2KDoA@mail.gmail.com>
+ <87czkk1pmt.fsf@dmarc-none.turner.link>
+ <BYAPR12MB46140BE09E37244AE129C01A975C9@BYAPR12MB4614.namprd12.prod.outlook.com>
+ <87sftfqwlx.fsf@dmarc-none.turner.link>
+In-Reply-To: <87sftfqwlx.fsf@dmarc-none.turner.link>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 24 Jan 2022 12:04:18 -0500
+Message-ID: <CADnq5_P5RAJxKWCQBmJae8eWjJ5_wPG01uJYOpXMGsieWqUDvw@mail.gmail.com>
+Subject: Re: [REGRESSION] Too-low frequency limit for AMD GPU
+ PCI-passed-through to Windows VM
+To: James Turner <linuxkernel.foss@dmarc-none.turner.link>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,64 +69,147 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wayne Lin <Wayne.Lin@amd.com>, Leo Li <sunpeng.li@amd.com>, kjlu@umn.edu,
- Qingqing Zhuo <qingqing.zhuo@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, Roman Li <Roman.Li@amd.com>,
- amd-gfx@lists.freedesktop.org,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- David Airlie <airlied@linux.ie>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Tony Cheng <Tony.Cheng@amd.com>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Jude Shih <shenshih@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Nikola Cornij <nikola.cornij@amd.com>, Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- linux-kernel@vger.kernel.org
+Cc: "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ "regressions@lists.linux.dev" <regressions@lists.linux.dev>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ Greg KH <gregkh@linuxfoundation.org>, "Lazar, Lijo" <Lijo.Lazar@amd.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Thorsten Leemhuis <regressions@leemhuis.info>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-In amdgpu_dm_connector_add_common_modes(), amdgpu_dm_create_common_mode()
-is assigned to mode and is passed to drm_mode_probed_add() directly after
-that. drm_mode_probed_add() passes &mode->head to list_add_tail(), and
-there is a dereference of it in list_add_tail() without recoveries, which
-could lead to NULL pointer dereference on failure of
-amdgpu_dm_create_common_mode().
+On Sat, Jan 22, 2022 at 4:38 PM James Turner
+<linuxkernel.foss@dmarc-none.turner.link> wrote:
+>
+> Hi Lijo,
+>
+> > Could you provide the pp_dpm_* values in sysfs with and without the
+> > patch? Also, could you try forcing PCIE to gen3 (through pp_dpm_pcie)
+> > if it's not in gen3 when the issue happens?
+>
+> AFAICT, I can't access those values while the AMD GPU PCI devices are
+> bound to `vfio-pci`. However, I can at least access the link speed and
+> width elsewhere in sysfs. So, I gathered what information I could for
+> two different cases:
+>
+> - With the PCI devices bound to `vfio-pci`. With this configuration, I
+>   can start the VM, but the `pp_dpm_*` values are not available since
+>   the devices are bound to `vfio-pci` instead of `amdgpu`.
+>
+> - Without the PCI devices bound to `vfio-pci` (i.e. after removing the
+>   `vfio-pci.ids=...` kernel command line argument). With this
+>   configuration, I can access the `pp_dpm_*` values, since the PCI
+>   devices are bound to `amdgpu`. However, I cannot use the VM. If I try
+>   to start the VM, the display (both the external monitors attached to
+>   the AMD GPU and the built-in laptop display attached to the Intel
+>   iGPU) completely freezes.
+>
+> The output shown below was identical for both the good commit:
+> f1688bd69ec4 ("drm/amd/amdgpu:save psp ring wptr to avoid attack")
+> and the commit which introduced the issue:
+> f9b7f3703ff9 ("drm/amdgpu/acpi: make ATPX/ATCS structures global (v2)")
+>
+> Note that the PCI link speed increased to 8.0 GT/s when the GPU was
+> under heavy load for both versions, but the clock speeds of the GPU were
+> different under load. (For the good commit, it was 1295 MHz; for the bad
+> commit, it was 501 MHz.)
+>
 
-Fix this by adding a NULL check of mode.
+Are the ATIF and ATCS ACPI methods available in the guest VM?  They
+are required for this platform to work correctly from a power
+standpoint.  One thing that f9b7f3703ff9 did was to get those ACPI
+methods executed on certain platforms where they had not been
+previously due to a bug in the original implementation.  If the
+windows driver doesn't interact with them, it could cause performance
+issues.  It may have worked by accident before because the ACPI
+interfaces may not have been called, leading the windows driver to
+believe this was a standalone dGPU rather than one integrated into a
+power/thermal limited platform.
 
-This bug was found by a static analyzer.
+Alex
 
-Builds with 'make allyesconfig' show no new warnings,
-and our static analyzer no longer warns about this code.
 
-Fixes: e7b07ceef2a6 ("drm/amd/display: Merge amdgpu_dm_types and amdgpu_dm")
-Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
----
-The analysis employs differential checking to identify inconsistent 
-security operations (e.g., checks or kfrees) between two code paths 
-and confirms that the inconsistent operations are not recovered in the
-current function or the callers, so they constitute bugs. 
-
-Note that, as a bug found by static analysis, it can be a false
-positive or hard to trigger. Multiple researchers have cross-reviewed
-the bug.
-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index 7f9773f8dab6..9ad94186b146 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -8143,6 +8143,9 @@ static void amdgpu_dm_connector_add_common_modes(struct drm_encoder *encoder,
- 		mode = amdgpu_dm_create_common_mode(encoder,
- 				common_modes[i].name, common_modes[i].w,
- 				common_modes[i].h);
-+		if (!mode)
-+			continue;
-+
- 		drm_mode_probed_add(connector, mode);
- 		amdgpu_dm_connector->num_modes++;
- 	}
--- 
-2.25.1
-
+>
+> # With the PCI devices bound to `vfio-pci`
+>
+> ## Before starting the VM
+>
+> % ls /sys/module/amdgpu/drivers/pci:amdgpu
+> module  bind  new_id  remove_id  uevent  unbind
+>
+> % find /sys/bus/pci/devices/0000:01:00.0/ -type f -name 'current_link*' -print -exec cat {} \;
+> /sys/bus/pci/devices/0000:01:00.0/current_link_width
+> 8
+> /sys/bus/pci/devices/0000:01:00.0/current_link_speed
+> 8.0 GT/s PCIe
+>
+> ## While running the VM, before placing the AMD GPU under heavy load
+>
+> % find /sys/bus/pci/devices/0000:01:00.0/ -type f -name 'current_link*' -print -exec cat {} \;
+> /sys/bus/pci/devices/0000:01:00.0/current_link_width
+> 8
+> /sys/bus/pci/devices/0000:01:00.0/current_link_speed
+> 2.5 GT/s PCIe
+>
+> ## While running the VM, with the AMD GPU under heavy load
+>
+> % find /sys/bus/pci/devices/0000:01:00.0/ -type f -name 'current_link*' -print -exec cat {} \;
+> /sys/bus/pci/devices/0000:01:00.0/current_link_width
+> 8
+> /sys/bus/pci/devices/0000:01:00.0/current_link_speed
+> 8.0 GT/s PCIe
+>
+> ## While running the VM, after stopping the heavy load on the AMD GPU
+>
+> % find /sys/bus/pci/devices/0000:01:00.0/ -type f -name 'current_link*' -print -exec cat {} \;
+> /sys/bus/pci/devices/0000:01:00.0/current_link_width
+> 8
+> /sys/bus/pci/devices/0000:01:00.0/current_link_speed
+> 2.5 GT/s PCIe
+>
+> ## After stopping the VM
+>
+> % find /sys/bus/pci/devices/0000:01:00.0/ -type f -name 'current_link*' -print -exec cat {} \;
+> /sys/bus/pci/devices/0000:01:00.0/current_link_width
+> 8
+> /sys/bus/pci/devices/0000:01:00.0/current_link_speed
+> 2.5 GT/s PCIe
+>
+>
+> # Without the PCI devices bound to `vfio-pci`
+>
+> % ls /sys/module/amdgpu/drivers/pci:amdgpu
+> 0000:01:00.0  module  bind  new_id  remove_id  uevent  unbind
+>
+> % for f in /sys/module/amdgpu/drivers/pci:amdgpu/*/pp_dpm_*; do echo "$f"; cat "$f"; echo; done
+> /sys/module/amdgpu/drivers/pci:amdgpu/0000:01:00.0/pp_dpm_mclk
+> 0: 300Mhz
+> 1: 625Mhz
+> 2: 1500Mhz *
+>
+> /sys/module/amdgpu/drivers/pci:amdgpu/0000:01:00.0/pp_dpm_pcie
+> 0: 2.5GT/s, x8
+> 1: 8.0GT/s, x16 *
+>
+> /sys/module/amdgpu/drivers/pci:amdgpu/0000:01:00.0/pp_dpm_sclk
+> 0: 214Mhz
+> 1: 501Mhz
+> 2: 850Mhz
+> 3: 1034Mhz
+> 4: 1144Mhz
+> 5: 1228Mhz
+> 6: 1275Mhz
+> 7: 1295Mhz *
+>
+> % find /sys/bus/pci/devices/0000:01:00.0/ -type f -name 'current_link*' -print -exec cat {} \;
+> /sys/bus/pci/devices/0000:01:00.0/current_link_width
+> 8
+> /sys/bus/pci/devices/0000:01:00.0/current_link_speed
+> 8.0 GT/s PCIe
+>
+>
+> James
