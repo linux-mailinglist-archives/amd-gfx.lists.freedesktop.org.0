@@ -1,79 +1,48 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26CCA497CF5
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jan 2022 11:25:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44100497CFB
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jan 2022 11:25:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDA2E10E79B;
-	Mon, 24 Jan 2022 10:25:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBB4C10E9EC;
+	Mon, 24 Jan 2022 10:25:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com
- [66.111.4.224])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D12B910E360
- for <amd-gfx@lists.freedesktop.org>; Sat, 22 Jan 2022 21:38:54 +0000 (UTC)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailnew.nyi.internal (Postfix) with ESMTP id B31AA5802A6;
- Sat, 22 Jan 2022 16:38:51 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute5.internal (MEProxy); Sat, 22 Jan 2022 16:38:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=turner.link; h=
- cc:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm1; bh=MsViZzLF8Kq6HOdr8iHnwG72oVaccjfy8JbG24
- /A8XM=; b=BaVO64CFNCl14UaN1iXZ5HD7QFcdTRYaBRpbTDciSr3gyP7ujk9Vmx
- B6MFRCT6GKfuvsr1QiJ1eMtFE6ZW/uNTPhsiZPKd3IY0ElAcB0ubjGQ7IEIymtQh
- n+1xCJy1RqQljRrRi1yK2mwhbu2P2Vb+1VCIRe2ROLWAgPrMffBYfTFyFIxX/oNw
- /uAfakYLKqROBYc/XHjL3PwjpignZkAao/QvG7DrQV6WpBTgJj0y0HdFbK/PjNOo
- oQiDUtXYZ/wmIaSShFoZ0AR078ztRtk7kGnKTYH3LsNlaqUFjgL9TzbWdfXDlHQf
- 4+3rMHNmnPmPwR9PQV5kyZdSm8pAcUOw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=MsViZzLF8Kq6HOdr8
- iHnwG72oVaccjfy8JbG24/A8XM=; b=KFEkrIVKNzlC5WO9zT68QI+pffxmYHKRl
- +TcDFrUZh+xL1dRc/ucNnZwGca1Y8k2XKK7IWMwvBAQurhqBlfjBAtJHX03pkC0h
- 3Qckz2ghniY4pisdXEjke+rB4D6PB6TX5rHFTlEgniQzN4UTrV0NDDJospwgetE7
- 2IVmniPay70zbZZxGotOff1f/NqNYNWBeVeO/wRqIgxzPVd/V0qTKq/eQWJjw5Vc
- Ilnakbupl0/9zqz3UneLsDrJu3rPi+BciK/ssHG+c3rgjInUNKHj0kAE/F4JkbbQ
- fQu3Z1QpA7n54ldPxk2wihngZVnCW8R71TGb8ndikvw5EWK1YRQEw==
-X-ME-Sender: <xms:a3nsYRcAVeLoznYBFOIN9rAomBHI__VSU3Q9KBKlCzAfhPJ3UP7uCg>
- <xme:a3nsYfPPbwuqtLAxyO89nP-9SbFv8pVsJ4YEFomX08lU8Ocd97NYJqgObR0gHbAcq
- dmx9JdtHiVc4BRs7Q>
-X-ME-Received: <xmr:a3nsYag01LgO-MrezA50wVPoMpLgXXcd4u71q_Gml9S5iRZwpWiG0tH0GnHw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrvddvgdduhedvucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfhfhvffuffgjkfggtgesthdtredttddttdenucfhrhhomheplfgrmhgvshcu
- vfhurhhnvghruceolhhinhhugihkvghrnhgvlhdrfhhoshhssegumhgrrhgtqdhnohhnvg
- drthhurhhnvghrrdhlihhnkheqnecuggftrfgrthhtvghrnheptedvfeduheeiueefgffh
- vdetiedttdevhfeiteeuhfelveduvedttdffgffggfetnecuvehluhhsthgvrhfuihiivg
- eptdenucfrrghrrghmpehmrghilhhfrhhomheplhhinhhugihkvghrnhgvlhdrfhhoshhs
- segumhgrrhgtqdhnohhnvgdrthhurhhnvghrrdhlihhnkh
-X-ME-Proxy: <xmx:a3nsYa_HbNlh01OToipZGyFTiZrDRc15AEX9OKOAv4UqcdFsrSfvIg>
- <xmx:a3nsYdsDUGLZZHE5gStW8bNSqOmEeoYU0FvXNgdVn-7KaU1MwdaS7g>
- <xmx:a3nsYZECU7jeWJJqxgXEsSeqAXlz6MNXqWMSCQBZG4LLivcwQBjRSQ>
- <xmx:a3nsYeOYkJCmJ45IwgFYSH84jAHm5CKnMkMX9QQqZC7a3hdeigzGww>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 22 Jan 2022 16:38:51 -0500 (EST)
-References: <87ee57c8fu.fsf@turner.link>
- <acd2fd5e-d622-948c-82ef-629a8030c9d8@leemhuis.info>
- <87a6ftk9qy.fsf@dmarc-none.turner.link> <87zgnp96a4.fsf@turner.link>
- <fc2b7593-db8f-091c-67a0-ae5ffce71700@leemhuis.info>
- <CADnq5_Nr5-FR2zP1ViVsD_ZMiW=UHC1wO8_HEGm26K_EG2KDoA@mail.gmail.com>
- <87czkk1pmt.fsf@dmarc-none.turner.link>
- <BYAPR12MB46140BE09E37244AE129C01A975C9@BYAPR12MB4614.namprd12.prod.outlook.com>
-From: James Turner <linuxkernel.foss@dmarc-none.turner.link>
-To: "Lazar, Lijo" <Lijo.Lazar@amd.com>
-Subject: Re: [REGRESSION] Too-low frequency limit for AMD GPU
- PCI-passed-through to Windows VM
-Date: Sat, 22 Jan 2022 16:11:13 -0500
-In-reply-to: <BYAPR12MB46140BE09E37244AE129C01A975C9@BYAPR12MB4614.namprd12.prod.outlook.com>
-Message-ID: <87sftfqwlx.fsf@dmarc-none.turner.link>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 847F410E27C;
+ Mon, 24 Jan 2022 01:54:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1642989253; x=1674525253;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ngiBZ4miI2i9+e7eQ8QzZsVgrw+8WTFv/7YWGiVXsVM=;
+ b=dbSgAmfaBp99HEcKeaCjAP3tUZPP4LaKY6z1QaaM36A09fmWs70TXQHK
+ 2bQvC0LK/898ZThWp9yMXUzqWRXUXRuzxEuQzGkSVTgo0JHzDzX8worIO
+ 7r2o0iZVYjamOCdmC8h8aXU95r3qwUEvC9cJzmVlkFrO3h2ToS3trDi+0
+ kuzmBIERDwEasgP3K02jWisCO0KJMJxGUP9IFYrmVFKe7ZdqeZSmv8UBd
+ 3SjtKCbf1oiDCqKkcataCEokjYX1mEkeecaTOID/69jRspBAlagus3OAj
+ MZ57NXSjWtLCchrLC5uHbj208iJlGyK1EvXYlIPyUOkAoex09WEAhcLNh Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="225923424"
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="225923424"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2022 17:54:12 -0800
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; d="scan'208";a="476550367"
+Received: from iweiny-desk2.sc.intel.com (HELO localhost) ([10.3.52.147])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2022 17:54:12 -0800
+From: ira.weiny@intel.com
+To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>
+Subject: [PATCH V2 0/7] DRM kmap() fixes and kmap_local_page() conversions
+Date: Sun, 23 Jan 2022 17:54:02 -0800
+Message-Id: <20220124015409.807587-1-ira.weiny@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 24 Jan 2022 10:25:01 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,129 +55,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "regressions@lists.linux.dev" <regressions@lists.linux.dev>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- Greg KH <gregkh@linuxfoundation.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- LKML <linux-kernel@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Thorsten Leemhuis <regressions@leemhuis.info>,
- Alex Deucher <alexdeucher@gmail.com>, "Koenig,
- Christian" <Christian.Koenig@amd.com>
+Cc: linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Ira Weiny <ira.weiny@intel.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Lijo,
+From: Ira Weiny <ira.weiny@intel.com>
 
-> Could you provide the pp_dpm_* values in sysfs with and without the
-> patch? Also, could you try forcing PCIE to gen3 (through pp_dpm_pcie)
-> if it's not in gen3 when the issue happens?
+Changes from V1:
+	Use memcpy_to_page() where appropriate
+	Rebased to latest
 
-AFAICT, I can't access those values while the AMD GPU PCI devices are
-bound to `vfio-pci`. However, I can at least access the link speed and
-width elsewhere in sysfs. So, I gathered what information I could for
-two different cases:
+The kmap() call may cause issues with work being done with persistent memory.
+For this and other reasons it is being deprecated.
 
-- With the PCI devices bound to `vfio-pci`. With this configuration, I
-  can start the VM, but the `pp_dpm_*` values are not available since
-  the devices are bound to `vfio-pci` instead of `amdgpu`.
+This series starts by converting the last easy kmap() uses in the drm tree to
+kmap_local_page().
 
-- Without the PCI devices bound to `vfio-pci` (i.e. after removing the
-  `vfio-pci.ids=...` kernel command line argument). With this
-  configuration, I can access the `pp_dpm_*` values, since the PCI
-  devices are bound to `amdgpu`. However, I cannot use the VM. If I try
-  to start the VM, the display (both the external monitors attached to
-  the AMD GPU and the built-in laptop display attached to the Intel
-  iGPU) completely freezes.
+The final 2 patches fix bugs found while working on the ttm_bo_kmap_ttm()
+conversion.  They are valid fixes but were found via code inspection not
+because of any actual bug so don't require a stable tag.[1]
 
-The output shown below was identical for both the good commit:
-f1688bd69ec4 ("drm/amd/amdgpu:save psp ring wptr to avoid attack")
-and the commit which introduced the issue:
-f9b7f3703ff9 ("drm/amdgpu/acpi: make ATPX/ATCS structures global (v2)")
+There is one more call to kmap() used in ttm_bo_kmap_ttm().  Unfortunately,
+fixing this is not straight forward so it is left to future work.[2]
 
-Note that the PCI link speed increased to 8.0 GT/s when the GPU was
-under heavy load for both versions, but the clock speeds of the GPU were
-different under load. (For the good commit, it was 1295 MHz; for the bad
-commit, it was 501 MHz.)
+[1] https://lore.kernel.org/lkml/fb71af05-a889-8f6e-031b-426b58a64f00@amd.com/
+[2] https://lore.kernel.org/lkml/20211215210949.GW3538886@iweiny-DESK2.sc.intel.com/
 
 
-# With the PCI devices bound to `vfio-pci`
+Ira Weiny (7):
+drm/i915: Replace kmap() with kmap_local_page()
+drm/amd: Replace kmap() with kmap_local_page()
+drm/gma: Remove calls to kmap()
+drm/radeon: Replace kmap() with kmap_local_page()
+drm/msm: Alter comment to use kmap_local_page()
+drm/amdgpu: Ensure kunmap is called on error
+drm/radeon: Ensure kunmap is called on error
 
-## Before starting the VM
+drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 8 ++++----
+drivers/gpu/drm/amd/amdgpu/amdgpu_uvd.c | 1 +
+drivers/gpu/drm/gma500/gma_display.c | 6 ++----
+drivers/gpu/drm/gma500/mmu.c | 8 ++++----
+drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 6 ++----
+drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 8 ++++----
+drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c | 4 ++--
+drivers/gpu/drm/i915/gt/shmem_utils.c | 7 ++-----
+drivers/gpu/drm/i915/i915_gem.c | 8 ++++----
+drivers/gpu/drm/i915/i915_gpu_error.c | 4 ++--
+drivers/gpu/drm/msm/msm_gem_submit.c | 4 ++--
+drivers/gpu/drm/radeon/radeon_ttm.c | 4 ++--
+drivers/gpu/drm/radeon/radeon_uvd.c | 1 +
+13 files changed, 32 insertions(+), 37 deletions(-)
 
-% ls /sys/module/amdgpu/drivers/pci:amdgpu
-module  bind  new_id  remove_id  uevent  unbind
+--
+2.31.1
 
-% find /sys/bus/pci/devices/0000:01:00.0/ -type f -name 'current_link*' -print -exec cat {} \;
-/sys/bus/pci/devices/0000:01:00.0/current_link_width
-8
-/sys/bus/pci/devices/0000:01:00.0/current_link_speed
-8.0 GT/s PCIe
-
-## While running the VM, before placing the AMD GPU under heavy load
-
-% find /sys/bus/pci/devices/0000:01:00.0/ -type f -name 'current_link*' -print -exec cat {} \;
-/sys/bus/pci/devices/0000:01:00.0/current_link_width
-8
-/sys/bus/pci/devices/0000:01:00.0/current_link_speed
-2.5 GT/s PCIe
-
-## While running the VM, with the AMD GPU under heavy load
-
-% find /sys/bus/pci/devices/0000:01:00.0/ -type f -name 'current_link*' -print -exec cat {} \;
-/sys/bus/pci/devices/0000:01:00.0/current_link_width
-8
-/sys/bus/pci/devices/0000:01:00.0/current_link_speed
-8.0 GT/s PCIe
-
-## While running the VM, after stopping the heavy load on the AMD GPU
-
-% find /sys/bus/pci/devices/0000:01:00.0/ -type f -name 'current_link*' -print -exec cat {} \;
-/sys/bus/pci/devices/0000:01:00.0/current_link_width
-8
-/sys/bus/pci/devices/0000:01:00.0/current_link_speed
-2.5 GT/s PCIe
-
-## After stopping the VM
-
-% find /sys/bus/pci/devices/0000:01:00.0/ -type f -name 'current_link*' -print -exec cat {} \;
-/sys/bus/pci/devices/0000:01:00.0/current_link_width
-8
-/sys/bus/pci/devices/0000:01:00.0/current_link_speed
-2.5 GT/s PCIe
-
-
-# Without the PCI devices bound to `vfio-pci`
-
-% ls /sys/module/amdgpu/drivers/pci:amdgpu
-0000:01:00.0  module  bind  new_id  remove_id  uevent  unbind
-
-% for f in /sys/module/amdgpu/drivers/pci:amdgpu/*/pp_dpm_*; do echo "$f"; cat "$f"; echo; done
-/sys/module/amdgpu/drivers/pci:amdgpu/0000:01:00.0/pp_dpm_mclk
-0: 300Mhz
-1: 625Mhz
-2: 1500Mhz *
-
-/sys/module/amdgpu/drivers/pci:amdgpu/0000:01:00.0/pp_dpm_pcie
-0: 2.5GT/s, x8
-1: 8.0GT/s, x16 *
-
-/sys/module/amdgpu/drivers/pci:amdgpu/0000:01:00.0/pp_dpm_sclk
-0: 214Mhz
-1: 501Mhz
-2: 850Mhz
-3: 1034Mhz
-4: 1144Mhz
-5: 1228Mhz
-6: 1275Mhz
-7: 1295Mhz *
-
-% find /sys/bus/pci/devices/0000:01:00.0/ -type f -name 'current_link*' -print -exec cat {} \;
-/sys/bus/pci/devices/0000:01:00.0/current_link_width
-8
-/sys/bus/pci/devices/0000:01:00.0/current_link_speed
-8.0 GT/s PCIe
-
-
-James
