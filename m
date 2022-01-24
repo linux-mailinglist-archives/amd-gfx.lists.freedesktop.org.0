@@ -2,97 +2,81 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4495E49AC56
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jan 2022 07:25:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1CE749AEAF
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jan 2022 09:57:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 976B310E876;
-	Tue, 25 Jan 2022 06:25:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 383D910EE17;
+	Tue, 25 Jan 2022 08:57:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2056.outbound.protection.outlook.com [40.107.92.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0283610E8F5
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jan 2022 06:25:21 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=d3Cz+zyjmQus6rbVHn4rt3ktVCQ+8kJeXSbqIQDzk5PsHLUOHjqAFvLRbs0TYlh+ng/BO2KQg/WeSvyvP9161mKremO+Q5KdIJzWTW6poOTHxNgQnVVtiOv1nfA4jQ4RPLFcmbUGVTVvodJfk+xfLCJ4/AD4jmbBPuo9SdwnIQ2sBFe9Afsy5W705VbgxhPRcmuxYbQvkraxJJaPEWcINC6VM6KY6ikgyuRlA09gIH+xcWReEDTqG2IF0k8yFdMAF+2wyAgT9huep/CdWqEaI8Y3l4frcSvub+cd8asGst219/kW00pknBfRUFEtVv1ISzSmNMvikLcDHfAEWVWNeA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h9s3vb9jq0OQvaDRVNG5otC+VDGqXCNm6NUzY1knPOI=;
- b=mtua1faM/esYqLhYFDBdCnAXMHBK+CYt5alVlERT2so0Rk+b9QDxdOZH9pk0B5Q+rih1A6GnLObIyiT1ntsPa/0sdQVOPivApLI85vw7Ch/XD2aatodt90Tfs6S1cutyTeBgS5Go8cKcaGk8z+t5cTet3C4QJLh+mBcxZVRo0MxBXBPcJeib8WcW9pPo5jQS1o9gw3YM5JA512jyz2Mcd5QYGnOi7W+74Sr/Ei+3EyZfaJ2JsP4q8KpGWpF6/hditSpoLgdbq5OVn6U3n2TV0X9wyE2Cn/oYwj9iOy3d3YaI719jZtT9KYMReTwKY6TRE6kxudfvszXWoRc0Y+J+OQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h9s3vb9jq0OQvaDRVNG5otC+VDGqXCNm6NUzY1knPOI=;
- b=IJTj4h+CCa0CNvvFL/Jifp3yoge5R9e1/Hdk4GHmbBnlNLYzEGEch3JOPRy2qp5uo9S0supj4znX99W1Q4l2vEoLsdAU8YShC+4e2Hu/82rN473kU3o2UEgtFK9x9fohVrEIJzluWz3x/njdEV53zEcJyTU0fwxWk2uILbZ9IwE=
-Received: from DM5PR12CA0059.namprd12.prod.outlook.com (2603:10b6:3:103::21)
- by SA0PR12MB4429.namprd12.prod.outlook.com (2603:10b6:806:73::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.14; Tue, 25 Jan
- 2022 06:25:18 +0000
-Received: from DM6NAM11FT008.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:103:cafe::90) by DM5PR12CA0059.outlook.office365.com
- (2603:10b6:3:103::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.8 via Frontend
- Transport; Tue, 25 Jan 2022 06:25:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT008.mail.protection.outlook.com (10.13.172.85) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4909.7 via Frontend Transport; Tue, 25 Jan 2022 06:25:18 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 25 Jan
- 2022 00:25:17 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 25 Jan
- 2022 00:25:17 -0600
-Received: from jzuo-linux.amd.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
- Transport; Tue, 25 Jan 2022 00:25:16 -0600
-From: Fangzhi Zuo <Jerry.Zuo@amd.com>
-To: <amd-gfx@lists.freedesktop.org>, <harry.wentland@amd.com>,
- <nicholas.kazlauskas@amd.com>, <wayne.lin@amd.com>
-Subject: [PATCH] drm/amd/display: Add Missing HPO Stream Encoder Function Hook
-Date: Tue, 25 Jan 2022 01:25:07 -0500
-Message-ID: <20220125062507.1569727-1-Jerry.Zuo@amd.com>
-X-Mailer: git-send-email 2.25.1
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com
+ [66.111.4.230])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E043110E2DF
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jan 2022 00:44:50 +0000 (UTC)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 8BAC1580389;
+ Mon, 24 Jan 2022 19:44:48 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute1.internal (MEProxy); Mon, 24 Jan 2022 19:44:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=turner.link; h=
+ cc:cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm1; bh=Hg+/kJzRpMwyU8RBBG9lM29Q4G3SCNyE5PQExK
+ Qjrjg=; b=BqhV2/LX+jA/ib0C3suNSFwh8doiJauUSvPVxk+uBbNEorrAZbP1iR
+ 5gNpFk2LgQ7cLfef4t7YtlVJSeAE1tg7pNCtVRYvd5IfU96XR2wTMxWkt5EgqN5O
+ xbZYT20AVlZSDY6PPGchtxHvVVZxZh+6cPw4ahe/8gK2gmshQA7Rb5oAruoy5iD9
+ 0lpJlFpQzx8xBboXOi81OZfCQl5D2CoNFJMi4EUzEbEORp5XHpGY1Ae0zEJQFMcG
+ irXojU99SQzfbYshiyxeHeKgyKApQLq43HdA+0p7iRoIL+aYSMhIDLLINo475C4T
+ JiMKE71bQGkV8LTe7hWUbRgrjFnaiyOg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Hg+/kJzRpMwyU8RBB
+ G9lM29Q4G3SCNyE5PQExKQjrjg=; b=NnF9YKvTgV+/CzqonPrhH6bqt2WlJ4u/V
+ 0e5EIJr4hxAwC9+fPKCyjMjLQFL7qrbjxjXFIPrdrUTGfM7J6s3SHwnq67rYY35f
+ AAdyTDYdeqWTj4LCnd+TZ70KSgKLAVdSglmbXgwa+ajA6n/uUMX1EpFmSlYkwj/D
+ w8Xjd3ybbGdoY1DGBiQn2dxoQV8DpbD0T3IQ2uw6cxeFgp9p/TCwyaO+BhzpE0mF
+ LxR/XD6IxXdjTGUUAozzYQknbIZf0gvWcm4ExzybZRggNr/xbIys/rnbBcng0jOh
+ pyPxkrjIS0E8x1ywdW+MBOVpvlDmppAIOE3MijQ16LRpMyXnYn9Yw==
+X-ME-Sender: <xms:_0fvYQ-EfYy1x8ckLKQOASpfF1f8VG1P-YWrZzzpxTHBK9WYhNxFsA>
+ <xme:_0fvYYvQ4J3beV2uRjLa31Bh_ODGeg6dL4-lMaqx4Up28gOo3QlSTswv6YiD-Vtpg
+ IJHUY5k-MA4iSAy4w>
+X-ME-Received: <xmr:_0fvYWAFmvUzQxh0iBiGiqD4fBbfMq3-4nNy1vMXlMHn1BXiEot-KL-OXqPk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrvdekgddvhecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpehfhffvufffjgfkgggtsehttdertddttddtnecuhfhrohhmpeflrghmvghsucfv
+ uhhrnhgvrhcuoehlihhnuhigkhgvrhhnvghlrdhfohhsshesughmrghrtgdqnhhonhgvrd
+ htuhhrnhgvrhdrlhhinhhkqeenucggtffrrghtthgvrhhnpeetvdefudehieeufefghfdv
+ teeitddtvefhieetuefhleevudevtddtfffggffgteenucevlhhushhtvghrufhiiigvpe
+ dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehlihhnuhigkhgvrhhnvghlrdhfohhsshes
+ ughmrghrtgdqnhhonhgvrdhtuhhrnhgvrhdrlhhinhhk
+X-ME-Proxy: <xmx:AEjvYQf2y2zGcFgoCWUciNn9b9e2Ec0Y-WL5xhNm2ABYSv_7GMV4IA>
+ <xmx:AEjvYVPPma5oQKL6quJ8Jk66URimEX_lrvguofqERLdCMTYsPQQsZQ>
+ <xmx:AEjvYal0LCNI_T_XPDgs4DgaDQO3NOORXHUTsx1RGMbZkpFy197sug>
+ <xmx:AEjvYbv6u5vmUwQ8EAKjckw9E1-Hpdolaz4WyHTPJldFQw-3yZxqSQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 24 Jan 2022 19:44:47 -0500 (EST)
+References: <87ee57c8fu.fsf@turner.link>
+ <acd2fd5e-d622-948c-82ef-629a8030c9d8@leemhuis.info>
+ <87a6ftk9qy.fsf@dmarc-none.turner.link> <87zgnp96a4.fsf@turner.link>
+ <fc2b7593-db8f-091c-67a0-ae5ffce71700@leemhuis.info>
+ <CADnq5_Nr5-FR2zP1ViVsD_ZMiW=UHC1wO8_HEGm26K_EG2KDoA@mail.gmail.com>
+ <87czkk1pmt.fsf@dmarc-none.turner.link>
+ <BYAPR12MB46140BE09E37244AE129C01A975C9@BYAPR12MB4614.namprd12.prod.outlook.com>
+ <87sftfqwlx.fsf@dmarc-none.turner.link>
+ <BYAPR12MB4614E2CFEDDDEAABBAB986A0975E9@BYAPR12MB4614.namprd12.prod.outlook.com>
+From: James Turner <linuxkernel.foss@dmarc-none.turner.link>
+To: "Lazar, Lijo" <Lijo.Lazar@amd.com>
+Subject: Re: [REGRESSION] Too-low frequency limit for AMD GPU
+ PCI-passed-through to Windows VM
+Date: Mon, 24 Jan 2022 18:58:10 -0500
+In-reply-to: <BYAPR12MB4614E2CFEDDDEAABBAB986A0975E9@BYAPR12MB4614.namprd12.prod.outlook.com>
+Message-ID: <87ee4wprsx.fsf@turner.link>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 35a97872-b395-4f8a-aab7-08d9dfcb750b
-X-MS-TrafficTypeDiagnostic: SA0PR12MB4429:EE_
-X-Microsoft-Antispam-PRVS: <SA0PR12MB4429A70A5FADDA8D71B292A1E55F9@SA0PR12MB4429.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8qv2cy3U3fCKMw8eVd7Y63kF2pnuFcxB4YedNFotYn9t4/RSS5/J8IsEO8NP0Vi1VH6h79I8w54dVeAdIcUGvWIUmNmDrksQ8hRERBPkAeEWAQTsnNmTfvZNgpYKO+vRUmmK2DAfh6YBXUeqTytbH0P4IfYYWVirz1RfL7jEnGAvuVaMsq6i9OJGIhOa0+FjAOKZLvM9RVq1plC25w5G7SSWyIvdN/d/reQO7glWEwRKpB3jXbpUmwm6odI8Eh5WquIDalreHopPb6gXQgiDviRqdFNniPTZIS6AYtu4tyM+IQkw6BkDt4vShWJYubhUMAFB4oxgUisBm/J9NhO976wxT6vW14p8ThqNaP73Z4j3XKJ3lgU6f6LVojNzUBOW7wZAOgNgsVAEV1IZu4y6nXZFsYlaZvdhMu9976/gClpNTLd5svyNE103qRFlDGz35RYhxP8QQ0RUCqgiGa5Mxg0OnEsLOMlO1myiDqs/XKXGFrpJ4lO6tiaV/PnUZ3LEPQfrmeSGYQO8H/YJEHIErG/1WpW9MR/SRWtI8Ji/KxbNYw9AqqdD654kBWyoa+PHvyVz/SXTbNbBpYrL7LHjC6fcHEYUmB/B9n17tQNS4pCGFmpRpuSFSYEF98H+wZeXz6cmfQNEQUH+otN3P7DeK7Hr9GXcQE3wVmUdebYH4xsQOz1fizmkIfpLA02EycHvoXcrbvV5iKMUT1WWG0euAjF7CnlQ0xnnRoRPIOgBqWIRWASgUL0zOlAqP5EdJAEtVMT6WCjM2ihOK3XqfOO9wK18uFIhVn9+mWAFVA9MvPY=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(40470700004)(36840700001)(46966006)(186003)(81166007)(316002)(83380400001)(36860700001)(508600001)(70586007)(70206006)(7696005)(26005)(5660300002)(2906002)(426003)(8676002)(336012)(4326008)(2616005)(8936002)(6636002)(356005)(86362001)(82310400004)(40460700003)(110136005)(6666004)(36756003)(47076005)(1076003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2022 06:25:18.3752 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 35a97872-b395-4f8a-aab7-08d9dfcb750b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT008.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4429
+X-Mailman-Approved-At: Tue, 25 Jan 2022 08:57:22 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,86 +88,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Fangzhi Zuo <Jerry.Zuo@amd.com>
+Cc: "regressions@lists.linux.dev" <regressions@lists.linux.dev>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ Greg KH <gregkh@linuxfoundation.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Deucher,
+ Alexander" <Alexander.Deucher@amd.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Thorsten Leemhuis <regressions@leemhuis.info>,
+ Alex Deucher <alexdeucher@gmail.com>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-configure_dp_hpo_throttled_vcp_size() was missing promotion before, but it was covered by
-not calling the missing function hook in the old interface hpo_dp_link_encoder->funcs.
+Hi Lijo,
 
-Recent refactor replaces with new caller link_hwss->set_throttled_vcp_size
-which needs that hook, and that causes null ptr hang.
+> Not able to relate to how it affects gfx/mem DPM alone. Unless Alex
+> has other ideas, would you be able to enable drm debug messages and
+> share the log?
 
-Signed-off-by: Fangzhi Zuo <Jerry.Zuo@amd.com>
----
- .../display/dc/dcn31/dcn31_hpo_dp_stream_encoder.c    | 11 +++++++++++
- .../display/dc/dcn31/dcn31_hpo_dp_stream_encoder.h    |  9 ++++++---
- 2 files changed, 17 insertions(+), 3 deletions(-)
+Sure, I'm happy to provide drm debug messages. Enabling everything
+(0x1ff) generates *a lot* of log messages, though. Is there a smaller
+subset that would be useful? Fwiw, I don't see much in the full drm logs
+about the AMD GPU anyway; it's mostly about the Intel GPU.
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hpo_dp_stream_encoder.c b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hpo_dp_stream_encoder.c
-index 5065904c7833..23621ff08c90 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hpo_dp_stream_encoder.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hpo_dp_stream_encoder.c
-@@ -710,6 +710,16 @@ static void dcn31_hpo_dp_stream_enc_read_state(
- 	}
- }
- 
-+static void dcn31_set_hblank_min_symbol_width(
-+		struct hpo_dp_stream_encoder *enc,
-+		uint16_t width)
-+{
-+	struct dcn31_hpo_dp_stream_encoder *enc3 = DCN3_1_HPO_DP_STREAM_ENC_FROM_HPO_STREAM_ENC(enc);
-+
-+	REG_SET(DP_SYM32_ENC_HBLANK_CONTROL, 0,
-+			HBLANK_MINIMUM_SYMBOL_WIDTH, width);
-+}
-+
- static const struct hpo_dp_stream_encoder_funcs dcn30_str_enc_funcs = {
- 	.enable_stream = dcn31_hpo_dp_stream_enc_enable_stream,
- 	.dp_unblank = dcn31_hpo_dp_stream_enc_dp_unblank,
-@@ -725,6 +735,7 @@ static const struct hpo_dp_stream_encoder_funcs dcn30_str_enc_funcs = {
- 	.dp_audio_enable = dcn31_hpo_dp_stream_enc_audio_enable,
- 	.dp_audio_disable = dcn31_hpo_dp_stream_enc_audio_disable,
- 	.read_state = dcn31_hpo_dp_stream_enc_read_state,
-+	.set_hblank_min_symbol_width = dcn31_set_hblank_min_symbol_width,
- };
- 
- void dcn31_hpo_dp_stream_encoder_construct(
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hpo_dp_stream_encoder.h b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hpo_dp_stream_encoder.h
-index 70b94fc25304..7c77c71591a0 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hpo_dp_stream_encoder.h
-+++ b/drivers/gpu/drm/amd/display/dc/dcn31/dcn31_hpo_dp_stream_encoder.h
-@@ -80,7 +80,8 @@
- 	SRI(DP_SYM32_ENC_SDP_GSP_CONTROL11, DP_SYM32_ENC, id),\
- 	SRI(DP_SYM32_ENC_SDP_METADATA_PACKET_CONTROL, DP_SYM32_ENC, id),\
- 	SRI(DP_SYM32_ENC_SDP_AUDIO_CONTROL0, DP_SYM32_ENC, id),\
--	SRI(DP_SYM32_ENC_VID_CRC_CONTROL, DP_SYM32_ENC, id)
-+	SRI(DP_SYM32_ENC_VID_CRC_CONTROL, DP_SYM32_ENC, id), \
-+	SRI(DP_SYM32_ENC_HBLANK_CONTROL, DP_SYM32_ENC, id)
- 
- #define DCN3_1_HPO_DP_STREAM_ENC_REGS \
- 	uint32_t DP_STREAM_MAPPER_CONTROL0;\
-@@ -116,7 +117,8 @@
- 	uint32_t DP_SYM32_ENC_SDP_GSP_CONTROL11;\
- 	uint32_t DP_SYM32_ENC_SDP_METADATA_PACKET_CONTROL;\
- 	uint32_t DP_SYM32_ENC_SDP_AUDIO_CONTROL0;\
--	uint32_t DP_SYM32_ENC_VID_CRC_CONTROL
-+	uint32_t DP_SYM32_ENC_VID_CRC_CONTROL;\
-+	uint32_t DP_SYM32_ENC_HBLANK_CONTROL
- 
- 
- #define DCN3_1_HPO_DP_STREAM_ENC_MASK_SH_LIST(mask_sh)\
-@@ -202,7 +204,8 @@
- 	type GSP_SOF_REFERENCE;\
- 	type METADATA_PACKET_ENABLE;\
- 	type CRC_ENABLE;\
--	type CRC_CONT_MODE_ENABLE
-+	type CRC_CONT_MODE_ENABLE;\
-+	type HBLANK_MINIMUM_SYMBOL_WIDTH
- 
- 
- struct dcn31_hpo_dp_stream_encoder_registers {
--- 
-2.25.1
+All the messages in the system log containing "01:00" or "1002:6981" are
+identical between the two versions.
 
+I've posted below the only places in the logs which contain "amd". The
+commit with the issue (f9b7f3703ff9) has a few drm log messages from
+amdgpu which are not present in the logs for f1688bd69ec4.
+
+
+# f1688bd69ec4 ("drm/amd/amdgpu:save psp ring wptr to avoid attack")
+
+[drm] amdgpu kernel modesetting enabled.
+vga_switcheroo: detected switching method \_SB_.PCI0.GFX0.ATPX handle
+ATPX version 1, functions 0x00000033
+amdgpu: CRAT table not found
+amdgpu: Virtual CRAT table created for CPU
+amdgpu: Topology: Add CPU node
+
+
+# f9b7f3703ff9 ("drm/amdgpu/acpi: make ATPX/ATCS structures global (v2)")
+
+[drm] amdgpu kernel modesetting enabled.
+vga_switcheroo: detected switching method \_SB_.PCI0.GFX0.ATPX handle
+ATPX version 1, functions 0x00000033
+[drm:amdgpu_atif_pci_probe_handle.isra.0 [amdgpu]] Found ATIF handle \_SB_.PCI0.GFX0.ATIF
+[drm:amdgpu_atif_pci_probe_handle.isra.0 [amdgpu]] ATIF version 1
+[drm:amdgpu_acpi_detect [amdgpu]] SYSTEM_PARAMS: mask = 0x6, flags = 0x7
+[drm:amdgpu_acpi_detect [amdgpu]] Notification enabled, command code = 0xd9
+amdgpu: CRAT table not found
+amdgpu: Virtual CRAT table created for CPU
+amdgpu: Topology: Add CPU node
+
+
+Other things I'm willing to try if they'd be useful:
+
+- I could update to the 21.Q4 Radeon Pro driver in the Windows VM. (The
+  21.Q3 driver is currently installed.)
+
+- I could set up a Linux guest VM with PCI passthrough to compare to the
+  Windows VM and obtain more debugging information.
+
+- I could build a kernel with a patch applied, e.g. to disable some of
+  the changes in f9b7f3703ff9.
+
+James
