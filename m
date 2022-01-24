@@ -1,121 +1,51 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F02034989FD
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jan 2022 20:00:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23D274991C2
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jan 2022 21:14:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31AF110E871;
-	Mon, 24 Jan 2022 19:00:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79E3610E860;
+	Mon, 24 Jan 2022 20:14:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2056.outbound.protection.outlook.com [40.107.237.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97E7410E871
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 19:00:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OWFF1SRXAT2AOg6WG73/XckymoRyPSufoRtc1vBKGHLDhcjhKvvIGaunmaL2HJHPhziOCObMI/XLoUI0uZEuvfmUfdmg6LVZn9rY7q718oAnt3IhgX+J76PdFc2IxiGKyzdd4v91M94nEDGgzFSsxVXpgwhHRWSBYFC+ziI1znnEMz772t4WfsmgnKiZTxaKX4jxIAK9Zy8gXSJaFeOj+9IXBwJnfB8fD7Y23nhWf0lk2bslxFUamqZRX2sN2Q1JK+en5L5onx5lgDOM+6B7jVKOySiz0iIgfXFsd2nV+YuA63GklT6PsbzJ5OlS593+c7pTjbWcIw5vfgsrSjt88w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jCpk8EAdFQFgIPLD7Fc1LsQ/3NgmB+RlgIyy/9r77Fs=;
- b=n+q1g7Ua6Z3QWRakemBgSHQs/XIDEUynxpKhCGhZ7sOPHnaKwVYETwmr0eHN8dLV8tjUr6RuLumkRE8H2zmRXPkIf680vHKLTmQRweNSGEsxARCGsIfvvdqKyJLIr8zMcID8saBhkuDW8HQm/BQYLKkbyuwjT5Yu29U6Aix54LeoHwblF7HzYXCcOtbLKHMWMio8OjhXZmX/3cugQBieKf7EyRDCKhEA4fTZQh8xpPGtahCT7vTO8NzsxXwiVhTo0ob3SkgOX8NS4pbehivYmY/BAHgIUsCAEkzzw24nhoGsGwlaSCmFWHZOO2RaNodd0+gc1ok5C60ecIG0AF8wQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jCpk8EAdFQFgIPLD7Fc1LsQ/3NgmB+RlgIyy/9r77Fs=;
- b=TmN3AoChj3PRLPuT+K+nmGklj/65onYJm7Eh1tdW6WWPSlzeytXHD0KdZhxOaB0qU1eHjF0Q31qFEl9Fs3qvKis5Q1HTu1Ow1AW78z7ghzASqyPLP1kzZZGX6TY1rlOttWq8gWFTrX+yjcI7z3BtJmMCIvgez6h7Gj0cmZkKUCs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
- by DM5PR1201MB0265.namprd12.prod.outlook.com (2603:10b6:4:58::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.10; Mon, 24 Jan
- 2022 19:00:23 +0000
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::dd4b:b67b:1688:b52]) by CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::dd4b:b67b:1688:b52%9]) with mapi id 15.20.4909.017; Mon, 24 Jan 2022
- 19:00:23 +0000
-Message-ID: <53d8c220-dd1b-cb07-4cdd-70dcaaa20f30@amd.com>
-Date: Mon, 24 Jan 2022 14:00:19 -0500
+X-Greylist: delayed 3380 seconds by postgrey-1.36 at gabe;
+ Mon, 24 Jan 2022 20:08:35 UTC
+Received: from desiato.infradead.org (desiato.infradead.org
+ [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA20B10E90F
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 20:08:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+ :In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
+ Sender:Reply-To:Content-ID:Content-Description;
+ bh=630GZf2pl7dUC09jByd2lRVEJ71rHFIBrI9U48V8bzA=; b=l0WJXVDaYcmJ3/V3RWFezwDDer
+ C44GbJGe7OjLN0KX4PaF1IWCv0kAoNTjNLYvwuH+jZell6Ad2JgbYr55poxlvv5DL8vopnnR/7kMY
+ vn/kveSmXCK7I5QKtfyV0XYyRC15LtirFVJpZLpus0tksAvWxi6l/uO/J6VOZyNLBn7KViVZO+pmi
+ tCMavBPk+ocRsC6yujO5bPnGRcZhKLBisgW7TtJG3/FxTW3BAp4mXk9rBm2YHM6MqRSSbpG11QU3K
+ iU0eefreID+Mspii6FT8TND1o3Wgkgcez5ouyqVdYFPOacbzF1GFPC3zVTqT0YP/NTts2M908BtFX
+ 6ETemMoQ==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+ by desiato.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+ id 1nC4l3-003F5b-C0; Mon, 24 Jan 2022 19:12:05 +0000
+Message-ID: <aca104cf-5f5f-b696-754a-35e62dbe64c3@infradead.org>
+Date: Mon, 24 Jan 2022 11:11:56 -0800
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH] drm/amd/display: Call dc_stream_release for remove link
- enc assignment
+Subject: Re: Build regressions/improvements in v5.17-rc1
 Content-Language: en-US
-To: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
- amd-gfx@lists.freedesktop.org
-References: <20220124185701.54981-1-nicholas.kazlauskas@amd.com>
-From: Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <20220124185701.54981-1-nicholas.kazlauskas@amd.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Alex Deucher <alexdeucher@gmail.com>
+References: <20220123125737.2658758-1-geert@linux-m68k.org>
+ <alpine.DEB.2.22.394.2201240851560.2674757@ramsan.of.borg>
+ <CADnq5_MUq0fX7wMLJyUUxxa+2xoRinonL-TzD8tUhXALRfY8-A@mail.gmail.com>
+ <CAMuHMdWUWqHYbbavtMT-XAD_sarDPC5xnc3c0pX1ZAh3Wuzuzg@mail.gmail.com>
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <CAMuHMdWUWqHYbbavtMT-XAD_sarDPC5xnc3c0pX1ZAh3Wuzuzg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR0101CA0167.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:f::10) To CO6PR12MB5427.namprd12.prod.outlook.com
- (2603:10b6:5:358::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f0363ae3-a325-4317-a322-08d9df6bc645
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB0265:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB026503FBAD50A00332FF7B168C5E9@DM5PR1201MB0265.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: e1ww67dfQT9BEcpALd9+fkAki5qnWMWSfZtId4B/FqbwQqnm5awyZl6ioEwH8WotMgKdCR5/8W+SAJOfGpcSr8X6lTTZ65tNRz1N0O25ySTVy8n04pBveLkQq0gR2IQny8kQspgIBXz19t9se2G2AHYL+zuN9i5aQ+WhYtJ86Q9bHo0rlpd9Ge38d/AAdkk/ewECkJX8fSD88VOM0sSul4o7TFemPZ14BFYPTQaL0j9rs4ePD6t7/reKpCYTF+3qcq+2xxqtlG8PrMWr5oNz9Uy11BUPlvmtplD80aUs/qmcLW4O6M5FcRe/UFUV1qGHX5yiJyQvLozb71Ihm6dd16IFuWLy4aVdFApxXWm/Ic+SOW156YnOwS4REDbY9n2w5N6rZS4+a3TmOpZPNuxQAVSiwpjDmNd/7rnr7+yLO/ua974o7gGj03acxk2jgDIlfzhSrjtajWLiG0p5dl8YWMhuHtcAtIqTU0EHvSuY/y5UazXeBhDGsnOBnRSg65KTYpsGKi0yK1sWriULdPrvAupnsGDrtn69rRdFOcTHbDdeyNoJldK5BxBZivn7/QY6W+eqFV/ulxc1gJASgA9RIPQ+Qc+9q/00rcMfe9MW3j7niwjuw2afcLckBVMmP4/T2O0mf4jxZ7yTnJyWYZPaOOfsa33dKwQJPicbXYpIgR6Jb2Np85UXXbwxofnMNxPHPWTehj+GKndAY04wWQeg1QAIfLXVOrL5X4N03qBemRwXue7pzdpEBJnZXUmiM3Kb
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(66946007)(5660300002)(31696002)(53546011)(4326008)(54906003)(6512007)(316002)(31686004)(36756003)(8676002)(66556008)(66476007)(2616005)(6506007)(2906002)(508600001)(186003)(26005)(44832011)(6486002)(38100700002)(8936002)(6666004)(86362001)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SDhVS21tZWMvZVNZNm15UlAxVlBSbUtCSTZoNWZsbUYrK0x1ejlXUVdJVHoz?=
- =?utf-8?B?ZjFUa1RaRDcyVFYxL3BFUVhYR1h4Z09Nb2tDQ3JPYVpoT3duaE9lUzNiK1Fx?=
- =?utf-8?B?SUlMeVNpcTU2RlpPNlZMOS8rUXF2elJYaWhMYzNIb0xMSStNWW9ieStJM00r?=
- =?utf-8?B?MXZBQjF4UmhKSEhBUHFlUlpaN0tNSTV4L2x2Tzl6WnlXRU93eHFxZGRqR2M1?=
- =?utf-8?B?RldjUDJKRGZPcTY5bGtEeWdDWEZTeVFHR3RZcU9UQ3JNQzFrTGZSSkE0cno4?=
- =?utf-8?B?UzYvaXlxYjhPalgwTXlMRloreE90V2hhbVFORGN6eDdINHhKbE1JY2ovdHA5?=
- =?utf-8?B?YlFzVVJML3hPWWtHODhaT2UyOEZxc3F4N1dJbEZmUU1NUWJMR1dZUm1pVkda?=
- =?utf-8?B?V083N0hVQzFuYm9VR0JybWxLUTRuYmtpSXMxVUluUlFjTUhVVmpSTTZVRzNx?=
- =?utf-8?B?enhBQ1AzK083eDE5ZUtlU2o3bjNKOTBFQ25CRytOaWhWZG9XbUFTOW5janNX?=
- =?utf-8?B?dkVkYzlVUXJ5ODBDdlJodWpsNnZpWmhCUWl4TG1GTTg5S29PK0Z5ZERKanlm?=
- =?utf-8?B?eGtGejlIZm9RalpUS055MTFuQVFQY3RkWHRYbENnbkxkdzdtMjJhRlNnL0JC?=
- =?utf-8?B?VDdLcGFlVlhrbDJZS0R0R2VVRGdsNkp0RXBIL2s0bm13cnNlc284SW9FNVlF?=
- =?utf-8?B?UTFUb3pMZmRYVjJkclRLWFJJeWRhZ2xXSHd5S3ZKb0ZJL0xrb1BaRTdlOVVu?=
- =?utf-8?B?OVFmSTNRUThCckdVRFRoMmVlSitVVVNoaVZhdnM3MDhRV296T29ES0xlbE9r?=
- =?utf-8?B?cnBvejNvSGdNaEIzUnI1MzdpM21RRXdhd0tRU21CZndLT1llZmdjNFg3ajJ3?=
- =?utf-8?B?bERzUVBlTWRONzNRWGtocVJJLzdnVDA0Nk40c2FLZGpXcTM1YjI5eGpmRFM2?=
- =?utf-8?B?ZHF2bmVqOUpVWjEyN2pGWnVPNzExKzN4R3owS2xvV3c3aFhEc2o1RGw2RWFH?=
- =?utf-8?B?eDVqN2VKMlNsMVhseSsxdUk2dXZUcXpIamM5OEh1T095bC8xTlI4VWFJaWN2?=
- =?utf-8?B?ZThWaGxyVzMwL0RTVzBiMEduY0VOWm8vRmcxaFZONytiTEVURkNIMThqdzU5?=
- =?utf-8?B?T0JBbkVYTlRzeWREZ3F0ZS9IaGk3U2ZCaVlwOHNtMHZWNnpIR24zcGVNZTFw?=
- =?utf-8?B?Qmgvb3ZmeHBxbHlCcWJtZnBTMVREOXcxQ2FZTlprZktwZTNGUzNzYlhQYUxG?=
- =?utf-8?B?dWc5TkdocnUyTTd5VmQwam9YNm01NEJ3cW1EUitPWVF5Wm5WdE92b2xWUWZv?=
- =?utf-8?B?alhQZVhwc0M1SkFGTW9wMFFpZm1JOVRTdWt6TWROMVJ2RzhpWFZzUExycThl?=
- =?utf-8?B?UjJFYTJhRmpJSGU2RVJNVjE3UjJmakJqQjZXc1hNQ0p1OUQxTEtpVXNDOVVE?=
- =?utf-8?B?QXIyMkVabFM5ZzAvNXBwbDdGbURRcktBZ1Z6aHVQY0xIZjlZbWN4OVhOWXFa?=
- =?utf-8?B?cTB4bXIwMUZpV1lSQnVvdHJFSHlBUWxkQ3lSa1NONzN6THh0SjJZQlIwM204?=
- =?utf-8?B?N2pNNmJSN0h2eEliUkl2YTdDRzJ4dEdLT3BWTE9jMGxhRmpsTDQ3UmlBUkNE?=
- =?utf-8?B?VitUUjljVVZrUzF2b25WY2UwTnd6ZDlxcXFlOGdqTEI2QjRTNDVBdzZjNG5o?=
- =?utf-8?B?Q1M1c2hWRWVzUXdGNm04aWtqWXplMlZkVmlBRTFvWXdMTXhDYmJwd0tjQTg2?=
- =?utf-8?B?ZEdsSkcrbmtsRC8wNVVmTlFiMzdnUEJ2MkNDK01hV3pQUTBycEk5c1cySHAv?=
- =?utf-8?B?d0o4aVQ3R2I2KzZkSHVOek8xZUplc1VCc09TU2NrbkZkWmxLa1p5dnJDNXBy?=
- =?utf-8?B?UHQyVUhPWkV5MVN0Y2hvM29YTVk0OXNIM3IvKzFPMkhiOTR3V1RSZHMvLzh5?=
- =?utf-8?B?ZytZQm5SbE1Fa1MrMkYwTkpEZVZlYllpMi9qd1IvYVpMa0pvb1JhdXFIL3hh?=
- =?utf-8?B?bkFJalZYSEFOclA4cFhsMTBmUTY0aXR1Z2N5VjNVNUpIY3E3eDBJZ2psemNE?=
- =?utf-8?B?cGswRkRaenk1QUdlbWJTUFB2c1ZjYlIvY25NaS93OTUzR0ZUR2lMcDZYd3BE?=
- =?utf-8?B?OE5YdjgxaFIxc2lCZlZEM3lxNVdzTVlEL0tNakQrV3B2dDVTL1ZheG5zZ1Q3?=
- =?utf-8?Q?5FYFGdEWZDhQp8vWrCPgFRM=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0363ae3-a325-4317-a322-08d9df6bc645
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2022 19:00:23.6207 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: j+i2oqGCb3TEsGsVZn9RMmS9h20UOAJmr3xQtRa4Pqsmz8ZNOJYDEM9ymIUQwoACR6D78mV1YVt5w4GR39bmAA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0265
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 24 Jan 2022 20:14:40 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,46 +57,141 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Qingqing Zhuo <qingqing.zhuo@amd.com>,
- Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: ALSA Development Mailing List <alsa-devel@alsa-project.org>,
+ KVM list <kvm@vger.kernel.org>, Network Development <netdev@vger.kernel.org>,
+ linux-um <linux-um@lists.infradead.org>, LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+ Lakshmi Sowjanya D <lakshmi.sowjanya.d@intel.com>,
+ sparclinux <sparclinux@vger.kernel.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, "Tobin C. Harding" <me@tobin.cc>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2022-01-24 13:57, Nicholas Kazlauskas wrote:
-> [Why]
-> A porting error resulted in the stream assignment for the link
-> being retained without being released - a memory leak.
-> 
-> [How]
-> Fix the porting error by adding back the dc_stream_release() intended
-> as part of the original patch.
-> 
-> Fixes: 2e45b19dd882 ("drm/amd/display: retain/release at proper places in link_enc assignment")
-> 
-> Cc: Qingqing Zhuo <qingqing.zhuo@amd.com>
-> Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-> Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
 
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 
-Harry
-
-> ---
->  drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c | 1 +
->  1 file changed, 1 insertion(+)
+On 1/24/22 10:55, Geert Uytterhoeven wrote:
+> Hi Alex,
 > 
-> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-> index a55944da8d53..00f72f66a7ef 100644
-> --- a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-> @@ -122,6 +122,7 @@ static void remove_link_enc_assignment(
->  				stream->link_enc = NULL;
->  				state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].eng_id = ENGINE_ID_UNKNOWN;
->  				state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].stream = NULL;
-> +				dc_stream_release(stream);
->  				break;
->  			}
->  		}
+> On Mon, Jan 24, 2022 at 7:52 PM Alex Deucher <alexdeucher@gmail.com> wrote:
+>> On Mon, Jan 24, 2022 at 5:25 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>>> On Sun, 23 Jan 2022, Geert Uytterhoeven wrote:
+>>>>  + /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c: error: control reaches end of non-void function [-Werror=return-type]:  => 1560:1
+>>
+>> I don't really see what's going on here:
+>>
+>> #ifdef CONFIG_X86_64
+>> return cpu_data(first_cpu_of_numa_node).apicid;
+>> #else
+>> return first_cpu_of_numa_node;
+>> #endif
+> 
+> Ah, the actual failure causing this was not included:
+> 
+> In file included from /kisskb/src/arch/x86/um/asm/processor.h:41:0,
+>                  from /kisskb/src/include/linux/mutex.h:19,
+>                  from /kisskb/src/include/linux/kernfs.h:11,
+>                  from /kisskb/src/include/linux/sysfs.h:16,
+>                  from /kisskb/src/include/linux/kobject.h:20,
+>                  from /kisskb/src/include/linux/pci.h:35,
+>                  from
+> /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:25:
+> /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c: In
+> function 'kfd_cpumask_to_apic_id':
+> /kisskb/src/arch/um/include/asm/processor-generic.h:103:18: error:
+> called object is not a function or function pointer
+>  #define cpu_data (&boot_cpu_data)
+>                   ^
+> /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1556:9:
+> note: in expansion of macro 'cpu_data'
+>   return cpu_data(first_cpu_of_numa_node).apicid;
+>          ^
+> /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1560:1:
+> error: control reaches end of non-void function [-Werror=return-type]
+>  }
+>  ^
+
+ah yes, UML.
+I have a bunch of UML fixes that I have been hesitant to post.
+
+This is one of them.
+What do people think about this?
+
+thanks.
+
+---
+From: Randy Dunlap <rdunlap@infradead.org>
+
+
+../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1556:9: note: in expansion of macro ‘cpu_data’
+  return cpu_data(first_cpu_of_numa_node).apicid;
+         ^~~~~~~~
+../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1560:1: error: control reaches end of non-void function [-Werror=return-type]
+
+../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c: In function ‘kfd_fill_iolink_info_for_cpu’:
+../arch/um/include/asm/processor-generic.h:103:19: error: called object is not a function or function pointer
+ #define cpu_data (&boot_cpu_data)
+                  ~^~~~~~~~~~~~~~~
+../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c:1688:27: note: in expansion of macro ‘cpu_data’
+  struct cpuinfo_x86 *c = &cpu_data(0);
+                           ^~~~~~~~
+../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c:1691:7: error: dereferencing pointer to incomplete type ‘struct cpuinfo_x86’
+  if (c->x86_vendor == X86_VENDOR_AMD)
+       ^~
+../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c:1691:23: error: ‘X86_VENDOR_AMD’ undeclared (first use in this function); did you mean ‘X86_VENDOR_ANY’?
+  if (c->x86_vendor == X86_VENDOR_AMD)
+                       ^~~~~~~~~~~~~~
+                       X86_VENDOR_ANY
+
+../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c: In function ‘kfd_create_vcrat_image_cpu’:
+../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c:1742:11: warning: unused variable ‘entries’ [-Wunused-variable]
+  uint32_t entries = 0;
+
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+---
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c     |    6 +++---
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c |    2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+--- linux-next-20220107.orig/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
++++ linux-next-20220107/drivers/gpu/drm/amd/amdkfd/kfd_topology.c
+@@ -1552,7 +1552,7 @@ static int kfd_cpumask_to_apic_id(const
+ 	first_cpu_of_numa_node = cpumask_first(cpumask);
+ 	if (first_cpu_of_numa_node >= nr_cpu_ids)
+ 		return -1;
+-#ifdef CONFIG_X86_64
++#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)
+ 	return cpu_data(first_cpu_of_numa_node).apicid;
+ #else
+ 	return first_cpu_of_numa_node;
+--- linux-next-20220107.orig/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
++++ linux-next-20220107/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
+@@ -1679,7 +1679,7 @@ static int kfd_fill_mem_info_for_cpu(int
+ 	return 0;
+ }
+ 
+-#ifdef CONFIG_X86_64
++#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)
+ static int kfd_fill_iolink_info_for_cpu(int numa_node_id, int *avail_size,
+ 				uint32_t *num_entries,
+ 				struct crat_subtype_iolink *sub_type_hdr)
+@@ -1738,7 +1738,7 @@ static int kfd_create_vcrat_image_cpu(vo
+ 	struct crat_subtype_generic *sub_type_hdr;
+ 	int avail_size = *size;
+ 	int numa_node_id;
+-#ifdef CONFIG_X86_64
++#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)
+ 	uint32_t entries = 0;
+ #endif
+ 	int ret = 0;
+@@ -1803,7 +1803,7 @@ static int kfd_create_vcrat_image_cpu(vo
+ 			sub_type_hdr->length);
+ 
+ 		/* Fill in Subtype: IO Link */
+-#ifdef CONFIG_X86_64
++#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)
+ 		ret = kfd_fill_iolink_info_for_cpu(numa_node_id, &avail_size,
+ 				&entries,
+ 				(struct crat_subtype_iolink *)sub_type_hdr);
+
 
