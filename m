@@ -1,98 +1,121 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBA7A49898F
-	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jan 2022 19:57:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22D174989FC
+	for <lists+amd-gfx@lfdr.de>; Mon, 24 Jan 2022 20:00:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EF3D10E665;
-	Mon, 24 Jan 2022 18:57:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A08910E672;
+	Mon, 24 Jan 2022 19:00:01 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2053.outbound.protection.outlook.com [40.107.244.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF9FA10E665
- for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 18:57:14 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2075.outbound.protection.outlook.com [40.107.243.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B062B10E672
+ for <amd-gfx@lists.freedesktop.org>; Mon, 24 Jan 2022 19:00:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i9bnFubIAMk32Syyjs+40MJaYl7FWBX6YQm14Eja57zx3z17cmjVnu1jxnOT2oK28zRbB367qLphG7ws/f2BMdSXFrKgcvmdHzx3WIovRwcVot7qs+kWxIGRPF/qZ+7XIGvpKHXpEKD2E3KFkKM4uakLK/FP7iMtlVc8IdGsYkeW65fZ4m1FW8c7x2BdkANur49aJbMYKDW6yFMGJ/2FqIs3tzIgHss0YF0SnN3+sq9RJ9YJM7U7/zOtZ66J1beGz38x9CGSJX5wmiOQRXLj+gV7xrW/JOJn5UUN/fmT5ETRagmA9a0rC8X9Zh00daaVoSxNRbykp4Kp8zRF5AncfA==
+ b=jzGUqtrVmK/Peq/mmiuRO/+iUCIzspiBPj4un3UVOkMadUKQVbnq/yeI0e2V8GKBQtdJMJJ0GudDv8V44B627+np7i9WloxlDyZxqBJLMM8b7Qtj7zNsl2UUjZFtKMk4q1FeV9jW0o0Sn6+6nDJa9q3v3WqXs3ZQz2XoJZedWPRf49TvRy4HsPYYcJlnT9exxxpgyFhEuAmxLzldy5A55NinOaBabsuwzMBNv/tETytwKpOiNRpeuYJUccGAUdUNaegccUqc52apsC1wknRax0lMrPShNSDgMpw/kV2SvqLqAAwwqg43QZpPK1rA4Qt9EfZS2L8WDCOwGzyKzaw+QQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EYchtXKH71er6TBD+z23jUp7ZN1vcfTyJFXlo8CyNUY=;
- b=LCcRFlyeV0busV/+Z7w+Nu1kiKlbKqJCh+anPB1gw6BRz6d1M3wuNp/vn2EtymJBHycvC+Ms8RXMzyn/l4v34/eNB0/z30dBRUQKgsmj/8TGXfd8iIQ7hSrWsNF0BJHkBks8u2wEUF+iFuZQty1Pf77X8TWE5dSHRd5cYDTlSCP0d9qwrsJQR00+LbOb3zUKw5R4tFXVUc3HTg1wRAYHNsrwlupJd0IU4t2k4Udj1Ejo8527BjMtIcDWgr8E7GObRTYxfhXuNnQUS/eSIVRkHq9gKL5LvoJzm2cUcl9nycmPZuxRgBUIttn12CINcX03sLtFfYm/yVvcDwtp2vedcg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=6T2cWjU/PhIedT49OKVjLDf8Rpihh2KulB/NSfUqFTk=;
+ b=ZCJNVvCTkQgeTwLEG1TuUwZjcsEo/eP8SWkcj4269v5P3GNfdV1a/S9VU/yCjKoarDPxio06ZMMJ2Qf3IVgw3ic2Qrh5R43/MM5NB/V484KR7YN5Cu5QuirvpcizJ4pBDllr28xYsBm2xdqPP1WqhkpxjQJoosS86rjQL+G7fSfoxrrftZWQDyqw0PZagcZNZOOzzMMGC6UqqGpgxovUIXRm17gIza8qedQhP/hfc1OW1tkAztWPUNT5IuFISWF9fVbeuUBd7/A5dVTrXQsjVXTOV2jAxhrBC5IKvP9iPAAFM71/Q1qmQWzS5sneAVpXr5R5ua8NDTbeU2swuLVElQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EYchtXKH71er6TBD+z23jUp7ZN1vcfTyJFXlo8CyNUY=;
- b=xSJdOcaLqYNJSUS6RjtnZMItp/TQ1pIUdxIHbbLG1DNPoO9SpA7rMDbi1+QuGhd++jdbA93eZettNFTyv2NINKz/fGnyUXVQqGM54ecYEEc4CkdsP95HmpuGTTu8nr0KyUE41IDvwwJnLRW8WnMRH/eIQN7uPL7KbQGVqY6JIaA=
-Received: from MWHPR21CA0067.namprd21.prod.outlook.com (2603:10b6:300:db::29)
- by CH2PR12MB5516.namprd12.prod.outlook.com (2603:10b6:610:6b::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.7; Mon, 24 Jan
- 2022 18:57:12 +0000
-Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:db:cafe::65) by MWHPR21CA0067.outlook.office365.com
- (2603:10b6:300:db::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.4 via Frontend
- Transport; Mon, 24 Jan 2022 18:57:12 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com;
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4909.7 via Frontend Transport; Mon, 24 Jan 2022 18:57:11 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Mon, 24 Jan
- 2022 12:57:10 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Mon, 24 Jan
- 2022 10:57:10 -0800
-Received: from localhost.localdomain (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
- Transport; Mon, 24 Jan 2022 12:57:09 -0600
-From: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amd/display: Call dc_stream_release for remove link enc
+ bh=6T2cWjU/PhIedT49OKVjLDf8Rpihh2KulB/NSfUqFTk=;
+ b=up8XG6XJUjKOo4sEAJHmvkFCcQBdGkuenxKY+iGYr5A9hHCIuwqVHxbooWXeOhlJ3N+DrX+Dezt7UxGXuVYiJ4J9Aw9Vn0lQDsIDN/EB2rh6i8QR3QzNAEBw6ELtOrOMvkySoE4l8x0nK4ECOUD99eLMqVnaeQ+UrAJ7icOk8jA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BL1PR12MB5157.namprd12.prod.outlook.com (2603:10b6:208:308::15)
+ by DM5PR12MB2407.namprd12.prod.outlook.com (2603:10b6:4:b4::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.8; Mon, 24 Jan
+ 2022 18:59:58 +0000
+Received: from BL1PR12MB5157.namprd12.prod.outlook.com
+ ([fe80::42f:534d:e82:b59f]) by BL1PR12MB5157.namprd12.prod.outlook.com
+ ([fe80::42f:534d:e82:b59f%6]) with mapi id 15.20.4909.017; Mon, 24 Jan 2022
+ 18:59:58 +0000
+Message-ID: <3088a316-04b5-4df4-3053-d98744469b77@amd.com>
+Date: Mon, 24 Jan 2022 12:59:56 -0600
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: drm/amd/display: Call dc_stream_release for remove link enc
  assignment
-Date: Mon, 24 Jan 2022 13:57:01 -0500
-Message-ID: <20220124185701.54981-1-nicholas.kazlauskas@amd.com>
-X-Mailer: git-send-email 2.25.1
+Content-Language: en-US
+To: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+ amd-gfx@lists.freedesktop.org
+References: <20220124185701.54981-1-nicholas.kazlauskas@amd.com>
+From: "Limonciello, Mario" <mario.limonciello@amd.com>
+In-Reply-To: <20220124185701.54981-1-nicholas.kazlauskas@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BL1PR13CA0297.namprd13.prod.outlook.com
+ (2603:10b6:208:2bc::32) To BL1PR12MB5157.namprd12.prod.outlook.com
+ (2603:10b6:208:308::15)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6630ed73-4d0a-4ecd-a9a8-08d9df6b5442
-X-MS-TrafficTypeDiagnostic: CH2PR12MB5516:EE_
-X-Microsoft-Antispam-PRVS: <CH2PR12MB5516CBC489E4B1BDD6B38771EC5E9@CH2PR12MB5516.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
+X-MS-Office365-Filtering-Correlation-Id: 43ec79f3-e94a-41b0-90f6-08d9df6bb748
+X-MS-TrafficTypeDiagnostic: DM5PR12MB2407:EE_
+X-Microsoft-Antispam-PRVS: <DM5PR12MB2407E8CA6755605DD0F6159AE25E9@DM5PR12MB2407.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:597;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +O8b76zBo5TviUb5iWk7D+7dO7xxDqylFRjtf+rdH8YN0VrYLIY5ccHMEEBrGyAMx/ybkXa4HgOJssXW5hz5hsDc8B000Rz+Z1Ei9n7WVDUkeTuiWuXY27qIO8E0JiTS1CGBny84myNMDV1SHOw8hbMUdZ7/vw84W/8EO1T9QuBNAXTd+FdCVeUVNlN5h1Vb0Gyze/jkXQGuiF+waCaIqVD2WxGBpn+sSufk+xAZ/ziCTvYSM7RJvtmgK4H5+s1bvRYfOjKAvppL5NC8MNjBgizgS5cedRUg6rmXr1xBXlugAgLpkN00BEAPgntbkH481OdZsTDnKfymwbOzNWQMvLvnvcoyHmd/PJHFBdWHj86ArZsIppPoF7loRwt82HSsEv2WYozYs8xr3iEiza0l9+A9r5tZFc6YeQwnQeAMY0+2XCwB4LOc36IEK0DhfQ5QqiIZ+twYSsnDjYsVhc7S9ohqpq+/dkXiquSyPvqFr47ds6uUD/bkOKCPSZBi7AqBTHfdhS3qYL6J9ND5zYcivbwPjyo+QjMpvBjqg/Of1xBHYlPBvLwTskzT7T3zTZvwJiIDCkPwg4kEZVVxa7FQnrEjmvNRVPET0bjtYOWZdsHBiwH9jwcIeLTz7AKW+Tbl8rceVEv08uXkwGmCmn6dkuYLXSMH47hO4Oz7p1hcjexEq0k6HLYmP46MeZoBMb8wHwM82eXq4jb2bu7/kcGuFZpFZx/OGV4lBZicyVchsKDIhY3ilQ2lviY5Lk3kLD9a0m8UDYCS09/zdROhPGZe2W5bTX+hokoxZ7aX+TcmoUw=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(40470700004)(46966006)(36840700001)(82310400004)(40460700003)(44832011)(336012)(4326008)(508600001)(5660300002)(47076005)(26005)(186003)(426003)(6916009)(2616005)(36756003)(86362001)(316002)(54906003)(356005)(81166007)(2906002)(70206006)(8676002)(70586007)(6666004)(1076003)(36860700001)(8936002)(36900700001);
+X-Microsoft-Antispam-Message-Info: m5dClOjWguLnTYBKO6lKZqMngx2BjDwt9k2tp6FRpaQGEdbFq7QvG4aEmc3qAB9qx2lme2yv1KOMPWQhZsVP8Sdgwt86jnUKREy+azoS+6WiRKswZi989xUgxfsp4udS9cz1tg5ZyjLecMOZsdti2A0/NLIh0eWWq5MRMTtNiA5c7xFNfYQj57fwpLQFmndbeIfCvGHmZF42Xa7IyQL3k0uxitya0r+3youtaheiDclIGOVzfs+3zH30ZMB2mrIVaYOwRyyrRnZeAzkev67gcZ3A/7MWgBzYBIuGZfritqQWaQV/plppLXxfKkEC1JQvis7KH+8sF4g4ly4ymU1j6L6PC0dsENVBCixrmXHIwTi6rq6CvczUlXoaJzNOq30lac6ijjAedM9OPm2b4C+NiKcJ6gSYiQqBP0zsH95lcom0rTi5EVSdzFHIvKDeHVAc8GnK1KwNCRcPaKlFz40Q63IYnntIK15mRmNS3R7QIEwfbIIT1xYWqZ7+6TmFIz9Nvygn9QUgpMQhPLtMM7jhohTQ08Ff3yeG+ZoIzB9aeuG3YtSFKS2TUI+SC7upZ/8ZwZiaOoeUEQBHG7dEQzA6KgcJernG/NTGoZK93Qy9W5QQOtlmiQQpyvnZz1SIPILECXqRGIDreO0rqhiiymg4WAj4Iyvz7sV9P2a8/awg3I2l3jwI/g0vvGGpdBSs2eaMoYua/S0WF/xXg566VLf9ppLW94Ab7tereihWiElVeD6sxDU3SAZt95qNb8XXznGm
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5157.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(366004)(38100700002)(8676002)(2906002)(316002)(66556008)(66476007)(6486002)(2616005)(36756003)(66946007)(5660300002)(4326008)(508600001)(86362001)(53546011)(8936002)(6512007)(186003)(31686004)(6506007)(54906003)(26005)(31696002)(45980500001)(43740500002);
  DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z25WUHdTSlhHMHJ2cldBWkpKN1o4VjVLU3ZZUFFDUkozVFNsVTRaU01IcmUr?=
+ =?utf-8?B?SlVYYlJxYlVSaHZZV1JiM2h5bkxLU0pETjZEbGpJeHNCb3dVaXRES2dnMTZ6?=
+ =?utf-8?B?OEhmemp3SXdIb09rVGtyY3VyTTN0NGUrZmVMemVGUzdsTE9QR1JmY1k2VDhX?=
+ =?utf-8?B?ZTRnMmUyOFFCbTBudkFSMnRQOVI5bmREYWk4cFhXNUViZERicHl2YkRmZXJQ?=
+ =?utf-8?B?ck1mdzVhODFYNVJXL2JtcjZmTHB3K09TMktWOTZVODM1UkU3NXFMaHd6Tmty?=
+ =?utf-8?B?dHl2ME9CbHN2N2Y3NVFIWVYrckVmeWRrSUhEL2lWNmpqQlBpZWZDNytiQTBT?=
+ =?utf-8?B?SloxRGN1c1pJenBwd1JCb2sySUV3Smp3aHlESEM4dmJGSkVDMEpSb1puMFFB?=
+ =?utf-8?B?VkdGcFhMOEZoTjcyOXVzcEVmcHlEWXhDVmZxWTRBYXpVekxmTVJpdzdIM2RI?=
+ =?utf-8?B?dzNneXhERU9qYTF5T3hISkxhcmF2ZERGN3ovOGRYNmUwUURRd1o1dzQ3bS9Z?=
+ =?utf-8?B?WVRCWDVCbkFPSXBRTlZSWVJvaU50aTlvTVN1ZkNKemZrQ05xd2kzd0VxNkdZ?=
+ =?utf-8?B?UFRRbDFUcEFuQTh3SXptYWkvU1JvSDBtRjA2Mnd2MW5YVU0xelpMK1JET08x?=
+ =?utf-8?B?UEdSbUdXb0t6MFVuOWRxZ1UvNEk3V0NZak1MdFY5bkx5UytNUno4ejViK2xG?=
+ =?utf-8?B?QzhrdEg0WHl0aGVpdytnSUxVUWR1LzErZmNFT1V5UUlEcDlSeGljY0lnWnI0?=
+ =?utf-8?B?alNOOFoydlBnY1o2TUEvbzkwN2MvSTRTY3N5OFJpaFU2cmZqK3gwUUNSVFZt?=
+ =?utf-8?B?UzlBdWo3N1JSL2tOL014T3R1Z0xXYVd4U0ZjUDdkYklHNFlTY3pWWTl3b1NB?=
+ =?utf-8?B?NVJhcS9Cbm00dFhJRU5oZlUrcHcrVENpeG5JNnk5cTVHcGhXZ1hTUnh4VUVU?=
+ =?utf-8?B?WG41TU12LzZTSkIxejdMOUZnYkdkTHpuZlJkc1hoYkRQRFB0WWJlQVJPNWZR?=
+ =?utf-8?B?VmMvak5IaXRRdEJYbG1XSE1MMTArcmhlQjdqVytLdTZKRkRmZi9pRDd2ZnQ5?=
+ =?utf-8?B?a3BEM2FtWHVoVnlab0JVa3pJTjJzNDdURFdPaGFxcXRjT1RNZW90c1ZUMGlx?=
+ =?utf-8?B?VXlVSC8zSjVPNTZsZjN4M2RFUnRGbkRWdDFyM3kzV0RnSDJGUUhjWlI0V0I2?=
+ =?utf-8?B?WGFEZ0VoRUF1ck5rcnJoNk9vc3U4NG80MXZ1NjRWbTFybnhUYmhhSVBMRDZY?=
+ =?utf-8?B?cXNEU21nbUphakZDSjFQaEJRcEx6KzZKSHVGRG9mWkhpNkkrY09JV0hPcE9L?=
+ =?utf-8?B?bmtlWjNTanBTUWppT2ZDNEdHTUovR2JMRWovUWkyMDFyYmxjS1UyNkZtZS85?=
+ =?utf-8?B?K0dzNWFBc3h5MmtPS1doSFhnWGZ6aGNCYk5kTit5Rnl5SEJySW5RTGtTeS9S?=
+ =?utf-8?B?NGZLMGwycEtIYWNsL0U4SFU4TUVQODgwelcxYXJndWZiUlBnRlQxMHFlR0hU?=
+ =?utf-8?B?YUtmVTVrQnFxTS9UazBPbVNzT2o1eUtia0xwV2pIMnBMR1JiMmdhS2I3bzZH?=
+ =?utf-8?B?ZnZzNERZcEl0ck53YzROS0Z5TTdHY0REeG1yWS9yNW44Mi80dXdPeUh0V3I4?=
+ =?utf-8?B?M2JOd2lIc3hrVXJrNUM3SzBEcG9pS2xBU1lRcndhNXdSQm5DcEhaT2ZMcFdp?=
+ =?utf-8?B?aGFwYXdDZ2dVVWt1UmlONGQvNXRORElwamRJTVhwRVpqbkpkRE9Dc2hEYmph?=
+ =?utf-8?B?SmtySGJuYk5sbFRtd3RGY1IyMGZCVUlOelNqUWszakdHY1FRYW5GUE9QbDJx?=
+ =?utf-8?B?MlBZamU0bVFwWGR2UGtHcWZtT2xuZHFYMW9XbFlsd2xIL1lvNUptWTVBK2pR?=
+ =?utf-8?B?bzZlWHJwbVJuRnpUZXNQZjhjTjR0TUV6c3RtamdNelNTVDRSSEZTQ3JHTTZB?=
+ =?utf-8?B?SFl2MlFqSDAwUmlCZy94WkRIR0Z3ekdqbEd6MFI0QUF0akpSN1FzSUZoS1g2?=
+ =?utf-8?B?ampISTJrYW9KYTBTYXpnTVNNT0Q2MmIxVU9pNzNMWm9EUnQ2d1Y1eHRZb0dn?=
+ =?utf-8?B?NDFLNlc4TUdIdGd6OVJaOUh2eTNEODlTeGlOcTJ3V3haN3hkNUpPQlRKd2JV?=
+ =?utf-8?B?OU14cnB4Rjd6d1hnSEhXMi84cExXYWZYbDRLbGV6eUtRcTFyNGl0QkJPK3NC?=
+ =?utf-8?Q?tR0bW3t2ZQ0J4rYtzmaPQ4o=3D?=
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2022 18:57:11.6223 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6630ed73-4d0a-4ecd-a9a8-08d9df6b5442
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43ec79f3-e94a-41b0-90f6-08d9df6bb748
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5157.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2022 18:59:58.1616 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB5516
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9/XvKs18pERJnc5ycH0f05y0f9Gg1VDMYCjZxjioC9p/1S1zKbiUZNz9tc3ZP1ZlneEdytBWbesFMBXi5HvIvQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB2407
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,41 +129,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Qingqing Zhuo <qingqing.zhuo@amd.com>,
  Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-[Why]
-A porting error resulted in the stream assignment for the link
-being retained without being released - a memory leak.
+On 1/24/2022 12:57, Nicholas Kazlauskas wrote:
+> [Why]
+> A porting error resulted in the stream assignment for the link
+> being retained without being released - a memory leak.
+> 
+> [How]
+> Fix the porting error by adding back the dc_stream_release() intended
+> as part of the original patch.
+> 
+> Fixes: 2e45b19dd882 ("drm/amd/display: retain/release at proper places in link_enc assignment")
 
-[How]
-Fix the porting error by adding back the dc_stream_release() intended
-as part of the original patch.
+This commit sha is wrong, it should be 
+0bb24555858403671657f6dc025d2931e3e857bb
 
-Fixes: 2e45b19dd882 ("drm/amd/display: retain/release at proper places in link_enc assignment")
-
-Cc: Qingqing Zhuo <qingqing.zhuo@amd.com>
-Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
-Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
----
- drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-index a55944da8d53..00f72f66a7ef 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
-@@ -122,6 +122,7 @@ static void remove_link_enc_assignment(
- 				stream->link_enc = NULL;
- 				state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].eng_id = ENGINE_ID_UNKNOWN;
- 				state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].stream = NULL;
-+				dc_stream_release(stream);
- 				break;
- 			}
- 		}
--- 
-2.25.1
+> 
+> Cc: Qingqing Zhuo <qingqing.zhuo@amd.com>
+> Cc: Aurabindo Pillai <aurabindo.pillai@amd.com>
+> Cc: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+> Signed-off-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+> ---
+>   drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
+> index a55944da8d53..00f72f66a7ef 100644
+> --- a/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
+> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_enc_cfg.c
+> @@ -122,6 +122,7 @@ static void remove_link_enc_assignment(
+>   				stream->link_enc = NULL;
+>   				state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].eng_id = ENGINE_ID_UNKNOWN;
+>   				state->res_ctx.link_enc_cfg_ctx.link_enc_assignments[i].stream = NULL;
+> +				dc_stream_release(stream);
+>   				break;
+>   			}
+>   		}
 
