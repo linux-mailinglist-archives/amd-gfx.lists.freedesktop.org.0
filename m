@@ -1,120 +1,146 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 454D149B2F3
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jan 2022 12:32:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 732DE49B5E0
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jan 2022 15:16:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A6A510F2D1;
-	Tue, 25 Jan 2022 11:32:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB5FD10E67E;
+	Tue, 25 Jan 2022 14:16:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2070.outbound.protection.outlook.com [40.107.94.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E59210F2D1
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jan 2022 11:32:42 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A1BC10E23D
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jan 2022 12:56:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1643115414; x=1674651414;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=et9+ZqkMxNyaIinPs3rLA/T1shewefofFV8LdQgNIlw=;
+ b=GURoLVN6k/JC4wvll/9k7GaRxvf2VsWiI7jbZaZ/vsBBFbQga/OEaVum
+ 6MQbNB8HCrr3nTTsXa/6NiIIErSAFBIyDb5hRNImRXSnJrJ4IjW5XaGGX
+ wcu+wruFnoBRAvsdTb2ZIsOs8g8TlIeiqVqBtTpwAcMvLhVBhicspC6In
+ PZvyulhqwBTH2VIm07zIihQzJZLyOlkX66JsGbH4tNjF9CFyhZVLVJkT0
+ 5g5fHo6jYShS6bek40EDNsHP1ykrfnZ7IMFsRijIx+69mK6x9c0FsxHWY
+ 2v18/lIQpvoPYXwHa8ddgZtf6rAHaCjvV/pN/EUs1EsBWjadVtGqiWJFk A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="226962340"
+X-IronPort-AV: E=Sophos;i="5.88,315,1635231600"; d="scan'208";a="226962340"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jan 2022 04:56:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,315,1635231600"; d="scan'208";a="627918605"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+ by orsmga004.jf.intel.com with ESMTP; 25 Jan 2022 04:56:53 -0800
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Tue, 25 Jan 2022 04:56:52 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20 via Frontend Transport; Tue, 25 Jan 2022 04:56:52 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.108)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.20; Tue, 25 Jan 2022 04:56:52 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TxeXSM2RCJeInhCiZweVwWsAe5QMH6X3Lcfh6m4GdDiDJFVrlukQsLDfeHThPb5IIg5FHGV5FTHuAU/Dmi0aaLlX+CoqBizcexYT4ndowhVPrHyB/omsm9mN8DM8Z7DLgNJ805PwbfZ+OfIOxI+ATakOIeWyU7ZPNbuHDi0S/aAeihrcvwS66KDeQ9nXLBjc91BsFLxBqNu7zQQX/qClbLOyGjq/Pyu9KZiNif3phhrxct9TpnE5GRUGztSZXblwXQ99H0vTWQ70ZccEOJuGG1iFyZgbkMaIVe5wgN9kIk1nade/HUca0nMlSJpwDChFlevEC+KOI/ZZV13RGiMeIg==
+ b=BiORTeM0ByWEbS5LwZElUP87ak84FkFyevl7ZvVTz7k6iOkVCm/uGuKUBlrJpDRmm18AUwU0V0hTOP2Z5n+aDXR3lrlhBPDKPMmhkSZvhkOFRQ0sE8JJTQxJ1eGvMSnpi9YOa+XVKlf7FV7D03o/vnN5C5ccEP5RRied/LGTUu8+GRTHXmAvHbk8XqlKVdHVnuqHimGgqyuOzMLgQyy7dMiD022wXltehdlh8RWTrSXavSnhG+yyt5Fke7e/x/QnWsypfrMwcmLEUYJVtkQKuB/Nai8WIrB0nA0Q1arTkIMEvhegCpXULPmaltu75Zb3M79FVvKZjc+IB/DxPXL0Tg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=r6AKt9sfi+4bvnU69vBiE7PtnM8O7AJBdZ3UUnxi/Co=;
- b=jlYiEyjEVPjg7Z2G/Cb+fI5x8WVGq4KBM/XScWG1kXm2pkWoVvYDvNIidFXF2jRWY05yia/32FA/pO+wgzywHg0AHQfS7S0pbBmqnr1osfv9XYg+7Zs+HSkYzpBGEGXuspCxhasZZZAZNtgbAnJXLdqhKJiQrsZRuVr1HC9h4M3oLdWuGQ1smICLUNeEJVhGTTaUHBLeHy82gKZQBWsn/o0X1Budfl1345DWcJ9gWtnGoWiPXMhVry1JVdMVJycUmI3z1C7jH+zMOv7FIs++Nd7AzC1CkUycNeBR8ZZ9HQoPlCROkAvFAHT2vxnuKbz1w6B0XR/AVCyy1rWoah5gHg==
+ bh=yoONrviKz6vG5zQ/UkX5bzbT6WkMkSWgzx/0kJBMnwI=;
+ b=NwAWZiS8ybQud206MGr5x0JhbdBkx955KXv2Ja8xt1Q8WVjHTH8l4VSh9h/XLenrkFfhyuBGe0mRWY6yuHuxs/vPkbOoAkBKbdLuIoVVHnP1xg+JKvaYR9dWUIHbsKEw9GMwRkO26wxoVguV+ZLfWTT3sjt09vny+LqflUdDnoDKlhuZsRAUM+9Mrki3HjV/cNFvFteeOcyH2JyOD3iw95dibaQKKpTuOOEnxE0NH5bvrtTJ9s+QtSkfbshY7IDF+ES9zPoyFVO5shHK/EIewCOlKY3aLqJa0mKBZcJAj+gNkPqwQRs7DKuTgE89JfPySUIhPLTUqMiIVStMPiEfww==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=r6AKt9sfi+4bvnU69vBiE7PtnM8O7AJBdZ3UUnxi/Co=;
- b=TMNsYTMG4gnX6TSxQw9Z3tlvFzsH5hxNpFUR+UlTGuDzxGP4636R+VRkdMGjpZN1EJAnN4SH1u4w55ztIoeRPCUcpsXm20Vv7IV8ggmCPxNj18WazQ+v47UkVEwV2EDouH/RDC8naB3027bcHvLDFetl81kJfedBC0TPauvxumU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com (2603:10b6:a03:a6::22)
- by CY4PR1201MB0167.namprd12.prod.outlook.com (2603:10b6:910:22::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.13; Tue, 25 Jan
- 2022 11:32:39 +0000
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::b07d:3a18:d06d:cb0b]) by BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::b07d:3a18:d06d:cb0b%4]) with mapi id 15.20.4909.017; Tue, 25 Jan 2022
- 11:32:39 +0000
-Message-ID: <36b699d7-b7c4-21cf-93ee-47f4f33190df@amd.com>
-Date: Tue, 25 Jan 2022 17:02:25 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH 2/2] drm/amdgpu/display: use msleep rather than udelay for
- long delays
+Received: from DM6PR11MB3660.namprd11.prod.outlook.com (2603:10b6:5:13c::17)
+ by CO1PR11MB5011.namprd11.prod.outlook.com (2603:10b6:303:6d::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.8; Tue, 25 Jan
+ 2022 12:56:50 +0000
+Received: from DM6PR11MB3660.namprd11.prod.outlook.com
+ ([fe80::753b:f9a6:9c93:278c]) by DM6PR11MB3660.namprd11.prod.outlook.com
+ ([fe80::753b:f9a6:9c93:278c%3]) with mapi id 15.20.4909.019; Tue, 25 Jan 2022
+ 12:56:50 +0000
+From: "D, Lakshmi Sowjanya" <lakshmi.sowjanya.d@intel.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Subject: RE: Build regressions/improvements in v5.17-rc1
+Thread-Topic: Build regressions/improvements in v5.17-rc1
+Thread-Index: AQHYEPfSFpmDnQzpgkifGWSL3krxPKxzsmGw
+Date: Tue, 25 Jan 2022 12:56:50 +0000
+Message-ID: <DM6PR11MB3660804C821D7CA7329B6CAFC45F9@DM6PR11MB3660.namprd11.prod.outlook.com>
+References: <20220123125737.2658758-1-geert@linux-m68k.org>
+ <alpine.DEB.2.22.394.2201240851560.2674757@ramsan.of.borg>
+In-Reply-To: <alpine.DEB.2.22.394.2201240851560.2674757@ramsan.of.borg>
+Accept-Language: en-US
 Content-Language: en-US
-To: Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org
-References: <20220120180429.616236-1-alexander.deucher@amd.com>
- <20220120180429.616236-2-alexander.deucher@amd.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20220120180429.616236-2-alexander.deucher@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN1PR0101CA0068.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c00:d::30) To BYAPR12MB4614.namprd12.prod.outlook.com
- (2603:10b6:a03:a6::22)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.6.200.16
+dlp-reaction: no-action
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8c2a41c2-48eb-42e3-3acb-08d9e002278e
+x-ms-traffictypediagnostic: CO1PR11MB5011:EE_
+x-microsoft-antispam-prvs: <CO1PR11MB50119942373926B13B967E76C45F9@CO1PR11MB5011.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: TSOxQ8EjKVAuiKHG9e/SKn+DuA76OZBOHZoRNhGzANCWUEUo/3RbCZtp+pYe76uNAyZEiJgEBIOr2/VUItaPbWpJj1+4j2VQheR2dEHy65kc2bXfGe5U1KLrpwHOMxtVu6RM5iwt3tlgEIpvExLdLT6deuBbFSpG8Ot6Y3Ng8S0ouGymtW2H5i2MBH/lJ19EWHtSj04GsGKyVNy14MwK0JUilppfL/RgzaKumfckUr2lhFVyjRM1sfiScgcuQlMjf74hM6MA6MTzkYUhZfztvtdAsw1XXi95fV6xwt70IMv+H4HSaGqoN2wMfG8HzhbRoOg/lLNnTxeEnywWdfCKzGetnkPc/d7mdbicr/8lbrrTGXskicrPOXtCCmIbwjdZoEdMW3vGEJ2OT08XgQ3pW2AIznzTU9mV1YqFUPxHPCx8HlrnQvCi/P60WD7rNcDsgD8BKOAPTRoHaKXEcvmQlGzNThIpvIPFy1fmdLl7uX//m+lMY+iyu5xN8PFvWVGTudADmCoabfzBoo4mO1+Sp6T44oDQvW5mc0TT3WpbaOS6//RwcvFtyvzjaR55tXTZ4yn6NpyQwKUail/QtMRbJUmgQFlYE6DfM+auznAhNPClF19DR0WHWqJ8ML4NhC5y0RcEH749zlomRMNzY7FfI54YrnLOTBwP1Pk9buFttbvVj4tYxewc+4tgEUSQqBD46c1bvXCO6zuj6qU0ieboFzY8GZ5+c4Xeln1LRw2Zx52NZrrwT4bVQ8ii3ZScKDF5BjZVk1vRil0XukQkipYXPwrOtdt5WLz4irz/nyeLOg0=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB3660.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(366004)(82960400001)(66946007)(110136005)(8936002)(2906002)(966005)(38070700005)(66574015)(508600001)(38100700002)(52536014)(54906003)(76116006)(8676002)(186003)(86362001)(9686003)(5660300002)(4326008)(71200400001)(33656002)(26005)(66556008)(316002)(6506007)(7696005)(83380400001)(7416002)(55016003)(66446008)(53546011)(66476007)(64756008)(122000001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-2?Q?fUk/DrnQ8TNg8PT0qbnVaCbMpNxKN1Xauy6bLbJY/zuWKBENB/8jTyrFxL?=
+ =?iso-8859-2?Q?mFyHcaB4Ho/5/6T+v9L4PgBQGNzy2/AC+NTCAZOSQ6Ryl4NFAbaQyL/a03?=
+ =?iso-8859-2?Q?ly0U781i4qhwqLKk9Ood3EJF3zABFPukaN0NaRN6aQU+emZL06t2DY97PE?=
+ =?iso-8859-2?Q?ZshVHce6vU12nrp+k77qW3d9MyV0/iOGjcyyWjTkshm5AzkfV4Vyymit2J?=
+ =?iso-8859-2?Q?JiL8GY5Nh5ASP3/KpCPUls8iR0xJYLWwXtzcpyZ76+kpSUfYs25lEezUfB?=
+ =?iso-8859-2?Q?+DVwTv8i70OjyA5jCujEq/MwjTcx3Be+X3E8xmesIWCSOuOq9u6mo2oP1H?=
+ =?iso-8859-2?Q?vKER5rleLoQHKkgEPtfwU0ChFVCOZjCNbQu/Hcmr6MhKWOaRngwRXKCZG2?=
+ =?iso-8859-2?Q?1uTQAfI8Lazi8azj9eiwMKyTQE7CO4WQtnD+O6QOJS72zA80STFQox/KKG?=
+ =?iso-8859-2?Q?nqX6X+D21cvmBOcJx55WhdCRAavE5EA+jxHC/LlJ2QNU7upc/n7rf2vqFf?=
+ =?iso-8859-2?Q?sNx4p7pgPpBZXcLpsvxyIAdvtFhcL2e9qFI+qfEMjjAfTYZnQNRzCPDN7W?=
+ =?iso-8859-2?Q?8J6fGuhabzOPCzNjVbgYoe4azea56wBJ069lADAnTzTGBfkszrbAOgkzd8?=
+ =?iso-8859-2?Q?Qjnf9fKKJ2JhhFtSdN4jnlQDexUns4P3ad2stAuXJLiVyH5WK+STVtk2Fi?=
+ =?iso-8859-2?Q?Q9xQE9oZe33ElQKSdFWUpQelyij67yaV9CfLGu5ERtKDQLjxOWFq5Vizph?=
+ =?iso-8859-2?Q?1JuFcW2yQGURrszcDwwglo5xsQX5VF/gHBC+Z4U3myvzJyESB6SWLEQwxy?=
+ =?iso-8859-2?Q?/2Jqod4Q9IpLdcWhK6oeOdsjui2UXCKcE93WYA+kExCCiTC5Lx3aLi0hhR?=
+ =?iso-8859-2?Q?Qo7j9UKMf69uX54jWPCw11z0NRU2aZnKCEXLR1rc+rV0QMJttqL1YjzlMF?=
+ =?iso-8859-2?Q?ssn1KCc2RCFdkqk126s+pg34i4c0XRYIEkFT227UJKsHloVND80HGv09b7?=
+ =?iso-8859-2?Q?rBDEl+ZiK5gLmkoRHcZSjh5YSu1EkQ3rp5mP0lUaoTsqRsK8WgPNXuA6Sx?=
+ =?iso-8859-2?Q?ioh4bzVSehS+o2S8N9S+X5lLS7298Mtcun1HWiKE4wcX6fSVxX20IdXr4m?=
+ =?iso-8859-2?Q?bJn6FjPuZTtvGLzZ5DuaIqHvnOLn0lKlcbERck0jwbx6kAQ62dOHHWDahe?=
+ =?iso-8859-2?Q?+4ggTxXk6nr6yHaTQAzdXzA7FYZTKRcUu4u9lUMaAuOe3nWhLP/TZHM5ih?=
+ =?iso-8859-2?Q?K/cNNuQI6igzarCHfQGupU4/gD9YJMqQUNHBZTe8zsplhmjNWbPHrUMiPn?=
+ =?iso-8859-2?Q?/r/NxkpcNdKiDLm4XLjrBs9Ig3T7phHVhgLctqwEtRaA6BpHLffIqjt7uR?=
+ =?iso-8859-2?Q?wyOaPnLYPi7lolnAsf3sfFnRrhJsbrxyEjL7QtOC94lzKupY+S6H7gA1d7?=
+ =?iso-8859-2?Q?c38Mm42mEdTuyHLlsAZKigmBfxIf7CzP6r6YrcQrxm347N3Y2K/7HAu+vy?=
+ =?iso-8859-2?Q?0dWm5ARlTZgxfChpv2lTWZyh9D4+fuEM8CPz5W5XFajOXtmtJWr/f9WLjt?=
+ =?iso-8859-2?Q?FquoCejYxqMMB+9QghdX3ae+XKkEQvrNHcdohJKEnugRfk2jeUrChEOJe/?=
+ =?iso-8859-2?Q?byy4uQdhMbv1lqHjpkraYALlflfD4gtEFKbDkF3YmPxR596G37ttrsRUOj?=
+ =?iso-8859-2?Q?6wO21sJA9KlJ7YvMO8T5S/kmRKXQB+oNWzuqUrLTbcbDIn86U8aL0NkTte?=
+ =?iso-8859-2?Q?G0sg=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 67cafde7-564f-45e8-9191-08d9dff664a1
-X-MS-TrafficTypeDiagnostic: CY4PR1201MB0167:EE_
-X-Microsoft-Antispam-PRVS: <CY4PR1201MB01673959FDE3E8BE717432D7975F9@CY4PR1201MB0167.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vhQk94Wwc7kc3QPDdpS769zRnguX23KeqyNgKhdbKgphdlDUz4RH9E19deiGK5hjxQnQZUNUfj40FHt57aHbFkzqBEz1vUWK2nLI4N9tpMYhoIoVZnZjAGZQk1RCEStnBuiOXXsdtsihc500PB28+8GmwcnGtTHfYVHp/49DKNM/KZfBI9fKhfA7mo+i2z6+d9iFkCqr2EjS0kYovuwh/RMgBqhn8yWVwdt/NFU9oNvjIg2RQIERCjbt7cQz7NAsT1vaBQhVkGwyPdwQov7aEpjbklcmzBiQuRGg9oiDREFvkb+kq68HxmBlqVAS+ACayvYAXIR6lc1bl/BUIGFrm73v4yAGzaObGjf7uB+C5rqtyX4lTHllpfXJJbtw/gCGnV+0o1QPqq/uXik/MiWrCs3H0DmubWcZyXlT66Kw3zB+qjcOtcnRVPaYvztOIs5+zc3klm0/adsyFoWCSmZa8KivvD+W3XMls7/Yp03Cc8+LiBwm1dgiTUaTercvSpvgJ83OG6Vw0gITvL6SMu4FEFonFpQzohxQHy9krw0iHLJlKeaEiq5+llBCpk/fzjShPTR+DrTZp2DCK6mkVE9oI/Q02MGR2OH4zAnSHVH6epfSKcX8j3h4yh7lI6s+3jHIW0mzUlgNuZLd835geggBpFTyYn5BlQrTgRK2VLO57ZCyVuJdgIgnfuRftl/XkWb28dQXdCjoB239oy0KAfVsbY2lNVshrIMGCAJTmqB4P0S9F4AQ/YYC9Isoi7f7vGcV
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB4614.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(366004)(66946007)(86362001)(6512007)(186003)(6666004)(31696002)(6506007)(53546011)(31686004)(66476007)(508600001)(316002)(38100700002)(6486002)(66556008)(83380400001)(8936002)(8676002)(36756003)(2906002)(2616005)(26005)(5660300002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b2FHVzBmckFOclBSTEdVc3NrSExpZ3FhdnFOZTR0djg4YXduTVV5MC8wSTRN?=
- =?utf-8?B?cHpFN1pieWRqRHlQSVE3cm0rbEtzTE5VdFdZb2RyV0MxeERPejZJMExDcFgw?=
- =?utf-8?B?UzJsZkM4a3FOS0libGdOUEVKdHZVcjg4c210ZkVnUm9iOTdlNU5qMDZUYVdx?=
- =?utf-8?B?aHRaUXo2bzhhN0RTSEN4OS9CbldPVTZxdDFUOXorcXA2ZUlVTjFwUDZqaCta?=
- =?utf-8?B?V0pvcG8vK1kyZ1hSV2Y1K1pJd3E3L0pnREJneG5Kc0MrQ2JRL2lMRE5hVTNT?=
- =?utf-8?B?czFGMmlLME5jTThpZHZqdjcwZG5xMnJON0pLVEx1YjFHY0dzMXUzYlVlSC9P?=
- =?utf-8?B?UEp3azV1MHF0b1I0UXNROEZtUCtBY3ZnWFczT3dEcXpEMFVLUk0wTFpuZ2t3?=
- =?utf-8?B?Y2o2bngzYjFoanRuSVJkcjdacTkveWhHTmZqSm1ZWlN6Zm9oMzVsakJWa09y?=
- =?utf-8?B?ZVVnbm1KNGZqNjVOQlkvd3A3ckdsQWpPZjZNSW9GYlAwUjZ0STl5UHNqUVZH?=
- =?utf-8?B?NDlwRndZSk81eGlKVzB0RlZRQ2huRlZNVHQzdGVKMnJoQlArazlWNTl3YzNV?=
- =?utf-8?B?SUZSSG5ZVVVUc3VYcis2RS9vN1grb2FrTW9ZT3ZCbytzcDYxTkMreC9obXls?=
- =?utf-8?B?Wm1qOU5pSW8rZXR3NnNPY0djZUQ5S1RQN2VoK1RwZXpYTWUraHpwSE0rRUdQ?=
- =?utf-8?B?OUk3WmlJcUZqWnBiMzEwekFCb1VOdStETU5mRDgwMWFNY1NHdTJGa080MUNN?=
- =?utf-8?B?ZThwSkRqUVhpRElhMEJXUC9mb2JtTTVUOXdDZXZqcE9HdENVWHVDMmJwOXBN?=
- =?utf-8?B?cVpTRVBsMDk4SEtCUytFbzQ5Z21OS0VHUlZKaVl3MENUVkxkRU56QXFjeVQy?=
- =?utf-8?B?REFPZi92MGZQb2VhUFphSGVaWHh4Z2w4MUtOTnhGd1kvazdwcWR5dE5nZ29j?=
- =?utf-8?B?b1BKMmNORnJMVWE5bzJBcUhmMTlIdVp6U3VOS0Zab3BjM2pXOU4ycTlWdUNN?=
- =?utf-8?B?Q0xGbXNkM29SZlVUY1B2dFdRaDZWWmVYVk5oMWllSXJxbkVwcUgwaEF6TlJx?=
- =?utf-8?B?cVlrZlpuZ2JpU2RqY3hHdktDYk5KZUJSSDJQTndncXRJbmp4TC9CVDgxS1FX?=
- =?utf-8?B?SmRzV0VrRXN6SDlVaXlaNXArL0dWKy91MG9qWlE1ZDdrMk9vN2pvMXBHTDI3?=
- =?utf-8?B?SVFnZDFIQTkyc3JiRkdvWjV3bjcyTGhmMnJveVhWc3I2UnpORU11bC81UnFU?=
- =?utf-8?B?a3lPdVNJV0R6aGZldU8yNCtuUG5KZm1iR1FrWjdDUHNUb1lPUDFJRlNYZjlp?=
- =?utf-8?B?YmE2Q3d4K2UxME1yWGh2TGtKdjNzYURUOWo2d1JGY0ZpU000dnAyUWVDQ0dQ?=
- =?utf-8?B?UTFoZU9TNENOTjR3NHlXYzUzVFgrOGIvaThqY3hYVUU1YnF0ZmRzK0IyTDJI?=
- =?utf-8?B?dEgyY3BFUjlOOUNPMnU0QjlmalpOelk3Sm9UVDZLckxIREtlS1VrU2VHbWI3?=
- =?utf-8?B?NVR5THNqODhVNlE5RjZER0xLcGp2ZTVTcmNuZ3dNVEt6YjhYNHdVcVl1UDJY?=
- =?utf-8?B?ZjR0VUpwWGgxa2U4K21EeWpEWGloZGtGRDZNL2xHcG0yaFBZZEhkN0ViWCtY?=
- =?utf-8?B?WnJCa1Q2aFB2QjhsY1NjZFJ3NllSOVhqcFBhTEVxdGxKMUhMNHNxNk5vazFq?=
- =?utf-8?B?V3VGZWtONWVkNnRIMFB1TkplSVVYV0Z2SnhHbDlDMU02OUdaWnVDWXF5eHBJ?=
- =?utf-8?B?YUFkVmhLNXFkUTRWL1E0cU1nRzNUVnFmUFVNQ3VBaElaTW9QOFBtd29rSmp6?=
- =?utf-8?B?SzIyT1pqSStHZ3RxZVR2MWsxZVZ3Mi9QemsxNFYwWnhEUU92TG5IY29wU3px?=
- =?utf-8?B?dU1rYTRYaGN1Q0lIMFFJSHBJRWFsdFYvbUphbHJCZC9YMWVtZDhBVzlYZTlr?=
- =?utf-8?B?TStBenEvZC8zOEVaeDNnVzZaampOOHl5L0srcGNqd0UxMjZkN1IycmU0K1B1?=
- =?utf-8?B?NmpraDlZUXM2aURVbWcxZ0I4OVMwcjUwSVBSWGFOWjZsQk03cDJkTzRKWXE2?=
- =?utf-8?B?Wm5kZ1N2a0FLRG52VlpkVDVLVDJxUUljR29xdHczSUdDL2pCWG1jK016SXc2?=
- =?utf-8?Q?UTaY=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 67cafde7-564f-45e8-9191-08d9dff664a1
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4614.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2022 11:32:39.7269 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BLBfqzZHi4w7qgNv1CPtf0kQkfXtjKrpkAb+tlsUPIFlviyW/siYQTD25727UO6M
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0167
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3660.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8c2a41c2-48eb-42e3-3acb-08d9e002278e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jan 2022 12:56:50.6731 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0aLZFmIS/Ikp1vMUBSaHHcYeEvITtt9hICbp8N854aPuAM4V68wOPmFIPJvKukHOD2oPbydxyCdOtOPsKwOEgt0n3hYJRp8B4yuuf+Ok+Lw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5011
+X-OriginatorOrg: intel.com
+X-Mailman-Approved-At: Tue, 25 Jan 2022 14:16:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,50 +152,159 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+ "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-um@lists.infradead.org" <linux-um@lists.infradead.org>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "sparclinux@vger.kernel.org" <sparclinux@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ "Tobin C. Harding" <me@tobin.cc>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
 
-On 1/20/2022 11:34 PM, Alex Deucher wrote:
-> Some architectures (e.g., ARM) throw an compilation error if the
-> udelay is too long.  In general udelays of longer than 2000us are
-> not recommended on any architecture.  Switch to msleep in these
-> cases.
-> 
-> Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
-> ---
->   drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-> index aa1c67c3c386..eb4432dca761 100644
-> --- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-> @@ -6941,7 +6941,7 @@ bool dpcd_write_128b_132b_sst_payload_allocation_table(
->   			}
->   		}
->   		retries++;
-> -		udelay(5000);
-> +		msleep(5);
+> -----Original Message-----
+> From: Geert Uytterhoeven <geert@linux-m68k.org>
+> Sent: Monday, January 24, 2022 1:26 PM
+> To: linux-kernel@vger.kernel.org
+> Cc: linuxppc-dev@lists.ozlabs.org; sparclinux@vger.kernel.org; linux-
+> um@lists.infradead.org; D, Lakshmi Sowjanya
+> <lakshmi.sowjanya.d@intel.com>; kvm@vger.kernel.org; linux-
+> mips@vger.kernel.org; Tobin C. Harding <me@tobin.cc>; alsa-devel@alsa-
+> project.org; amd-gfx@lists.freedesktop.org; netdev@vger.kernel.org
+> Subject: Re: Build regressions/improvements in v5.17-rc1
+>=20
+> On Sun, 23 Jan 2022, Geert Uytterhoeven wrote:
+> > Below is the list of build error/warning regressions/improvements in
+> > v5.17-rc1[1] compared to v5.16[2].
+> >
+> > Summarized:
+> >  - build errors: +17/-2
+> >  - build warnings: +23/-25
+> >
+> > Note that there may be false regressions, as some logs are incomplete.
+> > Still, they're build errors/warnings.
+> >
+> > Happy fixing! ;-)
+> >
+> > Thanks to the linux-next team for providing the build service.
+> >
+> > [1]
+> > http://kisskb.ellerman.id.au/kisskb/branch/linus/head/e783362eb54cd99b
+> > 2cac8b3a9aeac942e6f6ac07/ (all 99 configs) [2]
+> > http://kisskb.ellerman.id.au/kisskb/branch/linus/head/df0cc57e057f18e4
+> > 4dac8e6c18aba47ab53202f9/ (98 out of 99 configs)
+> >
+> >
+> > *** ERRORS ***
+> >
+> > 17 error regressions:
+> >  + /kisskb/src/arch/powerpc/kernel/stacktrace.c: error: implicit
+> > declaration of function 'nmi_cpu_backtrace'
+> > [-Werror=3Dimplicit-function-declaration]:  =3D> 171:2  +
+> > /kisskb/src/arch/powerpc/kernel/stacktrace.c: error: implicit
+> > declaration of function 'nmi_trigger_cpumask_backtrace'
+> > [-Werror=3Dimplicit-function-declaration]:  =3D> 226:2
+>=20
+> powerpc-gcc5/skiroot_defconfig
+>=20
+> >  + /kisskb/src/arch/sparc/mm/srmmu.c: error: cast between incompatible
+> > function types from 'void (*)(long unsigned int)' to 'void (*)(long
+> > unsigned int,  long unsigned int,  long unsigned int,  long unsigned
+> > int,  long unsigned int)' [-Werror=3Dcast-function-type]:  =3D> 1756:13=
+,
+> > 1639:13  + /kisskb/src/arch/sparc/mm/srmmu.c: error: cast between
+> > incompatible function types from 'void (*)(struct mm_struct *)' to
+> > 'void (*)(long unsigned int,  long unsigned int,  long unsigned int,
+> > long unsigned int,  long unsigned int)' [-Werror=3Dcast-function-type]:
+> > =3D> 1674:29, 1662:29  + /kisskb/src/arch/sparc/mm/srmmu.c: error: cast
+> > between incompatible function types from 'void (*)(struct mm_struct *,
+> > long unsigned int)' to 'void (*)(long unsigned int,  long unsigned
+> > int,  long unsigned int,  long unsigned int,  long unsigned int)'
+> > [-Werror=3Dcast-function-type]:  =3D> 1767:21  +
+> > /kisskb/src/arch/sparc/mm/srmmu.c: error: cast between incompatible
+> > function types from 'void (*)(struct vm_area_struct *, long unsigned
+> > int)' to 'void (*)(long unsigned int,  long unsigned int,  long
+> > unsigned int,  long unsigned int,  long unsigned int)'
+> > [-Werror=3Dcast-function-type]:  =3D> 1741:29, 1726:29  +
+> > /kisskb/src/arch/sparc/mm/srmmu.c: error: cast between incompatible
+> > function types from 'void (*)(struct vm_area_struct *, long unsigned
+> > int,  long unsigned int)' to 'void (*)(long unsigned int,  long
+> > unsigned int,  long unsigned int,  long unsigned int,  long unsigned
+> > int)' [-Werror=3Dcast-function-type]:  =3D> 1694:29, 1711:29
+>=20
+> sparc64-gcc11/sparc-allmodconfig
+>=20
+> >  + /kisskb/src/arch/um/include/asm/processor-generic.h: error: called
+> > object is not a function or function pointer:  =3D> 103:18  +
+> > /kisskb/src/drivers/vfio/pci/vfio_pci_rdwr.c: error: assignment makes
+> > pointer from integer without a cast [-Werror=3Dint-conversion]:  =3D>
+> > 324:9, 317:9  + /kisskb/src/drivers/vfio/pci/vfio_pci_rdwr.c: error:
+> > implicit declaration of function 'ioport_map'
+> > [-Werror=3Dimplicit-function-declaration]:  =3D> 317:11  +
+> > /kisskb/src/drivers/vfio/pci/vfio_pci_rdwr.c: error: implicit
+> > declaration of function 'ioport_unmap'
+> > [-Werror=3Dimplicit-function-declaration]:  =3D> 338:15
+>=20
+> um-x86_64/um-allyesconfig
+>=20
+> >  + /kisskb/src/drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:
+> > error: control reaches end of non-void function [-Werror=3Dreturn-type]=
+:
+> > =3D> 1560:1
+>=20
+> um-x86_64/um-all{mod,yes}config
+>=20
+> >  + /kisskb/src/drivers/net/ethernet/freescale/fec_mpc52xx.c: error:
+> > passing argument 2 of 'mpc52xx_fec_set_paddr' discards 'const'
+> > qualifier from pointer target type [-Werror=3Ddiscarded-qualifiers]:  =
+=3D>
+> > 659:29
+>=20
+> powerpc-gcc5/ppc32_allmodconfig
+>=20
+> >  + /kisskb/src/drivers/pinctrl/pinctrl-thunderbay.c: error: assignment
+> > discards 'const' qualifier from pointer target type
+> > [-Werror=3Ddiscarded-qualifiers]:  =3D> 815:8, 815:29
+>=20
+> arm64-gcc5.4/arm64-allmodconfig
+> arm64-gcc8/arm64-allmodconfig
+>=20
 
-msleep is not recommended for sleeps < 20ms. The original code (modified 
-in patch 1) seems to do such a check. As per kernel doc, if precision 
-matters recommendation is to use usleep_range().
+These errors are fixed with the patch set by Rafa=B3 Mi=B3ecki:=20
+https://lore.kernel.org/all/CACRpkdYbR-hpLTcvN1_LuxEH_mgHLqDmopDqo1ddui9o8Z=
+vSPQ@mail.gmail.com/t/
 
-Thanks,
-Lijo
+Regards,
+Lakshmi Sowjanya
 
->   	}
->   
->   	if (!result && retries == max_retries) {
-> @@ -6993,7 +6993,7 @@ bool dpcd_poll_for_allocation_change_trigger(struct dc_link *link)
->   			break;
->   		}
->   
-> -		udelay(5000);
-> +		msleep(5);
->   	}
->   
->   	if (result == ACT_FAILED) {
-> 
+> >  + /kisskb/src/lib/test_printf.c: error: "PTR" redefined [-Werror]:
+> > =3D> 247:0, 247  + /kisskb/src/sound/pci/ca0106/ca0106.h: error: "PTR"
+> > redefined [-Werror]:  =3D> 62, 62:0
+>=20
+> mips-gcc8/mips-allmodconfig
+> mipsel/mips-allmodconfig
+>=20
+> >  + error: arch/powerpc/kvm/book3s_64_entry.o: relocation truncated to
+> > fit: R_PPC64_REL14 (stub) against symbol `machine_check_common'
+> > defined in .text section in arch/powerpc/kernel/head_64.o:  =3D>
+> > (.text+0x3e4)
+>=20
+> powerpc-gcc5/powerpc-allyesconfig
+>=20
+> Gr{oetje,eeting}s,
+>=20
+>  						Geert
+>=20
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-
+> m68k.org
+>=20
+> In personal conversations with technical people, I call myself a hacker. =
+But when
+> I'm talking to journalists I just say "programmer" or something like that=
+.
+>  							    -- Linus Torvalds
