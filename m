@@ -2,56 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E305549B811
-	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jan 2022 16:58:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97F9749B814
+	for <lists+amd-gfx@lfdr.de>; Tue, 25 Jan 2022 16:58:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4919310E294;
-	Tue, 25 Jan 2022 15:58:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE64F10E3B2;
+	Tue, 25 Jan 2022 15:58:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com
- [IPv6:2607:f8b0:4864:20::22c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DA7010E294
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jan 2022 15:58:07 +0000 (UTC)
-Received: by mail-oi1-x22c.google.com with SMTP id y23so13512799oia.13
- for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jan 2022 07:58:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=7di1w576uHnbbbpoM68XAv5EaJQgyH2OozJZqQg6Idw=;
- b=gs3vPgzsboNellDheyHmM/60fZy5CQjumdLhvLU9+cdHaOln242cqq0YeQvvQEcwcI
- sR+x2iHnPPfdGjwXyDIFcFXNkrqbr84n4vWcpg9xGTALBJQceIdcb+KxUkk6hDtwfOp1
- /XRIkEfKIEQhDAMixXtEtBeFvkmnAcYF7I5SHUXUWw18+/iMIvsZ5tgcx0g7TUtFjJhw
- XdMW2XlJ5XyyWQEy6utBlUfULGX+Z+ZXH5atJVkqx8vWmqpjPaXcidu86m74rhI94eDo
- Xa3fC3SIKL2YxXRxob9gYRm39yyfKWKlzE2+uOnhxAxw43FBrXwbx2dLqNzm6ALxotsT
- AHIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=7di1w576uHnbbbpoM68XAv5EaJQgyH2OozJZqQg6Idw=;
- b=XMgUxLATtLl4oN9nHZJ0iWSsyie/TN2/mYIeoWCWbMUEu0UdlAUBkKCoj0z0uJkM0s
- rxV/O5T8vzE8wZEadzbYgkkWHz5cHieFZ77XgnPM2qZMs/alcCmnURHo/ABorf5UpHHh
- 5T0Ug6wGyImYSUFXyGJHDIJoKlWOYeYQU0GkvdU1ArVewaNYXTJwbXSaZlAbuyjGkVY/
- t20vhI8Cjaf3zFgLsGiObftSbCmK1NcmNye+5MKwY+ngzFlmY/SaCQjGdsTKkSZjqbp3
- gIRuD4lRyurhy4lL4okRZ1d7g6xCTpWNo6YewpgetQRIyTh/urZfh3FdcURTV+ZpdWnC
- uxEA==
-X-Gm-Message-State: AOAM530KrHm/iXMs8N63BYmKU+0AA9jDyheYJePYliLTdH3q8If5X0Qu
- pYXeZ0Zw8ONq0LdP3lfpxXJSiUXDdRxY0ou0406LsOk/
-X-Google-Smtp-Source: ABdhPJzqKUUg3ktxvbEQZE77CMo1UJIrC4Rki/HbzSIjh9X44MbOe3jZtdr/GVwmNMXeNGgDz7Nt4ayyGhIvXGCCbT8=
-X-Received: by 2002:a05:6808:2189:: with SMTP id
- be9mr1059413oib.93.1643126286513; 
- Tue, 25 Jan 2022 07:58:06 -0800 (PST)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam07on2050.outbound.protection.outlook.com [40.107.212.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DD1210E3AE
+ for <amd-gfx@lists.freedesktop.org>; Tue, 25 Jan 2022 15:58:35 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nNKFYJpvDpg24prBpQ0RWbi49CmPI3pPjwWjSNwxgBHMNo5vettzqRh6d5z484aCcOCKjzhhRHa4XcBa+TOInMqhnorRqQbWl1i7+g6iKZneLT9ixcUik7FAHjRn1IiwxZa7qI1cTWRVw1CPlrLdZa9sAHBvWttPvSBhiY7AYNRtolRmruQsvmd9vAafDXsCWiQAkPITzmBqR0z7iGLVnIvbWIp28Oo5X+KrkselOhqQanuxe/sStSu2Ivlz7OAZL2MqOzWuzwMtJDyxgBXFEXToyzw49ZZGeBNQ0U8zm1xrqJbrSTcXSEBeibCvpquLpM521MmGdAynBxnvh4lcQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/CFwEXgi4Pj1a4xFS/hRdXy3IMEJo8sPNDDTFIAUCW8=;
+ b=Dzpd3PnDjTGh7iUvKWYypPswfxNRNUZsJxVNKyN5ylGI/zJD6EEHGFdfc1KYTeNJwHwMTVNoh9boOPgyIbXfhD2aRHqxZCprxOqP4mbzVpgyft2wCLLwlqti+Q8RqmJhlTxaIEAEMTvKTyb2sulxMotajwRPlS81lGGmkC4/LP0/pq7fwwgu317JjlyXghEOeIa8qodMTI40Ki7Kdg1cxUEauo9RAZ+4nLMd9EYmCzikE3XWNBuwBCeLGIELXC0CuIID8G3XFtNOWgGRy9avKDpP2vNkXesfXb7FNQA7Qfjdia+wQ825jx0BS3LpCUHT7LzEBNOL+gvB3McSPipX+g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/CFwEXgi4Pj1a4xFS/hRdXy3IMEJo8sPNDDTFIAUCW8=;
+ b=CMyuhXfFBq4YWcbMH5/hkXD4uKwJafGhZKzuK+GBOg08Daiv3Rj5KxJJUIlHZXlsqCqe0Sq7TZJ+TmzYDKqdBBOd4iAUPG3aZTuukHXNJPoERBiUPK9VCkT5eq8ax4bj0hIg4/6/k5qGNpoumdb3wvoZPOCmk2YhNDlREyQ92+g=
+Received: from CO2PR04CA0167.namprd04.prod.outlook.com (2603:10b6:104:4::21)
+ by MW2PR12MB2346.namprd12.prod.outlook.com (2603:10b6:907:4::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.7; Tue, 25 Jan
+ 2022 15:58:32 +0000
+Received: from CO1NAM11FT034.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:104:4:cafe::e8) by CO2PR04CA0167.outlook.office365.com
+ (2603:10b6:104:4::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.15 via Frontend
+ Transport; Tue, 25 Jan 2022 15:58:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT034.mail.protection.outlook.com (10.13.174.248) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4909.7 via Frontend Transport; Tue, 25 Jan 2022 15:58:32 +0000
+Received: from Harpoon.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 25 Jan
+ 2022 09:58:30 -0600
+From: Felix Kuehling <Felix.Kuehling@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 1/1] drm/amdgpu: Wipe all VRAM on free when RAS is enabled
+Date: Tue, 25 Jan 2022 10:58:02 -0500
+Message-ID: <20220125155802.938003-1-Felix.Kuehling@amd.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <20220125090013.102080-1-evan.quan@amd.com>
- <20220125090013.102080-2-evan.quan@amd.com>
-In-Reply-To: <20220125090013.102080-2-evan.quan@amd.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Tue, 25 Jan 2022 10:57:55 -0500
-Message-ID: <CADnq5_O42g3RQ-44ds1v7gF0_5CY-VoC9JQ0myAaDUPJiHa=YA@mail.gmail.com>
-Subject: Re: [PATCH V2 2/7] drm/amd/pm: unify the interface for retrieving
- enabled ppfeatures
-To: Evan Quan <evan.quan@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4bd1d8ad-1749-4358-fd3c-08d9e01b8955
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2346:EE_
+X-Microsoft-Antispam-PRVS: <MW2PR12MB23460C6D9B175AFF52047D33925F9@MW2PR12MB2346.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: C6sEo4iq93KHnzls186susEVVR+0nsnFEM+DxL8fisPLuYiYRJ+/zeJExeD60p+afJ7X3Fl279OFJ6EmoKL8ta//6lXGx8gvkytOw+Bb8NoxekCwFmdJIR6DPZSRu5fTGgwzIAs+ehFwspytjpiV2Uggp2ZmwsqrIhmJ41e89W3JP//mLZO6KlSxwaw7BjNxlM0p4zogHt+w69/WRVN+ESfn2QDGA2Sasfbmo8EZqt+cAJa2lYocaQt+mTZajuFIN0kWrzXvotNVK64v6BCNCVf3v8ejcED1RyHPUzY48JkFT/EPqr9d5LBZjkeeaRjbv3quaX014Jt37RXqdVbRtbEWBpWELtezOErrKxviABBYAWrpGc+rGuribXk9aCszJ5FERC02mvSm/97z5N688l1Xg5e2+/tErv3BIxvq9D1vtUJAyulrLRChuy2bc36XOMWkfjQWzWyQRXsLWrOLws18oruU/B4gh+SdXczIrSRbyYHWAPDW8+JL/nW8qmcivJZBmfdvK2Gzz/J4ZEd+VHwXIW2M6lPwZLcSY3iom5MXoZk1wk1fUY8J8rYM571SRF1MZi3yQrpHkq4Mn16XMk2oV6dw/1EIfWnwHZOZoSp+5Pprp0qGF+Wy/eMS0GzPU6vQNDpfWPX6V77nnpI1RzbSiBi0JisvM+67yB3+lAMEoqKFHowH/ZeFcPwjo+WVboNwvYAIL9NfPkMC+soBB8uCdquBfvuA887EiwXar5+h63SUo+biz5m02bBcqFmgAFIeYpXlGG2JXXpULriEdwhnueVNW+tCcE04w3Qtrxo=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(4636009)(46966006)(40470700004)(36840700001)(47076005)(186003)(82310400004)(83380400001)(86362001)(356005)(7696005)(54906003)(36860700001)(40460700003)(4326008)(316002)(2616005)(426003)(336012)(36756003)(26005)(8936002)(8676002)(16526019)(5660300002)(6666004)(508600001)(2906002)(6916009)(70206006)(81166007)(1076003)(70586007)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2022 15:58:32.0769 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4bd1d8ad-1749-4358-fd3c-08d9e01b8955
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT034.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2346
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,248 +99,35 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Lazar,
- Lijo" <Lijo.Lazar@amd.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: Vilas.Sridharan@amd.com, christian.koenig@amd.com, hawking.zhang@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 25, 2022 at 4:00 AM Evan Quan <evan.quan@amd.com> wrote:
->
-> Instead of having two which do the same thing.
->
-> Signed-off-by: Evan Quan <evan.quan@amd.com>
-> Change-Id: I6302c9b5abdb999c4b7c83a0d1852181208b1c1f
-> ---
->  .../amd/pm/swsmu/smu11/cyan_skillfish_ppt.c   |  2 +-
->  .../gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c  |  6 +-
->  .../drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c  |  6 +-
->  drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c        | 93 ++++++++-----------
->  drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h        |  4 -
->  5 files changed, 44 insertions(+), 67 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/cyan_skillfish_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/cyan_skillfish_ppt.c
-> index 2f57333e6071..cc080a0075ee 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/cyan_skillfish_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/cyan_skillfish_ppt.c
-> @@ -357,7 +357,7 @@ static bool cyan_skillfish_is_dpm_running(struct smu_context *smu)
->         if (adev->in_suspend)
->                 return false;
->
-> -       ret = smu_cmn_get_enabled_32_bits_mask(smu, feature_mask, 2);
-> +       ret = smu_cmn_get_enabled_mask(smu, feature_mask, 2);
->         if (ret)
->                 return false;
->
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-> index 721027917f81..b4a3c9b8b54e 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/vangogh_ppt.c
-> @@ -507,7 +507,7 @@ static bool vangogh_is_dpm_running(struct smu_context *smu)
->         if (adev->in_suspend)
->                 return false;
->
-> -       ret = smu_cmn_get_enabled_32_bits_mask(smu, feature_mask, 2);
-> +       ret = smu_cmn_get_enabled_mask(smu, feature_mask, 2);
->
->         if (ret)
->                 return false;
-> @@ -1965,7 +1965,7 @@ static int vangogh_system_features_control(struct smu_context *smu, bool en)
->         if (!en)
->                 return ret;
->
-> -       ret = smu_cmn_get_enabled_32_bits_mask(smu, feature_mask, 2);
-> +       ret = smu_cmn_get_enabled_mask(smu, feature_mask, 2);
->         if (ret)
->                 return ret;
->
-> @@ -2182,7 +2182,7 @@ static const struct pptable_funcs vangogh_ppt_funcs = {
->         .dpm_set_jpeg_enable = vangogh_dpm_set_jpeg_enable,
->         .is_dpm_running = vangogh_is_dpm_running,
->         .read_sensor = vangogh_read_sensor,
-> -       .get_enabled_mask = smu_cmn_get_enabled_32_bits_mask,
-> +       .get_enabled_mask = smu_cmn_get_enabled_mask,
->         .get_pp_feature_mask = smu_cmn_get_pp_feature_mask,
->         .set_watermarks_table = vangogh_set_watermarks_table,
->         .set_driver_table_location = smu_v11_0_set_driver_table_location,
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-> index bd24a2632214..f425827e2361 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu13/yellow_carp_ppt.c
-> @@ -209,7 +209,7 @@ static int yellow_carp_system_features_control(struct smu_context *smu, bool en)
->         if (!en)
->                 return ret;
->
-> -       ret = smu_cmn_get_enabled_32_bits_mask(smu, feature_mask, 2);
-> +       ret = smu_cmn_get_enabled_mask(smu, feature_mask, 2);
->         if (ret)
->                 return ret;
->
-> @@ -258,7 +258,7 @@ static bool yellow_carp_is_dpm_running(struct smu_context *smu)
->         uint32_t feature_mask[2];
->         uint64_t feature_enabled;
->
-> -       ret = smu_cmn_get_enabled_32_bits_mask(smu, feature_mask, 2);
-> +       ret = smu_cmn_get_enabled_mask(smu, feature_mask, 2);
->
->         if (ret)
->                 return false;
-> @@ -1174,7 +1174,7 @@ static const struct pptable_funcs yellow_carp_ppt_funcs = {
->         .is_dpm_running = yellow_carp_is_dpm_running,
->         .set_watermarks_table = yellow_carp_set_watermarks_table,
->         .get_gpu_metrics = yellow_carp_get_gpu_metrics,
-> -       .get_enabled_mask = smu_cmn_get_enabled_32_bits_mask,
-> +       .get_enabled_mask = smu_cmn_get_enabled_mask,
->         .get_pp_feature_mask = smu_cmn_get_pp_feature_mask,
->         .set_driver_table_location = smu_v13_0_set_driver_table_location,
->         .gfx_off_control = smu_v13_0_gfx_off_control,
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-> index c3c679bf9d9f..50164ebed1cd 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c
-> @@ -545,67 +545,57 @@ int smu_cmn_get_enabled_mask(struct smu_context *smu,
->                              uint32_t *feature_mask,
->                              uint32_t num)
->  {
-> -       uint32_t feature_mask_high = 0, feature_mask_low = 0;
->         struct smu_feature *feature = &smu->smu_feature;
-> +       struct amdgpu_device *adev = smu->adev;
-> +       uint32_t *feature_mask_high;
-> +       uint32_t *feature_mask_low;
->         int ret = 0;
->
->         if (!feature_mask || num < 2)
->                 return -EINVAL;
->
-> -       if (bitmap_empty(feature->enabled, feature->feature_num)) {
-> -               ret = smu_cmn_send_smc_msg(smu, SMU_MSG_GetEnabledSmuFeaturesHigh, &feature_mask_high);
-> -               if (ret)
-> -                       return ret;
-> -
-> -               ret = smu_cmn_send_smc_msg(smu, SMU_MSG_GetEnabledSmuFeaturesLow, &feature_mask_low);
-> -               if (ret)
-> -                       return ret;
-> -
-> -               feature_mask[0] = feature_mask_low;
-> -               feature_mask[1] = feature_mask_high;
-> -       } else {
-> -               bitmap_copy((unsigned long *)feature_mask, feature->enabled,
-> +       if (!bitmap_empty(feature->enabled, feature->feature_num)) {
-> +               bitmap_copy((unsigned long *)feature_mask,
-> +                            feature->enabled,
->                              feature->feature_num);
-> +               return 0;
->         }
->
-> -       return ret;
-> -}
-> -
-> -int smu_cmn_get_enabled_32_bits_mask(struct smu_context *smu,
-> -                                       uint32_t *feature_mask,
-> -                                       uint32_t num)
-> -{
-> -       uint32_t feature_mask_en_low = 0;
-> -       uint32_t feature_mask_en_high = 0;
-> -       struct smu_feature *feature = &smu->smu_feature;
-> -       int ret = 0;
-> -
-> -       if (!feature_mask || num < 2)
-> -               return -EINVAL;
-> -
-> -       if (bitmap_empty(feature->enabled, feature->feature_num)) {
-> -               ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_GetEnabledSmuFeatures, 0,
-> -                                                                                &feature_mask_en_low);
-> +       feature_mask_low = &feature_mask[0];
-> +       feature_mask_high = &feature_mask[1];
->
-> +       switch (adev->asic_type) {
-> +       case CHIP_CYAN_SKILLFISH:
-> +       case CHIP_VANGOGH:
-> +       case CHIP_YELLOW_CARP:
+On GPUs with RAS, poison can propagate between processes if VRAM is not
+cleared when it is freed or allocated. The reason is, that not all write
+accesses clear RAS poison. 32-byte writes by the SDMA engine do clear RAS
+poison. Clearing memory in the background when it is freed should avoid
+major performance impact. KFD has been doing this already for a long time.
 
-Can you convert this to an SMU IP version check rather than an asic type check?
+Signed-off-by: Felix Kuehling <Felix.Kuehling@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> +               ret = smu_cmn_send_smc_msg_with_param(smu,
-> +                                                     SMU_MSG_GetEnabledSmuFeatures,
-> +                                                     0,
-> +                                                     feature_mask_low);
->                 if (ret)
->                         return ret;
->
-> -               ret = smu_cmn_send_smc_msg_with_param(smu, SMU_MSG_GetEnabledSmuFeatures, 1,
-> -                                                                                &feature_mask_en_high);
-> -
-> +               ret = smu_cmn_send_smc_msg_with_param(smu,
-> +                                                     SMU_MSG_GetEnabledSmuFeatures,
-> +                                                     1,
-> +                                                     feature_mask_high);
-> +               break;
-> +       case CHIP_RENOIR:
-> +       /* other dGPU ASICs */
-> +       default:
-> +               ret = smu_cmn_send_smc_msg(smu,
-> +                                          SMU_MSG_GetEnabledSmuFeaturesHigh,
-> +                                          feature_mask_high);
->                 if (ret)
->                         return ret;
->
-> -               feature_mask[0] = feature_mask_en_low;
-> -               feature_mask[1] = feature_mask_en_high;
-> -
-> -       } else {
-> -               bitmap_copy((unsigned long *)feature_mask, feature->enabled,
-> -                                feature->feature_num);
-> +               ret = smu_cmn_send_smc_msg(smu,
-> +                                          SMU_MSG_GetEnabledSmuFeaturesLow,
-> +                                          feature_mask_low);
-> +               break;
->         }
->
->         return ret;
-> -
->  }
->
->  uint64_t smu_cmn_get_indep_throttler_status(
-> @@ -710,20 +700,11 @@ size_t smu_cmn_get_pp_feature_mask(struct smu_context *smu,
->         size_t size = 0;
->         int ret = 0, i;
->
-> -       if (!smu->is_apu ||
-> -           (smu->adev->asic_type == CHIP_RENOIR)) {
-> -               ret = smu_cmn_get_enabled_mask(smu,
-> -                                               feature_mask,
-> -                                               2);
-> -               if (ret)
-> -                       return 0;
-> -       } else {
-> -               ret = smu_cmn_get_enabled_32_bits_mask(smu,
-> -                                       feature_mask,
-> -                                       2);
-> -               if (ret)
-> -                       return 0;
-> -       }
-> +       ret = smu_cmn_get_enabled_mask(smu,
-> +                                      feature_mask,
-> +                                      2);
-> +       if (ret)
-> +               return 0;
->
->         size =  sysfs_emit_at(buf, size, "features high: 0x%08x low: 0x%08x\n",
->                         feature_mask[1], feature_mask[0]);
-> diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
-> index f0b4fb2a0960..4e34c18c6063 100644
-> --- a/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
-> +++ b/drivers/gpu/drm/amd/pm/swsmu/smu_cmn.h
-> @@ -61,10 +61,6 @@ int smu_cmn_get_enabled_mask(struct smu_context *smu,
->                              uint32_t *feature_mask,
->                              uint32_t num);
->
-> -int smu_cmn_get_enabled_32_bits_mask(struct smu_context *smu,
-> -                                       uint32_t *feature_mask,
-> -                                       uint32_t num);
-> -
->  uint64_t smu_cmn_get_indep_throttler_status(
->                                         const unsigned long dep_status,
->                                         const uint8_t *throttler_map);
-> --
-> 2.29.0
->
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index ff9dc377a3a0..36bb41b027ec 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -575,6 +575,9 @@ int amdgpu_bo_create(struct amdgpu_device *adev,
+ 	if (!amdgpu_bo_support_uswc(bo->flags))
+ 		bo->flags &= ~AMDGPU_GEM_CREATE_CPU_GTT_USWC;
+ 
++	if (adev->ras_enabled)
++		bo->flags |= AMDGPU_GEM_CREATE_VRAM_WIPE_ON_RELEASE;
++
+ 	bo->tbo.bdev = &adev->mman.bdev;
+ 	if (bp->domain & (AMDGPU_GEM_DOMAIN_GWS | AMDGPU_GEM_DOMAIN_OA |
+ 			  AMDGPU_GEM_DOMAIN_GDS))
+-- 
+2.32.0
+
