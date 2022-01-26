@@ -2,56 +2,108 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEF4A49CBA5
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Jan 2022 14:56:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D5D649CBA8
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Jan 2022 14:56:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8601610E6AD;
-	Wed, 26 Jan 2022 13:56:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1427E10E764;
+	Wed, 26 Jan 2022 13:56:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
- [IPv6:2a00:1450:4864:20::531])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B74E10E6DB;
- Wed, 26 Jan 2022 10:23:24 +0000 (UTC)
-Received: by mail-ed1-x531.google.com with SMTP id a18so68084455edj.7;
- Wed, 26 Jan 2022 02:23:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=ii7o+rApOV9c1TS9mkx6aDYIwS5s1Dz6MCJYhhLsikE=;
- b=Ln8amVerCzYz68x4zhhZMfq3Pzh+9Uxd/aMxebrg76kqFnhS5Y1yQlqRX7BB8j7qfD
- nvKLtBp9Hj8dvf8Pezk6nVo62kXsDWJLhU6xzCclmoOwNgmxquPDs7YXmBxUJPVNoxyt
- cRgDI87fT6C5xCT4r3lORmqRw5CbUFi4CbRkUoLbAbVEDUFE2iCal5gdJ5KOKNCtE1qv
- gxnyrSXzSHn+q88EOMlxmOvElZxknK+WwUDFYJctt8D1L54oVVbkfipcnaJJo9X65zJd
- GfdCnIfQerYPKrPpRhM697M24JcQoWzb9/lMfD8P0a70ZwrDzPtb58tUzSLpfCUHhyBF
- eBSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=ii7o+rApOV9c1TS9mkx6aDYIwS5s1Dz6MCJYhhLsikE=;
- b=pqj1dy0l6Bb8PDvIBvlzoaqO7jysJ3ePSbt+HoRpczg94mXbtXYAiABWiABQ2DSM/T
- azny9qm1uSiz8enfU33JilWFAjIdugyB+T+iXPjmkHwvlAmsd6a2+6DcHcFD4dq//5dE
- tktg0kHIW4h6yXVvuYcb6Ynf4cm6K1sj4unkfLJ7Vh4twImZ4xnxxn3rnwhwKKUt/KZW
- JqbONr9EwsOs5BdrwapMaLMuTaVAwdzLi8FZne7XCuT3taIz7zhnc1Eweh6Ec3rDt4e/
- cmvJwnJL4/f4AzueshrrV30SGspq4jDr+hpCJd8FyahXSJr3OllI02UY1VOVhVyo7Pzj
- L6Zw==
-X-Gm-Message-State: AOAM533LItqc2xsruzPG5739uCyEK3LiBjpLoohpiLb4PyirtDjQUWSl
- C1r9HdWFnnimXclGZdOzFvs1XqUdM2efGUM3VpA=
-X-Google-Smtp-Source: ABdhPJzNoLjMutkiG1rIcRLBMJYXNKAEcChNIpwB1oqibQS0oJJv8RdEKOE0ei2A5eNUb+1fDDzSSnET34BlxoFSA5s=
-X-Received: by 2002:a05:6402:40cd:: with SMTP id
- z13mr1007577edb.158.1643192602670; 
- Wed, 26 Jan 2022 02:23:22 -0800 (PST)
-MIME-Version: 1.0
-References: <20220126093951.1470898-1-lucas.demarchi@intel.com>
-In-Reply-To: <20220126093951.1470898-1-lucas.demarchi@intel.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 26 Jan 2022 12:22:46 +0200
-Message-ID: <CAHp75VcheiM7gNW+zP2Ve8qOj40158aOM0OkhUjyODd+V3sYjQ@mail.gmail.com>
-Subject: Re: [PATCH v2 00/11] lib/string_helpers: Add a few string helpers
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Received: from IND01-MA1-obe.outbound.protection.outlook.com
+ (mail-ma1ind01olkn0182.outbound.protection.outlook.com [104.47.100.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAB9410E8D4
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 11:32:01 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mm5HngDf0ybYQsaiTaq/WbYIsB7ZR3rplhSVBJxQQ6JdIcXlg62Xo3ZEv6FFxSayqOJtM7/cfBAlJ0FHdPlNQ8V1pyu+KgL2lYY5aZllnqYL/jLHswWLqxcximFGGuX0LBVc58lh7azUDNU2tzYpGeXD5KuI+ak8hsTbGpJzvnUtjsnMeKmNpKJcqgxi0ncq5gVlGuBdwRyzYH1ZDbx5/QNuPJnp4aqsGsxZ1T1VLzphj0+CGiD5UGxJSaTGl1thkTnARKOEtxpTDjYfXzss7ZYY2TAy0Nn/fKv43B1LdgXyQUfskEjLxtg0KL99KUaeG8hFwpE2mjaq1RYMTI/1SA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LVXkYUdn61OI7VmNeupfiHJuRYIQRw9gflew86sCwH4=;
+ b=KcRLRj0iUx/hYqGVraHI2TUc7nNxrInIqZJOWMGSd9GEIbBhxEFq3L4JLnkxwr4iHfEZvPJT77SjEOOM+oWHon1TMyc7MX+Ts4aqo0b0NwgxB6jKzJHwTjDkq3bwp2Irq6PkFwz/qbZBUnuesOWRDTMIImB/ChN3+IQMa//oDJofD/h5BBz1oudUH54tlQX2WfOO8VubfoNi+qNOG9ZcTfhCVAfLOGhDYywSif2rpLh0ODGyuGKR7M+u7uixopXxMF5LbiqrKh/QP+leQ+dMg69CZblvYKbu4ajmoJKmGd1/Xm3strTvRG5ImNjgfoAnGwxQfhSSpG6bcVuU5V6JRg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LVXkYUdn61OI7VmNeupfiHJuRYIQRw9gflew86sCwH4=;
+ b=g3N0HVNFInjkCXS2W1YaMdgxfxbiOf58K37T57ELd0/SQmrPawKvo7CVhzBM1Fi6/7LypTs9f7I80IOsGOEWVfbUwe18HaCJ0xEhgoHXGJxOJ6DOKOTyUR+Wk7dSiB85Eqh69qk1M9qLKdk/RSC58jgdGyAusC6sao6O8WipVTS/SAVjkzdK8EG9bpBVk68nwdEfdZ3Erxqtxv13w8gCbk7s1P8foKIqpHkM5w5csfetW2w2MVZM1ERrMYxCUXokrVio2NQ+RhVbxCFJRadwjb9GoAetAb6u/YMPG5nyQWjNAt+o5zfErAcl9H7kaxupWTCS7RDtLY3G6kdAo9ioVQ==
+Received: from PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:1b::13)
+ by PN2PR01MB4715.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:9::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.17; Wed, 26 Jan
+ 2022 11:31:53 +0000
+Received: from PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::d19b:7cd1:3760:b055]) by PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::d19b:7cd1:3760:b055%9]) with mapi id 15.20.4930.015; Wed, 26 Jan 2022
+ 11:31:53 +0000
+From: Aditya Garg <gargaditya08@live.com>
+To: "harry.wentland@amd.com" <harry.wentland@amd.com>, "sunpeng.li@amd.com"
+ <sunpeng.li@amd.com>, "Rodrigo.Siqueira@amd.com" <Rodrigo.Siqueira@amd.com>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>, "Xinhui.Pan@amd.com"
+ <Xinhui.Pan@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>, Linux Kernel Mailing List
+ <linux-kernel@vger.kernel.org>, "Felix.Kuehling@amd.com"
+ <Felix.Kuehling@amd.com>, "evan.quan@amd.com" <evan.quan@amd.com>,
+ "stylon.wang@amd.com" <stylon.wang@amd.com>, "wesley.chalmers@amd.com"
+ <wesley.chalmers@amd.com>, "qingqing.zhuo@amd.com" <qingqing.zhuo@amd.com>,
+ "George.Shen@amd.com" <George.Shen@amd.com>, "roman.li@amd.com"
+ <roman.li@amd.com>, "solomon.chiu@amd.com" <solomon.chiu@amd.com>,
+ "Aurabindo.Pillai@amd.com" <Aurabindo.Pillai@amd.com>, "wayne.lin@amd.com"
+ <wayne.lin@amd.com>, "mikita.lipski@amd.com" <mikita.lipski@amd.com>,
+ "Bhawanpreet.Lakha@amd.com" <Bhawanpreet.Lakha@amd.com>,
+ "agustin.gutierrez@amd.com" <agustin.gutierrez@amd.com>,
+ "pavle.kotarac@amd.com" <pavle.kotarac@amd.com>
+Subject: [PATCH RESEND] drm/amd/display: Force link_rate as LINK_RATE_RBR2 for
+ 2018 15" Apple Retina panels
+Thread-Topic: [PATCH RESEND] drm/amd/display: Force link_rate as
+ LINK_RATE_RBR2 for 2018 15" Apple Retina panels
+Thread-Index: AQHYEqhRbhPidmHk70e5iPJFVYdDUw==
+Date: Wed, 26 Jan 2022 11:31:53 +0000
+Message-ID: <139A7689-463E-4AD9-A2D1-A9969C3958D0@live.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [09VpzFUvzCXwsv2lu5RDe5MwJIKbajcLz3NxaepIMqnjq8YhBAFrDhn4u9ZeFwCk]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d49276bd-bb04-4332-a2d8-08d9e0bf739a
+x-ms-traffictypediagnostic: PN2PR01MB4715:EE_
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: pxk0DW4g3HS/+izdrxAry50cjQNpRby+RIMgWwNkPy2CKxD70NJ7N57LS1q6JBieBTVSXSOLcnXNvXL4VvtVHOLj6k+fngz4i4HnsInN+8tgFT2sbT/j6co8tPVSUHrMpghUju47zL7xJOhYxFbBv4v0OvA2L7Wk08oNSZ4NRBk/O6C9G82QsR0PIp1R4Qy+ViruRY1QZ3Z01BmMQYfL6sKvOD6F/rIDlC0mHssARJ/kd897MYkHn3IWgblZ4Fxn6woBD74GI1dqCV+lKx5in7wF6CjiuHiv5A/oIVhLkW/kWU+kyAR5P9PcrRn2wPwWsGFBgTnv1wQWU3bhho43h16PcdWHwfeAVfqJsOWqxur35tcwucUd9edH7Oc85NkUwiZqQ6poA9WuVnos1rmKBeMkXLv3hcDvAuo8clRVM/h/Vh8wH3a3OA9A3a9GGEZruFPA18kj4cN5q06hGDkUkcr8rhTKq371v9PcJck+prW39jkdJEz06M1GXzpA5uSi/9N5OuOqQbbXAMTMobVGIBlX34XJk95U/FV9FWIYTQ7QgNITP3qx0m/CWhGHUPs7Ql0vKet6jTvHjRPFdEVHrQ==
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?HZPZ4wUOAt5cTJ8sMtzwCN+c+Ud3jwFcj0jA5OHD4Rq2TrvS3Bl85oVg2CZ/?=
+ =?us-ascii?Q?MXXNMSbbeKX7HY4EyQKNNfiHDGmEwzZTbyICAayp5bYrWodpIRJK1lQIJF6P?=
+ =?us-ascii?Q?a2NcgfbESng8hWB6shcjW3ZCe9LGdRJUbQB97Plecld0GpPkO0PmmhdI9vzi?=
+ =?us-ascii?Q?Sz/1Hwc7hlXt7dM4oL7vnItCwInlSx63Li4MyybL55/RSvVxf4KD1+Ra5xzi?=
+ =?us-ascii?Q?o/7Ftcjp9nlBjl2JzpkGLCjUHllkkf0210nWChCYwPvy3YTooMLYmAPJZCQ1?=
+ =?us-ascii?Q?MGwncyqFkExsHYoUmBWSobuEcsA6RJOM4t+Muj+RSE6Rvduh5xnxdEVho6qA?=
+ =?us-ascii?Q?oofTLYgRycMFzdwgh/5wiXPXHhjA5KeBmMaKxv/W8gvUFlImxe3Iu0+wxyh0?=
+ =?us-ascii?Q?5qXn+JgI2//To106aYbSX0Ps0IzY3tEbSAp+B09qCwKMAiBmMujiOR3KexW4?=
+ =?us-ascii?Q?wj8Lh18KAdhuGhwFR7qfb+E8nUZDg3BVxC/E7HFWB+e34oqIWvIexCjfMhNl?=
+ =?us-ascii?Q?gGNc1kbnTEZ2/avRiLPxb1sMXWUbwyQc/DKPj4Rdy9PniClYSJiIrXeeTN4h?=
+ =?us-ascii?Q?JGRNBKRG/ZwrdIXO/ol1fMyjp4y/TIRpwdWoKhye3aes8ym8wvYul2qs+CIc?=
+ =?us-ascii?Q?qCquNIUvh66GjPlpYPV9lN52bV6lfx3ibWo6KO9cRuqhVqb4Cua30jTOgtoU?=
+ =?us-ascii?Q?4f/gul8HF1BIJv3Rxl51W/mZMpzTJndnDaM8fe46dYB5RDw5irywKv40IuNs?=
+ =?us-ascii?Q?PrLjO8URsQQvLoXGQF5qbfX+PjzjPzhz6x1r0RQSXlHCM5Fc7wDaS6ZHY7ES?=
+ =?us-ascii?Q?FBednZtqlGEPUkkvCYJQZBQvhUgRGG5jIuhVtZAAjIxQXnIiwBJDv7krb4Nd?=
+ =?us-ascii?Q?iIfCuYzyOAhZDGKzj6ga88vKdOt7xbNvLA0diuuudH6uN4WdPC56QybEKk6m?=
+ =?us-ascii?Q?jOZJKOHzuXO2o467xKiMMr+v+PwV/rum5MtQDbQXGnvGuPCrY3WdaNOGepI9?=
+ =?us-ascii?Q?Rq4iZQZhFwOEHuFoSWvHWqt0ZA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <05B1B5ED5A72154CB70314A69DE12DFD@INDPRD01.PROD.OUTLOOK.COM>
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-42ed3.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: d49276bd-bb04-4332-a2d8-08d9e0bf739a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2022 11:31:53.1900 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2PR01MB4715
 X-Mailman-Approved-At: Wed, 26 Jan 2022 13:56:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,191 +116,67 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
- nouveau@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Vishal Kulkarni <vishal@chelsio.com>,
- Francis Laniel <laniel_francis@privacyrequired.com>,
- Kentaro Takeda <takedakn@nttdata.co.jp>, amd-gfx@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, Raju Rangoju <rajur@chelsio.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Julia Lawall <julia.lawall@lip6.fr>,
- Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- Steven Rostedt <rostedt@goodmis.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
- linux-security-module <linux-security-module@vger.kernel.org>,
- Daniel Vetter <daniel@ffwll.ch>, netdev <netdev@vger.kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- "David S. Miller" <davem@davemloft.net>
+Cc: Aun-Ali Zaidi <admin@kodeit.net>,
+ Orlando Chamberlain <redecorating@protonmail.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 26, 2022 at 11:39 AM Lucas De Marchi
-<lucas.demarchi@intel.com> wrote:
->
-> Add some helpers under lib/string_helpers.h so they can be used
-> throughout the kernel. When I started doing this there were 2 other
-> previous attempts I know of, not counting the iterations each of them
-> had:
->
-> 1) https://lore.kernel.org/all/20191023131308.9420-1-jani.nikula@intel.co=
-m/
-> 2) https://lore.kernel.org/all/20210215142137.64476-1-andriy.shevchenko@l=
-inux.intel.com/#t
->
-> Now there is also the v1 of this same patch series:
-> https://lore.kernel.org/all/20220119072450.2890107-1-lucas.demarchi@intel=
-.com/
->
-> Going through the comments I tried to find some common ground and
-> justification for what is in here, addressing some of the concerns
-> raised.
->
-> a. This version should be a drop-in replacement for what is currently in
->    the tree, with no change in behavior or binary size. For binary
->    size what I checked was that the linked objects in the end have the
->    same size (gcc 11). From comments in the previous attempts this seems
->    also the case for earlier compiler versions
->
-> b. I didn't change the function name to choice_* as suggested by Andrew
->    Morton in 20191023155619.43e0013f0c8c673a5c508c1e@linux-foundation.org
->    because other people argumented in favor of shorter names for these
->    simple helpers - if they are long and people simply not use due to
->    that, we failed. However as pointed out in v1 of this patchseries,
->    onoff(), yesno(), enabledisable(), enableddisabled() have some
->    issues: the last 2 are hard to read and for the first 2 it would not
->    be hard to have the symbol to clash with variable names.
->    From comments in v1, most people were in favor (or at least not
->    opposed) to using str_on_off(), str_yes_no(), str_enable_disable()
->    and str_enabled_disabled().
->
-> c. Use string_helper.h for these helpers - pulling string.h in the
->    compilations units was one of the concerns and I think re-using this
->    already existing header is better than creating a new string-choice.h
->
-> d. One alternative to all of this suggested by Christian K=C3=B6nig
->    (43456ba7-c372-84cc-4949-dcb817188e21@amd.com) would be to add a
->    printk format. But besides the comment, he also seemed to like
->    the common function. This brought the argument from others that the
->    simple yesno()/enabledisable() already used in the code (or new
->    renamed version) is easier to remember and use than e.g. %py[DOY]
+From: Aun-Ali Zaidi <admin@kodeit.net>
+=20
+The eDP link rate reported by the DP_MAX_LINK_RATE dpcd register (0xa) is
+contradictory to the highest rate supported reported by
+EDID (0xc =3D LINK_RATE_RBR2). The effects of this compounded with commit
+'4a8ca46bae8a ("drm/amd/display: Default max bpc to 16 for eDP")' results
+in no display modes being found and a dark panel.
 
-I do not see any impediments to this series to be pulled.
-Thanks for the work you've done!
+For now, simply force the maximum supported link rate for the eDP attached
+2018 15" Apple Retina panels.
 
-> Changes in v2:
->
->   - Use str_ prefix and separate other words with underscore: it's a
->     little bit longer, but should improve readability
->
->   - Patches we re-split due to the rename: first patch adds all the new
->     functions, then additional patches try to do one conversion at a
->     time. While doing so, there were some fixes for issues already
->     present along the way
->
->   - Style suggestions from v1 were adopted
->
-> In v1 it was suggested to apply this in drm-misc. I will leave this to
-> maintainers to decide: maybe it would be simpler to merge the first
-> patches on drm-intel-next, wait for the back merge and merge the rest
-> through drm-misc - my fear is a big conflict with other work going in
-> drm-intel-next since the bulk of the rename is there.
->
-> I tried to figure out acks and reviews from v1 and apply them to how the
-> patches are now split.
->
-> thanks
-> Lucas De Marchi
->
-> Lucas De Marchi (11):
->   lib/string_helpers: Consolidate string helpers implementation
->   drm/i915: Fix trailing semicolon
->   drm/i915: Use str_yes_no()
->   drm/i915: Use str_enable_disable()
->   drm/i915: Use str_enabled_disabled()
->   drm/i915: Use str_on_off()
->   drm/amd/display: Use str_yes_no()
->   drm/gem: Sort includes alphabetically
->   drm: Convert open-coded yes/no strings to yesno()
->   tomoyo: Use str_yes_no()
->   cxgb4: Use str_yes_no()
->
->  drivers/gpu/drm/amd/amdgpu/atom.c             |   4 +-
->  .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |  14 +-
->  drivers/gpu/drm/dp/drm_dp.c                   |   3 +-
->  drivers/gpu/drm/drm_client_modeset.c          |   3 +-
->  drivers/gpu/drm/drm_gem.c                     |  23 +-
->  drivers/gpu/drm/i915/display/g4x_dp.c         |   6 +-
->  .../gpu/drm/i915/display/intel_backlight.c    |   3 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c      |   4 +-
->  drivers/gpu/drm/i915/display/intel_display.c  |  46 ++--
->  .../drm/i915/display/intel_display_debugfs.c  |  74 +++---
->  .../drm/i915/display/intel_display_power.c    |   4 +-
->  .../drm/i915/display/intel_display_trace.h    |   9 +-
->  drivers/gpu/drm/i915/display/intel_dp.c       |  20 +-
->  drivers/gpu/drm/i915/display/intel_dpll.c     |   3 +-
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   7 +-
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   7 +-
->  drivers/gpu/drm/i915/display/intel_fbc.c      |   4 +-
->  drivers/gpu/drm/i915/display/intel_fdi.c      |   8 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |   3 +-
->  drivers/gpu/drm/i915/display/intel_sprite.c   |   6 +-
->  drivers/gpu/drm/i915/display/vlv_dsi_pll.c    |   3 +-
->  .../gpu/drm/i915/gem/selftests/huge_pages.c   |   9 +-
->  .../drm/i915/gem/selftests/i915_gem_context.c |   7 +-
->  drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   |   3 +-
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  11 +-
->  .../drm/i915/gt/intel_execlists_submission.c  |   7 +-
->  drivers/gpu/drm/i915/gt/intel_gt_pm.c         |   3 +-
->  drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c |  52 ++--
->  drivers/gpu/drm/i915/gt/intel_rc6.c           |   5 +-
->  drivers/gpu/drm/i915/gt/intel_reset.c         |   3 +-
->  drivers/gpu/drm/i915/gt/intel_rps.c           |  13 +-
->  drivers/gpu/drm/i915/gt/intel_sseu.c          |   9 +-
->  drivers/gpu/drm/i915/gt/intel_sseu_debugfs.c  |  10 +-
->  drivers/gpu/drm/i915/gt/selftest_timeline.c   |   3 +-
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c     |   5 +-
->  drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |   5 +-
->  drivers/gpu/drm/i915/gt/uc/intel_guc_rc.c     |   6 +-
->  drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   |   4 +-
->  drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  14 +-
->  drivers/gpu/drm/i915/gt/uc/intel_uc_debugfs.c |  20 +-
->  drivers/gpu/drm/i915/i915_debugfs.c           |  17 +-
->  drivers/gpu/drm/i915/i915_driver.c            |   4 +-
->  drivers/gpu/drm/i915/i915_gpu_error.c         |   9 +-
->  drivers/gpu/drm/i915/i915_params.c            |   5 +-
->  drivers/gpu/drm/i915/i915_utils.h             |  21 +-
->  drivers/gpu/drm/i915/intel_device_info.c      |   8 +-
->  drivers/gpu/drm/i915/intel_dram.c             |  10 +-
->  drivers/gpu/drm/i915/intel_pm.c               |  14 +-
->  drivers/gpu/drm/i915/pxp/intel_pxp_debugfs.c  |   4 +-
->  drivers/gpu/drm/i915/selftests/i915_active.c  |   3 +-
->  drivers/gpu/drm/i915/vlv_suspend.c            |   3 +-
->  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c |   5 +-
->  drivers/gpu/drm/radeon/atom.c                 |   3 +-
->  drivers/gpu/drm/v3d/v3d_debugfs.c             |  11 +-
->  drivers/gpu/drm/virtio/virtgpu_debugfs.c      |   4 +-
->  .../ethernet/chelsio/cxgb4/cxgb4_debugfs.c    | 249 ++++++++++--------
->  include/linux/string_helpers.h                |  20 ++
->  security/tomoyo/audit.c                       |   2 +-
->  security/tomoyo/common.c                      |  19 +-
->  security/tomoyo/common.h                      |   1 -
->  60 files changed, 482 insertions(+), 373 deletions(-)
->
-> --
-> 2.34.1
->
+Additionally, we must also check the firmware revision since the device ID
+reported by the DPCD is identical to that of the more capable 16,1,
+incorrectly quirking it. We also use said firmware check to quirk the
+refreshed 15,1 models with Vega graphics as they use a slightly newer
+firmware version.
 
+Tested-by: Aun-Ali Zaidi <admin@kodeit.net>
+Signed-off-by: Aun-Ali Zaidi <admin@kodeit.net>
+Signed-off-by: Aditya Garg <gargaditya08@live.com>
+---
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu=
+/drm/amd/display/dc/core/dc_link_dp.c
+index 05e216524..17939ad17 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -5597,6 +5597,25 @@ static bool retrieve_link_cap(struct dc_link *link)
+ 		dp_hw_fw_revision.ieee_fw_rev,
+ 		sizeof(dp_hw_fw_revision.ieee_fw_rev));
+=20
++	/* Quirk for Apple MBP 2018 15" Retina panels: wrong DP_MAX_LINK_RATE */
++	{
++		uint8_t str_mbp_2018[] =3D { 101, 68, 21, 103, 98, 97 };
++		uint8_t fwrev_mbp_2018[] =3D { 7, 4 };
++		uint8_t fwrev_mbp_2018_vega[] =3D { 8, 4 };
++
++		// We also check for the firmware revision as 16,1 models have an
++		// identical device id and are incorrectly quirked otherwise.
++		if ((link->dpcd_caps.sink_dev_id =3D=3D 0x0010fa) &&
++		    !memcmp(link->dpcd_caps.sink_dev_id_str, str_mbp_2018,
++			     sizeof(str_mbp_2018)) &&
++		    (!memcmp(link->dpcd_caps.sink_fw_revision, fwrev_mbp_2018,
++			     sizeof(fwrev_mbp_2018)) ||
++		    !memcmp(link->dpcd_caps.sink_fw_revision, fwrev_mbp_2018_vega,
++			     sizeof(fwrev_mbp_2018_vega)))) {
++			link->reported_link_cap.link_rate =3D LINK_RATE_RBR2;
++		}
++	}
++
+ 	memset(&link->dpcd_caps.dsc_caps, '\0',
+ 			sizeof(link->dpcd_caps.dsc_caps));
+ 	memset(&link->dpcd_caps.fec_cap, '\0', sizeof(link->dpcd_caps.fec_cap));
 --=20
-With Best Regards,
-Andy Shevchenko
+2.25.1
+
+
