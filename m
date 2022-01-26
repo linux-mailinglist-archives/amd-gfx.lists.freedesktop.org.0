@@ -1,109 +1,44 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D5D649CBA8
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Jan 2022 14:56:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 346C149CBA4
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Jan 2022 14:56:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1427E10E764;
-	Wed, 26 Jan 2022 13:56:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 993B610E711;
+	Wed, 26 Jan 2022 13:56:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from IND01-MA1-obe.outbound.protection.outlook.com
- (mail-ma1ind01olkn0182.outbound.protection.outlook.com [104.47.100.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAB9410E8D4
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 11:32:01 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mm5HngDf0ybYQsaiTaq/WbYIsB7ZR3rplhSVBJxQQ6JdIcXlg62Xo3ZEv6FFxSayqOJtM7/cfBAlJ0FHdPlNQ8V1pyu+KgL2lYY5aZllnqYL/jLHswWLqxcximFGGuX0LBVc58lh7azUDNU2tzYpGeXD5KuI+ak8hsTbGpJzvnUtjsnMeKmNpKJcqgxi0ncq5gVlGuBdwRyzYH1ZDbx5/QNuPJnp4aqsGsxZ1T1VLzphj0+CGiD5UGxJSaTGl1thkTnARKOEtxpTDjYfXzss7ZYY2TAy0Nn/fKv43B1LdgXyQUfskEjLxtg0KL99KUaeG8hFwpE2mjaq1RYMTI/1SA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LVXkYUdn61OI7VmNeupfiHJuRYIQRw9gflew86sCwH4=;
- b=KcRLRj0iUx/hYqGVraHI2TUc7nNxrInIqZJOWMGSd9GEIbBhxEFq3L4JLnkxwr4iHfEZvPJT77SjEOOM+oWHon1TMyc7MX+Ts4aqo0b0NwgxB6jKzJHwTjDkq3bwp2Irq6PkFwz/qbZBUnuesOWRDTMIImB/ChN3+IQMa//oDJofD/h5BBz1oudUH54tlQX2WfOO8VubfoNi+qNOG9ZcTfhCVAfLOGhDYywSif2rpLh0ODGyuGKR7M+u7uixopXxMF5LbiqrKh/QP+leQ+dMg69CZblvYKbu4ajmoJKmGd1/Xm3strTvRG5ImNjgfoAnGwxQfhSSpG6bcVuU5V6JRg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LVXkYUdn61OI7VmNeupfiHJuRYIQRw9gflew86sCwH4=;
- b=g3N0HVNFInjkCXS2W1YaMdgxfxbiOf58K37T57ELd0/SQmrPawKvo7CVhzBM1Fi6/7LypTs9f7I80IOsGOEWVfbUwe18HaCJ0xEhgoHXGJxOJ6DOKOTyUR+Wk7dSiB85Eqh69qk1M9qLKdk/RSC58jgdGyAusC6sao6O8WipVTS/SAVjkzdK8EG9bpBVk68nwdEfdZ3Erxqtxv13w8gCbk7s1P8foKIqpHkM5w5csfetW2w2MVZM1ERrMYxCUXokrVio2NQ+RhVbxCFJRadwjb9GoAetAb6u/YMPG5nyQWjNAt+o5zfErAcl9H7kaxupWTCS7RDtLY3G6kdAo9ioVQ==
-Received: from PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:1b::13)
- by PN2PR01MB4715.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:9::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.17; Wed, 26 Jan
- 2022 11:31:53 +0000
-Received: from PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::d19b:7cd1:3760:b055]) by PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::d19b:7cd1:3760:b055%9]) with mapi id 15.20.4930.015; Wed, 26 Jan 2022
- 11:31:53 +0000
-From: Aditya Garg <gargaditya08@live.com>
-To: "harry.wentland@amd.com" <harry.wentland@amd.com>, "sunpeng.li@amd.com"
- <sunpeng.li@amd.com>, "Rodrigo.Siqueira@amd.com" <Rodrigo.Siqueira@amd.com>,
- "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>, "Xinhui.Pan@amd.com"
- <Xinhui.Pan@amd.com>, "amd-gfx@lists.freedesktop.org"
- <amd-gfx@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, "Felix.Kuehling@amd.com"
- <Felix.Kuehling@amd.com>, "evan.quan@amd.com" <evan.quan@amd.com>,
- "stylon.wang@amd.com" <stylon.wang@amd.com>, "wesley.chalmers@amd.com"
- <wesley.chalmers@amd.com>, "qingqing.zhuo@amd.com" <qingqing.zhuo@amd.com>,
- "George.Shen@amd.com" <George.Shen@amd.com>, "roman.li@amd.com"
- <roman.li@amd.com>, "solomon.chiu@amd.com" <solomon.chiu@amd.com>,
- "Aurabindo.Pillai@amd.com" <Aurabindo.Pillai@amd.com>, "wayne.lin@amd.com"
- <wayne.lin@amd.com>, "mikita.lipski@amd.com" <mikita.lipski@amd.com>,
- "Bhawanpreet.Lakha@amd.com" <Bhawanpreet.Lakha@amd.com>,
- "agustin.gutierrez@amd.com" <agustin.gutierrez@amd.com>,
- "pavle.kotarac@amd.com" <pavle.kotarac@amd.com>
-Subject: [PATCH RESEND] drm/amd/display: Force link_rate as LINK_RATE_RBR2 for
- 2018 15" Apple Retina panels
-Thread-Topic: [PATCH RESEND] drm/amd/display: Force link_rate as
- LINK_RATE_RBR2 for 2018 15" Apple Retina panels
-Thread-Index: AQHYEqhRbhPidmHk70e5iPJFVYdDUw==
-Date: Wed, 26 Jan 2022 11:31:53 +0000
-Message-ID: <139A7689-463E-4AD9-A2D1-A9969C3958D0@live.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [09VpzFUvzCXwsv2lu5RDe5MwJIKbajcLz3NxaepIMqnjq8YhBAFrDhn4u9ZeFwCk]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d49276bd-bb04-4332-a2d8-08d9e0bf739a
-x-ms-traffictypediagnostic: PN2PR01MB4715:EE_
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: pxk0DW4g3HS/+izdrxAry50cjQNpRby+RIMgWwNkPy2CKxD70NJ7N57LS1q6JBieBTVSXSOLcnXNvXL4VvtVHOLj6k+fngz4i4HnsInN+8tgFT2sbT/j6co8tPVSUHrMpghUju47zL7xJOhYxFbBv4v0OvA2L7Wk08oNSZ4NRBk/O6C9G82QsR0PIp1R4Qy+ViruRY1QZ3Z01BmMQYfL6sKvOD6F/rIDlC0mHssARJ/kd897MYkHn3IWgblZ4Fxn6woBD74GI1dqCV+lKx5in7wF6CjiuHiv5A/oIVhLkW/kWU+kyAR5P9PcrRn2wPwWsGFBgTnv1wQWU3bhho43h16PcdWHwfeAVfqJsOWqxur35tcwucUd9edH7Oc85NkUwiZqQ6poA9WuVnos1rmKBeMkXLv3hcDvAuo8clRVM/h/Vh8wH3a3OA9A3a9GGEZruFPA18kj4cN5q06hGDkUkcr8rhTKq371v9PcJck+prW39jkdJEz06M1GXzpA5uSi/9N5OuOqQbbXAMTMobVGIBlX34XJk95U/FV9FWIYTQ7QgNITP3qx0m/CWhGHUPs7Ql0vKet6jTvHjRPFdEVHrQ==
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?HZPZ4wUOAt5cTJ8sMtzwCN+c+Ud3jwFcj0jA5OHD4Rq2TrvS3Bl85oVg2CZ/?=
- =?us-ascii?Q?MXXNMSbbeKX7HY4EyQKNNfiHDGmEwzZTbyICAayp5bYrWodpIRJK1lQIJF6P?=
- =?us-ascii?Q?a2NcgfbESng8hWB6shcjW3ZCe9LGdRJUbQB97Plecld0GpPkO0PmmhdI9vzi?=
- =?us-ascii?Q?Sz/1Hwc7hlXt7dM4oL7vnItCwInlSx63Li4MyybL55/RSvVxf4KD1+Ra5xzi?=
- =?us-ascii?Q?o/7Ftcjp9nlBjl2JzpkGLCjUHllkkf0210nWChCYwPvy3YTooMLYmAPJZCQ1?=
- =?us-ascii?Q?MGwncyqFkExsHYoUmBWSobuEcsA6RJOM4t+Muj+RSE6Rvduh5xnxdEVho6qA?=
- =?us-ascii?Q?oofTLYgRycMFzdwgh/5wiXPXHhjA5KeBmMaKxv/W8gvUFlImxe3Iu0+wxyh0?=
- =?us-ascii?Q?5qXn+JgI2//To106aYbSX0Ps0IzY3tEbSAp+B09qCwKMAiBmMujiOR3KexW4?=
- =?us-ascii?Q?wj8Lh18KAdhuGhwFR7qfb+E8nUZDg3BVxC/E7HFWB+e34oqIWvIexCjfMhNl?=
- =?us-ascii?Q?gGNc1kbnTEZ2/avRiLPxb1sMXWUbwyQc/DKPj4Rdy9PniClYSJiIrXeeTN4h?=
- =?us-ascii?Q?JGRNBKRG/ZwrdIXO/ol1fMyjp4y/TIRpwdWoKhye3aes8ym8wvYul2qs+CIc?=
- =?us-ascii?Q?qCquNIUvh66GjPlpYPV9lN52bV6lfx3ibWo6KO9cRuqhVqb4Cua30jTOgtoU?=
- =?us-ascii?Q?4f/gul8HF1BIJv3Rxl51W/mZMpzTJndnDaM8fe46dYB5RDw5irywKv40IuNs?=
- =?us-ascii?Q?PrLjO8URsQQvLoXGQF5qbfX+PjzjPzhz6x1r0RQSXlHCM5Fc7wDaS6ZHY7ES?=
- =?us-ascii?Q?FBednZtqlGEPUkkvCYJQZBQvhUgRGG5jIuhVtZAAjIxQXnIiwBJDv7krb4Nd?=
- =?us-ascii?Q?iIfCuYzyOAhZDGKzj6ga88vKdOt7xbNvLA0diuuudH6uN4WdPC56QybEKk6m?=
- =?us-ascii?Q?jOZJKOHzuXO2o467xKiMMr+v+PwV/rum5MtQDbQXGnvGuPCrY3WdaNOGepI9?=
- =?us-ascii?Q?Rq4iZQZhFwOEHuFoSWvHWqt0ZA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <05B1B5ED5A72154CB70314A69DE12DFD@INDPRD01.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: quoted-printable
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA84E10E8F7;
+ Wed, 26 Jan 2022 12:16:26 +0000 (UTC)
+X-IronPort-AV: E=McAfee;i="6200,9189,10238"; a="246755646"
+X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="246755646"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 04:16:26 -0800
+X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; d="scan'208";a="674341619"
+Received: from smile.fi.intel.com ([10.237.72.61])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2022 04:16:19 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+ (envelope-from <andy.shevchenko@gmail.com>) id 1nChCh-00Eaiw-DB;
+ Wed, 26 Jan 2022 14:15:11 +0200
+Date: Wed, 26 Jan 2022 14:15:11 +0200
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 09/11] drm: Convert open-coded yes/no
+ strings to yesno()
+Message-ID: <YfE7T7gl+0GrlFt/@smile.fi.intel.com>
+References: <20220126093951.1470898-1-lucas.demarchi@intel.com>
+ <20220126093951.1470898-10-lucas.demarchi@intel.com>
+ <CAHp75Vd+TmShx==d_JHZUu0Q-9X7CmZEOFdKnSrcRKs81Gxn3g@mail.gmail.com>
+ <20220126104345.r6libof7z7tqjqxi@ldmartin-desk2>
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-42ed3.templateTenant
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: d49276bd-bb04-4332-a2d8-08d9e0bf739a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2022 11:31:53.1900 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2PR01MB4715
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220126104345.r6libof7z7tqjqxi@ldmartin-desk2>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-Mailman-Approved-At: Wed, 26 Jan 2022 13:56:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -116,67 +51,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aun-Ali Zaidi <admin@kodeit.net>,
- Orlando Chamberlain <redecorating@protonmail.com>
+Cc: Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ Vishal Kulkarni <vishal@chelsio.com>, netdev@vger.kernel.org,
+ Francis Laniel <laniel_francis@privacyrequired.com>,
+ Kentaro Takeda <takedakn@nttdata.co.jp>, amd-gfx@lists.freedesktop.org,
+ Ben Skeggs <bskeggs@redhat.com>, Jakub Kicinski <kuba@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>, Petr Mladek <pmladek@suse.com>,
+ Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
+ Steven Rostedt <rostedt@goodmis.org>, Julia Lawall <julia.lawall@lip6.fr>,
+ Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-kernel@vger.kernel.org,
+ "David S. Miller" <davem@davemloft.net>,
+ Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
+ linux-security-module@vger.kernel.org,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Raju Rangoju <rajur@chelsio.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Aun-Ali Zaidi <admin@kodeit.net>
-=20
-The eDP link rate reported by the DP_MAX_LINK_RATE dpcd register (0xa) is
-contradictory to the highest rate supported reported by
-EDID (0xc =3D LINK_RATE_RBR2). The effects of this compounded with commit
-'4a8ca46bae8a ("drm/amd/display: Default max bpc to 16 for eDP")' results
-in no display modes being found and a dark panel.
+On Wed, Jan 26, 2022 at 02:43:45AM -0800, Lucas De Marchi wrote:
+> On Wed, Jan 26, 2022 at 12:12:50PM +0200, Andy Shevchenko wrote:
+> > On Wed, Jan 26, 2022 at 11:39 AM Lucas De Marchi
+> > <lucas.demarchi@intel.com> wrote:
 
-For now, simply force the maximum supported link rate for the eDP attached
-2018 15" Apple Retina panels.
+...
 
-Additionally, we must also check the firmware revision since the device ID
-reported by the DPCD is identical to that of the more capable 16,1,
-incorrectly quirking it. We also use said firmware check to quirk the
-refreshed 15,1 models with Vega graphics as they use a slightly newer
-firmware version.
+> > >  411986   10490    6176  428652   68a6c drm.ko.old
+> > >  411986   10490    6176  428652   68a6c drm.ko
+> > >   98129    1636     264  100029   186bd dp/drm_dp_helper.ko.old
+> > >   98129    1636     264  100029   186bd dp/drm_dp_helper.ko
+> > > 1973432  109640    2352 2085424  1fd230 nouveau/nouveau.ko.old
+> > > 1973432  109640    2352 2085424  1fd230 nouveau/nouveau.ko
+> > 
+> > This probably won't change for modules, but if you compile in the
+> > linker may try to optimize it. Would be nice to see the old-new for
+> > `make allyesconfig` or equivalent.
+> 
+> just like it would already do, no? I can try and see what happens, but
+> my feeling is that we won't have any change.
 
-Tested-by: Aun-Ali Zaidi <admin@kodeit.net>
-Signed-off-by: Aun-Ali Zaidi <admin@kodeit.net>
-Signed-off-by: Aditya Garg <gargaditya08@live.com>
----
- .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+Maybe not or maybe a small win. Depends how compiler puts / linker sees
+that in two cases. (Yeah, likely it should be no differences if all
+instances are already caught by linker)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu=
-/drm/amd/display/dc/core/dc_link_dp.c
-index 05e216524..17939ad17 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
-@@ -5597,6 +5597,25 @@ static bool retrieve_link_cap(struct dc_link *link)
- 		dp_hw_fw_revision.ieee_fw_rev,
- 		sizeof(dp_hw_fw_revision.ieee_fw_rev));
-=20
-+	/* Quirk for Apple MBP 2018 15" Retina panels: wrong DP_MAX_LINK_RATE */
-+	{
-+		uint8_t str_mbp_2018[] =3D { 101, 68, 21, 103, 98, 97 };
-+		uint8_t fwrev_mbp_2018[] =3D { 7, 4 };
-+		uint8_t fwrev_mbp_2018_vega[] =3D { 8, 4 };
-+
-+		// We also check for the firmware revision as 16,1 models have an
-+		// identical device id and are incorrectly quirked otherwise.
-+		if ((link->dpcd_caps.sink_dev_id =3D=3D 0x0010fa) &&
-+		    !memcmp(link->dpcd_caps.sink_dev_id_str, str_mbp_2018,
-+			     sizeof(str_mbp_2018)) &&
-+		    (!memcmp(link->dpcd_caps.sink_fw_revision, fwrev_mbp_2018,
-+			     sizeof(fwrev_mbp_2018)) ||
-+		    !memcmp(link->dpcd_caps.sink_fw_revision, fwrev_mbp_2018_vega,
-+			     sizeof(fwrev_mbp_2018_vega)))) {
-+			link->reported_link_cap.link_rate =3D LINK_RATE_RBR2;
-+		}
-+	}
-+
- 	memset(&link->dpcd_caps.dsc_caps, '\0',
- 			sizeof(link->dpcd_caps.dsc_caps));
- 	memset(&link->dpcd_caps.fec_cap, '\0', sizeof(link->dpcd_caps.fec_cap));
---=20
-2.25.1
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
