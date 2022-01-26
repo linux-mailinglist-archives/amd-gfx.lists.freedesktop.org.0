@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 191C049C285
-	for <lists+amd-gfx@lfdr.de>; Wed, 26 Jan 2022 05:09:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86D8949C2D5
+	for <lists+amd-gfx@lfdr.de>; Wed, 26 Jan 2022 05:55:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A2D210E512;
-	Wed, 26 Jan 2022 04:09:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AB1B10E3E8;
+	Wed, 26 Jan 2022 04:55:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2052.outbound.protection.outlook.com [40.107.236.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB07510E512
- for <amd-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 04:09:45 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2077.outbound.protection.outlook.com [40.107.94.77])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4D1910E393
+ for <amd-gfx@lists.freedesktop.org>; Wed, 26 Jan 2022 04:55:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cRkv2KpoH/+drPqfSU4UAzLotWcI7NRxkOMxo+kTWtPdwY3rsqeKXG6rsfe9i79zNe2EKNGJN2y7KrjRPQyjzwggA0gvrpmRLovUFd88zKQGhJyU+sk7a6MkxrDczEPOrdeYVlUiLVwEQUHtF6p4AUbnhBSlxXwbhzpKjC69o31LMvpTpwIh77xpQDR+JAQEp8kdBMeB1Hvg1C6XlTDd8TucWhhhxYcnCgyQnEWADVZ9B1WebG24B8uCZi8a/Hhol8nGX0AOMV6JqFTN7X1IsRkmeoEw3KWMf4FqSO9rniw/aQiT7f4hj2FX9DFDOM7uDAMaso/IXwNjAfyX8kFM4w==
+ b=VJDhGA10hylre9sYEb2IqhXIMci4O8b914O3QcDvycijmLGsgqIHmrlr7lBgiwJuKmfA5g3zanQHefg2BGYNmQSngotuHN/U9ph+F9WsMpsEAIxhtI2lAzEzf8D9LV9ybK0bzCTOrJ3L5hSvFePYNI0V5L3BCGNDqvnrN9eaot+ahZA5pgJxHGfmvuejjhcRcrey5IWPxUTuKNBPpRK+FXhSmsLVQPn48XS8rvjeo+UEgcxATv/ac+2vWGGRS2X8H2aH2YORalRYKPNiT9JMWOX1TceaykaOr+4zkWNiHMWITBxXIfQI+v+9TdZA/unHZYLy0W7RW1KdOjp/oxjQ7w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FeTMDDKhDMqy+lF/BOaQf7FRltyOhWdWhdc40r4+rX4=;
- b=MoDl+m5T6h1zUOAiettfvqxj7+KNyPHcq9v5EAJA8XiRORGdQWAPKyKhcEQvi00QucnFmiqrPlYouWlZQoKHbd1tmIT1rTHwMM7XD3PkrpUICKS2Dl0avca/NLjADQRxwg4weT+zJTWNLUwLR0eikZWSfIYmsaH2wC/AG+wInicJ2d/NLvV/gBeIHG7UIVkz71F8a0QcSSZmEzihY8tjbsg93yq9lVdbYgKVipcUrWbHQVm/6JpMfSJD178FLlhxkS09wUzXUfZPogmYCMSe+Kw/8Wpx6p9+/M+itJYHgbz4J+ZNwvf/aGY5mYnkpU386onXTEsk1+js2T1oGRU4jg==
+ bh=MKIK8ZYxhl104x6oWaShQ7H5fest6LhdEiBkmUtfEcI=;
+ b=YvHFALFCk9rvBfIBm9oMUynZbSx7sgDMmu95NVMh7znriBtCWpweduliHUTYmf2eKh3wCUf0iKQodsqjfcCBud6woW2q42V2yE8rKtTeJt0CMzhbUbBpUz2pMtQLfN3HwU45R3C60IXOYJZdOjcSmIEKj2zkOKPNQW8hgUvWd8/4ILAeozkqbjr3DFGTDBZjLL6FQtxaLKd9vl3C4d37w6rdUlIjxIvRFb8kKvk3YSamaO11Fpw7II9Hhy4lgyZQIoJlG/sm9fY4qVY44qV1/Gvlw5nDfssIcv4bKiIbkRGszm4CiQ8PyjS0Skxf0EoT6xu9IckHi4axMcQ0XImHFg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FeTMDDKhDMqy+lF/BOaQf7FRltyOhWdWhdc40r4+rX4=;
- b=YizxPn0f5XMtwlVMZcA+zB3hyAvva+IJjc7BBAQZIIEOg2gnC9FtMvyOf/vAAMnT5i6kFrIZoJ0upSZMBLYzpFKDVBoOiuiPz0HSVOr6TuG4E68iN0LETNZ/CN89saiP51Wktaa3tzE+ERQVLiqRiR8XA3jBwPEDVrZjAvuPrRI=
-Received: from DM6PR06CA0013.namprd06.prod.outlook.com (2603:10b6:5:120::26)
- by DM6PR12MB5551.namprd12.prod.outlook.com (2603:10b6:5:1bc::15) with
+ bh=MKIK8ZYxhl104x6oWaShQ7H5fest6LhdEiBkmUtfEcI=;
+ b=EwLgO0yih7qGs2Kqy75uK9YZsoUtA5ehSSeHCce0SBTnk/ZKxAfWQddusp/KPonhLFpMkIFU6a13YWBYOdoyB9R3aMZWTqWiTXuJrIonAgmEnbSZbg7xDgQWrl666EZ1Sfy50Di8DtL3LqrKwHEb6Td5fApFkTrfVRPvrVXjy9Y=
+Received: from MW4PR04CA0183.namprd04.prod.outlook.com (2603:10b6:303:86::8)
+ by BL0PR12MB4660.namprd12.prod.outlook.com (2603:10b6:207:34::30) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.8; Wed, 26 Jan
- 2022 04:09:43 +0000
-Received: from DM6NAM11FT060.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:120:cafe::30) by DM6PR06CA0013.outlook.office365.com
- (2603:10b6:5:120::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.11 via Frontend
- Transport; Wed, 26 Jan 2022 04:09:43 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.13; Wed, 26 Jan
+ 2022 04:55:00 +0000
+Received: from CO1NAM11FT035.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:86:cafe::4e) by MW4PR04CA0183.outlook.office365.com
+ (2603:10b6:303:86::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.12 via Frontend
+ Transport; Wed, 26 Jan 2022 04:55:00 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,22 +45,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT060.mail.protection.outlook.com (10.13.173.63) with Microsoft SMTP
+ CO1NAM11FT035.mail.protection.outlook.com (10.13.175.36) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4930.15 via Frontend Transport; Wed, 26 Jan 2022 04:09:43 +0000
-Received: from AUS-LX-MLIMONCI.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 25 Jan
- 2022 22:09:41 -0600
-From: Mario Limonciello <mario.limonciello@amd.com>
+ 15.20.4930.15 via Frontend Transport; Wed, 26 Jan 2022 04:54:58 +0000
+Received: from dapowell-ubuntu-200400-1.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.18; Tue, 25 Jan 2022 22:54:57 -0600
+From: Darren Powell <darren.powell@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v5 4/4] drm/amd: don't reset dGPUs that don't go through
- system S3
-Date: Tue, 25 Jan 2022 22:09:44 -0600
-Message-ID: <20220126040944.4324-4-mario.limonciello@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220126040944.4324-1-mario.limonciello@amd.com>
-References: <20220126040944.4324-1-mario.limonciello@amd.com>
+Subject: [PATCH v3 0/3] amdgpu/pm: Implement parallel sysfs_emit solution for
+ navi10
+Date: Tue, 25 Jan 2022 23:54:38 -0500
+Message-ID: <20220126045441.3891-1-darren.powell@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -69,28 +67,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0c6367f2-8df1-45c7-e810-08d9e081ae9a
-X-MS-TrafficTypeDiagnostic: DM6PR12MB5551:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB55515C1235B7CD76E1B9A962E2209@DM6PR12MB5551.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Office365-Filtering-Correlation-Id: 92c19d68-70b1-49bd-214d-08d9e0880170
+X-MS-TrafficTypeDiagnostic: BL0PR12MB4660:EE_
+X-Microsoft-Antispam-PRVS: <BL0PR12MB4660CB237292282C01E0BB0FF0209@BL0PR12MB4660.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2582;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: V1/f/yO8mflBq9QAERKzBoz7DaFuHDP47eC41oM3jaxhteuTHNnHy0KC4QSzyvG4mAsEKSnvvLhp3+TPa3CK6Wr+78ptKPVPvUSpI6nYak/Cp4p5ipHJAl1L1A13tYCkjxOAvQOWxMgKhG66/INYodDc8wuOiqzCf/jQzWN7lgie/KxHqRaDDL2H4d4gVjXT2bT1R1HeR83pVaW49eCJxonzZSUvNYcMVgHkkDb3sGIelqx5oKaruZ3VC6XFR/AcEvgHehBZJ9I9mg4GzSAOmvsQ6UkKWB6jXe/CuQ93nhhE5yaPNIGCK+e5BW9Pf8oOWiO+rI5HZFgyWgfKMWhZcepxDPkhU0rwaBa75xApXYRPXxBrha1q3cxLouSKy0He17e4sURbH1XYr9zzSZMxHOJjZmTM/B3JbIfzqdZ2kGGdNPRSpSj4IW6LBulr7YimRMBuxvIvdB7TzQlGQjqT0SrSACWoJJMQ8EZzYuN7VySaRdvfFxb4qbEhBspFMiL/RVFsqJOEJTvZvDjQJhdHPRQqMuQ2kFzKKs3XL1Wic7KRXqDgFrETkQHC2oRvPkEz/8D5oufIaALWhty/o/F57FqPb4l37HcUmRzhmflq5914fQCa4eeEAxUoZW2lI6x8m1IDVNcPHpjhTqwMIRQpQl0g9gz3cRZKSU8cHKyXZlg+e/Kqy9Zd6yNlzAgNGdCPmSYorFO7vNcpEl+rcoiAj6SNMXVzK+emXh+Gd5hn0cX8U+Ya+AdRbNiQkto9y9G5gCwt0j5d5uezwa490g5QbXhC7wZBpSajQWUdHPkYFOc=
+X-Microsoft-Antispam-Message-Info: ZFc2/gmQZ/YBRIopXk0owvwl0lLJq1JuBuFQ/3ut8uF9TlPlerENiL70iU6yKTvse2P3iangSUbh3Sb83nzXj/WAv8JsygTSwwZ1vFCcDSOkjusmN1BVNbGaAeZpP+1h6+sr8tRtwI75IGv+vjvgqvhTVzKMnhlXastA1Vnj7V4bskn69Jlap05u3UbwrfqpfNoS+cC8FGJ5Z//ZGoDbOQsD+AYexsruVN0x89eRiylzqPE9eaXnnlCSJ8xHfTf4pv1PKvL6CerdGb2+RfLz0XEEdxXrw7rAmrayhq014Ae/56nK5/T99LLXokxtw5UaBEBgFbauwPAPPqI008/V0EivThmkibUey+SuYaqFzfWB5qxavRK49FH/cUezH7ao/FZnp6ZRI4sS2xMh0JGoDlGlqfM38fENeBiVT2sVnp0iAF8D5P+Gi7uKwjGyFAh4pG3cDPIJNDYsKH9RvxlZuU0KO1J6pNRHx3IaocZ0vEpiKX5xftFoLt/6BbDj9qFy7oujjTBliMtzRK7LiGVTxqN3i4f2rvIUagiGz34+3PMW23xHOMwWlkKGXOkET8RKuMOacl6kQPiYKs5Abm7QslFjuhEHUcx+QRXhY6w2f6JXnivKktHNv+WKxN5SYHpzETOJzj8WkePGrLTqcaR95GV29EA7JpC98FieJvcUjmQLgnuxXGo2olZi6b5jVMIkpQ1NZjY7NCPXbjJrCKqZvv12HSOZ4epO7rlNDZT8Oo9GtvYhBhWpxiuSno9Nm41gBPNOUVxzhl5lmGKyigota84IPrY0g5e5Whs0VBKTEes=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(4636009)(40470700004)(46966006)(36840700001)(54906003)(4744005)(36860700001)(5660300002)(508600001)(4326008)(26005)(6916009)(70586007)(70206006)(40460700003)(316002)(186003)(83380400001)(1076003)(16526019)(8936002)(426003)(47076005)(82310400004)(81166007)(36756003)(7696005)(86362001)(336012)(44832011)(966005)(2906002)(8676002)(356005)(2616005)(36900700001);
+ SFS:(4636009)(40470700004)(46966006)(36840700001)(86362001)(70586007)(316002)(70206006)(186003)(36756003)(4326008)(81166007)(6916009)(47076005)(36860700001)(508600001)(44832011)(40460700003)(82310400004)(426003)(2906002)(7696005)(2616005)(6666004)(26005)(336012)(8936002)(5660300002)(16526019)(356005)(1076003)(83380400001)(8676002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2022 04:09:43.3645 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c6367f2-8df1-45c7-e810-08d9e081ae9a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2022 04:54:58.9092 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 92c19d68-70b1-49bd-214d-08d9e0880170
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT060.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT035.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB5551
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4660
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,34 +100,81 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: prike.liang@amd.com, Mario Limonciello <mario.limonciello@amd.com>
+Cc: Darren Powell <darren.powell@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-dGPUs connected to Intel systems configured for suspend to idle
-will not necessarily have the power rails cut at suspend and
-resetting the GPU may lead to problematic behaviors.
+== Description ==
+Scnprintf use within the kernel is not recommended, but simple sysfs_emit replacement has
+not been successful due to the page alignment requirement of the function. This patch
+set implements a new api "emit_clock_levels" to facilitate passing both the base and
+offset to the device rather than just the write pointer.
+This patch is only implemented for navi10 for some clocks to seek comment on the
+implementation before extending the implementation to other clock values and devices.
 
-Fixes: 6dc8265f9803 ("drm/amdgpu: always reset the asic in suspend (v2)")
-Link: https://gitlab.freedesktop.org/drm/amd/-/issues/1879
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Needs to be verified on a platform that supports the overclocking
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 123ec5a07dd5..66290f986544 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -2319,7 +2319,7 @@ static int amdgpu_pmops_suspend(struct device *dev)
- 		r = amdgpu_device_suspend(drm_dev, true);
- 		if (r)
- 			return r;
--		if (!adev->in_s0ix)
-+		if (!adev->in_s0ix && pm_suspend_via_firmware())
- 			r = amdgpu_asic_reset(adev);
- 	}
- 	return r;
+   (v3)
+     Rewrote patchset to order patches as (API, hw impl, usecase)
+   (v2)
+      Update to apply on commit 801771de03
+      adjust printing of empty carriage return only if size == 0
+      change return from amdgpu_dpm_emit_clock_levels if emit_clock_levels not found
+
+== Patch Summary ==
+   linux: (git@gitlab.freedesktop.org:agd5f) origin/amd-staging-drm-next @ 28907fd9e048
+    + f3c1d971ea17 amdgpu/pm: Implement new API function "emit" that accepts buffer base and write offset
+    + c67ac3384682 amdgpu/pm: Implemention of emit_clk_levels for navi10 that accepts buffer base and write offset
+    + 734cca28fed3 amdgpu/pm: Linked emit_clock_levels to use cases amdgpu_get_pp_{dpm_clock,od_clk_voltage}
+
+== System Summary ==
+ * DESKTOP(AMD FX-8350 + NAVI10(731F/ca), BIOS: F2)
+  + ISO(Ubuntu 20.04.3 LTS)
+  + Kernel(5.13.0-fdoagd5f-20220112-g28907fd9e0)
+
+== Test ==
+LOGFILE=pp_clk.test.log
+AMDGPU_PCI_ADDR=`lspci -nn | grep "VGA\|Display" | cut -d " " -f 1`
+AMDGPU_HWMON=`ls -la /sys/class/hwmon | grep $AMDGPU_PCI_ADDR | awk '{print $9}'`
+HWMON_DIR=/sys/class/hwmon/${AMDGPU_HWMON}
+
+lspci -nn | grep "VGA\|Display"  > $LOGFILE
+FILES="pp_od_clk_voltage
+pp_dpm_sclk
+pp_dpm_mclk
+pp_dpm_pcie
+pp_dpm_socclk
+pp_dpm_fclk
+pp_dpm_dcefclk
+pp_dpm_vclk
+pp_dpm_dclk "
+
+for f in $FILES
+do
+  echo === $f === >> $LOGFILE
+  cat $HWMON_DIR/device/$f >> $LOGFILE
+done
+cat $LOGFILE
+
+Darren Powell (3):
+  amdgpu/pm: Implement new API function "emit" that accepts buffer base
+    and write offset
+  amdgpu/pm: Implemention of emit_clk_levels for navi10 that accepts
+    buffer base and write offset
+  amdgpu/pm: Linked emit_clock_levels to use cases
+    amdgpu_get_pp_{dpm_clock,od_clk_voltage}
+
+ .../gpu/drm/amd/include/kgd_pp_interface.h    |   1 +
+ drivers/gpu/drm/amd/pm/amdgpu_dpm.c           |  21 ++
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c            |  49 +++--
+ drivers/gpu/drm/amd/pm/inc/amdgpu_dpm.h       |   4 +
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c     |  42 +++-
+ drivers/gpu/drm/amd/pm/swsmu/inc/amdgpu_smu.h |  14 ++
+ .../gpu/drm/amd/pm/swsmu/smu11/navi10_ppt.c   | 188 ++++++++++++++++++
+ 7 files changed, 300 insertions(+), 19 deletions(-)
+
+
+base-commit: 28907fd9e04859fab86a143271d29ff0ff043154
 -- 
-2.25.1
+2.34.1
 
