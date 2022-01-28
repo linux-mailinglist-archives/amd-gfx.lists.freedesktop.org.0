@@ -2,44 +2,58 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D9BE49F5AB
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jan 2022 09:53:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F007549F5A6
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jan 2022 09:53:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E94B610F53B;
-	Fri, 28 Jan 2022 08:53:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85F5A10F524;
+	Fri, 28 Jan 2022 08:53:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90E8A10FAC2;
- Fri, 28 Jan 2022 07:08:49 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id B291761B39;
- Fri, 28 Jan 2022 07:08:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97EDFC340E0;
- Fri, 28 Jan 2022 07:08:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
- s=korg; t=1643353728;
- bh=RwoGhw9V3nvnXM6f38F+V1PStwHO0x+5RXTTdAXp7JY=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=jsz1QO9E0ZfOdT9FgvWsZdDnsyje3cBIe9Sp+qpxxX4U4KTlhRY9LrCn0XUx3HaZP
- 4WBX+6yG1a3ICbZ89FPVGOwdGh7lyOhl74FamB4CNioDPaMo5s1LstXIHuob98PHkc
- WBP4cFU5GkOpnhCpCtQ/L8gGFP+Xn6e+p2yM+w34=
-Date: Thu, 27 Jan 2022 23:08:45 -0800
-From: Andrew Morton <akpm@linux-foundation.org>
-To: "Sierra Guiza, Alejandro (Alex)" <alex.sierra@amd.com>
-Subject: Re: [PATCH v4 00/10] Add MEMORY_DEVICE_COHERENT for coherent device
- memory mapping
-Message-Id: <20220127230845.13a11680077ca5d4334de8f3@linux-foundation.org>
-In-Reply-To: <6434ba24-a219-6a5a-d902-0b48974a0e43@amd.com>
-References: <20220127030949.19396-1-alex.sierra@amd.com>
- <20220127143258.8da663659948ad1e6f0c0ea8@linux-foundation.org>
- <6434ba24-a219-6a5a-d902-0b48974a0e43@amd.com>
-X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com
+ [IPv6:2607:f8b0:4864:20::82a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0F7010EBA7;
+ Fri, 28 Jan 2022 07:19:54 +0000 (UTC)
+Received: by mail-qt1-x82a.google.com with SMTP id i4so4562428qtr.0;
+ Thu, 27 Jan 2022 23:19:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=0l1WhmeXUHVNto/szOni73pQDPwQLfU9rXUEAIxIulo=;
+ b=UqE/xve7ob4iUosGLkLnnGanDqYXo2MvlRmysmzpH3702bfDBNuh8UXnKVBDmpU1+o
+ ZQLVbgh2TSWrF2lKiG+zjBbxNlE+JIPkKoUn2SnaV9iOUPkn8daiYAcK2evhUG6zIlqo
+ 5Y4Er/PkrbSTgeFljL+puqSgKg9b9qOT7XOQp+TXPfeDTIGtrCEEdB1oAthBGVKu2KAv
+ I2Mj4nWHTncPq8RSKuWLyT7wD3bFqWY8LfbaI5wLs/XDrwZ+vvnUptyxEcuOJPuQUlD3
+ 5Yivzlw3qqadkeuvx/rzrg6TwbMpLp1H/NLNo6U0T4iTG8eDq4WDfUhjYu4lLzSuIt8K
+ cCXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=0l1WhmeXUHVNto/szOni73pQDPwQLfU9rXUEAIxIulo=;
+ b=eMlrNj/0tUgQQE+x/xpsOYxqfWYV6MqFpHlUV80gWUXRHdTGqXGJDDAkJ5ANbqHvI3
+ IB8rWQEQtOTTekcm1VDmm7bBTJCBvToIprfWYZ9XZ4qMTc2XnJpC/apdEfqa4mwLh22r
+ S8ki4fVeLXibg8q0HuNvkEdcrB9c+AYWMU56y4A12FF5+K+a7BAkYO8as7GX13wLqSb7
+ 5jlzfYEeh9zw59Hag3kePBzmVnNxOPx9u5J01wfkYRbnqDIfFtk8wzoTMb1pE5sAeuWh
+ uxMFGSd7mqnBu8N0KWcES7yKKGfobc9kslGglnJCdmmtGInadEExMeClmica2NB/JoiJ
+ tiKw==
+X-Gm-Message-State: AOAM533eFCRJk+Cp5zJACUQRwSbBDlnzWCtzXG83XeZ41PWuY7Nzo2Hv
+ dxpW4nG2ZavOZyqgRskwo0I=
+X-Google-Smtp-Source: ABdhPJyK6kIpqKiestuok+P9CdtwOtVWZWiqmr32VVy1ITQPs/f3gQ0QrTdwO4N2V+2Dh4gXrO9BoA==
+X-Received: by 2002:ac8:7d13:: with SMTP id g19mr5199123qtb.590.1643354394076; 
+ Thu, 27 Jan 2022 23:19:54 -0800 (PST)
+Received: from localhost.localdomain ([193.203.214.57])
+ by smtp.gmail.com with ESMTPSA id o21sm2661818qtv.68.2022.01.27.23.19.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 27 Jan 2022 23:19:53 -0800 (PST)
+From: cgel.zte@gmail.com
+X-Google-Original-From: deng.changcheng@zte.com.cn
+To: evan.quan@amd.com
+Subject: [PATCH] drm/amd/pm: remove duplicate include in 'arcturus_ppt.c'
+Date: Fri, 28 Jan 2022 07:19:36 +0000
+Message-Id: <20220128071936.1210682-1-deng.changcheng@zte.com.cn>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 28 Jan 2022 08:53:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -52,20 +66,37 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rcampbell@nvidia.com, willy@infradead.org, Felix.Kuehling@amd.com,
- apopple@nvidia.com, amd-gfx@lists.freedesktop.org, linux-xfs@vger.kernel.org,
- linux-mm@kvack.org, jglisse@redhat.com, dri-devel@lists.freedesktop.org,
- jgg@nvidia.com, "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- linux-ext4@vger.kernel.org, hch@lst.de
+Cc: andrey.grodzovsky@amd.com, lijo.lazar@amd.com, guchun.chen@amd.com,
+ airlied@linux.ie, Zeal Robot <zealci@zte.com.cn>, Xinhui.Pan@amd.com,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Changcheng Deng <deng.changcheng@zte.com.cn>, luben.tuikov@amd.com,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch, darren.powell@amd.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, david.nieto@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 27 Jan 2022 17:20:40 -0600 "Sierra Guiza, Alejandro (Alex)" <alex.sierra@amd.com> wrote:
+From: Changcheng Deng <deng.changcheng@zte.com.cn>
 
-> Andrew,
-> We're somehow new on this procedure. Are you referring to rebase this 
-> patch series to
-> git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git 
-> <5.17-rc1 tag>?
+'amdgpu_dpm.h' included in 'arcturus_ppt.c' is duplicated.
 
-No, against current Linus mainline, please.
+Reported-by: Zeal Robot <zealci@zte.com.cn>
+Signed-off-by: Changcheng Deng <deng.changcheng@zte.com.cn>
+---
+ drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+index ee296441c5bc..709c32063ef7 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/smu11/arcturus_ppt.c
+@@ -46,7 +46,6 @@
+ #include <linux/pci.h>
+ #include "amdgpu_ras.h"
+ #include "smu_cmn.h"
+-#include "amdgpu_dpm.h"
+
+ /*
+  * DO NOT use these for err/warn/info/debug messages.
+--
+2.25.1
+
