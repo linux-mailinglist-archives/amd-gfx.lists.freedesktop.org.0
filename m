@@ -2,92 +2,101 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1551D49F3DE
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jan 2022 07:54:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BB3849F5AA
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jan 2022 09:53:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ABF110F923;
-	Fri, 28 Jan 2022 06:54:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABB2810F539;
+	Fri, 28 Jan 2022 08:53:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2087.outbound.protection.outlook.com [40.107.93.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C0C810F921
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 06:54:40 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam08on2044.outbound.protection.outlook.com [40.107.100.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 151EB10E2AA;
+ Fri, 28 Jan 2022 01:57:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UrmLbliA2TVXD9mcAJf5j+hAQ7+V+ZbPvYoX/qSNmbnTRuC4+ns6P0UKzXGfAzif75T+xm7Mj1Tj1GSdpl3xMsc5ZIWyX41KtSH8ZmGkQMme1EbT3ZoX3X0mOV5lTpX1kewA+Vkdbfjmfjzz5PizNj8LFU+hqj/kuMqCnKyWhytToacwIITvQg5JciA3CPRtUjEvm011RxROwykoxR666bs4h1jZrYvmXtXNc3kASl6ZiT/CjycfyFMuohC5IKZADBoewFTfUhrpMBtb9gbsWN8L5GB7h+aqA70WwmMlfbz4NZfyzfEKRaU7eC8RvIsme/8ELMECw2WgOby/FRD6yg==
+ b=JyeKdGAZb8ylrjra9mnLH8slv6GtiqIA2wiAVvNXListxpAe6c8/01XRCIPRMLGQz9ajynuqruv9LpTutemrqcM1sJfTKhDm/N09MB6hshwTFEfypo7kgUnLLZY/p/OGs+LvfgEjjfaMGV/Op1hdTxZYjfaLhb7yUrItElq3WAE0viHy0Jo6Dknu1oeNHYySXfiM/zcapiRKR3hGJA01UTyrL61M95BeUl43Yil94YSEHgmzkdvcQDMsX1rJI8Jq/McgCE6PI8nGTIJKOT0hcUADhXCvNakQ4XKBx6ndJWjPUFFCAj55Wj5/kISROF8oZtbHbYXGF5Cxhw69tm5yRg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0tFCNV8P1li7xIhMtxCN44RHN2tM26CrynJfi5Ezgn0=;
- b=DSBx7zWgoSjfAi954FUnbRfu8dQvAAZn9D8bF4zsLssrAbwXSWRFM1R430ZwjAiO1y/xLP5W6OENHh07tJD7C+gn/rvbT/MqiwbW1GZY8duYXI1DfcgO9eyHdYQ6z+THYU3ZzrsmjTEHcS0mDEEAertNgWmY+qyA6cszJk0WpWZw9u+dhTD6+YoykkQT+rQNbweSrNST9QOtG8JY/wvMZmF13qlmx5TNZ96UR8ihTN2o7qVZbCp8+Ts+HeEgsbTUyFP2Dw7QxpD8cb0wraLx+UrHFOm5Hr1yNKZAv3s2iadgLQNMFJvO44bToS+A2H3UwODhcOU36RyBDxWwl3Adwg==
+ bh=WERRZbkO7KrPZ9mMosOwiu9kkt21oFSuOwsDjXTZfSk=;
+ b=fSXjiIgPjif4DoeI12Trh6q/4SD8yip6ZQOgPr/SxTsyTAG1dY4KWd/QaUx8VeZoo+t0Gi6S1r7T2RskJfcZlM/9AkTnTwIZHuwnCIp4Z6olZGuyMOH54ULI4Kq+S7BbVoDVAoimN6TaLMv1HW5XvrmJUYw6t0hWG37INaMCMg5dHuqKOXtWSdWTgdB/5xXuAW3nCuvsp8zaovJR/ZVDGGkPwZF30Eqy4kUhjT18LrpVo9iCZih7LyX/ftfgEwYsZDmTWW7uc9n8Wqll+iulyg0nTG7q/QSK4rWTYNAOIWROSLTMkSgeipz3uCsBp25diTDph/mgXllzDQxHKFYPXg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ 12.22.5.235) smtp.rcpttodomain=lists.freedesktop.org
+ smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
+ header.from=nvidia.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0tFCNV8P1li7xIhMtxCN44RHN2tM26CrynJfi5Ezgn0=;
- b=S7qUwT8JHU2JgnEMFhDZg7/juyIHkXSo0ZSeHcX+vyxwaqBzYbV3L9SqPdit9sPYIVRguy6nw/BBu6jqWBu6+X2seKoyzVrBw5leFa0cigv4do8YpBN9JcBnMAgJpj1QmsRcIfyXfcb3cLjukYKTUQFEZ8KOjuC013p2sOwGaO8=
-Received: from MW4PR03CA0028.namprd03.prod.outlook.com (2603:10b6:303:8f::33)
- by BL1PR12MB5029.namprd12.prod.outlook.com (2603:10b6:208:310::24)
+ bh=WERRZbkO7KrPZ9mMosOwiu9kkt21oFSuOwsDjXTZfSk=;
+ b=Fp/VNdmsb1gS/Hi3pseeP081cmym1fxfhTe9CJL+ClokYfdqtneELaELATOX+BQ9WPMXIKBW65/KCFjjennoMh9AWSq2Yjmq4tNbLQy0tgwQqIhjgyMtB59CBNbVAUjpCVPrHA3bOcy7atlLBNWDqGsWn5UuR4EgUFD1Y2DZdLhTvDCJ/EsLGkt+nKWyD10tCIvyalgpIUSVvRQ2r1A0yEGb680UC1Sm2fFa5n8est32Sn9RLFUCS6eA3rcgvZ42jfze7iz3PT8qGOa2fad97nQSB0N6tzDBeUQCY225BW6Sc0saE00KBg44HaW9sTWPeGqxSxlyLL2Sr2PHyeWECQ==
+Received: from MW4PR04CA0038.namprd04.prod.outlook.com (2603:10b6:303:6a::13)
+ by MN2PR12MB3198.namprd12.prod.outlook.com (2603:10b6:208:101::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.15; Fri, 28 Jan
- 2022 06:54:38 +0000
-Received: from CO1NAM11FT026.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8f:cafe::8a) by MW4PR03CA0028.outlook.office365.com
- (2603:10b6:303:8f::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.17; Fri, 28 Jan
+ 2022 01:57:47 +0000
+Received: from CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:6a:cafe::60) by MW4PR04CA0038.outlook.office365.com
+ (2603:10b6:303:6a::13) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.17 via Frontend
- Transport; Fri, 28 Jan 2022 06:54:37 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT026.mail.protection.outlook.com (10.13.175.67) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4930.15 via Frontend Transport; Fri, 28 Jan 2022 06:54:37 +0000
-Received: from lang-desktop.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 28 Jan
- 2022 00:54:34 -0600
-From: Lang Yu <Lang.Yu@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v2] drm/amdgpu: add safeguards for querying GMC CG state
-Date: Fri, 28 Jan 2022 14:54:09 +0800
-Message-ID: <20220128065409.1479854-1-Lang.Yu@amd.com>
-X-Mailer: git-send-email 2.25.1
+ Transport; Fri, 28 Jan 2022 01:57:46 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.235)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.235 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.235; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (12.22.5.235) by
+ CO1NAM11FT037.mail.protection.outlook.com (10.13.174.91) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4930.15 via Frontend Transport; Fri, 28 Jan 2022 01:57:46 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by DRHQMAIL107.nvidia.com
+ (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1497.18;
+ Fri, 28 Jan 2022 01:57:45 +0000
+Received: from nvdebian.localnet (10.126.231.35) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.9; Thu, 27 Jan 2022
+ 17:57:42 -0800
+From: Alistair Popple <apopple@nvidia.com>
+To: <akpm@linux-foundation.org>, <Felix.Kuehling@amd.com>,
+ <linux-mm@kvack.org>, <rcampbell@nvidia.com>, <linux-ext4@vger.kernel.org>,
+ <linux-xfs@vger.kernel.org>, Alex Sierra <alex.sierra@amd.com>
+Subject: Re: [PATCH v4 01/10] mm: add zone device coherent type memory support
+Date: Fri, 28 Jan 2022 12:57:40 +1100
+Message-ID: <3321052.0DCqWhyCST@nvdebian>
+In-Reply-To: <20220127030949.19396-2-alex.sierra@amd.com>
+References: <20220127030949.19396-1-alex.sierra@amd.com>
+ <20220127030949.19396-2-alex.sierra@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Originating-IP: [10.126.231.35]
+X-ClientProxiedBy: drhqmail201.nvidia.com (10.126.190.180) To
+ rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ce837c85-e76b-46dc-c054-08d9e22b0cb4
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5029:EE_
-X-Microsoft-Antispam-PRVS: <BL1PR12MB50298A6AA2545E7EFB7D6648FB229@BL1PR12MB5029.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2150;
+X-MS-Office365-Filtering-Correlation-Id: e79e3e1a-b0c3-4024-f6f7-08d9e2019486
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3198:EE_
+X-Microsoft-Antispam-PRVS: <MN2PR12MB3198692D2C433CF0A7DB2C95DF229@MN2PR12MB3198.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Z0dYXfcvS8cQpZVBlyv7Nj90WmFu8Z8gublOejJZR3IUk5khWlsS1EW11OYQO/6XVKoXeRv2Miyrgld4UCjkVMfN/n8DKUEFg+w+2QHEK/PUOJ+pxS0P5pi4znoSH0SVpinquO+Y3lopRlKo7rht7/rOHR6RNhC9ezNzmoPUNanDIJZLe0Blu85mQYCuP5Z8bB1fGyt6jWTRw/z2I5CsWUM2GskoZZ8ENLD5ABRhMAVjfH98WVhMnXZOjqg945MDRhYuu3/9/8jnm/o71ExAIBHItawZzR11AU3XZMdgBvT5Oer25/3mjRtoCOUsEEYyZrsNnTblWWqt52heUTsXEUO+4BAeodUD+fYw9aiwsIaZbZfZJ9/Wk6gdMSet5y2DcMzDdI8KYQnPwZzXwa9H6+4Uen5JCR/LTRqV+4cMrZ67lse79Z2ldZ6aKr6pGQJpAErG3im3MuW4wCufDdj/14wJWuPPRWH/ze518EeJtm+BJetErU8el2D9Eqid+hSiV1MTj7SaLiXUj9skdrjN/4Xp1s2rQkyCBCBsa8N6/oxDoI9/R/QAV6szkE2QVHn87/Tkja27KPiYTahZjv6xxqMUWDjX+J+3qwAnvPj1J4HCvi/k++lfjpnlrP6RUG+v0GlnXOQw7pcOwmZgD9ecbteWJoihX81jltcKuuy2wlp9yZFr9zd63io0allTMZM1dSQpYGepHf4xbhG8bYjjvg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(7696005)(6666004)(83380400001)(356005)(81166007)(186003)(2906002)(336012)(70586007)(426003)(2616005)(1076003)(4326008)(16526019)(70206006)(26005)(36860700001)(82310400004)(86362001)(8936002)(508600001)(47076005)(8676002)(54906003)(5660300002)(36756003)(316002)(6916009)(40460700003)(36900700001)(20210929001);
+X-Microsoft-Antispam-Message-Info: I8jXtzz+5p/ohzUIHN3L5W5dzd70hx6TIIeNd6vyAYtGMpXJtsf3jvHS+OFYuYuAjnzrxc4+CdgMhKWcvsPNOWBYXaD3yMF+U27pN4/AGAYmoAypgp19k6BZC5yAuPK2Hx4y43X5r2AH51eBRkfRUqcDxmhUpoC+s7mY6iE69iShNZ82WQmY7TZmhbSYmJ5x+8hlO7MZJ71tRIavtVd3H4KUt2IqXfFvmHR4lAH/K+vjGO7/+awXABZSEu0Pwfk8vzdhw8Fh8W2S9jD2Lj8K9T55eG2dH7AOd0bg9IlF7UbB7Yn06zXsmnZeeOzk3rxIp/yKgdLWqMSd7rRLBjAE5C3qS2nxj5plS38TYDsA5cB3O3bcVZmSnL2bIhzGteNM5LtWHC1AqQBT3HsLrswJ2Y6Ho8nogFc1/Z9SjOymOuhMcYV5FDqhNFdquJfYr9lDDoCzbbNEvUPrXgSP5FS4vsj+DQzHsc/TU8WaIsHgrDUx2xoQ/eaMtxM000DNenIF+NJCTj0K0KXbPzCVhEZ6OFBJoRp5AFFAL9KlKx/28shXQSNkZ8MTbgCz3VzIHDRnrXBtETiWFB5kbq1JEHkYrPQTU4NIxC7NTcQsSc9XRqjw5EwGUOpvIFn6AeJ23rDH6gQ1X+dmxNYubvT2dbFSx/KujUfsy/8zmel+OY9d4BPqsYZtZgFwc7woTWPLtYRDseklYkto9OZAIWUKWEw+IKoDdpcyrYbG+1MxiTzKHrW38w8AE7Y4zxM0zWtrF8C1
+X-Forefront-Antispam-Report: CIP:12.22.5.235; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:mail.nvidia.com; PTR:InfoNoRecords; CAT:NONE;
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(54906003)(82310400004)(110136005)(26005)(47076005)(336012)(426003)(16526019)(83380400001)(186003)(508600001)(86362001)(36860700001)(8936002)(8676002)(4326008)(70206006)(70586007)(9686003)(2906002)(9576002)(40460700003)(33716001)(316002)(356005)(5660300002)(7416002)(81166007)(39026012)(36900700001)(20210929001);
  DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2022 06:54:37.2404 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce837c85-e76b-46dc-c054-08d9e22b0cb4
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT026.eop-nam11.prod.protection.outlook.com
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2022 01:57:46.3103 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e79e3e1a-b0c3-4024-f6f7-08d9e2019486
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[12.22.5.235];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT037.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5029
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3198
+X-Mailman-Approved-At: Fri, 28 Jan 2022 08:53:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,104 +108,107 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Lang Yu <Lang.Yu@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, Huang Rui <ray.huang@amd.com>,
- Christian Koenig <christian.koenig@amd.com>
+Cc: amd-gfx@lists.freedesktop.org, willy@infradead.org, jglisse@redhat.com,
+ dri-devel@lists.freedesktop.org, jgg@nvidia.com, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We observed a GPU hang when querying GMC CG state(i.e.,
-cat amdgpu_pm_info) on cyan skillfish. Acctually, cyan
-skillfish doesn't support any CG features.
+On Thursday, 27 January 2022 2:09:40 PM AEDT Alex Sierra wrote:
 
-Only allow ASICs which support GMC CG features accessing
-related registers. As some ASICs support GMC CG but cg_flags
-are not set. Use GC IP version instead of cg_flags to
-determine whether GMC CG is supported or not.
+[...]
 
-v2:
- - Use a function to encapsulate more functionality.(Christian)
- - Use IP verion to determine whether CG is supported or not.(Lijo)
+> diff --git a/mm/migrate.c b/mm/migrate.c
+> index 1852d787e6ab..277562cd4cf5 100644
+> --- a/mm/migrate.c
+> +++ b/mm/migrate.c
+> @@ -362,7 +362,7 @@ static int expected_page_refs(struct address_space
+> *mapping, struct page *page)> 
+>          * Device private pages have an extra refcount as they are
+>          * ZONE_DEVICE pages.
+>          */
+> 
+> -       expected_count += is_device_private_page(page);
+> +       expected_count += is_dev_private_or_coherent_page(page);
+> 
+>         if (mapping)
+>         
+>                 expected_count += thp_nr_pages(page) +
+>                 page_has_private(page);
+> 
+> @@ -2503,7 +2503,7 @@ static bool migrate_vma_check_page(struct page *page)
+> 
+>                  * FIXME proper solution is to rework migration_entry_wait()
+>                  so
+>                  * it does not need to take a reference on page.
+>                  */
+> 
+> -               return is_device_private_page(page);
+> +               return is_dev_private_or_coherent_page(page);
 
-Signed-off-by: Lang Yu <Lang.Yu@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c | 10 ++++++++++
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h |  1 +
- drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c  |  3 +++
- drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c   |  3 +++
- drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c   |  3 +++
- 5 files changed, 20 insertions(+)
+As Andrew points out this no longer applies due to changes here. I think you
+can just drop this hunk though.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index d426de48d299..be1f03b02af6 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -876,3 +876,13 @@ int amdgpu_gmc_vram_checking(struct amdgpu_device *adev)
- 
- 	return 0;
- }
-+
-+bool amdgpu_gmc_cg_enabled(struct amdgpu_device *adev)
-+{
-+	switch (adev->ip_versions[GC_HWIP][0]) {
-+	case IP_VERSION(10, 1, 3):
-+		return false;
-+	default:
-+		return true;
-+	}
-+}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-index 93505bb0a36c..b916e73c7de1 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.h
-@@ -338,4 +338,5 @@ uint64_t amdgpu_gmc_vram_mc2pa(struct amdgpu_device *adev, uint64_t mc_addr);
- uint64_t amdgpu_gmc_vram_pa(struct amdgpu_device *adev, struct amdgpu_bo *bo);
- uint64_t amdgpu_gmc_vram_cpu_pa(struct amdgpu_device *adev, struct amdgpu_bo *bo);
- int amdgpu_gmc_vram_checking(struct amdgpu_device *adev);
-+bool amdgpu_gmc_cg_enabled(struct amdgpu_device *adev);
- #endif
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-index 73ab0eebe4e2..4e46f618d6c1 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v10_0.c
-@@ -1156,6 +1156,9 @@ static void gmc_v10_0_get_clockgating_state(void *handle, u32 *flags)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
-+	if (!amdgpu_gmc_cg_enabled(adev))
-+		return;
-+
- 	adev->mmhub.funcs->get_clockgating(adev, flags);
- 
- 	if (adev->ip_versions[ATHUB_HWIP][0] >= IP_VERSION(2, 1, 0))
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-index ca9841d5669f..ff9dff2a6cf1 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v8_0.c
-@@ -1695,6 +1695,9 @@ static void gmc_v8_0_get_clockgating_state(void *handle, u32 *flags)
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 	int data;
- 
-+	if (!amdgpu_gmc_cg_enabled(adev))
-+		return;
-+
- 	if (amdgpu_sriov_vf(adev))
- 		*flags = 0;
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-index 4595027a8c63..faf017609dfe 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-@@ -1952,6 +1952,9 @@ static void gmc_v9_0_get_clockgating_state(void *handle, u32 *flags)
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)handle;
- 
-+	if (!amdgpu_gmc_cg_enabled(adev))
-+		return;
-+
- 	adev->mmhub.funcs->get_clockgating(adev, flags);
- 
- 	athub_v1_0_get_clockgating(adev, flags);
--- 
-2.25.1
+[...]
+
+> diff --git a/mm/rmap.c b/mm/rmap.c
+> index 6aebd1747251..32dae6839403 100644
+> --- a/mm/rmap.c
+> +++ b/mm/rmap.c
+> @@ -1823,10 +1823,17 @@ static bool try_to_migrate_one(struct page *page, struct vm_area_struct *vma,
+>  			 * pteval maps a zone device page and is therefore
+>  			 * a swap pte.
+>  			 */
+> -			if (pte_swp_soft_dirty(pteval))
+> -				swp_pte = pte_swp_mksoft_dirty(swp_pte);
+> -			if (pte_swp_uffd_wp(pteval))
+> -				swp_pte = pte_swp_mkuffd_wp(swp_pte);
+> +			if (is_device_coherent_page(page)) {
+> +				if (pte_soft_dirty(pteval))
+> +					swp_pte = pte_swp_mksoft_dirty(swp_pte);
+> +				if (pte_uffd_wp(pteval))
+> +					swp_pte = pte_swp_mkuffd_wp(swp_pte);
+> +			} else {
+> +				if (pte_swp_soft_dirty(pteval))
+> +					swp_pte = pte_swp_mksoft_dirty(swp_pte);
+> +				if (pte_swp_uffd_wp(pteval))
+> +					swp_pte = pte_swp_mkuffd_wp(swp_pte);
+> +			}
+
+As I understand things ptes for device coherent pages don't need special
+treatment, therefore rather than special casing here it should just fall
+through to the same path as normal pages. For that I think all you need is
+something like:
+
+-                if (is_zone_device_page(page)) {
++                if (is_device_private_page(page)) {
+
+Noting that device private pages are the only zone device pages that could
+have been encountered here anyway.
+
+>  			set_pte_at(mm, pvmw.address, pvmw.pte, swp_pte);
+>  			/*
+>  			 * No need to invalidate here it will synchronize on
+> @@ -1837,7 +1844,7 @@ static bool try_to_migrate_one(struct page *page, struct vm_area_struct *vma,
+>  			 * Since only PAGE_SIZE pages can currently be
+>  			 * migrated, just set it to page. This will need to be
+>  			 * changed when hugepage migrations to device private
+> -			 * memory are supported.
+> +			 * or coherent memory are supported.
+>  			 */
+>  			subpage = page;
+>  		} else if (PageHWPoison(page)) {
+> @@ -1943,7 +1950,8 @@ void try_to_migrate(struct page *page, enum ttu_flags flags)
+>  					TTU_SYNC)))
+>  		return;
+>  
+> -	if (is_zone_device_page(page) && !is_device_private_page(page))
+> +	if (is_zone_device_page(page) &&
+> +	    !is_dev_private_or_coherent_page(page))
+>  		return;
+>  
+>  	/*
+> 
+
+
+
 
