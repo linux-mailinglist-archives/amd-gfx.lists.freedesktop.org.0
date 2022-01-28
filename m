@@ -1,66 +1,42 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE7BE49FAF1
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jan 2022 14:39:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9307149FAF3
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jan 2022 14:39:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7794910E6A7;
-	Fri, 28 Jan 2022 13:39:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E999710E703;
+	Fri, 28 Jan 2022 13:39:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
- [IPv6:2a00:1450:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B62BD10E7DB;
- Fri, 28 Jan 2022 09:27:53 +0000 (UTC)
-Received: by mail-wm1-x330.google.com with SMTP id
- i187-20020a1c3bc4000000b0034d2ed1be2aso7730295wma.1; 
- Fri, 28 Jan 2022 01:27:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=CS091XzEzoAHOCH+W/UyduhGkZsqrIdDMgBdSqoCcpo=;
- b=hshMphxIhDJjd8wz/XCTf9sG1j4yjdSB5F3LG3yO0jyaupBJR9xz+YQaV765Y5kH6O
- uz5mgvD8j47gpIVvoRpH7ovVglDn7Ncc66JJVNkLmKAjW71m6FQKOeqWiIh5PNIotr3q
- FAYKNaoDMyGsNNziHp5CYfK1YIxfFbUs2RQGs+1MDDvrKpmbxOejL37g/n8f15zYy9Fd
- St6LLugKQvRb2b4eFPJo5TcbP37FfK8WTVwS3j9WaVCyoW8KyQy23ER0Wzz5Y/AzfpCF
- ST7gQrkd8u5n0EEWQYOUgvMxA855sPAG27WKmmxLZBvoD+T0caZLk0EdPt3F+FGi7EOQ
- 7+Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=CS091XzEzoAHOCH+W/UyduhGkZsqrIdDMgBdSqoCcpo=;
- b=Y1PTTalqYitQzYCJxdl151EmvnxXpCJhz7Vt+QmRJZArEQ+gpUQR+oxBhR1329Od/q
- 3JLZbV3DEqe5Ak0TbNytKaxoLeggGgiYeAP5eTVD8cKq4/KCGlvnDz12H0gZo1/ZXcL9
- Q5GVrsuK8lDtjQ8BF2jw/Zk3FP6TPpzHLE4KranW5xpysEUtqB6/li8L5WivohS0rZ1s
- YlPgt6NHCANtz8h+k1dwI2r7CF/Rg6K4OLuiHYcTvflv+XuLoMYcszs7B5GRtI1rPni2
- M9xJMRbOiPgujjHocmBKuXhN9NUUjeab2d1kNmC+kzCdjX3/KQfOzL6gsGXWmLri4nSm
- 2+Kg==
-X-Gm-Message-State: AOAM532UPU7eKZjVXiebGzrLlbUIPZzdjFMwhVSVajifGswt6W4UGvGa
- UvqnpKo3P7dMKjQUJD+XIIjsFpj5M9I=
-X-Google-Smtp-Source: ABdhPJw8D66rjld6L8qeoS5ngWtmYyTWjMRJEykBje9p8zqY/V3QSAo1ErhTpM6Cu2jVvnr1tT1U9A==
-X-Received: by 2002:a05:600c:6028:: with SMTP id
- az40mr15217262wmb.33.1643362072333; 
- Fri, 28 Jan 2022 01:27:52 -0800 (PST)
-Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
- [80.193.200.194])
- by smtp.gmail.com with ESMTPSA id c8sm1605684wmq.34.2022.01.28.01.27.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 28 Jan 2022 01:27:51 -0800 (PST)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui.Pan@amd.com, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH][next] drm/amdgpu: Fix a couple of spelling mistakes
-Date: Fri, 28 Jan 2022 09:27:51 +0000
-Message-Id: <20220128092751.7679-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.34.1
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CA7010F1A2;
+ Fri, 28 Jan 2022 10:17:52 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by ams.source.kernel.org (Postfix) with ESMTPS id DD1F6B82513;
+ Fri, 28 Jan 2022 10:17:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0B43C340E0;
+ Fri, 28 Jan 2022 10:17:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1643365069;
+ bh=SHk7nsLZVBmrkzHaZ93gwIMjnBT1dr7eQOTPySNEeNY=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=qA460ZBgv/rmRN3I7hCrX4M19ZMSUXuy18zfqE5oMnTvRI0GSUPyb5rqr1U0g+UHc
+ g8/rHG4dnuH8GTUtqoqhQxV8r6BgzXQ6Xm72g4ucdFskh+06vAY2ihaBW7gNxoQL0Z
+ NAWRgT1aTxRB5pMi0e3dYfpG9tU+Nq/cLApeq2TE=
+Date: Fri, 28 Jan 2022 11:17:41 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Zhou Qingyang <zhou1615@umn.edu>
+Subject: Re: [PATCH] drm/amd/display/dc/calcs/dce_calcs: Fix a memleak in
+ calculate_bandwidth()
+Message-ID: <YfPCxX/iiDWUpWjY@kroah.com>
+References: <20220124165552.56106-1-zhou1615@umn.edu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220124165552.56106-1-zhou1615@umn.edu>
 X-Mailman-Approved-At: Fri, 28 Jan 2022 13:39:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,38 +49,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Mario Kleiner <mario.kleiner.de@gmail.com>, Leo Li <sunpeng.li@amd.com>,
+ kjlu@umn.edu, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>, Lee Jones <lee.jones@linaro.org>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-There are two spelling mistakes in dev_err messages. Fix them.
+On Tue, Jan 25, 2022 at 12:55:51AM +0800, Zhou Qingyang wrote:
+> In calculate_bandwidth(), the tag free_sclk and free_yclk are reversed,
+> which could lead to a memory leak of yclk.
+> 
+> Fix this bug by changing the location of free_sclk and free_yclk.
+> 
+> This bug was found by a static analyzer.
+> 
+> Builds with 'make allyesconfig' show no new warnings,
+> and our static analyzer no longer warns about this code.
+> 
+> Fixes: 2be8989d0fc2 ("drm/amd/display/dc/calcs/dce_calcs: Move some large variables from the stack to the heap")
+> Signed-off-by: Zhou Qingyang <zhou1615@umn.edu>
+> ---
+> The analysis employs differential checking to identify inconsistent 
+> security operations (e.g., checks or kfrees) between two code paths 
+> and confirms that the inconsistent operations are not recovered in the
+> current function or the callers, so they constitute bugs. 
+> 
+> Note that, as a bug found by static analysis, it can be a false
+> positive or hard to trigger. Multiple researchers have cross-reviewed
+> the bug.
+> 
+>  drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c b/drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c
+> index ff5bb152ef49..e6ef36de0825 100644
+> --- a/drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c
+> +++ b/drivers/gpu/drm/amd/display/dc/calcs/dce_calcs.c
+> @@ -2033,10 +2033,10 @@ static void calculate_bandwidth(
+>  	kfree(surface_type);
+>  free_tiling_mode:
+>  	kfree(tiling_mode);
+> -free_yclk:
+> -	kfree(yclk);
+>  free_sclk:
+>  	kfree(sclk);
+> +free_yclk:
+> +	kfree(yclk);
+>  }
+>  
+>  /*******************************************************************************
+> -- 
+> 2.25.1
+> 
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-index 80c25176c993..06d3336a1c84 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_virt.c
-@@ -919,14 +919,14 @@ static u32 amdgpu_virt_rlcg_reg_rw(struct amdgpu_device *adev, u32 offset, u32 v
- 						"wrong operation type, rlcg failed to program reg: 0x%05x\n", offset);
- 				} else if (tmp & AMDGPU_RLCG_REG_NOT_IN_RANGE) {
- 					dev_err(adev->dev,
--						"regiser is not in range, rlcg failed to program reg: 0x%05x\n", offset);
-+						"register is not in range, rlcg failed to program reg: 0x%05x\n", offset);
- 				} else {
- 					dev_err(adev->dev,
- 						"unknown error type, rlcg failed to program reg: 0x%05x\n", offset);
- 				}
- 			} else {
- 				dev_err(adev->dev,
--					"timeout: rlcg faled to program reg: 0x%05x\n", offset);
-+					"timeout: rlcg failed to program reg: 0x%05x\n", offset);
- 			}
- 		}
- 	}
--- 
-2.34.1
+As stated before, umn.edu is still not allowed to contribute to the
+Linux kernel.  Please work with your administration to resolve this
+issue.
 
