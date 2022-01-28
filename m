@@ -2,96 +2,86 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE1E14A0196
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jan 2022 21:09:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 417994A0374
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jan 2022 23:21:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA0DA10E2D4;
-	Fri, 28 Jan 2022 20:09:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 379F010E142;
+	Fri, 28 Jan 2022 22:21:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2059.outbound.protection.outlook.com [40.107.244.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6936A10E2D4;
- Fri, 28 Jan 2022 20:09:03 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JqHfakSEk8IjJXrLTYCRBAg6UH8qpoBWsRclBTaFQ+T0aH3Nl6TEwovUEjNYGs1JWOAWWUcm1doDXaSHI1n+3ZvtZE59yfNa/LmhzWXeV1Wyq3zRWawSbjSkjI74Q4pP+sCe8l8e8C7/XpD6xnVCf2/c+U0gGWI8FZHsz1vzJqFABy/xN1D2uUZBlp3zIv9rhuDbbhk1mnOlqlVayRmSZaWsp+x+zPg62o/12BuIwtuELoP44fXnC3/jMF2Ln7Y2m7R7CfmsJN7cXX2FEDRdYWnlParWU0t1qh7uU2MkwvytJWBjmnrXLP8ThQyW50ToEVnDDVzwAv8k+letIwIs0Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UDL5uDl4x5PP58sGfZzqW2twsdvQmLh/V7W17HRkHFY=;
- b=M5u9mEOdUp7uJyDWY6jQlU70KN97ikPRgQKY6ohVN4pYbXrDkoYY5CJG9nbaS1A6DGOPrDZWrDGEWiiWEBaVDEQReLsXRztJVoYoojUCW1awwzXOngXbiROd5vahr7NbgYKfQOtUYjuYVM0xTunnOQUQ7j36p8tsXYfsBLlfq0mm54O+LtTuqd/zp40OkQx+qfK5w73Q14Xr2nhJ41oHBlCo+fk6P/BTJ//g1pVc7WK9aw6XfmHcH0Ol8/gfLeVNiHo9K5FqvKuWji62kA+11/BGeEwr0UI7hftXAwFpqC9IdzWdk2Tyywm+nnfwnSLIADl3uDDRBcdmrkDcAxO+Og==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linux-foundation.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UDL5uDl4x5PP58sGfZzqW2twsdvQmLh/V7W17HRkHFY=;
- b=MOjVPJNDv/1rC80k8EYaeqVaWOQrU8EMx3CxDSajQ+0tI3aVTTvVVnIwIMO0zEd1KiZdKU32d7WCuv2+Y5H3oCUuX5iuxolpBpJ7On8TEaHeG7frBuBfYp8GOd2CBjI8+/MGzPq8KA9S/dlWlqANmX4M9H9I4t9NjrXkXvvLxF0=
-Received: from MWHPR19CA0056.namprd19.prod.outlook.com (2603:10b6:300:94::18)
- by BN6PR1201MB0052.namprd12.prod.outlook.com (2603:10b6:405:53::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.17; Fri, 28 Jan
- 2022 20:09:00 +0000
-Received: from CO1NAM11FT022.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:94:cafe::e) by MWHPR19CA0056.outlook.office365.com
- (2603:10b6:300:94::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.18 via Frontend
- Transport; Fri, 28 Jan 2022 20:09:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT022.mail.protection.outlook.com (10.13.175.199) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4930.15 via Frontend Transport; Fri, 28 Jan 2022 20:09:00 +0000
-Received: from alex-MS-7B09.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 28 Jan
- 2022 14:08:57 -0600
-From: Alex Sierra <alex.sierra@amd.com>
-To: <akpm@linux-foundation.org>, <Felix.Kuehling@amd.com>,
- <linux-mm@kvack.org>, <rcampbell@nvidia.com>, <linux-ext4@vger.kernel.org>,
- <linux-xfs@vger.kernel.org>
-Subject: [PATCH v5 10/10] tools: update test_hmm script to support SP config
-Date: Fri, 28 Jan 2022 14:08:25 -0600
-Message-ID: <20220128200825.8623-11-alex.sierra@amd.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220128200825.8623-1-alex.sierra@amd.com>
-References: <20220128200825.8623-1-alex.sierra@amd.com>
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
+ [IPv6:2a00:1450:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EA5F10E153
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 22:21:31 +0000 (UTC)
+Received: by mail-wr1-x434.google.com with SMTP id u15so13477433wrt.3
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 14:21:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=O6jBj3yE34tMPyiH8WiT/7pfKWSenbjdGRkVHMIkNtk=;
+ b=PohzoxAm5ukiTZAjB9mAUKVzFJchHbX8tH+Fsk66VWOGNBYvMDA0AXcXO0XsHJ8CF9
+ Zj4I3iz26pHmBbmhCBUD/TZxU4C0BRhS6KCNrvW9agZJ3PwDqNdkxU2k3Il24JgqprCh
+ Ph8Qb1t2tbjjSOyZYNafXvV38P1nxntJ6iU4M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=O6jBj3yE34tMPyiH8WiT/7pfKWSenbjdGRkVHMIkNtk=;
+ b=HU7epIaWPNPTExKtwGK5Z3yazv78V4l1o3pSAu0yMb7F/tY2lAOpZcJ7DywgH0CCTu
+ b0mENoe6bbmJUKgVJyjou0Vlg5r7Sy+a/eZsiK+QwJYSgiCU7y6Sa75BavD/gdnZE0pO
+ VNsbrqHBRNLTX4Vi7/ArC3m5dIfdxbk1AyD7qRWYtu3r/YQ+KzyOZnRzPZacuul/g0C1
+ eZrkQxh0bIHHModSMCJ/Y/bzwEH+8WIxlIb+gtSfqmE3obYHvmRLgsYICZEUTsSt46x+
+ 1COj0c5PsjPoO9E3FIPTDgfK4QqW4jQ60k84wf1pgPnxNTAxr7Tbi0HyF7+XUWvHOMVd
+ sy5A==
+X-Gm-Message-State: AOAM530ag8kr/ypmwdKp/tW6tzJWziHlowNgjiRQS/50VTJXgfICJncW
+ LBvR5YNZJ+K7yZro4pGtv8qVsA==
+X-Google-Smtp-Source: ABdhPJyYnfwW4GpvwtYzDjoWM0WpzW/oIzI4gBHD+DV56yWwd0aJbs6KPAlXKyagq/4wkTOCQATqpQ==
+X-Received: by 2002:adf:ed42:: with SMTP id u2mr8475552wro.57.1643408489814;
+ Fri, 28 Jan 2022 14:21:29 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id f20sm3531608wmg.2.2022.01.28.14.21.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 28 Jan 2022 14:21:29 -0800 (PST)
+Date: Fri, 28 Jan 2022 23:21:26 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Tomohito Esaki <etom@igel.co.jp>
+Subject: Re: [RFC PATCH v6 0/3] Add support modifiers for drivers whose
+ planes only support linear layout
+Message-ID: <YfRsZhMW1dS3EAxa@phenom.ffwll.local>
+Mail-Followup-To: Tomohito Esaki <etom@igel.co.jp>,
+ dri-devel@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Ben Skeggs <bskeggs@redhat.com>,
+ Michel =?iso-8859-1?Q?D=E4nzer?= <mdaenzer@redhat.com>,
+ Simon Ser <contact@emersion.fr>,
+ Qingqing Zhuo <qingqing.zhuo@amd.com>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Mark Yacoub <markyacoub@chromium.org>,
+ Sean Paul <seanpaul@chromium.org>, Evan Quan <evan.quan@amd.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Petr Mladek <pmladek@suse.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Lee Jones <lee.jones@linaro.org>,
+ Abhinav Kumar <abhinavk@codeaurora.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Rob Clark <robdclark@chromium.org>, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ Daniel Stone <daniel@fooishbar.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Damian Hobson-Garcia <dhobsong@igel.co.jp>,
+ Takanari Hayama <taki@igel.co.jp>
+References: <20220128060836.11216-1-etom@igel.co.jp>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 97e7f67c-55c6-4862-ef65-08d9e29a061f
-X-MS-TrafficTypeDiagnostic: BN6PR1201MB0052:EE_
-X-Microsoft-Antispam-PRVS: <BN6PR1201MB0052C37B1057A25B41E02593FD229@BN6PR1201MB0052.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +2T5nh34ioIxjN87a9q8gddyNeIcdDx9U/Ql5pQJrbHYFgng3tLzmVTuZ2Oas4JX4+F2mwwWPEGC1TheIQ37BAWEQN0ZN3rdb4jYaAlkZ5eXuR/vWsHXXNmAkEeX3YKH1RU2UVTjX5/4wiCDbgSiIh88812Fw5ji5NfoeAFIsPPqdxGcA9Ld7TwAkiFZjCmFWdo2qp7htmukxC+8L7C/QHKf3mTu4EBuihfFlILsHuWURgdcCWnSUXvlvuosrwaADDqbB1h/U+a00MMLxdITkKi2yhb5myfjY9dJdtso1GdnkTweiUJA4Q6dw7jfyn26BYpfgxWl8YQkOHEFQkaAYAd8W09GWDjolynON4T+PCwG5/qNccQQ1vAp+hQne0ednJ/vznCL1YcxmrOubFQLpw79TiEmcCMO+HRRAL/dumPS6iMdoRAMP7LkAiPh4t3xdo4XuOMCU6xA1YPI+eB1Ss84I6U2FilvJ0juFcjsOIQ2n+U9cp62GnhKnK1pzcUWEoYpAvc3uCU2cBnMMPoJNX8ObS/USD+1Ikp1lYhIi914//s0UN4jSx1UvcA5iRH5rM1C8SM2iUrG0DBTCehrz/7+QGlyUB7kIRZ6+eJcH62z8G4azrD9wahKhmLFzH9AOP7vEwUbjIMK5nVkcrOjewaUO3bcmELaFP04hivBxgCjtglGKZm82mJIIBYoS8MpmxRJloz709WZzIr8ZHWQWw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(1076003)(82310400004)(86362001)(186003)(16526019)(2616005)(26005)(70206006)(6666004)(356005)(40460700003)(8676002)(36860700001)(54906003)(508600001)(4326008)(47076005)(316002)(8936002)(70586007)(110136005)(44832011)(336012)(83380400001)(36756003)(7696005)(426003)(81166007)(2906002)(5660300002)(7416002)(36900700001)(20210929001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2022 20:09:00.3514 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 97e7f67c-55c6-4862-ef65-08d9e29a061f
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT022.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1201MB0052
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220128060836.11216-1-etom@igel.co.jp>
+X-Operating-System: Linux phenom 5.10.0-8-amd64 
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,88 +93,119 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: willy@infradead.org, apopple@nvidia.com, dri-devel@lists.freedesktop.org,
- jglisse@redhat.com, amd-gfx@lists.freedesktop.org, jgg@nvidia.com, hch@lst.de
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,
+ Michel =?iso-8859-1?Q?D=E4nzer?= <mdaenzer@redhat.com>,
+ Daniel Stone <daniel@fooishbar.org>, Lee Jones <lee.jones@linaro.org>,
+ Rob Clark <robdclark@chromium.org>, Evan Quan <evan.quan@amd.com>,
+ amd-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>,
+ Petr Mladek <pmladek@suse.com>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Bas Nieuwenhuizen <bas@basnieuwenhuizen.nl>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Abhinav Kumar <abhinavk@codeaurora.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Takanari Hayama <taki@igel.co.jp>, Sean Paul <seanpaul@chromium.org>,
+ Maxime Ripard <mripard@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mark Yacoub <markyacoub@chromium.org>, Qingqing Zhuo <qingqing.zhuo@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, linux-kernel@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simon Ser <contact@emersion.fr>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Damian Hobson-Garcia <dhobsong@igel.co.jp>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Add two more parameters to set spm_addr_dev0 & spm_addr_dev1
-addresses. These two parameters configure the start SP
-addresses for each device in test_hmm driver.
-Consequently, this configures zone device type as coherent.
+On Fri, Jan 28, 2022 at 03:08:33PM +0900, Tomohito Esaki wrote:
+> Some drivers whose planes only support linear layout fb do not support format
+> modifiers.
+> These drivers should support modifiers, however the DRM core should handle this
+> rather than open-coding in every driver.
+> 
+> In this patch series, these drivers expose format modifiers based on the
+> following suggestion[1].
+> 
+> On Thu, Nov 18, 2021 at 01:02:11PM +0000, Daniel Stone wrote:
+> > I think the best way forward here is:
+> >   - add a new mode_config.cannot_support_modifiers flag, and enable
+> > this in radeon (plus any other drivers in the same boat)
+> >   - change drm_universal_plane_init() to advertise the LINEAR modifier
+> > when NULL is passed as the modifier list (including installing a
+> > default .format_mod_supported hook)
+> >   - remove the mode_config.allow_fb_modifiers hook and always
+> > advertise modifier support, unless
+> > mode_config.cannot_support_modifiers is set
+> 
+> 
+> [1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20190509054518.10781-1-etom@igel.co.jp/#24602575
+> 
+> v6:
+> * add Reviewed-by and Acked-by
+> * add a changelog per-patch
 
-Signed-off-by: Alex Sierra <alex.sierra@amd.com>
-Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
-Reviewed-by: Alistair Popple <apopple@nvidia.com>
----
-v2:
-Add more mknods for device coherent type. These are represented under
-/dev/hmm_mirror2 and /dev/hmm_mirror3, only in case they have created
-at probing the hmm-test driver.
----
- tools/testing/selftests/vm/test_hmm.sh | 24 +++++++++++++++++++++---
- 1 file changed, 21 insertions(+), 3 deletions(-)
+Thanks for resending with all that added, makes my life so much easier!
 
-diff --git a/tools/testing/selftests/vm/test_hmm.sh b/tools/testing/selftests/vm/test_hmm.sh
-index 0647b525a625..539c9371e592 100755
---- a/tools/testing/selftests/vm/test_hmm.sh
-+++ b/tools/testing/selftests/vm/test_hmm.sh
-@@ -40,11 +40,26 @@ check_test_requirements()
- 
- load_driver()
- {
--	modprobe $DRIVER > /dev/null 2>&1
-+	if [ $# -eq 0 ]; then
-+		modprobe $DRIVER > /dev/null 2>&1
-+	else
-+		if [ $# -eq 2 ]; then
-+			modprobe $DRIVER spm_addr_dev0=$1 spm_addr_dev1=$2
-+				> /dev/null 2>&1
-+		else
-+			echo "Missing module parameters. Make sure pass"\
-+			"spm_addr_dev0 and spm_addr_dev1"
-+			usage
-+		fi
-+	fi
- 	if [ $? == 0 ]; then
- 		major=$(awk "\$2==\"HMM_DMIRROR\" {print \$1}" /proc/devices)
- 		mknod /dev/hmm_dmirror0 c $major 0
- 		mknod /dev/hmm_dmirror1 c $major 1
-+		if [ $# -eq 2 ]; then
-+			mknod /dev/hmm_dmirror2 c $major 2
-+			mknod /dev/hmm_dmirror3 c $major 3
-+		fi
- 	fi
- }
- 
-@@ -58,7 +73,7 @@ run_smoke()
- {
- 	echo "Running smoke test. Note, this test provides basic coverage."
- 
--	load_driver
-+	load_driver $1 $2
- 	$(dirname "${BASH_SOURCE[0]}")/hmm-tests
- 	unload_driver
- }
-@@ -75,6 +90,9 @@ usage()
- 	echo "# Smoke testing"
- 	echo "./${TEST_NAME}.sh smoke"
- 	echo
-+	echo "# Smoke testing with SPM enabled"
-+	echo "./${TEST_NAME}.sh smoke <spm_addr_dev0> <spm_addr_dev1>"
-+	echo
- 	exit 0
- }
- 
-@@ -84,7 +102,7 @@ function run_test()
- 		usage
- 	else
- 		if [ "$1" = "smoke" ]; then
--			run_smoke
-+			run_smoke $2 $3
- 		else
- 			usage
- 		fi
+All applied, thanks a bunch.
+
+Cheers, Daniel
+
+> 
+> v5: https://www.spinics.net/lists/dri-devel/msg330860.html
+> * rebase to the latest master branch (5.17-rc1+)
+> 	+ "drm/plane: Make format_mod_supported truly optional" patch [2]
+>   [2] https://patchwork.freedesktop.org/patch/467940/?series=98255&rev=3
+> 
+> * change default_modifiers array from non-static to static
+> * remove terminator in default_modifiers array
+> * use ARRAY_SIZE to get the format_modifier_count
+> * keep a sanity check in plane init func
+> * modify several kerneldocs
+> 
+> v4: https://www.spinics.net/lists/dri-devel/msg329508.html
+> * modify documentation for fb_modifiers_not_supported flag in kerneldoc
+> 
+> v3: https://www.spinics.net/lists/dri-devel/msg329102.html
+> * change the order as follows:
+>    1. add fb_modifiers_not_supported flag
+>    2. add default modifiers
+>    3. remove allow_fb_modifiers flag
+> * add a conditional disable in amdgpu_dm_plane_init()
+> 
+> v2: https://www.spinics.net/lists/dri-devel/msg328939.html
+> * rebase to the latest master branch (5.16.0+)
+>       + "drm/plane: Make format_mod_supported truly optional" patch [2]
+> 
+> v1: https://www.spinics.net/lists/dri-devel/msg327352.html
+> * The initial patch set
+> 
+> Tomohito Esaki (3):
+>   drm: introduce fb_modifiers_not_supported flag in mode_config
+>   drm: add support modifiers for drivers whose planes only support
+>     linear layout
+>   drm: remove allow_fb_modifiers
+> 
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   |  6 ++---
+>  drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        |  2 ++
+>  drivers/gpu/drm/amd/amdgpu/dce_v11_0.c        |  2 ++
+>  drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         |  1 +
+>  drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         |  2 ++
+>  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  3 +++
+>  drivers/gpu/drm/drm_framebuffer.c             |  6 ++---
+>  drivers/gpu/drm/drm_ioctl.c                   |  2 +-
+>  drivers/gpu/drm/drm_plane.c                   | 23 +++++++++++--------
+>  drivers/gpu/drm/nouveau/nouveau_display.c     |  6 +++--
+>  drivers/gpu/drm/radeon/radeon_display.c       |  2 ++
+>  .../gpu/drm/selftests/test-drm_framebuffer.c  |  1 -
+>  include/drm/drm_mode_config.h                 | 18 +++++----------
+>  include/drm/drm_plane.h                       |  3 +++
+>  14 files changed, 45 insertions(+), 32 deletions(-)
+> 
+> -- 
+> 2.25.1
+> 
+
 -- 
-2.32.0
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
