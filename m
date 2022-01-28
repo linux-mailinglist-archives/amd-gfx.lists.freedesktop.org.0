@@ -1,122 +1,96 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6409C49FAF0
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jan 2022 14:39:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EF1C49FAF2
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jan 2022 14:39:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 815CB10E6BA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E83810E6BF;
 	Fri, 28 Jan 2022 13:39:03 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1anam02on2064.outbound.protection.outlook.com [40.107.96.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 424E510E17D
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 11:24:56 +0000 (UTC)
+Received: from IND01-MA1-obe.outbound.protection.outlook.com
+ (mail-ma1ind01olkn0152.outbound.protection.outlook.com [104.47.100.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63B3810E348
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 13:07:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MlTWQjPbiRYnxOM7jK9wCIfjOtT8odU4RAgwlo+CgrgwBvPev2ZW5vcJXUP8WIgWLRiygmY2i1PdqM0nORhalbCFnJIVf3gUjjxPkEmlg2IDsdOpqJ0nMMa8tfmFlDo+Jxi2vuZU06GE/nsxkvipNOtpMc0Gvqyx+tHzHieaPk1bnkJ8RQAu4TRQm1IcsrqjL7HbZYJpWTgq8Uqf+CNAQ1+xWewZhk/rc8XQI8Zuc4Siryhr6yr+u6fKvFULcAiLEOfOg2OIERby5793g42DW+CyBi8fU7uqzVTRZeGRokfZWPuVLNJp0rd0YNaQzhlIq+NEbLEiqT/9obdm+dsLQw==
+ b=Z4FQmP2iYMfmj1yPuYKbKkxocykd3k97tH4tB1cjaWGnOZiQBCg787+k1sOORXKao9pSOpf9oP3MPKoNRbMy0MRAW16WCcAja+I2HS0Ou9MYaFRoooG2AjzxpU5x1lKOPd5kzmm0ZgCpnd8+zP7wvhH311iWZPI3jlynttSaVLds3Uw1wz9W2t9Gj7Rn2oi4p9fwGJAVwDwz9LxQBdnrCico8DxYg/1QGJ3FOc1lOvR8h8patoVjWIWLBCwOteVGy/dIXst3qccfu+Y9YE0TC4C4sYhkyr1xHkWnVA6gxQQjKqPm98Rvj9gYuHLnz8FhZHpsIE5cWioySo8neWio+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=737aIJfJTE6qeUcwYKz8utTHujdowyNxJ9wFEQI590g=;
- b=bwvU7S8+CnlYUDoTw7Y7GVLMvYY2u3jibtVfNScDWp8HzvAPs/Jxf9EMUuqX2dR+DdQdfqY3Jc7hpmq61lTFggWVwvxU3EQQmdtXaRPVviSevf/q1+FdCxWizZi8FgSzUtEPArDlJqceR8SffwwLjDTjvJQiKVJ1r9RpP3QNlYuYSijs/PPcFqCUK7Zv+2FupK74UmrkntsvYaXJVoqi1fXkXNZZfQlxL7l6SlmcyP+zQe5IbtWTz5P50Jda7TnnMHNQxIT8Bv/EBBBLATXqEPwUCBh7Mmuk4IEekqFI5tWkc3IfMaVEHQ9DOqJXP3OlSrvaY/V1gqS6zPQrL2xd3g==
+ bh=A2ZExjoW34sgF/TwvBqBC44+D3GoC6RmkMLsG70b6gI=;
+ b=CUgEC9qxcLT1Ifbj3n1XA4cOi/h5wRtVeR+Q6RWWS0A88i7aw0UToZwf5hGazcAwWBXs1GSW+FcpnGNfU08EWW1lhwxiCUJwtoZvoxLHMjgZb1P+eowbKhscjmnB27Fe8rfCzzvLAG1+FUl536eBM7lwCOWGuXI110FOHgTVyo7NGkt86AFhBO3udqkTX8fWrWlOzKwdVkXySf1CLbYsSXZ1EEZCXPleEWQalSFtWeLvN5KTnEQtUYAbl571WNSRDX5u7pit71CP2w7e3oZ8HE/wkPskxqHN7L8rGIjtqpk2E8+j/IljebQZs1t696kOqr9moPIbouC7NUaklGUmVw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=737aIJfJTE6qeUcwYKz8utTHujdowyNxJ9wFEQI590g=;
- b=wqmMmXEokcb2Y1Wwfib4VfErhEWvSLjYy9Bbu0qosw3TB/eMoc/wF75VyAomsXG9gq0EV/T+OUS7o1zQSoSvJwevivAOfftiylNIZVrOW/QyVWDAsnenLt2yBw10TuRrCQanuPcWpEzgHI/rAHszbv5GIzBUDi3oA5pEmEXMPFM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN6PR12MB1620.namprd12.prod.outlook.com (2603:10b6:405:10::23)
- by DM6PR12MB4880.namprd12.prod.outlook.com (2603:10b6:5:1bc::10) with
+ bh=A2ZExjoW34sgF/TwvBqBC44+D3GoC6RmkMLsG70b6gI=;
+ b=mrYIxsyJRN9M7IiKf3gbZwEQuo65VnR0TDpuN0tgx/4yTUa/jKsXLDAo4+kjlEU3yOfClRhc/Qw9JzcyK7iCQcxA+j4p2vs3JDXftPBaPJKveXtguMe2rvEeoeKNfjPILldxDHRlX2DdAdf/Zt758nq+f3eEOF31TvHVYatIZ7pO7SVWW57fsIi6SCC388dsvXdj4EctBenTng6dQOfdrEJbe/JUrVYOUcwG7bTmxbbbkt5IZPTYN1e4AW7A6+MO6/PACeVG9SJw6YRAWvFIqQEgMMEa7se/JsjNwHuh7EfgDbP04WvK1ul+7uUbkPci9Rnl09TDORVqBAVtejQIKg==
+Received: from PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:1b::13)
+ by MA1PR01MB0922.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:4::8) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.17; Fri, 28 Jan
- 2022 11:24:50 +0000
-Received: from BN6PR12MB1620.namprd12.prod.outlook.com
- ([fe80::6499:5a88:7dff:9978]) by BN6PR12MB1620.namprd12.prod.outlook.com
- ([fe80::6499:5a88:7dff:9978%9]) with mapi id 15.20.4909.019; Fri, 28 Jan 2022
- 11:24:50 +0000
-Message-ID: <39f5276c-deec-82f3-ffb6-135a84a6fcb3@amd.com>
-Date: Fri, 28 Jan 2022 19:24:41 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH RESEND] drm/amdgpu: Remove the vega10 from ras support list
+ 2022 13:06:53 +0000
+Received: from PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::d19b:7cd1:3760:b055]) by PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::d19b:7cd1:3760:b055%9]) with mapi id 15.20.4930.018; Fri, 28 Jan 2022
+ 13:06:53 +0000
+From: Aditya Garg <gargaditya08@live.com>
+To: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH RESEND] drm/amd/display: Force link_rate as LINK_RATE_RBR2
+ for 2018 15" Apple Retina panels
+Thread-Topic: [PATCH RESEND] drm/amd/display: Force link_rate as
+ LINK_RATE_RBR2 for 2018 15" Apple Retina panels
+Thread-Index: AQHYEqhR1816ln+3EEa6OAaxWUF3K6x3I2yAgAFHGAA=
+Date: Fri, 28 Jan 2022 13:06:52 +0000
+Message-ID: <58B7B0D4-BA3B-43EA-9F54-06CCEB7EF833@live.com>
+References: <139A7689-463E-4AD9-A2D1-A9969C3958D0@live.com>
+ <CADnq5_OLpgEJjpN5y9b3gNwCmvdfNTA=puUv8UjOCDH96JgvOQ@mail.gmail.com>
+In-Reply-To: <CADnq5_OLpgEJjpN5y9b3gNwCmvdfNTA=puUv8UjOCDH96JgvOQ@mail.gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: "Chen, Guchun" <Guchun.Chen@amd.com>, "Ma, Jun" <Jun.Ma2@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- brahma_sw_dev <brahma_sw_dev@amd.com>
-References: <20220127114718.836592-1-majun@amd.com>
- <DM5PR12MB2469CE0861450AA73623FA1DF1219@DM5PR12MB2469.namprd12.prod.outlook.com>
-From: "Ma, Jun" <majun@amd.com>
-In-Reply-To: <DM5PR12MB2469CE0861450AA73623FA1DF1219@DM5PR12MB2469.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: HK2PR02CA0187.apcprd02.prod.outlook.com
- (2603:1096:201:21::23) To BN6PR12MB1620.namprd12.prod.outlook.com
- (2603:10b6:405:10::23)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [eidEl9RmdL3hF4WaWmS5ZbBbI6BJsScK1fPFEI3gPFZumzP9MSFT70y+cB2vipVPPWHxl++SRzo=]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 44ddf1d0-f382-4aee-ed9c-08d9e25f0de0
+x-ms-traffictypediagnostic: MA1PR01MB0922:EE_
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: zSnDS0aYGFfuawS+aNDo3MFcEsfQrrsGRu5ZO3ndrYJVYGux2EndxcCGo5uBt0iOP4my38VWfYq94YvqhjAwe8a+P73KcfK+aleevQNh0F54HKcVpD75qHzfUcTdnN6tEF3AhY2CP4z7TQK6XMH74g+iLrWTwO4n8vkSvaG5pOFnzGIm5/UwpOdEYeZaqMC4Hd67OpU/fcrtlPqgHiWk0CaQy7wCQ0O9dUS4LkVBCIUO4oFfZSI7qNLX8QPXbC1TBFR/ZPqt0Y+HHk2snFoJfhA58HfIRVbWcWVr6/ufMHG0HQcR0klj9Ky8NFsD0vtqFowZqKK8twwxO1a0+7JaQdLqRtR8Xq7GDhccYdpn6D+35PMuRBgP+Hw8KFFxNx0k93LouH9vqnGjtPHiDzqfupzcT3ZRQ1aMFTNRIFpwVaXbupGEmDkfJ081itrCLi0PKsEnbO0xFaSd1EbbcAMcByNhWq+oWBgB+Cm1nDzXWu3NkYMWLEj5bsdZ5K4UcId05umIaR+h9YQKlj5Hyr+f/7WENwK8Djfa5pW8NkkLW+9YgYU7txnpUzMMLhC6Gc9MWcvVP2FhojOaDqC9DIbNEQ==
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?wklw1xV6g/pJ/4sw27E5i/OBESb1TVqI7c30C/ETRZfXWOjWh2C2U3imCbXa?=
+ =?us-ascii?Q?jS92etS7L2NGc6r4PamXpTxT6eMgzTNEsu2O2D2nhZ1ify9cTphEyzcGTv8/?=
+ =?us-ascii?Q?j7gZRqRSMTHwFGQaS/Om7ze7fdOgprdyPm6Gt9Xlt3lj/ifIE06hksBmOANn?=
+ =?us-ascii?Q?NTvGHnUd3MXuO26rKCC7PNoI8eS+lLc1XsF2GY5Mm8dqeqO4AqOdANiYPcES?=
+ =?us-ascii?Q?BYn1DJepIcjM+Amz5VOnvlApMml8POnj1F2inmFWt/31cP71f6OwFCa/arQN?=
+ =?us-ascii?Q?yFwuHUFaGs4adaRy4fuWM3crn417wCSNINrRJXePQZZyZYu92fv+JhrR5Og6?=
+ =?us-ascii?Q?M3P4voiAIScMB6lCqX4G7Y4JQAJGJi1AhcUlXCZKT8Vo4We1VFAh/6e9Mwgb?=
+ =?us-ascii?Q?R+k1cyE8gvZPfL14PFhi2447ouVvAGDJbv8P8/34L4De5nogGVVo15VE+DT8?=
+ =?us-ascii?Q?PdM4fFFg/exOgmhajPzksbtnvQqdlikpiu+wPCrfCmiG/ulUgzOyW5cjNRKU?=
+ =?us-ascii?Q?FIz+m/aivQAjyuUfB5R2Fk07a2V/IY7KW33qBAR89rIB8qzhsbFvTlFyGqXk?=
+ =?us-ascii?Q?++oaUwIXe+bM9UUpkxSMowCoAugJHaODfp+9KrtViTFFSgwwWDy5mPVpwnC1?=
+ =?us-ascii?Q?JwswC7KqpVoxPnYND58tVHZxvafNpyEmjOmnRgn6gWEkWcZgPtEoOwF0loBD?=
+ =?us-ascii?Q?VNbeoJhPj18GWC1+MJP2pA+u8rY7wOXaQA/Py7ygdJqbDw2R0RNFiZbBPHrp?=
+ =?us-ascii?Q?dO/RdTa4jQQBi4M0FE523q43SXZYE6cP04EVyuRZx/yypbhVxhUTsOxmX87R?=
+ =?us-ascii?Q?/x7W5EqECaYwdOkPm1LHv8hRK6mbMaoFFX1fQn+41vMMiwJKC+lDutTi9INN?=
+ =?us-ascii?Q?VNfXUVEGNAn0nH4QMbykF0TvRLJrKXQcKHR2Sr0Li8i6lkKeHR+PCSzEzvg6?=
+ =?us-ascii?Q?4/K6ivo8gp9wVrHWHHW78ieeFy3sjSudinTHggyReQwBJHtubb9l1uNvJ1fA?=
+ =?us-ascii?Q?sRvAthKQkZlGK2GOQA2aVscm/g2ZdH9U6IKOlPmDsq8GZdU=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <80DD295AF16D9242B3A66CE4F8990ABC@INDPRD01.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8373efc3-38a8-4dae-0be2-08d9e250cbec
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4880:EE_
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4880E76C41A561BDDCA250FEBC229@DM6PR12MB4880.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: t+H0a7rrFKBwgESOlr03nUWBoxyUjBsqzsW1A7F50JGj9mp9upxqEREwOcRAVOoMJCQCtXQwaQBaJPMxcyGWqltSoYK3yFKeeI68uaBK3/Q5bfF9mK9muOfYXYrIX9Gh9aQp8Pce4TcAR/K9yN8QJU3pFhJqzVt5r+7RNqQg9JOXu6jDL27JH9IiY621W5MMI3mIzPORvQgD3zzqIAHKzOME83/8IGPFtrAiNqC2LhkSqHTScgbokJafpoLJ76TiMrI5dTD4UQ6zV59hCYO0b1IIG8F2dK8BnggSknBSxxC5RiKALJz8M+m4h1svcnjRzLOOlVBYOAoPQjCXma2/k1AdSqhGE4NUUwxUlhZR7gOLf1o/+6wd3v8LyBT+5OiDQ026gFc2E4ppETj6DcIv8OT2sVf5+H0M05DwMl1UUp3gMUsz8RMObwEoobAbk85AgmwHrP3fkvuuAGnEJbxaVVwbK8rkPaA0MXi3oOz+iKsFf17SXVkdf9lDNFlLGw1I8LXmk25Ioi3ILzjTiXtE9kRxSbfjIFomliBCdEMJqSt1fWi2elwSO+zlzdllDC8qi0uPfP3vWZ2vZDcsTx/dXcEeUbhnHEvCbZJbWXhuCuJxeXHj3AX22oujIjHwpVTmruhh9qbMPPnISM/S9XOnDjCXJBef3ux6mIfblZo3+U81Vj5+wciGiML1c3ZWp8mukunOTZLjAA5EyB/0OEpCMVW5lPKv9vtM6kn52kb7ppo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN6PR12MB1620.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(6506007)(110136005)(6636002)(6666004)(508600001)(54906003)(31696002)(6486002)(2616005)(66946007)(53546011)(83380400001)(26005)(8936002)(316002)(36756003)(66556008)(38100700002)(31686004)(2906002)(186003)(6512007)(4326008)(8676002)(5660300002)(66476007)(45980500001)(43740500002)(20210929001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?THdmTE5yd0tRTDlZSXZ6SFdBcDNlS2RKQkxjUUV4L1JVa1g5bmNuUk1HdUxv?=
- =?utf-8?B?VnVhdnNIdHlJNVM4S20xRGlnWTNGRTR3VExaWUM0RDhyd3NRK0RhbEZheDJa?=
- =?utf-8?B?dGh6MFpNRHBHdll4cjZRUVRHQklUaVZZdkdLM01hblZ1REhkMjlRWGl4dTBR?=
- =?utf-8?B?Z2RBWlVVMXRMRjFoZHdkMEg1c2JmcnVFZ1FacUt0UmU3MC9vMUFWMDYvcTJD?=
- =?utf-8?B?dTVEU1J6ZStmbFFNdFpBU2ZIUXQxY3pmelFqcEt4eVArSjJCNmdmWWF6RU0r?=
- =?utf-8?B?VGwydEJ6RGhDdmI0UHZhUUdiNzQxK0paekljenZPckZJY3V0NGRXbDM4eWo3?=
- =?utf-8?B?NXBVWkF5ZzVUODArQ1gydVRUSzdoNXdHU3hCRkxkVTdqZ2xwaTY1Rm5RV01J?=
- =?utf-8?B?R1FrZU1LUUtkN0tGOGIwbzNmTlB6dFB1YS8va3huRldaRFRMbkhuT05RRDRv?=
- =?utf-8?B?anVyRkZQeFlDOGpOQVNSN2V0cmpmVitIZTR6YkF1TVIvcUlaK2oyYndPMzAr?=
- =?utf-8?B?UnhRM1BOTDlkeXNtclVRcitvNUFEK0VubzJrUXZvSUcwL3hHTy9RMW5CSmh0?=
- =?utf-8?B?U3FhT2FOSXNCMEJERU1TbmNxR1BOYmdXb21FbGRwdFRsQThmVjhBS3A3cXBx?=
- =?utf-8?B?aFY4Lzk2UERlTXlZa1preG9tSXdMWVZ1MlV4TjdXbHdmT09KeldYSHFCSEU1?=
- =?utf-8?B?ckpyMy8vVmh4Z3MyQzZvcFN2VThJQ0ttVitkR1FRSldCVEhPUDVYQWw1bHZt?=
- =?utf-8?B?d1F2TlNLUnNvR0hiaFkxTDhyNVl0cnA4eWMwUFZOVmRGbDZhVzdvL2doamg2?=
- =?utf-8?B?bGZydzlBYVNoZW1qeFppcGU5Z3VGR3FFMkpEQnNoMExCVjNtc2wyWTdIaGhQ?=
- =?utf-8?B?YS9oZmhNR3NEeUxRdkxZMXdkSytyeDZJTUdncDdIR0hHS3paNC9KRmVuVEhD?=
- =?utf-8?B?ait6ZUE5dEhMS2dDdC9Hc01TVFdFTnpnRHh3YzBzd3lCTkVkaURBZXRnVkRj?=
- =?utf-8?B?dnp1N21XbWhTOHJiRGd0bWNCQy80YlNHM0dTUVkvajFqaVZhMENuYjQ3S1ZO?=
- =?utf-8?B?THFLcGxRN1lnbkhUeWlPeDI0Q1REQTF2QzcyZG52WjRwS21ISVo1Q1BVaVVx?=
- =?utf-8?B?Qi9MUUM3RHVMTk02R085bDNJWnJkUzRHV1pGcjYzMVBPU3phQURZNlRTU2c3?=
- =?utf-8?B?YUlCTmk4ZHB2eVFMd0d0YlNTSWpQRWxXMW9XT3VseG1CYmlQYk1aV2kxcHBZ?=
- =?utf-8?B?ZmRObS9UZGoyL2ZUanhlZGlYcUo5RzZ0T3JLV2wxZ2w5NGx4OVhBSHZoQXBJ?=
- =?utf-8?B?aUdKVTlkMnIvYVI2bDd4VW9iWU1hZEhOMSt3YUhhSGNFY0p6RDI4ejZZOTBa?=
- =?utf-8?B?L2FaSGZqbkdlNzQwQ2sxY3gyb0cyNkFURTFHNS9GejNDUnczZ3ROa2ZRUkpQ?=
- =?utf-8?B?ZzRZQTNvTEpBTndncVhrYklkcFhCeG8rQnlWd1NqMjYyS0p1dldodzVVTDVk?=
- =?utf-8?B?U2NPVkdHL2w0UC9TOU5oNnVTVHJLa0VRbjF3RVcrMlg2ejh3b3kzQk02QWZN?=
- =?utf-8?B?SVJYb2gzNWxLakFGaU1WdkZIQnMvSXBxNFc3Q2pzYUVhY09mTS84NzJiT2xK?=
- =?utf-8?B?dEZGYXlmQlBMT2U1R2dyN3kyM1IxL09ZNktDblJrVnhicHNINWhZN3pzdjEv?=
- =?utf-8?B?RUNnakpleVdUbXlDd09IQWQ1NnNGKzYzQlhxR0wxaXpSRktVeG9QUWZPL1JX?=
- =?utf-8?B?eFcwY2VSTGdkTHl2K3BnMlIvTlZPRnE4a0NWQnRFSE5wNmxhQzdjeUkyWnRm?=
- =?utf-8?B?Mjd3Z2ZxQ1NpK0VMK0xwQkFnWWVlcTJOd3B3bjIxMHMxRVI0S0FITTlLNzJy?=
- =?utf-8?B?Mk1ZeXlpUWN3Si9MRmhiNzc2ZGlzendpWmE0QkVUa1ZvekNtUWs5Q3ltOEpV?=
- =?utf-8?B?WXJ3NlVVem9PK1hpVUdMZlQ1d0JQNk9kLzBKblQrSHNwKzd5L2RKNzlnOVhJ?=
- =?utf-8?B?REZOSkFXLzUxQmNnb2l6RUVGZmhnVTRhSkVVb0t6Nmhpc0RzTU43VVRMZVBI?=
- =?utf-8?B?aFlEdHA5YU50ODNwOGFZNDRBazJwYU1sdnM3TGErODlHWmpJeHlUNGdxUmdJ?=
- =?utf-8?Q?fjXA=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8373efc3-38a8-4dae-0be2-08d9e250cbec
-X-MS-Exchange-CrossTenant-AuthSource: BN6PR12MB1620.namprd12.prod.outlook.com
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-42ed3.templateTenant
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2022 11:24:50.0360 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kbB7ehtq89cRpd2OgkJGxPZsUVNhvZa726PgzHx3PYZ5Q906UKTpI4G7vjdB2Dhf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4880
+X-MS-Exchange-CrossTenant-AuthSource: PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44ddf1d0-f382-4aee-ed9c-08d9e25f0de0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jan 2022 13:06:52.8345 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR01MB0922
 X-Mailman-Approved-At: Fri, 28 Jan 2022 13:39:02 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -129,131 +103,70 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Zhou1, Tao" <Tao.Zhou1@amd.com>, "Zhang, Hawking" <Hawking.Zhang@amd.com>
+Cc: Aun-Ali Zaidi <admin@kodeit.net>, "roman.li@amd.com" <roman.li@amd.com>,
+ Orlando Chamberlain <redecorating@protonmail.com>,
+ "evan.quan@amd.com" <evan.quan@amd.com>,
+ "Rodrigo.Siqueira@amd.com" <Rodrigo.Siqueira@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "Aurabindo.Pillai@amd.com" <Aurabindo.Pillai@amd.com>,
+ "George.Shen@amd.com" <George.Shen@amd.com>,
+ "harry.wentland@amd.com" <harry.wentland@amd.com>,
+ "stylon.wang@amd.com" <stylon.wang@amd.com>,
+ "sunpeng.li@amd.com" <sunpeng.li@amd.com>,
+ "mikita.lipski@amd.com" <mikita.lipski@amd.com>,
+ "Bhawanpreet.Lakha@amd.com" <Bhawanpreet.Lakha@amd.com>,
+ "agustin.gutierrez@amd.com" <agustin.gutierrez@amd.com>,
+ "pavle.kotarac@amd.com" <pavle.kotarac@amd.com>,
+ "wesley.chalmers@amd.com" <wesley.chalmers@amd.com>,
+ "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
+ "Xinhui.Pan@amd.com" <Xinhui.Pan@amd.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
+ "solomon.chiu@amd.com" <solomon.chiu@amd.com>,
+ "wayne.lin@amd.com" <wayne.lin@amd.com>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "qingqing.zhuo@amd.com" <qingqing.zhuo@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
 
-On 1/27/2022 10:36 PM, Chen, Guchun wrote:
-> [AMD Official Use Only]
-> 
-> Hi Jun,
-> 
-> In RAS code, we have this special handling for Vega10. Can you elaborate it please? Any problem you have observed?
+Hi Alex
 
-Ok, thanks for review. I'll confirm this.
+> On 27-Jan-2022, at 11:06 PM, Alex Deucher <alexdeucher@gmail.com> wrote:
+>=20
+> C style comments please.
+Shall be fixed in v2
+>  I'll let one of the display guys comment on
+> the rest of the patch.  Seems reasonable, we have a similar quirk for
+> the Apple MBP 2017 15" Retina panel later in this function.  Could you
+> move this next to the other quirk?
+I guess moving it next to the other quirk may break the functionality of th=
+is quirk, cause the MBP 2018 one involves stuff regarding firmware revision=
+ as well. The original patch applies the quirk after the following lines of=
+ the code :-
 
-> 
-> Regards,
-> Guchun
-> 
-> -----Original Message-----
-> From: Ma, Jun <Jun.Ma2@amd.com> 
-> Sent: Thursday, January 27, 2022 7:47 PM
-> To: amd-gfx@lists.freedesktop.org; brahma_sw_dev <brahma_sw_dev@amd.com>
-> Cc: Zhang, Hawking <Hawking.Zhang@amd.com>; Zhou1, Tao <Tao.Zhou1@amd.com>; Ma, Jun <Jun.Ma2@amd.com>
-> Subject: [PATCH RESEND] drm/amdgpu: Remove the vega10 from ras support list
-> 
-> Remove vega10 from the ras support check function.
-> Base on this change, the ras initial function is optimized.
-> 
-> Signed-off-by: majun <majun@amd.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 38 +++++++++++++------------
->  1 file changed, 20 insertions(+), 18 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-> index 37e9b7e82993..aa1de974e07e 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-> @@ -2129,8 +2129,7 @@ static int amdgpu_ras_recovery_fini(struct amdgpu_device *adev)
->  
->  static bool amdgpu_ras_asic_supported(struct amdgpu_device *adev)  {
-> -	return adev->asic_type == CHIP_VEGA10 ||
-> -		adev->asic_type == CHIP_VEGA20 ||
-> +	return adev->asic_type == CHIP_VEGA20 ||
->  		adev->asic_type == CHIP_ARCTURUS ||
->  		adev->asic_type == CHIP_ALDEBARAN ||
->  		adev->asic_type == CHIP_SIENNA_CICHLID; @@ -2164,13 +2163,13 @@ static void amdgpu_ras_get_quirks(struct amdgpu_device *adev)
->   * we have to initialize ras as normal. but need check if operation is
->   * allowed or not in each function.
->   */
-> -static void amdgpu_ras_check_supported(struct amdgpu_device *adev)
-> +static bool amdgpu_ras_check_supported(struct amdgpu_device *adev)
->  {
->  	adev->ras_hw_enabled = adev->ras_enabled = 0;
->  
->  	if (amdgpu_sriov_vf(adev) || !adev->is_atom_fw ||
->  	    !amdgpu_ras_asic_supported(adev))
-> -		return;
-> +		return false;
->  
->  	if (!adev->gmc.xgmi.connected_to_cpu) {
->  		if (amdgpu_atomfirmware_mem_ecc_supported(adev)) { @@ -2203,6 +2202,8 @@ static void amdgpu_ras_check_supported(struct amdgpu_device *adev)
->  
->  	adev->ras_enabled = amdgpu_ras_enable == 0 ? 0 :
->  		adev->ras_hw_enabled & amdgpu_ras_mask;
-> +
-> +	return true;
->  }
->  
->  static void amdgpu_ras_counte_dw(struct work_struct *work) @@ -2236,6 +2237,9 @@ int amdgpu_ras_init(struct amdgpu_device *adev)
->  	int r;
->  	bool df_poison, umc_poison;
->  
-> +	if (!amdgpu_ras_check_supported(adev))
-> +		return -EINVAL;
-> +
->  	if (con)
->  		return 0;
->  
-> @@ -2250,28 +2254,24 @@ int amdgpu_ras_init(struct amdgpu_device *adev)
->  	INIT_DELAYED_WORK(&con->ras_counte_delay_work, amdgpu_ras_counte_dw);
->  	atomic_set(&con->ras_ce_count, 0);
->  	atomic_set(&con->ras_ue_count, 0);
-> -
->  	con->objs = (struct ras_manager *)(con + 1);
-> +	con->features = 0;
->  
->  	amdgpu_ras_set_context(adev, con);
->  
-> -	amdgpu_ras_check_supported(adev);
-> -
-> -	if (!adev->ras_enabled || adev->asic_type == CHIP_VEGA10) {
-> -		/* set gfx block ras context feature for VEGA20 Gaming
-> -		 * send ras disable cmd to ras ta during ras late init.
-> -		 */
-> -		if (!adev->ras_enabled && adev->asic_type == CHIP_VEGA20) {
-> +	if (!adev->ras_enabled) {
-> +	/* set gfx block ras context feature for VEGA20 Gaming
-> +	 * send ras disable cmd to ras ta during ras late init.
-> +	 */
-> +		if (adev->asic_type == CHIP_VEGA20) {
->  			con->features |= BIT(AMDGPU_RAS_BLOCK__GFX);
-> -
->  			return 0;
-> +		} else {
-> +			r = 0;
-> +			goto release_con;
->  		}
-> -
-> -		r = 0;
-> -		goto release_con;
->  	}
->  
-> -	con->features = 0;
->  	INIT_LIST_HEAD(&con->head);
->  	/* Might need get this flag from vbios. */
->  	con->flags = RAS_DEFAULT_FLAGS;
-> @@ -2545,7 +2545,9 @@ int amdgpu_ras_fini(struct amdgpu_device *adev)
->  
->  void amdgpu_ras_global_ras_isr(struct amdgpu_device *adev)  {
-> -	amdgpu_ras_check_supported(adev);
-> +	if (!amdgpu_ras_check_supported(adev))
-> +		return;
-> +
->  	if (!adev->ras_hw_enabled)
->  		return;
->  
-> --
-> 2.25.1
+=09
+	core_link_read_dpcd(
+		link,
+		DP_SINK_HW_REVISION_START,
+		(uint8_t *)&dp_hw_fw_revision,
+		sizeof(dp_hw_fw_revision));
+
+	link->dpcd_caps.sink_hw_revision =3D
+		dp_hw_fw_revision.ieee_hw_rev;
+
+	memmove(
+		link->dpcd_caps.sink_fw_revision,
+		dp_hw_fw_revision.ieee_fw_rev,
+		sizeof(dp_hw_fw_revision.ieee_fw_rev));
+
+Which seem to related to the firmware stuff. Moving it along with the 2017 =
+quirk doesn't sound right to me, as this shall move the quirk BEFORE these =
+lines of code instead. Maybe the author also knowingly added the quirk afte=
+r these lines of code?
+
+As a workaround, could we move the 2017 quirk later, instead of moving the =
+2018 quirk before? This sounds more logical to me.
+
+Regards
+Aditya
