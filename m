@@ -2,96 +2,92 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EF1C49FAF2
-	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jan 2022 14:39:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FB3249FB36
+	for <lists+amd-gfx@lfdr.de>; Fri, 28 Jan 2022 15:05:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E83810E6BF;
-	Fri, 28 Jan 2022 13:39:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8854A10EA5E;
+	Fri, 28 Jan 2022 14:04:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from IND01-MA1-obe.outbound.protection.outlook.com
- (mail-ma1ind01olkn0152.outbound.protection.outlook.com [104.47.100.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63B3810E348
- for <amd-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 13:07:02 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2069.outbound.protection.outlook.com [40.107.94.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7860A10EA5E
+ for <amd-gfx@lists.freedesktop.org>; Fri, 28 Jan 2022 14:04:58 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z4FQmP2iYMfmj1yPuYKbKkxocykd3k97tH4tB1cjaWGnOZiQBCg787+k1sOORXKao9pSOpf9oP3MPKoNRbMy0MRAW16WCcAja+I2HS0Ou9MYaFRoooG2AjzxpU5x1lKOPd5kzmm0ZgCpnd8+zP7wvhH311iWZPI3jlynttSaVLds3Uw1wz9W2t9Gj7Rn2oi4p9fwGJAVwDwz9LxQBdnrCico8DxYg/1QGJ3FOc1lOvR8h8patoVjWIWLBCwOteVGy/dIXst3qccfu+Y9YE0TC4C4sYhkyr1xHkWnVA6gxQQjKqPm98Rvj9gYuHLnz8FhZHpsIE5cWioySo8neWio+g==
+ b=B/edNrKqSf6WeCOu6tnGPdgoR66/WX4Ha933Rb9BzGlhZ3W9K9XW0Q8Q1ikUqwz9zR5NnK/5xWrH1RywqxDCaXvI+CDlRxVS/OFHIOAudkekm7KV3ttxdQwVMAExkGoRbQ0qcpUvkvLbyyGHxtAj7oKysJqxm/RV66t3HtZvZ0o9c6h0GdV6Y1FBbyFMkk5YXdpvRluLn2Su0kPfEXHr11xu8OniY+mB+ZAOAK14le2Ptit8KFHswfjdAh5YyPZWlGj4V6BzolTB92fO1pAD305sinU+6H5pKtduaFli9eZyRBZv0AZbu0XnuqpjypFYVsLZwKgsXFRthKZlQxY/EQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A2ZExjoW34sgF/TwvBqBC44+D3GoC6RmkMLsG70b6gI=;
- b=CUgEC9qxcLT1Ifbj3n1XA4cOi/h5wRtVeR+Q6RWWS0A88i7aw0UToZwf5hGazcAwWBXs1GSW+FcpnGNfU08EWW1lhwxiCUJwtoZvoxLHMjgZb1P+eowbKhscjmnB27Fe8rfCzzvLAG1+FUl536eBM7lwCOWGuXI110FOHgTVyo7NGkt86AFhBO3udqkTX8fWrWlOzKwdVkXySf1CLbYsSXZ1EEZCXPleEWQalSFtWeLvN5KTnEQtUYAbl571WNSRDX5u7pit71CP2w7e3oZ8HE/wkPskxqHN7L8rGIjtqpk2E8+j/IljebQZs1t696kOqr9moPIbouC7NUaklGUmVw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
+ bh=O7+v55npn/isfagvKT0wfg2Pw5mEhzv4kYo786Q3n5A=;
+ b=hSIT6wzt9KlFq/o7xC3V19OWdDPCpzrOl2U/nrh/PnT2DcOs55/DcVts9Oer3f9onPwVkbrhn+rnXM7PZp6gfDSOJGHtCfQxbMXMRRqC4UhAcLUlf3I61Xmw/zX0IjU5V2uKeIYlBG5u6OrCf+luKOC2T6MXEMrk/aGZzo0HDnvY3J9QYBFC3ghWKuZngk91niT4Pl6K64HynKKrDQX8MivexfNie02LWbKI5794acfjnt4DZE36E08Qn7I9DOco5i8uMPXkYRNNo/YkzkQyoB27TYYNkMAHNYCYL6SP4OD+cmkIoAIaCrq6taTcaB7Ts+sNAD+yqaDHN9DtqOor/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A2ZExjoW34sgF/TwvBqBC44+D3GoC6RmkMLsG70b6gI=;
- b=mrYIxsyJRN9M7IiKf3gbZwEQuo65VnR0TDpuN0tgx/4yTUa/jKsXLDAo4+kjlEU3yOfClRhc/Qw9JzcyK7iCQcxA+j4p2vs3JDXftPBaPJKveXtguMe2rvEeoeKNfjPILldxDHRlX2DdAdf/Zt758nq+f3eEOF31TvHVYatIZ7pO7SVWW57fsIi6SCC388dsvXdj4EctBenTng6dQOfdrEJbe/JUrVYOUcwG7bTmxbbbkt5IZPTYN1e4AW7A6+MO6/PACeVG9SJw6YRAWvFIqQEgMMEa7se/JsjNwHuh7EfgDbP04WvK1ul+7uUbkPci9Rnl09TDORVqBAVtejQIKg==
-Received: from PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:1b::13)
- by MA1PR01MB0922.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:4::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.17; Fri, 28 Jan
- 2022 13:06:53 +0000
-Received: from PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::d19b:7cd1:3760:b055]) by PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::d19b:7cd1:3760:b055%9]) with mapi id 15.20.4930.018; Fri, 28 Jan 2022
- 13:06:53 +0000
-From: Aditya Garg <gargaditya08@live.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [PATCH RESEND] drm/amd/display: Force link_rate as LINK_RATE_RBR2
- for 2018 15" Apple Retina panels
-Thread-Topic: [PATCH RESEND] drm/amd/display: Force link_rate as
- LINK_RATE_RBR2 for 2018 15" Apple Retina panels
-Thread-Index: AQHYEqhR1816ln+3EEa6OAaxWUF3K6x3I2yAgAFHGAA=
-Date: Fri, 28 Jan 2022 13:06:52 +0000
-Message-ID: <58B7B0D4-BA3B-43EA-9F54-06CCEB7EF833@live.com>
-References: <139A7689-463E-4AD9-A2D1-A9969C3958D0@live.com>
- <CADnq5_OLpgEJjpN5y9b3gNwCmvdfNTA=puUv8UjOCDH96JgvOQ@mail.gmail.com>
-In-Reply-To: <CADnq5_OLpgEJjpN5y9b3gNwCmvdfNTA=puUv8UjOCDH96JgvOQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [eidEl9RmdL3hF4WaWmS5ZbBbI6BJsScK1fPFEI3gPFZumzP9MSFT70y+cB2vipVPPWHxl++SRzo=]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 44ddf1d0-f382-4aee-ed9c-08d9e25f0de0
-x-ms-traffictypediagnostic: MA1PR01MB0922:EE_
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: zSnDS0aYGFfuawS+aNDo3MFcEsfQrrsGRu5ZO3ndrYJVYGux2EndxcCGo5uBt0iOP4my38VWfYq94YvqhjAwe8a+P73KcfK+aleevQNh0F54HKcVpD75qHzfUcTdnN6tEF3AhY2CP4z7TQK6XMH74g+iLrWTwO4n8vkSvaG5pOFnzGIm5/UwpOdEYeZaqMC4Hd67OpU/fcrtlPqgHiWk0CaQy7wCQ0O9dUS4LkVBCIUO4oFfZSI7qNLX8QPXbC1TBFR/ZPqt0Y+HHk2snFoJfhA58HfIRVbWcWVr6/ufMHG0HQcR0klj9Ky8NFsD0vtqFowZqKK8twwxO1a0+7JaQdLqRtR8Xq7GDhccYdpn6D+35PMuRBgP+Hw8KFFxNx0k93LouH9vqnGjtPHiDzqfupzcT3ZRQ1aMFTNRIFpwVaXbupGEmDkfJ081itrCLi0PKsEnbO0xFaSd1EbbcAMcByNhWq+oWBgB+Cm1nDzXWu3NkYMWLEj5bsdZ5K4UcId05umIaR+h9YQKlj5Hyr+f/7WENwK8Djfa5pW8NkkLW+9YgYU7txnpUzMMLhC6Gc9MWcvVP2FhojOaDqC9DIbNEQ==
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?wklw1xV6g/pJ/4sw27E5i/OBESb1TVqI7c30C/ETRZfXWOjWh2C2U3imCbXa?=
- =?us-ascii?Q?jS92etS7L2NGc6r4PamXpTxT6eMgzTNEsu2O2D2nhZ1ify9cTphEyzcGTv8/?=
- =?us-ascii?Q?j7gZRqRSMTHwFGQaS/Om7ze7fdOgprdyPm6Gt9Xlt3lj/ifIE06hksBmOANn?=
- =?us-ascii?Q?NTvGHnUd3MXuO26rKCC7PNoI8eS+lLc1XsF2GY5Mm8dqeqO4AqOdANiYPcES?=
- =?us-ascii?Q?BYn1DJepIcjM+Amz5VOnvlApMml8POnj1F2inmFWt/31cP71f6OwFCa/arQN?=
- =?us-ascii?Q?yFwuHUFaGs4adaRy4fuWM3crn417wCSNINrRJXePQZZyZYu92fv+JhrR5Og6?=
- =?us-ascii?Q?M3P4voiAIScMB6lCqX4G7Y4JQAJGJi1AhcUlXCZKT8Vo4We1VFAh/6e9Mwgb?=
- =?us-ascii?Q?R+k1cyE8gvZPfL14PFhi2447ouVvAGDJbv8P8/34L4De5nogGVVo15VE+DT8?=
- =?us-ascii?Q?PdM4fFFg/exOgmhajPzksbtnvQqdlikpiu+wPCrfCmiG/ulUgzOyW5cjNRKU?=
- =?us-ascii?Q?FIz+m/aivQAjyuUfB5R2Fk07a2V/IY7KW33qBAR89rIB8qzhsbFvTlFyGqXk?=
- =?us-ascii?Q?++oaUwIXe+bM9UUpkxSMowCoAugJHaODfp+9KrtViTFFSgwwWDy5mPVpwnC1?=
- =?us-ascii?Q?JwswC7KqpVoxPnYND58tVHZxvafNpyEmjOmnRgn6gWEkWcZgPtEoOwF0loBD?=
- =?us-ascii?Q?VNbeoJhPj18GWC1+MJP2pA+u8rY7wOXaQA/Py7ygdJqbDw2R0RNFiZbBPHrp?=
- =?us-ascii?Q?dO/RdTa4jQQBi4M0FE523q43SXZYE6cP04EVyuRZx/yypbhVxhUTsOxmX87R?=
- =?us-ascii?Q?/x7W5EqECaYwdOkPm1LHv8hRK6mbMaoFFX1fQn+41vMMiwJKC+lDutTi9INN?=
- =?us-ascii?Q?VNfXUVEGNAn0nH4QMbykF0TvRLJrKXQcKHR2Sr0Li8i6lkKeHR+PCSzEzvg6?=
- =?us-ascii?Q?4/K6ivo8gp9wVrHWHHW78ieeFy3sjSudinTHggyReQwBJHtubb9l1uNvJ1fA?=
- =?us-ascii?Q?sRvAthKQkZlGK2GOQA2aVscm/g2ZdH9U6IKOlPmDsq8GZdU=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <80DD295AF16D9242B3A66CE4F8990ABC@INDPRD01.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: quoted-printable
+ bh=O7+v55npn/isfagvKT0wfg2Pw5mEhzv4kYo786Q3n5A=;
+ b=2Tr2v2qPdrBkgGMwrvAZVZAfQAK32glPhl9NHGbA83vIP+apdKZQnNGMz4EVBrAFu5E/9gIs4EH9wSFDGKs7tjRIl9SaR/FPPNWfZUJDEZfpyFE6IrQd75nwg8paCjMr2hSkx46VuCdT/r0LUCr5cjq4v4APtgj9C4mrSz7PgLs=
+Received: from DM5PR21CA0019.namprd21.prod.outlook.com (2603:10b6:3:ac::29) by
+ BN8PR12MB3282.namprd12.prod.outlook.com (2603:10b6:408:9e::27) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4930.18; Fri, 28 Jan 2022 14:04:53 +0000
+Received: from DM6NAM11FT061.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:ac:cafe::99) by DM5PR21CA0019.outlook.office365.com
+ (2603:10b6:3:ac::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.6 via Frontend
+ Transport; Fri, 28 Jan 2022 14:04:53 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT061.mail.protection.outlook.com (10.13.173.138) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4930.15 via Frontend Transport; Fri, 28 Jan 2022 14:04:53 +0000
+Received: from stylon-T495.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 28 Jan
+ 2022 08:04:48 -0600
+From: Stylon Wang <stylon.wang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 00/17] DC Patches Jan 31, 2022
+Date: Fri, 28 Jan 2022 22:03:54 +0800
+Message-ID: <20220128140411.3683309-1-stylon.wang@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-42ed3.templateTenant
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PNZPR01MB4415.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 44ddf1d0-f382-4aee-ed9c-08d9e25f0de0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jan 2022 13:06:52.8345 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA1PR01MB0922
-X-Mailman-Approved-At: Fri, 28 Jan 2022 13:39:02 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 96e33cd1-6a83-4edc-ce4b-08d9e2672843
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3282:EE_
+X-Microsoft-Antispam-PRVS: <BN8PR12MB32824DB269B4CBA36554B83BFF229@BN8PR12MB3282.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6430;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: MocHbVsskdSHm6avLfbyWA2f2mipsqgrqwhOkwIEJIwU4BL9lu0xCAIdSTvgbO/D1ZF4eIT4xcfvNt+PVtDnGSC68IDmw76G32gBN8zo5YZ44YuwuD52n11Uod9NBLwUr1+1u/P4Q3nI3Xbr0IivEFY4e0iI3WYoEXclX7EPfbR5Z+ndz4fRYcWlHZKHWWqzdqcLzisG8TJoO4bKdsl1gUlcYymK7gLDzqubNmYOKUGik0bzw+nzntxnla7knglBJnU4neIAEv7MgdIJmYBOiNF5Bmri3+EV4jHhce5WCyi2Rlrm1tR3+qoO8QXfVqzw+Ayyvu92v1bnrk0lwCi7UVsZoQG1sM+d/guTrdUS4c+unEpejUKoZreJPn9jFp8duA5+GKT8kLS0NLFy78D7/LyR12lGbwGhxcfwXrb4NZc3gTAHJTIzol3ELvoh+VO0Q+J6keZD43IQtQP3YX+k4VIVIPeIuXJ5j62GcAvuEXC8vflC+8Mgw/HDnC1bY4Ndg2B4ypJvyIEGOML7bCvmHegVVIfAFYov3ZBnTuxz2JlkQE52tuoa9UmoJxpcAQU+nocNBR53xfL6+PaBMPlpEkWRHe4jUEoDKECU2Z8wXIjxENESIPfsiiHxWjSOUoevKbfL8EtCcdj2vKsnZ9KU4CIZ7hFhMZi6ERJc47zOehTc95AmcU4D5C2IypyKnnxtCWJgCaUB+D0F4Ed5oJkwag==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(316002)(508600001)(82310400004)(426003)(336012)(47076005)(54906003)(2906002)(16526019)(6916009)(1076003)(186003)(44832011)(40460700003)(6666004)(5660300002)(26005)(70206006)(8676002)(4326008)(8936002)(36860700001)(70586007)(86362001)(7696005)(83380400001)(2616005)(356005)(81166007)(36756003)(36900700001)(20210929001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2022 14:04:53.3583 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 96e33cd1-6a83-4edc-ce4b-08d9e2672843
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT061.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3282
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,70 +99,116 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Aun-Ali Zaidi <admin@kodeit.net>, "roman.li@amd.com" <roman.li@amd.com>,
- Orlando Chamberlain <redecorating@protonmail.com>,
- "evan.quan@amd.com" <evan.quan@amd.com>,
- "Rodrigo.Siqueira@amd.com" <Rodrigo.Siqueira@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "Aurabindo.Pillai@amd.com" <Aurabindo.Pillai@amd.com>,
- "George.Shen@amd.com" <George.Shen@amd.com>,
- "harry.wentland@amd.com" <harry.wentland@amd.com>,
- "stylon.wang@amd.com" <stylon.wang@amd.com>,
- "sunpeng.li@amd.com" <sunpeng.li@amd.com>,
- "mikita.lipski@amd.com" <mikita.lipski@amd.com>,
- "Bhawanpreet.Lakha@amd.com" <Bhawanpreet.Lakha@amd.com>,
- "agustin.gutierrez@amd.com" <agustin.gutierrez@amd.com>,
- "pavle.kotarac@amd.com" <pavle.kotarac@amd.com>,
- "wesley.chalmers@amd.com" <wesley.chalmers@amd.com>,
- "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
- "Xinhui.Pan@amd.com" <Xinhui.Pan@amd.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "christian.koenig@amd.com" <christian.koenig@amd.com>,
- "solomon.chiu@amd.com" <solomon.chiu@amd.com>,
- "wayne.lin@amd.com" <wayne.lin@amd.com>,
- "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
- "qingqing.zhuo@amd.com" <qingqing.zhuo@amd.com>
+Cc: stylon.wang@amd.com, solomon.chiu@amd.com, Sunpeng.Li@amd.com,
+ Harry.Wentland@amd.com, qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com,
+ roman.li@amd.com, Anson.Jacob@amd.com, Aurabindo.Pillai@amd.com,
+ wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com,
+ pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+This DC patchset brings improvements in multiple areas. In summary, we have:
 
-Hi Alex
+- DC refactor and bug fixes for DP links
+- Bug fixes for DP2
+- Fix regressions causing display not light up
+- Improved debug trace
+- Improved DP AUX transfer
+- Updated watermark latencies to fix underflows in some modes
 
-> On 27-Jan-2022, at 11:06 PM, Alex Deucher <alexdeucher@gmail.com> wrote:
->=20
-> C style comments please.
-Shall be fixed in v2
->  I'll let one of the display guys comment on
-> the rest of the patch.  Seems reasonable, we have a similar quirk for
-> the Apple MBP 2017 15" Retina panel later in this function.  Could you
-> move this next to the other quirk?
-I guess moving it next to the other quirk may break the functionality of th=
-is quirk, cause the MBP 2018 one involves stuff regarding firmware revision=
- as well. The original patch applies the quirk after the following lines of=
- the code :-
+Anthony Koo (1):
+  drm/amd/display: [FW Promotion] Release 0.0.102.0
 
-=09
-	core_link_read_dpcd(
-		link,
-		DP_SINK_HW_REVISION_START,
-		(uint8_t *)&dp_hw_fw_revision,
-		sizeof(dp_hw_fw_revision));
+Aric Cyr (1):
+  drm/amd/display: 3.2.171
 
-	link->dpcd_caps.sink_hw_revision =3D
-		dp_hw_fw_revision.ieee_hw_rev;
+Fangzhi Zuo (2):
+  drm/amd/display: Trigger DP2 Sequence With Uncertified Cable
+  drm/amd/display: Add Missing HPO Stream Encoder Function Hook
 
-	memmove(
-		link->dpcd_caps.sink_fw_revision,
-		dp_hw_fw_revision.ieee_fw_rev,
-		sizeof(dp_hw_fw_revision.ieee_fw_rev));
+Leo (Hanghong) Ma (1):
+  drm/amd/display: add infoframe update sequence debug trace
 
-Which seem to related to the firmware stuff. Moving it along with the 2017 =
-quirk doesn't sound right to me, as this shall move the quirk BEFORE these =
-lines of code instead. Maybe the author also knowingly added the quirk afte=
-r these lines of code?
+Paul Hsieh (1):
+  drm/amd/display: watermark latencies is not enough on DCN31
 
-As a workaround, could we move the 2017 quirk later, instead of moving the =
-2018 quirk before? This sounds more logical to me.
+Shen, George (1):
+  drm/amd/display: Add link enc null ptr check for cable ID (#2597)
 
-Regards
-Aditya
+Wenjing Liu (8):
+  drm/amd/display: add setup/reset stream encoder to link_hwss
+  drm/amd/display: refactor destructive verify link cap sequence
+  drm/amd/display: add enable/disable dp link output to link_hwss
+  drm/amd/display: add set dp link test pattern to link_hwss
+  drm/amd/display: add set dp lane settings to link_hwss
+  drm/amd/display: temporarly move non link_hwss code to dc_link_dp
+  drm/amd/display: move get_link_hwss to dc_resource
+  drm/amd/display: move link_hwss to link folder and break down to files
+
+Wyatt Wood (1):
+  drm/amd/display: Improve dce_aux_transfer_with_retries logging
+
+Zhan Liu (1):
+  drm/amd/display: revert "Reset fifo after enable otg"
+
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |  26 +
+ drivers/gpu/drm/amd/display/dc/Makefile       |   4 +-
+ .../display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c  |  20 +-
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |   3 +
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c |  87 +-
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 778 ++++++++++++--
+ .../drm/amd/display/dc/core/dc_link_hwss.c    | 959 ------------------
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |  59 +-
+ drivers/gpu/drm/amd/display/dc/dc.h           |   2 +-
+ drivers/gpu/drm/amd/display/dc/dc_link.h      |   4 +-
+ drivers/gpu/drm/amd/display/dc/dce/dce_aux.c  |   2 +-
+ .../drm/amd/display/dc/dce/dce_link_encoder.c |  17 +-
+ .../drm/amd/display/dc/dce/dce_link_encoder.h |   3 +-
+ .../display/dc/dce110/dce110_hw_sequencer.c   |  49 +-
+ .../amd/display/dc/dcn10/dcn10_link_encoder.c |  17 +-
+ .../amd/display/dc/dcn10/dcn10_link_encoder.h |   3 +-
+ .../display/dc/dcn10/dcn10_stream_encoder.c   |  15 -
+ .../display/dc/dcn10/dcn10_stream_encoder.h   |   3 -
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  41 +-
+ .../display/dc/dcn20/dcn20_stream_encoder.c   |   2 -
+ .../dc/dcn30/dcn30_dio_stream_encoder.c       |   2 -
+ .../dc/dcn31/dcn31_hpo_dp_stream_encoder.c    |  11 +
+ .../dc/dcn31/dcn31_hpo_dp_stream_encoder.h    |   9 +-
+ .../gpu/drm/amd/display/dc/inc/core_types.h   |   1 +
+ .../gpu/drm/amd/display/dc/inc/dc_link_dp.h   |  47 +-
+ .../drm/amd/display/dc/inc/hw/link_encoder.h  |   3 +-
+ .../amd/display/dc/inc/hw/stream_encoder.h    |   4 -
+ .../gpu/drm/amd/display/dc/inc/link_dpcd.h    |   2 +-
+ .../gpu/drm/amd/display/dc/inc/link_hwss.h    |  90 +-
+ drivers/gpu/drm/amd/display/dc/inc/resource.h |  10 +-
+ drivers/gpu/drm/amd/display/dc/link/Makefile  |  30 +
+ .../drm/amd/display/dc/link/link_hwss_dio.c   | 137 +++
+ .../drm/amd/display/dc/link/link_hwss_dio.h   |  53 +
+ .../drm/amd/display/dc/link/link_hwss_dpia.c  |  51 +
+ .../drm/amd/display/dc/link/link_hwss_dpia.h  |  34 +
+ .../amd/display/dc/link/link_hwss_hpo_dp.c    | 254 +++++
+ .../amd/display/dc/link/link_hwss_hpo_dp.h    |  35 +
+ .../amd/display/dc/link/link_hwss_hpo_frl.c   |  43 +
+ .../amd/display/dc/link/link_hwss_hpo_frl.h   |  34 +
+ .../gpu/drm/amd/display/dc/virtual/Makefile   |   2 +-
+ .../display/dc/virtual/virtual_link_encoder.c |   3 +-
+ .../display/dc/virtual/virtual_link_hwss.c    |  43 +
+ .../display/dc/virtual/virtual_link_hwss.h    |  34 +
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |   8 +-
+ 44 files changed, 1726 insertions(+), 1308 deletions(-)
+ delete mode 100644 drivers/gpu/drm/amd/display/dc/core/dc_link_hwss.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/link/Makefile
+ create mode 100644 drivers/gpu/drm/amd/display/dc/link/link_hwss_dio.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/link/link_hwss_dio.h
+ create mode 100644 drivers/gpu/drm/amd/display/dc/link/link_hwss_dpia.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/link/link_hwss_dpia.h
+ create mode 100644 drivers/gpu/drm/amd/display/dc/link/link_hwss_hpo_dp.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/link/link_hwss_hpo_dp.h
+ create mode 100644 drivers/gpu/drm/amd/display/dc/link/link_hwss_hpo_frl.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/link/link_hwss_hpo_frl.h
+ create mode 100644 drivers/gpu/drm/amd/display/dc/virtual/virtual_link_hwss.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/virtual/virtual_link_hwss.h
+
+-- 
+2.34.1
+
