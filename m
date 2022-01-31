@@ -2,30 +2,25 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 543774A4A83
-	for <lists+amd-gfx@lfdr.de>; Mon, 31 Jan 2022 16:27:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFF524A4AAE
+	for <lists+amd-gfx@lfdr.de>; Mon, 31 Jan 2022 16:35:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C193710E44F;
-	Mon, 31 Jan 2022 15:27:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42D9410E23C;
+	Mon, 31 Jan 2022 15:35:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 381 seconds by postgrey-1.36 at gabe;
- Mon, 31 Jan 2022 15:27:56 UTC
 Received: from ubuntu2004-NV21-clean.amd.com (unknown [165.204.54.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E26A10E44F
- for <amd-gfx@lists.freedesktop.org>; Mon, 31 Jan 2022 15:27:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE76310E23C
+ for <amd-gfx@lists.freedesktop.org>; Mon, 31 Jan 2022 15:35:33 +0000 (UTC)
 Received: by ubuntu2004-NV21-clean.amd.com (Postfix, from userid 0)
- id 6F403161E07; Mon, 31 Jan 2022 10:21:34 -0500 (EST)
+ id 37CCD161E07; Mon, 31 Jan 2022 10:35:33 -0500 (EST)
 From: Surbhi Kakarya <surbhi.kakarya@amd.com>
 To: amd-gfx@lists.freedesktop.org, Bokun.Zhang@amd.com, HaiJun.Chang@amd.com,
  Monk.Liu@amd.com, Alexander.Deucher@amd.com, Kelly.Zytaruk@amd.com
-Subject: [PATCH] drm/amdgpu: This patch handles the GPU recovery faliure in
- sriov environment by retrying the reset if the first reset fails. To
- determine the condition of retry,
- a new function amdgpu_is_retry_sriov_reset() is added which returns true if
- failure is due to ETIMEDOUT, EINVAL or EBUSY, otherwise return false.
-Date: Mon, 31 Jan 2022 10:21:31 -0500
-Message-Id: <20220131152131.9099-1-surbhi.kakarya@amd.com>
+Subject: [PATCH] drm/amdgpu: Handle the GPU recovery failure in SRIOV
+ environment.
+Date: Mon, 31 Jan 2022 10:35:27 -0500
+Message-Id: <20220131153527.11051-1-surbhi.kakarya@amd.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -43,6 +38,11 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
 Cc: Surbhi Kakarya <surbhi.kakarya@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
+
+This patch handles the GPU recovery faliure in sriov environment by
+retrying the reset if the first reset fails. To determine the condition of retry, a
+new function amdgpu_is_retry_sriov_reset() is added which returns true if failure is due
+to ETIMEDOUT, EINVAL or EBUSY, otherwise return false.
 
 It also handles the return status in Post Asic Reset by updating the return code
 with asic_reset_res and eventually return the return code in amdgpu_job_timedout().
