@@ -1,103 +1,69 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDAD14A3EC1
-	for <lists+amd-gfx@lfdr.de>; Mon, 31 Jan 2022 09:43:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14B584A4877
+	for <lists+amd-gfx@lfdr.de>; Mon, 31 Jan 2022 14:39:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0852F112C03;
-	Mon, 31 Jan 2022 08:43:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5118410E314;
+	Mon, 31 Jan 2022 13:39:08 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com
- (mail-dm3nam07on2046.outbound.protection.outlook.com [40.107.95.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B6ED10E1E7;
- Mon, 31 Jan 2022 06:32:46 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gvVvXSGe1qDwwi4cpkR2oNbLmtvBwqr6BP2iu3Wy/IeeRyXBJPwzIKHaWYyuhe/nx4Os/JxNM6sGQrBcTGACpaTIXddG5sM8hmmCVBx3nHH1TUaPyIjf+HWAcpcGnCYZgwzUy9qnLVBK3Jnbrgvtmod3Z9/lSPUouQRiqW1eeJstzQuO1HwHZN9gfWtzbTLnGWTSl3krixs4Ar91wJRkYglsSdmiZ3ZOLneg3nbEwk7+8JEq6TbW8NJ/FuGwt3e12HHNiUM7SRjUEFnZMmiG/Xj8EJL6B4Jy5CGHWoHe37YiSBMhWDv+4Kf4iM60EBTVR3xlT2wOx5DauDEZS6EKkQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XF1tQEnt7Y+Wzg/b2wgNlDuGIXR9GwjBxX2hjzQN5u0=;
- b=eYMQ8asDzK8XMp23tX/YThG+Bsn3tx2rRV2v6G1yjaZiLga2PrLgv/L4JQryvSDS54j0huA+WCRPL9wylqe3yE56I2mHwomnrXQDY55uJaO0SdHwhx3YZ59ZNcTOUSjrQHAaAjGHWUAzU1fxFpNTLp5ezek1hbg2LTSV22D3h0joBNQsdiJJwcCskRP8Ik+LDSWypELzziLSf2On83D3oQWX7PtWOuxIhT5Isvbhc746+VNauIyHJYBIPnd1L1I3HsPQalEcRqdJCnMO9UeBuV79B5sGTuoSGRm/XnGEytWpmZIyX5V0jEvMGC1ZkHey/wefkhw0p32OTPeIiyYSyQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 12.22.5.236) smtp.rcpttodomain=lists.freedesktop.org
- smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
- header.from=nvidia.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XF1tQEnt7Y+Wzg/b2wgNlDuGIXR9GwjBxX2hjzQN5u0=;
- b=Ux6NmGP5qf9vgSppOlaq9fc/g+gq6GYnMpoFYjo4odz22TZkW9y0Guv1GBGfYXwTMIcHYoUbdpDWwgElmzeMD98/wl2DYvh3tZJxx+GlDHH2qWJwDfNdhwiU3OP8BiSqKRmMf8uj2+qxDLTAuDobImq5UbhFTewhFB9pKF8caNcSZoTB38OatbW/idHXOcu2I7Zdr+VJjZn5OGpH5eOPodlqDoRR90CcPp5dGhsVyAAMlVENfUh4pvXY7PrD/VLIS2Gcl758s42l832d4tYuuPOFqkkMrBHIdqzlbrMrkvkk50EkPcGHP8h1dtJawYxY3RbTxplv5bXbkoN6PiAPFA==
-Received: from MW4PR04CA0261.namprd04.prod.outlook.com (2603:10b6:303:88::26)
- by DM6PR12MB4634.namprd12.prod.outlook.com (2603:10b6:5:165::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.20; Mon, 31 Jan
- 2022 06:32:44 +0000
-Received: from CO1NAM11FT009.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:88:cafe::56) by MW4PR04CA0261.outlook.office365.com
- (2603:10b6:303:88::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.15 via Frontend
- Transport; Mon, 31 Jan 2022 06:32:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.236)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 12.22.5.236 as permitted sender) receiver=protection.outlook.com;
- client-ip=12.22.5.236; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (12.22.5.236) by
- CO1NAM11FT009.mail.protection.outlook.com (10.13.175.61) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4930.15 via Frontend Transport; Mon, 31 Jan 2022 06:32:43 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by DRHQMAIL109.nvidia.com
- (10.27.9.19) with Microsoft SMTP Server (TLS) id 15.0.1497.18;
- Mon, 31 Jan 2022 06:32:42 +0000
-Received: from nvdebian.localnet (10.126.230.35) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.9; Sun, 30 Jan 2022
- 22:32:39 -0800
-From: Alistair Popple <apopple@nvidia.com>
-To: <akpm@linux-foundation.org>, <Felix.Kuehling@amd.com>,
- <linux-mm@kvack.org>, <rcampbell@nvidia.com>, <linux-ext4@vger.kernel.org>,
- <linux-xfs@vger.kernel.org>, Alex Sierra <alex.sierra@amd.com>
-Subject: Re: [PATCH v5 02/10] mm: add device coherent vma selection for memory
- migration
-Date: Mon, 31 Jan 2022 17:32:09 +1100
-Message-ID: <1761055.EOaAWAZ9kn@nvdebian>
-In-Reply-To: <20220128200825.8623-3-alex.sierra@amd.com>
-References: <20220128200825.8623-1-alex.sierra@amd.com>
- <20220128200825.8623-3-alex.sierra@amd.com>
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
+ [IPv6:2a00:1450:4864:20::62c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DECB10E314
+ for <amd-gfx@lists.freedesktop.org>; Mon, 31 Jan 2022 13:39:07 +0000 (UTC)
+Received: by mail-ej1-x62c.google.com with SMTP id k25so42906439ejp.5
+ for <amd-gfx@lists.freedesktop.org>; Mon, 31 Jan 2022 05:39:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :references:from:in-reply-to:content-transfer-encoding;
+ bh=oTzTzATg2mErR6l1cKB4pE5F5gHmoMv2smtijpvPfEo=;
+ b=iPBcmJA+sM20axYJPJp4zunHiy9IhwtDZcWUtx9PjqvL+BR5PtmjBfNQtEPKD/7eSe
+ 6cUO/wemZ7xg03wf+Yk1VXdMn3idHdr+wiLmRP3m7YPOs6x7YOxUHbhyi8R5EdiEdCxJ
+ 5ypnCPGMs2pFp5sitpb03+voSpW54mj+mVJOts80eGKpfvpoPyxjP8/HUsPJYJ949zaa
+ WsbjK6RFXi0pNYyJvMNNSgqnMJtceeNTflMdqnLfWUZpwbTqJnfotrSsP9aDMpmoq8Jf
+ Obn+a/gdebVHNBmELoBKVfW3Rt4jJuQ2GIMAayD1M1EQmpOThhK/df+3O21eEhqwfQ4q
+ cnDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=oTzTzATg2mErR6l1cKB4pE5F5gHmoMv2smtijpvPfEo=;
+ b=PCs3Q1971b8TBFnxN7qeTvOeTokq1DEJAH+q+QKVjsb/wzxXGHCKBqXesT4HJGjiZ9
+ SmErc+z3JQGWwjpbAWoa4R1IHOF5QgFh0wzVNOniGqZYdVJEcGnpLk6Mi6pgB8EsVkmt
+ vGtrLjAqiOBt3/49BQ7AZX6kIdzsQUMOyeL4GOP/RyHfXONBiW6zJ7KgANkacfug8BVY
+ 7HCksCH78sXe6WclzOILPD6/fIht/zdmdTGvYsoaLWLeW9B86BtjG67ZJ8J3UQ3tNPL7
+ WLj/qYUZrJRDb+joix17v7B6FWP0fnKCfis9977VQ3u/4oN261v5p4JWzbVXUUuPIbbO
+ ifMQ==
+X-Gm-Message-State: AOAM531SzayFQUuU8GY2BEbeHCNVCuAeHzX3lhoxR1FUqg9IAm3c7ELp
+ tEfnyBWWGbE5h4ebP6gsNBxNcgcw8vY=
+X-Google-Smtp-Source: ABdhPJxgl8sT1TyP6ZiJOeYEhNRnXpFVfchQbwkT18+cea1euLVFWehmGwZPhOlGQScXIaDMWk7DdA==
+X-Received: by 2002:a17:906:910:: with SMTP id
+ i16mr16418295ejd.677.1643636345988; 
+ Mon, 31 Jan 2022 05:39:05 -0800 (PST)
+Received: from ?IPV6:2a02:908:1252:fb60:a1a5:68e2:5791:313f?
+ ([2a02:908:1252:fb60:a1a5:68e2:5791:313f])
+ by smtp.gmail.com with ESMTPSA id d16sm13313870ejy.135.2022.01.31.05.39.04
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 31 Jan 2022 05:39:05 -0800 (PST)
+Message-ID: <279aa99d-2146-1362-ac66-0781fafc67e7@gmail.com>
+Date: Mon, 31 Jan 2022 14:39:03 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Originating-IP: [10.126.230.35]
-X-ClientProxiedBy: drhqmail202.nvidia.com (10.126.190.181) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 428c4fc8-8571-4807-f705-08d9e4837d0b
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4634:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB46346FF5B38114C79CD567BDDF259@DM6PR12MB4634.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hJ1PUShyShlk0fTp1g6E9VvXoeCpImw9IfsEelKsS1vDeIyljNzz+JYQCM6/VZBNoXKg3aqRVk75OSlViqBNNr+GYk1HR1bN1ltaGAn1vtqaT7XiKk6JeTTl3YOo8Yzy9TSv57UBuyKNgR+zrA4/jEZXlIFhyWh624BEWWCrU2ib1/mA6EPOHMSLKMA8uqZA4IVr/+kKRrMkcZJfugf8kBiJR1vF6k3M3iD3qTY1D3Xx5R949yqKLlHZRpk5LH2I4B+ZJ6OD9XjHnVCATaogoJYEOFlkgp3eP6yi4D90VV5OIWkLyFH+DIZCt73hqbeHJLdaPVRxxQC+oq0TQzFwBH9DlWFJtO9oROls6YBqVlyg5Wj+0y8TZhcbnJiKUybBYbmPyJz7htAaNBoxLunlJX5+y3lB3OXDpkL4KTQKANUtLl+ZQ0zXfAytVyFbSzeRG5OjbFEekt350tME5LPwn2vTfKdrHjPo8BUWsULQtrH6tu78+hUP7LdTSOPxaAThPd+OSL9AVmTiaAiGnH43DqihISC9RPMn6Nzh+zRB0ZEVftU0UZ7OnJIjOV+cUlE5tHSKFV8UVpyDqStPGzE5wuFr4H2A5kSaewf3rSveKoIhHS8ZspxhQCoC2IeQDMqG8hLMt0VfGTuNKSFFQgwyUANw4Hc7kebdVHjFYsFOtNmzrIkRn4DXIQ7pXBmRnilkA3/6K2qROG/XzS+WrEZ8kpzv+WoK7CxD/i36uqe7n2P6dCs8ybduBTZL9AVnlPMK
-X-Forefront-Antispam-Report: CIP:12.22.5.236; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:mail.nvidia.com; PTR:InfoNoRecords; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(356005)(4326008)(2906002)(9576002)(6666004)(81166007)(9686003)(7416002)(8676002)(5660300002)(8936002)(33716001)(82310400004)(86362001)(70206006)(508600001)(40460700003)(110136005)(47076005)(36860700001)(54906003)(16526019)(70586007)(186003)(26005)(426003)(336012)(316002)(39026012)(36900700001)(20210929001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2022 06:32:43.8327 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 428c4fc8-8571-4807-f705-08d9e4837d0b
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[12.22.5.236];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT009.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4634
-X-Mailman-Approved-At: Mon, 31 Jan 2022 08:43:17 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 2/2] drm/amdgpu: restructure amdgpu_fill_buffer
+Content-Language: en-US
+To: Felix Kuehling <felix.kuehling@amd.com>, harish.kasiviswanathan@amd.com,
+ benjaminadam.price@amd.com, amd-gfx@lists.freedesktop.org
+References: <20220128151637.1403-1-christian.koenig@amd.com>
+ <20220128151637.1403-2-christian.koenig@amd.com>
+ <a08812d4-a464-de08-8b5a-3c13408efff5@amd.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <a08812d4-a464-de08-8b5a-3c13408efff5@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,57 +75,94 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org, willy@infradead.org, jglisse@redhat.com,
- dri-devel@lists.freedesktop.org, jgg@nvidia.com, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Saturday, 29 January 2022 7:08:17 AM AEDT Alex Sierra wrote:
-
-[...]
-
->  struct migrate_vma {
-> diff --git a/mm/migrate.c b/mm/migrate.c
-> index cd137aedcfe5..d3cc3589e1e8 100644
-> --- a/mm/migrate.c
-> +++ b/mm/migrate.c
-> @@ -2264,7 +2264,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
->  			if (is_writable_device_private_entry(entry))
->  				mpfn |= MIGRATE_PFN_WRITE;
->  		} else {
-> -			if (!(migrate->flags & MIGRATE_VMA_SELECT_SYSTEM))
-> +			if (!(migrate->flags & MIGRATE_VMA_SELECT_SYSTEM) &&
-> +			    !(migrate->flags & MIGRATE_VMA_SELECT_DEVICE_COHERENT))
->  				goto next;
->  			pfn = pte_pfn(pte);
->  			if (is_zero_pfn(pfn)) {
-
-Sorry, but I still don't think this is quite right.
-
-When specifying MIGRATE_VMA_SELECT_DEVICE_COHERENT we are looking for pages to
-migrate from the device back to system memory. But as currently written I think
-this can also select the zero pfn when MIGRATE_VMA_SELECT_DEVICE_COHERENT is
-specified. As far as I know that can never point to device memory so migration
-of a zero pfn should be also be skipped in that case.
-
-We should only migrate the zero pfn if MIGRATE_VMA_SELECT_SYSTEM is specified.
-
-> @@ -2273,6 +2274,13 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
->  				goto next;
->  			}
->  			page = vm_normal_page(migrate->vma, addr, pte);
-> +			if (page && !is_zone_device_page(page) &&
-> +			    !(migrate->flags & MIGRATE_VMA_SELECT_SYSTEM))
-> +				goto next;
-> +			if (page && is_device_coherent_page(page) &&
-> +			    (!(migrate->flags & MIGRATE_VMA_SELECT_DEVICE_COHERENT) ||
-> +			     page->pgmap->owner != migrate->pgmap_owner))
-> +				goto next;
->  			mpfn = migrate_pfn(pfn) | MIGRATE_PFN_MIGRATE;
->  			mpfn |= pte_write(pte) ? MIGRATE_PFN_WRITE : 0;
->  		}
-> 
 
 
+Am 28.01.22 um 16:55 schrieb Felix Kuehling:
+>
+> Am 2022-01-28 um 10:16 schrieb Christian König:
+>> [SNIP]
+>> -    if (bo->tbo.resource->mem_type == AMDGPU_PL_PREEMPT) {
+>
+> As far as I can see, you didn't add this check back elsewhere. The 
+> promise for preemptible BOs is, that we never have to wait for the GPU 
+> to finish accessing the BOs because the context using it is 
+> preemptible. This was a necessary condition to disable GTT usage 
+> accounting for such BOs. If you allow filling such BOs with this 
+> function, you're breaking that promise.
 
+That's now part of amdgpu_ttm_map_buffer(), but unfortunately as 
+BUG_ON(). I've added a patch to change that into a warning.
+
+[SNIP]
+>> +        cur_size = min_t(u64, dst.size, AMDGPU_GTT_MAX_TRANSFER_BYTES);
+>
+> For VRAM, the cur_size could be much bigger because we're not limited 
+> by the GART transfer window. I'm pretty sure that 2MB is going to add 
+> too much overhead. For the extreme 60GB BO example, it would require 
+> 30-thousand IBs and IB frames to fill the entire buffer. That's a lot 
+> of VMID-switching, IB execution, fence signalling, interrupts, etc.
+
+I've restructured the mapping function so that we can now copy/fill in 
+256MiB chunks when no GART window is involved.
+
+>
+>
+>> +
+>> +        r = amdgpu_ttm_map_buffer(&bo->tbo, bo->tbo.resource, &dst,
+>> +                      PFN_UP(cur_size), 1, ring, false,
+>> +                      &to);
+>> +        if (r)
+>> +            goto error;
+>> +
+>> +        r = amdgpu_ttm_fill_mem(ring, src_data, to, cur_size, resv,
+>> +                    &next, false);
+>
+> If amdgpu_ttm_map_buffer updated the page tables, shouldn't the 
+> vm_needs_flush parameter be true? This flag should probably be 
+> returned by amdgpu_ttm_map_buffer.
+
+Ah, yes. That's indeed a typo. For now I've didn't added the 
+vm_needs_flush parameter, but that's something we could optimize.
+
+Regards,
+Christian.
+
+>
+> Regards,
+>   Felix
+>
+>
+>> +        if (r)
+>> +            goto error;
+>> +
+>> +        dma_fence_put(fence);
+>> +        fence = next;
+>> +
+>> +        amdgpu_res_next(&dst, cur_size);
+>> +    }
+>> +error:
+>> +    mutex_unlock(&adev->mman.gtt_window_lock);
+>> +    if (f)
+>> +        *f = dma_fence_get(fence);
+>> +    dma_fence_put(fence);
+>> +    return r;
+>> +}
+>> +
+>>   /**
+>>    * amdgpu_ttm_evict_resources - evict memory buffers
+>>    * @adev: amdgpu device object
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h 
+>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+>> index d9691f262f16..bcd34592e45d 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
+>> @@ -35,6 +35,8 @@
+>>     #define AMDGPU_GTT_MAX_TRANSFER_SIZE    512
+>>   #define AMDGPU_GTT_NUM_TRANSFER_WINDOWS    2
+>> +#define AMDGPU_GTT_MAX_TRANSFER_BYTES (AMDGPU_GTT_MAX_TRANSFER_SIZE * \
+>> +                     AMDGPU_GPU_PAGE_SIZE)
+>>     #define AMDGPU_POISON    0xd0bed0be
 
