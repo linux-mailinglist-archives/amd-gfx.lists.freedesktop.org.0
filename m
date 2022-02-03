@@ -2,93 +2,53 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81CD34A8116
-	for <lists+amd-gfx@lfdr.de>; Thu,  3 Feb 2022 10:10:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6299A4A842D
+	for <lists+amd-gfx@lfdr.de>; Thu,  3 Feb 2022 13:57:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2342410EA5A;
-	Thu,  3 Feb 2022 09:09:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B67710F69D;
+	Thu,  3 Feb 2022 12:57:36 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2066.outbound.protection.outlook.com [40.107.223.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1561010EA49;
- Thu,  3 Feb 2022 09:09:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AyEYTarO+pVVLio5jkBVpPu9UwQ5l5dkfPsgcXbms0Y5RAhhGNiTnRTRJUWWTvYtD/b17q7WKhEUSrbNM5baIuC+i22CyK7XpKjWLM45GOZEH1PR4ZGOmw4fkoi0cL3lMPDCozj5EhuCUnLe1r5gJcrzX7Xj8w9PhIP7fq53RhLxpFf8evgJFmYPz9C92Z/ccKYWA3azQzADphWqtqkHi0q+N5fcc5QxwhMR97KWIkgwhTR05f3hIdN3uTatDaAZXn35LLPga3PQTWGuQn7cSxOrHPzGGLc6IN0pBAH83yyEpcoLKZLQkPl0iw5mT99qYQ9Cfux/UqFuPz74KRjqjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=u7apuhowqTfa8EJVi8jWumZvO+tBrFjQZxi91S5zJ14=;
- b=N5UWxhu/siJUndDyig2kadD8ysISmpLnYmlXwljiNOhODdREmKrI6ecAnG7r8XMty/s7zq8IXBMjHog5ryn3vAvvCAuzkCXw4JTmSC8nziJzj9cD+9V6D5tcH0rCmm5SW2hJDfDZHYblLd/uqsoDGX62TUgowmt+qLeBOYjkZ0OASBIA+R/97kvcFG4bzgau+MAOWcHXSV1/EGSnwE1D5hYpTNsNYo022LcGejsIHiaDJrl3CNq0/WQehtYt+jJuXn1C1sr/ybXaL22ybI9TE+cuyrvZ2/h4KoQWQMczzw77r73Uv73XuMl/NNtcFShXPxkH+WisL41EFkMR9yDnhg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u7apuhowqTfa8EJVi8jWumZvO+tBrFjQZxi91S5zJ14=;
- b=Q4LAV/R3l360b7Dxl5FWB6xx0cxqdTx2Kn8N1XMZGNLdCnbj+UIiDl+mMdVpXj8S5n1IgwA6dyYrddRS+eu1yoYebApCcoAR7MVy0p/8OU478o3VCngiA8iQK3oJR2Cv6gA21IX4kpeQBwwYydEKKwon2ertSlKp4N0HQQp3FqA=
-Received: from BN6PR11CA0068.namprd11.prod.outlook.com (2603:10b6:404:f7::30)
- by DM6PR12MB3755.namprd12.prod.outlook.com (2603:10b6:5:1c2::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.20; Thu, 3 Feb
- 2022 09:09:46 +0000
-Received: from BN8NAM11FT012.eop-nam11.prod.protection.outlook.com
- (2603:10b6:404:f7:cafe::c8) by BN6PR11CA0068.outlook.office365.com
- (2603:10b6:404:f7::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12 via Frontend
- Transport; Thu, 3 Feb 2022 09:09:46 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT012.mail.protection.outlook.com (10.13.177.55) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4951.12 via Frontend Transport; Thu, 3 Feb 2022 09:09:46 +0000
-Received: from rajneesh-desk.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 3 Feb
- 2022 03:09:45 -0600
-From: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [Patch v5 24/24] drm/amdkfd: Bump up KFD API version for CRIU
-Date: Thu, 3 Feb 2022 04:09:18 -0500
-Message-ID: <20220203090918.11520-25-rajneesh.bhardwaj@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220203090918.11520-1-rajneesh.bhardwaj@amd.com>
-References: <20220203090918.11520-1-rajneesh.bhardwaj@amd.com>
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com
+ [IPv6:2607:f8b0:4864:20::22a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3717B10F69D
+ for <amd-gfx@lists.freedesktop.org>; Thu,  3 Feb 2022 12:57:34 +0000 (UTC)
+Received: by mail-oi1-x22a.google.com with SMTP id q186so3914264oih.8
+ for <amd-gfx@lists.freedesktop.org>; Thu, 03 Feb 2022 04:57:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=bstye3+6hcI4XrRtz56PI9+FkC4lJ8ajau65mu3lQDI=;
+ b=j5WIKoRhbmM9pozdHyPKDI5QVFORl/e+xI0LD1IF6SbA6MK8E2cNnw6htU0uRzZiUC
+ UTHbRDVv7bB0ZdVPqVSNh/c//QVsLTHLpvdJmIl2x8PYpMDkfWCoyxSO3hL4x/Y09n2c
+ 4ECI6dgbLF5y8fa/CTM7q4IXKQvzigpFuTtHk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=bstye3+6hcI4XrRtz56PI9+FkC4lJ8ajau65mu3lQDI=;
+ b=Ob9NUAHVe+kwRnhbP29FSqpiv/S0eXB+k0OKpKENFnRFPVR7eWH/klH1KkFcYRUkPK
+ Nfeuqm1dEtHxB/G3H8u2Sz8UBym5x+Y9YK8p5a4pph+6ztapWbZC/fTaBsZQuifMExDc
+ fgIjtJicfal/aqaegzE7AAIAuUWKQFN5bOtmHbzIUiOVtQEIcZcpvpBysRsTrHnfIRb/
+ 4D0wrlabqBXAlAiTNi1IWe5sGTWog9GQm9xTaXqK39Z35Y70mDROCIkoge7wsElRik1i
+ RbCToyIkpwQXKbu07xk7z7qHPQOm6mnkJbUhdN/i1oc3Ow1g84raKawNXRYSFMgIuVpW
+ nxxg==
+X-Gm-Message-State: AOAM530DWk1qi3d4mlKca7r//JfnKVk8qj12JnzUoLUE9R/JTD2RFDcc
+ yAtPQRLnfpDa7G2nH1bfng9K7qar8iyVa+gxYDfOQQ==
+X-Google-Smtp-Source: ABdhPJxGb1FfiYFh9/0KvGMfqbe3DU8GFNQcblsOOJIOOPQB2lvMONor4hntZRNHZGPd1SKwtbKauV5dfMHEElezkYY=
+X-Received: by 2002:a05:6808:1641:: with SMTP id
+ az1mr7688634oib.278.1643893053522; 
+ Thu, 03 Feb 2022 04:57:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a8b9935d-dd44-402d-1f64-08d9e6f4ec7b
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3755:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB3755000BA9C3F2518F9C0338FE289@DM6PR12MB3755.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2331;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4GJrDIXHecC11MGoLiFLHaAs2VgwQTzjCu0DhSJgnz7My69nTS7T2vAZ/3m8VDZQ0f1lSXJ3P5Gm0q6AZDg5wks98NhkOYD1VWxS8nqt4zB/JpRc0S1Efl63FCry3n2sVu7XPb5sg5NkXrzWZSljcor7JEsU/Te+djoOiyOPrjtlkKZZllovTvOAGllO5kAajk0Unq51jJ/RQYG9eAA8acgI7WgjagWYrJQwUM7F8BxEfbbR2a0aPF9QUgsaqby9LL0KDvPBrofgYuoaMW7oDkxDRYpFGg8ECv7hWvYnoxNg/wMqaAD7KQG3EevdjmdqBvvbWpYJUnjdhcHtf6W0BsIJmC057jel+MXwUDDFwYyfD9mxosOOvBKIIb0IRcMLISKO7atoynpJLIdGEjkpVgCMJJNUt+KxBeEXZi/pOSuH8yaRGM6mjUVs/8ORFYIsxCf0IlWwWymZNl4vVW0VWJW9xYL+Ir4X5X17Np3qabbZBeC/4KkqdOsQnBEPmyKoU8APTZxloy8nT1eDsQF7iLo+yNJmMMGUWdtrqkI8sFaLtl6ubi1XzuwAaPgsE90tr0Ig/62JW2mliGJkob0ePS2XWhroS9PwXYfFukyTvXvQphHcPHsrihC8bdq0LoukUSNq90kPU+uJjQC84bLqoJ5Pv3N3aI+75l8yiu13bD3RwYzvKk/6xzV1hWkzSy/9+VXu9/SrwmEzvOIHqY7CVr0T/RoV6+Dui40tVYI6neMmyS7t3fzUD58eNn9On0lz3w+jPqPSA0glZNYsF/FBQSJC1OMyJEVR6wkIHWMxQB4=
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(44832011)(16526019)(450100002)(5660300002)(6916009)(966005)(4326008)(36860700001)(54906003)(47076005)(40460700003)(316002)(4744005)(508600001)(86362001)(8936002)(70586007)(7696005)(336012)(36756003)(26005)(426003)(82310400004)(2906002)(81166007)(2616005)(186003)(356005)(70206006)(6666004)(83380400001)(8676002)(1076003)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2022 09:09:46.2911 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8b9935d-dd44-402d-1f64-08d9e6f4ec7b
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT012.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3755
+References: <20210927192324.5428-1-Jerry.Zuo@amd.com>
+ <87ee4krwl3.fsf@intel.com>
+In-Reply-To: <87ee4krwl3.fsf@intel.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Thu, 3 Feb 2022 13:57:22 +0100
+Message-ID: <CAKMK7uHFnFB29o5-3GFo5=bne=u==iFyZ2WmSMUkyj4ujZx-XA@mail.gmail.com>
+Subject: Re: binary constants (was: Re: [PATCH v3] drm/dp: Add Additional DP2
+ Headers)
+To: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,38 +60,58 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alexander.deucher@amd.com, felix.kuehling@amd.com, david.yatsin@amd.com,
- Rajneesh
- Bhardwaj <rajneesh.bhardwaj@amd.com>, dri-devel@lists.freedesktop.org
+Cc: Dave Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Fangzhi Zuo <Jerry.Zuo@amd.com>,
+ dri-devel@lists.freedesktop.org, Wayne.Lin@amd.com, harry.wentland@amd.com,
+ nicholas.kazlauskas@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
- - Change KFD minor version to 7 for CRIU
+On Thu, Feb 3, 2022 at 12:58 PM Jani Nikula <jani.nikula@intel.com> wrote:
+>
+> On Mon, 27 Sep 2021, Fangzhi Zuo <Jerry.Zuo@amd.com> wrote:
+> > +/* DSC Extended Capability Branch Total DSC Resources */
+> > +#define DP_DSC_SUPPORT_AND_DSC_DECODER_COUNT         0x2260  /* 2.0 */
+> > +# define DP_DSC_DECODER_COUNT_MASK                   (0b111 << 5)
+> > +# define DP_DSC_DECODER_COUNT_SHIFT                  5
+> > +#define DP_DSC_MAX_SLICE_COUNT_AND_AGGREGATION_0     0x2270  /* 2.0 */
+> > +# define DP_DSC_DECODER_0_MAXIMUM_SLICE_COUNT_MASK   (1 << 0)
+> > +# define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_MASK   (0b111 << 1)
+> > +# define DP_DSC_DECODER_0_AGGREGATION_SUPPORT_SHIFT  1
+>
+> The patch was merged a while back, but only now I noticed the use of
+> binary constants, which in C is a GCC and Clang extension [1][2]. There
+> are some instances in the kernel, but not a whole lot.
+>
+> Do we want to avoid or embrace them going forward? Or meh?
 
-Proposed userspace changes:
-https://github.com/RadeonOpenCompute/criu
+$ git grep '\<0b[01]*\>'
 
-Signed-off-by: Rajneesh Bhardwaj <rajneesh.bhardwaj@amd.com>
----
- include/uapi/linux/kfd_ioctl.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Gives me almost exclusive hits in
+- .rst files
+- .S assembler files
+- comments and strings
 
-diff --git a/include/uapi/linux/kfd_ioctl.h b/include/uapi/linux/kfd_ioctl.h
-index 49429a6c42fc..e6a56c146920 100644
---- a/include/uapi/linux/kfd_ioctl.h
-+++ b/include/uapi/linux/kfd_ioctl.h
-@@ -32,9 +32,10 @@
-  * - 1.4 - Indicate new SRAM EDC bit in device properties
-  * - 1.5 - Add SVM API
-  * - 1.6 - Query clear flags in SVM get_attr API
-+ * - 1.7 - Checkpoint Restore (CRIU) API
-  */
- #define KFD_IOCTL_MAJOR_VERSION 1
--#define KFD_IOCTL_MINOR_VERSION 6
-+#define KFD_IOCTL_MINOR_VERSION 7
- 
- struct kfd_ioctl_get_version_args {
- 	__u32 major_version;	/* from KFD */
+So I think probably not? I mean there's also BIT() and BIT_MASK()
+macros and stuff like that, and reading small masks is pretty simple.
+-Daniel
+
+
+>
+>
+> BR,
+> Jani.
+>
+>
+> [1] https://gcc.gnu.org/onlinedocs/gcc/Binary-constants.html
+> [2] https://clang.llvm.org/docs/LanguageExtensions.html#c-14-binary-literals
+>
+> --
+> Jani Nikula, Intel Open Source Graphics Center
+
+
+
 -- 
-2.17.1
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
