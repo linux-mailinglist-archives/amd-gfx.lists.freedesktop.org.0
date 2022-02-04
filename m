@@ -1,59 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B9764AA009
-	for <lists+amd-gfx@lfdr.de>; Fri,  4 Feb 2022 20:27:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90B7F4A9FB2
+	for <lists+amd-gfx@lfdr.de>; Fri,  4 Feb 2022 20:04:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C376810E9E0;
-	Fri,  4 Feb 2022 19:27:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB3A810E352;
+	Fri,  4 Feb 2022 19:04:19 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com
- [IPv6:2607:f8b0:4864:20::d34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7141B10E130
- for <amd-gfx@lists.freedesktop.org>; Fri,  4 Feb 2022 18:18:45 +0000 (UTC)
-Received: by mail-io1-xd34.google.com with SMTP id r144so8375138iod.9
- for <amd-gfx@lists.freedesktop.org>; Fri, 04 Feb 2022 10:18:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=B0ahm0hdwmzp8LcfxQ8+kQ7YphowIvmbdFdhXbcRawU=;
- b=YuuKVwxWhqjqDGM91SbOGfO5jk1lvcH2xOKu9SdTS/0AtcSSu6Z74v9BI75XsPuQNQ
- 6voOghPWwZ0DFtuWnIayytbcUYvQLdpxYUw/+iekyW/DRrXWz5L3T9qUdSP4JAL0wOB2
- AAuLy72nClt9QPT6wEIYZ/WM76WScoUHkqOnE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=B0ahm0hdwmzp8LcfxQ8+kQ7YphowIvmbdFdhXbcRawU=;
- b=kfcTdE+LSWUXrLq5mvyILY65u0FVcf4jKuGwFtWr9ZDezYA7/vipmUIbcga439ZgDA
- F0CKIqHzTYgOvN/opqxYZMYFoDHyykWGDcMnJwlyhtBQF/CsOLtZHO9bcIMpTFdcex0y
- 6v3uitett5JJtvJpMjAnExMmnd4m0JaY8nd05lcqbvbp6oncG1SgbEN5I0jVx7jyxz/b
- BsZ5v9XUnn4TqGxTqcfGF44H7AF4Odg3ZPO9oD6dhdaqBE/yReboVeoRtoHfNDEJTOld
- yvRMl2bgYHl6srrhOpUGxINtg3fTJG6ku3v7i14yfVC03NzzsnpQAT6+TS4fz1g/WKhY
- YyNA==
-X-Gm-Message-State: AOAM531VkjuqtX7znQxiwLE44dqENM43OnpmBqL/CwUX64rNznCpuCdS
- WK2Sq5NhCinIHaoKQL0KHPk51PVdQn0BGkCMIKPYhA==
-X-Google-Smtp-Source: ABdhPJytny1SyvPfpAVIt5yuyPMy85jb9OFiLTaA6qhpI02J9cXH4cGVPLFMJsAR4d38qn7L7cix9j7++UZ9EJEbmaw=
-X-Received: by 2002:a6b:f218:: with SMTP id q24mr174468ioh.55.1643998724641;
- Fri, 04 Feb 2022 10:18:44 -0800 (PST)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2070.outbound.protection.outlook.com [40.107.237.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D752B10E352
+ for <amd-gfx@lists.freedesktop.org>; Fri,  4 Feb 2022 19:04:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OU473kXqtXZ05zRnhfI9bAN0B4Ts1vZqWKCF2GAXfjcgvDiqAIC8h8BQXg0iVAEI5BzfT6DxJXncsHohwpNMfe2ZmDw/Yw9IJ382PSK7mhxDuAMk3ObnKPWTJ7SQchSqiAwbOxmtpi07N06te2rwzJFu4Z/MjgQKBz3/oZLlKlEGcwZ9uD0aczbsfnM0UOZUX674GppwDAJtXuGuAkC3235vhWYXU35yV3or4rs7jUw6Jzbs/9JYHiqfsm3Gy3kbJiW4asV8yQG+mikQqey/5li0m/P8J30q3Y15YmKMLluYB8Q6KPQ2AGtptqOlJaDsGO5ZQFojaXVvEbs0UMQGWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qPBdmjUDGhQSPASqFXtPTp5kk3fwoKc3mnQ340yAcgg=;
+ b=VYkJpr40Y9OSUZkByyi26WKLNKRgeers53UaL8omKNd/uUGzEyp5EFmnUo0K2sNi76wEN6/gK+4UjHfoVxktxHgGgZITS0LYaNqvBCrtGSGzb0p/lsIt9DNoK3Ugco52WgVesypxBxJhNAQjO4ly7VAmUzik2/ZOSUINccoyb1UTC5e4p7sP4IwCKMDINGhzdVGiSL0R8i3LvTt624Vp29hvV4D/+SzPSkhMoKEDRtDEvWDYrJ9F6v3f7OrQ6/UoSPxEcjnYG7eSQWuyKunbuy4DwXOJfO+ozq31GG5XXko3zLXvQTS6/lZXxutI0hVFRsi6hWm9n+OdVVNUwzJzgA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qPBdmjUDGhQSPASqFXtPTp5kk3fwoKc3mnQ340yAcgg=;
+ b=cHDu6qX7vowYnViW08Rj8iRefhAPE1g/VAA7XBFIPMdV+dwV1/YZZxep8JsWVPUoLDl86OsfpVdeTViQtN1uM31sVppt5seei8nBntAJ+H8j7O+ZCrmT8iRI8PS5wkL5c4re7cjbyWrSDKvTrg+z56iXRTolCPrXduJ0k4bPAaY=
+Received: from MW4P223CA0020.NAMP223.PROD.OUTLOOK.COM (2603:10b6:303:80::25)
+ by BYAPR12MB4757.namprd12.prod.outlook.com (2603:10b6:a03:97::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Fri, 4 Feb
+ 2022 19:04:15 +0000
+Received: from CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:80:cafe::1) by MW4P223CA0020.outlook.office365.com
+ (2603:10b6:303:80::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12 via Frontend
+ Transport; Fri, 4 Feb 2022 19:04:15 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT033.mail.protection.outlook.com (10.13.174.247) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4951.12 via Frontend Transport; Fri, 4 Feb 2022 19:04:15 +0000
+Received: from jasdeep-System-Product-Name.hitronhub.home (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.18; Fri, 4 Feb 2022 13:04:12 -0600
+From: Jasdeep Dhillon <jdhillon@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 00/13] DC Patches Feburary 7, 2022
+Date: Fri, 4 Feb 2022 14:03:44 -0500
+Message-ID: <20220204190357.94538-1-jdhillon@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220106122452.18719-1-wsa@kernel.org> <Yd6gRR0jtqhRLwtB@ninjato>
- <98ed8d6d16a3d472d9432eb169aa2da44b66b5cc.camel@yandex.ru>
- <4dfbee97-14c2-718b-9cbd-fdeeace96f59@yahoo.com>
- <CAJMQK-h38XdN=QD6ozVNk+wxmpp1DKj21pkFZ+kY31+Lb8ot6Q@mail.gmail.com>
- <6121a782-6927-f033-1c09-ffe4ad7700ae@yahoo.com>
- <CAJMQK-j5YYqen78Vgng_5jhja-YKSTRut7f7vJ4wWufVfbZy6w@mail.gmail.com>
- <363432688.323955.1642272250312@mail.yahoo.com>
-In-Reply-To: <363432688.323955.1642272250312@mail.yahoo.com>
-From: Hsin-Yi Wang <hsinyi@chromium.org>
-Date: Sat, 5 Feb 2022 02:18:18 +0800
-Message-ID: <CAJMQK-jx+z974AT_p+-AVAbMQQ33V-XU9NKmy-i6nbS5zagHBA@mail.gmail.com>
-Subject: Re: [PATCH] Revert "i2c: core: support bus regulator controlling in
- adapter"
-To: "Tareque Md.Hanif" <tarequemd.hanif@yahoo.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Fri, 04 Feb 2022 19:27:42 +0000
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a6889785-da60-4cd0-ab29-08d9e811233e
+X-MS-TrafficTypeDiagnostic: BYAPR12MB4757:EE_
+X-Microsoft-Antispam-PRVS: <BYAPR12MB4757172997E52E72D36BFAA1FB299@BYAPR12MB4757.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7YK6aNTBvFX2bS+g+wQWbxWzZ43sTTuV7DL7XabdcIyQybcQcAEKKxV02nQOI6S4N+1ANa/BcShop2p5a9MEvzrdgtSK8vXUHT/6Evh4+tp3fashJGSs7dPksxIrky+gVq1nBgvHfe4DCjszscFazzqn4T0xnhHSjzHa9Tpt+DopUJDt+vFDlwYh56TIptRKG/HNUitM+5+lzLakzfYcHMKb3iI5BzYjrNDCj43qGrjlcxKgSaKxZ/mrrz9waktlXEJdM5G2SveRK2+CJUtnu2GzIYEE6thM9enuOrP2HryN8y/BK16t7nmhKGftFhBayYjvUJ8+8iExXE4dz7ZzRlDZsvrwRyLDzkPGk8B1W12yjxUohah/vuxSXCQR7WALd7PXEy4fZyQ8OG9l0hhjBjNrZ+Gl8Ys111d7WlGDJb4gplcgaEnwowNyreLOtWmHyc5Xtxj9xLMdNycxiMKthxjp5PXKLKKu2pOusHO1v+YEYxBwyi5AlYsyi/Hct51Ss5O5pq39doEIRKv6WebDSCNKdWCdeifFgNwNZcw2IMWZx+JxawprdP4jAMP7HdUenQOsQzYWce2wLGipQDrmc4QpnCXO80wbnZCX+vptGej1Cpf3i1r+InW6yqHfak5QqIYwG3PKv7gLdkWWkkDO4B/Zz9AbnaUtJEMpeB7r236TSPUijHDNQwOekNRZrahU2rYSHLZHfs3+QiCVSMgwSg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(6916009)(83380400001)(26005)(54906003)(4326008)(70206006)(8676002)(8936002)(316002)(82310400004)(336012)(508600001)(6666004)(70586007)(186003)(426003)(2906002)(356005)(1076003)(81166007)(36860700001)(16526019)(2616005)(5660300002)(36756003)(40460700003)(47076005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2022 19:04:15.1158 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a6889785-da60-4cd0-ab29-08d9e811233e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT033.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB4757
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,97 +99,75 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Wolfram Sang <wsa@kernel.org>,
- "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
- Bibby Hsieh <bibby.hsieh@mediatek.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Jasdeep Dhillon <jdhillon@amd.com>,
+ Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
+ Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
+ agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Jan 16, 2022 at 2:44 AM Tareque Md.Hanif
-<tarequemd.hanif@yahoo.com> wrote:
->
-> Hi Hsin-Yi,
->
-> The issue still exists. I reverted a19f75de73c220b4496d2aefb7a605dd032f7c01 (the commit that reverted 5a7b95fb993ec399c8a685552aa6a8fc995c40bd) and manually applied the patch (tags/v5.16). journalctl attached.
+This DC patchset brings improvements in multiple areas. In summary, we have:
+-fix for build failure uninitalized error
+-Bug fix for DP2 using uncertified cable
+-limit unbounded request to 5k
+-fix DP LT sequence on EQ fail
+-Bug fixes for S3/S4
 
-hi Tareque,
+Anthony Koo (1):
+  drm/amd/display: [FW Promotion] Release 0.0.103.0
 
-Can you apply the same setting[1] again and with this patch to see if
-the issue is still there?
-https://github.com/torvalds/linux/commit/6dc8265f9803ccb7e5da804e01601f0c14f270e0
+Aric Cyr (1):
+  drm/amd/display: 3.2.172
 
-[1] reverted a19f75de73c220b4496d2aefb7a605dd032f7c01 (the commit that
-reverted 5a7b95fb993ec399c8a685552aa6a8fc995c40bd) and manually
-applied the patch (tags/v5.16)
+Dmytro Laktyushkin (2):
+  drm/amd/display: limit unbounded requesting to 5k
+  drm/amd/display: fix yellow carp wm clamping
 
-Thanks
->
-> Regards,
->
-> Tareque
->
-> On Saturday, January 15, 2022, 11:27:07 PM GMT+6, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
->
->
-> hi Tareque,
->
->
-> On Fri, Jan 14, 2022 at 6:09 PM Tareque Md Hanif
-> <tarequemd.hanif@yahoo.com> wrote:
-> >
-> > Hi Hsin-Yi,
-> >
-> > On 1/12/22 16:58, Hsin-Yi Wang wrote:
-> >
-> > Can you help provide logs if we apply
-> > 5a7b95fb993ec399c8a685552aa6a8fc995c40bd but revert
-> > 8d35a2596164c1c9d34d4656fd42b445cd1e247f?
-> >
-> > Issue still exists. journalctl log attached in revert_8d.txt
-> >
-> >
-> > > after apply 5a7b95fb993ec399c8a685552aa6a8fc995c40bd
-> > > 1. delete SET_LATE_SYSTEM_SLEEP_PM_OPS(i2c_suspend_late,
-> > > i2c_resume_early) and function i2c_suspend_late() and
-> > > i2c_resume_early().
-> >
-> > No issues. journalctl log attached in test1.txt
-> >
-> >
-> > > 2. delete SET_RUNTIME_PM_OPS(i2c_runtime_suspend, i2c_runtime_resume,
-> > > NULL) and function i2c_runtime_suspend() and i2c_runtime_resume().
-> >
-> > Issue exists. journalctl log attached in test2.txt
->
->
-> Thanks for the testing.
-> Can you help us test if applying the following patch on top of
-> 5a7b95fb993ec399c8a685552aa6a8fc995c40bd works? Thanks
->
-> diff --git a/drivers/i2c/i2c-core-base.c b/drivers/i2c/i2c-core-base.c
-> index 9eb4009cb250..6b046012aa08 100644
-> --- a/drivers/i2c/i2c-core-base.c
-> +++ b/drivers/i2c/i2c-core-base.c
-> @@ -484,7 +484,7 @@ static int i2c_resume_early(struct device *dev)
->         struct i2c_client *client = i2c_verify_client(dev);
->         int err;
->
-> -      if (!client)
-> +      if (!client || dev_pm_skip_resume(dev))
->                 return 0;
->
->         if (pm_runtime_status_suspended(&client->dev) &&
-> @@ -502,7 +502,7 @@ static int i2c_suspend_late(struct device *dev)
->         struct i2c_client *client = i2c_verify_client(dev);
->         int err;
->
-> -      if (!client)
-> +      if (!client || dev_pm_skip_suspend(dev))
->                 return 0;
->
->         err = pm_generic_suspend_late(&client->dev);
->
+Eric Bernstein (2):
+  drm/amd/display: Fix for variable may be used uninitialized error
+  drm/amd/display: remove static from optc31_set_drr
+
+Guo, Bing (1):
+  dc: do blocked MST topology discovery at resume from S3/S4
+
+Ilya (1):
+  drm/amd/display: Fix DP LT sequence on EQ fail
+
+Martin Tsai (1):
+  drm/amd/display: handle null link encoder
+
+Nicholas Kazlauskas (1):
+  drm/amd/display: Fix stream->link_enc unassigned during stream removal
+
+Oliver Logush (1):
+  drm/amd/display: Basic support with device ID
+
+Paul Hsieh (1):
+  drm/amd/display: change fastboot timing validation
+
+Zhan Liu (1):
+  drm/amd/display: keep eDP Vdd on when eDP stream is already enabled
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 24 +++++++-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h |  2 +-
+ .../gpu/drm/amd/display/dc/clk_mgr/clk_mgr.c  |  2 +-
+ drivers/gpu/drm/amd/display/dc/core/dc.c      |  2 +-
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c | 27 ++------
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  |  4 +-
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |  8 +--
+ drivers/gpu/drm/amd/display/dc/dc.h           |  4 +-
+ drivers/gpu/drm/amd/display/dc/dc_link.h      |  1 +
+ .../display/dc/dce110/dce110_hw_sequencer.c   | 27 +++++++-
+ .../drm/amd/display/dc/dcn20/dcn20_resource.c | 11 +---
+ .../drm/amd/display/dc/dcn31/dcn31_hubbub.c   | 61 ++++++++++---------
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_optc.c |  2 +-
+ .../gpu/drm/amd/display/dc/dcn31/dcn31_optc.h |  2 +
+ .../drm/amd/display/dc/dcn31/dcn31_resource.c |  3 +-
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  4 +-
+ .../gpu/drm/amd/display/include/dal_asic_id.h |  3 +-
+ 17 files changed, 104 insertions(+), 83 deletions(-)
+
+-- 
+2.25.1
+
