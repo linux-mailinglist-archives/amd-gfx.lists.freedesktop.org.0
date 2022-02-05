@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26A394AA68D
-	for <lists+amd-gfx@lfdr.de>; Sat,  5 Feb 2022 05:33:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E00864AA68F
+	for <lists+amd-gfx@lfdr.de>; Sat,  5 Feb 2022 05:33:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E17BB10ECBF;
-	Sat,  5 Feb 2022 04:33:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5489F10ED13;
+	Sat,  5 Feb 2022 04:33:39 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2054.outbound.protection.outlook.com [40.107.244.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6C4D10ECBF
- for <amd-gfx@lists.freedesktop.org>; Sat,  5 Feb 2022 04:33:35 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam08on2069.outbound.protection.outlook.com [40.107.100.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5506010ED0A
+ for <amd-gfx@lists.freedesktop.org>; Sat,  5 Feb 2022 04:33:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m6d3cutb0UdP6YhhMBFBUvr03qqUWnoASI1iiQoK5RFH3UIFyZf4+d/lOckrH/PortLRKbwO4nw6qwe7QzcasDzStyXeEG3KYHkuCgPKEZ0k2ZIwVNjO0RhbkZ5t50zLorOoItaPmecRoRfn//GnZEJqrIW0g8Ll23lOCmGfNLLK6MuSLp7/Mu30u/AQv72ej5ncUIB3sqlKTkt7KMqEfzN+xjWTmSvrwcro8WzBvaoALb1fHqVZGtTBQtfzK/VP2gU1AZB2TlPqS7VRnMwsz39e2RzV0MELu+UvtTq44igO617aw75+JEENQLYlQ1SFwICw4f35c35aetoKO4/yTw==
+ b=gwmbUJyjPk0ixcB/0/0YpW7WOSUNoWzUWY7RazAnyuAsXhoH7ESTf3JJGwqN9epxJvqj8GcL71MsiDWSv8U5uFc2o35tWfAAtHQHvEkqsAV7kAxt0b2fnHRnUuuXWj8Nw1wJ/LzCVmkke6SPIDhd0Xxr30L5h5wMct5a5l0L4QYg5XcBNAzz7lmDBV1nY+baXyLvc0GHBA0MAR95JZhEXlctfgd7CcWJg1CixxQUcTrO/ANGUusowvqB/LG2+skdOYoygoLKeWPFN0qOpxTzPk4Glk1ec1baHf0okkDX8VOSX+VPVFYR6gFVAKbhaEZQghlDFZ6h5IYmxiyZVRQwhg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nUMVssbPtUOOK/chGXhbNaR8hUXUXkMl1iOc6a+ycF4=;
- b=ScbMmiqwgMLxOxecwJSIaFa1J2rgc8hFlMJqUiZz810Zto9g9HW58bBix6wpwz35jEBXKUiDSwJ6a1Efun18Kqyd2CzAK0Pzp7micXaslwMGHW52Y/5P4MCE5nwu7EsMfu8S70P3fXHLmSSGAePSikbyvCvsRAgZ64Xwi5p/tfSn+8/qOGh6Typ/tizVmtJT0787z6VYglj6j814YHYziMTbQHXdc+VaHM+QRhxVfhR93XDXavLh6nxERuaj8noYBmkiKIUTwFhcJ7QXkEqpYyQ3Pw29BnATTIpuDduzR9ueMELcshbuwTQZFQMZ4xgeAcBIMdTHFqoENFuXqMgUMQ==
+ bh=5B6MW5NlRDcMt43wkoSV5FLSpxf36+2lUkldWeu9NAw=;
+ b=muAVth7c62S6Zn1jaZDOt+Cb4yRDr215qNxhpM2DL+inN0xDL8iUIVLmBLjw2192TMkn2hfprNkH8jkBzBPuzHxKvOLCumr/45wqPW3UYP6eDW6L5wKBLjQ9hkTUd7C50OYfpGIHofu60iCzBqvSdE9nXLxhYEYa3x9OSl5BvfS6UAMAieYHTSuu+zllBW7/HkY/qZmEA5HN/QubD07GSwzo7iAlmumT/zEW/Vi6NhM/lEM9h0wiaky/3oj0cxYerUPaGjnl4arRUB5rESYYKUpA+vGikt9jdhPKCgug1/6OJGW5jqahg4CulbjWRsHS2TrIpt5htX+i6g1jMK1sFg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nUMVssbPtUOOK/chGXhbNaR8hUXUXkMl1iOc6a+ycF4=;
- b=EtWA0D9aqllH3i9LPpv/fZMNA67OYjyZLcURoDZ2HN7E7vGQRPqUGFU39+kCbG5l5137LdxturV2DoVf4+GTLPm8JSrYn+4Y5FkYiPIvOjzq965W91NeOEKOTj0XWjPjcnU+LRug0LdVP/V7PBel+ssq62uqOgEPfxoUKROoKrg=
-Received: from MW2PR16CA0034.namprd16.prod.outlook.com (2603:10b6:907::47) by
- DM6PR12MB2779.namprd12.prod.outlook.com (2603:10b6:5:4f::21) with
+ bh=5B6MW5NlRDcMt43wkoSV5FLSpxf36+2lUkldWeu9NAw=;
+ b=q35bXRuG1B51XmeXHOs/NC//XaQf2ILRIFEOjk63Pk7OFbmoDMxBcesjtvEdGPXCaZLjFMORJLNoUskoZNniB/JLMboio4cVgeC9DB/dkRGN0zllOuv449j+aQMgsKGsb67xn+pzZB7zBRhdrPhqj6qywp8mw/TVrUmqu7GwjT0=
+Received: from MW2PR16CA0009.namprd16.prod.outlook.com (2603:10b6:907::22) by
+ BN6PR12MB1204.namprd12.prod.outlook.com (2603:10b6:404:1b::16) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4951.12; Sat, 5 Feb 2022 04:33:34 +0000
+ 15.20.4951.11; Sat, 5 Feb 2022 04:33:35 +0000
 Received: from CO1NAM11FT055.eop-nam11.prod.protection.outlook.com
- (2603:10b6:907:0:cafe::80) by MW2PR16CA0034.outlook.office365.com
- (2603:10b6:907::47) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:907:0:cafe::18) by MW2PR16CA0009.outlook.office365.com
+ (2603:10b6:907::22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.17 via Frontend
- Transport; Sat, 5 Feb 2022 04:33:33 +0000
+ Transport; Sat, 5 Feb 2022 04:33:34 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,17 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT055.mail.protection.outlook.com (10.13.175.129) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4951.12 via Frontend Transport; Sat, 5 Feb 2022 04:33:33 +0000
+ 15.20.4951.12 via Frontend Transport; Sat, 5 Feb 2022 04:33:34 +0000
 Received: from jasdeep-System-Product-Name.hitronhub.home (10.180.168.240) by
  SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.18; Fri, 4 Feb 2022 22:33:31 -0600
+ 15.1.2375.18; Fri, 4 Feb 2022 22:33:32 -0600
 From: Jasdeep Dhillon <jdhillon@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 08/13] drm/amd/display: keep eDP Vdd on when eDP stream is
- already enabled
-Date: Fri, 4 Feb 2022 23:33:05 -0500
-Message-ID: <20220205043310.165991-9-jdhillon@amd.com>
+Subject: [PATCH 09/13] drm/amd/display: Fix DP LT sequence on EQ fail
+Date: Fri, 4 Feb 2022 23:33:06 -0500
+Message-ID: <20220205043310.165991-10-jdhillon@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220205043310.165991-1-jdhillon@amd.com>
 References: <20220205043310.165991-1-jdhillon@amd.com>
@@ -69,28 +68,28 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6baec0c4-77fa-4056-fe68-08d9e860ab36
-X-MS-TrafficTypeDiagnostic: DM6PR12MB2779:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB27795EAE072830C7BF8FA650FB2A9@DM6PR12MB2779.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Office365-Filtering-Correlation-Id: 67c80dc7-c1eb-4b21-cba9-08d9e860abe9
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1204:EE_
+X-Microsoft-Antispam-PRVS: <BN6PR12MB120423F856B331D566D97A8DFB2A9@BN6PR12MB1204.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3/VL0WzrkivBe8eekx2XrzkY1wKu6OEzRP+ueSgyVHM28Ut63xsTou2jLX+eaRZVqz7EpHKT4UO+RhVRtTXp4QcMHMOySHiJbwVkZbHrSRzJO/KXcdRbFidqxremd0dh5sUXFzl0ALqBPi/S+klxeZayG2za5Oj45yhuWscn2sCYe4jiDseDBnzCfEOiClEtDpeLiNyuwTi5mltBK27B2uKNkAdE3t5kXpnNgh2NBAi2oYqTiO4HVBydMRktHaO/3CSuPIjNO6+lpZBFe3NFq6Tr56ZwKJvzjutsy7AqdTKrS6rPzkEAZ7El/xINQay2hSFm9AdonUT6wL4lcdmMhXws/XkXaCdSGO1igpydjxThgY3LtSHyqXyMN/vSAL7+FFFRf0s/P3JYXEoKpLbdC5APwo923ljDNpjNMenDbUctXEzGJ9OknDGrg2rmXtd7jafhJbdj1ddPAhyx4bGQCVbor3RVzlRz+Yn7DjuzEjQNlrkUvJCYzTsvUCEIJYNV7+fJt2e66cw2GR38YDj/xwiFCPGow6dzv4yBMXE+OX5YpvcMICCCxiyxTaiOhQQRkb9i0D8JbCUO2b4/0ofV3clt9Ef1koMdP94IwNkRVM2RJ+FG4vnEE7iFet6CtWP2fV9ohBsnoiDXycO5w5rbla6Vza9IBXW3aCCzgYBShxr0rRgLU515hahfBoNdDQBv6jrXJmn/e0bq575Q3SRcKg==
+X-Microsoft-Antispam-Message-Info: ZBUYUivWC9F8GPxnbHNRh2D1UTCc+tKYwjSP8PZ/FjYZjYINo7bk1s7UXYm66e3pO25g0Zx2xawsMYh91XFVFbboSDlaKWRM2iJXR8ZJ4hnIHcfDRfbcuCy0YCGnZRuIVq7uELUSos2Ta2FeJcv6DDgeRUxmnyWunYISjgDp5J0K9HPG2MvJL11wBs6CieYa64QRYL1FqHXLjnYc/mWgtvONXdlX8QhA6+f+Je8o2V2UE5HvpMt9U5+x0/v9iPKBmpnvCQTGICVL4pDi65kXPRWXtzgFNjUdG/X9gUR0dBTjZPHQkhsL+H9tVFwww2+HCNlE00zoAGwKBH66uG837e9uwA0hjfsEDWweEtbKzp/JOTNv4tmhvcCvCDn4kRhMbNHl1LZFg/3vu6tSrbDUZA5bf1BrN3cRgB3Y1CWToPsbLTna3Qu9yKdu17idLrN9i641zYjdH0nSKi/GKnE6W56c7azCzacSTK6d5FVJL7QZQcsVXIl4GoZqoVUOlvr8tR6HLsu8TG8Wuaxe2xOXexUeZS/PU1zEzha7LlQDaIhbsdzGn657LaHRkLo0Atfzmqyikdls0WT6w2ylTJGy74vv3B6hXbHRLo9AOa78j9CR08QVFyYqvypP4Dmec3LQussdlhLpe8uX93fSfSKQAMPfPOxhmiGMtZrV/gCYi0KN4LfDvmxd+4oUZ4BMI0mRjc5eX+JSWAbHbjMi/OUGfQ==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(70586007)(4326008)(8936002)(356005)(70206006)(81166007)(5660300002)(16526019)(82310400004)(8676002)(36860700001)(316002)(47076005)(2906002)(426003)(54906003)(186003)(26005)(6666004)(2616005)(508600001)(36756003)(83380400001)(40460700003)(6916009)(336012)(1076003)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(81166007)(47076005)(82310400004)(5660300002)(70586007)(2616005)(6666004)(36860700001)(356005)(508600001)(186003)(1076003)(54906003)(83380400001)(6916009)(26005)(316002)(336012)(426003)(8936002)(70206006)(4326008)(16526019)(40460700003)(36756003)(2906002)(8676002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2022 04:33:33.4773 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6baec0c4-77fa-4056-fe68-08d9e860ab36
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2022 04:33:34.6491 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67c80dc7-c1eb-4b21-cba9-08d9e860abe9
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT055.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2779
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1204
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,8 +101,8 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stylon.wang@amd.com, Charlene Liu <Charlene.Liu@amd.com>,
- Zhan Liu <Zhan.Liu@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+Cc: stylon.wang@amd.com, Ilya <Ilya.Bakoulin@amd.com>,
+ Aric Cyr <Aric.Cyr@amd.com>, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
  qingqing.zhuo@amd.com, Jasdeep Dhillon <jdhillon@amd.com>,
  Rodrigo.Siqueira@amd.com, roman.li@amd.com, solomon.chiu@amd.com,
  Aurabindo.Pillai@amd.com, wayne.lin@amd.com, Bhawanpreet.Lakha@amd.com,
@@ -111,58 +110,45 @@ Cc: stylon.wang@amd.com, Charlene Liu <Charlene.Liu@amd.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Zhan Liu <Zhan.Liu@amd.com>
+From: Ilya <Ilya.Bakoulin@amd.com>
 
 [Why]
-Even if can_apply_edp_fast_boot is set to 1 at boot, this flag will
-be cleared to 0 at S3 resume.
+The number of lanes wasn't being reset to maximum when reducing link
+rate due to an EQ failure. This could result in having fewer lanes in
+the verified link capabilities, a lower maximum link bandwidth, and
+fewer modes being supported.
 
 [How]
-Keep eDP Vdd on when eDP stream is already enabled.
+Reset the number of lanes to max when dropping link rate due to EQ
+failure during link training.
 
-Reviewed-by: Charlene Liu <Charlene.Liu@amd.com>
+Reviewed-by: Aric Cyr <Aric.Cyr@amd.com>
 Acked-by: Jasdeep Dhillon <jdhillon@amd.com>
-Signed-off-by: Zhan Liu <Zhan.Liu@amd.com>
+Signed-off-by: Ilya <Ilya.Bakoulin@amd.com>
 ---
- .../display/dc/dce110/dce110_hw_sequencer.c   | 24 +++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-index 52b22a944f94..ace04e2ed34e 100644
---- a/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce110/dce110_hw_sequencer.c
-@@ -1770,9 +1770,29 @@ void dce110_enable_accelerated_mode(struct dc *dc, struct dc_state *context)
- 				break;
- 			}
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+index d0cb40df60a4..cd9c31b5e55d 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c
+@@ -3504,6 +3504,7 @@ static bool decide_fallback_link_setting(
+ 			current_link_setting->link_rate =
+ 				reduce_link_rate(
+ 					current_link_setting->link_rate);
++			current_link_setting->lane_count = initial_link_settings.lane_count;
+ 		} else {
+ 			return false;
  		}
--		// We are trying to enable eDP, don't power down VDD
--		if (can_apply_edp_fast_boot)
-+
-+		/*
-+		 * TO-DO: So far the code logic below only addresses single eDP case.
-+		 * For dual eDP case, there are a few things that need to be
-+		 * implemented first:
-+		 *
-+		 * 1. Change the fastboot logic above, so eDP link[0 or 1]'s
-+		 * stream[0 or 1] will all be checked.
-+		 *
-+		 * 2. Change keep_edp_vdd_on to an array, and maintain keep_edp_vdd_on
-+		 * for each eDP.
-+		 *
-+		 * Once above 2 things are completed, we can then change the logic below
-+		 * correspondingly, so dual eDP case will be fully covered.
-+		 */
-+
-+		// We are trying to enable eDP, don't power down VDD if eDP stream is existing
-+		if ((edp_stream_num == 1 && edp_streams[0] != NULL) || can_apply_edp_fast_boot) {
- 			keep_edp_vdd_on = true;
-+			DC_LOG_EVENT_LINK_TRAINING("Keep eDP Vdd on\n");
-+		} else {
-+			DC_LOG_EVENT_LINK_TRAINING("No eDP stream enabled, turn eDP Vdd off\n");
-+		}
- 	}
- 
- 	// Check seamless boot support
+@@ -3516,6 +3517,7 @@ static bool decide_fallback_link_setting(
+ 			current_link_setting->link_rate =
+ 				reduce_link_rate(
+ 					current_link_setting->link_rate);
++			current_link_setting->lane_count = initial_link_settings.lane_count;
+ 		} else {
+ 			return false;
+ 		}
 -- 
 2.25.1
 
