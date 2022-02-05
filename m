@@ -1,63 +1,78 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB72D4AB620
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Feb 2022 09:07:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C37F24AB744
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Feb 2022 10:10:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CAC210F325;
-	Mon,  7 Feb 2022 08:07:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D012610F360;
+	Mon,  7 Feb 2022 09:10:31 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
- [IPv6:2a00:1450:4864:20::52c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6C2D10F324
- for <amd-gfx@lists.freedesktop.org>; Mon,  7 Feb 2022 08:07:48 +0000 (UTC)
-Received: by mail-ed1-x52c.google.com with SMTP id cn6so5539871edb.5
- for <amd-gfx@lists.freedesktop.org>; Mon, 07 Feb 2022 00:07:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=bfGDLmPqZAfGnkaBnwMstMuoVf2IimkIXphouHayMUI=;
- b=qAXPp5xYdQAZOopdn90wLCGR1hCDGcmzaA+ET8EQnbRr8+Le5Hh6FwG77lHEw6vrRg
- Q/8pPFeD4V1gT7z3shbaKgWGYkSYaMVauWtdPPjCX4Fwk2N3Lq/x9oAXFZpDfo84Xk4v
- CKinBtixyM90/OF5Zb6Cw6fSQq4lfj9QE2+4XWnUbgWk9ADZ4NiV6JEcFxzvC9cGVMgV
- Deuv01dh2UxsF8qOazuSex6zMl/BJ7l3XLdjLaK8BuTB7btlG+MCWQjdCAWCA3+Zhb6e
- ugXcIEDcUhqcAkTw7HrqeUf3aPoNuTAhPf6xjVLy8ZAxcdVzzENGGyMNSkW6ycBkM4Vf
- Zwsg==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26E1510F56E
+ for <amd-gfx@lists.freedesktop.org>; Sat,  5 Feb 2022 15:00:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1644073220;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=713HQL5x//o/KghlUsgMrDORBx+gP5N718ebtgS9CfI=;
+ b=hAle3Hqglukr3X0g/raY0wf7FNeSa20aKiZaBCPeLavEwsb/DS4NPWGS4Y3L+/S5+YCgwQ
+ ceMmu2BWBGXSWiKW2bJuCi6GctaP3sFN4gpnVcQM5SH1wWWt1poPD60pzFqCzKA7ysQXIl
+ i3W6ZAAf9es9QXUT/kfI2Ar2bCXCkQw=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-274-Y9h_PxY8P_uc9r7RdNUXfQ-1; Sat, 05 Feb 2022 10:00:19 -0500
+X-MC-Unique: Y9h_PxY8P_uc9r7RdNUXfQ-1
+Received: by mail-qk1-f200.google.com with SMTP id
+ h10-20020a05620a284a00b0047649c94bc7so4672451qkp.20
+ for <amd-gfx@lists.freedesktop.org>; Sat, 05 Feb 2022 07:00:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=bfGDLmPqZAfGnkaBnwMstMuoVf2IimkIXphouHayMUI=;
- b=2sxgX9BAIpNPsMnxgb3aPijFp3zCX1qRLSOmebwr2bWphCp/4mC/pBDzcuhXbPdBCH
- Pa5/wkMJj+Z6sTQnUGiqrlesQiBWBvNh90rH9EUQEGwjBhAdAVWM9rYpq2ubIEVW8GvI
- cLFCcWqpbpmqT5To5V8lp6ojc7MRFVuIaHARRhOd7myd5geflqLWQLA33qDec4oc23Hx
- 0QWdLrKsLU+yAXQnW7EfsD+TDiTiXeDhCXAT9kdWEc2lVUdF8CGzOTsM56zNnDYd088f
- z/Fb0IxvJcxKyMkUN68kkcOdzaumhUnYNz4T7udSJd+uSELT06QWtE7b0mnUlt6QvJHL
- I5fQ==
-X-Gm-Message-State: AOAM531Ex7YNTOoHTKYrdgxaP1Uj2SzBBk81Edc6y5sDptC0etbR/1uU
- f8LIQva8aNK3DcDPu/mMgNc=
-X-Google-Smtp-Source: ABdhPJyo6mNgXy+6lA/1paAo0vu6TlmPj5ezkaRd51xXhprHUdhTFdSK6e3ZQSXbQKvPBM3YN08GOw==
-X-Received: by 2002:a50:bb0c:: with SMTP id y12mr12710277ede.421.1644221267573; 
- Mon, 07 Feb 2022 00:07:47 -0800 (PST)
-Received: from baker.fritz.box (p57b0bff8.dip0.t-ipconnect.de.
- [87.176.191.248])
- by smtp.gmail.com with ESMTPSA id en9sm203701edb.71.2022.02.07.00.07.46
+ bh=713HQL5x//o/KghlUsgMrDORBx+gP5N718ebtgS9CfI=;
+ b=P4WIdGpOV0aFbDiejj6HebV+s6b+rsi3eb2wKTXbyqj7pgNKQ7zPz0D9esJY71w2+g
+ vwhJk/9kpd0fmBbjobdXY5wLHVXZNuqwvmG2GsuB1lh3RtY6gLZoKoUri7lKr/fSh1ux
+ hVEuXI5szBH8hW4pCnIw29b8l+dnI/LV8+YcVunXmCU3D8LdkDQzLi5W6bDItKVad9Yr
+ UgGllXsfpThoZeE+KCmwsqmr+H2kDc6v9H1mCJicStHFkMnK0c+IMdHg8fnpqfT77dp0
+ FKnwDkawSEfz4yg2Z7aHBd/Img9jzrLTFSkQy8VX/5/IbaAhp6qevmzWMLvLUYfSaTSQ
+ D/Aw==
+X-Gm-Message-State: AOAM532pvcxrib8ICBuU5yssNpT+GV0o3zOlH+2cGp6IhHLauoOUWxgs
+ ace0sGYXmM9QrOHaG2H+LeTpqYkEyqQnTeb+M44vCYuPyR4s6x29TpP4MTBTedus6PFCHNKoPAD
+ Ej1b4jRJBEj1rO7/mMTzgswvQOA==
+X-Received: by 2002:a05:620a:371d:: with SMTP id
+ de29mr2218858qkb.300.1644073219092; 
+ Sat, 05 Feb 2022 07:00:19 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzQMqxJhjsehYnlrGdRYlEx/4uzDQf3AvY1i5RUhxDDhxx+wOwMtIaQmWd3GyZr4OF2gUxNaQ==
+X-Received: by 2002:a05:620a:371d:: with SMTP id
+ de29mr2218834qkb.300.1644073218865; 
+ Sat, 05 Feb 2022 07:00:18 -0800 (PST)
+Received: from localhost.localdomain.com (024-205-208-113.res.spectrum.com.
+ [24.205.208.113])
+ by smtp.gmail.com with ESMTPSA id d22sm2657159qkn.112.2022.02.05.07.00.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Feb 2022 00:07:47 -0800 (PST)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: rajneesh.bhardwaj@amd.com,
-	amd-gfx@lists.freedesktop.org
-Subject: [PATCH] drm/amdgpu: reserve the pd while cleaning up PRTs
-Date: Mon,  7 Feb 2022 09:07:45 +0100
-Message-Id: <20220207080745.1711-1-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.25.1
+ Sat, 05 Feb 2022 07:00:17 -0800 (PST)
+From: trix@redhat.com
+To: evan.quan@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ Xinhui.Pan@amd.com, airlied@linux.ie, daniel@ffwll.ch, nathan@kernel.org,
+ ndesaulniers@google.com, lijo.lazar@amd.com, darren.powell@amd.com,
+ guchun.chen@amd.com, andrey.grodzovsky@amd.com
+Subject: [PATCH] drm/amd/pm: fix error handling
+Date: Sat,  5 Feb 2022 07:00:08 -0800
+Message-Id: <20220205150008.1968218-1-trix@redhat.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+X-Mailman-Approved-At: Mon, 07 Feb 2022 09:10:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,43 +84,52 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: felix.kuehling@amd.com
+Cc: Tom Rix <trix@redhat.com>, llvm@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-We want to have lockdep annotation here, so make sure that we reserve
-the PD while removing PRTs even if it isn't strictly necessary since the
-VM object is about to be destroyed anyway.
+From: Tom Rix <trix@redhat.com>
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
+clang static analysis reports this error
+amdgpu_smu.c:2289:9: warning: Called function pointer
+  is null (null dereference)
+        return smu->ppt_funcs->emit_clk_levels(
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There is a logic error in the earlier check of
+emit_clk_levels.  The error value is set to
+the ret variable but ret is never used.  Return
+directly and remove the unneeded ret variable.
+
+Fixes: 5d64f9bbb628 ("amdgpu/pm: Implement new API function "emit" that accepts buffer base and write offset")
+Signed-off-by: Tom Rix <trix@redhat.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-index efd13898c83e..9f985bd463be 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
-@@ -1194,8 +1194,6 @@ void amdgpu_driver_postclose_kms(struct drm_device *dev,
- 	if (amdgpu_device_ip_get_ip_block(adev, AMD_IP_BLOCK_TYPE_VCE) != NULL)
- 		amdgpu_vce_free_handles(adev, file_priv);
+diff --git a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+index af368aa1fd0ae..5f3b3745a9b7a 100644
+--- a/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
++++ b/drivers/gpu/drm/amd/pm/swsmu/amdgpu_smu.c
+@@ -2274,7 +2274,6 @@ static int smu_emit_ppclk_levels(void *handle, enum pp_clock_type type, char *bu
+ {
+ 	struct smu_context *smu = handle;
+ 	enum smu_clk_type clk_type;
+-	int ret = 0;
  
--	amdgpu_vm_bo_del(adev, fpriv->prt_va);
--
- 	if (amdgpu_mcbp || amdgpu_sriov_vf(adev)) {
- 		/* TODO: how to handle reserve failure */
- 		BUG_ON(amdgpu_bo_reserve(adev->virt.csa_obj, true));
-@@ -1206,6 +1204,10 @@ void amdgpu_driver_postclose_kms(struct drm_device *dev,
+ 	clk_type = smu_convert_to_smuclk(type);
+ 	if (clk_type == SMU_CLK_COUNT)
+@@ -2284,7 +2283,7 @@ static int smu_emit_ppclk_levels(void *handle, enum pp_clock_type type, char *bu
+ 		return -EOPNOTSUPP;
  
- 	pasid = fpriv->vm.pasid;
- 	pd = amdgpu_bo_ref(fpriv->vm.root.bo);
-+	if (!WARN_ON(amdgpu_bo_reserve(pd, true))) {
-+		amdgpu_vm_bo_del(adev, fpriv->prt_va);
-+		amdgpu_bo_unreserve(pd);
-+	}
+ 	if (!smu->ppt_funcs->emit_clk_levels)
+-		ret = -ENOENT;
++		return -ENOENT;
  
- 	amdgpu_ctx_mgr_fini(&fpriv->ctx_mgr);
- 	amdgpu_vm_fini(adev, &fpriv->vm);
+ 	return smu->ppt_funcs->emit_clk_levels(smu, clk_type, buf, offset);
+ 
 -- 
-2.25.1
+2.26.3
 
