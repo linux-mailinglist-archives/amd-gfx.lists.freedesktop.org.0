@@ -2,55 +2,101 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F0C4AB746
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Feb 2022 10:10:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 431534AB749
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Feb 2022 10:10:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E8BF10F516;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B764310F5A7;
 	Mon,  7 Feb 2022 09:10:33 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com
- [IPv6:2607:f8b0:4864:20::b2a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D09A710E463
- for <amd-gfx@lists.freedesktop.org>; Sun,  6 Feb 2022 08:17:19 +0000 (UTC)
-Received: by mail-yb1-xb2a.google.com with SMTP id m6so31529802ybc.9
- for <amd-gfx@lists.freedesktop.org>; Sun, 06 Feb 2022 00:17:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :content-transfer-encoding;
- bh=oUwhUnseUW+bGQTYIs65iPvnP1JsQG2MNuMaM8NXA2w=;
- b=J88qG9ehqMbKpU/BGb/Cc7ee2LWN6RFY5x1KWxZUll1+0SMHOCWO+H31EvqkY4OXDY
- vG3ml0n9EC71VPLGl2R/ErUFCHfvzEe/0pJiy521qF2HmDGvxdcHOMLqEDlHMaXj+Cq6
- /kpScLLc8tt2uMdt4mSwU/AI/7Gv9y/+xBkUqCsd4Yt2mcRySxxGqALCaVflfWB67MK6
- ftnQJOmJPzD3Iy4v+MFlMWxwkd5cxd1x2FCB47mqTV+eFBjVB8lExBI2Zh3xXnojvk1k
- 5uP+SZ7t6op7yde8AbymnqbwHWkw5xzwyLX4KcLaZNt3svEIW7RAUHWdM+DaGkefoo1M
- gLWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:content-transfer-encoding;
- bh=oUwhUnseUW+bGQTYIs65iPvnP1JsQG2MNuMaM8NXA2w=;
- b=zzjbzsr9lJT1EkD2hgKPNlZL6SnAqgLqWJTLWMkybEO8Fj9nad23XlfTXYtR5DFZ0G
- 3EkkrojkathaToPz1QnJKXROcBqX79Dt0ENNxqbAw82wYoLa+yjCC2LZW3V63CnWVd2D
- 3PwfihcDafVRG1U5UeL/h+tea2Qy7BRQ9MO6qRJ2NEWFBPDcAqmhdpOpQwAxU8kq4lQO
- oSzoHAO6KlrWIG1mddOrkRYi0j0vEQN/lbG7LWGucfXQP1HTCgb9HiUk+zjlmzpHjHVR
- UoJYYow5dH4GcjsXSFRZ2WCJJYeeEHoelv9Z74/+Ps+F00cdT745KT0vqwoUbZqNAl6O
- bzbQ==
-X-Gm-Message-State: AOAM533WP5zZ/qio+/RYjy2/fuayYiykp1gYZSLrkJvHLLcvrYLnCKQ2
- /42CcyL5WXvvj/Ck6Mo8CYpvC5pKtEFkPa9EK+sYFQzr+3o=
-X-Google-Smtp-Source: ABdhPJyg0wOdJ8nQQRHbv7/V+bSVhubm/Kn0XMAET3doH6yT5uEPq8rXgrEmJi5+Z0cwiUC9KgXyzYnny28xvFQnahk=
-X-Received: by 2002:a25:5ca:: with SMTP id 193mr6339820ybf.483.1644135438773; 
- Sun, 06 Feb 2022 00:17:18 -0800 (PST)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2042.outbound.protection.outlook.com [40.107.93.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F145110E664;
+ Mon,  7 Feb 2022 04:19:57 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jN2uCGMTsLJmBvGQ+sP8/TWMoZ9YQABqaXGIx01JGC+B4jo89h7iAlu0Bt0KquRjf+SY1m6s4uhkkc4s4zs2WXweyxW4Sf8PFLyYmjFtbyAF4q8dSyWg6CycD4is9V1vv57SVrQvutkekwFkbGdjs2aHZpt5CK/lKpi+sh1uCo0FEnt09RIdkEDr9Pabv2YV+MjNwdOeackLMKvryhUjkXLx7Ejekr58WfyiJLC86q6z3d6CuXzJ/+C6I0LptoxeMR46v2yUiz0Zeo1VQRnicLSxkEQZjF5GWHB0DqPb2QO2P6WMt1Fs1lHAT9l8bXLHY2jBtHdeh/jPvifc6Fy5Jg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=58q3SUYYcRBjqn2nhtqFaVfHOSkcmtUauefhKpCTCjg=;
+ b=EY7OaVj3j8vwYZK+znGyRZRQoUrbmI2uKCE447nBPaYKJ1MxNz86ywBS/YmI/Q4nUlbvCvlrixnfZtSfeu9DmtuAd/3nFpU7+nHZ3R0HWgBvZrAc1IxYBeJenfH9dDNn4mb6YLiH574IYDozW4nRiv75BTIt4VbVfhsRB9+JJHn0Mk8p8k/r4GFMb5zg7Oa2Zr+TMzYO8YiZ1e1YW/QIeZmMjUmQmoJPp2omsKWjS5UKsMPE787y70oD0WeMIH155cddYOjXItWh1EZws5QuFHyKpMz/ip4xoKIUoCPj5Qxmm7p1N/QyS3tEEZBxJFHSEGO7CaNzc7YVpW+AZEejKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.234) smtp.rcpttodomain=lst.de smtp.mailfrom=nvidia.com; dmarc=pass
+ (p=reject sp=reject pct=100) action=none header.from=nvidia.com; dkim=none
+ (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=58q3SUYYcRBjqn2nhtqFaVfHOSkcmtUauefhKpCTCjg=;
+ b=hzRq/8q6VWO0XWyC9X1qpdowRGTl3yWTBKWFn8sYdXnvykWo55Xkmzw7nc2CIZVtON4buIUNmWMbFnfuAB7c4v/arNn29yGMqxw2MX94Tg4fKQOMjME97MikpXaAU/QosLqqL6cJujfh1TNj5eCqFpyKtC5QMli9l3DJ4J2lSZTlJVzAEbfGkWejH4lnVsUqFElCqcQcu+M6GQz51y9ymY2r9PssbYAc9kVK8O/HXbZ2qr2W/2fE42xqBCBpo767qxlJDo+vZHn9RMB/fSCccPKv/MxSpz17xlF3OgsP14XxMnSbPOxidRNL3FpV+KYNJPoVKk+kA5mYFxUihx4y2g==
+Received: from BN9PR03CA0482.namprd03.prod.outlook.com (2603:10b6:408:130::7)
+ by BY5PR12MB4818.namprd12.prod.outlook.com (2603:10b6:a03:1b4::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.11; Mon, 7 Feb
+ 2022 04:19:52 +0000
+Received: from BN8NAM11FT059.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:130:cafe::a6) by BN9PR03CA0482.outlook.office365.com
+ (2603:10b6:408:130::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12 via Frontend
+ Transport; Mon, 7 Feb 2022 04:19:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.234)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.234 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.234; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (12.22.5.234) by
+ BN8NAM11FT059.mail.protection.outlook.com (10.13.177.120) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4951.12 via Frontend Transport; Mon, 7 Feb 2022 04:19:51 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by DRHQMAIL101.nvidia.com
+ (10.27.9.10) with Microsoft SMTP Server (TLS) id 15.0.1497.18;
+ Mon, 7 Feb 2022 04:19:49 +0000
+Received: from nvdebian.localnet (10.126.230.35) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.9; Sun, 6 Feb 2022
+ 20:19:46 -0800
+From: Alistair Popple <apopple@nvidia.com>
+To: <akpm@linux-foundation.org>, <linux-mm@kvack.org>, Felix Kuehling
+ <felix.kuehling@amd.com>
+Subject: Re: [PATCH 2/3] mm/gup.c: Migrate device coherent pages when pinning
+ instead of failing
+Date: Mon, 7 Feb 2022 15:19:44 +1100
+Message-ID: <2160866.MLLZV48HG3@nvdebian>
+In-Reply-To: <49253aca-5c0b-84d4-4b2a-13426b1064ec@amd.com>
+References: <cover.516a938ce97eb805791da6e2df508eb0dce413b8.1643698773.git-series.apopple@nvidia.com>
+ <d4d399492b2ba09f4c551fa2261fbd22172886d8.1643698773.git-series.apopple@nvidia.com>
+ <49253aca-5c0b-84d4-4b2a-13426b1064ec@amd.com>
 MIME-Version: 1.0
-References: <CAOHtt3_wfx1kpcjA3s63x+TaHS8DmCSk629OAN+Bi5nZzwrb5Q@mail.gmail.com>
-In-Reply-To: <CAOHtt3_wfx1kpcjA3s63x+TaHS8DmCSk629OAN+Bi5nZzwrb5Q@mail.gmail.com>
-From: =?UTF-8?Q?Tomasz_Mo=C5=84?= <desowin@gmail.com>
-Date: Sun, 6 Feb 2022 09:17:07 +0100
-Message-ID: <CAOHtt39VcCNYwHcEj3NB3904tw4cKBDc-wH_CWvGr3NWM_vH=A@mail.gmail.com>
-Subject: Re: Waiting for fences timed out on MacBook Pro 2019
-To: amd-gfx list <amd-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Originating-IP: [10.126.230.35]
+X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 327cb50a-3f6b-488a-3351-08d9e9f115e0
+X-MS-TrafficTypeDiagnostic: BY5PR12MB4818:EE_
+X-Microsoft-Antispam-PRVS: <BY5PR12MB4818CC6924D77108996A085ADF2C9@BY5PR12MB4818.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Ic4VkvzabhKe9rzCZLg1MKIXum1YiAcNnvj3fWFsYlkoRU/w9jBEYqQ0g7vWd2xRdMf2TqLZBroCOYmIEoe1Z2m7HaVkZU28WUjiOVsMrqNMPYqFTtpWCorPUuGm+PSGyu2Xv5Q6kqBtpJV8cwS3yB/5/I+bV+nY4SGzYlQLb/wdIPJ4TPPehVTKlLHNmGwnJNu7g5NDVOD+WNI0lB97UCu32MxRZCrovkcGayNKbj63WsxCdA8Wi7U5kir080AqCgmLEtHyRAt4g03va6NXP0jOELiT73FzRAE9ojfSA5CVO/NYozfFZ/zCEisVnKzkQUjXVofFHJ+phWelhWmxsLkyr3uy1AlimBOML7UMpyqyiekWogJ6xzCBxyMEiTVp9AQp873a2fAvi/4eE45N9bBmHvW5xJnqbp9vklNoEbNAyYwDhSeAGYow8ZUsuAwCVJSYL4PNIlAaQ/SXpyrSn4wHt9I5bVE0H8B+g/ViozN4spMcJORiHdKLywVE2bDHO7+/c5KBfhbqVi8ZtIUXWSNsrRWsHYlsWZ+FCsH8KsQwd62OR5JHXA8CXYQwz8ohoMt9uWxe6KndvYy3gPvUD3NNFof/5Cxal8hjCqBEivndf9j2BYWK2Hly96mwIadO7rIm/bGUJtqOEjkptu6KnE3y0coaRjfOqDAJwPkHRQlPSvJc4Fi6+elHUSYAFFswkqWnMr9tvC70FRN95CqyzQ==
+X-Forefront-Antispam-Report: CIP:12.22.5.234; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:mail.nvidia.com; PTR:InfoNoRecords; CAT:NONE;
+ SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(9686003)(2906002)(33656002)(16526019)(82310400004)(356005)(47076005)(107886003)(83380400001)(81166007)(33716001)(86362001)(336012)(8936002)(40460700003)(7416002)(426003)(508600001)(5660300002)(70586007)(110136005)(54906003)(70206006)(26005)(8676002)(186003)(316002)(4326008)(9576002)(36860700001)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2022 04:19:51.1322 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 327cb50a-3f6b-488a-3351-08d9e9f115e0
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[12.22.5.234];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT059.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4818
 X-Mailman-Approved-At: Mon, 07 Feb 2022 09:10:31 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,176 +109,194 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: alex.sierra@amd.com, rcampbell@nvidia.com, willy@infradead.org,
+ jhubbard@nvidia.com, dri-devel@lists.freedesktop.org,
+ linux-xfs@vger.kernel.org, jglisse@redhat.com, amd-gfx@lists.freedesktop.org,
+ jgg@nvidia.com, linux-ext4@vger.kernel.org, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jul 12, 2021 at 11:56 AM Tomasz Mo=C5=84 <desowin@gmail.com> wrote:
-> I am having trouble getting Linux to run on MacBook Pro 2019 with
-> Radeon Pro Vega 20 4 GB. Basically as soon as graphical user interface
-> starts, the whole system freezes. This happens with every Linux kernel
-> version I have tried over the last few months, including 5.13.
+On Wednesday, 2 February 2022 2:03:01 AM AEDT Felix Kuehling wrote:
+> 
+> Am 2022-02-01 um 02:05 schrieb Alistair Popple:
+> > Currently any attempts to pin a device coherent page will fail. This is
+> > because device coherent pages need to be managed by a device driver, and
+> > pinning them would prevent a driver from migrating them off the device.
+> >
+> > However this is no reason to fail pinning of these pages. These are
+> > coherent and accessible from the CPU so can be migrated just like
+> > pinning ZONE_MOVABLE pages. So instead of failing all attempts to pin
+> > them first try migrating them out of ZONE_DEVICE.
+> >
+> > Signed-off-by: Alistair Popple <apopple@nvidia.com>
+> 
+> Thank you for working on this. I have two questions inline.
+> 
+> Other than that, patches 1 and 2 are
+> 
+> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
+> 
+> 
+> > ---
+> >   mm/gup.c | 105 ++++++++++++++++++++++++++++++++++++++++++++++++++------
+> >   1 file changed, 95 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/mm/gup.c b/mm/gup.c
+> > index f596b93..2cbef54 100644
+> > --- a/mm/gup.c
+> > +++ b/mm/gup.c
+> > @@ -1834,6 +1834,60 @@ struct page *get_dump_page(unsigned long addr)
+> >   
+> >   #ifdef CONFIG_MIGRATION
+> >   /*
+> > + * Migrates a device coherent page back to normal memory. Caller should have a
+> > + * reference on page which will be copied to the new page if migration is
+> > + * successful or dropped on failure.
+> > + */
+> > +static struct page *migrate_device_page(struct page *page,
+> > +					unsigned int gup_flags)
+> > +{
+> > +	struct page *dpage;
+> > +	struct migrate_vma args;
+> > +	unsigned long src_pfn, dst_pfn = 0;
+> > +
+> > +	lock_page(page);
+> > +	src_pfn = migrate_pfn(page_to_pfn(page)) | MIGRATE_PFN_MIGRATE;
+> > +	args.src = &src_pfn;
+> > +	args.dst = &dst_pfn;
+> > +	args.cpages = 1;
+> > +	args.npages = 1;
+> > +	args.vma = NULL;
+> > +	migrate_vma_setup(&args);
+> > +	if (!(src_pfn & MIGRATE_PFN_MIGRATE))
+> > +		return NULL;
+> > +
+> > +	dpage = alloc_pages(GFP_USER | __GFP_NOWARN, 0);
+> 
+> Don't you need to check dpage for NULL before the try_grab_page call below?
 
-It is significantly better on 5.17-rc2. That is, the whole system is
-not frozen. just the screen keeps blinking and visual artifacts show.
-Graphical desktop is not usable, but switching between virtual
-terminals works just fine.
+Yes, thanks for pointing that out. Will fix for v2.
 
-dmesg | grep amdgpu shows:
-[    2.310680] [drm] amdgpu kernel modesetting enabled.
-[    2.310888] amdgpu: CRAT table not found
-[    2.310891] amdgpu: Virtual CRAT table created for CPU
-[    2.310902] amdgpu: Topology: Add CPU node
-[    2.310966] fb0: switching to amdgpu from EFI VGA
-[    2.311069] amdgpu 0000:03:00.0: vgaarb: deactivate vga console
-[    2.311161] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ)
-feature not supported
-[    2.322968] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from VFCT
-[    2.322972] amdgpu: ATOM BIOS: 113-D20601MA0T-016
-[    2.325980] amdgpu 0000:03:00.0: BAR 2: releasing [mem
-0xc0000000-0xc01fffff 64bit pref]
-[    2.325983] amdgpu 0000:03:00.0: BAR 0: releasing [mem
-0xb0000000-0xbfffffff 64bit pref]
-[    2.326015] amdgpu 0000:03:00.0: BAR 0: assigned [mem
-0x4100000000-0x41ffffffff 64bit pref]
-[    2.326022] amdgpu 0000:03:00.0: BAR 2: assigned [mem
-0x4080000000-0x40801fffff 64bit pref]
-[    2.326075] amdgpu 0000:03:00.0: amdgpu: VRAM: 4080M
-0x000000F400000000 - 0x000000F4FEFFFFFF (4080M used)
-[    2.326078] amdgpu 0000:03:00.0: amdgpu: GART: 512M
-0x0000000000000000 - 0x000000001FFFFFFF
-[    2.326080] amdgpu 0000:03:00.0: amdgpu: AGP: 267419648M
-0x000000F800000000 - 0x0000FFFFFFFFFFFF
-[    2.326144] [drm] amdgpu: 4080M of VRAM memory ready
-[    2.326145] [drm] amdgpu: 4080M of GTT memory ready.
-[    2.330452] amdgpu 0000:03:00.0: amdgpu: PSP runtime database doesn't ex=
-ist
-[    2.330457] amdgpu: hwmgr_sw_init smu backed is vega12_smu
-[    3.169108] snd_hda_intel 0000:03:00.1: bound 0000:03:00.0 (ops
-amdgpu_dm_audio_component_bind_ops [amdgpu])
-[    4.427470] kfd kfd: amdgpu: Allocated 3969056 bytes on gart
-[    4.462468] amdgpu: HMM registered 4080MB device memory
-[    4.462492] amdgpu: SRAT table not found
-[    4.462492] amdgpu: Virtual CRAT table created for GPU
-[    4.462567] amdgpu: Topology: Add dGPU node [0x69af:0x1002]
-[    4.462572] kfd kfd: amdgpu: added device 1002:69af
-[    4.462587] amdgpu 0000:03:00.0: amdgpu: SE 4, SH per SE 1, CU per
-SH 5, active_cu_number 20
-[    4.462674] amdgpu 0000:03:00.0: amdgpu: ring gfx uses VM inv eng 0 on h=
-ub 0
-[    4.462676] amdgpu 0000:03:00.0: amdgpu: ring comp_1.0.0 uses VM
-inv eng 1 on hub 0
-[    4.462678] amdgpu 0000:03:00.0: amdgpu: ring comp_1.1.0 uses VM
-inv eng 4 on hub 0
-[    4.462679] amdgpu 0000:03:00.0: amdgpu: ring comp_1.2.0 uses VM
-inv eng 5 on hub 0
-[    4.462680] amdgpu 0000:03:00.0: amdgpu: ring comp_1.3.0 uses VM
-inv eng 6 on hub 0
-[    4.462682] amdgpu 0000:03:00.0: amdgpu: ring comp_1.0.1 uses VM
-inv eng 7 on hub 0
-[    4.462683] amdgpu 0000:03:00.0: amdgpu: ring comp_1.1.1 uses VM
-inv eng 8 on hub 0
-[    4.462684] amdgpu 0000:03:00.0: amdgpu: ring comp_1.2.1 uses VM
-inv eng 9 on hub 0
-[    4.462685] amdgpu 0000:03:00.0: amdgpu: ring comp_1.3.1 uses VM
-inv eng 10 on hub 0
-[    4.462686] amdgpu 0000:03:00.0: amdgpu: ring kiq_2.1.0 uses VM inv
-eng 11 on hub 0
-[    4.462688] amdgpu 0000:03:00.0: amdgpu: ring sdma0 uses VM inv eng
-0 on hub 1
-[    4.462689] amdgpu 0000:03:00.0: amdgpu: ring sdma1 uses VM inv eng
-1 on hub 1
-[    4.462690] amdgpu 0000:03:00.0: amdgpu: ring uvd_0 uses VM inv eng
-4 on hub 1
-[    4.462691] amdgpu 0000:03:00.0: amdgpu: ring uvd_enc_0.0 uses VM
-inv eng 5 on hub 1
-[    4.462693] amdgpu 0000:03:00.0: amdgpu: ring uvd_enc_0.1 uses VM
-inv eng 6 on hub 1
-[    4.462694] amdgpu 0000:03:00.0: amdgpu: ring vce0 uses VM inv eng 7 on =
-hub 1
-[    4.462695] amdgpu 0000:03:00.0: amdgpu: ring vce1 uses VM inv eng 8 on =
-hub 1
-[    4.462696] amdgpu 0000:03:00.0: amdgpu: ring vce2 uses VM inv eng 9 on =
-hub 1
-[    4.469544] [drm] Initialized amdgpu 3.44.0 20150101 for
-0000:03:00.0 on minor 0
-[    4.474424] fbcon: amdgpudrmfb (fb0) is primary device
-[    5.547836] amdgpu 0000:03:00.0: [drm] fb0: amdgpudrmfb frame buffer dev=
-ice
-[    5.636489] audit: type=3D1130 audit(1644133454.781:45): pid=3D1 uid=3D0
-auid=3D4294967295 ses=3D4294967295
-msg=3D'unit=3Dsystemd-backlight@backlight:amdgpu_bl0 comm=3D"systemd"
-exe=3D"/usr/lib/systemd/systemd" hostname=3D? addr=3D? terminal=3D?
-res=3Dsuccess'
-[   24.927611] [drm:amdgpu_dm_atomic_commit_tail [amdgpu]] *ERROR*
-Waiting for fences timed out!
-[   24.927611] [drm:amdgpu_dm_atomic_commit_tail [amdgpu]] *ERROR*
-Waiting for fences timed out!
-[   30.057616] [drm:amdgpu_job_timedout [amdgpu]] *ERROR* ring gfx
-timeout, signaled seq=3D895, emitted seq=3D897
-[   30.057933] [drm:amdgpu_job_timedout [amdgpu]] *ERROR* Process
-information: process Xorg pid 722 thread Xorg:cs0 pid 723
-[   30.058217] amdgpu 0000:03:00.0: amdgpu: GPU reset begin!
-[   34.058227] amdgpu 0000:03:00.0: amdgpu: failed to suspend display audio
-[   34.314738] amdgpu 0000:03:00.0: amdgpu: MODE1 reset
-[   34.314741] amdgpu 0000:03:00.0: amdgpu: GPU mode1 reset
-[   34.314792] amdgpu 0000:03:00.0: amdgpu: GPU psp mode1 reset
-[   34.892364] amdgpu 0000:03:00.0: amdgpu: GPU reset succeeded,
-trying to resume
-[   36.910260] amdgpu 0000:03:00.0: amdgpu: ring gfx uses VM inv eng 0 on h=
-ub 0
-[   36.910263] amdgpu 0000:03:00.0: amdgpu: ring comp_1.0.0 uses VM
-inv eng 1 on hub 0
-[   36.910264] amdgpu 0000:03:00.0: amdgpu: ring comp_1.1.0 uses VM
-inv eng 4 on hub 0
-[   36.910266] amdgpu 0000:03:00.0: amdgpu: ring comp_1.2.0 uses VM
-inv eng 5 on hub 0
-[   36.910267] amdgpu 0000:03:00.0: amdgpu: ring comp_1.3.0 uses VM
-inv eng 6 on hub 0
-[   36.910268] amdgpu 0000:03:00.0: amdgpu: ring comp_1.0.1 uses VM
-inv eng 7 on hub 0
-[   36.910269] amdgpu 0000:03:00.0: amdgpu: ring comp_1.1.1 uses VM
-inv eng 8 on hub 0
-[   36.910271] amdgpu 0000:03:00.0: amdgpu: ring comp_1.2.1 uses VM
-inv eng 9 on hub 0
-[   36.910272] amdgpu 0000:03:00.0: amdgpu: ring comp_1.3.1 uses VM
-inv eng 10 on hub 0
-[   36.910273] amdgpu 0000:03:00.0: amdgpu: ring kiq_2.1.0 uses VM inv
-eng 11 on hub 0
-[   36.910274] amdgpu 0000:03:00.0: amdgpu: ring sdma0 uses VM inv eng
-0 on hub 1
-[   36.910276] amdgpu 0000:03:00.0: amdgpu: ring sdma1 uses VM inv eng
-1 on hub 1
-[   36.910277] amdgpu 0000:03:00.0: amdgpu: ring uvd_0 uses VM inv eng
-4 on hub 1
-[   36.910278] amdgpu 0000:03:00.0: amdgpu: ring uvd_enc_0.0 uses VM
-inv eng 5 on hub 1
-[   36.910279] amdgpu 0000:03:00.0: amdgpu: ring uvd_enc_0.1 uses VM
-inv eng 6 on hub 1
-[   36.910281] amdgpu 0000:03:00.0: amdgpu: ring vce0 uses VM inv eng 7 on =
-hub 1
-[   36.910282] amdgpu 0000:03:00.0: amdgpu: ring vce1 uses VM inv eng 8 on =
-hub 1
-[   36.910283] amdgpu 0000:03:00.0: amdgpu: ring vce2 uses VM inv eng 9 on =
-hub 1
-[   36.913056] amdgpu 0000:03:00.0: amdgpu: recover vram bo from shadow sta=
-rt
-[   36.913063] amdgpu 0000:03:00.0: amdgpu: recover vram bo from shadow don=
-e
-[   36.913147] amdgpu 0000:03:00.0: amdgpu: GPU reset(2) succeeded!
-[   36.915587] [drm:amdgpu_cs_ioctl [amdgpu]] *ERROR* Failed to
-initialize parser -125!
-[   36.916107] [drm:amdgpu_cs_ioctl [amdgpu]] *ERROR* Failed to
-initialize parser -125!
-[   36.916471] [drm:amdgpu_cs_ioctl [amdgpu]] *ERROR* Failed to
-initialize parser -125!
-[   36.916975] [drm:amdgpu_cs_ioctl [amdgpu]] *ERROR* Failed to
-initialize parser -125!
-[   36.917366] [drm:amdgpu_cs_ioctl [amdgpu]] *ERROR* Failed to
-initialize parser -125!
-[   36.917735] [drm:amdgpu_cs_ioctl [amdgpu]] *ERROR* Failed to
-initialize parser -125!
-[   38.243514] amdgpu_cs_ioctl: 101 callbacks suppressed
-[   38.243517] [drm:amdgpu_cs_ioctl [amdgpu]] *ERROR* Failed to
-initialize parser -125!
-[   38.243999] [drm:amdgpu_cs_ioctl [amdgpu]] *ERROR* Failed to
-initialize parser -125!
+> > +
+> > +	/*
+> > +	 * get/pin the new page now so we don't have to retry gup after
+> > +	 * migrating. We already have a reference so this should never fail.
+> > +	 */
+> > +	if (WARN_ON_ONCE(!try_grab_page(dpage, gup_flags))) {
+> > +		__free_pages(dpage, 0);
+> > +		dpage = NULL;
+> > +	}
+> > +
+> > +	if (dpage) {
+> > +		lock_page(dpage);
+> > +		dst_pfn = migrate_pfn(page_to_pfn(dpage));
+> > +	}
+> > +
+> > +	migrate_vma_pages(&args);
+> > +	if (src_pfn & MIGRATE_PFN_MIGRATE)
+> > +		copy_highpage(dpage, page);
+> 
+> Can't dpage can be NULL here as well?
+
+No - migrate_vma_pages() will clear src_pfn & MIGRATE_PFN_MIGRATE if no
+destination page is provided in dst_pfn.
+
+> Regards,
+>    Felix
+> 
+> 
+> > +	migrate_vma_finalize(&args);
+> > +	if (dpage && !(src_pfn & MIGRATE_PFN_MIGRATE)) {
+> > +		if (gup_flags & FOLL_PIN)
+> > +			unpin_user_page(dpage);
+> > +		else
+> > +			put_page(dpage);
+> > +		dpage = NULL;
+> > +	}
+> > +
+> > +	return dpage;
+> > +}
+> > +
+> > +/*
+> >    * Check whether all pages are pinnable, if so return number of pages.  If some
+> >    * pages are not pinnable, migrate them, and unpin all pages. Return zero if
+> >    * pages were migrated, or if some pages were not successfully isolated.
+> > @@ -1861,15 +1915,40 @@ static long check_and_migrate_movable_pages(unsigned long nr_pages,
+> >   			continue;
+> >   		prev_head = head;
+> >   		/*
+> > -		 * If we get a movable page, since we are going to be pinning
+> > -		 * these entries, try to move them out if possible.
+> > +		 * Device coherent pages are managed by a driver and should not
+> > +		 * be pinned indefinitely as it prevents the driver moving the
+> > +		 * page. So when trying to pin with FOLL_LONGTERM instead try
+> > +		 * migrating page out of device memory.
+> >   		 */
+> >   		if (is_dev_private_or_coherent_page(head)) {
+> > +			/*
+> > +			 * device private pages will get faulted in during gup
+> > +			 * so it shouldn't be possible to see one here.
+> > +			 */
+> >   			WARN_ON_ONCE(is_device_private_page(head));
+> > -			ret = -EFAULT;
+> > -			goto unpin_pages;
+> > +			WARN_ON_ONCE(PageCompound(head));
+> > +
+> > +			/*
+> > +			 * migration will fail if the page is pinned, so convert
+> > +			 * the pin on the source page to a normal reference.
+> > +			 */
+> > +			if (gup_flags & FOLL_PIN) {
+> > +				get_page(head);
+> > +				unpin_user_page(head);
+> > +			}
+> > +
+> > +			pages[i] = migrate_device_page(head, gup_flags);
+> > +			if (!pages[i]) {
+> > +				ret = -EBUSY;
+> > +				break;
+> > +			}
+> > +			continue;
+> >   		}
+> >   
+> > +		/*
+> > +		 * If we get a movable page, since we are going to be pinning
+> > +		 * these entries, try to move them out if possible.
+> > +		 */
+> >   		if (!is_pinnable_page(head)) {
+> >   			if (PageHuge(head)) {
+> >   				if (!isolate_huge_page(head, &movable_page_list))
+> > @@ -1897,16 +1976,22 @@ static long check_and_migrate_movable_pages(unsigned long nr_pages,
+> >   	 * If list is empty, and no isolation errors, means that all pages are
+> >   	 * in the correct zone.
+> >   	 */
+> > -	if (list_empty(&movable_page_list) && !isolation_error_count)
+> > +	if (!ret && list_empty(&movable_page_list) && !isolation_error_count)
+> >   		return nr_pages;
+> >   
+> > -unpin_pages:
+> > -	if (gup_flags & FOLL_PIN) {
+> > -		unpin_user_pages(pages, nr_pages);
+> > -	} else {
+> > -		for (i = 0; i < nr_pages; i++)
+> > +	for (i = 0; i < nr_pages; i++)
+> > +		if (!pages[i])
+> > +			continue;
+> > +		else if (gup_flags & FOLL_PIN)
+> > +			unpin_user_page(pages[i]);
+> > +		else
+> >   			put_page(pages[i]);
+> > +
+> > +	if (ret && !list_empty(&movable_page_list)) {
+> > +		putback_movable_pages(&movable_page_list);
+> > +		return ret;
+> >   	}
+> > +
+> >   	if (!list_empty(&movable_page_list)) {
+> >   		ret = migrate_pages(&movable_page_list, alloc_migration_target,
+> >   				    NULL, (unsigned long)&mtc, MIGRATE_SYNC,
+> 
+
+
+
+
