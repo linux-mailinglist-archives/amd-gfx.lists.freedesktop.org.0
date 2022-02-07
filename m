@@ -2,56 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B86B4AC94A
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Feb 2022 20:16:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 506974AC9AE
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Feb 2022 20:36:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47AA710E3BF;
-	Mon,  7 Feb 2022 19:16:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90FD710F960;
+	Mon,  7 Feb 2022 19:35:59 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com
- [IPv6:2607:f8b0:4864:20::42b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8473C10F857
- for <amd-gfx@lists.freedesktop.org>; Mon,  7 Feb 2022 19:07:03 +0000 (UTC)
-Received: by mail-pf1-x42b.google.com with SMTP id n32so14609423pfv.11
- for <amd-gfx@lists.freedesktop.org>; Mon, 07 Feb 2022 11:07:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=intel-com.20210112.gappssmtp.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+WVqg4iM1IK5woHe616yKoTPDV85yaqed+lmC/0zx4Q=;
- b=E8Yv+tJ27QtdnqCiahy1ynDTxSrIHFQS9v3T6SGxOtbvrS4oJdOaAbBOu5WkKuOBfd
- YZVQDjXpyCcHf5TePEiE9WLubJVn7pkXJNntqfcUu0FB+cpVUKi2U/fVQ/r2P4FuKOGP
- rrsKex566q7w8weRBoU0ZAbtyAsexA2NArqSSGJ8aSE3asKbO/kySJdCGSVU84OEGUiB
- QCLOFQgtfcBKBXnXRpXprEE7iAtFckobPiWULixyKadweXpHSIl4fOM/cfTnhyD31lEn
- X5EcS76XqYpJKN3mK9thEa6gK63RHYW8pEdrhtUg2qPw6l/cPnln0K7VaxQOTiViReVV
- h7aA==
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com
+ [IPv6:2607:f8b0:4864:20::f35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B03B10F80D
+ for <amd-gfx@lists.freedesktop.org>; Mon,  7 Feb 2022 19:21:58 +0000 (UTC)
+Received: by mail-qv1-xf35.google.com with SMTP id h9so2465910qvm.0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 07 Feb 2022 11:21:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=MpROwmI6Qnm2emkziisG5aDXgeJvPxSLNV0Lic7ckQs=;
+ b=OaiSuWRoTh89hqFli2OaM/99731kyVjifGW/6GRnhqIbNkn4rqP5cCBkUjKmhiONGA
+ DRfaWqoDUSS3IuMSZybn6CxVSz9gReIWR5zHG2jjk1KjqYVDa/9CCxg0tFF3xZ3AN4KM
+ IWW23EV/8VVY2qGl9kiFU+8+HFL3FZ5X6K6By2RBakx/Ghc4c95TqRKVwgL78FFsnybj
+ gOmsu8PRvUOA7lJpZIzHdbR6U2MiJsL97ZsWs6lb+AZn8w27xJatWjWCvHlr0v+nfzrq
+ 5FEXre/2zFc0NgKQwTEa1qY6KjXxjGFFZdTM7G5gNDX+6knlEUNvM1LWH4Y4kbABTlQ9
+ MW3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=+WVqg4iM1IK5woHe616yKoTPDV85yaqed+lmC/0zx4Q=;
- b=3LzEblYNoCRMWzJuMeHubU21wyLqweBvD0n/mM1KkfKjC7+1iNtxHKAYd7WexCKHsR
- d00kKG5c8YY9/wyIXxbdDcXKpeIdR1TXgX7B+rOyZ+AFaoQ7ji53dUkFz5B88sMT9nib
- hb6ozBR+q+pTv6hxA2WQe2s1yw1+atFGUC/JaacUkyZadFpEsNt22AnY1NFqYTeYKnol
- dhH9ulAuB1mYMEm6VyljpMuk0evOpWjRF7u01QFC34KkYtnMvsLbpYG5VdJ5Sq22SQ8F
- WlXQigl0uNE8OvHif86Bb6qDNEn402ihZdPM/P28iDi3aw1kUGTVXovPNlmPPkSRULEA
- qRLQ==
-X-Gm-Message-State: AOAM5332H65OIW76THLt05/2C3FAwSxhZXpZEwB33e9gL4dCB+GyQWPh
- ROc0M8k9sxNLQemEcYoBOdxYiOej2Z8ofyQzpUZR+Q==
-X-Google-Smtp-Source: ABdhPJx4gFwHpx6eXlK2M23aHGpthiH4fAIYOpnEcI58LRfZznkCnIjyKeDQJsC3Q3CmCC8lC+fdRuCFIdo+hfnPs1A=
-X-Received: by 2002:a62:784b:: with SMTP id t72mr939106pfc.86.1644260822995;
- Mon, 07 Feb 2022 11:07:02 -0800 (PST)
-MIME-Version: 1.0
-References: <20220207063249.1833066-1-hch@lst.de>
- <20220207063249.1833066-5-hch@lst.de>
-In-Reply-To: <20220207063249.1833066-5-hch@lst.de>
-From: Dan Williams <dan.j.williams@intel.com>
-Date: Mon, 7 Feb 2022 11:06:52 -0800
-Message-ID: <CAPcyv4ipZUeCjf5teFQuJX5DEs7ViGHW_PKKfoJEK8chjJTZig@mail.gmail.com>
-Subject: Re: [PATCH 4/8] mm: move free_devmap_managed_page to memremap.c
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=MpROwmI6Qnm2emkziisG5aDXgeJvPxSLNV0Lic7ckQs=;
+ b=C6optXmclSGosD9aLVqwJSgmscEZTR78aFWhmt/FntwVPWMu1jvvRW08H5KYjXGkZs
+ kKmf/3nrw+O/MU/tL9JfgS8VMI+sCXSwMt8Lq028g8FEzRKYAa1ocurLm0RBl2HiqIdy
+ Yg1+1cCb5NAQYTYgHTIT9m1jamuG9uWuqXUOwi2mkj8W0seWgrYAW+kxZ9vikgRXTS0t
+ HHoX8txFEVMV0gEOJn2Gd9ze9oJzHWTSlfZkcut1uUHU5Ww18KlZPbb3Mx7medhelvac
+ Fp4WFgwvJVl9fpJN5vNYPTlRo6TvJbI+vGrqJUCuRN2pF5NExJxjGoTuDa6mCGYOaQga
+ kwog==
+X-Gm-Message-State: AOAM5323sYxMHT5bMBpTA9J5Ab6pPYElbIcQF1TFbOIwMck6NXP3sMc7
+ LzzjqRNMCZ5P+jCI4847OstXPA==
+X-Google-Smtp-Source: ABdhPJxhzWQ+13BW3b7rMAkbC+gsglkVidW/xLtoMpCgPLxkDjpi1/nh8Ncg8X/Gh7aVJ+bLlWGexw==
+X-Received: by 2002:a05:6214:248a:: with SMTP id
+ gi10mr727781qvb.99.1644261717527; 
+ Mon, 07 Feb 2022 11:21:57 -0800 (PST)
+Received: from ziepe.ca
+ (hlfxns017vw-142-162-113-129.dhcp-dynamic.fibreop.ns.bellaliant.net.
+ [142.162.113.129])
+ by smtp.gmail.com with ESMTPSA id y20sm5819031qta.9.2022.02.07.11.21.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 07 Feb 2022 11:21:56 -0800 (PST)
+Received: from jgg by mlx with local (Exim 4.94) (envelope-from <jgg@ziepe.ca>)
+ id 1nH9aF-000Hph-TJ; Mon, 07 Feb 2022 15:21:55 -0400
+Date: Mon, 7 Feb 2022 15:21:55 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
 To: Christoph Hellwig <hch@lst.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Mon, 07 Feb 2022 19:16:09 +0000
+Subject: Re: [PATCH 7/8] mm: remove the extra ZONE_DEVICE struct page refcount
+Message-ID: <20220207192155.GB49147@ziepe.ca>
+References: <20220207063249.1833066-1-hch@lst.de>
+ <20220207063249.1833066-8-hch@lst.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220207063249.1833066-8-hch@lst.de>
+X-Mailman-Approved-At: Mon, 07 Feb 2022 19:35:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,27 +73,66 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux NVDIMM <nvdimm@lists.linux.dev>,
- Ralph Campbell <rcampbell@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Karol Herbst <kherbst@redhat.com>, Linux MM <linux-mm@kvack.org>,
- nouveau@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
+Cc: nvdimm@lists.linux.dev, Ralph Campbell <rcampbell@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, dri-devel@lists.freedesktop.org,
+ Karol Herbst <kherbst@redhat.com>, nouveau@lists.freedesktop.org,
+ Felix Kuehling <Felix.Kuehling@amd.com>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, linux-mm@kvack.org,
  Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
  Andrew Morton <akpm@linux-foundation.org>,
- Logan Gunthorpe <logang@deltatee.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+ Logan Gunthorpe <logang@deltatee.com>, Dan Williams <dan.j.williams@intel.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Feb 6, 2022 at 10:33 PM Christoph Hellwig <hch@lst.de> wrote:
->
-> free_devmap_managed_page has nothing to do with the code in swap.c,
-> move it to live with the rest of the code for devmap handling.
->
+On Mon, Feb 07, 2022 at 07:32:48AM +0100, Christoph Hellwig wrote:
+> ZONE_DEVICE struct pages have an extra reference count that complicates
+> the code for put_page() and several places in the kernel that need to
+> check the reference count to see that a page is not being used (gup,
+> compaction, migration, etc.). Clean up the code so the reference count
+> doesn't need to be treated specially for ZONE_DEVICE pages.
+> 
+> Note that this excludes the special idle page wakeup for fsdax pages,
+> which still happens at refcount 1.  This is a separate issue and will
+> be sorted out later.  Given that only fsdax pages require the
+> notifiacation when the refcount hits 1 now, the PAGEMAP_OPS Kconfig
+> symbol can go away and be replaced with a FS_DAX check for this hook
+> in the put_page fastpath.
+> 
+> Based on an earlier patch from Ralph Campbell <rcampbell@nvidia.com>.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  arch/powerpc/kvm/book3s_hv_uvmem.c       |  1 -
+>  drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |  1 -
+>  drivers/gpu/drm/nouveau/nouveau_dmem.c   |  1 -
+>  fs/Kconfig                               |  1 -
+>  include/linux/memremap.h                 | 12 +++--
+>  include/linux/mm.h                       |  6 +--
+>  lib/test_hmm.c                           |  1 -
+>  mm/Kconfig                               |  4 --
+>  mm/internal.h                            |  2 +
+>  mm/memcontrol.c                          | 11 ++---
+>  mm/memremap.c                            | 57 ++++++++----------------
+>  mm/migrate.c                             |  6 ---
+>  mm/swap.c                                | 16 ++-----
+>  13 files changed, 36 insertions(+), 83 deletions(-)
 
-Looks good.
+It looks like a good next step to me
 
-Reviewed-by: Dan Williams <dan.j.williams@intel.com>
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+
+>  struct dev_pagemap_ops {
+>  	/*
+> -	 * Called once the page refcount reaches 1.  (ZONE_DEVICE pages never
+> -	 * reach 0 refcount unless there is a refcount bug. This allows the
+> -	 * device driver to implement its own memory management.)
+> +	 * Called once the page refcount reaches 0.  The reference count will be
+> +	 * reset to one by the core code after the method is called to prepare
+> +	 * for handing out the page again.
+
+I did prefer Ralph's version of this that kept the refcount at 0 while
+the page was on the free-list. I hope we can get there again after
+later series :)
+
+Jason
