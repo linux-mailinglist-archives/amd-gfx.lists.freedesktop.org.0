@@ -1,67 +1,66 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D22034AC9A9
-	for <lists+amd-gfx@lfdr.de>; Mon,  7 Feb 2022 20:35:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A43C4AC9AD
+	for <lists+amd-gfx@lfdr.de>; Mon,  7 Feb 2022 20:35:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E965C10EF97;
-	Mon,  7 Feb 2022 19:35:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF28E10F95A;
+	Mon,  7 Feb 2022 19:35:56 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com
- [IPv6:2607:f8b0:4864:20::833])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 356AA10F817
- for <amd-gfx@lists.freedesktop.org>; Mon,  7 Feb 2022 19:22:44 +0000 (UTC)
-Received: by mail-qt1-x833.google.com with SMTP id t17so12684152qto.1
- for <amd-gfx@lists.freedesktop.org>; Mon, 07 Feb 2022 11:22:44 -0800 (PST)
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com
+ [IPv6:2607:f8b0:4864:20::72e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 779FA10F8E7
+ for <amd-gfx@lists.freedesktop.org>; Mon,  7 Feb 2022 19:26:49 +0000 (UTC)
+Received: by mail-qk1-x72e.google.com with SMTP id bs32so11871092qkb.1
+ for <amd-gfx@lists.freedesktop.org>; Mon, 07 Feb 2022 11:26:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=yHQiDHxA3qZlcWTxLN1MgZypNnbjTwUZO2QoeiWP/cI=;
- b=WalR+vjdCg+8zPlO5aZ1ywuN+woRsi3gerM9e8um5R75M05o/0A4tTPV0sDoS0iLf7
- MI5Ayh/aUjA3lzGk4knlGcpvrjJkTAzgzCaIVUlu2cLGGSbDhpJ/GrhJhUdc2HnXtmRK
- stuNg7sUYxLt5HQjP/PwyCP9ZRninXNxW8lX4+8vi6VkUSLgg5BY3Jxg39rH3WH2BDNx
- g9rpWqR/RtcR0wf2poNmSVgkhRnSCPEG3oCgynxbJlts+OBBSOpC9atYeDDQCpJbBHmV
- OdyYF8TiYTFFifPNOFO5hE7XJgkPbqKroSw//vj0hDKtL6BLQKT8a9/Jd8uxBZMUHGVb
- 3Hgg==
+ bh=bGzAS0zKkWkFPCiUJqrRhTBAlrJP3SGf1MGlPyahzN4=;
+ b=b7ELmtzNyf/nrudljsQzl4Q1Js/C7bJel76vjls1xYAgKYUp0D32NW/dwCQI91vZZP
+ cXbYYhEP/g8elhxNJkVvAoFewT4/BqI63tG4dQgRBW68M7alExU2eUsV3nwL+RRGhNfV
+ j9OssUbyMS/ts/M6+OwPFFARzPDqKR87URSREqouyR+yUBPPCOc+h8b8yGuU3ej+D/xM
+ yigD/3UGPd7ytRh96Y0Q0EKXaGboDozlOgbEE8YSvDdrFF+CXBdAOzxWkzfsUC5OZ96L
+ FougQ7rtCxrXPxFtxmHqPYYsSOKmfZn62Sni/waJLdqf1/0D0HpcPN3YMwknPx6e2shw
+ Hl0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=yHQiDHxA3qZlcWTxLN1MgZypNnbjTwUZO2QoeiWP/cI=;
- b=AzVA/OrBO/mVQM4N5JbIqfbqjrO6X+YL4s0ttaS1+DS1So38+jqy3CPzfgVqnHCJIf
- t9PNlpv1c0Exr4pi0H7lnhqi/7AWu/Yey51a+dKSI6pWBeIsK3MvGZppKSnYBpCJf7QW
- tmT2rleW+9akmu4bB95+Hj4ZCkQqrXRA2l8vkrWozwD0Z5FMKT2ptGAFjqAheqiNsJed
- OycXlsepecENKsTuW+/72ytBVy2any9g8WPk0hYmrytRko856ogrBCazyosE+sIMmYYe
- FKtKS9zGBUKgV1/57jk34yQIuIoEkasK8Z6OzjzWCztoZZP25k/GmSLijQ5PiWjwFz29
- EZRg==
-X-Gm-Message-State: AOAM530jqOUKDGaRs5000fLhH/H3BKNeKfCVyqfhoDUyQS+P/c+SaNlM
- ObROTpUFOizc3Jpbpd9APj6SgA==
-X-Google-Smtp-Source: ABdhPJyusc4Y6UBxGsOMvrtpT2MH3zTc6ABg/OaP0sDSZntIjW01XzJV/gLuVV8p/6/141fWu3yUUA==
-X-Received: by 2002:a05:622a:1303:: with SMTP id
- v3mr740294qtk.294.1644261763197; 
- Mon, 07 Feb 2022 11:22:43 -0800 (PST)
+ bh=bGzAS0zKkWkFPCiUJqrRhTBAlrJP3SGf1MGlPyahzN4=;
+ b=vC/EkDAp29DpC4+75p01WBmRZmUkN8JX/zAlx6vlzDXtx4U9+tGi7jnw7XM2nK7Adc
+ kHhXuNup7rOxoejsjsA/IalSw03IZGGplDXa0fm1vaaPN6VkwxxJ8LhLgChPy7jdSc5G
+ kpJgEiixeaX8x6Z5bQ+lucyeYvLDuqu9gcFkX2H4iSqIHaOlaXI70o3ehDJc/dIqOtff
+ EvbPBM02p+FH5lU7fqO5fhYBjJoDgOJs7F8x/6POrExQmxdEEIpghDrUj71A0G7W8Zbk
+ mcndvg2AhfEscLelFcxQHnXrwRF74paA0wwELJWbgpGhUeH3YEGBx8knUb3mjFYIqW4p
+ /+RA==
+X-Gm-Message-State: AOAM5319vK22xpy3438ayNPVeKwwogoeLuBbd5+RsyEWufuubufXuKbb
+ oyKyauc35mVr1/kZbovEGqOw8w==
+X-Google-Smtp-Source: ABdhPJyr6K2wB/TmouPqeHofF9/cBL8QhnN30S2Z0xEYqLSWtmQW56XluhEWaS6dhmSL4EVhM8SlGg==
+X-Received: by 2002:a05:620a:1204:: with SMTP id
+ u4mr761415qkj.707.1644262008607; 
+ Mon, 07 Feb 2022 11:26:48 -0800 (PST)
 Received: from ziepe.ca
  (hlfxns017vw-142-162-113-129.dhcp-dynamic.fibreop.ns.bellaliant.net.
  [142.162.113.129])
- by smtp.gmail.com with ESMTPSA id y5sm5930001qkp.37.2022.02.07.11.22.42
+ by smtp.gmail.com with ESMTPSA id w8sm5913769qti.21.2022.02.07.11.26.47
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Feb 2022 11:22:42 -0800 (PST)
+ Mon, 07 Feb 2022 11:26:47 -0800 (PST)
 Received: from jgg by mlx with local (Exim 4.94) (envelope-from <jgg@ziepe.ca>)
- id 1nH9b0-000HrC-2F; Mon, 07 Feb 2022 15:22:42 -0400
-Date: Mon, 7 Feb 2022 15:22:42 -0400
+ id 1nH9ex-000HvP-5E; Mon, 07 Feb 2022 15:26:47 -0400
+Date: Mon, 7 Feb 2022 15:26:47 -0400
 From: Jason Gunthorpe <jgg@ziepe.ca>
 To: Christoph Hellwig <hch@lst.de>
-Subject: Re: [PATCH 1/8] mm: remove a pointless CONFIG_ZONE_DEVICE check in
- memremap_pages
-Message-ID: <20220207192242.GC49147@ziepe.ca>
+Subject: Re: [PATCH 2/8] mm: remove the __KERNEL__ guard from <linux/mm.h>
+Message-ID: <20220207192647.GD49147@ziepe.ca>
 References: <20220207063249.1833066-1-hch@lst.de>
- <20220207063249.1833066-2-hch@lst.de>
+ <20220207063249.1833066-3-hch@lst.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220207063249.1833066-2-hch@lst.de>
+In-Reply-To: <20220207063249.1833066-3-hch@lst.de>
 X-Mailman-Approved-At: Mon, 07 Feb 2022 19:35:52 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,14 +85,13 @@ Cc: nvdimm@lists.linux.dev, Ralph Campbell <rcampbell@nvidia.com>,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 07, 2022 at 07:32:42AM +0100, Christoph Hellwig wrote:
-> memremap.c is only built when CONFIG_ZONE_DEVICE is set, so remove
-> the superflous extra check.
+On Mon, Feb 07, 2022 at 07:32:43AM +0100, Christoph Hellwig wrote:
+> __KERNEL__ ifdefs don't make sense outside of include/uapi/.
 > 
 > Signed-off-by: Christoph Hellwig <hch@lst.de>
 > ---
->  mm/memremap.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
+>  include/linux/mm.h | 4 ----
+>  1 file changed, 4 deletions(-)
 
 Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 
