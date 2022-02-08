@@ -1,61 +1,125 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E87A34ADB53
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Feb 2022 15:38:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF4524AD9C2
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Feb 2022 14:28:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0D6E10E4DF;
-	Tue,  8 Feb 2022 14:38:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DD9F884B0;
+	Tue,  8 Feb 2022 13:28:55 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
- [IPv6:2607:f8b0:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD5DB10E5C3
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 08:42:46 +0000 (UTC)
-Received: by mail-pf1-x434.google.com with SMTP id p43so124927pfw.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 08 Feb 2022 00:42:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=RKltf19DtHiRc15a3iaZ/NnDb+6ppKujiVxWZQto3YU=;
- b=O2UDOpBeBJRbX3+DaQG7mIxxaEO05L1HTD48WquGaDuYWsSttm9JTTNF7a+lc8KdMj
- tJRuDchff9o48V7UXFNQVgoxZ/rNJPLVl8KQxtPWFS7zVK0sOis64KFrKb3J8stVpjkN
- Pk7y7Sj69FXDSqgG4hJ/qiPJrJRpnz6L6YEME=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=RKltf19DtHiRc15a3iaZ/NnDb+6ppKujiVxWZQto3YU=;
- b=UbczhzCn9CgUVhn8IZAgIsWkrAzhufv5OV1EeAhqZ7xCfmcY2Mbi0tg90knUKPcC7Y
- Wb/PTm86zy5Cso+hDg7V0r0/aeLWTnPwv7xY1gukyUb6i3hdWwxCjaxoxt4/kpArLWqR
- TW34AikJhMxpzUzBXvdoGfcgC67NIiLUZEToM5LEVxK43iLwnrbesb6vbbtD8UbCS37X
- 2ZrPSFDwn7KUopBfg4csWSH4yGdlCwIdhYx8YQx3oqRI7SIdJ6LF9Dasqlj4CBr6mCwq
- kCkiMH1MBmMqecP8ZdhN/UDs14Y7dWy31u322kSDlRui/o5w+p0E+2uYnOfUK3DGP3Ga
- VCeg==
-X-Gm-Message-State: AOAM5300cszjIRU+Sgv+GyjaN5vRPTnAPXBSRjxUPyhEeN08uU62Pq7o
- vuDsE5mGQ9CzLX9czyya+ISjWg==
-X-Google-Smtp-Source: ABdhPJxJuhyNGgn/8M1tkfbfnImy5ANlW87FCMT9C5ygmikEd8cwYFifi2WHJ+zYaY+iMKeTEIBo9Q==
-X-Received: by 2002:a63:2ad6:: with SMTP id q205mr2651010pgq.46.1644309766435; 
- Tue, 08 Feb 2022 00:42:46 -0800 (PST)
-Received: from hsinyi-z840.tpe.corp.google.com
- ([2401:fa00:1:10:7d9a:166e:9d34:ff4f])
- by smtp.gmail.com with ESMTPSA id m14sm15362390pfc.170.2022.02.08.00.42.43
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Feb 2022 00:42:46 -0800 (PST)
-From: Hsin-Yi Wang <hsinyi@chromium.org>
-To: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Subject: [PATCH v8 3/3] arm64: dts: mt8183: Add panel rotation
-Date: Tue,  8 Feb 2022 16:42:34 +0800
-Message-Id: <20220208084234.1684930-3-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.35.0.263.gb82422642f-goog
-In-Reply-To: <20220208084234.1684930-1-hsinyi@chromium.org>
-References: <20220208084234.1684930-1-hsinyi@chromium.org>
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2055.outbound.protection.outlook.com [40.107.92.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6A6810E208
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 13:28:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MyfEa25UmcBMyqBDG6K1B2vD8mSrObdvNN58uNaBUfXOyUIbpvaBdZKS0gxcYX+pzrrhSo8cWapNwnckeIvJONs4xwdlDSpGwwvC1Gn9E6CMcMiRYYsYsHBNd1R1OFoe8+mnWo0nW7EKi2dnU8zbKyJvhybH3onyVzyt6nZacgZMnE7+PMjEPuX+PUNGQVKhaxbRgWcV4LsFN6UhNs1eZTsiYMUCg74x6aEGRj3gzccaPQv3WEtvpQd1mxxBrjJiyiXdtJZiLQJyMxr6xskwOMBe/fgx+mzCOuOOrphv6l0i5GkQ3C9S/zx0EUV1Mv8VLIPnfXiQQWg+Vv+mLD+mkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cv9C9lbCoONJWRVEjQGQLC59oDG9AdSI+y5hwx1ey18=;
+ b=EEOu7sqyJUrGVBH+iRYdl6J2vzWMaD5Y3Dni3kTG8UNyKH5R28KXc4qUhmgupZ+4SNQlxmEHh/crWtpyMztH9dMhXT42C8nioEAp5boCwMOzdcprQITTDGC6LyDAXx49Z8WAvwO0Tu9TNs7c/gvfYZO7sORRtkTw0u4WPcIaEJY/LvhH8XRhJuEuldZO+CTOPwLg6J/2UcmCC/AXqeqeDNT3YGTcWPwJmh/2tB4mcbl+oV1PKjxvHIXOqzU7SbmDzu2QC0TAl4TimQUVckkrgf7DjAA6E9GKSiI0+LNHuOEX8+80sOfb+JpJyEzPHJXqJRRNSgJ5YpE6zAq5okAUCg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cv9C9lbCoONJWRVEjQGQLC59oDG9AdSI+y5hwx1ey18=;
+ b=Ku92qC0h5e7lggTCRNbH8kC4fjnPtkUMe4SB1fKp+5HTrwCE4o/s8tLU2C+N7dqHUVLAKTmigf5fE3hLOMPl19rMgOG7l29qJ0Ow0Vc2VJavI0fwDXvDDlGCOW0bYrAdAxCyG9ZdY5pt5n3KIkNKCHSrfPHvfRUAO/+pf1v16bE=
+Received: from BL0PR12MB2465.namprd12.prod.outlook.com (2603:10b6:207:45::18)
+ by BY5PR12MB4084.namprd12.prod.outlook.com (2603:10b6:a03:205::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.11; Tue, 8 Feb
+ 2022 13:28:51 +0000
+Received: from BL0PR12MB2465.namprd12.prod.outlook.com
+ ([fe80::fc44:f9f3:62e7:af2d]) by BL0PR12MB2465.namprd12.prod.outlook.com
+ ([fe80::fc44:f9f3:62e7:af2d%5]) with mapi id 15.20.4951.018; Tue, 8 Feb 2022
+ 13:28:51 +0000
+From: "Chen, Guchun" <Guchun.Chen@amd.com>
+To: "Wang, Yang(Kevin)" <KevinYang.Wang@amd.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amd/pm: correct hwmon power lable name
+Thread-Topic: [PATCH] drm/amd/pm: correct hwmon power lable name
+Thread-Index: AQHYHL+ww71PnuL7ekOK46HhXwlyIKyJpXiQ
+Date: Tue, 8 Feb 2022 13:28:50 +0000
+Message-ID: <BL0PR12MB2465149AF1ED9E6874D91E8EF12D9@BL0PR12MB2465.namprd12.prod.outlook.com>
+References: <20220208074354.379024-1-KevinYang.Wang@amd.com>
+In-Reply-To: <20220208074354.379024-1-KevinYang.Wang@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=true;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2022-02-08T13:26:34Z; 
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public-AIP 2.0;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ActionId=6598e455-9e94-4be3-8766-e44d07c2ddc6;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=1
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_enabled: true
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_setdate: 2022-02-08T13:28:47Z
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_method: Privileged
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_name: Public-AIP 2.0
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_actionid: c659640e-2eaa-43d6-8caa-49470e06984a
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_contentbits: 0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c664fe45-3f2f-49dd-f820-08d9eb06f1e9
+x-ms-traffictypediagnostic: BY5PR12MB4084:EE_
+x-microsoft-antispam-prvs: <BY5PR12MB4084E3C2ECC598F17B169135F12D9@BY5PR12MB4084.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:626;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: zBpV5AigJOReyepqKUKj/d7AbxFLXeFQIySq9Ff5O5ZktvzYIl+4MTfh04sderq42RchOpC3tRe1U0yLa1O2DcOcd7OQU4w55aBMgU9xuM9YGQ47EwIyGu3zHVF9KA+dotqZHlqRDa2cqPN5PhkiVLZ7lQdhE98ww0meeqkC6tKw8xm/uw4qT5fYpmdhbiPJevyadxuK07UoiAczQopn2CN6XxXyqftP4ZZ45h4yi/HYge7asu/GPJWdzj88JelzAip8GwaA6HO3p1j5Tyh+P58L4AOJ+N8yAW7APPdgc+7HKEMvakDyJAdFKPHE3Peo9l03Wb5l9tQy1pXKVb+v3O1O8QjzcmXAQoYjHRUttPI4N0o9u4k8+V1PdbTvUPG8zAOuZ8uRj1DsiaqcbkRFULrpAexm1XieQefZE6dBZDWkryCLZxTMuoDEc4jPOhcYFUr6WqZfZmWbrK6ZwBflfIMauDSLwSHWspapjJX/ETSKppOdUOwgRQAu9fmtt0A8AubapExku/bW6zplJU5pO/+PxSnb2VKFCIsK2fUO7QEfBp5LXLicaS9iJydpVF2z1W8CgL7i8hUFORrUfnWiJQnIKcKJ41zcR1oMoNx1Fj5gzjkVwsMUTWg5ikZB31PXZ1f3aKwWuYFkwmVmOtCWw1+9tDg2PxiXhNzHNIgt5pYBuiSRqs3lXgfDd06S6CyLsx9j70Pnyoy4BQA16vcGbw==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB2465.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(6506007)(38100700002)(53546011)(7696005)(2906002)(76116006)(8676002)(9686003)(8936002)(66946007)(66476007)(64756008)(66556008)(66446008)(316002)(54906003)(110136005)(508600001)(52536014)(122000001)(38070700005)(5660300002)(55016003)(33656002)(4326008)(186003)(26005)(86362001)(83380400001)(71200400001);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?lvBfU5tgqbpYJW14pNj04OQJdOWepB+LPMeDA8eKuQHhGoes9/zaWoseUfZv?=
+ =?us-ascii?Q?jBUXkn8icglwaBCdZRZ1tXH3rQn2B0uyTUmEtOUKDMBSlDNO9YcnZ8XB9SzI?=
+ =?us-ascii?Q?0xXPr9SSy9+4xCXlzr5/gfl1dZ6nYEsC9aGALPYfplYFAuHNepvA/mG+n9+u?=
+ =?us-ascii?Q?k1EyAWVNK1SH3fJxEix8u46IoXoKvE0d8btPhVET75p4/CUOtRNr1HtPe5S6?=
+ =?us-ascii?Q?SHrRMF7vP7XtZ1dsAgIpSmPMeosPO3iSLpZ/RYVSlcqxwnsIk3QBNMGLHUWh?=
+ =?us-ascii?Q?0aDQUTvL+n+B8ETNIeVDmspgE+zRe4a3EBX+zbbsEcB+0xvmspSKPF/Wb8sS?=
+ =?us-ascii?Q?tTqSDXpZuGETFXA7tZzGov+VUmEhwrtb1WwEBPwz/xycUlwSmEjbqR65hm4I?=
+ =?us-ascii?Q?HcQI6DB3x4mJPNZoXdMPPljt9oA/dfsR1XgRvLRgwOpy2mvpAAXNFhni21Vp?=
+ =?us-ascii?Q?1p5ujXDmwtsz82Fl6VKjS+J5tlRnW8QHpBiihSQaodB0jo5cqRrJTX/YJoRa?=
+ =?us-ascii?Q?PTwCWihrrMKNOxBnQE7uz+3S6x5rlKK21pwUhr31SM7mSENrvDRA9aCx1W9R?=
+ =?us-ascii?Q?WJYtt2mppgaHwuuUNAhG34J5tktFREZdK7Pd+RcIbmBnaprvJg1p2BaEubmC?=
+ =?us-ascii?Q?EosQR8AUDRrCbrQAN4sGLrTrW+FI4VDUVeR/DYzZcGDISMfietlmDF/ALPlX?=
+ =?us-ascii?Q?foZzIlK0ZQSQdvCn9bMgxQevFYgaQCrygtogdgBXT9U1o7TqxjNJerOnKAb8?=
+ =?us-ascii?Q?BETuSPTVE3Cwga0F2qPz2fFCpQWDgB9GWhwylFY2DMpiAxKxnJoi+olXIloA?=
+ =?us-ascii?Q?Ilby7d9TDPzcckHOM3En/kGD2J+3sCX79dTKT9kOJSD5yY1Fs4YLS4a4jf1O?=
+ =?us-ascii?Q?BxOMsx5gOLpmFbNg2qSlgmIUtCz4Ioz9PP251ADmTYmaYXGyxrbzQKUNbVxK?=
+ =?us-ascii?Q?X6JU9a+yD+/5Hme34fEdAlVRnZOcckrYNGv8AYm2V4d7wV8+EAQCfEI5vX/6?=
+ =?us-ascii?Q?xp9SiqYFDFNS64zcFzTEE/4TnlUBWQFrLSAl2ajQ5R8TnjiJgPNJ3JaLQR+j?=
+ =?us-ascii?Q?gO7bx+SxBWgnwLk1m009pug3qyQlIUzi6MDx4EhIUrZaS30sSzX6vs2VQQQS?=
+ =?us-ascii?Q?WTXe1PKOdxX7Zl1JcgWbc7Od4/PceXO1z+7HZW2B+ydHyPvBhxjf+7sDslYx?=
+ =?us-ascii?Q?FkTzTtscAFJ0Fvs5haiWarDso9G4GEA5hWy8WREv3qQ2IIcoFXFa8/rwerAP?=
+ =?us-ascii?Q?Rd/qqmaSYN2Rn+RhIsxbftadExfXJLOUcE03Lb5tRxdc0ustgC2568g+EJE1?=
+ =?us-ascii?Q?Q0gCGtGW5QgZZAHqgVYkNRQN+oVtVtz+6+YHGKhaQE8kBVkN036EoFetiny8?=
+ =?us-ascii?Q?pg1TCQmlxrO5ks7/GaHJJTQ4gTRU8ug+K3Xfw+bCh3XPO8hNgHqYzqg8gFL8?=
+ =?us-ascii?Q?rN/lnDfppV2M3Eh1o2YoPwVyUSP9eK4ZemhElA0ZXOLI2L56EL8j95fja37r?=
+ =?us-ascii?Q?wQTu40fKdprGuWuGkrGKk0JvD38cPxPnuhs2tw8StKmveVsrixlKSqampCM/?=
+ =?us-ascii?Q?LVjLpCuRRW/uhLxYAaBqcsP9BQI+Eu8R/dG/qrw1k0AoIrEnDXXQrzrYmlh/?=
+ =?us-ascii?Q?jgpBk3KYlittGf0xnQZd7Zg=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 08 Feb 2022 14:38:02 +0000
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2465.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c664fe45-3f2f-49dd-f820-08d9eb06f1e9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Feb 2022 13:28:50.7797 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Y6HB6ZmslalTfmLw4J3kJQAlpkxDdpe5r746On3jw7uZKVggjWKdg4FnhGKAeiLlAGVeZcv0etziIYdW9IT1uQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4084
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,40 +131,64 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, devicetree@vger.kernel.org,
- Simon Ser <contact@emersion.fr>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>, Rob Herring <robh+dt@kernel.org>,
- linux-mediatek@lists.infradead.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Harry Wentland <harry.wentland@amd.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Sean Paul <sean@poorly.run>,
- linux-arm-kernel@lists.infradead.org
+Cc: "Lazar, Lijo" <Lijo.Lazar@amd.com>, "Hou,
+ Xiaomeng \(Matthew\)" <Xiaomeng.Hou@amd.com>, "Feng,
+ Kenneth" <Kenneth.Feng@amd.com>, "Wang, 
+ Yang\(Kevin\)" <KevinYang.Wang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-krane, kakadu, and kodama boards have a default panel rotation.
+[Public]
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+A typo in subject, s/lable/label.
+
+With that addressed, the patch is:
+Reviewed-by: Guchun Chen <guchun.chen@amd.com>
+
+Regards,
+Guchun
+
+-----Original Message-----
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Yang Wan=
+g
+Sent: Tuesday, February 8, 2022 3:44 PM
+To: amd-gfx@lists.freedesktop.org
+Cc: Hou, Xiaomeng (Matthew) <Xiaomeng.Hou@amd.com>; Lazar, Lijo <Lijo.Lazar=
+@amd.com>; Feng, Kenneth <Kenneth.Feng@amd.com>; Wang, Yang(Kevin) <KevinYa=
+ng.Wang@amd.com>
+Subject: [PATCH] drm/amd/pm: correct hwmon power lable name
+
+only vangogh has 2 types of hwmon power node: "fastPPT" and "slowPPT", the =
+other asic only has 1 type of hwmon power node: "PPT".
+
+Signed-off-by: Yang Wang <KevinYang.Wang@amd.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/pm/amdgpu_pm.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index b42d81d26d7211..d29d4378170971 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -276,6 +276,7 @@ panel: panel@0 {
- 		avee-supply = <&ppvarp_lcd>;
- 		pp1800-supply = <&pp1800_lcd>;
- 		backlight = <&backlight_lcd0>;
-+		rotation = <270>;
- 		port {
- 			panel_in: endpoint {
- 				remote-endpoint = <&dsi_out>;
--- 
-2.35.0.263.gb82422642f-goog
-
+diff --git a/drivers/gpu/drm/amd/pm/amdgpu_pm.c b/drivers/gpu/drm/amd/pm/am=
+dgpu_pm.c
+index 426e00112c91..ad5da252228b 100644
+--- a/drivers/gpu/drm/amd/pm/amdgpu_pm.c
++++ b/drivers/gpu/drm/amd/pm/amdgpu_pm.c
+@@ -2842,10 +2842,14 @@ static ssize_t amdgpu_hwmon_show_power_label(struct=
+ device *dev,
+ 					 struct device_attribute *attr,
+ 					 char *buf)
+ {
+-	int limit_type =3D to_sensor_dev_attr(attr)->index;
++	struct amdgpu_device *adev =3D dev_get_drvdata(dev);
+=20
+-	return sysfs_emit(buf, "%s\n",
+-		limit_type =3D=3D PP_PWR_TYPE_FAST ? "fastPPT" : "slowPPT");
++	if (adev->asic_type =3D=3D CHIP_VANGOGH)
++		return sysfs_emit(buf, "%s\n",
++				  to_sensor_dev_attr(attr)->index =3D=3D PP_PWR_TYPE_FAST ?
++				  "fastPPT" : "slowPPT");
++	else
++		return sysfs_emit(buf, "PPT\n");
+ }
+=20
+ static ssize_t amdgpu_hwmon_set_power_cap(struct device *dev,
+--
+2.25.1
