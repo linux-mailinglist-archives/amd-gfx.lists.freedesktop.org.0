@@ -1,56 +1,41 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1809B4AD349
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Feb 2022 09:26:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B06574AD342
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Feb 2022 09:26:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 810778909F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 331868908B;
 	Tue,  8 Feb 2022 08:26:45 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com
- [IPv6:2607:f8b0:4864:20::b36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7F1110E342
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 08:09:40 +0000 (UTC)
-Received: by mail-yb1-xb36.google.com with SMTP id v47so22605471ybi.4
- for <amd-gfx@lists.freedesktop.org>; Tue, 08 Feb 2022 00:09:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=bytedance-com.20210112.gappssmtp.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=DC5h5QPa2MMSD8jMuUZaOZTMv0rKCEv7tr+WwakctiM=;
- b=UKt/5gqtEQEDR+I4jR//5bWv57hPVaW9KmAr8xHRshFW+V9PDSWkFrBE8Hyb8wlSkA
- QQKQ+stzgyEgp5J4DyVY4bvPNBtHP4wSzJ6uJck+8cplu8GPkuIVWQ+Y8zm1xv27s0Zu
- cR2ljgqob8w9EmBGVw0EdJVkId5N+xNPUHeADg5epuSLdcXTrW9Tqo5OcA22EaRu8U3K
- l3cuLzKBbOc9GbQXk+h497gXyT6KtsqpW966ysKE5jotsGOXr7l3B+dKnggATk5GoyUy
- KJOt1xwxzqYiEqEVIBRmXg0oLWnTj4m1q1+iR+FtOucXjtQu9GfhLJMBe3O/kYgazNfR
- tnQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=DC5h5QPa2MMSD8jMuUZaOZTMv0rKCEv7tr+WwakctiM=;
- b=cvmMu932hc9WUmfNa8q0DQ/1REpAEQNcbl3g3AIC+cYVMhsRbFIjPU0pjbsJ9TBdUD
- +2HGk0R/UFuU/1Nt/Ake+CAjvrou9/3c79FrVJVwWfwiPUlgoIJcPnVFA6i5bXU6WWXN
- p792g0ZXD3/fd9oDtIQLFCVp77Dl0S3FC9qdnU1eyHHA7sDHdPAq053m+h/jXsRcozAj
- zrJS8AUMI2iGfAfGxYMqtHxSk5mXx9O73+TCRyaMTVGRKEnnrgBmEn4pA8fVort6zMuZ
- Yzh9/eBmclPbxThx5sUG0LRF/USXTq4YJYZ7V7jDY6OcDv3nxU796TCn7G9w14+i5Kcw
- sL0Q==
-X-Gm-Message-State: AOAM531yV/5YZPsvJInaX3slhkPwwXnT0nRcKN7LsPPhM0EvgfRaxKKK
- Q4E+x+juIELVhNS+5pCuvD4armtwDRNBVJ57grLgqA==
-X-Google-Smtp-Source: ABdhPJyFSmuR7M4HIJ31YSJoOUpobAKTBK69kzVotLKdLdB2NRipgBTZ2XLKWECEqSNiqnwAnFetqc4Ion8CCMp0OGY=
-X-Received: by 2002:a81:ad46:: with SMTP id l6mr3668263ywk.31.1644307779769;
- Tue, 08 Feb 2022 00:09:39 -0800 (PST)
+Received: from smtpbgsg1.qq.com (smtpbgsg1.qq.com [54.254.200.92])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A77B210E3CA
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 08:15:39 +0000 (UTC)
+X-QQ-mid: bizesmtp42t1644308115tsb4qzql
+Received: from localhost.localdomain (unknown [58.240.82.166])
+ by bizesmtp.qq.com (ESMTP) with 
+ id ; Tue, 08 Feb 2022 16:14:48 +0800 (CST)
+X-QQ-SSF: 01400000002000B0H000C00A0000000
+X-QQ-FEAT: hR9GyqeohSjJ8poqEfqqfnQTm/zs80/Vvjqy3T/4wc9YCPiMLqXp+q7NtT8gq
+ rBF86DoPBxWUSHh6M7tGkbrjEV4exoR3cDiP+Fgqnvjt7QYXsJhFmDrNC+5/blVoVT6j2mr
+ q6rdCYI5tCYGFAUFA5vzkdrIyLJ3oeVWdq2BEVrlzvhcPjuw3wthJqKfGBCRsBCMWYA2K6s
+ sTpCm9fIx/jWgLCSiSHL/FvnWMP83g6UDg5ugiohu+Qs1hYW6T/0i0qE3SAAkkH02Y6jk7W
+ fMeALM6EAU3sLiFqF8tApujMI2Kv1Ridm4xcWinHPeONPg+8ek3CYgFKkA/PJTfvCKy3iS1
+ 5n7VLvRzEMOx2A4YD+xxVB06Qkazk9bdE7ybf/qqYf014oxXAs=
+X-QQ-GoodBg: 2
+From: zhanglianjie <zhanglianjie@uniontech.com>
+To: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: [PATCH v4 2/2] drm/radeon/uvd: Fix forgotten unmap buffer objects
+Date: Tue,  8 Feb 2022 16:14:43 +0800
+Message-Id: <20220208081443.28210-1-zhanglianjie@uniontech.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20220207063249.1833066-1-hch@lst.de>
- <20220207063249.1833066-5-hch@lst.de>
-In-Reply-To: <20220207063249.1833066-5-hch@lst.de>
-From: Muchun Song <songmuchun@bytedance.com>
-Date: Tue, 8 Feb 2022 16:09:03 +0800
-Message-ID: <CAMZfGtUqbU9VpCOA-9bdU6d1CoQ7n8D+26v4j79uLcH1uc5Q2w@mail.gmail.com>
-Subject: Re: [PATCH 4/8] mm: move free_devmap_managed_page to memremap.c
-To: Christoph Hellwig <hch@lst.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:uniontech.com:qybgforeign:qybgforeign5
+X-QQ-Bgrelay: 1
 X-Mailman-Approved-At: Tue, 08 Feb 2022 08:26:44 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,28 +48,46 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nvdimm@lists.linux.dev, Ralph Campbell <rcampbell@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, dri-devel@lists.freedesktop.org,
- Karol Herbst <kherbst@redhat.com>,
- Linux Memory Management List <linux-mm@kvack.org>,
- nouveau@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, LKML <linux-kernel@vger.kernel.org>,
- amd-gfx@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Logan Gunthorpe <logang@deltatee.com>, Dan Williams <dan.j.williams@intel.com>
+Cc: David Airlie <airlied@linux.ie>, PanXinhui <Xinhui.Pan@amd.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ zhanglianjie <zhanglianjie@uniontech.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 7, 2022 at 2:42 PM Christoph Hellwig <hch@lst.de> wrote:
->
-> free_devmap_managed_page has nothing to do with the code in swap.c,
-> move it to live with the rest of the code for devmap handling.
->
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
+after the buffer object is successfully mapped, call radeon_bo_kunmap before the function returns.
 
-Reviewed-by: Muchun Song <songmuchun@bytedance.com>
+Signed-off-by: zhanglianjie <zhanglianjie@uniontech.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
 
-Thanks.
+diff --git a/drivers/gpu/drm/radeon/radeon_uvd.c b/drivers/gpu/drm/radeon/radeon_uvd.c
+index 377f9cdb5b53..0558d928d98d 100644
+--- a/drivers/gpu/drm/radeon/radeon_uvd.c
++++ b/drivers/gpu/drm/radeon/radeon_uvd.c
+@@ -497,6 +497,7 @@ static int radeon_uvd_cs_msg(struct radeon_cs_parser *p, struct radeon_bo *bo,
+ 	handle = msg[2];
+
+ 	if (handle == 0) {
++		radeon_bo_kunmap(bo);
+ 		DRM_ERROR("Invalid UVD handle!\n");
+ 		return -EINVAL;
+ 	}
+@@ -559,12 +560,10 @@ static int radeon_uvd_cs_msg(struct radeon_cs_parser *p, struct radeon_bo *bo,
+ 		return 0;
+
+ 	default:
+-
+ 		DRM_ERROR("Illegal UVD message type (%d)!\n", msg_type);
+-		return -EINVAL;
+ 	}
+
+-	BUG();
++	radeon_bo_kunmap(bo);
+ 	return -EINVAL;
+ }
+
+--
+2.20.1
+
+
+
