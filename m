@@ -1,57 +1,55 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C1C34AD353
-	for <lists+amd-gfx@lfdr.de>; Tue,  8 Feb 2022 09:27:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 618804AD357
+	for <lists+amd-gfx@lfdr.de>; Tue,  8 Feb 2022 09:27:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 311F910E585;
-	Tue,  8 Feb 2022 08:26:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC24410E59C;
+	Tue,  8 Feb 2022 08:26:57 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com
- [IPv6:2607:f8b0:4864:20::1034])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 000B110E56B
- for <amd-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 07:37:23 +0000 (UTC)
-Received: by mail-pj1-x1034.google.com with SMTP id
- p22-20020a17090adf9600b001b8783b2647so1326199pjv.5
- for <amd-gfx@lists.freedesktop.org>; Mon, 07 Feb 2022 23:37:23 -0800 (PST)
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com
+ [IPv6:2607:f8b0:4864:20::42e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF7610E693
+ for <amd-gfx@lists.freedesktop.org>; Tue,  8 Feb 2022 07:37:27 +0000 (UTC)
+Received: by mail-pf1-x42e.google.com with SMTP id d187so17430115pfa.10
+ for <amd-gfx@lists.freedesktop.org>; Mon, 07 Feb 2022 23:37:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=B51vztbAqanx3odcGYslN+f+8QXuSl3IGdZkOcgCEP4=;
- b=B11JIsqRugzE1lPzLbVrLBxQRW5fnSgxLSLKgwr1IROc+g9ZzYhWrC1z2DTdGwYxxc
- zTZC5C6/ehGlzMo1J6qtuwveXNMaFeY7njbnbEiu43w4jwaanMcHAXwYob4oTe4haPpH
- OSqw2rNF9vvlgVMfdSEmvclOIi10EZASOCcpU=
+ bh=RKltf19DtHiRc15a3iaZ/NnDb+6ppKujiVxWZQto3YU=;
+ b=UQRrh4b2cYpExbUb5sYjfYPmvD9zbPX49JL8Al9S0glKbqkZ0dmzb/DWvs20vFsU4I
+ O/YgtlkeyONvN4ODXkKbAwbVKcjSXwNHy1KNIzNLS8S85I1c3k2dDioajk+vyYjTK0vr
+ kVR0Zgv0Jb0jFEIXVFA9s6SyAAU+51lA2FXMg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=B51vztbAqanx3odcGYslN+f+8QXuSl3IGdZkOcgCEP4=;
- b=kMwIec2W64W7PFOGg0IDFMRaWymBcCoY3DNw7rocn1jL6U69ysvy/gFnvDRYOgnwmW
- YrLmaUSnf6mJ6r0r3HeTvuRfJfdMkywK/hT3dhJgrwMIPBy7lYPyxiwESRxz3FNYBPI6
- h9CgoYcHhDsimCRBpMiz5GKLrehYtCZiJTffwZ+NaJHKtyPM8zdYh+ItahI8+liFxzf4
- oW0zTeVDxnCDKndyQr0FBwG4+5d/LHS5osj6ylvM1BT5DxwKlz2trbbusSqNsPDbDw/T
- qvQ+5WAZusC+zA7fQ4Y0fWaOl4dnFhJEcSICO6zUPGurEjU+vAJoQst7WcXBHUiuoUCo
- Erng==
-X-Gm-Message-State: AOAM533tpf+1UhKwY/Grua2306D4T7L+3//pnHVyoM9fxi+m+B9neSir
- AWKzf0hlO38xFNKpR0nj1R84qg==
-X-Google-Smtp-Source: ABdhPJxwrTpJBtY7yw1Sd0APOFBVLEGy3Kepc+/jvxRR/t7rzd5FBc9Yf4VRdbT05jYEsKVObL+Oiw==
-X-Received: by 2002:a17:902:7609:: with SMTP id
- k9mr2997567pll.143.1644305843446; 
- Mon, 07 Feb 2022 23:37:23 -0800 (PST)
+ bh=RKltf19DtHiRc15a3iaZ/NnDb+6ppKujiVxWZQto3YU=;
+ b=IobdSvDdI2OmHe1dId4IKEjwO7piWsJMhRlmBfjAa72COfjZHDy2Z4pv3mVAwRggIm
+ +hHN6ufeklnqe2n/L7wrTcIFC1tGJFa/7Z6Ci7yl0ACU9CFDgHmLxAtJ5hJlSRrR1vEu
+ Wd6ZVogheb7qjgYMTDRZ3kDb4QKFitj/2ShyQIKun9ObZwSuOVGV+JniTbzQXWQVrRlW
+ 6LBE1HIr01xCK065KW8hFOcSyyZI8//kr8KwM196IDCpUXRyri1UtmR79TwC0S5xK99m
+ f6AobfRYYWawBoMOFRopRiRlJTcl+VKHxyaYSFbQ9SusjXuhg/zIcj+KKlNBs7dNOn+s
+ 581w==
+X-Gm-Message-State: AOAM5316k1SbD2Ng2+JirT0WV23URt0siKG5fDWD/f7TXzPOeBkdqa6b
+ HCGZ007KSZVlBKyniRZZtdMsHg==
+X-Google-Smtp-Source: ABdhPJx2727H/bIFB7AiNJuAQfngpGnHTMQX3kn1wApGZnVIxbe2t19Z6gDkwdss+b2K2QYmV7K1CQ==
+X-Received: by 2002:a63:8a44:: with SMTP id y65mr2554451pgd.590.1644305846835; 
+ Mon, 07 Feb 2022 23:37:26 -0800 (PST)
 Received: from hsinyi-z840.tpe.corp.google.com
  ([2401:fa00:1:10:7d9a:166e:9d34:ff4f])
- by smtp.gmail.com with ESMTPSA id ip5sm1677243pjb.13.2022.02.07.23.37.20
+ by smtp.gmail.com with ESMTPSA id ip5sm1677243pjb.13.2022.02.07.23.37.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Feb 2022 23:37:23 -0800 (PST)
+ Mon, 07 Feb 2022 23:37:26 -0800 (PST)
 From: Hsin-Yi Wang <hsinyi@chromium.org>
 To: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
  Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
-Subject: [PATCH v7 2/3] drm/mediatek: init panel orientation property
-Date: Tue,  8 Feb 2022 15:37:13 +0800
-Message-Id: <20220208073714.1540390-2-hsinyi@chromium.org>
+Subject: [PATCH v7 3/3] arm64: dts: mt8183: Add panel rotation
+Date: Tue,  8 Feb 2022 15:37:14 +0800
+Message-Id: <20220208073714.1540390-3-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.35.0.263.gb82422642f-goog
 In-Reply-To: <20220208073714.1540390-1-hsinyi@chromium.org>
 References: <20220208073714.1540390-1-hsinyi@chromium.org>
@@ -82,33 +80,27 @@ Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, devicetree@vger.kernel.org,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Init panel orientation property after connector is initialized. Let the
-panel driver decides the orientation value later.
+krane, kakadu, and kodama boards have a default panel rotation.
 
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Acked-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 ---
- drivers/gpu/drm/mediatek/mtk_dsi.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-index 5d90d2eb001935..491bf5b0a2b984 100644
---- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-@@ -965,6 +965,13 @@ static int mtk_dsi_encoder_init(struct drm_device *drm, struct mtk_dsi *dsi)
- 		ret = PTR_ERR(dsi->connector);
- 		goto err_cleanup_encoder;
- 	}
-+
-+	ret = drm_connector_init_panel_orientation_property(dsi->connector);
-+	if (ret) {
-+		DRM_ERROR("Unable to init panel orientation\n");
-+		goto err_cleanup_encoder;
-+	}
-+
- 	drm_connector_attach_encoder(dsi->connector, &dsi->encoder);
- 
- 	return 0;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index b42d81d26d7211..d29d4378170971 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -276,6 +276,7 @@ panel: panel@0 {
+ 		avee-supply = <&ppvarp_lcd>;
+ 		pp1800-supply = <&pp1800_lcd>;
+ 		backlight = <&backlight_lcd0>;
++		rotation = <270>;
+ 		port {
+ 			panel_in: endpoint {
+ 				remote-endpoint = <&dsi_out>;
 -- 
 2.35.0.263.gb82422642f-goog
 
