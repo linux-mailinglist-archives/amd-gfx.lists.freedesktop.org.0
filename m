@@ -2,55 +2,33 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CA0E4AEDDC
-	for <lists+amd-gfx@lfdr.de>; Wed,  9 Feb 2022 10:21:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB3B4AEDD8
+	for <lists+amd-gfx@lfdr.de>; Wed,  9 Feb 2022 10:21:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4448810E68D;
-	Wed,  9 Feb 2022 09:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AFD510E35A;
+	Wed,  9 Feb 2022 09:21:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com
- [IPv6:2607:f8b0:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F07E10E426
- for <amd-gfx@lists.freedesktop.org>; Wed,  9 Feb 2022 03:30:22 +0000 (UTC)
-Received: by mail-pf1-x42f.google.com with SMTP id n32so1920767pfv.11
- for <amd-gfx@lists.freedesktop.org>; Tue, 08 Feb 2022 19:30:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=intel-com.20210112.gappssmtp.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=2Je4ysSvm0qGToTfluoX75kuGzoNSHI2qP2Y0C0VNAg=;
- b=CACwA3iWs0mIexxr+JBAReAIEm1js+p8Gd1PctwBpcCRlFarncrQq8u4LV6np8g3is
- D/VOuIRXeoPfghb+/9LTlJtNpAvNKgMSy3Wr4lug4rsCM8eyWtwax7omfbUtcsy/9gV0
- 7zKe0Yw5vrIzVjXV0RntPZ6HYUDb3Ci9Ac0MxBz7ePn0Cx3ZAESjOlA/plyTn3cK/JDB
- /4GywPgMyr1VKT1Ars0+RfQs5u2gxDhVAMm6XqUo1P+6wobSWI5xZqPyxvBbdotA9rpW
- M0SPWo6TnlLbTZEqquatVpsjK0f4E620XEFwl1wrQ1s/OMsFf6/RTMOBX8yu4cXgNOQf
- 8MqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=2Je4ysSvm0qGToTfluoX75kuGzoNSHI2qP2Y0C0VNAg=;
- b=3jpA0k+fJw2xxrGleoctFZwbshruRxo6sIvVNzn1wzFyDFkXxQYQjVAtpqZ8TSF2pj
- NmEbVLsMyrwin3DCKoLc2D/zk94L3sXOGJdcIFwNDU6G8rXqWlD5Ins2/5AMhvzcXl+G
- XmNhHy89yaxdvD+/yLpk6bEfEXumBYj5ZESb8MAse98gGkPIxhnf5Y8dBh8MkqXKCDrc
- BFQuS1pHpT/QNLUxosQ4Z0h5FAT2WKzySHJ2Lcc3vySILGXi20TZv8fyl2X223VYW53u
- 3+8Cfalw5ZU2lC9SwRtBz6rtqkddba8XZCHqAHhBAqJXi2uoZL6bTKuIUhgRQp/vf0zC
- cT/w==
-X-Gm-Message-State: AOAM531g4HDEZ26A8LVuS17EN3C0LOcCr6acZgKioA76QVhdabF+93YM
- Lr34cweY9477m/8Y2bVdTLhL5YgbSxJnR8YgfcZpng==
-X-Google-Smtp-Source: ABdhPJxPkAe7JqNfPN0pMdUWTXV1LFyPzWR+xK9edhPa72Ip0qH/EBHDfJCzGhUn69nUH5cFutBmSs7V8IMhNpn2WjE=
-X-Received: by 2002:a62:e907:: with SMTP id j7mr354037pfh.3.1644377421975;
- Tue, 08 Feb 2022 19:30:21 -0800 (PST)
-MIME-Version: 1.0
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 047E610E38A;
+ Wed,  9 Feb 2022 06:22:30 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id C6D0E68AFE; Wed,  9 Feb 2022 07:22:26 +0100 (CET)
+Date: Wed, 9 Feb 2022 07:22:26 +0100
+From: Christoph Hellwig <hch@lst.de>
+To: Dan Williams <dan.j.williams@intel.com>
+Subject: Re: [PATCH 6/8] mm: don't include <linux/memremap.h> in <linux/mm.h>
+Message-ID: <20220209062226.GA7739@lst.de>
 References: <20220207063249.1833066-1-hch@lst.de>
- <20220207063249.1833066-8-hch@lst.de>
-In-Reply-To: <20220207063249.1833066-8-hch@lst.de>
-From: Dan Williams <dan.j.williams@intel.com>
-Date: Tue, 8 Feb 2022 19:30:11 -0800
-Message-ID: <CAPcyv4h_axDTmkZ35KFfCdzMoOp8V3dc6btYGq6gCj1OmLXM=g@mail.gmail.com>
-Subject: Re: [PATCH 7/8] mm: remove the extra ZONE_DEVICE struct page refcount
-To: Christoph Hellwig <hch@lst.de>
-Content-Type: text/plain; charset="UTF-8"
+ <20220207063249.1833066-7-hch@lst.de>
+ <CAPcyv4iYfnJN+5=0Gzw8gKpNCG3PJS1MEZxxoPwuojhU6XHNRA@mail.gmail.com>
+ <CAPcyv4jfNa2BBuE7E0+8LO5VT9APS1eF3c4Rw99oKY6y+1re9w@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPcyv4jfNa2BBuE7E0+8LO5VT9APS1eF3c4Rw99oKY6y+1re9w@mail.gmail.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 X-Mailman-Approved-At: Wed, 09 Feb 2022 09:21:49 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,32 +48,26 @@ Cc: Linux NVDIMM <nvdimm@lists.linux.dev>,
  nouveau@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>, "Pan,
  Xinhui" <Xinhui.Pan@amd.com>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
  Andrew Morton <akpm@linux-foundation.org>,
- Logan Gunthorpe <logang@deltatee.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+ Logan Gunthorpe <logang@deltatee.com>, Christoph Hellwig <hch@lst.de>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Feb 6, 2022 at 10:33 PM Christoph Hellwig <hch@lst.de> wrote:
-[..]
-> @@ -500,28 +482,27 @@ void free_devmap_managed_page(struct page *page)
->          */
->         page->mapping = NULL;
->         page->pgmap->ops->page_free(page);
-> +
-> +       /*
-> +        * Reset the page count to 1 to prepare for handing out the page again.
-> +        */
-> +       set_page_count(page, 1);
+On Tue, Feb 08, 2022 at 03:53:14PM -0800, Dan Williams wrote:
+> Yeah, same as Logan:
+> 
+> mm/memcontrol.c: In function ‘get_mctgt_type’:
+> mm/memcontrol.c:5724:29: error: implicit declaration of function
+> ‘is_device_private_page’; did you mean
+> ‘is_device_private_entry’? [-Werror=implicit-function-declaration]
+>  5724 |                         if (is_device_private_page(page))
+>       |                             ^~~~~~~~~~~~~~~~~~~~~~
+>       |                             is_device_private_entry
+> 
+> ...needs:
 
-Interesting. I had expected that to really fix the refcount problem
-that fs/dax.c would need to start taking real page references as pages
-were added to a mapping, just like page cache.
-
-This looks ok to me, and passes my tests. So given I'm still working
-my way back to fixing the references properly I'm ok for this hack to
-replace the more broken hack that is there presently.
-
-Reviewed-by: Dan Williams <dan.j.williams@intel.com>
+Yeah, the buildbot also complained.  I've fixed this up locally now.
