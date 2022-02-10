@@ -1,76 +1,85 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AF5E4B0D90
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Feb 2022 13:27:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6189D4B0FDA
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Feb 2022 15:11:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 251C210E333;
-	Thu, 10 Feb 2022 12:27:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A47FD10E8D6;
+	Thu, 10 Feb 2022 14:11:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com
- [IPv6:2a00:1450:4864:20::52f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 931DB10E333
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 12:27:56 +0000 (UTC)
-Received: by mail-ed1-x52f.google.com with SMTP id cn6so10604216edb.5
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 04:27:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=message-id:date:mime-version:user-agent:subject:content-language:to
- :cc:references:from:in-reply-to:content-transfer-encoding;
- bh=ug6paMMwh6VIPeL5z6Fdb+6hWBOdMleUnUZr2PQkcko=;
- b=QXcB/w+8dyiWc2P9r8N440D0CbO4e2Tc8N1BdRpxRQTADXA6AJrG0RCFIuA9Kgw62G
- 9TeFzNo9oTs5nIWKCLeQ71JlJHiBekevFxGlsv+d7S8mhS8hyLknVrS/1z8yCJuHxVlh
- LRm/cuKMJTfrtLWgP5DekHJUTRVcq87kuCfic1Wi7tJbOJ9B8o8ZFS9agfB2XgVFXX5j
- XZJViLEzZdf4VL7v5BXmTg8RvfGAfSXDI8zY9Q0/S7r4OuM6V8bCB8bUVV14QYCjwo/N
- dyDWcmM3UJMWCVL0xVvpMLMaXDEU+YuLAyBPBtSO3bTwRhJzk8IH7RcSwB4OX44SWweA
- xplA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=ug6paMMwh6VIPeL5z6Fdb+6hWBOdMleUnUZr2PQkcko=;
- b=vIqg9OcyD+bArl7CO1Q5wai6IYr+p1TXjkoDLha8wpzI6bsm8C3orn9AgwWKbTTSBD
- Qx7mkX1LZyZiKbNQq/rItJG9BNdvXJ9nM5Zye2mvZgfirnm8NS6eRlAAyf86PiAAAspx
- yl+7K6Ul5qVHkCrhU5LZ2sD9+mlBLv9ileIdT6A6G1zfk5BRMFViqS0idwfXZfkBwgiS
- dVjAcZK9mqRKpitiLLsga5FPVwLEUMXwKLmQVjta4xIcClZ6ao+/OuLZl0Mhv5GPxidS
- qt7Mjox6G3ffJFGzXqKApfYwUCyTxddMRElRnbBCDx2xlMUbBXYDFEXDsXIuamlw5rix
- sD2A==
-X-Gm-Message-State: AOAM533OorvTxljBQ9KiFyaQIVyjwPWHuEqb0LvyXK1bMj8sxAjNm8RA
- VuQvCErAfb7cEriQDSml3Rc=
-X-Google-Smtp-Source: ABdhPJyKgFEOPRz2WH+dnpLK12TG8t1UCJ6hCqt9FV/9Phw9+At4Hg4m1qdhkSkKmfM7ggb2iixrxQ==
-X-Received: by 2002:a05:6402:35d5:: with SMTP id
- z21mr6475782edc.17.1644496075010; 
- Thu, 10 Feb 2022 04:27:55 -0800 (PST)
-Received: from [192.168.178.21] (p57b0bff8.dip0.t-ipconnect.de.
- [87.176.191.248])
- by smtp.gmail.com with ESMTPSA id v23sm7158542ejy.178.2022.02.10.04.27.53
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 10 Feb 2022 04:27:54 -0800 (PST)
-Message-ID: <a6fc864d-47f8-0998-deb2-7ca3ea6685d4@gmail.com>
-Date: Thu, 10 Feb 2022 13:27:53 +0100
+Received: from APC01-PSA-obe.outbound.protection.outlook.com
+ (mail-psaapc01on2122.outbound.protection.outlook.com [40.107.255.122])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73E3210E79C;
+ Thu, 10 Feb 2022 08:30:29 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TJ3MXsHv0MWU1shpo5N6ClSxNLSByFvpl1x25MsckzysGdNmstPW6ihH1AIcDWUmFyWKt/AOR/I5fAaI4seig43FppiVWkeIFRTTHz54Qug0xeTmbgxLmtYONs+vhtrpmkhmV+01Rys0gbn4o1ScP+sroET5fznzs0EOOqmmlNynN6HBvBIS1es7Y9GFlBSoTd2IKDwmGXL2MusiyZnadCieZdOVX09s5xOgoGC6GjRK3MA07rlSxn3y/NrcfU8vDT8KcWhbQ+qXd4IBZ/9yua85dzO/ScEa8iFi/Kth81aW1u+LNw2kU2vTLTWL8f9B7P4ZIhZtnnd5iP1L+c5aaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eSrZrMejNhwSEpVtiYbEvG+nnbQJCjcunapuQFmhY2E=;
+ b=diWvzTd183pAf9y7+2A6AYWPW+qk7beWQ6w9uHN3PrbwwZg8EHDV0rWmSdNHIXJq12tSv+etceUpfVBtpmAAz8NxDWt1k2Kcmzj8qjCsFWCl3gJkbLQU2KYx0PsglnWSttsm9ilVsG1qzcp5NcfxT2AFs0RPzOCYKbSk+kTMfq7ad6tL9kAuSTgqzJrhZNaB+BiuJb3xRUd1G1ZFv+YeJBf3qIV/55d9RpsRjmhoaeNj3vhl0LkxzEya50IQ8DknxQQ/0YrcU8cwbwMcMs/bPOO32zPn5XnXp8l1PWCvz09r1XBkNLgx6FhySWkdVDROQt4p0aIcpS/pbQWVw2M+uA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo0.onmicrosoft.com; 
+ s=selector2-vivo0-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eSrZrMejNhwSEpVtiYbEvG+nnbQJCjcunapuQFmhY2E=;
+ b=Yu6ta2ilLZQvnkQM02Ww/BzXW5gWLE1f3WdOR972ObqZfpBD4rjvrs+zSMQJa32ymV7DxZmwOaICwSV3aBISDFfwJOv+4vKfHgaq7kPd2blbcyVqKOOuwwu2/DsLa/CFC5z9yJDJUtaefVk4tAZkAz5NGXem8T3IyelHqVXvV74=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vivo.com;
+Received: from SL2PR06MB3082.apcprd06.prod.outlook.com (2603:1096:100:37::17)
+ by PSAPR06MB4005.apcprd06.prod.outlook.com (2603:1096:301:3a::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Thu, 10 Feb
+ 2022 08:30:26 +0000
+Received: from SL2PR06MB3082.apcprd06.prod.outlook.com
+ ([fe80::80b4:e787:47a9:41bb]) by SL2PR06MB3082.apcprd06.prod.outlook.com
+ ([fe80::80b4:e787:47a9:41bb%4]) with mapi id 15.20.4975.011; Thu, 10 Feb 2022
+ 08:30:26 +0000
+From: Qing Wang <wangqing@vivo.com>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] gpu: drm: radeon: use time_after_eq() instead of jiffies
+ judgment
+Date: Thu, 10 Feb 2022 00:30:17 -0800
+Message-Id: <1644481817-14624-1-git-send-email-wangqing@vivo.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR0401CA0011.apcprd04.prod.outlook.com
+ (2603:1096:3:1::21) To SL2PR06MB3082.apcprd06.prod.outlook.com
+ (2603:1096:100:37::17)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 2/2] drm/amdgpu: add reset register trace function on GPU
- reset
-Content-Language: en-US
-To: "Sharma, Shashank" <shashank.sharma@amd.com>,
- "Somalapuram, Amaranath" <asomalap@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexdeucher@gmail.com>,
- Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-References: <20220208081647.3025-1-Amaranath.Somalapuram@amd.com>
- <20220208081647.3025-2-Amaranath.Somalapuram@amd.com>
- <CADnq5_Pun3UPKJsTKEf4pu3R=UbbHAZDW5-=+pekTDx4TWsAEw@mail.gmail.com>
- <6a7ca5ae-6d78-b8fd-cba8-cd2dca4418f4@amd.com>
- <49e24f9f-4657-d3ce-e84e-abbaa56d3181@amd.com>
- <0f1bdc56-6ca3-d343-50de-9b54a39d39a9@amd.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <0f1bdc56-6ca3-d343-50de-9b54a39d39a9@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 80895627-6212-4cff-cfb2-08d9ec6f964f
+X-MS-TrafficTypeDiagnostic: PSAPR06MB4005:EE_
+X-Microsoft-Antispam-PRVS: <PSAPR06MB400519D5B59F66D7775895D7BD2F9@PSAPR06MB4005.apcprd06.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3044;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: DiPzyRK7tKjmRwy+11U9pKmSllGvyE78ghHE+xvBfa9cNTC/PJg3b1iVC3O+yBxpxI8ARzQl6Yj6kOZrMiE7dapljOtWQKNz1DAAQWFSsT0HgKoMn26q5XlvKj66Qagk2kOShbeU6us6uYK8dnnnO9U6FmogJ+UMzrwXqGTS5AMJhFRbb2Fk4+oh0x96n1/cO5G+C2tNtfTNOWjBwgZpjP+SH+lyVxabZm3Apk/W13gy6pZ9qyuhRFLAnn2Dzd7/sJI97G4xJnYdTRDl957S5RqGMP1HsBSvrDuF4JeQB3NQHJalRRS8WiZeXvhYUsKRZQalyTaNnDt5XlIiaWpxy8D4LNhuNGSQHyZQResAfLhg2EsuYU5NE1xz+wy1ZiZia8PjxExxDsAXSyvEaXIard/22zN6yQzYnmMjhzLuZef2KnoH3SYR4gRcd5u/UZiddI0eFA7Yrno3zJx1I30PwGfmWqMYn9XnSMokfq7M8nfeKtqFRQmSnP1CzD0QCaG3+U3iT0YgBQZdu+yY/EkiZ29hA0l9AMPnXRHIY/ZRocIMwv96DfM7WrrlkZvCxcycsNl35uAmtRbQCl+QXeI/e+Pr/zdnzvF1tICW/RQxQKScTPPfOi/UerQT1ZUtfn+T5ti2SxnyySEzC1LbP+WXFg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SL2PR06MB3082.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(2906002)(8676002)(66946007)(5660300002)(4744005)(52116002)(8936002)(38100700002)(38350700002)(66556008)(6666004)(6512007)(6506007)(4326008)(6486002)(316002)(186003)(2616005)(110136005)(36756003)(86362001)(508600001)(83380400001)(107886003)(26005)(66476007)(21314003);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: Xmbz4nGi3dVb4Tx8T3hawf8RX6a6h3z/rDicCgQ6xOgDT9xbhaRRejk9lLpPCM7izIuwMV1R+DPx2usRsPIZVLb5dU0Y2AmJF7vNMkwgxp3mGdC5i+PU6yF+XeWVF653db+Dj38Jt1chRpN+bTSkrkMotym5iwxtthYcUKPIZTPLsk6BztSfT4d3Qz9Bw1CAAi2uPoasWPoKMpWdxNlTLkNfBLX+4xEga6M5hQajwSVFPRntdGKk4flWBMwfSr7fwjrmwVRuKs3lbjeZuJlVBl8O6XgtYAS0QjjrPJKQoNhUKxzNrfcdnb8No7zpIYgu03DgopWn3rz4vvCTl6q+//aVDWJUBGgbi9DriH2eWqa11u/mmLlNFZjsTsK3/L/yU/HaESDD2hubJOYMxIJRl6I4AVgapxwZJvVUksT06X0UHHdLmgoDwaR50kCRNqVS
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 80895627-6212-4cff-cfb2-08d9ec6f964f
+X-MS-Exchange-CrossTenant-AuthSource: SL2PR06MB3082.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2022 08:30:26.0098 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Sxj0umM1itkF1T2g9R+PcW4OjIxSelzMkm96DB6j8UubZ1A7zbjNg/NrqdMuvSZ6rNL60mo7lu8gjuAfLPP8Sg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PSAPR06MB4005
+X-Mailman-Approved-At: Thu, 10 Feb 2022 14:11:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,194 +91,41 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>
+Cc: Wang Qing <wangqing@vivo.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Am 10.02.22 um 12:59 schrieb Sharma, Shashank:
->
->
-> On 2/10/2022 6:29 AM, Somalapuram, Amaranath wrote:
->>
->> On 2/9/2022 1:17 PM, Christian König wrote:
->>> Am 08.02.22 um 16:28 schrieb Alex Deucher:
->>>> On Tue, Feb 8, 2022 at 3:17 AM Somalapuram Amaranath
->>>> <Amaranath.Somalapuram@amd.com> wrote:
->>>>> Dump the list of register values to trace event on GPU reset.
->>>>>
->>>>> Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
->>>>> ---
->>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 21 
->>>>> ++++++++++++++++++++-
->>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h  | 19 +++++++++++++++++++
->>>>>   2 files changed, 39 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c 
->>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>> index 1e651b959141..057922fb7e37 100644
->>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>> @@ -4534,6 +4534,23 @@ int amdgpu_device_pre_asic_reset(struct 
->>>>> amdgpu_device *adev,
->>>>>          return r;
->>>>>   }
->>>>>
->>>>> +static int amdgpu_reset_reg_dumps(struct amdgpu_device *adev)
->>>>> +{
->>>>> +       int i;
->>>>> +       uint32_t reg_value[128];
->>>>> +
->>>>> +       for (i = 0; adev->reset_dump_reg_list[i] != 0; i++) {
->>>>> +               if (adev->asic_type >= CHIP_NAVI10)
->>>> This check should be against CHIP_VEGA10.  Also, this only allows for
->>>> GC registers.  If we wanted to dump other registers, we'd need a
->>>> different macro.  Might be better to just use RREG32 here for
->>>> everything and then encode the full offset using
->>>> SOC15_REG_ENTRY_OFFSET() or a similar macro.  Also, we need to think
->>>> about how to handle gfxoff in this case.  gfxoff needs to be disabled
->>>> or we'll hang the chip if we try and read GC or SDMA registers via
->>>> MMIO which will adversely affect the hang signature.
->>>
->>> Well this should execute right before a GPU reset, so I think it 
->>> shouldn't matter if we hang the chip or not as long as the read 
->>> comes back correctly (I remember a very long UVD debug session 
->>> because of this).
->>>
->>> But in general I agree, we should just use RREG32() here and always 
->>> encode the full register offset.
->>>
->>> Regards,
->>> Christian.
->>>
->> Can I use something like this:
->>
->> +                       reg_value[i] = 
->> RREG32((adev->reg_offset[adev->reset_dump_reg_list[i][0]]
->> + [adev->reset_dump_reg_list[i][1]]
->> + [adev->reset_dump_reg_list[i][2]])
->> +                                 + adev->reset_dump_reg_list[i][3]);
->>
->> ip --> adev->reset_dump_reg_list[i][0]
->>
->> inst --> adev->reset_dump_reg_list[i][1]
->>
->> BASE_IDX--> adev->reset_dump_reg_list[i][2]
->>
->> reg --> adev->reset_dump_reg_list[i][3]
->>
->> which requires 4 values in user space for each register.
->>
->> using any existing macro like RREG32_SOC15** will not be able to pass 
->> proper argument from user space (like ip##_HWIP or reg##_BASE_IDX)
->>
->
->
-> Why cant we use just a simple array
-> adev->reset_dump_reg_list[10] for both ip and reg offsets ?
+From: Wang Qing <wangqing@vivo.com>
 
-That won't work. The IPs are separated into several base registers, see 
-how the SOC15 functions work.
+It is better to use time_xxx() directly instead of jiffies judgment
+for understanding.
 
-But that's also not necessary. Userspace should have the same 
-information as the kernel about which IP is mapped where.
+Signed-off-by: Wang Qing <wangqing@vivo.com>
+---
+ drivers/gpu/drm/radeon/radeon_pm.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-So all we need here is the already resolved 32bit value of which 
-register to read and are basically done.
-
-Regards,
-Christian.
-
->
-> Userspace can provide the IP engine enum in first entry of the array,
-> reset_dump_reg_list[0], and register offsets in other entries starting 
-> from 1. We can convert that into desirable engine substring using an 
-> array of char *, something like:
->
-> const char *ip_engine_name_substing[] = {
->     /* Same order as enum amd_hw_ip_block_type */
->     "GC", "HDP", ......
-> }
->
-> engine enum;
-> u32 ip = adev->reset_dump_reg_list[0];
-> const char *ip_name = ip_engine_name_subs[ip];
->
-> for (i = 0; i < 9; i++) {
->     reg_val = RREG_SOC15_IP(ip_name, reset_dump_reg_list[i+1]);
-> }
->
-> - Shashank
->
->>>
->>>>
->>>> Alex
->>>>
->>>>> +                       reg_value[i] = RREG32_SOC15_IP(GC, 
->>>>> adev->reset_dump_reg_list[i]);
->>>>> +               else
->>>>> +                       reg_value[i] = 
->>>>> RREG32(adev->reset_dump_reg_list[i]);
->>>>> +       }
->>>>> +
->>>>> + trace_amdgpu_reset_reg_dumps(adev->reset_dump_reg_list, 
->>>>> reg_value, i);
->>>>> +
->>>>> +       return 0;
->>>>> +}
->>>>> +
->>>>>   int amdgpu_do_asic_reset(struct list_head *device_list_handle,
->>>>>                           struct amdgpu_reset_context *reset_context)
->>>>>   {
->>>>> @@ -4567,8 +4584,10 @@ int amdgpu_do_asic_reset(struct list_head 
->>>>> *device_list_handle,
->>>>> tmp_adev->gmc.xgmi.pending_reset = false;
->>>>>                                  if 
->>>>> (!queue_work(system_unbound_wq, &tmp_adev->xgmi_reset_work))
->>>>>                                          r = -EALREADY;
->>>>> -                       } else
->>>>> +                       } else {
->>>>> + amdgpu_reset_reg_dumps(tmp_adev);
->>>>>                                  r = amdgpu_asic_reset(tmp_adev);
->>>>> +                       }
->>>>>
->>>>>                          if (r) {
->>>>>                                  dev_err(tmp_adev->dev, "ASIC 
->>>>> reset failed with error, %d for drm dev, %s",
->>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h 
->>>>> b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
->>>>> index d855cb53c7e0..3fe33de3564a 100644
->>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
->>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h
->>>>> @@ -537,6 +537,25 @@ TRACE_EVENT(amdgpu_ib_pipe_sync,
->>>>>                        __entry->seqno)
->>>>>   );
->>>>>
->>>>> +TRACE_EVENT(amdgpu_reset_reg_dumps,
->>>>> +           TP_PROTO(long *address, uint32_t *value, int length),
->>>>> +           TP_ARGS(address, value, length),
->>>>> +           TP_STRUCT__entry(
->>>>> +                            __array(long, address, 128)
->>>>> +                            __array(uint32_t, value, 128)
->>>>> +                            __field(int, len)
->>>>> +                            ),
->>>>> +           TP_fast_assign(
->>>>> +                          memcpy(__entry->address, address, 128);
->>>>> +                          memcpy(__entry->value, value, 128);
->>>>> +                          __entry->len = length;
->>>>> +                          ),
->>>>> +           TP_printk("amdgpu register dump offset: %s value: %s ",
->>>>> +                     __print_array(__entry->address, 
->>>>> __entry->len, 8),
->>>>> +                     __print_array(__entry->value, __entry->len, 8)
->>>>> +                    )
->>>>> +);
->>>>> +
->>>>>   #undef AMDGPU_JOB_GET_TIMELINE_NAME
->>>>>   #endif
->>>>>
->>>>> -- 
->>>>> 2.25.1
->>>>>
->>>
+diff --git a/drivers/gpu/drm/radeon/radeon_pm.c b/drivers/gpu/drm/radeon/radeon_pm.c
+index c67b6dd..53d536a
+--- a/drivers/gpu/drm/radeon/radeon_pm.c
++++ b/drivers/gpu/drm/radeon/radeon_pm.c
+@@ -25,6 +25,7 @@
+ #include <linux/hwmon.h>
+ #include <linux/pci.h>
+ #include <linux/power_supply.h>
++#include <linux/jiffies.h>
+ 
+ #include <drm/drm_vblank.h>
+ 
+@@ -1899,7 +1900,7 @@ static void radeon_dynpm_idle_work_handler(struct work_struct *work)
+ 		 * to false since we want to wait for vbl to avoid flicker.
+ 		 */
+ 		if (rdev->pm.dynpm_planned_action != DYNPM_ACTION_NONE &&
+-		    jiffies > rdev->pm.dynpm_action_timeout) {
++		    time_after(jiffies, rdev->pm.dynpm_action_timeout)) {
+ 			radeon_pm_get_dynpm_state(rdev);
+ 			radeon_pm_set_clocks(rdev);
+ 		}
+-- 
+2.7.4
 
