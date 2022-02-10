@@ -1,55 +1,120 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 290654B13E1
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Feb 2022 18:07:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 295974B1455
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Feb 2022 18:36:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 847D010E8AD;
-	Thu, 10 Feb 2022 17:07:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3A3010E8B1;
+	Thu, 10 Feb 2022 17:36:34 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
- [IPv6:2607:f8b0:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB97E10E8AD
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 17:07:22 +0000 (UTC)
-Received: by mail-oi1-x233.google.com with SMTP id 4so6556893oil.11
- for <amd-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 09:07:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=N+amZU9J2Cum8qYkKn8PfTz6V4KMLCZPE76W0sWUYE0=;
- b=DEJigs2QawYmS8zKT6Y4d/Gj5Ab38UHImv2of8wTU8QYmSMWTl96TICNqmXDK9spVG
- VeT+dQ8SWGYky9tkglcoPcL6iMQhDxlNtp7u7E8jrptmGQwm9NkiUHho30yGRheVPrfG
- syBE+tM0anoamFytr3iiPSQbIjxi7Ck0QkR4IGxaxo91TNrYirOqWWR1VN+yQoEamKLP
- hKJYoJExDRbIa2/KPY09g9H61k4beYZGKS9JLB5doofXknc88OMzMfvQnpH6CkdRCEnX
- 05m0hWqRCxp0oES1FxobJRSVOudLX/D2wei7VQxlmbF/aWnGuPhTM9ZKtgutkhr+cuW9
- es0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=N+amZU9J2Cum8qYkKn8PfTz6V4KMLCZPE76W0sWUYE0=;
- b=vR9f4krSxrhFSVNmZ/qrkKSeh80m01sLSQ5UY9a1JGAuDbMODf+yjKDgUL2DXwu0xt
- KjhFFQ3QofNaXO2U7re3gWvOUgwFTnLScwLG3NFy15cMDfstebdfYUDcGcIYB9qODUYJ
- EsaBdxnWP6qdcA/NQjRASkA0HonXvdWbKg1QD/M+weJtAtOwM1L8/+h4/c0jMnxHUkCf
- 7VNl1h2eMXMFJdRhWrtQHuIuOn/V1AYuNCy9hkaWrdwNa/eYvSXZvgj+d2HwTXq6Dnhs
- R18NypO6dRrLDPYE5UDgpCDOx1mh8mE+OPdBCG2yfEn2A2JyGZpo4sB3rHME5ui16XtB
- BpGQ==
-X-Gm-Message-State: AOAM530wuc87N/Ai/iFVOATQXlHF7JudkUJWBUwO0Zf6QcYbOxV+RSJ8
- EUNAgmlt1vkyhGAR2rcidYUH4hywAsqxExIIX/WHor4IZnI=
-X-Google-Smtp-Source: ABdhPJzVy/SF2OHvQDjUddzyfJD5D+49muJ2xLwXX+JlxUVRy92CaupVtW+wqYUJjfJ4alrcYCCHaLYPNWxahLmV+1k=
-X-Received: by 2002:a05:6808:159e:: with SMTP id
- t30mr1427635oiw.132.1644512842130; 
- Thu, 10 Feb 2022 09:07:22 -0800 (PST)
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com
+ (mail-bn1nam07on2060.outbound.protection.outlook.com [40.107.212.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E6EA10E45D;
+ Thu, 10 Feb 2022 17:36:33 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J7cyu7xiqAHvjwPW+45RKl69DP6PtrbT3WzMshDxfGlj0YpMeJrkPmYBXQArn6rEVcXSa65DU7yiJGUe3LeUUTELwU9/rdH36kaP/Omz6JeZbOaz4l+pYG8M3yF6s5HE+a7sWgm2XCWuc0se5fSAZ/TZa0IN4jTR/VHaIGmAiW/tm0eO7Gvld4m0PMPUhkY0bSAHZIuzvqAah1ZMfKs49Qx6IzOJARzTpRTYzkwMgMIWw1ckBApq2uXxA1nyhz8tHR40MAO5D/SoN5JFoYlmt8l5IZSryAmrWqQElmtTQ3QWawhPrtsdEbTuYTUokoqI0RHA57E5EK9ll7M9IIn0rg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZH9j1MVJ4M9avwtaAH+KtuO8LNSN19ucO1LiCqNbBSg=;
+ b=QSwHm4CMXvhgnJ6r49cK20rim8WUGcDjyPUbVkZbNtgbSodvI6dm2uieqTRh2z5EbbnczAowFsWyPgnDdBblJ2YP3DM7SipdYpXxCe8xBb/KNEUvY0k0mwSYZfCr18cqKGRp3IGhwke6Hxdynjb6UiDOvFjGT413GPh1f+PdOODfh0akMyMqTUZk4o3VdtSddPyxO7ISR0YaRTkfWSnj4/L9fPiINYUhOXydgDlL9SAQ3sB4OBIvLSLZPIOn8ouB2V0fC3QNJTBGsIPHW/anbZ7bD5QDn+Xmk69Taki6b/NLwHmuakOQEaZgZSNNHq5sYgD6Mj0cVb6XvVmPGSohkg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZH9j1MVJ4M9avwtaAH+KtuO8LNSN19ucO1LiCqNbBSg=;
+ b=sFYWsnpvVaIeWB3xCgbJfFK7ptog8lIf+0D/OFi6CVJrBCqQtrfBNUO2uKwkWw5NK1e6GDyoEXCPMWBVdXHh4N+kvDyDJqJ9WqxniFyVDKcUj3NNbOaBK0C/JrkIbNCte4u+zGjaiGrAK/5P6pIYCzK5ShQWIo40i26arG2Royg=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SN6PR12MB2717.namprd12.prod.outlook.com (2603:10b6:805:68::29)
+ by DM5PR12MB1706.namprd12.prod.outlook.com (2603:10b6:3:10f::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.12; Thu, 10 Feb
+ 2022 17:36:29 +0000
+Received: from SN6PR12MB2717.namprd12.prod.outlook.com
+ ([fe80::c819:2722:b002:d75a]) by SN6PR12MB2717.namprd12.prod.outlook.com
+ ([fe80::c819:2722:b002:d75a%3]) with mapi id 15.20.4975.014; Thu, 10 Feb 2022
+ 17:36:28 +0000
+Message-ID: <955957ed-7201-71da-7a88-659da592fdb6@amd.com>
+Date: Thu, 10 Feb 2022 11:36:23 -0600
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: start sorting out the ZONE_DEVICE refcount mess v2
+Content-Language: en-US
+To: Christoph Hellwig <hch@lst.de>, Andrew Morton
+ <akpm@linux-foundation.org>, Dan Williams <dan.j.williams@intel.com>
+References: <20220210072828.2930359-1-hch@lst.de>
+From: "Sierra Guiza, Alejandro (Alex)" <alex.sierra@amd.com>
+In-Reply-To: <20220210072828.2930359-1-hch@lst.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MN2PR05CA0021.namprd05.prod.outlook.com
+ (2603:10b6:208:c0::34) To SN6PR12MB2717.namprd12.prod.outlook.com
+ (2603:10b6:805:68::29)
 MIME-Version: 1.0
-References: <BY5PR12MB4052A50F44F62CD791BE0C08F22F9@BY5PR12MB4052.namprd12.prod.outlook.com>
-In-Reply-To: <BY5PR12MB4052A50F44F62CD791BE0C08F22F9@BY5PR12MB4052.namprd12.prod.outlook.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Thu, 10 Feb 2022 12:07:11 -0500
-Message-ID: <CADnq5_MuuA+ivhMGRVHVGmy8w9-FjMXVZVUHC7i4f5Nxejqi9A@mail.gmail.com>
-Subject: Re: Upstream This Patch
-To: "Logush, Oliver" <Oliver.Logush@amd.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 195c0eed-55f4-43fd-3e28-08d9ecbbde7c
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1706:EE_
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1706E8A1BB88E919A1D83423FD2F9@DM5PR12MB1706.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: TNTkbsxGbifTk+FoC/4lRzpDa85fQv7x8saayjeUozrPF8VZDXRP7r6AILt66fFYzofLwMSn59GhMOQSQmohAnLjyhPL+5CetY7UNhchoWrO+3z8WJJT8o+nBme6mQKuiM+zYCv2vna/tQSMBNMnYxoVgMa6/uBCEAxhZC5H1BZhWfkntFonYOA6fbzjdE2+kkHRame5HgHd5o1g32nA9xExNPsp2cteDkPXc5w2AOezpkq8MqER+cqXjdslwO0wpUgjnu4LCf0AfRcRYCGCX3qmQeF0+JWDVjwf7x4sq4HlIGy37bhJqSvavIDyFtaOiz76cvl73CCyvYFCAEfRNptVNC0yyti4oI4EOWtgI/h7fjkymVAGliajVdvz8V3IQ63JWc0IbwoZ1wJax7H+UNs8dPvprWmkAJjyNhzGG6W+KD7Yp2RgiKWAyTk2W1+O8Ho3HLy0uRqpSOGsUfBwPo8jQUPww8PgjnCTioyBGZoHv7YkZ/FVvSEaWGwsDGmEJLGChN1q/5W7P6Bo7MqnV9KcyMTOqQEtQ9r61pep7DKNxlRxyBcwxjfxkIeRAD27x57z4SGCT9msylXNWHK+c3uZ4nBgWbTGrl7CfXLJUkmkkPmCmI+GfXLxJtrPbb4uLiU+a1kE0R2XrERM2YDp2tKSXAOzBodUEkV6knNZihhldmvEig7vXPFgDI2eDZd/ygtV/lNEdQGrrVY2J5qxWdD0GyGhhwMVlGodGVapHJpcU/UNJf1V2i4DnvYEE5DLBWzGtkFQ3eZ5YKoFxxV9YPUWJMUqEZlWz0gL7BOJ1C00DyGVhNWjHWo1wz2qrzJW
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN6PR12MB2717.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(31686004)(186003)(36756003)(83380400001)(2616005)(2906002)(26005)(53546011)(6512007)(38100700002)(508600001)(6666004)(110136005)(6486002)(966005)(316002)(54906003)(7416002)(6506007)(66476007)(5660300002)(66946007)(66556008)(86362001)(4326008)(8936002)(8676002)(31696002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MDVFOFdnekhzMXNwQURpbHl6NndTcllGUnBuSjBOeVk4RWx1OXdCeUdYL24y?=
+ =?utf-8?B?TXNxMzVrcEgyRXVTTThyc0hFbWcwR09XeTBZcWNrRFliUnB3a0g0Rnp0eVlD?=
+ =?utf-8?B?Q0haZ3FUTGY1ODM3WVUwMGpHV0pMRDEzcG5oV0FPakJnZzZ2NEZmUThXSkZQ?=
+ =?utf-8?B?NVpPZkkvaThHV0U5QllIRHYzcWYxSklyenJELzRvMzNYeUxhcC9xbU91bUZr?=
+ =?utf-8?B?dXdPbG9WRENYb01KSWg3bkgwWmtReC81Ukl1NmlpWGprRVY2YlBqSldlRXUw?=
+ =?utf-8?B?VENpQ201N3l1WTJJS1E4dFIyLzN5R3JLQjdCNnBhUmk4c2IvbTVDVHlOZmxE?=
+ =?utf-8?B?Q2VzR21LMEl6TGlDS2tlTTZsQWVEcjN1Y0JRUnJxMWNPdngrQkRWemtWb2xE?=
+ =?utf-8?B?UmNrMURCRUovcU10UnJMUSs5RFpLS1A2Z01nb2JkNmFOMWVMT3kyL1FlS1Z6?=
+ =?utf-8?B?emh6d0k5R1ZxSzdhZDVUelNxdDAwL0wvS0orUTNmS2RqUFdVanlWT0s0eDRi?=
+ =?utf-8?B?azl1L0tWSm5nVWZGR1RpNDBlaEtzcG80NjI1Z1lndnQvQ2YrQlZ0Z1BnZUhx?=
+ =?utf-8?B?SFlQYTVXS1Bha2NBRXdXcmQ3eGVWek5DWmVLTzhpSTdZNlhPRFQ5QURpd1RR?=
+ =?utf-8?B?WnlXNFE5M2s1dEwyTVQ1ejBUYitHcUhWeFQ3Y0JjeEU3bUZXa1V6Qi94Zmor?=
+ =?utf-8?B?NFlLemZ6aUxaWW10OFJHLy9CUGRlUHA2YVpjekdCbUVCbmo0Yk83VFViOGwv?=
+ =?utf-8?B?TUJpTzMyR1FxQTFIcVFqSS8zbXVNSFJQSnhQWVhvK2t3SnE5S1BrS2VUZXBP?=
+ =?utf-8?B?amt1MlAzMXBSVTdka2FJUjFlclJ6eGJhazh0RFpYTmNweStEeXd4TjdheDR5?=
+ =?utf-8?B?VmQyeXlIMG12ZHo0MGR4dVJSSlM0ZUg3VEx0VDZ2alFJbUk4bllxNnFEcS8r?=
+ =?utf-8?B?bjFXRXRYdmlKLzBHTlI3RUdlRkRGcit6cUUrK1VEYlcxWVk3S2xvRlZpcGg4?=
+ =?utf-8?B?WkUzN1dxcUZxdTRhdWhUNm80cVBvUkZyZFl0aUc2eHV5WUFlMno4dzliQTNi?=
+ =?utf-8?B?SUVEN2d3VUlXelVlcUtCczVPS3hWL1V3UllQYUI5YTMzMERpU0o4TzluZk5H?=
+ =?utf-8?B?UFdLVEpHb0xuMnBLejcxcjQ5ay9nWHQvVENZOTlVNWNyV2duQmNROVZ5ZHN5?=
+ =?utf-8?B?cmFUaXZITVdkWW5vUmpYTWhWZjh3a0J0UGJRamRlVU9ya0tNekpLeWlwUGRN?=
+ =?utf-8?B?SW9iNXhiWDNFdmlpTkM1N0RTL0N4K1NBNk1oNk5ZM2RrRjNmcTNpL2RMUUw4?=
+ =?utf-8?B?SnBNdEpaQlFHWUJmWWpjTnczRnVGUWd4NUtWUENXOE9LTDB5Rzg3eEhMTFN4?=
+ =?utf-8?B?Y0R2SmxTcTI5ODE4MFpqRFJYbXMybE4wUVllS1BTTUVORmdMZFJpa3AxdFdu?=
+ =?utf-8?B?THhFdVVhTlpCYXZNTktwOWxBVVBHbXNDSXhJUWZPaUhtekczZ3BHSWdWaFNn?=
+ =?utf-8?B?bCswSmJiaFovMStiWW9CWTdUTDFBTzZCQnI2L2UvaGE0cktua0pFWmVjY0ZM?=
+ =?utf-8?B?TXkrYkJ3ZEFCeW9pOW1BK3dSQVgvZ0RQVHBEUmhGMWRHZVZzc3I0VEhoSG1O?=
+ =?utf-8?B?bytXUFlBZ25hWU5EZ1JtYkNNUm1vTi9YM2U5Mm5XRzJuZTBQcU1mUGpXNDdv?=
+ =?utf-8?B?WVNYRzFtajY1bEJVTW1TWDNMaThPV3JIUmVjaHQ0RnRpTEFHWjUvTzVFcWRy?=
+ =?utf-8?B?eFRPVk9sVHRValJGZi85Z3JNSStqM2w2YW8zV2wrZnc2OUc1aEhkSjdudjA0?=
+ =?utf-8?B?bEdpREwrUGtMTnNHOG1JY0xsR3lEQTJIZWJOdzB6dHhOb0pqNE9XMHlzaWJi?=
+ =?utf-8?B?ZDFrakhPWWkzNm1UWjVpbnM5Q25vU1lWSWRYY2lSSk9QcTNWVkxGOUFTRDh3?=
+ =?utf-8?B?RVNKL2grSnpFU3BZTjlBNmEyV01uYTFJUUx3Z1lkNWdlbHdGSXRmbmJpSDRE?=
+ =?utf-8?B?elhVeEJLMDFicnVqSzRrMFdVUGwzbXdXN21COHhzb3hsZlBjVGZtMWlJMU4z?=
+ =?utf-8?B?aWNtcHFsVVhiRGJDcFlvL3hJSms5MWJ6Q3ZLWXgxWHJEQnBldjBoSzBFWVJt?=
+ =?utf-8?B?Q0M4OVNFZHlzTTAySGF0MUV3anBGWTlnR2h6RzlWWURjRi9kQ3AvcCtYelJP?=
+ =?utf-8?Q?Oa6uhltqDaXyGpcx1WguOJY=3D?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 195c0eed-55f4-43fd-3e28-08d9ecbbde7c
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR12MB2717.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2022 17:36:28.8171 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8WJ9ThEeLYiV9uVA2LtvY6tBQL/gPxmBYxfRzjvhN6Ed8vaxQGR9uM8BLrSlc977cY/4LKewtjbmEcQXzslvLg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1706
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,105 +126,86 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Liu, Charlene" <Charlene.Liu@amd.com>, "Liu, Zhan" <Zhan.Liu@amd.com>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "Cornij,
- Nikola" <Nikola.Cornij@amd.com>, "Wang, Yu \(Charlie\)" <Yu.Wang4@amd.com>,
- "Wentland, Harry" <Harry.Wentland@amd.com>
+Cc: nvdimm@lists.linux.dev, Ralph Campbell <rcampbell@nvidia.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Karol Herbst <kherbst@redhat.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, nouveau@lists.freedesktop.org,
+ Felix Kuehling <Felix.Kuehling@amd.com>, Alistair Popple <apopple@nvidia.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, amd-gfx@lists.freedesktop.org,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Logan Gunthorpe <logang@deltatee.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Ben Skeggs <bskeggs@redhat.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Subject is wrong.  Should be:
-drm/amd/display: extend dcn201 support
+Christoph,
+Thanks a lot for rebase our patches. I just ran our amdgpu hmm-tests 
+with this series and all passed.
 
-On Thu, Feb 10, 2022 at 11:53 AM Logush, Oliver <Oliver.Logush@amd.com> wrote:
->
-> [AMD Official Use Only]
->
->
-> From 488cc792021a60300df3659de204ebef954ba2bb Mon Sep 17 00:00:00 2001
->
-> From: Oliver Logush ollogush@amd.com
->
-> Date: Wed, 9 Feb 2022 14:25:13 -0500
->
-> Subject: [PATCH] drm/amd/display: extend dcn201 support
->
->
->
-> Signed-off-by: Oliver Logush ollogush@amd.com
->
-> Reviewed By: Alexander.Deucher@amd.com
->
->            Charlene.Liu@amd.com
+Regards,
+Alex Sierra
 
-Fix the RB lines, they should look like:
-
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-Reviewed-by: Charlene Liu <charlene.liu@amd.com>
-
+On 2/10/2022 1:28 AM, Christoph Hellwig wrote:
+> Hi all,
 >
-> ---
+> this series removes the offset by one refcount for ZONE_DEVICE pages
+> that are freed back to the driver owning them, which is just device
+> private ones for now, but also the planned device coherent pages
+> and the ehanced p2p ones pending.
 >
-> drivers/gpu/drm/amd/display/dc/core/dc_resource.c | 2 +-
+> It does not address the fsdax pages yet, which will be attacked in a
+> follow on series.
 >
-> drivers/gpu/drm/amd/display/include/dal_asic_id.h | 1 +
+> Note that if we want to get the p2p series rebased on top of this
+> we'll need a git branch for this series.  I could offer to host one.
 >
-> 2 files changed, 2 insertions(+), 1 deletion(-)
+> A git tree is available here:
 >
+>      git://git.infradead.org/users/hch/misc.git pgmap-refcount
 >
+> Gitweb:
 >
-> diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+>      http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/pgmap-refcount
 >
-> index b36bae4b5bc9..71b393194c55 100644
+> Changes since v1:
+>   - add a missing memremap.h include in memcontrol.c
+>   - include rebased versions of the device coherent support and
+>     device coherent migration support series as well as additional
+>     cleanup patches
 >
-> --- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
->
-> +++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
->
-> @@ -135,7 +135,7 @@ enum dce_version resource_parse_asic_id(struct hw_asic_id asic_id)
->
->
->
->                 case FAMILY_NV:
->
->                                dc_version = DCN_VERSION_2_0;
->
-> -                              if (asic_id.chip_id == DEVICE_ID_NV_13FE) {
->
-> +                             if (asic_id.chip_id == DEVICE_ID_NV_13FE || asic_id.chip_id == DEVICE_ID_NV_143F) {
->
->                                                dc_version = DCN_VERSION_2_01;
->
->                                                break;
->
->                                }
->
-> diff --git a/drivers/gpu/drm/amd/display/include/dal_asic_id.h b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
->
-> index e4a2dfacab4c..e672be6327cb 100644
->
-> --- a/drivers/gpu/drm/amd/display/include/dal_asic_id.h
->
-> +++ b/drivers/gpu/drm/amd/display/include/dal_asic_id.h
->
-> @@ -212,6 +212,7 @@ enum {
->
-> #define ASICREV_IS_GREEN_SARDINE(eChipRev) ((eChipRev >= GREEN_SARDINE_A0) && (eChipRev < 0xFF))
->
-> #endif
->
-> #define DEVICE_ID_NV_13FE 0x13FE  // CYAN_SKILLFISH
->
-> +#define DEVICE_ID_NV_143F 0x143F
->
-> #define FAMILY_VGH 144
->
-> #define DEVICE_ID_VGH_163F 0x163F
->
-> #define VANGOGH_A0 0x01
->
-> --
->
-> 2.25.1
->
->
+> Diffstt:
+>   arch/arm64/mm/mmu.c                      |    1
+>   arch/powerpc/kvm/book3s_hv_uvmem.c       |    1
+>   drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |   35 -
+>   drivers/gpu/drm/amd/amdkfd/kfd_priv.h    |    1
+>   drivers/gpu/drm/drm_cache.c              |    2
+>   drivers/gpu/drm/nouveau/nouveau_dmem.c   |    3
+>   drivers/gpu/drm/nouveau/nouveau_svm.c    |    1
+>   drivers/infiniband/core/rw.c             |    1
+>   drivers/nvdimm/pmem.h                    |    1
+>   drivers/nvme/host/pci.c                  |    1
+>   drivers/nvme/target/io-cmd-bdev.c        |    1
+>   fs/Kconfig                               |    2
+>   fs/fuse/virtio_fs.c                      |    1
+>   include/linux/hmm.h                      |    9
+>   include/linux/memremap.h                 |   36 +
+>   include/linux/migrate.h                  |    1
+>   include/linux/mm.h                       |   59 --
+>   lib/test_hmm.c                           |  353 ++++++++++---
+>   lib/test_hmm_uapi.h                      |   22
+>   mm/Kconfig                               |    7
+>   mm/Makefile                              |    1
+>   mm/gup.c                                 |  127 +++-
+>   mm/internal.h                            |    3
+>   mm/memcontrol.c                          |   19
+>   mm/memory-failure.c                      |    8
+>   mm/memremap.c                            |   75 +-
+>   mm/migrate.c                             |  763 ----------------------------
+>   mm/migrate_device.c                      |  822 +++++++++++++++++++++++++++++++
+>   mm/rmap.c                                |    5
+>   mm/swap.c                                |   49 -
+>   tools/testing/selftests/vm/Makefile      |    2
+>   tools/testing/selftests/vm/hmm-tests.c   |  204 ++++++-
+>   tools/testing/selftests/vm/test_hmm.sh   |   24
+>   33 files changed, 1552 insertions(+), 1088 deletions(-)
