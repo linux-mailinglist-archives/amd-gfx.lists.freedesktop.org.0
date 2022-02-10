@@ -1,76 +1,56 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D4154B0FDB
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Feb 2022 15:11:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A96B64B0FE2
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Feb 2022 15:11:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48E4510E8DB;
-	Thu, 10 Feb 2022 14:11:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D54F10E8E6;
+	Thu, 10 Feb 2022 14:11:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
- [66.111.4.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DB5710E79B;
- Thu, 10 Feb 2022 08:42:47 +0000 (UTC)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
- by mailnew.nyi.internal (Postfix) with ESMTP id 786B1580162;
- Thu, 10 Feb 2022 03:42:46 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute2.internal (MEProxy); Thu, 10 Feb 2022 03:42:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
- :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:sender:subject
- :subject:to:to; s=fm2; bh=8UmB/0ivT0J8zqbGGFQS2Ruey/l6Z0P8AFKloL
- LCMgA=; b=V2ZJBt1VA11btQmfjyO0mhTP3qZyF6OlfzA3V0Yn0BqcZx71YHuZVk
- +JhBITlcoXhGeJwQAjC/tHOzCapnDi4KT46i0Q/dm+ycqgK0lhCi+w8la2V9eGRh
- KsWEoZfS45Tefej/RW2O/sEDzmXvREe7LYE0x5PHxQIztJ0C1dyhJqG8w3u1B6Is
- 4R44tdJ+ESOEzbZPkqVFoIB7gZNjVA1Fnf1Uhb4ulUmzvJdP0XliU6fwScMyMSt8
- q7TQHFDWizOF2RdRdJqJ9c3FaFPD4ZC4uXIvUB4FHo1vsF4sjV24jaoHta7jGGHb
- suBQaBHv/EfzmDJsCsa5kUvZD/KLTwfA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=8UmB/0ivT0J8zqbGG
- FQS2Ruey/l6Z0P8AFKloLLCMgA=; b=KQQzmRJVllZnBpcnVd3MjVhgIWssn7oPK
- qwOrY3T13EitF4yzwN4Uinvj5zqUkg2XxknpoLzGO6+D1LW/I/D7DQkmQL3iAhmV
- TinFNTAZyn4pG5K8XHq5Hgx80O8fhFTD16pqSgfvwsfLgfUPdFx6to0tn6km+kiw
- G8VyrkV5F28FiYolOc1MiTDCJ8DXJYSmzYAa5/8z/8bq/Fe9fnNY9giKljL5Z5gJ
- 9XPHjCTKMQJzypmbZmSRTe5+NgikFdJe6KwYDuxV2KfOx80ySi3pAP/mul9HLNzW
- /VVJgGxhVS6Py6NVuOfrLFubcgQluUn08BtCbLGmS1XURQcY6SlYQ==
-X-ME-Sender: <xms:BtAEYkv_F3qBcQUSEmKXTM-wkw6rgpoz5qdMpb3w3kUGDZiw_-wkmQ>
- <xme:BtAEYhcxrzaWujr41iuEAwDqdhUJ_-jQ3QEf28K1Dqpv2dpNXHspL6hF7FJCZqIrH
- zXl7ND7TXqcw0LZyzI>
-X-ME-Received: <xmr:BtAEYvzoRtn19X6FFsHaZKUBT-SI_KjaitBiH9nDAJQwLmYOIyvfOwaxqdJfbmrPrWTmUUfBMdOrLubo3l5K5ara7bV4mBC2EIwTml0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddriedtgdduvdduucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
- vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
- htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
- gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
- grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:BtAEYnMHt83zZ4SjuOS5BT_2PCFBNrvRZ-yszzg1XY1UKxYkLfBjnw>
- <xmx:BtAEYk9C59ubWdp_QCdPFitqLJCaPM6Q0MClTwYA0lV_ra2B-gI4OQ>
- <xmx:BtAEYvXRxIpXtBLIO0-iKainjjVRPzyQW_S_HToLPK5iNWDcNWtKjQ>
- <xmx:BtAEYoWS6keON82kSNH2Tm4GqIQfQT_x-eBFHpKbQ1YLwkuWu7dTrw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 10 Feb 2022 03:42:45 -0500 (EST)
-Date: Thu, 10 Feb 2022 09:42:43 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Harry Wentland <harry.wentland@amd.com>
-Subject: Re: [PATCH 05/23] drm/amd/display: Fix color encoding mismatch
-Message-ID: <20220210084243.grmjum55qc6sei52@houat>
-References: <20220207163515.1038648-1-maxime@cerno.tech>
- <20220207163515.1038648-6-maxime@cerno.tech>
- <8aa30074-6039-ba5c-c25d-38a0c2f52619@amd.com>
- <3a9f5ff6-52fd-25f5-2714-8801eba13dab@amd.com>
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com
+ [IPv6:2607:f8b0:4864:20::b29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B53610E7B5
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 09:40:11 +0000 (UTC)
+Received: by mail-yb1-xb29.google.com with SMTP id p19so13671130ybc.6
+ for <amd-gfx@lists.freedesktop.org>; Thu, 10 Feb 2022 01:40:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=bytedance-com.20210112.gappssmtp.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=vwSyjkWA8Xtx6McE/937H/83En/EAsN4/n12OaGn97U=;
+ b=Q9U5MhFM50SJ6zKg3p/BHPAbW/1PqWiV8IwLRh7eYuvqYsefXz7JVtkApiN0D5tJs9
+ NjgtZ08Kif7nIin7P9Lj3k6IR7GOTseT9s5laCSNNmTWHD2uCXfrqGfuutVuti7FabYq
+ BBBAb4MnvkLH4UJThCTrI8+/mOnZaltJr+bpG6t9FkMSJZxm2G82RI22ShxjcihlxEsi
+ Y82w37OnLpB5Xi9WU56u6QA7+3qLoNq0E7XxjqXpD9HrhneWbPs+sNufIntIIK3bmpgw
+ cO6+9m8+iutxaFYcQMGptKVxtMwZN8MAWIOLV4hGp2W+29wbPx10LCsVwxL/brPe2+Mu
+ 8Ffg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=vwSyjkWA8Xtx6McE/937H/83En/EAsN4/n12OaGn97U=;
+ b=abyVzPYa7a5KWiLG0EwIl8uKcXMLCF48UFcgQetHmvJKjfD1ocE6qqgfmnmbWU5uFU
+ 2ym0GPpyZAClKqIJ7vJertoOvX2Yt7Nf/Y5BcKPeFvpf33zUBDXv42qDybwsJDLdc3XK
+ Tn16csSZ+xzHhbzF7RYt0YDUV9o5N51PPYOSp8j01QvHBPSdgUvfM7swHKlD3vuAxJfN
+ AxFC293lQM9JqPlcCqCAPYBpGsL/N0s10Ec2USvVTJ0tDcGEDmdJ8vjYKa27TPnli/vu
+ bZU2jUz7ga+mRwEqVHyxb/ehvE4TVGkbseRCa9CDdmb+c4KYfsMtez4Cwi084vAsut8r
+ mXOQ==
+X-Gm-Message-State: AOAM530ngN76F+nZZdd9CrC+GnvtkKqGFZnlRFR7fxlDnrGzSA/wBM3Y
+ L02+ktkDR7j1/EVe3sAikjD0HAfMhMd/EMqp9KD4vg==
+X-Google-Smtp-Source: ABdhPJyMOovS5IpsBIbmJvgp0LJOskYVPag8axtaKArSDLNMC4EYiKcUxfRUU3qBQ8ccmcQ6MqVRs4tbRTDCogGg4e4=
+X-Received: by 2002:a25:4742:: with SMTP id u63mr6032141yba.523.1644486011092; 
+ Thu, 10 Feb 2022 01:40:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="zqzqaf7ypljyfqok"
-Content-Disposition: inline
-In-Reply-To: <3a9f5ff6-52fd-25f5-2714-8801eba13dab@amd.com>
+References: <20220210072828.2930359-1-hch@lst.de>
+ <20220210072828.2930359-4-hch@lst.de>
+In-Reply-To: <20220210072828.2930359-4-hch@lst.de>
+From: Muchun Song <songmuchun@bytedance.com>
+Date: Thu, 10 Feb 2022 17:39:34 +0800
+Message-ID: <CAMZfGtWb9a8gN7DjaJngYi4aJLVHL74eKnXmctXC27QyarHsDQ@mail.gmail.com>
+Subject: Re: [PATCH 03/27] mm: remove pointless includes from <linux/hmm.h>
+To: Christoph Hellwig <hch@lst.de>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Thu, 10 Feb 2022 14:11:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -83,61 +63,29 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dom Cobley <dom@raspberrypi.com>, Tim Gover <tim.gover@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
- Leo Li <sunpeng.li@amd.com>, amd-gfx@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: nvdimm@lists.linux.dev, Ralph Campbell <rcampbell@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, dri-devel@lists.freedesktop.org,
+ Karol Herbst <kherbst@redhat.com>,
+ Linux Memory Management List <linux-mm@kvack.org>,
+ nouveau@lists.freedesktop.org, Felix Kuehling <Felix.Kuehling@amd.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, LKML <linux-kernel@vger.kernel.org>,
+ amd-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Ben Skeggs <bskeggs@redhat.com>,
+ Jason Gunthorpe <jgg@nvidia.com>, Alex Deucher <alexander.deucher@amd.com>,
+ Chaitanya Kulkarni <kch@nvidia.com>, Andrew Morton <akpm@linux-foundation.org>,
+ Logan Gunthorpe <logang@deltatee.com>, Dan Williams <dan.j.williams@intel.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Feb 10, 2022 at 3:28 PM Christoph Hellwig <hch@lst.de> wrote:
+>
+> hmm.h pulls in the world for no good reason at all.  Remove the
+> includes and push a few ones into the users instead.
+>
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
+> Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+> Reviewed-by: Chaitanya Kulkarni <kch@nvidia.com>
 
---zqzqaf7ypljyfqok
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Harry,
-
-On Mon, Feb 07, 2022 at 01:59:38PM -0500, Harry Wentland wrote:
-> On 2022-02-07 13:57, Harry Wentland wrote:
-> > On 2022-02-07 11:34, Maxime Ripard wrote:
-> >> The amdgpu KMS driver calls drm_plane_create_color_properties() with a
-> >> default encoding set to BT709.
-> >>
-> >> However, the core will ignore it and the driver doesn't force it in its
-> >> plane state reset hook, so the initial value will be 0, which represen=
-ts
-> >> BT601.
-> >>
-> >=20
-> > Isn't this a core issue? Should __drm_atomic_helper_plane_state_reset
-> > reset all plane_state members to their properties' default values?
-> >=20
->=20
-> Ah, looks like that's exactly what you do in the later patches, which is
-> perfect. With that, I don't think you'll need this patch anymore.
-
-Ok, I'll squash it into the patch that removes the reset code.
-
-Thanks!
-Maxime
-
---zqzqaf7ypljyfqok
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYgTQAwAKCRDj7w1vZxhR
-xS9UAQDxZHzWI/TgE+H2KV94xkGKONXDoO5HPthQTVHFCaxKvwEA6xiQuQcP6y+S
-9Kw6J1AxwVSzFV1awfCbQ5WIgtv24wI=
-=d0Xh
------END PGP SIGNATURE-----
-
---zqzqaf7ypljyfqok--
+Reviewed-by: Muchun Song <songmuchun@bytedance.com>
