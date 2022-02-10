@@ -1,84 +1,76 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6189D4B0FDA
-	for <lists+amd-gfx@lfdr.de>; Thu, 10 Feb 2022 15:11:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D4154B0FDB
+	for <lists+amd-gfx@lfdr.de>; Thu, 10 Feb 2022 15:11:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A47FD10E8D6;
-	Thu, 10 Feb 2022 14:11:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48E4510E8DB;
+	Thu, 10 Feb 2022 14:11:35 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com
- (mail-psaapc01on2122.outbound.protection.outlook.com [40.107.255.122])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73E3210E79C;
- Thu, 10 Feb 2022 08:30:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TJ3MXsHv0MWU1shpo5N6ClSxNLSByFvpl1x25MsckzysGdNmstPW6ihH1AIcDWUmFyWKt/AOR/I5fAaI4seig43FppiVWkeIFRTTHz54Qug0xeTmbgxLmtYONs+vhtrpmkhmV+01Rys0gbn4o1ScP+sroET5fznzs0EOOqmmlNynN6HBvBIS1es7Y9GFlBSoTd2IKDwmGXL2MusiyZnadCieZdOVX09s5xOgoGC6GjRK3MA07rlSxn3y/NrcfU8vDT8KcWhbQ+qXd4IBZ/9yua85dzO/ScEa8iFi/Kth81aW1u+LNw2kU2vTLTWL8f9B7P4ZIhZtnnd5iP1L+c5aaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eSrZrMejNhwSEpVtiYbEvG+nnbQJCjcunapuQFmhY2E=;
- b=diWvzTd183pAf9y7+2A6AYWPW+qk7beWQ6w9uHN3PrbwwZg8EHDV0rWmSdNHIXJq12tSv+etceUpfVBtpmAAz8NxDWt1k2Kcmzj8qjCsFWCl3gJkbLQU2KYx0PsglnWSttsm9ilVsG1qzcp5NcfxT2AFs0RPzOCYKbSk+kTMfq7ad6tL9kAuSTgqzJrhZNaB+BiuJb3xRUd1G1ZFv+YeJBf3qIV/55d9RpsRjmhoaeNj3vhl0LkxzEya50IQ8DknxQQ/0YrcU8cwbwMcMs/bPOO32zPn5XnXp8l1PWCvz09r1XBkNLgx6FhySWkdVDROQt4p0aIcpS/pbQWVw2M+uA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo0.onmicrosoft.com; 
- s=selector2-vivo0-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eSrZrMejNhwSEpVtiYbEvG+nnbQJCjcunapuQFmhY2E=;
- b=Yu6ta2ilLZQvnkQM02Ww/BzXW5gWLE1f3WdOR972ObqZfpBD4rjvrs+zSMQJa32ymV7DxZmwOaICwSV3aBISDFfwJOv+4vKfHgaq7kPd2blbcyVqKOOuwwu2/DsLa/CFC5z9yJDJUtaefVk4tAZkAz5NGXem8T3IyelHqVXvV74=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vivo.com;
-Received: from SL2PR06MB3082.apcprd06.prod.outlook.com (2603:1096:100:37::17)
- by PSAPR06MB4005.apcprd06.prod.outlook.com (2603:1096:301:3a::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Thu, 10 Feb
- 2022 08:30:26 +0000
-Received: from SL2PR06MB3082.apcprd06.prod.outlook.com
- ([fe80::80b4:e787:47a9:41bb]) by SL2PR06MB3082.apcprd06.prod.outlook.com
- ([fe80::80b4:e787:47a9:41bb%4]) with mapi id 15.20.4975.011; Thu, 10 Feb 2022
- 08:30:26 +0000
-From: Qing Wang <wangqing@vivo.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] gpu: drm: radeon: use time_after_eq() instead of jiffies
- judgment
-Date: Thu, 10 Feb 2022 00:30:17 -0800
-Message-Id: <1644481817-14624-1-git-send-email-wangqing@vivo.com>
-X-Mailer: git-send-email 2.7.4
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR0401CA0011.apcprd04.prod.outlook.com
- (2603:1096:3:1::21) To SL2PR06MB3082.apcprd06.prod.outlook.com
- (2603:1096:100:37::17)
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DB5710E79B;
+ Thu, 10 Feb 2022 08:42:47 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 786B1580162;
+ Thu, 10 Feb 2022 03:42:46 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute2.internal (MEProxy); Thu, 10 Feb 2022 03:42:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm2; bh=8UmB/0ivT0J8zqbGGFQS2Ruey/l6Z0P8AFKloL
+ LCMgA=; b=V2ZJBt1VA11btQmfjyO0mhTP3qZyF6OlfzA3V0Yn0BqcZx71YHuZVk
+ +JhBITlcoXhGeJwQAjC/tHOzCapnDi4KT46i0Q/dm+ycqgK0lhCi+w8la2V9eGRh
+ KsWEoZfS45Tefej/RW2O/sEDzmXvREe7LYE0x5PHxQIztJ0C1dyhJqG8w3u1B6Is
+ 4R44tdJ+ESOEzbZPkqVFoIB7gZNjVA1Fnf1Uhb4ulUmzvJdP0XliU6fwScMyMSt8
+ q7TQHFDWizOF2RdRdJqJ9c3FaFPD4ZC4uXIvUB4FHo1vsF4sjV24jaoHta7jGGHb
+ suBQaBHv/EfzmDJsCsa5kUvZD/KLTwfA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=8UmB/0ivT0J8zqbGG
+ FQS2Ruey/l6Z0P8AFKloLLCMgA=; b=KQQzmRJVllZnBpcnVd3MjVhgIWssn7oPK
+ qwOrY3T13EitF4yzwN4Uinvj5zqUkg2XxknpoLzGO6+D1LW/I/D7DQkmQL3iAhmV
+ TinFNTAZyn4pG5K8XHq5Hgx80O8fhFTD16pqSgfvwsfLgfUPdFx6to0tn6km+kiw
+ G8VyrkV5F28FiYolOc1MiTDCJ8DXJYSmzYAa5/8z/8bq/Fe9fnNY9giKljL5Z5gJ
+ 9XPHjCTKMQJzypmbZmSRTe5+NgikFdJe6KwYDuxV2KfOx80ySi3pAP/mul9HLNzW
+ /VVJgGxhVS6Py6NVuOfrLFubcgQluUn08BtCbLGmS1XURQcY6SlYQ==
+X-ME-Sender: <xms:BtAEYkv_F3qBcQUSEmKXTM-wkw6rgpoz5qdMpb3w3kUGDZiw_-wkmQ>
+ <xme:BtAEYhcxrzaWujr41iuEAwDqdhUJ_-jQ3QEf28K1Dqpv2dpNXHspL6hF7FJCZqIrH
+ zXl7ND7TXqcw0LZyzI>
+X-ME-Received: <xmr:BtAEYvzoRtn19X6FFsHaZKUBT-SI_KjaitBiH9nDAJQwLmYOIyvfOwaxqdJfbmrPrWTmUUfBMdOrLubo3l5K5ara7bV4mBC2EIwTml0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddriedtgdduvdduucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+ gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+ grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:BtAEYnMHt83zZ4SjuOS5BT_2PCFBNrvRZ-yszzg1XY1UKxYkLfBjnw>
+ <xmx:BtAEYk9C59ubWdp_QCdPFitqLJCaPM6Q0MClTwYA0lV_ra2B-gI4OQ>
+ <xmx:BtAEYvXRxIpXtBLIO0-iKainjjVRPzyQW_S_HToLPK5iNWDcNWtKjQ>
+ <xmx:BtAEYoWS6keON82kSNH2Tm4GqIQfQT_x-eBFHpKbQ1YLwkuWu7dTrw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 10 Feb 2022 03:42:45 -0500 (EST)
+Date: Thu, 10 Feb 2022 09:42:43 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Harry Wentland <harry.wentland@amd.com>
+Subject: Re: [PATCH 05/23] drm/amd/display: Fix color encoding mismatch
+Message-ID: <20220210084243.grmjum55qc6sei52@houat>
+References: <20220207163515.1038648-1-maxime@cerno.tech>
+ <20220207163515.1038648-6-maxime@cerno.tech>
+ <8aa30074-6039-ba5c-c25d-38a0c2f52619@amd.com>
+ <3a9f5ff6-52fd-25f5-2714-8801eba13dab@amd.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 80895627-6212-4cff-cfb2-08d9ec6f964f
-X-MS-TrafficTypeDiagnostic: PSAPR06MB4005:EE_
-X-Microsoft-Antispam-PRVS: <PSAPR06MB400519D5B59F66D7775895D7BD2F9@PSAPR06MB4005.apcprd06.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3044;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DiPzyRK7tKjmRwy+11U9pKmSllGvyE78ghHE+xvBfa9cNTC/PJg3b1iVC3O+yBxpxI8ARzQl6Yj6kOZrMiE7dapljOtWQKNz1DAAQWFSsT0HgKoMn26q5XlvKj66Qagk2kOShbeU6us6uYK8dnnnO9U6FmogJ+UMzrwXqGTS5AMJhFRbb2Fk4+oh0x96n1/cO5G+C2tNtfTNOWjBwgZpjP+SH+lyVxabZm3Apk/W13gy6pZ9qyuhRFLAnn2Dzd7/sJI97G4xJnYdTRDl957S5RqGMP1HsBSvrDuF4JeQB3NQHJalRRS8WiZeXvhYUsKRZQalyTaNnDt5XlIiaWpxy8D4LNhuNGSQHyZQResAfLhg2EsuYU5NE1xz+wy1ZiZia8PjxExxDsAXSyvEaXIard/22zN6yQzYnmMjhzLuZef2KnoH3SYR4gRcd5u/UZiddI0eFA7Yrno3zJx1I30PwGfmWqMYn9XnSMokfq7M8nfeKtqFRQmSnP1CzD0QCaG3+U3iT0YgBQZdu+yY/EkiZ29hA0l9AMPnXRHIY/ZRocIMwv96DfM7WrrlkZvCxcycsNl35uAmtRbQCl+QXeI/e+Pr/zdnzvF1tICW/RQxQKScTPPfOi/UerQT1ZUtfn+T5ti2SxnyySEzC1LbP+WXFg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SL2PR06MB3082.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(2906002)(8676002)(66946007)(5660300002)(4744005)(52116002)(8936002)(38100700002)(38350700002)(66556008)(6666004)(6512007)(6506007)(4326008)(6486002)(316002)(186003)(2616005)(110136005)(36756003)(86362001)(508600001)(83380400001)(107886003)(26005)(66476007)(21314003);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: Xmbz4nGi3dVb4Tx8T3hawf8RX6a6h3z/rDicCgQ6xOgDT9xbhaRRejk9lLpPCM7izIuwMV1R+DPx2usRsPIZVLb5dU0Y2AmJF7vNMkwgxp3mGdC5i+PU6yF+XeWVF653db+Dj38Jt1chRpN+bTSkrkMotym5iwxtthYcUKPIZTPLsk6BztSfT4d3Qz9Bw1CAAi2uPoasWPoKMpWdxNlTLkNfBLX+4xEga6M5hQajwSVFPRntdGKk4flWBMwfSr7fwjrmwVRuKs3lbjeZuJlVBl8O6XgtYAS0QjjrPJKQoNhUKxzNrfcdnb8No7zpIYgu03DgopWn3rz4vvCTl6q+//aVDWJUBGgbi9DriH2eWqa11u/mmLlNFZjsTsK3/L/yU/HaESDD2hubJOYMxIJRl6I4AVgapxwZJvVUksT06X0UHHdLmgoDwaR50kCRNqVS
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 80895627-6212-4cff-cfb2-08d9ec6f964f
-X-MS-Exchange-CrossTenant-AuthSource: SL2PR06MB3082.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2022 08:30:26.0098 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Sxj0umM1itkF1T2g9R+PcW4OjIxSelzMkm96DB6j8UubZ1A7zbjNg/NrqdMuvSZ6rNL60mo7lu8gjuAfLPP8Sg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PSAPR06MB4005
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="zqzqaf7ypljyfqok"
+Content-Disposition: inline
+In-Reply-To: <3a9f5ff6-52fd-25f5-2714-8801eba13dab@amd.com>
 X-Mailman-Approved-At: Thu, 10 Feb 2022 14:11:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -91,41 +83,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wang Qing <wangqing@vivo.com>
+Cc: Dom Cobley <dom@raspberrypi.com>, Tim Gover <tim.gover@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
+ Leo Li <sunpeng.li@amd.com>, amd-gfx@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Wang Qing <wangqing@vivo.com>
 
-It is better to use time_xxx() directly instead of jiffies judgment
-for understanding.
+--zqzqaf7ypljyfqok
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Wang Qing <wangqing@vivo.com>
----
- drivers/gpu/drm/radeon/radeon_pm.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Hi Harry,
 
-diff --git a/drivers/gpu/drm/radeon/radeon_pm.c b/drivers/gpu/drm/radeon/radeon_pm.c
-index c67b6dd..53d536a
---- a/drivers/gpu/drm/radeon/radeon_pm.c
-+++ b/drivers/gpu/drm/radeon/radeon_pm.c
-@@ -25,6 +25,7 @@
- #include <linux/hwmon.h>
- #include <linux/pci.h>
- #include <linux/power_supply.h>
-+#include <linux/jiffies.h>
- 
- #include <drm/drm_vblank.h>
- 
-@@ -1899,7 +1900,7 @@ static void radeon_dynpm_idle_work_handler(struct work_struct *work)
- 		 * to false since we want to wait for vbl to avoid flicker.
- 		 */
- 		if (rdev->pm.dynpm_planned_action != DYNPM_ACTION_NONE &&
--		    jiffies > rdev->pm.dynpm_action_timeout) {
-+		    time_after(jiffies, rdev->pm.dynpm_action_timeout)) {
- 			radeon_pm_get_dynpm_state(rdev);
- 			radeon_pm_set_clocks(rdev);
- 		}
--- 
-2.7.4
+On Mon, Feb 07, 2022 at 01:59:38PM -0500, Harry Wentland wrote:
+> On 2022-02-07 13:57, Harry Wentland wrote:
+> > On 2022-02-07 11:34, Maxime Ripard wrote:
+> >> The amdgpu KMS driver calls drm_plane_create_color_properties() with a
+> >> default encoding set to BT709.
+> >>
+> >> However, the core will ignore it and the driver doesn't force it in its
+> >> plane state reset hook, so the initial value will be 0, which represen=
+ts
+> >> BT601.
+> >>
+> >=20
+> > Isn't this a core issue? Should __drm_atomic_helper_plane_state_reset
+> > reset all plane_state members to their properties' default values?
+> >=20
+>=20
+> Ah, looks like that's exactly what you do in the later patches, which is
+> perfect. With that, I don't think you'll need this patch anymore.
 
+Ok, I'll squash it into the patch that removes the reset code.
+
+Thanks!
+Maxime
+
+--zqzqaf7ypljyfqok
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYgTQAwAKCRDj7w1vZxhR
+xS9UAQDxZHzWI/TgE+H2KV94xkGKONXDoO5HPthQTVHFCaxKvwEA6xiQuQcP6y+S
+9Kw6J1AxwVSzFV1awfCbQ5WIgtv24wI=
+=d0Xh
+-----END PGP SIGNATURE-----
+
+--zqzqaf7ypljyfqok--
