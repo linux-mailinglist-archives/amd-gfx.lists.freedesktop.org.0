@@ -1,93 +1,57 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADB824B2127
-	for <lists+amd-gfx@lfdr.de>; Fri, 11 Feb 2022 10:11:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B4FE4B212A
+	for <lists+amd-gfx@lfdr.de>; Fri, 11 Feb 2022 10:11:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 231A510EA36;
-	Fri, 11 Feb 2022 09:11:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2B0510EA3F;
+	Fri, 11 Feb 2022 09:11:40 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F28B10EA1F
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 08:46:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1644569161;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=NIGJSGdDR+e/0lqDusmjI7J0UIItqFB5EseqZJ+/itg=;
- b=JWBBVROHNDyDfUEi5eAEEopZINg2s1HncjBe0675uzx9nZdArY2kqmyW+TUBaiSSRo+lLU
- FE0P/ZBJ32V9N7pjdgeOhXhGED0I/Du1iLPKMyxGebFqbNY6kWxqOBMJgweOdGfI10InBj
- JPFP51oRizc8wLb7tvSxBU4beQ+ebVY=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-672-NPrl7Li9OIC4n74ndC1Zrw-1; Fri, 11 Feb 2022 03:46:00 -0500
-X-MC-Unique: NPrl7Li9OIC4n74ndC1Zrw-1
-Received: by mail-ej1-f70.google.com with SMTP id
- hp37-20020a1709073e2500b006cd86fa20ffso2838762ejc.5
- for <amd-gfx@lists.freedesktop.org>; Fri, 11 Feb 2022 00:46:00 -0800 (PST)
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com
+ [IPv6:2607:f8b0:4864:20::436])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3835310EA27;
+ Fri, 11 Feb 2022 09:00:56 +0000 (UTC)
+Received: by mail-pf1-x436.google.com with SMTP id n23so15150160pfo.1;
+ Fri, 11 Feb 2022 01:00:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=TYfaiwKavc3e6ks5kgUb85H+DdokL0giIO6Sl6/ijvM=;
+ b=YirJZ/OrUY1KZE/c6Pg4WKdA/DVfcwtcmgwJ5LeUBhEbafCWoTh9dRaxYHbAAlx5/C
+ U2C+6mW0+lJAlHWtOg6Jfruy1phkB55fCjanV518XXMonO4Hm6ZSmv0a+hkiWX4Xf2l2
+ F9WP7bUMgjY+zB++WmbReucO/ta2ZBOXgrg92r7OGhkWQy37UA+S//xb9jpWn5ZKj96y
+ LnpuDVcC32NCF4RZ+6aqEftgT8/PJdiEZnC+VclBeG3Ei8dWYSEKoWoxv52Zf/WhHGnV
+ 07bulekwlPGroFxqE2alC/bi7t4P/vt0jqRGa474mzrGuPqiaFj5qHcTUhc6uew3QFCw
+ KNyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
- :content-language:to:cc:references:from:in-reply-to
- :content-transfer-encoding;
- bh=NIGJSGdDR+e/0lqDusmjI7J0UIItqFB5EseqZJ+/itg=;
- b=KLpECcyVZZFso+nWHjm6YCtDQEYOU1gGvhTTWSvqhIN3XS5u8CBgq1h6mgGszqrK+A
- TfFROE5KbxlkPxpIltFTmpkU0d9D+25peV5bMWNKIo+e77EikxRpuTf9XwDyqDu4fUWc
- 7ZxGXJLZcuEBo8g1cjmh7dQH5vMzyrcBROQZv1LbXzrRjdhWBXTa9u58Sln6jIU30nXn
- dH5qbX4i2yhi70kYT3nH9s51Dnl7C/xw32lj40h/utLMzt51eZpo9UIrM5lo77mwTFlP
- U5CFW8tDKvtXnW76mDPzcfBI2itfoeal8ItxqS4wMX6joziRGDTmWnn5lPBD/DZ+UK0v
- +9pA==
-X-Gm-Message-State: AOAM533vwofaLTFftBNpQB0GPSHiLYTejtSSU4xF7lkTAd9eqcovSGVm
- o8RZUlfZ0IjPbeh1J60AEiRD/LQ1HAcL1AI3t1aUCXOnlEnbfaBmhwLLQ+rZVd53PCTgQLpGn9j
- 7DI2GDZOMcw0mLBV1sC54p+m8MQ==
-X-Received: by 2002:a17:907:168a:: with SMTP id
- hc10mr466710ejc.283.1644569159070; 
- Fri, 11 Feb 2022 00:45:59 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwQtGaHy5U9JGMvxdUhyHS51vk9smJiabHDR4QMkXJw//KX0Gh6ttUq7C+QmDdzvWmB7pzNDQ==
-X-Received: by 2002:a17:907:168a:: with SMTP id
- hc10mr466695ejc.283.1644569158862; 
- Fri, 11 Feb 2022 00:45:58 -0800 (PST)
-Received: from ?IPV6:2001:1c00:c1e:bf00:1db8:22d3:1bc9:8ca1?
- (2001-1c00-0c1e-bf00-1db8-22d3-1bc9-8ca1.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:1db8:22d3:1bc9:8ca1])
- by smtp.gmail.com with ESMTPSA id v5sm10859303edb.15.2022.02.11.00.45.57
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 11 Feb 2022 00:45:58 -0800 (PST)
-Message-ID: <d8c31b9a-49fd-e10b-34ef-751fe1262513@redhat.com>
-Date: Fri, 11 Feb 2022 09:45:57 +0100
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=TYfaiwKavc3e6ks5kgUb85H+DdokL0giIO6Sl6/ijvM=;
+ b=MuvnwSIpa+QRzcC3Rc5w2fpUWi05xaSUfLnteha2U7gBv9igKYuB0wynCu2tsLeOFI
+ Zl/HDAld1iq3kq0jNXHPKhy82dHnFjuZr0fZ234vjUpwci8SXJ3KhbrCV6eGubb+h2DS
+ y5HVOumflR1dl8PbuRrtnW+bIJHrfQ+lMsECqtUroCO+4DerpF0xOGcJJhZ5S/Rz8DUW
+ o7GdaS9uR1EeRCLYkou0qlRhW2Eil6fANb9n/rZyMs9rqh1C+5fcHQpojq9rgp0FPI3g
+ VbXZcI6McoZy490XMaqblk7x75i72SEOVMGO5tA6uyMGYkii+rCQgABE/Dep/f49RNJv
+ CvKg==
+X-Gm-Message-State: AOAM531bgSN06zZboAIYKoO3AKxmiFVY7IKkCPHd5EPiIzJv7QgMXnKv
+ JVAM8Vsr4UQZrGinopK33oxfVRilteltTa3DkS0=
+X-Google-Smtp-Source: ABdhPJzcBNwwDsrsLQTMfyhXlsVQPJ2eITAU351K13T2qQrMZreubqDuNlWvqA9y1Wv+mW0Rsuhg0no4yZY/uUPEJeI=
+X-Received: by 2002:a05:6a00:2310:: with SMTP id
+ h16mr697184pfh.80.1644570055706; 
+ Fri, 11 Feb 2022 01:00:55 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [PATCH v2 8/9] platform/x86: amd-gmux: drop the use of
- `pci_is_thunderbolt_attached`
-To: Mario Limonciello <mario.limonciello@amd.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Andreas Noever <andreas.noever@gmail.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
- "open list:THUNDERBOLT DRIVER" <linux-usb@vger.kernel.org>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- "open list:X86 PLATFORM DRIVERS" <platform-driver-x86@vger.kernel.org>
 References: <20220210224329.2793-1-mario.limonciello@amd.com>
  <20220210224329.2793-9-mario.limonciello@amd.com>
-From: Hans de Goede <hdegoede@redhat.com>
 In-Reply-To: <20220210224329.2793-9-mario.limonciello@amd.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Yehezkel Bernat <yehezkelshb@gmail.com>
+Date: Fri, 11 Feb 2022 11:00:39 +0200
+Message-ID: <CA+CmpXtah8AeVehExk0+eagyP=DQOPEy18DW3t2rQ0ZjyMk-Rw@mail.gmail.com>
+Subject: Re: [PATCH v2 8/9] platform/x86: amd-gmux: drop the use of
+ `pci_is_thunderbolt_attached`
+To: Mario Limonciello <mario.limonciello@amd.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Fri, 11 Feb 2022 09:11:37 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -101,48 +65,44 @@ List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Michael Jamet <michael.jamet@intel.com>,
- Yehezkel Bernat <YehezkelShB@gmail.com>, Alexander.Deucher@amd.com,
- Lukas Wunner <lukas@wunner.de>
+ "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
+ "open list:THUNDERBOLT DRIVER" <linux-usb@vger.kernel.org>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:X86 PLATFORM DRIVERS" <platform-driver-x86@vger.kernel.org>,
+ Andreas Noever <andreas.noever@gmail.com>, Lukas Wunner <lukas@wunner.de>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Alexander.Deucher@amd.com, Mika Westerberg <mika.westerberg@linux.intel.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-On 2/10/22 23:43, Mario Limonciello wrote:
+On Fri, Feb 11, 2022 at 12:43 AM Mario Limonciello
+<mario.limonciello@amd.com> wrote:
+>
 > Currently `pci_is_thunderbolt_attached` is used to indicate a device
 > is connected externally.
-> 
+>
 > The PCI core now marks such devices as removable and downstream drivers
 > can use this instead.
-> 
+>
 > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-
-Thanks, this looks good to me. I assume that this whole series
-will be merged in one go through another tree (e.g. the PCI tree),
-so here is my ack for merging this patch through another tree:
-
-Acked-by: Hans de Goede <hdegoede@redhat.com>
-
-Regards,
-
-Hans
-
 > ---
 >  drivers/platform/x86/apple-gmux.c | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+>
 > diff --git a/drivers/platform/x86/apple-gmux.c b/drivers/platform/x86/apple-gmux.c
 > index 04232fbc7d56..ffac15b9befd 100644
 > --- a/drivers/platform/x86/apple-gmux.c
 > +++ b/drivers/platform/x86/apple-gmux.c
 > @@ -596,7 +596,7 @@ static int gmux_resume(struct device *dev)
->  
+>
 >  static int is_thunderbolt(struct device *dev, void *data)
 >  {
-> -	return pci_is_thunderbolt_attached(to_pci_dev(dev));
-> +	return dev_is_removable(dev);
+> -       return pci_is_thunderbolt_attached(to_pci_dev(dev));
+> +       return dev_is_removable(dev);
 >  }
->  
->  static int gmux_probe(struct pnp_dev *pnp, const struct pnp_device_id *id)
-> 
+>
 
+Maybe it's only me, but isn't it a bit strange to keep this function named
+`is_thunderbolt` while it's actually about being removable?
