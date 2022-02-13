@@ -1,50 +1,38 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D695F4B447D
-	for <lists+amd-gfx@lfdr.de>; Mon, 14 Feb 2022 09:43:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B41604B447B
+	for <lists+amd-gfx@lfdr.de>; Mon, 14 Feb 2022 09:43:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF0AF10E1E6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C08410E1D2;
 	Mon, 14 Feb 2022 08:43:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 481 seconds by postgrey-1.36 at gabe;
- Sun, 13 Feb 2022 13:40:22 UTC
-Received: from forward100o.mail.yandex.net (forward100o.mail.yandex.net
- [IPv6:2a02:6b8:0:1a2d::600])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C677D10E13E
- for <amd-gfx@lists.freedesktop.org>; Sun, 13 Feb 2022 13:40:22 +0000 (UTC)
-Received: from forward102q.mail.yandex.net (forward102q.mail.yandex.net
- [IPv6:2a02:6b8:c0e:1ba:0:640:516:4e7d])
- by forward100o.mail.yandex.net (Yandex) with ESMTP id 8685852A963C;
- Sun, 13 Feb 2022 16:32:17 +0300 (MSK)
-Received: from vla5-b2c3939582a3.qloud-c.yandex.net
- (vla5-b2c3939582a3.qloud-c.yandex.net
- [IPv6:2a02:6b8:c18:3482:0:640:b2c3:9395])
- by forward102q.mail.yandex.net (Yandex) with ESMTP id 80FDCBF00002;
- Sun, 13 Feb 2022 16:32:17 +0300 (MSK)
-Received: from vla5-047c0c0d12a6.qloud-c.yandex.net
- (vla5-047c0c0d12a6.qloud-c.yandex.net [2a02:6b8:c18:3484:0:640:47c:c0d])
- by vla5-b2c3939582a3.qloud-c.yandex.net (mxback/Yandex) with ESMTP id
- FtQJCF8VMQ-WHZans4Z; Sun, 13 Feb 2022 16:32:17 +0300
-X-Yandex-Fwd: 2
-Authentication-Results: vla5-b2c3939582a3.qloud-c.yandex.net; dkim=pass
-Received: by vla5-047c0c0d12a6.qloud-c.yandex.net (smtp/Yandex) with ESMTPSA
- id lKwSmfPfvd-WFIGTICm; Sun, 13 Feb 2022 16:32:16 +0300
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (Client certificate not present)
-From: Yaroslav Bolyukin <iam@lach.pw>
-To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/amd: use fixed dsc bits-per-pixel from edid
-Date: Sun, 13 Feb 2022 16:31:28 +0300
-Message-Id: <20220213133128.5833-2-iam@lach.pw>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220213133128.5833-1-iam@lach.pw>
-References: <20220213133128.5833-1-iam@lach.pw>
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C045F10E185
+ for <amd-gfx@lists.freedesktop.org>; Sun, 13 Feb 2022 23:24:16 +0000 (UTC)
+Received: from relay6-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::226])
+ by mslow1.mail.gandi.net (Postfix) with ESMTP id 75146C60AA
+ for <amd-gfx@lists.freedesktop.org>; Sun, 13 Feb 2022 23:24:08 +0000 (UTC)
+Received: (Authenticated sender: ash@heyquark.com)
+ by mail.gandi.net (Postfix) with ESMTPSA id ABF89C0003;
+ Sun, 13 Feb 2022 23:23:53 +0000 (UTC)
+Message-ID: <df076a15-052a-1cb5-c618-e473f51d91e3@heyquark.com>
+Date: Mon, 14 Feb 2022 10:23:50 +1100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [RFC] Upstreaming Linux for Nintendo Wii U
+Content-Language: en-US
+To: Michael Ellerman <mpe@ellerman.id.au>, benh@kernel.crashing.org,
+ paulus@samba.org
+References: <0020d47c-0e23-822c-33f5-ccb7ea4c1072@heyquark.com>
+ <87ee49sktb.fsf@mpe.ellerman.id.au>
+From: Ash Logan <ash@heyquark.com>
+In-Reply-To: <87ee49sktb.fsf@mpe.ellerman.id.au>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 14 Feb 2022 08:43:42 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,73 +45,106 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>, "Pan,
- Xinhui" <Xinhui.Pan@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Leo Li <sunpeng.li@amd.com>,
- Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- Harry Wentland <harry.wentland@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Yaroslav Bolyukin <iam@lach.pw>
+Cc: linkmauve@linkmauve.fr, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ linuxppc-dev@lists.ozlabs.org, j.ne@posteo.net
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-VESA vendor header from DisplayID spec may contain fixed bit per pixel
-rate, it should be respected by drm driver
+Thanks for your response!
 
-Signed-off-by: Yaroslav Bolyukin <iam@lach.pw>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c | 2 ++
- drivers/gpu/drm/amd/display/dc/core/dc_stream.c           | 3 ++-
- drivers/gpu/drm/amd/display/dc/dc_types.h                 | 3 +++
- 3 files changed, 7 insertions(+), 1 deletion(-)
+On 11/2/22 22:29, Michael Ellerman wrote:
+> Ash Logan <ash@heyquark.com> writes:
+>> Hello,
+> 
+> Hi Ash,
+> 
+> I can't really answer all your questions, but I can chime in on one or
+> two things ...
+> 
+>> - Right now I've made a new platform (like ps3) rather than joining the
+>> GameCube and Wii in embedded6xx, since that is marked as BROKEN_ON_SMP.
+>> The Wii U is a 3-core system, though a CPU bug[8] prevents existing
+>> userspaces working with it. Bit of a "cross that bridge when we get
+>> there" situation, though I'm reluctant to prevent that possibility by
+>> using a BROKEN_ON_SMP platform.
+> 
+> I'm happy for it to be a new platform. I'd almost prefer it to be a
+> separate platform, that way you can make changes in your platform code
+> without worrying (as much) about breaking other platforms.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-index 29f07c26d..b34dd89ae 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
-@@ -118,6 +118,8 @@ enum dc_edid_status dm_helpers_parse_edid_caps(
- 
- 	edid_caps->edid_hdmi = connector->display_info.is_hdmi;
- 
-+	edid_caps->dsc_fixed_bits_per_pixel_x16 = connector->display_info.dp_dsc_bpp;
-+
- 	sad_count = drm_edid_to_sad((struct edid *) edid->raw_edid, &sads);
- 	if (sad_count <= 0)
- 		return result;
-diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-index 57cf4cb82..f8516ec70 100644
---- a/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-+++ b/drivers/gpu/drm/amd/display/dc/core/dc_stream.c
-@@ -105,6 +105,8 @@ static bool dc_stream_construct(struct dc_stream_state *stream,
- 
- 	/* EDID CAP translation for HDMI 2.0 */
- 	stream->timing.flags.LTE_340MCSC_SCRAMBLE = dc_sink_data->edid_caps.lte_340mcsc_scramble;
-+	stream->timing.dsc_fixed_bits_per_pixel_x16 =
-+		dc_sink_data->edid_caps.dsc_fixed_bits_per_pixel_x16;
- 
- 	memset(&stream->timing.dsc_cfg, 0, sizeof(stream->timing.dsc_cfg));
- 	stream->timing.dsc_cfg.num_slices_h = 0;
-@@ -738,4 +740,3 @@ void dc_stream_log(const struct dc *dc, const struct dc_stream_state *stream)
- 			"\tlink: %d\n",
- 			stream->link->link_index);
- }
--
-diff --git a/drivers/gpu/drm/amd/display/dc/dc_types.h b/drivers/gpu/drm/amd/display/dc/dc_types.h
-index 0285a4b38..ce2e11d70 100644
---- a/drivers/gpu/drm/amd/display/dc/dc_types.h
-+++ b/drivers/gpu/drm/amd/display/dc/dc_types.h
-@@ -227,6 +227,9 @@ struct dc_edid_caps {
- 	bool edid_hdmi;
- 	bool hdr_supported;
- 
-+	/* DisplayPort caps */
-+	uint32_t dsc_fixed_bits_per_pixel_x16;
-+
- 	struct dc_panel_patch panel_patch;
- };
- 
--- 
-2.35.1
+Sounds good to me! Since a lot of the architecture is the same as the 
+Wii and GameCube, maybe once things are working well for Wii U we can 
+look at refactoring those out too - a "nintendo" platform? Not a concern 
+for now though.
 
+>> - Like the Wii before it, the Wii U has a small amount of RAM at address
+>> zero, a gap, then a large amount of RAM at a higher address. Instead of
+>> the "map everything and reserve the gap" approach of the Wii, we loop
+>> over each memblock and map only true RAM[9]. This seems to work, but as
+>> far as I can tell is unique amongst powerpc32 platforms, so it's worth
+>> pointing out. (Note: I've been told this doesn't work anymore after some
+>> KUAP changes[10], so this point might be moot; haven't investigated)
+> 
+> We'd need more detail on that I guess. Currently all the 32-bit
+> platforms use the flat memory model, which assumes RAM is a single
+> contiguous block. Though that doesn't mean it all has to be used or
+> mapped, like the Wii does. To properly support your layout you should be
+> using sparsemem, but it's possible that's more trouble than it's worth,
+> I'm not sure. How far apart are the low and high blocks of RAM, and what
+> are their sizes?
+
+ From the devicetree:
+
+memory {
+     device_type = "memory";
+     reg = <0x00000000 0x02000000        /* MEM1 - 32MiB */
+            0x08000000 0x00300000        /* MEM0 - 3MiB  */
+            0x10000000 0x80000000>;      /* MEM2 - 2GiB  */
+};
+
+We could probably drop MEM0 without anybody missing it, so let's say a 
+256MiB gap between MEM1 and MEM2.
+sparsemem does look like a good option, though I note it depends on 
+ppc64, so yeah, might be a lot of trouble for the benefit of two 
+platforms (Wii and Wii U).
+I'm currently attempting to get something baseline running on 5.15, will 
+see if the memblock thing still works so I can have a patch for RFC.
+
+>> - Due to the aformentioned DMA restrictions and possibly a fatal
+>> bytemasking bug on uncached mappings[11], I have been wondering if it'd
+>> be better to just give up on the SRAM at address 0 altogether and use it
+>> as VRAM or something, loading the kernel at a higher address.
+> 
+> Don't you have exceptions entering down at low addresses? Even so you
+> could possibly trampoline them up to the kernel at a high address.
+
+Maybe? Looking through head_book3s_32.S that appears to be the case. 
+Will probably stick with physaddr 0 for now then.
+
+>> In terms of platform bringup, the key issue is whether to be embedded6xx
+>> or not and what output device to use. Beyond that it's just things like
+>> IRQ controller drivers, should be pretty straightforward. I think on our
+>> end, we'll start rebasing to 5.15 (LTS) and start sending patches from
+>> there. I know getting closer to HEAD is preferable, this project has
+>> just moved very slowly in the past and being on LTS has been a lifesaver.
+> 
+> As I said I'm happy for it to be a new platform. If there ends up being
+> a lot of shared code we can always refactor, but embedded6xx is only
+> ~1500 LOC anyway.
+> 
+> One thing that has come up with previous console port submissions is the
+> requirement for patches to be signed off. The docs are here if you
+> aren't familiar with them:
+>    https://www.kernel.org/doc/html/latest/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin
+
+No problem, will make sure everything is signed off by the people involved.
+
+> Otherwise your plan sounds good to me, 4.19 is pretty old so getting up
+> to 5.15 would be a good start. Then submit whatever bits you can and
+> chip away at it.
+> 
+> cheers
+
+Thanks,
+Ash
