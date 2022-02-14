@@ -1,53 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D2174B4487
-	for <lists+amd-gfx@lfdr.de>; Mon, 14 Feb 2022 09:43:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 401834B4361
+	for <lists+amd-gfx@lfdr.de>; Mon, 14 Feb 2022 09:14:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD47890BF;
-	Mon, 14 Feb 2022 08:43:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47CEF10E1C0;
+	Mon, 14 Feb 2022 08:14:37 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A8D710E1AF;
- Mon, 14 Feb 2022 07:36:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1644824170; x=1676360170;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=TtIgUTAIsXJ4XGN4YguPnu9VZqX5t+e944YjPkCfnAQ=;
- b=iHWvdIoZgHtfCTj4Jhhc+qlls93Fz+d/JUxueLUUn8/tXAy5kpGvPD5m
- hDk77VZ969/eUntwWODJEVAPujFNLKiqDxzh8UaU5YJeCcUVZ/sm2Qpth
- O+bu3Ka7g0O0JOAHkEDRNRztD7xpUlF+0hM0Ppv9eEK6G31gy934aZteB
- DnNNLDen94uiAE/ZJhMk1hku2IFLGZqqMVcufsUP25GtzN2RLCwuL/BWp
- fihVxxIPBGVZgLlmqxoZAYDGcO3gNivagm1JPAnw54MXBOKCKEtdsM+iC
- 1mcf98RTRzTXfk5f6oV25/aJKjr1xbuD7JkzLCdz9In4Yl/Eh4rGaQjih A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10257"; a="247628391"
-X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; d="scan'208";a="247628391"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2022 23:36:09 -0800
-X-IronPort-AV: E=Sophos;i="5.88,367,1635231600"; d="scan'208";a="772875545"
-Received: from lahna.fi.intel.com (HELO lahna) ([10.237.72.162])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2022 23:36:04 -0800
-Received: by lahna (sSMTP sendmail emulation); Mon, 14 Feb 2022 09:34:26 +0200
-Date: Mon, 14 Feb 2022 09:34:26 +0200
-From: Mika Westerberg <mika.westerberg@linux.intel.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Subject: Re: [PATCH v3 05/12] PCI: Detect root port of internal USB4 devices
- by `usb4-host-interface`
-Message-ID: <YgoGAkjZgCob8Mdl@lahna>
-References: <20220211193250.1904843-6-mario.limonciello@amd.com>
- <20220211214546.GA737137@bhelgaas>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2057.outbound.protection.outlook.com [40.107.93.57])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C697310E1C0
+ for <amd-gfx@lists.freedesktop.org>; Mon, 14 Feb 2022 08:14:36 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ESmdgTnCdenCbWRTvncF2JRfwJrP5LPROtr1Uj7ukJLJVK6pnNePiRk/2FYI6mog4EO7NaXslxaaaGOBjqZQ0tWmGchpyTbvNin/ZrD4YRk/XFBhi8k4Jud5Jl1jWEKP0Xy01xQe2d3zQ60aPA/dxgXxYFV3HX5ptfPbRSDPiXIVXbLcKpEeMx6sj09aH2VAXIHxjqmFcG9iSG0Uq/rGYTGJWSS+/3x2aYupJta7YR/9IpiASQQ3anv7QaA69HTcEXx0CCizTRcOyQgzrLGcwWG5Ya2jRsJP5UsIjgD0TqoEHyoHJIpig4IhAcxZ2DKV3xCZyogVzJNgTVsg0JD3Dg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RMotqZ95n+blF5du33f3wo2p5eg8WB0MfYUdXgS7rNY=;
+ b=EAtBK09rwqonDWVdmLXFwejB0VLW9UCgiR2ok9JDInogAiVYTCEDBBC+F7kK75mYPg9bJn+tGfd570DqbT1YXn07PWsZs8J6ni+ARoelbDqDfSCGHogU5PB+k2Gkq6a4yNX0l421XjiRruPOY/Faz2w4Jw7KfZasBb2D4nNCwIk4XdTlnMZ5Qigej2Rl8JD81Lk/PKNZKTOlC6rMeH4KmFv8coRtoIsaGnU9i2f8gjG8tX9l1pzjJS5HHuopQluvsimQY1bEpNRh8FPEeBZG4mJm93USyR2y+NvpK2HtAAaLiLk72+YW+syxnMFMwqVjEG80gD1DNacB0/q/syTmdQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RMotqZ95n+blF5du33f3wo2p5eg8WB0MfYUdXgS7rNY=;
+ b=4eLmurvBCYLNnTC/dopsb1tzc0vmJccfN0j31Jcm0skPUGaBDH5SUhpEzjs+OIqEhm/VRWjHiFyMlF/h/6P4lmP9ZGi1cspDSDI6dy3C3EtxCiARHwsDx3vvCdnGRq3qGgjvYV9UClA1tprU2uFqYAn1Q2UL3NIAnhpugRGDsko=
+Received: from DM5PR22CA0008.namprd22.prod.outlook.com (2603:10b6:3:101::18)
+ by BYAPR12MB2824.namprd12.prod.outlook.com (2603:10b6:a03:97::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.18; Mon, 14 Feb
+ 2022 08:14:31 +0000
+Received: from DM6NAM11FT039.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:101:cafe::aa) by DM5PR22CA0008.outlook.office365.com
+ (2603:10b6:3:101::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.18 via Frontend
+ Transport; Mon, 14 Feb 2022 08:14:31 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT039.mail.protection.outlook.com (10.13.172.83) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4975.11 via Frontend Transport; Mon, 14 Feb 2022 08:14:30 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Mon, 14 Feb
+ 2022 02:14:29 -0600
+Received: from stanley-test.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
+ Transport; Mon, 14 Feb 2022 02:14:27 -0600
+From: Stanley.Yang <Stanley.Yang@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <Hawking.Zhang@amd.com>,
+ <Tao.Zhou1@amd.com>
+Subject: [PATCH Review 1/1] drm/amdgpu: print more error info
+Date: Mon, 14 Feb 2022 16:14:25 +0800
+Message-ID: <20220214081425.22205-1-Stanley.Yang@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220211214546.GA737137@bhelgaas>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Mailman-Approved-At: Mon, 14 Feb 2022 08:43:42 +0000
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f1727478-d95f-4ff6-c346-08d9ef9206b0
+X-MS-TrafficTypeDiagnostic: BYAPR12MB2824:EE_
+X-Microsoft-Antispam-PRVS: <BYAPR12MB28248D37C8B8E4A7EBFE7DD49A339@BYAPR12MB2824.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1247;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KFeXp1e5bTctYm9152S+NqQHlkchI5yG4vz5l0pMaGNwIicagbasWXQI/qfHSBQ5HSFJVJ98K+FsHkwgu3RIr7APOVhyaHhyWrHQ0RLEUCK6O9B8JwCV9gqqhXKGoyMyS9hT+5nXaxU5oNn0K/zMqZq0L35MZqa/M+0Ch9+4KAg5DzMpv1MCyktoYgjjSIuNncN96KCc6ujBAB2YSFYgZvRUAL0BgLV4mMMdffAYR6fOhyz5vxISn7G8HslGiOx+xGc+aXNwEpHETzMo0j5nVZ/km0zuvF7ydOvhrQ+hl1ii6TSiJO/WikyysgMDA8UvmPSnvS12gcRNpVtnkhzZAklBeqmfK5hy93WAplFZ4XXprc4v05iskH0OdvlB8l1DGi6yCJD7zgM8cxUuUTP8k1V61qBaGQFrYPMVWzYkHH9HliBiDCuETWfaJtwJTPOTXHE3yAkMUwzE8kxNnevweJ5Frv3MQmMfSiWHual/PDykBljcSCoJu/5wusqG/rWceOa/TM1YeBkg5rGLCx/CjsTOq7k/XihE/0JkxqmZV/UorY9IO30Rhvx1n5Q3IFwjvAm9BMgGbMOTu0Mrj2WRD5U8LiVgWC04qH0RXwfKk8utPHoehWNU5XiXvZvFuVIkRKUF1TnyW5H7270gJXPnoFCwU5bnOc/4YzPGR88oQM2zkEm/bjo0LMfegr2+DibEFtLwxcEn8gdumzHGcoDBWg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(6636002)(81166007)(40460700003)(356005)(8936002)(5660300002)(82310400004)(86362001)(2906002)(36860700001)(4326008)(7696005)(47076005)(110136005)(316002)(83380400001)(36756003)(8676002)(508600001)(26005)(1076003)(186003)(70206006)(336012)(426003)(70586007)(2616005)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2022 08:14:30.5209 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f1727478-d95f-4ff6-c346-08d9ef9206b0
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT039.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2824
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,71 +99,190 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andreas Noever <andreas.noever@gmail.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- Michael Jamet <michael.jamet@intel.com>,
- "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
- "open list:THUNDERBOLT DRIVER" <linux-usb@vger.kernel.org>,
- Yehezkel Bernat <YehezkelShB@gmail.com>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- Hans de Goede <hdegoede@redhat.com>, Lukas Wunner <lukas@wunner.de>,
- Mario Limonciello <mario.limonciello@amd.com>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Alexander.Deucher@amd.com
+Cc: "Stanley.Yang" <Stanley.Yang@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi Bjorn,
+print more error info when deferred uncorrectable ras error
 
-On Fri, Feb 11, 2022 at 03:45:46PM -0600, Bjorn Helgaas wrote:
-> On Fri, Feb 11, 2022 at 01:32:43PM -0600, Mario Limonciello wrote:
-> > The root port used for PCIe tunneling should be marked as removable to
-> > ensure that the entire chain is marked removable.
-> > 
-> > This can be done by looking for the device property specified in
-> > the ACPI tables `usb4-host-interface`.
-> > 
-> > Suggested-by: Mika Westerberg <mika.westerberg@linux.intel.com>
-> > Link: https://docs.microsoft.com/en-us/windows-hardware/drivers/pci/dsd-for-pcie-root-ports#mapping-native-protocols-pcie-displayport-tunneled-through-usb4-to-usb4-host-routers
-> > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> > ---
-> >  drivers/pci/pci-acpi.c | 10 ++++++++++
-> >  drivers/pci/pci.h      |  5 +++++
-> >  drivers/pci/probe.c    |  1 +
-> >  3 files changed, 16 insertions(+)
-> > 
-> > diff --git a/drivers/pci/pci-acpi.c b/drivers/pci/pci-acpi.c
-> > index a42dbf448860..6368e5633b1b 100644
-> > --- a/drivers/pci/pci-acpi.c
-> > +++ b/drivers/pci/pci-acpi.c
-> > @@ -1391,6 +1391,16 @@ void pci_acpi_cleanup(struct device *dev, struct acpi_device *adev)
-> >  	}
-> >  }
-> >  
-> > +bool pci_acpi_is_usb4(struct pci_dev *dev)
-> > +{
-> > +	struct acpi_device *adev = ACPI_COMPANION(&dev->dev);
-> > +
-> > +	if (!adev)
-> > +		return false;
-> > +	return fwnode_property_present(acpi_fwnode_handle(adev),
-> > +				       "usb4-host-interface");
-> 
-> Maybe it's obvious to everybody but me that "USB4" means this device
-> is removable.  The Microsoft reference above doesn't say anything
-> about removability.
-> 
-> My expectation is that "USB" (like "PCI" and "PCIe") tells me
-> something about how a device is electrically connected and how
-> software can operate it.  It doesn't really tell me anything about
-> whether those electrical connections are permanent, made through an
-> internal slot, or made through an external connector and cable.
+changed from V1:
+    move Defferred error msg into query uncorrectable error
+    count function.
 
-It is used to identify "tunneled" ports (whether PCIe, USB 3.x or
-DisplayPort). Tunnels are created by software (in Linux it is the
-Thunderbolt driver) and are dynamic in nature. The USB4 links go over
-USB Type-C cable which also is something user can plug/unplug freely.
+Signed-off-by: Stanley.Yang <Stanley.Yang@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       |  7 +-
+ drivers/gpu/drm/amd/amdgpu/umc_v6_7.c         | 72 ++++++++++++++++++-
+ .../include/asic_reg/umc/umc_6_7_0_offset.h   |  6 ++
+ 3 files changed, 78 insertions(+), 7 deletions(-)
 
-I would say it is reasonable expectation that anything behind these
-ports can be assumed as "removable".
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+index 5d3968b5f92c..8016a638c847 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
+@@ -1529,11 +1529,8 @@ static void amdgpu_ras_interrupt_handler(struct ras_manager *obj)
+ 				data->rptr) % data->ring_size;
+ 
+ 		if (data->cb) {
+-			if (amdgpu_ras_is_poison_mode_supported(obj->adev) &&
+-			    obj->head.block == AMDGPU_RAS_BLOCK__UMC)
+-				dev_info(obj->adev->dev,
+-						"Poison is created, no user action is needed.\n");
+-			else {
++			if (!(amdgpu_ras_is_poison_mode_supported(obj->adev) &&
++					obj->head.block == AMDGPU_RAS_BLOCK__UMC)) {
+ 				/* Let IP handle its data, maybe we need get the output
+ 				 * from the callback to udpate the error type/count, etc
+ 				 */
+diff --git a/drivers/gpu/drm/amd/amdgpu/umc_v6_7.c b/drivers/gpu/drm/amd/amdgpu/umc_v6_7.c
+index 87e4ef18e151..2a91452c5ac8 100644
+--- a/drivers/gpu/drm/amd/amdgpu/umc_v6_7.c
++++ b/drivers/gpu/drm/amd/amdgpu/umc_v6_7.c
+@@ -87,8 +87,14 @@ static void umc_v6_7_ecc_info_querry_uncorrectable_error_count(struct amdgpu_dev
+ {
+ 	uint64_t mc_umc_status;
+ 	uint32_t eccinfo_table_idx;
++	uint32_t umc_reg_offset;
++	uint32_t mc_umc_addr;
++	uint64_t reg_value;
+ 	struct amdgpu_ras *ras = amdgpu_ras_get_context(adev);
+ 
++	umc_reg_offset = get_umc_v6_7_reg_offset(adev,
++						umc_inst, ch_inst);
++
+ 	eccinfo_table_idx = umc_inst * adev->umc.channel_inst_num + ch_inst;
+ 	/* check the MCUMC_STATUS */
+ 	mc_umc_status = ras->umc_ecc.ecc[eccinfo_table_idx].mca_umc_status;
+@@ -97,8 +103,36 @@ static void umc_v6_7_ecc_info_querry_uncorrectable_error_count(struct amdgpu_dev
+ 	    REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, UECC) == 1 ||
+ 	    REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, PCC) == 1 ||
+ 	    REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, UC) == 1 ||
+-	    REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, TCC) == 1))
++	    REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, TCC) == 1)) {
+ 		*error_count += 1;
++
++		if (REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, Deferred) == 1)
++			dev_info(adev->dev, "Deferred error, poison is created, no user action is needed.\n");
++
++		if (mc_umc_status)
++			dev_info(adev->dev, "MCA STATUS 0x%llx, umc_reg_offset 0x%x\n", mc_umc_status, umc_reg_offset);
++
++		/* print IPID registers value */
++		mc_umc_addr =
++			SOC15_REG_OFFSET(UMC, 0, regMCA_UMC_UMC0_MCUMC_IPIDT0);
++		reg_value = RREG64_PCIE((mc_umc_addr + umc_reg_offset) * 4);
++		if (reg_value)
++			dev_info(adev->dev, "MCA IPID 0x%llx, umc_reg_offset 0x%x\n", reg_value, umc_reg_offset);
++
++		/* print SYND registers value */
++		mc_umc_addr =
++			SOC15_REG_OFFSET(UMC, 0, regMCA_UMC_UMC0_MCUMC_SYNDT0);
++		reg_value = RREG64_PCIE((mc_umc_addr + umc_reg_offset) * 4);
++		if (reg_value)
++			dev_info(adev->dev, "MCA SYND 0x%llx, umc_reg_offset 0x%x\n", reg_value, umc_reg_offset);
++
++		/* print MISC0 registers value */
++		mc_umc_addr =
++			SOC15_REG_OFFSET(UMC, 0, regMCA_UMC_UMC0_MCUMC_MISC0T0);
++		reg_value = RREG64_PCIE((mc_umc_addr + umc_reg_offset) * 4);
++		if (reg_value)
++			dev_info(adev->dev, "MCA MISC0 0x%llx, umc_reg_offset 0x%x\n", reg_value, umc_reg_offset);
++	}
+ }
+ 
+ static void umc_v6_7_ecc_info_query_ras_error_count(struct amdgpu_device *adev,
+@@ -168,11 +202,13 @@ static void umc_v6_7_ecc_info_query_error_address(struct amdgpu_device *adev,
+ 			/* loop for all possibilities of [C4 C3 C2] */
+ 			for (column = 0; column < UMC_V6_7_NA_MAP_PA_NUM; column++) {
+ 				retired_page = soc_pa | (column << UMC_V6_7_PA_C2_BIT);
++				dev_info(adev->dev, "Error Address(PA): 0x%llx\n", retired_page);
+ 				amdgpu_umc_fill_error_record(err_data, err_addr,
+ 					retired_page, channel_index, umc_inst);
+ 
+ 				/* shift R14 bit */
+ 				retired_page ^= (0x1ULL << UMC_V6_7_PA_R14_BIT);
++				dev_info(adev->dev, "Error Address(PA): 0x%llx\n", retired_page);
+ 				amdgpu_umc_fill_error_record(err_data, err_addr,
+ 					retired_page, channel_index, umc_inst);
+ 			}
+@@ -251,6 +287,8 @@ static void umc_v6_7_querry_uncorrectable_error_count(struct amdgpu_device *adev
+ {
+ 	uint64_t mc_umc_status;
+ 	uint32_t mc_umc_status_addr;
++	uint32_t mc_umc_addr;
++	uint64_t reg_value;
+ 
+ 	mc_umc_status_addr =
+ 		SOC15_REG_OFFSET(UMC, 0, regMCA_UMC_UMC0_MCUMC_STATUST0);
+@@ -262,8 +300,36 @@ static void umc_v6_7_querry_uncorrectable_error_count(struct amdgpu_device *adev
+ 	    REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, UECC) == 1 ||
+ 	    REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, PCC) == 1 ||
+ 	    REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, UC) == 1 ||
+-	    REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, TCC) == 1))
++	    REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, TCC) == 1)) {
+ 		*error_count += 1;
++
++		if (REG_GET_FIELD(mc_umc_status, MCA_UMC_UMC0_MCUMC_STATUST0, Deferred) == 1)
++			dev_info(adev->dev, "Deferred error, poison is created, no user action is needed.\n");
++
++		if (mc_umc_status)
++			dev_info(adev->dev, "MCA STATUS 0x%llx, umc_reg_offset 0x%x\n", mc_umc_status, umc_reg_offset);
++
++		/* print IPID registers value */
++		mc_umc_addr =
++			SOC15_REG_OFFSET(UMC, 0, regMCA_UMC_UMC0_MCUMC_IPIDT0);
++		reg_value = RREG64_PCIE((mc_umc_addr + umc_reg_offset) * 4);
++		if (reg_value)
++			dev_info(adev->dev, "MCA IPID 0x%llx, umc_reg_offset 0x%x\n", reg_value, umc_reg_offset);
++
++		/* print SYND registers value */
++		mc_umc_addr =
++			SOC15_REG_OFFSET(UMC, 0, regMCA_UMC_UMC0_MCUMC_SYNDT0);
++		reg_value = RREG64_PCIE((mc_umc_addr + umc_reg_offset) * 4);
++		if (reg_value)
++			dev_info(adev->dev, "MCA SYND 0x%llx, umc_reg_offset 0x%x\n", reg_value, umc_reg_offset);
++
++		/* print MISC0 registers value */
++		mc_umc_addr =
++			SOC15_REG_OFFSET(UMC, 0, regMCA_UMC_UMC0_MCUMC_MISC0T0);
++		reg_value = RREG64_PCIE((mc_umc_addr + umc_reg_offset) * 4);
++		if (reg_value)
++			dev_info(adev->dev, "MCA MISC0 0x%llx, umc_reg_offset 0x%x\n", reg_value, umc_reg_offset);
++	}
+ }
+ 
+ static void umc_v6_7_reset_error_count_per_channel(struct amdgpu_device *adev,
+@@ -403,11 +469,13 @@ static void umc_v6_7_query_error_address(struct amdgpu_device *adev,
+ 			/* loop for all possibilities of [C4 C3 C2] */
+ 			for (column = 0; column < UMC_V6_7_NA_MAP_PA_NUM; column++) {
+ 				retired_page = soc_pa | (column << UMC_V6_7_PA_C2_BIT);
++				dev_info(adev->dev, "Error Address(PA): 0x%llx\n", retired_page);
+ 				amdgpu_umc_fill_error_record(err_data, err_addr,
+ 					retired_page, channel_index, umc_inst);
+ 
+ 				/* shift R14 bit */
+ 				retired_page ^= (0x1ULL << UMC_V6_7_PA_R14_BIT);
++				dev_info(adev->dev, "Error Address(PA): 0x%llx\n", retired_page);
+ 				amdgpu_umc_fill_error_record(err_data, err_addr,
+ 					retired_page, channel_index, umc_inst);
+ 			}
+diff --git a/drivers/gpu/drm/amd/include/asic_reg/umc/umc_6_7_0_offset.h b/drivers/gpu/drm/amd/include/asic_reg/umc/umc_6_7_0_offset.h
+index 912955f75b14..37d89a3f336a 100644
+--- a/drivers/gpu/drm/amd/include/asic_reg/umc/umc_6_7_0_offset.h
++++ b/drivers/gpu/drm/amd/include/asic_reg/umc/umc_6_7_0_offset.h
+@@ -31,6 +31,12 @@
+ #define regMCA_UMC_UMC0_MCUMC_STATUST0_BASE_IDX                                                         0
+ #define regMCA_UMC_UMC0_MCUMC_ADDRT0                                                                    0x03c4
+ #define regMCA_UMC_UMC0_MCUMC_ADDRT0_BASE_IDX                                                           0
++#define regMCA_UMC_UMC0_MCUMC_MISC0T0                                                                   0x03c6
++#define regMCA_UMC_UMC0_MCUMC_MISC0T0_BASE_IDX                                                          0
++#define regMCA_UMC_UMC0_MCUMC_IPIDT0                                                                    0x03ca
++#define regMCA_UMC_UMC0_MCUMC_IPIDT0_BASE_IDX                                                           0
++#define regMCA_UMC_UMC0_MCUMC_SYNDT0                                                                    0x03cc
++#define regMCA_UMC_UMC0_MCUMC_SYNDT0_BASE_IDX                                                           0
+ 
+ 
+ // addressBlock: umc_w_phy_umc0_umcch0_umcchdec
+-- 
+2.17.1
+
