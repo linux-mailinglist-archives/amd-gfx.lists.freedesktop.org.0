@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB9D4B6492
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 08:42:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ADDD4B6497
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 08:42:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF4CB10E3C8;
-	Tue, 15 Feb 2022 07:42:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6C9210E3D5;
+	Tue, 15 Feb 2022 07:42:22 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2066.outbound.protection.outlook.com [40.107.94.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C91810E3BC
- for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 07:42:13 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com
+ (mail-dm3nam07on2046.outbound.protection.outlook.com [40.107.95.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E877E10E3C7
+ for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 07:42:19 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aHtUEtW9cTwWNfA/7vu3gz2qcvxGzLrpZOarowo9ZqB964ay0lrLxLDwFdHgcyAgo/QTZPJf0Afo7FDUsy5YtiIMXAWUiC5mD2/qJu2YG1l0zTTGMUX0UYsh08UKdWGYh4BNBQKY347xfxtfjvGWfD5r2azyGaEkwTBpxRROWtRKw6RrNhen73W7qbMsb7LRLIBJPGN2IfRnML8nwPg6pN5EKFEo/RNzg2K1oQ96+pGiP3IbbbcVLpx6L+mHzBK0SY01+GHrjv5qmR4a/bsHm7j/MJC3p+8S2/FNWrbfSq1XU/ruq8M2waNtULilFl+FKFBrDAeiswQ0ozOU7FSDog==
+ b=e2WpsjXsm7l5giGGA5DtfYVo/78QORyW9ArITtNN8KATmn/r9dwR3beezSDiCumPhqdenq+y/P6YeC/Iekw1qq7Oai8RA72TWN9hYQDQG8JZo3LJqdFb3kJFTiHATbqqMxXKUwhO3dNnyYLR2hoBxgwvAKkYwbFZyyjL1DSMuoGAkiP8dEtSPXYLSsruq4lgWSe2UO81WFbSOICgZ0GswWUDCaZAupbtMtzcKSNYGoGkXZcOIxjNAOQrbiRMkQ4Ta138CzFvyCoIZfjEONQ5oipQ6T4MnQ67N0MhDAOGxKQIvL8iqC94Bu4TmLdBXsVIeoz+zswG4QDqbIramJuVQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hzgOHWFQr07/TO+juqwxQYN2zZmtBTSdYMicNFjPhCw=;
- b=ITcxrVSjI3R/NPZY+7sbQo/72HOCXHWpTvdLh4ZH50wwF8XEf1h1DPHI2FfjJhVemEDsnbNmoLgj+sxy6QEO50kAUyWOHZyBcl+kNuAHdXYOmnTnLNASCCbQZ0LzXw1blTj5C27qJokUCFraUttPqaUksv478ssyO+D4ocuzduWi3R1EXASH+M2yVRGi1cIET8ux4JMxg/AKKAo+4sPqV7lsn1zHjbxZQb5WCLlG23e9QM2iDnxknl/onPQOxGQnB/ARKljUjimQ9k9CVz270AyePgDortllujA6uHuX9GAM27Ke3auuDvdI8IS1AkkvIYmKdp7NrePoBS9hdVyZBg==
+ bh=rjUQxXs8QJa7GqdZY7ET15uiZ5nrGjI78ucG9scV1Ig=;
+ b=muFut6uO8oJS6eGvku9X+IKKjcBaEp48KpV58G7yFDiScP2QU3Ksp3MJyMg8ohcmxRDzAKx71uovmWWc7Hxvvacm2TSck93lp2ibuKygCTEg5H3WcDNBS7tMAx6CYdDhw0S2Q9x/BZ9hOy/OSIl1yzeiK1e94RGQOCzdxn4BRpW31XwL2VM9b+jWB3G+/AnnIZWViEo1bZTGAJD7BoZPIhWDkDctp8hHq364I5FLW7qr+0eddq0JuNgbR1oAs2gozrXlWz/dI5/8PjVedqYP8Y8ZbCjTje6oy62CkPvDUgUfNajP4XehoZpRYNLnJpgDKuc4sGncyuuGmm5qnITxDg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hzgOHWFQr07/TO+juqwxQYN2zZmtBTSdYMicNFjPhCw=;
- b=lsKc36mCoMnTVTOsiajtzK8rxiEFTIRMrHL/htOU6VI/glp95J9NtnupVCrKEhpbRknUTVThinCpE+1XTzL9QodBV/XE4HrlUVLqo90k+fcPVvnQk/r3uiY+alHGit1BeQ6JN2zgPBV2G3oucdLyHpJFNkpImsuORIozEHndVCQ=
-Received: from DM5PR15CA0026.namprd15.prod.outlook.com (2603:10b6:4:4b::12) by
- MN2PR12MB3359.namprd12.prod.outlook.com (2603:10b6:208:cc::29) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4995.14; Tue, 15 Feb 2022 07:42:11 +0000
-Received: from DM6NAM11FT054.eop-nam11.prod.protection.outlook.com
- (2603:10b6:4:4b:cafe::ec) by DM5PR15CA0026.outlook.office365.com
- (2603:10b6:4:4b::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.19 via Frontend
- Transport; Tue, 15 Feb 2022 07:42:11 +0000
+ bh=rjUQxXs8QJa7GqdZY7ET15uiZ5nrGjI78ucG9scV1Ig=;
+ b=oqR5czYGQBLw5B8rFACyWj9c9Pe03dHLZZzmCOWKYxD3dDp2updQMRJbqYCZjYljmXoSyiqWKEK4s1opRcsOjUcGPaLTMNJZnJ3ea3OeFCc/CWbSb+dokv5HfNl9eQyKPODRCRTsUz3/Vuzbbl9nQsnrMw0zx3CwABPZrcgSrbo=
+Received: from DS7PR03CA0152.namprd03.prod.outlook.com (2603:10b6:5:3b2::7) by
+ PH7PR12MB5806.namprd12.prod.outlook.com (2603:10b6:510:1d2::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.18; Tue, 15 Feb
+ 2022 07:42:14 +0000
+Received: from DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b2:cafe::13) by DS7PR03CA0152.outlook.office365.com
+ (2603:10b6:5:3b2::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.14 via Frontend
+ Transport; Tue, 15 Feb 2022 07:42:13 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,19 +45,19 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT054.mail.protection.outlook.com (10.13.173.95) with Microsoft SMTP
+ DM6NAM11FT067.mail.protection.outlook.com (10.13.172.76) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4975.11 via Frontend Transport; Tue, 15 Feb 2022 07:42:10 +0000
+ 15.20.4975.11 via Frontend Transport; Tue, 15 Feb 2022 07:42:13 +0000
 Received: from thomas-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 15 Feb
- 2022 01:42:08 -0600
+ 2022 01:42:10 -0600
 From: yipechai <YiPeng.Chai@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 3/7] drm/amdgpu: Remove redundant calls of ras_late_init in
- mmhub ras block
-Date: Tue, 15 Feb 2022 15:41:20 +0800
-Message-ID: <20220215074124.3411761-3-YiPeng.Chai@amd.com>
+Subject: [PATCH 4/7] drm/amdgpu: Remove redundant calls of ras_late_init in
+ mca ras block
+Date: Tue, 15 Feb 2022 15:41:21 +0800
+Message-ID: <20220215074124.3411761-4-YiPeng.Chai@amd.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220215074124.3411761-1-YiPeng.Chai@amd.com>
 References: <20220215074124.3411761-1-YiPeng.Chai@amd.com>
@@ -69,28 +69,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 870e4464-a378-486e-4dd5-08d9f056acfc
-X-MS-TrafficTypeDiagnostic: MN2PR12MB3359:EE_
-X-Microsoft-Antispam-PRVS: <MN2PR12MB33591A5059D3238968F9BEA1FC349@MN2PR12MB3359.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: f93fef7e-45cc-4297-9804-08d9f056ae61
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5806:EE_
+X-Microsoft-Antispam-PRVS: <PH7PR12MB5806B3B0FD8E1629FD514256FC349@PH7PR12MB5806.namprd12.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:826;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WoPtdcCNYkErE0PYiPqaCbSqeAZ9mQ+M9YIviE67QqcyVTNq/7nX2AqfDsRWvgwjQtvIg8UmkSPQluV7MK3AzsKyoxyyoMZhzzCRopmZd+87tQnHpkd8J7GPwnmE2Vq39+91GVY9fExsKQkuHxLmoHccm0xLhC5cl5Uvhb4qlJrvjk9yZak2zK3dOFZAXMqMsVRY6KchP306Rtku0/e7UyC0YMUmnuWIP1L7SK1H8Dy+aZvcy4X+85OqdhOClMXIoCEBME9HgtVADNLwDyXHl9+oE2FwFpiQLjLAc4PT6MRwroHE7f25+vRVut6p5MWmvcHvIAgeQ5yoxc25ewvJbqD4evoauKduOUiNI+Nh1OwzRZxl/i8O2qp5ZluK3gf0hT7Wi/zt4E9cSeMO6lAXeLDFA3Vz94mdjFXbv7/scm4UzxoclFKKJlYJBFdWx0/DOhohQsdXtg2MT1DLzp5flybRZMNyBCOgNq5um+e+7z0edpfu1Xkvv2JwBFcUr8jw0i9Zxt85L9Oo3vLKvD3st6wgN1pd43SHUYkJRdlidawV3xnBwI6NU5D77TbpShH/yR50bWRCgtEXnaF9+4/RdPwM3tcKMYZqD30RLeV/AWBCulxMunkZ/GBxQML6TeBpyQ7hW83mLJCxyMH8OkcFkyShTSlWoRx+G/RoZaaWI2Kim5DsyqiLA+9Dwls70+dMw/G1bdkBu3biu4fpHOrSTcFXpwr5sXWQ7BnkW7pHLCY=
+X-Microsoft-Antispam-Message-Info: d3nAwuzH0aVcPfvDulPLPfdFGf6HK44vsf4++h/bt8e2bxrVC0FgA9fRR8YSbg/fiSg5vgm+rGXHNwy+Jrf5pD2vz7DL1bc1TE4WSUFjMvqzeZ8cURtXeqLFuUdTifE+Kv4JM0NZEY9Pjp7KwMAqxXqibih8iG31Gm21geSLz5w/12vX/9Z55Wl4hvJEVcz/mVrZhPDcv8Y33sFGxxz5u6+N5DfNfk6J06NEQHfM9DAd39pNjCYzi2I1/TKyDbuZdN4nRXRXnt7mOtCmrdeAUPBPPsS1LU4Gl0DDxFOYhratW2u/kN726GR5HXU3h4geYWRRZyuuuDapSNks6YBxxH1szztqsAYGTGCIFV/+TD422nxH0LNWw3IDbgleXiK3vq/2Eg+7INMf6QLq/GiYa+MJXjI8vVqfqrD1+6BymLHD9Ztd3AtQ//5dszgIyDJwTSS+Z/sPndoaJk1RlYDN80G0B8rirqcTfAJXevLq9zHUj2HC13BIvxAiWWiFfQHk4d1mpuNrJzSr1KUoS+rc3j0q+tVfkXq+QnpyTDNMGYCLnUGsynCwC3AhOt41+4Tti8a+t/zI1tgnKKg4CSRFXGsYPRmRKxWF8CYh1HbVVDdnlEcb9KMCSKUE2dcDAu8iW+TiKhs99nmu+adcOweyOVhYu9Dc5FqBtCMqwRSJlO5pw1LtbDNOYNobQB+Skjt/7hqK2tRN4nhO4kP+eEd5OurOwJBYsVSd0/UExJrZ6z8=
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(336012)(8676002)(4326008)(36860700001)(26005)(8936002)(36756003)(186003)(426003)(7696005)(6666004)(2616005)(1076003)(16526019)(86362001)(81166007)(356005)(82310400004)(47076005)(83380400001)(316002)(2906002)(508600001)(5660300002)(70586007)(70206006)(6916009)(40460700003)(54906003)(43062005)(36900700001);
+ SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(40460700003)(186003)(356005)(1076003)(2616005)(86362001)(336012)(36860700001)(83380400001)(26005)(16526019)(47076005)(5660300002)(426003)(316002)(70586007)(82310400004)(8676002)(508600001)(8936002)(7696005)(4326008)(70206006)(54906003)(81166007)(2906002)(6916009)(6666004)(36756003)(43062005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2022 07:42:10.8924 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 870e4464-a378-486e-4dd5-08d9f056acfc
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2022 07:42:13.2183 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f93fef7e-45cc-4297-9804-08d9f056ae61
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT054.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3359
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5806
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,70 +107,141 @@ Cc: Tao.Zhou1@amd.com, Hawking.Zhang@amd.com, John.Clements@amd.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Remove redundant calls of ras_late_init in mmhub ras block.
+Remove redundant calls of ras_late_init in mca ras block.
 
 Signed-off-by: yipechai <YiPeng.Chai@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c   | 2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_mmhub.c | 5 -----
- drivers/gpu/drm/amd/amdgpu/amdgpu_mmhub.h | 1 -
- drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c     | 2 +-
- 4 files changed, 2 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c |  6 +++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c |  6 ------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_mca.h |  3 ---
+ drivers/gpu/drm/amd/amdgpu/mca_v3_0.c   | 21 +++------------------
+ 4 files changed, 6 insertions(+), 30 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-index 67a7d1cb89d6..f443d1e359ce 100644
+index f443d1e359ce..d42e05572db5 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gmc.c
-@@ -458,7 +458,7 @@ int amdgpu_gmc_ras_late_init(struct amdgpu_device *adev)
+@@ -476,19 +476,19 @@ int amdgpu_gmc_ras_late_init(struct amdgpu_device *adev)
  	}
  
- 	if (adev->mmhub.ras && adev->mmhub.ras->ras_block.ras_late_init) {
--		r = adev->mmhub.ras->ras_block.ras_late_init(adev, NULL);
-+		r = adev->mmhub.ras->ras_block.ras_late_init(adev, adev->mmhub.ras_if);
+ 	if (adev->mca.mp0.ras && adev->mca.mp0.ras->ras_block.ras_late_init) {
+-		r = adev->mca.mp0.ras->ras_block.ras_late_init(adev, NULL);
++		r = adev->mca.mp0.ras->ras_block.ras_late_init(adev, adev->mca.mp0.ras_if);
  		if (r)
  			return r;
  	}
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mmhub.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mmhub.c
-index ede98db8c126..42413813765a 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mmhub.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mmhub.c
-@@ -24,11 +24,6 @@
- #include "amdgpu.h"
- #include "amdgpu_ras.h"
  
--int amdgpu_mmhub_ras_late_init(struct amdgpu_device *adev, struct ras_common_if *ras_block)
+ 	if (adev->mca.mp1.ras && adev->mca.mp1.ras->ras_block.ras_late_init) {
+-		r = adev->mca.mp1.ras->ras_block.ras_late_init(adev, NULL);
++		r = adev->mca.mp1.ras->ras_block.ras_late_init(adev, adev->mca.mp1.ras_if);
+ 		if (r)
+ 			return r;
+ 	}
+ 
+ 	if (adev->mca.mpio.ras && adev->mca.mpio.ras->ras_block.ras_late_init) {
+-		r = adev->mca.mpio.ras->ras_block.ras_late_init(adev, NULL);
++		r = adev->mca.mpio.ras->ras_block.ras_late_init(adev, adev->mca.mpio.ras_if);
+ 		if (r)
+ 			return r;
+ 	}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
+index 1c77fe7e9e68..e2607d9f5cf4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.c
+@@ -71,12 +71,6 @@ void amdgpu_mca_query_ras_error_count(struct amdgpu_device *adev,
+ 	amdgpu_mca_reset_error_count(adev, mc_status_addr);
+ }
+ 
+-int amdgpu_mca_ras_late_init(struct amdgpu_device *adev,
+-			     struct amdgpu_mca_ras *mca_dev)
 -{
--	return amdgpu_ras_block_late_init(adev, adev->mmhub.ras_if);
+-	return amdgpu_ras_block_late_init(adev, mca_dev->ras_if);
 -}
 -
- void amdgpu_mmhub_ras_fini(struct amdgpu_device *adev)
+ void amdgpu_mca_ras_fini(struct amdgpu_device *adev,
+ 			 struct amdgpu_mca_ras *mca_dev)
  {
- 	if (amdgpu_ras_is_supported(adev, AMDGPU_RAS_BLOCK__MMHUB) &&
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mmhub.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mmhub.h
-index 75815106f2d5..240b26d9a388 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mmhub.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mmhub.h
-@@ -47,7 +47,6 @@ struct amdgpu_mmhub {
- 	struct amdgpu_mmhub_ras  *ras;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.h
+index be030c4031d2..15e1a1efeb4f 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mca.h
+@@ -56,9 +56,6 @@ void amdgpu_mca_query_ras_error_count(struct amdgpu_device *adev,
+ 				      uint64_t mc_status_addr,
+ 				      void *ras_error_status);
+ 
+-int amdgpu_mca_ras_late_init(struct amdgpu_device *adev,
+-			     struct amdgpu_mca_ras *mca_dev);
+-
+ void amdgpu_mca_ras_fini(struct amdgpu_device *adev,
+ 			 struct amdgpu_mca_ras *mca_dev);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/mca_v3_0.c b/drivers/gpu/drm/amd/amdgpu/mca_v3_0.c
+index 72ce19acb8bb..12d09a58b644 100644
+--- a/drivers/gpu/drm/amd/amdgpu/mca_v3_0.c
++++ b/drivers/gpu/drm/amd/amdgpu/mca_v3_0.c
+@@ -37,11 +37,6 @@ static void mca_v3_0_mp0_query_ras_error_count(struct amdgpu_device *adev,
+ 				         ras_error_status);
+ }
+ 
+-static int mca_v3_0_mp0_ras_late_init(struct amdgpu_device *adev, struct ras_common_if *ras_block)
+-{
+-	return amdgpu_mca_ras_late_init(adev, &adev->mca.mp0);
+-}
+-
+ static void mca_v3_0_mp0_ras_fini(struct amdgpu_device *adev)
+ {
+ 	amdgpu_mca_ras_fini(adev, &adev->mca.mp0);
+@@ -76,7 +71,7 @@ struct amdgpu_mca_ras_block mca_v3_0_mp0_ras = {
+ 		},
+ 		.hw_ops = &mca_v3_0_mp0_hw_ops,
+ 		.ras_block_match = mca_v3_0_ras_block_match,
+-		.ras_late_init = mca_v3_0_mp0_ras_late_init,
++		.ras_late_init = amdgpu_ras_block_late_init,
+ 		.ras_fini = mca_v3_0_mp0_ras_fini,
+ 	},
  };
+@@ -89,11 +84,6 @@ static void mca_v3_0_mp1_query_ras_error_count(struct amdgpu_device *adev,
+ 				         ras_error_status);
+ }
  
--int amdgpu_mmhub_ras_late_init(struct amdgpu_device *adev, struct ras_common_if *ras_block);
- void amdgpu_mmhub_ras_fini(struct amdgpu_device *adev);
- #endif
+-static int mca_v3_0_mp1_ras_late_init(struct amdgpu_device *adev, struct ras_common_if *ras_block)
+-{
+-	return amdgpu_mca_ras_late_init(adev, &adev->mca.mp1);
+-}
+-
+ static void mca_v3_0_mp1_ras_fini(struct amdgpu_device *adev)
+ {
+ 	amdgpu_mca_ras_fini(adev, &adev->mca.mp1);
+@@ -114,7 +104,7 @@ struct amdgpu_mca_ras_block mca_v3_0_mp1_ras = {
+ 		},
+ 		.hw_ops = &mca_v3_0_mp1_hw_ops,
+ 		.ras_block_match = mca_v3_0_ras_block_match,
+-		.ras_late_init = mca_v3_0_mp1_ras_late_init,
++		.ras_late_init = amdgpu_ras_block_late_init,
+ 		.ras_fini = mca_v3_0_mp1_ras_fini,
+ 	},
+ };
+@@ -127,11 +117,6 @@ static void mca_v3_0_mpio_query_ras_error_count(struct amdgpu_device *adev,
+ 				         ras_error_status);
+ }
  
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-index 94095b965e2c..b719d2c3003b 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-@@ -1293,7 +1293,7 @@ static void gmc_v9_0_set_mmhub_ras_funcs(struct amdgpu_device *adev)
- 
- 		/* If don't define special ras_late_init function, use default ras_late_init */
- 		if (!adev->mmhub.ras->ras_block.ras_late_init)
--			adev->mmhub.ras->ras_block.ras_late_init = amdgpu_mmhub_ras_late_init;
-+			adev->mmhub.ras->ras_block.ras_late_init = amdgpu_ras_block_late_init;
- 
- 		/* If don't define special ras_fini function, use default ras_fini */
- 		if (!adev->mmhub.ras->ras_block.ras_fini)
+-static int mca_v3_0_mpio_ras_late_init(struct amdgpu_device *adev, struct ras_common_if *ras_block)
+-{
+-	return amdgpu_mca_ras_late_init(adev, &adev->mca.mpio);
+-}
+-
+ static void mca_v3_0_mpio_ras_fini(struct amdgpu_device *adev)
+ {
+ 	amdgpu_mca_ras_fini(adev, &adev->mca.mpio);
+@@ -152,7 +137,7 @@ struct amdgpu_mca_ras_block mca_v3_0_mpio_ras = {
+ 		},
+ 		.hw_ops = &mca_v3_0_mpio_hw_ops,
+ 		.ras_block_match = mca_v3_0_ras_block_match,
+-		.ras_late_init = mca_v3_0_mpio_ras_late_init,
++		.ras_late_init = amdgpu_ras_block_late_init,
+ 		.ras_fini = mca_v3_0_mpio_ras_fini,
+ 	},
+ };
 -- 
 2.25.1
 
