@@ -2,94 +2,115 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5B134B7961
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 22:45:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C70294B7A07
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 22:54:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1053410E55F;
-	Tue, 15 Feb 2022 21:45:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85ADE10E57B;
+	Tue, 15 Feb 2022 21:54:09 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2086.outbound.protection.outlook.com [40.107.220.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D792510E55F
- for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 21:45:22 +0000 (UTC)
+ (mail-co1nam11on2045.outbound.protection.outlook.com [40.107.220.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91FE010E56A;
+ Tue, 15 Feb 2022 21:47:52 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eZ/I/O40e5YYo8L0ZKxmT+1LP+hIk2pX6qz1dI3b6D7ujHwo85il2M1A5BIGrRHSskN/S1wNh0ObjbnnC6M6ETNhQ8+iW4ubA8rHL+B+hstOhGGoeCHZEHyjMH01mzP8gbhGzfKh/5SWL9AW5nmhhFsKuG9JhXT6KKobkjbJkNPQI5kDnYXM/D66jXUqdS6uv2iF+o1yaupS0rQ09EFnRmq+um5XineBUoSfGXRzWyTnFDQ7kfK3ejxqQA026Hx2umnxhAYU+HvHULhEZJfld7URGIZQYpleZZYXhcsnxP3d3mZZD1CwlCjdSVtWMcR+FHmQFdtxsJSw+fxv7pvGAA==
+ b=gk9/hYoZjLLa5YRxGR2+uXQ96Y5aL/NvEbgYf3sCJ+8nZQfksxsx0JgSzioEuDxxRbiIIpHGBscHH7pw4kV9NvVB5lEuKxd1yUs7f0V2jkfc/SU5+v6nL1E5RXrxFAqoBR/hr9J+kupv/bJd/3sAjVtjFHl3ThJl89K4xkEREHii7MY9EvVksW+qApLVrjjigoYHpCfCbmb7+ZcqAxrJSaIvwEHZr+ZU6wqMHe7rhq0PkKdqVkqW/p4ns1N3p0c1wOqYYZDiG/ANy3hzc3w0twmcImlOnO+j3muGV4tHw59D+PXjbnk1MpAuu4u9tYzBuoGUMLpbcas+7iz939qEeQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qjGKVtrz8XqyY3vZM54Nib1qaxBuwhev5W3DE3DmJN8=;
- b=P0fjjvhoxFh+GbC0jfbLdsC/Whs3NMQoH9EjAU5E9f53gtLxOfaLWtMnleX2jlC24ZMm8JfxjPqeBx4wp26Dz3HUL4JuM4jndEuHBuzQjBOy1qpvCOGXWnb42als5H5L6d/RYUUi84CBYdeO9u5Zx7aVVOceoz2FLBNhp+e3NdkJ4Yqr8lhcRjXD4XegKT6GN8/AoKBvTQJSHYYAHD6QDmG80gI8mtyGkzv9OEMX5vyG0gF8r+ub722+25e+alvoZPVJ83EzHvHULwXo9wks4oZbFYpsSxf7BeoIM6M51rIE8n8ko05dV7Bk4z2ILh3Daqenh/ZAy4TCgMYUMxBu4Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ bh=r+Ia2MduhHwDl8RlZcxpMeY8sMz2eLMp9xGxf/FSl/E=;
+ b=U3V5GL34Np4ZYsCwW1TZ80kM3140SY4YCZ4um4juJMn9Ep40nSJeYfcfExIf1+br5VLOi0T0HSIxlB4FNGrLkiQgGYjXhxgJ0VV/4kH6s6WazZbOTppCYdesoJDRy9XPlm+XjBmUzjmBeMSpsDT/SlCUMjhjFw2bNkEbB+xZrxPZUzjLpuvfj7o1JJ3rjS09Zm8AJ8OmHfWHl03dmV6V7xzg1rJ1RCnj+W6/fui+R3VdvyufFCXTQF8x0O8t5dmUgJzxAebtrt7LYNWjOh6JabgLJHRyPf0yBvyHT/l2+WAkwGWzMdQ4ENPJeBTn8juBj06cLXowpwCV2k0StSo3QA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qjGKVtrz8XqyY3vZM54Nib1qaxBuwhev5W3DE3DmJN8=;
- b=i1hxSIgKr1pkwitdP7SPrvGRtODnpveCzDC3WUfc/Nyuuo+RE4nAZT65bPEg0NytjRHzvmOcfCf/anaHuTqwVH+edl7p0uWt5vjNMA4n5AD7UzDeguwvWLgE9xgYj/l56VLhbCTUsZFA3rZl08dYe66bBlwtVfSV2OGh0FhCQJM=
-Received: from BN9PR03CA0263.namprd03.prod.outlook.com (2603:10b6:408:ff::28)
- by DS7PR12MB5744.namprd12.prod.outlook.com (2603:10b6:8:73::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.15; Tue, 15 Feb
- 2022 21:45:11 +0000
-Received: from BN8NAM11FT063.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:ff:cafe::9f) by BN9PR03CA0263.outlook.office365.com
- (2603:10b6:408:ff::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.14 via Frontend
- Transport; Tue, 15 Feb 2022 21:45:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT063.mail.protection.outlook.com (10.13.177.110) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4975.11 via Frontend Transport; Tue, 15 Feb 2022 21:45:11 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 15 Feb
- 2022 15:45:06 -0600
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 6/6] drm/amdgpu/discovery: Add sw DM function for 3.1.6 DCE
-Date: Tue, 15 Feb 2022 16:44:47 -0500
-Message-ID: <20220215214447.2234978-5-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220215214447.2234978-1-alexander.deucher@amd.com>
-References: <20220215214447.2234978-1-alexander.deucher@amd.com>
+ bh=r+Ia2MduhHwDl8RlZcxpMeY8sMz2eLMp9xGxf/FSl/E=;
+ b=Qp7NqG5gvkiT7Mv1NkHFEnNGwv/TW9RhYMPLbKYnfaSg4GIt2zc9qZN1CYMBpZZ4DiRiycMyLtaUkUr4/wobCxNNbam8Gx5T0wt+wYLIYSKR9p0wVxl0g1NuCPR+5Hc7YAvHBUk7YQSU6xn9bfgrkiWjhCtPBEr2/u72h2UW6sKAVsr5BP2XwY1iuna76zYTou0B1Kq3WKTzp6w7+krF8eRE4vlV9ShHmJS21NcAWQ7VmhbKKV1n3dORo2G2Pztdas/r//mufpazwEXqkXSbLFxhUE3cFabWUMKCTXOvTh74PljXI+rNIv0ptFToLfk163eiFoHAcL+SA0sCc4NZQg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CH2PR12MB4181.namprd12.prod.outlook.com (2603:10b6:610:a8::16)
+ by CH0PR12MB5217.namprd12.prod.outlook.com (2603:10b6:610:d0::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.17; Tue, 15 Feb
+ 2022 21:47:50 +0000
+Received: from CH2PR12MB4181.namprd12.prod.outlook.com
+ ([fe80::287d:b5f6:ed76:64ba]) by CH2PR12MB4181.namprd12.prod.outlook.com
+ ([fe80::287d:b5f6:ed76:64ba%4]) with mapi id 15.20.4975.019; Tue, 15 Feb 2022
+ 21:47:50 +0000
+Date: Tue, 15 Feb 2022 17:47:49 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Felix Kuehling <felix.kuehling@amd.com>
+Subject: Re: [PATCH v6 01/10] mm: add zone device coherent type memory support
+Message-ID: <20220215214749.GA4160@nvidia.com>
+References: <20220201154901.7921-1-alex.sierra@amd.com>
+ <20220201154901.7921-2-alex.sierra@amd.com>
+ <beb38138-2266-1ff8-cc82-8fe914bed862@redhat.com>
+ <f2af73c1-396b-168f-7f86-eb10b3b68a26@redhat.com>
+ <a24d82d9-daf9-fa1a-8b9d-5db7fe10655e@amd.com>
+ <078dd84e-ebbc-5c89-0407-f5ecc2ca3ebf@redhat.com>
+ <20220215144524.GR4160@nvidia.com> <20220215183209.GA24409@lst.de>
+ <20220215194107.GZ4160@nvidia.com>
+ <ac3d5157-9251-f9fb-a973-f268ce58b4e0@amd.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ac3d5157-9251-f9fb-a973-f268ce58b4e0@amd.com>
+X-ClientProxiedBy: MN2PR03CA0028.namprd03.prod.outlook.com
+ (2603:10b6:208:23a::33) To CH2PR12MB4181.namprd12.prod.outlook.com
+ (2603:10b6:610:a8::16)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5bf60dd4-031e-49a1-b914-08d9f0cc711d
-X-MS-TrafficTypeDiagnostic: DS7PR12MB5744:EE_
-X-Microsoft-Antispam-PRVS: <DS7PR12MB5744820B7036807335FED1E5F7349@DS7PR12MB5744.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1751;
+X-MS-Office365-Filtering-Correlation-Id: baa9f4d1-c3ba-475f-a94a-08d9f0ccd02b
+X-MS-TrafficTypeDiagnostic: CH0PR12MB5217:EE_
+X-Microsoft-Antispam-PRVS: <CH0PR12MB5217EB09DCA1D8AC2E0BE7DCC2349@CH0PR12MB5217.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ChIosMbaIwtZB9YP8YeqNu5zjEgtZFkWupsEye5hBuQnRF3YK1oYOYqMpmG3BIF0rU7KflMLxuziunRlS9DTapolD698AoGmvJDMH7DEHAUZOer3OVMylId2Y1LoS9pMAUtcfwK6oAR8HQv6OXHI6OTC3Q7v1VV7PZ6l6yu1mlUndLbkFKMZ0o3YCvstwFSYCDyeS8HZCIuxjZJh1IWgw03FzIbgd9Us13OKFkpputPY6Qritkkrt7F1oZyw3iOjVepzSecC97Op33fcq5f649LMqzb1h3iAjJo/dd1GO8cM+87FNYKULSbFORj2JlVZfmV6hUeXNX6s+2FrRxamyNHsJA8DhuiGXGNv3r1/d6h1AyFBFZZBdziP9/fx6iDWDKa0/yLzY/ZoYJPMXN1ZJtFLVk5BlTfYOH61v/wGlOBsMD3hd7R+9dgG9GwafTtOYmB2eXHrqU81BhdIXH3kUsTnG7eHQUxy22QOXUuzSLgjMfapifj8mOjLEdREfQPhY96h1JOwQGD8l6KJp5m0WTCpmlXz89txwZ18y/CLuSoDTvk4sJbTSZJviy1gq93ynOrBwuFJekTOZVh6IcpQQQMJSRqFjzDW+04VXDlpZv3Tz476ozg2/PPdD/QUJvRCkjpFVmsV0pUDdI0byRTm42OAkRq0Zf2uWwivXBz6Fl/qTwbPeYlkSugy3McsB6eQ8eE297oW38gADZgxv+07uw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(36860700001)(47076005)(1076003)(186003)(26005)(16526019)(7696005)(316002)(336012)(54906003)(6916009)(6666004)(2616005)(426003)(82310400004)(83380400001)(70206006)(5660300002)(8936002)(40460700003)(86362001)(81166007)(4326008)(356005)(508600001)(36756003)(2906002)(4744005)(70586007)(8676002)(36900700001);
+X-Microsoft-Antispam-Message-Info: e5ee25wSOcV6kWxZUY3hwES7JMnboFXq08KQ5TQizd6gysRokBHhQl9H0K9Quw7uA3SQ/z2CBO7tbKZxxKI8LLxRz2iRcbGMKql4fnThrEOksmSbxf3F7oYJDWciH4rMOyncgitkkB/LbcNMLTDPGHTi/A5BCwOyw3WpJMbAUpmgSUmlBxZRqVFCjI/17Lwl77ZWaT+8bFCwExxGphlJbNm79xQou37udLffCy4W2b4VhEuMf8UtqEpMCAHb5roVq1MfiiBp7ppgiR5xEjcBBN1+UXTj0O8cZ84sLVIDAwREw58fpBg1BocGQEF7g+vrC6eM5O2NL0CRxRfUZlfkSvd4rXOksa2DF7T7t9d3b00IaT7I3Ob26dSmM3fV0Bnor9d+2mLsX6VDGu34ha6z2xRBxWK165SRtPrwlQMIf+R/NHAGLv8CjHaFuEJ3wraSx0IxbQS3srpAJsLg/ndT/b1wpEof4B6kRzH1pTmtYFNTaJEe3MgbIOHS+ZGa1lZmNjZdmCBTl/+SrzcBgHPx09PVNeGuEuV2ddtFjUsuQT9gbx4S10IMC+FUlgvmXRQ/nKaORrzmrwnsi7GP3gEQBPHhPVqMEe5+D9ob9Sscm1CQoJtWwKeDc0AR7oyqnJ0qky0aK2Yshg+RouYdnqc6jA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB4181.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(6512007)(53546011)(2616005)(6506007)(186003)(1076003)(2906002)(26005)(33656002)(508600001)(36756003)(54906003)(8936002)(86362001)(8676002)(6486002)(6916009)(7416002)(66556008)(66946007)(5660300002)(38100700002)(66476007)(4326008)(316002);
  DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2022 21:45:11.1091 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5bf60dd4-031e-49a1-b914-08d9f0cc711d
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT063.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5744
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?rjpNj1cq1+6ZHekg0bJvkKUDj7Nq3SUkHwbV+z/Xnry+C775vbj+vGQ16HKU?=
+ =?us-ascii?Q?2FcF97X6HPqRxTlhgpVi8LVaUgz4mYB86zPMLrcGAQ4E0Gn2xttdkr4LaUvj?=
+ =?us-ascii?Q?F19MSde4Si6KeRHJ+CN6v5JX+0piNtN8yhLExJ72RoqS6aL+G7qFHMplNmm0?=
+ =?us-ascii?Q?6eAhWvFiLLZDGy0bYySaL7V3urC1OCk8u92rmPgXeZThu96CvFS0xPtFAlCI?=
+ =?us-ascii?Q?zEkCupY7wmY3Y4wGaXlXiM8q3gg7JXKa3+7bkybx7oAcvbnd5CegiRUfEt+Y?=
+ =?us-ascii?Q?LfQe4dxo6PuYEm1GxOv4NeOPG7FLobz57nW/THbr4ykc74oVqek23w/n/9Ye?=
+ =?us-ascii?Q?9Wkwdkt5Ne87TCxLOL62YwFkACUEbNyE8z+gNYp+7OusM7f2EgK7QByqJlZg?=
+ =?us-ascii?Q?Hc7hYU/FDn92szsb/lKcGgVC2lLHLZ8ttJyQfLcXXr/09+Jc3yYTB0PQptez?=
+ =?us-ascii?Q?YOj78uu2O/wekvUP9UgTkLuvT65UnkGne1PIXsBHR/2geNg0P80QvFMij29I?=
+ =?us-ascii?Q?mBOIKfxnKTntuiIOi0+RuVfOZajrtmaBAh4qkHrNOvbkwyIT3xj3rvO4vTsV?=
+ =?us-ascii?Q?yxWAKiXZQjrBoEdt/0NgC+3/oSk2UoQGyl2usESjDh6yrbMFMQb2iW5wcv2h?=
+ =?us-ascii?Q?V3cBP/1jpiycp3saN7MAoIj2ClQEDjnpk8nXr9t1ydzZ28XmAaMNPn1NUC8O?=
+ =?us-ascii?Q?qTb4hZdGpzyix6Z/REtZLMMYm4ihhT/xH29iww6Fqu7VEBAJVhvVHKBqOx8Y?=
+ =?us-ascii?Q?W9CeNZiCdaYUpfyDwpmpfCwRLJH756ODOI9Zd46BY+U5FKLWHBRE0ePuDZyl?=
+ =?us-ascii?Q?E958EV+VznWzK0VrMWnlZufnYLrDwtbjp+oDHXld1Yvh6g4koJiqWBB+3k4d?=
+ =?us-ascii?Q?a6Kmeytv1idpZZcuCymeJr/MNvCY13h2SiL5en1S0KyuAoZ413YPHYWiRkZ+?=
+ =?us-ascii?Q?nJbmWVq+s7zpos/Jc0CLLCtheQXr7YmXjFwr7mCpY0hsWdxy4ZEhT+yk3269?=
+ =?us-ascii?Q?RpfyUnyOlDofLO4OSmaW4zqvhB0bqcXsiYeKxxvmJw2T27qOEZ3T/4HcbLMo?=
+ =?us-ascii?Q?edQRqIeB1xdh18KFS/XyXaPNr93WJpYHxB1BTupL/RjertdCwRN7X8PYaKVE?=
+ =?us-ascii?Q?ZWNi4AHl87UsZorUGJw35CVe7gtGuggcufo9DNfRDhX5oi1a7ntbz8IOIbfN?=
+ =?us-ascii?Q?bjBzti5CEylZtXSlI1QwN2xBHqaWFC99Csp6dIc3ps9i76Ik25ze0XQ3fQ7g?=
+ =?us-ascii?Q?K1QwZ3VCg46urj+jfIkI3OIc/fRHqkmqNKrUxbcvXvP8qz/2pjUdvjuOOtDz?=
+ =?us-ascii?Q?PHzk4uG52ONp6aKW9HLEByOx3Mfibm2Qaqt7BdyVwzuyDBF0Jw0vHayKbTQL?=
+ =?us-ascii?Q?T89SPicSz6M14SUjTMkW/J7jaHNOUVYAPaNevXiYPc5JoX2xNcyi1DttsjG2?=
+ =?us-ascii?Q?56NQhO6xeD/EcVF9H3UgOwGnFjYbIad5dBVIgcqBLy2BejyaSMXaq/45ThQ3?=
+ =?us-ascii?Q?xYD93KeJU/e0do352kxWPiSpyqXDufBYaeowbSSlKKXpVc+FpofXV3TmXD/k?=
+ =?us-ascii?Q?70rNCF3oHpe1tIh8MHw=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: baa9f4d1-c3ba-475f-a94a-08d9f0ccd02b
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB4181.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2022 21:47:50.8351 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IhoZ4gE7jeglok5iYA+44CwEXi2iabe4Qob6thHMAiA/XS7CjxBgKl0/qaM2oGIu
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5217
+X-Mailman-Approved-At: Tue, 15 Feb 2022 21:54:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,33 +122,55 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Prike Liang <Prike.Liang@amd.com>
+Cc: Alex Sierra <alex.sierra@amd.com>, rcampbell@nvidia.com,
+ willy@infradead.org, David Hildenbrand <david@redhat.com>, apopple@nvidia.com,
+ amd-gfx@lists.freedesktop.org, linux-xfs@vger.kernel.org, linux-mm@kvack.org,
+ jglisse@redhat.com, dri-devel@lists.freedesktop.org, akpm@linux-foundation.org,
+ linux-ext4@vger.kernel.org, Christoph Hellwig <hch@lst.de>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Prike Liang <Prike.Liang@amd.com>
+On Tue, Feb 15, 2022 at 04:35:56PM -0500, Felix Kuehling wrote:
+> 
+> On 2022-02-15 14:41, Jason Gunthorpe wrote:
+> > On Tue, Feb 15, 2022 at 07:32:09PM +0100, Christoph Hellwig wrote:
+> > > On Tue, Feb 15, 2022 at 10:45:24AM -0400, Jason Gunthorpe wrote:
+> > > > > Do you know if DEVICE_GENERIC pages would end up as PageAnon()? My
+> > > > > assumption was that they would be part of a special mapping.
+> > > > We need to stop using the special PTEs and VMAs for things that have a
+> > > > struct page. This is a mistake DAX created that must be undone.
+> > > Yes, we'll get to it.  Maybe we can do it for the non-DAX devmap
+> > > ptes first given that DAX is more complicated.
+> > Probably, I think we can check the page->pgmap type to tell the
+> > difference.
+> > 
+> > I'm not sure how the DEVICE_GENERIC can work without this, as DAX was
+> > made safe by using the unmap_mapping_range(), which won't work
+> > here. Is there some other trick being used to keep track of references
+> > inside the AMD driver?
+> 
+> Not sure I'm following all the discussion about VMAs and DAX. So I may be
+> answering the wrong question: We treat each ZONE_DEVICE page as a reference
+> to the BO (buffer object) that backs the page. We increment the BO refcount
+> for each page we migrate into it. In the dev_pagemap_ops.page_free callback
+> we drop that reference. Once all pages backed by a BO are freed, the BO
+> refcount reaches 0 [*] and we can free the BO allocation.
 
-Add 3.1.6 DCE IP and assign relevant sw DM function for the new DCE.
+Userspace does
+ 1) mmap(MAP_PRIVATE) to allocate anon memory
+ 2) something to trigger migration to install a ZONE_DEVICE page
+ 3) munmap()
 
-Signed-off-by: Prike Liang <Prike.Liang@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 1 +
- 1 file changed, 1 insertion(+)
+Who decrements the refcout on the munmap?
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index babc0ab3208e..8fa3cf8dad48 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -1366,6 +1366,7 @@ static int amdgpu_discovery_set_display_ip_blocks(struct amdgpu_device *adev)
- 		case IP_VERSION(3, 0, 1):
- 		case IP_VERSION(3, 1, 2):
- 		case IP_VERSION(3, 1, 3):
-+		case IP_VERSION(3, 1, 6):
- 			amdgpu_device_ip_block_add(adev, &dm_ip_block);
- 			break;
- 		default:
--- 
-2.34.1
+When a ZONE_DEVICE page is installed in the PTE is supposed to be
+marked as pte_devmap and that disables all the normal page refcounting
+during munmap().
 
+fsdax makes this work by working the refcounts backwards, the page is
+refcounted while it exists in the driver, when the driver decides to
+remove it then unmap_mapping_range() is called to purge it from all
+PTEs and then refcount is decrd. munmap/fork/etc don't change the
+refcount.
+
+Jason
