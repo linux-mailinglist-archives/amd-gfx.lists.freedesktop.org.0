@@ -2,79 +2,79 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E85144B6E5F
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 15:09:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 959794B6E63
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 15:09:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6AE110E5A3;
-	Tue, 15 Feb 2022 14:09:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05FAE10E5A8;
+	Tue, 15 Feb 2022 14:09:11 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EA1910E497
- for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 12:03:23 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE6F6892D5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 12:15:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1644926602;
+ s=mimecast20190719; t=1644927344;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=eJ2zSixnYCAtbdhrKQS4IEmcF85JqpZRJkneSkqAfms=;
- b=SrI7U1ILAwiWWMS3LqlE89EJDSuRmvStR1E+3iVXCaqMNWav6ZTBxBc9ugVSLPsm1D/Rmp
- Hw+0qfZSLtRAhhVaazbwj/RFYzznQFXbOwMYYSndTHKfFBPYp9G4LIydUFZ0b1s9Yc6k5Z
- PXeXFan2Qx8Wa0HyoH+FZgPMwaYlyA8=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=li59JkksonHEim8N19eLLyTcVUoQZhmnR79T7jisS84=;
+ b=N0ndL/Cn1apaefDfSHrZwZ2y/ErqTpF5dQFg/JTMuuDjJ/uaY4s7boj386eVVG10LTOelr
+ Fo/kIn2mSDeYLpZ6VOJ2Ueau3MKKrbpJDLxEx5Ewzw+gmEvmPeYACdAIYd7XHJ0oaRJ/As
+ r3YA2PQpQXoZZRHW77or5x2WGv9Rmuc=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-346-XgNunwKNOzWY2hvTUQF5cw-1; Tue, 15 Feb 2022 07:03:19 -0500
-X-MC-Unique: XgNunwKNOzWY2hvTUQF5cw-1
-Received: by mail-wr1-f71.google.com with SMTP id
- v17-20020adfc5d1000000b001e6405c2b56so3262765wrg.7
- for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 04:03:19 -0800 (PST)
+ us-mta-59-tvkpFWvTPViGs7VYWAfnmw-1; Tue, 15 Feb 2022 07:15:41 -0500
+X-MC-Unique: tvkpFWvTPViGs7VYWAfnmw-1
+Received: by mail-wm1-f72.google.com with SMTP id
+ a17-20020a05600c069100b0037bb7eb6944so1978436wmn.2
+ for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 04:15:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent
  :content-language:to:cc:references:from:organization:subject
  :in-reply-to:content-transfer-encoding;
- bh=eJ2zSixnYCAtbdhrKQS4IEmcF85JqpZRJkneSkqAfms=;
- b=i6z9WioSE0WhJ5dCILmMV+ujf4F4jIFWaq4kCSx3DubZivWZrh/8XnBlFSyTkqpASo
- IEMsxTa3X2aYlx8+DR8fGAzTJLZd+S0i06oXk4jdLQZrD0redoFQ84swGw3Nr7uujUAJ
- SpmjK1DheeGfWia+8JTQ8dSQsOUTllMJ6gjOiBhlcJOt8mNG+CTAmRG0crJ14lNySYO+
- TuwAG/Zfuy8Ap4vZhg/5sr1W884Brd+MBM3G0PcftxZEoFBnQashgY0Tp3zxynpXyjwV
- NAD6I7K1gdO/eKP/SdcOz4LRPnOtaPp805AumYhWvzRa/LmoM2nI/gSWdWDJj+KIwm4/
- 4Apw==
-X-Gm-Message-State: AOAM532ZQwigOmhVzSUwaUhJ6J3tvre+7QevtYIN9n3GN4sD4t4BUfL0
- 3dUaGx3j6TzowrzCU64C6ql4T3OLPfrLXLdKHQ45gHFHnr1SmE8OAEMO6aS4mmin2qxWEYalWET
- XubODdCIXrt3v9T5avrOVXvITqQ==
-X-Received: by 2002:a7b:cf29:0:b0:34c:744b:9145 with SMTP id
- m9-20020a7bcf29000000b0034c744b9145mr2859996wmg.2.1644926598081; 
- Tue, 15 Feb 2022 04:03:18 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyVn6arGJnSNGfD+b4A3E/kx0IOIn+MKt17+0+8YvZsz8aYYMdhfF9xxDoZPpXOOhK1bges5w==
-X-Received: by 2002:a7b:cf29:0:b0:34c:744b:9145 with SMTP id
- m9-20020a7bcf29000000b0034c744b9145mr2859969wmg.2.1644926597804; 
- Tue, 15 Feb 2022 04:03:17 -0800 (PST)
+ bh=li59JkksonHEim8N19eLLyTcVUoQZhmnR79T7jisS84=;
+ b=u8qKGC/Jy59kX1IK6u+nkGOaWMVU+FExGaaYMKigqBY+YfS2WESwJC6ZvWLHn47yEi
+ 8Mz3DDvnERyi0kPnOkuy505LeA+7owFWylnXXLFjCaI0FhRTVqVLUpfvxrmz9/uQk8sH
+ FKXSBEcwjEE6gLA04mcbLdCyDnL6VtR9vkQSbb9EqFCXYyqnZBidgLWsfcY/Pxdla4Hz
+ p3XDIdTzJmaR7tY0Gbo5fzAo91iFkY4qxoxUKuErRBL63Xw1Wpy8CH0e9becwq2fF4Ib
+ idwKcg9yLtsf0lpgqWTqaYp6w2T9oatNNi3fojIQpS0f9Klbcl0EyR1rFK6zcix+bx9e
+ 4mzQ==
+X-Gm-Message-State: AOAM530lxF1xRO1RkV58dszYyQ4qQHMWpZ6i3UHiqjzTX8ArbYLlMz/a
+ otTmwYSNnMGhPIF1KFMS4EYi9VyyY1l2Gj+XY9zevRnzuVklY1myLVwu8+XFnfjo9NWrXX2lBD2
+ yswRpVp/ZYasbpNjbUJOlle5iQg==
+X-Received: by 2002:a05:6000:2ac:: with SMTP id
+ l12mr3048029wry.639.1644927339846; 
+ Tue, 15 Feb 2022 04:15:39 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzkXiKIPDmUKc3peLAnxWMPOpVfO+YZVnwiubxG8ybWR9d1yWHVTQW3fpFRYPoIV1z4/FG1xQ==
+X-Received: by 2002:a05:6000:2ac:: with SMTP id
+ l12mr3047997wry.639.1644927339488; 
+ Tue, 15 Feb 2022 04:15:39 -0800 (PST)
 Received: from ?IPV6:2003:cb:c70e:3700:9260:2fb2:742d:da3e?
  (p200300cbc70e370092602fb2742dda3e.dip0.t-ipconnect.de.
  [2003:cb:c70e:3700:9260:2fb2:742d:da3e])
- by smtp.gmail.com with ESMTPSA id c8sm18784645wmq.39.2022.02.15.04.03.16
+ by smtp.gmail.com with ESMTPSA id u3sm18392835wmm.0.2022.02.15.04.15.38
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 15 Feb 2022 04:03:17 -0800 (PST)
-Message-ID: <50e2ee65-98a5-fd2f-3b58-b5be5c13c18b@redhat.com>
-Date: Tue, 15 Feb 2022 13:03:15 +0100
+ Tue, 15 Feb 2022 04:15:39 -0800 (PST)
+Message-ID: <7b830dc4-37bc-fb7b-c094-16595bd2a128@redhat.com>
+Date: Tue, 15 Feb 2022 13:15:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.4.0
-To: Alistair Popple <apopple@nvidia.com>, akpm@linux-foundation.org,
- linux-mm@kvack.org
-References: <cover.0d3c846b1c6c294e055ff7ebe221fab9964c1436.1644207242.git-series.apopple@nvidia.com>
- <1894939.704c7Wv018@nvdebian>
- <fb557284-bcab-6d95-ac60-acd7459e9e80@redhat.com>
- <5251686.PpEh1BJ82l@nvdebian>
+To: Jason Gunthorpe <jgg@nvidia.com>
+References: <20220201154901.7921-1-alex.sierra@amd.com>
+ <20220201154901.7921-2-alex.sierra@amd.com>
+ <beb38138-2266-1ff8-cc82-8fe914bed862@redhat.com>
+ <20220211164537.GO4160@nvidia.com>
+ <6a8df47e-96d0-ffaf-247a-acc504e2532b@redhat.com>
+ <20220211165624.GP4160@nvidia.com>
 From: David Hildenbrand <david@redhat.com>
 Organization: Red Hat
-Subject: Re: [PATCH v2 2/3] mm/gup.c: Migrate device coherent pages when
- pinning instead of failing
-In-Reply-To: <5251686.PpEh1BJ82l@nvdebian>
+Subject: Re: [PATCH v6 01/10] mm: add zone device coherent type memory support
+In-Reply-To: <20220211165624.GP4160@nvidia.com>
 Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=david@redhat.com
 X-Mimecast-Spam-Score: 0
@@ -94,203 +94,61 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alex.sierra@amd.com, rcampbell@nvidia.com, willy@infradead.org,
- jhubbard@nvidia.com, Felix.Kuehling@amd.com, dri-devel@lists.freedesktop.org,
- linux-xfs@vger.kernel.org, jglisse@redhat.com, amd-gfx@lists.freedesktop.org,
- jgg@nvidia.com, linux-ext4@vger.kernel.org, hch@lst.de
+Cc: Alex Sierra <alex.sierra@amd.com>, rcampbell@nvidia.com,
+ willy@infradead.org, Felix.Kuehling@amd.com, apopple@nvidia.com,
+ amd-gfx@lists.freedesktop.org, linux-xfs@vger.kernel.org, linux-mm@kvack.org,
+ jglisse@redhat.com, dri-devel@lists.freedesktop.org, akpm@linux-foundation.org,
+ linux-ext4@vger.kernel.org, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 11.02.22 00:41, Alistair Popple wrote:
-> On Thursday, 10 February 2022 10:47:35 PM AEDT David Hildenbrand wrote:
->> On 10.02.22 12:39, Alistair Popple wrote:
->>> On Thursday, 10 February 2022 9:53:38 PM AEDT David Hildenbrand wrote:
->>>> On 07.02.22 05:26, Alistair Popple wrote:
->>>>> Currently any attempts to pin a device coherent page will fail. This is
->>>>> because device coherent pages need to be managed by a device driver, and
->>>>> pinning them would prevent a driver from migrating them off the device.
->>>>>
->>>>> However this is no reason to fail pinning of these pages. These are
->>>>> coherent and accessible from the CPU so can be migrated just like
->>>>> pinning ZONE_MOVABLE pages. So instead of failing all attempts to pin
->>>>> them first try migrating them out of ZONE_DEVICE.
->>>>>
->>>>> Signed-off-by: Alistair Popple <apopple@nvidia.com>
->>>>> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
->>>>> ---
->>>>>
->>>>> Changes for v2:
->>>>>
->>>>>  - Added Felix's Acked-by
->>>>>  - Fixed missing check for dpage == NULL
->>>>>
->>>>>  mm/gup.c | 105 ++++++++++++++++++++++++++++++++++++++++++++++++++------
->>>>>  1 file changed, 95 insertions(+), 10 deletions(-)
->>>>>
->>>>> diff --git a/mm/gup.c b/mm/gup.c
->>>>> index 56d9577..5e826db 100644
->>>>> --- a/mm/gup.c
->>>>> +++ b/mm/gup.c
->>>>> @@ -1861,6 +1861,60 @@ struct page *get_dump_page(unsigned long addr)
->>>>>  
->>>>>  #ifdef CONFIG_MIGRATION
->>>>>  /*
->>>>> + * Migrates a device coherent page back to normal memory. Caller should have a
->>>>> + * reference on page which will be copied to the new page if migration is
->>>>> + * successful or dropped on failure.
->>>>> + */
->>>>> +static struct page *migrate_device_page(struct page *page,
->>>>> +					unsigned int gup_flags)
->>>>> +{
->>>>> +	struct page *dpage;
->>>>> +	struct migrate_vma args;
->>>>> +	unsigned long src_pfn, dst_pfn = 0;
->>>>> +
->>>>> +	lock_page(page);
->>>>> +	src_pfn = migrate_pfn(page_to_pfn(page)) | MIGRATE_PFN_MIGRATE;
->>>>> +	args.src = &src_pfn;
->>>>> +	args.dst = &dst_pfn;
->>>>> +	args.cpages = 1;
->>>>> +	args.npages = 1;
->>>>> +	args.vma = NULL;
->>>>> +	migrate_vma_setup(&args);
->>>>> +	if (!(src_pfn & MIGRATE_PFN_MIGRATE))
->>>>> +		return NULL;
->>>>> +
->>>>> +	dpage = alloc_pages(GFP_USER | __GFP_NOWARN, 0);
->>>>> +
->>>>> +	/*
->>>>> +	 * get/pin the new page now so we don't have to retry gup after
->>>>> +	 * migrating. We already have a reference so this should never fail.
->>>>> +	 */
->>>>> +	if (dpage && WARN_ON_ONCE(!try_grab_page(dpage, gup_flags))) {
->>>>> +		__free_pages(dpage, 0);
->>>>> +		dpage = NULL;
->>>>> +	}
->>>>> +
->>>>> +	if (dpage) {
->>>>> +		lock_page(dpage);
->>>>> +		dst_pfn = migrate_pfn(page_to_pfn(dpage));
->>>>> +	}
->>>>> +
->>>>> +	migrate_vma_pages(&args);
->>>>> +	if (src_pfn & MIGRATE_PFN_MIGRATE)
->>>>> +		copy_highpage(dpage, page);
->>>>> +	migrate_vma_finalize(&args);
->>>>> +	if (dpage && !(src_pfn & MIGRATE_PFN_MIGRATE)) {
->>>>> +		if (gup_flags & FOLL_PIN)
->>>>> +			unpin_user_page(dpage);
->>>>> +		else
->>>>> +			put_page(dpage);
->>>>> +		dpage = NULL;
->>>>> +	}
->>>>> +
->>>>> +	return dpage;
->>>>> +}
->>>>> +
->>>>> +/*
->>>>>   * Check whether all pages are pinnable, if so return number of pages.  If some
->>>>>   * pages are not pinnable, migrate them, and unpin all pages. Return zero if
->>>>>   * pages were migrated, or if some pages were not successfully isolated.
->>>>> @@ -1888,15 +1942,40 @@ static long check_and_migrate_movable_pages(unsigned long nr_pages,
->>>>>  			continue;
->>>>>  		prev_head = head;
->>>>>  		/*
->>>>> -		 * If we get a movable page, since we are going to be pinning
->>>>> -		 * these entries, try to move them out if possible.
->>>>> +		 * Device coherent pages are managed by a driver and should not
->>>>> +		 * be pinned indefinitely as it prevents the driver moving the
->>>>> +		 * page. So when trying to pin with FOLL_LONGTERM instead try
->>>>> +		 * migrating page out of device memory.
->>>>>  		 */
->>>>>  		if (is_dev_private_or_coherent_page(head)) {
->>>>> +			/*
->>>>> +			 * device private pages will get faulted in during gup
->>>>> +			 * so it shouldn't be possible to see one here.
->>>>> +			 */
->>>>>  			WARN_ON_ONCE(is_device_private_page(head));
->>>>> -			ret = -EFAULT;
->>>>> -			goto unpin_pages;
->>>>> +			WARN_ON_ONCE(PageCompound(head));
->>>>> +
->>>>> +			/*
->>>>> +			 * migration will fail if the page is pinned, so convert
->>>>> +			 * the pin on the source page to a normal reference.
->>>>> +			 */
->>>>> +			if (gup_flags & FOLL_PIN) {
->>>>> +				get_page(head);
->>>>> +				unpin_user_page(head);
->>>>> +			}
->>>>> +
->>>>> +			pages[i] = migrate_device_page(head, gup_flags);
->>>>
->>>> For ordinary migrate_pages(), we'll unpin all pages and return 0 so the
->>>> caller will retry pinning by walking the page tables again.
->>>>
->>>> Why can't we apply the same mechanism here? This "let's avoid another
->>>> walk" looks unnecessary complicated to me, but I might be wrong.
+On 11.02.22 17:56, Jason Gunthorpe wrote:
+> On Fri, Feb 11, 2022 at 05:49:08PM +0100, David Hildenbrand wrote:
+>> On 11.02.22 17:45, Jason Gunthorpe wrote:
+>>> On Fri, Feb 11, 2022 at 05:15:25PM +0100, David Hildenbrand wrote:
 >>>
->>> There's no reason we couldn't. I figured we have the page in the right spot
->>> anyway so it was easy to do, and looking at this rebased on top of Christoph's
->>> ZONE_DEVICE refcount simplification I'm not sure it would be any simpler
->>> anyway.
+>>>> ... I'm pretty sure we cannot FOLL_PIN DEVICE_PRIVATE pages
 >>>
->>> It would remove the call to try_grab_page(), but we'd still have to return an
->>> error on migration failures whilst also ensuring we putback any non-device
->>> pages that may have been isolated. I might have overlooked something though,
->>> so certainly happy for suggestions.
+>>> Currently the only way to get a DEVICE_PRIVATE page out of the page
+>>> tables is via hmm_range_fault() and that doesn't manipulate any ref
+>>> counts.
 >>
->> Staring at the code, I was wondering if we could either
->>
->> * build a second list of device coherent pages to migrate and call a
->>   migrate_device_pages() bulk function
->> * simply use movable_page_list() and teach migrate_pages() how to handle
->>   them.
+>> Thanks for clarifying Jason! ... and AFAIU, device exclusive entries are
+>> essentially just pointers at ordinary PageAnon() pages. So with DEVICE
+>> COHERENT we'll have the first PageAnon() ZONE_DEVICE pages mapped as
+>> present in the page tables where GUP could FOLL_PIN them.
 > 
+> This is my understanding
+> 
+> Though you probably understand what PageAnon means alot better than I
+> do.. I wonder if it really makes sense to talk about that together
+> with ZONE_DEVICE which has alot in common with filesystem originated
+> pages too.
 
-(sorry for the late reply)
+For me, PageAnon() means that modifications are visible only to the
+modifying process. On actual CoW, the underlying page will get replaced
+-- in the world of DEVICE_COHERENT that would mean that once you write
+to a DEVICE_COHERENT you could suddenly have a !DEVICE_COHERENT page.
 
-> I did consider that approach. The problem is zone device pages are not LRU
-> pages. In particular page->lru is not available to add the page to a list, and
-> as an external API and internally migrate_pages() relies heavily on moving
-> pages between lists.
+PageAnon() pages don't have a mapping, thus they can only be found in
+MAP_ANON VMAs or in MAP_SHARED VMAs with MAP_PRIVATE. They can only be
+found via a page table, and not looked up via the page cache (excluding
+the swap cache).
 
-I see, so I assume there is no way we could add them to a list? We could
-use a temporary array we'd try allocating once we stumble over over such
-a device page that needs migration.
+So if we have PageAnon() pages on ZONE_DEVICE, they generally have the
+exact same semantics as !ZONE_DEVICE pages, but the way they "appear" in
+the page tables the allocation/freeing path differs -- I guess :)
 
-The you'd teach is_pinnable_page() to reject
-is_dev_private_or_coherent_page() and special case
-is_dev_private_or_coherent_page() under the "if
-(!is_pinnable_page(head))" check.
-
-You'd grab an additional reference and add them to the temp array. The
-you'd just proceed as normal towards the end of the function (reverting
-the pin/ref from the input array) and would try to migrate all device
-pages in the temp array just before migrate_pages() --
-migrate_device_pages(), properly handling/indicating if either migration
-path fails.
-
-Instead of putback_movable_pages() on the list you'd had
-unref_device_pages() and supply the array.
-
-
-Just a thought to limit the impact and eventually make it a bit nicer to
-read, avoiding modifications of the input array.
+... and as we want pinning semantics to be different we have to touch GUP.
 
 > 
->> I'd really appreciate as little special casing as possible for the ever
->> growing list of new DEVICE types all over the place. E.g., just staring
->> at fork even before the new device coherent made my head spin.
-> 
-> That's fair. We could pull the checks for device pages out into a self
-> contained function (eg. check_and_migrate_device_pages()) called before
-> check_and_migrate_movable_pages(). The down side of that is we'd always have an
-> extra loop over all the pages just to scan for device pages, but perhaps that's
-> not a concern?
+> I'm not sure what AMDs plan is here, is there an expecation that a GPU
+> driver will somehow stuff these pages into an existing anonymous
+> memory VMA or do they always come from a driver originated VMA?
 
-I mean, they are movable ... just not "ordinarily" movable, so it smells
-like this logic belongs into check_and_migrate_movable_pages() :)
+My understanding is that a driver can just decide to replace "ordinary"
+PageAnon() pages e.g., in a MAP_ANON VMA by these pages. Hopefully AMD
+can clarify.
 
 
 -- 
