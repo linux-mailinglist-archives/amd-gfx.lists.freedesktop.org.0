@@ -1,179 +1,87 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 932AD4B6E5D
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 15:09:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E85144B6E5F
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 15:09:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74D3410E5A1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6AE110E5A3;
 	Tue, 15 Feb 2022 14:09:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 426 seconds by postgrey-1.36 at gabe;
- Tue, 15 Feb 2022 09:52:49 UTC
-Received: from esa2.hc3370-68.iphmx.com (esa2.hc3370-68.iphmx.com
- [216.71.145.153])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB82610E429;
- Tue, 15 Feb 2022 09:52:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=citrix.com; s=securemail; t=1644918769;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=iw8WzCaDfNAox61c1XTlHvprnyEm93V7Mqc/NxaYPBw=;
- b=IliR9dZsfqY6kFKzpp4zJo6Tn4Em23bXl1rC0CP59UJOkhEcUJIHKV9L
- Yeu3EF1zqdc4Ln+p6JJLbsOS+zHXtRRVCDDHQnozaK4Ed7KM5pdT/FkG9
- gdDQSSh6B/GwpKAz4v3/9acFgxuYWgMYFmAJ6mOgA9M4ZjfL0zvztkE7C k=;
-Authentication-Results: esa2.hc3370-68.iphmx.com;
- dkim=pass (signature verified)
- header.i=@citrix.onmicrosoft.com
-IronPort-SDR: Wy0OJLz6BuLKyYyzm2UoNMMOAxz6G/3neQcF9aSpcIkhlg978QlODMMVsPPe3DjUQ6eUeSIp/n
- QCthxswFYy1Li6iyC2ZtdJHyNrkEtlM/dJ0mZo+66T22pj6nB9njXhj83O6ONETK/QicZW5wlU
- opmuewDGpJvhcKVUKcG73ea1cuyrrUmc8Oet+JEl0zRkXdWBKLXmJo94XBUDUJudcj5rt8BtvF
- GHjdDsFOUt9K3t/++aa6dj2bPfJTHQwcNP3FvGRMMHD6Z8J9WbzVRwNVJL4cgkHj2UAE6Ds4s+
- 6Tm7v4IVEWwyQ4Vi2lgpkYS8
-X-SBRS: 5.1
-X-MesageID: 64225888
-X-Ironport-Server: esa2.hc3370-68.iphmx.com
-X-Remote-IP: 162.221.156.83
-X-Policy: $RELAYED
-IronPort-Data: A9a23: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
- NBConD9M3BdGH2yqTr/MhBjvdpa+w==
-IronPort-HdrOrdr: A9a23:W5eZqKtRS/7uml8SUMgj8fDR7skC7oMji2hC6mlwRA09TyXGra
- +TdaUguSMc1gx9ZJhBo7G90KnpewK6yXdQ2/hqAV7EZniahILIFvAY0WKG+VPd8kLFh4xgPM
- tbAs1D4ZjLfCRHZKXBkXiF+rQbsaC6GcmT7I+0pRcdLj2CKZsQlzuRYjzrbHGeLzM2Y6bReq
- Dsgvau8FGbCAsqh4mAdzI4dtmGg+eOuIPtYBYACRJiwA6SjQmw4Lq/NxSDxB8RXx5G3L9nqA
- H+4kHEz5Tml8v+5g7X1mfV4ZgTsNz9yuFbDMjJrsQOMD3jhiuheYwkcbyfuzIepv2p9T8R4Z
- PxiiZlG/42x2Laf2mzrxeo8w780Aw243un8lOciWuLm72OeBsKT+56wa5JeBrQ7EQt+Ptm1r
- hQ4m6fv51LSTvdgSXU/bHzJl9Xv3vxhUBnvf8YjnRZX4dbQqRWt5Yj8ERcF4pFND7m6bogDP
- JlAKjnlblrmGuhHjDkV1RUsZ+RtixZJGbFfqFCgL3Y79FupgE586NCr/Zv20vp9/oGOu55Dq
- r/Q+BVfYp1P7wrhJRGdZM8qPuMexzwqC33QRCvyHTcZeg60iH22tbKCItc3pDeRHVP9up0pK
- j8
-X-IronPort-AV: E=Sophos;i="5.88,370,1635220800"; d="scan'208";a="64225888"
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ilaZ4q+uZdIfts/UFRJeZaM0CaSfhaUI5TOPze+hbufN+hwg5iWKU+RMjTQULAQhBl99p2QyPToVJweQ/2ilYug59c0JmprjOLhZQDG3ejuxIG3vDoO0TxH0SaQ7yxEQUOyLKzn+g3tF9cpUGtvN39RVhZB0k4Bn6TaPQYvfReDO92Mm3wU89wkzKZM5UHWITDAoRioOk6YKm9ad92P2EEW1CRQvEXwPwvrp3TQpF8GLXF/DYX0A/fiv8r59VxMGtizra6BUFqJMriKPpsMKvytZTVuuJKyyn/BIQHU9Pn4Dsqql31vGLQN6XmAN/jFRqCVGbmcWhsovVEp5APThpg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZGfL1e1bMDpYfkGiAfrTfHC/8z7eJZ5Kbc5EER5I8Tw=;
- b=g8+HFMAudfrhF88CIlb9USB4nGjlF4auwIeYzZnxFXCbg4+gjWXDgsLiW9mvxTxKAEODZFjcJKVOuXG/mF3DCc7SCg1VEcDmUELS2FfIxT8QnTqBPzAKehh4uJaOe2+JRGiwEwsl83tEXLkmZfZ1UVKZI3aFbEBTwUYI0VaFPSy8z44kxcHyi1KIMWk5JOyMQDbw3ytlnrJxtt2P0Ak+nfRHoQGM0P/y6k6GkeXE/yIZVVjNDuAfd7IwCCExqvi/PqougbcOZOoylnhjhZiEDYZh3XXTUg9NGy7ixAEK4As9so8okofMIfEnghM1FKJ8wDzzGnaHEY3AKmQLzKp0Sg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=citrix.onmicrosoft.com; s=selector2-citrix-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZGfL1e1bMDpYfkGiAfrTfHC/8z7eJZ5Kbc5EER5I8Tw=;
- b=LNgn9kWhTFP+qaoGPYjaMJr97wkw5aM0jbMVOU7Zv52knzicKXInSAw1GEuD41okAti8/upRUcKLszQsdhK0QdJnyaldk8J2RyLbEgygJkEHUHc948p5HPE44gTp7XPKG4mvavfpk18SKQZVCkGgxiQynn4n3GQQdGMc3DnvsYg=
-Date: Tue, 15 Feb 2022 10:45:34 +0100
-From: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>
-To: Qing Wang <wangqing@vivo.com>
-Subject: Re: [PATCH V3 1/13] block: xen: use time_is_before_eq_jiffies()
- instead of open coding it
-Message-ID: <Ygt2Pr26MHOMGgR1@Air-de-Roger>
-References: <1644890154-64915-1-git-send-email-wangqing@vivo.com>
- <1644890154-64915-2-git-send-email-wangqing@vivo.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1644890154-64915-2-git-send-email-wangqing@vivo.com>
-X-ClientProxiedBy: LO3P265CA0004.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:bb::9) To DS7PR03MB5608.namprd03.prod.outlook.com
- (2603:10b6:5:2c9::18)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EA1910E497
+ for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 12:03:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1644926602;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=eJ2zSixnYCAtbdhrKQS4IEmcF85JqpZRJkneSkqAfms=;
+ b=SrI7U1ILAwiWWMS3LqlE89EJDSuRmvStR1E+3iVXCaqMNWav6ZTBxBc9ugVSLPsm1D/Rmp
+ Hw+0qfZSLtRAhhVaazbwj/RFYzznQFXbOwMYYSndTHKfFBPYp9G4LIydUFZ0b1s9Yc6k5Z
+ PXeXFan2Qx8Wa0HyoH+FZgPMwaYlyA8=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-346-XgNunwKNOzWY2hvTUQF5cw-1; Tue, 15 Feb 2022 07:03:19 -0500
+X-MC-Unique: XgNunwKNOzWY2hvTUQF5cw-1
+Received: by mail-wr1-f71.google.com with SMTP id
+ v17-20020adfc5d1000000b001e6405c2b56so3262765wrg.7
+ for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 04:03:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent
+ :content-language:to:cc:references:from:organization:subject
+ :in-reply-to:content-transfer-encoding;
+ bh=eJ2zSixnYCAtbdhrKQS4IEmcF85JqpZRJkneSkqAfms=;
+ b=i6z9WioSE0WhJ5dCILmMV+ujf4F4jIFWaq4kCSx3DubZivWZrh/8XnBlFSyTkqpASo
+ IEMsxTa3X2aYlx8+DR8fGAzTJLZd+S0i06oXk4jdLQZrD0redoFQ84swGw3Nr7uujUAJ
+ SpmjK1DheeGfWia+8JTQ8dSQsOUTllMJ6gjOiBhlcJOt8mNG+CTAmRG0crJ14lNySYO+
+ TuwAG/Zfuy8Ap4vZhg/5sr1W884Brd+MBM3G0PcftxZEoFBnQashgY0Tp3zxynpXyjwV
+ NAD6I7K1gdO/eKP/SdcOz4LRPnOtaPp805AumYhWvzRa/LmoM2nI/gSWdWDJj+KIwm4/
+ 4Apw==
+X-Gm-Message-State: AOAM532ZQwigOmhVzSUwaUhJ6J3tvre+7QevtYIN9n3GN4sD4t4BUfL0
+ 3dUaGx3j6TzowrzCU64C6ql4T3OLPfrLXLdKHQ45gHFHnr1SmE8OAEMO6aS4mmin2qxWEYalWET
+ XubODdCIXrt3v9T5avrOVXvITqQ==
+X-Received: by 2002:a7b:cf29:0:b0:34c:744b:9145 with SMTP id
+ m9-20020a7bcf29000000b0034c744b9145mr2859996wmg.2.1644926598081; 
+ Tue, 15 Feb 2022 04:03:18 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyVn6arGJnSNGfD+b4A3E/kx0IOIn+MKt17+0+8YvZsz8aYYMdhfF9xxDoZPpXOOhK1bges5w==
+X-Received: by 2002:a7b:cf29:0:b0:34c:744b:9145 with SMTP id
+ m9-20020a7bcf29000000b0034c744b9145mr2859969wmg.2.1644926597804; 
+ Tue, 15 Feb 2022 04:03:17 -0800 (PST)
+Received: from ?IPV6:2003:cb:c70e:3700:9260:2fb2:742d:da3e?
+ (p200300cbc70e370092602fb2742dda3e.dip0.t-ipconnect.de.
+ [2003:cb:c70e:3700:9260:2fb2:742d:da3e])
+ by smtp.gmail.com with ESMTPSA id c8sm18784645wmq.39.2022.02.15.04.03.16
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 15 Feb 2022 04:03:17 -0800 (PST)
+Message-ID: <50e2ee65-98a5-fd2f-3b58-b5be5c13c18b@redhat.com>
+Date: Tue, 15 Feb 2022 13:03:15 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 32826cc3-a767-4fe8-891b-08d9f067ec86
-X-MS-TrafficTypeDiagnostic: MWHPR03MB3053:EE_
-X-Microsoft-Antispam-PRVS: <MWHPR03MB3053FA0087E2C31570D06F3F8F349@MWHPR03MB3053.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2276;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XwIKyJ1rEAvRB1r6HE88BUpHD6Uz5+G+3zSYNOGigqz7NUTie21YXIqvuU92NqBmDn1nEe6TixP1P9GtV9kGSmnT8Vwgc19Z2lp3C4QZ6/CjCW59WUnCC45bousTjDOBRst8ivXWUQzhtLh35raiJeMPVuhETHIRYjwMsGFYAqcpzk4mHMkhYh4BM41r3YSHn81+32lkPMR8hfMfpv9TGrljmgUFDf9LjzTsKggo3sGJX1sw7aKO27JkXUWgVJghQ7JdIzLPYk+6xRJ1fQggmAEygybuwCCmWXUgCm17rAoi/5cP9XIT/1fxDEWXHqkJml+tMDNRXFTkgkYw+HZRfyXM5fHpZSNaaOyakz9OrexvvD9kHh7aRZefDTkBvUVEpbunNo1Vx2iJ/4jRRbcodDeOi5y44NK+xRwMAiOtVj4dRdvAH3ADF69BndhDJlfK6AUZ4708oRQIQLpFj4jdHSIWgPzy6pfn2A4ZGn/2q5lg39/1u4llA3xZrWUCszX0SaDzb5nZjppoq0bHWESPRtGwqBIpiqKf5lLczaJnAQk1VFU1D6Go3axvQa1KAIDY0Fp12NNs8kw5rkQLTF94F3BJQ2ZRH4Hy6AmY/9nOcwHQ6lx8eMfqJjl2XCUxqxowKpwaYYEp6NaUnEJSSKDJHQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR03MB5608.namprd03.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(7916004)(4636009)(366004)(8676002)(66476007)(66556008)(4326008)(558084003)(9686003)(33716001)(6512007)(6666004)(86362001)(85182001)(66946007)(508600001)(8936002)(6506007)(5660300002)(7416002)(6486002)(7406005)(316002)(26005)(186003)(38100700002)(6916009)(82960400001)(2906002)(54906003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q09ReHgwWUdvalprSjFvZXhkNTBSNkl1azRTa2ZUZTBZVWNEdzhYNmtuSWxX?=
- =?utf-8?B?UWR5U2owVUUySG02WlNTdUpuRjVvNnVPdTZkMzF2MWw2QUZFWWZsT0NJakJ6?=
- =?utf-8?B?bkRpNURuYXlpQXZaWTRwQUVIa2pKTEtWOGMvbWNkcmZHNkdSK3ZaYm80UE1n?=
- =?utf-8?B?T0hwRlF4L1BpNlR3bmNDUmRYTkJUMzdGM3cxbmY5UmllUGE0M0tnSTVYNUNa?=
- =?utf-8?B?YTdLa2tNdXVmNG5JQlBQV1ZkUmRHaStOc0hEc3lpVENTd0dVYXFPbnlJbkN1?=
- =?utf-8?B?eWNNbVN2SWZPSkl0SGZEb2h3c1J5MEdMWnVRbDdtcVgvVENNRjdWMlhtZHpZ?=
- =?utf-8?B?V1RFQUI2RjNjc3lBR0pyVnRHZ01SRjBLU25GUjIzR2RPMWtvZk92Vi9tZTFR?=
- =?utf-8?B?UHNDYzExdjdrN3RjUG9pSUxFWHpXL1pQcVJJRVFVa0hUTXBEdGFyRTFkdmIv?=
- =?utf-8?B?bm9pMmt4bWdENEtwdWZMRUc4a21QR1hqbGpjS2JJbktYV3IvbVZod0NaRHFI?=
- =?utf-8?B?QUpjSk80WFlPbUlHUi9icURicW5uMGp6bkJRcDhPVjRQeklnUFBFU1A0TUcw?=
- =?utf-8?B?ZlBPd0U0RGhKUFBnb0g1TEVPajVQTERrb2hwUmZ0T2F1eVQ2VE1nYnZYWFph?=
- =?utf-8?B?b2RreDZHVEJrbjN6OEg5WVZKZW9LVTNMcVhqV2NTTWNVdHpqckU2WGJjYkNC?=
- =?utf-8?B?TzlXdCtGNmk2N05VakVPM1NJZ00yRG1meEVGOVZiNElERGxuUitIWTFDekJx?=
- =?utf-8?B?aDloV0RtUEVvWVVHVDg4QVF3L09mQlY1b1k2MmtjOWJwN0NRVWc2VC8zc2wr?=
- =?utf-8?B?S0xiOXlYK284WmJrRloyUXZZSHFYYkE4OE1TVmtRRHhNbHo0L2NnK1puOUVC?=
- =?utf-8?B?TmZWSm8wVVdhY0g5WjVnUnJkWFBJOGhsaHlOWG1hSm1MOUUwbE1XVEZ6bzVs?=
- =?utf-8?B?OCt0UGN6Umd0Q1lXM25RSTdoT0lkcUl4NklvVjFsbVk1TGk1dW95ZlZyQnc4?=
- =?utf-8?B?MzQycXFZbjBIbEZtcXRtV0pzSFk2NnRHOFpLa3pFTEFuYzdVWmF2VTRiYVZ6?=
- =?utf-8?B?Y1dNaXdORnBDSFlBa3FwdGZQSFFOL0Q5MGs1c0lMbTkxL0xwSEJiNngwV25q?=
- =?utf-8?B?am1ZNVQyUEZUNlYrZjA0OFRHenVZamlZVjd1TUVNVFZ5aEdEQ3M2UGZmZk9B?=
- =?utf-8?B?R1AzZUVqYVV5eW1kTDF0d1pJZmZ3a3NhcmMwREprWnVxOWpNRGwvbW5NcWVi?=
- =?utf-8?B?dWU3UlU2WkExSW5KR2tQMTkvVU42MnlmZ01XWGU3RGhIZUMycnJYNG96aURv?=
- =?utf-8?B?Vktxcmp0YzVaTUJhV0swRUFpUHdIbk9seG0zQlRvbWVKdldYK216THpTU2tz?=
- =?utf-8?B?REEwOHcrb0RHcXNMbkF4Nm9iQmNkMERjTi9kV1NidG4xSVVaL3gweVFmclNu?=
- =?utf-8?B?MXpla0hmU3lEVzNSLzcvdU1zNXV0cUplOHhQbmk0aHMzdS91aDBqaUk5R25o?=
- =?utf-8?B?RWNUVWtiTGVDOEZmempoV3NPMUVsS2JYbmVPaVdIK1JMaEtLbDFJaUt1NHN6?=
- =?utf-8?B?QTNoTUk0K3NCdlV3TkVrU2g1SzFLRnhkODMrVFJGcWYwT3ZwUUpwSlBmbTVB?=
- =?utf-8?B?TkQwd1Q3TFhtWHJqbTZkMWVDMEFzWEhUbUc5S3gwbkphT1ZCdkVRVnVrbk9C?=
- =?utf-8?B?b1crS1lmWlhaSjUxZG43N1ZHZTdPZ1l0d1RTQThvS2JtVGxmSmtRZXdRUDRB?=
- =?utf-8?B?T0xtNXFUWGtON2tlM05FZ25VcmdjblpaelozRnpydU0vU0F0R3BCSEFZdHY5?=
- =?utf-8?B?ay8wZzRrQ3NyZU1TL3FFVGwxeEphSzhicW1aTUUxbi9Ec042cERpSERsNkNn?=
- =?utf-8?B?YW8vOStLOWRuWStJSzYzVCt0dWk4cFpveDJnMmxDeDZjbytOb0NHOTlLUDZn?=
- =?utf-8?B?TkVoL2dRTzlHd3JON0cvV0kyck1GZlM4TEdpYnpOMjlNL29BQmRQdkdkU3lo?=
- =?utf-8?B?T2U4SEpGeDBxa1FGYUlBTjgvVXhQQndFOVVhckdDVzdFenRaMk9MSzRZMGtK?=
- =?utf-8?B?RW9EUlpZeWhIVzI3c0Yxb2JNZ2FOMUMzbG1Od2l2ZWJTYm9kMm1yNHBMR3h0?=
- =?utf-8?B?UGUxeW9TRGRPL2JaaC96L05qSCsrR09tZkxEWWVuUU5RRjlPTU5KNVBNWFM5?=
- =?utf-8?Q?RgJs9iDivClS1Q9nXOcWIRM=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32826cc3-a767-4fe8-891b-08d9f067ec86
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR03MB5608.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2022 09:45:39.1735 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 335836de-42ef-43a2-b145-348c2ee9ca5b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pCZULRE0ypM1MYAFyBxumnnbHYB9R4P24gzY44d0kV4TkZA/k/jKXVcffojdAGeVleKqo682MpIuIeFVQsferg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR03MB3053
-X-OriginatorOrg: citrix.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+To: Alistair Popple <apopple@nvidia.com>, akpm@linux-foundation.org,
+ linux-mm@kvack.org
+References: <cover.0d3c846b1c6c294e055ff7ebe221fab9964c1436.1644207242.git-series.apopple@nvidia.com>
+ <1894939.704c7Wv018@nvdebian>
+ <fb557284-bcab-6d95-ac60-acd7459e9e80@redhat.com>
+ <5251686.PpEh1BJ82l@nvdebian>
+From: David Hildenbrand <david@redhat.com>
+Organization: Red Hat
+Subject: Re: [PATCH v2 2/3] mm/gup.c: Migrate device coherent pages when
+ pinning instead of failing
+In-Reply-To: <5251686.PpEh1BJ82l@nvdebian>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=david@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 15 Feb 2022 14:09:09 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -186,36 +94,207 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Mike Snitzer <snitzer@redhat.com>, David Airlie <airlied@linux.ie>,
- Michael Turquette <mturquette@baylibre.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Hans Verkuil <hverkuil@xs4all.nl>,
- dm-devel@redhat.com, Benjamin Tissoires <benjamin.tissoires@redhat.com>,
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
- linux-clk@vger.kernel.org, Alasdair Kergon <agk@redhat.com>,
- amd-gfx@lists.freedesktop.org, linux-input@vger.kernel.org,
- xen-devel@lists.xenproject.org, linux-media@vger.kernel.org,
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
- intel-gfx@lists.freedesktop.org, Jiri Kosina <jikos@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, linux-block@vger.kernel.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Jens Axboe <axboe@kernel.dk>,
- Stephen Boyd <sboyd@kernel.org>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
- linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: alex.sierra@amd.com, rcampbell@nvidia.com, willy@infradead.org,
+ jhubbard@nvidia.com, Felix.Kuehling@amd.com, dri-devel@lists.freedesktop.org,
+ linux-xfs@vger.kernel.org, jglisse@redhat.com, amd-gfx@lists.freedesktop.org,
+ jgg@nvidia.com, linux-ext4@vger.kernel.org, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 14, 2022 at 05:55:38PM -0800, Qing Wang wrote:
-> From: Wang Qing <wangqing@vivo.com>
+On 11.02.22 00:41, Alistair Popple wrote:
+> On Thursday, 10 February 2022 10:47:35 PM AEDT David Hildenbrand wrote:
+>> On 10.02.22 12:39, Alistair Popple wrote:
+>>> On Thursday, 10 February 2022 9:53:38 PM AEDT David Hildenbrand wrote:
+>>>> On 07.02.22 05:26, Alistair Popple wrote:
+>>>>> Currently any attempts to pin a device coherent page will fail. This is
+>>>>> because device coherent pages need to be managed by a device driver, and
+>>>>> pinning them would prevent a driver from migrating them off the device.
+>>>>>
+>>>>> However this is no reason to fail pinning of these pages. These are
+>>>>> coherent and accessible from the CPU so can be migrated just like
+>>>>> pinning ZONE_MOVABLE pages. So instead of failing all attempts to pin
+>>>>> them first try migrating them out of ZONE_DEVICE.
+>>>>>
+>>>>> Signed-off-by: Alistair Popple <apopple@nvidia.com>
+>>>>> Acked-by: Felix Kuehling <Felix.Kuehling@amd.com>
+>>>>> ---
+>>>>>
+>>>>> Changes for v2:
+>>>>>
+>>>>>  - Added Felix's Acked-by
+>>>>>  - Fixed missing check for dpage == NULL
+>>>>>
+>>>>>  mm/gup.c | 105 ++++++++++++++++++++++++++++++++++++++++++++++++++------
+>>>>>  1 file changed, 95 insertions(+), 10 deletions(-)
+>>>>>
+>>>>> diff --git a/mm/gup.c b/mm/gup.c
+>>>>> index 56d9577..5e826db 100644
+>>>>> --- a/mm/gup.c
+>>>>> +++ b/mm/gup.c
+>>>>> @@ -1861,6 +1861,60 @@ struct page *get_dump_page(unsigned long addr)
+>>>>>  
+>>>>>  #ifdef CONFIG_MIGRATION
+>>>>>  /*
+>>>>> + * Migrates a device coherent page back to normal memory. Caller should have a
+>>>>> + * reference on page which will be copied to the new page if migration is
+>>>>> + * successful or dropped on failure.
+>>>>> + */
+>>>>> +static struct page *migrate_device_page(struct page *page,
+>>>>> +					unsigned int gup_flags)
+>>>>> +{
+>>>>> +	struct page *dpage;
+>>>>> +	struct migrate_vma args;
+>>>>> +	unsigned long src_pfn, dst_pfn = 0;
+>>>>> +
+>>>>> +	lock_page(page);
+>>>>> +	src_pfn = migrate_pfn(page_to_pfn(page)) | MIGRATE_PFN_MIGRATE;
+>>>>> +	args.src = &src_pfn;
+>>>>> +	args.dst = &dst_pfn;
+>>>>> +	args.cpages = 1;
+>>>>> +	args.npages = 1;
+>>>>> +	args.vma = NULL;
+>>>>> +	migrate_vma_setup(&args);
+>>>>> +	if (!(src_pfn & MIGRATE_PFN_MIGRATE))
+>>>>> +		return NULL;
+>>>>> +
+>>>>> +	dpage = alloc_pages(GFP_USER | __GFP_NOWARN, 0);
+>>>>> +
+>>>>> +	/*
+>>>>> +	 * get/pin the new page now so we don't have to retry gup after
+>>>>> +	 * migrating. We already have a reference so this should never fail.
+>>>>> +	 */
+>>>>> +	if (dpage && WARN_ON_ONCE(!try_grab_page(dpage, gup_flags))) {
+>>>>> +		__free_pages(dpage, 0);
+>>>>> +		dpage = NULL;
+>>>>> +	}
+>>>>> +
+>>>>> +	if (dpage) {
+>>>>> +		lock_page(dpage);
+>>>>> +		dst_pfn = migrate_pfn(page_to_pfn(dpage));
+>>>>> +	}
+>>>>> +
+>>>>> +	migrate_vma_pages(&args);
+>>>>> +	if (src_pfn & MIGRATE_PFN_MIGRATE)
+>>>>> +		copy_highpage(dpage, page);
+>>>>> +	migrate_vma_finalize(&args);
+>>>>> +	if (dpage && !(src_pfn & MIGRATE_PFN_MIGRATE)) {
+>>>>> +		if (gup_flags & FOLL_PIN)
+>>>>> +			unpin_user_page(dpage);
+>>>>> +		else
+>>>>> +			put_page(dpage);
+>>>>> +		dpage = NULL;
+>>>>> +	}
+>>>>> +
+>>>>> +	return dpage;
+>>>>> +}
+>>>>> +
+>>>>> +/*
+>>>>>   * Check whether all pages are pinnable, if so return number of pages.  If some
+>>>>>   * pages are not pinnable, migrate them, and unpin all pages. Return zero if
+>>>>>   * pages were migrated, or if some pages were not successfully isolated.
+>>>>> @@ -1888,15 +1942,40 @@ static long check_and_migrate_movable_pages(unsigned long nr_pages,
+>>>>>  			continue;
+>>>>>  		prev_head = head;
+>>>>>  		/*
+>>>>> -		 * If we get a movable page, since we are going to be pinning
+>>>>> -		 * these entries, try to move them out if possible.
+>>>>> +		 * Device coherent pages are managed by a driver and should not
+>>>>> +		 * be pinned indefinitely as it prevents the driver moving the
+>>>>> +		 * page. So when trying to pin with FOLL_LONGTERM instead try
+>>>>> +		 * migrating page out of device memory.
+>>>>>  		 */
+>>>>>  		if (is_dev_private_or_coherent_page(head)) {
+>>>>> +			/*
+>>>>> +			 * device private pages will get faulted in during gup
+>>>>> +			 * so it shouldn't be possible to see one here.
+>>>>> +			 */
+>>>>>  			WARN_ON_ONCE(is_device_private_page(head));
+>>>>> -			ret = -EFAULT;
+>>>>> -			goto unpin_pages;
+>>>>> +			WARN_ON_ONCE(PageCompound(head));
+>>>>> +
+>>>>> +			/*
+>>>>> +			 * migration will fail if the page is pinned, so convert
+>>>>> +			 * the pin on the source page to a normal reference.
+>>>>> +			 */
+>>>>> +			if (gup_flags & FOLL_PIN) {
+>>>>> +				get_page(head);
+>>>>> +				unpin_user_page(head);
+>>>>> +			}
+>>>>> +
+>>>>> +			pages[i] = migrate_device_page(head, gup_flags);
+>>>>
+>>>> For ordinary migrate_pages(), we'll unpin all pages and return 0 so the
+>>>> caller will retry pinning by walking the page tables again.
+>>>>
+>>>> Why can't we apply the same mechanism here? This "let's avoid another
+>>>> walk" looks unnecessary complicated to me, but I might be wrong.
+>>>
+>>> There's no reason we couldn't. I figured we have the page in the right spot
+>>> anyway so it was easy to do, and looking at this rebased on top of Christoph's
+>>> ZONE_DEVICE refcount simplification I'm not sure it would be any simpler
+>>> anyway.
+>>>
+>>> It would remove the call to try_grab_page(), but we'd still have to return an
+>>> error on migration failures whilst also ensuring we putback any non-device
+>>> pages that may have been isolated. I might have overlooked something though,
+>>> so certainly happy for suggestions.
+>>
+>> Staring at the code, I was wondering if we could either
+>>
+>> * build a second list of device coherent pages to migrate and call a
+>>   migrate_device_pages() bulk function
+>> * simply use movable_page_list() and teach migrate_pages() how to handle
+>>   them.
 > 
-> Use the helper function time_is_{before,after}_jiffies() to improve
-> code readability.
+
+(sorry for the late reply)
+
+> I did consider that approach. The problem is zone device pages are not LRU
+> pages. In particular page->lru is not available to add the page to a list, and
+> as an external API and internally migrate_pages() relies heavily on moving
+> pages between lists.
+
+I see, so I assume there is no way we could add them to a list? We could
+use a temporary array we'd try allocating once we stumble over over such
+a device page that needs migration.
+
+The you'd teach is_pinnable_page() to reject
+is_dev_private_or_coherent_page() and special case
+is_dev_private_or_coherent_page() under the "if
+(!is_pinnable_page(head))" check.
+
+You'd grab an additional reference and add them to the temp array. The
+you'd just proceed as normal towards the end of the function (reverting
+the pin/ref from the input array) and would try to migrate all device
+pages in the temp array just before migrate_pages() --
+migrate_device_pages(), properly handling/indicating if either migration
+path fails.
+
+Instead of putback_movable_pages() on the list you'd had
+unref_device_pages() and supply the array.
+
+
+Just a thought to limit the impact and eventually make it a bit nicer to
+read, avoiding modifications of the input array.
+
 > 
-> Signed-off-by: Wang Qing <wangqing@vivo.com>
+>> I'd really appreciate as little special casing as possible for the ever
+>> growing list of new DEVICE types all over the place. E.g., just staring
+>> at fork even before the new device coherent made my head spin.
+> 
+> That's fair. We could pull the checks for device pages out into a self
+> contained function (eg. check_and_migrate_device_pages()) called before
+> check_and_migrate_movable_pages(). The down side of that is we'd always have an
+> extra loop over all the pages just to scan for device pages, but perhaps that's
+> not a concern?
 
-Acked-by: Roger Pau Monné <roger.pau@citrix.com>
+I mean, they are movable ... just not "ordinarily" movable, so it smells
+like this logic belongs into check_and_migrate_movable_pages() :)
 
-Thanks, Roger.
+
+-- 
+Thanks,
+
+David / dhildenb
+
