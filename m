@@ -2,40 +2,36 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A594B7478
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 19:53:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7F254B7490
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 20:11:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C586410E45C;
-	Tue, 15 Feb 2022 18:53:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B53B10E51F;
+	Tue, 15 Feb 2022 19:11:41 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.180])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7616310E45C
- for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 18:53:39 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by netline-mail3.netline.ch (Postfix) with ESMTP id 7F5822020E3;
- Tue, 15 Feb 2022 19:53:38 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
-Received: from netline-mail3.netline.ch ([127.0.0.1])
- by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id hJGAE5RH1yZ9; Tue, 15 Feb 2022 19:53:37 +0100 (CET)
-Received: from kaveri (24.99.2.85.dynamic.wline.res.cust.swisscom.ch
- [85.2.99.24])
- by netline-mail3.netline.ch (Postfix) with ESMTPA id D54662020DB;
- Tue, 15 Feb 2022 19:53:37 +0100 (CET)
-Received: from daenzer by kaveri with local (Exim 4.95)
- (envelope-from <michel@daenzer.net>) id 1nK2xF-007rSP-8e;
- Tue, 15 Feb 2022 19:53:37 +0100
-From: =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel@daenzer.net>
-To: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-Subject: [PATCH] drm/amd/display: For vblank_disable_immediate,
- check PSR is really used
-Date: Tue, 15 Feb 2022 19:53:37 +0100
-Message-Id: <20220215185337.1873778-1-michel@daenzer.net>
-X-Mailer: git-send-email 2.34.1
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5483F10E50C;
+ Tue, 15 Feb 2022 18:32:13 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 4B3BA68AA6; Tue, 15 Feb 2022 19:32:09 +0100 (CET)
+Date: Tue, 15 Feb 2022 19:32:09 +0100
+From: Christoph Hellwig <hch@lst.de>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH v6 01/10] mm: add zone device coherent type memory support
+Message-ID: <20220215183209.GA24409@lst.de>
+References: <20220201154901.7921-1-alex.sierra@amd.com>
+ <20220201154901.7921-2-alex.sierra@amd.com>
+ <beb38138-2266-1ff8-cc82-8fe914bed862@redhat.com>
+ <f2af73c1-396b-168f-7f86-eb10b3b68a26@redhat.com>
+ <a24d82d9-daf9-fa1a-8b9d-5db7fe10655e@amd.com>
+ <078dd84e-ebbc-5c89-0407-f5ecc2ca3ebf@redhat.com>
+ <20220215144524.GR4160@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220215144524.GR4160@nvidia.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+X-Mailman-Approved-At: Tue, 15 Feb 2022 19:11:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,62 +43,21 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Harry Wentland <harry.wentland@amd.com>, amd-gfx@lists.freedesktop.org
+Cc: Alex Sierra <alex.sierra@amd.com>, rcampbell@nvidia.com,
+ willy@infradead.org, David Hildenbrand <david@redhat.com>,
+ Felix Kuehling <felix.kuehling@amd.com>, apopple@nvidia.com,
+ amd-gfx@lists.freedesktop.org, linux-xfs@vger.kernel.org, linux-mm@kvack.org,
+ jglisse@redhat.com, dri-devel@lists.freedesktop.org, akpm@linux-foundation.org,
+ linux-ext4@vger.kernel.org, hch@lst.de
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Michel Dänzer <mdaenzer@redhat.com>
+On Tue, Feb 15, 2022 at 10:45:24AM -0400, Jason Gunthorpe wrote:
+> > Do you know if DEVICE_GENERIC pages would end up as PageAnon()? My
+> > assumption was that they would be part of a special mapping.
+> 
+> We need to stop using the special PTEs and VMAs for things that have a
+> struct page. This is a mistake DAX created that must be undone.
 
-Even if PSR is allowed for a present GPU, there might be no eDP link
-which supports PSR.
-
-Fixes: 9b510908e420 ("drm/amdgpu/display: Only set vblank_disable_immediate when PSR is not enabled")
-Signed-off-by: Michel Dänzer <mdaenzer@redhat.com>
----
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c   | 17 +++++++++--------
- 1 file changed, 9 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index cd8b0d9eb19c..df86517dd532 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -4256,6 +4256,9 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
- 	}
- #endif
- 
-+	/* Disable vblank IRQs aggressively for power-saving. */
-+	adev_to_drm(adev)->vblank_disable_immediate = true;
-+
- 	/* loops over all connectors on the board */
- 	for (i = 0; i < link_cnt; i++) {
- 		struct dc_link *link = NULL;
-@@ -4301,19 +4304,17 @@ static int amdgpu_dm_initialize_drm_device(struct amdgpu_device *adev)
- 				update_connector_ext_caps(aconnector);
- 			if (psr_feature_enabled)
- 				amdgpu_dm_set_psr_caps(link);
-+
-+			/* TODO: Fix vblank control helpers to delay PSR entry to allow this when
-+			 * PSR is also supported.
-+			 */
-+			if (link->psr_settings.psr_feature_enabled)
-+				adev_to_drm(adev)->vblank_disable_immediate = false;
- 		}
- 
- 
- 	}
- 
--	/*
--	 * Disable vblank IRQs aggressively for power-saving.
--	 *
--	 * TODO: Fix vblank control helpers to delay PSR entry to allow this when PSR
--	 * is also supported.
--	 */
--	adev_to_drm(adev)->vblank_disable_immediate = !psr_feature_enabled;
--
- 	/* Software is initialized. Now we can register interrupt handlers. */
- 	switch (adev->asic_type) {
- #if defined(CONFIG_DRM_AMD_DC_SI)
--- 
-2.34.1
-
+Yes, we'll get to it.  Maybe we can do it for the non-DAX devmap
+ptes first given that DAX is more complicated.
