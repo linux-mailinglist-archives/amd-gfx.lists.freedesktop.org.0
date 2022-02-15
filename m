@@ -2,95 +2,125 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30AA14B6496
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 08:42:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 344174B66B9
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 09:58:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C44A10E3CC;
-	Tue, 15 Feb 2022 07:42:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F388689E11;
+	Tue, 15 Feb 2022 08:58:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam08on2081.outbound.protection.outlook.com [40.107.101.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2BFC10E3CD
- for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 07:42:21 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2053.outbound.protection.outlook.com [40.107.93.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B80C589E11
+ for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 08:58:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m3e8clyEGSysz5DHAlsvBeDL9+c8hxB3Ooa/CDX6W0rTfzCumGXcHgZZnFr+ju+0iB6JHcwPk7MoYQ2s9VhIzhif/YnUNrHsHA2E+w8S71nD3+O+oOgDGc+/Lvd7PnoDG6BR5Q90CcWcyJjuCPJJvctbdX9FVQ4fMWnJf0XT/i0xRUVCC8g9WJIpLUCa7poewHvf2lWq4A6AEoCgzxC08SYjv9A9U+iJXR6M/cc7w5lFwjj2vh0es00qyEMaMwEDQ65XIVtDiMmgzz4nAUD+lqEQXk4dQ26oO0cVFOyLoH059n/ziuXjq1fayqye4xJFqL5WVCDujsD132GTuCb5qA==
+ b=T7Vpnt1QxmqUn2hqfuAbwkla5TgBudbeoy1kcaOAsHRzHk4RaxwiKGLXMPauRYXiNpNrOY+hpYp+Q+4/WpM70mU70BEX/MNUbJrvkKfRH5RJESUywkIqLym6+pIk8uXgosyl1YELTLpDODbGVyZVBSfRcTA0sGbBqNBlGVB3wDDOem7AnSg6hWSjPnRBauRUMQf3YBxeN3dY3HqhKDXJEPZJgPVw3GgWhhAGXYdCLpILKymhsIHlfLKJZKhmTFSWUYQNd8itz52fYPeW2saVi4jKguHpZYf56U0OZ0oy8R6ney4lCniri0vD0MvPpNaQj8BPYD4yewSe5ytgLi4fQw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PXjfluXshzgy5WZ3rkNIsy1Q++7lBTxecUUrm+vLEXE=;
- b=SD2mWsiSQbn7HAugbFtDvQW/2ydh06WpGb6jpeNT8mLXMVDOf6UImvEvCe19aLZzwtHNeATcgkF8IFa9s99YpYPCuxAK1+Z4PqmM4f3sNOdTPpUShFLzvev8i0AA3OpJmVmgx7wScEr0C+1jtPTovQ3kE7iJHIFrccCEYHntokSklhxyBfb5/fhtaUMzIMXrixKIS/bx9vwDZNpTtBA53Q99I5scabZewZxWDL+OJDzqpUOMqIGhTlARt/Tq7LFNl7fwc99llu5QlMIbjk76wgsFtUYf5jon/g6LaOBNXNyUez2nwjP17h13UeFpu5DBIlFTypEVt5L2i/OiPL4aOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
+ bh=nFB5pO8kJJpQI9PG7BWEH/rNn170taUW4X6ibYLIdFE=;
+ b=Fu7lLTfNYXMV2kaLMcCg+YyZqo024iQelBgpv3iUqPb3Z2d/AN+G0iAKtSnMfsyEMo5oaReKHWQkeoeA+DZ8WmTse7B32rkt+VN6lManbU6xEok6C4RBa7DwPEUXNWiXRQQOFms3YVrfgD24VmqVPRUa75J78GHtWzEEx3o7Nx5SvmX9HrfBLE8Uo6mz5nTimGUf4Ha4/7al9FHsP5mjGMMPdROIsiixjk7skZAJYwQCy9QtqNadRl1R5sH7QXRs9jNehlzDFM+RSdADmqqEYR3qvg1bcO59mB4+TLlMW93L2VSwjQhvN4yO3U7Dfe5B0bWEg7KI7CfyFIAE/0P/2w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PXjfluXshzgy5WZ3rkNIsy1Q++7lBTxecUUrm+vLEXE=;
- b=TYV0SVdawlkOQIpw/+Xdslh3x58Qaf92u3+Bvev93Mc6qr9yjLb/aUYeOmcqOPcZA1yqR0PmH6LQ+3kawQAmCmDh2tFpNloKo87rtGLipqFgLiOO1xTFpQ+Sj+lg87tlGchgtnlX2g+MxUY900htkQHTt4bum6zOvOawjeEXtNI=
-Received: from DS7PR03CA0176.namprd03.prod.outlook.com (2603:10b6:5:3b2::31)
- by DM5PR12MB1194.namprd12.prod.outlook.com (2603:10b6:3:6e::10) with
+ bh=nFB5pO8kJJpQI9PG7BWEH/rNn170taUW4X6ibYLIdFE=;
+ b=2vTOPnkg+HBW8nbiA1WV3UBPzNtCU38Chzz4at/0zwKBp7i3zFOd3oss879RSgXiaR6ikdIPvp9P/WZu0q7p2qr8Yz0y9cLtW33B4wT+CtTlmuxEOUqrDRypflbIT0Y8cLHnwzS8vHmvY5nMSqA64z+hL1hpqQizTXHirZD0RzQ=
+Received: from BL0PR12MB2465.namprd12.prod.outlook.com (2603:10b6:207:45::18)
+ by DM6PR12MB4513.namprd12.prod.outlook.com (2603:10b6:5:2ad::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.17; Tue, 15 Feb
- 2022 07:42:20 +0000
-Received: from DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b2:cafe::68) by DS7PR03CA0176.outlook.office365.com
- (2603:10b6:5:3b2::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.16 via Frontend
- Transport; Tue, 15 Feb 2022 07:42:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT067.mail.protection.outlook.com (10.13.172.76) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4975.11 via Frontend Transport; Tue, 15 Feb 2022 07:42:19 +0000
-Received: from thomas-mlse-vm.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 15 Feb
- 2022 01:42:17 -0600
-From: yipechai <YiPeng.Chai@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 7/7] drm/amdgpu: Remove redundant .ras_late_init
- initialization in some ras blocks
-Date: Tue, 15 Feb 2022 15:41:24 +0800
-Message-ID: <20220215074124.3411761-7-YiPeng.Chai@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220215074124.3411761-1-YiPeng.Chai@amd.com>
-References: <20220215074124.3411761-1-YiPeng.Chai@amd.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7b1056f2-d7fd-4c56-cec6-08d9f056b256
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1194:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR12MB11941B995414697E45BE70DEFC349@DM5PR12MB1194.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3NaEzydKmQ98a27d+wxJC4GOoxSTuVCsOZ2as4yQ77uloyE0As0eCZzt3fZEtzT5DyI0RAt74y3Bpsf5ZUI48B5TG9D4w0bksagKq0VG4JtlAtyKrXck4d1oBB5KJLX7tEjWqGqEGqVy/NkbzGSUMud3mc1H2oqc1nyLV7GFFSx/SSddc0cPeHUwkrLKoPaJN35c/GvDi/HN8oyRrqJoUpJNDrVY2WWye7Nlr3y9pUUxJgXN3qKd+X4RItPP629tUDA8riaiajrGwVhZP+1INvJN9Q85gA/q1EdfiObjqMyaPNDc1P3IW0AUP5kq0Ip7/sVfr2WKvRKivRY3LxxA5o/IY2vS8PErHQH+oRnJ0UWLINfKCB0QPkrnxrW1z/P4dBMnYCjMjHtTOc0gcz0JOz2eCSJyMPfvsMV9BsSFSSsQh8sxY2kkBXIYKUpG/XOPVAJzq/kVCWtyvXYZAtP12b9PB8CaYiHRmwKCur3GOxjJluh3WVmsdJnfMaUQVDR4e8CuF3fDYiviKQomGZhi8UwfEWZr9Ic1CTzWSHyNw0sSnCZbLhdKscvvRzUsNBnDfXYuCF1Lmdk8D6PHEGCIa9/VfWypZ6PR8cnN57jxhkNf+bS/pOWGrHRuaTws0Z8nuULeHN68HHMx+eMxrkaUnHj7h9U1+5/4vXmCJtyIpFgSo8ETa5v0wYDr6z33hWxOKfF2J8bLZb68S5JpJyFBVzQNgkWhTJhMwRCYMK3xTj33k7yrj8MLA9p78fij2cE19Zop1KIF4hxFpwHgOGW2cw==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(36860700001)(6916009)(2616005)(6666004)(86362001)(54906003)(8936002)(36756003)(7696005)(426003)(5660300002)(70586007)(82310400004)(83380400001)(356005)(40460700003)(2906002)(508600001)(4326008)(336012)(1076003)(26005)(8676002)(316002)(47076005)(70206006)(81166007)(186003)(16526019)(43062005)(142923001)(36900700001);
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.12; Tue, 15 Feb
+ 2022 08:58:05 +0000
+Received: from BL0PR12MB2465.namprd12.prod.outlook.com
+ ([fe80::fc44:f9f3:62e7:af2d]) by BL0PR12MB2465.namprd12.prod.outlook.com
+ ([fe80::fc44:f9f3:62e7:af2d%6]) with mapi id 15.20.4975.015; Tue, 15 Feb 2022
+ 08:58:04 +0000
+From: "Chen, Guchun" <Guchun.Chen@amd.com>
+To: "Tuikov, Luben" <Luben.Tuikov@amd.com>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/amdgpu: Add "harvest" to IP discovery sysfs
+Thread-Topic: [PATCH] drm/amdgpu: Add "harvest" to IP discovery sysfs
+Thread-Index: AQHYIflLplWhXFwF9kOo2y9RgIu5RayTr1sAgACf5oA=
+Date: Tue, 15 Feb 2022 08:58:04 +0000
+Message-ID: <BL0PR12MB24653E696EE8C9F3E635AC7BF1349@BL0PR12MB2465.namprd12.prod.outlook.com>
+References: <20220214231857.5129-1-luben.tuikov@amd.com>
+ <20220214232154.6421-1-luben.tuikov@amd.com>
+In-Reply-To: <20220214232154.6421-1-luben.tuikov@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=true;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2022-02-15T08:54:16Z; 
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public-AIP 2.0;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ActionId=32d6e710-696a-46d6-b21b-29b04505e493;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=1
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_enabled: true
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_setdate: 2022-02-15T08:58:01Z
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_method: Privileged
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_name: Public-AIP 2.0
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_siteid: 3dd8961f-e488-4e60-8e11-a82d994e183d
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_actionid: 5ba1fd0b-6aa1-4046-b0af-0489dfec128c
+msip_label_d4243a53-6221-4f75-8154-e4b33a5707a1_contentbits: 0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e84dc514-7f15-432f-d11c-08d9f061475f
+x-ms-traffictypediagnostic: DM6PR12MB4513:EE_
+x-microsoft-antispam-prvs: <DM6PR12MB451367FE6D5682C84185F60CF1349@DM6PR12MB4513.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:381;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: DUCC3jTWRJSQQ6UbcW2KQZ2XV62Gec9WdNdREA8/cr+hIqgolpG21Nh8JB9g6VQRE7MZf7JqkL2AN0odn4XUaarr/w8iXFmRDJqHc6RKO2CDVYxZIKjsxqq2tU5DfKD7S5AposRipRa0+ftkeXynMWOJECdmZ9e2AHyAhHC/bJJQPa8S5iOnBHmxQl/X1dmHokF0CiX4HxtIpibtmJGVIsEMLR4+Z1mcrntBSOOKqf8bEfvQy9yOyK+8Jl9iWwxEjm48tWYV8+QDuyY+WEJMQmamJ3hUHvtmb2ZxBzaw84W7HjfLq/C/8MqpyOMsl3lUC07wcqNpY7gnO1xdgx6h6EiXRa+bySpaKg7RM7FUnCXluDmKZ2O2twlqKFS7oH4lCJgiPtMg9VmJacGAtkO+eAXx5TBgvwSa3BcYJZYImTU1kQ8oFQ2MXjjSHAmedSzhuwy1LfUCcg+jvOpRKGqPqqSe3I825KxchcdM4pZMa1cag8chvsIXCCeQMbqc3GzKgkOIJou/hvGEOzV2hgDcE9qAzGgxb5uw/7QHLbEHSamavKfjrTn+3cfXI/q9X3PdNBqd3EhGXP9O1ta6cL04TPFjiOxRz4WFqvHjYqJzB/W5uYzcu1MW8+0if45TkU4/6SY2XTnU5ZhGH3yOnj6+hG3EIeMtDqXxSnWWLEMkqdpt8jLWc07G/I1v20LE8N/O2+Xo1jw2hIdysyohhc2ubQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB2465.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230001)(4636009)(366004)(38100700002)(4326008)(38070700005)(83380400001)(186003)(2906002)(33656002)(55016003)(52536014)(5660300002)(8936002)(66446008)(64756008)(66946007)(6506007)(7696005)(9686003)(76116006)(8676002)(66556008)(26005)(53546011)(122000001)(508600001)(86362001)(316002)(110136005)(66476007)(71200400001)(54906003);
  DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?nBSSnLcLV0e1SUifxDJWdjdeGzLAjAu9TMdsyV33H18gz0AADpszSythcHja?=
+ =?us-ascii?Q?FVBF8v9NAV2LmWIm5w0cD0rEkboi6In8W7BQ4AJQ0Tpzz3Sx0hKeUdyK0vjE?=
+ =?us-ascii?Q?7on0debA2LYnScxo7gj5m32gb0mfW6EHh7jqVkvsn5g1nQZGyoG8xYhqh5e9?=
+ =?us-ascii?Q?WLGtG4zDU0fQlYNJlHq8axdV/zcVxVTm3hn0br+DTEAucFeNLEocuZz6rOua?=
+ =?us-ascii?Q?rEVnLMV9+1MLTwXnSRgtXHA/CsJ3zKz9lpQHXJ7Luu97m66zhoTNeg6KWSpy?=
+ =?us-ascii?Q?19zjxTDDOEniTJ5KlFLIV5Eixzwp3iCgXPRI04v9eYWJlUHqGeumVAUfWMPK?=
+ =?us-ascii?Q?Lki78UzF1sU1kTUBWv9tJ4KB1iKPBej0QxEE6RJOwtvMdqyIT/T0oe4RM+Gt?=
+ =?us-ascii?Q?VQ+m1bBgLyr791k2b5gK6DZmIfMzbuE3YNTAo309m3vikYZkVF8atuVfLUa9?=
+ =?us-ascii?Q?z/bXDriehrR9gyBlRy5snjRIpR3j5Kq0C1w8awjt2LBSPd+itb7WA+VcdaKq?=
+ =?us-ascii?Q?oBNVTR86nMWdvZvulV3CGWHGhM33fsDe/g2bXS2Orowh8StkozPMd/fGyuqJ?=
+ =?us-ascii?Q?q9ysLFTAssWgHmAHjalDp9HpvzrTmPbB4yUtC978iPwN5WIp0tLlw7hc8lJm?=
+ =?us-ascii?Q?sBnTHPzHqOjAjLlwbTq8C//DzhP3O/rfrayWXOU49rZuO2CUcfSPtXaSBS7C?=
+ =?us-ascii?Q?hnP6IEZOm/Om1umbyZDKIhxUeZ1yxoMtuplp/dymYZbCqgn1710aNhv8UksG?=
+ =?us-ascii?Q?9SRbrl5uSS+ZA4WmFRaAsWTKXKgXeNchMv7eU7K301vHtqqj7rJcL/DXwPkr?=
+ =?us-ascii?Q?RH+1N3s45LLgqxhcCwMUnb9WZrM/Z47lVKwH6rvnqltKyxt+/kRXa9FWs0zg?=
+ =?us-ascii?Q?ovhoZNsZvd55xUUdVyEZNGYTkhv0mMNf9ZZ9oqDqgsLbAN+E1ZN6b7t765Zb?=
+ =?us-ascii?Q?tFre3122ZnaQpOjVXDQaCsvl4VZyxcVSjhbHqDHQTf9Yp/shE/nLnFYrWQSt?=
+ =?us-ascii?Q?OODQpqd3OVuzA9JdKuQjLUikUedyNCHUA/fLLHrbLjCyDd9Sxgxhh4RB6fxk?=
+ =?us-ascii?Q?/nmu6B8T5gAYd+TgxXcqDkXrQ9Fq2j89PztyBQLkDlxSNdOVFu3GL9481DKY?=
+ =?us-ascii?Q?bkMY+ilWyGjWvnZiulhmPXDuIjCOdXwo0WO9zfV3a9Zuq0d1QgFtXSrXqBpU?=
+ =?us-ascii?Q?YnW9Y4BJl8QiAaZOP1vdfcwQFX+JSPwuHzw7XtXmMCqTgadbtR9eQ9Lu84bT?=
+ =?us-ascii?Q?LsSlihRlAKZlsBdfKMUTYusH3d14Dw6vAoV0JH9j89N9+oIS9Nbe1Bd59pzF?=
+ =?us-ascii?Q?p5aAk4N+UgtxMP5+K4iJgemYAjdHr6K+O3inIy7hq8tNINnKkUXr9GfmrI+3?=
+ =?us-ascii?Q?2yYSAqq22zKc0MbuBbdmrJOetOup/w3ardQd/nR7jVQZNHFngUHJ0/EPoEVb?=
+ =?us-ascii?Q?9eReQJR/wfOtD5pb1eFElNS+uxzPT1mhpWTuDJVLMYbs/UwYlN1nbtWPs1DC?=
+ =?us-ascii?Q?nhNNViyRZd/CjNrHCJQMDsCBbZo7veGg0cXtAz8qZxlhdzDfRm+TY/xdQuBM?=
+ =?us-ascii?Q?b6Fh8Ty8RaP85bmXw4V+ZUgyk4nsdhwjNhztrjcpRL4b+BD02gFEfjHbgdxD?=
+ =?us-ascii?Q?GJemeo5q5sU295vRIsXzeX4=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Feb 2022 07:42:19.8585 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b1056f2-d7fd-4c56-cec6-08d9f056b256
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT067.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1194
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2465.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e84dc514-7f15-432f-d11c-08d9f061475f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Feb 2022 08:58:04.7404 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xudhlllqi5UVJ7tvtMqhrBM+oDxvfTAyIfYd6gu/3oCKcQCMNpn8WCkW0/cINWJaATr4cW5e5CkpJRrUOBuyAA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4513
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,106 +132,82 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tao.Zhou1@amd.com, Hawking.Zhang@amd.com, John.Clements@amd.com,
- yipechai <YiPeng.Chai@amd.com>, yipechai@amd.com
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Tuikov,
+ Luben" <Luben.Tuikov@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-1. Define amdgpu_ras_block_late_init_default in amdgpu_ras.c as
-   .ras_late_init common function, which is called when
-   .ras_late_init of ras block doesn't initialize.
-2. Remove the code of using amdgpu_ras_block_late_init to
-   initialize .ras_late_init in ras blocks.
+[Public]
 
-Signed-off-by: yipechai <YiPeng.Chai@amd.com>
+Hi Luben,
+
+I suggest holding on this pls. Harvest bit per IP data structure from VBIOS=
+ is not consistently correct. Exposing it to use via sysfs may confuse user=
+s.
+
+Regards,
+Guchun
+
+-----Original Message-----
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> On Behalf Of Luben Tu=
+ikov
+Sent: Tuesday, February 15, 2022 7:22 AM
+To: amd-gfx@lists.freedesktop.org
+Cc: Deucher, Alexander <Alexander.Deucher@amd.com>; Tuikov, Luben <Luben.Tu=
+ikov@amd.com>
+Subject: [PATCH] drm/amdgpu: Add "harvest" to IP discovery sysfs
+
+Add the "harvest" field to the IP attributes in the IP discovery sysfs visu=
+alization, as this field is present in the binary data.
+
+Cc: Alex Deucher <Alexander.Deucher@amd.com>
+Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 8 ++++++++
- drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c   | 4 ----
- drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c   | 1 -
- drivers/gpu/drm/amd/amdgpu/mca_v3_0.c   | 3 ---
- 4 files changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-index 6cb1e5d126d7..ad37df6e50ce 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-@@ -2457,6 +2457,12 @@ int amdgpu_ras_block_late_init(struct amdgpu_device *adev,
- 	return r;
- }
- 
-+int amdgpu_ras_block_late_init_default(struct amdgpu_device *adev,
-+			 struct ras_common_if *ras_block)
-+{
-+	return amdgpu_ras_block_late_init(adev, ras_block);
-+}
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/dr=
+m/amd/amdgpu/amdgpu_discovery.c
+index c8dbdb78988ce0..0496d369504641 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
+@@ -393,6 +393,7 @@ struct ip_hw_instance {
+ 	int hw_id;
+ 	u8  num_instance;
+ 	u8  major, minor, revision;
++	u8  harvest;
+=20
+ 	int num_base_addresses;
+ 	u32 base_addr[];
+@@ -440,6 +441,11 @@ static ssize_t revision_show(struct ip_hw_instance *ip=
+_hw_instance, char *buf)
+ 	return sysfs_emit(buf, "%d\n", ip_hw_instance->revision);  }
+=20
++static ssize_t harvest_show(struct ip_hw_instance *ip_hw_instance, char=20
++*buf) {
++	return sysfs_emit(buf, "0x%01X\n", ip_hw_instance->harvest); }
 +
- /* helper function to remove ras fs node and interrupt handler */
- void amdgpu_ras_block_late_fini(struct amdgpu_device *adev,
- 			  struct ras_common_if *ras_block)
-@@ -2535,6 +2541,8 @@ int amdgpu_ras_late_init(struct amdgpu_device *adev)
- 		obj = node->ras_obj;
- 		if (obj->ras_late_init)
- 			obj->ras_late_init(adev, &obj->ras_comm);
-+		else
-+			amdgpu_ras_block_late_init_default(adev, &obj->ras_comm);
- 	}
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-index b719d2c3003b..412e44af1608 100644
---- a/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gmc_v9_0.c
-@@ -1291,10 +1291,6 @@ static void gmc_v9_0_set_mmhub_ras_funcs(struct amdgpu_device *adev)
- 		adev->mmhub.ras->ras_block.ras_comm.type = AMDGPU_RAS_ERROR__MULTI_UNCORRECTABLE;
- 		adev->mmhub.ras_if = &adev->mmhub.ras->ras_block.ras_comm;
- 
--		/* If don't define special ras_late_init function, use default ras_late_init */
--		if (!adev->mmhub.ras->ras_block.ras_late_init)
--			adev->mmhub.ras->ras_block.ras_late_init = amdgpu_ras_block_late_init;
--
- 		/* If don't define special ras_fini function, use default ras_fini */
- 		if (!adev->mmhub.ras->ras_block.ras_fini)
- 			adev->mmhub.ras->ras_block.ras_fini = amdgpu_mmhub_ras_fini;
-diff --git a/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c b/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
-index c9e931f046f7..d7811e0327cb 100644
---- a/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/hdp_v4_0.c
-@@ -163,7 +163,6 @@ struct amdgpu_hdp_ras hdp_v4_0_ras = {
- 			.type = AMDGPU_RAS_ERROR__MULTI_UNCORRECTABLE,
- 		},
- 		.hw_ops = &hdp_v4_0_ras_hw_ops,
--		.ras_late_init = amdgpu_ras_block_late_init,
- 		.ras_fini = amdgpu_hdp_ras_fini,
- 	},
+ static ssize_t num_base_addresses_show(struct ip_hw_instance *ip_hw_instan=
+ce, char *buf)  {
+ 	return sysfs_emit(buf, "%d\n", ip_hw_instance->num_base_addresses);
+@@ -471,6 +477,7 @@ static struct ip_hw_instance_attr ip_hw_attr[] =3D {
+ 	__ATTR_RO(major),
+ 	__ATTR_RO(minor),
+ 	__ATTR_RO(revision),
++	__ATTR_RO(harvest),
+ 	__ATTR_RO(num_base_addresses),
+ 	__ATTR_RO(base_addr),
  };
-diff --git a/drivers/gpu/drm/amd/amdgpu/mca_v3_0.c b/drivers/gpu/drm/amd/amdgpu/mca_v3_0.c
-index 12d09a58b644..b4b36899f5c6 100644
---- a/drivers/gpu/drm/amd/amdgpu/mca_v3_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/mca_v3_0.c
-@@ -71,7 +71,6 @@ struct amdgpu_mca_ras_block mca_v3_0_mp0_ras = {
- 		},
- 		.hw_ops = &mca_v3_0_mp0_hw_ops,
- 		.ras_block_match = mca_v3_0_ras_block_match,
--		.ras_late_init = amdgpu_ras_block_late_init,
- 		.ras_fini = mca_v3_0_mp0_ras_fini,
- 	},
- };
-@@ -104,7 +103,6 @@ struct amdgpu_mca_ras_block mca_v3_0_mp1_ras = {
- 		},
- 		.hw_ops = &mca_v3_0_mp1_hw_ops,
- 		.ras_block_match = mca_v3_0_ras_block_match,
--		.ras_late_init = amdgpu_ras_block_late_init,
- 		.ras_fini = mca_v3_0_mp1_ras_fini,
- 	},
- };
-@@ -137,7 +135,6 @@ struct amdgpu_mca_ras_block mca_v3_0_mpio_ras = {
- 		},
- 		.hw_ops = &mca_v3_0_mpio_hw_ops,
- 		.ras_block_match = mca_v3_0_ras_block_match,
--		.ras_late_init = amdgpu_ras_block_late_init,
- 		.ras_fini = mca_v3_0_mpio_ras_fini,
- 	},
- };
--- 
-2.25.1
+@@ -708,6 +715,7 @@ static int amdgpu_discovery_sysfs_ips(struct amdgpu_dev=
+ice *adev,
+ 			ip_hw_instance->major =3D ip->major;
+ 			ip_hw_instance->minor =3D ip->minor;
+ 			ip_hw_instance->revision =3D ip->revision;
++			ip_hw_instance->harvest =3D ip->harvest;
+ 			ip_hw_instance->num_base_addresses =3D ip->num_base_address;
+=20
+ 			for (kk =3D 0; kk < ip_hw_instance->num_base_addresses; kk++)
 
+base-commit: d8604f1d237a145db48bae4ea60b85a5875df307
+--
+2.35.1.102.g2b9c120970
