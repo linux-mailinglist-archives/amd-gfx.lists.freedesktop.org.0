@@ -1,57 +1,46 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03E6E4B6E5E
-	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 15:09:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35B114B6E25
+	for <lists+amd-gfx@lfdr.de>; Tue, 15 Feb 2022 14:55:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6901810E545;
-	Tue, 15 Feb 2022 14:09:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D1F110E544;
+	Tue, 15 Feb 2022 13:55:42 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-il1-x134.google.com (mail-il1-x134.google.com
- [IPv6:2607:f8b0:4864:20::134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E070010E497
- for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 13:08:42 +0000 (UTC)
-Received: by mail-il1-x134.google.com with SMTP id p11so14761663ils.1
- for <amd-gfx@lists.freedesktop.org>; Tue, 15 Feb 2022 05:08:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=h8vn3ZFW8UjLnMLsgl86dcA80MaxOlksJ/pmKV8vWGU=;
- b=Xw6MjLP9Kt6wH/XPSkTrQGGvUPWDpKraFYxM4d6yH3RKbYA/YECy72aCJttKSuP587
- 10FtshqY75bNZ0wPI428PCyMW2OAb6yh/TT1o8uOiXl/AYRQtBPDYcnJeIpx7cQYKuhp
- wqae+oOmMT9dVZpOYgXDUMAKab0DYkhYdVNJ0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=h8vn3ZFW8UjLnMLsgl86dcA80MaxOlksJ/pmKV8vWGU=;
- b=fTAFONWGEaDPjPs35uJeUf/ll0ALM6VhYBGTqjgEtOf6pSBtmYsLsrp/ER4Y3owfuX
- IjnRNN7uXcRJKQ1IJYz/St7ImKqB7ah/tSsPyIlcvk5k3DfogN9AgezKWKlZWZgUvZPT
- T1+VFegdH43u0YQ/lA2K4DtDMY9cHK6EmEIRp7izWC19a7Dx6wKKVmsqE4T3E5BYn06w
- QOjVrro7wHcXLT7PmxqdSh0Y4BTYVddYF1brw+1y3ME9wiLepi6aXfYXLy8FjkU3Htk7
- +EpS/vnFOnqflcFGqkre+MPcZ8CkSREJ4ykcF790qZXGMTe2oTE7CaV2qLpaoCxuX0AL
- Z9YQ==
-X-Gm-Message-State: AOAM531BVPPGPE/K108Vvsy4cvcO2GXGgTqkH+4le1BstPSSF8U+PJK5
- pfklEG1ySbG4p999UxnEVZ/iFaY80/eolSegvBq0kw==
-X-Google-Smtp-Source: ABdhPJyn0t3qtaQoYKT56xmJWFr+oDNaEgC/gP1GxkSxrJmyzV5aD6tH7GwuIxyug6WO9KvMRXh2z7t2mVNvKMkI28E=
-X-Received: by 2002:a05:6e02:18c6:: with SMTP id
- s6mr2544341ilu.230.1644930522121; 
- Tue, 15 Feb 2022 05:08:42 -0800 (PST)
-MIME-Version: 1.0
+Received: from mail-4018.proton.ch (mail-4018.proton.ch [185.70.40.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C660F10E544;
+ Tue, 15 Feb 2022 13:55:40 +0000 (UTC)
+Date: Tue, 15 Feb 2022 13:55:34 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail2; t=1644933337;
+ bh=6lNlCoTfcpMqvqhkT68B9BYySvB6qEPhyvPf8Q7RTQA=;
+ h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
+ References:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID;
+ b=FV5jLIpDbsQD4XNbDQkQA59s8nRJV6faVAqWXc971NcsmVKHkV3WFz9CryCy95bLx
+ 5fsjgglR+qDN2pAG4VVMHRwiAW7wXc36jCrXRS53wKMt7fzTzs55bc4vbCunEn3BAO
+ Tmv6nP77HGsnX02nIOQ8IrjXl+VSweaREZ7QvAy0WPIyaIHZJiF+wUQhGw9MSGBfLo
+ qgnWv3NMfCuRNuSAJUdB1Fg6FknYIt7YMJoCxO4gh+GCkoF+MPbXltblCW/FsJeHuv
+ NvAiabP6tolfvRebFUuddQF+PsgMjroMmSaHLkMYJmetJAyvBb3HrcDh0oks/v4+3M
+ J1BM1xgrLuF9A==
+To: Emil Velikov <emil.l.velikov@gmail.com>
+From: Simon Ser <contact@emersion.fr>
+Subject: Re: [Intel-gfx] [PATCH v8 1/3] gpu: drm: separate panel orientation
+ property creating and value setting
+Message-ID: <KW6DNh6IRRgVJx9DfOFBnEqc4a0x-AnDXEbMxwpfEbk8dOn_KGVzAfo-slJWq-4nWW728Uc-OVpFh2w4fDE4-bxfkDuz1hFILRVvbcuXqaw=@emersion.fr>
+In-Reply-To: <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com>
 References: <20220208084234.1684930-1-hsinyi@chromium.org>
- <87leydhqt3.fsf@collabora.com>
- <CAJMQK-igpiYj-pkgG9amrQuVzf1Mc9BDDOwOdKLUbceKr=CHiQ@mail.gmail.com>
- <87czjoixno.fsf@collabora.com>
-In-Reply-To: <87czjoixno.fsf@collabora.com>
-From: Hsin-Yi Wang <hsinyi@chromium.org>
-Date: Tue, 15 Feb 2022 21:08:16 +0800
-Message-ID: <CAJMQK-gvvvhj2dsu8bkT6ytj=0MZaRFmsVOqJVrtVo4Y+XCEdQ@mail.gmail.com>
-Subject: Re: [PATCH v8 1/3] gpu: drm: separate panel orientation property
- creating and value setting
-To: Gabriel Krisman Bertazi <krisman@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Tue, 15 Feb 2022 14:09:09 +0000
+ <CACvgo53u01BK_D0ZssV+gCepjxSz23Nr5Dy1qXeaAoJuu6VCFQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,T_SCC_BODY_TEXT_LINE
+ shortcircuit=no autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+ mailout.protonmail.ch
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,118 +52,71 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Simon Ser <contact@emersion.fr>
 Cc: Maxime Ripard <mripard@kernel.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Simon Ser <contact@emersion.fr>,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree <devicetree@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ linux-mediatek@lists.infradead.org,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Hsin-Yi Wang <hsinyi@chromium.org>,
  Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, Rob Herring <robh+dt@kernel.org>,
- linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, Sean Paul <sean@poorly.run>,
- linux-arm-kernel@lists.infradead.org
+ Harry Wentland <harry.wentland@amd.com>,
+ LAKML <linux-arm-kernel@lists.infradead.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 15, 2022 at 12:03 PM Gabriel Krisman Bertazi
-<krisman@collabora.com> wrote:
+On Tuesday, February 15th, 2022 at 13:04, Emil Velikov <emil.l.velikov@gmai=
+l.com> wrote:
+
+> Greetings everyone,
 >
-> Hsin-Yi Wang <hsinyi@chromium.org> writes:
+> Padron for joining in so late o/
 >
-> > On Tue, Feb 15, 2022 at 9:17 AM Gabriel Krisman Bertazi
-> > <krisman@collabora.com> wrote:
-> >>
-> >> Hsin-Yi Wang <hsinyi@chromium.org> writes:
-> >>
-> >> > drm_dev_register() sets connector->registration_state to
-> >> > DRM_CONNECTOR_REGISTERED and dev->registered to true. If
-> >> > drm_connector_set_panel_orientation() is first called after
-> >> > drm_dev_register(), it will fail several checks and results in following
-> >> > warning.
-> >>
-> >> Hi,
-> >>
-> >> I stumbled upon this when investigating the same WARN_ON on amdgpu.
-> >> Thanks for the patch :)
-> >>
-> >> > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> >> > index a50c82bc2b2fec..572ead7ac10690 100644
-> >> > --- a/drivers/gpu/drm/drm_connector.c
-> >> > +++ b/drivers/gpu/drm/drm_connector.c
-> >> > @@ -1252,7 +1252,7 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
-> >> >   *   INPUT_PROP_DIRECT) will still map 1:1 to the actual LCD panel
-> >> >   *   coordinates, so if userspace rotates the picture to adjust for
-> >> >   *   the orientation it must also apply the same transformation to the
-> >> > - *   touchscreen input coordinates. This property is initialized by calling
-> >> > + *   touchscreen input coordinates. This property value is set by calling
-> >> >   *   drm_connector_set_panel_orientation() or
-> >> >   *   drm_connector_set_panel_orientation_with_quirk()
-> >> >   *
-> >> > @@ -2341,8 +2341,8 @@ EXPORT_SYMBOL(drm_connector_set_vrr_capable_property);
-> >> >   * @connector: connector for which to set the panel-orientation property.
-> >> >   * @panel_orientation: drm_panel_orientation value to set
-> >> >   *
-> >> > - * This function sets the connector's panel_orientation and attaches
-> >> > - * a "panel orientation" property to the connector.
-> >> > + * This function sets the connector's panel_orientation value. If the property
-> >> > + * doesn't exist, it will try to create one.
-> >> >   *
-> >> >   * Calling this function on a connector where the panel_orientation has
-> >> >   * already been set is a no-op (e.g. the orientation has been overridden with
-> >> > @@ -2373,19 +2373,12 @@ int drm_connector_set_panel_orientation(
-> >> >       info->panel_orientation = panel_orientation;
-> >> >
-> >> >       prop = dev->mode_config.panel_orientation_property;
-> >> > -     if (!prop) {
-> >> > -             prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
-> >> > -                             "panel orientation",
-> >> > -                             drm_panel_orientation_enum_list,
-> >> > -                             ARRAY_SIZE(drm_panel_orientation_enum_list));
-> >> > -             if (!prop)
-> >> > -                     return -ENOMEM;
-> >> > -
-> >> > -             dev->mode_config.panel_orientation_property = prop;
-> >> > -     }
-> >> > +     if (!prop &&
-> >> > +         drm_connector_init_panel_orientation_property(connector) < 0)
-> >> > +             return -ENOMEM;
-> >> >
-> >>
-> >> In the case where the property has not been created beforehand, you
-> >> forgot to reinitialize prop here, after calling
-> >> drm_connector_init_panel_orientation_property().  This means
-> > hi Gabriel,
+> On Tue, 8 Feb 2022 at 08:42, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
 > >
-> > drm_connector_init_panel_orientation_property() will create prop if
-> > it's null. If prop fails to be created there, it will return -ENOMEM.
+> > drm_dev_register() sets connector->registration_state to
+> > DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+> > drm_connector_set_panel_orientation() is first called after
+> > drm_dev_register(), it will fail several checks and results in followin=
+g
+> > warning.
+> >
+> > Add a function to create panel orientation property and set default val=
+ue
+> > to UNKNOWN, so drivers can call this function to init the property earl=
+ier
+> > , and let the panel set the real value later.
+> >
 >
-> Yes.  But *after the property is successfully created*, the prop variable is still
-> NULL.  And then you call the following, using prop, which is still NULL:
+> The warning illustrates a genuine race condition, where userspace will
+> read the old/invalid property value/state. So this patch masks away
+> the WARNING without addressing the actual issue.
+> Instead can we fix the respective drivers, so that no properties are
+> created after drm_dev_register()?
 >
-> >> > +     drm_object_property_set_value(&connector->base, prop,
-> >> > +                                   info->panel_orientation);
->
-> This will do property->dev right on the first line of code, and dereference the
-> null prop pointer.
+> Longer version:
+> As we look into drm_dev_register() it's in charge of creating the
+> dev/sysfs nodes (et al). Note that connectors cannot disappear at
+> runtime.
+> For panel orientation, we are creating an immutable connector
+> properly, meaning that as soon as drm_dev_register() is called we must
+> ensure that the property is available (if applicable) and set to the
+> correct value.
 
-Ah, right. Sorry that I totally missed this.
-I'll fix it in the next version if the idea of this patch is accepted.
-There might be another preferred solution for this.
+Unfortunately we can't quite do this. To apply the panel orientation quirks=
+ we
+need to grab the EDID of the eDP connector, and this happened too late in m=
+y
+testing.
 
->
-> You must do
->
->   prop = dev->mode_config.panel_orientation_property;
->
-> again after drm_connector_init_panel_orientation_property successfully
-> returns, or call drm_object_property_set_value using
-> dev->mode_config.panel_orientation_property directly:
->
->   drm_object_property_set_value(&connector->base,
->                         dev->mode_config.panel_orientation_property
->                         info->panel_orientation);
->
-> --
-> Gabriel Krisman Bertazi
+What we can do is create the prop early during module load, and update it w=
+hen
+we read the EDID (at the place where we create it right now). User-space wi=
+ll
+receive a hotplug event after the EDID is read, so will be able to pick up =
+the
+new value if any.
