@@ -2,99 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79D494B82E1
-	for <lists+amd-gfx@lfdr.de>; Wed, 16 Feb 2022 09:25:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B7424B8166
+	for <lists+amd-gfx@lfdr.de>; Wed, 16 Feb 2022 08:22:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDDD410E8E7;
-	Wed, 16 Feb 2022 08:25:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D7B310E70B;
+	Wed, 16 Feb 2022 07:22:50 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2054.outbound.protection.outlook.com [40.107.223.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAD9010E610;
- Wed, 16 Feb 2022 02:36:42 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2078.outbound.protection.outlook.com [40.107.237.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FF5C10E70B
+ for <amd-gfx@lists.freedesktop.org>; Wed, 16 Feb 2022 07:22:48 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AOq+DMp+km0e8HC2+YOpSh5Gwp4M8cd1XIaXl0eMzd685Hsf37HUX9Ftcy0eh1dj8vybK/8scw5odBI8P+Vvj18G6FrHCWjBfXCS3Xph9SOq5wdqs/HKcUiOO0X5/xGivCU78J0xJoSwv45K/uoy6iSGUd1XGxEz1U355va7aXkLxmtw59FUQXipkRrBDrtu751ACxKN82eBXH8fM+ApB/4/7y12/0WaPyHh/I4hEu5v9Yt8oYZmejX8+aplxY1ZKlQVjrJX8eoyMdUxgPBOa9TZr2/u05G4QSA3MPdMoD0Vf5Y0MD7LKbPX9+pezHf6H4fOBmIKqZg/6mjecMinJQ==
+ b=U16C1Ujq4JsL0bnq5Ro1iQN588w3HVTiY6M0iY4MENDUK0BREOLh4t/9yI2kVnNz6lpj4K2hfx1d2iXzV8efmApLucD4nK4PsfVb4xuSl/fZTWvOMeVzsSJhAOVJlDWvUbM1VTz2UOtHZz6ZwCVx/qn03IYO8hC9gQHWmVz5swUQa6oDmkFkUCndUSemojUVYBBgGDif3ewwv/NaNJ7sT+YB+vPBIZmlrvCDHuV7ge853hk1g3jFAgSPTDgma6xvZZGd1G+Vbo5b9JxUDrj8aAWw+Xn+vq99DyJqNi4QhFgR5eJcg4JOyDQ/X52vMTLzm+Jaye77f/Ov+e2J1vEaVw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W6u4KSkTaAdZ3Y1/l8px2yzaaALzD3TCdjvTMQCo2v4=;
- b=Du6fNXqD+8bNhVh4c4+cIp+kHee4jgxmCrjhH4gi2YYlzIuDc4FTpf9w9Y4n+7lWfzU/keUjEwEArJ3e4TjKSJlFxlwzn/RjC0m+E4rGxZz/hxzo3xZblPeyXlA0oLU6iJqr3zKgOvAX+SVI+1Gkl5Hr/p3qvw5pvfol2F6o1rQOra+rXcZatJaeMMMzMBu+1rs3j1w/zB2ARfyq+qfjOrQBAgj36TCHv0gVOSNDyX1fuU4o30BomCX3qqpUs3fvmSM6iTFkbBwK4/j0YZ+I0OVhAQ8jPZhRxe/0Tig8ayBwAQrdxc3EC8OHL4N83L3/C+lk9S4QoLHCDXK1DyETFw==
+ bh=+4RT5mulhlZq6DgZCL23RRYUv9wpAJqVoJab7w2qKdM=;
+ b=Mn4Rt3uhrSTcWHNAa6yXcgRJcmwGTLxtuUmk38BNX5K117UqpYB2qkmdv8hGL2fhPWMRae7ROhpsQ3pyx0VHRA6IO4Q2sh/7CMtzKlkamIW6oUMt1unvc+MU1XFUGzTXHiRW+mGDcO5bKQr5zaOthpuimYkljAprFglYTiH+1ahxGzOIsIPCupaUvEOhx7FTq3/o0hcDBtbjR2Dw4mZnd4afiownnluLrvyST0dojF9yIUCPOcTAqUDyA8v2oAuzeonbip5pzmbjIXo/TZlFIRi+gyxp6jAP/y35ihdbT20HQZ08YsQl52oQ2mKSGfHb+hmBWK26H7zasRpFZVdeEg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 12.22.5.238) smtp.rcpttodomain=lists.freedesktop.org
- smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
- header.from=nvidia.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W6u4KSkTaAdZ3Y1/l8px2yzaaALzD3TCdjvTMQCo2v4=;
- b=tgfdDFWWlxNy5M/lNqnnti0A+xqc4dBOgi3czZyG1cSrQPsbrNka3/ktzS6Obtma9gjQzrVWQf/C15gJVzzyd2v8TOVcoo3Hn+voKYABKN/5pPzOz+m7RHaXKJ5BizU4RPoJonmhB8ZQ5VoF5dz0oykJKDJaag4EN2hopO6FqqOM8PLWltWIxa/OMIxMQOOcL/9QziAhfy+rwrfwZwSUmfGDgSDkByMKoGrlHHQrnVIwn7yen0IL7QEdiO3N4Gbvcp9Z2VugXAi/YQWijRpKlKUd+KQWunHs070aZk6WMl6NhGgiLD5qsisRF+o7XkeELqFunl08kt0kl6mEqr0X/Q==
-Received: from BN6PR1201CA0021.namprd12.prod.outlook.com
- (2603:10b6:405:4c::31) by SA0PR12MB4559.namprd12.prod.outlook.com
- (2603:10b6:806:9e::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.17; Wed, 16 Feb
- 2022 02:36:41 +0000
-Received: from BN8NAM11FT036.eop-nam11.prod.protection.outlook.com
- (2603:10b6:405:4c:cafe::d) by BN6PR1201CA0021.outlook.office365.com
- (2603:10b6:405:4c::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.15 via Frontend
- Transport; Wed, 16 Feb 2022 02:36:40 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.238)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 12.22.5.238 as permitted sender) receiver=protection.outlook.com;
- client-ip=12.22.5.238; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (12.22.5.238) by
- BN8NAM11FT036.mail.protection.outlook.com (10.13.177.168) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4975.11 via Frontend Transport; Wed, 16 Feb 2022 02:36:40 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by DRHQMAIL105.nvidia.com
- (10.27.9.14) with Microsoft SMTP Server (TLS) id 15.0.1497.18;
- Wed, 16 Feb 2022 02:36:40 +0000
-Received: from nvdebian.localnet (10.126.230.35) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.9; Tue, 15 Feb 2022
- 18:36:35 -0800
-From: Alistair Popple <apopple@nvidia.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Subject: Re: [PATCH v6 01/10] mm: add zone device coherent type memory support
-Date: Wed, 16 Feb 2022 13:36:30 +1100
-Message-ID: <6156515.kVgMqSaHHm@nvdebian>
-In-Reply-To: <20220216020357.GD4160@nvidia.com>
-References: <beb38138-2266-1ff8-cc82-8fe914bed862@redhat.com>
- <877d9vd10u.fsf@nvdebian.thelocal> <20220216020357.GD4160@nvidia.com>
+ bh=+4RT5mulhlZq6DgZCL23RRYUv9wpAJqVoJab7w2qKdM=;
+ b=qUzFrU2a4sRSjaxPbSO/4S8FYlfJDty0LgU3npr/POCDDGJ44AZnVdPcSKNFhtUdGXObZtjtwf2KUPCcEuD1uJtpqZ8XRr5DSzEaummF3UZRy7liI19tx2ehkm+s57xpkLb/Oj/idz1jxmqgOjLeJojAfUTURXVpRAckIQULpDo=
+Received: from DM5PR21CA0010.namprd21.prod.outlook.com (2603:10b6:3:ac::20) by
+ CY4PR12MB1207.namprd12.prod.outlook.com (2603:10b6:903:39::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4975.15; Wed, 16 Feb 2022 07:22:45 +0000
+Received: from DM6NAM11FT003.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:ac:cafe::36) by DM5PR21CA0010.outlook.office365.com
+ (2603:10b6:3:ac::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.7 via Frontend
+ Transport; Wed, 16 Feb 2022 07:22:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT003.mail.protection.outlook.com (10.13.173.162) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4975.11 via Frontend Transport; Wed, 16 Feb 2022 07:22:45 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 16 Feb
+ 2022 01:22:44 -0600
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Wed, 16 Feb
+ 2022 01:22:44 -0600
+Received: from willgu.amd.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
+ Transport; Wed, 16 Feb 2022 01:22:42 -0600
+From: Jiawei Gu <Jiawei.Gu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <Andrey.Grodzovsky@amd.com>,
+ <Monk.Liu@amd.com>, <Emily.Deng@amd.com>, <Horace.Chen@amd.com>
+Subject: [PATCH 1/2] drm/sched: Add device pointer to drm_gpu_scheduler
+Date: Wed, 16 Feb 2022 15:22:22 +0800
+Message-ID: <20220216072223.8394-1-Jiawei.Gu@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Originating-IP: [10.126.230.35]
-X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
- rnnvmail201.nvidia.com (10.129.68.8)
+Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ba4567b3-3ec2-4bce-f67a-08d9f0f529bb
-X-MS-TrafficTypeDiagnostic: SA0PR12MB4559:EE_
-X-Microsoft-Antispam-PRVS: <SA0PR12MB4559DE6B57412D6F45E1243BDF359@SA0PR12MB4559.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Office365-Filtering-Correlation-Id: c17478eb-51bf-4b15-9fc0-08d9f11d20d3
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1207:EE_
+X-Microsoft-Antispam-PRVS: <CY4PR12MB12073FBA9FE6C8B6BA21F220F8359@CY4PR12MB1207.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:98;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zsrOwL6/Kf3cPfkQvFEIIPX5y/jZRCIMCj36Vr2HhNJpmB0Cezj7+ECiJ5DSu3OQedMMcp787FeP3t23OKux5BTWCtIyuD3Ef28tTVFtJCby+h3qiEhTucR2pMWd8iLBjxfE4wZYTV4coDfZ0iCi11yl3zkdkL1/+qw+OGBYQUiMo7/SHj8JaLBt5EGYXx6E7WjAlK8hvZoHrHog3gYlE1g6+tNSfjq4IXKwNsuGmC7mDncAuM6s5whOhrlEWEJTUq6HrUEyUcj1J5Jra1UPOjzc0rx+A9X7wUydwJa+CoYXYdM13ic/Dmn/zdUWtPfCRnEhrHoIHFWFdWtOQ8cv/RHahJIAHyBALv4wwnGAAZr5abdww51T66Chfif8Voq354Gxm80hiw3mRQhOikEZ2/iNBS6Gt0W0PlA+t1z4INZrk4W2VJxm/dK+MboJeX81ezEFlgmZe4+aSeB5jqoRcZpXjEP13SRNYsBsrqIu1rHNjbcMHuPBOe9cFNRuTgPoyKxwLRs8+Gb21P2TDPGLe0c24DOQQKN9QGdgYwzA+w4j9jQpsqWtFxd5+AiZ3mi2oNvrYrcy6/c8P6FTjUESC7iAhiDRLw2+E7X/GKT89RDt9w5x+Ark1e1zpqOXt+WTmn1Qha6Rru8NJyJ5u2zzObNeyD23RjwvVglbdNoZj2jnqfJLfvh+QBAyoXrNJ198JtS/HYfJ7475xbAfpL/bNg==
-X-Forefront-Antispam-Report: CIP:12.22.5.238; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:mail.nvidia.com; PTR:InfoNoRecords; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(356005)(70206006)(54906003)(82310400004)(426003)(6636002)(16526019)(9686003)(26005)(8936002)(316002)(40460700003)(47076005)(336012)(186003)(8676002)(81166007)(70586007)(6862004)(9576002)(83380400001)(86362001)(4326008)(2906002)(5660300002)(33716001)(508600001)(6666004)(36860700001)(7416002)(36900700001);
+X-Microsoft-Antispam-Message-Info: wZv/5cp2hK9DNzZP/wxvp8b+m+44s83Lu0U9rXptn8dKwMo4ddBIa5NmtQ3VdJfb5jKbSUNct+iOzoaqz6g4c+ShXkSjN61yl0f/t2B8rqcYZzchY2z/KRXpO2F5hh7mnUFq/dMrE3iL/rvqTqa4fnY+Rq91B7H8Fif3pSNxUkQAcf/S4UO5Bhj1ka3SPD0L/GHihuA840I/i4szUHpqYwEu2fL656M2VVz7qqOjpVjvWY/TmXkRHVA/YjRHFvm6LQagqqYrZ/ZiJ8aSgM4uB1iG+FDfWcVzyGSkGGLStU3gXwvsBXYOPQEXPKGVv5xFPloxMH9pEkVYWfHjT4dWZbXGnV2vzBursNe+cOaFrSPry1ayPoE8oE+MqGdddBPPKSz76yG6UqzN7mFdVcPViu8e+oRpIPatoh18+JthBor3fZbHXAYbJDEVX06chsBNwex5RdPOIOeUgEfOw8tQQr/XFLy4n8uUwgwJg9DVII5YSDXNp2dsDPMBxSxAVNuw/myfA7ZCswOaATIQY9LmJMGd2Dji/qpUiTIxZ/1rBfFqtmkQW865pqnlWCZQoKCxNzckCd3rlU7G34t6xlVrQOHdsI6w227RqPhP+z6s7Qqjm1jbBaWvv0tlGpAxZiJ4H5Tzuaqf6wYoY6OQc2u81Uca7hNlcGV0V6psSEICpMfr7sA4Wjq2ex72hyyRfh5p9qiCRjduetqfDp30aoI+Yx0t/4BruEp6COr8/aJJ2sM=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(82310400004)(36860700001)(2906002)(81166007)(356005)(2616005)(36756003)(8936002)(40460700003)(47076005)(5660300002)(86362001)(336012)(508600001)(4326008)(70586007)(7696005)(70206006)(426003)(8676002)(186003)(1076003)(110136005)(26005)(316002)(6636002)(83380400001)(6666004)(36900700001)(2101003);
  DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2022 02:36:40.5755 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba4567b3-3ec2-4bce-f67a-08d9f0f529bb
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[12.22.5.238];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT036.eop-nam11.prod.protection.outlook.com
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2022 07:22:45.5627 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c17478eb-51bf-4b15-9fc0-08d9f11d20d3
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT003.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4559
-X-Mailman-Approved-At: Wed, 16 Feb 2022 08:25:14 +0000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1207
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,48 +103,65 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Sierra <alex.sierra@amd.com>, rcampbell@nvidia.com,
- willy@infradead.org, David Hildenbrand <david@redhat.com>,
- Felix Kuehling <felix.kuehling@amd.com>, amd-gfx@lists.freedesktop.org,
- linux-xfs@vger.kernel.org, linux-mm@kvack.org, jglisse@redhat.com,
- dri-devel@lists.freedesktop.org, akpm@linux-foundation.org,
- linux-ext4@vger.kernel.org, Christoph Hellwig <hch@lst.de>
+Cc: Jiawei Gu <Jiawei.Gu@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Wednesday, 16 February 2022 1:03:57 PM AEDT Jason Gunthorpe wrote:
-> On Wed, Feb 16, 2022 at 12:23:44PM +1100, Alistair Popple wrote:
-> 
-> > Device private and device coherent pages are not marked with pte_devmap and they
-> > are backed by a struct page. The only way of inserting them is via migrate_vma.
-> > The refcount is decremented in zap_pte_range() on munmap() with special handling
-> > for device private pages. Looking at it again though I wonder if there is any
-> > special treatment required in zap_pte_range() for device coherent pages given
-> > they count as present pages.
-> 
-> This is what I guessed, but we shouldn't be able to just drop
-> pte_devmap on these pages without any other work?? Granted it does
-> very little already..
+Add device pointer so scheduler's printing can use
+DRM_DEV_ERROR() instead, which makes life easier under multiple GPU
 
-Yes, I agree we need to check this more closely. For device private pages
-not having pte_devmap is fine, because they are non-present swap entries so
-they always get special handling in the swap entry paths but the same isn't
-true for coherent device pages.
+v2: remove drm_sched_init() interface change to avoid compatibility
+issue
 
-> I thought at least gup_fast needed to be touched or did this get
-> handled by scanning the page list after the fact?
+Signed-off-by: Jiawei Gu <Jiawei.Gu@amd.com>
+---
+ drivers/gpu/drm/scheduler/sched_main.c | 6 +++---
+ include/drm/gpu_scheduler.h            | 1 +
+ 2 files changed, 4 insertions(+), 3 deletions(-)
 
-Right, for gup I think the only special handling required is to prevent
-pinning. I had assumed that check_and_migrate_movable_pages() would still get
-called for gup_fast but unless I've missed something I don't think it does.
-That means gup_fast could still pin movable and coherent pages. Technically
-that is ok for coherent pages, but it's undesirable.
-
- - Alistair
-
-> Jason
-> 
-
-
-
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+index 3e0bbc797eaa..83bc3fc2ad53 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -489,7 +489,7 @@ void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery)
+ 			if (r == -ENOENT)
+ 				drm_sched_job_done(s_job);
+ 			else if (r)
+-				DRM_ERROR("fence add callback failed (%d)\n",
++				DRM_DEV_ERROR(sched->dev, "fence add callback failed (%d)\n",
+ 					  r);
+ 		} else
+ 			drm_sched_job_done(s_job);
+@@ -815,7 +815,7 @@ static int drm_sched_main(void *param)
+ 			if (r == -ENOENT)
+ 				drm_sched_job_done(sched_job);
+ 			else if (r)
+-				DRM_ERROR("fence add callback failed (%d)\n",
++				DRM_DEV_ERROR(sched->dev, "fence add callback failed (%d)\n",
+ 					  r);
+ 			dma_fence_put(fence);
+ 		} else {
+@@ -872,7 +872,7 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+ 	if (IS_ERR(sched->thread)) {
+ 		ret = PTR_ERR(sched->thread);
+ 		sched->thread = NULL;
+-		DRM_ERROR("Failed to create scheduler for %s.\n", name);
++		DRM_DEV_ERROR(sched->dev, "Failed to create scheduler for %s.\n", name);
+ 		return ret;
+ 	}
+ 
+diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+index d18af49fd009..2d034c9a9299 100644
+--- a/include/drm/gpu_scheduler.h
++++ b/include/drm/gpu_scheduler.h
+@@ -302,6 +302,7 @@ struct drm_gpu_scheduler {
+ 	atomic_t                        _score;
+ 	bool				ready;
+ 	bool				free_guilty;
++	struct device			*dev;
+ };
+ 
+ int drm_sched_init(struct drm_gpu_scheduler *sched,
+-- 
+2.17.1
 
