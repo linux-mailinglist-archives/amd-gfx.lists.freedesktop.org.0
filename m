@@ -1,124 +1,79 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB234BA53A
-	for <lists+amd-gfx@lfdr.de>; Thu, 17 Feb 2022 16:57:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AF374BA589
+	for <lists+amd-gfx@lfdr.de>; Thu, 17 Feb 2022 17:17:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 007B510EB9D;
-	Thu, 17 Feb 2022 15:57:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8445F10E674;
+	Thu, 17 Feb 2022 16:16:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2055.outbound.protection.outlook.com [40.107.93.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD34C10EADE;
- Thu, 17 Feb 2022 15:57:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JJjgNfkusBhobFpKtgpP7ezlH5gcC3sDWgjsVl5NvaUJYTfQeSHOEGEg6iiycHmPqoTiexWCuVuiU6HPmqiLlh9l8K4gnelIIJFcncswyKzunz7bD1H4ERo3bLqTpquHZ6+cbiwi0WdUQfXBdkAsqVJ6j3XvNa60U6+TLAh/bUSiM8k7/zxN/VPoSt8NqXL4KO1Z1LV+JCGJWZhTCB3eA8SyRF710dqOkvhrxQx7TjLMMqHde43m2C8CfeoWeEbfalU70EgCMCxwy+f4PLj8P97U7OtqyTEpam0DfJmp2bPtG2o/soN0vFgC3/M6OXWg5GFQpIhNwnOWWmG4RFmovQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q+i6bECYWWQjty61Gx1DCW2U19UxTafa6Jkq7rfmavE=;
- b=Bo2HSecTTUBrWihBxuwdfa8PMZFFDzxqU6p0DJVTfu77iFChLD00l9Ndm9XY94XPXV38lIf7N+bQ7MMJ4akz78G+vdCG4LFrjcxuTuHFPaxis6yO78m1Z1YRJ7bbY8yoy2pOMBUbBmHQD5NM+mewknUtdNWQi97Xz5xFmf3esTVW/2i+Bj67yIy0Lp6UBPl2U50weNpm7rwTKLmvRpzHtOxGJ0FkJomy+k0oTxUWpKeVThP0L0HdRrLEOsBA+/kYPS0F6HRwnUx9vOBa/y9fofALKaSkBQSY1vQ28331HzOVWEzNZVfz8EYdI0Cry6hiQ48VfpRLQKq660APZiy90w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q+i6bECYWWQjty61Gx1DCW2U19UxTafa6Jkq7rfmavE=;
- b=M8gqBp8tJakP4Yb+tcywl8G2tZCyh3YoCVH2M7lVuxGoloDA3+bE4OKhkwNbXorcr4Ps/YlY1VYZANLKfpHWMnuvU71Pre4nxMGzItO1ZisxrjFJep2y0jVRfdLbIPAmOEJ6SJCH2U2/UBQxVXnw+x3SbRlZpWbq5cFX3TeK9Pg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com (2603:10b6:5:38::25) by
- MN2PR12MB4143.namprd12.prod.outlook.com (2603:10b6:208:1d0::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.16; Thu, 17 Feb
- 2022 15:57:34 +0000
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::7587:626e:3703:9db8]) by DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::7587:626e:3703:9db8%6]) with mapi id 15.20.4995.016; Thu, 17 Feb 2022
- 15:57:34 +0000
-Message-ID: <51018469-3bab-e56d-7407-b16170b5d74c@amd.com>
-Date: Thu, 17 Feb 2022 10:57:28 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH] drm/amdgpu: fix amdgpu_ras_block_late_init error handler
-Content-Language: en-CA
-To: trix@redhat.com, alexander.deucher@amd.com, christian.koenig@amd.com,
- Xinhui.Pan@amd.com, airlied@linux.ie, daniel@ffwll.ch, nathan@kernel.org,
- ndesaulniers@google.com, Hawking.Zhang@amd.com, john.clements@amd.com,
- tao.zhou1@amd.com, YiPeng.Chai@amd.com, Stanley.Yang@amd.com,
- Dennis.Li@amd.com, mukul.joshi@amd.com, nirmoy.das@amd.com
-References: <20220217153842.3252424-1-trix@redhat.com>
-From: Luben Tuikov <luben.tuikov@amd.com>
-In-Reply-To: <20220217153842.3252424-1-trix@redhat.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YT1PR01CA0106.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:2c::15) To DM6PR12MB3370.namprd12.prod.outlook.com
- (2603:10b6:5:38::25)
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E213110E5C2;
+ Thu, 17 Feb 2022 16:14:45 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 3D7BA5803CF;
+ Thu, 17 Feb 2022 11:14:45 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute2.internal (MEProxy); Thu, 17 Feb 2022 11:14:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm2; bh=MXfbhVCWqKJUrwBB370kKI/nk0FF2MyMt1LLhi
+ 0Bzqk=; b=uaZ9zUScDswRciS651h6P9I/nntH5mLe5nYsPsipgvSe1xFnmbiEFJ
+ 3cYX3mm1h3dL+z464foVFfSJB9wcti5IJUDiB9ct7AdBMkbGi9tqTh+2gUXD7Ozg
+ CTKGy6b8oQa89dO2w53x3Zep8cClNi2/mQKQbtUAZT8Lcq/ad5SvJjGd+1ws5sJK
+ jtng6Tqc/Eh9q6KRJH8+dkTvODtqSodCWyWpHrfE7iPqjNuJt6KIBAJBfxtj9vM9
+ 6iWSTiwSDq3zElsrVUgLxfn2OTjd7z3V2tR66GIVq/QkJxyl4O95+oDO4w7POxny
+ qUSGXElE5dZKErJKmoJyFDrmZ6xthzjA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=MXfbhVCWqKJUrwBB3
+ 70kKI/nk0FF2MyMt1LLhi0Bzqk=; b=DuLccNJoiDnBVilPLgBT4oZOodRMmB/B7
+ OVf1O800nGiAR1di38Z+C5DfEaHRAn5JYeMQPR5oVWnIuoDWzTpb13QFq6oW9pGT
+ KVEp8pvW+OlC7j0UPW/vLaXxMxxM0SUfSnXMqRd70tX704ssDYGGiCA44Ig5tklZ
+ aq2egWRsFk0evqW5chJhLVpnyJUETBus9yAhmXzt2rOyUmUA4VkA7YMShv8KuryY
+ cIY4bbghjD0+RXUg/eoPkaie2rGXOhKwPe7ZkCNnoWiR3jmAD5YZ4Ql6Fnt2n20Y
+ AShHOaNzAX2dtTI2F+kbX99ZasBhapR4MPsEP8BBgrWYLTx2Xxk7w==
+X-ME-Sender: <xms:dHQOYt0XDNEadGPuKW0ClQNb8oiVGPMnxAtoD3varYj3IsilIR835w>
+ <xme:dHQOYkHTSM04M13_upnHDaqTW31n-PPlusXPRfD4F3llOpPaQGpZGSg9lR4HoJS5d
+ nsDYG50OK6SPT6mQM4>
+X-ME-Received: <xmr:dHQOYt6wGut1Lu5acdMwYq9uHZBRsdWC-371_xuGfDrkSTvWswnkyaCq0ghutKFX-oRNd3LGeMKuDsWek-5M7v0YuK3T6tUexpjTAo0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrjeekgdekgecutefuodetggdotefrodftvf
+ curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+ uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+ fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+ ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+ gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+ udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+ igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:dHQOYq0u0OpbagD2YhNfx0R5byyjvdC_hYiP3-fR2TyPxZUMnAjMnw>
+ <xmx:dHQOYgESU04F2JXknEXkcEt3kCqupfPXy0qxEa5cMxs3aP2yBEWQXQ>
+ <xmx:dHQOYr8sXvO47-JiN0pjNCcuFjPSAcaaO4SdffsJYaDnhaLTNYAifA>
+ <xmx:dXQOYtdDju-3lzfeUEvrtH0QWwmNZBadlTQfSQ7Rem6KqvyDd7jNRg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 17 Feb 2022 11:14:44 -0500 (EST)
+Date: Thu, 17 Feb 2022 17:14:42 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Harry Wentland <harry.wentland@amd.com>
+Subject: Re: [PATCH 05/23] drm/amd/display: Fix color encoding mismatch
+Message-ID: <20220217161442.2ndrwzhvq7jzpuwe@houat>
+References: <20220207163515.1038648-1-maxime@cerno.tech>
+ <20220207163515.1038648-6-maxime@cerno.tech>
+ <8aa30074-6039-ba5c-c25d-38a0c2f52619@amd.com>
+ <3a9f5ff6-52fd-25f5-2714-8801eba13dab@amd.com>
+ <20220210084243.grmjum55qc6sei52@houat>
+ <fc0054aa-77aa-6d0b-b9d7-7a0163e3eb22@amd.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cd575a32-4c9c-4d36-9d5e-08d9f22e363d
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4143:EE_
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4143517FAF62DD654FABC16399369@MN2PR12MB4143.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JhGP4cxzDQqImneR3dDbpcuNtLraoYiFx1kmEOUFTLO4qh+tJ1n9D9tFdaeHHWMEVcBTOJKj8W5cO39TQ34jo4r92sSYEtuP2XKdkc+1qVh+GBEfsSkfhw3pj2i2n33XpxEsTqOgVd7PS3jFmDPu/Cj9a+LfH7sO7V9iq/Zvp/vvSwrw47ok6NcH9OAoABAsaPBpouD4FrpRHtiE80wcI27yTt063HSkpsVZ9bFfYYo9X+ednANmTH5qpMYFK6xCgP6Jb2Fc4xVQdBSd0Hs9mkEa+XXOWsd8bRJWuOo6Aas98aCa+7aWlHrthQcJNsf+Hu+wr4VnCxjepaFVQNB2VODzbEzuZy8Zn5AeEDcdYJrmlM+8MXdTLSa8birOK29Op3BNwTgD0muMZIjxZM78Y+zNr5e6a09p04Ov4qVZXYpce6VEotoipeUA7jo4D+myId0jvTDZe7UN1Ex3M9sA5MyZcWArq0yC5lc4DQk2iyfl/JKcSmNGjo/q+kqkrlCGGqXwoJT9A2MWWn/BHBBcjeV722b6eqAVibQQFgCwKrsL4ss1eehHPgBNsp//rDW1wO/qpvbjT6lvnzRqa+qwc2B66zNKOCZ46HLlBFmRnqi4ZE4TGNf6QrxsMYov31jsyQp+0pGyAGuYn9IUbbKGafw86yFqyEWJ70YldqGyIbzPo4wIcuwBSOqrnwiiKr/2sRJ5KCX1rE3Ee71ONXgp7PWuDwGlTJicUjpyZ8/PRbpWvM94IhGdwhdAvJCReItO
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3370.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230001)(4636009)(366004)(83380400001)(53546011)(26005)(2616005)(38100700002)(6506007)(6512007)(6666004)(186003)(4326008)(8676002)(66556008)(66476007)(2906002)(66946007)(5660300002)(8936002)(44832011)(921005)(31686004)(86362001)(31696002)(6486002)(316002)(6636002)(36756003)(508600001)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WXc2aXMzK0xMVmhhMDY3YmE0OFhMajhrVUtYeTlseVBxZ2xXZUtmalJwN09D?=
- =?utf-8?B?bXpiK0NZWUtBVHkzbVNVa1RqaEc1K1NObmg2YzB1MmVRVHg4RFdzY0lvcVRU?=
- =?utf-8?B?dVJZcjMrZXBXc1pHN05IWmt1TkNnZ0JndkhDbWdNRzh0ZXFybVpiT3hMQndP?=
- =?utf-8?B?aVlrOVhZd0pJa05oZmJlZDNLZjd4K2EvaUU5TDkyQTd3UWdrZVMyc09uTkVM?=
- =?utf-8?B?d2VveEZTM01aQWNHbVdpY2ttNTVZekQ2K28yL3c1bzhOZ1dwc1RaNFlyNzhw?=
- =?utf-8?B?WHpCTHhiMnVLdENCVS9Nc3lUS0NhdUxNUjhQNHV6TmpVUHNvdXFIeU9INmt0?=
- =?utf-8?B?QWJSc2huQnpycmx3eUJRbUtyMVZJbldvOEFVZnF4WW9ON1kyaWRlSUhQdEdJ?=
- =?utf-8?B?Y1UrMUswRXBlWVZCS0dtVmw1bzJXS3p6bEVDSDRrVmxxdjRCdmdUV1F4WGx6?=
- =?utf-8?B?b2ErL29DRzdidVF5dEhXQUxPVWFkODZOczFpOGx2bHZkZHJFd0tmeVZpZVNu?=
- =?utf-8?B?cE13aGJSOWx4Y0ZXam1CNmI3cEk2QXF0cHoveHJHZkdzMDNQU0lFNnN2NEJo?=
- =?utf-8?B?T2xSS0xDL2U0RCt2NjlJbTJ6TVhBc0p1L1psZlZQU2h0amhyRU1EdE0xUWkx?=
- =?utf-8?B?ZENEYTlPSzU1TThwQVkzQjlGQm1iekVlTDRJQTYwNEwzZnNzS0RZbGp6WkM5?=
- =?utf-8?B?NU9UalJ4Z3hJQWtuUXJtdVFJd1NKdXpZa24vQnR4aXNtMUgzTFhFbXljWGdL?=
- =?utf-8?B?ODgrMk5HWUtBSU4vNEEzN1VaSjRxU1VsY2NmUHhDZTVDRy9VNDdWbytpamxM?=
- =?utf-8?B?TWMvL2hHSzExYVc3YitLenBPTXF1YzJFQ21GbmdNMGVPaStUMENGMTNnUllM?=
- =?utf-8?B?U29nOFp6UmZmWXcrcWsrMzZYYy8xNVBIanJqSmZWeU84clNtQTI2T2x1MG5l?=
- =?utf-8?B?SVQyUW9UYklBZlVTZzBHTHc0RDRmZUdPZGh2UzlLTml4dWx6RGpncWdPZWFp?=
- =?utf-8?B?S2c4SFpzaFFWaUVGR1FHMkpGTktjWmUzTjlXZWR1MFlqTndTZUphY3VwVWM3?=
- =?utf-8?B?MkNEZjNYc09xNnhudGkxamhvRXpodEpKbUVYaCtmdTFHL3lXcFRDakpDZlRo?=
- =?utf-8?B?cTY3Nk11Qm9kQU42eGczK3RNd2xmNHNkajUyVi9WQTZocVlDeng0NVhQWXE0?=
- =?utf-8?B?a011WWlkaGFjNktDLzBFeDZmT01nb1FwTmhVT1duUkJud1pTcUdzMzM2N2pC?=
- =?utf-8?B?NWxsYTQ5UlQ0R2drVGtDNlNyakhyNkQ1TVkwWXZqdmxoWVNHdURBVGJmSUtk?=
- =?utf-8?B?RVlYOXIrRUdsUmM5RXdSRi9FOXBVRWtsYTRsWmdPSDNUUW8vbkdMTGlEWEx2?=
- =?utf-8?B?WlR1N2tHaVl2YnIrRDErT3JWQThEYm1wcEQxNFN5dVFOSnk2cjdzK09OZ1Jo?=
- =?utf-8?B?UEdpWjVtMnRBVGJkMlZZOGZSajJsVzc2VjFYbzFTTTZORXRzK2gzb29WZ2Va?=
- =?utf-8?B?NXZsTk5EVzdUMFdzVmxHaS8vN3BwM0YzNnIvdGp4NVo0eFc3T0R6dUowZ2hG?=
- =?utf-8?B?ckk0eGpJZmdkck05aWcrV09NNUpOamR6RWttMzIyZnF5WEswbE12NHJKYWRL?=
- =?utf-8?B?N0IzaG1ueGdvYkpxelpkZTYzWSthU2czN3pQRXBnWkJBbWFLQUJsdU1nSFpo?=
- =?utf-8?B?ZnB4UFc0ajJic1VWOFZUNnF2ZnV6YlFpKzZ1MDlUMTN4dWQxMmV3Vm95d29t?=
- =?utf-8?B?cHUxdHB0NGxuZ200dnNid1ZBdU0yZ3VQTy8wdldBUTNSZHdBS1VwL1RDdGk2?=
- =?utf-8?B?ZTduckxFT3M0aXRtMDdVd2NJV1V3OTNyWVltVjJqK0RhNWxNTWNSSk5vWE5L?=
- =?utf-8?B?K1lwU0tMQ3RwenBVR0p4eEFFQWEyVWpoSXE5V1RDNmlZMnQ0bk1KNkVwU2Qr?=
- =?utf-8?B?S3FLbElQUU43VzltUFF0SGtGbFBHNDVMNG5NL3E4aUN1VGdQQkFNQkZoN0sx?=
- =?utf-8?B?REZuZEN2dlFBM2w0aFNHcy9DWmR6RTFWemt0OWZvRFNRZjRhYzhNc3U5THRF?=
- =?utf-8?B?Q0lEeTQ1ajNyWnRlT1NNY0NycUw3cGxXcVhKcDFGamNYUU9nQlgrZGtieUJR?=
- =?utf-8?Q?/EBI=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd575a32-4c9c-4d36-9d5e-08d9f22e363d
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3370.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2022 15:57:34.4560 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CiHVWl3PS1NsXqqsX4Cpd8QsQVG0CGQr6OvDMo1Rqm9gjoYGTmzQEcGazLcYAg+s
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4143
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="3y3s4rvkp2s5fbh6"
+Content-Disposition: inline
+In-Reply-To: <fc0054aa-77aa-6d0b-b9d7-7a0163e3eb22@amd.com>
+X-Mailman-Approved-At: Thu, 17 Feb 2022 16:16:56 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,89 +85,82 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: llvm@lists.linux.dev, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Dom Cobley <dom@raspberrypi.com>, Tim Gover <tim.gover@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, "Pan,
+ Xinhui" <Xinhui.Pan@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ dri-devel@lists.freedesktop.org, Phil Elwell <phil@raspberrypi.com>,
+ Leo Li <sunpeng.li@amd.com>, amd-gfx@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Thanks for catching this.
 
-Reviewed-by: Luben Tuikov <luben.tuikov@amd.com>
+--3y3s4rvkp2s5fbh6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Regards,
-Luben
+Hi Harry,
 
-On 2022-02-17 10:38, trix@redhat.com wrote:
-> From: Tom Rix <trix@redhat.com>
-> 
-> Clang build fails with
-> amdgpu_ras.c:2416:7: error: variable 'ras_obj' is used uninitialized
->   whenever 'if' condition is true
->   if (adev->in_suspend || amdgpu_in_reset(adev)) {
->   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> 
-> amdgpu_ras.c:2453:6: note: uninitialized use occurs here
->  if (ras_obj->ras_cb)
->      ^~~~~~~
-> 
-> There is a logic error in the error handler's labels.
-> ex/ The sysfs: is the last goto label in the normal code but
-> is the middle of error handler.  Rework the error handler.
-> 
-> cleanup: is the first error, so it's handler should be last.
-> 
-> interrupt: is the second error, it's handler is next.  interrupt:
-> handles the failure of amdgpu_ras_interrupt_add_hander() by
-> calling amdgpu_ras_interrupt_remove_handler().  This is wrong,
-> remove() assumes the interrupt has been setup, not torn down by
-> add().  Change the goto label to cleanup.
-> 
-> sysfs is the last error, it's handler should be first.  sysfs:
-> handles the failure of amdgpu_ras_sysfs_create() by calling
-> amdgpu_ras_sysfs_remove().  But when the create() fails there
-> is nothing added so there is nothing to remove.  This error
-> handler is not needed. Remove the error handler and change
-> goto label to interrupt.
-> 
-> Fixes: b293e891b057 ("drm/amdgpu: add helper function to do common ras_late_init/fini (v3)")
-> Signed-off-by: Tom Rix <trix@redhat.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c | 11 +++++------
->  1 file changed, 5 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-> index b5cd21cb6e58..c5c8a666110f 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c
-> @@ -2432,12 +2432,12 @@ int amdgpu_ras_block_late_init(struct amdgpu_device *adev,
->  	if (ras_obj->ras_cb) {
->  		r = amdgpu_ras_interrupt_add_handler(adev, ras_block);
->  		if (r)
-> -			goto interrupt;
-> +			goto cleanup;
->  	}
->  
->  	r = amdgpu_ras_sysfs_create(adev, ras_block);
->  	if (r)
-> -		goto sysfs;
-> +		goto interrupt;
->  
->  	/* Those are the cached values at init.
->  	 */
-> @@ -2447,12 +2447,11 @@ int amdgpu_ras_block_late_init(struct amdgpu_device *adev,
->  	}
->  
->  	return 0;
-> -cleanup:
-> -	amdgpu_ras_sysfs_remove(adev, ras_block);
-> -sysfs:
-> +
-> +interrupt:
->  	if (ras_obj->ras_cb)
->  		amdgpu_ras_interrupt_remove_handler(adev, ras_block);
-> -interrupt:
-> +cleanup:
->  	amdgpu_ras_feature_enable(adev, ras_block, 0);
->  	return r;
->  }
+On Thu, Feb 10, 2022 at 09:38:24AM -0500, Harry Wentland wrote:
+> On 2022-02-10 03:42, Maxime Ripard wrote:
+> > On Mon, Feb 07, 2022 at 01:59:38PM -0500, Harry Wentland wrote:
+> >> On 2022-02-07 13:57, Harry Wentland wrote:
+> >>> On 2022-02-07 11:34, Maxime Ripard wrote:
+> >>>> The amdgpu KMS driver calls drm_plane_create_color_properties() with=
+ a
+> >>>> default encoding set to BT709.
+> >>>>
+> >>>> However, the core will ignore it and the driver doesn't force it in =
+its
+> >>>> plane state reset hook, so the initial value will be 0, which repres=
+ents
+> >>>> BT601.
+> >>>>
+> >>>
+> >>> Isn't this a core issue? Should __drm_atomic_helper_plane_state_reset
+> >>> reset all plane_state members to their properties' default values?
+> >>>
+> >>
+> >> Ah, looks like that's exactly what you do in the later patches, which =
+is
+> >> perfect. With that, I don't think you'll need this patch anymore.
+> >=20
+> > Ok, I'll squash it into the patch that removes the reset code.
+> >=20
+>=20
+> I don't think that's right. I think we can just drop this patch.
+> The amdgpu display driver is not doing BT601 by default.
 
+My understanding from the code currently in tree is that:
+
+1) amdgpu_dm_plane_init() will call drm_plane_create_color_properties()
+   with an initial value set to BT709.
+
+2) dm_drm_plane_reset() will use kzalloc and then just rely on
+   __drm_atomic_helper_plane_reset(), which will not set the color encoding
+   at all. It's thus 0 in the initial state.
+
+3) the drm_color_encoding enum will have BT601 associated to 0
+
+So it does look like the default for amdgpu at the moment is BT601?
+
+Maxime
+
+--3y3s4rvkp2s5fbh6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYg50cgAKCRDj7w1vZxhR
+xajBAQDZJH4L1HIZtOjNjUZy70kzhvPp84ITyDvZFUbtrnlvswEA3sWE6f7R9xcI
+FKWQz7FikzvKtmT8XxLs5vH6cJnYCgQ=
+=LDIf
+-----END PGP SIGNATURE-----
+
+--3y3s4rvkp2s5fbh6--
