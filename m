@@ -2,94 +2,77 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 698474BBDF1
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Feb 2022 17:59:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35AC04BBE98
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Feb 2022 18:43:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30AD010F069;
-	Fri, 18 Feb 2022 16:59:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8170C10E242;
+	Fri, 18 Feb 2022 17:43:16 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam08on2059.outbound.protection.outlook.com [40.107.101.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89B7B10EE80
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 16:59:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cXWcPqA8gf2Ck2mWLJ5gknhWuxRHFOYW7OacIRb16mdmYxtivY5vbtkhZx0lMykkGgU9FAliT6EMBmNp39IFEFsZMNeZIPDV/0Zb3ocsPeA7kdNV5RTpJUBwpCr26eTpQXJn3C4FFL0BjaR9KncAVSoO4UdZKGX22zguQO8mVaWvOvFwsSxeOxmMqY21zEJTbwo7qNdDlcGaN6hshwsVJ4nRi0JBOA0GlFJN21AH4sirsh49wG0+MtO8szYa3sJvh+X6F3bYmDlTiojDzId2vi/kBb8t8CBHN1tj9tZnWXk3WZLQOC6xNrExzFrMVE629YnoYor6iZrNZYVYcaY1Xg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XMH12dDgArRSaLvb6EiCs9Iuwh4F1CMo4DTsMKfiHrY=;
- b=YgjvP57EvNRQuPZfQtaS8RPL0A4kvt6MIyqz1lMGqdOp6JmJUjAYCJK7hwdhGr5ViFvQwju2IonDSbKH2OCStuPRyXcgwFAFJypJJ7QE/ZKd6lYXBo9XVkMgPD23Bp/7h4gt66H9TUwZkEhUuU27M96eoLOKjMiaSenq91kt6T89YzUz+PsEG+IpWxPVQ4Ur7BTBqk6fthWoWa7MpwBLuKSx2LXYjzkGwLL7X8ycbSWCJ3nVyy/TPXWJgSJRK7UOiDq36T+Z8eIiAlXsGr+6fIplkrcNkUyjnrqPXjiPNyhcYzi2dWasa3y680Y7qikiPKNRIuQNNXeY9ciOV4x7ZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XMH12dDgArRSaLvb6EiCs9Iuwh4F1CMo4DTsMKfiHrY=;
- b=hlABbZ9e30PUQR8U+Tjv2XivBvAZHjN4j3nXH5hNZnGrav+hSAyrG2lpjKIP5rvS8dCVD76qFLea42jPfSv7/9A9ixX5F9mVPAmJvgA3xz2dku1J1tTLKwTekHPuxhUqw2Pk5LdU3wYD0xscwpWcHyxTew2nU5FjI0seS2DE+9o=
-Received: from MW4PR04CA0335.namprd04.prod.outlook.com (2603:10b6:303:8a::10)
- by MN2PR12MB4000.namprd12.prod.outlook.com (2603:10b6:208:16b::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.16; Fri, 18 Feb
- 2022 16:59:18 +0000
-Received: from CO1NAM11FT019.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:8a:cafe::f8) by MW4PR04CA0335.outlook.office365.com
- (2603:10b6:303:8a::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.16 via Frontend
- Transport; Fri, 18 Feb 2022 16:59:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT019.mail.protection.outlook.com (10.13.175.57) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4995.15 via Frontend Transport; Fri, 18 Feb 2022 16:59:17 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 18 Feb
- 2022 10:59:14 -0600
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 13/13] drm/amdgpu: add dm ip block for dcn 3.1.5
-Date: Fri, 18 Feb 2022 11:58:54 -0500
-Message-ID: <20220218165854.1417733-12-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220218165854.1417733-1-alexander.deucher@amd.com>
-References: <20220218165854.1417733-1-alexander.deucher@amd.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2F4110E3AF
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 17:39:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1645205963;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=xAam+qFCmo3Rl80e7z26slziDVWmWKJYDMPephJD4B8=;
+ b=O8tBTxSIQpcIdgkYwaxVf6s0H4YdmLxMn6jMugdH0dPBzgl8Rs7mOCoT9t6gaM9p07P78Q
+ Nqyq8uY7tyVnGu7lnAkww1xZ2QnYRRV5iunjGCAoxeUboFm5THTh+Vpfvx9z/dgbyAD1A1
+ gaIYo56xlKKc0cWjYSpL6V1EthwzQ0o=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-328-oqjlRKW-Ps6zuHb8gpmL-A-1; Fri, 18 Feb 2022 12:39:19 -0500
+X-MC-Unique: oqjlRKW-Ps6zuHb8gpmL-A-1
+Received: by mail-qv1-f71.google.com with SMTP id
+ gi11-20020a056214248b00b0042c2cc3c1b9so9583065qvb.9
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 09:39:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=xAam+qFCmo3Rl80e7z26slziDVWmWKJYDMPephJD4B8=;
+ b=WcVpYL8uQn6FHTel/PF2mjJKl6Xe+9xPmb8/fnjVZViFyhsMxRY0SxJF++EByHFMJ/
+ kBSowikP2CCh0Kxle25evdKv8kymqI6oNLtHyrg++/S19qVYHUFkplTl96KeVh3+xv3r
+ 3oE3YxeuOmrEBFZLzRklfQi/TyO3ZBt/nVuJeBZYT0j5SCjyiE4vKL8N53At7hytqeEI
+ kg/RA5NtkfuJd/s7WXA3NGeINE+4SCaFnx2mcpTXqwZsQE+xkqsN9bIwBYlhgDW4+/6b
+ nxBWaolSgKO3JlCD5zwNWctZGL4/D8C8nuerxKa+LrCaX2FBllx5L03+p4sw898L09Ih
+ /kZw==
+X-Gm-Message-State: AOAM5337ivTdyDwoRS7Sp0tkGrSk8r2q3XKsIAA6+HZ2GpdjxHjXMRfX
+ kVwbh/Gxt09pgs7jErgaJ1bKmi1D+5g3bAPRnA8v5F0LWdefUVDkKSGH4UolMQCYLDIlO42HBvh
+ sUwvgsShjUXOJrHioMlPTsr2pAw==
+X-Received: by 2002:a05:6214:6ae:b0:42d:8c32:9697 with SMTP id
+ s14-20020a05621406ae00b0042d8c329697mr6639088qvz.128.1645205959332; 
+ Fri, 18 Feb 2022 09:39:19 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyHRTUjyiPCyav3YHqFIKehE5vskU34OYALKehiwfJAPYRDA2JG2akysROtDLt0A6lF7XH17w==
+X-Received: by 2002:a05:6214:6ae:b0:42d:8c32:9697 with SMTP id
+ s14-20020a05621406ae00b0042d8c329697mr6639057qvz.128.1645205959074; 
+ Fri, 18 Feb 2022 09:39:19 -0800 (PST)
+Received: from localhost.localdomain.com (024-205-208-113.res.spectrum.com.
+ [24.205.208.113])
+ by smtp.gmail.com with ESMTPSA id g22sm3425738qkp.63.2022.02.18.09.39.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 18 Feb 2022 09:39:18 -0800 (PST)
+From: trix@redhat.com
+To: Felix.Kuehling@amd.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, Xinhui.Pan@amd.com, airlied@linux.ie,
+ daniel@ffwll.ch, nathan@kernel.org, ndesaulniers@google.com,
+ david.yatsin@amd.com, rajneesh.bhardwaj@amd.com
+Subject: [PATCH] drm/amdkfd: rework criu_restore_bos error handling
+Date: Fri, 18 Feb 2022 09:39:13 -0800
+Message-Id: <20220218173913.3376948-1-trix@redhat.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 58e3ffbb-3d63-46e8-bbe9-08d9f3000002
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4000:EE_
-X-Microsoft-Antispam-PRVS: <MN2PR12MB40000BD825064D4F56632A6CF7379@MN2PR12MB4000.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:873;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Zn/c4yTXIEMpvtVWUrn8mkYYRAVB1GNBpGOs1G4lUu6w4NGtEwHuPfS/vlhZ5vWkIdAMeZb+eQEnQ3O7R5VqwT4dJgacLmSh76w/QMxV2hDLeSxDssWmCvvNAgrtHC96PdUQZthL40/UH/vm7wNa4ByoWTGOjG7l5HH6XH/SmJFMAD900HWXuEChkNJbpYS6nsHlR2c6kq91+lih1nXrXj6CxgZ6gI4DIZlfTeKj6djbsSINbWHUb7nyUlj3A9Qo+z3Mbb2jeZ79rd1nWCgZQrlQF65sERFB2ypSbcDsvGLocsC6LdHcQW0SOMCy4COY4DcGBT19pFv2LyEzgJtygmLOmLg3X6iWGlW/rxcWiKmWjri6/d/uuAhWb5HeWfUmVxJeSexiGN0ZeTIW85f0T51+Mim4kXZeajoka8UFDg69nP3OrlzWUPYOkdPeB9rEL8qfGeXxC7DTjV8OEegqFfp2H5uLJTXCmf1phAZVSjQPQGKHF0wncY0o0iLA2qKZyEAtctlBBMO89pLse10HIZjeoT2xyw6AMYuWe0HEr7Z4S80qknaoc5t731QI3zW5DG9wKNadAvamXJH0Xyje0WzdPIHhSaiXCLKs/waE3vO5GipBpHpK1TbaYVEZuqlUhfxpS6ZnzOIR68Q/MuVdSoKXtUoU78pItRfhToDFp4nL0Rn6mdvQp6GUN7M5MrR4opiAkzdfVJx3wv5jpWgCVg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(6916009)(4326008)(54906003)(8676002)(2906002)(47076005)(82310400004)(7696005)(316002)(40460700003)(81166007)(508600001)(5660300002)(70206006)(36860700001)(70586007)(86362001)(356005)(36756003)(83380400001)(8936002)(2616005)(1076003)(4744005)(26005)(186003)(426003)(336012)(16526019)(6666004)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2022 16:59:17.3489 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 58e3ffbb-3d63-46e8-bbe9-08d9f3000002
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT019.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4000
+Content-Type: text/plain; charset="US-ASCII"
+X-Mailman-Approved-At: Fri, 18 Feb 2022 17:43:15 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,35 +84,94 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- Yifan Zhang <yifan1.zhang@amd.com>, Huang Rui <ray.huang@amd.com>
+Cc: Tom Rix <trix@redhat.com>, llvm@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Yifan Zhang <yifan1.zhang@amd.com>
+From: Tom Rix <trix@redhat.com>
 
-this patch adds dm ip block for dcn 3.1.5.
+Clang static analysis reports this problem
+kfd_chardev.c:2327:2: warning: 1st function call argument
+  is an uninitialized value
+  kvfree(bo_privs);
+  ^~~~~~~~~~~~~~~~
 
-Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
-Reviewed-by: Huang Rui <ray.huang@amd.com>
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
+If the copy_from_users(bo_buckets, ...) fails, there is a jump to
+the generic error handler at exit:.  The freeing of bo_privs and
+unwinding of the dmabuf_fd loop do not need to be done.
+
+Add some specific labels for the early failures.
+Reorder the frees to be the reverse of their allocs.
+
+Move the initialize of 'i' back to the loop.
+The problem with the early frees predates the loop
+unwinding problem.
+
+Fixes: 73fa13b6a511 ("drm/amdkfd: CRIU Implement KFD restore ioctl")
+Signed-off-by: Tom Rix <trix@redhat.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-index 9ec7f723242b..86fb4a761fe4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-@@ -1378,6 +1378,7 @@ static int amdgpu_discovery_set_display_ip_blocks(struct amdgpu_device *adev)
- 		case IP_VERSION(3, 0, 1):
- 		case IP_VERSION(3, 1, 2):
- 		case IP_VERSION(3, 1, 3):
-+		case IP_VERSION(3, 1, 5):
- 		case IP_VERSION(3, 1, 6):
- 			amdgpu_device_ip_block_add(adev, &dm_ip_block);
- 			break;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+index 965af2a08bc0..1d5f41ac3832 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+@@ -2102,7 +2102,7 @@ static int criu_restore_bos(struct kfd_process *p,
+ 	const bool criu_resume = true;
+ 	bool flush_tlbs = false;
+ 	int ret = 0, j = 0;
+-	uint32_t i = 0;
++	uint32_t i;
+ 
+ 	if (*priv_offset + (args->num_bos * sizeof(*bo_privs)) > max_priv_data_size)
+ 		return -EINVAL;
+@@ -2119,13 +2119,13 @@ static int criu_restore_bos(struct kfd_process *p,
+ 	if (ret) {
+ 		pr_err("Failed to copy BOs information from user\n");
+ 		ret = -EFAULT;
+-		goto exit;
++		goto free_buckets;
+ 	}
+ 
+ 	bo_privs = kvmalloc_array(args->num_bos, sizeof(*bo_privs), GFP_KERNEL);
+ 	if (!bo_privs) {
+ 		ret = -ENOMEM;
+-		goto exit;
++		goto free_buckets;
+ 	}
+ 
+ 	ret = copy_from_user(bo_privs, (void __user *)args->priv_data + *priv_offset,
+@@ -2133,12 +2133,12 @@ static int criu_restore_bos(struct kfd_process *p,
+ 	if (ret) {
+ 		pr_err("Failed to copy BOs information from user\n");
+ 		ret = -EFAULT;
+-		goto exit;
++		goto free_privs;
+ 	}
+ 	*priv_offset += args->num_bos * sizeof(*bo_privs);
+ 
+ 	/* Create and map new BOs */
+-	for (; i < args->num_bos; i++) {
++	for (i = 0; i < args->num_bos; i++) {
+ 		struct kfd_criu_bo_bucket *bo_bucket;
+ 		struct kfd_criu_bo_priv_data *bo_priv;
+ 		struct kfd_dev *dev;
+@@ -2323,8 +2323,11 @@ static int criu_restore_bos(struct kfd_process *p,
+ 		if (bo_buckets[i].alloc_flags & KFD_IOC_ALLOC_MEM_FLAGS_VRAM)
+ 			close_fd(bo_buckets[i].dmabuf_fd);
+ 	}
+-	kvfree(bo_buckets);
++free_privs:
+ 	kvfree(bo_privs);
++free_buckets:
++	kvfree(bo_buckets);
++
+ 	return ret;
+ }
+ 
 -- 
-2.35.1
+2.26.3
 
