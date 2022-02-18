@@ -2,42 +2,42 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 725A64BC28D
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Feb 2022 23:26:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91C3C4BC293
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Feb 2022 23:26:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF2E610EDD7;
-	Fri, 18 Feb 2022 22:26:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53CCC10EE0A;
+	Fri, 18 Feb 2022 22:26:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2044.outbound.protection.outlook.com [40.107.236.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C05D710EDD7
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 22:26:19 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2086.outbound.protection.outlook.com [40.107.94.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB55310EDDA
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 22:26:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XF0fZeNHNssk8e+0Bb78sFup5h9q7Mv16voG2LpEfksaHsJZAAPZPfNR/dVpgxfPdX6awJUFfLWaXGAn5cFeF5jMscf1t6gABVsq74LenT8XtyL01TCrN9hX+VWxS00B1kNkzBoeHsnS33xPOY3YvCaXCpHZQ7FJTaXCCzSNbUVT4F5o6k0iRV8XECeuQgdm0weDdVFcZjdoErMsb+QnkufdKM9wo52yPpTG00e8UU4X92KgSWRlF0J2cdc37nqQglUiXf3DV83LN5VdEvNTKXC2qmgx4p2S5gm7pdksUN0be6fPbdN8n437FQjzAnFZIfhNOD4ILc4xwzmwemH4Og==
+ b=l+Pba0riuDXTB12UbKTHeSSepi6UBfvfEDugNFPExJ60hH78F/0MohaS3R/QbPD0f2lBYWn2oh3dTpfI7oslQCBk4+Jv4WbTyW52P7mSYCjVbp0X92p3TsuJTY735jo6dx/w6OiPDjDS6zN+0rMpM71mm9L3p4aKuH4qMUaQpOSRksLAU2HK1XUILewW5J4Huitb4oDp1T77L4gcn9n/ZLj2ZJQuNHP8q9jDXQCBlRu995wNEXGy8AjhVCkK0Sbv1NEsI3nwye9obhqAOhI0taQ5mv1f6h0nUOx3vspEgM/Q/H9QKOSyKNp60uF0HyIySretwPJ7CmfqcPnE+0n5HA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YbU37qmO7cIzf0xWl/ksSU3lKL6jpTz4XMzPLWDbOAU=;
- b=IC0m//iyq52WRGWxZZhrkFlXqqGySNS8MbIqE2ApvMUXCARBVEqy6aU2g/XUwxwOc04P7XqhyHp5//NURxgPFi1JiJfIcKzvWlwGrcgLrsS1Xrc1K1drGXT3wvtbdP7vAI3be1N2X03MbhkdyQtx5bjY+53Wip4es8NJH4ZNdogrSn7hVFR7FCJeSxgrogD93OECUnlNLb9TCgMU6/OgvbNBS1rUhgt/vOxPHvkew7YQw7pRVIC6g71cghcgclt6I/26JWKMAaTLpQH8kOQlgu+FU6mP56RDShFeqQl957a7GK3rVHDkgpbG3ivy7Yjjs6Gh5Q2ecbYdEGNR7xLFwA==
+ bh=R/PDU9/K4WSKeQSVunTdopE7bPpUVa9LWpD8NxXZic4=;
+ b=jcerh07NlIeeByF4UE1ZiyWmQ8mgpMAfGNbRr+akalQyWXHjEYhEjgJTVh4OicS5h+W3kC7K7RIw6RxP85HP0lcSxDIwq5BEVXd2jmpHxl4YsIahkCcK78MIOpVkD9JRgflOfJmaLrYvUsUHoJmsoO5RSeEfGrTWu8NfW5aJsm1nKqzUAG4ZoPfuOK95AgMTCdHwjla+hJRbo5eckpO1Acyx72yNVS8I4qeN/yc1UbKY0YQlMdxgPBkZ1oiyDZRyXDcYchcfZtTUDphOnGWo3h9LuZCW5ykP0vb9cC+TL8GkWqd1jG7FWl5twEAi9BapEpTRfMqHc+fH71p1YmFY4w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YbU37qmO7cIzf0xWl/ksSU3lKL6jpTz4XMzPLWDbOAU=;
- b=a9Py4uANAJIRDXTMAd7xWtu0VmXs44z5RHJ8Do5kuJokJeVoRI7QX6aSCl/S+LU/8syG9maJjfOxOaqR86g94yO3tPctCedyP+F+xy2O+RNb7mVkaBbCwTnCfmz3Vb0disv1IAGiBt9FPx5g+3V/mGeBb0goP2v5eRna4LDP9IE=
-Received: from MWHPR20CA0005.namprd20.prod.outlook.com (2603:10b6:300:13d::15)
- by BY5PR12MB3730.namprd12.prod.outlook.com (2603:10b6:a03:1ac::14)
+ bh=R/PDU9/K4WSKeQSVunTdopE7bPpUVa9LWpD8NxXZic4=;
+ b=faLLOIt9wWfdZxdIDNusyWjIw2mQT8fg9x5JjMvZxOUFwoDaSPz9Mkb3OmxoLJswXTEZpTc556jyNbt+/vOUFF5fgBk3S0oOjXtneiINREIi/dLXTBQ7tMGNxNccr0MCzFc/aZGThJVpXZyqzO2ioNzXP1P+EGYK4heQlQ6NzUo=
+Received: from MWHPR20CA0020.namprd20.prod.outlook.com (2603:10b6:300:13d::30)
+ by SN6PR12MB4718.namprd12.prod.outlook.com (2603:10b6:805:ee::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.16; Fri, 18 Feb
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.15; Fri, 18 Feb
  2022 22:26:17 +0000
 Received: from CO1NAM11FT036.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:13d:cafe::ba) by MWHPR20CA0005.outlook.office365.com
- (2603:10b6:300:13d::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.17 via Frontend
- Transport; Fri, 18 Feb 2022 22:26:16 +0000
+ (2603:10b6:300:13d:cafe::ed) by MWHPR20CA0020.outlook.office365.com
+ (2603:10b6:300:13d::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.19 via Frontend
+ Transport; Fri, 18 Feb 2022 22:26:17 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -47,16 +47,16 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
  CO1NAM11FT036.mail.protection.outlook.com (10.13.174.124) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4995.15 via Frontend Transport; Fri, 18 Feb 2022 22:26:16 +0000
+ 15.20.4995.15 via Frontend Transport; Fri, 18 Feb 2022 22:26:17 +0000
 Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 18 Feb
  2022 16:26:15 -0600
 From: Alex Deucher <alexander.deucher@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH 2/7] drm/amdgpu: plumb error handling though amdgpu_benchmark()
-Date: Fri, 18 Feb 2022 17:25:58 -0500
-Message-ID: <20220218222603.25470-2-alexander.deucher@amd.com>
+Subject: [PATCH 3/7] drm/amdgpu: print the selected benchmark test in the log
+Date: Fri, 18 Feb 2022 17:25:59 -0500
+Message-ID: <20220218222603.25470-3-alexander.deucher@amd.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220218222603.25470-1-alexander.deucher@amd.com>
 References: <20220218222603.25470-1-alexander.deucher@amd.com>
@@ -68,28 +68,28 @@ X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 793fb125-6ce9-443d-6541-08d9f32dadf9
-X-MS-TrafficTypeDiagnostic: BY5PR12MB3730:EE_
-X-Microsoft-Antispam-PRVS: <BY5PR12MB37301FF80BD1BA9E36EF2C3BF7379@BY5PR12MB3730.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
+X-MS-Office365-Filtering-Correlation-Id: 968ed7ba-35b4-4f0c-e735-08d9f32dae7e
+X-MS-TrafficTypeDiagnostic: SN6PR12MB4718:EE_
+X-Microsoft-Antispam-PRVS: <SN6PR12MB4718A06FAC6FD7348E32A5BEF7379@SN6PR12MB4718.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1824;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Swj6NMVamLkix7Vb/IOcfiTcsoO0lNoCXMHvC4Vrgv8wLgL7/CAgz9bfNAnbS4RxhyB6zo5/LyO2WjZVRHRx4IVskV/fRCZnnRBbwsQBPat55KjWFfyoUDDsCxt5NavIX4EAmOppji4krqy4AD6sOStaqWgYY8twBBxWwzHIb3pnzWyonW4AYDZi6eynX1Y+Gb2UhwztNLjANVilp0phPsQ3ae3v4KiY0InbC7NF3CSTrhy3vt7qTI0xGUieefPlgF71PYsgQ2Us1/qkkk0WO44N5sO93qcLuJ5VvqP+99GFHiRh4ithE3H4bdrPCBFv/aOAjNnKKhFXWSOeTOjqsXXXUFyOYsTZvwC4P4vY14Bv7FyMglGdW6sLXI41v19sRhVwf0IfU9rFzmXKQ0tf09QP0VyL4Rtg0UZM8jBPljtTUbaYaAn/ivLhBjQWL/z5YHoJSDkZUB4YnystLnR0y6oBAdjGQOnAGtOeJJsgVOV102aF65uCye7Rp0wMOOrb4KZAD0khbP6p/I4N3OKYfV4JdZoJsZ4Ggdu7vxrzklISO116VYUhjS0KDBDiJ1xd7BcFEZit+FKwd8ayMbGOPn1aEAFqfmWuEgfV8nIrxo9ncUTOR/kV97zpFZclY22PsbERVq3k8+jM7Grni6/3OoPS2PkFLXEsECdTeHzNE1xbnG7FT6gFkcxlNP25SmuDT4QOIUzTCGFIRTp5mw90Zg==
+X-Microsoft-Antispam-Message-Info: LDl64yR/FLZrr0BRv6mpcwhPeMJJKEw61aAfFT8biuHqeu+wYNWJDuZ9v2SYJiN7r6RVcvSfPgIQIHVstlU1QuyuTkUimGhahfw9LoTetzucTho47CYUhotFEkn23xrpMZAv7VvQQHHdjwu4Mg4lrTSfBBlL7x0kCGDIblUkDl3CbbSkgrDe/z7opeXuY6oJTlHtzMLe9b8L+ixfsT6Zn5NmvUwuRZG4jqJylslnJTg2vuhuMYyX4DfQhniX3JPle0vDfsxb9H0e7LzhUmU9RX6TIURKP31BUSmy/dFUYLs+pW62ePSaH8f3WnuxDAgDMu3RHmjCZuJmEzHqhIRdpZZaS+ER/dM976OqgJA4sSgCCihrM8AST+rpttn5ZRGP4lwr4JfOwvEbzTvI93DzmIuRRrwXn/1utgZ2PmF+vVYp2Qm/elnvUUZYdA76OLrILSCzss9QjzMgGEjMqhasGekpg6U3JFHJfhaayMR3cUWGftWw/MorpSRJfjXwbrdUGLzMnxDlm30VNrqEUmLLu4NMOqWok5AI91Pqn4fJ1Gk/Fds8ItYrDDTal4/mvPHB9F22gylnnqczEng/781JtA7n383pBEuY0l5rHui4gM7o+7Dq2WTWZix+q6YAEoU55C+XpO5vyhbbU14yaLcg2LdiAUm4+Ux7RD3lmuUxg6jYO6yP8hT5RwAvix+zCr5bqY2/sqMVQs843EMRQ9yHmA==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(2906002)(6666004)(36756003)(7696005)(5660300002)(40460700003)(8936002)(2616005)(81166007)(356005)(16526019)(70206006)(70586007)(47076005)(8676002)(4326008)(1076003)(82310400004)(36860700001)(26005)(186003)(316002)(83380400001)(426003)(336012)(508600001)(6916009)(86362001)(36900700001);
+ SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(8676002)(47076005)(82310400004)(36756003)(336012)(36860700001)(4326008)(40460700003)(426003)(70206006)(6666004)(86362001)(508600001)(2616005)(1076003)(5660300002)(70586007)(16526019)(6916009)(186003)(81166007)(26005)(356005)(7696005)(8936002)(316002)(2906002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2022 22:26:16.5797 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 793fb125-6ce9-443d-6541-08d9f32dadf9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2022 22:26:17.4547 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 968ed7ba-35b4-4f0c-e735-08d9f32dae7e
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT036.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB3730
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB4718
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,203 +105,81 @@ Cc: Alex Deucher <alexander.deucher@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-So we can tell when this function fails.
+So you can tell which benchmark was run.
 
 Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu.h           |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c | 100 +++++++++++-------
- 2 files changed, 64 insertions(+), 38 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu.h b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-index 566303c9942f..66d556fc17ef 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu.h
-@@ -586,7 +586,7 @@ void amdgpu_device_wb_free(struct amdgpu_device *adev, u32 wb);
- /*
-  * Benchmarking
-  */
--void amdgpu_benchmark(struct amdgpu_device *adev, int test_number);
-+int amdgpu_benchmark(struct amdgpu_device *adev, int test_number);
- 
- 
- /*
 diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c
-index b38783278a99..7709f48e25a1 100644
+index 7709f48e25a1..62422c395789 100644
 --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c
 +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_benchmark.c
-@@ -70,15 +70,14 @@ static void amdgpu_benchmark_log_results(struct amdgpu_device *adev,
- 		 throughput * 8, throughput);
- }
+@@ -185,6 +185,7 @@ int amdgpu_benchmark(struct amdgpu_device *adev, int test_number)
  
--static void amdgpu_benchmark_move(struct amdgpu_device *adev, unsigned size,
--				  unsigned sdomain, unsigned ddomain)
-+static int amdgpu_benchmark_move(struct amdgpu_device *adev, unsigned size,
-+				 unsigned sdomain, unsigned ddomain)
- {
- 	struct amdgpu_bo *dobj = NULL;
- 	struct amdgpu_bo *sobj = NULL;
- 	struct amdgpu_bo_param bp;
- 	uint64_t saddr, daddr;
- 	int r, n;
--	int time;
- 
- 	memset(&bp, 0, sizeof(bp));
- 	bp.size = size;
-@@ -129,19 +128,18 @@ static void amdgpu_benchmark_move(struct amdgpu_device *adev, unsigned size,
- 	daddr = amdgpu_bo_gpu_offset(dobj);
- 
- 	if (adev->mman.buffer_funcs) {
--		time = amdgpu_benchmark_do_move(adev, size, saddr, daddr, n);
--		if (time < 0)
-+		r = amdgpu_benchmark_do_move(adev, size, saddr, daddr, n);
-+		if (r < 0)
- 			goto out_cleanup;
--		if (time > 0)
--			amdgpu_benchmark_log_results(adev, n, size, time,
-+		if (r > 0)
-+			amdgpu_benchmark_log_results(adev, n, size, r,
- 						     sdomain, ddomain, "dma");
- 	}
- 
- out_cleanup:
- 	/* Check error value now. The value can be overwritten when clean up.*/
--	if (r) {
-+	if (r < 0)
- 		dev_info(adev->dev, "Error while benchmarking BO move.\n");
--	}
- 
- 	if (sobj) {
- 		r = amdgpu_bo_reserve(sobj, true);
-@@ -159,11 +157,12 @@ static void amdgpu_benchmark_move(struct amdgpu_device *adev, unsigned size,
- 		}
- 		amdgpu_bo_unref(&dobj);
- 	}
-+	return r;
- }
- 
--void amdgpu_benchmark(struct amdgpu_device *adev, int test_number)
-+int amdgpu_benchmark(struct amdgpu_device *adev, int test_number)
- {
--	int i;
-+	int i, r;
- 	static const int common_modes[AMDGPU_BENCHMARK_COMMON_MODES_N] = {
- 		640 * 480 * 4,
- 		720 * 480 * 4,
-@@ -187,60 +186,87 @@ void amdgpu_benchmark(struct amdgpu_device *adev, int test_number)
  	switch (test_number) {
  	case 1:
++		dev_info(adev->dev, "benchmark test: %d\n", test_number);
  		/* simple test, VRAM to GTT and GTT to VRAM */
--		amdgpu_benchmark_move(adev, 1024*1024, AMDGPU_GEM_DOMAIN_GTT,
--				      AMDGPU_GEM_DOMAIN_VRAM);
--		amdgpu_benchmark_move(adev, 1024*1024, AMDGPU_GEM_DOMAIN_VRAM,
--				      AMDGPU_GEM_DOMAIN_GTT);
-+		r = amdgpu_benchmark_move(adev, 1024*1024, AMDGPU_GEM_DOMAIN_GTT,
-+					  AMDGPU_GEM_DOMAIN_VRAM);
-+		if (r)
-+			return r;
-+		r = amdgpu_benchmark_move(adev, 1024*1024, AMDGPU_GEM_DOMAIN_VRAM,
-+					  AMDGPU_GEM_DOMAIN_GTT);
-+		if (r)
-+			return r;
+ 		r = amdgpu_benchmark_move(adev, 1024*1024, AMDGPU_GEM_DOMAIN_GTT,
+ 					  AMDGPU_GEM_DOMAIN_VRAM);
+@@ -196,6 +197,7 @@ int amdgpu_benchmark(struct amdgpu_device *adev, int test_number)
+ 			return r;
  		break;
  	case 2:
++		dev_info(adev->dev, "benchmark test: %d\n", test_number);
  		/* simple test, VRAM to VRAM */
  		amdgpu_benchmark_move(adev, 1024*1024, AMDGPU_GEM_DOMAIN_VRAM,
  				      AMDGPU_GEM_DOMAIN_VRAM);
-+		if (r)
-+			return r;
+@@ -203,6 +205,7 @@ int amdgpu_benchmark(struct amdgpu_device *adev, int test_number)
+ 			return r;
  		break;
  	case 3:
++		dev_info(adev->dev, "benchmark test: %d\n", test_number);
  		/* GTT to VRAM, buffer size sweep, powers of 2 */
--		for (i = 1; i <= 16384; i <<= 1)
--			amdgpu_benchmark_move(adev, i * AMDGPU_GPU_PAGE_SIZE,
--					      AMDGPU_GEM_DOMAIN_GTT,
--					      AMDGPU_GEM_DOMAIN_VRAM);
-+		for (i = 1; i <= 16384; i <<= 1) {
-+			r = amdgpu_benchmark_move(adev, i * AMDGPU_GPU_PAGE_SIZE,
-+						  AMDGPU_GEM_DOMAIN_GTT,
-+						  AMDGPU_GEM_DOMAIN_VRAM);
-+			if (r)
-+				return r;
-+		}
+ 		for (i = 1; i <= 16384; i <<= 1) {
+ 			r = amdgpu_benchmark_move(adev, i * AMDGPU_GPU_PAGE_SIZE,
+@@ -213,6 +216,7 @@ int amdgpu_benchmark(struct amdgpu_device *adev, int test_number)
+ 		}
  		break;
  	case 4:
++		dev_info(adev->dev, "benchmark test: %d\n", test_number);
  		/* VRAM to GTT, buffer size sweep, powers of 2 */
--		for (i = 1; i <= 16384; i <<= 1)
--			amdgpu_benchmark_move(adev, i * AMDGPU_GPU_PAGE_SIZE,
--					      AMDGPU_GEM_DOMAIN_VRAM,
--					      AMDGPU_GEM_DOMAIN_GTT);
-+		for (i = 1; i <= 16384; i <<= 1) {
-+			r = amdgpu_benchmark_move(adev, i * AMDGPU_GPU_PAGE_SIZE,
-+						  AMDGPU_GEM_DOMAIN_VRAM,
-+						  AMDGPU_GEM_DOMAIN_GTT);
-+			if (r)
-+				return r;
-+		}
+ 		for (i = 1; i <= 16384; i <<= 1) {
+ 			r = amdgpu_benchmark_move(adev, i * AMDGPU_GPU_PAGE_SIZE,
+@@ -223,6 +227,7 @@ int amdgpu_benchmark(struct amdgpu_device *adev, int test_number)
+ 		}
  		break;
  	case 5:
++		dev_info(adev->dev, "benchmark test: %d\n", test_number);
  		/* VRAM to VRAM, buffer size sweep, powers of 2 */
--		for (i = 1; i <= 16384; i <<= 1)
--			amdgpu_benchmark_move(adev, i * AMDGPU_GPU_PAGE_SIZE,
--					      AMDGPU_GEM_DOMAIN_VRAM,
--					      AMDGPU_GEM_DOMAIN_VRAM);
-+		for (i = 1; i <= 16384; i <<= 1) {
-+			r = amdgpu_benchmark_move(adev, i * AMDGPU_GPU_PAGE_SIZE,
-+						  AMDGPU_GEM_DOMAIN_VRAM,
-+						  AMDGPU_GEM_DOMAIN_VRAM);
-+			if (r)
-+				return r;
-+		}
+ 		for (i = 1; i <= 16384; i <<= 1) {
+ 			r = amdgpu_benchmark_move(adev, i * AMDGPU_GPU_PAGE_SIZE,
+@@ -233,6 +238,7 @@ int amdgpu_benchmark(struct amdgpu_device *adev, int test_number)
+ 		}
  		break;
  	case 6:
++		dev_info(adev->dev, "benchmark test: %d\n", test_number);
  		/* GTT to VRAM, buffer size sweep, common modes */
--		for (i = 0; i < AMDGPU_BENCHMARK_COMMON_MODES_N; i++)
--			amdgpu_benchmark_move(adev, common_modes[i],
--					      AMDGPU_GEM_DOMAIN_GTT,
--					      AMDGPU_GEM_DOMAIN_VRAM);
-+		for (i = 0; i < AMDGPU_BENCHMARK_COMMON_MODES_N; i++) {
-+			r = amdgpu_benchmark_move(adev, common_modes[i],
-+						  AMDGPU_GEM_DOMAIN_GTT,
-+						  AMDGPU_GEM_DOMAIN_VRAM);
-+			if (r)
-+				return r;
-+		}
+ 		for (i = 0; i < AMDGPU_BENCHMARK_COMMON_MODES_N; i++) {
+ 			r = amdgpu_benchmark_move(adev, common_modes[i],
+@@ -243,6 +249,7 @@ int amdgpu_benchmark(struct amdgpu_device *adev, int test_number)
+ 		}
  		break;
  	case 7:
++		dev_info(adev->dev, "benchmark test: %d\n", test_number);
  		/* VRAM to GTT, buffer size sweep, common modes */
--		for (i = 0; i < AMDGPU_BENCHMARK_COMMON_MODES_N; i++)
--			amdgpu_benchmark_move(adev, common_modes[i],
--					      AMDGPU_GEM_DOMAIN_VRAM,
--					      AMDGPU_GEM_DOMAIN_GTT);
-+		for (i = 0; i < AMDGPU_BENCHMARK_COMMON_MODES_N; i++) {
-+			r = amdgpu_benchmark_move(adev, common_modes[i],
-+						  AMDGPU_GEM_DOMAIN_VRAM,
-+						  AMDGPU_GEM_DOMAIN_GTT);
-+			if (r)
-+				return r;
-+		}
+ 		for (i = 0; i < AMDGPU_BENCHMARK_COMMON_MODES_N; i++) {
+ 			r = amdgpu_benchmark_move(adev, common_modes[i],
+@@ -253,6 +260,7 @@ int amdgpu_benchmark(struct amdgpu_device *adev, int test_number)
+ 		}
  		break;
  	case 8:
++		dev_info(adev->dev, "benchmark test: %d\n", test_number);
  		/* VRAM to VRAM, buffer size sweep, common modes */
--		for (i = 0; i < AMDGPU_BENCHMARK_COMMON_MODES_N; i++)
--			amdgpu_benchmark_move(adev, common_modes[i],
-+		for (i = 0; i < AMDGPU_BENCHMARK_COMMON_MODES_N; i++) {
-+			r = amdgpu_benchmark_move(adev, common_modes[i],
- 					      AMDGPU_GEM_DOMAIN_VRAM,
- 					      AMDGPU_GEM_DOMAIN_VRAM);
-+			if (r)
-+				return r;
-+		}
- 		break;
- 
- 	default:
- 		dev_info(adev->dev, "Unknown benchmark\n");
-+		r = -EINVAL;
-+		break;
- 	}
-+	return r;
- }
+ 		for (i = 0; i < AMDGPU_BENCHMARK_COMMON_MODES_N; i++) {
+ 			r = amdgpu_benchmark_move(adev, common_modes[i],
 -- 
 2.35.1
 
