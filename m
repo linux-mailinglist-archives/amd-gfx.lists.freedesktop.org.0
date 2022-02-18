@@ -1,45 +1,60 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA5AF4BBC14
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Feb 2022 16:25:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A1414BBC17
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Feb 2022 16:25:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E329410F126;
-	Fri, 18 Feb 2022 15:25:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F86D10F128;
+	Fri, 18 Feb 2022 15:25:54 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from desiato.infradead.org (desiato.infradead.org
- [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF03310EF84
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 06:25:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
- :In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
- Sender:Reply-To:Content-ID:Content-Description;
- bh=POm9JYmsLrxFoP9B+CGxuYMAxAilfVuUdXuMegBj6uY=; b=FW6CR8247cKApPgjySAL04P8Ar
- LE1MqNA79IoQvj8RJQX2J/EI0CL4LlNJyed1yaPqFXp96Wgmz1YJXbvmZwA876C3fckVdTYNsCVFM
- YvLktLNAeSI15c5gM9kOhYS/Q2dqRtCHEwtFidCfjFoWwzOo2cwDuUBqmqcmLnjY3IegqZsLeO5Vp
- lYJtMpdH5W2QqGmLl3ah0BqCFntlvxsA/av9ogOviEI2JKghsJnFFQY6vL97ypKpbMsHOHlmcP2HV
- BiAMSSWWpGPx7UrF9HaNrW9cWjVCOu/W5B5S6RW5bxDW3qlJXa+77YdTnzDsGbVPQ5k+kMQnQvk7D
- 55wohEHA==;
-Received: from [2601:1c0:6280:3f0::aa0b]
- by desiato.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
- id 1nKwiC-00AlTE-A8; Fri, 18 Feb 2022 06:25:48 +0000
-Message-ID: <cc01ec4c-c95c-fae4-0231-8b92d572d1da@infradead.org>
-Date: Thu, 17 Feb 2022 22:25:43 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH] drm/amdgpu: Fix ARM compilation warning
-Content-Language: en-US
-To: Luben Tuikov <luben.tuikov@amd.com>, amd-gfx@lists.freedesktop.org
-References: <202202160733.1Egjqp9Y-lkp@intel.com>
- <20220216220853.59961-1-luben.tuikov@amd.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20220216220853.59961-1-luben.tuikov@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Received: from mail-pj1-x1049.google.com (mail-pj1-x1049.google.com
+ [IPv6:2607:f8b0:4864:20::1049])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF5F010EA96
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 07:57:54 +0000 (UTC)
+Received: by mail-pj1-x1049.google.com with SMTP id
+ hi22-20020a17090b30d600b001b8b33cf0efso4990330pjb.1
+ for <amd-gfx@lists.freedesktop.org>; Thu, 17 Feb 2022 23:57:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+ h=date:message-id:mime-version:subject:from:to:cc;
+ bh=pzssXhX8riGRjAd4+3metqANF5chmN7DhU3KIG19plk=;
+ b=BXYHGO/apr1trZ7ANJF1Lt6pYKglG4Ybyk1oIZRHZKKVSqoKSXgrBXlJ+1OM+32L9t
+ MU8n7K+r76s0oXflCxISCV1ICc0UvMWkHQwSTytgu8Evx0a2e982roAPsTJGWM6fb62G
+ 4xiTSYukPeiMTehnCZ8Ef6urhW9UdAhyCH8qBQH/Z3umLv0xdGv2JPdSLHgNuZnc3YDQ
+ m26WTBm81XDNmFpY/glb5MBqUkdfdOBU4PUPqt6iZ2jAhWr3J7itrrkNCi44IwFV8KeU
+ S94sCD0t8mfXDphKvuDMvw2otQeqJUpd7l5aT+oeKWADzDv5u6Czmms69AvfX5QGDeUK
+ NAmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+ bh=pzssXhX8riGRjAd4+3metqANF5chmN7DhU3KIG19plk=;
+ b=IPMa2hnIxQGVEGEHoS0YuNt1UtXIBt4kx8ZKRm6QNTNMAxBJSrD35magfJjbXFwTY7
+ k4lWROg8gtPnuMkZIa0sLu1AMDOfriezXqxHI0LsIY/6y9A0nxOhtbWaqfOf4cLcUK1c
+ udRo5VY5OHhgCUFOVRHUeg11d8xQ4fZbbGg2JvZWgBI5vxcxZ6GCHhTqBy4t+HYe2dCp
+ ijb49fVssNVCkVKO5dTMRDvcPNAR8+CgyVKL0uHKU4Mc1geVE27LLDBu1tPRcH1V2Ib6
+ ksXs0ToS8zfxJkCtJ2aYzyCXoGmWoJP4zxSEkxQZu7SC+9uo0rJ6p2gqpFOb41DR4cZY
+ BhAA==
+X-Gm-Message-State: AOAM532p2L7OVE7gbeTBsmGE7QN5PhMhYdgx5SsRA6WeDnsNZbLisqss
+ 37V+JYbkQX0kuBYwEnO1qutw6jZOb6u5cg==
+X-Google-Smtp-Source: ABdhPJw0UMsgszZC5yB3naBv5jFWjYWF4uP6hg8QghCa4W6xT10Nwxg2nhu4SD1k1Vghgej18o9lOhbEem5LzA==
+X-Received: from slicestar.c.googlers.com
+ ([fda3:e722:ac3:cc00:4f:4b78:c0a8:20a1])
+ (user=davidgow job=sendgmr) by 2002:a17:90a:a50f:b0:1b8:e6ad:f63c with SMTP
+ id a15-20020a17090aa50f00b001b8e6adf63cmr333880pjq.1.1645171074073; Thu, 17
+ Feb 2022 23:57:54 -0800 (PST)
+Date: Fri, 18 Feb 2022 15:57:23 +0800
+Message-Id: <20220218075727.2737623-1-davidgow@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.35.1.265.g69c8d7142f-goog
+Subject: [PATCH 0/4] kunit,um: Fix kunit.py build --alltests
+From: David Gow <davidgow@google.com>
+To: Jeff Dike <jdike@addtoit.com>, Richard Weinberger <richard@nod.at>, 
+ Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+ Shuah Khan <skhan@linuxfoundation.org>, 
+ Brendan Higgins <brendanhiggins@google.com>,
+ Randy Dunlap <rdunlap@infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Fri, 18 Feb 2022 15:25:33 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -52,49 +67,39 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <Alexander.Deucher@amd.com>, kbuild-all@lists.01.org,
- linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>
+Cc: David Gow <davidgow@google.com>, linux-rdma@vger.kernel.org,
+ felix.kuehling@amd.com, x86@kernel.org, linux-um@lists.infradead.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-kselftest@vger.kernel.org,
+ kunit-dev@googlegroups.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Also seen on i386.
+kunit_tool's --alltests option uses UML and make allyesconfig to produce
+a configuration which enables as many tests as possible. However, make
+ARCH=um allyesconfig is broken for a number of reasons.
 
-On 2/16/22 14:08, Luben Tuikov wrote:
-> Fix this ARM warning:
-> 
-> drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c:664:35: warning: format '%ld'
-> expects argument of type 'long int', but argument 4 has type 'size_t' {aka
-> 'unsigned int'} [-Wformat=]
-> 
-> Cc: Alex Deucher <Alexander.Deucher@amd.com>
-> Cc: kbuild-all@lists.01.org
-> Cc: linux-kernel@vger.kernel.org
-> Reported-by: kernel test robot <lkp@intel.com>
-> Fixes: 7e60fbfbdc10a0 ("drm/amdgpu: Show IP discovery in sysfs")
-> Signed-off-by: Luben Tuikov <luben.tuikov@amd.com>
+Fix a few different UML build breakages, and disable a few config
+options in kunit_tool in order to get this kernel compiling again.
 
-Acked-by: Randy Dunlap <rdunlap@infradead.org>
-Tested-by: Randy Dunlap <rdunlap@infradead.org>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> index ad2355b0037f52..6c3a3c74e0231f 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_discovery.c
-> @@ -668,7 +668,7 @@ static int amdgpu_discovery_sysfs_ips(struct amdgpu_device *adev,
->  			    le16_to_cpu(ip->hw_id) != ii)
->  				goto next_ip;
->  
-> -			DRM_DEBUG("match:%d @ ip_offset:%ld", ii, ip_offset);
-> +			DRM_DEBUG("match:%d @ ip_offset:%zu", ii, ip_offset);
->  
->  			/* We have a hw_id match; register the hw
->  			 * block if not yet registered.
-> 
-> base-commit: f723076ae13011a23d9a586899e38bc68feeb6b2
+Note that the resulting kernel still doesn't run, but having it compile
+is the first step to fixing that.
 
-thanks.
+David Gow (3):
+  drm/amdgpu: Make smu7_hwmgr build on UML
+  IB/qib: Compile under User-Mode Linux
+  kunit: tool: Disable broken options for --alltests
+
+Randy Dunlap (1):
+  drm/amdgpu: Fix compilation under UML
+
+ drivers/gpu/drm/amd/amdkfd/kfd_crat.c               | 6 +++---
+ drivers/gpu/drm/amd/amdkfd/kfd_topology.c           | 2 +-
+ drivers/gpu/drm/amd/pm/powerplay/hwmgr/smu7_hwmgr.c | 2 +-
+ drivers/infiniband/hw/qib/qib_wc_x86_64.c           | 4 ++++
+ tools/testing/kunit/configs/broken_on_uml.config    | 5 +++++
+ 5 files changed, 14 insertions(+), 5 deletions(-)
+
 -- 
-~Randy
+2.35.1.265.g69c8d7142f-goog
+
