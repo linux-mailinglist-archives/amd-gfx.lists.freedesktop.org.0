@@ -1,67 +1,93 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 509994BBC0F
-	for <lists+amd-gfx@lfdr.de>; Fri, 18 Feb 2022 16:25:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0414BBBB2
+	for <lists+amd-gfx@lfdr.de>; Fri, 18 Feb 2022 16:04:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEB1810F11F;
-	Fri, 18 Feb 2022 15:25:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 328BD10EE8B;
+	Fri, 18 Feb 2022 15:04:07 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com
- [IPv6:2607:f8b0:4864:20::f32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15DDB10EE19
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 15:01:55 +0000 (UTC)
-Received: by mail-qv1-xf32.google.com with SMTP id d7so15224188qvk.2
- for <amd-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 07:01:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ziepe.ca; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=qQOuPloDj1FDvrT18I7yp3YumR1JEJ9ojjlV/rcHoPw=;
- b=RoS0gyblqR/tsGfQ7lArc8WXX3kNZMvPTfZET3nsnl+Rr8n361EoMRIfa1S+T8g8oc
- NmAlJEUUOZ5XHaM5YrjNSr5VsFbJTayGS5be9bu+8ZuTGnnxnkPavDlHAMpATFRtc11K
- fiKwKgEOqF+51vJxLCJG62RY8EQ2KpYmP7mAntkiGoPgLp6RQG9Lz93DB55QoyA5iy4K
- jD0aW9yE0JKDtqB8vCY2rRZ02xMADfrBesx1EB/DYj+qq78BrufP6AkXF4xsqmELAlVq
- 1FXz/tX3UyRzucAxKzmHRYKSZZAyzlWABCgkRcxEK/GH/tUhjJjJ7pXdKtahQ8czEgJj
- SqpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=qQOuPloDj1FDvrT18I7yp3YumR1JEJ9ojjlV/rcHoPw=;
- b=a+BNSzUbH7QE+nfN4tbz9fYRD3xi+IYg3DOtmahjtDMOVg7G54K8o62NxdRdD+LqGy
- oyKtvsb+LkihFZ/QlCqOsrmAkSNH2J8wcuzyE07NRLtnMFufCs+k323KwcS/lPSOZL/H
- UBfDmDITW/Vi25NC6U6reRGncT9DpKd6LEw+tnF3w1SlQx9In2B3nJY/ShJWJ5vEma2C
- zYbPYd1iKVgGkPrvB0u4Tkz1Mt9Jf/+ZMFiGiL4IB4xjq4yHC9XqoongxhgzK8jOzvql
- BdVVBWcJGX2Gqsx3xzlpJ4xThUTDt08T/1v2opuunN+ceoo0z2sNaWH4LPw0XLkKJuMy
- o/lg==
-X-Gm-Message-State: AOAM532HoNuS7uWGROLh97YLRi2T60EqySAAM72r2Dl/jmSoUfKp0zUr
- fqKX7AZOakkLKJ8hN7qeEXkX/g==
-X-Google-Smtp-Source: ABdhPJxj9yyCZvW5c4Ugzq0ieNoelSzlHZ5AUX07DsgnGoll6g+QZTPyJ2Fq/jgnUxsgsAq5KC011A==
-X-Received: by 2002:ac8:7fd5:0:b0:2cf:93ff:5638 with SMTP id
- b21-20020ac87fd5000000b002cf93ff5638mr7063274qtk.435.1645196514006; 
- Fri, 18 Feb 2022 07:01:54 -0800 (PST)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-113-129.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.113.129])
- by smtp.gmail.com with ESMTPSA id s4sm23008395qko.113.2022.02.18.07.01.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Feb 2022 07:01:52 -0800 (PST)
-Received: from jgg by mlx with local (Exim 4.94) (envelope-from <jgg@ziepe.ca>)
- id 1nL4lb-006cts-Vr; Fri, 18 Feb 2022 11:01:51 -0400
-Date: Fri, 18 Feb 2022 11:01:51 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: David Gow <davidgow@google.com>
-Subject: Re: [PATCH 4/4] kunit: tool: Disable broken options for --alltests
-Message-ID: <20220218150151.GD1037534@ziepe.ca>
-References: <20220218075727.2737623-1-davidgow@google.com>
- <20220218075727.2737623-5-davidgow@google.com>
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2063.outbound.protection.outlook.com [40.107.93.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4C6F10EE8B
+ for <amd-gfx@lists.freedesktop.org>; Fri, 18 Feb 2022 15:04:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BqloKLoQZg4WPZetOPYtCNz9WFr9U5fWreqA8hheDGfUos37qkj0JAE8nl0iBBcJZfJXK+RJoFlJAEMXgfsOLvDgojtUfoENrcnDa66CR394AKNVoUfaXGaMyjxHopBBMPSFUBWlCoABNalc612xk1oBdE8/bgcY9DFrEWCUJH5gcHNl+tz5O5v8xSDpBc7F67kD5D2M9n6Mt/QufYt3DiG8Ff18uRwf+f86+jRZXUWxvaERuKeOXQ0W+G0ZEKf0n8jO2yuWPFchKSPkMsc9TeQKW3QEQe4u8wWVlYsDqSJ/17wWB33pHcSIOdf3UTFKZCgXy175zzv9I83z6bIu7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Xc8jeTyi+FiiZHD8UDXzeWs2evyeTuuA48b+xgd2YkQ=;
+ b=VUF4H36NDRtRpfUJDuz77tx6fwY1xBygxvZiAznjBNacloQIjftlCqNaGiXL8zq/2yW3SsyZuigf7qbjEZS9ygTVhxsetT7FM434gRDkeYO4E1j7/MPhWOfX3ylbC1XG2qcn3Or2HN8+L6UrhkIWL0CZXzj85y39pCWjN3sJkqv0hQT3YZcYwJljXo0rCUup2O+O1/v03VlPUc+3OnlFfJz6SPoWJkcd5wsd7j0A8iN5YC9Gj7Mzm0JpzBFRMGrLQUOuIPi97JYmRBUKWs5aSY+PuLwMn4JsINkEaBO3IRbochzGRbBRrfJG7ejHwH7m3wZ/Iauql4N9bKDzttFfjg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xc8jeTyi+FiiZHD8UDXzeWs2evyeTuuA48b+xgd2YkQ=;
+ b=MNCNkJSMZKf84vXTchM3c2Ur7dUp34Zq0AXx9Nof17/fsUch8Goyx0mnNFTZfiVB4WefqOB2l3Uo+gF9sa6KCHms3NzvMBPW0D/y7G/9RrDPMecxdjA+uRcc3EIj+N33M/en/UpmDKp/uDg6uDcw3/P3T1WyBTwCln8RSC/WTA4=
+Received: from DS7PR03CA0151.namprd03.prod.outlook.com (2603:10b6:5:3b2::6) by
+ DM4PR12MB5198.namprd12.prod.outlook.com (2603:10b6:5:395::17) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4995.16; Fri, 18 Feb 2022 15:04:01 +0000
+Received: from DM6NAM11FT003.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b2:cafe::7b) by DS7PR03CA0151.outlook.office365.com
+ (2603:10b6:5:3b2::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.14 via Frontend
+ Transport; Fri, 18 Feb 2022 15:04:01 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT003.mail.protection.outlook.com (10.13.173.162) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4995.15 via Frontend Transport; Fri, 18 Feb 2022 15:04:00 +0000
+Received: from solomon-t14.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 18 Feb
+ 2022 09:03:55 -0600
+From: Solomon Chiu <solomon.chiu@amd.com>
+To: <amd-gfx@lists.freedesktop.org>
+Subject: [PATCH 00/12] DC Patches February 21, 2022
+Date: Fri, 18 Feb 2022 23:03:17 +0800
+Message-ID: <20220218150329.7976-1-solomon.chiu@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220218075727.2737623-5-davidgow@google.com>
-X-Mailman-Approved-At: Fri, 18 Feb 2022 15:25:33 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 147c6e24-d948-4b4d-1f25-08d9f2efe563
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5198:EE_
+X-Microsoft-Antispam-PRVS: <DM4PR12MB51983B1F2CF56C58F144175697379@DM4PR12MB5198.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zBavaeUO6fjbuljUlkrwHEHOdUYOJs9U0Kz05zc2JHCu8GQpZUIp9qJCABqxLKf3ZPoROKtbwWCazvDpBIpXBSHF0g/sc4k1gvIo4DJ9gaxltgLfPW8688lfQXNpPCB0lBy9DXZJWPxMzi+riDi1o+y7nRLWJyoTOD5TvxNV5UaORKQe6hkKf3Zx4aYYw1AxeGXwOSVuGbbVN434I2W0quRzZ2qnx+fKPBT8Krkd2EV/oW5E205yDt4Ic1CFfe/efaA9m3dg1SinjRlgfgp7/8ZcjHXIVCQcOqpjnUQaB9OqmVNs+bLLkHDTYLvuqLxMuZftguA0Llbzz+FpjaDuYokeQcpbeCDYSUqIxCegN0LsKii0uj386cShGLBNmsxpWoHiucsxE0amNA6NBYXKR9rihPMfVp8CT8y/x7r8bvkl2PVHcNeWUROU6ZnVxB4arZZ+E4PkWzXNUB33IrF8Ys49IhFFnrqezAjcLhX9oG63KOuJ0b3NhTmMQkzniMXOQv517LuWnhzEjcvIQwR+fXcQ5u/2lyW9oyV5bQZXn2Glg9yQBBmmVwjO92oWlLDqcGSAMjpMoAcW2IZw2k5it2s7HyX0BRZpXhaikPb3yAmchX61i/qgXanjqdkZJo7AOuLzDl9oqfcmVSrbEaAaLqUslrnZNCxwjmX410pyEMsYoML5XsdRsZYc24M8vfNqMFVwxsVBxDxUoJK2fDrQYQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(316002)(4326008)(70206006)(508600001)(8676002)(81166007)(6666004)(2906002)(6916009)(54906003)(44832011)(1076003)(2616005)(426003)(83380400001)(336012)(70586007)(26005)(186003)(16526019)(7696005)(356005)(40460700003)(82310400004)(36756003)(86362001)(36860700001)(47076005)(8936002)(5660300002)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2022 15:04:00.8126 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 147c6e24-d948-4b4d-1f25-08d9f2efe563
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT003.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5198
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,31 +99,85 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: x86@kernel.org, linux-rdma@vger.kernel.org,
- Richard Weinberger <richard@nod.at>, Jeff Dike <jdike@addtoit.com>,
- Randy Dunlap <rdunlap@infradead.org>,
- Brendan Higgins <brendanhiggins@google.com>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-um@lists.infradead.org,
- dri-devel@lists.freedesktop.org, linux-kselftest@vger.kernel.org,
- Shuah Khan <skhan@linuxfoundation.org>, kunit-dev@googlegroups.com,
- felix.kuehling@amd.com, Anton Ivanov <anton.ivanov@cambridgegreys.com>
+Cc: stylon.wang@amd.com, Sunpeng.Li@amd.com, Harry.Wentland@amd.com,
+ qingqing.zhuo@amd.com, Rodrigo.Siqueira@amd.com, roman.li@amd.com,
+ solomon.chiu@amd.com, Aurabindo.Pillai@amd.com, wayne.lin@amd.com,
+ Bhawanpreet.Lakha@amd.com, agustin.gutierrez@amd.com, pavle.kotarac@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 18, 2022 at 03:57:27PM +0800, David Gow wrote:
-> There are a number of Kconfig options which break compilation under UML with
-> allyesconfig.  As kunit_tool's --alltests option is based on allyesconfig and
-> UML, we need to update the list of broken options to make --alltests build
-> again.
-> 
-> Note that, while this does build again, it still segfaults on startup,
-> so more work remains to be done.
-> 
-> They are:
-> - CONFIG_VFIO_PCI: Needs ioport_map/ioport_unmap.
-> - CONFIG_INFINIBAND_RDMAVT: Needs cpuinfo_x86 and __copy_user_nocache
+This DC patchset brings improvements in multiple areas. In summary, we highlight:
 
-It doesn't make sense to patch qib and then turn this option off, it
-is required to build qib.
+* add debug option to bypass ssinfo from bios.
+* Refactor fixed VS logic for non-transparent mode
+* add cable ID support for usb c connector
+* clear remote dc_sink when stop mst
+* Ignore Transitional Invalid Link Rate Error Message
+* Fix wrong resolution with DP/VGA adapter
+* Refactor PSR DPCD caps detection
+* Set compbuf size to min at prep prevent overbook crb
+* lock/un-lock cursor if odm pipe split used
+* OVT Update on InfoFrame and Mode Management
 
-Jason
+Anthony Koo (1):
+  drm/amd/display: [FW Promotion] Release 0.0.105.0
+
+Aric Cyr (1):
+  drm/amd/display: 3.2.174
+
+Charlene Liu (1):
+  drm/amd/display: add debug option to bypass ssinfo from bios.
+
+Chris Park (1):
+  drm/amd/display: OVT Update on InfoFrame and Mode Management
+
+Fangzhi Zuo (1):
+  drm/amd/display: Ignore Transitional Invalid Link Rate Error Message
+
+Ilya (1):
+  drm/amd/display: Fix wrong resolution with DP/VGA adapter
+
+Ma, Duncan (1):
+  drm/amd/display: Set compbuf size to min at prep prevent overbook crb
+
+Paul Hsieh (1):
+  drm/amd/display: lock/un-lock cursor if odm pipe split used
+
+Po Ting Chen (1):
+  drm/amd/display: Refactor PSR DPCD caps detection
+
+Shen, George (1):
+  drm/amd/display: Refactor fixed VS logic for non-transparent mode
+
+Wayne Lin (1):
+  drm/amd/display: clear remote dc_sink when stop mst
+
+Wenjing Liu (1):
+  drm/amd/display: add cable ID support for usb c connector
+
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |   6 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  20 +-
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_psr.c |  58 +----
+ .../display/dc/clk_mgr/dce100/dce_clk_mgr.c   |   2 +
+ .../display/dc/clk_mgr/dcn31/dcn31_clk_mgr.c  |   2 +
+ drivers/gpu/drm/amd/display/dc/core/dc_link.c |  22 +-
+ .../gpu/drm/amd/display/dc/core/dc_link_ddc.c |   3 +
+ .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 230 +++++++++++++++---
+ .../gpu/drm/amd/display/dc/core/dc_resource.c |  11 +
+ .../gpu/drm/amd/display/dc/core/dc_stream.c   |   7 +-
+ drivers/gpu/drm/amd/display/dc/dc.h           |   9 +-
+ drivers/gpu/drm/amd/display/dc/dc_dp_types.h  |  32 ++-
+ drivers/gpu/drm/amd/display/dc/dc_hw_types.h  |   2 +
+ drivers/gpu/drm/amd/display/dc/dc_link.h      |   8 +-
+ drivers/gpu/drm/amd/display/dc/dc_types.h     |   2 +
+ .../drm/amd/display/dc/dcn20/dcn20_hwseq.c    |  12 +-
+ .../amd/display/dc/dml/display_mode_structs.h |   1 +
+ .../gpu/drm/amd/display/dc/inc/dc_link_dp.h   |   2 +-
+ .../gpu/drm/amd/display/dmub/inc/dmub_cmd.h   |  44 +++-
+ .../amd/display/include/ddc_service_types.h   |   1 +
+ .../drm/amd/display/include/set_mode_types.h  |   8 +-
+ 21 files changed, 369 insertions(+), 113 deletions(-)
+
+-- 
+2.25.1
+
