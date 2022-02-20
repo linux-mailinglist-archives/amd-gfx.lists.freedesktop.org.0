@@ -2,33 +2,38 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 395494BD794
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Feb 2022 09:30:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC7C84BD791
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Feb 2022 09:30:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF4BF112408;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10BDA11240B;
 	Mon, 21 Feb 2022 08:30:48 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from smtp1-g21.free.fr (smtp1-g21.free.fr [IPv6:2a01:e0c:1:1599::10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 510C610E380;
- Sun, 20 Feb 2022 15:48:58 +0000 (UTC)
-Received: from ylum.localnet (unknown
- [IPv6:2a01:e0a:3d9:ddd0:37f3:7f74:639b:b0a3])
- (Authenticated sender: domi.dumont@free.fr)
- by smtp1-g21.free.fr (Postfix) with ESMTPSA id 4BF65B004EE;
- Sun, 20 Feb 2022 16:48:43 +0100 (CET)
-From: Dominique Dumont <dod@debian.org>
-To: Salvatore Bonaccorso <carnil@debian.org>
-Subject: Re: Regression from 3c196f056666 ("drm/amdgpu: always reset the asic
- in suspend (v2)") on suspend?
-Date: Sun, 20 Feb 2022 16:48:43 +0100
-Message-ID: <5164225.DI6hChFYCN@ylum>
-In-Reply-To: <CADnq5_MfR99OhjumQESCO7Oq+JVOHOVgyVQHX4FpGFDnPu6CyQ@mail.gmail.com>
-References: <Ygf7KuWyc0d4HIFu@eldamar.lan>
- <CADnq5_MfR99OhjumQESCO7Oq+JVOHOVgyVQHX4FpGFDnPu6CyQ@mail.gmail.com>
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [IPv6:2a01:488:42:1000:50ed:8234::])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2698B10E1DB
+ for <amd-gfx@lists.freedesktop.org>; Sun, 20 Feb 2022 17:33:55 +0000 (UTC)
+Received: from ip4d144895.dynamic.kabel-deutschland.de ([77.20.72.149]
+ helo=[192.168.66.200]); authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1nLq5p-0007yD-E6; Sun, 20 Feb 2022 18:33:53 +0100
+Message-ID: <978944b7-4e71-475a-2fe6-c414d3e8f64e@leemhuis.info>
+Date: Sun, 20 Feb 2022 18:33:52 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-BS
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+To: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>
+Subject: Bug 215600 - Radeon - *ERROR* Failed waiting for UVD message
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1645378436;
+ 67278621; 
+X-HE-SMSGID: 1nLq5p-0007yD-E6
 X-Mailman-Approved-At: Mon, 21 Feb 2022 08:30:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -41,51 +46,86 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: dod@debian.org
-Cc: Sasha Levin <sashal@kernel.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, LKML <linux-kernel@vger.kernel.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Luben Tuikov <luben.tuikov@amd.com>, 1005005@bugs.debian.org,
- Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: "regressions@lists.linux.dev" <regressions@lists.linux.dev>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Monday, 14 February 2022 22:52:27 CET Alex Deucher wrote:
-> Does the system actually suspend?  
+Hi, this is your Linux kernel regression tracker.
 
-Not really. The screens looks like it's going to suspend, but it does come 
-back after 10s or so. The light mounted in the middle of the power button does 
-not switch off.
+I noticed a regression report in bugzilla.kernel.org that afaics nobody
+acted upon since it was reported about a week ago, that's why I decided
+to forward it to the lists and all the relevant people. To quote
+https://bugzilla.kernel.org/show_bug.cgi?id=215600 :
 
-> Is this system S0i3 or regular S3?
+>  Richard Herbert 2022-02-12 22:13:07 UTC
+> 
+> Created attachment 300445 [details]
+> Details
+> 
+> When attempting to play some types of videos with VLC 3.0.16 (eg. *.flv, *.mp4), when running kernels 5.17-rc1 to 5.17-rc3, only the audio portion is heard and the VLC video screen remains black. Meanwhile, many of these entries are written per second to /var/log/syslog:
+> 
+> 2/12/22 3:41 PM	starbug	kernel	[drm:radeon_uvd_cs_parse [radeon]] *ERROR* Failed waiting for UVD message (-1)!
+> 2/12/22 3:41 PM	starbug	kernel	[drm:radeon_cs_ioctl [radeon]] *ERROR* Invalid command stream !
+> 2/12/22 3:41 PM	starbug	kernel	[drm:radeon_uvd_cs_parse [radeon]] *ERROR* Failed waiting for UVD message (-1)!
+> 2/12/22 3:41 PM	starbug	kernel	[drm:radeon_cs_ioctl [radeon]] *ERROR* Invalid command stream !
+> 2/12/22 3:41 PM	starbug	kernel	[drm:radeon_uvd_cs_parse [radeon]] *ERROR* Failed waiting for UVD message (-1)!
+> 2/12/22 3:41 PM	starbug	kernel	[drm:radeon_cs_ioctl [radeon]] *ERROR* Invalid command stream !
+> 
+> 
+> The problem doesn't occur in kernels of the 5.16 series.  It may have been introduced here:
+> 
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/diff/drivers/gpu/drm/radeon/radeon_uvd.c?id=v5.16&id2=v5.17-rc1
+> 
+> 
+> Thanks!
 
-I'm not sure how to check that. After a bit of reading on the Internet [1], I 
-hope that the following information answers that question. Please get back to 
-me if that's not the case.
+Could somebody take a look into this? Or was this discussed somewhere
+else already? Or even fixed?
 
-Looks like my system supports both Soi3 and S3
+Anyway, to get this tracked:
 
-$ cat /sys/power/state 
-freeze mem disk
+#regzbot introduced: v5.16..v5.17-rc1
+#regzbot from:  Richard Herbert <rherbert@sympatico.ca>
+#regzbot title: drm: radeon: no sound on video, *ERROR* Failed waiting
+for UVD message
+#regzbot link: https://bugzilla.kernel.org/show_bug.cgi?id=215600
 
-I get the same result running these 2 commands as root:
-# echo freeze > /sys/power/state
-# echo mem > /sys/power/state
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
 
->  Does this patch help by any chance?
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?i
-> d=e55a3aea418269266d84f426b3bd70794d3389c8
+P.S.: As the Linux kernel's regression tracker I'm getting a lot of
+reports on my table. I can only look briefly into most of them and lack
+knowledge about most of the areas they concern. I thus unfortunately
+will sometimes get things wrong or miss something important. I hope
+that's not the case here; if you think it is, don't hesitate to tell me
+in a public reply, it's in everyone's interest to set the public record
+straight.
 
-yes, with this patch:
-- the suspend issue is solved
-- kernel logs no longer show messages like "failed to send message" or 
-"*ERROR* suspend of IP block <powerplay> failed" while suspending
+-- 
+Additional information about regzbot:
 
-All the best
+If you want to know more about regzbot, check out its web-interface, the
+getting start guide, and the references documentation:
 
-[1] https://01.org/blogs/rzhang/2015/best-practice-debug-linux-suspend/
-hibernate-issues
+https://linux-regtracking.leemhuis.info/regzbot/
+https://gitlab.com/knurd42/regzbot/-/blob/main/docs/getting_started.md
+https://gitlab.com/knurd42/regzbot/-/blob/main/docs/reference.md
 
+The last two documents will explain how you can interact with regzbot
+yourself if your want to.
 
+Hint for reporters: when reporting a regression it's in your interest to
+CC the regression list and tell regzbot about the issue, as that ensures
+the regression makes it onto the radar of the Linux kernel's regression
+tracker -- that's in your interest, as it ensures your report won't fall
+through the cracks unnoticed.
+
+Hint for developers: you normally don't need to care about regzbot once
+it's involved. Fix the issue as you normally would, just remember to
+include 'Link:' tag in the patch descriptions pointing to all reports
+about the issue. This has been expected from developers even before
+regzbot showed up for reasons explained in
+'Documentation/process/submitting-patches.rst' and
+'Documentation/process/5.Posting.rst'.
