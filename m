@@ -2,38 +2,47 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC7C84BD791
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Feb 2022 09:30:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFC14BD796
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Feb 2022 09:30:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10BDA11240B;
-	Mon, 21 Feb 2022 08:30:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28AE6112410;
+	Mon, 21 Feb 2022 08:30:49 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
- [IPv6:2a01:488:42:1000:50ed:8234::])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2698B10E1DB
- for <amd-gfx@lists.freedesktop.org>; Sun, 20 Feb 2022 17:33:55 +0000 (UTC)
-Received: from ip4d144895.dynamic.kabel-deutschland.de ([77.20.72.149]
- helo=[192.168.66.200]); authenticated
- by wp530.webpack.hosteurope.de running ExIM with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- id 1nLq5p-0007yD-E6; Sun, 20 Feb 2022 18:33:53 +0100
-Message-ID: <978944b7-4e71-475a-2fe6-c414d3e8f64e@leemhuis.info>
-Date: Sun, 20 Feb 2022 18:33:52 +0100
+Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [IPv6:2a01:e0c:1:1599::14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD5B610E15A;
+ Sun, 20 Feb 2022 18:03:38 +0000 (UTC)
+Received: from [192.168.8.33] (unknown [90.19.9.37])
+ (Authenticated sender: eric.valette@free.fr)
+ by smtp5-g21.free.fr (Postfix) with ESMTPSA id 7A5715FF33;
+ Sun, 20 Feb 2022 19:03:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+ s=smtp-20201208; t=1645380216;
+ bh=IukDJ5h4L2PHp9stLtKdlNNaLlvJkJUdojizUPTPeKM=;
+ h=Date:Reply-To:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=rhWZ1j23EvxNsTknNLs/om+90oVmS28biKPyhdT0QbJKoeCDCPP/IkJNUAT/7Iiws
+ nwFNm3+uHfm6F5dEPB+CiraRY8nhNVeGMhiNc1H4WmVJXdtxvKd11zFwtqbQYhrjB+
+ tP8jetzDa2dp08glWC1IjM63nqUJ7yWbxHXMCNkjt0C2NA8aMAIHMZx2zjTU6gE+D4
+ iRs3ese+SaeryZ7VV0NPAMLHjFcKoFVb/AtQybhKlngF7GnyrRPoQrIrQPIbJT7c3Q
+ 9Pq4H0XINOZM9iesgyddmAcGAzy155Jrx9IYRprJG212qCesOH0Se9anppF4NwLiU0
+ 44zHDMMtzfZwQ==
+Message-ID: <c62d4ba9-2214-ca7d-ee78-ee19a9bf51e6@free.fr>
+Date: Sun, 20 Feb 2022 19:03:23 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-BS
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>
-Subject: Bug 215600 - Radeon - *ERROR* Failed waiting for UVD message
-Content-Type: text/plain; charset=UTF-8
+ Thunderbird/91.6.1
+Subject: Re: Regression from 3c196f056666 ("drm/amdgpu: always reset the asic
+ in suspend (v2)") on suspend?
+Content-Language: en-US
+To: dod@debian.org, Salvatore Bonaccorso <carnil@debian.org>
+References: <Ygf7KuWyc0d4HIFu@eldamar.lan>
+ <CADnq5_MfR99OhjumQESCO7Oq+JVOHOVgyVQHX4FpGFDnPu6CyQ@mail.gmail.com>
+ <5164225.DI6hChFYCN@ylum>
+From: Eric Valette <eric.valette@free.fr>
+Organization: HOME
+In-Reply-To: <5164225.DI6hChFYCN@ylum>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-bounce-key: webpack.hosteurope.de; regressions@leemhuis.info; 1645378436;
- 67278621; 
-X-HE-SMSGID: 1nLq5p-0007yD-E6
 X-Mailman-Approved-At: Mon, 21 Feb 2022 08:30:47 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -46,86 +55,56 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "regressions@lists.linux.dev" <regressions@lists.linux.dev>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Reply-To: eric.valette@free.fr
+Cc: Sasha Levin <sashal@kernel.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, David Airlie <airlied@linux.ie>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, LKML <linux-kernel@vger.kernel.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Luben Tuikov <luben.tuikov@amd.com>, 1005005@bugs.debian.org,
+ Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi, this is your Linux kernel regression tracker.
-
-I noticed a regression report in bugzilla.kernel.org that afaics nobody
-acted upon since it was reported about a week ago, that's why I decided
-to forward it to the lists and all the relevant people. To quote
-https://bugzilla.kernel.org/show_bug.cgi?id=215600 :
-
->  Richard Herbert 2022-02-12 22:13:07 UTC
+On 20/02/2022 16:48, Dominique Dumont wrote:
+> On Monday, 14 February 2022 22:52:27 CET Alex Deucher wrote:
+>> Does the system actually suspend?
 > 
-> Created attachment 300445 [details]
-> Details
-> 
-> When attempting to play some types of videos with VLC 3.0.16 (eg. *.flv, *.mp4), when running kernels 5.17-rc1 to 5.17-rc3, only the audio portion is heard and the VLC video screen remains black. Meanwhile, many of these entries are written per second to /var/log/syslog:
-> 
-> 2/12/22 3:41 PM	starbug	kernel	[drm:radeon_uvd_cs_parse [radeon]] *ERROR* Failed waiting for UVD message (-1)!
-> 2/12/22 3:41 PM	starbug	kernel	[drm:radeon_cs_ioctl [radeon]] *ERROR* Invalid command stream !
-> 2/12/22 3:41 PM	starbug	kernel	[drm:radeon_uvd_cs_parse [radeon]] *ERROR* Failed waiting for UVD message (-1)!
-> 2/12/22 3:41 PM	starbug	kernel	[drm:radeon_cs_ioctl [radeon]] *ERROR* Invalid command stream !
-> 2/12/22 3:41 PM	starbug	kernel	[drm:radeon_uvd_cs_parse [radeon]] *ERROR* Failed waiting for UVD message (-1)!
-> 2/12/22 3:41 PM	starbug	kernel	[drm:radeon_cs_ioctl [radeon]] *ERROR* Invalid command stream !
-> 
-> 
-> The problem doesn't occur in kernels of the 5.16 series.  It may have been introduced here:
-> 
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/diff/drivers/gpu/drm/radeon/radeon_uvd.c?id=v5.16&id2=v5.17-rc1
-> 
-> 
-> Thanks!
+> Not really. The screens looks like it's going to suspend, but it does come
+> back after 10s or so. The light mounted in the middle of the power button does
+> not switch off.
 
-Could somebody take a look into this? Or was this discussed somewhere
-else already? Or even fixed?
 
-Anyway, to get this tracked:
+As I have a very similar problem and also commented on the original 
+debian bug report 
+(https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1005005), I will add 
+some information here on another amd only laptop (renoir AMD Ryzen 7 
+4800H with Radeon Graphics + Radeon RX 5500/5500M / Pro 5500M).
 
-#regzbot introduced: v5.16..v5.17-rc1
-#regzbot from:  Richard Herbert <rherbert@sympatico.ca>
-#regzbot title: drm: radeon: no sound on video, *ERROR* Failed waiting
-for UVD message
-#regzbot link: https://bugzilla.kernel.org/show_bug.cgi?id=215600
+For me the suspend works once, but after the first resume (I do know 
+know if it is in the suspend path or the resume path I see a RIP in the 
+dmesg (see aditional info in debian bug))  and later suspend do not 
+work: It only go to the kde login screen.
 
-Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+I was unable due to network connectivity to do a full bisect but tested 
+with the patch I had on my laptop:
 
-P.S.: As the Linux kernel's regression tracker I'm getting a lot of
-reports on my table. I can only look briefly into most of them and lack
-knowledge about most of the areas they concern. I thus unfortunately
-will sometimes get things wrong or miss something important. I hope
-that's not the case here; if you think it is, don't hesitate to tell me
-in a public reply, it's in everyone's interest to set the public record
-straight.
+5.10.101 works, 5.10 from debian works
+5.11 works
+5.12 works
+5.13 suspend works but when resuming the PC is dead I have to reboot
+5.14 seems to work but looking at dmesg it is full of RIP messages at 
+various places.
+5.15.24 is a described 5.15 from debian is behaving identically
+5.16 from debian is behaving identically.
 
--- 
-Additional information about regzbot:
+>> Is this system S0i3 or regular S3?
 
-If you want to know more about regzbot, check out its web-interface, the
-getting start guide, and the references documentation:
+For me it is real S3.
 
-https://linux-regtracking.leemhuis.info/regzbot/
-https://gitlab.com/knurd42/regzbot/-/blob/main/docs/getting_started.md
-https://gitlab.com/knurd42/regzbot/-/blob/main/docs/reference.md
+The proposed patch is intended for INTEl + intel gpu + amdgpu but I have 
+dual amd GPU.
 
-The last two documents will explain how you can interact with regzbot
-yourself if your want to.
+--eric
 
-Hint for reporters: when reporting a regression it's in your interest to
-CC the regression list and tell regzbot about the issue, as that ensures
-the regression makes it onto the radar of the Linux kernel's regression
-tracker -- that's in your interest, as it ensures your report won't fall
-through the cracks unnoticed.
 
-Hint for developers: you normally don't need to care about regzbot once
-it's involved. Fix the issue as you normally would, just remember to
-include 'Link:' tag in the patch descriptions pointing to all reports
-about the issue. This has been expected from developers even before
-regzbot showed up for reasons explained in
-'Documentation/process/submitting-patches.rst' and
-'Documentation/process/5.Posting.rst'.
