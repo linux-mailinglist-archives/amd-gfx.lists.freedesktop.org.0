@@ -1,59 +1,71 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BAC84BC762
-	for <lists+amd-gfx@lfdr.de>; Sat, 19 Feb 2022 11:02:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E01474BD42E
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Feb 2022 04:28:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55D9910F68D;
-	Sat, 19 Feb 2022 10:02:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2FEC10E283;
+	Mon, 21 Feb 2022 03:28:32 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC32610EFC9
- for <amd-gfx@lists.freedesktop.org>; Sat, 19 Feb 2022 08:00:35 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id x5so13301550wrg.13
- for <amd-gfx@lists.freedesktop.org>; Sat, 19 Feb 2022 00:00:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20210112;
+Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com
+ [IPv6:2607:f8b0:4864:20::c36])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DC6C10E283;
+ Mon, 21 Feb 2022 03:28:32 +0000 (UTC)
+Received: by mail-oo1-xc36.google.com with SMTP id
+ i10-20020a4aab0a000000b002fccf890d5fso11550870oon.5; 
+ Sun, 20 Feb 2022 19:28:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ZSJvfotdCjUWrF4mVP9+A9qImMlAemW9nGiM28VmacE=;
- b=bsPsyg3W4pKdl6wOdQ0UpuaiKuL6BPouGQJIrI/f9IwmDjH8W/s7Fek04evjvZVA7W
- a6YiWoHOiUiC+zOgF604JSoSrpLnljHvL0kzz0uqs26OonQZcb3A1pV4wVlIuR4Xn341
- WpmjW1wb28UmxsySTBxxQs4QwuuvXfgz/wkYS6JId1V8pwLDg6jaQ8+9UrGh86rmi/cX
- qsWvFv5vaaF564jWcZJQnx94HBLN8vNjxrjvy46d0T+hPR1ICvDN7A0iAi6eXNp4Yj0u
- nwTYkYE1rN8+UCAX06dYkoO3PlcBpNWROmBakJInGxWv1hD5C/pJ65arog+W+JgxX7tI
- U2EA==
+ :cc:content-transfer-encoding;
+ bh=evzbx3hFkrG4LEm3hNJUfV0Qe4cnm6Z7bXfWh+oqgHA=;
+ b=q1zGywxqEbABgk5qGo/5ZgnOjAUyxdDin3JN4tmRVsT/QUo5H2mlPReuWGyQPa6Pkq
+ kIeqcgDUIuCKhgDSRwp3JN8vVyzGKfD6+Tqtn++FHpZow3PJkgW4RAbKPYF8eDlKWMMI
+ eRForIbQFRMd6yIZ5rA8/5eCajF4y411hFjVKwxS9yLjPhsD5doEQiKqgdt6GdKmRycz
+ mDRrhYjSCfzJe0AsySBagpk3OCmMOp7OzGFtL/K++ppJTfCIGYRAnyWAOpm7jDohJ2HH
+ 4UnEmlGfThpXRTUjH1xPKj0SxwWtaarM957Vm23s1Vji0E3QzSuA4lW83aB/CpcBj9qz
+ my/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ZSJvfotdCjUWrF4mVP9+A9qImMlAemW9nGiM28VmacE=;
- b=hjbcwdQRPev+n6VcQO5pfa6vb4cRDRYVZAlbpe6+eIUqlJLcekECdQMcxkHW8LFvTW
- RGgOZJtULWeXZWEgrW1iPCxYPv4B1zfg4lRJnFpgXgSXIwWdCxM3ImSbDOiZRmKXpZnP
- FQbrrU4t2Bhy63T89SqdDdsSnW5Kwo/fbIyqhyvMza5w5ucG3Cgkw23Cc5XnFO9cLojC
- dvffh6GhmSL67IXHgiVKE8QYl42WXplP/8Z5ZVwEDxr81zbB84/70RjXu+DJhtmsmpaf
- bopVXE+TzLzvfTErKOVLPaZ1Ik4A0FY6Xqo6WFL7Mt3xxCsRbXzKl+eeENJweJAkfFQz
- Ojfg==
-X-Gm-Message-State: AOAM530eLvVeNopeuKdy1zhq9CELIYX92ejRoxRiWuuTKVFrNCRm1aBd
- cdOQpC5WV8VKH3HD5Jxm7nkxSh0LSm7SKEYDysT/QQ==
-X-Google-Smtp-Source: ABdhPJwZr3Wnjgl9INswmRX8j6PE+U9N5T0seoUM0s29l+SpYSFVVzVA2VAhljcYE2g84EpAA0a4jn2GXa2Q4MVs80M=
-X-Received: by 2002:adf:f109:0:b0:1e3:e2d:e6e0 with SMTP id
- r9-20020adff109000000b001e30e2de6e0mr8501855wro.177.1645257634157; Sat, 19
- Feb 2022 00:00:34 -0800 (PST)
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=evzbx3hFkrG4LEm3hNJUfV0Qe4cnm6Z7bXfWh+oqgHA=;
+ b=lqoy+f/3Ixby6u0ZNDYGlL+1zGzNy4d7gP4ibRJq3F0Hw172GwYqxFBV2mMs3XBerS
+ Holx3uVcwPBcllA6eGVxjLuv8w/Q6kdvibdl5gUZNR0D4AHZAop4xTAKlOCC+mD4AKs1
+ F76S5XS24xryz1MlQ9e4ApqSvLENiC1MoeBwcyslj/tYEdQZEkTL78ik1OvUbJH54yRL
+ gaEz7SjLh3li/ayxcwS4P7jE5r+g0wbJP0BIWsJMcgORj/RAL1krqCR0nzcl9M43BWxb
+ O86pq2RqwIiIyD6EVYrEaZNHBn+67izmRdPIBCitaZHN9xsUnaojX5BVxNkvOAh89U9z
+ YOSg==
+X-Gm-Message-State: AOAM532zUo6vGg3HJhCdvjJs6lRLrjKshfxcWqSQX4KJctgddNfPtJtx
+ 8XWaAsSH/9jkH+Kv+jNKSD8vhCOmOxF3mNAMa1U=
+X-Google-Smtp-Source: ABdhPJze/QDI5+XORX3C0oWeqbkGGqE1CNJ0uMuUTZ6HYLNRuKfPlfE4AmCZlgdh7rwc5tf4xgO0Asq3+la9pXqOY7g=
+X-Received: by 2002:a05:6870:148a:b0:d3:b909:926c with SMTP id
+ k10-20020a056870148a00b000d3b909926cmr6698908oab.129.1645414111191; Sun, 20
+ Feb 2022 19:28:31 -0800 (PST)
 MIME-Version: 1.0
-References: <20220218075727.2737623-1-davidgow@google.com>
- <20220218075727.2737623-2-davidgow@google.com>
- <ef8eee23-ba8c-e76a-d32d-68658841708d@amd.com>
-In-Reply-To: <ef8eee23-ba8c-e76a-d32d-68658841708d@amd.com>
-From: David Gow <davidgow@google.com>
-Date: Sat, 19 Feb 2022 16:00:22 +0800
-Message-ID: <CABVgOSnFjDnjbPh_E+GSzp-8WoRVPFa36=5GUpPtC-ba-fGkaw@mail.gmail.com>
-Subject: Re: [PATCH 1/4] drm/amdgpu: Fix compilation under UML
-To: Felix Kuehling <felix.kuehling@amd.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
- micalg=sha-256; boundary="000000000000ddef3005d85a64ee"
-X-Mailman-Approved-At: Sat, 19 Feb 2022 10:02:06 +0000
+References: <20220217090440.4468-1-qiang.yu@amd.com>
+ <5d3fdd2c-e74a-49f4-2b28-32c06483236f@amd.com>
+ <CAKGbVbtLTBJPF5eTu4rABUTBa8eqjQvqjo1AEUrzgPgYgCREuA@mail.gmail.com>
+ <dac70c05-e712-d2e3-2267-278380895f1e@amd.com>
+ <CAKGbVbvtLbDiKrX80-dMnipdLkTE+FP=g_mx37e12fuMtA1Y4Q@mail.gmail.com>
+ <ca27a9c6-f390-a938-dd66-ac23f3b44dc4@amd.com>
+ <CAKGbVbv4UFCybS_OFj5UkDgevbrB5qe3pv+0nHv9WdefYhy6Ww@mail.gmail.com>
+ <6711073b-8771-5750-33f7-b72333b411c6@amd.com>
+ <CAKGbVbvR+msXjrsXmDM8QTmsCP03hL5-q5CTJBYu4mm=NQd01A@mail.gmail.com>
+ <a11b7073-6597-8e87-b724-33acab32e791@gmail.com>
+ <CAKGbVbuJ-QdeoMTg=_O=1x5A5tbqZftsjt8aCCoVkAekci0USA@mail.gmail.com>
+ <d830bb82-63ea-2de6-6d10-3a401ac0dcf0@amd.com>
+ <CAKGbVbtorRius+Sq1_3SPUF3JzA00U747noSGhx7eP8Vn1rSDg@mail.gmail.com>
+ <47c3a681-379e-18d4-86da-c48721081911@gmail.com>
+In-Reply-To: <47c3a681-379e-18d4-86da-c48721081911@gmail.com>
+From: Qiang Yu <yuq825@gmail.com>
+Date: Mon, 21 Feb 2022 11:28:20 +0800
+Message-ID: <CAKGbVbvmxOCZWYvB+ZSL7oHJmbm8vPgM-NJzadrEG1E=2c2Eyg@mail.gmail.com>
+Subject: Re: [PATCH] drm/amdgpu: check vm bo eviction valuable at last
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,200 +77,306 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: x86@kernel.org, linux-rdma@vger.kernel.org,
- Richard Weinberger <richard@nod.at>, Jeff Dike <jdike@addtoit.com>,
- Randy Dunlap <rdunlap@infradead.org>,
- Brendan Higgins <brendanhiggins@google.com>,
+Cc: David Airlie <airlied@linux.ie>, "Pan, Xinhui" <Xinhui.Pan@amd.com>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- amd-gfx@lists.freedesktop.org, linux-um <linux-um@lists.infradead.org>,
- dri-devel@lists.freedesktop.org,
- "open list:KERNEL SELFTEST FRAMEWORK" <linux-kselftest@vger.kernel.org>,
- Shuah Khan <skhan@linuxfoundation.org>,
- KUnit Development <kunit-dev@googlegroups.com>,
- Anton Ivanov <anton.ivanov@cambridgegreys.com>
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>, linaro-mm-sig@lists.linaro.org,
+ Qiang Yu <qiang.yu@amd.com>, amd-gfx@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ linux-media@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
---000000000000ddef3005d85a64ee
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Fri, Feb 18, 2022 at 6:24 PM Christian K=C3=B6nig
+<ckoenig.leichtzumerken@gmail.com> wrote:
+>
+> Am 18.02.22 um 11:16 schrieb Qiang Yu:
+> > [SNIP]
+> >>> If amdgpu_vm_ready() use evicting flag, it's still not equivalent to =
+check
+> >>> vm idle: true -> vm idle, false -> vm may be idle or busy.
+> >> Yeah, but why should that be relevant?
+> >>
+> >> The amdgpu_vm_ready() return if we can do page table updates or not. I=
+f
+> >> the VM is idle or not is only relevant for eviction.
+> >>
+> >> In other words any CS or page table update makes the VM busy, but that
+> >> only affects if the VM can be evicted or not.
+> >>
+> > My point is: we can't use amdgpu_vm_ready() to replace vm_is_busy(), so
+> > currently we update vm even when vm is busy. So why not use:
+Sorry, should be "vm is idle".
 
-On Sat, Feb 19, 2022 at 12:39 AM Felix Kuehling <felix.kuehling@amd.com> wr=
-ote:
+> > if (!amdgpu_vm_ready() || vm_is_busy()) return;
+> > in amdgpu_gem_va_update_vm(), as you mentioned we prefer to not
+> > update vm when it's idle.
+>
+> Because updating the VM while it is busy is perfectly fine, we do it all
+> the time.
+>
+Yeah, as above, my typo.
+
+> We should just not update it when it is already idle and was considered
+> for eviction.
+"and", not "or"?
+
+> In this situation it makes most of the time sense to keep
+> it idle and postpone the update till the next command submission.
+>
+> >>>>> Then we can keep the evicting flag accurate (after solving your
+> >>>>> concern for this patch that eviction may fail latter by further del=
+ay
+> >>>>> the flag update after eviction success).
+> >>>> That won't work. See we need to mark the VM as evicted before we
+> >>>> actually evict them because otherwise somebody could use the VM in
+> >>>> parallel and add another fence to it.
+> >>>>
+> >>> I see, make this too accurate should cost too much like holding the
+> >>> eviction_lock when eviction. But just delay it in
+> >>> amdgpu_ttm_bo_eviction_valuable()
+> >>> could avoid most false positive case.
+> >> Partially correct. Another fundamental problem is that we can't hold t=
+he
+> >> eviction lock because that would result in lock inversion and potentia=
+l
+> >> deadlock.
+> >>
+> >> We could set the flag later on, but as I said before that when we set
+> >> the evicted flag when the VM is already idle is a desired effect.
+> >>
+> > As above, this confuse me as we can explicitly check vm idle when
+> > user update vm, why bother to embed it in evicting flag implicitly?
+>
+> Well as I said it's irrelevant for the update if the VM is idle or not.
+>
+> To summarize the rules once more:
+> 1. When VM page tables are used by CS or page tables updates it is
+> considered busy, e.g. not idle.
+>
+> 2. When we want to evict a VM it must be idle. As soon as we considered
+> this we should set the evicted flag to make sure to keep it idle as much
+> as possible.
+>
+> 3. When we want to update the page tables we just need to check if the
+> VM is idle or not.
+>
+But now we does not check vm idle directly in amdgpu_gem_va_update_vm().
+If VM bo has not been considered for eviction, it could be either idle or b=
+usy.
+
+Just want to confirm if the fix should be only change amdgpu_vm_ready()
+to use evicting flag or besides using evicting flag, also check vm_idle() i=
+n
+amdgpu_gem_va_update_vm().
+
+Regards,
+Qiang
+
+> 4. When a CS happens we don't have another chance and make the VM busy
+> again. And do all postponed page table updates.
+>
+Anyway,
+
+> Regards,
+> Christian.
+>
+> >
+> > Check vm idle need to hold resv lock. Read your patch for adding
+> > evicting flag is to update vm without resv lock. But user vm ops in
+> > amdgpu_gem_va_update_vm() do hold the resv lock, so the difference
+> > happens when calling amdgpu_vm_bo_update_mapping() from
+> > svm_range_(un)map_to_gpu(). So embed vm idle in evicting flag
+> > is for svm_range_(un)map_to_gpu() also do nothing when vm idle?
 >
 >
-> Am 2022-02-18 um 02:57 schrieb David Gow:
-> > From: Randy Dunlap <rdunlap@infradead.org>
-> >
-> > cpuinfo_x86 and its associated macros are not available under ARCH=3Dum=
-,
-> > even though CONFIG_X86_64 is defined.
-> >
-> > This patch (and discussion) were originally posted here:
-> > https://lkml.org/lkml/2022/1/24/1547
-> >
-> > This produces the following build errors:
-> > ../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1556:9: note: in=
- expansion of macro =E2=80=98cpu_data=E2=80=99
-> >    return cpu_data(first_cpu_of_numa_node).apicid;
-> >           ^~~~~~~~
-> > ../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_topology.c:1560:1: error: c=
-ontrol reaches end of non-void function [-Werror=3Dreturn-type]
-> >
-> > ../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c: In function =E2=80=
-=98kfd_fill_iolink_info_for_cpu=E2=80=99:
-> > ../arch/um/include/asm/processor-generic.h:103:19: error: called object=
- is not a function or function pointer
-> >   #define cpu_data (&boot_cpu_data)
-> >                    ~^~~~~~~~~~~~~~~
-> > ../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c:1688:27: note: in ex=
-pansion of macro =E2=80=98cpu_data=E2=80=99
-> >    struct cpuinfo_x86 *c =3D &cpu_data(0);
-> >                             ^~~~~~~~
-> > ../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c:1691:7: error: deref=
-erencing pointer to incomplete type =E2=80=98struct cpuinfo_x86=E2=80=99
-> >    if (c->x86_vendor =3D=3D X86_VENDOR_AMD)
-> >         ^~
-> > ../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c:1691:23: error: =E2=
-=80=98X86_VENDOR_AMD=E2=80=99 undeclared (first use in this function); did =
-you mean =E2=80=98X86_VENDOR_ANY=E2=80=99?
-> >    if (c->x86_vendor =3D=3D X86_VENDOR_AMD)
-> >                         ^~~~~~~~~~~~~~
-> >                         X86_VENDOR_ANY
-> >
-> > ../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c: In function =E2=80=
-=98kfd_create_vcrat_image_cpu=E2=80=99:
-> > ../drivers/gpu/drm/amd/amdgpu/../amdkfd/kfd_crat.c:1742:11: warning: un=
-used variable =E2=80=98entries=E2=80=99 [-Wunused-variable]
-> >    uint32_t entries =3D 0;
-> >
-> > Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-> > Signed-off-by: David Gow <davidgow@google.com>
-> > ---
-> >   drivers/gpu/drm/amd/amdkfd/kfd_crat.c     | 6 +++---
-> >   drivers/gpu/drm/amd/amdkfd/kfd_topology.c | 2 +-
-> >   2 files changed, 4 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c b/drivers/gpu/drm/am=
-d/amdkfd/kfd_crat.c
-> > index 9624bbe8b501..b1e2d117be3d 100644
-> > --- a/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-> > +++ b/drivers/gpu/drm/amd/amdkfd/kfd_crat.c
-> > @@ -1682,7 +1682,7 @@ static int kfd_fill_mem_info_for_cpu(int numa_nod=
-e_id, int *avail_size,
-> >       return 0;
-> >   }
-> >
-> > -#ifdef CONFIG_X86_64
-> > +#if defined(CONFIG_X86_64) && !defined(CONFIG_UML)
 >
-> I don't think it makes sense to compile a hardware device driver in a
-> UML config. Instead of scattering UML #ifdefs through our code, I would
-> recommend adding this to Kconfig:
+> >
+> > Regards,
+> > Qiang
+> >
+> >> Regards,
+> >> Christian.
+> >>
+> >>> Regards,
+> >>> Qiang
+> >>>
+> >>>> Regards,
+> >>>> Christian.
+> >>>>
+> >>>>> Regards,
+> >>>>> Qiang
+> >>>>>
+> >>>>>
+> >>>>>> Regards,
+> >>>>>> Christian.
+> >>>>>>
+> >>>>>>> Regards,
+> >>>>>>> Qiang
+> >>>>>>>
+> >>>>>>>> Regards,
+> >>>>>>>> Christian.
+> >>>>>>>>
+> >>>>>>>>> Regards,
+> >>>>>>>>> Qiang
+> >>>>>>>>>
+> >>>>>>>>>> Regards,
+> >>>>>>>>>> Christian.
+> >>>>>>>>>>
+> >>>>>>>>>>> Regards,
+> >>>>>>>>>>> Qiang
+> >>>>>>>>>>>
+> >>>>>>>>>>>> What we should rather do is to fix amdgpu_vm_ready() to take=
+ a look at
+> >>>>>>>>>>>> the flag instead of the linked list.
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> Regards,
+> >>>>>>>>>>>> Christian.
+> >>>>>>>>>>>>
+> >>>>>>>>>>>>> Signed-off-by: Qiang Yu <qiang.yu@amd.com>
+> >>>>>>>>>>>>> ---
+> >>>>>>>>>>>>>         drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 85 ++++++=
+++++++++-----------
+> >>>>>>>>>>>>>         1 file changed, 47 insertions(+), 38 deletions(-)
+> >>>>>>>>>>>>>
+> >>>>>>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/driv=
+ers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> >>>>>>>>>>>>> index 5a32ee66d8c8..88a27911054f 100644
+> >>>>>>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> >>>>>>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> >>>>>>>>>>>>> @@ -1306,45 +1306,11 @@ uint64_t amdgpu_ttm_tt_pte_flags(st=
+ruct amdgpu_device *adev, struct ttm_tt *ttm,
+> >>>>>>>>>>>>>             return flags;
+> >>>>>>>>>>>>>         }
+> >>>>>>>>>>>>>
+> >>>>>>>>>>>>> -/*
+> >>>>>>>>>>>>> - * amdgpu_ttm_bo_eviction_valuable - Check to see if we ca=
+n evict a buffer
+> >>>>>>>>>>>>> - * object.
+> >>>>>>>>>>>>> - *
+> >>>>>>>>>>>>> - * Return true if eviction is sensible. Called by ttm_mem_=
+evict_first() on
+> >>>>>>>>>>>>> - * behalf of ttm_bo_mem_force_space() which tries to evict=
+ buffer objects until
+> >>>>>>>>>>>>> - * it can find space for a new object and by ttm_bo_force_=
+list_clean() which is
+> >>>>>>>>>>>>> - * used to clean out a memory space.
+> >>>>>>>>>>>>> - */
+> >>>>>>>>>>>>> -static bool amdgpu_ttm_bo_eviction_valuable(struct ttm_buf=
+fer_object *bo,
+> >>>>>>>>>>>>> -                                         const struct ttm_=
+place *place)
+> >>>>>>>>>>>>> +static bool amdgpu_ttm_mem_eviction_valuable(struct ttm_bu=
+ffer_object *bo,
+> >>>>>>>>>>>>> +                                          const struct ttm=
+_place *place)
+> >>>>>>>>>>>>>         {
+> >>>>>>>>>>>>>             unsigned long num_pages =3D bo->resource->num_p=
+ages;
+> >>>>>>>>>>>>>             struct amdgpu_res_cursor cursor;
+> >>>>>>>>>>>>> -     struct dma_resv_list *flist;
+> >>>>>>>>>>>>> -     struct dma_fence *f;
+> >>>>>>>>>>>>> -     int i;
+> >>>>>>>>>>>>> -
+> >>>>>>>>>>>>> -     /* Swapout? */
+> >>>>>>>>>>>>> -     if (bo->resource->mem_type =3D=3D TTM_PL_SYSTEM)
+> >>>>>>>>>>>>> -             return true;
+> >>>>>>>>>>>>> -
+> >>>>>>>>>>>>> -     if (bo->type =3D=3D ttm_bo_type_kernel &&
+> >>>>>>>>>>>>> -         !amdgpu_vm_evictable(ttm_to_amdgpu_bo(bo)))
+> >>>>>>>>>>>>> -             return false;
+> >>>>>>>>>>>>> -
+> >>>>>>>>>>>>> -     /* If bo is a KFD BO, check if the bo belongs to the =
+current process.
+> >>>>>>>>>>>>> -      * If true, then return false as any KFD process need=
+s all its BOs to
+> >>>>>>>>>>>>> -      * be resident to run successfully
+> >>>>>>>>>>>>> -      */
+> >>>>>>>>>>>>> -     flist =3D dma_resv_shared_list(bo->base.resv);
+> >>>>>>>>>>>>> -     if (flist) {
+> >>>>>>>>>>>>> -             for (i =3D 0; i < flist->shared_count; ++i) {
+> >>>>>>>>>>>>> -                     f =3D rcu_dereference_protected(flist=
+->shared[i],
+> >>>>>>>>>>>>> -                             dma_resv_held(bo->base.resv))=
+;
+> >>>>>>>>>>>>> -                     if (amdkfd_fence_check_mm(f, current-=
+>mm))
+> >>>>>>>>>>>>> -                             return false;
+> >>>>>>>>>>>>> -             }
+> >>>>>>>>>>>>> -     }
+> >>>>>>>>>>>>>
+> >>>>>>>>>>>>>             switch (bo->resource->mem_type) {
+> >>>>>>>>>>>>>             case AMDGPU_PL_PREEMPT:
+> >>>>>>>>>>>>> @@ -1377,10 +1343,53 @@ static bool amdgpu_ttm_bo_eviction_=
+valuable(struct ttm_buffer_object *bo,
+> >>>>>>>>>>>>>                     return false;
+> >>>>>>>>>>>>>
+> >>>>>>>>>>>>>             default:
+> >>>>>>>>>>>>> -             break;
+> >>>>>>>>>>>>> +             return ttm_bo_eviction_valuable(bo, place);
+> >>>>>>>>>>>>>             }
+> >>>>>>>>>>>>> +}
+> >>>>>>>>>>>>>
+> >>>>>>>>>>>>> -     return ttm_bo_eviction_valuable(bo, place);
+> >>>>>>>>>>>>> +/*
+> >>>>>>>>>>>>> + * amdgpu_ttm_bo_eviction_valuable - Check to see if we ca=
+n evict a buffer
+> >>>>>>>>>>>>> + * object.
+> >>>>>>>>>>>>> + *
+> >>>>>>>>>>>>> + * Return true if eviction is sensible. Called by ttm_mem_=
+evict_first() on
+> >>>>>>>>>>>>> + * behalf of ttm_bo_mem_force_space() which tries to evict=
+ buffer objects until
+> >>>>>>>>>>>>> + * it can find space for a new object and by ttm_bo_force_=
+list_clean() which is
+> >>>>>>>>>>>>> + * used to clean out a memory space.
+> >>>>>>>>>>>>> + */
+> >>>>>>>>>>>>> +static bool amdgpu_ttm_bo_eviction_valuable(struct ttm_buf=
+fer_object *bo,
+> >>>>>>>>>>>>> +                                         const struct ttm_=
+place *place)
+> >>>>>>>>>>>>> +{
+> >>>>>>>>>>>>> +     struct dma_resv_list *flist;
+> >>>>>>>>>>>>> +     struct dma_fence *f;
+> >>>>>>>>>>>>> +     int i;
+> >>>>>>>>>>>>> +
+> >>>>>>>>>>>>> +     /* Swapout? */
+> >>>>>>>>>>>>> +     if (bo->resource->mem_type =3D=3D TTM_PL_SYSTEM)
+> >>>>>>>>>>>>> +             return true;
+> >>>>>>>>>>>>> +
+> >>>>>>>>>>>>> +     /* If bo is a KFD BO, check if the bo belongs to the =
+current process.
+> >>>>>>>>>>>>> +      * If true, then return false as any KFD process need=
+s all its BOs to
+> >>>>>>>>>>>>> +      * be resident to run successfully
+> >>>>>>>>>>>>> +      */
+> >>>>>>>>>>>>> +     flist =3D dma_resv_shared_list(bo->base.resv);
+> >>>>>>>>>>>>> +     if (flist) {
+> >>>>>>>>>>>>> +             for (i =3D 0; i < flist->shared_count; ++i) {
+> >>>>>>>>>>>>> +                     f =3D rcu_dereference_protected(flist=
+->shared[i],
+> >>>>>>>>>>>>> +                             dma_resv_held(bo->base.resv))=
+;
+> >>>>>>>>>>>>> +                     if (amdkfd_fence_check_mm(f, current-=
+>mm))
+> >>>>>>>>>>>>> +                             return false;
+> >>>>>>>>>>>>> +             }
+> >>>>>>>>>>>>> +     }
+> >>>>>>>>>>>>> +
+> >>>>>>>>>>>>> +     /* Check by different mem type. */
+> >>>>>>>>>>>>> +     if (!amdgpu_ttm_mem_eviction_valuable(bo, place))
+> >>>>>>>>>>>>> +             return false;
+> >>>>>>>>>>>>> +
+> >>>>>>>>>>>>> +     /* VM bo should be checked at last because it will ma=
+rk VM evicting. */
+> >>>>>>>>>>>>> +     if (bo->type =3D=3D ttm_bo_type_kernel)
+> >>>>>>>>>>>>> +             return amdgpu_vm_evictable(ttm_to_amdgpu_bo(b=
+o));
+> >>>>>>>>>>>>> +
+> >>>>>>>>>>>>> +     return true;
+> >>>>>>>>>>>>>         }
+> >>>>>>>>>>>>>
+> >>>>>>>>>>>>>         static void amdgpu_ttm_vram_mm_access(struct amdgpu=
+_device *adev, loff_t pos,
 >
-
-There are cases where I think it could make sense to have a hardware
-driver under UML, though I agree they're pretty rare.
-
-In particular, there's the virtio PCI support in UML, which one could
-potentially hook up a GPU to. The case I care more about is the
-ability to run KUnit tests under UML: if amdgpu wanted to have KUnit
-tests, it could still run them in qemu (or on real hardware), but UML
-is faster and more convenient, if the code being tested can compile
-under it.
-
-So I have a slight preference personally for fixing this, to unblock those =
-uses.
-
-That being said, it's definitely not worth placing a significant
-burden on you maintaining these things if no-one uses them. And since
-there doesn't appear to be any such use at the moment[1], I've no
-strong objection to just disabling this for now (it can always be
-re-enabled and fixed if it becomes useful later).
-
-Cheers,
--- David
-
-[1] The proposed DRM KUnit tests don't require any actual hardware
-drivers, as I understand it:
-https://lore.kernel.org/all/20220117232259.180459-5-michal.winiarski@intel.=
-com/T/
-
---000000000000ddef3005d85a64ee
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIIPnwYJKoZIhvcNAQcCoIIPkDCCD4wCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
-ggz5MIIEtjCCA56gAwIBAgIQeAMYYHb81ngUVR0WyMTzqzANBgkqhkiG9w0BAQsFADBMMSAwHgYD
-VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
-AxMKR2xvYmFsU2lnbjAeFw0yMDA3MjgwMDAwMDBaFw0yOTAzMTgwMDAwMDBaMFQxCzAJBgNVBAYT
-AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIEF0bGFz
-IFIzIFNNSU1FIENBIDIwMjAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCvLe9xPU9W
-dpiHLAvX7kFnaFZPuJLey7LYaMO8P/xSngB9IN73mVc7YiLov12Fekdtn5kL8PjmDBEvTYmWsuQS
-6VBo3vdlqqXZ0M9eMkjcKqijrmDRleudEoPDzTumwQ18VB/3I+vbN039HIaRQ5x+NHGiPHVfk6Rx
-c6KAbYceyeqqfuJEcq23vhTdium/Bf5hHqYUhuJwnBQ+dAUcFndUKMJrth6lHeoifkbw2bv81zxJ
-I9cvIy516+oUekqiSFGfzAqByv41OrgLV4fLGCDH3yRh1tj7EtV3l2TngqtrDLUs5R+sWIItPa/4
-AJXB1Q3nGNl2tNjVpcSn0uJ7aFPbAgMBAAGjggGKMIIBhjAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0l
-BBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFHzM
-CmjXouseLHIb0c1dlW+N+/JjMB8GA1UdIwQYMBaAFI/wS3+oLkUkrk1Q+mOai97i3Ru8MHsGCCsG
-AQUFBwEBBG8wbTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL3Jvb3Ry
-MzA7BggrBgEFBQcwAoYvaHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvcm9vdC1y
-My5jcnQwNgYDVR0fBC8wLTAroCmgJ4YlaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9yb290LXIz
-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
-G7p3AiuB2sgfq6cOpbO5MEwGA1UdIARFMEMwQQYJKwYBBAGgMgEoMDQwMgYIKwYBBQUHAgEWJmh0
-dHBzOi8vd3d3Lmdsb2JhbHNpZ24uY29tL3JlcG9zaXRvcnkvMAwGA1UdEwEB/wQCMAAwgZoGCCsG
-AQUFBwEBBIGNMIGKMD4GCCsGAQUFBzABhjJodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9jYS9n
-c2F0bGFzcjNzbWltZWNhMjAyMDBIBggrBgEFBQcwAoY8aHR0cDovL3NlY3VyZS5nbG9iYWxzaWdu
-LmNvbS9jYWNlcnQvZ3NhdGxhc3Izc21pbWVjYTIwMjAuY3J0MB8GA1UdIwQYMBaAFHzMCmjXouse
-LHIb0c1dlW+N+/JjMEYGA1UdHwQ/MD0wO6A5oDeGNWh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20v
-Y2EvZ3NhdGxhc3Izc21pbWVjYTIwMjAuY3JsMA0GCSqGSIb3DQEBCwUAA4IBAQBsL34EJkCtu9Nu
-2+R6l1Qzno5Gl+N2Cm6/YLujukDGYa1JW27txXiilR9dGP7yl60HYyG2Exd5i6fiLDlaNEw0SqzE
-dw9ZSIak3Qvm2UybR8zcnB0deCUiwahqh7ZncEPlhnPpB08ETEUtwBEqCEnndNEkIN67yz4kniCZ
-jZstNF/BUnI3864fATiXSbnNqBwlJS3YkoaCTpbI9qNTrf5VIvnbryT69xJ6f25yfmxrXNJJe5OG
-ncB34Cwnb7xQyk+uRLZ465yUBkbjk9pC/yamL0O7SOGYUclrQl2c5zzGuVBD84YcQGDOK6gSPj6w
-QuBfOooZPOyZZZ8AMih7J980MYICajCCAmYCAQEwaDBUMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQ
-R2xvYmFsU2lnbiBudi1zYTEqMCgGA1UEAxMhR2xvYmFsU2lnbiBBdGxhcyBSMyBTTUlNRSBDQSAy
-MDIwAhABQeVybOOpR4bOOXZYL5T3MA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCAD
-bDG4S/ht/giejbOZGd/p6/lp8S/M/DHA3U+Ot88qtDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcB
-MBwGCSqGSIb3DQEJBTEPFw0yMjAyMTkwODAwMzRaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUD
-BAEqMAsGCWCGSAFlAwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsG
-CSqGSIb3DQEBBzALBglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAKANLJk4i7jUMAjnEhFHl
-o2f9h+XHj1vfL7KVXEc1ciAAUdpZxezlv2cCZEdq9krX+jtap9bTVtJzyLMbVr5SixD3Ob5tVk0f
-E8+a8irhK9+YVAQchpYBa8+RJdqH0J1HeFb80T5P1jN73CevRgcoGDjd1izkE9NKJ0l6lvoHv8LF
-0p0HA2IHK6nYYs3xdRkVCL7Nu8cFQxkDf7TjmBiqrIH2GxVwU84dpMTrkzBqT7ZswXYZ/LrcUcNp
-Jr3U0AY9S11MadPemWc97d53FMqEtCy2rLB/pEIcKioSUIKRbbtLM/QKotZO07I6xLDzGnXHDP2T
-kczRI/2I9zlFWB7rVg==
---000000000000ddef3005d85a64ee--
