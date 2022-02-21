@@ -2,47 +2,66 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C7224BDD20
-	for <lists+amd-gfx@lfdr.de>; Mon, 21 Feb 2022 18:44:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCA7C4BEA34
+	for <lists+amd-gfx@lfdr.de>; Mon, 21 Feb 2022 19:15:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90D2E10E2AA;
-	Mon, 21 Feb 2022 17:44:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2580A10E22A;
+	Mon, 21 Feb 2022 18:15:27 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org
- [IPv6:2001:67c:2050::465:201])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D93C210E2AA
- for <amd-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 17:44:56 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [80.241.60.241])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4K2V7C0THDz9sSp;
- Mon, 21 Feb 2022 18:44:55 +0100 (CET)
-Message-ID: <4009de28-8add-97b9-0dd3-8d44704af322@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1645465492;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Yw092lAUgsfaQ0zPq1NuunikDF/9/miFdYIksl++CCY=;
- b=DaAKXA8omZd528dAYG8jNvznP/xXfmqZ1Vw5hMoI5+ngenr45vMSip62hkTayS1M8WIXWq
- +hykVEAiwAsZqIdF7mrh1syBOn1r12TpDdI+NdHKZSCX2cyGiYZ2Ov27vvuF8Rcy/3D6Ng
- UCNvaS7Yz3yHmRSZ3E3UoRtLwBin7xFlgICKmlxj1Wd1jBEAJhkTWNzu10hcOQF6CZmtlt
- rVMxmoKD5pUFxZEmLIQmXIwf+kyhg1pmXNMUkAWaWT7Jvjeq2chnBlpCsuBv7ADmhq9UhA
- a7HDZ3flC/aj/71jjHOsMQyx59m63XcuAezp8+/SaVH/6GudmVfcQEdBwd5XeA==
-Date: Mon, 21 Feb 2022 18:44:50 +0100
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
+ [IPv6:2a00:1450:4864:20::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ECEA10E22A
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 18:15:25 +0000 (UTC)
+Received: by mail-ej1-x62f.google.com with SMTP id r13so12311509ejd.5
+ for <amd-gfx@lists.freedesktop.org>; Mon, 21 Feb 2022 10:15:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=message-id:date:mime-version:user-agent:subject:content-language:to
+ :cc:references:from:in-reply-to:content-transfer-encoding;
+ bh=2p/KTvOdFBZHS2wgaLneSyM/12uTssiSfcmpmu1qWJU=;
+ b=GQBMCUgfSDYdENuOttRcxNsk5MAz4nyO3mOdv2dMaUt5EpSyB0e/s5C3PENSExdwIg
+ c3qWcGmWj1gnA+F8HbjG+HGe/NOK2JLlCsGImg5bdqcXkRMOysQYvk2omaDLuGPoIVCV
+ S4HuecqG7bu5kebD/pO+c6jmZYQ59AzFRUXzr5lNSyKjqQWjlrWXZMRKsFIDiNaImIGC
+ vKrKuYA0lokRGjpdCcOe5T/1WFIhTuAe+vyWdNrAEcuQxkDMpA63eLHOT/mR7LdWSECF
+ 0pX+O1ddb/h9ivX9z70Clyq9zSkJzVWY5NLVHdQHl0oBX6E3BjOrvF9SnxkA2C6NQTUG
+ fs3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+ :content-language:to:cc:references:from:in-reply-to
+ :content-transfer-encoding;
+ bh=2p/KTvOdFBZHS2wgaLneSyM/12uTssiSfcmpmu1qWJU=;
+ b=1gfbooWq7Wd1oWQ0QtF89LXryHrlUJcIxg8MzjYPadqXCBCw1J0zkEytX/vJPGiCau
+ 2bsZH6XA1RJBjWc2Ee/rVbwBfV+9YuUTP9rIJk1x4owCgwCDl7yzx8bmDkbJSeYu5jcs
+ Bex1iwgEENp41hWmd4rSLRRV+0LdS2zJA4AkY17dPUqTujEs8uHpVCXAv+svPAZsu+hr
+ 6UUTLa8tAprzLVcAReVpEJQzwj2LiltCDh9hm1aRfZ1FP6XS6p5/OTNqMIYCCRvq2FPZ
+ 8xUPpFhOyJN7Pwr8oF1Y66M2jszKkL9d6wzsXpWrHEXXQ169auOdMNF6mxuiwdf5IZX8
+ PkCw==
+X-Gm-Message-State: AOAM5326wmZpxVsTVFOxwQS8Ajwf70nOrMvSoHGrzaPrvHwnyS9UK7QQ
+ 2mv7euWtbF4i1jkSvEln3Hg=
+X-Google-Smtp-Source: ABdhPJxQ9XEqISa2gSf7Ib5Vqs16zeP4ehOCvlyQO9+hxEoC5tBaB9+VgY/PHURs4VYjcXIeBd1LRg==
+X-Received: by 2002:a17:906:6b8d:b0:6cf:ebab:ef81 with SMTP id
+ l13-20020a1709066b8d00b006cfebabef81mr16489913ejr.5.1645467323624; 
+ Mon, 21 Feb 2022 10:15:23 -0800 (PST)
+Received: from ?IPV6:2a02:908:1252:fb60:c040:4508:cf:7951?
+ ([2a02:908:1252:fb60:c040:4508:cf:7951])
+ by smtp.gmail.com with ESMTPSA id e4sm5411806ejm.116.2022.02.21.10.15.22
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 21 Feb 2022 10:15:23 -0800 (PST)
+Message-ID: <d6c977a1-ce77-a7a8-b55b-6c07628a430e@gmail.com>
+Date: Mon, 21 Feb 2022 19:15:22 +0100
 MIME-Version: 1.0
-Subject: Re: [PATCH 7/7] drm/amdgpu: drop testing module parameter
-Content-Language: en-CA
-To: Alex Deucher <alexander.deucher@amd.com>
-References: <20220218222603.25470-1-alexander.deucher@amd.com>
- <20220218222603.25470-7-alexander.deucher@amd.com>
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel.daenzer@mailbox.org>
-In-Reply-To: <20220218222603.25470-7-alexander.deucher@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] drm/amd/display: add GTT domain support for dcn 3.1.5
+Content-Language: en-US
+To: Alex Deucher <alexdeucher@gmail.com>, Yifan Zhang <yifan1.zhang@amd.com>
+References: <20220221101451.809067-1-yifan1.zhang@amd.com>
+ <CADnq5_N9cAnrcJLN57BA0q2_=Mcr4bDCynkmNyYWPMGpy7kieQ@mail.gmail.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <CADnq5_N9cAnrcJLN57BA0q2_=Mcr4bDCynkmNyYWPMGpy7kieQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,16 +73,50 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx@lists.freedesktop.org
+Cc: "Leo \(Sunpeng\) Li" <sunpeng.li@amd.com>,
+ "Tianci.Yin" <tianci.yin@amd.com>, "Wentland, Harry" <harry.wentland@amd.com>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On 2022-02-18 23:26, Alex Deucher wrote:
-> This was always duplicate functionality with the benchmark tests.
-
-Not really. The purpose of amdgpu_do_test_moves is testing that copies between GTT & VRAM work across the whole GTT aperture (when I originally wrote radeon_do_test_moves, they didn't on the PowerBook I was using at the time).
 
 
--- 
-Earthling Michel Dänzer            |                  https://redhat.com
-Libre software enthusiast          |         Mesa and Xwayland developer
+Am 21.02.22 um 15:27 schrieb Alex Deucher:
+> On Mon, Feb 21, 2022 at 5:15 AM Yifan Zhang <yifan1.zhang@amd.com> wrote:
+>> From: "Tianci.Yin" <tianci.yin@amd.com>
+>>
+>> this patch adds GTT domain support for dcn 3.1.5
+>>
+>> Signed-off-by: Tianci.Yin <tianci.yin@amd.com>
+>> Signed-off-by: Yifan Zhang <yifan1.zhang@amd.com>
+>> ---
+>>   drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+>> index 9709368b4915..88ee1224541c 100644
+>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+>> @@ -523,6 +523,7 @@ uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev,
+>>                          case IP_VERSION(3, 0, 1):
+>>                          case IP_VERSION(3, 1, 2):
+>>                          case IP_VERSION(3, 1, 3):
+>> +                       case IP_VERSION(3, 1, 5):
+> Should also add 3.1.6 as well?
+
+I'm really wondering if that check shouldn't be something like >= 
+IP_VERSION(3, 1, 0) instead.
+
+Christian.
+
+>
+> Alex
+>
+>
+>>                                  domain |= AMDGPU_GEM_DOMAIN_GTT;
+>>                                  break;
+>>                          default:
+>> --
+>> 2.25.1
+>>
+
