@@ -2,59 +2,61 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F5254BFA4D
-	for <lists+amd-gfx@lfdr.de>; Tue, 22 Feb 2022 15:06:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 874C94BFA57
+	for <lists+amd-gfx@lfdr.de>; Tue, 22 Feb 2022 15:07:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 296CD10E829;
-	Tue, 22 Feb 2022 14:06:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF54210E83E;
+	Tue, 22 Feb 2022 14:06:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
- [IPv6:2607:f8b0:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87BE310E643
- for <amd-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 13:18:38 +0000 (UTC)
-Received: by mail-oi1-x233.google.com with SMTP id s5so14387016oic.10
- for <amd-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 05:18:38 -0800 (PST)
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com
+ [IPv6:2607:f8b0:4864:20::330])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D586810E646
+ for <amd-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 13:18:45 +0000 (UTC)
+Received: by mail-ot1-x330.google.com with SMTP id
+ j9-20020a9d7d89000000b005ad5525ba09so7291113otn.10
+ for <amd-gfx@lists.freedesktop.org>; Tue, 22 Feb 2022 05:18:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=usp.br; s=usp-google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=5Qcw9bKKE/I3YtOTGrr/IloXYnLQKsqmcABj+F9w5gU=;
- b=c8BAJ4m67w3KkA6R8MfDkVVbI33E3DVexeALTYofb5l6z5ouhhOz4fZsya2JyYKPgi
- sat/gkEnc4YCyfXFmsZ6JizPCfEvFBKy3sUlF5kqA1LOCaburVgG3znbklkOywSEkBWA
- G4dNPu+gyva002SGyTd8sipk9LyYX5MNusk7OkITM29UMV63h0QVBRWT6pIy3yDo9idu
- jgK7nVvQLQAScQ/Glv4ROveNyabb2dodxJT5dc5JgNJIC0pXpAIFcfOgR8kMlIPvhSdn
- hLddDjV84SiN5tH1H6kiw2/03Ghq9xeP9fyF2dPGNWNLtG9Zvhe8yLlqRFgwIim9Y3FD
- ZvFQ==
+ bh=m7m0+PF7saTzmzCja9hykhB/MRHQ+aIAgZTpGlXhHzw=;
+ b=ubi5Nm/hc13TZrLP09ZiZRLp3a2ho4dHP2ehi7CFHPZ2s6iZ0e3mlYsRva1Lo79rof
+ meuN9eLCrtEoUc2bmNz8XfqhPigO2am6hz09EKWPa5tYM4mkQjkHmB4qmkgP6wysKRSp
+ MYcDxon4lPSJgg20sSlxVY/SDgzPwLvjUDgt3YmbkhU8/u3rhab/RurOUlKHmgC50WKg
+ FVi5Zyc72Oxho4L2Rqgl1V2Q8nWaSRqR7Yqu9aZdVQcu8hvak1SgPfdx1yxVpsGKtzJM
+ UXec4VOo7nf+J0oBnWsFRjoIEKP2D37OAkq6NiDruGUON4PMb3jdr1chSd9Z5zSf6E0k
+ u7pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=5Qcw9bKKE/I3YtOTGrr/IloXYnLQKsqmcABj+F9w5gU=;
- b=nS6b5+eZta48FfKR4ymzFG8c7bC0VOiZP9J+ClRhy1MB6+1e9cS1lGhkfcusDkHh+A
- Jid4LrncqIulHJO7F1DS2+7NGrRqSfPu8NDdu+YT/9sSSZzGRqCf+sivdrT7cHmHGMZp
- LRp2o61H8gzXHdIQfAAzkIcXqnbde5cIMuEwKbFmksoDznMRK7xUpd5FOzH27QLLYpRg
- YJbbAYxRbgFi3tf5oaUfkpovkRXGQ1+SfA6dg1DctxBoLAlLErVYArhhY73cH7YbmpEU
- Wa3Qg9zK90Ws4x4STAVsN+TGtwBDj0yTIA5YFPfy7h+/sG8gK9Rz+hOnU/QOdDIBNpFU
- 1fqw==
-X-Gm-Message-State: AOAM53041aLMhGpzyQcZPokkgRINbeInEembxHkIaq0u2BVECOUNTLF/
- ht23k14EE+HxzaHB4FLKUkrznA==
-X-Google-Smtp-Source: ABdhPJxEgvmm3gdK2nB9u+S/MLEXPpJvc+viMUQ4NlZZF4yuwT7VswodNQo1pHuKz6DJMA/hokhwcg==
-X-Received: by 2002:a05:6808:11cc:b0:2d4:9b7c:6d76 with SMTP id
- p12-20020a05680811cc00b002d49b7c6d76mr1803271oiv.193.1645535917778; 
- Tue, 22 Feb 2022 05:18:37 -0800 (PST)
+ bh=m7m0+PF7saTzmzCja9hykhB/MRHQ+aIAgZTpGlXhHzw=;
+ b=3tE9YCFc532sDKWDnZqfrqLXBPhj++/znVfelJfB+if38OFhaFOJf5egPK7ZIU+qZX
+ 4Z3aAeP3Ovo2G8b7+oIUdf7ggK+YeMB1jcwPGAWp69Iyad/I9Aa3IpVKcwJzFtTjR2ad
+ /I0ZvSUEM306KF7qHj5oyINoRmKBuoWDsyqDuR6Mls8G8ocbMGlA3MPsrOZwcifF4Vc4
+ kNeJt7iDd35iINXqvSWDvn2eniMI7+zECPJBLHILVdioe5zpvbE+IEsEjLvO+q6LGtjS
+ qHL8mW4H9mU/ICf9PhpLGn7ZuMhLR8+xVEXhKz6bLp9lEJQqD0y2UIDq0viTycfUFcLu
+ 1PZw==
+X-Gm-Message-State: AOAM533oDpgBjDQ7LFRI2kbkZGRI3lJTEF9X0+RVfse1mxAjhvfJj9hk
+ 5gLGfgJ/yf91jB4JHi9rTn2B5Q==
+X-Google-Smtp-Source: ABdhPJwXb2Ih6ABCM4wFKq+J7EONDr5AujGDHaz2bmBm8K1zfSsUX01jAP2smZyZy7rVzqADpM/0Dg==
+X-Received: by 2002:a05:6830:40c6:b0:5a0:4cee:1e7d with SMTP id
+ h6-20020a05683040c600b005a04cee1e7dmr8308902otu.121.1645535925058; 
+ Tue, 22 Feb 2022 05:18:45 -0800 (PST)
 Received: from fedora.. ([187.36.236.204])
- by smtp.gmail.com with ESMTPSA id c9sm6325050otd.26.2022.02.22.05.18.30
+ by smtp.gmail.com with ESMTPSA id c9sm6325050otd.26.2022.02.22.05.18.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 22 Feb 2022 05:18:37 -0800 (PST)
+ Tue, 22 Feb 2022 05:18:44 -0800 (PST)
 From: =?UTF-8?q?Ma=C3=ADra=20Canal?= <maira.canal@usp.br>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  Hawking.Zhang@amd.com, john.clements@amd.com, tao.zhou1@amd.com,
  YiPeng.Chai@amd.com, luben.tuikov@amd.com, Stanley.Yang@amd.com,
  Dennis.Li@amd.com, mukul.joshi@amd.com, harry.wentland@amd.com,
  sunpeng.li@amd.com, Rodrigo.Siqueira@amd.com, Anthony.Koo@amd.com
-Subject: [PATCH 09/10] drm/amd/display: Add missing prototypes to dcn201_init
-Date: Tue, 22 Feb 2022 10:17:00 -0300
-Message-Id: <20220222131701.356117-10-maira.canal@usp.br>
+Subject: [PATCH 10/10] drm/amd/display: Turn global functions into static
+ functions
+Date: Tue, 22 Feb 2022 10:17:01 -0300
+Message-Id: <20220222131701.356117-11-maira.canal@usp.br>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220222131701.356117-1-maira.canal@usp.br>
 References: <20220222131701.356117-1-maira.canal@usp.br>
@@ -80,32 +82,161 @@ Cc: magalilemes00@gmail.com,
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Include the header with the prototype to silence the following clang
-warning:
+Turn previously global functions into static functions to avoid
+-Wmissing-prototype warnings, such as:
 
-drivers/gpu/drm/amd/amdgpu/../display/dc/dcn201/dcn201_init.c:127:6:
-warning: no previous prototype for function 'dcn201_hw_sequencer_construct'
+drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn30/irq_service_dcn30.c:50:20:
+warning: no previous prototype for function 'to_dal_irq_source_dcn30'
 [-Wmissing-prototypes]
-    void dcn201_hw_sequencer_construct(struct dc *dc)
-         ^
+enum dc_irq_source to_dal_irq_source_dcn30(
+                   ^
+drivers/gpu/drm/amd/amdgpu/../display/dc/irq/dcn30/irq_service_dcn30.c:50:1:
+note: declare 'static' if the function is not intended to be used outside
+of this translation unit
+enum dc_irq_source to_dal_irq_source_dcn30(
+^
+static
+1 warning generated.
+
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn316/dcn316_clk_mgr.c:488:6:
+warning: no previous prototype for function
+'dcn316_clk_mgr_helper_populate_bw_params' [-Wmissing-prototypes]
+void dcn316_clk_mgr_helper_populate_bw_params(
+     ^
+drivers/gpu/drm/amd/amdgpu/../display/dc/clk_mgr/dcn316/dcn316_clk_mgr.c:488:1:
+note: declare 'static' if the function is not intended to be used outside
+of this translation unit
+void dcn316_clk_mgr_helper_populate_bw_params(
+^
+static
+1 warning generated.
 
 Signed-off-by: Maíra Canal <maira.canal@usp.br>
 ---
- drivers/gpu/drm/amd/display/dc/dcn201/dcn201_init.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c             | 4 ++--
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c   | 2 +-
+ .../drm/amd/display/dc/clk_mgr/dcn10/rv1_clk_mgr_vbios_smu.c  | 3 ++-
+ .../gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_clk_mgr.c    | 2 +-
+ drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c    | 2 +-
+ drivers/gpu/drm/amd/display/dc/core/dc_resource.c             | 2 +-
+ drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.c  | 2 +-
+ drivers/gpu/drm/amd/display/dc/irq/dcn30/irq_service_dcn30.c  | 2 +-
+ 8 files changed, 10 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/dc/dcn201/dcn201_init.c b/drivers/gpu/drm/amd/display/dc/dcn201/dcn201_init.c
-index f1f89f93603f..1826dd7f3da1 100644
---- a/drivers/gpu/drm/amd/display/dc/dcn201/dcn201_init.c
-+++ b/drivers/gpu/drm/amd/display/dc/dcn201/dcn201_init.c
-@@ -27,6 +27,7 @@
- #include "dcn10/dcn10_hw_sequencer.h"
- #include "dcn20/dcn20_hwseq.h"
- #include "dcn201_hwseq.h"
-+#include "dcn201_init.h"
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index c9ca328d34e3..a99b92526b55 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -6362,7 +6362,7 @@ static bool is_freesync_video_mode(const struct drm_display_mode *mode,
+ 		return true;
+ }
  
- static const struct hw_sequencer_funcs dcn201_funcs = {
- 	.program_gamut_remap = dcn10_program_gamut_remap,
+-struct dc_stream_state *
++static struct dc_stream_state *
+ create_stream_for_sink(struct amdgpu_dm_connector *aconnector,
+ 		       const struct drm_display_mode *drm_mode,
+ 		       const struct dm_connector_state *dm_state,
+@@ -10189,7 +10189,7 @@ static void set_freesync_fixed_config(struct dm_crtc_state *dm_new_crtc_state) {
+ 	dm_new_crtc_state->freesync_config.fixed_refresh_in_uhz = res;
+ }
+ 
+-int dm_update_crtc_state(struct amdgpu_display_manager *dm,
++static int dm_update_crtc_state(struct amdgpu_display_manager *dm,
+ 			 struct drm_atomic_state *state,
+ 			 struct drm_crtc *crtc,
+ 			 struct drm_crtc_state *old_crtc_state,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+index 389b0cb37995..05573f073b21 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
+@@ -213,7 +213,7 @@ static bool validate_dsc_caps_on_connector(struct amdgpu_dm_connector *aconnecto
+ 	return true;
+ }
+ 
+-bool retrieve_downstream_port_device(struct amdgpu_dm_connector *aconnector)
++static bool retrieve_downstream_port_device(struct amdgpu_dm_connector *aconnector)
+ {
+ 	union dp_downstream_port_present ds_port_present;
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn10/rv1_clk_mgr_vbios_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn10/rv1_clk_mgr_vbios_smu.c
+index 06bab24d8e27..450eaead4f20 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn10/rv1_clk_mgr_vbios_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn10/rv1_clk_mgr_vbios_smu.c
+@@ -101,7 +101,8 @@ static uint32_t rv1_smu_wait_for_response(struct clk_mgr_internal *clk_mgr, unsi
+ 	return res_val;
+ }
+ 
+-int rv1_vbios_smu_send_msg_with_param(struct clk_mgr_internal *clk_mgr, unsigned int msg_id, unsigned int param)
++static int rv1_vbios_smu_send_msg_with_param(struct clk_mgr_internal *clk_mgr,
++		unsigned int msg_id, unsigned int param)
+ {
+ 	uint32_t result;
+ 
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_clk_mgr.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_clk_mgr.c
+index ffd3d5cb9871..02a59adff90d 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_clk_mgr.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_clk_mgr.c
+@@ -485,7 +485,7 @@ static unsigned int find_clk_for_voltage(
+ 	return clock;
+ }
+ 
+-void dcn316_clk_mgr_helper_populate_bw_params(
++static void dcn316_clk_mgr_helper_populate_bw_params(
+ 		struct clk_mgr_internal *clk_mgr,
+ 		struct integrated_info *bios_info,
+ 		const DpmClocks_316_t *clock_table)
+diff --git a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c
+index fd6497fd2dc5..128614dff108 100644
+--- a/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c
++++ b/drivers/gpu/drm/amd/display/dc/clk_mgr/dcn316/dcn316_smu.c
+@@ -111,7 +111,7 @@ static uint32_t dcn316_smu_wait_for_response(struct clk_mgr_internal *clk_mgr, u
+ 	return res_val;
+ }
+ 
+-int dcn316_smu_send_msg_with_param(
++static int dcn316_smu_send_msg_with_param(
+ 		struct clk_mgr_internal *clk_mgr,
+ 		unsigned int msg_id, unsigned int param)
+ {
+diff --git a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+index 19b56f9acf84..29ab67f42d92 100644
+--- a/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc_resource.c
+@@ -1622,7 +1622,7 @@ bool dc_add_all_planes_for_stream(
+ 	return add_all_planes_for_stream(dc, stream, &set, 1, context);
+ }
+ 
+-bool is_timing_changed(struct dc_stream_state *cur_stream,
++static bool is_timing_changed(struct dc_stream_state *cur_stream,
+ 		       struct dc_stream_state *new_stream)
+ {
+ 	if (cur_stream == NULL)
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.c b/drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.c
+index c4b067d01895..93c31111500b 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.c
++++ b/drivers/gpu/drm/amd/display/dc/irq/dcn20/irq_service_dcn20.c
+@@ -40,7 +40,7 @@
+ 
+ #include "ivsrcid/dcn/irqsrcs_dcn_1_0.h"
+ 
+-enum dc_irq_source to_dal_irq_source_dcn20(
++static enum dc_irq_source to_dal_irq_source_dcn20(
+ 		struct irq_service *irq_service,
+ 		uint32_t src_id,
+ 		uint32_t ext_id)
+diff --git a/drivers/gpu/drm/amd/display/dc/irq/dcn30/irq_service_dcn30.c b/drivers/gpu/drm/amd/display/dc/irq/dcn30/irq_service_dcn30.c
+index 0b68c08fac3f..ac0c6a62d17b 100644
+--- a/drivers/gpu/drm/amd/display/dc/irq/dcn30/irq_service_dcn30.c
++++ b/drivers/gpu/drm/amd/display/dc/irq/dcn30/irq_service_dcn30.c
+@@ -47,7 +47,7 @@
+ 
+ #include "ivsrcid/dcn/irqsrcs_dcn_1_0.h"
+ 
+-enum dc_irq_source to_dal_irq_source_dcn30(
++static enum dc_irq_source to_dal_irq_source_dcn30(
+ 		struct irq_service *irq_service,
+ 		uint32_t src_id,
+ 		uint32_t ext_id)
 -- 
 2.35.1
 
