@@ -1,43 +1,43 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53BB14C4D4E
-	for <lists+amd-gfx@lfdr.de>; Fri, 25 Feb 2022 19:06:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 785914C4D4A
+	for <lists+amd-gfx@lfdr.de>; Fri, 25 Feb 2022 19:06:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF3D810E91B;
-	Fri, 25 Feb 2022 18:06:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8811810E90E;
+	Fri, 25 Feb 2022 18:06:47 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2073.outbound.protection.outlook.com [40.107.237.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0CEB10E90E
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2065.outbound.protection.outlook.com [40.107.93.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05C5610E90F
  for <amd-gfx@lists.freedesktop.org>; Fri, 25 Feb 2022 18:06:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VYKRmwPI3bgmNzgt/s2X8M0d/O4/A9YwMDNRyYKk8pZRsjaqky4K0clMm6Tp3uEhFULOe2Zy3TS0NGpA5rdYbqdvppCC3HBrTZV0BIyfctL8pWmGCRcYuswFNK1+rWIdejV3NhT5bcd+kZteQNDVqfZ0c7a8m4g5QqA1JBw0VaybwQYPmBjdSOGBo4P7g30GNcWhMmS3pRUDMi2kFjXhHx0gqqTQFeu+fd9LBXSKd5gXy+wCaECH84QjVlcuyEFO+6YciP7f2VozmCOrwseQXe67ADXyJ6N+JtY8dnrV/1dvSzmJrU72OJouZGYwnktu0ArZAV/E9LerASo5EE5f8Q==
+ b=oVX/kSIgY28fSmDYLVEVJeTFSq6N631eoJBWJb/mbGLn7ZbH1GrTZL1WgCCKlaHWr7RZegFuVuiDHYuDJEeSgM8XA4xpaucdR3rqGR3zLEUFcKFmDOxh+TGGAxtZKUYFF0PChVytsXL3QDF8RYUj87QMjQ9aLucQoOzSSZNmBaAlE8lKtDbSVVSqS9UlH0KAfU+ARoXVIdkqfQMEFts0B5kX/ch7rm8/PzTqw+FHPtHrSXwC7ffHOV+Ox4CNBL5ZXOUxdioNkLKNyvZufa6hUAgwfoBcrzFbTPa1t+BlKSdV9r7qZ6VqZhtQzYIACJFXHtjtMVpxaSQDM3Cuu7AJzQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Suu+xsULD2VZoEAeVORjo/DLG+evayLF4nO2F3pF3r0=;
- b=bhgorpbrb2OSYrxmSXvYuxiAI9E3j/6tCR5tCIOyIbpqY3Q1GHWZNI8buy/BilyDsP4mUFuenTCzs8jB7+Qa8kJ7qZiPKDfCwGsyL7oilyAW3GX3eiFehYnbor+l0hoat7wYcQqNdjkpiBtM/0nY3xOrAqM0HfbG7/F+cX4vsml7IHewG6iXgCGBy+/cPochcwPTBJMht9uhxWmwwEv7i5SZ/HppkTjLYYn4y38OltJOtjAeC4u2roFYDxjxxt3Ra7+hYyuMm3V7Xc/CaY2vLbCB/SeIRVoKg1M4Ec26L3YlKwxU50yShvUazcHzyffhRtX7dU7eYND1XS3v4Y/Nfw==
+ bh=Nq/+vFexuH9lJSyv0n1un/mEQLW8bfj6LwpSCM+O3f0=;
+ b=h812qr1dpMnVeRTu2lL8Zkb/DeYnAmz0n85ye7NLqJlK7Y8UjcVl8h7hWWHXdcPEHgPW2X58KS/N+t9b/4+1cTV8ONToq/tPbioPtKQG5FlPpKnlsHjSW3zg0lmlNAnXjJLbb/4lAyT1qi2lEJS/++XbTxarnA6V7NYXa8t7cU8RWJ/fOP92IsIpEIbqcX92Ox+MCM+TktRSeIKzxDmFPvcLSVhPXVAsps2zjfXHqbO4Zv3QvrTgN3noav0HWOG5LGayXeK1ZRTrmL89fFuf7/79vAcWxDz6hSWXbttt3TcqDYgKzfJDUKQossDWr3TSQkEyUiyVtNduw1o6EPM55Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Suu+xsULD2VZoEAeVORjo/DLG+evayLF4nO2F3pF3r0=;
- b=tXVRq2W1UAit6J2qGMhTmZzZ5f7C04Shv8HzP5zVU5Nujdy3O9SGk43O6u9hGGPK63WOFnj/mdEfoUfQeNBPgL6NolQf0iwG434GzJQjgyGJaHsDr7LFKoq3lJ+REhIv6EqMDq9NHGOmp0L+2A+M6x4sEzLNCafg2cwBGmPJMq4=
-Received: from BN0PR10CA0009.namprd10.prod.outlook.com (2603:10b6:408:143::6)
- by BYAPR12MB3304.namprd12.prod.outlook.com (2603:10b6:a03:139::33)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.26; Fri, 25 Feb
- 2022 18:06:41 +0000
-Received: from BN8NAM11FT052.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:143:cafe::5b) by BN0PR10CA0009.outlook.office365.com
- (2603:10b6:408:143::6) with Microsoft SMTP Server (version=TLS1_2,
+ bh=Nq/+vFexuH9lJSyv0n1un/mEQLW8bfj6LwpSCM+O3f0=;
+ b=PMQlPkrcijQDYTUBV6EW/T8JlRETygRaijjtJcv6GAe6soheyxdWosYcIZ2HrJVubeN4cfyPJQUAvr+cdaa3tc4nyC4+N79C8UCnb/QPPzqz4VfbvIdnv2h8UuFio5EZyJ5HQKwZd9CQIayPQ+K27cl2lN3wgLeEJtxq0oYfeWA=
+Received: from BN9P220CA0011.NAMP220.PROD.OUTLOOK.COM (2603:10b6:408:13e::16)
+ by DM6PR12MB3451.namprd12.prod.outlook.com (2603:10b6:5:11d::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.21; Fri, 25 Feb
+ 2022 18:06:42 +0000
+Received: from BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:13e:cafe::6f) by BN9P220CA0011.outlook.office365.com
+ (2603:10b6:408:13e::16) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.21 via Frontend
- Transport; Fri, 25 Feb 2022 18:06:41 +0000
+ Transport; Fri, 25 Feb 2022 18:06:42 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -45,18 +45,18 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BN8NAM11FT052.mail.protection.outlook.com (10.13.177.210) with Microsoft SMTP
+ BN8NAM11FT068.mail.protection.outlook.com (10.13.177.69) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.5017.22 via Frontend Transport; Fri, 25 Feb 2022 18:06:41 +0000
 Received: from Philip-Dev.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 25 Feb
- 2022 12:06:35 -0600
+ 2022 12:06:36 -0600
 From: Philip Yang <Philip.Yang@amd.com>
 To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH v4 6/9] drm/amdkfd: Add migration SMI event
-Date: Fri, 25 Feb 2022 13:06:16 -0500
-Message-ID: <20220225180619.21732-7-Philip.Yang@amd.com>
+Subject: [PATCH v4 7/9] drm/amdkfd: Add user queue eviction restore SMI event
+Date: Fri, 25 Feb 2022 13:06:17 -0500
+Message-ID: <20220225180619.21732-8-Philip.Yang@amd.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20220225180619.21732-1-Philip.Yang@amd.com>
 References: <20220225180619.21732-1-Philip.Yang@amd.com>
@@ -67,27 +67,27 @@ X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a0743a04-0c74-4550-347b-08d9f889930f
-X-MS-TrafficTypeDiagnostic: BYAPR12MB3304:EE_
-X-Microsoft-Antispam-PRVS: <BYAPR12MB330400B85FB9121394657087E63E9@BYAPR12MB3304.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 04334486-f91c-426f-edc6-08d9f889935d
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3451:EE_
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3451E1C28BAA1A3DFD3642E6E63E9@DM6PR12MB3451.namprd12.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: InI5g02ddjyVkhAkv6KCsCbPJF5imaZmydigMSeXoFUcEPE9AvLitMGJuZlO0/XIFpOXeW0OMURk+X3XEMon0P6ysxJM3btMnE5FDwbYHrwZz+CTto/L2C4XJU7KMj5Np415XopUDERTzE7DN2SNDF5lzSgHXz1L/OdVOjPWXoOD7he5LvMNtQOECtXL0SmGIoH/+o3Kg7S2UFatX25xRuhoNkkPzr3eUduzpBdWxKijyKGE4fvcjvCtcN5LPpzj+5D+nydZPFupjnPFIOiY4Ejkd0QSKeOxPptFsoWQgUdlkcIflndPOO4jPbdaJvfNgKTwifaXwggLkCKcLnnatUkMI2AFb8nOuQh3nbfU6zOVdQ2V4GpiDxrwsefjo4Svv11DRuV8Sfl6BByNcpIFoqVpLGb57oEgw77SZumoycJ2KNJSwZR6IwVhJVgIqWYRRdQRCHK0hHZWFJNvoV7lJhiLL24YffHoxClLWur6uKftUDd5XsxNHWbUeCylWp8LtLuSE6XETzGU9xTl3yJQ9fVLiG1kgM5PbMgeLYL9/IBAzF0oKhn+a6T5qQABSjnb/oDEuBxzqVoA5qqsWEJ0I2Leyzar8kyvcQDyJr3fqjjyqXfoL/uXXSg/kUFGxgrAqXpnqAFQfN+XGyJRU23Jt1qyPj+OI6KbjbCVWDKfn6szmWf+vnttMUMAQerzU+3Ru3ZJYvIBSIk9DvbyRG6ULw==
+X-Microsoft-Antispam-Message-Info: cS8GWVeD0XnIpG0VweLEqafl4Zwg+/IvlXps2obwGMuhUajcB4zppF/izVWe8yJs/OdUeJuw2dB/eabPNC3gOpceg5dhr/dZuSDvgw7atwEAGeVOJQWGtafK7I1dpnav5uLNxRrSYIxmqdKJ2ttpByB7Z8i77d5SiiViogV7CrU47BiMaCjyKLs0pmi0u+dp3MpBPvhB/3+T/oJGy1DMOGk8nC0+9HUXkUUIrxc8B0LZmFTfyfDaRIZ15S+hbNmMyWpHoZZki4oFydEl9du6bzLdoL2X3i4ScpeNd9Nvkz48dQ7U5u4reGMwqvEiSSyA2emITBA1w/WGKnZOsqGs43EV5mXeZ7DLpL+D7MKYOQptIlRsBdfU6GS694zO2ouM5qiT/TqZDatD0ddbSWTj78dQi7Rai2y5CROZtLbtK7ZnCguMW2G9EAEwgLhBBoIZx43ryBK8ryMTuuJCj1cWxbOVBqsTsYMZSWeO6vrgipvdTevkhHRGqP545vUBjhmXZJR33Q1Tm0RI/MNKjsO6dj6a6Ipx1TNzmUkvADoeo0IJngZ2ECM3oWptD3dtdFzHx5e6JiVkOeZ9ke366M22an2apZWCf/TzMBzOQ1wKrfVNgkG4NJkdm0lkufpRSWKjps/xyMq1aWbS2AHe0FhuyEgcZ1aQkqncGqlRL8ODSxQcBCRiy97IYMcC/fucMfIM8Z19J/aQEsH0AfKdLC0tzw==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(16526019)(2906002)(47076005)(36860700001)(8936002)(40460700003)(1076003)(2616005)(336012)(4326008)(26005)(8676002)(70206006)(426003)(186003)(70586007)(316002)(6916009)(5660300002)(36756003)(356005)(30864003)(6666004)(7696005)(81166007)(54906003)(86362001)(82310400004)(508600001)(83380400001)(36900700001);
+ SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(316002)(6666004)(6916009)(54906003)(2906002)(508600001)(8676002)(8936002)(70586007)(82310400004)(7696005)(40460700003)(70206006)(5660300002)(4326008)(36860700001)(16526019)(2616005)(336012)(356005)(83380400001)(36756003)(186003)(26005)(426003)(86362001)(1076003)(81166007)(30864003)(47076005)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2022 18:06:41.0466 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a0743a04-0c74-4550-347b-08d9f889930f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2022 18:06:41.5469 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04334486-f91c-426f-edc6-08d9f889935d
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT052.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT068.eop-nam11.prod.protection.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3304
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3451
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,334 +103,294 @@ Cc: Philip Yang <Philip.Yang@amd.com>, felix.kuehling@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-For migration start and end event, output timestamp when migration
-starts, ends, svm range address and size, GPU id of migration source and
-destination and svm range attributes,
+Output user queue eviction and restore event. User queue eviction may be
+triggered by svm or userptr MMU notifier, TTM eviction, device suspend
+and CRIU checkpoint and restore.
 
-Migration trigger could be prefetch, CPU or GPU page fault and TTM
-eviction.
+User queue restore may be rescheduled if eviction happens again while
+restore.
 
 Signed-off-by: Philip Yang <Philip.Yang@amd.com>
 ---
- drivers/gpu/drm/amd/amdkfd/kfd_migrate.c    | 53 ++++++++++++++++-----
- drivers/gpu/drm/amd/amdkfd/kfd_migrate.h    |  5 +-
- drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c | 22 +++++++++
- drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h |  8 ++++
- drivers/gpu/drm/amd/amdkfd/kfd_svm.c        | 16 ++++---
- 5 files changed, 83 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h    |  2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c  | 12 ++++---
+ drivers/gpu/drm/amd/amdkfd/kfd_chardev.c      |  4 +--
+ drivers/gpu/drm/amd/amdkfd/kfd_device.c       |  4 +--
+ drivers/gpu/drm/amd/amdkfd/kfd_priv.h         |  2 +-
+ drivers/gpu/drm/amd/amdkfd/kfd_process.c      | 15 ++++++--
+ drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c   | 35 +++++++++++++++++++
+ drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h   |  4 +++
+ drivers/gpu/drm/amd/amdkfd/kfd_svm.c          |  6 ++--
+ 9 files changed, 69 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-index 7f689094be5a..334af36a9281 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+index 4cb14c2fe53f..96fe792a4e51 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.h
+@@ -332,7 +332,7 @@ void amdgpu_amdkfd_release_notify(struct amdgpu_bo *bo)
+ }
+ #endif
+ /* KGD2KFD callbacks */
+-int kgd2kfd_quiesce_mm(struct mm_struct *mm);
++int kgd2kfd_quiesce_mm(struct mm_struct *mm, uint32_t trigger);
+ int kgd2kfd_resume_mm(struct mm_struct *mm);
+ int kgd2kfd_schedule_evict_and_restore_process(struct mm_struct *mm,
+ 						struct dma_fence *fence);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
+index cd89d2e46852..748ccc9681e0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c
 @@ -32,6 +32,7 @@
- #include "kfd_priv.h"
- #include "kfd_svm.h"
- #include "kfd_migrate.h"
+ #include "amdgpu_dma_buf.h"
+ #include <uapi/linux/kfd_ioctl.h>
+ #include "amdgpu_xgmi.h"
 +#include "kfd_smi_events.h"
  
- #ifdef dev_fmt
- #undef dev_fmt
-@@ -402,8 +403,9 @@ svm_migrate_copy_to_vram(struct amdgpu_device *adev, struct svm_range *prange,
- static long
- svm_migrate_vma_to_vram(struct amdgpu_device *adev, struct svm_range *prange,
- 			struct vm_area_struct *vma, uint64_t start,
--			uint64_t end)
-+			uint64_t end, uint32_t trigger)
- {
-+	struct kfd_process *p = container_of(prange->svms, struct kfd_process, svms);
- 	uint64_t npages = (end - start) >> PAGE_SHIFT;
- 	struct kfd_process_device *pdd;
- 	struct dma_fence *mfence = NULL;
-@@ -431,6 +433,11 @@ svm_migrate_vma_to_vram(struct amdgpu_device *adev, struct svm_range *prange,
- 	migrate.dst = migrate.src + npages;
- 	scratch = (dma_addr_t *)(migrate.dst + npages);
- 
-+	kfd_smi_event_migration_start(adev->kfd.dev, p->lead_thread->pid,
-+				      start >> PAGE_SHIFT, end >> PAGE_SHIFT,
-+				      0, adev->kfd.dev->id, prange->prefetch_loc,
-+				      prange->preferred_loc, trigger);
-+
- 	r = migrate_vma_setup(&migrate);
- 	if (r) {
- 		dev_err(adev->dev, "%s: vma setup fail %d range [0x%lx 0x%lx]\n",
-@@ -459,6 +466,10 @@ svm_migrate_vma_to_vram(struct amdgpu_device *adev, struct svm_range *prange,
- 	svm_migrate_copy_done(adev, mfence);
- 	migrate_vma_finalize(&migrate);
- 
-+	kfd_smi_event_migration_end(adev->kfd.dev, p->lead_thread->pid,
-+				    start >> PAGE_SHIFT, end >> PAGE_SHIFT,
-+				    0, adev->kfd.dev->id, trigger);
-+
- 	svm_range_dma_unmap(adev->dev, scratch, 0, npages);
- 	svm_range_free_dma_mappings(prange);
- 
-@@ -480,6 +491,7 @@ svm_migrate_vma_to_vram(struct amdgpu_device *adev, struct svm_range *prange,
-  * @prange: range structure
-  * @best_loc: the device to migrate to
-  * @mm: the process mm structure
-+ * @trigger: reason of migration
-  *
-  * Context: Process context, caller hold mmap read lock, svms lock, prange lock
-  *
-@@ -488,7 +500,7 @@ svm_migrate_vma_to_vram(struct amdgpu_device *adev, struct svm_range *prange,
-  */
- static int
- svm_migrate_ram_to_vram(struct svm_range *prange, uint32_t best_loc,
--			struct mm_struct *mm)
-+			struct mm_struct *mm, uint32_t trigger)
- {
- 	unsigned long addr, start, end;
- 	struct vm_area_struct *vma;
-@@ -525,7 +537,7 @@ svm_migrate_ram_to_vram(struct svm_range *prange, uint32_t best_loc,
- 			break;
- 
- 		next = min(vma->vm_end, end);
--		r = svm_migrate_vma_to_vram(adev, prange, vma, addr, next);
-+		r = svm_migrate_vma_to_vram(adev, prange, vma, addr, next, trigger);
- 		if (r < 0) {
- 			pr_debug("failed %ld to migrate\n", r);
- 			break;
-@@ -640,8 +652,10 @@ svm_migrate_copy_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
- 
- static long
- svm_migrate_vma_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
--		       struct vm_area_struct *vma, uint64_t start, uint64_t end)
-+		       struct vm_area_struct *vma, uint64_t start, uint64_t end,
-+		       uint32_t trigger)
- {
-+	struct kfd_process *p = container_of(prange->svms, struct kfd_process, svms);
- 	uint64_t npages = (end - start) >> PAGE_SHIFT;
- 	unsigned long upages = npages;
- 	unsigned long cpages = 0;
-@@ -670,6 +684,11 @@ svm_migrate_vma_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
- 	migrate.dst = migrate.src + npages;
- 	scratch = (dma_addr_t *)(migrate.dst + npages);
- 
-+	kfd_smi_event_migration_start(adev->kfd.dev, p->lead_thread->pid,
-+				      start >> PAGE_SHIFT, end >> PAGE_SHIFT,
-+				      adev->kfd.dev->id, 0, prange->prefetch_loc,
-+				      prange->preferred_loc, trigger);
-+
- 	r = migrate_vma_setup(&migrate);
- 	if (r) {
- 		dev_err(adev->dev, "%s: vma setup fail %d range [0x%lx 0x%lx]\n",
-@@ -700,6 +719,11 @@ svm_migrate_vma_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
- 
- 	svm_migrate_copy_done(adev, mfence);
- 	migrate_vma_finalize(&migrate);
-+
-+	kfd_smi_event_migration_end(adev->kfd.dev, p->lead_thread->pid,
-+				    start >> PAGE_SHIFT, end >> PAGE_SHIFT,
-+				    adev->kfd.dev->id, 0, trigger);
-+
- 	svm_range_dma_unmap(adev->dev, scratch, 0, npages);
- 
- out_free:
-@@ -719,13 +743,15 @@ svm_migrate_vma_to_ram(struct amdgpu_device *adev, struct svm_range *prange,
-  * svm_migrate_vram_to_ram - migrate svm range from device to system
-  * @prange: range structure
-  * @mm: process mm, use current->mm if NULL
-+ * @trigger: reason of migration
-  *
-  * Context: Process context, caller hold mmap read lock, svms lock, prange lock
-  *
-  * Return:
-  * 0 - OK, otherwise error code
-  */
--int svm_migrate_vram_to_ram(struct svm_range *prange, struct mm_struct *mm)
-+int svm_migrate_vram_to_ram(struct svm_range *prange, struct mm_struct *mm,
-+			    uint32_t trigger)
- {
- 	struct amdgpu_device *adev;
- 	struct vm_area_struct *vma;
-@@ -763,7 +789,7 @@ int svm_migrate_vram_to_ram(struct svm_range *prange, struct mm_struct *mm)
- 			break;
- 
- 		next = min(vma->vm_end, end);
--		r = svm_migrate_vma_to_ram(adev, prange, vma, addr, next);
-+		r = svm_migrate_vma_to_ram(adev, prange, vma, addr, next, trigger);
- 		if (r < 0) {
- 			pr_debug("failed %ld to migrate\n", r);
- 			break;
-@@ -786,6 +812,7 @@ int svm_migrate_vram_to_ram(struct svm_range *prange, struct mm_struct *mm)
-  * @prange: range structure
-  * @best_loc: the device to migrate to
-  * @mm: process mm, use current->mm if NULL
-+ * @trigger: reason of migration
-  *
-  * Context: Process context, caller hold mmap read lock, svms lock, prange lock
-  *
-@@ -794,7 +821,7 @@ int svm_migrate_vram_to_ram(struct svm_range *prange, struct mm_struct *mm)
-  */
- static int
- svm_migrate_vram_to_vram(struct svm_range *prange, uint32_t best_loc,
--			 struct mm_struct *mm)
-+			 struct mm_struct *mm, uint32_t trigger)
- {
- 	int r, retries = 3;
- 
-@@ -806,7 +833,7 @@ svm_migrate_vram_to_vram(struct svm_range *prange, uint32_t best_loc,
- 	pr_debug("from gpu 0x%x to gpu 0x%x\n", prange->actual_loc, best_loc);
- 
- 	do {
--		r = svm_migrate_vram_to_ram(prange, mm);
-+		r = svm_migrate_vram_to_ram(prange, mm, trigger);
+ /* Userptr restore delay, just long enough to allow consecutive VM
+  * changes to accumulate
+@@ -2113,7 +2114,7 @@ int amdgpu_amdkfd_evict_userptr(struct kgd_mem *mem,
+ 	evicted_bos = atomic_inc_return(&process_info->evicted_bos);
+ 	if (evicted_bos == 1) {
+ 		/* First eviction, stop the queues */
+-		r = kgd2kfd_quiesce_mm(mm);
++		r = kgd2kfd_quiesce_mm(mm, KFD_QUEUE_EVICTION_TRIGGER_USERPTR);
  		if (r)
- 			return r;
- 	} while (prange->actual_loc && --retries);
-@@ -814,17 +841,17 @@ svm_migrate_vram_to_vram(struct svm_range *prange, uint32_t best_loc,
- 	if (prange->actual_loc)
- 		return -EDEADLK;
+ 			pr_err("Failed to quiesce KFD\n");
+ 		schedule_delayed_work(&process_info->restore_userptr_work,
+@@ -2387,13 +2388,16 @@ static void amdgpu_amdkfd_restore_userptr_worker(struct work_struct *work)
  
--	return svm_migrate_ram_to_vram(prange, best_loc, mm);
-+	return svm_migrate_ram_to_vram(prange, best_loc, mm, trigger);
+ unlock_out:
+ 	mutex_unlock(&process_info->lock);
+-	mmput(mm);
+-	put_task_struct(usertask);
+ 
+ 	/* If validation failed, reschedule another attempt */
+-	if (evicted_bos)
++	if (evicted_bos) {
+ 		schedule_delayed_work(&process_info->restore_userptr_work,
+ 			msecs_to_jiffies(AMDGPU_USERPTR_RESTORE_DELAY_MS));
++
++		kfd_smi_event_queue_restore_rescheduled(mm);
++	}
++	mmput(mm);
++	put_task_struct(usertask);
  }
  
- int
- svm_migrate_to_vram(struct svm_range *prange, uint32_t best_loc,
--		    struct mm_struct *mm)
-+		    struct mm_struct *mm, uint32_t trigger)
- {
- 	if  (!prange->actual_loc)
--		return svm_migrate_ram_to_vram(prange, best_loc, mm);
-+		return svm_migrate_ram_to_vram(prange, best_loc, mm, trigger);
- 	else
--		return svm_migrate_vram_to_vram(prange, best_loc, mm);
-+		return svm_migrate_vram_to_vram(prange, best_loc, mm, trigger);
+ /** amdgpu_amdkfd_gpuvm_restore_process_bos - Restore all BOs for the given
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+index 59d3fe269e7c..798e6f08e0c5 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_chardev.c
+@@ -2406,7 +2406,7 @@ static int criu_restore(struct file *filep,
+ 	 * Set the process to evicted state to avoid running any new queues before all the memory
+ 	 * mappings are ready.
+ 	 */
+-	ret = kfd_process_evict_queues(p);
++	ret = kfd_process_evict_queues(p, KFD_QUEUE_EVICTION_CRIU_RESTORE);
+ 	if (ret)
+ 		goto exit_unlock;
  
- }
- 
-@@ -893,7 +920,7 @@ static vm_fault_t svm_migrate_to_ram(struct vm_fault *vmf)
- 		goto out_unlock_prange;
+@@ -2525,7 +2525,7 @@ static int criu_process_info(struct file *filep,
+ 		goto err_unlock;
  	}
  
--	r = svm_migrate_vram_to_ram(prange, mm);
-+	r = svm_migrate_vram_to_ram(prange, mm, KFD_MIGRATE_TRIGGER_PAGEFAULT_CPU);
- 	if (r)
- 		pr_debug("failed %d migrate 0x%p [0x%lx 0x%lx] to ram\n", r,
- 			 prange, prange->start, prange->last);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.h b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.h
-index 2f5b3394c9ed..b3f0754b32fa 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.h
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.h
-@@ -41,8 +41,9 @@ enum MIGRATION_COPY_DIR {
- };
+-	ret = kfd_process_evict_queues(p);
++	ret = kfd_process_evict_queues(p, KFD_QUEUE_EVICTION_CRIU_CHECKPOINT);
+ 	if (ret)
+ 		goto err_unlock;
  
- int svm_migrate_to_vram(struct svm_range *prange,  uint32_t best_loc,
--			struct mm_struct *mm);
--int svm_migrate_vram_to_ram(struct svm_range *prange, struct mm_struct *mm);
-+			struct mm_struct *mm, uint32_t trigger);
-+int svm_migrate_vram_to_ram(struct svm_range *prange, struct mm_struct *mm,
-+			    uint32_t trigger);
- unsigned long
- svm_migrate_addr_to_pfn(struct amdgpu_device *adev, unsigned long addr);
- 
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-index 8e147a175fea..3fb987f9e637 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
-@@ -260,6 +260,28 @@ void kfd_smi_event_page_fault_end(struct kfd_dev *dev, pid_t pid,
- 			  pid, address, dev->id, migration ? 'M' : 'U');
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_device.c b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+index 339e12c94cff..5de590eeec26 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_device.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_device.c
+@@ -785,7 +785,7 @@ void kgd2kfd_interrupt(struct kfd_dev *kfd, const void *ih_ring_entry)
+ 	spin_unlock_irqrestore(&kfd->interrupt_lock, flags);
  }
  
-+void kfd_smi_event_migration_start(struct kfd_dev *dev, pid_t pid,
-+				   unsigned long start, unsigned long end,
-+				   uint32_t from, uint32_t to,
-+				   uint32_t prefetch_loc, uint32_t preferred_loc,
-+				   uint32_t trigger)
+-int kgd2kfd_quiesce_mm(struct mm_struct *mm)
++int kgd2kfd_quiesce_mm(struct mm_struct *mm, uint32_t trigger)
+ {
+ 	struct kfd_process *p;
+ 	int r;
+@@ -799,7 +799,7 @@ int kgd2kfd_quiesce_mm(struct mm_struct *mm)
+ 		return -ESRCH;
+ 
+ 	WARN(debug_evictions, "Evicting pid %d", p->lead_thread->pid);
+-	r = kfd_process_evict_queues(p);
++	r = kfd_process_evict_queues(p, trigger);
+ 
+ 	kfd_unref_process(p);
+ 	return r;
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+index f36062be9ca8..0747b27226ad 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_priv.h
+@@ -932,7 +932,7 @@ static inline struct kfd_process_device *kfd_process_device_from_gpuidx(
+ }
+ 
+ void kfd_unref_process(struct kfd_process *p);
+-int kfd_process_evict_queues(struct kfd_process *p);
++int kfd_process_evict_queues(struct kfd_process *p, uint32_t trigger);
+ int kfd_process_restore_queues(struct kfd_process *p);
+ void kfd_suspend_all_processes(void);
+ int kfd_resume_all_processes(void);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_process.c b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+index 59c04b2d383b..57ac7660e0c5 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_process.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_process.c
+@@ -43,6 +43,7 @@ struct mm_struct;
+ #include "kfd_device_queue_manager.h"
+ #include "kfd_iommu.h"
+ #include "kfd_svm.h"
++#include "kfd_smi_events.h"
+ 
+ /*
+  * List of struct kfd_process (field kfd_process).
+@@ -1710,7 +1711,7 @@ struct kfd_process *kfd_lookup_process_by_mm(const struct mm_struct *mm)
+  * Eviction is reference-counted per process-device. This means multiple
+  * evictions from different sources can be nested safely.
+  */
+-int kfd_process_evict_queues(struct kfd_process *p)
++int kfd_process_evict_queues(struct kfd_process *p, uint32_t trigger)
+ {
+ 	int r = 0;
+ 	int i;
+@@ -1719,6 +1720,9 @@ int kfd_process_evict_queues(struct kfd_process *p)
+ 	for (i = 0; i < p->n_pdds; i++) {
+ 		struct kfd_process_device *pdd = p->pdds[i];
+ 
++		kfd_smi_event_queue_eviction(pdd->dev, p->lead_thread->pid,
++					     trigger);
++
+ 		r = pdd->dev->dqm->ops.evict_process_queues(pdd->dev->dqm,
+ 							    &pdd->qpd);
+ 		/* evict return -EIO if HWS is hang or asic is resetting, in this case
+@@ -1743,6 +1747,9 @@ int kfd_process_evict_queues(struct kfd_process *p)
+ 
+ 		if (n_evicted == 0)
+ 			break;
++
++		kfd_smi_event_queue_restore(pdd->dev, p->lead_thread->pid);
++
+ 		if (pdd->dev->dqm->ops.restore_process_queues(pdd->dev->dqm,
+ 							      &pdd->qpd))
+ 			pr_err("Failed to restore queues\n");
+@@ -1762,6 +1769,8 @@ int kfd_process_restore_queues(struct kfd_process *p)
+ 	for (i = 0; i < p->n_pdds; i++) {
+ 		struct kfd_process_device *pdd = p->pdds[i];
+ 
++		kfd_smi_event_queue_restore(pdd->dev, p->lead_thread->pid);
++
+ 		r = pdd->dev->dqm->ops.restore_process_queues(pdd->dev->dqm,
+ 							      &pdd->qpd);
+ 		if (r) {
+@@ -1823,7 +1832,7 @@ static void evict_process_worker(struct work_struct *work)
+ 	flush_delayed_work(&p->restore_work);
+ 
+ 	pr_debug("Started evicting pasid 0x%x\n", p->pasid);
+-	ret = kfd_process_evict_queues(p);
++	ret = kfd_process_evict_queues(p, KFD_QUEUE_EVICTION_TRIGGER_TTM);
+ 	if (!ret) {
+ 		dma_fence_signal(p->ef);
+ 		dma_fence_put(p->ef);
+@@ -1890,7 +1899,7 @@ void kfd_suspend_all_processes(void)
+ 		cancel_delayed_work_sync(&p->eviction_work);
+ 		cancel_delayed_work_sync(&p->restore_work);
+ 
+-		if (kfd_process_evict_queues(p))
++		if (kfd_process_evict_queues(p, KFD_QUEUE_EVICTION_TRIGGER_SUSPEND))
+ 			pr_err("Failed to suspend process 0x%x\n", p->pasid);
+ 		dma_fence_signal(p->ef);
+ 		dma_fence_put(p->ef);
+diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
+index 3fb987f9e637..a0539088adb6 100644
+--- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
++++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.c
+@@ -282,6 +282,41 @@ void kfd_smi_event_migration_end(struct kfd_dev *dev, pid_t pid,
+ 			  from, to, trigger);
+ }
+ 
++void kfd_smi_event_queue_eviction(struct kfd_dev *dev, pid_t pid,
++				  uint32_t trigger)
 +{
-+	kfd_smi_event_add(pid, dev, KFD_SMI_EVENT_MIGRATE_START,
-+			  "%lld -%d @%lx(%lx) %x->%x %x:%x %d\n",
-+			  ktime_get_boottime_ns(), pid, start, end - start,
-+			  from, to, prefetch_loc, preferred_loc, trigger);
++	kfd_smi_event_add(pid, dev, KFD_SMI_EVENT_QUEUE_EVICTION,
++			  "%lld -%d %x %d\n", ktime_get_boottime_ns(), pid,
++			  dev->id, trigger);
 +}
 +
-+void kfd_smi_event_migration_end(struct kfd_dev *dev, pid_t pid,
-+				 unsigned long start, unsigned long end,
-+				 uint32_t from, uint32_t to, uint32_t trigger)
++void kfd_smi_event_queue_restore(struct kfd_dev *dev, pid_t pid)
 +{
-+	kfd_smi_event_add(pid, dev, KFD_SMI_EVENT_MIGRATE_END,
-+			  "%lld -%d @%lx(%lx) %x->%x %d\n",
-+			  ktime_get_boottime_ns(), pid, start, end - start,
-+			  from, to, trigger);
++	kfd_smi_event_add(pid, dev, KFD_SMI_EVENT_QUEUE_RESTORE,
++			  "%lld -%d %x\n", ktime_get_boottime_ns(), pid,
++			  dev->id);
++}
++
++void kfd_smi_event_queue_restore_rescheduled(struct mm_struct *mm)
++{
++	struct kfd_process *p;
++	int i;
++
++	p = kfd_lookup_process_by_mm(mm);
++	if (!p)
++		return;
++
++	for (i = 0; i < p->n_pdds; i++) {
++		struct kfd_process_device *pdd = p->pdds[i];
++
++		kfd_smi_event_add(p->lead_thread->pid, pdd->dev,
++				  KFD_SMI_EVENT_QUEUE_RESTORE,
++				  "%lld -%d %x %c\n", ktime_get_boottime_ns(),
++				  p->lead_thread->pid, pdd->dev->id, 'R');
++	}
++	kfd_unref_process(p);
 +}
 +
  int kfd_smi_event_open(struct kfd_dev *dev, uint32_t *fd)
  {
  	struct kfd_smi_client *client;
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h
-index 7903718cd9eb..ec5d74a2fef4 100644
+index ec5d74a2fef4..b23292637239 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_smi_events.h
-@@ -34,4 +34,12 @@ void kfd_smi_event_page_fault_start(struct kfd_dev *dev, pid_t pid,
- 				    ktime_t ts);
- void kfd_smi_event_page_fault_end(struct kfd_dev *dev, pid_t pid,
- 				  unsigned long address, bool migration);
-+void kfd_smi_event_migration_start(struct kfd_dev *dev, pid_t pid,
-+			     unsigned long start, unsigned long end,
-+			     uint32_t from, uint32_t to,
-+			     uint32_t prefetch_loc, uint32_t preferred_loc,
-+			     uint32_t trigger);
-+void kfd_smi_event_migration_end(struct kfd_dev *dev, pid_t pid,
-+			     unsigned long start, unsigned long end,
-+			     uint32_t from, uint32_t to, uint32_t trigger);
+@@ -42,4 +42,8 @@ void kfd_smi_event_migration_start(struct kfd_dev *dev, pid_t pid,
+ void kfd_smi_event_migration_end(struct kfd_dev *dev, pid_t pid,
+ 			     unsigned long start, unsigned long end,
+ 			     uint32_t from, uint32_t to, uint32_t trigger);
++void kfd_smi_event_queue_eviction(struct kfd_dev *dev, pid_t pid,
++				  uint32_t trigger);
++void kfd_smi_event_queue_restore(struct kfd_dev *dev, pid_t pid);
++void kfd_smi_event_queue_restore_rescheduled(struct mm_struct *mm);
  #endif
 diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-index c6ea52340abc..35b2a0f63521 100644
+index 35b2a0f63521..1833ee7bcd95 100644
 --- a/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
 +++ b/drivers/gpu/drm/amd/amdkfd/kfd_svm.c
-@@ -2792,7 +2792,8 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
- 	if (prange->actual_loc != best_loc) {
- 		migration = true;
- 		if (best_loc) {
--			r = svm_migrate_to_vram(prange, best_loc, mm);
-+			r = svm_migrate_to_vram(prange, best_loc, mm,
-+					KFD_MIGRATE_TRIGGER_PAGEFAULT_GPU);
- 			if (r) {
- 				pr_debug("svm_migrate_to_vram failed (%d) at %llx, falling back to system memory\n",
- 					 r, addr);
-@@ -2800,12 +2801,14 @@ svm_range_restore_pages(struct amdgpu_device *adev, unsigned int pasid,
- 				 * VRAM failed
- 				 */
- 				if (prange->actual_loc)
--					r = svm_migrate_vram_to_ram(prange, mm);
-+					r = svm_migrate_vram_to_ram(prange, mm,
-+					   KFD_MIGRATE_TRIGGER_PAGEFAULT_GPU);
- 				else
- 					r = 0;
- 			}
- 		} else {
--			r = svm_migrate_vram_to_ram(prange, mm);
-+			r = svm_migrate_vram_to_ram(prange, mm,
-+					KFD_MIGRATE_TRIGGER_PAGEFAULT_GPU);
- 		}
- 		if (r) {
- 			pr_debug("failed %d to migrate svms %p [0x%lx 0x%lx]\n",
-@@ -3128,12 +3131,12 @@ svm_range_trigger_migration(struct mm_struct *mm, struct svm_range *prange,
- 		return 0;
+@@ -1706,14 +1706,16 @@ static void svm_range_restore_work(struct work_struct *work)
+ out_reschedule:
+ 	mutex_unlock(&svms->lock);
+ 	mmap_write_unlock(mm);
+-	mmput(mm);
  
- 	if (!best_loc) {
--		r = svm_migrate_vram_to_ram(prange, mm);
-+		r = svm_migrate_vram_to_ram(prange, mm, KFD_MIGRATE_TRIGGER_PREFETCH);
- 		*migrated = !r;
- 		return r;
+ 	/* If validation failed, reschedule another attempt */
+ 	if (evicted_ranges) {
+ 		pr_debug("reschedule to restore svm range\n");
+ 		schedule_delayed_work(&svms->restore_work,
+ 			msecs_to_jiffies(AMDGPU_SVM_RANGE_RESTORE_DELAY_MS));
++
++		kfd_smi_event_queue_restore_rescheduled(mm);
  	}
++	mmput(mm);
+ }
  
--	r = svm_migrate_to_vram(prange, best_loc, mm);
-+	r = svm_migrate_to_vram(prange, best_loc, mm, KFD_MIGRATE_TRIGGER_PREFETCH);
- 	*migrated = !r;
+ /**
+@@ -1769,7 +1771,7 @@ svm_range_evict(struct svm_range *prange, struct mm_struct *mm,
+ 			 prange->svms, prange->start, prange->last);
  
- 	return r;
-@@ -3190,7 +3193,8 @@ static void svm_range_evict_svm_bo_worker(struct work_struct *work)
- 		mutex_lock(&prange->migrate_mutex);
- 		do {
- 			svm_migrate_vram_to_ram(prange,
--						svm_bo->eviction_fence->mm);
-+						svm_bo->eviction_fence->mm,
-+						KFD_MIGRATE_TRIGGER_TTM_EVICTION);
- 		} while (prange->actual_loc && --retries);
- 		WARN(prange->actual_loc, "Migration failed during eviction");
+ 		/* First eviction, stop the queues */
+-		r = kgd2kfd_quiesce_mm(mm);
++		r = kgd2kfd_quiesce_mm(mm, KFD_QUEUE_EVICTION_TRIGGER_SVM);
+ 		if (r)
+ 			pr_debug("failed to quiesce KFD\n");
  
 -- 
 2.17.1
