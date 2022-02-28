@@ -2,77 +2,56 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DF8B4C6B26
-	for <lists+amd-gfx@lfdr.de>; Mon, 28 Feb 2022 12:46:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 685194C6B1C
+	for <lists+amd-gfx@lfdr.de>; Mon, 28 Feb 2022 12:46:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D0C810E5B5;
-	Mon, 28 Feb 2022 11:46:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EDD310E572;
+	Mon, 28 Feb 2022 11:46:20 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E9B010E4FD
- for <amd-gfx@lists.freedesktop.org>; Sun, 27 Feb 2022 15:39:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1645976394;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=JUKXRy9HtvoNJh5zgWKk9291k0gpOXjxfgvv4FNocC0=;
- b=QDIFWwyzFEamCrdA1eWIFXTlRhdBlJFJPtJBUeKG0Ts5V2nuXykT3wzE2aA2RhhRKXDUDH
- w7C2Uy63r31zqRhkn9L1bxSRc7VbcCIOPHhgEQlImfl/enhYBBK8NwL2APzrkeJcpnKC6k
- XC9z5vVvRk0qS7ogwARswUIXJVGwWEE=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-103-TMWFEtaEP5-AOpsXzxXOqA-1; Sun, 27 Feb 2022 10:39:52 -0500
-X-MC-Unique: TMWFEtaEP5-AOpsXzxXOqA-1
-Received: by mail-qv1-f72.google.com with SMTP id
- j26-20020a0cae9a000000b004332416873fso864569qvd.21
- for <amd-gfx@lists.freedesktop.org>; Sun, 27 Feb 2022 07:39:52 -0800 (PST)
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
+ [IPv6:2607:f8b0:4864:20::102f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2AB110E220
+ for <amd-gfx@lists.freedesktop.org>; Mon, 28 Feb 2022 06:44:01 +0000 (UTC)
+Received: by mail-pj1-x102f.google.com with SMTP id
+ g7-20020a17090a708700b001bb78857ccdso13942707pjk.1
+ for <amd-gfx@lists.freedesktop.org>; Sun, 27 Feb 2022 22:44:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+ bh=LFM3xQAlKa2wocS//5bDLbaQD/FO4cn4eZFhETITPIw=;
+ b=jzLKGyucroxlqXTM659Cn1CbNLy639yddFT5y+xZabf6as6svAWoKzwaY04CqBUGdm
+ wjlKJW8Ygs9eqGiCyBMAl0kLmBshDffcFZ7jUhrwlrG0S06rYnv/qj3T/P1+cIbYOBcu
+ O1WyFfnC3BXD23WPwtoVykMYF2gsKTag8012QkKaWfMbxeqDSxMSvV0jnp1l6VTL5uGA
+ S7THECptC+mlyijfOnqsCkSZfR9gEB+OS/jCSRpnKUdWYxhPf8as673as5hiONqheKaR
+ guAnoCht83ocnJC8XFODSSO17J7Gh89NCXnHAswF3GcqHbTqlESAEVCLBKuwcOs/fFJF
+ Ix/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=JUKXRy9HtvoNJh5zgWKk9291k0gpOXjxfgvv4FNocC0=;
- b=1EtkmWz7xlk7kIvK8qMKwNRZdS8g4d0VS1FNSVArxDs1QyoDk0ZJPz4p3+1mR89z0n
- 7fVmxc/QqCY6yGvvWGa/ofVIB2X7AZwp70sTeY5R6kGbmReBWv/uuzbjeOtVN+9ttXuz
- i1gMIWDYPRpl/Vzt9XiInJ7aRSnfzc315qiaCOv17s9GlKQfz1VAjcNWYOjAItv9vE7o
- ZmNXmygoixUfbm4jm/6QB/fZuwLih+ITP1o2E2QffUXvv8b9AMer9Y0K0MtXcloFb8TX
- 9auRR4joYmWBvLxrKEX/BLNeDvbknPY5TE9cSDg+F2Ux57SJzU/HxkC9f+QOPcWhypAX
- Ag8w==
-X-Gm-Message-State: AOAM532xjwtK84yiCZo4Io4MFlUgj7mj2PisVIsgqnX5J8SYw/lEajY9
- 9JqawHwhI5oJGHKNZje4FDGyKSlmvgPfKt+VJCaxDtkrcoqu24O95hJn24j6/jc8mhiELr9Hkvc
- blDPsKPhHhfHNJgDu1MkMxEx0oQ==
-X-Received: by 2002:ad4:5883:0:b0:432:b007:962b with SMTP id
- dz3-20020ad45883000000b00432b007962bmr10545693qvb.55.1645976392541; 
- Sun, 27 Feb 2022 07:39:52 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJypeMdQov6ivEZ1hmtZAlsJVizNYH0ogniT3ujzWNSu97z8PC8qPn1bhLsvRrQy0v8d6KuyjQ==
-X-Received: by 2002:ad4:5883:0:b0:432:b007:962b with SMTP id
- dz3-20020ad45883000000b00432b007962bmr10545670qvb.55.1645976392292; 
- Sun, 27 Feb 2022 07:39:52 -0800 (PST)
-Received: from localhost.localdomain.com (024-205-208-113.res.spectrum.com.
- [24.205.208.113]) by smtp.gmail.com with ESMTPSA id
- c6-20020ac87d86000000b002ddd9f33ed1sm5036371qtd.44.2022.02.27.07.39.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 27 Feb 2022 07:39:51 -0800 (PST)
-From: trix@redhat.com
-To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
- airlied@linux.ie, daniel@ffwll.ch, nathan@kernel.org,
- ndesaulniers@google.com, lijo.lazar@amd.com, nirmoy.das@amd.com,
- kevin1.wang@amd.com, tom.stdenis@amd.com, evan.quan@amd.com,
- Amaranath.Somalapuram@amd.com
-Subject: [PATCH v2] drm/amdgpu: Fix realloc of ptr
-Date: Sun, 27 Feb 2022 07:33:42 -0800
-Message-Id: <20220227153342.79546-1-trix@redhat.com>
-X-Mailer: git-send-email 2.26.3
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to;
+ bh=LFM3xQAlKa2wocS//5bDLbaQD/FO4cn4eZFhETITPIw=;
+ b=m6365Z0v2ieQY6lSHOb0/VBOQ/hYj7ZqtJTH27BtQiwz0lNhVJzivGMqziu1TPfx/v
+ 1hbmuNt0+mPaXb2iEyaOBG0f+i/Qs5FWFH3dkQo8jKNH3HYp3GXfmjpQoCnIML4TcVsL
+ fJ+GUThkDDcwVdWgbp9wO7K3f13F7XO7U+ygJU86u+roj57Kb2Kz8RSqvl9gnLbEdebv
+ y4oK46cSvG7z/TIiteaCo9Cdhm1+up4JRY71qG5dWeNrsMva7NwBBlYcTs4KI064PXbm
+ wcGshswAI1bsubgDXhPzO+o7ssvrHnAdgaEF2lQHoNHxR+4AvVWlonWPgI2rarkrNJJl
+ k3gw==
+X-Gm-Message-State: AOAM530XiIOfaHy1PmIIPfE/Gh963MUBz9nrPw/ngxiraAZ5aTr6I96U
+ IOJ2YQJOXF+vDNfeuGNWswF3ELC+TpeKvWpILhDtipA3TpE=
+X-Google-Smtp-Source: ABdhPJxtjBGtelklDhssfqac8BbvwMy6jmIg3xAzpMambwSwGIveCZdYwbkjPzJ27YJsLw/q/Gzhdd+4aGHmxHnuWBU=
+X-Received: by 2002:a17:90a:a884:b0:1bc:347b:5cff with SMTP id
+ h4-20020a17090aa88400b001bc347b5cffmr15282878pjq.224.1646030641548; Sun, 27
+ Feb 2022 22:44:01 -0800 (PST)
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=trix@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"
+References: <CAALKErFVZt9+5pPuDYj=zcaB9xr0=iWN4whQR2WRVK6vGe=bdQ@mail.gmail.com>
+ <CAHbf0-G8Rm-Q665mrEOOds109ojvng7qA4DseJsAYq01UfaJtQ@mail.gmail.com>
+In-Reply-To: <CAHbf0-G8Rm-Q665mrEOOds109ojvng7qA4DseJsAYq01UfaJtQ@mail.gmail.com>
+From: Alex fxmbsw7 Ratchev <fxmbsw7@gmail.com>
+Date: Mon, 28 Feb 2022 07:43:45 +0100
+Message-ID: <CAALKErHVGydCZ3V2ZSNz9BCZTXCxOxgjJdmjX5BY6MyAA5xXbQ@mail.gmail.com>
+Subject: Re: kernel amdgpu problems
+To: Mike Lothian <mike@fireburn.co.uk>, amd-gfx@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="000000000000add34105d90e5f8c"
 X-Mailman-Approved-At: Mon, 28 Feb 2022 11:46:19 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -85,60 +64,81 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tom Rix <trix@redhat.com>, llvm@lists.linux.dev,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-From: Tom Rix <trix@redhat.com>
+--000000000000add34105d90e5f8c
+Content-Type: text/plain; charset="UTF-8"
 
-Clang static analysis reports this error
-amdgpu_debugfs.c:1690:9: warning: 1st function call
-  argument is an uninitialized value
-  tmp = krealloc_array(tmp, i + 1,
-        ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+On Mon, Feb 28, 2022 at 12:22 AM Mike Lothian <mike@fireburn.co.uk> wrote:
 
-realloc uses tmp, so tmp can not be garbage.
-And the return needs to be checked.
+> On Sat, 26 Feb 2022 at 10:01, Alex fxmbsw7 Ratchev <fxmbsw7@gmail.com>
+> wrote:
+> >
+> > i have observed at least two major problems of using amdgpu
+> >
+> > 1. cant be built-in instead of module, display stays blank
+>
+> Are you remembering to add in the firmware to the kernel image too?
+>
 
-Fixes: 5ce5a584cb82 ("drm/amdgpu: add debugfs for reset registers list")
-Signed-off-by: Tom Rix <trix@redhat.com>
----
-v2:
-  use 'new' to hold/check the ralloc return
-  fix commit log mistake on ralloc freeing to using input ptr
-  
- drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+i copied all from official linux-firmware.gif to /lib/firmware
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-index 9eb9b440bd438..2f4f8c5618d81 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-@@ -1676,7 +1676,7 @@ static ssize_t amdgpu_reset_dump_register_list_write(struct file *f,
- {
- 	struct amdgpu_device *adev = (struct amdgpu_device *)file_inode(f)->i_private;
- 	char reg_offset[11];
--	uint32_t *tmp;
-+	uint32_t *new, *tmp = NULL;
- 	int ret, i = 0, len = 0;
- 
- 	do {
-@@ -1687,7 +1687,12 @@ static ssize_t amdgpu_reset_dump_register_list_write(struct file *f,
- 			goto error_free;
- 		}
- 
--		tmp = krealloc_array(tmp, i + 1, sizeof(uint32_t), GFP_KERNEL);
-+		new = krealloc_array(tmp, i + 1, sizeof(uint32_t), GFP_KERNEL);
-+		if (!new) {
-+			ret = -ENOMEM;
-+			goto error_free;
-+		}
-+		tmp = new;
- 		if (sscanf(reg_offset, "%X %n", &tmp[i], &ret) != 1) {
- 			ret = -EINVAL;
- 			goto error_free;
--- 
-2.26.3
+>
+> There's a good guide at
+> https://wiki.gentoo.org/wiki/AMDGPU#Known_firmware_blobs
+>
+> I've successfully used AMDGPU builtin on Tonga, Raven, Renoir and Navy
+> Flounder systems
+>
+> I've never used kexec so have no suggestions for that
+>
 
+it may be back then when i compiled it inline not as module i didnt include
+firmware in the initrd so that may been that
+
+about kexec, i dunno, X dri doesnt work after first kexec, after second
+screen at all is blank
+
+driver init problems ..
+
+cheers..
+
+--000000000000add34105d90e5f8c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 28, 2022 at 12:22 AM Mike=
+ Lothian &lt;<a href=3D"mailto:mike@fireburn.co.uk">mike@fireburn.co.uk</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On S=
+at, 26 Feb 2022 at 10:01, Alex fxmbsw7 Ratchev &lt;<a href=3D"mailto:fxmbsw=
+7@gmail.com" target=3D"_blank">fxmbsw7@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; i have observed at least two major problems of using amdgpu<br>
+&gt;<br>
+&gt; 1. cant be built-in instead of module, display stays blank<br>
+<br>
+Are you remembering to add in the firmware to the kernel image too?<br></bl=
+ockquote><div><br></div><div>i copied all from official linux-firmware.gif =
+to /lib/firmware=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x">
+<br>
+There&#39;s a good guide at <a href=3D"https://wiki.gentoo.org/wiki/AMDGPU#=
+Known_firmware_blobs" rel=3D"noreferrer" target=3D"_blank">https://wiki.gen=
+too.org/wiki/AMDGPU#Known_firmware_blobs</a><br>
+<br>
+I&#39;ve successfully used AMDGPU builtin on Tonga, Raven, Renoir and Navy<=
+br>
+Flounder systems<br>
+<br>
+I&#39;ve never used kexec so have no suggestions for that<br></blockquote><=
+div><br></div><div>it may be back then when i compiled it inline not as mod=
+ule i didnt include firmware in the initrd so that may been that</div><div>=
+<br></div><div>about kexec, i dunno, X dri doesnt work after first kexec, a=
+fter second screen at all is blank</div><div><br></div><div>driver init pro=
+blems ..</div><div><br></div><div>cheers..=C2=A0</div></div></div>
+
+--000000000000add34105d90e5f8c--
