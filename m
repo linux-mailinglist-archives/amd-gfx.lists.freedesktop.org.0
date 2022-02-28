@@ -2,92 +2,65 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B8384C7D27
-	for <lists+amd-gfx@lfdr.de>; Mon, 28 Feb 2022 23:15:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE2A14C7D63
+	for <lists+amd-gfx@lfdr.de>; Mon, 28 Feb 2022 23:31:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 348BC10E593;
-	Mon, 28 Feb 2022 22:15:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCC2410E92F;
+	Mon, 28 Feb 2022 22:30:58 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B474610E593
- for <amd-gfx@lists.freedesktop.org>; Mon, 28 Feb 2022 22:15:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Wk99ooVcYhYCYkgTdv8f/+OqAI4QJ/fqEdl7zh8d9zUnYI2RhuxdINiK1FINHupPrZcgAOjZBcesDS+8tb6FDy6A4c3A7QoUlPcnZCrwmqSlhLVKOEhS1VJn8rhV3z/CaPEWGSC1U4a5TVbeP3bY+MNJBBKHVWEZW4a3WvZmnVxArZCSbiQEncSo6lsCXA015AaOFQtl9li8uwpcFgx0gFgaSagCvrxRE5oRh7NAuA/VT3nmC1ELJQoDHXEXJw+AWd2E8ew8QSv4gm/kES1rUPyBso2DwCGSBIkIwKKXRCbFyn50yXQW/tQDMk9sh8QATcQBKrNdU1l9zqrhiBONDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZpLkwXwG/hJEzEy8tffJE8dCoUL295ixSAYIPD7YUy4=;
- b=aj3ATJmfpeLvfO6PLfDUJ8LpiiL1SmuSfkDFKBckN48HW7A0BngwWXxlH7gz1dIWDpCspwJQ4PjWvnvV7jjnZD7Q0+gRWVB3loNPbl+Xq09UcP80h1KSMGp0pdA60MnulyPchzfpCZEXdarU4T5nbUFqcxeqohuAIAJ6higULMFxY6CxQeLRu7g0jh9oNNIvZShigsWe5k6Njp1/xv5JbsIbHrP89D9kJ/RDNistvwO6O19civ7ufuJ1LI6pvSOsudwEUG+yK2ZVbXtE2dpzEY5nI+yXqPH0qH0DWifWoBf2sVCTcROMB5TpTl9BaMLNtZnweahrWWq6wskEniwyJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZpLkwXwG/hJEzEy8tffJE8dCoUL295ixSAYIPD7YUy4=;
- b=t6v08NlymaqbsnnN2Nit6+pWZe0y2oYW+CZAGWgBi4O5CU5iO2N+ZaveHUAsDlXa+XxORrmkIFL+VBwrN/ddmLDeimXRqyZU1pEph1ym8J8WAuYiEzsEIrc4EOG00cKDW4Y586xTL90e5KBtkC43vS4cUlDiY8D+xulEXXWLzzI=
-Received: from DM5PR13CA0051.namprd13.prod.outlook.com (2603:10b6:3:117::13)
- by DM6PR12MB3531.namprd12.prod.outlook.com (2603:10b6:5:18b::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.26; Mon, 28 Feb
- 2022 22:15:49 +0000
-Received: from DM6NAM11FT017.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:117:cafe::77) by DM5PR13CA0051.outlook.office365.com
- (2603:10b6:3:117::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.9 via Frontend
- Transport; Mon, 28 Feb 2022 22:15:49 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com;
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT017.mail.protection.outlook.com (10.13.172.145) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5017.22 via Frontend Transport; Mon, 28 Feb 2022 22:15:49 +0000
-Received: from tr4.amd.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Mon, 28 Feb
- 2022 16:15:46 -0600
-From: Alex Deucher <alexander.deucher@amd.com>
-To: <amd-gfx@lists.freedesktop.org>
-Subject: [PATCH] drm/amdgpu: Use IP versions in
- convert_tiling_flags_to_modifier()
-Date: Mon, 28 Feb 2022 17:15:32 -0500
-Message-ID: <20220228221532.1002763-1-alexander.deucher@amd.com>
-X-Mailer: git-send-email 2.35.1
+Received: from bedivere.hansenpartnership.com (bedivere.hansenpartnership.com
+ [96.44.175.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFDA410E8E8;
+ Mon, 28 Feb 2022 22:29:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=hansenpartnership.com; s=20151216; t=1646087344;
+ bh=gnitHaDoKtFYFmdfHx7ZmUK+2K99mC4OdMWiGF3yqts=;
+ h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
+ b=aDv+zUJMVLbpHnTobs88HMeKXt8e/Fsm3NyltqbtXmut8dDpKPmgZQHvU7CQAhpxT
+ x8yyOH8cKkqI9wCCVd7mWgGGPtOdFvurEvTcoJzgoG8F+eqVyUcxI30U1Z3UyKmv+s
+ JFRv6cmaJ/MAgdj571KO+Pve8Zec5bTLqNmzMPjU=
+Received: from localhost (localhost [127.0.0.1])
+ by bedivere.hansenpartnership.com (Postfix) with ESMTP id 2FE4A1281036;
+ Mon, 28 Feb 2022 17:29:04 -0500 (EST)
+Received: from bedivere.hansenpartnership.com ([127.0.0.1])
+ by localhost (bedivere.hansenpartnership.com [127.0.0.1]) (amavisd-new,
+ port 10024)
+ with ESMTP id UdsLtl38GfVe; Mon, 28 Feb 2022 17:29:04 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=hansenpartnership.com; s=20151216; t=1646087343;
+ bh=gnitHaDoKtFYFmdfHx7ZmUK+2K99mC4OdMWiGF3yqts=;
+ h=Message-ID:Subject:From:To:Date:In-Reply-To:References:From;
+ b=u33hwQnb0VqdOXP8ulufSc5IRuZCZipVBGZNcGF9+k1EE0TmKFXpcGOMGd4fMwEgO
+ 9syQhDBoNk9Z7GUqfbwA47rALQtXFHUxFeSSP/G0sxjEsJWs9EMuAmppU6twhzQzk+
+ fAgT3F3AJIbVTwM2ufsCoBYKhhHBSRhleqdyR2l4=
+Received: from jarvis.int.hansenpartnership.com (unknown
+ [IPv6:2601:5c4:4300:c551::527])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by bedivere.hansenpartnership.com (Postfix) with ESMTPSA id C21DB1280D34;
+ Mon, 28 Feb 2022 17:28:59 -0500 (EST)
+Message-ID: <73fa82a20910c06784be2352a655acc59e9942ea.camel@HansenPartnership.com>
+Subject: Re: [PATCH 2/6] treewide: remove using list iterator after loop
+ body as a ptr
+From: James Bottomley <James.Bottomley@HansenPartnership.com>
+To: Mike Rapoport <rppt@kernel.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Linus Torvalds <torvalds@linux-foundation.org>
+Date: Mon, 28 Feb 2022 17:28:58 -0500
+In-Reply-To: <7D0C2A5D-500E-4F38-AD0C-A76E132A390E@kernel.org>
+References: <20220228110822.491923-1-jakobkoschel@gmail.com>
+ <20220228110822.491923-3-jakobkoschel@gmail.com>
+ <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
+ <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
+ <282f0f8d-f491-26fc-6ae0-604b367a5a1a@amd.com>
+ <b2d20961dbb7533f380827a7fcc313ff849875c1.camel@HansenPartnership.com>
+ <7D0C2A5D-500E-4F38-AD0C-A76E132A390E@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.34.4 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: deda4208-6604-40bc-0c4d-08d9fb07e001
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3531:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB3531E8E7B39D6B7A96AB518CF7019@DM6PR12MB3531.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HodKe7EqstmAvy4t5fYL1gEfy9QgCr3yo0XHYwxFEybGwXD+TMbyr5BbIfIBY16qqzA+sWrJl5IJWnHDXiR0Rz3Du1ZMYGr8ZvU9CKIlQFX2sM9mAAJ81jRYajtxben5i/qeTyV3PdMcAq/nqroVDd/XA1K2t4tq3HCnx+e+EP1A9TuuxINwi4VnX9+IOy1VLAqkHjIaAOpVoGlhT0nApHm79M9mZ/GkEiG1tJ1ThvjLNkn/sHIXXzAjdtKvAGWFhHchsiBW9op6FzYtcZh0Wa+b/ZX0Kln4ajcS/E612WTDBS7+tdkxG52LHJXkn8+v+e1oRJmQ/xQShzMVtM3q1jWWin811KAb9x/w/s8wc0Q6dhbDp2Et2ZRH031p4lTWXTPuTZu5isMAh6rQBlOh9u/oSbn1cN2gJv6P82qLEn0TGK7VqKZc0q9PHv657TR/cf6mBjpqi+SfHRxxs1EASwh3lARBlI6r3uC7GwGzLvnF3IV8pW7HgBiwNXgMPmyeA0/+hex4WehjQF+3tbc/rfTnYKGpKJUnMqkoR6nJJbEVgkdDEu2jI3AetOg+W8RZHYcFuF+xXCiBwrLhzOPGAYRAgAU8LbhQP8d1SJ5Hgg3+Uw27WeMzGbu+nhE8k0BV1yKkL8OPnWVSES59cxbnnUoUkg3ZgJQEqFAMnnxyiA9ss2ibk7lRKaxMZ6k3GkjASn4eP9IszTPazPM8ijwVow==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(186003)(1076003)(40460700003)(86362001)(26005)(7696005)(5660300002)(4326008)(70586007)(8676002)(70206006)(16526019)(36860700001)(83380400001)(36756003)(47076005)(82310400004)(6916009)(336012)(426003)(81166007)(356005)(6666004)(8936002)(2616005)(316002)(2906002)(508600001)(36900700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2022 22:15:49.0050 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: deda4208-6604-40bc-0c4d-08d9fb07e001
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT017.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3531
+X-Mailman-Approved-At: Mon, 28 Feb 2022 22:30:57 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,42 +72,108 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: linux-wireless <linux-wireless@vger.kernel.org>,
+ alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
+ "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
+ linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
+ linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
+ linux-aspeed@lists.ozlabs.org, linux-scsi <linux-scsi@vger.kernel.org>,
+ linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
+ intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
+ bcm-kernel-feedback-list@broadcom.com,
+ Dan Carpenter <dan.carpenter@oracle.com>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>,
+ Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
+ Linux PM <linux-pm@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
+ Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Jakob Koschel <jakobkoschel@gmail.com>, v9fs-developer@lists.sourceforge.net,
+ linux-tegra <linux-tegra@vger.kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
+ linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
+ linux-usb@vger.kernel.org, samba-technical@lists.samba.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
+ tipc-discussion@lists.sourceforge.net,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Rather than checking the asic_type.
+On Mon, 2022-02-28 at 23:59 +0200, Mike Rapoport wrote:
+> 
+> On February 28, 2022 10:42:53 PM GMT+02:00, James Bottomley <
+> James.Bottomley@HansenPartnership.com> wrote:
+> > On Mon, 2022-02-28 at 21:07 +0100, Christian König wrote:
+[...]
+> > > > I do wish we could actually poison the 'pos' value after the
+> > > > loop somehow - but clearly the "might be uninitialized" I was
+> > > > hoping for isn't the way to do it.
+> > > > 
+> > > > Anybody have any ideas?
+> > > 
+> > > I think we should look at the use cases why code is touching
+> > > (pos) after the loop.
+> > > 
+> > > Just from skimming over the patches to change this and experience
+> > > with the drivers/subsystems I help to maintain I think the
+> > > primary pattern looks something like this:
+> > > 
+> > > list_for_each_entry(entry, head, member) {
+> > >      if (some_condition_checking(entry))
+> > >          break;
+> > > }
+> > > do_something_with(entry);
+> > 
+> > Actually, we usually have a check to see if the loop found
+> > anything, but in that case it should something like
+> > 
+> > if (list_entry_is_head(entry, head, member)) {
+> >    return with error;
+> > }
+> > do_somethin_with(entry);
+> > 
+> > Suffice?  The list_entry_is_head() macro is designed to cope with
+> > the bogus entry on head problem.
+> 
+> Won't suffice because the end goal of this work is to limit scope of
+> entry only to loop. Hence the need for additional variable.
 
-Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Well, yes, but my objection is more to the size of churn than the
+desire to do loop local.  I'm not even sure loop local is possible,
+because it's always annoyed me that for (int i = 0; ...  in C++ defines
+i in the outer scope not the loop scope, which is why I never use it.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index 448e9b46417c..dd70c85b8205 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -691,9 +691,9 @@ static int convert_tiling_flags_to_modifier(struct amdgpu_framebuffer *afb)
- 			return -EINVAL;
- 		}
- 
--		if (adev->asic_type >= CHIP_SIENNA_CICHLID)
-+		if (adev->ip_versions[GC_HWIP][0] >= IP_VERSION(10, 3, 0))
- 			version = AMD_FMT_MOD_TILE_VER_GFX10_RBPLUS;
--		else if (adev->family == AMDGPU_FAMILY_NV)
-+		else if (adev->ip_versions[GC_HWIP][0] >= IP_VERSION(10, 0, 0))
- 			version = AMD_FMT_MOD_TILE_VER_GFX10;
- 		else
- 			version = AMD_FMT_MOD_TILE_VER_GFX9;
-@@ -787,7 +787,7 @@ static int convert_tiling_flags_to_modifier(struct amdgpu_framebuffer *afb)
- 				if (adev->family >= AMDGPU_FAMILY_NV) {
- 					int extra_pipe = 0;
- 
--					if (adev->asic_type >= CHIP_SIENNA_CICHLID &&
-+					if ((adev->ip_versions[GC_HWIP][0] >= IP_VERSION(10, 3, 0)) &&
- 					    pipes == packers && pipes > 1)
- 						extra_pipe = 1;
- 
--- 
-2.35.1
+However, if the desire is really to poison the loop variable then we
+can do
+
+#define list_for_each_entry(pos, head, member)				\
+	for (pos = list_first_entry(head, typeof(*pos), member);	\
+	     !list_entry_is_head(pos, head, member) && ((pos = NULL) == NULL;			\
+	     pos = list_next_entry(pos, member))
+
+Which would at least set pos to NULL when the loop completes.
+
+> Besides, there are no guarantees that people won't
+> do_something_with(entry) without the check or won't compare entry to
+> NULL to check if the loop finished with break or not.
+
+I get the wider goal, but we have to patch the problem cases now and a
+simple one-liner is better than a larger patch that may or may not work
+if we ever achieve the local definition or value poisoning idea.  I'm
+also fairly certain coccinelle can come up with a use without checking
+for loop completion semantic patch which we can add to 0day.
+
+James
+
 
