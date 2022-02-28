@@ -1,46 +1,45 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEE914C7D05
-	for <lists+amd-gfx@lfdr.de>; Mon, 28 Feb 2022 23:09:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71C684C7B66
+	for <lists+amd-gfx@lfdr.de>; Mon, 28 Feb 2022 22:11:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D053510E4B3;
-	Mon, 28 Feb 2022 22:09:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C71CA10E839;
+	Mon, 28 Feb 2022 21:11:25 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 3694 seconds by postgrey-1.36 at gabe;
- Mon, 28 Feb 2022 22:02:42 UTC
-Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
- by gabe.freedesktop.org (Postfix) with ESMTP id 00EE110E8E8;
- Mon, 28 Feb 2022 22:02:42 +0000 (UTC)
-Received: from gate.crashing.org (localhost.localdomain [127.0.0.1])
- by gate.crashing.org (8.14.1/8.14.1) with ESMTP id 21SKr95E005627;
- Mon, 28 Feb 2022 14:53:09 -0600
-Received: (from segher@localhost)
- by gate.crashing.org (8.14.1/8.14.1/Submit) id 21SKr7Xe005624;
- Mon, 28 Feb 2022 14:53:07 -0600
-X-Authentication-Warning: gate.crashing.org: segher set sender to
- segher@kernel.crashing.org using -f
-Date: Mon, 28 Feb 2022 14:53:07 -0600
-From: Segher Boessenkool <segher@kernel.crashing.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Subject: Re: [PATCH 2/6] treewide: remove using list iterator after loop body
- as a ptr
-Message-ID: <20220228205307.GD614@gate.crashing.org>
-References: <20220228110822.491923-1-jakobkoschel@gmail.com>
- <20220228110822.491923-3-jakobkoschel@gmail.com>
- <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
- <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
- <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
- <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
- <CAHk-=wj27SZQ3kPTesBzkiGhe-mA3gOQqr_adt_bMFzmg1VNaA@mail.gmail.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHk-=wj27SZQ3kPTesBzkiGhe-mA3gOQqr_adt_bMFzmg1VNaA@mail.gmail.com>
-User-Agent: Mutt/1.4.2.3i
-X-Mailman-Approved-At: Mon, 28 Feb 2022 22:09:32 +0000
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD26110E442;
+ Mon, 28 Feb 2022 21:11:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=x6PJ0OStsGSuT4SBe9w5lcOqToFTV+nwUQ86UsifhPk=; b=o/A3ngpsdDVHXa1bTj1PeYsV6D
+ KtP6cL4mEKpfwhutiFyHtp58ktDyADJK4EJW25V8BIzEEQ1m5q7kGb07ArokBRZ6ZE4QRta2o2HtH
+ 0jEMJ90jEJH1GZqJ0hY5JuFWDd6qteQfdAEGV/iLq0eWvryKM2zlY2Q/qtH8S+esGFLXXBt+pOlKQ
+ 4PDj4z3es+WEtjYNNj9TfG8hdmpOuVEEmh0SfFp5jljTux43e9CRwx38O1NsBvtVpWdJhD7kJe/P2
+ ksMrG//Y0XH9cVbdNZeOQu8Z85SKJc9e8UUSNeIJ2lJ/hp9IOkSGk/cA92dILK18YtgCABT/D2+7K
+ V2N9Y2JQ==;
+Received: from [165.90.126.25] (helo=killbill.home)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1nOnIf-000CFy-Fr; Mon, 28 Feb 2022 22:11:21 +0100
+From: Melissa Wen <mwen@igalia.com>
+To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ airlied@linux.ie, alexander.deucher@amd.com, christian.koenig@amd.com,
+ daniel@ffwll.ch, harry.wentland@amd.com, Rodrigo.Siqueira@amd.com,
+ sunpeng.li@amd.com, Xinhui.Pan@amd.com
+Subject: [PATCH 0/2] isolate FPU code from dcn10 and dcn21 to dml folder
+Date: Mon, 28 Feb 2022 20:10:45 -0100
+Message-Id: <20220228211047.3957945-1-mwen@igalia.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,89 +51,42 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, linux-aspeed@lists.ozlabs.org,
- "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
- nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Cristiano Giuffrida <c.giuffrida@vu.nl>, "Bos, H.J." <h.j.bos@vu.nl>,
- samba-technical@lists.samba.org, linux1394-devel@lists.sourceforge.net,
- drbd-dev@lists.linbit.com, linux-arch <linux-arch@vger.kernel.org>,
- CIFS <linux-cifs@vger.kernel.org>, KVM list <kvm@vger.kernel.org>,
- linux-scsi <linux-scsi@vger.kernel.org>,
- linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
- bcm-kernel-feedback-list@broadcom.com,
- Dan Carpenter <dan.carpenter@oracle.com>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
- Linux PM <linux-pm@vger.kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
- Nathan Chancellor <nathan@kernel.org>,
- linux-fsdevel <linux-fsdevel@vger.kernel.org>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Jakob Koschel <jakobkoschel@gmail.com>, v9fs-developer@lists.sourceforge.net,
- linux-tegra <linux-tegra@vger.kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
- linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
- linux-usb@vger.kernel.org, linux-wireless <linux-wireless@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
- tipc-discussion@lists.sourceforge.net,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- dma <dmaengine@vger.kernel.org>, linux-mediatek@lists.infradead.org,
- Andrew Morton <akpm@linux-foundation.org>,
- linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Mike Rapoport <rppt@kernel.org>
+Cc: Melissa Wen <mwen@igalia.com>, Qingqing Zhuo <qingqing.zhuo@amd.com>,
+ Dmytro Laktyushkin <Dmytro.Laktyushkin@amd.com>, linux-kernel@vger.kernel.org,
+ Jasdeep Dhillon <jdhillon@amd.com>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 28, 2022 at 12:14:44PM -0800, Linus Torvalds wrote:
-> On Mon, Feb 28, 2022 at 12:10 PM Linus Torvalds
-> <torvalds@linux-foundation.org> wrote:
-> >
-> > We can do
-> >
-> >         typeof(pos) pos
-> >
-> > in the 'for ()' loop, and never use __iter at all.
-> >
-> > That means that inside the for-loop, we use a _different_ 'pos' than outside.
-> 
-> The thing that makes me throw up in my mouth a bit is that in that
-> 
->         typeof(pos) pos
-> 
-> the first 'pos' (that we use for just the typeof) is that outer-level
-> 'pos', IOW it's a *different* 'pos' than the second 'pos' in that same
-> declaration that declares the inner level shadowing new 'pos'
-> variable.
+Continuing the work of isolating FPU code from DCN drivers, this
+patchset moves FPU-specific operations from dcn10 and dcn21 to dml
+folder. I move FPU code from dcn21 to dml/dcn20_fpu since there is a
+documentation in dcn20_fpu.c that states dcn20_fpu centralizes:
+`all DCN20 and DCN2.1 (DCN2x) functions that require FPU access`
 
-The new "pos" has not yet been declared, so this has to refer to the
-outer "pos", it cannot be the inner one.  Because it hasn't been
-declared yet :-)
+Also, there isn't a dcn10_fpu in dml/dcn10 folder, therefore, I create
+related files to isolate FPU structs there.
 
-Compare this to
-  typeof (pos) pos = pos;
-where that last "pos" *does* refer to the newly declared one: that
-declaration has already been done!  (So this code is UB btw, 6.3.2.1/2).
+This patchset depends on previous patch to isolate FPU code from dcn20
+driver: https://patchwork.freedesktop.org/series/100487/   
 
-> If I was a compiler person, I would say "Linus, that thing is too ugly
-> to live", and I would hate it. I'm just hoping that even compiler
-> people say "that's *so* ugly it's almost beautiful".
+Melissa Wen (2):
+  drm/amd/display: move FPU operations from dcn21 to dml/dcn20 folder
+  drm/amd/display: move FPU code from dcn10 to dml/dcn10 folder
 
-It is perfectly well-defined.  Well, it would be good if we (GCC) would
-document it does work, and if someone tested it on LLVM as well.  But it
-is really hard to implement it to *not* work :-)
+ .../drm/amd/display/dc/dcn10/dcn10_resource.c |  62 --
+ .../drm/amd/display/dc/dcn10/dcn10_resource.h |   4 +
+ drivers/gpu/drm/amd/display/dc/dcn21/Makefile |  25 -
+ .../drm/amd/display/dc/dcn21/dcn21_resource.c | 566 +-----------------
+ .../drm/amd/display/dc/dcn21/dcn21_resource.h |  11 +
+ drivers/gpu/drm/amd/display/dc/dml/Makefile   |   2 +
+ .../drm/amd/display/dc/dml/dcn10/dcn10_fpu.c  | 124 ++++
+ .../drm/amd/display/dc/dml/dcn10/dcn10_fpu.h  |  30 +
+ .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.c  | 538 ++++++++++++++++-
+ .../drm/amd/display/dc/dml/dcn20/dcn20_fpu.h  |   9 +
+ 10 files changed, 731 insertions(+), 640 deletions(-)
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.c
+ create mode 100644 drivers/gpu/drm/amd/display/dc/dml/dcn10/dcn10_fpu.h
 
-> Because it does seem to work. It's not pretty, but hey, it's not like
-> our headers are really ever be winning any beauty contests...
+-- 
+2.34.1
 
-It is very pretty!  Needs a comment though :-)
-
-
-Segher
