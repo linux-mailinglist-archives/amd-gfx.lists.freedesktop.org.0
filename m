@@ -2,54 +2,96 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 899C54C86B0
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Mar 2022 09:41:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C4A64C84D7
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Mar 2022 08:20:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2F4410EB8A;
-	Tue,  1 Mar 2022 08:41:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AD4710E393;
+	Tue,  1 Mar 2022 07:20:23 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C13C510E35C;
- Tue,  1 Mar 2022 07:04:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1646118294; x=1677654294;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=cNy2VhZ7uIfEAZ6OMEmFA5tBH3wtQ7ZLN6kAGMbwVEs=;
- b=LQEyt97DG1JFEHWI6GollxB9DniuQnqCIhoSU3dRPAlWXF87EVioUslm
- 7CbDsGagbDGQd4qrQX8LvVZwIp+U+zN5VvxWYQpZvsMnts/OxOzNuBW3w
- ExxiDki+0rCaU7ZsPm4pw87t3UHMFD6/oAAZRIyk8NZTJj+5EoocLKTC7
- SVGprwLrfjitMMMRp7+Ufa1FDIk7ZIcAwHZY2MVegYa4wg2cveFUuV7Cj
- JZiJnbfftIghe1oQh7Dwbuf9rKZykEpG4DO2JVMIwSmOTbk5f5xWpV2V9
- RggKhL0CTe82BLLykCgihtozagzBmCODjSu0xGEsNce4O9dNXRICuyzj4 w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="240485818"
-X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="240485818"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2022 23:04:54 -0800
-X-IronPort-AV: E=Sophos;i="5.90,145,1643702400"; d="scan'208";a="510405909"
-Received: from lahna.fi.intel.com (HELO lahna) ([10.237.72.162])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2022 23:04:49 -0800
-Received: by lahna (sSMTP sendmail emulation); Tue, 01 Mar 2022 09:04:47 +0200
-Date: Tue, 1 Mar 2022 09:04:47 +0200
-From: Mika Westerberg <mika.westerberg@linux.intel.com>
-To: "Limonciello, Mario" <Mario.Limonciello@amd.com>
-Subject: Re: [PATCH v5 3/7] PCI: Drop the `is_thunderbolt` attribute from PCI
- core
-Message-ID: <Yh3Fj8kA5mkbp8Hp@lahna>
-References: <BL1PR12MB5157004F38E3FEFF046D9BE4E2019@BL1PR12MB5157.namprd12.prod.outlook.com>
- <20220228221344.GA529289@bhelgaas>
- <20220228223246.GA11428@wunner.de>
- <BL1PR12MB5157D5E18AB8206E2085C952E2019@BL1PR12MB5157.namprd12.prod.outlook.com>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2072.outbound.protection.outlook.com [40.107.243.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B37210E3AF
+ for <amd-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 07:20:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=M5AgVVI15LapVAPeygDr/SdaUyMZEicxcreRltUHS3RQ538vTRgo4w9bBUhn+St6x3zoGG30HntO5C98+VdHhw/4qD65MnrWdvECuHNrKAIDceriUuZ7LXDxNpDrMYZJ2fUueBcqn2TFF5fgz/aeRmtrHfpoWulVMWX4YQGd12V31feZ8uOfkc1lP4e6FcStOqxLazNePMBkBb71G+8TiDcTI+vJ46Ssy4hj1bf0KL/BfEbEGLNX944D1nn4U4CFeI20mQCFr0srVZoTcjjE6giByOpmopMMijecYQy17YVUFcvL89C0Rw31fMkBinJweGn2Nvyq3qLxe7GmlTEIVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zvUWQ0F6XWi8mjb8HnU8j02NhG2ezQKWaG0xjfygm9E=;
+ b=PBr31FfldIPtlcXNyvOpIo3OOb4SbQ9C75SD/TYTw0XvWdQRDYOykyLdre2Os/d0uAicrtmwaLN7kX7tq7Hf60TvVL6qz253soBAWw5bHjvOUAnlv1EZbac84T0y4LfbDqRDm2LkY09KQOMLbZquP6+yQvhVTLlaidF/FAQQi2KSrf7J3TXdpJjl4Y2qdKEz0Rj0/OJVnVIYlORDHAlOLkQFZcnQZQ+gv51wzkUABacxy1CT8wRegpYcupPHeGBrYS20f0zS4+NyG3QKdNTrQcHKidE1sVDXvAU+jb+sW5smUm92sR+LJATtwN/ublqGN9J7vmoZDk9Dv4CsihuCkQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=temperror (sender ip
+ is 165.204.84.17)
+ smtp.rcpttodomain=lists.freedesktop.org
+ smtp.mailfrom=amd.com; dmarc=temperror action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zvUWQ0F6XWi8mjb8HnU8j02NhG2ezQKWaG0xjfygm9E=;
+ b=wubo8YPaUreJ1uBU1atuVJPN9UCiWOo8hyrNMt0KesJ8VrBFcpyGOXYnlWIvw0SLKiCs/v0bwiGloj2NLvwePq+6OvKL5zL8TczIzuq/J1NntwStiRc3u1h6cWQuSDhvPxBttqxCJ9IyvTid86zknTzjFlG58UrOj+GKNmzWUHc=
+Received: from BN9PR03CA0986.namprd03.prod.outlook.com (2603:10b6:408:109::31)
+ by CY4PR1201MB0183.namprd12.prod.outlook.com (2603:10b6:910:20::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.27; Tue, 1 Mar
+ 2022 07:20:20 +0000
+Received: from BN8NAM11FT037.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:109:cafe::e9) by BN9PR03CA0986.outlook.office365.com
+ (2603:10b6:408:109::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.21 via Frontend
+ Transport; Tue, 1 Mar 2022 07:20:20 +0000
+X-MS-Exchange-Authentication-Results: spf=temperror (sender IP is
+ 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=temperror action=none header.from=amd.com;
+Received-SPF: TempError (protection.outlook.com: error in processing during
+ lookup of amd.com: DNS Timeout)
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT037.mail.protection.outlook.com (10.13.177.182) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5017.22 via Frontend Transport; Tue, 1 Mar 2022 07:20:18 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 1 Mar
+ 2022 01:20:18 -0600
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Mon, 28 Feb
+ 2022 23:20:17 -0800
+Received: from yzha-System-Product-Name.amd.com (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.18
+ via Frontend Transport; Tue, 1 Mar 2022 01:20:15 -0600
+From: Yifan Zha <Yifan.Zha@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <Bokun.Zhang@amd.com>
+Subject: [PATCH] drm/amdgpu: Move CAP firmware loading to the beginning of PSP
+ firmware list
+Date: Tue, 1 Mar 2022 15:19:14 +0800
+Message-ID: <20220301071914.1624490-1-Yifan.Zha@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BL1PR12MB5157D5E18AB8206E2085C952E2019@BL1PR12MB5157.namprd12.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Mailman-Approved-At: Tue, 01 Mar 2022 08:41:34 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0247f64e-ec46-4620-ca53-08d9fb53f095
+X-MS-TrafficTypeDiagnostic: CY4PR1201MB0183:EE_
+X-Microsoft-Antispam-PRVS: <CY4PR1201MB01837158EB847A421195DD07F9029@CY4PR1201MB0183.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: UvgP8osgMVcb6y8N8lECAZIZT+bGUkN5qQVaBqjkaAU45INHiHq4THNsq5nG7xsdKYPWCQuE8MT6O/XdljXQwte72bi0fu9d3f0Nq/DrcfRYK5QsEnJmUweYqk/fVrSVTELPCuIBqlN2mC3DD45sXuWRKUJjVix1NQayDL0uzmO8mGiapYXRydaEmkv0ksqQkhKroMmwYA7VjWZ07wPJ9RFaQNPg+j1YGX7OsXgKFBxemzkO3Z8HMbHCKEy9W7DUoqOQ8tw5598cTa9+uB4UrJQYdwZ3GGu1p5d6JP7hJvpKz+rcCSPfhsn8prYlAB+dmcfFn/+FpAtPxng49+VGalmCQv4ArX2kYoEPTM/ILGW2adI1So9S9dEi27NxSZYRmof+6cSP9Tg5vbFbDAbn0/0/6mur1ZAztppu/vuskdhgd/LP0IOIwabtRYCYBg+6nsUHhVm6XWlE+tEuww44dyk1ezVgaw5ZRUnE3oo7QyXPB0PD0o/iAEP2bRh+VkuGVh179ki8ieNf+iAbd4gNJ6mKBow1X7KHeMyPorUzOeaDv1Y2qkXC40w7+bWawbqxhM7VLpxGu8keDetqXmBbPOPFXR0lREs43QWgqUD54xvQE5RsROOtrBLRe8KPQ9TUMd5Cmd9a/F3nwIJvUVNpVufKN1voOT2ofOvzvZF7PYw3RcIbBpSzh9QfrEpOXhMw32mE6i/7+l772D2+Z4/dTw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(63370400001)(63350400001)(83380400001)(1076003)(26005)(186003)(2616005)(336012)(426003)(81166007)(356005)(82310400004)(47076005)(36860700001)(5660300002)(8936002)(2906002)(40460700003)(4326008)(508600001)(7696005)(70586007)(70206006)(8676002)(316002)(54906003)(6636002)(110136005)(86362001)(36756003)(36900700001);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2022 07:20:18.6216 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0247f64e-ec46-4620-ca53-08d9fb53f095
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT037.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB0183
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,82 +103,59 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michael Jamet <michael.jamet@intel.com>,
- "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
- "open list:THUNDERBOLT DRIVER" <linux-usb@vger.kernel.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- "open list:X86 PLATFORM DRIVERS" <platform-driver-x86@vger.kernel.org>,
- Andreas Noever <andreas.noever@gmail.com>, Lukas Wunner <lukas@wunner.de>,
- Bjorn Helgaas <helgaas@kernel.org>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>, Yehezkel Bernat <YehezkelShB@gmail.com>,
- "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- Bjorn Helgaas <bhelgaas@google.com>
+Cc: Yifan Zha <Yifan.Zha@amd.com>, Jingwen.Chen@amd.com, Monk.Liu@amd.com,
+ Guchun.Chen@amd.com
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+[Why]
+As PSP needs to verify the signature, CAP firmware must be loaded first when PSP loads firmwares.
+Otherwise, when DFC feature is enabled, CP firmwares would be loaded failed.
 
-On Mon, Feb 28, 2022 at 10:36:59PM +0000, Limonciello, Mario wrote:
-> [AMD Official Use Only]
-> 
-> > -----Original Message-----
-> > From: Lukas Wunner <lukas@wunner.de>
-> > Sent: Monday, February 28, 2022 16:33
-> > To: Bjorn Helgaas <helgaas@kernel.org>
-> > Cc: Limonciello, Mario <Mario.Limonciello@amd.com>; Mika Westerberg
-> > <mika.westerberg@linux.intel.com>; Michael Jamet
-> > <michael.jamet@intel.com>; open list:PCI SUBSYSTEM <linux-
-> > pci@vger.kernel.org>; open list:THUNDERBOLT DRIVER <linux-
-> > usb@vger.kernel.org>; Yehezkel Bernat <YehezkelShB@gmail.com>; open
-> > list:DRM DRIVERS <dri-devel@lists.freedesktop.org>; open list:X86
-> > PLATFORM DRIVERS <platform-driver-x86@vger.kernel.org>; Andreas
-> > Noever <andreas.noever@gmail.com>; open list:RADEON and AMDGPU
-> > DRM DRIVERS <amd-gfx@lists.freedesktop.org>; open list:DRM DRIVER FOR
-> > NVIDIA GEFORCE/QUADRO GPUS <nouveau@lists.freedesktop.org>; Bjorn
-> > Helgaas <bhelgaas@google.com>; Deucher, Alexander
-> > <Alexander.Deucher@amd.com>
-> > Subject: Re: [PATCH v5 3/7] PCI: Drop the `is_thunderbolt` attribute from PCI
-> > core
-> > 
-> > On Mon, Feb 28, 2022 at 04:13:44PM -0600, Bjorn Helgaas wrote:
-> > > On Mon, Feb 28, 2022 at 03:33:13PM +0000, Limonciello, Mario wrote:
-> > > > > On Fri, Feb 25, 2022 at 11:42:24AM -0600, Bjorn Helgaas wrote:
-> > > > > > That would just leave the "PCI_VSEC_ID_INTEL_TBT implies external-
-> > > > > facing"
-> > > > > > assumption above.  Not having a Thunderbolt spec, I have no idea
-> > how
-> > > > > > you deal with that.
-> > > > >
-> > > > > You can download the spec here:
-> > [...]
-> > > > > Inside the archive there is also the DVSEC spec with name "USB4 DVSEC
-> > > > > Version 1.0.pdf".
-> > > >
-> > > > The spec has Host_Router_indication (bits 18-19) as meaning external
-> > facing.
-> > > > I'll respin the patch 3 for using that.
-> > >
-> > > Thanks, please include the spec citation when you do.  And probably
-> > > the URL, because it's not at all obvious how the casual reader would
-> > > get from "is_thunderbolt" to a recent add-on to the USB4 spec.
-> > 
-> > PCI_VSEC_ID_INTEL_TBT is not mentioned at all in the USB4 spec,
-> > hence there's no connection between "is_thunderbolt" and the USB4 spec.
-> > 
-> > It's a proprietary VSEC used by Intel and the only way to recognize
-> > pre-USB4 Thunderbolt devices that I know of.  Its ID is also
-> > different from the DVSEC IDs given in the above-mentioned spec.
-> > 
-> > Thanks,
-> 
-> The USB4 DVSEC spec makes comments about DVSEC_ID of 0x8086 and also
-> DVSEC VENDOR_ID of 0x8086.  Is that not also present on the Intel TBT3 controllers?
-> 
-> My interpretation of this (and Mika's comment) was that rather than
-> looking at the Intel VSEC we should look at the USB4 DVSEC to detect
-> the Intel TBT3 controllers.
+[ 1149.160480] [drm] MM table gpu addr = 0x800022f000, cpu addr = 00000000a62afcea.
+[ 1149.209874] [drm] failed to load ucode CP_CE(0x8)
+[ 1149.209878] [drm] psp gfx command LOAD_IP_FW(0x6) failed and response status is (0xFFFF0007)
+[ 1149.215914] [drm] failed to load ucode CP_PFP(0x9)
+[ 1149.215917] [drm] psp gfx command LOAD_IP_FW(0x6) failed and response status is (0xFFFF0007)
+[ 1149.221941] [drm] failed to load ucode CP_ME(0xA)
+[ 1149.221944] [drm] psp gfx command LOAD_IP_FW(0x6) failed and response status is (0xFFFF0007)
+[ 1149.228082] [drm] failed to load ucode CP_MEC1(0xB)
+[ 1149.228085] [drm] psp gfx command LOAD_IP_FW(0x6) failed and response status is (0xFFFF0007)
+[ 1149.234209] [drm] failed to load ucode CP_MEC2(0xD)
+[ 1149.234212] [drm] psp gfx command LOAD_IP_FW(0x6) failed and response status is (0xFFFF0007)
+[ 1149.242379] [drm] failed to load ucode VCN(0x1C)
+[ 1149.242382] [drm] psp gfx command LOAD_IP_FW(0x6) failed and response status is (0xFFFF0007)
 
-For pre-USB4 controllers (TBT 1-3) we need to use the existing method
-(or a quirk based on device ID) as they don't have the USB4 DVSEC.
+[How]
+Move CAP UCODE ID to the beginning of AMDGPU_UCODE_ID enum list.
+
+Signed-off-by: Yifan Zha <Yifan.Zha@amd.com>
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h
+index 428f4df184d0..40dffbac85a0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ucode.h
+@@ -343,7 +343,8 @@ union amdgpu_firmware_header {
+  * fw loading support
+  */
+ enum AMDGPU_UCODE_ID {
+-	AMDGPU_UCODE_ID_SDMA0 = 0,
++	AMDGPU_UCODE_ID_CAP = 0,
++	AMDGPU_UCODE_ID_SDMA0,
+ 	AMDGPU_UCODE_ID_SDMA1,
+ 	AMDGPU_UCODE_ID_SDMA2,
+ 	AMDGPU_UCODE_ID_SDMA3,
+@@ -378,7 +379,6 @@ enum AMDGPU_UCODE_ID {
+ 	AMDGPU_UCODE_ID_VCN0_RAM,
+ 	AMDGPU_UCODE_ID_VCN1_RAM,
+ 	AMDGPU_UCODE_ID_DMCUB,
+-	AMDGPU_UCODE_ID_CAP,
+ 	AMDGPU_UCODE_ID_MAXIMUM,
+ };
+ 
+-- 
+2.25.1
+
