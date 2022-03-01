@@ -2,39 +2,55 @@ Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44D304CA00B
-	for <lists+amd-gfx@lfdr.de>; Wed,  2 Mar 2022 09:56:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AEF14CA00E
+	for <lists+amd-gfx@lfdr.de>; Wed,  2 Mar 2022 09:56:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A58A210EE98;
-	Wed,  2 Mar 2022 08:56:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F78310EEB5;
+	Wed,  2 Mar 2022 08:56:10 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-X-Greylist: delayed 371 seconds by postgrey-1.36 at gabe;
- Tue, 01 Mar 2022 23:26:04 UTC
-Received: from eu-smtp-delivery-151.mimecast.com
- (eu-smtp-delivery-151.mimecast.com [185.58.85.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C175210E7D2
- for <amd-gfx@lists.freedesktop.org>; Tue,  1 Mar 2022 23:26:04 +0000 (UTC)
-Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- uk-mta-274-hYNDa1-rPGCuZAB3qy-How-1; Tue, 01 Mar 2022 23:19:49 +0000
-X-MC-Unique: hYNDa1-rPGCuZAB3qy-How-1
-Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
- AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
- Server (TLS) id 15.0.1497.28; Tue, 1 Mar 2022 23:19:46 +0000
-Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
- AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
- 15.00.1497.028; Tue, 1 Mar 2022 23:19:46 +0000
-From: David Laight <David.Laight@ACULAB.COM>
-To: 'Linus Torvalds' <torvalds@linux-foundation.org>
-Subject: RE: [PATCH 2/6] treewide: remove using list iterator after loop body
- as a ptr
-Thread-Topic: [PATCH 2/6] treewide: remove using list iterator after loop body
- as a ptr
-Thread-Index: AQHYLZ9++DU/OogLf0+tiSFmjztyUKyrHL5AgAAJGICAAAEEcA==
-Date: Tue, 1 Mar 2022 23:19:46 +0000
-Message-ID: <0ced2b155b984882b39e895f0211037c@AcuMS.aculab.com>
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
+ [IPv6:2a00:1450:4864:20::629])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7D7B10E8D2
+ for <amd-gfx@lists.freedesktop.org>; Wed,  2 Mar 2022 00:03:16 +0000 (UTC)
+Received: by mail-ej1-x629.google.com with SMTP id qx21so189345ejb.13
+ for <amd-gfx@lists.freedesktop.org>; Tue, 01 Mar 2022 16:03:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=4H0hy1V+vsSL/J4iRHU98fs6Ghx9E/bawvPg5OjXQmQ=;
+ b=A1xSV6w+mnGI8KddmZFT+SVp47UhRqZlj7dZE7Ue1BgWjGw2+QCc51Zb6PIPvKiXuh
+ /TGd1P3o63R0kiFyLwVU+kzDBf6Kt9wFSZwwJYnrWAqavu9szp3nfmKm0Qe68N3l8Mdl
+ bWvesgtwBf4BWRSm4aUiCmj0pmAaHYwmzAjUs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=4H0hy1V+vsSL/J4iRHU98fs6Ghx9E/bawvPg5OjXQmQ=;
+ b=NYbRoJwh+2Ha97wTmqdmv7V8dYq4PA/xSacZ3KvPAZ5a5ETIqf3q23cahGGI6dDbZS
+ FwktVg5moegAgdjpoIGSdNx8Pk6t3HuXIPVgDIAxy3NiqghY25EHJN/A7PWGIghNh4a0
+ n7k3CJDw2UtYaEq+Ag6J0olevb+8E1TmEbKmrSL8WSKRnUy9m+eg7y1aSw16tfFa0Gql
+ XUR03bjM8Ao1TpQCRjeH3jG1xmsMzzNc01hOmhALW41AIajGyiI0wSSYrqKHaRzOD6iV
+ JJcdE9cB2hBCpueStGznkDu/k4GKxQ9EXzyRHPfpwmvga6TdFZHOc6SOrPZPgryx1rqB
+ 39MQ==
+X-Gm-Message-State: AOAM532VJPoQNp599jhGD/xYafUR6YKILGrubdK8ht7VR/zUKttBPb/w
+ BLR3joNb72O0BuumNFzRdYnhfhww2BWoDTDTVQI=
+X-Google-Smtp-Source: ABdhPJzUv24DruQC4GxmyH7N6RLZZ5Mib1cU+pYxcS1aujrFTjeTpWvRNiM/6paUxU2/10boW5MagQ==
+X-Received: by 2002:a17:906:4783:b0:6d0:9b6e:b5a5 with SMTP id
+ cw3-20020a170906478300b006d09b6eb5a5mr21969016ejc.526.1646179394974; 
+ Tue, 01 Mar 2022 16:03:14 -0800 (PST)
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com.
+ [209.85.218.44]) by smtp.gmail.com with ESMTPSA id
+ d4-20020a1709067a0400b006d6e3ca9f71sm1244178ejo.198.2022.03.01.16.03.14
+ for <amd-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 01 Mar 2022 16:03:14 -0800 (PST)
+Received: by mail-ej1-f44.google.com with SMTP id r13so257789ejd.5
+ for <amd-gfx@lists.freedesktop.org>; Tue, 01 Mar 2022 16:03:14 -0800 (PST)
+X-Received: by 2002:a05:6512:3042:b0:437:96f5:e68a with SMTP id
+ b2-20020a056512304200b0043796f5e68amr17643498lfb.449.1646178958685; Tue, 01
+ Mar 2022 15:55:58 -0800 (PST)
+MIME-Version: 1.0
 References: <20220228110822.491923-1-jakobkoschel@gmail.com>
  <20220228110822.491923-3-jakobkoschel@gmail.com>
  <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
@@ -46,20 +62,16 @@ References: <20220228110822.491923-1-jakobkoschel@gmail.com>
  <CAHk-=wiT5HX6Kp0Qv4ZYK_rkq9t5fZ5zZ7vzvi6pub9kgp=72g@mail.gmail.com>
  <7dc860874d434d2288f36730d8ea3312@AcuMS.aculab.com>
  <CAHk-=whKqg89zu4T95+ctY-hocR6kDArpo2qO14-kV40Ga7ufw@mail.gmail.com>
-In-Reply-To: <CAHk-=whKqg89zu4T95+ctY-hocR6kDArpo2qO14-kV40Ga7ufw@mail.gmail.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
-MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: aculab.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+ <0ced2b155b984882b39e895f0211037c@AcuMS.aculab.com>
+In-Reply-To: <0ced2b155b984882b39e895f0211037c@AcuMS.aculab.com>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Tue, 1 Mar 2022 15:55:42 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wix0HLCBs5sxAeW3uckg0YncXbTjMsE-Tv8WzmkOgLAXQ@mail.gmail.com>
+Message-ID: <CAHk-=wix0HLCBs5sxAeW3uckg0YncXbTjMsE-Tv8WzmkOgLAXQ@mail.gmail.com>
+Subject: Re: [PATCH 2/6] treewide: remove using list iterator after loop body
+ as a ptr
+To: David Laight <David.Laight@aculab.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Wed, 02 Mar 2022 08:56:07 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,8 +108,8 @@ Cc: "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
  <bcm-kernel-feedback-list@broadcom.com>,
  Dan Carpenter <dan.carpenter@oracle.com>,
  Linux Media Mailing List <linux-media@vger.kernel.org>,
- Kees Cook <keescook@chromium.org>, Arnd
- Bergman <arnd@arndb.de>, Linux PM <linux-pm@vger.kernel.org>,
+ Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
+ Linux PM <linux-pm@vger.kernel.org>,
  intel-gfx <intel-gfx@lists.freedesktop.org>,
  Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
  Nathan Chancellor <nathan@kernel.org>,
@@ -106,8 +118,8 @@ Cc: "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
  Jakob Koschel <jakobkoschel@gmail.com>,
  "v9fs-developer@lists.sourceforge.net" <v9fs-developer@lists.sourceforge.net>,
  linux-tegra <linux-tegra@vger.kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Linux ARM <linux-arm-kernel@lists.infradead.org>,
  "linux-sgx@vger.kernel.org" <linux-sgx@vger.kernel.org>,
  linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
@@ -122,36 +134,62 @@ Cc: "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
  "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
  Andrew Morton <akpm@linux-foundation.org>,
  linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
- =?utf-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>, Mike
- Rapoport <rppt@kernel.org>
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Mike Rapoport <rppt@kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogTGludXMgVG9ydmFsZHMNCj4gU2VudDogMDEgTWFyY2ggMjAyMiAyMzowMw0KPiANCj4g
-T24gVHVlLCBNYXIgMSwgMjAyMiBhdCAyOjU4IFBNIERhdmlkIExhaWdodCA8RGF2aWQuTGFpZ2h0
-QGFjdWxhYi5jb20+IHdyb3RlOg0KPiA+DQo+ID4gQ2FuIGl0IGJlIHJlc29sdmVkIGJ5IG1ha2lu
-ZzoNCj4gPiAjZGVmaW5lIGxpc3RfZW50cnlfaXNfaGVhZChwb3MsIGhlYWQsIG1lbWJlcikgKChw
-b3MpID09IE5VTEwpDQo+ID4gYW5kIGRvdWJsZS1jaGVja2luZyB0aGF0IGl0IGlzbid0IHVzZWQg
-YW55d2hlcmUgZWxzZSAoZXhjZXB0IGluDQo+ID4gdGhlIGxpc3QgbWFjcm9zIHRoZW1zZWx2ZXMp
-Lg0KPiANCj4gV2VsbCwgeWVzLCBleGNlcHQgZm9yIHRoZSBmYWN0IHRoYXQgdGhlbiB0aGUgbmFt
-ZSBpcyBlbnRpcmVseSBtaXNsZWFkaW5nLi4uDQo+IA0KPiBBbmQgc29tZWJvZHkgcG9zc2libHkg
-dXNlcyBpdCB0b2dldGhlciB3aXRoIGxpc3RfZmlyc3RfZW50cnkoKSBldGMsIHNvDQo+IGl0IHJl
-YWxseSBpcyBjb21wbGV0ZWx5IGJyb2tlbiB0byBtaXggdGhhdCBjaGFuZ2Ugd2l0aCB0aGUgbGlz
-dA0KPiB0cmF2ZXJzYWwgY2hhbmdlLg0KDQpQcm9iYWJseSB0cnVlIDotKA0KDQpBY3R1YWxseSBh
-ZGRpbmcgbGlzdF9lbnRyeV9ub3RfZm91bmQoKSBhcyBhIHN5bm9ueW0gZm9yDQpsaXN0X2VudHJ5
-X2lzX2hlYWQoKSBhbmQgY2hhbmdpbmcgdGhlIDI1aXNoIHBsYWNlcyB0aGF0DQp1c2UgaXQgYWZ0
-ZXIgYSBsb29wIG1pZ2h0IHdvcmsuDQoNCk9uY2UgdGhhdCBpcyBkb25lIHRoZSBsb29wIGNhbiBi
-ZSBjaGFuZ2VkIGF0IHRoZSBzYW1lIHRpbWUNCmFzIGxpc3RfZW50cnlfbm90X2ZvdW5kKCkuDQpU
-aGF0IHdvbid0IGFmZmVjdCB0aGUgaW4tdHJlZSBjYWxsZXJzLg0KKGFuZCBteSBvdXQgb2YgdHJl
-ZSBtb2R1bGVzIGRvbid0IHVzZSB0aG9zZSBsaXN0cyAtIHNvIEkNCmRvbid0IGNhcmUgYWJvdXQg
-dGhhdCEpDQoNCkhhdmluZyBzYWlkIHRoYXQgdGhlcmUgYXJlIHNvIGZldyB1c2VycyBvZiBsaXN0
-X2VudHJ5X2lzX2hlYWQoKQ0KaXQgaXMgcmVhc29uYWJsZSB0byBnZW5lcmF0ZSB0d28gbmV3IG5h
-bWVzLg0KT25lIGZvciB1c2UgYWZ0ZXIgbGlzdF9mb3JfZWFjaF9lbnRyeSgpIGFuZCBvbmUgZm9y
-IGxpc3RfbmV4dF9lbnRyeSgpLg0KVGhlbiB0aGUgY2hhbmdlIGFsbCB0aGUgY2FsbCBzaXRlcy4N
-CkFmdGVyIHRoYXQgbGlzdF9lbnRyeV9pc19oZWFkKCkgY2FuIGJlIGRlbGV0ZWQgLSBicmVha2lu
-ZyBvdXQgb2YNCnRyZWUgY29tcGlsZXMuDQpGaW5hbGx5IGxpc3RfZm9yX2VhY2hfZW50cnkoKSBj
-YW4gYmUgcmV3cml0dGVuIHRvIHNldCBOVUxMDQphdCB0aGUgZW5kIG9mIHRoZSBsaXN0Lg0KDQoJ
-RGF2aWQNCg0KLQ0KUmVnaXN0ZXJlZCBBZGRyZXNzIExha2VzaWRlLCBCcmFtbGV5IFJvYWQsIE1v
-dW50IEZhcm0sIE1pbHRvbiBLZXluZXMsIE1LMSAxUFQsIFVLDQpSZWdpc3RyYXRpb24gTm86IDEz
-OTczODYgKFdhbGVzKQ0K
+On Tue, Mar 1, 2022 at 3:19 PM David Laight <David.Laight@aculab.com> wrote:
+>
+> Having said that there are so few users of list_entry_is_head()
+> it is reasonable to generate two new names.
 
+Well, the problem is that the users of list_entry_is_head() may be few
+- but there are a number of _other_ ways to check "was that the HEAD
+pointer", and not all of them are necessarily correct.
+
+IOW, different places do different random tests for "did we walk the
+whole loop without breaking out". And many of them happen to work. In
+fact, in practice, pretty much *all* of them happen to work, and you
+have to have the right struct layout and really really bad luck to hit
+a case of "type confusion ended up causing the test to not work".
+
+And *THAT* is the problem here. It's not the "there are 25ish places
+that current use list_entry_is_head()".
+
+It's the "there are ~480 places that use the type-confused HEAD entry
+that has been cast to the wrong type".
+
+And THAT is why I think we'd be better off with that bigger change
+that simply means that you can't use the iterator variable at all
+outside the loop, and try to make it something where the compiler can
+help catch mis-uses.
+
+Now, making the list_for_each_entry() thing force the iterator to NULL
+at the end of the loop does fix the problem. The issue I have with it
+is really just that you end up getting no warning at all from the
+compiler if you mix old-style and new-style semantics. Now, you *will*
+get an oops (if using a new-style iterator with an old-style check),
+but many of these things will be in odd driver code and may happen
+only for error cases.
+
+And if you use a new-style check with an old-style iterator (ie some
+backport problem), you will probably end up getting random memory
+corruption, because you'll decide "it's not a HEAD entry", and then
+you'll actually *use* the HEAD that has the wrong type cast associated
+with it.
+
+See what my worry is?
+
+With the "don't use iterator outside the loop" approach, the exact
+same code works in both the old world order and the new world order,
+and you don't have the semantic confusion. And *if* you try to use the
+iterator outside the loop, you'll _mostly_ (*) get a compiler warning
+about it not being initialized.
+
+             Linus
+
+(*) Unless somebody initializes the iterator pointer pointlessly.
+Which clearly does happen. Thus the "mostly". It's not perfect, and
+that's most definitely not nice - but it should at least hopefully
+make it that much harder to mess up.
