@@ -1,66 +1,84 @@
 Return-Path: <amd-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+amd-gfx@lfdr.de
 Delivered-To: lists+amd-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47D9E4C90D4
-	for <lists+amd-gfx@lfdr.de>; Tue,  1 Mar 2022 17:47:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E9A04C9228
+	for <lists+amd-gfx@lfdr.de>; Tue,  1 Mar 2022 18:46:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C28A10E7EB;
-	Tue,  1 Mar 2022 16:47:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FD5910E732;
+	Tue,  1 Mar 2022 17:46:43 +0000 (UTC)
 X-Original-To: amd-gfx@lists.freedesktop.org
 Delivered-To: amd-gfx@lists.freedesktop.org
-Received: from mail-il1-x136.google.com (mail-il1-x136.google.com
- [IPv6:2607:f8b0:4864:20::136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 996CE10E6B3;
- Tue,  1 Mar 2022 16:47:00 +0000 (UTC)
-Received: by mail-il1-x136.google.com with SMTP id 9so12973494ily.11;
- Tue, 01 Mar 2022 08:47:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=EdO1ZIStJEydDaNsVVTQjhQ+J41BBA4J8A/jLwHByaA=;
- b=dT5dHERfA7NfWxTqoX5UtBav5p4kPFdv7+9TmqWHP2bK+wtMIESMJrFmYKma5Icf0g
- +7nH1hhjR4WQRsb9PMzzil9FEypu4su5C84YyCt6kDqnr1M6NLcZDGU/SwMSpwj2DFos
- 2vfYqxcM6kV8dFiT0U/ekaSAV9UJ41JUIN8voJPJ/Th/mun4QzZUEITNp47YhjnH1sGf
- RHg66r1G4QkiH7zmyGmQD42lVmIsQf3Kekrsvrnm5ksV+v6PLwvKvC/5CNI7DJQjGb1P
- L89SbkL5rK2xjVuAKdrnLoDaf54r35tPdpRGmlTIY1LYozgr3fHBjpLQLrcKRj0+9wPd
- JzoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=EdO1ZIStJEydDaNsVVTQjhQ+J41BBA4J8A/jLwHByaA=;
- b=WKgCEnrEYB3weJi4XGiHj+PTsfdU7z0vDa7y7oWqay/ivXs4vF8JkHt0VzMFl/tx01
- PvOIdtd835cYSfDmUFb/NbmVGU9tW1ewJ8g4GUmc0Fz14T8Duar4p9iwIPbNqvhJj4VA
- +H2o1symIbpTNoTesHHRsGAzky0KuttJA8yGW2JjLg9yLZPLBVPB+BCNkJg0Se4HibyJ
- 4F4l9vnuAYFSHT02FIwTf0qGpYbi1fGtbCr3NR8WM0xx4hVzPHVxt7nB9mdRUdubAu44
- 9kGCyaIuRs1jZRwA/3CurtRrUuDrCEeORTj0+/T+cFRBLJ3oKkSCjRgP6cwuQf4iBXW5
- RoxQ==
-X-Gm-Message-State: AOAM5333ros1+SVzsknHMWf6y7Bjx944ZUzCCKdLWediEeYNVqmks1LA
- 9UeiYe5eM4kF0hfDGVq8rI8=
-X-Google-Smtp-Source: ABdhPJy5GYUXGxdbJtTLoRtjbRmr21Q8zu5mMzrgQM87ZqsoqtWRy3CiT7iy1mU5TW1fmPqVkcyi4A==
-X-Received: by 2002:a05:6e02:1be9:b0:2c2:85a8:50cc with SMTP id
- y9-20020a056e021be900b002c285a850ccmr24316094ilv.131.1646153219788; 
- Tue, 01 Mar 2022 08:46:59 -0800 (PST)
-Received: from frodo.hsd1.co.comcast.net ([2601:284:8204:2010::f10e])
- by smtp.googlemail.com with ESMTPSA id
- o3-20020a6b5a03000000b00640a33c5b0dsm7272411iob.17.2022.03.01.08.46.59
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Mar 2022 08:46:59 -0800 (PST)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: jbaron@akamai.com, gregkh@linuxfoundation.org, daniel.vetter@ffwll.ch,
- seanpaul@chromium.org, robdclark@gmail.com, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Subject: [PATCH 13/13] drm_print: use DEFINE_DYNAMIC_DEBUG_CLASSBITS for
- drm.debug
-Date: Tue,  1 Mar 2022 09:46:29 -0700
-Message-Id: <20220301164629.3814634-14-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220301164629.3814634-1-jim.cromie@gmail.com>
-References: <20220301164629.3814634-1-jim.cromie@gmail.com>
+X-Greylist: delayed 550 seconds by postgrey-1.36 at gabe;
+ Tue, 01 Mar 2022 17:45:46 UTC
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B788010E6D6;
+ Tue,  1 Mar 2022 17:45:46 +0000 (UTC)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 668835801CF;
+ Tue,  1 Mar 2022 12:36:34 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute2.internal (MEProxy); Tue, 01 Mar 2022 12:36:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
+ :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to; s=fm3; bh=5OE8xr6GO9X7MbNpDAcWFGeEO3b3B/8LX5WMVM
+ 23luQ=; b=PuP2NuoqB9WepsjY0Uqokte1F02OSePW/KnqWPOHGfC62jDMQy8d6J
+ jihmHY7jaxPeYmV/brYSLMo2rdd0E65RFIbVZNaw+d6hF5TlV5h/HTFiyyQeuhEh
+ tTvMohVc8vJzz2F3uGXDhJ11n60AMBcwryX0OIQ4h4vBoJz9sXnQjtTWmMBfJvV8
+ ASNImP/JJmHc6aQngUkaR/9ejN6V67gkY3Ss3hOhMxZ05fa2rytR+8neryd7GnHR
+ NnoILjHkJCXbghnuIwO3WAIr0wjFgm+H99CgrlgjXtrJoB87p0eZTz8QaQ9jXLS7
+ eUmDU4ThQ2iD/GAcK9q8FPfYZ3dj5Siw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=5OE8xr6GO9X7MbNpD
+ AcWFGeEO3b3B/8LX5WMVM23luQ=; b=EDVGv6yEMy7PTbky8OfXVA9jYKh0oiM5+
+ sk6xt1CX3smAZYI0P9oaKzOCIkwMemVmh9foKoLwOV/IyVUBTTJc+ljLrovpUDdP
+ pIA4BCkMgcGpU96mM/8o9zjz4bY87GlxWmxlUETAhWUvR7QqjYOuAQqLjAz9vvM2
+ 9w41DE+muRcTBgXgq7R5mX2xPAK9bu7QEmldC6d/UhIWw84PgZEMMUkVZDfimvGr
+ 9rb1WTZ4HmbXffSgmjvpYAD0fz3a3kb/jxO9vzcKzkIUx9MDQUxolnVJ5gWPPm0P
+ 3SACLLdt3Ji3p4//lVUF9os4MIANF8EQiUgikZ8An4R/ZWSxaE7Og==
+X-ME-Sender: <xms:oFkeYrv0LJt2Pjt0ZOYMYd1jCK6G-Z0GZXtRlOiCbijoVlbqDToesg>
+ <xme:oFkeYsdRXoRXAxTjhPFWtM5JX8rU2-dsIwxZfpFocA89gDBFD4vx9xsWmcbxEuUyQ
+ lpRakwPpYLi7A>
+X-ME-Received: <xmr:oFkeYuzzdQb5kL72Vvj74Xn0xRRyhzff8uvNHTyUqFsrLF_56anw9-ykyIbZGqAzSj0KTqXLBgC1Qf0KKdPZ7IM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddruddtvddguddttdcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepifhrvghg
+ ucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepveeuhe
+ ejgfffgfeivddukedvkedtleelleeghfeljeeiueeggeevueduudekvdetnecuvehluhhs
+ thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrhhorg
+ hhrdgtohhm
+X-ME-Proxy: <xmx:oFkeYqNP0oPgoNRpau1EsmnsGvsi8MuHt5Oau7Uh5DcasQw65k9YTg>
+ <xmx:oFkeYr8eoBRonSMDQgE0d2CdwAX12XsrowbLGxOxF_rvtS3YwiTEgg>
+ <xmx:oFkeYqVNxx7WBcYUGhcHc73BR9KI7xEAuh9FjZrqFDwJGYsF_7MqUw>
+ <xmx:olkeYkWtK93reuC1fg-f2X2RrUvR780eGtvCg6vOtajRgdiJ73bSmQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 1 Mar 2022 12:36:31 -0500 (EST)
+Date: Tue, 1 Mar 2022 18:36:27 +0100
+From: Greg KH <greg@kroah.com>
+To: Jakob Koschel <jakobkoschel@gmail.com>
+Subject: Re: [PATCH 2/6] treewide: remove using list iterator after loop body
+ as a ptr
+Message-ID: <Yh5ZmwiH5AxtQ69K@kroah.com>
+References: <20220228110822.491923-1-jakobkoschel@gmail.com>
+ <20220228110822.491923-3-jakobkoschel@gmail.com>
+ <2e4e95d6-f6c9-a188-e1cd-b1eae465562a@amd.com>
+ <CAHk-=wgQps58DPEOe4y5cTh5oE9EdNTWRLXzgMiETc+mFX7jzw@mail.gmail.com>
+ <CAHk-=wj8fkosQ7=bps5K+DDazBXk=ypfn49A0sEq+7-nZnyfXA@mail.gmail.com>
+ <CAHk-=wiTCvLQkHcJ3y0hpqH7FEk9D28LDvZZogC6OVLk7naBww@mail.gmail.com>
+ <FC710A1A-524E-481B-A668-FC258F529A2E@gmail.com>
+ <CAHk-=whLK11HyvpUtEftOjc3Gup2V77KpAQ2fycj3uai=qceHw@mail.gmail.com>
+ <CEDAD0D9-56EE-4105-9107-72C2EAD940B0@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CEDAD0D9-56EE-4105-9107-72C2EAD940B0@gmail.com>
+X-Mailman-Approved-At: Tue, 01 Mar 2022 17:46:41 +0000
 X-BeenThere: amd-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,107 +90,93 @@ List-Post: <mailto:amd-gfx@lists.freedesktop.org>
 List-Help: <mailto:amd-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jim Cromie <jim.cromie@gmail.com>
+Cc: linux-wireless <linux-wireless@vger.kernel.org>,
+ alsa-devel@alsa-project.org, KVM list <kvm@vger.kernel.org>,
+ "Gustavo A. R. Silva" <gustavo@embeddedor.com>, linux-iio@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Cristiano Giuffrida <c.giuffrida@vu.nl>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ linux1394-devel@lists.sourceforge.net, drbd-dev@lists.linbit.com,
+ linux-arch <linux-arch@vger.kernel.org>, CIFS <linux-cifs@vger.kernel.org>,
+ linux-aspeed@lists.ozlabs.org, linux-scsi <linux-scsi@vger.kernel.org>,
+ linux-rdma <linux-rdma@vger.kernel.org>, linux-staging@lists.linux.dev, "Bos,
+ H.J." <h.j.bos@vu.nl>, Jason Gunthorpe <jgg@ziepe.ca>,
+ intel-wired-lan@lists.osuosl.org, kgdb-bugreport@lists.sourceforge.net,
+ bcm-kernel-feedback-list@broadcom.com,
+ Dan Carpenter <dan.carpenter@oracle.com>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>,
+ Kees Cook <keescook@chromium.org>, Arnd Bergman <arnd@arndb.de>,
+ Linux PM <linux-pm@vger.kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+ Brian Johannesmeyer <bjohannesmeyer@gmail.com>,
+ Nathan Chancellor <nathan@kernel.org>, dma <dmaengine@vger.kernel.org>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ v9fs-developer@lists.sourceforge.net,
+ linux-tegra <linux-tegra@vger.kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, linux-sgx@vger.kernel.org,
+ linux-block <linux-block@vger.kernel.org>, Netdev <netdev@vger.kernel.org>,
+ linux-usb@vger.kernel.org, samba-technical@lists.samba.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux F2FS Dev Mailing List <linux-f2fs-devel@lists.sourceforge.net>,
+ tipc-discussion@lists.sourceforge.net,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>,
+ linux-mediatek@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Mike Rapoport <rppt@kernel.org>
 Errors-To: amd-gfx-bounces@lists.freedesktop.org
 Sender: "amd-gfx" <amd-gfx-bounces@lists.freedesktop.org>
 
-if CONFIG_DRM_USE_DYNAMIC_DEBUG=y, use new macro to create the sysfs
-bitmap to control drm.debug callsites.
+On Tue, Mar 01, 2022 at 12:28:15PM +0100, Jakob Koschel wrote:
+> 
+> 
+> > On 1. Mar 2022, at 01:41, Linus Torvalds <torvalds@linux-foundation.org> wrote:
+> > 
+> > On Mon, Feb 28, 2022 at 1:47 PM Jakob Koschel <jakobkoschel@gmail.com> wrote:
+> >> 
+> >> The goal of this is to get compiler warnings right? This would indeed be great.
+> > 
+> > Yes, so I don't mind having a one-time patch that has been gathered
+> > using some automated checker tool, but I don't think that works from a
+> > long-term maintenance perspective.
+> > 
+> > So if we have the basic rule being "don't use the loop iterator after
+> > the loop has finished, because it can cause all kinds of subtle
+> > issues", then in _addition_ to fixing the existing code paths that
+> > have this issue, I really would want to (a) get a compiler warning for
+> > future cases and (b) make it not actually _work_ for future cases.
+> > 
+> > Because otherwise it will just happen again.
+> > 
+> >> Changing the list_for_each_entry() macro first will break all of those cases
+> >> (e.g. the ones using 'list_entry_is_head()).
+> > 
+> > So I have no problems with breaking cases that we basically already
+> > have a patch for due to  your automated tool. There were certainly
+> > more than a handful, but it didn't look _too_ bad to just make the
+> > rule be "don't use the iterator after the loop".
+> > 
+> > Of course, that's just based on that patch of yours. Maybe there are a
+> > ton of other cases that your patch didn't change, because they didn't
+> > match your trigger case, so I may just be overly optimistic here.
+> 
+> Based on the coccinelle script there are ~480 cases that need fixing
+> in total. I'll now finish all of them and then split them by
+> submodules as Greg suggested and repost a patch set per submodule.
+> Sounds good?
 
-DEFINE_DYNAMIC_DEBUG_CLASSBITS( debug, __drm_debug, "p",
-	"drm.debug - control summary",
-	/* inline vector of _ddebug.class_id's to be controlled, max 14 vals */
-	DRM_UT_CORE,
-	DRM_UT_DRIVER,
-	DRM_UT_KMS,
-	DRM_UT_PRIME,
-	DRM_UT_ATOMIC,
-	DRM_UT_VBL,
-	DRM_UT_STATE,
-	DRM_UT_LEASE,
-	DRM_UT_DP,
-	DRM_UT_DRMRES );
+Sounds good to me!
 
-NOTES:
+If you need help carving these up and maintaining them over time as
+different subsystem maintainers accept/ignore them, just let me know.
+Doing large patchsets like this can be tough without a lot of
+experience.
 
-The @_flgs used here is "p", so this bitmap enables input to syslog
-only, matching legacy behavior.
+thanks,
 
-Also, no "fmlt" decorator flags are used here; that is discouraged, as
-it then toggles those flags along with the "p".  This would overwrite
-any customizations a user added since the sysfs-knob was last used.
-Still, there may be cases/reasons.
-
-_ddebug.class_id is uint:4, values 0-14 are valid. 15 is reserved for
-non-classified callsites (regular pr_debugs).  Using it terminates the
-scan, don't use it halfway through your list.
-
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/gpu/drm/drm_print.c | 20 ++++++++++++++++++--
- include/drm/drm_print.h     |  4 ++--
- 2 files changed, 20 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-index c9b2a2ab0d3d..d916daa384e5 100644
---- a/drivers/gpu/drm/drm_print.c
-+++ b/drivers/gpu/drm/drm_print.c
-@@ -38,7 +38,7 @@
-  * __drm_debug: Enable debug output.
-  * Bitmask of DRM_UT_x. See include/drm/drm_print.h for details.
-  */
--unsigned int __drm_debug;
-+unsigned long __drm_debug;
- EXPORT_SYMBOL(__drm_debug);
- 
- MODULE_PARM_DESC(debug, "Enable debug output, where each bit enables a debug category.\n"
-@@ -50,7 +50,23 @@ MODULE_PARM_DESC(debug, "Enable debug output, where each bit enables a debug cat
- "\t\tBit 5 (0x20)  will enable VBL messages (vblank code)\n"
- "\t\tBit 7 (0x80)  will enable LEASE messages (leasing code)\n"
- "\t\tBit 8 (0x100) will enable DP messages (displayport code)");
--module_param_named(debug, __drm_debug, int, 0600);
-+
-+#if !defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
-+module_param_named(debug, __drm_debug, ulong, 0600);
-+#else
-+DEFINE_DYNAMIC_DEBUG_CLASSBITS(debug, __drm_debug, "p",
-+	"enable drm.debug categories - 1 bit per category",
-+	DRM_UT_CORE,
-+	DRM_UT_DRIVER,
-+	DRM_UT_KMS,
-+	DRM_UT_PRIME,
-+	DRM_UT_ATOMIC,
-+	DRM_UT_VBL,
-+	DRM_UT_STATE,
-+	DRM_UT_LEASE,
-+	DRM_UT_DP,
-+	DRM_UT_DRMRES);
-+#endif
- 
- void __drm_puts_coredump(struct drm_printer *p, const char *str)
- {
-diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-index 13d52b60f388..419140bf992d 100644
---- a/include/drm/drm_print.h
-+++ b/include/drm/drm_print.h
-@@ -36,7 +36,7 @@
- #include <drm/drm.h>
- 
- /* Do *not* use outside of drm_print.[ch]! */
--extern unsigned int __drm_debug;
-+extern unsigned long __drm_debug;
- 
- /**
-  * DOC: print
-@@ -527,7 +527,7 @@ __printf(1, 2)
- void __drm_err(const char *format, ...);
- 
- #if !defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
--#define __drm_dbg(fmt, ...)		___drm_dbg(NULL, fmt, ##__VA_ARGS__)
-+#define __drm_dbg(cat, fmt, ...)	___drm_dbg(NULL, cat, fmt, ##__VA_ARGS__)
- #else
- #define __drm_dbg(cat, fmt, ...)					\
- 	_dynamic_func_call_cls(cat, fmt, ___drm_dbg,			\
--- 
-2.35.1
-
+greg k-h
